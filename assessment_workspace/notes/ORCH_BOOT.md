@@ -772,6 +772,32 @@ heads_last_sealed:
     seal_kind: "CP-AIP-1-INGEST-CAPTURE Commit-A 590747f2 on programme/track-a (last sealed · pre-CP-AIP-2)"
 
 
+
+generated_at_utc: 2026-02-23T06:20:00Z
+generator: "main-agent Autopilot (CP-AIP-2-DEDUP-CONDITION-MAP Commit-C fixup · R-6 boundary regen advancing heads_last_sealed.state_repo.head 7e37a8cd7d781a592e9820ebbe7456dd563a05ce + code_repo.head 7f030d17289b122b07b1346cede08167d2fc937a · pre-Commit-A ratchet-only regen already banked at state Commit-B 7e37a8cd7d781a592e9820ebbe7456dd563a05ce · ratchet floor 6254 · baseline_failures.json sha256 73f87115f9a78e94fd16544d07a81e54e7a68941021005acb466df49a8f708b4 · +10 canonical measured AIP v1.0 §4.5 + §4.6 (b) dedup instance-condition-map provenance carriers · closes CP-AIP-1 deferred §4.6 (b) branch per owner GO reminder 1 (b) verbatim · additive-only per SO §3.8 · sealed carriers UNCHANGED · double-green byte-identical stripped_sha256 b018e5d06851a5d1612a12c219e94a8f7990d82ac6dbcad9528d06f5d4fbaed8 IDENTICAL sweep_A/B both 6260 passed 1 skipped 0 failed 520 warnings · owner GO 2026-02-23 sequential-no-pause verbatim · Item 5.2 of EXECUTION_ORDER.md CLOSED · CP-AIP-3-CHARACTER-REGISTER opens next per owner sequencing directive · CP-AIP-3 seal boundary = HARD GATE interim report checkpoint per owner reminder 4)"
+regeneration_reason: post-commit-b-cp-aip-2-dedup-condition-map-commit-c-fixup-r-6-boundary-regen-advancing-state-head-to-7e37a8cd-and-code-head-to-7f030d17-plus-ratchet-6244-to-6254-plus-10-canonical-measured-item-5-2-of-execution-order-closed
+
+ratchet:
+  passed_floor: 6254
+  counts_at_baseline_passed: 6254
+  baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
+  baseline_failures_sha256: 73f87115f9a78e94fd16544d07a81e54e7a68941021005acb466df49a8f708b4
+
+heads_last_sealed:
+  state_repo:
+    workdir: /app/assessment_workspace
+    branch: master
+    head: 7e37a8cd7d781a592e9820ebbe7456dd563a05ce
+    sealed_at_utc: 2026-02-23T06:15:00Z
+    seal_kind: "CP-AIP-2-DEDUP-CONDITION-MAP state Commit-B · banks code Commit-A 7f030d17 + /app companion 77766613 · Item 5.2 of EXECUTION_ORDER.md CLOSED · AIP v1.0 §4.5 + §4.6 (b) dedup instance-condition-map provenance carriers · closes CP-AIP-1 deferred §4.6 (b) branch per owner GO reminder 1 (b) verbatim · additive per SO §3.8 · ratchet 6244->6254 +10 canonical measured · pre-Commit-A double-green stripped_sha256 b018e5d06851a5d1612a12c219e94a8f7990d82ac6dbcad9528d06f5d4fbaed8 IDENTICAL sweep_A/B both 6260 passed · CP-AIP-3 opens next as HARD GATE (custody harness · owner reminder 4)"
+  code_repo:
+    workdir: /app/assessment_workspace/repos/Extraction-Akki
+    branch: programme/track-a
+    head: 7f030d17289b122b07b1346cede08167d2fc937a
+    sealed_at_utc: 2026-02-23T06:12:00Z
+    seal_kind: "CP-AIP-2-DEDUP-CONDITION-MAP Commit-A 7f030d17 on programme/track-a · Item 5.2 of EXECUTION_ORDER.md · NEW backend/services/audio_plane_v1/dedup_instance_provenance_v1.py (~110 lines · RobustnessStratumTag_v1 + DedupInstanceProvenance_v1 + DedupInstanceProvenanceIncomplete refusal · §1.5 __post_init__ gates on missing instance-condition-map) + NEW backend/services/audio_plane_v1/dedup_capture_v1.py (~95 lines · compose_dedup_instance_provenance composer using sealed construct_instance_condition_map from CP-M6-2-1 + assert_dedup_provenance_meets_section_4_6_b gate callable using sealed dedup_item_has_instance_condition_map helper + DedupInstanceProvenanceRefused refusal class · §1.2 modality-extension not §1.4 parallel plane) + NEW backend/tests/invariants/test_cp_aip_2_dedup_condition_map_aip_v1_0_section_4_5.py (10 RED-first structural + composition pins §4.5 variants non-empty via sealed error + §4.5 canonical/variant Literal + §4.5 zero_acquisition_cost=True Final + §4.6 (b) gate refusal on missing map + §4.6 (b) gate accepts well-formed + §1.2 composer uses sealed constructor + §1.2 no parallel plane + §1.2 gate uses sealed helper + CP-AIP-1 composition via base_provenance field type + anti-drift §3 §5 anchors) + baseline_failures.json ratchet 6244->6254 +10 canonical measured ratchet_history entry per BL #6 + BL #7 indent=2 + BL #11 ensure_ascii=False · Sealed carriers UNCHANGED per SO §3.8 (instance_condition_map CP-M6-2-1 + ingestion_provenance_v1 CP-AIP-1 + ingestion_capture_v1 CP-AIP-1) · RED-first authentic ModuleNotFoundError right-reason · GREEN-post 10/10 pass 0.68s · Pre-Commit-A double-green byte-identical stripped_sha256 b018e5d06851a5d1612a12c219e94a8f7990d82ac6dbcad9528d06f5d4fbaed8 IDENTICAL sweep_A/B both 6260 passed 1 skipped 0 failed 520 warnings ~193s each · comprehensive receipt banked at state Commit-B phase0/cp_aip_2_dedup_condition_map_20260223/receipt.md · CP_AIP_2 card pulled from queued/ + rewritten fully-conforming SO §6.2 · SPEC-CONFLICT log NONE this slice · closes CP-AIP-1 deferred §4.6 (b) branch"
+
+
 ```
 
 ---

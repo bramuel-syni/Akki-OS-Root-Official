@@ -28426,6 +28426,33 @@ single build reference for the audio plane.
 
 Banked here for `test_orch_boot::_banked_in_state` invariant lookup + audit trail.
 
+### CP-AIP-2-DEDUP-CONDITION-MAP seal record (2026-02-23T~06:15Z · SEALED THIS-TURN · under same owner GO)
+
+- **Scope:** AIP v1.0 §4.5 + §4.6 (b) dedup instance-condition-map provenance carriers · additive per SO §3.8 · composed with sealed CP-M6-2-1 InstanceConditionMap + CP-AIP-1 IngestionSegmentProvenance_v1 via §1.2 modality-extension.
+- **New modules landed:**
+  - `backend/services/audio_plane_v1/dedup_instance_provenance_v1.py` (~110 lines · RobustnessStratumTag_v1 + DedupInstanceProvenance_v1 + DedupInstanceProvenanceIncomplete refusal · §1.5 __post_init__ gates).
+  - `backend/services/audio_plane_v1/dedup_capture_v1.py` (~95 lines · compose_dedup_instance_provenance composer using sealed construct_instance_condition_map + assert_dedup_provenance_meets_section_4_6_b gate callable using sealed dedup_item_has_instance_condition_map helper + DedupInstanceProvenanceRefused refusal class).
+- **Ratchet:** floor 6244 → 6254 (+10 canonical measured) · baseline_failures.json sha256 post-bump `73f87115f9a78e94fd16544d07a81e54e7a68941021005acb466df49a8f708b4`.
+- **10 pins by §4.5 / §4.6 (b) / §1.2 anchor:** §4.5 variants non-empty via sealed error (1) · §4.5 canonical-vs-variant Literal field (1) · §4.5 zero-acquisition-cost provenance (1) · §4.6 (b) gate refusal on missing map (1) · §4.6 (b) gate accepts well-formed item (1) · §1.2 composer uses sealed constructor (1) · §1.2 no-parallel-redeclaration (1) · §1.2 gate uses sealed helper (1) · CP-AIP-1 composition via base_provenance field type (1) · Anti-drift §3 + §5 anchors (1).
+- **Pre-Commit-A double-green:** 6260 passed / 1 skipped / 0 failed / 520 warnings both sweeps · byte-identical stripped_sha256 `b018e5d06851a5d1612a12c219e94a8f7990d82ac6dbcad9528d06f5d4fbaed8` IDENTICAL.
+- **CP_AIP_2 card** pulled from `STATE/OBJECTIVES/queued/` + rewritten fully-conforming SO §6.2 · card_sha256 `b5b86c6a5aefba1a86f95cfd1b9d7894ceb9e4d88bc5f193808767b875e006b6`.
+- **SPEC-CONFLICT log:** NONE this slice.
+- **Closes CP-AIP-1 deferred §4.6 (b) branch** per owner GO reminder 1 (b) verbatim ('this lands fully in CP-AIP-2 but the pin should exist RED from CP-AIP-1 if cheap').
+- **Comprehensive receipt:** `phase0/cp_aip_2_dedup_condition_map_20260223/receipt.md`.
+
+### CP-AIP-2-DEDUP-CONDITION-MAP full seal chain SHAs (state mini-bank · 2026-02-23T06:20:00Z)
+
+| Commit | SHA | Branch |
+|---|---|---|
+| 1. Code Commit-A | `7f030d17289b122b07b1346cede08167d2fc937a` | programme/track-a |
+| 2. /app companion A | `777666131ad9d51cc113c9a16debb0c7d95063be` | main |
+| 3. State Commit-B | `7e37a8cd7d781a592e9820ebbe7456dd563a05ce` | master |
+| 4. State Commit-C fixup | (this commit · pending) | master |
+| 5. /app companion C | (post-fixup · pending) | main |
+
+Banked here for `test_orch_boot::_banked_in_state` invariant lookup + audit trail.
+
+
 ---
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
