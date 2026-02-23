@@ -28516,15 +28516,15 @@ Banked here for `test_orch_boot::_banked_in_state` invariant lookup + audit trai
 - **HONEST_GAP_V1_POSTURE** owner content anchor banked: 'the fail-closed refusal path with stated reason IS the honest v1 behavior · do not mock a codec and call it real'. Enforced by PIN-11 (module-level `Final` marker scan).
 - **Comprehensive receipt:** `phase0/cp_aip_4_codec_service_20260223/receipt.md`.
 
-### CP-AIP-4-CODEC-SERVICE full seal chain SHAs (state mini-bank · Commit-C fixup 2026-02-23T06:59:00Z)
+### CP-AIP-4-CODEC-SERVICE full seal chain SHAs (state mini-bank · 2026-02-23T07:01:00Z)
 
 | Commit | SHA | Branch |
 |---|---|---|
 | 1. Code Commit-A | `980456d33b0d3210ce0fa37039cad0864e1a9fb6` | programme/track-a |
 | 2. /app companion A | `e55355b786fdd9bc02c67fec02eafc9767f126b8` | main |
 | 3. State Commit-B | `c5b3d2a345ff7585ec5daa17b3bdd396ed95c1a4` | master |
-| 4. State Commit-C fixup | (this commit · in-flight) | master |
-| 5. /app companion C | (post-fixup · pending) | main |
+| 4. State Commit-C fixup | `bba647f02de55c6475718453b97c65eee4985b16` | master |
+| 5. /app companion C | `e1d2050fde5ecb3fa44f7db88fd93829a90d1065` | main |
 
 Banked here for `test_orch_boot::_banked_in_state` invariant lookup + audit trail.
 

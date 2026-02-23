@@ -149,11 +149,11 @@ Expected: probe-7 `{'failed': 3, 'passed': 6280, 'skipped': 1, ...}` · most-rec
 |---|---|---|---|
 | Code Commit-A | `980456d33b0d3210ce0fa37039cad0864e1a9fb6` | programme/track-a | 5 NEW modules (`round_trip_fidelity_v1.py` + `unsupported_condition_refusal_v1.py` + `downstream_provenance_gate_v1.py` + `models_registry_v1_bump_v1.py` + `pretraining_contract_v1.py`) + 14 RED-first pins + baseline_failures ratchet bump 6266 → 6280 + drill receipts |
 | /app companion A | `e55355b786fdd9bc02c67fec02eafc9767f126b8` | main | vendored twin sync (5 new files · MANIFEST 1043 → 1048) + notes ORCH_BOOT ratchet-only regen + audit ORCH_BOOT byte-identical mirror + gitlink advance 3897842 → 980456d3 |
-| State Commit-B | (this commit · pending) | master | banks CP-AIP-4 objective card + queued/CP_AIP_4 delete-promotion + comprehensive receipt + EXECUTION_ORDER + DECISIONS + RESUME rewrites |
-| State Commit-C fixup | (post-B fixup · pending) | master | R-6 boundary regen advancing heads_last_sealed to this-CP heads + state mini-bank of 5-commit SHAs into DECISIONS.md |
-| /app companion C | (post-fixup · pending) | main | audit ORCH_BOOT byte-identical mirror sync post-fixup + notes ORCH_BOOT sync + DECISIONS mini-bank mirror |
+| State Commit-B | `c5b3d2a345ff7585ec5daa17b3bdd396ed95c1a4` | master | banks CP-AIP-4 objective card + queued/CP_AIP_4 delete-promotion + comprehensive receipt + EXECUTION_ORDER + DECISIONS + RESUME rewrites + CP-AIP-3 card_sha256 fold-in fix |
+| State Commit-C fixup | `bba647f02de55c6475718453b97c65eee4985b16` | master | R-6 boundary regen advancing heads_last_sealed to this-CP heads (state_repo.head c5b3d2a3 + code_repo.head 980456d3) + state mini-bank of 5-commit SHAs banked in DECISIONS.md |
+| /app companion C | `e1d2050fde5ecb3fa44f7db88fd93829a90d1065` | main | audit ORCH_BOOT byte-identical mirror sync post-fixup + notes ORCH_BOOT sync + DECISIONS mini-bank mirror |
 
-(Full 5-commit seal chain landing in progress. Item 5.4 of EXECUTION_ORDER.md CLOSED. Cadence directive: sequential CP-AIP-5 opens NEXT.)
+(All 5 SHAs banked. Full 5-commit seal chain LANDED. Item 5.4 of EXECUTION_ORDER.md CLOSED.)
 
 **Prior seals banked (append-only):**
 
