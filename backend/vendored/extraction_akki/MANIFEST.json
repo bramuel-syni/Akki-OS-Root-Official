@@ -1,5 +1,5 @@
 {
-  "file_count": 1043,
+  "file_count": 1048,
   "files": {
     "__init__.py": {
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -2925,13 +2925,33 @@
       "sha256": "9d25a71fbe4ec5e61810c7697de4c52a0bf1d5a6760211d9f214fb556dcfd3c9",
       "size_bytes": 3922
     },
+    "services/perception/audio_codec/downstream_provenance_gate_v1.py": {
+      "sha256": "1cdbd2eeee94ae28dab9a52a74042f9ff62e2c3ac298b8f9127c2674314d6db8",
+      "size_bytes": 3105
+    },
+    "services/perception/audio_codec/models_registry_v1_bump_v1.py": {
+      "sha256": "cae4a44f1c749be0e1b55a27bb27ea16a52c99c99c20804de22bbc9b329b9732",
+      "size_bytes": 3824
+    },
     "services/perception/audio_codec/perimeter_boundary.py": {
       "sha256": "27a55d1fde339cbc6ddf65c79adea76ddb14c2c72541d90d35b71eaeaec11576",
       "size_bytes": 4230
     },
+    "services/perception/audio_codec/pretraining_contract_v1.py": {
+      "sha256": "1ea8b293bc003060b849e6b4a186a6dcf4e82f51c5b99d1675649a27eb1cec19",
+      "size_bytes": 5156
+    },
+    "services/perception/audio_codec/round_trip_fidelity_v1.py": {
+      "sha256": "6db53193e10187550b56d010df1ea336a3106e34926692122a040cabce39e043",
+      "size_bytes": 7681
+    },
     "services/perception/audio_codec/service.py": {
       "sha256": "77184ecea1dc2ab58abcddb58dd0636f68df93f9d66b9275b63c650ba01f025f",
       "size_bytes": 4437
+    },
+    "services/perception/audio_codec/unsupported_condition_refusal_v1.py": {
+      "sha256": "73da3b0436ed8804a3cdd24432626743a4962c3b18756ad6d5c6340cd0667be8",
+      "size_bytes": 4367
     },
     "services/perception/checkpointing.py": {
       "sha256": "585bed21dfb05bff0346ffb7a4508992a4607f89e0ab9c66d7b05109cbac3cf7",
@@ -4174,7 +4194,7 @@
       "size_bytes": 19816
     }
   },
-  "generated_at_utc": "2026-09-23T05:16:41Z",
+  "generated_at_utc": "2026-09-23T06:08:06Z",
   "source": {
     "included_top_dirs": [
       "services",
@@ -4188,7 +4208,7 @@
     ],
     "spine_backend": "/app/assessment_workspace/repos/Extraction-Akki/backend"
   },
-  "structural_sha256": "8ae7be358e3cfb0eb584a4d70f230d5726d025a517440b5ff06c836d6de7dd59",
+  "structural_sha256": "b2c4e9d3019310757516e81fa3c1aa49de36c06eb3cafb5ea03df64d667b5c47",
   "target": {
     "vendored_backend": "/app/backend/vendored/extraction_akki/backend"
   }
