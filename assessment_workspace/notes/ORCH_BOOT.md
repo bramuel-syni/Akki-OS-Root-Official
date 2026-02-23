@@ -902,6 +902,32 @@ heads_last_sealed:
     seal_kind: "CP-AIP-4-CODEC-SERVICE Commit-A 980456d3 on programme/track-a · Item 5.4 of EXECUTION_ORDER.md · +14 canonical measured AIP v1.0 §3 codec-service acceptance boundary GREEN"
 
 
+
+generated_at_utc: 2026-02-23T07:16:00Z
+generator: "main-agent Autopilot (CP-AIP-5-CLUSTERING pre-Commit-A ratchet-only ORCH_BOOT regen · advancing ratchet.passed_floor 6280 -> 6292 + baseline_failures.json sha256 to post-bump 5deb18b96c28659fed8e71f47abfef57d27177097164c772be1cc3f0080557cd · heads_last_sealed UNCHANGED at last CP-AIP-4 state Commit-B c5b3d2a3 + code Commit-A 980456d3 · this-CP heads advance at Commit-C fixup post-Commit-B · +12 canonical measured AIP v1.0 §5.3 character-register clustering acceptance boundary · N-speakers gate + name-null-until-ceremony + no-per-utterance-payload + naming-ceremony-uses-sealed-bind + quoted-cost-receipt-gate + no-name-at-storage + §1.2 modality-extension scans + tokens-not-waveforms mirror + no-throughput-assertion + anchor scans · HARD GATE MET from CP-AIP-3 · custody invariant harness GREEN · CP-AIP-5 cluster storage UNBLOCKED per owner reminder 4 verbatim)"
+regeneration_reason: pre-commit-a-cp-aip-5-clustering-ratchet-only-regen-6280-to-6292-plus-12-canonical-measured-aip-v1-0-section-5-3-character-register-clustering-acceptance-boundary
+
+ratchet:
+  passed_floor: 6292
+  counts_at_baseline_passed: 6292
+  baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
+  baseline_failures_sha256: 5deb18b96c28659fed8e71f47abfef57d27177097164c772be1cc3f0080557cd
+
+heads_last_sealed:
+  state_repo:
+    workdir: /app/assessment_workspace
+    branch: master
+    head: c5b3d2a345ff7585ec5daa17b3bdd396ed95c1a4
+    sealed_at_utc: 2026-02-23T06:58:00Z
+    seal_kind: "CP-AIP-4-CODEC-SERVICE state Commit-B c5b3d2a3 (last sealed · pre-CP-AIP-5)"
+  code_repo:
+    workdir: /app/assessment_workspace/repos/Extraction-Akki
+    branch: programme/track-a
+    head: 980456d33b0d3210ce0fa37039cad0864e1a9fb6
+    sealed_at_utc: 2026-02-23T06:55:00Z
+    seal_kind: "CP-AIP-4-CODEC-SERVICE Commit-A 980456d3 on programme/track-a (last sealed · pre-CP-AIP-5)"
+
+
 ```
 
 ---
