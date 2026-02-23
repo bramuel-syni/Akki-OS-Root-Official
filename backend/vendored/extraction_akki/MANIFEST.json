@@ -1,5 +1,5 @@
 {
-  "file_count": 1050,
+  "file_count": 1055,
   "files": {
     "__init__.py": {
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -100,6 +100,10 @@
     "contracts/claims_validation_row_v0.py": {
       "sha256": "1d4f81de1bf749f615a5fb5eab39e65e4233ac82b705505afd5a17d0ed6dd835",
       "size_bytes": 3927
+    },
+    "contracts/collection_schema_v0.py": {
+      "sha256": "f1823af10e7179f21afd1ef41224970b1a3a9f82afbef7f76da4f7a9be6b2433",
+      "size_bytes": 2778
     },
     "contracts/commission_verdict.py": {
       "sha256": "b9d4a5190213c25f27e3095f06803593f93038c50712c207abe485c6351d49e7",
@@ -325,6 +329,10 @@
       "sha256": "974d786635b16abc83b9cfd0f68adab5e88581926f97a421b96b4aa5983f761b",
       "size_bytes": 6487
     },
+    "contracts/target_outcome_v0.py": {
+      "sha256": "fe88f9d18afe6d70b296396cff6f826c8a3a530eef916f36e2e4aa357b7528be",
+      "size_bytes": 3315
+    },
     "contracts/targeta_plan.py": {
       "sha256": "013979c39dee561cf598dd30868b18faf70fc912094f906dc74ec0ec5272fe4f",
       "size_bytes": 2468
@@ -388,6 +396,10 @@
     "contracts/wizard_commit_state.py": {
       "sha256": "30e09ee1aff001bf29e9c59f748d2082c063aa5ee411e6ec0260953b4c8609a1",
       "size_bytes": 6956
+    },
+    "contracts/wizard_objective_commit_state_v0.py": {
+      "sha256": "4c92093cc9d94c20ad105feeace90ed0f5520afaffa72664df6a150ac014b03f",
+      "size_bytes": 3670
     },
     "core.py": {
       "sha256": "9d1d6741f3da9fe77b472d7462b1369e68e5c45c06f80baf52c0f70621ccdea8",
@@ -3245,6 +3257,10 @@
       "sha256": "217170b60fa697e17d0c6781e0421a10f6f4a9ad7d7f2e8199368da9554e9f84",
       "size_bytes": 289
     },
+    "services/registry/audio_modality_namespace.py": {
+      "sha256": "cecb278c374e33e5f60e6eba1e58c54d2b9c73f5ac8775e0e3d4b3acb1e29c5b",
+      "size_bytes": 4493
+    },
     "services/registry/parser.py": {
       "sha256": "eaedc8f767178cecaf1b2f09c3c45164889670f9f18d794f78af2bc2cc25267d",
       "size_bytes": 23765
@@ -4145,6 +4161,10 @@
       "sha256": "d4b20fd729899d9b7938d34b20100b97ee1e62cc8b86073b18f7e3fe38d3d276",
       "size_bytes": 5518
     },
+    "services/wizard/objective_compile.py": {
+      "sha256": "012d931066dd344f92d72c454ab17ab242a6f5a4d95c0678cf0d545a52032a0c",
+      "size_bytes": 5563
+    },
     "services/wizard/operator_state_machine.py": {
       "sha256": "6d587f3797f04e6f518f9f20a865856fce0703e96eb3ba629d0be60a253d5448",
       "size_bytes": 11674
@@ -4202,7 +4222,7 @@
       "size_bytes": 19816
     }
   },
-  "generated_at_utc": "2026-09-23T06:32:10Z",
+  "generated_at_utc": "2026-09-23T06:52:56Z",
   "source": {
     "included_top_dirs": [
       "services",
@@ -4216,7 +4236,7 @@
     ],
     "spine_backend": "/app/assessment_workspace/repos/Extraction-Akki/backend"
   },
-  "structural_sha256": "90080bfb2582263f6ffc3f1fd13e63733d5e1b9b0f0a3d28b8e01245ed31899d",
+  "structural_sha256": "ca3684c454fd14a75d7724610006cb8c92ba739b82604fc3909be422e9d12749",
   "target": {
     "vendored_backend": "/app/backend/vendored/extraction_akki/backend"
   }

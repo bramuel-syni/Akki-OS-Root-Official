@@ -954,6 +954,32 @@ heads_last_sealed:
     seal_kind: "CP-AIP-5-CLUSTERING Commit-A c915ab48 on programme/track-a · Item 5.5 of EXECUTION_ORDER.md · +12 canonical measured AIP v1.0 §5.3 character-register clustering acceptance boundary GREEN"
 
 
+
+generated_at_utc: 2026-02-23T07:41:00Z
+generator: "main-agent Autopilot (CP-AIP-6-OBJECTIVE-WIZARD pre-Commit-A ratchet-only ORCH_BOOT regen · advancing ratchet.passed_floor 6292 -> 6302 + baseline_failures.json sha256 to post-bump 3750f45c6126a723efbe559762060edee6b02f5aabb22b32edaa811afb2d6885 · heads_last_sealed UNCHANGED at last CP-AIP-5 state Commit-B 6ae3fe3e + code Commit-A c915ab48 · this-CP heads advance at Commit-C fixup post-Commit-B · +10 canonical measured AIP v1.0 §8 objective wizard + §9 collection schema + §12.1 registry namespace · §8.4 compile-time rejections (TestSetRefMissing + AcceptanceBarNotStratified + CustodyViolation) + §9.2 baseline tier v1.0 frozen 5-tuple + §12.1 namespace closure state sealed-never-deleted + §12.1 reads-compose-global writes-namespace-scoped + §8.5 objective_session with options_considered + options_rejected + §1.2 no-redeclaration scan + Anti-drift anchor scan · §16.1 (c) CLEAN receipt applied verbatim (sibling contract not sealed carrier edit))"
+regeneration_reason: pre-commit-a-cp-aip-6-objective-wizard-ratchet-only-regen-6292-to-6302-plus-10-canonical-measured-aip-v1-0-section-8-9-12-1-objective-wizard-plus-collection-schema-plus-registry-namespace
+
+ratchet:
+  passed_floor: 6302
+  counts_at_baseline_passed: 6302
+  baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
+  baseline_failures_sha256: 3750f45c6126a723efbe559762060edee6b02f5aabb22b32edaa811afb2d6885
+
+heads_last_sealed:
+  state_repo:
+    workdir: /app/assessment_workspace
+    branch: master
+    head: 6ae3fe3ed6bb749cbc9fa7178351609bfb14b121
+    sealed_at_utc: 2026-02-23T07:22:00Z
+    seal_kind: "CP-AIP-5-CLUSTERING state Commit-B 6ae3fe3e (last sealed · pre-CP-AIP-6)"
+  code_repo:
+    workdir: /app/assessment_workspace/repos/Extraction-Akki
+    branch: programme/track-a
+    head: c915ab482795f04123e87e4ab014ab61e483fba4
+    sealed_at_utc: 2026-02-23T07:20:00Z
+    seal_kind: "CP-AIP-5-CLUSTERING Commit-A c915ab48 on programme/track-a (last sealed · pre-CP-AIP-6)"
+
+
 ```
 
 ---
