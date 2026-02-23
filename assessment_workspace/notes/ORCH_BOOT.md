@@ -1379,13 +1379,13 @@ heads_last_sealed:
   state_repo:
     workdir: /app/assessment_workspace
     branch: master
-    head: 565130d2e8b3c6167826cc25d824ea24621abda7
+    head: 7f4d079069009be09f743c09e3116c7e1c0fd8f5
     sealed_at_utc: 2026-02-23T15:50:00Z
     seal_kind: "CP-AIP-ASSIST-CENSUS state Commit-B (banks Code Commit-A 424e2184d983b479c61ba9b49096fdfad9c7c3f1 · Item 5.11.f of EXECUTION_ORDER.md · SO §6.9 amendment + owner drop assist_cards_preapproved_and_run_to_completion verbatim + Ruling (b) verbatim · six binding conditions verbatim as MUST-DO/MUST-NOT test IDs · assist_census_v1 §1.2 modality-extension composing sealed Census Autonomy Service surface · 10 own new invariant pins · Ratchet 6379 → 6389 · double-green stripped_sha256 bb7f3c5117fbf946bbc1e973e07b522af74cc6c6709b1b0e2cbde24e53e9254d IDENTICAL both sweeps 6389 passed)"
   code_repo:
     workdir: /app/assessment_workspace/repos/Extraction-Akki
     branch: programme/track-a
-    head: 424e2184d983b479c61ba9b49096fdfad9c7c3f1
+    head: fbb2f1f4179c359f18e1c57c3871b2a321c81c5f
     sealed_at_utc: 2026-02-23T15:45:00Z
     seal_kind: "CP-AIP-ASSIST-CENSUS Code Commit-A 424e2184 · +10 canonical measured own new pins · ratchet 6379 -> 6389 · assist_census_v1 §1.2 modality-extension composing sealed Census Autonomy Service · assistant is READ-ONLY against Registry; NO learning-write callables exposed; NO decision-boundary imports; pod NEVER data path · double-green stripped_sha256 bb7f3c5117fbf946bbc1e973e07b522af74cc6c6709b1b0e2cbde24e53e9254d IDENTICAL both sweeps 6389 passed"
 

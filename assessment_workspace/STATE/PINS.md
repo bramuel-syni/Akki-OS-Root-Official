@@ -150,7 +150,7 @@ Strategy work-in-progress (to be created):
 - **checkpoint_14d_utc:** `2026-08-28T00:00:00Z`
 - **hardening_status:** `attested`
 - **acceptance_status:** `green`
-- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260923T153923Z.json`
+- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260923T162534Z.json`
 <!-- CONNECT-GPU-PINS -->
 
 
@@ -1813,3 +1813,60 @@ Placement OUTSIDE the TCB. Every user-facing string is a Content Registry entry.
 `CP-AIP-ASSIST-CENSUS FULLY SEALED · SO §6.9 amendment + owner drop 2026-02-23 assist_cards_preapproved_and_run_to_completion verbatim + Ruling (b) AKKI-RUNS-IT verbatim · six binding conditions verbatim as MUST-DO/MUST-NOT test IDs · (1) No path to any decision (negative-scan import isolation) · (2) Confirmed turns only banked (A5.16 receipted provenance) · (3) Census assistant read-only against Registry (B5.1 byte-identical census with/without assistant) · (4) Training proposals freeze at commission; MOAC owner-set only · (5) Content generated · chat surface · anchored · gated (R-32/A5.15/CON-6) · (6) No learning from dialogue (L-4/L-5 only admission path) · placement OUTSIDE the TCB · every user-facing string is a Content Registry entry · assist_census_v1 §1.2 modality-extension composing sealed Census Autonomy Service surface · 10 RED-first own pins ALL GREEN · double-green stripped_sha256 bb7f3c5117fbf946bbc1e973e07b522af74cc6c6709b1b0e2cbde24e53e9254d IDENTICAL both sweeps 6389 passed · Ratchet 6379 → 6389 (+10 canonical measured own new pins) · SO §6.9(5) AMENDED 8th application: code bundle sha256 7b5620ee7e98d2673a7b59cc134ff34c1159f679c761dbac54772caee067b6c3 (~18 MiB @ programme/track-a 424e2184) + state bundle sha256+path pinned at PINS bank commit · GAPS_FIXED_LEDGER 10 own invariant-seat entries at boundary · Sealed carriers UNCHANGED per SO §3.8 additive-only · Ruling (b) AKKI-RUNS-IT verbatim honored — assistant is READ-ONLY against Registry; NO learning-write callables; NO decision-boundary imports; pod NEVER data path · Item 5.11.f of EXECUTION_ORDER.md CLOSED · Item 5.11.g (CP-AIP-ASSIST-TRAINING) opens next per RUN-TO-COMPLETION mandate 2026-02-23 · REPORT-AND-CONTINUE not idle-halt.`
 
 <!-- CP-AIP-ASSIST-CENSUS-PINS-2026-02-23 END -->
+
+---
+
+## CP-AIP-ASSIST-TRAINING · Item 5.11.g · SEAL BOUNDARY 2026-02-23T~16:30Z · SO §6.9 amendment + owner drop assist_cards_preapproved_and_run_to_completion verbatim + Ruling (b) AKKI-RUNS-IT verbatim
+
+<!-- CP-AIP-ASSIST-TRAINING-PINS-2026-02-23 START -->
+
+**Seal ID:** CP-AIP-ASSIST-TRAINING-20260223
+
+**Owner canon anchor verbatim** (SO §6.9 amendment + owner drop `STATE/OWNER_DROPS/assist_cards_preapproved_and_run_to_completion_20260223/DROP.md`): six binding conditions applied to training-run dialogue as MUST-DO/MUST-NOT test IDs — (1) No path to any decision · (2) Confirmed turns only banked · (3) Training assistant read-only against Registry (B5.1 byte-identical) · (4) MOAC criteria owner-set only at commission time (frozen at owner confirmation) · (5) Content anchored + gated · (6) No learning from dialogue. Placement OUTSIDE the TCB.
+
+**Ruling (b) AKKI-RUNS-IT verbatim 2026-02-23:** E1 wires the seam INTO Census Autonomy Service; pod is never data path. Training compute + model weights + labelled corpus NEVER leave Akki's boundary; no third-party export.
+
+**Objective card:** `STATE/OBJECTIVES/CP_AIP_ASSIST_TRAINING_20260223.md` · card_sha256 `e5bb78578557107ebe6301ae393ec5618592d8a8f3c01b79eabaeb38385017d3` (line-removed convention).
+
+**Ratchet:** 6389 → 6399 (+10 canonical measured own new pins) · baseline_failures.json sha256 post-bump `7a13a04a96e120ca403878e3cb985c41d284ef4fdde80377656a9ee93ade7c69`.
+
+**Pre-Commit-A double-green:** BASELINE_GUARD=1 PYTHONHASHSEED=0 stripped_sha256 `b74d807fa2f6cc77240c659fad5f87690e2e3d38bdb865dae77d7b512a5dfdc2` IDENTICAL sweep_A_post_vendor_sync (20260923T162107Z ~209s) + sweep_B (20260923T162500Z ~209s) both 6399 passed / 13 skipped / 0 failed / 520 warnings. **Same-slice cure:** vendored twin file_count 1066→1067 mid-slice sync via `tools/prod_vendor_sync.py` resolved `test_vendored_tree_mirrors_spine` failure detected at first Sweep A.
+
+**ORCH_BOOT.md notes+audit:** byte-identical sha256 `069893181831f702459a70287591d9ffc5363372890959c27c9a9b8cd4a13bc8` with ratchet.passed_floor 6399 + baseline_failures_sha256 7a13a04a96e120ca403878e3cb985c41d284ef4fdde80377656a9ee93ade7c69.
+
+**NEW additive module:** `backend/services/census_autonomy/assist_training_v1.py` (~232 lines) — 5 refusal subclasses (extend sealed CP-AIP-ASSIST-CENSUS `AssistCensusBoundaryRefused` by identity) + 5 posture markers (Final str · owner verbatim) + `SIX_BINDING_CONDITIONS_POSTURE_TRAINING` Final 6-tuple + `TrainingAssistantConfirmedTurn_v1` frozen 8-field carrier + `TrainingCommissionProposal_v1` frozen 6-field carrier + `bank_confirmed_training_turn` + `render_training_content_registry_entry` + `freeze_training_commission_on_owner_confirm` boundary callables.
+
+**Test file:** `backend/tests/invariants/test_cp_aip_assist_training.py` (10 RED-first pins · RED_pre 10/10 authentic ImportError right-reason · GREEN_post 10/10 passed 0.73s).
+
+**Sealed carriers UNCHANGED per SO §3.8 additive-only:**
+- `services/census_autonomy/assist_census_v1.py` (CP-AIP-ASSIST-CENSUS · sealed 5.11.f) — composed by identity.
+- `services/census_autonomy/track_4_autonomy_wiring_v1.py` (CP-TRACK-4-AUTONOMY-WIRING · sealed 5.11.e) — `PodIsNeverDataPathAtTrack4Error` posture composed by identity.
+- `services/audio_plane_v1/training_run_boundary_v1.py` (CP-AIP-10-TRAINING-RUNS · sealed).
+- `services/census_autonomy/engine.py` (R-106 sealed).
+
+**EXIT EVIDENCE (structural):** 10 RED-first pins covering six binding conditions applied to training-run dialogue verbatim as MUST-DO/MUST-NOT test IDs. Training-assistant module is READ-ONLY against Registry; NO learning-write callables exposed; NO decision-boundary imports; NO weight/corpus export callables.
+
+**6-commit seal chain (this-seal · POST-COMMIT-C-FIXUP):**
+
+| # | Commit | SHA | Branch |
+|---|---|---|---|
+| 1 | Code Commit-A | `fbb2f1f4179c359f18e1c57c3871b2a321c81c5f` | `programme/track-a` |
+| 2 | /app companion A | `0d1755aac` | `main` |
+| 3 | State Commit-B | `7f4d079069009be09f743c09e3116c7e1c0fd8f5` | `master` |
+| 4 | State Commit-C fixup | `05d556d5` | `master` |
+| 5 | State PINS bank | *(this commit)* | `master` |
+| 6 | /app companion C | *(post-state-bank)* | `main` |
+| 7 | State mini-bank | *(RESUME rewrite)* | `master` |
+
+**Milestone-seal continuity bundle (SO §6.9(5) AMENDED 9th application):**
+- Code bundle: `continuity_bundles/code_20260923T162954Z_CP_AIP_ASSIST_TRAINING.bundle` · ~18 MiB · sha256 `de2eecb204e33d3e6ed5824a99859dc1eb5d77921c2db30494ce08664d7b49cd` @ `programme/track-a` `fbb2f1f4179c359f18e1c57c3871b2a321c81c5f`.
+- State bundle: `/tmp/state_20260923T163521Z_CP_AIP_ASSIST_TRAINING.bundle` · ~208 MiB · sha256 `69f0897783158ced772fc9a2c01b96356bafee99b5aa91d38bf247656fdb204f` @ `master` `05d556d5` (State-C fixup).
+- **SPACE-CONSTRAINT TRANSPARENCY:** /app pod volume (nvme0n4 · 9.8 GiB cap) at 99% (110 MiB free) at state bundle emission; state bundle written to /tmp (60 GiB overlay free), sha256 verified, bundle verify "is okay" complete history. Bundle remains at /tmp path per this-seal disk-constraint. Same-volume relocation deferred to next available cleanup window; sha256-pin holds regardless of path per CP-AIP-ASSIST-CENSUS + CP-TRACK-4-AUTONOMY-WIRING precedent.
+
+**Anchor to Item 5.12 CP-AIP-LANGUAGE-COGNITION** (queued at `STATE/OBJECTIVES/queued/CP_AIP_LANGUAGE_COGNITION.md`): this-card's `bank_confirmed_training_turn` + `freeze_training_commission_on_owner_confirm` boundary callables ARE the consumer path for Item 5.12 language-cognition training-run commission dialogue. Owner confirms MOAC set: ≥90% per-language accuracy + ≥85% code-switch span accuracy + no-speaker-ID probe passed + abstention reported.
+
+**REPORT-AND-CONTINUE receipt line (this-seal · FULLY SEALED at State Commit-B):**
+
+`CP-AIP-ASSIST-TRAINING FULLY SEALED · SO §6.9 amendment + owner drop 2026-02-23 assist_cards_preapproved_and_run_to_completion verbatim + Ruling (b) AKKI-RUNS-IT verbatim · six binding conditions applied to training-run dialogue verbatim as MUST-DO/MUST-NOT test IDs · placement OUTSIDE the TCB · every user-facing string is a Content Registry entry · assist_training_v1 §1.2 modality-extension composing sealed CP-AIP-ASSIST-CENSUS assist_census_v1 by identity · 10 RED-first own pins ALL GREEN · double-green stripped_sha256 b74d807fa2f6cc77240c659fad5f87690e2e3d38bdb865dae77d7b512a5dfdc2 IDENTICAL both sweeps 6399 passed · Ratchet 6389 → 6399 (+10 canonical measured own new pins) · SO §6.9(5) AMENDED 9th application: code bundle sha256 de2eecb204e33d3e6ed5824a99859dc1eb5d77921c2db30494ce08664d7b49cd (~18 MiB @ programme/track-a fbb2f1f4) + state bundle sha256+path pinned at PINS bank commit · GAPS_FIXED_LEDGER 10 own invariant-seat entries + 1 same-slice cure (vendored twin file_count 1066→1067 mid-slice sync) · Sealed carriers UNCHANGED per SO §3.8 additive-only · Ruling (b) AKKI-RUNS-IT verbatim honored — training assistant is READ-ONLY against Registry; NO learning-write callables exposed; NO decision-boundary imports; NO weight/corpus export callables; pod NEVER data path (pod://* + /app/* refused at all boundary callables) · Item 5.11.g of EXECUTION_ORDER.md CLOSED · Item 5.11 wave COMPLETE (5.11.a-g all SEALED) · Item 5.12 (CP-AIP-LANGUAGE-COGNITION) opens next per RUN-TO-COMPLETION mandate 2026-02-23 · REPORT-AND-CONTINUE not idle-halt.`
+
+<!-- CP-AIP-ASSIST-TRAINING-PINS-2026-02-23 END -->

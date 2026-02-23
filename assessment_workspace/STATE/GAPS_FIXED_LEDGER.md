@@ -678,3 +678,75 @@ Placement OUTSIDE the TCB. Every user-facing string is a Content Registry entry.
 - **Ratchet:** `6379` → `6389` · baseline_failures.json sha256 `cfe002176cc78641b13dea985e0ee7c6fa20bf0df7bf84ce2d99b0f94a10ccb4` · double-green stripped_sha256 `bb7f3c5117fbf946bbc1e973e07b522af74cc6c6709b1b0e2cbde24e53e9254d`.
 - **Ruling (b) AKKI-RUNS-IT verbatim honored:** assistant is READ-ONLY against Registry; NO learning-write callables exposed; NO decision-boundary imports; pod NEVER data path.
 - **RUN-TO-COMPLETION mandate ACTIVE:** REPORT-AND-CONTINUE into Item 5.11.g (CP-AIP-ASSIST-TRAINING · same six binding conditions applied to training-run dialogue).
+
+---
+
+## CP-AIP-ASSIST-TRAINING — 10 own gaps closed at boundary 2026-02-23T~16:30Z (Item 5.11.g · SO §6.9 amendment + owner drop `assist_cards_preapproved_and_run_to_completion_20260223/DROP.md` verbatim + Ruling (b) AKKI-RUNS-IT verbatim)
+
+**Ledger check - this seal implements Item 5.11.g of EXECUTION_ORDER.md and nothing else.**
+
+**Owner canon anchor:** six binding conditions applied to training-run dialogue verbatim as MUST-DO/MUST-NOT test IDs — (1) No path to any decision · (2) Confirmed turns only banked · (3) Training assistant read-only against Registry (B5.1 byte-identical) · (4) MOAC criteria owner-set only at commission time (frozen at owner confirmation) · (5) Content anchored + gated · (6) No learning from dialogue. Placement OUTSIDE the TCB. **Ruling (b) verbatim:** E1 wires seam INTO Census Autonomy Service; pod NEVER data path; training compute + model weights + labelled corpus NEVER leave Akki's boundary.
+
+---
+
+### 1. Binding condition (1) — No path to any decision (import-boundary isolation)
+
+- **Kind:** import-boundary isolation invariant applied to training-scope.
+- **Additive fix:** `test_assist_training_no_path_to_any_decision_negative_scan_import_isolation` negative-scans `assist_training_v1.py` for imports of decision-boundary modules (wizard commission surface, MOAC set, admission gate, governance ceremony, reference monitor, TCB). Zero prohibited imports.
+
+### 2. Binding condition (2) — Confirmed turns only banked (A5.16 + Ruling (b) pod-refusal)
+
+- **Kind:** boundary-refusal invariant on training-turn write-path.
+- **Additive fix:** `test_assist_training_confirmed_turn_only_banked_a5_16_receipted_provenance` asserts `bank_confirmed_training_turn(...)` refuses `confirmed_by_owner=False`, refuses missing/malformed `a5_16_receipt_ref`, and refuses missing `proposed_training_commission_ref`. Additionally refuses `pod://*` / `/app/*` prefixed refs at session_id / tenant_id / content_registry_ref / proposed_training_commission_ref (Ruling (b) verbatim).
+
+### 3. Binding condition (3) — Training assistant read-only against Registry (B5.1 byte-identical)
+
+- **Kind:** posture-marker + Registry-write-surface exclusion invariant.
+- **Additive fix:** `test_assist_training_readonly_registry_b5_1_byte_identical` asserts `ASSIST_TRAINING_READONLY_POSTURE` Final str citing binding condition (3) verbatim + B5.1 byte-identity clause; negative-scan for `write_*` / `mutate_*` / `set_registry_*` public names.
+
+### 4. Binding condition (4) — MOAC owner-set only at commission (freeze semantics)
+
+- **Kind:** frozen-carrier + boundary-refusal invariant.
+- **Additive fix:** `test_assist_training_moac_owner_set_only_at_commission_freeze_semantics` asserts `MOAC_OWNER_SET_ONLY_AT_COMMISSION_POSTURE_TRAINING` Final str; asserts `TrainingCommissionProposal_v1` initializes with `moac_frozen=False`; asserts `freeze_training_commission_on_owner_confirm(...)` produces a NEW instance with `moac_frozen=True`; asserts subsequent mutation attempts on the frozen carrier raise `AttributeError` (frozen dataclass semantics). Second freeze attempt refused via `FrozenMoacEditRefused`.
+
+### 5. Binding condition (5) — Content anchored + gated (R-32/A5.15/CON-6)
+
+- **Kind:** boundary-refusal invariant on training-content render-path.
+- **Additive fix:** `test_assist_training_content_r32_a515_con6_anchored_gated_honest_marker_over_refusal` exercises `render_training_content_registry_entry(...)` with missing/malformed anchors; asserts `UngatedTrainingContentRefused` raised in both cases; happy-path composes sealed CP-AIP-ASSIST-CENSUS `render_content_registry_entry` by identity.
+
+### 6. Binding condition (6) — No learning from dialogue (L-4/L-5 only + Ruling (b) no-weight-export)
+
+- **Kind:** posture-marker + surface-exclusion invariant applied to training + Ruling (b) verbatim honored.
+- **Additive fix:** `test_assist_training_no_learning_from_dialogue_l4_l5_only_admission_path` asserts `NO_LEARNING_FROM_DIALOGUE_POSTURE_TRAINING` Final str citing binding condition (6) verbatim; asserts `assist_training_v1` exposes NO learning-write callables (`learn_*` / `admit_to_training_*` / `feed_training_*` public names absent); **ALSO asserts NO weight/corpus export callables** (`return_weights` / `export_corpus` / `serialize_model` public names absent) per Ruling (b) verbatim "training compute + model weights + labelled corpus NEVER leave Akki's boundary."
+
+### 7. Frozen `TrainingAssistantConfirmedTurn_v1` carrier 8-field shape lock
+
+- **Kind:** frozen-carrier shape invariant.
+- **Additive fix:** `test_assist_training_frozen_confirmed_turn_carrier_shape` asserts frozen dataclass with exactly 8-field tuple: `session_id`, `tenant_id`, `role`, `content_registry_ref`, `confirmed_by_owner`, `confirmed_at_utc`, `a5_16_receipt_ref`, `proposed_training_commission_ref`. Verifies frozen semantics (assignment raises AttributeError).
+
+### 8. `PLACEMENT_OUTSIDE_TCB_POSTURE_TRAINING` posture marker presence
+
+- **Kind:** posture-marker anchor invariant applied to training scope.
+- **Additive fix:** `test_assist_training_placement_outside_tcb_posture_marker_present` asserts Final str citing placement clause verbatim.
+
+### 9. §1.2 no-redeclaration of sealed CP-AIP-ASSIST-CENSUS + CP-TRACK-4 + CP-AIP-10 symbols
+
+- **Kind:** sealed-carrier redeclaration guard applied to training assistant.
+- **Additive fix:** `test_assist_training_no_redeclaration_of_sealed_symbols_1_2` AST scan rejects redeclaration of 18 sealed symbols: CP-AIP-ASSIST-CENSUS (`CensusAssistantConfirmedTurn_v1`, `ContentRegistryEntry_v1`, `AssistCensusBoundaryRefused`, `UnconfirmedTurnBankRefused`, `UngatedContentRefused`, `ASSIST_CENSUS_READONLY_POSTURE`, `SIX_BINDING_CONDITIONS_POSTURE`, `PLACEMENT_OUTSIDE_TCB_POSTURE`, `bank_confirmed_assistant_turn`, `render_content_registry_entry`), CP-TRACK-4-AUTONOMY-WIRING (`TRACK_4_JOB_KINDS`, `Track4LidPassRegistration_v1`, `Track4AllJobsRegistered_v1`, `AutonomyEngineRunReceipt_v1`, `PodIsNeverDataPathAtTrack4Error`), CP-AIP-10-TRAINING-RUNS (`TrainingManifest_v1`, `CompletionCertificate_v1`, `TrainingRunCensusAutonomyRegistration_v1`).
+
+### 10. `SIX_BINDING_CONDITIONS_POSTURE_TRAINING` retagged owner-verbatim anchor
+
+- **Kind:** owner-verbatim anchor invariant retagged for training scope.
+- **Additive fix:** `test_assist_training_six_binding_conditions_posture_markers_all_present` asserts `SIX_BINDING_CONDITIONS_POSTURE_TRAINING` Final 6-tuple with all six binding conditions verbatim; each element carries its numbered prefix `(1) ` .. `(6) `.
+
+### Same-slice cure (SO §6.4 orthogonal fold-in)
+
+**Vendored twin file_count 1066→1067 mid-slice sync** via `tools/prod_vendor_sync.py` — detected `test_vendored_tree_mirrors_spine` failure at first Sweep A (20260923T161705Z_sweep_A.log · 1 failed / 6398 passed). After vendor sync (added `backend/vendored/extraction_akki/backend/services/census_autonomy/assist_training_v1.py`), Sweep A retry + Sweep B both clean at 6399 passed / 13 skipped / 0 failed / 520 warnings with byte-identical stripped_sha256.
+
+### Seal-boundary summary
+
+- **10 own gaps closed** additively + **1 same-slice cure** (vendored twin sync).
+- **Sealed carriers untouched** — additive-only per SO §3.8.
+- **Ratchet:** `6389` → `6399` · baseline_failures.json sha256 `7a13a04a96e120ca403878e3cb985c41d284ef4fdde80377656a9ee93ade7c69` · double-green stripped_sha256 `b74d807fa2f6cc77240c659fad5f87690e2e3d38bdb865dae77d7b512a5dfdc2`.
+- **Ruling (b) AKKI-RUNS-IT verbatim honored:** training assistant is READ-ONLY against Registry; NO learning-write callables; NO decision-boundary imports; NO weight/corpus export callables; pod NEVER data path.
+- **RUN-TO-COMPLETION mandate ACTIVE:** REPORT-AND-CONTINUE into Item 5.12 (CP-AIP-LANGUAGE-COGNITION · SPEC ENHANCEMENT owner-order 2026-02-23T~16:07Z verbatim). Item 5.11 wave COMPLETE (5.11.a-g all SEALED).
