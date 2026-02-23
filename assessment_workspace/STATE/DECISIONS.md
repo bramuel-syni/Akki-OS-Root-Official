@@ -28549,15 +28549,15 @@ Banked here for `test_orch_boot::_banked_in_state` invariant lookup + audit trai
 - **SPEC-CONFLICT log:** NONE this slice.
 - **Comprehensive receipt:** `phase0/cp_aip_5_clustering_20260223/receipt.md`.
 
-### CP-AIP-5-CLUSTERING full seal chain SHAs (state mini-bank · Commit-C fixup 2026-02-23T07:23:00Z)
+### CP-AIP-5-CLUSTERING full seal chain SHAs (state mini-bank · 2026-02-23T07:25:00Z)
 
 | Commit | SHA | Branch |
 |---|---|---|
 | 1. Code Commit-A | `c915ab482795f04123e87e4ab014ab61e483fba4` | programme/track-a |
 | 2. /app companion A | `ac2689b1f89886c879a352a898fe376ade3baa5c` | main |
 | 3. State Commit-B | `6ae3fe3ed6bb749cbc9fa7178351609bfb14b121` | master |
-| 4. State Commit-C fixup | (this commit · in-flight) | master |
-| 5. /app companion C | (post-fixup · pending) | main |
+| 4. State Commit-C fixup | `ca734c635661314d5ade132a927494316ab1d912` | master |
+| 5. /app companion C | `e45841ab838b31341a28f6b745c7704132a58e4b` | main |
 
 Banked here for `test_orch_boot::_banked_in_state` invariant lookup + audit trail.
 

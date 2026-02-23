@@ -126,11 +126,11 @@ Unchanged.
 |---|---|---|---|
 | Code Commit-A | `c915ab482795f04123e87e4ab014ab61e483fba4` | programme/track-a | 2 NEW modules (`cluster_storage_boundary_v1.py` + `cluster_naming_commission_v1.py`) + 12 RED-first pins + baseline_failures ratchet bump 6280 → 6292 + drill receipts |
 | /app companion A | `ac2689b1f89886c879a352a898fe376ade3baa5c` | main | vendored twin sync (2 new files · MANIFEST 1048 → 1050) + notes ORCH_BOOT ratchet-only regen + audit ORCH_BOOT byte-identical mirror + gitlink advance 980456d3 → c915ab48 |
-| State Commit-B | (this commit · pending) | master | banks CP-AIP-5 objective card + queued/CP_AIP_5 delete-promotion + comprehensive receipt + EXECUTION_ORDER + DECISIONS + RESUME rewrites |
-| State Commit-C fixup | (post-B fixup · pending) | master | R-6 boundary regen advancing heads_last_sealed to this-CP heads + state mini-bank of 5-commit SHAs into DECISIONS.md |
-| /app companion C | (post-fixup · pending) | main | audit ORCH_BOOT byte-identical mirror sync post-fixup + notes ORCH_BOOT sync + DECISIONS mini-bank mirror |
+| State Commit-B | `6ae3fe3ed6bb749cbc9fa7178351609bfb14b121` | master | banks CP-AIP-5 objective card + queued/CP_AIP_5 delete-promotion + comprehensive receipt + EXECUTION_ORDER + DECISIONS + RESUME rewrites |
+| State Commit-C fixup | `ca734c635661314d5ade132a927494316ab1d912` | master | R-6 boundary regen advancing heads_last_sealed to this-CP heads (state 6ae3fe3e + code c915ab48) + state mini-bank of 5-commit SHAs into DECISIONS.md |
+| /app companion C | `e45841ab838b31341a28f6b745c7704132a58e4b` | main | audit ORCH_BOOT byte-identical mirror sync post-fixup + notes ORCH_BOOT sync + DECISIONS mini-bank mirror |
 
-(Full 5-commit seal chain landing in progress. Item 5.5 of EXECUTION_ORDER.md CLOSED. Cadence directive: sequential CP-AIP-6 opens NEXT.)
+(All 5 SHAs banked. Full 5-commit seal chain LANDED. Item 5.5 of EXECUTION_ORDER.md CLOSED.)
 
 **Prior seals banked (append-only):**
 
