@@ -1390,6 +1390,32 @@ heads_last_sealed:
     seal_kind: "CP-AIP-ASSIST-CENSUS Code Commit-A 424e2184 · +10 canonical measured own new pins · ratchet 6379 -> 6389 · assist_census_v1 §1.2 modality-extension composing sealed Census Autonomy Service · assistant is READ-ONLY against Registry; NO learning-write callables exposed; NO decision-boundary imports; pod NEVER data path · double-green stripped_sha256 bb7f3c5117fbf946bbc1e973e07b522af74cc6c6709b1b0e2cbde24e53e9254d IDENTICAL both sweeps 6389 passed"
 
 
+
+generated_at_utc: 2026-02-23T16:50:00Z
+generator: "CP-AIP-LANGUAGE-COGNITION pre-Commit-A ratchet-only ORCH_BOOT regen · advancing ratchet.passed_floor 6399 -> 6411 + baseline_failures.json sha256 to post-bump b0bccedd9feb04895efe66fd88409272c676c2518f5b29bf735530c2ab397974 · +12 canonical measured own new pins on Language-cognition Targeta training-run boundary (12 MUST-DO/MUST-NOT card lines: feature-basis signature-not-prosody-alone + clean-monolingual-alone-MUST-NOT + speaker-disjoint-N=20 tagged pending + no-speaker-ID MOAC probe DAP-31 + 1-2s window + span rule + unmeasured-never-labelled + MOAC contract 90/85/no-speaker-ID/abstention-reported + B5.4 admission receipted overlay-to-measure nothing-relabelled + Doc 20 training-base extends sealed LID registrations no redeclaration + RMS custody + in-perimeter training + DP-SGD default + corpus-under-assistant-dialogue composes sealed assist_census_v1 by identity + Track-4 training_runs job kind composed by identity + pod NEVER data path + §1.2 no-redeclaration of sealed symbols) · SO §6.8 standing authority + owner drop 2026-02-23T~16:07Z verbatim (STATE/OWNER_DROPS/language_cognition_20260223/DROP.md) · 2 NEW additive modules language_cognition_v1.py (~440 lines) + language_cognition_corpus_seam_v1.py (~120 lines) composing sealed CP-SO-6.9-LID-WAVE + CP-TRACK-4-AUTONOMY-WIRING + CP-AIP-ASSIST-CENSUS by identity · Ruling (b) AKKI-RUNS-IT verbatim honored — training compute + weights + labelled corpus NEVER leave Akki boundary; pod NEVER data path · DQ-17 family (NAS/Weego) recorded as ONLY gate FACT not policy hold · In-pod compute honest-gap on execution NEVER a mock · heads_last_sealed UNCHANGED at CP-AIP-ASSIST-TRAINING State mini-bank b1d1117f + Code-A fbb2f1f4 (this-CP heads advance at Commit-C fixup post-Commit-B)"
+regeneration_reason: pre-commit-a-cp-aip-language-cognition-ratchet-only-regen-6399-to-6411-plus-12-canonical-measured-own-pins-language-cognition-targeta-training-run-boundary-spec-enhancement
+
+ratchet:
+  passed_floor: 6411
+  counts_at_baseline_passed: 6411
+  baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
+  baseline_failures_sha256: b0bccedd9feb04895efe66fd88409272c676c2518f5b29bf735530c2ab397974
+
+heads_last_sealed:
+  state_repo:
+    workdir: /app/assessment_workspace
+    branch: master
+    head: 7f4d079069009be09f743c09e3116c7e1c0fd8f5
+    sealed_at_utc: 2026-02-23T16:34:37Z
+    seal_kind: "CP-AIP-ASSIST-TRAINING State Commit-B (Item 5.11.g of EXECUTION_ORDER.md · banks Code Commit-A fbb2f1f4 + /app companion 0d1755aac · six binding conditions applied to training-run dialogue verbatim as MUST-DO/MUST-NOT test IDs · Ratchet 6389 → 6399 · double-green stripped_sha256 b74d807fa2f6cc77240c659fad5f87690e2e3d38bdb865dae77d7b512a5dfdc2 IDENTICAL both sweeps 6399 passed · Item 5.11 wave COMPLETE (5.11.a-g all SEALED) · Item 5.12 CP-AIP-LANGUAGE-COGNITION SPEC ENHANCEMENT opens NEXT)"
+  code_repo:
+    workdir: /app/assessment_workspace/repos/Extraction-Akki
+    branch: programme/track-a
+    head: fbb2f1f4179c359f18e1c57c3871b2a321c81c5f
+    sealed_at_utc: 2026-02-23T16:30:00Z
+    seal_kind: "CP-AIP-ASSIST-TRAINING Code Commit-A fbb2f1f4 · +10 canonical measured own new pins · ratchet 6389 -> 6399 · assist_training_v1 §1.2 modality-extension composing sealed CP-AIP-ASSIST-CENSUS assist_census_v1 by identity + CP-TRACK-4-AUTONOMY-WIRING + CP-AIP-10 · training-assistant is READ-ONLY against Registry; NO learning-write callables exposed; NO decision-boundary imports; NO weight/corpus export callables; pod NEVER data path · double-green stripped_sha256 b74d807fa2f6cc77240c659fad5f87690e2e3d38bdb865dae77d7b512a5dfdc2 IDENTICAL both sweeps 6399 passed"
+
+
 ```
 
 ## HARD BANS / ANTI-DRIFT · plain-language narrative (Q1 · owner ruling 2026-09-18 · additive to R-6 boundary regen)

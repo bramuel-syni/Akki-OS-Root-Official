@@ -1,5 +1,5 @@
 {
-  "file_count": 1067,
+  "file_count": 1069,
   "files": {
     "__init__.py": {
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -796,6 +796,14 @@
     "services/audio_plane_v1/instance_condition_map.py": {
       "sha256": "3e76f4eb042dda361186f70727316bb387a2329c9e6dca28b56e2592a87ea8fa",
       "size_bytes": 6776
+    },
+    "services/audio_plane_v1/language_cognition_corpus_seam_v1.py": {
+      "sha256": "e98dfbf51ffad11f34a7f794f3935c11061ba0b247dcbe946a1f4333bbbd3ae4",
+      "size_bytes": 5232
+    },
+    "services/audio_plane_v1/language_cognition_v1.py": {
+      "sha256": "037a2c3b837dd8b28baad6e8c3f59ca0601d2fc44918ab42b8fbcc70020f78c2",
+      "size_bytes": 19243
     },
     "services/audio_plane_v1/language_identifier.py": {
       "sha256": "860d82f5fedaa4e7f795264889544312e8240ac442370ed0c8c28f1aea0a2556",
@@ -4270,7 +4278,7 @@
       "size_bytes": 19816
     }
   },
-  "generated_at_utc": "2026-09-23T16:21:01Z",
+  "generated_at_utc": "2026-09-23T16:51:29Z",
   "source": {
     "included_top_dirs": [
       "services",
@@ -4284,7 +4292,7 @@
     ],
     "spine_backend": "/app/assessment_workspace/repos/Extraction-Akki/backend"
   },
-  "structural_sha256": "5530718a9e9b2382d37113b8d92dc15ace09d62327e3750acb5c78dc446cdbb5",
+  "structural_sha256": "cbf72f5c23aba93aa8ca54e725769d39c46eb890f4d799c586c9e4cc783c2f4e",
   "target": {
     "vendored_backend": "/app/backend/vendored/extraction_akki/backend"
   }
