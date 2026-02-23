@@ -876,6 +876,32 @@ heads_last_sealed:
     seal_kind: "CP-AIP-3-CHARACTER-REGISTER Commit-A 3897842 on programme/track-a (last sealed · pre-CP-AIP-4)"
 
 
+
+generated_at_utc: 2026-02-23T06:59:00Z
+generator: "main-agent Autopilot (CP-AIP-4-CODEC-SERVICE Commit-C fixup · R-6 boundary regen advancing heads_last_sealed.state_repo.head 40abaf36 -> c5b3d2a3 (CP-AIP-4 state Commit-B this-turn) + heads_last_sealed.code_repo.head 3897842 -> 980456d3 (CP-AIP-4 Commit-A this-turn) · ratchet.passed_floor UNCHANGED at 6280 · baseline_failures.json sha256 UNCHANGED at 678982b96d12fe19d55a001ca0fbf33abbda2cd869bd6bc5579f95959c64cab0 · Item 5.4 of EXECUTION_ORDER.md CLOSED · AIP v1.0 §3 codec-service acceptance boundary GREEN · fail-closed refusal path · commissioned-job pretraining contract seat with cost-receipt gate + honest-gap marker · SPEC-CONFLICT log NONE · §16.1 (a) CLEAN receipt applied verbatim · §16.2 codec-choice DEFERRED per owner)"
+regeneration_reason: post-commit-b-cp-aip-4-codec-service-commit-c-fixup-r-6-boundary-regen-advancing-state-head-to-c5b3d2a3-and-code-head-to-980456d3-plus-ratchet-6266-to-6280-plus-14-canonical-measured-item-5-4-of-execution-order-closed
+
+ratchet:
+  passed_floor: 6280
+  counts_at_baseline_passed: 6280
+  baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
+  baseline_failures_sha256: 678982b96d12fe19d55a001ca0fbf33abbda2cd869bd6bc5579f95959c64cab0
+
+heads_last_sealed:
+  state_repo:
+    workdir: /app/assessment_workspace
+    branch: master
+    head: c5b3d2a345ff7585ec5daa17b3bdd396ed95c1a4
+    sealed_at_utc: 2026-02-23T06:58:00Z
+    seal_kind: "CP-AIP-4-CODEC-SERVICE state Commit-B c5b3d2a3 on master · Item 5.4 of EXECUTION_ORDER.md · AIP v1.0 §3 codec-service acceptance boundary GREEN · fail-closed refusal path · commissioned-job pretraining contract seat with cost-receipt gate + HONEST_GAP_V1_POSTURE Final marker · NEW backend/services/perception/audio_codec/round_trip_fidelity_v1.py (~188 lines · §3.3 (a) fidelity measurement gate + MissingFidelityMeasurementError + FidelityMeasurementIncomplete + assert_codec_version_ready_to_serve gate + record_fidelity_measurement composer + JSONL append-only persistence) + NEW backend/services/perception/audio_codec/unsupported_condition_refusal_v1.py (~101 lines · §3.3 (c) fail-closed refusal · UnsupportedCodecConditionRefused carrying offending condition + codec_version in message · refuse_unsupported_condition returns NO artifact structurally) + NEW backend/services/perception/audio_codec/downstream_provenance_gate_v1.py (~75 lines · §3.3 (b) registry-boundary rejection · RegistryBoundaryRejection · assert_downstream_provenance_gate_v1 composing sealed assert_downstream_carries_codec_version) + NEW backend/services/perception/audio_codec/models_registry_v1_bump_v1.py (~90 lines · §3.2 P045 v0->v1 registration · build_v1_audio_codec_registration_entry citing sealed AUDIO_CODEC_SERVICE_PATH verbatim · census_visible=True + in_perimeter=True · zero edit to v0 seed) + NEW backend/services/perception/audio_codec/pretraining_contract_v1.py (~115 lines · §3.2 P049 commissioned-job contract seat · PretrainingCostReceipt_v1 + PretrainingCostReceiptMissing + commission_codec_pretraining gated callable · HONEST_GAP_V1_POSTURE Final marker with owner directive verbatim) + NEW backend/tests/invariants/test_cp_aip_4_codec_service_aip_v1_0_section_3.py (14 pins: fidelity gate + measurement schema + no-throughput scan + registry-boundary missing + registry-boundary empty + unsupported refusal stated reason + unsupported no artifact + character_stream anti-regression + registration cites service path + pretraining cost-receipt gate + honest-gap marker + tokens-not-waveforms scan + no-redeclaration of 9 sealed symbols + anti-drift anchor scan) + baseline_failures.json ratchet 6266->6280 +14 canonical measured ratchet_history entry per BL #6 + BL #7 indent=2 + BL #11 ensure_ascii=False + passed_floor lock-step with counts_at_baseline.passed · Sealed carriers UNCHANGED per SO §3.8 (audio_codec/service.py CP-M6-4-1 + audio_codec/artefact.py CP-M6-4-2 + census_visibility.py + perimeter_boundary.py + perception/model_registry.py + models_registry.v0.json + all CP-AIP-1/CP-AIP-2/CP-AIP-3 seals) · RED-first authentic 13/14 (1 anti-regression pass on sealed CodecArtefact character_stream) · GREEN-post 14/14 pass 0.71s · Pre-Commit-A double-green byte-identical stripped_sha256 e33f1cd0599f9349907759b306b046c4e5ef8bf958cbf9b7805edf4f25538806 IDENTICAL sweep_A/B both 6286 passed 1 skipped 0 failed 520 warnings ~184s each · comprehensive receipt at phase0/cp_aip_4_codec_service_20260223/receipt.md · CP_AIP_4 card pulled from queued/ + rewritten fully-conforming SO §6.2 · SPEC-CONFLICT log NONE · §16.1 (a) CLEAN receipt applied verbatim (character_stream first-class on sealed CodecArtefact; no new artifact type) · §16.2 codec-choice DEFERRED per owner (Sampling & Reflection §11.2 answers it once built) · HF-HOLD SEC-2026-09-12-01 LIFTED"
+  code_repo:
+    workdir: /app/assessment_workspace/repos/Extraction-Akki
+    branch: programme/track-a
+    head: 980456d33b0d3210ce0fa37039cad0864e1a9fb6
+    sealed_at_utc: 2026-02-23T06:55:00Z
+    seal_kind: "CP-AIP-4-CODEC-SERVICE Commit-A 980456d3 on programme/track-a · Item 5.4 of EXECUTION_ORDER.md · +14 canonical measured AIP v1.0 §3 codec-service acceptance boundary GREEN"
+
+
 ```
 
 ---

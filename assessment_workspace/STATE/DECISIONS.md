@@ -28482,6 +28482,51 @@ Banked here for `test_orch_boot::_banked_in_state` invariant lookup + audit trai
 Banked here for `test_orch_boot::_banked_in_state` invariant lookup + audit trail.
 
 
+---
+
+## CP-AIP-4-CODEC-SERVICE · SEAL RECORD · 2026-02-23T06:55:00Z (5-Commit-Seal LANDED)
+
+### Ruling 2026-02-23-CP-AIP-4-GO · Source: owner channel · post-INTERIM REPORT
+
+**Owner directive verbatim** (2026-02-23 · CP-AIP-4 GO):
+
+> "Build the service seam + contract + pins against whichever codec path is cheapest to stand up honestly. If neither is viable in-pod, the fail-closed refusal path with stated reason IS the honest v1 behavior - do not mock a codec and call it real; mark any stub explicitly as honest-gap. Codec pretraining (§3.2) is a commissioned-job contract item - card it, do not run heavy pretraining in-pod without a measured cost receipt first."
+
+**Cadence directive verbatim** (2026-02-23 GO):
+
+> "run CP-AIP-5 → CP-AIP-10 sequentially; brief report-and-continue after CP-AIP-6 seals; HALT after CP-AIP-10 for full plane completion report; immediate HALT on any SPEC-CONFLICT-<n>."
+
+### CP-AIP-4-CODEC-SERVICE seal record (2026-02-23T~06:55Z · AIP v1.0 §3 codec-service acceptance boundary GREEN)
+
+- **Scope:** AIP v1.0 §3 codec-service acceptance boundary · fail-closed refusal path · commissioned-job pretraining contract seat. `canon_ref: AIP v1.0 §3.1 + §3.2 + §3.3 (a) (b) (c) + §1.2 + §1.4 + §1.5 + §16.1 (a) CLEAN receipt + §16.2 codec-choice deferred.`
+- **Ledger check:** this seal implements EXECUTION_ORDER.md Item 5.4 CP-AIP-4-CODEC-SERVICE and nothing else.
+- **Additive-only carriers landed** (§1.2 modality-extension of sealed CP-M6-4-1 `service.py` + CP-M6-4-2 `artefact.py` · sealed carriers UNCHANGED per SO §3.8):
+  - `backend/services/perception/audio_codec/round_trip_fidelity_v1.py` (~188 lines · sha256 `6db53193e10187550b56d010df1ea336a3106e34926692122a040cabce39e043` · `RoundTripFidelityMeasurement_v1` frozen dataclass + `MissingFidelityMeasurementError` + `FidelityMeasurementIncomplete` + `assert_codec_version_ready_to_serve` gate + `record_fidelity_measurement` composer + JSONL append-only persistence).
+  - `backend/services/perception/audio_codec/unsupported_condition_refusal_v1.py` (~101 lines · sha256 `73da3b0436ed8804a3cdd24432626743a4962c3b18756ad6d5c6340cd0667be8` · `UnsupportedCodecConditionRefused` + `refuse_unsupported_condition` fail-closed callable · returns NO artifact structurally).
+  - `backend/services/perception/audio_codec/downstream_provenance_gate_v1.py` (~75 lines · sha256 `1cdbd2eeee94ae28dab9a52a74042f9ff62e2c3ac298b8f9127c2674314d6db8` · `RegistryBoundaryRejection` + `assert_downstream_provenance_gate_v1` composing sealed `assert_downstream_carries_codec_version`).
+  - `backend/services/perception/audio_codec/models_registry_v1_bump_v1.py` (~90 lines · sha256 `cae4a44f1c749be0e1b55a27bb27ea16a52c99c99c20804de22bbc9b329b9732` · `build_v1_audio_codec_registration_entry` citing sealed `AUDIO_CODEC_SERVICE_PATH` verbatim · zero edit to v0 seed).
+  - `backend/services/perception/audio_codec/pretraining_contract_v1.py` (~115 lines · sha256 `1ea8b293bc003060b849e6b4a186a6dcf4e82f51c5b99d1675649a27eb1cec19` · `PretrainingCostReceipt_v1` + `PretrainingCostReceiptMissing` + `commission_codec_pretraining` cost-receipt gated · `HONEST_GAP_V1_POSTURE` Final marker).
+- **Ratchet:** floor 6266 → 6280 (+14 canonical measured) · `invariants_enforced_when_baseline_guard_1.passed_floor` advanced in lock-step · baseline_failures.json sha256 post-bump `678982b96d12fe19d55a001ca0fbf33abbda2cd869bd6bc5579f95959c64cab0`.
+- **14 pins by anchor:** §3.3 (a) fidelity-measurement gate (2) · §1.4 measure-don't-assert throughput scan (1) · §3.3 (b) registry-boundary rejection missing + empty (2) · §3.3 (c) unsupported-condition fail-closed refusal + no-artifact (2) · §3.1 P039 + §3.2 P047 character_stream anti-regression on sealed CP-M6-4-2 (1) · §3.2 P045 v0→v1 registration bump citing sealed service path (1) · §3.2 P049 pretraining commissioned-job cost-receipt gate + honest-gap marker (2) · §3.1 P038 tokens-not-waveforms schema scan (1) · §1.2 no-redeclaration of 9 sealed symbols (1) · Anti-drift §3 + §5 anchor scan (1).
+- **Pre-Commit-A double-green:** 6286 passed / 1 skipped / 0 failed / 520 warnings both sweeps · byte-identical `stripped_sha256 e33f1cd0599f9349907759b306b046c4e5ef8bf958cbf9b7805edf4f25538806` IDENTICAL both sweeps (sweep_A 184.32s · sweep_B 185.25s).
+- **CP_AIP_4 card** pulled from `STATE/OBJECTIVES/queued/` + rewritten fully-conforming SO §6.2 · card_sha256 `1d92cbfff9bb979b781487b06591c0833c77c82d19d7e51fd827cbf00ab7690b`.
+- **SPEC-CONFLICT log:** NONE this slice.
+- **§16.1 (a) CLEAN receipt applied verbatim** (2026-02-23T05:00:00Z at `phase0/aip_spec_verification_20260223/receipt.md`): `character_stream` is a first-class field on sealed CodecArtefact; no new artifact type. CP-AIP-4 builds additively on the existing seals.
+- **§16.2 codec-choice DEFERRED** per owner ('Sampling & Reflection answers it once built §11.2'). Working default: HF-hosted codec bases permitted (HF-HOLD SEC-2026-09-12-01 LIFTED 2026-02-23T03:15Z); local/cached fallback via `local_files_only=True` remains offline path.
+- **HONEST_GAP_V1_POSTURE** owner content anchor banked: 'the fail-closed refusal path with stated reason IS the honest v1 behavior · do not mock a codec and call it real'. Enforced by PIN-11 (module-level `Final` marker scan).
+- **Comprehensive receipt:** `phase0/cp_aip_4_codec_service_20260223/receipt.md`.
+
+### CP-AIP-4-CODEC-SERVICE full seal chain SHAs (state mini-bank · Commit-C fixup 2026-02-23T06:59:00Z)
+
+| Commit | SHA | Branch |
+|---|---|---|
+| 1. Code Commit-A | `980456d33b0d3210ce0fa37039cad0864e1a9fb6` | programme/track-a |
+| 2. /app companion A | `e55355b786fdd9bc02c67fec02eafc9767f126b8` | main |
+| 3. State Commit-B | `c5b3d2a345ff7585ec5daa17b3bdd396ed95c1a4` | master |
+| 4. State Commit-C fixup | (this commit · in-flight) | master |
+| 5. /app companion C | (post-fixup · pending) | main |
+
+Banked here for `test_orch_boot::_banked_in_state` invariant lookup + audit trail.
 
 
 ---

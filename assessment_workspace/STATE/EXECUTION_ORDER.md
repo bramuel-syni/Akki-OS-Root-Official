@@ -139,7 +139,31 @@
 - ✅ SPEC-CONFLICT log: NONE this slice.
 - ✅ 5-commit seal chain (SHAs recorded post-landing).
 
-#### Item 5.4 · CP-AIP-4-CODEC-SERVICE — 🔒 **BLOCKED-BY-HALT** (INTERIM REPORT DUE post-CP-AIP-3-Commit-C fixup · owner explicit direction 'after CP-AIP-3 seals (custody harness green), send an interim report - that is the highest-risk boundary in the whole plane'. HALT after CP-AIP-3 seals. Do NOT open CP-AIP-4 without owner GO after report.)
+#### Item 5.4 · CP-AIP-4-CODEC-SERVICE — ✅ **DONE 2026-02-23T~06:55Z** (AIP v1.0 §3 codec-service acceptance boundary GREEN · fail-closed refusal path · commissioned-job pretraining contract seat)
+
+- ✅ RED_pre 13/14 failed 0.70s (authentic ModuleNotFoundError + AssertionError right-reason · 1 anti-regression pin passes on sealed CP-M6-4-2 CodecArtefact character_stream).
+- ✅ GREEN_post 14/14 passed 0.71s (all 14 §3-anchored pins green).
+- ✅ Ratchet bump 6266 → 6280 (+14 canonical measured · baseline_failures.json sha256 `678982b96d12fe19d55a001ca0fbf33abbda2cd869bd6bc5579f95959c64cab0`).
+- ✅ FIVE additive modules under `backend/services/perception/audio_codec/` (§1.2 modality-extension of sealed CP-M6-4-1 `service.py` + CP-M6-4-2 `artefact.py`):
+  - `round_trip_fidelity_v1.py` (~188 lines · sha256 `6db53193e10187550b56d010df1ea336a3106e34926692122a040cabce39e043` · §3.3 (a) fidelity-measurement gate + JSONL append-only persistence).
+  - `unsupported_condition_refusal_v1.py` (~101 lines · sha256 `73da3b0436ed8804a3cdd24432626743a4962c3b18756ad6d5c6340cd0667be8` · §3.3 (c) fail-closed refusal with stated reason).
+  - `downstream_provenance_gate_v1.py` (~75 lines · sha256 `1cdbd2eeee94ae28dab9a52a74042f9ff62e2c3ac298b8f9127c2674314d6db8` · §3.3 (b) registry-boundary rejection composing sealed gate).
+  - `models_registry_v1_bump_v1.py` (~90 lines · sha256 `cae4a44f1c749be0e1b55a27bb27ea16a52c99c99c20804de22bbc9b329b9732` · §3.2 P045 v0→v1 registration citing sealed `AUDIO_CODEC_SERVICE_PATH` verbatim).
+  - `pretraining_contract_v1.py` (~115 lines · sha256 `1ea8b293bc003060b849e6b4a186a6dcf4e82f51c5b99d1675649a27eb1cec19` · §3.2 P049 commissioned-job contract seat + `HONEST_GAP_V1_POSTURE` marker).
+- ✅ Vendored twin sync file_count 1043 → 1048 · structural_sha256 `b2c4e9d3019310757516e81fa3c1aa49de36c06eb3cafb5ea03df64d667b5c47`.
+- ✅ CP_AIP_4 objective card pulled up from `queued/` + rewritten fully-conforming (SO §6.2 · card_sha256 `1d92cbfff9bb979b781487b06591c0833c77c82d19d7e51fd827cbf00ab7690b`).
+- ✅ Pre-Commit-A double-green BASELINE_GUARD=1 PYTHONHASHSEED=0:
+  - sweep_A 6286 passed / 1 skipped / 0 failed / 520 warnings / 184.32s
+  - sweep_B 6286 passed / 1 skipped / 0 failed / 520 warnings / 185.25s
+  - stripped_sha256 `e33f1cd0599f9349907759b306b046c4e5ef8bf958cbf9b7805edf4f25538806` IDENTICAL both sweeps.
+- ✅ Comprehensive receipt banked at `phase0/cp_aip_4_codec_service_20260223/receipt.md`.
+- ✅ Drill receipts banked at `repos/Extraction-Akki/backend/phase0/drill_receipts_cp_aip_4_codec_service/`.
+- ✅ SPEC-CONFLICT log: NONE this slice.
+- ✅ §16.1 (a) CLEAN receipt applied verbatim: character_stream is a first-class field on sealed CodecArtefact; no new artifact type.
+- ✅ §16.2 codec-choice DEFERRED per owner (Sampling & Reflection §11.2 answers it once built).
+- ✅ 5-commit seal chain (SHAs recorded post-landing).
+
+#### Item 5.5 · CP-AIP-5-CLUSTERING — 🔓 **UNBLOCKED** (HARD GATE MET at CP-AIP-3 · sequenced immediately post CP-AIP-4 per owner cadence directive verbatim 2026-02-23 GO 'run CP-AIP-5 → CP-AIP-10 sequentially').
 
 - Execute in strict spec §15 order per DECISIONS.md CP list:
   - CP-AIP-1-INGEST-CAPTURE (§4.1-4.4)

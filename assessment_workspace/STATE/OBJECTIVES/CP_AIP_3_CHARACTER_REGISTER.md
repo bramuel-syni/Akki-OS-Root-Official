@@ -3,7 +3,7 @@ card_id: CP_AIP_3_CHARACTER_REGISTER
 title: AIP v1.0 §6 · Character Register custody-of-identity boundary · four-leakage-path harness GREEN · HARD GATE · Item 5.3 CP-AIP-3
 ratified_at_utc: 2026-02-23T06:30:00Z
 ratified_by: Owner GO at Item 4 checkpoint (2026-02-23 · verbatim "continue sequentially CP-AIP-2 → CP-AIP-10 without pausing between seals") + owner reminder 4 verbatim HARD GATE + owner content anchors (a) §6.2 CONJUNCTIVE + (b) §6.2.4 embedding destruction.
-card_sha256: 70a025ef1370a480322b099d6aeeeca8cb33e5697ad754251f0543e5b9bc9779
+card_sha256: dae56c67325c908c5a59de85e3fdf6598e5ec902859d02c1ef11d6b6e5af93a1
 milestone_status: OPEN (Item 5.3 CP-AIP-3 · in-flight for this seal · HARD GATE · INTERIM REPORT DUE post-Commit-C fixup)
 ---
 
