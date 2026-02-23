@@ -28452,6 +28452,37 @@ Banked here for `test_orch_boot::_banked_in_state` invariant lookup + audit trai
 
 Banked here for `test_orch_boot::_banked_in_state` invariant lookup + audit trail.
 
+### CP-AIP-3-CHARACTER-REGISTER seal record (2026-02-23T~06:35Z · HARD GATE MET · custody invariant harness GREEN · INTERIM REPORT DUE post-Commit-C fixup)
+
+- **Scope:** AIP v1.0 §6 custody-of-identity boundary · CP-M6-3-3 write-path leakage-refusal boundary + CP-M6-3-4 clustering-embedding-destruction helper · additive per SO §3.8 · composed with sealed CP-M6-3-1 (`character_register.py` schema) + CP-M6-3-2 (`leakage_path_harness.py` harness contract) via §1.2 modality-extension.
+- **New modules landed:**
+  - `backend/services/audio_plane_v1/character_register_write_boundary_v1.py` (~260 lines · 5 typed refusal sentinels all subclassing sealed `LeakageRefusalError` (SmallStratumRefused §6.2 cond-2 · IdiolectMarkerRefused §6.4 · NarrowingCombinationRefused §6.2 cond-3 · ExemplarStorageRefused §6.2 cond-4 · NonLearnedRefused §6.1 P093) + `WriteBoundaryConfig_v1` governed-seam bundle §16.2 platform minimum-group-size + idiolect markers + narrowing facets + exemplar-dim ceiling · fails-fast `write_character_entry(entry, *, config=DEFAULT_CONFIG)` boundary).
+  - `backend/services/audio_plane_v1/character_register_clustering_v1.py` (~130 lines · `assign_clusters_destroy_embeddings(*, utterance_embeddings, n_clusters, max_iterations=25)` K-means-like with structural embedding destruction — input list emptied in place per §6.2 P098 verbatim · return type surfaces only centroid tuples).
+- **Ratchet:** floor 6254 → 6266 (+12 canonical measured) · `invariants_enforced_when_baseline_guard_1.passed_floor` advanced in lock-step · baseline_failures.json sha256 post-bump `42910fa760d7f3ba84644b10f1f2d6f36daacd35aecfd95d19946ecbce29ccc0`.
+- **12 pins by anchor:** §6.2 cond-2 SmallStratumRefused (1) · §6.4 own test IdiolectMarkerRefused (1) · §6.2 cond-3 NarrowingCombinationRefused (1) · §6.2 cond-4 ExemplarStorageRefused (1) · §6.1 P093 NonLearnedRefused (1) · §6.3 P100 + §1.5 schema shape guard (1 · anti-regression on sealed CP-M6-3-1) · §6.2 P098 cond-4 clustering destroys embeddings + centroids-only return (1) · §6.2 CONJUNCTIVE reinforcement learned-alone-insufficient (1) · §6.3 P100 full 4-scenario harness integration via sealed run_leakage_path_harness (1) · CP-M6-3-2 harness contract classification discipline (1) · §1.2 modality-extension no-redeclaration scan (1) · Anti-drift §3 + §5 anchor scan (1).
+- **Pre-Commit-A double-green:** 6272 passed / 1 skipped / 0 failed / 520 warnings both sweeps · byte-identical stripped_sha256 `920dc8131eb1bbf2512e04ea3ab2ea90f59f534a13ea4ace6b386c2fdb237999` IDENTICAL.
+- **CP_AIP_3 card** pulled from `STATE/OBJECTIVES/queued/` + rewritten fully-conforming SO §6.2 · card_sha256 `70a025ef1370a480322b099d6aeeeca8cb33e5697ad754251f0543e5b9bc9779`.
+- **CP10 harness receipt refreshed pre-sweep** (2026-09-23T05:18:27Z via wave_g5_realchrome_verification_harness.py all-GREEN) to keep `test_cp10_harness_receipt_is_still_recent` < 12h during double-green sweep.
+- **SPEC-CONFLICT log:** NONE this slice.
+- **HARD GATE MET** per owner reminder 4 verbatim: custody invariant harness GREEN. All four §6.3 P100 leakage paths refuse to store. §6.2 P098 cond-4 embedding destruction structurally enforced. Schema-shape guard structurally impossible per §1.5. CP-AIP-5 cluster storage now UNBLOCKED by the HARD GATE.
+- **Owner content anchors banked:** (a) §6.2 CONJUNCTIVE + §6.4 P102 own dedicated test case · (b) §6.2.4 embedding destruction + write-path schema has NO field capable of representing an instance-level voiceprint.
+- **INTERIM REPORT DUE post-Commit-C fixup** per owner explicit direction: 'after CP-AIP-3 seals (custody harness green), send an interim report - that is the highest-risk boundary in the whole plane.' HALT after CP-AIP-3 seals. Do NOT open CP-AIP-4 without owner GO after report.
+- **Comprehensive receipt:** `phase0/cp_aip_3_character_register_20260223/receipt.md`.
+
+### CP-AIP-3-CHARACTER-REGISTER full seal chain SHAs (state mini-bank · 2026-02-23T06:40:00Z)
+
+| Commit | SHA | Branch |
+|---|---|---|
+| 1. Code Commit-A | `389784274db8139a9a6e89f5889c2b0456553e94` | programme/track-a |
+| 2. /app companion A | `721af40405f5837ff8328ae4610107e57824b8f4` | main |
+| 3. State Commit-B | `40abaf3615854e4ba376f9b0e2f36cdba084d42f` | master |
+| 4. State Commit-C fixup | (this commit · pending) | master |
+| 5. /app companion C | (post-fixup · pending) | main |
+
+Banked here for `test_orch_boot::_banked_in_state` invariant lookup + audit trail.
+
+
+
 
 ---
 

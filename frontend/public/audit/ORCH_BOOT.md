@@ -824,6 +824,32 @@ heads_last_sealed:
     seal_kind: "CP-AIP-2-DEDUP-CONDITION-MAP Commit-A 7f030d17 on programme/track-a (last sealed · pre-CP-AIP-3)"
 
 
+
+generated_at_utc: 2026-02-23T06:40:00Z
+generator: "main-agent Autopilot (CP-AIP-3-CHARACTER-REGISTER Commit-C fixup · R-6 boundary regen advancing heads_last_sealed.state_repo.head 40abaf3615854e4ba376f9b0e2f36cdba084d42f + code_repo.head 389784274db8139a9a6e89f5889c2b0456553e94 · pre-Commit-A ratchet-only regen already banked at state Commit-B 40abaf3615854e4ba376f9b0e2f36cdba084d42f · ratchet floor 6266 · baseline_failures.json sha256 42910fa760d7f3ba84644b10f1f2d6f36daacd35aecfd95d19946ecbce29ccc0 · +12 canonical measured AIP v1.0 §6 custody-of-identity boundary · CP-M6-3-3 write-path leakage-refusal boundary + CP-M6-3-4 clustering-embedding-destruction helper additive · four-leakage-path harness GREEN · additive-only per SO §3.8 · sealed carriers UNCHANGED (character_register.py CP-M6-3-1 + leakage_path_harness.py CP-M6-3-2) · double-green byte-identical stripped_sha256 920dc8131eb1bbf2512e04ea3ab2ea90f59f534a13ea4ace6b386c2fdb237999 IDENTICAL sweep_A/B both 6272 passed 1 skipped 0 failed 520 warnings · owner GO 2026-02-23 sequential-no-pause verbatim · Item 5.3 of EXECUTION_ORDER.md CLOSED · HARD GATE MET per owner reminder 4 verbatim (custody invariant harness GREEN · four leakage paths all FAIL to store · §6.2 P098 cond-4 embedding destruction structural · schema-shape guard structurally impossible per §1.5) · owner content anchors banked verbatim (a) §6.2 CONJUNCTIVE + §6.4 own test · (b) §6.2.4 embedding destruction + no-instance-voiceprint schema field · CP-AIP-5 cluster storage UNBLOCKED by HARD GATE · INTERIM REPORT DUE post-Commit-C fixup per owner explicit direction · HALT after seal · CP-AIP-4 (Item 5.4) BLOCKED-BY-HALT until owner GO post-report)"
+regeneration_reason: post-commit-b-cp-aip-3-character-register-commit-c-fixup-r-6-boundary-regen-advancing-state-head-to-40abaf36-and-code-head-to-3897842-plus-ratchet-6254-to-6266-plus-12-canonical-measured-item-5-3-of-execution-order-closed-hard-gate-met-custody-invariant-harness-green-interim-report-due
+
+ratchet:
+  passed_floor: 6266
+  counts_at_baseline_passed: 6266
+  baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
+  baseline_failures_sha256: 42910fa760d7f3ba84644b10f1f2d6f36daacd35aecfd95d19946ecbce29ccc0
+
+heads_last_sealed:
+  state_repo:
+    workdir: /app/assessment_workspace
+    branch: master
+    head: 40abaf3615854e4ba376f9b0e2f36cdba084d42f
+    sealed_at_utc: 2026-02-23T06:38:00Z
+    seal_kind: "CP-AIP-3-CHARACTER-REGISTER state Commit-B · banks code Commit-A 3897842 + /app companion 721af404 · Item 5.3 of EXECUTION_ORDER.md CLOSED · AIP v1.0 §6 custody-of-identity boundary · CP-M6-3-3 write-path leakage-refusal boundary + CP-M6-3-4 clustering-embedding-destruction helper · additive per SO §3.8 · ratchet 6254->6266 +12 canonical measured · pre-Commit-A double-green stripped_sha256 920dc8131eb1bbf2512e04ea3ab2ea90f59f534a13ea4ace6b386c2fdb237999 IDENTICAL sweep_A/B both 6272 passed · HARD GATE MET per owner reminder 4 · custody invariant harness GREEN · CP-AIP-5 cluster storage UNBLOCKED by HARD GATE · INTERIM REPORT DUE post-Commit-C fixup · CP-AIP-4 (Item 5.4) BLOCKED-BY-HALT until owner GO"
+  code_repo:
+    workdir: /app/assessment_workspace/repos/Extraction-Akki
+    branch: programme/track-a
+    head: 389784274db8139a9a6e89f5889c2b0456553e94
+    sealed_at_utc: 2026-02-23T06:35:00Z
+    seal_kind: "CP-AIP-3-CHARACTER-REGISTER Commit-A 3897842 on programme/track-a · Item 5.3 of EXECUTION_ORDER.md · NEW backend/services/audio_plane_v1/character_register_write_boundary_v1.py (~260 lines · 5 typed refusal sentinels all subclassing sealed LeakageRefusalError from CP-M6-3-2 harness contract: SmallStratumRefused §6.2 cond-2 + IdiolectMarkerRefused §6.4 own test + NarrowingCombinationRefused §6.2 cond-3 + ExemplarStorageRefused §6.2 cond-4 + NonLearnedRefused §6.1 P093 + WriteBoundaryConfig_v1 governed-seam bundle §16.2 platform minimum-group-size + idiolect markers + narrowing facets + exemplar-dim ceiling · fails-fast write_character_entry(entry, *, config=DEFAULT_CONFIG) refusal boundary before persistence · §1.5 unrepresentable-not-policed enforced structurally · §1.2 modality-extension via import) + NEW backend/services/audio_plane_v1/character_register_clustering_v1.py (~130 lines · assign_clusters_destroy_embeddings K-means-like with structural embedding destruction via list.clear() in-place · centroids-only return type · §6.2 P098 verbatim 'destroyed after cluster assignment' structural evidence) + NEW backend/tests/invariants/test_cp_aip_3_character_register_custody_aip_v1_0_section_6.py (12 RED-first structural + composition + harness-integration pins: small stratum + idiolect own test §6.4 + narrowing combination + exemplar storage + non-learned §6.1 P093 + schema shape guard §1.5 §6.3 P100 anti-regression on sealed schema + clustering embedding destruction §6.2 P098 owner anchor (b) + conjunctive reinforcement owner anchor (a) + full 4-scenario harness integration §6.3 P100 verbatim + refusal-sentinel subclass CP-M6-3-2 harness contract + §1.2 no-redeclaration scan 13 forbidden symbols + anti-drift §3 §5 anchor scan) + baseline_failures.json ratchet 6254->6266 +12 canonical measured ratchet_history entry per BL #6 + BL #7 indent=2 + BL #11 ensure_ascii=False + passed_floor lock-step with counts_at_baseline.passed · Sealed carriers UNCHANGED per SO §3.8 (character_register.py CP-M6-3-1 + leakage_path_harness.py CP-M6-3-2 + all CP-AIP-1/CP-AIP-2 seals) · RED-first authentic ModuleNotFoundError right-reason 11/12 (1 anti-regression pass on sealed schema) · GREEN-post 12/12 pass 0.72s · Pre-Commit-A double-green byte-identical stripped_sha256 920dc8131eb1bbf2512e04ea3ab2ea90f59f534a13ea4ace6b386c2fdb237999 IDENTICAL sweep_A/B both 6272 passed 1 skipped 0 failed 520 warnings ~192s each · comprehensive receipt banked at state Commit-B phase0/cp_aip_3_character_register_20260223/receipt.md · CP_AIP_3 card pulled from queued/ + rewritten fully-conforming SO §6.2 · SPEC-CONFLICT log NONE this slice · CP10 harness receipt refreshed pre-sweep 2026-09-23T05:18:27Z all-GREEN · HARD GATE MET · custody invariant harness GREEN · CP-AIP-5 cluster storage UNBLOCKED"
+
+
 ```
 
 ---
