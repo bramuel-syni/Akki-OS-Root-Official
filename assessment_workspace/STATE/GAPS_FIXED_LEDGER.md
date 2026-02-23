@@ -750,3 +750,35 @@ Placement OUTSIDE the TCB. Every user-facing string is a Content Registry entry.
 - **Ratchet:** `6389` → `6399` · baseline_failures.json sha256 `7a13a04a96e120ca403878e3cb985c41d284ef4fdde80377656a9ee93ade7c69` · double-green stripped_sha256 `b74d807fa2f6cc77240c659fad5f87690e2e3d38bdb865dae77d7b512a5dfdc2`.
 - **Ruling (b) AKKI-RUNS-IT verbatim honored:** training assistant is READ-ONLY against Registry; NO learning-write callables; NO decision-boundary imports; NO weight/corpus export callables; pod NEVER data path.
 - **RUN-TO-COMPLETION mandate ACTIVE:** REPORT-AND-CONTINUE into Item 5.12 (CP-AIP-LANGUAGE-COGNITION · SPEC ENHANCEMENT owner-order 2026-02-23T~16:07Z verbatim). Item 5.11 wave COMPLETE (5.11.a-g all SEALED).
+
+---
+
+## CP-AIP-LANGUAGE-COGNITION (Item 5.12 · 2026-02-23T~17:20Z State Commit-B) · 12 own invariant-seat entries
+
+Owner drop 2026-02-23T~16:07Z SPEC ENHANCEMENT verbatim + SO §6.8 standing authority. 12 MUST-DO/MUST-NOT card lines flip authentic RED (FileNotFoundError, module absent) → GREEN (structural assertion) via 2 NEW additive modules `language_cognition_v1.py` + `language_cognition_corpus_seam_v1.py` composing sealed CP-SO-6.9-LID-WAVE + CP-TRACK-4-AUTONOMY-WIRING + CP-AIP-ASSIST-CENSUS by identity. §1.2 no-redeclaration.
+
+| # | Node ID | MUST-DO/MUST-NOT | Structural closure |
+|---:|---|---|---|
+| 1 | `test_signature_not_prosody_alone_feature_basis_declared` | MUST-DO §1 (Canon 4 §5.4 + Doc 20) | `LanguageCognitionFeatureBasis_v1` primary=(phonotactic, spectral) + secondary=(prosody, pitch, dynamics) disjoint + `SIGNATURE_NOT_PROSODY_ALONE_POSTURE`. |
+| 2 | `test_clean_monolingual_alone_must_not_refusal_at_commission` | MUST-NOT §1 (owner verbatim) | `CleanMonolingualOnlyRefused` at `commission_language_cognition_training_run(has_code_switched_material=False)` + `CLEAN_MONOLINGUAL_ALONE_MUST_NOT_POSTURE`. |
+| 3 | `test_speaker_disjoint_split_contract_shape_frozen_n_default_20_tagged_pending` | MUST-DO §3 (Canon 4 §5.5 + DAP-31 · FORK DQ-21) | `SpeakerDisjointSplitContract_v1` (presenter_minimum_n=20 + presenter_minimum_n_tagged_pending=True + share_no_speaker=True) + `SpeakerOverlapRefused`. |
+| 4 | `test_no_speaker_id_moac_probe_shape_and_chance_level_threshold` | MUST-DO §4 (DAP-31 applied to voices) | `NoSpeakerIdMoacProbe_v1` (held_out_presenter_set_ref + chance_level_threshold + probe_passed) + `SpeakerIdentifiableArtefactRefused` + `NO_SPEAKER_ID_MOAC_POSTURE`. |
+| 5 | `test_window_and_span_rule_1_to_2_second_window_min_duration_hysteresis_below_confidence_unmeasured` | MUST-DO §5 (Canon 5 §5.3) | `WindowAndSpanRule_v1` (window_seconds_min=1.0 + window_seconds_max=2.0 + min_span_duration_seconds=0.5 + hysteresis_frames=2 + below_confidence_marker="unmeasured") + `BelowConfidenceLabelRefused` + `BELOW_CONFIDENCE_UNMEASURED_NEVER_LABELLED_POSTURE`. |
+| 6 | `test_moac_contract_shape_frozen_per_language_90_code_switch_span_85_no_speaker_id_pass_abstention_reported` | MUST-DO §6 (FORK DQ-22 + DQ-23) | `LanguageCognitionMoacContract_v1` (per_language_accuracy_default=0.90 + code_switch_span_accuracy_default=0.85 + no_speaker_id_probe_passed=True + abstention_rate_reported=True + tagged_pending flags) + `SilentMoacThresholdChangeRefused`. |
+| 7 | `test_b5_4_admission_receipted_overlay_to_measure_promotion_nothing_relabelled` | MUST-DO §7 (Canon 5 §B5.4 + Canon 8 §W2) | `B5_4_AdmissionReceiptedAct_v1` + `PROMOTE_LID_REGIME_BY_RECEIPTED_ACT_COMPOSED_BY_IDENTITY` = sealed `promote_lid_regime_by_receipted_act` + `RelabellingAtRegimeFlipRefused` + `NOTHING_RELABELLED_AT_REGIME_FLIP_POSTURE` (retagged from sealed LID scope). |
+| 8 | `test_doc_20_training_base_registration_extends_sealed_lid_registrations_no_redeclaration` | MUST-DO §8 (Doc 20 + §1.2) | `LanguageCognitionTrainingBaseRegistration_v1` composes sealed `LidModelRegistration_v1` by identity in `sealed_lid_registration` field + `lora_adapter_declaration` + `training_base_posture_hash` + `licence_id_pinned` + `WHISPER_LID_REGISTRATION_TRAINING_BASE_ANCHOR` = sealed anchor. |
+| 9 | `test_rms_custody_in_perimeter_training_dp_sgd_default_carrier_shape` | MUST-DO §9 (Canon 8 §3 + pilot §8.3 · FORK DQ-24) | `RmsCustodyRightsPosture_v1` (custody_class="RMS_TENANT" + in_perimeter_training=True + artefact_ownership_ref pilot §8.3 + dp_sgd_default=True + dp_opt_out_ref=None + dp_opt_out_tagged_pending=True) + `TRAINING_ARTEFACT_NEVER_LEAVES_PERIMETER_POSTURE`. |
+| 10 | `test_corpus_assembly_under_assistant_dialogue_composes_sealed_assist_census_by_identity` | MUST-DO §10 (owner drop §Sequence + §coupling) | `BANK_CONFIRMED_ASSISTANT_TURN_COMPOSED_BY_IDENTITY` = sealed `bank_confirmed_assistant_turn` + `RENDER_CONTENT_REGISTRY_ENTRY_COMPOSED_BY_IDENTITY` = sealed `render_content_registry_entry` + `LANGUAGE_COGNITION_TARGET_LANGUAGES` Final 5-tuple + `CorpusChannelUnreachableHonestGap_v1` declaring DQ-17 as ONLY gate FACT not policy hold + `CORPUS_ASSEMBLY_UNDER_ASSISTANT_DIALOGUE_POSTURE`. |
+| 11 | `test_training_run_commissioned_track_4_job_kind_training_runs_composed_by_identity_pod_never_data_path` | MUST-DO §11 (Ruling (b) verbatim) | `TRACK_4_JOB_KINDS_ANCHOR` = sealed `TRACK_4_JOB_KINDS` (composed by identity `is`) + "training_runs" in tuple + `PodAsDataPathRefused` extends sealed `PodIsNeverDataPathAtTrack4Error` by identity + `commission_language_cognition_training_run` refuses pod://* + /app/* prefixed refs + `POD_NEVER_DATA_PATH_POSTURE_LANGUAGE_COGNITION` composing sealed `POD_IS_NEVER_DATA_PATH_POSTURE_TRACK_4`. |
+| 12 | `test_no_redeclaration_of_sealed_symbols_1_2_language_cognition` | MUST-NOT §7 · §1.2 discipline | AST-scan for 26 sealed symbol names (from CP-SO-6.9-LID-WAVE + CP-TRACK-4 + CP-AIP-ASSIST-CENSUS + CP-AIP-ASSIST-TRAINING + CP-CENSUS-THREE-WAVES + CP-AIP-10) — module declares NONE of them. |
+
+**Structural EXIT EVIDENCE:** all 12 pins flipped from authentic RED (FileNotFoundError, module absent) to GREEN 0.80s. Double-green byte-identical BASELINE_GUARD=1 PYTHONHASHSEED=0 stripped_sha256 `7ac8a18af0db7a3840a61335c427a1a7b87fdb7037f9a14609fb3c16c3be5918` sweep_A + sweep_B both 6411 passed / 13 skipped / 0 failed / 520 warnings.
+
+**Ratchet advance:** 6399 → 6411 (+12 canonical measured own new pins).
+
+**Sealed carriers UNCHANGED per SO §3.8 additive-only:** lid_wave_overlay_and_admission_v1.py + census_three_waves_v1.py + training_run_boundary_v1.py + track_4_autonomy_wiring_v1.py + assist_census_v1.py + assist_training_v1.py + pilot_licence_seeds_v1.py + tenant_separation_v1.py + engine.py all untouched.
+
+**Long-pole gate:** DQ-17 family (Weego/NAS credential rotations) declared as ONLY gate FACT not policy hold via `CorpusChannelUnreachableHonestGap_v1`. Non-blocking through this seal; surfaced in OWNER_RETURN_REPORT.md pending-human-items at Item 5.13.
+
+**In-pod compute honest-gap:** owner drop §Execution-reach verbatim — if in-pod compute cannot honestly run even a small LoRA pass, commissioned-job contract carries honest-gap on execution NEVER a mock. Named by `COMMISSIONED_JOB_HONEST_GAP_NOT_MOCK_POSTURE`. This-seal declares the training-run boundary + corpus-assembly seam; no live LoRA pass executed.
+

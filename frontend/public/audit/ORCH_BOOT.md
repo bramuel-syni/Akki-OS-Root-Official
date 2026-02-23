@@ -1405,15 +1405,15 @@ heads_last_sealed:
   state_repo:
     workdir: /app/assessment_workspace
     branch: master
-    head: 7f4d079069009be09f743c09e3116c7e1c0fd8f5
-    sealed_at_utc: 2026-02-23T16:34:37Z
-    seal_kind: "CP-AIP-ASSIST-TRAINING State Commit-B (Item 5.11.g of EXECUTION_ORDER.md · banks Code Commit-A fbb2f1f4 + /app companion 0d1755aac · six binding conditions applied to training-run dialogue verbatim as MUST-DO/MUST-NOT test IDs · Ratchet 6389 → 6399 · double-green stripped_sha256 b74d807fa2f6cc77240c659fad5f87690e2e3d38bdb865dae77d7b512a5dfdc2 IDENTICAL both sweeps 6399 passed · Item 5.11 wave COMPLETE (5.11.a-g all SEALED) · Item 5.12 CP-AIP-LANGUAGE-COGNITION SPEC ENHANCEMENT opens NEXT)"
+    head: 2ed2e28fe01a5146e1ebf01f02bbb1b7322e07a0
+    sealed_at_utc: 2026-02-23T17:20:00Z
+    seal_kind: "CP-AIP-LANGUAGE-COGNITION State Commit-B (Item 5.12 of EXECUTION_ORDER.md · SPEC ENHANCEMENT · banks Code Commit-A 7e84cd98f37aea50f9d0ed55fbd8d654ffc582f7 + /app companion 214f2ea860feb05e12bc310fe2bff9aa1afc3e0f · owner order 2026-02-23T~16:07Z verbatim + SO §6.8 standing authority · 12 MUST-DO/MUST-NOT card lines as invariant node IDs · 2 NEW additive modules language_cognition_v1.py + language_cognition_corpus_seam_v1.py composing sealed CP-SO-6.9-LID-WAVE + CP-TRACK-4-AUTONOMY-WIRING + CP-AIP-ASSIST-CENSUS by identity (§1.2 no-redeclaration) · Ratchet 6399 → 6411 · double-green stripped_sha256 7ac8a18af0db7a3840a61335c427a1a7b87fdb7037f9a14609fb3c16c3be5918 IDENTICAL both sweeps 6411 passed · Long-pole DQ-17 (NAS/Weego) recorded as ONLY gate FACT not policy hold · In-pod compute honest-gap on execution NEVER a mock)"
   code_repo:
     workdir: /app/assessment_workspace/repos/Extraction-Akki
     branch: programme/track-a
-    head: fbb2f1f4179c359f18e1c57c3871b2a321c81c5f
-    sealed_at_utc: 2026-02-23T16:30:00Z
-    seal_kind: "CP-AIP-ASSIST-TRAINING Code Commit-A fbb2f1f4 · +10 canonical measured own new pins · ratchet 6389 -> 6399 · assist_training_v1 §1.2 modality-extension composing sealed CP-AIP-ASSIST-CENSUS assist_census_v1 by identity + CP-TRACK-4-AUTONOMY-WIRING + CP-AIP-10 · training-assistant is READ-ONLY against Registry; NO learning-write callables exposed; NO decision-boundary imports; NO weight/corpus export callables; pod NEVER data path · double-green stripped_sha256 b74d807fa2f6cc77240c659fad5f87690e2e3d38bdb865dae77d7b512a5dfdc2 IDENTICAL both sweeps 6399 passed"
+    head: 7e84cd98f37aea50f9d0ed55fbd8d654ffc582f7
+    sealed_at_utc: 2026-02-23T17:10:00Z
+    seal_kind: "CP-AIP-LANGUAGE-COGNITION Code Commit-A 7e84cd98 · +12 canonical measured own new pins · ratchet 6399 -> 6411 · language_cognition_v1 + language_cognition_corpus_seam_v1 §1.2 modality-extension composing sealed CP-SO-6.9-LID-WAVE + CP-TRACK-4-AUTONOMY-WIRING + CP-AIP-ASSIST-CENSUS by identity · training compute + weights + labelled corpus NEVER leave Akki boundary · pod NEVER data path · double-green stripped_sha256 7ac8a18af0db7a3840a61335c427a1a7b87fdb7037f9a14609fb3c16c3be5918 IDENTICAL both sweeps 6411 passed"
 
 
 ```

@@ -150,7 +150,7 @@ Strategy work-in-progress (to be created):
 - **checkpoint_14d_utc:** `2026-08-28T00:00:00Z`
 - **hardening_status:** `attested`
 - **acceptance_status:** `green`
-- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260923T162534Z.json`
+- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260923T170749Z.json`
 <!-- CONNECT-GPU-PINS -->
 
 
@@ -1870,3 +1870,64 @@ Placement OUTSIDE the TCB. Every user-facing string is a Content Registry entry.
 `CP-AIP-ASSIST-TRAINING FULLY SEALED · SO §6.9 amendment + owner drop 2026-02-23 assist_cards_preapproved_and_run_to_completion verbatim + Ruling (b) AKKI-RUNS-IT verbatim · six binding conditions applied to training-run dialogue verbatim as MUST-DO/MUST-NOT test IDs · placement OUTSIDE the TCB · every user-facing string is a Content Registry entry · assist_training_v1 §1.2 modality-extension composing sealed CP-AIP-ASSIST-CENSUS assist_census_v1 by identity · 10 RED-first own pins ALL GREEN · double-green stripped_sha256 b74d807fa2f6cc77240c659fad5f87690e2e3d38bdb865dae77d7b512a5dfdc2 IDENTICAL both sweeps 6399 passed · Ratchet 6389 → 6399 (+10 canonical measured own new pins) · SO §6.9(5) AMENDED 9th application: code bundle sha256 de2eecb204e33d3e6ed5824a99859dc1eb5d77921c2db30494ce08664d7b49cd (~18 MiB @ programme/track-a fbb2f1f4) + state bundle sha256+path pinned at PINS bank commit · GAPS_FIXED_LEDGER 10 own invariant-seat entries + 1 same-slice cure (vendored twin file_count 1066→1067 mid-slice sync) · Sealed carriers UNCHANGED per SO §3.8 additive-only · Ruling (b) AKKI-RUNS-IT verbatim honored — training assistant is READ-ONLY against Registry; NO learning-write callables exposed; NO decision-boundary imports; NO weight/corpus export callables; pod NEVER data path (pod://* + /app/* refused at all boundary callables) · Item 5.11.g of EXECUTION_ORDER.md CLOSED · Item 5.11 wave COMPLETE (5.11.a-g all SEALED) · Item 5.12 (CP-AIP-LANGUAGE-COGNITION) opens next per RUN-TO-COMPLETION mandate 2026-02-23 · REPORT-AND-CONTINUE not idle-halt.`
 
 <!-- CP-AIP-ASSIST-TRAINING-PINS-2026-02-23 END -->
+
+<!-- CP-AIP-LANGUAGE-COGNITION-PINS-2026-02-23 BEGIN -->
+
+## CP-AIP-LANGUAGE-COGNITION (Item 5.12 · SPEC ENHANCEMENT · SEALED 2026-02-23T~17:20Z)
+
+**Owner authority:** SO §6.8 standing authority · owner drop 2026-02-23T~16:07Z verbatim (`STATE/OWNER_DROPS/language_cognition_20260223/DROP.md`). No GO needed for promotion.
+
+**Ledger item:** EXECUTION_ORDER.md Item 5.12.
+
+**Objective card:** `STATE/OBJECTIVES/CP_AIP_LANGUAGE_COGNITION_20260223.md` (promoted from `queued/` at this-seal boundary · line-removed convention · post-strip worktree sha256 `34338079d0340d2a0723aa765e6c611afb927056de05eb7700cf4b8053a4d91b`).
+
+**Additive modules (§3.8 · §1.2 modality-extension composing sealed carriers by identity):**
+- `backend/services/audio_plane_v1/language_cognition_v1.py` (~440 lines).
+- `backend/services/audio_plane_v1/language_cognition_corpus_seam_v1.py` (~120 lines).
+
+**12 RED-first invariant pins** (all 12 MUST-DO/MUST-NOT card lines as node IDs · `tests/invariants/test_cp_aip_language_cognition.py`):
+1. `test_signature_not_prosody_alone_feature_basis_declared` (Canon 4 §5.4 + Doc 20).
+2. `test_clean_monolingual_alone_must_not_refusal_at_commission` (owner verbatim).
+3. `test_speaker_disjoint_split_contract_shape_frozen_n_default_20_tagged_pending` (Canon 4 §5.5 + DAP-31 · FORK DQ-21).
+4. `test_no_speaker_id_moac_probe_shape_and_chance_level_threshold` (DAP-31 applied to voices).
+5. `test_window_and_span_rule_1_to_2_second_window_min_duration_hysteresis_below_confidence_unmeasured` (Canon 5 §5.3).
+6. `test_moac_contract_shape_frozen_per_language_90_code_switch_span_85_no_speaker_id_pass_abstention_reported` (FORK DQ-22 + DQ-23).
+7. `test_b5_4_admission_receipted_overlay_to_measure_promotion_nothing_relabelled` (Canon 5 §B5.4 + Canon 8 §W2).
+8. `test_doc_20_training_base_registration_extends_sealed_lid_registrations_no_redeclaration` (Doc 20 + §1.2).
+9. `test_rms_custody_in_perimeter_training_dp_sgd_default_carrier_shape` (Canon 8 §3 + pilot §8.3 · FORK DQ-24).
+10. `test_corpus_assembly_under_assistant_dialogue_composes_sealed_assist_census_by_identity`.
+11. `test_training_run_commissioned_track_4_job_kind_training_runs_composed_by_identity_pod_never_data_path` (Ruling (b) verbatim).
+12. `test_no_redeclaration_of_sealed_symbols_1_2_language_cognition` (§1.2).
+
+**Test evidence:**
+- RED_pre 12/12 authentic FileNotFoundError right-reason (module absent) at `phase0/cp_aip_language_cognition_20260223/RED_pre_*.log`.
+- GREEN_post 12/12 passed 0.80s at `phase0/cp_aip_language_cognition_20260223/GREEN_post_*.log`.
+- Pre-Commit-A double-green BASELINE_GUARD=1 PYTHONHASHSEED=0 stripped_sha256 `7ac8a18af0db7a3840a61335c427a1a7b87fdb7037f9a14609fb3c16c3be5918` IDENTICAL sweep_A (20260923T170049Z ~209s) + sweep_B (20260923T170715Z ~209s) both 6411 passed / 13 skipped / 0 failed / 520 warnings.
+- `baseline_failures.json` sha256 post-bump `b0bccedd9feb04895efe66fd88409272c676c2518f5b29bf735530c2ab397974` · passed_floor 6399 → 6411 · counts_at_baseline.passed 6399 → 6411 · invariants_enforced_when_baseline_guard_1.passed_floor 6399 → 6411.
+
+**Ratchet:** 6399 → 6411 (+12 canonical measured own new pins).
+
+**6-commit table:**
+
+| # | Commit | SHA | Branch |
+|---|---|---|---|
+| 1 | Code Commit-A | `7e84cd98f37aea50f9d0ed55fbd8d654ffc582f7` | `programme/track-a` |
+| 2 | /app companion A | `214f2ea860feb05e12bc310fe2bff9aa1afc3e0f` | `main` |
+| 3 | State Commit-B | `2ed2e28fe01a5146e1ebf01f02bbb1b7322e07a0` | `master` |
+| 4 | State Commit-C fixup | `f491aba9873478aa11d45c847426d24d1c369b73` | `master` |
+| 5 | State PINS bank | *(this commit)* | `master` |
+| 6 | /app companion C | *(post-state-bank)* | `main` |
+| 7 | State mini-bank | *(RESUME rewrite)* | `master` |
+
+**Milestone-seal continuity bundle (SO §6.9(5) AMENDED 10th application):**
+- Code bundle: `continuity_bundles/code_20260923T171243Z_CP_AIP_LANGUAGE_COGNITION.bundle` · ~18 MiB · sha256 `866c9ef86b1223449edba20e81f6d13fdb31ce0ac85602afb25e0439f62823d5` @ `programme/track-a` `7e84cd98f37aea50f9d0ed55fbd8d654ffc582f7`.
+- State bundle: `/tmp/state_20260923T172204Z_CP_AIP_LANGUAGE_COGNITION.bundle` · ~209 MiB · sha256 `96515f01c4b882c65d2e8cdccb2f035f3f3ea958bfc65a88959d37c0cab5edd4` @ `master` `f491aba9873478aa11d45c847426d24d1c369b73` (State-C fixup).
+- **SPACE-CONSTRAINT TRANSPARENCY:** /app pod volume (nvme0n4 · 9.8 GiB cap) at 100% (76 MiB free) at state bundle emission; state bundle written to /tmp (60 GiB overlay free), sha256 verified, bundle verify "is okay" complete history. Bundle remains at /tmp path per this-seal disk-constraint. Same-volume relocation deferred to next available cleanup window; sha256-pin holds regardless of path per CP-AIP-ASSIST-CENSUS + CP-AIP-ASSIST-TRAINING + CP-TRACK-4-AUTONOMY-WIRING precedent.
+
+**Anchor to Item 5.13 FINAL DELIVERABLE:** this-card's language-cognition Targeta training-run boundary + corpus-assembly seam ARE the last artefact-shape declaration before the OWNER_RETURN_REPORT + BUILD_JOURNAL compilation. Item 5.13 MUST report Item 5.12's EXACT POSITION (post-5.11.g · pre-5.13 FINAL) per owner ledger sequencing directive #1.
+
+**REPORT-AND-CONTINUE receipt line (State Commit-B · this-seal · to be finalised at State PINS bank):**
+
+`CP-AIP-LANGUAGE-COGNITION State Commit-B · Item 5.12 · SPEC ENHANCEMENT owner order 2026-02-23T~16:07Z verbatim + SO §6.8 standing authority · 12 MUST-DO/MUST-NOT card lines as RED-first invariant node IDs · 2 NEW additive modules (~560 lines total) composing sealed CP-SO-6.9-LID-WAVE + CP-TRACK-4-AUTONOMY-WIRING + CP-AIP-ASSIST-CENSUS by identity (§1.2 no-redeclaration) · Ratchet 6399 → 6411 · Double-green stripped_sha256 7ac8a18af0db7a3840a61335c427a1a7b87fdb7037f9a14609fb3c16c3be5918 IDENTICAL both sweeps 6411 passed · Long-pole DQ-17 (NAS/Weego) recorded as ONLY gate FACT not policy hold via CorpusChannelUnreachableHonestGap_v1 · In-pod compute honest-gap on execution NEVER a mock per COMMISSIONED_JOB_HONEST_GAP_NOT_MOCK_POSTURE · Sealed carriers UNCHANGED · Ruling (b) AKKI-RUNS-IT verbatim honored — training compute + weights + labelled corpus NEVER leave Akki boundary · Item 5.11 wave COMPLETE (5.11.a-g SEALED) · Item 5.13 FINAL DELIVERABLE opens next · REPORT-AND-CONTINUE not idle-halt · RUN-TO-COMPLETION mandate ACTIVE 2026-02-23.`
+
+<!-- CP-AIP-LANGUAGE-COGNITION-PINS-2026-02-23 END -->
