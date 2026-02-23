@@ -28531,4 +28531,37 @@ Banked here for `test_orch_boot::_banked_in_state` invariant lookup + audit trai
 
 ---
 
+## CP-AIP-5-CLUSTERING · SEAL RECORD · 2026-02-23T07:20:00Z (5-Commit-Seal LANDED)
+
+### CP-AIP-5-CLUSTERING seal record (2026-02-23T~07:20Z · AIP v1.0 §5.3 character-register clustering acceptance boundary GREEN · HARD GATE MET at CP-AIP-3 unblocks storage)
+
+- **Scope:** AIP v1.0 §5.3 character-register clustering acceptance boundary · N-speakers gate + name-null-until-ceremony + no-per-utterance-payload + quoted-cost naming commission. `canon_ref: AIP v1.0 §5.3 P089 verbatim + §6.2 P096..P098 + §6.3 P100 + §1.2 + §1.4 + §1.5 + §16.2 cluster-naming-commissioned-internally.`
+- **Ledger check:** this seal implements EXECUTION_ORDER.md Item 5.5 CP-AIP-5-CLUSTERING and nothing else.
+- **Additive-only carriers landed** (§1.2 modality-extension of sealed CP-M6-5-1/2/3 + CP-AIP-3 · sealed carriers UNCHANGED per SO §3.8):
+  - `backend/services/audio_plane_v1/cluster_storage_boundary_v1.py` (~150 lines · `StoredClusterCandidate_v1` frozen dataclass (4 description-shape carriers · `name=None` default) + 3 typed refusal sentinels all subclassing `ClusterStorageRefused` (`SmallClusterRefused` §6.2 cond-2 · `NamedAtStorageRefused` §5.3 clause 2 verbatim · `ClusterHumanNameLeakAtStorageRefused` §5.3 clause 2 end-to-end via sealed CP-M6-5-3) + `store_cluster_candidate` fails-fast boundary composing sealed CP-AIP-3 `DEFAULT_CONFIG` + invoking sealed CP-M6-5-3 `assert_cluster_carries_no_human_name` + `HONEST_GAP_V1_POSTURE` Final marker citing §5.3 clause 2 verbatim).
+  - `backend/services/audio_plane_v1/cluster_naming_commission_v1.py` (~90 lines · `NamingCommissionReceiptMissing` refusal + `commission_cluster_naming` gated callable · quoted-cost `commissioning_receipt_ref` gate · invokes sealed CP-M6-5-2 `bind_verdict_to_stratum` + `derive_task_id` + `HumanValidationVerdict` verbatim (§1.2) + `HONEST_GAP_V1_POSTURE` Final marker citing §5.3 clause 2 verbatim).
+- **Ratchet:** floor 6280 → 6292 (+12 canonical measured) · `invariants_enforced_when_baseline_guard_1.passed_floor` advanced in lock-step · baseline_failures.json sha256 post-bump `5deb18b96c28659fed8e71f47abfef57d27177097164c772be1cc3f0080557cd`.
+- **12 pins by anchor:** §5.3 acc.crit.1 + §6.2 cond-2 N-speakers gate (1) · §5.3 acc.crit.4 + clause 2 name=null (1) · §5.3 acc.crit.3 + §6.2 cond-4 + §1.5 no-per-utterance-payload structural (1) · §1.2 sealed bind invocation (1) · §5.3 clause 2 quoted-cost gate (1) · §5.3 clause 2 storage-time-naming refused (1) · §1.2 sealed WriteBoundaryConfig_v1 composed (1) · §1.2 sealed assert_cluster_carries_no_human_name invoked (1) · §1.2 no-redeclaration scan 13 sealed symbols (1) · §3.1 P038 tokens-not-waveforms mirror (1) · §1.4 no-throughput-assertion (1) · Anti-drift §3 + §5 anchor scan (1).
+- **Pre-Commit-A double-green:** 6298 passed / 1 skipped / 0 failed / 520 warnings both sweeps · byte-identical `stripped_sha256 310792f02204dd0522eba19623c091d8c3476d2875b5fea3e3c8d25581d2f1f2` IDENTICAL both sweeps (sweep_A 185.28s · sweep_B 185.67s).
+- **CP_AIP_5 card** pulled from `STATE/OBJECTIVES/queued/` + rewritten fully-conforming SO §6.2 · card_sha256 `3c9ff53e65b407260bb2bda9d59e4a664d6bfc4a1daf93fec14b796b6b04fc09`.
+- **HARD GATE MET at CP-AIP-3** unblocks CP-AIP-5 cluster storage per owner reminder 4 verbatim.
+- **§16.2 cluster-naming-commissioned-internally** per owner working default 2026-02-23T04:15Z enforced by NamingCommissionReceiptMissing quoted-cost gate.
+- **SPEC-CONFLICT log:** NONE this slice.
+- **Comprehensive receipt:** `phase0/cp_aip_5_clustering_20260223/receipt.md`.
+
+### CP-AIP-5-CLUSTERING full seal chain SHAs (state mini-bank · Commit-C fixup 2026-02-23T07:23:00Z)
+
+| Commit | SHA | Branch |
+|---|---|---|
+| 1. Code Commit-A | `c915ab482795f04123e87e4ab014ab61e483fba4` | programme/track-a |
+| 2. /app companion A | `ac2689b1f89886c879a352a898fe376ade3baa5c` | main |
+| 3. State Commit-B | `6ae3fe3ed6bb749cbc9fa7178351609bfb14b121` | master |
+| 4. State Commit-C fixup | (this commit · in-flight) | master |
+| 5. /app companion C | (post-fixup · pending) | main |
+
+Banked here for `test_orch_boot::_banked_in_state` invariant lookup + audit trail.
+
+
+---
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

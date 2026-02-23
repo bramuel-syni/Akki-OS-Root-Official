@@ -163,7 +163,28 @@
 - ✅ §16.2 codec-choice DEFERRED per owner (Sampling & Reflection §11.2 answers it once built).
 - ✅ 5-commit seal chain (SHAs recorded post-landing).
 
-#### Item 5.5 · CP-AIP-5-CLUSTERING — 🔓 **UNBLOCKED** (HARD GATE MET at CP-AIP-3 · sequenced immediately post CP-AIP-4 per owner cadence directive verbatim 2026-02-23 GO 'run CP-AIP-5 → CP-AIP-10 sequentially').
+#### Item 5.5 · CP-AIP-5-CLUSTERING — ✅ **DONE 2026-02-23T~07:20Z** (AIP v1.0 §5.3 character-register clustering acceptance boundary GREEN · HARD GATE MET at CP-AIP-3 unblocks cluster storage · N-speakers gate + name-null-until-ceremony + no-per-utterance-payload + quoted-cost naming commission)
+
+- ✅ RED_pre 12/12 failed 0.71s (authentic ModuleNotFoundError + AssertionError right-reason).
+- ✅ GREEN_post 12/12 passed 0.70s.
+- ✅ Ratchet bump 6280 → 6292 (+12 canonical measured · baseline_failures.json sha256 `5deb18b96c28659fed8e71f47abfef57d27177097164c772be1cc3f0080557cd`).
+- ✅ TWO additive modules under `backend/services/audio_plane_v1/` (§1.2 modality-extension of sealed CP-M6-5-1 `clustering.py` + CP-M6-5-2 `human_validation.py` + CP-M6-5-3 `cluster_stability.py` + CP-AIP-3 `character_register_write_boundary_v1.py`):
+  - `cluster_storage_boundary_v1.py` (~150 lines · `StoredClusterCandidate_v1` frozen dataclass + 3 typed refusal sentinels + `store_cluster_candidate` composing sealed `WriteBoundaryConfig_v1.minimum_group_size` + invoking sealed `assert_cluster_carries_no_human_name` + `HONEST_GAP_V1_POSTURE` marker).
+  - `cluster_naming_commission_v1.py` (~90 lines · `NamingCommissionReceiptMissing` refusal + `commission_cluster_naming` quoted-cost gated callable + sealed `bind_verdict_to_stratum` invocation + `HONEST_GAP_V1_POSTURE` marker).
+- ✅ Vendored twin sync file_count 1048 → 1050 · structural_sha256 `90080bfb2582263f6ffc3f1fd13e63733d5e1b9b0f0a3d28b8e01245ed31899d`.
+- ✅ CP_AIP_5 objective card pulled up from `queued/` + rewritten fully-conforming (SO §6.2 · card_sha256 `3c9ff53e65b407260bb2bda9d59e4a664d6bfc4a1daf93fec14b796b6b04fc09`).
+- ✅ Pre-Commit-A double-green BASELINE_GUARD=1 PYTHONHASHSEED=0:
+  - sweep_A 6298 passed / 1 skipped / 0 failed / 520 warnings / 185.28s
+  - sweep_B 6298 passed / 1 skipped / 0 failed / 520 warnings / 185.67s
+  - stripped_sha256 `310792f02204dd0522eba19623c091d8c3476d2875b5fea3e3c8d25581d2f1f2` IDENTICAL both sweeps.
+- ✅ HARD GATE MET at CP-AIP-3 unblocks cluster storage per owner reminder 4 verbatim (custody invariant harness GREEN).
+- ✅ §16.2 cluster-naming-commissioned-internally per owner working default 2026-02-23T04:15Z (enforced by NamingCommissionReceiptMissing quoted-cost gate).
+- ✅ Comprehensive receipt banked at `phase0/cp_aip_5_clustering_20260223/receipt.md`.
+- ✅ Drill receipts banked at `repos/Extraction-Akki/backend/phase0/drill_receipts_cp_aip_5_clustering/`.
+- ✅ SPEC-CONFLICT log: NONE this slice.
+- ✅ 5-commit seal chain (SHAs recorded post-landing).
+
+#### Item 5.6 · CP-AIP-6-OBJECTIVE-WIZARD — 🟡 **NEXT** (opens immediately post CP-AIP-5 per owner cadence directive · brief report-and-continue after seal · §8, §9, §12.1 variant extension).
 
 - Execute in strict spec §15 order per DECISIONS.md CP list:
   - CP-AIP-1-INGEST-CAPTURE (§4.1-4.4)

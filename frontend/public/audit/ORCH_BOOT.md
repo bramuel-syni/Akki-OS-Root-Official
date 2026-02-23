@@ -928,6 +928,32 @@ heads_last_sealed:
     seal_kind: "CP-AIP-4-CODEC-SERVICE Commit-A 980456d3 on programme/track-a (last sealed · pre-CP-AIP-5)"
 
 
+
+generated_at_utc: 2026-02-23T07:23:00Z
+generator: "main-agent Autopilot (CP-AIP-5-CLUSTERING Commit-C fixup · R-6 boundary regen advancing heads_last_sealed.state_repo.head c5b3d2a3 -> 6ae3fe3e (CP-AIP-5 state Commit-B this-turn) + heads_last_sealed.code_repo.head 980456d3 -> c915ab48 (CP-AIP-5 Commit-A this-turn) · ratchet.passed_floor UNCHANGED at 6292 · baseline_failures.json sha256 UNCHANGED at 5deb18b96c28659fed8e71f47abfef57d27177097164c772be1cc3f0080557cd · Item 5.5 of EXECUTION_ORDER.md CLOSED · AIP v1.0 §5.3 character-register clustering acceptance boundary GREEN · HARD GATE MET at CP-AIP-3 unblocks storage · SPEC-CONFLICT log NONE · §16.2 cluster-naming-commissioned-internally per owner working default)"
+regeneration_reason: post-commit-b-cp-aip-5-clustering-commit-c-fixup-r-6-boundary-regen-advancing-state-head-to-6ae3fe3e-and-code-head-to-c915ab48-plus-ratchet-6280-to-6292-plus-12-canonical-measured-item-5-5-of-execution-order-closed
+
+ratchet:
+  passed_floor: 6292
+  counts_at_baseline_passed: 6292
+  baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
+  baseline_failures_sha256: 5deb18b96c28659fed8e71f47abfef57d27177097164c772be1cc3f0080557cd
+
+heads_last_sealed:
+  state_repo:
+    workdir: /app/assessment_workspace
+    branch: master
+    head: 6ae3fe3ed6bb749cbc9fa7178351609bfb14b121
+    sealed_at_utc: 2026-02-23T07:22:00Z
+    seal_kind: "CP-AIP-5-CLUSTERING state Commit-B 6ae3fe3e on master · Item 5.5 of EXECUTION_ORDER.md · AIP v1.0 §5.3 character-register clustering acceptance boundary GREEN · NEW backend/services/audio_plane_v1/cluster_storage_boundary_v1.py (~150 lines · StoredClusterCandidate_v1 frozen dataclass with 4 description-shape carriers + name=None default + 3 typed refusal sentinels SmallClusterRefused §6.2 cond-2 + NamedAtStorageRefused §5.3 clause 2 + ClusterHumanNameLeakAtStorageRefused §5.3 clause 2 end-to-end + store_cluster_candidate composing sealed CP-AIP-3 DEFAULT_CONFIG + invoking sealed CP-M6-5-3 assert_cluster_carries_no_human_name + HONEST_GAP_V1_POSTURE Final marker) + NEW backend/services/audio_plane_v1/cluster_naming_commission_v1.py (~90 lines · NamingCommissionReceiptMissing refusal + commission_cluster_naming quoted-cost gated callable · invokes sealed CP-M6-5-2 bind_verdict_to_stratum + derive_task_id + HumanValidationVerdict verbatim §1.2 + HONEST_GAP_V1_POSTURE Final marker) + NEW backend/tests/invariants/test_cp_aip_5_clustering_aip_v1_0_section_5_3.py (12 pins) + baseline_failures.json ratchet 6280->6292 · Sealed carriers UNCHANGED per SO §3.8 · Pre-Commit-A double-green stripped_sha256 310792f02204dd0522eba19623c091d8c3476d2875b5fea3e3c8d25581d2f1f2 IDENTICAL both sweeps 6298 passed 1 skipped 0 failed 520 warnings · CP_AIP_5 card pulled from queued/ + rewritten fully-conforming SO §6.2 · SPEC-CONFLICT log NONE · HARD GATE MET at CP-AIP-3 unblocks storage"
+  code_repo:
+    workdir: /app/assessment_workspace/repos/Extraction-Akki
+    branch: programme/track-a
+    head: c915ab482795f04123e87e4ab014ab61e483fba4
+    sealed_at_utc: 2026-02-23T07:20:00Z
+    seal_kind: "CP-AIP-5-CLUSTERING Commit-A c915ab48 on programme/track-a · Item 5.5 of EXECUTION_ORDER.md · +12 canonical measured AIP v1.0 §5.3 character-register clustering acceptance boundary GREEN"
+
+
 ```
 
 ---
