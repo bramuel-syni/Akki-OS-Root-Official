@@ -18,62 +18,57 @@
 
 ---
 
-**Last rewrite:** 2026-02-23T06:15:00Z (**Item 5.2 CP-AIP-2-DEDUP-CONDITION-MAP FULLY SEALED · closes CP-AIP-1 deferred §4.6 (b) branch · ratchet floor 6244 → 6254 · +10 canonical measured RED-first pins on AIP v1.0 §4.5 + §4.6 (b) dedup instance-condition-map provenance carriers · pre-Commit-A double-green byte-identical stripped_sha256 `b018e5d06851a5d1612a12c219e94a8f7990d82ac6dbcad9528d06f5d4fbaed8` IDENTICAL both sweeps 6260 passed 1 skipped 0 failed 520 warnings · CP_AIP_2 card pulled from queued/ + rewritten fully-conforming · SPEC-CONFLICT log NONE · next in ledger: item 5.3 CP-AIP-3-CHARACTER-REGISTER · HARD GATE · owner interim-report checkpoint due post-seal**).
+**Last rewrite:** 2026-02-23T06:40:00Z (**Item 5.3 CP-AIP-3-CHARACTER-REGISTER FULLY SEALED · HARD GATE MET · custody invariant harness GREEN · ratchet floor 6254 → 6266 · +12 canonical measured RED-first pins on AIP v1.0 §6 custody-of-identity boundary (four-leakage-path harness · embedding-destruction · schema-shape guard · conjunctive reinforcement · idiolect own test · modality-extension scan · anchor scan) · pre-Commit-A double-green byte-identical stripped_sha256 `920dc8131eb1bbf2512e04ea3ab2ea90f59f534a13ea4ace6b386c2fdb237999` IDENTICAL both sweeps 6272 passed 1 skipped 0 failed 520 warnings · CP_AIP_3 card pulled from queued/ + rewritten fully-conforming · SPEC-CONFLICT log NONE · owner content anchors banked (a) §6.2 CONJUNCTIVE + §6.4 own test · (b) §6.2.4 embedding destruction + no-instance-voiceprint schema field · INTERIM REPORT DUE post-Commit-C fixup · HALT after seal · CP-AIP-4 blocked until owner GO**).
 
 ### 🔧 NEXT COMMAND AT RESUME (compaction-safe anchor)
 
 ```bash
-# Item 5.3 of EXECUTION_ORDER.md · CP-AIP-3-CHARACTER-REGISTER.
-# Owner reminder 4 verbatim: 'CP-AIP-3 is the hard gate: the custody invariant
-# harness (four leakage paths - small stratum, idiolect marker, narrowing
-# combination, exemplar storage - all must FAIL to store) must be GREEN
-# before any CP-AIP-5 cluster is stored. If sequencing pressure ever tempts
-# storing a cluster early, that is a HALT condition.'
-#
-# Owner interim-report checkpoint: 'after CP-AIP-3 seals (custody harness green),
+# HALT · INTERIM REPORT DUE to owner post-CP-AIP-3-Commit-C fixup.
+# Owner explicit direction verbatim: 'after CP-AIP-3 seals (custody harness green),
 # send an interim report - that is the highest-risk boundary in the whole plane.'
 #
-# Step 1: Pull the queued CP-AIP-3 card up:
-mv /app/assessment_workspace/STATE/OBJECTIVES/queued/CP_AIP_3_CHARACTER_REGISTER.md \
-   /app/assessment_workspace/STATE/OBJECTIVES/CP_AIP_3_CHARACTER_REGISTER.md
-# Step 2: Rewrite the card fully-conforming (SO §6.2).
-# Step 3: Author RED-first invariants for §6 character register schema + 4-leakage-path
-#   custody harness (small stratum · idiolect marker · narrowing combination · exemplar
-#   storage). Each MUST fail-to-store on attempt (§6.3 enforcement shape).
-# Sealed carriers to compose (NOT edit):
-#   - backend/services/audio_plane_v1/character_register.py (CP-M6-* sealed)
-#   - backend/services/audio_plane_v1/leakage_path_harness.py (~10167 lines · sealed harness)
-# Step 4: Full 5-commit seal per SO §3.3 with terminal pytest only, BASELINE_GUARD=1
-#   PYTHONHASHSEED=0 double-green.
-# Step 5: INTERIM REPORT to owner post-Commit-C fixup (owner explicit direction).
+# CP-AIP-4 (Item 5.4) is BLOCKED-BY-HALT until owner GO post-report.
+#
+# HARD GATE STATUS: MET. Custody invariant harness GREEN.
+# All four §6.3 P100 leakage paths refuse to store. §6.2 P098 cond-4 embedding
+# destruction structurally enforced. Schema-shape guard structurally impossible
+# per §1.5. CP-AIP-5 cluster storage now UNBLOCKED by the HARD GATE.
+#
+# If owner replies with GO for CP-AIP-4:
+#   mv /app/assessment_workspace/STATE/OBJECTIVES/queued/CP_AIP_4_CODEC_SERVICE.md \
+#      /app/assessment_workspace/STATE/OBJECTIVES/CP_AIP_4_CODEC_SERVICE.md
+#   # Author RED-first for §3 codec service (50-100 tok/s target · fail-closed).
+#   # Full 5-commit seal per SO §3.3 with terminal pytest only, BASELINE_GUARD=1
+#   # PYTHONHASHSEED=0 double-green.
+#
+# If owner replies with GO for a different CP or a hold, follow that ruling verbatim.
 ```
 
 ---
 
 ## 1 · POSITION
 
-- **Phase:** PHASE 3 CLOSED · **P4-(a-d-i) + CP-CENSUS-RMS-STATION-LANGUAGE-AXIS + CP-AIP-1-INGEST-CAPTURE FULLY SEALED · Item 5 (CP-AIP-1..10) OPEN · CP-SKILLS-LAYER series CLOSED at Slice 5**.
-- **This-seal completion (CP-AIP-1):**
-  - 12 canonical measured RED-first invariant pins on AIP v1.0 §4.1-§4.4 + §4.6 first-class ingestion provenance carriers.
+- **Phase:** PHASE 3 CLOSED · **P4-(a-d-i) + CP-CENSUS-RMS-STATION-LANGUAGE-AXIS + CP-AIP-1-INGEST-CAPTURE + CP-AIP-2-DEDUP-CONDITION-MAP + CP-AIP-3-CHARACTER-REGISTER FULLY SEALED · HARD GATE MET · Item 5 (CP-AIP-1..10) IN-PROGRESS · CP-AIP-4 HALTED pending INTERIM REPORT · CP-SKILLS-LAYER series CLOSED at Slice 5**.
+- **This-seal completion (CP-AIP-3):**
+  - 12 canonical measured RED-first invariant pins on AIP v1.0 §6 custody-of-identity boundary.
   - 2 additive modules under `backend/services/audio_plane_v1/`:
-    - `ingestion_provenance_v1.py` sha256 `3662e823221744dbd350f639da90316cfc092871b5cec957c5ca47cad49ee5ef`
-    - `ingestion_capture_v1.py` sha256 `d026d11087a2bcf858a6dd13d7651b645ab49095f768dd74f00f49e9e14c79b0`
-  - Ratchet 6232 → 6244 · baseline_failures.json sha256 post-bump `b6c94ce644ee88d7792b6be38a8bcd9f99b7a96e9cc100ef4123ed2d5a285666`.
-  - Pre-Commit-A double-green stripped_sha256 `c37a65fb7c3e6492dd991d1fe5d4c383d5ab0914b422e48dac66944955dd4c19` IDENTICAL sweep_A (192.57s) + sweep_B (191.24s) both 6250 passed / 1 skipped / 0 failed / 520 warnings.
-  - Item 4 defect remediated: 10 non-conforming CP-AIP-2..10+P2 cards moved to `STATE/OBJECTIVES/queued/` subdirectory (flat glob exempts them until each CP opens · additive · zero deletion).
-  - Comprehensive receipt: `phase0/cp_aip_1_ingest_capture_20260223/receipt.md`.
-- **Next per owner directive (sequential · no pause between seals):**
-    1. **Item 5.2 · CP-AIP-2-DEDUP-CONDITION-MAP** (§4.5 + §4.6 (b)).
-    2. **Item 5.3 · CP-AIP-3-CHARACTER-REGISTER** (§6 + custody invariant harness · **HARD GATE per owner reminder 4 · INTERIM REPORT DUE post-seal**).
-    3. Item 5.4 · CP-AIP-4-CODEC-SERVICE (§3).
-    4. Item 5.5 · CP-AIP-5-CLUSTERING (§5.3).
-    5. Item 5.6..10 · CP-AIP-6..10 in strict §15 order.
-    6. Interleave CP-SKILLS-LAYER Slice 4 ONLY when an AIP slice is blocked/idle.
-- **Ratchet floor: `6254`** (was 6244 pre-CP-AIP-2 · +10 canonical measured) · baseline_failures_sha256 `73f87115f9a78e94fd16544d07a81e54e7a68941021005acb466df49a8f708b4`.
+    - `character_register_write_boundary_v1.py` (~260 lines · 5 typed refusal sentinels all subclassing sealed `LeakageRefusalError` · `WriteBoundaryConfig_v1` governed-seam bundle · fails-fast `write_character_entry` boundary).
+    - `character_register_clustering_v1.py` (~130 lines · `assign_clusters_destroy_embeddings` K-means-like with structural embedding destruction · centroids-only return type).
+  - Ratchet 6254 → 6266 · baseline_failures.json sha256 post-bump `42910fa760d7f3ba84644b10f1f2d6f36daacd35aecfd95d19946ecbce29ccc0`.
+  - Pre-Commit-A double-green stripped_sha256 `920dc8131eb1bbf2512e04ea3ab2ea90f59f534a13ea4ace6b386c2fdb237999` IDENTICAL sweep_A (191.38s) + sweep_B (191.97s) both 6272 passed / 1 skipped / 0 failed / 520 warnings.
+  - **HARD GATE MET** per owner reminder 4 verbatim: custody invariant harness GREEN. All four §6.3 P100 leakage paths refuse to store. §6.2 P098 cond-4 embedding destruction structurally enforced. Schema-shape guard structurally impossible per §1.5.
+  - Owner content anchors banked: (a) §6.2 CONJUNCTIVE + §6.4 P102 own dedicated test case · (b) §6.2.4 embedding destruction + no-instance-voiceprint schema field.
+  - CP10 harness receipt refreshed pre-sweep (2026-09-23T05:18:27Z all-GREEN via wave_g5_realchrome_verification_harness.py) to keep test_cp10_harness_receipt_is_still_recent < 12h.
+  - Comprehensive receipt: `phase0/cp_aip_3_character_register_20260223/receipt.md`.
+- **HALT · INTERIM REPORT DUE post-Commit-C fixup:** per owner explicit direction 'after CP-AIP-3 seals (custody harness green), send an interim report - that is the highest-risk boundary in the whole plane.' CP-AIP-4 (Item 5.4) is BLOCKED-BY-HALT until owner GO post-report.
+- **Prior seals banked (append-only):**
+  - **CP-AIP-2-DEDUP-CONDITION-MAP** (ratchet 6244 → 6254 · SEALED 2026-02-23T~06:15Z · closes CP-AIP-1 deferred §4.6 (b) branch): 2 additive modules (`dedup_instance_provenance_v1.py` + `dedup_capture_v1.py`) · 10 pins on §4.5 + §4.6 (b) · comprehensive receipt at `phase0/cp_aip_2_dedup_condition_map_20260223/receipt.md`.
+  - **CP-AIP-1-INGEST-CAPTURE** (ratchet 6232 → 6244 · SEALED 2026-02-23T~05:40Z): 2 additive modules (`ingestion_provenance_v1.py` sha256 `3662e823221744dbd350f639da90316cfc092871b5cec957c5ca47cad49ee5ef` + `ingestion_capture_v1.py` sha256 `d026d11087a2bcf858a6dd13d7651b645ab49095f768dd74f00f49e9e14c79b0`) · 12 pins on §4.1-§4.4 + §4.6 · comprehensive receipt at `phase0/cp_aip_1_ingest_capture_20260223/receipt.md`.
+- **Ratchet floor: `6266`** (was 6254 pre-CP-AIP-3 · +12 canonical measured) · baseline_failures_sha256 `42910fa760d7f3ba84644b10f1f2d6f36daacd35aecfd95d19946ecbce29ccc0`.
 
 ## 2 · STANDING (R-102 + R-103 + R-104 [CORRECTED] + R-105 + R-106 + §6.8)
 
-Unchanged. R-102 productized-or-honest-gap · R-103 continuous · R-104 CORRECTED (RMS + DIGICOW admitted for census jobs · held at DAP-14 seating only) · R-105 partial-retirement · R-106 P3-CLOSED + P4-(a-d-i) + CP-CENSUS + CP-AIP-1 SEALED-A · §6.8 plan-authority report-and-continue.
+Unchanged. R-102 productized-or-honest-gap · R-103 continuous · R-104 CORRECTED (RMS + DIGICOW admitted for census jobs · held at DAP-14 seating only) · R-105 partial-retirement · R-106 P3-CLOSED + P4-(a-d-i) + CP-CENSUS + CP-AIP-1 + CP-AIP-2 + CP-AIP-3 SEALED-A · §6.8 plan-authority report-and-continue.
 
 ## 2A · OWNER DIRECTIVES IN FORCE
 
@@ -140,35 +135,36 @@ When a documentation-only ledger item introduces files under a directory that ha
 - Move the remaining queued cards to a `queued/` subdirectory (the invariants glob is flat) — they remain preserved verbatim and get pulled back up + rewritten when each CP opens.
 This preserves the additive-only doctrine (zero deletion) and honours the ledger-scope discipline (this seal implements exactly its item, not the remediation of others).
 
-## 9 · SEAL SUMMARY (THIS-TURN CP-AIP-2)
+## 9 · SEAL SUMMARY (THIS-TURN CP-AIP-3)
 
-**CP-AIP-2-DEDUP-CONDITION-MAP** (ratchet 6244 → 6254 · SEALED THIS-TURN · closes CP-AIP-1 deferred §4.6 (b) branch):
+**CP-AIP-3-CHARACTER-REGISTER** (ratchet 6254 → 6266 · SEALED THIS-TURN · HARD GATE MET · custody invariant harness GREEN):
 
 | Commit | SHA | Branch | Purpose |
 |---|---|---|---|
-| Code Commit-A | `7f030d17289b122b07b1346cede08167d2fc937a` | programme/track-a | 2 NEW modules (`dedup_instance_provenance_v1.py` + `dedup_capture_v1.py`) + 10 RED-first pins + baseline_failures ratchet bump 6244 → 6254 + comprehensive drill receipts |
-| /app companion A | `777666131ad9d51cc113c9a16debb0c7d95063be` | main | vendored twin sync (2 new files · MANIFEST 1039 → 1041) + notes ORCH_BOOT ratchet-only regen + audit ORCH_BOOT byte-identical mirror + gitlink advance 590747f2 → 7f030d17 |
-| State Commit-B | `7e37a8cd7d781a592e9820ebbe7456dd563a05ce` | master | banks CP-AIP-2 objective card + queued/CP_AIP_2 delete-promotion + comprehensive receipt + EXECUTION_ORDER + DECISIONS + RESUME rewrites |
-| State Commit-C fixup | `ae7d1f5011c3d60df2bb61c99b1f56ca8e9f7a30` | master | R-6 boundary regen advancing heads_last_sealed to this-CP heads (state_repo.head 7e37a8cd + code_repo.head 7f030d17) + state mini-bank of 5-commit SHAs into DECISIONS.md |
-| /app companion C | `bc8d7f91270600f020d6c7df310ea122bbc46352` | main | audit ORCH_BOOT byte-identical mirror sync post-fixup + notes ORCH_BOOT sync + DECISIONS mini-bank mirror |
+| Code Commit-A | `389784274db8139a9a6e89f5889c2b0456553e94` | programme/track-a | 2 NEW modules (`character_register_write_boundary_v1.py` + `character_register_clustering_v1.py`) + 12 RED-first pins + baseline_failures ratchet bump 6254 → 6266 + drill receipts |
+| /app companion A | `721af40405f5837ff8328ae4610107e57824b8f4` | main | vendored twin sync (2 new files · MANIFEST 1041 → 1043) + notes ORCH_BOOT ratchet-only regen + audit ORCH_BOOT byte-identical mirror + gitlink advance 7f030d17 → 3897842 + CP10 harness receipt refresh |
+| State Commit-B | `40abaf3615854e4ba376f9b0e2f36cdba084d42f` | master | banks CP-AIP-3 objective card + queued/CP_AIP_3 delete-promotion + comprehensive receipt + EXECUTION_ORDER + DECISIONS + RESUME rewrites |
+| State Commit-C fixup | `8759309dc76b8dd0227d228371d6e25a066e1a99` | master | R-6 boundary regen advancing heads_last_sealed to this-CP heads (state_repo.head 40abaf36 + code_repo.head 3897842) + state mini-bank of 5-commit SHAs into DECISIONS.md |
+| /app companion C | `3498a5e4faeb16c13d2c601df50f43ae4f9a0ec9` | main | audit ORCH_BOOT byte-identical mirror sync post-fixup + notes ORCH_BOOT sync + DECISIONS mini-bank mirror |
 
-(All 5 SHAs banked. Full 5-commit seal chain LANDED. Item 5.2 of EXECUTION_ORDER.md CLOSED.)
+(All 5 SHAs banked. Full 5-commit seal chain LANDED. Item 5.3 of EXECUTION_ORDER.md CLOSED. HARD GATE MET.)
 
 **Prior seals banked (append-only):**
 
+- **CP-AIP-2-DEDUP-CONDITION-MAP** (ratchet 6244 → 6254): Code-A `7f030d17` · /app-A `77766613` · State-B `7e37a8cd` · State-C fixup `ae7d1f50` · /app-C `bc8d7f91` · mini-bank `8d0aa91a`.
 - **CP-AIP-1-INGEST-CAPTURE** (ratchet 6232 → 6244): Code-A `590747f2` · /app-A `e9b0c205` · State-B `463ed07f` · State-C fixup `e67be4e7` · /app-C `a9cab743` · mini-bank `f8ebb1d4`.
 
 ## 10 · AUTOPILOT NEXT
 
-Per owner directive verbatim (this-turn continuing): "continue sequentially CP-AIP-2 → CP-AIP-10 without pausing between seals. Next checkpoint to me: after CP-AIP-3 seals (custody harness green), send an interim report."
+**HALT · INTERIM REPORT DUE to owner post-CP-AIP-3-Commit-C fixup.** Per owner explicit direction verbatim: *"after CP-AIP-3 seals (custody harness green), send an interim report — that is the highest-risk boundary in the whole plane."*
 
-**Item 5.3 · CP-AIP-3-CHARACTER-REGISTER opens next as HARD GATE** per owner reminder 4 verbatim — the custody invariant harness (four leakage paths — small stratum · idiolect marker · narrowing combination · exemplar storage — every path must FAIL to store, on every future change to register code, not just once) must be GREEN before any CP-AIP-5 cluster is stored. If sequencing pressure ever tempts storing a cluster early, that is a HALT condition.
+**HARD GATE STATUS: MET.** Custody invariant harness GREEN. All four §6.3 P100 leakage paths refuse to store. §6.2 P098 cond-4 embedding destruction structurally enforced. Schema-shape guard structurally impossible per §1.5. CP-AIP-5 cluster storage now UNBLOCKED by the HARD GATE (subject to sequencing GO for CP-AIP-4 first).
 
-Content anchors for the CP-AIP-3 invariants (owner clarifications 2026-02-23):
+**Item 5.4 · CP-AIP-4-CODEC-SERVICE (§3 · 50-100 tok/s target · fail-closed) is BLOCKED-BY-HALT** until owner GO post-INTERIM REPORT. Main agent is HALTED.
+
+Owner content anchors from CP-AIP-3 (banked verbatim for succession):
 
 - **(a)** §6.2 conditions are CONJUNCTIVE — "learned" alone is never sufficient; the idiolect rule (§6.4) must be its own test case.
 - **(b)** §6.2.4 — clustering embeddings destroyed after cluster assignment; provenance points to material never speaker identity; the write-path schema must have NO field capable of representing an instance-level voiceprint (§6.3 unrepresentable-not-policed).
-
-**INTERIM REPORT DUE post-Commit-C fixup of CP-AIP-3** (owner explicit direction: "highest-risk boundary in the whole plane"). HALT after CP-AIP-3 seals. Do NOT open CP-AIP-4 without owner GO.
 
 Report at seal boundaries per §6.8. Zero check-ins. Standing bounds unchanged.
