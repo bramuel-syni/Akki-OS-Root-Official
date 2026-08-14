@@ -1,0 +1,206 @@
+# SOURCE FILE: Akki_Canon_1_Custody_Platform.docx
+
+AKKI CANON  ·  DOCUMENT 1 OF 9
+Akki — The Custody Platform
+Foundational canon: definition, doctrine, architecture, the estate, the operating loop, who Akki serves
+PART I
+
+What Akki Is
+[Heading 1] 1  Definition
+Akki is a custody platform for enterprise artificial intelligence. It installs inside an organisation’s own perimeter and becomes the layer through which every AI operation touching that organisation’s data must pass.
+A custodian performs four duties: it holds assets safely, it maintains the authoritative record of what is held, it settles transactions against that record, and it reports positions to the owner and to the regulator. Akki performs the same four duties for data and for the AI operations that read it. It holds the estate under declared controls, maintains the record of what the estate contains, settles commissioned work against that record, and produces evidence on demand to the organisation and to anyone the organisation must answer to.
+Akki is not a model, not a wrapper around a model, and not an assistant. It is the layer beneath every model and every application, and it is the only path between them and the estate.
+The platform is single-tenant by construction: one organisation, one installation, one record. There is no multi-tenant deployment mode and no shared control plane. The estate’s contents — never the customer’s identity — determine which capabilities activate on it. A media-heavy estate activates the perception classes; a text-only estate does not. No installation is a development metric for another: what one organisation’s estate teaches the platform stays general, and no instance-specific assumption may enter the platform’s own specification.
+[Heading 2] 1.1  What the platform holds
+The unit Akki governs is the data estate: everything an organisation holds that an AI system could read. This includes structured stores, document repositories, message archives, media libraries, call recordings, ticket systems, and material held in systems nobody has formally catalogued. It includes material the organisation has rights to and material whose rights are unclear, and the platform treats the difference as a first-class fact rather than an administrative detail.
+An estate is an estate at every scale. The whole organisation is an estate; a department is an estate; a single archive is an estate; a single file is an estate. The same operations apply at every scale — measured, admitted, governed, recorded — because a mechanism that only works at one scale is not a mechanism the platform can depend on.
+[Heading 2] 1.2  What the platform does
+Four verbs describe the whole of it.
+<<TABLE>>
+Verb | Meaning
+Measure | Establish what the estate actually contains — composition, condition, language, sensitivity, rights — and state plainly which regions have not been measured. An unmeasured region is reported as unmeasured, never as empty and never as clean.
+Govern | Enforce, on every operation, the rules the organisation has declared: what may be read, by whom, for what purpose, under what masking, with what evidence required before an answer may be asserted.
+Extract | Convert estate material into things the organisation can use — qualified facts, trained models, licensed datasets, memory available to applications — as commissioned work priced before it runs.
+Prove | Emit, for every operation, a receipt that an outside party can verify without an account on the system and without the operator’s cooperation.
+<<END TABLE>>
+
+Every capability the platform offers is one of these four or a composition of them.
+[Heading 1] 2  The Problem Akki Solves
+An organisation that wants to use AI on its own data faces four obstacles, each real and independent of the others.
+[Heading 2] 2.1  The data cannot leave
+Regulated organisations hold material they may not transmit to third parties: personal data under data-protection law, financial records, medical information, privileged legal material, commercially sensitive information whose disclosure would breach a contract. The dominant pattern for using AI — send the content to an external service, receive an answer — is unavailable to them for most of what they hold. Redacting by hand does not scale and is unauditable; approving a vendor’s security posture does not change where the data goes; prohibiting AI use does not stop it, it moves it onto personal accounts where the organisation has no visibility at all.
+[Heading 2] 2.2  The output cannot be trusted on its face
+A language model produces fluent text whether or not the material beneath it supports what the text asserts. A system optimised to produce plausible continuations will produce a plausible continuation when the evidence is thin, in the same confident register it uses when the evidence is complete. For an organisation, the consequence is not embarrassment — it is that no output can be relied upon in a decision that must later be defended, because there is no way to distinguish an answer that was well-founded from one that was merely well-phrased.
+[Heading 2] 2.3  Nothing is provable afterwards
+When an AI-assisted decision is challenged — by a regulator, a customer, a court, an auditor — the organisation must state what the system read, what it was permitted to read, what it concluded, and on what basis. Conventional deployments cannot answer this. Logs, where they exist, record that a call occurred, not what grounded the answer. Reconstruction after the fact is expensive, incomplete, and self-serving by construction.
+[Heading 2] 2.4  Rules exist on paper and nowhere else
+Organisations write AI policies, then enforce them by training, reminders, and hope. The first genuine deadline pressure defeats them, and nobody finds out until something goes wrong. A rule that is not enforced by the system is not a control; it is a statement of intent.
+[Heading 2] 2.5  The consequence
+These four obstacles compound into one outcome: AI programmes stall between funded and deployed, because the risk function cannot approve a system that cannot demonstrate custody, cannot bound its own claims, cannot produce evidence, and cannot enforce its own rules.
+Akki exists to remove all four obstacles at the layer where they can actually be removed — beneath the applications, above the data — so the risk function approves once, and everything built afterwards inherits the approval.
+[Heading 1] 3  What Akki Is Not
+[List Paragraph] Not a model provider. Akki does not train the frontier models it routes to and makes no claim about their internal behaviour. It governs what reaches them and what may be asserted from what they return.
+[List Paragraph] Not a data warehouse. Akki does not become the storage of record for the estate. It measures and governs access to material that remains where the organisation keeps it, except for material it is explicitly commissioned to extract and hold.
+[List Paragraph] Not a policy document generator. Rules declared in Akki are executable. A rule that cannot be enforced by the system cannot be declared in the system.
+[List Paragraph] Not a workflow queue. Work is not distributed to people to perform. People hold authority; the platform performs the work.
+[List Paragraph] Not multi-tenant. There is no mode in which two organisations’ material occupies one installation.
+[List Paragraph] Not the end-user’s product. No platform decision optimises an end-user’s experience directly. End-user experience belongs to the applications built on the platform; the platform optimises the guarantees it issues to those applications. This is stated fully in Part VI.
+PART II
+
+Binding Doctrine
+[Heading 1] 4  The Doctrines
+Twelve doctrines bind every part of the platform and everything built on it. Every specification in this canon descends from them; a clause anywhere that contradicts one is defective and is corrected against the doctrine, never the reverse.
+[Heading 2] 4.1  Fail-closed custody
+If a custody control cannot execute, the operation does not happen.
+When material must be de-identified before an external model may see it, and de-identification cannot run, the call is not made. The operation returns a refusal naming the cause. This is enforced structurally: no configuration flag changes it, no code path bypasses it, and an automated build gate fails the build if a path around the control is introduced.
+Custody controls fail closed; cost optimisations fail transparent. A component that exists to reduce cost must never be able to halt a governed operation by failing — if it fails, the operation proceeds by the normal path and the failure is recorded. A fail-open custody control is a breach; a fail-closed cost optimisation is an outage. Conflating the two in either direction is a defect.
+[Heading 2] 4.2  Unrepresentable, not policed
+Where a state must never occur, the system is built so the state cannot be expressed.
+A prohibition enforced by review is eventually violated. A prohibition enforced by a function signature, a type, or a schema cannot be violated without the violation failing to compile or failing to persist. The platform’s two sharpest examples: the function computing what an answer may claim has no parameter through which a model’s confidence in itself can enter, and the register that could hold individual-level identification biometrics — a voiceprint, a faceprint, any template by which a body identifies a person — has no field in which such a value could be placed. Behavioural-conformance parameters held by the Watch under its own custody doctrine are a different object with a different owner, specified in Document 8; neither is ever a field in the other's register.
+[Heading 2] 4.3  One record
+There is exactly one record. Nothing maintains a second.
+Every admission, measurement, commission, operation, answer, refusal, rule change, and access grant writes to a single append-only ledger. No service keeps a local log constituting a separate account of what happened. Working state — a partial count mid-census, a draft not yet committed — is scratch, not record; it becomes record only when finalised and stamped, and the moment of stamping is itself recorded.
+[Heading 2] 4.4  Measure, do not assert
+No figure enters the system as a claim. Every figure carries how it was obtained.
+Accuracy, coverage, cost, and time are measured on the organisation’s own material before they are stated. An estimate renders as an estimate, on the number, wherever it appears. Vendor benchmarks and published literature may inform what to measure; they never substitute for the measurement.
+[Heading 2] 4.5  Single owner per value
+Every value is computed once, by one component, and carried forward as fact.
+A component receiving a value from an upstream component does not recompute it, does not re-validate it, and does not second-guess it. Redoing upstream work is not diligence; it is a defect, because it creates two sources for one value and therefore the possibility of two answers.
+[Heading 2] 4.6  Extension, not proliferation
+New capability extends an existing component. It does not create a sibling.
+When the platform gains the ability to handle a new kind of material, the registry gains a modality, not a sibling registry. When it gains a new class of recorded event, the record gains a data class, not a second ledger. A proposed component that would need its own record, its own rules, and its own approval path is a sibling, and it is wrong.
+[Heading 2] 4.7  Authority is held by people; work is done by the platform
+No person is placed in the runtime path of an operation.
+People declare rules, approve rule sets, set the criteria above which work escalates, and disposition the exceptions that reach them. The platform performs measurement, extraction, masking, qualification, and recording. If the same class of item repeatedly reaches an approver, the criteria are wrong — the response is to redefine them, never to process the queue faster.
+[Heading 2] 4.8  Inheritance
+Everything built inside Akki, or integrated into it, inherits its custody. There is no other way to build.
+An application built on the platform does not re-earn the guarantees; it receives them because there is no path by which it could reach data or models except through the platform. This is what makes a single approval sufficient — the risk function approves the layer, and every application above it is governed by construction. If any application can reach the estate by a route that bypasses the platform, this doctrine is broken and the platform’s central claim is false.
+[Heading 2] 4.9  Provenance is not optional
+A fact that cannot name its source cannot be stored.
+Provenance is paired with a fact at the moment of writing, never attached afterwards. A fact arriving without a resolvable source is rejected at the boundary. The same rule applies to capability: a record that a model can perform some task carries which work established that, on what material, when.
+[Heading 2] 4.10  Verdicts are never curated
+Inputs, models, and corpora may be engineered without limit. The evidence a verdict is measured against may not be.
+Curating success into the model, the training data, or the corpus is legitimate craft. Curating the sample a claim is validated against is not — it produces a rehearsed checkpoint rather than a measurement, and a rehearsed checkpoint is worthless the moment real material meets it. Every validating sample is drawn from measured, uncurated composition and published internally whatever it says.
+[Heading 2] 4.11  Canon before ruling
+No decision proceeds from memory or summary where the governing document exists. Unread canon is read before ruling.
+This binds the platform’s own governance exactly as it binds an operation: a rule fires against the rule set on disk, not against someone’s recollection of what the rule set says. It binds equally on anyone — owner, builder, or system — characterising what the platform does.
+[Heading 2] 4.12  Experimentation exists at one level only
+The assembled system is the sole object under test. No component beneath it is experimental.
+Every mechanic the platform is built from is known and parameterised: it deploys in force with its conditions of success implemented and its quality measured, or its parameters are undefined — which is a specification gap to close, never a reason to run it tentatively. Gates in this platform bind spend, the quality of output, or a claim about the platform. They never bind whether a fully specified mechanism runs at all. A design that proposes a pilot phase, a shadow mode, or an observe-first sequence for a mechanism whose parameters are already defined has misunderstood what a gate is for.
+[Heading 1] 5  Precedence
+Where two requirements conflict, the following order decides, highest first.
+[List Paragraph] Doctrine. The twelve above. A specification that contradicts a doctrine is defective.
+[List Paragraph] The promise register. Part VI. A behaviour that breaks a promise is wrong even if it satisfies a specification.
+[List Paragraph] This canon’s specifications. The governance, operating, interface, journey, and integration detail carried in the documents that make up this set.
+[List Paragraph] Implementation convenience. Never decisive. Where implementation cost is genuinely prohibitive, the specification is amended through ceremony before anything ships — a shipped divergence is never retrospective evidence that the specification was wrong.
+Where the two authorities' canons meet, the resolution rule is fixed: within the security domain the Watch canon governs; within the governance domain this canon and its companions govern; at every seam, the peerage clauses of Document 8 and the matrix of Document 9 decide. A conflict that survives all three is a specification defect, escalated — never resolved by whichever document was read most recently.
+PART III
+
+Architecture
+[Heading 1] 6  Deployment Topology
+Akki installs inside the organisation’s perimeter: their data centre, their private cloud, or their own cloud tenancy. The organisation controls the infrastructure, the network boundary, and the identity system; Syni operates the software.
+Exactly one path leaves the perimeter, and it is the custody boundary. Nothing else in the platform holds outbound network capability — enforced by a network-layer allowlist that refuses outbound connections from anywhere else, and a static-analysis build gate that fails the build if any other module acquires outbound capability. Compute does not leave either: models the organisation hosts, and GPU capacity the platform allocates, run inside the perimeter. Where an external frontier model is genuinely required, the custody boundary governs that single crossing.
+[Heading 1] 7  The Six Engines
+The platform is six engines, each governing exactly one thing, on three orthogonal axes that never collapse into one another. A governor performing another’s function would create a single point at which a run could be admitted, bounded, and asserted by the same logic — with no separate check left to catch it.
+<<TABLE>>
+Engine | Axis | Governs
+Northena | Direction | Whether a run is still in scope, and whether it is done. Deterministic by construction — no model, no learned weights, no adaptive behaviour.
+SyniSense | Boundary | Whether data may cross an access point. The single chokepoint through which every outbound model call transits.
+Solva | Depth | Whether reasoning is sound and an output asserts within its defensibility. The one engine built to reason, and therefore the one built with the tightest structural leash.
+Mtafiti | Measurement | What the estate contains, and how defensibly each part of it can be relied upon.
+Targeta | Targeting | Where to mine and in what order, within a budget, without ever narrowing what an objective may reach.
+CIF | Judgement | How the system’s own judgements are made, retained, and improved over time — specified in full in Document 2.
+<<END TABLE>>
+
+Five of the six are documented in full in Documents 3 and 4 of this canon: Northena and SyniSense, and the two perimeters and governed-value taxonomy that surround them, in Document 3; Mtafiti, Targeta, and Solva, and the extraction and training machinery they serve, in Document 4. CIF is specified on its own in Document 2, because although it operates inside every other engine’s walls, it is peer to them and subordinate to none.
+These six engines compose into two services connected by two named seams, specified precisely in Document 4: a service that builds the asset — census and extraction, ending in a single frozen unit contract — and a service that serves an objective against it, calling back into the first only for what it has not yet converged. Naming this composition explicitly, rather than leaving it implicit across six engine specifications, is what makes the platform legible as one system rather than six well-specified parts.
+[Heading 2] 7.1  The two authorities
+The six engines together constitute the platform's governing authority — the answer to *was this permitted, and is it right?* Standing beside it, peer and not subordinate, is the Watch — the security authority, answering *is this intended, and authentic?* The Watch is specified in full in Document 8; it is not a seventh engine and not a layer above the six, because the two authorities ask different questions on different clocks over the same evidence.
+Neither authority commands the other. Each consumes what the other produces — the Watch reads the governors' evidence; the governors' gates evaluate the Watch's marks — and every task in the platform executes under exactly one authority's identity. Where the two disagree — an operation permitted but not intended — the Watch's containment acts first, bounded and reversible, and a person resolves the conflict. The disagreement itself is recorded.
+The record classes each authority writes, the identity every task class executes under, and the contracts by which work crosses between them are held in one place: the orchestration charter, Document 9. Where a question is about who writes, who reads, or who is acting, that charter answers it — not this document, and not a recollection of it.
+[Heading 1] 8  The Function & Promise Registry
+One canonical, versioned artifact registers every named function in the platform — gate, engine behaviour, worker obligation, console guarantee — with the promise it protects and its full accounting. Every function belongs to one of the six engines above, or to a named surface for interface-level guarantees. The registry is specified in full in Document 7; it is named here because two of its rules are doctrine-adjacent and worth stating at the outset: no gate exists without an honestly statable promise, and no promise exists that traces to no function protecting it. A function that cannot answer both questions is retired, not preserved out of caution.
+PART IV
+
+The Estate
+[Heading 1] 9  What an Estate Is
+The estate is everything the organisation holds that an AI system could read, treated as a single measurable object at whatever scale it is being considered — the organisation, a department, an archive, a single file.
+[Heading 2] 9.1  The three states
+Every region of the estate is in exactly one state, rendered with equal prominence wherever the estate is described.
+<<TABLE>>
+State | Meaning
+Measured — sound | Measured, and the condition supports use. Composition, language, sensitivity, and rights are known and recorded.
+Measured — degraded | Measured, and the condition limits use — the specific limitation is named.
+Not yet measured | No census has covered this region. Displayed as unmeasured, never as empty, never as clean.
+<<END TABLE>>
+
+An unmeasured region is never rendered as empty, clean, or zero. The absence of a measurement is a fact about the platform’s knowledge, not a fact about the estate.
+[Heading 2] 9.2  Measurement, in two layers
+The estate’s defensibility — how confidently any part of it may be relied upon — is produced in two layers, so it scales across a large estate without labelling every item by hand. A deterministic declaration, applied per source and always available, is the floor the whole measure rests on. An inference layer detects signals in the content itself — whether material corroborates, whether it is contested — and contributes only after its own accuracy has been proven; until then, the declaration stands alone. Neither layer decides what a measurement means: that verdict is always a governed, versioned lookup, never a model’s output. This is the platform’s general answer to a problem that recurs at every layer — learning may detect; it may never decide.
+PART V
+
+The Operating Loop
+[Heading 1] 10  The Loop
+Questions arrive. Most are answered. Those that are not become ranked gaps. Gaps become commissioned objectives. Extraction changes what the next round can answer.
+Two properties make this the platform’s operating objective rather than a description of a workflow. No role must be present for the loop to continue — a question can arrive, fail to be answered, become a gap, and be ranked without anyone deciding it should. And the record carries the context that would otherwise live in someone’s head: why a gap was filed, what was tried, what the material could not support.
+Demand is discovered rather than forecast — the organisation learns what its estate is worth by observing what people actually try to ask of it, not by guessing in advance. And the loop is self-limiting in a healthy way: when the gap list stops producing high-demand candidates, the estate has been mined to the depth its current questions require. Mining is not a programme with a launch date; it is a practice an organisation develops.
+Each cycle compounds. Cleaner material, better models, and more accurate mining accumulate in the record rather than being rebuilt per project — which is the platform’s promise about time: the second commission costs less than the first for the same value, because capability accumulates rather than starting over.
+PART VI
+
+Who Akki Serves
+[Heading 1] 11  The Governing Rule
+No platform decision optimises an end-user’s experience directly. The platform optimises the guarantees it issues to the applications built on it.
+This is not a limitation stated apologetically; it is what makes a single, durable approval possible. End-user experience — what an executive sees, what a business analyst clicks — is application territory, and applications are specified in Document 5. What follows here is who the platform itself is answerable to, independent of which applications get built on top of it.
+[Heading 1] 12  The Six Services
+Six sentences state what the platform promises, to whom, and by what journey the promise is redeemed. They are canonical: changeable only by the same ceremony that governs any consequential rule change, because changing one of them changes what the product is.
+<<TABLE>>
+Service | To whom | The promise
+S1 | The integrating application — internal or external, the platform’s top-layer user | A governed intelligence surface to build on: answers, skills, and artifacts that arrive with class, receipt, and refusal semantics intact, so the application inherits provability instead of building it.
+S2 | The operating organisation | An estate onboarded, mapped, and turned into qualified intelligence that can be committed to with confidence.
+S3 | The compliance officer | Proof of any operation on demand, and governed control of the rules over data.
+S4 | The data buyer | Intelligence products that can be verified independently before being relied upon — never raw data.
+S5 | The infrastructure consumer | Reserved. Akki’s extraction and governance capacity as a substrate a future venture builds on. Registered so nothing optimises against it prematurely; not built.
+S6 | The operating organisation and its compliance officer, under threat | Continuous, machine-speed detection and response against misuse of the estate and the platform — invisible in legitimate use, incapable of acting unobserved, and proving its own fitness on a standing cadence. Specified in Document 8.
+<<END TABLE>>
+
+No platform function is proposed, evaluated, or justified except by tracing to one of these five sentences. A function that cannot trace upward is doing the wrong job well — competently solving a problem the platform was never asked to solve.
+[Heading 1] 13  Applications Are Not the Platform
+An application is anything with an end-user in it, internal or external, and the boundary is mechanical rather than organisational: if a person who is not running the platform touches it, it is an application. It enters through the same governed boundary as any third party, holds a scoped key issued the same way, and is subject to the same custody on every call. There is no privileged path — not for a first-party surface, not for one built by Syni itself.
+The applications an organisation actually uses — a conversational surface, an executive workspace, a document reviewer, a monitoring feed — are specified fully in Document 5. What is fixed here is only the boundary they all cross the same way.
+PART VII
+
+Vocabulary and Boundaries
+[Heading 1] 14  Canonical Terms
+<<TABLE>>
+Term | Meaning
+The custody boundary | The single point at which anything crosses the perimeter.
+Estate | Everything the organisation holds that an AI system could read.
+Commission | A unit of substantial work: scoped, priced, agreed, executed, recorded.
+Objective | What a commission is for, frozen at admission, immutable for the run.
+The record | The single append-only account of everything that happened.
+Receipt | The independently verifiable record of a single operation.
+Console | A capability grouping on the platform, defined by what can be done there — never by a named person.
+Application | Anything with an end-user in it. Enters through the governed boundary, holds a scoped key.
+<<END TABLE>>
+[Heading 1] 15  What the Platform Will Not Do
+[List Paragraph] It will not answer beyond its evidence. Where material is insufficient, the platform bounds the claim or declines. It does not produce a confident answer with a caveat attached.
+[List Paragraph] It will not provide an override. No emergency mode, no administrator bypass, no support-access path that skips custody. A control with an exception is not a control.
+[List Paragraph] It will not quote unmeasured figures. Not in an interface, not in a report, not in a proposal generated from it.
+[List Paragraph] It will not maintain a second record. No component keeps its own account of what happened, however convenient.
+[List Paragraph] It will not place a person in the runtime path. Authority is exercised over rules and exceptions, never over individual operations as a matter of course.
+[List Paragraph] It will not know a buyer, a price, or an order. Commerce is application territory. The platform governs access to output and records every egress; it charges nothing and transacts with no one.
+[Heading 1] 16  This Canon
+This document is the foundation. Eight further documents complete the specification, and each assumes this one.
+<<TABLE>>
+Document | Scope
+2 — The Conditioned Ideation Faculty | CIF in full: the sixth engine, peer to the other five, governing how the system’s own judgements are made, retained, and improved.
+3 — Governance Engines | Northena and SyniSense in full: the operating model, the two perimeters, the governed-value taxonomy, ceremony, authority, and assurance.
+4 — Operating Engines | Mtafiti, Targeta, and Solva in full: measurement, targeting, reasoning, the extraction stack, training, and the economics of a run.
+5 — Interface Architecture | The four consoles, the applications built on them, and the design law that binds every surface.
+6 — User Journeys | Every journey from founding to steady state, who walks it, and what must be true at each step.
+7 — Integration Service and Quality Rulebook | The Function & Promise Registry, the contract every application calls, and the discipline the build itself is held to.
+8 — The Watch | The security authority in full: its promise, doctrines, the two engines and the verdict seam, the response arms, marks and signatures, the mirage, its console, and its parameters.
+9 — The Mkondo Charter | The orchestration charter: the record matrix — every record class, its single writer, its readers — the task-identity register, and the handoff contracts between the two authorities.
+<<END TABLE>>
+
+Where any of them appears to contradict this document, this document governs.

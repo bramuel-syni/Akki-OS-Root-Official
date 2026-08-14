@@ -1,0 +1,502 @@
+======================================================
+ backend/services/ SUBDIRECTORY LISTING PER REPO
+======================================================
+
+----- RMS-IQ-Core-2: 36 service dirs, 1692 files under backend/services/ -----
+  __init__.py                                   1 files
+  artifact_store                                4 files
+  auth                                          16 files
+  census_dimensions                             5 files
+  checker                                       6 files
+  compliance                                    24 files
+  connect                                       4 files
+  data_source                                   16 files
+  economics                                     1399 files
+  g1_defensibility                              10 files
+  health                                        2 files
+  layer_a                                       9 files
+  layer_b                                       10 files
+  layer_c                                       3 files
+  master_admin                                  2 files
+  memory                                        12 files
+  mtafiti                                       12 files
+  multi_instance                                3 files
+  northena                                      7 files
+  opportunity_briefs                            9 files
+  outer_gate                                    4 files
+  perception                                    30 files
+  registry                                      5 files
+  retention                                     2 files
+  service_1                                     25 files
+  solva_depth                                   15 files
+  synisense                                     21 files
+  system_state.py                               1 files
+  targeta                                       6 files
+  team                                          2 files
+  transform_forms                               6 files
+  use_data                                      4 files
+  v1_harness                                    3 files
+  v2_gate                                       3 files
+  v3_harness                                    2 files
+  wizard                                        9 files
+
+----- Akki-OS-V1: 38 service dirs, 1423 files under backend/services/ -----
+  __init__.py                                   1 files
+  artifact_store                                4 files
+  auth                                          15 files
+  census_dimensions                             5 files
+  checker                                       6 files
+  compliance                                    23 files
+  critic_pass                                   7 files
+  data_source                                   16 files
+  economics                                     1118 files
+  far_endpoint                                  4 files
+  g1_defensibility                              10 files
+  generated_gates                               16 files
+  health                                        2 files
+  layer_a                                       9 files
+  layer_b                                       10 files
+  layer_c                                       3 files
+  master_admin                                  2 files
+  mtafiti                                       12 files
+  multi_instance                                3 files
+  northena                                      7 files
+  opportunity_briefs                            9 files
+  outer_gate                                    4 files
+  partitions                                    2 files
+  perception                                    30 files
+  registry                                      4 files
+  registry_context                              5 files
+  retention                                     2 files
+  sequencing_harness                            7 files
+  service_1                                     26 files
+  solva_depth                                   15 files
+  synisense                                     16 files
+  system_state.py                               1 files
+  targeta                                       7 files
+  transform_forms                               6 files
+  v1_harness                                    3 files
+  v2_gate                                       3 files
+  v3_harness                                    2 files
+  wizard                                        8 files
+
+----- Extraction-Akki: 36 service dirs, 1702 files under backend/services/ -----
+  __init__.py                                   1 files
+  artifact_store                                4 files
+  auth                                          16 files
+  census_dimensions                             5 files
+  checker                                       6 files
+  compliance                                    24 files
+  connect                                       4 files
+  data_source                                   16 files
+  economics                                     1409 files
+  g1_defensibility                              10 files
+  health                                        2 files
+  layer_a                                       9 files
+  layer_b                                       10 files
+  layer_c                                       3 files
+  master_admin                                  2 files
+  memory                                        12 files
+  mtafiti                                       12 files
+  multi_instance                                3 files
+  northena                                      7 files
+  opportunity_briefs                            9 files
+  outer_gate                                    4 files
+  perception                                    30 files
+  registry                                      5 files
+  retention                                     2 files
+  service_1                                     25 files
+  solva_depth                                   15 files
+  synisense                                     21 files
+  system_state.py                               1 files
+  targeta                                       6 files
+  team                                          2 files
+  transform_forms                               6 files
+  use_data                                      4 files
+  v1_harness                                    3 files
+  v2_gate                                       3 files
+  v3_harness                                    2 files
+  wizard                                        9 files
+
+----- Akki-Executive-Core: 56 service dirs, 195 files under backend/services/ -----
+  __init__.py                                   1 files
+  analysis_lifecycle.py                         1 files
+  analyze_workspace                             3 files
+  backfill_shield_v1.py                         1 files
+  chat                                          2 files
+  clamav_service.py                             1 files
+  cohort                                        8 files
+  cohort_email.py                               1 files
+  cohort_email_html.py                          1 files
+  continue_chat.py                              1 files
+  crypto                                        2 files
+  csrf.py                                       1 files
+  cycle_lifecycle.py                            1 files
+  cycle_permissions.py                          1 files
+  cycle_synthesis.py                            1 files
+  deck_generation_jobs.py                       1 files
+  deck_lineage.py                               1 files
+  deck_regenerate.py                            1 files
+  deck_retrieval.py                             1 files
+  documents                                     4 files
+  first_login_password_set.py                   1 files
+  ideas_engine                                  8 files
+  inbox_routing                                 11 files
+  job_queue.py                                  1 files
+  llm_streaming.py                              1 files
+  metadata_signatures.py                        1 files
+  module_labels.py                              1 files
+  monitor                                       5 files
+  news_aggregator.py                            1 files
+  open_questions                                2 files
+  owner_digest.py                               1 files
+  platform_kb.py                                1 files
+  privacy_wall.py                               1 files
+  rate_limit.py                                 1 files
+  rbac.py                                       1 files
+  sandbox_generation.py                         1 files
+  security_headers.py                           1 files
+  sentry_setup.py                               1 files
+  session_timeout.py                            1 files
+  signal_dedup.py                               1 files
+  solva_session_status.py                       1 files
+  solva_v2                                      30 files
+  solva_voice_audit                             24 files
+  storage_service.py                            1 files
+  streaming                                     3 files
+  streaming_phases.py                           1 files
+  stripe_webhook.py                             1 files
+  synisense                                     34 files
+  tasks                                         5 files
+  tasks_initiatives                             3 files
+  two_pass.py                                   1 files
+  universal_search.py                           1 files
+  work_studio                                   2 files
+  work_studio_export.py                         1 files
+  work_studio_overlay.py                        1 files
+  workbook_analyzer                             10 files
+
+
+======================================================
+ CROSS-REPO SERVICE-NAME OVERLAP
+======================================================
+
+service                                       RMS-IQ-Core-2      Akki-OS-V1         Extraction-Akki    Akki-Executive-Cor
+
+-- Services present in 2 or more repos --
+service                                       RMS-IQ-Core-2      Akki-OS-V1         Extraction-Akki    Akki-Executive-Cor
+__init__.py                                   1                  1                  1                  1                 
+artifact_store                                4                  4                  4                  —                 
+auth                                          16                 15                 16                 —                 
+census_dimensions                             5                  5                  5                  —                 
+checker                                       6                  6                  6                  —                 
+compliance                                    24                 23                 24                 —                 
+connect                                       4                  —                  4                  —                 
+data_source                                   16                 16                 16                 —                 
+economics                                     1399               1118               1409               —                 
+g1_defensibility                              10                 10                 10                 —                 
+health                                        2                  2                  2                  —                 
+layer_a                                       9                  9                  9                  —                 
+layer_b                                       10                 10                 10                 —                 
+layer_c                                       3                  3                  3                  —                 
+master_admin                                  2                  2                  2                  —                 
+memory                                        12                 —                  12                 —                 
+mtafiti                                       12                 12                 12                 —                 
+multi_instance                                3                  3                  3                  —                 
+northena                                      7                  7                  7                  —                 
+opportunity_briefs                            9                  9                  9                  —                 
+outer_gate                                    4                  4                  4                  —                 
+perception                                    30                 30                 30                 —                 
+registry                                      5                  4                  5                  —                 
+retention                                     2                  2                  2                  —                 
+service_1                                     25                 26                 25                 —                 
+solva_depth                                   15                 15                 15                 —                 
+synisense                                     21                 16                 21                 34                
+system_state.py                               1                  1                  1                  —                 
+targeta                                       6                  7                  6                  —                 
+team                                          2                  —                  2                  —                 
+transform_forms                               6                  6                  6                  —                 
+use_data                                      4                  —                  4                  —                 
+v1_harness                                    3                  3                  3                  —                 
+v2_gate                                       3                  3                  3                  —                 
+v3_harness                                    2                  2                  2                  —                 
+wizard                                        9                  8                  9                  —                 
+
+-- Services present in EXACTLY ONE repo --
+  ONLY in Akki-Executive-Core     service=analysis_lifecycle.py  (1 files)
+  ONLY in Akki-Executive-Core     service=analyze_workspace  (3 files)
+  ONLY in Akki-Executive-Core     service=backfill_shield_v1.py  (1 files)
+  ONLY in Akki-Executive-Core     service=chat  (2 files)
+  ONLY in Akki-Executive-Core     service=clamav_service.py  (1 files)
+  ONLY in Akki-Executive-Core     service=cohort  (8 files)
+  ONLY in Akki-Executive-Core     service=cohort_email.py  (1 files)
+  ONLY in Akki-Executive-Core     service=cohort_email_html.py  (1 files)
+  ONLY in Akki-Executive-Core     service=continue_chat.py  (1 files)
+  ONLY in Akki-OS-V1              service=critic_pass  (7 files)
+  ONLY in Akki-Executive-Core     service=crypto  (2 files)
+  ONLY in Akki-Executive-Core     service=csrf.py  (1 files)
+  ONLY in Akki-Executive-Core     service=cycle_lifecycle.py  (1 files)
+  ONLY in Akki-Executive-Core     service=cycle_permissions.py  (1 files)
+  ONLY in Akki-Executive-Core     service=cycle_synthesis.py  (1 files)
+  ONLY in Akki-Executive-Core     service=deck_generation_jobs.py  (1 files)
+  ONLY in Akki-Executive-Core     service=deck_lineage.py  (1 files)
+  ONLY in Akki-Executive-Core     service=deck_regenerate.py  (1 files)
+  ONLY in Akki-Executive-Core     service=deck_retrieval.py  (1 files)
+  ONLY in Akki-Executive-Core     service=documents  (4 files)
+  ONLY in Akki-OS-V1              service=far_endpoint  (4 files)
+  ONLY in Akki-Executive-Core     service=first_login_password_set.py  (1 files)
+  ONLY in Akki-OS-V1              service=generated_gates  (16 files)
+  ONLY in Akki-Executive-Core     service=ideas_engine  (8 files)
+  ONLY in Akki-Executive-Core     service=inbox_routing  (11 files)
+  ONLY in Akki-Executive-Core     service=job_queue.py  (1 files)
+  ONLY in Akki-Executive-Core     service=llm_streaming.py  (1 files)
+  ONLY in Akki-Executive-Core     service=metadata_signatures.py  (1 files)
+  ONLY in Akki-Executive-Core     service=module_labels.py  (1 files)
+  ONLY in Akki-Executive-Core     service=monitor  (5 files)
+  ONLY in Akki-Executive-Core     service=news_aggregator.py  (1 files)
+  ONLY in Akki-Executive-Core     service=open_questions  (2 files)
+  ONLY in Akki-Executive-Core     service=owner_digest.py  (1 files)
+  ONLY in Akki-OS-V1              service=partitions  (2 files)
+  ONLY in Akki-Executive-Core     service=platform_kb.py  (1 files)
+  ONLY in Akki-Executive-Core     service=privacy_wall.py  (1 files)
+  ONLY in Akki-Executive-Core     service=rate_limit.py  (1 files)
+  ONLY in Akki-Executive-Core     service=rbac.py  (1 files)
+  ONLY in Akki-OS-V1              service=registry_context  (5 files)
+  ONLY in Akki-Executive-Core     service=sandbox_generation.py  (1 files)
+  ONLY in Akki-Executive-Core     service=security_headers.py  (1 files)
+  ONLY in Akki-Executive-Core     service=sentry_setup.py  (1 files)
+  ONLY in Akki-OS-V1              service=sequencing_harness  (7 files)
+  ONLY in Akki-Executive-Core     service=session_timeout.py  (1 files)
+  ONLY in Akki-Executive-Core     service=signal_dedup.py  (1 files)
+  ONLY in Akki-Executive-Core     service=solva_session_status.py  (1 files)
+  ONLY in Akki-Executive-Core     service=solva_v2  (30 files)
+  ONLY in Akki-Executive-Core     service=solva_voice_audit  (24 files)
+  ONLY in Akki-Executive-Core     service=storage_service.py  (1 files)
+  ONLY in Akki-Executive-Core     service=streaming  (3 files)
+  ONLY in Akki-Executive-Core     service=streaming_phases.py  (1 files)
+  ONLY in Akki-Executive-Core     service=stripe_webhook.py  (1 files)
+  ONLY in Akki-Executive-Core     service=tasks  (5 files)
+  ONLY in Akki-Executive-Core     service=tasks_initiatives  (3 files)
+  ONLY in Akki-Executive-Core     service=two_pass.py  (1 files)
+  ONLY in Akki-Executive-Core     service=universal_search.py  (1 files)
+  ONLY in Akki-Executive-Core     service=work_studio  (2 files)
+  ONLY in Akki-Executive-Core     service=work_studio_export.py  (1 files)
+  ONLY in Akki-Executive-Core     service=work_studio_overlay.py  (1 files)
+  ONLY in Akki-Executive-Core     service=workbook_analyzer  (10 files)
+
+
+======================================================
+ docs/close_reports, docs/audits, BUILD_JOURNAL PRESENCE PER REPO
+======================================================
+
+----- RMS-IQ-Core-2 -----
+  BUILD_JOURNAL.md:  present
+  docs/close_reports/: 44 files
+    docs/close_reports/8_ext.md
+    docs/close_reports/9_2a.md
+    docs/close_reports/answer_fluency.md
+    docs/close_reports/artifact_store.md
+    docs/close_reports/census_dimensions.md
+    docs/close_reports/commercial_cut_2026_07_06.md
+    docs/close_reports/eab_1.md
+    docs/close_reports/fixture_refresh.md
+    docs/close_reports/g2_registry_maintenance.md
+    docs/close_reports/g3_operating_values_v1_1.md
+    docs/close_reports/housekeeping_preflight.md
+    docs/close_reports/machine_readable_registry.md
+    docs/close_reports/memory_service_stage_b_2026-07-31.md
+    docs/close_reports/multi_instance_capability.md
+    docs/close_reports/opportunity_briefs.md
+    docs/close_reports/p1_addendum_frontend_backend_url_blocker_fix_2026-07-30.md
+    docs/close_reports/p1_custody_closure_honest_startup.md
+    docs/close_reports/phase3_subcycle1_real_material_readiness_2026-08-01.md
+    docs/close_reports/phase3_subcycle2_memory_and_registry_2026-08-02.md
+    docs/close_reports/phase3_subcycle3_govern_module_2026-08-02.md
+    docs/close_reports/phase_4a_stage_b.md
+    docs/close_reports/phase_4b.md
+    docs/close_reports/phase_5_stage_b.md
+    docs/close_reports/phase_6_stage_b.md
+    docs/close_reports/phase_7_stage_b_1.md
+    docs/close_reports/phase_7_stage_b_2.md
+    docs/close_reports/phase_7_stage_b_3.md
+    docs/close_reports/phase_8_b_1.md
+    docs/close_reports/phase_8_b_2.md
+    docs/close_reports/phase_8_b_3.md
+    docs/close_reports/phase_8_b_4.md
+    docs/close_reports/phase_8_b_5a.md
+    docs/close_reports/phase_8_b_5b.md
+    docs/close_reports/phase_8_conformance_map.md
+    docs/close_reports/phase_8_seam_3_sub_stage_1.md
+    docs/close_reports/phase_8_seam_3_sub_stage_2.md
+    docs/close_reports/phase_8_seam_3_sub_stage_3.md
+    docs/close_reports/phase_8a_lite.md
+    docs/close_reports/phase_9_sub_stage_9_1.md
+    docs/close_reports/phase_9_sub_stage_9_3.md
+    docs/close_reports/production_housing_ph_r1.md
+    docs/close_reports/registry_population.md
+    docs/close_reports/standing_queries_as_ci.md
+    docs/close_reports/transform_forms.md
+  docs/audits/: 19 files
+    docs/audits/deviation_audit_v1.md
+    docs/audits/enforcement_check_count_derivation_2026-07-30.md
+    docs/audits/engine_conformance_v1.md
+    docs/audits/g3_precondition/spec_freshness_check.md
+    docs/audits/g3_solva_conformance_v1.md
+    docs/audits/g4_mtafiti_conformance_v1.md
+    docs/audits/g4_service_1_v1_conformance_v1.md
+    docs/audits/g4_targeta_conformance_v1.md
+    docs/audits/g5a_conformance_v1.md
+    docs/audits/g5b_conformance_v1.md
+    docs/audits/g6_conformance_v1.md
+    docs/audits/northena_conformance_v1.md
+    docs/audits/solva_conformance_v1.md
+    docs/audits/substrate_drop_v1/fixture_substrate_diff.md
+    docs/audits/substrate_drop_v1/interface_ux_reconciliation.md
+    docs/audits/substrate_drop_v1/mtafiti_reconciliation.md
+    docs/audits/substrate_drop_v1/northena_reconciliation.md
+    docs/audits/substrate_drop_v1/solva_reconciliation.md
+    docs/audits/substrate_drop_v1/targeta_reconciliation.md
+
+----- Akki-OS-V1 -----
+  BUILD_JOURNAL.md:  present
+  docs/close_reports/: 44 files
+    docs/close_reports/8_ext.md
+    docs/close_reports/9_2a.md
+    docs/close_reports/answer_fluency.md
+    docs/close_reports/artifact_store.md
+    docs/close_reports/census_dimensions.md
+    docs/close_reports/change_order_2026_07_25.md
+    docs/close_reports/commercial_cut_2026_07_06.md
+    docs/close_reports/critic_pass.md
+    docs/close_reports/eab_1.md
+    docs/close_reports/eab_2.md
+    docs/close_reports/eab_3.md
+    docs/close_reports/fixture_refresh.md
+    docs/close_reports/g2_registry_maintenance.md
+    docs/close_reports/g3_operating_values_v1_1.md
+    docs/close_reports/g_13.md
+    docs/close_reports/housekeeping_preflight.md
+    docs/close_reports/machine_readable_registry.md
+    docs/close_reports/multi_instance_capability.md
+    docs/close_reports/opportunity_briefs.md
+    docs/close_reports/phase_4a_stage_b.md
+    docs/close_reports/phase_4b.md
+    docs/close_reports/phase_5_stage_b.md
+    docs/close_reports/phase_6_stage_b.md
+    docs/close_reports/phase_7_stage_b_1.md
+    docs/close_reports/phase_7_stage_b_2.md
+    docs/close_reports/phase_7_stage_b_3.md
+    docs/close_reports/phase_8_b_1.md
+    docs/close_reports/phase_8_b_2.md
+    docs/close_reports/phase_8_b_3.md
+    docs/close_reports/phase_8_b_4.md
+    docs/close_reports/phase_8_b_5a.md
+    docs/close_reports/phase_8_b_5b.md
+    docs/close_reports/phase_8_conformance_map.md
+    docs/close_reports/phase_8_seam_3_sub_stage_1.md
+    docs/close_reports/phase_8_seam_3_sub_stage_2.md
+    docs/close_reports/phase_8_seam_3_sub_stage_3.md
+    docs/close_reports/phase_8a_lite.md
+    docs/close_reports/phase_9_sub_stage_9_1.md
+    docs/close_reports/phase_9_sub_stage_9_3.md
+    docs/close_reports/production_housing_ph_r1.md
+    docs/close_reports/registry_population.md
+    docs/close_reports/standing_queries_as_ci.md
+    docs/close_reports/substrate_drop_v3.md
+    docs/close_reports/transform_forms.md
+  docs/audits/: 22 files
+    docs/audits/deviation_audit_v1.md
+    docs/audits/engine_conformance_v1.md
+    docs/audits/g3_precondition/spec_freshness_check.md
+    docs/audits/g3_solva_conformance_v1.md
+    docs/audits/g4_mtafiti_conformance_v1.md
+    docs/audits/g4_service_1_v1_conformance_v1.md
+    docs/audits/g4_targeta_conformance_v1.md
+    docs/audits/g5a_conformance_v1.md
+    docs/audits/g5b_conformance_v1.md
+    docs/audits/g6_conformance_v1.md
+    docs/audits/lt2_forensic_correction_2026_07_24.md
+    docs/audits/lt2_sequencing_harness_provenance_d7_2026_07_24.md
+    docs/audits/northena_conformance_v1.md
+    docs/audits/product_doc_v3_1_untraceable_d7_2026_07_24.md
+    docs/audits/solva_conformance_v1.md
+    docs/audits/substrate_drop_v1/fixture_substrate_diff.md
+    docs/audits/substrate_drop_v1/interface_ux_reconciliation.md
+    docs/audits/substrate_drop_v1/mtafiti_reconciliation.md
+    docs/audits/substrate_drop_v1/northena_reconciliation.md
+    docs/audits/substrate_drop_v1/solva_reconciliation.md
+    docs/audits/substrate_drop_v1/targeta_reconciliation.md
+    docs/audits/substrate_drop_v3_reconciliation_2026_07_24.md
+
+----- Extraction-Akki -----
+  BUILD_JOURNAL.md:  present
+  docs/close_reports/: 44 files
+    docs/close_reports/8_ext.md
+    docs/close_reports/9_2a.md
+    docs/close_reports/answer_fluency.md
+    docs/close_reports/artifact_store.md
+    docs/close_reports/census_dimensions.md
+    docs/close_reports/commercial_cut_2026_07_06.md
+    docs/close_reports/eab_1.md
+    docs/close_reports/fixture_refresh.md
+    docs/close_reports/g2_registry_maintenance.md
+    docs/close_reports/g3_operating_values_v1_1.md
+    docs/close_reports/housekeeping_preflight.md
+    docs/close_reports/machine_readable_registry.md
+    docs/close_reports/memory_service_stage_b_2026-07-31.md
+    docs/close_reports/multi_instance_capability.md
+    docs/close_reports/opportunity_briefs.md
+    docs/close_reports/p1_addendum_frontend_backend_url_blocker_fix_2026-07-30.md
+    docs/close_reports/p1_custody_closure_honest_startup.md
+    docs/close_reports/phase3_subcycle1_real_material_readiness_2026-08-01.md
+    docs/close_reports/phase3_subcycle2_memory_and_registry_2026-08-02.md
+    docs/close_reports/phase3_subcycle3_govern_module_2026-08-02.md
+    docs/close_reports/phase_4a_stage_b.md
+    docs/close_reports/phase_4b.md
+    docs/close_reports/phase_5_stage_b.md
+    docs/close_reports/phase_6_stage_b.md
+    docs/close_reports/phase_7_stage_b_1.md
+    docs/close_reports/phase_7_stage_b_2.md
+    docs/close_reports/phase_7_stage_b_3.md
+    docs/close_reports/phase_8_b_1.md
+    docs/close_reports/phase_8_b_2.md
+    docs/close_reports/phase_8_b_3.md
+    docs/close_reports/phase_8_b_4.md
+    docs/close_reports/phase_8_b_5a.md
+    docs/close_reports/phase_8_b_5b.md
+    docs/close_reports/phase_8_conformance_map.md
+    docs/close_reports/phase_8_seam_3_sub_stage_1.md
+    docs/close_reports/phase_8_seam_3_sub_stage_2.md
+    docs/close_reports/phase_8_seam_3_sub_stage_3.md
+    docs/close_reports/phase_8a_lite.md
+    docs/close_reports/phase_9_sub_stage_9_1.md
+    docs/close_reports/phase_9_sub_stage_9_3.md
+    docs/close_reports/production_housing_ph_r1.md
+    docs/close_reports/registry_population.md
+    docs/close_reports/standing_queries_as_ci.md
+    docs/close_reports/transform_forms.md
+  docs/audits/: 19 files
+    docs/audits/deviation_audit_v1.md
+    docs/audits/enforcement_check_count_derivation_2026-07-30.md
+    docs/audits/engine_conformance_v1.md
+    docs/audits/g3_precondition/spec_freshness_check.md
+    docs/audits/g3_solva_conformance_v1.md
+    docs/audits/g4_mtafiti_conformance_v1.md
+    docs/audits/g4_service_1_v1_conformance_v1.md
+    docs/audits/g4_targeta_conformance_v1.md
+    docs/audits/g5a_conformance_v1.md
+    docs/audits/g5b_conformance_v1.md
+    docs/audits/g6_conformance_v1.md
+    docs/audits/northena_conformance_v1.md
+    docs/audits/solva_conformance_v1.md
+    docs/audits/substrate_drop_v1/fixture_substrate_diff.md
+    docs/audits/substrate_drop_v1/interface_ux_reconciliation.md
+    docs/audits/substrate_drop_v1/mtafiti_reconciliation.md
+    docs/audits/substrate_drop_v1/northena_reconciliation.md
+    docs/audits/substrate_drop_v1/solva_reconciliation.md
+    docs/audits/substrate_drop_v1/targeta_reconciliation.md
+
+----- Akki-Executive-Core -----
+  BUILD_JOURNAL.md:  MISSING
+  docs/close_reports/: 0 files
+  docs/audits/: 0 files

@@ -1,0 +1,265 @@
+# SOURCE FILE: Akki_Canon_3_Governance_Engines.docx
+
+AKKI CANON  ·  DOCUMENT 3 OF 9
+Akki Governance Engines
+Northena and SyniSense: direction, boundary, entitlement, the two perimeters, governed values, ceremony, and assurance
+PART I
+
+Two Axes, One Discipline
+[Heading 1] 1  Scope
+This document specifies two of the platform’s six engines in full: Northena, which governs direction, and SyniSense, which governs the boundary. A third axis, depth, belongs to Solva and is specified in Document 4, because the component that reasons sits inside the extraction path rather than beside it. The three never collapse into one another — a governor performing another’s function would create a single point at which a run could be admitted, bounded, and asserted by the same logic, with no separate check left to catch it.
+<<TABLE>>
+Axis | Governor | The question it answers
+Direction | Northena | Is this run still in scope, and is it done? Answered for every run, run after run, and recorded.
+Boundary | SyniSense | May this data cross this access point? Answered for every outbound model call, every egress.
+Depth | Solva | Is the reasoning sound, and does the output assert within its defensibility? — Document 4.
+<<END TABLE>>
+[Heading 1] 2  The Accountability Standard
+Every run must be answerable deterministically. Admitted because these fields were valid. Gated in because scope membership held. Stopped because this condition was met. Refused because this rule fired. "Admitted because the model scored it highly enough" is the unauditable outcome this standard exists to prevent.
+The governing artifact is frozen before a run begins, so the reason for every decision made against it is fixed and inspectable after the fact. The record is a contract, not a log — versioned, append-only, and closed on every run. Refusals and drops are recorded exactly as successes are.
+A run with no closed record is an incomplete, non-auditable run, and is invalid. This is not a reporting preference; it is the condition under which the platform’s central claim — that any run can be proved lawful and accountable on demand — remains true.
+PART II
+
+Northena — The Direction Governor
+[Heading 1] 3  What Northena Is
+Northena keeps every run on-objective, brings it to a defined stop, and writes the durable, audit-grade record of how the run was directed. It answers two questions, run after run: is this still in scope, and is this run done — and records both answers in the Ledger. It does not extract, and it does not reason.
+It governs two services through two artifacts: a first-contact service through a Portfolio Mandate, and a day-to-day service through an Objective Request. It governs the run’s lifecycle; it does not define what those artifacts contain.
+[Heading 1] 4  Deterministic by Construction
+No machine-learning model, no learned weights, no adaptive behaviour. Trustworthy as a governor because it cannot be otherwise.
+Northena’s behaviour varies enormously from run to run — different objectives admitted, different scopes gated, different stops reached — but every part of that variation is driven by the frozen governing artifact it reads, never by Northena itself adapting. It is dynamic the way a thermostat is dynamic: behaviour changes completely as the setpoint changes, while the mechanism neither learns nor infers. The moment a direction governor adjusts gating from past runs, or infers scope probabilistically, it stops being auditable — and auditability is its entire reason to exist.
+Determinism is checked structurally, not by review. No Northena module imports a machine-learning library or a learned component, and an import assertion enforcing this runs in continuous integration. Where a decision genuinely needs judgement, Northena invokes the depth governor through an opaque handle and acts deterministically on the value returned; it never reads that governor’s internals and never performs inference itself.
+[Heading 1] 5  The Four Stages
+In day-to-day service the stages run as a loop. Admit freezes the request; Gate routes the objective or a sub-objective warm, fresh, or refused; execution and reasoning return any gaps that remain unmet; in-scope gaps are re-tasked and out-of-scope gaps are logged and dropped; Converge stops on the done-condition or the budget. Each answered objective densifies what the next pass can serve warm.
+<<TABLE>>
+Stage | Does | Decision is
+Admit | Compiles a raw intent into a frozen governing artifact, validates it deterministically, and freezes it atomically. | A validity check — presence, completeness, membership.
+Gate | Checks whether a sub-objective falls within the frozen artifact’s declared scope, and routes on the result. | Strict set-membership.
+Converge | Decides whether the run is done. | A threshold check against the done-condition or the budget.
+Ledger | Writes the durable, audit-grade record of the run. | None — it records, deterministically.
+<<END TABLE>>
+What happens inside "execution and reasoning" — the two services that build the asset and serve the objective, and the two named seams between them — is specified in full in Document 4 §34.1–34.3.
+[Heading 1] 6  Admit
+Admit compiles, validates, and freezes. Where compilation needs judgement — resolving an ambiguous scope, setting a preservation depth or a floor — Admit invokes the depth governor and freezes the value it returns. The judgement is the reasoner’s; the freeze is Northena’s alone.
+[Heading 2] 6.1  The validity sequence
+Five deterministic checks run in order, each with its own refusal reason. A failure at any point refuses the admission and writes the reason; no downstream stage runs.
+<<TABLE>>
+Check | Refusal reason on failure
+A lawful basis is present | missing_lawful_basis
+The acting party holds a current declaration | missing_declaration
+The artifact is complete against its required fields | incomplete_artifact
+The declared scope resolves against the Registry | scope_unresolved
+The defensibility floor is well-formed | floor_malformed
+<<END TABLE>>
+
+Lawful basis is enforced at Admit, before any extraction. Purpose limitation is an admission property, not a downstream filter — a run with no lawful basis never starts, so no material is ever touched under an unstated basis.
+No actor enters undeclared. An agent is admitted against a declared objective with its capabilities and risks stated; a person is admitted against a declared role and interests. The declaration is frozen with the run's artifact, and it is the baseline every later question of intent is measured against — the Watch reconciles realised behaviour against it, per Document 8, and re-declaration through this same admission path is the legitimate exit from honest change. An undeclared actor operates under the default-restrictive envelope and nothing wider.
+[Heading 2] 6.2  The freeze
+The freeze is atomic, and the artifact is immutable for the run. A changed intent is a new admission, never an edit of a live one. The frozen artifact carries its type and identity, its version, the scope set Gate will test membership against, the defensibility floor, the done-condition, the budget, and the lawful basis. Admission writes the Ledger — both admission paths, the internal work order and the external request, write a row carrying the artifact reference and the lawful-basis reference.
+[Heading 2] 6.3  Two admission paths
+An external request arrives complete or is refused; a request missing any required field is refused with the validation envelope, and it carries an idempotency key so a retried submission neither double-commissions nor double-charges. A work order cannot freeze until the shaping conversation completes the envelope — the wizard is where the envelope is filled; Admit is where it is checked and frozen.
+[Heading 1] 7  Gate
+Gate tests whether a sub-objective falls within the scope the frozen artifact declares, and routes on the result. Scope is a defined set; Gate checks membership, and nothing else.
+Ambiguous membership is a compilation defect, not a Gate decision. If a scope is ambiguous, Admit should have resolved it by invoking the reasoner and freezing the answer. Gate does not decide membership by inference, and no inferential path exists in it.
+<<TABLE>>
+Routing | When, and what is recorded
+Refuse | Not in scope. A governed refusal, logged with reason out_of_scope. Recorded, never silently dropped.
+Warm serve | In scope and already converged — servable from qualified intelligence already held. Answered synchronously.
+Fresh extract | In scope and unconverged — requires extraction. Returns the async contract.
+<<END TABLE>>
+The warm/fresh determination is the same fork the objective’s execution branches on. It is made once, at the boundary, by a membership test against a frozen set and a convergence check — never re-derived downstream.
+[Heading 1] 8  Converge
+Converge decides termination on two conditions fixed in the frozen artifact, both threshold checks. There is no learned stopping: done-condition met terminates as success; budget exhausted terminates on budget; neither continues.
+Northena owns the halt. The depth governor may report that it cannot reason further soundly — that report is an input Converge acts on, but the stop decision and its record belong to Northena alone. A component that could stop a run without Northena recording why would put a termination outside the audit surface entirely.
+The budget is a hard stop. A run halts at its ceiling and nothing past it is billed. This is what makes an open-ended extraction commissionable at all: exposure is bounded at commit, by a number the commissioner set, enforced by the governor rather than by the executor that could be tempted to keep going.
+[Heading 1] 9  The Ledger
+The Ledger is Northena’s memory and the platform’s primary audit surface for direction. Because the compliance officer and the operator both read it directly, its row shape is a contract rather than an internal log: frozen, versioned, append-only, and closed on every run.
+[Heading 2] 9.1  What it records
+Admission and its outcome; every Gate routing and its reason; every refusal or drop; the convergence decision; and the absorbed defensibility stamp-audit entries produced elsewhere in the run.
+[Heading 2] 9.2  The row
+<<TABLE>>
+Field | What it carries
+run_id | One run has one closed ledger.
+trace_id | Joins the row to the units it produced and to the trace lenses that explain them.
+stage | admit · gate · converge
+decision | admitted · refused · warm · fresh · terminate_success · terminate_budget · continue
+reason | A deterministic reason string — the same inputs produce the same string, always.
+artifact_ref | The governing artifact: type, identity, version.
+lawful_basis_ref | The basis under which the run was admitted.
+stamp_audit | An optional absorbed side-channel entry, joined by unit and trace identity.
+at | Timestamp.
+<<END TABLE>>
+[Heading 2] 9.3  Append only
+The writer exposes append and nothing else. No update path and no delete path exist within the retention window. A correction is a new entry referencing what it corrects, never an edit of what was written. Out-of-scope and refused items are recorded — a system that drops what it declined cannot show what it declined, and the ability to show that is a substantial part of what the record is for.
+[Heading 2] 9.4  Why the stamp-audit field is permissive
+The absorbed side-channel is deliberately untyped, and this is a design decision rather than a lapse. It is what lets artefacts from engines built later — boundary emissions, measurement stamps, trace correlation, gate receipts, refusal envelopes — be absorbed into a ledger row without mutating the frozen contract the row itself represents. Typing it would harden it into a mutation surface and lose the property entirely.
+The consequence is worth stating on its own: the Ledger’s semantic reach can grow across future engines while its contract stays byte-identical. The permissiveness is guarded by a snapshot test, so the decision cannot be quietly reversed later. Unit and audit stay in separate envelopes with separate lifecycles — the stamp-audit is joined by unit and trace identity rather than embedded in the unit, so an output and its audit trail can be retained, exported, and expired independently of one another.
+[Heading 1] 10  The Determinism Boundary, Enforced as Code
+The depth governor is reached only through an opaque handle. Northena’s orchestration cannot read its internals and cannot reason itself; it requests a judgement — resolve this scope, set this preservation vector — and acts deterministically on the value returned.
+Three dependency rules, each enforced by import assertion rather than by convention:
+[List Paragraph] No module imports a machine-learning library or a learned component. Determinism is checked structurally, not by review.
+[List Paragraph] The state machine reaches the reasoner only through the handle. No internal access, and no inference performed in place.
+[List Paragraph] The ledger writer exposes append only. No update or delete path exists on the writer at all.
+[Heading 1] 11  Northena’s Invariants
+Binding. Any implementation that violates one of these is incorrect regardless of what it otherwise does correctly.
+[List Paragraph] Northena is deterministic: no model, no learned weights, no adaptive behaviour. Its dynamism is entirely a function of the frozen governing artifact.
+[List Paragraph] Any decision requiring inference belongs to the depth governor, invoked through an opaque handle, acted on deterministically.
+[List Paragraph] Every run is governed by exactly one frozen artifact, admitted by Northena, carrying a valid lawful basis.
+[List Paragraph] The frozen artifact is immutable for the run. A changed intent is a new admission.
+[List Paragraph] Gate is strict set-membership. Ambiguous membership is a compilation defect resolved at Admit, never a Gate-time judgement.
+[List Paragraph] Northena owns the halt. No run closes without a closed, audit-grade ledger.
+[List Paragraph] The Ledger is contract-grade: versioned, snapshot-asserted, append-only, immutable within the retention window.
+[List Paragraph] Out-of-scope and refused items are recorded, never silently dropped.
+[List Paragraph] Northena governs direction only. Boundary belongs to SyniSense; depth belongs to Solva. The axes never collapse.
+PART III
+
+SyniSense — The Boundary Governor
+[Heading 1] 12  What SyniSense Is
+SyniSense governs the boundary: whether data may cross an access point. It is the single chokepoint through which every outbound model call transits, the enforcement point of the de-identify→invoke→re-identify custody chain, the class-honesty guard on every governed response, and the closer of the refusal taxonomy across the whole layered governance surface.
+Its scope is every model surface, not language alone. Perception providers — speech recognition, vision — route through it as well, so material crossing a model boundary carries the same custody and the same receipt whatever its modality.
+[Heading 1] 13  The Chokepoint
+One function is the only place a model is invoked. Everything else that wants a model calls that function.
+The invariant is not that developers should route through it; the invariant is that a build fails if any other module imports the model client. Custody enforced at an orchestrator is custody a new call path can miss. Custody enforced at the invocation itself cannot be missed, because there is no other invocation to miss it through — the chokepoint pattern places the guarantee at the narrowest point in the system rather than at the most convenient one.
+[Heading 2] 13.1  The sequence
+[List Paragraph] Provider selection. Resolved from configuration. Where the key is issued in sandbox mode, a deterministic fixture provider serves in its place — a declared, labelled, non-production behaviour, not an inferred fallback. Under a production credential with no provider configured, the call is refused rather than served from a fixture, because a synthetic response returned as if governed would violate the platform’s own rule that a claim and its class are never separable.
+[List Paragraph] De-identify. The inbound payload transits the de-identifier, which strips identifiers to placeholder tokens and records the mapping in a per-request custody envelope.
+*Between de-identification and invocation sits the Watch's input seat, specified in Document 8: every payload bound for a model is scored for hostility and provenance before the call is made. The seat is a sensor and a graded gate under the Watch's own authority; it adds no second custody chain, and its verdicts land in the record like every other emission at this boundary.*
+[List Paragraph] Invoke with metering. The call is made and per-call metering is emitted to the telemetry stream.
+[List Paragraph] Re-identify. Output transits the re-identifier against the same custody envelope. An unmatched token raises rather than passing through — a placeholder that cannot be resolved is an error, never a value.
+[List Paragraph] Grounding gate. A per-sentence anchor map is enforced on composed output.
+[List Paragraph] Class-honesty check. A structural scan bounds the governed-response boundary.
+[List Paragraph] Trust receipt. Every invocation writes one.
+[Heading 1] 14  The Custody Chain
+De-identify, invoke, re-identify, per request, with the mapping held in a per-request envelope that does not outlive the call. Tenant-scoped entity resolution supplies the entities that must be recognised for a given instance, so de-identification is never limited to what a general recogniser happens to detect.
+The envelope is per request and does not outlive it. A mapping that persisted beyond the call would be a standing re-identification key — precisely the artefact the chain exists to avoid ever creating.
+[Heading 1] 15  Purpose Enforcement
+Purpose enforcement is a property of the chokepoint, distributed across four mechanisms rather than concentrated in one validator a caller could route around.
+[List Paragraph] Data-blind prompts. Templates cannot leak purpose-scoped data, because by construction they contain none.
+[List Paragraph] The grounding gate as proof of purpose alignment. A claim that is ungrounded is refused; an output that cannot be anchored to material within scope does not compose.
+[List Paragraph] The closed refusal taxonomy. The refusal modules exhaustively enumerate every governed-purpose refusal path, so a purpose violation resolves to a named refusal rather than an ad-hoc one.
+[List Paragraph] Advisory-marker discipline. Non-fact classes carry markers at write time and at render time, so an advisory output can never be consumed as a governed one.
+[Heading 1] 16  Key Custody and Receipts
+A trust receipt is emitted per invocation — the key-custody envelope: evidence that the call happened, under what custody, without exposing the credential itself. The credential is never logged; its presence surfaces only as a boolean probe at module load, and its absence selects the sandbox fixture path. Nothing downstream branches on the credential’s value.
+Two custody pathways exist — the synthesis path through the chokepoint, and the perception path through the perception router — and both emit receipts; neither bypasses the other.
+[Heading 1] 17  Grounding and the Model Ladder
+Grounding is proven, not asserted. A sentence that cannot be anchored to material is not a weaker sentence — it is a refusal.
+Composed output carries a per-sentence anchor map, and the gate enforces it. Every model-reaching composition carries a lower-rung fallback — the mechanical composer is preserved byte-identical as that fallback — because a system whose highest rung has no floor beneath it has a single point at which output quality becomes unbounded. Advisory outputs are marked twice: at write time by the producing service, and at render time by the surface, because a marker enforced only at write can be dropped by a renderer that never knew it was load-bearing.
+[Heading 1] 18  SyniSense’s Invariants
+[List Paragraph] The chokepoint function is the only module invoking the model client anywhere in the codebase, enforced by negative-scan test.
+[List Paragraph] The contracts anchoring the boundary are frozen; a change to them is a seal event requiring explicit ratification.
+[List Paragraph] Every model invocation transits de-identify → invoke → re-identify. No orchestrator path is authorised to skip it.
+[List Paragraph] The refusal taxonomy is closed. No ad-hoc refusal path exists anywhere.
+[List Paragraph] Any composition reaching the highest rung is paired with a lower-rung fallback, preserved byte-identical.
+[List Paragraph] Prompt template files are negative-scanned against tenant data on every build.
+PART IV
+
+The Two Perimeters
+[Heading 1] 19  Inner and Outer
+Delivery has two perimeters, and they enforce differently because they carry different risk. The inner gate governs the live path, where governance is enforced per call. The outer gate governs extract — material leaving as a hand-over that cannot be recalled once it has gone.
+<<TABLE>>
+Perimeter | Governs | Enforcement mode
+Inner gate | The live path: queries against a standing service, per-response answers. | Per call. Key scope enforced server-side. Class carried inline on every response.
+Outer gate | Extract: datasets, artefacts, anything handed over. | Once, at export. Rights, irreversibility, cumulative disclosure, licence issue, receipt minting.
+<<END TABLE>>
+[Heading 1] 20  The Outer Gate
+Five checks run before anything leaves, and each is a distinct failure mode rather than a stage of one check.
+[List Paragraph] Rights. Does the licence class of the material permit this delivery, to this recipient, for this purpose?
+[List Paragraph] Irreversibility. Can what is leaving be reversed into material the organisation may not release? This is why raw media sits out of scope for direct export — irreversibility cannot be honoured on it.
+[List Paragraph] Cumulative disclosure. Would this export, combined with everything that has already left, reconstruct what neither export alone would?
+[List Paragraph] Licence issue. The terms under which the recipient may use what they receive, attached to the deliverable itself.
+[List Paragraph] Receipt. The fact and the fingerprint of the transform — never anything that could aid reversal.
+
+Nothing partial egresses, including on cancellation. A cancelled run is still ledgered, and the partial output does not leave — partial egress would make the perimeter probabilistic rather than absolute.
+[Heading 1] 21  Cumulative Disclosure
+Single-packet refusal is live from the outset. The cumulative arm across sessions is a closed seam awaiting its thresholds — a deliberate, recorded state, not an omission.
+The arm evaluates three thresholds across repeated exports: a minimum group size, a minimum distinct-value count within a group, and a cumulative privacy budget. Individually clean egresses that recombine to reconstruct identities are refused when any threshold is crossed or the budget is exhausted.
+The arm is closed by construction, not by configuration accident. The admission function returns false whenever any of the three values is unset or unparseable, so it cannot half-open.
+Opening it is a compliance decision: the thresholds are set, the arm begins admitting, and a new refusal reason path becomes reachable for the first time. From that moment the system begins persisting egress fingerprints across sessions — a material change in what the platform retains, which is why the decision belongs to the compliance officer rather than to routine configuration.
+PART V
+
+Governed Values
+[Heading 1] 22  The Four Classes
+Four classes of governed value share one record shape and one surface, and they differ in change authority, change velocity, and verification method — which is what makes them genuinely different objects rather than one object wearing four labels. Treating them alike is how a weekly operational update ends up waiting on a multi-day ceremony, and how a platform invariant ends up editable at runtime.
+<<TABLE>>
+Class | Develop | Deploy
+Rails | Authored as code and contract. | Only through a build; never runtime-editable.
+Rules | Defined with type, bounds, a recommended default. | Set at setup, locked at approval.
+Engine settings | Declared with their conditions of success. | Pinned per engine version.
+Registries | Schema defined once; rules reference by version. | Initial load at setup or first upload.
+<<END TABLE>>
+
+<<TABLE>>
+Class | Operate | Verify
+Rails | Not operable — observable only. | A hard-fail check; a rail without one does not exist.
+Rules | Propose, counter-sign, wait, apply, certificate. | Live test packs, per rule.
+Engine settings | Changed by engineers, through versioned deployment. | The version’s evaluation verdict.
+Registries | Upload, validate, difference, confirm, version. | A validation report and a live probe on drawn entries.
+<<END TABLE>>
+[Heading 2] 22.1  Entitlement Rules
+Rules govern more than custody and retention. They extend, by the identical mechanism, to who inside the organisation may see what — a distinct concern from what may leave the perimeter, and one this platform adopts a well-established model for rather than inventing a new one.
+Entitlement is attribute-based access control: a decision made by matching attributes of the requester against attributes of the content, expressed as a rule and enforced the same way every other rule is. Role-based access — a decision by role alone — is the common simplified case, not a separate mechanism.
+The requester side of the match is whatever attributes the instance declares meaningful — role, department, seniority, project membership. The content side is already built: the sensitivity classification Mtafiti assigns during census, specified in Document 4, is exactly the resource attribute this match runs against. No new classification exists; entitlement reads the one already there.
+Illustrative only: "Business Development Officers may not see payroll-category content." The rule is a plain sentence, exactly as any other rule is authored — proposed by the compliance owner, counter-signed, waiting, applied, and demonstrated firing through the Verification Runner, per §24 above. Nothing about how an entitlement rule is written, changed, or proven differs from any other rule in this taxonomy.
+Where an entitlement rule permits an escalation — a named authority may grant a one-time or standing exception — it is class escalatable. Where no authority in the organisation may waive it, it is class absolute, identically to any other rule. The enforcement point, the refusal it produces, and the actions it offers are specified in Document 7 §5.2.
+The Watch's operating law consumes this taxonomy without extending it: its response policy tables and its closed signal registries are Registries-class values — versioned, uploaded, differenced, confirmed — and its runtime thresholds are Rules-class, changed only through the ceremony below. The Watch authors these values; this service administers their change. Neither writes the other's content.
+[Heading 1] 23  The Promotion Path
+Runtime tunability has exactly one path. There is no third path, because "it is only an engine setting" is otherwise the route around every rule in the system.
+An engine setting that genuinely needs operational control is promoted to a rule: the owner files what the parameter is, why it needs runtime control, and its blast radius; it enters the rule registry with a type, bounds, and a recommended default; it leaves engine-pinned configuration at the next version bump; and thereafter it changes only through the change ceremony. Until promotion completes, no runtime edit exists. Demotion requires the identical ceremony, in reverse.
+[Heading 1] 24  Changing a Rule
+A rule is never edited in place. The change moves through a visible pipeline, and the pipeline is the governance.
+[List Paragraph] Propose. The compliance officer proposes the new value with a reason. The rule, its current value, and the proposed value are all on the record.
+[List Paragraph] Counter-sign. A second constitutional authority counter-signs, or returns it with a reason. The counter-signature lands in its own ledger.
+[List Paragraph] Wait. An enforced waiting period runs with a visible countdown, during which the change can be cancelled. The duration is computed from the change’s consequence class, not fixed — tightening a floor and widening a ceiling do not carry the same delay.
+One consequence class is reserved above all others: a change touching the Watch's constitution — its sever-certainty registry, its mark dimensions, its policy tables — carries the slowest countdown the instance defines, and the proposal itself is surfaced to the Watch as a monitored event the moment it is filed. The most dangerous request in the system is a change to the rules that watch the rules, and it happens in daylight, on a delay, under two signatures, with the Watch itself among the observers.
+[List Paragraph] Apply. The value updates and a change certificate is written.
+[List Paragraph] Re-verify. The affected verification packs re-run. A changed rule is demonstrated firing, never merely assumed to fire.
+
+Work completed under the prior rule keeps the rule version that governed it. The record does not retroactively re-govern anything — a record that changed its own history would not be a record.
+[Heading 1] 25  Registries
+Governed reference data — protected-term lists and their equivalents — has its own surface, and it stays as ordinary as uploading a spreadsheet, because it is operated weekly rather than annually. The lifecycle: upload, validate with row-level errors and fail closed on malformed input, review the difference as added / removed / changed, confirm, then version with an effective-from stamp and a rollback path.
+The asymmetry is deliberate. Additions take effect immediately; removals and edits require approval. Adding protection is safe by direction — removing or editing an entry is the only change that can weaken a shield, and it is the change a mistake or a bad actor makes.
+Every run records which registry version was in force. Without it, the question "was this term protected on a given date" has no answer — and that is exactly the question an audit asks.
+PART VI
+
+Retention, Deletion, Isolation
+[Heading 1] 26  Retention
+The default is indefinite, append-only retention, stated as a default rather than presented as a policy decision already made. No deletion code path exists anywhere in the direction governor’s services, and its absence is guarded by a test that scans for deletion, purge, and expiry tokens and asserts none are present.
+The retention window is a compliance decision. Until it is set, the system holds indefinitely, and the unset state is displayed on the Trust Center as an unset rule rather than papered over. Opening the window is itself a governed change, and the guard test failing at that point is the correct signal, not an error — the deletion mechanism is built and the test is re-scoped alongside it, never simply removed. Deletion events are themselves recorded as entries rather than mutations, which preserves the append-only guarantee even as material leaves.
+[Heading 1] 27  Authorized Deletion
+Deletion is the only path by which material may leave the record, and it is an authority act rather than an operational one. A request names its scope and its reason, carries dual control, and runs a waiting period during which it can be cancelled — the same shape as a rule change, because deletion is the most consequential change a governance value can undergo.
+It ends in a destruction attestation: what was deleted, under whose authority, on what date, by what method, with a ledger reference. The attestation is the artefact a regulator asks for, and it is generated from the record rather than assembled afterwards.
+Retention holds bar deletion absolutely. Material under a hold, facing a deletion request, produces an absolute refusal naming the hold instrument. No seat lifts a hold from inside the system — a hold is released only where it was created.
+[Heading 1] 28  Instance Isolation
+An instance is a boundary. An organisation’s estate, rules, ledger, artefacts, and memory planes belong to one instance and are unreachable from any other.
+The boundary is enforced by a scoped accessor at the data layer, not by a filter in application code. A filter is a convention any new code path can forget; a scoped accessor is the only way to reach the data at all.
+Isolation is asserted by a structural check: a walker inspects every data-access path and fails the build where a query can reach across the boundary. Multi-tenancy defended by discipline alone fails the first time someone writes a query in a hurry — this is enforced the same way instance isolation and memory-plane isolation both are, by the identical scoped-accessor pattern.
+Onboarding context is per instance. Rule values, registries, model registry entries, and economics configuration are all instance-scoped. Two instances of the same build can hold different waiting periods, different protected-term lists, and different pricing tiers, and neither can observe the other.
+PART VII
+
+Assurance
+[Heading 1] 29  The Trust Center
+The same inventory idea the Registry applies to the estate, applied to governance. It is the compliance officer’s home surface, and it is read-only.
+Its design posture is adversarial to comfort. Refusals appear as evidence that the governance bites; retention overruns and unset rules appear as problems; it is the record itself, never a summary of it. A Trust Center that only shows green is marketing, not assurance.
+[Heading 2] 29.1  The rule inventory
+Every rule in force, with its current setting, who set it, when, and whether the value is initial or changed — each shown with its enforcement: which gates actually prove it. A rule with no gate proving it is displayed as unenforced rather than counted among the enforced ones.
+[Heading 2] 29.2  The respect record
+Refusals issued by class, held items and their resolution, deletions executed through the authorised path, rule changes with their ceremony stage, and de-identification activity — each walkable to its ledger receipt.
+[Heading 2] 29.3  The violation record, unhidden
+Custody events, failed attempts, and threshold breaches, stated plainly with their disposition. The compliance officer’s work is dispositioning violations, not discovering them — the system surfaces them automatically; the human decides what each one means.
+[Heading 1] 30  Enforcement Class
+Every rule in force carries an enforcement class, displayed wherever the rule appears.
+<<TABLE>>
+Class | What it means | What the record shows
+Enforced | A check runs, fails closed, and emits a receipt. | The live check result and its receipt; enforcement and violation counts.
+Attested | Held by a recorded human act — a signature, an instrument, a counter-signature. | The attestation artefact, its signatories, its date. No enforcement count, because there is no check to count.
+Monitored | Measured and reported, but does not block. | The observation log, with its non-blocking status stated plainly.
+<<END TABLE>>
+
+Class is derived from the taxonomy, never hand-set. A field someone typed in would make the honesty claim itself unverifiable. No class is presented as superior to another — an appointment instrument cannot be a running check and should not pretend to be, and the surface reports the class without editorialising toward converting one into another.
+[Heading 1] 31  Verification Packs
+Each pack demonstrates one rail firing, in plain language, showing its proof. They run at commissioning — where the Master Admin and the compliance officer watch each rail fire and then sign the commissioning record — and again after every rule change.
+A rail that cannot be demonstrated firing is not in force, whatever the inventory claims. The pack is the difference between a rule that exists and a rule that works.
+[Heading 1] 32  The Regulator Pack
+Generated from the record, never assembled by hand. It carries the rules in force with their enforcement class and counts, the record for the period, ceremony histories, destruction attestations, and proof trails for any nominated runs.
+It is the same record the compliance officer reads daily and the same record any user’s answer resolves into, threaded by one trace identifier. A pack assembled separately would be a second account of the same events, and the two would eventually disagree.
+[Heading 1] 33  What Governance Orchestration Comes Down To
+A run is admitted against a frozen artifact carrying a lawful basis, or it does not start. It is routed by membership against a declared set, never by inference. It stops on a condition fixed before it began. Every model call it makes transits one chokepoint, de-identified going out and re-identified coming back. Everything that leaves passes five checks and mints a receipt. And every decision along the way lands in an append-only record that closes with the run — because a run nobody can account for afterwards is a run the platform should not have performed.
