@@ -1,6 +1,6 @@
 # ORCHESTRATOR.md — Orchestrator's (owner-side) recovery file
 
-**Last refreshed:** 2026-08-14 · Owner stop-order cycle CLOSED. Minted-credential pattern retired estate-wide. Source-IP allowlist middleware live on both backend and frontend. Connect GPU form re-homed under Admin surface. `programme/track-a` HEAD `acc25a8` (13 tests-first + implementation commits atop `b150c21`; **99/99 gating tests green**: 78 backend python + 21 frontend node --test). Assessment-repo `master` pending this cycle's follow-up commit (STATE + fidelity ledger + phase0 receipts + DECISIONS appendix).
+**Last refreshed:** 2026-08-14 · Owner fixture-drop cycle CLOSED. Registry surface + Connect wizard live at root '/' per Screen mockups v7 (`fixtures/screen_mockups_v7.pdf`, sha256 `418ad0e3...`). GPU credential entry front door re-shaped from the retired Admin tile-grid detail card to the wizard's Compute path; submit machinery unchanged. `programme/track-a` HEAD `aeb2be0` (15 tests-first + implementation commits atop `b150c21`; **105/105 gating tests green**: 78 backend python + 27 frontend node --test). Playwright screenshots confirm 20 required data-testids in the rendered tree. FL-P2-14 OPEN (PDF page-count discrepancy) recorded for owner disposition.
 
 **Discipline:** mirror of the builder's STATE/ discipline. Update the top of this file at every builder reply; the reply and this file MUST agree.
 

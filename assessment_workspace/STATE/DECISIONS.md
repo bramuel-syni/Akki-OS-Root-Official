@@ -429,3 +429,31 @@ Under Ruling 1's four-test discipline, an unlogged ruling is treated as
 2. Applies retroactively: the retired minted-credential pattern (FL-P2-08) becomes the reference doctrine case.
 
 
+
+---
+
+## Owner Fixture Drop · 2026-08-14 · Source: owner channel ("Screen mockups.PDF" + 4 inline screenshots)
+
+**Verbatim (owner's words, quoted from the drop message):**
+
+> "To resolve the back and forth - attached is screenshots of registry and connect wizard.
+>
+> This is a BINDING fixture for how Registry and Connect render.
+>
+> DOWNLOAD + PIN: [URL] -> fixtures/screen_mockups_v7.pdf, sha256 into PINS.md. Extract ALL pages (text + layout description per page) into fixtures/screen_mockups_inventory.md. This is file-grade fixture material - upgrade the relevant FIXTURE CLEARED markers from transcription-grade where these screens cover them.
+>
+> WHAT THE INLINE SCREENSHOTS SHOW: (a) Registry surface, title 'Registry · ESTATE' with Back button, THREE TABS: 'DATA CONNECTED · COMPUTE CONNECTED · LLMS & TRAINED MODELS', a '+ Connect' navy button top-right, stat-card grids with plain-sentence sublabels ('drawn, never left blank', 'no path out skips the mask'), a right rail with small-caps eyebrow ('WHAT IS ANSWERING' / 'WHAT YOU HOLD' / 'WHAT IS CONNECTED') + large serif plain-sentence narrative with key figures underlined/red, horizontal bar charts with a 'by ...' cut selector, and record tables (models with IN SERVICE/EVALUATING/RETIRED status chips; cluster workflows with doors Train/Extract/Export/Measure/Prove; estate sources with rights chips). Header: dark navy bar, org name left ('Acme Holdings AI' - DEMO org), right-side ROLE SWITCHER: 'Compliance Owner · Watch Officer · Operator' + user chip. (b) The '+ Connect' opens 'Connect something new - A conversation, not a form': a chat-style wizard with an opening prompt + four quick chips (A data source · An LLM · A trained model · Compute) + free-text input + Send.
+>
+> RECONCILIATION ORDERS - critical path first: (a) PHASE-0 CRITICAL PATH: re-shape the GPU credential entry to honor the fixture: Registry surface -> '+ Connect' -> 'Connect something new' wizard -> 'Compute' chip -> the wizard collects the SAME ordered fields (Host Name, Username, Password masked, Public IP; optional Private IP, OS, Deploy date) conversationally, then triggers the SAME unchanged pipeline. The submit machinery does not change; only its front door does. Tests-first. (b) The Registry's three tabs render with HONEST CURRENT STATE, never the mockup's demo numbers. Zero fabricated numbers. COMPUTE CONNECTED tab is where the connected VM will render post-Phase-0 with its commissioning facts. (c) The role switcher renders as STATIC presentation for now (single implicit operator role) - the seat/Access model stays Track-B per the earlier ruling; do NOT build auth roles. (d) Scope check: (a) is the gate for Phase 0 - size it; if the wizard re-shape pushes past M, stop and report before building. (b) Registry honest-state tabs are the A4 increment - build after (a) lands, sized separately. Everything else in the 19 pages: inventory only this cycle, no build.
+>
+> IP allowlist stays exactly as-is (34.16.56.64 only - owner's IP still not received; deployment stays effectively private)."
+
+**Binding effects:**
+
+1. **Fixture upgraded to file-grade.** `fixtures/screen_mockups_v7.pdf` (sha256 `418ad0e3...`) pinned in PINS.md as file-cleared for Registry surface pattern + Connect wizard grammar + content rules + states/edges. `notes/fidelity_ledger.md` **FL-P2-11 CLOSED** records the upgrade from transcription-grade for the surfaces this brief covers.
+2. **Discrepancy recorded (not silently reconciled).** Owner said "19 pages plus 4 inline screenshots" - actual PDF is 5 pages of pure text (feature/component brief), zero embedded images; the 4 inline screenshots were not accessible as job assets. Owner's inline textual description stands as the binding visual reference; PDF stands as the written spec. Full inventory at `fixtures/screen_mockups_inventory.md`. **FL-P2-14 OPEN** for owner disposition (does owner want to re-upload the visual mockup deck? Or is the current PDF + inline description the intended fixture?).
+3. **"Wizard-not-form" rendering decision.** Connect is a right-hand drawer holding a conversation, not a form. Four suggestion chips (A data source · An LLM · A trained model · Compute); free-text input; branch-by-what; failure is a first-class outcome; success ends the conversation with a single Close and a toast. GPU credential entry moves from the current Admin surface's tile grid into the Connect wizard's Compute path. **FL-P2-12 CLOSED** records the rendering decision.
+4. **Demo-data-vs-honest-state rule.** The Acme Holdings AI figures in the mockup are illustrative seed content of a demo org. The estate renders its TRUE current state ("No data connected yet." / "One machine pending connection." / "Not yet measured - drawn, never left blank"). Zero fabricated numbers ever land in code. **FL-P2-13 CLOSED** records the rule.
+5. **Role switcher = static presentation.** Compliance Owner / Watch Officer / Operator chips render visually per the mockup but carry no auth wiring this cycle; seat/Access model stays Track-B per prior ruling. **FL-P2-15 CLOSED** records the deferral.
+6. **Scope discipline reaffirmed.** (a) wizard-re-shape is the Phase-0 gate this reply, sized before build. (b) Registry honest-state tabs are the A4 increment, sized separately, next cycle. Everything else in the brief (opportunity list, "Reading the mix" panels, "How a model enters and leaves", stat grids with 9 metrics per tab, chart blocks, filter chips on record tables, announcement rows, ceremony/census interactions, open questions) is **INVENTORY ONLY** this cycle - no build.
+7. **IP allowlist unchanged.** `SPINE_ALLOWED_IPS=34.16.56.64` remains; deployment stays effectively private until owner's `/32` arrives.

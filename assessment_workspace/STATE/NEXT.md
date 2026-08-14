@@ -1,52 +1,58 @@
-# NEXT.md — Exact next actions
+# NEXT.md - Exact next actions
 
-**Last updated:** 2026-08-14 · Owner stop-order cycle CLOSED · minted-credential pattern retired · source-IP allowlist live on both backend and frontend · Connect GPU form re-homed under Admin surface · 99/99 gating tests green on `programme/track-a` HEAD `acc25a8` · awaiting owner's ruling on FL-P2-09 (pod egress rotation) and confirmation of the two-sentence access-mechanism proposal.
+**Last updated:** 2026-08-14 · Owner fixture-drop cycle CLOSED · Registry surface + Connect wizard live at root '/' per Screen mockups v7 (5-page written spec + owner's inline description of 4 screenshots) · GPU credential entry front door re-shaped from tile-grid detail card to conversational wizard's Compute path (submit machinery unchanged) · 105/105 gating tests green on `programme/track-a` HEAD `aeb2be0` · IP allowlist unchanged (`SPINE_ALLOWED_IPS=34.16.56.64` per owner's strict directive).
 
-## Cycle status (2026-08-14 · Owner stop-order response cycle)
+## Cycle status (2026-08-14 · owner fixture drop response)
 
-- **Token revoked (dead across three checks).** `/app/backend/.owner_credentials` deleted; `spine_auth.py` deleted; `/app/memory/test_credentials.md` scrubbed. Compromised token → HTTP 403 (was HTTP 422 = accepted before). No leak sites in `/app`, spine repo, logs, STATE, notes, phase0.
-- **Source-IP allowlist middleware live.** FastAPI middleware at `services/ip_allowlist/middleware.py` (16 gating tests green). CRA dev-server middleware at `plugins/ip-allowlist/{check.js, middleware.js}` (12 gating tests green). Config in `/app/backend/.env`: `SPINE_ALLOWED_IPS=34.16.56.64`, `SPINE_TRUSTED_PROXY_HOPS=2`. Refusal grammar: HTTP 403 `text/plain` `"This surface answers allowlisted addresses only."` on EVERY route family (proven live).
-- **Connect GPU form re-homed under Admin.** `/register/connect/gpu` retired at edge (HTTP 404 `text/plain` `"This route has been retired."`). Root `/` → `<AdminSurface />` → tile grid (TRUST CENTER + REGISTRY) → Connect tile → GPU form. 9/9 re-home gating tests green.
-- **programme/track-a HEAD `acc25a8`** — 4 new sequential tests-first + implementation commits atop `98fcd75`.
-- **99/99 total gating tests green** (78 backend python + 21 frontend node --test).
-- **Fidelity ledger updated:** FL-P2-08 CLOSED (minted-credential retirement); FL-P2-09 OPEN (pod egress-IP rotation surprise); FL-P2-10 CLOSED (empirical header-topology trust boundary).
-- **Assessment-repo master:** pending this cycle's follow-up commit (STATE + fidelity ledger + phase0 receipts + DECISIONS appendix).
+- **Fixture pinned.** `fixtures/screen_mockups_v7.pdf` (sha256 `418ad0e3c087c613be7d7d885a18a3c895b7d51ed253119aff9ba042ee81da8a`, 195,644 bytes, 5 pages) written into PINS.md as file-cleared; full page-by-page inventory at `fixtures/screen_mockups_inventory.md`.
+- **Discrepancy on record (FL-P2-14 OPEN).** Owner said "19 pages plus 4 inline screenshots" - PDF is 5 pages of pure text (Registry Feature & Component Brief), zero embedded images; the 4 inline screenshots were not accessible as job assets. Owner's inline textual description of the screenshots stands as the binding visual reference. Awaiting owner disposition on whether to re-upload the visual deck.
+- **Registry surface live.** Root `/` renders `<Registry />` with three-tab shell (DATA CONNECTED · COMPUTE CONNECTED · LLMS & TRAINED MODELS), '+ Connect' button pushed right, role switcher (Compliance Owner · Watch Officer · Operator) in the header as STATIC presentation per FL-P2-15.
+- **Connect wizard live.** '+ Connect' opens a right-hand drawer: "Connect something new" + "A conversation, not a form" deck; 4 suggestion chips (A data source · An LLM · A trained model · Compute) + free-text input + Send. Compute chip branches into the SAME 7 ordered GPU fields (Host Name · Username · Password [masked] · Public IP · Private IP · OS · Deploy date) that POST to the UNCHANGED `/api/connect/gpu` endpoint.
+- **Empty state honors Content Rule 3.** Every tab renders honest current state ("No data connected yet." / "One machine pending connection." / "No models connected yet." / "drawn, never left blank"). Zero fabricated Acme demo numbers anywhere in code (`FL-P2-13 CLOSED`).
+- **AdminSurface retired.** `/app/frontend/src/components/AdminSurface.jsx` deleted; its `admin-pill` and `tile-connect` testids gone.
+- **`programme/track-a` HEAD `aeb2be0`** - 2 new sequential tests-first + implementation commits atop `acc25a8`.
+- **105/105 total gating tests green** (78 backend python + 27 frontend node --test).
+- **Fidelity ledger updated:** FL-P2-11 CLOSED (fixture upgrade), FL-P2-12 CLOSED (wizard-not-form rendering), FL-P2-13 CLOSED (demo-data-vs-honest-state), FL-P2-14 OPEN (PDF page-count discrepancy), FL-P2-15 CLOSED (role switcher deferred to Track-B).
+- **Playwright render-tree proof:** 4 screenshots under `phase0/drill_receipts/screenshots/`; all 20 required data-testids verified present in the rendered tree.
+- **IP allowlist unchanged.** `SPINE_ALLOWED_IPS=34.16.56.64` remains per owner's strict directive; deployment stays effectively private until owner's `/32` arrives.
 
-## Two-sentence access-mechanism proposal (for owner reply)
+## Two-sentence access-mechanism proposal (still awaiting owner ratification)
 
-> Access to the estate is IP-pinned; the allowlist admits your client `/32` (initial value `34.16.56.64`) at position `xff[-3]` of the ingress-set X-Forwarded-For chain, refusing every other address with HTTP 403 and one plain sentence. Additions and removals travel through `SPINE_ALLOWED_IPS` in `/app/backend/.env` — every change is a ledger row and the surface renders the current allowlist state as plain sentences.
+> Access to the estate is IP-pinned; the allowlist admits your client `/32` (initial value `34.16.56.64`) at position `xff[-3]` of the ingress-set X-Forwarded-For chain, refusing every other address with HTTP 403 and one plain sentence. Additions and removals travel through `SPINE_ALLOWED_IPS` in `/app/backend/.env` - every change is a ledger row and the surface renders the current allowlist state as plain sentences.
 
 ## Blocked (awaiting from owner)
 
-- **Ruling on FL-P2-09 (pod egress-IP rotation).** Empirical: pod egress is `34.170.12.145` (verified across 4 services this cycle), not the `34.16.56.64` pinned in STATE. Owner's directive `SPINE_ALLOWED_IPS=34.16.56.64` implemented as ordered; pod is NOT self-allowlisted. Owner disposition needed: (a) confirm `34.16.56.64` is the intended owner client `/32` (not pod egress) and stands as is; OR (b) direct a different value.
-- **Confirmation of the two-sentence access-mechanism proposal above.** Owner's directive was: propose exactly one mechanism, exactly two sentences, no alternatives. This proposal is drafted; awaits acceptance.
-- **Real AISCA VM credentials entered via the WS-BUILD-CONNECT-GPU surface.** Owner action; blocked on owner's client-IP being on the allowlist (see above) since the surface will otherwise refuse the owner too.
-- **Reference screenshot file** — transcription-grade holds.
+- **Ratify the two-sentence access proposal** and/or **direct disposition of FL-P2-09** (pod egress-IP rotation: `34.16.56.64` in STATE vs `34.170.12.145` live).
+- **FL-P2-14 disposition** - is the current PDF (5 pages) + inline description the intended fixture, or should the visual deck be re-uploaded?
+- **Real AISCA VM credentials via the Registry → Connect wizard → Compute path** - blocked on owner's client-IP being on the allowlist.
+- **Owner sign-off on (a) delivered** - Registry three-tab shell + wizard Compute path is live per fixture; (b) A4 honest-state instrumentation (real commissioning-record wiring into COMPUTE CONNECTED tab post-Phase-0) is the next-cycle increment, sized separately.
 
 ## Cold-reader-executable next actions
 
-### 1. Deliver stop-order completion report to owner (this reply)
+### 1. Deliver fixture-drop cycle report to owner (this reply)
 
-Security confirmations (token dead ×3 checks + lockdown live) FIRST · re-home + middleware evidence (live-proven refuse branch + test-proven allow branch + unit-test spoof-resistance) · test roll-up (99/99) · commit SHAs · two-sentence access-mechanism proposal.
+PDF page inventory summary + scope class for (a) = M + test migration plan + built (a) + gating tests + evidence + FL-P2-14 discrepancy flag.
 
-### 2. On owner-confirmed allowlist entry
+### 2. On owner ratification of allowlist entry / FL-P2-09 disposition
 
-Update `SPINE_ALLOWED_IPS` in `/app/backend/.env` to add owner's client `/32` (leaving `34.16.56.64` per current directive unless owner rules otherwise). Restart backend + frontend. Live-prove allowed-branch from owner side (owner curls `/` from their client IP → 200; verify from backend log). Record allowlist change as a ledger row.
+Update `SPINE_ALLOWED_IPS` in `/app/backend/.env`. Restart both services. Live-prove allow-branch from owner side. Record allowlist change as a ledger row.
 
-### 3. On owner credential entry via the re-homed form
+### 3. On real VM credentials arriving through the wizard's Compute path
 
-The seven-stage pipeline fires automatically. Watch for green/failed/held branches exactly as banked before this cycle (four-questions render, commissioning record write, PINS `checkpoint_14d_utc` pin).
+The unchanged seven-stage pipeline fires: intake → declaration → hardening → acceptance (via real `acceptance.sh` seam) → commissioning record → four-questions after-state → PINS `checkpoint_14d_utc` pin. Watch for `green` / `failed` / `held` grammar per PDF §5 paragraphs 6-7.
 
-### 4. Verification path for orchestrator (independent audit)
+### 4. Phase A4 (Registry honest-state instrumentation) - next cycle
+
+- Wire the COMPUTE CONNECTED tab's after-state to the real commissioning record on disk (present a "Just connected" pill + meta line + link to the record).
+- DATA CONNECTED tab stays empty until admit-slice lands (Phase 2).
+- LLMS & TRAINED MODELS tab stays empty until model registration lands (later phase).
+- Tests-first for the state-transition invariants; do NOT fabricate any numbers.
+
+### 5. Verification path for orchestrator (independent audit)
 
 ```bash
-# Repo audit
-cd /app/assessment_workspace
-python3 tools/citation_audit.py 2>&1 | grep -E "File citations|Canon citations|failed"
-python3 tools/completeness_audit.py 2>&1 | tail -3
-
-# Track-a audit (99/99 total gating)
-cd repos/Extraction-Akki
+# Track-a audit (105/105 total gating)
+cd /app/assessment_workspace/repos/Extraction-Akki
 git log --oneline programme/track-a
 python3 -m pytest \
     backend/tests/invariants/test_actor_declaration_v0_contract_frozen.py \
@@ -61,21 +67,15 @@ python3 -m pytest \
     backend/tests/invariants/test_connect_gpu_scope_S_or_M.py \
     backend/tests/invariants/test_connect_gpu_acceptance_wired.py \
     backend/tests/invariants/test_ip_allowlist_middleware.py -v
-# Expect: 78 passed at HEAD acc25a8.
+# Expect: 78 passed at HEAD aeb2be0.
 
 cd /app/frontend && node --test plugins/ip-allowlist/__tests__/ip_allowlist.test.js
 # Expect: 12 passed.
 
 cd /app/assessment_workspace/repos/Extraction-Akki && node --test pod_shell/frontend/__tests__/rehome.test.js
-# Expect: 9 passed.
-
-# Surface audit (refuse branch from pod egress)
-curl -o /dev/null -w "HTTP %{http_code}\n" https://akki-reuse-assess.preview.emergentagent.com/
-curl -o /dev/null -w "HTTP %{http_code}\n" https://akki-reuse-assess.preview.emergentagent.com/api/deliverables
-curl -o /dev/null -w "HTTP %{http_code}\n" https://akki-reuse-assess.preview.emergentagent.com/register/connect/gpu
-# Expect: 403 / 403 / 403 with text/plain body "This surface answers allowlisted addresses only."
+# Expect: 15 passed.
 ```
 
-### 5. No push, ever
+### 6. No push, ever
 
-Owner Clarification 1 unchanged. Local commits on both `programme/track-a` (code, tests, pod-shell mirror) AND assessment-repo `master` (STATE, fidelity ledger, phase0 receipts, DECISIONS appendix) are the record.
+Owner Clarification 1 unchanged. Local commits on both `programme/track-a` (code, tests, pod-shell mirror) AND assessment-repo `master` (STATE, fidelity ledger, phase0 receipts, DECISIONS appendix, fixture inventory) are the record.

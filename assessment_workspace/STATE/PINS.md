@@ -99,10 +99,12 @@ Strategy work-in-progress (to be created):
 
 **Phase-1 A0/A1 tests-first evidence:** 26/26 gating tests pass (`phase0/A0-A1_report.md` + drill receipt `phase0/drill_receipts/20260814T120336Z_declaration_refusal_firing.log`).
 
-**WS-BUILD-CONNECT-GPU + IP allowlist + re-home gating (Owner stop-order cycle 2026-08-14):** 99/99 total gating tests green on programme/track-a HEAD `acc25a8` = 78 backend python + 12 frontend allowlist node --test + 9 frontend re-home node --test. Right-reason failure receipts banked BEFORE each implementation lands:
+**WS-BUILD-CONNECT-GPU + IP allowlist + re-home + fixture-drop wizard gating (Owner stop-order cycle + fixture-drop cycle 2026-08-14):** 105/105 total gating tests green on programme/track-a HEAD `aeb2be0` = 78 backend python + 12 frontend allowlist node --test + 15 frontend re-home/Registry+wizard node --test. Right-reason failure receipts banked BEFORE each implementation lands:
 - `phase0/drill_receipts/20260814T145500Z_ip_allowlist_right_reason_failure.log` (16/16 tests failed with ModuleNotFoundError before middleware landed).
-- `phase0/drill_receipts/20260814T151000Z_rehome_right_reason_failure.log` (6/9 tests failed right-reason before implementation landed).
-- Green receipt: `phase0/drill_receipts/20260814T151500Z_lockdown_and_rehome_green.log`.
+- `phase0/drill_receipts/20260814T151000Z_rehome_right_reason_failure.log` (6/9 tests failed right-reason before original re-home implementation landed).
+- `phase0/drill_receipts/20260814T180000Z_registry_wizard_right_reason_failure.log` (7/15 tests failed right-reason before Registry + wizard implementation landed).
+- Green receipts: `phase0/drill_receipts/20260814T151500Z_lockdown_and_rehome_green.log` and `phase0/drill_receipts/20260814T181500Z_registry_wizard_green.log`.
+- Playwright render-tree screenshots for Registry + wizard: `phase0/drill_receipts/screenshots/20260814T181000Z_{registry_surface,registry_compute_tab,wizard_opening,wizard_compute_form}.jpeg`.
 
 **Attachment status (2026-08-14 · fixture-arrival cycle):** two of three fixtures delivered as files, third arrived as inline owner transcription. All FIXTURE PENDING markers CLEARED at transcription grade (files below). Governance grade distinction (transcription-cleared vs file-cleared) recorded in `notes/fidelity_ledger.md` FL-P1-14 + FL-P1-14a.
 
@@ -111,6 +113,7 @@ Strategy work-in-progress (to be created):
 | Akki Prototype v7 Design Brief | `/app/assessment_workspace/fixtures/Akki_Prototype_v7_Design_Brief.md` (18,791 bytes) | `063f2b470d74dcd30ad43b4645c4e656edaa7fb1185198a4116ad5328a9717b4` | file-cleared |
 | AISCA GPU Access Guide | `/app/assessment_workspace/fixtures/AISCA_GPU_Access_Guide.pdf` (535,169 bytes) | `0f6b6e0f692494e18a65df655fddf48f45839005dc7aa6b988239b8f90e157f3` | file-cleared (SOP↔Order §6 conflicts A + B ESCALATED per Q2(a) — see `fixtures/aisca_sop_extraction.md` + FL-P2-03 / FL-P2-04) |
 | Reference screenshot | `/app/assessment_workspace/fixtures/reference_screenshot_transcription.md` (owner-inline transcription; original image not yet in workspace) | `d3ae9a6cf598a38333b5c11d6d73dc9069dc3671fb31598f2e594dfb002fc949` | **transcription-cleared** (Q1(c) ruling · 2026-08-14 · re-open on image-file arrival if pixels contradict transcription) |
+| Screen mockups v7 (Registry brief) | `/app/assessment_workspace/fixtures/screen_mockups_v7.pdf` (195,644 bytes; 5 pages TEXT ONLY - Registry feature & component brief; zero embedded images) | `418ad0e3c087c613be7d7d885a18a3c895b7d51ed253119aff9ba042ee81da8a` | **file-cleared** (spec/rules · owner named this the binding fixture for Registry + Connect wizard grammar 2026-08-14). **DISCREPANCY:** owner said "19 pages" - actual is 5; owner said "plus 4 inline screenshots" - none accessible as job assets. Owner's inline textual description of the screenshots (see DECISIONS.md ruling this cycle and `notes/fidelity_ledger.md` FL-P2-11) stands as the binding visual reference. Inventory: `fixtures/screen_mockups_inventory.md`. |
 
 **Binding acceptance criteria** extracted at `/app/assessment_workspace/fixtures/binding_acceptance_criteria.md` (BAC-1..BAC-13). Every interface item in BUILD_STRATEGY.md now cites the applicable BAC-N in its DoD; `test_four_questions_topline_present` added to every console item's new-invariants list (Build Order 01 §3).
 
@@ -124,5 +127,5 @@ Strategy work-in-progress (to be created):
 - **checkpoint_14d_utc:** `2026-08-28T00:00:00Z`
 - **hardening_status:** `attested`
 - **acceptance_status:** `green`
-- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260814T151243Z.json`
+- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260814T180948Z.json`
 <!-- CONNECT-GPU-PINS -->

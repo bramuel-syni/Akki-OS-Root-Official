@@ -1,6 +1,39 @@
 # CONTEXT.md — Running narrative
 
-**Last updated:** 2026-08-14 · Owner stop-order cycle CLOSED · minted-credential pattern retired estate-wide · source-IP allowlist middleware installed backend + frontend · Connect GPU form re-homed under Admin surface · programme/track-a HEAD `acc25a8` · 99/99 gating tests green (78 backend python + 12 frontend allowlist + 9 frontend re-home).
+**Last updated:** 2026-08-14 · Owner fixture-drop cycle CLOSED · Registry surface + Connect wizard live per Screen mockups v7 · programme/track-a HEAD `aeb2be0` · 105/105 gating tests green (78 backend python + 12 frontend allowlist + 15 frontend re-home/Registry+wizard).
+
+
+## Fixture-drop event · 2026-08-14 · Screen mockups v7 delivery
+
+Owner dropped `fixtures/screen_mockups_v7.pdf` (sha256 `418ad0e3...`, 195,644 bytes) plus a textual description of 4 inline screenshots covering the Registry surface (three tabs + role switcher + "+ Connect") and the Connect wizard (conversation-not-form drawer with 4 suggestion chips + free-text + Send). Owner directed reconciliation orders: (a) re-shape GPU credential entry to honor the wizard grammar (Compute path collects same 7 ordered fields, submit machinery unchanged); (b) Registry three tabs render HONEST current state, not the mockup's demo-org figures (A4 increment, next cycle); (c) role switcher = static presentation (Track-B auth deferred); (d) scope check on (a).
+
+**Discrepancy flagged as FL-P2-14 OPEN:** owner said "19 pages plus 4 inline screenshots" - actual PDF is 5 pages of pure text (Registry Feature & Component Brief, zero embedded images); the 4 inline screenshots weren't accessible as job assets. Owner's inline textual description stands as the binding visual reference; PDF stands as the written spec. Written spec + inline description was sufficient for this build.
+
+**Executed this cycle:**
+
+1. Fixture pinned in PINS.md as file-cleared (upgraded from transcription-grade for Registry surface + Connect wizard grammar). Full page-by-page inventory at `fixtures/screen_mockups_inventory.md`.
+2. Scope check for (a): **M class** (2 components + 0 new contracts + 1 integration surface, unchanged) - within WS-BUILD-CONNECT-GPU scope ceiling.
+3. Test-suite migration:
+   - `pod_shell/frontend/__tests__/rehome.test.js` grew from 9 to 15 gating assertions.
+   - 7 retained (unchanged), 2 migrated (root '/' now → Registry; AdminSurface retired), 6 new (Registry testids + wizard shape + Compute path + endpoint unchanged + zero fabricated numbers + honest empty state).
+   - Right-reason failure receipt banked at `phase0/drill_receipts/20260814T180000Z_registry_wizard_right_reason_failure.log`: 7/15 fail with right-reason errors before implementation lands.
+4. Implementation on `programme/track-a`:
+   - `src/App.js` → root '/' renders `<Registry />` (was `<AdminSurface />`).
+   - `src/components/Registry.jsx` NEW: header (Akki · ESTATE + role switcher chips + user glyph), title deck, tab bar (DATA CONNECTED · COMPUTE CONNECTED · LLMS & TRAINED MODELS with 2px active underline), "+ Connect" button pushed right, empty-panel body honoring Content Rule 3.
+   - `src/components/ConnectWizard.jsx` NEW: right-hand drawer with "Connect something new" + "A conversation, not a form" deck, 4 suggestion chips, free-text + Send, Compute path branches to the SAME 7 ordered GPU fields with masked password → POST to unchanged `/api/connect/gpu`.
+   - `src/components/AdminSurface.jsx` DELETED (superseded).
+5. Live-proof:
+   - Preview URL: 4/4 route families still refused with HTTP 403 + exact sentence (allowlist unchanged).
+   - Local FE with allowed XFF: `/` → 200 SPA shell; `/register/connect/gpu` → 404 retirement notice.
+   - Local BE with allowed XFF: `/api/deliverables` → 200 JSON; `POST /api/connect/gpu {}` → 422 Pydantic (same payload contract).
+   - Playwright: 4 screenshots banked at `phase0/drill_receipts/screenshots/20260814T181000Z_*.jpeg`; all 20 required data-testids present in rendered tree.
+6. Green receipt banked at `phase0/drill_receipts/20260814T181500Z_registry_wizard_green.log`. 105/105 gating tests green.
+7. Fidelity ledger: FL-P2-11 CLOSED (fixture upgrade), FL-P2-12 CLOSED (wizard-not-form), FL-P2-13 CLOSED (demo-data-vs-honest-state), FL-P2-14 OPEN (page-count discrepancy), FL-P2-15 CLOSED (role switcher static).
+8. IP allowlist unchanged: `SPINE_ALLOWED_IPS=34.16.56.64` per owner's strict directive.
+
+**Track-a commits this cycle:** `65964b0` (tests-first · Registry + wizard invariants), `aeb2be0` (implementation · Registry + wizard 15/15 green).
+
+**Assessment-repo master commit:** pending this cycle's follow-up (STATE + fidelity ledger + phase0 receipts + fixture inventory + PDF + DECISIONS appendix).
 
 
 ## Compaction / recovery event · 2026-08-14 · mid-stop-order execution
