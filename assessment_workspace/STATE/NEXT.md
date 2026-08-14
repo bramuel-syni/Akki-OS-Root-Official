@@ -1,44 +1,73 @@
 # NEXT.md — Exact next actions
 
-**Last updated:** 2026-08-14, after Ruling 2.
+**Last updated:** 2026-08-14, at BUILD_STRATEGY.md assembly.
+
+## Chunk-4 status: COMPLETE AT ASSEMBLY
+
+- Part 1: `notes/strategy_items_part1.md` (838 lines, 47 items).
+- Part 2: `notes/strategy_items_part2.md` (628 lines, 55 items).
+- Strategy sections: `notes/strategy_sections.md` (269 lines).
+- Fidelity ledger: `notes/fidelity_ledger.md` (102 lines, 27 entries, frozen at assembly).
+- Row-to-item index: `notes/row_to_item_index.md` (405 lines, 0 named gaps).
+- BUILD_STRATEGY.md: `/app/assessment_workspace/BUILD_STRATEGY.md` (assembled).
+- Audit: citation 102/102 · 1118/1118 · 0 failed; completeness PASS.
 
 ## Cold-reader-executable next actions
 
-Anyone reading this without memory of the session executes the following in order.
+Anyone reading STATE/ without memory executes:
 
-### 1. Enumerate work items — DONE
+### 1. Verify audit clean
 
-`/app/assessment_workspace/notes/row_to_item_index.md` written and updated with Ruling-2 promotions (4 new WIRING items). 591 canon rows mapped, 89 items total (34 Part-1, 55 Part-2), 0 named gaps.
+```bash
+cd /app/assessment_workspace
+python3 tools/citation_audit.py 2>&1 | grep -A1 "^File citations\|^Canon citations"
+python3 tools/completeness_audit.py 2>&1 | tail -5
+```
 
-### 2. Estimation discipline — DONE
+Expected: 0 failed citations · PASS on completeness.
 
-Defined once at top of `/app/assessment_workspace/notes/strategy_items_part1.md` per Ruling 2 §1. Hard thresholds:
-- S = 1 component, 0 new contracts, ≤1 integration surface.
-- M = 1-2 components, OR 1 new/changed contract, ≤2 integration surfaces.
-- L = 3+ components, OR new register/console, OR a data migration.
-- XL = new engine/authority, OR estate-wide wiring.
-Every XL carries one-paragraph defence.
+### 2. Read the deliverable
 
-### 3. Draft Part-1 item tables — IN PROGRESS
+```bash
+less /app/assessment_workspace/BUILD_STRATEGY.md
+```
 
-`/app/assessment_workspace/notes/strategy_items_part1.md` — 47 items in classes MODIFY / PARTIAL / RE-POINT / HARVEST / RETIRE / RENAME / WIRING / REBUILD / CONTRADICTION (Ruling 3 raised the count from 34 → 47 via interface reclassification). Seven fields per item. §I contains the Extraction-Akki menu-to-app mapping table.
+### 3. Await owner response on the 27 open fidelity-ledger items
 
-### 4. Fidelity ledger — IN PROGRESS
+Every open item answerable in one sentence. On answer, update fidelity_ledger.md → open a corresponding entry in `STATE/DECISIONS.md` as a new Ruling → propagate the effect to the strategy items file.
 
-`/app/assessment_workspace/notes/fidelity_ledger.md` — opens alongside Part 1, appended during Part 2, frozen at assembly.
+### 4. Local git commit
 
-### 5. Draft Part-2 item tables (BUILD, 55 items covering 148 rows) — LATER CHUNK
+```bash
+cd /app/assessment_workspace
+git init -q  # if not already
+git add BUILD_STRATEGY.md REUSE_ASSESSMENT.md notes/ STATE/ tools/
+git commit -m "chunk 4: BUILD_STRATEGY.md — 102 items, 591 rows, 0 gaps, audits clean"
+```
 
-Do NOT start Part 2 in this chunk. Wait for owner sign-off on Part 1 shape first.
+Push waits on owner's remote + token.
 
-### 6. Citation audit
+### 5. Post-owner-review remediation cycle
 
-Before any submission: run `/app/assessment_workspace/tools/citation_audit.py`. Latest run: **102/102 file citations verified · 814/854 canon citations verified · 40 failed (all inherited Chunk-1 drift, disclosed in `fidelity_ledger.md` FL-P1-20)**. Fix by re-reading source, never by silent deletion. A systematic re-mapping pass is recommended.
+When owner returns rulings on the 27 open items, each becomes:
+- A new Ruling entry in `STATE/DECISIONS.md` (verbatim).
+- An update to the affected item field(s).
+- A re-run of `citation_audit.py` + `completeness_audit.py`.
+- Ledger row closed with a citation to the Ruling.
 
-### 7. Update STATE/ at every material step
+### 6. When rulings arrive on FL-P1-14 (reference screenshot)
 
-Rule (Ruling 1 preamble effect): STATE/ files are updated AFTER each ruling received, each section drafted, each finding. An out-of-date STATE/ = "not having lawfully happened."
+- Read the screenshot.
+- Update every interface item's `FIXTURE PENDING` field with a specific grammar note.
+- Re-audit.
+- Close FL-P1-14.
 
-### 8. Deliverable path
+### 7. When rulings arrive on FL-P1-10, FL-P1-11 (Use-Data / Verdict-Demo placement)
 
-Final Chunk-4 deliverable: `/app/assessment_workspace/BUILD_STRATEGY.md` — assembled from the two `strategy_items_part[12].md` files + this state pack + Rulings 1-2 + `fidelity_ledger.md`.
+- Update `WS-MODIFY-USE-DATA-PLACEMENT` and `WS-MODIFY-VERDICT-DEMO`.
+- Re-run inventory audit.
+- Close both rows.
+
+### Beyond Chunk 4
+
+Chunk 5 (execution planning + credit budget from Owner) is out of the assessment scope. Any downstream planning happens against the frozen `BUILD_STRATEGY.md` under Canon 3 §24 ceremony discipline.

@@ -235,7 +235,7 @@ Per Chunk 1 §3.3 enumeration:
 
 ### Frontend
 
-- `frontend/src/_archived/` (61 files including `Home1.jsx`, `Home2.jsx`, `e4_doc_routes/components/reading/` full subtree) → **RETIRE-candidate**. Canon 5 §46 no surface offers a bypass/override; these are prior product surfaces already marked as archived by the codebase itself.
+- `frontend/src/_archived/` (61 files including `Home1.jsx`, `Home2.jsx`, `e4_doc_routes/components/reading/` full subtree) → **RETIRE-candidate**. Canon 5 §43 no surface offers a bypass/override; these are prior product surfaces already marked as archived by the codebase itself.
 - `frontend/src/_archived_legacy/` (34+ files) → **RETIRE**. Same as `_archived`.
 - `frontend/src/website/` (34 files) → **RETIRE from platform**. Marketing website. Canon 1 §12 makes commerce/marketing application territory; keep as application-side, retire from the platform surface.
 

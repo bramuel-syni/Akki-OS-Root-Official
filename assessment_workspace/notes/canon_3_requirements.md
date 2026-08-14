@@ -100,33 +100,33 @@ Source: `/app/assessment_workspace/canon/text/Akki_Canon_3_Governance_Engines.tx
 
 - **C3-046 (§33)**: Any operation must be provable end-to-end to an outside party who does NOT hold an account on the system and does NOT need operator cooperation (Doc 1 §1.2 Prove).
 - **C3-047 (§33)**: The "prove one run" export packs: admit row · declaration in force · rule versions consulted · retrieved evidence with hashes · trust receipts of any outbound call · verdicts · refusal receipts. Verifiable offline by the receipt's own signatures.
-- **C3-048 (§34)**: The regulator pack is a compiled export over a stated window covering EVERY class the regulator requires. Compiled entirely from the record — never assembled by hand.
+- **C3-048 (§32) [was §34; corrected strong title-match (score=2)]**: The regulator pack is a compiled export over a stated window covering EVERY class the regulator requires. Compiled entirely from the record — never assembled by hand.
 
 ## Part VIII — Two Authorities Seam
 
-- **C3-049 (§35)**: The governing authority (Northena/SyniSense/Solva plus operating engines) and the security authority (Doc 8 Watch) are peer.
-- **C3-050 (§35)**: Where governance ADMITS but the Watch's containment is engaged, the containment holds first — bounded, reversible. The disagreement is escalated for human resolution and recorded in BOTH readings as one entry (Doc 9 §6).
-- **C3-051 (§35)**: Neither authority commands the other. Neither's surface renders the other's INTERIOR (Doc 9 §4).
+- **C3-049 (§33) [was §35; corrected no strong title-match (best score=1); snap to closing section]**: The governing authority (Northena/SyniSense/Solva plus operating engines) and the security authority (Doc 8 Watch) are peer.
+- **C3-050 (§33) [was §35; corrected no strong title-match (best score=1); snap to closing section]**: Where governance ADMITS but the Watch's containment is engaged, the containment holds first — bounded, reversible. The disagreement is escalated for human resolution and recorded in BOTH readings as one entry (Doc 9 §6).
+- **C3-051 (§33) [was §35; corrected no strong title-match (best score=0); snap to closing section]**: Neither authority commands the other. Neither's surface renders the other's INTERIOR (Doc 9 §4).
 
 ## Part IX — Countdown Classes
 
 ### §37
 
-- **C3-052 (§37)**: Every ceremony change has a countdown class binding its wait time. Three canonical classes: fast (measured in hours), standard (in days), slow (in weeks). The class of a rule is a property of the rule, ceremony-set.
-- **C3-053 (§37)**: The Mkondo Charter (Doc 9) itself carries the SLOWEST class because it is the boundary of both authorities at once.
+- **C3-052 (§33) [was §37; corrected no strong title-match (best score=1); snap to closing section]**: Every ceremony change has a countdown class binding its wait time. Three canonical classes: fast (measured in hours), standard (in days), slow (in weeks). The class of a rule is a property of the rule, ceremony-set.
+- **C3-053 (§33) [was §37; corrected no strong title-match (best score=1); snap to closing section]**: The Mkondo Charter (Doc 9) itself carries the SLOWEST class because it is the boundary of both authorities at once.
 
 ## Part X — What Governance Does NOT Do
 
 ### §40
 
-- **C3-054 (§40)**: Governance does not decide behavioural intent (Watch territory).
-- **C3-055 (§40)**: Governance does not run any operation on the runtime path of a person (Doc 1 §4.7).
-- **C3-056 (§40)**: Governance does not maintain a second record (Doc 1 §4.3).
-- **C3-057 (§40)**: Governance does not assert a figure it has not measured (Doc 1 §4.4).
-- **C3-058 (§40)**: Governance does not offer an override, an emergency mode, an admin bypass, a support-access path (Doc 1 §15).
+- **C3-054 (§33) [was §40; corrected no strong title-match (best score=1); snap to closing section]**: Governance does not decide behavioural intent (Watch territory).
+- **C3-055 (§33) [was §40; corrected no strong title-match (best score=1); snap to closing section]**: Governance does not run any operation on the runtime path of a person (Doc 1 §4.7).
+- **C3-056 (§33) [was §40; corrected no strong title-match (best score=1); snap to closing section]**: Governance does not maintain a second record (Doc 1 §4.3).
+- **C3-057 (§33) [was §40; corrected no strong title-match (best score=1); snap to closing section]**: Governance does not assert a figure it has not measured (Doc 1 §4.4).
+- **C3-058 (§33) [was §40; corrected no strong title-match (best score=1); snap to closing section]**: Governance does not offer an override, an emergency mode, an admin bypass, a support-access path (Doc 1 §15).
 
 ## Part XI — Enforcement (§41)
 
-- **C3-059 (§41 Static analysis)**: Build gates: outbound-capability check; ledger-write-before-return check; declaration-required-before-operation check; frozen-objective-not-mutated check.
-- **C3-060 (§41 Runtime)**: Every operation carries its verdict receipt through response emission; missing receipt = failed request, no exception.
-- **C3-061 (§41)**: A gate that CANNOT DEMONSTRATE ITSELF FIRING is not in force (Doc 6 §4). The Verification Runner is the standing demonstration surface.
+- **C3-059 (§33 Static analysis) [was §41; corrected no strong title-match (best score=1); snap to closing section]**: Build gates: outbound-capability check; ledger-write-before-return check; declaration-required-before-operation check; frozen-objective-not-mutated check.
+- **C3-060 (§33 Runtime) [was §41; corrected no strong title-match (best score=0); snap to closing section]**: Every operation carries its verdict receipt through response emission; missing receipt = failed request, no exception.
+- **C3-061 (§33) [was §41; corrected no strong title-match (best score=1); snap to closing section]**: A gate that CANNOT DEMONSTRATE ITSELF FIRING is not in force (Doc 6 §4). The Verification Runner is the standing demonstration surface.

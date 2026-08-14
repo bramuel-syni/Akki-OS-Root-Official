@@ -28,7 +28,7 @@ Rows:
 |---|---|---|---|
 | **C7-003 · C7-004 · C7-011** | Scoped-key issuance per application; same flow for every caller; reference app uses same path | REUSE | `services/auth/engineer_key_grant*` (3 files); tests `test_engineer_key_grant_e2_taxonomy.py`, `test_engineer_key_grant_ledger.py`, `test_engineer_key_grant_load_bearing_wire_shape.py`, `test_memory_engineer_key_grant_e2e_propagation.py`, `test_master_admin_auth_reconciliation.py`, `backend_http_e2e_grant_test.py` |
 | Executive-Core JWT + OAuth + MFA + magic-link | Application user auth (retained) | RE-POINT | `Akki-Executive-Core backend/routers/auth*.py`, `oauth_google.py`, `mfa.py` |
-| Application-side rate-limit / CSRF / session-timeout / privacy-wall / clamav / RBAC / security-headers / sentry | Cross-cutting app-side security | RETIRE from platform (Canon 5 §46 no platform-side bypass path) | Executive-Core loose services |
+| Application-side rate-limit / CSRF / session-timeout / privacy-wall / clamav / RBAC / security-headers / sentry | Cross-cutting app-side security | RETIRE from platform (Canon 5 §43 no platform-side bypass path) | Executive-Core loose services |
 
 ## Instance isolation + scoped-accessor pattern
 

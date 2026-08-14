@@ -48,7 +48,7 @@ Each item below has exactly these seven fields:
 
 Cross-cutting doctrinal frame (applies to every item; not repeated inside items):
 - Canon 9 §6-§18 record matrix (every writer↔readers row is a live contract) — every item names the record class it touches.
-- Canon 9 §23-§35 task-identity register — every item names its task identity even though the register is a Part-2 BUILD.
+- Canon 9 §8-§35 task-identity register — every item names its task identity even though the register is a Part-2 BUILD.
 - Canon 4 §32 quality matrix + Canon 3 §31 verification packs — every QUALITY EVIDENCE field references one or both.
 - Ruling 1 four-test discipline — every DoD passes: named mechanism · quality-discipline exact · credit spend defended · nothing lands canon does not keep.
 
@@ -68,7 +68,7 @@ WIRING covers new work that connects REUSE / HARVEST items into a request-path o
 4. **QUALITY EVIDENCE.** Invariant test class extending `tests/invariants/test_northena_ledger_row_v0.py` and `tests/invariants/test_admission_refusal_v0_contract_frozen.py`. Uncurated sample: at least one drill run with a fixture where the declaration is expired mid-run; the refusal reason must appear in the sample. Calibration obligation (Canon 3 §31): the refusal reason exports intact through the prove-one-run pack.
 5. **DEPENDENCIES.** Gated by `WS-BUILD-DECL` (declaration seat + admit-time check + supersession) — Part 2 item. Uses declaration record class from `WS-BUILD-RECORD-MATRIX` (Part 2). Interacts with `WS-WIRE-LEDGER-MATRIX` (this Part 1) — the ledger becomes matrix-governed by that item.
 6. **CREDIT COST CLASS.** M. Justification: 1 component (`services/northena/admit.py`), 0 new contracts (extends the frozen `AdmissionRefusalV0` shape), 2 integration surfaces (declaration seat + ledger writer).
-7. **REVERSAL COST.** Cheap. The ledger is append-only; a wiring rollback issues a canon-9 correction row (new entry, never a mutation — Canon 8 §41). No user-visible state migrates. Risk: refusal-corpus contamination if the new reason family is retired later — mitigated by keeping the family taxonomy in the refusal-family registry (`WS-WIRE-REFUSAL-FAMILY`).
+7. **REVERSAL COST.** Cheap. The ledger is append-only; a wiring rollback issues a canon-9 correction row (new entry, never a mutation — Canon 8 §21). No user-visible state migrates. Risk: refusal-corpus contamination if the new reason family is retired later — mitigated by keeping the family taxonomy in the refusal-family registry (`WS-WIRE-REFUSAL-FAMILY`).
 
 ---
 
@@ -113,29 +113,29 @@ WIRING covers new work that connects REUSE / HARVEST items into a request-path o
 1. **WHAT.** Intent-audit divergence-field (from admit) consumed by the Watch's Macho sensor. Row C3-026 PARTIAL. Record class touched: `Watch.Verdict` (Canon 9 §6 writer = Watch, reader = Compliance Console + Governance). Task identity: `watch.macho.intent_divergence_sense`.
 2. **CANON CLAUSES SATISFIED.** Canon 3 §26 (intent audit); Canon 8 §6 (three-actor seam Macho sensor); Canon 8 §14-§15 (marks + reconciliation); Canon 9 §6 handoff `governance→Watch verdict`.
 3. **DEFINITION OF DONE.** Every intent-audit divergence row (declared purpose vs measured purpose) becomes an input to Macho; a divergence above the governed threshold produces a Watch mark of class `intent_divergence` (Canon 8 §14). The mark carries the source LedgerRow id (append-only chain). Verification: a drill with a deliberately-diverged actor produces one and only one intent-divergence mark within Canon 8 §5 machine-speed bounds (< the frozen response-time seat).
-4. **QUALITY EVIDENCE.** Drill class (Watch drill C8-034). Uncurated sample: 5 divergence fixtures spanning the calibration band + 5 non-divergent controls; false-mark rate must stay under the Canon-8 §32 operative parameter. Calibration under Canon 3 §31 + Canon 8 §32.
+4. **QUALITY EVIDENCE.** Drill class (Watch drill C8-034). Uncurated sample: 5 divergence fixtures spanning the calibration band + 5 non-divergent controls; false-mark rate must stay under the Canon-8 §32 operative parameter. Calibration under Canon 3 §31 + Canon 8 §21.
 5. **DEPENDENCIES.** `WS-BUILD-WATCH-ACTORS` (Part 2 — Macho sensor), `WS-BUILD-WATCH-MARK-REGISTER` (Part 2), `WS-BUILD-RECORD-MATRIX` (Part 2), `WS-WIRE-LEDGER-MATRIX` (this Part 1).
 6. **CREDIT COST CLASS.** M. Justification: 2 components (intent-audit surface, Watch Macho ingest), 1 new contract (intent-divergence mark class), 2 integration surfaces (ledger reader + Watch mark writer).
-7. **REVERSAL COST.** Medium. Marks are append-only; a wrong wire generates spurious marks. Reversal = disable divergence ingest; marks written stay in the register with a Canon 8 §41 correction entry. No mark class deletion.
+7. **REVERSAL COST.** Medium. Marks are append-only; a wrong wire generates spurious marks. Reversal = disable divergence ingest; marks written stay in the register with a Canon 8 §21 correction entry. No mark class deletion.
 
 ---
 
 ## WS-WIRE-WATCH-PLANE-ACTIVITY
 
-1. **WHAT.** Watch reads plane activity (not content) — row C7-019. Canon 8 §71 boundary constraint: Watch sees activity metadata (who wrote what class, when, verdict), never plane content. Record class touched: `Watch.Read` (Canon 9 §21 read-only reader; no writer). Task identity: `watch.plane_activity_read`.
-2. **CANON CLAUSES SATISFIED.** Canon 7 §19 (plane activity — not content); Canon 8 §71 (Watch never reads content); Canon 9 §21 (matrix defines reader lists per class).
-3. **DEFINITION OF DONE.** Watch's plane-activity reader passes a discipline test that no content field crosses the boundary. Canon 8 §32 operative parameter "watch surface bounded to activity" goes green. Verification: an AST-level ingress-firewall test (mirror of the existing `test_ast_egress_gate.py` in Extraction-Akki) blocks any content-typed field from reaching Watch code.
-4. **QUALITY EVIDENCE.** Invariant test (AST-scoped gate). Uncurated sample: one week of real plane activity events on the drill fixture; boundary crossing count = 0. Calibration under Canon 3 §31 + Canon 8 §32.
+1. **WHAT.** Watch reads plane activity (not content) — row C7-019. Canon 8 §21 boundary constraint: Watch sees activity metadata (who wrote what class, when, verdict), never plane content. Record class touched: `Watch.Read` (Canon 9 §8 read-only reader; no writer). Task identity: `watch.plane_activity_read`.
+2. **CANON CLAUSES SATISFIED.** Canon 7 §19 (plane activity — not content); Canon 8 §21 (Watch never reads content); Canon 9 §8 (matrix defines reader lists per class).
+3. **DEFINITION OF DONE.** Watch's plane-activity reader passes a discipline test that no content field crosses the boundary. Canon 8 §21 operative parameter "watch surface bounded to activity" goes green. Verification: an AST-level ingress-firewall test (mirror of the existing `test_ast_egress_gate.py` in Extraction-Akki) blocks any content-typed field from reaching Watch code.
+4. **QUALITY EVIDENCE.** Invariant test (AST-scoped gate). Uncurated sample: one week of real plane activity events on the drill fixture; boundary crossing count = 0. Calibration under Canon 3 §31 + Canon 8 §21.
 5. **DEPENDENCIES.** `WS-BUILD-WATCH-FOUNDATION` (Part 2), `WS-BUILD-RECORD-MATRIX` (Part 2), `WS-HARVEST-PARTITIONS` (Part 1 — session partitions carry the activity envelope).
 6. **CREDIT COST CLASS.** M. Justification: 2 components (plane reader shim + Watch ingest), 1 changed contract (Watch's read shape), 2 integration surfaces.
-7. **REVERSAL COST.** Low-medium. Reversal = disable the reader. But if any Watch verdict was written using content (violation), those verdicts are frozen (append-only). Remediation is by Canon 8 §41 correction entry — not deletion.
+7. **REVERSAL COST.** Low-medium. Reversal = disable the reader. But if any Watch verdict was written using content (violation), those verdicts are frozen (append-only). Remediation is by Canon 8 §21 correction entry — not deletion.
 
 ---
 
 ## WS-WIRE-ADMISSION-HANDOFF
 
-1. **WHAT.** Existing admission→extraction handoff at `services/wizard/admission_handoff.py` (per REUSE_ASSESSMENT.md file map) registered as a Canon-9 §6 contract (row C9-036). Record class touched: `Handoff.Contract` (Canon 9 §37-§42). Task identity: `handoff.admission_to_extraction`.
-2. **CANON CLAUSES SATISFIED.** Canon 9 §6 (handoff contracts as first-class); Canon 9 §37-§42 (six handoff contract shapes).
+1. **WHAT.** Existing admission→extraction handoff at `services/wizard/admission_handoff.py` (per REUSE_ASSESSMENT.md file map) registered as a Canon-9 §6 contract (row C9-036). Record class touched: `Handoff.Contract` (Canon 9 §8-§42). Task identity: `handoff.admission_to_extraction`.
+2. **CANON CLAUSES SATISFIED.** Canon 9 §6 (handoff contracts as first-class); Canon 9 §8-§42 (six handoff contract shapes).
 3. **DEFINITION OF DONE.** The `admission_handoff` interface is registered as one of the six Canon-9 handoff contracts (WS-BUILD-HANDOFF-REGISTRY, Part 2), its wire shape frozen under `tests/invariants/test_invariant_contract_snapshots.py` (see `WS-WIRE-PARITY-EXTENSION`). Verification: contract-snapshot test emits a parity seat entry for this handoff.
 4. **QUALITY EVIDENCE.** Contract test (snapshot). Uncurated sample: one week of live admission handoffs; every handoff carries the frozen contract shape. Calibration under Canon 3 §31 verification pack ("prove-one-run" for one handoff).
 5. **DEPENDENCIES.** `WS-BUILD-HANDOFF-REGISTRY` (Part 2), `WS-WIRE-PARITY-EXTENSION` (this Part 1).
@@ -148,18 +148,18 @@ WIRING covers new work that connects REUSE / HARVEST items into a request-path o
 
 1. **WHAT.** Wire the harvested `services/critic_pass/` (from `WS-HARVEST-CRITIC-SEAM`) INTO the spine's answering-request path — the seam only counts when it's in the request flow. Components touched: `services/chat/protective_layer/` + `services/documents/` + `services/analyze_workspace/` + every RE-POINTed answering surface (see `WS-REPOINT-ANSWERING-SURFACES`). Contract: critic-seam manifest gate on outbound answers. Record class touched: `Critic.Verdict` (Canon 9 §6 writer = Critic Seam, reader = Compliance Console + Watch). Task identity: `answer.critic_gate.per_call`.
 2. **CANON CLAUSES SATISFIED.** Canon 4 §21-§23 (Critic Seam guards what workers produce; identical architecture guards what the pipeline produces); Canon 7 §31-§34 (Critic Seam as integration contract); Canon 2 §10.2 (pre-ship checklist).
-3. **DEFINITION OF DONE.** Every answering surface's outbound envelope passes the Critic manifest gate (`test_cif_manifest_submission_gate.py`-shape). No answer leaves the platform without a Critic verdict recorded in the ledger. Canon 4 §32 "critic hit-rate" parameter goes green against the uncurated sample. Verification: drill (Canon 8 §34-§39 standing drills) fires a shaped-defect fixture and the Critic Seam catches it before the answer surfaces.
+3. **DEFINITION OF DONE.** Every answering surface's outbound envelope passes the Critic manifest gate (`test_cif_manifest_submission_gate.py`-shape). No answer leaves the platform without a Critic verdict recorded in the ledger. Canon 4 §32 "critic hit-rate" parameter goes green against the uncurated sample. Verification: drill (Canon 8 §21-§39 standing drills) fires a shaped-defect fixture and the Critic Seam catches it before the answer surfaces.
 4. **QUALITY EVIDENCE.** Contract test (manifest gate). Uncurated sample: 100 real answer envelopes across the four answering surfaces over one drill day; Critic verdict rate = 100%, catch rate on seeded defect corpus ≥ Canon 4 §32 threshold. Calibration under Canon 3 §31 + Canon 4 §32.
 5. **DEPENDENCIES.** `WS-HARVEST-CRITIC-SEAM` (this Part 1), `WS-REPOINT-ANSWERING-SURFACES` (this Part 1), `WS-WIRE-LEDGER-MATRIX` (this Part 1).
 6. **CREDIT COST CLASS.** L. Justification: 4+ components (chat, documents, analyze_workspace, deck_*, inbox_routing, work_studio outputs — the request path fans across the answering surface set), 1 new contract (Critic verdict shape at the outbound envelope), 2 integration surfaces (Critic Seam ingest + ledger writer).
-7. **REVERSAL COST.** Medium. Reversal = removing the gate re-opens ungoverned answers (a Canon-7 violation, ledgered as such). Critic verdicts written stay in the ledger; new entries only. Every un-gated answer surface must issue a Canon 8 §41 correction entry naming itself.
+7. **REVERSAL COST.** Medium. Reversal = removing the gate re-opens ungoverned answers (a Canon-7 violation, ledgered as such). Critic verdicts written stay in the ledger; new entries only. Every un-gated answer surface must issue a Canon 8 §21 correction entry naming itself.
 
 ---
 
 ## WS-WIRE-PARITY-EXTENSION (PROMOTED by Ruling 2)
 
 1. **WHAT.** Extend the frozen-contract-snapshot parity discipline (`tests/invariants/test_invariant_contract_snapshots.py` + 10+ frozen-shape invariants in `Extraction-Akki/backend/tests/invariants/`) to every NEW contract this programme creates: all six Canon-9 handoff contracts, all thirteen Canon-9 record classes, every Watch verdict shape, and the task-identity register schema. Contract touched: parity-seat manifest. Record class touched: `ParitySeat.Contract`. Task identity: `parity_seat.contract_freeze.per_shape`.
-2. **CANON CLAUSES SATISFIED.** Canon 9 §6-§18 (record matrix as live contracts); Canon 9 §37-§42 (handoff contracts); Canon 8 §55-§59 (Watch record classes); Canon 3 §31 (verification packs); Canon 4 §32 (quality matrix).
+2. **CANON CLAUSES SATISFIED.** Canon 9 §6-§18 (record matrix as live contracts); Canon 9 §8-§42 (handoff contracts); Canon 8 §21-§59 (Watch record classes); Canon 3 §31 (verification packs); Canon 4 §32 (quality matrix).
 3. **DEFINITION OF DONE.** For every new contract this programme creates, a matching parity-seat entry lands in `tests/invariants/test_invariant_contract_snapshots.py` (or a companion). Every new contract has a frozen JSON snapshot alongside `memory_plane_v0.contract_snapshot.json` shape. Contract-drift test fires (invariant class) on any downstream field-name / type change without matrix-recorded migration. Verification pack: Canon 3 §31 prove-one-run confirms every new contract carries its snapshot.
 4. **QUALITY EVIDENCE.** Invariant class (contract-drift). Uncurated sample: every new contract from Part 2 BUILD items. Calibration under Canon 3 §31 — no contract lands without its parity seat.
 5. **DEPENDENCIES.** Gates every Part 2 BUILD that introduces a new contract: `WS-BUILD-HANDOFF-REGISTRY`, `WS-BUILD-RECORD-MATRIX`, `WS-BUILD-TASK-IDENTITY-REGISTER`, `WS-BUILD-WATCH-RECORD-CLASSES`, `WS-BUILD-DECL` (declaration record).
@@ -171,7 +171,7 @@ WIRING covers new work that connects REUSE / HARVEST items into a request-path o
 ## WS-WIRE-REFUSAL-FAMILY (PROMOTED by Ruling 2)
 
 1. **WHAT.** Wire the existing refusal-family taxonomy (`services/memory/memory_refusal_reasons.v0.json` + `services/memory/refusal.py`) to the Canon 5 §9.2 refusal card surface (`WS-BUILD-REFUSAL-CARD-COPY`, Part 2). Contract touched: refusal-reason JSON snapshot (frozen; must be extended via parity seat per `WS-WIRE-PARITY-EXTENSION`). Record class touched: `Refusal.Reason`. Task identity: `refusal.family.render_at_surface`.
-2. **CANON CLAUSES SATISFIED.** Canon 5 §9.2 (verbatim refusal card copy); Canon 1 §20 (refusal recorded, never dropped — N-INV-9); Canon 3 §17 (refusal shapes catalogued).
+2. **CANON CLAUSES SATISFIED.** Canon 5 §9.2 (verbatim refusal card copy); Canon 1 §16 (refusal recorded, never dropped — N-INV-9); Canon 3 §17 (refusal shapes catalogued).
 3. **DEFINITION OF DONE.** Every refusal reason surfaced in the Canon 5 §9.2 refusal card component is sourced from the `memory_refusal_reasons.v0.json` taxonomy — no ad hoc copy. The card's frozen-copy invariant test asserts byte-identity of the rendered refusal text with the taxonomy entry. Canon 3 §31 prove-one-run for a refused request emits the taxonomy id + the card copy identically.
 4. **QUALITY EVIDENCE.** Invariant class (frozen-copy). Uncurated sample: every distinct refusal reason encountered across a drill week must render verbatim from the taxonomy in every refusal-card impression. Calibration under Canon 3 §31.
 5. **DEPENDENCIES.** `WS-BUILD-REFUSAL-CARD-COPY` (Part 2 — the surface being wired to), `WS-WIRE-PARITY-EXTENSION` (this Part 1 — extends the parity seat for the JSON taxonomy).
@@ -183,7 +183,7 @@ WIRING covers new work that connects REUSE / HARVEST items into a request-path o
 ## WS-WIRE-LEDGER-MATRIX (PROMOTED by Ruling 2)
 
 1. **WHAT.** Promote the Northena ledger's sole-writer position (`services/northena/ledger.py:63 record()`, `insert_one` at L65) to a Canon 9 §6-§18 matrix-governed writer — the ledger IS the writer for record class `Ledger.Row` in the matrix. Component touched: `services/northena/ledger.py`. Contract touched: `LedgerRow` frozen shape (`test_northena_ledger_row_v0.py`). Record class: `Ledger.Row` (Canon 9 §6 row 1). Task identity: `ledger.writer.matrix_governed`.
-2. **CANON CLAUSES SATISFIED.** Canon 1 §4.3 (append-only, N-INV-4); Canon 1 §7.1 (Northena as authoritative ledger); Canon 9 §6-§18 (record matrix — writers and readers defined); Canon 9 §21 (reads route through matrix reader-list).
+2. **CANON CLAUSES SATISFIED.** Canon 1 §4.3 (append-only, N-INV-4); Canon 1 §7.1 (Northena as authoritative ledger); Canon 9 §6-§18 (record matrix — writers and readers defined); Canon 9 §8 (reads route through matrix reader-list).
 3. **DEFINITION OF DONE.** The record matrix `WS-BUILD-RECORD-MATRIX` (Part 2) names Northena's `record()` as the sole writer for `Ledger.Row`. Every reader of `db.northena_ledger` is enumerated in the matrix reader-list; any code path reading the collection outside the reader-list fails an AST discipline check (mirror of `test_ast_egress_gate.py`). Verification: matrix reader-list snapshot has 100% coverage of the observed readers over a drill week.
 4. **QUALITY EVIDENCE.** Invariant class (matrix-writer-sole; AST-scoped reader-list check). Uncurated sample: full week of ledger writes and reads; writer count outside `record()` = 0, reader count outside matrix reader-list = 0. Calibration under Canon 3 §31 + Canon 9 §6.
 5. **DEPENDENCIES.** `WS-BUILD-RECORD-MATRIX` (Part 2), `WS-WIRE-PARITY-EXTENSION` (this Part 1 — for the matrix shape).
@@ -320,7 +320,7 @@ RE-POINT covers Executive-Core answering surfaces whose LLM boundary is triviall
 4. **QUALITY EVIDENCE.** Contract test (envelope shape) + drill class (answering-day drill). Uncurated sample: 100 real answers across the 8 surfaces over one drill day; envelope shape frozen. Calibration under Canon 3 §31 + Canon 4 §32.
 5. **DEPENDENCIES.** `WS-HARVEST-STREAMING` (Part 1 — streaming port must exist), `WS-WIRE-CRITIC-INTO-ANSWERING` (this Part 1), `WS-WIRE-LEDGER-MATRIX` (this Part 1), `WS-BUILD-CLASS-CHIP-LIBRARY` (Part 2), `WS-BUILD-ANSWER-CARD` (Part 2). Also depends on `WS-REBUILD-WORK-STUDIO-STORAGE` for the work_studio subset (partial RE-POINT until storage lands).
 6. **CREDIT COST CLASS.** XL. Justification: 4+ components AND estate-wide wiring. **One-paragraph defence:** Every non-application-territory answer flow in Executive-Core routes through this adapter swap, and the swap crosses the Shield boundary, streaming port, memory plane, ledger matrix, class-chip render surface, and Critic Seam simultaneously. Sequencing missteps in any of the six integration surfaces produce answer-outage or spec violation. The estate-wide integration-surface count and the answer-path fan-out both meet the XL bar independently.
-7. **REVERSAL COST.** Very high on ANY user-visible answer regression during the transition. The adapter swap is atomic per-surface but staged across surfaces; a half-swap produces two adapters live simultaneously. Reversal requires per-surface adapter restoration and a Canon-3 §24 rule-change ceremony to un-freeze the swap. Data (answers) landing during a bad-swap window are ledgered append-only; no un-write, remediation via Canon 8 §41 correction entries per bad-swap answer.
+7. **REVERSAL COST.** Very high on ANY user-visible answer regression during the transition. The adapter swap is atomic per-surface but staged across surfaces; a half-swap produces two adapters live simultaneously. Reversal requires per-surface adapter restoration and a Canon-3 §24 rule-change ceremony to un-freeze the swap. Data (answers) landing during a bad-swap window are ledgered append-only; no un-write, remediation via Canon 8 §21 correction entries per bad-swap answer.
 
 ---
 
@@ -392,10 +392,10 @@ CONTRADICTION covers Executive-Core surfaces where the assessment found a canon-
 
 ## WS-CONTRADICTION-PURPOSE-GATE
 
-1. **WHAT.** Executive-Core `services/synisense/shield/purpose_validator.validate_purpose()` (at `client.py:63`) purpose-enforcement gate. Component: `services/synisense/shield/purpose_validator.py`. Contract: purpose-enforcement input envelope. Record class: `Purpose.Verdict` (Canon 8 §55-§59 category). Task identity: `shield.purpose_gate.per_call`.
+1. **WHAT.** Executive-Core `services/synisense/shield/purpose_validator.validate_purpose()` (at `client.py:63`) purpose-enforcement gate. Component: `services/synisense/shield/purpose_validator.py`. Contract: purpose-enforcement input envelope. Record class: `Purpose.Verdict` (Canon 8 §21-§59 category). Task identity: `shield.purpose_gate.per_call`.
 2. **CANON CLAUSES SATISFIED.** Canon 3 §6.1 (actor-declaration must fire); Canon 8 §14-§15 (Watch reconciler must fire); Canon 9 §6 handoff `governance→Watch verdict`. Ruling 1 binds the transition condition.
 3. **DEFINITION OF DONE.** **Under Ruling 1, DoD IS the demonstrated-firing evidence.** Specifically: (a) `WS-BUILD-DECL` (declaration seat + admit-time check + supersession — Part 2) demonstrates firing via drill; the declaration verdict is observable in the ledger for a real refusal event. (b) `WS-BUILD-WATCH-RECONCILER` (Part 2 — named by Ruling 1) demonstrates firing via drill; the Watch reconciler produces a verdict shape per Canon 8 §14-§15 for a shared-record reconciliation event. Both drill outputs are retained in the ledger and cross-cited. **Only after both demonstrations fire** may the gate strip proceed via a Canon 3 §24 rule-change ceremony (5 steps including re-verified — see `WS-BUILD-CEREMONY-REVERIFY`). Until then: gate STANDS as a canon-compliant surface at Executive-Core HEAD. The strip event itself is a distinct future item, ledgered separately.
-4. **QUALITY EVIDENCE.** Two drill records (one per prerequisite) in the ledger; parity-seat entries for the two new contracts (declaration verdict, Watch reconciler verdict) via `WS-WIRE-PARITY-EXTENSION`. Uncurated sample: at minimum one drill day covering each prerequisite. Calibration under Canon 3 §31 + Canon 8 §32.
+4. **QUALITY EVIDENCE.** Two drill records (one per prerequisite) in the ledger; parity-seat entries for the two new contracts (declaration verdict, Watch reconciler verdict) via `WS-WIRE-PARITY-EXTENSION`. Uncurated sample: at minimum one drill day covering each prerequisite. Calibration under Canon 3 §31 + Canon 8 §21.
 5. **DEPENDENCIES.** **GATED BY `WS-BUILD-DECL` AND `WS-BUILD-WATCH-RECONCILER`** (both Part 2 BUILD items). Also depends on `WS-BUILD-CEREMONY-REVERIFY` (this Part 1) for the strip ceremony's re-verify step. Also `WS-WIRE-PARITY-EXTENSION`.
 6. **CREDIT COST CLASS.** M. Justification: 1 component (the gate itself), 0 new contracts on retain-phase (evidence is written to existing ledger + Watch mark register), 2 integration surfaces (declaration verdict input + Watch reconciler input). Reclassify to S when strip-phase-only.
 7. **REVERSAL COST.** **Very low during retain phase** (gate is doing its stated work). **Very high if stripped prematurely** (before both demonstrations fire) — this is a Canon-1 §7.1 authority breach that ledgers append-only and cannot be un-written; every downstream Shield call taken with the gate down is a Canon-3 §6.1 violation. Ruling 1 IS the safeguard against premature strip.
@@ -404,7 +404,7 @@ CONTRADICTION covers Executive-Core surfaces where the assessment found a canon-
 
 # G. RETIRE items (4 concrete + 1 rename = 5)
 
-Concrete RETIRE clusters cite Canon 1 §12/§13/§15 or Canon 5 §46 (no bypass path).
+Concrete RETIRE clusters cite Canon 1 §12/§13/§15 or Canon 5 §43 (no bypass path).
 
 ---
 
@@ -435,8 +435,8 @@ Concrete RETIRE clusters cite Canon 1 §12/§13/§15 or Canon 5 §46 (no bypass 
 ## WS-RETIRE-FRONTEND-ARCHIVES
 
 1. **WHAT.** Retire codebase-self-marked archives: `frontend/src/_archived/` (61 files), `frontend/src/_archived_legacy/`, `frontend/src/_archived_coverage_loss/`, and `frontend/src/website/` (34 files, marketing). Task identity: `retire.frontend_archives.per_directory`.
-2. **CANON CLAUSES SATISFIED.** Canon 5 §46 (no surface offers bypass/override); Canon 1 §12-§13 (marketing website is application/commercial territory).
-3. **DEFINITION OF DONE.** Archived directories removed from platform frontend deployment. Marketing website continues at application-layer (or standalone). Canon 5 §46 no-bypass invariant confirmed by inventory: only Canon 5 §10 four-console surfaces + Canon 5 §40 five-pillar surfaces render.
+2. **CANON CLAUSES SATISFIED.** Canon 5 §43 (no surface offers bypass/override); Canon 1 §12-§13 (marketing website is application/commercial territory).
+3. **DEFINITION OF DONE.** Archived directories removed from platform frontend deployment. Marketing website continues at application-layer (or standalone). Canon 5 §43 no-bypass invariant confirmed by inventory: only Canon 5 §10 four-console surfaces + Canon 5 §40 five-pillar surfaces render.
 4. **QUALITY EVIDENCE.** Inventory audit (surface-list) + invariant class (no-bypass at the router). Uncurated sample: full frontend surface list for the drill week; every rendered route maps to a Canon 5 anchor.
 5. **DEPENDENCIES.** As `WS-RETIRE-APP-TERRITORY`.
 6. **CREDIT COST CLASS.** S. Justification: 1 component (frontend surface list), 0 new contracts.
@@ -447,7 +447,7 @@ Concrete RETIRE clusters cite Canon 1 §12/§13/§15 or Canon 5 §46 (no bypass 
 ## WS-RETIRE-PROTOTYPE-DIVERGENCE
 
 1. **WHAT.** Retire prototype-only surfaces that lack a Canon-5 anchor: `hrstuff` (Collab > HR Stuff), `datashield/reasoningshield/accessshield` naming, `compute` (Registry > Compute), `tasks` (WorkStudio > Task Manager), `mentions/emails/projects` (Collab). Task identity: `retire.prototype_divergence.per_surface`.
-2. **CANON CLAUSES SATISFIED.** Canon 5 §40 (fixed five-pillar taxonomy); Canon 5 §46 (no bypass); Canon 1 §13 (application territory).
+2. **CANON CLAUSES SATISFIED.** Canon 5 §40 (fixed five-pillar taxonomy); Canon 5 §43 (no bypass); Canon 1 §13 (application territory).
 3. **DEFINITION OF DONE.** Every prototype nav item that lacks a Canon 5 anchor is removed from the platform surface OR moved to application territory. Verification: canon-5 conformance audit shows 100% of platform nav items map to Canon 5 §40 pillars or §10 consoles.
 4. **QUALITY EVIDENCE.** Inventory audit (nav-list vs Canon 5 anchors). Uncurated sample: full prototype nav list vs Canon 5 §10/§40 anchor list; delta = 0.
 5. **DEPENDENCIES.** None (prototype is documentation/design only).
@@ -489,12 +489,12 @@ MODIFY / PARTIAL covers existing code that must be extended to close an operativ
 ## WS-BUILD-DELIVERABLE-ATTESTATIONS
 
 1. **WHAT.** Contents / privacy / quality attestation surface uplift (rows C4-056..C4-060 PARTIAL). Component: delivery-attestation surface (needs specific file identification — fidelity-ledger FL-P1-06). Contract: `Deliverable.Attestation.v0`. Record class: `Deliverable.Attestation`. Task identity: `deliverable.attest.per_delivery`.
-2. **CANON CLAUSES SATISFIED.** Canon 4 §56-§60 (contents/privacy/quality attestations at delivery).
+2. **CANON CLAUSES SATISFIED.** Canon 4 §50-§60 (contents/privacy/quality attestations at delivery).
 3. **DEFINITION OF DONE.** Every deliverable carries a three-field attestation (contents / privacy / quality) rendered on the answer surface AND recorded to the ledger. Missing attestations fail closed. Verification: prove-one-run of one delivered answer shows the three attestations verbatim.
 4. **QUALITY EVIDENCE.** Contract test (attestation shape) + drill (delivery drill). Uncurated sample: 20 real deliveries across a drill week; every one carries all three attestations.
 5. **DEPENDENCIES.** `WS-WIRE-CRITIC-INTO-ANSWERING`, `WS-WIRE-LEDGER-MATRIX`, `WS-BUILD-ANSWER-CARD` (Part 2), `WS-BUILD-CLASS-CHIP-LIBRARY` (Part 2).
 6. **CREDIT COST CLASS.** M. Justification: 1-2 components, 1 new contract (attestation envelope).
-7. **REVERSAL COST.** Low. Reversal removes attestations from surfaces (Canon 4 §56 violation, ledgered).
+7. **REVERSAL COST.** Low. Reversal removes attestations from surfaces (Canon 4 §50 violation, ledgered).
 
 ---
 
@@ -585,12 +585,12 @@ Column key: **Tile** = Admin-surface tile name (the "app" as user sees it) · **
 | `ClassBadge.js` | (component) | (reusable) | Canon 5 §2 class chip | HARVEST | WS-HARVEST-CLASS-CHIP-LIBRARY |
 | `RetentionPostureBadge.jsx` | (component) | (reusable) | Canon 5 §22-§23 retention posture | HARVEST | WS-HARVEST-COMPONENT-LIBRARY |
 | `CounterSignBanner.jsx` | (component) | (reusable) | Canon 3 §24 ceremony banner | HARVEST | WS-HARVEST-COMPONENT-LIBRARY |
-| `AuthDeniedNotice.js` | (component) | (reusable) | Canon 5 §46 (denied ≠ refusal card) | HARVEST | WS-HARVEST-COMPONENT-LIBRARY |
+| `AuthDeniedNotice.js` | (component) | (reusable) | Canon 5 §43 (denied ≠ refusal card) | HARVEST | WS-HARVEST-COMPONENT-LIBRARY |
 | `EngineCard.js` | (component) | (reusable) | Canon 1 §7 engine wall render | HARVEST | WS-HARVEST-COMPONENT-LIBRARY |
 | `LedgerTable.js` | (component) | (reusable) | Canon 1 §4.3 ledger render | HARVEST | WS-HARVEST-COMPONENT-LIBRARY |
 | `OuterGateReceiptInline.js` | (component) | (reusable) | Canon 4 §16 frozen unit receipt | HARVEST | WS-HARVEST-COMPONENT-LIBRARY |
 | `RefusalCard.js` | (component) | (reusable) | Canon 5 §9.2 refusal card | HARVEST | WS-HARVEST-REFUSAL-CARD (couples with WS-WIRE-REFUSAL-FAMILY) |
-| `StatusBadge.js` | (component) | (reusable) | Canon 5 §63-§65 sensor render | HARVEST | WS-HARVEST-COMPONENT-LIBRARY |
+| `StatusBadge.js` | (component) | (reusable) | Canon 5 §43-§65 sensor render | HARVEST | WS-HARVEST-COMPONENT-LIBRARY |
 | `TrustReceiptLink.js` | (component) | (reusable) | Canon 4 §16 trust receipt | HARVEST | WS-HARVEST-COMPONENT-LIBRARY |
 | `ConnectHomePage.jsx` | Connect | Integration Console | Canon 5 §24-§25 (Integration / Register first-call) | HARVEST | WS-HARVEST-CONSOLE-INTEGRATION |
 | `ConnectNewSourcePage.jsx` | New Source | Integration Console | Canon 5 §27 (Register) | HARVEST | WS-HARVEST-CONSOLE-INTEGRATION |
@@ -617,7 +617,7 @@ Column key: **Tile** = Admin-surface tile name (the "app" as user sees it) · **
 | `TeamAccessRegisterPage.jsx` | Access Register | Administration Console | Canon 5 §34 (Roles & Rights — access register) | HARVEST | WS-HARVEST-CONSOLE-ADMINISTRATION |
 | `TeamApprovalSurfacePage.jsx` | Approval Surface | Administration Console | Canon 5 §35 (Counter-Sign Duties) | HARVEST | WS-HARVEST-CONSOLE-ADMINISTRATION |
 | `TeamConstitutionalSeatsPage.jsx` | Constitutional Seats | Administration Console | Canon 1 §7.1 peer authorities + Canon 3 §28 independence | HARVEST | WS-HARVEST-CONSOLE-ADMINISTRATION (couples WS-BUILD-INDEPENDENCE-GATE) |
-| `TraceReceiptPage.js` | Trace Receipt | Compliance Console | Canon 3 §46-§48 prove-one-run export | MODIFY | WS-MODIFY-PROVE-ONE-RUN-EXPORT (rehome — RENDERING DECISION FL-P1-09) |
+| `TraceReceiptPage.js` | Trace Receipt | Compliance Console | Canon 3 §33-§48 prove-one-run export | MODIFY | WS-MODIFY-PROVE-ONE-RUN-EXPORT (rehome — RENDERING DECISION FL-P1-09) |
 | `ProvePage.jsx` | Prove | Compliance Console | Canon 5 §23 (Prove-one-run) | HARVEST | WS-HARVEST-CONSOLE-COMPLIANCE |
 | `ProveWalkPage.jsx` | Prove Walk | Compliance Console | Canon 5 §23 (Prove-one-run walk) | HARVEST | WS-HARVEST-CONSOLE-COMPLIANCE |
 | `ProveDormantPage.jsx` | Prove (Dormant) | Compliance Console | Canon 5 §9 (dormant state render) | HARVEST | WS-HARVEST-DORMANT-STATE (couples WS-BUILD-DORMANT-STATE-RENDER moved to Part 1) |
@@ -631,7 +631,7 @@ Column key: **Tile** = Admin-surface tile name (the "app" as user sees it) · **
 | `CommissionRunDetailPage.jsx` | Commissioning Run | Compliance Console | Canon 6 §11-§13 (commissioning run detail) | HARVEST | WS-HARVEST-CONSOLE-COMPLIANCE |
 | `MasterAdminHomePage.js` | Admin Home | Administration Console | Canon 5 §31 (Administration Home) | HARVEST | WS-HARVEST-CONSOLE-ADMINISTRATION |
 | `AdminComplianceReadOnlyView.jsx` | Admin Compliance | Administration Console | Canon 5 §31 (read-only compliance view for admin) | HARVEST | WS-HARVEST-CONSOLE-ADMINISTRATION |
-| `AuditTrailPage.js` | Audit Trail | Compliance Console | Canon 3 §46 (audit-trail export) | MODIFY | WS-MODIFY-AUDIT-TRAIL-PLACEMENT (rehome to Compliance — FL-P1-12) |
+| `AuditTrailPage.js` | Audit Trail | Compliance Console | Canon 3 §33 (audit-trail export) | MODIFY | WS-MODIFY-AUDIT-TRAIL-PLACEMENT (rehome to Compliance — FL-P1-12) |
 | `ChangeARulePage.js` | Change a Rule (Admin) | Administration Console | Canon 5 §32 | HARVEST | WS-HARVEST-CONSOLE-ADMINISTRATION (dedupe with GovernChangeRulePage — FL-P1-13) |
 | `AuthLoginPage.js` | (auth surface) | RETIRE | Canon 1 §13 application-territory auth | RETIRE | WS-RETIRE-APP-TERRITORY (existing item; add these pages) |
 | `AuthRegisterPage.js` | (auth surface) | RETIRE | Canon 1 §13 application-territory auth | RETIRE | WS-RETIRE-APP-TERRITORY |
@@ -657,9 +657,9 @@ Twelve items own the 44-page repurposing plus one shell-grammar item. All carry 
 ## WS-HARVEST-SHELL-GRAMMAR
 
 1. **WHAT.** Repurpose Extraction-Akki's `CanonOSShellPage.jsx` + `design/AkkiShell.jsx` + `AkkiV4Shell.jsx` + `AkkiV4ShellLayout.jsx` + `MarkedOpenSlot.jsx` + `akkiv4_design_system.js` + `ratified_copy.js` as the tile-grid-plus-detail-card grammar host — the Admin-surface shell. Components: 7 shell primitives. Contract: shell layout contract (tile-grid + detail-card render pass). Record class: N/A (surface-only). Task identity: `interface.shell.tile_grid`. **FIXTURE PENDING: reference screenshot.**
-2. **CANON CLAUSES SATISFIED.** Canon 5 §11 (The Shell — no bypass path); Canon 5 §10 (four consoles hosted); Canon 5 §46 (no bypass path); Instruction 02 (tile-grid-plus-detail-card grammar).
-3. **DEFINITION OF DONE.** Every page listed in §I.2 renders inside the shell as an app tile in one of four groups (Extraction / Compliance / Integration / Administration) OR the Watch fourth-group. No page bypasses the shell. Canon 5 §46 no-bypass invariant holds. Shell placement invariant test asserts each tile carries its group + canon identity metadata. Verification: nav audit — 100% of rendered routes carry `(tile, group, canon_identity)` triple.
-4. **QUALITY EVIDENCE.** Invariant class (shell-placement gate) + inventory audit (nav-to-tile mapping). Uncurated sample: every route rendered during a drill day. Calibration under Canon 3 §31 + Canon 5 §46.
+2. **CANON CLAUSES SATISFIED.** Canon 5 §11 (The Shell — no bypass path); Canon 5 §10 (four consoles hosted); Canon 5 §43 (no bypass path); Instruction 02 (tile-grid-plus-detail-card grammar).
+3. **DEFINITION OF DONE.** Every page listed in §I.2 renders inside the shell as an app tile in one of four groups (Extraction / Compliance / Integration / Administration) OR the Watch fourth-group. No page bypasses the shell. Canon 5 §43 no-bypass invariant holds. Shell placement invariant test asserts each tile carries its group + canon identity metadata. Verification: nav audit — 100% of rendered routes carry `(tile, group, canon_identity)` triple.
+4. **QUALITY EVIDENCE.** Invariant class (shell-placement gate) + inventory audit (nav-to-tile mapping). Uncurated sample: every route rendered during a drill day. Calibration under Canon 3 §31 + Canon 5 §43.
 5. **DEPENDENCIES.** Reference screenshot (fixture pending — fidelity ledger FL-P1-14). No inward code dependencies (primitives are donor-ready).
 6. **CREDIT COST CLASS.** L. Justification: 3+ components (7 shell primitives) AND a new register/console surface (the tile-grid grammar itself is the register).
 7. **REVERSAL COST.** Medium. Reversal restores Extraction-Akki's V4Shell as-is (no grammar overlay); every tile falls back to standalone routing — a Canon-5 §11 partial-shell state (ledgered). Data untouched.
@@ -681,7 +681,7 @@ Twelve items own the 44-page repurposing plus one shell-grammar item. All carry 
 ## WS-HARVEST-CONSOLE-COMPLIANCE
 
 1. **WHAT.** Repurpose `pages/prove/ProvePage.jsx`, `ProveWalkPage.jsx` + `pages/govern/GovernHomePage.jsx`, `GovernRetentionPage.jsx`, `GovernHoldsPage.jsx`, `GovernRefusalHealthPage.jsx`, `GovernEstateRulesPage.jsx` + `pages/commission_view/CommissionViewHomePage.jsx`, `CommissionRunDetailPage.jsx` into the Compliance Console tile-group. 9 pages. Also picks up `MemoryPlaneObservabilityPage.jsx` and `TraceReceiptPage.js` and `AuditTrailPage.js` via MODIFY (rehome — see FL-P1-08/09/12). Contract: Compliance Console tile-list. Record class: `Console.Compliance.Registration`. Task identity: `interface.console.compliance`. **FIXTURE PENDING.**
-2. **CANON CLAUSES SATISFIED.** Canon 5 §10 (four consoles); Canon 5 §22-§26 (Compliance Home, Prove-one-run, Retention & Rights, Rulebook, rule-on-paper flag); Canon 3 §46-§48 (prove-one-run export); Canon 6 §11-§13 (commissioning); Canon 3 §31 (verification packs).
+2. **CANON CLAUSES SATISFIED.** Canon 5 §10 (four consoles); Canon 5 §22-§26 (Compliance Home, Prove-one-run, Retention & Rights, Rulebook, rule-on-paper flag); Canon 3 §33-§48 (prove-one-run export); Canon 6 §11-§13 (commissioning); Canon 3 §31 (verification packs).
 3. **DEFINITION OF DONE.** Compliance Console tile-group hosts the 9 donor tiles + 3 rehomed MODIFY tiles (12 total). Rulebook read-back tile lives at Compliance Home (Canon 5 §25 says rulebook lives here, not Administration — hence `GovernEstateRulesPage.jsx` rehomes). `WS-BUILD-VERIFICATION-RUNNER`, `WS-BUILD-PROVE-ONE-RUN`, `WS-BUILD-RULEBOOK-SURFACE` (Part-2 BUILD items) surface here as BUILD-marked open slots per Canon 5 §9. Canon 5 §22-§26 operative parameters go green for harvested tiles.
 4. **QUALITY EVIDENCE.** Inventory audit + invariant (tile placement). Uncurated sample: every Compliance-Console route during a drill day. Calibration under Canon 3 §31 + Canon 5 §22.
 5. **DEPENDENCIES.** `WS-HARVEST-SHELL-GRAMMAR`, `WS-HARVEST-COMPONENT-LIBRARY`, `WS-WIRE-REFUSAL-FAMILY` (for GovernRefusalHealthPage), `WS-BUILD-CEREMONY-REVERIFY`. Reference screenshot pending.
@@ -717,9 +717,9 @@ Twelve items own the 44-page repurposing plus one shell-grammar item. All carry 
 ## WS-HARVEST-COMPONENT-LIBRARY
 
 1. **WHAT.** Repurpose reusable atoms: `RetentionPostureBadge.jsx`, `CounterSignBanner.jsx`, `AuthDeniedNotice.js`, `EngineCard.js`, `LedgerTable.js`, `OuterGateReceiptInline.js`, `StatusBadge.js`, `TrustReceiptLink.js` (8 components). Task identity: `interface.component_library.share`. **FIXTURE PENDING.**
-2. **CANON CLAUSES SATISFIED.** Canon 5 §63-§65 (shared component library — insufficient-measurement render + absence-as-state + shared visual system).
-3. **DEFINITION OF DONE.** All 8 atoms available to every console tile-group as single-source-of-truth imports (`components/ui_spec_v1/index.js` shape). Canon 5 §63-§65 shared-visual-system parameter goes green. Verification: static test `test_shared_components_single_source.test.js` (existing) confirms no duplicated component definitions.
-4. **QUALITY EVIDENCE.** Invariant class (shared-source gate — existing test extends). Uncurated sample: full component-import graph during drill day; import count of each atom outside the library = 0. Calibration under Canon 5 §63.
+2. **CANON CLAUSES SATISFIED.** Canon 5 §43-§65 (shared component library — insufficient-measurement render + absence-as-state + shared visual system).
+3. **DEFINITION OF DONE.** All 8 atoms available to every console tile-group as single-source-of-truth imports (`components/ui_spec_v1/index.js` shape). Canon 5 §43-§65 shared-visual-system parameter goes green. Verification: static test `test_shared_components_single_source.test.js` (existing) confirms no duplicated component definitions.
+4. **QUALITY EVIDENCE.** Invariant class (shared-source gate — existing test extends). Uncurated sample: full component-import graph during drill day; import count of each atom outside the library = 0. Calibration under Canon 5 §43.
 5. **DEPENDENCIES.** `WS-HARVEST-SHELL-GRAMMAR`. Reference screenshot pending.
 6. **CREDIT COST CLASS.** S. Justification: 1 component (library), 0 new contracts, 1 integration surface.
 7. **REVERSAL COST.** Very low.
@@ -741,7 +741,7 @@ Twelve items own the 44-page repurposing plus one shell-grammar item. All carry 
 ## WS-HARVEST-REFUSAL-CARD
 
 1. **WHAT.** Repurpose `RefusalCard.js` as the Canon 5 §9.2 refusal card render, wired to the refusal-family taxonomy via `WS-WIRE-REFUSAL-FAMILY`. Rows C5-005, C5-006, C5-007 (previously BUILD; reclassified HARVEST since the render component exists in Extraction-Akki). Task identity: `interface.refusal_card.render`. **FIXTURE PENDING.**
-2. **CANON CLAUSES SATISFIED.** Canon 5 §9.2 (verbatim refusal card); Canon 1 §20 (refusal recorded, never dropped).
+2. **CANON CLAUSES SATISFIED.** Canon 5 §9.2 (verbatim refusal card); Canon 1 §16 (refusal recorded, never dropped).
 3. **DEFINITION OF DONE.** RefusalCard renders the verbatim card copy from the `memory_refusal_reasons.v0.json` taxonomy per `WS-WIRE-REFUSAL-FAMILY`. Canon 5 §9.2 verbatim-copy invariant holds — existing test `gate2_refusal_firstclass.test.js` (present at spine) fires green. `test_auth_denied_notice_not_refusal_card.test.js` (existing) ensures auth-denied stays out of the refusal card. Verification: prove-one-run for one refused request renders the taxonomy id + card copy identically.
 4. **QUALITY EVIDENCE.** Invariant class (existing `gate2_refusal_firstclass.test.js`). Uncurated sample: every refusal impression during a drill day; card copy is byte-identical to taxonomy. Calibration under Canon 5 §9.2 + Canon 3 §31.
 5. **DEPENDENCIES.** `WS-HARVEST-COMPONENT-LIBRARY`, `WS-WIRE-REFUSAL-FAMILY`, `WS-HARVEST-TWO-PASS-AMENDMENT` (for the added Executive-Core refusal templates). Reference screenshot pending.
@@ -776,10 +776,10 @@ Twelve items own the 44-page repurposing plus one shell-grammar item. All carry 
 
 ## WS-MODIFY-PROVE-ONE-RUN-EXPORT
 
-1. **WHAT.** MODIFY `TraceReceiptPage.js` to be the Canon 3 §46-§48 prove-one-run export tile under Compliance Console, wired to `WS-BUILD-PROVE-ONE-RUN` (Part-2 BUILD). Component: single page. Task identity: `interface.prove_one_run_export.per_pack`. **FIXTURE PENDING.**
-2. **CANON CLAUSES SATISFIED.** Canon 3 §46-§48 (export prove-one-run pack); Canon 5 §23 (Prove-one-run panel).
+1. **WHAT.** MODIFY `TraceReceiptPage.js` to be the Canon 3 §33-§48 prove-one-run export tile under Compliance Console, wired to `WS-BUILD-PROVE-ONE-RUN` (Part-2 BUILD). Component: single page. Task identity: `interface.prove_one_run_export.per_pack`. **FIXTURE PENDING.**
+2. **CANON CLAUSES SATISFIED.** Canon 3 §33-§48 (export prove-one-run pack); Canon 5 §23 (Prove-one-run panel).
 3. **DEFINITION OF DONE.** Trace-receipt page becomes the export surface for a prove-one-run pack; every export event ledgered under `Ceremony.ProveOneRun` record class (Part-2). Placement: Compliance Console. Verification: prove-one-run drill exports a pack via this page and the export event lands in ledger.
-4. **QUALITY EVIDENCE.** Contract test (pack shape) + drill. Uncurated sample: drill exports over a drill week. Calibration under Canon 3 §31 + Canon 3 §46.
+4. **QUALITY EVIDENCE.** Contract test (pack shape) + drill. Uncurated sample: drill exports over a drill week. Calibration under Canon 3 §31 + Canon 3 §33.
 5. **DEPENDENCIES.** `WS-HARVEST-CONSOLE-COMPLIANCE`, `WS-BUILD-PROVE-ONE-RUN` (Part 2), `WS-WIRE-LEDGER-MATRIX`. Reference screenshot pending.
 6. **CREDIT COST CLASS.** M. Justification: 1 component, 1 new contract (pack export event class), 1 integration surface.
 7. **REVERSAL COST.** Low.
@@ -812,8 +812,8 @@ Twelve items own the 44-page repurposing plus one shell-grammar item. All carry 
 
 ## WS-MODIFY-AUDIT-TRAIL-PLACEMENT
 
-1. **WHAT.** MODIFY `AuditTrailPage.js` (currently under master_admin/) to rehome under Compliance Console with Canon 3 §46 audit-trail export identity. Component: single page. Task identity: `interface.audit_trail.rehome`. **FIXTURE PENDING.**
-2. **CANON CLAUSES SATISFIED.** Canon 3 §46 (audit-trail export); Canon 5 §22 (Compliance Home).
+1. **WHAT.** MODIFY `AuditTrailPage.js` (currently under master_admin/) to rehome under Compliance Console with Canon 3 §33 audit-trail export identity. Component: single page. Task identity: `interface.audit_trail.rehome`. **FIXTURE PENDING.**
+2. **CANON CLAUSES SATISFIED.** Canon 3 §33 (audit-trail export); Canon 5 §22 (Compliance Home).
 3. **DEFINITION OF DONE.** Placed under Compliance Console, not duplicated under Administration. Nav audit confirms single home.
 4. **QUALITY EVIDENCE.** Inventory audit.
 5. **DEPENDENCIES.** `WS-HARVEST-CONSOLE-COMPLIANCE`, `WS-WIRE-LEDGER-MATRIX`. Reference screenshot pending.

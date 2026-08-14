@@ -95,3 +95,36 @@ Under Ruling 1's four-test discipline, an unlogged ruling is treated as
 5. **Label-versus-identity rendering decisions land in `notes/fidelity_ledger.md`** as `RENDERING DECISION` rows (not silent renames). This includes: prototype's "Trust Center"/"Shield" naming vs Canon 5's console identities, "WorkStudio" vs "Work", "ThinkLab/Monitor" placement under Lead, and every Extraction-Akki page label that does not carry its Canon-5 identity in the tile.
 6. **Extraction-Akki §5.7 rows previously BUILD are now split**: Watch-related rows stay BUILD (Part 2); all other Canon-5 rows with an Extraction-Akki donor page reclassify to HARVEST or MODIFY (Part 1).
 
+---
+
+## Orchestrator Ruling A · 2026-08-14 · Source: orchestrator (citation drift remediation)
+
+**Verbatim (paraphrased directive):**
+
+> "Citation drift (FL-P1-20): remediate NOW, before Part 2. This is a quality defect, not a governance question — the owner's standard is a zero-failure citation audit, and 40 failed canon anchors would sink the submission. Do a systematic re-mapping: for each of the 40 drifted `Cn-0MM (§XX)` anchors, re-open the extracted canon text, find the REAL heading (by title match, since substance is grounded in heading titles), and correct the numeric anchor in row_to_item_index.md, the domain files, and strategy_items_part1.md. Rules: (a) every correction is a re-read, never a guess; (b) if a row's true anchor genuinely cannot be located by title, it stays failed and gets its own fidelity-ledger row naming exactly what was searched; (c) keep FL-P1-20 as the record of the drift AND its remediation — the defect history is part of the honest record; (d) re-run the citation audit and report the new numbers. Root-cause one line in CONTEXT.md: how did Chunk-1 extraction mint §-numbers beyond the heading span (likely sub-paragraph counting) so Part 2 doesn't repeat it."
+
+**Binding effects:**
+1. All 40 failed canon anchors re-mapped to real `[Heading]`-numbered sections by TITLE match against the extracted canon text; corrections propagate to `row_to_item_index.md`, `domain_5_*.md`, `retire_inventory.md`, `shaping_answers.md`, `strategy_items_part1.md`, `canon_[3-9]_requirements.md`, and `fidelity_ledger.md`.
+2. Any row whose title match FAILS keeps `§XX-DRIFTED` marker and gets its own fidelity-ledger entry naming exactly which titles were searched and which returned no match.
+3. FL-P1-20 stays open as the record of the defect AND its remediation trail — history is part of the honest record.
+4. Root cause recorded in `CONTEXT.md`.
+5. Citation audit re-runs; new numbers appear in `NEXT.md` + `CONTEXT.md`.
+
+## Orchestrator Ruling B · 2026-08-14 · Source: orchestrator (Part 2 + strategy sections)
+
+**Verbatim (paraphrased directive):**
+
+> "Part 2 proceeds now. The owner asked for ONE complete submission, not incremental sign-offs; waiting on Part-1 shape approval would cost the round trip the owner told us to avoid. Draft the 42 BUILD items (148 canon rows) with all seven fields, same discipline. Specific requirements: (1) the Watch's 60 rows and Mkondo's 45 rows will dominate — bundle honestly (a work item per canonical mechanism, e.g., reconciler, mark registry, verdict contract, policy-table executor, response arms, mirage, signature store, attestation+witness, drill harness, Watch Console — not one mega-item per canon); (2) WS-BUILD-DECL and WS-BUILD-WATCH-RECONCILER carry the Ruling-1 transition linkage explicitly; (3) the two ports (streaming, object storage) appear as their own items if they aren't already, since multiple items gate on them — resolve FL-P1-03's placement question with a proposed answer marked as PROPOSAL, leaving the ledger row open for owner ratification; (4) every item that creates a NEW contract references WS-WIRE-PARITY-EXTENSION as a dependency. Unchanged: screenshot fixture still pending (keep FIXTURE PENDING, do not invent); unresolved rendering decisions (Use-Data landing, Verdict Demo) stay as fidelity-ledger questions for the owner. After Part 2: strategy-level sections (proposed sequence with dependency logic; transition windows named + guarded, T1 = Ruling 1; no-regression contract listing standing invariant tests + missing ones to write first; waste register; freeze the fidelity ledger), then full completeness audit (every non-REUSE row exactly once, seven fields per item — mechanical check), citation audit at zero, cold-read recovery test of STATE/, assemble BUILD_STRATEGY.md, git-commit locally beside REUSE_ASSESSMENT.md (push waits on owner's remote+token). Update STATE/ at each step."
+
+**Binding effects:**
+1. Part 2 (42 BUILD items, 148 canon rows) drafts NOW with same seven-field discipline. Bundle by canonical MECHANISM (reconciler, mark registry, verdict contract, policy-table executor, response arms, mirage, signature store, attestation+witness, drill harness, Watch Console) rather than one-mega-item-per-canon.
+2. `WS-BUILD-DECL` and `WS-BUILD-WATCH-RECONCILER` carry Ruling-1 transition linkage explicitly in their WHAT / DEPENDENCIES / DoD fields.
+3. Two ports get standalone BUILD items: `WS-BUILD-STREAMING-PORT` (from harvested `synisense/shield/streaming.py`) and `WS-BUILD-OBJECT-STORAGE-PORT` (proposal resolves FL-P1-03: new engine BUILD, XL). FL-P1-03 stays OPEN pending owner ratification.
+4. Every item that creates a NEW contract lists `WS-WIRE-PARITY-EXTENSION` as a dependency.
+5. Fidelity ledger keeps: screenshot pending (FL-P1-14); Use-Data placement (FL-P1-10); Verdict Demo classification (FL-P1-11); Chunk-1 row-extraction re-audit (FL-P1-20).
+6. Post-Part-2 sections: (a) proposed sequence + transition windows T1..Tn (T1 = Ruling 1 gate); (b) no-regression contract listing all existing invariant tests + missing ones to write; (c) waste register (things reversed / abandoned / duplicated in the strategy); (d) fidelity ledger frozen at assembly.
+7. Completeness audit: mechanical script confirms every non-REUSE canon row appears in exactly one item and every item has all seven fields.
+8. Citation audit must return zero after remediation.
+9. Cold-read recovery test: a stranger reading STATE/ can resume execution.
+10. `BUILD_STRATEGY.md` assembles from strategy_items_part[12].md + strategy-level sections + STATE + fidelity ledger.
+11. Git-commit locally beside REUSE_ASSESSMENT.md; push waits on owner's remote + token.

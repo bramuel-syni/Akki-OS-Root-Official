@@ -18,7 +18,7 @@ Anchor: **Canon 1 §12 (Six Services)** — the platform serves the application;
 
 ## RETIRE — Cross-cutting security duplicates
 
-Anchor: **Canon 5 §46** (no surface offers bypass/override) — cross-cutting HTTP/security services shipped in Executive-Core duplicate what the platform boundary must own itself. Keeping them alongside a platform boundary creates a second path.
+Anchor: **Canon 5 §43** (no surface offers bypass/override) — cross-cutting HTTP/security services shipped in Executive-Core duplicate what the platform boundary must own itself. Keeping them alongside a platform boundary creates a second path.
 
 | Item | Location | Retiring anchor | Note |
 |---|---|---|---|
@@ -26,11 +26,11 @@ Anchor: **Canon 5 §46** (no surface offers bypass/override) — cross-cutting H
 
 ## RETIRE — Frontend archives
 
-Anchor: **already marked archived by the codebase itself**; Canon 5 §46 no surface offers a bypass path.
+Anchor: **already marked archived by the codebase itself**; Canon 5 §43 no surface offers a bypass path.
 
 | Item | Location | Retiring anchor | Note |
 |---|---|---|---|
-| `frontend/src/_archived/` (61 files including `Home1.jsx`, `Home2.jsx`, `e4_doc_routes/components/reading/*.jsx`, `e4_doc_routes/hooks/useDocumentParagraphs.js`) | `Akki-Executive-Core` | Codebase self-marking; Canon 5 §46 | Retire on migration |
+| `frontend/src/_archived/` (61 files including `Home1.jsx`, `Home2.jsx`, `e4_doc_routes/components/reading/*.jsx`, `e4_doc_routes/hooks/useDocumentParagraphs.js`) | `Akki-Executive-Core` | Codebase self-marking; Canon 5 §43 | Retire on migration |
 | `frontend/src/_archived_legacy/` | `Akki-Executive-Core` | Codebase self-marking | " |
 | `frontend/src/_archived_coverage_loss/` | `Akki-Executive-Core` | Codebase self-marking | " |
 | `frontend/src/website/` (34 files) | `Akki-Executive-Core` | Canon 1 §12/§13: marketing website is application/commercial territory | Keep as application marketing site; retire from platform surface |
@@ -65,6 +65,6 @@ These are RENAMES rather than deletions but still classified RETIRE because the 
 
 - **RETIRE rows** (concrete code): 20 loose Executive-Core services + 8 cross-cutting security + 3 frontend archives + 1 marketing website + 5 prototype-only surfaces = **37 concrete retire items**.
 - **RETIRE renames** (taxonomy fixes only, no code deletion): 7 prototype-taxonomy renames.
-- **Canon retirement anchors**: Canon 1 §12 (application territory), Canon 1 §13 (same boundary for every application), Canon 1 §15 (six absolutes — no commerce), Canon 5 §46 (no bypass), Canon 5 §40 (fixed pillar taxonomy).
+- **Canon retirement anchors**: Canon 1 §12 (application territory), Canon 1 §13 (same boundary for every application), Canon 1 §15 (six absolutes — no commerce), Canon 5 §43 (no bypass), Canon 5 §40 (fixed pillar taxonomy).
 
 Every RETIRE row above cites a specific canon clause. No RETIRE row was assigned by taste.

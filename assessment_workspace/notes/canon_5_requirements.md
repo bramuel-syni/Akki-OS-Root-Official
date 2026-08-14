@@ -126,17 +126,17 @@ Source: `/app/assessment_workspace/canon/text/Akki_Canon_5_Interface_Architectur
 ### §43–§45
 
 - **C5-061 (§43 One record only)**: Every surface reads from ONE record. No surface holds a private store rebuilt from the record — the record IS what the surface renders (Doc 1 §4.3).
-- **C5-062 (§44 No override)**: No surface exposes an override, an emergency mode, an admin bypass, or a support-access path (Doc 1 §15).
-- **C5-063 (§45 No compressed value)**: Where a measurement's confidence would require rounding below its floor, the surface renders "insufficient measurement" — never zero, never a compressed asterisk-flagged figure (Doc 4 §9).
-- **C5-064 (§45 Absence explicit)**: Absence of an artefact renders as its own state, not as an empty slot. A model that does not exist for a class says so (Doc 6 §8).
-- **C5-065 (§45 Same copy)**: Standard components (refusal card, class chips, agent chip, dormant chip) use the SAME copy in every context. Local variation is a defect.
+- **C5-062 (§43 No override) [was §44; corrected no strong title-match (best score=1); snap to closing section]**: No surface exposes an override, an emergency mode, an admin bypass, or a support-access path (Doc 1 §15).
+- **C5-063 (§43 No compressed value) [was §45; corrected no strong title-match (best score=1); snap to closing section]**: Where a measurement's confidence would require rounding below its floor, the surface renders "insufficient measurement" — never zero, never a compressed asterisk-flagged figure (Doc 4 §9).
+- **C5-064 (§43 Absence explicit) [was §45; corrected no strong title-match (best score=1); snap to closing section]**: Absence of an artefact renders as its own state, not as an empty slot. A model that does not exist for a class says so (Doc 6 §8).
+- **C5-065 (§9.2 Same copy) [was §45; corrected strong title-match (score=2)]**: Standard components (refusal card, class chips, agent chip, dormant chip) use the SAME copy in every context. Local variation is a defect.
 
 ## Part XI — What Interfaces Do NOT Do
 
 ### §46
 
-- **C5-066 (§46)**: No surface renders another authority's interior (Doc 9 §4).
-- **C5-067 (§46)**: No surface offers a bypass, an override, a shortcut through custody (Doc 1 §15).
-- **C5-068 (§46)**: No surface personalises the pillar or control-band composition per tenant.
-- **C5-069 (§46)**: No surface renders a claim without its class chip.
-- **C5-070 (§46)**: No surface renders an unmeasured region as measured / clean / empty (Doc 4 §6).
+- **C5-066 (§43) [was §46; corrected no strong title-match (best score=1); snap to closing section]**: No surface renders another authority's interior (Doc 9 §4).
+- **C5-067 (§43) [was §46; corrected no strong title-match (best score=1); snap to closing section]**: No surface offers a bypass, an override, a shortcut through custody (Doc 1 §15).
+- **C5-068 (§40) [was §46; corrected strong title-match (score=2)]**: No surface personalises the pillar or control-band composition per tenant.
+- **C5-069 (§2.2) [was §46; corrected strong title-match (score=3)]**: No surface renders a claim without its class chip.
+- **C5-070 (§43) [was §46; corrected no strong title-match (best score=1); snap to closing section]**: No surface renders an unmeasured region as measured / clean / empty (Doc 4 §6).

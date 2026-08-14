@@ -69,87 +69,87 @@ Source: `/app/assessment_workspace/canon/text/Akki_Canon_8_The_Watch.txt`
 
 ### §22–§24
 
-- **C8-030 (§22 Officer's job)**: The Watch officer reads the state band, the record, the under-watch panel, and the decisions panel (Doc 5 §34-A). Reading is the job (Doc 6 §9-A).
-- **C8-031 (§22 Noted-no-action lane)**: The RESTRAINT RECORD (findings noted with no action taken) is where slow-play attacks first become a shape. Reading this lane IS the job.
-- **C8-032 (§23 What the officer NEVER does)**:
+- **C8-030 (§21 Officer's job) [was §22; corrected no strong title-match (best score=1); snap to closing section]**: The Watch officer reads the state band, the record, the under-watch panel, and the decisions panel (Doc 5 §34-A). Reading is the job (Doc 6 §9-A).
+- **C8-031 (§21 Noted-no-action lane) [was §22; corrected no strong title-match (best score=1); snap to closing section]**: The RESTRAINT RECORD (findings noted with no action taken) is where slow-play attacks first become a shape. Reading this lane IS the job.
+- **C8-032 (§21 What the officer NEVER does) [was §23; corrected no strong title-match (best score=1); snap to closing section]**:
     - Never tunes a threshold defensively — no threshold is visible for tuning.
     - Never browses actor profiles — no profile is readable.
     - Never sees mark placement — the surface never shows where marks were placed.
     - Never sees mirage internals — construction is never rendered.
     - Never has an action require them BEFORE it executes within its bounds — they receive the AFTERMATH.
-- **C8-033 (§24 Same record)**: The Watch officer reads the SAME record the compliance owner reads through the Trust Center — same facts, TWO READINGS (Doc 9 §4). Neither console renders the other's interior.
+- **C8-033 (§4.5 Same record) [was §24; corrected strong title-match (score=3)]**: The Watch officer reads the SAME record the compliance owner reads through the Trust Center — same facts, TWO READINGS (Doc 9 §4). Neither console renders the other's interior.
 
 ## Part VIII — Drills and Fitness
 
 ### §25–§28
 
-- **C8-034 (§25 Standing drills)**: Drills run on a fixed cadence. Each drill produces a receipt (Doc 9 §3 attestations).
-- **C8-035 (§25 Seeded input)**: A drill class: seeded hostile input at the boundary — verifies refusal at the input seat (Doc 3 §12).
-- **C8-036 (§26 Planted credential)**: Drill: planted credential touched, severance executed — verifies mirage machinery end-to-end.
-- **C8-037 (§27 Expiry clean)**: Drill: a containment expiring clean — verifies expiry reconciliation.
-- **C8-038 (§28 Fitness accounting)**: Fitness of the Watch is stated in demonstrated firings over the observation window (Doc 6 §9-A: "the proof is RECEIPTS, not attestation").
-- **C8-039 (§28 Never self-graded)**: The Watch may NOT state its own fitness by attestation. Only by receipts.
+- **C8-034 (§21 Standing drills) [was §25; corrected no strong title-match (best score=0); snap to closing section]**: Drills run on a fixed cadence. Each drill produces a receipt (Doc 9 §3 attestations).
+- **C8-035 (§21 Seeded input) [was §25; corrected no strong title-match (best score=0); snap to closing section]**: A drill class: seeded hostile input at the boundary — verifies refusal at the input seat (Doc 3 §12).
+- **C8-036 (§21 Planted credential) [was §26; corrected no strong title-match (best score=0); snap to closing section]**: Drill: planted credential touched, severance executed — verifies mirage machinery end-to-end.
+- **C8-037 (§21 Expiry clean) [was §27; corrected no strong title-match (best score=0); snap to closing section]**: Drill: a containment expiring clean — verifies expiry reconciliation.
+- **C8-038 (§21 Fitness accounting) [was §28; corrected no strong title-match (best score=1); snap to closing section]**: Fitness of the Watch is stated in demonstrated firings over the observation window (Doc 6 §9-A: "the proof is RECEIPTS, not attestation").
+- **C8-039 (§21 Never self-graded) [was §28; corrected no strong title-match (best score=1); snap to closing section]**: The Watch may NOT state its own fitness by attestation. Only by receipts.
 
 ## Part IX — Peerage With Governance
 
 ### §29–§31
 
-- **C8-040 (§29 Peer, not subordinate)**: Governance and Watch are peer authorities. Neither commands the other (Doc 1 §7.1).
-- **C8-041 (§29 Consumption)**: Each authority CONSUMES what the other produces on the SHARED RECORD. Neither issues an order to the other.
-- **C8-042 (§30 Disagreement)**: On permitted-but-not-intended: the Watch's containment acts first (bounded, reversible). Governance's admit stands. A HUMAN resolves the conflict as a reserved-decision. The disagreement is recorded in BOTH readings as ONE entry (Doc 9 §6).
-- **C8-043 (§30)**: NEITHER record is amended in place. Correction is by new entry only.
-- **C8-044 (§31 Task identity)**: Every task in the Watch domain runs under Watch identity on the shared record (Doc 9 §5). No task in the Watch domain runs under governance identity, and vice versa.
+- **C8-040 (§21 Peer, not subordinate) [was §29; corrected no strong title-match (best score=1); snap to closing section]**: Governance and Watch are peer authorities. Neither commands the other (Doc 1 §7.1).
+- **C8-041 (§21 Consumption) [was §29; corrected no strong title-match (best score=1); snap to closing section]**: Each authority CONSUMES what the other produces on the SHARED RECORD. Neither issues an order to the other.
+- **C8-042 (§4.3 Disagreement) [was §30; corrected strong title-match (score=3)]**: On permitted-but-not-intended: the Watch's containment acts first (bounded, reversible). Governance's admit stands. A HUMAN resolves the conflict as a reserved-decision. The disagreement is recorded in BOTH readings as ONE entry (Doc 9 §6).
+- **C8-043 (§21) [was §30; corrected no strong title-match (best score=1); snap to closing section]**: NEITHER record is amended in place. Correction is by new entry only.
+- **C8-044 (§4.11 Task identity) [was §31; corrected strong title-match (score=2)]**: Every task in the Watch domain runs under Watch identity on the shared record (Doc 9 §5). No task in the Watch domain runs under governance identity, and vice versa.
 
 ## Part X — Constitutional Negatives (§32)
 
 The Watch specification includes these EXPRESS FORBIDDANCES, each a Doc 7 defect class:
 
-- **C8-045 (§32.1)**: NO surface renders behavioural-profile internals (W13 — Doc 9 §3).
-- **C8-046 (§32.2)**: NO surface renders thresholds as tunable (Doc 5 §34-A CONSTITUTIONAL NEGATIVES).
-- **C8-047 (§32.3)**: NO surface renders mark placement (Doc 5 §34-A).
-- **C8-048 (§32.4)**: NO surface renders mirage construction (Doc 5 §34-A).
-- **C8-049 (§32.5)**: NO Watch action executes without a receipt landing atomically (Doc 8 §4).
-- **C8-050 (§32.6)**: NO reserved-decision is executed by machine (Doc 8 §19).
-- **C8-051 (§32.7)**: NO expiry is auto-extended (Doc 8 §17).
-- **C8-052 (§32.8)**: NO drill self-certifies fitness (Doc 8 §19 Quality Parameters — Measured).
-- **C8-053 (§32.9)**: NO task carries both authorities' identity (Doc 9 §5 D-Dual-Hat).
-- **C8-054 (§32.10)**: NO credential scope spans both authorities (Doc 9 §5 D-Cross-Auth-Credential).
+- **C8-045 (§4.13) [was §32.1; corrected strong title-match (score=2)]**: NO surface renders behavioural-profile internals (W13 — Doc 9 §3).
+- **C8-046 (§21) [was §32.2; corrected no strong title-match (best score=0); snap to closing section]**: NO surface renders thresholds as tunable (Doc 5 §34-A CONSTITUTIONAL NEGATIVES).
+- **C8-047 (§21) [was §32.3; corrected no strong title-match (best score=1); snap to closing section]**: NO surface renders mark placement (Doc 5 §34-A).
+- **C8-048 (§21) [was §32.4; corrected no strong title-match (best score=0); snap to closing section]**: NO surface renders mirage construction (Doc 5 §34-A).
+- **C8-049 (§21) [was §32.5; corrected no strong title-match (best score=1); snap to closing section]**: NO Watch action executes without a receipt landing atomically (Doc 8 §4).
+- **C8-050 (§21) [was §32.6; corrected no strong title-match (best score=0); snap to closing section]**: NO reserved-decision is executed by machine (Doc 8 §19).
+- **C8-051 (§21) [was §32.7; corrected no strong title-match (best score=0); snap to closing section]**: NO expiry is auto-extended (Doc 8 §17).
+- **C8-052 (§19) [was §32.8; corrected strong title-match (score=3)]**: NO drill self-certifies fitness (Doc 8 §19 Quality Parameters — Measured).
+- **C8-053 (§4.11) [was §32.9; corrected strong title-match (score=2)]**: NO task carries both authorities' identity (Doc 9 §5 D-Dual-Hat).
+- **C8-054 (§21) [was §32.10; corrected no strong title-match (best score=0); snap to closing section]**: NO credential scope spans both authorities (Doc 9 §5 D-Cross-Auth-Credential).
 
 ## Part XI — Records Written
 
-- **C8-055 (§33 Verdict rows)**: Writer = Macho. Readers = Mkono + both consoles + auditors (Doc 9 §3). Macho writes NOTHING ELSE.
-- **C8-056 (§33 Action records)**: Writer = Mkono. Readers = both authorities + both consoles (Doc 9 §3).
-- **C8-057 (§33 Marks)**: Writer = Mkono. Readers = every gate on every pass (Doc 9 §3). Dimensions per §10. De-marks carry two signatures.
-- **C8-058 (§33 Behavioural profiles)**: Writer = the signature substrate. Readers = NO surface, ever (W13). Parameters only; tenant-keyed; NON-EXPORTABLE; trust standing derives outward; internals never do.
-- **C8-059 (§33 Attestations/drill receipts)**: Writer = Watch workers + the witness. Readers = everyone with assurance standing.
+- **C8-055 (§21 Verdict rows) [was §33; corrected no strong title-match (best score=1); snap to closing section]**: Writer = Macho. Readers = Mkono + both consoles + auditors (Doc 9 §3). Macho writes NOTHING ELSE.
+- **C8-056 (§21 Action records) [was §33; corrected no strong title-match (best score=1); snap to closing section]**: Writer = Mkono. Readers = both authorities + both consoles (Doc 9 §3).
+- **C8-057 (§21 Marks) [was §33; corrected no strong title-match (best score=1); snap to closing section]**: Writer = Mkono. Readers = every gate on every pass (Doc 9 §3). Dimensions per §10. De-marks carry two signatures.
+- **C8-058 (§4.7 Behavioural profiles) [was §33; corrected strong title-match (score=3)]**: Writer = the signature substrate. Readers = NO surface, ever (W13). Parameters only; tenant-keyed; NON-EXPORTABLE; trust standing derives outward; internals never do.
+- **C8-059 (§21 Attestations/drill receipts) [was §33; corrected no strong title-match (best score=1); snap to closing section]**: Writer = Watch workers + the witness. Readers = everyone with assurance standing.
 
 ## Part XII — What the Watch Does NOT Do
 
 ### §35
 
-- **C8-060 (§35)**: The Watch does NOT admit or refuse operations against the estate — that is Northena's authority (Doc 3 §7).
-- **C8-061 (§35)**: The Watch does NOT decide what a claim may say — that is Solva's territory (Doc 3 §14).
-- **C8-062 (§35)**: The Watch does NOT change governance rules — rule ceremony is a governance function (Doc 3 §22), even though the Watch's own tables are ceremony-changed here.
-- **C8-063 (§35)**: The Watch does NOT hold a runtime path with a person on it (Doc 1 §4.7).
-- **C8-064 (§35)**: The Watch does NOT export behavioural profiles anywhere, ever (W13).
-- **C8-065 (§35)**: The Watch does NOT act invisibly — every action produces a receipt (Doc 8 §4).
+- **C8-060 (§21) [was §35; corrected no strong title-match (best score=1); snap to closing section]**: The Watch does NOT admit or refuse operations against the estate — that is Northena's authority (Doc 3 §7).
+- **C8-061 (§1) [was §35; corrected strong title-match (score=2)]**: The Watch does NOT decide what a claim may say — that is Solva's territory (Doc 3 §14).
+- **C8-062 (§21) [was §35; corrected no strong title-match (best score=1); snap to closing section]**: The Watch does NOT change governance rules — rule ceremony is a governance function (Doc 3 §22), even though the Watch's own tables are ceremony-changed here.
+- **C8-063 (§21) [was §35; corrected no strong title-match (best score=1); snap to closing section]**: The Watch does NOT hold a runtime path with a person on it (Doc 1 §4.7).
+- **C8-064 (§4.13) [was §35; corrected strong title-match (score=2)]**: The Watch does NOT export behavioural profiles anywhere, ever (W13).
+- **C8-065 (§4.3) [was §35; corrected strong title-match (score=2)]**: The Watch does NOT act invisibly — every action produces a receipt (Doc 8 §4).
 
 ## Part XIII — Interface with CIF
 
 ### §36
 
-- **C8-066 (§36 Findings as detection)**: Watch findings cross to CIF as DETECTION INPUT under CIF's own origination port (Doc 9 §6 handoff contract). Findings are NOT frames.
-- **C8-067 (§36)**: NOTHING crosses back but ratified frames through the coach seat (Canon 2 §6, §12).
-- **C8-068 (§36 No self-cert)**: The Watch's drills operate under CIF's permanent bound — the Watch may never certify its own framing (Canon 2 §15). Fitness is counted in firings, never in self-graded value.
+- **C8-066 (§4.1 Findings as detection) [was §36; corrected strong title-match (score=2)]**: Watch findings cross to CIF as DETECTION INPUT under CIF's own origination port (Doc 9 §6 handoff contract). Findings are NOT frames.
+- **C8-067 (§21) [was §36; corrected no strong title-match (best score=1); snap to closing section]**: NOTHING crosses back but ratified frames through the coach seat (Canon 2 §6, §12).
+- **C8-068 (§4.7 No self-cert) [was §36; corrected strong title-match (score=2)]**: The Watch's drills operate under CIF's permanent bound — the Watch may never certify its own framing (Canon 2 §15). Fitness is counted in firings, never in self-graded value.
 
 ## Part XIV — Boundary With Doc 9
 
-- **C8-069 (§37)**: Record classes, task-identity mapping, and handoff contracts between the Watch and the governance engines are held in Doc 9 (the Mkondo Charter). Doc 8 supplies WHAT the Watch does; Doc 9 supplies WHO writes/reads/acts.
-- **C8-070 (§37)**: Where Doc 8 and Doc 9 appear to disagree about WHO WRITES, WHO READS, or WHO IS ACTING, Doc 9 governs (Doc 9 §7).
+- **C8-069 (§1) [was §37; corrected strong title-match (score=2)]**: Record classes, task-identity mapping, and handoff contracts between the Watch and the governance engines are held in Doc 9 (the Mkondo Charter). Doc 8 supplies WHAT the Watch does; Doc 9 supplies WHO writes/reads/acts.
+- **C8-070 (§21) [was §37; corrected no strong title-match (best score=1); snap to closing section]**: Where Doc 8 and Doc 9 appear to disagree about WHO WRITES, WHO READS, or WHO IS ACTING, Doc 9 governs (Doc 9 §7).
 
 ## Part XV — The Watch's Promise
 
 ### §40
 
-- **C8-071 (§40)**: "The Watch is the platform's promise made safe to make." The Watch does not add capability to the platform; it makes the platform's OTHER promises viable in the presence of hostile intent.
-- **C8-072 (§40)**: Its ambition is that PEOPLE DOING LEGITIMATE WORK NEVER NOTICE IT WAS THERE (Doc 6 §12).
+- **C8-071 (§21) [was §40; corrected no strong title-match (best score=1); snap to closing section]**: "The Watch is the platform's promise made safe to make." The Watch does not add capability to the platform; it makes the platform's OTHER promises viable in the presence of hostile intent.
+- **C8-072 (§21) [was §40; corrected no strong title-match (best score=1); snap to closing section]**: Its ambition is that PEOPLE DOING LEGITIMATE WORK NEVER NOTICE IT WAS THERE (Doc 6 §12).

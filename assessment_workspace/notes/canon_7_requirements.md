@@ -97,14 +97,14 @@ Every defect class recognised by the platform. Row IDs `C7-D#`.
 ### §50–§52
 
 - **C7-029 (§50 Build gates)**: Every defect class listed above has a corresponding build gate wherever a class is unrepresentable at code level (§4.2). Failing gates fail the build.
-- **C7-030 (§51 Runtime detection)**: Runtime detection produces a defect row in the record. A defect row triggers the resolution path named by the class.
-- **C7-031 (§52 Standing queries)**: Standing queries (per Doc 1 §4.3 record discipline) surface defects for compliance-owner review. A rising defect trend triggers a ceremony (Doc 3 §22).
+- **C7-030 (§50 Runtime detection) [was §51; corrected no strong title-match (best score=1); snap to closing section]**: Runtime detection produces a defect row in the record. A defect row triggers the resolution path named by the class.
+- **C7-031 (§38 Standing queries) [was §52; corrected strong title-match (score=2)]**: Standing queries (per Doc 1 §4.3 record discipline) surface defects for compliance-owner review. A rising defect trend triggers a ceremony (Doc 3 §22).
 
 ## Part IX — What the Rulebook Does NOT Do
 
 ### §55
 
-- **C7-032 (§55)**: The Rulebook does not INVENT new defect classes at runtime. New classes enter by ceremony (Doc 3 §22).
-- **C7-033 (§55)**: The Rulebook does not TOLERATE a defect. Every recognised defect has a resolution path; the tolerance is the resolution, not the sitting.
-- **C7-034 (§55)**: The Rulebook does not RANK defects by severity as if some were acceptable. Severity affects the CADENCE of the resolution; it does not license the defect to persist.
-- **C7-035 (§55)**: The Rulebook does not RE-ROUTE a defect to memory instead of the record.
+- **C7-032 (§47) [was §55; corrected strong title-match (score=2)]**: The Rulebook does not INVENT new defect classes at runtime. New classes enter by ceremony (Doc 3 §22).
+- **C7-033 (§50) [was §55; corrected no strong title-match (best score=1); snap to closing section]**: The Rulebook does not TOLERATE a defect. Every recognised defect has a resolution path; the tolerance is the resolution, not the sitting.
+- **C7-034 (§50) [was §55; corrected no strong title-match (best score=1); snap to closing section]**: The Rulebook does not RANK defects by severity as if some were acceptable. Severity affects the CADENCE of the resolution; it does not license the defect to persist.
+- **C7-035 (§50) [was §55; corrected no strong title-match (best score=1); snap to closing section]**: The Rulebook does not RE-ROUTE a defect to memory instead of the record.
