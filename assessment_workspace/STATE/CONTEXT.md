@@ -22,6 +22,16 @@
 - Assembly tool: `tools/assemble_build_strategy.py`.
 - STATE/ current across CONTEXT · PINS · DECISIONS · NEXT.
 
+## Downloadable snapshot (2026-08-14 · Orchestrator delivery-logistics directive)
+
+The two deliverables are served READ-ONLY through the pod template's FastAPI backend as **snapshots of commit `42b241c`** (not a live mount of this workspace). Snapshot copies live at `/app/backend/deliverables/{BUILD_STRATEGY.md,REUSE_ASSESSMENT.md}`; served via `GET /api/deliverables/{filename}` with a two-name allowlist. Identity verified byte-for-byte via sha256 against the workspace originals at snapshot time.
+
+- `https://akki-reuse-assess.preview.emergentagent.com/api/deliverables/BUILD_STRATEGY.md` — 244,199 bytes, sha256 `86af07ce…c820688`.
+- `https://akki-reuse-assess.preview.emergentagent.com/api/deliverables/REUSE_ASSESSMENT.md` — 53,479 bytes, sha256 `36314268…d427327a`.
+- Listing endpoint: `https://akki-reuse-assess.preview.emergentagent.com/api/deliverables` returns snapshot commit + size + URL for each.
+
+**Refresh discipline.** If either working document is amended (e.g., after a new Ruling), re-copy the file from `/app/assessment_workspace/` to `/app/backend/deliverables/` and update the snapshot commit in `CONTEXT.md` and in the `/api/deliverables` listing endpoint literal. Do NOT symlink the workspace live — the snapshot boundary is deliberate.
+
 ## Audit posture at v1.1 assembly
 
 - Citation audit (now includes BUILD_STRATEGY.md): 104/104 file · **1778/1778 canon · 0 failed**.

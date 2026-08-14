@@ -1,4 +1,5 @@
-from fastapi import FastAPI, APIRouter
+from fastapi import FastAPI, APIRouter, HTTPException
+from fastapi.responses import FileResponse
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -13,6 +14,13 @@ import boto3
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
+
+# Deliverables directory (read-only snapshot per Chunk-4 v1.1 delivery logistics)
+DELIVERABLES_DIR = ROOT_DIR / 'deliverables'
+DELIVERABLES_ALLOWLIST = {
+    'BUILD_STRATEGY.md',
+    'REUSE_ASSESSMENT.md',
+}
 
 # MongoDB connection
 mongo_url = os.environ['MONGO_URL']
@@ -76,6 +84,45 @@ async def get_status_checks():
             check['timestamp'] = datetime.fromisoformat(check['timestamp'])
 
     return status_checks
+
+
+@api_router.get("/deliverables/{filename}")
+async def get_deliverable(filename: str):
+    """Serve read-only snapshots of Chunk-4 deliverables.
+
+    Snapshot commit: 42b241c (see /app/assessment_workspace STATE/CONTEXT.md).
+    Allowlist-guarded; no path traversal. Served as text/markdown so browsers
+    render / download cleanly.
+    """
+    if filename not in DELIVERABLES_ALLOWLIST:
+        raise HTTPException(status_code=404, detail="deliverable not found")
+    file_path = DELIVERABLES_DIR / filename
+    if not file_path.is_file():
+        raise HTTPException(status_code=404, detail="deliverable missing on disk")
+    return FileResponse(
+        path=str(file_path),
+        media_type="text/markdown; charset=utf-8",
+        filename=filename,
+    )
+
+
+@api_router.get("/deliverables")
+async def list_deliverables():
+    """List available deliverables with size + snapshot metadata."""
+    items = []
+    for name in sorted(DELIVERABLES_ALLOWLIST):
+        p = DELIVERABLES_DIR / name
+        if p.is_file():
+            items.append({
+                "name": name,
+                "size_bytes": p.stat().st_size,
+                "url": f"/api/deliverables/{name}",
+            })
+    return {
+        "snapshot_commit": "42b241c",
+        "snapshot_source": "/app/assessment_workspace/",
+        "items": items,
+    }
 
 # Include the router in the main app
 app.include_router(api_router)
