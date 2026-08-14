@@ -1,20 +1,20 @@
 # NEXT.md - Exact next actions
 
-**Last updated:** 2026-08-14 · Owner fixture-drop cycle CLOSED · Registry surface + Connect wizard live at root '/' per Screen mockups v7 (5-page written spec + owner's inline description of 4 screenshots) · GPU credential entry front door re-shaped from tile-grid detail card to conversational wizard's Compute path (submit machinery unchanged) · 105/105 gating tests green on `programme/track-a` HEAD `aeb2be0` · IP allowlist unchanged (`SPINE_ALLOWED_IPS=34.16.56.64` per owner's strict directive).
+**Last updated:** 2026-08-14 · Owner course-correction cycle CLOSED · wizard rebuilt to the brief's 5-step grammar for ALL resource kinds · estate keypair + provisioning card live · non-compute Step 5 records honest intent · programme/track-a HEAD `f83b509` · 123/123 gating tests green · IP allowlist unchanged per owner's strict directive.
 
-## Cycle status (2026-08-14 · owner fixture drop response)
+## Cycle status (2026-08-14 · owner course-correction response)
 
-- **Fixture pinned.** `fixtures/screen_mockups_v7.pdf` (sha256 `418ad0e3c087c613be7d7d885a18a3c895b7d51ed253119aff9ba042ee81da8a`, 195,644 bytes, 5 pages) written into PINS.md as file-cleared; full page-by-page inventory at `fixtures/screen_mockups_inventory.md`.
-- **Discrepancy on record (FL-P2-14 OPEN).** Owner said "19 pages plus 4 inline screenshots" - PDF is 5 pages of pure text (Registry Feature & Component Brief), zero embedded images; the 4 inline screenshots were not accessible as job assets. Owner's inline textual description of the screenshots stands as the binding visual reference. Awaiting owner disposition on whether to re-upload the visual deck.
-- **Registry surface live.** Root `/` renders `<Registry />` with three-tab shell (DATA CONNECTED · COMPUTE CONNECTED · LLMS & TRAINED MODELS), '+ Connect' button pushed right, role switcher (Compliance Owner · Watch Officer · Operator) in the header as STATIC presentation per FL-P2-15.
-- **Connect wizard live.** '+ Connect' opens a right-hand drawer: "Connect something new" + "A conversation, not a form" deck; 4 suggestion chips (A data source · An LLM · A trained model · Compute) + free-text input + Send. Compute chip branches into the SAME 7 ordered GPU fields (Host Name · Username · Password [masked] · Public IP · Private IP · OS · Deploy date) that POST to the UNCHANGED `/api/connect/gpu` endpoint.
-- **Empty state honors Content Rule 3.** Every tab renders honest current state ("No data connected yet." / "One machine pending connection." / "No models connected yet." / "drawn, never left blank"). Zero fabricated Acme demo numbers anywhere in code (`FL-P2-13 CLOSED`).
-- **AdminSurface retired.** `/app/frontend/src/components/AdminSurface.jsx` deleted; its `admin-pill` and `tile-connect` testids gone.
-- **`programme/track-a` HEAD `aeb2be0`** - 2 new sequential tests-first + implementation commits atop `acc25a8`.
-- **105/105 total gating tests green** (78 backend python + 27 frontend node --test).
-- **Fidelity ledger updated:** FL-P2-11 CLOSED (fixture upgrade), FL-P2-12 CLOSED (wizard-not-form rendering), FL-P2-13 CLOSED (demo-data-vs-honest-state), FL-P2-14 OPEN (PDF page-count discrepancy), FL-P2-15 CLOSED (role switcher deferred to Track-B).
-- **Playwright render-tree proof:** 4 screenshots under `phase0/drill_receipts/screenshots/`; all 20 required data-testids verified present in the rendered tree.
-- **IP allowlist unchanged.** `SPINE_ALLOWED_IPS=34.16.56.64` remains per owner's strict directive; deployment stays effectively private until owner's `/32` arrives.
+- **FL-P2-14 CLOSED-BY-OWNER.** The fixture set (5-page brief + Registry screenshots + AISCA guide figures) IS the fixture.
+- **Standing posture correction recorded** at the top of `STATE/CONTEXT.md`.
+- **Wizard is generic.** 5 steps for all kinds, per PDF §5. Per-type branches at Step 2. Provisioning card at compute Step 2. Handshake walk at compute Step 5. Honest intent record at non-compute Step 5.
+- **Estate ed25519 keypair** in seam custody (private mode 0600, never in return values). Provisioning card rendered from `GET /api/connect/estate-facts`.
+- **Non-compute intents** ledgered via `POST /api/connect/intent`; `kind='compute'` refused (directs to the seven-stage `/api/connect/gpu`).
+- **123/123 gating tests green.** 90 backend python + 12 frontend allowlist + 21 frontend rehome/wizard.
+- **Live provisioning-card content (rotates on pod restart):**
+  - Public key: `ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGKlcjZE/04clh3FLddGn7Wx69pytk8KJA5j9M6rKVA7 estate@akki`
+  - Fingerprint: `SHA256:TpJcdNAQ4iSQKK5inwPueOM6Qak5NcsD5XhZpWorZ+c`
+  - Pod egress IP: `104.198.214.223`
+- **Fidelity ledger:** FL-P2-14 CLOSED-BY-OWNER; FL-P2-16 CLOSED (wizard grammar); FL-P2-17 CLOSED (provisioning card); FL-P2-18 CLOSED (posture correction).
 
 ## Two-sentence access-mechanism proposal (still awaiting owner ratification)
 
@@ -22,36 +22,32 @@
 
 ## Blocked (awaiting from owner)
 
-- **Ratify the two-sentence access proposal** and/or **direct disposition of FL-P2-09** (pod egress-IP rotation: `34.16.56.64` in STATE vs `34.170.12.145` live).
-- **FL-P2-14 disposition** - is the current PDF (5 pages) + inline description the intended fixture, or should the visual deck be re-uploaded?
-- **Real AISCA VM credentials via the Registry → Connect wizard → Compute path** - blocked on owner's client-IP being on the allowlist.
-- **Owner sign-off on (a) delivered** - Registry three-tab shell + wizard Compute path is live per fixture; (b) A4 honest-state instrumentation (real commissioning-record wiring into COMPUTE CONNECTED tab post-Phase-0) is the next-cycle increment, sized separately.
+- **Ratify the two-sentence access proposal** (still standing).
+- **FL-P2-09 disposition** - pod egress-IP rotation. Rotated AGAIN this cycle: STATE was `34.170.12.145` last cycle, now `104.198.214.223` this cycle. `34.16.56.64` stays in `SPINE_ALLOWED_IPS` unchanged per owner directive.
+- **Vendor-side VM provisioning using the provisioning card:**
+  - Paste the estate public key `ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGKlcjZE/04clh3FLddGn7Wx69pytk8KJA5j9M6rKVA7 estate@akki` into the VM's SSH Public Key field at creation (AISCA guide Fig 10).
+  - Add TWO /32 rows to the VM's Security Group SSH rules (AISCA guide Fig 11): the owner's own operator /32 AND the pod egress /32 (currently `104.198.214.223/32`, subject to rotation).
+- **Then enter credentials via Registry -> +Connect -> Compute chip -> Step 3.** The unchanged seven-stage pipeline fires; with the estate key already installed, hardening shortens to verify-key-only -> disable password auth -> probe dead.
 
 ## Cold-reader-executable next actions
 
-### 1. Deliver fixture-drop cycle report to owner (this reply)
+### 1. Deliver course-correction cycle report to owner (this reply)
 
-PDF page inventory summary + scope class for (a) = M + test migration plan + built (a) + gating tests + evidence + FL-P2-14 discrepancy flag.
+Gating-test delta + right-reason receipts + wizard journey demonstrated (screenshots of all 5 steps incl. non-compute honest Step 5) + provisioning card content + scope number + commit SHAs.
 
-### 2. On owner ratification of allowlist entry / FL-P2-09 disposition
+### 2. On owner ratification of allowlist entry / vendor-side provisioning
 
-Update `SPINE_ALLOWED_IPS` in `/app/backend/.env`. Restart both services. Live-prove allow-branch from owner side. Record allowlist change as a ledger row.
+- Update `SPINE_ALLOWED_IPS` in `/app/backend/.env` (add owner's client `/32`). Record allowlist change as a ledger row.
+- Owner enters credentials through the wizard's compute path; the seven-stage pipeline fires. Watch for green/failed/held per brief §5 paragraphs 6-7.
 
-### 3. On real VM credentials arriving through the wizard's Compute path
+### 3. Post-Phase-0 (next cycle)
 
-The unchanged seven-stage pipeline fires: intake → declaration → hardening → acceptance (via real `acceptance.sh` seam) → commissioning record → four-questions after-state → PINS `checkpoint_14d_utc` pin. Watch for `green` / `failed` / `held` grammar per PDF §5 paragraphs 6-7.
+- **A4 increment (Registry honest-state instrumentation):** wire the COMPUTE CONNECTED tab's after-state to the real commissioning record on disk (present a "Just connected" pill + meta line + link to the record). Add DATA CONNECTED / LLMS & TRAINED MODELS state transitions when their waves land.
+- **Wire-up non-compute Step 5 to per-wave connectors** as they land (data-source in Phase 2 admit-slice; LLM/trained-model in later waves).
 
-### 4. Phase A4 (Registry honest-state instrumentation) - next cycle
-
-- Wire the COMPUTE CONNECTED tab's after-state to the real commissioning record on disk (present a "Just connected" pill + meta line + link to the record).
-- DATA CONNECTED tab stays empty until admit-slice lands (Phase 2).
-- LLMS & TRAINED MODELS tab stays empty until model registration lands (later phase).
-- Tests-first for the state-transition invariants; do NOT fabricate any numbers.
-
-### 5. Verification path for orchestrator (independent audit)
+### 4. Verification path for orchestrator (independent audit)
 
 ```bash
-# Track-a audit (105/105 total gating)
 cd /app/assessment_workspace/repos/Extraction-Akki
 git log --oneline programme/track-a
 python3 -m pytest \
@@ -66,16 +62,19 @@ python3 -m pytest \
     backend/tests/invariants/test_connect_gpu_pipeline.py \
     backend/tests/invariants/test_connect_gpu_scope_S_or_M.py \
     backend/tests/invariants/test_connect_gpu_acceptance_wired.py \
-    backend/tests/invariants/test_ip_allowlist_middleware.py -v
-# Expect: 78 passed at HEAD aeb2be0.
+    backend/tests/invariants/test_ip_allowlist_middleware.py \
+    backend/tests/invariants/test_estate_keys_and_connect_estate.py -v
+# Expect: 90 passed at HEAD f83b509.
 
 cd /app/frontend && node --test plugins/ip-allowlist/__tests__/ip_allowlist.test.js
 # Expect: 12 passed.
 
 cd /app/assessment_workspace/repos/Extraction-Akki && node --test pod_shell/frontend/__tests__/rehome.test.js
-# Expect: 15 passed.
+# Expect: 21 passed.
+
+# Provisioning card live probe (through local backend + crafted XFF)
+curl -s -H "X-Forwarded-For: 34.16.56.64,172.71.255.34,136.110.244.150" \
+     "http://127.0.0.1:8001/api/connect/estate-facts" | python3 -m json.tool
 ```
 
-### 6. No push, ever
-
-Owner Clarification 1 unchanged. Local commits on both `programme/track-a` (code, tests, pod-shell mirror) AND assessment-repo `master` (STATE, fidelity ledger, phase0 receipts, DECISIONS appendix, fixture inventory) are the record.
+### 5. No push, ever

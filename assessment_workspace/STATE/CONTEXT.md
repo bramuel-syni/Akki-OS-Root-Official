@@ -1,6 +1,46 @@
 # CONTEXT.md — Running narrative
 
-**Last updated:** 2026-08-14 · Owner fixture-drop cycle CLOSED · Registry surface + Connect wizard live per Screen mockups v7 · programme/track-a HEAD `aeb2be0` · 105/105 gating tests green (78 backend python + 12 frontend allowlist + 15 frontend re-home/Registry+wizard).
+**Last updated:** 2026-08-14 · Owner course-correction cycle CLOSED · wizard rebuilt to the brief's 5-step grammar (1 What -> 2 How -> 3 Credentials -> 4 Name -> 5 Attempt) for ALL resource kinds · estate ed25519 keypair generated in seam key custody + provisioning card rendered at compute Step 2 · non-compute intent recorded honestly at Step 5 · programme/track-a HEAD `f83b509` · 123/123 gating tests green (90 backend python + 12 frontend allowlist + 21 frontend rehome/wizard).
+
+
+## Standing owner instruction · 2026-08-14 · POSTURE CORRECTION
+
+Verbatim from the course-correction reply:
+> "I worry you are more focussed on whats missing than piecing together what you have. to drive a progressive journey."
+
+**Binding standing posture (applies to every cycle from now on until explicitly rescinded):**
+
+- **Assemble the progressive journey from what exists.** Piece together from the fixture materials, guide figures, and prior decisions rather than gating on what has not yet arrived.
+- **Escalate only TRUE blockers.** Missing paint colours, missing screenshots that repeat information already in a written spec, or ambiguities that can be resolved by reading the brief carefully are NOT true blockers.
+- **Change is tone and initiative, NOT evidence standards.** Honesty discipline unchanged: no fabrication, no invented fixture material, no papering over conflicts, still escalate-and-stop on genuine ruling conflicts.
+- **When in doubt between reporting-and-waiting vs building-and-reporting: choose building-and-reporting, provided the fixture materials contain enough grammar to build honestly.**
+
+
+## Course-correction event · 2026-08-14 · fixture-drop follow-on
+
+Owner course-corrected the fixture-drop cycle with three rulings + one build proposal:
+
+1. **FL-P2-14 CLOSED BY OWNER.** The "19 pages" was the owner's claude.ai prototype, not a missing deck. The fixture set (5-page written brief + Registry screenshots + AISCA guide figures) IS the fixture. Stop chasing it.
+2. **Standing posture correction** (recorded above).
+3. **Wizard is generic.** Prior build shipped Compute-chip -> straight to a 7-field form; the brief specifies FIVE conversational steps for ALL kinds. Rebuild the wizard to the brief's 5-step grammar, tests-first.
+4. **Provisioning-card proposal** from AISCA Fig 10/11: generate estate keypair in seam custody; render public key + pod egress IP as a card BEFORE credentials are keyed; owner pastes public key into VM Access + adds both /32 rows at creation; VM becomes key-reachable from first boot.
+
+**Executed this cycle (tests-first, both banked with right-reason receipts before implementation):**
+
+- Backend: `services/estate_keys/keypair.py` (idempotent ed25519 openssh keypair custody, private mode 0600, never in return values). `services/connect_estate/router.py` with `GET /api/connect/estate-facts` + `POST /api/connect/intent`. Both mounted in pod-shell server behind the IP allowlist middleware.
+- Frontend: `ConnectWizard.jsx` rewritten as a 5-step state machine with per-type branches at Step 2, provisioning card at compute Step 2, GPU form at compute Step 3, name-in-the-estate's-words at Step 4, handshake walk at compute Step 5, honest intent record at non-compute Step 5. Registry unchanged from the previous cycle.
+- Scope reported both ways: strict L (2 new contracts) vs cohesive M (one incremental surface per owner's phrasing). Built under the cohesive reading per owner's "ships NOW" imperative.
+- 123/123 total gating tests green (90 backend python + 33 frontend node --test).
+- Six Playwright screenshots banked under `phase0/drill_receipts/screenshots/20260814T190000Z_*.jpeg` proving all 5 steps + non-compute honest Step 5.
+- Fidelity ledger: FL-P2-14 CLOSED-BY-OWNER, FL-P2-16 CLOSED (wizard grammar), FL-P2-17 CLOSED (provisioning card), FL-P2-18 CLOSED (posture correction).
+- IP allowlist unchanged: `SPINE_ALLOWED_IPS=34.16.56.64` per owner's strict directive.
+- Live provisioning-card content this cycle (rotates on pod restart):
+  - Estate public-key fingerprint: `SHA256:TpJcdNAQ4iSQKK5inwPueOM6Qak5NcsD5XhZpWorZ+c`
+  - Pod egress IP: `104.198.214.223` (was `34.170.12.145` earlier this session; STATE previously pinned `34.16.56.64`)
+
+**Track-a commits this cycle:** `760c53d` (tests-first · 33 assertions), `5f67591` (backend implementation · 12/12 green), `f83b509` (frontend implementation · 21/21 rehome green).
+
+**Assessment-repo master commit:** pending this cycle's follow-up (STATE + fidelity ledger + phase0 receipts + DECISIONS appendix + screenshots).
 
 
 ## Fixture-drop event · 2026-08-14 · Screen mockups v7 delivery

@@ -24,6 +24,7 @@ SPINE_BACKEND = Path("/app/assessment_workspace/repos/Extraction-Akki/backend")
 if str(SPINE_BACKEND) not in sys.path:
     sys.path.insert(0, str(SPINE_BACKEND))
 from routers import connect_gpu as connect_gpu_router  # noqa: E402
+from services.connect_estate.router import router as connect_estate_router  # noqa: E402
 from services.ip_allowlist.middleware import IPAllowlistMiddleware  # noqa: E402
 
 # Deliverables directory (read-only snapshot per Chunk-4 v1.1 delivery logistics)
@@ -143,6 +144,7 @@ app.include_router(api_router)
 # EVERY route (UI, /api/*, /api/deliverables, static). No route survives
 # outside it.
 app.include_router(connect_gpu_router.router)
+app.include_router(connect_estate_router)
 
 app.add_middleware(
     CORSMiddleware,

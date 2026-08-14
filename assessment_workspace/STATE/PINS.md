@@ -99,12 +99,20 @@ Strategy work-in-progress (to be created):
 
 **Phase-1 A0/A1 tests-first evidence:** 26/26 gating tests pass (`phase0/A0-A1_report.md` + drill receipt `phase0/drill_receipts/20260814T120336Z_declaration_refusal_firing.log`).
 
-**WS-BUILD-CONNECT-GPU + IP allowlist + re-home + fixture-drop wizard gating (Owner stop-order cycle + fixture-drop cycle 2026-08-14):** 105/105 total gating tests green on programme/track-a HEAD `aeb2be0` = 78 backend python + 12 frontend allowlist node --test + 15 frontend re-home/Registry+wizard node --test. Right-reason failure receipts banked BEFORE each implementation lands:
+**WS-BUILD-CONNECT-GPU + IP allowlist + re-home + wizard-completion gating (Owner stop-order + fixture-drop + course-correction cycles 2026-08-14):** 123/123 total gating tests green on programme/track-a HEAD `f83b509` = 90 backend python + 12 frontend allowlist node --test + 21 frontend rehome/Registry+5-step-wizard node --test. Right-reason failure receipts banked BEFORE each implementation lands:
 - `phase0/drill_receipts/20260814T145500Z_ip_allowlist_right_reason_failure.log` (16/16 tests failed with ModuleNotFoundError before middleware landed).
 - `phase0/drill_receipts/20260814T151000Z_rehome_right_reason_failure.log` (6/9 tests failed right-reason before original re-home implementation landed).
 - `phase0/drill_receipts/20260814T180000Z_registry_wizard_right_reason_failure.log` (7/15 tests failed right-reason before Registry + wizard implementation landed).
-- Green receipts: `phase0/drill_receipts/20260814T151500Z_lockdown_and_rehome_green.log` and `phase0/drill_receipts/20260814T181500Z_registry_wizard_green.log`.
-- Playwright render-tree screenshots for Registry + wizard: `phase0/drill_receipts/screenshots/20260814T181000Z_{registry_surface,registry_compute_tab,wizard_opening,wizard_compute_form}.jpeg`.
+- `phase0/drill_receipts/20260814T184500Z_estate_keys_and_connect_estate_right_reason_failure.log` (12/12 backend tests fail ModuleNotFoundError before estate-keys/connect-estate implementation landed).
+- `phase0/drill_receipts/20260814T185000Z_5step_wizard_right_reason_failure.log` (6/21 fail right-reason before wizard rebuild landed).
+- Green receipts: `phase0/drill_receipts/20260814T151500Z_lockdown_and_rehome_green.log`, `phase0/drill_receipts/20260814T181500Z_registry_wizard_green.log`, `phase0/drill_receipts/20260814T190500Z_5step_wizard_and_provisioning_card_green.log`.
+- Playwright render-tree screenshots for Registry + wizard (10 total): `phase0/drill_receipts/screenshots/20260814T181000Z_{registry_surface,registry_compute_tab,wizard_opening,wizard_compute_form}.jpeg` and `20260814T190000Z_wizard_{step1_what,step2_how_with_provisioning_card,step3_credentials,step4_name,step5_compute_attempt,noncompute_step5_intent}.jpeg`.
+
+**Estate ed25519 keypair · this-cycle live values (rotate on pod restart):**
+- Estate public key: `ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGKlcjZE/04clh3FLddGn7Wx69pytk8KJA5j9M6rKVA7 estate@akki`
+- Fingerprint: `SHA256:TpJcdNAQ4iSQKK5inwPueOM6Qak5NcsD5XhZpWorZ+c`
+- Pod egress IP (live-discovered): `104.198.214.223` (was `34.170.12.145` prior cycle; STATE originally pinned `34.16.56.64` - see FL-P2-09 OPEN).
+- Private key at `${ESTATE_KEYS_DIR}/estate_ed25519` mode 0600, never in git, never in return values.
 
 **Attachment status (2026-08-14 · fixture-arrival cycle):** two of three fixtures delivered as files, third arrived as inline owner transcription. All FIXTURE PENDING markers CLEARED at transcription grade (files below). Governance grade distinction (transcription-cleared vs file-cleared) recorded in `notes/fidelity_ledger.md` FL-P1-14 + FL-P1-14a.
 
@@ -120,12 +128,12 @@ Strategy work-in-progress (to be created):
 <!-- CONNECT-GPU-PINS -->
 ## WS-BUILD-CONNECT-GPU — commissioning record pinned outputs
 - **host_name:** `aisca-gpu-01`
-- **public_ip:** `127.0.0.1`
-- **private_ip:** `10.0.0.10`
-- **os:** `Ubuntu 24.04`
+- **public_ip:** `203.0.113.5`
+- **private_ip:** ``
+- **os:** `ubuntu24.04`
 - **deploy_date:** `2026-08-14`
 - **checkpoint_14d_utc:** `2026-08-28T00:00:00Z`
-- **hardening_status:** `attested`
-- **acceptance_status:** `green`
-- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260814T180948Z.json`
+- **hardening_status:** `failed`
+- **acceptance_status:** `not_run`
+- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260814T185558Z.json`
 <!-- CONNECT-GPU-PINS -->
