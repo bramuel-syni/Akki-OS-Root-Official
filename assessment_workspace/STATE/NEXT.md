@@ -1,70 +1,69 @@
 # NEXT.md — Exact next actions
 
-**Last updated:** 2026-08-14 · fixture-arrival cycle CLOSED, corrections committed on assessment-repo `master`, two SOP conflicts ESCALATED awaiting owner ruling.
+**Last updated:** 2026-08-14 · Owner rulings on FL-P2-03 + FL-P2-04 received, ruling logged verbatim to `DECISIONS.md`; Phase-1 hardening orchestrator code-complete on `programme/track-a` HEAD `ad65211` (5 commits atop `b150c21`; 35/35 gating tests pass); FL-P2-03 console-check precondition gap surfaced — no Rafay console credentials in workspace.
 
-## Cycle status (2026-08-14)
+## Cycle status (2026-08-14 · owner-ruling-execution cycle)
 
-- BUILD_STRATEGY.md re-assembled — 2447 lines / 250,939 bytes. Three Build-Order-01 corrections applied: §10.F stale placeholder gone; XL count 9→7 reconciled (roster fixed at assembly-tool source); Canon 5 §10 phrasing updated to "five consoles" throughout (FL-OQ-04 CLOSED, retained historical paraphrase-defect note in ledger row).
-- Every interface item's `FIXTURE PENDING` marker flipped to `FIXTURE CLEARED @ transcription grade` with citation to `fixtures/binding_acceptance_criteria.md` (BAC-1..BAC-13). `test_four_questions_topline_present` added to every console item's new-invariants list.
-- Audits at cycle close: **104/104 file · 1772/1772 canon · 0 failed**; completeness **PASS**.
-- Fixtures on disk with sha256:
-  - `Akki_Prototype_v7_Design_Brief.md` — `063f2b47…9717b4` (file-cleared).
-  - `AISCA_GPU_Access_Guide.pdf` — `0f6b6e0f…157f3` (file-cleared, SOP conflicts A/B ESCALATED).
-  - `reference_screenshot_transcription.md` — `d3ae9a6c…02fc949` (transcription-cleared, Q1(c)).
-- Pod egress IP re-verified: **`34.16.56.64`** (4/4 curl services agree; no IPv6).
+- **DECISIONS.md** — verbatim owner ruling on FL-P2-03 + FL-P2-04 appended (§ "Owner Ruling on FL-P2-03 + FL-P2-04").
+- **`programme/track-a`** — 5 commits at HEAD `ad65211`: `2b08b39` (tests-first A0/A1/seam) → `4855b35` (impl thin-kernel contracts + declaration + compute seam) → `ae7a816` (seam tools) → `abf6328` (tests-first hardening orchestrator, 9 assertions) → `ad65211` (impl hardening orchestrator). Working tree clean.
+- **Phase-1 gating tests:** 35/35 pass (26 A0/A1/seam + 9 hardening orchestrator).
+- **Right-reason failure logs banked:** `phase0/drill_receipts/20260814T120336Z_pre_implementation_right_reason_failure.log` (7 Phase-1 test files fail at collection with ModuleNotFoundError) + `phase0/drill_receipts/20260814T130000Z_hardening_orchestrator_right_reason_failure.log` (9 hardening tests fail at collection with ImportError).
+- **`phase0/` frozen at Order-§6 spec** — `acceptance.sh` continues to probe for 4×H200 NVLink / ~30 TB HSS / restart-survives / password-dead. Optional hardening front-end (`AKKI_HARDENING_MODE=perform` gate) already present from previous cycle; VM-side script `harden.sh` idempotent + fail-closed; seam-side orchestrator `services/compute_seam/hardening.py` implements the six ordered steps per owner ruling.
+- **FL-P2-03 console check:** URL identified — `https://console.rafay.dev/` (tenant-agnostic React SPA). Auth methods: email+password OR "Login with SSO" (email domain auto-detects OIDC/SAML). AISCA has no separate subdomain. **PRECONDITION GAP:** no Rafay console credentials have ever been provided in this workspace; check cannot be attempted. Escalated for owner-side credential handover.
 
-## Blocked (awaiting owner rulings)
+## Blocked (awaiting from owner)
 
-- **FL-P2-03** — AISCA SOP SKU mismatch (1×H200 documented vs 4×H200 required by Order §6). Blocks: Phase-0 `acceptance.sh` execution against a vendor SKU; commissioning-checklist SKU line; VM provisioning day cannot start until owner rules the provisioning path.
-- **FL-P2-04** — AISCA SOP credential-handoff procedural gap (SOP hands password; Order §6 requires key-only, password-dead-before-data). Blocks: whether `acceptance.sh` extends to cover credential hardening, or owner-side hands run it before seam admission.
+- **FL-P2-03 console visibility check** — blocked on Rafay console credentials. Owner must hand over EITHER (i) email + password, OR (ii) IdP-federated credentials + which IdP, OR (iii) an API key. See `ORCHESTRATOR.md` §2.1.
+- **Phase-0 acceptance execution** — blocked on FL-P2-03 green + VM provisioning day + SSH credentials + BOOTSTRAP_SSH_PASSWORD arrival.
+- **Phase-2 slice** — blocks on Phase-0 green.
 
 ## Cold-reader-executable next actions
 
 ### 1. Deliver cycle-close report to owner (this reply)
 
-Corrections committed on assessment-repo `master` (SHA computed at commit); audits clean; fixture arrival + hashes recorded; SOP conflicts escalated per Q2(a); pod egress IP `34.16.56.64` for the VM SSH allowlist.
+Console-check precondition gap (URL + auth methods + credentials-absent); hardening-module status (code-complete, 9/9 gating tests green, structural discipline verified via mocked outcomes); track-a commit log (5 commits at `ad65211`); Phase-1 deliverable report in Build-Order-01 shape.
 
-### 2. On receipt of FL-P2-03 / FL-P2-04 rulings
+### 2. On Rafay console credentials arriving
 
-- Update `fixtures/aisca_sop_extraction.md` §5 to reflect the ruling.
-- Update `phase0/acceptance.sh` + `commissioning_checklist.md` per the ruled provisioning path.
-- Close FL-P2-03 / FL-P2-04 in the ledger with the ruling verbatim.
-- Re-run audits, refresh snapshot, commit on `master`.
+Perform read-only FL-P2-03 visibility check:
+- Navigate to `https://console.rafay.dev/`; log in via provided credentials.
+- Capture screenshot-grade evidence of the Services menu → Developer Hub → **High Speed Storage** section: does the ~30 TB HSS volume appear?
+- Capture screenshot-grade evidence of Services menu → Developer Hub → COMPUTE → **Virtual Machines Catalog**: does a 4× H200 SKU entry appear?
+- Assemble go/no-go REPORT with evidence attached (HTML snapshots or Playwright screenshots). Do NOT click provision under any circumstance; owner explicitly reserved provisioning until they have reviewed the evidence.
 
-### 3. On receipt of VM SSH credentials + host IP
+### 3. On SSH credentials + BOOTSTRAP_SSH_PASSWORD arrival (post FL-P2-03 green + Phase-0 acceptance)
 
-- Populate `backend/.env` on `programme/track-a` with `SSH_PRIVATE_KEY_PATH`, `VM_HOST`, `VM_USER`, `SSH_ALLOWLIST_EGRESS_IPS`. Never commit key material; never place it in `STATE/` or any Markdown.
-- Run `tools/report_egress_ip.sh` to confirm allowlist target still matches `34.16.56.64`.
-- Execute compute-seam preflight (`ssh -o BatchMode`) via seam; run `acceptance.sh` through the seam once Phase-0 SKU/HSS/hardening are resolved.
-- Ledger the commissioning record per `phase0/commissioning_record_template.md`.
-- Pin actual UTC deadline for the +14d checkpoint in `STATE/PINS.md`.
+- Populate `/app/backend/.env` (NEVER any git-tracked file) with `VM_HOST`, `VM_USER`, `SSH_PRIVATE_KEY_PATH`, `SSH_PUBLIC_KEY_PATH`, `SSH_CONNECT_TIMEOUT`, `HARDEN_SH_PATH`, `HARDENING_RECEIPT_DIR`, `BOOTSTRAP_SSH_PASSWORD` (single-use).
+- Run `python3 -c "from services.compute_seam import hardening; print(hardening.run())"` — six ordered steps execute; external probe from pod must return `password_refused`.
+- Verify hardening receipt lands at `HARDENING_RECEIPT_DIR`; ledger rows visible.
+- Run `python3 backend/tools/run_acceptance_via_seam.py` — Phase-0 acceptance ledgered end-to-end.
+- Assemble commissioning record combining hardening + acceptance sections.
 
-### 4. Commit Phase-1 A0/A1 code on `programme/track-a`
+### 4. On +14d checkpoint pinning
 
-Currently 7 staged-but-uncommitted files under `repos/Extraction-Akki/backend/`. Independent cycle (Q3 scope this cycle was assessment-repo `master` only). To commit: switch to `Extraction-Akki` clone on `programme/track-a` (baseline `b150c21` preserved), commit test files first with their gating-test-fails-for-right-reason evidence pinned, then commit implementation files. STATE/ update on completion.
+When VM provisioning day is confirmed, update `STATE/PINS.md` "checkpoint-targets deadline" line with actual UTC deadline (`provisioning_utc + 14d`).
 
-### 5. Track-A phase 2 (the Slice)
-
-Once Phase-0 acceptance clean AND Phase-1 committed:
-- Hash manifest of archive source before first byte moves.
-- Admit representative slice (few hundred hours audio) end-to-end.
-- FL-P1-02 focused read lands here (voice-audit custody path A confirmation).
-- Deliverable: slice report — timings, throughput, GPU utilisation, evidence-based checkpoint targets as Canon-4 §33 quality-matrix rows.
-
-### 6. Verify audits clean at cycle-close HEAD
+### 5. Verification path for orchestrator (independent audit)
 
 ```bash
 cd /app/assessment_workspace
 python3 tools/citation_audit.py 2>&1 | grep -E "File citations|Canon citations|failed"
 python3 tools/completeness_audit.py 2>&1 | tail -3
+
+cd repos/Extraction-Akki
+git log --oneline programme/track-a
+python3 -m pytest backend/tests/invariants/test_actor_declaration_v0_contract_frozen.py \
+    backend/tests/invariants/test_record_matrix_thin_kernel.py \
+    backend/tests/invariants/test_task_identity_thin_kernel.py \
+    backend/tests/invariants/test_parity_seat_extends_thin_kernel.py \
+    backend/tests/invariants/test_admit_refuses_undeclared_actor.py \
+    backend/tests/invariants/test_compute_seam_no_unledgered_exec.py \
+    backend/tests/invariants/test_compute_seam_artifact_hash_verified.py \
+    backend/tests/invariants/test_hardening_orchestrator.py -v
 ```
 
-Expected: 104/104 file · 1772/1772 canon · 0 failed; completeness PASS.
+Expected at HEAD `ad65211`: 35 passed. Assessment-repo audits: 104/104 file · 1772/1772 canon · 0 failed; completeness PASS.
 
-### 7. Snapshot refresh discipline
-
-`/app/backend/deliverables/BUILD_STRATEGY.md` mirror already refreshed (new sha256 `182ef43…f152d`, 250,939 bytes). `server.py` snapshot commit literal updated post-commit to the new master SHA. Refresh again on every subsequent BUILD_STRATEGY.md change (copy from `/app/assessment_workspace/` to `/app/backend/deliverables/` + update commit literal in server.py and STATE/CONTEXT.md).
-
-### 8. No push, ever
+### 6. No push, ever
 
 Owner Clarification 1: local commits are the record. Do not solicit push credentials.

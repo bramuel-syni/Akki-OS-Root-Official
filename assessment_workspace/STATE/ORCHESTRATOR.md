@@ -1,6 +1,6 @@
 # ORCHESTRATOR.md — Orchestrator's (owner-side) recovery file
 
-**Last refreshed:** 2026-08-14 · fixture-arrival cycle CLOSED at assessment-repo `master` HEAD `7c9a544`. Two AISCA SOP conflicts against Order §6 formally ESCALATED per Q2(a); awaiting owner rulings before Phase-0 acceptance can execute. Interface stream unblocked and complete (BAC-1..BAC-13 applied to every interface item DoD; every console item carries `test_four_questions_topline_present` on its must-write-first list). Corrections applied.
+**Last refreshed:** 2026-08-14 · Owner rulings received on FL-P2-03 (CLOSED, freeze upheld, provenance explained; console visibility check is builder's immediate next action) and FL-P2-04 (CLOSED path (a) — hardening executes through the seam). Hardening orchestrator built tests-first on `programme/track-a` (HEAD `ad65211` · 35/35 gating tests green atop baseline `b150c21`). FL-P2-03 console-check **precondition gap detected** — no Rafay console credentials in workspace; escalated with URL + auth mechanism report. Pod egress IP still `34.16.56.64`; allowlist confirmed sole /32 by owner.
 
 **Discipline:** mirror of the builder's STATE/ discipline. Update the top of this file at every builder reply; the reply and this file MUST agree. A cold orchestrator reading only this file (plus CONTEXT · DECISIONS · PINS · NEXT) can resume without asking a question.
 
@@ -8,54 +8,58 @@
 
 ## 1 · POSTURE
 
-**Current phase / track.** Assessment-repo `master` HEAD `7c9a544` (fixture-arrival cycle) · BUILD_STRATEGY.md 2447 lines / 250,939 bytes / sha256 `182ef43…f152d` · audits `104/104 file · 1772/1772 canon · 0 failed` · completeness PASS. Programme-track-a Phase-1 code + 26/26 gating tests staged UNCOMMITTED on branch (separate cycle per Q3). Compute seam scaffolded, awaiting credentials.
+**Current phase / track.** `programme/track-a` HEAD `ad65211` — 5 commits atop `b150c21`: tests-first A0/A1/seam · implementation A0/A1/seam · seam scaffolding tools · tests-first hardening orchestrator · implementation hardening orchestrator. Working tree clean. 35/35 gating tests pass at HEAD. Compute seam + FL-P2-04 path (a) hardening are code-complete and awaiting credentials. Assessment-repo `master` HEAD `14ab087` (pending this cycle's follow-up commit for owner ruling + STATE refresh + FL-P2-03 console-check log + right-reason failure logs).
 
-**In-flight instruction (orchestrator → builder).** No new instruction from orchestrator in this cycle; fixture-arrival cycle CLOSED. Standing: (a) await owner rulings on FL-P2-03 / FL-P2-04 (AISCA SOP conflicts); (b) await SSH credentials + host IP; (c) await VM provisioning day; (d) refresh ORCHESTRATOR.md at the top of every reply.
+**In-flight instruction (orchestrator → builder).** 2026-08-14 · owner-ruling-execution cycle: (1) append verbatim ruling to DECISIONS.md · (2) FL-P2-03 console check — precondition audit first, report console URL + auth mechanism, NEVER provision · (3) finalize hardening module per path (a) conditions (bootstrap credential env-only, single-run, retired within session, never on disk/STATE/logs) · (4) continue Phase 1 + seam commits on `programme/track-a` · (5) update ORCHESTRATOR + NEXT · (6) reply with console-check result, hardening status, track-a commit log, Phase-1 deliverable report.
 
-**Last builder report received.** 2026-08-14 · fixture-cycle CLOSE (this reply): three fixtures on disk, BAC-1..BAC-13 extracted, three Build-Order-01 §1 corrections applied via re-assembly, ledger FL-P1-14 grade-split + FL-P1-14a/P2-03/P2-04/P2-05 rows, snapshot endpoint updated to `7c9a544`, pod egress IP re-verified `34.16.56.64`.
+**Last builder report received.** 2026-08-14 · Phase-1 commit + fixture-cycle CLOSE (previous reply): 3 track-a commits (tests-first ordering; parity-extension + record-matrix + task-identity thin kernel + declaration + custody wiring + compute seam scaffolded), plus optional-hardening front-end added to `acceptance.sh` awaiting FL-P2-04 ruling.
 
 ---
 
-## 2 · AWAITING-FROM-OWNER
+## 2 · AWAITING-FROM-OWNER (priority order)
 
-- **(a) Screenshot as file** — TRANSCRIPTION-GRADE currently IN FORCE (Q1(c) ruling · 2026-08-14). Owner asked to re-send as file; not yet arrived. Re-open FL-P1-14 on file arrival if pixels contradict transcription; refresh BAC-1..BAC-13 accordingly.
-- **(b) SSH credentials + VM host IP** for the compute seam. Allowlist target = pod egress IP `34.16.56.64` (re-verified fresh this cycle). Env-var slots: `SSH_PRIVATE_KEY_PATH`, `VM_HOST`, `VM_USER`, `SSH_ALLOWLIST_EGRESS_IPS` (never in chat / STATE / commit).
-- **(c) VM provisioning day** — starts the +14d checkpoint clock (Build Order 01 §6). `STATE/PINS.md` currently reads `AWAITING PROVISIONING DATE`.
-- **(d) Ruling on FL-P2-03 (AISCA SOP SKU mismatch)** — SOP documents 1×H200/20vCPU/240GB/3TB; Order §6 mandates 4×H200 NVLink/84vCPU/948GB/12TB. Blocks Phase-0 acceptance until the provisioning path for Order-§6 SKU is confirmed.
-- **(e) Ruling on FL-P2-04 (AISCA SOP credential-handoff gap)** — SOP hands over Password; Order §6 requires key-only + password-dead + bootstrap credentials retired before data moves. Owner ruling needed on whether `acceptance.sh` extends to cover the hardening or owner-side hands run it.
+1. **[BLOCKING FL-P2-03 EXECUTION] Rafay Console credentials for FL-P2-03 visibility check.** Console URL is `https://console.rafay.dev/` (tenant-agnostic React SPA; AISCA has no separate subdomain). Auth mechanisms exposed by the SPA: (a) email + password, (b) "Login with SSO" (email domain auto-detects OIDC/SAML federated IdP — likely path for the AISCA foundation tenant). No credentials of any kind have ever been provided in this workspace. Owner must hand over EITHER (i) email + password for the AISCA tenant, OR (ii) IdP-federated credentials + a note on which IdP (Okta / Azure AD / Google Workspace), OR (iii) an API-key for read-only tenant introspection (Rafay generates these under user profile settings — sufficient for HSS + Catalog inspection via the API even without console UI login). See NEXT.md for the exact evidence request I'll produce once any of these arrive.
+2. **[HIGH] SSH credentials + VM host IP** for the compute seam. Env-var slots on `programme/track-a`: `VM_HOST`, `VM_USER`, `SSH_PRIVATE_KEY_PATH`, `SSH_PUBLIC_KEY_PATH`, `SSH_CONNECT_TIMEOUT`, `HARDEN_SH_PATH`, `HARDENING_RECEIPT_DIR`, `BOOTSTRAP_SSH_PASSWORD` (single-use, retired within the hardening session).
+3. **VM provisioning day** — starts the +14d checkpoint clock (Build Order 01 §6). Sequencing per FL-P2-03 ruling: builder does console visibility check first; on green, Phase-0 executes TODAY under path (a); on not-green, stop stands and owner takes it to vendor.
+4. **Reference screenshot as file** — TRANSCRIPTION-GRADE currently IN FORCE (Q1(c) ruling). Owner asked to re-send as file; not yet arrived.
 
-## 3 · AWAITING-FROM-BUILDER — no new cycle in flight
+## 3 · AWAITING-FROM-BUILDER — no in-flight cycle at this reply
 
-Standing deliverables (queued behind rulings above):
-- On FL-P2-03/04 rulings: update `fixtures/aisca_sop_extraction.md` §5, `phase0/acceptance.sh`, `commissioning_checklist.md`; close FL-P2-03/04; re-audit; commit on `master`.
-- On SSH credentials + host IP arrival: populate `backend/.env` on `programme/track-a`, run compute-seam preflight through the seam, execute `acceptance.sh` through the seam, ledger commissioning record, pin +14d checkpoint deadline.
-- Independent cycle: commit Phase-1 A0/A1 code on `programme/track-a` (7 staged files at baseline `b150c21`).
-- Phase-2 slice: on Phase-0 + Phase-1 clean → hash manifest of archive source → admit representative slice end-to-end → FL-P1-02 focused read → slice report with evidence-based checkpoint targets.
+Standing queue (blocked on rulings above):
+- On Rafay console credentials arriving: perform read-only FL-P2-03 visibility check (HSS ~30 TB · Catalog for 4×H200 entry); produce screenshot-grade evidence (HTML snapshots + parsed catalog listing); go/no-go REPORT to owner before ANY provisioning.
+- On SSH credentials + BOOTSTRAP_SSH_PASSWORD arrival: populate `backend/.env` on `programme/track-a`; run `services.compute_seam.hardening.run()` (6 ordered steps · external probe mandatory); then run `run_acceptance_via_seam.py` (Phase-0 acceptance ledgered end-to-end); ledger commissioning record with hardening section + acceptance section.
+- Phase-2 slice: on Phase-0 green → hash manifest → admit representative slice end-to-end → FL-P1-02 focused read → slice report.
 
 ## 4 · VERIFICATION DEBT — builder claims not yet independently orchestrator-verified
 
-| Claim | Source | Verification path | Status |
+**Orchestrator has NOT independently re-run any audit or test this cycle. All numbers below are builder-side runs.**
+
+| Claim | Source | Verification path (orchestrator can execute) | Status |
 |---|---|---|---|
-| 26/26 Phase-1 gating tests pass on `programme/track-a` | `phase0/A0-A1_report.md` | `cd repos/Extraction-Akki && git checkout programme/track-a && pytest backend/tests/invariants/ -v` — code still uncommitted on branch. | Unverified — awaits commit + independent run. |
-| Declaration-refusal drill firing | `phase0/drill_receipts/20260814T120336Z_declaration_refusal_firing.log` | Independent operator re-runs the drill. | Unverified — receipt exists. |
-| Egress IP `34.16.56.64` | 4-service curl (`ifconfig.me · icanhazip · api.ipify · checkip.aws`) | `tools/report_egress_ip.sh` re-run. | RE-VERIFIED fresh this cycle — 4/4 agree; no IPv6. Confidence: high. |
-| Fixture sha256s | `sha256sum fixtures/*` | Owner recomputes on file arrival (screenshot); brief + PDF file-cleared. | VERIFIED fresh this cycle: 3/3 hashes recorded in PINS + ledger + ORCHESTRATOR. |
-| Citation audit `104/104 file · 1772/1772 canon · 0 failed` | `tools/citation_audit.py` post-reassembly | `python3 tools/citation_audit.py` | RE-VERIFIED fresh this cycle at HEAD `7c9a544`. |
-| Completeness audit PASS | `tools/completeness_audit.py` post-reassembly | `python3 tools/completeness_audit.py` | RE-VERIFIED fresh this cycle at HEAD `7c9a544`. |
-| BUILD_STRATEGY.md at HEAD carries 3 corrections | Committed this cycle | Grep `Nine XL`, `Part 2 has not been drafted`, `27 open items` — must all be zero; `four consoles` remains only inside the FL-OQ-04 historical paraphrase-defect note (retained by owner ruling). | VERIFIED. Zero stale hits outside the historical retention. |
-| BUILD_STRATEGY.md sha256 at snapshot endpoint | `curl /api/deliverables` | `sha256sum /app/backend/deliverables/BUILD_STRATEGY.md` | VERIFIED: `182ef43…f152d`, 250,939 bytes, `snapshot_commit=7c9a544`. |
-| AISCA SOP → Order §6 reconciliation clean | FALSE — Conflicts A + B (FL-P2-03/04) | Owner rulings on FL-P2-03/04. | ESCALATED, awaiting rulings. |
-| `programme/track-a` HEAD moved from `b150c21` | FALSE — HEAD still baseline | `git log programme/track-a --oneline` | KNOWN. Q3 scoped this cycle to assessment-repo `master`. Phase-1 branch commit is a separate cycle. |
+| 35/35 Phase-1 gating tests pass on `programme/track-a` HEAD `ad65211` (26 A0/A1/seam + 9 hardening orchestrator) | Builder-side pytest run at commit boundary | `cd repos/Extraction-Akki && git checkout ad65211 && python3 -m pytest backend/tests/invariants/test_actor_declaration_v0_contract_frozen.py backend/tests/invariants/test_record_matrix_thin_kernel.py backend/tests/invariants/test_task_identity_thin_kernel.py backend/tests/invariants/test_parity_seat_extends_thin_kernel.py backend/tests/invariants/test_admit_refuses_undeclared_actor.py backend/tests/invariants/test_compute_seam_no_unledgered_exec.py backend/tests/invariants/test_compute_seam_artifact_hash_verified.py backend/tests/invariants/test_hardening_orchestrator.py -v` — expect 35 passed. | Builder-verified; orchestrator NOT independently re-run this cycle. |
+| Right-reason failure evidence for Phase-1 (`2b08b39` commit) — 7/7 tests fail at collection with ModuleNotFoundError before implementation lands | `phase0/drill_receipts/20260814T120336Z_pre_implementation_right_reason_failure.log` | `git checkout 2b08b39 && pytest backend/tests/invariants/{7 test files}` — expect 7 ImportError. | Builder-verified; orchestrator NOT independently re-run. |
+| Right-reason failure evidence for hardening orchestrator (`abf6328` commit) — 9/9 tests fail at collection with ImportError before hardening.py lands | `phase0/drill_receipts/20260814T130000Z_hardening_orchestrator_right_reason_failure.log` | `git checkout abf6328 && pytest backend/tests/invariants/test_hardening_orchestrator.py` — expect 9 ImportError. | Builder-verified; orchestrator NOT independently re-run. |
+| Declaration-refusal drill firing (Ruling-1 precondition (a)) | `phase0/drill_receipts/20260814T120336Z_declaration_refusal_firing.log` | Independent operator re-runs the drill. | Builder-verified; orchestrator NOT independently re-run. |
+| Hardening orchestrator credential-secrecy invariants (no bootstrap-pw on argv / in ledger row / in receipt / in env after return; mid-run failure blocks data movement; external probe mandatory) | 9 runtime + structural assertions in `test_hardening_orchestrator.py` | Same test file run. | Builder-verified; orchestrator NOT independently re-run. |
+| FL-P2-03 console URL + auth mechanism (`https://console.rafay.dev/` — email+password OR SSO auto-detect via email domain; AISCA has no separate subdomain) | Live curl + web search this cycle | Same curl commands; owner can validate by opening URL in a browser. | Builder-fresh-verified this cycle. Orchestrator can independently open the URL. |
+| Egress IP `34.16.56.64` | 4-service curl | Same. | Re-verified fresh LAST cycle by builder; NOT re-verified this cycle by builder OR orchestrator. Confidence: high. Owner confirmed as sole /32. |
+| Fixture sha256s | `sha256sum fixtures/*` | Same command. | Builder-verified last cycle; orchestrator NOT independently re-run. |
+| Citation audit `104/104 file · 1772/1772 canon · 0 failed` | `tools/citation_audit.py` at `7c9a544` | `python3 tools/citation_audit.py` | Builder-verified LAST cycle at `7c9a544`; **orchestrator has NOT independently re-run.** |
+| Completeness audit PASS | `tools/completeness_audit.py` at `7c9a544` | `python3 tools/completeness_audit.py` | Builder-verified LAST cycle at `7c9a544`; **orchestrator has NOT independently re-run.** |
+| `programme/track-a` HEAD `ad65211` with 5 tests-first commits atop `b150c21` | `git log --oneline programme/track-a` this cycle | Same command. | Builder-verified this reply. Working tree clean. |
+| Hardening orchestrator successfully hardens a real VM under path (a) | FALSE — has never executed against a live VM | Cannot verify until VM credentials + BOOTSTRAP_SSH_PASSWORD arrive. | Structurally verified via mocked-outcome test suite; live behaviour unverified. |
 
 ## 5 · STANDING RULES DIGEST — cold-orchestrator cheat sheet
 
 1. **No push, ever** — Owner Clarification 1. Local commits are the record.
-2. **Tests-first** — no implementation lands before its gating invariant test fails for the right reason (Build Order 01 §5).
-3. **Escalate-and-stop on any conflict** between governing artifacts (Q2(a)). Never owner-favoured interpretation, never smooth the seam.
-4. **Thin-kernel floor** — nothing live bypasses record matrix + task identity register + declaration (Build Order 01 §4 A0).
-5. **Fixture grades** — `transcription-cleared` vs `file-cleared` are different governance states (Q1(c)); FL-P1-14 records the distinction.
-6. **T1 guard** — Executive-Core purpose gate stands until BOTH declaration check AND Watch reconciler demonstrated firing (Ruling 1). Wave-10 strip is a Canon-3 §24 ceremony (FL-R1-01).
-7. **No fixture invention** — absence is a finding, never a blank (canon binding + Build Order 01 §7).
-8. **STATE/ updated at every material step** — CONTEXT · PINS · DECISIONS · NEXT · ORCHESTRATOR agree at all times.
-9. **Owner rulings only from the owner channel** — unlogged ruling = "not lawfully happened" (Ruling 1 four-test discipline · DECISIONS.md preamble).
-10. **Repo-branch discipline** — production code ONLY on `programme/track-a` inside Extraction-Akki; assessment/governing documents on assessment-repo `master` (Q3 ruling).
+2. **Tests-first** — no implementation lands before its gating invariant test fails for the right reason (Build Order 01 §5). Applies uniformly on `programme/track-a`.
+3. **Escalate-and-stop on any conflict** between governing artifacts (Q2(a)). Never owner-favoured interpretation.
+4. **Thin-kernel floor** — nothing live bypasses record matrix + task identity register + declaration.
+5. **Fixture grades** — transcription-cleared vs file-cleared are different governance states.
+6. **T1 guard** — Executive-Core purpose gate stands until BOTH declaration check AND Watch reconciler demonstrated firing.
+7. **No fixture invention** — absence is a finding, never a blank.
+8. **STATE/ updated at every material step.** Never end a `programme/track-a` session with staged-uncommitted production work.
+9. **Owner rulings only from the owner channel** — unlogged ruling = "not lawfully happened".
+10. **Repo-branch discipline** — production code ONLY on `programme/track-a` inside Extraction-Akki; assessment/governing documents on assessment-repo `master`. `phase0/` frozen at Order-§6 spec — 1×H200 SKU is NOT a fallback (owner ruled explicitly).
+11. **FL-P2-04 path (a) discipline (NEW):** bootstrap credential env-only; single-use; retired within session; NEVER on argv / disk / STATE / logs / ledger row / receipt; external probe (password-refused from pod) mandatory evidence; mid-run failure = VM unhardened = no data movement.
+12. **FL-P2-03 read-only ceiling (NEW):** console visibility check is READ-ONLY. Never provision anything; provisioning happens only on green check AND per §6 spec exactly.

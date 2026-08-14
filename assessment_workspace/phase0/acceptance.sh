@@ -15,13 +15,46 @@
 #   3 — NVLink absent (STOP-and-escalate).
 #   4 — password auth still live (STOP-and-escalate).
 #   5 — ephemeral persistence contradicted (STOP-and-escalate).
+#   6 — AKKI_HARDENING_MODE=perform but harden.sh missing.
+#  10–12 — hardening module failure (see phase0/harden.sh header).
 #   9 — unclassified failure.
+#
+# OPTIONAL front-end (env AKKI_HARDENING_MODE=perform) — see block after `set -uo pipefail`.
 
 set -uo pipefail
 
 log() { echo "$1" | tee -a /var/log/akki_phase0_acceptance.log 2>/dev/null || echo "$1"; }
 
 log "=== Phase-0 Acceptance · $(date -u +%FT%TZ) ==="
+
+# --------------------------------------------------------------------
+# OPTIONAL hardening front-end (FL-P2-04 escalation, pending owner ruling).
+#
+# If owner rules FL-P2-04 to us  → invoke as: AKKI_HARDENING_MODE=perform bash acceptance.sh
+#                                   which sources phase0/harden.sh before verification.
+# If owner rules to owner-side  → do not set AKKI_HARDENING_MODE (default verify-only);
+#                                   owner runs their own hardening; acceptance.sh only checks.
+#
+# harden.sh itself is a no-op unless AKKI_HARDENING_MODE=perform. Failing here is a
+# stop-and-escalate; we do NOT continue verification against a partially-hardened VM.
+# --------------------------------------------------------------------
+
+if [ "${AKKI_HARDENING_MODE:-verify}" = "perform" ]; then
+    log "hardening.mode: perform (FL-P2-04 ruled to compute-seam side)"
+    HARDEN_SCRIPT="$(dirname "$0")/harden.sh"
+    if [ ! -f "${HARDEN_SCRIPT}" ]; then
+        log "FAIL: AKKI_HARDENING_MODE=perform but harden.sh not found at ${HARDEN_SCRIPT}"
+        exit 6
+    fi
+    if ! bash "${HARDEN_SCRIPT}"; then
+        HRC=$?
+        log "FAIL: harden.sh returned ${HRC} — refusing to continue verification against partial hardening"
+        exit ${HRC}
+    fi
+    log "hardening: applied · continuing to verification"
+else
+    log "hardening.mode: verify (owner-side hardening assumed; acceptance.sh will confirm dead-password auth externally)"
+fi
 
 # 1. HSS mounted + size
 if ! mountpoint -q /mnt/hss 2>/dev/null; then

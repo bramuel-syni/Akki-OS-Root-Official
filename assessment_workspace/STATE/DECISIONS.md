@@ -254,3 +254,36 @@ Under Ruling 1's four-test discipline, an unlogged ruling is treated as
 3. **Pod egress IP recorded** in this cycle's reply and in `STATE/PINS.md`: **`34.16.56.64`** (verified via ifconfig.me, icanhazip.com, api.ipify.org, checkip.amazonaws.com; no IPv6 egress). Owner must allowlist this /32 on the VM.
 4. **Attachments still not delivered** as of this clarification receipt. FIXTURE PENDING stands; A4 operating surface, Track-B console items, Watch Console §6 verbatim consumption stay BLOCKED. Nothing in A0-A3 is blocked. FL-P1-14 substantive-closure remains conditional.
 5. **NEXT.md updated** — push steps removed; local-history-is-the-record posture stated explicitly.
+
+
+---
+
+## Owner Ruling on FL-P2-03 + FL-P2-04 · 2026-08-14 · Source: owner channel · Log verbatim
+
+**Verbatim:**
+
+> "FL-P2-03 — CLOSED, with the discrepancy explained and the freeze upheld. Your reading of the PDF is correct and the reconciliation finding is valid: the guide documents only the 1× H200 SKU. The explanation is provenance, not error: the PDF is the vendor's procedural onboarding SOP — how to click through Rafay — written around their catalogue's default single-GPU offering. The 4× H200 / 84 vCPU / 948 GB / 12 TB environment is vendor-confirmed in direct correspondence outside that document — the vendor's words on record: they accept 'the single-node shape as shown: 4× H200, 84 vCPU, 948 GB RAM, 12 TB local storage,' they confirmed a routine restart does not wipe the ephemeral tier (only deletion/deprovisioning does), and they have shared the ~30 TB HSS volume to the organisation — which you should be able to verify independently right now: it should be visible in the org's High Speed Storage section in the console. That visibility check is your first action under this ruling, and its result decides the path: If the HSS volume is visible at ~30 TB: proceed into the console per the SOP's procedure (the click-path is valid regardless of SKU) and check the Virtual Machines Catalog for a 4× H200 entry — the vendor accepting the shape implies it is provisioned through the same portal, either as a catalogue entry visible to the org or enabled vendor-side for it. If the 4× SKU appears: provision per §6, checklist unfrozen for that execution only. If the HSS is not visible, or the catalogue shows no 4× SKU: stop stands. Report the exact console state (screenshot-grade: what the catalogue lists, what HSS shows) and I take it to the vendor — that becomes a vendor-side action or an updated guide, not something you adapt around. Either way: the Phase-0 checklist and acceptance.sh stay frozen at the §6 spec. The 1× SKU is not a fallback, not a bridge, not a 'start small while we sort it' — a single-GPU machine cannot carry the committed workload, and provisioning it would spend contract term and create a machine we'd deprovision. The §6 spec is what the vendor confirmed; anything less on screen is an escalation, not an option.
+>
+> FL-P2-04 — CLOSED: path (a). You execute the hardening through the compute seam. Reasoning on the record: option (b)'s virtue is that the password never transits, but its cost is an unattested manual act at a console — hands outside the estate, no receipt, no drill, no replay. Option (a) puts the hardening inside the discipline everything else lives under: your module executes it, the sequence is ledgered, the external probe proving password-auth dead is the acceptance evidence, and the bootstrap credential's entire life is minutes between handover and retirement. A short-lived secret with an attested death beats a never-transited secret with an unattested procedure. Conditions binding path (a): the bootstrap credential transits this channel once, is used only by the hardening module, is retired within the same session, and never lands in STATE/, logs, or any file; the module's run writes the commissioning record's hardening section; and the external probe (password auth refused from outside) is mandatory evidence, not optional. If the hardening module fails mid-run, the VM is treated as unhardened — no data movement, re-run or escalate.
+>
+> Allowlist: 34.16.56.64/32 is confirmed as the sole security-group SSH source at VM creation. No IPv6 rules. If my own access is needed later it enters as a second /32 by explicit addition, never a widened range.
+>
+> Sequencing note: Phase 1 and the compute seam continuing on-programme is correct and unblocked. The FL-P2-03 console check is your immediate next action; on a green check, Phase 0 executes today under path (a)."
+
+**Binding effects:**
+
+1. **FL-P2-03 CLOSED with freeze upheld.** Provenance explanation: PDF is Rafay onboarding SOP written around 1×H200 default; the 4×H200 / 84 vCPU / 948 GB / 12 TB SKU is vendor-confirmed in direct correspondence outside the document. Vendor's on-record words: accepts the single-node shape 4×H200/84vCPU/948GB/12TB; routine restart does NOT wipe ephemeral (only deletion/deprovisioning does); ~30 TB HSS shared to the organisation. **Console check is builder's immediate next action.**
+2. **Two-branch outcome for the console check** (read-only, NEVER provisioning):
+   - Green: HSS ~30 TB visible AND 4× H200 Catalog entry visible → checklist unfrozen for that execution only; Phase-0 proceeds per §6 spec.
+   - Not-green (HSS absent, undersized, or no 4× Catalog entry) → stop stands; report exact console state screenshot-grade; owner takes it to vendor as vendor-side action or updated guide, never adapt around it.
+3. **1× SKU is not a fallback / not a bridge / not a start-small.** A single-GPU machine cannot carry the committed workload; provisioning would spend contract term and create a machine to deprovision. §6 spec is what the vendor confirmed.
+4. **`phase0/acceptance.sh` and `commissioning_checklist.md` stay FROZEN at Order §6 spec** — no adaptation to 1×H200 under any circumstance.
+5. **FL-P2-04 CLOSED path (a) — hardening executes through the compute seam.** Bindings on path (a):
+    - Bootstrap credential transits the channel ONCE, used only by the hardening module, retired within the same session, and NEVER lands in STATE/, logs, or any file.
+    - Hardening module writes the commissioning-record hardening section.
+    - External probe (password auth refused from outside the pod) is MANDATORY evidence, not optional.
+    - Mid-run hardening failure → VM treated as unhardened → NO data movement → re-run or escalate.
+6. **Allowlist confirmed:** `34.16.56.64/32` is the sole security-group SSH source at VM creation. No IPv6 rules. Any subsequent /32 additions require explicit action, never widened ranges.
+7. **Sequencing:** Phase-1 + seam continue on-programme (correct and unblocked); FL-P2-03 console check is the immediate next action; on green, Phase-0 executes today under path (a).
+8. **Precondition for the console check.** Access to the Rafay console requires credentials. If Rafay console credentials have NOT been provided to this workspace, that is a PRECONDITION GAP — the check cannot be attempted; report exactly what the login page requires (URL + auth mechanism) and escalate for owner-side credential handover. NEVER provision anything in this step; never attempt provisioning; the check is read-only.
+
