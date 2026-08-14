@@ -128,3 +128,21 @@ Under Ruling 1's four-test discipline, an unlogged ruling is treated as
 9. Cold-read recovery test: a stranger reading STATE/ can resume execution.
 10. `BUILD_STRATEGY.md` assembles from strategy_items_part[12].md + strategy-level sections + STATE + fidelity ledger.
 11. Git-commit locally beside REUSE_ASSESSMENT.md; push waits on owner's remote + token.
+
+---
+
+## Orchestrator Ruling C · 2026-08-14 · Source: orchestrator (self-contained assembly directive)
+
+**Verbatim (paraphrased directive):**
+
+> "One correction before I submit to the owner — this is a compliance defect against the instruction's letter, not a content problem. The owner's §1 says 'One document, BUILD_STRATEGY.md' that 'covers every non-REUSE row... each traced to its canon clause and its assessment row,' and §6 says 'the whole document is precise enough that build orders can be issued against it by item reference.' A 232-line index cross-referencing four notes files makes the reviewer assemble the submission themselves — that is exactly the kind of gap that becomes a costed question. FIX: Assemble BUILD_STRATEGY.md as ONE SELF-CONTAINED document by inlining the full content in this order: (1) Method & submission attestations ... (2) The complete 47 Part-1 items ... (3) The complete 55 Part-2 items ... (4) Proposed sequence with reasons ... (5) Transition conditions ... (6) No-regression contract ... (7) Waste register ... (8) Canon fidelity ledger ... (9) Appendix: row-to-item index ... The notes files stay on disk as working papers, but the submission document must stand alone. Then: re-run citation + completeness audits against the assembled BUILD_STRATEGY.md ... update STATE/ (CONTEXT.md posture, NEXT.md), and make a new local commit."
+
+**Binding effects:**
+1. **`BUILD_STRATEGY.md` is now SELF-CONTAINED** at 2442 lines / 244 KB. Every item, every table, every field is inlined verbatim from its working paper.
+2. **Working papers in `notes/` remain on disk** as the review trail — not the submission itself.
+3. **Section order in the assembled document** matches the owner's §1-§9 numbering literally: (1) Method + attestations, (2) full Part-1, (3) full Part-2, (4) sequence, (5) transitions, (6) no-regression, (7) waste, (8) fidelity ledger, (9) appendix row-to-item index. Estimation discipline and rulings stated once at §2-§3.
+4. **Attestations stated explicitly in the document** per the owner's §1 requirement: STATE/ is live, cold-read test performed, audit numbers reported, pinned SHAs listed. Presence verified by inspection of §1 of the document.
+5. **Audits re-run against the assembled document.** Citation audit now scans `BUILD_STRATEGY.md` in addition to notes/. Completeness audit now validates 7-field discipline against the inlined form in `BUILD_STRATEGY.md`. Results at v1.1 commit: 104/104 file · 1778/1778 canon · 0 failed; completeness PASS.
+6. **Assembly tool** at `tools/assemble_build_strategy.py` is idempotent — re-running produces byte-identical output as long as working papers are unchanged.
+7. **STATE/ updated:** CONTEXT.md notes v1.1 posture; NEXT.md updated with the new commit + audit numbers.
+8. **New local commit issued.**

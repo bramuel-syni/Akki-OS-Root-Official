@@ -33,10 +33,12 @@ for path in sorted(CANON_TEXT_DIR.glob("*.txt")):
     canon_section_index[n] = text  # store full text; look up literal for each cited section
 print(f"Loaded canon text for canons: {sorted(canon_section_index)}")
 
-# Collect all notes files
+# Collect all notes files + the assembled BUILD_STRATEGY.md
 note_paths = sorted(NOTES.glob("*.md"))
 if (WORKSPACE / "REUSE_ASSESSMENT.md").exists():
     note_paths.append(WORKSPACE / "REUSE_ASSESSMENT.md")
+if (WORKSPACE / "BUILD_STRATEGY.md").exists():
+    note_paths.append(WORKSPACE / "BUILD_STRATEGY.md")
 print(f"Scanning {len(note_paths)} note files")
 
 # ---- Regex patterns for citations ----

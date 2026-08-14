@@ -1,31 +1,50 @@
 # CONTEXT.md — Running narrative
 
-**Last updated:** 2026-08-14, at BUILD_STRATEGY.md assembly complete.
+**Last updated:** 2026-08-14, at BUILD_STRATEGY.md v1.1 self-contained assembly.
 
 ## Where we are
 
-- Chunk 4 COMPLETE at assembly. `BUILD_STRATEGY.md` (330 lines) landed at `/app/assessment_workspace/BUILD_STRATEGY.md`.
-- Rulings issued: **Ruling 1** (purpose-gate transition), **Ruling 2** (five-point plan), **Ruling 3 / Instruction 02** (interface strategy directive), **Orchestrator Ruling A** (citation-drift remediation), **Orchestrator Ruling B** (Part 2 proceed + strategy sections). All verbatim in `DECISIONS.md`.
+- Chunk 4 COMPLETE at v1.1 assembly. `BUILD_STRATEGY.md` is now SELF-CONTAINED (2442 lines, 244 KB) at `/app/assessment_workspace/BUILD_STRATEGY.md`. Working papers in `notes/` remain on disk as the review trail.
+- Rulings issued: **Ruling 1** (purpose-gate transition), **Ruling 2** (five-point plan), **Ruling 3 / Instruction 02** (interface strategy directive), **Orchestrator Ruling A** (citation-drift remediation), **Orchestrator Ruling B** (Part 2 proceed + strategy sections), **Orchestrator Ruling C** (self-contained assembly). All verbatim in `DECISIONS.md`.
 - Assessment REUSE_ASSESSMENT.md ACCEPTED by owner (2026-08-14).
-- Prohibitions still in force: no production code, no harvesting-in-code, no re-pointing, no scaffolding, no canon edits. Throwaway audit scripts under `tools/` remain allowed and were used extensively for the drift-remediation cycle.
+- Prohibitions still in force: no production code, no harvesting-in-code, no re-pointing, no scaffolding, no canon edits. Throwaway audit + assembly scripts under `tools/` remain allowed.
 
 ## Deliverable manifest
 
 - `/app/assessment_workspace/REUSE_ASSESSMENT.md` (450 lines) — Chunk-3 accepted.
-- `/app/assessment_workspace/BUILD_STRATEGY.md` (330 lines) — Chunk-4 assembly.
-- `/app/assessment_workspace/notes/strategy_items_part1.md` (838 lines, 47 items).
-- `/app/assessment_workspace/notes/strategy_items_part2.md` (628 lines, 55 items).
-- `/app/assessment_workspace/notes/strategy_sections.md` (269 lines).
-- `/app/assessment_workspace/notes/fidelity_ledger.md` (102 lines, 27 open items, frozen at assembly).
-- `/app/assessment_workspace/notes/row_to_item_index.md` (405 lines, 591 rows → 102 items, 0 named gaps).
+- `/app/assessment_workspace/BUILD_STRATEGY.md` (2442 lines) — Chunk-4 v1.1 self-contained assembly.
+- Working papers on disk (feeding the assembly):
+  - `notes/strategy_items_part1.md` (838 lines, 47 items).
+  - `notes/strategy_items_part2.md` (628 lines, 55 items).
+  - `notes/strategy_sections.md` (269 lines).
+  - `notes/fidelity_ledger.md` (102 lines, 27 open items, frozen).
+  - `notes/row_to_item_index.md` (405 lines, 591 rows → 102 items, 0 named gaps).
+- Assembly tool: `tools/assemble_build_strategy.py`.
 - STATE/ current across CONTEXT · PINS · DECISIONS · NEXT.
 
-## Audit posture at assembly
+## Audit posture at v1.1 assembly
 
-- Citation audit: 102/102 file · 1118/1118 canon · 0 failed.
-- Completeness audit: PASS — every non-REUSE row assigned to exactly one item; every item has all seven fields.
-- Drift remediation: 72 corrections + 70 downstream — recorded in `tools/drift_edits.log`.
-- Root cause of the drift documented (see below); prevention ruled in.
+- Citation audit (now includes BUILD_STRATEGY.md): 104/104 file · **1778/1778 canon · 0 failed**.
+- Completeness audit (now validates BUILD_STRATEGY.md self-contained): PASS — every non-REUSE row assigned; every work item has 7 fields; BUILD_STRATEGY.md self-contained confirmed.
+- Cold-read recovery test: STATE/ is self-sufficient; verified.
+
+## Ruling-3 (Instruction 02) effects on the interface strategy
+
+- **Donor fixed:** Extraction-Akki frontend (44 production pages across 12 menu groups + 10 shell/component files — verified via direct `find` at HEAD `b150c21`).
+- **Grammar fixed:** tile-grid-plus-detail-card ("Admin surface"). Reference screenshot pending — noted as fixture-pending dependency on every interface item.
+- **Reclassification:** Chunk-3 Canon-5 interface rows previously BUILD (Part 2) now split — 13 items reclassified to HARVEST or MODIFY (Part 1); Watch-related items stay BUILD (Part 2).
+- **Watch Console exception:** REMAINS BUILD (Part 2). Fourth group of four app tiles: `State` · `Record` · `Under Watch` · `Decisions` per Canon 8 §13. Watch-officer-role gated, sessions under Watch identity per Canon 9. **NEVER nested under Trust Center** — placement constraint encoded in the item DoD.
+- **Rendering decisions:** Every label-vs-canon-identity mismatch lands in `fidelity_ledger.md` as a `RENDERING DECISION` row.
+
+## Citation-drift root cause (Orchestrator Ruling A)
+
+Chunk-1 extraction from the `.docx` archives numbered content paragraphs consecutively BEYOND the canon's real `[Heading]` boundaries — sub-paragraph counting was not reset when a new heading appeared, so `Cn-0MM (§XX)` row IDs recorded sub-paragraph counters, not heading numbers. Prevention for future work: only cite `[Heading]`-numbered sections that literally appear in the extracted canon text; run `citation_audit.py` before every submission.
+
+Remediation trail: `tools/drift_map.py` + `tools/drift_apply.py` + `tools/drift_downstream.py`; edit log at `tools/drift_edits.log`; xref at `tools/drift_xref.json`; FL-P1-20 retained as the defect+remediation record.
+
+## Recovery event · 2026-08-14T09:24Z
+
+Context compaction / restart occurred ~2026-08-14T09:24Z after Step-1 completion. Recovery performed from disk + the queued Chunk-4 brief. On-disk verification (per queued recovery protocol) passed: STATE/ intact · REUSE_ASSESSMENT.md 450 lines · notes/ 32 files (post-Ruling-A drift-tools) · repos/ 4 pinned clones · canon/ 9 extracted `.txt`.
 
 ## Ruling-3 (Instruction 02) effects on the interface strategy
 
