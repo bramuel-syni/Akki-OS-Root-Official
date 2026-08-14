@@ -32,7 +32,7 @@ Rows:
 
 ## Instance isolation + scoped-accessor pattern
 
-- Tests: `backend/tests/invariants/test_instance_isolation.py`, `test_instance_fixture_a_roundtrip.py`, `test_instance_fixture_b_walkthrough.py`, `test_synthetic_fixture_roundtrip.py`. Ensures per-instance data does not leak across instances.
+- Tests: `backend/tests/registry/test_instance_isolation.py`, `test_instance_fixture_a_roundtrip.py`, `test_instance_fixture_b_walkthrough.py`, `test_synthetic_fixture_roundtrip.py`. Ensures per-instance data does not leak across instances.
 - `services/memory/scoped_accessor.py` — the scoped-accessor pattern for memory-plane reads.
 - `services/master_admin/*.py` — instance-owner surface with `pending_seams`, `recent_actions`, `tier_lock_path_a_ledger`.
 

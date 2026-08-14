@@ -16,7 +16,7 @@ Source: `/app/assessment_workspace/canon/text/Akki_Canon_7_Integration_and_Quali
 - **C7-004 (§3)**: Keys are issued through the SAME REGISTRATION FLOW for every caller (first-party or third-party). No back-channel issuance path.
 - **C7-005 (§4 Boundary crossing)**: Every crossing is (a) authenticated by scoped key, (b) admitted by Northena (Doc 3 §3), (c) receipted with a trust receipt (Doc 3 §21), (d) subject to input-seat inspection under governance and Watch identities.
 - **C7-006 (§5 Answer envelope)**: The response envelope carries: the answer object (or refusal), class chips per claim (Doc 5 §2.1), grounding markers (Doc 5 §2.3), trust receipt id, refusal receipt id if applicable, memory-plane write-back status.
-- **C7-007 (§5)**: The answer envelope is stable across versions — additions are strictly additive; no field is repurposed. Version-bumping is ceremony (Doc 3 §37).
+- **C7-007 (§5)**: The answer envelope is stable across versions — additions are strictly additive; no field is repurposed. Version-bumping is ceremony (Doc 3 §24 Changing a Rule).
 - **C7-008 (§6 Three refusal shapes exposed)**: External callers MUST be able to distinguish the three refusal shapes (Doc 3 §17) in the response envelope. Silently collapsing to one refusal is a defect.
 - **C7-009 (§7 Webhook)**: Every application registers a webhook that receives compliance-record notifications for events the application caused. The webhook contract is stable and versioned.
 - **C7-010 (§8 No warm-up)**: The first call from a registered application is governed identically to the thousandth (Doc 6 §8). No warm-up mode, no bootstrap mode, no unobserved period.

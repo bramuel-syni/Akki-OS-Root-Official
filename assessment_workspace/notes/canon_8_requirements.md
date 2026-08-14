@@ -111,7 +111,7 @@ The Watch specification includes these EXPRESS FORBIDDANCES, each a Doc 7 defect
 - **C8-049 (§32.5)**: NO Watch action executes without a receipt landing atomically (Doc 8 §4).
 - **C8-050 (§32.6)**: NO reserved-decision is executed by machine (Doc 8 §19).
 - **C8-051 (§32.7)**: NO expiry is auto-extended (Doc 8 §17).
-- **C8-052 (§32.8)**: NO drill self-certifies fitness (Doc 8 §28).
+- **C8-052 (§32.8)**: NO drill self-certifies fitness (Doc 8 §19 Quality Parameters — Measured).
 - **C8-053 (§32.9)**: NO task carries both authorities' identity (Doc 9 §5 D-Dual-Hat).
 - **C8-054 (§32.10)**: NO credential scope spans both authorities (Doc 9 §5 D-Cross-Auth-Credential).
 

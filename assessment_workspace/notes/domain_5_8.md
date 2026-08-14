@@ -49,7 +49,7 @@ Search performed against each repo's `git ls-files`:
 
 | Adjacent surface | Location | Judgement |
 |---|---|---|
-| `rate_limit.py` | `Akki-Executive-Core backend/services/rate_limit.py` (referenced from `routers/auth.py:31`) | **Distraction for Canon 8.** Rate limiting is Canon 3 §41 enforcement, not Canon-8 behavioural authenticity. Foundation for API safety, not Watch. |
+| `rate_limit.py` | `Akki-Executive-Core backend/services/rate_limit.py` (referenced from `routers/auth.py:31`) | **Distraction for Canon 8.** Rate limiting is Canon 3 §30 Enforcement Class discipline, not Canon-8 behavioural authenticity. Foundation for API safety, not Watch. |
 | `sentry_setup.py` | `Akki-Executive-Core backend/services/sentry_setup.py` | **Distraction.** Sentry is operator-side error monitoring, not Watch attestation. |
 | `security_headers.py`, `csrf.py`, `session_timeout.py`, `privacy_wall.py`, `clamav_service.py`, `rbac.py` | `Akki-Executive-Core backend/services/*.py` | **Distraction.** These are cross-cutting HTTP/security surfaces. Canon 8's Watch is a peer AUTHORITY over behavioural authenticity, not a HTTP-layer defence. |
 | `services/chat/protective_layer/__init__.py` (three FM detectors) | Executive-Core | **Foundation (partial).** The three concurrent `shield_invoke` classifiers detecting hypothesis_without_structure / ungrounded_factual_claim / fluency_mistaken_for_diagnosis at DRAFT time is closer in shape to Canon 8's sensing (Macho) than anything else — it senses BEHAVIOURAL failure modes at answer time. However: (i) it produces intervention TEMPLATES, not verdict rows; (ii) it has no seam to a separate responder (Mkono); (iii) it has no drill/attestation cadence. **A useful primitive to draw on, NOT the Watch itself.** |

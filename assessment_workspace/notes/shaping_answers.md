@@ -118,7 +118,7 @@ Tests: `test_memory_service_m_g1_to_m_g9.py`, `test_memory_observability_o_g1_to
 
 Files: `services/checker/{consequence_classes,countersign_ledger,effective_delay,rule_change_request,state_machine}.py`.
 
-Tests: `test_govern_g_g1_to_g_g8.py`, `test_govern_ui1b_gates.py`, `test_phase_8_b_5b.py`, `test_phase_9_sub_stage_9_1_and_9_3.py`, plus `live_preview/test_phase3_sc3_govern_live.py`. These exercise Canon 3 §22 rule-change ceremony (proposed → counter-signed → waited → applied → re-verified) and Canon 3 §37 countdown classes.
+Tests: `test_govern_g_g1_to_g_g8.py`, `test_govern_ui1b_gates.py`, `test_phase_8_b_5b.py`, `test_phase_9_sub_stage_9_1_and_9_3.py`, plus `live_preview/test_phase3_sc3_govern_live.py`. These exercise Canon 3 §24 rule-change ceremony (proposed → counter-signed → waited → applied → re-verified) and Canon 3 §22 countdown classes ("The Four Classes").
 
 **Cross-repo**: byte-identical across the three core repos.
 

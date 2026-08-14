@@ -22,7 +22,7 @@ Anchor: **Canon 5 §46** (no surface offers bypass/override) — cross-cutting H
 
 | Item | Location | Retiring anchor | Note |
 |---|---|---|---|
-| `services/csrf.py`, `services/rate_limit.py`, `services/rbac.py`, `services/security_headers.py`, `services/session_timeout.py`, `services/sentry_setup.py`, `services/privacy_wall.py`, `services/clamav_service.py` | `Akki-Executive-Core backend/services/*.py` | Canon 5 §46 (no bypass path); Canon 1 §7.1 (peer authorities) — cross-cutting security is either Watch territory (Canon 8) or governance discipline (Canon 3 §41); duplicated implementations create a second path | Retain application-side layer per Canon 1 §13 |
+| `services/csrf.py`, `services/rate_limit.py`, `services/rbac.py`, `services/security_headers.py`, `services/session_timeout.py`, `services/sentry_setup.py`, `services/privacy_wall.py`, `services/clamav_service.py` | `Akki-Executive-Core backend/services/*.py` | Canon 5 §11 (The Shell — no bypass path); Canon 1 §7.1 (peer authorities) — cross-cutting security is either Watch territory (Canon 8) or governance discipline (Canon 3 §30 Enforcement Class); duplicated implementations create a second path | Retain application-side layer per Canon 1 §13 |
 
 ## RETIRE — Frontend archives
 

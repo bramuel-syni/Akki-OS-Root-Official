@@ -95,7 +95,7 @@ Source: `/app/assessment_workspace/canon/text/Akki_Canon_4_Operating_Engines.txt
 - **C4-044 (§31 Ledger)**: Extraction runs write to the run ledger like any other operation. Batches carry batch ids; batch-level events (start/complete/quarantine/release) are ledger rows.
 - **C4-045 (§32 Sampling)**: Sampling is a first-class capability (Doc 6 §5 pre-purchase exploration) — a user may request a sample against a candidate objective BEFORE commissioning. Sampling runs under a scoped admission, is receipted, and its output is throwaway unless promoted by a new admission.
 - **C4-046 (§33 Delivery)**: Extraction deliverables land on the shelf as they complete (Doc 6 §7). Delivery is receipted; the licence label and privacy attestation travel with the deliverable to the recipient.
-- **C4-047 (§34.1 Batch board)**: The Extraction Console renders a batch board (Canon 5 §16-A) with every batch's status (in progress / released / quarantined / re-running) and resolution path.
+- **C4-047 (§32 Batching, Holds, and Ceilings)**: The Extraction Console renders a batch board (Canon 4 §32) with every batch's status (in progress / released / quarantined / re-running) and resolution path.
 - **C4-048 (§34.2 Frozen artefact crossing)**: Seam-1 (admission → extraction) crosses the WHOLE frozen artefact — objective, declaration, plan, standards, rights — never a subset.
 
 ## Part VI — Operating Loop Details

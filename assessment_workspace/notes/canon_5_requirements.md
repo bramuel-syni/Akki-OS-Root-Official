@@ -56,7 +56,7 @@ Source: `/app/assessment_workspace/canon/text/Akki_Canon_5_Interface_Architectur
 
 ### §20–§23
 
-- **C5-022 (§20 Home)**: Compliance Home renders the ceremony countdown (Doc 3 §37), the refusals-with-reasons feed, quarantines with resolutions, deletions with certificates.
+- **C5-022 (§20 Home)**: Compliance Home renders the ceremony countdown (Doc 3 §22 The Four Classes + §24 Changing a Rule), the refusals-with-reasons feed, quarantines with resolutions, deletions with certificates.
 - **C5-023 (§21 Prove-one-run)**: One action produces the end-to-end proof export for any operation (Doc 3 §33). Compilation entirely from the record, never assembled by hand.
 - **C5-024 (§22 Retention & Rights)**: Retention and rights rules render here with their current settings, who set them, when, ceremony version, count of automated checks enforcing each.
 - **C5-025 (§23 Compliance Rulebook)**: The Rulebook renders EVERY rule with its automated checks, its firing count over the observation window, and every refusal it produced.
