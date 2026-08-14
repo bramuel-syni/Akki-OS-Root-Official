@@ -287,3 +287,63 @@ Under Ruling 1's four-test discipline, an unlogged ruling is treated as
 7. **Sequencing:** Phase-1 + seam continue on-programme (correct and unblocked); FL-P2-03 console check is the immediate next action; on green, Phase-0 executes today under path (a).
 8. **Precondition for the console check.** Access to the Rafay console requires credentials. If Rafay console credentials have NOT been provided to this workspace, that is a PRECONDITION GAP — the check cannot be attempted; report exactly what the login page requires (URL + auth mechanism) and escalate for owner-side credential handover. NEVER provision anything in this step; never attempt provisioning; the check is read-only.
 
+
+---
+
+## Owner Ruling on Console-Access + Credential-Delivery + WS-BUILD-CONNECT-GPU · 2026-08-14 · Source: owner channel · Log verbatim
+
+**Verbatim:**
+
+> "Phase 1 acknowledged and accepted: 35/35 green, zero existing files touched, precondition (a) BANKED with the VM-as-infrastructure-actor shape already drilled — that declaration is ready to fire the day the machine exists. The hardening module is accepted as code-complete under the nine assertions. Good work on stopping at the console rather than clicking anything.
+>
+> Console access — all three options are REFUSED, and the visibility check is superseded. No credential for the Rafay console — API key, password, or SSO — will enter the workspace, now or later; that's standing policy. And the check itself is no longer yours to run: how the VM gets provisioned, and any pre-provisioning verification in the console, is handled on my side. What reaches you is the result of provisioning, through the product — see the new item below. Mark FL-P2-03 SUPERSEDED-TO-ACCEPTANCE: the go/no-go it protected moves whole to your frozen acceptance.sh on first hardened login. If the delivered machine is not the §6 spec — 4× H200 with NVLink active, ~30 TB HSS mounted/writable/restart-surviving, 84 vCPU / 948 GB, ephemeral scratch — stop, zero data movement, ledger the exact evidence (nvidia-smi, mounts, sizes), and report. The spec stays frozen; a wrong machine is escalated, never accepted. Your GO-gate concern is honoured in the same move: nothing you do spends contract term, and no data moves until acceptance runs green.
+>
+> Credential delivery — the 'secure channel' path is replaced by a product surface. New Track-A item, pulled forward; it now gates Phase 0's completion:
+>
+> WS-BUILD-CONNECT-GPU. I will key the VM credentials into the app myself: Connect tile → GPU. Build the minimal governed surface, tests-first, in the fixture grammar:
+>
+> Form (open state of Connect → GPU): Host Name, Username, Password, Public IP; optional Private IP, OS, and deploy date — deploy date pins the +14d checkpoint clock in PINS on submit. Password masked, never echoed, never retrievable after submit.
+>
+> On submit, the machinery you've already built fires automatically, in order: credential held environment-grade under the nine assertions → path-(a) hardening module (keys in, password auth disabled, bootstrap credential retired same-session, external probe confirms it dead) → acceptance.sh frozen at §6 → results ledgered as the commissioning record → non-secret Output values into PINS. The form is the trigger; no manual step sits between entry and hardening.
+>
+> What the surface shows afterward — the four questions, never the secret: What's happening — 'One GPU machine connected · hardened · accepted,' or its honest failure state. How do we know — acceptance results as sentences, walking to the commissioning record. What we're doing about it — 'Ready for first data,' or the exact stop reason. Is what we agreed being done — 'The machine matches what was ordered,' or the deviation verbatim. After retirement there is no password to show, anywhere, ever.
+>
+> Failure grammar: hardening failure renders failed (ours; retry). Acceptance failure renders held with the evidence and 'escalated to the vendor' as the stated next step.
+>
+> Identity and record: submission runs under a governed task identity and is receipted; the credential-entry event (never the credential) is a ledger row; the VM's declaration as an infrastructure actor fires from the same submit using the Phase-1 drilled shape.
+>
+> Scope discipline: one connection type on one existing tile — not a credentials manager, not a multi-provider abstraction. S/M class; if it grows past M, stop and say why.
+>
+> Queue updates: provisioning day reaches you via the form's deploy-date field, not a message. The bootstrap password now transits once into the estate through this surface instead of through a channel — your same secrecy assertions apply unchanged. The reference screenshot as a file still follows; transcription-grade holds until then.
+>
+> Order of work from here: WS-BUILD-CONNECT-GPU next (it gates Phase 0), Phase 1 follow-on and the compute seam continue in parallel, and your first report on this item is the built surface with its gating tests green — at which point I enter the credentials and Phase 0 completes end-to-end in one motion: entry → hardening → acceptance → commissioning record → clock pinned."
+
+**Binding effects:**
+
+1. **Standing policy — NO Rafay console credential enters this workspace**, now or later. Not password, not API key, not SSO. FL-P2-03 SUPERSEDED-TO-ACCEPTANCE (see fidelity_ledger row update).
+2. **Console visibility check retired.** Owner handles provisioning + pre-provisioning verification on their side. The go/no-go moves whole to `phase0/acceptance.sh` on first hardened login. `phase0/` remains FROZEN at §6.
+3. **On-arrival wrong-machine handling.** If delivered machine ≠ §6 spec (4× H200 NVLink active · ~30 TB HSS mounted/writable/restart-surviving · 84 vCPU · 948 GB · ephemeral scratch): STOP · zero data movement · ledger exact evidence (`nvidia-smi`, `mount`, size figures) · report. A wrong machine is escalated, never accepted.
+4. **WS-BUILD-CONNECT-GPU is a new Track-A item, pulled forward, gates Phase-0 completion.** Tests-first on `programme/track-a` in Extraction-Akki. In the fixture grammar (tile-grid + detail card; Connect tile in the REGISTRY group per the screenshot transcription; rule-zero four-questions topline on the after state; `test_four_questions_topline_present` applies to this surface NOW).
+5. **Form fields (open state of Connect → GPU tile):** Host Name, Username, Password (masked, never echoed, never retrievable), Public IP; optional Private IP, OS, Deploy Date. Deploy Date pins the `+14d checkpoint` clock in `PINS.md` on submit.
+6. **Submit pipeline (automatic, no manual step between entry and hardening):**
+   - credential held environment-grade under the nine hardening secrecy assertions →
+   - path-(a) hardening module (keys in · password auth disabled · bootstrap credential retired same-session · external probe confirms it dead) →
+   - `acceptance.sh` frozen at §6 →
+   - results ledgered as the commissioning record →
+   - non-secret Output values into `PINS.md`.
+7. **After-state renders the four questions in fixture grammar (rule zero):**
+   - What's happening: `One GPU machine connected · hardened · accepted` OR the honest failure state.
+   - How do we know: acceptance results as sentences, walking to the commissioning record.
+   - What we're doing about it: `Ready for first data` OR the exact stop reason.
+   - Is what we agreed being done: `The machine matches what was ordered` OR the deviation verbatim.
+   - After retirement there is NO password to show, anywhere, ever.
+8. **Failure grammar (mandatory copy):**
+   - Hardening failure → `failed (ours; retry)` — retry supported.
+   - Acceptance failure → `held` with evidence and `escalated to the vendor` as next step.
+9. **Identity + record.** Submission runs under a governed task identity; receipted; the credential-entry event (NEVER the credential) is a ledger row; the VM declaration as `infrastructure.vm.<host>` fires from the same submit using the Phase-1 drilled shape.
+10. **Scope discipline: S/M class.** One connection type on one existing tile — not a credentials manager, not a multi-provider abstraction. If it grows past M, STOP and say why.
+11. **Queue update.** Provisioning day reaches builder via the form's Deploy Date field, not a message. Bootstrap password now transits ONCE into the estate through this surface (secrecy assertions apply unchanged). Reference screenshot file still follows; transcription-grade holds.
+12. **Order of work:** WS-BUILD-CONNECT-GPU next (gates Phase-0); Phase-1 follow-on + seam continue in parallel; first report on this item is the built surface + gating tests green. Then owner enters credentials, Phase-0 completes end-to-end in one motion.
+13. **Orchestrator execution notes bind (see NEXT.md):** on programme/track-a AND spine app served at pod preview URL `https://akki-reuse-assess.preview.emergentagent.com`; behind spine auth (seeded owner account, strong generated password OR token) — that's an app login, not a console/VM credential; rate-limited + CSRF-protected. End-to-end drill against a local mock sshd on `127.0.0.1:2222` BEFORE any hand-off; drill distinguished by host identity, no drill-mode switch.
+
+

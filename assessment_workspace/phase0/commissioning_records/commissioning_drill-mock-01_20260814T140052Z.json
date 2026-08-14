@@ -1,0 +1,19 @@
+{
+  "kind": "commissioning_record",
+  "at": "2026-08-14T14:00:52.530074+00:00",
+  "host_name": "drill-mock-01",
+  "vm_host": "127.0.0.1",
+  "deploy_date": "2026-08-14",
+  "hardening_section": {
+    "status": "failed",
+    "failed_step": "env_check",
+    "external_probe_ok": false,
+    "receipt_path": ""
+  },
+  "acceptance_section": {
+    "status": null,
+    "exit_code": null,
+    "checks": []
+  },
+  "ruling_reference": "DECISIONS.md \u00b7 WS-BUILD-CONNECT-GPU \u00b7 2026-08-14"
+}

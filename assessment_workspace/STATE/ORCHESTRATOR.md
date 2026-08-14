@@ -1,34 +1,33 @@
 # ORCHESTRATOR.md — Orchestrator's (owner-side) recovery file
 
-**Last refreshed:** 2026-08-14 · Owner rulings received on FL-P2-03 (CLOSED, freeze upheld, provenance explained; console visibility check is builder's immediate next action) and FL-P2-04 (CLOSED path (a) — hardening executes through the seam). Hardening orchestrator built tests-first on `programme/track-a` (HEAD `ad65211` · 35/35 gating tests green atop baseline `b150c21`). FL-P2-03 console-check **precondition gap detected** — no Rafay console credentials in workspace; escalated with URL + auth mechanism report. Pod egress IP still `34.16.56.64`; allowlist confirmed sole /32 by owner.
+**Last refreshed:** 2026-08-14 · Owner rulings on console-access + credential-delivery + WS-BUILD-CONNECT-GPU received. FL-P2-03 SUPERSEDED-TO-ACCEPTANCE, FL-P2-04 CLOSED path (a). WS-BUILD-CONNECT-GPU built tests-first on `programme/track-a` HEAD `dad2faa` (7 commits atop `b150c21`; **52/52 gating tests green**). Surface reachable at `https://akki-reuse-assess.preview.emergentagent.com/register/connect/gpu` behind owner-bearer-token auth. End-to-end UI drill against mock sshd banked (`failed (ours; retry)` grammar branch confirmed). Pod egress IP: `34.16.56.64`.
 
-**Discipline:** mirror of the builder's STATE/ discipline. Update the top of this file at every builder reply; the reply and this file MUST agree. A cold orchestrator reading only this file (plus CONTEXT · DECISIONS · PINS · NEXT) can resume without asking a question.
+**Discipline:** mirror of the builder's STATE/ discipline. Update the top of this file at every builder reply; the reply and this file MUST agree.
 
 ---
 
 ## 1 · POSTURE
 
-**Current phase / track.** `programme/track-a` HEAD `ad65211` — 5 commits atop `b150c21`: tests-first A0/A1/seam · implementation A0/A1/seam · seam scaffolding tools · tests-first hardening orchestrator · implementation hardening orchestrator. Working tree clean. 35/35 gating tests pass at HEAD. Compute seam + FL-P2-04 path (a) hardening are code-complete and awaiting credentials. Assessment-repo `master` HEAD `14ab087` (pending this cycle's follow-up commit for owner ruling + STATE refresh + FL-P2-03 console-check log + right-reason failure logs).
+**Current phase / track.** WS-BUILD-CONNECT-GPU code-complete + end-to-end drill green. `programme/track-a` HEAD `dad2faa` — 7 sequential tests-first commits (parity + record-matrix + task-identity + declaration + custody wiring + seam + hardening orchestrator + connect-gpu router + service). 52/52 gating tests pass. Baseline `b150c21` preserved. Spine app running at pod preview URL. Assessment-repo `master` HEAD `a450d8f` (pending this cycle's follow-up commit for ruling verbatim + fidelity ledger updates + STATE refresh + drill assets).
 
-**In-flight instruction (orchestrator → builder).** 2026-08-14 · owner-ruling-execution cycle: (1) append verbatim ruling to DECISIONS.md · (2) FL-P2-03 console check — precondition audit first, report console URL + auth mechanism, NEVER provision · (3) finalize hardening module per path (a) conditions (bootstrap credential env-only, single-run, retired within session, never on disk/STATE/logs) · (4) continue Phase 1 + seam commits on `programme/track-a` · (5) update ORCHESTRATOR + NEXT · (6) reply with console-check result, hardening status, track-a commit log, Phase-1 deliverable report.
+**In-flight instruction (orchestrator → builder).** 2026-08-14 · connect-gpu-build cycle: (1) append verbatim ruling · (2) mark FL-P2-03 SUPERSEDED-TO-ACCEPTANCE and FL-P2-04 CLOSED path (a) in ledger · (3) build WS-BUILD-CONNECT-GPU tests-first · (4) wire spine app to serve at preview URL behind owner bearer auth · (5) mock-sshd drill against 127.0.0.1:2222 · (6) commit on both branches · (7) reply with gating tests + drill receipts + owner-access credential + URL path + scope-class confirmation.
 
-**Last builder report received.** 2026-08-14 · Phase-1 commit + fixture-cycle CLOSE (previous reply): 3 track-a commits (tests-first ordering; parity-extension + record-matrix + task-identity thin kernel + declaration + custody wiring + compute seam scaffolded), plus optional-hardening front-end added to `acceptance.sh` awaiting FL-P2-04 ruling.
+**Last builder report received.** 2026-08-14 · Phase-1 hardening cycle (previous reply): 26+9 gating tests green, hardening orchestrator code-complete under path (a) discipline, FL-P2-03 precondition-gap surfaced.
 
 ---
 
 ## 2 · AWAITING-FROM-OWNER (priority order)
 
-1. **[BLOCKING FL-P2-03 EXECUTION] Rafay Console credentials for FL-P2-03 visibility check.** Console URL is `https://console.rafay.dev/` (tenant-agnostic React SPA; AISCA has no separate subdomain). Auth mechanisms exposed by the SPA: (a) email + password, (b) "Login with SSO" (email domain auto-detects OIDC/SAML federated IdP — likely path for the AISCA foundation tenant). No credentials of any kind have ever been provided in this workspace. Owner must hand over EITHER (i) email + password for the AISCA tenant, OR (ii) IdP-federated credentials + a note on which IdP (Okta / Azure AD / Google Workspace), OR (iii) an API-key for read-only tenant introspection (Rafay generates these under user profile settings — sufficient for HSS + Catalog inspection via the API even without console UI login). See NEXT.md for the exact evidence request I'll produce once any of these arrive.
-2. **[HIGH] SSH credentials + VM host IP** for the compute seam. Env-var slots on `programme/track-a`: `VM_HOST`, `VM_USER`, `SSH_PRIVATE_KEY_PATH`, `SSH_PUBLIC_KEY_PATH`, `SSH_CONNECT_TIMEOUT`, `HARDEN_SH_PATH`, `HARDENING_RECEIPT_DIR`, `BOOTSTRAP_SSH_PASSWORD` (single-use, retired within the hardening session).
-3. **VM provisioning day** — starts the +14d checkpoint clock (Build Order 01 §6). Sequencing per FL-P2-03 ruling: builder does console visibility check first; on green, Phase-0 executes TODAY under path (a); on not-green, stop stands and owner takes it to vendor.
-4. **Reference screenshot as file** — TRANSCRIPTION-GRADE currently IN FORCE (Q1(c) ruling). Owner asked to re-send as file; not yet arrived.
+1. **[HIGHEST · Phase-0 gating] VM bootstrap credentials via the WS-BUILD-CONNECT-GPU surface.** Owner enters at `https://akki-reuse-assess.preview.emergentagent.com/register/connect/gpu` using the owner access token (see NEXT.md for how the pod operator hands it over). Form: Host Name · Username · Password · Public IP · [Private IP · OS · Deploy Date]. Submit fires the seven-stage pipeline automatically; four-questions after-state renders on completion. Bootstrap password transits ONCE, retired within the same submit call.
+2. **Reference screenshot as file** — TRANSCRIPTION-GRADE currently IN FORCE (Q1(c) ruling). Re-open FL-P1-14 on file arrival if pixels contradict transcription.
+3. **Vendor confirmation on 4×H200 + ~30 TB HSS provisioning** — owner-side action, out of this workspace's scope per standing policy. On green: real VM credentials arrive via the WS-BUILD-CONNECT-GPU surface; Phase-0 executes end-to-end.
 
 ## 3 · AWAITING-FROM-BUILDER — no in-flight cycle at this reply
 
-Standing queue (blocked on rulings above):
-- On Rafay console credentials arriving: perform read-only FL-P2-03 visibility check (HSS ~30 TB · Catalog for 4×H200 entry); produce screenshot-grade evidence (HTML snapshots + parsed catalog listing); go/no-go REPORT to owner before ANY provisioning.
-- On SSH credentials + BOOTSTRAP_SSH_PASSWORD arrival: populate `backend/.env` on `programme/track-a`; run `services.compute_seam.hardening.run()` (6 ordered steps · external probe mandatory); then run `run_acceptance_via_seam.py` (Phase-0 acceptance ledgered end-to-end); ledger commissioning record with hardening section + acceptance section.
-- Phase-2 slice: on Phase-0 green → hash manifest → admit representative slice end-to-end → FL-P1-02 focused read → slice report.
+Standing queue:
+- On real VM credentials arriving via the WS-BUILD-CONNECT-GPU surface: verify seven-stage pipeline completes (or renders correct failure grammar on §6 mismatch). Bank commissioning record; pin `checkpoint_14d_utc` (deploy_date + 14d) in PINS.
+- If real acceptance renders `held` (§6 mismatch): escalate to vendor via owner; do NOT modify `phase0/acceptance.sh` to accommodate a smaller SKU (owner ruling: 1× is not a fallback).
+- Phase-2 slice: on Phase-0 green → hash manifest → admit representative slice → FL-P1-02 focused read → slice report.
 
 ## 4 · VERIFICATION DEBT — builder claims not yet independently orchestrator-verified
 
@@ -36,30 +35,32 @@ Standing queue (blocked on rulings above):
 
 | Claim | Source | Verification path (orchestrator can execute) | Status |
 |---|---|---|---|
-| 35/35 Phase-1 gating tests pass on `programme/track-a` HEAD `ad65211` (26 A0/A1/seam + 9 hardening orchestrator) | Builder-side pytest run at commit boundary | `cd repos/Extraction-Akki && git checkout ad65211 && python3 -m pytest backend/tests/invariants/test_actor_declaration_v0_contract_frozen.py backend/tests/invariants/test_record_matrix_thin_kernel.py backend/tests/invariants/test_task_identity_thin_kernel.py backend/tests/invariants/test_parity_seat_extends_thin_kernel.py backend/tests/invariants/test_admit_refuses_undeclared_actor.py backend/tests/invariants/test_compute_seam_no_unledgered_exec.py backend/tests/invariants/test_compute_seam_artifact_hash_verified.py backend/tests/invariants/test_hardening_orchestrator.py -v` — expect 35 passed. | Builder-verified; orchestrator NOT independently re-run this cycle. |
-| Right-reason failure evidence for Phase-1 (`2b08b39` commit) — 7/7 tests fail at collection with ModuleNotFoundError before implementation lands | `phase0/drill_receipts/20260814T120336Z_pre_implementation_right_reason_failure.log` | `git checkout 2b08b39 && pytest backend/tests/invariants/{7 test files}` — expect 7 ImportError. | Builder-verified; orchestrator NOT independently re-run. |
-| Right-reason failure evidence for hardening orchestrator (`abf6328` commit) — 9/9 tests fail at collection with ImportError before hardening.py lands | `phase0/drill_receipts/20260814T130000Z_hardening_orchestrator_right_reason_failure.log` | `git checkout abf6328 && pytest backend/tests/invariants/test_hardening_orchestrator.py` — expect 9 ImportError. | Builder-verified; orchestrator NOT independently re-run. |
-| Declaration-refusal drill firing (Ruling-1 precondition (a)) | `phase0/drill_receipts/20260814T120336Z_declaration_refusal_firing.log` | Independent operator re-runs the drill. | Builder-verified; orchestrator NOT independently re-run. |
-| Hardening orchestrator credential-secrecy invariants (no bootstrap-pw on argv / in ledger row / in receipt / in env after return; mid-run failure blocks data movement; external probe mandatory) | 9 runtime + structural assertions in `test_hardening_orchestrator.py` | Same test file run. | Builder-verified; orchestrator NOT independently re-run. |
-| FL-P2-03 console URL + auth mechanism (`https://console.rafay.dev/` — email+password OR SSO auto-detect via email domain; AISCA has no separate subdomain) | Live curl + web search this cycle | Same curl commands; owner can validate by opening URL in a browser. | Builder-fresh-verified this cycle. Orchestrator can independently open the URL. |
-| Egress IP `34.16.56.64` | 4-service curl | Same. | Re-verified fresh LAST cycle by builder; NOT re-verified this cycle by builder OR orchestrator. Confidence: high. Owner confirmed as sole /32. |
-| Fixture sha256s | `sha256sum fixtures/*` | Same command. | Builder-verified last cycle; orchestrator NOT independently re-run. |
-| Citation audit `104/104 file · 1772/1772 canon · 0 failed` | `tools/citation_audit.py` at `7c9a544` | `python3 tools/citation_audit.py` | Builder-verified LAST cycle at `7c9a544`; **orchestrator has NOT independently re-run.** |
-| Completeness audit PASS | `tools/completeness_audit.py` at `7c9a544` | `python3 tools/completeness_audit.py` | Builder-verified LAST cycle at `7c9a544`; **orchestrator has NOT independently re-run.** |
-| `programme/track-a` HEAD `ad65211` with 5 tests-first commits atop `b150c21` | `git log --oneline programme/track-a` this cycle | Same command. | Builder-verified this reply. Working tree clean. |
-| Hardening orchestrator successfully hardens a real VM under path (a) | FALSE — has never executed against a live VM | Cannot verify until VM credentials + BOOTSTRAP_SSH_PASSWORD arrive. | Structurally verified via mocked-outcome test suite; live behaviour unverified. |
+| 52/52 Phase-1 gating tests pass on `programme/track-a` HEAD `dad2faa` (26 A0/A1/seam + 9 hardening + 17 connect-gpu) | Builder-side pytest at commit boundary | `cd repos/Extraction-Akki && git checkout dad2faa && python3 -m pytest backend/tests/invariants/ -v` (10 test files listed in NEXT.md) — expect 52 passed. | Builder-verified; orchestrator NOT independently re-run. |
+| Right-reason failure evidence for connect-gpu (`ea3d874` commit) — 15/15 pipeline tests fail at collection with ImportError before service lands | `phase0/drill_receipts/20260814T140000Z_connect_gpu_right_reason_failure.log` | `git checkout ea3d874 && pytest backend/tests/invariants/test_connect_gpu_*.py` — expect 15 ImportError + 2 scope pass. | Builder-verified. |
+| UI drill against mock sshd (127.0.0.1:2222) renders `failed (ours; retry)` end-to-end | `phase0/drill_receipts/20260814T140516Z_connect_gpu_ui_drill.json` + 5 screenshots under `screenshots/` | Re-run via Playwright at the same URL with token + mock pw. | Builder-verified this cycle. |
+| Password never persists (searched receipts + commissioning records + PINS + backend logs; zero hits) | `grep -rc <mock_pw>` executed this cycle | Same grep. | Builder-verified this cycle. |
+| Surface reachable at pod preview URL behind bearer auth | `curl` this cycle: HTTP 200 on `/register/connect/gpu`; HTTP 401 on unauthed `POST /api/connect/gpu` | Same curls. | Builder-verified this cycle. |
+| Owner access token generated at `/app/backend/.owner_credentials` (mode 0600) | Backend startup log: `owner-token: generated new .owner_credentials (mode 0600); prefix=fd97993e...` | `ls -la /app/backend/.owner_credentials`. | Builder-verified this cycle. |
+| Egress IP `34.16.56.64` | 4-service curl | Same. | Re-verified 2 cycles ago; unchanged infra. |
+| Fixture sha256s | `sha256sum fixtures/*` | Same. | Verified 2 cycles ago. |
+| Citation audit `104/104 file · 1772/1772 canon · 0 failed` | `tools/citation_audit.py` at `7c9a544` | Same. | 2 cycles stale; NOT re-run this cycle. |
+| Completeness audit PASS | `tools/completeness_audit.py` at `7c9a544` | Same. | 2 cycles stale; NOT re-run this cycle. |
+| `phase0/acceptance.sh` unchanged (frozen at §6 spec) | `git log -p phase0/acceptance.sh` | Same. | Builder-verified. Owner ruling explicit: 1× is not a fallback. |
+| Real VM hardening + acceptance under path (a) | FALSE — never executed against a real VM | Awaits real credentials via the surface. | Structurally verified; live behaviour unverified. |
 
 ## 5 · STANDING RULES DIGEST — cold-orchestrator cheat sheet
 
-1. **No push, ever** — Owner Clarification 1. Local commits are the record.
-2. **Tests-first** — no implementation lands before its gating invariant test fails for the right reason (Build Order 01 §5). Applies uniformly on `programme/track-a`.
-3. **Escalate-and-stop on any conflict** between governing artifacts (Q2(a)). Never owner-favoured interpretation.
+1. **No push, ever** — Owner Clarification 1.
+2. **Tests-first** — no implementation lands before its gating invariant test fails for the right reason.
+3. **Escalate-and-stop on any conflict.** No owner-favoured interpretation.
 4. **Thin-kernel floor** — nothing live bypasses record matrix + task identity register + declaration.
-5. **Fixture grades** — transcription-cleared vs file-cleared are different governance states.
-6. **T1 guard** — Executive-Core purpose gate stands until BOTH declaration check AND Watch reconciler demonstrated firing.
-7. **No fixture invention** — absence is a finding, never a blank.
+5. **Fixture grades** — transcription-cleared vs file-cleared distinguished.
+6. **T1 guard** — Executive-Core purpose gate holds until BOTH declaration check AND Watch reconciler demonstrated firing.
+7. **No fixture invention** — absence is a finding.
 8. **STATE/ updated at every material step.** Never end a `programme/track-a` session with staged-uncommitted production work.
-9. **Owner rulings only from the owner channel** — unlogged ruling = "not lawfully happened".
-10. **Repo-branch discipline** — production code ONLY on `programme/track-a` inside Extraction-Akki; assessment/governing documents on assessment-repo `master`. `phase0/` frozen at Order-§6 spec — 1×H200 SKU is NOT a fallback (owner ruled explicitly).
-11. **FL-P2-04 path (a) discipline (NEW):** bootstrap credential env-only; single-use; retired within session; NEVER on argv / disk / STATE / logs / ledger row / receipt; external probe (password-refused from pod) mandatory evidence; mid-run failure = VM unhardened = no data movement.
-12. **FL-P2-03 read-only ceiling (NEW):** console visibility check is READ-ONLY. Never provision anything; provisioning happens only on green check AND per §6 spec exactly.
+9. **Owner rulings only from the owner channel.**
+10. **Repo-branch discipline** — production code on `programme/track-a` in Extraction-Akki; governing docs on assessment-repo `master`. `phase0/` frozen at §6 SKU spec.
+11. **FL-P2-04 path (a) discipline** — bootstrap credential env-only, single-use, retired within session, never on argv/disk/STATE/logs/ledger row/receipt; external probe mandatory.
+12. **FL-P2-03 SUPERSEDED-TO-ACCEPTANCE** — no console credential enters the workspace, ever. The go/no-go moves whole to `phase0/acceptance.sh` on first hardened login.
+13. **[NEW] WS-BUILD-CONNECT-GPU scope ceiling** — S/M class. One connection type on one existing tile. If it grows past M, STOP and say why. Governed by `test_connect_gpu_scope_S_or_M.py` (LOC ceiling + banned-generic-name grep).
+14. **[NEW] Product surface discipline** — spine app runs at pod preview URL behind owner-bearer-token auth. Token generated once at `/app/backend/.owner_credentials` (mode 0600, never committed to any repo, never appears in logs or STATE). Pod operator hands it over.

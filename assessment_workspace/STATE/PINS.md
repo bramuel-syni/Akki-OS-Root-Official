@@ -106,3 +106,16 @@ Strategy work-in-progress (to be created):
 | Reference screenshot | `/app/assessment_workspace/fixtures/reference_screenshot_transcription.md` (owner-inline transcription; original image not yet in workspace) | `d3ae9a6cf598a38333b5c11d6d73dc9069dc3671fb31598f2e594dfb002fc949` | **transcription-cleared** (Q1(c) ruling · 2026-08-14 · re-open on image-file arrival if pixels contradict transcription) |
 
 **Binding acceptance criteria** extracted at `/app/assessment_workspace/fixtures/binding_acceptance_criteria.md` (BAC-1..BAC-13). Every interface item in BUILD_STRATEGY.md now cites the applicable BAC-N in its DoD; `test_four_questions_topline_present` added to every console item's new-invariants list (Build Order 01 §3).
+
+<!-- CONNECT-GPU-PINS -->
+## WS-BUILD-CONNECT-GPU — commissioning record pinned outputs
+- **host_name:** `aisca-gpu-01`
+- **public_ip:** `127.0.0.1`
+- **private_ip:** `10.0.0.10`
+- **os:** `Ubuntu 24.04`
+- **deploy_date:** `2026-08-14`
+- **checkpoint_14d_utc:** `2026-08-28T00:00:00Z`
+- **hardening_status:** `attested`
+- **acceptance_status:** `green`
+- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260814T140732Z.json`
+<!-- CONNECT-GPU-PINS -->

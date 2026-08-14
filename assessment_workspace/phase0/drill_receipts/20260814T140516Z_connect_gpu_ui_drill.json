@@ -1,0 +1,80 @@
+{
+  "drill_ts_utc": "20260814T140516Z",
+  "drill_kind": "WS-BUILD-CONNECT-GPU end-to-end via UI on preview URL",
+  "preview_url": "https://akki-reuse-assess.preview.emergentagent.com/register/connect/gpu",
+  "target": {
+    "host": "127.0.0.1:2222",
+    "user": "mockubuntu",
+    "kind": "mock_sshd_local"
+  },
+  "bootstrap_pw_source": "/tmp/akki_mock_sshd/mock_bootstrap_password.txt",
+  "bootstrap_pw_prefix_only": "t2N7...",
+  "leak_check": {
+    "searched_paths": [
+      "receipts/",
+      "commissioning_records/",
+      "PINS.md",
+      "backend logs"
+    ],
+    "hits_found": 0
+  },
+  "four_questions_render": {
+    "whats_happening": "Hardening failed at step 'remote_harden' \u2014 machine is unhardened.",
+    "how_we_know": "Hardening receipt at /tmp/akki_mock_sshd/receipts/hardening_receipt_20260814T140521Z.json \u00b7 external probe result: False.",
+    "what_we_are_doing": "This is ours \u2014 retry the submit once the cause is corrected.",
+    "agreement_holding": "The machine is not yet attested; the seam refused to move data."
+  },
+  "state_class": "failed",
+  "data_movement_permitted": false,
+  "hardening_receipts": [
+    {
+      "path": "/tmp/akki_mock_sshd/receipts/hardening_receipt_20260814T140231Z.json",
+      "sha256": "3832247adcc6d0b726c1c215da4d6577f8680d8135e351cac3e212d0b646b7c1"
+    },
+    {
+      "path": "/tmp/akki_mock_sshd/receipts/hardening_receipt_20260814T140521Z.json",
+      "sha256": "468d89767ff86970bc38a02b6a1753926969f5ad69af28e5636ef57ee2c8d4d7"
+    }
+  ],
+  "commissioning_records": [
+    {
+      "path": "/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260814T135856Z.json",
+      "sha256": "7caa0986da9599f9faf7be7f8d7086e6557885774aa72e493ee6feb696e180e0"
+    },
+    {
+      "path": "/app/assessment_workspace/phase0/commissioning_records/commissioning_drill-mock-01_20260814T140052Z.json",
+      "sha256": "f55532a78b627e2ef4003b59a0fd5550a512137054b02bf62ca3ed9d0904aba0"
+    },
+    {
+      "path": "/app/assessment_workspace/phase0/commissioning_records/commissioning_drill-mock-01_20260814T140231Z.json",
+      "sha256": "479abb100c2d374993c720e78bdafca01ac28812e077d40f6400f120e831c0f9"
+    },
+    {
+      "path": "/app/assessment_workspace/phase0/commissioning_records/commissioning_drill-ui-01_20260814T140521Z.json",
+      "sha256": "249c9b816ecd4c6a7bc49a99da856238abce7b7fc104d085239c4fd9748118d5"
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "/app/assessment_workspace/phase0/drill_receipts/screenshots/connect_gpu_after.jpeg",
+      "sha256": "6266bddaf10a218aa18555c0de34ec0804ae37c0bb7cc478b4d28d4c721a365a"
+    },
+    {
+      "path": "/app/assessment_workspace/phase0/drill_receipts/screenshots/connect_gpu_filled.jpeg",
+      "sha256": "95f55b89e705799d5683bfb00bebba33b20ee9c7af9e63db7d4de72e65b3778e"
+    },
+    {
+      "path": "/app/assessment_workspace/phase0/drill_receipts/screenshots/connect_gpu_form.jpeg",
+      "sha256": "f0bcec03586f40c75167e48ca96d4967a183fe6250832a1ab25357e42ab5d1cb"
+    },
+    {
+      "path": "/app/assessment_workspace/phase0/drill_receipts/screenshots/connect_gpu_login.jpeg",
+      "sha256": "86327f33776e6ec8bb50076a8e822e9c3c2126b328e1875451cc8e9d52988a1d"
+    },
+    {
+      "path": "/app/assessment_workspace/phase0/drill_receipts/screenshots/connect_gpu_tiles.jpeg",
+      "sha256": "f0bcec03586f40c75167e48ca96d4967a183fe6250832a1ab25357e42ab5d1cb"
+    }
+  ],
+  "ruling_reference": "DECISIONS.md \u00b7 WS-BUILD-CONNECT-GPU \u00b7 2026-08-14"
+}
