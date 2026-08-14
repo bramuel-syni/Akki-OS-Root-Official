@@ -1,13 +1,104 @@
 # CONTEXT.md — Running narrative
 
-**Last updated:** 2026-08-14, at BUILD_STRATEGY.md v1.1 self-contained assembly.
+**Last updated:** 2026-08-14 · fixture-arrival cycle CLOSED · assessment-repo `master` commit with 3 Build-Order-01 corrections + fixture ingestion + BAC-1..BAC-13 extraction + FIXTURE-PENDING → transcription-cleared flip + SOP conflicts ESCALATED per Q2(a).
+
+
+## Compaction / recovery event · 2026-08-14 · post-fixture-arrival
+
+Second compaction / restart occurred after fixture-arrival cycle (queued message: FIXTURES ARRIVED — download + hash + extract + clear FIXTURE PENDING + update DoDs + extract SOPs + escalate-and-stop on conflicts). Cold-read from disk performed against STATE/ before resuming.
+
+**Present on disk (verified):**
+- STATE/{CONTEXT,PINS,DECISIONS,NEXT}.md — all four; DECISIONS.md carries Rulings 1/2/3, Orchestrator A/B/C, Build Order 01 verbatim (dated 2026-08-14), and Owner Clarifications 1-3 (no-push · VM SSH access to be granted · fixtures re-upload).
+- `BUILD_STRATEGY.md` — 2441 lines at commit `42b241c` (v1.1 self-contained assembly).
+- `REUSE_ASSESSMENT.md` — 53,479 bytes, accepted.
+- `notes/fidelity_ledger.md` — 101 lines, 8+7+12+1+1+2 = 31 rows CLOSED (owner's 27 + FL-R1-01/FL-P1-20 retained + FL-P2-01/02 opened during Part-2 drafting).
+- `fixtures/Akki_Prototype_v7_Design_Brief.md` — 18,791 bytes · sha256 `063f2b470d74dcd30ad43b4645c4e656edaa7fb1185198a4116ad5328a9717b4`.
+- `fixtures/AISCA_GPU_Access_Guide.pdf` — 535,169 bytes · sha256 `0f6b6e0f692494e18a65df655fddf48f45839005dc7aa6b988239b8f90e157f3`.
+- `fixtures/reference_screenshot_transcription.md` — created this recovery cycle from owner's inline transcription (Q1(c) ruling · 2026-08-14) · sha256 `d3ae9a6cf598a38333b5c11d6d73dc9069dc3671fb31598f2e594dfb002fc949` · grade AUTHORITATIVE-UNTIL-FILE-ARRIVES.
+- `phase0/` — commissioning_checklist.md · acceptance.sh · commissioning_record_template.md · A0-A1_report.md · drill_receipts/20260814T120336Z_declaration_refusal_firing.log.
+- Extraction-Akki clone with branch `programme/track-a` (baseline `b150c21`); Phase-1 code + tests staged on disk (7 new files under `backend/`) — pending commit on `programme/track-a`.
+- Pod egress IP re-verified fresh via 4 curl services: **`34.16.56.64`** (unchanged; no IPv6).
+
+**Missing / requires immediate action:**
+- **Corrections commit (post-`42b241c`) NOT YET MADE on assessment repo.** `BUILD_STRATEGY.md` at HEAD still carries the three defects Build Order 01 named:
+  - Line 1742: "Nine XL items" (stale count).
+  - Line 2017: "Placeholder — Part 2 has not been drafted yet".
+  - Line 1939 (FL-OQ-04) and Line 2165 (§Appendix C5-010..C5-012 row): "four consoles" phrasing.
+  Working papers `notes/strategy_sections.md` and `notes/fidelity_ledger.md` carry the corrected content (uncommitted); BUILD_STRATEGY.md needs a re-assembly + commit.
+- Fixture SHA-256 hashes not yet in `PINS.md` (attachment-status line still records "NOT yet delivered").
+- Item DoDs across BUILD_STRATEGY.md interface items still read `FIXTURE PENDING`; awaiting binding-acceptance-criteria extraction from v7 brief + transcription, and `test_four_questions_topline_present` addition to their new-invariants lists.
+- AISCA GPU SOP not yet extracted / reconciled against Order §6 (escalate-and-stop on conflict per owner's Q2(a) ruling).
+- Phase-1 test/code files (`backend/contracts/*.py`, `backend/services/declaration/*`, `backend/services/compute_seam/*`, `backend/tests/invariants/actor_declaration_*`) staged on `programme/track-a` but NOT YET committed — HEAD still at `b150c21`. Owner's Q3 ruling this cycle covers ONLY the assessment-repo master commit; `programme/track-a` phase-1 commit is a separate cycle and stays untouched here.
+- FL-P1-14 in the ledger reads `CLOSED — fixture is the attached screenshot plus the attached v7 brief`; this now needs the transcription-cleared vs file-cleared grade distinction per owner's Q1(c) ruling.
+
+**Resume point (per owner's plan-confirmation rulings):**
+1. Extract binding acceptance criteria from v7 brief + transcription into `fixtures/binding_acceptance_criteria.md`.
+2. Extract AISCA SOP into `fixtures/aisca_sop_extraction.md`; reconcile against Order §6 bindings; escalate-and-stop on any conflict.
+3. Update PINS.md (fixture hashes + attachment-status flip).
+4. Update fidelity_ledger.md FL-P1-14 with transcription-cleared vs file-cleared grade distinction; add fixture-arrival log row FL-P1-14a.
+5. Rewrite `FIXTURE PENDING` markers across BUILD_STRATEGY.md item DoDs to cite the extracted criteria; add `test_four_questions_topline_present` to console items' new-invariants lists.
+6. Apply the three Build-Order-01 corrections in BUILD_STRATEGY.md (via assembly tool re-run, since notes/ already carry the corrected content).
+7. Re-run citation_audit.py + completeness_audit.py.
+8. Refresh backend/deliverables snapshots.
+9. Commit on assessment-repo `master` (linear record per owner's Q3 ruling); update NEXT.md.
+10. Reply to owner with the phase-1/fixture report + fresh egress IP.
+
 
 ## Where we are
 
-- Chunk 4 COMPLETE at v1.1 assembly. `BUILD_STRATEGY.md` is now SELF-CONTAINED (2442 lines, 244 KB) at `/app/assessment_workspace/BUILD_STRATEGY.md`. Working papers in `notes/` remain on disk as the review trail.
-- Rulings issued: **Ruling 1** (purpose-gate transition), **Ruling 2** (five-point plan), **Ruling 3 / Instruction 02** (interface strategy directive), **Orchestrator Ruling A** (citation-drift remediation), **Orchestrator Ruling B** (Part 2 proceed + strategy sections), **Orchestrator Ruling C** (self-contained assembly). All verbatim in `DECISIONS.md`.
-- Assessment REUSE_ASSESSMENT.md ACCEPTED by owner (2026-08-14).
-- Prohibitions still in force: no production code, no harvesting-in-code, no re-pointing, no scaffolding, no canon edits. Throwaway audit + assembly scripts under `tools/` remain allowed.
+- **Execution authorized** on branch `programme/track-a` in Extraction-Akki (baseline `b150c21`, never rewritten). Production-code prohibition lifted ONLY for this branch per Build Order 01.
+- **All 27 fidelity-ledger rows CLOSED** by Build Order 01 rulings; ledger frozen.
+- **Three corrections applied** (§10.F stale placeholder replaced; XL count 9→7 reconciled; Canon 5 §10 "exactly five consoles" verified — extraction was fine, premise was paraphrase defect).
+- **Phase 1 A0/A1 tests-first GREEN** — 26/26 gating tests pass; declaration-refusal drill banks Ruling-1 precondition (a).
+- **Compute seam built** (folded into Phase 1 per Owner Clarification 2) with tests-first discipline; ready for credentials.
+- **Pod egress IP** `34.16.56.64` reported for VM allowlist.
+- **Rulings issued:** Ruling 1, Ruling 2, Ruling 3/Instruction 02, Orchestrator Rulings A/B/C, Build Order 01, Owner Clarifications 1-3. All verbatim in `DECISIONS.md`.
+- **No push** (Owner Clarification 1). Local git history IS the record.
+- Prohibitions still in force for anything OFF `programme/track-a`: no production code, no scaffolding, no canon edits.
+
+## Attachment gap (recorded per Owner Clarification 3 · 2026-08-14)
+
+The three fixtures referenced by Build Order 01 — reference screenshot, `Akki_Prototype_v7_Design_Brief.md`, `AISCA_GPU_Access_Guide.pdf` — were NOT delivered with the order and had NOT arrived as of Owner Clarification 3 (re-upload signalled). Per the order's own text "every FIXTURE PENDING clears on their arrival in the workspace," FL-P1-14's substantive closure is CONDITIONAL. Fixture-bound work (A4 operating surface, Track-B console items, Watch Console §6 verbatim consumption) is BLOCKED until they land. **Nothing in A0-A3 is blocked.**
+
+## Deliverable manifest (current)
+
+- `/app/assessment_workspace/REUSE_ASSESSMENT.md` (450 lines) — Chunk-3 accepted.
+- `/app/assessment_workspace/BUILD_STRATEGY.md` — Chunk-4 v1.2 self-contained (re-assembled after Build Order 01 + rulings).
+- `/app/assessment_workspace/phase0/` — commissioning_checklist.md · acceptance.sh · commissioning_record_template.md · A0-A1_report.md · drill_receipts/.
+- `/app/assessment_workspace/repos/Extraction-Akki/` (branch `programme/track-a`, baseline `b150c21`):
+  - `backend/contracts/actor_declaration.py`, `backend/contracts/record_matrix.py`, `backend/contracts/task_identity.py`
+  - `backend/services/declaration/`, `backend/services/compute_seam/`
+  - 7 new invariant tests + parity-seat snapshot in `backend/tests/invariants/`
+  - `backend/tools/report_egress_ip.sh`, `backend/tools/ssh_preflight.py`, `backend/tools/run_acceptance_via_seam.py`.
+- Working papers on disk (feeding BUILD_STRATEGY.md assembly):
+  - `notes/strategy_items_part1.md`, `strategy_items_part2.md`, `strategy_sections.md`, `fidelity_ledger.md` (closed), `row_to_item_index.md`.
+- Assembly tool: `tools/assemble_build_strategy.py`.
+- STATE/ current across CONTEXT · PINS · DECISIONS · NEXT.
+
+## Audit posture (current)
+
+- Citation audit: 104/104 file · 1778/1778 canon · **0 failed** (post-remediation, includes BUILD_STRATEGY.md).
+- Completeness audit: PASS — every non-REUSE row assigned; every item has 7 fields; BUILD_STRATEGY.md self-contained.
+- Phase-1 gating tests: **26/26 pass** on `programme/track-a`. Ruling-1 precondition (a) demonstrated firing (declaration-scoped refusal observable in the ledger via drill).
+- Zero regressions introduced: only new files added to Extraction-Akki, no existing code modified.
+
+## Downloadable snapshot (2026-08-14 · Orchestrator delivery-logistics directive)
+
+The two deliverables are served READ-ONLY through the pod template's FastAPI backend as **snapshots** (not a live mount of this workspace). Refresh discipline: after each material change to either document, re-copy from `/app/assessment_workspace/` to `/app/backend/deliverables/` and update the snapshot commit literal in the listing endpoint.
+
+- `https://akki-reuse-assess.preview.emergentagent.com/api/deliverables/BUILD_STRATEGY.md`
+- `https://akki-reuse-assess.preview.emergentagent.com/api/deliverables/REUSE_ASSESSMENT.md`
+- Listing at `/api/deliverables` returns snapshot commit + size + URL for each.
+
+## Citation-drift root cause (Orchestrator Ruling A — retained record)
+
+Chunk-1 extraction from the `.docx` archives numbered content paragraphs consecutively BEYOND the canon's real `[Heading]` boundaries — sub-paragraph counting was not reset when a new heading appeared, so `Cn-0MM (§XX)` row IDs recorded sub-paragraph counters, not heading numbers. Prevention for all future work: only cite `[Heading]`-numbered sections that literally appear in the extracted canon text; run `citation_audit.py` before every submission.
+
+Remediation trail: `tools/drift_map.py` + `tools/drift_apply.py` + `tools/drift_downstream.py`; edit log at `tools/drift_edits.log`; xref at `tools/drift_xref.json`; FL-P1-20 retained as the defect+remediation record.
+
+## Recovery event · 2026-08-14T09:24Z (historical)
+
+Context compaction / restart occurred ~2026-08-14T09:24Z. Recovery from disk + queued brief succeeded; all subsequent work is captured above.
 
 ## Deliverable manifest
 

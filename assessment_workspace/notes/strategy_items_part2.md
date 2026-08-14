@@ -178,11 +178,11 @@ Estimation discipline and field template — see `strategy_items_part1.md` §top
 
 # F. Interface BUILD (Canon 5, no Extraction-Akki donor)
 
-Each of these tiles either has no existing page in the Extraction-Akki frontend (`WS-BUILD-*`) OR carries copy that must be built verbatim from canon (`WS-BUILD-REFUSAL-CARD-COPY`). Every tile appears as a BUILD-marked open slot inside the harvested console tile-groups (Part 1). All carry `FIXTURE PENDING: reference screenshot for tile-grid-plus-detail-card grammar`.
+Each of these tiles either has no existing page in the Extraction-Akki frontend (`WS-BUILD-*`) OR carries copy that must be built verbatim from canon (`WS-BUILD-REFUSAL-CARD-COPY`). Every tile appears as a BUILD-marked open slot inside the harvested console tile-groups (Part 1). All carry `FIXTURE CLEARED @ transcription grade — see `fixtures/binding_acceptance_criteria.md` (BAC-1..BAC-13); `test_four_questions_topline_present` added to new-invariants list per Build Order 01 §3`.
 
 ## WS-BUILD-CONSOLE-EXTRACTION-MODEL-CATALOGUE
 
-1. **WHAT.** Extraction Console Model Catalogue tile — MOAC scorecard render per adapter version. Row C5-014. Component: new frontend tile + backend data provider. Contract: `Model.Catalogue.Row.v0`. Record class: `MOAC.Scorecard` (reader). Task identity: `catalogue.render.per_adapter`. **FIXTURE PENDING.**
+1. **WHAT.** Extraction Console Model Catalogue tile — MOAC scorecard render per adapter version. Row C5-014. Component: new frontend tile + backend data provider. Contract: `Model.Catalogue.Row.v0`. Record class: `MOAC.Scorecard` (reader). Task identity: `catalogue.render.per_adapter`. **FIXTURE CLEARED @ transcription grade — `fixtures/binding_acceptance_criteria.md` applied.**
 2. **CANON CLAUSES.** Canon 5 §14 (Model Catalogue); Canon 4 §26 (MOAC).
 3. **DEFINITION OF DONE.** Tile renders every adapter version with its MOAC scorecard, drift indicator, uncurated-sample provenance, rights lineage. Row without a scorecard renders as its own state.
 4. **QUALITY EVIDENCE.** Inventory audit (tile row-count = adapter-version-count). Calibration under Canon 5 §14.
@@ -192,7 +192,7 @@ Each of these tiles either has no existing page in the Extraction-Akki frontend 
 
 ## WS-BUILD-BATCH-BOARD-SURFACE
 
-1. **WHAT.** Batch Board surface with quarantined batches. Row C5-018. Component: frontend tile + backend data feed from `WS-HARVEST-BATCH-QUARANTINE` (Part 1). Contract: `Batch.Board.Row.v0`. Record class: `Batch.QuarantineDecision` (reader). Task identity: `batch_board.render.per_batch`. **FIXTURE PENDING.**
+1. **WHAT.** Batch Board surface with quarantined batches. Row C5-018. Component: frontend tile + backend data feed from `WS-HARVEST-BATCH-QUARANTINE` (Part 1). Contract: `Batch.Board.Row.v0`. Record class: `Batch.QuarantineDecision` (reader). Task identity: `batch_board.render.per_batch`. **FIXTURE CLEARED @ transcription grade — `fixtures/binding_acceptance_criteria.md` applied.**
 2. **CANON CLAUSES.** Canon 4 §34.1 Batch Board; Canon 5 §17 Extraction Console.
 3. **DEFINITION OF DONE.** Tile renders every batch with quarantine verdict + reason; quarantined batches highlighted; un-quarantined batches show pass state. No content leaks (Canon 4 §34.1 discipline).
 4. **QUALITY EVIDENCE.** Inventory audit + invariant (no content leak). Calibration under Canon 4 §34.1.
@@ -202,7 +202,7 @@ Each of these tiles either has no existing page in the Extraction-Akki frontend 
 
 ## WS-BUILD-QUALITY-OBSERVATION
 
-1. **WHAT.** Quality Observation tile with Critic-Seam calibration stale surface. Row C5-020. Component: frontend tile + backend Critic-Seam calibration state reader. Contract: `Quality.Observation.Panel.v0`. Record class: `Critic.Verdict` (reader). Task identity: `quality_observation.render.per_check`. **FIXTURE PENDING.**
+1. **WHAT.** Quality Observation tile with Critic-Seam calibration stale surface. Row C5-020. Component: frontend tile + backend Critic-Seam calibration state reader. Contract: `Quality.Observation.Panel.v0`. Record class: `Critic.Verdict` (reader). Task identity: `quality_observation.render.per_check`. **FIXTURE CLEARED @ transcription grade — `fixtures/binding_acceptance_criteria.md` applied.**
 2. **CANON CLAUSES.** Canon 5 §18 (Quality Observation); Canon 7 §33 (Critic Seam calibration); Canon 4 §32 (quality matrix).
 3. **DEFINITION OF DONE.** Tile renders Critic Seam calibration status per adapter class; stale-calibration surface highlighted; drift alarms per Canon 4 §32.
 4. **QUALITY EVIDENCE.** Inventory audit + calibration-stale drill. Calibration under Canon 4 §32.
@@ -212,7 +212,7 @@ Each of these tiles either has no existing page in the Extraction-Akki frontend 
 
 ## WS-BUILD-AGENT-ASSUMED-CHIP
 
-1. **WHAT.** Agent-assumed chip render (chip that flags claims produced by the agent's own inference vs quoted evidence). Row C5-008. Component: new frontend chip component. Contract: `Agent.Assumed.Chip.v0`. Record class: none (surface-only). Task identity: `agent_assumed.render.per_claim`. **FIXTURE PENDING.**
+1. **WHAT.** Agent-assumed chip render (chip that flags claims produced by the agent's own inference vs quoted evidence). Row C5-008. Component: new frontend chip component. Contract: `Agent.Assumed.Chip.v0`. Record class: none (surface-only). Task identity: `agent_assumed.render.per_claim`. **FIXTURE CLEARED @ transcription grade — `fixtures/binding_acceptance_criteria.md` applied.**
 2. **CANON CLAUSES.** Canon 5 §2.5 (Agent-assumed marking); Canon 5 §9.3 (Agent-assumed chip component).
 3. **DEFINITION OF DONE.** Every claim carrying agent-derived (not-quoted) inference renders with the agent-assumed chip. Existing test `gate1_class_inseparable.test.js` extends to require chip presence.
 4. **QUALITY EVIDENCE.** Invariant test (chip-presence per agent-derived claim). Uncurated sample: 100 answer envelopes; agent-assumed classifier accuracy per calibration. Calibration under Canon 5 §2.5.
@@ -222,7 +222,7 @@ Each of these tiles either has no existing page in the Extraction-Akki frontend 
 
 ## WS-BUILD-REFUSAL-CARD-COPY
 
-1. **WHAT.** Verbatim Canon 5 §9.2 refusal card COPY authored + registered in the refusal-family taxonomy (extends `services/memory/memory_refusal_reasons.v0.json`). Rows C5-005, C5-006, C5-007, C7-D03. Component: taxonomy JSON extension + copy authoring. Contract: refusal-reason JSON snapshot (extends existing frozen shape via `WS-WIRE-PARITY-EXTENSION`). Record class: `Refusal.Reason` (writer). Task identity: `refusal.copy.per_family`. **FIXTURE PENDING.**
+1. **WHAT.** Verbatim Canon 5 §9.2 refusal card COPY authored + registered in the refusal-family taxonomy (extends `services/memory/memory_refusal_reasons.v0.json`). Rows C5-005, C5-006, C5-007, C7-D03. Component: taxonomy JSON extension + copy authoring. Contract: refusal-reason JSON snapshot (extends existing frozen shape via `WS-WIRE-PARITY-EXTENSION`). Record class: `Refusal.Reason` (writer). Task identity: `refusal.copy.per_family`. **FIXTURE CLEARED @ transcription grade — `fixtures/binding_acceptance_criteria.md` applied.**
 2. **CANON CLAUSES.** Canon 5 §9.2 (verbatim refusal card copy); Canon 1 §7.1 (refusal recorded); Canon 3 §17 (refusal shapes catalogued).
 3. **DEFINITION OF DONE.** Every canon-listed refusal family has a verbatim copy entry in the taxonomy JSON. `WS-HARVEST-REFUSAL-CARD` (Part 1 — the render) reads these entries. Copy is byte-identical to Canon 5 §9.2 text.
 4. **QUALITY EVIDENCE.** Invariant test (byte-identical copy render) + inventory audit (every family has a copy entry). Calibration under Canon 5 §9.2.
@@ -232,7 +232,7 @@ Each of these tiles either has no existing page in the Extraction-Akki frontend 
 
 ## WS-BUILD-THREE-LENSES
 
-1. **WHAT.** Three lenses (Answer / Reasoning / Raw trail) over one object. Rows C5-045..C5-048, C7-006 (envelope class-chip render). Component: new frontend tile with three panels + backend three-panel data provider. Contract: `Three.Lenses.Envelope.v0`. Record class: `Answer.Envelope` (Canon 9 §6). Task identity: `answer.three_lenses.render.per_object`. **FIXTURE PENDING.**
+1. **WHAT.** Three lenses (Answer / Reasoning / Raw trail) over one object. Rows C5-045..C5-048, C7-006 (envelope class-chip render). Component: new frontend tile with three panels + backend three-panel data provider. Contract: `Three.Lenses.Envelope.v0`. Record class: `Answer.Envelope` (Canon 9 §6). Task identity: `answer.three_lenses.render.per_object`. **FIXTURE CLEARED @ transcription grade — `fixtures/binding_acceptance_criteria.md` applied.**
 2. **CANON CLAUSES.** Canon 5 §37.1 (three lenses); Canon 5 §2 (class chip inseparable per lens).
 3. **DEFINITION OF DONE.** Every answer surface renders three lenses over the same object; class chip present in every lens; refusal card can appear in any lens.
 4. **QUALITY EVIDENCE.** Invariant test (three-panel + class-chip presence) + drill (10 answer sessions rendered across three lenses).
@@ -242,7 +242,7 @@ Each of these tiles either has no existing page in the Extraction-Akki frontend 
 
 ## WS-BUILD-ANSWER-CARD
 
-1. **WHAT.** Answer card (evidence strip + honesty strip + actions). Rows C5-049, C5-050, C5-051. Component: new frontend card + backend data provider. Contract: `Answer.Card.v0`. Record class: `Answer.Envelope` (reader). Task identity: `answer_card.render.per_answer`. **FIXTURE PENDING.**
+1. **WHAT.** Answer card (evidence strip + honesty strip + actions). Rows C5-049, C5-050, C5-051. Component: new frontend card + backend data provider. Contract: `Answer.Card.v0`. Record class: `Answer.Envelope` (reader). Task identity: `answer_card.render.per_answer`. **FIXTURE CLEARED @ transcription grade — `fixtures/binding_acceptance_criteria.md` applied.**
 2. **CANON CLAUSES.** Canon 5 §37 (Ask surface); Canon 5 §37.4 (machine form / answer envelope).
 3. **DEFINITION OF DONE.** Every answer renders as an answer card with evidence + honesty + actions strips. Card is source-of-truth for the answer envelope.
 4. **QUALITY EVIDENCE.** Invariant test (card shape). Uncurated sample: 100 answers across drill week. Calibration under Canon 5 §37.
@@ -252,7 +252,7 @@ Each of these tiles either has no existing page in the Extraction-Akki frontend 
 
 ## WS-BUILD-FIVE-PILLARS
 
-1. **WHAT.** Five-pillar router (Canon 5 §40): Ask · Work · Lead · Learn · Build + 3rd Party. Row C5-052. Component: new frontend router + pillar-registry backend. Contract: `Pillar.Registration.v0`. Record class: none (surface + registration). Task identity: `pillar.router.per_navigation`. **FIXTURE PENDING.**
+1. **WHAT.** Five-pillar router (Canon 5 §40): Ask · Work · Lead · Learn · Build + 3rd Party. Row C5-052. Component: new frontend router + pillar-registry backend. Contract: `Pillar.Registration.v0`. Record class: none (surface + registration). Task identity: `pillar.router.per_navigation`. **FIXTURE CLEARED @ transcription grade — `fixtures/binding_acceptance_criteria.md` applied.**
 2. **CANON CLAUSES.** Canon 5 §40 (five pillars); FL-OQ-04 (four-vs-five console taxonomy — pillars are distinct from consoles).
 3. **DEFINITION OF DONE.** Every user surfaces routes through one of the five pillars; Canon-5 conformance audit = 100%.
 4. **QUALITY EVIDENCE.** Inventory audit (surface-list → pillar-list). Calibration under Canon 5 §40.
@@ -262,7 +262,7 @@ Each of these tiles either has no existing page in the Extraction-Akki frontend 
 
 ## WS-BUILD-PULSE-NEWS
 
-1. **WHAT.** Pulse + News apps for the Lead pillar. Row C5-053. Component: new Lead-pillar applications. Contract: `Pulse.Post.v0`, `News.Item.v0`. Record class: `Pulse.Post`, `News.Item` (Canon 9 §6). Task identity: `pulse.compose.per_post`. **FIXTURE PENDING.**
+1. **WHAT.** Pulse + News apps for the Lead pillar. Row C5-053. Component: new Lead-pillar applications. Contract: `Pulse.Post.v0`, `News.Item.v0`. Record class: `Pulse.Post`, `News.Item` (Canon 9 §6). Task identity: `pulse.compose.per_post`. **FIXTURE CLEARED @ transcription grade — `fixtures/binding_acceptance_criteria.md` applied.**
 2. **CANON CLAUSES.** Canon 5 §40 (Lead pillar apps); Canon 5 §43 (Pulse + News).
 3. **DEFINITION OF DONE.** Two Lead-pillar apps render as tiles inside the Lead pillar router; Pulse is workspace-internal, News aggregates canon-tagged updates.
 4. **QUALITY EVIDENCE.** Contract test + inventory audit.
@@ -272,7 +272,7 @@ Each of these tiles either has no existing page in the Extraction-Akki frontend 
 
 ## WS-BUILD-STUDIO
 
-1. **WHAT.** Studio — application composer surface for the Build pillar. Rows C5-055, C5-060. Component: new Build-pillar application. Contract: `Studio.Composition.v0`. Record class: `Studio.Composition`. Task identity: `studio.compose.per_app`. **FIXTURE PENDING + FL-OQ-05 pending.**
+1. **WHAT.** Studio — application composer surface for the Build pillar. Rows C5-055, C5-060. Component: new Build-pillar application. Contract: `Studio.Composition.v0`. Record class: `Studio.Composition`. Task identity: `studio.compose.per_app`. **FIXTURE CLEARED @ transcription grade (BAC applied); Studio deferred per FL-OQ-05 (Build Order 01 §4 amendment — leaves Wave 8).**
 2. **CANON CLAUSES.** Canon 5 §42 (designed, not sourced); Canon 5 §43 Studio (per row extraction; scope resolution pending FL-OQ-05).
 3. **DEFINITION OF DONE.** _Partial pending FL-OQ-05_: Studio surfaces expose app composition primitives per Canon 5 §42; scope of "compose" — does it include storage-plane assignment? — governed by owner ruling.
 4. **QUALITY EVIDENCE.** Contract test + drill (one Studio-composed app end-to-end).
@@ -282,7 +282,7 @@ Each of these tiles either has no existing page in the Extraction-Akki frontend 
 
 ## WS-BUILD-LEARN-PILLAR
 
-1. **WHAT.** Learn-pillar surfaces (Canon 5 §40 fifth pillar). Row C5-057. Component: new Learn-pillar applications. Contract: `Learn.Module.v0`. Record class: `Learn.Module.Interaction`. Task identity: `learn.module.per_interaction`. **FIXTURE PENDING.**
+1. **WHAT.** Learn-pillar surfaces (Canon 5 §40 fifth pillar). Row C5-057. Component: new Learn-pillar applications. Contract: `Learn.Module.v0`. Record class: `Learn.Module.Interaction`. Task identity: `learn.module.per_interaction`. **FIXTURE CLEARED @ transcription grade — `fixtures/binding_acceptance_criteria.md` applied.**
 2. **CANON CLAUSES.** Canon 5 §40 (five pillars — Learn); Canon 5 §43 (Learn surfaces).
 3. **DEFINITION OF DONE.** Learn tiles render under Learn pillar; interactions ledgered per Canon 9 §6 without content leaking.
 4. **QUALITY EVIDENCE.** Contract test + inventory audit.
@@ -292,7 +292,7 @@ Each of these tiles either has no existing page in the Extraction-Akki frontend 
 
 ## WS-BUILD-REFERENCE-APP
 
-1. **WHAT.** Reference App (Ask) — the canonical Ask app surface. Rows C5-043, C5-044, C6-038..C6-043. Component: new Ask pillar-application. Contract: `Ask.Session.v0`. Record class: `Ask.Session`. Task identity: `ask.session.per_actor`. **FIXTURE PENDING.**
+1. **WHAT.** Reference App (Ask) — the canonical Ask app surface. Rows C5-043, C5-044, C6-038..C6-043. Component: new Ask pillar-application. Contract: `Ask.Session.v0`. Record class: `Ask.Session`. Task identity: `ask.session.per_actor`. **FIXTURE CLEARED @ transcription grade — `fixtures/binding_acceptance_criteria.md` applied.**
 2. **CANON CLAUSES.** Canon 5 §37 (Ask); Canon 5 §43-§44 (Reference App); Canon 6 §5-§7 (working-rhythm).
 3. **DEFINITION OF DONE.** Ask app renders three-lenses (`WS-BUILD-THREE-LENSES`) over answer envelope; agent-assumed chip present per Canon 5 §2.5; refusal card renders verbatim per Canon 5 §9.2.
 4. **QUALITY EVIDENCE.** Drill (10 Ask sessions across various shapes). Calibration under Canon 5 §37.
@@ -302,7 +302,7 @@ Each of these tiles either has no existing page in the Extraction-Akki frontend 
 
 ## WS-BUILD-CONTROL-BAND
 
-1. **WHAT.** Control Band (Connect / Estate Map / Rulebook / Access / Watch). Rows C5-058, C5-059. Component: new frontend control-band component + wiring to five sub-tiles. Contract: `Control.Band.Row.v0`. Record class: none (surface). Task identity: `control_band.render.per_user`. **FIXTURE PENDING.**
+1. **WHAT.** Control Band (Connect / Estate Map / Rulebook / Access / Watch). Rows C5-058, C5-059. Component: new frontend control-band component + wiring to five sub-tiles. Contract: `Control.Band.Row.v0`. Record class: none (surface). Task identity: `control_band.render.per_user`. **FIXTURE CLEARED @ transcription grade — `fixtures/binding_acceptance_criteria.md` applied.**
 2. **CANON CLAUSES.** Canon 5 §41 (Control Band).
 3. **DEFINITION OF DONE.** Every user surface renders the Control Band with five items; each item links to the corresponding Canon-5 console tile.
 4. **QUALITY EVIDENCE.** Inventory audit (control-band item count = 5). Calibration under Canon 5 §41.
@@ -466,8 +466,8 @@ Each of these tiles either has no existing page in the Extraction-Akki frontend 
 
 ## WS-BUILD-CONSOLE-WATCH
 
-1. **WHAT.** Watch Console as the fourth tile-group under the Admin surface's tile-grid-plus-detail-card grammar per Instruction 02. Tiles (four, verbatim from Canon 8 §13): `State` · `Record` · `Under Watch` · `Decisions`. Component: new frontend Watch-Console + backend data feeds. Contract: `Watch.Console.Tile.v0`. Record class: consumes Watch record classes (reader only). Task identity: sessions run under Watch identity per Canon 9. **FIXTURE PENDING: reference screenshot.**
-2. **CANON CLAUSES.** Canon 8 §13 (Watch Console — four panels); Canon 5 §10 (four consoles + Watch as fourth group per Instruction 02); Ruling 3 (Instruction 02).
+1. **WHAT.** Watch Console as the fourth tile-group under the Admin surface's tile-grid-plus-detail-card grammar per Instruction 02. Tiles (four, verbatim from Canon 8 §13): `State` · `Record` · `Under Watch` · `Decisions`. Component: new frontend Watch-Console + backend data feeds. Contract: `Watch.Console.Tile.v0`. Record class: consumes Watch record classes (reader only). Task identity: sessions run under Watch identity per Canon 9. **FIXTURE CLEARED @ transcription grade — `fixtures/binding_acceptance_criteria.md`; `test_four_questions_topline_present` on new-invariants list.**
+2. **CANON CLAUSES.** Canon 8 §13 (Watch Console — four panels); Canon 5 §10 (five consoles per Build Order 01 §1 correction — FL-OQ-04 CLOSED; Watch as fifth, rendered as fourth Admin-surface tile group per Instruction 02); Ruling 3 (Instruction 02).
 3. **DEFINITION OF DONE.** Watch Console renders as a fourth tile-group with EXACTLY four tiles named `State`, `Record`, `Under Watch`, `Decisions`. **Watch-officer role-gated** (only watch-officer role sees the group). **Sessions run under Watch identity per Canon 9 (Task Identity Register).** **NEVER nested under Trust Center or any Compliance-Console tile — placement invariant test asserts this.** Verification: role-audit + placement-audit.
 4. **QUALITY EVIDENCE.** Inventory audit (four-tile invariant + placement invariant + role-gate) + drill (watch-officer session end-to-end). Calibration under Canon 8 §13 + Instruction 02.
 5. **DEPENDENCIES.** `WS-HARVEST-SHELL-GRAMMAR` (Part 1), `WS-BUILD-WATCH-ACTORS`, `WS-BUILD-WATCH-MARK-REGISTRY`, `WS-BUILD-WATCH-DECISIONS-PANEL`, `WS-BUILD-TASK-IDENTITY-REGISTER`, `WS-WIRE-PARITY-EXTENSION`. Reference screenshot pending (FL-P1-14).

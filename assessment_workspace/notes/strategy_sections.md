@@ -93,7 +93,7 @@ Rationale: Every subsequent item names one or more of these as a dependency. Lan
 ### 1.2 Guardrails on the sequence
 
 - **No Wave-N item lands with an unlanded Wave-(N-1) dependency.** Enforced by the completeness audit script pre-submission.
-- **XL items require review pack + one-paragraph defence.** Nine XL items: `WS-REPOINT-ANSWERING-SURFACES`, `WS-REBUILD-WORK-STUDIO-STORAGE`, `WS-BUILD-OBJECT-STORAGE-PORT`, `WS-BUILD-WATCH-FOUNDATION`, `WS-BUILD-WATCH-ACTORS`, `WS-BUILD-RECORD-MATRIX`, `WS-BUILD-TASK-IDENTITY-REGISTER`. Each carries the defence in its Part-1 or Part-2 entry.
+- **XL items require review pack + one-paragraph defence.** **Seven XL items** (Build-Order-01 correction, was mis-stated as nine): `WS-REPOINT-ANSWERING-SURFACES` (Part 1) · `WS-REBUILD-WORK-STUDIO-STORAGE` (Part 1) · `WS-BUILD-OBJECT-STORAGE-PORT` (Part 2) · `WS-BUILD-WATCH-FOUNDATION` (Part 2) · `WS-BUILD-WATCH-ACTORS` (Part 2) · `WS-BUILD-RECORD-MATRIX` (Part 2) · `WS-BUILD-TASK-IDENTITY-REGISTER` (Part 2). Each carries the defence in its item entry. Two additional items carry conditional XL classification (not counted): `WS-REPOINT-SOLVA-VOICE-AUDIT` (L on path A, XL on path B — closed to path A per FL-P1-02); `WS-BUILD-STUDIO` (L baseline, XL if storage-plane composition — deferred per FL-OQ-05, stays L).
 - **Reversal-cost gates.** Every VERY HIGH item requires an owner sign-off on the commissioning certificate before completing the reader-cutover.
 
 ---
@@ -247,7 +247,7 @@ Things reversed, abandoned, or redundant in the strategy. Ledgered so the honest
 | W-02 | 47 unassigned Canon-2 CIF rows in initial Chunk-3 domain tables | Domain-table drafting missed the CIF-specific rows. | REMEDIATED in `row_to_item_index.md` — CIF items WS-CIF-* opened. |
 | W-03 | 4 folded WIRING items (critic-into-answering, parity-extension, refusal-family, ledger-matrix) | Folded silently under HARVEST/BUILD items. | REMEDIATED via Ruling 2 — promoted to standalone. |
 | W-04 | 13 interface BUILD items folded before Instruction 02 | Chunk-3 defaulted interface to BUILD; Instruction 02 fixed Extraction-Akki as donor. | REMEDIATED via Ruling 3 — reclassified to HARVEST/MODIFY. |
-| W-05 | Reference screenshot delay | Owner has not delivered the tile-grid-plus-detail-card grammar screenshot. | OPEN — interface items carry `FIXTURE PENDING` (FL-P1-14). |
+| W-05 | Reference screenshot delay | Owner has not delivered the tile-grid-plus-detail-card grammar screenshot. | OPEN — interface items carry `FIXTURE CLEARED @ transcription grade (FL-P1-14 — transcription-cleared vs file-cleared distinction recorded). |
 | W-06 | FL-P1-05, FL-P1-06, FL-P1-07 — specific-file identification for three MODIFY items deferred | Focused reads not done in Part-1 drafting. | Requires re-read pass; substance-anchored citations hold. |
 | W-07 | `WS-CIF-METABOLISATION`-style adopting frames vs Solva's parameterless assertion boundary | Potential seam conflict: CIF metabolisation claims frames adopted; Solva assertion boundary refuses caveated claims. | RESOLVED by design — CIF submits ratified frames back to Solva via `WS-WIRE-SOLVA-CIF`, no self-certification permitted (Canon 2 permanent bound). |
 | W-08 | `AuthLoginPage.js`, `AuthRegisterPage.js` — application territory but present in Extraction-Akki frontend | Auth is application-layer per Canon 1 §13; drift into Extraction-Akki is a Canon-1 §12 breach. | REMEDIATED via Ruling 3 → folded into `WS-RETIRE-APP-TERRITORY`. |

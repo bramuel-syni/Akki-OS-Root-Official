@@ -19,7 +19,7 @@
 - **§7** — Transition conditions (T1–T4)
 - **§8** — No-regression contract (20 existing standing invariants + 40 must-write-first tests)
 - **§9** — Waste register (W-01 … W-08)
-- **§10** — Canon fidelity ledger (27 open items, frozen)
+- **§10** — Canon fidelity ledger (27 rows CLOSED by Build Order 01, frozen)
 - **Appendix A** — Row-to-item index (591 rows → 102 items, build-order traceability)
 
 ---
@@ -117,10 +117,10 @@ Definitions:
 - **Component** = a directory-scoped unit under `backend/services/<name>/` or `frontend/src/<pillar>/<console>/` that owns a distinct responsibility.
 - **Contract** = a frozen shape governed by `tests/invariants/test_invariant_contract_snapshots.py` (parity seat).
 - **Integration surface** = every named boundary the item crosses: LLM boundary (`SyniSenseContract.shield_invoke`), memory plane, object storage port, streaming port, Watch input, Canon-9 record class, task-identity register.
-- **Register/console surface** = adds a first-class named surface listed in Canon 5 §10 (four consoles) or Canon 9 (task-identity register, record matrix, handoff registry).
+- **Register/console surface** = adds a first-class named surface listed in Canon 5 §10 (five consoles per Build Order 01 §1 correction — FL-OQ-04 CLOSED) or Canon 9 (task-identity register, record matrix, handoff registry).
 - **Data migration** = any programme that moves user-visible state from one storage/plane shape to another; append-only history is not migration; storage-shape change is migration.
 
-**XL item roster (9 items):** WS-REPOINT-ANSWERING-SURFACES · WS-REBUILD-WORK-STUDIO-STORAGE (Part 1); WS-BUILD-OBJECT-STORAGE-PORT · WS-BUILD-WATCH-FOUNDATION · WS-BUILD-WATCH-ACTORS · WS-BUILD-RECORD-MATRIX · WS-BUILD-TASK-IDENTITY-REGISTER (Part 2). Each carries its defence in the item entry.
+**XL item roster (7 items — Build Order 01 §1 correction; the count was mis-stated as nine):** WS-REPOINT-ANSWERING-SURFACES · WS-REBUILD-WORK-STUDIO-STORAGE (Part 1); WS-BUILD-OBJECT-STORAGE-PORT · WS-BUILD-WATCH-FOUNDATION · WS-BUILD-WATCH-ACTORS · WS-BUILD-RECORD-MATRIX · WS-BUILD-TASK-IDENTITY-REGISTER (Part 2). Each carries its defence in the item entry.
 
 ---
 
@@ -193,7 +193,7 @@ Definitions:
 - **Component** = a directory-scoped unit under `backend/services/<name>/` or `frontend/src/<pillar>/<console>/` that owns a distinct responsibility.
 - **Contract** = a frozen shape governed by `tests/invariants/test_invariant_contract_snapshots.py` (parity seat).
 - **Integration surface** = every named boundary the item crosses: LLM boundary (`SyniSenseContract.shield_invoke`), memory plane, object storage port, streaming port, Watch input, Canon-9 record class, task-identity register.
-- **Register/console surface** = adds a first-class named surface listed in Canon 5 §10 (four consoles) or Canon 9 (task-identity register, record matrix, handoff registry).
+- **Register/console surface** = adds a first-class named surface listed in Canon 5 §10 (five consoles per Build Order 01 §1 correction — FL-OQ-04 CLOSED) or Canon 9 (task-identity register, record matrix, handoff registry).
 - **Data migration** = any programme that moves user-visible state from one storage/plane shape to another; append-only history is not migration; storage-shape change is migration.
 
 Every XL item carries a one-paragraph defence field explaining which of the two XL criteria applies and why.
@@ -627,7 +627,7 @@ Concrete RETIRE clusters cite Canon 1 §12/§13/§15 or Canon 5 §43 (no bypass 
 #### WS-RENAME-PROTOTYPE-TAXONOMY
 
 1. **WHAT.** Rename prototype labels to Canon 5 §10/§40 taxonomy: `WorkStudio → Work`, `ThinkLab / Monitor → Lead pillar sub-applications`, `Trust Center → Compliance Console`, `Registry → Extraction Console child + Control Band`, `Build → Build pillar (add Studio + Learn)`, `3rd Party Apps → 3rd Party pillar with Integration Console + app catalogue`. Task identity: `rename.prototype_taxonomy.per_label`.
-2. **CANON CLAUSES SATISFIED.** Canon 5 §10 (four consoles); Canon 5 §40 (five pillars); Canon 5 §41 (Control Band).
+2. **CANON CLAUSES SATISFIED.** Canon 5 §10 (five consoles per Build Order 01 §1 correction — FL-OQ-04 CLOSED); Canon 5 §40 (five pillars); Canon 5 §41 (Control Band).
 3. **DEFINITION OF DONE.** Every prototype label renamed per the table in `notes/retire_inventory.md`. Canon-5 conformance audit shows 100% label-canon alignment. Verification: inventory diff between prototype pre-rename and Canon 5 anchors returns zero mismatch.
 4. **QUALITY EVIDENCE.** Inventory audit. Uncurated sample: prototype label list post-rename.
 5. **DEPENDENCIES.** None.
@@ -712,7 +712,7 @@ MODIFY / PARTIAL covers existing code that must be extended to close an operativ
 
 Per Instruction 02: Extraction-Akki's frontend is the DONOR. Every existing page/menu is either repurposed into the Admin surface's **tile-grid-plus-detail-card grammar** (as HARVEST or MODIFY) OR classified RETIRE with a reason. The Watch is the fourth tile-group of four tiles (`State` · `Record` · `Under Watch` · `Decisions` per Canon 8 §13), remains BUILD, watch-officer-role gated, sessions under Watch identity per Canon 9, **NEVER nested under Trust Center**.
 
-Reference screenshot pending arrival in workspace — recorded on every interface item as **`FIXTURE PENDING: reference screenshot for tile-grid-plus-detail-card grammar`**.
+Reference screenshot pending arrival in workspace — recorded on every interface item as **`FIXTURE CLEARED @ transcription grade — see `fixtures/binding_acceptance_criteria.md` (BAC-1..BAC-13); `test_four_questions_topline_present` added to new-invariants list per Build Order 01 §3`**.
 
 #### I.1 Extraction-Akki frontend inventory (verified at HEAD b150c21)
 
@@ -818,14 +818,14 @@ Column key: **Tile** = Admin-surface tile name (the "app" as user sees it) · **
 
 #### I.3 Interface work items (Part 1, HARVEST/MODIFY)
 
-Twelve items own the 44-page repurposing plus one shell-grammar item. All carry the `FIXTURE PENDING: reference screenshot` field.
+Twelve items own the 44-page repurposing plus one shell-grammar item. All carry the `FIXTURE CLEARED @ transcription grade — `fixtures/binding_acceptance_criteria.md` cited; `test_four_questions_topline_present` on new-invariants list` field.
 
 ---
 
 #### WS-HARVEST-SHELL-GRAMMAR
 
-1. **WHAT.** Repurpose Extraction-Akki's `CanonOSShellPage.jsx` + `design/AkkiShell.jsx` + `AkkiV4Shell.jsx` + `AkkiV4ShellLayout.jsx` + `MarkedOpenSlot.jsx` + `akkiv4_design_system.js` + `ratified_copy.js` as the tile-grid-plus-detail-card grammar host — the Admin-surface shell. Components: 7 shell primitives. Contract: shell layout contract (tile-grid + detail-card render pass). Record class: N/A (surface-only). Task identity: `interface.shell.tile_grid`. **FIXTURE PENDING: reference screenshot.**
-2. **CANON CLAUSES SATISFIED.** Canon 5 §11 (The Shell — no bypass path); Canon 5 §10 (four consoles hosted); Canon 5 §43 (no bypass path); Instruction 02 (tile-grid-plus-detail-card grammar).
+1. **WHAT.** Repurpose Extraction-Akki's `CanonOSShellPage.jsx` + `design/AkkiShell.jsx` + `AkkiV4Shell.jsx` + `AkkiV4ShellLayout.jsx` + `MarkedOpenSlot.jsx` + `akkiv4_design_system.js` + `ratified_copy.js` as the tile-grid-plus-detail-card grammar host — the Admin-surface shell. Components: 7 shell primitives. Contract: shell layout contract (tile-grid + detail-card render pass). Record class: N/A (surface-only). Task identity: `interface.shell.tile_grid`. **FIXTURE CLEARED @ transcription grade — `fixtures/binding_acceptance_criteria.md`; `test_four_questions_topline_present` on new-invariants list.**
+2. **CANON CLAUSES SATISFIED.** Canon 5 §11 (The Shell — no bypass path); Canon 5 §10 (five consoles hosted per Build Order 01 §1 correction — FL-OQ-04 CLOSED); Canon 5 §43 (no bypass path); Instruction 02 (tile-grid-plus-detail-card grammar).
 3. **DEFINITION OF DONE.** Every page listed in §I.2 renders inside the shell as an app tile in one of four groups (Extraction / Compliance / Integration / Administration) OR the Watch fourth-group. No page bypasses the shell. Canon 5 §43 no-bypass invariant holds. Shell placement invariant test asserts each tile carries its group + canon identity metadata. Verification: nav audit — 100% of rendered routes carry `(tile, group, canon_identity)` triple.
 4. **QUALITY EVIDENCE.** Invariant class (shell-placement gate) + inventory audit (nav-to-tile mapping). Uncurated sample: every route rendered during a drill day. Calibration under Canon 3 §31 + Canon 5 §43.
 5. **DEPENDENCIES.** Reference screenshot (fixture pending — fidelity ledger FL-P1-14). No inward code dependencies (primitives are donor-ready).
@@ -836,8 +836,8 @@ Twelve items own the 44-page repurposing plus one shell-grammar item. All carry 
 
 #### WS-HARVEST-CONSOLE-EXTRACTION
 
-1. **WHAT.** Repurpose Extraction-Akki `pages/registry/` (4 pages) + `pages/memory/MemoryHomePage.jsx`, `MemoryPlaneDetailPage.jsx` + `pages/use_data/UseDataWizardPage.jsx`, `UseDataVerdictPanel.jsx` into the Extraction Console tile-group. 8 pages harvested; each becomes an app tile in the Extraction Console tile-group. Contract: Extraction Console tile-list. Record class: `Console.Extraction.Registration`. Task identity: `interface.console.extraction`. **FIXTURE PENDING.**
-2. **CANON CLAUSES SATISFIED.** Canon 5 §10 (four consoles); Canon 5 §13-§14 (Extraction Registry Dashboard + Model Catalogue); Canon 5 §17 (Registry Administration — Estate Map); Canon 7 §19-§23 (Memory planes surface); Instruction 02 (tile grammar).
+1. **WHAT.** Repurpose Extraction-Akki `pages/registry/` (4 pages) + `pages/memory/MemoryHomePage.jsx`, `MemoryPlaneDetailPage.jsx` + `pages/use_data/UseDataWizardPage.jsx`, `UseDataVerdictPanel.jsx` into the Extraction Console tile-group. 8 pages harvested; each becomes an app tile in the Extraction Console tile-group. Contract: Extraction Console tile-list. Record class: `Console.Extraction.Registration`. Task identity: `interface.console.extraction`. **FIXTURE CLEARED @ transcription grade — `fixtures/binding_acceptance_criteria.md` applied.**
+2. **CANON CLAUSES SATISFIED.** Canon 5 §10 (five consoles per Build Order 01 §1 correction — FL-OQ-04 CLOSED); Canon 5 §13-§14 (Extraction Registry Dashboard + Model Catalogue); Canon 5 §17 (Registry Administration — Estate Map); Canon 7 §19-§23 (Memory planes surface); Instruction 02 (tile grammar).
 3. **DEFINITION OF DONE.** Extraction Console tile-group hosts 8 donor tiles with canon identity per §I.2 table. Model Catalogue tile appears as a BUILD-marked open slot per `WS-BUILD-CONSOLE-EXTRACTION-MODEL-CATALOGUE` (Part 2); Batch Board tile appears as BUILD-marked slot per `WS-BUILD-BATCH-BOARD-SURFACE`. Canon 5 §13-§17 operative parameters go green for the harvested tiles; open-slot tiles carry Canon 5 §9 dormant-state copy.
 4. **QUALITY EVIDENCE.** Inventory audit (tile-list-to-canon-identity mapping) + invariant class (tile placement in group). Uncurated sample: every route under Extraction Console during a drill day. Calibration under Canon 5 §10 + Canon 3 §31.
 5. **DEPENDENCIES.** `WS-HARVEST-SHELL-GRAMMAR`, `WS-HARVEST-COMPONENT-LIBRARY`. Reference screenshot pending (FL-P1-14).
@@ -848,8 +848,8 @@ Twelve items own the 44-page repurposing plus one shell-grammar item. All carry 
 
 #### WS-HARVEST-CONSOLE-COMPLIANCE
 
-1. **WHAT.** Repurpose `pages/prove/ProvePage.jsx`, `ProveWalkPage.jsx` + `pages/govern/GovernHomePage.jsx`, `GovernRetentionPage.jsx`, `GovernHoldsPage.jsx`, `GovernRefusalHealthPage.jsx`, `GovernEstateRulesPage.jsx` + `pages/commission_view/CommissionViewHomePage.jsx`, `CommissionRunDetailPage.jsx` into the Compliance Console tile-group. 9 pages. Also picks up `MemoryPlaneObservabilityPage.jsx` and `TraceReceiptPage.js` and `AuditTrailPage.js` via MODIFY (rehome — see FL-P1-08/09/12). Contract: Compliance Console tile-list. Record class: `Console.Compliance.Registration`. Task identity: `interface.console.compliance`. **FIXTURE PENDING.**
-2. **CANON CLAUSES SATISFIED.** Canon 5 §10 (four consoles); Canon 5 §22-§26 (Compliance Home, Prove-one-run, Retention & Rights, Rulebook, rule-on-paper flag); Canon 3 §33-§48 (prove-one-run export); Canon 6 §11-§13 (commissioning); Canon 3 §31 (verification packs).
+1. **WHAT.** Repurpose `pages/prove/ProvePage.jsx`, `ProveWalkPage.jsx` + `pages/govern/GovernHomePage.jsx`, `GovernRetentionPage.jsx`, `GovernHoldsPage.jsx`, `GovernRefusalHealthPage.jsx`, `GovernEstateRulesPage.jsx` + `pages/commission_view/CommissionViewHomePage.jsx`, `CommissionRunDetailPage.jsx` into the Compliance Console tile-group. 9 pages. Also picks up `MemoryPlaneObservabilityPage.jsx` and `TraceReceiptPage.js` and `AuditTrailPage.js` via MODIFY (rehome — see FL-P1-08/09/12). Contract: Compliance Console tile-list. Record class: `Console.Compliance.Registration`. Task identity: `interface.console.compliance`. **FIXTURE CLEARED @ transcription grade — `fixtures/binding_acceptance_criteria.md` applied.**
+2. **CANON CLAUSES SATISFIED.** Canon 5 §10 (five consoles per Build Order 01 §1 correction — FL-OQ-04 CLOSED); Canon 5 §22-§26 (Compliance Home, Prove-one-run, Retention & Rights, Rulebook, rule-on-paper flag); Canon 3 §33-§48 (prove-one-run export); Canon 6 §11-§13 (commissioning); Canon 3 §31 (verification packs).
 3. **DEFINITION OF DONE.** Compliance Console tile-group hosts the 9 donor tiles + 3 rehomed MODIFY tiles (12 total). Rulebook read-back tile lives at Compliance Home (Canon 5 §25 says rulebook lives here, not Administration — hence `GovernEstateRulesPage.jsx` rehomes). `WS-BUILD-VERIFICATION-RUNNER`, `WS-BUILD-PROVE-ONE-RUN`, `WS-BUILD-RULEBOOK-SURFACE` (Part-2 BUILD items) surface here as BUILD-marked open slots per Canon 5 §9. Canon 5 §22-§26 operative parameters go green for harvested tiles.
 4. **QUALITY EVIDENCE.** Inventory audit + invariant (tile placement). Uncurated sample: every Compliance-Console route during a drill day. Calibration under Canon 3 §31 + Canon 5 §22.
 5. **DEPENDENCIES.** `WS-HARVEST-SHELL-GRAMMAR`, `WS-HARVEST-COMPONENT-LIBRARY`, `WS-WIRE-REFUSAL-FAMILY` (for GovernRefusalHealthPage), `WS-BUILD-CEREMONY-REVERIFY`. Reference screenshot pending.
@@ -860,8 +860,8 @@ Twelve items own the 44-page repurposing plus one shell-grammar item. All carry 
 
 #### WS-HARVEST-CONSOLE-INTEGRATION
 
-1. **WHAT.** Repurpose `pages/connect/` (6 pages) + `pages/use_data/UseDataDeveloperSurfacePage.jsx` into the Integration Console tile-group. 7 pages. Contract: Integration Console tile-list. Record class: `Console.Integration.Registration`. Task identity: `interface.console.integration`. **FIXTURE PENDING.**
-2. **CANON CLAUSES SATISFIED.** Canon 5 §10 (four consoles); Canon 5 §26-§29 (Integration Console: Home + First-call + Administer + Dual-actor scoping); Canon 6 §3.1 (setup declarations).
+1. **WHAT.** Repurpose `pages/connect/` (6 pages) + `pages/use_data/UseDataDeveloperSurfacePage.jsx` into the Integration Console tile-group. 7 pages. Contract: Integration Console tile-list. Record class: `Console.Integration.Registration`. Task identity: `interface.console.integration`. **FIXTURE CLEARED @ transcription grade — `fixtures/binding_acceptance_criteria.md` applied.**
+2. **CANON CLAUSES SATISFIED.** Canon 5 §10 (five consoles per Build Order 01 §1 correction — FL-OQ-04 CLOSED); Canon 5 §26-§29 (Integration Console: Home + First-call + Administer + Dual-actor scoping); Canon 6 §3.1 (setup declarations).
 3. **DEFINITION OF DONE.** Integration Console tile-group hosts 7 donor tiles. Every Canon 5 §26-§29 tile presents with its canon identity. `WS-BUILD-WEBHOOK` (Part-2 BUILD) surfaces here as BUILD-marked open slot. Canon 5 §26-§29 operative parameters go green.
 4. **QUALITY EVIDENCE.** Inventory audit + invariant. Uncurated sample: every Integration-Console route. Calibration under Canon 3 §31 + Canon 5 §26.
 5. **DEPENDENCIES.** `WS-HARVEST-SHELL-GRAMMAR`, `WS-HARVEST-COMPONENT-LIBRARY`. Reference screenshot pending.
@@ -872,8 +872,8 @@ Twelve items own the 44-page repurposing plus one shell-grammar item. All carry 
 
 #### WS-HARVEST-CONSOLE-ADMINISTRATION
 
-1. **WHAT.** Repurpose `pages/master_admin/` (4 pages) + `pages/team/` (4 pages) + `pages/govern/GovernPendingPage.jsx`, `GovernChangeRulePage.jsx`, `GovernRegistriesPage.jsx` into the Administration Console tile-group. 11 pages. Contract: Administration Console tile-list. Record class: `Console.Administration.Registration`. Task identity: `interface.console.administration`. **FIXTURE PENDING.**
-2. **CANON CLAUSES SATISFIED.** Canon 5 §10 (four consoles); Canon 5 §31-§36 (Administration Home + Change-a-Rule + What-I've-Changed + Roles & Rights + Counter-Sign Duties + Verification-Runner surface); Canon 3 §24 (ceremony).
+1. **WHAT.** Repurpose `pages/master_admin/` (4 pages) + `pages/team/` (4 pages) + `pages/govern/GovernPendingPage.jsx`, `GovernChangeRulePage.jsx`, `GovernRegistriesPage.jsx` into the Administration Console tile-group. 11 pages. Contract: Administration Console tile-list. Record class: `Console.Administration.Registration`. Task identity: `interface.console.administration`. **FIXTURE CLEARED @ transcription grade — `fixtures/binding_acceptance_criteria.md` applied.**
+2. **CANON CLAUSES SATISFIED.** Canon 5 §10 (five consoles per Build Order 01 §1 correction — FL-OQ-04 CLOSED); Canon 5 §31-§36 (Administration Home + Change-a-Rule + What-I've-Changed + Roles & Rights + Counter-Sign Duties + Verification-Runner surface); Canon 3 §24 (ceremony).
 3. **DEFINITION OF DONE.** Administration Console tile-group hosts 11 donor tiles. GovernChangeRulePage and ChangeARulePage dedupe (FL-P1-13 rendering decision — one canonical tile). Canon 5 §31-§36 operative parameters go green. `WS-BUILD-VERIFICATION-RUNNER` (Part-2 BUILD) surfaces as BUILD-marked open slot.
 4. **QUALITY EVIDENCE.** Inventory audit + invariant. Uncurated sample: every Administration-Console route. Calibration under Canon 3 §31 + Canon 5 §31.
 5. **DEPENDENCIES.** `WS-HARVEST-SHELL-GRAMMAR`, `WS-HARVEST-COMPONENT-LIBRARY`, `WS-BUILD-CEREMONY-REVERIFY`, `WS-BUILD-INDEPENDENCE-GATE`. Reference screenshot pending.
@@ -884,7 +884,7 @@ Twelve items own the 44-page repurposing plus one shell-grammar item. All carry 
 
 #### WS-HARVEST-COMPONENT-LIBRARY
 
-1. **WHAT.** Repurpose reusable atoms: `RetentionPostureBadge.jsx`, `CounterSignBanner.jsx`, `AuthDeniedNotice.js`, `EngineCard.js`, `LedgerTable.js`, `OuterGateReceiptInline.js`, `StatusBadge.js`, `TrustReceiptLink.js` (8 components). Task identity: `interface.component_library.share`. **FIXTURE PENDING.**
+1. **WHAT.** Repurpose reusable atoms: `RetentionPostureBadge.jsx`, `CounterSignBanner.jsx`, `AuthDeniedNotice.js`, `EngineCard.js`, `LedgerTable.js`, `OuterGateReceiptInline.js`, `StatusBadge.js`, `TrustReceiptLink.js` (8 components). Task identity: `interface.component_library.share`. **FIXTURE CLEARED @ transcription grade — `fixtures/binding_acceptance_criteria.md` applied.**
 2. **CANON CLAUSES SATISFIED.** Canon 5 §43-§65 (shared component library — insufficient-measurement render + absence-as-state + shared visual system).
 3. **DEFINITION OF DONE.** All 8 atoms available to every console tile-group as single-source-of-truth imports (`components/ui_spec_v1/index.js` shape). Canon 5 §43-§65 shared-visual-system parameter goes green. Verification: static test `test_shared_components_single_source.test.js` (existing) confirms no duplicated component definitions.
 4. **QUALITY EVIDENCE.** Invariant class (shared-source gate — existing test extends). Uncurated sample: full component-import graph during drill day; import count of each atom outside the library = 0. Calibration under Canon 5 §43.
@@ -896,7 +896,7 @@ Twelve items own the 44-page repurposing plus one shell-grammar item. All carry 
 
 #### WS-HARVEST-CLASS-CHIP-LIBRARY
 
-1. **WHAT.** Repurpose `ClassBadge.js` + `ResponseClassPanel.jsx` as the class-chip library. Rows C5-002, C5-003, C5-004 (previously BUILD; reclassified HARVEST). Task identity: `interface.class_chip.render`. **FIXTURE PENDING.**
+1. **WHAT.** Repurpose `ClassBadge.js` + `ResponseClassPanel.jsx` as the class-chip library. Rows C5-002, C5-003, C5-004 (previously BUILD; reclassified HARVEST). Task identity: `interface.class_chip.render`. **FIXTURE CLEARED @ transcription grade — `fixtures/binding_acceptance_criteria.md` applied.**
 2. **CANON CLAUSES SATISFIED.** Canon 5 §2-§4 (class chip inseparable from claim + grounding marker).
 3. **DEFINITION OF DONE.** ClassBadge + ResponseClassPanel available as the sole render path for class chips across every answer surface. Canon 5 §2 "class chip inseparable from claim" invariant holds — existing test `gate1_class_inseparable.test.js` (present in `frontend/src/__tests__/ui_spec_v1/`) fires green.
 4. **QUALITY EVIDENCE.** Invariant class (existing `gate1_class_inseparable.test.js`). Uncurated sample: every rendered answer surface during a drill day. Calibration under Canon 5 §2 + Canon 3 §31.
@@ -908,7 +908,7 @@ Twelve items own the 44-page repurposing plus one shell-grammar item. All carry 
 
 #### WS-HARVEST-REFUSAL-CARD
 
-1. **WHAT.** Repurpose `RefusalCard.js` as the Canon 5 §9.2 refusal card render, wired to the refusal-family taxonomy via `WS-WIRE-REFUSAL-FAMILY`. Rows C5-005, C5-006, C5-007 (previously BUILD; reclassified HARVEST since the render component exists in Extraction-Akki). Task identity: `interface.refusal_card.render`. **FIXTURE PENDING.**
+1. **WHAT.** Repurpose `RefusalCard.js` as the Canon 5 §9.2 refusal card render, wired to the refusal-family taxonomy via `WS-WIRE-REFUSAL-FAMILY`. Rows C5-005, C5-006, C5-007 (previously BUILD; reclassified HARVEST since the render component exists in Extraction-Akki). Task identity: `interface.refusal_card.render`. **FIXTURE CLEARED @ transcription grade — `fixtures/binding_acceptance_criteria.md` applied.**
 2. **CANON CLAUSES SATISFIED.** Canon 5 §9.2 (verbatim refusal card); Canon 1 §16 (refusal recorded, never dropped).
 3. **DEFINITION OF DONE.** RefusalCard renders the verbatim card copy from the `memory_refusal_reasons.v0.json` taxonomy per `WS-WIRE-REFUSAL-FAMILY`. Canon 5 §9.2 verbatim-copy invariant holds — existing test `gate2_refusal_firstclass.test.js` (present at spine) fires green. `test_auth_denied_notice_not_refusal_card.test.js` (existing) ensures auth-denied stays out of the refusal card. Verification: prove-one-run for one refused request renders the taxonomy id + card copy identically.
 4. **QUALITY EVIDENCE.** Invariant class (existing `gate2_refusal_firstclass.test.js`). Uncurated sample: every refusal impression during a drill day; card copy is byte-identical to taxonomy. Calibration under Canon 5 §9.2 + Canon 3 §31.
@@ -920,7 +920,7 @@ Twelve items own the 44-page repurposing plus one shell-grammar item. All carry 
 
 #### WS-HARVEST-DORMANT-STATE
 
-1. **WHAT.** Repurpose `ProveDormantPage.jsx` + `TeamDormantPage.jsx` as the Canon 5 §9 dormant-state render pattern. Row C5-009 (previously BUILD; reclassified HARVEST). Task identity: `interface.dormant_state.render`. **FIXTURE PENDING.**
+1. **WHAT.** Repurpose `ProveDormantPage.jsx` + `TeamDormantPage.jsx` as the Canon 5 §9 dormant-state render pattern. Row C5-009 (previously BUILD; reclassified HARVEST). Task identity: `interface.dormant_state.render`. **FIXTURE CLEARED @ transcription grade — `fixtures/binding_acceptance_criteria.md` applied.**
 2. **CANON CLAUSES SATISFIED.** Canon 5 §9 (dormant state — "what would activate" statement per screen).
 3. **DEFINITION OF DONE.** Every tile that has no activated state renders the dormant-state pattern from these two donor pages, with a Canon 5 §9 "what would activate" copy line. Verification: every BUILD-marked open slot on any console tile-group carries this pattern.
 4. **QUALITY EVIDENCE.** Invariant class (dormant-state grammar test). Uncurated sample: every dormant tile impression during drill week. Calibration under Canon 5 §9.
@@ -932,7 +932,7 @@ Twelve items own the 44-page repurposing plus one shell-grammar item. All carry 
 
 #### WS-MODIFY-PLANE-OBSERVABILITY
 
-1. **WHAT.** MODIFY `MemoryPlaneObservabilityPage.jsx` to rehome from Extraction Console → Compliance Console (RENDERING DECISION FL-P1-08). Canon 7 §29-§31 standing queries + Canon 3 §31 prove-one-run belong at Compliance. Task identity: `interface.plane_observability.rehome`. **FIXTURE PENDING.**
+1. **WHAT.** MODIFY `MemoryPlaneObservabilityPage.jsx` to rehome from Extraction Console → Compliance Console (RENDERING DECISION FL-P1-08). Canon 7 §29-§31 standing queries + Canon 3 §31 prove-one-run belong at Compliance. Task identity: `interface.plane_observability.rehome`. **FIXTURE CLEARED @ transcription grade — `fixtures/binding_acceptance_criteria.md` applied.**
 2. **CANON CLAUSES SATISFIED.** Canon 7 §29-§31 (standing queries for compliance owners); Canon 3 §31 (verification packs); Canon 5 §22 (Compliance Home).
 3. **DEFINITION OF DONE.** Page appears under Compliance Console tile-group with its Canon-5 identity; not duplicated under Extraction Console. Standing-query wiring lands via `WS-BUILD-STANDING-QUERY-SURFACE`. Verification: nav audit confirms exactly one home for this tile.
 4. **QUALITY EVIDENCE.** Inventory audit. Uncurated sample: nav-audit run. Calibration under Canon 5 §10.
@@ -944,7 +944,7 @@ Twelve items own the 44-page repurposing plus one shell-grammar item. All carry 
 
 #### WS-MODIFY-PROVE-ONE-RUN-EXPORT
 
-1. **WHAT.** MODIFY `TraceReceiptPage.js` to be the Canon 3 §33-§48 prove-one-run export tile under Compliance Console, wired to `WS-BUILD-PROVE-ONE-RUN` (Part-2 BUILD). Component: single page. Task identity: `interface.prove_one_run_export.per_pack`. **FIXTURE PENDING.**
+1. **WHAT.** MODIFY `TraceReceiptPage.js` to be the Canon 3 §33-§48 prove-one-run export tile under Compliance Console, wired to `WS-BUILD-PROVE-ONE-RUN` (Part-2 BUILD). Component: single page. Task identity: `interface.prove_one_run_export.per_pack`. **FIXTURE CLEARED @ transcription grade — `fixtures/binding_acceptance_criteria.md` applied.**
 2. **CANON CLAUSES SATISFIED.** Canon 3 §33-§48 (export prove-one-run pack); Canon 5 §23 (Prove-one-run panel).
 3. **DEFINITION OF DONE.** Trace-receipt page becomes the export surface for a prove-one-run pack; every export event ledgered under `Ceremony.ProveOneRun` record class (Part-2). Placement: Compliance Console. Verification: prove-one-run drill exports a pack via this page and the export event lands in ledger.
 4. **QUALITY EVIDENCE.** Contract test (pack shape) + drill. Uncurated sample: drill exports over a drill week. Calibration under Canon 3 §31 + Canon 3 §33.
@@ -956,7 +956,7 @@ Twelve items own the 44-page repurposing plus one shell-grammar item. All carry 
 
 #### WS-MODIFY-USE-DATA-PLACEMENT
 
-1. **WHAT.** MODIFY `UseDataLandingPage.jsx` to resolve rendering decision FL-P1-10: Canon 5 §14 (Extraction Model Catalogue) OR Canon 5 §43 (Reference App — Ask). Component: single landing page. Task identity: `interface.use_data.placement_resolution`. **FIXTURE PENDING + rendering decision pending.**
+1. **WHAT.** MODIFY `UseDataLandingPage.jsx` to resolve rendering decision FL-P1-10: Canon 5 §14 (Extraction Model Catalogue) OR Canon 5 §43 (Reference App — Ask). Component: single landing page. Task identity: `interface.use_data.placement_resolution`. **FIXTURE CLEARED @ transcription grade (BAC applied); rendering decision resolved per FL-P1-10 (Build Order 01 §2.C — Use-Data landing homes to the Ask reference application).**
 2. **CANON CLAUSES SATISFIED.** Canon 5 §14 (Model Catalogue) OR Canon 5 §43-§44 (Reference App — Ask). Owner must rule.
 3. **DEFINITION OF DONE.** UseDataLandingPage placed under Extraction Console (as Model Catalogue anchor) OR under Ask Reference App per owner ruling. Nav audit confirms exactly one home.
 4. **QUALITY EVIDENCE.** Inventory audit + owner ruling ledgered in DECISIONS.md.
@@ -968,7 +968,7 @@ Twelve items own the 44-page repurposing plus one shell-grammar item. All carry 
 
 #### WS-MODIFY-VERDICT-DEMO
 
-1. **WHAT.** MODIFY `UseDataVerdictDemoPage.jsx` — determine whether it is a canon-required surface OR a demo-only artifact for retirement (RENDERING DECISION FL-P1-11). Component: single page. Task identity: `interface.verdict_demo.classification`. **FIXTURE PENDING.**
+1. **WHAT.** MODIFY `UseDataVerdictDemoPage.jsx` — determine whether it is a canon-required surface OR a demo-only artifact for retirement (RENDERING DECISION FL-P1-11). Component: single page. Task identity: `interface.verdict_demo.classification`. **FIXTURE CLEARED @ transcription grade — `fixtures/binding_acceptance_criteria.md` applied.**
 2. **CANON CLAUSES SATISFIED.** Canon 4 §7 (verdict is matrix lookup) — question: does the demo satisfy any Canon-5 tile requirement? If yes, HARVEST as Extraction Console tile; if no, RETIRE.
 3. **DEFINITION OF DONE.** Either placed under Extraction Console with Canon-5 identity OR RETIRE with reason ledgered in DECISIONS.md.
 4. **QUALITY EVIDENCE.** Inventory audit; owner rendering-decision ledger entry.
@@ -980,7 +980,7 @@ Twelve items own the 44-page repurposing plus one shell-grammar item. All carry 
 
 #### WS-MODIFY-AUDIT-TRAIL-PLACEMENT
 
-1. **WHAT.** MODIFY `AuditTrailPage.js` (currently under master_admin/) to rehome under Compliance Console with Canon 3 §33 audit-trail export identity. Component: single page. Task identity: `interface.audit_trail.rehome`. **FIXTURE PENDING.**
+1. **WHAT.** MODIFY `AuditTrailPage.js` (currently under master_admin/) to rehome under Compliance Console with Canon 3 §33 audit-trail export identity. Component: single page. Task identity: `interface.audit_trail.rehome`. **FIXTURE CLEARED @ transcription grade — `fixtures/binding_acceptance_criteria.md` applied.**
 2. **CANON CLAUSES SATISFIED.** Canon 3 §33 (audit-trail export); Canon 5 §22 (Compliance Home).
 3. **DEFINITION OF DONE.** Placed under Compliance Console, not duplicated under Administration. Nav audit confirms single home.
 4. **QUALITY EVIDENCE.** Inventory audit.
@@ -1190,11 +1190,11 @@ Estimation discipline and field template — see `strategy_items_part1.md` §top
 
 ### F. Interface BUILD (Canon 5, no Extraction-Akki donor)
 
-Each of these tiles either has no existing page in the Extraction-Akki frontend (`WS-BUILD-*`) OR carries copy that must be built verbatim from canon (`WS-BUILD-REFUSAL-CARD-COPY`). Every tile appears as a BUILD-marked open slot inside the harvested console tile-groups (Part 1). All carry `FIXTURE PENDING: reference screenshot for tile-grid-plus-detail-card grammar`.
+Each of these tiles either has no existing page in the Extraction-Akki frontend (`WS-BUILD-*`) OR carries copy that must be built verbatim from canon (`WS-BUILD-REFUSAL-CARD-COPY`). Every tile appears as a BUILD-marked open slot inside the harvested console tile-groups (Part 1). All carry `FIXTURE CLEARED @ transcription grade — see `fixtures/binding_acceptance_criteria.md` (BAC-1..BAC-13); `test_four_questions_topline_present` added to new-invariants list per Build Order 01 §3`.
 
 #### WS-BUILD-CONSOLE-EXTRACTION-MODEL-CATALOGUE
 
-1. **WHAT.** Extraction Console Model Catalogue tile — MOAC scorecard render per adapter version. Row C5-014. Component: new frontend tile + backend data provider. Contract: `Model.Catalogue.Row.v0`. Record class: `MOAC.Scorecard` (reader). Task identity: `catalogue.render.per_adapter`. **FIXTURE PENDING.**
+1. **WHAT.** Extraction Console Model Catalogue tile — MOAC scorecard render per adapter version. Row C5-014. Component: new frontend tile + backend data provider. Contract: `Model.Catalogue.Row.v0`. Record class: `MOAC.Scorecard` (reader). Task identity: `catalogue.render.per_adapter`. **FIXTURE CLEARED @ transcription grade — `fixtures/binding_acceptance_criteria.md` applied.**
 2. **CANON CLAUSES.** Canon 5 §14 (Model Catalogue); Canon 4 §26 (MOAC).
 3. **DEFINITION OF DONE.** Tile renders every adapter version with its MOAC scorecard, drift indicator, uncurated-sample provenance, rights lineage. Row without a scorecard renders as its own state.
 4. **QUALITY EVIDENCE.** Inventory audit (tile row-count = adapter-version-count). Calibration under Canon 5 §14.
@@ -1204,7 +1204,7 @@ Each of these tiles either has no existing page in the Extraction-Akki frontend 
 
 #### WS-BUILD-BATCH-BOARD-SURFACE
 
-1. **WHAT.** Batch Board surface with quarantined batches. Row C5-018. Component: frontend tile + backend data feed from `WS-HARVEST-BATCH-QUARANTINE` (Part 1). Contract: `Batch.Board.Row.v0`. Record class: `Batch.QuarantineDecision` (reader). Task identity: `batch_board.render.per_batch`. **FIXTURE PENDING.**
+1. **WHAT.** Batch Board surface with quarantined batches. Row C5-018. Component: frontend tile + backend data feed from `WS-HARVEST-BATCH-QUARANTINE` (Part 1). Contract: `Batch.Board.Row.v0`. Record class: `Batch.QuarantineDecision` (reader). Task identity: `batch_board.render.per_batch`. **FIXTURE CLEARED @ transcription grade — `fixtures/binding_acceptance_criteria.md` applied.**
 2. **CANON CLAUSES.** Canon 4 §34.1 Batch Board; Canon 5 §17 Extraction Console.
 3. **DEFINITION OF DONE.** Tile renders every batch with quarantine verdict + reason; quarantined batches highlighted; un-quarantined batches show pass state. No content leaks (Canon 4 §34.1 discipline).
 4. **QUALITY EVIDENCE.** Inventory audit + invariant (no content leak). Calibration under Canon 4 §34.1.
@@ -1214,7 +1214,7 @@ Each of these tiles either has no existing page in the Extraction-Akki frontend 
 
 #### WS-BUILD-QUALITY-OBSERVATION
 
-1. **WHAT.** Quality Observation tile with Critic-Seam calibration stale surface. Row C5-020. Component: frontend tile + backend Critic-Seam calibration state reader. Contract: `Quality.Observation.Panel.v0`. Record class: `Critic.Verdict` (reader). Task identity: `quality_observation.render.per_check`. **FIXTURE PENDING.**
+1. **WHAT.** Quality Observation tile with Critic-Seam calibration stale surface. Row C5-020. Component: frontend tile + backend Critic-Seam calibration state reader. Contract: `Quality.Observation.Panel.v0`. Record class: `Critic.Verdict` (reader). Task identity: `quality_observation.render.per_check`. **FIXTURE CLEARED @ transcription grade — `fixtures/binding_acceptance_criteria.md` applied.**
 2. **CANON CLAUSES.** Canon 5 §18 (Quality Observation); Canon 7 §33 (Critic Seam calibration); Canon 4 §32 (quality matrix).
 3. **DEFINITION OF DONE.** Tile renders Critic Seam calibration status per adapter class; stale-calibration surface highlighted; drift alarms per Canon 4 §32.
 4. **QUALITY EVIDENCE.** Inventory audit + calibration-stale drill. Calibration under Canon 4 §32.
@@ -1224,7 +1224,7 @@ Each of these tiles either has no existing page in the Extraction-Akki frontend 
 
 #### WS-BUILD-AGENT-ASSUMED-CHIP
 
-1. **WHAT.** Agent-assumed chip render (chip that flags claims produced by the agent's own inference vs quoted evidence). Row C5-008. Component: new frontend chip component. Contract: `Agent.Assumed.Chip.v0`. Record class: none (surface-only). Task identity: `agent_assumed.render.per_claim`. **FIXTURE PENDING.**
+1. **WHAT.** Agent-assumed chip render (chip that flags claims produced by the agent's own inference vs quoted evidence). Row C5-008. Component: new frontend chip component. Contract: `Agent.Assumed.Chip.v0`. Record class: none (surface-only). Task identity: `agent_assumed.render.per_claim`. **FIXTURE CLEARED @ transcription grade — `fixtures/binding_acceptance_criteria.md` applied.**
 2. **CANON CLAUSES.** Canon 5 §2.5 (Agent-assumed marking); Canon 5 §9.3 (Agent-assumed chip component).
 3. **DEFINITION OF DONE.** Every claim carrying agent-derived (not-quoted) inference renders with the agent-assumed chip. Existing test `gate1_class_inseparable.test.js` extends to require chip presence.
 4. **QUALITY EVIDENCE.** Invariant test (chip-presence per agent-derived claim). Uncurated sample: 100 answer envelopes; agent-assumed classifier accuracy per calibration. Calibration under Canon 5 §2.5.
@@ -1234,7 +1234,7 @@ Each of these tiles either has no existing page in the Extraction-Akki frontend 
 
 #### WS-BUILD-REFUSAL-CARD-COPY
 
-1. **WHAT.** Verbatim Canon 5 §9.2 refusal card COPY authored + registered in the refusal-family taxonomy (extends `services/memory/memory_refusal_reasons.v0.json`). Rows C5-005, C5-006, C5-007, C7-D03. Component: taxonomy JSON extension + copy authoring. Contract: refusal-reason JSON snapshot (extends existing frozen shape via `WS-WIRE-PARITY-EXTENSION`). Record class: `Refusal.Reason` (writer). Task identity: `refusal.copy.per_family`. **FIXTURE PENDING.**
+1. **WHAT.** Verbatim Canon 5 §9.2 refusal card COPY authored + registered in the refusal-family taxonomy (extends `services/memory/memory_refusal_reasons.v0.json`). Rows C5-005, C5-006, C5-007, C7-D03. Component: taxonomy JSON extension + copy authoring. Contract: refusal-reason JSON snapshot (extends existing frozen shape via `WS-WIRE-PARITY-EXTENSION`). Record class: `Refusal.Reason` (writer). Task identity: `refusal.copy.per_family`. **FIXTURE CLEARED @ transcription grade — `fixtures/binding_acceptance_criteria.md` applied.**
 2. **CANON CLAUSES.** Canon 5 §9.2 (verbatim refusal card copy); Canon 1 §7.1 (refusal recorded); Canon 3 §17 (refusal shapes catalogued).
 3. **DEFINITION OF DONE.** Every canon-listed refusal family has a verbatim copy entry in the taxonomy JSON. `WS-HARVEST-REFUSAL-CARD` (Part 1 — the render) reads these entries. Copy is byte-identical to Canon 5 §9.2 text.
 4. **QUALITY EVIDENCE.** Invariant test (byte-identical copy render) + inventory audit (every family has a copy entry). Calibration under Canon 5 §9.2.
@@ -1244,7 +1244,7 @@ Each of these tiles either has no existing page in the Extraction-Akki frontend 
 
 #### WS-BUILD-THREE-LENSES
 
-1. **WHAT.** Three lenses (Answer / Reasoning / Raw trail) over one object. Rows C5-045..C5-048, C7-006 (envelope class-chip render). Component: new frontend tile with three panels + backend three-panel data provider. Contract: `Three.Lenses.Envelope.v0`. Record class: `Answer.Envelope` (Canon 9 §6). Task identity: `answer.three_lenses.render.per_object`. **FIXTURE PENDING.**
+1. **WHAT.** Three lenses (Answer / Reasoning / Raw trail) over one object. Rows C5-045..C5-048, C7-006 (envelope class-chip render). Component: new frontend tile with three panels + backend three-panel data provider. Contract: `Three.Lenses.Envelope.v0`. Record class: `Answer.Envelope` (Canon 9 §6). Task identity: `answer.three_lenses.render.per_object`. **FIXTURE CLEARED @ transcription grade — `fixtures/binding_acceptance_criteria.md` applied.**
 2. **CANON CLAUSES.** Canon 5 §37.1 (three lenses); Canon 5 §2 (class chip inseparable per lens).
 3. **DEFINITION OF DONE.** Every answer surface renders three lenses over the same object; class chip present in every lens; refusal card can appear in any lens.
 4. **QUALITY EVIDENCE.** Invariant test (three-panel + class-chip presence) + drill (10 answer sessions rendered across three lenses).
@@ -1254,7 +1254,7 @@ Each of these tiles either has no existing page in the Extraction-Akki frontend 
 
 #### WS-BUILD-ANSWER-CARD
 
-1. **WHAT.** Answer card (evidence strip + honesty strip + actions). Rows C5-049, C5-050, C5-051. Component: new frontend card + backend data provider. Contract: `Answer.Card.v0`. Record class: `Answer.Envelope` (reader). Task identity: `answer_card.render.per_answer`. **FIXTURE PENDING.**
+1. **WHAT.** Answer card (evidence strip + honesty strip + actions). Rows C5-049, C5-050, C5-051. Component: new frontend card + backend data provider. Contract: `Answer.Card.v0`. Record class: `Answer.Envelope` (reader). Task identity: `answer_card.render.per_answer`. **FIXTURE CLEARED @ transcription grade — `fixtures/binding_acceptance_criteria.md` applied.**
 2. **CANON CLAUSES.** Canon 5 §37 (Ask surface); Canon 5 §37.4 (machine form / answer envelope).
 3. **DEFINITION OF DONE.** Every answer renders as an answer card with evidence + honesty + actions strips. Card is source-of-truth for the answer envelope.
 4. **QUALITY EVIDENCE.** Invariant test (card shape). Uncurated sample: 100 answers across drill week. Calibration under Canon 5 §37.
@@ -1264,7 +1264,7 @@ Each of these tiles either has no existing page in the Extraction-Akki frontend 
 
 #### WS-BUILD-FIVE-PILLARS
 
-1. **WHAT.** Five-pillar router (Canon 5 §40): Ask · Work · Lead · Learn · Build + 3rd Party. Row C5-052. Component: new frontend router + pillar-registry backend. Contract: `Pillar.Registration.v0`. Record class: none (surface + registration). Task identity: `pillar.router.per_navigation`. **FIXTURE PENDING.**
+1. **WHAT.** Five-pillar router (Canon 5 §40): Ask · Work · Lead · Learn · Build + 3rd Party. Row C5-052. Component: new frontend router + pillar-registry backend. Contract: `Pillar.Registration.v0`. Record class: none (surface + registration). Task identity: `pillar.router.per_navigation`. **FIXTURE CLEARED @ transcription grade — `fixtures/binding_acceptance_criteria.md` applied.**
 2. **CANON CLAUSES.** Canon 5 §40 (five pillars); FL-OQ-04 (four-vs-five console taxonomy — pillars are distinct from consoles).
 3. **DEFINITION OF DONE.** Every user surfaces routes through one of the five pillars; Canon-5 conformance audit = 100%.
 4. **QUALITY EVIDENCE.** Inventory audit (surface-list → pillar-list). Calibration under Canon 5 §40.
@@ -1274,7 +1274,7 @@ Each of these tiles either has no existing page in the Extraction-Akki frontend 
 
 #### WS-BUILD-PULSE-NEWS
 
-1. **WHAT.** Pulse + News apps for the Lead pillar. Row C5-053. Component: new Lead-pillar applications. Contract: `Pulse.Post.v0`, `News.Item.v0`. Record class: `Pulse.Post`, `News.Item` (Canon 9 §6). Task identity: `pulse.compose.per_post`. **FIXTURE PENDING.**
+1. **WHAT.** Pulse + News apps for the Lead pillar. Row C5-053. Component: new Lead-pillar applications. Contract: `Pulse.Post.v0`, `News.Item.v0`. Record class: `Pulse.Post`, `News.Item` (Canon 9 §6). Task identity: `pulse.compose.per_post`. **FIXTURE CLEARED @ transcription grade — `fixtures/binding_acceptance_criteria.md` applied.**
 2. **CANON CLAUSES.** Canon 5 §40 (Lead pillar apps); Canon 5 §43 (Pulse + News).
 3. **DEFINITION OF DONE.** Two Lead-pillar apps render as tiles inside the Lead pillar router; Pulse is workspace-internal, News aggregates canon-tagged updates.
 4. **QUALITY EVIDENCE.** Contract test + inventory audit.
@@ -1284,7 +1284,7 @@ Each of these tiles either has no existing page in the Extraction-Akki frontend 
 
 #### WS-BUILD-STUDIO
 
-1. **WHAT.** Studio — application composer surface for the Build pillar. Rows C5-055, C5-060. Component: new Build-pillar application. Contract: `Studio.Composition.v0`. Record class: `Studio.Composition`. Task identity: `studio.compose.per_app`. **FIXTURE PENDING + FL-OQ-05 pending.**
+1. **WHAT.** Studio — application composer surface for the Build pillar. Rows C5-055, C5-060. Component: new Build-pillar application. Contract: `Studio.Composition.v0`. Record class: `Studio.Composition`. Task identity: `studio.compose.per_app`. **FIXTURE CLEARED @ transcription grade (BAC applied); Studio deferred per FL-OQ-05 (Build Order 01 §4 amendment — leaves Wave 8).**
 2. **CANON CLAUSES.** Canon 5 §42 (designed, not sourced); Canon 5 §43 Studio (per row extraction; scope resolution pending FL-OQ-05).
 3. **DEFINITION OF DONE.** _Partial pending FL-OQ-05_: Studio surfaces expose app composition primitives per Canon 5 §42; scope of "compose" — does it include storage-plane assignment? — governed by owner ruling.
 4. **QUALITY EVIDENCE.** Contract test + drill (one Studio-composed app end-to-end).
@@ -1294,7 +1294,7 @@ Each of these tiles either has no existing page in the Extraction-Akki frontend 
 
 #### WS-BUILD-LEARN-PILLAR
 
-1. **WHAT.** Learn-pillar surfaces (Canon 5 §40 fifth pillar). Row C5-057. Component: new Learn-pillar applications. Contract: `Learn.Module.v0`. Record class: `Learn.Module.Interaction`. Task identity: `learn.module.per_interaction`. **FIXTURE PENDING.**
+1. **WHAT.** Learn-pillar surfaces (Canon 5 §40 fifth pillar). Row C5-057. Component: new Learn-pillar applications. Contract: `Learn.Module.v0`. Record class: `Learn.Module.Interaction`. Task identity: `learn.module.per_interaction`. **FIXTURE CLEARED @ transcription grade — `fixtures/binding_acceptance_criteria.md` applied.**
 2. **CANON CLAUSES.** Canon 5 §40 (five pillars — Learn); Canon 5 §43 (Learn surfaces).
 3. **DEFINITION OF DONE.** Learn tiles render under Learn pillar; interactions ledgered per Canon 9 §6 without content leaking.
 4. **QUALITY EVIDENCE.** Contract test + inventory audit.
@@ -1304,7 +1304,7 @@ Each of these tiles either has no existing page in the Extraction-Akki frontend 
 
 #### WS-BUILD-REFERENCE-APP
 
-1. **WHAT.** Reference App (Ask) — the canonical Ask app surface. Rows C5-043, C5-044, C6-038..C6-043. Component: new Ask pillar-application. Contract: `Ask.Session.v0`. Record class: `Ask.Session`. Task identity: `ask.session.per_actor`. **FIXTURE PENDING.**
+1. **WHAT.** Reference App (Ask) — the canonical Ask app surface. Rows C5-043, C5-044, C6-038..C6-043. Component: new Ask pillar-application. Contract: `Ask.Session.v0`. Record class: `Ask.Session`. Task identity: `ask.session.per_actor`. **FIXTURE CLEARED @ transcription grade — `fixtures/binding_acceptance_criteria.md` applied.**
 2. **CANON CLAUSES.** Canon 5 §37 (Ask); Canon 5 §43-§44 (Reference App); Canon 6 §5-§7 (working-rhythm).
 3. **DEFINITION OF DONE.** Ask app renders three-lenses (`WS-BUILD-THREE-LENSES`) over answer envelope; agent-assumed chip present per Canon 5 §2.5; refusal card renders verbatim per Canon 5 §9.2.
 4. **QUALITY EVIDENCE.** Drill (10 Ask sessions across various shapes). Calibration under Canon 5 §37.
@@ -1314,7 +1314,7 @@ Each of these tiles either has no existing page in the Extraction-Akki frontend 
 
 #### WS-BUILD-CONTROL-BAND
 
-1. **WHAT.** Control Band (Connect / Estate Map / Rulebook / Access / Watch). Rows C5-058, C5-059. Component: new frontend control-band component + wiring to five sub-tiles. Contract: `Control.Band.Row.v0`. Record class: none (surface). Task identity: `control_band.render.per_user`. **FIXTURE PENDING.**
+1. **WHAT.** Control Band (Connect / Estate Map / Rulebook / Access / Watch). Rows C5-058, C5-059. Component: new frontend control-band component + wiring to five sub-tiles. Contract: `Control.Band.Row.v0`. Record class: none (surface). Task identity: `control_band.render.per_user`. **FIXTURE CLEARED @ transcription grade — `fixtures/binding_acceptance_criteria.md` applied.**
 2. **CANON CLAUSES.** Canon 5 §41 (Control Band).
 3. **DEFINITION OF DONE.** Every user surface renders the Control Band with five items; each item links to the corresponding Canon-5 console tile.
 4. **QUALITY EVIDENCE.** Inventory audit (control-band item count = 5). Calibration under Canon 5 §41.
@@ -1478,8 +1478,8 @@ Each of these tiles either has no existing page in the Extraction-Akki frontend 
 
 #### WS-BUILD-CONSOLE-WATCH
 
-1. **WHAT.** Watch Console as the fourth tile-group under the Admin surface's tile-grid-plus-detail-card grammar per Instruction 02. Tiles (four, verbatim from Canon 8 §13): `State` · `Record` · `Under Watch` · `Decisions`. Component: new frontend Watch-Console + backend data feeds. Contract: `Watch.Console.Tile.v0`. Record class: consumes Watch record classes (reader only). Task identity: sessions run under Watch identity per Canon 9. **FIXTURE PENDING: reference screenshot.**
-2. **CANON CLAUSES.** Canon 8 §13 (Watch Console — four panels); Canon 5 §10 (four consoles + Watch as fourth group per Instruction 02); Ruling 3 (Instruction 02).
+1. **WHAT.** Watch Console as the fourth tile-group under the Admin surface's tile-grid-plus-detail-card grammar per Instruction 02. Tiles (four, verbatim from Canon 8 §13): `State` · `Record` · `Under Watch` · `Decisions`. Component: new frontend Watch-Console + backend data feeds. Contract: `Watch.Console.Tile.v0`. Record class: consumes Watch record classes (reader only). Task identity: sessions run under Watch identity per Canon 9. **FIXTURE CLEARED @ transcription grade — `fixtures/binding_acceptance_criteria.md`; `test_four_questions_topline_present` on new-invariants list.**
+2. **CANON CLAUSES.** Canon 8 §13 (Watch Console — four panels); Canon 5 §10 (five consoles per Build Order 01 §1 correction — FL-OQ-04 CLOSED; Watch as fifth, rendered as fourth Admin-surface tile group per Instruction 02); Ruling 3 (Instruction 02).
 3. **DEFINITION OF DONE.** Watch Console renders as a fourth tile-group with EXACTLY four tiles named `State`, `Record`, `Under Watch`, `Decisions`. **Watch-officer role-gated** (only watch-officer role sees the group). **Sessions run under Watch identity per Canon 9 (Task Identity Register).** **NEVER nested under Trust Center or any Compliance-Console tile — placement invariant test asserts this.** Verification: role-audit + placement-audit.
 4. **QUALITY EVIDENCE.** Inventory audit (four-tile invariant + placement invariant + role-gate) + drill (watch-officer session end-to-end). Calibration under Canon 8 §13 + Instruction 02.
 5. **DEPENDENCIES.** `WS-HARVEST-SHELL-GRAMMAR` (Part 1), `WS-BUILD-WATCH-ACTORS`, `WS-BUILD-WATCH-MARK-REGISTRY`, `WS-BUILD-WATCH-DECISIONS-PANEL`, `WS-BUILD-TASK-IDENTITY-REGISTER`, `WS-WIRE-PARITY-EXTENSION`. Reference screenshot pending (FL-P1-14).
@@ -1739,7 +1739,7 @@ Rationale: Every subsequent item names one or more of these as a dependency. Lan
 #### 1.2 Guardrails on the sequence
 
 - **No Wave-N item lands with an unlanded Wave-(N-1) dependency.** Enforced by the completeness audit script pre-submission.
-- **XL items require review pack + one-paragraph defence.** Nine XL items: `WS-REPOINT-ANSWERING-SURFACES`, `WS-REBUILD-WORK-STUDIO-STORAGE`, `WS-BUILD-OBJECT-STORAGE-PORT`, `WS-BUILD-WATCH-FOUNDATION`, `WS-BUILD-WATCH-ACTORS`, `WS-BUILD-RECORD-MATRIX`, `WS-BUILD-TASK-IDENTITY-REGISTER`. Each carries the defence in its Part-1 or Part-2 entry.
+- **XL items require review pack + one-paragraph defence.** **Seven XL items** (Build-Order-01 correction, was mis-stated as nine): `WS-REPOINT-ANSWERING-SURFACES` (Part 1) · `WS-REBUILD-WORK-STUDIO-STORAGE` (Part 1) · `WS-BUILD-OBJECT-STORAGE-PORT` (Part 2) · `WS-BUILD-WATCH-FOUNDATION` (Part 2) · `WS-BUILD-WATCH-ACTORS` (Part 2) · `WS-BUILD-RECORD-MATRIX` (Part 2) · `WS-BUILD-TASK-IDENTITY-REGISTER` (Part 2). Each carries the defence in its item entry. Two additional items carry conditional XL classification (not counted): `WS-REPOINT-SOLVA-VOICE-AUDIT` (L on path A, XL on path B — closed to path A per FL-P1-02); `WS-BUILD-STUDIO` (L baseline, XL if storage-plane composition — deferred per FL-OQ-05, stays L).
 - **Reversal-cost gates.** Every VERY HIGH item requires an owner sign-off on the commissioning certificate before completing the reader-cutover.
 
 ---
@@ -1893,7 +1893,7 @@ Things reversed, abandoned, or redundant in the strategy. Ledgered so the honest
 | W-02 | 47 unassigned Canon-2 CIF rows in initial Chunk-3 domain tables | Domain-table drafting missed the CIF-specific rows. | REMEDIATED in `row_to_item_index.md` — CIF items WS-CIF-* opened. |
 | W-03 | 4 folded WIRING items (critic-into-answering, parity-extension, refusal-family, ledger-matrix) | Folded silently under HARVEST/BUILD items. | REMEDIATED via Ruling 2 — promoted to standalone. |
 | W-04 | 13 interface BUILD items folded before Instruction 02 | Chunk-3 defaulted interface to BUILD; Instruction 02 fixed Extraction-Akki as donor. | REMEDIATED via Ruling 3 — reclassified to HARVEST/MODIFY. |
-| W-05 | Reference screenshot delay | Owner has not delivered the tile-grid-plus-detail-card grammar screenshot. | OPEN — interface items carry `FIXTURE PENDING` (FL-P1-14). |
+| W-05 | Reference screenshot delay | Owner has not delivered the tile-grid-plus-detail-card grammar screenshot. | OPEN — interface items carry `FIXTURE CLEARED @ transcription grade (FL-P1-14 — transcription-cleared vs file-cleared distinction recorded). |
 | W-06 | FL-P1-05, FL-P1-06, FL-P1-07 — specific-file identification for three MODIFY items deferred | Focused reads not done in Part-1 drafting. | Requires re-read pass; substance-anchored citations hold. |
 | W-07 | `WS-CIF-METABOLISATION`-style adopting frames vs Solva's parameterless assertion boundary | Potential seam conflict: CIF metabolisation claims frames adopted; Solva assertion boundary refuses caveated claims. | RESOLVED by design — CIF submits ratified frames back to Solva via `WS-WIRE-SOLVA-CIF`, no self-certification permitted (Canon 2 permanent bound). |
 | W-08 | `AuthLoginPage.js`, `AuthRegisterPage.js` — application territory but present in Extraction-Akki frontend | Auth is application-layer per Canon 1 §13; drift into Extraction-Akki is a Canon-1 §12 breach. | REMEDIATED via Ruling 3 → folded into `WS-RETIRE-APP-TERRITORY`. |
@@ -1919,108 +1919,113 @@ Total open items at freeze: **27** (8 + 7 + 12 + 1 + 1 disclosure + 0 net new fr
 
 ## §10 · Canon fidelity ledger (frozen at assembly)
 
-Frozen at BUILD_STRATEGY.md assembly per Ruling 2 §4. Any post-assembly change requires a Canon 3 §24 rule-change ceremony. 27 open items — each phrased so the owner answers in one sentence.
+Frozen at BUILD_STRATEGY.md assembly per Ruling 2 §4. All 27 rows CLOSED by Build Order 01 (2026-08-14). Ledger retained as the honest history of the drafting process; any re-opening requires a Canon 3 §24 rule-change ceremony against this document.
 
-**Purpose:** Every un-fillable field, every remaining Open Question, every rendering decision that cannot be resolved without an owner ruling — recorded here as a single-sentence-answerable entry.
+**Status at Build Order 01 (2026-08-14):** All 27 rows CLOSED by owner ruling. Retained as the honest history of the drafting process. Any future re-opening requires a Canon 3 §24 rule-change ceremony against this document.
 
-**Lifecycle (Ruling 2 §4):** Opens alongside `strategy_items_part1.md`. Appended during Part 2 (BUILD items). Frozen at `BUILD_STRATEGY.md` assembly.
-
-**Format:** each row is a numbered entry with (id · source · one-line question · status).
+**Ruling source:** Build Order 01 (owner channel) — full verbatim in `STATE/DECISIONS.md`.
 
 ---
 
-### A. Open Questions inherited from REUSE_ASSESSMENT.md §8
+### A. Open Questions inherited from REUSE_ASSESSMENT.md §8 — ALL CLOSED
 
-Ruling 1 answered OQ #1 (conditional) and OQ #2 (implicit). The remaining 8 open questions carry forward here:
-
-| id | one-line question | status |
+| id | question | Build Order 01 ruling |
 |---|---|---|
-| **FL-OQ-03** | Canon 3 §33 "rule-change re-verify step" — is the 5th ceremony state named `re-verified` a compliance-artifact write, a runtime state-machine state, or both? (Governs `WS-BUILD-CEREMONY-REVERIFY` operative-parameter shape.) | OPEN |
-| **FL-OQ-04** | Canon 5 four vs five consoles — Canon 5 §10 lists four consoles (Extraction / Compliance / Integration / Administration); the Watch acquires a fifth-group surface via Instruction 02. Is the canonical count now four-plus-Watch, or five consoles? (Governs pillar / console taxonomy in `WS-BUILD-FIVE-PILLARS` and Canon-5 conformance audit.) | OPEN |
-| **FL-OQ-05** | Studio canonical scope — Canon 5 §43 references Studio (application-composer). Does Studio ship in the first BUILD_STRATEGY cycle, or is it a Canon-5 §55-referenced surface that lands in a later cycle? (Governs `WS-BUILD-STUDIO` credit-cost class.) | OPEN |
-| **FL-OQ-06** | Eight-vs-five global rules — Canon 3 lists global-rule counts in two places; is the canonical count 5 (Canon 3 §22 "The Four Classes" + peerage) or 8 (Canon 3 §30 Enforcement Class)? (Governs `WS-BUILD-RULEBOOK-SURFACE` rule-count invariant.) | OPEN |
-| **FL-OQ-07** | Cohort surface's canonical home — Executive-Core `services/cohort/` classified RETIRE-from-platform; does it re-home to the application layer as a Marketing App, or fully retire? (Governs `WS-RETIRE-APP-TERRITORY` completeness.) | OPEN |
-| **FL-OQ-08** | Work_studio storage coupling — Canon 7 §19-§23 memory plane vs Executive-Core mongo pattern. Is the 200+ user-export migration path shadow-write-then-cutover (recommended) or something else? (Governs `WS-REBUILD-WORK-STUDIO-STORAGE` DoD path.) | OPEN |
-| **FL-OQ-09** | Akki-OS-V1 non-canonical harvest items (partitions, sequencing_harness, far_endpoint) — do these harvest into the spine or stay in Akki-OS-V1? (Governs `WS-HARVEST-PARTITIONS`, `WS-HARVEST-SEQUENCING-HARNESS`, `WS-HARVEST-FAR-ENDPOINT`.) | OPEN |
-| **FL-OQ-10** | Executive-Core post-IF-1 catch-up — is Executive-Core turned into an application (Executive-Core-as-application), archived, or maintained parallel? (Governs `WS-RETIRE-APP-TERRITORY` scope + `WS-REPOINT-*` completion.) | OPEN |
+| **FL-OQ-03** | Canon 3 §24 rule-change re-verify step — runtime state, artifact write, or both? | **CLOSED — Both**: re-verified is a runtime state in the ceremony state machine AND a compliance-artifact write, and the state transitions only on the artifact's successful write. |
+| **FL-OQ-04** | Canon 5 four-vs-five consoles — canonical count? | **CLOSED — Five consoles**: the Watch Console is the fifth in canon and renders as the fourth tile group on the Admin surface; "four-plus-Watch" and "five" are the same fact. (Note: premise "§10 lists four consoles" was a paraphrase defect — Canon 5 §10 verbatim reads "The platform has exactly five consoles" with Watch in the console table.) |
+| **FL-OQ-05** | Studio canonical scope for this cycle? | **CLOSED — Deferred**: Studio does not ship this cycle; `WS-BUILD-STUDIO` leaves Wave 8 for a later cycle and its nav presence renders in the dormant-state grammar, never a dead link. |
+| **FL-OQ-06** | Eight-vs-five/four global rules — canonical count? | **CLOSED — Both counts stand**: they count different things — the Eight Global Rules are Canon 5's interface law; the Four Classes are Canon 3's governed-value taxonomy; the Rulebook surface's invariant counts rules in force per instance (seeded: four), never a canon constant. |
+| **FL-OQ-07** | Cohort surface — application-layer or retire? | **CLOSED — Fully retire**: Cohort fully retires from the platform; if it returns, it returns as an application on the boundary like any third party, outside this programme. |
+| **FL-OQ-08** | Work-Studio migration path? | **CLOSED — Shadow-write-then-cutover**: with guards G-T3-A…D exactly as written; owner signs the commissioning certificate BEFORE reader-cutover, and NOT before all 200+ export hashes are listed on it. |
+| **FL-OQ-09** | Akki-OS-V1 harvests — into spine or stay? | **CLOSED — Harvest into the spine**: Akki-OS-V1 becomes read-only reference at Wave-4 completion. |
+| **FL-OQ-10** | Executive-Core disposition? | **CLOSED — Application on the boundary**: Executive-Core becomes an application on the boundary; nothing is maintained parallel after T2's exit; only what RETIRE names is archived. |
 
 ---
 
-### B. Part-1 field-level fidelity entries (opened while drafting `strategy_items_part1.md`)
+### B. Part-1 field-level entries — ALL CLOSED
 
-| id | one-line question | status |
+| id | question | Build Order 01 ruling |
 |---|---|---|
-| **FL-P1-01** | Which specific Canon clauses does `sequencing_harness` satisfy that are not already covered by `services/targeta` and `services/mtafiti`? Confirm harvest scope. | OPEN (blocks `WS-HARVEST-SEQUENCING-HARNESS` completion). |
-| **FL-P1-02** | Does audio material in `solva_voice_audit/voice/` transit the spine's `input_seat` (path A → RE-POINT) or does it require REBUILD under Canon 3 §13.1 custody sequence (path B → REBUILD)? | OPEN (blocks `WS-REPOINT-SOLVA-VOICE-AUDIT` class assignment). |
-| **FL-P1-03** | Object Storage Port (Doc 7 §19-§23) — where does the port land? A new engine (XL BUILD), or absorbed into `WS-BUILD-RECORD-MATRIX`? | OPEN (implicit BUILD dependency of `WS-REBUILD-WORK-STUDIO-STORAGE`). |
-| **FL-P1-04** | Application-boundary transition — is Executive-Core-turned-application defined as a discrete transition milestone in the programme, or continuous per-service? (Governs `WS-RETIRE-APP-TERRITORY` completion criterion.) | OPEN. |
-| **FL-P1-05** | Which specific file/module owns the reviewer-selector code path for `WS-BUILD-INDEPENDENCE-GATE`? A focused read is needed to identify. | OPEN (blocks WHAT-field completeness of `WS-BUILD-INDEPENDENCE-GATE`). |
-| **FL-P1-06** | Which specific file/module owns the deliverable-attestation surface for `WS-BUILD-DELIVERABLE-ATTESTATIONS`? A focused read is needed to identify. | OPEN. |
-| **FL-P1-07** | Which specific file/module owns the standing-query definition/execution surface for `WS-BUILD-STANDING-QUERY-SURFACE`? | OPEN. |
+| **FL-P1-01** | `sequencing_harness` canon anchor + harvest scope? | **CLOSED — Focused read at Wave-4 preparation**: harvest only what Targeta and Mtafiti don't already satisfy, and on full overlap reclassify to RETIRE and log the waste. |
+| **FL-P1-02** | Voice-audit custody — path A RE-POINT or path B REBUILD? | **CLOSED — Default path A** (RE-POINT through the input seat); path B only if the focused read proves a second custody path that cannot transit the chokepoint; that read is now urgent (Build Order 01 §6). |
+| **FL-P1-03** | Object Storage Port placement? | **CLOSED — Own BUILD item**: a port under the boundary governor's ownership, not a new engine and not absorbed into the record matrix; contract through parity-extension as planned. |
+| **FL-P1-04** | Application-boundary transition — discrete milestone or continuous? | **CLOSED — Discrete milestone**: T2's exit is the single completion criterion, verified by the Canon 1 §12 boundary audit. |
+| **FL-P1-05** | Specific reviewer-selector file for Independence Gate? | **CLOSED — Focused read as first task of item's wave**: WHAT-field updates in place; no build before the read lands. |
+| **FL-P1-06** | Specific deliverable-attestation surface file? | **CLOSED — Same discipline**: focused read as first task of item's wave; WHAT-field updates in place; no build before the read lands. |
+| **FL-P1-07** | Specific standing-query definition/execution file? | **CLOSED — Same discipline**: focused read as first task of item's wave; WHAT-field updates in place; no build before the read lands. |
 
 ---
 
-### C. Instruction-02 rendering decisions (interface label-vs-canon-identity mappings)
+### C. Instruction-02 rendering decisions — ALL CLOSED
 
-Every label-vs-identity mismatch surfaces here — never silently renamed.
+**Governing principle** (Build Order 01 §2.C): _"The organisation's language renders on screen; the canon identity lives beneath; the mapping is recorded in this ledger. A label is never evidence of identity, and identity never forces a label."_
 
-| id | rendering decision | Extraction-Akki source | proposed canon identity | status |
-|---|---|---|---|---|
-| **FL-P1-08** | `MemoryPlaneObservabilityPage.jsx` — under Extraction Console (donor placement) OR Compliance Console (canon home per Canon 7 §29-§31 + Canon 3 §31)? | `pages/memory/MemoryPlaneObservabilityPage.jsx` | Compliance Console (proposed) | PROPOSED |
-| **FL-P1-09** | `TraceReceiptPage.js` — under Trace (donor placement) OR Compliance Console prove-one-run export (Canon 3 §33-§48)? | `pages/trace/TraceReceiptPage.js` | Compliance Console (proposed) | PROPOSED |
-| **FL-P1-10** | `UseDataLandingPage.jsx` — Extraction Model Catalogue (Canon 5 §14) OR Ask Reference App (Canon 5 §43-§44)? | `pages/use_data/UseDataLandingPage.jsx` | UNRESOLVED | OPEN |
-| **FL-P1-11** | `UseDataVerdictDemoPage.jsx` — canon-required tile OR demo-only artefact for RETIRE? | `pages/use_data/UseDataVerdictDemoPage.jsx` | UNRESOLVED | OPEN |
-| **FL-P1-12** | `AuditTrailPage.js` — under Master Admin (donor placement) OR Compliance Console audit-trail export (Canon 3 §33)? | `pages/master_admin/AuditTrailPage.js` | Compliance Console (proposed) | PROPOSED |
-| **FL-P1-13** | `GovernChangeRulePage.jsx` vs `ChangeARulePage.js` — dedupe: which is canonical (Canon 5 §32)? | `pages/govern/GovernChangeRulePage.jsx` + `pages/master_admin/ChangeARulePage.js` | Single canonical tile under Administration Console | PROPOSED |
-| **FL-P1-14** | Reference screenshot for the tile-grid-plus-detail-card grammar has not yet arrived in the workspace. Every interface item names this as `FIXTURE PENDING`. | (external asset) | Pending owner delivery | OPEN |
-| **FL-P1-15** | Prototype "Trust Center" label vs Canon 5 §20 "Compliance Console" identity — Watch never nests under Trust Center per Instruction 02. Rendering decision: retire "Trust Center" label from surface entirely? | prototype nav | Retire label (proposed) | PROPOSED |
-| **FL-P1-16** | Prototype "datashield / reasoningshield / accessshield" naming vs Canon 5 identities (Home / Prove-one-run / Retention & Rights / Compliance Rulebook) — rendering decision: retire "*Shield" nomenclature? | prototype nav | Retire (per Instruction 02 spirit) | PROPOSED |
-| **FL-P1-17** | Prototype "WorkStudio" pillar name vs Canon 5 §40 "Work" pillar — rendering decision confirmed rename? | prototype nav | Rename to "Work" | PROPOSED (previously in `WS-RENAME-PROTOTYPE-TAXONOMY`) |
-| **FL-P1-18** | Prototype "ThinkLab" / "Monitor" placement — under Lead pillar sub-application per Canon 5 §40? | prototype nav | Reparent under Lead pillar | PROPOSED |
-| **FL-P1-19** | Prototype "3rd Party Apps" tab vs Canon 5 §24-§27 Integration Console + browsable app catalogue — rendering decision confirmed? | prototype nav | Integration Console + app catalogue | PROPOSED |
-
----
-
-### D. Ruling-1 leftover items
-
-| id | one-line question | status |
+| id | rendering decision | Build Order 01 ruling |
 |---|---|---|
-| **FL-R1-01** | Purpose-gate strip event itself — when both preconditions fire, does the strip execute as a Canon 3 §24 rule-change ceremony (5 steps) or as a Watch verdict? | OPEN (blocks `WS-CONTRADICTION-PURPOSE-GATE` strip-phase DoD). |
+| **FL-P1-08** | MemoryPlaneObservability home? | **CLOSED — Ratified**: memory-plane observability homes to the Compliance Console. |
+| **FL-P1-09** | TraceReceipt home? | **CLOSED — Ratified**: trace receipt homes to the Compliance Console's prove-one-run export. |
+| **FL-P1-10** | UseDataLanding home — Model Catalogue or Ask App? | **CLOSED — Ask reference application** (Canon 5 §37 Ask); the model catalogue is the Extraction Console's. |
+| **FL-P1-11** | Verdict Demo — canon-required or retire? | **CLOSED — Retire**: the walk pattern in the attached brief supersedes it. |
+| **FL-P1-12** | AuditTrail home? | **CLOSED — Ratified**: audit trail homes to the Compliance Console export. |
+| **FL-P1-13** | Change-a-Rule dedupe? | **CLOSED — Ratified**: one canonical change-a-rule tile; the duplicate retires. |
+| **FL-P1-14** | Reference screenshot for tile-grid grammar? | **CLOSED — Fixture is the attached screenshot plus the attached v7 brief**; every FIXTURE PENDING clears on their arrival in the workspace. **GRADE DISTINCTION (Q1(c) ruling · 2026-08-14):** two fixtures arrived as files and are `file-cleared` (`Akki_Prototype_v7_Design_Brief.md` sha256 `063f2b47…9717b4`; `AISCA_GPU_Access_Guide.pdf` sha256 `0f6b6e0f…157f3`). Reference screenshot arrived as an owner-inline transcription (owner acknowledged the image file was lost in a prior compaction; asked to re-send as file; not yet arrived) and is `transcription-cleared` (`reference_screenshot_transcription.md` sha256 `d3ae9a6c…02fc949`). Re-open if the image file arrives and pixel-level review contradicts the transcription. Binding acceptance criteria extracted at `fixtures/binding_acceptance_criteria.md` (BAC-1..BAC-13); `test_four_questions_topline_present` added to every console item's new-invariants list per Build Order 01 §3. |
+| **FL-P1-14a** | Fixture-arrival log — grade + hashes recorded. | **CLOSED — logged 2026-08-14**: v7 brief `file-cleared`; AISCA GPU Guide `file-cleared` (with SOP-conflict-escalation flag — see FL-P2-03 / FL-P2-04); reference screenshot `transcription-cleared` per Q1(c). PINS.md carries the same table with hashes; `fixtures/binding_acceptance_criteria.md` is the extracted-content deliverable. |
+| **FL-P1-15** | Retire "Trust Center" label? | **CLOSED — OVERTURNED**: "Trust Center" is KEPT as the rendered group label, mapped to the Compliance Console identity — the reference screenshot fixes this label; mapping recorded here: label `Trust Center` → identity Canon 5 §22 Compliance Console. |
+| **FL-P1-16** | Retire "*Shield" naming? | **CLOSED — OVERTURNED**: the shield names are KEPT as rendered tile labels mapped to their canon identities per the brief's §4 table. Mappings recorded here: label `Data Shield` → identity Canon 5 §22-§23 Compliance Console (Prove-one-run · Retention & Rights); label `Reasoning Shield` → identity Canon 5 §22 Compliance Home + Canon 5 §24-§25 Rulebook; label `Access Shield` → identity Canon 5 §29-§31 Administration Console (Roles & Rights · Counter-Sign Duties). |
+| **FL-P1-17** | "WorkStudio" rename? | **CLOSED — Ratified**: "WorkStudio" renames to "Work." |
+| **FL-P1-18** | ThinkLab/Monitor placement? | **CLOSED — Ratified**: ThinkLab and Monitor reparent under Lead. |
+| **FL-P1-19** | "3rd Party Apps" placement + label? | **CLOSED — Ratified**: capability is the Integration Console plus catalogue; the on-screen tab may remain "3rd Party Apps" as org language, mapping recorded here: label `3rd Party Apps` → identity Canon 5 §26-§28 Integration Console + application catalogue. |
 
 ---
 
-### E. Citation-drift disclosure and remediation trail (2026-08-14)
+### D. Ruling-1 leftover — CLOSED
 
-**Discovery.** The `tools/citation_audit.py` run against the initial notes corpus (32 files, 854 canon citations) returned 40 failed canon citations (72 drifted rows across canon_[3-9]_requirements.md).
-
-**Root cause** (recorded in `STATE/CONTEXT.md`): Chunk-1 extraction from the `.docx` archives numbered content paragraphs consecutively BEYOND the canon's real `[Heading]` boundaries — sub-paragraph counting was not reset when a new heading appeared, so `Cn-0MM (§XX)` row IDs record sub-paragraph counters, not heading numbers. Impact fanned across `canon_[3-9]_requirements.md`, `domain_5_*.md`, `retire_inventory.md`, `shaping_answers.md`, `strategy_items_part1.md`, `fidelity_ledger.md`, `row_to_item_index.md`.
-
-**Actual `[Heading]` section spans** (measured 2026-08-14 by `python-docx` parse of `canon_pack.zip`):
-- Canon 3: §1..§33 · Canon 4: §1..§50 · Canon 5: §1..§43 · Canon 6: §1..§12 · Canon 7: §1..§50 · Canon 8: §1..§21 · Canon 9: §1..§8.
-
-**Remediation (Orchestrator Ruling A · 2026-08-14).** Applied systematically via `tools/drift_map.py` (proposal generation by title-match scoring) + `tools/drift_apply.py` (row-level corrections in `canon_[3-9]_requirements.md`) + `tools/drift_downstream.py` (downstream `Canon N §X` citation fixes). Rules honoured:
-- (a) Every correction is a re-read: proposals scored by TITLE-MATCH against the row's substance text; scores ≥ 2 accepted verbatim; scores < 2 snapped to the canon's closing-summary heading (Canon 3 §33 "What Governance Orchestration Comes Down To"; Canon 5 §43 "Why the Split Is Drawn Here, and Not Elsewhere"; Canon 7 §50 "What This Specification Comes Down To"; Canon 8 §21 "What This Canon Comes Down To").
-- (b) No corrections were guesses — every replacement is either a title match or a documented snap to the canon's closing section. Both paths are honest.
-- (c) 72 row corrections logged in `tools/drift_edits.log`; 54 downstream citation corrections applied.
-- (d) Re-run audit: **102/102 file · 854/854 canon · 0 failed**.
-
-**Rows where title-match failed and closing-section snap was applied** (11 rows carry `[was §XX-DRIFTED; snap to closing]` markers in `canon_[3-9]_requirements.md`): C3-051, C3-060, C8-034, C8-035, C8-036, C8-037, C8-046, C8-048, C8-050, C8-051, C8-054. These retain their substance-anchored citations; the numeric anchor is the canon's closing section (honest fallback), not silently invented.
-
-**Prevention for Part 2 (Chunk-1 hardening):** Do NOT count sub-paragraphs; only cite `[Heading]`-numbered sections that literally appear in the extracted canon text. Every citation goes through `citation_audit.py` before submission.
-
-FL-P1-20 stays as the record of the defect AND its remediation. Not silently closed. Reopened only if a title match is refuted.
+| id | question | Build Order 01 ruling |
+|---|---|---|
+| **FL-R1-01** | Purpose-gate strip — Canon 3 §24 ceremony or Watch verdict? | **CLOSED — Canon 3 §24 rule-change ceremony**: it is a rule change and the ceremony's visibility is the point; the Watch's role is witness; the two drill attestations attach to the proposal as its EVIDENCE, not its mechanism. |
 
 ---
 
-### F. Part-2 field-level entries — TO BE APPENDED DURING PART 2 DRAFTING
+### E. Citation-drift disclosure — CLOSED (retained on the record)
 
-(Placeholder — Part 2 has not been drafted yet per Ruling 1 sequencing.)
+| id | disclosure | Build Order 01 ruling |
+|---|---|---|
+| **FL-P1-20** | Chunk-1 §-anchor drift (72 rows) + remediation trail. | **CLOSED — Remains on the record as handled**; reopen only if a title-match is refuted. Full remediation history in this section retained: `tools/drift_map.py` + `drift_apply.py` + `drift_downstream.py`; edit log `tools/drift_edits.log`; xref `tools/drift_xref.json`. |
+
+**Root cause and prevention** (from prior close): Chunk-1 extraction from `.docx` archives numbered content paragraphs consecutively BEYOND canon `[Heading]` boundaries; `Cn-0MM (§XX)` row IDs recorded sub-paragraph counters, not heading numbers. Prevention for all subsequent work: only cite `[Heading]`-numbered sections that literally appear in the extracted canon text; run `citation_audit.py` before every submission.
+
+**Actual `[Heading]` section spans** (measured 2026-08-14): Canon 3 §1..§33 · Canon 4 §1..§50 · Canon 5 §1..§43 · Canon 6 §1..§12 · Canon 7 §1..§50 · Canon 8 §1..§21 · Canon 9 §1..§8.
+
+**Remediation stats:** 72 row-level corrections + 70 downstream citation corrections applied. Rows where title-match failed and closing-section snap was applied (11 rows): C3-051, C3-060, C8-034, C8-035, C8-036, C8-037, C8-046, C8-048, C8-050, C8-051, C8-054.
 
 ---
 
-### Instructions to answer
+### F. Part-2 field-level entries — CLOSED
 
-For every OPEN row above, the owner answers in one sentence. On receipt of an answer, this ledger's row moves to CLOSED and the corresponding item's field is updated in `strategy_items_part1.md` (or Part 2). Answered rows carry an APPENDED "Ruling N" citation from `STATE/DECISIONS.md`.
+Opened during Part-2 drafting; all resolved by rulings above.
+
+| id | note | Build Order 01 resolution |
+|---|---|---|
+| **FL-P2-01** | `WS-BUILD-OBJECT-STORAGE-PORT` placement PROPOSAL (from Ruling B). | CLOSED via FL-P1-03 ruling — own BUILD item, port under boundary-governor ownership. |
+| **FL-P2-02** | `WS-BUILD-STUDIO` scope reclassification note (L → XL if storage-plane composition). | CLOSED via FL-OQ-05 ruling — deferred; stays L baseline in dormant-state render; scope resolution deferred to later cycle. |
+| **FL-P2-03** | AISCA SOP ↔ Build Order 01 §6 SKU mismatch — SOP documents only `1× H200 · 20 vCPU · 240 GB RAM · 3 TB ephemeral · 75 GB root HSS`; Order §6 mandates `4× H200 NVLink · 84 vCPU · 948 GB RAM · 12 TB ephemeral · ~30 TB HSS`. | **ESCALATED-AND-STOPPED** per Q2(a) · 2026-08-14. SOP as-written cannot produce Order §6 environment. Owner ruling needed on the provisioning path for the Order §6 SKU (different Catalog entry not in this PDF? different channel? or Order §6 environment unavailable in this Catalog?). Frozen artifacts: `phase0/acceptance.sh` + `commissioning_checklist.md` (probes 4×H200 NVLink · ~30 TB HSS · restart survives · password-dead — DO NOT modify to accommodate the 1×H200 SKU until owner rules). See `fixtures/aisca_sop_extraction.md` §3 (Conflict A) + §4 (Q-SOP-1, Q-SOP-2). |
+| **FL-P2-04** | AISCA SOP ↔ Build Order 01 §6 credential-handoff procedural gap — SOP step SOP-8 hands over Public IP + Username + **Password**; Order §6 mandates key-only SSH, password auth disabled + probed dead, bootstrap credentials retired. | **ESCALATED** per Q2(a) · 2026-08-14. Reconciliable via Order §6's own credential-hardening clause (owner may confirm the hardening steps are inserted between SOP-8 and any data movement), but SOP text itself does not cover the hardening step. Owner ruling needed on whether the compute-seam's `acceptance.sh` extends to cover the hardening (currently it does not) or whether owner-side hands run the hardening before the seam gains admission. See `fixtures/aisca_sop_extraction.md` §3 (Conflict B) + §4 (Q-SOP-3). |
+| **FL-P2-05** | Reference-screenshot grade — transcription-cleared vs file-cleared distinction. | **CLOSED** by Q1(c) ruling · 2026-08-14. Owner in-channel transcription is AUTHORITATIVE-UNTIL-FILE-ARRIVES; interface DoDs cite `fixtures/binding_acceptance_criteria.md` at transcription grade. Re-open only if image file arrives and pixels contradict transcription. See FL-P1-14 for the label→identity mappings and BAC-1..BAC-13 for the extracted binding criteria. |
+
+---
+
+### Ledger closure summary
+
+- **A** — 8/8 CLOSED (owner Open Questions).
+- **B** — 7/7 CLOSED (Part-1 field-level).
+- **C** — 12/12 CLOSED (Instruction-02 rendering decisions), of which FL-P1-15 and FL-P1-16 OVERTURNED with explicit label→identity mappings; FL-P1-14 substantive closure carries a `transcription-cleared` vs `file-cleared` grade distinction (Q1(c) ruling · 2026-08-14).
+- **D** — 1/1 CLOSED (Ruling-1 leftover).
+- **E** — 1/1 CLOSED (citation-drift disclosure retained on record).
+- **F** — 5/5 rows logged (Part-2 field-level): FL-P2-01, FL-P2-02, FL-P2-05 CLOSED by rulings; **FL-P2-03 ESCALATED-AND-STOPPED** (AISCA SOP SKU mismatch) and **FL-P2-04 ESCALATED** (SOP credential-handoff procedural gap) per Q2(a) · 2026-08-14, awaiting owner rulings before Phase 0 executes on the affected artifacts. Fixture-cycle work continues on the unblocked streams (v7 brief + transcription-driven interface DoDs + BUILD_STRATEGY.md corrections + commit on master).
+
+**Owner's original 27 CLOSED rows** (Build Order 01 §2): A/1..8 + B/1..7 + C/1..12 = 27 · CLOSED. Rows D/E/F/P2 are retained history + newly-opened rows during the fixture cycle.
+
+**Total: 27+2 = 29 rows CLOSED. FL-P1-14 flagged with conditional-substantive-closure pending attachment delivery. Ledger frozen at Build Order 01; changes require Canon 3 §24 rule-change ceremony.**
 
 
 ---
@@ -2162,7 +2167,7 @@ CIF is heavy on discipline. Every implementable CIF row lands here.
 | C5-005..C5-007 | BUILD | WS-BUILD-REFUSAL-CARD-COPY — verbatim Canon 5 §9.2 refusal card as component |
 | C5-008 | BUILD | WS-BUILD-AGENT-ASSUMED-CHIP |
 | C5-009 | PARTIAL | WS-BUILD-DORMANT-STATE-RENDER — "what would activate" statement per screen |
-| C5-010..C5-012 | BUILD | WS-BUILD-CONSOLES — four consoles as named surfaces (Canon 5 §10; note: FOUR, not five — Ruling-1 verification carried in fidelity ledger OQ#4) |
+| C5-010..C5-012 | BUILD | WS-BUILD-CONSOLES — five consoles as named surfaces per Canon 5 §10 (FL-OQ-04 CLOSED by Build Order 01 §1: five, with Watch as the fifth rendered as fourth Admin-surface tile group per Instruction 02) |
 | C5-013 | PARTIAL | WS-BUILD-CONSOLE-EXTRACTION-REGISTRY-DASHBOARD |
 | C5-014 | BUILD | WS-BUILD-CONSOLE-EXTRACTION-MODEL-CATALOGUE (couples with WS-BUILD-MOAC-SCORECARD) |
 | C5-015..C5-017 | REUSE / PARTIAL | WS-BUILD-CONSOLE-EXTRACTION-SHAPING-WIZARD (surface uplift for freeze + sampling) |
@@ -2438,4 +2443,4 @@ The 8 remaining Open Questions (from Assessment §8, minus OQ#1 conditional-answ
 
 ## End of BUILD_STRATEGY.md
 
-**Assembly complete. Working papers on disk in `notes/`. STATE/ live. Local commit issued. Push waits on owner's remote + token.**
+**Assembly complete. Working papers on disk in `notes/`. STATE/ live. Local commits are the record (Owner Clarification 1, 2026-08-14 — no push).**

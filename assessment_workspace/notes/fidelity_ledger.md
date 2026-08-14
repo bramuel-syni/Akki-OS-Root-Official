@@ -1,102 +1,107 @@
-# fidelity_ledger.md — canon fidelity ledger
+# fidelity_ledger.md — canon fidelity ledger (FROZEN + CLOSED)
 
-**Purpose:** Every un-fillable field, every remaining Open Question, every rendering decision that cannot be resolved without an owner ruling — recorded here as a single-sentence-answerable entry.
+**Status at Build Order 01 (2026-08-14):** All 27 rows CLOSED by owner ruling. Retained as the honest history of the drafting process. Any future re-opening requires a Canon 3 §24 rule-change ceremony against this document.
 
-**Lifecycle (Ruling 2 §4):** Opens alongside `strategy_items_part1.md`. Appended during Part 2 (BUILD items). Frozen at `BUILD_STRATEGY.md` assembly.
-
-**Format:** each row is a numbered entry with (id · source · one-line question · status).
+**Ruling source:** Build Order 01 (owner channel) — full verbatim in `STATE/DECISIONS.md`.
 
 ---
 
-## A. Open Questions inherited from REUSE_ASSESSMENT.md §8
+## A. Open Questions inherited from REUSE_ASSESSMENT.md §8 — ALL CLOSED
 
-Ruling 1 answered OQ #1 (conditional) and OQ #2 (implicit). The remaining 8 open questions carry forward here:
-
-| id | one-line question | status |
+| id | question | Build Order 01 ruling |
 |---|---|---|
-| **FL-OQ-03** | Canon 3 §33 "rule-change re-verify step" — is the 5th ceremony state named `re-verified` a compliance-artifact write, a runtime state-machine state, or both? (Governs `WS-BUILD-CEREMONY-REVERIFY` operative-parameter shape.) | OPEN |
-| **FL-OQ-04** | Canon 5 four vs five consoles — Canon 5 §10 lists four consoles (Extraction / Compliance / Integration / Administration); the Watch acquires a fifth-group surface via Instruction 02. Is the canonical count now four-plus-Watch, or five consoles? (Governs pillar / console taxonomy in `WS-BUILD-FIVE-PILLARS` and Canon-5 conformance audit.) | OPEN |
-| **FL-OQ-05** | Studio canonical scope — Canon 5 §43 references Studio (application-composer). Does Studio ship in the first BUILD_STRATEGY cycle, or is it a Canon-5 §55-referenced surface that lands in a later cycle? (Governs `WS-BUILD-STUDIO` credit-cost class.) | OPEN |
-| **FL-OQ-06** | Eight-vs-five global rules — Canon 3 lists global-rule counts in two places; is the canonical count 5 (Canon 3 §22 "The Four Classes" + peerage) or 8 (Canon 3 §30 Enforcement Class)? (Governs `WS-BUILD-RULEBOOK-SURFACE` rule-count invariant.) | OPEN |
-| **FL-OQ-07** | Cohort surface's canonical home — Executive-Core `services/cohort/` classified RETIRE-from-platform; does it re-home to the application layer as a Marketing App, or fully retire? (Governs `WS-RETIRE-APP-TERRITORY` completeness.) | OPEN |
-| **FL-OQ-08** | Work_studio storage coupling — Canon 7 §19-§23 memory plane vs Executive-Core mongo pattern. Is the 200+ user-export migration path shadow-write-then-cutover (recommended) or something else? (Governs `WS-REBUILD-WORK-STUDIO-STORAGE` DoD path.) | OPEN |
-| **FL-OQ-09** | Akki-OS-V1 non-canonical harvest items (partitions, sequencing_harness, far_endpoint) — do these harvest into the spine or stay in Akki-OS-V1? (Governs `WS-HARVEST-PARTITIONS`, `WS-HARVEST-SEQUENCING-HARNESS`, `WS-HARVEST-FAR-ENDPOINT`.) | OPEN |
-| **FL-OQ-10** | Executive-Core post-IF-1 catch-up — is Executive-Core turned into an application (Executive-Core-as-application), archived, or maintained parallel? (Governs `WS-RETIRE-APP-TERRITORY` scope + `WS-REPOINT-*` completion.) | OPEN |
+| **FL-OQ-03** | Canon 3 §24 rule-change re-verify step — runtime state, artifact write, or both? | **CLOSED — Both**: re-verified is a runtime state in the ceremony state machine AND a compliance-artifact write, and the state transitions only on the artifact's successful write. |
+| **FL-OQ-04** | Canon 5 four-vs-five consoles — canonical count? | **CLOSED — Five consoles**: the Watch Console is the fifth in canon and renders as the fourth tile group on the Admin surface; "four-plus-Watch" and "five" are the same fact. (Note: premise "§10 lists four consoles" was a paraphrase defect — Canon 5 §10 verbatim reads "The platform has exactly five consoles" with Watch in the console table.) |
+| **FL-OQ-05** | Studio canonical scope for this cycle? | **CLOSED — Deferred**: Studio does not ship this cycle; `WS-BUILD-STUDIO` leaves Wave 8 for a later cycle and its nav presence renders in the dormant-state grammar, never a dead link. |
+| **FL-OQ-06** | Eight-vs-five/four global rules — canonical count? | **CLOSED — Both counts stand**: they count different things — the Eight Global Rules are Canon 5's interface law; the Four Classes are Canon 3's governed-value taxonomy; the Rulebook surface's invariant counts rules in force per instance (seeded: four), never a canon constant. |
+| **FL-OQ-07** | Cohort surface — application-layer or retire? | **CLOSED — Fully retire**: Cohort fully retires from the platform; if it returns, it returns as an application on the boundary like any third party, outside this programme. |
+| **FL-OQ-08** | Work-Studio migration path? | **CLOSED — Shadow-write-then-cutover**: with guards G-T3-A…D exactly as written; owner signs the commissioning certificate BEFORE reader-cutover, and NOT before all 200+ export hashes are listed on it. |
+| **FL-OQ-09** | Akki-OS-V1 harvests — into spine or stay? | **CLOSED — Harvest into the spine**: Akki-OS-V1 becomes read-only reference at Wave-4 completion. |
+| **FL-OQ-10** | Executive-Core disposition? | **CLOSED — Application on the boundary**: Executive-Core becomes an application on the boundary; nothing is maintained parallel after T2's exit; only what RETIRE names is archived. |
 
 ---
 
-## B. Part-1 field-level fidelity entries (opened while drafting `strategy_items_part1.md`)
+## B. Part-1 field-level entries — ALL CLOSED
 
-| id | one-line question | status |
+| id | question | Build Order 01 ruling |
 |---|---|---|
-| **FL-P1-01** | Which specific Canon clauses does `sequencing_harness` satisfy that are not already covered by `services/targeta` and `services/mtafiti`? Confirm harvest scope. | OPEN (blocks `WS-HARVEST-SEQUENCING-HARNESS` completion). |
-| **FL-P1-02** | Does audio material in `solva_voice_audit/voice/` transit the spine's `input_seat` (path A → RE-POINT) or does it require REBUILD under Canon 3 §13.1 custody sequence (path B → REBUILD)? | OPEN (blocks `WS-REPOINT-SOLVA-VOICE-AUDIT` class assignment). |
-| **FL-P1-03** | Object Storage Port (Doc 7 §19-§23) — where does the port land? A new engine (XL BUILD), or absorbed into `WS-BUILD-RECORD-MATRIX`? | OPEN (implicit BUILD dependency of `WS-REBUILD-WORK-STUDIO-STORAGE`). |
-| **FL-P1-04** | Application-boundary transition — is Executive-Core-turned-application defined as a discrete transition milestone in the programme, or continuous per-service? (Governs `WS-RETIRE-APP-TERRITORY` completion criterion.) | OPEN. |
-| **FL-P1-05** | Which specific file/module owns the reviewer-selector code path for `WS-BUILD-INDEPENDENCE-GATE`? A focused read is needed to identify. | OPEN (blocks WHAT-field completeness of `WS-BUILD-INDEPENDENCE-GATE`). |
-| **FL-P1-06** | Which specific file/module owns the deliverable-attestation surface for `WS-BUILD-DELIVERABLE-ATTESTATIONS`? A focused read is needed to identify. | OPEN. |
-| **FL-P1-07** | Which specific file/module owns the standing-query definition/execution surface for `WS-BUILD-STANDING-QUERY-SURFACE`? | OPEN. |
+| **FL-P1-01** | `sequencing_harness` canon anchor + harvest scope? | **CLOSED — Focused read at Wave-4 preparation**: harvest only what Targeta and Mtafiti don't already satisfy, and on full overlap reclassify to RETIRE and log the waste. |
+| **FL-P1-02** | Voice-audit custody — path A RE-POINT or path B REBUILD? | **CLOSED — Default path A** (RE-POINT through the input seat); path B only if the focused read proves a second custody path that cannot transit the chokepoint; that read is now urgent (Build Order 01 §6). |
+| **FL-P1-03** | Object Storage Port placement? | **CLOSED — Own BUILD item**: a port under the boundary governor's ownership, not a new engine and not absorbed into the record matrix; contract through parity-extension as planned. |
+| **FL-P1-04** | Application-boundary transition — discrete milestone or continuous? | **CLOSED — Discrete milestone**: T2's exit is the single completion criterion, verified by the Canon 1 §12 boundary audit. |
+| **FL-P1-05** | Specific reviewer-selector file for Independence Gate? | **CLOSED — Focused read as first task of item's wave**: WHAT-field updates in place; no build before the read lands. |
+| **FL-P1-06** | Specific deliverable-attestation surface file? | **CLOSED — Same discipline**: focused read as first task of item's wave; WHAT-field updates in place; no build before the read lands. |
+| **FL-P1-07** | Specific standing-query definition/execution file? | **CLOSED — Same discipline**: focused read as first task of item's wave; WHAT-field updates in place; no build before the read lands. |
 
 ---
 
-## C. Instruction-02 rendering decisions (interface label-vs-canon-identity mappings)
+## C. Instruction-02 rendering decisions — ALL CLOSED
 
-Every label-vs-identity mismatch surfaces here — never silently renamed.
+**Governing principle** (Build Order 01 §2.C): _"The organisation's language renders on screen; the canon identity lives beneath; the mapping is recorded in this ledger. A label is never evidence of identity, and identity never forces a label."_
 
-| id | rendering decision | Extraction-Akki source | proposed canon identity | status |
-|---|---|---|---|---|
-| **FL-P1-08** | `MemoryPlaneObservabilityPage.jsx` — under Extraction Console (donor placement) OR Compliance Console (canon home per Canon 7 §29-§31 + Canon 3 §31)? | `pages/memory/MemoryPlaneObservabilityPage.jsx` | Compliance Console (proposed) | PROPOSED |
-| **FL-P1-09** | `TraceReceiptPage.js` — under Trace (donor placement) OR Compliance Console prove-one-run export (Canon 3 §33-§48)? | `pages/trace/TraceReceiptPage.js` | Compliance Console (proposed) | PROPOSED |
-| **FL-P1-10** | `UseDataLandingPage.jsx` — Extraction Model Catalogue (Canon 5 §14) OR Ask Reference App (Canon 5 §43-§44)? | `pages/use_data/UseDataLandingPage.jsx` | UNRESOLVED | OPEN |
-| **FL-P1-11** | `UseDataVerdictDemoPage.jsx` — canon-required tile OR demo-only artefact for RETIRE? | `pages/use_data/UseDataVerdictDemoPage.jsx` | UNRESOLVED | OPEN |
-| **FL-P1-12** | `AuditTrailPage.js` — under Master Admin (donor placement) OR Compliance Console audit-trail export (Canon 3 §33)? | `pages/master_admin/AuditTrailPage.js` | Compliance Console (proposed) | PROPOSED |
-| **FL-P1-13** | `GovernChangeRulePage.jsx` vs `ChangeARulePage.js` — dedupe: which is canonical (Canon 5 §32)? | `pages/govern/GovernChangeRulePage.jsx` + `pages/master_admin/ChangeARulePage.js` | Single canonical tile under Administration Console | PROPOSED |
-| **FL-P1-14** | Reference screenshot for the tile-grid-plus-detail-card grammar has not yet arrived in the workspace. Every interface item names this as `FIXTURE PENDING`. | (external asset) | Pending owner delivery | OPEN |
-| **FL-P1-15** | Prototype "Trust Center" label vs Canon 5 §20 "Compliance Console" identity — Watch never nests under Trust Center per Instruction 02. Rendering decision: retire "Trust Center" label from surface entirely? | prototype nav | Retire label (proposed) | PROPOSED |
-| **FL-P1-16** | Prototype "datashield / reasoningshield / accessshield" naming vs Canon 5 identities (Home / Prove-one-run / Retention & Rights / Compliance Rulebook) — rendering decision: retire "*Shield" nomenclature? | prototype nav | Retire (per Instruction 02 spirit) | PROPOSED |
-| **FL-P1-17** | Prototype "WorkStudio" pillar name vs Canon 5 §40 "Work" pillar — rendering decision confirmed rename? | prototype nav | Rename to "Work" | PROPOSED (previously in `WS-RENAME-PROTOTYPE-TAXONOMY`) |
-| **FL-P1-18** | Prototype "ThinkLab" / "Monitor" placement — under Lead pillar sub-application per Canon 5 §40? | prototype nav | Reparent under Lead pillar | PROPOSED |
-| **FL-P1-19** | Prototype "3rd Party Apps" tab vs Canon 5 §24-§27 Integration Console + browsable app catalogue — rendering decision confirmed? | prototype nav | Integration Console + app catalogue | PROPOSED |
-
----
-
-## D. Ruling-1 leftover items
-
-| id | one-line question | status |
+| id | rendering decision | Build Order 01 ruling |
 |---|---|---|
-| **FL-R1-01** | Purpose-gate strip event itself — when both preconditions fire, does the strip execute as a Canon 3 §24 rule-change ceremony (5 steps) or as a Watch verdict? | OPEN (blocks `WS-CONTRADICTION-PURPOSE-GATE` strip-phase DoD). |
+| **FL-P1-08** | MemoryPlaneObservability home? | **CLOSED — Ratified**: memory-plane observability homes to the Compliance Console. |
+| **FL-P1-09** | TraceReceipt home? | **CLOSED — Ratified**: trace receipt homes to the Compliance Console's prove-one-run export. |
+| **FL-P1-10** | UseDataLanding home — Model Catalogue or Ask App? | **CLOSED — Ask reference application** (Canon 5 §37 Ask); the model catalogue is the Extraction Console's. |
+| **FL-P1-11** | Verdict Demo — canon-required or retire? | **CLOSED — Retire**: the walk pattern in the attached brief supersedes it. |
+| **FL-P1-12** | AuditTrail home? | **CLOSED — Ratified**: audit trail homes to the Compliance Console export. |
+| **FL-P1-13** | Change-a-Rule dedupe? | **CLOSED — Ratified**: one canonical change-a-rule tile; the duplicate retires. |
+| **FL-P1-14** | Reference screenshot for tile-grid grammar? | **CLOSED — Fixture is the attached screenshot plus the attached v7 brief**; every FIXTURE PENDING clears on their arrival in the workspace. **GRADE DISTINCTION (Q1(c) ruling · 2026-08-14):** two fixtures arrived as files and are `file-cleared` (`Akki_Prototype_v7_Design_Brief.md` sha256 `063f2b47…9717b4`; `AISCA_GPU_Access_Guide.pdf` sha256 `0f6b6e0f…157f3`). Reference screenshot arrived as an owner-inline transcription (owner acknowledged the image file was lost in a prior compaction; asked to re-send as file; not yet arrived) and is `transcription-cleared` (`reference_screenshot_transcription.md` sha256 `d3ae9a6c…02fc949`). Re-open if the image file arrives and pixel-level review contradicts the transcription. Binding acceptance criteria extracted at `fixtures/binding_acceptance_criteria.md` (BAC-1..BAC-13); `test_four_questions_topline_present` added to every console item's new-invariants list per Build Order 01 §3. |
+| **FL-P1-14a** | Fixture-arrival log — grade + hashes recorded. | **CLOSED — logged 2026-08-14**: v7 brief `file-cleared`; AISCA GPU Guide `file-cleared` (with SOP-conflict-escalation flag — see FL-P2-03 / FL-P2-04); reference screenshot `transcription-cleared` per Q1(c). PINS.md carries the same table with hashes; `fixtures/binding_acceptance_criteria.md` is the extracted-content deliverable. |
+| **FL-P1-15** | Retire "Trust Center" label? | **CLOSED — OVERTURNED**: "Trust Center" is KEPT as the rendered group label, mapped to the Compliance Console identity — the reference screenshot fixes this label; mapping recorded here: label `Trust Center` → identity Canon 5 §22 Compliance Console. |
+| **FL-P1-16** | Retire "*Shield" naming? | **CLOSED — OVERTURNED**: the shield names are KEPT as rendered tile labels mapped to their canon identities per the brief's §4 table. Mappings recorded here: label `Data Shield` → identity Canon 5 §22-§23 Compliance Console (Prove-one-run · Retention & Rights); label `Reasoning Shield` → identity Canon 5 §22 Compliance Home + Canon 5 §24-§25 Rulebook; label `Access Shield` → identity Canon 5 §29-§31 Administration Console (Roles & Rights · Counter-Sign Duties). |
+| **FL-P1-17** | "WorkStudio" rename? | **CLOSED — Ratified**: "WorkStudio" renames to "Work." |
+| **FL-P1-18** | ThinkLab/Monitor placement? | **CLOSED — Ratified**: ThinkLab and Monitor reparent under Lead. |
+| **FL-P1-19** | "3rd Party Apps" placement + label? | **CLOSED — Ratified**: capability is the Integration Console plus catalogue; the on-screen tab may remain "3rd Party Apps" as org language, mapping recorded here: label `3rd Party Apps` → identity Canon 5 §26-§28 Integration Console + application catalogue. |
 
 ---
 
-## E. Citation-drift disclosure and remediation trail (2026-08-14)
+## D. Ruling-1 leftover — CLOSED
 
-**Discovery.** The `tools/citation_audit.py` run against the initial notes corpus (32 files, 854 canon citations) returned 40 failed canon citations (72 drifted rows across canon_[3-9]_requirements.md).
-
-**Root cause** (recorded in `STATE/CONTEXT.md`): Chunk-1 extraction from the `.docx` archives numbered content paragraphs consecutively BEYOND the canon's real `[Heading]` boundaries — sub-paragraph counting was not reset when a new heading appeared, so `Cn-0MM (§XX)` row IDs record sub-paragraph counters, not heading numbers. Impact fanned across `canon_[3-9]_requirements.md`, `domain_5_*.md`, `retire_inventory.md`, `shaping_answers.md`, `strategy_items_part1.md`, `fidelity_ledger.md`, `row_to_item_index.md`.
-
-**Actual `[Heading]` section spans** (measured 2026-08-14 by `python-docx` parse of `canon_pack.zip`):
-- Canon 3: §1..§33 · Canon 4: §1..§50 · Canon 5: §1..§43 · Canon 6: §1..§12 · Canon 7: §1..§50 · Canon 8: §1..§21 · Canon 9: §1..§8.
-
-**Remediation (Orchestrator Ruling A · 2026-08-14).** Applied systematically via `tools/drift_map.py` (proposal generation by title-match scoring) + `tools/drift_apply.py` (row-level corrections in `canon_[3-9]_requirements.md`) + `tools/drift_downstream.py` (downstream `Canon N §X` citation fixes). Rules honoured:
-- (a) Every correction is a re-read: proposals scored by TITLE-MATCH against the row's substance text; scores ≥ 2 accepted verbatim; scores < 2 snapped to the canon's closing-summary heading (Canon 3 §33 "What Governance Orchestration Comes Down To"; Canon 5 §43 "Why the Split Is Drawn Here, and Not Elsewhere"; Canon 7 §50 "What This Specification Comes Down To"; Canon 8 §21 "What This Canon Comes Down To").
-- (b) No corrections were guesses — every replacement is either a title match or a documented snap to the canon's closing section. Both paths are honest.
-- (c) 72 row corrections logged in `tools/drift_edits.log`; 54 downstream citation corrections applied.
-- (d) Re-run audit: **102/102 file · 854/854 canon · 0 failed**.
-
-**Rows where title-match failed and closing-section snap was applied** (11 rows carry `[was §XX-DRIFTED; snap to closing]` markers in `canon_[3-9]_requirements.md`): C3-051, C3-060, C8-034, C8-035, C8-036, C8-037, C8-046, C8-048, C8-050, C8-051, C8-054. These retain their substance-anchored citations; the numeric anchor is the canon's closing section (honest fallback), not silently invented.
-
-**Prevention for Part 2 (Chunk-1 hardening):** Do NOT count sub-paragraphs; only cite `[Heading]`-numbered sections that literally appear in the extracted canon text. Every citation goes through `citation_audit.py` before submission.
-
-FL-P1-20 stays as the record of the defect AND its remediation. Not silently closed. Reopened only if a title match is refuted.
+| id | question | Build Order 01 ruling |
+|---|---|---|
+| **FL-R1-01** | Purpose-gate strip — Canon 3 §24 ceremony or Watch verdict? | **CLOSED — Canon 3 §24 rule-change ceremony**: it is a rule change and the ceremony's visibility is the point; the Watch's role is witness; the two drill attestations attach to the proposal as its EVIDENCE, not its mechanism. |
 
 ---
 
-## F. Part-2 field-level entries — TO BE APPENDED DURING PART 2 DRAFTING
+## E. Citation-drift disclosure — CLOSED (retained on the record)
 
-(Placeholder — Part 2 has not been drafted yet per Ruling 1 sequencing.)
+| id | disclosure | Build Order 01 ruling |
+|---|---|---|
+| **FL-P1-20** | Chunk-1 §-anchor drift (72 rows) + remediation trail. | **CLOSED — Remains on the record as handled**; reopen only if a title-match is refuted. Full remediation history in this section retained: `tools/drift_map.py` + `drift_apply.py` + `drift_downstream.py`; edit log `tools/drift_edits.log`; xref `tools/drift_xref.json`. |
+
+**Root cause and prevention** (from prior close): Chunk-1 extraction from `.docx` archives numbered content paragraphs consecutively BEYOND canon `[Heading]` boundaries; `Cn-0MM (§XX)` row IDs recorded sub-paragraph counters, not heading numbers. Prevention for all subsequent work: only cite `[Heading]`-numbered sections that literally appear in the extracted canon text; run `citation_audit.py` before every submission.
+
+**Actual `[Heading]` section spans** (measured 2026-08-14): Canon 3 §1..§33 · Canon 4 §1..§50 · Canon 5 §1..§43 · Canon 6 §1..§12 · Canon 7 §1..§50 · Canon 8 §1..§21 · Canon 9 §1..§8.
+
+**Remediation stats:** 72 row-level corrections + 70 downstream citation corrections applied. Rows where title-match failed and closing-section snap was applied (11 rows): C3-051, C3-060, C8-034, C8-035, C8-036, C8-037, C8-046, C8-048, C8-050, C8-051, C8-054.
 
 ---
 
-## Instructions to answer
+## F. Part-2 field-level entries — CLOSED
 
-For every OPEN row above, the owner answers in one sentence. On receipt of an answer, this ledger's row moves to CLOSED and the corresponding item's field is updated in `strategy_items_part1.md` (or Part 2). Answered rows carry an APPENDED "Ruling N" citation from `STATE/DECISIONS.md`.
+Opened during Part-2 drafting; all resolved by rulings above.
+
+| id | note | Build Order 01 resolution |
+|---|---|---|
+| **FL-P2-01** | `WS-BUILD-OBJECT-STORAGE-PORT` placement PROPOSAL (from Ruling B). | CLOSED via FL-P1-03 ruling — own BUILD item, port under boundary-governor ownership. |
+| **FL-P2-02** | `WS-BUILD-STUDIO` scope reclassification note (L → XL if storage-plane composition). | CLOSED via FL-OQ-05 ruling — deferred; stays L baseline in dormant-state render; scope resolution deferred to later cycle. |
+| **FL-P2-03** | AISCA SOP ↔ Build Order 01 §6 SKU mismatch — SOP documents only `1× H200 · 20 vCPU · 240 GB RAM · 3 TB ephemeral · 75 GB root HSS`; Order §6 mandates `4× H200 NVLink · 84 vCPU · 948 GB RAM · 12 TB ephemeral · ~30 TB HSS`. | **ESCALATED-AND-STOPPED** per Q2(a) · 2026-08-14. SOP as-written cannot produce Order §6 environment. Owner ruling needed on the provisioning path for the Order §6 SKU (different Catalog entry not in this PDF? different channel? or Order §6 environment unavailable in this Catalog?). Frozen artifacts: `phase0/acceptance.sh` + `commissioning_checklist.md` (probes 4×H200 NVLink · ~30 TB HSS · restart survives · password-dead — DO NOT modify to accommodate the 1×H200 SKU until owner rules). See `fixtures/aisca_sop_extraction.md` §3 (Conflict A) + §4 (Q-SOP-1, Q-SOP-2). |
+| **FL-P2-04** | AISCA SOP ↔ Build Order 01 §6 credential-handoff procedural gap — SOP step SOP-8 hands over Public IP + Username + **Password**; Order §6 mandates key-only SSH, password auth disabled + probed dead, bootstrap credentials retired. | **ESCALATED** per Q2(a) · 2026-08-14. Reconciliable via Order §6's own credential-hardening clause (owner may confirm the hardening steps are inserted between SOP-8 and any data movement), but SOP text itself does not cover the hardening step. Owner ruling needed on whether the compute-seam's `acceptance.sh` extends to cover the hardening (currently it does not) or whether owner-side hands run the hardening before the seam gains admission. See `fixtures/aisca_sop_extraction.md` §3 (Conflict B) + §4 (Q-SOP-3). |
+| **FL-P2-05** | Reference-screenshot grade — transcription-cleared vs file-cleared distinction. | **CLOSED** by Q1(c) ruling · 2026-08-14. Owner in-channel transcription is AUTHORITATIVE-UNTIL-FILE-ARRIVES; interface DoDs cite `fixtures/binding_acceptance_criteria.md` at transcription grade. Re-open only if image file arrives and pixels contradict transcription. See FL-P1-14 for the label→identity mappings and BAC-1..BAC-13 for the extracted binding criteria. |
+
+---
+
+## Ledger closure summary
+
+- **A** — 8/8 CLOSED (owner Open Questions).
+- **B** — 7/7 CLOSED (Part-1 field-level).
+- **C** — 12/12 CLOSED (Instruction-02 rendering decisions), of which FL-P1-15 and FL-P1-16 OVERTURNED with explicit label→identity mappings; FL-P1-14 substantive closure carries a `transcription-cleared` vs `file-cleared` grade distinction (Q1(c) ruling · 2026-08-14).
+- **D** — 1/1 CLOSED (Ruling-1 leftover).
+- **E** — 1/1 CLOSED (citation-drift disclosure retained on record).
+- **F** — 5/5 rows logged (Part-2 field-level): FL-P2-01, FL-P2-02, FL-P2-05 CLOSED by rulings; **FL-P2-03 ESCALATED-AND-STOPPED** (AISCA SOP SKU mismatch) and **FL-P2-04 ESCALATED** (SOP credential-handoff procedural gap) per Q2(a) · 2026-08-14, awaiting owner rulings before Phase 0 executes on the affected artifacts. Fixture-cycle work continues on the unblocked streams (v7 brief + transcription-driven interface DoDs + BUILD_STRATEGY.md corrections + commit on master).
+
+**Owner's original 27 CLOSED rows** (Build Order 01 §2): A/1..8 + B/1..7 + C/1..12 = 27 · CLOSED. Rows D/E/F/P2 are retained history + newly-opened rows during the fixture cycle.
+
+**Total: 27+2 = 29 rows CLOSED. FL-P1-14 flagged with conditional-substantive-closure pending attachment delivery. Ledger frozen at Build Order 01; changes require Canon 3 §24 rule-change ceremony.**

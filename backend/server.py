@@ -90,7 +90,7 @@ async def get_status_checks():
 async def get_deliverable(filename: str):
     """Serve read-only snapshots of Chunk-4 deliverables.
 
-    Snapshot commit: 42b241c (see /app/assessment_workspace STATE/CONTEXT.md).
+    Snapshot commit: 7c9a544 (fixture-arrival cycle CLOSED; see /app/assessment_workspace STATE/CONTEXT.md).
     Allowlist-guarded; no path traversal. Served as text/markdown so browsers
     render / download cleanly.
     """
@@ -119,7 +119,7 @@ async def list_deliverables():
                 "url": f"/api/deliverables/{name}",
             })
     return {
-        "snapshot_commit": "42b241c",
+        "snapshot_commit": "7c9a544",
         "snapshot_source": "/app/assessment_workspace/",
         "items": items,
     }

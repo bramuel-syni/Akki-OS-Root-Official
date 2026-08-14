@@ -57,7 +57,7 @@ preface = """# BUILD_STRATEGY.md — Akki Assessment Chunk 4
 - **§7** — Transition conditions (T1–T4)
 - **§8** — No-regression contract (20 existing standing invariants + 40 must-write-first tests)
 - **§9** — Waste register (W-01 … W-08)
-- **§10** — Canon fidelity ledger (27 open items, frozen)
+- **§10** — Canon fidelity ledger (27 rows CLOSED by Build Order 01, frozen)
 - **Appendix A** — Row-to-item index (591 rows → 102 items, build-order traceability)
 
 ---
@@ -155,10 +155,10 @@ Definitions:
 - **Component** = a directory-scoped unit under `backend/services/<name>/` or `frontend/src/<pillar>/<console>/` that owns a distinct responsibility.
 - **Contract** = a frozen shape governed by `tests/invariants/test_invariant_contract_snapshots.py` (parity seat).
 - **Integration surface** = every named boundary the item crosses: LLM boundary (`SyniSenseContract.shield_invoke`), memory plane, object storage port, streaming port, Watch input, Canon-9 record class, task-identity register.
-- **Register/console surface** = adds a first-class named surface listed in Canon 5 §10 (four consoles) or Canon 9 (task-identity register, record matrix, handoff registry).
+- **Register/console surface** = adds a first-class named surface listed in Canon 5 §10 (five consoles per Build Order 01 §1 correction — FL-OQ-04 CLOSED) or Canon 9 (task-identity register, record matrix, handoff registry).
 - **Data migration** = any programme that moves user-visible state from one storage/plane shape to another; append-only history is not migration; storage-shape change is migration.
 
-**XL item roster (9 items):** WS-REPOINT-ANSWERING-SURFACES · WS-REBUILD-WORK-STUDIO-STORAGE (Part 1); WS-BUILD-OBJECT-STORAGE-PORT · WS-BUILD-WATCH-FOUNDATION · WS-BUILD-WATCH-ACTORS · WS-BUILD-RECORD-MATRIX · WS-BUILD-TASK-IDENTITY-REGISTER (Part 2). Each carries its defence in the item entry.
+**XL item roster (7 items — Build Order 01 §1 correction; the count was mis-stated as nine):** WS-REPOINT-ANSWERING-SURFACES · WS-REBUILD-WORK-STUDIO-STORAGE (Part 1); WS-BUILD-OBJECT-STORAGE-PORT · WS-BUILD-WATCH-FOUNDATION · WS-BUILD-WATCH-ACTORS · WS-BUILD-RECORD-MATRIX · WS-BUILD-TASK-IDENTITY-REGISTER (Part 2). Each carries its defence in the item entry.
 
 ---
 
@@ -234,7 +234,7 @@ parts.append("\n\n---\n\n")
 
 # --- §10 · Canon fidelity ledger ---
 parts.append("## §10 · Canon fidelity ledger (frozen at assembly)\n\n")
-parts.append("Frozen at BUILD_STRATEGY.md assembly per Ruling 2 §4. Any post-assembly change requires a Canon 3 §24 rule-change ceremony. 27 open items — each phrased so the owner answers in one sentence.\n\n")
+parts.append("Frozen at BUILD_STRATEGY.md assembly per Ruling 2 §4. All 27 rows CLOSED by Build Order 01 (2026-08-14). Ledger retained as the honest history of the drafting process; any re-opening requires a Canon 3 §24 rule-change ceremony against this document.\n\n")
 fl = inline(NOTES / "fidelity_ledger.md", header_shift=1)
 fl = re.sub(r"^## fidelity_ledger\.md.*?\n\n", "", fl, count=1)
 parts.append(fl)
@@ -247,7 +247,7 @@ ri = inline(NOTES / "row_to_item_index.md", header_shift=1)
 ri = re.sub(r"^## row_to_item_index\.md.*?\n\n", "", ri, count=1)
 parts.append(ri)
 parts.append("\n\n---\n\n## End of BUILD_STRATEGY.md\n\n")
-parts.append("**Assembly complete. Working papers on disk in `notes/`. STATE/ live. Local commit issued. Push waits on owner's remote + token.**\n")
+parts.append("**Assembly complete. Working papers on disk in `notes/`. STATE/ live. Local commits are the record (Owner Clarification 1, 2026-08-14 — no push).**\n")
 
 OUT.write_text("".join(parts))
 

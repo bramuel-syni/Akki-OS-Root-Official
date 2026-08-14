@@ -133,7 +133,7 @@ CIF is heavy on discipline. Every implementable CIF row lands here.
 | C5-005..C5-007 | BUILD | WS-BUILD-REFUSAL-CARD-COPY — verbatim Canon 5 §9.2 refusal card as component |
 | C5-008 | BUILD | WS-BUILD-AGENT-ASSUMED-CHIP |
 | C5-009 | PARTIAL | WS-BUILD-DORMANT-STATE-RENDER — "what would activate" statement per screen |
-| C5-010..C5-012 | BUILD | WS-BUILD-CONSOLES — four consoles as named surfaces (Canon 5 §10; note: FOUR, not five — Ruling-1 verification carried in fidelity ledger OQ#4) |
+| C5-010..C5-012 | BUILD | WS-BUILD-CONSOLES — five consoles as named surfaces per Canon 5 §10 (FL-OQ-04 CLOSED by Build Order 01 §1: five, with Watch as the fifth rendered as fourth Admin-surface tile group per Instruction 02) |
 | C5-013 | PARTIAL | WS-BUILD-CONSOLE-EXTRACTION-REGISTRY-DASHBOARD |
 | C5-014 | BUILD | WS-BUILD-CONSOLE-EXTRACTION-MODEL-CATALOGUE (couples with WS-BUILD-MOAC-SCORECARD) |
 | C5-015..C5-017 | REUSE / PARTIAL | WS-BUILD-CONSOLE-EXTRACTION-SHAPING-WIZARD (surface uplift for freeze + sampling) |
