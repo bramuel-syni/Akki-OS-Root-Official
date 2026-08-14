@@ -1,6 +1,46 @@
 # CONTEXT.md — Running narrative
 
-**Last updated:** 2026-08-14 · fixture-arrival cycle CLOSED · assessment-repo `master` commit with 3 Build-Order-01 corrections + fixture ingestion + BAC-1..BAC-13 extraction + FIXTURE-PENDING → transcription-cleared flip + SOP conflicts ESCALATED per Q2(a).
+**Last updated:** 2026-08-14 · Owner stop-order cycle CLOSED · minted-credential pattern retired estate-wide · source-IP allowlist middleware installed backend + frontend · Connect GPU form re-homed under Admin surface · programme/track-a HEAD `acc25a8` · 99/99 gating tests green (78 backend python + 12 frontend allowlist + 9 frontend re-home).
+
+
+## Compaction / recovery event · 2026-08-14 · mid-stop-order execution
+
+Third compaction / restart occurred mid-execution of the Owner Stop-Order (queued: revoke token → build IP allowlist middleware tests-first → re-home form → propose IP-pinned access mechanism → commit both repos). Post-compaction recovery sequence executed:
+
+1. **Security verification (P0, before anything else).**
+   - `/app/backend/.owner_credentials` — verified DELETED (was still present at recovery start; deleted this session; backend restarted; deleted again to discard the auto-mint that spine_auth performed at import).
+   - `/app/backend/spine_auth.py` — verified DELETED (token machinery retired estate-wide).
+   - `/app/memory/test_credentials.md` — verified SCRUBBED (no 64-hex tokens anywhere; scrubbed content replaced with IP-pinned access posture).
+   - Old compromised token probe on `/api/connect/gpu` → HTTP 403 (was HTTP 422 = accepted before revocation).
+   - Leak hunt: 0 hits across `/app` filesystem (excluding pycache), 0 hits in spine repo git-grep, 0 hits in `/var/log/supervisor/*.log`, 0 hits in STATE/notes/phase0.
+
+2. **Lockdown verification.**
+   - `services/ip_allowlist/middleware.py` (spine repo) exists · 16/16 gating tests green.
+   - `plugins/ip-allowlist/{check.js, middleware.js}` (pod-shell frontend) exists · 12/12 gating tests green.
+   - `SPINE_ALLOWED_IPS=34.16.56.64` + `SPINE_TRUSTED_PROXY_HOPS=2` present in `/app/backend/.env` (single source of truth read by both backend and frontend craco config).
+   - Live proof · preview URL: `/`, `/register/connect/gpu`, `/api/deliverables`, `/api/connect/gpu`, `/static/*` all return HTTP 403 `text/plain` with the exact sentence `"This surface answers allowlisted addresses only."` (refusal branch, pod egress `34.170.12.145` NOT in allowlist per owner's strict `34.16.56.64` directive).
+   - Live proof · 127.0.0.1 with crafted XFF: allowed IP at `xff[-3]` → 200; disallowed IP at `xff[-3]` → 403; spoofed leftmost XFF entries on allowed IP → still allowed; spoofed leftmost XFF entries on disallowed IP → still refused (spoof resistance intact).
+
+3. **Cold-read of STATE/ this recovery cycle.**
+   - DECISIONS.md carries Rulings 1/2/3, Orchestrator A/B/C, Build Order 01, Owner Clarifications 1-3, prior WS-BUILD-CONNECT-GPU rulings, AND the new Owner Stop-Order Ruling (verbatim reconstruction) plus the Orchestrator shared-defect ruling appended this cycle.
+   - PINS.md carries prior repo/canon/fixture pins; refreshed this cycle with new HEAD SHA, egress-IP surprise notation, updated gating count.
+   - NEXT.md updated to reflect completed stop-order execution and the awaited owner reply.
+   - Fidelity ledger appended: FL-P2-08 CLOSED (minted-credential retirement), FL-P2-09 OPEN (pod-egress rotation), FL-P2-10 CLOSED (empirical trust-boundary discovery).
+
+4. **Re-home completion status.**
+   - `/register/connect/gpu` retired at edge (dev-server middleware returns HTTP 404 `text/plain` `"This route has been retired."`).
+   - `/app/frontend/src/App.js` — root `/` → `<AdminSurface />` · catch-all `*` → `<NotFound />`.
+   - `/app/frontend/src/components/AdminSurface.jsx` — new. Tile grid + detail card + embedded GPU form. NO token state anywhere.
+   - `/app/frontend/src/components/ConnectGpu.jsx` — deleted (retired token-gated variant).
+   - Empirical header trust boundary discovered before code landed (see Phase 0 drill receipts + FL-P2-10).
+   - Right-reason failure receipts banked for BOTH new invariants (IP allowlist + re-home) before implementation.
+   - Pod-shell mirror committed at `pod_shell/` in Extraction-Akki (production-code discipline preserved: source of truth remains `/app/{backend,frontend}` since those are what run; the mirror is the git-tracked record on programme/track-a).
+
+5. **Commits this cycle.**
+   - programme/track-a: `e25cfe3` (IP allowlist tests-first), `93ed48e` (IP allowlist implementation), `d2a3a01` (re-home tests-first), `acc25a8` (re-home + pod-shell mirror).
+   - assessment-repo master: pending this cycle's commit (STATE + fidelity ledger + phase0 receipts + DECISIONS appendix).
+
+**Resume point (per NEXT.md):** deliver stop-order completion report to owner including security-verification results, live-vs-test proof rollup, commit SHAs, and the two-sentence access-mechanism proposal.
 
 
 ## Compaction / recovery event · 2026-08-14 · post-fixture-arrival

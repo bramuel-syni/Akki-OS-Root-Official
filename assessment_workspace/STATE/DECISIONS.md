@@ -347,3 +347,85 @@ Under Ruling 1's four-test discipline, an unlogged ruling is treated as
 13. **Orchestrator execution notes bind (see NEXT.md):** on programme/track-a AND spine app served at pod preview URL `https://akki-reuse-assess.preview.emergentagent.com`; behind spine auth (seeded owner account, strong generated password OR token) — that's an app login, not a console/VM credential; rate-limited + CSRF-protected. End-to-end drill against a local mock sshd on `127.0.0.1:2222` BEFORE any hand-off; drill distinguished by host identity, no drill-mode switch.
 
 
+
+---
+
+## Owner Stop-Order Ruling · 2026-08-14 · Source: owner channel (WS-BUILD-CONNECT-GPU access mechanism)
+
+**Verbatim (owner directives, faithful reconstruction from stop-order + plan-confirmation replies):**
+
+> Stop. The auth token you asked me to paste was transmitted in plaintext.
+> Revoke that token IMMEDIATELY: delete `/app/backend/.owner_credentials`,
+> scrub the value from every file it touched, confirm the compromised value
+> is dead across every route (probe → 403).
+>
+> The minted-credential pattern is retired estate-wide. Access to this
+> surface is IP-pinned from now on. Implement a source-IP allowlist
+> middleware, tests-first, with the initial allowlist STRICTLY
+> `34.16.56.64` (env var, not hardcoded). Trust the header the preview
+> proxy sets with the true client IP — establish that EMPIRICALLY, do
+> not assume. A client-spoofable XFF entry must not be able to defeat the
+> allowlist; write that spoof-resistance case as one of the tests.
+>
+> The allowlist covers EVERYTHING: UI routes, `/api/connect/gpu`,
+> `/api/deliverables`, static assets. No route survives outside it.
+> Refusal is one plain sentence, estate grammar, zero detail leakage:
+> `"This surface answers allowlisted addresses only."` HTTP 403,
+> `text/plain`, NOT the FastAPI default.
+>
+> The standalone `/register/connect/gpu` route is retired. Re-home the
+> Connect GPU form under: root `/` → top tab bar → **Admin**
+> (right-aligned) → tile grid (TRUST CENTER + REGISTRY) → Connect tile →
+> GPU form. Tests first: `/register/connect/gpu` returns 404; no
+> token-gate code path remains importable; the form is reachable via
+> root → Admin tab → REGISTRY → Connect tile in the rendered tree.
+>
+> Propose ONE access mechanism to me (IP-pinned), in exactly two
+> sentences, no alternatives. Open a fidelity-ledger row recording the
+> retired minted-credential pattern; close it citing this ruling.
+>
+> No push, ever — Owner Clarification 1 unchanged. Local commits are
+> the record. Commits land on BOTH repos as their content dictates —
+> code on `programme/track-a`, STATE / fidelity-ledger / phase0 artifacts
+> on assessment-repo `master`. Not track-a only.
+>
+> The compromised token never appears in your reply, logs, commit
+> messages, STATE/, or the scrub diff. Read it transiently from wherever
+> it survives for the 403 probe, use it once, do not re-record it. If
+> scrubbing git-tracked files, the scrub commit message says "token
+> scrubbed" without the value.
+
+**Binding effects:**
+
+1. **Token revocation IS THE FIRST ACTION.** `/app/backend/.owner_credentials` deleted; `spine_auth.py` deleted; `/app/memory/test_credentials.md` scrubbed; compromised value confirmed dead across all routes (403 on `/api/connect/gpu` with old bearer — was 422 = accepted before). Executed 2026-08-14 15:00Z.
+2. **Source-IP allowlist middleware** at `services/ip_allowlist/middleware.py` (spine repo) + `plugins/ip-allowlist/{check.js, middleware.js}` (pod-shell frontend). Config: `SPINE_ALLOWED_IPS` (comma-separated /32s, whitespace-tolerant) and `SPINE_TRUSTED_PROXY_HOPS` (default 2) both live ONLY in `/app/backend/.env`; the frontend `craco.config.js` reads them from that file to preserve single source of truth. Empirical header trust boundary: `xff.split(',')[-1 - SPINE_TRUSTED_PROXY_HOPS]` (default → `xff[-3]`) is the CF-Worker-injected true-client-IP; client-controllable leftmost entries are ignored by construction.
+3. **Refusal grammar** is the exact plain sentence, HTTP 403, `text/plain; charset=utf-8`. Body carries no allowlist entry, no caller IP, no configuration hint.
+4. **All routes gated.** FastAPI middleware runs before route matching (verified by a test that pings a non-existent route from a disallowed IP and expects 403 not 404). CRA dev-server middleware runs before every other middleware (verified by unshift into `setupMiddlewares`). Ingress topology: UI/static traffic goes through the frontend supervisor; `/api/*` goes through the backend supervisor — both gates now installed.
+5. **Retired minted-credential pattern.** Fidelity-ledger row **FL-P2-08** opened and CLOSED same cycle. Standing rule appended (see PINS.md and Standing Rules Digest): **no minted shared secret ever gates the estate surface again.**
+6. **Re-homed Connect GPU form.** Root `/` renders `<AdminSurface />` (tile grid + detail card + embedded GPU form). Retired route returns HTTP 404 with plain text `"This route has been retired."` (edge-refused before React Router). Test invariants (9 total on `pod_shell/frontend/__tests__/rehome.test.js`) cover: retired route 404, absent token-gate code paths (`spine_auth`, `owner_token`, `Bearer`, `.owner_credentials`), absent OWNER-ACCESS sign-in card copy, presence of required data-testids (admin-pill, tile-connect, 7 form fields, submit), no `owner_token` localStorage anywhere in frontend source.
+7. **Empirical trust-boundary discovery** logged as **FL-P2-10** (CLOSED). Probe endpoint was installed and removed in the same session, leaving no diagnostic surface behind.
+8. **Pod egress-IP rotation surprise** logged as **FL-P2-09** (OPEN). STATE had `34.16.56.64`; live verification returns `34.170.12.145`. Owner's directive to use `34.16.56.64` STRICTLY as the initial allowlist stands; the pod is NOT self-allowlisted. The two-sentence access proposal to the owner therefore says: *"Access to the estate is IP-pinned; the allowlist admits your client `/32` (initial value `34.16.56.64`) at position `xff[-3]` of the ingress-set X-Forwarded-For chain, refusing every other address with HTTP 403 and one plain sentence. Additions and removals travel through `SPINE_ALLOWED_IPS` in `/app/backend/.env` — every change is a ledger row and the surface renders the current allowlist state as plain sentences."*
+9. **No push discipline reaffirmed.** Local commits on both `programme/track-a` (code, tests, pod-shell mirror) and assessment-repo `master` (this DECISIONS entry + fidelity-ledger rows + phase0 drill receipts + STATE/ refresh) are the record.
+
+**Green receipt this cycle** (`phase0/drill_receipts/20260814T151500Z_lockdown_and_rehome_green.log`): **99/99** total gating tests green (78 backend python + 12 frontend allowlist + 9 re-home). Right-reason failure receipts banked for both new invariants (IP allowlist + re-home) before implementation landed.
+
+---
+
+## Orchestrator ruling this cycle · 2026-08-14 · Source: orchestrator note in stop-order reply (shared defect)
+
+**Verbatim:**
+
+> "We shared a builder-side defect this cycle: the WS-BUILD-CONNECT-GPU
+> access-mechanism proposal came out as a minted shared secret, and neither
+> the builder nor the orchestrator surfaced the exposure grammar before the
+> owner did. Standing-Disposition infra-not-refusal applies: the mistake
+> becomes doctrine. Access mechanisms proposed to the owner MUST default
+> to inspectable, config-not-secret grammars (IP allowlist, cert-pinned
+> mTLS, hardware key) — never a text string the owner has to paste."
+
+**Binding effects:**
+
+1. Recorded as a Standing Rule addendum (see Standing Rules Digest in ORCHESTRATOR.md): access proposals default to inspectable config-not-secret grammars; a shared bearer token is a smell to be refused unless explicitly ruled otherwise.
+2. Applies retroactively: the retired minted-credential pattern (FL-P2-08) becomes the reference doctrine case.
+
+

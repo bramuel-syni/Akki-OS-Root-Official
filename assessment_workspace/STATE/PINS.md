@@ -91,11 +91,18 @@ Strategy work-in-progress (to be created):
 **Baseline SHA:** `b150c21` (pinned citation baseline — never rewritten).
 **Push:** none — owner Clarification 1 (2026-08-14). Local git history IS the record.
 
-**Pod public egress IP** (for AISCA VM allowlist): **`34.16.56.64`** (single, verified via ifconfig.me · icanhazip.com · api.ipify.org · checkip.amazonaws.com; no IPv6 egress).
+**Pod public egress IP** (for AISCA VM allowlist): **`34.170.12.145`** as of 2026-08-14 stop-order cycle (verified live via ifconfig.me · icanhazip.com · api.ipify.org · checkip.amazonaws.com; no IPv6 egress). Previously pinned as `34.16.56.64` (fidelity-ledger FL-P2-09 OPEN for owner disposition — pod egress has rotated). **The IP `34.16.56.64` remains in `SPINE_ALLOWED_IPS` per owner's strict stop-order directive; pod egress is NOT self-allowlisted.**
+
+**Access mechanism (Owner stop-order 2026-08-14 · minted-credential pattern retired estate-wide).** Source-IP allowlist middleware live on BOTH FastAPI backend and CRA dev-server. Config in `/app/backend/.env`: `SPINE_ALLOWED_IPS` (comma-separated /32s) + `SPINE_TRUSTED_PROXY_HOPS=2`. Refusal grammar: HTTP 403 `text/plain` `"This surface answers allowlisted addresses only."`. Trust boundary: `xff.split(',')[-3]` per empirically discovered Cloudflare-worker + Cloudflare-edge + Google-Cloud-LB topology (FL-P2-10 CLOSED). No shared bearer token exists anywhere on the estate; `spine_auth.py` and `.owner_credentials` retired.
 
 **Two-week checkpoint deadline:** **provisioning day + 14 — AWAITING PROVISIONING DATE** (per Build Order 01 §6). Update this pin to the actual UTC deadline once the VM is provisioned.
 
 **Phase-1 A0/A1 tests-first evidence:** 26/26 gating tests pass (`phase0/A0-A1_report.md` + drill receipt `phase0/drill_receipts/20260814T120336Z_declaration_refusal_firing.log`).
+
+**WS-BUILD-CONNECT-GPU + IP allowlist + re-home gating (Owner stop-order cycle 2026-08-14):** 99/99 total gating tests green on programme/track-a HEAD `acc25a8` = 78 backend python + 12 frontend allowlist node --test + 9 frontend re-home node --test. Right-reason failure receipts banked BEFORE each implementation lands:
+- `phase0/drill_receipts/20260814T145500Z_ip_allowlist_right_reason_failure.log` (16/16 tests failed with ModuleNotFoundError before middleware landed).
+- `phase0/drill_receipts/20260814T151000Z_rehome_right_reason_failure.log` (6/9 tests failed right-reason before implementation landed).
+- Green receipt: `phase0/drill_receipts/20260814T151500Z_lockdown_and_rehome_green.log`.
 
 **Attachment status (2026-08-14 · fixture-arrival cycle):** two of three fixtures delivered as files, third arrived as inline owner transcription. All FIXTURE PENDING markers CLEARED at transcription grade (files below). Governance grade distinction (transcription-cleared vs file-cleared) recorded in `notes/fidelity_ledger.md` FL-P1-14 + FL-P1-14a.
 
@@ -117,5 +124,5 @@ Strategy work-in-progress (to be created):
 - **checkpoint_14d_utc:** `2026-08-28T00:00:00Z`
 - **hardening_status:** `attested`
 - **acceptance_status:** `green`
-- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260814T142157Z.json`
+- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260814T151243Z.json`
 <!-- CONNECT-GPU-PINS -->

@@ -1,6 +1,29 @@
 // craco.config.js
 const path = require("path");
+const fs = require("fs");
 require("dotenv").config();
+
+// Owner stop-order 2026-08-14: source-IP allowlist replaces the retired
+// token gate. SPINE_ALLOWED_IPS lives in /app/backend/.env as the single
+// source of truth (both the FastAPI middleware and this dev-server
+// middleware read from that file). Loaded into process.env so the
+// dev-server middleware sees the same values.
+try {
+  const spineEnv = require("dotenv").parse(
+    fs.readFileSync("/app/backend/.env", "utf8")
+  );
+  if (spineEnv.SPINE_ALLOWED_IPS !== undefined) {
+    process.env.SPINE_ALLOWED_IPS = spineEnv.SPINE_ALLOWED_IPS;
+  }
+  if (spineEnv.SPINE_TRUSTED_PROXY_HOPS !== undefined) {
+    process.env.SPINE_TRUSTED_PROXY_HOPS = spineEnv.SPINE_TRUSTED_PROXY_HOPS;
+  }
+} catch (err) {
+  // File missing → SPINE_ALLOWED_IPS stays unset → fail-closed refuse in middleware.
+}
+
+const { makeIPAllowlistMiddleware } = require("./plugins/ip-allowlist/middleware.js");
+const { makeRetiredRoutesMiddleware } = require("./plugins/retired-routes/middleware.js");
 
 // Check if we're in development/preview mode (not production build)
 // Craco sets NODE_ENV=development for start, NODE_ENV=production for build
@@ -147,11 +170,34 @@ if (isDevServer) {
 
 // Run last so it also wraps whatever devServer withVisualEdits leaves in place.
 const configureDevServer = webpackConfig.devServer;
-webpackConfig.devServer = (devServerConfig) =>
-  makeDevServerV5Compatible(
+webpackConfig.devServer = (devServerConfig) => {
+  const configured =
     typeof configureDevServer === "function"
       ? configureDevServer(devServerConfig)
-      : devServerConfig,
-  );
+      : devServerConfig;
+
+  // IP ALLOWLIST — installed at the OUTERMOST wrapper so no upstream
+  // transform (withVisualEdits, health-check, v5-compat) can drop it.
+  // Runs FIRST for every request: UI, HMR, static, SPA fallback, everything.
+  const priorSetupMiddlewares = configured.setupMiddlewares;
+  configured.setupMiddlewares = (middlewares, devServer) => {
+    if (priorSetupMiddlewares) {
+      middlewares = priorSetupMiddlewares(middlewares, devServer);
+    }
+    middlewares.unshift({
+      name: "spine-retired-routes",
+      path: "/",
+      middleware: makeRetiredRoutesMiddleware(),
+    });
+    middlewares.unshift({
+      name: "spine-ip-allowlist",
+      path: "/",
+      middleware: makeIPAllowlistMiddleware(process.env),
+    });
+    return middlewares;
+  };
+
+  return makeDevServerV5Compatible(configured);
+};
 
 module.exports = webpackConfig;
