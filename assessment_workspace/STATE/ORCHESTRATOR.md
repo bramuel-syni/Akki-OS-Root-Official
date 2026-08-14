@@ -1,6 +1,6 @@
 # ORCHESTRATOR.md — Orchestrator's (owner-side) recovery file
 
-**Last refreshed:** 2026-08-14 · Owner rulings on console-access + credential-delivery + WS-BUILD-CONNECT-GPU received. FL-P2-03 SUPERSEDED-TO-ACCEPTANCE, FL-P2-04 CLOSED path (a). WS-BUILD-CONNECT-GPU built tests-first on `programme/track-a` HEAD `dad2faa` (7 commits atop `b150c21`; **52/52 gating tests green**). Surface reachable at `https://akki-reuse-assess.preview.emergentagent.com/register/connect/gpu` behind owner-bearer-token auth. End-to-end UI drill against mock sshd banked (`failed (ours; retry)` grammar branch confirmed). Pod egress IP: `34.16.56.64`.
+**Last refreshed:** 2026-08-14 · Acceptance wire-through cycle closed. `programme/track-a` HEAD `98fcd75` (9 tests-first commits atop `b150c21`; **62/62 gating tests green**). Canned acceptance shim replaced with real seam wire-through + parser; isolated drill against mock sshd banked `held + escalated to the vendor` with real acceptance.sh output verbatim. FL-P2-07 opened + CLOSED same cycle. Testing agent read-only pass invoked; credentials/auth memo written to `/app/memory/`.
 
 **Discipline:** mirror of the builder's STATE/ discipline. Update the top of this file at every builder reply; the reply and this file MUST agree.
 

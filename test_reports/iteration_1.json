@@ -1,0 +1,22 @@
+{
+  "summary": "Read-only verification of WS-BUILD-CONNECT-GPU surface. All 10 in-scope checks passed. Home 200, deliverables 200 with snapshot_commit + BUILD_STRATEGY.md/REUSE_ASSESSMENT.md items. Login gate renders with password-type owner-token-input + owner-token-submit; tile grid hidden pre-login. Bad token 'wrong-token-abc' persists to localStorage.owner_token (frontend-only, no verify call). Correct token from /app/backend/.owner_credentials unlocks two-pane layout: LEFT pane pills (Work/Build/3rd Party Apps/Admin), TRUST CENTER (Manage Rules/Data Shield/Reasoning Shield/Access Shield), REGISTRY (Data Estate/Models/Compute/Connect). RIGHT pane shows REGISTRY eyebrow + serif 'Connect · GPU' title + description. tile-connect click renders form with all 7 fields (host_name/username/password[type=password]/public_ip/private_ip/os/deploy_date) + submit + signout buttons. Backend curl: no auth -> 401 'owner bearer token required'; wrong bearer -> 403 'owner bearer token rejected'; correct bearer + {} -> 422 with pydantic missing-field details. Signout clears localStorage.owner_token and returns to login card. Form NOT submitted per instructions.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "Connect · GPU form", "issues": ["Deploy date uses browser default date picker (input type=date). No spec requirement for shadcn calendar here, so noted as informational only."]}
+    ]
+  },
+  "test_report_links": ["/app/test_reports/connect_gpu_form.png"],
+  "action_items": [],
+  "critical_code_review_comments": [],
+  "updated_files": [],
+  "success_rate": {"backend": "100% (4/4 status code checks)", "frontend": "100% (all render + auth-gate + signout checks passed)"},
+  "test_credentials": "Owner token read from /app/backend/.owner_credentials (also in /app/memory/test_credentials.md).",
+  "seed_data_creation": "none",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Read-only scope. NEVER click connect-gpu-submit; it fires a real seven-stage pipeline including subprocess ssh to whatever host is entered. All auth boundaries (401/403/422) verified via curl. UI verified via Playwright. Login gate, tile grammar, form fields, password masking, and signout all working correctly.",
+  "rca of the issue": "n/a - no issues found"
+}

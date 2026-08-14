@@ -1,0 +1,107 @@
+{
+  "drill_ts_utc": "20260814T141600Z",
+  "drill_kind": "isolated real _run_acceptance through seam against mock sshd 127.0.0.1:2222",
+  "invocation": "gpu_submit._run_acceptance(host='127.0.0.1', user='mockubuntu', key_path=$SSH_PRIVATE_KEY_PATH)",
+  "seam_ledger_rows": [
+    {
+      "stage": "compute_seam_exec",
+      "vm_actor_id": "infrastructure.vm.127.0.0.1",
+      "task_id": "compute.acceptance.per_check",
+      "command": "bash -c '#!/usr/bin/env bash\n# acceptance.sh \u2014 Phase-0 acceptance checks, HUMAN-RUN on the VM.\n#\n# Build Order 01 \u00a76 verbatim acceptance list. This script runs ON the VM\n# (invoked directly by the owner OR via the compute seam once credentials\n# are in `backend/.env`).\n#\n# Output: writes /var/log/akki_phase0_acceptance.log on the VM + prints\n# structured JSON to stdout so tools/run_acceptance_via_seam.py can capture\n# it into the commissioning record.\n#\n# Exit codes:\n#   0 \u2014 all checks green.\n#   2 \u2014 HSS absent or undersized (STOP-and-escalate per \u00a77).\n#   3 \u2014 NVLink absent (STOP-and-escalate).\n#   4 \u2014 password auth still live (STOP-and-escalate).\n#   5 \u2014 ephemeral persistence contradicted (STOP-and-escalate).\n#   6 \u2014 AKKI_HARDENING_MODE=perform but harden.sh missing.\n#  10\u201312 \u2014 hardening module failure (see phase0/harden.sh header).\n#   9 \u2014 unclassified failure.\n#\n# OPTIONAL front-end (env AKKI_HARDENING_MODE=perform) \u2014 see block after `set -uo pipefail`.\n\nset -uo pipefail\n\nlog() { echo \"$1\" | tee -a /var/log/akki_phase0_acceptance.log 2>/dev/null || echo \"$1\"; }\n\nlog \"=== Phase-0 Acceptance \u00b7 $(date -u +%FT%TZ) ===\"\n\n# --------------------------------------------------------------------\n# OPTIONAL hardening front-end (FL-P2-04 escalation, pending owner ruling).\n#\n# If owner rules FL-P2-04 to us  \u2192 invoke as: AKKI_HARDENING_MODE=perform bash acceptance.sh\n#                                   which sources phase0/harden.sh before verification.\n# If owner rules to owner-side  \u2192 do not set AKKI_HARDENING_MODE (default verify-only);\n#                                   owner runs their own hardening; acceptance.sh only checks.\n#\n# harden.sh itself is a no-op unless AKKI_HARDENING_MODE=perform. Failing here is a\n# stop-and-escalate; we do NOT continue verification against a partially-hardened VM.\n# --------------------------------------------------------------------\n\nif [ \"${AKKI_HARDENING_MODE:-verify}\" = \"perform\" ]; then\n    log \"hardening.mode: perform (FL-P2-04 ruled to compute-seam side)\"\n    HARDEN_SCRIPT=\"$(dirname \"$0\")/harden.sh\"\n    if [ ! -f \"${HARDEN_SCRIPT}\" ]; then\n        log \"FAIL: AKKI_HARDENING_MODE=perform but harden.sh not found at ${HARDEN_SCRIPT}\"\n        exit 6\n    fi\n    if ! bash \"${HARDEN_SCRIPT}\"; then\n        HRC=$?\n        log \"FAIL: harden.sh returned ${HRC} \u2014 refusing to continue verification against partial hardening\"\n        exit ${HRC}\n    fi\n    log \"hardening: applied \u00b7 continuing to verification\"\nelse\n    log \"hardening.mode: verify (owner-side hardening assumed; acceptance.sh will confirm dead-password auth externally)\"\nfi\n\n# 1. HSS mounted + size\nif ! mountpoint -q /mnt/hss 2>/dev/null; then\n    log \"FAIL: /mnt/hss not mounted\"\n    exit 2\nfi\nHSS_TB=$(df -B1G /mnt/hss | awk '\"'\"'NR==2 {print int($2/1024)}'\"'\"')\nlog \"hss.size_tb: ${HSS_TB}\"\nif [ \"${HSS_TB}\" -lt 25 ]; then\n    log \"FAIL: HSS smaller than 25 TB (got ${HSS_TB} TB)\"\n    exit 2\nfi\n\n# 2. HSS writable (write test file \u2014 survives restart)\nTESTFILE=\"/mnt/hss/.akki_write_test_$(date -u +%s)\"\nif ! echo \"acceptance_write_test_$(hostname)_$(date -u +%FT%TZ)\" > \"${TESTFILE}\"; then\n    log \"FAIL: HSS not writable\"\n    exit 2\nfi\nlog \"hss.writable: ok ($TESTFILE)\"\nlog \"  RESTART_SURVIVAL_CHECK: file must still exist after '\"'\"'sudo reboot'\"'\"'.\"\n\n# 3. NVLink + 4\u00d7 H200\nif ! command -v nvidia-smi >/dev/null 2>&1; then\n    log \"FAIL: nvidia-smi not installed\"\n    exit 3\nfi\nGPU_COUNT=$(nvidia-smi --query-gpu=name --format=csv,noheader | grep -ic \"H200\")\nlog \"gpu.h200_count: ${GPU_COUNT}\"\nif [ \"${GPU_COUNT}\" -ne 4 ]; then\n    log \"FAIL: expected 4\u00d7 H200, got ${GPU_COUNT}\"\n    exit 3\nfi\n\nNVLINK_STATUS=$(nvidia-smi nvlink --status 2>/dev/null | head -20 || echo \"\")\nif [ -z \"${NVLINK_STATUS}\" ] || echo \"${NVLINK_STATUS}\" | grep -qi \"inactive\"; then\n    log \"FAIL: NVLink absent or inactive\"\n    exit 3\nfi\nlog \"gpu.nvlink: active\"\n\n# 4. Ephemeral present, scratch-only marker\nEPHEMERAL_TB=$(df -B1G /mnt/ephemeral 2>/dev/null | awk '\"'\"'NR==2 {print int($2/1024)}'\"'\"' || echo 0)\nif [ \"${EPHEMERAL_TB:-0}\" -lt 10 ]; then\n    EPHEMERAL_TB=$(df -B1G /var/tmp | awk '\"'\"'NR==2 {print int($2/1024)}'\"'\"' || echo 0)\nfi\nlog \"ephemeral.size_tb: ${EPHEMERAL_TB}\"\nif [ \"${EPHEMERAL_TB}\" -lt 10 ]; then\n    log \"FAIL: ephemeral disk absent or under 10 TB\"\n    exit 5\nfi\n\n# 5. Password auth confirmed dead in sshd_config\nif sshd -T 2>/dev/null | grep -qi '\"'\"'^passwordauthentication yes'\"'\"'; then\n    log \"FAIL: password authentication still enabled in sshd config\"\n    exit 4\nfi\nlog \"sshd.password_auth: disabled\"\n\n# 6. Bootstrap credentials retired (best-effort \u2014 root should not have shell password)\nif grep -q '\"'\"'^root:[^!*]'\"'\"' /etc/shadow 2>/dev/null; then\n    log \"WARN: /etc/shadow suggests root has a password hash \u2014 verify by external probe\"\nfi\n\nlog \"=== ALL CHECKS GREEN ===\"\nlog \"  NEXT: run '\"'\"'sudo reboot'\"'\"' from Rafay console.\"\nlog \"  AFTER RESTART: rerun this script; the write-test file must still exist.\"\nexit 0\n'",
+      "at": "2026-08-14T14:21:28.668634+00:00"
+    }
+  ],
+  "check_ledger_row_count": 6,
+  "check_ledger_rows_sample": [
+    {
+      "stage": "acceptance_check",
+      "task_id": "compute.acceptance.per_check",
+      "vm_host": "127.0.0.1",
+      "check_name": "phase0_start",
+      "ok": true,
+      "at": "2026-08-14T14:21:28.861656+00:00"
+    },
+    {
+      "stage": "acceptance_check",
+      "task_id": "compute.acceptance.per_check",
+      "vm_host": "127.0.0.1",
+      "check_name": "phase0_start",
+      "ok": true,
+      "at": "2026-08-14T14:21:28.861671+00:00"
+    },
+    {
+      "stage": "acceptance_check",
+      "task_id": "compute.acceptance.per_check",
+      "vm_host": "127.0.0.1",
+      "check_name": "hardening.mode",
+      "ok": true,
+      "at": "2026-08-14T14:21:28.861674+00:00"
+    },
+    {
+      "stage": "acceptance_check",
+      "task_id": "compute.acceptance.per_check",
+      "vm_host": "127.0.0.1",
+      "check_name": "hardening.mode",
+      "ok": true,
+      "at": "2026-08-14T14:21:28.861676+00:00"
+    },
+    {
+      "stage": "acceptance_check",
+      "task_id": "compute.acceptance.per_check",
+      "vm_host": "127.0.0.1",
+      "check_name": "hss_check",
+      "ok": false,
+      "at": "2026-08-14T14:21:28.861678+00:00"
+    }
+  ],
+  "raw_stdout": "=== Phase-0 Acceptance \u00b7 2026-08-14T14:21:28Z ===\n=== Phase-0 Acceptance \u00b7 2026-08-14T14:21:28Z ===\nhardening.mode: verify (owner-side hardening assumed; acceptance.sh will confirm dead-password auth externally)\nhardening.mode: verify (owner-side hardening assumed; acceptance.sh will confirm dead-password auth externally)\nFAIL: /mnt/hss not mounted\nFAIL: /mnt/hss not mounted\n",
+  "raw_stderr": "",
+  "parsed_checks": [
+    {
+      "name": "phase0_start",
+      "ok": true,
+      "sentence": "Phase-0 acceptance began at 2026-08-14T14:21:28Z."
+    },
+    {
+      "name": "phase0_start",
+      "ok": true,
+      "sentence": "Phase-0 acceptance began at 2026-08-14T14:21:28Z."
+    },
+    {
+      "name": "hardening.mode",
+      "ok": true,
+      "sentence": "Hardening mode: verify (owner-side hardening assumed; acceptance.sh will confirm dead-password auth externally)."
+    },
+    {
+      "name": "hardening.mode",
+      "ok": true,
+      "sentence": "Hardening mode: verify (owner-side hardening assumed; acceptance.sh will confirm dead-password auth externally)."
+    },
+    {
+      "name": "hss_check",
+      "ok": false,
+      "sentence": "Check failed: /mnt/hss not mounted."
+    },
+    {
+      "name": "hss_check",
+      "ok": false,
+      "sentence": "Check failed: /mnt/hss not mounted."
+    }
+  ],
+  "after_state": {
+    "state_class": "held",
+    "whats_happening": "Held \u2014 the delivered machine does not match the ordered spec.",
+    "how_we_know": "Check failed: /mnt/hss not mounted.; Check failed: /mnt/hss not mounted.",
+    "what_we_are_doing": "Held with evidence \u2014 escalated to the vendor.",
+    "agreement_holding": "Deviation on record: Check failed: /mnt/hss not mounted.; Check failed: /mnt/hss not mounted."
+  },
+  "acceptance_status": "held",
+  "exit_code": 2,
+  "secrecy_edge": {
+    "BOOTSTRAP_SSH_PASSWORD_at_call": null,
+    "SSHPASS_at_call": null,
+    "SSH_PRIVATE_KEY_PATH_at_call": "/tmp/akki_mock_sshd/pod_id_ed25519",
+    "verdict": "key-only session confirmed (SSHPASS + BOOTSTRAP_SSH_PASSWORD both None; SSH_PRIVATE_KEY_PATH set)"
+  },
+  "ruling_reference": "DECISIONS.md \u00b7 WS-BUILD-CONNECT-GPU acceptance wire-through \u00b7 2026-08-14"
+}
