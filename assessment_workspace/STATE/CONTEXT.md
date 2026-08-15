@@ -1,6 +1,31 @@
 # CONTEXT.md — Running narrative
 
-**Last updated:** 2026-08-14 · Owner course-correction cycle CLOSED · wizard rebuilt to the brief's 5-step grammar (1 What -> 2 How -> 3 Credentials -> 4 Name -> 5 Attempt) for ALL resource kinds · estate ed25519 keypair generated in seam key custody + provisioning card rendered at compute Step 2 · non-compute intent recorded honestly at Step 5 · programme/track-a HEAD `f83b509` · 123/123 gating tests green (90 backend python + 12 frontend allowlist + 21 frontend rehome/wizard).
+**Last updated:** 2026-08-14 · Owner Simplification Ruling CLOSED · 5-step wizard collapsed to ONE paste-and-connect panel · deterministic local paste parser (services.credentials_paste; NO LLM transit; NO network I/O) · confirm-then-connect renders '•••• captured' sentinel for password · unparseable paste triggers ask-again grammar with missing-fields report · manual fallback fields inline on same panel · provisioning card one-tap aside · handshake walk lives as post-submit RESULT view only · programme/track-a HEAD `c490ce9` · 143/143 gating tests green (108 backend python + 12 frontend allowlist + 23 frontend rehome/single-panel).
+
+
+## COMPACTION-RECOVERY NOTE · 2026-08-14T02:1x UTC (this cycle)
+
+Cold-read verification completed per owner's recovery-check directive:
+- STATE/DECISIONS.md carries most recently: owner course-correction ("piecing together… progressive journey", line 467); 5-step wizard cycle closure (lines 485-488); Owner Simplification ruling verbatim at line 496 ("keep this simple - i need to be able to key in the creds i get form the Aisca system…"). Recovery received the ruling on disk; no re-send needed.
+- programme/track-a HEAD confirmed as `f83b509` (pre-simplification baseline: 90 backend + 12 allowlist + 21 rehome = 123/123 green). Assessment-repo HEAD `3eb21c6`. Estate keypair custody intact (private mode 0600, never committed). IP allowlist unchanged (`SPINE_ALLOWED_IPS=34.16.56.64`).
+- Deposit found on-disk: `backend/tests/invariants/test_credentials_paste_parser.py` (15 pre-compaction failing tests). Compaction interrupted the simplification build immediately after test scaffolding.
+
+**Cycle executed post-recovery (tests-first with right-reason receipts BEFORE each implementation):**
+
+1. Updated the paste-parser test file per Owner Q2 addendum (custody: response never carries the password back; password_captured signal only) — added 3 explicit gating tests (`test_endpoint_response_never_carries_password_verbatim`, `test_endpoint_response_signals_password_captured_false_when_absent`, `test_router_does_not_persist_or_log_password`) alongside the 15 pre-existing tests. 18/18 fail with `ModuleNotFoundError: No module named 'services.credentials_paste'` — right-reason receipt: `phase0/drill_receipts/20260815T015421Z_credentials_paste_parser_right_reason_failure.log`.
+2. Implemented `backend/services/credentials_paste/{__init__.py, parser.py, router.py}` — pattern-only parser (case-insensitive synonym table; label:value + label=value; auto-detect via per-kind label counting with documented compute tie-break); router strips password/api_key from response, returns `password_captured` boolean; empty paste → 400. NO LLM SDK, NO HTTP client, NO subprocess, NO synisense reference (proved by static + runtime gating). 18/18 green.
+3. Rewrote the frontend gating (`pod_shell/frontend/__tests__/rehome.test.js`) — retired 5-step-nav testids, added single-panel invariants (connect-panel / connect-paste-input / connect-parse / connect-submit / chip-auto-detect / '•••• captured' sentinel / parse-missing-fields / manual-field-* / provisioning-card-toggle / no-LLM-endpoint reference / live parse-paste probe). 6/23 fail right-reason before wizard collapse — receipt: `phase0/drill_receipts/20260815T015855Z_single_panel_right_reason_failure.log`.
+4. Rewrote `ConnectWizard.jsx` (both `/app/frontend/src/components/ConnectWizard.jsx` live pod copy AND `pod_shell/frontend/src/components/ConnectWizard.jsx` repo copy) — 623 → 451 lines (−172, −28%). Single panel with type chips, paste textarea, deterministic parse call, confirm-then-connect view, ask-again grammar, provisioning card one-tap aside, and post-submit result views (handshake walk for compute, intent-recorded for non-compute). 23/23 rehome + 12/12 allowlist + 108/108 backend = **143/143 gating tests green** at programme/track-a HEAD `c490ce9`.
+5. Playwright render-tree screenshots (via page.route interception fulfilling `/api/*` from the local backend with XFF spoof; CRA dev-server hit at 127.0.0.1:3000 also passes the allowlist under the same spoof) captured at `phase0/drill_receipts/screenshots/20260815T021700Z_{single_panel_open, paste_parsed_confirm, paste_parsed_with_provisioning_card, handshake_walk_result}.jpeg`.
+6. No-LLM-transit hard-rule proof banked at `phase0/drill_receipts/20260815T021348Z_no_llm_transit_proof.log` — five axes: (a) parser module source has no forbidden import patterns; (b) router module source has no forbidden substrings; (c) live probe response omits sentinel password (grep count 0); (d) backend logs omit sentinel (grep count 0); (e) frontend source has no LLM-endpoint reference.
+
+Standing invariants confirmed unchanged this cycle:
+- `SPINE_ALLOWED_IPS=34.16.56.64` unmodified. Deployment stays refusing the public (owner client `/32` still not received; FL-P2-09 remains OPEN pending owner disposition).
+- Pod egress IP has rotated AGAIN to `35.225.230.28` (was `104.198.214.223` last cycle; was `34.170.12.145` cycle before that). Recorded in PINS.
+- Estate ed25519 private key remains at `${ESTATE_KEYS_DIR}/estate_ed25519` mode 0600; never committed; never in return values.
+- `phase0/acceptance.sh` frozen at §6 SKU spec (untouched this cycle).
+- No push in either direction (Owner Clarification 1 unchanged).
+- Password never appeared in any commit, log, STATE row, or ledger entry; sentinel scans clean.
 
 
 ## Standing owner instruction · 2026-08-14 · POSTURE CORRECTION

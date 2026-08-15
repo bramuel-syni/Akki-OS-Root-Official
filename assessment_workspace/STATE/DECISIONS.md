@@ -486,3 +486,22 @@ Under Ruling 1's four-test discipline, an unlogged ruling is treated as
 6. **99 -> 123 gating tests** (78 -> 90 backend python +12 for estate-keys/connect-estate; frontend 21 -> 33 = 12 allowlist + 21 rehome/wizard). Zero regressions.
 7. **Fidelity ledger:** FL-P2-14 CLOSED-BY-OWNER; FL-P2-16 CLOSED (wizard-grammar completion to brief's 5 steps); FL-P2-17 CLOSED (provisioning-card built into compute path); FL-P2-18 CLOSED (posture correction recorded as standing instruction).
 8. **IP allowlist unchanged.** `SPINE_ALLOWED_IPS=34.16.56.64` remains; deployment stays effectively private until owner's `/32` arrives.
+
+---
+
+## Owner Simplification Ruling · 2026-08-14 · Source: owner channel (course-correction follow-on; collapse the wizard)
+
+**Verbatim:**
+
+> "keep this simple - i need to be able to key in the creds i get form the Aisca system and any other system user needs to connect to. cannot be a winded journey unless it is impossible. we have synisence, so i should be able to key in details without worrying."
+
+**Binding effects (this cycle):**
+
+1. **The 5-step wizard is retired as the primary path.** Connect collapses to ONE panel opened from Registry -> + Connect: a large secure paste area with copy "Paste the connection details exactly as you received them - I will read them.", the type chips as a small one-tap selector on the same panel (default: auto-detect from the paste), and manual fallback fields inline on the same panel. The conversational step grammar survives ONLY in the progress/result view (the handshake walk from the existing seven-stage pipeline), not as navigation.
+2. **Deterministic local parsing, never an LLM.** The paste text is parsed by pattern rules only, in-process, in `services/credentials_paste/parser.py`. Supported shapes: label:value lines (Host Name / Username / Password / Public IP / Private IP / OS / Ephemeral Storage - the AISCA Output panel shape) + generic `key: value` and `key=value` fallbacks. **HARD RULE, added as a gating test:** pasted credential text NEVER transits any LLM call, any external API, or the synisense shield. A password may not be de-identified, embedded, logged, or tokenised. It goes from parse -> env-grade intake -> the seven-stage pipeline, then dies per the nine assertions.
+3. **"We have synisence" - rendering of intent.** Reading recorded in `STATE/CONTEXT.md` and in the fidelity ledger (FL-P2-19): synisense governs the estate's ANSWERING surfaces (retrieval, refusals, watermarks), NOT credential custody at intake. Owner can overrule; until then the ruling stands.
+4. **Confirm-then-connect.** Parsed fields render once for confirmation, password shown as "•••• captured" (never in plaintext after paste). Owner taps Connect; the existing seven-stage pipeline fires UNCHANGED. Handshake walk renders as the progress/result view - this is where the step grammar lives now.
+5. **Unparseable paste = ask-again grammar** naming which fields were missing, plus the manual fields already visible on the same panel as fallback.
+6. **Provisioning card stays reachable from the same panel via one link** ("Provisioning a new machine? What to paste on the AISCA side") - not a step, an expanding aside.
+7. **Non-compute types: same single panel, same paste-or-fields, same honest intent-record outcome.**
+8. **Scope: this is simplification, not growth.** LOC delta reported. STATE + ledger updated. Fidelity ledger rows: **FL-P2-19 CLOSED** (synisense reading recorded), **FL-P2-20 CLOSED** (single-panel collapse), **FL-P2-21 CLOSED** (no-LLM-transit invariant added).

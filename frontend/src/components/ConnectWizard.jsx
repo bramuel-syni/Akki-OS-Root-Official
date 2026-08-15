@@ -2,622 +2,450 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 /**
- * ConnectWizard - the estate's ONE write path, per PDF §5.
+ * ConnectWizard - Single paste-and-connect panel (Owner Simplification 2026-08-14).
  *
- * Owner course-correction 2026-08-14: the wizard is generic. All four
- * resource kinds walk the SAME 5 steps:
- *   1 What  -> 2 How  -> 3 Credentials  -> 4 Name  -> 5 Attempt.
+ * The 5-step wizard is retired as the primary path. Connect collapses to
+ * ONE panel: a large paste area with type chips on the same panel
+ * (default: auto-detect), manual fallback fields inline, and a one-tap
+ * aside for the provisioning card. Step grammar survives ONLY as the
+ * post-submit progress/result view - the handshake walk from the
+ * existing seven-stage pipeline (unchanged).
  *
- * COMPUTE path:
- *   Step 2 renders the estate's provisioning card (public SSH key +
- *   fingerprint + pod egress IP) BEFORE credentials are keyed - fetched
- *   from GET /api/connect/estate-facts. The owner installs the public key
- *   into VM Access and adds both /32 rows (their IP + pod egress) at
- *   creation. Step 3 collects the 7 ordered GPU fields (unchanged shape).
- *   Step 5 renders the seven-stage handshake walk from POST
- *   /api/connect/gpu (unchanged pipeline).
- *
- * NON-COMPUTE paths (data-source, llm, trained-model):
- *   Steps 1-4 fully wired; Step 5 records an honest ledgered intent via
- *   POST /api/connect/intent. Copy: "Recorded - this connection type
- *   goes live with its wave." Amber grammar, no fake success.
+ * Custody rule (owner Q2 addendum):
+ *   Pasted text may contain the password; the /api/connect/parse-paste
+ *   response NEVER carries it back (server strips + password_captured
+ *   signal). This component keeps the raw paste in its own textarea
+ *   memory and submits the full credential set once to /api/connect/gpu
+ *   (compute) or /api/connect/intent (non-compute).
  */
+
 const BACKEND = process.env.REACT_APP_BACKEND_URL;
 
-const cream = "#f6f2ea";
-const navy = "#1c2b45";
-const oxblood = "#5a1a1a";
-const amber = "#c98a1c";
-const sage = "#4a7c59";
-const grey = "#666";
-const cardWhite = "#ffffff";
-
 const CHIPS = [
+  { key: "auto", label: "Auto-detect", testid: "chip-auto-detect" },
   { key: "data-source", label: "A data source", testid: "wizard-chip-data-source" },
   { key: "llm", label: "An LLM", testid: "wizard-chip-llm" },
   { key: "trained-model", label: "A trained model", testid: "wizard-chip-trained-model" },
   { key: "compute", label: "Compute", testid: "wizard-chip-compute" },
 ];
 
-const GPU_FIELDS = [
-  ["host_name", "Host Name", "text", true, "connect-gpu-host_name"],
-  ["username", "Username", "text", true, "connect-gpu-username"],
-  ["password", "Password", "password", true, "connect-gpu-password"],
-  ["public_ip", "Public IP", "text", true, "connect-gpu-public_ip"],
-  ["private_ip", "Private IP (optional)", "text", false, "connect-gpu-private_ip"],
-  ["os", "OS (optional)", "text", false, "connect-gpu-os"],
-  ["deploy_date", "Deploy date (pins +14d)", "date", false, "connect-gpu-deploy_date"],
+const COMPUTE_MANUAL_FIELDS = [
+  ["host_name", "Host Name", "text", true],
+  ["username", "Username", "text", true],
+  ["password", "Password", "password", true],
+  ["public_ip", "Public IP", "text", true],
+  ["private_ip", "Private IP", "text", false],
+  ["os", "OS", "text", false],
+  ["deploy_date", "Deploy date (pins +14d)", "date", false],
 ];
 
-// Per-type "how" branches, seeded from PDF §5 Step 2.
-const HOW_BY_KIND = {
-  "data-source": {
-    question: "How does Akki reach it?",
-    options: ["Private link", "On-premise mount", "Scheduled batch"],
-  },
-  "llm": {
-    question: "How is it hosted?",
-    options: ["In-seam hosted", "On-premise weights", "Sandbox only"],
-  },
-  "trained-model": {
-    question: "Where are the weights?",
-    options: ["Registry", "Imported weights"],
-  },
-  "compute": {
-    question: "How does it reach us?",
-    // Compute is currently SSH over a public IP, per the AISCA journey +
-    // brief §5 Step 2 phrasing. Kept generic in the label so future compute
-    // sources can add other transports.
-    options: ["SSH over a public IP"],
-  },
-};
+const HANDSHAKE_STAGES = [
+  { key: "declaration", label: "Declaration" },
+  { key: "hardening", label: "Hardening" },
+  { key: "acceptance", label: "Acceptance" },
+];
 
-// Free-text routing: known keyword -> kind. Unrecognized -> asks again.
-function routeFreeText(t) {
-  const s = (t || "").toLowerCase();
-  if (!s.trim()) return null;
-  if (/(gpu|compute|machine|vm|server|host)/.test(s)) return "compute";
-  if (/(data|source|bucket|batch|mount|stream)/.test(s)) return "data-source";
-  if (/(llm|model|chat|language)/.test(s) && /(train)/.test(s)) return "trained-model";
-  if (/(llm|gpt|claude|gemini|language model|chat)/.test(s)) return "llm";
-  if (/(train|weight)/.test(s)) return "trained-model";
-  return null;
+// Client-side mirror password extractor (deterministic; same shape as the
+// server parser). The parse-paste response never carries the password back
+// (custody rule), so the browser plucks it from its own textarea memory
+// before POSTing to /api/connect/gpu.
+function extractPasswordFromPaste(paste) {
+  if (!paste) return "";
+  const re = /^\s*(password|pass|pwd)\s*[:=]\s*(.+?)\s*$/im;
+  const m = paste.match(re);
+  return m ? m[2] : "";
 }
 
-export default function ConnectWizard({ onClose }) {
-  const [step, setStep] = useState("what");
-  const [kind, setKind] = useState(null);
-  const [how, setHow] = useState("");
-  const [freeText, setFreeText] = useState("");
-  const [error, setError] = useState("");
-  const [name, setName] = useState("");
-  const [form, setForm] = useState({
-    host_name: "", username: "", password: "",
-    public_ip: "", private_ip: "", os: "",
-    deploy_date: new Date().toISOString().slice(0, 10),
-  });
+// Styles (top-level so component can reference them; palette matches the
+// wider estate surface — cream / navy / oxblood / amber / sage).
+const cream = "#f6f2ea";
+const navy = "#1c2b45";
+const oxblood = "#5a1a1a";
+const amber = "#c98a1c";
+const sage = "#4a7c59";
+const grey = "#666";
+
+const overlayStyle = {
+  position: "fixed", inset: 0, background: "rgba(28,43,69,0.6)", zIndex: 1000,
+  display: "flex", alignItems: "flex-start", justifyContent: "center",
+  overflowY: "auto", padding: "32px 16px",
+};
+const panelStyle = {
+  background: "#ffffff", padding: 24, borderRadius: 8,
+  width: "min(720px, 95vw)", maxHeight: "88vh", overflowY: "auto",
+  fontFamily: "system-ui, -apple-system, sans-serif",
+};
+const headerRow = { display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 12 };
+const h1Style = { fontSize: 22, fontWeight: 600, color: navy };
+const closeBtn = { border: "none", background: "transparent", fontSize: 24, cursor: "pointer", color: grey };
+const chipRow = { display: "flex", flexWrap: "wrap", gap: 8, margin: "12px 0" };
+const pasteStyle = { width: "100%", minHeight: 140, fontFamily: "monospace", fontSize: 13, padding: 10, border: "1px solid #ccc", borderRadius: 4, boxSizing: "border-box" };
+const buttonRow = { display: "flex", gap: 12, margin: "12px 0", alignItems: "center", flexWrap: "wrap" };
+const btnPrimary = { background: navy, color: "#fff", padding: "10px 18px", border: "none", borderRadius: 4, cursor: "pointer", fontSize: 14 };
+const btnAmber = { background: amber, color: "#fff", padding: "8px 14px", border: "none", borderRadius: 4, cursor: "pointer", fontSize: 13 };
+const btnLink = { background: "transparent", border: "none", color: amber, textDecoration: "underline", cursor: "pointer", fontSize: 13, padding: 0 };
+const confirmStyle = { marginTop: 12, background: cream, padding: 12, border: "1px solid #ddd", borderRadius: 4 };
+const warningStyle = { marginTop: 8, padding: 10, background: "#fef4e5", color: oxblood, border: `1px solid ${amber}`, borderRadius: 4, fontSize: 13 };
+const fieldGrid = { display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))", gap: 8, marginTop: 8 };
+const fieldLabel = { display: "flex", flexDirection: "column", gap: 4 };
+const inputStyle = { padding: "6px 8px", border: "1px solid #ccc", borderRadius: 4, fontSize: 13 };
+
+function chipStyle(selected) {
+  return {
+    padding: "6px 12px", border: `1px solid ${selected ? navy : "#ccc"}`,
+    background: selected ? navy : "#fff", color: selected ? "#fff" : navy,
+    borderRadius: 20, cursor: "pointer", fontSize: 13,
+  };
+}
+
+export default function ConnectWizard({ isOpen = true, onClose, initialKind }) {
+  const [paste, setPaste] = useState("");
+  const [chipKind, setChipKind] = useState(initialKind || "auto");
+  const [parseResult, setParseResult] = useState(null);
+  const [parseErr, setParseErr] = useState("");
+  const [manual, setManual] = useState({});
+  const [showProvCard, setShowProvCard] = useState(false);
+  const [estateFacts, setEstateFacts] = useState(null);
+  const [connectionName, setConnectionName] = useState("");
   const [submitting, setSubmitting] = useState(false);
-  const [afterState, setAfterState] = useState(null);
-  const [intentResult, setIntentResult] = useState(null);
-
-  const chooseChip = (k) => { setKind(k); setError(""); setStep("how"); };
-  const sendFreeText = () => {
-    const routed = routeFreeText(freeText);
-    if (routed) { setKind(routed); setStep("how"); setFreeText(""); setError(""); return; }
-    setError("I did not read that clearly. Tap a suggestion, or say 'data source', 'LLM', 'trained model', or 'compute'.");
-  };
-  const goCredentials = () => {
-    // Compute has one transport (seeded); non-compute users may skip explicit How.
-    setStep("credentials");
-  };
-  const goName = () => setStep("name");
-  const goAttempt = () => {
-    if (!name.trim()) { setError("Give it a name - nothing connects unnamed (§5 Step 4)."); return; }
-    setError("");
-    setStep("attempt");
-  };
-
-  const onChange = (k, v) => setForm((f) => ({ ...f, [k]: v }));
+  const [handshake, setHandshake] = useState(null);
+  const [intentRecorded, setIntentRecorded] = useState(null);
+  const [submitErr, setSubmitErr] = useState("");
 
   useEffect(() => {
-    // On entering the attempt step, fire the appropriate submit.
-    if (step !== "attempt") return;
-    if (kind === "compute") submitCompute();
-    else submitIntent();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [step]);
+    if (!isOpen) return;
+    axios.get(`${BACKEND}/api/connect/estate-facts`)
+      .then((r) => setEstateFacts(r.data))
+      .catch(() => setEstateFacts(null));
+  }, [isOpen]);
 
-  const submitCompute = async () => {
-    setSubmitting(true); setError(""); setAfterState(null);
+  if (!isOpen) return null;
+
+  const effectiveKind = parseResult?.kind || (chipKind === "auto" ? "compute" : chipKind);
+
+  const doParse = async () => {
+    setParseErr("");
+    setHandshake(null);
+    setIntentRecorded(null);
+    if (!paste.trim()) {
+      setParseErr("I did not read anything to parse. Paste the details, or fill the manual fields below.");
+      setParseResult(null);
+      return;
+    }
     try {
-      const resp = await axios.post(`${BACKEND}/api/connect/gpu`, { ...form });
-      setAfterState(resp.data);
-      setForm((f) => ({ ...f, password: "" }));
-    } catch (err) {
-      setError(err.response?.data?.detail || err.message);
+      const body = { paste, hint_kind: chipKind === "auto" ? null : chipKind };
+      const r = await axios.post(`${BACKEND}/api/connect/parse-paste`, body);
+      setParseResult(r.data);
+      // Seed manual fields from parsed non-secret values (owner can edit)
+      setManual((m) => ({ ...m, ...r.data.fields }));
+    } catch (e) {
+      const detail = e?.response?.data?.detail || e.message;
+      setParseErr(`I couldn't read that. ${detail}. Try again, or fill the manual fields.`);
+      setParseResult(null);
+    }
+  };
+
+  const doSubmit = async () => {
+    setSubmitErr("");
+    setSubmitting(true);
+    try {
+      if (effectiveKind === "compute") {
+        const pwFromPaste = extractPasswordFromPaste(paste);
+        const payload = {
+          host_name: manual.host_name || parseResult?.fields?.host_name || "",
+          username: manual.username || parseResult?.fields?.username || "",
+          password: manual.password || pwFromPaste,
+          public_ip: manual.public_ip || parseResult?.fields?.public_ip || "",
+          private_ip: manual.private_ip || parseResult?.fields?.private_ip || "",
+          os: manual.os || parseResult?.fields?.os || "",
+          deploy_date: manual.deploy_date || parseResult?.fields?.deploy_date || "",
+        };
+        const r = await axios.post(`${BACKEND}/api/connect/gpu`, payload);
+        setHandshake(r.data);
+      } else {
+        const payload = {
+          kind: effectiveKind,
+          name: connectionName || `unnamed-${effectiveKind}`,
+          description: (paste || "").slice(0, 200),
+        };
+        const r = await axios.post(`${BACKEND}/api/connect/intent`, payload);
+        setIntentRecorded(r.data);
+      }
+    } catch (e) {
+      const detail = e?.response?.data?.detail || e.message;
+      setSubmitErr(`The estate could not accept that: ${detail}`);
     } finally {
       setSubmitting(false);
     }
   };
 
-  const submitIntent = async () => {
-    setSubmitting(true); setError(""); setIntentResult(null);
-    try {
-      const resp = await axios.post(`${BACKEND}/api/connect/intent`, {
-        kind, name: name.trim(), description: how || "",
-      });
-      setIntentResult(resp.data);
-    } catch (err) {
-      setError(err.response?.data?.detail || err.message);
-    } finally {
-      setSubmitting(false);
-    }
-  };
+  // -------- Post-submit result views ----------------------------------------
+
+  if (handshake) {
+    return (
+      <div style={overlayStyle}>
+        <div style={panelStyle}>
+          <div style={headerRow}>
+            <div style={h1Style}>Handshake walk</div>
+            <button data-testid="wizard-close" onClick={() => { setHandshake(null); onClose && onClose(); }} style={closeBtn}>×</button>
+          </div>
+          <HandshakeWalk data={handshake} />
+        </div>
+      </div>
+    );
+  }
+  if (intentRecorded) {
+    return (
+      <div style={overlayStyle}>
+        <div style={panelStyle}>
+          <div style={headerRow}>
+            <div style={h1Style}>Intent recorded</div>
+            <button data-testid="wizard-close" onClick={() => { setIntentRecorded(null); onClose && onClose(); }} style={closeBtn}>×</button>
+          </div>
+          <div data-testid="intent-recorded" style={{ color: sage, padding: 12, background: cream, borderRadius: 4 }}>
+            Recorded — this connection type goes live with its wave.
+            <div style={{ color: grey, marginTop: 12, fontSize: 13 }}>Name: {intentRecorded.name}</div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // -------- Main single-panel form -----------------------------------------
 
   return (
-    <div style={{ position: "fixed", inset: 0, background: "rgba(28,43,69,0.35)", zIndex: 50,
-                  display: "flex", justifyContent: "flex-end" }} data-testid="wizard-drawer">
-      <div style={{ width: "min(560px, 92vw)", background: cream, height: "100vh", overflowY: "auto",
-                    boxShadow: "-8px 0 24px rgba(0,0,0,0.12)", display: "flex", flexDirection: "column" }}>
-        <div style={{ padding: "24px 32px 12px", borderBottom: "1px solid #ddd" }}>
-          <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 12 }}>
-            <div>
-              <div style={{ fontSize: 11, letterSpacing: 2, color: grey }}>REGISTRY · CONNECT</div>
-              <h2 style={{ fontFamily: "ui-serif, Georgia, serif", fontSize: 28, margin: "6px 0 4px 0", color: navy }}>
-                Connect something new
-              </h2>
-              <p style={{ color: grey, fontSize: 14, margin: 0 }}>A conversation, not a form.</p>
+    <div style={overlayStyle}>
+      <div data-testid="connect-panel" style={panelStyle}>
+        <div style={headerRow}>
+          <div>
+            <div style={h1Style}>Connect something new</div>
+            <div style={{ color: grey, fontSize: 13, marginTop: 4 }}>
+              A conversation, not a form. Paste the connection details exactly as you received them — I will read them.
             </div>
-            <button type="button" data-testid="wizard-close" onClick={onClose}
-                    style={{ background: "transparent", border: "none", cursor: "pointer",
-                             color: grey, fontSize: 22, lineHeight: 1, padding: 4 }} aria-label="Close">×</button>
           </div>
-          <StepTracker step={step} />
+          <button data-testid="wizard-close" onClick={onClose} style={closeBtn}>×</button>
         </div>
 
-        <div style={{ flex: 1, padding: "20px 32px" }}>
-          {step === "what" && <StepWhat freeText={freeText} onFreeText={setFreeText}
-            onChip={chooseChip} onSend={sendFreeText} error={error} />}
-          {step === "how" && <StepHow kind={kind} how={how} onHow={setHow}
-            onNext={goCredentials} onBack={() => setStep("what")} />}
-          {step === "credentials" && <StepCredentials kind={kind} form={form} onChange={onChange}
-            onNext={goName} onBack={() => setStep("how")} />}
-          {step === "name" && <StepName name={name} onName={setName}
-            onNext={goAttempt} onBack={() => setStep("credentials")} error={error} />}
-          {step === "attempt" && <StepAttempt kind={kind} name={name}
-            submitting={submitting} afterState={afterState} intentResult={intentResult}
-            error={error} onClose={onClose} onRetry={() => setStep("credentials")} />}
+        <div style={chipRow}>
+          {CHIPS.map((c) => (
+            <button
+              key={c.key}
+              data-testid={c.testid}
+              onClick={() => { setChipKind(c.key); setParseResult(null); }}
+              style={chipStyle(chipKind === c.key)}
+            >
+              {c.label}
+            </button>
+          ))}
         </div>
+
+        <textarea
+          data-testid="connect-paste-input"
+          value={paste}
+          onChange={(e) => setPaste(e.target.value)}
+          placeholder={"Host Name: aisca-gpu-01\nUsername: ubuntu\nPassword: ...\nPublic IP: 203.0.113.5\nOS: ubuntu24.04"}
+          style={pasteStyle}
+        />
+
+        <div style={buttonRow}>
+          <button data-testid="connect-parse" onClick={doParse} style={btnAmber}>Parse & confirm</button>
+          <button
+            data-testid="provisioning-card-toggle"
+            onClick={() => setShowProvCard(!showProvCard)}
+            style={btnLink}
+          >
+            {showProvCard ? "Hide provisioning card" : "Provisioning a new machine? What to paste on the AISCA side"}
+          </button>
+        </div>
+
+        {parseErr && (
+          <div data-testid="parse-error" style={warningStyle}>{parseErr}</div>
+        )}
+
+        {parseResult && <ConfirmView result={parseResult} />}
+
+        {showProvCard && <ProvisioningCard facts={estateFacts} />}
+
+        <details style={{ marginTop: 16, borderTop: `1px solid ${grey}30`, paddingTop: 12 }}>
+          <summary style={{ cursor: "pointer", color: grey, fontSize: 13 }}>
+            Manual fallback fields (edit what I read, or fill from scratch)
+          </summary>
+          {effectiveKind === "compute" && (
+            <div style={fieldGrid}>
+              <label style={fieldLabel}>
+                <span style={{ color: navy, fontSize: 12 }}>Host Name *</span>
+                <input data-testid="manual-field-host_name" type="text" autoComplete="off"
+                  value={manual.host_name || ""}
+                  onChange={(e) => setManual({ ...manual, host_name: e.target.value })}
+                  style={inputStyle} />
+              </label>
+              <label style={fieldLabel}>
+                <span style={{ color: navy, fontSize: 12 }}>Username *</span>
+                <input data-testid="manual-field-username" type="text" autoComplete="off"
+                  value={manual.username || ""}
+                  onChange={(e) => setManual({ ...manual, username: e.target.value })}
+                  style={inputStyle} />
+              </label>
+              <label style={fieldLabel}>
+                <span style={{ color: navy, fontSize: 12 }}>Password *</span>
+                <input data-testid="manual-field-password" type="password" autoComplete="new-password"
+                  value={manual.password || ""}
+                  onChange={(e) => setManual({ ...manual, password: e.target.value })}
+                  style={inputStyle} />
+              </label>
+              <label style={fieldLabel}>
+                <span style={{ color: navy, fontSize: 12 }}>Public IP *</span>
+                <input data-testid="manual-field-public_ip" type="text" autoComplete="off"
+                  value={manual.public_ip || ""}
+                  onChange={(e) => setManual({ ...manual, public_ip: e.target.value })}
+                  style={inputStyle} />
+              </label>
+              <label style={fieldLabel}>
+                <span style={{ color: navy, fontSize: 12 }}>Private IP</span>
+                <input data-testid="manual-field-private_ip" type="text" autoComplete="off"
+                  value={manual.private_ip || ""}
+                  onChange={(e) => setManual({ ...manual, private_ip: e.target.value })}
+                  style={inputStyle} />
+              </label>
+              <label style={fieldLabel}>
+                <span style={{ color: navy, fontSize: 12 }}>OS</span>
+                <input data-testid="manual-field-os" type="text" autoComplete="off"
+                  value={manual.os || ""}
+                  onChange={(e) => setManual({ ...manual, os: e.target.value })}
+                  style={inputStyle} />
+              </label>
+              <label style={fieldLabel}>
+                <span style={{ color: navy, fontSize: 12 }}>Deploy date (pins +14d)</span>
+                <input data-testid="manual-field-deploy_date" type="date" autoComplete="off"
+                  value={manual.deploy_date || ""}
+                  onChange={(e) => setManual({ ...manual, deploy_date: e.target.value })}
+                  style={inputStyle} />
+              </label>
+            </div>
+          )}
+          {effectiveKind !== "compute" && (
+            <div style={{ marginTop: 8, color: grey, fontSize: 13 }}>
+              This kind ({effectiveKind}) is intent-only right now — it records
+              via /api/connect/intent. The paste and name are enough.
+            </div>
+          )}
+        </details>
+
+        {effectiveKind !== "compute" && (
+          <input
+            data-testid="wizard-connection-name"
+            placeholder="Name it in the estate's words (nothing connects unnamed)"
+            value={connectionName}
+            onChange={(e) => setConnectionName(e.target.value)}
+            style={{ ...inputStyle, marginTop: 12, width: "100%", boxSizing: "border-box" }}
+          />
+        )}
+
+        <button
+          data-testid="connect-submit"
+          onClick={doSubmit}
+          disabled={submitting}
+          style={{ ...btnPrimary, marginTop: 16 }}
+        >
+          {submitting ? "Connecting…" : effectiveKind === "compute" ? "Connect" : "Record intent"}
+        </button>
+
+        {submitErr && <div style={warningStyle}>{submitErr}</div>}
       </div>
     </div>
   );
 }
 
-const STEPS = [
-  { key: "what", label: "1 What", testid: "wizard-step-what" },
-  { key: "how", label: "2 How", testid: "wizard-step-how" },
-  { key: "credentials", label: "3 Credentials", testid: "wizard-step-credentials" },
-  { key: "name", label: "4 Name", testid: "wizard-step-name" },
-  { key: "attempt", label: "5 Attempt", testid: "wizard-step-attempt" },
-];
-
-function StepTracker({ step }) {
+function ConfirmView({ result }) {
+  if (result.missing && result.missing.length > 0) {
+    return (
+      <div style={confirmStyle}>
+        <div style={{ color: amber, marginBottom: 8 }}>
+          I read this as a <b>{result.kind}</b> paste, but I did not find:
+        </div>
+        <ul data-testid="parse-missing-fields" style={{ margin: 0, paddingLeft: 20 }}>
+          {result.missing.map((f) => <li key={f} style={{ color: oxblood }}>{f}</li>)}
+        </ul>
+        <div style={{ color: grey, fontSize: 12, marginTop: 8 }}>
+          Fill the manual fields below, or paste again with the missing labels.
+          Ask again is the estate's default when it cannot read.
+        </div>
+      </div>
+    );
+  }
   return (
-    <div style={{ display: "flex", gap: 6, marginTop: 16, flexWrap: "wrap" }}>
-      {STEPS.map((s) => {
-        const active = s.key === step;
+    <div style={confirmStyle}>
+      <div style={{ color: sage, marginBottom: 8 }}>
+        I read this as a <b>{result.kind}</b> paste. Confirm:
+      </div>
+      <table style={{ width: "100%", fontSize: 13, borderCollapse: "collapse" }}>
+        <tbody>
+          {Object.entries(result.fields).map(([k, v]) => (
+            <tr key={k}>
+              <td style={{ color: grey, paddingRight: 8, verticalAlign: "top" }}>{k}</td>
+              <td style={{ fontFamily: "monospace" }}>{String(v)}</td>
+            </tr>
+          ))}
+          {result.password_captured && (
+            <tr>
+              <td style={{ color: grey, paddingRight: 8 }}>password</td>
+              <td data-testid="parsed-password-captured" style={{ fontFamily: "monospace" }}>•••• captured</td>
+            </tr>
+          )}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+function HandshakeWalk({ data }) {
+  return (
+    <div data-testid="handshake-walk">
+      {HANDSHAKE_STAGES.map((s) => {
+        const stage = (data.stages || {})[s.key] || {};
+        const status = stage.status || "untried";
+        const border = status === "pass" ? sage : status === "fail" ? oxblood : "#999";
         return (
-          <div key={s.key} data-testid={s.testid}
-            style={{ padding: "4px 10px", borderRadius: 999,
-                     background: active ? navy : cardWhite,
-                     color: active ? cardWhite : grey,
-                     fontSize: 11, letterSpacing: 1.2,
-                     border: active ? "none" : "1px solid #ddd" }}>
-            {s.label}
+          <div
+            key={s.key}
+            data-testid={`handshake-stage-${s.key}`}
+            style={{ padding: 8, borderLeft: `4px solid ${border}`, margin: "6px 0", background: cream }}
+          >
+            <b>{s.label}</b> <span style={{ color: grey }}>· {status}</span>
+            {stage.detail && <div style={{ fontSize: 12, color: "#333" }}>{stage.detail}</div>}
           </div>
         );
       })}
+      <div style={{ fontSize: 12, color: grey, marginTop: 10 }}>
+        Handshake walk from POST /api/connect/gpu — declaration → hardening → acceptance.
+      </div>
     </div>
   );
 }
 
-function StepWhat({ freeText, onFreeText, onChip, onSend, error }) {
-  return (
-    <>
-      <PromptCard>
-        What would you like to connect? Tell me in your own words -
-        a data source, a model, or compute. Or tap a suggestion below.
-        An unreadable answer, I will ask again rather than guess.
-      </PromptCard>
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 20 }}>
-        {CHIPS.map((c) => (
-          <button key={c.key} type="button" data-testid={c.testid}
-            onClick={() => onChip(c.key)}
-            style={chipStyle}>{c.label}</button>
-        ))}
-      </div>
-      <div style={{ display: "flex", gap: 8 }}>
-        <input data-testid="wizard-input" type="text" value={freeText}
-          onChange={(e) => onFreeText(e.target.value)}
-          onKeyDown={(e) => { if (e.key === "Enter") onSend(); }}
-          placeholder="Type your answer..." style={inputStyle} />
-        <button type="button" data-testid="wizard-send" onClick={onSend}
-          style={sendStyle}>Send</button>
-      </div>
-      {error && <ErrorCard>{error}</ErrorCard>}
-    </>
-  );
-}
-
-function StepHow({ kind, how, onHow, onNext, onBack }) {
-  const cfg = HOW_BY_KIND[kind] || { question: "How?", options: [] };
-  const [needFacts, setNeedFacts] = useState(kind === "compute");
-  const [facts, setFacts] = useState(null);
-  const [factsError, setFactsError] = useState("");
-
-  useEffect(() => {
-    if (!needFacts) return;
-    let cancelled = false;
-    (async () => {
-      try {
-        const r = await axios.get(`${BACKEND}/api/connect/estate-facts`);
-        if (!cancelled) setFacts(r.data);
-      } catch (e) {
-        if (!cancelled) setFactsError(e.response?.data?.detail || e.message);
-      }
-    })();
-    return () => { cancelled = true; };
-  }, [needFacts]);
-
-  const seededDefault = cfg.options[0] || "";
-
-  return (
-    <>
-      <PromptCard>
-        {cfg.question} {kind === "compute" ? "Currently one transport: SSH over a public IP." : "Pick the closest, or say more."}
-      </PromptCard>
-      <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 8, marginBottom: 20 }}>
-        {cfg.options.map((opt) => (
-          <button key={opt} type="button"
-            data-testid={`how-option-${opt.toLowerCase().replace(/\s+/g, "-")}`}
-            onClick={() => onHow(opt)}
-            style={{ ...chipStyle, textAlign: "left",
-                     borderColor: (how || seededDefault) === opt ? navy : "#ddd" }}>
-            {opt}
-          </button>
-        ))}
-      </div>
-      {kind === "compute" && (
-        <ProvisioningCard facts={facts} error={factsError} />
-      )}
-      <NavRow onBack={onBack} onNext={onNext} nextLabel="Credentials -->" />
-    </>
-  );
-}
-
-function ProvisioningCard({ facts, error }) {
-  return (
-    <div data-testid="provisioning-card" style={cardBox}>
-      <div style={{ fontSize: 11, letterSpacing: 2, color: navy, marginBottom: 10 }}>
-        PROVISIONING CARD · from the estate
-      </div>
-      {!facts && !error && (
-        <div style={{ color: grey, fontSize: 13 }}>Fetching the estate's public key and egress IP...</div>
-      )}
-      {error && (
-        <div style={{ color: oxblood, fontSize: 13 }}>{error}</div>
-      )}
-      {facts && (
-        <>
-          <FactRow label="Estate public key (paste into VM Access at creation)"
-                   value={facts.estate_public_key} testid="provisioning-card-public-key" />
-          <FactRow label="Fingerprint (SHA256)"
-                   value={facts.estate_public_key_fingerprint} testid="provisioning-card-fingerprint" />
-          <FactRow label="Pod egress IP (add as /32 to the VM's SG SSH rules alongside your operator /32)"
-                   value={facts.pod_egress_ip} testid="provisioning-card-egress-ip" />
-          <div style={{ marginTop: 12, fontSize: 12, color: grey, lineHeight: 1.5 }}>
-            {(facts.provenance || []).map((s, i) => (
-              <div key={i} style={{ marginBottom: 4 }}>· {s}</div>
-            ))}
-          </div>
-        </>
-      )}
-    </div>
-  );
-}
-
-function FactRow({ label, value, testid }) {
-  return (
-    <div style={{ marginBottom: 12 }}>
-      <div style={{ fontSize: 11, letterSpacing: 1.5, color: grey, marginBottom: 4 }}>
-        {label.toUpperCase()}
-      </div>
-      <code data-testid={testid} style={{ display: "block", background: "#f4f0e8",
-        padding: "8px 12px", borderRadius: 6, fontSize: 12, wordBreak: "break-all",
-        border: "1px solid #ddd" }}>
-        {value}
-      </code>
-    </div>
-  );
-}
-
-function StepCredentials({ kind, form, onChange, onNext, onBack }) {
-  if (kind === "compute") {
+function ProvisioningCard({ facts }) {
+  if (!facts) {
     return (
-      <>
-        <PromptCard>
-          Enter the vendor-issued bootstrap credentials once. Once the estate
-          verifies its own key works, password auth is disabled, the bootstrap
-          is retired, and the password is dropped. It is not stored anywhere
-          and cannot be retrieved after send.
-        </PromptCard>
-        <form data-testid="wizard-compute-form" onSubmit={(e) => { e.preventDefault(); onNext(); }}>
-          {GPU_FIELDS.map(([k, label, type, req, testid]) => (
-            <div key={k} style={{ marginBottom: 12 }}>
-              <label style={{ display: "block", fontSize: 12, color: grey, marginBottom: 4 }}>{label}</label>
-              <input data-testid={testid}
-                type={k === "password" ? "password" : type}
-                value={form[k]} onChange={(e) => onChange(k, e.target.value)}
-                required={req}
-                autoComplete={k === "password" ? "new-password" : "off"}
-                style={inputStyleFull} />
-            </div>
-          ))}
-          <NavRow onBack={onBack} nextTestid="connect-gpu-submit" nextLabel="Name it -->" />
-        </form>
-      </>
+      <div data-testid="provisioning-card" style={{ marginTop: 12, color: grey, padding: 12, background: cream, borderRadius: 4 }}>
+        Loading provisioning card from /api/connect/estate-facts…
+      </div>
     );
   }
-  // Non-compute: brief acknowledgement per §5 Step 3 (credentials issued or minted-and-recorded)
   return (
-    <>
-      <PromptCard>
-        Credentials for {kindLabel(kind)} connections travel through the
-        estate's key custody when this connection type goes live with its
-        wave. Nothing is entered here today.
-      </PromptCard>
-      <NavRow onBack={onBack} onNext={onNext} nextLabel="Name it -->" />
-    </>
-  );
-}
-
-function StepName({ name, onName, onNext, onBack, error }) {
-  return (
-    <>
-      <PromptCard>
-        Give it a name in the estate's words - nothing connects unnamed.
-      </PromptCard>
-      <div style={{ marginBottom: 16 }}>
-        <input data-testid="wizard-connection-name" type="text"
-          value={name} onChange={(e) => onName(e.target.value)}
-          placeholder="e.g. AISCA GPU host 01"
-          style={inputStyleFull} />
+    <div data-testid="provisioning-card" style={{ marginTop: 12, background: cream, padding: 12, border: "1px solid #ccc", borderRadius: 4 }}>
+      <div style={{ fontSize: 12, color: grey, marginBottom: 6 }}>What to paste on the AISCA side (VM creation form):</div>
+      <div style={{ marginBottom: 4, wordBreak: "break-all" }}>
+        <b>Public key:</b>{" "}
+        <code data-testid="provisioning-card-public-key" style={{ fontSize: 12 }}>{facts.estate_public_key}</code>
       </div>
-      {error && <ErrorCard>{error}</ErrorCard>}
-      <NavRow onBack={onBack} onNext={onNext} nextLabel="Attempt -->" />
-    </>
-  );
-}
-
-function StepAttempt({ kind, name, submitting, afterState, intentResult, error, onClose, onRetry }) {
-  if (kind === "compute") {
-    return <ComputeAttempt submitting={submitting} afterState={afterState}
-      error={error} onClose={onClose} onRetry={onRetry} />;
-  }
-  return <IntentAttempt kind={kind} name={name} submitting={submitting}
-    intentResult={intentResult} error={error} onClose={onClose} />;
-}
-
-// Compute Step 5: handshake walk (declaration -> hardening -> acceptance)
-function ComputeAttempt({ submitting, afterState, error, onClose, onRetry }) {
-  const cls = afterState && afterState.after_state && afterState.after_state.state_class;
-  const border = cls === "green" ? sage : cls === "failed" ? oxblood : cls === "held" ? amber : grey;
-
-  const stages = deriveHandshakeStages(afterState, submitting);
-  return (
-    <>
-      <div style={{ fontSize: 11, letterSpacing: 2, color: grey, marginBottom: 12 }}>ATTEMPT · HANDSHAKE</div>
-      <div data-testid="handshake-walk" style={cardBox}>
-        {stages.map((s, i) => (
-          <div key={s.key} data-testid={`handshake-stage-${s.key}`}
-            style={{ display: "flex", alignItems: "center", gap: 10, padding: "8px 0",
-                     borderTop: i === 0 ? "none" : "1px solid #eee",
-                     color: s.status === "failed" ? oxblood :
-                            s.status === "untried" ? "#bbb" :
-                            s.status === "done" ? navy :
-                            s.status === "held" ? amber : grey }}>
-            <div style={{ width: 20, textAlign: "center" }}>{stageGlyph(s.status)}</div>
-            <div style={{ flex: 1, fontSize: 14 }}>
-              <div style={{ fontWeight: s.status === "failed" ? 600 : 400 }}>{s.label}</div>
-              {s.sentence && <div style={{ fontSize: 12, color: grey }}>{s.sentence}</div>}
-            </div>
-          </div>
-        ))}
+      <div style={{ marginBottom: 4 }}>
+        <b>Pod egress IP:</b>{" "}
+        <code data-testid="provisioning-card-egress-ip" style={{ fontSize: 12 }}>{facts.pod_egress_ip}</code>
       </div>
-
-      {afterState && afterState.after_state && (
-        <div data-testid="connect-gpu-after-state"
-             style={{ marginTop: 16, borderLeft: `4px solid ${border}`, paddingLeft: 16 }}>
-          <FourQuestions a={afterState.after_state} />
-        </div>
-      )}
-      {error && <ErrorCard>{error}</ErrorCard>}
-
-      <div style={{ marginTop: 20, display: "flex", gap: 12 }}>
-        {cls === "green" && (
-          <button type="button" data-testid="wizard-close-after-success" onClick={onClose}
-            style={sendStyle}>Close</button>
-        )}
-        {cls === "failed" && (
-          <button type="button" data-testid="connect-gpu-retry" onClick={onRetry}
-            style={sendStyle}>Retry the credentials</button>
-        )}
-        {cls === "held" && (
-          <div data-testid="connect-gpu-held-note" style={{ color: amber, fontSize: 13 }}>
-            Held with evidence · escalated to the vendor.
-          </div>
-        )}
+      <div>
+        <b>Fingerprint:</b>{" "}
+        <code data-testid="provisioning-card-fingerprint" style={{ fontSize: 12 }}>{facts.estate_public_key_fingerprint}</code>
       </div>
-    </>
-  );
-}
-
-// Non-compute Step 5: honest intent record
-function IntentAttempt({ kind, name, submitting, intentResult, error, onClose }) {
-  return (
-    <>
-      <div style={{ fontSize: 11, letterSpacing: 2, color: grey, marginBottom: 12 }}>ATTEMPT · RECORD INTENT</div>
-      <div style={cardBox}>
-        {submitting && <div style={{ color: grey, fontSize: 13 }}>Writing the intent to the ledger...</div>}
-        {intentResult && (
-          <div data-testid="intent-recorded" style={{ borderLeft: `4px solid ${amber}`, paddingLeft: 16 }}>
-            <div style={{ fontSize: 11, letterSpacing: 1.5, color: amber, marginBottom: 8 }}>
-              INTENT RECORDED
-            </div>
-            <div style={{ color: navy, fontSize: 15, lineHeight: 1.5, marginBottom: 8 }}>
-              {kindLabel(kind)} '{name}' captured.
-            </div>
-            <div style={{ color: grey, fontSize: 14, lineHeight: 1.5 }}>
-              Recorded - this connection type goes live with its wave.
-              Nothing crossed and nothing was written to the connected estate today.
-            </div>
-            {intentResult.intent_receipt_path && (
-              <div style={{ marginTop: 8, fontSize: 11, color: grey }}>
-                Receipt: <code style={{ fontSize: 11 }}>{intentResult.intent_receipt_path}</code>
-              </div>
-            )}
-          </div>
-        )}
-        {error && <ErrorCard>{error}</ErrorCard>}
-      </div>
-      {intentResult && (
-        <div style={{ marginTop: 20 }}>
-          <button type="button" data-testid="wizard-close-after-intent" onClick={onClose}
-            style={sendStyle}>Close</button>
-        </div>
-      )}
-    </>
-  );
-}
-
-// -------- helpers --------
-
-function deriveHandshakeStages(afterState, submitting) {
-  // Derive the 3 pipeline stages from the response. If in-flight, mark
-  // stages as running/untried per state; if failed, mark the failing
-  // stage crimson and later stages 'untried' greyed (brief §5).
-  const a = (afterState && afterState.after_state) || null;
-  const cls = a && a.state_class;
-  const failedStage = a && a.failed_stage;
-  const seq = [
-    { key: "declaration", label: "Declaration - the actor and task are on record" },
-    { key: "hardening", label: "Hardening - key installed, password auth disabled, bootstrap retired" },
-    { key: "acceptance", label: "Acceptance - verified against the §6 spec" },
-  ];
-  return seq.map((s) => {
-    if (submitting && !a) return { ...s, status: "running", sentence: "..." };
-    if (!a) return { ...s, status: "untried", sentence: "" };
-    if (cls === "green") return { ...s, status: "done", sentence: "" };
-    if (cls === "held" && s.key === "acceptance") return { ...s, status: "held", sentence: a.how_we_know || "" };
-    if (cls === "failed" && failedStage === s.key) return { ...s, status: "failed", sentence: a.how_we_know || "" };
-    if (cls === "failed" && !failedStage) {
-      // no failed_stage → assume hardening
-      if (s.key === "hardening") return { ...s, status: "failed", sentence: a.how_we_know || "" };
-      if (s.key === "acceptance") return { ...s, status: "untried", sentence: "" };
-      return { ...s, status: "done", sentence: "" };
-    }
-    if (cls === "failed") {
-      const idx = seq.findIndex((x) => x.key === failedStage);
-      const myIdx = seq.findIndex((x) => x.key === s.key);
-      if (myIdx < idx) return { ...s, status: "done", sentence: "" };
-      return { ...s, status: "untried", sentence: "" };
-    }
-    return { ...s, status: "done", sentence: "" };
-  });
-}
-
-function stageGlyph(status) {
-  switch (status) {
-    case "done": return "OK";
-    case "failed": return "!";
-    case "held": return "…";
-    case "running": return "·";
-    case "untried": return "-";
-    default: return "?";
-  }
-}
-
-function kindLabel(k) {
-  return { "data-source": "Data source", "llm": "LLM", "trained-model": "Trained model", "compute": "Compute" }[k] || k;
-}
-
-function FourQuestions({ a }) {
-  const rows = [
-    ["What's happening", a.whats_happening],
-    ["How do we know", a.how_we_know],
-    ["What we're doing", a.what_we_are_doing],
-    ["Is the agreement holding", a.agreement_holding],
-  ];
-  return (
-    <div>
-      {rows.map(([q, ans]) => (
-        <div key={q} style={{ marginBottom: 12 }}>
-          <div style={{ fontSize: 11, letterSpacing: 1.5, color: "#888", marginBottom: 3 }}>{q.toUpperCase()}</div>
-          <div style={{ fontSize: 14, color: navy, lineHeight: 1.5 }}
-            data-testid={`four-q-${q.toLowerCase().replace(/[^a-z]+/g, "-")}`}>
-            {ans || "not yet measured"}
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-// -------- styles --------
-
-const chipStyle = { padding: "12px 14px", background: cardWhite, border: "1px solid #ddd",
-                    borderRadius: 999, cursor: "pointer", color: navy, fontSize: 14, textAlign: "left" };
-const inputStyle = { flex: 1, padding: "12px 14px", borderRadius: 8, border: "1px solid #ddd", fontSize: 14 };
-const inputStyleFull = { width: "100%", padding: "10px 12px", border: "1px solid #ddd", borderRadius: 8, fontSize: 14 };
-const sendStyle = { padding: "10px 20px", background: navy, color: cardWhite, border: "none",
-                    borderRadius: 999, cursor: "pointer", fontSize: 14 };
-const backStyle = { padding: "10px 20px", background: "transparent", color: grey, border: "1px solid #ddd",
-                    borderRadius: 999, cursor: "pointer", fontSize: 14 };
-const cardBox = { background: cardWhite, borderRadius: 10, padding: "16px 20px", marginBottom: 16 };
-
-// -------- small subcomponents --------
-
-function PromptCard({ children }) {
-  return (
-    <div style={cardBox}>
-      <div style={{ fontSize: 11, letterSpacing: 2, color: grey, marginBottom: 6 }}>AKKI</div>
-      <p style={{ color: navy, fontSize: 15, lineHeight: 1.55, margin: 0 }}>{children}</p>
-    </div>
-  );
-}
-
-function ErrorCard({ children }) {
-  return (
-    <div data-testid="wizard-error" style={{ marginTop: 12, padding: "10px 14px", background: cardWhite,
-      borderRadius: 8, borderLeft: `3px solid ${amber}`, color: navy, fontSize: 13, lineHeight: 1.5 }}>
-      {children}
-    </div>
-  );
-}
-
-function NavRow({ onBack, onNext, nextTestid, nextLabel }) {
-  return (
-    <div style={{ display: "flex", justifyContent: "space-between", marginTop: 20 }}>
-      {onBack ? (
-        <button type="button" onClick={onBack} style={backStyle}>Back</button>
-      ) : <div />}
-      {onNext ? (
-        <button type={nextTestid ? "submit" : "button"} onClick={onNext}
-          data-testid={nextTestid || undefined} style={sendStyle}>{nextLabel || "Next -->"}</button>
-      ) : (
-        // In the compute form the submit is triggered by form submit
-        nextTestid ? <button type="submit" data-testid={nextTestid} style={sendStyle}>{nextLabel || "Next"}</button> : <div />
-      )}
     </div>
   );
 }

@@ -91,7 +91,7 @@ Strategy work-in-progress (to be created):
 **Baseline SHA:** `b150c21` (pinned citation baseline — never rewritten).
 **Push:** none — owner Clarification 1 (2026-08-14). Local git history IS the record.
 
-**Pod public egress IP** (for AISCA VM allowlist): **`34.170.12.145`** as of 2026-08-14 stop-order cycle (verified live via ifconfig.me · icanhazip.com · api.ipify.org · checkip.amazonaws.com; no IPv6 egress). Previously pinned as `34.16.56.64` (fidelity-ledger FL-P2-09 OPEN for owner disposition — pod egress has rotated). **The IP `34.16.56.64` remains in `SPINE_ALLOWED_IPS` per owner's strict stop-order directive; pod egress is NOT self-allowlisted.**
+**Pod public egress IP** (for AISCA VM allowlist): **`35.225.230.28`** as of 2026-08-14 Owner-Simplification cycle (verified live via provisioning-card render in Playwright screenshot). Rotated from `104.198.214.223` last cycle → `34.170.12.145` cycle before that → `34.16.56.64` originally (fidelity-ledger FL-P2-09 OPEN for owner disposition — pod egress rotation is continuous). **The IP `34.16.56.64` remains in `SPINE_ALLOWED_IPS` per owner's strict stop-order directive; pod egress is NOT self-allowlisted.**
 
 **Access mechanism (Owner stop-order 2026-08-14 · minted-credential pattern retired estate-wide).** Source-IP allowlist middleware live on BOTH FastAPI backend and CRA dev-server. Config in `/app/backend/.env`: `SPINE_ALLOWED_IPS` (comma-separated /32s) + `SPINE_TRUSTED_PROXY_HOPS=2`. Refusal grammar: HTTP 403 `text/plain` `"This surface answers allowlisted addresses only."`. Trust boundary: `xff.split(',')[-3]` per empirically discovered Cloudflare-worker + Cloudflare-edge + Google-Cloud-LB topology (FL-P2-10 CLOSED). No shared bearer token exists anywhere on the estate; `spine_auth.py` and `.owner_credentials` retired.
 
@@ -99,19 +99,23 @@ Strategy work-in-progress (to be created):
 
 **Phase-1 A0/A1 tests-first evidence:** 26/26 gating tests pass (`phase0/A0-A1_report.md` + drill receipt `phase0/drill_receipts/20260814T120336Z_declaration_refusal_firing.log`).
 
-**WS-BUILD-CONNECT-GPU + IP allowlist + re-home + wizard-completion gating (Owner stop-order + fixture-drop + course-correction cycles 2026-08-14):** 123/123 total gating tests green on programme/track-a HEAD `f83b509` = 90 backend python + 12 frontend allowlist node --test + 21 frontend rehome/Registry+5-step-wizard node --test. Right-reason failure receipts banked BEFORE each implementation lands:
+**WS-BUILD-CONNECT-GPU + IP allowlist + re-home + wizard-completion + Owner Simplification single-panel collapse gating (Owner stop-order + fixture-drop + course-correction + Simplification cycles 2026-08-14):** 143/143 total gating tests green on programme/track-a HEAD `c490ce9` = 108 backend python (90 prior + 18 credentials_paste parser) + 12 frontend allowlist node --test + 23 frontend rehome/single-panel node --test. Right-reason failure receipts banked BEFORE each implementation lands:
 - `phase0/drill_receipts/20260814T145500Z_ip_allowlist_right_reason_failure.log` (16/16 tests failed with ModuleNotFoundError before middleware landed).
 - `phase0/drill_receipts/20260814T151000Z_rehome_right_reason_failure.log` (6/9 tests failed right-reason before original re-home implementation landed).
 - `phase0/drill_receipts/20260814T180000Z_registry_wizard_right_reason_failure.log` (7/15 tests failed right-reason before Registry + wizard implementation landed).
 - `phase0/drill_receipts/20260814T184500Z_estate_keys_and_connect_estate_right_reason_failure.log` (12/12 backend tests fail ModuleNotFoundError before estate-keys/connect-estate implementation landed).
 - `phase0/drill_receipts/20260814T185000Z_5step_wizard_right_reason_failure.log` (6/21 fail right-reason before wizard rebuild landed).
-- Green receipts: `phase0/drill_receipts/20260814T151500Z_lockdown_and_rehome_green.log`, `phase0/drill_receipts/20260814T181500Z_registry_wizard_green.log`, `phase0/drill_receipts/20260814T190500Z_5step_wizard_and_provisioning_card_green.log`.
-- Playwright render-tree screenshots for Registry + wizard (10 total): `phase0/drill_receipts/screenshots/20260814T181000Z_{registry_surface,registry_compute_tab,wizard_opening,wizard_compute_form}.jpeg` and `20260814T190000Z_wizard_{step1_what,step2_how_with_provisioning_card,step3_credentials,step4_name,step5_compute_attempt,noncompute_step5_intent}.jpeg`.
+- `phase0/drill_receipts/20260815T015421Z_credentials_paste_parser_right_reason_failure.log` (18/18 backend tests fail ModuleNotFoundError before services.credentials_paste lands · Owner Simplification cycle).
+- `phase0/drill_receipts/20260815T015855Z_single_panel_right_reason_failure.log` (6/23 frontend tests fail right-reason on missing single-panel testids before wizard collapse lands · Owner Simplification cycle).
+- Green receipts: `phase0/drill_receipts/20260814T151500Z_lockdown_and_rehome_green.log`, `phase0/drill_receipts/20260814T181500Z_registry_wizard_green.log`, `phase0/drill_receipts/20260814T190500Z_5step_wizard_and_provisioning_card_green.log`, `phase0/drill_receipts/20260815T020305Z_single_panel_green.log`.
+- No-LLM-transit hard-rule proof: `phase0/drill_receipts/20260815T021348Z_no_llm_transit_proof.log` (5 axes: parser source, router source, live probe body, backend logs, frontend source — all sentinel counts 0).
+- Playwright render-tree screenshots (this cycle, 4 total): `phase0/drill_receipts/screenshots/20260815T021700Z_{single_panel_open, paste_parsed_confirm, paste_parsed_with_provisioning_card, handshake_walk_result}.jpeg` — prove single panel opens from Registry `+ Connect`, deterministic parse renders '•••• captured' sentinel, provisioning card renders public key + egress IP + fingerprint from `/api/connect/estate-facts`, and post-submit handshake walk renders declaration/hardening/acceptance stages as honest 'untried' for a synthetic paste.
+- Prior-cycle screenshots retained: `phase0/drill_receipts/screenshots/20260814T181000Z_{registry_surface,registry_compute_tab,wizard_opening,wizard_compute_form}.jpeg` and `20260814T190000Z_wizard_{step1_what,step2_how_with_provisioning_card,step3_credentials,step4_name,step5_compute_attempt,noncompute_step5_intent}.jpeg` (retired 5-step-nav visuals; kept as history).
 
 **Estate ed25519 keypair · this-cycle live values (rotate on pod restart):**
 - Estate public key: `ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGKlcjZE/04clh3FLddGn7Wx69pytk8KJA5j9M6rKVA7 estate@akki`
 - Fingerprint: `SHA256:TpJcdNAQ4iSQKK5inwPueOM6Qak5NcsD5XhZpWorZ+c`
-- Pod egress IP (live-discovered): `104.198.214.223` (was `34.170.12.145` prior cycle; STATE originally pinned `34.16.56.64` - see FL-P2-09 OPEN).
+- Pod egress IP (live-discovered): `35.225.230.28` (was `104.198.214.223` prior cycle; was `34.170.12.145` cycle before; STATE originally pinned `34.16.56.64` - see FL-P2-09 OPEN).
 - Private key at `${ESTATE_KEYS_DIR}/estate_ed25519` mode 0600, never in git, never in return values.
 
 **Attachment status (2026-08-14 · fixture-arrival cycle):** two of three fixtures delivered as files, third arrived as inline owner transcription. All FIXTURE PENDING markers CLEARED at transcription grade (files below). Governance grade distinction (transcription-cleared vs file-cleared) recorded in `notes/fidelity_ledger.md` FL-P1-14 + FL-P1-14a.
@@ -129,11 +133,11 @@ Strategy work-in-progress (to be created):
 ## WS-BUILD-CONNECT-GPU — commissioning record pinned outputs
 - **host_name:** `aisca-gpu-01`
 - **public_ip:** `203.0.113.5`
-- **private_ip:** ``
+- **private_ip:** `10.0.1.5`
 - **os:** `ubuntu24.04`
-- **deploy_date:** `2026-08-14`
-- **checkpoint_14d_utc:** `2026-08-28T00:00:00Z`
+- **deploy_date:** `2026-08-15`
+- **checkpoint_14d_utc:** `2026-08-29T00:00:00Z`
 - **hardening_status:** `failed`
 - **acceptance_status:** `not_run`
-- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260814T185558Z.json`
+- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260815T021259Z.json`
 <!-- CONNECT-GPU-PINS -->

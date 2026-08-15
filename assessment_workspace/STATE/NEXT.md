@@ -1,20 +1,20 @@
 # NEXT.md - Exact next actions
 
-**Last updated:** 2026-08-14 · Owner course-correction cycle CLOSED · wizard rebuilt to the brief's 5-step grammar for ALL resource kinds · estate keypair + provisioning card live · non-compute Step 5 records honest intent · programme/track-a HEAD `f83b509` · 123/123 gating tests green · IP allowlist unchanged per owner's strict directive.
+**Last updated:** 2026-08-14 · Owner Simplification Ruling CLOSED · 5-step wizard collapsed to ONE paste-and-connect panel · deterministic local parser (services.credentials_paste; NO LLM transit) · confirm-then-connect with '•••• captured' redaction sentinel · manual fallback fields inline · provisioning card one-tap aside · handshake walk survives ONLY as post-submit RESULT view · programme/track-a HEAD `c490ce9` · 143/143 gating tests green · IP allowlist unchanged (SPINE_ALLOWED_IPS=34.16.56.64) per owner directive.
 
-## Cycle status (2026-08-14 · owner course-correction response)
+## Cycle status (2026-08-14 · Owner Simplification response)
 
-- **FL-P2-14 CLOSED-BY-OWNER.** The fixture set (5-page brief + Registry screenshots + AISCA guide figures) IS the fixture.
-- **Standing posture correction recorded** at the top of `STATE/CONTEXT.md`.
-- **Wizard is generic.** 5 steps for all kinds, per PDF §5. Per-type branches at Step 2. Provisioning card at compute Step 2. Handshake walk at compute Step 5. Honest intent record at non-compute Step 5.
-- **Estate ed25519 keypair** in seam custody (private mode 0600, never in return values). Provisioning card rendered from `GET /api/connect/estate-facts`.
-- **Non-compute intents** ledgered via `POST /api/connect/intent`; `kind='compute'` refused (directs to the seven-stage `/api/connect/gpu`).
-- **123/123 gating tests green.** 90 backend python + 12 frontend allowlist + 21 frontend rehome/wizard.
-- **Live provisioning-card content (rotates on pod restart):**
-  - Public key: `ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGKlcjZE/04clh3FLddGn7Wx69pytk8KJA5j9M6rKVA7 estate@akki`
-  - Fingerprint: `SHA256:TpJcdNAQ4iSQKK5inwPueOM6Qak5NcsD5XhZpWorZ+c`
-  - Pod egress IP: `104.198.214.223`
-- **Fidelity ledger:** FL-P2-14 CLOSED-BY-OWNER; FL-P2-16 CLOSED (wizard grammar); FL-P2-17 CLOSED (provisioning card); FL-P2-18 CLOSED (posture correction).
+- **Simplification cycle CLOSED.** Connect UX collapses to ONE panel. Step grammar survives only as post-submit progress view (the handshake walk from the seven-stage pipeline, which itself is UNCHANGED).
+- **Deterministic local parsing live.** `POST /api/connect/parse-paste` — pattern-only, no LLM/HTTP/subprocess. Password never returned in response body; `password_captured` boolean signal only.
+- **Client-side password custody honoured.** Browser keeps the raw paste in its own textarea memory and submits the full credential set once to `/api/connect/gpu` (existing seven-stage pipeline unchanged). No server-side secret state between the parse and connect requests.
+- **Fidelity ledger:** FL-P2-19 CLOSED (synisense-reading recorded); FL-P2-20 CLOSED (single-panel collapse); FL-P2-21 CLOSED (no-LLM-transit invariant added as gating).
+- **LOC delta:** `ConnectWizard.jsx` 623 → 451 (−172 lines, −28%). New backend: 266 lines (parser + router + init). New backend tests: 321 lines. Frontend tests net +52 lines.
+- **143/143 gating tests green.** 108 backend python + 12 frontend allowlist + 23 frontend rehome/single-panel. Zero regressions.
+- **Commit SHAs on programme/track-a (4 new atop `f83b509`):**
+  - `1f3d3bd` Phase 1 tests-first · deterministic paste parser + no-LLM-transit invariants
+  - `ef9e185` Phase 1 implementation · deterministic paste parser + router mounted
+  - `5ce8647` Phase 1 tests-first · single-panel Connect surface invariants
+  - `c490ce9` Phase 1 implementation · single paste-and-connect panel
 
 ## Two-sentence access-mechanism proposal (still awaiting owner ratification)
 
@@ -23,27 +23,27 @@
 ## Blocked (awaiting from owner)
 
 - **Ratify the two-sentence access proposal** (still standing).
-- **FL-P2-09 disposition** - pod egress-IP rotation. Rotated AGAIN this cycle: STATE was `34.170.12.145` last cycle, now `104.198.214.223` this cycle. `34.16.56.64` stays in `SPINE_ALLOWED_IPS` unchanged per owner directive.
-- **Vendor-side VM provisioning using the provisioning card:**
+- **FL-P2-09 disposition** - pod egress-IP rotation. Rotated AGAIN this cycle: STATE was `104.198.214.223` last cycle, now `35.225.230.28` this cycle. `34.16.56.64` stays in `SPINE_ALLOWED_IPS` unchanged per owner directive.
+- **Vendor-side VM provisioning using the provisioning card** (unchanged):
   - Paste the estate public key `ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGKlcjZE/04clh3FLddGn7Wx69pytk8KJA5j9M6rKVA7 estate@akki` into the VM's SSH Public Key field at creation (AISCA guide Fig 10).
-  - Add TWO /32 rows to the VM's Security Group SSH rules (AISCA guide Fig 11): the owner's own operator /32 AND the pod egress /32 (currently `104.198.214.223/32`, subject to rotation).
-- **Then enter credentials via Registry -> +Connect -> Compute chip -> Step 3.** The unchanged seven-stage pipeline fires; with the estate key already installed, hardening shortens to verify-key-only -> disable password auth -> probe dead.
+  - Add TWO /32 rows to the VM's Security Group SSH rules (AISCA guide Fig 11): the owner's own operator /32 AND the pod egress /32 (currently `35.225.230.28/32`, subject to rotation).
+- **Then paste the AISCA Output panel into the single Connect panel.** The parser reads it deterministically; the confirmation view masks the password as `•••• captured`; owner taps Connect; the unchanged seven-stage pipeline fires; with the estate key already installed, hardening shortens to verify-key-only → disable password auth → probe dead.
 
 ## Cold-reader-executable next actions
 
-### 1. Deliver course-correction cycle report to owner (this reply)
+### 1. Deliver the Owner Simplification cycle report (this reply)
 
-Gating-test delta + right-reason receipts + wizard journey demonstrated (screenshots of all 5 steps incl. non-compute honest Step 5) + provisioning card content + scope number + commit SHAs.
+Test delta + right-reason receipts + green receipts + no-LLM-transit hard-rule proof + 4 Playwright screenshots (single panel / paste-parsed confirm / with provisioning card / handshake walk result) + LOC delta + commit SHAs.
 
 ### 2. On owner ratification of allowlist entry / vendor-side provisioning
 
 - Update `SPINE_ALLOWED_IPS` in `/app/backend/.env` (add owner's client `/32`). Record allowlist change as a ledger row.
-- Owner enters credentials through the wizard's compute path; the seven-stage pipeline fires. Watch for green/failed/held per brief §5 paragraphs 6-7.
+- Owner pastes AISCA Output panel into single Connect panel; deterministic parse; confirm; connect; seven-stage pipeline fires. Watch for green/failed/held per brief §5 paragraphs 6-7.
 
 ### 3. Post-Phase-0 (next cycle)
 
 - **A4 increment (Registry honest-state instrumentation):** wire the COMPUTE CONNECTED tab's after-state to the real commissioning record on disk (present a "Just connected" pill + meta line + link to the record). Add DATA CONNECTED / LLMS & TRAINED MODELS state transitions when their waves land.
-- **Wire-up non-compute Step 5 to per-wave connectors** as they land (data-source in Phase 2 admit-slice; LLM/trained-model in later waves).
+- **Wire-up non-compute path to per-wave connectors** as they land (data-source in Phase 2 admit-slice; LLM/trained-model in later waves). The single-panel + intent-record grammar becomes real routing when the wave connectors are ready.
 
 ### 4. Verification path for orchestrator (independent audit)
 
@@ -63,18 +63,29 @@ python3 -m pytest \
     backend/tests/invariants/test_connect_gpu_scope_S_or_M.py \
     backend/tests/invariants/test_connect_gpu_acceptance_wired.py \
     backend/tests/invariants/test_ip_allowlist_middleware.py \
-    backend/tests/invariants/test_estate_keys_and_connect_estate.py -v
-# Expect: 90 passed at HEAD f83b509.
+    backend/tests/invariants/test_estate_keys_and_connect_estate.py \
+    backend/tests/invariants/test_credentials_paste_parser.py -v
+# Expect: 108 passed at HEAD c490ce9.
 
 cd /app/frontend && node --test plugins/ip-allowlist/__tests__/ip_allowlist.test.js
 # Expect: 12 passed.
 
 cd /app/assessment_workspace/repos/Extraction-Akki && node --test pod_shell/frontend/__tests__/rehome.test.js
-# Expect: 21 passed.
+# Expect: 23 passed.
 
-# Provisioning card live probe (through local backend + crafted XFF)
+# Live probe: no-LLM-transit proof (sentinel absent from response)
+PW="INDEPENDENT_AUDIT_SENTINEL_$$"
+curl -s -H "X-Forwarded-For: 34.16.56.64,172.71.255.34,136.110.244.150" \
+     -H "Content-Type: application/json" \
+     -d "{\"paste\":\"Host Name: h\\nPassword: ${PW}\\nUsername: u\\nPublic IP: 1.2.3.4\",\"hint_kind\":\"compute\"}" \
+     http://127.0.0.1:8001/api/connect/parse-paste | grep -c "${PW}"
+# Expect: 0 (password never in response body).
+
+# Provisioning card live probe
 curl -s -H "X-Forwarded-For: 34.16.56.64,172.71.255.34,136.110.244.150" \
      "http://127.0.0.1:8001/api/connect/estate-facts" | python3 -m json.tool
 ```
 
 ### 5. No push, ever
+
+Owner Clarification 1 (2026-08-14). Assessment repo and Extraction-Akki both stay local.
