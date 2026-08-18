@@ -26,6 +26,7 @@ if str(SPINE_BACKEND) not in sys.path:
 from routers import connect_gpu as connect_gpu_router  # noqa: E402
 from services.connect_estate.router import router as connect_estate_router  # noqa: E402
 from services.credentials_paste.router import router as credentials_paste_router  # noqa: E402
+from services.connect.rds_data_router import router as rds_data_router  # noqa: E402
 from services.ip_allowlist.middleware import IPAllowlistMiddleware  # noqa: E402
 
 # Deliverables directory (read-only snapshot per Chunk-4 v1.1 delivery logistics)
@@ -147,6 +148,7 @@ app.include_router(api_router)
 app.include_router(connect_gpu_router.router)
 app.include_router(connect_estate_router)
 app.include_router(credentials_paste_router)
+app.include_router(rds_data_router)
 
 app.add_middleware(
     CORSMiddleware,

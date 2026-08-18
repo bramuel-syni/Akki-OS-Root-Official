@@ -1,0 +1,19 @@
+{
+  "kind": "data_connection_record",
+  "at": "2026-08-18T20:08:34.604691+00:00",
+  "source_id": "aws.rds.synthetic-nonexistent",
+  "actor": "owner",
+  "resource": {
+    "region": "us-east-1",
+    "cluster_arn": "arn:aws:rds:us-east-1:1:cluster:synthetic-nonexistent",
+    "secret_arn": "arn:aws:secretsmanager:us-east-1:1:secret:synthetic-nonexistent",
+    "database": "test"
+  },
+  "engine": "aurora",
+  "channel": "rds-data-api",
+  "link_working": false,
+  "ready": false,
+  "failure": "other",
+  "found": {},
+  "ruling_reference": "Owner Ruling 2026-08-18 \u00b7 DECISIONS.md \u00b7 FL-P2-23"
+}

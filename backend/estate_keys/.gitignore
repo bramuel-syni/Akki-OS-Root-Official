@@ -1,0 +1,5 @@
+# Estate key custody dir — nothing under here is committed.
+# This includes the ed25519 private/public keypair AND the standing
+# credential files written under data_sources/ (see services.connect.rds_data_submit).
+*
+!.gitignore

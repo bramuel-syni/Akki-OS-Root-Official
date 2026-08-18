@@ -1,0 +1,135 @@
+{
+  "kind": "commissioning_record",
+  "at": "2026-08-18T19:57:51.969950+00:00",
+  "host_name": "akki-vm",
+  "vm_host": "41.173.184.244",
+  "deploy_date": "2026-08-18",
+  "checkpoint_14d_utc": "2026-09-01T00:00:00Z",
+  "actor": "owner",
+  "state_class": "accepted-as-delivered",
+  "data_movement_permitted": true,
+  "ruling_reference": "Owner Ruling 2026-08-18 \u00b7 DECISIONS.md verbatim: 'Establish connection first without the many rules and and report back if link is working, if so, whats the capacity, and if we can use it. For now we will build around it. ignore any other build instructions around it as it was purely on assumptions.' Supersedes the \u00a76 acceptance freeze and lifts the HELD verdict on this cycle's commissioning.",
+  "hardening_section": {
+    "status": "attested",
+    "external_probe_ok": true,
+    "external_probe_result": "password_refused",
+    "leak_neutralized_at_utc": "2026-08-18T18:16:47.187845+00:00",
+    "note": "Bootstrap password retired (ubuntu account L); PasswordAuthentication no + KbdInteractiveAuthentication no on effective sshd config; drop-in /etc/ssh/sshd_config.d/00-akki-no-password.conf beats vendor 50-cloud-init.conf per OpenSSH first-obtained-value."
+  },
+  "acceptance_section": {
+    "status": "not-applicable",
+    "note": "Owner Ruling 2026-08-18 supersedes the \u00a76 acceptance freeze. No spec gate this cycle; the machine is ACCEPTED AS DELIVERED and its measured capacity is recorded below."
+  },
+  "link": {
+    "verdict": "works",
+    "ssh_probe_latency_ms": {
+      "probes": [
+        3840,
+        3396,
+        3427,
+        3429,
+        3422
+      ],
+      "median_ms": 3427,
+      "note": "cold-start SSH handshake is expensive; steady-state throughput is what matters"
+    },
+    "throughput_pod_vm_MBps": {
+      "pod_to_vm_100MB": 4.67,
+      "vm_to_pod_100MB": 4.69,
+      "symmetric": true,
+      "raw_receipt": "phase0/drill_receipts/20260818T195156Z_throughput.log"
+    },
+    "measurement_receipt": "phase0/drill_receipts/20260818T195156Z_link_capacity_measure.log"
+  },
+  "capacity": {
+    "os": {
+      "pretty_name": "Ubuntu 24.04.4 LTS",
+      "kernel": "6.8.0-106-generic",
+      "arch": "x86_64"
+    },
+    "cpu": {
+      "model": "Intel Xeon Platinum 8558",
+      "threads": 36,
+      "sockets": 1,
+      "cores_per_socket": 18,
+      "threads_per_core": 2
+    },
+    "ram_gb": {
+      "total": 460,
+      "free": 458,
+      "used": 4.1,
+      "swap_gb": 0
+    },
+    "gpu": {
+      "count": 2,
+      "model": "NVIDIA H200",
+      "driver_version": "570.211.01",
+      "cuda_runtime": "12.8",
+      "nvcc_installed": false,
+      "compute_capability": "9.0",
+      "vram_gb_per_gpu": 143.771,
+      "vram_gb_total": 287.542,
+      "vram_free_gb_per_gpu": 143.167,
+      "persistence_mode": "Enabled",
+      "pstate": "P0",
+      "nvlink": {
+        "active": true,
+        "links_per_gpu": 18,
+        "per_link_gbps": 26.562,
+        "aggregate_bandwidth_gbps_per_gpu": 478.116
+      }
+    },
+    "storage": [
+      {
+        "mount": "/",
+        "device": "/dev/vda1",
+        "size_gb": 74,
+        "free_gb": 59,
+        "fs": "ext4",
+        "write_speed_MBps": 371
+      },
+      {
+        "mount": "/mnt/volume_dkgjrkx",
+        "device": "/dev/vdb",
+        "size_tb": 5.9,
+        "free_tb": 5.6,
+        "fs": "ext4",
+        "write_speed_MBps": 560,
+        "note": "primary working volume"
+      },
+      {
+        "mount": "/mnt/akki-storage-3388s",
+        "device": "dkgjrkx_akki-storage-3388s",
+        "size_gb": 2.0,
+        "free_gb": 2.0,
+        "note": "vendor extra, small"
+      },
+      {
+        "mount": "/boot/efi",
+        "size_mb": 106,
+        "fs": "vfat"
+      },
+      {
+        "mount": "/boot",
+        "size_mb": 913,
+        "fs": "ext4"
+      }
+    ],
+    "network": {
+      "vm_egress_ip": "41.173.185.50",
+      "internet_reachable": true,
+      "pypi_reachable_ms": 504,
+      "huggingface_reachable_ms": 370
+    },
+    "software_present": {
+      "python3": "3.12.3",
+      "pip3": "absent",
+      "torch": "absent",
+      "cuda_runtime": "12.8 (via driver 570.211.01)",
+      "nvcc": "absent",
+      "ffmpeg": "absent",
+      "docker": "absent"
+    }
+  },
+  "usability_paragraph": "This box is a 2\u00d7H200 workhorse with 288 GB of aggregate VRAM (143 GB per GPU), NVLink active at ~478 GB/s aggregate per GPU, 460 GB of system RAM, and 36 Xeon threads. On the compute side that is very generous headroom for the speech-model work: Whisper-large-v3 fine-tunes on one card with room to spare; LLaMA-3 8B fits comfortably; a 70B model can run inference under tensor parallelism across both cards if we accept 8-bit quantisation. On the storage side we have 5.6 TB free at /mnt/volume_dkgjrkx writing at ~560 MB/s locally \u2014 that is roughly 1,800 hours of raw 16-kHz mono PCM audio, or ~28,000 hours as 32 kbps opus, or several hundred model checkpoints in the tens-of-GB range. The root disk (59 GB free) is fine for the CUDA/PyTorch stack and a working checkpoint staging area. Internet from the VM is clean (pypi and huggingface both under half a second) so we can pull models and datasets straight to the box. The one real ceiling is the pod\u2194VM link \u2014 a symmetric ~4.7 MB/s means shipping bulk audio into the box from this pod is not realistic; anything large should land on the box from its own internet or be uploaded directly by the owner, and we should keep pod\u2194VM traffic to metadata and control messages. Software base is Python 3.12 only \u2014 torch + pip need installing before any training run, but the CUDA 12.8 driver is present so this is a one-line pip step when we get there."
+}

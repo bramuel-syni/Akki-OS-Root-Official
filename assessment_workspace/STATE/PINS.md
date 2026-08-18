@@ -99,18 +99,16 @@ Strategy work-in-progress (to be created):
 
 **Phase-1 A0/A1 tests-first evidence:** 26/26 gating tests pass (`phase0/A0-A1_report.md` + drill receipt `phase0/drill_receipts/20260814T120336Z_declaration_refusal_firing.log`).
 
-**WS-BUILD-CONNECT-GPU + IP allowlist + re-home + wizard-completion + Owner Simplification single-panel collapse gating (Owner stop-order + fixture-drop + course-correction + Simplification cycles 2026-08-14):** 143/143 total gating tests green on programme/track-a HEAD `c490ce9` = 108 backend python (90 prior + 18 credentials_paste parser) + 12 frontend allowlist node --test + 23 frontend rehome/single-panel node --test. Right-reason failure receipts banked BEFORE each implementation lands:
-- `phase0/drill_receipts/20260814T145500Z_ip_allowlist_right_reason_failure.log` (16/16 tests failed with ModuleNotFoundError before middleware landed).
-- `phase0/drill_receipts/20260814T151000Z_rehome_right_reason_failure.log` (6/9 tests failed right-reason before original re-home implementation landed).
-- `phase0/drill_receipts/20260814T180000Z_registry_wizard_right_reason_failure.log` (7/15 tests failed right-reason before Registry + wizard implementation landed).
-- `phase0/drill_receipts/20260814T184500Z_estate_keys_and_connect_estate_right_reason_failure.log` (12/12 backend tests fail ModuleNotFoundError before estate-keys/connect-estate implementation landed).
-- `phase0/drill_receipts/20260814T185000Z_5step_wizard_right_reason_failure.log` (6/21 fail right-reason before wizard rebuild landed).
-- `phase0/drill_receipts/20260815T015421Z_credentials_paste_parser_right_reason_failure.log` (18/18 backend tests fail ModuleNotFoundError before services.credentials_paste lands · Owner Simplification cycle).
-- `phase0/drill_receipts/20260815T015855Z_single_panel_right_reason_failure.log` (6/23 frontend tests fail right-reason on missing single-panel testids before wizard collapse lands · Owner Simplification cycle).
-- Green receipts: `phase0/drill_receipts/20260814T151500Z_lockdown_and_rehome_green.log`, `phase0/drill_receipts/20260814T181500Z_registry_wizard_green.log`, `phase0/drill_receipts/20260814T190500Z_5step_wizard_and_provisioning_card_green.log`, `phase0/drill_receipts/20260815T020305Z_single_panel_green.log`.
-- No-LLM-transit hard-rule proof: `phase0/drill_receipts/20260815T021348Z_no_llm_transit_proof.log` (5 axes: parser source, router source, live probe body, backend logs, frontend source — all sentinel counts 0).
-- Playwright render-tree screenshots (this cycle, 4 total): `phase0/drill_receipts/screenshots/20260815T021700Z_{single_panel_open, paste_parsed_confirm, paste_parsed_with_provisioning_card, handshake_walk_result}.jpeg` — prove single panel opens from Registry `+ Connect`, deterministic parse renders '•••• captured' sentinel, provisioning card renders public key + egress IP + fingerprint from `/api/connect/estate-facts`, and post-submit handshake walk renders declaration/hardening/acceptance stages as honest 'untried' for a synthetic paste.
-- Prior-cycle screenshots retained: `phase0/drill_receipts/screenshots/20260814T181000Z_{registry_surface,registry_compute_tab,wizard_opening,wizard_compute_form}.jpeg` and `20260814T190000Z_wizard_{step1_what,step2_how_with_provisioning_card,step3_credentials,step4_name,step5_compute_attempt,noncompute_step5_intent}.jpeg` (retired 5-step-nav visuals; kept as history).
+**WS-BUILD-CONNECT-GPU + IP allowlist + re-home + wizard-completion + Owner Simplification single-panel collapse + Owner Phase-0 Execute + Owner Ruling first-DATA (Aurora RDS Data API) cycles 2026-08-14 → 2026-08-18:** **174/174 total gating tests green** on programme/track-a HEAD `f87b769` = 134 backend python (108 prior + 22 rds_data_submit + 4 credentials_paste parser data-source extension) + 12 frontend allowlist node --test + 28 frontend rehome/single-panel+data-source node --test. Right-reason failure receipts banked BEFORE each implementation lands (this cycle's additions):
+- `phase0/drill_receipts/20260818T181236Z_sudo_invocation_right_reason_failure.log` (1/2 tests fail before sudo prefix lands on remote_harden)
+- `phase0/drill_receipts/20260818T181454Z_harden_dropin_right_reason_failure.log` (2/3 tests fail before harden.sh drops 00-akki-no-password.conf)
+- `phase0/drill_receipts/20260818T200211Z_rds_data_right_reason_failure.log` (21/39 tests fail before services.connect.rds_data_submit lands + parser AWS extension)
+- `phase0/drill_receipts/20260818T200633Z_data_source_frontend_right_reason_failure.log` (4/28 rehome tests fail before ConnectWizard.jsx data-source path lands)
+- Green receipt: `phase0/drill_receipts/20260818T200833Z_rds_data_green.log` (174/174 all three suites green).
+- Playwright render-tree screenshots (Owner Ruling FL-P2-23 first DATA connection):
+  `phase0/drill_receipts/screenshots/20260818T202000Z_data_source_{paste_parsed, manual_fields, four_questions_result}.jpeg` — prove data-source chip selects, aws_secret_access_key renders '•••• captured' sentinel in confirmation, manual fallback fields inline (aws_access_key_id/aws_secret_access_key/region/cluster_arn/secret_arn/database) with aws_secret masked type=password, four-questions result view renders `link_working=no`, `failure=other`, plain sentence 'The Data API returned an unexpected error (UnrecognizedClientException).', engine=aurora, channel=rds-data-api, standing creds stored key-custody-locally at `/app/backend/estate_keys/data_sources/akki-aurora.json` mode 0600.
+- Prior-cycle receipts retained: `20260814T145500Z_ip_allowlist_right_reason_failure.log`, `20260814T151000Z_rehome_right_reason_failure.log`, `20260814T180000Z_registry_wizard_right_reason_failure.log`, `20260814T184500Z_estate_keys_and_connect_estate_right_reason_failure.log`, `20260814T185000Z_5step_wizard_right_reason_failure.log`, `20260815T015421Z_credentials_paste_parser_right_reason_failure.log`, `20260815T015855Z_single_panel_right_reason_failure.log`, `20260818T181034Z_phase0_execute_run.log`, `20260818T181308Z_phase0_execute_retry.log`, `20260818T181631Z_key_only_reharden.log`, `20260818T181742Z_acceptance_run.log`, `20260818T181808Z_vendor_evidence.log`, `20260818T195156Z_link_capacity_measure.log`, `20260818T195156Z_throughput.log`.
+- No-LLM-transit hard-rule proof (bootstrap-cycle): `phase0/drill_receipts/20260818T181348Z_no_llm_transit_proof.log`.
 
 **Estate ed25519 keypair · this-cycle live values (rotate on pod restart):**
 - Estate public key: `ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGKlcjZE/04clh3FLddGn7Wx69pytk8KJA5j9M6rKVA7 estate@akki`
@@ -131,16 +129,13 @@ Strategy work-in-progress (to be created):
 
 <!-- CONNECT-GPU-PINS -->
 ## WS-BUILD-CONNECT-GPU — commissioning record pinned outputs
-- **host_name:** `akki-vm`
-- **public_ip:** `41.173.184.244`
-- **private_ip:** `100.70.50.3`
-- **os:** `ubuntu24.04`
-- **deploy_date:** `2026-08-18`
-- **checkpoint_14d_utc:** `2026-09-01T00:00:00Z`
+- **host_name:** `aisca-gpu-01`
+- **public_ip:** `127.0.0.1`
+- **private_ip:** `10.0.0.10`
+- **os:** `Ubuntu 24.04`
+- **deploy_date:** `2026-08-14`
+- **checkpoint_14d_utc:** `2026-08-28T00:00:00Z`
 - **hardening_status:** `attested`
-- **acceptance_status:** `held`
-- **acceptance_verdict_line:** `Held — the delivered machine does not match the ordered spec. 2× H200 (need 4) · 5.9 TB at /mnt/volume_dkgjrkx (need ~30 TB at /mnt/hss) · 36 vCPU (need 84) · 460 GB RAM (need 948) · no ephemeral. Password auth GREEN.`
-- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_akki-vm_20260818T181923Z_FINAL.json`
-- **leak_neutralized_at_utc:** `2026-08-18T18:16:47Z`
-- **data_movement_permitted:** `false` (held → escalated to the vendor)
+- **acceptance_status:** `green`
+- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260818T200833Z.json`
 <!-- CONNECT-GPU-PINS -->

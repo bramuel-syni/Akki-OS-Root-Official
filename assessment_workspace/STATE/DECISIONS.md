@@ -505,3 +505,37 @@ Under Ruling 1's four-test discipline, an unlogged ruling is treated as
 6. **Provisioning card stays reachable from the same panel via one link** ("Provisioning a new machine? What to paste on the AISCA side") - not a step, an expanding aside.
 7. **Non-compute types: same single panel, same paste-or-fields, same honest intent-record outcome.**
 8. **Scope: this is simplification, not growth.** LOC delta reported. STATE + ledger updated. Fidelity ledger rows: **FL-P2-19 CLOSED** (synisense reading recorded), **FL-P2-20 CLOSED** (single-panel collapse), **FL-P2-21 CLOSED** (no-LLM-transit invariant added).
+
+
+---
+
+### Owner Ruling · 2026-08-18 (channel) · §6 spec freeze SUPERSEDED · accept-as-delivered
+
+The bootstrap-cycle §6 acceptance freeze was written against an assumed SKU (4× H200 / ~30 TB HSS / 84 vCPU / 948 GB RAM / ephemeral). The owner has withdrawn the assumption. Verbatim:
+
+> "Note - Establish connection first without the many rules and and report back if link is working, if so, whats the capacity, and if we can use it. For now we will build around it. ignore any other build instructions around it as it was purely on assumptions"
+
+**Implication (recorded in CONTEXT.md too):** the §6 numbers were assumptions, not requirements. On this cycle the machine is ACCEPTED AS DELIVERED. The prior HELD verdict for host `akki-vm` / `41.173.184.244` is LIFTED. We measure what is there and build around it. The security posture already achieved (key-only SSH, password auth dead server-wide, dropin at `sshd_config.d/00-akki-no-password.conf`, ubuntu account locked) STANDS — it costs nothing and protects the link. No further acceptance ceremony, no vendor-escalation grammar, no spec gate this cycle. Standing "1× is not a fallback" is unchanged as a general rule; it does not apply to a machine we have chosen to accept.
+
+**Fidelity ledger row: FL-P2-22 CLOSED** (§6 spec freeze superseded on this host).
+
+Measurement receipts + capacity record: `phase0/drill_receipts/20260818T195156Z_link_capacity_measure.log`, `phase0/drill_receipts/20260818T195156Z_throughput.log`, `phase0/commissioning_records/commissioning_akki-vm_20260818T195751Z_ACCEPTED.json` sha256 `8add17c9c3c5113ced940282be93b5e0d85b9db27f6236ef6a904dcce2a68d5f`.
+
+---
+
+### Owner Ruling · 2026-08-18 (channel) · first DATA connection · Aurora Data API
+
+Owner's words (verbatim):
+
+> "I would like to connect you to the first data base too. Data sits in AWS. I am thinking RDS Data API which lets you run SQL queries against Aurora over HTTPS, using the AWS SDK, instead of opening a traditional database connection (TCP/3306) which is still a direct access channel. Is this feasible"
+
+Answered in the channel: feasible, best-fit for our egress-rotation shape (HTTPS out; no VPC peering, no IP whitelisting on the DB side); Aurora-only caveat flagged (Data API is not RDS-wide — Aurora Serverless v2 / v1 / Aurora MySQL 3+ / Aurora PostgreSQL 13+ only); engine confirmation requested.
+
+**Build ruling (this session):**
+1. Same single paste-and-connect panel. "A data source" chip (or auto-detect) accepts pasted or keyed values: `aws_access_key_id`, `aws_secret_access_key` (SECRET — same custody as bootstrap password: never in parse response body, never in ledger row, never in log), `region`, `cluster_arn`, `secret_arn`, optional `database`. Parser extends deterministically with these labels.
+2. Backend: `services/connect/rds_data_submit.py` using `boto3` rds-data client. Stages: (a) credential intake — **NOTE DIFFERENCE from bootstrap password: these are STANDING credentials**, stored at rest in a mode-0600 file under the estate key-custody dir (like the SSH key), never in git, never in ledger/receipts/logs, loaded to env at use only; (b) declaration fires as `aws.rds.<cluster-id>` with capabilities `[sql_query_https]` and scope `[data.estate]`; (c) test connection = `ExecuteStatement "SELECT 1"` via Data API; (d) on success a light inventory within API limits (list schemas/tables via information_schema, approximate row counts for up to ~20 tables); (e) result renders in the four-questions grammar with failure taxonomy `auth_denied` / `cluster_not_found` / `data_api_not_enabled` / `timeout` as plain sentences.
+3. **DATA CONNECTED tab** on green renders the source honestly from recorded facts (name, engine, table count, last verified). Zero fabricated numbers.
+4. Gating tests: parser extension (secret sentinel never in response/ledger/logs), standing-credential custody (file mode 0600, git-ignored, absent from responses), boto3 call path (spy asserts ExecuteStatement invoked with cluster+secret ARNs), failure taxonomy mapping, four-questions render both branches. Right-reason receipts before implementation.
+5. Simple grammar per standing ruling — no multi-provider abstraction; Aurora Data API shape only. If engine turns out non-Aurora, adjust then.
+
+**Fidelity ledger row: FL-P2-23 OPEN** — first data connection over RDS Data API; awaiting engine confirmation and standing creds from owner to fire the pipeline live.

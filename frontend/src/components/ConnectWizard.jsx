@@ -56,6 +56,15 @@ function extractPasswordFromPaste(paste) {
   return m ? m[2] : "";
 }
 
+// Same mirror pattern for aws_secret_access_key — the parse-paste response
+// omits it; we pluck from the raw paste for the /api/connect/data-source POST.
+function extractAwsSecretFromPaste(paste) {
+  if (!paste) return "";
+  const re = /^\s*(aws[_ ]?secret[_ ]?access[_ ]?key|secret[_ ]access[_ ]key|secret[_ ]key)\s*[:=]\s*(.+?)\s*$/im;
+  const m = paste.match(re);
+  return m ? m[2] : "";
+}
+
 // Styles (top-level so component can reference them; palette matches the
 // wider estate surface — cream / navy / oxblood / amber / sage).
 const cream = "#f6f2ea";
@@ -110,6 +119,7 @@ export default function ConnectWizard({ isOpen = true, onClose, initialKind }) {
   const [submitting, setSubmitting] = useState(false);
   const [handshake, setHandshake] = useState(null);
   const [intentRecorded, setIntentRecorded] = useState(null);
+  const [dataSourceResult, setDataSourceResult] = useState(null);
   const [submitErr, setSubmitErr] = useState("");
 
   useEffect(() => {
@@ -162,6 +172,21 @@ export default function ConnectWizard({ isOpen = true, onClose, initialKind }) {
         };
         const r = await axios.post(`${BACKEND}/api/connect/gpu`, payload);
         setHandshake(r.data);
+      } else if (effectiveKind === "data-source") {
+        // Client-side mirror pluck for aws_secret_access_key (custody:
+        // /api/connect/parse-paste never carries it back, so we pull it
+        // from the raw paste same as we do for the compute password).
+        const awsSecretFromPaste = extractAwsSecretFromPaste(paste);
+        const payload = {
+          aws_access_key_id: manual.aws_access_key_id || parseResult?.fields?.aws_access_key_id || undefined,
+          aws_secret_access_key: manual.aws_secret_access_key || awsSecretFromPaste || undefined,
+          region: manual.region || parseResult?.fields?.region || "",
+          cluster_arn: manual.cluster_arn || parseResult?.fields?.cluster_arn || "",
+          secret_arn: manual.secret_arn || parseResult?.fields?.secret_arn || "",
+          database: manual.database || parseResult?.fields?.database || undefined,
+        };
+        const r = await axios.post(`${BACKEND}/api/connect/data-source`, payload);
+        setDataSourceResult(r.data);
       } else {
         const payload = {
           kind: effectiveKind,
@@ -190,6 +215,19 @@ export default function ConnectWizard({ isOpen = true, onClose, initialKind }) {
             <button data-testid="wizard-close" onClick={() => { setHandshake(null); onClose && onClose(); }} style={closeBtn}>×</button>
           </div>
           <HandshakeWalk data={handshake} />
+        </div>
+      </div>
+    );
+  }
+  if (dataSourceResult) {
+    return (
+      <div style={overlayStyle}>
+        <div style={panelStyle}>
+          <div style={headerRow}>
+            <div style={h1Style}>Data connection</div>
+            <button data-testid="wizard-close" onClick={() => { setDataSourceResult(null); onClose && onClose(); }} style={closeBtn}>×</button>
+          </div>
+          <DataSourceResult result={dataSourceResult} />
         </div>
       </div>
     );
@@ -323,6 +361,55 @@ export default function ConnectWizard({ isOpen = true, onClose, initialKind }) {
               </label>
             </div>
           )}
+          {effectiveKind === "data-source" && (
+            <div style={fieldGrid}>
+              <label style={fieldLabel}>
+                <span style={{ color: navy, fontSize: 12 }}>AWS Access Key ID</span>
+                <input data-testid="manual-field-aws_access_key_id" type="text" autoComplete="off"
+                  value={manual.aws_access_key_id || ""}
+                  onChange={(e) => setManual({ ...manual, aws_access_key_id: e.target.value })}
+                  style={inputStyle} />
+              </label>
+              <label style={fieldLabel}>
+                <span style={{ color: navy, fontSize: 12 }}>AWS Secret Access Key</span>
+                <input data-testid="manual-field-aws_secret_access_key" type="password" autoComplete="new-password"
+                  value={manual.aws_secret_access_key || ""}
+                  onChange={(e) => setManual({ ...manual, aws_secret_access_key: e.target.value })}
+                  style={inputStyle} />
+              </label>
+              <label style={fieldLabel}>
+                <span style={{ color: navy, fontSize: 12 }}>Region *</span>
+                <input data-testid="manual-field-region" type="text" autoComplete="off"
+                  value={manual.region || ""}
+                  onChange={(e) => setManual({ ...manual, region: e.target.value })}
+                  placeholder="us-east-1"
+                  style={inputStyle} />
+              </label>
+              <label style={fieldLabel}>
+                <span style={{ color: navy, fontSize: 12 }}>Cluster ARN *</span>
+                <input data-testid="manual-field-cluster_arn" type="text" autoComplete="off"
+                  value={manual.cluster_arn || ""}
+                  onChange={(e) => setManual({ ...manual, cluster_arn: e.target.value })}
+                  placeholder="arn:aws:rds:us-east-1:…:cluster:…"
+                  style={inputStyle} />
+              </label>
+              <label style={fieldLabel}>
+                <span style={{ color: navy, fontSize: 12 }}>Secret ARN *</span>
+                <input data-testid="manual-field-secret_arn" type="text" autoComplete="off"
+                  value={manual.secret_arn || ""}
+                  onChange={(e) => setManual({ ...manual, secret_arn: e.target.value })}
+                  placeholder="arn:aws:secretsmanager:us-east-1:…:secret:…"
+                  style={inputStyle} />
+              </label>
+              <label style={fieldLabel}>
+                <span style={{ color: navy, fontSize: 12 }}>Database</span>
+                <input data-testid="manual-field-database" type="text" autoComplete="off"
+                  value={manual.database || ""}
+                  onChange={(e) => setManual({ ...manual, database: e.target.value })}
+                  style={inputStyle} />
+              </label>
+            </div>
+          )}
           {effectiveKind !== "compute" && (
             <div style={{ marginTop: 8, color: grey, fontSize: 13 }}>
               This kind ({effectiveKind}) is intent-only right now — it records
@@ -331,7 +418,7 @@ export default function ConnectWizard({ isOpen = true, onClose, initialKind }) {
           )}
         </details>
 
-        {effectiveKind !== "compute" && (
+        {effectiveKind !== "compute" && effectiveKind !== "data-source" && (
           <input
             data-testid="wizard-connection-name"
             placeholder="Name it in the estate's words (nothing connects unnamed)"
@@ -347,7 +434,10 @@ export default function ConnectWizard({ isOpen = true, onClose, initialKind }) {
           disabled={submitting}
           style={{ ...btnPrimary, marginTop: 16 }}
         >
-          {submitting ? "Connecting…" : effectiveKind === "compute" ? "Connect" : "Record intent"}
+          {submitting ? "Connecting…"
+            : effectiveKind === "compute" ? "Connect"
+            : effectiveKind === "data-source" ? "Test connection"
+            : "Record intent"}
         </button>
 
         {submitErr && <div style={warningStyle}>{submitErr}</div>}
@@ -392,11 +482,89 @@ function ConfirmView({ result }) {
               <td data-testid="parsed-password-captured" style={{ fontFamily: "monospace" }}>•••• captured</td>
             </tr>
           )}
+          {result.aws_secret_captured && (
+            <tr>
+              <td style={{ color: grey, paddingRight: 8 }}>aws_secret_access_key</td>
+              <td data-testid="parsed-aws-secret-captured" style={{ fontFamily: "monospace" }}>•••• captured</td>
+            </tr>
+          )}
         </tbody>
       </table>
     </div>
   );
 }
+
+function DataSourceResult({ result }) {
+  const ok = result.link_working && result.ready;
+  const border = ok ? sage : oxblood;
+  return (
+    <div style={{ padding: 12, borderLeft: `4px solid ${border}`, background: cream, borderRadius: 4 }}>
+      <div style={{ marginBottom: 8, color: navy, fontSize: 14, fontWeight: 600 }}>
+        {ok ? `Connected to ${result.source_id || "the data source"}.` : "The data connection didn't come up."}
+      </div>
+      <table style={{ width: "100%", fontSize: 13, borderCollapse: "collapse" }}>
+        <tbody>
+          <tr>
+            <td style={{ color: grey, paddingRight: 8, width: 180 }}>Is the link working?</td>
+            <td data-testid="data-link-working" style={{ color: result.link_working ? sage : oxblood }}>
+              {result.link_working ? "yes — SELECT 1 returned over the Data API" : "no"}
+            </td>
+          </tr>
+          <tr>
+            <td style={{ color: grey, paddingRight: 8, verticalAlign: "top" }}>What did we find?</td>
+            <td data-testid="data-source-found" style={{ verticalAlign: "top" }}>
+              {result.link_working ? renderFound(result.found) : "—"}
+            </td>
+          </tr>
+          <tr>
+            <td style={{ color: grey, paddingRight: 8 }}>Is it ready?</td>
+            <td data-testid="data-source-ready" style={{ color: result.ready ? sage : oxblood }}>
+              {result.ready ? "yes" : "no"}
+            </td>
+          </tr>
+          <tr>
+            <td style={{ color: grey, paddingRight: 8, verticalAlign: "top" }}>Any failure to name?</td>
+            <td data-testid="data-source-failure" style={{ verticalAlign: "top" }}>
+              {result.failure
+                ? <div><b>{result.failure}</b> — {result.failure_sentence}</div>
+                : "no"}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div style={{ color: grey, fontSize: 12, marginTop: 10 }}>
+        Engine: {result.engine} · Channel: {result.channel} · Standing creds stored key-custody-locally at {result.creds_path}
+      </div>
+    </div>
+  );
+}
+
+function renderFound(found) {
+  if (!found || Object.keys(found).length === 0) return "—";
+  const schemas = found.schemas || [];
+  const tables = found.tables || [];
+  return (
+    <div>
+      <div>
+        <b>{schemas.length}</b> schema{schemas.length === 1 ? "" : "s"}:{" "}
+        {schemas.slice(0, 6).join(", ")}{schemas.length > 6 ? "…" : ""}
+      </div>
+      <div>
+        <b>{tables.length}</b> table{tables.length === 1 ? "" : "s"} sampled (cap {found.inventory_cap})
+        {tables.length > 0 && (
+          <ul style={{ margin: "6px 0 0 0", paddingLeft: 20 }}>
+            {tables.slice(0, 8).map((t, i) => (
+              <li key={i} style={{ fontFamily: "monospace", fontSize: 12 }}>
+                {t.schema}.{t.table} <span style={{ color: grey }}>≈ {t.approx_row_count} rows</span>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </div>
+  );
+}
+
 
 function HandshakeWalk({ data }) {
   return (

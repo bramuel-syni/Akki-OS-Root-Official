@@ -1,0 +1,19 @@
+{
+  "kind": "data_connection_record",
+  "at": "2026-08-18T20:12:49.114701+00:00",
+  "source_id": "aws.rds.akki-aurora",
+  "actor": "owner",
+  "resource": {
+    "region": "us-east-1",
+    "cluster_arn": "arn:aws:rds:us-east-1:123456789012:cluster:akki-aurora",
+    "secret_arn": "arn:aws:secretsmanager:us-east-1:123456789012:secret:akki-db-abcdef",
+    "database": "estate"
+  },
+  "engine": "aurora",
+  "channel": "rds-data-api",
+  "link_working": false,
+  "ready": false,
+  "failure": "other",
+  "found": {},
+  "ruling_reference": "Owner Ruling 2026-08-18 \u00b7 DECISIONS.md \u00b7 FL-P2-23"
+}
