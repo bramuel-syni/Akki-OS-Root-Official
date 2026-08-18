@@ -1,0 +1,83 @@
+{
+  "kind": "commissioning_record",
+  "at": "2026-08-18T18:19:23.095582+00:00",
+  "host_name": "akki-vm",
+  "vm_host": "41.173.184.244",
+  "deploy_date": "2026-08-18",
+  "checkpoint_14d_utc": "2026-09-01T00:00:00Z",
+  "actor": "owner",
+  "hardening_section": {
+    "status": "attested",
+    "failed_step": null,
+    "external_probe_ok": true,
+    "external_probe_result": "password_refused",
+    "leak_neutralized_at_utc": "2026-08-18T18:16:47.187845+00:00",
+    "receipt_path": "/app/assessment_workspace/phase0/drill_receipts/hardening_20260818T181631Z/hardening_receipt_key_only_20260818T181647Z.json",
+    "note": "Bootstrap password retired (ubuntu account L in /etc/shadow); PasswordAuthentication no confirmed at sudo sshd -T; drop-in at /etc/ssh/sshd_config.d/00-akki-no-password.conf beats vendor 50-cloud-init.conf per OpenSSH first-obtained-value rule."
+  },
+  "acceptance_section": {
+    "status": "held",
+    "exit_code": 2,
+    "checks": [
+      {
+        "name": "phase0_start",
+        "ok": true,
+        "sentence": "Phase-0 acceptance began at 2026-08-18T18:17:51Z."
+      },
+      {
+        "name": "hardening.mode",
+        "ok": true,
+        "sentence": "Hardening mode: verify (owner-side hardening assumed; acceptance.sh will confirm dead-password auth externally)."
+      },
+      {
+        "name": "hss_check",
+        "ok": false,
+        "sentence": "Check failed: /mnt/hss not mounted."
+      }
+    ],
+    "vendor_evidence_verbatim": {
+      "gpu": {
+        "h200_count_observed": 2,
+        "h200_count_ordered": 4,
+        "delta": "MISS \u00b7 2 short of order",
+        "nvidia_smi_head": "Driver 570.211.01 CUDA 12.8 \u00b7 GPU 0/1 NVIDIA H200 143771 MiB each",
+        "nvlink_status": "active \u00b7 Link 0..N ~26.562 GB/s per link (GPU 0 sampled)"
+      },
+      "hss": {
+        "mount_expected": "/mnt/hss",
+        "mount_observed": "/mnt/volume_dkgjrkx",
+        "size_tb_observed": 5.9,
+        "size_tb_ordered": "~30",
+        "delta": "MISS \u00b7 5\u00d7 under order \u00b7 wrong mount name"
+      },
+      "cpu": {
+        "vcpu_observed": 36,
+        "vcpu_ordered": 84,
+        "delta": "MISS \u00b7 48 under"
+      },
+      "memory": {
+        "gb_observed": 460,
+        "gb_ordered": 948,
+        "delta": "MISS \u00b7 488 under"
+      },
+      "ephemeral": {
+        "mount_expected": "/mnt/ephemeral",
+        "observed": "absent (root disk 74 GB only)"
+      },
+      "os": {
+        "observed": "Ubuntu 24.04.4 LTS",
+        "kernel": "6.8.0-106-generic"
+      },
+      "sshd_hardened": {
+        "passwordauthentication_effective": "no",
+        "kbdinteractiveauthentication_effective": "no",
+        "sshd_config_d_dropin": "/etc/ssh/sshd_config.d/00-akki-no-password.conf (sort key beats 50-cloud-init.conf)",
+        "verdict": "GREEN \u00b7 password auth is dead server-wide"
+      }
+    },
+    "escalation": "escalated to the vendor \u00b7 zero data movement \u00b7 standing owner rule '1\u00d7 is not a fallback' preserved"
+  },
+  "data_movement_permitted": false,
+  "state_class": "held",
+  "ruling_reference": "DECISIONS.md \u00b7 WS-BUILD-CONNECT-GPU \u00b7 2026-08-14; Phase-0 Execute cycle 2026-08-18"
+}

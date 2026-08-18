@@ -70,25 +70,55 @@ log "authorized_keys.count: ${KEY_COUNT}"
 # --------------------------------------------------------------------
 # 2. Disable PasswordAuthentication in sshd_config
 # --------------------------------------------------------------------
+#
+# Ubuntu 24.04 (and other modern cloud distros) ship
+#   Include /etc/ssh/sshd_config.d/*.conf
+# at the top of /etc/ssh/sshd_config, and cloud-init drops
+#   /etc/ssh/sshd_config.d/50-cloud-init.conf
+# containing `PasswordAuthentication yes`. OpenSSH takes the FIRST obtained
+# value per directive (man sshd_config), so appending to the main file below
+# the Include is a NO-OP against the cloud-init drop-in.
+#
+# The correct control is a drop-in whose sort key beats 50-*.conf. Convention:
+#   /etc/ssh/sshd_config.d/00-akki-no-password.conf
+# Files in sshd_config.d are read alphabetically; 00-* wins the first-value
+# race over 50-cloud-init.conf.
 
 SSHD_CFG=/etc/ssh/sshd_config
+SSHD_DROPIN_DIR=/etc/ssh/sshd_config.d
+SSHD_DROPIN=${SSHD_DROPIN_DIR}/00-akki-no-password.conf
 if [ ! -w "${SSHD_CFG}" ]; then
     log "FAIL: ${SSHD_CFG} not writable (need root)."
     exit 11
 fi
 
-# Backup once (idempotent).
+# Backup the main file once (idempotent).
 [ -f "${SSHD_CFG}.pre_akki" ] || cp "${SSHD_CFG}" "${SSHD_CFG}.pre_akki"
 
-# Idempotent line replacement.
+# Write / refresh the drop-in (idempotent — content stamped every run).
+if [ -d "${SSHD_DROPIN_DIR}" ]; then
+    cat > "${SSHD_DROPIN}" <<'DROPIN'
+# Akki phase-0 hardening drop-in
+# Sort key 00- beats vendor 50-cloud-init.conf so OpenSSH first-wins picks these.
+PasswordAuthentication no
+ChallengeResponseAuthentication no
+KbdInteractiveAuthentication no
+DROPIN
+    chmod 0644 "${SSHD_DROPIN}"
+    log "sshd.dropin: wrote ${SSHD_DROPIN} (PasswordAuthentication no + ChallengeResponse no + KbdInteractive no)."
+else
+    log "WARN: ${SSHD_DROPIN_DIR} does not exist — falling back to main-file edit."
+fi
+
+# Also flip the main file (belt + braces; harmless if the drop-in already governs).
 if grep -qE '^\s*PasswordAuthentication\s+yes' "${SSHD_CFG}"; then
     sed -i 's/^\s*PasswordAuthentication\s\+yes/PasswordAuthentication no/i' "${SSHD_CFG}"
-    log "sshd.PasswordAuthentication: flipped yes→no."
+    log "sshd.PasswordAuthentication (main file): flipped yes→no."
 elif grep -qE '^\s*PasswordAuthentication\s+no' "${SSHD_CFG}"; then
-    log "sshd.PasswordAuthentication: already no (idempotent no-op)."
+    log "sshd.PasswordAuthentication (main file): already no (idempotent no-op)."
 else
     echo "PasswordAuthentication no" >> "${SSHD_CFG}"
-    log "sshd.PasswordAuthentication: appended no."
+    log "sshd.PasswordAuthentication (main file): appended no."
 fi
 
 # --------------------------------------------------------------------

@@ -131,13 +131,16 @@ Strategy work-in-progress (to be created):
 
 <!-- CONNECT-GPU-PINS -->
 ## WS-BUILD-CONNECT-GPU — commissioning record pinned outputs
-- **host_name:** `aisca-gpu-01`
-- **public_ip:** `203.0.113.5`
-- **private_ip:** `10.0.1.5`
+- **host_name:** `akki-vm`
+- **public_ip:** `41.173.184.244`
+- **private_ip:** `100.70.50.3`
 - **os:** `ubuntu24.04`
-- **deploy_date:** `2026-08-15`
-- **checkpoint_14d_utc:** `2026-08-29T00:00:00Z`
-- **hardening_status:** `failed`
-- **acceptance_status:** `not_run`
-- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260815T021259Z.json`
+- **deploy_date:** `2026-08-18`
+- **checkpoint_14d_utc:** `2026-09-01T00:00:00Z`
+- **hardening_status:** `attested`
+- **acceptance_status:** `held`
+- **acceptance_verdict_line:** `Held — the delivered machine does not match the ordered spec. 2× H200 (need 4) · 5.9 TB at /mnt/volume_dkgjrkx (need ~30 TB at /mnt/hss) · 36 vCPU (need 84) · 460 GB RAM (need 948) · no ephemeral. Password auth GREEN.`
+- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_akki-vm_20260818T181923Z_FINAL.json`
+- **leak_neutralized_at_utc:** `2026-08-18T18:16:47Z`
+- **data_movement_permitted:** `false` (held → escalated to the vendor)
 <!-- CONNECT-GPU-PINS -->

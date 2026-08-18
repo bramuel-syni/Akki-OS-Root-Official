@@ -1,0 +1,36 @@
+{
+  "receipt_kind": "hardening",
+  "at": "2026-08-18T18:16:47.223999+00:00",
+  "hardening_status": "attested",
+  "failed_step": null,
+  "vm_treated_as": "hardened",
+  "data_movement_permitted": true,
+  "external_probe": {
+    "ok": true,
+    "probe_result": "password_refused"
+  },
+  "steps": [
+    {
+      "hardening_step": "verify_key_only_auth",
+      "kind": "check",
+      "at": "2026-08-18T18:16:35.867495+00:00",
+      "ok": true
+    },
+    {
+      "hardening_step": "remote_harden",
+      "kind": "action",
+      "at": "2026-08-18T18:16:45.187819+00:00",
+      "ok": true,
+      "exit_code": 0,
+      "stdout_head": "=== Phase-0 Hardening \u00b7 2026-08-18T18:16:44Z ===\nharden.target_user: ubuntu\nauthorized_keys.count: 1\nsshd.dropin: wrote /etc/ssh/sshd_config.d/00-akki-no-password.conf (PasswordAuthentication no + ChallengeResponse no + KbdInteractive no).\nsshd.PasswordAuthentication (main file): already no (idempotent no-op).\nsshd.ChallengeResponseAuthentication: already no (idempotent no-op).\nsshd.reload: ok.\nbo"
+    },
+    {
+      "hardening_step": "external_probe",
+      "kind": "attest",
+      "at": "2026-08-18T18:16:47.223969+00:00",
+      "ok": true,
+      "probe_result": "password_refused"
+    }
+  ],
+  "ruling": "FL-P2-04 path (a) \u00b7 DECISIONS.md 2026-08-14 \u00b7 key-only re-harden after bootstrap retirement"
+}

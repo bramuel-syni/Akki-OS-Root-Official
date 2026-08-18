@@ -1,0 +1,52 @@
+{
+  "receipt_kind": "hardening",
+  "at": "2026-08-18T18:13:28.393542+00:00",
+  "hardening_status": "failed",
+  "failed_step": "external_probe",
+  "vm_treated_as": "unhardened",
+  "data_movement_permitted": false,
+  "external_probe": {
+    "ok": false,
+    "reason": "probe_indeterminate",
+    "probe_result": "unknown",
+    "stderr_head": "ubuntu@41.173.184.244: permission denied (publickey,password).\n"
+  },
+  "steps": [
+    {
+      "hardening_step": "env_check",
+      "kind": "check",
+      "at": "2026-08-18T18:13:09.026002+00:00",
+      "ok": true
+    },
+    {
+      "hardening_step": "key_install",
+      "kind": "action",
+      "at": "2026-08-18T18:13:13.577660+00:00",
+      "ok": true
+    },
+    {
+      "hardening_step": "verify_key_only_auth",
+      "kind": "check",
+      "at": "2026-08-18T18:13:17.059516+00:00",
+      "ok": true
+    },
+    {
+      "hardening_step": "remote_harden",
+      "kind": "action",
+      "at": "2026-08-18T18:13:26.400708+00:00",
+      "ok": true,
+      "exit_code": 0,
+      "stdout_head": "=== Phase-0 Hardening \u00b7 2026-08-18T18:13:26Z ===\nharden.target_user: ubuntu\nauthorized_keys.count: 1\nsshd.PasswordAuthentication: appended no.\nsshd.ChallengeResponseAuthentication: appended no.\nsshd.reload: ok.\nbootstrap.credentials: ubuntu locked (was: hashed password).\nhardening.receipt: /var/log/akki_phase0_hardening_receipt.json\n=== HARDENING COMPLETE ===\n  NEXT: acceptance.sh verification ste"
+    },
+    {
+      "hardening_step": "external_probe",
+      "kind": "attest",
+      "at": "2026-08-18T18:13:28.393519+00:00",
+      "ok": false,
+      "reason": "probe_indeterminate",
+      "probe_result": "unknown",
+      "stderr_head": "ubuntu@41.173.184.244: permission denied (publickey,password).\n"
+    }
+  ],
+  "ruling": "FL-P2-04 path (a) \u00b7 DECISIONS.md 2026-08-14"
+}

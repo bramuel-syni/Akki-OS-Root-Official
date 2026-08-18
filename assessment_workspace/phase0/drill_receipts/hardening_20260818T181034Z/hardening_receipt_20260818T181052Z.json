@@ -1,0 +1,39 @@
+{
+  "receipt_kind": "hardening",
+  "at": "2026-08-18T18:10:52.366814+00:00",
+  "hardening_status": "failed",
+  "failed_step": "remote_harden",
+  "vm_treated_as": "unhardened",
+  "data_movement_permitted": false,
+  "external_probe": {},
+  "steps": [
+    {
+      "hardening_step": "env_check",
+      "kind": "check",
+      "at": "2026-08-18T18:10:34.788710+00:00",
+      "ok": true
+    },
+    {
+      "hardening_step": "key_install",
+      "kind": "action",
+      "at": "2026-08-18T18:10:39.879515+00:00",
+      "ok": true
+    },
+    {
+      "hardening_step": "verify_key_only_auth",
+      "kind": "check",
+      "at": "2026-08-18T18:10:43.320533+00:00",
+      "ok": true
+    },
+    {
+      "hardening_step": "remote_harden",
+      "kind": "action",
+      "at": "2026-08-18T18:10:52.366791+00:00",
+      "ok": false,
+      "reason": "harden_sh_failed",
+      "exit_code": 11,
+      "stderr_head": ""
+    }
+  ],
+  "ruling": "FL-P2-04 path (a) \u00b7 DECISIONS.md 2026-08-14"
+}

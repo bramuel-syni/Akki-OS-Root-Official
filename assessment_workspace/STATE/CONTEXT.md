@@ -1,6 +1,59 @@
 # CONTEXT.md — Running narrative
 
-**Last updated:** 2026-08-14 · Owner Simplification Ruling CLOSED · 5-step wizard collapsed to ONE paste-and-connect panel · deterministic local paste parser (services.credentials_paste; NO LLM transit; NO network I/O) · confirm-then-connect renders '•••• captured' sentinel for password · unparseable paste triggers ask-again grammar with missing-fields report · manual fallback fields inline on same panel · provisioning card one-tap aside · handshake walk lives as post-submit RESULT view only · programme/track-a HEAD `c490ce9` · 143/143 gating tests green (108 backend python + 12 frontend allowlist + 23 frontend rehome/single-panel).
+**Last updated:** 2026-08-18 · Owner Phase-0 Execute cycle CLOSED · bootstrap credential retired · **leak neutralized 2026-08-18T18:16:47Z** · hardening attested (external probe: password_refused) · acceptance held → escalated to vendor · commissioning record `commissioning_akki-vm_20260818T181923Z_FINAL.json` sha256 `7e08cdb4e4bb5091a3c4687e3af7aab6936de6f405dd806c3756f50fee70bf81` · data_movement_permitted=false · programme/track-a HEAD `f91246d` · 143→147 gating tests green (108→113 backend python: +2 sudo_invocation, +3 harden.sh dropin) · secret sweep hit_count=0 on /app, /tmp, /var/log/supervisor, /root, both git worktrees, both git histories.
+
+
+## Owner Phase-0 Execute cycle · 2026-08-18 · bootstrap credentials received via channel
+
+Owner delivered the AISCA VM bootstrap credentials directly through this channel (their prerogative; their operator /32 never entered the estate allowlist so the surface was unreachable to them). The bootstrap password entered the pod as `BOOTSTRAP_SSH_PASSWORD` env-grade for the duration of exactly one Python process per submit call; never argv, never disk, never STATE, never log, never ledger row. Referenced everywhere by sha256[:12] = `c508af8a9e7c`.
+
+**Preflight** (2026-08-18T18:08:53Z): TCP 41.173.184.244:22 reachable (bash `</dev/tcp/…` exit 0). Pod egress this cycle: `35.184.53.215` (rotation from `35.225.230.28` last cycle → `104.198.214.223` → `34.170.12.145` → original `34.16.56.64`). VM's Security Group already permits our current egress (preflight passed without SG changes).
+
+**Pipeline stages · timestamps · outcomes:**
+
+| Stage | Time (UTC) | Verdict |
+|---|---|---|
+| credential_intake (ledger event only) | 2026-08-18T18:10:34.66Z | ok |
+| declaration_fire (actor `infrastructure.vm.akki-vm`, scope `archive.ingestion`) | 2026-08-18T18:10:34.66Z | ok |
+| **first attempt: hardening → remote_harden** (bare bash invocation as ubuntu; /etc/ssh/sshd_config not writable → exit 11) | 2026-08-18T18:10:52.37Z | **FAILED** |
+| tests-first fix: sudo -n prefix (`test_remote_harden_sudo_invocation.py` · 2 assertions) + implementation (spine commits `8baf4c2` → `41c8bf2`) | 2026-08-18T18:12:36 – 18:13:04Z | 14/14 hardening-suite green |
+| **retry: hardening → external_probe** (harden.sh ran clean as root but external probe returned `permission denied (publickey,password)` because sshd_config.d/50-cloud-init.conf carries `PasswordAuthentication yes` and OpenSSH takes the first obtained value) | 2026-08-18T18:13:28.39Z | **FAILED** |
+| tests-first fix: dropin at `/etc/ssh/sshd_config.d/00-akki-no-password.conf` (sort key beats 50-cloud-init.conf) — `test_harden_sh_defeats_include_precedence.py` · 3 assertions + phase0/harden.sh update (spine commit `f91246d`) | 2026-08-18T18:15:07 – 18:15:23Z | 3/3 dropin gate green |
+| key-only re-harden (bootstrap already retired → pipeline's `key_install` step would refuse, so ran the pipeline primitives `_do_remote_harden` → `_do_external_probe` → `_write_receipt` under the estate key) — same primitives, same ledger shape, not ad-hoc shell | 2026-08-18T18:16:31 – 18:16:47Z | **hardening attested · external_probe: password_refused** |
+| **LEAK NEUTRALIZED** (probe timestamp) | **2026-08-18T18:16:47Z** | **password auth dead server-wide** |
+| acceptance.sh (uploaded via scp under estate key, invoked via `sudo -n bash`, output parsed by `services.compute_seam.acceptance_parser.parse_output`) | 2026-08-18T18:17:47 – 18:17:52Z | exit 2 · HELD |
+| vendor evidence gather (nvidia-smi, mounts, lsblk, sshd -T) | 2026-08-18T18:18:12Z | evidence banked verbatim |
+| commissioning record write · PINS update | 2026-08-18T18:19:23Z | complete |
+| leak sweep (grep -F fixed string, `git grep -F -I`, `git log -S`) across /app, /tmp, /var/log/supervisor, /root, both git worktrees + both histories | post-commit | **hit_count = 0** |
+
+**§6 acceptance verdict — HELD → escalated to vendor** (zero data movement; standing "1× is not a fallback" preserved):
+
+| §6 requirement | Ordered | Delivered | Delta |
+|---|---|---|---|
+| Password auth dead | yes | **yes** (sshd -T: passwordauthentication no, kbdinteractive no) | **GREEN** |
+| GPUs | 4× H200 NVLink | 2× H200 (indexes 0/1), NVLink active on both (26.562 GB/s per link) | **MISS · 2 short** |
+| HSS storage | ~30 TB writable at /mnt/hss | 5.9 TB at /mnt/volume_dkgjrkx (wrong mount name, 5× under) | **MISS** |
+| vCPU | 84 | 36 | **MISS · 48 under** |
+| Memory | 948 GB | 460 GB | **MISS · 488 under** |
+| Ephemeral scratch | ≥10 TB at /mnt/ephemeral | absent (root disk 74 GB only) | **MISS** |
+
+**Deliverables (all local; no push):**
+- Commissioning record: `phase0/commissioning_records/commissioning_akki-vm_20260818T181923Z_FINAL.json` sha256 `7e08cdb4e4bb5091a3c4687e3af7aab6936de6f405dd806c3756f50fee70bf81`
+- Hardening receipts: `phase0/drill_receipts/hardening_20260818T18{1034,1308,1631}Z/` (three progressions: fail → fail → attested)
+- Vendor-evidence bundle: `phase0/drill_receipts/20260818T181808Z_vendor_evidence.log`
+- Acceptance run: `phase0/drill_receipts/20260818T181742Z_acceptance_run.log`
+- Right-reason receipts: `20260818T181236Z_sudo_invocation_right_reason_failure.log`, `20260818T181507Z_harden_dropin_right_reason_failure.log`
+- Green receipts (implicit in the per-file test-suite outputs and commit trailers)
+
+**Standing invariants unchanged:**
+- `SPINE_ALLOWED_IPS=34.16.56.64` unmodified. Owner's client /32 still not received (FL-P2-09 remains OPEN). Deployment stays refusing the public.
+- `phase0/acceptance.sh` untouched (frozen at §6 spec — only `phase0/harden.sh` and `services.compute_seam.hardening.py` changed).
+- Estate ed25519 private key mode 0600, never committed, never in return values.
+- Password sha256[:12] = `c508af8a9e7c` referenced by prefix only; plaintext never in any file, log, STATE row, ledger row, receipt body, or reply.
+- No push in either direction.
+
+**Not-yet-live (deferred to next cycle, honestly noted):**
+- COMPUTE CONNECTED tab does not yet render the real commissioning record. The record is on disk and PINS-referenced; the Registry `Compute connected` tab still shows the honest-empty-state sentence. Per owner rule 4, "if that tab wiring is not yet live, note it as next-cycle and don't rush it" — noted.
 
 
 ## COMPACTION-RECOVERY NOTE · 2026-08-14T02:1x UTC (this cycle)

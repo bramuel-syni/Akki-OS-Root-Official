@@ -1,0 +1,19 @@
+{
+  "kind": "commissioning_record",
+  "at": "2026-08-18T18:13:28.393870+00:00",
+  "host_name": "akki-vm",
+  "vm_host": "41.173.184.244",
+  "deploy_date": "2026-08-18",
+  "hardening_section": {
+    "status": "failed",
+    "failed_step": "external_probe",
+    "external_probe_ok": false,
+    "receipt_path": "/app/assessment_workspace/phase0/drill_receipts/hardening_20260818T181308Z/hardening_receipt_20260818T181328Z.json"
+  },
+  "acceptance_section": {
+    "status": null,
+    "exit_code": null,
+    "checks": []
+  },
+  "ruling_reference": "DECISIONS.md \u00b7 WS-BUILD-CONNECT-GPU \u00b7 2026-08-14"
+}
