@@ -137,5 +137,45 @@ Strategy work-in-progress (to be created):
 - **checkpoint_14d_utc:** `2026-08-28T00:00:00Z`
 - **hardening_status:** `attested`
 - **acceptance_status:** `green`
-- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260818T200833Z.json`
+- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260819T154017Z.json`
 <!-- CONNECT-GPU-PINS -->
+
+
+<!-- DATA-CONNECTED-PINS -->
+## DATA CONNECTED · Aurora RDS Data API · first two databases (2026-08-19)
+
+Both databases on cluster `db-restore-603-cluster` (eu-west-1) reached over RDS Data API from the pod's boto3 rds-data client (HTTPS, no VPC peering, no IP allowlisting on the DB side). Engine + version + inventory captured for BOTH via `information_schema` only — **zero record contents were read this cycle**.
+
+- **region:** `eu-west-1`
+- **cluster_arn:** `arn:aws:rds:eu-west-1:494452543252:cluster:db-restore-603-cluster`
+- **secret_arn:** `arn:aws:secretsmanager:eu-west-1:494452543252:secret:rds/data/api/user/secrets-8rZuVc`
+- **iam user:** `arn:aws:iam::494452543252:user/api_user` · access key prefix `AKIAXGH5` (custody `/app/backend/estate_keys/data_sources/aws_iam_user_AKIAXGH5.json` mode 0600, git-ignored)
+- **engine (both DBs):** `aurora-mysql`
+- **engine_version (both DBs):** `8.0.42 (Aurora MySQL 3.10.3)` (captured strings: `@@version='8.0.42'`, `@@version_comment='6252a59a'`, `@@aurora_version='3.10.3'`)
+- **channel:** `rds-data-api`
+- **actor on declaration:** `aws.rds.db-restore-603-cluster`
+- **capabilities:** `[sql_query_https]` · **scope:** `[data.estate]`
+
+| source_id | database | table_count | top row (approx) | receipt sha256 |
+|---|---|---|---|---|
+| `aws.rds.db-restore-603-cluster.digicow_live` | `digicow_live` | 125 | `ussd_users` ≈ 2,285,264 rows / 747.7 MB | `c6698e22673c7ee8a72f15af7798c58a94b7a558aea3a2942b8c3ef7f816f294` |
+| `aws.rds.db-restore-603-cluster.ndume` | `ndume` | 110 | `breedings` ≈ 184,348 rows / 155.8 MB | `572f13108894a60892568e63609b36555cc3ae75fadc47d6d0caa4ba2a95aab7` |
+
+**Data connection records (JSON):**
+- `phase0/data_connection_records/data_source_digicow_live_20260819T152513Z_FINAL.json`
+- `phase0/data_connection_records/data_source_ndume_20260819T152513Z_FINAL.json`
+
+**Drill receipts:**
+- Pipeline pass (production path) — `phase0/drill_receipts/20260819T152331Z_aurora_connect_and_inventory.log` (SELECT 1 YES for both; engine misclassified `unknown` — production defect that motivated FL-P2-24)
+- Inventory retry (throwaway script, forced engine=mysql, added `@@aurora_version` probe) — `phase0/drill_receipts/20260819T152509Z_aurora_inventory_mysql.log` (engine-probe strings + top-25 tables per DB + 5 structural reads per DB, `[DONE]` marker)
+- Engine-detect fix right-reason failure (banked BEFORE the fix landed) — `phase0/drill_receipts/20260819T153408Z_engine_detect_right_reason_failure.log`
+- Engine-detect fix green — `phase0/drill_receipts/20260819T154016Z_engine_detect_green.log`
+
+**Track-a commits (production engine-detect defect fix, FL-P2-24 CLOSED):**
+- `8c9304d` Phase 1 tests-first · 7 engine-detect gating assertions using REAL captured strings
+- `746dece` Phase 1 implementation · `_probe_engine(client, payload) → (engine, engine_version)` wired into `submit()` and `_write_record()`
+
+**Standing posture on this pipeline (owner note "read access to all records… first pass STRUCTURE ONLY"):**
+- First-pass read: `information_schema.schemata` + `information_schema.tables` + `information_schema.columns` only. Zero row-level access exercised this cycle.
+- Record-level access (`SELECT ... FROM <schema>.<table>`) requires an explicit owner ruling on data admission + record-matrix binding (Canon 3 / Canon 4). Deferred until that ruling.
+<!-- DATA-CONNECTED-PINS -->

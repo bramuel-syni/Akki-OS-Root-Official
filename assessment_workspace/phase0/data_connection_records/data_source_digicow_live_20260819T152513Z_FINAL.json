@@ -1,0 +1,827 @@
+{
+  "kind": "data_connection_record",
+  "at": "2026-08-19T15:25:13.648873+00:00",
+  "source_id": "aws.rds.db-restore-603-cluster.digicow_live",
+  "actor": "owner",
+  "resource": {
+    "region": "eu-west-1",
+    "cluster_arn": "arn:aws:rds:eu-west-1:494452543252:cluster:db-restore-603-cluster",
+    "secret_arn": "arn:aws:secretsmanager:eu-west-1:494452543252:secret:rds/data/api/user/secrets-8rZuVc",
+    "database": "digicow_live"
+  },
+  "engine": "mysql",
+  "engine_version": "8.0.42 (Aurora MySQL)",
+  "channel": "rds-data-api",
+  "link_working": true,
+  "table_count": 125,
+  "top_25_tables": [
+    {
+      "schema": "digicow_live",
+      "table": "ussd_users",
+      "approx_rows": 2285264,
+      "size_mb": "747.7"
+    },
+    {
+      "schema": "digicow_live",
+      "table": "ussd_question_response",
+      "approx_rows": 903293,
+      "size_mb": "132.9"
+    },
+    {
+      "schema": "digicow_live",
+      "table": "ussd_api_session_validation",
+      "approx_rows": 521204,
+      "size_mb": "161.7"
+    },
+    {
+      "schema": "digicow_live",
+      "table": "shortcode_questions_response",
+      "approx_rows": 399800,
+      "size_mb": "67.6"
+    },
+    {
+      "schema": "digicow_live",
+      "table": "post_view",
+      "approx_rows": 293712,
+      "size_mb": "28.6"
+    },
+    {
+      "schema": "digicow_live",
+      "table": "sms_log",
+      "approx_rows": 255867,
+      "size_mb": "67.6"
+    },
+    {
+      "schema": "digicow_live",
+      "table": "user_group_trainings",
+      "approx_rows": 163753,
+      "size_mb": "110.5"
+    },
+    {
+      "schema": "digicow_live",
+      "table": "post_gallery_view",
+      "approx_rows": 117384,
+      "size_mb": "7.5"
+    },
+    {
+      "schema": "digicow_live",
+      "table": "users",
+      "approx_rows": 108323,
+      "size_mb": "26.1"
+    },
+    {
+      "schema": "digicow_live",
+      "table": "single_training_post_view",
+      "approx_rows": 75166,
+      "size_mb": "15.0"
+    },
+    {
+      "schema": "digicow_live",
+      "table": "shortcode_response",
+      "approx_rows": 41018,
+      "size_mb": "6.5"
+    },
+    {
+      "schema": "digicow_live",
+      "table": "tbl_school_data",
+      "approx_rows": 31755,
+      "size_mb": "3.5"
+    },
+    {
+      "schema": "digicow_live",
+      "table": "post_likes",
+      "approx_rows": 27486,
+      "size_mb": "1.5"
+    },
+    {
+      "schema": "digicow_live",
+      "table": "sms_exception_table",
+      "approx_rows": 23070,
+      "size_mb": "19.5"
+    },
+    {
+      "schema": "digicow_live",
+      "table": "user_group_trainings_payment",
+      "approx_rows": 8680,
+      "size_mb": "1.5"
+    },
+    {
+      "schema": "digicow_live",
+      "table": "ussd_options",
+      "approx_rows": 5952,
+      "size_mb": "0.5"
+    },
+    {
+      "schema": "digicow_live",
+      "table": "group_post_view",
+      "approx_rows": 4759,
+      "size_mb": "0.4"
+    },
+    {
+      "schema": "digicow_live",
+      "table": "post_location",
+      "approx_rows": 4732,
+      "size_mb": "0.3"
+    },
+    {
+      "schema": "digicow_live",
+      "table": "delete_log",
+      "approx_rows": 4153,
+      "size_mb": "5.5"
+    },
+    {
+      "schema": "digicow_live",
+      "table": "milk_production",
+      "approx_rows": 2354,
+      "size_mb": "0.2"
+    },
+    {
+      "schema": "digicow_live",
+      "table": "post_locationt_log",
+      "approx_rows": 1775,
+      "size_mb": "0.1"
+    },
+    {
+      "schema": "digicow_live",
+      "table": "ussd_questions",
+      "approx_rows": 1718,
+      "size_mb": "0.2"
+    },
+    {
+      "schema": "digicow_live",
+      "table": "ussd_location",
+      "approx_rows": 1608,
+      "size_mb": "0.1"
+    },
+    {
+      "schema": "digicow_live",
+      "table": "post_training",
+      "approx_rows": 1555,
+      "size_mb": "249.6"
+    },
+    {
+      "schema": "digicow_live",
+      "table": "user_sub_menus",
+      "approx_rows": 1551,
+      "size_mb": "0.1"
+    }
+  ],
+  "top_5_columns": {
+    "digicow_live.ussd_users": [
+      {
+        "column": "id",
+        "type": "int",
+        "nullable": "NO",
+        "key": "PRI",
+        "default": null
+      },
+      {
+        "column": "post_id",
+        "type": "int",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "parent_post_id",
+        "type": "int",
+        "nullable": "YES",
+        "key": "",
+        "default": "0"
+      },
+      {
+        "column": "training_code_id",
+        "type": "int",
+        "nullable": "NO",
+        "key": "MUL",
+        "default": null
+      },
+      {
+        "column": "name",
+        "type": "varchar(100)",
+        "nullable": "NO",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "phone_number",
+        "type": "bigint",
+        "nullable": "NO",
+        "key": "MUL",
+        "default": null
+      },
+      {
+        "column": "county",
+        "type": "varchar(100)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "age",
+        "type": "varchar(100)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "age_group",
+        "type": "varchar(20)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "gender",
+        "type": "varchar(100)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "date_created",
+        "type": "timestamp",
+        "nullable": "NO",
+        "key": "",
+        "default": "CURRENT_TIMESTAMP"
+      },
+      {
+        "column": "duplicate_attempted",
+        "type": "int",
+        "nullable": "YES",
+        "key": "",
+        "default": "1"
+      },
+      {
+        "column": "status",
+        "type": "int",
+        "nullable": "NO",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "terms_conditions",
+        "type": "tinyint(1)",
+        "nullable": "YES",
+        "key": "",
+        "default": "0"
+      },
+      {
+        "column": "identification_number",
+        "type": "varchar(45)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "owner_of_number",
+        "type": "varchar(30)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "cooperative_id",
+        "type": "int",
+        "nullable": "YES",
+        "key": "",
+        "default": "0"
+      },
+      {
+        "column": "cooperative_name",
+        "type": "text",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "route",
+        "type": "text",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "user_from",
+        "type": "tinyint(1)",
+        "nullable": "YES",
+        "key": "",
+        "default": "0"
+      },
+      {
+        "column": "approve_status",
+        "type": "tinyint(1)",
+        "nullable": "YES",
+        "key": "MUL",
+        "default": "0"
+      },
+      {
+        "column": "comments",
+        "type": "text",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "resolution_on_dispute",
+        "type": "text",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "payment_status",
+        "type": "tinyint(1)",
+        "nullable": "YES",
+        "key": "",
+        "default": "0"
+      },
+      {
+        "column": "payment_approve_date",
+        "type": "datetime",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "payment_id",
+        "type": "int",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "payment_date",
+        "type": "datetime",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "dispute_resolved",
+        "type": "tinyint(1)",
+        "nullable": "YES",
+        "key": "",
+        "default": "0"
+      },
+      {
+        "column": "name_flag",
+        "type": "tinyint(1)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "gender_flag",
+        "type": "tinyint(1)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "dairy_farmer",
+        "type": "tinyint(1)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "poultry_farmer",
+        "type": "tinyint(1)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "dairy_poultry_farmer",
+        "type": "tinyint(1)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "value_chain_id",
+        "type": "int",
+        "nullable": "YES",
+        "key": "MUL",
+        "default": null
+      },
+      {
+        "column": "number_of_animals",
+        "type": "varchar(20)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "forage_area",
+        "type": "varchar(20)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "flag_reason",
+        "type": "varchar(255)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "adoption",
+        "type": "text",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "adoption_status",
+        "type": "int",
+        "nullable": "YES",
+        "key": "",
+        "default": "0"
+      },
+      {
+        "column": "adoption_update_datetime",
+        "type": "datetime",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "adoption_commnet",
+        "type": "text",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "adoption_action_datetime",
+        "type": "datetime",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "adoption_image",
+        "type": "varchar(100)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      }
+    ],
+    "digicow_live.ussd_question_response": [
+      {
+        "column": "id",
+        "type": "int",
+        "nullable": "NO",
+        "key": "PRI",
+        "default": null
+      },
+      {
+        "column": "ussd_user_id",
+        "type": "int",
+        "nullable": "YES",
+        "key": "",
+        "default": "0"
+      },
+      {
+        "column": "mobile_number",
+        "type": "varchar(45)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "training_code",
+        "type": "varchar(45)",
+        "nullable": "YES",
+        "key": "MUL",
+        "default": null
+      },
+      {
+        "column": "post_id",
+        "type": "int",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "question_id",
+        "type": "int",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "option_id",
+        "type": "int",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "option_string",
+        "type": "varchar(45)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "created_at",
+        "type": "timestamp",
+        "nullable": "YES",
+        "key": "",
+        "default": "CURRENT_TIMESTAMP"
+      },
+      {
+        "column": "question_string",
+        "type": "text",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "value_chain",
+        "type": "varchar(255)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "number_of_animals",
+        "type": "varchar(255)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "forage_area",
+        "type": "varchar(255)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      }
+    ],
+    "digicow_live.ussd_api_session_validation": [
+      {
+        "column": "id",
+        "type": "int",
+        "nullable": "NO",
+        "key": "PRI",
+        "default": null
+      },
+      {
+        "column": "phoneNumber",
+        "type": "varchar(20)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "sessionId",
+        "type": "text",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "text",
+        "type": "text",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "valid_text",
+        "type": "text",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "step_count",
+        "type": "int",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "last_input",
+        "type": "text",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "valid_option_count",
+        "type": "varchar(45)",
+        "nullable": "YES",
+        "key": "",
+        "default": "0"
+      },
+      {
+        "column": "last_response",
+        "type": "text",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "created_at",
+        "type": "datetime",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "updated_at",
+        "type": "timestamp",
+        "nullable": "YES",
+        "key": "",
+        "default": "CURRENT_TIMESTAMP"
+      }
+    ],
+    "digicow_live.shortcode_questions_response": [
+      {
+        "column": "id",
+        "type": "int",
+        "nullable": "NO",
+        "key": "PRI",
+        "default": null
+      },
+      {
+        "column": "post_id",
+        "type": "int",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "training_code_id",
+        "type": "varchar(10)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "training_code",
+        "type": "varchar(10)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "question_id",
+        "type": "int",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "question",
+        "type": "text",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "farmer_mobile_no",
+        "type": "varchar(20)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "farmer_answer",
+        "type": "varchar(45)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "sms_status",
+        "type": "tinyint",
+        "nullable": "YES",
+        "key": "",
+        "default": "0"
+      },
+      {
+        "column": "reply_datetime",
+        "type": "datetime",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "is_first_question",
+        "type": "tinyint",
+        "nullable": "YES",
+        "key": "",
+        "default": "0"
+      },
+      {
+        "column": "created_at",
+        "type": "datetime",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "updated_at",
+        "type": "timestamp",
+        "nullable": "YES",
+        "key": "",
+        "default": "CURRENT_TIMESTAMP"
+      },
+      {
+        "column": "user_id",
+        "type": "int",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      }
+    ],
+    "digicow_live.post_view": [
+      {
+        "column": "id",
+        "type": "bigint",
+        "nullable": "NO",
+        "key": "PRI",
+        "default": null
+      },
+      {
+        "column": "post_id",
+        "type": "int",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "user_id",
+        "type": "int",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "mobile_number",
+        "type": "varchar(25)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "latitude",
+        "type": "varchar(150)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "longitude",
+        "type": "varchar(150)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "address",
+        "type": "text",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "state",
+        "type": "text",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "type",
+        "type": "varchar(50)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "updated_at",
+        "type": "timestamp",
+        "nullable": "YES",
+        "key": "",
+        "default": "CURRENT_TIMESTAMP"
+      },
+      {
+        "column": "created_at",
+        "type": "datetime",
+        "nullable": "YES",
+        "key": "",
+        "default": "CURRENT_TIMESTAMP"
+      }
+    ]
+  },
+  "errors": [],
+  "ruling_reference": "Owner delivery 2026-08-19 \u00b7 DECISIONS.md \u00b7 FL-P2-23"
+}

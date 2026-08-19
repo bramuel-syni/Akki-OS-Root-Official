@@ -1,0 +1,1128 @@
+{
+  "kind": "data_connection_record",
+  "at": "2026-08-19T15:25:13.648873+00:00",
+  "source_id": "aws.rds.db-restore-603-cluster.ndume",
+  "actor": "owner",
+  "resource": {
+    "region": "eu-west-1",
+    "cluster_arn": "arn:aws:rds:eu-west-1:494452543252:cluster:db-restore-603-cluster",
+    "secret_arn": "arn:aws:secretsmanager:eu-west-1:494452543252:secret:rds/data/api/user/secrets-8rZuVc",
+    "database": "ndume"
+  },
+  "engine": "mysql",
+  "engine_version": "8.0.42 (Aurora MySQL)",
+  "channel": "rds-data-api",
+  "link_working": true,
+  "table_count": 110,
+  "top_25_tables": [
+    {
+      "schema": "ndume",
+      "table": "breedings",
+      "approx_rows": 184348,
+      "size_mb": "155.8"
+    },
+    {
+      "schema": "ndume",
+      "table": "cows",
+      "approx_rows": 131374,
+      "size_mb": "36.6"
+    },
+    {
+      "schema": "ndume",
+      "table": "tbl_farmer_vet",
+      "approx_rows": 75365,
+      "size_mb": "17.5"
+    },
+    {
+      "schema": "ndume",
+      "table": "sms_log",
+      "approx_rows": 57904,
+      "size_mb": "12.5"
+    },
+    {
+      "schema": "ndume",
+      "table": "tbl_school_data",
+      "approx_rows": 31755,
+      "size_mb": "3.5"
+    },
+    {
+      "schema": "ndume",
+      "table": "tbl_school_data_old",
+      "approx_rows": 31702,
+      "size_mb": "4.5"
+    },
+    {
+      "schema": "ndume",
+      "table": "milk_production",
+      "approx_rows": 30315,
+      "size_mb": "3.5"
+    },
+    {
+      "schema": "ndume",
+      "table": "healths",
+      "approx_rows": 24031,
+      "size_mb": "12.4"
+    },
+    {
+      "schema": "ndume",
+      "table": "vet_training_data",
+      "approx_rows": 10921,
+      "size_mb": "1.5"
+    },
+    {
+      "schema": "ndume",
+      "table": "breedings_straw_logs",
+      "approx_rows": 5887,
+      "size_mb": "0.5"
+    },
+    {
+      "schema": "ndume",
+      "table": "tbl_vet",
+      "approx_rows": 4166,
+      "size_mb": "1.5"
+    },
+    {
+      "schema": "ndume",
+      "table": "personal_access_tokens",
+      "approx_rows": 3887,
+      "size_mb": "2.9"
+    },
+    {
+      "schema": "ndume",
+      "table": "vet_training_location",
+      "approx_rows": 2954,
+      "size_mb": "0.3"
+    },
+    {
+      "schema": "ndume",
+      "table": "milk_sales",
+      "approx_rows": 2923,
+      "size_mb": "0.3"
+    },
+    {
+      "schema": "ndume",
+      "table": "Issued_Semen",
+      "approx_rows": 1914,
+      "size_mb": "0.3"
+    },
+    {
+      "schema": "ndume",
+      "table": "feeding",
+      "approx_rows": 1545,
+      "size_mb": "0.2"
+    },
+    {
+      "schema": "ndume",
+      "table": "calf_milk",
+      "approx_rows": 1323,
+      "size_mb": "0.1"
+    },
+    {
+      "schema": "ndume",
+      "table": "withdraw_list",
+      "approx_rows": 753,
+      "size_mb": "0.1"
+    },
+    {
+      "schema": "ndume",
+      "table": "tbl_farmer_clients",
+      "approx_rows": 605,
+      "size_mb": "0.1"
+    },
+    {
+      "schema": "ndume",
+      "table": "Semen_issuance",
+      "approx_rows": 603,
+      "size_mb": "0.0"
+    },
+    {
+      "schema": "ndume",
+      "table": "other_expenses",
+      "approx_rows": 595,
+      "size_mb": "0.1"
+    },
+    {
+      "schema": "ndume",
+      "table": "milk_payments",
+      "approx_rows": 529,
+      "size_mb": "0.1"
+    },
+    {
+      "schema": "ndume",
+      "table": "semen_issue_notification",
+      "approx_rows": 509,
+      "size_mb": "0.2"
+    },
+    {
+      "schema": "ndume",
+      "table": "calves",
+      "approx_rows": 483,
+      "size_mb": "0.1"
+    },
+    {
+      "schema": "ndume",
+      "table": "calving",
+      "approx_rows": 473,
+      "size_mb": "0.1"
+    }
+  ],
+  "top_5_columns": {
+    "ndume.breedings": [
+      {
+        "column": "id",
+        "type": "bigint unsigned",
+        "nullable": "NO",
+        "key": "PRI",
+        "default": null
+      },
+      {
+        "column": "farmer_vet_id",
+        "type": "int",
+        "nullable": "YES",
+        "key": "MUL",
+        "default": null
+      },
+      {
+        "column": "sid",
+        "type": "varchar(20)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "firebase_id",
+        "type": "varchar(100)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "bull_code",
+        "type": "varchar(50)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "bull_name",
+        "type": "varchar(150)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "cost",
+        "type": "varchar(50)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "cow_id",
+        "type": "varchar(20)",
+        "nullable": "YES",
+        "key": "MUL",
+        "default": null
+      },
+      {
+        "column": "cow_name",
+        "type": "varchar(50)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "drying_date",
+        "type": "datetime",
+        "nullable": "YES",
+        "key": "MUL",
+        "default": null
+      },
+      {
+        "column": "expected_date_of_birth",
+        "type": "datetime",
+        "nullable": "YES",
+        "key": "MUL",
+        "default": null
+      },
+      {
+        "column": "expected_repeat_date",
+        "type": "datetime",
+        "nullable": "YES",
+        "key": "MUL",
+        "default": null
+      },
+      {
+        "column": "farmer_name",
+        "type": "varchar(150)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "mobile",
+        "type": "varchar(20)",
+        "nullable": "YES",
+        "key": "MUL",
+        "default": null
+      },
+      {
+        "column": "no_straw",
+        "type": "varchar(25)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "pg_status",
+        "type": "varchar(2)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "pregnancy_date",
+        "type": "datetime",
+        "nullable": "YES",
+        "key": "MUL",
+        "default": null
+      },
+      {
+        "column": "record_type",
+        "type": "varchar(25)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "repeats",
+        "type": "varchar(25)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "semen_type",
+        "type": "varchar(50)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "sex_type",
+        "type": "varchar(25)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "source_of_semen",
+        "type": "varchar(20)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "straw_breed",
+        "type": "varchar(25)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "strimingup_date",
+        "type": "datetime",
+        "nullable": "YES",
+        "key": "MUL",
+        "default": null
+      },
+      {
+        "column": "sync_at",
+        "type": "datetime",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "vet_id",
+        "type": "varchar(50)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "vet_name",
+        "type": "varchar(255)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "date_dt",
+        "type": "date",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "is_verified",
+        "type": "int",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "wallet_amount",
+        "type": "double",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "is_paid",
+        "type": "int",
+        "nullable": "NO",
+        "key": "",
+        "default": "0"
+      },
+      {
+        "column": "withdraw_id",
+        "type": "int",
+        "nullable": "NO",
+        "key": "",
+        "default": "0"
+      },
+      {
+        "column": "firebase_json",
+        "type": "json",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "verified_by",
+        "type": "varchar(100)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "disqualified_comment",
+        "type": "text",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "first_heat",
+        "type": "datetime",
+        "nullable": "YES",
+        "key": "MUL",
+        "default": null
+      },
+      {
+        "column": "second_heat",
+        "type": "datetime",
+        "nullable": "YES",
+        "key": "MUL",
+        "default": null
+      },
+      {
+        "column": "created_at",
+        "type": "timestamp",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "updated_at",
+        "type": "timestamp",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "deleted_at",
+        "type": "timestamp",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "verified_datetime",
+        "type": "datetime",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "breed1",
+        "type": "int",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "breed2",
+        "type": "int",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "sms",
+        "type": "int",
+        "nullable": "YES",
+        "key": "",
+        "default": "0"
+      },
+      {
+        "column": "call",
+        "type": "int",
+        "nullable": "YES",
+        "key": "",
+        "default": "0"
+      },
+      {
+        "column": "pg_conform_datetime",
+        "type": "date",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "is_invoice",
+        "type": "int",
+        "nullable": "YES",
+        "key": "",
+        "default": "0"
+      },
+      {
+        "column": "heatsign_datetime",
+        "type": "datetime",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "ai_time",
+        "type": "varchar(15)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "sold_cow_id",
+        "type": "int",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "county_subsidized",
+        "type": "tinyint(1)",
+        "nullable": "YES",
+        "key": "",
+        "default": "0"
+      },
+      {
+        "column": "cumulative_cost",
+        "type": "int",
+        "nullable": "YES",
+        "key": "",
+        "default": "0"
+      },
+      {
+        "column": "is_active",
+        "type": "tinyint(1)",
+        "nullable": "YES",
+        "key": "",
+        "default": "0"
+      }
+    ],
+    "ndume.cows": [
+      {
+        "column": "id",
+        "type": "bigint unsigned",
+        "nullable": "NO",
+        "key": "PRI",
+        "default": null
+      },
+      {
+        "column": "firebase_id",
+        "type": "varchar(100)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "sid",
+        "type": "varchar(20)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "breed_id",
+        "type": "int",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "cow_breeding_1",
+        "type": "int",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "cow_breeding_2",
+        "type": "int",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "group_id",
+        "type": "varchar(20)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "mobile_number",
+        "type": "varchar(20)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "title",
+        "type": "varchar(50)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "ear_code",
+        "type": "varchar(50)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "date_of_birth",
+        "type": "varchar(50)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "calving_lactation",
+        "type": "varchar(10)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "dam",
+        "type": "varchar(100)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "dam_code",
+        "type": "varchar(100)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "dam_father",
+        "type": "varchar(100)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "dam_father_code",
+        "type": "varchar(100)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "dam_id",
+        "type": "varchar(100)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "dam_mother",
+        "type": "varchar(100)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "dam_mother_code",
+        "type": "varchar(20)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "sire",
+        "type": "varchar(100)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "sire_code",
+        "type": "varchar(200)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "sire_father",
+        "type": "varchar(100)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "sire_father_code",
+        "type": "varchar(50)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "sire_mother",
+        "type": "varchar(100)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "sire_mother_code",
+        "type": "varchar(50)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "status",
+        "type": "varchar(20)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "insert_from",
+        "type": "varchar(45)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "sync_at",
+        "type": "varchar(50)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "firebase_json",
+        "type": "json",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "created_at",
+        "type": "timestamp",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "updated_at",
+        "type": "timestamp",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "deleted_at",
+        "type": "timestamp",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "past_owner_phone_number",
+        "type": "varchar(20)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "past_cow_id",
+        "type": "int",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      }
+    ],
+    "ndume.tbl_farmer_vet": [
+      {
+        "column": "farmer_vet_id",
+        "type": "int",
+        "nullable": "NO",
+        "key": "PRI",
+        "default": null
+      },
+      {
+        "column": "farmer_name",
+        "type": "varchar(255)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "farmer_type",
+        "type": "varchar(100)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "farmer_id",
+        "type": "text",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "membership_num",
+        "type": "text",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "mobile_number",
+        "type": "varchar(25)",
+        "nullable": "NO",
+        "key": "MUL",
+        "default": null
+      },
+      {
+        "column": "local",
+        "type": "varchar(256)",
+        "nullable": "YES",
+        "key": "",
+        "default": " "
+      },
+      {
+        "column": "village",
+        "type": "varchar(256)",
+        "nullable": "YES",
+        "key": "",
+        "default": " "
+      },
+      {
+        "column": "vet_id",
+        "type": "int",
+        "nullable": "NO",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "county",
+        "type": "varchar(50)",
+        "nullable": "NO",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "subcounty",
+        "type": "varchar(50)",
+        "nullable": "NO",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "ward",
+        "type": "varchar(50)",
+        "nullable": "NO",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "type_of_farming",
+        "type": "varchar(50)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "school_data_id",
+        "type": "int",
+        "nullable": "NO",
+        "key": "",
+        "default": "0"
+      },
+      {
+        "column": "num_of_animal",
+        "type": "int",
+        "nullable": "YES",
+        "key": "",
+        "default": "0"
+      },
+      {
+        "column": "payment_mode",
+        "type": "int",
+        "nullable": "NO",
+        "key": "",
+        "default": "0"
+      },
+      {
+        "column": "financial",
+        "type": "int",
+        "nullable": "YES",
+        "key": "",
+        "default": "0"
+      },
+      {
+        "column": "status",
+        "type": "int",
+        "nullable": "NO",
+        "key": "",
+        "default": "0"
+      },
+      {
+        "column": "verified",
+        "type": "int",
+        "nullable": "NO",
+        "key": "",
+        "default": "0"
+      },
+      {
+        "column": "start_date",
+        "type": "date",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "end_date",
+        "type": "date",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "paid_amount",
+        "type": "int",
+        "nullable": "NO",
+        "key": "",
+        "default": "0"
+      },
+      {
+        "column": "num_of_visit",
+        "type": "int",
+        "nullable": "NO",
+        "key": "",
+        "default": "0"
+      },
+      {
+        "column": "balance",
+        "type": "int",
+        "nullable": "NO",
+        "key": "",
+        "default": "0"
+      },
+      {
+        "column": "cooperative_name",
+        "type": "varchar(50)",
+        "nullable": "NO",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "cop_mobilenumber",
+        "type": "varchar(20)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "group_name",
+        "type": "varchar(50)",
+        "nullable": "NO",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "datetime",
+        "type": "timestamp",
+        "nullable": "NO",
+        "key": "",
+        "default": "CURRENT_TIMESTAMP"
+      },
+      {
+        "column": "gender",
+        "type": "varchar(20)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      }
+    ],
+    "ndume.sms_log": [
+      {
+        "column": "id",
+        "type": "bigint unsigned",
+        "nullable": "NO",
+        "key": "PRI",
+        "default": null
+      },
+      {
+        "column": "county_name",
+        "type": "varchar(100)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "subcounty",
+        "type": "varchar(100)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "ward",
+        "type": "varchar(100)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "farmer_name",
+        "type": "varchar(100)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "phone_number",
+        "type": "bigint",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "sms_sent",
+        "type": "longtext",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "sms_id",
+        "type": "int",
+        "nullable": "NO",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "clints_id",
+        "type": "int",
+        "nullable": "NO",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "created_at",
+        "type": "timestamp",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "updated_at",
+        "type": "timestamp",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      }
+    ],
+    "ndume.tbl_school_data": [
+      {
+        "column": "id",
+        "type": "int",
+        "nullable": "NO",
+        "key": "PRI",
+        "default": null
+      },
+      {
+        "column": "name",
+        "type": "varchar(100)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "latitude",
+        "type": "varchar(50)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "longitude",
+        "type": "varchar(50)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "county",
+        "type": "varchar(256)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "subcounty",
+        "type": "varchar(256)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "ward",
+        "type": "varchar(256)",
+        "nullable": "YES",
+        "key": "",
+        "default": null
+      },
+      {
+        "column": "status",
+        "type": "int",
+        "nullable": "NO",
+        "key": "",
+        "default": "0"
+      }
+    ]
+  },
+  "errors": [],
+  "ruling_reference": "Owner delivery 2026-08-19 \u00b7 DECISIONS.md \u00b7 FL-P2-23"
+}

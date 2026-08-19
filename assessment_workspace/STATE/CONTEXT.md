@@ -1,6 +1,54 @@
 # CONTEXT.md — Running narrative
 
-**Last updated:** 2026-08-18 · Owner Phase-0 Execute cycle CLOSED · bootstrap credential retired · **leak neutralized 2026-08-18T18:16:47Z** · hardening attested (external probe: password_refused) · acceptance held → escalated to vendor · commissioning record `commissioning_akki-vm_20260818T181923Z_FINAL.json` sha256 `7e08cdb4e4bb5091a3c4687e3af7aab6936de6f405dd806c3756f50fee70bf81` · data_movement_permitted=false · programme/track-a HEAD `f91246d` · 143→147 gating tests green (108→113 backend python: +2 sudo_invocation, +3 harden.sh dropin) · secret sweep hit_count=0 on /app, /tmp, /var/log/supervisor, /root, both git worktrees, both git histories.
+**Last updated:** 2026-08-19 · Owner Data-API delivery cycle CLOSED · first DATA connection LIVE for `digicow_live` + `ndume` on cluster `db-restore-603-cluster` (eu-west-1) via RDS Data API · engine detected `aurora-mysql` (MySQL 8.0.42 / Aurora MySQL 3.10.3) · 235 tables inventoried (125 + 110), top-25 by rows per DB banked with approximate row counts (`information_schema.tables`), 5 structural reads per DB (column names + types only — **zero record contents read**) · programme/track-a HEAD `746dece` (was `f87b769`) · assessment-repo HEAD pending this-cycle commit (was `e2b5efe`) · engine-detect production defect fixed tests-first (FL-P2-24 CLOSED · +7 gating assertions, 141 total backend cohort green, 0 regressions) · secret sweep hit_count=0 on /app, /tmp, /var/log/supervisor, /root, /etc, both git worktrees, both git histories, /root/.emergent/tool_outputs, /root/.emergent/automation_output.
+
+
+## COMPACTION-RECOVERY + Owner Data-API delivery cycle · 2026-08-19
+
+**Compaction / restart occurred mid-execution** of the aurora-inventory forced-engine retry (background bash pid=989 from the prior cycle). Cold-read from disk performed against STATE/ before touching anything.
+
+**On disk at recovery start (verified):**
+- `phase0/drill_receipts/20260819T152331Z_aurora_connect_and_inventory.log` — first pipeline pass over the production `services.connect.rds_data_submit` path against the owner's ARNs. SELECT 1 returned YES for BOTH databases (`digicow_live`, `ndume`); production engine detector returned `engine=unknown` from `version='8.0.42'` (defect: no engine-probe existed) → `table_count=0` recorded because inventory branch used engine-typed SQL. Initial records superseded by the retry.
+- `phase0/drill_receipts/20260819T152509Z_aurora_inventory_mysql.log` — retry through a throwaway script that forced `engine=mysql` and issued `SELECT @@version, @@version_comment, @@aurora_version` (engine probe) before the inventory SQL. Captured: `version='8.0.42'`, `version_comment='6252a59a'`, `aurora_version='3.10.3'`. digicow_live: 125 tables (top-1 = `ussd_users` ≈ 2,285,264 rows / 747.7 MB). ndume: 110 tables (top-1 = `breedings` ≈ 184,348 rows / 155.8 MB). Full top-25 by rows per DB + 5 structural reads per DB (column names + types only, from `information_schema.columns`; **no record contents were read** — that waits on a data-handling agreement per owner note "read access to all records… **first pass STRUCTURE ONLY**").
+- `phase0/data_connection_records/data_source_{digicow_live,ndume}_20260819T152513Z_FINAL.json` — final ledgered records, sha256-stamped, engine=`mysql` (throwaway's classification; production now reads this as `aurora-mysql` after this cycle's fix), engine_version="8.0.42 (Aurora MySQL)".
+- `/app/backend/estate_keys/data_sources/aws_iam_user_AKIAXGH5.json` mode 0600, `git check-ignore -v` exit 0 (gitignored via `backend/estate_keys/.gitignore`).
+- The throwaway inventory-retry script was garbage-collected before recovery (`/tmp/tmp*.sh` gone). The receipt log itself is the artifact.
+
+**Owner Data-API values (from the recovery message; matched byte-for-byte against on-disk FINAL JSON records):**
+- region: `eu-west-1`
+- cluster_arn: `arn:aws:rds:eu-west-1:494452543252:cluster:db-restore-603-cluster`
+- secret_arn: `arn:aws:secretsmanager:eu-west-1:494452543252:secret:rds/data/api/user/secrets-8rZuVc`
+- databases: `digicow_live`, `ndume`
+- owner note: **"read access to all records in those two databases"** (this first pass STRUCTURE ONLY; record-level access deferred pending owner's data-handling agreement — recorded as an honest posture, not a refusal).
+
+**Sweep at recovery (before any code change) — hit_count = 0:**
+- Full-length AWS access key across `/app`, `/tmp`, `/var/log/supervisor`, `/root`, `/etc`, both git worktrees, both git histories, `/root/.emergent/tool_outputs/*`, `/root/.emergent/automation_output/*`, `/app/assessment_workspace/phase0/**` — all **0** hits (excluding the custody file which is expected and mode-0600 + git-ignored).
+- Full-length AWS secret access key across the same axes — **0** hits (custody file excluded).
+
+**Cycle executed post-recovery (tests-first, with right-reason receipt banked BEFORE implementation):**
+
+1. **FL-P2-24 OPENED** recording the fact that the throwaway retry script bypassed the production `services.connect.rds_data_submit.submit()` path. Not silently reconciled — the honest record shows the retry ran via a throwaway. The inventory receipts are trusted because they measured a real cluster and the row counts + column shapes are `information_schema` output, but the honest ledger records that the pipeline that produced them was not the production path.
+2. **Root cause named:** `rds_data_submit`'s engine detection never probed `@@aurora_version`. It hardcoded `engine='aurora'` and had no `engine_version` field, so an off-band wrapper's classification `engine='unknown'` on the real `8.0.42` cluster went unfixed and the inventory retry had to bypass. Fixed tests-first this cycle:
+   - Right-reason failure receipt: `phase0/drill_receipts/20260819T153408Z_engine_detect_right_reason_failure.log` — 7 new engine-detect tests fail on `AttributeError: _probe_engine absent` + hardcoded `engine='aurora'`; 17 pre-existing rds_data tests remain green.
+   - Track-a commits (tests-first, then implementation):
+     - `8c9304d` Phase 1 tests-first · 7 new engine-detect gating assertions using the REAL captured strings (`version='8.0.42'`, `version_comment='6252a59a'`, `aurora_version='3.10.3'`) — proves engine must classify as `aurora-mysql`, engine_version must carry both the MySQL version and the Aurora version.
+     - `746dece` Phase 1 implementation · `_probe_engine(client, payload) → (engine, engine_version)` with MySQL-shape probe (`SELECT @@version, @@version_comment, @@aurora_version`) then PostgreSQL-shape fallback (`SELECT version(), aurora_version()`), no exception escapes, `("unknown", None)` if both fail. `submit()` wires the probe result into the response and the persisted record; failure branch records `engine='unknown'` since the probe never fires.
+   - Green receipt: `phase0/drill_receipts/20260819T154016Z_engine_detect_green.log` — 24/24 rds_data_submit green (17 prior + 7 engine-detect) + 106/106 cycle cohort green (ip_allowlist_middleware + estate_keys_and_connect_estate + credentials_paste_parser + rds_data_submit + remote_harden_sudo_invocation + harden_sh_defeats_include_precedence + connect_gpu_acceptance_wired + connect_gpu_pipeline + connect_gpu_scope_S_or_M). **Zero regressions.**
+   - **FL-P2-24 CLOSED same cycle** citing commit `746dece`. The next run against this cluster now needs no bypass; the production path classifies `8.0.42 + aurora_version=3.10.3` as `aurora-mysql`.
+3. **STATE refreshed** (this note + DECISIONS.md entry + PINS.md DATA CONNECTED block).
+4. **Assessment-repo master commit** carrying STATE + FINAL JSONs + drill receipts (right-reason + green + inventory + pre-inventory pipeline).
+
+**Standing invariants unchanged this cycle:**
+- `SPINE_ALLOWED_IPS=34.16.56.64` unmodified. Owner's client `/32` still not received; FL-P2-09 remains OPEN.
+- Pod egress IP still `35.225.230.28` from the prior cycle (rotation continues; irrelevant to Data API — HTTPS out via boto3 with no VPC peering).
+- Estate ed25519 private key mode 0600, never committed, never in return values.
+- No push in either direction (Owner Clarification 1 unchanged).
+- No LLM transit for creds: `test_module_declares_no_llm_or_forbidden_libraries` remains green on `rds_data_submit`; `_probe_engine` calls only `client.execute_statement` (boto3), no external HTTP client, no shield, no LLM SDK, no logging of payload values.
+- The five previously-superseded records (`data_source_synthetic-nonexistent_*.json`, `data_source_x_*.json`, `data_source_akki-aurora_20260818T201249Z.json` from earlier cycles' failure-branch dry runs) are retained on disk as their own honest history.
+
+**Not-yet-live (deferred to next cycle, honestly noted, unchanged from prior):**
+- Registry `DATA CONNECTED` tab still renders the honest-empty-state sentence in the current pod. The two `digicow_live` / `ndume` records are on disk and PINS-referenced, but the frontend wiring that would render them as record rows is the P1 A4-Registry-honest-state increment (deferred, sized separately, next cycle).
+- Record-level access (`SELECT * FROM …`) is NOT exercised this cycle; the pass read `information_schema` only. Awaiting owner's data-handling agreement to admit any records into the estate.
 
 
 ## Owner Phase-0 Execute cycle · 2026-08-18 · bootstrap credentials received via channel
