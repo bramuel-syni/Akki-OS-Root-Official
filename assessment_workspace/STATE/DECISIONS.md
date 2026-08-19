@@ -539,3 +539,37 @@ Answered in the channel: feasible, best-fit for our egress-rotation shape (HTTPS
 5. Simple grammar per standing ruling — no multi-provider abstraction; Aurora Data API shape only. If engine turns out non-Aurora, adjust then.
 
 **Fidelity ledger row: FL-P2-23 OPEN** — first data connection over RDS Data API; awaiting engine confirmation and standing creds from owner to fire the pipeline live.
+
+
+---
+
+### Owner delivery · 2026-08-19 (channel) · AWS creds intake + IAM policy finding
+
+Owner delivered AWS IAM credentials via a public CSV URL. Intake handled with the same env-grade custody as the bootstrap password (in-process for the run, then env unset). File turned out to be an **XLSX** despite the `.csv` extension (magic bytes `PK\x03\x04` + `[Content_Types].xml`) — parsed with openpyxl, then shredded.
+
+**STS confirmation** (non-secret, safe to log):
+- account: `494452543252`
+- iam user arn: `arn:aws:iam::494452543252:user/api_user`
+- access key prefix (redacted reference): `AKIAXGH5`
+- secret sha256[:12] (redaction ref only): `932e302672a8`
+
+**Discovery result — IAM POLICY BLOCK.** Across 18 regions, `rds:DescribeDBClusters` returned `AccessDenied` in every enabled region (`InvalidClientTokenId` for opt-in-required regions af-south-1 / eu-south-1; `ConnectTimeoutError` for me-south-1 opt-in). `rds:DescribeDBInstances` same. **Zero clusters visible**, zero instances visible, zero secrets locatable — the IAM user `api_user` cannot enumerate RDS/Aurora from any region.
+
+This is not a build failure — it is a policy scope issue on the owner's side. Per the standing rule (record the exact AccessDenied action → report back to the owner, not a failure):
+- `rds:DescribeDBClusters` DENIED · every region
+- `rds:DescribeDBInstances` DENIED · every region
+- (never reached) `secretsmanager:ListSecrets` — no cluster to scope to
+
+**One-line owner fix (two paths, either works):**
+1. Attach a minimal read policy to `api_user` covering `rds:DescribeDBClusters` + `secretsmanager:ListSecrets` (read-only, region-scoped or account-wide). We'll then discover + connect on the next run.
+2. Just paste the four values into the single Connect panel: `region`, `cluster_arn`, `secret_arn`, and (optionally) `database`. The rds_data_submit path skips discovery when the ARNs are provided directly.
+
+**Custody proven this cycle:**
+- Standing creds file: `/app/backend/estate_keys/data_sources/aws_iam_user_AKIAXGH5.json` mode `0o600`
+- `git check-ignore` on that path → exit 0 (git-ignored)
+- Sweep for the secret across /app, /tmp, /var/log/supervisor, /root, /etc, both git worktrees, and both git histories → **hit_count = 0** unexpected leaks (only the custody file, expected)
+- The downloaded XLSX was shredded inside the Python process; no `/tmp/aws_*` residues remain
+
+**Fidelity ledger row: FL-P2-23 stays OPEN** pending the IAM policy widen or the four-value paste from the owner.
+
+Receipt: `phase0/drill_receipts/20260819T131235Z_aws_intake_discover.log`
