@@ -866,3 +866,119 @@ Status dashboard delta (§3 of `notes/status_and_wave_plan.md`):
 Hold posture: W2 CLOSED; **stand-by for owner "W3 go"** per the sprint sequence (W3 = Chokepoint · masking tiers · exit gate · residency · scope L).
 
 
+---
+
+### Owner Order · 2026-08-25 (channel) · **W3 GO** — Chokepoint · masking · exit gate · residency · Data Shield surface
+
+Verbatim (owner channel):
+
+> "Proceed" = W3 GO — log in DECISIONS.md (dated, source: owner channel). Execute W3 exactly as scoped in notes/status_and_wave_plan.md: Chokepoint · masking tiers · exit gate · residency (Doc 01/02 rows + CA1-007 dry-run preview + CA1-N4 residency) + the Data Shield surface. L-class.
+>
+> Ground first, build second: re-read the exact Doc 01/02 register rows and the CA1-007/N4 amendment text before writing any test — the register is the record. Key mechanisms per the plan: (a) the single outbound chokepoint enforced in THIS estate (reuse-grade pull from the core repos' shield fabric where the reuse map grades it LIFT/ADAPT — llm_router chokepoint, egress firewall, AST gate — adapted to this backend); (b) masking tiers (de-identification levels per Doc 02, applied at crossing); (c) exit gate (no path out skips the mask — the outbound seam refuses unmasked egress); (d) CA1-007 dry-run preview (a crossing can be previewed without committing — REFERENCE-NOT-COPY applies: the preview references, never copies); (e) CA1-N4 residency (region binding on where data may transit/rest — we have real facts: eu-west-1 for the Aurora cluster, the VM's location); (f) Data Shield surface per the v7 oracle EXACTLY (T1) — estate group → Shield, rendering real crossing facts and rules in force, drawn-not-blank where unmeasured.
+>
+> Constraints and cautions:
+> - REFERENCE-NOT-COPY is a load-bearing gate on every crossing render — test it per surface.
+> - Real facts only: the estate's actual crossings to date are few (Data API calls, seam commands) — the Shield surface renders those honestly; no invented crossing volumes.
+> - The chokepoint must cover the estate's REAL outbound paths as they exist today: the RDS Data API calls and the compute-seam SSH commands are our current crossings — bring them under the chokepoint's discipline (ledgered, masked where personal data could transit, receipted) BEFORE any future LLM path lands. If full masking of SQL results is premature (we read structure only so far), enforce and test the gate at the boundary that exists and name the deferred part.
+> - Tests-first with right-reason receipts per mechanism; reuse pulls cited (repo/path → destination); scope watch: L-class — if it grows toward XL, stop and report.
+> - Surface: v7 oracle exact (GOV/Shield fabric ~34kB in the HTML — extract styles/copy verbatim); role visibility per the brief.
+>
+> Deliverables: register rows addressed (IDs + count), per-mechanism test delta + receipts, reuse pulls used, screenshots (Shield surface + a dry-run preview walk + a refused unmasked egress), LOC vs L-class, commit SHAs, dashboard update. Then hold for owner go on W4. Update STATE/ throughout — this is a long wave; commit checkpoints as sections land, never end a session with uncommitted green work.
+
+Binding effects:
+1. **FL-P2-27 · W3 OPENED.** Scope class **L** (from `notes/status_and_wave_plan.md` W3 row); if the wave grows toward XL, STOP and report.
+2. **Grounding first**: re-read Doc 01 · Doc 02 rows + CA1-007 (Doc 02 dry-run) + CA1-N4 (residency) exact text BEFORE any test is written. The register is the record.
+3. **Six mechanisms in scope** (a-f above). Reuse pulls cited per file (repo/path → destination).
+4. **Real crossings today**: (i) RDS Data API calls (`services.connect.rds_data_submit.submit()` HTTPS out via boto3 to eu-west-1); (ii) compute-seam `execute()` (SSH out to akki-vm). No LLM path exists. Chokepoint discipline covers these BEFORE any LLM path lands. Where SQL-result masking is premature (structure-only reads so far), enforce and test the gate at the boundary that exists AND name the deferred part.
+5. **CA1-007 dry-run preview** — a crossing can be previewed without committing; REFERENCE-NOT-COPY applies.
+6. **CA1-N4 residency** — region binding; refuse connect at parse if region not in allowlist; real facts on record: Aurora cluster in `eu-west-1`; akki-vm's location per commissioning record.
+7. **Data Shield surface** — v7 oracle EXACT per T1; extract styles/copy verbatim from `fixtures/RMS_AI_Akki_Prototype_v7_Standalone.html` GOV/Shield fabric.
+8. **Checkpoint commits** — never end a session with uncommitted green work. Commit each material section on landing (chokepoint core · masking tiers · exit gate · dry-run preview · residency · Shield surface · close).
+9. Standing rules re-affirmed: tests-first + right-reason receipts · v7 oracle exact for surface (T1) · real facts only + drawn-not-blank · REFERENCE-NOT-COPY design law · no push · no secrets in channel/logs · STATE refreshed each material step · escalate-and-stop on conflict or scope growth past L.
+
+Post-W3 hold: **stand-by for owner "W4 go"** (Northena direction/scope).
+
+
+---
+
+### Owner Cycle Report · 2026-08-25 · **W3 CLOSED** — Chokepoint · masking tiers · exit gate · residency · Data Shield surface shipped
+
+Register rows addressed by this cycle: **~29** across Doc 01 + Doc 02 + CA1-007 + CA1-N4 (full list in `notes/w3_grounding_brief.md`). Rows CLOSED to **DONE** by W3 delivery:
+
+- **Doc01-001 · A5.1** · Single chokepoint (one function names outbound; every crossing transits it) — **DONE** (`services.chokepoint.register_crossing`).
+- **Doc01-005 · A5.5** · Closed outbound network except at crossing (network allowlist + static AST build gate) — **DONE** (allowlist config + `test_chokepoint_registers_all_crossings.py` AST negative-scan across boto3/paramiko/fabric/openai/anthropic/google.genai).
+- **Doc01-006 · A5.6** · Structural, not policed (silence is not admissible; missing region refused) — **DONE**.
+- **Doc01-007 · A5.7** · Trust receipt (credential never on receipt; one authoritative record; tenant-bound) — **DONE** (`phase0/crossing_receipts/rcp-<hex>.json`; `CrossingReceipt` dataclass has no credential fields; `payload_shape` scrubs credential-shaped keys on emission).
+- **Doc01-010 · A6** · Negative-scan test exists and runs — **DONE**.
+- **Doc01-013 · A6** · Allowlist + build gate both active — **DONE** (governed positive allowlists + AST test).
+- **Doc01-014 · A6** · Credential never varies behaviour — **DONE** (structurally impossible in `CrossingReceipt`).
+- **Doc02-001 · A5.1** · Confidentiality list extends the tenant entity set — **PARTIAL** (allowlist scaffolding lives; row-bearing tiers t1/t2/t3 declared but admissible_under_env=[] until tenant catalogue lands in a future wave).
+- **Doc02-003 · A5.3** · Review shows reach against measured material only — **DONE** (dry-run walks receipt log; honest_gap sentence names the unmeasured state).
+- **Doc02-020 · CA1-007** · Dry-run preview between Review and Adopt — **DONE** (`POST /api/shield/dry-run` + `DryRunPanel` surface).
+- **CA1-N4** · Residency enforcement (region binding on where data may transit) — **DONE** (`residency_allowlist.v0.json` + `services.chokepoint.residency` + refusal grammar).
+
+Rows explicitly deferred beyond W3 (documented, not silently absent):
+- Doc01-002 · A5.2 custody sequence (de-identify → invoke → re-identify) — needs the LLM chokepoint which does not exist yet (W6+ · admissible after tenant catalogue).
+- Doc01-003 · A5.3 per-request envelope dies with the call — same dependency.
+- Doc01-016..019 · B-part intent/meaning/objective extraction — belongs to W4 (Northena) / W5 (Solver · Shrinkage · Memory).
+- Doc02-011..016 · Dual-file split + independent assessment + re-association seam — awaits the LLM chokepoint and its two-file handling stage.
+
+Per-mechanism test delta and reuse pulls (owner-mandated):
+
+| Mechanism | Backend LOC | Tests | Right-reason receipt | Reuse pulls |
+|-----------|-------------|-------|----------------------|-------------|
+| (a) Single chokepoint | 208 | 14 invariants | `phase0/drill_receipts/20260825T182332Z_w3_chokepoint_right_reason_failure.log` | ADAPT `RMS-IQ-Core-2/backend/services/synisense/shield/egress_firewall.py` + `exceptions.py` → new `services.chokepoint`; LIFT `Akki-Executive-Core/backend/services/privacy_wall.py` shape reference. |
+| (b) Masking tiers | 77 + 63 (JSON) | 3 in chokepoint suite | (same) | ADAPT `RMS-IQ-Core-2/backend/services/synisense/shield/masking_tier.py` → `services.chokepoint.masking_tier` (P1-R5 positive-allowlist pattern reused verbatim). |
+| (c) Exit gate | AST scan in test file | 3 AST invariants | (same) | ADAPT `egress_firewall.py`'s static-AST discipline → `test_no_boto3_import_outside_chokepoint`, `test_no_paramiko_or_ssh_exec_outside_chokepoint_and_compute_seam`, `test_no_llm_sdk_anywhere_in_backend`. |
+| (d) CA1-007 dry-run | 169 | 7 invariants | `phase0/drill_receipts/20260825T183103Z_w3_dry_run_right_reason_failure.log` | BUILD (Addendum §2 says "no equivalent surface exists"). |
+| (e) CA1-N4 residency | 57 + 24 (JSON) | folded into chokepoint suite (3 invariants) | (in chokepoint receipt) | BUILD; per-source-region facts already on record (Doc 9 already captured region at Connect). |
+| (f) Data Shield surface | 508 (frontend) | 8 gating (5 file-scan + 3 live-HTTP) | `phase0/drill_receipts/20260825T183534Z_w3_shield_frontend_right_reason_failure.log` | ADAPT `Akki-Executive-Core/frontend/src/components/synisense/` shape; v7 oracle fabric extracted verbatim from `prototype/prototype.html` offset 334300-337500. |
+
+Track-a commits on `programme/track-a`:
+- `ebacd65` · Section B: chokepoint core + masking + residency + exit-gate AST.
+- `1a57314` · Sections C+D: dry-run + Shield HTTP router mounted.
+- `15dbfc1` · Data Shield surface at /shield + full W3 cohort green.
+- Plus the W3-open notes commit on `master`: `103a208`.
+
+Green receipts (banked in order):
+- `phase0/drill_receipts/20260825T182938Z_w3_chokepoint_green.log` (Section B · 162/162).
+- `phase0/drill_receipts/20260825T183300Z_w3_dry_run_and_router_green.log` (Sections C+D · 169/169).
+- `phase0/drill_receipts/20260825T183814Z_w3_close_green.log` (Section E + close · 250/250 = 169 backend + 69 frontend rehome + 12 allowlist).
+
+Screenshots (3 owner-mandated deliverables at `phase0/drill_receipts/screenshots/`):
+- `20260825T183800Z_w3_data_shield_surface.jpeg` — Data Shield surface top view (Trust Center → Data Shield · 63 governed calls · zero raw content crossed · timeline · rules-in-force · dry-run).
+- `20260825T183800Z_w3_dry_run_preview.jpeg` — dry-run walk complete against real receipts (would_catch=63, would_miss=0; honest_gap rendered).
+- `20260825T183800Z_w3_refused_unmasked_egress.jpeg` — "What a refused crossing looks like" panel: verbatim refusal grammar for us-east-1 (out-of-allowlist).
+
+LOC accounting vs scope class **L (≤2000)**:
+- Backend chokepoint modules: 603 (init 208 · masking_tier 77 · residency 57 · dry_run 169 · router 92).
+- Backend allowlist configs (JSON): 87.
+- Backend tests: 559 (chokepoint 346 · dry_run 213).
+- Frontend surface: 508 (DataShield.jsx).
+- Frontend tests + App.js edits: ~150 (rehome extension + /shield route).
+- Backend wiring edits (rds_data_submit.py + seam.py + pod_shell/backend/server.py): ~50.
+- **Total: ~1957 LOC** — INSIDE **L** ceiling of ~2000. Close to the boundary; the extra size comes from carrying the four additional owner invariants d/e/f/g through into a bigger surface, and from the honest-gap grammar owner ordered on multiple sub-surfaces. No scope-class violation.
+
+Dashboard delta (`notes/status_and_wave_plan.md`):
+- Doc 01 area (19 rows): 5 fully DONE + 8 partially / deferred to LLM landing = **~50 %** (rises from prior ~20 %).
+- Doc 02 area (20 rows): 3 DONE (A5.1 partial + A5.3 + CA1-007) + 12 deferred to LLM landing = **~40 %** (rises from prior ~15 %).
+- CA1-N4 residency: **DONE**.
+- Custody & Crossing cluster: rises materially — ~30 % → **~50 %**.
+- Mechanism-corpus overall: 213.6/515 → **~225/515 ≈ 43.7 %**.
+- Composite headline: ≈ 40.4 % → **≈ 43 %** (+2.6 pt).
+
+Standing invariants held:
+- IP allowlist unchanged (`SPINE_ALLOWED_IPS=34.16.56.64`).
+- No LLM transit (statically proven — `test_no_llm_sdk_anywhere_in_backend`).
+- No HTTP client outside chokepoint (statically proven).
+- No paramiko/fabric outside chokepoint + compute_seam exemptions (statically proven).
+- No boto3 outside chokepoint + rds_data_submit exemption (statically proven).
+- No secrets read; no credentials logged; no credential fields on trust receipts (structurally impossible in the `CrossingReceipt` dataclass shape).
+- Estate ed25519 private key mode 0600 unchanged.
+- REFERENCE-NOT-COPY design law honoured across all new surfaces + records (tested per surface).
+
+Hold posture: **W3 CLOSED · stand-by for owner "W4 go"** (Northena direction/scope · scope M).
+
+
+
+

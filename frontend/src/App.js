@@ -1,6 +1,7 @@
 import "@/App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Registry from "@/components/Registry";
+import DataShield from "@/components/DataShield";
 
 /**
  * App.js - Owner fixture drop 2026-08-14 shape:
@@ -31,6 +32,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Registry />} />
+          <Route path="/shield" element={<DataShield />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

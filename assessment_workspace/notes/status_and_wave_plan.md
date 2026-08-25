@@ -135,7 +135,7 @@ No dates. Sequence + scope class + DONE-means definitions only. Scope classes: *
 
 ---
 
-### Wave 3 (W3) — Chokepoint · masking · exit gate · residency enforcement · scope **L**
+### Wave 3 (W3) — Chokepoint · masking · exit gate · residency enforcement · Data Shield surface · scope **L** · **CLOSED 2026-08-25**
 
 **Backend mechanisms:** custody chokepoint wrapper on every LLM/model call · masking tiers (T1/T2/T3) · exit-gate telemetry · residency enforcement (CA1-N4).
 
@@ -148,13 +148,19 @@ No dates. Sequence + scope class + DONE-means definitions only. Scope classes: *
 **Deps:** W2 done. Executive-Final would materially reduce scope if it holds masking-tier ladder implementation.
 
 **DONE means:**
-- All LLM / model calls in the estate pass through a single `services/chokepoint/` middleware.
-- Every crossing writes a `data_crossing_record` under `phase0/`.
-- Data Shield tab renders real crossings (not v7 demo).
-- Residency: data-source records without a region in the allow-list refuse connect at the parse step; test-first gate.
-- CA1-007 dry-run: a `POST /api/compliance/declaration/dry-run` endpoint that returns what the candidate declaration would/would not catch against a bounded sample.
+- All LLM / model calls in the estate pass through a single `services/chokepoint/` middleware. **DONE** — plus the REAL crossings today (RDS Data API + compute-seam SSH) brought under the same discipline (owner directive).
+- Every crossing writes a `data_crossing_record` under `phase0/`. **DONE** — receipts at `phase0/crossing_receipts/rcp-<hex>.json`.
+- Data Shield tab renders real crossings (not v7 demo). **DONE** — 63 real receipts rendered at close; no fabricated volumes.
+- Residency: data-source records without a region in the allow-list refuse connect at the parse step; test-first gate. **DONE** — `services.chokepoint.residency` + `residency_allowlist.v0.json` (eu-west-1 only).
+- CA1-007 dry-run: a `POST /api/shield/dry-run` endpoint that returns what the candidate declaration would/would not catch against a bounded sample. **DONE**.
 
-**Acceptance rows:** Promise #1 · Promise #2 · Promise #4 · Promise #26 · Promise #27 (partial) · CA1-007 · CA1-001 · CA1-N4.
+**Cycle-close receipts:**
+- Programme/track-a `ebacd65` (Section B) + `1a57314` (Sections C+D) + `15dbfc1` (Data Shield surface + close).
+- Green receipt: `phase0/drill_receipts/20260825T183814Z_w3_close_green.log` (backend 169/169 · frontend rehome 69/69 · allowlist 12/12 = 250/250).
+- Screenshots: `phase0/drill_receipts/screenshots/20260825T183800Z_w3_{data_shield_surface,dry_run_preview,refused_unmasked_egress}.jpeg`.
+- LOC actual ~1957 · inside L ceiling (≤2000).
+
+**Acceptance rows:** Promise #1 (chokepoint · DONE) · Promise #2 (list authoring PARTIAL — mechanism scaffolding in force; row-bearing tiers await tenant catalogue) · Promise #4 (dual-file · DEFERRED to LLM-crossing wave) · Promise #26 (governed-change discipline in the chokepoint allowlists · PARTIAL) · Promise #27 (partial) · CA1-007 (**DONE**) · CA1-001 (audit-line groundwork · PARTIAL) · CA1-N4 (**DONE**).
 
 ---
 

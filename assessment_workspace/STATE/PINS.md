@@ -137,7 +137,7 @@ Strategy work-in-progress (to be created):
 - **checkpoint_14d_utc:** `2026-08-28T00:00:00Z`
 - **hardening_status:** `attested`
 - **acceptance_status:** `green`
-- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260825T180739Z.json`
+- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260825T183815Z.json`
 <!-- CONNECT-GPU-PINS -->
 
 
@@ -253,3 +253,43 @@ Single sage-green **"Freeze & commit"** button after feasibility renders — NO 
 - Estate ed25519 private key mode 0600 unchanged.
 - REFERENCE-NOT-COPY design law honoured across new surface + new records.
 <!-- W2-REFLECTION-2026-08-25 END -->
+
+
+<!-- W3-DATA-SHIELD-2026-08-25 -->
+## W3 · Chokepoint · masking tiers · exit gate · residency · Data Shield surface · FL-P2-27 · Doc 01/02 + CA1-007 + CA1-N4 CLOSED
+
+Owner Order 2026-08-25 · "W3 go" (verbatim in DECISIONS.md). Executed tests-first per T1 with right-reason failure banked BEFORE any implementation landed. Scope class **L** confirmed at close (~1957 LOC ≤ 2000).
+
+**Six mechanisms shipped:**
+- (a) **Single outbound chokepoint** — `services.chokepoint.register_crossing()` names the sole path; static AST negative-scan build gate refuses any `import boto3 / paramiko / openai / anthropic / google.genai` outside exempted seams.
+- (b) **Masking tiers** — governed positive allowlist `services/chokepoint/masking_tier_allowlist.v0.json` (structure_only / attested_command / receipt_only admissible today; t1_full_mask / t2_partial / t3_category DECLARED but admissible_under_env=[]).
+- (c) **Exit gate** — two-layer (Doc 01 §A5.5): AST at build + runtime refusal at `register_crossing()`. The gate is the endpoint, never a disabled UI button.
+- (d) **CA1-007 dry-run preview** — `POST /api/shield/dry-run` walks the crossing-receipt log by identity (REFERENCE-NOT-COPY). Refuses non-testable free-text declarations per Doc 02 §A5.2. Honest-gap sentence names the missing row-bearing traffic state.
+- (e) **CA1-N4 residency** — governed positive allowlist `residency_allowlist.v0.json` (`eu-west-1` on record from Aurora facts; refusal grammar names the specific region + names the CA1-N4 authority for adding one). Silence explicitly refused (`region_not_on_record` sentinel).
+- (f) **Data Shield surface** — `/shield` route → `DataShield.jsx` (Trust Center → Data Shield · v7 oracle fabric EXACT per T1). Four sub-surfaces: session timeline · rules-in-force · dry-run panel · refusal example. All render honest facts on disk.
+
+**Real crossings brought under chokepoint (BEFORE any LLM path):**
+- `services.connect.rds_data_submit.submit()` — kind='rds_data_api', tier='structure_only', region=eu-west-1.
+- `services.compute_seam.seam.execute()` — kind='ssh_seam', tier='attested_command'. Refuses honestly when VM_REGION not set (akki-vm commissioning record does not carry a region field).
+
+**Track-a commits on `programme/track-a`:**
+- `ebacd65` · Section B: chokepoint core + masking + residency + exit-gate AST.
+- `1a57314` · Sections C+D: dry-run + Shield HTTP router mounted at pod_shell.
+- `15dbfc1` · Data Shield surface at /shield + full W3 cohort green.
+
+**Green receipt (backend 169/169 · frontend rehome 69/69 · allowlist 12/12 = 250/250 · zero regressions):**
+`phase0/drill_receipts/20260825T183814Z_w3_close_green.log`
+
+**Three screenshots (owner-mandated) at `phase0/drill_receipts/screenshots/`:**
+- `20260825T183800Z_w3_data_shield_surface.jpeg` — Shield surface top view.
+- `20260825T183800Z_w3_dry_run_preview.jpeg` — dry-run walk complete against real receipts.
+- `20260825T183800Z_w3_refused_unmasked_egress.jpeg` — refused-crossing example panel.
+
+**Standing invariants held:**
+- IP allowlist unchanged (`SPINE_ALLOWED_IPS=34.16.56.64`).
+- No LLM transit anywhere in backend (statically proven).
+- No HTTP client outside chokepoint (statically proven).
+- No secrets read; no credential fields on trust receipts (structurally impossible in `CrossingReceipt`).
+- Estate ed25519 private key mode 0600 unchanged.
+- REFERENCE-NOT-COPY design law honoured across every new surface + record.
+<!-- W3-DATA-SHIELD-2026-08-25 END -->

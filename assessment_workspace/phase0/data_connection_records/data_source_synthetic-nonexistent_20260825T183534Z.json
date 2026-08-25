@@ -1,0 +1,20 @@
+{
+  "kind": "data_connection_record",
+  "at": "2026-08-25T18:35:34.459256+00:00",
+  "source_id": "aws.rds.synthetic-nonexistent",
+  "actor": "owner",
+  "resource": {
+    "region": "us-east-1",
+    "cluster_arn": "arn:aws:rds:us-east-1:1:cluster:synthetic-nonexistent",
+    "secret_arn": "arn:aws:secretsmanager:us-east-1:1:secret:synthetic-nonexistent",
+    "database": "test"
+  },
+  "engine": "unknown",
+  "engine_version": null,
+  "channel": "rds-data-api",
+  "link_working": false,
+  "ready": false,
+  "failure": "chokepoint_refused",
+  "found": {},
+  "ruling_reference": "Owner Ruling 2026-08-18 \u00b7 DECISIONS.md \u00b7 FL-P2-23 \u00b7 engine-detect fix 2026-08-19 \u00b7 FL-P2-24"
+}
