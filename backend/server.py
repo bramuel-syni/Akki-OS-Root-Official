@@ -27,6 +27,7 @@ from routers import connect_gpu as connect_gpu_router  # noqa: E402
 from services.connect_estate.router import router as connect_estate_router  # noqa: E402
 from services.credentials_paste.router import router as credentials_paste_router  # noqa: E402
 from services.connect.rds_data_router import router as rds_data_router  # noqa: E402
+from services.registry_facts.router import router as registry_facts_router  # noqa: E402
 from services.ip_allowlist.middleware import IPAllowlistMiddleware  # noqa: E402
 
 # Deliverables directory (read-only snapshot per Chunk-4 v1.1 delivery logistics)
@@ -104,7 +105,7 @@ async def get_status_checks():
 async def get_deliverable(filename: str):
     """Serve read-only snapshots of Chunk-4 deliverables.
 
-    Snapshot commit: 7c9a544 (fixture-arrival cycle CLOSED; see /app/assessment_workspace STATE/CONTEXT.md).
+    Snapshot commit: d3747ea (fixture-arrival cycle CLOSED; see /app/assessment_workspace STATE/CONTEXT.md).
     Allowlist-guarded; no path traversal. Served as text/markdown so browsers
     render / download cleanly.
     """
@@ -133,7 +134,7 @@ async def list_deliverables():
                 "url": f"/api/deliverables/{name}",
             })
     return {
-        "snapshot_commit": "7c9a544",
+        "snapshot_commit": "d3747ea",
         "snapshot_source": "/app/assessment_workspace/",
         "items": items,
     }
@@ -149,6 +150,7 @@ app.include_router(connect_gpu_router.router)
 app.include_router(connect_estate_router)
 app.include_router(credentials_paste_router)
 app.include_router(rds_data_router)
+app.include_router(registry_facts_router)
 
 app.add_middleware(
     CORSMiddleware,

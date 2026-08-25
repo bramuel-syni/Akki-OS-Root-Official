@@ -629,3 +629,105 @@ Owner delivered the exact RDS Data API parameters through the recovery message c
 
 **Track-a commits this cycle:** `8c9304d` (tests-first · 7 engine-detect assertions), `746dece` (implementation · `_probe_engine` wired).
 
+
+
+---
+
+### Owner Order · 2026-08-19 (channel) · complete the Registry section · render the journey
+
+Verbatim:
+
+> "Complete the registry section and ensure we have the journey now that you are connected to the GPUs and to the Data."
+
+Scope, tests-first, per the Registry Feature & Component Brief (`fixtures/screen_mockups_v7.pdf`, 5 pages, sha256 `418ad0e3c087c613be7d7d885a18a3c895b7d51ed253119aff9ba042ee81da8a`) + the four inline screenshots described in owner's fixture drop (registry three-tabs surface + record tables with status chips + right context panel):
+
+1. **Backend:** one read-only facts endpoint that serves REAL state derived from the on-disk durable records. No invention: if a fact is not in a record, it is not served. Data sources from `phase0/data_connection_records/*_FINAL.json`; compute from the ACCEPTED commissioning record; models empty.
+2. **Frontend:** three Registry tabs (DATA CONNECTED · COMPUTE CONNECTED · LLMS & TRAINED MODELS) rendering the brief's page pattern (fluid left + 300px right context panel; Topline + Headliner / Visual + Context / Table + Context bands). Rule zero: plain sentences first; engineering measures one layer behind. Provenance rule: no figure without a record source (approximations flagged with a leading ≈).
+3. **Journey proof:** end-to-end Playwright screenshots to `phase0/drill_receipts/screenshots/`. Registry lands → DATA CONNECTED shows the two real sources → row click opens source detail → COMPUTE CONNECTED shows akki-vm → detail with four questions → LLMS tab honest-empty → + Connect opens the paste panel.
+4. **Tests-first:** facts endpoint served only from record fixtures (feed the real FINAL JSONs); zero-invention test (fabricated demo numbers do not appear in the DOM); tab-render + row + detail-card + posture-chip + approximation-flag + empty-state gating tests. Right-reason receipts BEFORE implementation.
+5. **After green:** refresh `/api/deliverables` snapshot commit literal to this cycle's SHA; update STATE + ledger (A4-Registry increment; scope class + LOC honestly reported); commit both repos; note `test_credentials.md` = auth is IP-allowlist (no login).
+
+Deferred defaults kept unchanged: role switcher static (Track-B auth still deferred); wizard already reachable from every tab via + Connect; IP allowlist `SPINE_ALLOWED_IPS=34.16.56.64` per owner's strict directive.
+
+**FL-P2-25 OPENED** — A4-Registry-honest-state increment (fixture-conforming three-tab surface backed by real records) executed under Owner Order 2026-08-19. Closure recorded at the bottom of this entry on green.
+
+
+
+---
+
+### Owner Artifact Drop + New Order · 2026-08-19 (channel) · v7 prototype + Promise Table + files (9).zip
+
+Verbatim:
+
+> "More attachment for reference - more context to eleviate ambugity. Read all line by line, no scheming. HTML, reproduce exactly as is. surface tensions or ambiguity."
+
+Three artifacts delivered (URLs quoted, downloaded and hashed this cycle):
+1. `AKKI_Promise_Table.xlsx`
+2. `RMS AI - Akki Prototype v7 (Standalone).html`
+3. `files (9).zip`
+
+**Ingest orders received:** (1) sequential — finish the Registry cycle first, do not abandon work; (2) read all three line by line, no sampling; (3) surface tensions and ambiguity rather than paper over.
+
+**Ruling deferred by owner:** owner explicitly stopped mass reproduction until they rule on the tension table this cycle produces. Cycle proceeds ONLY with items that are unambiguous, collision-free, and extend what is already built.
+
+**FL-P2-26 OPENED** — v7 prototype ingest + tension/ambiguity table awaiting owner ruling. Closure conditional on owner disposition of the numbered tensions this reply surfaces.
+
+
+
+### Owner Artifact Drop (add-on) · 2026-08-19 (channel) · Canon Addendum 1
+
+Verbatim owner note: `"add"`.
+
+Fourth artifact this session: `AKKI_Canon_Addendum_1.docx` — treated as CANON-CLASS material (amendment to the nine-canon corpus). Downloaded to `canon/` alongside the nine, hashed into PINS.md, converted via python-docx same as originals. Requirements extracted with prefix `CA1-xxx`; diff against the nine canons produced as amendments list; overlap against standing rulings + built estate flagged for the tension table.
+
+
+
+### FL-P2-25 CLOSED · Registry section complete · Owner Order 2026-08-19
+
+Registry-cycle closure receipt:
+- Backend: services.registry_facts.{facts,router} · 15/15 gating green (`phase0/drill_receipts/20260825T151457Z_registry_facts_green.log`) · 121/121 cycle cohort zero regressions.
+- Frontend: Registry.jsx rewritten (fluid left + 300px right context panel pattern per screen_mockups_v7.pdf §2; content rules §6 honoured) · 38/38 rehome+registry green.
+- Playwright journey walk: 6 screenshots banked at `phase0/drill_receipts/screenshots/20260819T151700Z_{registry_data_connected,data_source_detail_digicow,registry_compute_connected,compute_detail_akki_vm_four_questions,registry_llms_empty,connect_panel_opened}.jpeg`.
+- Retroactive engine reclassification on the two FINAL data-source records (throwaway inventory recorded engine='mysql'; production FL-P2-24 classifier reads the same probe strings as 'aurora-mysql'). Provenance recorded in-band via new `engine_source` field; raw throwaway log preserved as history at `phase0/drill_receipts/20260819T152509Z_aurora_inventory_mysql.log`. Updated sha256s recorded in PINS.md.
+- Track-a commits: `12985bd` (tests-first) → `0c417f2` (implementation).
+- Scope class: **M** (one new backend package + one wire endpoint + one frontend surface rewrite; ~570 lines frontend Registry.jsx + ~250 lines backend facts.py + ~15 lines router + ~230 lines new gating tests + ~110 lines new frontend gating tests + 2 lines server-wire).
+
+
+
+---
+
+### Owner Rulings on Eight Tensions + Sprint Order · 2026-08-19 (channel) · FL-P2-26 CLOSED · FL-P2-27 OPEN
+
+Verbatim (owner channel):
+
+> T1 - Exactly means the design/styling/features/look/typography etc and all navigation compnents. Data and content is produced - not what is in the HTML, you are currently connected to data so no fabrication. What you build should look exactly like what i have attached, no modifications whatsoever.
+> T3 - Reference oracle
+> T5 - The table is more of tests or close gaps that are not in the requirement documents - "what it should do/what it should deliver" not your "what to build" reference.
+> T7 Reframe - Addendum closes amends the 16 documents in the zip file (i am assuming these were read line by line). Should not be executed as a stand alone.
+> T8 - Whats your question?
+> T12 - paste and connect converational wizard that assists connection, drawer chatbox right side on clicking connect.
+> T13 - We reproduce in sequence with the backend we are building.
+> T14 - All requirements present in the documents in zip. None of the requirements gets skipped. The 17 documents i have attached - 16 in zip and addendum are updated record of requirements.
+> [Repo list: RMS-IQ-Core-2, Akki-Executive-Core, Akki-OS-V1, Extraction-Akki, Akki-Executive-Final — "could have elements you can reuse to avoid redoing." Order: "Now run a seasoned sprint to tie up a solid path forward. Give me a breakdown of status % and plan to close this whole build."]
+
+**Binding effects to record:**
+
+1. **T1 · Design/nav = pixel-verbatim from v7 HTML.** Every visual, typographic, navigation component reproduces v7 EXACTLY — no modifications. Content is real data from real connections; nothing fabricated.
+2. **T3 · v7 HTML = reference oracle only** (as previously proposed [A]).
+3. **T5 · Promise Table = acceptance/test register**, not the build reference. Rows are "what the platform should do / deliver" tests, not "what to build" specs.
+4. **T7 · Canon Addendum = amendment merged into the 16 documents in the zip.** Not to be executed standalone. Requirements register indexes to the 17-doc corpus (16 essays + Addendum-as-in-place-amendment merged into target docs).
+5. **T8 · Question owed to owner** (see §5 of this cycle): given Docs 01/02's chokepoint + masked-crossing model, does "Walk this →" reveal governed receipt chains (actor/time/purpose/receipt) only, or also underlying record contents? The owner's question is now: *"What's your question?"* — reformulated + evidence-backed in `notes/t8_walk_this_scope.md`.
+6. **T12 · Connect = conversational paste-assist drawer chat, right-side drawer, opened by clicking Connect.** Rework the current single paste-panel modal into that shape when its wave lands.
+7. **T13 · Reproduction proceeds in sequence with the backend being built.** No surface ships before its mechanism.
+8. **T14 · Nothing skipped.** The 17 documents (16 essays + Addendum) are the requirements record. Every requirement row lands on a wave.
+
+**Sprint scope for this cycle (FL-P2-27):**
+
+1. Clone the new fifth repo `Akki-Executive-Final` into `repos/`, pin SHA + last-commit date; diff against `Akki-Executive-Core`; scan all five repos for v7-aligned frontend fabric + backend mechanisms.
+2. Re-index the requirement corpus to the 17 documents (Doc01-xxx … Doc16-xxx with CA1-xxx merged as amendments into their target docs).
+3. Compute status % (weighted by requirement rows) — overall + per area + separate interface dimension (58 v7 surfaces).
+4. Publish wave plan (sequenced per T13; nothing skipped per T14; no dates).
+5. Answer T8 from Docs 01/02.
+
+**FL-P2-26 CLOSED · FL-P2-27 OPEN.** Deliverables on disk this cycle; commits at end.
+

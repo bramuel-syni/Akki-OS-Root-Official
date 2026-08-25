@@ -1,0 +1,158 @@
+AKKI CANON — ADDENDUM 1
+Gap Closures, Amendments, and New Promise Candidates
+Companion to Documents 1–16 and the build audit. The 16 canon documents are unedited by this addendum — amendments are recorded here and target their document by number; nothing is rewritten in place.
+1 · Confirmed Closures
+Six promises the canon already specified in full, where the gap was in the build, not the specification. Recorded here, not rewritten — no canon change was needed.
+#4
+Canon already fully specified the two-item custody split (Doc 2). Gap was build-only: no surface distinguished it. Closed by the audit trail Overview stating when an answer drew on 2+ independently-governed units.
+#17
+Canon already fully specified minimal-sufficient disclosure (Doc 6). Gap was build-only. Closed by the audit trail Overview stating how many available source units were actually served.
+#19 / #20 / #21
+Canon already fully specified the five-ring unit and warm/fresh fork (Docs 7–8). Gap was build-only. Closed by a Registry densification stat and a per-turn warm/fresh tag — flagged here as a partial closure, not a full one.
+#24
+Canon already fully specified licence-verified baseline curation (Doc 14). Gap was build-only. Closed by a baseline line naming the licence-verified starting model per training run.
+#25
+Canon already fully specified exceptional-run retention and egress governance (Doc 14). Gap was build-only. Closed by a “Prepare white paper” action drafting from the run's own artefacts.
+#26
+Canon already fully specified the Watch's self-contained exception (Doc 15). Gap was build-only. Closed by a State line naming the Watch's own containment and external witness.
+2 · Amendments to Existing Documents
+Six targeted additions to promises already in service. Each amends one existing document; none introduces a new promise.
+Amendment to Document 2, Promise #2
+Add a dry-run preview step between Review and Adopt in the declaration workflow: given a candidate declaration, the platform runs it against a bounded sample of recent traffic and returns what it would and would not have caught, before the DPO adopts it. Without this, #2's own promise — that the organisation can verify what it's declaring, not just state it — is only half kept.
+Amendment to Document 11, Promise #9
+Add a Cost Ledger surface exposing the lever sequence itself — cache → route → narrow → cascade → waste report — as named, ordered steps with the saving attributable to each, not just the final per-call cost. The ladder-rung mechanism already exists (Doc 11 §5); this is a visibility requirement on top of it, not a new mechanism.
+Amendment to Document 15, Promise #32
+Generalise the registered handoff contract (what / shape / identity / receipt) to every cross-app crossing, not the single ThinkLab→Task Manager instance. Any new hand-off added to the platform must be expressed in this contract before it ships, the same way any new model call must cross the single chokepoint in Document 1.
+Amendment to Document 4, Promise #8
+Scope the “lower the standard” refusal action to the originating session, with a logged expiry. Today it is offered without a stated boundary; unscoped, a standard lowered for one question can persist as the de facto floor for every question after it, which is the exact failure #8 exists to prevent.
+Amendment to Document 13, Promise #22
+Add a standing re-check date, visible per in-service model, on the same cadence the six acceptance criteria already run on. An early failure on a re-check routes to the Watch (Document 3) the same way behavioural drift already does — model degradation is a Watch-relevant event, not only a training-pipeline one.
+Amendment to Document 15, Promise #27
+Extend the Watch's existing self-flagging of stale baits (Document 3) to rulebook re-certification and training baselines: anything adopted from an external standard carries a staleness check against that standard's own revision history, using the same flagging mechanism rather than a new one.
+3 · New Promise Candidates — Full Write-Up
+Thirteen items: eight already built with no canon backing (A1–A8), five not yet built or specified (N1–N5). Promise and Delivery Experience are written with the same confidence as Documents 1–16. Technical Requirements are not, because the source material to write them honestly does not exist yet — in place of a placeholder, each entry states the specific open questions that stand between it and a fully specified promise.
+A1  Board submission traceability
+Beyond canon — built (Board 360)
+Promise
+Any formal submission made to an oversight or governance body can be checked against what was actually said, and questioned directly where the record and current understanding disagree.
+Delivery Experience
+User can open a board signal and see the submission it came from
+User can ask a question against a board document and get a threaded, attributed answer
+User can see which submissions are on record and which are still pending
+Open Design Questions — not yet answered
+What custody class do board submissions themselves carry — governed under Document 1's estate rules, or a separate class with its own crossing rules?
+When a cited submission is later amended or superseded, does the Q&A thread's citation re-verify against the new version, on the same freshness logic Document 9's census already uses for estate sources, or does it silently point at stale material?
+Is authorship of a question in this thread access-controlled on Document 6's minimal-sufficient-disclosure logic, or open to anyone who can already see the board document?
+A2  Tracked commitment / goal traceability
+Beyond canon — built (Exco 360)
+Promise
+Any tracked commitment or goal can be checked against what is actually happening, with every system-generated recommendation traceable to the observation that produced it.
+Delivery Experience
+User can see which tracked goals are off track and why
+User can open any recommendation and trace it back to the signal behind it
+User can confirm or challenge a tracked goal against the source strategy document
+Open Design Questions — not yet answered
+When a human challenges a tracked goal, is that recorded as a new artifact on Document 5's append-only Ledger pattern, or does it just update a status flag in place — the second option loses exactly the kind of history the other 31 promises are built to keep?
+If a recommendation's underlying signal is later found wrong or retracted, is there a supersession chain for the recommendation itself, on the pattern Document 10 already uses for duplicate or superseded estate records?
+A3  Governed artefact inheritance and distribution visibility
+Beyond canon — built (Documents suite)
+Promise
+Any artefact produced from governed work inherits that work's evidence and custody guarantees, and its distribution afterward stays visible rather than going dark.
+Delivery Experience
+User can generate a document or deck from any chat and have it keep the conversation's evidence class
+User can see everywhere a committed document has travelled
+User can ask a follow-up question on a committed document and get a cited, threaded answer
+Open Design Questions — not yet answered
+If a source chat mixed material from more than one custody class (for example, Document 2's dual-file split), which class does the generated document inherit — the strictest of the two, or does the document need its own mixed-custody marker?
+Is the Exposure Site Map itself an append-only record on Document 5's Ledger-writer pattern, or a mutable view that could be edited after the fact?
+Does distribution tracking cover material shared outside the platform (downloaded, emailed) the same way it covers internal sharing, or does visibility stop at the platform boundary?
+A4  Governed template adoption
+Beyond canon — built (Rule Books Library)
+Promise
+The organisation can start from conventional, professional-standard templates mapped to recognised frameworks, and adopt or modify them through the same governed ceremony as an original rule.
+Delivery Experience
+User can read a template's controls before adopting it
+User can adopt a template as-is, or modify individual rules within it, either way through the same sign-off and countdown as a hand-authored rule
+Open Design Questions — not yet answered
+When the external framework itself revises (a new ISO 27001 edition), what re-certifies an adopted rulebook against it — the same rule-version stamping Document 15 already uses, or does template provenance need its own staleness check?
+If a template rule is modified after adoption, does it keep its framework-provenance tag, or fork into an org-authored rule with no further tie to the standard it came from?
+A5  Universal entitlement and shielding discipline
+Beyond canon — built (Collab group)
+Promise
+Every surface on the platform carries the same entitlement and shielding discipline, including categories of data that must never surface at the individual level regardless of who is asking.
+Delivery Experience
+User can open email or mentions and see the shielding account for that surface
+User can open HR Stuff and see only aggregate figures, never an individual record
+Open Design Questions — not yet answered
+What is the minimum aggregation threshold that qualifies as “aggregate”, and is it fixed platform-wide or configurable per category the way declared-confidential categories are in Document 2?
+Is the aggregate-only rule truly universal with no override, or can a Master Admin or DPO see individual-level HR records under an investigation exception — and if so, does that exception get the same receipted-crossing treatment Document 1 gives every other exception to a hard line?
+A6  Threshold-gated commitment routing
+Beyond canon — built (Spend Requests)
+Promise
+Any commitment above an agreed threshold routes to a named accountable person for an explicit decision, rather than proceeding unchecked or stalling silently.
+Delivery Experience
+User can see exactly which requests need a person, and why
+User can approve or decline with the run's cost and objective already attached
+Open Design Questions — not yet answered
+Is the auto-approve ceiling itself a rule governed by Document 15's propose/counter-sign/countdown ceremony, or a plain config value any admin can change unilaterally?
+Does the approver see the same feasibility/cost/budget reflection the requester saw at Document 12's reflection-before-commit step, or a reduced summary?
+A7  Cross-app hand-off of governed work
+Beyond canon — built (ThinkLab → Task Manager). Generalisation already tracked — see Amendments, Document 15 Promise #32.
+Promise
+The conclusion of governed work in one part of the platform can become the starting point of work in another part, without re-typing, re-arguing, or losing the evidence it rested on.
+Delivery Experience
+User can end a ThinkLab session and hand it to Task Manager in one action, with the reasoning attached, not just the conclusion
+Open Design Questions — not yet answered
+Does the hand-off carry Document 4's full reasoning trace, so downstream work can re-open the tension/contradiction view Solva produced, or only the concluded load-bearing set — which is a materially thinner promise than it sounds?
+A8  Universal claim-to-evidence trace
+Beyond canon — built (“Walk this →”)
+Promise
+Any number, claim, or state anywhere on the platform can be traced to the mechanism or evidence behind it, in place, without losing your spot on the page.
+Delivery Experience
+User can from any figure or claim, click once to reveal what produced it — the same affordance everywhere on the platform
+Open Design Questions — not yet answered
+Does “Walk this →” inherit the source data's custody rules, so a viewer without access to the underlying estate region is refused the same way Document 1's chokepoint would refuse them — or can it leak view access to material the viewer isn't otherwise entitled to see? This is the load-bearing question: an unscoped trace affordance is a second, ungoverned path to the same data Document 1 built one chokepoint specifically to control.
+N1  Retention enforcement and attestation
+New — not yet built or fully specified
+Promise
+Data past its declared retention date is actually deleted, and that deletion is attested — not merely declared as policy.
+Delivery Experience
+partially grounded already: a Legal Hold & Retention Rulebook can be adopted today, and refusal traces already carry a 90-day retention figure
+Open Design Questions — not yet answered
+Does scheduled, retention-triggered deletion run through Document 15's full ceremony (propose / counter-sign / countdown), or does a non-discretionary, date-triggered deletion need a lighter path, since no one is exercising judgement at the moment it fires?
+When a legal hold and an expired retention date apply to the same data simultaneously, does the hold override indefinitely, and who holds authority to lift it — does this need its own authority model, on the pattern Document 15 already uses for the Watch's singular exception?
+N2  Time-boxed breach and incident notification
+New — not yet built or fully specified
+Promise
+When a hard line is tested and fails, a defined notification reaches a named recipient within a stated time.
+Delivery Experience
+no built instance — the platform currently promises prevention and containment, not what happens after a failure
+Open Design Questions — not yet answered
+What specifically constitutes the trigger — only a confirmed successful bypass the Watch detects (Documents 3–4), or also a near-miss or attempted breach that was contained?
+Does notification routing extend the Watch's existing self-witnessing structure (Document 15's one exception), making the Watch the owner of breach notification, or does this need an authority independent of the Watch, since the Watch cannot credibly be the sole reporter of its own containment failures?
+N3  Individual access-and-erasure request
+New — not yet built or fully specified
+Promise
+A named individual — customer or employee — can ask what the estate holds on them, and ask for its erasure.
+Delivery Experience
+no built instance — today's promises protect data from the organisation's own use, not from the organisation on the individual's behalf
+Open Design Questions — not yet answered
+An individual's data can exist as raw source, as a five-ring normalised unit (Document 7), and embedded in a trained model's weights (Document 13). Does “erasure” reach all three layers, including retraining or discarding any model trained on the erased data — and if a model cannot practically be untrained, what does the promise actually guarantee at that layer?
+What verifies the requester is the individual whose data is being requested? This is close to its own promise — an identity-verification guarantee this request depends on but does not itself supply.
+N4  Data residency and cross-border transfer control
+New — not yet built or fully specified
+Promise
+Data is held only where authorised, and never crosses a jurisdiction boundary the organisation has not permitted.
+Delivery Experience
+partially grounded already: per-source region is recorded at connection (Document 9's Connect wizard already captures reference, region, and feed identity per source)
+Open Design Questions — not yet answered
+Document 12 defines “in-perimeter” as a single boundary. Does a multi-region deployment mean multiple perimeters, or one perimeter spanning regions? This has to be settled before a residency rule can be written — residency is meaningless without a defined boundary to hold it against.
+Given per-source region is already captured (Document 9), is the remaining gap purely an enforcement rule — a hard line refusing any operation that would move data across a declared boundary — layered on data that's already tagged, rather than a new tracking mechanism?
+N5  Continuity of the governed record
+New — not yet built or fully specified
+Promise
+The append-only Ledger, receipts, and audit trail survive an outage, with a stated recovery time.
+Delivery Experience
+no built instance — every other promise in this set depends on these records existing; none state what happens if they don't
+Open Design Questions — not yet answered
+Is continuity a replication/backup property of the same Ledger writer (Document 5), or does it need its own independently-governed layer, on the pattern Document 15 gives the Watch its own separate record classes — and if so, who verifies a backup's integrity when the primary verification mechanism is the thing that's down?

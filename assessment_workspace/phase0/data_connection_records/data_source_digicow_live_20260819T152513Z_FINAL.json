@@ -9,8 +9,8 @@
     "secret_arn": "arn:aws:secretsmanager:eu-west-1:494452543252:secret:rds/data/api/user/secrets-8rZuVc",
     "database": "digicow_live"
   },
-  "engine": "mysql",
-  "engine_version": "8.0.42 (Aurora MySQL)",
+  "engine": "aurora-mysql",
+  "engine_version": "8.0.42 (Aurora MySQL 3.10.3)",
   "channel": "rds-data-api",
   "link_working": true,
   "table_count": 125,
@@ -823,5 +823,6 @@
     ]
   },
   "errors": [],
-  "ruling_reference": "Owner delivery 2026-08-19 \u00b7 DECISIONS.md \u00b7 FL-P2-23"
+  "ruling_reference": "Owner delivery 2026-08-19 \u00b7 DECISIONS.md \u00b7 FL-P2-23 \u00b7 FL-P2-24 retroactive engine reclassification 2026-08-19",
+  "engine_source": "Engine originally classified by throwaway inventory retry 20260819T152509Z as 'mysql' (forced) with engine_version '8.0.42 (Aurora MySQL)'. Reclassified by FL-P2-24 production fix (Extraction-Akki 746dece) to 'aurora-mysql' with full aurora_version. Raw probe strings preserved in receipt: phase0/drill_receipts/20260819T152509Z_aurora_inventory_mysql.log (version='8.0.42' version_comment='6252a59a' aurora_version='3.10.3')."
 }

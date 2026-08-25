@@ -137,7 +137,7 @@ Strategy work-in-progress (to be created):
 - **checkpoint_14d_utc:** `2026-08-28T00:00:00Z`
 - **hardening_status:** `attested`
 - **acceptance_status:** `green`
-- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260819T154017Z.json`
+- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260825T151459Z.json`
 <!-- CONNECT-GPU-PINS -->
 
 
@@ -179,3 +179,33 @@ Both databases on cluster `db-restore-603-cluster` (eu-west-1) reached over RDS 
 - First-pass read: `information_schema.schemata` + `information_schema.tables` + `information_schema.columns` only. Zero row-level access exercised this cycle.
 - Record-level access (`SELECT ... FROM <schema>.<table>`) requires an explicit owner ruling on data admission + record-matrix binding (Canon 3 / Canon 4). Deferred until that ruling.
 <!-- DATA-CONNECTED-PINS -->
+
+
+<!-- OWNER-ARTIFACTS-2026-08-19 -->
+## Owner artifact drop · 2026-08-19 (channel) · four artifacts
+
+Four artifacts delivered this cycle for the v7-prototype ingest + tension-table task (FL-P2-26). Downloaded to `fixtures/` (and `canon/` for the addendum). Hashes below; contents inventoried in this-cycle notes.
+
+| Artifact | Path | sha256 | Kind |
+|---|---|---|---|
+| `AKKI_Promise_Table.xlsx` | `fixtures/AKKI_Promise_Table.xlsx` (24,534 bytes) | `02817f8a0f637e7af98f1266b2b0423e179387ebb13a75bf77fc92ad7d0c233b` | Function & Promise Registry seed (XLSX) |
+| `RMS AI · Akki Prototype v7 (Standalone).html` | `fixtures/RMS_AI_Akki_Prototype_v7_Standalone.html` (1,307,752 bytes) | `07df1d6846841da57ac0405536555262586362ac8d02a7bd682d9f3bebd6be55` | Standalone HTML prototype (behaviour + copy oracle) |
+| `files (9).zip` | `fixtures/files_9.zip` (262,021 bytes) | `d063db00a1f1d83adbeb0498e02c824b2c9529731209a780deb9f24e68f8d3ee` | 16 .docx canon-shaped essays (see inventory below) |
+| `AKKI_Canon_Addendum_1.docx` | `canon/AKKI_Canon_Addendum_1.docx` (16,794 bytes) | `9f00f7bc20e7c8d8dd7ad7957d0960eb9695f990409dc1292f08907d89f4dedc` | Canon-class amendment to the nine-canon corpus |
+
+**Reclassified FINAL data-source records (FL-P2-24 downstream, this cycle):**
+
+- `phase0/data_connection_records/data_source_digicow_live_20260819T152513Z_FINAL.json` — new sha256 `25b31d46a5455183a7acd71bb8068f3bd1e0bbd1390cd5186d9f2ff37afaaf5f` (prior `c6698e22673c7ee8a72f15af7798c58a94b7a558aea3a2942b8c3ef7f816f294`)
+- `phase0/data_connection_records/data_source_ndume_20260819T152513Z_FINAL.json` — new sha256 `7924e8c2295bc429f5d204c62d317617b0047167673a1176c6cdde0327f8305c` (prior `572f13108894a60892568e63609b36555cc3ae75fadc47d6d0caa4ba2a95aab7`)
+
+Reclassification carries an in-band `engine_source` field naming the throwaway origin and citing the production fix; the raw throwaway log stays as history at `phase0/drill_receipts/20260819T152509Z_aurora_inventory_mysql.log`.
+
+<!-- REGISTRY-A4-2026-08-19 -->
+## Registry cycle · Owner Order 2026-08-19 · FL-P2-25 CLOSED
+
+- Track-a commits: `12985bd` (tests-first · 15 backend + 10 frontend gating assertions) → `0c417f2` (implementation · services.registry_facts + Registry.jsx rewrite).
+- Backend endpoint: `GET /api/registry/facts` — no secrets, no invention, no LLM transit.
+- Frontend surface: three-tab Registry per fixture (fluid left + 300px right context panel; Topline + Headliner / Visual + Context / Table + Context bands; content rules §6 honoured).
+- Green receipt: `phase0/drill_receipts/20260825T151457Z_registry_facts_green.log` (15/15 registry_facts + 121/121 cohort + 38/38 rehome+registry).
+- Journey walk screenshots (6): `phase0/drill_receipts/screenshots/20260819T151700Z_*.jpeg`.
+<!-- OWNER-ARTIFACTS-2026-08-19 END -->
