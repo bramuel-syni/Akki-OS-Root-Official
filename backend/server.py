@@ -41,6 +41,8 @@ from services.model_registry.router import router as model_registry_router  # no
 from services.model_admission.router import router as model_admission_router  # noqa: E402
 from services.baseline_line.router import router as baseline_line_router  # noqa: E402
 from services.model_recheck.router import router as model_recheck_router  # noqa: E402
+# W8 CP5 · governance timeline surface (Doc 15 §Trace · REFERENCE-NOT-COPY).
+from services.trace.router import router as trace_router  # noqa: E402
 from services.ip_allowlist.middleware import IPAllowlistMiddleware  # noqa: E402
 
 # Deliverables directory (read-only snapshot per Chunk-4 v1.1 delivery logistics)
@@ -177,6 +179,8 @@ app.include_router(model_registry_router)
 app.include_router(model_admission_router)
 app.include_router(baseline_line_router)
 app.include_router(model_recheck_router)
+# W8 CP5 · governance timeline surface (Doc 15 §Trace).
+app.include_router(trace_router)
 
 app.add_middleware(
     CORSMiddleware,
