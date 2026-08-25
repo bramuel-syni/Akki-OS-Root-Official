@@ -1,0 +1,45 @@
+{
+  "row_id": "FL-P4-W9-01",
+  "row_class": "stop_and_report_on_owner_policy_facts__CA1_N5_continuity_scaffold_landed",
+  "opened_at": "2026-08-26T03:30:00Z",
+  "opened_by": "W9 CP4 · CA1-N5 ledger continuity structural scaffolding lift",
+  "status": "OPEN — owner ruling required on CA1-N5-q1 before continuity attestations can fire",
+  "anchor": "Owner Auto-continue Ruling 2026-08-26T00:25Z verbatim: 'stop that ITEM, name the question, continue the rest of the wave.' Same pattern as W8 CP4 FL-P4-W8-01.",
+  "affected_scope": {
+    "contracts_landed": [
+      "backend/contracts/continuity_attestation.py · ContinuityAttestation_v0 (50th frozen)"
+    ],
+    "services_landed": [
+      "backend/services/watch/continuity.py · write_attestation + load_attestations · REFUSES to fire while any policy field at OWNER_POLICY_PENDING"
+    ],
+    "tests_landed": [
+      "backend/tests/invariants/test_w9_cp4_continuity_attestation.py · 7 invariants (defaults pending · service refuses while pending · service fires when resolved)",
+      "backend/tests/invariants/test_continuity_attestation_frozen.py · 1 frozen snapshot"
+    ],
+    "receipts": {
+      "right_reason_failure": "phase0/drill_receipts/20260826T032000Z_w9_cp4_right_reason_fail.log (7/7 fail · missing module)",
+      "green": "phase0/drill_receipts/20260826T032500Z_w9_cp4_green.log (PENDING when banked)"
+    }
+  },
+  "policy_questions_stopped_pending_owner_ruling": {
+    "ca1_n5_ledger_continuity": {
+      "q1_verification_architecture": {
+        "question": "Is continuity a replication/backup property of the same Ledger writer (Doc 5), OR its own independently-governed layer on Doc 15's Watch-record-classes pattern? If separate, who verifies a backup's integrity when the primary verification mechanism is the thing that is down?",
+        "options_on_record": ["replication_check", "independent_backup_check"],
+        "sentinel": "OWNER_POLICY_PENDING",
+        "current_default": "OWNER_POLICY_PENDING (refuses fire)"
+      },
+      "q1_rto_target": {
+        "question": "What Recovery-Time Objective (in seconds) does the estate commit to for the governed record classes covered by the attestation?",
+        "options_on_record": "owner-supplied integer seconds · e.g., '60' · '300' · '900'",
+        "sentinel": "OWNER_POLICY_PENDING",
+        "current_default": "OWNER_POLICY_PENDING (refuses fire)"
+      }
+    }
+  },
+  "consequences_of_pending_status": {
+    "positive": "Structural scaffolding (contract + service + tests + snapshot) IS on record; the witness can write attestations the instant policy resolves. W9 close does NOT depend on this ruling.",
+    "negative": "write_attestation() returns a ValueError naming the pending policy fields on every attempted fire until owner rules."
+  },
+  "how_owner_resolves": "Ruling can arrive in any format (email · verbal transcribed to DECISIONS.md · signed policy note). Once ruled, the operator authors the corresponding write_attestation() call with the chosen verification_mechanism literal + rto_target_seconds string; the service will write the record. No code change required."
+}

@@ -168,15 +168,15 @@ Not scheduling — grounding what each CP will lean on. Order is by dependency, 
 
 ---
 
-## 7 · Open questions surfaced during grounding (for CP1 rulings)
+## 7 · Open questions surfaced during grounding · ALL RESOLVED · CP1 rulings on record
 
-**Q1 · CA1-011 route disposition** · **RESOLVED · Orchestrator ruling 2026-08-25T23:15Z**. Split as follows: W7 lands the re-check-date register (per-model `re_check_due_at`) + surfacing (Doc 13's letter). W9 lands the Watch-routed enforcement with a **named seam** on record from W7. Do NOT fake the enforcement half; honest render on early failure. Folded into §1.1 (Doc13-023) and §4 (dependencies).
+**Q1 · CA1-011 route disposition** · **RESOLVED · Orchestrator ruling 2026-08-25T23:15Z**. SPLIT: W7 lands re-check-date register + surfacing (Doc 13's letter). W9 lands Watch-routed enforcement with a **named seam** on record from W7. Do NOT fake the enforcement half; honest render on early failure. Folded into §1.1 (Doc13-023) and §4 (dependencies).
 
-2. **MOAC uncurated-sample evidence** (C4-038): the tenant's "uncurated measured composition" (Doc 1 §4.10) is a Registry primitive. Does CP4 lean on the census dimensions already live in `services/registry_facts/` (2 sources, structure-only, ≈-flagged), or does W7 require a fresh census pass? Grounding view: reuse Registry's census; if strata coverage is insufficient, name it as a MOAC.2 honest gap.
+**Q2 · MOAC uncurated-sample evidence source** · **RESOLVED · Owner ruling 2026-08-25T23:30Z (W7 GO)**. REUSE Registry census facts (the real connected estate — 235 tables' structural facts + crossing receipts) as uncurated sample where the register's letter permits. Fresh pass over actual records requires a **named purpose** + **structure-only posture** honored (chokepoint discipline). If Doc 13's letter genuinely requires record-contents sampling for which no purpose is on record, **NAME THE GAP** rather than sampling anyway. Applies to CP4 MOAC.1 (accuracy on uncurated composition) and MOAC.2 (coverage across strata Mtafiti measured).
 
-3. **Registry namespace**: RMS's model registry lives at `services/perception/model_registry.py`. In-tree Extraction-Akki does NOT have a `services/perception/` package (perception contracts live under `contracts/perception_*.py`). CP3 lift target: `services/model_registry/` (top-level) or `services/perception/model_registry.py` (mirroring RMS)? Grounding view: top-level `services/model_registry/` for surface clarity; the perception-namespaced lift confused RMS itself (whisper-tiny is an ASR fixture, not "perception" as Canon 5 §12.2 uses the term).
+**Q3 · Model registry namespace** · **RESOLVED · Owner ruling 2026-08-25T23:30Z (W7 GO)**. `services/model_registry/` as first-class top-level package. LIFT the RMS-IQ-Core-2 `services/perception/model_registry.py` + `models_registry.v0.json` fabric INTO this namespace; the perception mirror stays donor-side. Consistent with chokepoint/solva/northena landing pattern. **Seed policy**: registry seeds from FACTS only — the Emergent Universal LLM connection is real (already on record at W5). **whisper-tiny is NOT seeded** unless actually available on this estate; it stayed a donor-side CI fixture. Only real models on record.
 
-4. **CA1-005 whitepaper reuse grade**: is `deck_*.py` ADAPT within the 150-LOC lid? Grounding view: unlikely without narrowing the Deck templating out — leaning toward defer-to-W8 unless CP6 exploration surfaces a leaner path.
+**Q4 · CA1-005 whitepaper reuse grade** · **RESOLVED · Owner ruling 2026-08-25T23:30Z (W7 GO)**. 150-LOC hard lid stands. On overrun, W8-defer with a named gap in the W7 close report. Honest gate — no heroics. Applies to CP6 only.
 
 ---
 

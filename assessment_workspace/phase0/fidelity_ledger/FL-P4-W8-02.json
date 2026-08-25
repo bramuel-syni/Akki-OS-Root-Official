@@ -1,0 +1,34 @@
+{
+  "row_id": "FL-P4-W8-02",
+  "row_class": "dod_extension_hardcoded_parity_count_assertion_third_element",
+  "opened_at": "2026-08-26T02:35:00Z",
+  "opened_by": "W8 wave-close cohort assembly · caught during CP6→wave-close transition",
+  "status": "CLOSED at open · new DoD element ratified · fix in commit that landed CP6 follow-up",
+  "anchor": "FL-P4-W6-02/08/09 DoD (contract + snapshot + CONTRACT_TO_SNAPSHOT same-commit) extended to include hardcoded parity-count assertions in test_*_contract_frozen.py.",
+  "defect_class": {
+    "name": "Parity-count assertion drift",
+    "family": "FL-P4-W6-02 · same-commit map-count DoD family",
+    "distinctness_from_family": "The prior DoD covered the CONTRACT_TO_SNAPSHOT dict (a symbol map) but did NOT cover the hardcoded numeric assertion in test_composed_conclusion_v0_contract_frozen.py (line 92 · assert len(snapshots) == N). That assertion is a THIRD element of the same-commit contract-parity discipline.",
+    "recurrence_number_in_family": 4
+  },
+  "how_discovered": "W8 wave-close cohort assembly (per W6-broadened cohort discipline). After CP6 landed 3 new snapshots + updated CONTRACT_TO_SNAPSHOT + CONTRACT_TO_SNAPSHOT_SECONDARIES, the wave-close cohort surfaced ONE hardcoded count assertion still at 44 (test_composed_conclusion_v0_contract_frozen.py::test_composed_conclusion_snapshot_parity_at_18). Right-reason failure caught by discipline; no code drift silently landed.",
+  "resolution": {
+    "count_before": 44,
+    "count_after": 47,
+    "files_touched": [
+      "backend/tests/invariants/test_composed_conclusion_v0_contract_frozen.py (docstring update + assertion bump 44→47)"
+    ],
+    "commit_sha": "bfafd5f (W8 CP6 follow-up)",
+    "receipts": {
+      "right_reason_failure": "surfaced during cohort assembly · exact-class message captured in-session · 1/366 fail · not banked to disk (honesty note · the failure was ephemeral during assembly discipline execution)",
+      "green": "phase0/drill_receipts/20260826T024000Z_w8_wave_close_green.log (366/366 · 55 files)"
+    }
+  },
+  "dod_extension": {
+    "new_rule": "Any commit adding a *.contract_snapshot.json MUST also update the hardcoded parity-count assertion in test_composed_conclusion_v0_contract_frozen.py::test_composed_conclusion_snapshot_parity_at_18 in the SAME commit.",
+    "old_rule_still_applies": "contract + snapshot + CONTRACT_TO_SNAPSHOT (or SECONDARIES) same-commit DoD from FL-P4-W6-02/08/09.",
+    "effective_from": "W8 CP6 wave-close (2026-08-26)",
+    "compensating_grep_command": "grep -n 'assert len(snapshots) ==' backend/tests/invariants/*.py"
+  },
+  "root_cause_of_recurrence": "CP6 authored the three new snapshot files and updated CONTRACT_TO_SNAPSHOT + SECONDARIES in the same commit but MISSED the additional hardcoded numeric assertion. The DoD documented at W6 close named only the symbol map. The numeric assertion is functionally the same discipline but was not covered by the prior DoD text."
+}

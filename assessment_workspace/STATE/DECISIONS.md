@@ -1304,3 +1304,63 @@ Recorded as ORCHESTRATOR rulings (accounting + build discipline · not owner sco
    - `notes/w7_grounding_brief.md §7 Q1` is RESOLVED (this ruling); brief §1.1 (Doc13-023 status) and §4 (dependencies) fold the disposition in-line. Q2/Q3/Q4 remain for CP1.
 
 4. **Continue holding for owner "W7 go"**. No CP1 commits.
+
+## 2026-08-25T23:30Z · OWNER · W7 GO + CP1 rulings on Q2/Q3/Q4
+
+**Source**: owner channel · verbatim below. This is the explicit W7 go-signal previously held for.
+
+**Verbatim (owner):**
+
+> "go" = W7 GO — log in DECISIONS.md (dated, source: owner channel). Execute W7 per the grounding brief: Targeta · Model Ecosystem · Model Admission ceremony (Docs 13/14 + CA1-004/005/011-split) + carried deferrals (Data Suite surface v7-exact · LLM chip UI polish). Re-baselined budget ~3,520 LOC, stop-and-report at the line.
+>
+> CP1 rulings on your three open questions, so nothing waits:
+> Q2 · MOAC uncurated-sample source: REUSE the Registry census facts (the real connected estate — 235 tables' structural facts + crossing receipts) as the uncurated sample where the register's letter permits it; a fresh pass only where Doc 13's text requires sampling the material itself — and since record-contents access is still purpose-gated, any fresh pass over actual records needs a named purpose and the structure-only posture honored. If the letter genuinely requires record contents we don't yet have a purpose for, name the gap rather than sampling anyway.
+> Q3 · Namespace: `services/model_registry/` as its own package (LIFT the RMS-IQ-Core-2 fabric into it) — the perception mirror stays donor-side; this estate's registry is a first-class service, consistent with how chokepoint/solva/northena landed. Registry contents seed from FACTS: the Emergent Universal connection (real) + whatever the donor's seeded whisper-tiny entry means — if whisper-tiny isn't actually available on this estate, it does NOT get seeded; only real models on record.
+> Q4 · CA1-005 whitepaper: 150-LOC lid stands; on overrun, W8-defer with the named gap. Honest gate, no heroics.
+>
+> Standing rules unchanged (tests-first + right-reason receipts · v7-exact T1 · real facts/drawn-not-blank · REFERENCE-NOT-COPY · purpose gate on every crossing · contract+snapshot+parity same-commit DoD · no push · checkpoint commits · STATE/ current). The Model Admission ceremony renders per the v7 oracle's approvals fabric — admission is a ceremony with a record, and the LLMS & TRAINED MODELS tab fills from admission records only. Deliverables: register rows (IDs+count), per-CP test delta + receipts, reuse pulls used vs rejected, screenshots (Model Admission walk · LLMs tab filled · Data Suite · Targeta surface if the oracle carries one), LOC vs budget, SHAs, dashboard. Then hold for W8 go.
+
+**Binding effects:**
+
+1. **W7 GO** on `programme/track-a`. Budget ~3520 LOC, stop-and-report at 3520 line.
+
+2. **Scope confirmed**: Docs 13 + 14 + CA1-004 + CA1-005 + CA1-011-split + W6 deferrals folded in (Data Suite v7-exact + LLM chip UI polish).
+
+3. **CP1 · Q2 resolved (MOAC uncurated-sample source)**: REUSE Registry census facts (235 tables' structural facts + crossing receipts) as uncurated sample where the register's letter permits. Fresh pass over actual records requires a **named purpose** + **structure-only posture** honored (chokepoint discipline). If Doc 13's letter genuinely requires record-contents sampling for which no purpose is on record, **NAME THE GAP** rather than sampling anyway. Grounding view was correct on the reuse-first stance; owner adds the purpose-gate discipline and the honest-gap escape hatch.
+
+4. **CP1 · Q3 resolved (namespace)**: `services/model_registry/` as first-class package (top-level). LIFT RMS-IQ-Core-2 fabric INTO this namespace; the perception mirror stays donor-side. Consistent with chokepoint/solva/northena landing pattern. **Seed policy**: registry seeds from FACTS only — the Emergent Universal LLM connection is real (already on record at W5). **whisper-tiny is NOT seeded** unless actually available on this estate; it stayed a donor-side CI fixture, not an estate-side model. Only real models on record.
+
+5. **CP1 · Q4 resolved (CA1-005 whitepaper)**: 150-LOC hard lid stands. On overrun, W8-defer with a named gap in the W7 close report. Honest gate — no heroics.
+
+6. **Model Admission ceremony render rule**: renders per v7 oracle's approvals fabric — admission is a ceremony with a record, LLMS & TRAINED MODELS tab fills from admission records only (no fabricated seed rows; drawn-not-blank pattern applies).
+
+7. **Deliverables at W7 close**: register rows (IDs + count) · per-CP test delta + receipts · reuse pulls used vs rejected · screenshots (Model Admission walk · LLMs tab filled · Data Suite · Targeta surface if oracle carries one) · LOC vs budget · SHAs · dashboard.
+
+8. **Then hold for W8 go**.
+
+## 2026-08-26T00:25Z · OWNER · Auto-continue next 2 waves
+
+**Source**: owner channel · verbatim below.
+
+**Verbatim (owner):**
+
+> "Auto continue next 2 waves."
+>
+> Binding effect: the per-wave go-gate is lifted for W8 and W9. When W7 closes, proceed DIRECTLY into W8 (starting with its named opener: canonical-projection for contract parity), and on W8 close proceed directly into W9. Still send me a full close report at each wave boundary (register rows, tests+receipts, reuse pulls, screenshots, LOC vs budget, SHAs, dashboard) — the reports keep flowing, only the waiting stops.
+>
+> Unchanged and still binding through both waves:
+> - Stop-and-report on: load-bearing conflicts between governing artifacts, scope drifting past the re-baselined budget, anything that would fake a mechanism, any owner-ruling-class question (e.g., if W8's N-series breach-notification or access-and-erasure mechanics need a policy fact only the owner holds — stop that ITEM, name the question, continue the rest of the wave).
+> - W8 scope: governance ceremony · Approvals surfaces · N-series (CA1-N2 breach notification, CA1-N3 access-and-erasure) · generalized handoff contract (CA1-009) · Rules Updates · Spend Requests · Trace (REFERENCE-NOT-COPY law load-bearing) — per the wave plan and the 17-doc register rows.
+> - W9 scope: Watch mechanism + Grey Mirror completion · ledger continuity (CA1-N5) · Walk-this per the A8 ruling (Q1 deep-link re-enters governed read path · Q2 same-actor/same-window interim · Q3 refusals verbatim) · CA1-011 enforcement half at its named seam · the Ruling-1 closure question: once the Watch reconciler is DEMONSTRATED FIRING, both Ruling-1 preconditions are met — do NOT strip the purpose gate yourself; that strip is a Canon 3 §24 ceremony per FL-R1-01's ruling and an owner act. Surface it as ready-for-ceremony in your W9 close report.
+> - Compaction safety across the long run: STATE/NEXT.md must always carry the exact resume point; checkpoint commits at every green section; never end a session with uncommitted green work.
+> Acknowledge, then continue W7 to close and flow onward.
+
+**Binding effects:**
+
+1. **Per-wave go-gate LIFTED for W8 and W9**. Close reports still flow to the owner at every wave boundary; only the waiting stops.
+2. **W8 opens on W7 close** with canonical-projection remediation as CP1 (per notes/w7_grounding_brief.md §5 + FL-P4-W6-01 process finding).
+3. **W9 opens on W8 close**.
+4. **Stop-and-report triggers unchanged**: load-bearing artifact conflicts, budget overrun past the re-baselined line, mechanism-faking risk, owner-ruling-class questions (e.g., N-series breach policy facts, access-and-erasure legal facts). Stop the ITEM, name the question, continue the rest of the wave.
+5. **W8 scope confirmed**: governance ceremony · Approvals surfaces · CA1-N2 breach notification · CA1-N3 access-and-erasure · CA1-009 generalized handoff contract · Rules Updates · Spend Requests · Trace surface (REFERENCE-NOT-COPY load-bearing per Design Law).
+6. **W9 scope confirmed**: Watch mechanism · Grey Mirror completion · CA1-N5 ledger continuity · Walk-this per A8 ruling · CA1-011 enforcement half at named seam · Ruling-1 closure question SURFACED (not fired — Canon 3 §24 ceremony is an owner act; W9 report names it ready-for-ceremony when Watch reconciler is demonstrated firing).
+7. **Compaction safety discipline** (LOAD-BEARING for the long-run session): STATE/NEXT.md carries exact resume point; checkpoint commits at every green section; never leave uncommitted green work at any session boundary.

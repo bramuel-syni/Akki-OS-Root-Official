@@ -1,0 +1,41 @@
+{
+  "row_id": "FL-P4-W7-02",
+  "row_class": "orientation_correction__pod-shell_vs_spine-server_confusion",
+  "opened_at": "2026-08-26T00:32:00Z",
+  "closed_at": "2026-08-26T00:45:00Z",
+  "closed_by": "W7 CP7 same-wave correction after direct inspection of /app/backend/server.py (the pod-shell)",
+  "opening_hypothesis_that_was_WRONG": {
+    "claim_1": "cost_ledger router was unmounted since W6 CP2 and frontend CostLedger.jsx never actually reached backend.",
+    "claim_2": "server.py has a fatal import break (services.northena.trace_lens missing) that prevents application boot; the wave-close cohort never caught it because there is no boot test.",
+    "why_the_hypothesis_was_wrong": "I confused Extraction-Akki's spine `backend/server.py` (a code-file that lives on programme/track-a but is NOT the runtime entrypoint) with the actual runtime pod-shell at `/app/backend/server.py`. The pod-shell inserts the spine backend path onto sys.path and imports SPECIFIC routers from the spine — not the spine's server.py. Discovered via `sudo supervisorctl status` + tail on /var/log/supervisor/backend.err.log which showed backend RUNNING with clean 'Application startup complete' at pid 20690 immediately before my inspection."
+  },
+  "corrected_honest_state": {
+    "runtime_entrypoint": "/app/backend/server.py (pod-shell · supervisor-managed on port 8001).",
+    "spine_bridge_mechanism": "Pod-shell inserts '/app/assessment_workspace/repos/Extraction-Akki/backend' at sys.path[0], then imports individual routers by dotted path (e.g., `from services.cost_ledger.router import router as cost_ledger_router`).",
+    "cost_ledger_actually_mounted_at_pod-shell": "YES — /app/backend/server.py L36 imports and L172 include_router's it. Frontend CostLedger.jsx works.",
+    "spine_server_py_trace_lens_break": "That file exists as a historical/tests assembler but is not the runtime entrypoint. Its import defect has no runtime consequence and would only surface if someone imported the spine server.py directly — which the wave-close cohort correctly does not do."
+  },
+  "actual_finding_at_W7_CP7": {
+    "kind": "spine_router_lift_but_pod-shell_mount_omission",
+    "description": "When I authored the 4 new W7 routers (model_registry, model_admission, baseline_line, model_recheck), I added include_router() calls to the SPINE's server.py — but NOT to the pod-shell. Runtime never saw the routers until the pod-shell mount was added at 2026-08-26T00:42Z.",
+    "verdict": "INTENDED_router_UNINTENDED_pod-shell_mount_omission",
+    "reasoning": "This IS the FL-P4-W4-01 defect class — glue not touched at the same time as the artifact. But it's a NEW variant: 'spine artifact built · pod-shell bridge not extended'. Every wave adding a new service router MUST touch /app/backend/server.py at the two extension points (import block + include_router block). Same-commit-DoD extension.",
+    "reconciliation": "Pod-shell now imports + mounts model_registry_router, model_admission_router, baseline_line_router, model_recheck_router. Verified live via `curl -H 'X-Forwarded-For: 34.16.56.64, 10.0.0.1, 10.0.0.2' http://localhost:8001/api/model_registry/version` returning {version_n: 0, model_count: 7, ...}."
+  },
+  "recurrence_tracking": {
+    "defect_class": "FL-P4-W4-01 (wave-close cohort blind spot · glue not touched)",
+    "recurrence_count_after_correction": 4,
+    "prior_instances": [
+      "FL-P4-W4-01 · W4 origin · northena_ledger_row snapshot · detected W5 close",
+      "FL-P4-W6-02/08/09 · W1 origin · actor_declaration_v0 map+count · detected W6 close",
+      "FL-P4-W7-01 · W4 origin · targeta_mining_plan transitive · detected W7 CP2",
+      "FL-P4-W7-02 · W7 CP7 origin · pod-shell mount omission for 4 new routers · detected + fixed same-CP (THIS row · CORRECTED READ)"
+    ],
+    "removed_from_recurrence_count": "The 'cost_ledger unmounted' claim from the earlier read; it was WRONG. The 'server.py trace_lens' claim from the earlier read; it was WRONG (spine file, not runtime)."
+  },
+  "process_finding_for_W8_opener": {
+    "add_pod-shell_mount_completeness_test": "backend/tests/invariants/test_pod_shell_router_mount_completeness.py — enumerate every `services/*/router.py` file in the spine AND assert each is imported+mounted at /app/backend/server.py. Same discipline as suggested-then-corrected for the spine-server variant. Prevents this finding's recurrence.",
+    "add_ci_boot_test": "backend/tests/invariants/test_pod_shell_boots.py — asserts `import /app/backend/server.py` succeeds AND `TestClient(app).get(...)` returns 403 (allowlist refusal, not 500). Names the pod-shell as the runtime; makes the pod-shell/spine bridge explicit in the invariant surface."
+  },
+  "honesty_note": "This row is opened and closed with a correction attached. That is the correct pattern: an honest wave-close ledger reflects both the incorrect hypothesis AND the correction, so future audits can see the reasoning path. The two 'findings' in the earlier version of this row were bad calls; they are retracted here. The ACTUAL W7 CP7 finding (pod-shell mount omission) is separately documented above."
+}

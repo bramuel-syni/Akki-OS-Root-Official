@@ -1,0 +1,56 @@
+{
+  "row_id": "FL-P4-W7-01",
+  "row_class": "map_and_count_omission_defect_class_recurring_FL-P4-W4-01",
+  "opened_at": "2026-08-25T23:45:00Z",
+  "opened_by": "W7 CP2 · lift of RMS-IQ-Core-2/backend/tests/invariants/test_targeta_invariants.py surfaced a latent snapshot drift",
+  "closed_at": "2026-08-25T23:45:00Z",
+  "closed_by": "W7 CP2 · Owner Ruling 'W7 GO' 2026-08-25T23:30Z as the ratification moment",
+  "affected_contract": {
+    "class": "contracts.targeta_plan.MiningPlan",
+    "snapshot_file": "backend/tests/invariants/targeta_mining_plan.contract_snapshot.json",
+    "test_file": "backend/tests/invariants/test_targeta_invariants.py::test_mining_plan_contract_frozen"
+  },
+  "drift_summary": {
+    "changed_paths": [
+      ".$defs.LedgerArtifactRef.properties.artifact_type.enum — 'thinklab_objective' added"
+    ],
+    "delta_shape": "MiningPlan embeds LedgerArtifactRef.governing_artifact_ref. When W4 extended LedgerArtifactRef.artifact_type enum with 'thinklab_objective' (to support ThinkLab objective admissions per Doc 05 §A5), TWO snapshots were transitively affected: (a) northena_ledger_row.contract_snapshot.json (bumped at W6 opener #2 as FL-P4-W4-01), and (b) targeta_mining_plan.contract_snapshot.json — this row — which was NOT bumped at W4 close and NOT caught at W5 close or W6 close because the test_targeta_invariants.py file had not been lifted from RMS-IQ-Core-2 yet."
+  },
+  "drift_introduced_at": {
+    "wave": "W4",
+    "commit": "7bea87d",
+    "commit_summary": "W4 Section B+C · Northena backend code + ThinkLab router mount",
+    "wave_close_sha": "a71ea67",
+    "companion_row": "FL-P4-W4-01 (bumped the northena_ledger_row snapshot; missed the MiningPlan transitive)"
+  },
+  "drift_detected_at": {
+    "wave": "W7",
+    "moment": "CP2 · test lift from RMS-IQ-Core-2 to Extraction-Akki surfaced the frozen snapshot mismatch",
+    "sha_at_detection": "60581fb (W7 CP1 close · programme/track-a)"
+  },
+  "intended_vs_unintended_judgement": {
+    "verdict": "INTENDED_addition_UNINTENDED_transitive_snapshot_omission",
+    "reasoning": "The W4 LedgerArtifactRef.artifact_type extension IS a governance-authorised model change (Doc 05 §A5 ThinkLab objective admissions on record). What was UNINTENDED is that MiningPlan's frozen snapshot — which transitively depends on LedgerArtifactRef via governing_artifact_ref — was not bumped in the same commit as FL-P4-W4-01. Exactly the same shape as FL-P4-W4-01 (map/snapshot omission on a wave close cohort's blind spot)."
+  },
+  "reconciliation": {
+    "chosen_path": "bump_snapshot_to_match_code",
+    "rationale": "The extension represents intended W4 behavior; reverting would break the live ThinkLab feature (which is on record and green at 250/250 W6 close cohort). Owner Ruling 'W7 GO' IS the explicit ratification moment for this bump.",
+    "alternative_considered": "revert_code_to_match_snapshot",
+    "alternative_rejected_because": "would break the ThinkLab admit surface + break FL-P4-W4-01's already-bumped northena_ledger_row snapshot in the opposite direction."
+  },
+  "tests_first_receipt": {
+    "right_reason_failure": "phase0/drill_receipts/20260825T234100Z_w7_cp2_right_reason_fail.log (1 failed / 11 passed · test_mining_plan_contract_frozen failed for right reason)",
+    "green_after_fix": "phase0/drill_receipts/20260825T234500Z_w7_cp2_green.log (12/12 passed)"
+  },
+  "recurrence_tracking": {
+    "defect_class": "FL-P4-W4-01 (map/snapshot omission at wave close · cohort blind spot)",
+    "recurrence_count": 3,
+    "prior_instances": [
+      "FL-P4-W4-01 (W4 origin · northena_ledger_row · detected W5 close)",
+      "FL-P4-W6-02/08/09 (W1 origin · actor_declaration_v0 · detected W6 close)",
+      "FL-P4-W7-01 (W4 origin · targeta_mining_plan transitive · detected W7 CP2 — THIS row)"
+    ],
+    "pattern_finding": "All three recurrences share a common shape: a governance-authorised model extension in wave N whose frozen snapshot is NOT bumped in the SAME commit, discovered N+K waves later when the wave-close cohort finally sees the drifted test. FL-P4-W7-01's twist: the test itself was donor-side (RMS) and hadn't been lifted, so the cohort literally could not have caught it — this is a NEW variant of the class: 'donor-side invariant not yet lifted'. Named as an additional process finding below."
+  },
+  "process_finding_extending_FL-P4-W4-01": "The DoD ratified at W6 close (contract touch → same-commit snapshot + map + count) does not cover this class-variant. TWO distinct process gaps compound to produce it: (a) 'donor-side invariant not yet lifted' — when any wave adopts a donor module or contract, the wave-close cohort MUST include a lift-check pass that surfaces donor-side invariants for the adopted module; concretely, for each `services/<name>/` or `contracts/<name>.py` newly present, check if the donor repo has a `tests/invariants/test_<name>_*.py` and lift it (or explicitly refuse with a rationale) in the SAME wave close cohort. (b) 'naming-convention blind spot in the grep cohort' — the ratified pattern `test_*_frozen*.py` + `test_*_contract*.py` misses donor-side conventions like `test_<name>_invariants.py` (RMS-IQ-Core-2 uses this). Compensating discipline: extend the wave-close cohort to ALSO grep by CONTENT — any test file whose body contains `model_json_schema()` compared against a `contract_snapshot.json` MUST be in the cohort regardless of filename. Both findings named for W8 opener owner ruling. In the interim: W7 close cohort assemble MUST include content-grep AND every `test_*_invariants.py` file on disk."
+}

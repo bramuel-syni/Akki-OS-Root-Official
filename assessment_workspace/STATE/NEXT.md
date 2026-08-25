@@ -1,8 +1,200 @@
 # NEXT.md - Exact next actions
 
-**Last updated:** 2026-08-25T22:40Z · **W6 CLOSED · awaiting owner steer for W7 GO** · programme/track-a HEAD `7db5a00` (W6 close · 9 fidelity ledger drifts reconciled) atop `39a7034` (W6 CP5 · Lowered Standard). W5 CLOSED at Extraction-Akki@`39386ac`. Wave-close cohort 250/250 green.
+**Last updated:** 2026-08-26T03:45Z · **W9 CLOSED · auto-continue mandate satisfied · awaiting owner GO for W10 (polish/completion wave)** · Extraction-Akki HEAD `7027e16` (W9 CP5 · containment fabric) · pod-shell `/app` HEAD `0b227d9` (unchanged from W8) · master HEAD pending W9 close commit.
 
-## Cycle status (2026-08-25T22:40Z · W6 CLOSED · steer requested)
+## Cycle status (2026-08-26T03:45Z · W9 CLOSED · owner GO needed for next wave)
+
+- **W9 CLOSED** at 416/416 wave-close cohort green (63 files) · `phase0/drill_receipts/20260826T034000Z_w9_wave_close_green.log`.
+- **W9 LOC** · 2190 net (spine only · pod-shell unchanged) vs 6400 budget · **34%** · UNDER by 4210 LOC.
+- **W9 register rows lit** · 17 (14 Canon 8 · 3 CA-series: CA1-011 · CA1-012 · CA1-N5 scaffold).
+- **W9 fidelity ledger rows** · 1 opened (`FL-P4-W9-01` OPEN · CA1-N5-q1 owner-policy · non-blocking to close).
+- **Auto-continue mandate SATISFIED** (W8 + W9 completed per owner ruling 2026-08-26T00:25Z).
+- **Deferrals from W9**: Grey Mirror four sub-surfaces (§15-§16 + §32.4 · XL scope) · Walk-this per A8 ruling (owner-ruling pending) · Watch drills + fitness (§25-§28) · Reserved-decisions panel (§19) · Witness fabric (§9 full signing) · CA1-005 whitepaper · Doc 14 §§23-25 24-row expansion · Governance frontends. All named for a subsequent polish/completion wave with explicit owner GO.
+- Full close report at `notes/w9_close_report.md` · dashboard §11 · owner policy questions §7 (batched across FL-P4-W8-01 + FL-P4-W9-01 = 9 total).
+
+## Programme dashboard (post-W9)
+
+- **Frozen contracts** · 52 (from 39 at W7 close · +13 across W8+W9).
+- **Fidelity ledger** · 15 opened · 13 CLOSED · 2 OPEN (both owner-policy-pending).
+- **Test cohort** · 416 green (from 250 at W6 close · +166 across W7+W8+W9).
+- **Cumulative LOC** · ~23039 net (W1..W9).
+- **Mechanism corpus** · ~50%.
+- **Composite headline** · ~48%.
+
+## Awaiting owner (post-W9)
+
+1. **FL-P4-W8-01 batch** · 7 N-series policy questions (CA1-N2 breach + CA1-N3 erasure).
+2. **FL-P4-W9-01 batch** · 2 CA1-N5 continuity attestation questions (verification architecture + RTO target).
+3. **A8 ruling** (Walk-this Q1/Q2/Q3).
+4. **Executive-Final access decision** (Grey Mirror mechanism completion depends materially).
+5. **W10 GO + scope confirmation** (polish/completion wave · roughly 5000-6000 LOC estimated).
+
+## Standing rules (unchanged from W8)
+
+- Tests-first + right-reason receipts.
+- v7-exact T1 · real facts · drawn-not-blank.
+- REFERENCE-NOT-COPY (Design Law).
+- Purpose gate on every crossing (still on record until Canon 3 §24 ceremony).
+- Contract + snapshot + parity map + hardcoded numeric assertion same-commit DoD (FL-P4-W8-02 extension).
+- Pydantic 2.13.4 pin is LOAD-BEARING.
+- Wave-close cohort assembly: grep filename + content-grep + `test_*_invariants.py` + hardcoded-count-assertion grep.
+- Pod-shell + spine same-commit mount DoD (W7-added).
+- STATE/NEXT.md always carries exact resume point.
+- Checkpoint commits at every green section.
+- No push; local commits only.
+
+## Blocked (awaiting)
+
+- Owner GO for W10 (polish/completion wave) — no auto-continue covers this.
+- Owner rulings on 9 policy questions across 2 open FL rows (non-blocking to close, but load-bearing before N-series + continuity attestations can FIRE live records).
+- Owner A8 ruling (Walk-this) — load-bearing for that specific deferred item.
+
+## Cycle status (2026-08-26T02:45Z · W8 CLOSED · W9 CP1 OPENING) [ARCHIVED]
+
+- **W8 CLOSED** at 366/366 wave-close cohort green (55 files) · `phase0/drill_receipts/20260826T024000Z_w8_wave_close_green.log`.
+- **W8 LOC** · 2964 spine + 4 pod-shell = 2968 net vs 5600 budget · **53%** · UNDER by ~2632 LOC.
+- **W8 register rows lit** · 10 (7 Doc 15 · 3 CA-series partial/scaffolding).
+- **W8 fidelity ledger rows** · 2 opened (`FL-P4-W8-01` OPEN owner-policy · `FL-P4-W8-02` CLOSED new DoD element).
+- **Deferrals from W8**: CA1-005 whitepaper · Doc 14 §§23-25 24-row expansion · Governance frontends · CA1-012 Watch staleness-flagging · Data Suite · LLM chip polish. All named for W9 or a subsequent polish wave (no silent slip).
+- **Frontends deferred to a subsequent polish wave** (backend records on record; screenshot gap unchanged).
+- Full close report at `notes/w8_close_report.md` · dashboard §11 · owner policy questions §7.
+
+## W9 opening — CP1 carry-over items (all P0)
+
+1. **FL-P4-W8-01 policy answers** — if owner has ruled on the 7 N-series questions (Close Report §7), wire the answers · else continue rest of W9 without firing.
+2. **Watch mechanism primary build** (Doc 3 · Doc 8) — includes CA1-011 enforcement half at `services.watch.route_recheck_failure` (W9 seam per Owner Ruling 2026-08-25T23:15Z SPLIT).
+3. **Grey Mirror four sub-surfaces** (overview · monitor · response · people).
+4. **Ledger continuity (CA1-N5)**.
+5. **Walk-this** per A8 ruling (Q1 · Q2 · Q3).
+6. **CA1-012 Watch staleness-flagging** (carried from W8).
+7. **Doc 14 §§23–25 remaining 24 rows** (carried from W7).
+8. **CA1-005 whitepaper re-evaluation** (carried from W7).
+
+## W9 nominal scope (owner-confirmed 2026-08-26T00:25Z · auto-continue after W8)
+
+- Watch mechanism · Grey Mirror completion (four sub-surfaces).
+- CA1-N5 ledger continuity attestation.
+- Walk-this per A8 ruling.
+- CA1-011 enforcement half at named seam.
+- CA1-012 Watch staleness-flagging.
+- Doc 14 §§23-25 24-row expansion.
+- CA1-005 whitepaper re-evaluation.
+- Wave close · cohort assembly · close report.
+
+**W9 stop-and-report line**: 6400 LOC per re-baselined table.
+
+## Standing rules (all binding through W9)
+
+- Tests-first + right-reason receipts.
+- v7-exact T1 · real facts · drawn-not-blank.
+- REFERENCE-NOT-COPY (Design Law).
+- Purpose gate on every crossing (still on record until Canon 3 §24 ceremony).
+- Contract + snapshot + parity map + **hardcoded numeric assertion** same-commit DoD (FL-P4-W8-02 extension).
+- Pydantic 2.13.4 pin is LOAD-BEARING (Extraction-Akki L4-L18).
+- Wave-close cohort assembles by grep filename + content-grep + `test_*_invariants.py` + hardcoded-count-assertion grep (W8-added).
+- Pod-shell + spine same-commit mount DoD (W7-added).
+- STATE/NEXT.md always carries exact resume point.
+- Checkpoint commits at every green section.
+- No push; local commits only.
+
+## Blocked (awaiting)
+
+- None. W9 CP1 opens immediately.
+
+## Cycle status (2026-08-26T01:15Z · W7 CLOSED · W8 CP1 OPENING) [ARCHIVED]
+
+- **W7 CLOSED** at 310/310 wave-close cohort green (44 files) · phase0/drill_receipts/20260826T010500Z_w7_wave_close_green.log.
+- **Owner auto-continue** for W8 and W9 · per-wave go-gate lifted (2026-08-26T00:25Z verbatim in DECISIONS.md).
+- **W7 LOC** · 2779 net (2429 spine + 350 pod-shell) vs 3520 budget · **79%** · UNDER by 741 LOC.
+- **W7 register rows lit** · 17 (13 Doc 13 · 4 Doc 14).
+- **W7 fidelity ledger rows** · 2 opened + closed (FL-P4-W7-01 · FL-P4-W7-02).
+- **1 deferral to W8** · CA1-005 whitepaper (never opened · honest gate under 150-LOC lid).
+- Full close report at `notes/w7_close_report.md` · dashboard on §10.
+
+## W8 opening — CP1 carry-over items (all P0)
+
+1. **Canonical-projection remediation** — pydantic-version-independent projection for frozen snapshots (Owner Ruling 2026-08-25T22:55Z Q1 · from W6 close). Load-bearing for W8's contract-heavy scope.
+2. **Pod-shell mount completeness test** (new invariant · from FL-P4-W7-02 §7.2).
+3. **Pod-shell boot test** (new invariant · from FL-P4-W7-02 §7.2).
+4. **Async event-loop pollution owner-visibility ruling** (from W7 CP8 conftest fixture · owner may want a different remediation).
+5. **CA1-005 whitepaper re-evaluation** (deferred from W7 CP6).
+6. **Doc 14 §§23–25 · 24 remaining rows expansion** (from W7 opener grounding · deferred).
+
+## W8 nominal scope (owner-confirmed 2026-08-26T00:25Z)
+
+- Governance ceremony · Approvals surfaces.
+- N-series: CA1-N2 breach notification · CA1-N3 access-and-erasure.
+- CA1-009 generalized handoff contract.
+- Rules Updates · Spend Requests · Trace surface (REFERENCE-NOT-COPY load-bearing).
+
+## W9 nominal scope (owner-confirmed 2026-08-26T00:25Z · auto-continue after W8)
+
+- Watch mechanism · Grey Mirror completion.
+- CA1-N5 ledger continuity.
+- Walk-this per A8 ruling (Q1 · Q2 · Q3).
+- CA1-011 enforcement half at named seam (`services.watch.route_recheck_failure`).
+- Ruling-1 closure question surfaced (NOT fired · Canon 3 §24 ceremony is an owner act).
+
+## Standing rules (all binding through W8 + W9)
+
+- Tests-first + right-reason receipts.
+- v7-exact T1 · real facts · drawn-not-blank.
+- REFERENCE-NOT-COPY (LOAD-BEARING for W8 Trace surface).
+- Purpose gate on every crossing (still on record until Canon 3 §24 ceremony).
+- Contract + snapshot + parity same-commit DoD (FL-P4-W6-02/08/09).
+- Pydantic 2.13.4 pin is LOAD-BEARING (Extraction-Akki L4-L18).
+- Wave-close cohort assembles by grep filename + content-grep + `test_*_invariants.py` (W7-broadened).
+- Pod-shell + spine same-commit mount DoD (W7-added).
+- STATE/NEXT.md always carries exact resume point.
+- Checkpoint commits at every green section.
+- No push; local commits only.
+
+## Blocked (awaiting)
+
+- None. W8 CP1 opens immediately.
+
+## Cycle status (2026-08-25T23:38Z · W7 CP1 CLOSED · CP2 opening) [ARCHIVED]
+
+- **W7 GO** received from owner at 2026-08-25T23:30Z (see STATE/DECISIONS.md L1358-L1421). Scope: Docs 13 + 14 + CA1-004 + CA1-005 + CA1-011-split + W6 deferrals folded in. Budget ~3520 LOC · stop-and-report line at 3520.
+- **CP1 (Rulings + rates lane) · GREEN**: 5/5 tests-first invariants green at `phase0/drill_receipts/20260825T233800Z_w7_cp1_green.log` (right-reason failure at `20260825T233500Z_w7_cp1_right_reason_fail.log`). Delta: `services/cost_ledger/rates.py` extended with `training` lane + `rate_for_training_run()`; `phase0/rates_register/training/` opened with README (honestly absent — no rate rows on record).
+- **CP2 (Targeta service LIFT) · opening**: RMS-IQ-Core-2 `services/targeta/` (425 LOC · 6 files) LIFT into `Extraction-Akki/backend/services/targeta/`. Contract already in-tree (`contracts/targeta_plan.py` + snapshot). Tests-first from RMS `tests/invariants/test_targeta_invariants.py` (207 lines · adapt).
+
+## W7 checkpoint status
+
+| CP | Scope | Status | Est. LOC (pre-cal.) | Actual LOC |
+|----|-------|--------|--------------------:|-----------:|
+| CP1 | Rulings + rates lane · training register subdir · README | GREEN | 150 | ~50 (SLA under-run) |
+| CP2 | Targeta service LIFT + invariants | opening | 500 | — |
+| CP3 | Model registry service (top-level `services/model_registry/`) LIFT + FACTS-only seed (7 Emergent Universal models · no whisper-tiny) | pending | 350 | — |
+| CP4 | Model Admission ceremony backend · six-criterion MOAC · uncurated-sample discipline · rights lineage · quarantine · Batch Board records | pending | 700 | — |
+| CP5 | CA1-004 baseline line + CA1-011 re-check state (Watch route SPLIT to W9 · named seam on record from W7) | pending | 400 | — |
+| CP6 | CA1-005 whitepaper · 150-LOC hard lid · OR W8-defer with named gap | pending | 250 or DEFER | — |
+| CP7 | W6 deferrals folded in: Data Suite surface (v7-exact) · LLM chip UI polish · Model Ecosystem surface (Baseline · Ecosystem · Admission tabs) | pending | 700 | — |
+| CP8 | Wave close · cohort assembly (grep frozen+contract) · STATE · screenshots · close report | pending | 50 | — |
+| **Estimate total (pre-cal.)** | | | **3100 · × 1.60 ≈ 3520** | **~50 (CP1 only)** |
+
+## W7 CP1 rulings summary (owner · 2026-08-25T23:30Z)
+
+- **Q2 · MOAC uncurated-sample**: REUSE Registry census facts (235 tables · 145 crossing receipts) where letter permits. Fresh pass ONLY where Doc 13 requires record-contents sampling AND a named purpose is on record — else NAME THE GAP.
+- **Q3 · Namespace**: `services/model_registry/` first-class package. LIFT RMS fabric. Seed from FACTS only: 7 Emergent Universal models (real, W5-connected). **whisper-tiny NOT seeded** (donor-side CI fixture, not on this estate).
+- **Q4 · CA1-005 whitepaper**: 150-LOC hard lid; overrun → W8-defer with named gap.
+
+## Standing rules (unchanged from W6)
+
+- Tests-first + right-reason receipts.
+- v7-exact T1 · real facts · drawn-not-blank.
+- REFERENCE-NOT-COPY.
+- Purpose gate on every crossing.
+- Contract + snapshot + parity same-commit DoD (FL-P4-W6-02/08/09 ratification).
+- Pydantic 2.13.4 pin is LOAD-BEARING (Extraction-Akki `5aba8e7`).
+- Wave-close cohort assembles by grep `test_*_frozen*.py` + `test_*_contract*.py`.
+- No push; local checkpoint commits; STATE/ kept current.
+
+## Blocked (awaiting)
+
+- None. CP2 proceeds immediately.
+
+## Cycle status (2026-08-25T22:40Z · W6 CLOSED · steer requested) [ARCHIVED]
 
 - **W1..W6 · CLOSED**. 250/250 W6 wave-close cohort green (36 test files) at `phase0/drill_receipts/20260825T224000Z_w6_wave_close_green.log`. Frozen+contract sub-cohort 18/18 green at `phase0/drill_receipts/20260825T223200Z_w6_close_frozen_cohort_green.log`.
 - **W6 LOC actual**: +3319 net (+3716 −397) vs 2880 budget · **15% overrun**. Envelope stop-and-report to owner (see notes/w6_close_report.md §5 & §8).

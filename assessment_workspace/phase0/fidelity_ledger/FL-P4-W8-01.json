@@ -1,0 +1,79 @@
+{
+  "row_id": "FL-P4-W8-01",
+  "row_class": "stop_and_report_on_owner_policy_facts__N_series_structural_scaffold_landed",
+  "opened_at": "2026-08-26T01:55:00Z",
+  "opened_by": "W8 CP4 · CA1-N2/CA1-N3 structural scaffolding lift",
+  "status": "OPEN — owner ruling required on 7 policy questions before N-series ceremonies can fire",
+  "anchor": "Owner Auto-continue Ruling 2026-08-26T00:25Z verbatim: 'stop that ITEM, name the question, continue the rest of the wave.'",
+  "affected_scope": {
+    "contracts_landed": [
+      "backend/contracts/breach_notification.py · BreachNotification_v0 (43rd frozen)",
+      "backend/contracts/erasure_request.py · ErasureRequest_v0 (44th frozen)"
+    ],
+    "services_landed": [
+      "backend/services/n_series/breach.py · fire_breach_notification + load_breach_notifications · REFUSES to fire while any policy field at OWNER_POLICY_PENDING",
+      "backend/services/n_series/erasure.py · fire_erasure_request + load_erasure_requests · REFUSES to fire while any policy field at OWNER_POLICY_PENDING"
+    ],
+    "tests_landed": [
+      "backend/tests/invariants/test_w8_cp4_n_series_scaffolding.py · 6 invariants (defaults pending · service refuses while pending · service fires when resolved)",
+      "backend/tests/invariants/test_n_series_contracts_frozen.py · 2 frozen snapshots"
+    ],
+    "receipts": {
+      "right_reason_failure": "phase0/drill_receipts/20260826T015000Z_w8_cp4_right_reason_fail.log (2 frozen fail · right reason · 6 scaffolding pass)",
+      "green": "phase0/drill_receipts/20260826T015500Z_w8_cp4_green.log (13/13 pass)"
+    }
+  },
+  "policy_questions_stopped_pending_owner_ruling": {
+    "ca1_n2_breach_notification": {
+      "q1_trigger_scope": {
+        "question": "Does the breach notification fire on refusal-bypass ONLY, or also on near-miss (attempted but refused before harm)?",
+        "options_on_record": ["refusal_bypass_only", "refusal_bypass_and_near_miss"],
+        "sentinel": "OWNER_POLICY_PENDING",
+        "current_default": "OWNER_POLICY_PENDING (refuses fire)"
+      },
+      "q2_notification_routing": {
+        "question": "Where does the notification route — Watch (self-witness under Doc 3) or an independent authority?",
+        "options_on_record": ["watch_self_witness", "independent_authority"],
+        "sentinel": "OWNER_POLICY_PENDING",
+        "current_default": "OWNER_POLICY_PENDING (refuses fire)"
+      },
+      "q3_actor_masking": {
+        "question": "Does the notification body carry actor ids in the clear, or masked?",
+        "options_on_record": ["actor_ids_visible", "actor_ids_masked"],
+        "sentinel": "OWNER_POLICY_PENDING",
+        "current_default": "OWNER_POLICY_PENDING (refuses fire)"
+      },
+      "q4_cadence": {
+        "question": "One notification per breach event, or aggregated windows (hourly / daily)?",
+        "options_on_record": ["one_per_breach", "aggregated_windows"],
+        "sentinel": "OWNER_POLICY_PENDING",
+        "current_default": "OWNER_POLICY_PENDING (refuses fire)"
+      }
+    },
+    "ca1_n3_access_and_erasure": {
+      "q1_erasure_reach": {
+        "question": "How deep does erasure reach — raw source only, raw + five-ring units, or raw + units + model weights?",
+        "options_on_record": ["raw_source_only", "raw_and_five_ring_units", "raw_and_units_and_model_weights"],
+        "sentinel": "OWNER_POLICY_PENDING",
+        "current_default": "OWNER_POLICY_PENDING (refuses fire)"
+      },
+      "q2_identity_verification": {
+        "question": "Requester identity via self-declaration or via independent verifier? (Likely depends on the close-to-independent promise · Doc 8 territory.)",
+        "options_on_record": ["self_declared", "independent_verifier"],
+        "sentinel": "OWNER_POLICY_PENDING",
+        "current_default": "OWNER_POLICY_PENDING (refuses fire)"
+      },
+      "q3_retention_conflict": {
+        "question": "When a record is under an active CA1-N1 retention window and an erasure request lands, does erasure override retention or wait for expiry?",
+        "options_on_record": ["erasure_wins_over_ca1_n1", "retention_wins_until_expiry"],
+        "sentinel": "OWNER_POLICY_PENDING",
+        "current_default": "OWNER_POLICY_PENDING (refuses fire)"
+      }
+    }
+  },
+  "consequences_of_pending_status": {
+    "positive": "Structural scaffolding (contracts + services + tests + snapshots) IS on record; ceremony records CAN be written the instant policy resolves. W9 Watch route (CA1-N5 ledger continuity) has a binding point today.",
+    "negative": "Neither fire_breach_notification nor fire_erasure_request will succeed on live calls. Every attempted fire returns a ValueError naming the pending policy fields."
+  },
+  "how_owner_resolves": "Ruling can arrive in any format (email · verbal transcribed to DECISIONS.md · a signed policy note). Once ruled, the operator authors the corresponding fire call with the chosen Literal value in place of OWNER_POLICY_PENDING; the service will write the record. No code change required to accept the rulings — the shape is already on record."
+}
