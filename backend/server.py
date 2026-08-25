@@ -36,6 +36,11 @@ from services.wizard.connect_llm_router import router as connect_llm_router  # n
 from services.cost_ledger.router import router as cost_ledger_router  # noqa: E402
 from services.retention.router import router as retention_router  # noqa: E402
 from services.lowered_standard.router import router as lowered_standard_router  # noqa: E402
+# W7 · Model Ecosystem + Model Admission surfaces (Docs 13/14 · CA1-004/005/011).
+from services.model_registry.router import router as model_registry_router  # noqa: E402
+from services.model_admission.router import router as model_admission_router  # noqa: E402
+from services.baseline_line.router import router as baseline_line_router  # noqa: E402
+from services.model_recheck.router import router as model_recheck_router  # noqa: E402
 from services.ip_allowlist.middleware import IPAllowlistMiddleware  # noqa: E402
 
 # Deliverables directory (read-only snapshot per Chunk-4 v1.1 delivery logistics)
@@ -167,6 +172,11 @@ app.include_router(connect_llm_router)
 app.include_router(cost_ledger_router)
 app.include_router(retention_router)
 app.include_router(lowered_standard_router)
+# W7 · Model Ecosystem + Model Admission surfaces.
+app.include_router(model_registry_router)
+app.include_router(model_admission_router)
+app.include_router(baseline_line_router)
+app.include_router(model_recheck_router)
 
 app.add_middleware(
     CORSMiddleware,

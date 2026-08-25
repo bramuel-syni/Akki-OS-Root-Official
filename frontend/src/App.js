@@ -5,6 +5,7 @@ import DataShield from "@/components/DataShield";
 import ThinkLab from "@/components/ThinkLab";
 import Chat from "@/components/Chat";
 import CostLedger from "@/components/CostLedger";
+import ModelEcosystem from "@/components/ModelEcosystem";
 
 /**
  * App.js - Owner fixture drop 2026-08-14 shape:
@@ -40,6 +41,7 @@ function App() {
           <Route path="/thinklab/:mode" element={<ThinkLab />} />
           <Route path="/chat" element={<Chat />} />
           <Route path="/cost-ledger" element={<CostLedger />} />
+          <Route path="/models" element={<ModelEcosystem />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
