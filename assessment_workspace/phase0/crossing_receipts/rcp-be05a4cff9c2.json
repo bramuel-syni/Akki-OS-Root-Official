@@ -1,0 +1,20 @@
+{
+  "actor": "cycle_close@estate",
+  "at_iso": "2026-08-25T20:19:18.917163Z",
+  "endpoint_host": "api.emergent.host",
+  "kind": "solva_synthesis",
+  "masking_tier": "llm_reasoning_context",
+  "payload_shape": {
+    "latency_ms": 12160,
+    "metering_source": "tiktoken:cl100k_base",
+    "model_id": "gpt-5-mini",
+    "provider": "emergent",
+    "purpose_declared": "solva.synthesis",
+    "tokens_in": 581,
+    "tokens_out": 201
+  },
+  "receipt_id": "rcp-be05a4cff9c2",
+  "residency_region": "platform-managed",
+  "tenant_id": "estate",
+  "verb": "send_message"
+}

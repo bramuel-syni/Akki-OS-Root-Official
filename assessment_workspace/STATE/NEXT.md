@@ -1,12 +1,56 @@
 # NEXT.md - Exact next actions
 
-**Last updated:** 2026-08-25 · **W4 CLOSED · ThinkLab surface LIVE** on programme/track-a HEAD `a71ea67` · Doc 05 Northena admit/gate/converge/ledger loop adapted from Akki-OS-V1 donor into this estate's phase0/ persistence · ThinkLab surface at /thinklab + /thinklab/:mode with 4 modes · honest reasoning-dormant panel per §A5.3 posture until Solver lands · 264/264 gating tests across cohort · zero regressions · three deliverable screenshots banked · IP allowlist unchanged (SPINE_ALLOWED_IPS=34.16.56.64) · **hold for owner "W5 go"** per sprint sequence (W5 = Solver · Shrinkage · Memory · scope L).
+**Last updated:** 2026-08-25 · **W5 CLOSED** on programme/track-a HEAD `39386ac` · LLM chokepoint live · Solva reasoning live · Chat live · Reasoning Shield live · Connect-LLM verify backend live · **194/194 gating tests green** · **zero regressions** · **live E2E receipts on record**: `rcp-17085737b228` (chat) + `run-5c9cdc19d3da` (thinklab three-stage). Close report at `notes/w5_close_report.md`. **HOLD for owner "W6 go"** per owner's standing instruction.
 
-## Cycle status (2026-08-25 · W4 close)
+## Cycle status (2026-08-25 · W5 close)
 
-- W4 · Northena direction/scope + ThinkLab surfaces — **CLOSED**.
-- W5 · Solver · Shrinkage · Memory (Chat · Data Suite · Reasoning Shield) — **NEXT** on owner "W5 go".
-- W6..W9 · unchanged per notes/status_and_wave_plan.md.
+- W1..W5 · **CLOSED**.
+- W6 · Cost Ledger surface · retention enforcement · Grey Mirror groundwork — **NEXT** on owner "W6 go".
+- W7..W9 · unchanged per notes/status_and_wave_plan.md.
+
+## Deferred to owner ruling (all named in notes/w5_close_report.md §10)
+
+1. W6 GO signal.
+2. Sizing verdict on L-class overrun (~2870 LOC vs ≤2500). Options: reclassify · narrow next scope · new L-extended tier.
+3. `FL-P4-W4-01` · reconcile `northena_ledger_row` vs `northena_ledger_v1` snapshot mismatch (predates W5).
+4. CA1-010 session-scoped lowered-standard bypass surface (test hook exists).
+5. ConnectDrawerChat LLM chip UI polish (backend live; surface deferred).
+6. Solva stages 4/5/6 (triangulation / tension / probability_weighting) — Grey Mirror groundwork W6+.
+
+## Verification path for orchestrator (independent audit) — W5 close
+
+```bash
+cd /app/assessment_workspace/repos/Extraction-Akki
+git log --oneline programme/track-a | head -6
+# 39386ac W5 CP4 frontend · Chat surface · ThinkLab reasoning wire · DataShield reasoning-receipts extension
+# ba14077 W5 CP4 backend · Chat · Reasoning Shield filter · Connect-LLM verify + custody
+# 22b323d W5 CP3 · Solva reasoning + ThinkLab wire-through · 173/173 green
+# feeb786 W5 CP2b · boundary-side metering via tiktoken (emergentintegrations exposes no usage)
+# a5be529 W5 CP2 · LLM chokepoint · purpose gate · Emergent-universal registration · AST tightening
+# a71ea67 W4 CLOSED · ThinkLab surface live at /thinklab + full W4 cohort green (Doc 05 · M class)
+
+python3 -m pytest backend/tests/invariants/test_llm_*.py \
+    backend/tests/invariants/test_solva_*.py \
+    backend/tests/invariants/test_thinklab_reasoning_wire.py \
+    backend/tests/invariants/test_w5_cp4_backend_endpoints.py \
+    backend/tests/invariants/test_registry_facts_emergent_universal_listed.py -v
+# Expect: 42 W5 net-new tests green.
+
+curl -s -H "X-Forwarded-For: 34.16.56.64,172.71.255.34,136.110.244.150" \
+    http://127.0.0.1:8001/api/chat/ask \
+    -H "Content-Type: application/json" \
+    -d '{"question":"In one sentence, what is a governed chokepoint?"}'
+# Expect: {answer:"…", receipt_id:"rcp-…", model_id:"gpt-5-mini", provider:"emergent",
+#          tokens_in:>0, tokens_out:>0, latency_ms:>0, refused:false, refusal_reason:""}
+```
+
+## Blocked (awaiting from owner)
+
+- None new.
+
+## No push, ever
+
+Owner Clarification 1 (2026-08-14). Local commits are the record.
 
 ## Honest LOC drift note
 

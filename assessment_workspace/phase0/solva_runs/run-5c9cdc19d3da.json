@@ -1,0 +1,104 @@
+{
+  "actor": "cycle_close@estate",
+  "at_iso": "2026-08-25T20:19:18.917409Z",
+  "candidate_generation": {
+    "candidates": [
+      {
+        "candidate_type": "cause",
+        "description": "Proceed with a full Q3 investment (scale-up) on the expectation that forecast_v3's projected audience growth and monetization will deliver the target ROI within the investment horizon.",
+        "evidence_requirement": "Independent verification of forecast_v3 showing projected revenue, EBITDA margin, audience growth rates, and sensitivity/stress tests that confirm the investment meets the required return threshold.",
+        "id": "cand-d396e19bb7",
+        "weight": 0.2
+      },
+      {
+        "candidate_type": "cause",
+        "description": "Make a phased or pilot Q3 investment to validate key commercial and operational assumptions before committing full capital.",
+        "evidence_requirement": "Pilot KPI thresholds (e.g., CPM/ARPU, retention, conversion, and cost-per-digitization) and actual pilot outcomes that match or exceed the assumptions used in forecast_v3.",
+        "id": "cand-8f2226c01a",
+        "weight": 0.2
+      },
+      {
+        "candidate_type": "cause",
+        "description": "Condition investment on resolving legal, licensing, and infrastructure risks\u2014only deploy capital in Q3 if content rights, regulatory approvals, and technical readiness are secured.",
+        "evidence_requirement": "Completed legal due diligence confirming clear content licenses and broadcast/regulatory approvals plus vendor quotes confirming costs and timelines for required infrastructure upgrades.",
+        "id": "cand-5134a0fcff",
+        "weight": 0.2
+      },
+      {
+        "candidate_type": "cause",
+        "description": "Delay or defer Q3 investment because macroeconomic, FX, or political/regulatory risk could materially degrade forecast_v3 outcomes.",
+        "evidence_requirement": "A macro sensitivity analysis showing that plausible FX, inflation, or regulatory-change scenarios reduce forecast_v3 returns below the firm\u2019s hurdle rate or produce unacceptable downside risk.",
+        "id": "cand-d087fa0d8d",
+        "weight": 0.2
+      },
+      {
+        "candidate_type": "cause",
+        "description": "Do not invest directly in Q3; instead pursue partnership/licensing models or asset-light monetization that capture archive value with lower capex and risk.",
+        "evidence_requirement": "Market engagement evidence (term sheets, partnership proposals, or licensing offers) demonstrating comparable revenue potential with materially lower capital requirements versus forecast_v3's direct-investment NPV.",
+        "id": "cand-7be7834749",
+        "weight": 0.2
+      }
+    ],
+    "model_id": "gpt-5-mini",
+    "provider": "emergent",
+    "receipt_id": "rcp-60ea85ae26ff",
+    "refusal_reason": "",
+    "refused": false
+  },
+  "direction_statement": "Should we invest in the Kenyan broadcast archive Q3? Attached: forecast_v3.",
+  "frame_audit": {
+    "dimensions": [
+      {
+        "dimension": "decisional_clarity",
+        "invalidation": null,
+        "score": "sufficient",
+        "severity": "material"
+      },
+      {
+        "dimension": "time_horizon",
+        "invalidation": null,
+        "score": "sufficient",
+        "severity": "minor"
+      },
+      {
+        "dimension": "scope_boundedness",
+        "invalidation": null,
+        "score": "sufficient",
+        "severity": "minor"
+      },
+      {
+        "dimension": "evidence_grounding",
+        "invalidation": null,
+        "score": "sufficient",
+        "severity": "material"
+      },
+      {
+        "dimension": "lens_fit",
+        "invalidation": "no explicit lens requested",
+        "score": "thin",
+        "severity": "minor"
+      }
+    ],
+    "llm_refinement_text": "{\n  \"verdict\": \"sufficient_with_caveats\",\n  \"observations\": [\n    \"Receipt: attached file 'forecast_v3' (forecast / model attachment).\",\n    \"Decisional clarity: sufficient \u2014 question (invest in Kenyan broadcast archive Q3) is well-posed; material caveat: key decision criteria not fully enumerated.\",\n    \"Time horizon: sufficient \u2014 Q3 horizon clear; minor caveat: mid/long-term impacts not detailed.\",\n    \"Scope boundedness: sufficient \u2014 scope appears constrained to the Kenyan broadcast archive investment; minor caveat: related portfolio interactions not shown.\",\n    \"Evidence grounding: sufficient but material concerns \u2014 forecast_v3 present, but lacks documented data provenance, external validation, and sensitivity/scenario analysis.\",\n    \"Lens fit: thin \u2014 no explicit analytic lens or decision framework provided (e.g., risk tolerance, required return, strategic fit).\",\n    \"Actionable next steps: request sensitivity analyses, data provenance and validation, and an explicit decision lens (risk/return thresholds) before final commit.\"\n  ]\n}",
+    "model_id": "gpt-5-mini",
+    "provider": "emergent",
+    "receipt_id": "rcp-62bd18dd9019",
+    "refusal_reason": "",
+    "refused": false,
+    "verdict": "sufficient_with_caveats"
+  },
+  "receipt_ids": [
+    "rcp-62bd18dd9019",
+    "rcp-60ea85ae26ff",
+    "rcp-be05a4cff9c2"
+  ],
+  "run_id": "run-5c9cdc19d3da",
+  "synthesis": {
+    "model_id": "gpt-5-mini",
+    "paragraph": "I would not yet greenlight a full Q3 scale-up; the candidates that carry weight against immediate full investment are cand-8f2226c01a (phased/pilot), cand-5134a0fcff (legal/licensing conditionality), cand-d087fa0d8d (delay for macro/FX/regulatory risk) and cand-7be7834749 (asset-light partnerships/licensing). Receipt: forecast_v3 should be independently verified, and the reading would tighten if you obtain (a) an independent audit of forecast_v3 (revenues, EBITDA margins and sensitivity/stress tests), (b) a successful pilot that meets pre-specified KPI thresholds, (c) completed legal due diligence plus vendor quotes for infrastructure, and (d) a macro sensitivity analysis and/or firm partnership term sheets showing comparable economics with lower capex. If those conditions are satisfied, move to scale; until then prefer a staged pilot or partnership option to limit downside.",
+    "provider": "emergent",
+    "receipt_id": "rcp-be05a4cff9c2",
+    "refusal_reason": "",
+    "refused": false
+  }
+}

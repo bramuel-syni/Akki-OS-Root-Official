@@ -289,7 +289,10 @@ function ThinkLabMode({ modeKey }) {
         {result && result.decision === "admitted" && (
           <>
             <FrozenArtifactCard artifact={result.frozen_artifact} row={result.ledger_row} />
-            <ReasoningDormantPanel dormantSentence={config?.reasoning_dormant_state} />
+            <SolvaReasoningPanel
+              directionStatement={direction}
+              dormantSentence={config?.reasoning_dormant_state}
+            />
           </>
         )}
 
@@ -469,6 +472,217 @@ function ReasoningDormantPanel({ dormantSentence }) {
         lands — until then, the direction is captured, the objective is
         admitted and frozen, and the ledger records the admission.
       </div>
+    </div>
+  );
+}
+
+
+function SolvaReasoningPanel({ directionStatement, dormantSentence }) {
+  const [state, setState] = useState("idle");  // idle | running | done | error
+  const [run, setRun] = useState(null);
+  const [error, setError] = useState(null);
+
+  const runSolva = async () => {
+    setState("running");
+    setError(null);
+    try {
+      const r = await fetch(`${BACKEND_URL}/api/thinklab/reason`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          direction_statement: directionStatement,
+          actor: "operator@estate",
+        }),
+      });
+      if (!r.ok) throw new Error(`HTTP ${r.status}`);
+      const body = await r.json();
+      setRun(body);
+      setState("done");
+    } catch (exc) {
+      setError(String(exc));
+      setState("error");
+    }
+  };
+
+  if (state === "idle") {
+    return (
+      <div data-testid="thinklab-reasoning-idle"
+           style={{ marginTop: 20, padding: "18px 22px", background: surface2,
+                    borderLeft: `3px solid ${sage}`, borderRadius: 6 }}>
+        <div style={{ fontSize: 11, letterSpacing: 1.5, color: sage,
+                      textTransform: "uppercase", fontWeight: 700,
+                      marginBottom: 6 }}>
+          Solva reasoning — ready
+        </div>
+        <div style={{ fontSize: 13, color: ink, lineHeight: 1.6 }}>
+          {dormantSentence || "Solva reasoning is in force."}
+        </div>
+        <button data-testid="thinklab-run-solva-btn"
+                onClick={runSolva}
+                style={{ marginTop: 14, padding: "9px 16px",
+                         background: sage, color: "#fff",
+                         border: `1px solid ${sage}`, borderRadius: 5,
+                         cursor: "pointer", fontSize: 12, fontWeight: 700 }}>
+          Run Solva reasoning
+        </button>
+      </div>
+    );
+  }
+
+  if (state === "running") {
+    return (
+      <div data-testid="thinklab-reasoning-running"
+           style={{ marginTop: 20, padding: "18px 22px", background: surface2,
+                    borderLeft: `3px solid ${sage}`, borderRadius: 6,
+                    fontSize: 13, color: ink3, fontStyle: "italic" }}>
+        Running frame_audit → candidate_generation → synthesis through the LLM chokepoint…
+      </div>
+    );
+  }
+
+  if (state === "error") {
+    return (
+      <div data-testid="thinklab-reasoning-error"
+           style={{ marginTop: 20, padding: "18px 22px", background: surface,
+                    borderLeft: `3px solid ${oxblood2}`, borderRadius: 6,
+                    border: `1px solid ${line}` }}>
+        <div style={{ fontSize: 11, letterSpacing: 1.5, color: oxblood,
+                      textTransform: "uppercase", fontWeight: 700 }}>
+          Reasoning refused (endpoint)
+        </div>
+        <div style={{ fontSize: 12, color: ink, marginTop: 8,
+                      fontFamily: "ui-monospace, Menlo, monospace" }}>
+          {error}
+        </div>
+      </div>
+    );
+  }
+
+  // state === "done"
+  return (
+    <div data-testid="thinklab-reasoning-done" style={{ marginTop: 20 }}>
+      <SolvaStageBlock label="Frame audit"
+                       stage={run?.frame_audit}
+                       renderBody={(fa) => (
+                         <div>
+                           <div style={{ fontSize: 12, color: ink3, marginBottom: 4 }}>Verdict</div>
+                           <div style={{ fontSize: 14, color: ink,
+                                         fontFamily: "ui-monospace, Menlo, monospace" }}>
+                             {fa.verdict}
+                           </div>
+                           <div style={{ fontSize: 11, color: ink3, marginTop: 10 }}>Dimensions</div>
+                           {(fa.dimensions || []).map(d => (
+                             <div key={d.dimension}
+                                  style={{ fontSize: 12, color: ink,
+                                           display: "grid",
+                                           gridTemplateColumns: "180px 100px 1fr",
+                                           padding: "3px 0" }}>
+                               <span style={{ color: ink3 }}>{d.dimension}</span>
+                               <span style={{ color: d.score === "sufficient" ? sage : oxblood }}>
+                                 {d.score}
+                               </span>
+                               <span style={{ color: ink3, fontStyle: "italic" }}>
+                                 {d.invalidation || ""}
+                               </span>
+                             </div>
+                           ))}
+                         </div>
+                       )} />
+      <SolvaStageBlock label="Candidate generation"
+                       stage={run?.candidate_generation}
+                       renderBody={(cg) => (
+                         <div>
+                           {(cg.candidates || []).length === 0 && (
+                             <div style={{ fontSize: 12, color: ink3, fontStyle: "italic" }}>
+                               No candidates parsed. This is honest empty — the shield may have
+                               returned an unparseable body.
+                             </div>
+                           )}
+                           {(cg.candidates || []).map((c, i) => (
+                             <div key={c.id || i}
+                                  style={{ padding: "10px 0",
+                                           borderBottom: `1px solid ${line}` }}>
+                               <div style={{ fontSize: 13, color: ink, lineHeight: 1.5 }}>
+                                 <b style={{ color: ink3, fontSize: 11,
+                                             letterSpacing: 0.5,
+                                             textTransform: "uppercase" }}>
+                                   {c.candidate_type || "cause"}
+                                 </b>{" · "}
+                                 {c.description}
+                               </div>
+                               <div style={{ fontSize: 11, color: ink3, marginTop: 4,
+                                             fontStyle: "italic" }}>
+                                 Evidence would come from: {c.evidence_requirement}
+                               </div>
+                             </div>
+                           ))}
+                         </div>
+                       )} />
+      <SolvaStageBlock label="Synthesis"
+                       stage={run?.synthesis}
+                       renderBody={(syn) => (
+                         <div style={{ fontSize: 14, color: ink, lineHeight: 1.65,
+                                       fontFamily: head }}>
+                           {syn.paragraph || (
+                             <span style={{ color: ink3, fontStyle: "italic" }}>
+                               No synthesis returned.
+                             </span>
+                           )}
+                         </div>
+                       )} />
+      <div style={{ marginTop: 10, fontSize: 11, color: ink3,
+                    fontFamily: "ui-monospace, Menlo, monospace" }}>
+        Run identity · {run?.run_id} · at {run?.at_iso}
+      </div>
+    </div>
+  );
+}
+
+
+function SolvaStageBlock({ label, stage, renderBody }) {
+  if (!stage) return null;
+
+  if (stage.refused) {
+    return (
+      <div data-testid={`solva-stage-refused-${label.toLowerCase().replace(/\s+/g, "-")}`}
+           style={{ marginTop: 14, padding: "16px 20px", background: surface,
+                    borderLeft: `3px solid ${oxblood2}`, borderRadius: 6,
+                    border: `1px solid ${line}` }}>
+        <div style={{ fontSize: 11, letterSpacing: 1.5, color: oxblood,
+                      textTransform: "uppercase", fontWeight: 700 }}>
+          {label} — refused
+        </div>
+        <div style={{ fontSize: 12, color: ink, marginTop: 8,
+                      fontFamily: "ui-monospace, Menlo, monospace",
+                      background: "#f7ecea", padding: "8px 10px",
+                      borderRadius: 4 }}>
+          {stage.refusal_reason}
+        </div>
+        <div style={{ fontSize: 11, color: ink3, marginTop: 6, fontStyle: "italic" }}>
+          A8-Q3 · the shield's refusal is rendered verbatim, never a smoothed answer.
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div data-testid={`solva-stage-${label.toLowerCase().replace(/\s+/g, "-")}`}
+         style={{ marginTop: 14, padding: "18px 22px", background: surface,
+                  border: `1px solid ${line}`, borderRadius: 6 }}>
+      <div style={{ display: "flex", justifyContent: "space-between",
+                    alignItems: "center", marginBottom: 10 }}>
+        <div style={{ fontSize: 11, letterSpacing: 1.5, color: sage,
+                      textTransform: "uppercase", fontWeight: 700 }}>
+          {label}
+        </div>
+        <div style={{ fontSize: 10, color: ink3,
+                      fontFamily: "ui-monospace, Menlo, monospace" }}
+             data-testid="solva-stage-provenance">
+          Answered by <b style={{ color: ink }}>{stage.model_id}</b> via {stage.provider} ·{" "}
+          receipt <b>{stage.receipt_id}</b>
+        </div>
+      </div>
+      {renderBody(stage)}
     </div>
   );
 }

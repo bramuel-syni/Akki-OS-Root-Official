@@ -184,17 +184,50 @@ function SessionTimeline({ receipts }) {
             <Field label="ACTOR" value={rc.actor} tone={ink2} />
             <Field label="AT" value={formatIso(rc.at_iso)} tone={ink3} />
           </div>
+          {/* W5 · LLM metering line for reasoning/chat crossings */}
+          {isReasoningKind(rc.kind) && rc.payload_shape && (
+            <div data-testid="data-shield-llm-metering"
+                 style={{ marginTop: 10, paddingTop: 10,
+                          borderTop: `1px dashed ${line}`,
+                          display: "flex", gap: 18, flexWrap: "wrap",
+                          fontSize: 11, color: ink3,
+                          fontFamily: "ui-monospace, Menlo, monospace" }}>
+              <span>model · <b style={{ color: ink }}>{rc.payload_shape.model_id || "—"}</b></span>
+              <span>provider · <b style={{ color: ink }}>{rc.payload_shape.provider || "—"}</b></span>
+              <span>tokens_in · <b style={{ color: ink }}>{rc.payload_shape.tokens_in ?? "—"}</b></span>
+              <span>tokens_out · <b style={{ color: ink }}>{rc.payload_shape.tokens_out ?? "—"}</b></span>
+              <span>latency_ms · <b style={{ color: ink }}>{rc.payload_shape.latency_ms ?? "—"}</b></span>
+              <span style={{ color: ink3, fontStyle: "italic" }}>
+                metering_source · {rc.payload_shape.metering_source || "unavailable"}
+              </span>
+            </div>
+          )}
         </div>
       ))}
     </div>
   );
 }
 
+
+function isReasoningKind(kind) {
+  if (!kind) return false;
+  return kind.startsWith("solva_") || kind.startsWith("chat_") ||
+         kind.startsWith("thinklab_") || kind.startsWith("llm_");
+}
+
+
 function crossingLabel(kind) {
   if (kind === "rds_data_api") return "Data API crossing";
   if (kind === "ssh_seam") return "Compute seam crossing";
   if (kind === "governance_read") return "Governance read";
   if (kind === "llm_synthesis") return "Model synthesis";
+  // W5 kinds:
+  if (kind === "chat_governed_answer") return "Chat · governed answer";
+  if (kind === "solva_frame_audit") return "Solva · frame audit";
+  if (kind === "solva_candidate_generation") return "Solva · candidate generation";
+  if (kind === "solva_synthesis") return "Solva · synthesis";
+  if (kind === "thinklab_direct_answer") return "ThinkLab · direct answer";
+  if (kind === "llm_connect_verify") return "LLM · connect verify";
   return kind || "Crossing";
 }
 

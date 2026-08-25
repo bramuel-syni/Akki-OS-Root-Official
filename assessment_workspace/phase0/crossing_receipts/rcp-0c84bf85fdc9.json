@@ -1,0 +1,20 @@
+{
+  "actor": "operator@estate",
+  "at_iso": "2026-08-25T20:12:56.310732Z",
+  "endpoint_host": "api.emergent.host",
+  "kind": "chat_governed_answer",
+  "masking_tier": "llm_prompt_governed_text",
+  "payload_shape": {
+    "latency_ms": 6350,
+    "metering_source": "tiktoken:cl100k_base",
+    "model_id": "gpt-5-mini",
+    "provider": "emergent",
+    "purpose_declared": "chat.governed_answer",
+    "tokens_in": 10,
+    "tokens_out": 51
+  },
+  "receipt_id": "rcp-0c84bf85fdc9",
+  "residency_region": "platform-managed",
+  "tenant_id": "estate",
+  "verb": "send_message"
+}

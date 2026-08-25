@@ -1090,7 +1090,93 @@ Why the drift:
 Hold posture: **W4 CLOSED · stand-by for owner "W5 go"** (Solver · Shrinkage · Memory · scope L).
 
 
+---
+
+### Owner Order · 2026-08-25 (channel) · **W5 GO** — Solver · Shrinkage · Memory + LLM CROSSING LIVE
+
+Verbatim (owner channel):
+
+> "W5 go" with LLM rulings — log verbatim in DECISIONS.md (dated, source: owner channel):
+> ===VERBATIM===
+> [Option 1 · connect an LLM via the Connect wizard]: "yes, execute this - also for now keep the emergent stack, (all available) for testing."
+> [Option 2 · platform universal key]: "For now - as we test, use this but build the full connect wizard as recommended"
+> [Additional]: "Consider EmergentUniversal key as an 'LLM' we have"
+> ===END VERBATIM===
+> Binding reading: BOTH. (1) Build the full LLM connect path — "An LLM" chip goes LIVE in the drawer-chat: paste a provider key (Anthropic/OpenAI shapes parsed deterministically), key lands in estate_keys file custody like the others, connection verified with a minimal governed call, renders in LLMS & TRAINED MODELS honestly. (2) The Emergent universal key (available in this pod's env) is treated as an LLM WE HAVE: register it now as a real connected LLM named honestly (e.g., "Emergent Universal — testing stack, all available models") with its facts (provider=emergent, models available, connected_at) — it is a genuine connection, not fabrication; its custody = env var it already lives in. All testing rides it until the owner keys a provider.
+>
+> W5 EXECUTE per notes/status_and_wave_plan.md: Solver · Shrinkage · Memory (Docs 04/06/07/08 + CA1-002/003/010) + surfaces Chat · Data Suite · Reasoning Shield. L-class. Ground in the register rows first.
+>
+> NON-NEGOTIABLE CUSTODY REQUIREMENTS for the first live LLM path:
+> 1. EVERY model call crosses the W3 chokepoint: single invoke function, crossing receipt per call (model, purpose, masked-tier, tokens/metering, region of provider), egress allowlist extended ONLY for the provider host(s) at the chokepoint, AST gate updated so no LLM SDK import exists outside the chokepoint module (your existing static test must keep passing with the one sanctioned location).
+> 2. PURPOSE GATE per Ruling 1: purpose is declared per call and validated against an allowed-purposes register before invoke (the discipline Executive-Core carried); refusal on missing/unknown purpose. Ruling 1's strip-condition (declaration ✓ banked; Watch reconciler pending W9) means the purpose gate CANNOT be skipped.
+> 3. De-identification seam: real tenant data is currently structure-only + owner-entered text. Where user text crosses to the model, apply the masking tier at the crossing (reuse the W3 masking_tier); where nothing personal can transit (e.g., schema names), record tier honestly. No raw credential/secret material may ever reach a model (standing rule; test it).
+> 4. Use the Emergent integrations properly: request the integration playbook if needed for the universal key usage shape.
+> 5. Solver: prefer the Akki-Executive-Final services/solva/ donor (cleaner shape per your own finding); Memory/Shrinkage per Docs 06/07/08 rows with honest deferrals named.
+> 6. Surfaces v7-exact (T1): Chat, Data Suite, Reasoning Shield; ThinkLab's dormant reasoning panels light up through the same governed path; REFERENCE-NOT-COPY on every trace render; refusals verbatim per A8-Q3.
+> 7. Tests-first per mechanism; no canned reasoning anywhere; metering visible on the Shield/receipts.
+> Scope watch: L (≤2500 with the tightened estimate discipline) — if it trends XL, checkpoint-commit and report before continuing. Deliverables: register rows (IDs+count), per-mechanism test delta + receipts, reuse pulls, screenshots (LLM chip connect walk · Chat answering through the chokepoint with its receipt · Reasoning Shield · ThinkLab lit), LOC vs class, SHAs, dashboard. Then hold for W6 go.
+
+Binding effects:
+1. **FL-P2-27 · W5 OPENED.** Scope class **L (≤2500 LOC)**. Stop-and-report cap if drifting XL.
+2. **Emergent Universal LLM is registered as a real connected LLM** — provider=`emergent`, models=`[gpt-5.4, gpt-5.2, gpt-5-mini, claude-sonnet-4-6, claude-haiku-4-5-20251001, gemini-3.1-pro-preview, gemini-2.5-flash]` (subset of the playbook catalog admissible today), connected_at=2026-08-25, custody=env-var `EMERGENT_LLM_KEY` in `/app/backend/.env`. Not fabrication — it is a genuine connection this pod already carries.
+3. **Full LLM connect wizard path built** — the "An LLM" chip on the drawer-chat parses provider key paste (Anthropic `sk-ant-`, OpenAI `sk-`, Gemini) deterministically, lands the key in the estate_keys file custody like Aurora/AWS, verifies with a minimal governed call, and renders in LLMS & TRAINED MODELS.
+4. **Every model call transits the chokepoint** — new module `services.chokepoint.llm` is the SOLE importer of `emergentintegrations` (and, in future, any provider SDK). AST negative-scan updated: `test_no_llm_sdk_anywhere_in_backend` relaxes to admit `services/chokepoint/llm.py` and nothing else.
+5. **Purpose gate is not skippable** — `services.chokepoint.llm.ALLOWED_PURPOSES` governed positive list; missing/unknown purpose returns HTTP 422 refusal at the invoke boundary. Adapted from Akki-Executive-Final `synisense/shield/purpose_validator.py`.
+6. **Crossing receipt per call** carries: `model` · `provider` · `purpose` · `masking_tier` · `tokens_in` · `tokens_out` · `provider_region` · `actor` · `at_iso`. Written to `phase0/crossing_receipts/rcp-<hex>.json` via existing chokepoint `register_crossing()` semantics (payload_shape scrubs credential-shaped keys — standing rule).
+7. **De-identification seam at the crossing** — every LLM invoke declares its masking tier; the payload never crosses without a valid tier per `services.chokepoint.masking_tier`.
+8. **Solver adapted from Akki-Executive-Final `services/solva/`** — minimal pipeline (frame_audit → candidate_generation → triangulation → synthesis) wired to ThinkLab's dormant reasoning stages via the chokepoint. NO canned fallbacks in the reasoning surface; when the model refuses or the shield fails, the surface renders honestly (refusal card + reason).
+9. **Docs 04/06/07/08 + CA1-002/003/010 addressed** — 93 register rows targeted; specific rows to DONE named at cycle close (some deferred to W6+ with the honest gap sentence on-surface).
+10. **Surfaces v7-exact per T1** — Chat, Reasoning Shield, and the ThinkLab reasoning body come alive. Data Suite: minimal placeholder if L budget stretched; honest defer otherwise, named at cycle close.
+11. **Refusal grammar** — Doc 16 refusal card wired to render Doc 04 verdicts (`evidence_insufficient` / `out_of_scope` / `high_stakes_low_evidence` / `purpose_refused` / `masking_tier_refused`) verbatim.
+
+Post-W5 hold: **stand-by for owner "W6 go"** (Cost Ledger surface · retention · Grey Mirror groundwork · scope M).
 
 
 
+
+
+
+
+
+
+---
+
+### Owner Ruling · 2026-08-25 (channel) · **W5 plan confirmation with four sharpenings**
+
+**Verbatim (owner channel):**
+
+> 1a + 2a — proceed as written, with four sharpenings:
+> 1. Receipt shape: make sure the crossing receipt carries METERING (input/output tokens, model id, latency) — it was in the W5 brief and is what makes the Shield's spend story real later (W6 Cost Ledger consumes it).
+> 2. BYO-provider verification (2a): the one-shot verify call must itself transit the chokepoint, and the egress allowlist gains a provider host ONLY at the moment a key of that provider is actually connected (allowlist entries are facts tied to connections, ledgered like everything else — not pre-opened for all three providers). Until a provider key is pasted, the only LLM egress host allowed is the Emergent integration endpoint.
+> 3. Custody file naming: keep the established .json custody shape under estate_keys/ (consistent with the AWS/data-source files), not .pem — these are API keys, not key-pairs. Same 0600/gitignore/never-in-responses discipline; chat renders "•••• captured" from the first parse turn as with all secrets.
+> 4. CP3 honesty: if a solver stage produces low-confidence or refused output, the surface shows the refusal/uncertainty verbatim per A8-Q3 — never a smoothed answer. And the ThinkLab reasoning panels must state which model answered (from the receipt) — provenance on every rendered reasoning block.
+> Everything else as you wrote it. Deliverables unchanged; hold for W6 go after CP5.
+
+**Binding effects:**
+
+1. **Metering fields required on every LLM crossing receipt** — the receipt schema extends beyond the W3 base to carry, on the `payload_shape` field (scrubbed of credentials by construction): `model_id`, `provider`, `tokens_in` (integer, monotonic), `tokens_out` (integer, monotonic), `latency_ms` (integer, wall-clock end-to-end at the chokepoint boundary — NOT provider-reported). Absent metering = refuse the receipt write and surface the refusal. This is the W6 Cost Ledger's substrate; the ledger cannot invent tokens it does not have.
+2. **BYO-provider verification transits the chokepoint** — `POST /api/wizard/connect-llm/verify` invokes `services.chokepoint.llm.invoke(purpose="llm.connect_verify", ...)` with the pasted key (transient in-process only; never persisted before verification succeeds). No provider-SDK direct call anywhere else.
+3. **Egress allowlist grows by connection, not pre-emption.** The Emergent integration endpoint (`api.emergent.host`) is on the allowlist at W5-open because the Emergent-universal LLM is a real connected LLM this cycle. Provider hosts (`api.anthropic.com`, `api.openai.com`, `generativelanguage.googleapis.com`) are OFF the allowlist until a key of that provider is pasted, verified, and its `data_connection_records/llm_<provider>_*.json` record is on disk. Each allowlist change is a ledger row (receipt in `phase0/crossing_receipts/`) — same discipline as every other governed value.
+4. **Custody file shape is `.json` under `estate_keys/`.** Naming: `estate_keys/llm_<provider>_<connection_id>.json`. Fields: `provider` · `connection_id` · `key` · `connected_at` · `verified_at` · `verified_receipt_id`. File mode `0600`; path in `.gitignore`; NEVER returned in any API response body; ChokepointRefused if a key field ever appears in a payload_shape write. Consistent with `estate_keys/aws_<source_id>.json` shape from W1.
+5. **Chat renders `•••• captured`** from the FIRST parse turn on the "An LLM" chip (matching the AWS/data-source paste UX already banked in W1). The key never round-trips to the client after paste.
+6. **CP3 honesty binding — no smoothed reasoning.**
+   - Any Solva stage that returns `evidence_insufficient` / `out_of_scope` / `high_stakes_low_evidence` / `purpose_refused` / `masking_tier_refused` (Doc 04 verdicts) renders its refusal verdict + verdict-string VERBATIM on the ThinkLab panel and the Chat surface, never a canned rephrasing. A8-Q3 is the governing standard.
+   - Every rendered reasoning block (ThinkLab stage panels, Chat answer body, Reasoning Shield receipt row) MUST state which model answered — model id + provider — pulled from the crossing receipt, NEVER from a hard-coded string. If the receipt does not carry the model id (should be impossible after CP2 lands but tested for), the surface renders `model provenance unavailable` and refuses to display the reasoning body.
+7. **Deliverables unchanged; hold for W6 go after CP5.**
+
+
+---
+
+### Owner Correction · 2026-08-25 (channel) · **Canon vocabulary — Solva, not Solver**
+
+**Verbatim (owner channel):**
+
+> OWNER CORRECTION — log in DECISIONS.md (dated, source: owner channel): "Solva not Solver." The reasoning faculty's name is SOLVA — everywhere. Apply now, before CP3 lands: backend package is services/solva/ (matching the Executive-Final donor's own naming), not services/solver/; test names, receipt kinds, purpose IDs (solva.frame_audit / solva.candidate_generation / solva.synthesis), surface copy, and any register/notes references all say Solva. If any CP2/CP3 code or tests already landed under "solver", rename in a dedicated commit (tests updated first, then code — keep the right-reason chain intact) rather than leaving a mixed vocabulary. Canon vocabulary is not negotiable — the word collision hazards were flagged back in the assessment for exactly this reason. Confirm the rename in your W5 close report.
+
+**Binding effects:**
+
+1. **Canon vocabulary is `Solva`, applied everywhere in W5** — backend package `services/solva/`, purpose IDs `solva.frame_audit` · `solva.candidate_generation` · `solva.synthesis`, test files `test_solva_*.py`, receipt kinds `solva_frame_audit` · `solva_candidate_generation` · `solva_synthesis`, frontend copy (ThinkLab reasoning panels + Chat provenance) says "Solva", surface region names ("Solva reasoning" not "solver reasoning"), notes/status/close-report vocabulary all say Solva.
+2. **No rename commit required this cycle** — this correction landed BEFORE CP2's first test file was committed. Nothing under "solver" has been written to disk yet. The w5_grounding_brief.md carries "Solver (adapted Solva)" as a working title; that document is now updated in-place to say "Solva" and re-committed on the same brief-update path.
+3. **W5 close report confirms the vocabulary is uniform** — the LOC-account, register-row targeting, and reuse-pull citations all render as Solva.
+4. **The `services/solva_depth/` and `services/g1_defensibility/solva_depth/` packages already on disk are untouched** — they are pre-existing G1 defensibility modules with their own vocabulary; they do not overlap with the W5 Solva reasoning package. Separation: `services/solva/` = reasoning faculty (W5); `services/solva_depth/` = G1 defensibility depth checker (pre-existing).
 

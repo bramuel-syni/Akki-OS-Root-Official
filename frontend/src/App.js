@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Registry from "@/components/Registry";
 import DataShield from "@/components/DataShield";
 import ThinkLab from "@/components/ThinkLab";
+import Chat from "@/components/Chat";
 
 /**
  * App.js - Owner fixture drop 2026-08-14 shape:
@@ -36,6 +37,7 @@ function App() {
           <Route path="/shield" element={<DataShield />} />
           <Route path="/thinklab" element={<ThinkLab />} />
           <Route path="/thinklab/:mode" element={<ThinkLab />} />
+          <Route path="/chat" element={<Chat />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
