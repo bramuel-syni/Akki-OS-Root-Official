@@ -103,3 +103,25 @@ Owner note said "could have elements you can reuse to avoid redoing." If Executi
 - N-series primitives (retention enforce, breach notification, erasure)
 
 … the sprint's REBUILD count drops and W6/W8 shrink materially. Until Executive-Final is accessible, the wave sizes in `notes/status_and_wave_plan.md` reflect worst-case with the four accessible repos.
+
+
+---
+
+## §5 · Akki-Executive-Final ACCESSED · 2026-08-19 (post-owner clarification)
+
+Owner clarified the repo is public; direct URL 404 was a redirect/mirror quirk. Cloned successfully via `GIT_TERMINAL_PROMPT=0 git clone https://github.com/bramuel-syni/Akki-Executive-Final.git`.
+
+- **HEAD:** `bba80ab`  ·  **branch:** `main`  ·  **last commit:** 2026-06-06 (pushed 2026-08-24 as a recent mirror push)  ·  **total commits:** 677.
+
+**Delta against Akki-Executive-Core (5844eee, 2026-07-08):**
+
+- Executive-Core has these that Executive-Final does not:
+  `analyze_workspace/`, `deck_generation_jobs.py`, `deck_lineage.py`, `deck_regenerate.py`, `deck_retrieval.py`, `deck_versioning.py`, `module_labels.py`, `monitor/`, `owner_digest.py`, `solva_voice_audit.py`.
+- Executive-Final has these that Executive-Core does not:
+  `services/solva/` — a top-level Solver package with `guardrails`, `orchestration`, `reasoning`, `models.py` (cleaner shape than Core's `solva_v2/engines/…`).
+- Frontend components — Executive-Final adds a top-level `solva/` component dir; otherwise identical to Core's set.
+
+**Effect on status % · zero movement:** Executive-Final does NOT hold Watch/Grey Mirror mechanism (Doc 03 remains BUILD), N-series primitives (CA1-N1/N2/N3/N5 remain BUILD), Cost Ledger surface (CA1-008 remains BUILD), or the generalised handoff contract (CA1-009 remains BUILD). It IS a slightly cleaner Solver package than Core's; both are valid ADAPT candidates for W5.
+
+**Verdict:** Executive-Final ≈ Executive-Core (older snapshot with cleaner Solver, less feature scope). Same reuse grade table applies. Overall status % unchanged at ~40 %.
+

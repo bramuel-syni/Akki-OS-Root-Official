@@ -1,5 +1,9 @@
 # CONTEXT.md — Running narrative
 
+## DESIGN LAWS · Standing rules (add-only ledger)
+
+- **REFERENCE-NOT-COPY** — Owner Ruling 2026-08-19 (DECISIONS.md · A8/T8-part). Any trace, preview, embed, walk, or adjacent-render resolves through the governed read path with entitlement checked at the point of access; never an embedded copy, never an in-place reveal. Applies estate-wide (traces, previews, embeds, walks — every future adjacent-render pattern). The operative principle is the SINGLE CHOKEPOINT: an in-place content reveal is a second read path that never re-checks entitlement at point of access. The correction supersedes any reasoning based on "envelope destroyed at crossing" — the envelope covers a single de-identification mapping, not the general reveal question. Reads across the wave plan onto W3 (Data Shield telemetry), W5 (refusal-card evidence links), W6 (Cost Ledger lever attribution), W7 (Model Admission acceptance evidence), W8 (rules-updates rule-tree), W9 (Walk-this ×∞) — recorded as a cross-wave gate.
+
 **Last updated:** 2026-08-19 · Owner Data-API delivery cycle CLOSED · first DATA connection LIVE for `digicow_live` + `ndume` on cluster `db-restore-603-cluster` (eu-west-1) via RDS Data API · engine detected `aurora-mysql` (MySQL 8.0.42 / Aurora MySQL 3.10.3) · 235 tables inventoried (125 + 110), top-25 by rows per DB banked with approximate row counts (`information_schema.tables`), 5 structural reads per DB (column names + types only — **zero record contents read**) · programme/track-a HEAD `746dece` (was `f87b769`) · assessment-repo HEAD pending this-cycle commit (was `e2b5efe`) · engine-detect production defect fixed tests-first (FL-P2-24 CLOSED · +7 gating assertions, 141 total backend cohort green, 0 regressions) · secret sweep hit_count=0 on /app, /tmp, /var/log/supervisor, /root, /etc, both git worktrees, both git histories, /root/.emergent/tool_outputs, /root/.emergent/automation_output.
 
 

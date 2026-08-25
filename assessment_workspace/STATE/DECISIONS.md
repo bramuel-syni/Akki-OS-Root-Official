@@ -731,3 +731,48 @@ Verbatim (owner channel):
 
 **FL-P2-26 CLOSED · FL-P2-27 OPEN.** Deliverables on disk this cycle; commits at end.
 
+
+
+---
+
+### Owner Ruling on A8/T8 · 2026-08-19 (channel) · FL-P2-27 T8-part CLOSED · REFERENCE-NOT-COPY DESIGN LAW
+
+Verbatim (owner channel):
+
+> A8 ruling — ratified, all three:
+> Q1: ON. Deep-link into the underlying record is allowed, but it re-enters the normal governed read path — entitlement checked at the point of access, same as direct navigation. Never a shortcut past the check.
+> Q2: Approved as interim. Side-by-side limited to same actor, same window, until the re-association check ships as a general mechanism. Lifting the restriction is gated on that mechanism existing, not on time passing.
+> Q3: YES. Refused crossings show the rule that fired, verbatim. Consistent with how the enforcement view already treats refusals — same stream as successes, never hidden.
+> One correction to the stated basis, and it matters for how you generalize this: receipt-only stands, but not because the envelope is destroyed at crossing. The envelope governs the de-identification mapping for a single call — nothing else. The operative principle is the single chokepoint: an in-place content reveal is a second read path that never re-checks the viewer's entitlement at the point of access. Build from that reason, not the envelope one — "envelope destroyed" implies in-place reveal is fine wherever no envelope was involved, which reopens exactly the hole Doc 01 closed. Same rule applies anywhere this pattern shows up — traces, previews, embeds: a reference that resolves through the governed path, never an embedded copy.
+
+**Binding effects:**
+
+1. **A8-Q1 · ON.** "Walk this →" deep-link into the underlying unit is allowed. The click re-enters the normal governed read path; entitlement checked at the point of access, same as direct navigation. Never a bypass around the chokepoint.
+2. **A8-Q2 · INTERIM.** Side-by-side composition of two trace envelopes limited to same actor + same window until the Doc 02 B5.6 re-association check ships as a general mechanism. Restriction lift is **mechanism-gated, not time-gated**.
+3. **A8-Q3 · ON.** Refused crossings show the rule that fired verbatim on Walk-this, same stream as successes; never hidden. Consistent with the enforcement view.
+4. **CORRECTION TO BASIS (LOAD-BEARING).** The receipt-only conclusion is right; the reason "envelope destroyed at crossing" is wrong-scoped. The envelope governs the de-identification mapping for a single call — nothing else. The operative principle is the **single chokepoint**: an in-place content reveal is a second read path that never re-checks entitlement at point of access. "Envelope destroyed" would imply in-place reveal is fine wherever no envelope was involved, which reopens exactly the hole Doc 01 closed.
+5. **DESIGN LAW · REFERENCE-NOT-COPY** — recorded in `STATE/CONTEXT.md` standing rules. Applies to **traces, previews, embeds, walks, and every future pattern that renders material adjacent to a claim**. Formal statement:
+
+   > **REFERENCE-NOT-COPY** — any trace, preview, embed, walk, or adjacent-render resolves through the governed read path with entitlement checked at the point of access; never an embedded copy, never an in-place reveal.
+
+6. **Correction discipline** — `notes/t8_walk_this_scope.md` is corrected in-band with the OLD reasoning kept visible (marked ~~struck-through~~ + a CORRECTION note) rather than silently rewritten. Standing correction-discipline rule reaffirmed.
+7. **FL-P2-27 T8-part CLOSED.** W9 unblocks on "Walk this →" architecture: receipt/trace object rendered adjacent, deep-link resolves through the chokepoint, refusal shown verbatim. Composability constrained interim.
+8. **REFERENCE-NOT-COPY reads across the wave plan**: every embed/preview surface across W3 (Data Shield telemetry), W5 (refusal-card evidence links), W6 (Cost Ledger lever attribution), W7 (Model Admission acceptance evidence), W8 (rules-updates rule-tree), W9 (Walk-this ×∞) applies this law. Recorded as a cross-wave gate in `notes/status_and_wave_plan.md`.
+
+
+
+---
+
+### FL-P2-27 · Sprint execution progress · 2026-08-19
+
+- **Executive-Final accessed.** Owner clarification confirmed public. Clone with `GIT_TERMINAL_PROMPT=0` succeeded. HEAD `bba80ab` (2026-06-06). Older mirror than Core; adds a cleaner `services/solva/` package. Delta captured in `notes/reuse_map_v7.md` §5. **Status % unchanged (~40%)** because Executive-Final does NOT hold Watch/Grey Mirror mechanism, N-series primitives, Cost Ledger surface, or the generalised handoff contract.
+- **T8-part CLOSED.** A8-Q1 (ON), A8-Q2 (INTERIM · same actor, same window, mechanism-gated lift), A8-Q3 (YES · verbatim). CORRECTION recorded: receipt-only stands but the load-bearing bar is the SINGLE CHOKEPOINT, not "envelope destroyed". DESIGN LAW `REFERENCE-NOT-COPY` added to STATE/CONTEXT.md. `notes/t8_walk_this_scope.md` corrected in-band (old reasoning kept struck-through per correction-discipline rule).
+- **W1 DELIVERED.** Connect drawer-chat right-side conversational assistant. Owner Ruling T12 verbatim honoured. Track-a commits `9c89ba7` (tests-first, +176 lines) → `4139e8d` (impl, +828 lines). 15 new frontend gating assertions all green (53/53 total). Backend cohort unchanged (121/121). Playwright 6-stage journey banked. Green receipt at `phase0/drill_receipts/20260825T172455Z_w1_drawer_chat_green.log`.
+
+**Custody discipline audit (W1):** Playwright DOM sweep during the pipeline confirmation step showed `sentinel-in-fixture` (raw fixture password) is NOT present in `document.body.innerText`. Chat log carries only `•••• captured (server-stripped; the chat log never carries it)`. Refs (`pasteCacheRef`, `pwCacheRef`, `awsCacheRef`) are useRef-only, cleared on unmount and on successful submit. Zero localStorage/sessionStorage writes.
+
+**Wave dashboard after W1:**
+- W1 · Drawer + Registry polish · **CLOSED**  (Registry Opportunity-Brief stub was scoped out; deferred to W2 tail because the O-Brief service is a REUSABLE ADAPT from RMS `opportunity_briefs/` and belongs on the compute+reflection cycle).
+- W2 · Compute reflection-before-commit · **NEXT**
+- W3–W9 unchanged.
+

@@ -73,28 +73,28 @@ The load-bearing question isn't *whether* to ship "Walk this →"; it is *how* t
 
 ## The answer to be delivered to the owner
 
-Given F1 + F2 + F3 + the qualifier + the silence:
+> **⚠ CORRECTION 2026-08-19 (owner ruling, verbatim):**
+>
+> *"receipt-only stands, but not because the envelope is destroyed at crossing. The envelope governs the de-identification mapping for a single call — nothing else. The operative principle is the single chokepoint: an in-place content reveal is a second read path that never re-checks the viewer's entitlement at the point of access. Build from that reason, not the envelope one — 'envelope destroyed' implies in-place reveal is fine wherever no envelope was involved, which reopens exactly the hole Doc 01 closed. Same rule applies anywhere this pattern shows up — traces, previews, embeds: a reference that resolves through the governed path, never an embedded copy."*
+>
+> **The old reasoning below (blue block) leaned on "envelope destroyed at crossing" as the load-bearing bar for in-place reveal. That is wrong-scoped: the envelope covers a single de-identification mapping, not the general in-place-reveal question. The corrected basis is the SINGLE CHOKEPOINT — an in-place reveal is a second read path that never re-checks entitlement at point of access. This bar reads across traces, previews, embeds, walks, and every future adjacent-render pattern. Recorded as DESIGN LAW **REFERENCE-NOT-COPY** in `STATE/CONTEXT.md`.**
 
-**"Walk this →" is architecturally allowed to reveal the governed receipt/trace object only — actor · time · purpose · mask tier · unit class · evidence class · rule fired · receipt/trace ID · reasoning path (verbatim executed, per Doc 07 A5.5) — and MAY offer a link into the underlying unit that reopens the normal chokepoint read.** Clicking that link is not a Walk-this action; it is a fresh chokepoint-gated read that returns the unit content only if the viewer's permissions and mask tier permit it, otherwise a refusal card.
+**Corrected answer:**
 
-**"Walk this →" is NOT architecturally allowed to reveal the underlying record content in place, because:**
-- the per-request envelope is verifiably destroyed at crossing time (Doc 01);
-- the unit and its trace live in separate envelopes with separate lifecycles (Doc 07 A5.4);
-- record-ownership is one-writer-per-class (Doc 16 §5) — a UI that composes reveal from more than one class must clear the re-association seam (Doc 02 B5.6);
-- an in-place reveal that bypasses the chokepoint is the exact "second data path" Doc 01 A5.8 forbids.
+> **"Walk this →" is architecturally allowed to reveal the governed receipt/trace object adjacent to any claim** — actor · time · purpose · mask tier · unit class · evidence class · rule fired · receipt/trace ID · reasoning path (verbatim executed, per Doc 07 A5.5). **It MAY carry a deep-link into the underlying unit; clicking that deep-link re-enters the normal governed read path with entitlement checked at the point of access (same as direct navigation).** The click is not a shortcut around the chokepoint; it IS a chokepoint read that returns the unit content only if the viewer's permissions and mask tier permit, otherwise a refusal card.
+>
+> **"Walk this →" is NOT architecturally allowed to render the underlying record content in place (embedded copy).** The bar is not "the envelope was destroyed" — it is the **single chokepoint**: an in-place reveal is a second read path that never re-checks entitlement at point of access. This bar applies universally — traces, previews, embeds, walks — anywhere adjacent-render might otherwise become a bypass.
 
-## The question the owner asked ("what's your question?") — reformulated
+> **~~OLD REASONING (superseded 2026-08-19 by the owner correction above; retained for correction-discipline visibility)~~**
+>
+> ~~**"Walk this →" is architecturally allowed to reveal the governed receipt/trace object only — actor · time · purpose · mask tier · unit class · evidence class · rule fired · receipt/trace ID · reasoning path (verbatim executed) — and MAY offer a link into the underlying unit that reopens the normal chokepoint read (with a refusal card if permissions don't permit). "Walk this →" is NOT architecturally allowed to reveal underlying record contents in place**, because (a) the per-request envelope is destroyed, (b) unit and audit live in separate envelopes on separate lifecycles, (c) composed reveal must clear the re-association seam check, and (d) an in-place reveal that bypasses the chokepoint is exactly the second data path Doc 01 A5.8 forbids.~~
+>
+> *[Ruling: only clause (d) — the single chokepoint / no-bypass — is load-bearing. Clauses (a) and (b) apply only where an envelope was involved; they cannot generalise. Clause (c) still stands for composability (see Q2 disposition below).]*
 
-Given the record above pins the affordance to receipt/trace + a chokepoint-gated deep-link, the only questions **left for the owner to rule** are:
+## The question the owner asked ("what's your question?") — reformulated + ruled
 
-- **Q1 · Read-through link on/off.** Does "Walk this →" carry the deep-link into the underlying unit (returning refusal for insufficient permissions) — or does it stop at the receipt/trace object and require a separate app-shell action to open the unit? Default recommendation: **link ON**, because it preserves flow and Doc 01 A5.8's "no bypass" is honoured by making the click a normal chokepoint read.
-- **Q2 · Composability across classes.** May "Walk this →" render two trace envelopes side-by-side (e.g. a crossing receipt AND a Solva trace for the same claim)? Doc 02 B5.6 says compositions must clear a re-association check. Default recommendation: **compose from the same-actor, same-window scope only** (no cross-actor composition) until the re-association check is written.
-- **Q3 · What the receipt-only view of a refused crossing shows.** Doc 01 says every crossing has a receipt including refusals. Does "Walk this →" on a refusal show the reason chain and the rule that fired? Default recommendation: **yes, verbatim** — Promise-Table §"Refusals are work done" and Doc 15 §"a block is the rules working, not a failure" both require it.
+Given the record above pins the affordance to receipt/trace + a chokepoint-gated deep-link, the only questions **left for the owner to rule** were:
 
-If the owner rules on Q1 · Q2 · Q3, W9 can proceed to build "Walk this →" custody-scoped, tests-first, without T8 remaining open.
-
-## Impact on T8's original tension row
-
-**T8 [A] recommendation stands:** do not ship the affordance until Q1 · Q2 · Q3 are ruled. The scope resolves the ambiguity but does not eliminate the need for an owner call on the read-through link.
-
-**T8 [B] is now off the table:** the docs are not silent — an unscoped affordance that "shows the underlying record contents in place" is canon-illegal under Doc 01 A5.8 + Doc 07 A5.4 + Doc 16 §5.
+- **Q1 · Read-through link on/off** → **RULED ON.** Owner: *"Deep-link into the underlying record is allowed, but it re-enters the normal governed read path — entitlement checked at the point of access, same as direct navigation. Never a shortcut past the check."*
+- **Q2 · Composability across classes** → **RULED INTERIM.** Owner: *"Approved as interim. Side-by-side limited to same actor, same window, until the re-association check ships as a general mechanism. Lifting the restriction is gated on that mechanism existing, not on time passing."*
+- **Q3 · Refusal-view content** → **RULED YES verbatim.** Owner: *"Refused crossings show the rule that fired, verbatim. Consistent with how the enforcement view already treats refusals — same stream as successes, never hidden."*

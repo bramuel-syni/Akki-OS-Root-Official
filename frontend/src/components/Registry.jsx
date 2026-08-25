@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import ConnectWizard from "@/components/ConnectWizard";
+import ConnectDrawerChat from "@/components/ConnectDrawerChat";
 
 /**
  * Registry — the estate's inventory surface (Owner Order 2026-08-19 · FL-P2-25).
@@ -94,7 +94,7 @@ export default function Registry() {
       {selectedCompute && (
         <ComputeDetailCard host={selectedCompute} onClose={() => setSelectedCompute(null)} />
       )}
-      {wizardOpen && <ConnectWizard onClose={() => setWizardOpen(false)} />}
+      {wizardOpen && <ConnectDrawerChat onClose={() => setWizardOpen(false)} />}
     </div>
   );
 }
