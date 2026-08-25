@@ -1,0 +1,39 @@
+{
+  "row_id": "FL-P4-W6-02",
+  "row_class": "map_and_count_omission_defect_class_recurring_FL-P4-W4-01",
+  "opened_at": "2026-08-25T22:17:00Z",
+  "opened_by": "W6 wave-close cohort (frozen+contract grep) — 9-drift discovery",
+  "affected_contract": {
+    "class": "invariant_count_assertion",
+    "snapshot_file": "N/A (this row is a count invariant, not a schema invariant)",
+    "test_file": "backend/tests/invariants/test_composed_conclusion_v0_contract_frozen.py::test_composed_conclusion_snapshot_parity_at_18"
+  },
+  "drift_summary": {
+    "assertion_at_test": "len(snapshots) == 36",
+    "actual_snapshot_count": 37,
+    "delta_shape": "One new snapshot file `actor_declaration_v0.contract_snapshot.json` exists on disk since W1 tests-first commit `2b08b39` (2026-08-14) but the count assertion was not bumped in the same commit or at W1 close."
+  },
+  "drift_introduced_at": {
+    "wave": "W1",
+    "commit": "2b08b39",
+    "date": "2026-08-14",
+    "summary": "Phase 1 tests-first · gating invariants + parity-seat snapshot"
+  },
+  "intended_vs_unintended_judgement": {
+    "verdict": "INTENDED_model_addition_but_UNINTENDED_count_omission",
+    "reasoning": "actor_declaration_v0 IS a legitimately-added W1 thin-kernel frozen contract (ActorDeclaration BaseModel). Its snapshot is on record. What was UNINTENDED is that the parity_at_N counter was not incremented in the same commit — same shape as FL-P4-W4-01 (which was LedgerRow extension without snapshot bump). This is FL-P4-W4-01's defect class RECURRING at W1 origin. Recurrence count for this defect class is now 2."
+  },
+  "reconciliation": {
+    "chosen_path": "bump_count_36_to_37",
+    "rationale": "The addition of actor_declaration_v0 as a frozen contract was governance-authorised at W1 (thin-kernel contracts per Build Order 01 §4.A0). The counter's role is to fire when the inventory drifts unexpectedly; here the drift is expected and authorised — the counter must catch up.",
+    "alternative_considered": "revert_actor_declaration_snapshot_removal",
+    "alternative_rejected_because": "actor_declaration.py IS actively imported by the compute seam and the parity-seat thin-kernel tests. Removing the snapshot would leave the frozen contract without an invariant guardrail."
+  },
+  "coupled_with": ["FL-P4-W6-08", "FL-P4-W6-09"],
+  "coupling_note": "Count `== 37` is only correct AFTER map completion in FL-P4-W6-08/09 stabilises the disk snapshot inventory at 37 files. If W7+ waves add further frozen contracts, this counter must bump again in the same commit as those additions.",
+  "tests_first_receipt": {
+    "right_reason_failure": "phase0/drill_receipts/20260825T221600Z_w6_close_frozen_cohort_right_reason.log",
+    "green_after_fix": "phase0/drill_receipts/20260825T2230*_w6_close_frozen_cohort_green.log"
+  },
+  "process_finding": "Same finding as FL-P4-W4-01 — any commit touching contracts/*.py OR adding a *.contract_snapshot.json MUST touch the CONTRACT_TO_SNAPSHOT map AND the parity_at_N count in the SAME commit. Ratifying this as a wave-checkpoint definition-of-done rule in the W6 close report."
+}

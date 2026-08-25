@@ -1,0 +1,39 @@
+{
+  "row_id": "FL-P4-W6-09",
+  "row_class": "map_omission_defect_class_recurring_FL-P4-W4-01",
+  "opened_at": "2026-08-25T22:17:00Z",
+  "opened_by": "W6 wave-close cohort (frozen+contract grep) — 9-drift discovery",
+  "affected_contract": {
+    "class": "N/A (this row is a parity meta-test)",
+    "snapshot_file": "backend/tests/invariants/actor_declaration_v0.contract_snapshot.json (orphan)",
+    "test_file": "backend/tests/invariants/test_frozen_contract_snapshot_parity.py::test_every_snapshot_maps_to_a_contract"
+  },
+  "drift_summary": {
+    "orphan_snapshots": [
+      "actor_declaration_v0.contract_snapshot.json — exists on disk, no CONTRACT_TO_SNAPSHOT value claims it"
+    ],
+    "delta_shape": "Same root cause as FL-P4-W6-08 seen from the other side: the map is incomplete on both the keys side (missing actor_declaration.py entry) AND the values side (orphaned snapshot). One map edit fixes both directions."
+  },
+  "drift_introduced_at": {
+    "wave": "W1",
+    "commit": "2b08b39",
+    "date": "2026-08-14",
+    "summary": "Phase 1 tests-first · gating invariants + parity-seat snapshot"
+  },
+  "intended_vs_unintended_judgement": {
+    "verdict": "INTENDED_addition_UNINTENDED_map_omission",
+    "reasoning": "Same as FL-P4-W6-08 for actor_declaration.py. The snapshot addition was legitimate; the map extension was overlooked. FL-P4-W4-01 defect class."
+  },
+  "reconciliation": {
+    "chosen_path": "add_actor_declaration_to_CONTRACT_TO_SNAPSHOT",
+    "rationale": "The same one-line map edit that fixes FL-P4-W6-08 also fixes this row. Both tests read from the same CONTRACT_TO_SNAPSHOT dict, so a single addition closes both.",
+    "alternative_considered": "delete_the_snapshot",
+    "alternative_rejected_because": "ActorDeclaration IS a live thin-kernel contract used by the compute seam and parity-seat tests; removing its invariant guardrail would weaken the wave's fidelity floor."
+  },
+  "coupled_with": ["FL-P4-W6-02", "FL-P4-W6-08"],
+  "tests_first_receipt": {
+    "right_reason_failure": "phase0/drill_receipts/20260825T221600Z_w6_close_frozen_cohort_right_reason.log",
+    "green_after_fix": "phase0/drill_receipts/20260825T2230*_w6_close_frozen_cohort_green.log"
+  },
+  "process_finding": "See FL-P4-W6-02 process_finding."
+}

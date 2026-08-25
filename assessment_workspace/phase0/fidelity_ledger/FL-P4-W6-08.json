@@ -1,0 +1,56 @@
+{
+  "row_id": "FL-P4-W6-08",
+  "row_class": "map_omission_defect_class_recurring_FL-P4-W4-01_and_test_scope_over-broadness",
+  "opened_at": "2026-08-25T22:17:00Z",
+  "opened_by": "W6 wave-close cohort (frozen+contract grep) — 9-drift discovery",
+  "affected_contract": {
+    "class": "N/A (this row is a parity meta-test)",
+    "snapshot_file": "N/A",
+    "test_file": "backend/tests/invariants/test_frozen_contract_snapshot_parity.py::test_every_frozen_contract_has_snapshot"
+  },
+  "drift_summary": {
+    "unmapped_sources_on_disk": [
+      "actor_declaration.py — pydantic BaseModel (ActorDeclaration); snapshot on disk (actor_declaration_v0.contract_snapshot.json); MAP ENTRY MISSING",
+      "record_matrix.py — NamedTuple utility (MatrixEntry lookup table); NOT a pydantic BaseModel; DOES NOT BELONG in frozen-schema parity domain",
+      "task_identity.py — NamedTuple utility (TaskIdentity dispatch); NOT a pydantic BaseModel; DOES NOT BELONG in frozen-schema parity domain"
+    ],
+    "delta_shape": "Test's enumerator treats every top-level .py under contracts/ as a frozen contract, but the enumerator's docstring explicitly says the rule is 'frozen Pydantic model(s)' — enumerator is broader than its stated intent."
+  },
+  "drift_introduced_at": {
+    "wave": "W1",
+    "commit": "4855b35",
+    "date": "2026-08-14",
+    "summary": "Phase 1 implementation · thin-kernel contracts + declaration + compute seam"
+  },
+  "intended_vs_unintended_judgement": {
+    "verdict": "MIXED — one INTENDED map omission, two test-scope over-broadness findings",
+    "per_source": {
+      "actor_declaration.py": {
+        "verdict": "INTENDED_addition_UNINTENDED_map_omission",
+        "note": "ActorDeclaration IS a legitimate W1 thin-kernel frozen contract. Snapshot was created (2b08b39) but map wasn't updated. Exactly FL-P4-W4-01 defect class."
+      },
+      "record_matrix.py": {
+        "verdict": "TEST_SCOPE_FINDING",
+        "note": "MatrixEntry is a NamedTuple lookup table, not a pydantic BaseModel. Actively imported by test_record_matrix_thin_kernel.py and services.compute_seam.seam. Belongs in contracts/ as a thin-kernel utility, but does NOT emit a JSON schema and cannot be frozen-schema-tested. The parity test's enumerator over-includes."
+      },
+      "task_identity.py": {
+        "verdict": "TEST_SCOPE_FINDING",
+        "note": "TaskIdentity is a NamedTuple + `is_registered` helper, imported by services.compute_seam.seam and test_task_identity_thin_kernel.py. Same class as record_matrix."
+      }
+    }
+  },
+  "reconciliation": {
+    "chosen_path": "add_actor_declaration_map_entry_and_narrow_enumerator_to_pydantic_BaseModel_emitters",
+    "rationale": "Two moves in one commit: (a) extend CONTRACT_TO_SNAPSHOT with the actor_declaration→snapshot entry (matches enumerator docstring intent), and (b) narrow _enumerate_contract_sources() to only include modules that define pydantic BaseModel classes (matches docstring intent). Both are honest surgical fixes; neither is a policy change.",
+    "alternative_considered_1": "relocate_record_matrix_and_task_identity_out_of_contracts",
+    "alternative_1_rejected_because": "changes many downstream imports (services.compute_seam.seam, thin-kernel tests) for cosmetic tidiness; larger blast radius than narrowing the enumerator.",
+    "alternative_considered_2": "add_snapshots_for_NamedTuple_utilities",
+    "alternative_2_rejected_because": "NamedTuple has no model_json_schema; forcing a synthetic snapshot would be dishonest fabrication."
+  },
+  "coupled_with": ["FL-P4-W6-02", "FL-P4-W6-09"],
+  "tests_first_receipt": {
+    "right_reason_failure": "phase0/drill_receipts/20260825T221600Z_w6_close_frozen_cohort_right_reason.log",
+    "green_after_fix": "phase0/drill_receipts/20260825T2230*_w6_close_frozen_cohort_green.log"
+  },
+  "process_finding": "See FL-P4-W6-02 process_finding. FL-P4-W4-01 defect class recurrence count now = 2 (W1 actor_declaration omission + W4 LedgerRow omission). Definition-of-done for any commit adding contracts/*.py that emits a pydantic BaseModel MUST touch the snapshot AND CONTRACT_TO_SNAPSHOT AND parity_at_N count in the same commit."
+}

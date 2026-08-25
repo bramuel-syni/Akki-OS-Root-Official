@@ -1,0 +1,46 @@
+{
+  "row_id": "FL-P4-W6-03",
+  "row_class": "environmental_pydantic_serialization_drift",
+  "opened_at": "2026-08-25T22:17:00Z",
+  "opened_by": "W6 wave-close cohort (frozen+contract grep) — 9-drift discovery",
+  "affected_contract": {
+    "class": "contracts.five_rings.NormalizedUnit",
+    "snapshot_file": "backend/tests/invariants/five_rings.contract_snapshot.json",
+    "test_file": "backend/tests/invariants/test_invariant_contract_snapshots.py::test_five_rings_schema_frozen"
+  },
+  "drift_summary": {
+    "changed_paths": [
+      ".$defs.ProvenanceRing.properties.locator — 'additionalProperties: true' added",
+      ".$defs.ReextractionHandleRing.properties.extraction_params — 'additionalProperties: true' added"
+    ],
+    "delta_shape": "pydantic 2.13.4 emits Dict[str, Any] fields with `additionalProperties: true` explicitly. Prior pydantic omitted this key for open-schema dicts."
+  },
+  "drift_introduced_at": {
+    "wave": "NONE (environmental — no wave modified NormalizedUnit or its nested rings)",
+    "contract_file_last_touched": {
+      "sha": "3985be5",
+      "date": "2026-07-02",
+      "summary": "initial commit (pre-wave-work)"
+    },
+    "snapshot_file_last_touched": {
+      "sha": "3985be5",
+      "date": "2026-07-02",
+      "summary": "initial commit"
+    }
+  },
+  "intended_vs_unintended_judgement": {
+    "verdict": "UNINTENDED_ENVIRONMENTAL",
+    "reasoning": "No wave modified NormalizedUnit. The drift is a pydantic-emitter behavior change on Dict[str, Any] fields. Same defect class as FL-P4-W6-01/04/05/07 (all Dict/Literal pydantic-idiomatic redundancy)."
+  },
+  "reconciliation": {
+    "chosen_path": "re_bless_snapshot_pinned_to_pydantic_2_13_4",
+    "rationale": "Same as FL-P4-W6-01: model runtime behavior unchanged; drift is pydantic emitter only; version-independent projection deferred to W7 opener as an owner-ruling item.",
+    "alternative_considered": "revert_code_to_match_snapshot",
+    "alternative_rejected_because": "no code change to revert."
+  },
+  "tests_first_receipt": {
+    "right_reason_failure": "phase0/drill_receipts/20260825T221600Z_w6_close_frozen_cohort_right_reason.log",
+    "green_after_fix": "phase0/drill_receipts/20260825T2230*_w6_close_frozen_cohort_green.log"
+  },
+  "process_finding": "See FL-P4-W6-01 process_finding. Same environmental drift class."
+}

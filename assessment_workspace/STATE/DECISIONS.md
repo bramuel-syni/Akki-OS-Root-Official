@@ -1230,3 +1230,28 @@ Post-W5 hold: **stand-by for owner "W6 go"** (Cost Ledger surface · retention �
 
 6. **After W6 CP-close · HOLD for W7 GO**.
 
+
+
+---
+
+### Orchestrator Ruling · 2026-08-25 (channel) · **W6 openers accounting discipline · path (a)**
+
+Recorded as ORCHESTRATOR ruling (accounting discipline · not owner scope).
+
+**Verbatim (orchestrator channel):**
+
+> (a). Accept the re-baseline as stated, proceed at the honest budget, W6 stop-and-report line = 2880 LOC. Reasons on the record: the owner's standing order is "nothing skipped" — (b)'s scope-shave just moves work to a later wave without shrinking the build; (c) invents a tier to feel better about the same number. The classes were always thresholds over actuals; the estimates were wrong, the calibration fixes them, the median choice is right (W2/W4 were misclassifications, not noise). The mechanism-corpus % is unaffected — only LOC accounting moved. I will surface the +60% honest re-baseline to the owner in the next wave report so the fuller remaining-size picture is on their record too.
+>
+> Also ratified: your FL-P4-W4-01 reconciliation path (snapshot bump under the W6-GO ruling as the ratification moment) and the process finding — adopt it now: wave-close cohorts assemble by grep for test_*_frozen*.py + test_*_contract*.py from this wave forward, stated in the close-report template.
+>
+> Proceed to W6 CP2 (Cost Ledger: rates register + backend + surface) and onward per the scoped plan. All standing rules unchanged. Deliverables as previously listed; hold for W7 go after close.
+
+**Binding effects:**
+
+1. **W6 re-baseline path (a) accepted** — proceed with W6 as originally scoped (Cost Ledger + retention + Grey Mirror groundwork + all four W5 deferrals). Budget re-baselined estimate: **~2880 LOC**. Stop-and-report line **2880 LOC**.
+2. **Calibration factor 1.60× (median across W1-W5)** is the go-forward multiplier. W2/W4's outsize ratios are named as class misclassifications, not signal.
+3. **Class names change · mechanism-corpus % unchanged**. W6-W9 become L-plus / XL-effective / XXL-effective per the re-baseline table in notes/status_and_wave_plan.md §7.
+4. **FL-P4-W4-01 reconciliation ratified** as a legitimate frozen-contract bump under this owner's cycle; snapshot bump is on record at Extraction-Akki@`f647051`.
+5. **Wave-close cohort assembly discipline adopted (effective W6)**: close cohorts must grep for `test_*_frozen*.py` AND `test_*_contract*.py` so contract snapshots cannot slip. This gets stated in the close-report template.
+6. **Owner surfacing planned**: the +60% honest re-baseline will be surfaced to the owner in the next wave report (W6 close) so the fuller remaining-size picture is on their record.
+

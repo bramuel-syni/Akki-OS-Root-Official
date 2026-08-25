@@ -1,0 +1,45 @@
+{
+  "row_id": "FL-P4-W6-04",
+  "row_class": "environmental_pydantic_serialization_drift",
+  "opened_at": "2026-08-25T22:17:00Z",
+  "opened_by": "W6 wave-close cohort (frozen+contract grep) — 9-drift discovery",
+  "affected_contract": {
+    "class": "contracts.objective_request.ObjectiveRequest",
+    "snapshot_file": "backend/tests/invariants/objective_request.contract_snapshot.json",
+    "test_file": "backend/tests/invariants/test_invariant_contract_snapshots.py::test_objective_request_schema_frozen"
+  },
+  "drift_summary": {
+    "changed_paths": [
+      ".$defs.EstateRegionSelector.properties.filters — 'additionalProperties: true' added"
+    ],
+    "delta_shape": "Same pydantic 2.13.4 emitter behavior on Dict[str, Any] as FL-P4-W6-03."
+  },
+  "drift_introduced_at": {
+    "wave": "NONE (environmental)",
+    "contract_file_last_touched": {
+      "sha": "3985be5",
+      "date": "2026-07-02",
+      "summary": "initial commit"
+    },
+    "snapshot_file_last_touched": {
+      "sha": "3985be5",
+      "date": "2026-07-02",
+      "summary": "initial commit"
+    }
+  },
+  "intended_vs_unintended_judgement": {
+    "verdict": "UNINTENDED_ENVIRONMENTAL",
+    "reasoning": "No wave modified ObjectiveRequest. Same class as FL-P4-W6-01/03/05/07."
+  },
+  "reconciliation": {
+    "chosen_path": "re_bless_snapshot_pinned_to_pydantic_2_13_4",
+    "rationale": "Same as FL-P4-W6-01/03.",
+    "alternative_considered": "revert_code_to_match_snapshot",
+    "alternative_rejected_because": "no code change to revert."
+  },
+  "tests_first_receipt": {
+    "right_reason_failure": "phase0/drill_receipts/20260825T221600Z_w6_close_frozen_cohort_right_reason.log",
+    "green_after_fix": "phase0/drill_receipts/20260825T2230*_w6_close_frozen_cohort_green.log"
+  },
+  "process_finding": "See FL-P4-W6-01 process_finding."
+}

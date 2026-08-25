@@ -1,8 +1,42 @@
 # NEXT.md - Exact next actions
 
-**Last updated:** 2026-08-25 · **W6 OPEN · openers done** · programme/track-a HEAD `f647051` (W6 opener #2 · FL-P4-W4-01 reconciled) · master HEAD has W6 opener #1 (re-baselined wave table + calibration factor 1.60×). W5 CLOSED at Extraction-Akki@`39386ac`.
+**Last updated:** 2026-08-25T22:40Z · **W6 CLOSED · awaiting owner steer for W7 GO** · programme/track-a HEAD `7db5a00` (W6 close · 9 fidelity ledger drifts reconciled) atop `39a7034` (W6 CP5 · Lowered Standard). W5 CLOSED at Extraction-Akki@`39386ac`. Wave-close cohort 250/250 green.
 
-## Cycle status (2026-08-25 · W6 openers CLOSED · W6 scope opening)
+## Cycle status (2026-08-25T22:40Z · W6 CLOSED · steer requested)
+
+- **W1..W6 · CLOSED**. 250/250 W6 wave-close cohort green (36 test files) at `phase0/drill_receipts/20260825T224000Z_w6_wave_close_green.log`. Frozen+contract sub-cohort 18/18 green at `phase0/drill_receipts/20260825T223200Z_w6_close_frozen_cohort_green.log`.
+- **W6 LOC actual**: +3319 net (+3716 −397) vs 2880 budget · **15% overrun**. Envelope stop-and-report to owner (see notes/w6_close_report.md §5 & §8).
+- **9 fidelity ledger rows opened at W6 close** — TWO defect classes named, NOT nine of the FL-P4-W4-01 class:
+  - 6 × **environmental pydantic 2.13.4 serialization drift** (FL-P4-W6-01/03/04/05/06/07) — none wave-attributable; models untouched since 2026-07-02/07-31.
+  - 3 × **FL-P4-W4-01 map/count omission recurring** at W1 origin (FL-P4-W6-02/08/09) — actor_declaration snapshot on disk but never mapped; NamedTuple utilities over-enumerated. Recurrence count for FL-P4-W4-01 class: 2.
+- **W6 deferrals named** (deferred to W7, not held-open):
+  - Data Suite surface (v7-exact) — backend not yet built; full CP moves to W7.
+  - LLM chip UI polish — cosmetic; belongs alongside Cost Ledger polish loop.
+  - Grey Mirror overview surface — waiting on Watch (W9 per opener plan).
+  - Pydantic-version-drift remediation — new P1 W7-opener owner-ruling item.
+- **W7 nominal scope** (per opener #1 re-baseline): Targeta · Model Ecosystem · Model Admission · ~3520 LOC. **WAITING for owner W7 GO.**
+
+## W6 delivered · commits on programme/track-a
+
+```
+7db5a00 W6 close · 9 fidelity ledger drifts reconciled · 2 distinct defect classes named
+39a7034 W6 CP5 · Lowered Standard (CA1-010) · session-scoped state + expiry + in_process residency
+d9ae4a5 W6 CP4 · Solva stages 4-6 · Grey Mirror groundwork · mechanism-side only
+770e013 W6 CP3 · Retention enforcement · CA1-N1 · 218/218 green
+717013f W6 CP2b · Cost Ledger frontend surface · CA1-008 lever sequence visible
+d7ff88e W6 CP2 · Cost Ledger backend · CA1-008 rates + ledger + 5-lever attribution
+f647051 W6 opener #2 · FL-P4-W4-01 reconciled · frozen contract parity restored
+```
+
+W6 close report: `notes/w6_close_report.md` (canonical).
+
+## Owner steer requested before W7 GO (blocking)
+
+1. **Pydantic-version-drift remediation path** (close report §4.1): pin pydantic (a) vs canonical-projection (b) vs both?
+2. **W6 LOC overrun** (15%): accept the recalibrated envelope for W6 as delivered, or narrow-scope W7 to absorb the overrun?
+3. **W7 scope confirmation**: Targeta · Model Ecosystem · Model Admission per re-baselined estimate of 3520 LOC — proceed as planned, or steer?
+
+## Cycle status (2026-08-25 · W6 openers CLOSED · W6 scope opening) [ARCHIVED]
 
 - **W1..W5 · CLOSED**. 195/195 gating tests green across the wave-open cohort (194 W5-close + 1 FL-P4-W4-01 reconciled).
 - **W6 opener #1 · re-baseline · DONE**. Calibration factor 1.60× published in notes/status_and_wave_plan.md §7. W6 stop-and-report line: **2880 LOC**.

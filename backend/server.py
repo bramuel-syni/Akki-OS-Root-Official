@@ -33,6 +33,9 @@ from services.chokepoint.router import router as shield_router  # noqa: E402
 from services.northena.router import router as thinklab_router  # noqa: E402
 from services.chat.router import router as chat_router  # noqa: E402
 from services.wizard.connect_llm_router import router as connect_llm_router  # noqa: E402
+from services.cost_ledger.router import router as cost_ledger_router  # noqa: E402
+from services.retention.router import router as retention_router  # noqa: E402
+from services.lowered_standard.router import router as lowered_standard_router  # noqa: E402
 from services.ip_allowlist.middleware import IPAllowlistMiddleware  # noqa: E402
 
 # Deliverables directory (read-only snapshot per Chunk-4 v1.1 delivery logistics)
@@ -161,6 +164,9 @@ app.include_router(shield_router)
 app.include_router(thinklab_router)
 app.include_router(chat_router)
 app.include_router(connect_llm_router)
+app.include_router(cost_ledger_router)
+app.include_router(retention_router)
+app.include_router(lowered_standard_router)
 
 app.add_middleware(
     CORSMiddleware,

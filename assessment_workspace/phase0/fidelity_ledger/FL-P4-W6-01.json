@@ -1,0 +1,45 @@
+{
+  "row_id": "FL-P4-W6-01",
+  "row_class": "environmental_pydantic_serialization_drift",
+  "opened_at": "2026-08-25T22:17:00Z",
+  "opened_by": "W6 wave-close cohort (frozen+contract grep) — 9-drift discovery",
+  "affected_contract": {
+    "class": "contracts.admission_refusal.AdmissionRefusal_v0",
+    "snapshot_file": "backend/tests/invariants/admission_refusal.contract_snapshot.json",
+    "test_file": "backend/tests/invariants/test_admission_refusal_v0_contract_frozen.py"
+  },
+  "drift_summary": {
+    "changed_paths": [
+      ".properties.outcome — 'enum' key dropped; 'const' retained"
+    ],
+    "delta_shape": "pydantic 2.13.4 emits `Literal['refused']` as `const: refused` WITHOUT the redundant `enum: ['refused']`. Prior pydantic (2.x <=~2.10) emitted BOTH."
+  },
+  "drift_introduced_at": {
+    "wave": "NONE (environmental — no wave modified this model)",
+    "contract_file_last_touched": {
+      "sha": "b2e7826",
+      "date": "2026-07-04",
+      "summary": "auto-commit for c8a0d479 (pre-wave-work)"
+    },
+    "snapshot_file_last_touched": {
+      "sha": "b2e7826",
+      "date": "2026-07-04",
+      "summary": "same commit as contract"
+    }
+  },
+  "intended_vs_unintended_judgement": {
+    "verdict": "UNINTENDED_ENVIRONMENTAL",
+    "reasoning": "No wave scope modified AdmissionRefusal_v0. The drift is a pydantic-emitter behavior change; the model code is unchanged since the snapshot was frozen. This is NOT an intended model edit and NOT the FL-P4-W4-01 defect class (which is 'code changed, snapshot forgotten'). It IS a hitherto-unnamed defect class: 'library upgrade silently drifted snapshot semantics'."
+  },
+  "reconciliation": {
+    "chosen_path": "re_bless_snapshot_pinned_to_pydantic_2_13_4",
+    "rationale": "The alternative — pinning pydantic to a version that emits the old shape, or rewriting the invariant to project schemas onto a version-independent canonical form — is out of W6 scope (touches every frozen contract test). The snapshot is the anchor of a behavior contract, and the runtime behavior of AdmissionRefusal_v0 is UNCHANGED. Owner ruling of W6 close reconciliation IS the ratification moment. The alternative is named as an explicit follow-up (see process_finding).",
+    "alternative_considered": "revert_code_to_match_snapshot",
+    "alternative_rejected_because": "there is no code change to revert — the drift is in pydantic's schema emitter, not in AdmissionRefusal_v0 itself."
+  },
+  "tests_first_receipt": {
+    "right_reason_failure": "phase0/drill_receipts/20260825T221600Z_w6_close_frozen_cohort_right_reason.log",
+    "green_after_fix": "phase0/drill_receipts/20260825T2230*_w6_close_frozen_cohort_green.log"
+  },
+  "process_finding": "Frozen snapshots stored as raw pydantic-emitted JSON are NOT stable across pydantic minor versions. A P1 backlog item is opened (see notes/w6_close_report.md §Process-Findings) to either (a) pin pydantic in requirements.txt with justification, or (b) project schemas through a version-independent canonical form (strip pydantic-idiomatic redundancy such as the 'enum' companion to 'const') before byte-comparison. Not remediated in W6 — flagged for owner ruling in W7 opener."
+}
