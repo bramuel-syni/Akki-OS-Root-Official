@@ -28,6 +28,7 @@ from services.connect_estate.router import router as connect_estate_router  # no
 from services.credentials_paste.router import router as credentials_paste_router  # noqa: E402
 from services.connect.rds_data_router import router as rds_data_router  # noqa: E402
 from services.registry_facts.router import router as registry_facts_router  # noqa: E402
+from services.compute_seam.reflection_router import router as compute_reflection_router  # noqa: E402
 from services.ip_allowlist.middleware import IPAllowlistMiddleware  # noqa: E402
 
 # Deliverables directory (read-only snapshot per Chunk-4 v1.1 delivery logistics)
@@ -151,6 +152,7 @@ app.include_router(connect_estate_router)
 app.include_router(credentials_paste_router)
 app.include_router(rds_data_router)
 app.include_router(registry_facts_router)
+app.include_router(compute_reflection_router)
 
 app.add_middleware(
     CORSMiddleware,

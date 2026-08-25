@@ -137,7 +137,7 @@ Strategy work-in-progress (to be created):
 - **checkpoint_14d_utc:** `2026-08-28T00:00:00Z`
 - **hardening_status:** `attested`
 - **acceptance_status:** `green`
-- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260825T172457Z.json`
+- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260825T180739Z.json`
 <!-- CONNECT-GPU-PINS -->
 
 
@@ -209,3 +209,47 @@ Reclassification carries an in-band `engine_source` field naming the throwaway o
 - Green receipt: `phase0/drill_receipts/20260825T151457Z_registry_facts_green.log` (15/15 registry_facts + 121/121 cohort + 38/38 rehome+registry).
 - Journey walk screenshots (6): `phase0/drill_receipts/screenshots/20260819T151700Z_*.jpeg`.
 <!-- OWNER-ARTIFACTS-2026-08-19 END -->
+
+
+<!-- W2-REFLECTION-2026-08-25 -->
+## W2 · Compute reflection-before-commit · FL-P2-27 · Doc 12 §B5.1–§B5.6 CLOSED
+
+Owner Order 2026-08-19 "W2 go" · Owner Response 2026-08-25 (plan-confirmation + four additional invariants d/e/f/g). Executed tests-first per T1 with right-reason failure banked BEFORE any implementation landed. Doc12-003 (Promise #11) status **PARTIAL → DONE**. CA1-008 Cost Ledger stays in W6.
+
+**Contract:**
+- `POST /api/compute/reflection` — accepts `{proposed_action:{kind, scope_ref, scope_ceiling, budget_ceiling, commissioner, lawful_basis}}`; returns the B4 envelope: `reflection_id · feasibility_verdict · grounding_marker · lawful_basis · budget_ceiling · commissioner · scope_ceiling · price_model_version · measured_quantities · currency_figures · honest_gap · provenance · kind · scope_ref · generated_at_iso`.
+- `POST /api/compute/commit` — accepts `{reflection_id, actor, proposed_action}`; refuses with HTTP 422 + plain-sentence reason on: missing reflection_id (`reflection_required`), unknown reflection_id (`reflection_id_unknown`), non-compute kind (`non_compute_kind`), or projection/action drift (`reflection_action_mismatch`). On success returns the run row: `run_id · kind · scope_ref · reflection_id · acknowledged_by · acknowledged_at_iso · committed_at_iso` (no embedded projection content).
+
+**Persistence:**
+- Projections at `phase0/reflection_records/refl-<hex12>.json` (identity records; NOT secrets; NOT credentials).
+- Committed run rows at `phase0/commit_records/run-<hex12>.json`.
+- No rate config on record (`price_model.v0-exploratory.json` is exploratory-status; the loader treats it as absent per Doc 12 §B5.4 non-precedent rule). `currency_figures` therefore renders `{}` and `honest_gap` names the missing ceremony verbatim per the owner grammar.
+
+**Honest-gap sentence (verbatim, from owner):**
+> "No rate is on record for this machine — the projection shows measured quantities only (GPU hours, storage touched). Money figures will appear when the cost ledger is in force."
+
+**Ceremony fabric (v7 oracle EXACT per T1):**
+Single sage-green **"Freeze & commit"** button after feasibility renders — NO checkbox, NO typed confirmation. The button IS the plain-sentence ack. Server-side gate refuses without a valid reflection_id (the gate is not the UI button state).
+
+**Track-a commits on `programme/track-a`:**
+- Tests-first · 12 backend + 7 frontend gating invariants · right-reason receipts:
+  - `phase0/drill_receipts/20260825T180239Z_w2_reflection_right_reason_failure.log`
+  - `phase0/drill_receipts/20260825T180509Z_w2_frontend_right_reason_failure.log`
+- Implementation · `backend/services/compute_seam/{reflection.py, reflection_router.py}` + `pod_shell/frontend/src/components/Registry.jsx` ReflectionPanel + `pod_shell/backend/server.py` router mount.
+- Commit SHAs recorded in DECISIONS.md at cycle close.
+
+**Screenshots** (`phase0/drill_receipts/screenshots/`):
+- `20260825T180800Z_w2_compute_card_before.jpeg` (panel closed)
+- `20260825T180800Z_w2_compute_card_projection.jpeg` (projection rendered; measured quantities with provenance; honest gap; Freeze & commit visible)
+- `20260825T180800Z_w2_compute_card_committed.jpeg` (COMMITTED banner · run-da0605a6e0cc · operator@estate · 2026-08-25T18:08:32.621770Z)
+
+**Green receipt (backend 148/148 · frontend 61/61 rehome · 12/12 allowlist):**
+`phase0/drill_receipts/20260825T180738Z_w2_reflection_green.log`
+
+**Standing invariants held this cycle:**
+- IP allowlist unchanged (`SPINE_ALLOWED_IPS=34.16.56.64`).
+- No LLM transit; no HTTP client; no shield reference in reflection module (statically proven).
+- No secrets read; no credentials transited.
+- Estate ed25519 private key mode 0600 unchanged.
+- REFERENCE-NOT-COPY design law honoured across new surface + new records.
+<!-- W2-REFLECTION-2026-08-25 END -->

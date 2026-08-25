@@ -689,6 +689,70 @@ function ComputeDetailCard({ host, onClose }) {
   const g = host.gpus || {};
   const link = host.link || {};
   const pv = host.primary_volume || {};
+
+  // Doc 12 §B5.1 · reflection-before-commit. The panel is a REFERENCE-NOT-COPY
+  // read path: it POSTs the proposed action to /api/compute/reflection to
+  // obtain a projection envelope by identity, renders it in place, then
+  // POSTs /api/compute/commit with the identity as the acknowledgment. The
+  // "Freeze & commit" button is the plain-sentence ack (v7 oracle ceremony
+  // fabric); server-side gate refuses without a valid reflection_id.
+  const [envelope, setEnvelope] = useState(null);
+  const [reflectionError, setReflectionError] = useState(null);
+  const [reflectionLoading, setReflectionLoading] = useState(false);
+  const [commitOutcome, setCommitOutcome] = useState(null);
+  const [commitError, setCommitError] = useState(null);
+  const [committing, setCommitting] = useState(false);
+
+  // The commissioner drives the ack identity. On a real estate this comes
+  // from the identity middleware; today the surface renders the operator
+  // as the ack-carrying actor.
+  const commissioner = "operator@estate";
+  const scopeRef = host.host_name || "";
+
+  const proposedAction = {
+    kind: "training",
+    scope_ref: `training-run:${scopeRef}`,
+    scope_ceiling: { gpu_hours_ceiling: 1 },
+    budget_ceiling: { amount: 0.0, currency: "USD" },
+    commissioner,
+    lawful_basis: "declared_purpose:archive_processing",
+  };
+
+  const runReflection = () => {
+    setReflectionLoading(true);
+    setReflectionError(null);
+    setCommitOutcome(null);
+    setCommitError(null);
+    fetch(`${BACKEND_URL}/api/compute/reflection`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ proposed_action: proposedAction }),
+    })
+      .then((r) => r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}`)))
+      .then(setEnvelope)
+      .catch((e) => setReflectionError(String(e.message || e)))
+      .finally(() => setReflectionLoading(false));
+  };
+
+  const freezeAndCommit = () => {
+    if (!envelope || !envelope.reflection_id) return;
+    setCommitting(true);
+    setCommitError(null);
+    fetch(`${BACKEND_URL}/api/compute/commit`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        reflection_id: envelope.reflection_id,
+        actor: commissioner,
+        proposed_action: proposedAction,
+      }),
+    })
+      .then((r) => r.ok ? r.json() : r.json().then(j => Promise.reject(new Error(j.detail || `HTTP ${r.status}`))))
+      .then(setCommitOutcome)
+      .catch((e) => setCommitError(String(e.message || e)))
+      .finally(() => setCommitting(false));
+  };
+
   return (
     <div style={{ position: "fixed", inset: 0, background: "rgba(28,43,69,0.55)",
                   display: "flex", alignItems: "center", justifyContent: "center", zIndex: 40 }}
@@ -745,9 +809,196 @@ function ComputeDetailCard({ host, onClose }) {
         <p style={{ fontSize: 13, color: navy, lineHeight: 1.6 }}>
           {host.usability_paragraph}
         </p>
+
+        <ReflectionPanel
+          envelope={envelope}
+          error={reflectionError}
+          loading={reflectionLoading}
+          onRun={runReflection}
+          onFreezeAndCommit={freezeAndCommit}
+          commitOutcome={commitOutcome}
+          commitError={commitError}
+          committing={committing}
+          proposedAction={proposedAction}
+        />
       </div>
     </div>
   );
+}
+
+function ReflectionPanel({ envelope, error, loading, onRun, onFreezeAndCommit,
+                           commitOutcome, commitError, committing, proposedAction }) {
+  // Doc 12 §B5.1 · Reflection-before-commit. The panel opens closed; the
+  // operator taps "Reflect on this run" to compute the projection through
+  // the governed read path. Nothing commits until the projection is
+  // acknowledged with "Freeze & commit" (v7 oracle ceremony fabric).
+  return (
+    <div data-testid="compute-reflection-panel"
+         style={{ marginTop: 24, border: `1px solid ${rule}`, borderRadius: 10,
+                  padding: "18px 20px" }}>
+      <div style={{ display: "flex", alignItems: "baseline", gap: 12,
+                    marginBottom: 12 }}>
+        <div style={{ fontSize: 11, letterSpacing: 1.5, color: navy,
+                      fontWeight: 600, textTransform: "uppercase" }}>
+          REFLECT BEFORE COMMIT
+        </div>
+        <div style={{ fontSize: 12, color: grey, flex: 1 }}>
+          Cost is shown at the point of commit, before commit.
+        </div>
+        {!envelope && (
+          <button data-testid="compute-reflection-run"
+                  onClick={onRun}
+                  disabled={loading}
+                  style={{ padding: "8px 14px", background: cardWhite,
+                           border: `1px solid ${navy}`, color: navy,
+                           borderRadius: 6, cursor: "pointer",
+                           fontSize: 12, fontWeight: 600,
+                           opacity: loading ? 0.6 : 1 }}>
+            {loading ? "Reflecting…" : "Reflect on this run"}
+          </button>
+        )}
+      </div>
+
+      {error && (
+        <div data-testid="compute-reflection-error"
+             style={{ fontSize: 12, color: crimson, marginTop: 8 }}>
+          Reflection could not be read: {error}. This is work done, not work lost — try again.
+        </div>
+      )}
+
+      {envelope && (
+        <>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 10 }}>
+            <KV label="FEASIBILITY"
+                data-testid="compute-reflection-feasibility"
+                value={envelope.feasibility_verdict} />
+            <KV label="GROUNDING"
+                data-testid="compute-reflection-grounding"
+                value={envelope.grounding_marker} />
+            <KV label="LAWFUL BASIS"
+                data-testid="compute-reflection-lawful-basis"
+                value={envelope.lawful_basis || "—"} />
+            <KV label="BUDGET CEILING"
+                data-testid="compute-reflection-budget"
+                value={envelope.budget_ceiling && envelope.budget_ceiling.amount != null
+                  ? `${envelope.budget_ceiling.amount} ${envelope.budget_ceiling.currency || ""}`.trim()
+                  : "—"} />
+            <KV label="SCOPE CEILING"
+                data-testid="compute-reflection-scope-ceiling"
+                value={renderScopeCeiling(envelope.scope_ceiling)} />
+            <KV label="PRICE MODEL"
+                data-testid="compute-reflection-price-model-version"
+                value={envelope.price_model_version || "—"} />
+          </div>
+
+          <div data-testid="compute-reflection-measured-quantities"
+               style={{ marginTop: 14, borderTop: `1px solid ${rule}`,
+                        paddingTop: 12 }}>
+            <div style={{ fontSize: 10, letterSpacing: 1.5, color: mid,
+                          textTransform: "uppercase", marginBottom: 8 }}>
+              Measured quantities
+            </div>
+            {Object.keys(envelope.measured_quantities || {}).length === 0 && (
+              <div style={{ fontSize: 12, color: grey }}>
+                No measured quantities on record for this scope yet.
+              </div>
+            )}
+            {Object.entries(envelope.measured_quantities || {}).map(([k, v]) => (
+              <div key={k} style={{ display: "grid",
+                                    gridTemplateColumns: "180px 1fr 200px",
+                                    fontSize: 12, padding: "4px 0", color: navy }}>
+                <div style={{ letterSpacing: 0.5 }}>{k}</div>
+                <div style={{ fontFamily: "ui-serif, Georgia, serif" }}>
+                  {renderMeasuredValue(v)}
+                </div>
+                <div style={{ fontSize: 11, color: grey }}>
+                  from {v.provenance_ref}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {envelope.honest_gap && (
+            <div data-testid="compute-reflection-honest-gap"
+                 style={{ marginTop: 14, borderTop: `1px solid ${rule}`,
+                          paddingTop: 12, fontSize: 12, color: navy,
+                          lineHeight: 1.55, fontStyle: "italic" }}>
+              {envelope.honest_gap}
+            </div>
+          )}
+
+          <div style={{ marginTop: 16, display: "flex", alignItems: "center",
+                        gap: 12, borderTop: `1px solid ${rule}`, paddingTop: 14 }}>
+            <div style={{ flex: 1, fontSize: 11, color: grey }}>
+              Frozen — a changed intent is a new objective.
+            </div>
+            {!commitOutcome && (
+              <button data-testid="compute-reflection-freeze-and-commit"
+                      onClick={onFreezeAndCommit}
+                      disabled={committing}
+                      style={{ padding: "9px 16px", background: sage,
+                               color: cardWhite, border: "none",
+                               borderRadius: 6, cursor: "pointer",
+                               fontSize: 12.5, fontWeight: 600,
+                               opacity: committing ? 0.6 : 1 }}>
+                {committing ? "Committing…" : "Freeze & commit"}
+              </button>
+            )}
+          </div>
+
+          {commitError && (
+            <div data-testid="compute-reflection-commit-error"
+                 style={{ marginTop: 10, fontSize: 12, color: crimson,
+                          background: "#f7ecea", padding: "8px 12px",
+                          borderRadius: 6 }}>
+              Commit refused: {commitError}
+            </div>
+          )}
+
+          {commitOutcome && (
+            <div data-testid="compute-reflection-commit-outcome"
+                 style={{ marginTop: 12, padding: "10px 14px",
+                          background: "#eef2ea", borderLeft: `2px solid ${sage}`,
+                          borderRadius: 4 }}>
+              <div style={{ fontSize: 11, color: sage, fontWeight: 700,
+                            letterSpacing: 0.5, textTransform: "uppercase" }}>
+                COMMITTED
+              </div>
+              <div style={{ fontSize: 13, color: navy, marginTop: 4 }}>
+                Run {commitOutcome.run_id} · acknowledged by {commitOutcome.acknowledged_by} · {commitOutcome.acknowledged_at_iso}
+              </div>
+              <div style={{ fontSize: 11, color: grey, marginTop: 2 }}>
+                Projection reference: {commitOutcome.reflection_id}
+              </div>
+            </div>
+          )}
+        </>
+      )}
+    </div>
+  );
+}
+
+function renderScopeCeiling(sc) {
+  if (!sc || typeof sc !== "object") return "—";
+  const parts = [];
+  if (sc.rows_ceiling) parts.push(`${sc.rows_ceiling.toLocaleString()} rows`);
+  if (sc.gpu_hours_ceiling) parts.push(`${sc.gpu_hours_ceiling} GPU-hours`);
+  if (sc.duration_seconds_ceiling) parts.push(`${sc.duration_seconds_ceiling}s`);
+  return parts.length ? parts.join(" · ") : "—";
+}
+
+function renderMeasuredValue(v) {
+  if (!v || typeof v !== "object") return String(v);
+  if (typeof v.value === "number") {
+    return `${v.value.toLocaleString()} ${v.unit || ""}`.trim();
+  }
+  if (typeof v.value === "string") {
+    return v.value || "—";
+  }
+  if (typeof v.value === "object" && v.value !== null) {
+    return JSON.stringify(v.value);
+  }
+  return "—";
 }
 
 function FQ({ label, value }) {

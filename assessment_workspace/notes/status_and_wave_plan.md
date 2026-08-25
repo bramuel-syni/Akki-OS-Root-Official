@@ -111,13 +111,13 @@ No dates. Sequence + scope class + DONE-means definitions only. Scope classes: *
 
 ---
 
-### Wave 2 (W2) — Compute in-perimeter · reflection-before-commit shim · scope **S**
+### Wave 2 (W2) — Compute in-perimeter · reflection-before-commit shim · scope **S** · **CLOSED 2026-08-25**
 
 **Backend mechanism:** extend `services/compute_seam/` with a reflection-before-commit "cost/budget quote first" call (Doc12 §Reflection).
 
 **v7 surfaces lit:** COMPUTE CONNECTED detail card gains the reflection block; Cost Ledger tab (Doc11 · CA1-008) NOT yet shipped in W2.
 
-**17-doc anchor:** Doc12-003 (PARTIAL → DONE) · Doc12 remainder kept DONE.
+**17-doc anchor:** Doc12-003 (PARTIAL → **DONE**) · Doc12 remainder kept DONE.
 
 **Reuse:** Extraction-Akki `services/compute_seam/` (already present).
 
@@ -125,7 +125,13 @@ No dates. Sequence + scope class + DONE-means definitions only. Scope classes: *
 
 **DONE means:** reflection stub returns quoted-cost + budget-headroom object; compute detail card renders it; tests-first.
 
-**Acceptance rows:** Promise #10 (kept DONE), Promise #11 (PARTIAL → DONE).
+**Cycle-close receipts:**
+- Programme/track-a `8319522` (tests-first) + `7cf40a7` (implementation).
+- Green receipt: `phase0/drill_receipts/20260825T180738Z_w2_reflection_green.log` (backend 148/148 · frontend 61/61 rehome · 12/12 allowlist).
+- Screenshots: `phase0/drill_receipts/screenshots/20260825T180800Z_w2_compute_card_{before,projection,committed}.jpeg`.
+- Seven-invariant contract green: (a) reflection required · (b) ack required · (c) projection ledgered with run · (d) server-side gate · (e) attributed ack · (f) zero-fabrication · (g) reference-not-copy.
+
+**Acceptance rows:** Promise #10 (kept DONE), Promise #11 (PARTIAL → **DONE**).
 
 ---
 

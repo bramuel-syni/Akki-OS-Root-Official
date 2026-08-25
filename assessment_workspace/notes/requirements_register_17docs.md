@@ -126,9 +126,9 @@ Each row below is a REPRESENTATIVE requirement of the doc; the register carries 
 - **Doc11-001** ← C1-078 · Cost ladder: cache → route → narrow → cascade → waste report (Promise #9). Status **REUSABLE** (RMS `economics/tier_lock.v*.json` carries the tier config; lever sequence surface = BUILD).
 - **Doc11-015 · CA1-008** · Cost Ledger surface exposing the lever sequence as named ordered steps with saving-attributable-to-each. Status **BUILD**.
 
-### Doc 12 · In-perimeter · Reflection · 12 rows — 75% DONE
+### Doc 12 · In-perimeter · Reflection · 12 rows — 83 % DONE
 - **Doc12-001** ← C1-090 · Compute brought to the data (Promise #10). Status **DONE** (akki-vm connected in-perimeter, hardened, accepted-as-delivered).
-- **Doc12-003** ← C1-092 · Reflection-before-commit: cost + budget quoted first (Promise #11). Status **PARTIAL** (compute connect writes a commissioning receipt but reflection-before-commit is not yet in a code path).
+- **Doc12-003** ← C1-092 · Reflection-before-commit: cost + budget quoted first (Promise #11). Status **DONE** (W2 closed 2026-08-25 · Extraction-Akki `programme/track-a` `7cf40a7` · services.compute_seam.reflection + Registry ReflectionPanel · seven-invariant contract green · `phase0/drill_receipts/20260825T180738Z_w2_reflection_green.log`).
 
 ### Doc 13 · Autonomous Training · 23 rows (incl. CA1-011)
 - **Doc13-001** ← C4-060 · Six-criterion model acceptance (Promise #22). Status **REUSABLE** (RMS `targeta/` + Exec-Core `sandbox_generation.py`).

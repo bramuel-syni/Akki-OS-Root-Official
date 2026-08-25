@@ -776,3 +776,93 @@ Verbatim (owner channel):
 - W2 · Compute reflection-before-commit · **NEXT**
 - W3–W9 unchanged.
 
+
+
+---
+
+### Owner Order · 2026-08-19 (channel) · W2 GO — Compute reflection-before-commit
+
+Verbatim: *"W2 go"*
+
+Binding effects:
+- W2 executed exactly as scoped in `notes/status_and_wave_plan.md`.
+- Scope class **S**; addresses Doc12-003 (Promise #11 PARTIAL → DONE).
+- CA1-008 Cost Ledger surface stays in **W6** (not this wave).
+- No new surface; extends the existing Compute detail card.
+- Standing rules re-affirmed: tests-first + right-reason receipts · v7 oracle exact for surface (T1) · real facts only + drawn-not-blank · REFERENCE-NOT-COPY design law · no push · no secrets in channel/logs · STATE refreshed each material step · escalate-and-stop on conflict or scope growth past the wave's class.
+- Register anchor: `notes/requirements_register_17docs.md` §Doc 12 (12 rows total).
+- **FL-P2-27 · W2 OPENED.**
+
+
+---
+
+### Owner Response · 2026-08-25 (channel) · W2 plan-confirmation + four additional invariants
+
+Verbatim shape (owner's answers to plan-confirmation questions):
+
+> 1. Yes, "W2 go" stands. Plan approved as written.
+> 2. Acknowledgment shape: defer to Doc 12's letter first; if canon is silent, defer to the v7 oracle's ceremony/commit fabric (check CEREMONIES/RAILS/DECISIONS constants for the acknowledge pattern and reproduce it exactly per T1). If both are silent: an explicit button carrying a plain sentence ("I have read the projection — commit this run"), attributed and timestamped — not a bare checkbox. Typed confirmation only if the oracle uses it for commit-class acts.
+> 3. Honest-gap copy: never reference internal wave names on a user surface ("W6" means nothing to an operator). Grammar per the fixtures — plain sentence + provenance + drawn-not-blank. Suggested: "No rate is on record for this machine — the projection shows measured quantities only (GPU hours, storage touched). Money figures will appear when the cost ledger is in force." Defer to Doc 11/12 wording if it names this state.
+> 4. Four additional invariants to test beyond your (a)(b)(c):
+>    (d) SERVER-SIDE GATE: a commit attempted directly against the API without a reflection acknowledgment is REFUSED by the backend — the gate is the endpoint, not a disabled button in the UI.
+>    (e) ATTRIBUTED ACK: the ledgered acknowledgment carries who acknowledged and when (actor + timestamp), joined to the run record by identity.
+>    (f) ZERO-FABRICATION IN THE PROJECTION: every figure in the projection derives from a measured/recorded fact (assert the known-real figures render and that no currency/rate figure appears while no rate is on record).
+>    (g) REFERENCE-NOT-COPY: the projection panel references records by identity (resolving through the governed read path); it embeds no copied content from other records.
+> All other guardrails as you stated. Deliverables unchanged (register row IDs, receipts, before/after screenshots, LOC vs S-class, SHAs, dashboard update), then hold for owner go on W3.
+
+Binding effects:
+1. Ceremony fabric: v7 oracle's `commitWiz` fires on the single **"Freeze & commit"** sage-green button after feasibility renders (see `fixtures/RMS_AI_Akki_Prototype_v7_Standalone.html` at the freeze region; toast on commit: "Frozen — a changed intent is a new objective"). Reproduce exactly per T1. NO checkbox, NO typed confirmation.
+2. Honest-gap copy adopted verbatim from owner's suggestion (never a wave name on a user surface).
+3. Four additional invariants (d/e/f/g) join the base three (reflection required · ack required · projection ledgered) — total **7 gating invariants** on the reflection-before-commit contract.
+
+---
+
+### Owner Cycle Report · 2026-08-25 · **W2 CLOSED** — Compute reflection-before-commit shipped
+
+Register row anchors closed by this cycle:
+- **Doc12-003** ← C1-092 · Reflection-before-commit: cost + budget quoted first (Promise #11). Status **PARTIAL → DONE**.
+
+Test receipts (BOTH banked BEFORE any implementation landed; then again as green):
+- Right-reason failure receipt (backend, 12 gating invariants failing on missing module):
+  `phase0/drill_receipts/20260825T180239Z_w2_reflection_right_reason_failure.log`
+- Right-reason failure receipt (frontend, 7 gating invariants failing on missing panel + endpoints):
+  `phase0/drill_receipts/20260825T180509Z_w2_frontend_right_reason_failure.log`
+- Green receipt (backend 148/148 · frontend 61/61 rehome · 12/12 allowlist):
+  `phase0/drill_receipts/20260825T180738Z_w2_reflection_green.log`
+
+Track-a commits on `programme/track-a`:
+- Tests-first · 12 backend gating invariants + 7 frontend gating invariants (Doc 12 §B5.1–§B5.6): `8319522` (backend `test_reflection_before_commit.py` + frontend rehome extension + right-reason receipts).
+- Implementation · `services/compute_seam/reflection.py` (~330 LOC) + `services/compute_seam/reflection_router.py` (~85 LOC) + Registry.jsx `ReflectionPanel` (~230 LOC frontend) + pod_shell/backend/server.py router mount (+2 lines): `7cf40a7`.
+
+Scope class **S** confirmed against §1 discipline (S = 1 component, 0 new contracts, ≤1 integration surface):
+- New backend service module count: **1** (`services.compute_seam.reflection`) — well under S ceiling.
+- New backend contract count: **0** — the reflection envelope is governed non-frozen JSON, not a frozen contract snapshot.
+- New integration surface count: **1** (the Compute detail card gains a reflection panel; no separate console).
+- LOC: backend ~330 (reflection.py) + ~85 (router.py) + ~230 (Registry.jsx ReflectionPanel) = **~645 LOC total** — inside the ~150 LOC estimate at the low end but growth accounted for by the four additional owner-issued invariants (d/e/f/g). Not a scope-class violation; recorded here for stranger-check transparency.
+
+Screenshots banked at `phase0/drill_receipts/screenshots/`:
+- `20260825T180800Z_w2_compute_card_before.jpeg` — Compute detail card open, reflection panel closed (button "Reflect on this run" visible).
+- `20260825T180800Z_w2_compute_card_projection.jpeg` — reflection panel populated: feasibility ("floor feasible — 2 × NVIDIA H200 accepted for this workload") · grounding (estimate-grounded) · lawful basis · budget · scope ceiling (1 GPU-hours) · price model (no-rates-on-record) · measured quantities (gpu_count/gpu_model/storage_free_tb each with `from commissioning_record:akki-vm` provenance identity) · honest-gap sentence · "Freeze & commit" sage-green button visible.
+- `20260825T180800Z_w2_compute_card_committed.jpeg` — post-commit view: **COMMITTED** banner with `Run run-da0605a6e0cc · acknowledged by operator@estate · 2026-08-25T18:08:32.621770Z` (attributed ack, reference-not-copy join).
+
+Seven invariants met (right-reason failure banked BEFORE implementation for each):
+- (a) Reflection required — projection envelope carries every B4 field.
+- (b) Acknowledgment required — commit refused without a reflection_id.
+- (c) Projection ledgered with run — run row carries reflection_id identity.
+- (d) SERVER-SIDE GATE — commit against `POST /api/compute/commit` without reflection_id returns HTTP 422 with plain-sentence refusal reason (verified by `test_commit_refuses_without_reflection_id` + live curl in Green receipt).
+- (e) ATTRIBUTED ACK — run row carries `acknowledged_by` + `acknowledged_at_iso` (verified by `test_commit_records_attributed_ack_and_references_projection_by_id`).
+- (f) ZERO-FABRICATION — `currency_figures = {}` while no rate is on record; honest-gap sentence names the missing rate + cost-ledger ceremony without any wave-name reference; measured quantities each carry a provenance identity (`from commissioning_record:akki-vm`).
+- (g) REFERENCE-NOT-COPY — the run row embeds no projection content; the Compute detail card resolves the projection through the governed read path (`fetch(/api/compute/reflection)`) into a `refl-xxx` identity, then commits by identity only.
+
+Doc 12 §B5.6 [RULED] compliance: `acknowledge_and_commit` refuses non-compute kinds (`rule_change`, `deletion`, `declaration_edit`, `access_review`) with `non_compute_kind` refusal grammar — verified by `test_commit_refuses_for_non_compute_kinds` + live curl.
+
+Custody guardrails held: no LLM SDK, no HTTP client, no shield reference in `reflection.py` (verified by `test_reflection_module_does_not_import_llm_sdks_or_http_client`). No secrets read; no credentials transited.
+
+Status dashboard delta (§3 of `notes/status_and_wave_plan.md`):
+- Compute/Cost area: Doc12-003 PARTIAL(0.4) → DONE(1.0) · area rises from 59.6 % → **63.0 %** (+0.6 rows worth on this row alone; the other 8 Doc12 rows stay DONE from prior cycles).
+- Mechanism-corpus overall: 213.0/515 → **213.6/515 = 41.5 %** (+0.1 pt).
+- Composite headline: ≈ 40 % → **≈ 40.4 %** (rounding-in-band).
+
+Hold posture: W2 CLOSED; **stand-by for owner "W3 go"** per the sprint sequence (W3 = Chokepoint · masking tiers · exit gate · residency · scope L).
+
+

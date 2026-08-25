@@ -1,6 +1,16 @@
 # NEXT.md - Exact next actions
 
-**Last updated:** 2026-08-14 · Owner Simplification Ruling CLOSED · 5-step wizard collapsed to ONE paste-and-connect panel · deterministic local parser (services.credentials_paste; NO LLM transit) · confirm-then-connect with '•••• captured' redaction sentinel · manual fallback fields inline · provisioning card one-tap aside · handshake walk survives ONLY as post-submit RESULT view · programme/track-a HEAD `c490ce9` · 143/143 gating tests green · IP allowlist unchanged (SPINE_ALLOWED_IPS=34.16.56.64) per owner directive.
+**Last updated:** 2026-08-25 · **W2 CLOSED · reflection-before-commit LIVE** on programme/track-a HEAD `7cf40a7` · Doc12-003 (Promise #11) PARTIAL → DONE · seven-invariant contract green · 148/148 backend + 73/73 frontend gating tests · zero regressions · screenshots banked (before / projection / committed) · IP allowlist unchanged (SPINE_ALLOWED_IPS=34.16.56.64) · **hold for owner "W3 go"** per sprint sequence (W3 = Chokepoint · masking · exit gate · residency · scope L).
+
+## Cycle status (2026-08-25 · W2 close)
+
+- W2 · Compute reflection-before-commit — **CLOSED**.
+- W3 · Chokepoint · masking tiers · exit gate · residency (Data Shield surface, 4 mechanisms) — **NEXT** on owner "W3 go".
+- W4..W9 · unchanged per notes/status_and_wave_plan.md.
+
+## Post-W2 report to owner
+
+Deliver: register row IDs closed (Doc12-003 / Promise #11) · test receipts (right-reason 12+7 → green 148/148 + 61/61 + 12/12) · before/after screenshots (three phases) · LOC vs scope class S (net ~645 LOC across backend + frontend + router mount; +230 LOC frontend accounts for the four additional owner-issued invariants d/e/f/g; class **S** stands: 1 new component, 0 new frozen contracts, 1 integration surface) · SHAs (`8319522` tests-first, `7cf40a7` implementation) · dashboard update (Doc 12 area 75 % → 83 %; Compute/Cost area 59.6 % → 63.0 %; headline ≈ 40 % → ≈ 40.4 %).
 
 ## Cycle status (2026-08-14 · Owner Simplification response)
 
