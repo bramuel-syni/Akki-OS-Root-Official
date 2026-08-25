@@ -1,8 +1,57 @@
 # NEXT.md - Exact next actions
 
-**Last updated:** 2026-08-26T03:45Z · **W9 CLOSED · auto-continue mandate satisfied · awaiting owner GO for W10 (polish/completion wave)** · Extraction-Akki HEAD `7027e16` (W9 CP5 · containment fabric) · pod-shell `/app` HEAD `0b227d9` (unchanged from W8) · master HEAD pending W9 close commit.
+**Last updated:** 2026-08-26T04:05Z · **W9 CLOSED (with in-band corrections FL-P4-W9-02 landed) · awaiting owner W10 GO** · Extraction-Akki HEAD `7027e16` · pod-shell `/app` HEAD `0b227d9` · master HEAD pending post-correction commit.
 
-## Cycle status (2026-08-26T03:45Z · W9 CLOSED · owner GO needed for next wave)
+## Cycle status (2026-08-26T04:05Z · W9 CLOSED WITH CORRECTIONS · owner GO needed for W10)
+
+- **W9 CLOSED** at 416/416 wave-close cohort green (63 files).
+- **FL-P4-W9-02 opened + closed at open** · 3 report-time errors named + corrected in-band on `notes/w9_close_report.md §12` · new post-compaction discipline ratified (re-read last 200 lines of DECISIONS.md before drafting any report or STATE change).
+- **Ruling-1 status SURFACED (missing from initial W9 reply · now corrected):**
+  - Precondition (a) declaration ✓ DEMONSTRATED (W1).
+  - Precondition (b) Watch reconciler DEMONSTRATED FIRING · **NOT YET** · `phase0/watch_*/` dirs do not exist on disk.
+  - Purpose-gate strip **NOT ready-for-ceremony**. Needs a firing drill (W10 CP1 candidate · Canon 8 §27 · containment expiring clean · ~200 LOC).
+
+## Awaiting owner (post-W9 · CORRECTED)
+
+1. **FL-P4-W8-01 batch** · 7 N-series policy questions (CA1-N2 breach + CA1-N3 erasure).
+2. **FL-P4-W9-01 batch** · 2 CA1-N5 continuity attestation questions.
+3. **W10 GO + scope confirmation** — polish/completion wave · ~5000-6000 LOC estimated per §7 of `status_and_wave_plan.md` re-baselined table if extended · owner-confirmed scope named in `notes/w10_grounding_brief.md`.
+
+**REMOVED from awaiting list per FL-P4-W9-02 corrections:**
+- ~~A8 ruling~~ — ratified 2026-08-19 (DECISIONS.md L738-760). Walk-this UNBLOCKED for W10.
+- ~~Executive-Final access decision~~ — repo accessed 2026-08-19 (HEAD `bba80ab`). Verdict on record: no Watch/Grey-Mirror material · Grey Mirror is a BUILD.
+
+## Programme dashboard (post-W9 · composite % held pending W10 authoritative recomputation)
+
+- **Frozen contracts** · 52.
+- **Fidelity ledger** · 16 rows opened · 14 CLOSED · 2 OPEN (FL-P4-W8-01 + FL-P4-W9-01 · both owner-policy-pending).
+- **Test cohort** · 416 green (63 files).
+- **Cumulative LOC** · ~23039 net (W1..W9).
+- **Composite %** · **HELD pending W10 authoritative recomputation** per owner correction #4. No running number in the interim.
+
+## Ready for owner ceremony (Canon 3 §24 · owner act)
+
+- Purpose-gate strip · **NOT YET ready-for-ceremony**. Blocked on Ruling-1 precondition (b) demonstration firing drill (W10 CP1).
+
+## Standing rules (unchanged from W9)
+
+- Tests-first + right-reason receipts.
+- v7-exact T1 · real facts · drawn-not-blank.
+- REFERENCE-NOT-COPY (Design Law · A8 ratified 2026-08-19).
+- Purpose gate on every crossing (still on record until Canon 3 §24 ceremony).
+- Contract + snapshot + parity map + hardcoded numeric assertion same-commit DoD (FL-P4-W8-02).
+- Pod-shell + spine same-commit mount DoD (FL-P4-W7-02).
+- **NEW (FL-P4-W9-02)**: after ANY context compaction (agent restart, session reset, fork), FIRST action before drafting a report or STATE change is to re-read the last 200 lines of `STATE/DECISIONS.md` AND the current `STATE/NEXT.md`.
+- Correction-discipline (Owner Ruling 2026-08-19 §6): corrections in-band with old wording struck-through + explicit CORRECTION note · never a silent rewrite.
+- STATE/NEXT.md always carries exact resume point.
+- No push; local commits only.
+
+## Blocked (awaiting)
+
+- Owner GO for W10.
+- Owner rulings on 9 policy questions across 2 open FL rows (non-blocking to W10 open · but load-bearing before N-series + continuity attestations FIRE live records · and Ruling-1 firing drill is a separate CP1 unblocker).
+
+## Cycle status (2026-08-26T03:45Z · W9 CLOSED · initial reply) [ARCHIVED · superseded by 2026-08-26T04:05Z with in-band corrections FL-P4-W9-02]
 
 - **W9 CLOSED** at 416/416 wave-close cohort green (63 files) · `phase0/drill_receipts/20260826T034000Z_w9_wave_close_green.log`.
 - **W9 LOC** · 2190 net (spine only · pod-shell unchanged) vs 6400 budget · **34%** · UNDER by 4210 LOC.

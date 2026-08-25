@@ -219,3 +219,79 @@ Standing until owner rules:
 - **Discipline unchanged**: tests-first · REFERENCE-NOT-COPY · same-commit contract+snapshot+map+count DoD (FL-P4-W8-02 extension) · pod-shell+spine same-commit mount DoD (FL-P4-W7-02) · no push.
 
 Waiting for owner receipt of this report.
+
+---
+
+## 12 · CORRECTIONS (in-band per Owner Ruling 2026-08-19 §6 correction-discipline · opened 2026-08-26T04:00Z on owner correction after this report's first reply)
+
+Owner correction after the initial W9 close reply named THREE report-time errors caused by compaction-loss (agent restated missing/unavailable/pending status for facts already banked in DECISIONS.md). Fidelity ledger row `FL-P4-W9-02` OPENED and CLOSED at open · new discipline element ratified (post-compaction MUST re-read last 200 lines of DECISIONS.md before drafting a report or STATE change).
+
+### 12.1 · A8 ruling — CORRECTION
+
+**Wrong wording (kept visible per correction-discipline):**
+
+> ~~"§8.2 · Walk-this per A8 ruling (Q1 · Q2 · Q3) — W9 nominal scope. Owner ruling A8-Q1/Q2/Q3 is NOT on record ... Cannot honestly build without the disposition · DEFERRED to a subsequent polish/completion wave"~~
+
+**CORRECTION**: The A8 ruling is ON RECORD verbatim in `STATE/DECISIONS.md` lines 738-760, dated **2026-08-19** (before W1 opened):
+
+- **A8-Q1 · ON** — Deep-link into the underlying unit re-enters the normal governed read path; entitlement checked at the point of access, same as direct navigation. Never a shortcut past the chokepoint.
+- **A8-Q2 · INTERIM** — Side-by-side composition of two trace envelopes limited to same-actor + same-window until the Doc 02 B5.6 re-association check ships as a general mechanism. Restriction lift is **mechanism-gated, not time-gated**.
+- **A8-Q3 · ON** — Refused crossings show the rule that fired verbatim on Walk-this, same stream as successes; never hidden.
+- **Corrected operative basis** — single chokepoint, codified as the **REFERENCE-NOT-COPY** design law.
+
+**Consequence for W10**: Walk-this is **FULLY UNBLOCKED** per DECISIONS.md line 759: "W9 unblocks on Walk-this → architecture: receipt/trace object rendered adjacent, deep-link resolves through the chokepoint, refusal shown verbatim. Composability constrained interim." Walk-this ships in W10 as part of the governance/Watch/Grey-Mirror frontends CP.
+
+### 12.2 · Executive-Final availability — CORRECTION
+
+**Wrong wording (kept visible per correction-discipline):**
+
+> ~~"§8.1: Direct cause: Executive-Final repo unavailable + Canon 8 §15-§16 mechanism-side alone is >1500 LOC estimated"~~
+>
+> ~~"§10 · Honest gaps: Executive-Final repo unavailable — Grey Mirror mechanism completion depends materially."~~
+
+**CORRECTION**: Executive-Final has been ACCESSED since 2026-08-19 · DECISIONS.md line 768 verbatim: "Executive-Final accessed · owner clarification confirmed public · clone with GIT_TERMINAL_PROMPT=0 succeeded · HEAD `bba80ab` (2026-06-06) · older mirror than Core · adds a cleaner `services/solva/` package. Delta captured in `notes/reuse_map_v7.md` §5. Status % unchanged (~40%) because Executive-Final does NOT hold Watch/Grey Mirror mechanism, N-series primitives, Cost Ledger surface, or the generalised handoff contract."
+
+On-disk verification at 2026-08-26T04:00Z: `/app/assessment_workspace/repos/Akki-Executive-Final` present · `main` branch · HEAD `bba80ab` · working tree clean.
+
+**Consequence for W10**: Grey Mirror mirage + severance + guilty/innocent flows are a **BUILD** (not blocked by any repo access). LOC estimate of >1500 for mechanism-side stands, but the reason is Canon 8 §15-§16 architectural scope, not repo unavailability.
+
+### 12.3 · Ruling-1 closure question — SURFACED (missing from initial reply)
+
+**Missing surfacing (owner directive in DECISIONS.md line 1354 · dated pre-W9 opening):**
+
+> Owner verbatim: "the Ruling-1 closure question: once the Watch reconciler is DEMONSTRATED FIRING, both Ruling-1 preconditions are met — do NOT strip the purpose gate yourself; that strip is a Canon 3 §24 ceremony per FL-R1-01's ruling and an owner act. **Surface it as ready-for-ceremony in your W9 close report.**"
+
+The initial reply omitted this surfacing. Surfacing now:
+
+**Ruling-1 preconditions status (2026-08-26T04:00Z):**
+
+| Precondition | Source | Status |
+|--------------|--------|--------|
+| (a) Declaration check demonstrated firing | W1 · actor_declaration_v0 ceremony + refusal drill · banked receipts | ✓ **DEMONSTRATED** |
+| (b) Watch reconciler demonstrated firing | W9 CP1-CP5 · Macho + Mkono + route_recheck_failure + route_staleness_flag + containment fabric AUTHORED | ✗ **NOT YET** |
+
+**On-disk reality check**: `phase0/watch_verdicts/` · `phase0/watch_actions/` · `phase0/containments/` · `phase0/containment_reconciliations/` DIRECTORIES DO NOT EXIST. The Watch reconciler has been exercised ONLY in unit tests under `tmp_path`. **No banked receipt shows the reconciler executing end-to-end on a real or drill event.**
+
+**Purpose-gate strip status**: **NOT ready-for-ceremony**. Ruling-1 precondition (b) unsatisfied.
+
+**What a firing drill needs (recommended option · lowest additional build)**:
+
+Canon 8 §27 verbatim — "a containment expiring clean — verifies expiry reconciliation." W9 CP5 already shipped both `start_containment` and `reconcile_containment`. A W10 CP1 drill harness plants:
+
+1. A real verdict (Macho · sensor='macho.drill_harness' · signal_class='drill_containment_expiry' · severity='noted' · subject='drill_actor:test').
+2. A bounded containment on that drill actor (Mkono · action_class='containment_started' · bound_scope='read_only_scoped_env' · expires_at=now+60s).
+3. A reconciliation record at expiry (Mkono · outcome='expired_clean' · period_summary cites the drill).
+
+All three records land under `phase0/watch_verdicts/` + `phase0/watch_actions/` + `phase0/containments/` + `phase0/containment_reconciliations/`. Banked receipt at `phase0/drill_receipts/<ts>_w10_cp1_ruling_1_firing_drill_receipt.log` shows the exact sequence.
+
+That receipt IS the demonstration of Ruling-1 precondition (b). When it lands, purpose-gate strip becomes **ready-for-ceremony** (owner act, Canon 3 §24 · per FL-R1-01 · never ours). W10 close report will surface the strip as ready-for-ceremony.
+
+LOC estimate for W10 CP1 firing drill: **~200 LOC** (harness + assertion + drill receipt · uses existing macho/mkono/containment writers).
+
+**Options B and C on record** (Canon 8 §25 seeded-hostile-input · Canon 8 §26 planted-credential-severance) require additional mechanism (chokepoint drill hook · mirage machinery); Option D was chosen as the smallest-additional-build.
+
+### 12.4 · Composite % dashboard — deferred to W10 close for authoritative recomputation
+
+Owner correction #4: "Dashboard: the composite % has wobbled across compactions (43→46→48→43→48). At W10 close I want ONE authoritative recomputation from the 17-doc register row states, method stated, replacing the running number."
+
+**Accepted**. W10 close report will carry ONE authoritative recomputation with method stated (weighted sum across 17-doc register row statuses · DONE=1 · PARTIAL=0.4 · REUSABLE=0.5 · BUILD=0 · blended with 58 v7 surfaces at 0.3 weight per `notes/status_and_wave_plan.md` §5). No running composite in the interim.

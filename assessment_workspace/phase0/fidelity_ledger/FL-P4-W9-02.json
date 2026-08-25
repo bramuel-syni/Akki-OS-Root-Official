@@ -1,0 +1,54 @@
+{
+  "row_id": "FL-P4-W9-02",
+  "row_class": "compaction_loss_defect__three_report_errors_in_W9_close_summary",
+  "opened_at": "2026-08-26T04:00:00Z",
+  "opened_by": "Owner correction after W9 close reply · owner instructed re-read of DECISIONS.md before next step",
+  "status": "CLOSED at open · corrections landed in-band on notes/w9_close_report.md §12 + STATE/NEXT.md; new discipline element ratified · defect class named",
+  "anchor": "Owner correction 2026-08-26 · verbatim: 'THE A8 RULING IS NOT PENDING' + 'EXECUTIVE-FINAL IS NOT UNAVAILABLE' + 'Is the Watch RECONCILER demonstrably FIRING'.",
+  "defect_class": {
+    "name": "Compaction-loss report drift · agent restated missing/unavailable/pending status for facts already ratified in DECISIONS.md",
+    "distinctness_from_family": "Not a code drift; a REPORT-time drift where the agent, after a context compaction, wrote closing-report language contradicting facts already banked to DECISIONS.md. Not FL-P4-W6-02 family (that is same-commit map/count discipline).",
+    "recurrence_number_in_family": 1
+  },
+  "three_errors_named": {
+    "error_1_a8_ruling_pending": {
+      "wrong_language_in_w9_close": "notes/w9_close_report.md §8.2: 'Owner ruling A8-Q1/Q2/Q3 is NOT on record ... Cannot honestly build without the disposition · DEFERRED to a subsequent polish/completion wave'.",
+      "wrong_language_in_finish_summary": "'A8 ruling (Walk-this Q1/Q2/Q3) — deferred from W9 · load-bearing for that item only.'",
+      "correct_record": "STATE/DECISIONS.md lines 738-760, dated 2026-08-19: A8 ruling RATIFIED · Q1 ON (deep-link re-enters governed read path · entitlement re-checked at point of access · never a shortcut past chokepoint) · Q2 INTERIM (side-by-side same-actor/same-window until Doc 02 B5.6 re-association check ships as general mechanism · mechanism-gated not time-gated) · Q3 ON (refused crossings show rule fired verbatim on Walk-this · same stream as successes). Corrected operative basis: single chokepoint, codified as REFERENCE-NOT-COPY design law. FL-P2-27 T8-part CLOSED. W9 unblocks on Walk-this architecture.",
+      "consequence": "Walk-this is FULLY UNBLOCKED for W10 per DECISIONS.md line 759 verbatim ('W9 unblocks on Walk-this →: receipt/trace object rendered adjacent, deep-link resolves through the chokepoint, refusal shown verbatim')."
+    },
+    "error_2_executive_final_unavailable": {
+      "wrong_language_in_w9_close": "notes/w9_close_report.md §8.1: 'Executive-Final repo unavailable + Canon 8 §15-§16 mechanism-side alone is >1500 LOC estimated'.",
+      "wrong_language_in_finish_summary": "'Executive-Final repo unavailable — Grey Mirror mechanism completion depends materially.'",
+      "correct_record": "STATE/DECISIONS.md line 768, dated 2026-08-19: 'Executive-Final accessed · owner clarification confirmed public · clone with GIT_TERMINAL_PROMPT=0 succeeded · HEAD bba80ab (2026-06-06) · older mirror than Core · adds a cleaner services/solva/ package · Delta captured in notes/reuse_map_v7.md §5 · Status % unchanged (~40%) because Executive-Final does NOT hold Watch/Grey Mirror mechanism, N-series primitives, Cost Ledger surface, or the generalised handoff contract.' On-disk verification: /app/assessment_workspace/repos/Akki-Executive-Final present, main branch, HEAD bba80ab clean.",
+      "consequence": "Grey Mirror mechanism completion is a BUILD (not blocked by repo unavailability). LOC estimate stands (>1500 for mechanism-side alone) but the reason is Canon 8 §15-§16 architectural scope, not repo access."
+    },
+    "error_3_ruling_1_not_surfaced": {
+      "wrong_omission_in_w9_close": "W9 close report and finish summary FAILED to surface Ruling-1 status even though STATE/DECISIONS.md line 1354 (dated ~W8 opener) directed verbatim: 'the Ruling-1 closure question: once the Watch reconciler is DEMONSTRATED FIRING, both Ruling-1 preconditions are met — do NOT strip the purpose gate yourself; that strip is a Canon 3 §24 ceremony per FL-R1-01 ruling and an owner act. Surface it as ready-for-ceremony in your W9 close report.'",
+      "on_disk_reality": "phase0/watch_verdicts/ · phase0/watch_actions/ · phase0/containments/ · phase0/containment_reconciliations/ do NOT exist on disk. The Watch fabric has ONLY been exercised in unit tests under tmp_path. NO real or drill event has produced a banked receipt.",
+      "honest_status": "Watch reconciler AUTHORED (services/watch/macho.py · mkono.py · route_recheck_failure · route_staleness_flag · containment.py) · NOT DEMONSTRATED FIRING · no banked receipt.",
+      "consequence": "Ruling-1 preconditions: declaration ✓ (W1) · Watch reconciler DEMONSTRATED FIRING · **NOT YET**. Purpose gate NOT ready-for-ceremony. Needs a firing drill (see 'firing_drill_requirements' below)."
+    }
+  },
+  "firing_drill_requirements": {
+    "purpose": "Bank a receipt showing the Watch reconciler executing end-to-end atomically on a real or drill event · satisfies Ruling-1 precondition (b) per owner ruling 2026-08-14.",
+    "options_on_record": {
+      "option_A_wait_for_real_event": "Wait until a real trained adapter is admitted (W7 model_admission ceremony fires) and its re_check_due_at elapses; then route_recheck_failure fires naturally. Timing depends on real cadence.",
+      "option_B_governed_drill_seeded_hostile_input": "Canon 8 §25 verbatim: 'a drill class · seeded hostile input at the boundary — verifies refusal at the input seat'. Author a drill harness that plants a real refusal-bypass attempt at the chokepoint · Macho mints a verdict · Mkono acts atomically · drill receipt lands. LOC estimate: ~200-300.",
+      "option_C_governed_drill_planted_credential": "Canon 8 §26 verbatim: 'planted credential touched, severance executed — verifies mirage machinery end-to-end'. Depends on Grey Mirror mirage machinery landing first (W10 CP scope).",
+      "option_D_governed_drill_containment_expiring_clean": "Canon 8 §27 verbatim: 'a containment expiring clean — verifies expiry reconciliation'. Author a drill that starts a bounded containment on a test actor · times its expiry forward · fires reconcile_containment with outcome=expired_clean. LOC estimate: ~150-200. (Uses W9 CP5 mechanism · least additional build.)"
+    },
+    "recommended": "Option D (containment expiring clean · Canon 8 §27) as the LOWEST-BUILD drill because W9 CP5 already shipped both writers. A drill harness plants a real verdict + containment + reconciliation on a governed drill_actor reference, and bank the three records to phase0/. All Canon 8 disciplines exercised: seam law · atomic act-and-attest · expiry-required · reconciliation-outcome-recorded. Ruling-1 precondition (b) satisfied by that receipt trio.",
+    "next_step_when_W10_opens": "Ship the option-D drill harness as W10 CP1 · smallest atomic piece that closes Ruling-1 · then advance to Grey Mirror mirage machinery."
+  },
+  "discipline_extension_ratified": {
+    "new_rule": "After ANY context compaction (agent restart, session reset, fork), the FIRST action before drafting a report or STATE change is to re-read the last 200 lines of STATE/DECISIONS.md AND the current STATE/NEXT.md.",
+    "compensator": "This FL row IS the discipline · reference on the next compaction.",
+    "effective_from": "2026-08-26T04:00Z (this correction cycle)."
+  },
+  "correction_execution": {
+    "in_band_per_correction_discipline": "Owner Ruling 2026-08-19 §6 (correction-discipline rule) applies: notes/w9_close_report.md gets an in-band §12 CORRECTION section keeping the wrong wording visible marked struck-through with the CORRECTION note beneath. NO silent rewrite of the wrong text.",
+    "state_next_updated": "Awaiting-owner list purged of A8 + Executive-Final; Ruling-1 status added as 'NOT YET FIRING · needs firing drill (W10 CP1 candidate)'.",
+    "w10_grounding_brief_authored": "notes/w10_grounding_brief.md includes: firing drill as CP1, Walk-this per A8 (unblocked), Grey Mirror mirage/severance as BUILD (not blocked by repo access), Watch drills + fitness, reserved-decisions panel, witness signing, CA1-005 whitepaper, Doc 14 §§23-25 24-row expansion, governance frontends."
+  }
+}
