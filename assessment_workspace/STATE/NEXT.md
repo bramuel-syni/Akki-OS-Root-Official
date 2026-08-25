@@ -1,52 +1,90 @@
 # NEXT.md - Exact next actions
 
-**Last updated:** 2026-08-25 · **W5 CLOSED** on programme/track-a HEAD `39386ac` · LLM chokepoint live · Solva reasoning live · Chat live · Reasoning Shield live · Connect-LLM verify backend live · **194/194 gating tests green** · **zero regressions** · **live E2E receipts on record**: `rcp-17085737b228` (chat) + `run-5c9cdc19d3da` (thinklab three-stage). Close report at `notes/w5_close_report.md`. **HOLD for owner "W6 go"** per owner's standing instruction.
+**Last updated:** 2026-08-25 · **W6 OPEN · openers done** · programme/track-a HEAD `f647051` (W6 opener #2 · FL-P4-W4-01 reconciled) · master HEAD has W6 opener #1 (re-baselined wave table + calibration factor 1.60×). W5 CLOSED at Extraction-Akki@`39386ac`.
 
-## Cycle status (2026-08-25 · W5 close)
+## Cycle status (2026-08-25 · W6 openers CLOSED · W6 scope opening)
 
-- W1..W5 · **CLOSED**.
-- W6 · Cost Ledger surface · retention enforcement · Grey Mirror groundwork — **NEXT** on owner "W6 go".
-- W7..W9 · unchanged per notes/status_and_wave_plan.md.
+- **W1..W5 · CLOSED**. 195/195 gating tests green across the wave-open cohort (194 W5-close + 1 FL-P4-W4-01 reconciled).
+- **W6 opener #1 · re-baseline · DONE**. Calibration factor 1.60× published in notes/status_and_wave_plan.md §7. W6 stop-and-report line: **2880 LOC**.
+- **W6 opener #2 · FL-P4-W4-01 · DONE**. Root-cause named (W4 close missed the snapshot bump); reconciliation via snapshot bump ratified by this owner ruling; fidelity ledger row closed at phase0/fidelity_ledger/FL-P4-W4-01.json.
+- **W6 SCOPE opening · IN PROGRESS**:
+  - CP1 · rulings + brief (this update) — pending.
+  - CP2 · rates register (owner-supplied or honestly absent) + Cost Ledger backend + tests — pending.
+  - CP3 · retention enforcement + tests — pending.
+  - CP4 · Grey Mirror groundwork + Solva stages 4-6 mechanism-side — pending.
+  - CP5 · W5 deferrals folded in (LLM chip UI + Data Suite + CA1-010) — pending.
+  - CP6 · wave close (dashboard + STATE + screenshots) — pending.
 
-## Deferred to owner ruling (all named in notes/w5_close_report.md §10)
+## W6 openers summary
 
-1. W6 GO signal.
-2. Sizing verdict on L-class overrun (~2870 LOC vs ≤2500). Options: reclassify · narrow next scope · new L-extended tier.
-3. `FL-P4-W4-01` · reconcile `northena_ledger_row` vs `northena_ledger_v1` snapshot mismatch (predates W5).
-4. CA1-010 session-scoped lowered-standard bypass surface (test hook exists).
-5. ConnectDrawerChat LLM chip UI polish (backend live; surface deferred).
-6. Solva stages 4/5/6 (triangulation / tension / probability_weighting) — Grey Mirror groundwork W6+.
+### Opener #1 · Re-baseline (in notes/status_and_wave_plan.md §7)
+- W1: 1006 LOC actual vs 800 est → 1.26×.
+- W2: 1666 vs 150 → 11.11× — **class misclassification** (S→M-effective).
+- W3: 2519 vs 2000 → 1.26×.
+- W4: 2566 vs 600 → 4.28× — **class misclassification** (M→L-effective).
+- W5: 4026 vs 2500 → 1.61×.
+- **Calibration factor: 1.60× (median), 1.95× (weighted mean)** — using MEDIAN as the go-forward multiplier (owner ruling naming).
+- W6-W9 re-baselined: **W6 ~2880 LOC · W7 ~3520 LOC · W8 ~5600 LOC · W9 ~6400 LOC · total ~18400 LOC**.
+- Remaining build effort is 60% higher than pre-calibration; W1-W5 landed 95% higher than pre-calibration.
+- Three ruling paths named for owner (accept re-baseline / narrow scope / add L-extended tier); default: accept.
 
-## Verification path for orchestrator (independent audit) — W5 close
+### Opener #2 · FL-P4-W4-01 closed
+- Root-cause: W4 extended `LedgerRow` (added `thinklab_objective`, `row_id`, description tweaks, `additionalProperties: True` on stamp_audit, dropped `at` from required) but skipped the snapshot bump — silently failing test at HEAD `a71ea67`.
+- Reconciliation: bump `northena_ledger_row.contract_snapshot.json` to match current W4-ratified code shape. Owner Ruling W6 GO opener #2 IS the explicit ratification moment.
+- Right-reason failure: phase0/drill_receipts/20260825T204000Z_w6_opener2_FL-P4-W4-01_right_reason.log.
+- Green after fix: 195/195 in phase0/drill_receipts/20260825T205000Z_w6_opener2_FL-P4-W4-01_green.log.
+- Fidelity ledger row banked at phase0/fidelity_ledger/FL-P4-W4-01.json — CLOSED.
+- Process finding: W4 close cohort had a scoping gap (missed a contract snapshot test). Note in the ledger row; future wave-close cohorts assemble by grep for `test_*_frozen*.py` + `test_*_contract*.py`.
+
+## W6 scope plan (post-openers)
+
+Grounded in the register rows FIRST (owner ruling). Six checkpoints:
+
+**CP2 · Cost Ledger (CA1-008 + Docs 11/12)**:
+- Read the CA1-008 lever sequence from the addendum / Doc 11 / Doc 12 verbatim (BEFORE opening code — quote it in the CP2 brief).
+- Rates register: `services/cost_ledger/rates.py` reads from `phase0/rates_register/*.json` — OWNER-SUPPLIED FACTS or honestly absent. If no rate on record for a model or GPU-hour, ledger shows quantities with the W2 honest-gap sentence.
+- Ledger backend: `services/cost_ledger/ledger.py` consumes W5 metering receipts (all `solva_* / chat_* / thinklab_* / llm_*` kinds) + W2 reflection quotas + seam GPU usage into ledger entries.
+- Surface: `pod_shell/frontend/src/components/CostLedger.jsx` per v7 oracle `COMPUTE_CHARTS` fabric.
+
+**CP3 · Retention enforcement (CA1-N1)**:
+- Quote the register's letter for retention on each record class we hold: receipts / ledger rows / chat turns / admits / seam runs.
+- Append-only classes NEVER get delete verb — retention on those = marked-expired + excluded-from-render. If the register says otherwise, quote it and STOP.
+- Enforcement mechanism per the letter (expiry marking / governed deletion path).
+- Surface: retention state row on records + attestation record.
+
+**CP4 · Grey Mirror groundwork + Solva stages 4-6**:
+- Solva stages 4 (triangulation) · 5 (tension_detection) · 6 (probability_weighting) ADAPTED from Executive-Final donor · mechanism-side only.
+- Grey Mirror overview surface only if oracle has parts that render honestly from what exists (else deferred to W9 with Watch).
+
+**CP5 · W5 deferrals folded in**:
+- ConnectDrawerChat LLM chip UI polish (backend live).
+- Data Suite surface v7-exact (data facts from real connected sources · structure-only posture).
+- CA1-010 session-scoped lowered-standard with logged expiry (state visible + refusal grammar).
+
+**CP6 · wave close**: dashboard delta + screenshots + STATE + close report.
+
+## Verification path for orchestrator (independent audit) — W6 openers close
 
 ```bash
 cd /app/assessment_workspace/repos/Extraction-Akki
-git log --oneline programme/track-a | head -6
+git log --oneline programme/track-a | head -3
+# f647051 W6 opener #2 · FL-P4-W4-01 reconciled · frozen contract parity restored
 # 39386ac W5 CP4 frontend · Chat surface · ThinkLab reasoning wire · DataShield reasoning-receipts extension
-# ba14077 W5 CP4 backend · Chat · Reasoning Shield filter · Connect-LLM verify + custody
-# 22b323d W5 CP3 · Solva reasoning + ThinkLab wire-through · 173/173 green
-# feeb786 W5 CP2b · boundary-side metering via tiktoken (emergentintegrations exposes no usage)
-# a5be529 W5 CP2 · LLM chokepoint · purpose gate · Emergent-universal registration · AST tightening
-# a71ea67 W4 CLOSED · ThinkLab surface live at /thinklab + full W4 cohort green (Doc 05 · M class)
 
-python3 -m pytest backend/tests/invariants/test_llm_*.py \
-    backend/tests/invariants/test_solva_*.py \
-    backend/tests/invariants/test_thinklab_reasoning_wire.py \
-    backend/tests/invariants/test_w5_cp4_backend_endpoints.py \
-    backend/tests/invariants/test_registry_facts_emergent_universal_listed.py -v
-# Expect: 42 W5 net-new tests green.
+python3 -m pytest backend/tests/invariants/test_northena_ledger_row_v0.py -v
+# Expect: 1 passed.
 
-curl -s -H "X-Forwarded-For: 34.16.56.64,172.71.255.34,136.110.244.150" \
-    http://127.0.0.1:8001/api/chat/ask \
-    -H "Content-Type: application/json" \
-    -d '{"question":"In one sentence, what is a governed chokepoint?"}'
-# Expect: {answer:"…", receipt_id:"rcp-…", model_id:"gpt-5-mini", provider:"emergent",
-#          tokens_in:>0, tokens_out:>0, latency_ms:>0, refused:false, refusal_reason:""}
+cd /app/assessment_workspace
+git log --oneline master | head -3
+# (opener #1 re-baseline + STATE update committed at close)
+
+cat notes/status_and_wave_plan.md | grep -A2 "Calibration factor"
+# Expect the 1.60× naming.
 ```
 
 ## Blocked (awaiting from owner)
 
-- None new.
+- None new. **W6 scope proceeds unless owner steers to option (b) narrow-scope or (c) L-extended-tier from opener #1's naming.**
 
 ## No push, ever
 

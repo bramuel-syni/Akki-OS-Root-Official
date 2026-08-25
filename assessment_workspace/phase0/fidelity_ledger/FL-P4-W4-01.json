@@ -1,0 +1,57 @@
+{
+  "row_id": "FL-P4-W4-01",
+  "row_class": "frozen_contract_parity_failure",
+  "opened_at": "2026-08-25T20:35:00Z",
+  "opened_by": "W5 close report §6 finding #1",
+  "closed_at": "2026-08-25T20:40:00Z",
+  "closed_by": "W6 opener #2 · Owner Ruling 'W6 GO' 2026-08-25",
+  "affected_contract": {
+    "class": "contracts.northena_ledger.LedgerRow",
+    "snapshot_file": "backend/tests/invariants/northena_ledger_row.contract_snapshot.json",
+    "test_file": "backend/tests/invariants/test_northena_ledger_row_v0.py"
+  },
+  "drift_introduced_at": {
+    "wave": "W4",
+    "commit": "7bea87d",
+    "commit_summary": "W4 Section B+C · Northena backend code + ThinkLab router mount",
+    "wave_close_sha": "a71ea67"
+  },
+  "drift_detected_at": {
+    "wave": "W5",
+    "moment": "wave close cohort run (2026-08-25 · during W5 CP2 baseline sanity check)",
+    "sha_at_detection": "feeb786"
+  },
+  "drift_summary": {
+    "additions": [
+      "LedgerArtifactRef.artifact_type.enum: added 'thinklab_objective' entry (supports ThinkLab objective admissions per Doc 05 §A5)",
+      "properties.row_id: added string field with description 'Stable identity for the ledger row (identity-join key).' — needed for reference-not-copy joins across the ledger",
+      "properties.stamp_audit.anyOf[0].additionalProperties: True — permissive shape absorbs Solva traces, gate receipts, refusal envelopes (§7.3)"
+    ],
+    "removals": [
+      "required[7] = 'at' — moved to permissive stamp path (no longer top-level required)"
+    ],
+    "description_tightenings": [
+      "top-level description: '§7.2 — the contract-grade Ledger row. Nine fields.' → '§7.2 · the contract-grade Ledger row.'",
+      "stamp_audit description: shortened to name §7.3 more clearly",
+      "trace_id description: shortened; ledger-join intent preserved"
+    ]
+  },
+  "root_cause": "During W4 CP-close, LedgerRow was extended to support ThinkLab objective admissions (Doc 05 §A5 semantics) but the frozen `northena_ledger_row.contract_snapshot.json` was not bumped in the same commit. The test was silently failing at W4 close but was not in the '264/264 gating tests' cohort the close report cited — a scoping gap in the W4 close cohort. Discovered mid-W5 (during CP2 baseline check) and honestly ledgered at W5 close rather than papered over.",
+  "reconciliation": {
+    "chosen_path": "bump_snapshot_to_match_code",
+    "rationale": "The extensions represent intended W4 behavior. Reverting would break the live ThinkLab feature (which is on record and green at 194/194 wave-close cohort at W5 CLOSE). The Owner ruling of 'W6 GO' opener #2 IS the explicit ratification moment for the frozen-contract bump.",
+    "alternative_considered": "revert_code_to_match_snapshot",
+    "alternative_rejected_because": "would break the ThinkLab admit surface live on programme/track-a HEAD"
+  },
+  "tests_first_receipt": {
+    "right_reason_failure": "phase0/drill_receipts/20260825T204000Z_w6_opener2_FL-P4-W4-01_right_reason.log",
+    "green_after_fix": "run of tests/invariants/test_northena_ledger_row_v0.py post-snapshot-bump — banked in wave-close cohort at 20260825T205000Z (see below)"
+  },
+  "verification": {
+    "snapshot_bumped_at": "2026-08-25T20:40:00Z",
+    "snapshot_bump_method": "regenerated from `LedgerRow.model_json_schema()` at HEAD `39386ac` (W5 close)",
+    "test_docstring_updated": true,
+    "downstream_impact_check": "no downstream code path was reading from the frozen v0 snapshot at runtime — the snapshot is a test-time invariant only; no runtime behaviour changes."
+  },
+  "process_finding": "The W4 close report's '264/264 gating tests' cohort did NOT include test_northena_ledger_row_v0.py. Recommend future wave-close cohorts assemble by grep pattern `test_*_frozen*.py` and `test_*_contract*.py` to catch every snapshot invariant. Not owner-facing binding — a discipline note for the assessment workspace."
+}

@@ -1180,3 +1180,53 @@ Post-W5 hold: **stand-by for owner "W6 go"** (Cost Ledger surface · retention �
 3. **W5 close report confirms the vocabulary is uniform** — the LOC-account, register-row targeting, and reuse-pull citations all render as Solva.
 4. **The `services/solva_depth/` and `services/g1_defensibility/solva_depth/` packages already on disk are untouched** — they are pre-existing G1 defensibility modules with their own vocabulary; they do not overlap with the W5 Solva reasoning package. Separation: `services/solva/` = reasoning faculty (W5); `services/solva_depth/` = G1 defensibility depth checker (pre-existing).
 
+
+
+---
+
+### Owner Ruling · 2026-08-25 (channel) · **W6 GO**
+
+**Verbatim (owner channel):**
+
+> "go" = W6 GO — log in DECISIONS.md (dated, source: owner channel). Execute W6 per notes/status_and_wave_plan.md: Cost Ledger (CA1-008, Docs 11/12) · retention enforcement (CA1-N1) · Grey Mirror groundwork · plus the W5 deferrals folded in (LLM chip UI polish · Data Suite surface · Solva stages 4-6 · CA1-010 session-scoped lowered-standard).
+>
+> W6 OPENERS, before new build:
+> 1. Re-baseline W6-W9 estimates against W1-W5 actuals (publish the updated wave table in notes/status_and_wave_plan.md — calibration factor stated once). W6's own re-baselined budget is your stop-and-report line.
+> 2. Reconcile FL-P4-W4-01 (northena_ledger_row vs v1 frozen snapshot parity failure) — root-cause, fix tests-first, close the ledger row. Frozen-contract parity failures never ride along unresolved.
+>
+> W6 SCOPE, grounded in the register rows first:
+> (a) COST LEDGER (CA1-008 + Docs 11/12 rows): rates register (per-model token rates, per-GPU-hour rate — rates are OWNER-SUPPLIED facts or honestly absent; NEVER invented — if no rate is on record, the ledger shows quantities with the honest-gap sentence from W2). Consume the W5 metering receipts + W2 reflections + seam GPU usage into ledger entries with the CA1-008 lever sequence per the addendum's letter. Surface: Cost Ledger per the v7 oracle (check the oracle for its cost/spend fabric), real figures only.
+> (b) RETENTION ENFORCEMENT (CA1-N1): retention classes on record types we actually hold (receipts, ledger rows, chat turns, admits), enforcement mechanism per the register's letter (expiry marking / governed deletion path — careful: append-only classes NEVER get a delete verb; retention on those = marked-expired + excluded-from-render, per canon. If the register says otherwise, quote it and stop).
+> (c) GREY MIRROR GROUNDWORK: Solva stages 4-6 (triangulation · tension · probability_weighting) adapted from the donor; mechanism-side only unless the oracle's Grey Mirror surface has parts that render honestly from what exists (if so, ship those parts drawn-not-blank; the full Grey Mirror surface lands W9 with the Watch).
+> (d) W5 DEFERRALS: LLM chip UI polish in the drawer-chat (backend already live); Data Suite surface v7-exact (its data facts come from the real connected sources — structure-only posture holds, no record contents without a named purpose); CA1-010 session-scoped lowered-standard with logged expiry (the addendum's letter: session-scoped, logged, expires — surface the state visibly, refusal grammar when invoked).
+> Standing rules unchanged (tests-first + right-reason receipts · v7-exact T1 · real facts/drawn-not-blank · REFERENCE-NOT-COPY · purpose gate on every crossing · no secrets anywhere · no push · checkpoint commits · STATE/ современ). Deliverables: openers' results (re-baselined table + FL-P4-W4-01 closure), register rows (IDs+count), per-mechanism test delta + receipts, reuse pulls, screenshots (Cost Ledger with real quantities · retention states · Data Suite · lowered-standard walk), LOC vs re-baselined budget, SHAs, dashboard. Then hold for W7 go.
+
+**Binding effects:**
+
+1. **W6 OPENERS run BEFORE any new-build code.** Two openers:
+   (i)  re-baseline W6-W9 LOC/scope table against W1-W5 actuals (calibration factor stated once and used).
+   (ii) reconcile FL-P4-W4-01 — the `northena_ledger_row.contract_snapshot.json` vs `northena_ledger_v1.contract_snapshot.json` parity failure discovered mid-W5 and ledgered honestly at close.
+   Openers land as their own checkpoint commit(s) with STATE update before W6 scope opens.
+
+2. **W6 stop-and-report line** = its own re-baselined LOC budget (not the prior L=≤2500 line). The re-baseline is the new discipline.
+
+3. **W6 SCOPE (a)-(d)** binds as written:
+   (a) **Cost Ledger** — rates register on record OR honestly absent (never invented). Ledger consumes W5 LLM metering receipts + W2 reflection quotas + seam GPU usage. Surface uses v7 oracle's cost/spend fabric.
+   (b) **Retention enforcement** — retention classes on record types we hold. Append-only classes NEVER get a delete verb; retention on those = marked-expired + excluded-from-render. Quote the register's letter; if it says otherwise, STOP and report.
+   (c) **Grey Mirror groundwork** — Solva stages 4-6 (triangulation / tension / probability_weighting) mechanism-side only unless the oracle's Grey Mirror surface has parts that render honestly from what exists.
+   (d) **W5 deferrals folded in**:
+       · ConnectDrawerChat "An LLM" chip UI polish (backend live already).
+       · Data Suite v7-exact surface (data facts from real connected sources · structure-only posture · no record content without a named purpose).
+       · CA1-010 session-scoped lowered-standard with logged expiry (state visible + refusal grammar when invoked).
+
+4. **Standing rules unchanged**:
+   · tests-first + right-reason receipts (pytest / node --test).
+   · v7-exact T1 fabric.
+   · real facts / drawn-not-blank / REFERENCE-NOT-COPY.
+   · purpose gate on every LLM crossing.
+   · no secrets anywhere · no push · checkpoint commits · STATE/ современ (kept current).
+
+5. **Rates are OWNER-SUPPLIED FACTS** — if no rate is on record, the ledger shows quantities with the W2 honest-gap sentence. NEVER invent a rate.
+
+6. **After W6 CP-close · HOLD for W7 GO**.
+

@@ -299,10 +299,51 @@ No dates. Sequence + scope class + DONE-means definitions only. Scope classes: *
 
 ---
 
-## §7 · Wave summary table
+## §7 · Wave summary table — **RE-BASELINED 2026-08-25 (W6 opener #1)**
+
+**Calibration factor** stated once: **1.60×** (median of `actual_LOC / estimated_LOC` across W1-W5). Two waves (W2, W4) sat far outside median (11.11× and 4.28×) — those are named honestly as **class misclassifications** (W2: S-class was wrong for reflection-before-commit; W4: M-class was wrong for Northena ADAPT + ThinkLab surfaces) rather than pure calibration signal. The three calibrated-scope waves (W1, W3, W5) sit tightly around 1.26-1.61×; median 1.60× is the honest go-forward multiplier.
+
+**W1-W5 · actuals on record (git-measured insertions per commit-run):**
+
+| Wave | Class (orig) | LOC est | LOC actual | Actual/Est | Status | Notes |
+|------|:---:|---:|---:|---:|:---:|---|
+| W1 · Drawer + registry polish | M | ~800 | 1006 | 1.26× | CLOSED | Inside class. |
+| W2 · Reflection-before-commit | S | ~150 | 1666 | **11.11×** | CLOSED | **Class misclassification** — reflection-before-commit shim carried tests-first invariant work + boundary discipline shims. Should have been M-class from the start. |
+| W3 · Chokepoint · masking · residency | L | ~2000 | 2519 | 1.26× | CLOSED | Inside L class ceiling. |
+| W4 · Northena | M | ~600 | 2566 | **4.28×** | CLOSED | **Class misclassification** — Northena ADAPT + 4 ThinkLab surfaces was always L-class. Owner notified at close. |
+| W5 · Solva + Chat + Shield + Connect-LLM | L | ~2500 | 4026 | 1.61× | CLOSED | L-class-plus. Landed all owner-mandated surfaces + backend Connect-LLM verify. |
+| **W1-W5 total** | — | **6050** | **11783** | **1.95× (weighted mean) · 1.60× (median)** | | |
+
+**W6-W9 · RE-BASELINED estimates (est × 1.60):**
+
+| Wave | Scope | LOC est (original) | LOC est (**re-baselined**) | Class (re-baselined) | New surfaces | Deps |
+|------|-------|---:|---:|:---:|---|---|
+| **W6** · Cost Ledger · retention · GM groundwork + W5 deferrals | ~1800 | **~2880 LOC · stop-and-report** | L-plus | 3 (Cost Ledger · retention rows · Grey Mirror overview drawn-not-blank) + 4 folded W5 deferrals (LLM chip UI polish · Data Suite · Solva 4-6 mech · CA1-010 lowered-standard) | W3 · W5 |
+| **W7** · Targeta · Model Ecosystem · Model Admission | ~2200 | **~3520 LOC** | XL-effective | 3 (Model Admission ceremony · LLMs tab populated · Rule Books Library) | W3 · W5 |
+| **W8** · Governance · N-series · handoff · Breach · Access/Erasure | ~3500 | **~5600 LOC** | XXL-effective | 6 (Rules Updates · Spend Requests · Access/Erasure · Breach console · Approvals · Trace) | W3 · W5 · W6 |
+| **W9** · Watch · Grey Mirror · Ledger continuity · Walk-this | ~4000 | **~6400 LOC** | XXL-effective | 5 (Grey Mirror ×4 + Continuity attestation) | W6 · W8 |
+| **W6-W9 total (re-baselined)** | ~11500 | **~18400 LOC** | | | |
+
+**W6 stop-and-report line: 2880 LOC.** Owner ruling ("W6's own re-baselined budget is your stop-and-report line") is enforced.
+
+**Reading:** the W6-W9 remaining build effort is honestly **~18400 LOC** — 60% higher than the pre-calibration estimate of ~11500 LOC. This is what the actuals say; it is not a reason to slow down, it is a discipline call so the owner isn't surprised at W6/W7 close.
+
+**Owner ruling paths (deferred to owner if wanted at W6 mid-checkpoint):**
+- (a) accept the re-baseline as stated (L-plus / XL-effective / XXL-effective naming) and proceed at that budget.
+- (b) narrow W6 scope hard — drop Solva stages 4-6 mechanism-side + Data Suite v7-exact, keep Cost Ledger + retention + Grey Mirror overview + CA1-010 + LLM chip UI polish only. Estimated at ~2200 LOC re-baselined.
+- (c) introduce a formal "L-extended" tier at ~3000 LOC to name what the recent waves actually are.
+- Default: (a) — the calibration IS the discipline.
+
+**Totals restated:** ~17,600 original estimate (§7 line preserved · W1-W5 6050 + W6-W9 11500 orig) vs **~30,183 re-baselined total** (11783 actual W1-W5 + 18400 re-baselined W6-W9). **The build is 40% closer to done than the pre-calibration numbers suggested, but 71% larger in total remaining work than pre-calibration.**
+
+---
+
+## §7b · Wave summary table (LEGACY · pre-calibration · kept for audit)
+
+The pre-calibration table below is preserved as historical record. **Do not use for planning.** The re-baselined table in §7 above is the current authority (Owner Ruling 2026-08-25 W6 GO opener #1).
 
 | Wave | Scope | LOC estimate | New surfaces | New mechanisms | Deps | Areas advanced |
-|---|:---:|---:|---:|---:|---|---|
+|------|:---:|---:|---:|---:|---|---|
 | W1 · Drawer + registry polish | M | ~800 | 1 (ConnectDrawerChat) | 0 | none | Registry, Orchestration |
 | W2 · Reflection-before-commit | S | ~150 | 0 (extends detail card) | 1 | W1 | Compute/Cost |
 | W3 · Chokepoint · masking · residency | L | ~2000 | 1 (Data Shield) | 4 | W2 | Custody, Governance |
