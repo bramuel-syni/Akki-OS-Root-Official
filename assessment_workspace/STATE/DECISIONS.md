@@ -1255,3 +1255,30 @@ Recorded as ORCHESTRATOR ruling (accounting discipline · not owner scope).
 5. **Wave-close cohort assembly discipline adopted (effective W6)**: close cohorts must grep for `test_*_frozen*.py` AND `test_*_contract*.py` so contract snapshots cannot slip. This gets stated in the close-report template.
 6. **Owner surfacing planned**: the +60% honest re-baseline will be surfaced to the owner in the next wave report (W6 close) so the fuller remaining-size picture is on their record.
 
+
+## 2026-08-25T22:55Z · Orchestrator rulings on W6 close · three answers logged
+
+**Context.** Agent surfaced three questions at W6 close (see `notes/w6_close_report.md §8`):
+1. Pydantic-drift remediation path — pin (a) vs canonical-projection (b) vs both?
+2. Accept W6 15% overrun as recalibrated envelope, or narrow W7 to absorb?
+3. W7 scope confirmation — Targeta · Model Ecosystem · Model Admission at ~3520 LOC?
+
+Recorded as ORCHESTRATOR rulings (accounting + build discipline · not owner scope). Owner's W6 close is being surfaced by the orchestrator in the next comms cycle; W7 CP1 does NOT start until an explicit owner "W7 go" lands here.
+
+**Verbatim (orchestrator channel):**
+
+> 1. Pydantic drift: BOTH, staged. The 2.13.4 pin stands now (done — repro stability). Canonical-projection lands as a W8 OPENER, not W7: W8 (governance ceremony + N-series) is the wave that mints the most new contracts, so normalizing the parity projection right before it maximizes payoff; doing it in W7 spends budget the wave doesn't need. Record the pin as load-bearing in requirements/deployment notes so an environment rebuild can't silently move the version.
+>
+> 2. The 15% overrun is accepted as part of the recalibrated envelope — W7 is NOT narrowed to absorb it. "Nothing skipped" stands; the stop-and-report discipline at the re-baselined line is the control, not scope-shaving.
+>
+> 3. W7 scope confirmed as: Targeta · Model Ecosystem · Model Admission ceremony (Docs 13/14 + CA1-004/005/011) + the W6 deferrals folded in (Data Suite surface, LLM chip UI polish) at the ~3520 re-baselined budget. BUT hold for the owner's explicit "W7 go" before CP1 — I'm surfacing the W6 close to them now. Prep you can do while holding: ground the Doc 13/14 register rows + the reuse map pulls for Targeta/model-registry (the core repos carry tested targeta + model ladder fabric) into notes/w7_grounding_brief.md so CP1 starts hot on the go-signal.
+
+**Binding effects:**
+
+1. **Pydantic 2.13.4 pin is LOAD-BEARING**. Recorded in `Extraction-Akki/backend/requirements.txt` L4–L18 (comment block) with the FL-P4-W6-01/03/04/05/06/07 ledger anchor. An environment rebuild that silently moves the version will fail the frozen cohort. Extraction-Akki `programme/track-a` commit `<TBD after this ruling logs>` bumps the pin from `2.9.2` (nominal, unenforced by venv) to `2.13.4` (actually running, snapshots blessed against). Fidelity ledger process finding named at close: any future version move requires the FL-P4-W6-01-style discipline (right-reason receipt → per-drift judgment → per-drift ledger row → snapshot re-bless or code revert).
+2. **Canonical-projection remediation** is a **W8 opener**, not W7. Rationale: W8 mints the most new contracts (governance ceremony + N-series), so version-independent projection maximizes payoff there. Add to W8 opener checklist under `notes/status_and_wave_plan.md` (deferred to next STATE edit).
+3. **W7 budget stays at ~3520 LOC** (re-baselined). W6's 15% overrun is absorbed by the recalibration itself, not by W7 scope-shaving. W7 stop-and-report line = 3520 LOC. On overrun, `notes/w7_close_report.md` names deferrals explicitly (same pattern as W6 close).
+4. **W7 scope confirmed** as Docs 13 + 14 + CA1-004 + CA1-005 + CA1-011 + W6 deferrals folded in (Data Suite surface v7-exact, LLM chip UI polish, MOAC + Model Ecosystem tabs). Register rows grounded in `notes/w7_grounding_brief.md` §1. Reuse pulls grounded in `notes/w7_grounding_brief.md` §2. **CP1 waits for explicit owner "W7 go".**
+5. **DoD rule ratified** (effective W7 onward): any commit touching `contracts/*.py` emitting a pydantic BaseModel OR adding a `*.contract_snapshot.json` MUST touch snapshot AND `CONTRACT_TO_SNAPSHOT` AND `parity_at_N` count in the SAME commit. Anchor: FL-P4-W6-02/08/09 process finding.
+
+**Owner surfacing (pending)**: W6 close report + these three rulings are being surfaced to the owner in the next comms cycle. When owner banks explicit "W7 go", this row is amended below with the owner ratification timestamp.
