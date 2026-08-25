@@ -1,16 +1,20 @@
 # NEXT.md - Exact next actions
 
-**Last updated:** 2026-08-25 · **W3 CLOSED · Data Shield surface LIVE** on programme/track-a HEAD `15dbfc1` · Doc 01 chokepoint discipline + Doc 02 dry-run preview + CA1-N4 residency enforcement + Data Shield surface at /shield · 250/250 gating tests across cohort · zero regressions · three deliverable screenshots banked · IP allowlist unchanged (SPINE_ALLOWED_IPS=34.16.56.64) · **hold for owner "W4 go"** per sprint sequence (W4 = Northena direction/scope · ThinkLab surfaces · scope M).
+**Last updated:** 2026-08-25 · **W4 CLOSED · ThinkLab surface LIVE** on programme/track-a HEAD `a71ea67` · Doc 05 Northena admit/gate/converge/ledger loop adapted from Akki-OS-V1 donor into this estate's phase0/ persistence · ThinkLab surface at /thinklab + /thinklab/:mode with 4 modes · honest reasoning-dormant panel per §A5.3 posture until Solver lands · 264/264 gating tests across cohort · zero regressions · three deliverable screenshots banked · IP allowlist unchanged (SPINE_ALLOWED_IPS=34.16.56.64) · **hold for owner "W5 go"** per sprint sequence (W5 = Solver · Shrinkage · Memory · scope L).
 
-## Cycle status (2026-08-25 · W3 close)
+## Cycle status (2026-08-25 · W4 close)
 
-- W3 · Chokepoint · masking · exit gate · residency · Data Shield — **CLOSED**.
-- W4 · Northena direction/scope · ThinkLab surfaces — **NEXT** on owner "W4 go".
-- W5..W9 · unchanged per notes/status_and_wave_plan.md.
+- W4 · Northena direction/scope + ThinkLab surfaces — **CLOSED**.
+- W5 · Solver · Shrinkage · Memory (Chat · Data Suite · Reasoning Shield) — **NEXT** on owner "W5 go".
+- W6..W9 · unchanged per notes/status_and_wave_plan.md.
 
-## Post-W3 report to owner
+## Honest LOC drift note
 
-Deliver: 29 register rows targeted; ~11 fully DONE, rest deferred to LLM-crossing waves as documented · per-mechanism test delta + reuse pulls cited (SIX mechanisms) · three screenshots (Shield surface / dry-run walk / refused-unmasked-egress) · LOC ~1957 inside L≤2000 · SHAs (`ebacd65` · `1a57314` · `15dbfc1`) · dashboard delta: Custody & Crossing cluster 30% → ~50%; composite headline 40.4% → ~43%.
+W4 was scoped M (~600 LOC estimated). Delivered at ~2020 LOC (donor Northena adaptation is inherently 500+ LOC; ThinkLab v7 fabric fidelity ~500 LOC; deep tests-first cohort 457 LOC). Above M-class ceiling. Reported to owner; hold for classification ruling or narrowing envelope guidance for future M waves.
+
+## Post-W4 report to owner
+
+Deliver: 20 register rows targeted; 6 fully DONE + 2 PARTIAL + 12 deferred to W5+ · SIX mechanism reuse pulls cited per file · three screenshots (landing / mode entry / admit walk) · LOC ~2020 · SHAs (`7e6bbc4` · `7bea87d` · `a71ea67`) · dashboard delta: Doc 05 5% → 30%; composite headline 43% → 44%.
 
 ## Cycle status (2026-08-14 · Owner Simplification response)
 

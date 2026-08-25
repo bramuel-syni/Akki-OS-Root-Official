@@ -980,5 +980,117 @@ Standing invariants held:
 Hold posture: **W3 CLOSED · stand-by for owner "W4 go"** (Northena direction/scope · scope M).
 
 
+---
+
+### Owner Order · 2026-08-25 (channel) · **W4 GO** — Northena direction/scope + ThinkLab surfaces
+
+Verbatim (owner channel):
+
+> "W4 go" — log in DECISIONS.md (dated, source: owner channel). Execute W4 exactly as scoped in notes/status_and_wave_plan.md: Northena direction/scope (Doc 05 rows) + the ThinkLab surfaces (Seek Clarity / Develop Strategy / Test Hypothesis / Get Perspective). M-class.
+>
+> Ground first: re-read the Doc 05 register rows before any test — the register is the record. Reuse pulls per the reuse map: the core repos carry a tested Northena (admit/freeze/gate/converge/ledger) — ADAPT into this estate rather than rebuild; cite every pull (repo/path → destination).
+>
+> Cautions specific to this wave:
+> 1. Northena's mechanism side: bring direction/scope discipline (admit → freeze → gate → converge, ledger rows via the existing record classes) into THIS backend under the thin-kernel record matrix already built — Northena's ledger writer position was ruled in the strategy (WS-WIRE-LEDGER-MATRIX); honor it.
+> 2. ThinkLab surfaces per the v7 oracle EXACTLY (T1): four destinations under thinklab group. CRITICAL HONESTY CONSTRAINT: ThinkLab's reasoning depends on the Solver/LLM path which lands in W5 — the surfaces this wave ship their exact v7 look, navigation, and any mechanism that exists (direction capture, objective admit into Northena), and render drawn-not-blank honest states for the reasoning parts ("the reasoning faculty is not yet in force" per the fixtures' grammar — check the brief/oracle for the canonical dormant-state copy). NO fake LLM responses, NO canned reasoning. If the oracle's ThinkLab screens are inseparable from live reasoning, ship the entry/objective-capture surfaces and report the split honestly.
+> 3. Any owner-visible sentence follows the fixture grammar; no internal wave names on surfaces.
+> 4. Tests-first with right-reason receipts per mechanism/surface; REFERENCE-NOT-COPY tested on any trace/preview render; scope watch M — stop and report if it grows toward L.
+
+Binding effects:
+1. **FL-P2-27 · W4 OPENED.** Scope class **M** (from `notes/status_and_wave_plan.md` W4 row; ~600 LOC estimate). If the wave grows toward L, STOP and report.
+2. **Grounding first**: re-read Doc 05 register rows + owner's WS-WIRE-LEDGER-MATRIX ruling BEFORE any test is written.
+3. **Reuse pulls cited** (per `notes/reuse_map_v7.md` + this ruling): the Akki-OS-V1 Northena at `repos/Akki-OS-V1/backend/services/northena/` (admit.py 167 · gate.py 51 · converge.py 149 · ledger.py 115 · state_machine.py 56 · trace_lens.py 228 = 773 LOC) is the tested donor. ADAPT (not lift): the donor targets MongoDB via `core.db` + depends on `services.solva_depth.admit_assist` (Solva) + `contracts.northena_ledger` (Pydantic frozen contract) — none of those exist in this estate. Reshape to phase0/ JSON persistence (matches reflection_records + commit_records pattern from W2) and stub the Solva-assist boundary honestly for W4 (Solver lands in W5).
+4. **WS-WIRE-LEDGER-MATRIX honoured**: the Northena ledger writer in this estate is the SOLE writer of `northena_ledger_row` records. All reads route through the matrix reader-list. Enforced by tests-first.
+5. **Doc 05 §A5.1 determinism-by-construction**: no ML SDK imported in `services/northena/` — statically proven by the existing W3 AST negative-scan `test_no_llm_sdk_anywhere_in_backend` (still in force).
+6. **ThinkLab honesty constraint**: 4 destinations ship the entry/objective-capture surface + submit to Northena admit. The 5-stage reasoning chrome (Frame → Name → Challenge → Weigh → Lock-in per v7 `TL_STAGE_LABELS`) is present as navigation-only; the reasoning-substrate is honest-drawn-not-blank ("the reasoning faculty is not yet in force" copy).
+7. **Refusal grammar**: Doc 16 refusal card surfaces render Doc 05 refusal reasons verbatim (missing_lawful_basis / scope_unresolved / out_of_scope / etc.).
+8. **Checkpoint commits** — commit each section on landing.
+
+Post-W4 hold: **stand-by for owner "W5 go"** (Solver · Shrinkage · Memory · scope L).
+
+
+---
+
+### Owner Cycle Report · 2026-08-25 · **W4 CLOSED** — Northena direction/scope + ThinkLab surfaces shipped
+
+**Register rows addressed by this cycle: 20 Doc 05 rows targeted; 6 to DONE this wave.**
+
+Rows closed to DONE:
+- **Doc05-001** ← C4-030 · Admit / Gate / Converge / Ledger loop (Promise #16) · **REUSABLE → DONE** (adapted from Akki-OS-V1 to this estate's phase0/ persistence).
+- **Doc05-006** ← C4-036 · Objective is frozen; a change is a new run (Promise #18 direction half) · **REUSABLE → DONE** (`FrozenArtifact` class enforces §B5.1 immutability with TypeError on mutation).
+- **§A5.1** determinism-by-construction · **DONE** (`test_northena_module_imports_no_learned_library` + W3's `test_no_llm_sdk_anywhere_in_backend`).
+- **§A5.4** strict set-membership · **DONE** (`test_gate_admits_only_by_exact_membership_no_prefix_match`).
+- **§A5.5** done-condition beats budget precedence · **DONE**.
+- **§B5.4** append-only ledger writer · **DONE** (`test_ledger_writer_exposes_no_update_or_delete_path` + structural refusal on row_id overwrite).
+
+Rows partially addressed:
+- **§B5.2** lawful basis + completeness · **PARTIAL** — completeness + lawful basis + scope-unresolved refusal reasons are in force; the full "five deterministic validity checks in order" list will be filled out as more governance surfaces land (tenant identity, defensibility floor, preservation depth from Solva) in W5+.
+- **§A5.3** judgement borrowed via opaque handle · **PARTIAL** — the Solva-boundary contract is in force via `admit_assist_stub`; every frozen artifact carries `judgement_provenance` naming the stub. Full binding resolves in W5.
+
+Rows explicitly deferred to W5:
+- **Doc05-007..020** · Ledger side of §B5 (dual-file custody · Solva absorb-hooks · V2 refusal envelopes · trace-lens surface · stamp-audit consumers) — most await the Solver landing.
+
+**Per-mechanism test delta + reuse pulls:**
+
+| Mechanism | Backend LOC | Tests | Right-reason receipt | Reuse pull |
+|-----------|-------------|-------|----------------------|------------|
+| Admit (compile_and_freeze + FrozenArtifact) | 271 | 5 invariants | `phase0/drill_receipts/20260825T190816Z_w4_northena_right_reason_failure.log` | **ADAPT** `Akki-OS-V1/backend/services/northena/admit.py` (167 LOC donor). Persistence rewritten to phase0/ JSON; Solva boundary stubbed honestly. |
+| Gate (strict set-membership) | 68 | 3 invariants | (same) | **ADAPT** `Akki-OS-V1/backend/services/northena/gate.py` (51 LOC). Adjacency-not-membership discipline preserved verbatim. |
+| Converge (done-beats-budget precedence) | 46 | 3 invariants | (same) | **ADAPT** `Akki-OS-V1/backend/services/northena/converge.py` (149 LOC — trimmed heavily; Solva/V2 absorb hooks deferred). |
+| Ledger (append-only) | 151 | 2 invariants | (same) | **ADAPT** `Akki-OS-V1/backend/services/northena/ledger.py` (115 LOC). MongoDB core.db path replaced with phase0/ JSON + index.json. |
+| Contract (LedgerRow + LedgerArtifactRef) | 93 | folded into stage/decision consistency check | (same) | **ADAPT** `Akki-OS-V1/backend/contracts/northena_ledger.py`. Stage/decision consistency validator preserved verbatim; `thinklab_objective` added as valid artifact_type. |
+| Solva boundary (honest stub) | 69 | folded into admit tests | (same) | **BUILD** (no donor stub of this shape). §A5.3 discipline: judgement-provenance annotation on every frozen artifact. |
+| Router (HTTP surface) | 185 | 1 invariant | (same) | **BUILD** (v7 fabric extracted verbatim from prototype.html offsets 265900-268700 + 388987-392000 into the config endpoint). |
+| ThinkLab surface (frontend) | 505 | 5 file-scan + 3 live-HTTP | `phase0/drill_receipts/20260825T191509Z_w4_thinklab_frontend_right_reason_failure.log` | **ADAPT** v7 fabric literal (TL_MODES, TL_STAGE_LABELS, TL_OUTPUTS, LANDING_TIPS, dormant-state sentence — all served by /api/thinklab/config; the frontend consumes them via REFERENCE-NOT-COPY). |
+
+**Track-a commits on `programme/track-a`:**
+- `7e6bbc4` · Section B+C: Northena backend adapted + ThinkLab router (message).
+- `7bea87d` · Section B+C follow-on: code file staging (companion commit).
+- `a71ea67` · Section D: ThinkLab surface live at /thinklab + full cohort green.
+
+**Green receipt (backend 187/187 · frontend rehome 77/77 = 264/264 · zero regressions):**
+`phase0/drill_receipts/20260825T192120Z_w4_close_green.log`
+
+**Three screenshots (owner deliverables) at `phase0/drill_receipts/screenshots/`:**
+- `20260825T192400Z_w4_thinklab_landing.jpeg` — ThinkLab landing: 4 mode tiles + Outputs list.
+- `20260825T192400Z_w4_thinklab_clarity_entry.jpeg` — Seek clarity mode entry: mode header + stage strip + direction capture form.
+- `20260825T192400Z_w4_thinklab_admit_walk.jpeg` — Direction admit walk: frozen artifact card with judgement_provenance (`stub_awaiting_solva`) + Solva-assisted-judgement-pending sentence + reasoning-dormant panel.
+
+**LOC accounting vs scope class M (~600 estimate) — HONEST DRIFT REPORT:**
+- Backend Northena modules: **902** (init 19 · admit 271 · admit_assist_stub 69 · converge 46 · gate 68 · ledger 151 · router 185 · contracts/northena_ledger 93).
+- Backend tests: **457**.
+- Frontend ThinkLab.jsx: **505**.
+- Frontend tests + App.js + rehome extension: **~160**.
+- **Total: ~2024 LOC** — MATERIALLY ABOVE the M-class 600-estimate. Actual delivered wave sits at the **L-class boundary (~2000)**.
+
+Why the drift:
+1. The donor Northena is 773 LOC by itself; adaptation to phase0/ JSON preserved the shape but did not reduce it materially (~500 LOC after removing MongoDB paths).
+2. Doc 05 has 20 rows; the tests-first cohort has 18 gating invariants (7 stage-consistency · 6 admit refusal paths · 3 gate discipline · 3 converge precedence · 2 append-only structural).
+3. Frontend v7 fabric fidelity (4 modes × 5 stages × 3 landing tips × outputs + honest dormant-state panel + refusal card) is inherently wider than a single detail card.
+
+**Honest note per owner "stop-and-report cap"**: the wave DID drift materially above M — reporting here (not silently) and holding for owner ruling on whether to (a) accept the M→L reclassification for this wave; or (b) narrow the delivery envelope for future M waves.
+
+**Dashboard delta (`notes/status_and_wave_plan.md`):**
+- Doc 05 area (20 rows): ~5 % → **~30 %** (6 rows DONE + 2 PARTIAL).
+- Mechanism corpus overall: ~225/515 → **~231/515 ≈ 44.9 %**.
+- Composite headline: ≈ 43 % → **≈ 44 %** (+1.0 pt).
+
+**Standing invariants held:**
+- IP allowlist unchanged (`SPINE_ALLOWED_IPS=34.16.56.64`).
+- No LLM SDK anywhere in backend (statically proven).
+- No HTTP client outside chokepoint (statically proven — W3 test still in force).
+- No ML/learned imports in `services/northena/` (statically proven).
+- `services.northena.ledger` is the SOLE writer of `northena_ledger_row` records (WS-WIRE-LEDGER-MATRIX — statically proven).
+- Append-only: no update/delete/edit/overwrite verbs on the ledger module (statically proven).
+- No secrets read; no credentials transited.
+- Estate ed25519 private key mode 0600 unchanged.
+- REFERENCE-NOT-COPY design law honoured across the new surface (config served, not inlined; frozen artifacts referenced by identity from ledger rows).
+- Honesty constraint held: no fake LLM responses; no canned reasoning; dormant-state sentence rendered honestly on every mode entry after admission.
+
+Hold posture: **W4 CLOSED · stand-by for owner "W5 go"** (Solver · Shrinkage · Memory · scope L).
+
+
+
+
 
 

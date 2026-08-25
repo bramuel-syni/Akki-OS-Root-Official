@@ -30,6 +30,7 @@ from services.connect.rds_data_router import router as rds_data_router  # noqa: 
 from services.registry_facts.router import router as registry_facts_router  # noqa: E402
 from services.compute_seam.reflection_router import router as compute_reflection_router  # noqa: E402
 from services.chokepoint.router import router as shield_router  # noqa: E402
+from services.northena.router import router as thinklab_router  # noqa: E402
 from services.ip_allowlist.middleware import IPAllowlistMiddleware  # noqa: E402
 
 # Deliverables directory (read-only snapshot per Chunk-4 v1.1 delivery logistics)
@@ -155,6 +156,7 @@ app.include_router(rds_data_router)
 app.include_router(registry_facts_router)
 app.include_router(compute_reflection_router)
 app.include_router(shield_router)
+app.include_router(thinklab_router)
 
 app.add_middleware(
     CORSMiddleware,

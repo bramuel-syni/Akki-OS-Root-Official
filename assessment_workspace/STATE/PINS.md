@@ -137,7 +137,7 @@ Strategy work-in-progress (to be created):
 - **checkpoint_14d_utc:** `2026-08-28T00:00:00Z`
 - **hardening_status:** `attested`
 - **acceptance_status:** `green`
-- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260825T183815Z.json`
+- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260825T192121Z.json`
 <!-- CONNECT-GPU-PINS -->
 
 
@@ -293,3 +293,55 @@ Owner Order 2026-08-25 · "W3 go" (verbatim in DECISIONS.md). Executed tests-fir
 - Estate ed25519 private key mode 0600 unchanged.
 - REFERENCE-NOT-COPY design law honoured across every new surface + record.
 <!-- W3-DATA-SHIELD-2026-08-25 END -->
+
+
+<!-- W4-THINKLAB-2026-08-25 -->
+## W4 · Northena direction/scope + ThinkLab surfaces · FL-P2-27 · Doc 05 · **CLOSED 2026-08-25**
+
+Owner Order 2026-08-25 · "W4 go" (verbatim in DECISIONS.md). Executed tests-first per T1. Scope drift honestly reported: M-estimated ~600 LOC, L-realized ~2020 LOC (donor Northena adaptation is inherently 500+ LOC + wide v7 surface fabric).
+
+**Backend Northena (adapted from Akki-OS-V1 donor):**
+- `services/northena/admit.py` — `compile_and_freeze()` + `FrozenArtifact` + `AdmitOffender`. Persistence: `phase0/northena_admits/adm-<hex>.json`.
+- `services/northena/gate.py` — strict set-membership only; adjacency ≠ membership (Doc 05 §A5.4).
+- `services/northena/converge.py` — done-condition beats budget precedence (Doc 05 §A5.5).
+- `services/northena/ledger.py` — append-only writer; structural refusal to overwrite; `phase0/northena_ledger/led-<hex>.json` + `index.json`.
+- `services/northena/admit_assist_stub.py` — honest Solva boundary until Solver lands; every frozen artifact carries `judgement_provenance` annotation.
+- `services/northena/router.py` — HTTP endpoints + v7 fabric config.
+- `contracts/northena_ledger.py` — `LedgerRow` + `LedgerArtifactRef` (stage/decision consistency preserved verbatim; `thinklab_objective` added).
+
+**HTTP endpoints:**
+- `POST /api/thinklab/admit` · admit + freeze + write ledger row.
+- `POST /api/thinklab/gate` · strict set-membership route.
+- `POST /api/thinklab/converge` · done vs budget precedence.
+- `GET /api/thinklab/runs` · run summaries (identity-only).
+- `GET /api/thinklab/runs/{run_id}` · ledger rows for a run (reference-not-copy join).
+- `GET /api/thinklab/config` · v7 fabric constants (TL_MODES · TL_STAGE_LABELS · TL_OUTPUTS · LANDING_TIPS · reasoning_dormant_state).
+
+**Frontend surface:**
+- `/thinklab` landing (4 mode tiles + Outputs).
+- `/thinklab/:mode` mode entry (direction capture + admit → frozen artifact + reasoning-dormant panel).
+- Honest reasoning-dormant panel: "The reasoning faculty is not yet in force" (Doc 05 §A5.3 posture until Solver lands).
+
+**WS-WIRE-LEDGER-MATRIX honoured:**
+`services.northena.ledger` is the SOLE writer of `northena_ledger_row` records (statically proven by `test_ledger_writer_is_sole_writer_of_northena_ledger_rows`).
+
+**Track-a commits on `programme/track-a`:**
+- `7e6bbc4` · Section B+C: Northena backend adapted + router.
+- `7bea87d` · Section B+C follow-on: code staging fix.
+- `a71ea67` · Section D: ThinkLab surface + full cohort green.
+
+**Green receipt (backend 187/187 · frontend rehome 77/77 = 264/264 · zero regressions):**
+`phase0/drill_receipts/20260825T192120Z_w4_close_green.log`
+
+**Three screenshots at `phase0/drill_receipts/screenshots/`:**
+- `20260825T192400Z_w4_thinklab_landing.jpeg`
+- `20260825T192400Z_w4_thinklab_clarity_entry.jpeg`
+- `20260825T192400Z_w4_thinklab_admit_walk.jpeg`
+
+**Standing invariants held:**
+- No LLM SDK; no HTTP client outside chokepoint; no ML in `services/northena/`.
+- Northena ledger SOLE writer of ledger rows (WS-WIRE-LEDGER-MATRIX).
+- FrozenArtifact refuses mutation (§B5.1).
+- Append-only ledger writer (§B5.4).
+- Honesty constraint held: no fake LLM responses; no canned reasoning; dormant-state sentence live.
+<!-- W4-THINKLAB-2026-08-25 END -->

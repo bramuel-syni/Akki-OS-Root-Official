@@ -96,9 +96,9 @@ Each row below is a REPRESENTATIVE requirement of the doc; the register carries 
 - **Doc04-014** ← C4-029 · Structured refusal (Evidence · Coverage · Contradiction) — v7 refusal card copy VERBATIM. Status **PARTIAL** (refusal card exists as `RefusalCard.js` in RMS; ceremony behind not wired).
 - **Doc04-041 · CA1-010** · "Lower the standard" session-scoped with logged expiry. Status **BUILD**.
 
-### Doc 05 · Northena · 20 rows
-- **Doc05-001** ← C4-030 · Admit / Gate / Converge / Ledger loop (Promise #16). Status **REUSABLE** (RMS/AkkiOS `northena/`).
-- **Doc05-006** ← C4-036 · Objective is frozen; a change is a new run (Promise #18). Status **REUSABLE**.
+### Doc 05 · Northena · 20 rows — 30% DONE
+- **Doc05-001** ← C4-030 · Admit / Gate / Converge / Ledger loop (Promise #16). Status **DONE** (W4 · adapted from Akki-OS-V1 donor into estate's phase0/ persistence · programme/track-a `a71ea67`).
+- **Doc05-006** ← C4-036 · Objective is frozen; a change is a new run (Promise #18 direction half). Status **DONE** (W4 · `FrozenArtifact` class refuses mutation with TypeError).
 
 ### Doc 06 · Progressive Disclosure · 16 rows (incl. CA1-002)
 - **Doc06-001** ← C4-042 · Minimal-sufficient context per step (Promise #17). Status **REUSABLE** (Exec-Core analyze_workspace).

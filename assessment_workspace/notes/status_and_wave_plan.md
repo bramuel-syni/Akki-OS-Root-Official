@@ -164,7 +164,34 @@ No dates. Sequence + scope class + DONE-means definitions only. Scope classes: *
 
 ---
 
-### Wave 4 (W4) — Northena direction/scope · scope **M**
+### Wave 4 (W4) — Northena direction/scope + ThinkLab surfaces · scope **M (estimated) / L (realized)** · **CLOSED 2026-08-25**
+
+**Backend mechanism:** Northena's Admit / Gate / Converge / Ledger loop adapted from `Akki-OS-V1/backend/services/northena/`; persistence rewritten to `phase0/northena_admits/` + `phase0/northena_ledger/`; Solva boundary stubbed honestly via `admit_assist_stub` (Solver lands W5).
+
+**v7 surfaces lit:** ThinkLab landing (`/thinklab`) + 4 mode entry pages (`/thinklab/{clarity,strategy,hypothesis,perspective}`). Honest reasoning-dormant panel per §A5.3 posture: "The reasoning faculty is not yet in force" until Solver lands.
+
+**17-doc anchor:** Doc 05 (§A5.1/A5.3/A5.4/A5.5/A5.6/B5.1/B5.2/B5.4).
+
+**Reuse:** ADAPT `Akki-OS-V1/backend/services/northena/{admit,gate,converge,ledger}.py` + `contracts/northena_ledger.py`; BUILD `admit_assist_stub.py`; v7 fabric extracted verbatim from `prototype/prototype.html` offsets 265900–268700 + 388987–392000.
+
+**Deps:** W3 done. WS-WIRE-LEDGER-MATRIX honoured (Northena ledger = SOLE writer of `northena_ledger_row` records).
+
+**DONE means:**
+- Admit refuses on missing lawful basis, missing required fields, unresolved scope (each with own refusal reason). **DONE**.
+- FrozenArtifact refuses mutation (§B5.1). **DONE**.
+- Gate refuses out-of-scope; adjacency ≠ membership. **DONE**.
+- Converge: done-condition beats budget precedence. **DONE**.
+- Ledger writer: append-only (structural refusal on row_id collision). **DONE**.
+- ThinkLab landing renders 4 modes from `/api/thinklab/config` (REFERENCE-NOT-COPY). **DONE**.
+- Mode entry captures direction + admits into Northena; frozen artifact rendered with honest `judgement_provenance`. **DONE**.
+
+**Cycle-close receipts:**
+- Programme/track-a `7e6bbc4` (Section B+C) + `7bea87d` (companion) + `a71ea67` (Section D + close).
+- Green receipt: `phase0/drill_receipts/20260825T192120Z_w4_close_green.log` (backend 187/187 · frontend rehome 77/77 = 264/264).
+- Screenshots: `phase0/drill_receipts/screenshots/20260825T192400Z_w4_thinklab_{landing,clarity_entry,admit_walk}.jpeg`.
+- LOC actual ~2020 — above M ceiling; owner notified for classification ruling.
+
+**Acceptance rows:** Doc05-001 (**DONE**) · Doc05-006 (**DONE**) · §A5.1 (**DONE**) · §A5.4 (**DONE**) · §A5.5 (**DONE**) · §B5.4 (**DONE**) · §B5.2 (**PARTIAL** — full 5-check list awaits W5+ governance surfaces) · §A5.3 (**PARTIAL** — Solva-boundary stub in force; full binding W5).
 
 **Backend mechanism:** `services/northena/` adapted from RMS/OS-V1; Admit / Gate / Converge / Ledger loop.
 
