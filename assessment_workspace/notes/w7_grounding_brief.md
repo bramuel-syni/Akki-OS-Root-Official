@@ -39,7 +39,7 @@
 | Doc13-015f | C4-037f (§26.6) | MOAC.6 · Time to answer at 95th percentile, measured under platform load pattern | **BUILD** |
 | Doc13-016 | C4-038 (§27) | MOAC evidence drawn from UNCURATED sample; curated benchmarks inadmissible | **BUILD** |
 | Doc13-017 | C4-039 (§28 Rights lineage) | Every adapter carries full training lineage back to rights-held source. Unresolved lineage = defect, doesn't ship | **BUILD** |
-| **Doc13-023 · CA1-011** | Addendum §2 CA1-011 | Standing re-check date per in-service model. Early failure → Watch (Doc 3) route | **BUILD** — but Watch mechanism is a W9 dependency; re-check state can land in W7 without the route |
+| **Doc13-023 · CA1-011** | Addendum §2 CA1-011 | Standing re-check date per in-service model. Early failure → Watch (Doc 3) route | **SPLIT · Orchestrator ruling 2026-08-25T23:15Z** — W7 lands the re-check-date register + surfacing (Doc 13's letter). W9 lands the Watch-routed enforcement with a named seam. Enforcement half is NOT to be faked in W7; honest render on early failure ("Watch-route lands W9") |
 
 ### 1.2 · Doc 14 · Model Ecosystem · Baseline · Whitepaper · 28 rows
 
@@ -139,7 +139,7 @@ Not scheduling — grounding what each CP will lean on. Order is by dependency, 
 
 ## 4 · Dependencies and cross-wave couplings
 
-- **Watch mechanism (Doc 3)** is not landing until **W9**. CA1-011's Watch route is therefore honestly deferred to W9; W7 lands the re-check state + honest render + audit line ("re-check due · route to Watch when Watch lands").
+- **Watch mechanism (Doc 3)** is not landing until **W9**. **CA1-011 SPLIT** per Orchestrator ruling 2026-08-25T23:15Z: W7 lands the re-check-date register + surfacing (Doc 13's letter — per-model `re_check_due_at` visible on the MOAC six-criterion cadence). W9 lands the Watch-routed enforcement with a **named seam** so the connection point is on record from W7. **Do NOT fake the enforcement half in W7.** On early failure inside W7, surface renders honest state ("early failure · Watch-route lands W9") — same reference-not-copy posture as W6 CP4's Grey Mirror groundwork.
 - **Solva-pattern independence check** (C4-033/Doc13-011) leans on Solva primitives already in-tree from W5/W6 CP4. No new W7 code needed for the independence primitive itself; W7 wires it into the Critic Seam.
 - **Rights lineage** (C4-039/Doc13-017) leans on the northena ledger row shape (in-tree since W4) + registry attest_model semantics (CP3 above).
 - **Frozen objective** (C4-015/Doc13-002) leans on the Northena `FrozenArtifact` class (in-tree since `a71ea67`).
@@ -170,7 +170,7 @@ Not scheduling — grounding what each CP will lean on. Order is by dependency, 
 
 ## 7 · Open questions surfaced during grounding (for CP1 rulings)
 
-1. **CA1-011 without Watch**: does the owner want the re-check state to render honestly as "route lands with Watch (W9)" — the assessment posture — or should CP5 build a placeholder route that emits a receipt-only marker until W9? Grounding view: option 1 (honest render) is the reference-not-copy posture; option 2 spends LOC on scaffolding.
+**Q1 · CA1-011 route disposition** · **RESOLVED · Orchestrator ruling 2026-08-25T23:15Z**. Split as follows: W7 lands the re-check-date register (per-model `re_check_due_at`) + surfacing (Doc 13's letter). W9 lands the Watch-routed enforcement with a **named seam** on record from W7. Do NOT fake the enforcement half; honest render on early failure. Folded into §1.1 (Doc13-023) and §4 (dependencies).
 
 2. **MOAC uncurated-sample evidence** (C4-038): the tenant's "uncurated measured composition" (Doc 1 §4.10) is a Registry primitive. Does CP4 lean on the census dimensions already live in `services/registry_facts/` (2 sources, structure-only, ≈-flagged), or does W7 require a fresh census pass? Grounding view: reuse Registry's census; if strata coverage is insufficient, name it as a MOAC.2 honest gap.
 

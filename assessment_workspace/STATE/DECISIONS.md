@@ -1282,3 +1282,25 @@ Recorded as ORCHESTRATOR rulings (accounting + build discipline · not owner sco
 5. **DoD rule ratified** (effective W7 onward): any commit touching `contracts/*.py` emitting a pydantic BaseModel OR adding a `*.contract_snapshot.json` MUST touch snapshot AND `CONTRACT_TO_SNAPSHOT` AND `parity_at_N` count in the SAME commit. Anchor: FL-P4-W6-02/08/09 process finding.
 
 **Owner surfacing (pending)**: W6 close report + these three rulings are being surfaced to the owner in the next comms cycle. When owner banks explicit "W7 go", this row is amended below with the owner ratification timestamp.
+
+## 2026-08-25T23:15Z · Orchestrator rulings on W7 prep · three follow-ups
+
+**Context.** Agent surfaced three prep-side items at W7-hold: (a) the "venv-was-always-2.13.4" finding (pin is visibility, not just stability); (b) whether to upstream the W8 canonical-projection opener into `notes/status_and_wave_plan.md` now; (c) the four CP1 open questions in `notes/w7_grounding_brief.md §7`.
+
+**Verbatim (orchestrator channel):**
+
+> Prep accepted — the venv-was-always-2.13.4 finding is a good catch (the pin is visibility, not just stability; keep it in the deployment notes as you said). The wave-plan file edit for the W8 canonical-projection opener can ride the natural W7-close flow — no need to upstream it sooner; DECISIONS.md already anchors it. Your §7 CP1 questions: hold them for CP1 as planned, except answer one now so it doesn't cost a round trip later — CA1-011's route half (Watch-dependent) splits exactly as your dependency note implies: build the re-check-date register + surfacing this wave (Doc 13's letter), and the Watch-routed enforcement lands W9 with a named seam; do not fake the enforcement half. Remain holding for the owner's "W7 go" — I've surfaced it; expect the word shortly.
+
+**Binding effects:**
+
+1. **Pin-is-visibility finding recorded**. The 2.13.4 emitter behavior was live at every wave from W1 onward; the `2.9.2` nominal pin never touched the runtime because the venv was pre-provisioned at 2.13.4. Consequence: FL-P4-W6-01/03/04/05/06/07 were not "drift accumulated across a version upgrade" — they were latent from W1 close. The load-bearing pin change (Extraction-Akki `programme/track-a` `5aba8e7`) is the FIRST commit at which requirements.txt and runtime actually agree. This distinction goes into deployment notes at natural W7-close flow (no separate edit now). Naming this finding on record here so the audit trail is honest.
+
+2. **W8 opener list edit deferred to W7-close natural flow**. `notes/status_and_wave_plan.md` will get the canonical-projection W8-opener entry when the W7 close report ships (same rhythm as W6-close → W7-opener). DECISIONS.md is the anchor until then. No pre-emptive edit.
+
+3. **CA1-011 (Doc13-023) route disposition ratified**:
+   - **W7 lands**: the re-check-date register (per-model `re_check_due_at` field) + surfacing (visible per in-service model on the same cadence as MOAC's six criteria). This is Doc 13's letter.
+   - **W9 lands**: the Watch-routed enforcement (early failure on re-check → Watch route per Doc 3), delivered with a named seam.
+   - **Do NOT fake the enforcement half** in W7. If a re-check fails early, W7 surface renders the honest state (e.g., "early failure · Watch-route lands W9") — same reference-not-copy posture as W6 CP4's Grey Mirror groundwork (mechanism-side only, surface deferred).
+   - `notes/w7_grounding_brief.md §7 Q1` is RESOLVED (this ruling); brief §1.1 (Doc13-023 status) and §4 (dependencies) fold the disposition in-line. Q2/Q3/Q4 remain for CP1.
+
+4. **Continue holding for owner "W7 go"**. No CP1 commits.
