@@ -1364,3 +1364,97 @@ Recorded as ORCHESTRATOR rulings (accounting + build discipline · not owner sco
 5. **W8 scope confirmed**: governance ceremony · Approvals surfaces · CA1-N2 breach notification · CA1-N3 access-and-erasure · CA1-009 generalized handoff contract · Rules Updates · Spend Requests · Trace surface (REFERENCE-NOT-COPY load-bearing per Design Law).
 6. **W9 scope confirmed**: Watch mechanism · Grey Mirror completion · CA1-N5 ledger continuity · Walk-this per A8 ruling · CA1-011 enforcement half at named seam · Ruling-1 closure question SURFACED (not fired — Canon 3 §24 ceremony is an owner act; W9 report names it ready-for-ceremony when Watch reconciler is demonstrated firing).
 7. **Compaction safety discipline** (LOAD-BEARING for the long-run session): STATE/NEXT.md carries exact resume point; checkpoint commits at every green section; never leave uncommitted green work at any session boundary.
+
+---
+
+## 2026-08-26T04:20Z · ORCHESTRATOR · Four W10 pre-GO ratifications (in owner-verbatim form)
+
+Landed after owner accepted W9 corrections (FL-P4-W9-02) and the W10 grounding brief. Ratifications are orchestrator-issued so CP1 executes without re-litigation the instant the owner's W10 GO lands.
+
+### R1 · CP1 firing-drill choice RATIFIED
+
+**Verbatim (owner):**
+> Canon 8 §27 expiring-clean containment is the right demonstration — both writers already exist, the drill exercises the REAL directories (phase0/watch_verdicts, watch_actions, containments, containment_reconciliations — their creation by the drill IS part of the evidence), drill_actor clearly attributed so drill records are forever distinguishable from live ones (host-identity pattern from Phase 0, no drill-mode switch). The banked trio receipt = Ruling-1 precondition (b) demonstrated. Options B/C stay on record as later drills under CP3's drill harness.
+
+**Binding effects:**
+- **CP1 method fixed** — Canon 8 §27 · containment-expiring-clean · uses existing `services/watch/macho.mint_verdict` + `services/watch/mkono.act_on_verdict` + `services/watch/containment.start_containment` + `services/watch/containment.reconcile_containment` (all shipped W9 CP1 + CP5).
+- **Drill uses REAL default dirs** — `/app/assessment_workspace/phase0/watch_verdicts/` · `phase0/watch_actions/` · `phase0/containments/` · `phase0/containment_reconciliations/`. Directories do NOT pre-exist; their creation by the drill IS part of the evidence (first-write receipts).
+- **Host-identity attribution pattern** (from Phase 0 GPU drill discipline · DECISIONS.md L347): `drill_actor:*` prefix carries the drill attribution in-band; **NO drill-mode switch, NO drill flag, NO envelope**. Records with `drill_actor:` prefixes are permanently distinguishable from live actor records regardless of when they are read.
+- **Options B (§25 seeded-hostile-input) + C (§26 planted-credential-severance) DEFERRED to CP3** as later drill classes under the standing drill harness. On record; not the CP1 demonstration.
+
+### R2 · CP2 MirageTouch touch_kind grammar RATIFIED as CONTRACT-TIME
+
+**Verbatim (owner):**
+> touch_kind grammar: CONTRACT-TIME — frozen enum in the contract, same DoD as every frozen contract (extension = snapshot bump ceremony). Service-time extensibility is exactly the drift the parity discipline exists to prevent.
+
+**Binding effects:**
+- **`MirageTouch_v0.touch_kind` is a Literal enum in `contracts/mirage_touch.py`** — governed vocabulary at CANON-LEVEL, not service policy.
+- Initial enum (Canon 8 §15 grammar): `Literal["innocent_read", "guilty_use"]`.
+- Extension = frozen-contract-bump ceremony: contract edit + snapshot regeneration + `CONTRACT_TO_SNAPSHOT` map (or SECONDARIES) update + hardcoded numeric assertion bump · **same commit** (FL-P4-W6-02 family DoD + FL-P4-W8-02 extension).
+- Any service-time expansion attempt IS a defect · caught by the frozen-snapshot invariant.
+
+### R3 · CP4 reserved_decision_kind RATIFIED as closed enum
+
+**Verbatim (owner):**
+> closed enum now; extensions ride the same contract+snapshot+parity same-commit ceremony. No free-text kinds.
+
+**Binding effects:**
+- **`ApprovalRequest_v0.reserved_decision_kind`** (new field for `kind='generic'` extension) is a `Literal` enum in `contracts/approval_request.py` addendum.
+- Initial enum (Canon 8 §19 verbatim list): `Literal["promote_containment", "extend_expiry", "sign_de_mark", "resolve_authority_disagreement", "cancel_ceremony_in_countdown"]`.
+- **No free-text `reserved_decision_kind`** · every kind is on-record before use.
+- Extension = same contract+snapshot+parity+count same-commit ceremony as R2.
+
+### R4 · CP8 screenshot / render posture RATIFIED
+
+**Verbatim (owner):**
+> allowlist stays; evidence = DOM-assertion tests + curl-through-allowlist + banked HTML snapshots of each surface (store them under phase0/ like screenshots). Owner-side visual verification happens when the owner finally allowlists their client IP — keep that as the standing named gap.
+
+**Binding effects:**
+- **IP allowlist stop-order (2026-08-14) remains standing** for CP8 · agent's client IP is not on the allowlist · agent does NOT render screenshots.
+- **Surface evidence at CP8 = triad**:
+  1. **DOM-assertion tests** — Playwright or beautiful-soup-style assertions on the rendered HTML of each governance/Watch/Grey-Mirror surface. Assertions are on structural facts (surface exists · Walk-this deep-link resolves through chokepoint · refusal-verbatim visible per A8-Q3 · REFERENCE-NOT-COPY on every embed).
+  2. **curl-through-allowlist** — from an allowlisted origin, hit each surface endpoint · bank the HTTP response body + headers · verify governance framing renders.
+  3. **Banked HTML snapshots** — the surface's rendered HTML per curl-through-allowlist saved to `phase0/html_snapshots/<surface_slug>.html` (structured like screenshots but text-of-record). Snapshots are the RECORD; visual render is the OWNER's task once allowlisted.
+- **Owner-side visual verification standing named gap** · unchanged since 2026-08-14 · surfaces will exist honestly under this triad; visual accord happens on owner allowlist.
+
+### R5 · Scope + sequencing RATIFIED
+
+**Verbatim (owner):**
+> Scope narrowing: NONE — the owner's "nothing skipped" stands; all 9 CPs stay; stop-and-report at 7,040 re-baselined (if the owner's GO message narrows, that supersedes).
+> Sequencing inside W10: CP1 FIRST (it banks the Ruling-1 demonstration early — that's programme-level value), then CP2-CP8 in your proposed order, CP9 last with the authoritative % recomputation.
+
+**Binding effects:**
+- All 9 CPs from `notes/w10_grounding_brief.md §2` proceed as sequenced.
+- **CP1 FIRST** — Ruling-1 firing drill executes as the very first W10 action after owner GO. Banks the trio + drill receipt · surfaces purpose-gate strip as ready-for-ceremony to the owner (Canon 3 §24 · owner act only) at CP9.
+- CP2 → CP8 in listed order.
+- CP9 last with authoritative composite % recomputation (owner correction #4 · method stated in the brief).
+- Stop-and-report line: **7,040 LOC re-baselined median-of-band** (owner GO may narrow this ceiling · a narrower GO supersedes).
+
+### R6 · N-series + continuity policy-pending state RATIFIED as configuration
+
+**Verbatim (owner):**
+> policy-pending N-series items keep their OWNER_POLICY_PENDING refusal state until the answers arrive and then accept them as config, zero code change.
+
+**Binding effects:**
+- No code change accepts owner's 9 policy answers when they land.
+- Answers land as configuration — `Literal` value replaces `OWNER_POLICY_PENDING` sentinel at each call site · operator authors the fire call with the ratified value.
+- Services (`fire_breach_notification`, `fire_erasure_request`, `write_attestation`) already REFUSE while sentinel is present · that refusal IS the config layer.
+- FL-P4-W8-01 + FL-P4-W9-01 remain OPEN until owner rules · non-blocking to W10 open · load-bearing before those specific ceremonies fire live records.
+
+### R7 · Standing discipline continuation
+
+Unchanged binding rules from prior owner ratifications:
+- Tests-first + right-reason receipts (every CP).
+- REFERENCE-NOT-COPY design law (A8-ratified · applies to every embed/preview/trace/walk).
+- Contract + snapshot + parity map + hardcoded numeric assertion same-commit DoD (FL-P4-W8-02).
+- Pod-shell + spine same-commit mount DoD (FL-P4-W7-02).
+- Correction-discipline in-band (Owner Ruling 2026-08-19 §6).
+- Post-compaction re-read discipline (FL-P4-W9-02).
+- No push; local commits only.
+
+### Awaiting
+
+- **Owner W10 GO** (the message that starts CP1 · may include scope narrowing).
+- **Owner 9 policy answers** (FL-P4-W8-01 + FL-P4-W9-01 · already carried by owner · non-blocking to W10 open).
+
+Ratifications on record. CP1 executes on GO.

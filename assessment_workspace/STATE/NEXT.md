@@ -1,8 +1,66 @@
 # NEXT.md - Exact next actions
 
-**Last updated:** 2026-08-26T04:05Z · **W9 CLOSED (with in-band corrections FL-P4-W9-02 landed) · awaiting owner W10 GO** · Extraction-Akki HEAD `7027e16` · pod-shell `/app` HEAD `0b227d9` · master HEAD pending post-correction commit.
+**Last updated:** 2026-08-26T04:25Z · **W9 CLOSED (with corrections FL-P4-W9-02) · W10 pre-GO orchestrator ratifications R1-R7 logged · awaiting owner W10 GO** · Extraction-Akki HEAD `7027e16` · pod-shell `/app` HEAD `0b227d9` · master HEAD pending ratifications commit.
 
-## Cycle status (2026-08-26T04:05Z · W9 CLOSED WITH CORRECTIONS · owner GO needed for W10)
+## Cycle status (2026-08-26T04:25Z · W9 CLOSED · 7 orchestrator ratifications logged · W10 CP1 primed)
+
+- **W9 CLOSED** at 416/416 wave-close cohort green (63 files).
+- **FL-P4-W9-02 opened + closed at open** · new post-compaction discipline ratified.
+- **Orchestrator ratifications R1-R7 logged in DECISIONS.md 2026-08-26T04:20Z**:
+  - **R1** · CP1 firing-drill · Canon 8 §27 · REAL default dirs · host-identity `drill_actor:` pattern (Phase 0 · DECISIONS.md L347) · no drill-mode switch.
+  - **R2** · CP2 MirageTouch touch_kind grammar · CONTRACT-TIME frozen `Literal["innocent_read", "guilty_use"]` · no service-time extensibility.
+  - **R3** · CP4 reserved_decision_kind · closed `Literal` enum (5 Canon 8 §19 verbatim items) · no free-text.
+  - **R4** · CP8 screenshot posture · TRIAD (DOM-asserts + curl-through-allowlist + banked HTML snapshots under `phase0/html_snapshots/`) · owner-side visual verification standing named gap.
+  - **R5** · Scope narrowing NONE · all 9 CPs stay · sequencing CP1 first · CP2-CP8 in order · CP9 last · stop-and-report 7,040 LOC re-baselined.
+  - **R6** · N-series + continuity policy-pending state = config layer · answers land zero-code-change.
+  - **R7** · Standing discipline continuation.
+- **Ruling-1 status SURFACED (from FL-P4-W9-02 correction)**:
+  - Precondition (a) declaration ✓ DEMONSTRATED (W1).
+  - Precondition (b) Watch reconciler DEMONSTRATED FIRING · **NOT YET** · CP1 banks it.
+  - Purpose-gate strip **NOT ready-for-ceremony** · will surface as ready at W10 CP9 close (owner act to strip).
+
+## Awaiting owner (final list pre-W10)
+
+1. **W10 GO** (the message that starts CP1 · may narrow scope · supersedes R5 if it does).
+2. **9 policy answers** — FL-P4-W8-01 (7 · CA1-N2 + CA1-N3) + FL-P4-W9-01 (2 · CA1-N5). Non-blocking to W10 open · land as config zero-code-change per R6.
+
+## Ratified · executes without re-litigation on GO
+
+R1-R7 above · full verbatim in `STATE/DECISIONS.md` 2026-08-26T04:20Z section · full CP-by-CP scope in `notes/w10_grounding_brief.md` (updated 2026-08-26T04:25Z with R1-R6 baked into §3 · §4 · §6 · §10 · §13).
+
+## Programme dashboard (post-W9 · composite % held pending W10 CP9)
+
+- **Frozen contracts** · 52.
+- **Fidelity ledger** · 16 rows opened · 14 CLOSED · 2 OPEN (both owner-policy-pending).
+- **Test cohort** · 416 green (63 files).
+- **Cumulative LOC (W1..W9)** · ~23039 net.
+- **Composite %** · **HELD pending W10 CP9 authoritative recomputation** (owner correction #4 · method stated in brief §11).
+
+## Ready for owner ceremony (Canon 3 §24 · owner act) — projected
+
+- Purpose-gate strip · **projected ready at W10 CP9 close** (after CP1 banks Ruling-1 precondition (b) demonstration).
+
+## Standing rules (unchanged from W9 + FL-P4-W9-02)
+
+- Tests-first + right-reason receipts.
+- v7-exact T1 · real facts · drawn-not-blank.
+- REFERENCE-NOT-COPY (Design Law · A8 ratified 2026-08-19).
+- Purpose gate on every crossing until Canon 3 §24 strip ceremony (owner act).
+- Contract + snapshot + parity map + hardcoded numeric assertion same-commit DoD (FL-P4-W8-02).
+- Pod-shell + spine same-commit mount DoD (FL-P4-W7-02).
+- Post-compaction re-read discipline: last 200 lines of DECISIONS.md + current NEXT.md before any report/STATE change (FL-P4-W9-02).
+- Correction-discipline: in-band · old wording struck-through · CORRECTION note · no silent rewrite (Owner Ruling 2026-08-19 §6).
+- Host-identity drill attribution (Phase 0 DECISIONS.md L347): `drill_actor:*` prefix · no drill-mode switch (R1 confirmed for W10 CP1).
+- STATE/NEXT.md always carries exact resume point.
+- Checkpoint commits at every green section.
+- No push; local commits only.
+
+## Blocked (awaiting)
+
+- Owner GO for W10 (executes R1-R7 · CP1 first).
+- Owner rulings on 9 policy questions (non-blocking to W10 open · load-bearing before N-series + continuity attestations FIRE live records).
+
+## Cycle status (2026-08-26T04:05Z · W9 CLOSED WITH CORRECTIONS · owner GO needed for W10) [ARCHIVED · superseded by 2026-08-26T04:25Z with R1-R7 logged]
 
 - **W9 CLOSED** at 416/416 wave-close cohort green (63 files).
 - **FL-P4-W9-02 opened + closed at open** · 3 report-time errors named + corrected in-band on `notes/w9_close_report.md §12` · new post-compaction discipline ratified (re-read last 200 lines of DECISIONS.md before drafting any report or STATE change).

@@ -48,27 +48,35 @@ Add: **Ruling-1 firing drill** (W10 CP1 · unblocks purpose-gate strip ready-for
 
 ---
 
-## 3 · CP1 firing-drill design (Ruling-1 closure precondition b)
+## 3 · CP1 firing-drill design (Ruling-1 closure precondition b) · **RATIFIED (Orchestrator R1 · 2026-08-26T04:20Z)**
 
 **Owner directive · DECISIONS.md line 1354 verbatim**:
 > "the Ruling-1 closure question: once the Watch reconciler is DEMONSTRATED FIRING, both Ruling-1 preconditions are met — do NOT strip the purpose gate yourself; that strip is a Canon 3 §24 ceremony per FL-R1-01's ruling and an owner act. Surface it as ready-for-ceremony in your W9 close report."
 
-**Drill class**: Canon 8 §27 · "a containment expiring clean · verifies expiry reconciliation." Chosen because W9 CP5 already shipped both writers (`start_containment` + `reconcile_containment`) · smallest additional build.
+**Drill class RATIFIED**: Canon 8 §27 · "a containment expiring clean · verifies expiry reconciliation." **Confirmed R1** because W9 CP5 already shipped both writers (`start_containment` + `reconcile_containment`) · smallest additional build · exercises the REAL default directories (their creation by the drill IS part of the evidence).
+
+**Options B (§25 seeded-hostile-input) + C (§26 planted-credential-severance) DEFERRED to CP3** as later drill classes under the standing drill harness (per R1).
+
+**Drill actor attribution RATIFIED · host-identity pattern from Phase 0 (DECISIONS.md L347)**:
+- `drill_actor:ruling_1_containment_expiry_clean` prefix carries the drill attribution IN-BAND.
+- **NO drill-mode switch · NO drill flag · NO envelope**. The `drill_actor:` prefix on `subject_ref` / `acted_on_ref` / `contained_actor_ref` is the sole distinguisher.
+- Records with `drill_actor:` are permanently distinguishable from live actor records at any read time.
 
 **Drill harness (proposed)**:
 
 1. Author `backend/drills/ruling_1_containment_expiry_clean.py` (script · NOT a service):
-   - Mint `WatchVerdictRow_v0` with `sensor='macho.drill_harness'` · `signal_class='drill_containment_expiry'` · `severity='noted'` · `subject_kind='actor'` · `subject_ref='drill_actor:ruling_1_drill'` · `evidence_note='Canon 8 §27 standing drill · containment expiring clean.'` · lands in `phase0/watch_verdicts/`.
-   - Call `start_containment` on drill_actor · `bound_scope='read_only_scoped_env'` · `expires_at=now+60s` · lands in `phase0/watch_actions/` (action_class='containment_started') + `phase0/containments/` (containment record).
-   - Sleep 61 seconds or fast-forward the clock via a monkeypatched now_iso (choose fast-forward · avoid sleep in a governed drill).
-   - Call `reconcile_containment` with outcome='expired_clean' · lands `phase0/watch_actions/` (action_class='noted_no_action' for the reconcile ack) + `phase0/containment_reconciliations/`.
+   - Mint `WatchVerdictRow_v0` with `sensor='macho.drill_harness'` · `signal_class='drill_containment_expiry'` · `severity='noted'` · `subject_kind='actor'` · `subject_ref='drill_actor:ruling_1_containment_expiry_clean'` · `evidence_note='Canon 8 §27 standing drill · containment expiring clean · Ruling-1 precondition (b) demonstration · drill_actor host-identity pattern per Phase 0 DECISIONS.md L347.'` · lands in **REAL** `phase0/watch_verdicts/`.
+   - Call `start_containment` on `drill_actor:ruling_1_containment_expiry_clean` · `bound_scope='read_only_scoped_env'` · `started_at=now` · `expires_at=now+60s` · lands in **REAL** `phase0/watch_actions/` (action_class='containment_started') + `phase0/containments/`.
+   - **Fast-forward the clock via monkeypatched `now_iso`** (governed drills never use `sleep`; the fast-forward IS the mechanism · Canon 8 §27 verifies the reconciliation logic, not real-time passing).
+   - Call `reconcile_containment` with `outcome='expired_clean'` · `expired_at=containment.expires_at` · `period_summary='Canon 8 §27 drill · zero touches during scoped window · reconciled clean at expiry.'` · lands in `phase0/watch_actions/` (containment_reconciliation ack via governed writer) + `phase0/containment_reconciliations/`.
 
 2. Author `backend/tests/invariants/test_w10_cp1_ruling_1_firing_drill.py`:
-   - Test asserts all four record classes land on disk atomically.
+   - Test asserts all four record classes land on real disk atomically after drill script runs.
    - Test asserts Canon 8 §32.5 (atomic act-and-attest · every Mkono write carries verdict_id).
    - Test asserts Canon 8 §17 (containment record has expires_at).
    - Test asserts Canon 8 §18 (reconciliation outcome_note cites the drill purpose).
-   - Test drives the drill via governed drill harness; not a mock; every record is real.
+   - Test asserts `drill_actor:` prefix distinguishability (records match `subject_ref.startswith('drill_actor:')`).
+   - Test drives the drill via governed drill harness on the REAL default directories; not a mock; every record is real bytes on real disk.
 
 3. Right-reason failure receipt · run the test before authoring the harness · watch it fail on missing drill script.
 4. Green receipt · run after authoring · bank both to `phase0/drill_receipts/<ts>_w10_cp1_ruling_1_firing_drill_{right_reason_fail,green}.log`.
@@ -90,9 +98,9 @@ Canon 8 §15 innocent/guilty split:
 
 **BUILD (not LIFT)** — Executive-Final does NOT hold mirage material · Executive-Core does not hold it either · this is a fresh build from Canon 8 §15-§16 verbatim.
 
-**Contract shapes (proposed)**:
+**Contract shapes (proposed)** · **touch_kind grammar RATIFIED CONTRACT-TIME (Orchestrator R2 · 2026-08-26T04:20Z)**:
 - `Mirage_v0` (planting record · minimal · does not expose construction · `mirage_id` · `class ∈ {planted_credential, honeytoken, decoy_artefact}` · `planted_at` · `expires_at`).
-- `MirageTouch_v0` (touch record · `touch_id` · `mirage_id` · `touched_at` · `actor_ref` · `touch_kind ∈ {innocent_read, guilty_use}` · `evidence_note`).
+- `MirageTouch_v0` (touch record · `touch_id` · `mirage_id` · `touched_at` · `actor_ref` · **`touch_kind: Literal["innocent_read", "guilty_use"]`** — frozen enum in the contract · same DoD as every frozen contract · extension = snapshot bump ceremony · **no service-time extensibility** per R2 · `evidence_note`).
 - `Severance_v0` (severance record · `severance_id` · `touch_id` · `severed_at` · `severed_by='mkono.severance_manager'` · `aftermath_note`).
 - Reuse `WatchActionRecord_v0` `action_class='mirage_engaged'` + `'severance_executed'` (both already in W9 CP1 grammar).
 
@@ -125,7 +133,7 @@ Reserved decisions (Canon 8 §19 verbatim list):
 
 **Constitutional negative §32.6**: NO reserved-decision is executed by machine.
 
-**Implementation**: extends W8 CP3 `ApprovalRequest_v0` fabric with kind='generic' · adds `reserved_decision_kind` field discriminator · SoD enforced service-side (approver ≠ proposer · already in W8 CP3).
+**Implementation** · **reserved_decision_kind RATIFIED closed enum (Orchestrator R3 · 2026-08-26T04:20Z)**: extends W8 CP3 `ApprovalRequest_v0` fabric with kind='generic' · adds **`reserved_decision_kind: Literal["promote_containment", "extend_expiry", "sign_de_mark", "resolve_authority_disagreement", "cancel_ceremony_in_countdown"]`** discriminator (Canon 8 §19 verbatim list · closed enum · **no free-text kinds** per R3 · extensions ride the same contract+snapshot+parity same-commit ceremony as R2) · SoD enforced service-side (approver ≠ proposer · already in W8 CP3).
 
 ---
 
@@ -197,7 +205,15 @@ Rows anchored in Doc 14 §§23-25 mechanism details.
 - Officer reads restraint record (§22) · findings noted with no action taken.
 - Officer never has action require them BEFORE it executes within bounds — they receive AFTERMATH (§22).
 
-**Screenshots gap (honest · unchanged since 2026-08-14 stop-order)**: owner-side rendering required · curl-through-allowlist verification on record for each surface.
+**Screenshots posture RATIFIED (Orchestrator R4 · 2026-08-26T04:20Z)**:
+
+Allowlist stop-order (2026-08-14) stays. Agent does NOT render screenshots. Surface evidence at CP8 is a **TRIAD**:
+
+1. **DOM-assertion tests** — Playwright / structural HTML assertions per surface. Assertions cover: surface exists · Walk-this deep-link resolves through chokepoint · refusal-verbatim visible per A8-Q3 · REFERENCE-NOT-COPY on every embed/trace/preview · Canon 8 §32 negatives (no profile / no mark placement / no mirage construction) not present in rendered DOM.
+2. **curl-through-allowlist** — from an allowlisted origin, hit each surface endpoint · bank HTTP response body + headers · verify governance framing renders.
+3. **Banked HTML snapshots** — the surface's rendered HTML per curl-through-allowlist saved to **`phase0/html_snapshots/<surface_slug>.html`** (structured like screenshots but text-of-record). Snapshots ARE the record; visual render is owner's task once allowlisted.
+
+**Standing named gap** (unchanged since 2026-08-14): owner-side visual verification pending owner allowlisting their client IP. R4 confirms this gap stays named through W10; it does NOT block CP8 completeness under the triad above.
 
 ---
 
@@ -232,12 +248,21 @@ Unchanged from W9 with FL-P4-W9-02 addition:
 
 ---
 
-## 13 · Awaiting owner for W10 open
+## 13 · Awaiting owner for W10 open (post-ratifications)
 
-1. **W10 GO** (auto-continue covered W8+W9 only).
-2. **W10 scope confirmation** — proceed with all 9 CPs as sequenced · OR narrow (drop CP6/CP7/CP8 Data Suite · defer to a subsequent wave) · OR extend (add Data Suite v7-exact backend inline · +400 LOC pre-cal).
-3. **CP2 mirage record shape ratification** — should MirageTouch_v0 carry the touch_kind grammar (`innocent_read` vs `guilty_use`) as service-time or contract-time? Proposing contract-time (§15 grammar is Canon-level · not policy).
-4. **CP4 reserved-decisions panel scope** — reserved_decision_kind grammar (5 items per §19) confirmed as governed vocabulary? Or should it be extensible (owner's choice on discriminator schema).
-5. **Screenshots posture** — CP8 will ship every governance/Watch/Grey-Mirror surface behind allowlist · owner-side rendering required · does owner want a batched close-of-wave render session at W10 close?
+The four brief-time questions previously listed here (CP1 drill choice · CP2 MirageTouch grammar · CP4 reserved_decision_kind · CP8 screenshot posture) are **RATIFIED** by Orchestrator R1-R4 · 2026-08-26T04:20Z · logged verbatim in `STATE/DECISIONS.md`. Removed from awaiting list.
+
+**Scope narrowing RATIFIED as NONE** (Orchestrator R5): all 9 CPs stay · stop-and-report at 7,040 re-baselined · owner GO message may still supersede with narrower scope.
+
+**Sequencing RATIFIED** (Orchestrator R5): CP1 first · CP2..CP8 in listed order · CP9 last with authoritative composite % recomputation.
+
+**N-series + continuity policy-pending state RATIFIED as configuration** (Orchestrator R6): OWNER_POLICY_PENDING refusal state holds until answers arrive · answers land as config, zero code change.
+
+**Remaining awaiting**:
+
+1. **Owner W10 GO** (the message that starts CP1 · may include scope narrowing that supersedes R5).
+2. **Owner 9 policy answers** — batched across FL-P4-W8-01 (7 questions · CA1-N2 + CA1-N3) + FL-P4-W9-01 (2 questions · CA1-N5). Already carried by owner · non-blocking to W10 open · load-bearing before N-series + continuity attestations FIRE live records.
+
+CP1 executes the instant GO lands. No re-litigation of R1-R6.
 
 Waiting for owner receipt of this brief.
