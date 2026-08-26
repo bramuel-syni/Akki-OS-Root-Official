@@ -1,0 +1,129 @@
+{
+  "kind": "data_connection_record",
+  "at": "2026-08-26T08:09:58.456637+00:00",
+  "source_id": "aws.rds.db-restore-603-cluster",
+  "actor": "owner",
+  "resource": {
+    "region": "eu-west-1",
+    "cluster_arn": "arn:aws:rds:eu-west-1:494452543252:cluster:db-restore-603-cluster",
+    "secret_arn": "arn:aws:secretsmanager:eu-west-1:494452543252:secret:rds/data/api/user/secrets-8rZuVc",
+    "database": "digicow_live"
+  },
+  "engine": "aurora-mysql",
+  "engine_version": "8.0.42 (Aurora MySQL 3.10.3)",
+  "channel": "rds-data-api",
+  "link_working": true,
+  "ready": true,
+  "failure": null,
+  "found": {
+    "schemas": [
+      "digicow_live",
+      "ndume"
+    ],
+    "tables": [
+      {
+        "schema": "digicow_live",
+        "table": "admins",
+        "approx_row_count": "1"
+      },
+      {
+        "schema": "digicow_live",
+        "table": "adoption",
+        "approx_row_count": "52"
+      },
+      {
+        "schema": "digicow_live",
+        "table": "adoption_data",
+        "approx_row_count": "317"
+      },
+      {
+        "schema": "digicow_live",
+        "table": "android_metadata",
+        "approx_row_count": "0"
+      },
+      {
+        "schema": "digicow_live",
+        "table": "auth_group",
+        "approx_row_count": "0"
+      },
+      {
+        "schema": "digicow_live",
+        "table": "auth_group_permissions",
+        "approx_row_count": "0"
+      },
+      {
+        "schema": "digicow_live",
+        "table": "auth_permission",
+        "approx_row_count": "0"
+      },
+      {
+        "schema": "digicow_live",
+        "table": "auth_user",
+        "approx_row_count": "0"
+      },
+      {
+        "schema": "digicow_live",
+        "table": "auth_user_groups",
+        "approx_row_count": "0"
+      },
+      {
+        "schema": "digicow_live",
+        "table": "auth_user_user_permissions",
+        "approx_row_count": "0"
+      },
+      {
+        "schema": "digicow_live",
+        "table": "banner",
+        "approx_row_count": "28"
+      },
+      {
+        "schema": "digicow_live",
+        "table": "breeding",
+        "approx_row_count": "43"
+      },
+      {
+        "schema": "digicow_live",
+        "table": "calf",
+        "approx_row_count": "45"
+      },
+      {
+        "schema": "digicow_live",
+        "table": "calf_milk",
+        "approx_row_count": "19"
+      },
+      {
+        "schema": "digicow_live",
+        "table": "calving",
+        "approx_row_count": "0"
+      },
+      {
+        "schema": "digicow_live",
+        "table": "ci_migrations",
+        "approx_row_count": "1"
+      },
+      {
+        "schema": "digicow_live",
+        "table": "client",
+        "approx_row_count": "42"
+      },
+      {
+        "schema": "digicow_live",
+        "table": "clints_sms",
+        "approx_row_count": "256"
+      },
+      {
+        "schema": "digicow_live",
+        "table": "company",
+        "approx_row_count": "362"
+      },
+      {
+        "schema": "digicow_live",
+        "table": "company_admin_client",
+        "approx_row_count": "95"
+      }
+    ],
+    "table_count": 20,
+    "inventory_cap": 20
+  },
+  "ruling_reference": "Owner Ruling 2026-08-18 \u00b7 DECISIONS.md \u00b7 FL-P2-23 \u00b7 engine-detect fix 2026-08-19 \u00b7 FL-P2-24"
+}

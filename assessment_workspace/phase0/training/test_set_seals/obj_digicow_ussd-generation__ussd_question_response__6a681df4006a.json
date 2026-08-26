@@ -1,0 +1,16 @@
+{
+  "kind": "test_set_seal",
+  "manifest_sha256": "6a681df4006a7cb56f9a956688cfdf22b06204b4338792339ecf8f95809aa42e",
+  "objective_id": "obj/digicow/ussd-generation",
+  "rds_link_verified_at": "2026-08-26T08:09:58.456637+00:00",
+  "sample_size": 1000,
+  "seal_id": "obj_digicow_ussd-generation__ussd_question_response__6a681df4006a",
+  "sealed_at": "2026-08-26T08:10:31.522040+00:00",
+  "source_id": "aws.rds.db-restore-603-cluster",
+  "strata": [
+    "language.sw",
+    "language.sw+en"
+  ],
+  "target_table": "ussd_question_response",
+  "verification_record_path": "/app/assessment_workspace/phase0/data_connection_records/data_source_db-restore-603-cluster_20260826T080958Z.json"
+}
