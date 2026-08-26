@@ -1575,3 +1575,30 @@ Ratifications on record. CP1 executes on GO.
 
 **Recorded**: R10 · W10 RATIFIED · immutable.
 
+
+---
+
+## R11 · W11 partial scope opened · Real GPU integration + Training-section gap map (2026-08-26T11:00Z)
+
+**Owner ruling verbatim**: "connect directly, ignore rules only at this integration, fix back after GPUs connected."
+
+**Scope**: temporary, narrowly-scoped waiver of tests-first / ceremony discipline for the initial real-GPU handshake ONLY. Full discipline resumes immediately after the connection is established (STEP 3 "fix back" · regression invariant + cohort re-run + local commit).
+
+**What the waiver covers**:
+- Direct connect to the real GPU endpoint (bypasses the normal /api/connect/gpu 7-stage ceremony for the first probe).
+- Skip red-first for the raw connection probe; go straight to green (a real connection either works or fails at the network/auth layer · no test to write before that).
+
+**What the waiver does NOT cover**:
+- Secrets discipline (Owner Order 2026-08-25 §4) — password NEVER echoed in any response, log, receipt, or commit. Sanitizer holds at every boundary.
+- The regression invariant added in STEP 3 (asserts env var NAMES exist · NOT values).
+- The gap-map deliverable (STEP 4 · pure documentation).
+- Correction-discipline in-band (any subsequent change lands as a normal CP with its own red-green cycle).
+
+**Facts owner supplied**:
+- One VM "akki-vm" · Public IP 41.173.184.244 · Private IP 100.70.50.3 · Username ubuntu · Password (plaintext in artifact) · OS ubuntu 24.04. Port not given (assume 22). No GPU model/count/API tokens named.
+- Artifact URL: `https://customer-assets-cm19k8pv.emergentagent.net/job_amazing-gates-8/artifacts/qqklagik_Notes_260826_080948.txt`.
+
+**Ratification duration**: The waiver expires the moment STEP 3 lands (fix-back commit). After that, R11 becomes a historical record. Any future GPU work runs on standard discipline.
+
+**Recorded**: R11 · immutable · executes without re-litigation for this integration only.
+

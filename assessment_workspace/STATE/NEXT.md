@@ -1,8 +1,47 @@
 # NEXT.md - Exact next actions
 
-**Last updated:** 2026-08-26T10:00Z · **W10 RATIFIED · Standing at ready state** · Extraction-Akki HEAD `f101bd0` (programme/track-a) · master HEAD `f20ef51`.
+**Last updated:** 2026-08-26T11:15Z · **W11 partial scope open (R11) · SSH auth blocked · standing at owner action** · Extraction-Akki HEAD `f101bd0` (programme/track-a · unchanged) · master HEAD pending commit.
 
-## Cycle status (2026-08-26T10:00Z · W10 RATIFIED · no next wave booked)
+## Cycle status (2026-08-26T11:15Z · W11 STEP 1 done · STEP 2 blocked on SSH auth · STEPS 3-4 blocked on STEP 2)
+
+- **W11 partial scope opened (R11 · 2026-08-26T11:00Z)**: real GPU wiring + training-section gap map. Owner ruling verbatim: "connect directly, ignore rules only at this integration, fix back after GPUs connected." Waiver is narrow · temporary · expires at STEP 3 fix-back.
+- **STEP 1 · Credential ingest · DONE**:
+  - Artifact downloaded from customer-assets · parsed · password held only in memory during parse · written to `/app/backend/.env` as `AKKI_GPU_PASSWORD` (env var name only) · raw file deleted from `/tmp`.
+  - Non-secret fields landed in .env: `AKKI_GPU_HOST=41.173.184.244` · `AKKI_GPU_PRIVATE_IP=100.70.50.3` · `AKKI_GPU_PORT=22` · `AKKI_GPU_USERNAME=ubuntu` · `AKKI_GPU_OS=ubuntu24.04` · `AKKI_GPU_VM_NAME=akki-vm`.
+  - Password value never echoed in tool output, receipts, logs, or diffs.
+- **STEP 2 · Real connection · BLOCKED at auth layer**:
+  - TCP reachable · sshd banner `SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.18` returned in 10s (outbound SSH from pod NOT blocked).
+  - Password auth attempt: **AUTH FAILED** at protocol layer.
+  - Keyboard-interactive attempt: **AUTH FAILED**.
+  - `auth_none` probe returned `sshd advertised methods for 'ubuntu': ['publickey']` — the server does not accept password auth for user `ubuntu`. Ubuntu 24.04 cloud-image default.
+  - Password structural fingerprint (no value): 16 chars · letters+digits · no whitespace · no non-ascii · extraction is CLEAN · server refuses regardless.
+  - `/api/connect/gpu` probe · NOT RUN (requires working SSH session at hardening stage).
+  - Hardware fact sheet: **UNKNOWN** (GPU model / count / VRAM / driver / CUDA / pytorch / disk / RAM all unprobed).
+  - Sanitized receipt: `phase0/drill_receipts/20260826T110500Z_w11_real_gpu_probe.log` (no password leak · sanitizer verified).
+- **STEP 3 · Fix-back · DEFERRED** to auth unblock.
+- **STEP 4 · Gap map · DONE**: `notes/w11_gap_map.md` (12 EXISTS rows anchored to on-disk paths · 20 MISSING rows split BUILD-us vs OWNER · hardware column marked UNKNOWN pending auth · 7-CP recommended sequencing informational).
+- **Rollback**: `GPU_CONNECT_MODE=mock` restored in `/app/backend/.env` (fallback preserved). `AKKI_GPU_*` env vars retained for STEP 2 retry once auth path unlocks. `AKKI_GPU_AUTH_METHOD_ACCEPTED=publickey` marker added in .env noting the constraint.
+
+## Owner action needed to unblock STEP 2
+
+**One of**:
+
+- (a) **Supply an SSH private key** for user `ubuntu` on 41.173.184.244 (`id_ed25519` or `id_rsa` · key content). Main agent lands it in a chmod-600 file, wires `AKKI_GPU_SSH_PRIVATE_KEY_PATH` in .env, restarts backend to pick up.
+- (b) **Enable password auth on the VM**: SSH into the VM via console/rescue path and run:
+  ```
+  sudo sed -i 's/^PasswordAuthentication no/PasswordAuthentication yes/' \
+    /etc/ssh/sshd_config /etc/ssh/sshd_config.d/*.conf
+  sudo systemctl restart ssh
+  ```
+  Then the plaintext password already on record works.
+
+Once auth unlocks, main agent completes STEP 2 hardware probe + `/api/connect/gpu` real crossing receipt + STEP 3 fix-back (regression invariant + cohort re-run + local commit) inside the same waiver window.
+
+## R11 waiver duration
+
+Still open — expires at STEP 3 fix-back commit. All work AFTER fix-back runs under standard tests-first / ceremony discipline. Correction-discipline in-band still holds during the waiver (any change to /app/backend/.env or /app/backend/services/ that is NOT the connect probe must land as a normal red-green CP).
+
+## Cycle status (2026-08-26T10:00Z · W10 RATIFIED · no next wave booked) [ARCHIVED · superseded by 2026-08-26T11:15Z]
 
 - **W10 CLOSE RATIFIED** by owner 2026-08-26T10:00Z (R10 in STATE/DECISIONS.md).
 - **External re-verification 4/4 PASS** at the real edge: non-allowlisted callers get 403 + refusal sentence on `/`, `/governance`, `/favicon.ico`, `/api/governance/state`, `/api/openapi.json`; headless external browser sees refusal sentence only (no SPA shell).
