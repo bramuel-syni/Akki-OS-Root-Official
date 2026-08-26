@@ -1,0 +1,16 @@
+{
+  "actor": "owner",
+  "at_iso": "2026-08-26T08:09:55.113439Z",
+  "endpoint_host": "rds-data.eu-west-1.amazonaws.com",
+  "kind": "rds_data_api",
+  "masking_tier": "structure_only",
+  "payload_shape": {
+    "cluster_id": "db-restore-603-cluster",
+    "database": "digicow_live",
+    "statement_shape": "SELECT information_schema census"
+  },
+  "receipt_id": "rcp-62de563d9b4c",
+  "residency_region": "eu-west-1",
+  "tenant_id": "estate",
+  "verb": "ExecuteStatement"
+}
