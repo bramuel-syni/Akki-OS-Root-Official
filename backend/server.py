@@ -43,6 +43,11 @@ from services.baseline_line.router import router as baseline_line_router  # noqa
 from services.model_recheck.router import router as model_recheck_router  # noqa: E402
 # W8 CP5 · governance timeline surface (Doc 15 §Trace · REFERENCE-NOT-COPY).
 from services.trace.router import router as trace_router  # noqa: E402
+# W10 CP8 · Governance / Watch / Grey-Mirror state rollup surfaces
+#   (Canon 8 §§7-19 · Doc 15 §17 · REFERENCE-NOT-COPY read-only).
+from services.governance.router import router as governance_router  # noqa: E402
+from services.watch.router import router as watch_router  # noqa: E402
+from services.grey_mirror.router import router as grey_mirror_router  # noqa: E402
 from services.ip_allowlist.middleware import IPAllowlistMiddleware  # noqa: E402
 
 # Deliverables directory (read-only snapshot per Chunk-4 v1.1 delivery logistics)
@@ -181,6 +186,10 @@ app.include_router(baseline_line_router)
 app.include_router(model_recheck_router)
 # W8 CP5 · governance timeline surface (Doc 15 §Trace).
 app.include_router(trace_router)
+# W10 CP8 · Governance / Watch / Grey-Mirror state rollup surfaces.
+app.include_router(governance_router)
+app.include_router(watch_router)
+app.include_router(grey_mirror_router)
 
 app.add_middleware(
     CORSMiddleware,

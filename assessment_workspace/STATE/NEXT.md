@@ -1,8 +1,73 @@
 # NEXT.md - Exact next actions
 
-**Last updated:** 2026-08-26T07:20Z · **W10 CP7 CLOSED** · Extraction-Akki HEAD pending commit (CP7 · `b5575bc` → next) · master HEAD pending commit (`c86383d` → next).
+**Last updated:** 2026-08-26T08:35Z · **W10 CP8 CLOSED** · Extraction-Akki HEAD pending commit (CP8 · `d46e84e` → next) · master HEAD pending commit (`9d1eacb` → next).
 
-## Cycle status (2026-08-26T07:20Z · W10 CP7 CLOSED · CP8 opening)
+## Cycle status (2026-08-26T08:35Z · W10 CP8 CLOSED · CP9 opening)
+
+- **W10 CP8 · Governance / Watch / Grey-Mirror frontends · CLOSED** at 7/7 backend + 25/25 frontend + 28/28 CP-anchor cohort green.
+  - **Backend (thin read-only state rollups · REFERENCE-NOT-COPY)**:
+    - `services/governance/router.py` → GET /api/governance/state (approvals · rules_updates lifecycle · reserved_decisions).
+    - `services/watch/router.py` → GET /api/watch/state (verdicts · actions · containments · reconciliations · continuity_attestations · witness_attestations · tamper_alarms · fitness summary rollup).
+    - `services/grey_mirror/router.py` → GET /api/grey_mirror/state (mirages · touches · severances · BUILD-not-LIFT rationale in body).
+    - Every entry carries `record_id` + `source_path` on disk; raw signing material / secrets sanitized out at boundary (Owner Order 2026-08-25 §4).
+  - **Frontends** (all under `/app/frontend/src/components/` · mirrored to pod_shell):
+    - `Governance.jsx` (routes `/governance` · reserved-decisions + rules-updates + approvals panels · Canon 8 §19 + Doc 15 §17 anchors · names the 5 reserved kinds verbatim per R3).
+    - `Watch.jsx` (routes `/watch` · verdicts + actions + containments + witness + tamper + fitness · Canon 8 §7 + §8 + §9 + §14 + §25 anchors · Ruling-1 precondition (b) demonstrated status surfaced from fitness rollup).
+    - `GreyMirror.jsx` (routes `/grey-mirror` · mirages + touches + severances · Canon 8 §§15-16 anchors · touch_kind CONTRACT-TIME grammar per R2 · BUILD-not-LIFT rationale visible).
+    - Wired into `App.js` (live `/app/frontend/src/App.js` + mirrored `pod_shell/frontend/src/App.js`).
+  - **Tests-first**:
+    - Backend: `test_w10_cp8_state_endpoints.py` (7 tests · honest-empty · seeded-record reflection · no-raw-secret invariant).
+    - Frontend: `pod_shell/frontend/__tests__/w10_cp8_frontends.test.js` (25 tests · source-content testids · REFERENCE-NOT-COPY markers · canon anchors · route wiring · live HTTP 200 through allowlist for all 3 routes · live API JSON shape).
+  - **Receipts** (banked to assessment_workspace phase0/drill_receipts/):
+    - `20260826T080000Z_w10_cp8_backend_right_reason_fail.log` (7 collection errors · services.governance/watch.router/grey_mirror not yet on disk).
+    - `20260826T080100Z_w10_cp8_frontend_right_reason_fail.log` (20 fails · components missing + routes not wired + endpoints 404).
+    - `20260826T083000Z_w10_cp8_backend_green.log` (7/7 green).
+    - `20260826T083100Z_w10_cp8_frontend_green.log` (25/25 green).
+  - **HTML snapshots banked** to `phase0/html_snapshots/` (owner-side rendering per R4):
+    - `w10_cp8_governance.html` + `w10_cp8_governance_api.json`
+    - `w10_cp8_watch.html` + `w10_cp8_watch_api.json`
+    - `w10_cp8_grey_mirror.html` + `w10_cp8_grey_mirror_api.json`
+- **Preview routes owner should eyeball** (permissive allowlist holds through CP9 close per R8):
+  - `/governance` — reserved-decisions panel + rules-updates timeline + approvals ledger
+  - `/watch` — fitness summary + verdicts/actions/containments/witness/tamper panels
+  - `/grey-mirror` — mirages + touches + severances panels
+  - Ruling-1 precondition (b) DEMONSTRATED renders in the Watch header (drill note on disk at `phase0/drill_receipts/ruling_1_drill_witness_note.md`).
+- **Honest empty state**: all live record stores are 0-count today (production Watch has not yet fired against real traffic; mirages not yet installed; approvals ledger not yet lit). The surfaces render "0 X on record · Canon anchor: … · Drawn, never left blank."
+- **Contract parity unchanged**: still 59 (CP8 is a surface CP · no new frozen contracts).
+- **Stop-and-report to owner**: CP8 status paragraph + preview-route list delivered. CP9 opens on owner ack.
+
+## Interleaved owner readiness query (2026-08-26T08:20Z) — audio trainer × GPU
+
+Answered from ground truth (no ratification recorded · informational only):
+- Audio trainer: **not built**. Perception-side audio inference wired (`services/layer_b/asr/*`, `layer_a/handlers/audio.py`, `services/perception/asr_worker.py`). Training-side absent — no `services/audio_trainer/`, no audio training-run contract.
+- GPU connect: `/api/connect/gpu` real (7-stage pipeline · commissioning · trust receipts) but `.env` currently points at mock SSH host (`/tmp/akki_mock_sshd/*`). No production GPU connected today.
+- Verdict: **not ready** for a real audio-trainer-on-GPU test. Building the trainer is roughly a wave of its own (~W10-scale · 5-7k LOC) · deferred beyond W10.
+- Recorded here for continuity; no CP scope change.
+
+## W10 checkpoint status
+
+| CP | Scope | Status | Actual LOC |
+|----|-------|--------|-----------:|
+| CP1 | Ruling-1 firing drill · Canon 8 §27 | CLOSED · 7/7 green | ~200 |
+| CP2 | Grey Mirror mirage machinery · BUILD | CLOSED · 25/25 green · parity 52→55 | ~800 |
+| CP3 | Watch drills + fitness accounting | CLOSED · 12/12 green | ~400 |
+| CP4 | Reserved-decisions panel · Canon 8 §19 | CLOSED · 28/28 green | ~500 |
+| CP5 | Witness fabric full signing · Canon 8 §9 | CLOSED · 23/23 green · parity 55→58 | ~600 |
+| CP6 | CA1-005 whitepaper drafter · BUILD | CLOSED · 13/13 green · parity 58→59 | ~140 |
+| CP7 | Doc 14 §§23-25 24-row register expansion | CLOSED · 8/8 green · docs-only | ~130 |
+| CP8 | Governance / Watch / Grey-Mirror frontends + backend state rollups | **CLOSED · 32/32 green (7 be + 25 fe)** | ~940 |
+| CP9 | Authoritative composite % calculation + record + wave close + strict-flip verification | pending | — |
+
+## Awaiting owner (post-CP8)
+
+1. **Owner ack on CP8** (one-paragraph status + preview routes list delivered · CP9 opens on GO).
+2. **9 policy answers** (FL-P4-W8-01 + FL-P4-W9-01 · non-blocking to CP9 open).
+
+## Ratified · executes without re-litigation (unchanged from R1-R8)
+
+R1-R8 · permissive allowlist holds through CP9 close · flip-back sequence baked into wave-close checklist.
+
+## Cycle status (2026-08-26T07:20Z · W10 CP7 CLOSED · CP8 opening) [ARCHIVED · superseded by 2026-08-26T08:35Z]
 
 - **W10 CP7 · Doc 14 §§23-25 24-row expansion · CLOSED** at 8/8 CP-cohort green + 88/88 wider W10 cohort green.
   - Register expanded: `notes/requirements_register_17docs.md` §Doc 14 grew from 4 rows to 28 rows (24 new rows: Doc14-002..022, 025, 027, 028).

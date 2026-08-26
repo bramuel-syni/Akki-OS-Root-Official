@@ -1,0 +1,20 @@
+{
+    "approvals": {
+        "count": 0,
+        "entries": []
+    },
+    "rules_updates": {
+        "count": 0,
+        "entries": []
+    },
+    "reserved_decisions": {
+        "count": 0,
+        "entries": []
+    },
+    "sources": {
+        "approvals": "/app/assessment_workspace/phase0/approval_records",
+        "rules_updates": "/app/assessment_workspace/phase0/rules_update_lifecycle",
+        "reserved_decisions": "/app/assessment_workspace/phase0/approval_records/requests"
+    },
+    "reference_note": "REFERENCE-NOT-COPY \u00b7 Design Law A8 \u00b7 every entry cites its source_path on disk; the surface renders record ids + short provenance rather than embedding record bodies. Original records live under phase0/ where each producer wrote them."
+}

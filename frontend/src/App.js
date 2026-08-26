@@ -6,6 +6,9 @@ import ThinkLab from "@/components/ThinkLab";
 import Chat from "@/components/Chat";
 import CostLedger from "@/components/CostLedger";
 import ModelEcosystem from "@/components/ModelEcosystem";
+import Governance from "@/components/Governance";
+import Watch from "@/components/Watch";
+import GreyMirror from "@/components/GreyMirror";
 
 /**
  * App.js - Owner fixture drop 2026-08-14 shape:
@@ -42,6 +45,9 @@ function App() {
           <Route path="/chat" element={<Chat />} />
           <Route path="/cost-ledger" element={<CostLedger />} />
           <Route path="/models" element={<ModelEcosystem />} />
+          <Route path="/governance" element={<Governance />} />
+          <Route path="/watch" element={<Watch />} />
+          <Route path="/grey-mirror" element={<GreyMirror />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

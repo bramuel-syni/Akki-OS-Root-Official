@@ -1,0 +1,47 @@
+{
+    "verdicts": {
+        "count": 0,
+        "entries": []
+    },
+    "actions": {
+        "count": 0,
+        "entries": []
+    },
+    "containments": {
+        "count": 0,
+        "entries": []
+    },
+    "containment_reconciliations": {
+        "count": 0,
+        "entries": []
+    },
+    "continuity_attestations": {
+        "count": 0,
+        "entries": []
+    },
+    "witness_attestations": {
+        "count": 0,
+        "entries": []
+    },
+    "tamper_alarms": {
+        "count": 0,
+        "entries": []
+    },
+    "fitness": {
+        "verdicts_over_window": 0,
+        "actions_over_window": 0,
+        "drill_green_receipts_on_record": 58,
+        "ruling_1_precondition_b_demonstrated": true
+    },
+    "sources": {
+        "verdicts": "/app/assessment_workspace/phase0/watch_verdicts",
+        "actions": "/app/assessment_workspace/phase0/watch_actions",
+        "containments": "/app/assessment_workspace/phase0/containments",
+        "containment_reconciliations": "/app/assessment_workspace/phase0/containment_reconciliations",
+        "continuity_attestations": "/app/assessment_workspace/phase0/continuity_attestations",
+        "witness_attestations": "/app/assessment_workspace/phase0/witness_attestations",
+        "tamper_alarms": "/app/assessment_workspace/phase0/witness_tamper_alarms",
+        "drill_receipts": "/app/assessment_workspace/phase0/drill_receipts"
+    },
+    "reference_note": "REFERENCE-NOT-COPY \u00b7 Design Law A8 \u00b7 every Watch entry cites its source_path on disk; raw signing material never appears on this surface (Owner Order 2026-08-25 \u00a74). Ruling-1 precondition (b) demonstrated at W10 CP1 \u00b7 see phase0/drill_receipts/ruling_1_drill_witness_note.md."
+}
