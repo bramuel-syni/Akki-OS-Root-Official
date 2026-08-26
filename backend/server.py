@@ -48,6 +48,8 @@ from services.trace.router import router as trace_router  # noqa: E402
 from services.governance.router import router as governance_router  # noqa: E402
 from services.watch.router import router as watch_router  # noqa: E402
 from services.grey_mirror.router import router as grey_mirror_router  # noqa: E402
+# W11 CP3 · Doc 17 Multidimensional Training Engine (state + compile + seal).
+from services.training.router import router as training_router  # noqa: E402
 from services.ip_allowlist.middleware import IPAllowlistMiddleware  # noqa: E402
 
 # Deliverables directory (read-only snapshot per Chunk-4 v1.1 delivery logistics)
@@ -202,6 +204,8 @@ app.include_router(trace_router)
 app.include_router(governance_router)
 app.include_router(watch_router)
 app.include_router(grey_mirror_router)
+# W11 CP3 · Doc 17 Training plane (state · demand-table compile · test-set seal).
+app.include_router(training_router)
 
 app.add_middleware(
     CORSMiddleware,

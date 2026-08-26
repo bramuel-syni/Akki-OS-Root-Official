@@ -9,6 +9,7 @@ import ModelEcosystem from "@/components/ModelEcosystem";
 import Governance from "@/components/Governance";
 import Watch from "@/components/Watch";
 import GreyMirror from "@/components/GreyMirror";
+import Training from "@/components/Training";
 
 /**
  * App.js - Owner fixture drop 2026-08-14 shape:
@@ -48,6 +49,7 @@ function App() {
           <Route path="/governance" element={<Governance />} />
           <Route path="/watch" element={<Watch />} />
           <Route path="/grey-mirror" element={<GreyMirror />} />
+          <Route path="/training" element={<Training />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
