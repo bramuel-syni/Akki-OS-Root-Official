@@ -810,3 +810,49 @@ curl -s -H "X-Forwarded-For: 34.16.56.64,172.71.255.34,136.110.244.150" \
 ### 5. No push, ever
 
 Owner Clarification 1 (2026-08-14). Assessment repo and Extraction-Akki both stay local.
+
+---
+
+## CODE FREEZE · 2026-08-26 · R1–R7 PLAN DRAFTED, AWAITING OWNER GO
+
+**Status**: Remediation plan R1-R7 drafted, awaiting owner GO. Code freeze in force.
+
+**What happened**: Owner delivered R1-R7 remediation directive at 2026-08-26T09:00Z. Main agent misread it as an execution order and began R1 (Ship-Manifest DoD meta-invariant + KNOWN_UNWIRED / KNOWN_RUNTIME_DRIFT manifests + DECISIONS.md ruling insert). Owner then clarified: the R1-R7 message was the PLAN only; execution was NOT authorized. Halt issued 2026-08-26T09:11Z.
+
+**Commits during the misread**: NONE. No git commit landed for R1 work in either repo. Verified:
+- `/app/assessment_workspace/repos/Extraction-Akki` HEAD unchanged: `d763721 W11 CP7 · register expansion 17→20 docs · 36 new rows · 12/12 green`
+- `/app/assessment_workspace` HEAD unchanged: `743046a audit · system-wide spec↔build audit 2026-08-26 · 10 status-inflations named · stop-and-report · no code writes` (this commit was authorized by the owner in the audit-delivery turn and is legitimate)
+
+**Uncommitted R1 artefacts on disk** (per owner order: leave in place, do not revert):
+
+Extraction-Akki repo (`programme/track-a` branch):
+- `backend/tests/invariants/test_ship_manifest_dod.py` · meta-invariant test · 8 tests · GREEN in local run
+- `backend/tests/invariants/known_unwired.py` · 35-entry ledger of routers-on-disk-not-wired-to-runtime-assembler
+- `backend/tests/invariants/known_runtime_drift.py` · 3-entry ledger of /app-vs-pod_shell drift
+- `phase0/drill_receipts/20260826T090647Z_w11_r1_ship_manifest_dod_right_reason_failure.log` · RED receipt
+- `phase0/drill_receipts/20260826T090914Z_w11_r1_ship_manifest_dod_green.log` · GREEN receipt
+
+Assessment workspace repo (`master` branch):
+- `STATE/DECISIONS.md` (modified) · appended R1 owner-ruling section (Ruling #1 Ship-Manifest DoD + Ruling #2 Callers-Cover-the-Rule DoD + Canon-5-§14-supersedes-Simplification note) at lines 1607–1660
+
+**Uncommitted CP4 artefacts** (pre-R1, from paused work — NOT touched by this halt):
+- `backend/contracts/skill_file_provenance_v0.py`
+- `backend/services/skill_files/`
+- `backend/tests/invariants/test_skill_file_provenance_v0_contract_frozen.py`
+- `backend/tests/invariants/test_skill_files_module.py`
+- `phase0/drill_receipts/20260826T081745Z_w11_cp4_skill_file_provenance_right_reason_failure.log`
+
+**Owner directive (verbatim, 2026-08-26T09:11Z)**:
+> "HALT — my error, not the owner's. The owner asked for the plan only; execution was NOT authorized. Stop all code writes immediately. If R1 work has started: leave it uncommitted (or if a commit already landed, note the hash and stop — do not revert, do not continue). Log in STATE/NEXT.md: 'Remediation plan R1-R7 drafted, awaiting owner GO. Code freeze in force.' Stand by. Nothing executes until I relay the owner's explicit approval."
+
+**Freeze scope**:
+- NO further file writes to `pod_shell/backend/`, `pod_shell/frontend/`, `backend/`, or any `services/*` under Extraction-Akki.
+- NO `git commit` in either repo.
+- NO `git push` (standing rule; also frozen here for clarity).
+- STATE/NEXT.md log entry (this section) is the one authorized write during the freeze.
+
+**Resume protocol**: main agent will resume R1 only upon receiving the owner's explicit approval, relayed by the user. On resume, the plan is: (a) verify the freeze-state artefacts still match, (b) commit R1 to Extraction-Akki (`programme/track-a`) with the two receipts, (c) commit the DECISIONS.md addition to assessment_workspace (`master`), (d) stop-and-report before starting R2.
+
+**Recorded**: 2026-08-26 · code freeze active · owner GO required to resume.
+
+

@@ -1602,3 +1602,41 @@ Ratifications on record. CP1 executes on GO.
 
 **Recorded**: R11 · immutable · executes without re-litigation for this integration only.
 
+
+
+---
+
+## OWNER RULING · 2026-08-26 · SHIP-MANIFEST & CALLERS-COVER-THE-RULE DoDs (R1)
+
+**Context**: post-system-wide-audit 2026-08-26 (banked at `notes/audit_2026-08-26/system_wide_spec_build_audit.md`). Ten status-inflations named across the register. Owner ruling: adopt two new Definitions-of-Done to close the paraphrase-not-spec failure class.
+
+**RULING #1 · SHIP-MANIFEST DoD**
+
+> A register row moves to DONE only when ALL THREE land in the SAME commit:
+>
+> 1. Runtime-assembler wiring: an `app.include_router(...)` in `pod_shell/backend/server.py` AND its `/app/backend/server.py` mirror.
+> 2. Frontend route/component: any React surface the row references is committed under `pod_shell/frontend/src/` (route in `App.js`, component under `components/`).
+> 3. A green user-path test: pytest against the wired route OR node --test / playwright against the wired frontend surface, receipt banked to `phase0/drill_receipts/`.
+>
+> Enforcement: `backend/tests/invariants/test_ship_manifest_dod.py` mechanically asserts every `services/*/router.py`, `services/*/*_router.py`, and `routers/*.py` file is either included in the runtime assembler OR listed in `backend/tests/invariants/known_unwired.py` with a register-row citation naming why. It also asserts `/app/backend/server.py`, `/app/frontend/src/App.js`, and every `/app/frontend/src/components/*.jsx` byte-matches its `pod_shell/` counterpart, with declared exceptions in `known_runtime_drift.py` tagged with the R-remediation step that will close them.
+>
+> The `KNOWN_UNWIRED` and `KNOWN_RUNTIME_DRIFT` manifests SHRINK monotonically as R4/R5/R6 land. Their length is a live indicator of remediation work outstanding. Adding entries to silence a failing test without honest justification is a defect.
+
+**RULING #2 · CALLERS-COVER-THE-RULE DoD**
+
+> For every register row of shape "every X does Y" (Doc19A-005 "every worker output passes through the Critic Seam", Doc14-002/003 MOAC coverage, Doc03-030 containment ladder, etc.), a DONE claim requires at least one producer-side test that asserts Y fires for X. The test must be authored on the PRODUCER'S side, not the consumer's — a passing critic-seam unit test does not satisfy Doc19A-005; only a worker's test that shows its output was routed through `run_critic_pass` / `manifest_gate` does.
+>
+> Enforcement: applied at row-move review time. Every DONE row must cite the producer-side test path in the register expansion. Rows failing this bar are held at PARTIAL with an explicit note "callers-cover-the-rule pending".
+
+**Trigger for these rulings**: audit §16 enumerated ten instances of status-inflation, of which #3 (Critic Seam LIFT · orphan) is the pattern-match for Ruling #2, and #2 (CP3 training repo/runtime drift), #4 (Doc18 legacy-only wiring), #6 (Doc15-086 legacy-only), #10 (Memory router legacy-only) are the pattern-match for Ruling #1.
+
+**Recorded**: R1 · both DoDs · immutable · effective from this commit onward for every subsequent register move.
+
+**Receipt trail**:
+- Test file: `backend/tests/invariants/test_ship_manifest_dod.py` (8 tests · GREEN)
+- Manifests: `backend/tests/invariants/known_unwired.py` (35 entries) · `known_runtime_drift.py` (3 entries)
+- Red: `phase0/drill_receipts/20260826T090647Z_w11_r1_ship_manifest_dod_right_reason_failure.log`
+- Green: `phase0/drill_receipts/20260826T090914Z_w11_r1_ship_manifest_dod_green.log`
+
+**Supersession note (owner directive 2026-08-26)**: where the 2026-08-14 Simplification Ruling (Connect single-panel paste-first) conflicts with Canon 5 §14 (Shaping Wizard grammar) or the current owner P0 directive (step-by-step wizard, coach-voice, edit-in-place, human-speak errors), **Canon 5 §14 + current owner directive WIN**. The Simplification Ruling is superseded for the Connect surface pending R3 wizard rebase. This supersession is recorded here so the T12 / W1 "verbatim honoured" close notes are re-classified as PARTIAL-honouring against the newly-authoritative spec.
+
