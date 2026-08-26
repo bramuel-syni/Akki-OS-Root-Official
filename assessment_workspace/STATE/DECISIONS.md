@@ -1529,3 +1529,49 @@ Ratifications on record. CP1 executes on GO.
 
 **Recorded**: R9 · immutable · executes without re-litigation. Ratification pending owner external re-verification.
 
+
+---
+
+## R10 · W10 wave RATIFIED (2026-08-26T10:00Z)
+
+**Owner verdict**: W10 CLOSE RATIFIED. External re-verification 4/4 PASS at the real edge:
+- Non-allowlisted callers receive HTTP 403 + exact refusal sentence on `/`, `/governance`, `/favicon.ico`, `/api/governance/state`, and `/api/openapi.json`.
+- Headless external browser sees only the refusal sentence — no SPA shell rendered.
+- Strict-flip correction confirmed live at the edge (both surfaces gated).
+
+**Final W10 record (ratified)**:
+- **Composite %**: 52.49 % (authoritative · locked · Owner correction #4 satisfied).
+- **Wave-close cohort**: 45 test files · 303 assertions green (261 pytest + 25 + 17 node).
+- **All 9 CPs CLOSED** with tests-first receipts (red + green banked for every CP).
+- **Superseding flip receipt** `20260826T094500Z_w10_strict_flip_verified_both_surfaces.log` on record; original 09:20Z receipt retained as the audit trail entry showing the initial procedural gap.
+
+**HEADs ratified at wave close**:
+- Extraction-Akki `programme/track-a` @ **`f101bd0`**
+- Assessment-workspace `master` @ **`f20ef51`**
+
+**Root-cause note (owner accepted)**:
+- Procedural: initial strict flip restarted only backend supervisor.
+- Verification: original probe set was API-only.
+- Permanent guards now in place: (1) corrected flip procedure `sudo supervisorctl restart backend frontend` locked in the wave-close checklist; (2) 17-test mode-matrix `w10_wave_close_strict_flip_matrix.test.js` reads `/app/backend/.env` single source of truth and probes both surfaces at both ports across 5 endpoints × 3 probe classes.
+
+**Owner-IP positive path (`41.90.172.155` → 200) end-to-end confirmation**: only the owner can confirm from the real external edge (owner-side action pending · not blocking ratification).
+
+**Standing rules that persist beyond W10**:
+- REFERENCE-NOT-COPY (Design Law A8) — every surface renders with `source_path` citations; raw signing material sanitized at every response boundary.
+- Contract + snapshot + parity map + hardcoded numeric assertion same-commit DoD (FL-P4-W8-02).
+- Pod-shell + spine same-commit mount DoD (FL-P4-W7-02).
+- Composite % same-commit DoD extension: any change to `tools/w10_cp9_composite_recompute.py` must move `test_w10_cp9_composite_lock.py` in the same commit.
+- Allowlist config change procedure: `sudo supervisorctl restart backend frontend` (both · not just backend) + run mode-matrix invariant + bank receipt covering both surfaces.
+- No push · local commits only.
+
+**Outstanding items carried forward (all non-blocking · deferred beyond W10)**:
+1. FL-P4-W8-01 · CA1-N2 (breach notification · 7 policy questions · owner).
+2. FL-P4-W8-01 · CA1-N3 (data-subject erasure · 7 policy questions · owner).
+3. FL-P4-W9-01 · CA1-N5 (continuity attestation · 1 policy question · owner).
+4. Doc14-020 · Canon 4 §38 rights-unclear grammar · OPEN-SLOT (new at W10 CP7 · N-series pattern).
+5. Audio trainer + real GPU wiring (informational · not booked · answered from ground truth 2026-08-26T08:20Z).
+
+**Cycle state**: no next wave booked. Standing at ready state. Awaiting owner ruling on W11 · new scope · or pause. No further agent action unless the owner reports an access failure.
+
+**Recorded**: R10 · W10 RATIFIED · immutable.
+

@@ -1,8 +1,43 @@
 # NEXT.md - Exact next actions
 
-**Last updated:** 2026-08-26T09:30Z · **W10 CLOSED · WAVE COMPLETE** · Extraction-Akki HEAD pending commit (CP9 · `d4ba30c` → next) · master HEAD pending commit (`a809fe7` → next).
+**Last updated:** 2026-08-26T10:00Z · **W10 RATIFIED · Standing at ready state** · Extraction-Akki HEAD `f101bd0` (programme/track-a) · master HEAD `f20ef51`.
 
-## Cycle status (2026-08-26T09:30Z · W10 WAVE CLOSED · no next wave booked)
+## Cycle status (2026-08-26T10:00Z · W10 RATIFIED · no next wave booked)
+
+- **W10 CLOSE RATIFIED** by owner 2026-08-26T10:00Z (R10 in STATE/DECISIONS.md).
+- **External re-verification 4/4 PASS** at the real edge: non-allowlisted callers get 403 + refusal sentence on `/`, `/governance`, `/favicon.ico`, `/api/governance/state`, `/api/openapi.json`; headless external browser sees refusal sentence only (no SPA shell).
+- **Composite % authoritative · locked**: **52.49 %**.
+- **Wave-close cohort**: 45 test files · 303 assertions green (261 pytest + 25 + 17 node).
+- **All 9 W10 CPs CLOSED**.
+- **Owner-IP positive path from external edge**: pending owner-side confirmation (only the owner can do this from outside · not blocking ratification).
+
+## Standing at ready state
+
+No CP is open. No next wave is booked. Awaiting owner ruling on:
+- Open W11 (post-W10 items below).
+- Ratify different next-wave scope.
+- Pause.
+
+No further agent action will be taken unless the owner reports an access failure or opens a new scope.
+
+## Outstanding items (deferred beyond W10 · all non-blocking)
+
+### Non-blocking owner-policy answers (unchanged from W8/W9)
+1. **FL-P4-W8-01** · CA1-N2 (data-subject breach notification) · owner policy pending (7 questions).
+2. **FL-P4-W8-01** · CA1-N3 (data-subject erasure) · owner policy pending (7 questions).
+3. **FL-P4-W9-01** · CA1-N5 (continuity attestation) · owner policy pending (1 question).
+
+### New at W10
+4. **Doc14-020** · Canon 4 §38 rights-unclear grammar · OPEN-SLOT (N-series pattern · registered at CP7).
+
+### Larger post-W10 work (informational only · not booked)
+5. **Audio trainer + real GPU wiring** — audio trainer NOT BUILT (perception-side ASR/diarisation wired but no training pipeline). GPU connect real 7-stage but `.env` currently points at mock SSH. Building the trainer is roughly a wave of its own (~W10-scale · 5-7k LOC). Answered informationally 2026-08-26T08:20Z · no CP scope change.
+
+## Ratified owner rulings · executes without re-litigation
+
+R1-R7 (2026-08-26T04:20Z · W10 pre-GO) · R8 (2026-08-26T05:20Z · preview allowlist permissive-mode for W10 duration · rescinded at wave close) · R9 (2026-08-26T09:20Z · preview allowlist strict-flip at wave close · corrected 09:45Z across both surfaces) · **R10 (2026-08-26T10:00Z · W10 wave RATIFIED)**.
+
+## Standing rules (all remain binding beyond W10 close)
 
 - **W10 CP9 · Authoritative composite recomputation + wave close + strict flip · CLOSED** (with mid-flight correction to strict-flip verification).
   - **Composite (authoritative · Owner correction #4)**: **52.49 %** replacing all wobbly running numbers.
