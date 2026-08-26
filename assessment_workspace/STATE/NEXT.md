@@ -1,8 +1,78 @@
 # NEXT.md - Exact next actions
 
-**Last updated:** 2026-08-26T08:35Z · **W10 CP8 CLOSED** · Extraction-Akki HEAD pending commit (CP8 · `d46e84e` → next) · master HEAD pending commit (`9d1eacb` → next).
+**Last updated:** 2026-08-26T09:30Z · **W10 CLOSED · WAVE COMPLETE** · Extraction-Akki HEAD pending commit (CP9 · `d4ba30c` → next) · master HEAD pending commit (`a809fe7` → next).
 
-## Cycle status (2026-08-26T08:35Z · W10 CP8 CLOSED · CP9 opening)
+## Cycle status (2026-08-26T09:30Z · W10 WAVE CLOSED · no next wave booked)
+
+- **W10 CP9 · Authoritative composite recomputation + wave close + strict flip · CLOSED**.
+  - **Composite (authoritative · Owner correction #4)**: **52.49 %** replacing all wobbly running numbers.
+    - Mechanism corpus: **54.45 %** (280.4 / 515 · 109 DONE + 46 PARTIAL + 306 REUSABLE + 53 BUILD + 1 OPEN-SLOT).
+    - Interface dimension: **47.93 %** (27.8 / 58 · 10 DONE + 2 PARTIAL + 34 REUSABLE + 12 BUILD).
+    - Blend: 0.7 × 54.45 + 0.3 × 47.93 = **52.49 %**.
+  - **Method**: `tools/w10_cp9_composite_recompute.py` (deterministic · 32 delta entries · every delta anchored to canon § + commit SHA).
+  - **Locked by pytest**: `backend/tests/invariants/test_w10_cp9_composite_lock.py` (5/5 green).
+  - **Wave-close cohort**: **261/261 green** across 43 test files at `phase0/drill_receipts/20260826T091500Z_w10_wave_close_green.log`.
+  - **R9 strict flip verified**: owner IP 41.90.172.155 → 200 · unknown 203.0.113.99 → 403 · no-XFF → 403. Receipt at `phase0/drill_receipts/20260826T092000Z_w10_strict_flip_verified.log`. R8 (permissive) rescinded per its own sunset clause.
+  - **Cheap optional fix landed**: `/api/openapi.json` serves 200 (49 paths · docs_url/redoc_url disabled · response-boundary sanitizer intact).
+  - **W10 close report banked**: `notes/w10_close_report.md` (W8/W9 format · 12 sections).
+- **W10 delivered**:
+  - Canon 8 mechanism fabric fully wired (CP1-CP5): Ruling-1 drill · Grey Mirror BUILD · Watch drills + fitness · Reserved-Decisions Panel · Witness fabric + tamper alarms.
+  - Doc 14 §33 CA1-005 whitepaper drafter BUILD (CP6 · parity 58→59).
+  - Doc 14 §§21-45 register expansion 4→28 rows (CP7).
+  - Governance + Watch + Grey-Mirror frontends wired (CP8).
+  - Authoritative composite % + wave close + strict flip + close report (CP9).
+
+## W10 checkpoint status — ALL CLOSED
+
+| CP | Scope | Status | Actual LOC |
+|----|-------|--------|-----------:|
+| CP1 | Ruling-1 firing drill · Canon 8 §27 | CLOSED · 7/7 green | ~200 |
+| CP2 | Grey Mirror mirage machinery · BUILD | CLOSED · 25/25 green · parity 52→55 | ~800 |
+| CP3 | Watch drills + fitness accounting | CLOSED · 12/12 green | ~400 |
+| CP4 | Reserved-decisions panel · Canon 8 §19 | CLOSED · 28/28 green | ~500 |
+| CP5 | Witness fabric full signing · Canon 8 §9 | CLOSED · 23/23 green · parity 55→58 | ~600 |
+| CP6 | CA1-005 whitepaper drafter · BUILD | CLOSED · 13/13 green · parity 58→59 | ~140 |
+| CP7 | Doc 14 §§23-25 24-row register expansion | CLOSED · 8/8 green · docs-only | ~130 |
+| CP8 | Governance / Watch / Grey-Mirror frontends + backend state rollups | CLOSED · 32/32 green (7 be + 25 fe) | ~940 |
+| CP9 | Authoritative composite · wave close · strict flip · close report | **CLOSED · 5/5 green · 261/261 cohort** | ~230 |
+
+## Outstanding items (all non-blocking · deferred beyond W10)
+
+### Non-blocking owner-policy answers (unchanged from W8/W9)
+1. **FL-P4-W8-01** · CA1-N2 (data-subject breach notification) · owner policy pending (7 questions).
+2. **FL-P4-W8-01** · CA1-N3 (data-subject erasure) · owner policy pending (7 questions).
+3. **FL-P4-W9-01** · CA1-N5 (continuity attestation) · owner policy pending (1 question).
+
+### New at W10
+4. **Doc14-020** · Canon 4 §38 rights-unclear grammar · OPEN-SLOT (N-series pattern · registered at CP7).
+
+### Larger post-W10 work (informational only · not booked)
+5. **Audio trainer + real GPU wiring** — audio trainer NOT BUILT (perception-side ASR/diarisation wired but no training pipeline). GPU connect real 7-stage but `.env` currently points at mock SSH. Building the trainer is roughly a wave of its own (~W10-scale · 5-7k LOC). Answered informationally 2026-08-26T08:20Z · no CP scope change.
+
+## Ratified owner rulings · executes without re-litigation
+
+R1-R7 (2026-08-26T04:20Z · W10 pre-GO) · R8 (2026-08-26T05:20Z · preview allowlist permissive-mode for W10 duration · RESCINDED at wave close per R9) · **R9 (2026-08-26T09:20Z · preview allowlist strict-flip at wave close · verified · fail-closed posture restored)**.
+
+## Standing rules (all remain binding beyond W10 close)
+
+- Tests-first + right-reason receipts (every CP).
+- v7-exact T1 · real facts · drawn-not-blank.
+- REFERENCE-NOT-COPY (Design Law · A8 · 2026-08-19).
+- Purpose gate on every crossing until Canon 3 §24 strip ceremony (owner act · not fired at W10 close · deferred to owner).
+- Contract + snapshot + parity map + hardcoded numeric assertion same-commit DoD (FL-P4-W8-02).
+- Pod-shell + spine same-commit mount DoD (FL-P4-W7-02).
+- Post-compaction re-read discipline (FL-P4-W9-02).
+- Correction-discipline in-band (Owner Ruling 2026-08-19 §6 additive-only).
+- Host-identity drill attribution: `drill_actor:*` prefix · no drill-mode switch (R1).
+- **Composite % same-commit DoD extension**: any commit touching `tools/w10_cp9_composite_recompute.py` MUST touch `test_w10_cp9_composite_lock.py` in the SAME commit (booked at CP9).
+- No push · local commits only.
+
+## Blocked (awaiting owner)
+
+- **No CP is blocked**. W10 is closed.
+- Owner may open W11 (post-W10 items above) or ratify a different next-wave scope.
+
+## Cycle status (2026-08-26T08:35Z · W10 CP8 CLOSED · CP9 opening) [ARCHIVED · superseded by 2026-08-26T09:30Z]
 
 - **W10 CP8 · Governance / Watch / Grey-Mirror frontends · CLOSED** at 7/7 backend + 25/25 frontend + 28/28 CP-anchor cohort green.
   - **Backend (thin read-only state rollups · REFERENCE-NOT-COPY)**:

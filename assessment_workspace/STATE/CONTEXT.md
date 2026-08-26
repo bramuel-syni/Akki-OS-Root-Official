@@ -4,6 +4,35 @@
 
 - **REFERENCE-NOT-COPY** — Owner Ruling 2026-08-19 (DECISIONS.md · A8/T8-part). Any trace, preview, embed, walk, or adjacent-render resolves through the governed read path with entitlement checked at the point of access; never an embedded copy, never an in-place reveal. Applies estate-wide (traces, previews, embeds, walks — every future adjacent-render pattern). The operative principle is the SINGLE CHOKEPOINT: an in-place content reveal is a second read path that never re-checks entitlement at point of access. The correction supersedes any reasoning based on "envelope destroyed at crossing" — the envelope covers a single de-identification mapping, not the general reveal question. Reads across the wave plan onto W3 (Data Shield telemetry), W5 (refusal-card evidence links), W6 (Cost Ledger lever attribution), W7 (Model Admission acceptance evidence), W8 (rules-updates rule-tree), W9 (Walk-this ×∞) — recorded as a cross-wave gate.
 
+
+## W10 · Completion Wave · CLOSED · 2026-08-26T09:30Z
+
+**Composite (authoritative · Owner correction #4)**: **52.49 %** · mechanism 54.45 % (280.4 / 515) + interface 47.93 % (27.8 / 58) · blend 0.7×mech + 0.3×iface. Method + delta enumeration in `tools/w10_cp9_composite_recompute.py`; locked by `test_w10_cp9_composite_lock.py` (5/5 green).
+
+**Wave-close cohort**: **261/261 green** across 43 test files (W7 CP1..CP7 + W8 CP1..CP6 + W9 CP1..CP5 + W10 CP1..CP9 + all frozen contracts + parity map + composed-conclusion count). Log at `phase0/drill_receipts/20260826T091500Z_w10_wave_close_green.log`.
+
+**Extraction-Akki HEAD**: `programme/track-a` @ `d4ba30c` (CP8) → CP9 close commit pending. **Assessment-master HEAD**: `a809fe7` (CP8) → close commit pending.
+
+**Delivered**:
+- Canon 8 mechanism fabric fully wired: Ruling-1 firing drill (CP1) · Grey Mirror §15-§16 BUILD not LIFT (CP2) · Watch drills + §32.8 no-self-cert fitness (CP3) · Reserved-Decisions §19 + §32.6 no-machine-execution panel (CP4) · Witness fabric §9 + §33 with tamper alarms (CP5).
+- Doc 14 §33 CA1-005 whitepaper drafter BUILD not LIFT · 150-LOC lid honored (CP6) · same-commit DoD respected (parity 58→59).
+- Doc 14 §§21-45 register expansion · 4 rows → 28 rows · 24 new rows anchored to Canon 4 §§ verbatim (CP7).
+- Governance + Watch + Grey-Mirror React frontends wired at /governance, /watch, /grey-mirror · substantive DOM asserts · 32/32 CP8 tests green · HTML snapshots banked for owner-side rendering (CP8).
+- **/api/openapi.json** now serves at 200 (49 paths · docs_url/redoc_url disabled · response-boundary sanitizer intact) — cheap CP9 optional fix.
+
+**R9 owner ruling (2026-08-26T09:20Z)**: preview allowlist strict-flip verified — owner IP 41.90.172.155 admits · unknown IP (203.0.113.99) refuses with sentence + 403 · no-XFF refuses. R8 permissive mode is RESCINDED at wave close per its own sunset clause. Fail-closed posture restored.
+
+**Interleaved query answered informationally (2026-08-26T08:20Z)**: audio-trainer × GPU readiness — NOT BUILT (perception-side ASR/diarisation wired but no training pipeline · GPU connect real 7-stage but `.env` currently points at mock SSH · trainer deferred beyond W10 · ~W10-scale wave of its own if pursued). No CP scope change.
+
+**Outstanding beyond W10 (all non-blocking to close)**:
+- FL-P4-W8-01 · CA1-N2 + CA1-N3 (14 policy questions · breach + erasure).
+- FL-P4-W9-01 · CA1-N5 (1 policy question · continuity attestation).
+- Doc14-020 · Canon 4 §38 rights-unclear grammar · OPEN-SLOT (N-series pattern · new at W10 CP7).
+- Audio trainer + real GPU credential wiring (informational only · not booked).
+
+**Design laws unchanged**: REFERENCE-NOT-COPY still binding · every W10 surface renders with source_path citations · raw signing material sanitized out at every response boundary (Owner Order 2026-08-25 §4 · verified via `test_endpoints_never_return_raw_credentials_or_secrets`).
+
+
 **Last updated:** 2026-08-19 · Owner Data-API delivery cycle CLOSED · first DATA connection LIVE for `digicow_live` + `ndume` on cluster `db-restore-603-cluster` (eu-west-1) via RDS Data API · engine detected `aurora-mysql` (MySQL 8.0.42 / Aurora MySQL 3.10.3) · 235 tables inventoried (125 + 110), top-25 by rows per DB banked with approximate row counts (`information_schema.tables`), 5 structural reads per DB (column names + types only — **zero record contents read**) · programme/track-a HEAD `746dece` (was `f87b769`) · assessment-repo HEAD pending this-cycle commit (was `e2b5efe`) · engine-detect production defect fixed tests-first (FL-P2-24 CLOSED · +7 gating assertions, 141 total backend cohort green, 0 regressions) · secret sweep hit_count=0 on /app, /tmp, /var/log/supervisor, /root, /etc, both git worktrees, both git histories, /root/.emergent/tool_outputs, /root/.emergent/automation_output.
 
 

@@ -73,7 +73,19 @@ s3_client = boto3.client(
 TIGRIS_BUCKET = os.environ.get('TIGRIS_BUCKET', 'default-bucket')
 
 # Create the main app without a prefix
-app = FastAPI()
+app = FastAPI(
+    # W10 CP9 · expose OpenAPI at /api/openapi.json so it routes through
+    # the ingress /api/* rule (owner tester contract-discovery seam).
+    # Docs / redoc UIs stay disabled — no HTML endpoints, just the JSON
+    # spec. Response boundary sanitizers (Owner Order 2026-08-25 §4)
+    # continue to hold on the runtime payloads; OpenAPI reflects
+    # Pydantic model shapes only, which never include raw secrets.
+    openapi_url="/api/openapi.json",
+    docs_url=None,
+    redoc_url=None,
+    title="Akki · Extraction-Akki (programme/track-a)",
+    version="w10-cp9",
+)
 
 # Create a router with the /api prefix
 api_router = APIRouter(prefix="/api")
