@@ -21,9 +21,11 @@
   - Locked by pytest at `backend/tests/invariants/test_w10_cp9_composite_lock.py` (5/5 green · same-commit DoD extension applied to the composite dashboard).
 - **261/261 W10 wave-close cohort GREEN** (43 test files · pytest) at `phase0/drill_receipts/20260826T091500Z_w10_wave_close_green.log`. All CP1-CP9 tests + all W7/W8/W9 CP tests + all frozen/parity tests · no regression.
 - **32/32 CP8 frontend tests GREEN** (node --test · 25 substantive DOM/HTTP assertions + 7 backend endpoint tests) at `phase0/drill_receipts/20260826T083*.log`.
+- **17/17 strict-flip mode-matrix GREEN** (node --test · both surfaces · both ports · 5 endpoints × 3 probes) at `phase0/drill_receipts/20260826T094500Z_w10_strict_flip_matrix_green.log`. Regression proof added post the 2026-08-26T09:33Z ratification-withheld finding (external tester caught the SPA surface still permissive after the initial flip missed the frontend supervisor restart).
+- **Wave-close test-file count**: 43 pytest files (261 assertions) + 2 node test files (25 + 17 = 42 assertions) = **45 test files · 303 assertions**.
 - **9 W10 checkpoints CLOSED** (CP1 → CP9). Ruling-1 precondition (b) demonstrated at CP1 · rendered live on Watch surface.
 - **Contract parity 58 → 59** (WhitepaperDraft_v0 · same-commit DoD honored via CONTRACT_TO_SNAPSHOT map + hardcoded numeric assertion at composed_conclusion_v0_contract_frozen).
-- **Preview allowlist strict-flip verified** (R9 · owner IP 41.90.172.155 admits · unknown IP refuses · no-XFF refuses · banked receipt `20260826T092000Z_w10_strict_flip_verified.log`).
+- **Preview allowlist strict-flip verified across BOTH surfaces** (R9 · 09:20Z initial + 09:45Z corrected · after ratification-withheld finding that original flip missed the SPA surface · frontend supervisor restart added to flip procedure · 17-invariant mode-matrix regression proof banked · receipt `20260826T094500Z_w10_strict_flip_verified_both_surfaces.log` supersedes `20260826T092000Z_w10_strict_flip_verified.log`).
 - **Optional cheap fix landed**: `/api/openapi.json` now serves the FastAPI spec at 200 (49 paths · docs_url/redoc_url disabled · response-boundary sanitizer unchanged; OpenAPI reflects request-body field names by design — no runtime value leaks).
 - **13 W10 commits** on programme/track-a from `19cb02c` (CP1) through `d4ba30c` (CP8) plus CP9 close commit pending.
 

@@ -4,17 +4,17 @@
 
 ## Cycle status (2026-08-26T09:30Z · W10 WAVE CLOSED · no next wave booked)
 
-- **W10 CP9 · Authoritative composite recomputation + wave close + strict flip · CLOSED**.
+- **W10 CP9 · Authoritative composite recomputation + wave close + strict flip · CLOSED** (with mid-flight correction to strict-flip verification).
   - **Composite (authoritative · Owner correction #4)**: **52.49 %** replacing all wobbly running numbers.
     - Mechanism corpus: **54.45 %** (280.4 / 515 · 109 DONE + 46 PARTIAL + 306 REUSABLE + 53 BUILD + 1 OPEN-SLOT).
     - Interface dimension: **47.93 %** (27.8 / 58 · 10 DONE + 2 PARTIAL + 34 REUSABLE + 12 BUILD).
     - Blend: 0.7 × 54.45 + 0.3 × 47.93 = **52.49 %**.
   - **Method**: `tools/w10_cp9_composite_recompute.py` (deterministic · 32 delta entries · every delta anchored to canon § + commit SHA).
   - **Locked by pytest**: `backend/tests/invariants/test_w10_cp9_composite_lock.py` (5/5 green).
-  - **Wave-close cohort**: **261/261 green** across 43 test files at `phase0/drill_receipts/20260826T091500Z_w10_wave_close_green.log`.
-  - **R9 strict flip verified**: owner IP 41.90.172.155 → 200 · unknown 203.0.113.99 → 403 · no-XFF → 403. Receipt at `phase0/drill_receipts/20260826T092000Z_w10_strict_flip_verified.log`. R8 (permissive) rescinded per its own sunset clause.
+  - **Wave-close cohort**: **261/261 pytest** + **42 node** = 303 assertions across 45 test files. Receipts at `20260826T091500Z_w10_wave_close_green.log` (pytest 261/261) + `20260826T083100Z_w10_cp8_frontend_green.log` (node 25/25) + `20260826T094500Z_w10_strict_flip_matrix_green.log` (node 17/17).
+  - **R9 strict flip · CORRECTED (09:45Z)**: initial 09:20Z flip restarted only backend · SPA surface stayed permissive · external tester (09:33Z) caught GET / returning 200. Fix: restart frontend + add 17-invariant mode-matrix node test that reads ALLOWLIST_MODE from `/app/backend/.env` single-source-of-truth and probes BOTH surfaces at BOTH ports across 5 endpoints × 3 probe classes. Full matrix verified in both directions. Updated flip procedure: `sudo supervisorctl restart backend frontend` (BOTH · not just backend). Receipt `20260826T094500Z_w10_strict_flip_verified_both_surfaces.log` supersedes `20260826T092000Z_w10_strict_flip_verified.log`. R9 stands.
   - **Cheap optional fix landed**: `/api/openapi.json` serves 200 (49 paths · docs_url/redoc_url disabled · response-boundary sanitizer intact).
-  - **W10 close report banked**: `notes/w10_close_report.md` (W8/W9 format · 12 sections).
+  - **W10 close report banked**: `notes/w10_close_report.md` (W8/W9 format · 12 sections · updated §1 to reflect corrected R9 verification).
 - **W10 delivered**:
   - Canon 8 mechanism fabric fully wired (CP1-CP5): Ruling-1 drill · Grey Mirror BUILD · Watch drills + fitness · Reserved-Decisions Panel · Witness fabric + tamper alarms.
   - Doc 14 §33 CA1-005 whitepaper drafter BUILD (CP6 · parity 58→59).

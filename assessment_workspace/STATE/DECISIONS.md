@@ -1492,20 +1492,40 @@ Ratifications on record. CP1 executes on GO.
 
 ---
 
-## R9 · Preview allowlist strict-flip at W10 wave-close (2026-08-26T09:20Z)
+## R9 · Preview allowlist strict-flip at W10 wave-close (2026-08-26T09:20Z · CORRECTED 2026-08-26T09:45Z)
 
 **Trigger**: Owner CP9 GO 2026-08-26T08:45Z step 3 — "Allowlist flip: revert `ALLOWLIST_MODE` permissive → strict, verify owner IP 41.90.172.155 admits and unknown IP refuses, record the flip as an owner ruling in `STATE/DECISIONS.md`."
 
-**Action taken**:
+**Initial action (2026-08-26T09:20Z · INCOMPLETE)**:
 - `/app/backend/.env` line 20: `ALLOWLIST_MODE=permissive` → `ALLOWLIST_MODE=strict`.
 - `OWNER_ALLOWLIST_IPS=41.90.172.155` preserved unchanged (line 21).
-- `sudo supervisorctl restart backend` completed; middleware picks up new mode at process bootstrap.
+- **Restarted only backend** (`sudo supervisorctl restart backend`) — this was the defect.
+- Original flip receipt `phase0/drill_receipts/20260826T092000Z_w10_strict_flip_verified.log` exercised only backend probes at http://127.0.0.1:8001/api/*.
 
-**Verification (banked at `phase0/drill_receipts/20260826T092000Z_w10_strict_flip_verified.log`)**:
-- Probe 1 — Owner IP (`41.90.172.155`) hitting `/api/watch/state` → **HTTP 200** (admits via owner layer per middleware.py lines 150-155).
-- Probe 2 — Unknown IP (`203.0.113.99` · RFC 5737 documentation prefix) → **HTTP 403** + refusal sentence `"This surface answers allowlisted addresses only."` (refuses via layer='none' per middleware.py lines 163-167).
-- Probe 3 — No X-Forwarded-For header (localhost direct) → **HTTP 403** + refusal sentence (topology invariant enforced per middleware.py lines 141-146).
+**Ratification-withheld finding (2026-08-26T09:33Z · external tester)**:
+- `/api/governance/state` → 403 + refusal sentence ✅
+- `/api/openapi.json` → 403 + refusal sentence ✅
+- `GET /` (SPA shell on frontend port) → **HTTP 200 · full SPA HTML rendered** ❌
+- Root cause: craco Node process kept a stale in-memory `ALLOWLIST_MODE=permissive` mirror because `sudo supervisorctl restart frontend` was NOT run at the flip. The middleware code is correct; the operational procedure was incomplete.
 
-**Outcome**: R8 (permissive mode for W10 duration · 2026-08-26T05:20Z) is now RESCINDED at W10 wave-close per its own sunset clause. Preview surface returns to strict fail-closed posture. Owner IP retains access through OWNER_ALLOWLIST_IPS layer without re-litigation.
+**Corrected action (2026-08-26T09:36Z)**:
+- `sudo supervisorctl restart frontend` executed — craco reloaded /app/backend/.env into process.env, ALLOWLIST_MODE=strict now honored on the SPA surface.
 
-**Recorded**: R9 · immutable · executes without re-litigation.
+**Regression proof added (2026-08-26T09:40Z)**:
+- `/app/frontend/plugins/ip-allowlist/__tests__/w10_wave_close_strict_flip_matrix.test.js` (17 tests · mode-aware · reads ALLOWLIST_MODE from `/app/backend/.env` single source of truth).
+- Probes BOTH surfaces at BOTH ports across 5 endpoints (frontend `/` · `/governance` · `/favicon.ico` · backend `/api/governance/state` · `/api/openapi.json`) × 3 probe classes (owner IP · unknown IP · no XFF).
+- Full matrix verified in both directions: strict green · permissive green · restored to strict green.
+
+**Verification receipt (2026-08-26T09:45Z · supersedes 20260826T092000Z)**:
+- `phase0/drill_receipts/20260826T094500Z_w10_strict_flip_verified_both_surfaces.log` — 17/17 mode-matrix invariants green under strict.
+
+**Corrected flip procedure (locked into wave-close checklist for any future flip)**:
+1. Edit `/app/backend/.env` line 20.
+2. `sudo supervisorctl restart backend frontend` — **BOTH services** (not just backend). The craco mirror is process-scoped; only a Node restart re-reads it.
+3. Run `node --test /app/frontend/plugins/ip-allowlist/__tests__/w10_wave_close_strict_flip_matrix.test.js`.
+4. Bank the receipt with BOTH surfaces exercised.
+
+**Outcome**: R8 (permissive mode for W10 duration · 2026-08-26T05:20Z) is RESCINDED at W10 wave-close per its own sunset clause. Both surfaces now honor strict fail-closed posture. Owner IP retains access through OWNER_ALLOWLIST_IPS layer without re-litigation.
+
+**Recorded**: R9 · immutable · executes without re-litigation. Ratification pending owner external re-verification.
+
