@@ -2032,3 +2032,53 @@ next CP boundary (CP-C3 or CP-C4 target). Not blocking.
 
 **Recorded**: Wave C fully closed at `9544237`. Awaiting owner ratification. Standing task: SSH key delivery unblocks Wave B live GPU run.
 
+
+---
+
+## 2026-08-26T12:37Z · WAVE C RESIDUAL DEFECT CLOSED · training-close chokepoint fix + stranded-run backfill
+
+**Commit** · `4aedb35` (Extraction-Akki `programme/track-a`).
+
+### Owner-flagged defect (2026-08-26T~12:25Z verbatim)
+
+> 'the run-close→whitepaper chain is still broken on the LIVE path. Every run in /api/training-runs/state carries whitepaper_ref = "whitepaper_draft_error:…"; a fresh well-formed close returned "whitepaper_draft_error:cites_model_admission_id 'moac_run-…' not on record. Doc 14 §33: cite the admission." The drafter works when an admission exists (wp_run_gov-1.json proves it) — the gap is that EMIT-MOAC never registers the MOAC card as a model_admission record, so close can never cite it.'
+
+### Root cause
+
+My initial CP-C2 warn-followup fix (`9544237`) side-wrote the moac card into MODEL_ADMISSION_RECORDS_DIR at emit-moac time. This violated the chokepoint discipline: `services.model_admission.ceremony.run_admission` is the ONLY legitimate write path for admission records (it enforces purpose-named estate-sample, training-lineage-resolved, and six-floor checks; it stamps ca1_011_watch_seam; it fires register_model). External verifiers using fresh MODEL_ADMISSION_RECORDS_DIR would find no admission on record and the drafter would refuse.
+
+### Fix landed
+
+- `backend/services/training_runner/runner.py` · new `_fire_admission_ceremony_for_run()` builds a Doc 14 §33 `ModelAcceptanceCard_v0` from the trainer's six-check MOAC card and calls `services.model_admission.ceremony.run_admission` (the chokepoint). Mock/floor-failing values keep every `measured_value=0.0` against unreachable floors (0.99) so the ceremony refuses on step 4 (`moac_criterion_below_floor`) — admission record written, outcome=`refused`, acceptance stays impossible per Doc 17 line 101. The prior side-write in `emit_moac_for_run` is removed.
+- `close_run` cites the deterministic `candidate_model_id = adapter_<safe_run>` the ceremony writes into the admission filename — substring match in `draft.py::_admission_exists` resolves cleanly.
+- `backend/tests/invariants/test_emit_moac_chokepoint_admission.py` (new · 5 tests) gates the discipline.
+
+### Stranded-run backfill
+
+Prior state:
+- `trn/wp_close_resolution_test` · `whitepaper_draft_error:9 validation errors for WhitepaperDraft_v0...`
+- `run-1787744079` · `whitepaper_draft_error:cites_model_admission_id 'moac_run-...' not on record...`
+
+Backfill routine (one-shot python script · receipt at `phase0/drill_receipts/20260826T123500Z_w11c_backfill_stranded_runs.log`):
+1. Mint `BaselineLine_v0` (pre-fix runs never got one).
+2. Fire `ceremony.run_admission` (outcome=refused, acceptance stays impossible).
+3. Draft `WhitepaperDraft_v0` citing the admission (id: `wp_backfill_<safe_run>`).
+4. `persistence.upsert_run` replaces the whitepaper_ref cleanly (thin-kernel).
+
+Post-backfill state on live pod:
+- `trn/wp_close_resolution_test` → `whitepaper:wp_backfill_trn_wp_close_resolution_test`
+- `run-1787744079` → `whitepaper:wp_backfill_run-1787744079`
+
+### Live-pod verification (receipt `20260826T123700Z_w11c_chokepoint_live_pod_curl_green.log`)
+
+1. `GET /api/training-runs/state` · 0 `whitepaper_draft_error` strings.
+2. Fresh full journey admit→open→execute→emit-moac→close on `run-live-chokepoint-1787747166` → `whitepaper_ref='whitepaper:wp_run-live-chokepoint-1787747166'`.
+3. `GET /api/whitepapers` resolves the wp_ id.
+4. Final `/api/training-runs/state` · 0 `whitepaper_draft_error` strings.
+
+### Test cohort
+
+169/169 pytest invariants across the Wave A/B/C cohort (5 new chokepoint tests + 164 prior · zero regressions). Ship-Manifest DoD respected (`_fire_admission_ceremony_for_run` is a private helper; no new endpoints required; the mount point unchanged).
+
+**Recorded**: Wave A/B/C block complete at Extraction-Akki `4aedb35`. Awaiting owner ratification.
+

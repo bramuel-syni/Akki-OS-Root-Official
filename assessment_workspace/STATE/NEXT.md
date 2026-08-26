@@ -55,17 +55,18 @@ Failure to follow this sequence = paraphrase-not-spec failure class the owner ex
 
 Update this section at every CP/R-step close.
 
-- **Current wave**: WAVE C **CLOSED · 2026-08-26T12:25Z** — Watch / Grey-Mirror mechanism built end-to-end
-- **Current step**: All five CPs closed + CP-C2 warn-followup closed. Wave C complete.
-- **Exact next action**: Await owner ratification of Wave C composite. Standing task: SSH key delivery unblocks Wave B live GPU run.
-- **Wave C commit ledger** (complete):
+- **Current wave**: WAVE C **COMPLETE + external residual defect closed · 2026-08-26T12:37Z** — Watch/Grey-Mirror mechanism + governed training-close chain fully built end-to-end
+- **Current step**: All five CPs + CP-C2 warn-followup + Wave-C-completion chokepoint fix + stranded-run backfill · all closed.
+- **Exact next action**: Await owner ratification of Wave A-C as a block.
+- **Wave C commit ledger** (complete · Extraction-Akki `programme/track-a`):
   - **CP-C1** · `eff3fdb` · Doc 8 lines 30,31,99,136,183 closed-grammar contracts · 41/41 green
-  - **CP-C2** · `02a2a01` · Doc 8 lines 28,30,31,99 Macho verdict emitter + Mkono deterministic verdict→action mapper · 25/25 green
-  - **CP-C3** · `870df67` · Doc 8 lines 127,136,183 MirageArtifact isolated store + Mark dye-pack · 26/26 green · parity 70→71
-  - **CP-C4** · `4c485ae` · Doc 8 line 170 External witness · peer attestation + watchdog independence + standing break-in test · 14/14 green
-  - **CP-C5** · `6de41a9` · Console honesty · Grey Mirror surfaces newly-real mechanism state · 5/5 green
-  - **warn-followup** · `9544237` · Doc 14 §33 citation invariant on training-run close · 5/5 green
-- **Wave C aggregate**: **164/164 pytest invariants green** · zero regressions · every gating spec quoted verbatim from canon · Ship-Manifest DoD triple honored on every CP. curl
+  - **CP-C2** · `02a2a01` · Doc 8 lines 28,30,31,99 Macho + Mkono · 25/25 green
+  - **CP-C3** · `870df67` · Doc 8 lines 127,136,183 MirageArtifact + Mark · 26/26 green · parity 70→71
+  - **CP-C4** · `4c485ae` · Doc 8 line 170 External witness · 14/14 green
+  - **CP-C5** · `6de41a9` · Console honesty · 5/5 green
+  - **warn-followup** · `9544237` · Doc 14 §33 boundary refusal · 5/5 green
+  - **wave-C-completion** · `4aedb35` · Chokepoint admission via ceremony.run_admission + stranded-run backfill · 5/5 green + live-pod clean
+- **Wave C aggregate**: **169/169 pytest invariants** across the Wave A/B/C cohort · zero regressions · every gating spec quoted verbatim from canon · Ship-Manifest DoD triple honored on every CP · live pod clean (zero draft-error strings across all runs). curl
 - **CP-C2 warn-followup (owner-noted 2026-08-26T~11:42Z · queued)**:
   - `POST /api/training-runs/{id}/close` returns 200 but `whitepaper_ref="whitepaper_draft_error:'verdict_summary'"` — KeyError in whitepaper drafter path.
   - Fix tests-first: assert close response carries a real `whitepaper_ref` resolving to on-disk draft per Doc 14 §33 citation invariant.
