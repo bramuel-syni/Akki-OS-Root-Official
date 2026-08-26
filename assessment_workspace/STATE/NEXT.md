@@ -1,8 +1,66 @@
 # NEXT.md - Exact next actions
 
-**Last updated:** 2026-08-26T04:25Z · **W9 CLOSED (with corrections FL-P4-W9-02) · W10 pre-GO orchestrator ratifications R1-R7 logged · awaiting owner W10 GO** · Extraction-Akki HEAD `7027e16` · pod-shell `/app` HEAD `0b227d9` · master HEAD pending ratifications commit.
+**Last updated:** 2026-08-26T06:30Z · **W10 CP6 CLOSED** · Extraction-Akki HEAD pending commit (CP6 · 3bca4a8 → next) · master HEAD unchanged.
 
-## Cycle status (2026-08-26T04:25Z · W9 CLOSED · 7 orchestrator ratifications logged · W10 CP1 primed)
+## Cycle status (2026-08-26T06:30Z · W10 CP6 CLOSED · CP7 opening)
+
+- **W10 CP6 · CA1-005 whitepaper drafter · CLOSED** at 13/13 CP-cohort green.
+  - Contract: `backend/contracts/whitepaper_draft.py` (WhitepaperDraft_v0 · frozen · extra=forbid · 150-LOC lid honored).
+  - Service: `backend/services/whitepapers/draft.py` (Doc 14 §33 CITATION invariant enforced · admission + baseline both must be on record · append-only per §43).
+  - Tests: `backend/tests/invariants/test_w10_cp6_whitepaper_draft.py` (7/7) + `test_whitepaper_draft_frozen.py` (1/1).
+  - Frozen snapshot: `whitepaper_draft_v0.contract_snapshot.json` on disk · canonicalized via `services.canonical_projection.schema.canonicalize`.
+  - Parity map: `CONTRACT_TO_SNAPSHOT` extended with `whitepaper_draft.py → whitepaper_draft_v0.contract_snapshot.json` (parity 58→59).
+  - Hardcoded numeric assertion: `test_composed_conclusion_v0_contract_frozen.py::test_composed_conclusion_snapshot_parity_at_18` bumped 58 → 59 with W10 CP6 docstring entry.
+  - Receipts: red `phase0/drill_receipts/20260826T060000Z_w10_cp6_right_reason_fail.log` (banked prior session) + green `20260826T063000Z_w10_cp6_green.log` (this session · 13/13).
+  - Cohort re-verification: 102/102 across all W10 CPs + full frozen/parity cohort — no regression.
+  - Same-commit DoD (FL-P4-W8-02) satisfied: contract + snapshot + parity map + hardcoded count assertion + tests all move in one commit.
+- **BUILD not LIFT confirmed**: Executive-Core `deck_*.py` is a deck-generation pipeline, not a whitepaper drafter (per prior W10 grounding brief re-verification).
+- **Stop-and-report to owner**: CP6 status paragraph delivered. CP7 opens on owner ack.
+
+## W10 checkpoint status
+
+| CP | Scope | Status | Actual LOC |
+|----|-------|--------|-----------:|
+| CP1 | Ruling-1 firing drill · Canon 8 §27 | CLOSED · 7/7 green | ~200 |
+| CP2 | Grey Mirror mirage machinery · Canon 8 §15-§16 · BUILD | CLOSED · 25/25 green · parity 52→55 | ~800 |
+| CP3 | Watch drills + fitness accounting · Canon 8 §25-§28 | CLOSED · 12/12 green | ~400 |
+| CP4 | Reserved-decisions panel · Canon 8 §19 | CLOSED · 28/28 green | ~500 |
+| CP5 | Witness fabric full signing · Canon 8 §9 + §33 | CLOSED · 23/23 green · parity 55→58 | ~600 |
+| CP6 | CA1-005 whitepaper drafter · Doc 14 §33 · BUILD · 150-LOC lid | **CLOSED · 13/13 green · parity 58→59** | ~140 |
+| CP7 | Doc 14 §§23-25 remaining 24 rows expansion | pending | — |
+| CP8 | Governance / Watch / Grey-Mirror React views + DOM asserts + HTML snapshots (REFERENCE-NOT-COPY) | pending | — |
+| CP9 | Authoritative composite % calculation + record + wave close + strict-flip verification | pending | — |
+
+## Awaiting owner (post-CP6)
+
+1. **Owner ack on CP6** (one-paragraph status delivered · CP7 opens on GO).
+2. **9 policy answers** (FL-P4-W8-01 + FL-P4-W9-01 · non-blocking to CP7-CP9 open · land as config zero-code-change per R6).
+
+## Ratified · executes without re-litigation (unchanged from R1-R8)
+
+R1-R7 above · R8 preview allowlist config (2026-08-26T05:20Z · permissive holds through CP9 close · flip-back sequence baked into wave-close checklist).
+
+## Standing rules (all binding through W10 close)
+
+- Tests-first + right-reason receipts (every CP).
+- v7-exact T1 · real facts · drawn-not-blank.
+- REFERENCE-NOT-COPY (Design Law · A8 ratified 2026-08-19).
+- Purpose gate on every crossing until Canon 3 §24 strip ceremony (owner act · projected ready at CP9 close).
+- Contract + snapshot + parity map + hardcoded numeric assertion same-commit DoD (FL-P4-W8-02).
+- Pod-shell + spine same-commit mount DoD (FL-P4-W7-02).
+- Post-compaction re-read discipline (FL-P4-W9-02).
+- Correction-discipline in-band (Owner Ruling 2026-08-19 §6).
+- Host-identity drill attribution: `drill_actor:*` prefix · no drill-mode switch (R1).
+- STATE/NEXT.md always carries exact resume point.
+- Checkpoint commits at every green section.
+- No push; local commits only.
+
+## Blocked (awaiting)
+
+- Owner ack on CP6 close (one-paragraph status delivered).
+- Owner rulings on 9 policy questions (non-blocking to CP7 open · load-bearing before N-series + continuity attestations FIRE live records).
+
+## Cycle status (2026-08-26T04:25Z · W9 CLOSED (with corrections FL-P4-W9-02) · W10 pre-GO orchestrator ratifications R1-R7 logged · awaiting owner W10 GO) [ARCHIVED · superseded by 2026-08-26T06:30Z]
 
 - **W9 CLOSED** at 416/416 wave-close cohort green (63 files).
 - **FL-P4-W9-02 opened + closed at open** · new post-compaction discipline ratified.

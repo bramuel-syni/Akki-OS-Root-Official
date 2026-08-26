@@ -1458,3 +1458,33 @@ Unchanged binding rules from prior owner ratifications:
 - **Owner 9 policy answers** (FL-P4-W8-01 + FL-P4-W9-01 · already carried by owner · non-blocking to W10 open).
 
 Ratifications on record. CP1 executes on GO.
+
+---
+
+## 2026-08-26T05:20Z · OWNER · Preview allowlist config decision (interleave · W10 in progress)
+
+### R8 · Preview surface owner-access config
+
+**Verbatim (owner):**
+> 1. Keep ALLOWLIST_MODE=permissive on the preview surface for the remainder of the W10 build. All decisions remain logged.
+> 2. Bank the owner's IP now as config: add 41.90.172.155 to OWNER_ALLOWLIST_IPS so the flip back is seamless.
+> 3. Add to the W10 wave-close checklist: at wave close, flip preview back to ALLOWLIST_MODE=strict (owner IP already allowlisted), verify owner IP admits and unknown IPs block, and record the flip in STATE/DECISIONS.md as an owner ruling.
+
+**Binding effects:**
+- **/app/backend/.env** now carries `ALLOWLIST_MODE=permissive` + `OWNER_ALLOWLIST_IPS=41.90.172.155` (banked 2026-08-26T05:20Z).
+- **Permissive mode holds for the remainder of W10 build** (approx. through CP9 close). Every decision continues to be logged (`ip_allowlist_decision decision=admit mode=permissive layer=permissive client_ip=... path=...`).
+- **Owner IP 41.90.172.155 is on record as the owner-layer entry** · attributed to `layer=owner` in strict-mode admits.
+- **Preview verified live** 2026-08-26T05:20Z: `/` returns HTTP 200 (React app HTML) and `/api/deliverables` returns HTTP 200. Owner can load the app.
+- **W10 wave-close checklist** now includes the flip-back sequence (see w10_grounding_brief.md §11 addendum).
+
+**Preview surface mechanism scope**:
+- **Backend** (`services.ip_allowlist.middleware`): 33/33 tests green including 17 W10 owner-access tests + 16 preserved 2026-08-14 tests.
+- **Frontend** (`frontend/plugins/ip-allowlist/check.js` + `middleware.js`): 26/26 node --test green including 14 W10 owner-access tests + 12 preserved 2026-08-14 tests.
+- **craco.config.js** mirrors OWNER_ALLOWLIST_IPS + ALLOWLIST_MODE from /app/backend/.env into process.env at dev-server bootstrap.
+
+**Awaiting at W10 CP9 wave-close** (per this ruling):
+- Flip `/app/backend/.env` `ALLOWLIST_MODE=permissive` → `ALLOWLIST_MODE=strict`.
+- Restart backend + frontend supervisors.
+- Curl-verify: allowed IP 41.90.172.155 admits; unknown IP (9.9.9.9) refused with exact sentence + 403 + text/plain.
+- Bank verification receipt to phase0/drill_receipts/.
+- Log the flip as an owner ruling in DECISIONS.md.
