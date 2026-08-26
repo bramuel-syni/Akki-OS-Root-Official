@@ -1,0 +1,34 @@
+{
+  "compiled_at": "2026-08-26T07:50:27.717501+00:00",
+  "objective_id": "obj/digicow/ussd-generation",
+  "per_stratum": [
+    {
+      "B": 1,
+      "E": 1,
+      "I": 0,
+      "stratum_id": "language.sw"
+    },
+    {
+      "B": 3,
+      "E": 4,
+      "I": 1,
+      "stratum_id": "language.sw+en"
+    },
+    {
+      "B": 2,
+      "E": 3,
+      "I": 1,
+      "stratum_id": "channel.ussd"
+    }
+  ],
+  "schemes": [
+    {
+      "id": "text_gen.core",
+      "named_failure": "the model produces text that does not match USSD 160-char and menu-mode conventions"
+    },
+    {
+      "id": "code_switch.sw_en",
+      "named_failure": "entity boundaries break at code-switch points"
+    }
+  ]
+}
