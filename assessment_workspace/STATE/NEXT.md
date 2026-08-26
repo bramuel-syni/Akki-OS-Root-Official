@@ -55,18 +55,44 @@ Failure to follow this sequence = paraphrase-not-spec failure class the owner ex
 
 Update this section at every CP/R-step close.
 
-- **Current wave**: WAVE C **COMPLETE + external residual defect closed · 2026-08-26T12:37Z** — Watch/Grey-Mirror mechanism + governed training-close chain fully built end-to-end
-- **Current step**: All five CPs + CP-C2 warn-followup + Wave-C-completion chokepoint fix + stranded-run backfill · all closed.
-- **Exact next action**: Await owner ratification of Wave A-C as a block.
-- **Wave C commit ledger** (complete · Extraction-Akki `programme/track-a`):
-  - **CP-C1** · `eff3fdb` · Doc 8 lines 30,31,99,136,183 closed-grammar contracts · 41/41 green
-  - **CP-C2** · `02a2a01` · Doc 8 lines 28,30,31,99 Macho + Mkono · 25/25 green
-  - **CP-C3** · `870df67` · Doc 8 lines 127,136,183 MirageArtifact + Mark · 26/26 green · parity 70→71
-  - **CP-C4** · `4c485ae` · Doc 8 line 170 External witness · 14/14 green
-  - **CP-C5** · `6de41a9` · Console honesty · 5/5 green
-  - **warn-followup** · `9544237` · Doc 14 §33 boundary refusal · 5/5 green
-  - **wave-C-completion** · `4aedb35` · Chokepoint admission via ceremony.run_admission + stranded-run backfill · 5/5 green + live-pod clean
-- **Wave C aggregate**: **169/169 pytest invariants** across the Wave A/B/C cohort · zero regressions · every gating spec quoted verbatim from canon · Ship-Manifest DoD triple honored on every CP · live pod clean (zero draft-error strings across all runs). curl
+- **Current wave**: WAVES A + B + C **RATIFIED AS A BLOCK** by owner 2026-08-26T~12:40Z · HOLDING at ready state.
+- **Current step**: **HOLD**. No code changes until owner rules on either (a) SSH key arrival OR (b) Wave D GO.
+- **Exact next action (pre-authorized · execute on arrival)**:
+  - **(a) SSH key path** — Live GPU sequence:
+    1. `chmod 600 <key>` on the delivered private key.
+    2. `AKKI_GPU_SSH_PRIVATE_KEY_PATH=<path>` set in `/app/backend/.env`.
+    3. `GPU_CONNECT_MODE=real` env flip.
+    4. Hardware fact sheet probe · `nvidia-smi` + CUDA version + PyTorch build.
+    5. CUDA / PyTorch install ceremony (owner-ratified).
+    6. First live governed training run on sealed DigiCow set (fresh verification bench).
+    7. Real MOAC card (mocked=False on all six criteria).
+    8. Whitepaper drafted from a real admission (`accept_for_service=True` path becomes possible).
+    9. Stop-and-report with hardware fact sheet + live run outcome.
+  - **(b) Wave D path** — reusable mass lift (~150 REUSABLE rows · Docs 04-08 / 13 / 15 / 16). Await explicit owner GO before writing Wave D code.
+
+- **Wave A/B/C ratified ledger** (Extraction-Akki `programme/track-a` · workspace `master`):
+  - **HEAD (Extraction-Akki)**: `4aedb35`
+  - **HEAD (workspace)**: `3aa1c90`
+  - **Wave A**: 4/4 external PASS at close · closed_at prior session.
+  - **Wave B**: 4/4 external PASS (final re-verification at `75b7b1e`) · 182/182 green at close.
+  - **Wave C**: 3/4 external PASS at `9544237` · **3/3 PASS** at `4aedb35` after ceremony-chokepoint fix + stranded-run backfill · 169/169 green at close.
+  - **Waves A-C** aggregate: **169/169 pytest invariants** across the ratified cohort · zero regressions · Ship-Manifest DoD triple honored on every CP · live-pod clean.
+
+- **Preliminary post-A-C composite %**: **≈ 59.5 % ±1pp** (reporting number · authoritative lock ceremony deferred to Wave F as planned). Delta trace recorded in STATE/DECISIONS.md `2026-08-26T12:45Z · WAVES A-C RATIFIED AS A BLOCK`.
+
+- **Standing invariants (unchanged)**:
+  - Anti-Compaction Rule: first action of every session = re-read STATE/NEXT.md + last 200 lines STATE/DECISIONS.md + `notes/waveC_grounding_brief.md`.
+  - Tests-first is law: RED receipt banked before implementation on every CP.
+  - No paraphrasing: verbatim canon quotes in every gating docstring (Owner Standing Condition 1).
+  - Ship-Manifest DoD triple: runtime-assembler wire + frontend surface + green user-path test in the SAME commit.
+  - `/app/backend/server.py` ↔ `pod_shell/backend/server.py` byte-identical mirror.
+  - `/app/frontend/src/components/*.jsx` ↔ `pod_shell/frontend/src/components/*.jsx` byte-identical mirror.
+  - Local commits only · no `git push`.
+  - Testing: terminal `pytest` + `node --test` only. No testing subagent.
+
+- **Ratified live-pod probe recipe (unchanged)**:
+  - localhost curl with `X-Forwarded-For: 41.90.172.155, 10.0.0.1, 10.0.0.2`.
+  - External URL 403-guarded by allowlist middleware · localhost path is the sanctioned pod probe. curl
 - **CP-C2 warn-followup (owner-noted 2026-08-26T~11:42Z · queued)**:
   - `POST /api/training-runs/{id}/close` returns 200 but `whitepaper_ref="whitepaper_draft_error:'verdict_summary'"` — KeyError in whitepaper drafter path.
   - Fix tests-first: assert close response carries a real `whitepaper_ref` resolving to on-disk draft per Doc 14 §33 citation invariant.

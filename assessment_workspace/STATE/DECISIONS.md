@@ -2082,3 +2082,74 @@ Post-backfill state on live pod:
 
 **Recorded**: Wave A/B/C block complete at Extraction-Akki `4aedb35`. Awaiting owner ratification.
 
+
+---
+
+## 2026-08-26T12:45Z · WAVES A-C RATIFIED AS A BLOCK · owner ceremony
+
+### Owner ratification verbatim (2026-08-26T~12:40Z)
+
+> 'WAVES A, B, C RATIFIED AS A BLOCK. Final external verification 3/3 PASS at 4aedb35: zero whitepaper_draft_error strings, stranded runs backfilled to resolvable whitepaper:wp_ refs, fresh journey clean end-to-end with ceremony admission (outcome "refused" on mocked card, ca1_011_watch_seam present, accept_for_service false). Root-cause honesty on the 9544237 side-write noted and appreciated — the ceremony-chokepoint fix is the right shape. HEADs ratified: Extraction-Akki `4aedb35`, workspace `3aa1c90`.'
+
+### Ratified HEADs
+
+- **Extraction-Akki `programme/track-a`**: `4aedb35`
+- **assessment_workspace `master`**: `3aa1c90`
+
+### Wave-block totals
+
+- **Waves A + B + C aggregate tests**: 169/169 pytest invariants in the Wave A/B/C cohort at ratification (all Watch/Grey-Mirror mechanism + governed training-close chain + ship-manifest DoD).
+- **Every gating spec quoted verbatim** from canon (Owner Standing Condition 1 · 2026-08-26). No paraphrases anywhere in test docstrings.
+- **Ship-Manifest DoD** honored on every CP: runtime-assembler wire + frontend surface + green user-path test, all in the same commit; `/app/backend/server.py` ↔ `pod_shell/backend/server.py` and `/app/frontend/*` ↔ `pod_shell/frontend/*` mirror pairs byte-identical throughout.
+- **Live-pod probe** clean end-to-end (zero `whitepaper_draft_error` strings anywhere in `/api/training-runs/state`; every Watch/Grey-Mirror endpoint verified via localhost curl with owner XFF).
+
+### Preliminary post-A-C composite % (reporting number · lock ceremony deferred to Wave F as planned)
+
+Methodology matches the prior R6 + Wave-B preliminary trace: additive delta over the last locked composite (`52.49 %` from W10 CP9), rounded to ±1pp, using per-row upshifts documented at each CP close.
+
+| Baseline | Post-Wave-B (2026-08-26T11:11Z) | **~56.6 % ±1pp** |
+|---|---|---|
+| Wave C row moves | CP-C1 · Doc 8 §30 (sever_certainty_signal contract) BUILD→DONE-shape | +0.20 pp |
+| | CP-C1 · Doc 8 §31 (closed 6-registry membership) BUILD→DONE-shape | +0.20 pp |
+| | CP-C1 · Doc 8 §99 (four-class action ladder · destroy unrepresentable) BUILD→DONE-shape | +0.20 pp |
+| | CP-C1 · Doc 8 §136 (mirage bleed unrepresentable grammar) BUILD→DONE-shape | +0.20 pp |
+| | CP-C1 · Doc 8 §183 (mirage isolation contract) BUILD→DONE-shape | +0.20 pp |
+| | CP-C2 · Doc 8 §28 (Macho verdict emitter · Mkono deterministic mapper) BUILD→DONE | +0.30 pp |
+| | CP-C3 · Doc 8 §127 (mark / dye pack · minted on conviction) BUILD→DONE | +0.30 pp |
+| | CP-C3 · Doc 8 §136/183 (isolated store mechanism · MirageStoreBleedError) BUILD→DONE | +0.20 pp |
+| | CP-C4 · Doc 8 §170 sentence 1 (peer attestation) BUILD→DONE | +0.20 pp |
+| | CP-C4 · Doc 8 §170 sentence 2 (watchdog independence structural refusal) BUILD→DONE | +0.20 pp |
+| | CP-C4 · Doc 8 §170 sentence 3 (standing break-in test · measurement) BUILD→DONE | +0.20 pp |
+| | CP-C4 · WitnessAttestation_v0 grammar extension (subject_kind + `watch_action`) | +0.05 pp |
+| | CP-C5 · Console honesty (Grey Mirror `unbuilt` markers cleared where mechanism now IS built) | +0.05 pp |
+| Wave C defect closes | warn-followup · Doc 14 §33 boundary refusal on close (KeyError → 422) | +0.15 pp |
+| | wave-C-completion · Doc 14 §33 chokepoint admission via ceremony.run_admission · stranded runs backfilled | +0.30 pp |
+| **Preliminary post-A-C composite** | Sum of deltas ≈ +2.95 pp | **≈ 59.5 % ±1pp** |
+
+Reporting notes (unchanged from Wave B posture):
+- This is a **reporting number**, not a build gate. Tests continue to gate FAITHFUL/DONE verdicts row-by-row.
+- **Authoritative lock ceremony** (W10 CP9 pattern with per-row delta ledger + `tools/*_composite_recompute.py`) remains deferred to **Wave F** as planned.
+- Assumption in the delta ledger above: Wave B baseline `~56.6 %` and per-row weights consistent with the W10 CP9 methodology. If the Wave F re-lock recomputes with a different per-row weight the reported number will shift, but this preliminary is honest to the methodology used at each prior close.
+
+### Post-ratification standing tasks
+
+1. **SSH private key delivery** — unblocks live GPU sequence (pre-authorized: execute on arrival):
+   - `chmod 600` on the delivered key file.
+   - `AKKI_GPU_SSH_PRIVATE_KEY_PATH` env set.
+   - `GPU_CONNECT_MODE=real` env flip.
+   - Hardware fact sheet probe (`nvidia-smi` + CUDA version + PyTorch build).
+   - CUDA / PyTorch install ceremony (owner-ratified).
+   - First governed live training run on sealed DigiCow set (fresh verification bench).
+   - Real MOAC card (mocked=False on all six criteria; ceremony floors set from real curriculum).
+   - Whitepaper drafted from a real admission (`accept_for_service=True` path becomes possible).
+   - **Stop-and-report** with hardware fact sheet + live run outcome.
+
+2. **Wave D** — reusable mass lift (~150 REUSABLE rows · Docs 04-08 / 13 / 15 / 16) awaiting owner GO. **No Wave D code until the owner rules.**
+
+### Ready state
+
+- Backend + frontend up on the live pod.
+- All state files committed. Working tree clean on both branches.
+- Test cohort green.
+- Awaiting SSH key OR Wave D GO. HOLD in place.
+
