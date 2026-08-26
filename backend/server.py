@@ -27,6 +27,7 @@ from routers import connect_gpu as connect_gpu_router  # noqa: E402
 from services.connect_estate.router import router as connect_estate_router  # noqa: E402
 from services.credentials_paste.router import router as credentials_paste_router  # noqa: E402
 from services.connect.rds_data_router import router as rds_data_router  # noqa: E402
+from services.connect.confirm_router import router as connect_confirm_router  # noqa: E402  # W11 R2
 from services.registry_facts.router import router as registry_facts_router  # noqa: E402
 from services.compute_seam.reflection_router import router as compute_reflection_router  # noqa: E402
 from services.chokepoint.router import router as shield_router  # noqa: E402
@@ -48,8 +49,27 @@ from services.trace.router import router as trace_router  # noqa: E402
 from services.governance.router import router as governance_router  # noqa: E402
 from services.watch.router import router as watch_router  # noqa: E402
 from services.grey_mirror.router import router as grey_mirror_router  # noqa: E402
-# W11 CP3 · Doc 17 Multidimensional Training Engine (state + compile + seal).
+# W11 R3 · Canon 5 §14 Shaping Wizard (Phase 7 Stage B-1 LIFT · Canon 5
+# supersedes 2026-08-14 Simplification Ruling per owner 2026-08-26).
+from routers import wizard_operator as wizard_operator_router  # noqa: E402
+# W11 R4.1 · Doc 17 Multidimensional Training Engine (state + compile + seal).
 from services.training.router import router as training_router  # noqa: E402
+# W11 R4.2 · Doc 18 Callable Skill Files HTTP surface.
+from routers import transform_forms as transform_forms_router  # noqa: E402
+# W11 R4.3 · Doc 08 Memory plane HTTP surface.
+from routers import memory as memory_router  # noqa: E402
+# W11 R4.4 · Doc 15-086 CA1-009 Generalised handoff contract surface.
+from routers import handoff as handoff_router  # noqa: E402
+# W11 R4.5 · Doc 10-006 Opportunity briefs pipeline wired to HTTP surface.
+from routers import registry as registry_router  # noqa: E402
+# W11 R4.6 · Doc 14-024 CA1-005 Whitepaper HTTP surface.
+from services.whitepapers.router import router as whitepapers_router  # noqa: E402
+# W11 R4.7 · Doc 15 N-series breach + erasure HTTP surface.
+from services.n_series.router import router as n_series_router  # noqa: E402
+# W11 B · CP4 · Doc 18 A18.7 Skill-file provenance chain HTTP surface.
+from services.skill_files.router import router as skill_files_router  # noqa: E402
+# W11 B · CP6 · Doc 19B §19B.4-6 · EP-1/EP-3 Evidence register + A-4.
+from services.evidence_register.router import router as evidence_register_router  # noqa: E402
 from services.ip_allowlist.middleware import IPAllowlistMiddleware  # noqa: E402
 
 # Deliverables directory (read-only snapshot per Chunk-4 v1.1 delivery logistics)
@@ -184,6 +204,7 @@ app.include_router(connect_gpu_router.router)
 app.include_router(connect_estate_router)
 app.include_router(credentials_paste_router)
 app.include_router(rds_data_router)
+app.include_router(connect_confirm_router)  # W11 R2 · /api/connect/confirm/{draft_id} + /draft/{draft_id}
 app.include_router(registry_facts_router)
 app.include_router(compute_reflection_router)
 app.include_router(shield_router)
@@ -204,8 +225,30 @@ app.include_router(trace_router)
 app.include_router(governance_router)
 app.include_router(watch_router)
 app.include_router(grey_mirror_router)
-# W11 CP3 · Doc 17 Training plane (state · demand-table compile · test-set seal).
+app.include_router(wizard_operator_router.router, prefix="/api")  # W11 R3 · Canon 5 §14
+# W11 R4.1 · Doc 17 Training plane (state · demand-table compile · test-set seal).
 app.include_router(training_router)
+# W11 R4.2 · Doc 18 Callable Skill Files (/api/callable_skill/*, /api/transform/*).
+app.include_router(transform_forms_router.router, prefix="/api")
+# W11 R4.3 · Doc 08 Memory plane (/api/memory/planes/*).
+app.include_router(memory_router.router, prefix="/api")
+# W11 R4.4 · Doc 15-086 handoff (/api/handoff/*).
+app.include_router(handoff_router.router, prefix="/api")
+# W11 R4.5 · Doc 10-006 Registry + Opportunity briefs pipeline
+# (/api/registry/opportunity_briefs, /api/registry/opportunity_briefs/regenerate,
+#  /api/registry/what_you_hold, /api/registry/gap_register, /api/prove/*).
+app.include_router(registry_router.router, prefix="/api")
+app.include_router(registry_router.prove_router, prefix="/api")
+# W11 R4.6 · Doc 14-024 Whitepaper HTTP surface (/api/whitepapers · POST + GET).
+app.include_router(whitepapers_router)
+# W11 R4.7 · Doc 15 N-series (/api/n_series/breach + /api/n_series/erasure).
+app.include_router(n_series_router)
+# W11 B · CP4 · Doc 18 A18.7 Skill-file provenance chain
+# (/api/skill-files/state, /api/skill-files/{skill_id}/provenance).
+app.include_router(skill_files_router)
+# W11 B · CP6 · Doc 19B §19B.4-6 · EP-1 Evidence register + EP-3 A-4
+# (/api/evidence-register/*, /api/claims-validation).
+app.include_router(evidence_register_router)
 
 app.add_middleware(
     CORSMiddleware,

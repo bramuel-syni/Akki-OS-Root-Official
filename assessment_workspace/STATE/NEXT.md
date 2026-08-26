@@ -1,3 +1,97 @@
+# ⛔ ANTI-COMPACTION PIN · READ FIRST EVERY TIME ⛔
+
+**If you are a compaction-restart of the main agent, your FIRST ACTION is:**
+
+1. Read the last 200 lines of `STATE/DECISIONS.md`.
+2. Read the whole of `STATE/NEXT.md` (this file) top-to-bottom.
+3. Read the current wave grounding brief (`notes/waveA_grounding_brief.md`, `waveB_grounding_brief.md`, or `waveC_grounding_brief.md`) if one exists for the wave in progress.
+4. ONLY THEN touch any file, run any command, or reply.
+
+Failure to follow this sequence = paraphrase-not-spec failure class the owner explicitly banned on 2026-08-26.
+
+---
+
+## 🔒 OWNER STANDING CONDITIONS · BINDING FOR ALL WAVES A/B/C · 2026-08-26
+
+### CONDITION 1 · NO PARAPHRASING REQUIREMENTS, EVER
+
+> Every requirement you implement must be built from the VERBATIM spec text, and the verbatim quote (doc + § + exact words) must appear in the gating test's docstring and the drill receipt. If the quote isn't in the test, the test doesn't gate the row.
+>
+> Before starting each wave, write a grounding brief (`notes/waveA_grounding_brief.md` etc.) that QUOTES every requirement in scope verbatim — the brief is assembled from spec text, not from summaries of it. Where any prior brief/register row conflicts with canon text, canon text wins; log the supersession in `DECISIONS.md`.
+>
+> The register compliance rows you touch must quote spec verbatim (per the audit rebase rule).
+
+### CONDITION 2 · ANTI-COMPACTION SAFETY MUST SURVIVE THE WHOLE BUILD
+
+> Hard rule, no exceptions: after ANY context compaction, your FIRST action is to re-read the last 200 lines of `STATE/DECISIONS.md` + the whole of `STATE/NEXT.md` + the current wave grounding brief before touching anything.
+>
+> Keep `STATE/NEXT.md` continuously current: update it at every CP/R-step close AND before any long/risky operation, with: current wave, current step, exact next action, uncommitted file list, and open owner items. Treat it as your crash-recovery ledger.
+>
+> Re-record both owner conditions at the TOP of `STATE/NEXT.md` so they survive every compaction.
+
+### Wave sequence (owner-approved 2026-08-26)
+
+- **WAVE A (in progress)**: R1 → R2 → R3 → R4 → R5 → R6 → R7 (from the 2026-08-26 remediation directive).
+- **WAVE B**: Training engine complete: CP4 → CP5 → CP6 → CP7 → CP8 (LoRA/PEFT + Muon + Critic Seam gating every output + MOAC + cost-ledger metering + whitepaper on close) → audio plane per v1.0 spec (whisper-tiny CI path). GPU-DEPENDENT WORK SEQUENCED LAST — build against mock SSH seam first; flip `GPU_CONNECT_MODE=real` when key arrives.
+- **WAVE C**: Watch/Grey-Mirror mechanism (all 62 Doc 03 BUILD rows): bait mechanism, containment ladder, quarantine copies, external witness signing + tamper alarms, mirage planting/touch detection/severance, Doc03-078 Watch exemption.
+
+### Only halt for
+
+- (a) genuine owner-input blocker that is not config-shaped
+- (b) spec contradiction that cannot be resolved by canon-text precedence
+
+### Standing rules (wave-long)
+
+- Both DoDs from R1 in force on every commit.
+- Tests-first red/green receipts banked.
+- Local commits only, NO push.
+- No secrets echoed.
+- pydantic 2.13.4.
+- Single chokepoint.
+- REFERENCE-NOT-COPY.
+- N-series / A17.12-17 / A18.8 / EP-4 / Doc14-020 remain open config slots — never blockers.
+
+### Current step marker
+
+Update this section at every CP/R-step close.
+
+- **Current wave**: WAVE B (CLOSED · 2026-08-26T11:10Z) — Training engine complete + Audio plane invariants
+- **Current step**: Wave B closed with 177/177 across full invariant cohort at HEAD `3779aee`. Wave C opens next (Watch/Grey-Mirror mechanism build).
+- **Exact next action**: Draft Wave C grounding brief with verbatim Doc 8 (The Watch) + Doc 9 (Grey-Mirror / Mkondo Charter) quotes; then close-and-report Wave B; then open Wave C planning.
+- **Wave A CLOSED**: 11 commits · R1→R7 · all 10 audit §16 status-inflations resolved · external verification 4/4 PASS
+- **Wave B CLOSED** (8 Extraction-Akki commits + 2 workspace commits):
+  - **B · handoff-WARN** · `8f40baa` · handoff artifact path relative to __file__ · 8/8 green + 200 at live pod
+  - **CP4** · `8722e3c` · Doc 18 A18.7 Skill-file provenance chain · Ship-Manifest DoD closure · 34/34 green
+  - **CP5** · `b9ed85b` · Doc 17 A17.3-A17.6 recipe seat + two-arm optimizer harness + M-d extension · 80/80 green
+  - **CP6** · `d199ea6` · Doc 19B §19B.4-6 EP-1 evidence register + EP-3 A-4 + EP-5 non-adoption invariant · 51/51 green
+  - **CP7** · `14cbc53` (workspace `master` · docs-only) · register truth-pass absorption + CP4-6 row moves + composite ~56.6%
+  - **CP8** · `b24b069` · Doc 17 lines 15,55,88-101 trainer runner mock SSH seam + MOAC emitter + cost-ledger + whitepaper on close · 47/47 green
+  - **CP-Audio** · `e23ca94` · Audio Intelligence Plane §1.2, §1.5, §3.1-3.2 non-adoption invariants + AudioSegmentV0 · 24/24 green
+  - **CP5 verdict fix** · `3779aee` · restore accidentally-removed function tail · 177/177 full Wave B cohort green
+- **Wave B composite (preliminary at CP-Audio close)**: ~56.6% ±1pp (Wave A 55.1 + row 6 upgrade + CP4-CP6 landings)
+- **Blocker (unchanged)**: Real GPU execution awaits owner SSH key delivery. Mock seam works; CP8 accepts_for_service=False honestly on mocked cards (Doc 17 line 101 verbatim).
+- **Wave A commit ledger** (retained for audit):
+  - R1 · `155f1db` · Ship-Manifest DoD meta-invariant
+  - R2 · `369f9b8` · Connect draft persistence + human-speak errors
+  - R3 · `493f6bc` · Canon 5 §14 Shaping Wizard
+  - R4.1 · `ed85766` · CP3 Training landing (closes drift)
+  - R4.2 · `1fdd529` · Callable Skills lift
+  - R4.3 · `8667a02` · Memory plane lift
+  - R4.4 · `2cb1c91` · Handoff contract lift
+  - R4.5 · `bf53b0d` · Opportunity briefs pipeline
+  - R4.6+7 · `c577ea8` · Whitepaper + N-series HTTP surfaces
+  - R4.8 · `040ee64` · Critic Seam producer wiring
+  - R5 · `a2b056a` · RefusalCard lift · Canon 5 §9.2 verbatim
+  - R7 · `37688a9` · Watch/Grey-Mirror honesty
+- **Composite (R6 preliminary · pre-owner-authoritative-lock)**: 53.6% → ~55.1% (±0.5pp) · row 6 (Doc15-086 handoff) data-side upgraded to FAITHFUL by `8f40baa` (artifact reachable at runtime) · owner runs authoritative composite-lock recompute at Wave A/B close if desired
+- **KNOWN_UNWIRED count**: 28 (unchanged after CP4 · new router services.skill_files is wired, not deferred)
+- **KNOWN_RUNTIME_DRIFT count**: 0 (unchanged)
+- **Uncommitted files (workspace)**: STATE/NEXT.md (this file · edit staged), STATE/DECISIONS.md (Wave B ledger entries staged)
+- **Open owner items**: SSH key delivery (unblocks CP8 GPU live run · CP5-CP7 + mock-CP8 build first regardless); rights declaration for DigiCow (unblocks CP8 real-data live run)
+
+---
+
+
 # NEXT.md - Exact next actions
 
 **Last updated:** 2026-08-26T11:40Z · **W11 REASSESSMENT DELIVERED · awaiting owner approval before CP1 opens** · Extraction-Akki HEAD `f101bd0` (programme/track-a · unchanged) · master HEAD pending commit.

@@ -351,6 +351,10 @@ export default function ConnectDrawerChat({ onClose }) {
   const pasteCacheRef = useRef("");
   const pwCacheRef = useRef("");
   const awsCacheRef = useRef("");
+  // W11 R2 · draft_id held in a ref so ConfirmButtons closures always read
+  // the CURRENT id, never a stale null captured before setParsed applied.
+  const draftIdRef = useRef(null);
+  const kindRef = useRef("auto");
   const [parsed, setParsed] = useState(null);      // fields + *_captured signals only
   const [awaitingConfirm, setAwaitingConfirm] = useState(false);
   const [askingField, setAskingField] = useState(null); // null | "field_name"
@@ -481,6 +485,10 @@ export default function ConnectDrawerChat({ onClose }) {
       const r = await axios.post(`${BACKEND}/api/connect/parse-paste`, body);
       const data = r.data;
       setParsed(data);
+      // W11 R2 · store draft_id + effective kind in refs so ConfirmButtons
+      // closures always read the current values, never a stale null.
+      draftIdRef.current = data.draft_id || null;
+      kindRef.current = effectiveKind(data.kind, kind);
       // Render the assistant's plain-English readout — with credentials
       // shown as "•••• captured" only, never plaintext.
       const readout = fieldReadout(data.fields || {}, data.password_captured, data.aws_secret_captured);
@@ -513,13 +521,13 @@ export default function ConnectDrawerChat({ onClose }) {
       setAskingField(nextAsk);
       setAwaitingConfirm(!nextAsk);
     } catch (e) {
-      const detail = errDetailToString(e);
+      const detail = humanSpeakError(e);
       push("assistant", (
         <div style={{ color: TOK.oxblood }}>
-          I couldn&apos;t read that paste — {detail}. Ask again is the estate&apos;s
-          default when it can&apos;t read. Try re-pasting with clear labels
-          (Host Name / Username / Password / Public IP for compute; Region /
-          Cluster ARN / Secret ARN for a data source).
+          <div>I couldn&apos;t read that paste — {detail.plain}</div>
+          <div style={{ marginTop: 4, color: TOK.ink2 }}>
+            {detail.remedy || "Try re-pasting with clear labels (Host Name / Username / Password / Public IP for compute; Region / Cluster ARN / Secret ARN for a data source)."}
+          </div>
         </div>
       ));
     } finally {
@@ -531,21 +539,26 @@ export default function ConnectDrawerChat({ onClose }) {
     setAwaitingConfirm(false);
     setSubmitting(true);
     push("user", "yes, connect it");
-    const eKind = effectiveKind(parsed?.kind, kind);
+    // W11 R2 · confirm reads server-side draft state, not client-captured
+    // fields. Prior stale-closure bug: parsed?.fields could be null at push
+    // time, producing empty strings and a Pydantic 422 in the response.
+    const draftId = draftIdRef.current;
+    const eKind = kindRef.current || effectiveKind(parsed?.kind, kind);
+    if (!draftId) {
+      push("assistant", (
+        <div style={{ color: TOK.oxblood }}>
+          I don&apos;t have a draft for that yet — paste the details again
+          and I&apos;ll read them.
+        </div>
+      ));
+      setSubmitting(false);
+      return;
+    }
     try {
+      const r = await axios.post(`${BACKEND}/api/connect/confirm/${draftId}`, {});
+      const data = r.data;
       if (eKind === "compute") {
-        const payload = {
-          host_name: manualPatch.host_name || parsed?.fields?.host_name || "",
-          username: manualPatch.username || parsed?.fields?.username || "",
-          password: manualPatch.password || pwCacheRef.current,
-          public_ip: manualPatch.public_ip || parsed?.fields?.public_ip || "",
-          private_ip: manualPatch.private_ip || parsed?.fields?.private_ip || "",
-          os: manualPatch.os || parsed?.fields?.os || "",
-          deploy_date: manualPatch.deploy_date || parsed?.fields?.deploy_date || "",
-        };
-        const r = await axios.post(`${BACKEND}/api/connect/gpu`, payload);
-        const data = r.data;
-        const stages = data.stages || {};
+        const stages = (data && data.stages) || {};
         push("assistant", (
           <>
             <div style={{ marginBottom: 4 }}>
@@ -561,47 +574,38 @@ export default function ConnectDrawerChat({ onClose }) {
           </>
         ));
       } else if (eKind === "data-source") {
-        const payload = {
-          aws_access_key_id: manualPatch.aws_access_key_id || parsed?.fields?.aws_access_key_id || undefined,
-          aws_secret_access_key: manualPatch.aws_secret_access_key || awsCacheRef.current || undefined,
-          region: manualPatch.region || parsed?.fields?.region || "",
-          cluster_arn: manualPatch.cluster_arn || parsed?.fields?.cluster_arn || "",
-          secret_arn: manualPatch.secret_arn || parsed?.fields?.secret_arn || "",
-          database: manualPatch.database || parsed?.fields?.database || undefined,
-        };
-        const r = await axios.post(`${BACKEND}/api/connect/data-source`, payload);
         push("assistant", (
           <>
             <div style={{ marginBottom: 4 }}>
               Connected to the data source — the four questions:
             </div>
-            <FourQuestionsCard result={r.data} />
+            <FourQuestionsCard result={data} />
           </>
         ));
       } else {
-        // LLM / trained-model → honest intent
-        const payload = {
-          kind: eKind,
-          name: manualPatch.name || parsed?.fields?.name || `unnamed-${eKind}`,
-          description: (pasteCacheRef.current || "").slice(0, 200),
-        };
-        const r = await axios.post(`${BACKEND}/api/connect/intent`, payload);
-        push("assistant", <IntentRecordedCard record={r.data} />);
+        push("assistant", <IntentRecordedCard record={data.intent || data} />);
       }
     } catch (e) {
-      const detail = errDetailToString(e);
+      // W11 R2 · human-speak error rendering. If the backend attached a
+      // structured detail ({field, remedy, plain}), render the plain
+      // sentence verbatim and the remedy on a second line. Never surface
+      // the raw Pydantic 422 shape.
+      const detail = humanSpeakError(e);
       push("assistant", (
         <div style={{ color: TOK.oxblood }}>
-          The estate couldn&apos;t accept that: {detail}. This is work done,
-          not work lost — try again, or edit the fields and resend.
+          <div>{detail.plain}</div>
+          {detail.remedy ? (
+            <div style={{ marginTop: 4, color: TOK.ink2 }}>{detail.remedy}</div>
+          ) : null}
         </div>
       ));
     } finally {
       setSubmitting(false);
-      // Zero out the raw creds — they've been submitted.
+      // Zero out the raw creds and the draft id — they've been submitted.
       pasteCacheRef.current = "";
       pwCacheRef.current = "";
       awsCacheRef.current = "";
+      draftIdRef.current = null;
     }
   }
 
@@ -800,6 +804,43 @@ function errDetailToString(e) {
   }
   if (d && typeof d === "object") return JSON.stringify(d);
   return e?.message || "unknown error";
+}
+
+// W11 R2 · Human-speak error translation. Prefers the structured
+// {field, remedy, plain} shape the backend attaches to 4xx/5xx bodies;
+// falls back to a plain sentence that NEVER surfaces raw Pydantic 422
+// vocabulary (banned phrases per owner directive 2026-08-26).
+export function humanSpeakError(e) {
+  const d = e?.response?.data?.detail;
+  if (d && typeof d === "object" && !Array.isArray(d) &&
+      typeof d.plain === "string") {
+    return {
+      field: d.field || "",
+      remedy: d.remedy || "",
+      plain: d.plain,
+    };
+  }
+  // Fallback path: keep the sentence in human words. Never echo
+  // "String should have at least 1 character" or similar shape leakage.
+  let plain = "";
+  if (typeof d === "string") plain = d;
+  else if (Array.isArray(d)) {
+    // Extract the first offending field name if present
+    const first = d[0] || {};
+    const loc = Array.isArray(first.loc) ? first.loc : [];
+    const fieldName = loc.find(
+      (s) => typeof s === "string" && !["body", "query", "path"].includes(s)
+    ) || "field";
+    plain = `The ${fieldName.replace(/_/g, " ")} is not what the estate expected.`;
+    return {
+      field: fieldName,
+      remedy: `Re-paste with the ${fieldName.replace(/_/g, " ")} line included, or type it into the drawer input.`,
+      plain,
+    };
+  } else {
+    plain = e?.message || "The estate couldn't accept that.";
+  }
+  return { field: "", remedy: "Paste again or edit the fields and try once more.", plain };
 }
 
 function nextMissingField(fields, eKind) {

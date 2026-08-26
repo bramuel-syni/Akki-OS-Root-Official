@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import RefusalCard from "./RefusalCard";  // W11 R5 · Canon 5 §9.2 binding card
 
 /**
  * Chat.jsx — W5 CP4 · Governed chat surface.
@@ -126,20 +127,16 @@ export default function Chat() {
         )}
 
         {response && response.refused && (
-          <div data-testid="chat-refusal-card"
-               style={{ marginTop: 20, padding: "18px 22px", background: surface,
-                        borderLeft: `3px solid ${oxblood2}`, borderRadius: 6,
-                        border: `1px solid ${line}` }}>
-            <div style={{ fontSize: 11, letterSpacing: 1.5, color: oxblood,
-                          textTransform: "uppercase", fontWeight: 700 }}>
-              Shield refused
-            </div>
-            <div style={{ fontSize: 13, color: ink, marginTop: 8,
-                          fontFamily: "ui-monospace, Menlo, monospace",
-                          background: "#f7ecea", padding: "10px 12px",
-                          borderRadius: 4 }}>
-              {response.refusal_reason}
-            </div>
+          <div data-testid="chat-refusal-card" style={{ marginTop: 20 }}>
+            {/* W11 R5 · Canon 5 §9.2 binding-copy card · superseded the
+                previous inline oxblood block per owner directive
+                2026-08-26 "wire every refusal surface through it". */}
+            <RefusalCard
+              refusal={{
+                asked: question,
+                reason: response.refusal_reason,
+              }}
+            />
             <div style={{ fontSize: 11, color: ink3, marginTop: 8,
                           fontStyle: "italic" }}>
               A8-Q3 · verbatim refusal, never a smoothed answer.

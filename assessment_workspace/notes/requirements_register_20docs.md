@@ -267,3 +267,95 @@ cd /app/assessment_workspace
 python3 -m pytest notes/tests/test_requirements_register_20docs.py -v
 # Expect: 12/12 green.
 ```
+
+---
+
+## Wave B landings appendix (CP7 · additive per Owner Ruling 2026-08-19 §6)
+
+Wave A closed with 11 commits (R1-R7) + external verification 4/4 PASS by
+owner (2026-08-26T10:30Z). R6 register truth pass note lives at
+`notes/waveA_r6_register_truth_pass.md`. Wave B kickoff and CPs 4-6 close
+here as additive row moves — prior rows above stay byte-identical.
+
+### R6 truth-pass absorption (Wave A · 10 status-inflated rows)
+
+| # | Row | Prior verdict | Post-Wave-A | Commit |
+|---|-----|---------------|-------------|--------|
+| 1 | Wizard / Connect Chat (Canon 5 §14) | STATUS-INFLATED | FAITHFUL | `493f6bc` |
+| 2 | CP3 Training plane repo/runtime drift | STATUS-INFLATED | FAITHFUL | `ed85766` |
+| 3 | CP2 Critic Seam orphaned | STATUS-INFLATED | FAITHFUL (Callers-Cover-the-Rule) | `040ee64` |
+| 4 | Doc18 Callable Skill Files unreachable-on-pod | STATUS-INFLATED | FAITHFUL | `1fdd529` |
+| 5 | Doc10-006 Opportunity Briefs unused endpoint | STATUS-INFLATED | FAITHFUL | `bf53b0d` |
+| 6 | Doc15-086 CA1-009 Handoff contract legacy-only | STATUS-INFLATED | **FAITHFUL** (wire `2cb1c91` + data `8f40baa` Wave B) | `2cb1c91` + `8f40baa` |
+| 7 | Doc16-014 Refusal card DONE conflates donor/pod | STATUS-INFLATED | FAITHFUL | `a2b056a` |
+| 8 | Doc04-014 Structured refusal Evidence/Coverage | STATUS-INFLATED | FAITHFUL (via RefusalCard) | `a2b056a` |
+| 9 | Watch/GreyMirror surface without producers | STATUS-INFLATED | PARTIAL (honest "unbuilt" · Wave C completes) | `37688a9` |
+| 10 | Doc08 Memory router legacy-only | STATUS-INFLATED | FAITHFUL | `8667a02` |
+
+Net: 9/10 FAITHFUL (row 9 held PARTIAL pending Wave C). Row 6 upgraded to FAITHFUL by Wave B handoff-WARN fix `8f40baa`.
+
+### CP4 (Wave B · 2026-08-26 · commit `8722e3c`) · Doc 18 A18.7
+
+- **Doc18-007** ← A18.7 · buyer-facing provenance chain. Prior status
+  `BUILD · Carrying phase CP4`. Post-CP4: **DONE**. Backing evidence:
+  - Contract `contracts/skill_file_provenance_v0.py` + snapshot (3588 bytes) · parity 59 → 60.
+  - Persistence `services/skill_files/{persistence,state}.py` · write-once JSONL.
+  - Router `services/skill_files/router.py` · GET `/state`, GET/POST `/{skill_id}/provenance` (201/409/422).
+  - Frontend `SkillFiles.jsx` at `/skill-files` route (both mirrors byte-identical).
+  - Tests 34/34 green (contract-frozen 8 + module 8 + router user-path 7 + parity 3 + Ship-Manifest DoD 8).
+  - Live-pod curl receipt: GET honest-empty · 404 A18.4 refusal envelope on unknown.
+
+### CP5 (Wave B · 2026-08-26 · commit `b9ed85b`) · Doc 17 A17.3-A17.6
+
+- **Doc17-002** ← A17.2 · empty-seat. Prior `BUILD · CP5`. Post-CP5: **DONE** ·
+  `is_empty_seat()` on `services/training/recipe_seat.py`; no pre-population
+  by convention (verbatim enforcement).
+- **Doc17-003** ← A17.3 · registry entries cite `recipe_version`. Prior
+  `BUILD · CP5`. Post-CP5: **DONE** · `register_adapter` chokepoint refuses
+  entries missing `recipe_version` (`RecipeVersionMissingError`).
+- **Doc17-004** ← A17.5-A17.6 · two-arm optimizer selection. Prior `BUILD · CP5`.
+  Post-CP5: **DONE (shell + auto quality-parity gate + Owner-ruling injection
+  point)**. CP8 lands the real-material execution (still `BUILD · Carrying
+  phase CP8`).
+- **Doc17-008** (referenced under CP5 sequencing) · Post-CP5: **DONE (shape)** ·
+  training_params@v0 contract + write-once persistence gated on adopted
+  comparison_ref (`UnevidencedRecipeViolation`). CP8 execution completes.
+
+Backing evidence:
+- Contracts `training_params_v0.py` (snapshot 2137 bytes) + `optimizer_comparison_v0.py` (snapshot 3576 bytes) · parity 60 → 62.
+- Registry M-d extension `services/model_registry/registry.py::register_adapter`.
+- Router extension: GET `/api/training/recipes`, GET `/api/training/recipes/{version}` (A17.4 404), GET/POST `/api/training/optimizer-comparisons`, POST `.../{id}/arms/{arm}/measurements`, POST `.../{id}/verdict`.
+- Frontend Training.jsx extended with two panels (recipe seat + optimizer comparisons · byte-identical mirrors).
+- Tests 57/57 green in CP5 cohort; 80/80 combined CP4+CP5+DoD; live-pod curl 5-endpoint confirmation.
+
+### CP6 (Wave B · 2026-08-26 · commit `d199ea6`) · Doc 19B §19B.4-6
+
+- **Doc19B-001** ← EP-1 · evidence register. Prior `PROPOSED · Carrying phase CP6`. Post-CP6: **DONE-scaffold (PROPOSED status class carried on every row)** · write-once JSONL append, empty at ship, §19B.6 refusal envelope on GET unknown.
+- **Doc19B-002** ← EP-2 · dual-judge scoring. Prior `PROPOSED · CP6`. Post-CP6: **DONE-scaffold** · contract requires ≥2 judges + judge_versions parity, 422 on single-judge attempt, 5-site closed grammar for §19B.4.
+- **Doc19B-003** ← EP-3 · A-4 claims validation. Prior `PROPOSED · CP6`. Post-CP6: **DONE-scaffold** · separate ledger, three-arm result enforced, never-a-gate posture surfaced (`never_a_gate_note` in GET body).
+- **Doc19B-005** ← EP-5 · Explicit non-adoption. Prior `PROPOSED · CP6`. Post-CP6: **DONE (mechanically enforced by invariant)** · `test_ep5_non_adoption_invariant.py` (5 tests) asserts no `services/insurance_telemetry/` or `services/reduction_skill_enforcement/` exists on disk AND no route in pod_shell/backend/server.py.
+
+Backing evidence:
+- Contracts `evidence_register_row_v0.py` (snapshot 2534 bytes) + `claims_validation_row_v0.py` (snapshot 2051 bytes) · parity 62 → 64.
+- Persistence `services/evidence_register/{register,claims_validation}.py` · write-once JSONL per figure_id / claim_id.
+- Router `services/evidence_register/router.py` · 5 endpoints (list, get-by-id, POST both stores).
+- Frontend `EvidenceRegister.jsx` at `/evidence-register` (both mirrors byte-identical) · PROPOSED badge · §19B.6 verbatim shown on empty state.
+- Tests 51/51 green in CP6 cohort (contract-frozen 10+9 + module 8 + router 8 + EP-5 invariant 5 + parity 3 + Ship-Manifest DoD 8).
+- Live-pod curl: GET empty registers · GET /nothing → 404 with §19B.6 verbatim in envelope · POST single-judge → 422 with EP-2 remedy.
+
+### Preliminary composite % (post-Wave-B CP4-CP6)
+
+- Post-CP7 (17→20-doc expansion) baseline: 53.6 % of 551 rows.
+- Wave A R6 truth pass (8 STATUS-INFLATED → FAITHFUL, +8.5 DONE-equivalent):
+  **~55.1 %** (±0.5pp) at Wave A close.
+- Wave B `8f40baa` (row 6 data-side upgrade FAITHFUL): **~55.2 %**.
+- Wave B CP4 (Doc18-007 BUILD → DONE, +1 row): **~55.4 %**.
+- Wave B CP5 (Doc17-002/003/004/008 four rows BUILD → DONE/shape, +3.5 rows): **~56.0 %**.
+- Wave B CP6 (Doc19B-001/002/003/005 four rows PROPOSED → DONE-scaffold, +3.5 rows): **~56.6 %**.
+
+**Preliminary composite estimate at CP6 close: ~56.6 % (±1pp)**. Authoritative composite-lock ceremony (W10 CP9 pattern with per-row delta ledger + `tools/*_composite_recompute.py`) not run in Wave B — booked as optional Wave C close item at owner discretion. The tests continue to gate FAITHFUL verdicts; the composite % is a reporting number, not a build gate.
+
+### Carrying-phase pointer (updated · additive)
+
+- CP7 (this appendix · 2026-08-26 · workspace `master`): register truth-pass absorption for R6 + CP4/CP5/CP6 row moves.
+- CP8 (Wave B · pending SSH key): trainer runner execution completes Doc17-004 (real arm), Doc17-006 completion, Doc17-007 completion, Doc17-008 (execution). Mock SSH seam first · flip to real on key arrival.

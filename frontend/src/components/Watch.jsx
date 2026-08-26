@@ -56,7 +56,18 @@ function Count({ "data-testid": dt, n, label }) {
   );
 }
 
-function EmptyState({ anchor, kind }) {
+function EmptyState({ anchor, kind, mechanismStatus }) {
+  // W11 R7 · Watch/Grey-Mirror honesty. If `mechanismStatus` is
+  // "unbuilt", surface the honest state explicitly rather than "no X on
+  // record" (which reads as "wired mechanism happens to be empty").
+  if (mechanismStatus && mechanismStatus.startsWith("unbuilt")) {
+    return (
+      <p data-testid={`empty-unbuilt-${kind.replace(/\s+/g, "-")}`}
+         style={{ color: oxblood, fontStyle: "italic", margin: "6px 0 0 0" }}>
+        mechanism not yet built — {mechanismStatus} · Canon anchor: {anchor}.
+      </p>
+    );
+  }
   return (
     <p style={{ color: ink2, fontStyle: "italic", margin: "6px 0 0 0" }}>
       No {kind} on record. Canon anchor: {anchor}. Drawn, never left blank.
@@ -193,7 +204,11 @@ export default function Watch() {
                title="Tamper Alarms"
                anchor="Canon 8 §9 · W10 CP5">
           <Count data-testid="watch-tamper-alarms-count" n={gCount("tamper_alarms")} label="alarms" />
-          {gCount("tamper_alarms") === 0 ? <EmptyState anchor="Canon 8 §9" kind="tamper alarms" /> : null}
+          {gCount("tamper_alarms") === 0 ? (
+            <EmptyState anchor="Canon 8 §9"
+                        kind="tamper alarms"
+                        mechanismStatus="unbuilt · Doc03-046 tamper alarm sensor · BUILD · Wave C" />
+          ) : null}
           <List entries={g("tamper_alarms") ? g("tamper_alarms").entries : []} />
         </Panel>
       </div>

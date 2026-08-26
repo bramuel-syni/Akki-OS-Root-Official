@@ -162,6 +162,9 @@ function SealRow({ seal }) {
 export default function Training() {
   const [state, setState] = useState(null);
   const [error, setError] = useState(null);
+  // W11 B CP5 · Doc 17 §A17.3-A17.6 · recipe seat + optimizer harness rollups.
+  const [recipes, setRecipes] = useState(null);
+  const [comparisons, setComparisons] = useState(null);
 
   useEffect(() => {
     let alive = true;
@@ -169,6 +172,14 @@ export default function Training() {
       .then(r => (r.ok ? r.json() : Promise.reject(r.statusText)))
       .then(body => { if (alive) setState(body); })
       .catch(e => { if (alive) setError(String(e)); });
+    fetch(`${BACKEND_URL}/api/training/recipes`, { credentials: "include" })
+      .then(r => (r.ok ? r.json() : Promise.reject(r.statusText)))
+      .then(body => { if (alive) setRecipes(body); })
+      .catch(() => { /* silent; empty-seat is honest default */ });
+    fetch(`${BACKEND_URL}/api/training/optimizer-comparisons`, { credentials: "include" })
+      .then(r => (r.ok ? r.json() : Promise.reject(r.statusText)))
+      .then(body => { if (alive) setComparisons(body); })
+      .catch(() => { /* silent; empty-seat is honest default */ });
     return () => { alive = false; };
   }, []);
 
@@ -264,6 +275,136 @@ export default function Training() {
                 references a freshly verified live probe — never a stale cache.
               </p>
             </Panel>
+
+            {/* W11 B CP5 · Doc 17 A17.3-A17.4 · recipe seat (empty until first training run). */}
+            <section data-testid="training-recipes-panel" style={{
+              background: surface, border: `1px solid ${line}`, padding: "22px 24px",
+              marginBottom: 20,
+            }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 8 }}>
+                <h2 style={{ fontFamily: head, fontSize: 20, color: blue, margin: 0 }}>Recipe Seat · training_params@v0</h2>
+                <span style={{ fontSize: 11, letterSpacing: 1.5, color: ink3 }}>Doc 17 §A17.3-A17.4 · Wave B CP5</span>
+              </div>
+              {recipes === null
+                ? <p style={{ color: ink3, fontStyle: "italic", margin: "6px 0 0 0" }}>Loading…</p>
+                : recipes.count === 0
+                  ? (
+                    <>
+                      <p data-testid="recipes-empty" style={{ color: ink2, fontStyle: "italic", margin: "6px 0 0 0" }}>
+                        No recipe on record. Canon anchor: Doc 17 §A17.5-A17.6. Drawn, never left blank.
+                      </p>
+                      <p style={{ fontSize: 11, color: ink3, marginTop: 8, lineHeight: 1.5 }}>
+                        {recipes.empty_seat_note}
+                      </p>
+                    </>
+                  ) : (
+                    <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+                      {recipes.recipes.map((r, i) => (
+                        <li key={i} style={{ borderBottom: `1px dotted ${line}`, padding: "10px 0" }}>
+                          <div style={{ fontFamily: "ui-monospace, monospace", fontSize: 13, color: blue }}
+                               data-testid="recipe-version">
+                            {r.recipe_version}
+                          </div>
+                          <div style={{ fontSize: 12, color: ink2, marginTop: 4 }}>
+                            optimizer <span style={{ color: sage }}>{r.optimizer_kind}</span>
+                            {" · "}base <code>{r.base_model_id}</code>
+                            {" · "}comparison <code>{r.comparison_ref}</code>
+                          </div>
+                          <div style={{ fontSize: 11, color: ink3, marginTop: 2 }}>
+                            budget {r.budget_cap.wallclock_seconds}s / {r.budget_cap.gpu_hours} GPU-h ·
+                            ratified {r.ratified_at}
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+                  )
+              }
+            </section>
+
+            {/* W11 B CP5 · Doc 17 A17.5-A17.6 · two-arm optimizer harness (empty until first probe). */}
+            <section data-testid="training-optimizer-panel" style={{
+              background: surface, border: `1px solid ${line}`, padding: "22px 24px",
+              marginBottom: 20,
+            }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 8 }}>
+                <h2 style={{ fontFamily: head, fontSize: 20, color: blue, margin: 0 }}>Optimizer Comparisons · two-arm harness</h2>
+                <span style={{ fontSize: 11, letterSpacing: 1.5, color: ink3 }}>Doc 17 §A17.5-A17.6 · Wave B CP5</span>
+              </div>
+              {comparisons === null
+                ? <p style={{ color: ink3, fontStyle: "italic", margin: "6px 0 0 0" }}>Loading…</p>
+                : comparisons.count === 0
+                  ? (
+                    <>
+                      <p data-testid="comparisons-empty" style={{ color: ink2, fontStyle: "italic", margin: "6px 0 0 0" }}>
+                        No optimizer comparison on record. Canon anchor: Doc 17 §A17.5. Drawn, never left blank.
+                      </p>
+                      <p style={{ fontSize: 11, color: ink3, marginTop: 8, lineHeight: 1.5 }}>
+                        The protocol executes at the first adapter training on real material, inside the
+                        P4-instrumented run. Quality parity on M-a and M-b is mandatory; compute-to-convergence
+                        is reported, never gating.
+                      </p>
+                    </>
+                  ) : (
+                    <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+                      {comparisons.comparisons.map((c, i) => (
+                        <li key={i} style={{ borderBottom: `1px dotted ${line}`, padding: "10px 0" }}>
+                          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
+                            <span style={{ fontFamily: "ui-monospace, monospace", fontSize: 13, color: blue }}
+                                  data-testid="comparison-id">
+                              {c.comparison_id}
+                            </span>
+                            <span data-testid="comparison-verdict" style={{
+                              fontSize: 11, letterSpacing: 1.2, color: c.verdict === "adopted" ? sage
+                                : c.verdict === "ineligible" ? oxblood
+                                  : c.verdict === "rejected" ? ink3 : brass,
+                              textTransform: "uppercase",
+                            }}>
+                              {c.verdict}
+                            </span>
+                          </div>
+                          <div style={{ fontSize: 12, color: ink2, marginTop: 4 }}>
+                            base <code>{c.base_model_id}</code> · stratum <code>{c.smallest_stratum}</code>
+                          </div>
+                          {c.verdict_note && (
+                            <div style={{ fontSize: 11, color: c.verdict === "ineligible" ? oxblood : ink3, marginTop: 4, fontStyle: "italic" }}>
+                              {c.verdict_note}
+                            </div>
+                          )}
+                          {c.baseline_measurements && c.muon_measurements && (
+                            <table style={{ marginTop: 8, borderCollapse: "collapse", fontSize: 11, color: ink2 }}>
+                              <thead>
+                                <tr style={{ background: paper }}>
+                                  <th style={{ padding: "3px 10px", textAlign: "left" }}>arm</th>
+                                  <th style={{ padding: "3px 10px", textAlign: "right" }}>M-a</th>
+                                  <th style={{ padding: "3px 10px", textAlign: "right" }}>M-b</th>
+                                  <th style={{ padding: "3px 10px", textAlign: "right" }}>M-e</th>
+                                  <th style={{ padding: "3px 10px", textAlign: "right" }}>wallclock</th>
+                                  <th style={{ padding: "3px 10px", textAlign: "right" }}>GPU-h</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {["baseline", "muon"].map((arm) => {
+                                  const m = c[`${arm}_measurements`];
+                                  return (
+                                    <tr key={arm}>
+                                      <td style={{ padding: "3px 10px", fontFamily: "ui-monospace, monospace" }}>{arm}</td>
+                                      <td style={{ padding: "3px 10px", textAlign: "right" }}>{m.moac_m_a_improvement.toFixed(3)}</td>
+                                      <td style={{ padding: "3px 10px", textAlign: "right" }}>{m.moac_m_b_regression.toFixed(3)}</td>
+                                      <td style={{ padding: "3px 10px", textAlign: "right" }}>{m.moac_m_e_calibration.toFixed(3)}</td>
+                                      <td style={{ padding: "3px 10px", textAlign: "right", color: ink3 }}>{m.wallclock_seconds_to_convergence}s</td>
+                                      <td style={{ padding: "3px 10px", textAlign: "right", color: ink3 }}>{m.gpu_hours_to_convergence}</td>
+                                    </tr>
+                                  );
+                                })}
+                              </tbody>
+                            </table>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+                  )
+              }
+            </section>
 
             <div data-testid="training-reference-note" style={{
               fontSize: 11, color: ink3, borderTop: `1px solid ${line}`,

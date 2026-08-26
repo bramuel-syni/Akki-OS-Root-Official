@@ -1640,3 +1640,164 @@ Ratifications on record. CP1 executes on GO.
 
 **Supersession note (owner directive 2026-08-26)**: where the 2026-08-14 Simplification Ruling (Connect single-panel paste-first) conflicts with Canon 5 §14 (Shaping Wizard grammar) or the current owner P0 directive (step-by-step wizard, coach-voice, edit-in-place, human-speak errors), **Canon 5 §14 + current owner directive WIN**. The Simplification Ruling is superseded for the Connect surface pending R3 wizard rebase. This supersession is recorded here so the T12 / W1 "verbatim honoured" close notes are re-classified as PARTIAL-honouring against the newly-authoritative spec.
 
+
+---
+
+## 2026-08-26T10:30Z · WAVE A CLOSE (external verification RATIFIED · agent-side summary)
+
+**Owner verdict (2026-08-26 · verbatim)**:
+> "WAVE A EXTERNAL VERIFICATION: 4/4 PASS. (1) Connect parse→confirm roundtrip clean — draft_id mechanism works, honest after_state with key_install hardening narration, zero raw Pydantic leakage: the owner's original bug is closed. (2) All rewired routers mounted (callable_skill, memory, handoff, training). (3) Watch/Grey-Mirror states honest with source_path provenance. (4) No regressions on registry/governance."
+
+**Wave A status per R-step (source-of-truth = commit ledger)**:
+| R | Scope | Verdict | Commit |
+|---|-------|---------|--------|
+| R1 | Ship-Manifest DoD meta-invariant + Callers-Cover-the-Rule DoD | GREEN · 8/8 | `155f1db` |
+| R2 | Connect draft persistence (draft_store) + human-speak errors | GREEN · 11+8 | `369f9b8` |
+| R3 | Canon 5 §14 Shaping Wizard rebased verbatim (wizard_operator wired + surface) | GREEN · 10 | `493f6bc` |
+| R4.1 | CP3 Training plane landing on pod (KNOWN_RUNTIME_DRIFT 3→0) | GREEN | `ed85766` |
+| R4.2 | Callable Skills (routers.transform_forms) lift to pod_shell | GREEN | `1fdd529` |
+| R4.3 | Memory plane (routers.memory) lift to pod_shell | GREEN | `8667a02` |
+| R4.4 | Handoff contract (routers.handoff) lift to pod_shell | GREEN wire · PARTIAL data | `2cb1c91` |
+| R4.5 | Opportunity Briefs pipeline (registry_router + regenerate) | GREEN | `bf53b0d` |
+| R4.6+7 | Whitepapers + N-series HTTP surfaces | GREEN | `c577ea8` |
+| R4.8 | Critic Seam producer wiring (Callers-Cover-the-Rule) | GREEN · 5/5 | `040ee64` |
+| R5 | RefusalCard.jsx + ClassBadge.jsx lift · Canon 5 §9.2 verbatim | GREEN · 8 | `a2b056a` |
+| R6 | Register truth pass + composite recompute (preliminary) | 8/10 FAITHFUL · 1 split · 1 held pending R7 | (docs-only in notes/waveA_r6_register_truth_pass.md) |
+| R7 | Watch/Grey-Mirror honest "mechanism not yet built" states | GREEN · 7/7 | `37688a9` |
+
+**Composite recompute (R6 · preliminary, pre-authoritative-lock)**:
+- Prior claim (post-CP7 20-doc register): **53.6 %** (551 rows).
+- Wave A landings: 8 STATUS-INFLATED → FAITHFUL · 1 PARTIAL (row 9 held pending R7) · 2 residuals confirmed FAITHFUL.
+- Preliminary composite: **~55.1 %** (±0.5pp).
+- With handoff WARN fix (`8f40baa` · Wave B kickoff · row 6 data-side FAITHFUL): **~55.2 %**.
+- Authoritative composite-lock ceremony (W10 CP9 pattern with a per-row delta ledger) NOT run for Wave A — booked as an optional Wave B/C close item at owner's discretion. Current tests continue to gate FAITHFUL verdicts; the composite % is a reporting number, not a gate.
+
+**Receipts list (Wave A · phase0/drill_receipts/)**:
+- R1: `20260826T090647Z_w11_r1_ship_manifest_dod_right_reason_failure.log` + `20260826T090914Z_w11_r1_ship_manifest_dod_green.log`
+- R2: `20260826T085500Z_w11_r2_connect_draft_right_reason.log` + `20260826T090100Z_w11_r2_connect_draft_green.log`
+- R3: `20260826T091000Z_w11_r3_shaping_wizard_right_reason.log` + `20260826T091500Z_w11_r3_shaping_wizard_green.log`
+- R4 (5 sub-lifts): `20260826T092000Z..T093000Z_w11_r4_*_green.log`
+- R5: `20260826T093500Z_w11_r5_refusal_card_right_reason.log` + `20260826T093800Z_w11_r5_refusal_card_green.log`
+- R7: `20260826T095000Z_w11_r7_watch_grey_mirror_honest_right_reason.log` + `20260826T095500Z_w11_r7_watch_grey_mirror_honest_green.log`
+- (See phase0/drill_receipts/ for the exhaustive list · every commit has red + green pair.)
+
+**HEADs at Wave A close**:
+- Extraction-Akki `programme/track-a` @ **`37688a9`** (R7 · Watch/Grey-Mirror honesty)
+
+**HEADs after Wave B kickoff (in flight)**:
+- Extraction-Akki `programme/track-a` @ **`8722e3c`** (CP4 · Skill-file provenance)
+  - `8f40baa` handoff WARN closure
+  - `8722e3c` CP4 close (Doc 18 A18.7 · Ship-Manifest DoD triple)
+
+**Recorded**: Wave A CLOSED · external verification 4/4 PASS confirmed by owner 2026-08-26T10:30Z. Wave B in flight from `8f40baa`.
+
+
+---
+
+## 2026-08-26T10:30Z · Wave B kickoff · handoff-WARN closure + CP4 close
+
+### Handoff-WARN closure · `8f40baa`
+
+Owner WARN (verbatim · from Wave A ratify message):
+> "the handoff router is mounted but its artifact file /app/docs/handoff/backend_contract_surface_v1.md is missing on disk — /api/handoff/* returns app-level handoff_artifact_not_found. Generate/land the artifact (or point the router at the correct existing path) under the Ship-Manifest DoD in a small commit."
+
+Root cause: R4.4 wired `routers.handoff` into pod_shell/backend/server.py, but the router hardcoded `HANDOFF_ARTIFACT_PATH = /app/docs/handoff/backend_contract_surface_v1.md` — an absolute pod path that never existed. The artifact itself lives in the repo at `docs/handoff/backend_contract_surface_v1.md` (424 lines, 36684 bytes, on record since initial commit).
+
+Fix: changed `HANDOFF_ARTIFACT_PATH` to resolve relative to `__file__` (`Path(__file__).resolve().parents[2] / "docs" / "handoff" / ...`). Artifact now travels with the repo — same discipline as `services/whitepapers/` + `services/n_series/`.
+
+Tests (all under Ship-Manifest DoD):
+- Red · `20260826T102430Z_w11b_handoff_warn_right_reason_failure.log` (3/4 fail: path-exists · non-trivial-markdown · runtime-200)
+- Green · `20260826T102538Z_w11b_handoff_warn_green.log` (8/8 pass across new reachability test + preserved R4.4 wire test + frozen contract)
+- Live · `20260826T102629Z_w11b_handoff_warn_live_pod_curl_green.log` (HTTP=200, SIZE=36684, DISP=attachment; byte-parity vs on-disk artifact)
+
+R6 register-side effect: row 6 (Doc15-086 handoff) data-side upgrades from PARTIAL to FAITHFUL. Wave A composite adjusts ~+0.1pp (see composite entry above).
+
+### CP4 close · `8722e3c` · Doc 18 A18.7 Skill-file provenance chain
+
+Verbatim spec quotes anchored in test docstrings:
+- Doc 18 §A18.7: "every skill's provenance chain traces back to the training run that produced its adapter (extends Doc14-016 rights-lineage + Doc14-017 version-history)."
+- Doc 18 §A18.4: "A18.4 [CANON] Below the floor is a refusal, never a degraded answer."
+
+Ship-Manifest DoD triple in a single commit:
+- (a) Runtime-assembler wiring: `services.skill_files.router` imported + included in `pod_shell/backend/server.py` AND `/app/backend/server.py` (byte-identical · 12144 bytes).
+- (b) Frontend surface: `SkillFiles.jsx` under both `pod_shell/frontend/src/components/` AND `/app/frontend/src/components/` (byte-identical · 7961 bytes) · route `/skill-files` in App.js (both mirrors byte-identical · 2842 bytes).
+- (c) Green user-path test: `test_skill_files_router_user_path.py` (7/7 pass across honest-empty state · roundtrip · A18.4 refusal 404 · write-once 409 · human-speak 422 · path/body skill_id disagreement 422).
+
+Contract landing (frozen · `extra=forbid` · `frozen=True`):
+- `contracts/skill_file_provenance_v0.py` (SkillFileProvenanceV0 + ProvenanceStep · closed Literal grammar for kind).
+- `skill_file_provenance_v0.contract_snapshot.json` (3588 bytes · JSON Schema of headline model).
+- Parity map bump 59 → 60 in `test_frozen_contract_snapshot_parity.py`.
+- Chain-integrity validator: first step MUST be `base_model`.
+
+Persistence layer (`services/skill_files/`):
+- `persistence.py` · write-once JSONL append per Doc 18 TF-E4 (b) α. `WriteOnceViolation` on repeat.
+- `state.py` · REFERENCE-NOT-COPY rollup for `/api/skill-files/state`.
+- `router.py` · thin HTTP wrapper:
+  - `GET  /api/skill-files/state`
+  - `GET  /api/skill-files/{skill_id}/provenance`
+  - `POST /api/skill-files/{skill_id}/provenance` (write-once · 201/409)
+
+Empty-seat honesty at ship (Doc 17 §A17.5-A17.6 alignment):
+- `ship_state=empty` at CP4 landing. CP5 fills the recipe seat via Muon two-arm optimizer protocol; CP8 trainer runner writes the first provenance row on close. No pre-population by convention · REFERENCE-NOT-COPY.
+
+Tests (34/34 green in the CP4 cohort):
+- Contract-frozen: 8/8
+- Skill-Files module (persistence + state): 8/8
+- Router user-path: 7/7
+- Frozen parity map (59→60): 3/3
+- Ship-Manifest DoD (with new byte-matching): 8/8
+
+Live-pod curl receipt `20260826T102945Z_w11b_cp4_skill_files_live_pod_curl_green.log`:
+- GET `/api/skill-files/state` → 200 · `{"ship_state":"empty","count":0,"skills":[]}`
+- GET unknown → 404 structured envelope (A18.4 refusal · `reason=skill_file_provenance_not_found`)
+- Non-allowlisted → 403 fail-closed sentence
+
+**Recorded**: Wave B kickoff · handoff-WARN closed · CP4 closed · CP5 opens next.
+
+---
+
+## 2026-08-26T11:15Z · WAVE B CLOSE · Training engine + Audio plane · 177/177 green
+
+**Wave B commit ledger (Extraction-Akki `programme/track-a`)**:
+| CP | Commit | Description | Green |
+|----|--------|-------------|------:|
+| B-WARN | `8f40baa` | Handoff artifact path relative to __file__ | 8/8 |
+| CP4 | `8722e3c` | Doc 18 A18.7 Skill-file provenance chain | 34/34 |
+| CP5 | `b9ed85b` | Doc 17 A17.3-A17.6 recipe seat + optimizer harness + M-d | 80/80 |
+| CP6 | `d199ea6` | Doc 19B EP-1/EP-3/EP-5 evidence register + A-4 + non-adoption | 51/51 |
+| CP8 | `b24b069` | Doc 17 line 15/55/88-101 trainer runner mock SSH seam | 47/47 |
+| Audio | `e23ca94` | Audio Plane §1.2/§1.5/§3.1-3.2 non-adoption invariants | 24/24 |
+| Fix | `3779aee` | CP5 verdict endpoint tail restored (regression fix) | 177/177 |
+
+Workspace `master`:
+| CP7 | `14cbc53` | Register truth-pass absorption + CP4-6 row moves | 12/12 |
+
+**Final HEAD**: `programme/track-a @ 3779aee` (Extraction-Akki) · `master @ 14cbc53` (assessment_workspace).
+
+**Total tests in Wave B cohort**: 177 green across 25 test files.
+
+**Ship-Manifest DoD (R1 meta-invariant)**: 8/8 green throughout — every runtime-assembler wire has a matching frontend surface (CP4 SkillFiles.jsx + CP6 EvidenceRegister.jsx byte-mirrored) and a green user-path test in the SAME commit. `KNOWN_UNWIRED` unchanged at 28. All `/app/backend/server.py` ↔ `pod_shell/backend/server.py` and `/app/frontend/*` ↔ `pod_shell/frontend/*` mirror pairs byte-identical.
+
+**Preliminary composite % (post-Wave-B, additive-only)**: **~56.6 % ±1pp**
+- Wave A close (R6 truth pass): ~55.1 % ±0.5pp
+- Row 6 data upgrade (`8f40baa`): ~55.2 %
+- CP4 landing (Doc18-007 BUILD → DONE): ~55.4 %
+- CP5 landing (Doc17-002/003/004/008 4 rows → DONE-shape): ~56.0 %
+- CP6 landing (Doc19B-001/002/003/005 4 rows → DONE-scaffold): ~56.6 %
+- CP8 lands Doc17-006/007 shell + emitter but full DONE awaits real hardware (GPU_CONNECT_MODE flip).
+- CP-Audio lands architectural invariants (§1.2/§1.5 unrepresentable) — no register row change (spec is architectural discipline, not a build row).
+
+Authoritative composite-lock ceremony (W10 CP9 pattern with per-row delta ledger + `tools/*_composite_recompute.py`) not run in Wave B — booked as optional Wave C close item at owner discretion. Tests continue to gate FAITHFUL verdicts; the composite % is a reporting number, not a build gate.
+
+**Blockers at Wave B close** (unchanged from Wave B open):
+- **SSH private key**: owner has not delivered. Real GPU execution requires:
+  1. `AKKI_GPU_SSH_PRIVATE_KEY_PATH` set to a real key file.
+  2. `GPU_CONNECT_MODE=real` env flip.
+  3. Hardware fact sheet probe (`nvidia-smi` + CUDA version).
+  4. CUDA/PyTorch install ceremony (owner-ratified).
+  5. First governed live training run on sealed DigiCow set.
+  6. Real MOAC card (mocked=False on all six criteria).
+  7. `accept_for_service=True` path becomes possible.
+- **DigiCow rights declaration**: needed for the live run's material admit (Doc 17 line 15 verbatim).
+
+**Recorded**: Wave B closed 2026-08-26T11:15Z. Wave C opens next (Watch/Grey-Mirror mechanism build) once owner ratifies Wave B close.

@@ -57,7 +57,18 @@ function Count({ "data-testid": dt, n, label }) {
   );
 }
 
-function EmptyState({ anchor, kind }) {
+function EmptyState({ anchor, kind, mechanismStatus }) {
+  // W11 R7 · Watch/Grey-Mirror honesty. Grey Mirror is Wave-C-target
+  // BUILD material across all three panels (planting · touch detection ·
+  // severance). Explicit unbuilt copy per owner directive 2026-08-26.
+  if (mechanismStatus && mechanismStatus.startsWith("unbuilt")) {
+    return (
+      <p data-testid={`empty-unbuilt-${kind.replace(/\s+/g, "-")}`}
+         style={{ color: oxblood, fontStyle: "italic", margin: "6px 0 0 0" }}>
+        mechanism not yet built — {mechanismStatus} · Canon anchor: {anchor}.
+      </p>
+    );
+  }
   return (
     <p style={{ color: ink2, fontStyle: "italic", margin: "6px 0 0 0" }}>
       No {kind} on record. Canon anchor: {anchor}. Drawn, never left blank.
@@ -138,7 +149,11 @@ export default function GreyMirror() {
 
         <Panel data-testid="mirages-panel" title="Mirages" anchor="Canon 8 §15 · installed lures">
           <Count data-testid="mirages-count" n={gCount("mirages")} label="mirages" />
-          {gCount("mirages") === 0 ? <EmptyState anchor="Canon 8 §15" kind="mirages" /> : null}
+          {gCount("mirages") === 0 ? (
+            <EmptyState anchor="Canon 8 §15"
+                        kind="mirages"
+                        mechanismStatus="unbuilt · Doc03-042 mirage planting · BUILD · Wave C" />
+          ) : null}
           {g("mirages") && g("mirages").count > 0 ? (
             <ul style={{ listStyle: "none", padding: 0, margin: "8px 0 0 0" }}>
               {g("mirages").entries.slice(0, 40).map((e, i) => (
@@ -153,7 +168,11 @@ export default function GreyMirror() {
                title="Mirage Touches"
                anchor="Canon 8 §15 · touch_kind CONTRACT-TIME (R2)">
           <Count data-testid="mirage-touches-count" n={gCount("touches")} label="touches" />
-          {gCount("touches") === 0 ? <EmptyState anchor="Canon 8 §15" kind="mirage touches" /> : null}
+          {gCount("touches") === 0 ? (
+            <EmptyState anchor="Canon 8 §15"
+                        kind="mirage touches"
+                        mechanismStatus="unbuilt · Doc03-043 touch detection (innocent_read / guilty_use) · BUILD · Wave C" />
+          ) : null}
           {g("touches") && g("touches").count > 0 ? (
             <ul style={{ listStyle: "none", padding: 0, margin: "8px 0 0 0" }}>
               {g("touches").entries.slice(0, 40).map((e, i) => (
@@ -170,7 +189,11 @@ export default function GreyMirror() {
 
         <Panel data-testid="severances-panel" title="Severances" anchor="Canon 8 §16">
           <Count data-testid="severances-count" n={gCount("severances")} label="severances" />
-          {gCount("severances") === 0 ? <EmptyState anchor="Canon 8 §16" kind="severances" /> : null}
+          {gCount("severances") === 0 ? (
+            <EmptyState anchor="Canon 8 §16"
+                        kind="severances"
+                        mechanismStatus="unbuilt · Doc03-044 severance (guilty_use trigger) · BUILD · Wave C" />
+          ) : null}
           {g("severances") && g("severances").count > 0 ? (
             <ul style={{ listStyle: "none", padding: 0, margin: "8px 0 0 0" }}>
               {g("severances").entries.slice(0, 40).map((e, i) => (
