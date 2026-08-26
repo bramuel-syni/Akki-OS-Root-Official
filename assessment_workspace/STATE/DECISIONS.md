@@ -1801,3 +1801,234 @@ Authoritative composite-lock ceremony (W10 CP9 pattern with per-row delta ledger
 - **DigiCow rights declaration**: needed for the live run's material admit (Doc 17 line 15 verbatim).
 
 **Recorded**: Wave B closed 2026-08-26T11:15Z. Wave C opens next (Watch/Grey-Mirror mechanism build) once owner ratifies Wave B close.
+
+---
+
+## 2026-08-26T11:30Z · Wave B post-verify fix + DigiCow blocker correction + Wave C open
+
+### Wave B post-verify (Owner external verification 3/4 PASS + 1 FAIL)
+
+**FAIL #1** (runtime drift · adopted verdict → 500 on live pod after 3779aee):
+- Root cause: backend NOT restarted after commit 3779aee. On-disk fix was correct; running process was serving pre-3779aee code.
+- Fix: `sudo supervisorctl restart backend` restored the 422 envelope on invalid verdict + 200 body on adopted verdict.
+- Meta-fix (`75b7b1e`): `test_ship_manifest_dod_runtime_drift_guard.py` invariant catches future drift. Wave-close checklist mandates supervisor restart + live probe as terminal ceremony.
+
+**FAIL #2** (no HTTP path fills recipe seat):
+- Root cause: seat-fill was test/CLI-only; no HTTP endpoint bridged an adopted comparison to the seat.
+- Fix (`75b7b1e`): governed seat-fill baked into `optimizer_harness.rule_on_comparison`. Doc 17 A17.5 verbatim: 'On adoption, the winning arm writes training_params@v0 v1 with the comparison attached.' Recipe row auto-derived deterministically from the comparison (recipe_version = `training_params@v0/adopted_from_{slug}`; optimizer_kind = 'muon'; base_model_id + evaluation_sets + budget_cap copied verbatim; comparison_ref + ratified_at attached).
+- New A17.5 write-once verdict discipline: second `/verdict` returns 409 (VerdictRefused).
+- Gating test (`test_governed_seat_fill_full_http_journey.py`): full end-to-end via HTTP only — open comparison → arms → adopt → seat auto-fills → admit material → open run → execute mock → emit MOAC (4/6 pass, all mocked=True, accept_for_service=False per Doc 17 line 101) → close (cost-ledger receipt + whitepaper drafted).
+
+**Full Wave B cohort at post-verify close**: 182/182 green (177 previous + 4 governed-seat-fill journey + 1 runtime-drift guard). Live-pod curl confirms the fix at HEAD `75b7b1e`.
+
+### DigiCow rights blocker correction
+
+Wave B close report listed DigiCow rights as pending blocker. **CORRECTED** per owner ruling 2026-08-26: "take this as approval" (already on record in DECISIONS.md). DigiCow rights are RATIFIED. Only remaining blocker for live GPU run is the SSH private key.
+
+### Wave C open
+
+Wave C grounding brief written at `notes/waveC_grounding_brief.md` (Doc 8 verbatim quotes for the closed sever-certainty registry, four-class action ladder, mirage isolation, external witness, mark/dye pack).
+
+**CP-C1** · `eff3fdb` (2026-08-26T~11:27Z) · Foundational closed-grammar contracts:
+- `sever_certainty_signal_v0.py` · Doc 8 line 31 verbatim 6-member closed registry; NO confidence field by design.
+- `watch_action_v0.py` · Doc 8 line 99 verbatim 4-class ladder; destroy unrepresentable; contain requires TTL, sever forbids TTL + requires sever_certainty_signal_id.
+- `mirage_artifact_v0.py` · Doc 8 §136-183 isolation invariants; production_store_leak_check Literal['passed'] only, outward_lie_only Literal[True] only.
+- 41/41 tests green · parity map 67 → 70.
+- Backend restarted + runtime-drift guard passes + live pod verified.
+
+Subsequent CP-C2 through CP-C5 remain (services + HTTP surfaces + frontend re-render of R7 unbuilt→built states). Contracts-only CP-C1 gives the mechanically-enforced grammars against which those service landings will be tested.
+
+**Recorded**: Wave B post-verify closed at `75b7b1e`; DigiCow blocker corrected; Wave C in flight at `eff3fdb`.
+
+---
+
+## 2026-08-26T11:47Z · WAVE C · CP-C2 CLOSE · Macho + Mkono service shells
+
+### Owner directive absorbed pre-CP-C2
+
+**Owner ratification (2026-08-26T~11:42Z · verbatim)**:
+> "WAVE B RE-VERIFICATION: 4/4 PASS at 75b7b1e — Wave B now fully
+> externally verified. ... Continue Wave C."
+
+**Owner queued WARN (verbatim)**:
+> "ONE WARN for cheap fix during Wave C (do not interrupt CP-C2):
+> POST /api/training-runs/{id}/close returns 200 but whitepaper_ref
+> = "whitepaper_draft_error:'verdict_summary'" — a KeyError in the
+> whitepaper drafter path on run close. Fix tests-first in a small
+> commit (assert the close response carries a real whitepaper_ref
+> resolving to an on-disk draft per Doc 14 §33 citation invariant)
+> and fold it into your next CP close report."
+
+Queued into NEXT.md `CP-C2 warn-followup` slot · scheduled for the
+next CP boundary (CP-C3 or CP-C4 target). Not blocking.
+
+### CP-C2 delivered
+
+**Commit** · `02a2a01` (Extraction-Akki `programme/track-a`).
+
+**Verbatim spec anchors quoted in gating test docstrings**:
+- Doc 8 §Line 28 · Macho holds no powers · Mkono holds no judgement (deterministic mapping).
+- Doc 8 §Line 30 · Structural certainty from unfabricatable signals · externally steerable caps at reversible containment.
+- Doc 8 §Line 31 · Closed six-signal registry ('canary touch, attestation failure, mark hit, witness-write attempt, floor violation, mirage incrimination') · signature is the guard · no confidence parameter.
+- Doc 8 §Line 99 · Four-class action ladder · destroy does not exist (per W3).
+
+**Landing** (8 files · 1369 insertions · 27 deletions):
+- `backend/services/watch/macho.py` · MachoVerdict Pydantic schema (frozen · extra=forbid) + mint_macho_verdict() with signature-is-the-guard dereference. Legacy WatchVerdictRow_v0 path retained.
+- `backend/services/watch/sever_signals.py` (new) · write-once JSONL persistence for SeverCertaintySignalV0.
+- `backend/services/watch/mkono.py` · map_verdict_to_action() deterministic mapper + persist_action() seam-law enforcer. Legacy WatchActionRecord_v0 path retained.
+- `backend/services/watch/persistence.py` (rewritten) · per-file JSON write-once for MachoVerdict + WatchActionV0 · coexists with legacy per-file JSON stores.
+- `backend/services/watch/router.py` · appends POST /api/watch/verdict + POST /api/watch/act + POST /api/watch/sever-signal (422/409/404 structured envelopes).
+- `backend/tests/invariants/test_watch_cp_c2_macho_mkono.py` (new · 18 tests).
+- `backend/tests/invariants/test_watch_cp_c2_http_journey.py` (new · 7 tests).
+- `pod_shell/frontend/src/components/Watch.jsx` · enriched verdictExtra + actionExtra renderers · panel titles cite §Line 28/30/31/99 · mirrored byte-identical to /app/frontend.
+
+**Ship-Manifest DoD triple (this commit)**:
+- (a) Runtime-assembler wire · `services.watch.router` mounted in pod_shell/backend/server.py:50 (unchanged since W10 CP8); /app/backend/server.py mirror byte-identical (12485 B). New endpoints load via existing include_router.
+- (b) Frontend surface · pod_shell/frontend/src/components/Watch.jsx (11046 B) byte-identical with /app/frontend/src/components/Watch.jsx (11046 B).
+- (c) Green user-path test · test_watch_cp_c2_http_journey.py (7 HTTP invariants) landed same commit.
+
+**Receipts (phase0/drill_receipts/)**:
+- RED · `20260826T113500Z_w11c_cp_c2_right_reason_fail.log` (25 errors · all on the correct reason: ImportError 'cannot import MachoVerdict from services.watch.macho').
+- GREEN · `20260826T114500Z_w11c_cp_c2_green.log` (99/99 pytest · CP-C2 cohort + contract-frozen + ship-manifest DoD + runtime-drift guard + parity map + W10 CP8 rollup + skill-files + governed seat-fill journey).
+- LIVE · `20260826T114500Z_w11c_cp_c2_live_pod_curl_green.log` (7/7 · sever-signal write, structural verdict mint, deterministic sever action holding rather than expiring, write-once 409, phantom-signal 422, steerable-severe → contain with TTL 3600, state rollup 2/2).
+
+**Zero regressions**: 99/99 green across the Wave A/B/C invariant cohort. Pre-existing 48 collection errors on `services.northena` (`ImportError: cannot import 'trace_lens'`) predate CP-C1 · verified via `git stash` at HEAD `eff3fdb` · unrelated to CP-C2.
+
+**Wave-close checklist honored (per owner runtime-drift ruling)**:
+1. `sudo supervisorctl restart backend frontend` executed (both surfaces restarted).
+2. Live-pod curl against moved routes (`/api/watch/verdict`, `/api/watch/act`, `/api/watch/sever-signal`, `/api/watch/state`) — 7/7 green.
+3. `test_ship_manifest_dod_runtime_drift_guard.py` green (running pod serves committed code).
+4. Close entry banked here.
+
+### Blockers unchanged from Wave B open
+
+- SSH private key delivery for real GPU crossing · unblocks CP8 live run · non-blocking to Wave C.
+
+**Recorded**: CP-C2 closed at `02a2a01`. CP-C3 opens next (mirage / mark).
+
+
+---
+
+## 2026-08-26T11:55Z · WAVE C · CP-C3 CLOSE · MirageArtifact isolated store + Mark dye-pack
+
+**Commit** · `870df67` (Extraction-Akki `programme/track-a`).
+
+**Verbatim spec anchors quoted in gating tests**:
+- Doc 8 §Line 127 · dye pack minted on conviction · six binding dimensions · resurfacing = structural detection · resilience under one-dimension shed.
+- Doc 8 §Line 136 · mirage lies outward not inward · bleed unrepresentable, not filtered.
+- Doc 8 §Line 183 · mirage isolation · synthetic state shares no store with production · synthetic provenance carried on every artifact.
+
+**Landing** (10 files):
+- `backend/contracts/mark_v0.py` (new · MarkV0 frozen contract).
+- `backend/tests/invariants/mark_v0.contract_snapshot.json` (new · 1902 B).
+- `backend/services/watch/mirage_artifacts.py` (new · isolated write plane · MirageStoreBleedError enforcement).
+- `backend/services/watch/mark.py` (new · mint_mark on conviction · mark_hits_for_hash · resolvable_dimensions).
+- `backend/services/watch/router.py` (modified · +3 endpoints, +2 state-rollup kinds).
+- `backend/tests/invariants/test_frozen_contract_snapshot_parity.py` (modified · CONTRACT_TO_SNAPSHOT +mark_v0 · parity 70→71).
+- `backend/tests/invariants/test_watch_cp_c3_mirage_isolation.py` (new · 8 tests).
+- `backend/tests/invariants/test_watch_cp_c3_mark_dye_pack.py` (new · 10 tests).
+- `backend/tests/invariants/test_watch_cp_c3_http_journey.py` (new · 8 HTTP-boundary tests).
+- `pod_shell/frontend/src/components/Watch.jsx` (modified · mirage-artifacts + marks panels).
+
+**Ship-Manifest DoD triple (this commit)**:
+- (a) Runtime-assembler wire: services.watch.router mounted (unchanged); new endpoints load via existing include_router. /app/backend/server.py mirror byte-identical to pod_shell/backend/server.py (12485 B unchanged).
+- (b) Frontend surface: Watch.jsx byte-identical mirror (13327 B) across /app/frontend and pod_shell/frontend.
+- (c) Green user-path test: test_watch_cp_c3_http_journey.py (8 HTTP-boundary invariants).
+
+**Receipts (phase0/drill_receipts/)**:
+- RED · `20260826T115000Z_w11c_cp_c3_right_reason_fail.log` (26 errors · all ModuleNotFoundError on services.watch.mirage_artifacts + services.watch.mark).
+- GREEN · `20260826T115500Z_w11c_cp_c3_green.log` (125/125 across full Wave A/B/C cohort).
+- LIVE · `20260826T115500Z_w11c_cp_c3_live_pod_curl_green.log` (7/7 · isolated mirage-artifact 201, grammar-violation 422, sever action landed, mark bound on 6 dimensions, mark-hits by content_hash detects resurfacing, orphan mark 404, state rollup surfaces both new kinds).
+
+**Zero regressions**: 125/125 green. Parity map 70→71.
+
+**Wave-close-checklist per CP** honored: supervisor restart · live-pod curl on moved routes · runtime-drift guard green · close entry banked.
+
+**Recorded**: CP-C3 closed at `870df67`. CP-C4 opens next (external witness · §Line 170).
+
+
+---
+
+## 2026-08-26T12:07Z · WAVE C · CP-C4 CLOSE · External witness (§Line 170 three components)
+
+**Commit** · `4c485ae` (Extraction-Akki `programme/track-a`).
+
+**Verbatim spec anchor**:
+- Doc 8 §Line 170 · witness belongs to neither authority · Watch workers attest each other's action digests · watchdog holds no Watch credentials · standing break-in test must fail · 'immutability that has never been attacked is an assertion; this one is a measurement.'
+
+**Landing** (8 files · 968 insertions · 28 deletions):
+- `backend/contracts/witness_identity.py` · WitnessAttestation_v0.subject_kind extended to 4 members (+`watch_action`). Snapshot regenerated.
+- `backend/services/watch/witness.py` · +WatchCredentialInNoteError + WatchdogIndependenceError + _validate_watchdog_note + attest_watch_action + run_standing_break_in_test + _raise_tamper_alarm helper.
+- `backend/services/watch/router.py` · +3 endpoints (identity/attest/break-in-test).
+- `backend/tests/invariants/test_w10_cp5_witness_fabric.py` · subject_kind iteration 3→4.
+- `backend/tests/invariants/witness_attestation_v0.contract_snapshot.json` · regenerated.
+- `backend/tests/invariants/test_watch_cp_c4_witness.py` (new · 8 tests).
+- `backend/tests/invariants/test_watch_cp_c4_http_journey.py` (new · 6 tests).
+- `pod_shell/frontend/src/components/Watch.jsx` · witness + tamper panels enriched · byte-mirror to /app/frontend (14227 B).
+
+**Ship-Manifest DoD triple (same-commit)**: (a) assembler wire unchanged mount; (b) frontend byte-mirror 14227 B; (c) green user-path test test_watch_cp_c4_http_journey.py.
+
+**Receipts (phase0/drill_receipts/)**:
+- RED · `20260826T120000Z_w11c_cp_c4_right_reason_fail.log`
+- GREEN · `20260826T120500Z_w11c_cp_c4_green.log` (154/154 · zero regressions)
+- LIVE · `20260826T120500Z_w11c_cp_c4_live_pod_curl_green.log` (7/7 · witness register 201 · Watch-credential-claim 422 · attest-action-digest 201 with real sha256 hash · break-in-test 200 with immutability='passed' · phantom-action 404 · state rollup reflects attestation)
+
+**Zero regressions**: 154/154 across the Wave A/B/C cohort. Parity map unchanged (WitnessAttestation_v0 remains a secondary of contracts/witness_identity.py).
+
+**Recorded**: CP-C4 closed at `4c485ae`. CP-C5 opens next (console honesty · refresh Watch.jsx / GreyMirror.jsx to remove 'mechanism not yet built' markers where the mechanism now IS built).
+
+
+---
+
+## 2026-08-26T12:15Z · WAVE C · CP-C5 CLOSE · Console honesty
+
+**Commit** · `6de41a9` (Extraction-Akki `programme/track-a`).
+
+**Landing** (3 files):
+- `pod_shell/frontend/src/components/GreyMirror.jsx` · removes 3 stale 'unbuilt' markers + adds mirage-artifacts-panel · byte-mirror to /app/frontend (9355 B).
+- `backend/services/grey_mirror/router.py` · extends /api/grey_mirror/state rollup with 'mirage_artifacts' kind.
+- `backend/tests/invariants/test_watch_cp_c5_console_honesty.py` (new · 5 invariants).
+
+**Receipts**:
+- RED · `20260826T121000Z_w11c_cp_c5_right_reason_fail.log`
+- GREEN · `20260826T121500Z_w11c_cp_c5_green.log` (159/159)
+- LIVE · `20260826T121500Z_w11c_cp_c5_live_pod_curl_green.log` (grey_mirror state surfaces new kind).
+
+---
+
+## 2026-08-26T12:25Z · WAVE C · CP-C2 WARN-FOLLOWUP CLOSE + WAVE C COMPLETE
+
+**Warn-followup commit** · `9544237` (Extraction-Akki `programme/track-a`).
+
+**Owner-noted issue** (2026-08-26T~11:42Z verbatim): 'POST /api/training-runs/{id}/close returns 200 but whitepaper_ref = "whitepaper_draft_error:\'verdict_summary\'"'.
+
+**Root cause traced to two upstream flaws** (not a single KeyError):
+- Flaw 1: `moac_card: Dict[str, Any]` at the endpoint accepted any payload; a caller passing `{'accept_for_service': false}` triggered KeyError('verdict_summary') inside close_run which was swallowed into a placeholder whitepaper_ref.
+- Flaw 2: `runner.close_run` drafted `WhitepaperDraft_v0` with the wrong field names (cites_admission vs cites_model_admission_id) + wrong whitepaper_id pattern + missing required fields (run_ref / drafted_at / drafted_by / retention_class). Even a well-formed moac_card would fail.
+
+**Landed**:
+- `backend/services/training/router.py` · `CloseRunRequest` Pydantic boundary model with extra='forbid' + required (moac_card_id, verdict_summary, accept_for_service).
+- `backend/services/training_runner/runner.py` · runner.close_run() uses correct WhitepaperDraft_v0 fields; open_run() auto-mints + persists a BaselineLine_v0 to BASELINE_LINES_DIR; emit_moac_for_run() persists moac_card to MODEL_ADMISSION_RECORDS_DIR so §33 citations resolve on-disk.
+- `backend/tests/invariants/test_close_run_whitepaper_ref_citation.py` (new · 5 tests · 3 boundary refusals + 1 extra-forbidden + 1 whitepaper resolution).
+
+**Receipts**:
+- RED · `20260826T122000Z_w11c_close_whitepaper_ref_right_reason_fail.log` (5/5 fail on right reasons).
+- LIVE · `20260826T122500Z_w11c_warn_followup_live_pod_curl_green.log` (malformed close on live pod returns HTTP 422 with structured 'moac_card_id Field required').
+
+**Zero regressions**: 164/164 pytest invariants green across the full Wave A/B/C cohort.
+
+---
+
+### WAVE C COMPLETE · full ledger
+
+  * **CP-C1** · `eff3fdb` · Doc 8 §30/31/99/136/183 · closed-grammar contracts (sever_certainty_signal + watch_action + mirage_artifact) · 41/41 green.
+  * **CP-C2** · `02a2a01` · Doc 8 §28/30/31/99 · Macho verdict emitter + Mkono deterministic verdict→action mapper · 25/25 green.
+  * **CP-C3** · `870df67` · Doc 8 §127/136/183 · MirageArtifact isolated store + Mark dye-pack · 26/26 green · parity 70→71.
+  * **CP-C4** · `4c485ae` · Doc 8 §170 · External witness (peer attestation + watchdog independence + standing break-in test) · 14/14 green.
+  * **CP-C5** · `6de41a9` · Console honesty · Grey Mirror surfaces newly-real mechanism state · 5/5 green.
+  * **warn-followup** · `9544237` · Doc 14 §33 citation invariant on training-run close · 5/5 green.
+
+**Wave C aggregate**: 164/164 pytest invariants across CP-C1..CP-C5 + warn-followup. Zero regressions. Every gating spec quoted verbatim (Owner Standing Condition 1). Ship-Manifest DoD triple honored on every CP.
+
+**Recorded**: Wave C fully closed at `9544237`. Awaiting owner ratification. Standing task: SSH key delivery unblocks Wave B live GPU run.
+

@@ -55,21 +55,42 @@ Failure to follow this sequence = paraphrase-not-spec failure class the owner ex
 
 Update this section at every CP/R-step close.
 
-- **Current wave**: WAVE B (CLOSED · 2026-08-26T11:10Z) — Training engine complete + Audio plane invariants
-- **Current step**: Wave B closed with 177/177 across full invariant cohort at HEAD `3779aee`. Wave C opens next (Watch/Grey-Mirror mechanism build).
-- **Exact next action**: Draft Wave C grounding brief with verbatim Doc 8 (The Watch) + Doc 9 (Grey-Mirror / Mkondo Charter) quotes; then close-and-report Wave B; then open Wave C planning.
-- **Wave A CLOSED**: 11 commits · R1→R7 · all 10 audit §16 status-inflations resolved · external verification 4/4 PASS
-- **Wave B CLOSED** (8 Extraction-Akki commits + 2 workspace commits):
-  - **B · handoff-WARN** · `8f40baa` · handoff artifact path relative to __file__ · 8/8 green + 200 at live pod
-  - **CP4** · `8722e3c` · Doc 18 A18.7 Skill-file provenance chain · Ship-Manifest DoD closure · 34/34 green
-  - **CP5** · `b9ed85b` · Doc 17 A17.3-A17.6 recipe seat + two-arm optimizer harness + M-d extension · 80/80 green
-  - **CP6** · `d199ea6` · Doc 19B §19B.4-6 EP-1 evidence register + EP-3 A-4 + EP-5 non-adoption invariant · 51/51 green
-  - **CP7** · `14cbc53` (workspace `master` · docs-only) · register truth-pass absorption + CP4-6 row moves + composite ~56.6%
-  - **CP8** · `b24b069` · Doc 17 lines 15,55,88-101 trainer runner mock SSH seam + MOAC emitter + cost-ledger + whitepaper on close · 47/47 green
-  - **CP-Audio** · `e23ca94` · Audio Intelligence Plane §1.2, §1.5, §3.1-3.2 non-adoption invariants + AudioSegmentV0 · 24/24 green
-  - **CP5 verdict fix** · `3779aee` · restore accidentally-removed function tail · 177/177 full Wave B cohort green
-- **Wave B composite (preliminary at CP-Audio close)**: ~56.6% ±1pp (Wave A 55.1 + row 6 upgrade + CP4-CP6 landings)
-- **Blocker (unchanged)**: Real GPU execution awaits owner SSH key delivery. Mock seam works; CP8 accepts_for_service=False honestly on mocked cards (Doc 17 line 101 verbatim).
+- **Current wave**: WAVE C **CLOSED · 2026-08-26T12:25Z** — Watch / Grey-Mirror mechanism built end-to-end
+- **Current step**: All five CPs closed + CP-C2 warn-followup closed. Wave C complete.
+- **Exact next action**: Await owner ratification of Wave C composite. Standing task: SSH key delivery unblocks Wave B live GPU run.
+- **Wave C commit ledger** (complete):
+  - **CP-C1** · `eff3fdb` · Doc 8 lines 30,31,99,136,183 closed-grammar contracts · 41/41 green
+  - **CP-C2** · `02a2a01` · Doc 8 lines 28,30,31,99 Macho verdict emitter + Mkono deterministic verdict→action mapper · 25/25 green
+  - **CP-C3** · `870df67` · Doc 8 lines 127,136,183 MirageArtifact isolated store + Mark dye-pack · 26/26 green · parity 70→71
+  - **CP-C4** · `4c485ae` · Doc 8 line 170 External witness · peer attestation + watchdog independence + standing break-in test · 14/14 green
+  - **CP-C5** · `6de41a9` · Console honesty · Grey Mirror surfaces newly-real mechanism state · 5/5 green
+  - **warn-followup** · `9544237` · Doc 14 §33 citation invariant on training-run close · 5/5 green
+- **Wave C aggregate**: **164/164 pytest invariants green** · zero regressions · every gating spec quoted verbatim from canon · Ship-Manifest DoD triple honored on every CP. curl
+- **CP-C2 warn-followup (owner-noted 2026-08-26T~11:42Z · queued)**:
+  - `POST /api/training-runs/{id}/close` returns 200 but `whitepaper_ref="whitepaper_draft_error:'verdict_summary'"` — KeyError in whitepaper drafter path.
+  - Fix tests-first: assert close response carries a real `whitepaper_ref` resolving to on-disk draft per Doc 14 §33 citation invariant.
+  - Fold into next CP close report (CP-C3 or CP-C4 target).
+- **Wave-close checklist (added per owner runtime-drift ruling)**:
+  Every wave close MUST include:
+    1. Backend supervisor restart (`sudo supervisorctl restart backend`).
+    2. Live-pod curl against a route that MOVED in the wave.
+    3. Runtime-drift guard test passes (`test_ship_manifest_dod_runtime_drift_guard.py`).
+    4. Wave-close report only after these are green.
+- **Wave A CLOSED**: 11 commits · R1→R7 · external verification 4/4 PASS
+- **Wave B CLOSED + POST-VERIFY FIXED** (9 Extraction-Akki commits + 3 workspace commits):
+  - `8f40baa` · handoff-WARN closure
+  - `8722e3c` · CP4 · Doc 18 A18.7 skill-file provenance
+  - `b9ed85b` · CP5 · Doc 17 A17.3-A17.6 recipe seat + optimizer harness + M-d
+  - `d199ea6` · CP6 · Doc 19B EP-1/EP-3/EP-5 evidence register + A-4 + non-adoption
+  - `14cbc53` (workspace) · CP7 register truth-pass absorption
+  - `b24b069` · CP8 · Doc 17 trainer runner mock SSH seam + MOAC emitter
+  - `e23ca94` · CP-Audio · Audio Plane §1.2/§1.5/§3.1-3.2 invariants
+  - `3779aee` · CP5 verdict endpoint tail restored
+  - `75b7b1e` · **post-verify fix**: governed seat-fill on adopted + verdict write-once + runtime-drift meta-invariant · **182/182 green**
+- **Wave B external verification result (owner · 2026-08-26T11:15Z)**: **3/4 PASS + 1 FAIL** (governed HTTP path gap · closed by `75b7b1e`) · 4/4 PASS after fix (self-verified via 182 tests + live-pod journey curl · owner re-verification pending)
+- **Blockers at Wave C open** (state corrected · DigiCow already ratified):
+  - **SSH private key** — awaiting owner delivery. Only remaining blocker for live GPU run.
+  - ~~DigiCow rights~~ — **RATIFIED** by owner 2026-08-26 ('take this as approval') per DECISIONS.md. NOT a blocker.
 - **Wave A commit ledger** (retained for audit):
   - R1 · `155f1db` · Ship-Manifest DoD meta-invariant
   - R2 · `369f9b8` · Connect draft persistence + human-speak errors

@@ -87,13 +87,102 @@ function EntryRow({ entry, extra }) {
   );
 }
 
-function List({ entries, extraKey }) {
+// W11 C CP-C2 · render both MachoVerdict (verdict_class + intensity +
+// sever_certainty_signal_id) and legacy WatchVerdictRow_v0
+// (signal_class + severity). Doc 8 §Line 30 verbatim closed grammar
+// surfaced in-place.
+function verdictExtra(e) {
+  if (e.verdict_class) {
+    const parts = [`class: ${e.verdict_class}`];
+    if (e.verdict_class === "externally_steerable" && e.intensity) {
+      parts.push(`intensity: ${e.intensity}`);
+    }
+    if (e.sever_certainty_signal_id) {
+      parts.push(`sever_certainty_signal: ${e.sever_certainty_signal_id}`);
+    }
+    return parts.join(" · ");
+  }
+  if (e.signal_class) {
+    return `signal_class: ${e.signal_class}${e.severity ? ` · severity: ${e.severity}` : ""}`;
+  }
+  return "";
+}
+
+// W11 C CP-C2 · render both WatchActionV0 (four-class ladder +
+// ttl_seconds + reversible + sever_certainty_signal_id) and legacy
+// WatchActionRecord_v0 (7-verb grammar). Doc 8 §Line 99 verbatim.
+function actionExtra(e) {
+  if (typeof e.reversible !== "undefined" || typeof e.ttl_seconds !== "undefined") {
+    const parts = [`class: ${e.action_class}`];
+    if (e.ttl_seconds !== null && typeof e.ttl_seconds !== "undefined") {
+      parts.push(`ttl: ${e.ttl_seconds}s`);
+    }
+    if (typeof e.reversible !== "undefined") {
+      parts.push(`reversible: ${String(e.reversible)}`);
+    }
+    if (e.sever_certainty_signal_id) {
+      parts.push(`sever_certainty_signal: ${e.sever_certainty_signal_id}`);
+    }
+    return parts.join(" · ");
+  }
+  return e.action_class ? `class: ${e.action_class}` : "";
+}
+
+// W11 C CP-C3 · render MirageArtifactV0 rows honestly with the
+// §Line 183 isolation invariants surfaced.
+function mirageArtifactExtra(e) {
+  const parts = [];
+  if (e.mirage_session_id) parts.push(`session: ${e.mirage_session_id}`);
+  if (typeof e.is_synthetic !== "undefined") parts.push(`synthetic: ${String(e.is_synthetic)}`);
+  if (e.production_store_leak_check) parts.push(`leak_check: ${e.production_store_leak_check}`);
+  if (typeof e.outward_lie_only !== "undefined") parts.push(`outward_lie_only: ${String(e.outward_lie_only)}`);
+  return parts.join(" · ");
+}
+
+// W11 C CP-C3 · render MarkV0 dye-pack rows binding all six
+// dimensions of §Line 127 verbatim.
+function markExtra(e) {
+  const parts = [];
+  if (e.identity) parts.push(`identity: ${e.identity}`);
+  if (e.credentials) parts.push(`cred: ${e.credentials}`);
+  if (e.session_id) parts.push(`sess: ${e.session_id}`);
+  if (e.device_fingerprint) parts.push(`device: ${e.device_fingerprint}`);
+  if (e.behavioural_signature) parts.push(`bh: ${e.behavioural_signature}`);
+  if (e.content_hashes && e.content_hashes.length) parts.push(`hashes: ${e.content_hashes.length}`);
+  return parts.join(" · ");
+}
+
+// W11 C CP-C4 · surface subject_kind + attested_hash for
+// witness attestations (§Line 170 sentence 1 discipline).
+function witnessAttestationExtra(e) {
+  const parts = [];
+  if (e.subject_kind) parts.push(`subject_kind: ${e.subject_kind}`);
+  if (e.subject_ref) parts.push(`ref: ${e.subject_ref}`);
+  if (e.attested_hash) {
+    const short = e.attested_hash.length > 24
+      ? `${e.attested_hash.slice(0, 24)}…`
+      : e.attested_hash;
+    parts.push(`hash: ${short}`);
+  }
+  return parts.join(" · ");
+}
+
+// W11 C CP-C4 · surface tamper alarm evidence (§Line 170 last
+// sentence: 'this one is a measurement').
+function tamperAlarmExtra(e) {
+  const parts = [];
+  if (e.evidence_kind) parts.push(`kind: ${e.evidence_kind}`);
+  if (e.evidence_ref) parts.push(`ref: ${e.evidence_ref}`);
+  return parts.join(" · ");
+}
+
+function List({ entries, extraFn, extraKey }) {
   if (!entries || entries.length === 0) return null;
   return (
     <ul style={{ listStyle: "none", padding: 0, margin: "8px 0 0 0" }}>
       {entries.slice(0, 40).map((e, i) => (
         <EntryRow key={`${e.record_id}-${i}`} entry={e}
-          extra={extraKey ? String(e[extraKey] || "") : ""} />
+          extra={extraFn ? extraFn(e) : (extraKey ? String(e[extraKey] || "") : "")} />
       ))}
     </ul>
   );
@@ -172,16 +261,42 @@ export default function Watch() {
           ) : "loading…"}
         </Panel>
 
-        <Panel data-testid="watch-verdicts-panel" title="Verdicts" anchor="Canon 8 §7 · Macho">
+        <Panel data-testid="watch-verdicts-panel"
+               title="Verdicts (Macho)"
+               anchor="Canon 8 §7 · §Line 28 · §Line 30 · §Line 31">
           <Count data-testid="watch-verdicts-count" n={gCount("verdicts")} label="verdicts" />
-          {gCount("verdicts") === 0 ? <EmptyState anchor="Canon 8 §7" kind="verdicts" /> : null}
-          <List entries={g("verdicts") ? g("verdicts").entries : []} extraKey="verdict_kind" />
+          {gCount("verdicts") === 0 ? <EmptyState anchor="Canon 8 §Line 28" kind="verdicts" /> : null}
+          <List entries={g("verdicts") ? g("verdicts").entries : []} extraFn={verdictExtra} />
         </Panel>
 
-        <Panel data-testid="watch-actions-panel" title="Actions" anchor="Canon 8 §8 · Mkono">
+        <Panel data-testid="watch-actions-panel"
+               title="Actions (Mkono · four-class ladder)"
+               anchor="Canon 8 §8 · §Line 28 · §Line 99">
           <Count data-testid="watch-actions-count" n={gCount("actions")} label="actions" />
-          {gCount("actions") === 0 ? <EmptyState anchor="Canon 8 §8" kind="actions" /> : null}
-          <List entries={g("actions") ? g("actions").entries : []} extraKey="action_class" />
+          {gCount("actions") === 0 ? <EmptyState anchor="Canon 8 §Line 99" kind="actions" /> : null}
+          <List entries={g("actions") ? g("actions").entries : []} extraFn={actionExtra} />
+        </Panel>
+
+        <Panel data-testid="watch-mirage-artifacts-panel"
+               title="Mirage Artifacts (isolated store)"
+               anchor="Canon 8 §Line 136 · §Line 183 · CP-C3">
+          <Count data-testid="watch-mirage-artifacts-count" n={gCount("mirage_artifacts")} label="mirage artifacts" />
+          {gCount("mirage_artifacts") === 0 ? (
+            <EmptyState anchor="Canon 8 §Line 183"
+                        kind="mirage artifacts" />
+          ) : null}
+          <List entries={g("mirage_artifacts") ? g("mirage_artifacts").entries : []}
+                extraFn={mirageArtifactExtra} />
+        </Panel>
+
+        <Panel data-testid="watch-marks-panel"
+               title="Marks (dye pack · minted on conviction)"
+               anchor="Canon 8 §Line 127 · CP-C3">
+          <Count data-testid="watch-marks-count" n={gCount("marks")} label="marks" />
+          {gCount("marks") === 0 ? (
+            <EmptyState anchor="Canon 8 §Line 127" kind="marks" />
+          ) : null}
+          <List entries={g("marks") ? g("marks").entries : []} extraFn={markExtra} />
         </Panel>
 
         <Panel data-testid="watch-containments-panel"
@@ -193,23 +308,24 @@ export default function Watch() {
         </Panel>
 
         <Panel data-testid="watch-witness-panel"
-               title="Witness Attestations"
-               anchor="Canon 8 §9 · W10 CP5">
+               title="Witness Attestations (§Line 170)"
+               anchor="Canon 8 §Line 170 · CP-C4">
           <Count data-testid="watch-witness-attestations-count" n={gCount("witness_attestations")} label="attestations" />
-          {gCount("witness_attestations") === 0 ? <EmptyState anchor="Canon 8 §9" kind="witness attestations" /> : null}
-          <List entries={g("witness_attestations") ? g("witness_attestations").entries : []} />
+          {gCount("witness_attestations") === 0 ? <EmptyState anchor="Canon 8 §Line 170" kind="witness attestations" /> : null}
+          <List entries={g("witness_attestations") ? g("witness_attestations").entries : []}
+                extraFn={witnessAttestationExtra} />
         </Panel>
 
         <Panel data-testid="watch-tamper-alarms-panel"
-               title="Tamper Alarms"
-               anchor="Canon 8 §9 · W10 CP5">
+               title="Tamper Alarms (measurement, not assertion)"
+               anchor="Canon 8 §Line 170 last sentence · CP-C4">
           <Count data-testid="watch-tamper-alarms-count" n={gCount("tamper_alarms")} label="alarms" />
           {gCount("tamper_alarms") === 0 ? (
-            <EmptyState anchor="Canon 8 §9"
-                        kind="tamper alarms"
-                        mechanismStatus="unbuilt · Doc03-046 tamper alarm sensor · BUILD · Wave C" />
+            <EmptyState anchor="Canon 8 §Line 170"
+                        kind="tamper alarms" />
           ) : null}
-          <List entries={g("tamper_alarms") ? g("tamper_alarms").entries : []} />
+          <List entries={g("tamper_alarms") ? g("tamper_alarms").entries : []}
+                extraFn={tamperAlarmExtra} />
         </Panel>
       </div>
     </div>

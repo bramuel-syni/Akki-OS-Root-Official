@@ -150,9 +150,7 @@ export default function GreyMirror() {
         <Panel data-testid="mirages-panel" title="Mirages" anchor="Canon 8 §15 · installed lures">
           <Count data-testid="mirages-count" n={gCount("mirages")} label="mirages" />
           {gCount("mirages") === 0 ? (
-            <EmptyState anchor="Canon 8 §15"
-                        kind="mirages"
-                        mechanismStatus="unbuilt · Doc03-042 mirage planting · BUILD · Wave C" />
+            <EmptyState anchor="Canon 8 §15" kind="mirages" />
           ) : null}
           {g("mirages") && g("mirages").count > 0 ? (
             <ul style={{ listStyle: "none", padding: 0, margin: "8px 0 0 0" }}>
@@ -169,9 +167,7 @@ export default function GreyMirror() {
                anchor="Canon 8 §15 · touch_kind CONTRACT-TIME (R2)">
           <Count data-testid="mirage-touches-count" n={gCount("touches")} label="touches" />
           {gCount("touches") === 0 ? (
-            <EmptyState anchor="Canon 8 §15"
-                        kind="mirage touches"
-                        mechanismStatus="unbuilt · Doc03-043 touch detection (innocent_read / guilty_use) · BUILD · Wave C" />
+            <EmptyState anchor="Canon 8 §15" kind="mirage touches" />
           ) : null}
           {g("touches") && g("touches").count > 0 ? (
             <ul style={{ listStyle: "none", padding: 0, margin: "8px 0 0 0" }}>
@@ -190,9 +186,7 @@ export default function GreyMirror() {
         <Panel data-testid="severances-panel" title="Severances" anchor="Canon 8 §16">
           <Count data-testid="severances-count" n={gCount("severances")} label="severances" />
           {gCount("severances") === 0 ? (
-            <EmptyState anchor="Canon 8 §16"
-                        kind="severances"
-                        mechanismStatus="unbuilt · Doc03-044 severance (guilty_use trigger) · BUILD · Wave C" />
+            <EmptyState anchor="Canon 8 §16" kind="severances" />
           ) : null}
           {g("severances") && g("severances").count > 0 ? (
             <ul style={{ listStyle: "none", padding: 0, margin: "8px 0 0 0" }}>
@@ -200,6 +194,26 @@ export default function GreyMirror() {
                 <EntryRow key={`${e.record_id}-${i}`} entry={e}
                   extra={e.cites_touch_id ? `cites touch: ${e.cites_touch_id}` : ""} />
               ))}
+            </ul>
+          ) : null}
+        </Panel>
+
+        <Panel data-testid="mirage-artifacts-panel"
+               title="Mirage Artifacts (§Line 183 isolated store)"
+               anchor="Canon 8 §Line 136 · §Line 183 · CP-C3">
+          <Count data-testid="mirage-artifacts-count" n={gCount("mirage_artifacts")} label="mirage artifacts" />
+          {gCount("mirage_artifacts") === 0 ? (
+            <EmptyState anchor="Canon 8 §Line 183" kind="mirage artifacts" />
+          ) : null}
+          {g("mirage_artifacts") && g("mirage_artifacts").count > 0 ? (
+            <ul style={{ listStyle: "none", padding: 0, margin: "8px 0 0 0" }}>
+              {g("mirage_artifacts").entries.slice(0, 40).map((e, i) => {
+                const parts = [];
+                if (e.mirage_session_id) parts.push(`session: ${e.mirage_session_id}`);
+                if (typeof e.is_synthetic !== "undefined") parts.push(`synthetic: ${String(e.is_synthetic)}`);
+                if (e.production_store_leak_check) parts.push(`leak_check: ${e.production_store_leak_check}`);
+                return <EntryRow key={`${e.record_id}-${i}`} entry={e} extra={parts.join(" · ")} />;
+              })}
             </ul>
           ) : null}
         </Panel>
