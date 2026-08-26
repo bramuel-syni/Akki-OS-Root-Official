@@ -1,8 +1,31 @@
 # NEXT.md - Exact next actions
 
-**Last updated:** 2026-08-26T11:15Z · **W11 partial scope open (R11) · SSH auth blocked · standing at owner action** · Extraction-Akki HEAD `f101bd0` (programme/track-a · unchanged) · master HEAD pending commit.
+**Last updated:** 2026-08-26T11:40Z · **W11 REASSESSMENT DELIVERED · awaiting owner approval before CP1 opens** · Extraction-Akki HEAD `f101bd0` (programme/track-a · unchanged) · master HEAD pending commit.
 
-## Cycle status (2026-08-26T11:15Z · W11 STEP 1 done · STEP 2 blocked on SSH auth · STEPS 3-4 blocked on STEP 2)
+## Cycle status (2026-08-26T11:40Z · W11 reassessment complete · plan awaiting owner GO)
+
+- **Owner directive 2026-08-26T11:20Z**: reassess before build · 3 new spec docs supplied · SSH key incoming · DigiCow data claim · deeper donor reuse suspected.
+- **Reassessment delivered**: `notes/w11_reassessment.md` (comprehensive · 8 sections).
+  - **§1 Canon delta**: Docs 17/18/19 + Incremental Training Capacity Briefing + Training Techniques Spec ingested · converted to text · landed in `canon/text/`. Canon pack now 12 canon + 2 governed-artefact specs · register-wide count = 20 docs.
+  - **§2 Register delta**: 36 new rows (23 CANON + 5 PROPOSED + 8 OPEN-SLOT) · register grows 515→551 rows.
+  - **§3 Reuse inventory · MAJOR FINDING**: callable-skill package (356 LOC) + cuda_runtime + models_registry.v0.json + 649 LOC of eab_1_pipeline + execution_mode_telemetry ALREADY IN Extraction-Akki (prior W10 gap map missed this · Doc 18 status corrected · 5 rows retroactively DONE not BUILD). Critic_pass 950 LOC is LIFT-clean from Akki-OS-V1 for Doc 19A QA-1..QA-6. Net LIFT+ADAPT ≈ 44% of total scope · pure BUILD ≈ 56%.
+  - **§4 DigiCow**: verified on record · `phase0/data_connection_records/data_source_digicow_live_20260819T152513Z_FINAL.json` · AWS RDS Aurora MySQL eu-west-1 · 125 tables · top table `ussd_users` 2.28M rows · TEXT modality (USSD/SMS farmer channel) · chokepoint residency allowlist admits · **rights declaration PENDING owner signature**.
+  - **§5 Revised W11 plan**: 9 CPs · ~4850 LOC (was 4-6k · now LIFT-heavy). Owner's "test training section first" goal reachable at end of **CP3** without spending GPU-hours (Demand Table + Capacity Ledger + Test-set seal + Training panel · trainer runner deferred to CP8).
+  - **§6 Owner-input list**: 12 items · blocking-vs-non-blocking table per CP.
+  - **§7 Composite % preview**: 551-row denominator preview ~52.9% (barely up from 52.49% authoritative · rows added ≈ rows lit). Not authoritative until CP9.
+
+## Awaiting owner GO on
+
+1. **Approval of the revised W11 plan** (§5 of the reassessment note) · or amendments.
+2. **SSH key delivery** for the GPU VM · unblocks CP1 (R11 STEP 2/3 completion).
+3. **DigiCow rights declaration** · load-bearing before CP3 seals test set on real rows.
+4. **Base model choice** for the first adapter · A17.10 census activation.
+
+## R11 waiver status
+
+Still open · expires at CP1 STEP 3 fix-back commit. Direct-connect probe from R11 STEP 2 already executed (auth-blocked · SSH key incoming will unblock).
+
+## Cycle status (2026-08-26T11:15Z · W11 STEP 1 done · STEP 2 blocked on SSH auth) [ARCHIVED · superseded by 2026-08-26T11:40Z]
 
 - **W11 partial scope opened (R11 · 2026-08-26T11:00Z)**: real GPU wiring + training-section gap map. Owner ruling verbatim: "connect directly, ignore rules only at this integration, fix back after GPUs connected." Waiver is narrow · temporary · expires at STEP 3 fix-back.
 - **STEP 1 · Credential ingest · DONE**:

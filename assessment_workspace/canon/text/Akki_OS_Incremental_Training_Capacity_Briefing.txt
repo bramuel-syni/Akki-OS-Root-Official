@@ -1,0 +1,231 @@
+SYNI.AI   ·   MODULE BRIEFING
+Incremental Training & Capacity
+A module for objective-driven model training, designed on the Theory of Constructive Operators
+This document defines the module: the problem it solves, the theory it draws on, the concepts it introduces, the components that implement it, the surfaces it touches, and how it is built and validated. It is a platform module — modality-independent. Audio is its first consumer, not its container.
+Contents
+1   The problem this module solves	2
+2   The theory, and the discipline around it	2
+3   Concepts and definitions	3
+4   Components	4
+5   Design rationale — why this shape	6
+6   Surfaces and handoffs	7
+7   Build order	8
+8   Validation gate	8
+9   Open decisions	9
+
+1  The problem this module solves
+The platform trains models against specific customer objectives, on customer estates, as commissioned work. Four problems arise in that setting, and they compound.
+1.1  Every objective starts from nothing
+A commission trains a model for an objective. A later commission on the same estate trains for a related objective and begins again — no record exists of what the first model demonstrably learned, at what level, on which material. Capability is produced and then lost as an asset. The second commission costs what the first cost, indefinitely.
+1.2  Nobody knows what an objective actually demands
+An objective arrives as a description of a desired outcome. Nothing converts it into a statement of what the model must be able to do — how many distinct capabilities must be correct at the same moment for a single output to be right. Without that, planning is guesswork: the work is scoped by intuition, priced by analogy, and the first real evidence of difficulty arrives after the compute is spent.
+1.3  Gaps are discovered, not predicted
+Trained models fail unevenly. They perform on the material the corpus is rich in and fail on the variants it is thin in — minority dialects, degraded channels, code-switched speech, unusual document conditions. Today those gaps surface at evaluation, after training. Nothing in the process identifies, before training begins, which strata are at risk and why.
+1.4  The corpus’s own skew steers the model
+Left to its natural distribution, training follows whatever the estate holds most of. That is not neutral: it actively pulls the model toward the dominant variant and away from the ones that most need deliberate attention. The skew is invisible in the training configuration and visible only in the results.
+
+The module addresses all four with one mechanism: state what an objective demands, measure what the trainer already holds, plan from the difference, and record what each commission adds.
+2  The theory, and the discipline around it
+2.1  What the Theory of Constructive Operators says
+Juan Pascual-Leone’s Theory of Constructive Operators explains why children move between cognitive stages. Piaget described the stages; TCO supplies the mechanism. A child can perform a task when their mental attentional capacity — how many mental schemes they can hold and coordinate at once — meets the number of schemes the task requires coordinated simultaneously. Capacity grows with development; when it crosses a task’s demand, the task becomes solvable.
+The theory also describes forces acting on that capacity: a field pull toward whatever is perceptually dominant, and silent operators that boost relevant schemes and suppress interfering ones. It distinguishes facilitating situations, where the obvious response is the correct one, from misleading situations, where capacity must be spent inhibiting a wrong but dominant response.
+2.2  What transfers to model training
+The structural correspondence is close enough to be useful without being forced:
+2.3  The discipline: shape, not numbers
+What the module borrows is the shape — measure capacity, compute demand, stage transitions by the gap, reuse what is held, guard against interference. What it does not borrow is any quantity. TCO’s growth rates and capacity units are empirical claims about children; they say nothing about transformers on a broadcast archive.
+Every rate, step and threshold in this module is measured per commission. Nothing is assumed from the theory, and the module’s central claim — that demand-staged training produces fewer gaps than flat training — is held unpublished until it is measured (§8).
+3  Concepts and definitions
+Seven terms carry the module. They are used with these meanings throughout the platform.
+3.1  Scheme
+A discrete, named, reusable capability a model either holds or does not — for example, entity recognition in a given language, transcription under telephone-band conditions, table extraction from degraded scans, clause identification in commercial contracts. Schemes are modality-independent and drawn from a shared taxonomy so that a scheme name means the same thing across commissions.
+3.2  Stratum
+A defined slice of material with distinct characteristics — a language variant, a channel condition, a document class, an accent cluster. Strata come from the platform’s registry work: they are what the estate is actually made of, measured rather than assumed. Demand, capacity and acceptance are all expressed per stratum, because that is where performance genuinely differs.
+3.3  Coordination breadth (B)
+For a required output, the number of schemes that must be simultaneously correct for that output to be correct. B is the maximum co-activation across the objective’s outputs — not a total inventory of everything the objective touches somewhere.
+Worked example. For the output “brand X was mentioned by presenter Y at time T”, three schemes must all be right at once: transcription in the segment’s language, brand entity recognition, and speaker attribution. B = 3. On code-switched segments, switch handling must also be right at the same moment: B = 4. The same objective therefore makes different demands of different strata, which is precisely what the table is for.
+3.4  Interference (I)
+A per-stratum flag marking strata where the corpus’s natural pull opposes the required behaviour — majority-variant gravity over a minority variant, cross-language model pull on non-English text, frequency pull from heavily repeated material. In TCO terms these are misleading situations: capacity must be spent suppressing a dominant wrong response, so interference adds to demand rather than sitting beside it.
+I is binary at introduction. It is re-weighted only if calibration data shows misleading strata cost more than one unit of capacity — measured, never assumed.
+3.5  Effective demand (E)
+E = B + I, per stratum. Effective demand is a fact about the objective: model-independent, portable across model lines, computed once at compile and never revised downstream.
+3.6  Capacity (C)
+What a model line demonstrably holds, per scheme, at a measured level — established by probing during calibration, not inferred from training history. Capacity is a fact about the trainer on a particular estate, and it changes as commissions complete.
+3.7  Gap, step, and saturation
+Gap = E − C per stratum. It is what the plan must close, and the planner’s first computation.
+Step = how much new coordination the model absorbs in one stage while retaining what it already holds. Measured at calibration on this estate; never a constant.
+Saturation = the state of a capability whose measured level stops moving as data is added. Derived from marginal-gain records, never declared.
+4  Components
+Four components implement the module. Each attaches to a surface that already exists; none is a new service.
+4.1  The Demand Table
+Compiled by the Objective Wizard alongside the TargetOutcome and Collection Schema, for every objective. It states what the objective requires, per stratum.
+DemandTable {
+  schemes[]      each: { id, named_failure }
+  per_stratum {
+    B            coordination breadth — max simultaneous co-activation
+    I            interference flag — corpus pull opposes required behaviour
+    E = B + I    effective demand
+  }
+}
+
+The admissibility rule
+A scheme enters the table only with its named failure — the concrete thing that breaks without it. “Code-switch handling, because entity boundaries break at switch points” is admissible. “Robustness” is not. The compile stage rejects unnamed-failure schemes as it rejects an objective with no test set.
+This rule exists for one reason: it keeps the table a surgical map of what the objective actually needs, rather than an inventory that grows to look thorough. A demand count that cannot be audited to named failures is a busyness score, and would corrupt every plan built on it.
+4.2  The Capacity Ledger
+A modality within the existing registry service — not a new store. It records what has been built, so the next commission does not begin from nothing.
+CapacityEntry {
+  scheme_id
+  stratum        per-stratum where flagged; ‘global’ otherwise
+  level          measured, from calibration
+  provenance[]   which commission(s) built it
+  marginal_gain  what the last data increment moved
+  state          building | held | saturated   (derived)
+}
+
+Resolution rule
+Per-stratum entries for schemes touched by strata flagged I = 1, plus any stratum the objective’s acceptance gates on. Global entries elsewhere. Precision where risk lives, economy everywhere else: the ledger can afford completeness, but the calibration probe suite must stay selective or it becomes the expensive part of every commission.
+4.3  The capacity probe
+An addition to Sampling & Reflection — the calibration stage that already precedes every commissioned training run. It gains one function and changes nothing else:
+Read the ledger for the schemes named in the Demand Table.
+Probe only what the resolution rule requires: which schemes are held, at what level, per flagged stratum.
+Measure the step — how much new coordination the model absorbs while retaining prior capability.
+Write marginal-gain rows back to the ledger.
+Calibration continues to do what it already did: price the job and author the proposed milestone list. It now also answers what the trainer already knows.
+4.4  Gap-shaped staged plans
+The Training Planner’s first computation becomes the gap, and the plan takes its shape from it:
+Small gap — compose the schemes already held; train only the residual.
+Large gap — a staged curriculum: stages ordered by ascending effective demand, facilitating strata before misleading ones, each stage introducing no more new coordination than the measured step.
+Stage gate — each stage must retain prior capability, checked against earlier stage test sets, before the next opens. This is the suppression half of the mechanism: growth that destroys what came before is not growth.
+Near-saturated schemes — shift the quote from training spend to composition work, before the quote is issued.
+5  Design rationale — why this shape
+5.1  Demand travels with the objective; capacity stays with the trainer
+Demand is analytic and model-independent: the same objective makes the same demand of any model that attempts it, so it is computed once at compile and travels with the objective. Capacity and growth rate are empirical and specific: they belong to a model line on an estate, and are measured at calibration.
+Mixing them would make objectives non-portable and put invented constants into the compile stage — the exact failure the analogy discipline (§2.3) exists to prevent.
+5.2  Per-stratum resolution, selectively probed
+Global capability figures hide the failures that matter: a model at a high average can be failing the minority stratum entirely. Per-stratum resolution is where the module earns its value. But probing every scheme on every stratum would make calibration the dominant cost of a commission, so resolution is full in the ledger and selective in the probe.
+5.3  Provenance ships on day one
+Every capacity write records which commission built it. Nothing in the module requires this today. It is included now because a ledger without provenance cannot later answer whose data built a capability — and that question must be answerable before any capability is ever shared across commissions or tenants, given that trained models are the customer’s property.
+It is the one field that cannot be retrofitted: adding it later means rebuilding the ledger from source.
+5.4  Saturation is a discount, not a checkpoint
+As incremental modelling matures, later commissions increasingly find their demand already met and additional data stops moving measured capability. The module makes that visible without making it a burden:
+Derived, never declared. Computed from marginal-gain rows calibration already writes. No one enters it; no one maintains it.
+Informational, never gating. Nothing blocks on saturation. No ceremony to enter or exit the state. No user action is ever required by it.
+Acts only in the customer’s favour. Its single effect is the quote shift in §4.4 — cheaper composition instead of futile training.
+Shared-learning policy — cross-commission transfer, common substrates, tenant boundaries — is deliberately deferred until marginal-gain data exists to inform it. The schema above is sufficient preparation; deciding the policy now would be assertion where measurement is pending.
+6  Surfaces and handoffs
+The module touches six surfaces and introduces no new one. It adds no human approval anywhere: the only decisions in the journey remain the two that already exist — the objective owner agrees milestones at commission, and decides on a budget-ceiling breach.
+
+6.1  Handoff chain
+Each step produces a typed artifact with a single owner. The consumer is prohibited from redoing what the producer guaranteed — redoing upstream work is a specification violation, not diligence.
+
+Ownership check: demand is computed only at compile; capacity only at probe; the plan only at plan; approval only at commission; capability writes only during training. No surface owns the same value twice.
+7  Build order
+Six items. Order is by dependency, and by what becomes expensive if deferred.
+
+Items 1 and 2 carry the deferral cost. Taxonomy instability makes every later scheme name ambiguous, and a ledger without provenance must be rebuilt from source rather than amended.
+8  Validation gate
+The module makes one mechanism claim: that demand-staged training produces better coverage — particularly on misleading strata — than training on the corpus’s natural distribution or on a flat curriculum. That claim is held until it is measured.
+8.1  The experiment
+Three arms, equal budget, scored per stratum under the platform’s blind dual-judge protocol:
+Baseline: training on the corpus’s natural distribution.
+Naive control: a flat curriculum — deliberate ordering, but without demand computation or staging.
+Full mechanism: demand-staged curriculum with no-regression gates.
+The naive control is the arm that matters: it isolates whether the structure does the work, or whether deliberate ordering alone would have produced the same result.
+8.2  What follows from the result
+If staging beats the flat curriculum on misleading-strata acceptance, the claim is published with its measurement. If it does not, the claim is not published — internally or externally — and the Demand Table remains in force regardless, because task analysis and the capacity ledger earn their place independent of whether staging outperforms.
+The result is recorded either way. A negative result retires the claim, not the record.
+9  Open decisions
+
+End of briefing. This module is platform-wide and modality-independent; the audio intelligence plane is its first consumer. Component-level contracts are carried in the Incremental Training & Capacity Specification.
+TCO
+Module equivalent
+Schemes
+Trained capabilities — what a model demonstrably does, held as reusable units.
+Capacity (M-power)
+What a model line demonstrably holds, measured on the estate.
+Task demand (M-demand)
+What an objective requires held at once, computed at compile.
+Baseline plus growth
+A frozen base model plus incrementally trained capability.
+Stage transition on capacity meeting demand
+A training stage is admissible only when its demand is within reach of measured capacity.
+Field pull
+The corpus’s natural distribution — the majority variant’s gravity.
+Silent operators (boost / suppress)
+Curriculum weighting, and no-regression gates against interference with prior capability.
+Facilitating vs misleading situations
+Strata the data supports, versus strata where surface statistics work against the required behaviour.
+Surface
+What the module adds
+Objective Wizard
+Compiles the Demand Table alongside its existing outputs; enforces the named-failure admissibility rule at compile.
+Capability taxonomy
+A shared scheme vocabulary, governed by the existing propose–qualify–graduate mechanism — no new governance body.
+Registry (Mtafiti)
+A capacity modality holding the ledger. Not a new service.
+Sampling & Reflection
+The capacity probe; marginal-gain writes; the measured step.
+Training Planner
+Gap as first computation; staged curricula; composition-versus-training split.
+Commission View
+Stages appear as milestones with no-regression as done-conditions — the existing surface, no new display machinery.
+Record (Northena)
+Stage gates, regression results and capacity writes stamp under training data classes on the one record.
+Step → owner
+Produces
+Consumer must not
+Compile → Objective Wizard
+Demand Table (with TargetOutcome and Collection Schema)
+Re-validate schemes; recompute demand
+Probe → Sampling & Reflection
+Capacity Report; marginal-gain rows; measured step
+Re-probe held schemes; assume unreported capacity
+Plan → Training Planner
+Stage Plan; quote ± interval; proposed milestones
+Re-measure capacity; re-derive demand
+Commission → objective owner
+Agreed milestones (the stage gates verbatim)
+Add approval layers
+Train → commissioned jobs
+Stage results; regression results; capacity writes with provenance
+Advance past a failed gate; write capacity without provenance
+Close → registry and record
+Sealed namespace; completion certificate
+Duplicate records
+#
+Item
+Depends on
+Complete when
+1
+Capability taxonomy
+—
+Scheme identity is stable across commissions; graduation runs on the existing propose–qualify–graduate path.
+2
+Capacity Ledger schema
+1
+Writes without provenance are unrepresentable; the resolution rule is implemented; saturation is a legal state with no logic attached.
+3
+Demand Table in wizard compile
+1
+The compile stage rejects unnamed-failure schemes; B, I and E are emitted per stratum; the table is stamped to the record with the session.
+4
+Capacity probe in Sampling & Reflection
+2, 3
+Calibration reads the ledger, probes selectively, measures the step, and writes marginal gain.
+5
+Gap-shaped staged planning
+3, 4
+The planner computes the gap first; stages respect the measured step; near-saturated schemes are quoted as composition.
+6
+Staged runs with no-regression gates
+5
+A staged plan executes end to end; a failed gate halts advance and reports plainly; gates surface as milestone done-conditions.
+Decision
+Note
+Taxonomy graduation sign-off
+Which product role owns admitting a new scheme to the shared taxonomy.
+Probe-selectivity threshold
+Proposed default: per-stratum resolution for strata flagged I = 1, plus strata the objective’s acceptance gates on. Confirm or adjust.
+Validation gating
+Whether §8 must complete before staged plans are used on customer commissions, or runs in parallel with the first. Gating is more honest; parallel is faster.
+Interference weighting
+I is binary at introduction. Decide the trigger for moving to a weighted I — proposed: calibration data showing misleading strata consistently cost more than one unit.

@@ -1,0 +1,281 @@
+AKKI · GOVERNED ARTIFACT · CANON SPECIFICATION
+Documents 17–19
+The Multidimensional Training Engine · Callable Skill Files · Quality Assurance & Evidence Integrity
+Companion to Documents 1–16. Written to the same standard: every requirement is CANON (already ratified, cited to its source), RULED (an Owner decision on record, not yet executed), or OPEN (genuinely undecided). Nothing here is invented; where this document reuses existing code or a ratified spec, the source file is cited inline.
+DOCUMENT 17   The Multidimensional Training Engine
+The Multidimensional Training Engine
+Extends and completes Promises #22, #23, #24 (Documents 13–14) with the technical requirements layer those documents named but did not land.
+17.1 · The promise, in plain language
+The platform trains models across any modality the estate holds — not audio alone — on its own, against a target made falsifiable before training starts, at a price measured before commitment, producing models whose ingredients are provable per example and whose configuration is a versioned, evidence-gated object rather than code. This is Promise #22 and #23's own language, generalised past the audio-specific frame: “the platform trains models on its own … meeting every criterion on uncurated held-out material or not entering service” (#22); “before committing a training job, the platform works with the user to get the objective right … only then does the job commit” (#23).
+17.2 · The service that powers it
+Targeta — the walled yield layer already named under #22 — extended by a modality-agnostic trainer runner (unbuilt; §17.5) and a training-data custody seam that routes every training read through the same custody discipline as any other read (Document 1).
+17.3 · Definition of the promise
+Decomposed from the Training & Optimization Techniques Specification v1.0 (RMS-IQ-Core-2, docs/requirements/training_techniques_spec_v1.md — Owner-ratified 2026-07-17) and the training-planning specification (Aug-2026), reused here as the governing definition, not restated from memory.
+Foundation method is fixed, not chosen per run
+Every model the platform trains is a LoRA/PEFT adapter over a registered open base model — never a full fine-tune, never an unregistered model. This is FACT-class in the ratified spec, meaning it is not revisited per training job; it is a standing constraint on what “training” is allowed to mean on this platform. Training material is drawn exclusively from de-duplicated, VAD-cleaned, qualified units — the same units the estate's extraction pipeline already produces, never raw source reached around that pipeline. Acceptance runs exclusively through MOAC on uncurated held-out sets: a model is never accepted on the material it was tuned against.
+Configuration is a governed object, not code
+If the optimizer, the learning-rate schedule, the batch and epoch parameters, and the adapter's rank and target modules lived in code, every change to how a model trains would be a code change — reviewed on a different cadence, by different people, invisible to the ledger that governs every other consequential object on the platform. Instead, all of it lives under training_params@v0, a sidecar configuration class carrying the identical discipline already proven for extraction_params@v0: versioned, ledgered, kept outside contracts/, with no Parity contact. A recipe change and a rule change are now the same kind of act, auditable the same way.
+The seat starts empty; evidence fills it, not judgement
+No default recipe exists at commission. The first real training run does not consume a pre-set configuration — it is the mechanism that produces one, through the measured optimizer-selection protocol below (§17.3, Training Planner). This is a deliberate inversion of the usual order: most systems ship a default and revise it under pressure; this one ships nothing until something has actually been measured. Every trained model's registry entry cites the exact recipe_version that produced it, extending MOAC's lineage criterion (M-d) by this field — which base model, which optimizer, which schedule is never a matter of asking someone, only of reading the record.
+Revision is cheap; unevidenced revision is a defect
+Recipe revisions carry no approval ceremony — they are DEFAULT-class, expected to happen as evidence accumulates. But every revision must attach the measured comparison that justifies it and must write a ledger row. The absence of ceremony is not the absence of accountability: a revision with no attached evidence is not a lighter-weight change, it is a defect, indistinguishable in the record from an engineer overriding the platform's own evidentiary standard by hand.
+The Target Outcome — training cannot be commissioned against an unfalsifiable goal
+A training job is not admitted from a task description alone. It is admitted from a Target Outcome, a schema that forces the goal into a form that can actually fail:
+TargetOutcome:
+  task            operational statement of what the model must do
+  domain          context of use
+  population      defined by reference to register strata, not labels
+  acceptance      threshold per stratum — two-dimensional (accuracy, coverage)
+  test_set_ref    must exist before the plan is accepted
+  constraints     latency, compute budget, deployment target
+Two rules are binding, not advisory. Population is register-defined: “language L, accent clusters 1–4, telephone band and studio, adult”, never “speakers of L” — because only a register-defined population makes coverage a computable number rather than a felt impression. Acceptance is per stratum, not global: a single aggregate figure hides exactly the failure that matters — 94% on the majority variant and 61% on everything else passes one test and fails the one that decides whether the work reaches the people it was built for. Whether a missed stratum blocks release is a governed decision recorded on the Outcome at definition time, not an ad-hoc call made under ship-date pressure. And the ordering constraint is absolute: the test set precedes the training. An Outcome submitted without an existing, stratified test set is rejected at definition, before a single GPU-hour is spent.
+The Training Planner — the same pattern as extraction, a different object and floor
+The planner is not new architecture. It reuses, unchanged, the pattern already proven for extraction planning: a deterministic core computes eligibility; a learned layer may only reorder an already-eligible set, and it receives that set stripped of the values that decided eligibility in the first place, so it cannot learn to game the floor; a gate compares the learned layer's output against the deterministic baseline before anything ships; every plan is reproducible from its own recorded inputs. What changes between the two is only the object being planned over and the floor that governs it:
+Planner outputs, per commissioned Outcome, are four things: a coverage report per target stratum — hours available, quality distribution, gaps, and the cost of closing each gap; a curriculum, ordered and weighted from the register itself, deliberately not from the corpus's natural distribution, which is always skewed toward whatever occurred most — the dedup instance-condition map enters here as a designated robustness stratum, at zero additional acquisition cost; the calibration commission (below); and a cost quote carrying a stated confidence interval, never a bare point estimate.
+Calibration is the planner's mandatory first stage, not an optional safeguard. Data requirements for low-resource fine-tuning are empirical — no analytical formula predicts how much data a given stratum needs to cross its acceptance threshold. So the first commissioned job is never the real job: it trains at three or four data volumes, evaluates against the test set per stratum, fits the scaling curve, and only then extrapolates to what the full run would cost and how likely it is to clear the threshold. A plan without a calibration stage is rejected outright — the first job's entire purpose is to price the real one honestly.
+Calibration has a second customer beyond pricing: it authors the accountability structure the objective owner will be held to. Its output is not only a curve, it is a proposed milestone list — the checklist of what must be done, in what order, for the commission to succeed, each milestone carrying a done-condition and an owner. The objective owner reviews and agrees this list at commission, before spend begins; every status report afterward is measured against it. Accountability is set before the money moves, not reconstructed afterward from whatever happened to get done.
+Provenance survives the training, not just the extraction. Every training example carries its provenance into the training manifest, which has three consequences that matter beyond bookkeeping: rights are enforceable per example, so an example whose rights lapse is identifiable and every model it touched is enumerable, not merely suspected; “the trained model is the customer's property” becomes a defensible statement backed by a manifest rather than an assertion made because it sounds right; and the dedup instance-condition map enters the curriculum as a designated robustness stratum at zero acquisition cost, because it was already being computed for a different purpose.
+17.4 · Delivery experience expectations
+What the organisation experiences (human-facing)
+Defines a target outcome — task, domain, register-defined population, per-stratum acceptance — and the platform rejects it outright if the test set doesn't already exist.
+Watches the mandatory first stage, calibration, as staged progress: three to four data volumes trained and evaluated per stratum, the scaling curve fit, the full run quoted only after — with a confidence interval, never a point estimate.
+Receives the calibration run's second output alongside the price: a proposed milestone list, each with a done-condition and an owner, agreed before spend rather than discovered during it.
+Sees an optimizer or recipe-component candidate proven or rejected by a measured two-arm comparison against the current baseline — both arms' numbers reported, parity mandatory for adoption, the verdict an Owner ruling on evidence rather than a preset threshold.
+Gets a model that provably cleared all six MOAC criteria, or a recorded rejection with its numbers — never a manually waved-through model — with rejected candidates kept on the shelf permanently.
+What a consuming system experiences (machine-facing)
+Reads a model's registry entry citing its recipe_version, base model, and the rights lineage that trained it — lineage is enumerable, not asserted.
+Reads a training run's completion certificate: compute consumed, data touched, manifest hash, and per-stratum results against the Outcome — failed strata reported as plainly as passed ones.
+What is produced and retained
+The training manifest — every example's provenance carried through to the trained artifact, so a lapsed-rights example is identifiable and every model it touched is enumerable.
+The completion certificate and the recipe_version record, both permanent.
+On rejection, the candidate and its measured numbers, retained — a negative result is still a result.
+17.5 · Technical and behavioural requirements
+Governance layer — already ratified, reused verbatim from RMS-IQ-Core-2
+A17.1  [CANON] Configuration lives outside code.
+Optimizer and its parameters, learning-rate schedule, batch and epoch parameters, and adapter rank and target modules MUST live under training_params@v0, a sidecar configuration class with the same discipline as extraction_params@v0: versioned, ledgered, outside contracts/, no Parity contact. The effect is that a training configuration change is reviewable and auditable the same way a rule change is — not a deploy note buried in a pull request.
+T-1.1, training_techniques_spec_v1.md
+A17.2  [CANON] The seat ships empty.
+No default recipe exists until the first training run fills it through the §3 optimizer-selection protocol (A17.5–A17.6). Nothing may pre-populate training_params@v0 by convention, template, or engineer judgement — the first value ever written to it must carry the measured comparison that produced it.
+A17.3  [CANON] Lineage extends to configuration.
+Every trained model's registry entry MUST cite the recipe_version that trained it. MOAC's lineage criterion (M-d) extends by this field, so “which configuration produced this model” is answered by reading the registry, never by asking whoever happened to run the job.
+A17.4  [CANON] Revision is DEFAULT-class, but never unevidenced.
+Recipe revisions carry no approval ceremony. Each revision MUST attach the measured comparison that justifies it and MUST write a ledger row. A revision without attached evidence is a defect — the absence of ceremony is a statement of trust in the evidentiary standard, not an exemption from it.
+A17.5–A17.6  [CANON] The optimizer-selection protocol: two arms, identical conditions, parity mandatory.
+The protocol executes at the first adapter training on real material, inside the P4-instrumented run. Its shape is one two-arm comparison — the current baseline optimizer versus a candidate, Muon named as the first — with identical training data, identical base model, identical evaluation sets, and an identical compute-budget cap, run on the smallest stratum that still yields a valid MOAC evaluation. Four measured outputs are reported for both arms without exception: target-stratum improvement (MOAC's M-a), non-target regression (M-b), wall-clock and GPU-hours to convergence, and calibration quality (an M-e input). Quality parity on M-a and M-b is mandatory for the candidate to remain eligible at all; compute-to-convergence is reported, never gating — a faster optimizer that regresses quality is not eligible regardless of its speed. The adopt/reject decision is then an Owner ruling made on the measured results, with no adoption threshold fixed in advance of the evidence, and verdict samples are uncurated per the platform's standing D-7 doctrine (evaluation inputs may be engineered; evaluation samples may not). On adoption, the winning arm writes training_params@v0 v1 with the comparison attached; on rejection, the candidate is recorded as tested, with its numbers, permanently. The identical protocol governs every future recipe-component candidate — this is not a one-time bootstrap, it is how the recipe seat is filled from now on.
+A17.7  [CANON] Ensemble critics detect; they never decide.
+Multiple reviewing instances are legitimate where a single critic's detection quality is insufficient, and prohibited from ever holding decision authority — the boundary follows from the platform's design (one walled learner, one reasoning faculty, the standing QA-1 rule that the layer detects and never decides) and is permanent, not a current-scope limitation. Deployment order is fixed: when seeded audits show a single critic's catch-rate below the standing bar on any fall class across two consecutive audits, rubric and context repair MUST execute first; an ensemble MAY deploy only if the repaired single critic still misses on a subsequent audit. Members MUST differ genuinely — a different base model or a materially different context shape — because same-base, same-context replicas are correlated reviewers that share failure modes and add cost without adding detection. All ensemble output is findings only; voting, override, and critic-of-critic structures are prohibited outright. Disagreement between critics is itself a finding class, routed to rulings like any other. Bounds: N ≤ 3 members without an explicit Owner ruling, with cost-per-review telemetry emitted per member, and the ensemble retires on its own kill metric — if its catch-rate gain over the single repaired critic falls under 10 percentage points after one full calibration cycle, it is rent not worth paying.
+A17.8  [CANON] Cascade offload builds only against a measured shortfall, never speculatively.
+A local-cascade — a local model drafts, an LLM handles only what the local model cannot — reduces metered spend where a cheaper model can filter most of a workload, but carries a documented failure mode: past a certain escalation rate, each escalated item pays twice, local and LLM both, and the cascade turns net-negative. The platform already minimizes LLM load by construction (the rung ladder, record-derived facts never re-asked of the LLM, the mechanical composition arm, the critic-succession seat), so a cascade is deliberately not pre-built. It MAY begin only when F3 telemetry, with cost columns active, shows LLM spend on a named seam exceeding a threshold the Owner sets at that time — no threshold exists in advance of metered evidence, and before the trigger fires, no cascade scaffolding, draft-model acquisition, or routing machinery may be built at all (the D7 fence). Its shape, once triggered, is local model drafts → deterministic acceptance check → LLM invoked only on rejects, where the acceptance check is rung-1 machinery, not a second model's judgement. It MUST emit its own kill metric — the double-pay rate, the share of items incurring both local and LLM cost — from its first run, and MUST retire if escalation makes it net-negative against the pre-cascade baseline.
+A17.9  [CANON] Execution mode is explicit or the process refuses to start.
+PERCEPTION_EXECUTION_MODE is read from the environment at import time and must be exactly “cpu” or “gpu”; an unset variable raises an import-time failure rather than defaulting silently, because a GPU deployment quietly running on CPU is the same silent-swap risk in the opposite direction from what governance normally worries about — it fails safe in the wrong direction, producing correct-looking but unrepresentative results rather than an obvious error. execution_mode is then carried in result telemetry, so attribution of GPU-hours and yield to a mode the record doesn't state is closed the same way fabricated model attribution is closed elsewhere in the canon.
+Owner ruling 9.2a-E2 α, 2026-07-10 — cuda_runtime.py, RMS-IQ-Core-2
+Base model selection — deliberately deferred, not open
+A17.10  [CANON] A CI fixture exists; production is a different, later question.
+The registry seeds with whisper-tiny — MIT-licensed (OpenAI's original release via Systran's faster-whisper/CTranslate2 conversion), weights SHA-pinned, origin URL recorded — explicitly marked “CI CPU-mode ASR fixture model. NOT for production use.” The seeding ruling itself is worth carrying forward verbatim, because it resolves a real deadlock: “the registry does NOT seed empty — it seeds with the CI fixture model's entry. Empty per data-blind misapplies the posture: data-blind governs assumptions about the estate's content, not tool provenance — a model registry entry is tooling attestation, and an empty registry plus a provenance gate is the CD-E3 deadlock again (nothing can pass).”
+"whisper-tiny": {
+  "family": "Whisper-class", "role": "ci_fixture_asr",
+  "backend": "faster-whisper (ctranslate2)",
+  "license": "MIT (OpenAI Whisper original release
+             · Systran faster-whisper conversion)",
+  "purpose": "CI CPU-mode ASR fixture model. NOT for
+             production use."
+}
+A17.11  [CANON] Production selection is named after the census, not before it.
+Production base model selection lands additively at a later registry bump — “named at first census activation” — following the identical license-verify → checksum-pin → Owner-ruling sequence already registered for the Qwen3 and Llama text-generation candidate rows in the same file. Those rows exist today as class-level registrations with zero download and zero compute: parameters known, license disclosed or flagged for acquisition-time verification, specific members deferred. The same discipline governs audio. The sequencing consequence is direct: the census (Documents 9–10) runs first, and the specific model is named after, informed by what the census actually finds in the estate — not chosen speculatively ahead of it on the strength of a published benchmark.
+Owner ruling 2026-07-15, Gap-Closure + Sequence Ratification dispatch, Item 6 — models_registry.v0.json
+Execution layer — does not exist; this is the actual build gap
+A17.12  [OPEN] No runner exists in any modality.
+Grep across both repositories for LoRA, PEFT, fine-tune, or trainer classes returns nothing. What exists is scaffolding around an absent center: the target-selector and eligibility gate, the MOAC contract with nothing emitting it, the baseline-line contract with no run producer, the whitepaper drafter with nothing to draft from yet. Build scope, once unblocked: contracts (training_config, training_run, training-material admit — roughly 500 LOC) plus a modality-agnostic runner service (roughly 2,000–3,000 LOC) plus a training panel frontend (recipe / run / MOAC — roughly 600–900 LOC, combined with the skill-files registry surface in Document 18). This is the W11 envelope, sized comparably to the platform's prior W10-class builds.
+A17.13  [OPEN] Model Admission shows a capability with nothing running behind it.
+The surface displays “four of six checks passed” with all six criteria named and rejected models kept on record — real UI, real registry schema. But MOAC has a contract and no emitter: nothing in the current build actually runs a candidate through the six checks and writes the result. The surface is currently a faithful rendering of a process that has not yet executed.
+A17.14  [OPEN] GPU host is reachable; authentication is not configured.
+The runner's dispatch target is mock SSH until real credentials are supplied and verified. This is progress from an earlier state where the endpoint was not reachable at all, and it is the narrowest of the open items to close.
+A17.15  [OPEN] No corpus with an owner-signed rights declaration exists.
+Admission is blocked without rights lineage — the same discipline that governs every other admitted object on the platform. The sequencing this implies is not incidental: the census and rights-position machinery (Documents 9–10) is precisely what produces this declaration from an estate. For any customer engagement, the order is census → rights declaration → corpus admission → trainer, not a parallel track that could start independently.
+A17.16  [OPEN] The ingredient-manifest guarantee is unruled.
+Training destroys per-claim traceability the moment weights are updated — a trained model cannot point back to which specific sentence in its training data justifies a given output the way a retrieved passage can. The only honest guarantee a trained model can therefore carry is provenance of ingredients: what went in, its standard, its licence — never provenance of assertions, which would misrepresent what training actually preserves. Until this guarantee is explicitly accepted or rejected by the Owner, the model output form stays off the offerable menu and the wizard refuses it with that reason stated — a deliberate, unambiguous refusal, not an omission. Checked directly against both repositories under every name and number this conversation has for it (Doc14-020, “rights unclear”, related phrasings): absent. This is the one item in this document that is genuinely, not apparently, open.
+A17.17  [OPEN] CUDA/PyTorch is not installed; the switch that will use it already is.
+Neither repository's dependency files reference torch or CUDA. This is a deployment action, not an architecture decision — the execution-mode discipline (A17.9) already exists and already refuses to run ambiguously between CPU and GPU; installing the runtime is what makes gpu mode real rather than theoretical. It requires only an explicit Owner confirmation to proceed on infrastructure already being granted for A17.14.
+17.6 · What must be true for the service to deliver as intended
+No training run commits without an existing, stratified test set — a target outcome without one is rejected at definition, not at run time.
+No model enters service without clearing all six MOAC criteria on uncurated held-out material, with no human in the acceptance path.
+The recipe seat is never filled speculatively — only by measured evidence from a real run against real material.
+Base model selection never precedes the census it depends on.
+No ensemble critic holds decision authority; ensembles surface findings, never verdicts.
+Cascade offload never builds ahead of a measured cost pressure that names its own trigger.
+A GPU deployment never silently runs on CPU, and a CPU deployment never silently claims GPU throughput.
+
+DOCUMENT 18   Callable Skill Files
+Callable Skill Files
+A new promise — Promise #33. Owner-confirmed architecture (July 2026, RMS-IQ-Core-2); complete donor code exists but is not in the current build.
+18.1 · The promise, in plain language
+A skill is a stay-running, key-scoped query capability over a defined corpus slice — an application calls it and receives governed answers, repeatedly, on the platform's own infrastructure. It is not model weights, and it is not a file handed over: governance does not end at delivery, because there is no delivery. It travels into every call, for the life of the skill.
+18.2 · The service that powers it
+The existing inner-gate crossing infrastructure (Document 1), extended by the callable-skill donor package — complete implementation, ~356 LOC, present in both RMS-IQ-Core-2 and Akki-OS-V1: a frozen provisioning contract, a per-call governance gate, and write-once persistence. Not in the current build; sized by the builder at a clean ~40% LIFT into the W11 envelope alongside Document 17's runner.
+18.3 · Definition of the promise
+The reasoning below is reused close to verbatim from the July 2026 architecture ruling, because the reasoning is the part worth keeping intact — a conclusion without it invites re-litigating the same ground later.
+Why this needed its own ruling, not an extension of the export model
+Every output the platform can produce looks, at first, like a variation on “produce something, then define who can access it.” Treating all outputs that way is a trap: it architects the live ones as static deliverables, and the mistake surfaces only once a skill gets queried a thousand times and turns out to need per-call governance the export model was never built to carry. The real distinction is not output-then-access. It is whether the system finishes and hands over, or stays running and answers.
+Two classes, one dividing line
+Hand-over: qualified data, a knowledge artifact, a trained model file. The system produces, packages, and delivers a finished thing; governance is enforced once, at export. Stay-running: a callable skill, an API feed. The system stays up and a consumer queries it repeatedly; governance has to travel into every one of those calls, live. Skills are stay-running by definition — an application queries them, they are not model weights, and the “trained behaviour” reading of “skill” belongs to the model-output form (§17), not here. This is not new architecture: it is the identical governance-travels-inline requirement the platform's integration surface already carries for API responses, now extended to a standing service rather than a single call.
+What this fixes about the delivery model, concretely
+Hand-over outputs continue to fit the existing two-perimeter export model without change. Stay-running outputs need per-call inline governance, which is the reason this document exists as its own promise rather than a line item under an existing one — the liability model, the access architecture, and the governance surface for “a file the consumer runs themselves” and “a service they call on the platform's own infrastructure, forever” are genuinely different products, and conflating them is what produces the failure mode described above.
+Grain is per_claim and synthesized_whole, per query — deliberately distinct from a knowledge artifact's per_claim/aggregated grain, because a skill composes a fresh answer to each specific question rather than exporting one fixed graph once.
+18.4 · Delivery experience expectations
+What the organisation experiences (human-facing)
+Provisions a skill over a frozen, named corpus slice and hands a consumer a scoped key and an endpoint — nothing else about the underlying data.
+Revokes a skill and has every subsequent call refuse immediately — enforcement is server-side, not a client convention that can be ignored.
+Reads the provisioning record for any skill: who was granted what scope, over which slice, from when to when.
+What a consuming system experiences (machine-facing)
+Calls the skill repeatedly and receives an answer with its class carried inline on every response — never a response the inner gate hasn't governed.
+Queries below the skill's floor and receives the refusal envelope, not a degraded or partial answer.
+Cannot reach a slice wider than the one bound at provisioning — a changed slice is a new skill, never a silent edit of the old one.
+What is produced and retained
+The provisioning record itself: skill_id, corpus_slice_ref, key_grant_id, floor, scope, endpoint_path, provisioned_at, and revoked_at once set.
+Every call's governance class, carried on the response, per the inner gate's existing per-call record discipline.
+18.5 · Technical and behavioural requirements
+A18.1  [CANON] The provisioning record, reused verbatim.
+This is the frozen contract every skill is created against — not a draft to redesign, a specification already anchored to owner rulings TF-E2/TF-E4 and reused as-is:
+Callable-skill provisioning record
+  { skill_id, corpus_slice_ref: artifact-store key,
+    key_grant_id, floor, scope, endpoint_path,
+    provisioned_at, revoked_at?: str }
+§3.7 annex, RMS Intelligence spec, 2026-07
+A18.2  [CANON] The slice freezes; it never edits.
+Corpus slice binds at freeze, an endpoint is provisioned against it, and a key is scoped to that endpoint. The slice persists via the artifact store, write-once. If the underlying material needs to change, the platform provisions a new skill against a new slice — it does not mutate the old one, because a mutating slice would mean the governance decision made at provisioning (“this key may see this material”) silently stops describing what the key can actually reach.
+A18.3  [CANON] Governance rides every response, not just the first one.
+Every response carries its class inline through the inner gate's per-call governance — the platform's existing live-response contract, applied here to a standing service instead of a single crossing. Nothing about the mechanism is new; what changes is that it now runs once per query for the life of the skill, rather than once per delivery.
+A18.4  [CANON] Below the floor is a refusal, never a degraded answer.
+The standard is enforced per call. A query that falls below the skill's floor returns the refusal envelope — the same governed refusal shape used everywhere else on the platform — rather than a thinner or hedged version of an answer.
+A18.5  [CANON] Scope is enforced server-side, not by client discipline.
+Access rides the engineer key-grant records. A consuming application's own good behaviour is never the control — scope is checked at the gate on every call, so a compromised or careless client can narrow what it asks for but cannot widen what it's able to get.
+A18.6  [PROPOSED] Async delivery, if fresh extraction ever backs a skill's answer.
+Not yet confirmed as part of skill files specifically, but already a ratified contract shape elsewhere in the same source, and the natural fit if a skill's query ever requires extraction rather than a warm read: fork at admission — warm returns a synchronous full response; fresh returns 202 with { objective_id, status: accepted, delivery_estimate, quote? }. States move accepted → running → delivered | refused, with a late refusal a normal terminal state carrying the same refusal envelope, never rendered as a failure. Delivery is a thin webhook plus a governed fetch: the webhook payload is { event, objective_id, trace_id, status } — never claim content — and the actual result is pulled over the caller's authenticated key, scope enforced there, not pushed to an app-configured URL, because pushing claims to arbitrary endpoints would be an egress path the gates don't control. No partial egress, including on cancellation — a cancelled run is still ledgered. An idempotency key is required on submission so a retried call cannot double-commission or double-charge.
+§7, RMS Intelligence spec, 2026-07 — proposed here for skill files by extension, not yet owner-confirmed for this specific case
+A18.7  [RULED] The concept is owner-confirmed; its adoption into this canon is not inherited.
+“Skill files” as a named artifact appear nowhere in the 16-document canon. The architecture above is owner-confirmed [STAKED] in the July specification — that ruling is real and reused here verbatim — but formally landing it as Promise #33, with its own number in this codebase's canon, is this document's own act. It should be read as adoption, not as a restatement of a decision already made at this level.
+A18.8  [OPEN] Complete donor code exists; it is not in this build.
+Roughly 356 lines across RMS-IQ-Core-2 and Akki-OS-V1 implement the frozen provisioning contract, the per-call governance gate, and write-once persistence — a clean ~40% of it liftable directly. Build scope: the remaining contracts, the corpus-slice custody seam (shared with Document 17's execution layer), and a skill-files registry surface on the frontend, delivered inside the same W11 envelope as the trainer runner.
+18.6 · What must be true for the service to deliver as intended
+A corpus slice is bound and frozen before an endpoint is ever provisioned — no skill is provisioned against a moving target.
+No response leaves the inner gate without its governance class carried inline.
+Revocation is enforced at the gate, not at the client — a revoked key produces a refusal even if a consumer never checks its own state.
+A widened or changed slice is never expressed as an edit to a live skill — only as a new one, with its own provisioning record.
+
+DOCUMENT 19   Quality Assurance & Evidence Integrity
+Quality Assurance & Evidence Integrity
+Two parts. Part A, the Critic Seam, is CANON — Owner-ratified 2026-07-15, reused here in full. Part B, the Evidence Protocol, is PROPOSED — my own prior synthesis from an August chat, explicitly offered there for ratification and never confirmed adopted; checked directly against both repositories, with no trace of a build or a ruling. It is written here to the same standard as everything ratified, with its status stated plainly rather than smoothed over.
+19A.1 · The promise, in plain language
+Every intelligent worker in this build — the builder agent executing phases, any LLM worker the platform harnesses at runtime, and the ruling authority's own drafts and rulings — has its output checked against the on-disk record before it can mislead, not corrected by hand after it already has. The layer mechanizes exactly the half of quality assurance that is mechanizable: verification against canon. It deliberately does not attempt the other half — reframing the problem, changing the product's direction — which remains the Owner's seat, permanently.
+19A.2 · The service that powers it
+No single named engine; a layer integrated into the standing build loop itself — the Registry (every function's mandate, promise, service trace, enforcement, cost, owner), the Registry Doctrine's binding rules, and the existing ruling loop (dispatch → Stage A proposal → escalation → ruling → execution → close report). It extends two precedents already standing in the build rather than introducing new machinery: the standing queries' findings-not-actions pattern, and Targeta's wall — the constitutional precedent that a subordinate intelligence detects and optimizes but never decides, which the critic inherits verbatim.
+19A.3 · Definition of the promise
+Origin: every check mechanizes a catch the Owner actually made, by hand
+This is not a speculative layer designed against a hypothetical failure mode. Five documented fall classes from this build's own correction history fix its boundary: memory-ruling (asserting something false against the on-disk record — the origin of doctrine rule D-11); re-derivation (proposing something as fresh advice that the Owner's own specification already states, caught once at the cost of a full audit cycle); invented scope or schedule (work categories or sequencing authored without instruction, against an explicit fence); false status (a register claiming a close was never returned while it sat on disk, a day old); and unclassed assertion (values and claims stated without their evidence class). The line that fixes the layer's boundary: every catch above is a verification — the truth existed on disk and the worker diverged from it. The Owner's other interventions in this build's history were frame changes — rewriting canon rather than diverging from it — and no layer that verifies against canon can catch a correction to canon. Frame authority is permanently outside this layer's reach.
+Five design principles, each tied to a standing precedent
+Detect, never decide — the layer emits findings; every consequence is a ruling. A QA layer with veto power would be a governor nobody mandated.
+Canon is the oracle — all deterministic verification resolves against the on-disk record, never a summary, a context window, or another model's recollection.
+Zero loop drag — the layer adds no turns to the dispatch loop; deterministic checks run as cells at submission boundaries, the critic runs asynchronously between turns, findings arrive with the artifacts they review, never before them.
+Halving, not zeroing, stated honestly — a critic sharing a worker's blind spot misses what both cannot see; the claim is a measurable shrinkage of the residual, not its elimination, which is why the layer measures itself rather than trusting itself.
+The layer pays rent — its own catch and false-alarm ledger is standing; if it stops catching and starts noising, it shrinks or retires by ruling, the same discipline every other function on the platform is held to.
+19A.4 · Delivery experience expectations
+What the organisation experiences (human-facing)
+The Owner's reviewing role compresses; it does not disappear. Instead of reading every artifact, a measured fraction of critic findings and all-clears is sampled for review — the sampling rate itself shrinks as the critic's measured reliability accumulates.
+Sees findings, never a blocked workflow — the one exception is a hard format gate on missing required sections, form only, never substance.
+Reads a standing calibration ledger: the critic's catch-rate and false-alarm rate per worker class, versioned like model calibration, so “how much can I trust this layer” is a citable number rather than a felt impression.
+What a consuming system experiences (machine-facing)
+A Stage A proposal or close report submitted without its required sections — including the self-audit table — is rejected at the format gate before it enters the loop at all.
+Every other check returns a finding row, never a block: citation mismatches, untraceable scope, unclassed assertions, schema gaps, status contradicted by the repository, and lexical collisions with existing Registry entries all surface as findings, not failures.
+What is produced and retained
+Findings reports, evidence-classed and cited like every other producer's output on this platform — an unclassed finding is itself a finding.
+The calibration ledger, carrying a staleness field; a critic whose calibration falls outside its window renders its findings UNCALIBRATED rather than silently stale.
+The checks themselves register in the Registry with their own rows — they are functions, and functions pay rent like every other function on the platform.
+19A.5 · Technical and behavioural requirements
+Tier 1 — deterministic record-verification (rung 1)
+Six check families, all mechanical, all resolving against the repository, running on Stage A proposals and close reports at submission:
+Tier 1's conceded limit, stated by the source rather than discovered later: it verifies form and existence, not pertinence — an artifact can cite real SHAs for irrelevant objects and pass. Pertinence is exactly what Tier 2 is for; the two tiers are designed as a pair, and adopting Tier 1 alone buys the cheap half while advertising the whole.
+Tier 2 — the critic pass (rung 3/4), independent by construction
+An independent model instance reviews each Stage A and close asynchronously, after landing, against a fixed six-item rubric drawn directly from the Owner's own catch history: anti-re-derivation (does this already exist in the record under any name), anti-fabrication (is any claim stronger than its evidence class permits), the conflation test (does every proposed function trace to a real named service), scope semantics (does the work's substance stay inside the dispatch's intent, beyond what the mechanical trace alone catches), enforcement honesty (is any rule proposed whose only enforcement is prose), and self-audit audit (does the artifact's own self-audit table's reasoning hold, or is it reflexive pass-stamping). The critic never shares the worker's conversation — its context is exactly the artifact under review, the canon set, and the rubric, never the worker's reasoning or drafts, because a critic reading the worker's own justification inherits the worker's frame, which is precisely the blind-spot-sharing failure the design exists to avoid. No worker ever critics its own output; where critic and worker share a base model, independence is by context isolation alone, and Tier 3's seeded audits exist specifically to measure whether that isolation is sufficient rather than assume it. The critic runs at the cheapest sufficient rung, and its findings carry the same evidence-classing and citation discipline as every other producer on the platform.
+Tier 3 — human calibration sampling: the Owner's role compresses, it does not vanish
+Verdict sampling: a fraction of critic findings and all-clears (default 20% of findings, 10% of all-clears, decaying as measured reliability accumulates) is human-scored as a true catch, a false alarm, or a miss.
+Seeded-defect audits: on a standing cadence, a known defect from a documented fall class is deliberately planted in a review copy — never a landing artifact — and the critic's catch or miss is recorded. This is the only honest measurement of a reviewer that mostly reports clean: detection proven on known positives, drawn across fall classes, never curated toward the critic's own strengths.
+The calibration ledger: catch-rate and false-alarm rate per worker class and rubric item, versioned like model calibration, with a staleness field — a critic whose calibration is stale past its window renders its findings UNCALIBRATED at the point of use, the same honesty rule the platform applies to model confidence generally.
+Behavioural rules, binding on adoption
+QA-1  [CANON] Detect, never decide. No finding blocks execution, edits an artifact, or gates a phase — every consequence is a ruling. One scoped exception: QA-2.
+QA-2  [CANON] The format gate. Schema-completeness (RV-4) is the single hard gate — a submission missing its required sections is returned for completion before it enters the loop. Form, never substance.
+QA-3  [CANON] No self-review. No worker critics its own output; independence is by context isolation, itself measured by seeded audits.
+QA-4  [CANON] Findings carry the honesty grammar — every finding is evidence-classed and cited; an unclassed finding is itself a finding.
+QA-5  [CANON] The layer pays rent. The catch/false-alarm ledger is standing; a layer that stops catching shrinks by ruling. A second QA layer above this one is a meta-spiral defect on sight.
+QA-6  [CANON] Frame authority is untouchable. No check, rubric item, or finding may dispute an Owner ruling, a service sentence, or a frame decision — the layer verifies divergence from canon; it has no standing on changes to canon.
+19A.6 · What must be true for the service to deliver as intended
+It is not a governor — it holds no mandate, asserts nothing about the estate, and gates nothing but submission format.
+It is not the Owner's replacement — the build's largest course-corrections were frame changes, which this layer would catch none of, by design; claiming otherwise is exactly the overclaim its own anti-fabrication rubric item exists to flag.
+It is not inline — nothing here adds a synchronous step to any serving path or a turn to the dispatch loop.
+It makes no zero-residual claim — it halves the residual, measurably and repeatedly, and its own dashboard is built to show its misses, not hide them.
+
+PART B — STATUS: PROPOSED, NOT RATIFIED
+19B.1 · The promise, in plain language
+No number earns the right to be quoted outside the platform until it resolves to a register row — its method, its judges, their measured agreement, the rubric version, and the source rows behind it. A judgement call becomes a published figure only through this door, never around it. This is my own synthesis, proposed for ratification in an August 2026 chat and never confirmed adopted; the source specification it responded to (sections A-1 through A-4) was not found as a standalone document in either repository, and neither the evidence register nor the dual-judge protocol appears anywhere in the current build. It is written here at full weight because the reasoning holds regardless of its ratification status — not to imply that status is settled.
+19B.2 · The service that powers it
+No existing named engine. Proposed as one capability with two parts: an evidence register (a ledger-backed record, structurally similar to the Registry's own pattern) and the dual-judge protocol (A-2) as its scoring mechanism, applied wherever a judgement call is about to become a published number.
+19B.3 · Definition of the promise
+The register's proposed schema: one row per figure, carrying the figure itself, the method that produced it, the judges and their versions, the rubric version applied, the inter-annotator agreement (kappa), the date, and the source rows it derives from. The standing rule proposed alongside it: no figure is quoted externally without resolving to a register row — mechanizing a discipline the platform already practises informally (the source chat cites an existing re-measurement practice, 1,523 revised to 1,559, as evidence the norm already exists in spirit; the register would make it structural rather than a matter of remembering to do it).
+19B.4 · Delivery experience expectations
+Named application sites — proposed, not built
+The terminal test itself: the platform's human-qualified benchmark slice, scored dual-judge with a published kappa — named as the highest-priority site, since the single verdict everything else rests on is currently single-judge.
+Per-language custody recall: the claim most exposed under diligence, currently single-scored by design.
+Model Acceptance (Document 17, MOAC): the canon already mandates human quality judgement over the six checks — that judgement is exactly the artifact dual-judging exists to make defensible.
+Refusal correctness (Document 8): the refusal-health surface counts refusals today but scores whether the named rule actually justified each one; a sampled dual-judge audit would give the refusal grammar a measured integrity figure.
+The existing verification loop: builder verification versus independent tester is already de facto dual-judge; recording their disagreement rate per cycle turns an existing process into a measured instrument at close to zero additional cost.
+What is produced and retained, if adopted
+The evidence register itself — the single place any externally-quoted figure must resolve to.
+A-4, proposed as a companion mechanism, never a build gate: claims validation functioning as the re-entry path for previously killed backlog (a parked idea returns only with a three-arm result behind it) and as the bake-off court for competing implementation choices.
+19B.5 · Technical and behavioural requirements
+Evidence register row (proposed)
+  { figure, method, judges: [..], judge_versions: [..],
+    rubric_version, kappa, date, source_rows: [..] }
+  Standing rule: no figure quoted externally without
+  resolving to a register row.
+EP-1  [PROPOSED] Build the register first — cheapest piece, and it immediately hardens the custody-recall and Model Acceptance sites above.
+EP-2  [PROPOSED] Dual-judge scoring (A-2) applies at every named site in §19B.4, plus any future site where a judgement call becomes a published number.
+EP-3  [PROPOSED] A-4 (claims validation) rides inside this capability, scoped explicitly as validation, never a build gate — its real experiments require real material and naturally sequence after the terminal test.
+EP-4  [OPEN] Hard ordering constraint, stated by the original proposal: the evidence register and dual-judge protocol must exist before the terminal test runs, or that test's verdict is single-judge permanently — there is no retroactive fix once the terminal test has already run single-judge.
+EP-5  [PROPOSED] Explicitly not adopted, per the same proposal: the source spec's “insurance telemetry” aside (serves a goal never named) and its internal reduction-skill mandate (process tooling the Quality Rule Book already covers in doctrine — building enforcement machinery for it fails the platform's own reduction test).
+19B.6 · What must be true for the service to deliver as intended
+No figure reaches an external document without a resolvable register row — stated as absolute in the proposal, not aspirational.
+The register and protocol exist before the terminal test runs — the one constraint the proposal calls genuinely ordering rather than merely preferred.
+A-4 never becomes a gate by drift — its scope is validation and re-entry, and staying there is a condition of adoption, not a detail.
+This entire part remains PROPOSED, not CANON, until an explicit Owner ruling says otherwise — nothing above should be cited elsewhere as settled.
+
+Extraction planning (existing)
+Training planning (new)
+Object
+Source locations
+Register strata
+Floor
+Defensibility class
+Acceptance threshold — accuracy × coverage
+Output
+Mining plan
+Training plan + curriculum + milestones
+Check
+Definition
+Mechanizes
+RV-1 citation-existence
+Every SHA, file path, ruling id, registry row id, and contract name cited resolves to an existing on-disk object; cited SHAs match the object's actual hash.
+Memory-ruling
+RV-2 scope-trace
+Every work item traces to an authorizing instrument — a dispatch, a register row, a ruling. Untraceable items are scope-invention candidates.
+Invented scope
+RV-3 evidence-class presence
+Classed assertions (status, values, verdicts) carry FACT/NORM/DEFAULT or fact/recalled/inferred, matching their class's required form.
+Unclassed assertion
+RV-4 schema-completeness
+Required sections present — band, escalations, registry rows, self-audit table for proposals; gate roster, artifact SHAs, self-audit table for closes. The one hard gate (QA-2).
+Submission discipline
+RV-5 status-truth
+Every status claim about an on-disk artifact is cross-checked against actual repository state at submission time.
+False status (the LT-1 class)
+RV-6 novelty collision
+Proposed function ids, promise ids, and concept labels are matched against the Registry and mandate documents; collisions flag for semantic confirmation.
+Re-derivation, first line of defense
