@@ -8,6 +8,9 @@ require("dotenv").config();
 // source of truth (both the FastAPI middleware and this dev-server
 // middleware read from that file). Loaded into process.env so the
 // dev-server middleware sees the same values.
+// W10 interleave (2026-08-26): OWNER_ALLOWLIST_IPS + ALLOWLIST_MODE also
+// mirrored from /app/backend/.env so the frontend surface is governed
+// by the same owner-access config as the backend.
 try {
   const spineEnv = require("dotenv").parse(
     fs.readFileSync("/app/backend/.env", "utf8")
@@ -17,6 +20,12 @@ try {
   }
   if (spineEnv.SPINE_TRUSTED_PROXY_HOPS !== undefined) {
     process.env.SPINE_TRUSTED_PROXY_HOPS = spineEnv.SPINE_TRUSTED_PROXY_HOPS;
+  }
+  if (spineEnv.OWNER_ALLOWLIST_IPS !== undefined) {
+    process.env.OWNER_ALLOWLIST_IPS = spineEnv.OWNER_ALLOWLIST_IPS;
+  }
+  if (spineEnv.ALLOWLIST_MODE !== undefined) {
+    process.env.ALLOWLIST_MODE = spineEnv.ALLOWLIST_MODE;
   }
 } catch (err) {
   // File missing → SPINE_ALLOWED_IPS stays unset → fail-closed refuse in middleware.
