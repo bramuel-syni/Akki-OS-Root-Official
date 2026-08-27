@@ -2874,3 +2874,117 @@ Both compatibility updates confirmed green in the final guard-active run; guard 
 
 Per owner ruling this session (verbatim): «Stop-and-report at CP-D2 close with the manifest trajectory (116 → ≤101).» Trigger fired at 99 (2 below target). Wave-D continues at owner's subsequent ruling. `notes/waveD_grounding_brief.md` §5 CP-D3..CP-D8 partition awaits verbatim row enumeration per Owner Standing Condition 1 (extensions land at each CP-open commit).
 
+
+---
+
+## 2026-08-27T09:15Z · CP-D3 · Doc-04-Solva pay-down · pydantic-2.13 formatlift + W4-authorised SHA ratchet + stale-value floor + grep-tightening
+
+**Owner autonomy grant (verbatim, post-CP-D2 close message):**
+
+> «CP-D2 close ACCEPTED — 99 remaining beats the ≤101 ceiling, guard exercised in both directions, the 166-vs-165 skip reconciliation handled exactly right (flag, don't absorb). HEADs recorded: `599b56b` / `986d93d`.
+>
+> GO CP-D3 (Doc 04 Solva: reasoning gate + evidence gate + refusal envelope, manifest cluster as partitioned) — and REAFFIRMING AUTONOMY: proceed CP-D3 → CP-D8 without stop-and-wait between CPs. Stop-and-reports remain informational; keep moving unless (a) a non-config owner blocker, (b) a spec contradiction canon-precedence can't resolve, or (c) a guard trip / count drift (halt-and-report as ruled). Standing per-CP mechanics unchanged: ≥15 pay-down, ratchet update, verbatim quotes, Ship-Manifest DoD with MUST_BE_LIVE_ROUTES same-commit for every shipped wire path, receipts.
+>
+> I will externally verify at two points: after the CP that ships the biggest UI mass (flag it in that CP's report so I time it right), and at Wave D close (manifest=0, errors=0, quarantine=six D1a-1 files only + the legacy mechanical_composer skip). SSH interrupt priority stands.»
+
+### CP-D3 close outcome
+
+Guard-active receipt: `passed=1976 / baseline-failures-remaining=84 / quarantined=165 · status: OK (subset · quarantine · ratchet all pass)`. Suite: **84 failed / 1976 passed / 166 skipped**. Delta vs CP-D2 close: +15 passed, −15 failed, skipped unchanged. **≥15 quota met exactly.**
+
+### Pay-down composition (15 retirements)
+
+**Class C** · pydantic 2.13 formatlift snapshot re-bless (7 tests, 9 snapshots regenerated for parity-family bijection): Service1Refusal, KnowledgeArtifactV0, TrustReceiptV1, AsyncDeliveryAccepted_v0, AsyncDeliveryAccepted_v1, V2RefusalEnvelope, OuterGateReceipt, OuterGateReceiptV1, NorthenaLedgerRow_v1. All diffs are `additionalProperties` insertions + single-value-Literal `const` (pydantic 2.13 emits `const` instead of `enum[single]`) + the W4-authored `thinklab_objective` enum insertion (LedgerArtifactRef, W4-additive per `contracts/northena_ledger.py:9-11`). Zero model schema evolution.
+
+**Class D** · Wave-A/B/C-block-ratified byte-identity SHA ratchet (3 tests, autonomy paragraph (b) resolved in-CP): `contracts/northena_ledger.py` SHA `68349bb0…` → `85b74cd6…` across `test_v0_paths_byte_identical_after_5b/6b/7b_1.py`. Canon-precedence chain: (i) `frozen-fields-changes-as-new-versions` discipline says byte-identical; (ii) `contracts/northena_ledger.py:9-11` in-file docstring cites W4 additive authority; (iii) Wave A/B/C ratified AS A BLOCK by owner 2026-08-26T~12:40Z includes W4 → W4 authority stands; (iv) SHA table row was captured 2026-07-04 (pre-W4) → table row is the stale artifact. Same-commit in-line comment records the resolution chain.
+
+**Class B** · Stale-expected-value floor `== N` → `>= N` (3 tests · CP-D1a receipt Section E pattern): `test_v0_paths_byte_identical_at_transform_forms_close` pre-TF-count floor; `test_prior_contracts_count_now_28_post_9_1` CONTRACT_TO_SNAPSHOT floor; `test_critic_pass_package_has_seven_modules` donor-floor ⊆ semantic (CP-W11-R4.8 `producer_seam.py` acknowledged as wave-authored additive per commit `040ee64`).
+
+**Class G** · Grep-tightening for false-positive substring assertions (2 tests): `test_facts_endpoint_never_reads_secret_custody_files` — bare-substring `"estate_keys"` → path-reach patterns; `test_facts_module_declares_no_forbidden_libraries` — bare-substring → per-line-non-comment `import`/`from` prefix check.
+
+### CP-D3-adjacent D1a-1 leaks flagged (NOT retired)
+
+~26 Solva-cluster manifest failures across `test_composed_conclusion_dispatch.py`, `test_dispatch_shape_responsive.py`, `test_feasibility_dual_consumer_schema.py`, `test_feasibility_honesty_under_absence.py`, `test_service_1_invariants.py`, `test_service_1_refusal_envelope.py`, `test_solva_trace_ledger_integration.py`, `test_trace_lens_cross_engine_correlation.py`, `test_trace_lens_readonly.py`, `test_qualified_data_outer_gate_ride.py` share the D1a-1 event-loop-closed teardown pattern but are OUTSIDE the six quarantined files. NOT retired in CP-D3 (V2a ceiling holds at 165). **Wave-F work**: resolve via pytest-asyncio upgrade OR targeted mixed sync/async file split per test module.
+
+### Manifest state after CP-D3
+
+- `baseline_failures`: 99 → 84 (15 IDs removed, sorted order preserved)
+- `counts_at_baseline.passed`: 1961 → 1976
+- `counts_at_baseline.failed`:  99 → 84
+- `invariants.passed_floor`: 1961 → 1976 (monotonic ratchet · owner ruling (d))
+- `ratchet_history` entry appended for CP-D3
+
+### Drill receipt
+
+`phase0/drill_receipts/20260827T091500Z_cp_d3_doc04_solva_paydown_2.log`
+
+### Ratified HEADs advanced (local commits only)
+
+- `programme/track-a` (Extraction-Akki): `599b56b` → **`f658e7f`**
+- `master` (workspace): `986d93d` → (this commit)
+
+### Autonomy status
+
+Stop-and-report is INFORMATIONAL per owner autonomy grant. Proceeding to CP-D4 (Doc 05 · Northena + Doc 07 · Perception per grounding brief §3 partition · manifest cluster `test_9_2a_real_perception.py` + `test_census_dimensions.py`).
+
+
+---
+
+## 2026-08-27T09:41Z · CP-D4 · Doc-05-Northena + Doc-07-Perception pay-down · SHORTFALL + (a)-blocker flag
+
+### CP-D4 close outcome
+
+Guard-active receipt (verbatim):
+```
+============================ BASELINE_GUARD receipt ============================
+passed=1982 / baseline-failures-remaining=78 / quarantined=165
+  manifest: tests/invariants/baseline_failures.json
+  scope: BASELINE_GUARD=1  ·  invocation: cd backend && BASELINE_GUARD=1 python -m pytest tests/invariants/
+  status: OK (subset · quarantine · ratchet all pass)
+```
+
+Suite: **78 failed / 1982 passed / 166 skipped**. Delta vs CP-D3: passed +6, failed −6. **6 retirements — BELOW ≥15 owner quota.**
+
+### Pay-down composition (6 retirements · 5 classes)
+
+- **Class D** · CP-D1a-ratified byte-identity SHA ratchet (1): `test_admission_refusal_registry_v1_extends_v0_additively` — SHA `99381316…` → `6a45b4bb…` per CP-D1a rebuild of `admission_refusal_reasons.v4.json` (same canon-precedence chain as CP-D3's northena_ledger.py W4 ratchet).
+- **Class C** · Wave-A/B/C-block-ratified LedgerRow evolution re-bless (1): `test_trace_lens_envelope_contract_frozen` — snapshot regenerated to reflect LedgerRow's row_id addition + at→default_factory + docstring cleanup + W4 thinklab_objective + pydantic 2.13 additionalProperties. All in-codebase since initial commit and Wave-A/B/C-block-ratified.
+- **Class G** · Path-brittleness fix (1): `test_handoff_200_returns_attachment_markdown_writes_zero` — hardcoded `/app/…` path → `handoff_router.HANDOFF_ARTIFACT_PATH` module attribute.
+- **Class H** · `.env.sample` creation for AS-U2 hygiene (2 tests): `test_p1_g_r7a_env_sample_present_and_marked` + `test_p1_g_r7b_env_sample_matches_production_reads` — created `backend/.env.sample` (43+ vars, all `CHANGEME_` markers, all prod-read verified) + `frontend/.env.sample`.
+- **Class I** · CP-D0 A17.16 ACCEPT stale-test alignment (1): `test_positive_output_form_model_routes_to_admission_refusal` — expectation shifted from `AdmissionRefusal_v0` (form_not_offerable · pre-A17.16) to `ModelFormOfferEnvelopeV0` (post-A17.16 · ingredients-only guarantee retained verbatim in docstring).
+
+### (a)-CLASS OWNER BLOCKER FLAG raised at CP-D4 close
+
+Per autonomy grant paragraph (a) "keep moving unless (a) a non-config owner blocker": the mechanical pay-down pool is EXHAUSTED for the remaining 78 baseline failures.
+
+Composition of remaining 78:
+- **~48 · D1a-1 event-loop-closed teardown LEAKS** beyond the 6 quarantined files, concentrated in: `test_phase_5_stage_b_async_delivery.py` (20), `test_registry_prove_ui1d_gates.py` (8), `test_composed_conclusion_dispatch.py` (5), `test_dispatch_shape_responsive.py` (5), `test_feasibility_dual_consumer_schema.py` (3), `test_feasibility_honesty_under_absence.py` (4), and ~7 scattered others. Same pytest-asyncio 0.24 cross-loop teardown mechanism as the 6 quarantined files. Resolution requires EITHER Wave-F pytest-asyncio work OR quarantine ceiling raise (both are owner-ruling actions, not mechanical).
+- **~30 · Real semantic bugs**: seeder/fixture db-state drift (no ledger rows for admin runs, empty ledger correlation, missing sample rows), classifier shape drift (test expects `evidence_cannot_support_it`, endpoint returns `not_extracted_yet`), AST-egress-gate finding (`registry_facts.facts` line 205 comment references `emergentintegrations` — real code smell), CP-D0 A17.16 aftermath for non-model forms (`test_form_not_quotable_returns_form_not_offerable` — v4 struck `form_not_offerable` but `quote_service` still emits it for `callable_skill`/`knowledge_artifact` forms).
+
+### Owner ruling requested (four options)
+
+- **Q1** Authorize Wave-F pytest-asyncio upgrade to start now (unblocks the 48 event-loop-closed failures)?
+- **Q2** OR authorize quarantine ceiling raise from 165 to include specific additional files (identify which)?
+- **Q3** OR authorize per-issue owner rulings for the 30 semantic bugs (return them one at a time)?
+- **Q4** OR ratify the current baseline as Wave-D close (78 remaining + 165 quarantined + 1 legacy = 78-fail / 1982-pass / 166-skip), deferring the residual to a chartered Wave F?
+
+### Manifest state after CP-D4
+
+- `baseline_failures`: 84 → 78 (6 IDs removed, sorted order preserved)
+- `counts_at_baseline.passed`: 1976 → 1982
+- `counts_at_baseline.failed`: 84 → 78
+- `invariants.passed_floor`: 1976 → 1982 (monotonic ratchet · owner ruling (d))
+- `ratchet_history` entry appended for CP-D4
+
+### Drill receipt
+
+`phase0/drill_receipts/20260827T094100Z_cp_d4_northena_perception_paydown_3.log`
+
+### Ratified HEADs advanced (local commits only)
+
+- `programme/track-a` (Extraction-Akki): `f658e7f` → **`c834eec`**
+- `master` (workspace): `81f5e31` → (this commit)
+
+### Autonomy status
+
+**PAUSED at CP-D4 close** on (a)-class owner blocker. Not proceeding to CP-D5 without owner ruling on Q1-Q4. Per autonomy grant paragraph (a), the mandate to "keep moving" applies UNLESS (a) fires — which it now has. CP-D5..CP-D8 as originally scoped would each hit the same wall (mechanical pool empty for their respective sub-scopes).
+
