@@ -80,7 +80,7 @@ Each row below is a REPRESENTATIVE requirement of the doc; the register carries 
 - **Doc02-001** ← C1-025 · DPO declaration workflow (Promise #2). Status **REUSABLE** (RMS compliance).
 - **Doc02-002** ← C1-026 · Two-item dual-file custody split (Promise #4 · Addendum §1 CA1-001). Status **REUSABLE** (RMS data_source has dual-file primitives; audit line = **BUILD**).
 - **Doc02-020 · CA1-007** · **Dry-run preview** between Review and Adopt. Status **DONE** (Wave E CP-E6 · 2026-08-27 · mechanism-surface at services/chokepoint/dry_run.py + POST /api/shield/dry-run wire path; the between-Review-and-Adopt UI placement is a SPA-surface consideration for later, not a mechanism gap).
-- **Doc02-020a · CA1-001** · Audit-trail Overview names "2+ independently-governed units" when an answer drew on such. Status **BUILD**.
+- **Doc02-020a · CA1-001** · Audit-trail Overview names "2+ independently-governed units" when an answer drew on such. Status **DONE** (Wave F Cleanup · CP · `services/audit_trail/` + `GET /api/audit_trail/overview` + `/audit-trail` SPA · Ship-Manifest DoD triple · Addendum §1 verbatim quote in canon_text field · 20/20 gating invariants green at `test_audit_trail_overview.py`).
 
 ### Doc 03 · Intent & Security Monitoring · 82 rows (Watch/Grey Mirror)
 - **Doc03-001** ← C3-001 · The Watch reads intent, not just permission (Promise #6). Status **BUILD**.
@@ -102,11 +102,11 @@ Each row below is a REPRESENTATIVE requirement of the doc; the register carries 
 
 ### Doc 06 · Progressive Disclosure · 16 rows (incl. CA1-002)
 - **Doc06-001** ← C4-042 · Minimal-sufficient context per step (Promise #17). Status **REUSABLE** (Exec-Core analyze_workspace).
-- **Doc06-016 · CA1-002** · Audit line names how many available source units were served. Status **BUILD**.
+- **Doc06-016 · CA1-002** · Audit line names how many available source units were served. Status **DONE** (Wave F Cleanup · CP · `services/audit_trail/` + `GET /api/audit_trail/overview` `units_served` section · derives available from data_connection_records, served from crossing_receipts by database key · Addendum §1 verbatim quote in canon_text field · 20/20 gating invariants green at `test_audit_trail_overview.py`).
 
 ### Doc 07 · Shrinkage · 19 rows (incl. CA1-003 partial-A)
 - **Doc07-001** ← C2-020 · Five-ring normalised unit (Promise #19). Status **REUSABLE** (RMS `perception/` + `layer_a/b/c/`).
-- **Doc07-019 · CA1-003** · Densification stat + per-turn warm/fresh tag (partial closure per Addendum §1). Status **BUILD** on the surface.
+- **Doc07-019 · CA1-003** · Densification stat + per-turn warm/fresh tag (partial closure per Addendum §1). Status **PARTIAL** (canon-designated partial closure per addendum verbatim: "flagged here as a partial closure, not a full one" · Wave F Cleanup · CP · `services/audit_trail/` `densification` section renders Registry densification stat + per-turn warm/fresh reference-through to `services/memory/` per owner ruling this session: "the memory-service half already exists — wire it through" · Ship-Manifest DoD triple · 20/20 gating invariants green).
 
 ### Doc 08 · Memory & Retrieval · 17 rows
 - **Doc08-001** ← C2-032 · Model reads distilled memory, not raw DB (Promise #20). Status **REUSABLE** (Exec-Core `platform_kb.py`).
@@ -184,9 +184,9 @@ Umbrella canon: Canon 4 §§21–45 (Model Ecosystem lifecycle · Adapters · MO
 
 | CA1 ID | Target doc | Row ID | Kind | Status |
 |---|---|---|---|---|
-| CA1-001 | Doc 02 | Doc02-020a | Audit line (Promise #4 closure) | BUILD |
-| CA1-002 | Doc 06 | Doc06-016 | Audit line (Promise #17 closure) | BUILD |
-| CA1-003 | Docs 07 · 08 | Doc07-019 · Doc08-017 | Registry densification stat + per-turn warm/fresh tag | BUILD |
+| CA1-001 | Doc 02 | Doc02-020a | Audit line (Promise #4 closure) | DONE (Wave F Cleanup) |
+| CA1-002 | Doc 06 | Doc06-016 | Audit line (Promise #17 closure) | DONE (Wave F Cleanup) |
+| CA1-003 | Docs 07 · 08 | Doc07-019 · Doc08-017 | Registry densification stat + per-turn warm/fresh tag | PARTIAL (canon-designated · Wave F Cleanup) |
 | CA1-004 | Doc 14 | Doc14-023 | Baseline line naming licence-verified starting model | BUILD |
 | CA1-005 | Doc 14 | Doc14-024 | White-paper action drafting | BUILD |
 | CA1-006 | Doc 15 | Doc15-085 | Watch self-containment + external witness state line | BUILD |

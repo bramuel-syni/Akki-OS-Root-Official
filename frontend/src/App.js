@@ -9,6 +9,7 @@ import ModelEcosystem from "@/components/ModelEcosystem";
 import Governance from "@/components/Governance";
 import Watch from "@/components/Watch";
 import GreyMirror from "@/components/GreyMirror";
+import AuditTrail from "@/components/AuditTrail";
 import Training from "@/components/Training";  // W11 R4.1 · Doc 17
 import SkillFiles from "@/components/SkillFiles";  // W11 B CP4 · Doc 18 A18.7
 import EvidenceRegister from "@/components/EvidenceRegister";  // W11 B CP6 · Doc 19B §19B.4-6
@@ -52,6 +53,7 @@ function App() {
           <Route path="/governance" element={<Governance />} />
           <Route path="/watch" element={<Watch />} />
           <Route path="/grey-mirror" element={<GreyMirror />} />
+          <Route path="/audit-trail" element={<AuditTrail />} />
           <Route path="/training" element={<Training />} />{/* W11 R4.1 · Doc 17 */}
           <Route path="/skill-files" element={<SkillFiles />} />{/* W11 B CP4 · Doc 18 A18.7 */}
           <Route path="/evidence-register" element={<EvidenceRegister />} />{/* W11 B CP6 · Doc 19B §19B.4-6 */}

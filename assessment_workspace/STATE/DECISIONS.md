@@ -3865,3 +3865,75 @@ External third-run WAVE-close ratification deferred to Wave F wave-close per own
 8. **Wave F CLOSED PENDING OWNER'S EXTERNAL THIRD-RUN RATIFICATION.** Handoff package: `notes/programme_close_report.md` + Wave F ratified scope-close artifacts + STATE mirrors current.
 9. **SSH key interrupt remains INTERRUPT-PRIORITY** (unchanged from prior rulings). Owner's external third run happens at the WAVE close; SSH sequence supersedes wave activity when key arrives.
 
+
+---
+
+## Owner Ruling · Wave F Cleanup CP · audit-trail Overview surface · CA1-001/002/003 CLOSE · 2026-08-27T~21:45Z · Source: owner channel (external third-run audit)
+
+**Context:** Owner's external third run at Wave F Cleanup close (2026-08-27T21:34Z) was 3/3 PASS on surface probes but the audit diagnosed a chartered-item miss: the initial Wave F GO Scope C item (2) verbatim: *"AUTHORIZED: build the audit-trail Overview surface (`services/audit_trail/` + wire + SPA per Ship-Manifest DoD) to close CA1-001/002/003 — this was the known BUILD gap and Wave F is its chartered home."* The Wave F Cleanup close had listed CA1-001/002/003 as "carried BUILD/PARTIAL" in the OWNER-PENDING §6.6, but it was chartered work, not owner-pending. Wave F is its home; it does not carry.
+
+**Verbatim owner ruling (five-part directive):**
+
+> "WAVE F RATIFICATION WITHHELD — one chartered Scope C item is unbuilt. External third run otherwise 3/3 PASS: suite 2333/0/0 receipt verbatim-confirmed, composite tool byte-identical twice at 52.52 with raw keys present, pod healthy (watch/training/continuity all 200 with real records).
+>
+> THE MISS: my Wave F GO, Scope C item (2), verbatim: 'AUTHORIZED: build the audit-trail Overview surface (`services/audit_trail/` + wire + SPA per Ship-Manifest DoD) to close CA1-001/002/003 — this was the known BUILD gap and Wave F is its chartered home.' The probe confirms: no `services/audit_trail/` directory, no dedicated routes (only `/api/master_admin/audit_trail` as a facet), CA1-001/002/003 carried as BUILD/PARTIAL. The close report listed it honestly as carried — but it was chartered, authorized work, not an owner-pending item. Wave F is its home; it does not carry.
+>
+> COMPLETE IT NOW (final Wave F work item, tests-first, Ship-Manifest DoD triple):
+> 1. Build `services/audit_trail/` per the canon rows' verbatim text: CA1-001 (Doc02-020a — audit-trail Overview names 2+ units), CA1-002 (Doc06-016 — audit line names units-served count), CA1-003 (Doc07-019 — densification stat + warm/fresh tag; the memory-service half already exists — wire it through). Overview surface reads REAL records (crossing receipts, ledger rows, watch events) with `source_path` provenance — REFERENCE-NOT-COPY, honest empties where stores are thin.
+> 2. Wire paths + SPA route per Ship-Manifest DoD: MUST_BE_LIVE_ROUTES + MUST_BE_LIVE_SPA_ROUTES same-commit; decide placement against canon text (dedicated `/audit-trail` surface vs a tab on an existing surface — quote the row text to justify).
+> 3. Register moves: CA1-001/002 → DONE, CA1-003 → DONE (or honest PARTIAL with the exact remaining gap quoted if the Doc07-019 warm/fresh half can't complete — say why).
+> 4. RE-RUN the Scope B composite lock ceremony after the register moves — the 52.52 lock predates these rows; a lock that's stale on arrival isn't a lock. Double identical recompute runs, new locked number stated (record 52.52 → new value with the delta attributed to the CA1 rows), close report §3 updated.
+> 5. Full-suite double-green at the new floor, receipts banked, STATE mirrored, stop for my external third run — that run ratifies the wave.
+>
+> Everything already banked stays banked. No other scope reopens. SSH interrupt priority unchanged."
+
+**Binding effects landed this cleanup CP:**
+
+1. **Chartered work landed** (Ship-Manifest DoD triple honored in atomic commit programme/track-a **`fcec7f8`**):
+   - **Backend:** NEW `backend/services/audit_trail/{__init__.py, router.py, overview.py}` mounted on `pod_shell/backend/server.py`. Byte-identical mirror at `/app/backend/server.py`. Live pod openapi confirms `GET /api/audit_trail/overview` served.
+   - **Wire:** MUST_BE_LIVE_ROUTES += `("GET", "/api/audit_trail/overview", …)` at `backend/tests/invariants/test_ship_manifest_dod_route_table_drift.py`.
+   - **SPA:** MUST_BE_LIVE_SPA_ROUTES += `("/audit-trail", …)`. Frontend: `pod_shell/frontend/src/components/AuditTrail.jsx` (byte-identical mirror at `/app/frontend/src/components/AuditTrail.jsx`) + repo canonical page `frontend/src/pages/audit_trail/AuditTrailOverviewPage.jsx` + Route declarations on both App.js files.
+
+2. **Placement decision (canon-text-driven per owner rule "quote the row text to justify"):**
+   - Addendum §1 CA1-001 (Doc02-020a) verbatim: *"Closed by the **audit trail Overview** stating when an answer drew on 2+ independently-governed units."*
+   - Addendum §1 CA1-002 (Doc06-016) verbatim: *"Closed by the **audit trail Overview** stating how many available source units were actually served."*
+   - Addendum §1 CA1-003 (Doc07-019 / Doc08-017) verbatim: *"Closed by a **Registry densification stat** and a **per-turn warm/fresh tag** — flagged here as a **partial closure, not a full one**."*
+   - Both CA1-001 and CA1-002 canon text names an **audit trail Overview** surface → **dedicated `/audit-trail` top-level route** (canon-language match; consistent with CP8 Watch / Governance / Grey-Mirror pattern of a top-level state rollup per canon concept).
+   - CA1-003 densification stat renders on the same Overview `densification` section (reads `registry_facts` on disk); per-turn warm/fresh tag wires through by reference to `services/memory/` per owner ruling verbatim: *"the memory-service half already exists — wire it through"*.
+
+3. **Register moves same-commit paired (master workspace mirror):**
+   - CA1-001 (Doc02-020a): **BUILD → DONE**.
+   - CA1-002 (Doc06-016): **BUILD → DONE**.
+   - CA1-003 (Doc07-019 · Doc08-017): **BUILD → PARTIAL** (canon-designated per Addendum §1 verbatim: *"flagged here as a partial closure, not a full one"* — this is canon-designated partial, not build-gap partial. The full promise for Docs 7-8 five-ring unit + warm/fresh fork extends beyond what the addendum's audit-line closes).
+
+4. **Invariant enforcer:** `backend/tests/invariants/test_audit_trail_overview.py` · **20 gating tests** · Addendum §1 verbatim canon quotes asserted in every section (`canon_text` field) · `partial_closure=True` for CA1-003 canon-designated · REFERENCE-NOT-COPY posture with `source_path` on every rendered entry · no banned fields leak (Owner Order 2026-08-25 §4 preserved) · CA1-001 reads real northena ledger group-by-trace_id math · CA1-002 reads real data_connection_records + crossing_receipts served attribution · CA1-003 reads real registry_facts densification stat · warm/fresh reference-through to memory service · honest-empty rendering under empty stores.
+
+5. **Composite lock re-run ceremony (per owner directive item 4):**
+   - `tools/w10_cp9_composite_recompute.py` gained 3 new `Delta` entries for the CA1 register moves.
+   - Byte-identical double recompute banked at `phase0/drill_receipts/20260827T215951Z_wave_f_cleanup_composite_relock.log`.
+   - **Composite: 52.52 → 52.82 (+0.30 pp)** · mech 54.48 → 54.92 · iface unchanged 47.93 · n_deltas 36 → 39.
+   - `backend/tests/invariants/test_w10_cp9_composite_lock.py` moves to the new locked values in the SAME atomic commit (same-commit DoD extension FL-P4-W8-02 preserved · composite tool ↔ composite test cross-tree pairing maintained).
+
+6. **Ratchet floor bump:** `backend/tests/invariants/baseline_failures.json` `passed_floor` **2333 → 2355** (+22 = 20 new audit_trail invariants + 1 new MUST_BE_LIVE_ROUTES parametrized case + 1 new MUST_BE_LIVE_SPA_ROUTES parametrized case). Manifest failures unchanged at 0. Quarantine unchanged at 0.
+
+7. **Full-suite double-green identical at new floor:**
+   - Run 1: `phase0/drill_receipts/20260827T220103Z_wave_f_cleanup_audit_trail_full_run1.log` · `passed=2355 / baseline-failures-remaining=0 / quarantined=0` · 90.67s.
+   - Run 2: `phase0/drill_receipts/20260827T220328Z_wave_f_cleanup_audit_trail_full_run2.log` · `passed=2355 / baseline-failures-remaining=0 / quarantined=0` · 91.40s.
+   - Identity check: both receipt lines byte-identical.
+
+8. **Right-reason RED banked before implementation landed:** `phase0/drill_receipts/20260827T215343Z_wave_f_cleanup_audit_trail_right_reason_fail.log` · 20 `ModuleNotFoundError: No module named 'services.audit_trail'` before service module existed.
+
+9. **Everything already banked stays banked** per owner directive item 5. No other scope reopens. Wave A/B/C block ratification stands. Wave D + Wave E ratifications stand. Wave F Scope A/B/C + Cleanup rounding-fix drill day retained for audit (Cleanup 52.52 lock superseded by Cleanup CP 52.82 with delta attributed).
+
+10. **`notes/programme_close_report.md` updated:**
+    - §2.4 NEW section documenting the Cleanup CP execution.
+    - §3 updated with new locked composite 52.82 + delta attribution table.
+    - §4 updated with new drill-day receipt filenames.
+    - §6.6 CLOSED (previously carried BUILD/PARTIAL).
+    - §9 artifact ledger extended.
+    - §11 closing paragraph updated to reflect new floor 2355 and new composite 52.82.
+
+11. **SSH interrupt remains INTERRUPT-PRIORITY** (unchanged from all prior rulings). Owner's external third-run RE-RUN happens next; SSH sequence supersedes if key arrives first.
+
+12. **Owner's external third-run RE-RUN is the next act.** Expected receipt line: `passed=2355 / baseline-failures-remaining=0 / quarantined=0`. Wave F ratifies on that RE-RUN.
+

@@ -49,6 +49,9 @@ from services.trace.router import router as trace_router  # noqa: E402
 from services.governance.router import router as governance_router  # noqa: E402
 from services.watch.router import router as watch_router  # noqa: E402
 from services.grey_mirror.router import router as grey_mirror_router  # noqa: E402
+# Wave F Cleanup · CP · audit-trail Overview surface
+#   (Addendum §1 CA1-001/002/003 · REFERENCE-NOT-COPY read-only).
+from services.audit_trail.router import router as audit_trail_router  # noqa: E402
 # W11 R3 · Canon 5 §14 Shaping Wizard (Phase 7 Stage B-1 LIFT · Canon 5
 # supersedes 2026-08-14 Simplification Ruling per owner 2026-08-26).
 from routers import wizard_operator as wizard_operator_router  # noqa: E402
@@ -247,6 +250,8 @@ app.include_router(trace_router)
 app.include_router(governance_router)
 app.include_router(watch_router)
 app.include_router(grey_mirror_router)
+# Wave F Cleanup · CP · audit-trail Overview surface (Addendum §1 CA1-001/002/003).
+app.include_router(audit_trail_router)
 app.include_router(wizard_operator_router.router, prefix="/api")  # W11 R3 · Canon 5 §14
 # W11 R4.1 · Doc 17 Training plane (state · demand-table compile · test-set seal).
 app.include_router(training_router)

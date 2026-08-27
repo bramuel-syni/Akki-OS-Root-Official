@@ -354,6 +354,45 @@ DELTAS: List[Delta] = [
     # STRUCTURE quality — recovered tests + reality-catches-up pins +
     # Rider-1 guard + robust walker fix. No register-row status moves
     # credited (absence verified explicitly).
+
+    # ================== W11 F Cleanup Scope C item (2) (owner ruling this session · audit-trail Overview build) ==================
+    # Owner ruling this session (Wave F GO Scope C item (2), verbatim):
+    #     "AUTHORIZED: build the audit-trail Overview surface
+    #      (services/audit_trail/ + wire + SPA per Ship-Manifest DoD) to
+    #      close CA1-001/002/003 — this was the known BUILD gap and
+    #      Wave F is its chartered home."
+    # Ship-Manifest DoD triple landed in same commit:
+    #   - backend: services/audit_trail/{__init__,router,overview}.py
+    #     (mounted on pod_shell/backend/server.py, byte-identical mirror
+    #     at /app/backend/server.py, live pod openapi confirms).
+    #   - wire: GET /api/audit_trail/overview (MUST_BE_LIVE_ROUTES).
+    #   - SPA: /audit-trail route on pod_shell + repo trees
+    #     (MUST_BE_LIVE_SPA_ROUTES). Component: AuditTrail.jsx +
+    #     AuditTrailOverviewPage.jsx.
+    #   - invariant enforcer: test_audit_trail_overview.py (20 tests
+    #     green · canon addendum verbatim quotes in every section).
+    #   - register moves paired in same commit on notes/
+    #     requirements_register_17docs.md.
+    #
+    # CA1-003 lands as canon-designated PARTIAL — Addendum §1 verbatim:
+    # "flagged here as a partial closure, not a full one". The full
+    # promise for Docs 7-8 (five-ring unit + warm/fresh fork) extends
+    # beyond what the addendum's audit-line closes.
+    Delta("W11", "CP-Wave-F-Cleanup-CA1-001", "Addendum §1 · CA1-001 · Doc02-020a audit-trail Overview",
+          "BUILD", "DONE",
+          ["Doc02-020a"],
+          "PENDING", "mech",
+          "audit-trail Overview names 2+ independently-governed units (multi_unit_answers section · groups northena ledger rows by trace_id · counts distinct artifact_ref.artifact_id per trace)"),
+    Delta("W11", "CP-Wave-F-Cleanup-CA1-002", "Addendum §1 · CA1-002 · Doc06-016 audit-trail Overview",
+          "BUILD", "DONE",
+          ["Doc06-016"],
+          "PENDING", "mech",
+          "audit-trail Overview names how many available source units were served (units_served section · available = count of data_connection_records · served = distinct sources with ≥1 crossing receipt)"),
+    Delta("W11", "CP-Wave-F-Cleanup-CA1-003", "Addendum §1 · CA1-003 · Doc07-019 · Doc08-017 densification + warm/fresh",
+          "BUILD", "PARTIAL",
+          ["Doc07-019"],
+          "PENDING", "mech",
+          "canon-designated partial closure per addendum verbatim 'flagged here as a partial closure, not a full one' · densification stat renders on audit-trail Overview · per-turn warm/fresh tag wires through by reference to services/memory/ per owner ruling this session"),
 ]
 
 

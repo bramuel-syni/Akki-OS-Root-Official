@@ -12,9 +12,10 @@ Wave F Cleanup phase is complete. All three Wave F scopes CLOSED; full-system dr
 | Wave / Scope | Anchor commit | Passed floor | Baseline failures | Quarantined | Ratification |
 |---|---|---:|---:|---:|---|
 | Wave F · Scope A · D1a-1 residue retirement | Extraction-Akki `programme/track-a` **`1155629`** | 2333 | 0 | 0 | Ratified by owner 2026-08-27T20:57Z |
-| Wave F · Scope B · Authoritative composite lock | Master workspace **`7ae5dcb`** | (workspace tool commit; test-mirror pending on rounding fix — see §4) | — | — | Ratified by owner 2026-08-27T21:12Z |
-| Wave F · Scope C · Compliance residue class-attribution | Master workspace **`aab67c4`** | (no `programme/track-a` code touched) | — | — | Ratified by owner 2026-08-27T21:20Z |
-| Wave F · Cleanup · Full-system drill day | Extraction-Akki **`67a6786`** + Master **`8e8fd06`** | **2333** | **0** | **0** | **PENDING · this report** |
+| Wave F · Scope B · Authoritative composite lock (superseded by Cleanup CP re-lock) | Master workspace **`7ae5dcb`** | (workspace tool commit; test-mirror pending on rounding fix — see §4) | — | — | Ratified by owner 2026-08-27T21:12Z |
+| Wave F · Scope C · Compliance residue class-attribution | Master workspace **`aab67c4`** | (no `programme/track-a` code touched at Scope C close) | — | — | Ratified by owner 2026-08-27T21:20Z (chartered BUILD item completed in Cleanup CP below) |
+| Wave F · Cleanup · Rounding fix + full-system drill day | Extraction-Akki **`67a6786`** + Master **`8e8fd06`** | 2333 | 0 | 0 | Superseded by Wave F Cleanup CP · retained for audit |
+| Wave F · Cleanup CP · audit-trail Overview (CA1-001/002/003) | Extraction-Akki **`fcec7f8`** | **2355** | **0** | **0** | **PENDING · this report** |
 
 **Wave E ratified anchor (prior · unchanged):** Extraction-Akki `programme/track-a` **`60b8760`** — CP-E1..CP-E8, 2169 passed at Wave E close.
 
@@ -50,23 +51,69 @@ Wave F Cleanup phase is complete. All three Wave F scopes CLOSED; full-system dr
   - Extraction-Akki `programme/track-a` **`67a6786`** · `backend/tests/invariants/test_w10_cp9_composite_lock.py`: `test_composite_calc_is_convex_blend_at_70_30` now reconstructs `expected = round(0.7 * mech_pct_raw + 0.3 * iface_pct_raw, 2)` from the tool's own unrounded internals. Docstring quotes the owner's rounding ruling verbatim. Same commit also mirrors the pending Wave F Scope B lock updates on the test side (515→551 rows, 54.45→54.48%, 52.49→52.52%, 32→36 deltas) that had been blocked on this rounding fix.
 - **Same-commit DoD extension (FL-P4-W8-02) preserved** — the two commits carry the identical UTC timestamp `20260827T213237Z` and cross-reference each other in their commit messages, honoring the composite-tool ↔ composite-test same-commit discipline across the branch boundary (the tool lives on master workspace; the test lives on Extraction-Akki `programme/track-a`).
 
+### 2.4 Wave F Cleanup CP · audit-trail Overview surface (CA1-001/002/003 · this cleanup — the previously miscategorized chartered work)
+
+- **Third-run ratification miss diagnosed (owner audit this session, verbatim):**
+
+  > "THE MISS: my Wave F GO, Scope C item (2), verbatim: 'AUTHORIZED: build the audit-trail Overview surface (services/audit_trail/ + wire + SPA per Ship-Manifest DoD) to close CA1-001/002/003 — this was the known BUILD gap and Wave F is its chartered home.' The probe confirms: no services/audit_trail/ directory, no dedicated routes (only /api/master_admin/audit_trail as a facet), CA1-001/002/003 carried as BUILD/PARTIAL. The close report listed it honestly as carried — but it was chartered, authorized work, not an owner-pending item. Wave F is its home; it does not carry."
+
+- **Chartered work landed (this cleanup CP · atomic commit programme/track-a `fcec7f8`):**
+
+  Ship-Manifest DoD triple honored:
+  - **Backend:** NEW `backend/services/audit_trail/{__init__.py, router.py, overview.py}` mounted on `pod_shell/backend/server.py`; byte-identical mirror at `/app/backend/server.py`; live pod openapi confirms `GET /api/audit_trail/overview` served.
+  - **Wire:** MUST_BE_LIVE_ROUTES += `("GET", "/api/audit_trail/overview", "Wave F Cleanup · CP · audit-trail Overview (CA1-001/002/003)")`.
+  - **SPA:** MUST_BE_LIVE_SPA_ROUTES += `("/audit-trail", "Wave F Cleanup · CP · audit-trail Overview (CA1-001/002/003)")`. Frontend: `pod_shell/frontend/src/components/AuditTrail.jsx` (byte-identical mirror at `/app/frontend/src/components/AuditTrail.jsx`) + repo canonical page `frontend/src/pages/audit_trail/AuditTrailOverviewPage.jsx` + Route declarations on both App.js files.
+
+- **Placement decision (canon-text-driven):**
+  - Addendum §1 verbatim names "audit trail **Overview**" surface for CA1-001 (Doc02-020a) and CA1-002 (Doc06-016) → dedicated `/audit-trail` top-level surface (canon-language match; consistent with CP8 Watch / Governance / Grey-Mirror pattern of a top-level state rollup per canon concept).
+  - CA1-003 (Doc07-019 / Doc08-017) canon text names "**Registry** densification stat and a per-turn warm/fresh tag" → the densification stat renders on the same Overview `densification` section (reads `registry_facts` on disk); the per-turn warm/fresh tag wires through by reference to `services/memory/` per owner ruling this session ("the memory-service half already exists — wire it through"). CA1-003 lands as **canon-designated PARTIAL** per Addendum §1 verbatim: *"flagged here as a partial closure, not a full one"* — this is canon-designated partial, not build-gap partial.
+
+- **Real record sources (REFERENCE-NOT-COPY · Design Law A8 · every entry cites its on-disk `source_path`):**
+  - `multi_unit_answers` (CA1-001): groups `phase0/northena_ledger/*.json` rows by `trace_id`; counts distinct `artifact_ref.artifact_id` per trace; entries where count ≥ 2 are answers that drew on 2+ independently-governed units.
+  - `units_served` (CA1-002): `available` = count of `phase0/data_connection_records/*.json`; `served` = distinct source-unit `database` keys touched by ≥1 `phase0/crossing_receipts/*.json`; per-source `served_receipts` = touch count.
+  - `densification` (CA1-003): `facts_registered` = count of `phase0/registry_facts/*.json`; `warm_fresh_reference` cites `backend/services/memory/`; `partial_closure=True`.
+
+- **Register moves (same-commit paired on master workspace mirror):**
+  - CA1-001 (Doc02-020a): BUILD → **DONE**
+  - CA1-002 (Doc06-016): BUILD → **DONE**
+  - CA1-003 (Doc07-019 · Doc08-017): BUILD → **PARTIAL** (canon-designated per Addendum §1 verbatim quoted above)
+
+- **Invariant enforcer:** `backend/tests/invariants/test_audit_trail_overview.py` · 20 gating tests (route surfaced · body shape · verbatim canon text asserted for each of the three sections · partial_closure=True for CA1-003 · REFERENCE-NOT-COPY posture with `source_path` on every entry · no banned fields leak · real northena ledger group-by-trace_id math · real data_connection_records count · real crossing_receipts served attribution · real registry_facts densification count · warm/fresh reference-through to memory service · honest-empty rendering under empty stores).
+
+- **Composite lock re-run ceremony (per owner ruling verbatim: "RE-RUN the Scope B composite lock ceremony after the register moves — the 52.52 lock predates these rows; a lock that's stale on arrival isn't a lock"):**
+  - `tools/w10_cp9_composite_recompute.py` gained 3 new `Delta` entries for the CA1 register moves.
+  - Byte-identical double recompute banked at `phase0/drill_receipts/20260827T215951Z_wave_f_cleanup_composite_relock.log`.
+  - Composite: **52.52 → 52.82 (+0.30 pp)** · mech 54.48 → 54.92 · iface unchanged 47.93 · n_deltas 36 → 39.
+  - `backend/tests/invariants/test_w10_cp9_composite_lock.py` moves to the new locked values in the SAME atomic commit (same-commit DoD extension FL-P4-W8-02 · composite tool ↔ composite test cross-tree pairing preserved).
+
+- **Ratchet floor bump:** `passed_floor` 2333 → **2355** (+22 = 20 new audit_trail invariants + 1 new MUST_BE_LIVE_ROUTES parametrized case + 1 new MUST_BE_LIVE_SPA_ROUTES parametrized case). Manifest failures unchanged at 0. Quarantine unchanged at 0.
+
 ---
 
 ## 3 · Composite lock reconciliation
 
-**Authoritative locked composite: 52.52%.**
+**Authoritative locked composite (Wave F Cleanup re-lock ceremony · owner ruling this session verbatim: "RE-RUN the Scope B composite lock ceremony after the register moves — the 52.52 lock predates these rows; a lock that's stale on arrival isn't a lock"): 52.82%.**
+
+**Delta attribution (52.52 → 52.82 · +0.30 pp):**
+
+| Move | Weight change | Canon anchor |
+|---|---|---|
+| CA1-001 BUILD → DONE | +1.0 mech | Addendum §1 Promise #4 · Doc02-020a |
+| CA1-002 BUILD → DONE | +1.0 mech | Addendum §1 Promise #17 · Doc06-016 |
+| CA1-003 BUILD → PARTIAL (canon-designated) | +0.4 mech | Addendum §1 Promises #19/#20/#21 · Doc07-019 · Doc08-017 |
+| **Total** | **+2.4 mech weight** | |
 
 | Dimension | Raw (unrounded) | Rounded published | Weight |
 |---|---:|---:|---:|
-| Mechanism corpus (551 rows) | 54.4827586% | 54.48% | 0.7 |
-| Interface dimension (58 v7 surfaces) | 47.9310345% | 47.93% | 0.3 |
-| **Composite (single-final-rounded from raw)** | **52.51724%** | **52.52%** | — |
+| Mechanism corpus (551 rows) | 54.9183303% | **54.92%** (was 54.48%) | 0.7 |
+| Interface dimension (58 v7 surfaces) | 47.9310345% | 47.93% (unchanged) | 0.3 |
+| **Composite (single-final-rounded from raw)** | **52.8221416%** | **52.82%** (was 52.52%) | — |
 
-**Rounding rule (explicit · state once in this report per owner addition):**
+**Rounding rule (explicit · state once in this report per owner addition · unchanged from Wave F Scope B ruling):**
 
-> Composite is computed from the UNROUNDED dimension percentages and rounded ONCE at the end; recomputing from the rounded published values (54.48, 47.93) yields 52.51 by double-rounding — that figure is an artifact of the published-dashboard precision, not a lock candidate. The authoritative locked value stands at 52.52.
+> Composite is computed from the UNROUNDED dimension percentages and rounded ONCE at the end; recomputing from the rounded published values yields a double-rounding artifact, not a lock candidate. The authoritative locked value stands at 52.82.
 
-**Method:** `tools/w10_cp9_composite_recompute.py` · deterministic · 36 delta entries · every delta anchored to a canon § + `programme/track-a` commit SHA.
+**Method:** `tools/w10_cp9_composite_recompute.py` · deterministic · **39 delta entries** · every delta anchored to a canon § + `programme/track-a` commit SHA.
 
 **Locked by pytest (permanent guard):** `backend/tests/invariants/test_w10_cp9_composite_lock.py` · 5/5 green in the full-suite double-run.
 
@@ -75,7 +122,7 @@ Wave F Cleanup phase is complete. All three Wave F scopes CLOSED; full-system dr
 - CA1-N1 (retention enforcement + attestation): **PARTIAL → DONE** — charter annotation was STALE; the enforcement + attestation module (`services/retention/`, 613 tracked LOC + `test_retention_enforcement_w6_cp3.py` 328 LOC gating) landed at W6 CP3 pre-dating the Wave A-C anchor freeze.
 - CA1-N4 (residency governed-region allowlist): **PARTIAL → DONE** — same class of stale annotation; the enforcement module (`services/chokepoint/residency.py` + `residency_allowlist.v0.json`) landed at W6 CP3.
 
-These deltas would nudge mechanism % upward slightly. NOT applied here — the composite is banked at 52.52 per the Scope B ratified ceremony; owner authorizes the register rewrite as a separate act if desired.
+These deltas would nudge mechanism % upward slightly. NOT applied here — the composite is banked at 52.82 per the Wave F Cleanup ratified ceremony; owner authorizes the register rewrite as a separate act if desired.
 
 ---
 
@@ -83,16 +130,28 @@ These deltas would nudge mechanism % upward slightly. NOT applied here — the c
 
 Location: `/app/assessment_workspace/phase0/drill_receipts/`
 
-- **Run 1:** `20260827T213255Z_wave_f_cleanup_drill_day_run1.log`
-  - Receipt: `passed=2333 / baseline-failures-remaining=0 / quarantined=0`
-  - Wall-clock: 89.16s
+**Wave F Cleanup CP · audit-trail Overview surface · double-green identical at new floor 2355:**
+
+- **Run 1:** `20260827T220103Z_wave_f_cleanup_audit_trail_full_run1.log`
+  - Receipt: `passed=2355 / baseline-failures-remaining=0 / quarantined=0`
+  - Wall-clock: 90.67s
   - Skipped: 1 (single documented skip — unchanged across the suite)
-- **Run 2:** `20260827T213435Z_wave_f_cleanup_drill_day_run2.log`
-  - Receipt: `passed=2333 / baseline-failures-remaining=0 / quarantined=0`
-  - Wall-clock: 89.43s
+- **Run 2:** `20260827T220328Z_wave_f_cleanup_audit_trail_full_run2.log`
+  - Receipt: `passed=2355 / baseline-failures-remaining=0 / quarantined=0`
+  - Wall-clock: 91.40s
   - Skipped: 1 (identical)
 
-**Identity check:** both runs produced the byte-identical BASELINE_GUARD receipt line `passed=2333 / baseline-failures-remaining=0 / quarantined=0`. No tally absorption. Permanent Close Standard satisfied.
+**Identity check:** both runs produced the byte-identical BASELINE_GUARD receipt line `passed=2355 / baseline-failures-remaining=0 / quarantined=0`. No tally absorption. Permanent Close Standard satisfied at the new floor.
+
+**Right-reason RED banked before implementation landed:**
+- `20260827T215343Z_wave_f_cleanup_audit_trail_right_reason_fail.log` (20 `ModuleNotFoundError: No module named 'services.audit_trail'` — right-reason failure before service module existed).
+
+**Prior Wave F Cleanup rounding-fix drill day receipts (retained for audit · superseded by Wave F Cleanup CP at new floor):**
+- `20260827T213255Z_wave_f_cleanup_drill_day_run1.log` (2333 · OK · 89.16s)
+- `20260827T213435Z_wave_f_cleanup_drill_day_run2.log` (2333 · OK · 89.43s)
+
+**Composite re-lock ceremony:**
+- `20260827T215951Z_wave_f_cleanup_composite_relock.log` (byte-identical double recompute · 52.52 → 52.82 with delta attribution).
 
 **Invocation:** `cd backend && BASELINE_GUARD=1 python -m pytest tests/invariants/` (unchanged from Wave E · owner ruling).
 
@@ -146,10 +205,10 @@ Per Wave F Scope C mandate ("close them or class-attribute honestly · 2 known-p
 - **Status:** wire + SPA DONE at Wave D CP-D8; ledger-traversal semantics remain OPEN until Doc 10 evidence-record contract materializes in `contracts/` inventory.
 - **Landing site (once authorized):** new `contracts/evidence_record_v0.py` targeting Doc 10 runtime ledger evidence-record (distinct from `contracts/evidence_register_row_v0.py` which targets Doc 19B EP-1 register rows). Not authorized in Wave F scope.
 
-### 6.6 CA1-001 / CA1-002 / CA1-003 · Audit-trail Overview surface (BUILD)
+### 6.6 ~~CA1-001 / CA1-002 / CA1-003 · Audit-trail Overview surface (BUILD)~~ CLOSED · Wave F Cleanup CP
 
-- **Status:** carried as BUILD (CA1-001, CA1-002) and PARTIAL (CA1-003) — no `services/audit_trail/` module authorized to build in Wave F.
-- **Landing site (once authorized):** new `services/audit_trail/` mechanism-surface. Named blockers preserved in `notes/waveF_scope_c_close_report.md` items 1/2/3.
+- **Status:** ~~carried as BUILD (CA1-001, CA1-002) and PARTIAL (CA1-003) — no `services/audit_trail/` module authorized to build in Wave F.~~ **CLOSED this cleanup CP** at Extraction-Akki `programme/track-a` **`fcec7f8`**. Third-run miss diagnosed (owner audit this session) — this was chartered Wave F GO Scope C item (2) work, not an owner-pending carry. Details: see §2.4.
+- **Register moves banked:** CA1-001 BUILD→DONE · CA1-002 BUILD→DONE · CA1-003 BUILD→PARTIAL (canon-designated per Addendum §1 verbatim: "flagged here as a partial closure, not a full one").
 
 ---
 
@@ -183,10 +242,14 @@ Per owner Wave F GO ruling, autonomous progression halts on standard triggers on
 
 - `notes/waveF_retirement_charter.md` · retirement charter (Scope A/B/C).
 - `notes/waveF_scope_c_close_report.md` · Scope C compliance residue close report (356 lines).
-- `notes/programme_close_report.md` · **this report** · Wave F wave-close package.
-- `phase0/drill_receipts/20260827T213255Z_wave_f_cleanup_drill_day_run1.log` · full-system drill run 1.
-- `phase0/drill_receipts/20260827T213435Z_wave_f_cleanup_drill_day_run2.log` · full-system drill run 2 (identical).
-- `phase0/drill_receipts/20260827T211213Z_wave_f_composite_lock.log` · Scope B ceremony (banked earlier this session).
+- `notes/programme_close_report.md` · **this report** · Wave F wave-close package (updated at Cleanup CP for audit-trail Overview + composite re-lock).
+- `phase0/drill_receipts/20260827T220103Z_wave_f_cleanup_audit_trail_full_run1.log` · **Wave F Cleanup CP** full-system drill run 1 (2355 · OK · 90.67s).
+- `phase0/drill_receipts/20260827T220328Z_wave_f_cleanup_audit_trail_full_run2.log` · **Wave F Cleanup CP** full-system drill run 2 (2355 · OK · 91.40s · byte-identical receipt).
+- `phase0/drill_receipts/20260827T215343Z_wave_f_cleanup_audit_trail_right_reason_fail.log` · **Wave F Cleanup CP** right-reason RED banked before implementation.
+- `phase0/drill_receipts/20260827T215951Z_wave_f_cleanup_composite_relock.log` · **Wave F Cleanup CP** composite re-lock ceremony (byte-identical double recompute · 52.52 → 52.82).
+- `phase0/drill_receipts/20260827T213255Z_wave_f_cleanup_drill_day_run1.log` · Wave F Cleanup rounding-fix drill run 1 (2333 · OK · superseded).
+- `phase0/drill_receipts/20260827T213435Z_wave_f_cleanup_drill_day_run2.log` · Wave F Cleanup rounding-fix drill run 2 (2333 · OK · superseded).
+- `phase0/drill_receipts/20260827T211213Z_wave_f_composite_lock.log` · Scope B ceremony (banked earlier this session · lock value 52.52 superseded by Cleanup CP 52.82).
 - `phase0/drill_receipts/orphaned/20260826T110626Z_w11b_close_full_invariants_green.log` · isolated misnamed log.
 
 ---
@@ -202,14 +265,14 @@ cd /app/assessment_workspace/repos/Extraction-Akki/backend && \
   BASELINE_GUARD=1 python -m pytest tests/invariants/ 2>&1 | tail -20
 ```
 
-Expected receipt line: `passed=2333 / baseline-failures-remaining=0 / quarantined=0`.
+Expected receipt line: `passed=2355 / baseline-failures-remaining=0 / quarantined=0`.
 
-**Post-ratification state expected:** Wave F CLOSED + RATIFIED across all three scopes + Cleanup. Next scope opens on owner GO (SSH key drop if that path fires, or Wave G scope ratification, whichever arrives first).
+**Post-ratification state expected:** Wave F CLOSED + RATIFIED across all three scopes + Cleanup + Cleanup CP (audit-trail Overview). Next scope opens on owner GO (SSH key drop if that path fires, or Wave G scope ratification, whichever arrives first).
 
 ---
 
 ## 11 · Non-halting posture continues
 
-SSH key interrupt remains INTERRUPT-PRIORITY (see §6.1). No other pending items block wave close. Ratchet held at 2333/0/0. Composite locked at 52.52%. Autonomous progression completed per owner Wave F GO ruling.
+SSH key interrupt remains INTERRUPT-PRIORITY (see §6.1). No other pending items block wave close. Ratchet held at **2355/0/0**. Composite locked at **52.82%**. Autonomous progression completed per owner Wave F GO ruling. Chartered Scope C item (2) audit-trail Overview surface CLOSED this cleanup CP per owner audit ruling.
 
-**Wave F CLOSED PENDING OWNER'S EXTERNAL THIRD-RUN RATIFICATION.**
+**Wave F CLOSED PENDING OWNER'S EXTERNAL THIRD-RUN RATIFICATION (RE-RUN after audit-trail Overview build).**
