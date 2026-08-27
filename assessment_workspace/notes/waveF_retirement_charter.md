@@ -124,3 +124,71 @@ Charter now carries **two locked scope items** for the Wave F close ceremony:
 - **Scope B (added this session):** composite methodology reconciliation per this flag section — MUST close in the same Wave F close package as Scope A.
 
 **Standing HOLD posture unchanged.** Nothing executes on Wave F until owner rings the bell (Wave F GO). Flag registered per owner ruling; will not be lost across compaction.
+
+---
+
+## Scope C · compliance residue registered 2026-08-27T14:35Z (post Wave E ratification)
+
+**Owner ruling (verbatim, 2026-08-27T~14:35Z, immediately post Wave E ratification):**
+> "CHART THE STRAGGLERS into the Wave F charter now (third scope item, 'Scope C — compliance residue') so they don't orphan: CA1-001/002 audit-trail Overview surface (BUILD), CA1-003 densification stat (PARTIAL, blocked on same), CA1-N5 RTO value (owner-pending — keep refusing on OWNER_POLICY_PENDING), CA1-N1 retention + CA1-N4 residency enforcement VERIFICATION (confirm what earlier waves already enforce vs what's genuinely open — measured, not assumed), Doc15-014 Watch mechanism PARTIAL, DigiCow occupation-class boolean columns PII-classification question (escalate to owner as a one-liner in the next report), Doc16-023 walk-this semantics (Doc 10 evidence-record backfill)."
+
+### The seven line items (each with named blocker + measurement instruction)
+
+Wave F closer MUST address each of the seven in-scope for Wave F close ratification. Any item that ends the close ceremony still open MUST be class-attributed honestly with a named blocker in the Wave F close report (per owner ruling verbatim from Wave E scope §6: "close them or class-attribute honestly").
+
+1. **CA1-001 · Doc02-020a · Audit-trail Overview names "2+ independently-governed units"** — current class **BUILD** (per `notes/requirements_register_17docs.md` line 83).
+   - **Named blocker:** no audit-trail Overview surface service exists.
+   - **Wave F deliverable:** new `services/audit_trail/` mechanism-surface + a wire path (proposed: `GET /api/audit_trail/{turn_id}` or similar per Doc02 canon text; verify canon vocabulary first) + the "2+ units" text line on the Overview response.
+   - **Measurement instruction:** grep canon for the exact vocabulary before wiring; do NOT invent audit-line copy.
+
+2. **CA1-002 · Doc06-016 · Audit line names how many available source units were served** — current class **BUILD**.
+   - **Named blocker:** same audit-trail Overview surface blocker as CA1-001.
+   - **Wave F deliverable:** the units-served count line on the same audit-trail Overview surface.
+   - **Measurement instruction:** count is on-record in the extraction pipeline; refer to the pipeline receipt, not invent a number.
+
+3. **CA1-003 · Doc07-019 · Densification stat + per-turn warm/fresh tag** — current class **PARTIAL** (Addendum §1 covers the warm/fresh tag half via memory service; per-turn audit-line stat blocked on CA1-001/002 surface).
+   - **Named blocker:** the per-turn audit-line stat cannot land without the audit-trail Overview surface from CA1-001/002.
+   - **Wave F deliverable:** the densification stat line as a per-turn audit entry once the Overview surface exists.
+
+4. **CA1-N5 RTO value** — current state **owner-policy-pending** (carried inside the ENFORCED-for-ruled-portion row landed at Wave E CP-E1).
+   - **Named blocker:** owner has NOT ruled `rto_target_seconds`.
+   - **Wave F deliverable:** service continues to refuse while `rto_target_seconds='OWNER_POLICY_PENDING'` (unchanged mechanism). Wave F closer MUST NOT invent an RTO default.
+   - **Measurement instruction:** if owner rules RTO at Wave F open, the config file `services/watch/continuity_policy.v0.json` updates to the ruled value + one Wave F receipt lands; no code change required (owner-ruling R6 pattern preserved).
+
+5. **CA1-N1 (retention) + CA1-N4 (residency enforcement) · VERIFICATION** — owner mandate verbatim: "confirm what earlier waves already enforce vs what's genuinely open — measured, not assumed."
+   - **Named blocker:** neither the Wave E scope nor the current session touched N1/N4 enforcement. Prior waves may already carry partial mechanism (residency allowlist exists at `services/chokepoint/residency_allowlist.v0.json`; retention window contract may exist per Wave A/B/C block).
+   - **Wave F deliverable:** verification note in the Wave F close report enumerating (a) what N1/N4 mechanism ALREADY EXISTS in code (file:line citations), (b) what remains OPEN, (c) whether Wave F builds the OPEN portion or class-attributes it.
+   - **Measurement instruction (verbatim):** "measured, not assumed" — every claim must cite an existing file OR mark the item as OPEN with no mechanism yet. No mechanism inferred from canon text alone.
+
+6. **Doc15-014 · Watch full mechanism** — current class **PARTIAL** (carried from Wave D close report §4).
+   - **Named blocker:** Watch mechanism not fully built (Doc 15 §7-§43 mechanism items outstanding).
+   - **Wave F deliverable:** class-attribute honestly with a specific breakdown of the outstanding Doc 15 rows; do NOT build without owner ruling on Doc 15 mechanism scope.
+
+7. **DigiCow occupation-class boolean columns · PII-classification question** — current state: NOT escalated at Wave E CP-E7 (booleans, not payload PII).
+   - **Named blocker:** owner has NOT ruled on whether {`dairy_farmer`, `poultry_farmer`, `dairy_poultry_farmer`} count as PII for sanitizer purposes.
+   - **Wave F deliverable:** ESCALATE TO OWNER as a one-liner in the next report (per owner ruling verbatim: "escalate to owner as a one-liner in the next report").
+   - **One-liner draft (to be included in the next report to owner):** "PII classification question · DigiCow ussd_users occupation booleans (dairy_farmer, poultry_farmer, dairy_poultry_farmer): behavioral-adjacent attributes on a named individual — count as PII for `services/response_sanitizer` banned set? (yes/no ruling requested; default under Wave-E-CP-E7 posture is no)."
+
+8. **Doc16-023 · walk-this semantics (Doc 10 evidence-record backfill)** — current class **PARTIAL** (wire DONE at Wave D CP-D8 via `/api/prove/trace/{trace_id}` + SPA routes; ledger-traversal semantics await Doc 10 evidence-record backfill).
+   - **Named blocker:** Doc 10 evidence-record contract not yet materialised in `contracts/` inventory.
+   - **Wave F deliverable:** class-attribute honestly; if the Wave F opening scope includes Doc 10 backfill, then the walk-this semantics close alongside; otherwise carry as PARTIAL with the Doc 10 blocker cited.
+
+### Scope C close discipline
+
+Wave F closer works Scope C in dependency order:
+1. **VERIFICATION first (CA1-N1 + CA1-N4).** Landing this early lets the audit-trail surface (CA1-001/002) know what enforcement fields to render on the Overview.
+2. **RTO ruling capture (CA1-N5).** If owner rules RTO at Wave F open, config file flip + one receipt closes the row; if not, service refuses unchanged.
+3. **Escalation of the DigiCow booleans one-liner.** Belongs in the Wave F opening report to owner; not a mechanism task.
+4. **Doc15-014 breakdown + Doc16-023 walk-this semantics.** Class-attribute or build per Wave F opening scope.
+5. **CA1-001/002/003 audit-trail Overview surface.** Build only if Wave F opening scope authorises the new `services/audit_trail/` mechanism-surface; otherwise carry as BUILD/PARTIAL.
+
+Every deliverable follows the permanent wave-close standard: tests-first · BASELINE_GUARD=1 receipt at CP close · same-commit MUST_BE_LIVE_ROUTES/SPA for every shipped wire path · double-run at Wave F close ceremony + owner external third run.
+
+### Wave F charter status after this addition (2026-08-27T14:35Z)
+
+Charter now carries **THREE locked scope items** for the Wave F close ceremony (all must close in the same close package):
+- **Scope A (original):** D1a-1 residue class retirement — §Scope + §Wave-F-retirement-path.
+- **Scope B (registered 2026-08-27T12:05Z post Wave D):** composite methodology reconciliation — §"Wave F lock ceremony · flag registered 2026-08-27T12:05Z".
+- **Scope C (registered 2026-08-27T14:35Z post Wave E · this section):** compliance residue — 7 line items above.
+
+**Standing HOLD posture unchanged.** Nothing executes on Wave F until owner rings the bell (Wave F GO). Charter registered per owner ruling; will not be lost across compaction.

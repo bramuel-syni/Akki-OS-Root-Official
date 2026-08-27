@@ -3387,3 +3387,74 @@ Doc18-006 RULED-ADOPTED requires the Wave F reconciliation rule; not counted in 
 **WAVE E CLOSED PENDING OWNER EXTERNAL THIRD RUN · 2026-08-27T14:20Z.** Autonomy PAUSED for owner spot-check. On owner ruling: (a) spot-check PASS → Wave E RATIFIED + next-wave GO; (b) further defect → address as CP-E9 per owner ruling verbatim; (c) SSH key path → interrupt sequence fires; (d) Wave F GO → retirement charter + composite methodology reconciliation lock + master-tree cleanup.
 
 **SSH interrupt** stands as INTERRUPT-PRIORITY (unchanged).
+
+---
+
+## Wave E · RATIFIED · owner 5/5 external third-run PASS · 2026-08-27T14:35Z
+
+**Owner ruling (verbatim, 2026-08-27T~14:35Z):**
+> "WAVE E EXTERNAL THIRD RUN: 5/5 PASS — **WAVE E IS CLOSED AND RATIFIED.** Receipt tally identical (2169/0/160, quarantined=159, status OK), all 7 new wire paths live with honest states and structured envelopes (the rights_quarantine not-found remedy envelope is exactly the standard), 64/64 drift parametrics, contained-events-never-notify proven 3+11, sanitizer clean. HEADs ratified: Extraction-Akki `60b8760`, workspace `f1acf85`.
+>
+> Record the ratification in DECISIONS.md; NEXT.md position = Wave E CLOSED+RATIFIED · HOLDING.
+>
+> CHART THE STRAGGLERS into the Wave F charter now (third scope item, 'Scope C — compliance residue') so they don't orphan: CA1-001/002 audit-trail Overview surface (BUILD), CA1-003 densification stat (PARTIAL, blocked on same), CA1-N5 RTO value (owner-pending — keep refusing on OWNER_POLICY_PENDING), CA1-N1 retention + CA1-N4 residency enforcement VERIFICATION (confirm what earlier waves already enforce vs what's genuinely open — measured, not assumed), Doc15-014 Watch mechanism PARTIAL, DigiCow occupation-class boolean columns PII-classification question (escalate to owner as a one-liner in the next report), Doc16-023 walk-this semantics (Doc 10 evidence-record backfill).
+>
+> Then HOLD at ready state: (a) SSH key → interrupt sequence, (b) Wave F GO → three chartered scopes (D1a-1 retirement + composite lock + compliance residue) + master-tree cleanup, (c) any new owner ruling. Excellent wave — eight CPs, +50 tests, zero guard trips."
+
+### Wave E RATIFIED · HEAD ledger
+
+- **Extraction-Akki `programme/track-a` ratified HEAD: `60b8760`** (CP-E7 · DigiCow PII sanitizer sweep + shared response_sanitizer; final Wave E code HEAD).
+- **Workspace `master` ratified HEAD: `f1acf85`** (CP-E8 · Wave E close package · register moves + close report + double-run + STATE mirror).
+
+### Owner tally match against Wave E close double-run (verbatim from ruling)
+
+| Owner check | Wave E internal | Owner external run 3 | Verdict |
+|---|---|---|---|
+| tally identical | `passed=2169 / baseline-failures-remaining=0 / quarantined=159 · OK` on runs 1+2 | same on run 3 | **PASS** · byte-equivalent across all 3 |
+| skipped | 160 | 160 | **PASS** |
+| new wire paths live with honest states + structured envelopes | 7 wire paths | 7 live with envelopes | **PASS** (rights_quarantine 404 envelope named "exactly the standard") |
+| ship-manifest drift parametrics | 64/64 | 64/64 | **PASS** |
+| contained-events-never-notify invariant | 3 contained + 11 breach parametrics | 3+11 proven | **PASS** |
+| sanitizer coverage | shared response_sanitizer applied to every new surface | clean | **PASS** |
+
+**Wave-D permanent close standard satisfied on the third-run gate.** Wave E ratified without absorption.
+
+### Wave E · final artefact roll-up (ratified)
+
+- **Extraction-Akki commits (all on `programme/track-a`, local only, no push):** CP-E1 (`ebc5a48`) → CP-E2 (`045541c`) → CP-E3 (`e8d860a`) → CP-E4 (`74039c2`) → CP-E5 (`6898fd0`) → CP-E6 (`6d7589d`) → **CP-E7 (`60b8760`) [Wave E ratified HEAD]**.
+- **Workspace commits (on `master`, local only, no push):** CP-E8 STATE mirror (`f1acf85`) → **this ratification-record commit**.
+- **Composite delta ratified:** passed 2119 → **2169** (+50 · 6 CP-E1 + 11 CP-E2 + 9 CP-E3 + 11 CP-E4 + 2 CP-E5 + 4 CP-E6 + 5 CP-E7 + 2 parametric route additions). Baseline failures: **0**. Quarantined_d1a1: **159**. MUST_BE_LIVE_ROUTES: 30 → **37** (+7). Ratchet history extended eight times.
+
+### Preliminary composite % (ratified for Wave E · LOCKS at Wave F)
+
+Flat 99-row denominator (reporting instrument · not the W10 CP9 authoritative lineage):
+
+- strict `DONE`: 38 / 99 → **42 / 99 = 42.42 %** (Δ +4.04 pp)
+- `DONE + REUSABLE`: 57 / 99 → **61 / 99 = 61.62 %** (Δ +4.04 pp)
+- `DONE + REUSABLE + 0.5·PARTIAL`: 61 / 99 → **65 / 99 = 65.66 %** (Δ +4.04 pp)
+
+**Composite locks at Wave F under the chosen methodology** per the composite-methodology-reconciliation flag (`notes/waveF_retirement_charter.md` §Wave-F-lock-ceremony · registered 2026-08-27T12:05Z).
+
+### Autonomy status
+
+**Wave E CLOSED + RATIFIED · 2026-08-27T14:35Z. HOLDING at ready state.** Nothing executes until one of the three ruled arrivals lands (SSH key path · Wave F GO · new owner ruling). See §"Wave F charter · SCOPE C · compliance residue" below for the third chartered scope registered this session.
+
+**SSH interrupt** stands as INTERRUPT-PRIORITY (unchanged).
+
+---
+
+## Wave F charter · SCOPE C · compliance residue registered 2026-08-27T14:35Z (post Wave E ratification)
+
+**Owner ruling (verbatim, 2026-08-27T~14:35Z, immediately post Wave E ratification):**
+> "CHART THE STRAGGLERS into the Wave F charter now (third scope item, 'Scope C — compliance residue') so they don't orphan: CA1-001/002 audit-trail Overview surface (BUILD), CA1-003 densification stat (PARTIAL, blocked on same), CA1-N5 RTO value (owner-pending — keep refusing on OWNER_POLICY_PENDING), CA1-N1 retention + CA1-N4 residency enforcement VERIFICATION (confirm what earlier waves already enforce vs what's genuinely open — measured, not assumed), Doc15-014 Watch mechanism PARTIAL, DigiCow occupation-class boolean columns PII-classification question (escalate to owner as a one-liner in the next report), Doc16-023 walk-this semantics (Doc 10 evidence-record backfill)."
+
+**Charter update landed:** `notes/waveF_retirement_charter.md` §"Scope C · compliance residue (registered 2026-08-27T14:35Z)" — the seven straggler items now carry named blockers, measured-vs-assumed instructions, and the DigiCow occupation-class one-liner for the next report.
+
+**Wave F charter scope after this addition — THREE locked scope items (all must close in the same Wave F close package):**
+- **Scope A** — D1a-1 residue class retirement (19 files · 88 tests · event-loop-closed class · original scope) per charter §Scope + §Wave-F-retirement-path.
+- **Scope B** — Composite methodology reconciliation (registered 2026-08-27T12:05Z post Wave D ratification) per charter §Wave-F-lock-ceremony.
+- **Scope C** — Compliance residue (registered 2026-08-27T14:35Z post Wave E ratification, this ruling) per charter §Scope-C-compliance-residue. Seven line items each with named blocker + measurement instruction.
+
+**Autonomy status unchanged:** WAVE E CLOSED + RATIFIED · HOLDING at ready state. Nothing executes until (a) SSH key path (INTERRUPT-PRIORITY), (b) Wave F GO (three chartered scopes + master-tree cleanup), (c) any new owner ruling.
+
+**SSH interrupt** stands as INTERRUPT-PRIORITY (unchanged).
