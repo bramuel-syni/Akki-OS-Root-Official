@@ -1,0 +1,19 @@
+{
+  "artifact_ref": {
+    "artifact_id": "a2-refusal-envelope-test",
+    "artifact_type": "portfolio_mandate",
+    "version": "v0"
+  },
+  "at": "2026-08-27T07:39:52.863778Z",
+  "decision": "refused",
+  "lawful_basis_ref": "dpa-a2-test",
+  "reason": "composition_below_floor",
+  "row_id": "led-c0e4462d4305",
+  "run_id": "run-1a2d4abf5bad",
+  "stage": "admit",
+  "stamp_audit": {
+    "refusal_family": "composition_below_floor",
+    "source": "service_1.service.run.sync"
+  },
+  "trace_id": "trace-3459faf113b9"
+}
