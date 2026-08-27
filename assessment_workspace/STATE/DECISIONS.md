@@ -3228,3 +3228,63 @@ Full-suite BASELINE_GUARD=1 (back-to-back, no state reset in between):
 **Autonomy status:** CP-D9 CLOSED (hermeticity proof banked). **Autonomy PAUSED for owner FINAL external spot-check** (owner announced they will run one external spot-check of the repeat-run stability before declaring Wave D closed). Wave D awaits that spot-check outcome.
 
 **SSH interrupt** stands as INTERRUPT-PRIORITY.
+
+---
+
+## Wave D · RATIFIED · owner 3/3 spot-check PASS · 2026-08-27T12:00Z
+
+**Owner ruling (verbatim, 2026-08-27T~12:00Z):**
+> "EXTERNAL SPOT-CHECK: 3/3 PASS — effective third consecutive full-suite run green (2119/0/160, receipt status OK), targeted file deterministic across back-to-back runs, live pod undisturbed. **WAVE D IS CLOSED AND RATIFIED.** HEADs ratified: Extraction-Akki `023aa21`, workspace `9167a08`.
+>
+> Record the Wave D ratification in STATE/DECISIONS.md (verbatim: spot-check 3/3, close standard 'two consecutive green full-suite receipts + external third run' is now the permanent wave-close standard). Update NEXT.md: position = Wave D CLOSED+RATIFIED · HOLDING at ready state. Report in your confirmation: the preliminary composite % after Wave D's register moves (reporting number only, lock at Wave F).
+>
+> Standing holds unchanged: (a) SSH key → interrupt sequence fires immediately; (b) Wave E GO → N2/N3/N5 + Doc14-020 implementation per banked rulings; (c) Wave F GO → retirement charter + final lock + master-tree cleanup. Nothing executes until one of those arrives. Well executed."
+
+### Wave D RATIFIED · HEAD ledger
+
+- **Extraction-Akki `programme/track-a` ratified HEAD: `023aa21`** (CP-D9 · registry sample-fixture seeder hermeticity fix · double-run proof banked).
+- **Workspace `master` ratified HEAD: `9167a08`** (STATE mirror · CP-D9 close · owner-tally match table · four drill receipts).
+
+### Permanent wave-close standard (established this ratification, binds all future waves)
+
+> **Two consecutive green full-suite receipts + external third run.**
+
+Concretely, henceforth a wave CLOSES only after:
+1. **CP-close receipt** — `cd backend && BASELINE_GUARD=1 python -m pytest tests/invariants/` green, banked to `phase0/drill_receipts/YYYYMMDDTHHMMSSZ_cp_X_close.log`. Receipt line: `passed=<N> / baseline-failures-remaining=<K> / quarantined=<Q>`, `status: OK`.
+2. **Repeat-run hermeticity receipt** — identical invocation, back-to-back (no state reset), IDENTICAL tally on all four counters (`passed`, `baseline-failures-remaining`, `quarantined`, `skipped`) AND `status: OK`. Any tally drift = HALT AND REPORT, no absorption.
+3. **External third run** — owner (or delegated external verifier) runs the same invocation from their side; must show the same tally and `status: OK`. This is the ratification gate.
+
+**Ratchet rule:** if runs 1+2 add tests (passed_floor rises), the same commit that lands the new tests ALSO ratchets `invariants_enforced_when_baseline_guard_1.passed_floor` and `counts_at_baseline.passed` in `backend/tests/invariants/baseline_failures.json`.
+
+**No-absorption rule:** any deviation from the expected numbers on ANY of the three runs halts and reports to owner verbatim; owner rules the correction; correction lands as a receipt line, never as a silent adjustment.
+
+### Wave D · final artefact roll-up (ratified)
+
+- **Extraction-Akki commits (all on `programme/track-a`, local only, no push):**
+  - CP-D0 → CP-D0-fix → CP-D1 (`13a0097` partial) → CP-D1a (`18748a3` partial) → CP-D-guard (`d5450ad`) → CP-D2 → CP-D3 → CP-D4 (`c834eec`) → CP-D5 partial (`3fe9984`) → CP-D6 (`d4664f5`) → CP-D7 (`d8a32d9`) → CP-D8 (`ba6d137`) → **CP-D9 (`023aa21`)**.
+- **Workspace commits (all on `master`, local only, no push):**
+  - CP-D5 STATE mirror (`c06eb16`) → CP-D6 STATE mirror (`b401458`) → CP-D7+D8 STATE mirror (`9b5ba3f`) → **CP-D9 STATE mirror (`9167a08`)**.
+- **Register moves at Wave D:** 4 REUSABLE→DONE (Doc15-001, Doc15-020, Doc16-001, Doc16-014). Downgrade list preserved in `notes/waveD_close_report.md` §4 (Doc15-014 stays PARTIAL/Wave-F; Doc16-023 surface DONE / semantics PARTIAL; Doc02-020 stays BUILD; Doc15-085/-086/-087 stay BUILD/REUSABLE).
+- **Composite delta:** `passed` 1830 → **2119** (+289 · +15.79%); `baseline_failures` 156 → **0**; `MUST_BE_LIVE_ROUTES` 2 → **30** (+28); `MUST_BE_LIVE_SPA_ROUTES` 0 → **25** (+25).
+- **Preliminary register-completion composite %** (reporting number only, LOCKS at Wave F per owner ruling this session):
+
+  | Slice | Count | Denominator | % |
+  |---|---:|---:|---:|
+  | strict `DONE` | 38 | 99 unique rows (63 in 17-doc register + 36 in 20-doc register) | **38.38 %** |
+  | `DONE` + `REUSABLE` (surface-live floor) | 57 | 99 | **57.58 %** |
+  | `DONE` + `REUSABLE` + `0.5·PARTIAL` (progress-weighted) | 61 | 99 | **61.62 %** |
+  | complement `BUILD` + `OPEN-SLOT` + unresolved-PROPOSED remaining | 34 | 99 | 34.34 % |
+
+  Parser note: 5 rows in the 20-doc register are declared as `PROPOSED · Build PROPOSED` in their primary bullet and later carried as `DONE-scaffold` in a "Post-CP6" summary (`Doc18-006`, `Doc19B-001/002/003/005`). The strict count above uses the primary declaration (governance status PROPOSED counted as neither DONE nor PARTIAL). If the post-CP6 scaffold language is included as DONE, strict DONE rises to 43/99 (**43.43 %**) — that is the uncertainty band on the composite. Owner ruling: this is a reporting number only; the composite is not locked until Wave F.
+
+- **Wave-F carry-forwards (unchanged):** `notes/waveF_retirement_charter.md` covers the 19-file / 88-test D1a-1 residue class (framework pilot vs code-refactor split — owner ruling pending). Also carried: Doc15-014 (Watch), Doc15-085/-086/-087, Doc16-023 semantics (Doc 10 evidence-record backfill), Doc02-020 CA1-007 wizard.
+
+### Autonomy status
+
+**Wave D CLOSED + RATIFIED · 2026-08-27T12:00Z. HOLDING at ready state.** Nothing executes until one of the three ruled arrivals lands (SSH key path · Wave E GO · Wave F GO). Standing holds:
+
+- **(a) SSH key path** (INTERRUPT-PRIORITY): on key arrival, interrupt whatever posture we hold and fire the sequence: `chmod 600 <key>` → `AKKI_GPU_SSH_PRIVATE_KEY_PATH=<path>` → `GPU_CONNECT_MODE=real` → hardware fact sheet → first governed run per §NEXT current-step ladder.
+- **(b) Wave E GO**: N2/N3/N5 + Doc14-020 implementation per banked rulings (opening scope not yet expanded in this file; awaits Wave E kickoff ruling for the CP ladder).
+- **(c) Wave F GO**: retirement charter (`notes/waveF_retirement_charter.md`) + final lock + master-tree cleanup.
+
+**SSH interrupt** stands as INTERRUPT-PRIORITY (unchanged).
