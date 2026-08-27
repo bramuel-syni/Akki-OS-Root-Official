@@ -176,3 +176,68 @@ To verify externally, the owner may:
 5. Verify the receipts at `phase0/drill_receipts/20260827T*.log` all report `status: OK`.
 
 Standing by for the verification outcome. SSH interrupt priority remains unchanged.
+
+## 8 · CP-D9 · Hermeticity proof (repeat-run defect, owner tripped 2026-08-27T~11:53Z)
+
+**Owner finding (verbatim intent):** on external verification, the invariants suite fell over on the *second* consecutive `BASELINE_GUARD=1` run. Root cause: `test_d_r5_queue_endpoint_opens_use_data_session_and_is_idempotent` needs at least one `state == "open"` sample gap. The D-R5 endpoint MUTATES an open sample gap to `queued`. The pre-D9 seeder was `find_one + insert_one` (insert-if-absent) — sample docs written by session 1 were still present at session 2 start, so the seeder was a no-op and the mutation from session 1 (one gap flipped to queued) persisted. On a second full-suite run the seeded state was polluted.
+
+**Fix (single seeder, minimal, one file):** `backend/services/registry/sample_fixture_seeder.py` now `replace_one({...key...}, doc, upsert=True)` on every sample-marked doc (`is_sample=True`) — briefs, gaps, prove answers, prove traces. Non-sample owner-created docs are never touched. Timestamps on sample docs anchored to a fixed `_SAMPLE_SEEDED_AT_ISO = "2026-08-02T00:00:00Z"` so time-ordering invariants don't perturb across repeat runs.
+
+Diff scope: **1 file · +49 −30 lines** in `backend/services/registry/sample_fixture_seeder.py` (see `git diff` at CP-D9). No test file edited. No manifest edited. No other seeder edited (use_data/connect/team seeders own their own collections; no test in the invariants suite currently mutates their sample rows on the first run's non-hermetic surface — proven by the two identical full-suite runs below).
+
+### 8.1 · Targeted isolation smoke (D-R5 file, back-to-back)
+
+```
+20260827T115307Z_cp_d9_hermeticity_smoke_run1.log
+   17 passed, 30 warnings in 4.06s   (EXITCODE=0)
+
+20260827T115317Z_cp_d9_hermeticity_smoke_run2.log
+   17 passed, 30 warnings in 4.05s   (EXITCODE=0)
+```
+
+Both runs include `test_d_r5_queue_endpoint_opens_use_data_session_and_is_idempotent PASSED`. Identical counts confirm the specific repeat-run defect is dead.
+
+### 8.2 · Full-suite BASELINE_GUARD=1 proof (two consecutive runs, no state reset in between)
+
+```
+20260827T115329Z_cp_d9_hermeticity_full_invariants_run1.log
+============================ BASELINE_GUARD receipt ============================
+passed=2119 / baseline-failures-remaining=0 / quarantined=159
+  manifest: tests/invariants/baseline_failures.json
+  scope: BASELINE_GUARD=1  ·  invocation: cd backend && BASELINE_GUARD=1 python -m pytest tests/invariants/
+  status: OK (subset · quarantine · ratchet all pass)
+2119 passed, 160 skipped, 347 warnings in 59.23s   (EXITCODE=0)
+
+20260827T115439Z_cp_d9_hermeticity_full_invariants_run2.log
+============================ BASELINE_GUARD receipt ============================
+passed=2119 / baseline-failures-remaining=0 / quarantined=159
+  manifest: tests/invariants/baseline_failures.json
+  scope: BASELINE_GUARD=1  ·  invocation: cd backend && BASELINE_GUARD=1 python -m pytest tests/invariants/
+  status: OK (subset · quarantine · ratchet all pass)
+2119 passed, 160 skipped, 347 warnings in 59.35s   (EXITCODE=0)
+```
+
+**Both runs byte-equivalent on the tally:** `passed=2119`, `baseline-failures-remaining=0`, `quarantined=159`, `160 skipped`, `status: OK`. Wall time delta: 0.12s (59.23 → 59.35). Ratchet check: passed_floor remained 2119 (no new tests added; no ratchet raise needed).
+
+### 8.3 · Owner tally match against expected floors
+
+| Metric | Owner floor / expected | Run 1 | Run 2 | Verdict |
+|---|---:|---:|---:|---|
+| `passed` (≥ floor) | ≥ 2119 | 2119 | 2119 | OK · floor met exactly (no test added) |
+| `baseline-failures-remaining` | 0 | 0 | 0 | OK |
+| `total skipped` | = 160 | 160 | 160 | OK |
+| `quarantined` (D1a-1) | = 159 | 159 | 159 | OK |
+| `status` | OK | OK | OK | OK on BOTH |
+| deviation | none | — | — | none — no absorption |
+
+### 8.4 · Wave D close package · final artifact list
+
+- Code diff: `backend/services/registry/sample_fixture_seeder.py` (1 file, upsert refactor).
+- Drill receipts:
+  - `phase0/drill_receipts/20260827T115307Z_cp_d9_hermeticity_smoke_run1.log`
+  - `phase0/drill_receipts/20260827T115317Z_cp_d9_hermeticity_smoke_run2.log`
+  - `phase0/drill_receipts/20260827T115329Z_cp_d9_hermeticity_full_invariants_run1.log`
+  - `phase0/drill_receipts/20260827T115439Z_cp_d9_hermeticity_full_invariants_run2.log`
+- Register moves (§3), downgrade list (§4), composite delta (§5), Wave-F carry-forwards (§6): unchanged from CP-D8 close.
+
+**Wave D awaits final owner spot-check.** No absorption of any deviation. If the owner's spot-check reveals a further repeat-run defect on a different seeder, that becomes CP-D10 scope; the current fix is verbatim to the D-R5 root cause the owner reported.

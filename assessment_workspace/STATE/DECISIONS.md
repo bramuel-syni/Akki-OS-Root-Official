@@ -3190,3 +3190,41 @@ Doc 16 Cross-cutting Orchestration lift + UI mass. `pod_shell/backend/server.py`
 **Autonomy status:** CP-D7 CLOSED, CP-D8 CLOSED. **Autonomy PAUSED for owner external verification of D7/D8** (the Wave D close gate). Wave D endgame achieved but not yet closed. See `notes/waveD_close_report.md` for the full close package.
 
 **SSH interrupt** stands as INTERRUPT-PRIORITY.
+
+---
+
+## CP-D9 · Hermeticity fix (repeat-run defect · double-run proof) · 2026-08-27T11:54Z
+
+**Owner ruling (verbatim, 2026-08-27T~11:53Z)**:
+> "Plan confirmed as written. Answers: 1. Timeout: yes, use a ceiling — 15 minutes per run is generous (recent full runs completed in ~60s); if a run exceeds it, that itself is a halt-and-report finding. 2. Yes — run the targeted isolation smoke first (`pytest tests/invariants/test_registry_prove_ui1d_gates.py -x`, then re-run the SAME file a second time back-to-back to prove the specific repeat-run defect is dead), THEN the two full-suite runs. 3. Expected numbers: passed >= 2119 (floor; may rise if the hermeticity fix added tests — if it does, ratchet the floor in the same commit), failed = 0, skipped = 160, quarantined = 159, status OK on BOTH receipts. Any deviation = halt-and-report, no absorption. All strict rules correct. After you bank the double receipts and finalize the close package, I will run one external spot-check of the repeat-run stability from my side before declaring Wave D closed. Proceed."
+
+**Root cause (measured, not paraphrased):** On owner's external re-run of the invariants suite, `test_d_r5_queue_endpoint_opens_use_data_session_and_is_idempotent` needs at least one `state == "open"` sample gap. The D-R5 endpoint mutates one open sample gap to `queued`. The pre-D9 seeder used `find_one + insert_one` (insert-if-absent). MongoDB retained the mutation across sessions, so on the second `BASELINE_GUARD=1` run the seeder was a no-op and the test's seeded state was polluted (one gap already flipped to queued from the prior run, then the *next* mutation reduced the open pool further). Test failed on second run — a hermeticity defect owned by the seeder, not by the test.
+
+**Fix (single file, one commit):** `backend/services/registry/sample_fixture_seeder.py` — all sample-marked docs (`is_sample=True`; briefs + gaps + prove answers + prove traces) are now `replace_one({...key...}, doc, upsert=True)` on every session start. Sample timestamps anchored to a fixed `_SAMPLE_SEEDED_AT_ISO = "2026-08-02T00:00:00Z"` so time-ordering invariants don't perturb across repeat runs. Non-sample owner-created docs are never touched (seeder still filters on the sample key). Diff: +49 −30 lines, 1 file. No test edited. No manifest edited. No other seeder edited.
+
+**Double-run proof (banked receipts):**
+
+Isolation smoke (D-R5 file, back-to-back):
+- `phase0/drill_receipts/20260827T115307Z_cp_d9_hermeticity_smoke_run1.log` — 17 passed, 30 warnings in 4.06s (EXITCODE=0)
+- `phase0/drill_receipts/20260827T115317Z_cp_d9_hermeticity_smoke_run2.log` — 17 passed, 30 warnings in 4.05s (EXITCODE=0)
+
+Full-suite BASELINE_GUARD=1 (back-to-back, no state reset in between):
+- `phase0/drill_receipts/20260827T115329Z_cp_d9_hermeticity_full_invariants_run1.log` — `passed=2119 / baseline-failures-remaining=0 / quarantined=159 · status: OK` · `2119 passed, 160 skipped, 347 warnings in 59.23s` (EXITCODE=0)
+- `phase0/drill_receipts/20260827T115439Z_cp_d9_hermeticity_full_invariants_run2.log` — `passed=2119 / baseline-failures-remaining=0 / quarantined=159 · status: OK` · `2119 passed, 160 skipped, 347 warnings in 59.35s` (EXITCODE=0)
+
+**Owner tally match (no absorption):**
+
+| Metric | Owner floor | Run 1 | Run 2 | Verdict |
+|---|---:|---:|---:|---|
+| `passed` (≥ floor) | ≥ 2119 | 2119 | 2119 | OK · floor met exactly (no test added; passed_floor unchanged) |
+| `baseline-failures-remaining` | 0 | 0 | 0 | OK |
+| `total skipped` | = 160 | 160 | 160 | OK |
+| `quarantined` (D1a-1) | = 159 | 159 | 159 | OK |
+| `status` | OK | OK | OK | OK on BOTH |
+| wall-time ceiling | ≤ 15 min | 59.23s | 59.35s | OK · well under ceiling |
+
+**Local commit landing (Extraction-Akki `programme/track-a`):** SHA advance from `ba6d137` (CP-D8) to **`023aa21`** (CP-D9 · this commit). No push. Workspace `master` mirror commits STATE (this section + NEXT.md update + waveD_close_report.md §8).
+
+**Autonomy status:** CP-D9 CLOSED (hermeticity proof banked). **Autonomy PAUSED for owner FINAL external spot-check** (owner announced they will run one external spot-check of the repeat-run stability before declaring Wave D closed). Wave D awaits that spot-check outcome.
+
+**SSH interrupt** stands as INTERRUPT-PRIORITY.

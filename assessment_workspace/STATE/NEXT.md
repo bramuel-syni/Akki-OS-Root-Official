@@ -55,7 +55,7 @@ Failure to follow this sequence = paraphrase-not-spec failure class the owner ex
 
 Update this section at every CP/R-step close.
 
-- **Current wave**: **WAVE D ENDGAME ACHIEVED · CP-D8 CLOSED 2026-08-27T11:45Z · autonomy PAUSED for owner external verification of D7/D8 (the Wave D close gate)** — CP-D0 → CP-D0-fix → CP-D1 (1830→1986) → CP-D1a (residual 116) → CP-D-guard (guard installed, 1932→1944) → CP-D2 (99 fail, +17) → CP-D3 (84 fail, +15) → CP-D4 (`c834eec`; 78 fail · 1976→1982) → CP-D5 PARTIAL (`3fe9984`) → CP-D6 (`d4664f5`; manifest 113→0 · 25 semantic retirements + Q2 grant activation · 2041→2066) → CP-D7 (`d8a32d9`; Governance ceremony lift · +18 wire paths · 2066→2084) → **CP-D8 CLOSE 2026-08-27T11:45Z** (`programme/track-a` `ba6d137`; Cross-cutting orchestration · +10 wire + 25 SPA · 2084→2119 · guard OK). Wave A/B/C remain **RATIFIED AS A BLOCK** by owner 2026-08-26T~12:40Z.
+- **Current wave**: **WAVE D ENDGAME ACHIEVED + CP-D9 HERMETICITY PROOF BANKED 2026-08-27T11:54Z · autonomy PAUSED for owner final external spot-check of D7/D8 (the Wave D close gate)** — CP-D0 → CP-D0-fix → CP-D1 (1830→1986) → CP-D1a (residual 116) → CP-D-guard (guard installed, 1932→1944) → CP-D2 (99 fail, +17) → CP-D3 (84 fail, +15) → CP-D4 (`c834eec`; 78 fail · 1976→1982) → CP-D5 PARTIAL (`3fe9984`) → CP-D6 (`d4664f5`; manifest 113→0 · 25 semantic retirements + Q2 grant activation · 2041→2066) → CP-D7 (`d8a32d9`; Governance ceremony lift · +18 wire paths · 2066→2084) → CP-D8 (`ba6d137`; Cross-cutting orchestration · +10 wire + 25 SPA · 2084→2119 · guard OK) → **CP-D9 HERMETICITY FIX + DOUBLE-RUN PROOF 2026-08-27T11:54Z** (registry sample_fixture_seeder upsert refactor; two back-to-back full-suite BASELINE_GUARD=1 runs BOTH `passed=2119 / baseline-failures-remaining=0 / quarantined=159 · status: OK`; 160 skipped; identical tally · no absorption). Wave A/B/C remain **RATIFIED AS A BLOCK** by owner 2026-08-26T~12:40Z.
 
 - **CP-D7 + CP-D8 combined artifacts (verification target list for owner):**
   - **28 NEW wire paths in MUST_BE_LIVE_ROUTES** (all verified LIVE on pod openapi at IP-allowlisted `/api/openapi.json` — see §2.1 of `notes/waveD_close_report.md`). Pod openapi paths 118 → 149 (+31 across CP-D7/D8).
@@ -65,12 +65,20 @@ Update this section at every CP/R-step close.
 
 - **Wave D block ratchet (CP-D0 → CP-D8)**: `passed` 1830 → **2119** (+289); `baseline_failures` 156 → **0** (Wave D endgame); `passed_floor` 1830 → **2119** (monotonic); `MUST_BE_LIVE_ROUTES` 2 → **30** (+28); `MUST_BE_LIVE_SPA_ROUTES` 0 → **25** (+25); Register DONE this-wave rows: 4.
 
-- **Current step**: **Wave D endgame achieved; autonomy PAUSED for owner external verification of D7/D8 (the Wave D close gate).** Per owner ruling this session verbatim: "Wave D closes on my external verification of D7/D8, not before." All CP-close receipts banked. Full close package at `notes/waveD_close_report.md`.
+- **Current step**: **Wave D endgame achieved; CP-D9 hermeticity fix landed and DOUBLE-RUN PROOF banked (§8 of `notes/waveD_close_report.md`); autonomy PAUSED for owner FINAL external spot-check of D7/D8 (the Wave D close gate).** Per owner ruling 2026-08-27T~11:53Z verbatim: "After you bank the double receipts and finalize the close package, I will run one external spot-check of the repeat-run stability from my side before declaring Wave D closed. Proceed." All CP-close receipts banked. Full close package at `notes/waveD_close_report.md` §1-§8.
 
-- **CP-close invocation (unchanged)**: `cd backend && BASELINE_GUARD=1 python -m pytest tests/invariants/`. Receipt format: `passed=<N> / baseline-failures-remaining=<K> / quarantined=<Q>`. CP-D8 close verify: `passed=2119 / baseline-failures-remaining=0 / quarantined=159 · status: OK` at `phase0/drill_receipts/20260827T114500Z_cp_d8_close.log`.
+- **CP-D9 hermeticity receipts (2026-08-27T11:54Z, banked):**
+  - `phase0/drill_receipts/20260827T115307Z_cp_d9_hermeticity_smoke_run1.log` (targeted D-R5 file, 17 passed)
+  - `phase0/drill_receipts/20260827T115317Z_cp_d9_hermeticity_smoke_run2.log` (targeted D-R5 file, 17 passed · back-to-back)
+  - `phase0/drill_receipts/20260827T115329Z_cp_d9_hermeticity_full_invariants_run1.log` (`passed=2119 / baseline-failures-remaining=0 / quarantined=159 · OK` · 59.23s)
+  - `phase0/drill_receipts/20260827T115439Z_cp_d9_hermeticity_full_invariants_run2.log` (`passed=2119 / baseline-failures-remaining=0 / quarantined=159 · OK` · 59.35s · IDENTICAL tally to run 1)
+
+- **CP-D9 code fix (single file):** `backend/services/registry/sample_fixture_seeder.py` — replaced `find_one + insert_one` (insert-if-absent) with `replace_one({...key...}, doc, upsert=True)` for every sample-marked doc (briefs, gaps, prove answers, prove traces). Sample docs anchored to `_SAMPLE_SEEDED_AT_ISO = "2026-08-02T00:00:00Z"` so time-ordering invariants don't perturb across repeat runs. Non-sample owner-created docs untouched. No test file edited; no manifest edited; no other seeder edited (use_data/connect/team seeders confirmed clean by the two identical full-suite tallies).
+
+- **CP-close invocation (unchanged)**: `cd backend && BASELINE_GUARD=1 python -m pytest tests/invariants/`. Receipt format: `passed=<N> / baseline-failures-remaining=<K> / quarantined=<Q>`. CP-D9 hermeticity double-run verify: BOTH runs `passed=2119 / baseline-failures-remaining=0 / quarantined=159 · status: OK` at `phase0/drill_receipts/20260827T11532{9,4}Z_cp_d9_hermeticity_full_invariants_run{1,2}.log`. Previous CP-D8 close verify at `phase0/drill_receipts/20260827T114500Z_cp_d8_close.log`.
 
 - **Exact next action (on owner arrival):**
-  - **(1) Wave D external verification result** — verified → Wave D CLOSES; concerns raised → address per owner ruling.
+  - **(1) Owner external spot-check outcome** — repeat-run stability spot-check passes → Wave D CLOSES; further defect surfaces → address as CP-D10 (owner ruling verbatim).
   - **(2) SSH key path** (INTERRUPT-PRIORITY, unchanged): chmod 600 → `AKKI_GPU_SSH_PRIVATE_KEY_PATH` → `GPU_CONNECT_MODE=real` → hardware fact sheet → first governed run.
   - **(3) Wave F opening**: retirement of D1a-1 residue per `notes/waveF_retirement_charter.md`. Requires owner ruling on framework (pytest-asyncio ≥1.5 pilot) vs code (fixture refactor) split.
   - **(4) Post-Wave-D BUILD queue**: Doc15-014 (Watch), Doc15-085/-086/-087, Doc16-023 semantics (Doc 10 evidence-record backfill), Doc02-020 CA1-007 wizard.
@@ -92,7 +100,7 @@ Update this section at every CP/R-step close.
     - **CP-D2 … CP-D8** — reusable lift CPs. Every close receipt is FULL-DIRECTORY scope invoked as `cd backend && BASELINE_GUARD=1 python -m pytest tests/invariants/`. MUST_BE_LIVE_ROUTES same-commit discipline enforced. Each CP MUST retire ≥15 baseline_failures from the manifest in the same commit AND ratchet passed_floor + counts_at_baseline.passed up in the same commit (owner rulings (d) and (e), 2026-08-27).
 
 - **Wave A/B/C ratified ledger** (Extraction-Akki `programme/track-a` · workspace `master`):
-  - **HEAD (Extraction-Akki)**: `4aedb35`
+  - **HEAD (Extraction-Akki)**: `023aa21` (CP-D9 · registry seeder hermeticity fix + double-run proof)
   - **HEAD (workspace)**: `3aa1c90`
   - **Wave A**: 4/4 external PASS at close · closed_at prior session.
   - **Wave B**: 4/4 external PASS (final re-verification at `75b7b1e`) · 182/182 green at close.
