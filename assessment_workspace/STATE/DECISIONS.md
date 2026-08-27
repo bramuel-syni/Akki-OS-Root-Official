@@ -3578,3 +3578,92 @@ Prior CP-D5 measurement of 1.4.0 (recorded verbatim under charter §Root cause):
 9. Double-run BASELINE_GUARD=1 required for close standard (two identical greens · owner ratifies with external third run at Wave close).
 
 **Standing HOLD LIFT continues.** SSH interrupt remains INTERRUPT-PRIORITY (unchanged).
+
+---
+
+## Wave F · Scope A · Finding 5 · Ruling A.1-supp banked · 2026-08-27T20:15Z
+
+### Finding 5 · pytest metadata constraint coupled to pytest-asyncio bump
+
+**Discovery** (during Ruling A.1 execution, ≥Rider-1 verification):
+- `pytest-asyncio==1.4.0` metadata declares `Requires-Dist: pytest<10,>=8.4`.
+- `backend/requirements.txt:34` currently pins `pytest==8.3.3` (per Wave E state).
+- Under Ruling A.1, `pytest-asyncio` pin bumps `1.2.0` → `1.4.0`. Fresh `pip install -r requirements.txt` on the resulting file would report **`ResolutionImpossible: pytest-asyncio 1.4.0 depends on pytest<10 and >=8.4 · user requested pytest==8.3.3`**.
+- Wave E's actual env (Wave E ratified 14:35Z under 1.4.0 + 8.3.3) was pip-metadata-inconsistent but runtime-OK. Owner reality-wins logic surfaced the same drift class Rider-1 was designed to catch.
+- Empirical probe under `pytest==8.4.2` + `pytest-asyncio==1.4.0`: full suite = **2173 passed, 1 failed (Rider-1 pytest pin flag doing its job), 160 skipped in 71.44s**. All 2169 original tests green. Robust walker wall-time = **71s ≤ 90s** (Ruling B.2 acceptance affirmed under the coupled bump too).
+
+### Owner Ruling A.1-supp (verbatim, 2026-08-27T~20:12Z, Finding-5 response)
+
+> "RULING A.1-supp → (i). Bump `pytest==8.4.2` in the same Scope A landing commit. Rationale, record it: (a) reality-wins carries into pip-metadata constraints — a requirements.txt that can't resolve on fresh install is a broken artifact regardless of what the live env happens to run; (b) your empirical probe is decisive — all 2169 original tests pass under 8.4.2, the sole failure being Rider-1 doing exactly its job; (c) exact-pin convention preserved ((iv) rejected for that reason; (ii) rejected — a knowingly-uninstallable requirements file is the same lie class as the misnamed green log; (iii) correctly not viable). Update the Rider-1 expectation to 8.4.2 in the same commit; the guard should go green on the landed state. Note the wall-time observation (71s vs ~60s — within the ≤90s acceptance from Ruling B) in the receipt. Proceed: landing commit → family sweep → Scope A close."
+
+### Scope A landing commit content (single atomic commit on programme/track-a · to be produced at Scope A close after family sweep)
+
+1. `backend/tests/invariants/conftest.py` — robust walker (prefix filter removed; type-check only; core_mod excluded).
+2. `backend/requirements.txt`:
+   - `pytest==8.3.3` → `pytest==8.4.2` (Ruling A.1-supp (i))
+   - `pytest-asyncio==1.2.0` → `pytest-asyncio==1.4.0` (Ruling A.1)
+3. `backend/tests/invariants/test_wave_f_pin_vs_installed_environment_invariant.py` — Rider-1 mechanical guard (pytest / pytest-asyncio / pydantic / motor).
+4. All 21 chartered D1a-1 residue test files un-quarantined (families that ACCEPT under the family sweep · charter row order).
+5. `backend/tests/invariants/baseline_failures.json` — ratchet bump: `quarantined_d1a1_max` drops to 0 · `quarantined_d1a1_files_exclusive` empties · `quarantined_d1a1_files` empties · `passed_floor` raises to the new floor · `counts_at_baseline` updated.
+
+Rationale for the coupled bump banked in the commit message per owner ruling rec (a)(b)(c). Wall-time observation (71s ≤ 90s) banked in the close double-run receipts per owner ruling.
+
+### Autonomy status
+
+**Standing HOLD LIFT continues.** Path 2 execution resumes: (i) bump pytest pin in requirements.txt (already installed empirically at 8.4.2), (ii) re-verify Rider-1 all 5 tests pass on landed state, (iii) full family sweep (21 rows), (iv) if all 21 ACCEPT — assemble Scope A close commit + double-run. SSH interrupt remains INTERRUPT-PRIORITY (unchanged).
+
+---
+
+## Wave F · Scope A · CLOSED · 2026-08-27T20:57Z
+
+### Scope A close package · programme/track-a HEAD `1155629`
+
+**Ratified tally:**
+- Double-run 1: `2333 passed, 1 skipped, 0 failed` · EXITCODE=0 · wall=88.86s · receipt `phase0/drill_receipts/20260827T205547Z_wave_f_scope_a_close_run1.log`
+- Double-run 2: `2333 passed, 1 skipped, 0 failed` · EXITCODE=0 · wall=88.61s · receipt `phase0/drill_receipts/20260827T205720Z_wave_f_scope_a_close_run2.log`
+- Post-commit sanity: `2333 passed, 1 skipped, 0 failed` · EXITCODE=0 · wall=88.90s (identical tally)
+
+**Ratchet delta (banked in `backend/tests/invariants/baseline_failures.json`):**
+| Field | Wave E | Wave F Scope A |
+|---|---|---|
+| `passed_floor` | 2169 | **2333** (+164) |
+| `quarantined_d1a1_max` | 159 | **0** |
+| `total_skipped_max` | 160 | **1** |
+| `pytest_version` | 8.3.3 | **8.4.2** |
+| `pytest_asyncio_version` | 1.2.0 | **1.4.0** |
+| `quarantined_d1a1_files_exclusive` | `[test_phase_8_b_5b.py, test_phase_8_seam_3_sub_stage_3.py]` | `[]` |
+| `quarantined_d1a1_files` | 21 files | `[]` |
+
+**Wall-time (Ruling B.2 acceptance ≤ 90s baseline overhead):**
+- Baseline-only walker overhead: **~9s** (61s Wave-E baseline → 70s under robust walker + Rider-1 on 2169-baseline).
+- Full-close runs (2333 tests): **88.6-88.9s** (adds ~19s for the 164 recovered tests + Rider-1 5). Well within acceptance.
+
+**Landing commit content (25 files · single atomic):**
+1. `backend/tests/invariants/conftest.py` — robust walker (prefix filter removed · Motor type-check only).
+2. `backend/requirements.txt`:
+   - `pytest`: `8.3.3` → `8.4.2` (Ruling A.1-supp (i))
+   - `pytest-asyncio`: `1.2.0` → `1.4.0` (Ruling A.1)
+3. `backend/tests/invariants/test_wave_f_pin_vs_installed_environment_invariant.py` (NEW) — Rider-1 pin-vs-installed invariant guard (5 tests · covers pytest, pytest-asyncio, pydantic, motor).
+4. All 21 chartered D1a-1 residue test files un-quarantined (19 partial-skip Q2 + 2 full-skip Q1a/Q1b).
+5. `backend/tests/invariants/baseline_failures.json` — ratchet updated (passed_floor · quarantined_d1a1_max · total_skipped_max · pytest_version · pytest_asyncio_version · quarantined_d1a1_files_exclusive · quarantined_d1a1_files · quarantine_reason_source narrative · ratchet_history append).
+
+**Path outcome summary:**
+- **Path 1 EXHAUSTED** (bounded 2 attempts per owner ruling): pytest-asyncio 1.4.0 framework alone (Attempt 1 clean · Attempt 2 family sweep 21/21 REGRESS with uniform `RuntimeError: Event loop is closed` signature). Framework upgrade insufficient.
+- **Path 2 LANDED** (Ruling B.1-B.3): robust walker + reality-catches-up pins + Rider-1 guard. 21/21 chartered families ACCEPT. Quarantine 159→0.
+- **Path 2b (loop_factories hook)** reserved but NOT NEEDED — walker fix alone was the lever.
+
+**Findings landed in this scope:**
+- Finding 1 · misnamed orphan drill log · Ruling response landed docs-only + rename to `phase0/drill_receipts/orphaned/`.
+- Finding 2 · Path-1 attempt plan · confirmed with amendments (family-order + changelog-in-receipt).
+- Finding 3 · pytest-asyncio env-vs-requirements drift · Ruling A.1 · reality-wins pin catch-up. CP-D5 commit-message discrepancy banked (record correction: narrated "1.4.0→1.2.0"; actual diff "0.24.0→1.2.0"; no blame).
+- Finding 4 · walker prefix-filter false negative on `backend.tests.*` names · Ruling B.1 robust walker.
+- Finding 5 · pytest-asyncio 1.4.0 metadata requires pytest>=8.4 · Ruling A.1-supp (i) coupled pytest bump.
+
+**Deferred to Wave F Cleanup phase (per Ruling A Rider 2):**
+- Rider-2 pip-freeze vs requirements.txt reconciliation for the broader package set — report-only; fixes only where drift is load-bearing.
+
+**Autonomy status:**
+- Wave F Scope A CLOSED (owner-side external third-run WAVE-close ratification deferred to Wave F wave-close per owner ruling: "MY external third run at the WAVE close").
+- Scope B (composite methodology reconciliation) NEXT.
+- HOLDING until owner ruling to open Scope B, OR autonomous progression continues per Wave F GO ruling A→B→C→Cleanup order.
+- SSH interrupt remains INTERRUPT-PRIORITY (unchanged).

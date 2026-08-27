@@ -1,0 +1,21 @@
+{
+  "attempt": "path_2_final_q1_dual",
+  "families": {
+    "20": {
+      "baseline_failures_remaining": 0,
+      "exit_code": 1,
+      "expected_skip_count": 26,
+      "failed_nodes": [
+        "tests/invariants/test_baseline_no_new_breakage.py::test_manifest_quarantined_files_carry_file_level_skip"
+      ],
+      "file": "test_phase_8_b_5b.py",
+      "passed": 2287,
+      "quarantined": 45,
+      "receipt": "/app/assessment_workspace/phase0/drill_receipts/20260827T204719Z_wave_f_scope_a_path_2_final_q1_dual_family_20_test_phase_8_b_5b.log",
+      "skip_type": "q1_legacy",
+      "status": "REGRESS_REVERTED",
+      "ts": "20260827T204844Z"
+    }
+  },
+  "started_at_utc": "20260827T204719Z"
+}
