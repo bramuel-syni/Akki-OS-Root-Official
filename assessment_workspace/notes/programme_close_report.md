@@ -1,9 +1,13 @@
 # Wave F Cleanup · Programme Close Report
-## 2026-08-27T21:34Z
+## Opened 2026-08-27T21:34Z · RATIFIED 2026-08-27T~22:15Z (external RE-RUN 4/4 PASS)
 
-**Status: ready for owner's external third-run ratification.**
+**Status: 🏁 WAVE F CLOSED + RATIFIED · MASTER PLAN (WAVES A → F) COMPLETE. Position: HOLDING at ready state.**
 
-Wave F Cleanup phase is complete. All three Wave F scopes CLOSED; full-system drill day executed with two consecutive perfectly-green `BASELINE_GUARD=1` runs at identical tallies. Composite lock stands authoritative at 52.52%. This report is the wave-close package for owner ratification.
+Wave F Cleanup phase is complete. All three Wave F scopes CLOSED + Cleanup CLOSED + Cleanup CP (audit-trail Overview surface · CA1-001/002/003) CLOSED. Full-system drill day executed with two consecutive perfectly-green `BASELINE_GUARD=1` runs at identical tallies at the new floor 2355. **Composite lock ratified at 52.82%.** Owner external RE-RUN 4/4 PASS ratifies the wave and closes the Master Plan.
+
+Ratified HEADs: Extraction-Akki `programme/track-a` **`fcec7f8`** · master workspace **`42ae8f5`**.
+
+Owner's closing acknowledgement (verbatim): *"Exceptional programme execution — from a 50% honest baseline through six ratified waves with zero unratified claims standing."*
 
 ---
 
@@ -15,7 +19,7 @@ Wave F Cleanup phase is complete. All three Wave F scopes CLOSED; full-system dr
 | Wave F · Scope B · Authoritative composite lock (superseded by Cleanup CP re-lock) | Master workspace **`7ae5dcb`** | (workspace tool commit; test-mirror pending on rounding fix — see §4) | — | — | Ratified by owner 2026-08-27T21:12Z |
 | Wave F · Scope C · Compliance residue class-attribution | Master workspace **`aab67c4`** | (no `programme/track-a` code touched at Scope C close) | — | — | Ratified by owner 2026-08-27T21:20Z (chartered BUILD item completed in Cleanup CP below) |
 | Wave F · Cleanup · Rounding fix + full-system drill day | Extraction-Akki **`67a6786`** + Master **`8e8fd06`** | 2333 | 0 | 0 | Superseded by Wave F Cleanup CP · retained for audit |
-| Wave F · Cleanup CP · audit-trail Overview (CA1-001/002/003) | Extraction-Akki **`fcec7f8`** | **2355** | **0** | **0** | **PENDING · this report** |
+| Wave F · Cleanup CP · audit-trail Overview (CA1-001/002/003) | Extraction-Akki **`fcec7f8`** | **2355** | **0** | **0** | **RATIFIED by owner 2026-08-27T~22:15Z (external RE-RUN 4/4 PASS)** |
 
 **Wave E ratified anchor (prior · unchanged):** Extraction-Akki `programme/track-a` **`60b8760`** — CP-E1..CP-E8, 2169 passed at Wave E close.
 
@@ -256,23 +260,56 @@ Per owner Wave F GO ruling, autonomous progression halts on standard triggers on
 
 ## 10 · Handoff to owner's external third run
 
-Per owner rule ("MY external third run at the WAVE close"), the third ratification run is the owner's act. This report is the wave-close package awaiting that run.
+**RATIFIED 2026-08-27T~22:15Z · Owner external RE-RUN 4/4 PASS.**
 
-**Suggested owner probe recipe (unchanged from prior wave closes):**
+Ratification receipt confirms:
+1. Suite receipt verbatim-confirmed: `passed=2355 / baseline-failures-remaining=0 / quarantined=0`.
+2. Audit-trail Overview live with 2 served units + `source_path` provenance + canon-designated `partial_closure=true`.
+3. `/audit-trail` SPA route present.
+4. Composite byte-identical at 52.82 (mech 54.92, n_deltas 39) · zero 5xx anywhere.
 
-```
-cd /app/assessment_workspace/repos/Extraction-Akki/backend && \
-  BASELINE_GUARD=1 python -m pytest tests/invariants/ 2>&1 | tail -20
-```
+**Ratified HEADs (Master Plan close pointer):**
+- Extraction-Akki `programme/track-a`: **`fcec7f8`**.
+- Master workspace: **`42ae8f5`**.
 
-Expected receipt line: `passed=2355 / baseline-failures-remaining=0 / quarantined=0`.
+Owner's closing acknowledgement (verbatim): *"Exceptional programme execution — from a 50% honest baseline through six ratified waves with zero unratified claims standing."*
 
-**Post-ratification state expected:** Wave F CLOSED + RATIFIED across all three scopes + Cleanup + Cleanup CP (audit-trail Overview). Next scope opens on owner GO (SSH key drop if that path fires, or Wave G scope ratification, whichever arrives first).
+**Post-ratification state:** Wave F CLOSED + RATIFIED across all three scopes + Cleanup + Cleanup CP (audit-trail Overview). **Master Plan (Waves A → F) is COMPLETE.** No wave reopens autonomously. Standing arrivals (SSH key drop · Decks/Documents build GO · owner one-liners) reopen scope only by explicit owner ruling. Position: HOLDING at ready state.
 
 ---
 
-## 11 · Non-halting posture continues
+## 11 · MASTER PLAN COMPLETE · Post-close position · 2026-08-27T~22:15Z
 
-SSH key interrupt remains INTERRUPT-PRIORITY (see §6.1). No other pending items block wave close. Ratchet held at **2355/0/0**. Composite locked at **52.82%**. Autonomous progression completed per owner Wave F GO ruling. Chartered Scope C item (2) audit-trail Overview surface CLOSED this cleanup CP per owner audit ruling.
+**Master Plan composite ratified at 52.82%.** Ratchet floor **2355** is the permanent regression fence under BASELINE_GUARD=1 monotonic non-decreasing rule. **Zero unratified claims standing.**
 
-**Wave F CLOSED PENDING OWNER'S EXTERNAL THIRD-RUN RATIFICATION (RE-RUN after audit-trail Overview build).**
+**Six ratified waves:**
+
+| Wave | Ratification | HEAD | Test cohort at close |
+|---|---|---|---:|
+| Wave A | Ratified prior session (R7 · 2026-08-26T04:20Z) | `f101bd0` (post-R7) | 4/4 external PASS |
+| Wave B | Ratified 2026-08-26T11:15Z | `75b7b1e` | 182/182 |
+| Wave C | Ratified 2026-08-26 | `4aedb35` | 169/169 |
+| Wave D | Ratified 2026-08-27T~11:00Z | (CP-D9 lineage) | 2119/0/159 |
+| Wave E | Ratified 2026-08-27T~14:20Z | `60b8760` | 2169/0/159 |
+| Wave F | **RATIFIED 2026-08-27T~22:15Z (external RE-RUN 4/4 PASS)** | **`fcec7f8`** | **2355/0/0** |
+
+**Programme trajectory (honest baseline → final ratified state):**
+
+- W1 baseline (2026-08-19 first-honesty-pass): ~50% composite.
+- W6 close: mechanism ~48%, composite ~47%.
+- W9 close: composite HELD pending W10 authoritative recomputation.
+- W10 CP9: composite locked at 52.49% (32 deltas).
+- Wave F Scope B: composite re-locked at 52.52% (36 deltas · 20-doc register expansion).
+- **Wave F Cleanup CP (ratified): composite locked at 52.82%** (39 deltas · audit-trail Overview CA1-001/002/003 moves).
+
+**Standing arrivals (owner-gated · no autonomous reopen):**
+
+- **SSH key delivery** — INTERRUPT-PRIORITY (unchanged). On key arrival: `chmod 600` → env vars → hardware fact sheet → CUDA/PyTorch verify-only (A17.17 CLOSED) → EP-4 precondition guard verify → first live governed training run on sealed DigiCow set → real MOAC → whitepaper → stop-and-report.
+- **Decks/Documents build GO** — DRE + akki-decks specs already ingested; register rows carried at BUILD-SCHEDULED-POST-PLAN pending explicit owner GO.
+- **Owner one-liners still open** (non-blocking · land as config zero-code-change unless code named):
+  - **CA1-N5 RTO seconds** — `services/watch/continuity_policy.v0.json:8` sentinel `"OWNER_POLICY_PENDING"` awaits integer-seconds ruling; single-JSON-edit landing.
+  - **DigiCow occupation-boolean PII call** — `dairy_farmer`/`poultry_farmer`/`dairy_poultry_farmer` on `ussd_users`; default not-PII (Wave-E CP-E7 posture); owner rules yes/no.
+  - **Doc 10 evidence-record backfill decision** — new `contracts/evidence_record_v0.py` targeting Doc 10 runtime ledger evidence-record (distinct from Doc 19B EP-1 register rows).
+  - **Base-model census activation (A17.10)** — first-adapter base-model choice.
+
+**Wave F CLOSED + RATIFIED. MASTER PLAN COMPLETE. Standing by.**

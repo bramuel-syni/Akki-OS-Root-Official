@@ -3937,3 +3937,61 @@ External third-run WAVE-close ratification deferred to Wave F wave-close per own
 
 12. **Owner's external third-run RE-RUN is the next act.** Expected receipt line: `passed=2355 / baseline-failures-remaining=0 / quarantined=0`. Wave F ratifies on that RE-RUN.
 
+
+---
+
+## Owner Ratification · Wave F CLOSED + RATIFIED · MASTER PLAN COMPLETE (Waves A → F) · 2026-08-27T~22:15Z · Source: owner channel (external third-run RE-RUN)
+
+**Verbatim owner ratification:**
+
+> "WAVE F EXTERNAL RE-RUN: 4/4 PASS — **WAVE F IS CLOSED AND RATIFIED. THE MASTER PLAN (WAVES A→F) IS COMPLETE.** Verified: 2355/0/0 receipt verbatim, audit-trail overview live with 2 served units + source_path provenance + canon-designated partial_closure=true, /audit-trail SPA route present, composite byte-identical at 52.82 (mech 54.92, n_deltas 39), zero 5xx anywhere. HEADs ratified: Extraction-Akki `fcec7f8`, workspace `42ae8f5`."
+
+**Master Plan ledger — Waves A-F, all ratified:**
+
+| Wave | Ratification | HEAD (Extraction-Akki) | Test cohort at close | Notes |
+|---|---|---|---:|---|
+| Wave A | Ratified prior session (R7 · 2026-08-26T04:20Z) | `37688a9` (R7) → `f101bd0` | 4/4 external PASS | 11 commits · R1→R7 · Ship-Manifest DoD meta-invariant established. |
+| Wave B | Ratified 2026-08-26T11:15Z (3/4 → 4/4 after `75b7b1e`) | `75b7b1e` | 182/182 | Training engine · LoRA/PEFT · Muon · Critic Seam · MOAC · Audio Plane. |
+| Wave C | Ratified 2026-08-26 (3/3 PASS after ceremony-chokepoint fix + stranded-run backfill) | `4aedb35` | 169/169 | Watch/Grey-Mirror mechanism · 62 Doc 03 BUILD rows · witness signing · mirage plane. |
+| Wave D | Ratified 2026-08-27T~11:00Z (CP-D0 → CP-D9 hermeticity block) | (`CP-D9` verify at `f6f`-lineage) | 2119/0/159 | MUST_BE_LIVE_ROUTES 2→30 · MUST_BE_LIVE_SPA_ROUTES 0→25 · 4 REUSABLE→DONE moves. |
+| Wave E | Ratified 2026-08-27T~14:20Z (CP-E1 → CP-E8) | `60b8760` | 2169/0/159 | Continuity + breach + erasure + rights-quarantine + A18.6 adoption + audit sweep + PII sanitizer. |
+| Wave F | **RATIFIED 2026-08-27T~22:15Z (external RE-RUN 4/4 PASS)** | **`fcec7f8`** | **2355/0/0** | Scope A D1a-1 residue retirement + Scope B composite lock + Scope C compliance residue + Cleanup rounding fix + Cleanup CP audit-trail Overview surface (CA1-001/002/003). |
+
+**Master Plan composite lock: 52.82%** (mech 54.92% / iface 47.93% · n_deltas 39 · locked at Wave F Cleanup CP re-run ceremony · `tools/w10_cp9_composite_recompute.py` byte-identical double recompute · `test_w10_cp9_composite_lock.py` 5/5 green).
+
+**Programme trajectory (honest baseline → final ratified state):**
+
+- W1 baseline (post-first-honesty-pass 2026-08-19): ~50% composite (honest baseline · no wobble corrections).
+- W6 close: mechanism ~48%, composite ~47%.
+- W9 close: composite HELD pending W10 authoritative recomputation.
+- W10 CP9: composite locked at 52.49% (515-row mech · 58-row iface · 32 deltas).
+- Wave F Scope B: composite re-locked at 52.52% (551-row mech expansion · 36 deltas).
+- Wave F Cleanup rounding fix: composite unchanged at 52.52% (single-final-rounding rule made explicit).
+- **Wave F Cleanup CP (final): composite ratified at 52.82%** (audit-trail Overview build · CA1-001/002/003 moves · 39 deltas).
+
+**Zero unratified claims standing** at Master Plan close (owner's language: "from a 50% honest baseline through six ratified waves with zero unratified claims standing").
+
+**External verification receipts (final):**
+- 4/4 PASS on Wave F external RE-RUN (this session):
+  1. Suite receipt verbatim-confirmed: `passed=2355 / baseline-failures-remaining=0 / quarantined=0`.
+  2. Audit-trail Overview live with 2 served units + `source_path` provenance + canon-designated `partial_closure=true`.
+  3. `/audit-trail` SPA route present.
+  4. Composite byte-identical at 52.82 (mech 54.92, n_deltas 39) · zero 5xx anywhere.
+
+**Ratified HEADs (Master Plan close pointer):**
+- Extraction-Akki `programme/track-a`: **`fcec7f8`** (Wave F Cleanup CP · audit-trail Overview surface).
+- Master workspace: **`42ae8f5`** (Wave F Cleanup CP mirror · composite re-lock · register moves · close report §2.4/§3/§4/§6.6/§9/§11 · STATE mirrors · receipts).
+
+**Binding effect — post-close discipline:**
+
+1. **Master Plan CLOSED + RATIFIED as a block.** All six waves (A/B/C/D/E/F) hold on record with two-consecutive-perfectly-identical `BASELINE_GUARD=1` full-suite receipts at each wave close + owner external ratification receipt.
+2. **No wave reopens autonomously.** Standing arrivals — SSH key + Decks/Documents build GO + owner one-liners — reopen scope only by explicit owner ruling.
+3. **Composite lock 52.82% is the authoritative programme headline.** Any future move requires a new same-commit DoD ceremony under FL-P4-W8-02 (tool ↔ test cross-tree paired).
+4. **Ratchet floor 2355 is the permanent regression fence** under `BASELINE_GUARD=1` monotonic non-decreasing rule.
+5. **All standing owner disciplines remain binding** (tests-first · verbatim canon quotes · REFERENCE-NOT-COPY · Ship-Manifest DoD triple · byte-identical pod-shell/spine mirror · local commits only · no push · no testing subagent · terminal `pytest` only · post-compaction re-read of last 200 lines of DECISIONS.md + full NEXT.md + current wave brief).
+6. **SSH interrupt remains INTERRUPT-PRIORITY** (unchanged). On key arrival, halt whatever posture and execute the sequence: `chmod 600` → `AKKI_GPU_SSH_PRIVATE_KEY_PATH` → `GPU_CONNECT_MODE=real` → hardware fact sheet → CUDA/PyTorch verify-only (A17.17 CLOSED) → EP-4 precondition guard verify → first governed run on sealed DigiCow set → real MOAC → whitepaper → stop-and-report.
+
+**Owner's closing acknowledgement (verbatim):** *"Exceptional programme execution — from a 50% honest baseline through six ratified waves with zero unratified claims standing."*
+
+**Master Plan is COMPLETE.** Position now: HOLD at ready state · standing by for one of the standing arrivals.
+

@@ -55,7 +55,7 @@ Failure to follow this sequence = paraphrase-not-spec failure class the owner ex
 
 Update this section at every CP/R-step close.
 
-- **Current wave**: **WAVE F CLOSED PENDING OWNER RATIFICATION (RE-RUN) · Scope A/B/C + Cleanup + Cleanup CP CLOSED · 2026-08-27T22:03Z** — Owner's external third run (2026-08-27T~21:45Z) diagnosed a chartered-item miss: Wave F GO Scope C item (2) authorized building the audit-trail Overview surface but the Wave F Cleanup close carried CA1-001/002/003 as BUILD/PARTIAL. Wave F Cleanup CP CLOSED this session at `programme/track-a` `fcec7f8`: (1) `services/audit_trail/{__init__,router,overview}.py` NEW + mounted on `pod_shell/backend/server.py` (byte-identical mirror at `/app/backend/server.py` · live pod openapi confirms `GET /api/audit_trail/overview`); (2) Ship-Manifest DoD triple: MUST_BE_LIVE_ROUTES `+= /api/audit_trail/overview`, MUST_BE_LIVE_SPA_ROUTES `+= /audit-trail`, frontend `pod_shell/frontend/src/components/AuditTrail.jsx` byte-identical mirror at `/app/frontend/src/components/AuditTrail.jsx` + repo canonical page `frontend/src/pages/audit_trail/AuditTrailOverviewPage.jsx` + Route declarations on both App.js trees; (3) invariant enforcer `test_audit_trail_overview.py` 20 tests · Addendum §1 verbatim canon quotes in every section · REFERENCE-NOT-COPY posture with `source_path` on every entry · CA1-001 real northena ledger group-by-trace_id math · CA1-002 real data_connection_records + crossing_receipts served attribution · CA1-003 real registry_facts densification stat + wire-through to services/memory/ for warm/fresh half per owner ruling this session · canon-designated PARTIAL for CA1-003 per Addendum §1 verbatim "flagged here as a partial closure, not a full one"; (4) register moves same-commit on master mirror: CA1-001 BUILD→DONE, CA1-002 BUILD→DONE, CA1-003 BUILD→PARTIAL (canon-designated); (5) composite lock re-run ceremony (per owner ruling verbatim: "RE-RUN the Scope B composite lock ceremony after the register moves"): 3 new Delta entries · byte-identical double recompute at `phase0/drill_receipts/20260827T215951Z_wave_f_cleanup_composite_relock.log` · **composite 52.52 → 52.82 (+0.30 pp)** · mech 54.48 → 54.92 · iface unchanged · n_deltas 36 → 39; (6) `test_w10_cp9_composite_lock.py` moves to new locked values in SAME atomic commit (same-commit DoD extension FL-P4-W8-02 preserved); (7) ratchet floor 2333 → 2355 (+22 = 20 new audit_trail invariants + 1 MUST_BE_LIVE_ROUTES parametrized case + 1 MUST_BE_LIVE_SPA_ROUTES parametrized case); (8) full-system drill day double-green identical at new floor: `phase0/drill_receipts/20260827T220103Z_wave_f_cleanup_audit_trail_full_run1.log` (2355 · OK · 90.67s) + `20260827T220328Z_wave_f_cleanup_audit_trail_full_run2.log` (2355 · OK · 91.40s · byte-identical receipt); (9) right-reason RED banked before implementation at `20260827T215343Z_wave_f_cleanup_audit_trail_right_reason_fail.log`. Ready for owner's external third-run RE-RUN ratification. Wave E remains CLOSED + RATIFIED. Wave D remains CLOSED + RATIFIED. Wave A/B/C remain RATIFIED AS A BLOCK.
+- **Current wave**: **🏁 MASTER PLAN COMPLETE · WAVES A → F ALL RATIFIED · 2026-08-27T~22:15Z 🏁** — Wave F ratified by owner external RE-RUN 4/4 PASS (receipt verbatim `passed=2355 / baseline-failures-remaining=0 / quarantined=0` · audit-trail Overview live with 2 served units + source_path provenance + canon-designated `partial_closure=true` · `/audit-trail` SPA route present · composite byte-identical at 52.82 with mech 54.92 + n_deltas 39 · zero 5xx anywhere). Ratified HEADs: Extraction-Akki `programme/track-a` **`fcec7f8`** · workspace **`42ae8f5`**. Master Plan composite locked at **52.82%**. Wave A/B/C ratified as a block · Wave D ratified · Wave E ratified · Wave F ratified. Zero unratified claims standing. Owner's closing acknowledgement verbatim: "Exceptional programme execution — from a 50% honest baseline through six ratified waves with zero unratified claims standing." **Position: HOLDING at ready state.** No wave reopens autonomously; standing arrivals reopen scope only by explicit owner ruling.
 
 - **CP-D7 + CP-D8 combined artifacts (verification target list for owner):**
   - **28 NEW wire paths in MUST_BE_LIVE_ROUTES** (all verified LIVE on pod openapi at IP-allowlisted `/api/openapi.json` — see §2.1 of `notes/waveD_close_report.md`). Pod openapi paths 118 → 149 (+31 across CP-D7/D8).
@@ -65,7 +65,48 @@ Update this section at every CP/R-step close.
 
 - **Wave D block ratchet (CP-D0 → CP-D8)**: `passed` 1830 → **2119** (+289); `baseline_failures` 156 → **0** (Wave D endgame); `passed_floor` 1830 → **2119** (monotonic); `MUST_BE_LIVE_ROUTES` 2 → **30** (+28); `MUST_BE_LIVE_SPA_ROUTES` 0 → **25** (+25); Register DONE this-wave rows: 4.
 
-- **Current step**: **Wave F CLOSED PENDING OWNER RATIFICATION (RE-RUN) · Cleanup CP CLOSED · audit-trail Overview surface built · CA1-001/002/003 closed · double-green identical at new floor 2355 · 2026-08-27T22:03Z.** Owner audit this session diagnosed the third-run miss (chartered Wave F GO Scope C item (2) was carried instead of built). This cleanup CP closes it: Ship-Manifest DoD triple honored across programme/track-a `fcec7f8` (backend service + wire + SPA) + master workspace (composite tool + register moves + close report + receipts). Rounding rule (single-final-rounding) preserved from earlier Cleanup fix; new composite locked at **52.82%** via re-run ceremony after the register moves. All CA1-001/002/003 rows moved on the register in the same commit. **NEXT ACTION**: STOP for owner's external third-run RE-RUN ratification per owner rule ("MY external third run at the WAVE close"). SSH interrupt remains INTERRUPT-PRIORITY.
+- **Current step**: **🏁 MASTER PLAN COMPLETE · HOLDING at ready state · 2026-08-27T~22:15Z 🏁.**
+  - Master Plan composite locked at **52.82%** (mech 54.92 · iface 47.93 · n_deltas 39 · locked by pytest at `test_w10_cp9_composite_lock.py` 5/5 green).
+  - Ratchet floor **2355** is the permanent regression fence under BASELINE_GUARD=1 monotonic non-decreasing rule.
+  - Wave A/B/C ratified as a block · Wave D ratified · Wave E ratified · Wave F ratified (external RE-RUN 4/4 PASS).
+  - **NEXT ACTION**: STAND BY. No wave reopens autonomously. Position stays HOLDING at ready state until one of three standing arrivals fires (see below).
+
+- **Standing arrivals (any one opens the next scope):**
+  - **(a) SSH key delivery — INTERRUPT-PRIORITY (unchanged from all prior waves).** On key arrival, halt whatever posture and execute the sequence:
+    1. `chmod 600 <key>`
+    2. `AKKI_GPU_SSH_PRIVATE_KEY_PATH=<path>` in `/app/backend/.env`
+    3. `GPU_CONNECT_MODE=real` env flip
+    4. Hardware fact sheet probe (`nvidia-smi` + CUDA version + PyTorch build)
+    5. **CUDA/PyTorch verify-only** (A17.17 CLOSED · Message 315 · capture versions; install ONLY if probe contradicts owner confirmation)
+    6. **EP-4 precondition guard verify** — evidence register active + ≥2 registered judges with matching versions for site `terminal_test`; live run refuses to start otherwise (Reclassification 1 · Message 315)
+    7. First live governed training run on sealed DigiCow set (fresh verification bench)
+    8. Real MOAC card (`mocked=False` on all six criteria)
+    9. Whitepaper drafted from a real admission (`accept_for_service=True` path becomes possible)
+    10. Stop-and-report with hardware fact sheet + live run outcome.
+  - **(b) Decks/Documents build GO (owner-sequenced post-plan).** The DRE + akki-decks specs are ingested; register rows carried at **BUILD-SCHEDULED-POST-PLAN**. Await explicit owner GO before opening scope.
+  - **(c) Owner one-liners (still open · non-blocking · land as config zero-code-change unless code named):**
+    - **CA1-N5 RTO seconds** — `services/watch/continuity_policy.v0.json:8` currently sentinel `"OWNER_POLICY_PENDING"`; single-JSON-edit landing once owner rules an integer number of seconds.
+    - **DigiCow occupation-boolean PII call** — `dairy_farmer`, `poultry_farmer`, `dairy_poultry_farmer` on `ussd_users`; default under Wave-E CP-E7 posture is not-PII; owner rules yes/no. If yes, add to `services/response_sanitizer/` banned set + regenerate the sanitizer snapshot in the same commit (FL-P4-W8-02).
+    - **Doc 10 evidence-record backfill decision** — `contracts/evidence_record_v0.py` targeting Doc 10 runtime ledger evidence-record (distinct from Doc 19B EP-1 register rows already covered by `evidence_register_row_v0.py`). Not authorized in the Master Plan; awaits owner GO.
+    - **Base-model census activation (A17.10)** — first-adapter base-model choice; needed before any Wave-G-style live training scope opens against a specific base.
+
+- **Master Plan ledger (all ratified · retained for audit · no reopens):**
+
+| Wave | Ratification | HEAD | Test cohort at close |
+|---|---|---|---:|
+| Wave A | Ratified prior session (R7 · 2026-08-26T04:20Z) | `f101bd0` (post-R7) | 4/4 external PASS |
+| Wave B | Ratified 2026-08-26T11:15Z (final at `75b7b1e`) | `75b7b1e` | 182/182 |
+| Wave C | Ratified 2026-08-26 (3/3 PASS at `4aedb35`) | `4aedb35` | 169/169 |
+| Wave D | Ratified 2026-08-27T~11:00Z (CP-D0 → CP-D9) | (CP-D9 lineage) | 2119/0/159 |
+| Wave E | Ratified 2026-08-27T~14:20Z (CP-E1 → CP-E8) | `60b8760` | 2169/0/159 |
+| Wave F | **RATIFIED 2026-08-27T~22:15Z (external RE-RUN 4/4 PASS)** | **`fcec7f8`** | **2355/0/0** |
+
+- **Ratified HEAD pointers (Master Plan close):**
+  - Extraction-Akki `programme/track-a`: **`fcec7f8`** (Wave F Cleanup CP · audit-trail Overview surface · CA1-001/002/003 CLOSE).
+  - Master workspace: **`42ae8f5`** (Wave F Cleanup CP mirror · composite re-lock · register moves · close report · STATE mirrors · receipts).
+
+- **Owner's closing acknowledgement (verbatim · retained in DECISIONS.md at 2026-08-27T~22:15Z entry):**
+  > "Exceptional programme execution — from a 50% honest baseline through six ratified waves with zero unratified claims standing."
 
 - **Wave F Scope C · compliance residue (registered 2026-08-27T14:35Z, per owner ruling verbatim):**
   - CA1-001 (Doc02-020a · audit-trail Overview names 2+ units) — **BUILD** · blocker: no audit-trail Overview surface service exists yet · deliverable: new `services/audit_trail/` surface mechanism.
