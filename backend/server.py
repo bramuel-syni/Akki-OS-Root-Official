@@ -76,6 +76,21 @@ from services.evidence_register.router import router as evidence_register_router
 # from KNOWN_UNWIRED and mounted on the pod-shell so the A17.16 mechanism
 # is reachable through the user path, not just via the unit tests.
 from routers import service_1 as service_1_router  # noqa: E402
+# W11 D · CP-D7 · Governance Ceremony lift (owner ruling 2026-08-27,
+# verbatim: "CP-D7 Governance Ceremony (lift + UI surface)"). Doc 15
+# ceremony surfaces (Register: Doc15-020 rule-change propose·countersign·
+# countdown·apply·re-check depends on these landing on the pod).
+from routers import govern as govern_router  # noqa: E402
+from routers import checker as checker_router  # noqa: E402
+from routers import compliance as compliance_router  # noqa: E402
+from routers import master_admin as master_admin_router  # noqa: E402
+# W11 D · CP-D8 · Cross-cutting Orchestration lift (owner ruling
+# 2026-08-27, verbatim: "CP-D8 Cross-cutting Orchestration (Doc 16:
+# walk-this/claim-to-evidence, disclosure grammar, remaining UI mass)").
+# Doc 16 team-side approvals + access-register + constitutional seats
+# surfaces. Register: Doc16-001 REUSABLE→DONE + Doc16-014 wire-through
+# PARTIAL→DONE via the mounted team ceremony.
+from routers import team as team_router  # noqa: E402
 from services.ip_allowlist.middleware import IPAllowlistMiddleware  # noqa: E402
 
 # Deliverables directory (read-only snapshot per Chunk-4 v1.1 delivery logistics)
@@ -265,6 +280,32 @@ app.include_router(evidence_register_router)
 # behind this router's /v2/dispatch endpoint. KNOWN_UNWIRED entry removed
 # in the same commit.
 app.include_router(service_1_router.router, prefix="/api")
+
+# W11 D · CP-D7 · Governance Ceremony lift (owner ruling 2026-08-27):
+#   /api/govern/*         registries upload/diff/commit + enforcement_class_split
+#                          + trust_center_record + estate_rules_record + holds
+#   /api/checker/*        propose·countersign·countdown·apply ceremony
+#   /api/compliance/*     Doc15 refusals/coverage/retention receipts
+#   /api/master_admin/*   pending seams + audit trail + tightening/suspend
+# Ship-Manifest DoD: paired with MUST_BE_LIVE_ROUTES entries in
+# tests/invariants/test_ship_manifest_dod_route_table_drift.py and
+# KNOWN_UNWIRED entry removal for routers.govern / .checker / .compliance /
+# .master_admin in the SAME commit.
+app.include_router(govern_router.router, prefix="/api")
+app.include_router(checker_router.router, prefix="/api")
+app.include_router(compliance_router.router, prefix="/api")
+app.include_router(master_admin_router.router, prefix="/api")
+
+# W11 D · CP-D8 · Cross-cutting Orchestration lift (owner ruling
+# 2026-08-27):
+#   /api/team/*  approval_surface + approval_surface/{id}/decision +
+#                access_register + access_register/grant + revoke +
+#                constitutional_seats
+# team_router.router already carries prefix="/api/team", so mount
+# WITHOUT an additional prefix (matches backend/server.py's convention).
+# Same-commit KNOWN_UNWIRED entry removal + MUST_BE_LIVE_ROUTES entries
+# in tests/invariants/test_ship_manifest_dod_route_table_drift.py.
+app.include_router(team_router.router)
 
 app.add_middleware(
     CORSMiddleware,

@@ -3149,3 +3149,44 @@ Quarantine expansion landed:
 **Autonomy status:** CP-D6 CLOSED. Wave D endgame achieved. Per owner ruling: "Then CP-D7/D8 (UI mass — flag me)." **CP-D7/D8 do NOT open autonomously.** Owner external-verification flag REQUIRED before opening CP-D7 (UI mass — the biggest UI-mass CP the user flagged at the CP-D5 amendment).
 
 **SSH key arrival interrupt sequence** remains INTERRUPT-PRIORITY as ratified.
+
+---
+
+## Ruling · 2026-08-27T11:45Z · Source: owner channel (CP-D6 acceptance + CP-D7/D8 GO + Wave D close criteria)
+
+**Verbatim (owner acceptance + CP-D7/D8 opening):**
+
+> "CP-D6 close ACCEPTED — manifest 0, floor 2066, quarantine chartered and honestly counted. The hidden-collateral catch on the registry-governs-validity test and the same-commit SHA ratchet are exactly the discipline working. HEADs recorded: `d4664f5` / `b401458`.
+>
+> CLARIFICATION on the pause — 'flag me' meant signal me at the UI-mass CPs so I can TIME my external verification; it was not a stop-gate. GO CP-D7 NOW, then CP-D8, autonomous through both closes: per the grounding-brief partition — CP-D7 Governance Ceremony (lift + UI surface), CP-D8 Cross-cutting Orchestration (Doc 16: walk-this/claim-to-evidence, disclosure grammar, remaining UI mass). Standing mechanics: verbatim quotes, Ship-Manifest DoD with MUST_BE_LIVE_ROUTES same-commit for every shipped wire path AND every shipped SPA route, BASELINE_GUARD receipts at each close (subset must hold at 0 — any new failure fails the CP), ratchet advances, honest empty states, REFERENCE-NOT-COPY on every rendered record.
+>
+> At CP-D8 close, include in the report: the full list of NEW/CHANGED wire paths and SPA routes shipped across D7+D8 (that's my verification target list), plus the Wave D close package per the original ruling: full-directory receipt, register REUSABLE→DONE moves with receipts, downgrade list (rows that couldn't honestly lift), preliminary composite delta, notes/waveD_close_report.md, STATE mirrors. Wave D closes on my external verification of D7/D8, not before. SSH interrupt stands."
+
+**CP-D7 landing (commit `d8a32d9` on `programme/track-a`):**
+
+Doc 15 Governance Ceremony lift + UI surface. `pod_shell/backend/server.py` mounts `routers.govern`, `routers.checker`, `routers.compliance`, `routers.master_admin` (prefix='/api'); byte-identical mirror synced to `/app/backend/server.py`; supervisor restarted; **143 live openapi paths on pod (+25 from CP-D6)**. Same-commit `KNOWN_UNWIRED` physical removal (staleness sentinel confirmed the discipline). `MUST_BE_LIVE_ROUTES` extended with 18 Doc 15 wire paths (7 govern + 5 checker + 3 compliance + 3 master_admin), each verified LIVE. Guard receipt: **`passed=2084 / baseline-failures-remaining=0 / quarantined=159 · OK`**. Ratchet 2066 → 2084 (+18). Register moves: **Doc15-001 REUSABLE→DONE**, **Doc15-020 REUSABLE→DONE**. Doc15-014 (Watch mechanism) stays PARTIAL (Wave-F scope).
+
+**CP-D8 landing (commit `ba6d137` on `programme/track-a`):**
+
+Doc 16 Cross-cutting Orchestration lift + UI mass. `pod_shell/backend/server.py` mounts `routers.team` (self-prefixed `/api/team`; handoff + prove + trace + registry.prove already live pre-D8, now bound into the verified-live manifest); supervisor restarted; **149 live openapi paths (+6 team surfaces)**. `MUST_BE_LIVE_ROUTES` extended with 10 additional Doc 16 wire paths (1 handoff + 3 prove + 6 team). Total `MUST_BE_LIVE_ROUTES` = **30**. **`MUST_BE_LIVE_SPA_ROUTES` list introduced** per owner ruling verbatim "every shipped SPA route" — 25 SPA entries seeded (13 CP-D7 + 12 CP-D8), companion parametrized test `test_must_be_live_spa_route_declared_in_frontend` matches absolute + relative-nested React Router `path=` declarations in `frontend/src/App.js` + `pages/**`. Guard receipt: **`passed=2119 / baseline-failures-remaining=0 / quarantined=159 · OK`**. Ratchet 2084 → 2119 (+35 = 10 wire + 25 SPA parametrized tests newly active/green). Register moves: **Doc16-001 REUSABLE→DONE**, **Doc16-014 PARTIAL→DONE (wire-through)**, **Doc16-023 walk-this DONE at wire+SPA surface level / PARTIAL for semantics (Doc 10 evidence-record backfill pending — see `notes/waveD_close_report.md` downgrade list)**.
+
+**Wave D block ratchet (CP-D0 → CP-D8):**
+
+| Metric | Start | End | Δ |
+|---|---:|---:|---:|
+| `passed` | 1830 | **2119** | **+289** |
+| `baseline_failures` | 156 | **0** | **−156** |
+| `MUST_BE_LIVE_ROUTES` entries | 2 | **30** | **+28** |
+| `MUST_BE_LIVE_SPA_ROUTES` entries | 0 | **25** | **+25** |
+| Register `DONE` this-wave rows | 0 | **4** | **+4** |
+| `quarantined_d1a1_files` | 6 | 21 (2 exclusive + 19 partial per Q2 grant) | +15 |
+
+**Wave D endgame achieved.** Wave D CLOSES on owner external verification of D7/D8 per this session's ruling.
+
+**HEAD advance (local, no push):**
+- `programme/track-a` (Extraction-Akki): `d4664f5` → `d8a32d9` (CP-D7) → **`ba6d137`** (CP-D8).
+- `master` (workspace): `b401458` → (this commit).
+
+**Autonomy status:** CP-D7 CLOSED, CP-D8 CLOSED. **Autonomy PAUSED for owner external verification of D7/D8** (the Wave D close gate). Wave D endgame achieved but not yet closed. See `notes/waveD_close_report.md` for the full close package.
+
+**SSH interrupt** stands as INTERRUPT-PRIORITY.
