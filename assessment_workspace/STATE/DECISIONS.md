@@ -2153,3 +2153,229 @@ Reporting notes (unchanged from Wave B posture):
 - Test cohort green.
 - Awaiting SSH key OR Wave D GO. HOLD in place.
 
+
+
+---
+
+## 2026-08-27T06:15Z · CP-D0 · Batch 1/2 rulings + v3 canon ingest + fix-first defect close
+
+### Preamble
+
+Owner GO for Wave D issued in Message 317; Wave-D execution paused at
+CP-D0 close to record the two batches of rulings that arrived alongside
+the GO and to land two "IMPLEMENT NOW" items (EP-4 guard, A17.16 form
+change) plus the v3 canon pack ingest. Fix-first ruling 2026-08-27
+(this session) added a pre-CP-D0 defect-fix commit to restore two
+W4-deletion regressions before this record.
+
+### Message 315 verbatim (Batch 1 rulings + Reclassifications 1/2/3 + EP-4 IMPLEMENT NOW)
+
+> === BEGIN MESSAGE 315 VERBATIM ===
+> OWNER RULINGS + THREE RECLASSIFICATIONS — record ALL in STATE/DECISIONS.md verbatim, and execute exactly ONE implementation item now (EP-4 guard, below). Everything else is config/recording until wave GOs. HOLD state otherwise continues.
+>
+> RECLASSIFICATION 1 — EP-4 IS BLOCKING, and one small build item is authorized NOW:
+> Owner's constraint verbatim: "the evidence register and dual-judge protocol must exist before the terminal test runs, or that test's verdict is single-judge permanently — no retroactive fix once it's run." Since the live GPU run (which includes MOAC terminal evaluation) is pre-authorized and can fire the moment the SSH key lands, this is on the critical path TODAY.
+> IMPLEMENT NOW (tests-first, one commit): a mechanical ordering guard that makes a single-judge terminal test UNREPRESENTABLE — the terminal-test site (§19B.4 `terminal_test`) must refuse to execute unless the evidence register is active AND ≥2 judges with matching versions are registered for that site (EP-2 contract). Structured refusal citing EP-4 verbatim. Add this guard as a precondition INSIDE the live-run sequence in STATE/NEXT.md (between "sealed test set" and "first live governed run"). Bank receipts, report HEAD.
+>
+> RECLASSIFICATION 2 — A17.12-17 are NOT scheduling/retry questions. They are the six build gaps on record: (1) no runner in any modality → now built (mock seam, CP8); (2) MOAC has no emitter → now built (ceremony-routed); (3) GPU auth pending → still pending key; (4) no rights-declared corpus → resolved (DigiCow approval on record); (5) ingredient-manifest guarantee → owner says "ruled below" but NO ruling text arrived and the referenced attachment is missing — leave this slot OPEN, clearly marked "awaiting owner text (attachment not received)"; (6) CUDA → CLOSED, see below. Correct the register/DECISIONS to this classification. Do NOT invent runner scheduling/retry/cancellation semantics — record as a separate NEW open item: "runner-level semantics undefined; current behavior fail-stop, no auto-retry, no cancel endpoint" and leave it for explicit owner decision.
+>
+> RECLASSIFICATION 3 — A18.8 = donor-lift status ("complete donor code exists; not in this build"), NOT audit cadence. Correct the row. Skill-file audit cadence is UNSPECIFIED in Doc 18 — do not create it; if the owner wants it, it will arrive as new work.
+>
+> RULINGS TO RECORD (config, no build until wave GOs, except where noted):
+> - A17.17 CUDA/PyTorch: CLOSED — owner confirms ALREADY INSTALLED on akki-vm. Update the pre-authorized SSH sequence: replace "CUDA/PyTorch install ceremony" with "verify presence in hardware fact sheet" only.
+> - CA1-N2 breach notification: notify = DPO + the Watch's existing external witness (independent by design); window = 72 hours (canon-grounded: Kenya DPA/GDPR); channel = enforcement-view record PLUS real-time alert to both recipients (ledger row alone is insufficient); threshold = a hard line ACTUALLY CROSSED — contained/shaped events are the Watch working as intended and are NOT reportable breaches. When Wave E implements this, map "hard line crossed" onto the existing Watch event grammar (containment failure / actual exfiltration / unreceipted crossing), never onto successful catches.
+> - CA1-N3 access & erasure: requestor = named customer or employee only, no third-party without separate authorization; verification = existing platform credential (no new identity machinery); posture = REAL erasure for raw source + five-ring units; already-trained models get FLAGGED via the same provenance mechanism as A17.15 rights-lapse, then scheduled for retraining OR documented as residual exposure.
+> - CA1-N5 ledger continuity: countersigner = party independent of the primary ledger writer's infrastructure (Watch external-witness pattern — "the verifier can't be the thing that might be down"); cadence = QUARTERLY recorded as DEFAULT-class (owner explicitly flags this as proposal-class, NOT canon-grounded — preserve that class distinction in the record).
+> - Doc14-020 rights-unclear material: QUARANTINE pending review. Not refuse, not admit-with-flag. Owner's reasoning verbatim: "Quarantine is the only option that doesn't foreclose anything before the status is actually resolved."
+> - A18.6 async skill delivery: ADOPT (proven platform pattern). Implementation lands with Wave D/E scope, not now.
+>
+> After the EP-4 guard commit: return to HOLD. Confirm in your report: rulings recorded, register rows corrected, EP-4 guard green on the live pod, SSH sequence updated (CUDA step replaced, EP-4 precondition inserted).
+> === END MESSAGE 315 VERBATIM ===
+
+### Message 317 verbatim (Batch 2 rulings + v3 canon pack + A17.16 IMPLEMENT NOW)
+
+> === BEGIN MESSAGE 317 VERBATIM ===
+> OWNER RULINGS BATCH 2 + UPDATED CANON PACK. Still in HOLD for Wave D code — but the following recording/ingestion work plus ONE effective-now change are authorized.
+>
+> STEP 1 — Ingest the UPDATED canon pack (v3, supersedes the previous 17-20 file): https://customer-assets-cm19k8pv.emergentagent.net/job_amazing-gates-8/artifacts/j2wjepkb_AKKI_Canon_Documents_17_20%20%283%29.docx
+> Line-by-line, no sampling. Diff against the prior pack; note every changed/added line in the ingest receipt. Expand the requirements register with: the Doc 17 expansion (17.4a-f: tokenized audio extraction, character register/Learning, Invention + distance guarantee, commission chain with Objective Wizard compiling TargetOutcome + Collection Schema, calibration-first training, per-example provenance manifest; A17.18 RESOLVED delegated-reversible; A17.20 build sequence), Doc 20 (Model Capability Register A20.1-A20.14), and the Deck Rendering Engine spec rows (DR-R1..DR-R14 + the 8 gates — sources already on disk from the earlier upload: AKKI_OS_Deck_Rendering_Engine_v1.docx, akki-decks_SKILL.md, akki-decks_plates-and-registers.md, akki-decks.skill). Also land the akki-decks .skill package on disk as the knowledge-layer artifact (read it verbatim, record its structure in the ingest receipt).
+>
+> STEP 2 — Record these owner rulings VERBATIM in STATE/DECISIONS.md (full reasoning text included):
+> 1. A17.16 ingredient-manifest guarantee: **ACCEPT**. Owner reasoning verbatim: claiming provenance of assertions would be "overclaiming something training structurally cannot support — a direct violation of the platform's own 'measure, don't assert' doctrine. Provenance of ingredients is the honest ceiling... the training manifest already tracks exactly this." Effective NOW (see Step 3).
+> 2. A17.19(a) minimum group size N: inherits the platform's EXISTING minimum-group-size seam value — no register-specific override at launch; tenant-level register-specific override path stays open for later.
+> 3. A17.19(b) default gate_policy: **GATES release**. Ships-documented remains a live per-Outcome EXPLICIT override, never the silent default. Owner reasoning: per-stratum acceptance exists to stop the "94% majority, 61% minority" failure a global threshold hides.
+> 4. A17.19(c) cluster naming validation: risk-tiered — internal by default, EXTERNAL escalation for ambiguous/sensitive clusters: anything near the custody boundary's individuating line (§6.2-6.4) or touching contested fast-moving register boundaries (e.g., Sheng). Same shape as the Watch escalation ladder.
+> 5. Doc 20 A20.3-A20.10 + A20.12-A20.14: **ADOPTED as PROPOSED-class config now** — no per-candidate owner sign-off; licence verification already done (Apache 2.0/MIT throughout); calibration deciding on measured fit IS the ratification (A20.13), preserving A20.14's no-human-pre-pick principle.
+> 6. Sequencing ruling: the Decks/Documents build (DRE + producer) is scheduled AFTER the current wave plan completes — register rows land now with status BUILD-SCHEDULED-POST-PLAN.
+>
+> STEP 3 — ONE effective-now implementation (tests-first, small commit): per A17.16 ACCEPT, take the model-output form OFF the wizard's refused list. It must now be offerable carrying the INGREDIENTS-ONLY guarantee explicitly ("provenance of ingredients: what went in, its standard, its licence — never provenance of assertions") and the surface/contract must make any stronger claim unrepresentable. Gating test quotes A17.16 verbatim. If a gate_policy default seam already exists in the TargetOutcome/training contracts, also set default=gates_release with explicit-override-only semantics in the same pass; if the seam doesn't exist yet, record it for the training-track continuation.
+>
+> STEP 4 — Report: ingest receipt (with pack diff), register delta counts, rulings recorded, the A17.16 commit HEAD, and updated composite-denominator note (the new rows grow the denominator — flag the honest impact for the Wave F lock). Then HOLD: no Wave D code until I relay the owner's explicit GO.
+> === END MESSAGE 317 VERBATIM ===
+
+### Supersession note (Reclassification 2 item (5) → Message 317 §STEP 2 item 1)
+
+Message 315 · Reclassification 2 item (5) left the ingredient-manifest slot OPEN
+with the marker "awaiting owner text (attachment not received)". Message 317 §STEP 2
+item 1 delivered the ruling: **A17.16 ingredient-manifest guarantee: ACCEPT** with
+the "overclaiming something training structurally cannot support" reasoning quoted
+above. The Message 315 OPEN marker is hereby SUPERSEDED by the Message 317 ACCEPT
+ruling. Register row A17.16 status: CLOSED-ACCEPT.
+
+### Fix-first defect-fix commit (this session, 2026-08-27)
+
+Owner ruling 2026-08-27 (fix-first before CP-D0 close): the ratified invariant suite
+as invoked from the repo root failed with **48 collection errors** — a latent
+regression from W4 commit `7bea87d` (2026-08-25) whose commit-message rationale
+("will be re-adapted in W5 when Solver + trace-lens surfaces land") was never
+completed. W5 (`22b323d`) landed Solva reasoning but did not re-adapt the deleted
+seams.
+
+Restoration (commit `ad4a075` on `programme/track-a`):
+
+  1. **`services/northena/trace_lens.py`** — restored byte-identical from `7bea87d^`.
+     Git-blob sha256 verified matching on-disk sha256
+     `db7f67aa9ed025e7fe6291d61a55b00dd868e399798f6a46b523f5fd1e0e05c2`.
+     Public surface: `TraceLensInputError`, `TraceLensNotFound`, `resolve_trace`
+     (Northena/Solva/Targeta/Mtafiti cross-engine walk), `read_lift_manifest_envelope`
+     (docs/lift_manifest.json read-side).
+
+  2. **`services/northena/converge.py`** — three helpers restored:
+     `absorb_solva_trace` (Solva §13 stamp-audit absorption), `absorb_outer_gate_receipt`
+     (Product v2.1 §29.1 outer-gate fresh egress), `absorb_v2_refusal` (Product v2.1
+     §22.1 gate refusal). Semantics preserved verbatim from `7bea87d^`; ONLY the
+     `LedgerRow(..., at=datetime.now(timezone.utc))` constructor call ported to
+     `LedgerRow.new(...)` because current `LedgerRow` auto-populates `at` via
+     `default_factory=lambda: datetime.now(timezone.utc)` (verbatim from
+     `contracts/northena_ledger.py:74`) — same UTC-aware value the pre-deletion
+     versions computed explicitly. No drift.
+
+  3. Meta-check added: **`backend/tests/invariants/test_ship_manifest_dod_collection_health.py`**
+     - `test_pytest_collect_only_reports_zero_errors` — subprocess-level guard;
+       `pytest --collect-only backend/tests/invariants/` must exit 0.
+     - `test_advertised_seam_resolves_to_callable[9 seams]` — every entry advertised
+       in `services/system_state.py` under `northena_*_seam` must resolve to an
+       importable callable. Seam list ENUMERATED EXPLICITLY (not dynamically parsed);
+       adding a new seam is a conscious act requiring a same-commit update to
+       `ADVERTISED_SEAMS`.
+
+Full-`7bea87d`-diff accounting (owner-requested sweep): deletions = `trace_lens.py` +
+`state_machine.py`. `state_machine.py` = dead-code cleanup (only docstring/comment
+refs, no live imports — no restoration needed). Modified files = `converge.py`
+(fixed), plus non-regressing rewrites of `__init__.py`, `admit.py`, `gate.py`,
+`ledger.py`, `northena_ledger.py`. No further deletions.
+
+Drill receipts:
+  - `phase0/drill_receipts/20260827T060445Z_pre_cp_d0_defect_fix_right_reason_failure.log`
+  - `phase0/drill_receipts/20260827T060445Z_pre_cp_d0_defect_fix_green.log`
+
+### Status-inflation root-cause note (owner ruling 2026-08-27)
+
+The "**199/199 green**" figure that appeared in agent-side analysis for CP-D0
+resumption is **unsupported** by any drill receipt or STATE file in this workspace.
+Verified figures on record are **169/169** (Wave A/B/C cohort close, 2026-08-26T12:29Z)
+and **182/182** (Wave B post-verify at `75b7b1e`, 2026-08-26T11:22Z), both now
+understood as **cohort-scope**, not full-directory scope.
+
+Root cause: cohort-scoped CP-close receipts since W4 (a scoped pytest invocation of
+per-CP test files rather than the whole `backend/tests/invariants/` directory)
+have been the vector that hid the W4 deletion regression from view. Owner ruling
+2026-08-27: **directory-scope receipts are the permanent correction**. Cohort-scoped
+CP-close receipts are retired from CP-D1 onward; CP-D0 closes under a Q-labelled
+cohort receipt as the bridge, with the full-directory count reported honestly in
+the appendix.
+
+### CP-D0 close · verified
+
+- **Direct CP-D0 invariants**: 24/24 green (`test_ep4_terminal_test_guard.py` 7 +
+  `test_a17_16_model_form_offer.py` 7 + `test_ship_manifest_dod_collection_health.py`
+  10 meta-check).
+- **Full-directory count (bridge witness, honest label)**: 1826 passed / 377 failed /
+  1 skipped / 6 errors of 2210 collected. The 377+6 are pre-existing drift previously
+  hidden behind the W4 collection error; class breakdown in the CP-D0 receipt Section F.
+- **Live-pod curl**: `POST /api/evidence-register/precheck/terminal-test {}` → **HTTP 422**
+  with `reason=terminal_test_precondition_unmet`, `spec_ref="Doc 19B §EP-4"`, and the
+  full EP-4 sentence quoted verbatim in `spec_verbatim`. Single-judge terminal verdict
+  UNREPRESENTABLE at the wire.
+
+### Ratified rulings snapshot (this close, for register-side application)
+
+- **A17.16**: CLOSED-ACCEPT (ingredient-manifest guarantee, offerable model-output
+  form with ingredients-only surface).
+- **A17.17**: CLOSED (CUDA/PyTorch already installed on akki-vm; SSH sequence step
+  becomes verify-only).
+- **A17.18**: RESOLVED-DELEGATED-REVERSIBLE (per v3 canon).
+- **A17.20**: BUILD-SEQUENCE recorded (per v3 canon).
+- **A17.12–17 corrected classification** (Reclassification 2): six build gaps, not
+  scheduling; runner-level semantics recorded as separate NEW open item.
+- **A18.6**: ADOPT (async skill delivery pattern; implementation in Wave D/E).
+- **A18.8**: donor-lift status ("complete donor code exists; not in this build"),
+  NOT audit cadence (Reclassification 3).
+- **A19.1(a) / minimum group size**: inherits platform seam value.
+- **A19.1(b) / default gate_policy**: gates_release (per-stratum) as default;
+  ships-documented is explicit per-Outcome override only.
+- **A19.1(c) / cluster naming validation**: risk-tiered internal-default,
+  external-escalation for individuating / contested-register cases.
+- **A20.3–A20.10 + A20.12–A20.14**: ADOPTED as PROPOSED-class config now.
+- **CA1-N2 breach notification**: DPO + Watch external witness; 72h window;
+  enforcement-view + real-time alert; hard-line-crossed threshold.
+- **CA1-N3 access & erasure**: named-customer/employee only; existing credential;
+  real erasure for raw + five-ring; flagged models per A17.15 mechanism.
+- **CA1-N5 ledger continuity**: independent countersigner; quarterly cadence as
+  PROPOSAL-class (owner-flagged as not canon-grounded — preserve the distinction).
+- **Doc14-020 rights-unclear**: QUARANTINE pending review.
+- **NEW open item (Reclassification 2 companion)**: runner-level semantics undefined
+  — current behavior fail-stop, no auto-retry, no cancel endpoint; leave for explicit
+  owner decision.
+
+### v3 canon pack ingest (per Message 317 STEP 1)
+
+- Authoritative file: `canon/w11_batch2_v3/AKKI_Canon_Documents_17_20_v3.docx`
+  + `canon/w11_batch2_v3/AKKI_Canon_Documents_17_20_v3.txt` (Finding 3, this session).
+- **Superseded**: `canon/text/Akki_Canon_Documents_17_19.txt` — retained on disk for
+  lineage; marked SUPERSEDED in this record.
+- Line-by-line ingest + register expansion (Doc 17 §17.4a-f, Doc 20 A20.1-A20.14,
+  DR-R1..DR-R14 + 8 gates) tracked in the ingest receipt under `phase0/`. Deck
+  rendering + producer build scheduling: BUILD-SCHEDULED-POST-PLAN.
+
+### Wave-F cleanup ledger
+
+Master working-tree pre-existing dirty items (present before this session, deferred to
+Wave-F close per owner ruling 2026-08-27): commissioning records from 2026-08-25,
+older canon docs (Audio Intelligence Plane), notes files, phase0/ ledger artifacts.
+Surgical commits this session touch only `STATE/DECISIONS.md`, `STATE/NEXT.md`, and
+CP-D0 drill receipts.
+
+### Composite-denominator note
+
+The v3 canon pack + Doc 20 + DRE rows grow the denominator. Composite % remains
+preliminary until the Wave F lock ceremony (unchanged posture from Wave A/B/C). Do
+NOT apply per-row upshifts against the old denominator for the newly-landed rows
+until the denominator is re-computed at Wave F.
+
+### CP-D1 = Invariant Debt Retirement (first Wave-D CP · owner ruling)
+
+Target end-state: full `backend/tests/invariants/` directory honestly green in
+aggregate; every subsequent CP-close receipt is **full-directory scope**. Cohort-
+scoped receipts are retired permanently.
+
+Classes to retire (from CP-D0 receipt Section F):
+
+  a. **Persistence-backend drift** — donor-Mongo tests never adapted after the
+     ratified W4 storage swap. Adapt each test to phase0/JSON persistence per the
+     ratified architecture. Where a test is fully superseded by an existing newer
+     test, DELETE it — but every deletion needs a receipt line mapping it to the
+     superseding test file::test. No silent pruning.
+
+  b. **Contract-snapshot drift** — pydantic 2.13 `additionalProperties: true`
+     emission. Regenerate affected frozen snapshots under the full Contract DoD
+     (snapshot + mapping + parity count same-commit). Verify the pydantic pin
+     first — if the drift traces to a version change rather than intentional model
+     edits, say so in the receipt.
+
+  c. **JWT env config** — add `JWT_SECRET` hermetic default to
+     `backend/tests/conftest.py` alongside existing defaults (2-line change).
+
+  d. **Fixture setup errors** — fix the 6 setup/teardown errors in
+     `test_memory_engineer_key_grant_e2e_propagation.py`.
+

@@ -55,20 +55,23 @@ Failure to follow this sequence = paraphrase-not-spec failure class the owner ex
 
 Update this section at every CP/R-step close.
 
-- **Current wave**: WAVES A + B + C **RATIFIED AS A BLOCK** by owner 2026-08-26T~12:40Z · HOLDING at ready state.
-- **Current step**: **HOLD**. No code changes until owner rules on either (a) SSH key arrival OR (b) Wave D GO.
-- **Exact next action (pre-authorized · execute on arrival)**:
-  - **(a) SSH key path** — Live GPU sequence:
+- **Current wave**: **WAVE D IN FLIGHT** — CP-D0 closed 2026-08-27T06:15Z (`programme/track-a` next commit; `master` next commit). Pre-CP-D0 defect fix `ad4a075` restored W4 `7bea87d` deletions (see STATE/DECISIONS.md 2026-08-27T06:15Z). Wave A/B/C remain **RATIFIED AS A BLOCK** by owner 2026-08-26T~12:40Z.
+- **Current step**: **CP-D0 closed**. Next up = **CP-D1 · Invariant Debt Retirement** (first Wave-D CP, owner ruling 2026-08-27).
+- **Exact next action (pre-authorized · execute on arrival OR proceed with CP-D1)**:
+  - **(a) SSH key path** — Live GPU sequence (INTERRUPT-PRIORITY: interrupt Wave D immediately on key arrival):
     1. `chmod 600 <key>` on the delivered private key.
     2. `AKKI_GPU_SSH_PRIVATE_KEY_PATH=<path>` set in `/app/backend/.env`.
     3. `GPU_CONNECT_MODE=real` env flip.
     4. Hardware fact sheet probe · `nvidia-smi` + CUDA version + PyTorch build.
-    5. CUDA / PyTorch install ceremony (owner-ratified).
-    6. First live governed training run on sealed DigiCow set (fresh verification bench).
-    7. Real MOAC card (mocked=False on all six criteria).
-    8. Whitepaper drafted from a real admission (`accept_for_service=True` path becomes possible).
-    9. Stop-and-report with hardware fact sheet + live run outcome.
-  - **(b) Wave D path** — reusable mass lift (~150 REUSABLE rows · Docs 04-08 / 13 / 15 / 16). Await explicit owner GO before writing Wave D code.
+    5. **CUDA/PyTorch verify-only** (owner confirms already installed — A17.17 CLOSED): capture versions in hardware fact sheet; install ONLY if probe contradicts owner confirmation, and report the contradiction. [was: "CUDA/PyTorch install ceremony (owner-ratified)" · updated per Message 315 · A17.17]
+    6. **EP-4 precondition: terminal-test ordering guard green** — evidence register active AND ≥2 registered judges with matching versions for site `terminal_test`; live run refuses to start otherwise (single-judge terminal verdict is unrepresentable). [inserted per Message 315 · Reclassification 1 · EP-4]
+    7. First live governed training run on sealed DigiCow set (fresh verification bench).
+    8. Real MOAC card (mocked=False on all six criteria).
+    9. Whitepaper drafted from a real admission (`accept_for_service=True` path becomes possible).
+    10. Stop-and-report with hardware fact sheet + live run outcome.
+  - **(b) Wave D CPs** — reusable mass lift (~150 REUSABLE rows · Docs 04-08 / 13 / 15 / 16), sequenced as:
+    - **CP-D1 · Invariant Debt Retirement** (FIRST · owner ruling 2026-08-27). Target end-state: full `backend/tests/invariants/` directory honestly green in aggregate; every subsequent CP-close receipt is **full-directory scope**. Classes to retire: (i) persistence-backend drift (donor-Mongo tests never adapted after W4 storage swap — ADAPT to phase0/JSON per ratified architecture; DELETE only if superseded, with a receipt line naming the superseder); (ii) contract-snapshot drift (pydantic 2.13 `additionalProperties: true` emission — regenerate frozen snapshots under Contract DoD; verify pydantic pin first); (iii) JWT env — add `JWT_SECRET` hermetic default to `backend/tests/conftest.py`; (iv) fixture setup errors in `test_memory_engineer_key_grant_e2e_propagation.py` (6). Deletions require same-commit mapping to superseder. No silent pruning.
+    - **CP-D2 … CP-D8** — reusable lift CPs. Every close receipt is FULL-DIRECTORY scope from CP-D1 onward.
 
 - **Wave A/B/C ratified ledger** (Extraction-Akki `programme/track-a` · workspace `master`):
   - **HEAD (Extraction-Akki)**: `4aedb35`

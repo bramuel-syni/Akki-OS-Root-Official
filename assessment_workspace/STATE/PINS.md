@@ -129,15 +129,15 @@ Strategy work-in-progress (to be created):
 
 <!-- CONNECT-GPU-PINS -->
 ## WS-BUILD-CONNECT-GPU — commissioning record pinned outputs
-- **host_name:** `akki-vm`
-- **public_ip:** `41.173.184.244`
-- **private_ip:** `100.70.50.3`
-- **os:** `ubuntu24.04`
-- **deploy_date:** `2026-08-26`
-- **checkpoint_14d_utc:** `2026-09-09T00:00:00Z`
-- **hardening_status:** `failed`
-- **acceptance_status:** `not_run`
-- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_akki-vm_20260826T102146Z.json`
+- **host_name:** `aisca-gpu-01`
+- **public_ip:** `127.0.0.1`
+- **private_ip:** `10.0.0.10`
+- **os:** `Ubuntu 24.04`
+- **deploy_date:** `2026-08-14`
+- **checkpoint_14d_utc:** `2026-08-28T00:00:00Z`
+- **hardening_status:** `attested`
+- **acceptance_status:** `green`
+- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260827T061033Z.json`
 <!-- CONNECT-GPU-PINS -->
 
 
