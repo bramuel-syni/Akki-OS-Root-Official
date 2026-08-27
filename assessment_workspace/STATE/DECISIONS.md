@@ -3526,3 +3526,55 @@ Prior CP-D5 measurement of 1.4.0 (recorded verbatim under charter §Root cause):
 **Standing HOLD LIFTS for Wave F Scope A on this docs-only commit.** Next code touch: install `pytest-asyncio==1.4.0`, update `backend/requirements.txt` in the SAME commit (Attempt 1 discipline), run full-directory BASELINE_GUARD=1 with skips in place.
 
 **SSH interrupt** stands as INTERRUPT-PRIORITY (unchanged) · amendment ruled includes CUDA/PyTorch VERIFY-ONLY (owner confirmed installed) + EP-4 precondition check before first governed run.
+
+---
+
+## Wave F · Scope A · Findings 3 + 4 · Rulings A + B banked · 2026-08-27T19:50Z
+
+### Finding 3 · pytest-asyncio requirements.txt pin ≠ installed reality · long-standing drift
+
+**Discovery chain:**
+- `backend/requirements.txt:35` pins `pytest-asyncio==1.2.0` (set by CP-D5 commit `3fe9984` on 2026-08-27T10:33Z).
+- Actual installed env at Wave E ratification (14:35Z today): **`1.4.0`**. Since 2026-08-14 at least (20+ historical drill receipts, verifiable via `plugins: ... asyncio-1.4.0` line).
+- Empirical: `pip install pytest-asyncio==1.2.0` → BASELINE_GUARD trips (2148 passed, 21 anyio-parametrized `[asyncio]` tests fail with `Future attached to a different loop`). `pip install pytest-asyncio==1.4.0` → BASELINE_GUARD passes (2169/0/160 byte-identical to Wave E ratified).
+- **CP-D5 commit-message discrepancy** (record correction, no blame): commit `3fe9984` narrated "1.4.0→1.2.0"; actual diff was `0.24.0 → 1.2.0`. Neither pin was ever installed environment-wide; env has run `1.4.0` continuously since ≥ 2026-08-14. Recorded as truth-correction here.
+
+### Finding 4 · Path 2 lever · walker prefix-filter false negative
+
+- `[DIAG-WALKER]` (instrumented conftest) proved: test modules registered as `backend.tests.invariants.*` in `sys.modules` due to `backend/__init__.py` (present since initial commit `3985be5`, 2026-07-02).
+- Walker's prefix filter (`services.` / `routers.` / `contracts.` / `workers.` / `server` / `tests.`) misses `backend.tests.*` entirely → test-module `db` never rebound → `_clear_state_collections` uses import-time `core.db` bound to a since-closed loop → `Event loop is closed`.
+- Motor 3.6.0 `AsyncIOMotorClient(url, io_loop=loop)` binds `_io_loop` correctly (empirically verified). Fixture and test share the same function-scoped loop under pytest-asyncio 1.4.0 (empirically verified via `tools/loop_scope_probe/`). Only failing link: walker prefix filter.
+
+### Owner Ruling A (verbatim, 2026-08-27T~19:45Z, Finding-3 response)
+
+> "RULING A → (i) plus two riders:
+>
+> 1. Bump `requirements.txt` to `pytest-asyncio==1.4.0` in the Scope A landing commit — the empirical evidence is decisive (1.2.0 breaks 21 anyio-parametrized tests; 1.4.0 reproduces the ratified 2169/0/160 byte-identically, and every receipt since 14 Aug ran on it). Reality wins; the file catches up to reality, not the reverse.
+>
+> 2. Rider 1 — mechanical guard: add a small invariant test asserting the INSTALLED pytest-asyncio version equals the requirements.txt pin (importlib.metadata vs a parse of the requirements line). This drift class survived 13 days and two ratifications; make it unrepresentable. Generalize cheaply if easy (assert for the handful of test-infrastructure packages: pytest, pytest-asyncio, pydantic) — do not boil the ocean.
+>
+> 3. Rider 2 — bounded (iii) at cleanup phase: a pip-freeze vs requirements reconciliation for packages the suite imports, drift lines reported in the close package (report-only; fixes only where a drift is load-bearing). Also record in DECISIONS: the CP-D5 commit-message discrepancy (narrated \"1.4.0→1.2.0\", actual diff \"0.24.0→1.2.0\") as a record correction — no blame, just truth."
+
+### Owner Ruling B (verbatim, 2026-08-27T~19:45Z, Finding-4 response)
+
+> "RULING B → (ii) with a measured fallback to (i):
+>
+> 1. Implement the robust walker: remove the prefix filter, walk all of sys.modules, rely on the AsyncIOMotorClient/AsyncIOMotorDatabase type checks. Rename-drift immunity is worth it at the finale — the prefix filter just caused a 21-family false negative.
+>
+> 2. MEASURE the full-suite wall time under the robust walker. Acceptance: full suite stays ≤ 90s (current ~60s). If it exceeds that, fall back to (i) — the one-line `\"backend.tests.\",` prefix addition — and note the perf measurement in the receipt.
+>
+> 3. Either way: re-run the FULL family sweep under 1.4.0 + the landed walker, family order, measuring per family per the Finding-2 ruling. Target: quarantine 0. (iii) loop-factories stays reserved as Path-2b fallback with receipts if the walker fix leaves residue."
+
+### Path 2 execution plan (ratified · executes on this session)
+
+1. Docs-only master commit (this ruling) → CODE work resumes.
+2. Robust walker landed on `programme/track-a` (remove prefix filter · Motor type check only).
+3. Wall-time measurement · acceptance ≤ 90s · falls back to `"backend.tests.",` one-line addition if breached.
+4. `requirements.txt` bump `pytest-asyncio==1.2.0` → `==1.4.0` (Ruling A.1).
+5. Version-pin-vs-installed invariant test for `pytest`, `pytest-asyncio`, `pydantic` (Ruling A Rider-1). Named `test_wave_f_pin_vs_installed_environment_invariant.py`.
+6. Full family sweep under 1.4.0 + robust walker + landed pin (family order per charter · progressive un-quarantine per Amendment i).
+7. If all 21 families ACCEPT → land single Scope A commit (walker + requirements.txt + version-invariant test + all 21 un-quarantine + baseline_failures.json update). Bank Rider-2 pip-freeze reconciliation for Cleanup phase.
+8. If residue remains → Path-2b `loop_factories` hook lever per Ruling B.3.
+9. Double-run BASELINE_GUARD=1 required for close standard (two identical greens · owner ratifies with external third run at Wave close).
+
+**Standing HOLD LIFT continues.** SSH interrupt remains INTERRUPT-PRIORITY (unchanged).
