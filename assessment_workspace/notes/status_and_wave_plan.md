@@ -338,6 +338,66 @@ No dates. Sequence + scope class + DONE-means definitions only. Scope classes: *
 
 ---
 
+## §7c · Wave F Scope B · Authoritative Composite Lock — 2026-08-27T21:12Z
+
+**Locked number: `composite_pct = 52.52 %`** · Wave F Scope B ratified per owner Wave F GO ruling (autonomous progression · "the locked number is THE number even if lower").
+
+- **Methodology (owner-ratified default)**: W10 CP9 lineage, updated for the 20-doc register per Wave F charter §Scope-B-lock-ceremony.
+- **Formula**: `0.7 × (mech_weighted / 551) + 0.3 × (iface_weighted / 58)`.
+- **Weights**: `DONE=1.0 · PARTIAL=0.4 · REUSABLE=0.5 · BUILD=0.0 · OPEN-SLOT=0.0`.
+- **Tool source**: `tools/w10_cp9_composite_recompute.py` (deterministic · reads no live disk state · byte-identical output).
+- **Double-run identity**: both runs SHA `ef4ce2f6c56111781589002c397f2a71` — recorded in receipt.
+- **Drill receipt**: `phase0/drill_receipts/20260827T211213Z_wave_f_composite_lock.log`.
+
+### Sub-totals
+
+| Dimension | Weighted | Total rows | Percentage |
+|---|---:|---:|---:|
+| Mechanism (20-doc corpus) | 300.20 | 551 | **54.48 %** |
+| Interface (v7 surfaces) | 27.80 | 58 | **47.93 %** |
+| **Composite (0.7 × mech + 0.3 × iface)** | | | **52.52 %** |
+
+### Final buckets
+
+| Class | Mechanism | Interface |
+|---|---:|---:|
+| DONE | 130 | 10 |
+| PARTIAL | 43 | 2 |
+| REUSABLE | 306 | 34 |
+| BUILD | 59 | 12 |
+| OPEN-SLOT | 13 | 0 |
+| **Sum** | **551** | **58** |
+
+### Doc18-006 weight decision (charter Scope-B item 3 · stated)
+
+Register-declared class = `RULED-ADOPTED` (Wave E CP-E5 · commit `6898fd0`). **Decision: DONE (weight 1.0)** per tool class definition "not 'done' until policy lands + mechanism wires". Wave E CP-E5 landed BOTH: adoption trace `services/service_1/a18_6_adoption_v0.json` + mechanism wire `dispatch.py::DEBT_PHASE_5='phase_5_async_delivery'` + contract `AsyncDeliveryAccepted_v0` + invariant test `test_a18_6_async_delivery_adoption.py` (+2 tests · 2158→2160).
+
+### PROPOSED band resolution (charter Scope-B item 3 · all 4 rows)
+
+- `Doc19B-001` (EP-1 evidence register) → OPEN-SLOT (weight 0.0)
+- `Doc19B-002` (EP-2 dual-judge protocol) → OPEN-SLOT (weight 0.0)
+- `Doc19B-003` (EP-3 engineered samples) → OPEN-SLOT (weight 0.0)
+- `Doc19B-005` (EP-5 inline evidence class) → OPEN-SLOT (weight 0.0)
+
+Primary declaration governs per charter default. Owner did NOT override at Wave F open.
+
+### Instrument reconciliation (charter Scope-B item 2)
+
+| Instrument | Number | Delta vs Wave F lock | Explanation |
+|---|---:|---:|---|
+| **Instrument 1** · W10 CP9 authoritative (515-row baseline · pre-Wave-F) | 52.49 % | **+0.03 pp** | Wave F Scope B updated tool: 20-doc CP7 expansion adds 36 rows (denominator 515→551, +15.8 weighted from 15 DONE + 2 PARTIAL). Wave E CP-E1/E2/E3/E5 add +4.0 weighted (5 PARTIAL→DONE + 1 OPEN-SLOT→DONE). Net: numerator +19.8, denominator +36. Effective mech% change small because most new rows land at zero-weight classes. |
+| **Instrument 2** · flat 99-unique-row unweighted (this-session preliminary) | 38.38 / 57.58 / 61.62 % | **-14.14 / +5.06 / +9.10 pp** | Different tool — no 0.7/0.3 mech/iface blend, no build-class weighted grammar, unique-row denominator 99 vs 551 mech + 58 iface. Not directly comparable. Preserved for audit; NOT the lock. |
+| **Instrument 3** · Waves A-C anchor (~59.5 % ±1 pp) | ~59.5 % | **-6.98 pp** | No per-row citation trail present in workspace for the ~59.5% number — carried through compactions without evidence. Owner reality-wins ruling: "the locked number is THE number even if lower". Superseded by Wave F Scope B authoritative 52.52 %. |
+
+### Owner-input pending items (record explicitly · Scope-C carry)
+
+- Doc14-020 (rights-unclear grammar) remains OPEN-SLOT — owner-policy pending, non-blocking. Enforcement scaffolding landed at Wave E CP-E4 (`74039c2`) but weight class unchanged until policy ruling.
+- 8 OPEN rows in Doc17 (Doc17-012..017 · 6 rows), Doc18-008, Doc19B-004 all remain OPEN-SLOT — owner-input pending.
+
+**Standing HOLD posture: Scope B CLOSED · Scope C opens next per Wave F autonomous progression ruling. External third-run WAVE-close ratification deferred to Wave F wave-close per owner rule.**
+
+---
+
 ## §7b · Wave summary table (LEGACY · pre-calibration · kept for audit)
 
 The pre-calibration table below is preserved as historical record. **Do not use for planning.** The re-baselined table in §7 above is the current authority (Owner Ruling 2026-08-25 W6 GO opener #1).

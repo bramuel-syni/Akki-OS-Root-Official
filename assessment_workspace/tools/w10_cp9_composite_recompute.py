@@ -6,13 +6,39 @@ Owner correction #4 (W9 close report §12.4 · 2026-08-26T04:05Z):
 >  recomputation from the 17-doc register row states, method stated,
 >  replacing the running number."
 
+Wave F Scope B lock update (2026-08-27T~21:00Z · this session):
+  Per owner ruling this session ("COMPOSITE METHODOLOGY RECONCILIATION
+  REQUIRED · pick ONE ratified methodology · default: W10 CP9 lineage
+  updated for the 20-doc register") this script now carries:
+    - Mechanism corpus 515 → **551 rows** via CP7 20-doc register
+      expansion (36 additional rows at their primary-declaration Build
+      classes per `notes/requirements_register_20docs.md`).
+    - Wave E CP-E1/E2/E3/E5 register moves (5 PARTIAL→DONE + 1
+      OPEN-SLOT→DONE) with commit-SHA citations.
+    - Doc18-006 weight decision (Wave E CP-E5 · `6898fd0`) stated
+      inline: RULED-ADOPTED maps to DONE per tool class definition
+      "not 'done' until policy lands + mechanism wires" — CP-E5
+      landed both (`services/service_1/a18_6_adoption_v0.json`
+      adoption trace · `dispatch.py::DEBT_PHASE_5='phase_5_async_
+      delivery'` mechanism · `AsyncDeliveryAccepted_v0` contract ·
+      `test_a18_6_async_delivery_adoption.py` invariant enforcer
+      ratcheting +2 tests 2158→2160).
+    - 4 PROPOSED band rows (Doc19B-001/002/003/005) mapped to
+      OPEN-SLOT weight 0.0 per charter default (primary-declaration
+      rule · owner did NOT override at Wave F open).
+
 Method (per `notes/status_and_wave_plan.md` §1 + §5):
-  1. Mechanism corpus · 515 rows across 16 docs + addendum.
+  1. Mechanism corpus · **551 rows** = 515 baseline + 36 CP7 expansion
+     across 20 docs + addendum.
      Weight per row: DONE=1.0 · PARTIAL=0.4 · REUSABLE=0.5 · BUILD=0.0.
      OPEN-SLOT (new W10 CP7 category) treated as BUILD (weight 0) —
      owner-policy-pending rows are not "done" until policy lands +
      mechanism wires.
-     Mechanism % = weighted / 515.
+     PROPOSED (register status band · 4 rows Doc19B-001/002/003/005)
+     mapped to OPEN-SLOT weight 0.0 per Wave F charter default.
+     RULED-ADOPTED (Doc18-006 · Wave E CP-E5) mapped to DONE weight 1.0
+     per tool class definition (policy landed + mechanism wired).
+     Mechanism % = weighted / 551.
   2. Interface dimension · 58 v7 surfaces · same weights.
      Interface % = weighted / 58.
   3. Composite = 0.7 × mechanism + 0.3 × interface.
@@ -41,9 +67,47 @@ BASELINE_MECH = {
 BASELINE_IFACE = {
     "DONE": 4, "PARTIAL": 2, "REUSABLE": 34, "BUILD": 18, "OPEN-SLOT": 0,
 }
-MECH_TOTAL = sum(BASELINE_MECH.values())        # 515
+
+
+# ---------------------------------------------------------------------------
+# CP7 20-DOC REGISTER EXPANSION (Wave F Scope B lock · this session)
+# ---------------------------------------------------------------------------
+# Additive expansion landed at W10 CP7 (`d46e84e`, 2026-08-19) per
+# `notes/requirements_register_20docs.md` §Row-count table (line 35:
+# "Register total: 515 + 36 = 551 rows"). Adds 36 new mechanism rows
+# from Docs 17-19 at their PRIMARY-DECLARATION Build classes (parsed
+# verbatim from the register · see Wave F composite lock receipt for
+# per-row citations).
+#
+# 4 PROPOSED band rows (Doc19B-001/002/003/005) mapped to OPEN-SLOT
+# (weight 0.0) per Wave F charter default (primary-declaration rule ·
+# W10 CP9 policy note "OPEN-SLOT treated as BUILD — owner-policy-
+# pending rows are not 'done' until policy lands + mechanism wires").
+#
+# 1 RULED-ADOPTED row (Doc18-006) enters the expansion at OPEN-SLOT
+# reflecting its ORIGINAL CP7-landing declaration as PROPOSED (before
+# Wave E CP-E5 owner ruling · attribution preserved). Wave E CP-E5
+# then moves it OPEN-SLOT → DONE with commit SHA citation (see
+# DELTAS below).
+EXPANSION_MECH_CP7_20DOC = {
+    "DONE":      15,   # 4 Doc17 + 5 Doc18 + 6 Doc19A · register-declared
+    "PARTIAL":    2,   # 2 Doc17 · register-declared
+    "REUSABLE":   0,
+    "BUILD":      6,   # 5 Doc17 + 1 Doc18 · register-declared
+    "OPEN-SLOT": 13,   # 6 Doc17 + 1 Doc18 + 1 Doc19B-004 · register-declared
+                       # + 4 Doc19B PROPOSED (charter default OPEN-SLOT)
+                       # + 1 Doc18-006 PROPOSED at CP7 (moves at Wave E CP-E5)
+}
+# 15 + 2 + 0 + 6 + 13 = 36 ✓ (matches register total row count)
+
+
+# Apply expansion to baseline before delta accounting.
+for k, v in EXPANSION_MECH_CP7_20DOC.items():
+    BASELINE_MECH[k] = BASELINE_MECH.get(k, 0) + v
+
+MECH_TOTAL = sum(BASELINE_MECH.values())        # 551
 IFACE_TOTAL = sum(BASELINE_IFACE.values())      # 58
-assert MECH_TOTAL == 515, MECH_TOTAL
+assert MECH_TOTAL == 551, MECH_TOTAL
 assert IFACE_TOTAL == 58, IFACE_TOTAL
 
 WEIGHTS = {"DONE": 1.0, "PARTIAL": 0.4, "REUSABLE": 0.5, "BUILD": 0.0,
@@ -247,6 +311,49 @@ DELTAS: List[Delta] = [
           "BUILD", "DONE",
           ["iface-cost-ledger"], "d4ba30c", "iface",
           "CostLedger.jsx (W6 CP2b) still wired at /cost-ledger"),
+
+    # ================== W11 D (RATIFIED · Doc 03/15 · Watch continuity + test hermeticity) ==================
+    # W11 D CPs (D1a..D9) were primarily TEST-INFRASTRUCTURE (D1a-1 residue
+    # quarantine, CP-D6 seeder-fixture hermeticity, CP-D9 double-run cure).
+    # No register-row moves credited to W11 D per DECISIONS.md audit (absence
+    # is a finding: verified explicitly, no silent skip).
+
+    # ================== W11 E (RATIFIED 2026-08-27T14:35Z · CA1-N series + A18.6 adoption) ==================
+    Delta("W11", "CP-E1", "Canon 8 §9 · CA1-N5 continuity ENFORCEMENT",
+          "PARTIAL", "DONE",
+          ["Doc15-CA1-N5"],
+          "ebc5a48", "mech",
+          "W11 E CP-E1 continuity enforcement · GET /api/watch/continuity structured envelope · replaces W9 CP4 PARTIAL scaffold"),
+    Delta("W11", "CP-E2", "Addendum §3 · CA1-N2 breach ENFORCEMENT",
+          "PARTIAL", "DONE",
+          ["Doc15-CA1-N2", "Doc02-CA1-N2"],
+          "045541c", "mech",
+          "W11 E CP-E2 breach enforcement · POST /api/n_series/breach_events · replaces W8 CP4 PARTIAL scaffold"),
+    Delta("W11", "CP-E3", "Addendum §3 · CA1-N3 erasure ENFORCEMENT + rights-lapse flags",
+          "PARTIAL", "DONE",
+          ["Doc15-CA1-N3", "Doc02-CA1-N3"],
+          "e8d860a", "mech",
+          "W11 E CP-E3 erasure enforcement · POST /api/n_series/erasure_requests + /api/n_series/rights_lapse_flags · replaces W8 CP4 PARTIAL scaffold"),
+    Delta("W11", "CP-E5", "Doc 18 A18.6 · single-shot pilot RULED-ADOPTED · owner ruling",
+          "OPEN-SLOT", "DONE",
+          ["Doc18-006"],
+          "6898fd0", "mech",
+          "W11 E CP-E5 Doc18-006 PROPOSED (register-declared at CP7) → RULED-ADOPTED via owner Wave E ruling. Weight decision per Wave F Scope B owner ruling: RULED-ADOPTED maps to DONE per tool class definition 'not \"done\" until policy lands + mechanism wires' — CP-E5 landed BOTH: adoption trace services/service_1/a18_6_adoption_v0.json + mechanism wire dispatch.py::DEBT_PHASE_5='phase_5_async_delivery' + contract AsyncDeliveryAccepted_v0 + invariant enforcer test_a18_6_async_delivery_adoption.py (+2 tests, 2158→2160)."),
+
+    # W11 E CP-E4 (Doc14-020 rights-lapse REFUSAL, 74039c2): enforcement
+    # scaffolding on OPEN-SLOT row — Doc14-020 remains OPEN-SLOT (owner-
+    # policy pending) per its W10 CP7 status. No weight change credited.
+    # W11 E CP-E6 (CA1 audit sweep, 6d7589d): invariant coverage across
+    # existing CA1 rows. No new register moves.
+    # W11 E CP-E7 (DigiCow PII sanitizer, 60b8760): cross-cutting response
+    # sanitization primitive. No register row per se.
+
+    # ================== W11 F Scope A (RATIFIED this session · D1a-1 residue retirement) ==================
+    # W11 F Scope A (1155629) retired the D1a-1 residue class (159→0
+    # quarantined tests, 2169→2333 passed_floor). This is TEST-INFRA-
+    # STRUCTURE quality — recovered tests + reality-catches-up pins +
+    # Rider-1 guard + robust walker fix. No register-row status moves
+    # credited (absence verified explicitly).
 ]
 
 
@@ -275,6 +382,15 @@ def compute_authoritative() -> Dict[str, float]:
     iface_weighted = sum(WEIGHTS[k] * v for k, v in iface.items())
     mech_pct = mech_weighted / MECH_TOTAL * 100
     iface_pct = iface_weighted / IFACE_TOTAL * 100
+    # SINGLE-FINAL-ROUNDING RULE (Wave F Scope B lock rounding ruling ·
+    # owner ruling this session): composite is computed from the
+    # UNROUNDED dimension percentages and rounded ONCE at the end.
+    # Recomputing from the rounded published values (54.48, 47.93) yields
+    # 52.51 by DOUBLE-rounding — that figure is an artifact of the
+    # published-dashboard precision, not a lock candidate. `mech_pct_raw`
+    # and `iface_pct_raw` are exposed as auditable artifacts so downstream
+    # test invariants can reconstruct the composite from the SAME
+    # unrounded internals the tool uses, closing the double-rounding hole.
     composite_pct = 0.7 * mech_pct + 0.3 * iface_pct
 
     return {
@@ -284,6 +400,8 @@ def compute_authoritative() -> Dict[str, float]:
         "iface_weighted": round(iface_weighted, 2),
         "mech_pct": round(mech_pct, 2),
         "iface_pct": round(iface_pct, 2),
+        "mech_pct_raw": mech_pct,
+        "iface_pct_raw": iface_pct,
         "composite_pct": round(composite_pct, 2),
         "n_deltas": len(DELTAS),
         "delta_rows_mech": sum(d.n for d in DELTAS if d.domain == "mech"),

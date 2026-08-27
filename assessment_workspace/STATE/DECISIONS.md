@@ -3667,3 +3667,201 @@ Rationale for the coupled bump banked in the commit message per owner ruling rec
 - Scope B (composite methodology reconciliation) NEXT.
 - HOLDING until owner ruling to open Scope B, OR autonomous progression continues per Wave F GO ruling A→B→C→Cleanup order.
 - SSH interrupt remains INTERRUPT-PRIORITY (unchanged).
+
+---
+
+## Wave F · Scope B · CLOSED · 2026-08-27T21:12Z
+
+### Owner autonomous-progression ruling (verbatim, 2026-08-27T~21:00Z)
+
+> "Scope A close ACCEPTED — quarantine 159 → 0 with every test recovered rather than deleted, root cause proven, env drift retired with a guard that makes it unrepresentable, and the suite at 2333/0/1 with a 1-skip floor. That's the right ending for that debt class. HEADs recorded: `1155629` / `a1c1c7c`.
+>
+> AUTONOMOUS PROGRESSION CONFIRMED — the Wave F GO stands as ruled: proceed Scope B → Scope C → Cleanup/Close without pausing between scopes. My external third run happens once, at the WAVE close. Stop-and-reports stay informational; halt only on the standard triggers (non-config blocker, spec contradiction, guard trip, count drift, owner-input need — e.g., if the Scope B methodology reveals a defect in the W10 CP9 instrument, or Scope C hits something only the owner can answer beyond the two already-pending items).
+>
+> Scope B reminder: the locked number is THE number even if lower; Doc18-006 weight decided from the recompute tool's own class definitions with the decision stated; both prior instruments reconciled with SHA-cited deltas; double identical recompute runs banked.
+>
+> Proceed to Scope B."
+
+### Scope B execution package
+
+**Locked composite: `52.52 %`** (mech 54.48 % · iface 47.93 % · 0.7/0.3 blend).
+
+**Methodology**: W10 CP9 lineage updated for 20-doc register per Wave F charter §Scope-B-lock-ceremony. Tool source: `tools/w10_cp9_composite_recompute.py` (301 lines · deterministic).
+
+**Tool changes landed on master workspace** (not on `programme/track-a` — tool lives at workspace level):
+- Mechanism corpus expansion: 515 → **551 rows** (added `EXPANSION_MECH_CP7_20DOC` dict = 15 DONE + 2 PARTIAL + 6 BUILD + 13 OPEN-SLOT from CP7 20-doc register).
+- 4 new W11 E deltas appended to `DELTAS` list:
+  - `CP-E1 · ebc5a48` · Doc15-CA1-N5 PARTIAL → DONE (continuity enforcement, 1 row).
+  - `CP-E2 · 045541c` · Doc15-CA1-N2 + Doc02-CA1-N2 PARTIAL → DONE (breach enforcement, 2 rows).
+  - `CP-E3 · e8d860a` · Doc15-CA1-N3 + Doc02-CA1-N3 PARTIAL → DONE (erasure enforcement, 2 rows).
+  - `CP-E5 · 6898fd0` · Doc18-006 OPEN-SLOT → DONE (owner ruling: RULED-ADOPTED maps to DONE per tool class def "not 'done' until policy lands + mechanism wires" — Wave E CP-E5 landed both).
+- Absence-explicit for W11 D, W11 E CP-E4/E6/E7, W11 F Scope A, Waves A-C (verified via DECISIONS audit; no register-row moves credited without commit-SHA evidence per binding rule).
+
+### Doc18-006 weight decision (stated verbatim per owner ruling)
+
+Register-declared class: **`RULED-ADOPTED`** (Wave E CP-E5 · commit `6898fd0`).
+
+**Tool class definitions** (verbatim from W10 CP9 tool source): `DONE=1.0 · PARTIAL=0.4 · REUSABLE=0.5 · BUILD=0.0 · OPEN-SLOT=0.0` (per policy note "not 'done' until policy lands + mechanism wires").
+
+**Decision: `RULED-ADOPTED → DONE` (weight 1.0).** Rationale: Wave E CP-E5 landed BOTH conditions:
+- Policy landed: adoption trace `services/service_1/a18_6_adoption_v0.json` supersedes CP3-open deprioritization "defer A18.6 async delivery entirely".
+- Mechanism wired: `services/service_1/dispatch.py::DEBT_PHASE_5='phase_5_async_delivery'` + contract `AsyncDeliveryAccepted_v0` + invariant test `test_a18_6_async_delivery_adoption.py` ratcheting +2 tests (2158→2160).
+
+### PROPOSED band resolution (charter Scope-B item 3 · all 4 rows)
+
+Primary declaration governs (charter default · owner did NOT override at Wave F open):
+- `Doc19B-001` (EP-1) → OPEN-SLOT (weight 0.0)
+- `Doc19B-002` (EP-2) → OPEN-SLOT (weight 0.0)
+- `Doc19B-003` (EP-3) → OPEN-SLOT (weight 0.0)
+- `Doc19B-005` (EP-5) → OPEN-SLOT (weight 0.0)
+
+### Instrument reconciliation (charter Scope-B item 2 · SHA-cited deltas)
+
+| Instrument | Prior number | Wave F lock | Delta |
+|---|---:|---:|---:|
+| **1 · W10 CP9 authoritative (515-row baseline)** | 52.49 % (W10 close · cited in `notes/requirements_register_20docs.md:242`) | 52.52 % | **+0.03 pp** |
+| **2 · Flat 99-unique-row unweighted** | 38.38 / 57.58 / 61.62 % | 52.52 % | **-14.14 / +5.06 / +9.10 pp** |
+| **3 · Waves A-C anchor** | ~59.5 % ±1 pp (charter · no per-row citation) | 52.52 % | **-6.98 pp** |
+
+Instrument 2 delta explanation: DIFFERENT TOOL (no 0.7/0.3 blend · no build-class weights · unique-row denominator 99 vs 551 mech + 58 iface). Not directly comparable; NOT used for lock.
+
+Instrument 3 delta explanation: no per-row citation trail present in workspace — anchor number carried through compactions without evidence. Owner reality-wins ruling: "the locked number is THE number even if lower". Wave F Scope B replaces the anchor with tool-recomputed authoritative `52.52 %`.
+
+### Double-run identity (charter Scope-B item 4)
+
+Both runs produce SHA `ef4ce2f6c56111781589002c397f2a71` — byte-identical output. Tool is pure computation · reads no live disk state · every input anchored in file · owner can re-run.
+
+**Drill receipt**: `phase0/drill_receipts/20260827T211213Z_wave_f_composite_lock.log` (142 lines · full reconciliation table + parser-band resolution + Doc18-006 rationale + commit SHA trail).
+
+### Landings on master workspace (Scope B docs-only atomic commit)
+
+- `tools/w10_cp9_composite_recompute.py` — mechanism corpus 515→551 + 4 W11 E deltas + Doc18-006 rationale in module docstring.
+- `notes/status_and_wave_plan.md` — new §7c "Wave F Scope B Authoritative Composite Lock" section between §7 and §7b.
+- `STATE/DECISIONS.md` — this section.
+- `STATE/NEXT.md` — Current step marker moved.
+
+### Autonomy status
+
+**Standing HOLD LIFT continues.** Scope C (compliance residue) opens next per Wave F charter §Scope-C-compliance-residue (7 line items · dependency order). SSH interrupt remains INTERRUPT-PRIORITY (unchanged).
+
+---
+
+## Wave F · Scope C · CLOSED · 2026-08-27T21:20Z
+
+### Scope C execution summary
+
+Wave F closer addressed all 8 charter-numbered residue items in the mandated dependency order (VERIFICATION first · RTO capture · DigiCow one-liner · Doc15-014/Doc16-023 class-attribution · CA1-001/002/003 carry). No code touched on `programme/track-a`. Master workspace file added: `notes/waveF_scope_c_close_report.md` (356 lines with per-item file:line citations, measured dispositions, and standing-halt trigger audit).
+
+### Item-by-item verdicts
+
+| # | Item | Charter class | Measured class | Disposition |
+|---|---|---|---|---|
+| 5a | CA1-N1 · retention enforcement + attestation | PARTIAL (charter stale) | **DONE** (measured) | RECLASS (charter update recommended · next register revision) |
+| 5b | CA1-N4 · residency (governed region allowlist) | PARTIAL (charter stale) | **DONE** (measured) | RECLASS (charter update recommended · next register revision) |
+| 4 | CA1-N5 · RTO value | OWNER-POLICY-PENDING | UNCHANGED | ESCALATE (one of 2 known-pending) |
+| 7 | DigiCow occupation booleans PII class | OWNER-INPUT NEEDED | UNCHANGED | ESCALATE (one of 2 known-pending) |
+| 6 | Doc15-014 · Watch full mechanism | PARTIAL | PARTIAL | CLASS-ATTRIBUTE (no build auth · sub-row breakdown banked) |
+| 8 | Doc16-023 · walk-this semantics | PARTIAL | PARTIAL | CLASS-ATTRIBUTE (Doc 10 evidence-record contract still not materialised · blocker preserved) |
+| 1 | CA1-001 · Audit-trail Overview "2+ units" line | BUILD | BUILD | CARRY (`services/audit_trail/` build NOT authorized in Wave F GO) |
+| 2 | CA1-002 · Audit-trail units-served count line | BUILD | BUILD | CARRY (same blocker) |
+| 3 | CA1-003 · Densification stat + warm/fresh tag | PARTIAL | PARTIAL | CARRY (per-turn stat blocked on CA1-001/002 surface) |
+
+### Charter-status corrections (RECLASS · CA1-N1 + CA1-N4)
+
+**CA1-N1 · Retention enforcement + attestation — measured DONE:**
+- `services/retention/router.py` (64 lines · 4 live routes)
+- `services/retention/enforce.py` (235 lines · CA1-N1 mechanism + `.expired` sidecar attestation)
+- `services/retention/classes.py` (147 lines · governed per-record-class letter registry)
+- `services/retention/authorized_deletion.py` (167 lines · W11B seam-3 sub-stage 2 · single-source-of-deletion)
+- `tests/invariants/test_retention_enforcement_w6_cp3.py` (328 lines · enforcing since W6 CP3 · passes in 2333-green suite)
+- Charter's "PARTIAL — no enforcement/attestation mechanism" annotation was captured pre-W6-CP3; STALE.
+
+**CA1-N4 · Residency governed region allowlist — measured DONE:**
+- `services/chokepoint/residency.py:1` (57 lines · header comment tagged CA1-N4 explicitly)
+- `ResidencyRefused(ValueError)` exception raised at chokepoint when region not in allowlist
+- `services/chokepoint/residency_allowlist.v0.json` (43 lines · owner-controlled adds)
+- `tests/invariants/test_chokepoint_registers_all_crossings.py:70` verifies exported symbols
+- Charter's PARTIAL annotation was STALE (same class as CA1-N1).
+
+### Two known-pending items (ESCALATION surface for owner ruling at wave-close)
+
+**CA1-N5 RTO ruling (owner action requested):**
+- Current: `services/watch/continuity_policy.v0.json:8` = `"rto_target_seconds": "OWNER_POLICY_PENDING"`
+- Mechanism: service refuses attestation while sentinel value present (Wave E CP-E1 landed).
+- Owner action: if you rule the value, only `services/watch/continuity_policy.v0.json:8` changes — no code, no re-open.
+
+**DigiCow booleans PII classification (owner one-liner):**
+- One-liner (charter-drafted, verbatim): "PII classification question · DigiCow `ussd_users` occupation booleans (`dairy_farmer`, `poultry_farmer`, `dairy_poultry_farmer`): behavioral-adjacent attributes on a named individual — count as PII for `services/response_sanitizer` banned set? (yes/no ruling requested; default under Wave-E-CP-E7 posture is no)."
+- Current mechanism state: booleans NOT in `services/response_sanitizer/` banned set. Default = NOT PII. UNCHANGED until owner rules.
+
+### Doc15-014 Watch full mechanism breakdown (class-attribute PARTIAL)
+
+Watch service module (`services/watch/` · 11 tracked files):
+- Continuity (Wave E CP-E1 · DONE for ruled portion), witness state line (Doc15-085 · Wave E CP-E6 · DONE), staleness-flagging (Doc15-087 · Wave E CP-E6 · DONE), macho, mirage, sever_signals, persistence.
+- Generalised handoff contract (Doc15-086) · BUILD (single-instance ThinkLab→Task Manager only; generalisation open).
+- Watch RTO enforcement · OWNER_POLICY_PENDING (see item 4).
+- Doc15-014's meta-supremacy claim inherits from sub-rows: mostly DONE, minor OPEN. Class-attribute PARTIAL until Doc15-086 lands OR owner rules Doc15-014 DONE-by-inheritance.
+
+### Doc16-023 walk-this semantics status (class-attribute PARTIAL · blocker preserved)
+
+- Wire + SPA DONE at Wave D CP-D8 (`routers/registry.py:12` = `GET /api/prove/trace/{trace_id}` · SPA `/trace/:traceId` + `/prove/trace/:traceId`).
+- Doc 10 evidence-record contract still NOT materialised in `contracts/` inventory.
+  - `contracts/evidence_register_row_v0.py` EXISTS but targets Doc 19B §19B.5 evidence-register row shape (EP-1 proposed system) — NOT Doc 10 runtime ledger evidence-record.
+  - `services/perception/eab_1_pipeline/a2_trace_walker.py` does NOT reference an EvidenceRecord contract.
+- Ledger-traversal semantics remain OPEN; Wave F opening scope did NOT include Doc 10 backfill; class-attribute PARTIAL with blocker cited.
+
+### Standing HOLD trigger audit (per owner Scope C mandate)
+
+- Non-config blocker: NONE hit.
+- Spec contradiction: NONE hit.
+- Guard trip: NONE (no code touched on `programme/track-a`; baseline stayed at 2333/0/1 throughout Scope C measurement).
+- Count drift: NONE.
+- Owner-input need beyond the two known-pending items: NONE. The two known-pending items (CA1-N5 RTO seconds; DigiCow booleans PII) are surfaced as ESCALATIONS, not halts, per owner ruling this session.
+
+**No halt-and-report triggered during Scope C execution.** Autonomous progression completes to Wave F Cleanup phase.
+
+### Landings on master workspace (Scope C docs-only atomic commit)
+
+- `notes/waveF_scope_c_close_report.md` (NEW · 356 lines · per-item file:line citations + measured dispositions + trigger audit)
+- `STATE/DECISIONS.md` — this section
+- `STATE/NEXT.md` — Current step marker moved
+
+### Autonomy status
+
+**Standing HOLD LIFT continues.** Wave F Cleanup phase opens next per Wave F autonomous progression ruling. Cleanup tasks per charter:
+- Master-tree cleanup (delete/classify dirty files per CP-D0 deferral)
+- Rider-2 pip-freeze vs requirements reconciliation (test-infrastructure package drift audit · Ruling A Rider 2)
+- Full-system drill day (fire all mechanisms end-to-end)
+- `notes/programme_close_report.md` (wave ledger · composite lock · OWNER-PENDING list · Scope B/C consolidated)
+- STATE files final
+
+External third-run WAVE-close ratification deferred to Wave F wave-close per owner rule ("MY external third run at the WAVE close"). SSH interrupt remains INTERRUPT-PRIORITY (unchanged).
+
+---
+
+## Owner Ruling · Wave F Cleanup Phase · Composite lock rounding rule · Option A · 2026-08-27T~21:30Z · Source: owner channel
+
+**Context:** Wave F Cleanup phase drill day surfaced a rounding discrepancy in `backend/tests/invariants/test_w10_cp9_composite_lock.py::test_composite_calc_is_convex_blend_at_70_30`. The tool `tools/w10_cp9_composite_recompute.py` computes composite from the UNROUNDED dimension percentages and rounds ONCE at the end, yielding **52.52** (the authoritative Wave F Scope B lock). The test reconstructed the composite from the ALREADY-ROUNDED published values (`54.48, 47.93`), yielding `52.51` — a double-rounding artifact. Main agent surfaced three options: (A) tool exposes raw internals + test reconstructs from those; (B) tool re-locks at 52.51; (C) enshrine both figures as co-equal invariants.
+
+**Verbatim owner ruling:**
+
+> "RULING: Option A — with the tool exposing `mech_pct_raw` / `iface_pct_raw` in its output (prefer that over test-side reconstruction: the raw internals become auditable artifacts, not test-private math). The single-final-rounding rule is the mathematically correct instrument behavior; 52.51 is a double-rounding artifact, not an alternative truth. The authoritative locked value stands at **52.52**. B is rejected (would re-lock on an artifact and invalidate a banked ceremony); C is rejected (enshrining the artifact as a co-equal invariant invites future confusion).
+>
+> One addition to the fix: in the close report's reconciliation section, state the rounding rule explicitly in one sentence ('composite is computed from unrounded dimension percentages and rounded once at the end; recomputing from the rounded published values yields 52.51 by double-rounding — that figure is an artifact, not a lock candidate') so nobody re-derives 52.51 later and flags a false discrepancy.
+>
+> Post-fix sequence confirmed exactly as you listed (atomic commit → double-green with identical tallies at the 2333 floor → both receipts banked → programme_close_report.md → STATE mirrors → stop for MY external third run). Nothing else to check first — your tree-state verification discipline from the scope opens carries. SSH interrupt reminder correct. Proceed."
+
+**Binding effects:**
+
+1. **Rounding rule captured as standing instrument behavior.** The composite is computed from UNROUNDED dimension percentages and rounded ONCE at the end. Recomputing from the rounded published values by construction produces a double-rounding artifact that is NOT an alternative truth.
+2. **Tool exposes raw internals as auditable artifacts.** `tools/w10_cp9_composite_recompute.py::compute_authoritative()` returns two new keys — `mech_pct_raw` (unrounded `mech_weighted / MECH_TOTAL * 100`) and `iface_pct_raw` (unrounded `iface_weighted / IFACE_TOTAL * 100`) — alongside the existing rounded dashboard figures. Landed at master workspace `8e8fd06`.
+3. **Test reconstructs composite from raw internals.** `backend/tests/invariants/test_w10_cp9_composite_lock.py::test_composite_calc_is_convex_blend_at_70_30` computes `expected = round(0.7 * out["mech_pct_raw"] + 0.3 * out["iface_pct_raw"], 2)` and asserts `out["composite_pct"] == expected`. Landed at Extraction-Akki `programme/track-a` `67a6786`. Same commit also mirrored the pending Wave F Scope B lock updates on the test side (515→551 rows, 54.45→54.48%, 52.49→52.52%, 32→36 deltas) that had been blocked on this rounding fix.
+4. **Same-commit DoD extension (FL-P4-W8-02) honored across tree boundary.** Tool commit (workspace `master` `8e8fd06`) and test commit (Extraction-Akki `programme/track-a` `67a6786`) carry the identical UTC timestamp `20260827T213237Z` and cross-reference each other in their commit messages.
+5. **B rejected · C rejected.** Re-locking on the artifact (B) would invalidate the banked Scope B ceremony; enshrining both figures as co-equal invariants (C) would invite future confusion. Only A holds.
+6. **Rounding rule stated verbatim in the wave-close report** — `notes/programme_close_report.md §3` and §2.3.
+7. **Full-system drill day banked as required close ceremony.** Two consecutive `BASELINE_GUARD=1 python -m pytest tests/invariants/` runs at identical `passed=2333 / baseline-failures-remaining=0 / quarantined=0` receipts:
+   - `phase0/drill_receipts/20260827T213255Z_wave_f_cleanup_drill_day_run1.log` (89.16s)
+   - `phase0/drill_receipts/20260827T213435Z_wave_f_cleanup_drill_day_run2.log` (89.43s · identical tally)
+8. **Wave F CLOSED PENDING OWNER'S EXTERNAL THIRD-RUN RATIFICATION.** Handoff package: `notes/programme_close_report.md` + Wave F ratified scope-close artifacts + STATE mirrors current.
+9. **SSH key interrupt remains INTERRUPT-PRIORITY** (unchanged from prior rulings). Owner's external third run happens at the WAVE close; SSH sequence supersedes wave activity when key arrives.
+
