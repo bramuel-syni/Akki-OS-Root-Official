@@ -3285,6 +3285,21 @@ Concretely, henceforth a wave CLOSES only after:
 
 - **(a) SSH key path** (INTERRUPT-PRIORITY): on key arrival, interrupt whatever posture we hold and fire the sequence: `chmod 600 <key>` → `AKKI_GPU_SSH_PRIVATE_KEY_PATH=<path>` → `GPU_CONNECT_MODE=real` → hardware fact sheet → first governed run per §NEXT current-step ladder.
 - **(b) Wave E GO**: N2/N3/N5 + Doc14-020 implementation per banked rulings (opening scope not yet expanded in this file; awaits Wave E kickoff ruling for the CP ladder).
-- **(c) Wave F GO**: retirement charter (`notes/waveF_retirement_charter.md`) + final lock + master-tree cleanup.
+- **(c) Wave F GO**: retirement charter (`notes/waveF_retirement_charter.md`) + final lock + master-tree cleanup. **Charter now carries a second locked scope item registered 2026-08-27T12:05Z: COMPOSITE METHODOLOGY RECONCILIATION REQUIRED** (see charter §Wave-F-lock-ceremony-checklist). Wave F closer MUST pick ONE ratified methodology (default: `tools/w10_cp9_composite_recompute.py` W10 CP9 lineage · 551-row mechanism corpus + 58-row interface · 0.7/0.3 blend · unchanged weights), reconcile both prior numbers (Waves A-C preliminary ~59.5 %±1pp AND this-session flat 38.38 % / 57.58 % / 61.62 %) with delta explained, and resolve the 5-row PROPOSED-vs-DONE-scaffold parser band by primary-declaration rule unless owner rules otherwise.
+
+**SSH interrupt** stands as INTERRUPT-PRIORITY (unchanged).
+
+---
+
+## Wave F charter · COMPOSITE METHODOLOGY RECONCILIATION flag · 2026-08-27T12:05Z
+
+**Owner ruling (verbatim, 2026-08-27T~12:05Z, post Wave D ratification):**
+> "Ratification confirmation accepted. ONE FLAG for the Wave F lock ceremony — record it in the charter now so it isn't lost: COMPOSITE METHODOLOGY RECONCILIATION REQUIRED. Your preliminary reports today use a 99-unique-row denominator, while the W10 CP9 authoritative lock and the Waves A-C preliminary (~59.5% ±1pp) used the 551-row weighted mechanism/interface blend (0.7/0.3). These are different instruments — neither is wrong, but Wave F's lock must (a) pick ONE ratified methodology (default: the W10 CP9 tools/*_composite_recompute.py lineage, updated for the 20-doc register), (b) reconcile both numbers against it with the delta explained, and (c) resolve the 5-row PROPOSED-vs-DONE-scaffold parser band by primary-declaration rule unless the owner rules otherwise. Add to the Wave F charter checklist. Continue HOLDING."
+
+**Charter update landed:** `notes/waveF_retirement_charter.md` §"Wave F lock ceremony · flag registered 2026-08-27T12:05Z" — records the two instruments in use (Instrument 1: W10 CP9 authoritative weighted 0.7·mech + 0.3·iface with mechanism 515→551 rows post-CP7 · interface 58 rows · weights DONE=1.0 · PARTIAL=0.4 · REUSABLE=0.5 · BUILD=0.0 · OPEN-SLOT=0.0; Instrument 2: this-session flat 99-unique-row register slices — 38.38 % / 57.58 % / 61.62 %) and the four-item Wave-F-lock-ceremony checklist (pick ONE methodology · reconcile both prior numbers with delta explained · resolve 5-row parser band by primary declaration · bank reconciliation drill receipt under the permanent wave-close standard).
+
+**Charter scope after this flag:** Wave F close carries TWO locked scope items — (A) D1a-1 residue class retirement (19 files · 88 tests · event-loop-closed class · original scope) AND (B) composite methodology reconciliation (added this session). Both MUST close in the same Wave F close package.
+
+**Autonomy status unchanged:** WAVE D CLOSED + RATIFIED · HOLDING at ready state. Flag registered per owner ruling; will not be lost across compaction. Nothing executes until one of the three ruled arrivals (SSH key · Wave E GO · Wave F GO).
 
 **SSH interrupt** stands as INTERRUPT-PRIORITY (unchanged).

@@ -61,3 +61,66 @@ Wave F opens when the owner rings the bell for the D1a-1 class. Options (owner d
 - **quarantined_d1a1_max**: 159 (21 files).
 - **total_skipped_max**: 160 (159 chartered + 1 legacy conditional).
 - **quarantined_d1a1_files_exclusive**: 2 (Q1 legacy). Q2 additions are per-test-skipped inside files with mixed pass/quarantine.
+
+---
+
+## Wave F lock ceremony · flag registered 2026-08-27T12:05Z (post Wave D ratification)
+
+### FLAG · COMPOSITE METHODOLOGY RECONCILIATION REQUIRED
+
+**Owner ruling (verbatim, 2026-08-27T~12:05Z, post Wave D ratification):**
+> "ONE FLAG for the Wave F lock ceremony — record it in the charter now so it isn't lost: COMPOSITE METHODOLOGY RECONCILIATION REQUIRED. Your preliminary reports today use a 99-unique-row denominator, while the W10 CP9 authoritative lock and the Waves A-C preliminary (~59.5% ±1pp) used the 551-row weighted mechanism/interface blend (0.7/0.3). These are different instruments — neither is wrong, but Wave F's lock must (a) pick ONE ratified methodology (default: the W10 CP9 tools/*_composite_recompute.py lineage, updated for the 20-doc register), (b) reconcile both numbers against it with the delta explained, and (c) resolve the 5-row PROPOSED-vs-DONE-scaffold parser band by primary-declaration rule unless the owner rules otherwise. Add to the Wave F charter checklist. Continue HOLDING."
+
+### Two instruments currently in use (measured from files in this workspace, not paraphrased)
+
+**Instrument 1 · W10 CP9 authoritative composite (weighted, two-dimensional).**
+Source: `tools/w10_cp9_composite_recompute.py` (300 lines · pure deterministic recompute · reads only its own anchored inputs).
+- Mechanism corpus baseline: **515 rows** across 16 docs + addendum (W6 close bucket: DONE=47 / PARTIAL=40 / REUSABLE=300 / BUILD=128 / OPEN-SLOT=0).
+- Interface dimension baseline: **58 rows** across v7 surfaces (DONE=4 / PARTIAL=2 / REUSABLE=34 / BUILD=18 / OPEN-SLOT=0).
+- Weights: DONE=1.0 · PARTIAL=0.4 · REUSABLE=0.5 · BUILD=0.0 · OPEN-SLOT=0.0 (BUILD-equivalent · owner-policy-pending until policy lands + wires).
+- Composite formula: **`0.7 × (mech_weighted / 515) + 0.3 × (iface_weighted / 58)`**.
+- Delta ledger: only status moves cited with `(wave, CP, canon_anchor, from_status, to_status, row_ids[], commit_sha, domain, note)` credited beyond W6 baseline.
+
+**Instrument 2 · CP7 preview + this-session preliminary (flat unique-row register slices).**
+Source: `notes/requirements_register_17docs.md` (63 unique rows) + `notes/requirements_register_20docs.md` (36 unique rows, added at CP7 20-doc expansion). Combined unique row count = **99 rows** (this session, denominator today).
+- Historic preview number using the 551-row mechanism grown corpus (515 + 36 new mechanism rows from Docs 17-19): **~53.6 %** post-CP7 preview per `notes/requirements_register_20docs.md` line 242 (not authoritative, called out explicitly as "preview only").
+- This session's slices (strict register state, flat unweighted):
+  - strict `DONE` = 38 / 99 = **38.38 %**
+  - `DONE + REUSABLE` = 57 / 99 = **57.58 %**
+  - `DONE + REUSABLE + 0.5·PARTIAL` = 61 / 99 = **61.62 %**
+
+**Anchor number to reconcile against at Wave F lock:** Waves A-C preliminary composite **~59.5 % ±1 pp** (per owner ruling this session).
+
+### Wave F lock ceremony checklist (binds the Wave F close)
+
+The Wave F closer MUST execute the following, in order, before Wave F ratifies:
+
+1. **Pick ONE ratified methodology.** Default (unless owner rules otherwise at Wave F open):
+   - **W10 CP9 lineage** in `tools/w10_cp9_composite_recompute.py`, UPDATED for the 20-doc register (mechanism corpus grows 515 → **551 rows** per the CP7 20-doc expansion documented at `notes/requirements_register_20docs.md` line 35: "Register total: 515 + 36 = 551 rows"; interface dimension unchanged at 58 rows unless owner rules a v8 expansion).
+   - Composite formula stays `0.7 × mech% + 0.3 × iface%`; weights stay `DONE=1.0 / PARTIAL=0.4 / REUSABLE=0.5 / BUILD=0.0 / OPEN-SLOT=0.0`.
+   - If owner rules a different methodology at Wave F open, record verbatim + supersede this default in `STATE/DECISIONS.md`.
+
+2. **Reconcile both numbers against the chosen methodology, delta explained.**
+   - Reconcile **~59.5 % ±1 pp** (Waves A-C preliminary) — quote its provenance verbatim, recompute under chosen methodology, explain the delta with row-by-row moves cited to `commit_sha` on `programme/track-a`.
+   - Reconcile **38.38 % / 57.58 % / 61.62 %** (this session preliminary, flat 99-row denominator) — explain why the flat instrument differs (no weighting, no 0.7/0.3 blend, no interface dimension, different denominator), then translate to the chosen methodology's number.
+   - Land the reconciled single-number lock in `notes/status_and_wave_plan.md` §7 (or its Wave F successor) AND stamp it in the Wave F close report AND ratchet it into `tools/w10_cp9_composite_recompute.py` (or its Wave F successor script) so future compactions produce byte-identical output.
+
+3. **Resolve the 5-row PROPOSED-vs-DONE-scaffold parser band by primary-declaration rule.**
+   - Rows: `Doc18-006`, `Doc19B-001`, `Doc19B-002`, `Doc19B-003`, `Doc19B-005` in `notes/requirements_register_20docs.md`.
+   - Primary declaration in each row's opening bullet: `Status PROPOSED · Build PROPOSED`.
+   - Later "Post-CP6" summary language reclassifies them as `DONE-scaffold` / `DONE (mechanically enforced by invariant)`.
+   - **Wave F lock rule (default):** the PRIMARY DECLARATION governs — these 5 rows count as `PROPOSED` (neither `DONE` nor `PARTIAL` for weighted composite; treated as `OPEN-SLOT`-equivalent weight 0.0 per W10 CP9 policy note "OPEN-SLOT treated as BUILD — owner-policy-pending rows are not 'done' until policy lands + mechanism wires").
+   - Owner may override at Wave F open; if so, record verbatim in `STATE/DECISIONS.md` and update the register's row status class (primary bullet) BEFORE the composite recompute runs — no silent reclassification.
+
+4. **Bank the reconciliation drill receipt.**
+   - Location: `phase0/drill_receipts/YYYYMMDDTHHMMSSZ_wave_f_composite_lock.log`.
+   - Contents: chosen methodology + verbatim owner ruling if overridden + reconciliation table (both prior numbers → single locked number) + parser-band resolution + green run of the recompute tool + commit SHA that landed the lock.
+   - Follow the permanent wave-close standard established at Wave D ratification: two consecutive green recompute runs + external third run before Wave F ratifies.
+
+### Wave F charter status after this addition
+
+Charter now carries **two locked scope items** for the Wave F close ceremony:
+- **Scope A (original):** D1a-1 residue class retirement (19 files · 88 tests · event-loop-closed class) per §Scope + §Wave-F-retirement-path above.
+- **Scope B (added this session):** composite methodology reconciliation per this flag section — MUST close in the same Wave F close package as Scope A.
+
+**Standing HOLD posture unchanged.** Nothing executes on Wave F until owner rings the bell (Wave F GO). Flag registered per owner ruling; will not be lost across compaction.
