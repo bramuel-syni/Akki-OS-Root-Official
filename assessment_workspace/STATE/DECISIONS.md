@@ -2379,3 +2379,132 @@ Classes to retire (from CP-D0 receipt Section F):
   d. **Fixture setup errors** — fix the 6 setup/teardown errors in
      `test_memory_engineer_key_grant_e2e_propagation.py`.
 
+
+
+---
+
+## 2026-08-27T06:24Z · CP-D0 post-fix · Ship-Manifest DoD violation closed
+
+### Owner external verification 2026-08-27 (CP-D0)
+
+3/4 PASS + 1 SHIP-MANIFEST VIOLATION. Verified: collection health,
+CP-D0 cohort 24/24, EP-4 guard at the wire. Violation:
+`POST /api/service_1/v2/dispatch` — the A17.16 wire path — was NOT
+mounted on the running preview backend. The A17.16 mechanism was
+proven at the dispatch-layer (unit) but unreachable through the
+product. Exactly the Ship-Manifest DoD class the discipline exists
+to kill.
+
+Owner ruling verbatim: "reconcile `/app/backend/server.py` with the
+repo server.py under the Ship-Manifest DoD — mount the service_1
+router (and audit for any OTHER routers present in the repo server
+but absent from the running one; the 355-vs-276-line delta suggests
+more than one). Restart backend, verify `/api/service_1/v2/dispatch`
+live returns the ModelFormOfferEnvelopeV0 with the ingredients_guarantee
+verbatim for output.form="model", bank receipt, commit. ALSO: extend
+the runtime-drift guard to catch this permanently — it should compare
+the ROUTE TABLE of the running assembler against the repo assembler
+(route-path set equality or a KNOWN_UNWIRED manifest), not just file
+mirroring — this drift got past the existing guard, so the guard has
+a hole; close it in the same commit."
+
+### Fix commit `8976fba` on `programme/track-a`
+
+Landed same-session. Three parts:
+
+1. **Pod-shell mount** (`pod_shell/backend/server.py` + `/app/backend/server.py`
+   byte-identical mirror preserved):
+   ```
+   from routers import service_1 as service_1_router  # noqa: E402
+   app.include_router(service_1_router.router, prefix="/api")
+   ```
+   Result: `/api/service_1/{status,run,run/{id},v2/dispatch}` all served.
+
+2. **KNOWN_UNWIRED cleanup**: `routers.service_1` entry removed. Prior
+   justification ("no active row cites") was invalidated by CP-D0
+   A17.16 ACCEPT shipping the ModelFormOffer via the router. Register
+   row A17.16 now actively cites this router.
+
+3. **Route-drift guard extended**: new module
+   `backend/tests/invariants/test_ship_manifest_dod_route_table_drift.py`
+   with three mechanisms:
+   - `test_repo_pod_shell_and_runtime_server_are_byte_identical` (belt+braces).
+   - `test_repo_server_routers_are_covered_by_pod_or_known_unwired` (set-level
+     `include_router` diff · KNOWN_UNWIRED escape hatch).
+   - `test_must_be_live_route_served_by_pod` (parametrised) — the mechanical
+     closure of the CP-D0 class: MUST_BE_LIVE_ROUTES is an explicit manifest
+     that every CP updates in the same commit; each entry must be served by
+     the live pod's openapi. Catches STALE-KNOWN_UNWIRED specifically,
+     because the KNOWN_UNWIRED escape hatch cannot mask a receipt-claim
+     that a route is live.
+
+   Seeded MUST_BE_LIVE_ROUTES with the two CP-D0 wire paths:
+     - `POST /api/service_1/v2/dispatch` (A17.16 model-form offer).
+     - `POST /api/evidence-register/precheck/terminal-test` (EP-4 guard).
+
+### Live-pod verification (verbatim)
+
+Public URL (`https://akki-reuse-assess.preview.emergentagent.com`), CP-D0 post-fix:
+
+```
+POST /api/service_1/v2/dispatch  { output.form="model", ... }
+→ HTTP 501 (Phase 2 §7 scaffold discriminator, distinct from governed refusals)
+{
+  "trace_id": "disp-<hex12>",
+  "output_form": "model",
+  "offered_at": "2026-08-27T06:...:...+00:00",
+  "ingredients_guarantee": "provenance of ingredients: what went in, its standard, its licence — never provenance of assertions",
+  "forbidden_stronger_claims": ["assertion_provenance","training_causation_claim","output_veracity_guarantee","per_utterance_speaker_identity"]
+}
+```
+
+`ingredients_guarantee` value is byte-identical to Message 317 STEP 2 §1
+verbatim. `forbidden_stronger_claims` enforces the "any stronger claim
+unrepresentable" clause via `ConfigDict(extra='forbid')` + the fixed
+frozen list.
+
+### Router audit (per owner "audit for any OTHER routers" ruling)
+
+Full-diff of `include_router` calls between repo and pod assemblers,
+tempered by KNOWN_UNWIRED:
+
+- 40 routers included in `backend/server.py` (repo full assembler).
+- 33 routers included in `pod_shell/backend/server.py` (pod curated).
+- 29 routers in `KNOWN_UNWIRED` (justified legacy-only / pending R4-R6).
+- After the CP-D0 post-fix commit: **zero uncovered drift routers**.
+
+The 355-vs-276-line delta between the two assemblers is intentional
+(pod-shell curates; repo assembler is the "everything" assembler for
+tests that need the wider surface). The `wizard_buyer` false-positive
+in the initial audit was a matched comment
+(`# (previously: \`app.include_router(wizard_buyer_router.router...\`)`),
+not a live mount.
+
+### CP-D1 open note
+
+CP-D1 (Invariant Debt Retirement, first Wave-D CP) — new tasks added
+by this fix:
+
+- **Track MUST_BE_LIVE_ROUTES growth**: every CP that ships a wire path
+  must update `MUST_BE_LIVE_ROUTES` in the same commit. Add this to
+  the CP-close checklist alongside the KNOWN_UNWIRED cleanup step.
+- Existing CP-D1 scope (persistence-backend drift, contract-snapshot
+  drift, JWT env, memory-engineer fixture errors) is unchanged.
+
+### Fix receipts
+
+- `phase0/drill_receipts/20260827T062423Z_cp_d0_post_fix_right_reason_failure.log`
+  Three failures demonstrated on the reverted state (mount removed,
+  KNOWN_UNWIRED entry removed, pod restarted): both the new coverage
+  test AND MUST_BE_LIVE bite, plus the existing DoD walk. This banks
+  the guard's right-reason-failure behaviour before the fix.
+- `phase0/drill_receipts/20260827T062423Z_cp_d0_post_fix_green.log`
+  Ship-Manifest DoD suite: **23/23 green**. CP-D0 direct invariants:
+  **14/14** (regression witness). Full-directory: 1830 passed / 377
+  failed / 1 skipped / 6 errors of 2214 collected. Delta +4 vs CP-D0
+  close = the four new route-drift tests.
+
+### Ratified HEADs advanced (both branches, local commits only)
+
+- `programme/track-a` (Extraction-Akki): `fb04adf` → **`8976fba`**
+- `master` (workspace): `4747494` → (this commit)

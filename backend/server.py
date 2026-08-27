@@ -70,6 +70,12 @@ from services.n_series.router import router as n_series_router  # noqa: E402
 from services.skill_files.router import router as skill_files_router  # noqa: E402
 # W11 B · CP6 · Doc 19B §19B.4-6 · EP-1/EP-3 Evidence register + A-4.
 from services.evidence_register.router import router as evidence_register_router  # noqa: E402
+# W11 D · CP-D0 post-fix · A17.16 wire path · /api/service_1/v2/dispatch
+# emits ModelFormOfferEnvelopeV0 for outcome_form='model'. Ship-Manifest
+# DoD reconciliation 2026-08-27 (owner ruling): routers.service_1 removed
+# from KNOWN_UNWIRED and mounted on the pod-shell so the A17.16 mechanism
+# is reachable through the user path, not just via the unit tests.
+from routers import service_1 as service_1_router  # noqa: E402
 from services.ip_allowlist.middleware import IPAllowlistMiddleware  # noqa: E402
 
 # Deliverables directory (read-only snapshot per Chunk-4 v1.1 delivery logistics)
@@ -249,6 +255,16 @@ app.include_router(skill_files_router)
 # W11 B · CP6 · Doc 19B §19B.4-6 · EP-1 Evidence register + EP-3 A-4
 # (/api/evidence-register/*, /api/claims-validation).
 app.include_router(evidence_register_router)
+# W11 D · CP-D0 post-fix · A17.16 wire path · service_1 router mounted
+# under /api/service_1/* (service_1/run, service_1/run/{id},
+# service_1/v2/dispatch). Ship-Manifest DoD reconciliation 2026-08-27:
+# routers.service_1 was in KNOWN_UNWIRED with the justification 'never
+# wired in either assembler; retained only for the invariant tests that
+# reference it. Register: no active row cites' — that justification was
+# invalidated by CP-D0 A17.16 ACCEPT shipping the ModelFormOfferEnvelopeV0
+# behind this router's /v2/dispatch endpoint. KNOWN_UNWIRED entry removed
+# in the same commit.
+app.include_router(service_1_router.router, prefix="/api")
 
 app.add_middleware(
     CORSMiddleware,
