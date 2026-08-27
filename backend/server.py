@@ -66,6 +66,7 @@ from routers import registry as registry_router  # noqa: E402
 from services.whitepapers.router import router as whitepapers_router  # noqa: E402
 # W11 R4.7 · Doc 15 N-series breach + erasure HTTP surface.
 from services.n_series.router import router as n_series_router  # noqa: E402
+from services.rights_quarantine.router import router as rights_quarantine_router  # noqa: E402  # W11 E · CP-E4 · Doc14-020
 # W11 B · CP4 · Doc 18 A18.7 Skill-file provenance chain HTTP surface.
 from services.skill_files.router import router as skill_files_router  # noqa: E402
 # W11 B · CP6 · Doc 19B §19B.4-6 · EP-1/EP-3 Evidence register + A-4.
@@ -264,6 +265,7 @@ app.include_router(registry_router.prove_router, prefix="/api")
 app.include_router(whitepapers_router)
 # W11 R4.7 · Doc 15 N-series (/api/n_series/breach + /api/n_series/erasure).
 app.include_router(n_series_router)
+app.include_router(rights_quarantine_router)  # W11 E · CP-E4 · Doc14-020 quarantine surface
 # W11 B · CP4 · Doc 18 A18.7 Skill-file provenance chain
 # (/api/skill-files/state, /api/skill-files/{skill_id}/provenance).
 app.include_router(skill_files_router)

@@ -3303,3 +3303,87 @@ Concretely, henceforth a wave CLOSES only after:
 **Autonomy status unchanged:** WAVE D CLOSED + RATIFIED · HOLDING at ready state. Flag registered per owner ruling; will not be lost across compaction. Nothing executes until one of the three ruled arrivals (SSH key · Wave E GO · Wave F GO).
 
 **SSH interrupt** stands as INTERRUPT-PRIORITY (unchanged).
+
+---
+
+## Wave E · CLOSED PENDING OWNER EXTERNAL THIRD RUN · 2026-08-27T14:20Z
+
+**Owner Wave E GO ruling (verbatim, 2026-08-27T~12:10Z, arrived post Wave D ratification + Wave F composite flag registration):**
+> OWNER GO — WAVE E (Compliance & N-series close). Autonomous through wave close under all standing conditions (verbatim quotes, anti-compaction, tests-first, local commits only, no push, no testing subagent, BASELINE_GUARD on every close, Ship-Manifest DoD + MUST_BE_LIVE_ROUTES/SPA same-commit for every shipped path).
+>
+> SCOPE — implement the banked owner rulings as enforcement, not scaffolding: [CA1-N2 breach notification · CA1-N3 access & erasure · CA1-N5 ledger continuity · Doc14-020 quarantine-pending-review · A18.6 async delivery ADOPT · CA1 audit sweep 001/002/003/006/007/012 · DigiCow PII sanitizer sweep] · full ruling text in notes/waveE_grounding_brief.md §Wave-GO-ruling.
+>
+> EXECUTION SHAPE: grounding brief first · CP partition dependency-ordered · stop-and-reports informational · standard halt triggers (non-config blocker / spec contradiction / guard trip / count drift). Every new surface: honest states, structured refusals, REFERENCE-NOT-COPY, sanitizer at the boundary. UI: enforcement-view additions on existing surfaces unless canon names a dedicated surface — quote the canon text to decide.
+>
+> WAVE E CLOSE (permanent standard): two consecutive green full-suite receipts + my external third run; close package = register moves (N-series rows to DONE), waveE_close_report.md, STATE mirrors, preliminary composite note. Then HOLD for Wave F GO / SSH key.
+>
+> SSH interrupt remains INTERRUPT-PRIORITY over everything. Begin.
+
+### Wave E CP ladder · autonomous · all closed green
+
+| CP | Scope | Extraction-Akki commit | Passed |
+|---|---|---|---:|
+| CP-E1 | CA1-N5 ledger continuity enforcement | `ebc5a48` | 2127 |
+| CP-E2 | CA1-N2 breach notification enforcement | `045541c` | 2138 |
+| CP-E3 | CA1-N3 access & erasure enforcement | `e8d860a` | 2147 |
+| CP-E4 | Doc14-020 rights-quarantine + admit-path REFUSAL | `74039c2` | 2158 |
+| CP-E5 | A18.6 async delivery PROPOSED → RULED-ADOPTED | `6898fd0` | 2160 |
+| CP-E6 | CA1 audit sweep (001/002/003/006/007/012) | `6d7589d` | 2164 |
+| CP-E7 | DigiCow PII sanitizer sweep + shared response_sanitizer | `60b8760` | 2169 |
+| CP-E8 | Wave E close (register moves + close report + double-run + STATE mirror) | *this workspace commit* | 2169 (identical) |
+
+### Wave E close double-run (Wave-D permanent standard applied)
+
+- `phase0/drill_receipts/20260827T141917Z_cp_e8_wave_e_close_run1.log` — `passed=2169 / baseline-failures-remaining=0 / quarantined=159 · status: OK` · 2169 passed, 160 skipped, 347 warnings in 60.33s (EXITCODE=0)
+- `phase0/drill_receipts/20260827T142028Z_cp_e8_wave_e_close_run2.log` — `passed=2169 / baseline-failures-remaining=0 / quarantined=159 · status: OK` · 2169 passed, 160 skipped, 347 warnings in 60.51s (EXITCODE=0)
+
+**IDENTICAL tally on both runs · no absorption · owner external third run pending.**
+
+### Wave E composite delta
+
+- **Passed**: 2119 → 2169 (**+50**).
+- **Baseline failures**: 0 (unchanged).
+- **Quarantined_d1a1**: 159 (unchanged).
+- **MUST_BE_LIVE_ROUTES**: 30 → 37 (+7 shipped Wave E paths).
+- **New contracts frozen**: `RightsLapseFlag_v0` (1).
+- **Extended contracts (additive)**: `BreachNotification_v0`, `ErasureRequest_v0` (snapshots re-blessed).
+- **New services**: `services/rights_quarantine/` (Doc14-020) · `services/response_sanitizer/` (CP-E7 shared PII/secret sanitizer).
+- **New policy configs**: `continuity_policy.v0.json`, `breach_policy.v0.json`, `erasure_policy.v0.json`, `a18_6_adoption_v0.json`.
+
+### Wave E register moves (paired in this STATE mirror commit)
+
+- Doc02-020 (CA1-007 · dry-run preview) BUILD → **DONE** (CP-E6 · mechanism-surface).
+- Doc14-020 (rights-unclear first-class state) OPEN-SLOT → **DONE** (CP-E4 · quarantine service + admit-path REFUSAL + 4 wire paths).
+- Doc15-085 (CA1-006 · Watch self-contained + external witness state line) BUILD → **DONE** (CP-E6 · `witness_state_line` on `/api/watch/continuity`).
+- Doc15-087 (CA1-012 · Watch staleness-flagging extended to rulebooks + baselines) BUILD → **DONE** (CP-E6 · verification).
+- Doc18-006 (A18.6 · async skill delivery) PROPOSED → **RULED-ADOPTED** (CP-E5 · adoption trace + platform pattern citation).
+- CA1-N2 (canon addendum) Nothing built → **DONE (ENFORCED)** at CP-E2.
+- CA1-N3 (canon addendum) Nothing built → **DONE (ENFORCED)** at CP-E3.
+- CA1-N5 (canon addendum) Nothing built → **DONE (ENFORCED for ruled portion; RTO owner-pending)** at CP-E1.
+
+### Wave E class-attribution honesty (documented, not paved over)
+
+- Doc02-020a / Doc06-016 (CA1-001/002 · audit-trail Overview + units-served line) remain **BUILD** — no audit-trail Overview surface exists; owner did not authorise building it this wave.
+- Doc07-019 (CA1-003 · densification stat + warm/fresh tag) remains **PARTIAL** — Addendum §1 covers half; per-turn audit-line stat blocked on the same audit-trail surface.
+- Doc15-014 (Watch full mechanism) — carried from Wave D · PARTIAL.
+- CA1-N5 RTO target — owner-pending (carried inside DONE row); service refuses to fire while `rto_target_seconds='OWNER_POLICY_PENDING'`.
+- CA1-N1 (retention) + CA1-N4 (residency enforcement) — NOT touched (out of Wave E scope · owner did not authorise this wave).
+- DigiCow occupation-class boolean columns (dairy_farmer, poultry_farmer, dairy_poultry_farmer) — NOT escalated to PII banned set this pass; owner may escalate at Wave F.
+
+### Preliminary composite % (LOCKS at Wave F per Wave-D-ratification flag)
+
+**Reporting number only** (flat 99-unique-row denominator · this-session instrument · not the W10 CP9 authoritative lineage; Wave F composite reconciliation at `notes/waveF_retirement_charter.md` §Wave-F-lock-ceremony governs the final lock).
+
+| Slice | Prior (post Wave D) | Post Wave E | Delta |
+|---|---:|---:|---:|
+| strict `DONE` | 38 / 99 = 38.38 % | **42 / 99 = 42.42 %** | **+4.04 pp** |
+| `DONE + REUSABLE` | 57 / 99 = 57.58 % | **61 / 99 = 61.62 %** | +4.04 pp |
+| `DONE + REUSABLE + 0.5·PARTIAL` | 61 / 99 = 61.62 % | **65 / 99 = 65.66 %** | +4.04 pp |
+
+Doc18-006 RULED-ADOPTED requires the Wave F reconciliation rule; not counted in the DONE slice here. Uncertainty band unchanged from Wave D (the 5 PROPOSED-vs-DONE-scaffold rows still resolve at Wave F lock).
+
+### Autonomy status
+
+**WAVE E CLOSED PENDING OWNER EXTERNAL THIRD RUN · 2026-08-27T14:20Z.** Autonomy PAUSED for owner spot-check. On owner ruling: (a) spot-check PASS → Wave E RATIFIED + next-wave GO; (b) further defect → address as CP-E9 per owner ruling verbatim; (c) SSH key path → interrupt sequence fires; (d) Wave F GO → retirement charter + composite methodology reconciliation lock + master-tree cleanup.
+
+**SSH interrupt** stands as INTERRUPT-PRIORITY (unchanged).

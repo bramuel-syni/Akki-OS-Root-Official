@@ -132,9 +132,13 @@ Umbrella canon: Doc 18 §§1-8 + Business Continuity Requirements §3.7 annex.
   only through the exact declared path. Status CANON · Build **DONE** (part of
   provisioning contract).
 - **Doc18-006** ← A18.6 · Single-shot pilot for enterprise sales; Owner
-  ratifies before deployment. Status PROPOSED · Build **PROPOSED** · Carrying
-  phase: **Owner ratification** (deferred to post-W11 per Owner CP3-open
-  deprioritization: "defer A18.6 async delivery entirely").
+  ratifies before deployment. Status RULED-ADOPTED · Build **RULED-ADOPTED** · Carrying
+  phase: **Wave E CP-E5 (owner Wave E ruling verbatim)** — adoption trace at
+  services/service_1/a18_6_adoption_v0.json supersedes the CP3-open
+  deprioritization "defer A18.6 async delivery entirely"; platform pattern
+  wired at services/service_1/dispatch.py DEBT_PHASE_5='phase_5_async_delivery'
+  with AsyncDeliveryAccepted_v0 at fresh-fork admission (contract already
+  frozen at parity 42+). test_a18_6_async_delivery_adoption.py enforces.
 - **Doc18-007** ← A18.7 · Every skill's provenance chain traces back to the
   training run that produced its adapter (extends Doc14-016 rights-lineage +
   Doc14-017 version-history). Status CANON · Build BUILD · Carrying phase

@@ -112,3 +112,44 @@ Each A-item names 2–3 **Open Design Questions** — those questions are constr
 - **Introduces** N-series promises (retention enforcement, breach notification, individual access-and-erasure, residency, ledger continuity) — none of which we have anything for. These are Chunk-3 rows classed as BUILD (net-new).
 
 **No collision with the current Registry-A4 build** (services.registry_facts + Registry.jsx render real-record facts across three tabs). The Registry tab shape is not touched by the Addendum; the addendum-visible surface additions (Board 360, Exco 360, Documents suite, Rule Books Library, Collab, Spend Requests, "Walk this →", Cost Ledger) are DIFFERENT surfaces, not Registry tabs.
+
+## Wave E ratification (2026-08-27 · CP-E1 + CP-E2 + CP-E3 · autonomous)
+
+Three N-series promises moved from "Nothing built" to ENFORCED via mechanism. Owner ruling verbatim recorded in `STATE/DECISIONS.md · Wave E scope §1..§3 (2026-08-27T~12:10Z)`.
+
+- **CA1-N2 · Breach notification** · Status → **DONE (ENFORCED)** at CP-E2.
+  - Mechanism: `services/n_series/breach.py::fire_breach_notification` + policy config `breach_policy.v0.json` (q1='refusal_bypass_only', q2='independent_authority', q3='actor_ids_masked', q4='one_per_breach', window_hours=72, canon_grounded=true).
+  - Contract additive fields: `trigger_event_class` Literal[containment_failure | actual_exfiltration | unreceipted_crossing], `recipient_dpo_id` + `recipient_witness_id` (wi_ pattern), `source_watch_action_class`, `notify_deadline_utc` (auto-computed +72h), `alert_channel_receipts` list.
+  - Invariant encoded (not commented): `source_watch_action_class` in {annotate, shape, contain} REFUSES — "contained/shaped events are the Watch working and MUST NOT trigger notification" (owner ruling verbatim).
+  - Real-time channel: file drops under `phase0/breach_alerts/{recipient_id}/{notification_id}.json` for BOTH DPO and witness on every fire.
+  - Wire paths: POST/GET `/api/n_series/breach` (existing shell, now enforcement).
+  - Receipt: `phase0/drill_receipts/20260827T134130Z_cp_e2_close_run1.log` + `..._run2.log`.
+
+- **CA1-N3 · Access & erasure** · Status → **DONE (ENFORCED)** at CP-E3.
+  - Mechanism: `services/n_series/erasure.py::fire_erasure_request` + policy config `erasure_policy.v0.json` (q1='raw_and_five_ring_units', q2='existing_platform_credential', q3='erasure_wins_over_ca1_n1', requestor_classes_allowed=[named_customer, named_employee]).
+  - Contract additive fields: `requestor_class` Literal[named_customer|named_employee], `platform_credential_ref`, `model_flag_ids` list, `crossing_receipt_ref`.
+  - New contract: `RightsLapseFlag_v0` at `contracts/rights_lapse_flag_v0.py` with resolution Literal[scheduled_retrain|documented_residual] (owner ruling: "scheduled for retraining OR documented as residual exposure").
+  - Custody chokepoint routing: every erasure fires a `CrossingReceipt` with `kind='n3_erasure_operation'`, `masking_tier='attested_command'`.
+  - Wire paths: POST/GET `/api/n_series/erasure` + NEW GET `/api/n_series/rights_lapse_flags`.
+  - Receipt: `phase0/drill_receipts/20260827T135155Z_cp_e3_close_run1.log` + `..._run2.log`.
+
+- **CA1-N5 · Ledger continuity** · Status → **DONE (ENFORCED for ruled portion; RTO owner-pending)** at CP-E1.
+  - Mechanism: `services/watch/continuity.py::write_attestation` + policy config `continuity_policy.v0.json` (cadence='quarterly', cadence_class='default', canon_grounded=false — proposal-class distinction preserved per owner ruling; verification_mechanism='independent_backup_check').
+  - Countersigner enforcement: `attested_by` MUST be a registered `WitnessIdentity_v0` with `independent_of_authorities=True` (defence-in-depth check catches out-of-band tampering).
+  - Wire paths: POST/GET `/api/watch/continuity`.
+  - **Open item** (honest carry): `rto_target_seconds='OWNER_POLICY_PENDING'` — owner has NOT ruled RTO; service refuses to fire while sentinel present.
+  - Receipt: `phase0/drill_receipts/20260827T132858Z_cp_e1_close_run1.log` + `..._run2.log`.
+
+### N-series q-questions ratified this wave
+
+- CA1-N2-q1 → **refusal_bypass_only** (hard line ACTUALLY CROSSED).
+- CA1-N2-q2 → **independent_authority** (DPO + external witness).
+- CA1-N3-q1 → **raw_and_five_ring_units** (models FLAGGED via A17.15 pattern, not erased).
+- CA1-N3-q2 → **existing_platform_credential** (no new identity machinery).
+- CA1-N5-q1 → **external-witness pattern with independent countersigner infrastructure** (cadence quarterly · DEFAULT-class · NOT canon-grounded; RTO remains owner-pending).
+
+### N-series still open
+
+- CA1-N1 (retention enforcement · Wave E did NOT touch).
+- CA1-N4 (residency enforcement · Wave E did NOT touch; per-source region tag exists via Doc 9).
+- CA1-N5 RTO target (owner has NOT ruled).

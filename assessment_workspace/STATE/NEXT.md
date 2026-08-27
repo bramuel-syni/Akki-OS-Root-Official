@@ -55,7 +55,7 @@ Failure to follow this sequence = paraphrase-not-spec failure class the owner ex
 
 Update this section at every CP/R-step close.
 
-- **Current wave**: **WAVE D CLOSED + RATIFIED · owner 3/3 spot-check PASS 2026-08-27T12:00Z · HOLDING at ready state** — CP-D0 → CP-D0-fix → CP-D1 (1830→1986) → CP-D1a (residual 116) → CP-D-guard (guard installed, 1932→1944) → CP-D2 (99 fail, +17) → CP-D3 (84 fail, +15) → CP-D4 (`c834eec`; 78 fail · 1976→1982) → CP-D5 PARTIAL (`3fe9984`) → CP-D6 (`d4664f5`; manifest 113→0 · 25 semantic retirements + Q2 grant activation · 2041→2066) → CP-D7 (`d8a32d9`; Governance ceremony lift · +18 wire paths · 2066→2084) → CP-D8 (`ba6d137`; Cross-cutting orchestration · +10 wire + 25 SPA · 2084→2119 · guard OK) → CP-D9 (`023aa21`; registry seeder hermeticity fix · double-run proof) → **WAVE D RATIFIED 2026-08-27T12:00Z** (owner external spot-check 3/3 PASS · effective third consecutive full-suite green · new permanent wave-close standard established: "two consecutive green full-suite receipts + external third run"). Wave A/B/C remain **RATIFIED AS A BLOCK** by owner 2026-08-26T~12:40Z.
+- **Current wave**: **WAVE E CLOSED PENDING OWNER EXTERNAL THIRD RUN · 2026-08-27T14:20Z · autonomous through wave close** — CP-E1 (`ebc5a48`; CA1-N5 continuity enforcement · 2119→2127) → CP-E2 (`045541c`; CA1-N2 breach enforcement · 2127→2138) → CP-E3 (`e8d860a`; CA1-N3 erasure + rights-lapse flags · 2138→2147) → CP-E4 (`74039c2`; Doc14-020 quarantine + admit-path REFUSAL · 2147→2158) → CP-E5 (`6898fd0`; A18.6 PROPOSED→RULED-ADOPTED · 2158→2160) → CP-E6 (`6d7589d`; CA1 audit sweep 001/002/003/006/007/012 · 2160→2164) → CP-E7 (`60b8760`; DigiCow PII sanitizer sweep + shared response_sanitizer · 2164→2169) → **CP-E8 (this STATE mirror; Wave E close package + double-run 2026-08-27T14:19Z + 14:20Z · IDENTICAL passed=2169/0/159/OK)**. Wave D remains **CLOSED + RATIFIED** (owner 3/3 spot-check 2026-08-27T12:00Z). Wave A/B/C remain **RATIFIED AS A BLOCK** (owner 2026-08-26T~12:40Z).
 
 - **CP-D7 + CP-D8 combined artifacts (verification target list for owner):**
   - **28 NEW wire paths in MUST_BE_LIVE_ROUTES** (all verified LIVE on pod openapi at IP-allowlisted `/api/openapi.json` — see §2.1 of `notes/waveD_close_report.md`). Pod openapi paths 118 → 149 (+31 across CP-D7/D8).
@@ -65,9 +65,19 @@ Update this section at every CP/R-step close.
 
 - **Wave D block ratchet (CP-D0 → CP-D8)**: `passed` 1830 → **2119** (+289); `baseline_failures` 156 → **0** (Wave D endgame); `passed_floor` 1830 → **2119** (monotonic); `MUST_BE_LIVE_ROUTES` 2 → **30** (+28); `MUST_BE_LIVE_SPA_ROUTES` 0 → **25** (+25); Register DONE this-wave rows: 4.
 
-- **Current step**: **Wave D CLOSED + RATIFIED (owner 3/3 spot-check PASS 2026-08-27T12:00Z). HOLDING at ready state.** Nothing executes until one of three ruled arrivals: (a) SSH key path (INTERRUPT-PRIORITY), (b) Wave E GO (N2/N3/N5 + Doc14-020 per banked rulings), (c) Wave F GO (retirement charter + final lock + master-tree cleanup). Permanent wave-close standard established this ratification: **"two consecutive green full-suite receipts + external third run"** — binds all future waves; see DECISIONS.md CP-D9→Wave D RATIFIED section for the three-run discipline. Preliminary composite %: strict `DONE` = **38.38 %** (38/99 unique canon-anchored rows); `DONE + REUSABLE` (surface-live floor) = **57.58 %**; progress-weighted (`DONE + REUSABLE + 0.5·PARTIAL`) = **61.62 %**; complement (remaining `BUILD` + `OPEN-SLOT` + unresolved-PROPOSED) = 34.34 %. Reporting number only; composite LOCKS at Wave F.
+- **Current step**: **Wave E CLOSED PENDING OWNER EXTERNAL THIRD RUN (2026-08-27T14:20Z · CP-E8). HOLDING at ready state.** Nothing executes until owner's spot-check outcome + one of three ruled arrivals: (a) SSH key path (INTERRUPT-PRIORITY), (b) Wave F GO (retirement charter + composite methodology reconciliation lock + master-tree cleanup), (c) Wave E close ratified + next-wave GO. Wave E close package: `notes/waveE_grounding_brief.md`, `notes/waveE_close_report.md`, `notes/waveE_pii_sweep.md`, register moves at `notes/requirements_register_17docs.md` (Doc02-020, Doc14-020, Doc15-085, Doc15-087 → DONE) + `notes/requirements_register_20docs.md` (Doc18-006 → RULED-ADOPTED), canon-addendum ratification section at `notes/canon_addendum_1_requirements.md` (CA1-N2/N3/N5 → DONE ENFORCED). Two consecutive green full-suite BASELINE_GUARD=1 receipts BOTH `passed=2169 / baseline-failures-remaining=0 / quarantined=159 · status: OK` at `phase0/drill_receipts/2026082{7T141917Z,7T142028Z}_cp_e8_wave_e_close_run{1,2}.log`. Preliminary composite % (LOCKS at Wave F): strict `DONE` 42/99 = **42.42 %** (post Wave E) up from 38.38 % (post Wave D).
 
-- **CP-D9 hermeticity receipts (2026-08-27T11:54Z, banked · Wave D ratification anchor):**
+- **CP-E1..CP-E7 receipts (banked · Wave E anchor):**
+  - CP-E1 continuity double-run: `20260827T132858Z_cp_e1_close_run1.log` (2127 · OK · 59.81s), `20260827T133144Z_cp_e1_close_run2.log` (2127 · OK · 59.76s)
+  - CP-E2 breach double-run: `20260827T134130Z_cp_e2_close_run1.log` (2138 · OK · 59.92s), `20260827T134327Z_cp_e2_close_run2.log` (2138 · OK · 60.04s)
+  - CP-E3 erasure double-run: `20260827T135155Z_cp_e3_close_run1.log` (2147 · OK · 60.17s), `20260827T135352Z_cp_e3_close_run2.log` (2147 · OK · 60.21s)
+  - CP-E4 quarantine double-run: `20260827T135837Z_cp_e4_close_run1.log` (2158 · OK · 60.33s), `20260827T140121Z_cp_e4_close_run2.log` (2158 · OK · 60.42s)
+  - CP-E5 A18.6 single: `20260827T140432Z_cp_e5_close.log` (2160 · OK · 60.45s)
+  - CP-E6 audit sweep single: `20260827T140840Z_cp_e6_close.log` (2164 · OK · 60.36s)
+  - CP-E7 PII sanitizer single: `20260827T141354Z_cp_e7_close.log` (2169 · OK · 60.37s)
+  - CP-E8 wave close double-run: `20260827T141917Z_cp_e8_wave_e_close_run1.log` (2169 · OK · 60.33s), `20260827T142028Z_cp_e8_wave_e_close_run2.log` (2169 · OK · 60.51s)
+
+- **Composite delta (Wave E):** passed 2119 → 2169 (+50); baseline_failures unchanged 0; quarantined_d1a1 unchanged 159; MUST_BE_LIVE_ROUTES 30 → 37 (+7 wire paths shipped: 2 continuity + 1 rights-lapse-flags + 4 rights-quarantine); MUST_BE_LIVE_SPA_ROUTES unchanged 25 (SPA route for /rights-quarantine deferred to post-Wave-E UI shipping per owner ruling "belong on existing surfaces unless canon names a dedicated surface").
   - `phase0/drill_receipts/20260827T115307Z_cp_d9_hermeticity_smoke_run1.log` (targeted D-R5 file, 17 passed)
   - `phase0/drill_receipts/20260827T115317Z_cp_d9_hermeticity_smoke_run2.log` (targeted D-R5 file, 17 passed · back-to-back)
   - `phase0/drill_receipts/20260827T115329Z_cp_d9_hermeticity_full_invariants_run1.log` (`passed=2119 / baseline-failures-remaining=0 / quarantined=159 · OK` · 59.23s)
@@ -100,7 +110,7 @@ Update this section at every CP/R-step close.
     - **CP-D2 … CP-D8** — reusable lift CPs. Every close receipt is FULL-DIRECTORY scope invoked as `cd backend && BASELINE_GUARD=1 python -m pytest tests/invariants/`. MUST_BE_LIVE_ROUTES same-commit discipline enforced. Each CP MUST retire ≥15 baseline_failures from the manifest in the same commit AND ratchet passed_floor + counts_at_baseline.passed up in the same commit (owner rulings (d) and (e), 2026-08-27).
 
 - **Wave A/B/C ratified ledger** (Extraction-Akki `programme/track-a` · workspace `master`):
-  - **HEAD (Extraction-Akki)**: `023aa21` (CP-D9 · registry seeder hermeticity fix + double-run proof)
+  - **HEAD (Extraction-Akki)**: `60b8760` (CP-E7 · Wave E CLOSED PENDING RATIFICATION · registry hermeticity + N-series enforcement + Doc14-020 quarantine + A18.6 adoption + audit sweep + PII sanitizer)
   - **HEAD (workspace)**: `3aa1c90`
   - **Wave A**: 4/4 external PASS at close · closed_at prior session.
   - **Wave B**: 4/4 external PASS (final re-verification at `75b7b1e`) · 182/182 green at close.
