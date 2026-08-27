@@ -1,0 +1,354 @@
+{
+  "attempt": "path_1_attempt_2",
+  "families": {
+    "1": {
+      "baseline_failures_remaining": 0,
+      "exit_code": 1,
+      "expected_skip_count": 19,
+      "failed_nodes": [
+        "tests/invariants/test_phase_5_stage_b_async_delivery.py::test_kill_and_restart_recovers_without_state_loss_or_duplicate_ledger_emission",
+        "tests/invariants/test_phase_5_stage_b_async_delivery.py::test_recover_from_accepted_re_enqueues_cleanly",
+        "tests/invariants/test_phase_5_stage_b_async_delivery.py::test_recover_from_running_resets_to_accepted_then_re_enqueues",
+        "tests/invariants/test_phase_5_stage_b_async_delivery.py::test_recover_from_delivered_is_noop_no_re_delivery_webhook",
+        "tests/invariants/test_phase_5_stage_b_async_delivery.py::test_recover_from_refused_is_noop",
+        "tests/invariants/test_phase_5_stage_b_async_delivery.py::test_webhook_retries_bounded_at_five",
+        "tests/invariants/test_phase_5_stage_b_async_delivery.py::test_webhook_undelivered_still_polls_status",
+        "tests/invariants/test_phase_5_stage_b_async_delivery.py::test_retried_post_neither_double_commissions_nor_double_charges",
+        "tests/invariants/test_phase_5_stage_b_async_delivery.py::test_idempotency_key_missing_on_external_request_refuses",
+        "tests/invariants/test_phase_5_stage_b_async_delivery.py::test_cancelled_run_no_partial_egress",
+        "tests/invariants/test_phase_5_stage_b_async_delivery.py::test_cancel_during_outer_gate_transform_no_partial_egress",
+        "tests/invariants/test_phase_5_stage_b_async_delivery.py::test_cancelled_run_is_ledgered",
+        "tests/invariants/test_phase_5_stage_b_async_delivery.py::test_cancel_after_terminal_state_is_noop_returns_terminal_envelope",
+        "tests/invariants/test_phase_5_stage_b_async_delivery.py::test_fresh_fork_at_admission_routes_to_async_pathway",
+        "tests/invariants/test_phase_5_stage_b_async_delivery.py::test_warm_fork_at_admission_uses_sync_pathway_not_async",
+        "tests/invariants/test_phase_5_stage_b_async_delivery.py::test_governance_travels_inline_on_async_response_body",
+        "tests/invariants/test_phase_5_stage_b_async_delivery.py::test_late_refusal_ledgered_with_governed_reason",
+        "tests/invariants/test_phase_5_stage_b_async_delivery.py::test_sandbox_mode_serves_from_fixture_estate",
+        "tests/invariants/test_phase_5_stage_b_async_delivery.py::test_queue_overflow_raises_503_not_refusal"
+      ],
+      "file": "test_phase_5_stage_b_async_delivery.py",
+      "passed": 2169,
+      "quarantined": 140,
+      "receipt": "/app/assessment_workspace/phase0/drill_receipts/20260827T191049Z_wave_f_scope_a_path_1_attempt_2_family_01_test_phase_5_stage_b_async_delivery.log",
+      "skip_type": "partial",
+      "status": "REGRESS_REVERTED",
+      "ts": "20260827T191153Z"
+    },
+    "10": {
+      "baseline_failures_remaining": 0,
+      "exit_code": 1,
+      "expected_skip_count": 3,
+      "failed_nodes": [
+        "tests/invariants/test_feasibility_dual_consumer_schema.py::test_feasibility_single_consumer_schema",
+        "tests/invariants/test_feasibility_dual_consumer_schema.py::test_feasibility_reach_ref_is_deterministic",
+        "tests/invariants/test_feasibility_dual_consumer_schema.py::test_feasibility_snapshot_ref_changes_when_registry_updates"
+      ],
+      "file": "test_feasibility_dual_consumer_schema.py",
+      "passed": 2169,
+      "quarantined": 156,
+      "receipt": "/app/assessment_workspace/phase0/drill_receipts/20260827T192251Z_wave_f_scope_a_path_1_attempt_2_family_10_test_feasibility_dual_consumer_schema.log",
+      "skip_type": "partial",
+      "status": "REGRESS_REVERTED",
+      "ts": "20260827T192354Z"
+    },
+    "11": {
+      "baseline_failures_remaining": 0,
+      "exit_code": 1,
+      "expected_skip_count": 2,
+      "failed_nodes": [
+        "tests/invariants/test_master_admin_tier_lock_path_a_ledger.py::test_tier_lock_commit_emits_ledger_row",
+        "tests/invariants/test_master_admin_tier_lock_path_a_ledger.py::test_tier_lock_commit_idempotent_by_idempotency_key"
+      ],
+      "file": "test_master_admin_tier_lock_path_a_ledger.py",
+      "passed": 2169,
+      "quarantined": 157,
+      "receipt": "/app/assessment_workspace/phase0/drill_receipts/20260827T192251Z_wave_f_scope_a_path_1_attempt_2_family_11_test_master_admin_tier_lock_path_a_ledger.log",
+      "skip_type": "partial",
+      "status": "REGRESS_REVERTED",
+      "ts": "20260827T192458Z"
+    },
+    "12": {
+      "baseline_failures_remaining": 0,
+      "exit_code": 1,
+      "expected_skip_count": 2,
+      "failed_nodes": [
+        "tests/invariants/test_memory_service_m_g1_to_m_g9.py::test_m_g4_mind_context_never_crosses_keys",
+        "tests/invariants/test_memory_service_m_g1_to_m_g9.py::test_m_g8_plane_state_ledger_reconstructible"
+      ],
+      "file": "test_memory_service_m_g1_to_m_g9.py",
+      "passed": 2169,
+      "quarantined": 157,
+      "receipt": "/app/assessment_workspace/phase0/drill_receipts/20260827T192251Z_wave_f_scope_a_path_1_attempt_2_family_12_test_memory_service_m_g1_to_m_g9.log",
+      "skip_type": "partial",
+      "status": "REGRESS_REVERTED",
+      "ts": "20260827T192601Z"
+    },
+    "13": {
+      "baseline_failures_remaining": 0,
+      "exit_code": 1,
+      "expected_skip_count": 1,
+      "failed_nodes": [
+        "tests/invariants/test_8_ext.py::test_ee_g4_approve_flow_emits_onboarding_ledger_and_mints_jwt"
+      ],
+      "file": "test_8_ext.py",
+      "passed": 2169,
+      "quarantined": 158,
+      "receipt": "/app/assessment_workspace/phase0/drill_receipts/20260827T192605Z_wave_f_scope_a_path_1_attempt_2_family_13_test_8_ext.log",
+      "skip_type": "partial",
+      "status": "REGRESS_REVERTED",
+      "ts": "20260827T192708Z"
+    },
+    "14": {
+      "baseline_failures_remaining": 0,
+      "exit_code": 1,
+      "expected_skip_count": 1,
+      "failed_nodes": [
+        "tests/invariants/test_connect_ui1c_gates.py::test_c_b5_ceiling_read_from_single_source_of_truth"
+      ],
+      "file": "test_connect_ui1c_gates.py",
+      "passed": 2169,
+      "quarantined": 158,
+      "receipt": "/app/assessment_workspace/phase0/drill_receipts/20260827T192605Z_wave_f_scope_a_path_1_attempt_2_family_14_test_connect_ui1c_gates.log",
+      "skip_type": "partial",
+      "status": "REGRESS_REVERTED",
+      "ts": "20260827T192812Z"
+    },
+    "15": {
+      "baseline_failures_remaining": 0,
+      "exit_code": 1,
+      "expected_skip_count": 1,
+      "failed_nodes": [
+        "tests/invariants/test_engineer_key_grant_e2_taxonomy.py::test_grant_endpoint_engineer_role_succeeds_or_returns_governance_agnostic_error"
+      ],
+      "file": "test_engineer_key_grant_e2_taxonomy.py",
+      "passed": 2169,
+      "quarantined": 158,
+      "receipt": "/app/assessment_workspace/phase0/drill_receipts/20260827T192605Z_wave_f_scope_a_path_1_attempt_2_family_15_test_engineer_key_grant_e2_taxonomy.log",
+      "skip_type": "partial",
+      "status": "REGRESS_REVERTED",
+      "ts": "20260827T192915Z"
+    },
+    "16": {
+      "baseline_failures_remaining": 0,
+      "exit_code": 1,
+      "expected_skip_count": 1,
+      "failed_nodes": [
+        "tests/invariants/test_master_admin_auth_reconciliation.py::test_seeded_admin_carries_master_admin_role"
+      ],
+      "file": "test_master_admin_auth_reconciliation.py",
+      "passed": 2169,
+      "quarantined": 158,
+      "receipt": "/app/assessment_workspace/phase0/drill_receipts/20260827T192919Z_wave_f_scope_a_path_1_attempt_2_family_16_test_master_admin_auth_reconciliation.log",
+      "skip_type": "partial",
+      "status": "REGRESS_REVERTED",
+      "ts": "20260827T193023Z"
+    },
+    "17": {
+      "baseline_failures_remaining": 0,
+      "exit_code": 1,
+      "expected_skip_count": 1,
+      "failed_nodes": [
+        "tests/invariants/test_memory_engineer_key_grant_e2e_propagation.py::test_m_g_e2e_single_source_users_key_grants_never_read_for_auth"
+      ],
+      "file": "test_memory_engineer_key_grant_e2e_propagation.py",
+      "passed": 2169,
+      "quarantined": 158,
+      "receipt": "/app/assessment_workspace/phase0/drill_receipts/20260827T192919Z_wave_f_scope_a_path_1_attempt_2_family_17_test_memory_engineer_key_grant_e2e_propagation.log",
+      "skip_type": "partial",
+      "status": "REGRESS_REVERTED",
+      "ts": "20260827T193126Z"
+    },
+    "18": {
+      "baseline_failures_remaining": 0,
+      "exit_code": 1,
+      "expected_skip_count": 1,
+      "failed_nodes": [
+        "tests/invariants/test_phase_7_stage_b_1_wizard.py::test_turn_ledger_stamp_audit_sidecar_carries_wizard_transcript_data_class"
+      ],
+      "file": "test_phase_7_stage_b_1_wizard.py",
+      "passed": 2169,
+      "quarantined": 158,
+      "receipt": "/app/assessment_workspace/phase0/drill_receipts/20260827T192919Z_wave_f_scope_a_path_1_attempt_2_family_18_test_phase_7_stage_b_1_wizard.log",
+      "skip_type": "partial",
+      "status": "REGRESS_REVERTED",
+      "ts": "20260827T193229Z"
+    },
+    "19": {
+      "baseline_failures_remaining": 0,
+      "exit_code": 1,
+      "expected_skip_count": 1,
+      "failed_nodes": [
+        "tests/invariants/test_qualified_data_outer_gate_ride.py::test_qualified_data_wire_shape_pins_governance_keys"
+      ],
+      "file": "test_qualified_data_outer_gate_ride.py",
+      "passed": 2169,
+      "quarantined": 158,
+      "receipt": "/app/assessment_workspace/phase0/drill_receipts/20260827T193241Z_wave_f_scope_a_path_1_attempt_2_family_19_test_qualified_data_outer_gate_ride.log",
+      "skip_type": "partial",
+      "status": "REGRESS_REVERTED",
+      "ts": "20260827T193344Z"
+    },
+    "2": {
+      "baseline_failures_remaining": 0,
+      "exit_code": 1,
+      "expected_skip_count": 12,
+      "failed_nodes": [],
+      "file": "test_phase_8_seam_3_sub_stage_1.py",
+      "passed": 2169,
+      "quarantined": 142,
+      "receipt": "/app/assessment_workspace/phase0/drill_receipts/20260827T191049Z_wave_f_scope_a_path_1_attempt_2_family_02_test_phase_8_seam_3_sub_stage_1.log",
+      "skip_type": "partial",
+      "status": "REGRESS_REVERTED",
+      "ts": "20260827T191257Z"
+    },
+    "20": {
+      "baseline_failures_remaining": 0,
+      "exit_code": 1,
+      "expected_skip_count": 26,
+      "failed_nodes": [
+        "tests/invariants/test_baseline_no_new_breakage.py::test_manifest_quarantined_files_carry_file_level_skip"
+      ],
+      "file": "test_phase_8_b_5b.py",
+      "passed": 2168,
+      "quarantined": 133,
+      "receipt": "/app/assessment_workspace/phase0/drill_receipts/20260827T193241Z_wave_f_scope_a_path_1_attempt_2_family_20_test_phase_8_b_5b.log",
+      "skip_type": "q1_legacy",
+      "status": "REGRESS_REVERTED",
+      "ts": "20260827T193448Z"
+    },
+    "21": {
+      "baseline_failures_remaining": 0,
+      "exit_code": 1,
+      "expected_skip_count": 45,
+      "failed_nodes": [
+        "tests/invariants/test_baseline_no_new_breakage.py::test_manifest_quarantined_files_carry_file_level_skip"
+      ],
+      "file": "test_phase_8_seam_3_sub_stage_3.py",
+      "passed": 2168,
+      "quarantined": 114,
+      "receipt": "/app/assessment_workspace/phase0/drill_receipts/20260827T193241Z_wave_f_scope_a_path_1_attempt_2_family_21_test_phase_8_seam_3_sub_stage_3.log",
+      "skip_type": "q1_legacy",
+      "status": "REGRESS_REVERTED",
+      "ts": "20260827T193554Z"
+    },
+    "3": {
+      "baseline_failures_remaining": 0,
+      "exit_code": 1,
+      "expected_skip_count": 10,
+      "failed_nodes": [],
+      "file": "test_phase_8_b_5a_compliance.py",
+      "passed": 2169,
+      "quarantined": 149,
+      "receipt": "/app/assessment_workspace/phase0/drill_receipts/20260827T191049Z_wave_f_scope_a_path_1_attempt_2_family_03_test_phase_8_b_5a_compliance.log",
+      "skip_type": "partial",
+      "status": "REGRESS_REVERTED",
+      "ts": "20260827T191400Z"
+    },
+    "4": {
+      "baseline_failures_remaining": 0,
+      "exit_code": 1,
+      "expected_skip_count": 8,
+      "failed_nodes": [
+        "tests/invariants/test_phase_8_seam_3_sub_stage_2.py::test_c4_rollback_saturated_queue_admit_deletes_and_returns_count[asyncio]"
+      ],
+      "file": "test_phase_8_seam_3_sub_stage_2.py",
+      "passed": 2169,
+      "quarantined": 151,
+      "receipt": "/app/assessment_workspace/phase0/drill_receipts/20260827T191622Z_wave_f_scope_a_path_1_attempt_2_family_04_test_phase_8_seam_3_sub_stage_2.log",
+      "skip_type": "partial",
+      "status": "REGRESS_REVERTED",
+      "ts": "20260827T191726Z"
+    },
+    "5": {
+      "baseline_failures_remaining": 0,
+      "exit_code": 1,
+      "expected_skip_count": 5,
+      "failed_nodes": [
+        "tests/invariants/test_composed_conclusion_dispatch.py::test_composed_conclusion_below_floor_returns_service_1_refusal_v0",
+        "tests/invariants/test_composed_conclusion_dispatch.py::test_composed_conclusion_composition_below_floor_at_fact_floor",
+        "tests/invariants/test_composed_conclusion_dispatch.py::test_composed_conclusion_below_floor_route_serialises_to_service_1_refusal_v0",
+        "tests/invariants/test_composed_conclusion_dispatch.py::test_composed_conclusion_load_bearing_retrievable_by_trace_id",
+        "tests/invariants/test_composed_conclusion_dispatch.py::test_composed_conclusion_live_path_returns_class_inline"
+      ],
+      "file": "test_composed_conclusion_dispatch.py",
+      "passed": 2169,
+      "quarantined": 154,
+      "receipt": "/app/assessment_workspace/phase0/drill_receipts/20260827T191622Z_wave_f_scope_a_path_1_attempt_2_family_05_test_composed_conclusion_dispatch.log",
+      "skip_type": "partial",
+      "status": "REGRESS_REVERTED",
+      "ts": "20260827T191829Z"
+    },
+    "6": {
+      "baseline_failures_remaining": 0,
+      "exit_code": 1,
+      "expected_skip_count": 4,
+      "failed_nodes": [
+        "tests/invariants/test_dispatch_shape_responsive.py::test_dispatch_unknown_freshness_forks_fresh_never_warm",
+        "tests/invariants/test_dispatch_shape_responsive.py::test_dispatch_placeholder_never_leaks_into_governed_refusal",
+        "tests/invariants/test_dispatch_shape_responsive.py::test_positive_external_request_warm_fork_populated_registry",
+        "tests/invariants/test_dispatch_shape_responsive.py::test_positive_external_request_fresh_fork_below_floor"
+      ],
+      "file": "test_dispatch_shape_responsive.py",
+      "passed": 2169,
+      "quarantined": 155,
+      "receipt": "/app/assessment_workspace/phase0/drill_receipts/20260827T191622Z_wave_f_scope_a_path_1_attempt_2_family_06_test_dispatch_shape_responsive.log",
+      "skip_type": "partial",
+      "status": "REGRESS_REVERTED",
+      "ts": "20260827T191932Z"
+    },
+    "7": {
+      "baseline_failures_remaining": 0,
+      "exit_code": 1,
+      "expected_skip_count": 4,
+      "failed_nodes": [
+        "tests/invariants/test_feasibility_honesty_under_absence.py::test_feasibility_uncensused_scope_returns_unknown",
+        "tests/invariants/test_feasibility_honesty_under_absence.py::test_feasibility_censused_scope_returns_real_distribution",
+        "tests/invariants/test_feasibility_honesty_under_absence.py::test_feasibility_stale_region_returns_stale_with_provenance",
+        "tests/invariants/test_feasibility_honesty_under_absence.py::test_feasibility_never_fabricates"
+      ],
+      "file": "test_feasibility_honesty_under_absence.py",
+      "passed": 2169,
+      "quarantined": 155,
+      "receipt": "/app/assessment_workspace/phase0/drill_receipts/20260827T191937Z_wave_f_scope_a_path_1_attempt_2_family_07_test_feasibility_honesty_under_absence.log",
+      "skip_type": "partial",
+      "status": "REGRESS_REVERTED",
+      "ts": "20260827T192040Z"
+    },
+    "8": {
+      "baseline_failures_remaining": 0,
+      "exit_code": 1,
+      "expected_skip_count": 4,
+      "failed_nodes": [
+        "tests/invariants/test_qualified_data_selection.py::test_license_class_selection_filters_registry_reads",
+        "tests/invariants/test_qualified_data_selection.py::test_license_class_absence_below_floor_route",
+        "tests/invariants/test_qualified_data_selection.py::test_qualified_data_standard_hard_input_filter",
+        "tests/invariants/test_qualified_data_selection.py::test_qualified_data_per_claim_provenance_intact"
+      ],
+      "file": "test_qualified_data_selection.py",
+      "passed": 2169,
+      "quarantined": 155,
+      "receipt": "/app/assessment_workspace/phase0/drill_receipts/20260827T191937Z_wave_f_scope_a_path_1_attempt_2_family_08_test_qualified_data_selection.log",
+      "skip_type": "partial",
+      "status": "REGRESS_REVERTED",
+      "ts": "20260827T192143Z"
+    },
+    "9": {
+      "baseline_failures_remaining": 0,
+      "exit_code": 1,
+      "expected_skip_count": 3,
+      "failed_nodes": [
+        "tests/invariants/test_engineer_key_grant_ledger.py::test_engineer_key_grant_issuance_emits_ledger_row",
+        "tests/invariants/test_engineer_key_grant_ledger.py::test_engineer_key_grant_revocation_emits_ledger_row",
+        "tests/invariants/test_engineer_key_grant_ledger.py::test_engineer_key_grant_ledger_idempotent"
+      ],
+      "file": "test_engineer_key_grant_ledger.py",
+      "passed": 2169,
+      "quarantined": 156,
+      "receipt": "/app/assessment_workspace/phase0/drill_receipts/20260827T191937Z_wave_f_scope_a_path_1_attempt_2_family_09_test_engineer_key_grant_ledger.log",
+      "skip_type": "partial",
+      "status": "REGRESS_REVERTED",
+      "ts": "20260827T192247Z"
+    }
+  },
+  "started_at_utc": "20260827T191049Z"
+}

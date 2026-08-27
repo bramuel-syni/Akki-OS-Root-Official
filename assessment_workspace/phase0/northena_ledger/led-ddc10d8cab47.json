@@ -1,0 +1,31 @@
+{
+  "artifact_ref": {
+    "artifact_id": "g6-absorb-test",
+    "artifact_type": "portfolio_mandate",
+    "version": "v0"
+  },
+  "at": "2026-08-27T19:20:00.345357Z",
+  "decision": "refused",
+  "lawful_basis_ref": "dpa-test",
+  "reason": "v2_refused:lawful_basis_absent",
+  "row_id": "led-ddc10d8cab47",
+  "run_id": "run-abs-2",
+  "stage": "gate",
+  "stamp_audit": {
+    "v2_refusal": {
+      "artifact_ref": {
+        "artifact_id": "g6-absorb-test",
+        "artifact_type": "portfolio_mandate",
+        "version": "v0"
+      },
+      "detail": "no lawful_basis attached to file-out request",
+      "lawful_basis_ref": null,
+      "reason_code": "lawful_basis_absent",
+      "refused_at": "2026-08-27T19:20:00.345307+00:00",
+      "run_id": "run-abs-2",
+      "substrate_contract_ref": null,
+      "trace_id": "trace-abs-2"
+    }
+  },
+  "trace_id": "trace-abs-2"
+}

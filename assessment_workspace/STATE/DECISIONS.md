@@ -3458,3 +3458,71 @@ Flat 99-row denominator (reporting instrument · not the W10 CP9 authoritative l
 **Autonomy status unchanged:** WAVE E CLOSED + RATIFIED · HOLDING at ready state. Nothing executes until (a) SSH key path (INTERRUPT-PRIORITY), (b) Wave F GO (three chartered scopes + master-tree cleanup), (c) any new owner ruling.
 
 **SSH interrupt** stands as INTERRUPT-PRIORITY (unchanged).
+
+---
+
+## Wave F · GO · Scope A opened + Finding 1/2 rulings banked · 2026-08-27T19:01:05Z
+
+### Wave F GO ruling (verbatim, 2026-08-27T~18:50Z)
+
+> "Confirmed on all four:
+>
+> 1. YES — resume Wave F Scope A Path 1 exactly where you left off (pytest-asyncio ≥1.5 or newest, changelog evidence, full-directory measure, bounded two attempts). Path 2, then Path 3 if needed. Target quarantine=0; if a residue survives all three paths with receipts, escalate to me with per-file evidence — no new charter.
+>
+> 2. No adjustments — A→B→C→Cleanup/Close as ordered. Closing-standard bar unchanged: two consecutive identical green receipts per close, plus MY external third run at the WAVE close (that third run is mine, not yours — you deliver the double, I ratify).
+>
+> 3. Re-read before touching code (your compaction discipline anyway): last 200 lines STATE/DECISIONS.md + full STATE/NEXT.md + notes/waveF_retirement_charter.md — the charter carries all three scope specs including the Scope B 4-item checklist (Doc18-006 weight decided from the recompute tool's own class definitions, decision stated) and Scope C's dependency order with the two OWNER-PENDING items (RTO seconds, DigiCow booleans — both still unanswered; do not invent).
+>
+> 4. YES — verify tree state first (both branches clean at ratified HEADs `60b8760` / `2e42c7d`+, receipts present, quarantine list matches the 19-file charter) before any code. Any drift = halt-and-report per standing rule.
+>
+> INTERRUPT rule correct, one amendment already ruled: the sequence includes CUDA/PyTorch VERIFY-ONLY (owner confirmed installed) and the EP-4 precondition check before the first governed run. Proceed."
+
+### Grounding verification ledger (executed pre-code)
+
+| # | Item | Actual | Verdict |
+|---|---|---|---|
+| 1 | Ratified HEAD Extraction-Akki `programme/track-a` | `60b87605db2b878aa9659c3af2e593e8779a228e` = "W11 E · CP-E7 · DigiCow PII sanitizer sweep" | PASS |
+| 2 | Ratified HEAD workspace `master` | `2e42c7d` = "STATE mirror + Wave F charter · WAVE E RATIFIED · Scope C compliance residue registered" | PASS |
+| 3 | Baseline manifest state | `passed=2169 / failed=0 / skipped=160 / quarantined_d1a1=159 / baseline_failures=0` | PASS |
+| 4 | Charter quarantine list | 21 chartered files present (19 partial-skip · row-by-row skip-marker counts match charter §Scope table exactly; +2 Q1 legacy full-skip files) | PASS |
+| 5 | Grounding docs re-read | DECISIONS tail + NEXT full + waveF_retirement_charter full re-read pre-code per anti-compaction | PASS |
+| 6 | Scope A/B/C ordering + Scope C 7-item table | Present verbatim in charter §Scope-C-compliance-residue with named blockers + measurement instructions | PASS |
+
+### Finding 1 · misnamed orphan drill log · owner ruling (verbatim, 2026-08-27T~19:00Z)
+
+> "FINDING 1 → modified (b): do NOT delete, do NOT leave the lie in place. The truth hazard is the MISNAMED filename (claims green, content is red) sitting in the receipts directory through two ratifications. Action now, docs-only: rename/move it to `phase0/drill_receipts/orphaned/20260826T110626Z_w11b_close_full_invariants_RED_misnamed_orphan.log` (content untouched — it's evidence), and record in DECISIONS.md: orphan from an interrupted pre-Wave-D W11 session, misnamed green-while-red, quarantined by rename, no reachable commit references it. No reflog walk needed — the content and date tell the story, and deeper provenance isn't load-bearing for any scope. The Wave-F cleanup phase sweeps the orphaned/ directory into its final classification."
+
+**Action landed (docs-only, no programme/track-a code touched):**
+- Rename: `repos/Extraction-Akki/phase0/drill_receipts/20260826T110626Z_w11b_close_full_invariants_green.log` → `repos/Extraction-Akki/phase0/drill_receipts/orphaned/20260826T110626Z_w11b_close_full_invariants_RED_misnamed_orphan.log`
+- Content byte-preserved: SHA-256 = `d44455216eee9fa684c1ef1f4e63114f0035396d36c2323fc336521bfed99100` (identical pre/post rename) · 8437 bytes · mtime preserved.
+- Not committed on `programme/track-a` (file was never tracked; rename left it untracked at the new path — only untracked entry is now `?? phase0/drill_receipts/orphaned/`).
+- Classification: pre-Wave-D W11 session orphan · content `1 failed, 176 passed in 1.24s` (failing test: `test_record_arm_measurements_flow_owner_ruling_adopts` · `ResponseValidationError: Input should be a valid dictionary` from FastAPI response validation) · file dated 2026-08-26 predates Wave D ratification 2026-08-27T12:00Z · no reachable commit references it · Wave F cleanup phase sweeps `orphaned/` into final classification.
+
+### Finding 2 · Path-1 attempt plan · owner ruling (verbatim, 2026-08-27T~19:00Z)
+
+> "FINDING 2 → (a) CONFIRMED, with your Attempt 1/Attempt 2 structure exactly as proposed. Your reasoning is sound: no 1.5.x exists, and the CP-D5 1.4.0 regression was measured on a materially different codebase — re-measuring on the 2169 baseline WITH skips in place first is the right no-risk probe. Two amendments: (i) if Attempt 1 is clean, un-quarantine in FAMILY order (charter rows), measuring after each family rather than all-at-once — if a family regresses, you know which one without bisecting; (ii) bank the 1.4.0 changelog excerpts you quoted into the receipt — they're the evidence trail for whichever way it goes. If Path 1 exhausts, Path 2 (fixture refactor — and note the changelog's new loop-factories hook may be the Path-2 lever) then Path 3."
+
+### Path-1 attempt plan (ratified · executes on this commit)
+
+- **Attempt 1**: install `pytest-asyncio==1.4.0` (latest published · `1.5.x` does not exist on PyPI · verified via `pip index versions pytest-asyncio`) with all 21 chartered skips in place · run BASELINE_GUARD=1 full-directory measure · purpose: prove no regression on the current 2169 green tests before touching skips. Bank receipt with 1.4.0 changelog excerpts as evidence trail.
+- **Amendment (i) · family-ordered un-quarantine**: if Attempt 1 clean, un-quarantine in charter row order (row 1 `test_phase_5_stage_b_async_delivery.py` first → row 2 `test_phase_8_seam_3_sub_stage_1.py` → row 3 ... → row 19; then Q1 legacy row A `test_phase_8_b_5b.py` → Q1 legacy row B `test_phase_8_seam_3_sub_stage_3.py`), measuring after each family removal — if a family regresses, attribution is immediate without bisection.
+- **Amendment (ii) · changelog evidence in every receipt**: 1.4.0 changelog excerpts (below) get inline-quoted at the head of every Attempt-N receipt log for durable evidence trail.
+- **Path exhaustion escalation ladder**: Path 1 exhausted → Path 2 (fixture refactor · the `pytest_asyncio_loop_factories` hook is a candidate lever per changelog) → Path 3 (per-file loop-scope override). If all three fail with receipts, escalate per-file evidence to owner — no new charter (owner ruling verbatim: "if a residue survives all three paths with receipts, escalate to me with per-file evidence — no new charter").
+
+### pytest-asyncio 1.4.0 changelog evidence (fetched 2026-08-27T~18:40Z from `pytest-asyncio.readthedocs.io/en/v1.4.0/reference/changelog.html`)
+
+Direct-match items to the `RuntimeError: Event loop is closed` teardown-leak class chartered under Scope A:
+
+- **`loop.shutdown_asyncgens` now called before closing the event loop** — async-generator cleanup consistent with `asyncio.run` behavior.
+- **Internal changes to prevent errors during the cleanup of async generators if the event loop has already been closed.** ← direct match for our failure class.
+- **Explicit cleanup of stale event loops during setup/teardown of the `event_loop` fixture.** ← teardown-leak class fix.
+- **New `pytest_asyncio_loop_factories` hook** (deprecates `event_loop_policy` fixture) — synchronous `@pytest_asyncio.fixture` functions correctly identify the event loop even when test code disrupts the current loop via `asyncio.run` / `asyncio.set_event_loop(None)`. **Candidate Path-2 lever** if Path 1 exhausts.
+- **Fix for `ResourceWarning: unclosed event loop`** when synchronous test calls `asyncio.run` or otherwise manually unsets the event loop after the plugin has executed an async test or fixture.
+
+Prior CP-D5 measurement of 1.4.0 (recorded verbatim under charter §Root cause): "1.4.0 REGRESSES 151 tests (measured CP-D5)". That measurement predates CP-D6 hermeticity fixes + CP-D7/D8 UI mass + CP-D9 seeder-fixture idempotency + Wave E N-series/A18.6/CA1-sweep/PII-sanitizer landings — the current codebase is materially different (`passed_floor` moved 1830 → 2169), justifying the re-measure.
+
+### Autonomy status
+
+**Standing HOLD LIFTS for Wave F Scope A on this docs-only commit.** Next code touch: install `pytest-asyncio==1.4.0`, update `backend/requirements.txt` in the SAME commit (Attempt 1 discipline), run full-directory BASELINE_GUARD=1 with skips in place.
+
+**SSH interrupt** stands as INTERRUPT-PRIORITY (unchanged) · amendment ruled includes CUDA/PyTorch VERIFY-ONLY (owner confirmed installed) + EP-4 precondition check before first governed run.
