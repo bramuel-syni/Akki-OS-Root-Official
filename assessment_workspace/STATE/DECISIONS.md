@@ -4456,3 +4456,59 @@ Right-reason RED first (fidelity gates assert absence of overlays + bans on bann
 
 **Position:** HOLD for owner re-eyeball on live preview URL `https://akki-reuse-assess.preview.emergentagent.com/`. Gate order: automated GREEN (done ×3), owner eyeball is the final gate. If ACCEPT: G3 ratifies, resume the parked Reuse Audit (Cat 6-8) per the pre-G-parked ledger. If REJECT: bank the residue as a new right-reason RED under the same file and iterate. SSH interrupt priority unchanged.
 
+
+---
+
+## 2026-08-28T~11:45Z · Wave G3 REJECTED · Wave G4 opens · owner verdict verbatim + rulings
+
+**Owner verbatim (rejection of Wave G3):**
+
+> *"A. Dummy data still the same - see screen shot. B. Legacy screens should be retired as all components built should naturally fit this front end without dumping old screens that create confusion. On the topline statistics, i need practical data points that speak to everyday users using the system."*
+
+**Screenshot evidence (Registry surface inside the prototype, root preview URL):** the census line DID substitute (`"No census has been run yet"` renders — proof the bridge fires), but slot #1 did NOT — `"RMS AI holds 86.4 TB across 12 sources — 78% measured, with 6 opportunities standing ready."` still renders verbatim, and the ENTIRE stat grid is untouched dummy data: HELD IN TOTAL 86.4 TB · SOURCES CONNECTED 12 · SHARE MEASURED 78% · DATA TYPES PRESENT 5 · LANGUAGES OBSERVED 7 · SHARE ALREADY VERIFIED 34% · SHARE CARRYING PII 41% · LICENSED FOR EXTERNAL USE 18% · NOT YET MEASURED 22% · REDUCED TO REUSABLE MEMORY 58%.
+
+**Root-cause confirmed by direct inspection of the byte-identical prototype:**
+
+1. **Slot #1 fragmented across FIVE inline spans** — the sentence lives inside a single `<div style="font-family:var(--head);font-size:24px;…">` but wraps *"86.4 TB"*, *"12 sources"*, *"78% measured"* each in a `<span style="border-bottom:1px solid rgba(27,31,39,.25);">` and *"6 opportunities"* in a `<span style="color:var(--oxblood);">`. The TreeWalker `SHOW_TEXT` iterator visits ~9 separate text nodes (`"RMS AI holds "`, `"86.4 TB"`, `" across "`, `"12 sources"`, `" — "`, `"78% measured"`, `", with "`, `"6 opportunities"`, `" standing ready."`). Slot #1's Wave G3 regex `/^\s*RMS AI holds .* opportunities standing ready\.\s*$/` matched none of them because none contains the full sentence. Slot #2 fired because the census sentence lives in one text node before its trailing `<span>How the estate is measured</span>`.
+2. **All 10 topline tiles are generated dynamically by the dc-runtime JS** (embedded in the prototype at char 1196273 as `measureCards: [{label:'Held in total', value:'86.4 TB', note:'across 12 connected sources'}, {label:'Sources connected', value:'12', note:'each recorded at connection'}, …]`). They mount AFTER Registry navigation, so a one-shot post-load substitution never sees them. The bridge's MutationObserver *should* have re-fired on mount, but the bridge did not target these tiles at all (Wave G3 map had 2 rulings; the tiles were EXTENSION-PENDING-OWNER-EYEBALL).
+
+**Three owner corrections (verbatim, binding for Wave G4):**
+
+### CORRECTION 1 (verbatim)
+
+> *"Root-cause why slot #1 didn't fire while slot #2 did. Likely causes to check: (a) signature mismatch (the sentence contains styled inline spans/underlines, so it is NOT a single text node — your TreeWalker exact-string match can't see it); (b) the prototype's dc-scripts re-render the Registry surface on navigation, overwriting one-shot substitutions. Fix must handle both: match across fragmented text nodes (or normalize per-element textContent) AND re-apply on prototype navigation/DOM mutation (MutationObserver on the iframe contentDocument, idempotent re-application). Substitution must survive navigating portal → Registry → back → Registry."*
+
+### CORRECTION 2 (verbatim)
+
+> *"Scope expansion, ruled by owner: EVERY topline statistic tile on the Registry surface (all ten listed above) gets the treatment. New presentation rule (bank it): topline statistics must be PRACTICAL data points that speak to everyday users of the system. Translate to what a user actually cares about, in plain language, from live data. From /api/registry/facts you can honestly derive things like: sources connected (real count), tables available (125), records held (ussd_users 2,285,264 · ussd_question_response 903,293 · sms_log 255,867 → total records in plain form like "3.4M records"), link/sync health in plain words ("Connected · syncing"), region in plain words if user-relevant. For tiles with NO honest live counterpart (share measured %, verified %, PII share %, licensed %, reusable memory %) render honest-empty in the prototype's own copy style ("Not yet measured" / "—") — never leave dummy figures, never invent. Keep the tile grid layout untouched — values and captions substituted in place only. Produce the updated per-tile substitution table in the close report."*
+
+### CORRECTION 3 (verbatim)
+
+> *"Retire legacy deep-link screens, ruled by owner. Remove the old pod component routes (/registry, /audit-trail, etc.) from the runtime App.js — the V8 front end is now the ONLY product surface. Any hit on a legacy route should land the user back on the V8 portal (redirect to /). Do NOT delete the component source files from the repo (they are donor material for wiring real data into V8 surfaces later) — retire them from routing/shipping only. This also resolves your Flag B (engineering vocab on deep-links) by elimination: with routes retired, assert in tests that no legacy route renders and the banned-vocab ban holds on everything reachable. Bank the retirement decision + rationale in DECISIONS.md."*
+
+### RETIREMENT DECISION + RATIONALE (banked per CORRECTION 3)
+
+**Decision:** The V8 prototype (served at `/v8_prototype.html` and hosted inside `<PortalIframe/>`) becomes the ONLY user-facing product surface. All 15 previously-routed pod component surfaces are retired from `App.js` routing at Wave G4. The component `.jsx` source files at `pod_shell/frontend/src/components/*.jsx` are RETAINED (not deleted) — they remain in the repo as donor material to wire real data into equivalent V8 surfaces in later waves.
+
+**Rationale:**
+- The V8 prototype is a complete, unified surface. Continuing to expose parallel pod component routes creates the "dumping old screens that create confusion" failure the owner explicitly named.
+- Removing the imports from `App.js` causes CRA/webpack tree-shaking to drop the component modules from the shipped bundle. This resolves the Flag B banned-vocabulary-in-bundle finding from Wave G3 by elimination (`SSH key`, `Wave F Cleanup`, `CA1-001`, `/api/audit_trail`, etc. no longer reach the client).
+- Retaining the source files preserves the wiring blueprints (props, hooks, endpoint calls) that future waves will translate into V8 substitutions. Deletion would be irreversible and destroy that blueprint set.
+
+**Retired routes (15) → catch-all lands on portal:**
+`/registry`, `/shield`, `/thinklab`, `/thinklab/:mode`, `/chat`, `/cost-ledger`, `/models`, `/governance`, `/watch`, `/grey-mirror`, `/audit-trail`, `/training`, `/skill-files`, `/evidence-register`, `/commission`. All non-root paths render `<PortalIframe/>` (single-surface product rule).
+
+**Visual-proof requirement (verbatim from owner):**
+
+> *"VISUAL PROOF REQUIREMENT this time: before reporting HOLD-for-eyeball, verify end-to-end yourself that the substitutions actually render — e.g., fetch the page and confirm via the bridge's own logic, or add a substitution-applied marker you can assert from the outside (without violating the no-engineering-vocab rule — use an invisible data attribute on the iframe host element in the OUTER document, not inside the prototype). Do not report ready-for-eyeball unless you have positive evidence the dummy strings no longer render on the Registry surface after navigation."*
+
+**Constraints unchanged:**
+- `v8_prototype.html` stays byte-identical (sha256 `e56871d01a99c2f3aa173c9b0a0f09e983c9f0e54ba3e61795ac8cb8575f98f2`).
+- Interpretation remains BANNED.
+- Substitutions are runtime-only inside `iframe.contentDocument`.
+- Ratchet floor monotonic-up from Wave G3's 2488.
+- Local commits only, no pushes.
+- SSH interrupt priority unchanged.
+
+**Right-reason RED first (Section 11 fidelity gates on the new mechanism), then double-green exact-match close at ratcheted floor.** Wave G3 ratification is SUPERSEDED by this REJECT + Wave G4 correction cycle; the corrected wave close file is `notes/waveG3_close_report_addendum.md` extended with a §Wave G4 section.
+

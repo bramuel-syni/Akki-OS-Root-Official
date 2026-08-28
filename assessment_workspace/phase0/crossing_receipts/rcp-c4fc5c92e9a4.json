@@ -1,0 +1,14 @@
+{
+  "actor": "alice_customer",
+  "at_iso": "2026-08-28T12:05:03.573755Z",
+  "endpoint_host": "erasure.internal",
+  "kind": "n3_erasure_operation",
+  "masking_tier": "attested_command",
+  "payload_shape": {
+    "request_id": "er_2026_08_27_test1"
+  },
+  "receipt_id": "rcp-c4fc5c92e9a4",
+  "residency_region": "in_process",
+  "tenant_id": "estate",
+  "verb": "ERASE"
+}
