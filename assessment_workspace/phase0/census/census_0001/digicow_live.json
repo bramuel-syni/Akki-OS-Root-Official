@@ -1,0 +1,6560 @@
+{
+  "database": "digicow_live",
+  "tables": [
+    {
+      "table": "admins",
+      "row_count": 1,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "email",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "password",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "remember_token",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "adoption",
+      "row_count": 52,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "farmer_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "trainer_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "upload_date",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "image_one",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "image_two",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "value_chain",
+          "type": "varchar",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "adoption_data",
+      "row_count": 317,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "adoption_date",
+          "type": "date",
+          "null_count": 0
+        },
+        {
+          "name": "trainer_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "county",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "brand",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "category",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "product",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "UoM",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "quantity",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "actual_sales",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "orders",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "amount",
+          "type": "decimal",
+          "null_count": 0
+        },
+        {
+          "name": "adoption_status",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "farmer_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "android_metadata",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "locale",
+          "type": "text",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "auth_group",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "name",
+          "type": "varchar",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "auth_group_permissions",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "group_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "permission_id",
+          "type": "int",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "auth_permission",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "content_type_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "codename",
+          "type": "varchar",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "auth_user",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "password",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "last_login",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "is_superuser",
+          "type": "tinyint",
+          "null_count": 0
+        },
+        {
+          "name": "username",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "first_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "last_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "email",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "is_staff",
+          "type": "tinyint",
+          "null_count": 0
+        },
+        {
+          "name": "is_active",
+          "type": "tinyint",
+          "null_count": 0
+        },
+        {
+          "name": "date_joined",
+          "type": "datetime",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "auth_user_groups",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "user_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "group_id",
+          "type": "int",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "auth_user_user_permissions",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "user_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "permission_id",
+          "type": "int",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "banner",
+      "row_count": 28,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "link",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "image",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "clicks",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "status",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "datetime",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "breeding",
+      "row_count": 43,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "breeding_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "mobile_number",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "cow_id",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "bull_name",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "bull_code",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "cost",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "date_recorded",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "expected_date_of_birth",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "expected_repeat_date",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "sync_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "repeats",
+          "type": "tinyint",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "calf",
+      "row_count": 45,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "calf_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "mobile_number",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "date_of_birth",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "sex",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "calf_name",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "ear_code",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "calf_weight",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "sire",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "sire_id",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "sire_code",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "sire_father",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "sire_father_code",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "sire_mother",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "sire_mother_code",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "dam",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "dam_code",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "dam_father",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "dam_father_code",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "dam_mother",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "dam_mother_code",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "sync_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "breed_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "dam_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "status",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "expected_mature_date",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "calf_milk",
+      "row_count": 19,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "calf_milk_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "calf_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "mobile_number",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "time_selected",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "date_recorded",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "status",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "sync_at",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "milk_quantity",
+          "type": "double",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "calving",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "calving_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "mobile_number",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "breeding_id",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "calf_name",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "date_of_birth",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "sex",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "ear_code",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "calf_weight",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "expected_mature_date",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "sync_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "ci_migrations",
+      "row_count": 1,
+      "columns": [
+        {
+          "name": "version",
+          "type": "bigint",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "client",
+      "row_count": 42,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "client_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "mobile_number",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "client_name",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "client_mobile_number",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "location",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "sync_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "status",
+          "type": "varchar",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "clints_sms",
+      "row_count": 256,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "company_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "sms_title",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "sms_detail",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "sms_status",
+          "type": "tinyint",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "datetime",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "company",
+      "row_count": 362,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "company_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "county_id",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "sub_county_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "ward_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "user_type",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "user_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "contact_person",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "mobile_number",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "pin",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "otp",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "token",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "password",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "email",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "rapidvet_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "role",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "password_encrypted",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "status",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "permission",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "allowed_menu",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "user_type_id",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "image_url",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "sms_status",
+          "type": "tinyint",
+          "null_count": 0
+        },
+        {
+          "name": "is_ussd_code",
+          "type": "tinyint",
+          "null_count": 0
+        },
+        {
+          "name": "delivery_option",
+          "type": "tinyint",
+          "null_count": 0
+        },
+        {
+          "name": "login_time",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "logout_time",
+          "type": "datetime",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "company_admin_client",
+      "row_count": 95,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "admin_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "client_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "rapidvet_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "datetime",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "company_county",
+      "row_count": 1267,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "admin_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "county",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "subcounty",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "ward",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "datetime",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "consumer_type",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "consumer_type_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "sync_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "cooperative",
+      "row_count": 5,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "county_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "contact_person",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "mobile_number",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "status",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "datetime",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "cooperative_farmer",
+      "row_count": 2,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "cooperative_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "user_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "datetime",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "county",
+      "row_count": 45,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "name",
+          "type": "varchar",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "cow_breeds",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "breed_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "breed_title",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "sync_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "cow_groups",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "group_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "group_title",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "sync_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "cows",
+      "row_count": 980,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "cow_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "breed_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "group_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "mobile_number",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "cow_name",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "ear_code",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "date_of_birth",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "calving_lactation",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "sire",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "sire_code",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "sire_father",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "sire_father_code",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "sire_mother",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "sire_mother_code",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "dam",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "dam_code",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "dam_father",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "dam_father_code",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "dam_mother",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "dam_mother_code",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "status",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "sync_at",
+          "type": "text",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "cron_log",
+      "row_count": 885,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "cron_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "cron_datetime",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "cron_ip",
+          "type": "varchar",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "dashboard_client",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "client_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "columns",
+          "type": "json",
+          "null_count": 0
+        },
+        {
+          "name": "charts",
+          "type": "json",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "dashboard_clientchartselection",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "chart_key",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "label",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "client_id",
+          "type": "int",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "dashboard_clientdashboard",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "description",
+          "type": "longtext",
+          "null_count": 0
+        },
+        {
+          "name": "client_id",
+          "type": "int",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "dashboard_clientsetup",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "client_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "table_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "column_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "column_alias",
+          "type": "varchar",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "dashboard_dashboardcategory",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "target",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "tracking_type",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "dashboard_id",
+          "type": "bigint",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "dashboard_dashboardtopic",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "target",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "tracking_type",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "category_id",
+          "type": "bigint",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "dashboard_logo",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "image",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "uploaded_at",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "client_id",
+          "type": "int",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "dashboard_milestonetarget",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "milestone",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "target",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "tracking_type",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "client_id",
+          "type": "int",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "dashboard_userprofile",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "cooperative",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "activation_token",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "activation_token_expires_at",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "can_view_all_clients",
+          "type": "tinyint",
+          "null_count": 0
+        },
+        {
+          "name": "client_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "user_id",
+          "type": "int",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "dead_cow",
+      "row_count": 8,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "dead_cow_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "mobile_number",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "cow_name",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "death_date",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "cause_of_death",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "carcass_amount",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "sync_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "delete_log",
+      "row_count": 4162,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "reference_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "table_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "record_json",
+          "type": "json",
+          "null_count": 0
+        },
+        {
+          "name": "delete_from",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "deleted_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "deleted_by",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "deleted_type",
+          "type": "varchar",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "django_admin_log",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "action_time",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "object_id",
+          "type": "longtext",
+          "null_count": 0
+        },
+        {
+          "name": "object_repr",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "action_flag",
+          "type": "smallint",
+          "null_count": 0
+        },
+        {
+          "name": "change_message",
+          "type": "longtext",
+          "null_count": 0
+        },
+        {
+          "name": "content_type_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "user_id",
+          "type": "int",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "django_content_type",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "app_label",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "model",
+          "type": "varchar",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "django_migrations",
+      "row_count": 24,
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "app",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "applied",
+          "type": "datetime",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "expert",
+      "row_count": 18,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "type",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "cooperative_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "expert_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "mobile_number",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "pin",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "photo",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "qualification",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "experience",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "school_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "latitude",
+          "type": "double",
+          "null_count": 0
+        },
+        {
+          "name": "longitude",
+          "type": "double",
+          "null_count": 0
+        },
+        {
+          "name": "status",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "datetime",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "expert_expertise",
+      "row_count": 59,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "expert_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "expertise_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "expertise_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "datetime",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "expertise",
+      "row_count": 41,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "expertise_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "priority",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "status",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "datetime",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "farmer_adoption",
+      "row_count": 42,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "ugt_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "ussd_user_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "payment_mode",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "total_amount",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "adoption_image",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "adoption_status",
+          "type": "tinyint",
+          "null_count": 0
+        },
+        {
+          "name": "adoption_commnet",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "adoption_action_datetime",
+          "type": "datetime",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "farmer_adoption_details",
+      "row_count": 53,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "farmer_adoption_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "product",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "sku",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "quantity",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "amount",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "farmer_cooperative",
+      "row_count": 357,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "serial_number",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "farmer_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "phone_number",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "route",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "cooperative_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "feeding",
+      "row_count": 14,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "feeding_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "mobile_number",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "feeding_type",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "feeding_category",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "feed",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "date_recorded",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "units",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "cost",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "total",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "sync_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "feeding_quantity",
+          "type": "double",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "group_post_view",
+      "row_count": 4759,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "post_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "mobile_number",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "address",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "datetime",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "health",
+      "row_count": 41,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "health_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "mobile_number",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "cow_name",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "treatment",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "treatment_date",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "health_category",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "diagnosis",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "cost",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "sync_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "home_consumption",
+      "row_count": 9,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "home_consumption_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "mobile_number",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "milk_price",
+          "type": "double",
+          "null_count": 0
+        },
+        {
+          "name": "time_selected",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "status",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "date_recorded",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "sync_at",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "milk_quantity",
+          "type": "double",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "installation",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "installation_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "status",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "sync_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "kopokopo_mpesa",
+      "row_count": 65,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "account_number",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "amount",
+          "type": "double",
+          "null_count": 0
+        },
+        {
+          "name": "business_number",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "currency",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "first_name",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "last_name",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "middle_name",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "sender_phone",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "service_name",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "signature",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "transaction_reference",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "transaction_type",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "internal_transaction_id",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "sync_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "status",
+          "type": "tinyint",
+          "null_count": 0
+        },
+        {
+          "name": "picked",
+          "type": "tinyint",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "menu_links",
+      "row_count": 7,
+      "columns": [
+        {
+          "name": "menu_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "menu_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "menu_link",
+          "type": "varchar",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "menus",
+      "row_count": 25,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "name",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "link",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "list_order",
+          "type": "int",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "migrations",
+      "row_count": 53,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "migration",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "batch",
+          "type": "int",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "milk_payments",
+      "row_count": 13,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "milk_payment_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "mobile_number",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "consumer_id",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "consumer_type_id",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "paid",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "balance",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "milk_payment_date",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "sync_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "milk_production",
+      "row_count": 2354,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "milking_production_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "milking_time_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "mobile_number",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "cow_name",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "quantity",
+          "type": "double",
+          "null_count": 0
+        },
+        {
+          "name": "milking_date",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "sync_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "milk_quantity",
+          "type": "double",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "milk_sales",
+      "row_count": 59,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "milk_sales_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "mobile_number",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "consumer_id",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "consumer_type_id",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "milk_price",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "milk_time",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "income",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "milk_sales_date",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "sync_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "milk_quantity",
+          "type": "double",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "milking_time",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "milking_time_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "milking_time",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "sync_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "other_expenses",
+      "row_count": 21,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "other_expenses_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "mobile_number",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "name",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "other_expenses_date",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "amount",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "sync_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "other_incomes",
+      "row_count": 6,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "other_incomes_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "mobile_number",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "name",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "other_incomes_date",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "amount",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "sync_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "packages",
+      "row_count": 5,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "package_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "cows_desc",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "price",
+          "type": "double",
+          "null_count": 0
+        },
+        {
+          "name": "monthly",
+          "type": "tinyint",
+          "null_count": 0
+        },
+        {
+          "name": "period_desc",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "update_at",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "status",
+          "type": "varchar",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "parent_services",
+      "row_count": 1,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "title",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "post_cooperative",
+      "row_count": 6,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "post_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "cooperative_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "post_gallery",
+      "row_count": 1018,
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "post_id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "photo",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "type",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "datetime",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "post_gallery_view",
+      "row_count": 117384,
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "post_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "post_gallery_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "mobile_number",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "datetime",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "post_likes",
+      "row_count": 27486,
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "post_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "mobile_number",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "datetime",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "post_location",
+      "row_count": 4731,
+      "columns": [
+        {
+          "name": "pl_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "post_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "type",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "location_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "allow_duplicate",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "start_date",
+          "type": "date",
+          "null_count": 0
+        },
+        {
+          "name": "end_date",
+          "type": "date",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "post_locationt_log",
+      "row_count": 1775,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "post_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "training_type",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "location_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "from_date",
+          "type": "date",
+          "null_count": 0
+        },
+        {
+          "name": "to_date",
+          "type": "date",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "post_training",
+      "row_count": 1555,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "company_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "expertise_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "title",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "content",
+          "type": "longtext",
+          "null_count": 0
+        },
+        {
+          "name": "location",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "start_date",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "end_date",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "likes",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "total_group_trainers",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "training_type",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "manual_trainee_threshold",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "is_active",
+          "type": "tinyint",
+          "null_count": 0
+        },
+        {
+          "name": "reason",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "coop_question",
+          "type": "tinyint",
+          "null_count": 0
+        },
+        {
+          "name": "allow_duplicate",
+          "type": "tinyint",
+          "null_count": 0
+        },
+        {
+          "name": "parent_training_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "target_amount",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "milestone",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "target",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "category_id",
+          "type": "int",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "post_view",
+      "row_count": 293777,
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "post_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "user_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "mobile_number",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "latitude",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "longitude",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "address",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "state",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "type",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "datetime",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "products",
+      "row_count": 1,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "company_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "product_code",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "product_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "company_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "product",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "qa_admin",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "mobile_number",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "password",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "datetime",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "qa_payment_amount",
+      "row_count": 2,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "user_type",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "amount",
+          "type": "varchar",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "rc_target",
+      "row_count": 19,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "rc_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "company_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "general_target",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "county",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "county_target",
+          "type": "int",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "registered_product",
+      "row_count": 8,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "product_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "phone_number",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "company_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "registered_service",
+      "row_count": 1342,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "phone_number",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "service_type",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "service_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "status",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "company_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "comment",
+          "type": "text",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "salary",
+      "row_count": 31,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "salary_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "mobile_number",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "staff_id",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "amount",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "salary_date",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "sync_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "sales",
+      "row_count": 16,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "sale_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "mobile_number",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "cow_name",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "sell_date",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "buyer_name",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "amount",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "sync_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "services",
+      "row_count": 4,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "parent_service_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "company_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "is_active",
+          "type": "tinyint",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "sessions",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "id",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "user_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "ip_address",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "user_agent",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "payload",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "last_activity",
+          "type": "int",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "shortcode_questions_response",
+      "row_count": 400373,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "post_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "training_code_id",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "training_code",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "question_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "question",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "farmer_mobile_no",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "farmer_answer",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "sms_status",
+          "type": "tinyint",
+          "null_count": 0
+        },
+        {
+          "name": "reply_datetime",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "is_first_question",
+          "type": "tinyint",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "user_id",
+          "type": "int",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "shortcode_response",
+      "row_count": 41018,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "response_data",
+          "type": "longtext",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "single_training_post_view",
+      "row_count": 75166,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "post_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "phone_number",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "latitude",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "longitude",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "address",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "city",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "state",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "post_county",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "post_sub_county",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "post_ward",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "date_created",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "api_time",
+          "type": "varchar",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "sms_contact",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "contact_no",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "datetime",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "sms_county",
+      "row_count": 239,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "sms_id",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "county",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "date",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "company_id",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "sms_title",
+          "type": "mediumtext",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "sms_exception_table",
+      "row_count": 23070,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "breeding_json",
+          "type": "json",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "record_type",
+          "type": "varchar",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "sms_log",
+      "row_count": 255867,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "county_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "subcounty",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "ward",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "farmer_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "phone_number",
+          "type": "mediumtext",
+          "null_count": 0
+        },
+        {
+          "name": "sms_sent",
+          "type": "longtext",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "date",
+          "null_count": 0
+        },
+        {
+          "name": "sms_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "clints_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "sms_title",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "created_on_dt",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "breeding_id",
+          "type": "int",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "spoilt_milk",
+      "row_count": 2,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "spoilt_milk_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "mobile_number",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "milk_price",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "date_recorded",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "sync_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "milk_quantity",
+          "type": "double",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "staff",
+      "row_count": 31,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "staff_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "mobile_number",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "staff_name",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "staff_contact_number",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "id_number",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "location",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "sync_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "status",
+          "type": "varchar",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "sub_county",
+      "row_count": 277,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "county_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "county_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "name",
+          "type": "varchar",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "sub_menus",
+      "row_count": 107,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "menu_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "name",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "link",
+          "type": "text",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "subcounty_profiles",
+      "row_count": 1,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "company_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "kvb_number",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "station",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "datetime",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "tbl_school_data",
+      "row_count": 31755,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "latitude",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "longitude",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "county",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "subcounty",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "ward",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "status",
+          "type": "int",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "training_category",
+      "row_count": 2,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "category_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "datetime",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "training_payment_flag",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "payment_flag",
+          "type": "int",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "training_questions",
+      "row_count": 186,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "question",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "answer",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "training_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "trainee_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "submitted_on",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "submitted_by",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "answered_on",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "answered_by",
+          "type": "int",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "user_details",
+      "row_count": 172,
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "user_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "year_of_birth",
+          "type": "date",
+          "null_count": 0
+        },
+        {
+          "name": "academic_certificate",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "referral_document",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "vet_agreement_document",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "vet_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "vet_phone_number",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "vet_kvb_number",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "vet_kvb_card_document",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "cooperative",
+          "type": "varchar",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "user_group_training",
+      "row_count": 2,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "user_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "training_code",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "status",
+          "type": "int",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "user_group_trainings",
+      "row_count": 163793,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "user_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "post_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "group_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "training_code",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "total",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "total_male",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "total_female",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "venue",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "county",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "subcounty",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "ward",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "village",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "latitude",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "longitude",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "address",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "city",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "state",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "post_county",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "post_sub_county",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "post_ward",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "api_time",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "code_expires_at",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "date_created",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "active",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "file_url",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "payroll_status",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "payroll_datetime",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "farmers_in_photo",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "duplicate_farmers",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "wrong_farmers",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "farmer_not_trained",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "accepted_records",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "rates",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "total_amount",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "payment_status",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "payment_approve_date",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "thresold_passed",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "trainer_complain_on_records",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "approve_reason",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "reject_reason",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "paid_but_disputed_reason",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "final_submit",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "trainer_complain_datetime",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "approve_datetime",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "reject_datetime",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "paid_dispute_datetime",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "paid_but_dispute",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "total_dispute_amount",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "payment_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "approvar_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "payment_date",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "resolution_on_dispute",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "approve_with_some_reject",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "retention_question_sent_time",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "pend_reason",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "pend_datetime",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "pend_action_file",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "pend_comment",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "pend_moveto_qa",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "week_flag",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "rc_image_upload_datetime",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "rc_id",
+          "type": "int",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "user_group_trainings_payment",
+      "row_count": 8680,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "user_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "trainer_mobile_number",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "trainer_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "county",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "training_verified",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "training_datetime",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "farmer_verified",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "verified_ussdDialed",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "verified_manual",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "amount_ussd",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "amount_manual",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "total_tobe_paid_amount",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "disputed_paid_ussd",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "disputed_paid_manual",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "disputed_but_paid_amount",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "adjust_loan_amount",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "net_pay_amount",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "payment_datetime",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "approver_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "final_payment_approver",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "final_payment_datetime",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "final_payment_status",
+          "type": "int",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "user_group_trainings_question",
+      "row_count": 4,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "question",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "question_type",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "user_group_trainings_question_response",
+      "row_count": 105,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "group_training_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "question_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "answer",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "datetime",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "user_menus",
+      "row_count": 470,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "user_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "menu_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "active",
+          "type": "varchar",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "user_sub_menus",
+      "row_count": 1551,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "user_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "menu_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "sub_menu_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "active",
+          "type": "varchar",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "user_type",
+      "row_count": 4,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "name",
+          "type": "varchar",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "users",
+      "row_count": 108342,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "user_id",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "first_name",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "mobile_number",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "pin",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "id_number",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "gcm_id",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "sync_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "email",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "status",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "activation_code",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "user_type",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "parent",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "flag",
+          "type": "tinyint",
+          "null_count": 0
+        },
+        {
+          "name": "package",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "package_date",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "trail_used_flag",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "from_source",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "address",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "county",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "subcounty",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "ward",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "village",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "type_of_farming",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "rapidvet",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "has_user_group_training",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "trainer_approved",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "age",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "gender",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "terms_conditions",
+          "type": "tinyint",
+          "null_count": 0
+        },
+        {
+          "name": "version_code",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "cooperative_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "compliance_status",
+          "type": "tinyint",
+          "null_count": 0
+        },
+        {
+          "name": "adoption_access",
+          "type": "tinyint",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "users_access",
+      "row_count": 986,
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "user_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "parent_mobile",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "cow_add",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "cow_edit",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "cow_view",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "cow_delete",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "calf_add",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "calf_edit",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "calf_view",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "calf_delete",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "cust_add",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "cust_edit",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "cust_view",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "cust_delete",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "coop_add",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "coop_edit",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "coop_view",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "coop_delete",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "staff_add",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "staff_edit",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "staff_view",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "staff_delete",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "produ_add",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "produ_edit",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "produ_view",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "produ_delete",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "sale_add",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "sale_edit",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "sale_view",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "sale_delete",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "breeding_add",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "breeding_edit",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "breeding_view",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "breeding_delete",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "health_add",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "health_edit",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "health_view",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "health_delete",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "salary_add",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "salary_edit",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "salary_view",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "salary_delete",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "other_add",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "other_edit",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "other_view",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "other_delete",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "income_add",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "income_edit",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "income_view",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "income_delete",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "feeding_add",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "feeding_edit",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "feeding_view",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "feeding_delete",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "report_produ",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "report_sale",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "report_finance",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "report_breeding",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "report_salary",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "report_health",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "report_cowgroup",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "report_calf",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "users_bak",
+      "row_count": 23,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "user_id",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "first_name",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "mobile_number",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "pin",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "id_number",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "gcm_id",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "sync_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "email",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "status",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "activation_code",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "user_type",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "parent",
+          "type": "tinyint",
+          "null_count": 0
+        },
+        {
+          "name": "flag",
+          "type": "tinyint",
+          "null_count": 0
+        },
+        {
+          "name": "package",
+          "type": "varchar",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "users_category",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "category_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "category_title",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "sync_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "ussd_api_session_validation",
+      "row_count": 521204,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "phoneNumber",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "sessionId",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "text",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "valid_text",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "step_count",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "last_input",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "valid_option_count",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "last_response",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "ussd_location",
+      "row_count": 1608,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "question_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "location_type",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "location",
+          "type": "varchar",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "ussd_options",
+      "row_count": 5952,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "question_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "option",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "ussd_question_response",
+      "row_count": 903293,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "ussd_user_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "mobile_number",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "training_code",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "post_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "question_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "option_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "option_string",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "question_string",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "value_chain",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "number_of_animals",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "forage_area",
+          "type": "varchar",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "ussd_questions",
+      "row_count": 1718,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "company_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "post_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "question",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "answer",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "question_index",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "question_type",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "parent_question_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "parent_option_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "question_for",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "target_above",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "target_percent_above",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "target_below",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "target_percent_below",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "farmer_get_question",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "pass_mark",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "first_manual_question",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "is_deleted",
+          "type": "int",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "ussd_users",
+      "row_count": 2286019,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "post_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "parent_post_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "training_code_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "phone_number",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "county",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "age",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "age_group",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "gender",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "date_created",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "duplicate_attempted",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "status",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "terms_conditions",
+          "type": "tinyint",
+          "null_count": 0
+        },
+        {
+          "name": "identification_number",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "owner_of_number",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "cooperative_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "cooperative_name",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "route",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "user_from",
+          "type": "tinyint",
+          "null_count": 0
+        },
+        {
+          "name": "approve_status",
+          "type": "tinyint",
+          "null_count": 0
+        },
+        {
+          "name": "comments",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "resolution_on_dispute",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "payment_status",
+          "type": "tinyint",
+          "null_count": 0
+        },
+        {
+          "name": "payment_approve_date",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "payment_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "payment_date",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "dispute_resolved",
+          "type": "tinyint",
+          "null_count": 0
+        },
+        {
+          "name": "name_flag",
+          "type": "tinyint",
+          "null_count": 0
+        },
+        {
+          "name": "gender_flag",
+          "type": "tinyint",
+          "null_count": 0
+        },
+        {
+          "name": "dairy_farmer",
+          "type": "tinyint",
+          "null_count": 0
+        },
+        {
+          "name": "poultry_farmer",
+          "type": "tinyint",
+          "null_count": 0
+        },
+        {
+          "name": "dairy_poultry_farmer",
+          "type": "tinyint",
+          "null_count": 0
+        },
+        {
+          "name": "value_chain_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "number_of_animals",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "forage_area",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "flag_reason",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "adoption",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "adoption_status",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "adoption_update_datetime",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "adoption_commnet",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "adoption_action_datetime",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "adoption_image",
+          "type": "varchar",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "ussd_users_age_group",
+      "row_count": 24,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "expertise_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "age",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "age_group",
+          "type": "varchar",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "vaccineNotification",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "notification_type",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "subcounty_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "notification_message",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "is_sent",
+          "type": "tinyint",
+          "null_count": 0
+        },
+        {
+          "name": "date_created",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "value_chain",
+      "row_count": 7,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "value_chain",
+          "type": "varchar",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "wallet_setting",
+      "row_count": 1,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "breeding_record_amount",
+          "type": "double",
+          "null_count": 0
+        },
+        {
+          "name": "health_record_amount",
+          "type": "double",
+          "null_count": 0
+        },
+        {
+          "name": "mass_vaccination_amount",
+          "type": "double",
+          "null_count": 0
+        },
+        {
+          "name": "mass_deworming_amount",
+          "type": "double",
+          "null_count": 0
+        },
+        {
+          "name": "minimum_amount",
+          "type": "double",
+          "null_count": 0
+        },
+        {
+          "name": "maximum_amount",
+          "type": "double",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "wallet_setting_log",
+      "row_count": 68,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "breeding_record_amount",
+          "type": "double",
+          "null_count": 0
+        },
+        {
+          "name": "health_record_amount",
+          "type": "double",
+          "null_count": 0
+        },
+        {
+          "name": "mass_vaccination_amount",
+          "type": "double",
+          "null_count": 0
+        },
+        {
+          "name": "mass_deworming_amount",
+          "type": "double",
+          "null_count": 0
+        },
+        {
+          "name": "minimum_amount",
+          "type": "double",
+          "null_count": 0
+        },
+        {
+          "name": "maximum_amount",
+          "type": "double",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "wards",
+      "row_count": 1293,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "county_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "sub_county_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "subcounty_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "name",
+          "type": "varchar",
+          "null_count": 0
+        }
+      ]
+    }
+  ]
+}

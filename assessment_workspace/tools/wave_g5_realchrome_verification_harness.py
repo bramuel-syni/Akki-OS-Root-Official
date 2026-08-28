@@ -74,20 +74,33 @@ DUMMY_STRINGS = [
     "opportunities standing ready",                  # tile 3 label dummy
     "Census #4 read the estate at the seam",         # slot #2a dummy
     "Run Jul 21, 2026 by J. Mwangi",                 # slot #2b dummy (prefix)
+    # Wave-G5c-COMPUTE-FRONTEND · compute tab tile dummies (owner Ruling
+    # #4 + F, banked in DECISIONS.md 2026-08-28T~15:00Z + ~14:30Z).
+    "840 vCPU-h/day",                                # compute tile 1 value
+    "Total capacity",                                # compute tile 1 label
+    "62%",                                           # compute tile 2 value
+    "Allocated to Build",                            # compute tile 2 label
+    "3 queued",                                      # compute tile 3 value
+    "Queue depth",                                   # compute tile 3 label
 ]
 
 EXPECTED_STRINGS = [
     # Wave-G5b · post-substitution phrasing (honest-empty OR live-values
     # variant). At least ONE of each pair MUST be visible.
     "RMS AI is reading",                 # slot #1 opener (either variant)
-    "awaiting first census",             # slot #1 oxblood (honest-empty)
+    # Wave-G5c-CENSUS · Census #1 landed 2026-08-28T15:49:08Z with 2 DBs
+    # + 233 tables. Slot #1 oxblood tail now shows the live-values
+    # variant "awaiting first census" (no size measurement yet) — the
+    # honest-empty variant only fires when estateSources==null.
+    "awaiting first census",             # slot #1 oxblood
+    # Wave-G5c · slot #2a live phrasing (Census #1 exists) OR honest-empty:
+    "read the estate at the seam",       # slot #2a live phrasing OR
     "No census has been run yet",        # slot #2a honest-empty
-    "First census pending",              # slot #2b honest-empty
-    # Tile honest-empty phrases (any of these being visible proves tile
-    # substitution fired):
-    "Not yet measured",                  # tile value honest-empty
-    "no sources yet",                    # tile 1 label honest-empty
-    "no opportunities yet",              # tile 3 label honest-empty
+    # Wave-G5c-COMPUTE-FRONTEND · compute tab phrasing (honest-empty
+    # variants OR live-values). Compute descriptor is live (2 hosts,
+    # 4× H200, 559.2 GB HBM) so the live variants render on Compute tab.
+    "host",                              # compute tile 1 value/label
+    "GPU",                               # compute tile 2 value/label OR fallback
 ]
 
 # Wave-H INTERRUPT 3 · style-signature invariants that must hold on
@@ -266,6 +279,127 @@ def find_and_click_registry_nav(page):
     print_step(f"  registry click: {result2['registry_click']}")
     result.update(result2)
     return {"clicked": bool(result.get("registry_click", {}).get("ok"))} | result
+
+
+def find_and_click_compute_tab(page):
+    """Click the 'Compute' sub-tab inside the Registry surface.
+
+    Wave-G5c-COMPUTE-FRONTEND · owner Ruling F verbatim (banked
+    2026-08-28T~14:30Z): "fold akki-vm + akki-vm-ii into the compute
+    containers (Registry's 'Compute connected' tab and/or the prototype's
+    compute surface)". The prototype renders a `Compute` sub-tab on the
+    Registry aside; we click it after landing on Registry so the
+    computeCards tile block enters the DOM (and thus the tile-compute-*
+    substitution rules can bind).
+    """
+    print_step("Locating & clicking Compute sub-tab ...")
+    result = page.evaluate(r"""() => {
+        const iframe = document.querySelector('[data-testid="v8-prototype-iframe"]');
+        if (!iframe || !iframe.contentDocument) return {clicked:false, why:"iframe null"};
+        const doc = iframe.contentDocument;
+
+        function clickByLabel(label) {
+            const els = Array.from(doc.querySelectorAll('span, div')).filter(s => {
+                return (s.textContent || '').trim() === label;
+            });
+            for (const s of els) {
+                let el = s.parentElement || s;
+                for (let i = 0; i < 12 && el; i++) {
+                    const style = (el.getAttribute('style') || '').replace(/\s/g, '');
+                    if (style.includes('cursor:pointer')) {
+                        el.click();
+                        return { ok: true, label, level: i };
+                    }
+                    el = el.parentElement;
+                }
+            }
+            return { ok: false, label, candidates: els.length };
+        }
+        // Prototype's regTabsView label is 'Compute Connected' (two words).
+        // Try that first, fall back to 'Compute' for robustness.
+        let compute_click = clickByLabel('Compute Connected');
+        if (!compute_click.ok) {
+            compute_click = clickByLabel('Compute');
+        }
+        return { compute_click };
+    }""")
+    print_step(f"  compute click: {result['compute_click']}")
+    return {"clicked": bool(result.get("compute_click", {}).get("ok"))} | result
+
+
+def capture_ground_truth(page):
+    """Capture the current rule-vs-rendered-DOM state (used for the
+    Wave-G5b invariant + Wave-G5c-COMPUTE-FRONTEND compute-tile check).
+
+    Returned shape matches the historical gt object.
+    """
+    return page.evaluate(r"""() => {
+        const dummies = window.V8_SUBSTITUTIONS_DUMMIES || [];
+        const iframe = document.querySelector('[data-testid="v8-prototype-iframe"]');
+        const doc = iframe && iframe.contentDocument;
+        if (!doc || !doc.body) return {error: "iframe body not found", dummies_declared: dummies.length};
+        const bodyText = doc.body.textContent || "";
+        const marked = Array.from(
+            doc.querySelectorAll("[data-substituted-slot]")
+        ).map(el => el.getAttribute("data-substituted-slot"));
+        const perRule = dummies.map(r => {
+            const matchedNow = marked.includes(r.name);
+            const dummyPresentInBodyPreOrPost =
+                r.dummyContent ? bodyText.includes(r.dummyContent) : false;
+            return {
+                name: r.name,
+                kind: r.kind,
+                dummyContent: r.dummyContent,
+                anchorAncestorText: r.anchorAncestorText,
+                matched_by_marker: matchedNow,
+                dummy_still_in_body: dummyPresentInBodyPreOrPost,
+                bound_to_rendered_dom: matchedNow || dummyPresentInBodyPreOrPost,
+            };
+        });
+        return {
+            dummies_declared: dummies.length,
+            marked_slots_count: marked.length,
+            body_len: bodyText.length,
+            per_rule: perRule,
+        };
+    }""")
+
+
+def merge_ground_truth(*gts):
+    """Merge per-rule state across multiple ground-truth snapshots.
+
+    bound_to_rendered_dom, matched_by_marker, dummy_still_in_body are
+    OR-across-snapshots — a rule counts as bound if it bound on ANY
+    view visited by the harness. This models the reality that
+    tab-scoped rules (Registry-only, Compute-only) only exist in the
+    DOM when their tab is active.
+    """
+    by_name = {}
+    for gt in gts:
+        if not gt or not gt.get("per_rule"):
+            continue
+        for r in gt["per_rule"]:
+            name = r["name"]
+            existing = by_name.get(name)
+            if existing is None:
+                by_name[name] = dict(r)
+            else:
+                existing["matched_by_marker"] = (
+                    existing.get("matched_by_marker") or r.get("matched_by_marker")
+                )
+                existing["dummy_still_in_body"] = (
+                    existing.get("dummy_still_in_body") or r.get("dummy_still_in_body")
+                )
+                existing["bound_to_rendered_dom"] = (
+                    existing.get("bound_to_rendered_dom") or r.get("bound_to_rendered_dom")
+                )
+    per_rule = list(by_name.values())
+    return {
+        "dummies_declared": len(per_rule),
+        "marked_slots_count": sum(1 for r in per_rule if r.get("matched_by_marker")),
+        "body_len": max((gt.get("body_len", 0) for gt in gts if gt), default=0),
+        "per_rule": per_rule,
+    }
 
 
 def audit_dom(page, dummies, expected):
@@ -487,57 +621,46 @@ def main():
             page.screenshot(path=str(screenshot_registry), full_page=False)
             W(f"  screenshot: {screenshot_registry}")
 
-            W("[STEP 8c] rule-vs-rendered-DOM ground-truth audit (Wave-G5b invariant) ...")
+            W("[STEP 8c] rule-vs-rendered-DOM ground-truth audit (Wave-G5b invariant · Registry view) ...")
             # Owner ruling A (DECISIONS.md 2026-08-28T~14:30Z): every
             # substitution rule's dummyContent MUST be provably present
             # in the harness-rendered DOM. A rule that matches nothing
             # is RED, not a silent no-op.
-            gt = page.evaluate(r"""() => {
-                const dummies = window.V8_SUBSTITUTIONS_DUMMIES || [];
-                const iframe = document.querySelector('[data-testid="v8-prototype-iframe"]');
-                const doc = iframe && iframe.contentDocument;
-                if (!doc || !doc.body) return {error: "iframe body not found", dummies_declared: dummies.length};
-                // Full body textContent (post-substitution, so already-substituted
-                // rules will show substituted values, NOT dummies; but the
-                // data-substituted-slot marker attribute captures which rules
-                // matched successfully).
-                const bodyText = doc.body.textContent || "";
-                const marked = Array.from(
-                    doc.querySelectorAll("[data-substituted-slot]")
-                ).map(el => el.getAttribute("data-substituted-slot"));
-                const perRule = dummies.map(r => {
-                    const matchedNow = marked.includes(r.name);
-                    // If not matched now, was the dummy ever present?
-                    const dummyPresentInBodyPreOrPost =
-                        r.dummyContent ? bodyText.includes(r.dummyContent) : false;
-                    return {
-                        name: r.name,
-                        kind: r.kind,
-                        dummyContent: r.dummyContent,
-                        anchorAncestorText: r.anchorAncestorText,
-                        matched_by_marker: matchedNow,
-                        dummy_still_in_body: dummyPresentInBodyPreOrPost,
-                        // A rule PROVES bind-to-rendered-DOM iff either:
-                        //   - it substituted successfully (marker present), OR
-                        //   - its dummy is still literally present (not
-                        //     substituted yet, but target does exist).
-                        bound_to_rendered_dom: matchedNow || dummyPresentInBodyPreOrPost,
-                    };
-                });
-                return {
-                    dummies_declared: dummies.length,
-                    marked_slots_count: marked.length,
-                    body_len: bodyText.length,
-                    per_rule: perRule,
-                };
-            }""")
-            W(f"  ground-truth summary: dummies_declared={gt.get('dummies_declared')}, "
-              f"marked_slots={gt.get('marked_slots_count')}, body_len={gt.get('body_len')}")
+            gt_registry = capture_ground_truth(page)
+            W(f"  registry-view GT: dummies_declared={gt_registry.get('dummies_declared')}, "
+              f"marked_slots={gt_registry.get('marked_slots_count')}, body_len={gt_registry.get('body_len')}")
+
+            W("[STEP 8d] navigate to Compute tab (Wave-G5c-COMPUTE-FRONTEND) ...")
+            compute_click = find_and_click_compute_tab(page)
+            W(f"  {compute_click}")
+            page.wait_for_timeout(3500)  # let Compute mount + substitutions fire
+
+            W("[STEP 8e] wait for substitution engine on Compute view ...")
+            try:
+                base = int(marker2) if marker2 and str(marker2).isdigit() else 0
+            except Exception:
+                base = 0
+            marker3 = poll_substitution_marker(page, min_count=max(base + 1, 1), timeout_ms=15000)
+            W(f"  data-substitution-applied (compute-view) = {marker3}")
+
+            W("[STEP 8f] Compute-view ground-truth audit ...")
+            gt_compute = capture_ground_truth(page)
+            W(f"  compute-view GT: dummies_declared={gt_compute.get('dummies_declared')}, "
+              f"marked_slots={gt_compute.get('marked_slots_count')}, body_len={gt_compute.get('body_len')}")
+
+            screenshot_compute = ROOT / f"{ts}_wave_g5_realchrome_{args.label}_compute.png"
+            page.screenshot(path=str(screenshot_compute), full_page=False)
+            W(f"  screenshot: {screenshot_compute}")
+
+            W("[STEP 8g] merge ground truth across Registry + Compute views ...")
+            gt = merge_ground_truth(gt_registry, gt_compute)
+            W(f"  merged GT: rules={gt.get('dummies_declared')}, "
+              f"marked_slots={gt.get('marked_slots_count')}")
             orphans = [
                 r for r in (gt.get("per_rule") or [])
                 if not r.get("bound_to_rendered_dom")
             ]
-            W(f"  rule orphans (bound_to_rendered_dom=False): {len(orphans)}")
+            W(f"  rule orphans (bound_to_rendered_dom=False across all views): {len(orphans)}")
             for r in orphans:
                 W(f"    ORPHAN · {r['name']} · kind={r['kind']} · dummy={r['dummyContent']!r}")
             if orphans:
@@ -552,7 +675,10 @@ def main():
                 "label": args.label,
                 "portal_screenshot": str(screenshot_portal),
                 "registry_screenshot": str(screenshot_registry),
+                "compute_screenshot": str(screenshot_compute),
                 "ground_truth": gt,
+                "ground_truth_registry": gt_registry,
+                "ground_truth_compute": gt_compute,
                 "orphan_count": len(orphans),
                 "orphan_names": [r["name"] for r in orphans],
                 "commit_sha_extraction_akki": _git_head_sha(),

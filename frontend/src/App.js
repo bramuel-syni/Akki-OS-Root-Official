@@ -254,6 +254,126 @@ const V8_SUBSTITUTIONS = [
       return [{ kind: "text", value: "opportunities standing ready" }];
     },
   },
+  // -------------------------------------------------------------------
+  // Wave-G5c-COMPUTE-FRONTEND · Compute tab tiles (owner Ruling #4,
+  // banked 2026-08-28T~15:00Z: derive from banked Wave-H fact sheets;
+  // owner ruling F: fold akki-vm + akki-vm-ii into compute containers;
+  // product language only; never hardcode display literals).
+  //
+  // Prototype's `computeCards` renders 3 tiles:
+  //   { value: '840 vCPU-h/day', label: 'Total capacity' }
+  //   { value: '62%',            label: 'Allocated to Build' }
+  //   { value: '3 queued',       label: 'Queue depth' }
+  //
+  // The render side is derived from v.compute (populated by App.js's
+  // onLoad fetch to /api/compute/estate). No hardcoded H200 / akki-vm
+  // / 139.8 / 559.2 string literals in the rules — the surface
+  // follows the facts.
+  // -------------------------------------------------------------------
+  {
+    kind: "styled-element-anchor",
+    name: "tile-compute-1-value",
+    // Tile 1 value slot · anchor on the prototype's rendered dummy.
+    dummyContent: "840 vCPU-h/day",
+    anchorAncestorText: "Total capacity",
+    renderFragments: (v) => {
+      const c = v.compute;
+      if (!c || !c.rollup || c.rollup.host_count === 0) {
+        return [{ kind: "text", value: "No compute connected yet" }];
+      }
+      // Product language: <N> host(s)  · e.g. "2 hosts"
+      const n = c.rollup.host_count;
+      return [{ kind: "text", value: `${n} host${n === 1 ? "" : "s"}` }];
+    },
+  },
+  {
+    kind: "styled-element-anchor",
+    name: "tile-compute-1-label",
+    dummyContent: "Total capacity",
+    anchorAncestorText: "840 vCPU-h/day",
+    renderFragments: (v) => {
+      const c = v.compute;
+      if (!c || !c.hosts || c.hosts.length === 0) {
+        return [{ kind: "text", value: "Awaiting compute" }];
+      }
+      // Roll up readiness states (short product-language sentence).
+      const readyCount = c.hosts.filter(h => h.readiness === "Ready").length;
+      const total = c.hosts.length;
+      if (readyCount === total) return [{ kind: "text", value: "Ready across estate" }];
+      if (readyCount === 0) return [{ kind: "text", value: c.hosts[0].readiness || "Standing by" }];
+      return [{ kind: "text", value: `${readyCount} of ${total} Ready` }];
+    },
+  },
+  {
+    kind: "styled-element-anchor",
+    name: "tile-compute-2-value",
+    dummyContent: "62%",
+    anchorAncestorText: "Allocated to Build",
+    renderFragments: (v) => {
+      const c = v.compute;
+      if (!c || !c.rollup || c.rollup.gpu_count_total === 0) {
+        return [{ kind: "text", value: "No GPUs yet" }];
+      }
+      // Product language: <count> <model> GPUs · e.g. "4 H200 GPUs"
+      const n = c.rollup.gpu_count_total;
+      // Derive model from first host (all hosts share model in our
+      // fact sheet shape; if heterogeneous, render "GPUs" alone).
+      const models = new Set((c.hosts || []).map(h => h.gpu_model));
+      const label = models.size === 1
+        ? Array.from(models)[0].replace(/^NVIDIA\s+/i, "")
+        : "";
+      return [{ kind: "text", value: label ? `${n} ${label} GPUs` : `${n} GPUs` }];
+    },
+  },
+  {
+    kind: "styled-element-anchor",
+    name: "tile-compute-2-label",
+    dummyContent: "Allocated to Build",
+    anchorAncestorText: "62%",
+    renderFragments: (v) => {
+      const c = v.compute;
+      if (!c || !c.rollup) return [{ kind: "text", value: "Awaiting readiness" }];
+      const hosts = c.hosts || [];
+      if (hosts.length === 0) return [{ kind: "text", value: "Across the estate" }];
+      // "across <N> host(s)" — product language.
+      return [{
+        kind: "text",
+        value: `across ${hosts.length} host${hosts.length === 1 ? "" : "s"}`,
+      }];
+    },
+  },
+  {
+    kind: "styled-element-anchor",
+    name: "tile-compute-3-value",
+    dummyContent: "3 queued",
+    anchorAncestorText: "Queue depth",
+    renderFragments: (v) => {
+      const c = v.compute;
+      if (!c || !c.rollup || !c.rollup.gpu_memory_gb_total) {
+        return [{ kind: "text", value: "Not yet measured" }];
+      }
+      // Product language: "<memory> GB HBM"
+      const mem = c.rollup.gpu_memory_gb_total;
+      return [{ kind: "text", value: `${mem} GB HBM` }];
+    },
+  },
+  {
+    kind: "styled-element-anchor",
+    name: "tile-compute-3-label",
+    dummyContent: "Queue depth",
+    anchorAncestorText: "3 queued",
+    renderFragments: (v) => {
+      const c = v.compute;
+      if (!c || !c.rollup || !c.rollup.gpu_count_total) {
+        return [{ kind: "text", value: "GPU memory not yet measured" }];
+      }
+      const n = c.rollup.gpu_count_total;
+      return [{
+        kind: "text",
+        value: `across ${n} GPU${n === 1 ? "" : "s"}`,
+      }];
+    },
+  },
 ];
 
 // Wave-G5b · expose the dummies (never the render output) to window so
@@ -429,7 +549,15 @@ function PortalIframe() {
     if (!iframe) return;
     let observer = null;
     let scheduled = false;
-    const liveValues = { estateSources: null, estateTables: null };
+    const liveValues = {
+      estateSources: null,
+      estateTables: null,
+      lastCensus: null,
+      totalVolume: null,
+      shareMeasured: null,
+      opportunities: null,
+      compute: null,
+    };
 
     const applyAll = () => {
       if (scheduled) return; // Debounce burst mutations from dc-runtime.
@@ -462,8 +590,10 @@ function PortalIframe() {
 
     const onLoad = async () => {
       // Pull live values (silent — HONEST-EMPTY fallback fires when null).
+      const backend = process.env.REACT_APP_BACKEND_URL || "";
+
+      // (1) Registry facts — connected sources + table count.
       try {
-        const backend = process.env.REACT_APP_BACKEND_URL || "";
         const res = await fetch(`${backend}/api/registry/facts`);
         if (res.ok) {
           const facts = await res.json();
@@ -474,6 +604,61 @@ function PortalIframe() {
               if (typeof s.table_count === "number") tables += s.table_count;
             }
             liveValues.estateTables = tables;
+          }
+        }
+      } catch (_) {
+        /* silent */
+      }
+
+      // (2) Wave-G5c · census status line + estate scale from live
+      // census output (owner Stage 3 wiring: Registry reads from
+      // /api/census/latest wherever the census provides the truer
+      // figure). Census manifest fields land as:
+      //   lastCensus.number    ← census_id
+      //   lastCensus.date      ← finished_at_utc (formatted)
+      //   lastCensus.author    ← initiator
+      //   lastCensus.notMeasuredPct  ← honest-empty (census walks
+      //     aggregates, not size-in-bytes)
+      // estateTables also updates from rollup.table_count (census is
+      // authoritative once it has run — walks EVERY table, not the
+      // truncated top-25 in the connection record).
+      try {
+        const res = await fetch(`${backend}/api/census/latest`);
+        if (res.ok) {
+          const body = await res.json();
+          const c = body && body.census;
+          if (c && c.census_id != null) {
+            const finished = (c.finished_at_utc || "").slice(0, 10);
+            liveValues.lastCensus = {
+              number: c.census_id,
+              date: finished || "recent",
+              author: c.initiator || "owner",
+              notMeasuredPct: "size",
+            };
+            if (c.rollup && typeof c.rollup.table_count === "number") {
+              liveValues.estateTables = c.rollup.table_count;
+            }
+            if (c.rollup && typeof c.rollup.database_count === "number") {
+              // Census "sees" databases as sources when the connection
+              // record hasn't been widened yet.
+              if (liveValues.estateSources == null
+                  || liveValues.estateSources < c.rollup.database_count) {
+                liveValues.estateSources = c.rollup.database_count;
+              }
+            }
+          }
+        }
+      } catch (_) {
+        /* silent */
+      }
+
+      // (3) Wave-G5c-COMPUTE-BACKEND · compute descriptor.
+      try {
+        const res = await fetch(`${backend}/api/compute/estate`);
+        if (res.ok) {
+          const body = await res.json();
+          if (body && Array.isArray(body.hosts)) {
+            liveValues.compute = body;
           }
         }
       } catch (_) {

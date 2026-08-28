@@ -1,0 +1,436 @@
+{
+  "at_utc": "2026-08-28T16:03:41Z",
+  "label": "wave_g5c_compute_frontend",
+  "portal_screenshot": "/app/assessment_workspace/phase0/eyeball_proxies/20260828T160301Z_wave_g5_realchrome_wave_g5c_compute_frontend_portal.png",
+  "registry_screenshot": "/app/assessment_workspace/phase0/eyeball_proxies/20260828T160301Z_wave_g5_realchrome_wave_g5c_compute_frontend_registry.png",
+  "compute_screenshot": "/app/assessment_workspace/phase0/eyeball_proxies/20260828T160301Z_wave_g5_realchrome_wave_g5c_compute_frontend_compute.png",
+  "ground_truth": {
+    "dummies_declared": 15,
+    "marked_slots_count": 7,
+    "body_len": 601097,
+    "per_rule": [
+      {
+        "name": "registry-aside-hero-sentence",
+        "kind": "styled-element-anchor",
+        "dummyContent": "86.4 TB across 12 sources \u2014 78% measured, with 6 opportunities standing ready.",
+        "anchorAncestorText": null,
+        "matched_by_marker": true,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "registry-census-header",
+        "kind": "styled-element-anchor",
+        "dummyContent": "Census #4 read the estate at the seam",
+        "anchorAncestorText": "Last activity",
+        "matched_by_marker": true,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "registry-census-byline",
+        "kind": "styled-element-anchor",
+        "dummyContent": "Run Jul 21, 2026 by J. Mwangi \u00b7 22% still not yet measured",
+        "anchorAncestorText": "Last activity",
+        "matched_by_marker": true,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "tile-total-held-value",
+        "kind": "styled-element-anchor",
+        "dummyContent": "86.4 TB",
+        "anchorAncestorText": "held across 12 sources",
+        "matched_by_marker": true,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "tile-total-held-label",
+        "kind": "styled-element-anchor",
+        "dummyContent": "held across 12 sources",
+        "anchorAncestorText": "86.4 TB",
+        "matched_by_marker": false,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "tile-share-measured-value",
+        "kind": "styled-element-anchor",
+        "dummyContent": "78%",
+        "anchorAncestorText": "measured at last census",
+        "matched_by_marker": true,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "tile-share-measured-label",
+        "kind": "styled-element-anchor",
+        "dummyContent": "measured at last census",
+        "anchorAncestorText": "78%",
+        "matched_by_marker": false,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "tile-opportunities-value",
+        "kind": "styled-element-anchor",
+        "dummyContent": "6",
+        "anchorAncestorText": "opportunities standing ready",
+        "matched_by_marker": true,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "tile-opportunities-label",
+        "kind": "styled-element-anchor",
+        "dummyContent": "opportunities standing ready",
+        "anchorAncestorText": "opportunities",
+        "matched_by_marker": true,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "tile-compute-1-value",
+        "kind": "styled-element-anchor",
+        "dummyContent": "840 vCPU-h/day",
+        "anchorAncestorText": "Total capacity",
+        "matched_by_marker": false,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "tile-compute-1-label",
+        "kind": "styled-element-anchor",
+        "dummyContent": "Total capacity",
+        "anchorAncestorText": "840 vCPU-h/day",
+        "matched_by_marker": false,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "tile-compute-2-value",
+        "kind": "styled-element-anchor",
+        "dummyContent": "62%",
+        "anchorAncestorText": "Allocated to Build",
+        "matched_by_marker": false,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "tile-compute-2-label",
+        "kind": "styled-element-anchor",
+        "dummyContent": "Allocated to Build",
+        "anchorAncestorText": "62%",
+        "matched_by_marker": false,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "tile-compute-3-value",
+        "kind": "styled-element-anchor",
+        "dummyContent": "3 queued",
+        "anchorAncestorText": "Queue depth",
+        "matched_by_marker": false,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "tile-compute-3-label",
+        "kind": "styled-element-anchor",
+        "dummyContent": "Queue depth",
+        "anchorAncestorText": "3 queued",
+        "matched_by_marker": false,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      }
+    ]
+  },
+  "ground_truth_registry": {
+    "dummies_declared": 15,
+    "marked_slots_count": 7,
+    "body_len": 601097,
+    "per_rule": [
+      {
+        "name": "registry-aside-hero-sentence",
+        "kind": "styled-element-anchor",
+        "dummyContent": "86.4 TB across 12 sources \u2014 78% measured, with 6 opportunities standing ready.",
+        "anchorAncestorText": null,
+        "matched_by_marker": true,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "registry-census-header",
+        "kind": "styled-element-anchor",
+        "dummyContent": "Census #4 read the estate at the seam",
+        "anchorAncestorText": "Last activity",
+        "matched_by_marker": true,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "registry-census-byline",
+        "kind": "styled-element-anchor",
+        "dummyContent": "Run Jul 21, 2026 by J. Mwangi \u00b7 22% still not yet measured",
+        "anchorAncestorText": "Last activity",
+        "matched_by_marker": true,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "tile-total-held-value",
+        "kind": "styled-element-anchor",
+        "dummyContent": "86.4 TB",
+        "anchorAncestorText": "held across 12 sources",
+        "matched_by_marker": true,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "tile-total-held-label",
+        "kind": "styled-element-anchor",
+        "dummyContent": "held across 12 sources",
+        "anchorAncestorText": "86.4 TB",
+        "matched_by_marker": false,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "tile-share-measured-value",
+        "kind": "styled-element-anchor",
+        "dummyContent": "78%",
+        "anchorAncestorText": "measured at last census",
+        "matched_by_marker": true,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "tile-share-measured-label",
+        "kind": "styled-element-anchor",
+        "dummyContent": "measured at last census",
+        "anchorAncestorText": "78%",
+        "matched_by_marker": false,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "tile-opportunities-value",
+        "kind": "styled-element-anchor",
+        "dummyContent": "6",
+        "anchorAncestorText": "opportunities standing ready",
+        "matched_by_marker": true,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "tile-opportunities-label",
+        "kind": "styled-element-anchor",
+        "dummyContent": "opportunities standing ready",
+        "anchorAncestorText": "opportunities",
+        "matched_by_marker": true,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "tile-compute-1-value",
+        "kind": "styled-element-anchor",
+        "dummyContent": "840 vCPU-h/day",
+        "anchorAncestorText": "Total capacity",
+        "matched_by_marker": false,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "tile-compute-1-label",
+        "kind": "styled-element-anchor",
+        "dummyContent": "Total capacity",
+        "anchorAncestorText": "840 vCPU-h/day",
+        "matched_by_marker": false,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "tile-compute-2-value",
+        "kind": "styled-element-anchor",
+        "dummyContent": "62%",
+        "anchorAncestorText": "Allocated to Build",
+        "matched_by_marker": false,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "tile-compute-2-label",
+        "kind": "styled-element-anchor",
+        "dummyContent": "Allocated to Build",
+        "anchorAncestorText": "62%",
+        "matched_by_marker": false,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "tile-compute-3-value",
+        "kind": "styled-element-anchor",
+        "dummyContent": "3 queued",
+        "anchorAncestorText": "Queue depth",
+        "matched_by_marker": false,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "tile-compute-3-label",
+        "kind": "styled-element-anchor",
+        "dummyContent": "Queue depth",
+        "anchorAncestorText": "3 queued",
+        "matched_by_marker": false,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      }
+    ]
+  },
+  "ground_truth_compute": {
+    "dummies_declared": 15,
+    "marked_slots_count": 7,
+    "body_len": 601097,
+    "per_rule": [
+      {
+        "name": "registry-aside-hero-sentence",
+        "kind": "styled-element-anchor",
+        "dummyContent": "86.4 TB across 12 sources \u2014 78% measured, with 6 opportunities standing ready.",
+        "anchorAncestorText": null,
+        "matched_by_marker": true,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "registry-census-header",
+        "kind": "styled-element-anchor",
+        "dummyContent": "Census #4 read the estate at the seam",
+        "anchorAncestorText": "Last activity",
+        "matched_by_marker": true,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "registry-census-byline",
+        "kind": "styled-element-anchor",
+        "dummyContent": "Run Jul 21, 2026 by J. Mwangi \u00b7 22% still not yet measured",
+        "anchorAncestorText": "Last activity",
+        "matched_by_marker": true,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "tile-total-held-value",
+        "kind": "styled-element-anchor",
+        "dummyContent": "86.4 TB",
+        "anchorAncestorText": "held across 12 sources",
+        "matched_by_marker": true,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "tile-total-held-label",
+        "kind": "styled-element-anchor",
+        "dummyContent": "held across 12 sources",
+        "anchorAncestorText": "86.4 TB",
+        "matched_by_marker": false,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "tile-share-measured-value",
+        "kind": "styled-element-anchor",
+        "dummyContent": "78%",
+        "anchorAncestorText": "measured at last census",
+        "matched_by_marker": true,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "tile-share-measured-label",
+        "kind": "styled-element-anchor",
+        "dummyContent": "measured at last census",
+        "anchorAncestorText": "78%",
+        "matched_by_marker": false,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "tile-opportunities-value",
+        "kind": "styled-element-anchor",
+        "dummyContent": "6",
+        "anchorAncestorText": "opportunities standing ready",
+        "matched_by_marker": true,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "tile-opportunities-label",
+        "kind": "styled-element-anchor",
+        "dummyContent": "opportunities standing ready",
+        "anchorAncestorText": "opportunities",
+        "matched_by_marker": true,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "tile-compute-1-value",
+        "kind": "styled-element-anchor",
+        "dummyContent": "840 vCPU-h/day",
+        "anchorAncestorText": "Total capacity",
+        "matched_by_marker": false,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "tile-compute-1-label",
+        "kind": "styled-element-anchor",
+        "dummyContent": "Total capacity",
+        "anchorAncestorText": "840 vCPU-h/day",
+        "matched_by_marker": false,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "tile-compute-2-value",
+        "kind": "styled-element-anchor",
+        "dummyContent": "62%",
+        "anchorAncestorText": "Allocated to Build",
+        "matched_by_marker": false,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "tile-compute-2-label",
+        "kind": "styled-element-anchor",
+        "dummyContent": "Allocated to Build",
+        "anchorAncestorText": "62%",
+        "matched_by_marker": false,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "tile-compute-3-value",
+        "kind": "styled-element-anchor",
+        "dummyContent": "3 queued",
+        "anchorAncestorText": "Queue depth",
+        "matched_by_marker": false,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "tile-compute-3-label",
+        "kind": "styled-element-anchor",
+        "dummyContent": "Queue depth",
+        "anchorAncestorText": "3 queued",
+        "matched_by_marker": false,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      }
+    ]
+  },
+  "orphan_count": 0,
+  "orphan_names": [],
+  "commit_sha_extraction_akki": "c3313a05aa58c9102eb30bee93a479e93ee388a1"
+}

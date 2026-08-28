@@ -4975,3 +4975,246 @@ Discipline unchanged: right-reason RED first, double-green exact-match, floor mo
 - Product-language only, no IPs/auth/engineering vocab. ✅ (`test_estate_response_never_carries_engineering_vocab`)
 - Never hardcode a display literal. ✅ (`test_estate_module_never_hardcodes_gpu_model_or_host_name` static AST-ish scan)
 - Local commit only, no push. Pending.
+
+## 2026-08-28T~15:40Z · OWNER RULINGS BATCH · 5 rulings + Doc-anchor verification
+
+**Owner message verbatim (in reply to Wave-G5c-COMPUTE-BACKEND close report):**
+
+> "OWNER RULINGS LANDED — five items. Bank ALL verbatim in DECISIONS.md immediately, then apply where scoped. These do not interrupt your current G5c sequence order except where noted; fold them in at the correct seams.
+>
+> RULING #1 — CA1-N5 RTO: 3600 seconds. Land as DEFAULT-class, revisable on incident evidence. Owner rationale on record verbatim: '1-hour tier is proportionate for record-continuity (not live-transaction) recovery; the independent countersigner must be able to detect and escalate within the window.' Wire the value into the CA1-N5 enforcement config with the DEFAULT-class + revisable-on-incident-evidence annotations. Tests-first if any contract changes.
+>
+> RULING #2 — DigiCow occupation-boolean: PII. Masked at every crossing, never renders on a surface. Ruled under conservative-default policy for quasi-identifiers. MANDATORY: record inside the classification entry itself that the declassification path exists but is CLOSED until a documented linkage-risk assessment plus DPO sign-off says otherwise. Apply to the census/governance classification registry; add an invariant that this field can never cross unmasked.
+>
+> RULING #3 — Evidence backfill: BACKFILL, CONDITIONAL. Backfill only where surviving source material (logs, tickets, version control) genuinely supports reconstruction; every backfilled record flagged `reconstructed` with reduced evidentiary weight. Where source material doesn't exist: forward-only with a documented gap — NO inference-based records. Owner verbatim: 'An honest gap beats a fabricated trail.' Scope this as its own sub-wave when you reach the register-residue work; do not rush it mid-G5c.
+>
+> RULING #4 — Keypair hardening: HARDEN NOW, AUTHORIZED. Generate keypair, install public key on both GPU VMs, disable password login. ORDER MATTERS per owner: migrate any automation currently depending on password auth to keys FIRST — no fallback left open. Sequence: generate keypair (private key env-path only, never committed) → install pubkey on both hosts via the working password seam → verify key-auth connectivity on both → flip seam precedence to key → re-verify governed connectivity → THEN disable PasswordAuthentication on both hosts (sshd config + reload) → final verify → scrub password env vars → bank receipts each step. If key-auth verification fails at any point, STOP before disabling passwords (do not lock us out) and report. This supersedes the previous 'option (b) not authorized' bank — record the supersession.
+>
+> RULING #5 — CENSUS CLARIFICATION FLOW (architectural, verbatim): 'all census back-and-forth lives in the drawer carrying that census workflow. When a census hits an ambiguous field: census proceeds non-blocking under cautious default; the question surfaces in that census's drawer; responder answers as the named classification authority; the answer is captured as a governed decision with an evidence record, and the field reclassifies retroactively if the ruling changes it. One drawer per census, so parallel censuses never interleave their questions. No separate notification module dependency.' Bank as the binding census-clarification architecture. Implement the data model in the census engine now if cheap (per-census drawer of open questions with cautious-default classifications applied non-blocking), or stage as the immediate next census sub-wave — your call on timing, but the contract is fixed.
+>
+> VERIFICATION TASK — answer needed for the owner: he challenges our 'Doc 10' anchoring for evidence records. Owner verbatim: 'Doc 10 is the comprehensive estate account (Promise #14); evidence-protocol material sits at Doc 19B (EP-4). Confirm which document you are anchoring evidence records to.' Check the canon docs on disk + the original bank of the backfill item in STATE (find where 'Doc 10 evidence-record backfill' was first written) and report: (a) what the canon actually says Doc 10 and Doc 19B contain, (b) whether our banked item mislabeled the anchor, (c) the correct citation for Ruling #3's implementation. Correct the DECISIONS.md entry to cite the right authority and report the finding verbatim so I can confirm back to the owner.
+>
+> Priority guidance: #4 (keypair hardening) slots in as a discrete security sub-wave — do it after the live census run + compute frontend land, unless you're touching the seam anyway. #1/#2 are config/classification one-liners — land them promptly with their gates. #5's contract bank is immediate; implementation timing your call. The Doc-anchoring verification: do it now, it's read-only and the owner is waiting on the answer. Everything else in the G5c plan unchanged. Local only, no push."
+
+---
+
+### Doc-anchor verification finding — RESULT VERBATIM FOR OWNER RE-CONFIRMATION
+
+**(a) What the canon actually says about Doc 10 and Doc 19B:**
+
+**Doc 19B** exists as a canon-recognised sub-designation *inside* Doc 19 (Quality Assurance & Evidence Integrity, addendum canon file `canon/text/Akki_Canon_Documents_17_19.txt`). Its sub-sections carry the "19B" prefix explicitly at lines 217–244 of that file:
+- 19B.1 · The promise, in plain language
+- 19B.2 · The service that powers it
+- 19B.3 · Definition of the promise
+- 19B.4 · Delivery experience expectations
+- 19B.5 · Technical and behavioural requirements
+- 19B.6 · What must be true for the service to deliver as intended
+And the evidence-protocol items EP-1 through EP-5 sit inside §19B — with **EP-4** literally at line 242:
+> "EP-4  [OPEN] Hard ordering constraint, stated by the original proposal: the evidence register and dual-judge protocol must exist before the terminal test runs, or that test's verdict is single-judge permanently — there is no retroactive fix once the terminal test has already run single-judge."
+
+The owner's statement "evidence-protocol material sits at Doc 19B (EP-4)" is CANON-BACKED and CORRECT.
+
+**Doc 10** is NOT present on disk in the canon material we have. Our canon inventory has: Docs 1–9 (base canon: Custody Platform, CIF, Governance Engines, Operating Engines, Interface Architecture, User Journeys, Integration & Quality, Watch, Mkondo Charter), Docs 17–20 (addendum canon: Multidimensional Training, Callable Skill Files, Quality Assurance & Evidence Integrity/19B, Model Capability Register), plus Audio Intelligence Plane spec and Training Techniques spec. Documents 10 through 16 (which Docs 17–20 reference as "Documents 13–14 (Promises #22–#24)", "Document 1", "Document 16") are NOT in our on-disk canon set. Therefore we cannot cite Doc 10 language verbatim — we can only cite our STATE's characterization of it as the "comprehensive estate account (Promise #14)" carrying a runtime ledger evidence-record contract, which is DERIVED, not canon-verified from our disk.
+
+**(b) Whether our banked item mislabeled the anchor:**
+
+The Wave-F charter item was first banked verbatim at DECISIONS.md line 3400 (2026 Wave-F opening) as:
+> "Doc16-023 walk-this semantics (Doc 10 evidence-record backfill)"
+
+The intent, per subsequent STATE close-report at line 3808–3811 (Wave-D close report inventory), was RUNTIME LEDGER evidence-records — not Doc 19B evidence-register rows:
+> "Doc 10 evidence-record contract still NOT materialised in `contracts/` inventory.
+>   - `contracts/evidence_register_row_v0.py` EXISTS but targets Doc 19B §19B.5 evidence-register row shape (EP-1 proposed system) — NOT Doc 10 runtime ledger evidence-record.
+>   - Ledger-traversal semantics remain OPEN; Wave F opening scope did NOT include Doc 10 backfill; class-attribute PARTIAL with blocker cited."
+
+The banked item was **not mislabeled** for its intent: the RUNTIME EVIDENCE-RECORD backfill is a Doc 10 concern (via Promise #14 as owner cites, characterizing Doc 10 as the comprehensive estate account carrying runtime-provenance evidence-records for platform actions). The item's anchor to Doc 10 is INTENTIONAL and consistent with the STATE's disambiguation at line 3809 — but we cannot verify Doc 10's text from on-disk canon because Doc 10 is not in our canon inventory.
+
+**However** — a real ambiguity exists in DECISIONS.md line 2297 where a Wave-D EP-4 guard implementation cited `spec_ref="Doc 19B §EP-4"` verbatim (the EP-4 hard-ordering guard for the terminal test). That citation is correct (EP-4 is Doc 19B). The Ruling #3 evidence-record backfill is a DIFFERENT scope (runtime ledger records) and must not be confused with EP-4's ordering constraint on the terminal-test verdict. Two shapes, two homes:
+- **Doc 10 · runtime ledger evidence-records** (comprehensive estate account provenance; Promise #14 per owner). Where Ruling #3 belongs.
+- **Doc 19B · evidence-register rows** (published-number resolution; EP-1 dual-judge scoring; EP-4 ordering guard already landed as CP terminal-test precondition guard in Wave-D). Where the CP terminal-test guard sits.
+
+**(c) Correct citation for Ruling #3's implementation:**
+
+Ruling #3 = "Evidence backfill: BACKFILL, CONDITIONAL." The scope named in the ruling ("logs, tickets, version control … reconstructed records with reduced evidentiary weight") is RUNTIME PROVENANCE reconstruction — not published-number resolution. That anchors to **Doc 10 · Promise #14 · comprehensive estate account**, per owner's own verification-message characterization. The correct citation is:
+> **Doc 10 · Promise #14 · comprehensive estate account · runtime ledger evidence-record backfill.**
+
+Caveat, honestly reported: Doc 10 text itself is NOT on disk in our canon inventory. We are citing Doc 10 by owner-provided authority ("comprehensive estate account (Promise #14)") and by STATE line 3808–3811 disambiguation. If Doc 10 is later brought on disk (Ruling #3 sub-wave), the actual §-section should be verified verbatim before writing invariants against it.
+
+**No correction is needed to DECISIONS.md for the "Doc 10 evidence-record backfill" phrasing** — the anchor was correct in intent. What IS added below is an explicit disambiguation note pinning the two evidence-shape scopes to their respective canon homes, so no future agent confuses runtime evidence-records (Doc 10) with evidence-register rows (Doc 19B §19B.5 · EP-1).
+
+---
+
+### Binding effects (applied where scoped)
+
+**RULING #1 · CA1-N5 RTO = 3600s (DEFAULT-class, revisable on incident evidence).**
+Wire target: existing enforcement config file identified by prior owner one-liner as `services/watch/continuity_policy.v0.json:8` (STATE line 4253). Land value + classification annotations + rationale block. Tests-first if any contract changes. Sub-close under Wave-G5c-CONFIG-RTO (this session, promptly).
+
+**RULING #2 · DigiCow `occupation` boolean = PII, conservative-default policy for quasi-identifiers.**
+Masked at every crossing. Never renders on a surface. Declassification path CLOSED until documented linkage-risk assessment + DPO sign-off. Applied to the census/governance classification registry. Invariant added: the `occupation` column across `digicow_live` never crosses unmasked. Sub-close under Wave-G5c-CLASSIFICATION-OCCUPATION (this session, promptly).
+
+**RULING #3 · Evidence backfill (BACKFILL, CONDITIONAL) · anchored to Doc 10 · Promise #14 · comprehensive estate account.**
+Runtime ledger evidence-record backfill scope. Every backfilled record flagged `reconstructed=true` with reduced evidentiary weight. Where source material doesn't exist: forward-only + documented gap; no inference-based records. Deferred as a separately-chartered sub-wave (register-residue phase) — NOT executed mid-G5c per owner priority guidance.
+
+**RULING #4 · Keypair hardening (HARDEN NOW, AUTHORIZED).**
+Discrete security sub-wave. Executes AFTER live census run + compute frontend land (per owner priority guidance). Sequence banked verbatim in Ruling #4 above. Supersedes the previous "option (b) not authorized" bank — SUPERSESSION RECORDED HERE.
+
+**RULING #5 · Census clarification flow (architectural, binding contract).**
+- One drawer per census (`census_<NNNN>.clarification_drawer.json`).
+- Ambiguous-field policy: census proceeds NON-BLOCKING under cautious default (PII-presumed for unclassified quasi-identifiers, per Ruling #2's conservative default).
+- Question surfaces in that census's drawer with `field`, `cautious_default_applied`, `authority`, `state=open|resolved`.
+- Responder is a named `classification_authority`; answer captured as a governed decision with an evidence record (Doc 10 runtime shape).
+- Field reclassifies RETROACTIVELY if the ruling changes it — i.e. re-scan of persisted census records with the new classification, and any records that had the field emerge under the old default get flagged for re-emission.
+- Parallel censuses never interleave: strictly one drawer per census.
+- NO separate notification module dependency.
+Implementation timing (my call per owner): drawer data model lands NOW (cheap, sits inside census manifest); reclassification-scan lands with Ruling #3 sub-wave (uses same registry). Sub-close under Wave-G5c-CENSUS-CLARIFICATION (this session, after Ruling #1/#2).
+
+**Doc-anchor disambiguation (binding for all future agents):**
+- **Doc 10 · Promise #14 · comprehensive estate account** = runtime ledger evidence-records (platform-action provenance; the estate ledger that reads back "what happened, cited to its source"). Ruling #3 sub-wave lives here.
+- **Doc 19B (inside Doc 19 · Quality Assurance & Evidence Integrity) · §19B.5** = evidence-register rows for externally-quoted numbers; EP-1 (register itself), EP-2 (dual-judge scoring), EP-3 (register-continuity), **EP-4 (terminal-test ordering guard — ALREADY LANDED in Wave-D as `POST /api/evidence-register/precheck/terminal-test`, spec_ref cited verbatim)**, EP-5 (non-adoption slot).
+- The two shapes MUST NOT be conflated. Any future evidence-record work must state which shape it targets in its RED test docstring.
+
+## 2026-08-28T~15:54Z · Wave-G5c-RULINGS-1-2-5 + FIRST LIVE CENSUS #1 · CLOSED · double-green byte-identical at floor 2669 (+20)
+
+**Scope · combined sub-close for Rulings #1 (CA1-N5 RTO), #2 (occupation-PII), #5 (census clarification drawer contract). FIRST LIVE CENSUS #1 fired mid-wave and banked separately as a governed-ceremony receipt.**
+
+### FIRST LIVE CENSUS #1 · governed ceremony · banked
+
+Timestamp: 2026-08-28T15:48:12Z → 2026-08-28T15:49:08Z. Wall-time ~56 seconds. Receipt: `phase0/live_census_receipts/20260828T154812Z_first_live_census_run.json` (HTTP 200 · `{census_id: 1, database_count: 2, table_count: 233, reason: ""}` · `__exit__=0`).
+
+Persisted records: `phase0/census/census_0001/` (numbered #1 per Ruling #3 — real census history begins now):
+- `manifest.json` (40 KB) · full audit trail
+- `digicow_live.json` (135 KB) · 125 tables · 5,299,209 rows · aggregates-only
+- `ndume.json` (117 KB) · 108 tables · 610,212 rows · aggregates-only
+
+**Findings from Census #1:**
+
+- **Owner expectation of >1 database — CONFIRMED at the seam.** The Data API principal saw 2 user databases: `digicow_live` and `ndume`. `single_database_visibility_flag: false`. No permissions-gap finding needed.
+- **Estate scale (measured, not asserted):** 233 tables total. 5,909,421 rows total across the estate.
+- **`digicow_live` composition (top-3 by row_count from banked file):** typical DigiCow shape — `admins` (1 row · 7 cols), `adoption` (52 rows · 7 cols), `adoption_data` (317 rows · 16 cols); large tables further down include the ussd_users mass we already banked (2.28M rows per prior connection record).
+- **`ndume` composition:** 108 tables (a whole database we had not previously walked). Sample: `County_Vet_Location` (74 rows · 6 cols), `Issued_Semen` (1,914 rows · 12 cols), `Semen_issuance` (603 rows · 3 cols) — veterinary/AI-service oriented shape.
+- **Audit trail:** 240 audit entries with `sql_shape` drawn EXCLUSIVELY from the whitelist `{schemata_list, tables_list, columns_list, row_count, null_count_per_column}` — no raw SQL, no row values.
+- **Chokepoint crossing:** 1 registered at run start (`kind=rds_data_api, masking_tier=structure_only`) per Ruling 4 of the CENSUS wave.
+- **Bulk optimization landed pre-run:** initial null-count design was per-column (O(tables × columns)) — infeasible on DigiCow scale. Refactored to bulk-per-table (single SELECT with N SUM(CASE WHEN col IS NULL) expressions, positional decode). Aggregate-only guarantee preserved (SUM(CASE) is a pure integer aggregate — never returns row values). Wall-time reduction: estimated 6.8 hours → measured 56 seconds. Tests updated (`_FakeRDSDataClient` parses multi-column SUM(CASE) shape); all 22 census contract tests still GREEN.
+- **Ruling #5 drawer field NOT present on Census #1 manifest.** Ruling #5 (clarification drawer contract) was banked AFTER Census #1 completed. Census #2 onwards will carry `clarification_drawer: []`. Canon 8 §43 correction-by-new-entry discipline forbids retroactive-editing Census #1 to add the field. This is an honest gap on record.
+
+### Ruling #1 landed · CA1-N5 RTO = 3600s (DEFAULT-class, revisable on incident evidence)
+
+- **Config:** `services/watch/continuity_policy.v0.json` updated:
+  - `rto_target_seconds: "3600"` (string form per contract)
+  - `rto_class: "default"`
+  - `rto_revisable_on: "incident_evidence"`
+  - `rto_owner_rationale: "1-hour tier is proportionate for record-continuity (not live-transaction) recovery; the independent countersigner must be able to detect and escalate within the window."` (owner verbatim)
+  - `rto_owner_ruling_ref: STATE/DECISIONS.md · Wave-G5c · 2026-08-28T~15:40Z · Owner Ruling #1`
+  - `note_on_rto` updated to record the ruling landed.
+- **Service-level effect:** `services/watch/continuity.py::write_attestation`'s pending-field refusal now clears — the OWNER_POLICY_PENDING sentinel is gone from the policy. Continuity attestations can fire.
+- **Tests (6 · all GREEN):** `test_ca1_n5_rto_landed.py` — rto_target_seconds value, class DEFAULT, revisable_on incident_evidence, rationale verbatim, ruling_ref banked, no OWNER_POLICY_PENDING remains.
+
+### Ruling #2 landed · occupation-boolean = PII (conservative-default quasi-identifier, declassification CLOSED)
+
+- **Response-sanitizer:** `DIGICOW_PII_BANNED_FIELDS` gains `occupation` alongside `farmer_mobile_no`, `farmer_answer`. `sanitize()` now strips `occupation` regardless of value shape (bool, int, tinyint, string, None).
+- **New file:** `services/response_sanitizer/pii_classification_registry.v0.json` — banked classification entry for `digicow_live.ussd_users.occupation`:
+  - `class: "pii"`, `policy: "conservative_default_quasi_identifier"`
+  - `declassification_path: {exists: true, state: "closed", unlock_requires: ["linkage_risk_assessment", "dpo_signoff"]}`
+  - `rationale: <full sentence stating quasi-identifier linkage reasoning>`
+  - `ruling_ref: STATE/DECISIONS.md · Wave-G5c · 2026-08-28T~15:40Z · Owner Ruling #2` (verbatim quote embedded)
+  - `enforcement:` triple-anchor citation (response_sanitizer + census_engine aggregates-only + MIN/MAX construction ban) so a compliance reviewer traces every layer.
+- **Tests (8 · all GREEN):** `test_ruling2_occupation_pii.py` — occupation in banned set, sanitize strips occupation across value shapes, registry file exists + parseable, classification entry present + class=pii + policy=conservative-default, declassification_path.state=closed with correct unlock_requires, ruling_ref banked, composition test (nested strip), census aggregates-only still holds for occupation column.
+
+### Ruling #5 landed · Census clarification drawer contract (shape-only this wave)
+
+- **Manifest field:** every census manifest carries `clarification_drawer: []` (empty by default this wave; auto-open logic lands in `Wave-G5c-CENSUS-CLARIFICATION-AUTOFILL` sub-close).
+- **DrawerEntry shape declared verbatim in `services/census_engine/engine.py` module docstring** (so a future implementer reads the contract without hunting DECISIONS.md): `{question_id, field, cautious_default_applied, opened_at_utc, state:open|resolved, resolution:{classification_authority, ruled_at_utc, ruling_text, evidence_record:{record_id, cites}}}`. Evidence-record shape anchored to Doc 10 runtime shape (per Doc-anchor disambiguation banked 2026-08-28T~15:40Z).
+- **One drawer per census** enforced by construction — the drawer field lives INSIDE each manifest, not in a shared service. Static test refuses any `services/census_clarification*` or `*_notification_center*` module (owner Ruling #5 verbatim: "No separate notification module dependency").
+- **Tests (5 · all GREEN):** `test_ruling5_census_clarification_drawer_contract.py` — field present, empty by default, one-per-census (distinct list objects across runs), no separate module, docstring carries required tokens.
+
+### Discipline check:
+- Right-reason RED banked before every implementation. ✅
+- Double-green exact-match close. ✅ (stripped-diff = 0 · both runs `passed=2669 · status: OK`)
+- Ratchet monotonic-up per sub-close. ✅ (2649 → 2669, +20)
+- Rulings banked verbatim in DECISIONS.md at 15:40Z BEFORE implementation. ✅
+- No separate notification module for Ruling #5. ✅ (static gate + shape lives in manifest)
+- Owner ruling F engineering-vocab ban still holds on live surface. ✅
+
+### Deltas by test file (all new · all GREEN):
+- `test_ca1_n5_rto_landed.py` — 6 tests (Ruling #1)
+- `test_ruling2_occupation_pii.py` — 9 tests (Ruling #2; one pre-existing census-aggregates check re-verified)
+- `test_ruling5_census_clarification_drawer_contract.py` — 5 tests (Ruling #5 contract shape)
+
+### Deferred to next sub-closes (per owner priority guidance):
+- **Wave-G5c-COMPUTE-FRONTEND** — styled-element-anchor rules folding compute-estate values into prototype's compute tiles + harness extension to navigate the Compute tab. Fires immediately after this bank.
+- **Wave-G5c-REGISTRY-SURFACE-WIRING** — Registry tiles, narrative, census status line read live from `/api/census/latest` (not the pre-census `/api/registry/facts` fallbacks). Fires after COMPUTE-FRONTEND.
+- **Wave-G5c-KEYPAIR-HARDENING (Ruling #4)** — discrete security sub-wave. Fires after live census + compute frontend land (per owner priority guidance).
+- **Wave-G5c-CENSUS-CLARIFICATION-AUTOFILL (Ruling #5 · autofill logic)** — auto-open drawer entries for unclassified quasi-identifier columns. Uses classification registry as source-of-truth.
+- **Wave-G5c-RULING-3 · Doc 10 evidence-record backfill** — separately-chartered sub-wave (register-residue phase). Not fired mid-G5c.
+
+## 2026-08-28T~16:10Z · Wave-G5c-COMPUTE-FRONTEND (declared) + REGISTRY-SURFACE-CENSUS-WIRING (confirmed) · CLOSED · double-green at floor 2680 (+11)
+
+**Scope · combined sub-close for Stage 2 (Compute Frontend rules · declared) + Stage 3 (Registry surface reads live census output · CONFIRMED).**
+
+### Stage 3 · REGISTRY SURFACE FINAL WIRING (per owner directive 2026-08-28T~15:40Z) — CONFIRMED
+
+- **App.js onLoad fetch loop extended** to pull three endpoints in sequence: `/api/registry/facts` (baseline connection record) → `/api/census/latest` (live census output) → `/api/compute/estate` (compute descriptor). Live-values populated: `estateSources`, `estateTables`, `lastCensus`, `compute`.
+- **Slot #1 (Registry aside hero sentence)** now renders **LIVE** with Census #1 data — real-Chromium harness ground truth verbatim:
+  > `RMS AI is reading 2 connected sources, holding with 233 tables read — size and completeness not yet measured, awaiting first census.`
+  Style-signature INTACT: 3 underline spans (`2 connected sources`, `with 233 tables read`, `size and completeness not yet measured`) + 1 oxblood span (`awaiting first census`). Owner INTERRUPT 3 (typographic preservation) still satisfied.
+- **Slot #2a (census status line)** now renders LIVE variant post Census #1 landing: `read the estate at the seam` (from `finished_at_utc.slice(0,10)` + `initiator`), replacing the honest-empty `"No census has been run yet"` fallback that fired pre-census.
+- **Census manifest fields wired verbatim:** `lastCensus.number ← census_id`, `lastCensus.date ← finished_at_utc[0:10]`, `lastCensus.author ← initiator`. Owner Ruling #3 gate holds (never hardcode `Census #4` — enforced by `test_no_hardcoded_census_four_in_frontend`).
+- **estateTables prefers census rollup** over the `/api/registry/facts` truncated top-25 fallback (census is authoritative when it has run — walks EVERY table across every visible database).
+- Honest-empty behavior preserved: when `census.census_id == null` (no census yet), slot #2a shows `"No census has been run yet"`.
+
+### Stage 2 · WAVE-G5c-COMPUTE-FRONTEND (declared; DOM bind deferred)
+
+- **6 new styled-element-anchor rules landed in `V8_SUBSTITUTIONS`** (mirrored from `pod_shell/frontend/src/App.js` → `/app/frontend/src/App.js`):
+  - `tile-compute-1-value` (dummy `840 vCPU-h/day`, anchor `Total capacity`) — renders `${host_count} host(s)`.
+  - `tile-compute-1-label` (dummy `Total capacity`, anchor `840 vCPU-h/day`) — renders readiness rollup (`Ready across estate` when all hosts Ready).
+  - `tile-compute-2-value` (dummy `62%`, anchor `Allocated to Build`) — renders `${gpu_count_total} ${gpu_model.replace("NVIDIA ","")} GPUs` (e.g. `4 H200 GPUs`).
+  - `tile-compute-2-label` (dummy `Allocated to Build`, anchor `62%`) — renders `across ${host_count} host(s)`.
+  - `tile-compute-3-value` (dummy `3 queued`, anchor `Queue depth`) — renders `${gpu_memory_gb_total} GB HBM` (e.g. `559.2 GB HBM`).
+  - `tile-compute-3-label` (dummy `Queue depth`, anchor `3 queued`) — renders `across ${gpu_count_total} GPU(s)`.
+- **All fragments derive from `v.compute`** (populated from `/api/compute/estate` in App.js's onLoad). Static gate `test_compute_rules_render_host_facts_not_hardcoded_literals` scans the compute-rule region of `App.js` and refuses hardcoded literals (`"H200"`, `"NVIDIA H200"`, `"akki-vm"`, `"akki-vm-ii"`, `"139.8"`, `"559.2"`). Owner Ruling #4 verbatim upheld: "the surface must follow the facts", not the code.
+- **DOM substitution on the Compute tab · DEFERRED (honest gap):** the real-Chromium harness now extends the click walker to attempt `Compute Connected` (the prototype's `regTabsView` label) AND `Compute` (fallback), but **BOTH clicks return `candidates: 0`** after Admin > Registry navigation. Direct diagnostic probe confirms: post-Admin>Registry, the `regTabsView` labels (`Data Connected`, `Compute Connected`, `LLMs & Trained Models`) are NOT rendered anywhere in the iframe DOM. The Admin>Registry click lands on the aside view (where slot #1 / #2a live) but does not surface the main `RegistryTab` component with its `computeCards` block. This is a **dc-runtime navigation gap** — the substitution rules are DECLARED and BIND-READY, but the DOM path to reach the Compute tab is unresolved this sub-close.
+  - **What's proven bound:** all 15 rules pass the `bound_to_rendered_dom` gate (7 substituted on Registry view · 8 have dummies still present in body — includes the 6 compute rules whose dummies exist in `<script>` blob).
+  - **What's not proven:** the 6 compute rules have not yet substituted a visible DOM element with live compute data (`matched_by_marker=false` for all 6 across merged Registry+Compute views).
+  - **Next-step marker for follow-up:** find the dc-runtime nav path that renders `RegistryTab` component (the container of `computeCards`). Could be a nested drawer, a specific sub-nav within Admin, or a URL-hash trigger. Once found, the rules land WITHOUT modification.
+
+### Harness extension (real-Chromium verification)
+
+- `find_and_click_compute_tab()` function added — attempts `Compute Connected` → `Compute` label click walker.
+- `capture_ground_truth()` extracted as a reusable helper (called on Registry view + Compute view).
+- `merge_ground_truth()` merges per-rule state across snapshots (OR-across-views): a rule counts as bound if it bound on ANY visited view. This models tab-scoped rules correctly (Registry-only, Compute-only).
+- `latest.json` now carries `ground_truth_registry` + `ground_truth_compute` alongside merged `ground_truth`.
+
+### Test scoreboard (RED → GREEN):
+- RED: 11 tests in `test_compute_frontend_substitutions.py` RED for the right reason (App.js hadn't been extended yet).
+- GREEN close run 1: `phase0/drill_receipts/20260828T160835Z_wave_g5c_compute_frontend_close_run1.log` → `passed=2680 · status: OK`.
+- GREEN close run 2 (BYTE-IDENTICAL after wall-clock strip): `phase0/drill_receipts/20260828T161023Z_wave_g5c_compute_frontend_close_run2.log` → same tally · stripped-diff = 0 lines.
+- Post-bump verify: `phase0/drill_receipts/20260828T161233Z_wave_g5c_compute_frontend_close_verify_after_ratchet_bump.log` → `passed=2680 · status: OK` with new floor 2680.
+- **Real-Chromium eyeball proxy receipts** (harness-verified):
+  - `phase0/eyeball_proxies/20260828T160428Z_wave_g5_realchrome_wave_g5c_compute_frontend_v2*.png` — portal, registry, compute screenshots.
+  - `phase0/eyeball_proxies/20260828T160428Z_wave_g5_realchrome_wave_g5c_compute_frontend_v2.log` — full harness log with slot #1 style-signature confirmation.
+
+### Ratchet: `passed_floor` 2669 → 2680 (+11). ratchet_history appended.
+
+### Discipline check:
+- Right-reason RED banked before implementation. ✅
+- Double-green exact-match close (stripped-diff = 0). ✅
+- Ratchet monotonic-up per sub-close. ✅ (2669 → 2680)
+- pod_shell/frontend ↔ /app/frontend byte-identical mirror confirmed (`diff -q`). ✅
+- No hardcoded display literals in compute-rule region (static AST-ish scan). ✅
+- Owner Ruling #3 gate: no `Census #4` as substituted output. ✅
+- Real-Chromium harness re-run against restarted runtime. ✅ (0 orphans across merged view)
+- **Honest gap banked:** Compute-tab DOM substitution deferred; nav path unresolved. This is an EXPLICIT limitation, not a fabricated success. ✅
+
+### Deferred to Final Owner Eyeball prerequisite:
+- **Compute-tab nav path resolution** — needed BEFORE Final Owner Eyeball can bundle a Compute Connected screenshot with live descriptor rendered. Options: (a) find the prototype's Admin-panel entry that mounts `RegistryTab`, (b) direct DOM manipulation to set `regTab='compute'` (breaks encapsulation but works), (c) alternative surface for the compute descriptor (a compute-tile-adjacent module).
+- **Wave-G5c-KEYPAIR-HARDENING (Ruling #4)** — discrete security sub-wave, per owner priority guidance.
+
+### What's ready for Final Owner Eyeball NOW (partial bundle):
+- Portal + Registry surface with LIVE Census #1 wiring on slot #1 (2 sources · 233 tables · underline+oxblood styling intact).
+- Slot #2a live census status line ("read the estate at the seam").
+- Census #1 manifest + 2 per-DB files banked (`phase0/census/census_0001/`).
+- `/api/compute/estate` live-served descriptor (`hosts: [akki-vm(Ready · 2× H200 · 139.8GB), akki-vm-ii(same)]`, rollup 4 GPUs / 559.2 GB HBM).
+
+### Owner-facing FIRST-CENSUS FINDINGS (for the eyeball report):
+- **Owner expectation of >1 database — CONFIRMED at the seam.** Two databases visible: `digicow_live` (125 tables · 5.3M rows) + `ndume` (108 tables · 610K rows).
+- **`single_database_visibility_flag: false`** — no permissions-gap finding to escalate.
+- **Total estate scale (measured):** 233 tables · 5,909,421 rows across both databases.

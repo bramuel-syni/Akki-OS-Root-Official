@@ -1,0 +1,5658 @@
+{
+  "database": "ndume",
+  "tables": [
+    {
+      "table": "County_Vet_Location",
+      "row_count": 74,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "vet_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "county",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "subcounty",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "ward",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "date_created",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "Issued_Semen",
+      "row_count": 1914,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "issue_no",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "vet_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "straw_breed",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "No_of_straws",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "expected_income",
+          "type": "decimal",
+          "null_count": 0
+        },
+        {
+          "name": "date_created",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "amount_per_straw",
+          "type": "decimal",
+          "null_count": 0
+        },
+        {
+          "name": "swap_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "issue_by",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "comment",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "is_accept",
+          "type": "int",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "Semen_issuance",
+      "row_count": 603,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "issued_by",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "date_created",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "Sheet1",
+      "row_count": 300,
+      "columns": [
+        {
+          "name": "A",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "B",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "C",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "D",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "E",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "F",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "G",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "H",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "I",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "J",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "K",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "L",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "M",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "N",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "O",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "P",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "Q",
+          "type": "int",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "addedVets",
+      "row_count": 1,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "vet_type",
+          "type": "enum",
+          "null_count": 0
+        },
+        {
+          "name": "phoneNumber",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "kvb_number",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "created_by",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "datetime",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "ai_search_records",
+      "row_count": 77,
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "vet_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "vet_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "vet_mobile",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "search_text",
+          "type": "longtext",
+          "null_count": 0
+        },
+        {
+          "name": "result_text",
+          "type": "longtext",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "breedings",
+      "row_count": 184417,
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "farmer_vet_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "sid",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "firebase_id",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "bull_code",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "bull_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "cost",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "cow_id",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "cow_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "drying_date",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "expected_date_of_birth",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "expected_repeat_date",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "farmer_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "mobile",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "no_straw",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "pg_status",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "pregnancy_date",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "record_type",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "repeats",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "semen_type",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "sex_type",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "source_of_semen",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "straw_breed",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "strimingup_date",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "sync_at",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "vet_id",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "vet_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "date_dt",
+          "type": "date",
+          "null_count": 0
+        },
+        {
+          "name": "is_verified",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "wallet_amount",
+          "type": "double",
+          "null_count": 0
+        },
+        {
+          "name": "is_paid",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "withdraw_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "firebase_json",
+          "type": "json",
+          "null_count": 0
+        },
+        {
+          "name": "verified_by",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "disqualified_comment",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "first_heat",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "second_heat",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "deleted_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "verified_datetime",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "breed1",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "breed2",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "sms",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "call",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "pg_conform_datetime",
+          "type": "date",
+          "null_count": 0
+        },
+        {
+          "name": "is_invoice",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "heatsign_datetime",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "ai_time",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "sold_cow_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "county_subsidized",
+          "type": "tinyint",
+          "null_count": 0
+        },
+        {
+          "name": "cumulative_cost",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "is_active",
+          "type": "tinyint",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "breedings_straw_logs",
+      "row_count": 5956,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "breeding_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "bull_code",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "bull_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "semen_type",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "sex_type",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "source_of_semen",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "straw_breed",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "breed1",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "breed2",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "cost",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "calf_milk",
+      "row_count": 1323,
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "calf_id",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "mobile",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "quantity",
+          "type": "double",
+          "null_count": 0
+        },
+        {
+          "name": "date_selected",
+          "type": "date",
+          "null_count": 0
+        },
+        {
+          "name": "time_selected",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "deleted_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "calves",
+      "row_count": 475,
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "sid",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "firebase_id",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "breed_id",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "cow_breeding_1",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "cow_breeding_2",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "calf_code",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "calf_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "calf_weight",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "d_o_b",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "dam",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "dam_code",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "dam_father",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "dam_father_code",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "dam_id",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "dam_mother",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "dam_mother_code",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "expected_mature_date",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "mobile_number",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "sex",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "sire",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "sire_code",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "sire_father",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "sire_father_code",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "sire_mother",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "sire_mother_code",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "status",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "sync_at",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "firebase_json",
+          "type": "json",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "deleted_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "past_owner_phone_number",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "past_calf_id",
+          "type": "int",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "calving",
+      "row_count": 473,
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "breeding_id",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "mobile",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "code",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "date_of_birth",
+          "type": "date",
+          "null_count": 0
+        },
+        {
+          "name": "mature_date",
+          "type": "date",
+          "null_count": 0
+        },
+        {
+          "name": "sex",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "weight",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "breed_id",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "cow_breeding_1",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "cow_breeding_2",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "deleted_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "calf_id",
+          "type": "int",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "campaign_targets",
+      "row_count": 4,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "campaign_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "subcounty_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "ward_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "datetime",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "campaign_vaccines",
+      "row_count": 7,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "campaign_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "vaccine_id",
+          "type": "int",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "campaign_venues",
+      "row_count": 12,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "campaign_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "venue_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "campaigns",
+      "row_count": 7,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "campaign_date",
+          "type": "date",
+          "null_count": 0
+        },
+        {
+          "name": "start_date",
+          "type": "date",
+          "null_count": 0
+        },
+        {
+          "name": "end_date",
+          "type": "date",
+          "null_count": 0
+        },
+        {
+          "name": "created_by",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "is_sent",
+          "type": "tinyint",
+          "null_count": 0
+        },
+        {
+          "name": "use_uploaded_farmers",
+          "type": "tinyint",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "clints_sms",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "company_id",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "sms_title",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "sms_detail",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "sms_status",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "county_subcounties",
+      "row_count": 272,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "countyID",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "subcounty_name",
+          "type": "varchar",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "cow_breeds",
+      "row_count": 13,
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "cow_groups",
+      "row_count": 4,
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "cows",
+      "row_count": 131425,
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "firebase_id",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "sid",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "breed_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "cow_breeding_1",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "cow_breeding_2",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "group_id",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "mobile_number",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "title",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "ear_code",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "date_of_birth",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "calving_lactation",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "dam",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "dam_code",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "dam_father",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "dam_father_code",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "dam_id",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "dam_mother",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "dam_mother_code",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "sire",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "sire_code",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "sire_father",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "sire_father_code",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "sire_mother",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "sire_mother_code",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "status",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "insert_from",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "sync_at",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "firebase_json",
+          "type": "json",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "deleted_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "past_owner_phone_number",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "past_cow_id",
+          "type": "int",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "damaged_straws",
+      "row_count": 62,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "issue_semen_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "subcounty_issue_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "damaged_straws",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "bull_code",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "reason",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "date_created",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "damaged_straws_county",
+      "row_count": 2,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "county_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "breed_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "bull_code",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "damaged_straws",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "reason",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "date_created",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "reported_by",
+          "type": "int",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "dead_cow",
+      "row_count": 138,
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "cow_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "cow_category",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "cow_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "mobile_number",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "cause_of_death",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "carcass_amount",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "death_date",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "deleted_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "delivery_confirmations",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "order_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "token",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "confirmed_at",
+          "type": "datetime",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "delivery_driver_sms_logs",
+      "row_count": 1,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "order_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "supplier_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "driver_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "driver_phone",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "message",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "sent_at",
+          "type": "datetime",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "failed_jobs",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "uuid",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "connection",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "queue",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "payload",
+          "type": "longtext",
+          "null_count": 0
+        },
+        {
+          "name": "exception",
+          "type": "longtext",
+          "null_count": 0
+        },
+        {
+          "name": "failed_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "feeding",
+      "row_count": 1545,
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "category",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "cost",
+          "type": "double",
+          "null_count": 0
+        },
+        {
+          "name": "mobile",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "feed",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "type",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "insert_from",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "quantity",
+          "type": "double",
+          "null_count": 0
+        },
+        {
+          "name": "total",
+          "type": "double",
+          "null_count": 0
+        },
+        {
+          "name": "date_selected",
+          "type": "date",
+          "null_count": 0
+        },
+        {
+          "name": "units",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "deleted_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "healths",
+      "row_count": 24032,
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "farmer_vet_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "sid",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "firebase_id",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "cost",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "cow_id",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "cow_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "diagnosis",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "report",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "diagnosis_type",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "prognosis",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "farmer_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "health_category",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "mobile",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "record_type",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "treatment",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "treatment_date",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "vet_id",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "vet_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "is_verified",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "wallet_amount",
+          "type": "double",
+          "null_count": 0
+        },
+        {
+          "name": "is_paid",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "withdraw_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "firebase_json",
+          "type": "json",
+          "null_count": 0
+        },
+        {
+          "name": "verified_by",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "disqualified_comment",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "deleted_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "verified_datetime",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "sms",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "call",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "is_invoice",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "animal_type",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "no_of_cow",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "parent_id_multi_record",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "is_multiple",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "death_slaughter",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "mode_of_disposal",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "other_disposal_detail",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "zoohotic_type",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "zoohotic_report",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "humans_in_farm",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "advise_to_farmer",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "county_vaccine",
+          "type": "tinyint",
+          "null_count": 0
+        },
+        {
+          "name": "vaccine_id",
+          "type": "int",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "home_consumption",
+      "row_count": 441,
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "mobile",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "quantity",
+          "type": "double",
+          "null_count": 0
+        },
+        {
+          "name": "price",
+          "type": "double",
+          "null_count": 0
+        },
+        {
+          "name": "date_selected",
+          "type": "date",
+          "null_count": 0
+        },
+        {
+          "name": "insert_form",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "time_selected",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "deleted_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "issue_liquidNitrogen",
+      "row_count": 11,
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "vet_id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "amount_added_liters",
+          "type": "decimal",
+          "null_count": 0
+        },
+        {
+          "name": "issued_by",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "date_issued",
+          "type": "datetime",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "issue_subcounty_semen",
+      "row_count": 215,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "issue_no",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "subcounty_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "subcounty_vet_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "straw_breed",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "no_of_straws",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "expected_income",
+          "type": "decimal",
+          "null_count": 0
+        },
+        {
+          "name": "amount_per_straw",
+          "type": "decimal",
+          "null_count": 0
+        },
+        {
+          "name": "issued_by",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "datetime",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "issue_vaccine_wards",
+      "row_count": 4,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "issue_vaccine_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "ward_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "date_created",
+          "type": "datetime",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "issue_vaccines",
+      "row_count": 3,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "subcounty_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "vaccine_detail_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "quantity",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "date_created",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "vet_id",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "issued_by",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "expected_amount",
+          "type": "decimal",
+          "null_count": 0
+        },
+        {
+          "name": "pricing_id",
+          "type": "int",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "issued_semen",
+      "row_count": 14,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "vet_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "vet_phone_number",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "vet_ward",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "no_of_ayrshire",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "no_of_friesian",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "no_of_guernsey",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "no_of_holstein",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "no_of_jersey",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "no_of_fleckvieh",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "no_of_boran",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "no_of_sahiwal",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "no_of_zebu",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "no_of_brahman",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "no_of_brown_swiss",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "no_of_red_friesian",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "no_of_crosses",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "no_of_girolando",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "expected_income",
+          "type": "decimal",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "liquid_nitrogen_notifications",
+      "row_count": 6,
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "issue_id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "vet_id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "notification_message",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "is_sent",
+          "type": "tinyint",
+          "null_count": 0
+        },
+        {
+          "name": "date_created",
+          "type": "datetime",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "migrations",
+      "row_count": 42,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "migration",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "batch",
+          "type": "int",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "milk_payments",
+      "row_count": 529,
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "consumer_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "consumer_type_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "balance",
+          "type": "double",
+          "null_count": 0
+        },
+        {
+          "name": "milk_pament_date",
+          "type": "date",
+          "null_count": 0
+        },
+        {
+          "name": "mobile_number",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "paid",
+          "type": "double",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "deleted_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "milk_production",
+      "row_count": 30315,
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "cow_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "cow",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "insert_from",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "milk_quantity",
+          "type": "double",
+          "null_count": 0
+        },
+        {
+          "name": "milk_time_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "milking_date",
+          "type": "date",
+          "null_count": 0
+        },
+        {
+          "name": "mobile_number",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "deleted_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "milk_sales",
+      "row_count": 2923,
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "consumer_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "consumer_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "consumer_type_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "income",
+          "type": "double",
+          "null_count": 0
+        },
+        {
+          "name": "insert_from",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "milk_price",
+          "type": "double",
+          "null_count": 0
+        },
+        {
+          "name": "milk_sales_date",
+          "type": "date",
+          "null_count": 0
+        },
+        {
+          "name": "milk_time",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "quantity",
+          "type": "double",
+          "null_count": 0
+        },
+        {
+          "name": "mobile_number",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "deleted_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "nitrogen_stock_history",
+      "row_count": 11,
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "issue_id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "current_amount",
+          "type": "decimal",
+          "null_count": 0
+        },
+        {
+          "name": "amount_added",
+          "type": "decimal",
+          "null_count": 0
+        },
+        {
+          "name": "total_amount",
+          "type": "decimal",
+          "null_count": 0
+        },
+        {
+          "name": "date_created",
+          "type": "datetime",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "oauth_access_tokens",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "id",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "user_id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "client_id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "scopes",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "revoked",
+          "type": "tinyint",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "expires_at",
+          "type": "datetime",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "oauth_auth_codes",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "id",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "user_id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "client_id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "scopes",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "revoked",
+          "type": "tinyint",
+          "null_count": 0
+        },
+        {
+          "name": "expires_at",
+          "type": "datetime",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "oauth_clients",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "user_id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "secret",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "provider",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "redirect",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "personal_access_client",
+          "type": "tinyint",
+          "null_count": 0
+        },
+        {
+          "name": "password_client",
+          "type": "tinyint",
+          "null_count": 0
+        },
+        {
+          "name": "revoked",
+          "type": "tinyint",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "oauth_personal_access_clients",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "client_id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "oauth_refresh_tokens",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "id",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "access_token_id",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "revoked",
+          "type": "tinyint",
+          "null_count": 0
+        },
+        {
+          "name": "expires_at",
+          "type": "datetime",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "order_cancellations",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "order_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "reason",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "created_by",
+          "type": "int",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "order_deliveries",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "order_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "po_box",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "zip_code",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "town",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "office_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "delivered_date",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "datetime",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "order_packaged_batches",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "order_item_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "batch_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "quantity_used",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "created_by",
+          "type": "int",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "order_status",
+      "row_count": 8,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "status_name",
+          "type": "varchar",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "order_tracking_history",
+      "row_count": 4,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "order_item_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "status_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "status_time",
+          "type": "datetime",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "other_expenses",
+      "row_count": 595,
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "mobile",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "amount",
+          "type": "double",
+          "null_count": 0
+        },
+        {
+          "name": "date_selected",
+          "type": "date",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "deleted_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "other_incomes",
+      "row_count": 165,
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "mobile",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "amount",
+          "type": "double",
+          "null_count": 0
+        },
+        {
+          "name": "date_selected",
+          "type": "date",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "deleted_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "password_reset_tokens",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "email",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "token",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "password_resets",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "email",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "token",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "personal_access_tokens",
+      "row_count": 3887,
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "tokenable_type",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "tokenable_id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "token",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "abilities",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "last_used_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "expires_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "returned_vaccines",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "subcounty_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "vaccine_details_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "quantity",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "status_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "date_created",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "vet_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "returned_to",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "damaged_qty",
+          "type": "int",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "salary",
+      "row_count": 220,
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "employe_id",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "mobile_number",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "amount",
+          "type": "double",
+          "null_count": 0
+        },
+        {
+          "name": "date",
+          "type": "date",
+          "null_count": 0
+        },
+        {
+          "name": "insert_from",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "deleted_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "semen_issue_notification",
+      "row_count": 509,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "issue_no",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "vet_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "notification_message",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "is_sent",
+          "type": "tinyint",
+          "null_count": 0
+        },
+        {
+          "name": "date_created",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "is_accept",
+          "type": "tinyint",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "straw_swap_log_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "notification_title",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "subcounty_vet_id",
+          "type": "int",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "semen_source",
+      "row_count": 16,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "semen",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "semen_type",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "semen_source",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "semen_straw_inventory",
+      "row_count": 6,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "straw_breed",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "no_of_straws",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "user_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "datetime",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "sms_county",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "sms_id",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "county",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "date",
+          "type": "date",
+          "null_count": 0
+        },
+        {
+          "name": "company_id",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "sms_title",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "sms_log",
+      "row_count": 57978,
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "county_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "subcounty",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "ward",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "farmer_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "phone_number",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "sms_sent",
+          "type": "longtext",
+          "null_count": 0
+        },
+        {
+          "name": "sms_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "clints_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "sold_cow",
+      "row_count": 151,
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "cow_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "cow_category",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "cow_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "phone_number",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "amount",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "buyer_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "buyer_phone_number",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "sales_date",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "deleted_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "spoilt_milk",
+      "row_count": 38,
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "mobile",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "quantity",
+          "type": "double",
+          "null_count": 0
+        },
+        {
+          "name": "date",
+          "type": "date",
+          "null_count": 0
+        },
+        {
+          "name": "price",
+          "type": "double",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "deleted_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "staff",
+      "row_count": 239,
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "id_number",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "location",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "mobile_number",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "staff_mobile_number",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "status",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "deleted_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "straw_swap_log",
+      "row_count": 4,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "lender_vet_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "borrower_vet_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "is_request_accepted",
+          "type": "tinyint",
+          "null_count": 0
+        },
+        {
+          "name": "date_created",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "straw_swap_log_details",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "straw_swap_log_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "lender_straw_breed_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "borrower_straw_breed_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "no_of_straws",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "lender_amount_per_straw",
+          "type": "decimal",
+          "null_count": 0
+        },
+        {
+          "name": "borrower_amount_per_straw",
+          "type": "decimal",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "subsidized_AI_report",
+      "row_count": 325,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "ward_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "base_year",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "month",
+          "type": "tinyint",
+          "null_count": 0
+        },
+        {
+          "name": "amount",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "datetime",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "tbl_disease",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "d_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "d_description",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "tbl_drug",
+      "row_count": 3,
+      "columns": [
+        {
+          "name": "drug_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "drug_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "manufacturer",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "drug_description",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "status",
+          "type": "int",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "tbl_drug_issue",
+      "row_count": 3,
+      "columns": [
+        {
+          "name": "issue_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "vet_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "drug_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "qty",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "tbl_drug_used",
+      "row_count": 5,
+      "columns": [
+        {
+          "name": "drug_used_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "ticket_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "vet_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "farmer_vet_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "drug_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "qty",
+          "type": "double",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "tbl_farmer_clients",
+      "row_count": 605,
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "location",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "client_mobile",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "farmer_mobile",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "status",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "user_type",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "deleted_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "tbl_farmer_payment",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "farmer_payment_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "farmer_vet_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "payment_mode",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "financier_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "farmer_id",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "membership_num",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "mobile_number",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "payment_amount",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "payment_reference",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "num_of_visit",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "payment_type",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "payment_status",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "payment_date",
+          "type": "date",
+          "null_count": 0
+        },
+        {
+          "name": "start_date",
+          "type": "date",
+          "null_count": 0
+        },
+        {
+          "name": "datetime",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "tbl_farmer_subscription",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "sub_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "farmer_vet_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "mobile_number",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "months",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "num_of_visit",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "amount",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "tbl_farmer_vet",
+      "row_count": 75382,
+      "columns": [
+        {
+          "name": "farmer_vet_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "farmer_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "farmer_type",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "farmer_id",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "membership_num",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "mobile_number",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "local",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "village",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "vet_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "county",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "subcounty",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "ward",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "type_of_farming",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "school_data_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "num_of_animal",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "payment_mode",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "financial",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "status",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "verified",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "start_date",
+          "type": "date",
+          "null_count": 0
+        },
+        {
+          "name": "end_date",
+          "type": "date",
+          "null_count": 0
+        },
+        {
+          "name": "paid_amount",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "num_of_visit",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "balance",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "cooperative_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "cop_mobilenumber",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "group_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "datetime",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "gender",
+          "type": "varchar",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "tbl_financier",
+      "row_count": 2,
+      "columns": [
+        {
+          "name": "financier_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "financier_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "location",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "contact_person_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "contact_person_phone",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "status",
+          "type": "int",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "tbl_handler",
+      "row_count": 8,
+      "columns": [
+        {
+          "name": "handler_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "h_username",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "h_password",
+          "type": "text",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "tbl_inquiry_ussd",
+      "row_count": 7,
+      "columns": [
+        {
+          "name": "inquiry_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "mobile_no",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "tbl_school_data",
+      "row_count": 31755,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "latitude",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "longitude",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "county",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "subcounty",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "ward",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "status",
+          "type": "int",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "tbl_school_data_old",
+      "row_count": 31702,
+      "columns": [
+        {
+          "name": "school_data_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "latitude",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "longitude",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "province",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "district",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "division",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "location",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "constituency",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "region",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "landmark_type",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "status",
+          "type": "int",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "tbl_vaccines",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "vaccine_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "price",
+          "type": "decimal",
+          "null_count": 0
+        },
+        {
+          "name": "company_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "tbl_vet",
+      "row_count": 4166,
+      "columns": [
+        {
+          "name": "vet_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "vet_fname",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "vet_sname",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "vet_lname",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "vet_phone",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "referral_code",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "referral_by",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "county",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "subcounty",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "ward",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "vet_email",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "vet_password",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "school_data_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "vet_qualification",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "vet_university",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "vet_kvb",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "organization",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "organization_type",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "vet_lat",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "vet_long",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "vet_otp",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "user_type",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "status",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "available",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "datetime",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "board_id",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "terms_condition",
+          "type": "tinyint",
+          "null_count": 0
+        },
+        {
+          "name": "deleted_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "device_detail",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "is_countyVet",
+          "type": "tinyint",
+          "null_count": 0
+        },
+        {
+          "name": "subcounty_officer",
+          "type": "tinyint",
+          "null_count": 0
+        },
+        {
+          "name": "gcm_id",
+          "type": "text",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "tbl_vet_active_time",
+      "row_count": 3,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "vet_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "inactive_datetime",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "start_time",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "end_time",
+          "type": "varchar",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "tbl_vet_assign",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "vet_assign_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "ticket_num",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "vet_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "farmer_vet_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "visit_detail",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "close_type",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "ticket_status",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "close_lat",
+          "type": "double",
+          "null_count": 0
+        },
+        {
+          "name": "close_long",
+          "type": "double",
+          "null_count": 0
+        },
+        {
+          "name": "close_address",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "assign_date_time",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "close_datatime",
+          "type": "datetime",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "uploaded_campaign_farmers",
+      "row_count": 1,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "campaign_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "farmer_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "phone_number",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "county",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "subcounty",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "ward",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "created_by",
+          "type": "int",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "users",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "email",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "email_verified_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "password",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "remember_token",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "vaccine",
+      "row_count": 10,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "vaccine_name",
+          "type": "varchar",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "vaccineNotification",
+      "row_count": 5,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "notification_type",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "subcounty_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "notification_message",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "is_sent",
+          "type": "tinyint",
+          "null_count": 0
+        },
+        {
+          "name": "date_created",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "vet_id",
+          "type": "int",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "vaccine_batches",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "vaccine_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "batch_no",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "quantity",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "manufacture_date",
+          "type": "date",
+          "null_count": 0
+        },
+        {
+          "name": "expiry_date",
+          "type": "date",
+          "null_count": 0
+        },
+        {
+          "name": "dateCreated",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "vaccine_campaignsSms_logs",
+      "row_count": 2,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "campaign_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "farmer_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "phone_number",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "message",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "sent_at",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "farmer_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "county",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "subcounty",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "ward",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "status",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "message_id",
+          "type": "varchar",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "vaccine_confirmation",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "vaccine_detail_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "issue_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "date_received",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "status_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "date_created",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "damaged_qty",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "damaged_reason",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "confirmed",
+          "type": "tinyint",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "vaccine_details",
+      "row_count": 2,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "vaccine_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "order_item_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "batch_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "batch_no",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "quantity",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "expiry_date",
+          "type": "date",
+          "null_count": 0
+        },
+        {
+          "name": "status_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "dateCreated",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "county",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "damaged_qty",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "user_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "source",
+          "type": "tinyint",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "vaccine_movements",
+      "row_count": 3,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "vaccine_detail_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "from_level",
+          "type": "enum",
+          "null_count": 0
+        },
+        {
+          "name": "from_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "to_level",
+          "type": "enum",
+          "null_count": 0
+        },
+        {
+          "name": "to_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "quantity",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "datetime",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "vaccine_order_items",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "order_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "vaccine_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "quantity",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "tracking_status_id",
+          "type": "int",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "vaccine_orders",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "order_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "user_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "status_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "total_amount",
+          "type": "decimal",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "delivery_option",
+          "type": "int",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "vaccine_price_history",
+      "row_count": 1,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "vaccine_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "old_price",
+          "type": "decimal",
+          "null_count": 0
+        },
+        {
+          "name": "new_price",
+          "type": "decimal",
+          "null_count": 0
+        },
+        {
+          "name": "dateCreated",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "vaccine_pricing",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "vaccine_detail_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "amount_per_dose",
+          "type": "decimal",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "datetime",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "vaccine_status",
+      "row_count": 2,
+      "columns": [
+        {
+          "name": "status_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "status_name",
+          "type": "varchar",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "vehicle_details",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "order_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "vehicle_reg_no",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "driver_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "driver_contact",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "vehicle_type",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "vet_sms_logs",
+      "row_count": 3,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "vet_phone",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "vet_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "message",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "is_sent",
+          "type": "tinyint",
+          "null_count": 0
+        },
+        {
+          "name": "sent_at",
+          "type": "datetime",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "vet_training",
+      "row_count": 55,
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "admin_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "category_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "training_type",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "post_owner",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "title",
+          "type": "longtext",
+          "null_count": 0
+        },
+        {
+          "name": "detail",
+          "type": "longtext",
+          "null_count": 0
+        },
+        {
+          "name": "start_date",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "end_date",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "is_active",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "deleted_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "vet_training_category",
+      "row_count": 5,
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "category_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "vet_training_data",
+      "row_count": 10921,
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "training_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "vet_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "time",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "vet_training_gallery",
+      "row_count": 57,
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "training_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "photo",
+          "type": "longtext",
+          "null_count": 0
+        },
+        {
+          "name": "type",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "deleted_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "vet_training_location",
+      "row_count": 2954,
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "training_id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "training_type",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "location_name",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "deleted_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "wallet_setting",
+      "row_count": 1,
+      "columns": [
+        {
+          "name": "id",
+          "type": "int",
+          "null_count": 0
+        },
+        {
+          "name": "breeding_record_amount",
+          "type": "double",
+          "null_count": 0
+        },
+        {
+          "name": "health_record_amount",
+          "type": "double",
+          "null_count": 0
+        },
+        {
+          "name": "mass_vaccination_amount",
+          "type": "double",
+          "null_count": 0
+        },
+        {
+          "name": "mass_deworming_amount",
+          "type": "double",
+          "null_count": 0
+        },
+        {
+          "name": "minimum_amount",
+          "type": "double",
+          "null_count": 0
+        },
+        {
+          "name": "maximum_amount",
+          "type": "double",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "datetime",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    },
+    {
+      "table": "withdraw_list",
+      "row_count": 753,
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "null_count": 0
+        },
+        {
+          "name": "vet_id",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "transaction_id",
+          "type": "text",
+          "null_count": 0
+        },
+        {
+          "name": "amount",
+          "type": "varchar",
+          "null_count": 0
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "null_count": 0
+        },
+        {
+          "name": "deleted_at",
+          "type": "timestamp",
+          "null_count": 0
+        }
+      ]
+    }
+  ]
+}
