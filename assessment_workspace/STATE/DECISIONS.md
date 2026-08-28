@@ -4352,3 +4352,107 @@ Raw JSON-encoded template hash: `47381de686612d941cf6f6bf1607e72b6f479493296b918
 - **Owner one-liners still open**: CA1-N5 RTO seconds · DigiCow occupation-boolean PII call · Doc 10 evidence-record backfill · A17.10 base-model census.
 - **Decks/Documents build** BUILD-SCHEDULED-POST-PLAN (reuse audit found ~8000 LOC of Executive-Core deck donor material eligible for LIFT-clean).
 - **16 v8 items** EXTENSION-PENDING-OWNER-EYEBALL (analyze · documents · tasks · mentions · emails · projects · hrstuff · performance · board · agentbuild · extract · youragents · appsnew · appsfrequent · appsconnected · appsrequests) — owner may re-home / mount / live-wire after eyeball.
+
+
+---
+
+## Owner Re-Eyeball Verdict on Wave G2 · PARTIAL ACCEPT with two corrections · 2026-08-28T~07:15Z · Source: owner channel (screenshot evidence)
+
+**Verbatim owner verdict:**
+
+> "Yes it does look now but it has the dummy data it was built with - see registry. There is some data i have circled in the picture attached - i dont think it should be there. Stop reporting back end system/engineering data on the surface."
+
+**Owner-circled evidence (screenshot):** the three injected live-fact cards stacked on the left of the portal — "DIGICOW (AWS.RDS.DB-RESTORE-603-CLUSTER.DIGICOW_LIVE)", "AUDIT TRAIL · LIVE (CA1-001/002/003)", "COMPUTE · AKKI-VM (OWNER-SIGNED EC2)" — containing cluster names, engine versions, API paths (`Source: /api/audit_trail/overview · Wave F Cleanup CP · partial_closure=n/a`), SSH-key notes, `data-fidelity` labels. Also screenshotted the Registry surface still showing the prototype's dummy figures unchanged (86.4 TB · 12 sources · 78% measured · Census #4 · J. Mwangi · 34% verified · 41% PII · etc.).
+
+**CORRECTION 1 — Remove the injected fact cards entirely.**
+
+- No appended/overlaid cards anywhere on the portal or surfaces. The prototype DOM is the only DOM.
+
+**Permanent presentation rule (banked forever):**
+
+**NO backend / system / engineering vocabulary on user-facing surfaces.** Banned on-surface:
+- AWS ARNs / cluster IDs / RDS resource names (`aws.rds.db-restore-603-cluster.digicow_live`, `db-restore-*`, `db-cluster-*`, etc.)
+- Engine / engine-version strings (`aurora-mysql 8.0.42`, `postgres 15`, etc.)
+- API paths (`/api/...`, `GET /api/...`, `Source: /api/...`)
+- Wave / checkpoint / CP names (`Wave F Cleanup CP`, `CA1-001`, `CP-D5`, `partial_closure=`, ratchet-floor numbers, etc.)
+- Baseline / test / QA jargon (`test_database`, `baseline_failures.json`, `BASELINE_GUARD`, `receipt`, `close report`, etc.)
+- SSH / auth / key-rotation notes (`SSH key rotation`, `key-pair`, `chmod 600`, `AKKI_GPU_SSH_PRIVATE_KEY_PATH`, etc.)
+- `data-fidelity` / `data-live-source` / any bookkeeping-attribute VALUE rendered as visible text
+- Internal flag values (`partial_closure=n/a`, `link_working=true`, `stub=false`, etc.)
+
+That material lives in logs, `STATE/DECISIONS.md`, and admin/engineering views only — never in product UI.
+
+**CORRECTION 2 — Replace dummy numbers IN PLACE inside the prototype's existing text nodes.**
+
+- The substitution mechanism (iframe `contentDocument` text-node substitution) is correct — but it MUST target the prototype's own stat slots (86.4 TB · 12 sources · 78% · census line · etc.), NOT add new elements.
+- Values MUST be REAL, derived from live backend data (DigiCow via `/api/registry/facts`, audit trail counts, etc.), expressed in the prototype's own product language.
+  - Translation register examples (banked):
+    - "125 tables connected" — NOT "aws.rds.db-restore-603-cluster.digicow_live"
+    - "2.28M USSD user records" — NOT row-dump jargon
+    - "3 record-carriers logged" — NOT `CA1-001/002/003` / `record_carriers.count`
+- **HARD RULE: DO NOT INVENT NUMBERS.** For each stat slot decide one of:
+  - **(a)** real value derivable from live data → substitute it in the prototype's product language
+  - **(b)** not derivable yet → render an honest empty / zero / "not yet measured" state in the prototype's own copy style
+- **NEVER** leave the prototype's fabricated dummy figure in place where it implies a real measurement.
+- **NEVER** fabricate a replacement.
+
+**Per-slot substitution table** (owner will re-eyeball against this): banked in `notes/waveG3_close_report.md` §5 — one row per stat slot: slot → source endpoint/field → rendered value (or honest-empty rationale).
+
+**Constraints unchanged:**
+- `v8_prototype.html` stays byte-identical (sha256 `e56871d01a99c2f3aa173c9b0a0f09e983c9f0e54ba3e61795ac8cb8575f98f2`).
+- Interpretation remains BANNED.
+- Substitutions are runtime-only inside `iframe.contentDocument`.
+- Local commits only, no pushes.
+- SSH interrupt priority unchanged.
+
+**Updated fidelity gates required:**
+1. (i) Zero injected card containers exist (`document.querySelectorAll('[data-live-source]').length === 0` in the served DOM · no `insertLiveFactCard` / no `appendChild` of overlay divs).
+2. (ii) Substitution map only targets pre-existing prototype text nodes (each substitution rule cites a specific prototype text signature).
+3. (iii) No banned engineering vocabulary strings can render on any surface (both as-authored — no such strings in `App.js` bridge code — and as-rendered — no such strings survive text-node substitution).
+
+Right-reason RED first (fidelity gates assert absence of overlays + bans on banned-vocab), then double-green close at ratcheted floor (may only go up). Wave G2 ratification is SUPERSEDED by this partial-accept correction cycle; the corrected wave close file is `notes/waveG3_close_report.md`.
+
+---
+
+## 2026-08-28T~11:22Z · Wave G3 · V8 LITERAL adoption · eyeball corrections · CLOSED at floor 2488
+
+**Session close: autonomous under all standing disciplines.** Wave G2 partial-accept corrections (owner ruling 2026-08-28T~07:15Z, this file lines 4363-4411) executed; double-green close at ratcheted floor 2488. HOLD for owner re-eyeball on the live preview URL.
+
+**Files landed (all byte-identical mirror discipline held):**
+
+- `pod_shell/frontend/src/App.js` (sha256 `0ca8db91da63b3b778402a1e46b8555b7b15e4d729d03ab4f58e6320b3fa97c4`) — corrected bridge:
+  - CORRECTION 1: `V8_SUBSTITUTIONS`-driven TreeWalker text-node substitution ONLY; no `createElement`, no `appendChild`, no `insertLiveFactCard`; no `data-fidelity` / `data-live-source` bookkeeping attributes; banned engineering vocabulary scrubbed from executable code (16 strings enforced; `/api/registry/facts` whitelisted inside `fetch(...)` only).
+  - CORRECTION 2: 2 substitution rules (Registry aside + Registry census footer), each with a signature that literally exists in the byte-identical served prototype (fidelity gate); MutationObserver re-applies on dc-runtime re-renders (childList/characterData/subtree); HONEST-EMPTY product-language sentences returned when live values are missing (never the prototype's dummy figure).
+- `/app/frontend/src/App.js` (sha256 `0ca8db91…` — byte-identical to pod_shell; runtime mirror discipline held).
+- `pod_shell/frontend/public/v8_prototype.html` (sha256 `e56871d01a99c2f3aa173c9b0a0f09e983c9f0e54ba3e61795ac8cb8575f98f2` — unchanged; owner-supplied prototype).
+- `/app/frontend/public/v8_prototype.html` (same sha256 — byte-identical mirror).
+- `backend/tests/invariants/test_wave_g_v8_shell_port.py` — Section 10 added (22 assertions, all GREEN):
+  - 10a · banned-overlay-APIs × 5 (`insertLiveFactCard`, `createElement`, `appendChild`, `data-fidelity`, `data-live-source`).
+  - 10b · banned-engineering-vocab × 13 parametrized (`aws.rds`, `db-restore-`, `cluster.digicow_live`, `aurora-mysql`, `/api/registry/facts` (whitelisted in fetch-only), `/api/audit_trail`, `Wave F Cleanup`, `CA1-001`, `CA1-002`, `CA1-003`, `partial_closure`, `BASELINE_GUARD`, `SSH key`, `chmod 600`, `AKKI_GPU_SSH_PRIVATE_KEY_PATH`, `key rotation`).
+  - 10c · substitution-signature-exists-in-prototype × 2 (`"RMS AI holds "`, `"First census May 12, 2026"`) + 1 map-declaration.
+  - 10d · DECISIONS.md anchor test (verifies all 6 Wave G3 correction rulings banked verbatim on this file, per this file lines 4363/4367/4373/4385).
+- `backend/tests/invariants/baseline_failures.json` — ratchet floor 2463 → 2488 (+25); `ratchet_history` appended with entry `at_utc=20260828T112138Z`, `cp=Wave G3 · V8 LITERAL adoption · eyeball corrections`.
+
+**Double-green close receipts (BYTE-IDENTICAL close, stripped-diff = 0 lines):**
+
+| Run | Receipt log | Tally | BASELINE_GUARD receipt |
+|---|---|---|---|
+| Run 1 | `phase0/drill_receipts/20260828T111959Z_wave_g3_close_run1.log` | `2488 passed, 1 skipped, 438 warnings in 88.70s` | `passed=2488 / baseline-failures-remaining=0 / quarantined=0` |
+| Run 2 | `phase0/drill_receipts/20260828T112138Z_wave_g3_close_run2.log` | `2488 passed, 1 skipped, 438 warnings in 88.97s` | `passed=2488 / baseline-failures-remaining=0 / quarantined=0` |
+| Run 3 (ratchet re-verify at new floor) | `phase0/drill_receipts/20260828T112658Z_wave_g3_close_run3_ratchet_reverify.log` | `2488 passed, 1 skipped, 438 warnings in 88.83s` | `passed=2488 / status: OK (subset · quarantine · ratchet all pass)` |
+
+**Runtime preview verification:**
+
+- `GET /` → HTTP 200 CRA index (React app boots, renders `<PortalIframe/>` at root).
+- `GET /v8_prototype.html` → HTTP 200; served bytes = 1,265,363 vs disk 1,264,425 (delta = +938 B). Root cause: Cloudflare edge CDN injects a hidden bot-management script (1×1 hidden iframe + `/cdn-cgi/challenge-platform/scripts/jsd/main.js`) into the response downstream of the pod. Disk file remains byte-identical (`e56871d0…`). The injection is a Cloudflare edge artifact, outside pod/repo control, invisible on the surface (hidden iframe never rendered inside the prototype's own DOM). Banked so an owner eyeball checksum-compare is not confused by CDN drift.
+- `GET /static/js/bundle.js` → HTTP 200; bridge-owned banned-identifier scan of served bundle: all 0 (`insertLiveFactCard`, `data-fidelity`, `data-live-source`, `aws.rds`, `db-restore-`, `cluster.digicow_live`, `aurora-mysql`, `AKKI_GPU_SSH_PRIVATE_KEY_PATH`, `chmod 600`). HONEST-EMPTY renderer strings present (`"not yet connected to a measured estate"`×1, `"No census has been run yet"`×1, `"is reading"`×1). Signature strings present (`"RMS AI holds"`×2 · `V8_SUBSTITUTIONS`×4 · `v8_prototype.html`×3).
+
+**Wave G3 scope-honesty note (open for owner ruling at eyeball time):**
+
+- The vocabulary ban was applied to `App.js` only. Bundle-wide grep confirms some banned strings still appear in other pod component files (`SSH key`×1, `Wave F Cleanup`×1, `CA1-001`×4, `/api/audit_trail`×2 — sourced from Registry.jsx, AuditTrail.jsx, etc.). Those strings are **bundled** because CRA compiles every source file, but they are **never rendered on the root route `/`** — the portal shows only `<PortalIframe/>` = the byte-identical prototype. They **would** appear on deep-link routes (`/registry`, `/audit-trail`, etc.) which still render prior pod components (per `test_all_pod_component_routes_remain_deep_link_accessible`, invariant retained).
+- Scope-expansion candidate for owner ruling: *"Extend Wave G3 CORRECTION 1 vocabulary ban from `App.js` to all pod component `.jsx` files (`components/*.jsx`, `pages/**/*.jsx`)."* — HOLD, not silently expanded. Owner rules at eyeball.
+
+**Close report artifact:** `notes/waveG3_close_report_addendum.md` (§5 verdict verbatim · §6 per-slot substitution table · §7 banned-vocab assertion list · §8 double-green receipts · §8b runtime preview verification · §9 stop-and-report).
+
+**Position:** HOLD for owner re-eyeball on live preview URL `https://akki-reuse-assess.preview.emergentagent.com/`. Gate order: automated GREEN (done ×3), owner eyeball is the final gate. If ACCEPT: G3 ratifies, resume the parked Reuse Audit (Cat 6-8) per the pre-G-parked ledger. If REJECT: bank the residue as a new right-reason RED under the same file and iterate. SSH interrupt priority unchanged.
+
