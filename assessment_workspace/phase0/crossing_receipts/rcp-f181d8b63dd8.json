@@ -1,0 +1,16 @@
+{
+  "actor": "owner",
+  "at_iso": "2026-08-28T05:05:05.217195Z",
+  "endpoint_host": "rds-data.eu-west-1.amazonaws.com",
+  "kind": "rds_data_api",
+  "masking_tier": "structure_only",
+  "payload_shape": {
+    "cluster_id": "akki-aurora",
+    "database": "estate",
+    "statement_shape": "SELECT information_schema census"
+  },
+  "receipt_id": "rcp-f181d8b63dd8",
+  "residency_region": "eu-west-1",
+  "tenant_id": "estate",
+  "verb": "ExecuteStatement"
+}

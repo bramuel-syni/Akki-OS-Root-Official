@@ -4205,3 +4205,53 @@ Raw JSON-encoded template hash: `47381de686612d941cf6f6bf1607e72b6f479493296b918
 **Position: HOLD for owner external verification.** Expected receipt line: `passed=2389 / baseline-failures-remaining=0 / quarantined=0`. Owner's verification checklist (per ruling this session): (a) shell present with v8 chrome (RMS AI wordmark on `#0f1b33`; Iowan Old Style / Söhne / ui-monospace fonts; `#f5f2ea` paper); (b) all 15 pod surfaces click-reachable from `/`; (c) no FarmaIQ artifacts in the default portal experience; (d) real data still rendering in the pod components.
 
 **SSH interrupt priority unchanged** (chmod 600 → env vars → hardware fact sheet → CUDA verify-only → EP-4 precondition → first governed run → real MOAC → whitepaper → stop-and-report).
+
+
+---
+
+## Owner Ratification · Wave G V8 Adoption CLOSED + RATIFIED · 2026-08-28T~05:10Z · Source: owner channel (external third run)
+
+**Verbatim owner ratification:**
+
+> "WAVE G EXTERNAL RUN: 4/4 automated PASS — **WAVE G IS CLOSED AND RATIFIED** (with one HUMAN_REQUIRED item flagged to the owner: in-browser visual eyeball, which only their allowlisted device can perform). Verified: third-run receipt 2389/0/0 verbatim, bundle carries RMS AI ×3 + AkkiV8 ×123 + ZERO Farma IQ, design mirror byte-identical, App.js wraps all 15 surfaces + portal in AkkiV8ShellLayout with Registry re-homed to /registry, all four probed API surfaces 200 after the re-shell. HEADs ratified: `de3b776` / `6043075`."
+
+**External verification receipts (4/4 PASS, this session):**
+1. Suite receipt verbatim-confirmed: `passed=2389 / baseline-failures-remaining=0 / quarantined=0`.
+2. Bundle content sample: `RMS AI` appears 3× · `AkkiV8` appears 123× · `Farma IQ` appears **0×** in the default portal bundle.
+3. Design mirror byte-identical between pod_shell canonical tree and `/app/frontend/` runtime tree for `App.js` + `design/AkkiV8Shell.jsx` + `design/akkiv8_design_system.js`.
+4. `App.js` wraps portal + all 15 surfaces in `AkkiV8ShellLayout`; Registry re-homed to `/registry`; all four probed API surfaces return 200 after the re-shell.
+
+**HUMAN_REQUIRED open item** (owner-noted, does NOT block ratification):
+- **In-browser visual eyeball** — the visible-fidelity check of the v8 chrome + per-surface layout + the honest-empty greyed tiles for the 16 EXTENSION-PENDING-OWNER-EYEBALL items. Can only be performed on the owner's allowlisted device. **Closes on owner confirmation.** This is a verification line, not a build line — no code moves are gated on it.
+
+**Ratified HEADs** (Wave G close pointer):
+- Extraction-Akki `programme/track-a`: **`de3b776`** (Wave G V8 Adoption · shell landed + double-green at floor 2389).
+- Master workspace: **`6043075`** (STATE mirror · Wave G V8 Adoption CLOSED · double-green at floor 2389 · Extraction-Akki de3b776).
+
+**Wave G ledger — ratified state:**
+
+| Wave | Ratification | HEAD (Extraction-Akki) | Test cohort at close | Notes |
+|---|---|---|---:|---|
+| Wave G | **RATIFIED 2026-08-28T~05:10Z (external 4/4 PASS + 1 HUMAN_REQUIRED open)** | **`de3b776`** | **2389/0/0** | V8 adoption · shell code + design tokens + NAV/TABS/ROLES verbatim · Registry re-homed to `/registry` · 16 not-yet-mounted v8 items marked EXTENSION-PENDING-OWNER-EYEBALL. |
+
+**Master Plan A-F composite lock 52.82% preserved intact** — Wave G was a frontend-chrome + test wave; composite methodology untouched.
+
+**Binding effect — post-close discipline (unchanged from Master Plan A-F close):**
+
+1. **Wave G closes + ratifies as a block.** Two-consecutive-perfectly-identical `BASELINE_GUARD=1` full-suite receipts at close + owner external ratification receipt on record.
+2. **No wave reopens autonomously.** Standing arrivals reopen scope only by explicit owner ruling.
+3. **Ratchet floor 2389 is the new permanent regression fence** under `BASELINE_GUARD=1` monotonic non-decreasing rule.
+4. **v8 remains the sole binding design authority.** V4 code retained as invisible implementation reuse only.
+5. **All standing owner disciplines remain binding** (tests-first · verbatim canon quotes · REFERENCE-NOT-COPY · Ship-Manifest DoD triple · byte-identical pod-shell/spine mirror · local commits only · no push · no testing subagent · terminal `pytest` only · post-compaction re-read).
+6. **SSH interrupt remains INTERRUPT-PRIORITY** (unchanged; sequence: chmod 600 → `AKKI_GPU_SSH_PRIVATE_KEY_PATH` → `GPU_CONNECT_MODE=real` → hardware fact sheet → CUDA verify-only (A17.17 CLOSED) → EP-4 precondition guard → first governed run on sealed DigiCow set → real MOAC → whitepaper → stop-and-report).
+
+**Standing open verification lines (post-ratification):**
+- HUMAN_REQUIRED · in-browser visual eyeball of v8 shell (closes on owner confirmation).
+
+**Standing arrivals (unchanged):**
+- SSH key drop (interrupt-priority).
+- Owner one-liners still open: CA1-N5 RTO seconds (single-JSON-edit at `services/watch/continuity_policy.v0.json:8`) · DigiCow occupation-boolean PII call · Doc 10 evidence-record backfill decision · base-model census activation A17.10.
+- Decks/Documents build: BUILD-SCHEDULED-POST-PLAN awaiting owner GO.
+- 16 EXTENSION-PENDING-OWNER-EYEBALL v8 NAV items (analyze · documents · tasks · mentions · emails · projects · hrstuff · performance · board · agentbuild · extract · youragents · appsnew · appsfrequent · appsconnected · appsrequests) — owner may re-home or authorize mount after browsing the shell; mapping is trivially reconfigurable via `V8_TO_POD_ROUTE` in `pod_shell/frontend/src/design/akkiv8_design_system.js`.
+
+**Position: HOLDING at ready state · standing by for one of the standing arrivals.**
