@@ -1,0 +1,10 @@
+
+@keyframes blinkCursor{0%,50%{opacity:1}51%,100%{opacity:0}}
+@keyframes dotPulse{0%,100%{opacity:.3}50%{opacity:1}}
+@keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+body{margin:0}
+::selection{background:rgba(22,39,74,0.18)}
+a{color:#16274a}
+a:hover{color:#0f1b33}
+*{box-sizing:border-box}
+textarea,input{outline:none;font-family:inherit}
