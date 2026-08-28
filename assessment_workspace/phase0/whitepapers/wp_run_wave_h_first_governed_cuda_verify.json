@@ -1,0 +1,71 @@
+{
+  "whitepaper_id": "wp_run_wave_h_first_governed_cuda_verify",
+  "run_ref": "run/wave-h/first-governed/cuda-verify-1",
+  "drafted_at_utc": "2026-08-28T13:54:20Z",
+  "drafted_by": "e1-agent · services.training_runner.ssh_seam.execute_remote_command",
+  "scope": "CUDA-verify-only · compute-seam commissioning",
+  "cites_moac_card_id": "moac_run_wave_h_first_governed_cuda_verify",
+  "cites_receipt_ids": [
+    "gpurcp-480d8c890f7a"
+  ],
+  "cites_gpu_receipt_paths": [
+    "phase0/gpu_receipts/20260828T135420Z_akki_vm_wave_h_first_governed_run_cuda_verify_only_gpurcp-480d8c890f7a.log",
+    "phase0/gpu_receipts/20260828T135420Z_wave_h_first_governed_run_akki_vm_verify.json"
+  ],
+  "cites_hardware_fact_sheet_paths": [
+    "phase0/gpu_receipts/20260828T132259Z_wave_h_multihost_probe_akki_vm.log",
+    "phase0/gpu_receipts/20260828T132320Z_wave_h_multihost_probe_akki_vm_ii.log"
+  ],
+  "cites_install_receipt_paths": [
+    "phase0/gpu_receipts/20260828T134719Z_wave_h_install_summary.json (akki-vm)",
+    "phase0/gpu_receipts/20260828T135911Z_akki_vm_ii_wave_h_install_torch_verify_gpurcp-f8685dd8ab16.log (akki-vm-ii)"
+  ],
+  "cites_decisions_entries": [
+    "DECISIONS.md 2026-08-28T~13:10Z (BLOCKER 1 (a) + BLOCKER 2 (a) rulings)",
+    "DECISIONS.md 2026-08-28T~13:15Z (Owner INTERRUPT 2 · multi-host)"
+  ],
+  "cites_blocking_authorizations": [
+    "BLOCKER 1 (a) — install torch stack via seam · authorized 2026-08-28T~13:10Z",
+    "BLOCKER 2 (a) — ssh_seam password-auth · authorized 2026-08-28T~13:10Z"
+  ],
+  "estate": {
+    "hosts_inventory_verbatim": "akki-vm,akki-vm-ii",
+    "host_first_run": "akki-vm",
+    "host_paired_installed_same_cycle": "akki-vm-ii",
+    "gpu_model": "NVIDIA H200",
+    "gpu_count_per_host": 2,
+    "gpu_memory_per_gpu_gb": 139.8,
+    "gpu_compute_capability": "9.0",
+    "cpu_model": "Intel Xeon Platinum 8558",
+    "vcpu_per_host": 36,
+    "ram_gib_per_host": 460,
+    "data_volume_tb_per_host": 5.9,
+    "os": "Ubuntu 24.04",
+    "driver_version": "570.211.01",
+    "cuda_runtime_version": "12.8"
+  },
+  "installed_stack_per_host": {
+    "torch": "2.11.0+cu128",
+    "cuda_version_torch": "12.8",
+    "transformers": "5.16.1",
+    "accelerate": "1.14.0",
+    "peft": "0.20.0",
+    "pynvml": "13.0.1 (deprecated · nvidia-ml-py 13.610.43 also present)",
+    "python": "3.12.3",
+    "pip_source": "sudo apt-get install python3-pip · Ubuntu 24.04 python3-pip 24.0+dfsg-1ubuntu1.3",
+    "torch_wheel_index_verbatim": "https://download.pytorch.org/whl/cu128"
+  },
+  "summary_note": "Wave-H first governed run · CUDA-verify-only scope · GREEN. Compute seam multi-host refactor closed at double-green floor 2589 (+23 from 2566) on programme/track-a HEAD 90c18d3. Both hosts (akki-vm and akki-vm-ii) provisioned same cycle with identical stacks; first governed run executed on akki-vm per owner selection preference. 9/9 verify gates GREEN: seam wired, chokepoint crossing registered, torch/CUDA present, 2x H200 detected on both cuda:0 and cuda:1, matmul kernels launched cleanly on both devices. Full trainer flip (M-a...M-f model admission) awaits a separately-authorized R-step.",
+  "surprising_or_contradictory_findings": [
+    {
+      "finding": "A17.17 CLOSED confirmation of PyTorch stack on akki-vm did NOT survive re-provisioning; the host had CUDA driver + runtime intact but no Python package manager (`pip3`) and no torch/transformers/accelerate/peft/pynvml. Both hosts required the full BLOCKER 1 (a) install path.",
+      "banked_where": "phase0/gpu_receipts/20260828T132259Z_wave_h_multihost_probe_akki_vm.log"
+    },
+    {
+      "finding": "Both hosts came bare-Ubuntu-24.04 with `python3-pip` absent. Owner directive 3 anticipated this: 'The Blocker-1(a) stack install applies to whichever hosts actually lack packages'. Bootstrap path used passwordless sudo + `apt-get install python3-pip` (get-pip.py was on disk as a fallback but not needed).",
+      "banked_where": "phase0/gpu_receipts/20260828T13521*_akki_vm_wave_h_install_apt_install_pip_*.log"
+    }
+  ],
+  "next_recommended_verify": "Execute the identical CUDA-verify probe on akki-vm-ii via execute_remote_command(host_slug='akki-vm-ii', ...) and bank a parallel receipt. Once banked, the multi-host estate is verify-scope-commissioned end-to-end and available for a separately-authorized MOAC-scope trainer flip.",
+  "retention_class": "standard"
+}

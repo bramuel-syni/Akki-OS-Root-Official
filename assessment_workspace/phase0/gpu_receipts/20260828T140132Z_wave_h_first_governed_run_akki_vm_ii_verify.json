@@ -1,0 +1,68 @@
+{
+  "host_slug": "akki-vm-ii",
+  "receipt_id": "gpurcp-3290ebc2ae3b",
+  "purpose": "wave_h_first_governed_run_cuda_verify_only",
+  "rc": 0,
+  "wallclock_seconds": 7.4034673610003665,
+  "governed_run_verify_output": {
+    "at_utc": "20260828T140129Z",
+    "steps": [
+      {
+        "step": "torch_version",
+        "value": "2.11.0+cu128"
+      },
+      {
+        "step": "cuda_available",
+        "value": true
+      },
+      {
+        "step": "cuda_version_torch",
+        "value": "12.8"
+      },
+      {
+        "step": "gpu_count",
+        "value": 2
+      },
+      {
+        "step": "device_0_name",
+        "value": "NVIDIA H200"
+      },
+      {
+        "step": "device_1_name",
+        "value": "NVIDIA H200"
+      },
+      {
+        "step": "device_0_total_memory_gb",
+        "value": 139.8
+      },
+      {
+        "step": "device_0_major_minor",
+        "value": "9.0"
+      },
+      {
+        "step": "device_0_multi_processor_count",
+        "value": 132
+      },
+      {
+        "step": "matmul_1024x1024_cuda0_ok",
+        "value": true
+      },
+      {
+        "step": "matmul_512x512_cuda1_ok",
+        "value": true
+      },
+      {
+        "step": "device_0_free_gb",
+        "value": 139.2
+      },
+      {
+        "step": "device_1_free_gb",
+        "value": 139.2
+      },
+      {
+        "step": "wallclock_seconds",
+        "value": 2.57
+      }
+    ]
+  }
+}

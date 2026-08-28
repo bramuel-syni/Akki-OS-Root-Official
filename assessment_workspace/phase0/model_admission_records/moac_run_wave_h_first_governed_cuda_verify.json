@@ -1,0 +1,122 @@
+{
+  "moac_card_id": "moac_run_wave_h_first_governed_cuda_verify",
+  "run_id": "run/wave-h/first-governed/cuda-verify-1",
+  "scope": "CUDA-verify-only",
+  "scope_authority_verbatim": "Owner ruling banked 2026-08-28T~13:10Z: 'first governed run (CUDA verify scope per banked amendment) with audit/watch chokepoints'. A17.17 CLOSED (Message 315): 'CUDA/PyTorch verify-only ... capture versions; install ONLY if probe contradicts owner confirmation, and report the contradiction'.",
+  "host_selection": {
+    "candidate_hosts": ["akki-vm", "akki-vm-ii"],
+    "selected_host_slug": "akki-vm",
+    "selection_rationale_verbatim": "Owner directive 4 (2026-08-28T~13:15Z multi-host interrupt): 'execute on whichever host is ready first (likely akki-vm if its stack survived), bank which host ran it'. Both hosts had their stacks installed within this cycle (neither had a surviving A17.17 stack; re-provisioning wiped both); akki-vm selected as first-runner per owner preference."
+  },
+  "governed_handoff": {
+    "seam": "services.training_runner.ssh_seam",
+    "seam_entry_point": "execute_remote_command(host_slug='akki-vm', purpose='wave_h_first_governed_run_cuda_verify_only', ...)",
+    "chokepoint_registered": true,
+    "chokepoint_kind": "ssh_seam_remote_exec",
+    "chokepoint_verb": "EXEC",
+    "chokepoint_masking_tier": "attested_command",
+    "receipt_id": "gpurcp-480d8c890f7a",
+    "receipt_path": "phase0/gpu_receipts/20260828T135420Z_akki_vm_wave_h_first_governed_run_cuda_verify_only_gpurcp-480d8c890f7a.log",
+    "structured_output_path": "phase0/gpu_receipts/20260828T135420Z_wave_h_first_governed_run_akki_vm_verify.json"
+  },
+  "criteria": [
+    {
+      "name": "M-a",
+      "passed": null,
+      "measured_value": null,
+      "threshold_note": "N/A · verify-only scope · target-stratum improvement requires model training, out of scope for the first governed run per banked amendment A17.17.",
+      "scope_marker": "not_applicable_verify_only"
+    },
+    {
+      "name": "M-b",
+      "passed": null,
+      "measured_value": null,
+      "threshold_note": "N/A · verify-only scope · non-target regression measurement requires model training, out of scope.",
+      "scope_marker": "not_applicable_verify_only"
+    },
+    {
+      "name": "M-c",
+      "passed": null,
+      "measured_value": null,
+      "threshold_note": "N/A · verify-only scope · robustness (adversarial + noisy holdout) awaits full trainer flip.",
+      "scope_marker": "not_applicable_verify_only"
+    },
+    {
+      "name": "M-d",
+      "passed": null,
+      "measured_value": null,
+      "threshold_note": "N/A · verify-only scope · lineage citation applies to model admissions, not compute-seam commissioning.",
+      "scope_marker": "not_applicable_verify_only"
+    },
+    {
+      "name": "M-e",
+      "passed": null,
+      "measured_value": null,
+      "threshold_note": "N/A · verify-only scope · calibration quality requires model inference, out of scope.",
+      "scope_marker": "not_applicable_verify_only"
+    },
+    {
+      "name": "M-f",
+      "passed": null,
+      "measured_value": null,
+      "threshold_note": "N/A · verify-only scope · refusal-honesty applies to model inference, out of scope.",
+      "scope_marker": "not_applicable_verify_only"
+    }
+  ],
+  "verify_only_gates": [
+    {
+      "name": "compute_seam_wired",
+      "passed": true,
+      "measured": "ssh_seam.execute_remote_command returned rc=0 for CUDA-verify command via akki-vm password-auth path; chokepoint crossing registered.",
+      "authority_verbatim": "BLOCKER 2 (a) authorized 2026-08-28T~13:10Z."
+    },
+    {
+      "name": "torch_stack_present",
+      "passed": true,
+      "measured": "torch 2.11.0+cu128 · cuda_version_torch 12.8 · transformers 5.16.1 · accelerate 1.14.0 · peft 0.20.0 · nvidia-ml-py 13.610.43.",
+      "authority_verbatim": "BLOCKER 1 (a) authorized 2026-08-28T~13:10Z."
+    },
+    {
+      "name": "cuda_available",
+      "passed": true,
+      "measured": "torch.cuda.is_available() == True on akki-vm."
+    },
+    {
+      "name": "gpu_count_matches_host_spec",
+      "passed": true,
+      "measured": "torch.cuda.device_count() == 2 · matches nvidia-smi banked in hardware fact sheet (2x H200)."
+    },
+    {
+      "name": "gpu_model_matches_host_spec",
+      "passed": true,
+      "measured": "cuda:0 name='NVIDIA H200' · cuda:1 name='NVIDIA H200'."
+    },
+    {
+      "name": "gpu_memory_matches_host_spec",
+      "passed": true,
+      "measured": "cuda:0 total=139.8 GB · cuda:1 total=139.8 GB · free (idle)=139.2 GB each."
+    },
+    {
+      "name": "compute_capability_matches_h200_expected",
+      "passed": true,
+      "measured": "cuda:0 major.minor=9.0 · SM count=132. H200 architectural spec."
+    },
+    {
+      "name": "matmul_cuda_0_kernel_launches",
+      "passed": true,
+      "measured": "torch.matmul(1024x1024, 1024x1024) on cuda:0 · dtype=float32 · shape=[1024,1024] · torch.cuda.synchronize() returned cleanly."
+    },
+    {
+      "name": "matmul_cuda_1_kernel_launches",
+      "passed": true,
+      "measured": "torch.matmul(512x512, 512x512) on cuda:1 · output on cuda:1 · synchronize clean."
+    }
+  ],
+  "passed_count": 9,
+  "total_gates": 9,
+  "verdict_summary": "First governed run · CUDA verify-only · 9/9 verify gates GREEN on akki-vm. Compute seam commissioned on akki-vm (paired host akki-vm-ii installed same-cycle · pending its own verify run).",
+  "accept_for_service": false,
+  "accept_for_verify_only_scope": true,
+  "next_verify_action_recommended": "Rerun same verify probe on akki-vm-ii and bank a parallel receipt · then owner can declare the multi-host estate commissioned.",
+  "reference_verbatim": "Doc 17 line 101 does NOT apply to this card — this is compute-seam commissioning, not model admission. Model-admission MOAC lands on a subsequent full trainer run when its scope is authorized."
+}

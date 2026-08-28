@@ -1,0 +1,55 @@
+[
+  {
+    "host_slug": "akki-vm",
+    "steps": [
+      {
+        "label": "ensurepip",
+        "rc": 0,
+        "wallclock_seconds": 4.1208607950029545,
+        "receipt_id": "gpurcp-d6ddada59691",
+        "stdout_tail": "/usr/bin/python3: No module named ensurepip\nENSUREPIP_FAILED",
+        "stderr_tail": ""
+      },
+      {
+        "label": "pip_upgrade",
+        "rc": 0,
+        "wallclock_seconds": 3.7965652710008726,
+        "receipt_id": "gpurcp-7ba6871f598b",
+        "stdout_tail": "/usr/bin/python3: No module named pip",
+        "stderr_tail": ""
+      },
+      {
+        "label": "pip_install_torch",
+        "rc": 0,
+        "wallclock_seconds": 3.8132858220014896,
+        "receipt_id": "gpurcp-818b3576ffc0",
+        "stdout_tail": "/usr/bin/python3: No module named pip",
+        "stderr_tail": ""
+      },
+      {
+        "label": "pip_install_pynvml_transformers_accelerate_peft",
+        "rc": 0,
+        "wallclock_seconds": 3.7997278200018627,
+        "receipt_id": "gpurcp-cb9e86d59e35",
+        "stdout_tail": "/usr/bin/python3: No module named pip",
+        "stderr_tail": ""
+      },
+      {
+        "label": "torch_verify",
+        "rc": 1,
+        "wallclock_seconds": 3.9171771820001595,
+        "receipt_id": "gpurcp-0955d6db9ba7",
+        "stdout_tail": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\nModuleNotFoundError: No module named 'torch'",
+        "stderr_tail": ""
+      },
+      {
+        "label": "modules_verify",
+        "rc": 1,
+        "wallclock_seconds": 3.9076051209995057,
+        "receipt_id": "gpurcp-a16672a7ab75",
+        "stdout_tail": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\nModuleNotFoundError: No module named 'pynvml'",
+        "stderr_tail": ""
+      }
+    ]
+  }
+]

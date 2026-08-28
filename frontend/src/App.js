@@ -92,17 +92,61 @@ function _tablesPhrase(tables) {
  */
 const V8_SUBSTITUTIONS = [
   {
-    kind: "element-anchor",
+    kind: "styled-element-anchor",
     name: "registry-aside-hero-sentence",
-    // Slot #1 · registry aside sentence, fragmented across 5 spans.
-    // Full textContent of the container div equals this dummy string.
+    // Slot #1 · Registry header greeting sentence.
+    // Wave-H · INTERRUPT 3 (2026-08-28T~13:25Z) + harness finding
+    // (2026-08-28T~14:12Z, banked in DECISIONS.md next entry):
+    //   dc-runtime renders the plain interpolated string from JS
+    //   `estate.greeting` at data-dc-tpl="343" as a single
+    //   <span class="sc-interp"> — NOT the multi-span styled variant
+    //   that exists elsewhere in the prototype's static HTML. Our job
+    //   is to REPLACE the plain-string render with the styled variant
+    //   (3 underlined figure phrases + 1 oxblood phrase) that owner
+    //   INTERRUPT 3 called out as "by design".
+    //
+    // dummyContent matches what dc-runtime ACTUALLY renders on the
+    // Registry surface (verified via real-Chromium probe 2026-08-28).
     dummyContent:
-      "RMS AI holds 86.4 TB across 12 sources \u2014 78% measured, with 6 opportunities standing ready.",
-    render: (v) => {
-      if (v.estateSources == null && v.estateTables == null) {
-        return "RMS AI is not yet connected to a measured estate \u2014 no sources have been read and no size has been computed.";
+      "86.4 TB across 12 sources \u2014 78% measured, with 6 opportunities standing ready.",
+    // renderFragments returns an ordered list of {kind, value} where kind is:
+    //   "text"      -> plain text node (no styling)
+    //   "underline" -> span with border-bottom:1px solid rgba(27,31,39,.25)
+    //   "oxblood"   -> span with color:var(--oxblood)
+    // The prototype's typographic treatment is preserved byte-for-byte on
+    // both live-values and honest-empty variants.
+    renderFragments: (v) => {
+      const hasLive = v.estateSources != null || v.estateTables != null;
+      if (!hasLive) {
+        // Honest-empty variant · typographic treatment consistent with
+        // prototype design language (3 underlined phrases + 1 oxblood).
+        return [
+          { kind: "text", value: "RMS AI is reading " },
+          { kind: "underline", value: "no sources yet" },
+          { kind: "text", value: ", " },
+          { kind: "underline", value: "no size yet" },
+          { kind: "text", value: " \u2014 " },
+          { kind: "underline", value: "no measurement" },
+          { kind: "text", value: ", " },
+          { kind: "oxblood", value: "awaiting first census" },
+          { kind: "text", value: "." },
+        ];
       }
-      return `RMS AI is reading ${_sourcesPhrase(v.estateSources)} ${_tablesPhrase(v.estateTables)} \u2014 size and completeness not yet measured across the estate.`;
+      // Live-values variant · real figures in underline spans, closing
+      // phrase in oxblood.
+      const sourcesPhrase = _sourcesPhrase(v.estateSources);
+      const tablesPhrase = _tablesPhrase(v.estateTables);
+      return [
+        { kind: "text", value: "RMS AI is reading " },
+        { kind: "underline", value: sourcesPhrase },
+        { kind: "text", value: ", holding " },
+        { kind: "underline", value: tablesPhrase },
+        { kind: "text", value: " \u2014 " },
+        { kind: "underline", value: "size and completeness not yet measured" },
+        { kind: "text", value: ", " },
+        { kind: "oxblood", value: "awaiting first census" },
+        { kind: "text", value: "." },
+      ];
     },
   },
   {
@@ -205,6 +249,61 @@ function applySubstitutions(doc, vals) {
   let count = 0;
 
   for (const rule of V8_SUBSTITUTIONS) {
+
+    // Wave-H INTERRUPT 3 · styled-element-anchor · rebuild container's
+    // children preserving prototype inline span structure (underline +
+    // oxblood). Owner directive verbatim (DECISIONS.md 2026-08-28T~13:25Z):
+    //   "reusing the prototype's own inline markup IS the literal-adoption
+    //    standard ... post-substitution DOM must contain the expected
+    //    styled span/link elements (assert style signature presence, not
+    //    just text)."
+    if (rule.kind === "styled-element-anchor") {
+      const fragments = rule.renderFragments(vals);
+      if (!fragments || fragments.length === 0) continue;
+      const desiredFullText = fragments.map((f) => f.value).join("");
+      const walker = doc.createTreeWalker(doc.body, NodeFilter.SHOW_ELEMENT);
+      let el;
+      const dummyTrim = rule.dummyContent.trim();
+      const markerAttr = "data-substituted-slot";
+      const markerVal = rule.name;
+      // Priority 1: element already marked → check if desired changed.
+      // Priority 2: original dummy match → mark + substitute.
+      const marked = doc.querySelector(`[${markerAttr}="${markerVal}"]`);
+      const target =
+        marked ||
+        (() => {
+          let candidate = null;
+          while ((candidate = walker.nextNode())) {
+            const tc = (candidate.textContent || "").trim();
+            if (tc === dummyTrim) return candidate;
+          }
+          return null;
+        })();
+      if (!target) continue;
+      // Skip if already at desired.
+      if ((target.textContent || "").trim() === desiredFullText.trim()) continue;
+      const newChildren = fragments.map((f) => {
+        if (f.kind === "text") return doc.createTextNode(f.value);
+        const span = doc.createElement("span");
+        // Set style attribute verbatim to match prototype signature so a
+        // downstream style-signature scan finds an exact match.
+        if (f.kind === "underline") {
+          span.setAttribute(
+            "style",
+            "border-bottom:1px solid rgba(27,31,39,.25);"
+          );
+        } else if (f.kind === "oxblood") {
+          span.setAttribute("style", "color:var(--oxblood);");
+        }
+        span.textContent = f.value;
+        return span;
+      });
+      target.replaceChildren(...newChildren);
+      target.setAttribute(markerAttr, markerVal);
+      count++;
+      continue;
+    }
+
     const desired = rule.render(vals);
     if (desired == null) continue;
 
@@ -300,6 +399,16 @@ function PortalIframe() {
         const doc = iframe.contentDocument;
         if (!doc || !doc.body) return;
         const count = applySubstitutions(doc, liveValues);
+        // Wave-H · harness instrumentation: emit a console line each time
+        // applyAll runs so the real-Chromium harness can see the engine's
+        // liveness independently of React state.
+        try {
+          console.log(
+            `wave_g5_substitutions applyAll_run count=${count} bodyLen=${(doc.body.textContent || "").length}`
+          );
+        } catch (_) {
+          /* no-op */
+        }
         if (count > 0) {
           setSubstitutionsApplied((prev) => prev + count);
         }
