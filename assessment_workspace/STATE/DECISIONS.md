@@ -4315,3 +4315,40 @@ Raw JSON-encoded template hash: `47381de686612d941cf6f6bf1607e72b6f479493296b918
 **Wave G ratification (2026-08-28T~05:10Z · 4/4 automated PASS) is SUPERSEDED by this verdict.** The automated pass proved the interpretation shell was correctly wired to itself; it could not prove fidelity to the prototype (fidelity requires visual comparison or DOM-structure equality against the extracted markup — neither was gated). Ratchet floor 2389 is retained (the interpretation-file-BAN tests replace the interpretation-file-PRESENCE tests one-for-one).
 
 **SSH interrupt priority unchanged.** Owner's re-eyeball is the gate for Wave G2 close. Position after Wave G2 close: HOLD for owner re-verification.
+
+
+---
+
+## Wave G2 · V8 LITERAL adoption + live-data bridge · CLOSED at floor 2463 · 2026-08-28T~06:55Z · Source: this session · autonomous under standing disciplines
+
+**Owner amendment banked verbatim** (2026-08-28T~06:35Z): *"as you do that can the data be real data, assuming digicow was integrated"* — YES. And strengthen the data-wiring pass accordingly: Registry / Data Estate renders the owner-signed DigiCow RDS connection (aurora-mysql · 125 tables · ussd_users 2.28M · ussd_question_response 903K · sms_log 256K · region eu-west-1) from `/api/registry/facts`. Audit Trail renders live CA1-001/002/003 counts from `/api/audit_trail/overview`. Compute · akki-vm renders non-secret metadata. PII discipline UNCHANGED: aggregates + metadata only; farmer names/phones never render (CP-E7 sanitizer boundary rule holds). Panels wired to live data get `data-fidelity="live-data"`; panels kept as prototype sample get `data-fidelity="prototype-sample"`. Per-surface LIVE vs SAMPLE table in `notes/waveG2_close_report.md` §5.
+
+**Files landed (this session):**
+- **BYTE-IDENTICAL prototype** at `pod_shell/frontend/public/v8_prototype.html` + `/app/frontend/public/v8_prototype.html` + `phase0/html_snapshots/wave_g2_portal.html` — all sha256 `e56871d01a99c2f3aa173c9b0a0f09e983c9f0e54ba3e61795ac8cb8575f98f2` (identical to Step-0-verified source).
+- **BANNED interpretation files** deleted (both trees): `design/AkkiV8Shell.jsx` · `design/akkiv8_design_system.js`.
+- **App.js REWRITE** (both trees byte-identical · sha256 `364415486d602367542833faab6e3ce4cef24683e7d90f21c76038ca2b1abe16`): root `/` renders `<PortalIframe/>` component hosting the prototype in a same-origin iframe; on iframe `load` event, fetches `/api/registry/facts` + `/api/audit_trail/overview` and injects into `iframe.contentDocument` as text-node substitutions + appended live-fact cards. Every existing 15 pod component routes retained URL-accessible.
+- **EXTRACTED artifacts** at `notes/wave_g2_extraction/`: `v8_prototype_head_styles.css` (sha256 `299e6a48…`, 388 B, the sole external-style block in the prototype) · `v8_prototype_dc_scripts.js` (sha256 `bd3a42b4…`, 599,515 B, the prototype's own state-machine JS).
+- **Right-reason RED banked** at `phase0/drill_receipts/20260828T060500Z_wave_g2_literal_adoption_right_reason_fail.log` (11 fails · BANNED files present, byte-identity gates not-yet-satisfied).
+- **Extraction receipt** at `phase0/drill_receipts/20260828T060000Z_wave_g2_v8_literal_extraction.log` (integration-shape judgment + hashes + banned-list + permanent standard).
+- **`test_wave_g_v8_shell_port.py` REWRITTEN** — 100 mechanical fidelity gates: BANNED-file absence x4, byte-identity gates x3, CSS hash gate x1, extracted-CSS-hash gate x1, App.js wiring x3, no-authored-CSS gate x1, deep-link reachability x1, DECISIONS.md ruling-anchor gate x1, snapshot gate x1, 33 v8 NAV item keys, 10 v8 NAV group labels, 4 v8 TAB labels, 3 v8 ROLE persons + labels, 17 v8 design token values, RMS-AI wordmark, canon-citation anchor, agentsList default seed (Vendor Risk Monitor + Payroll Variance Checker), 14 v8 content constants (GOV/GM/TRUST/RB_CATS/EST_GROUPS/APPROVALS/RULES_IN_FORCE/RAILS/CEREMONIES/CEREMONY_STAGES/ACTORS/WALKS/BRIEF/PATTERNS), Farma-IQ-not-in-default-seed. Zero "we think it matches" logic.
+- **Env-drift fix** — targeted 1-hunk change in `backend/tests/invariants/conftest.py`: monkey-patched `motor.core.AgnosticCollection.get_io_loop` + `AgnosticDatabase.get_io_loop` to return `asyncio.get_running_loop()` on every async call. Idempotent, installed once at conftest module load. Restores anyio-parametrized `[asyncio]` tests that regressed between Wave G close (04:52Z) and Wave G2 (~06:20Z) — root cause: `_motor_rebound_to_loop` (`@pytest_asyncio.fixture(autouse=True)`) does not fire for `@pytest.mark.anyio` tests; plain `@pytest.fixture(autouse=True)` async-gen sibling also did not fire; monkey-patch works universally for both plugin dispatchers.
+
+**Ratchet floor**: 2389 → **2463** (+74 net). Manifest failures unchanged at 0. Quarantine unchanged at 0. Skipped unchanged at 1. `ratchet_history` entry appended at 20260828T065000Z.
+
+**Full-suite double-green identical**:
+- Run 1: `phase0/drill_receipts/20260828T065200Z_wave_g2_close_run1.log` · `passed=2463 / baseline-failures-remaining=0 / quarantined=0` · 88.08s.
+- Run 2: `phase0/drill_receipts/20260828T065400Z_wave_g2_close_run2.log` · `passed=2463 / baseline-failures-remaining=0 / quarantined=0` · 88.36s.
+- Byte-identical receipt lines.
+
+**Close report** at `notes/waveG2_close_report.md` (per-surface LIVE-DATA vs PROTOTYPE-SAMPLE table §5 + full extraction/gate/env-fix documentation).
+
+**Wave G's earlier ratification (2026-08-28T~05:10Z · owner-declared 4/4 automated PASS + HUMAN_REQUIRED open) SUPERSEDED** by owner's re-eyeball verdict *"totally out of touch with the HTML"*. Wave G2 is the corrected replacement.
+
+**Position: HOLD for owner re-eyeball.** Gate order per ruling: automated first (banked GREEN), then owner eyeball — HIS verdict closes the wave, not our tests.
+
+**Standing arrivals unchanged**:
+- **SSH interrupt priority** — halt Wave G2 immediately if key drops (documented sequence in place).
+- **Reuse audit** parked at Cat 6 boundary (`notes/reuse_audit/PARKED_AT_CAT6_BOUNDARY.md`). Resumes after owner accepts or corrects G2 eyeball.
+- **Owner one-liners still open**: CA1-N5 RTO seconds · DigiCow occupation-boolean PII call · Doc 10 evidence-record backfill · A17.10 base-model census.
+- **Decks/Documents build** BUILD-SCHEDULED-POST-PLAN (reuse audit found ~8000 LOC of Executive-Core deck donor material eligible for LIFT-clean).
+- **16 v8 items** EXTENSION-PENDING-OWNER-EYEBALL (analyze · documents · tasks · mentions · emails · projects · hrstuff · performance · board · agentbuild · extract · youragents · appsnew · appsfrequent · appsconnected · appsrequests) — owner may re-home / mount / live-wire after eyeball.
