@@ -52,6 +52,15 @@ from services.grey_mirror.router import router as grey_mirror_router  # noqa: E4
 # Wave F Cleanup · CP · audit-trail Overview surface
 #   (Addendum §1 CA1-001/002/003 · REFERENCE-NOT-COPY read-only).
 from services.audit_trail.router import router as audit_trail_router  # noqa: E402
+# Wave-G5c-CENSUS · Census Engine wire (owner ruling 2026-08-28T~14:30Z:
+#   "Run the census to pull the data. There should be more than one data
+#    base. Registry should work, i should see what the digicow databases
+#    holds, how the census is doing").
+from services.census_engine.router import router as census_engine_router  # noqa: E402
+# Wave-G5c-COMPUTE-BACKEND · Compute Estate surface (owner ruling 4,
+# 2026-08-28T~15:00Z: derive from banked Wave-H receipts, product language
+# only, never IPs / auth / engineering vocab).
+from services.compute_estate.router import router as compute_estate_router  # noqa: E402
 # W11 R3 · Canon 5 §14 Shaping Wizard (Phase 7 Stage B-1 LIFT · Canon 5
 # supersedes 2026-08-14 Simplification Ruling per owner 2026-08-26).
 from routers import wizard_operator as wizard_operator_router  # noqa: E402
@@ -252,6 +261,14 @@ app.include_router(watch_router)
 app.include_router(grey_mirror_router)
 # Wave F Cleanup · CP · audit-trail Overview surface (Addendum §1 CA1-001/002/003).
 app.include_router(audit_trail_router)
+# Wave-G5c-CENSUS · Census Engine wire (multi-DB RDS Data API walker;
+# aggregates-only chokepoint; audit entry per read; numbered records under
+# phase0/census/). Owner rulings 1–3 banked in DECISIONS.md 2026-08-28T~15:00Z.
+app.include_router(census_engine_router)
+# Wave-G5c-COMPUTE-BACKEND · Compute Estate wire (owner ruling 4,
+# 2026-08-28T~15:00Z): derive from banked Wave-H whitepaper; product language
+# only; never IPs / auth / engineering vocab.
+app.include_router(compute_estate_router)
 app.include_router(wizard_operator_router.router, prefix="/api")  # W11 R3 · Canon 5 §14
 # W11 R4.1 · Doc 17 Training plane (state · demand-table compile · test-set seal).
 app.include_router(training_router)

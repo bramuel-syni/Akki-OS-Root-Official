@@ -150,89 +150,125 @@ const V8_SUBSTITUTIONS = [
     },
   },
   {
-    kind: "text-node",
-    name: "registry-census-footer",
-    // Slot #2 · census footer text node (single-node before trailing span).
-    signature:
-      /Every figure on this page traces to a census measurement\. First census May 12, 2026[^]*?J\. Mwangi \u00b7\s*$/,
-    render: () =>
-      "Every figure on this page traces to a census measurement. No census has been run yet \u00b7 ",
-  },
-  // Ten topline tiles (Wave G4 CORRECTION 2 · scope expansion).
-  // Labels are literal (as they appear in dc-runtime measureCards).
-  // Dummy values are the tile's rendered value string.
-  {
-    kind: "tile-value",
-    name: "tile-held-in-total",
-    label: "Held in total",
-    dummy: "86.4 TB",
-    render: () => "Not yet measured",
-  },
-  {
-    kind: "tile-value",
-    name: "tile-sources-connected",
-    label: "Sources connected",
-    dummy: "12",
-    // Only tile with an honest live counterpart (data_sources.length).
-    render: (v) => (v.estateSources == null ? "Not yet measured" : String(v.estateSources)),
+    kind: "styled-element-anchor",
+    name: "registry-census-header",
+    // Slot #2a · census "Last activity" header line.
+    // Wave-G5b · owner ruling (B) 2026-08-28T~14:30Z: migrate slot #2 to
+    // styled-element-anchor with signature matching the ACTUAL render
+    // ("Census #4 read the estate at the seam"), not the dead
+    // "Every figure on this page traces to..." prefix.
+    dummyContent: "Census #4 read the estate at the seam",
+    anchorAncestorText: "Last activity",
+    renderFragments: (v) => {
+      if (v.lastCensus == null) {
+        return [{ kind: "text", value: "No census has been run yet" }];
+      }
+      return [
+        { kind: "text",
+          value: `Census #${v.lastCensus.number} read the estate at the seam` },
+      ];
+    },
   },
   {
-    kind: "tile-value",
-    name: "tile-share-measured",
-    label: "Share measured",
-    dummy: "78%",
-    render: () => "Not yet measured",
+    kind: "styled-element-anchor",
+    name: "registry-census-byline",
+    // Slot #2b · census byline (author + date + un-measured %).
+    dummyContent: "Run Jul 21, 2026 by J. Mwangi \u00b7 22% still not yet measured",
+    anchorAncestorText: "Last activity",
+    renderFragments: (v) => {
+      if (v.lastCensus == null) {
+        return [{ kind: "text", value: "First census pending" }];
+      }
+      const c = v.lastCensus;
+      return [{
+        kind: "text",
+        value: `Run ${c.date} by ${c.author} \u00b7 ${c.notMeasuredPct}% still not yet measured`,
+      }];
+    },
+  },
+  // Wave-G5b · 3 rendered stat tiles (owner ruling A · migrated from the
+  // dead measureCards-bound rules). Bound to estate.stats[] labels that
+  // dc-runtime ACTUALLY renders. Each tile has two rules (value + label)
+  // so live-values enrichment can flow through the label too.
+  {
+    kind: "styled-element-anchor",
+    name: "tile-total-held-value",
+    dummyContent: "86.4 TB",
+    anchorAncestorText: "held across 12 sources",
+    renderFragments: (v) => [
+      { kind: "text", value: v.totalVolume != null ? String(v.totalVolume) : "Not yet measured" },
+    ],
   },
   {
-    kind: "tile-value",
-    name: "tile-data-types-present",
-    label: "Data types present",
-    dummy: "5",
-    render: () => "Not yet measured",
+    kind: "styled-element-anchor",
+    name: "tile-total-held-label",
+    dummyContent: "held across 12 sources",
+    anchorAncestorText: "86.4 TB",
+    renderFragments: (v) => {
+      if (v.estateSources == null) {
+        return [{ kind: "text", value: "no sources yet" }];
+      }
+      const s = v.estateSources;
+      return [{ kind: "text", value: `held across ${s} source${s === 1 ? "" : "s"}` }];
+    },
   },
   {
-    kind: "tile-value",
-    name: "tile-languages-observed",
-    label: "Languages observed",
-    dummy: "7",
-    render: () => "Not yet measured",
+    kind: "styled-element-anchor",
+    name: "tile-share-measured-value",
+    dummyContent: "78%",
+    anchorAncestorText: "measured at last census",
+    renderFragments: (v) => [
+      { kind: "text", value: v.shareMeasured != null ? String(v.shareMeasured) : "Not yet measured" },
+    ],
   },
   {
-    kind: "tile-value",
-    name: "tile-share-already-verified",
-    label: "Share already verified",
-    dummy: "34%",
-    render: () => "Not yet measured",
+    kind: "styled-element-anchor",
+    name: "tile-share-measured-label",
+    dummyContent: "measured at last census",
+    anchorAncestorText: "78%",
+    renderFragments: (v) => {
+      if (v.lastCensus == null) {
+        return [{ kind: "text", value: "awaiting first census" }];
+      }
+      return [{ kind: "text", value: "measured at last census" }];
+    },
   },
   {
-    kind: "tile-value",
-    name: "tile-share-carrying-pii",
-    label: "Share carrying PII",
-    dummy: "41%",
-    render: () => "Not yet measured",
+    kind: "styled-element-anchor",
+    name: "tile-opportunities-value",
+    dummyContent: "6",
+    anchorAncestorText: "opportunities standing ready",
+    renderFragments: (v) => [
+      { kind: "text", value: v.opportunities != null ? String(v.opportunities) : "0" },
+    ],
   },
   {
-    kind: "tile-value",
-    name: "tile-licensed-for-external-use",
-    label: "Licensed for external use",
-    dummy: "18%",
-    render: () => "Not yet measured",
-  },
-  {
-    kind: "tile-value",
-    name: "tile-not-yet-measured",
-    label: "Not yet measured",
-    dummy: "22%",
-    render: () => "Not yet measured",
-  },
-  {
-    kind: "tile-value",
-    name: "tile-reduced-to-reusable-memory",
-    label: "Reduced to reusable memory",
-    dummy: "58%",
-    render: () => "Not yet measured",
+    kind: "styled-element-anchor",
+    name: "tile-opportunities-label",
+    dummyContent: "opportunities standing ready",
+    anchorAncestorText: "opportunities",
+    renderFragments: (v) => {
+      if (v.opportunities == null) {
+        return [{ kind: "text", value: "no opportunities yet" }];
+      }
+      return [{ kind: "text", value: "opportunities standing ready" }];
+    },
   },
 ];
+
+// Wave-G5b · expose the dummies (never the render output) to window so
+// the real-Chromium harness can introspect all rules and check every
+// dummyContent is present in the rendered DOM. This is the mechanical
+// underpinning of owner's "rule-must-match-rendered-DOM" invariant
+// (DECISIONS.md 2026-08-28T~14:30Z · ruling A).
+if (typeof window !== "undefined") {
+  window.V8_SUBSTITUTIONS_DUMMIES = V8_SUBSTITUTIONS.map((r) => ({
+    name: r.name,
+    kind: r.kind,
+    dummyContent: r.dummyContent || null,
+    anchorAncestorText: r.anchorAncestorText || null,
+  }));
+}
 
 function _findAncestorContainingText(node, label, root) {
   let anc = node.parentNode;
@@ -261,32 +297,36 @@ function applySubstitutions(doc, vals) {
       const fragments = rule.renderFragments(vals);
       if (!fragments || fragments.length === 0) continue;
       const desiredFullText = fragments.map((f) => f.value).join("");
-      const walker = doc.createTreeWalker(doc.body, NodeFilter.SHOW_ELEMENT);
-      let el;
       const dummyTrim = rule.dummyContent.trim();
       const markerAttr = "data-substituted-slot";
       const markerVal = rule.name;
       // Priority 1: element already marked → check if desired changed.
-      // Priority 2: original dummy match → mark + substitute.
       const marked = doc.querySelector(`[${markerAttr}="${markerVal}"]`);
-      const target =
-        marked ||
-        (() => {
-          let candidate = null;
-          while ((candidate = walker.nextNode())) {
-            const tc = (candidate.textContent || "").trim();
-            if (tc === dummyTrim) return candidate;
+      let target = marked;
+      if (!target) {
+        // Priority 2: walk all element matches, apply anchorAncestorText
+        // filter if set, then pick the DEEPEST (last in doc order) so
+        // leaf spans win over containers that happen to share text.
+        const walker = doc.createTreeWalker(doc.body, NodeFilter.SHOW_ELEMENT);
+        const matches = [];
+        let candidate;
+        while ((candidate = walker.nextNode())) {
+          const tc = (candidate.textContent || "").trim();
+          if (tc !== dummyTrim) continue;
+          if (rule.anchorAncestorText) {
+            if (!_findAncestorContainingText(candidate, rule.anchorAncestorText, doc.body)) continue;
           }
-          return null;
-        })();
+          matches.push(candidate);
+        }
+        if (matches.length === 0) continue;
+        target = matches[matches.length - 1]; // deepest
+      }
       if (!target) continue;
       // Skip if already at desired.
       if ((target.textContent || "").trim() === desiredFullText.trim()) continue;
       const newChildren = fragments.map((f) => {
         if (f.kind === "text") return doc.createTextNode(f.value);
         const span = doc.createElement("span");
-        // Set style attribute verbatim to match prototype signature so a
-        // downstream style-signature scan finds an exact match.
         if (f.kind === "underline") {
           span.setAttribute(
             "style",

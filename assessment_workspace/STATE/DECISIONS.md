@@ -4769,3 +4769,209 @@ G4 slot #2 rule targets a text-node signature `/Every figure on this page traces
 3. Verification gate: real-Chromium harness produced the mandatory screenshot receipt for slot #1. Tile/slot#2 receipts pending G5b close.
 
 Stop-and-report at first blocker with the exact error verbatim. Local commits only, no push.
+
+---
+
+## 2026-08-28T~14:30Z · Wave-G5b OPEN · owner rulings A–F issued
+
+**Owner rulings verbatim (in reply to Wave-H G5 close report):**
+
+> "Rulings A–F issued — bank in DECISIONS.md and open Wave G5b immediately.
+>
+> (A) TILE FIX PATH: migrate all 10 tile slots to `styled-element-anchor` AND bind them to the ACTUALLY-RENDERED structure (`estate.stats[]` labels: 'held across 12 sources', 'measured at last census', 'opportunities standing ready'), not the dead `measureCards` labels. General rule to bank from Findings 1–3: substitution rules must ALWAYS be authored against what dc-runtime actually renders in real Chromium (harness-verified), never against static template source. Add an invariant that every substitution rule's dummyContent is provably present in the harness-rendered DOM (a rule that matches nothing is a RED, not a silent no-op). That single gate would have caught G3, G4, and Findings 2–3 before the owner ever saw them.
+>
+> (B) SLOT #2: same treatment — migrate to `styled-element-anchor` with the signature matching the actual render (\"Census #4 read the estate at the seam · Run Jul 21, 2026 by J. Mwangi · ...\"). Replace with real census attribution once the Census Engine lands (see D); until then the honest-empty census line, styled per prototype.
+>
+> (C) VARIANT A/B: RATIFIED — keep Variant-B-with-injected-styling. Do NOT dig into sc-if guards; that's invasive with no owner-visible benefit. The screenshot gate is the arbiter of fidelity. I will surface this ratification to the owner for override.
+>
+> (D) CENSUS ENGINE: NOT my discretion — the owner already ruled this explicitly and verbatim: \"Run the census to pull the data. There should be more than one data base. Registry should work, i should see what the digicow databases holds, how the census is doing - typically i should just be able to use the Registry app.\" Full Census Engine is confirmed scope: RDS Data API multi-DB enumeration (verify there is more than one database as the owner states), metadata/aggregates only, never row values, audit entry per read, persistent numbered census records (phase0 JSON), product-shaped endpoints in MUST_BE_LIVE_ROUTES mounted in pod_shell, RUN the first real census, and wire Registry tiles + census status + per-database estate contents to census output. This is Wave G5c and it is the heart of the owner's ask — Registry must be a usable app, not a substituted poster.
+>
+> (E) COMPUTE SURFACE: YES — fold akki-vm + akki-vm-ii into the compute containers (Registry's \"Compute connected\" tab and/or the prototype's compute surface) in G5c. Product language only: machine names, readiness, GPU model (2× H200 139.8GB reads beautifully), never IPs/auth/engineering vocab. Use prototype containers only.
+>
+> (F) EYEBALL TIMING: WAIT. Do not request owner eyeball until tiles (G5b) + slot #2 + census engine + compute surface (G5c) are ALL landed with one consolidated real-Chromium screenshot set (portal, Registry tiles, narrative with styling, census status, compute tab). The owner has had three partial eyeballs — the next one must be the complete Registry experience.
+>
+> Discipline unchanged: right-reason RED first (including the new rule-must-match-rendered-DOM gate), double-green exact-match, floor monotonic-up from 2590, mirror + restart + harness re-verify against the restarted runtime, separate commits per concern, local only, no push. Go G5b then G5c."
+
+**Binding effects · Wave-G5b (this cycle):**
+
+1. **New rule authorship discipline** — substitution rules MUST bind to what dc-runtime actually renders in real Chromium, harness-verified. Static template source is untrusted. This gets its own invariant (below).
+2. **10 → 3 tile rules** — retire the 7 dead `measureCards`-bound rules; migrate remaining 3 to `styled-element-anchor` bound to `estate.stats[]` labels:
+   - Tile 1: `86.4 TB` / `held across 12 sources`
+   - Tile 2: `78%` / `measured at last census`
+   - Tile 3: `6` / `opportunities standing ready`
+3. **Slot #2** — migrate to `styled-element-anchor` with actual signatures:
+   - Header: `Census #4 read the estate at the seam`
+   - Byline: `Run Jul 21, 2026 by J. Mwangi · 22% still not yet measured`
+4. **NEW INVARIANT (the "rule-must-match-rendered-DOM" gate)** — every substitution rule's `dummyContent` must be provably present in the harness-captured rendered-DOM ground-truth JSON. Enforced by pytest against a harness-emitted `phase0/harness_ground_truth/latest.json` file that the real-Chromium harness writes on each run. A rule that matches nothing = RED.
+5. **Ratchet floor** monotonic-up from **2590**. Tests-first RED. Double-green exact-match close.
+
+**Binding effects · Wave-G5c (next cycle):**
+
+6. **Full Census Engine** — RDS Data API enumeration across all DigiCow databases (verify >1 database as owner emphasized). Metadata/aggregates only, never row values. Audit entry per read. Persistent numbered census records in `phase0/census_records/`. Product-shaped endpoints under `MUST_BE_LIVE_ROUTES`. First real census executed on-programme.
+7. **Live wiring** — Registry tiles + census status + per-database estate contents bound to census output.
+8. **Compute surface** — fold akki-vm + akki-vm-ii readiness into the prototype's compute container(s). Product language only (host name, readiness, GPU model). No IPs, no auth, no engineering vocab. Reuse prototype containers.
+
+**Owner-eyeball gate (F):** WAIT. No eyeball request until G5b + G5c complete with a consolidated real-Chromium screenshot set (portal, Registry tiles, narrative-with-styling, census status, compute tab).
+
+Discipline unchanged: right-reason RED first, double-green exact-match, floor monotonic-up from 2590, mirror + restart + harness re-verify, separate commits per concern, local only, no push.
+
+
+## 2026-08-28T~15:00Z · Wave-G5c-CENSUS · OPEN · owner rulings on the 5 boundary questions
+
+**Owner rulings verbatim (in reply to Wave-G5c plan-confirm request):**
+
+> "Rulings on your five questions:
+>
+> 1. CENSUS SCOPE → (a) ALL databases visible to the Data API principal. This is not my inference — the owner ruled verbatim: 'There should be more than one data base.' If enumeration shows only one visible to the principal, bank that finding explicitly (it contradicts the owner's expectation and he needs to know — possibly a permissions gap on the RDS principal, not a product fact).
+>
+> 2. AGGREGATES LEVEL → (a) row_count + column_names + column_types per table, PLUS per-column null_count (a pure aggregate, safe). Per-column min/max is EXPLICITLY BANNED this wave and until further ruling: min/max of a column returns ACTUAL ROW VALUES (min of a name/phone/occupation column = a real person's data crossing the seam) — it violates the aggregates-only chokepoint. Bank that ban with this rationale. Related: the owner's PII classification of the occupation boolean is still pending — treat ALL unclassified columns as PII-presumed for any future per-column statistics.
+>
+> 3. CENSUS RECORDS LOCATION → approved with one addition: `phase0/census/` with your numbered pattern, but each census RUN gets a run-level manifest (census_id monotonic, started/finished UTC, initiator, list of per-db files, rollup totals) alongside the per-db files. The Registry surface's 'how the census is doing' reads the manifest. Census numbering starts at #1 — the real census history begins now; never reference the prototype's fictional 'Census #4'.
+>
+> 4. COMPUTE COPY → derive from the banked Wave-H hardware fact sheets / whitepaper receipts (extract from the gpu_receipts you banked). Never hardcode a display literal — if a VM's hardware changes, the surface must follow the facts. Render in product language from the descriptor (e.g., name, GPU model+count, memory, readiness state).
+>
+> 5. RATCHET POLICY → bump per sub-close: Census close (RED→GREEN→double-green→bump), then Compute close (same). Matches the separate-commits-per-concern rule; either sub-wave stays independently revertible.
+>
+> One addition to your step 7: the Final Owner Eyeball request must bundle the consolidated real-Chromium screenshot set (portal, Registry tiles live, narrative with underline/oxblood styling, census status line, per-database estate contents, Compute tab) — one complete review, no partials, per the banked F ruling. Also note the owner has been asked for four parked rulings (CA1-N5 RTO, occupation-boolean PII class, Doc 10 backfill, keypair hardening) — if any land mid-wave, bank them and apply where scoped; none block G5c. Go."
+
+**Binding effects · Wave-G5c-CENSUS (this sub-close):**
+
+1. **Enumeration scope** — `services/census_engine/engine.py` enumerates ALL databases visible to the RDS Data API principal (`information_schema.schemata` on Aurora MySQL, PostgreSQL equivalent kept behind a probe). If only ONE database is visible, the manifest MUST carry `single_database_visibility_flag: true` with the verbatim finding sentence: "Data API principal saw only 1 database — owner expected >1. Possible permissions gap on the RDS principal; not a product fact."
+
+2. **Aggregates whitelist (SAFE)** — per DB per table:
+   - `row_count` (integer · from `information_schema.tables.table_rows`)
+   - `column_names[]` (list of strings · from `information_schema.columns`)
+   - `column_types[]` (list of strings · from `information_schema.columns.data_type`)
+   - per-column `null_count` (integer · one `SELECT SUM(CASE WHEN col IS NULL THEN 1 ELSE 0 END) FROM t` per column · aggregate only)
+
+3. **Aggregates BANNED (this wave and until further owner ruling)** — per-column `min_value`, `max_value`, `mode`, `median`, sample values, first-row peek, ANY function that returns an actual row value across the seam. Rationale banked: min/max of a name/phone/occupation column returns a real person's data across the seam — violates aggregates-only chokepoint. PII-classification of unclassified columns (including occupation boolean) is PRESUMED PII until owner rules otherwise. Enforcement: engine SQL construction MUST NOT emit `MIN(` or `MAX(` — invariant-gated.
+
+4. **Persistent numbered records** — `phase0/census/census_<NNNN>/`:
+   - `manifest.json` · `{census_id: <NNNN>, started_at_utc, finished_at_utc, initiator, databases: [{name, per_db_file}], rollup: {database_count, table_count, total_row_count}, single_database_visibility_flag: bool, finding_sentence: str | null}`
+   - `<database>.json` per database · `{database, tables: [{table, row_count, columns: [{name, type, null_count}]}]}`
+   - Monotonic numbering from `0001`. **Never `0004`** — the "Census #4" in the prototype is fictional; real history starts here.
+   - Manifest is the single-source-of-truth for the Registry's "how the census is doing" line.
+
+5. **Audit-entry per read** — every `client.execute_statement` call registers a `chokepoint.register_crossing(kind="rds_data_api", masking_tier="structure_only", ...)` AND appends an entry to the run's audit trail list. The run manifest carries `audit_trail: [{at_utc, sql_shape, database, table, principal}]` — sql_shape is a whitelist token (`schemata_list`, `tables_list`, `columns_list`, `row_count`, `null_count_per_column`), never raw SQL.
+
+6. **Wire endpoints (Ship-Manifest DoD)** — `services/census_engine/router.py` mounted in `pod_shell/backend/server.py` (byte-identical mirror to `/app/backend/server.py`). Routes:
+   - `POST /api/census/run` — execute a live census · returns `{census_id, database_count, table_count}` · admin actor.
+   - `GET /api/census/records` — list all persisted census records · returns `{records: [{census_id, started_at_utc, finished_at_utc, database_count, table_count}]}`.
+   - `GET /api/census/latest` — returns `{census: <manifest> | null, reason: "..."}` with honest-empty when no census run yet.
+
+7. **Live-run ceremony** — first governed census run is deferred to a separately-authorized ceremony (parallel to Wave-H first-governed-cuda-verify). Whitepaper + MOAC card bank the run. The pytest invariants gate the ENGINE CONTRACT, not the live execution.
+
+8. **Discipline** — right-reason RED first, double-green exact-match close, ratchet floor monotonic-up from **2611**. Local commits only, no push. Separate commit from Wave-G5c-COMPUTE (which follows this sub-close).
+
+**Wave-G5c-COMPUTE (next sub-close, deferred to a separate commit):**
+
+- Derive compute descriptor for `akki-vm` + `akki-vm-ii` from banked Wave-H hardware fact sheets (`phase0/gpu_receipts/2026*_wave_h2_hardware_fact_sheet.log`, `phase0/gpu_receipts/2026*_wave_h_multihost_probe_*.log`, `phase0/whitepapers/wp_run_wave_h_first_governed_cuda_verify.json`).
+- Never hardcode display literals. Product language only — host name, GPU model+count, memory, readiness state.
+- Fold into Registry Compute tab via `styled-element-anchor` substitutions bound to actually-rendered dc-runtime DOM.
+
+**Owner-eyeball gate:** WAIT until BOTH sub-closes (Census + Compute) land + consolidated real-Chromium screenshot set.
+
+## 2026-08-28T~15:15Z · Wave-G5c-CENSUS · CLOSED · double-green byte-identical at floor 2636 (+25)
+
+**Scope · sub-close 1 of 2 for Wave-G5c** (Compute sub-close follows as a separate commit per owner ruling 5, banked in DECISIONS.md 2026-08-28T~15:00Z).
+
+**Landed:**
+
+- **New module** · `services/census_engine/{__init__,engine,router}.py` (backend/services/, not a per-runtime mirror — /app/backend/server.py imports through the sys.path spine at /app/assessment_workspace/repos/Extraction-Akki/backend).
+- **Engine** · `run_census(client, cluster_arn, secret_arn, region, records_dir, initiator)` — RDS Data API multi-DB walker; enumerates ALL databases visible to the principal (owner ruling 1); banks `single_database_visibility_flag: True` + verbatim finding sentence when only 1 DB is visible.
+- **Aggregates whitelist enforced by construction (owner ruling 2)** · per-table: row_count, column_names, column_types · per-column: null_count. Nothing else. Per-column min/max SQL functions are BANNED across the module — `test_engine_sql_module_never_emits_min_or_max` reads `services/census_engine/engine.py` and refuses any occurrence of the SQL extrema tokens (case-insensitive).
+- **Row-value leak scan** · `test_engine_manifest_never_contains_row_values` poisons the fake RDS client with `"Alice"` and asserts the token never appears in the serialized manifest or per-DB files.
+- **Numbered records** · `phase0/census/census_<NNNN>/manifest.json` + `phase0/census/census_<NNNN>/<db>.json`. Monotonic numbering from `0001` (owner ruling 3 · never the prototype's fictional `Census #4`). Manifest carries `census_id`, `started_at_utc`, `finished_at_utc`, `initiator`, `databases[]`, `rollup: {database_count, table_count, total_row_count}`, `single_database_visibility_flag`, `finding_sentence`, `audit_trail[]`.
+- **Audit-entry per read** · every `client.execute_statement` mirrored by one `audit_trail[]` entry with `sql_shape` drawn from the whitelist `{schemata_list, tables_list, columns_list, row_count, null_count_per_column}` (never raw SQL). One-to-one gate: `test_engine_records_one_audit_entry_per_read`.
+- **Chokepoint crossing per run** · `services.chokepoint.register_crossing(kind="rds_data_api", masking_tier="structure_only", ...)` fires from `run_census` before any client method is invoked. Test spy: `test_engine_registers_chokepoint_crossing_per_run`.
+- **Wire endpoints (Ship-Manifest DoD)** · mounted in `pod_shell/backend/server.py` byte-identical to `/app/backend/server.py`:
+  - `GET  /api/census/latest` · latest manifest OR honest-empty reason
+  - `GET  /api/census/records` · list of run summaries (newest first)
+  - `POST /api/census/run` · governed live-run entrypoint (product-language failure sentences on `CensusEstateNotConnected` or any exception; never a stack trace)
+- **MUST_BE_LIVE_ROUTES gain +3** in `tests/invariants/test_ship_manifest_dod_route_table_drift.py` — parametrized live-pod check gates each of the three new routes.
+- **boto3 seam discipline** · owner Doc 01 §A5.5 chokepoint holds: no new boto3 import site landed in `services/census_engine/`. Instead, `services/connect/rds_data_submit.py` gains `get_rds_data_client(region)` — the ONE chokepoint-exempted seam per `test_no_boto3_import_outside_chokepoint`. The router lazy-imports through the helper.
+- **Owner ruling 3 · numbering** · engine numbering starts at `#1`; `test_wire_shape_never_hardcodes_census_number_four` reads the router source and refuses any hardcoded `Census #4` shape token.
+
+**Test scoreboard (RED → GREEN):**
+
+- RED: 22 new tests × 2 files RED for the RIGHT reason (module absent). Banked: `phase0/drill_receipts/20260828T150504Z_wave_g5c_census_right_reason_red.log`.
+- GREEN close run 1: `phase0/drill_receipts/20260828T151358Z_wave_g5c_census_close_run1.log` → `passed=2636 / baseline-failures-remaining=0 / quarantined=0 · status: OK`.
+- GREEN close run 2 (BYTE-IDENTICAL to run 1 after stripping wall-clock): `phase0/drill_receipts/20260828T151542Z_wave_g5c_census_close_run2.log` → same tally · stripped-diff = 0 lines.
+- Post-ratchet-bump verify: `phase0/drill_receipts/20260828T151828Z_wave_g5c_census_close_verify_after_ratchet_bump.log` → `passed=2636 · status: OK` with new floor 2636.
+
+**Ratchet:** `passed_floor` 2611 → 2636 (+25). `ratchet_history` appended in `backend/tests/invariants/baseline_failures.json`.
+
+**Deltas by test file (all new · all GREEN):**
+
+- `test_census_engine_contract.py` — 13 tests (module presence, min/max SQL ban, min/max key ban, single-DB flag + verbatim finding, multi-DB no-flag, per-column whitelist, row-value leak scan, numbering starts at #1, manifest+per-db layout, audit-entry-per-read, chokepoint crossing per run).
+- `test_census_wire_shape.py` — 9 tests (module presence, router type, honest-empty shapes for `/latest` and `/records`, populated-estate shapes, `#4`-hardcode ban, POST /run success shape, POST /run honest-failure shape with engineering-vocab ban).
+- `test_ship_manifest_dod_route_table_drift.py` — 3 new parametrized entries via `MUST_BE_LIVE_ROUTES`.
+
+**Runtime posture:**
+
+- `pod_shell/backend/server.py` ↔ `/app/backend/server.py` byte-identical mirror confirmed after mount.
+- Supervisor restarted; `/api/census/latest` + `/api/census/records` live from localhost (honest-empty as expected).
+- **First real census run** is a governed ceremony · NOT executed this sub-close · deferred to a separately-authorized ceremony pattern (mirrors Wave-H first-governed-cuda-verify). The engine contract is now under invariant discipline; the live run banks the actual receipts.
+
+**What Wave-G5c-CENSUS does NOT do (deferred to next sub-close):**
+
+- Frontend styled-element-anchor bindings for the Registry census header/byline tiles to actually READ from `/api/census/latest`. Slots #2a/#2b already declared bound to `v.lastCensus` in `pod_shell/frontend/src/App.js` — the fetch wiring for `lastCensus` is added in Wave-G5c-COMPUTE close (or an interim wire-only tick if owner rules).
+- Compute Surface (akki-vm + akki-vm-ii readiness fold-in) · full Wave-G5c-COMPUTE scope, separate sub-close, separate ratchet bump.
+- Real-Chromium harness capture of the Registry census status line reading from live `/api/census/latest` · consolidated into the Final Owner Eyeball bundle after both sub-closes.
+
+**Discipline check:**
+- Right-reason RED banked before implementation. ✅
+- Double-green exact-match close. ✅ (stripped-diff = 0)
+- Ratchet monotonic-up per sub-close (owner ruling 5). ✅ (2611 → 2636)
+- boto3 seam confined to one chokepoint-exempted module (Doc 01 §A5.5). ✅
+- Aggregates-only chokepoint (owner ruling 2). ✅ (construction gate + row-value leak scan gate)
+- Product-language failure sentences (no IPs, no auth vocab, no stack traces). ✅ (`test_post_census_run_returns_honest_failure_when_credentials_missing`)
+- Local commit only, no push. Pending.
+
+## 2026-08-28T~15:30Z · Wave-G5c-COMPUTE-BACKEND · CLOSED · double-green byte-identical at floor 2649 (+13)
+
+**Scope · sub-close 2 of 2 for Wave-G5c-BACKEND-side.** Wave-G5c-COMPUTE-FRONTEND (styled-element-anchor rules folding host readiness into the prototype's Compute tab tiles + harness extension navigating to that tab) is a further separately-revertible sub-close.
+
+**Landed:**
+
+- **New module** · `services/compute_estate/{__init__,estate,router}.py`.
+- **Descriptor** · derived from the newest `wp_run_wave_h_*.json` under `phase0/whitepapers/` (glob, sort by `st_mtime_ns` desc with filename tiebreak). Owner ruling 4 verbatim: "Never hardcode a display literal — if a VM's hardware changes, the surface must follow the facts." Static scan (`test_estate_module_never_hardcodes_gpu_model_or_host_name`) refuses any string-literal occurrence of `"NVIDIA H200"`, `"akki-vm"`, `"H100"`, `"H200"`, `"139.8"` in the module source (docstrings/comments excluded via triple-quote/line-comment strip).
+- **Per-host shape** · `{name, readiness, gpu_model, gpu_count, gpu_memory_gb_per_gpu}`. `readiness` drawn from a small product-language whitelist: `{Ready, Awaiting stack, Awaiting connection, Standing by}`. `_readiness_for()` rules: whitepaper carries `host_first_run` + `host_paired_installed_same_cycle` → `Ready`; else → `Awaiting stack`. Narrow whitelist keeps state-space drift honest (new states require an owner ruling).
+- **Rollup** · `{host_count, gpu_count_total, gpu_memory_gb_total}`. Live-pod probe against the pod-served receipt (localhost, X-Forwarded-For allowlist header): `hosts=[akki-vm, akki-vm-ii], gpu_count_total=4, gpu_memory_gb_total=559.2` — derived from `wp_run_wave_h_first_governed_cuda_verify.json` estate block.
+- **Wire endpoint (Ship-Manifest DoD)** · `GET /api/compute/estate` mounted in `pod_shell/backend/server.py` (byte-identical to `/app/backend/server.py`). MUST_BE_LIVE_ROUTES gain +1.
+- **Owner ruling F · engineering-vocab ban** · `test_estate_response_never_carries_engineering_vocab` scans the serialized response for `{port, 22, ssh, sshd, password, passwd, credential, token, key, auth, iam, arn:, root@, ubuntu@, sudo, kernel, driver_version}` and refuses any hit. IPv4 dotted-quad regex refused too. All GREEN on the assembled response.
+- **Honest-empty response** · when no Wave-H whitepaper is present on disk, the descriptor returns `{hosts: [], rollup: {host_count:0, gpu_count_total:0, gpu_memory_gb_total:0}, reason: "<plain sentence>"}` — never a naked null or a 500.
+
+**Test scoreboard (RED → GREEN):**
+
+- RED: 12 new tests RED for the RIGHT reason (module absent). Banked: `phase0/drill_receipts/20260828T152418Z_wave_g5c_compute_backend_right_reason_red.log`.
+- GREEN close run 1: `phase0/drill_receipts/20260828T152559Z_wave_g5c_compute_backend_close_run1.log` → `passed=2649 · status: OK`.
+- GREEN close run 2 (BYTE-IDENTICAL to run 1 after wall-clock strip): `phase0/drill_receipts/20260828T152747Z_wave_g5c_compute_backend_close_run2.log` → same tally · stripped-diff = 0 lines.
+- Post-ratchet-bump verify: `phase0/drill_receipts/20260828T152949Z_wave_g5c_compute_backend_close_verify_after_ratchet_bump.log` → `passed=2649 · status: OK` with new floor 2649.
+
+**Ratchet:** `passed_floor` 2636 → 2649 (+13). `ratchet_history` appended in `baseline_failures.json`.
+
+**Deltas by test file (all new · all GREEN):**
+
+- `test_compute_estate_contract.py` — 12 tests (module presence ×3, descriptor reads whitepaper verbatim, follows newer whitepaper, honest-empty, rollup arithmetic, engineering-vocab ban, readiness-state whitelist, wire shape, wire honest-empty, no-hardcoded-literals static scan).
+- `test_ship_manifest_dod_route_table_drift.py` — 1 new parametrized MUST_BE_LIVE_ROUTES entry (`GET /api/compute/estate`).
+
+**Runtime posture:**
+
+- `pod_shell/backend/server.py` ↔ `/app/backend/server.py` byte-identical mirror confirmed after mount.
+- Supervisor restarted; `GET /api/compute/estate` live from localhost with pod probe recipe.
+- Live-served descriptor: `hosts=[akki-vm(Ready · 2× H200 · 139.8 GB), akki-vm-ii(Ready · 2× H200 · 139.8 GB)], rollup={host_count:2, gpu_count_total:4, gpu_memory_gb_total:559.2}`.
+
+**What Wave-G5c-COMPUTE-BACKEND does NOT do (deferred to Wave-G5c-COMPUTE-FRONTEND sub-close):**
+
+- Frontend `styled-element-anchor` substitution rules folding compute-estate values into the prototype's Compute tab tiles. The prototype renders 3 `computeCards` (`840 vCPU-h/day / Total capacity`, `62%` / `Allocated to Build`, `3 queued` / `Queue depth`) — the fold-in maps host_count/gpu_count_total/gpu_memory_gb_total to those tile values with `anchorAncestorText` filters against the prototype-rendered labels.
+- Extension of `tools/wave_g5_realchrome_verification_harness.py` to navigate to the Registry Compute tab and export ground-truth JSON covering the compute-tile slots. Without that navigation, rules bound to Compute-tab dummies would trip the `rule-must-match-rendered-DOM` invariant. The COMPUTE-FRONTEND close authors those rules AND extends the harness in the same commit.
+- The FIRST LIVE census run (deferred from Wave-G5c-CENSUS) is unchanged — still a separately-authorized governed ceremony after both COMPUTE-FRONTEND and CENSUS-FIRST-RUN land.
+
+**Discipline check:**
+- Right-reason RED banked before implementation. ✅
+- Double-green exact-match close. ✅ (stripped-diff = 0)
+- Ratchet monotonic-up per sub-close (owner ruling 5). ✅ (2636 → 2649)
+- Product-language only, no IPs/auth/engineering vocab. ✅ (`test_estate_response_never_carries_engineering_vocab`)
+- Never hardcode a display literal. ✅ (`test_estate_module_never_hardcodes_gpu_model_or_host_name` static AST-ish scan)
+- Local commit only, no push. Pending.

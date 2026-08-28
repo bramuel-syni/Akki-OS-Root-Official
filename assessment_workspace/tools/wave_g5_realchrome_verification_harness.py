@@ -33,11 +33,25 @@ Design:
   - Screenshot to a workspace path.
   - Print structured PASS/FAIL summary. Exit 0 on all-green, 1 on any-red.
 """
-import argparse, json, os, re, sys, time
+import argparse, json, os, re, subprocess, sys, time
+from datetime import datetime, timezone
 from pathlib import Path
 
 sys.path.insert(0, "/opt/plugins-venv/lib/python3.11/site-packages")
 from playwright.sync_api import sync_playwright, TimeoutError as PWTimeout
+
+
+def _git_head_sha():
+    """Best-effort read of Extraction-Akki HEAD SHA for provenance."""
+    try:
+        r = subprocess.run(
+            ["git", "-C", "/app/assessment_workspace/repos/Extraction-Akki",
+             "rev-parse", "HEAD"],
+            capture_output=True, text=True, timeout=5
+        )
+        return (r.stdout or "").strip() or None
+    except Exception:
+        return None
 
 
 ROOT = Path("/app/assessment_workspace/phase0/eyeball_proxies")
@@ -50,34 +64,30 @@ BACKEND_URL_EXTERNAL = "https://akki-reuse-assess.preview.emergentagent.com"
 XFF_ADMIT_HEADER = "127.0.0.1, pod-lb, cf-edge"
 
 DUMMY_STRINGS = [
-    # Slot #1 pieces
-    "RMS AI holds 86.4 TB across 12 sources",  # composite (fragmented-span concat)
-    # Individual tile dummies (each must be absent post-substitution)
-    "86.4 TB",       # Held in total
-    "12 sources",    # slot #1 span
-    "78% measured",  # slot #1 span
-    "6 opportunities",  # slot #1 span
-    "78%",           # Share measured
-    "34%",           # Share already verified
-    "41%",           # Share carrying PII
-    "18%",           # Licensed for external use
-    "22%",           # Not yet measured (as tile-value)
-    "58%",           # Reduced to reusable memory
-    # Slot #2 census pieces
-    "Census #4 (ran at 4.00am",
-    "J. Mwangi",
-    "May 12, 2026",
+    # Wave-G5b: only the ACTUALLY-RENDERED dummies remain in this list.
+    # The prior composite ("RMS AI holds 86.4 TB across 12 sources") lived
+    # in a template-branch that dc-runtime never renders — retired.
+    "86.4 TB",                                       # tile 1 value dummy
+    "held across 12 sources",                        # tile 1 label dummy
+    "78%",                                           # tile 2 value dummy
+    "measured at last census",                       # tile 2 label dummy
+    "opportunities standing ready",                  # tile 3 label dummy
+    "Census #4 read the estate at the seam",         # slot #2a dummy
+    "Run Jul 21, 2026 by J. Mwangi",                 # slot #2b dummy (prefix)
 ]
 
 EXPECTED_STRINGS = [
-    # Wave-H INTERRUPT 3 · post-styled-element-anchor phrasing.
-    "RMS AI is reading",                 # slot #1 honest-empty opener
-    "no sources yet",                    # slot #1 underlined span (honest-empty)
-    "no size yet",                       # slot #1 underlined span (honest-empty)
-    "no measurement",                    # slot #1 underlined span (honest-empty)
-    "awaiting first census",             # slot #1 oxblood span (honest-empty)
-    "Not yet measured",                  # HONEST-EMPTY for tiles (still applies)
-    "No census has been run yet",        # slot #2 HONEST-EMPTY
+    # Wave-G5b · post-substitution phrasing (honest-empty OR live-values
+    # variant). At least ONE of each pair MUST be visible.
+    "RMS AI is reading",                 # slot #1 opener (either variant)
+    "awaiting first census",             # slot #1 oxblood (honest-empty)
+    "No census has been run yet",        # slot #2a honest-empty
+    "First census pending",              # slot #2b honest-empty
+    # Tile honest-empty phrases (any of these being visible proves tile
+    # substitution fired):
+    "Not yet measured",                  # tile value honest-empty
+    "no sources yet",                    # tile 1 label honest-empty
+    "no opportunities yet",              # tile 3 label honest-empty
 ]
 
 # Wave-H INTERRUPT 3 · style-signature invariants that must hold on
@@ -259,18 +269,30 @@ def find_and_click_registry_nav(page):
 
 
 def audit_dom(page, dummies, expected):
-    """Return dummy/expected string presence in iframe body textContent."""
+    """Return dummy/expected string presence in the iframe's VISIBLE text
+    (script/style tags excluded — their string literals are false positives).
+    """
     audit = page.evaluate("""(args) => {
         const {dummies, expected} = args;
         const iframe = document.querySelector('[data-testid="v8-prototype-iframe"]');
         if (!iframe || !iframe.contentDocument) return {error:"iframe null"};
         const doc = iframe.contentDocument;
-        const t = doc.body.textContent || "";
+        // Walk elements, exclude script/style, concatenate their direct text.
+        let visible = "";
+        const walker = doc.createTreeWalker(doc.body, NodeFilter.SHOW_ELEMENT);
+        let el;
+        while ((el = walker.nextNode())) {
+            const tag = el.tagName;
+            if (tag === "SCRIPT" || tag === "STYLE" || tag === "HELMET") continue;
+            for (const c of el.childNodes) {
+                if (c.nodeType === 3) visible += (c.nodeValue || "");
+            }
+        }
         const dummyHits = {};
-        for (const d of dummies) dummyHits[d] = t.includes(d);
+        for (const d of dummies) dummyHits[d] = visible.includes(d);
         const expectedHits = {};
-        for (const e of expected) expectedHits[e] = t.includes(e);
-        return {dummyHits, expectedHits, textLen: t.length};
+        for (const e of expected) expectedHits[e] = visible.includes(e);
+        return {dummyHits, expectedHits, textLen: visible.length};
     }""", {"dummies": dummies, "expected": expected})
     return audit
 
@@ -464,6 +486,83 @@ def main():
 
             page.screenshot(path=str(screenshot_registry), full_page=False)
             W(f"  screenshot: {screenshot_registry}")
+
+            W("[STEP 8c] rule-vs-rendered-DOM ground-truth audit (Wave-G5b invariant) ...")
+            # Owner ruling A (DECISIONS.md 2026-08-28T~14:30Z): every
+            # substitution rule's dummyContent MUST be provably present
+            # in the harness-rendered DOM. A rule that matches nothing
+            # is RED, not a silent no-op.
+            gt = page.evaluate(r"""() => {
+                const dummies = window.V8_SUBSTITUTIONS_DUMMIES || [];
+                const iframe = document.querySelector('[data-testid="v8-prototype-iframe"]');
+                const doc = iframe && iframe.contentDocument;
+                if (!doc || !doc.body) return {error: "iframe body not found", dummies_declared: dummies.length};
+                // Full body textContent (post-substitution, so already-substituted
+                // rules will show substituted values, NOT dummies; but the
+                // data-substituted-slot marker attribute captures which rules
+                // matched successfully).
+                const bodyText = doc.body.textContent || "";
+                const marked = Array.from(
+                    doc.querySelectorAll("[data-substituted-slot]")
+                ).map(el => el.getAttribute("data-substituted-slot"));
+                const perRule = dummies.map(r => {
+                    const matchedNow = marked.includes(r.name);
+                    // If not matched now, was the dummy ever present?
+                    const dummyPresentInBodyPreOrPost =
+                        r.dummyContent ? bodyText.includes(r.dummyContent) : false;
+                    return {
+                        name: r.name,
+                        kind: r.kind,
+                        dummyContent: r.dummyContent,
+                        anchorAncestorText: r.anchorAncestorText,
+                        matched_by_marker: matchedNow,
+                        dummy_still_in_body: dummyPresentInBodyPreOrPost,
+                        // A rule PROVES bind-to-rendered-DOM iff either:
+                        //   - it substituted successfully (marker present), OR
+                        //   - its dummy is still literally present (not
+                        //     substituted yet, but target does exist).
+                        bound_to_rendered_dom: matchedNow || dummyPresentInBodyPreOrPost,
+                    };
+                });
+                return {
+                    dummies_declared: dummies.length,
+                    marked_slots_count: marked.length,
+                    body_len: bodyText.length,
+                    per_rule: perRule,
+                };
+            }""")
+            W(f"  ground-truth summary: dummies_declared={gt.get('dummies_declared')}, "
+              f"marked_slots={gt.get('marked_slots_count')}, body_len={gt.get('body_len')}")
+            orphans = [
+                r for r in (gt.get("per_rule") or [])
+                if not r.get("bound_to_rendered_dom")
+            ]
+            W(f"  rule orphans (bound_to_rendered_dom=False): {len(orphans)}")
+            for r in orphans:
+                W(f"    ORPHAN · {r['name']} · kind={r['kind']} · dummy={r['dummyContent']!r}")
+            if orphans:
+                W("  RED · rule-orphan · substitution rule does not match rendered DOM")
+                all_pass = False
+
+            # Persist ground truth for pytest invariant.
+            gt_dir = Path("/app/assessment_workspace/phase0/harness_ground_truth")
+            gt_dir.mkdir(parents=True, exist_ok=True)
+            gt_payload = {
+                "at_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+                "label": args.label,
+                "portal_screenshot": str(screenshot_portal),
+                "registry_screenshot": str(screenshot_registry),
+                "ground_truth": gt,
+                "orphan_count": len(orphans),
+                "orphan_names": [r["name"] for r in orphans],
+                "commit_sha_extraction_akki": _git_head_sha(),
+            }
+            (gt_dir / "latest.json").write_text(json.dumps(gt_payload, indent=2))
+            # Also snapshot per-run
+            (gt_dir / f"run_{args.label}_{int(time.time())}.json").write_text(
+                json.dumps(gt_payload, indent=2)
+            )
+            W(f"  ground-truth: {gt_dir / 'latest.json'}")
 
             W("[STEP 9] console + error log (last 30 lines) ...")
             for kind, text in logs[-30:]:

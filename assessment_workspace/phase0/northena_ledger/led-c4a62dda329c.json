@@ -1,0 +1,19 @@
+{
+  "artifact_ref": {
+    "artifact_id": "objreq-test-cbf",
+    "artifact_type": "objective_request",
+    "version": "v2"
+  },
+  "at": "2026-08-28T15:14:13.765990Z",
+  "decision": "refused",
+  "lawful_basis_ref": "test_basis_4b",
+  "reason": "composition_below_floor",
+  "row_id": "led-c4a62dda329c",
+  "run_id": "cc-run-0c7e7df97272",
+  "stage": "admit",
+  "stamp_audit": {
+    "refusal_family": "composition_below_floor",
+    "source": "service_1.composed_conclusion.sync"
+  },
+  "trace_id": "test-cbf"
+}
