@@ -4108,3 +4108,100 @@ External third-run WAVE-close ratification deferred to Wave F wave-close per own
 
 **Autonomous progression re-authorized under all standing disciplines** (tests-first · verbatim references in docstrings · Ship-Manifest DoD triple · byte-identical pod-shell/spine mirror · local commits only · no push · no testing subagent · terminal pytest only · post-compaction re-read). SSH interrupt priority unchanged.
 
+
+
+---
+
+## Owner Ruling · Wave G RE-SCOPED (again) · V8 Adoption · v4 rescinded · 2026-08-28T~04:15Z · Source: owner channel (in-chat)
+
+**Verbatim owner ruling (in-chat this session, after Step 0 verdict preamble):**
+
+> "Confirmations with TWO corrections:
+> 1. CORRECTED on two counts: (a) FIRST action is Step 0 — the VERIFICATION of the v8 HTML's embedded payload (extract it, sha256, confirm actual content = Akki OS shell grammar, NOT Farma IQ). I never received that verdict; nothing else proceeds until it's reported. If already done pre-handoff, report the verdict + hashes before Step 0.5. (b) Steps 2-5 build the shell TO V8 — the owner RESCINDED the v4 shell ("what I gave you has none of this"); do NOT port AkkiV4Shell. If, after inventory, v8's chrome genuinely matches parts of the v4 shell code, you may REUSE those parts as implementation convenience — but the spec is v8, cited per element, and any reuse is invisible implementation detail, never the design authority.
+> 2. CONFIRMED — terminal pytest only, BASELINE_GUARD discipline, no testing subagent on your side ever (external verification is mine).
+> 3. CONFIRMED — code to programme/track-a, STATE to master, local only, no push.
+> 4. CONFIRMED — v8 wins conflicts; v7 four-fixture set is companion oracle only where v8 is silent.
+> 5. CONFIRMED — SSH interrupt sequence exactly as stated, with the two ruled amendments baked in (CUDA verify-only, EP-4 precondition before the governed run).
+>
+> Proceed: Step 0 verdict in chat → Step 0.5 ingest/inventory (from verified file bytes only, citations mandatory) → Steps 2-5 to v8. Stop-and-report at close for my external run."
+
+**Effect (5 binding items):**
+
+1. **V4 shell RESCINDED as design authority.** Code artifacts at `Extraction-Akki/frontend/src/design/AkkiV4Shell*.jsx` + `akkiv4_design_system.js` + `ratified_copy.js` retained on disk for **invisible implementation reuse only** where v8 chrome coincidentally matches. Every visible design element from Wave G forward must trace to a v8 byte-range with a `[v8-HTML:pos=N]` or `[v8-Docx:§X.Y line N]` citation. Wave G Step 2 (from the 2026-08-28T~00:50Z ruling) is superseded — Steps 2/3 of the RE-SCOPED wave build TO V8, not to V4.
+2. **Step 0 first, always.** Nothing proceeds until v8 identity is verified from file bytes with the verdict reported in-chat with hashes. Owner never received the pre-handoff verdict; it must be reported.
+3. **Conflict rule** (confirmed): v8 WINS every conflict with the v7 four-fixture set; v7 four-fixture set = companion oracle only where v8 is silent. `notes/prototype_inventory_v7.md` retains its UNRELIABLE banner from the 2026-08-28T~00:50Z ruling (describes a file that isn't on disk); its intent-descriptions transfer as advisory to the v8 inventory.
+4. **Discipline** (confirmed): terminal `pytest` only under `BASELINE_GUARD=1`; no testing subagent this side (external verification is owner's); code changes → `programme/track-a` in `Extraction-Akki`; STATE/notes → master workspace; local commits only, no push; SSH interrupt sequence unchanged (chmod 600 → `AKKI_GPU_SSH_PRIVATE_KEY_PATH` → `GPU_CONNECT_MODE=real` → hardware fact sheet → CUDA verify-only → EP-4 precondition guard → first governed run → real MOAC → whitepaper → stop-and-report).
+5. **Autonomous close then stop-and-report.** Step 0 verdict → Step 0.5 inventory → Steps 2/3 v8 shell port → Step 4 real data unchanged (chrome-only wrap) → Step 5 double-green permanent close → HOLD for owner external verification.
+
+
+---
+
+## Wave G · Step 0 verdict banked · 2026-08-28T~04:15Z · Source: this session
+
+**Verdict: PASS · v8 identity = Akki OS (RMS AI branded instance).**
+
+**File hashes (raw bytes only, from files opened in this session):**
+
+- `fixtures/RMS_AI_Akki_Prototype_v8_Standalone.html` · sha256 `e56871d01a99c2f3aa173c9b0a0f09e983c9f0e54ba3e61795ac8cb8575f98f2` · 1,264,425 B · 395 lines.
+- `fixtures/Akki_Platform_v8_Design_Spec.docx` · sha256 `d7cfd3aed244da1b53b7b86ed9572852b8e6e928f2294d6f94083ff775491304` · 108,191 B.
+
+**Bundler manifest** (4 base64+gzip payloads + 1 inline JSON-encoded template):
+
+| uid | mime | bytes | payload sha256 | vs v7-v1 |
+|---|---|---:|---|---|
+| `8d5cc57e…` | application/javascript | 6,289 | `ba61852925c4327a…` | byte-identical (dc-runtime county-map) |
+| `0f495aa5…` | text/javascript | 69,150 | `8fe7df74405f3c55…` | byte-identical (dc-runtime main bundle) |
+| `a27c8ca4…` | react-dom UMD lib | 131,835 | `35f4f974f4b2bcd4…` | byte-identical |
+| `373c1b27…` | react UMD lib | 10,751 | `d949f1c3687aedad…` | byte-identical |
+| inline template | text/html (decoded) | 1,111,498 | `9177c2b910b9caf5…` | **NEW · differs from v7-v1/v7-v2 (`59200739b34dd23d…`, 134,739 B) · ~8.25× larger · substantive new content** |
+
+Raw JSON-encoded template hash: `47381de686612d941cf6f6bf1607e72b6f479493296b9189130f4c5c7850aa51` (1,152,815 B).
+
+**Identity grammar count** on decoded template (1,111,498 B):
+- Akki OS grammar: 21 distinct terms × **836 hits** — includes every characteristic OS term (Akki 587, Shield 99, Compliance Owner 17, Watch Officer 17, Registry 10, Rules Updates 10, custody 7, Grey Mirror 4, Spend Requests 4, Model Admission 4, Approvals 3, Board 360 3, Exco 360 3, ThinkLab 3, The Watch 3, Trust Center 2, Manage Estate 1, WorkStudio 1, Checker 1).
+- FarmaIQ grammar: 8 terms × **97 hits** — appears as a hosted "deployed agent" application inside the OS shell (via `openDeployedAgent(a){ if(a.name==='Farma IQ'){…} }`); **REMOVED from the default `agentsList`** in v8 (seeded agents are `Vendor Risk Monitor` and `Payroll Variance Checker`).
+
+**Structural evidence:**
+- **Wordmark** at top-of-shell (52px header on `--blue2:#0f1b33`): literal `RMS AI` [v8-HTML:pos≈1655; v8-Docx:§3.1 line 85].
+- **NAV literal** at pos≈511700 + `NAV.push({key:'watch',…})` at pos≈513850 — 10 groups verbatim: workstudio · thinklab · collab · monitor · estate · approvals · build · buildlib (`divider:true, tabs:true`) · thirdparty · watch.
+- **TABS literal** at pos≈514470 — 4 tabs verbatim: work[workstudio,thinklab,collab,monitor] · build[build,buildlib] · apps[thirdparty] · admin[estate,approvals,watch] `right:true`.
+- **ROLES literal** at pos≈514800 — 3 personas verbatim: `compliance` (M.Chen · MC · Compliance · groups=[estate,approvals]) · `watch` (A.Njeri · AN · The Watch · groups=[watch]) · `operator` (J.Otieno · JO · Operations · groups=[estate]).
+- **agentsList seed** at pos=453684 — Vendor Risk Monitor (Deployed) + Payroll Variance Checker (Ready to deploy). No FarmaIQ.
+- **v8 self-cites canon** — verbatim inline comment at pos=513138: Manage Rules → Doc 3 Part V · Doc 5 §23; Data Shield → Doc 3 §13–§20; Reasoning Shield → Doc 4 Part IV; Access Shield → Doc 3 §22.1 · Doc 5 §41; Data Estate → Doc 5 control band; Models/Compute/Connect → Docs 4, 7; State/Record/Under Watch/Decisions → Doc 8 §13 · Doc 5 Part VII-A; People & Declarations → Doc 3 §6.1; Ceremonies → Doc 3 §24.
+
+**Docx spec §1 line 13 (verbatim):** *"This build is branded RMS AI. The wordmark in the top bar is the only literal brand token in the file; the identical underlying product has previously shipped under other brand names (BDO AI, DigiCow AI, TrinityAI) by swapping that one string."*
+
+**Receipt banked at** `phase0/drill_receipts/20260828T041500Z_wave_g_step0_v8_identity_verification.log` (structured summary + all hashes + all extraction steps for repro).
+
+**Derived artifacts persisted** under `notes/wave_g_step0_v8/`: `_hashes.json` · `v8_template.html` · `v8_template_decoded.html` (the citation index) · `v8_design_spec.txt` (docx-extracted plain text, 312 lines · the docx citation index) · four decoded bundler payloads.
+
+
+---
+
+## Wave G · Steps 0.5 through 5 CLOSED · V8 shell landed · double-green banked · 2026-08-28T~04:52Z · Source: this session · autonomous under standing disciplines
+
+**Step 0.5 — inventory built:** `notes/prototype_inventory_v8.md` (656 lines · 62 citations · `[v8-HTML:pos=…]` and `[v8-Docx:§X line N]` format). Section coverage matches v8 docx §1-§17 + adds §18 (reachability inventory: 15 pod surfaces → v8 lattice mapping) + §19 (conflicts and agreements with v7 four-fixture set) + §20 (provenance and repro).
+
+**Steps 2/3 — v8 shell landed:**
+- NEW `pod_shell/frontend/src/design/akkiv8_design_system.js` (sha256 `ff4510b90958f1159b4cbfff8b8e6197fd923b340c7b3c2903784a71bb4f6c59`): exports `TOKENS` (verbatim v8-Docx §2.1/§2.2) · `NAV` (verbatim v8-HTML literal · 10 groups) · `TABS` (verbatim 4 tabs) · `ROLES` (verbatim 3 personas) · `V8_TO_POD_ROUTE` (33 NAV item keys → pod routes; null where not-yet-mounted) · `POD_ONLY_TILES` (5 pod-only surfaces so every declared pod route is click-reachable from `/`).
+- NEW `pod_shell/frontend/src/design/AkkiV8Shell.jsx` (sha256 `28d705ae45ddc289e78f482b3b20552c29ac8fdfbda16560c38c4911ce2d3768`): exports `AkkiV8ShellLayout` — v8 chrome (RMS AI wordmark on `--blue2:#0f1b33`, Iowan Old Style / Söhne / ui-monospace fonts, `#f5f2ea` paper background); at `/` renders portal mode (45% left pane tab pills + role-scoped nav groups + pod-only tiles · 55% right pane landing card citing v8 sha256); at any other route renders app mode (slim white header with mono breadcrumb + Exit-to-portal + `<Outlet/>`).
+- MODIFIED `pod_shell/frontend/src/App.js` (sha256 `c41404d924d5ee779112ed7a4a117cd3bb485fbbbce43de4d341402cb2e7b31a`): wraps all 15 in-app routes in `<Route element={<AkkiV8ShellLayout/>}>`; `/` now renders portal mode; Registry moves from `/` to `/registry` (this ALSO closes the pod-shell manifest divergence for the `/registry` MUST_BE_LIVE_SPA_ROUTES entry — was declared only in repo tree, now declared in pod-shell too).
+- Runtime byte-identical mirrors created at `/app/frontend/src/design/{AkkiV8Shell.jsx,akkiv8_design_system.js}` and `/app/frontend/src/App.js` (all four files' sha256 match pod_shell counterparts).
+
+**Step 4 — data fidelity:** shell is chrome only; pod components remain unchanged and continue serving their existing data at REFERENCE-NOT-COPY fidelity. Not-yet-mounted v8 NAV items (analyze · documents · tasks · mentions · emails · projects · hrstuff · performance · board · agentbuild · extract · youragents · appsnew · appsfrequent · appsconnected · appsrequests — 16 total) render as greyed "not yet mounted" tiles with a mono caption — honest-empty rule preserved, no fabricated content.
+
+**Step 5 — permanent close:**
+1. **Tests-first, right-reason RED banked at** `phase0/drill_receipts/20260828T044500Z_wave_g_step2_v8_shell_right_reason_fail.log` (3 fails · files not present · 23 dependent tests skipped).
+2. **NEW `backend/tests/invariants/test_wave_g_v8_shell_port.py`** — 26 tests: asset presence (2) · token verbatim (17 parametrized) · NAV/TABS/ROLES key coverage (4) · App.js wires shell (1) · every pod route reachable from shell (1) · runtime mirror byte-identity pointed check (1).
+3. **`backend/tests/invariants/baseline_failures.json`**: `passed_floor` **2363 → 2389** (+26); `counts_at_baseline.passed` **2363 → 2389**; `ratchet_history` entry appended at 20260828T045000Z.
+4. **Full-suite double-green identical:**
+   - Run 1: `phase0/drill_receipts/20260828T045000Z_wave_g_v8_shell_close_run1.log` · `passed=2389 / baseline-failures-remaining=0 / quarantined=0` · 92.68s.
+   - Run 2: `phase0/drill_receipts/20260828T045200Z_wave_g_v8_shell_close_run2.log` · `passed=2389 / baseline-failures-remaining=0 / quarantined=0` · 92.41s.
+   - Byte-identical receipt lines.
+5. **`notes/waveG_close_report.md`** written (per-surface reachability table §7 + all provenance).
+
+**Master Plan A-F composite lock (52.82%) preserved intact** — this wave adds only frontend chrome + a test file; composite methodology unchanged.
+
+**Position: HOLD for owner external verification.** Expected receipt line: `passed=2389 / baseline-failures-remaining=0 / quarantined=0`. Owner's verification checklist (per ruling this session): (a) shell present with v8 chrome (RMS AI wordmark on `#0f1b33`; Iowan Old Style / Söhne / ui-monospace fonts; `#f5f2ea` paper); (b) all 15 pod surfaces click-reachable from `/`; (c) no FarmaIQ artifacts in the default portal experience; (d) real data still rendering in the pod components.
+
+**SSH interrupt priority unchanged** (chmod 600 → env vars → hardware fact sheet → CUDA verify-only → EP-4 precondition → first governed run → real MOAC → whitepaper → stop-and-report).

@@ -1,0 +1,67 @@
+{
+  "artifact_ref": {
+    "artifact_id": "g5a-corr-solva-artifact",
+    "artifact_type": "portfolio_mandate",
+    "version": "v0"
+  },
+  "at": "2026-08-28T04:50:32.273183Z",
+  "decision": "terminate_success",
+  "lawful_basis_ref": "dpa-test",
+  "reason": "solva_assertion_class=fact",
+  "row_id": "led-dda3aaf33e19",
+  "run_id": "g5a-corr-solva-run-a4e502e0",
+  "stage": "converge",
+  "stamp_audit": {
+    "computed_class": "fact",
+    "conclusion": {
+      "claim": "Reflection on: does the anchor read confirm the outage?",
+      "context_only": null,
+      "kind": "assertion",
+      "klass": "fact"
+    },
+    "load_bearing_unit_ids": [
+      "corr-fact-1"
+    ],
+    "run_id": "g5a-corr-solva-run-a4e502e0",
+    "stages": [
+      {
+        "at": "2026-08-28T04:50:32.272995+00:00",
+        "input_summary": "question='does the anchor read confirm the outage?', units_count=1",
+        "output_summary": "conformant_units=1",
+        "stage_name": "layer_c_converge"
+      },
+      {
+        "at": "2026-08-28T04:50:32.273016+00:00",
+        "input_summary": "question='does the anchor read confirm the outage?', units_count=1",
+        "output_summary": "stage=frame keys=['candidate_unit_ids', 'question', 'stage']",
+        "stage_name": "frame"
+      },
+      {
+        "at": "2026-08-28T04:50:32.273025+00:00",
+        "input_summary": "stage=frame keys=['candidate_unit_ids', 'question', 'stage']",
+        "output_summary": "stage=candidate keys=['candidates', 'count', 'stage']",
+        "stage_name": "candidate"
+      },
+      {
+        "at": "2026-08-28T04:50:32.273034+00:00",
+        "input_summary": "stage=candidate keys=['candidates', 'count', 'stage']",
+        "output_summary": "stage=tension keys=['edges', 'has_contradiction', 'has_retraction', 'stage']",
+        "stage_name": "tension"
+      },
+      {
+        "at": "2026-08-28T04:50:32.273040+00:00",
+        "input_summary": "stage=tension keys=['edges', 'has_contradiction', 'has_retraction', 'stage']",
+        "output_summary": "stage=probability keys=['stage', 'tension_ack', 'weighted_unit_ids']",
+        "stage_name": "probability"
+      },
+      {
+        "at": "2026-08-28T04:50:32.273047+00:00",
+        "input_summary": "stage=probability keys=['stage', 'tension_ack', 'weighted_unit_ids']",
+        "output_summary": "stage=reflection keys=['conclusion_text', 'load_bearing_units', 'stage']",
+        "stage_name": "reflection"
+      }
+    ],
+    "trace_id": "g5a-corr-solva-c58e0c00"
+  },
+  "trace_id": "g5a-corr-solva-c58e0c00"
+}

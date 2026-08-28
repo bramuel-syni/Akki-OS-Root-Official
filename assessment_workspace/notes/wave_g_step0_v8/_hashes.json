@@ -1,0 +1,46 @@
+{
+  "outer_sha256": "e56871d01a99c2f3aa173c9b0a0f09e983c9f0e54ba3e61795ac8cb8575f98f2",
+  "outer_bytes": 1264425,
+  "outer_lines": 396,
+  "page_order": [],
+  "ext_resources": [
+    {
+      "id": "https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js",
+      "uuid": "a27c8ca4-b38d-46ef-8af2-d589452c0a4d"
+    },
+    {
+      "id": "https://unpkg.com/react@18.3.1/umd/react.production.min.js",
+      "uuid": "373c1b27-c73c-4df6-9d0d-420d29e2d98d"
+    }
+  ],
+  "payloads": {
+    "8d5cc57e-301d-4e62-a9f2-6c99ccd7a189": {
+      "mime": "application/javascript",
+      "compressed": true,
+      "raw_b64_len": 3128,
+      "payload_len": 6289,
+      "payload_sha256": "ba61852925c4327a779f69a55236daf6f01fa0ad403e76a350dad71a4a94311e"
+    },
+    "0f495aa5-1678-46cf-81eb-b8762e04d778": {
+      "mime": "text/javascript",
+      "compressed": true,
+      "raw_b64_len": 25480,
+      "payload_len": 69150,
+      "payload_sha256": "8fe7df74405f3c55f49b7249c74ea1397e65d07dea2b1bd3b4a489bec2e28cbe"
+    },
+    "a27c8ca4-b38d-46ef-8af2-d589452c0a4d": {
+      "mime": "text/javascript",
+      "compressed": true,
+      "raw_b64_len": 57496,
+      "payload_len": 131835,
+      "payload_sha256": "35f4f974f4b2bcd44da73963347f8952e341f83909e4498227d4e26b98f66f0d"
+    },
+    "373c1b27-c73c-4df6-9d0d-420d29e2d98d": {
+      "mime": "text/javascript",
+      "compressed": true,
+      "raw_b64_len": 5692,
+      "payload_len": 10751,
+      "payload_sha256": "d949f1c3687aedadcedac85261865f29b17cd273997e7f6b2bfc53b2f9d4c4dd"
+    }
+  }
+}

@@ -1,0 +1,312 @@
+# SOURCE FILE: Akki_Platform_v8_Design_Spec.docx
+
+[Title] Akki Platform — Design & Functional Specification
+Build: v8  ·  Branded instance: RMS AI  ·  Source file: Akki Prototype v8.dc.html
+Prepared as a complete reference for regenerating this prototype with no ambiguity about structure, style, taxonomy, or content shape.
+
+[Heading 2] How to read this document
+This specification documents the actual v8 build in four layers: the design system (colors, type, component patterns); the application shell and navigation taxonomy; a screen-by-screen specification of every app and view, with representative real copy; and the underlying content-data model, so every dataset can be extended in the voice and shape it already uses.
+•	Layout and component specs are exact — spacing, colors, widths and structure are taken directly from the source file.
+•	Where a screen is powered by a large repeating dataset (the Shield rule book, the Grey Mirror ledger, chat scripts, etc.), this document gives the exact field shape plus one worked real example, rather than transcribing every row. The full literal dataset remains in the source file’s named JS constants — the Appendix (§17) maps every constant to the screen it feeds, so nothing is unreachable.
+[Heading 1] 1. Product overview
+Akki is a unified AI governance and intelligence platform for an operating company. It combines a grounded chat assistant, document and task workflows, performance monitoring (Exco 360 / Board 360), an AI agent and model registry, a security-monitoring service (“The Watch” / “Grey Mirror”), and a full rules-and-entitlements governance layer (“Shield”) — all backed by one append-only audit record.
+This build is branded RMS AI. The wordmark in the top bar is the only literal brand token in the file; the identical underlying product has previously shipped under other brand names (BDO AI, DigiCow AI, TrinityAI) by swapping that one string.
+[Heading 3] Design law
+“Four-questions surfaces. Rule zero: every block leads with a sentence; measures live behind ‘see the working’.” — source code comment; applies to every governance surface in the product.
+[Heading 3] Voice and copywriting principles (observed consistently across the dataset)
+•	Refusals and holds are framed as proof the system is working, never as failure or apology — “A refusal is the system keeping its promise.”
+•	Every quantitative claim carries its honesty caveat in the same breath (what’s excluded, what’s not yet measured). “Not yet measured” is drawn as its own category and never left blank or hidden.
+•	Numbers carry lineage: a receipt ID, audit ID, or census date accompanies nearly every figure.
+•	Plain sentences lead even the densest governance data — a non-specialist can read the first line of any card.
+•	The system narrates in a measured, third-person register (“Held for review. Nothing is lost.”), rarely addressing the user directly.
+[Heading 1] 2. Design system
+[Heading 2] 2.1 Color tokens
+<<TABLE>>
+Token | Value | Usage
+--paper | #f5f2ea | Page / app background (warm off-white)
+--surface | #f0ece1 | Panel background, one step deeper than paper
+--surface2 | #ede8da | Pills, hover states, chart track background
+--line | #e4dfd3 | All hairline borders
+--ink | #1b1f27 | Primary text
+--ink2 | #3d4350 | Secondary text / body copy in cards
+--ink3 | #5b6270 | Tertiary text, meta lines, timestamps
+--blue | #16274a | Primary brand navy — buttons, links, active tab, icon marks
+--blue2 | #0f1b33 | Deep navy — top bar background, dark app bars
+--oxblood | #b8395b | Danger border (refusal cards, cancel buttons)
+--oxblood2 | #c64e6e | Danger fill (refused-message backgrounds, "Rejected" pill)
+--brass | #b08d2e | Warning / held / pending amber (counting-down, at-risk, drafts)
+--sage | #1d7a6e | Success / verified / in-service green
+--accent | #4c5fd5 | Secondary interactive accent, used throughout ThinkLab
+--accent-soft | rgba(76,95,213,.10) | Accent tint background
+--scrim | rgba(15,27,51,.42) | Modal / drawer backdrop
+--shadow-drawer | -14px 0 48px rgba(15,27,51,.18) | Right-drawer elevation
+<<END TABLE>>
+
+[Heading 3] Status-pill colors (statusColors() function)
+<<TABLE>>
+Status values | Background | Text color
+Uploaded | rgba(91,98,112,.10) | #5b6270
+In Progress | rgba(22,39,74,.10) | #16274a
+Committed / Live / On track / Deployed / Accepted / Ready to deploy | rgba(29,122,110,.12) | var(--sage)
+Draft / In Review / At risk / In progress / Pending approval | rgba(176,141,46,.12) | var(--brass)
+Rejected / Not started | rgba(184,57,91,.12) | var(--oxblood2)
+(any other value) | var(--surface2) | var(--ink2)
+<<END TABLE>>
+
+[Heading 2] 2.2 Typography
+<<TABLE>>
+Role | Stack | Where used | Typical sizes
+Head | Iowan Old Style, Georgia, serif | Headlines, card/modal titles, big stat numbers | 16.5–31px
+Body | Söhne, Helvetica Neue, Arial, sans-serif | All UI text, buttons, body copy | 11–15px
+Mono | ui-monospace, Menlo, Consolas, monospace | Eyebrows, meta lines, receipt/audit IDs, governance-surface tab labels | 9–11px, uppercase, letterspaced .06–.12em
+<<END TABLE>>
+
+[Heading 2] 2.3 Shape, spacing and elevation
+•	Corner radius: 6–9px on controls and small cards; 10–14px on panels/cards; 50% (circular) on avatars and status dots.
+•	Card default: 1px solid var(--line), white or var(--surface) fill, 14–18px padding, no shadow at rest.
+•	Left-accent cards (chat answers, collab items, rule cards): 2–3px solid left border in a semantic color — sage = answered/positive, oxblood = refused/danger, blue = neutral fact — with that corner squared off.
+•	Drawers slide from the right at var(--drawer-w) = min(460px, 94vw), shadow = var(--shadow-drawer), backdrop = var(--scrim).
+•	Modals are centered, white, 12–14px radius, max-width 380–620px depending on content.
+•	Buttons: primary = solid var(--blue) fill / white text; ghost/secondary = white fill / var(--line) border / var(--ink2) text; destructive = var(--oxblood) or var(--oxblood2) outline or fill.
+[Heading 2] 2.4 Recurring components
+[Heading 3] Stat-card grid
+3-column grid with 1px hairline seams (var(--line) showing through 1px gaps); each cell is white with an uppercase mono eyebrow label, a 25px serif value, and an 11.5px ink3 note line. Opens every Governance Surface block (§5).
+[Heading 3] Horizontal bar chart
+Row = 110px label + a flexible track (14px tall, var(--surface2) background, 3px radius) + a 104px right-aligned size label. A dropdown above the chart switches which cut is shown (e.g. by language / by type / by rights class).
+[Heading 3] Table row (governance list)
+Not a literal HTML table — each "row" is a padded block: a bold 12.5px sentence, a small meta line (class · count), a fuller meta sentence, and a right-aligned blue link (“Walk this →”, “Open the rule →”). A colored state pill sits top-right of the sentence.
+[Heading 3] Tabs — two styles
+(a) Underline tabs: 13px semibold text, 2px colored bottom border on the active tab — used for simple in-page switches. (b) Governance-surface tabs: 11.5px bold uppercase letterspaced tabs with the same underline treatment — used on Shield, Registry, Grey Mirror.
+[Heading 3] Pills / chips
+Filter chips: 11.5px bold, 14px pill radius, colored border+bg+text when active, white/var(--line)/ink2 when inactive. Status pills: 10–10.5px bold uppercase, 10–11px radius, colored per statusColors().
+[Heading 1] 3. Global application shell
+[Heading 2] 3.1 Top bar
+•	Fixed 52px height, background var(--blue2) (#0f1b33).
+•	Left: a 19×22 shield-outline SVG mark + the wordmark "RMS AI" in var(--head) 16px, letterspacing .02em, color var(--paper).
+•	Right: role/department text (12px, #c9c2ae), then a 27px circular avatar (bg #28345c, 2-letter initials, 11px, #efe9da).
+[Heading 2] 3.2 Portal mode (no app open)
+Below the top bar the body splits into two panes:
+•	Left pane — 45% width, var(--surface) background, right border, 24/34px padding: the Tab pill-groups, then the grouped navigation list (§4), then — only on the Build tab — a row of deployed-agent tiles.
+•	Right pane — 55% width: a "landing" card for the selected nav item — white, max-width 600px, 16px radius, holding an icon, group/app label, a generated greeting line, an optional "last activity" glimpse, tip bullets, and Continue/Start-new buttons with a usage stat.
+[Heading 2] 3.3 App mode (an app is open)
+•	Single column. A slim header row: app-group mono breadcrumb on the left; app-specific controls on the right (Documents shows an "Exposure site map" pill; Chat shows the editable conversation title).
+•	An optional session banner appears on Watch and Shield/Trust apps: a colored dot + "Watch session · recorded." or "Governance session · recorded." in brass or sage.
+•	Below that sits the app’s own body — specified per app in §6–§15.
+•	"Exit" always returns to portal mode.
+[Heading 2] 3.4 Navigation rendering rules
+•	Tabs (Work / Build / 3rd Party Apps left-aligned, Admin right-aligned) are pills in an rgba(22,39,74,.1) track; the active tab gets a solid/tinted fill.
+•	Each nav group renders as a label + vertical item list, except a group flagged tabs:true ("Your Resources"), which renders its items as an inline horizontal tab row instead.
+•	A group flagged divider:true gets a hairline rule above it.
+•	Deployed-agent tiles (Build tab only) list every agent whose status is "Deployed"; each opens that agent’s dedicated full-screen app.
+[Heading 1] 4. Navigation taxonomy
+Four top-level Tabs gate which Groups are visible; the active Role also filters Groups. Every Group Item maps 1:1 to an appOpen key — i.e. a screen.
+<<TABLE>>
+Tab | Groups it shows
+Work | WorkStudio, ThinkLab, Collab, Performance Management
+Build | Build Your Resources, Your Resources
+3rd Party Apps | (direct — no sub-groups)
+Admin (right-aligned) | Manage Estate, Approvals, The Watch
+<<END TABLE>>
+
+<<TABLE>>
+Group key / label | Items (key → label)
+workstudio — WorkStudio | chat → Chat · analyze → Data Suite · documents → Documents · tasks → Task Manager
+thinklab — ThinkLab | clarity → Seek Clarity · strategy → Develop Strategy · hypothesis → Test Hypothesis · perspective → Get Perspective
+collab — Collab | mentions → Mentions · emails → Emails · projects → Projects/Tasks · hrstuff → HR Stuff
+monitor — Performance Management | performance → Exco 360 · board → Board 360 (Signals & Ideas are sub-tabs inside Exco 360)
+estate — Manage Estate | estate → Registry · govern → Shield · greymirror → Grey Mirror
+approvals — Approvals | spendreq → Spend Requests · rulesupd → Rules Updates · modeladmission → Model Admission
+build — Build Your Resources | train → Train Models · agentbuild → Build Agents · extract → Extract Data
+buildlib — Your Resources (divider above; renders as inline tabs) | youragents → Agents · yourmodels → Models
+thirdparty — 3rd Party Apps | appsnew → New · appsfrequent → Frequent · appsconnected → Connected · appsrequests → Requests
+watch — The Watch (appended after Estate; admin/Watch-Officer only) | wstate → State · wrecord → Record · wunder → Under Watch · wdecisions → Decisions
+<<END TABLE>>
+
+<<TABLE>>
+Role | Person | Dept. | Initials | Groups visible
+Compliance Owner | M. Chen | Compliance | MC | Manage Estate, Approvals
+Watch Officer | A. Njeri | The Watch | AN | The Watch
+Operator | J. Otieno | Operations | JO | Manage Estate
+<<END TABLE>>
+
+[Heading 1] 5. The Governance Surface template
+One layout is reused, unmodified, across Shield (Data / Reasoning / Access), Grey Mirror (all four tabs), Registry (Data / Compute / LLM tabs) and the Rule Book. Learning it once specifies most of the platform’s data-heavy screens.
+[Heading 2] 5.1 Structure
+•	Tab row: underline, mono-style tabs for the sub-surfaces (e.g. Data / Reasoning / Access).
+•	Grid: max-width 1180px, two columns — minmax(0,1fr) content + minmax(240px,300px) sticky aside, 44px gap, separated every block by a full-width hairline.
+•	Block 1 — Stats: eyebrow + one-liner, then the 3-column stat-card grid; aside shows a headline eyebrow, a large serif sentence with 2–3 inline underlined callout phrases, a sub-line, and a "View more →" link to the Brief modal (§16.2).
+•	Block 2 — Visual: eyebrow + a chart-cut dropdown, one-liner, the horizontal-bar chart card, a footer note; aside repeats the eyebrow+body+View-more pattern, explaining how to read the cut.
+•	Block 3 — Table: eyebrow + filter-chip row, one-liner, a card with a 2-column header (e.g. "What happened / Result") then the row list and a "View/Walk the full record →" link; a closing narrative sentence below the card; aside repeats the pattern.
+[Heading 2] 5.2 Field shape (for regenerating or extending any instance)
+<<TABLE>>
+Field | Purpose
+tab / topEyebrow / topOneliner | Tab label and the one-line framing sentence under the tab row
+headEyebrow / headDeck / headSub | The big-sentence block in the stats aside — headDeck holds inline <span> underline/color callouts
+stats[] | 9 objects {label, value, note} for the 3×3 stat grid
+visualEyebrow / visualOneliner / visualFoot | Copy around the chart block
+charts{} | Keyed by cut name → {label, title, caption, rows:[{label, pct, size, fill}]}
+tableEyebrow / tableOneliner / tableTitle | Copy around the table block
+filters[] | Chip labels — first entry is always "All"
+rows[] | The actual list — {text, cls, state, count, lane, meta, link, go}
+narrative | Closing sentence under the table
+tableAsideTitle / tableAsideBody | The right-hand explanation text
+<<END TABLE>>
+
+[Heading 3] Worked example — Shield › Data
+tab: "Data"  ·  topEyebrow: "What leaves, and how"
+headDeck: "4,182 crossings this week — every one masked, and nothing left without a receipt."
+Sample stat — {label:"Crossings this week", value:"4,182", note:"each with its receipt"}
+Sample row — {text:"A pricing question needed customer records, and they crossed masked", cls:"Mask tier 2", state:"Crossed", count:"Tue 14:02", lane:"Crossed", meta:"118 fields swapped · receipt R-4390, replayed successfully Aug 13", link:"Walk the crossing →"}
+narrative: "Four of 4,194 asks shown. Every crossing here can be replayed from its receipt, and a refusal reads as plainly as a success."
+The full literal dataset for every tab lives in the source constants GOV, GM, TRUST — plus RB_CATS for the Rule Book’s rule-profile view and EST_GROUPS for each surface’s tile-row summary. See §17.
+[Heading 1] 6. WorkStudio
+[Heading 2] 6.1 Chat (Akki)
+Purpose: the default landing app — a grounded chat assistant over the whole estate, with full audit provenance on every answer.
+Layout: three panes inside the content column — a 220px conversation rail, the center thread + composer, and a 220px collapsible Audit Trail panel ("Shield & Provenance").
+•	Conversation rail: "+ New conversation" button, an archive-drawer icon, then a list of conversations (title, relative last-active time, a kebab menu → Rename / Delete). Delete opens an "Archive this chat?" confirmation — chats archive, not hard-delete, until permanently removed from the Archive drawer.
+•	Empty-thread state offers four suggestion buttons, each demonstrating one canonical response shape.
+•	Message types: user bubble (right-aligned, editable → "Save & branch" forks the thread into a branch pageable with ←/→); assistant "Working" (sequential thinking steps, sage dot); assistant "Answered" (sage left border — a sentence with one bold-highlighted phrase, an italic honesty-caveat block, a memory tag, Copy/Retry/Regenerate/branch controls, and a click-to-expand shielding trigger); assistant "Refused — evidence floor" (oxblood2 fill, white text — headline + body + Accept-as-recorded / Narrow-the-objective / Lower-the-standard actions); assistant "Refused — entitlement" (same fill, one action: Request an access review); assistant generic answer (sage border, plain text, optional "Open [doc] →" button).
+•	Composer: multiline textarea; a model-picker pill (opens a grouped menu — Claude-family tiers grouped by vendor, each group noting its licence, e.g. "Gateway-only — routed through Akki, never resold"); an Auto-shield / Always-shield segmented toggle; a "Think harder" toggle; "+ Create document from this chat"; Send.
+•	Audit Trail panel: collapses to a 40px rail with a sage dot; expanded, it shows a per-turn label, a SHIELDED summary card, then three lenses — Overview (exposure-reduction % and dilution % as two large sage stats, a Purpose/Audit ID/Receipt mono block, custody/context lines, an italic closing note), Reasoning (the reasoning-unit list as individual cards), Raw trail (a dark mono pre-formatted trace block).
+•	"Shield Intelligence Report" modal (triggered by a recurring "Shield" pill — see §16.3): classification badge, a stacked confidentiality-band bar, a 3-column category-breakdown grid (PII / BII / Locations / Phone / Card / Other — each expandable to the literal found values and their substitution token), a de-identification method line ("Regex + Presidio NER + selective LLM pipeline"), a redacted-count / model-calls-shielded stat pair, a models-used list, and the full append-only audit log; footer button "Export as JSON".
+Content source constants: seedConversations() (11 sample conversations), AKKI_SCRIPT (regex-matched canned answers for free-typed questions), and the message-type factories mkAnswered() / evidenceMsg() / entitlementMsg() / genericMsg().
+[Heading 2] 6.2 Data Suite (Analyze)
+Purpose: ad-hoc analysis over uploaded or estate-sourced files, with a lightweight "Rapid" mode and a heavier "Deep Dive" synthesis mode.
+•	Left rail (collapsible to a 38px icon strip): "+ New analysis" / "Pull data", then the working-files list.
+•	Tabs: Rapid, Deep Dive, Sources, Export.
+•	Rapid: a feed of short finding cards (text + optional tag + timestamp) that accumulate as the user asks questions on the right.
+•	Deep Dive: a loading checklist + progress bar, then a synthesis viewer paging through slides built from a flexible layout kit — stats row, numbered rows, horizontal bars, an axis-labelled bar chart, 3-column cards, or left/right "pairs" (risk vs. how it’s managed) — plus citation chips and an "Ask about any slide, figure or claim" mini-chat pinned under the viewer.
+•	Sources: uploaded-file list (removable), a checklist of estate sources to include, and a refresh-history log.
+•	Export: a receipt-style summary, a DOCX/PPTX/PDF format chooser, "Finish & Export" (routes into the same conversational export wizard used by Documents).
+•	Right rail: "Ask your data anything" contextual chat, same visual language as Chat’s thread, with a collapsible "Try" prompt list.
+•	"New analysis" opens a full-screen intake: attach files from device / the document journal / a named work-file, then name the scenario.
+[Heading 2] 6.3 Documents
+Purpose: a document workspace — draft, enhance, compile from other documents or chats, and share under governed redaction — with a contextual right-hand detail drawer for whichever document is open.
+•	Left rail (collapsible): + Create New / Enhance / Compile buttons, a search box, category filter chips.
+•	Overview (no document open): headline + subline, a 3-stat row, a two-column "Recent Drafts" + "Document Journal" (a running, click-to-jump activity log), and a mono footer line.
+•	Document detail drawer (right ~24% pane), tabs: Details (inline-editable title, meta line, objective-fit score + clarity sub-scores, a recommendation checklist); Intelligence (an AI-generated summary, the objective-fit/clarity panel, a "Signals rising from this document" list with confidence % and quoted evidence, an Open Questions list, a Provenance mono block, a Sources line); Questions (a threaded Q&A list — question + @mentions + nested answers + "Awaiting response" / "Respond →", plus an @mention-chip compose box); Related (Same Metadata, Canonical Lineage, Explicit Attachment — search-and-attach with a relationship-type picker — and a stubbed Content Similarity note: "Embedding-based similarity is deferred pending additional infrastructure.").
+•	Drawer footer actions: Share, Download, Enhance, Use in Chat, and — if not yet committed — Commit.
+•	Share flow (3-step modal): Notice ("Send as is" vs. "Redact sensitive information") → Redact (category chips, a checklist of flagged snippets each with an Included toggle) → Send (recipient email list, final confirm).
+•	Rich-text Editor mode: Bold / Italic / Underline / Delete toolbar, Undo/Redo, a drag-and-drop "attach as reference" zone, and an inline AI-ask box that returns a Proposed revision card (Apply / Discard) rather than silently editing.
+•	Deck/slide mode: slide viewer with Prev/Next and "+ Propose next slide (AI)", producing an Accept/Reject proposal card.
+•	Document classification vocabulary used platform-wide for distribution rights: Internal Only / Regulatory Only / Licensable (seen as colored pills on Registry’s source table and on Board 360’s document "mark" tag) — apply this same three-value vocabulary to any new document-metadata or licence field for consistency.
+[Heading 2] 6.4 Task Manager
+Purpose: lightweight, conversational objective tracking — Akki chases evidence and follow-ups without a formal commissioning ceremony.
+•	Manage Tasks: 3 summary stat cards, a task list (name, status pill, meta line, an evidence-percent bar), and a persistent "Akki is on it" rail of autonomous follow-up log lines (tags color-coded: CHASING/NOTIFIED = brass, MILESTONE/EVIDENCE = sage, METRIC/BLOCKED = oxblood, default = blue).
+•	Task workspace: header with name/meta and a large evidence-satisfied % over a full-width bar; Objective (inline-editable); Work Items (each with an evidence kind — A committed document / A compiled pack / Sign-off from a named person / A metric threshold — plus Mark-evidence-met or Notify-owner, and blocked/stale callouts); Documents (attach or open); Open Questions (add/close); right column: Contributors (name, role, % bar — Akki is always listed) and a chronological Cycle Log with a manual "Run a turn now".
+•	Create New Task: a conversational 4-step wizard (objective → team → deadline → evidence kind) with chip quick-answers.
+•	Question and Portfolio drawers (60% width) are shared side-drawers reused from the Board/Exco 360 pattern for an individual open question or a rolled-up entity’s performance view.
+Content source constant: TASK_SEED (3 fully populated example tasks); makeTask() factory for new ones; evidence kinds fixed in EVIDENCE_KINDS / EVIDENCE_RESOLVES.
+[Heading 1] 7. ThinkLab
+Purpose: a structured reasoning tool for hard questions, run as a five-stage pipeline — Frame → Name/Candidates → Challenge/Tension → Weigh → Lock-in — instead of a single prompt.
+•	Four modes, each with its own objective/duration and probe sequence: Seek Clarity (15–20 min, untangle a messy situation), Develop Strategy (25–40 min, build a defensible position), Test Hypothesis (20–30 min, stress-test a claim — its Challenge stage is scenario-based rather than tension-based), Get Perspectives (15–25 min, view a problem through named outside seats).
+•	Session screen: a 5-dot animated stage strip → optional Material intake at Frame (upload / paste / attach-from-context) → a running probe Q&A log → per-stage engine output (plain entries at Frame/Name; scenario cards with a "second-order effects" line at Challenge for Hypothesis mode; confidence-tagged clusters at Weigh; at Lock-in: a conclusion paragraph, a highlighted "Load-Bearing Set" callout, a brass-bordered "Reflection" list, a Lock-in button, then Export the Brief / Hand off to Task Manager).
+•	Right sidebar (258px, persistent through the session): duration + objective, a fixed 2-point "How This Reasons" explainer ("Challenge is not averaged" / "Refusal is a primitive"), and a Recent Sessions list with colored state marks (LOCKED IN = sage ✓, IN DEPTH = accent, DRAFT = ink3, REFUSED = oxblood2) and a Resume/Reopen control per session.
+Content source constants: TL_MODES (mode metadata), TL_FLOW (the full literal probe/frame/candidates/tension-or-scenarios/weigh/conclusion/loadBearing/reflection script per mode), TL_SESSIONS (recent-session seed), TL_STAGE_LABELS.
+[Heading 1] 8. Collab
+Purpose: a single flat feed per sub-tab (Mentions / Emails / Projects·Tasks / HR Stuff) — the simplest screen pattern in the product.
+Layout: headline + subline, then a vertical stack of left-accent cards — who + role, a colored state word top-right, a "where" line, the ask/content line, and a timestamp. Identical card shape across all four sub-tabs.
+[Heading 1] 9. Performance Management
+[Heading 2] 9.1 Exco 360
+Purpose: company performance tracking across Goals/Initiatives (Performance tab), emergent Signals, and Akki-authored Ideas.
+•	Performance tab: status + owner dropdowns, a sort dropdown, summary count chips, then objective cards grouped by section — title + status pill, a type chip + owner + initiative-count meta row, and a Target/By/Now value line. Opens a 60%-width drawer: description, a Target/Detail/By/Now/Reassessed field list, side-by-side Performance % and Probability % (with a scrub-able history slider when more than one reading exists), a Recommended Action line, and primary/secondary buttons.
+•	Signals tab: multi-dropdown filters (status/type/severity, then confidence/domain) + a "Tracked only" checkbox; each card expands to an Evidence bullet list, an optional Cross-board context box, an optional prior note, a note composer, and Bookmark/Resolve/Share/Note actions; paginated.
+•	Ideas tab: focus + sort dropdowns + "Bookmarked only"; each card shows an "IDEA BY AKKI" tag, a Storyline paragraph, a Reasoning paragraph, and an expandable list of the signals it links.
+•	Right rail: "Ask Akki about performance" contextual chat, identical pattern to Chat’s right rail.
+[Heading 2] 9.2 Board 360
+Purpose: what has actually been submitted to the board — signals, performance, documents and open questions, sourced from real submissions rather than live monitoring.
+•	Tabs: Signals, Performance, Documents, Questions.
+•	Signals/Performance mirror Exco 360’s card shape but every card cites its source submission ("Source: … →" / "Reported in: … →").
+•	Documents tab: a filterable list of board submissions (mark/kind/status tags, a note, by-line + page count + a Q&A-open indicator) → a detail view sharing Documents’ threaded Q&A composer (mentions, nested answers, Respond flow).
+•	Questions tab: standalone open questions asked of the board, each citing the submission it was asked on.
+•	Right rail: "Ask Akki about the board" contextual chat.
+[Heading 1] 10. Build & Your Resources
+•	Extract Data: a single CTA opening the Extraction wizard — a conversational intake that assumes unset fields and shows its assumptions plainly before anything runs.
+•	Train Models: a list of training runs, each with an id, accepted/rejected status, its 6-check score, a baseline note, and — if rejected — a reason plus Resubmit; accepted runs offer "Prepare white paper" (auto-drafts a Documents entry from the run).
+•	Build Agents: a name+purpose drawer form; the Scope field starts as an amber "agent assumed — confirm or change" chip and becomes a plain confirmed line once accepted.
+•	Your Resources → Agents: a flat list (name, scope, status pill, Deploy button when eligible) driving a 4-step Deploy modal — (1) the same 6 acceptance checks shown passed, (2) a model-ladder rung picker, (3) a scope/entitlement summary, (4) a go-live confirmation.
+•	Your Resources → Models: a flat list of trained + bought-in models with origin and status pill.
+Content source constants: trainingRuns (state), agentsList (state — after the Farma IQ removal in v8, contains Vendor Risk Monitor and Payroll Variance Checker), sixChecksView, rungOptions.
+[Heading 1] 11. 3rd Party Apps
+•	New / Frequent / Connected tabs list integrations as simple rows (name, description, connect-state label).
+•	Requests tab lists pending integration requests (name, requester, time, brass status) plus a "+ Request a new integration" form (name + reason textarea).
+[Heading 1] 12. Manage Estate
+[Heading 2] 12.1 Registry
+Purpose: what the estate actually holds and runs on — data, compute, and models — read at the seam, never estimated.
+•	Tabs: Data (uses the Governance Surface template exactly — stats/visual/table blocks for 86.4 TB across 12 sources, with a chart-cut selector for language / type / rights class / condition), Compute (same template for the attached GPU cluster: capacity stats, an hours-by-door/week/state chart, a GPU-workflow table with door/allocation/status/progress columns), LLM (same template for models: calls/spend/refusals-by-model chart, a model table with origin/calls/status/share columns), Models (a flatter list + a model-detail view showing its 6 acceptance checks), Connect (a flat connected-sources list with a rights pill).
+•	"+ Connect" opens a 5-stage conversational wizard: What to connect (data source / LLM / trained model / compute) → How (method chips specific to the chosen kind) → Credentials (issue vs. receive) → Name it → Ready to connect (a handshake-diagnostic block on failure, with retry/alternate options).
+[Heading 2] 12.2 Shield (Govern)
+Purpose: the rules in force, whether they’re being followed, and how they change — read-only everywhere except Rules Updates.
+•	Sub-tabs: Overview, Rule Book, Trust Center, Rules Updates, Rule Books Library — the first four use the Governance Surface template.
+•	Rule Book’s "inner" full view (via View more): category filter chips, then every rule grouped by its five categories (System Gates / LLM Interaction / Confidential Data Management / Security / Regulatory Compliance), each showing a binding-level pill and expanding into a two-box profile — "What it holds up" (the promise) and "What you feel" (the day-to-day cost/experience) — plus a facts line and a gates/recommendations aside.
+•	Rule Books Library: a shelf of 8 standard, ISO-27001-mapped rulebooks with Adopted / Ready-to-adopt status; adopting one drafts its rules as ordinary rule-change proposals — the same sign-off/countdown ceremony, never silent.
+[Heading 2] 12.3 Grey Mirror
+Purpose: security monitoring framed as two services on one surface — the Ledger (records everything) and the Responder (flags, acts, asks) — meeting at one verdict.
+•	Sub-tabs: Overview, Monitor & Detect, Response, People & Models — Governance Surface template, with People & Models substituting a people-shaped row list (who / data accessed / models used / PII exposure / standing pill) and dedicated per-actor bar charts (PII exposure, data accessed, model use, downloads).
+•	Deep-dive detail views (opened via row links, not the tab row): "The copy in use" (an active decoy/quarantine session — findings list, action-by-action table) and "Marks & baits" (standing marks, a bait-touch table).
+•	"Add user / model" opens the same conversational-wizard pattern (kind → name → role/objective → declaration → bounds → rights → counter-signer → confirm) used to admit any actor; new actors default to a cautious "Forming" standing until enough ordinary behaviour accumulates.
+Content source constants: GOV, RB_CATS (Rule Book), GM, EST_GROUPS (tile-row summaries for both Shield and Grey Mirror), TRUST (Registry-side mirror of Shield content).
+[Heading 1] 13. Approvals
+Purpose: the lightest screen pattern — a stat row plus a plain row list, no chart or aside.
+•	Spend Requests: 3 stats (waiting on you / over the ceiling / total this month) + a row list (requester, amount, ceiling note, Waiting/Needs-2 pill).
+•	Rules Updates: 3 stats (counting down / waiting for signature / hours to effect) + a row list mirroring Shield’s own Rules Updates tab.
+•	Model Admission: 3 stats (in acceptance / checks passed / in service) + a row list of models with their acceptance state.
+Content source constant: APPROVALS.
+[Heading 1] 14. The Watch (Watch Officer role only)
+Purpose: a stricter, self-policing security console — the one app held to a tighter rule than any other, proving itself from inside its own containment and checked by an outside witness.
+•	State tab uses the Four-Questions template directly (§16.1).
+•	Record tab: three lanes — Noted ("seen and let pass", the restraint record, intentionally the longest), Acted ("kept visible on purpose", the honesty record), Held ("stopped, and waiting on a person") — plus a Drills toggle chip to show/hide differently-tinted drill/test entries.
+•	Under Watch tab: a Patterns list (each with an inline sparkline of rising noted-event counts, and Watch-closer / Ask-for-updated-declaration actions), a "copy of the estate" (decoy/quarantine) summary block, and a Marked block with a Request-removal action.
+•	Decisions tab: two-sided-account cards (What the rules say / What the watch says, side by side) where relevant, a required one-line decision note for ambiguous cases, per-item action buttons, and a closing footer sentence.
+Content source constants: RECORD_ROWS, LANE_COPY, PATTERNS, DECISIONS, FQ_TOPLINE.wstate / PAGE_TOPLINE for aside copy.
+[Heading 1] 15. Instance — People & Declarations / Ceremonies
+•	People & Declarations: Add-a-person / Commission-an-agent buttons, then actor cards (name, id/type, status pill, a declaration sentence or multi-line agent declaration, and a Walk-this link).
+•	Ceremonies: cards per rule-change in flight — title, meta (proposed/counter-signed by, dates), a 5-stage pill row (Propose / Counter-sign / Wait / Applied / Re-verified) with the current stage highlighted, a status line, and — while cancellable — a Cancel button.
+Content source constants: ACTORS, DECL_CHIPS, CEREMONIES, CEREMONY_STAGES.
+[Heading 1] 16. Cross-cutting overlays and shared patterns
+[Heading 2] 16.1 The Four-Questions block ("FourQ")
+Used for Data/Reasoning/Access Shield’s underlying content and for The Watch’s State tab. Always exactly four stacked cards, fixed order: "What’s happening" (a lead sentence); "How do we know" (lead sentence, then an optional row list, each openable into a two-column claim-vs-sources panel); "What we’re doing about it" (a lead sentence, and — if something is waiting — a brass Held box with title/line/action buttons); "Is what we agreed being done" (a closing lead sentence with a Walk-this link). A collapsible "see the working" toggle reveals raw supporting facts under any card — including facts tagged tone:'unmeasured', rendered without hiding or omitting them.
+[Heading 2] 16.2 The Brief modal
+Reached via "View more →" links throughout the Governance Surface template. A two-page-style read: title/sub, a lead paragraph, a lead2 paragraph, and a small facts key/value table. One Brief exists per surface × per block (visual vs. table) in BRIEF_SUB; the top-level BRIEF object covers whole-surface highlight briefs (gm / gov / estate / datashield / reasoningshield / accessshield).
+[Heading 2] 16.3 The Shield Intelligence Report
+Documented fully in §6.1; reusable via a "Shield" pill that recurs wherever a conversation, task, or performance drawer needs to show its own provenance — the Task workspace header, ThinkLab session sidebar, and Exco/Board 360 detail drawers all carry the same trigger.
+[Heading 2] 16.4 The "Walk this" evidence drawer
+A fixed sequence of Q&A cards (What was seen / What we concluded / The rule that fired / What we did / How it ended / Who saw us do it — the exact set varies slightly per walk type), each with a toggleable "working" detail line citing an ID (bait record, receipt, rule version, witness signature). Four walk types recur throughout the platform: bait (a stopped bad-actor event), crossing (a masked data crossing and its receipt), rule (a rule and the ceremony that set it), broken (an intentionally incomplete trail — the system admitting a gap rather than fabricating one).
+Content source constant: WALKS.
+[Heading 2] 16.5 Exposure site map
+A drawer (from Documents’ header link) tracking every place a document has physically travelled — opened, downloaded, or sent outside the estate — distinct from Shield, which only governs what reaches a model. 3 summary stats, a travel-history row list (name, lane pill, where, tracker/form/when meta, an optional oxblood risk-signal line), and a Download-rule choice explaining that both download forms carry an invisible tracker.
+[Heading 2] 16.6 Toast / inline confirmations
+Many row links resolve to a lightweight toast rather than a full drawer (encoded in the data as go:'toast:<message>') — used for detail that doesn’t warrant a dedicated screen. Treat any row without a dedicated walk/drawer target as a toast candidate when extending the dataset.
+[Heading 2] 16.7 Streaming / loading states
+Two matching patterns recur for anything that takes visible time: a step checklist with an incrementing progress bar (Deep Dive, page-level app loads, document generation) and a chat "Working" card with sequential step lines and a pulsing sage dot (Chat, per-panel contextual chat). Both read their step labels from small arrays (GEN_STEPS, AKKI_DEFAULT_STEPS, per-mode loading-line arrays) rather than a single spinner, so the user always sees what is actually happening.
+[Heading 1] 17. Appendix — content-data constant reference
+Every screen’s literal copy lives in one of these top-level constants in the logic class. Extend a screen by adding to its matching constant in the existing shape — avoid introducing a parallel data source for content that already has one.
+<<TABLE>>
+Constant(s) | Feeds
+NAV / TABS / ROLES / SUB_TO_GROUP | Navigation taxonomy (§4)
+GOV | Shield’s Overview / Rule Book / Trust Center / Rules Updates / Library tabs
+RB_CATS | Rule Book’s full grouped-by-category rule list and profiles
+GM | Grey Mirror’s Overview / Monitor & Detect / Response / People & Models tabs
+TRUST | Registry-side mirror of Shield’s Data / Reasoning / Access content
+EST_GROUPS | The 4-tile filter row atop Shield and Grey Mirror
+APPROVALS | Spend Requests / Rules Updates / Model Admission
+RULES_IN_FORCE / RAILS | The Watch’s short rules-in-force and non-negotiable rails list
+CEREMONIES / CEREMONY_STAGES | Instance → Ceremonies
+RECORD_ROWS / LANE_COPY | The Watch → Record
+PATTERNS / DECISIONS | The Watch → Under Watch / Decisions
+ACTORS / DECL_CHIPS | Instance → People & Declarations
+WALKS | The "Walk this" evidence drawer (§16.4)
+BRIEF / BRIEF_SUB | The Brief modal (§16.2)
+PAGE_TOPLINE / FQ_TOPLINE | Sticky-aside headline copy for FourQ and related surfaces
+CONNECT_KINDS / CONNECT_CREDS / CONNECT_STAGES / CONNECT_CHIPS | Registry’s Connect wizard
+LLM_STATS / LLMS / LLM_NARRATIVE / LLM_CHARTS | Registry → LLM tab
+COMPUTE_CHARTS / FLOWS / FLOW_NARRATIVE | Registry → Compute tab
+CHARTS | Registry → Data tab’s estate-composition charts
+TASK_SEED / EVIDENCE_KINDS / TASK_WIZ_STAGES | Task Manager
+TL_MODES / TL_FLOW / TL_SESSIONS / THINKLAB_MODES | ThinkLab
+AKKI_SCRIPT / seedConversations() / mkAnswered() family | Chat’s canned answers and seed history
+WIZ | The two generic conversational wizards (rule-book change, actor admission)
+<<END TABLE>>
+
+
+End of specification.
