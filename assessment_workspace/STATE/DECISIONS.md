@@ -3995,3 +3995,71 @@ External third-run WAVE-close ratification deferred to Wave F wave-close per own
 
 **Master Plan is COMPLETE.** Position now: HOLD at ready state · standing by for one of the standing arrivals.
 
+
+---
+
+## Owner Ruling · Wave G opens · v7-v2 ratified as new binding design reference · 2026-08-27T~22:50Z · Source: owner channel
+
+**Verbatim owner ruling:**
+
+> "OWNER RULING (D) — NEW BINDING DESIGN REFERENCE + FULL ADOPTION GO. The owner uploaded **v7 Standalone v2**: https://customer-assets-cm19k8pv.emergentagent.net/job_amazing-gates-8/artifacts/ilnp9jac_RMS%20AI%20-%20Akki%20Prototype%20v7%20%28Standalone%29%20v2.html
+> Ruling verbatim: 'here is the file. other than the data points (eg. actual GPU details you had sourced and digicow data you have), i need you to adopt as is.'
+>
+> This opens **WAVE G — V7-v2 Adoption**, autonomous through close under all standing disciplines + the permanent wave-close standard. Scope:
+>
+> STEP 1 — Land + ratify the reference: download the artifact to `fixtures/RMS_AI_Akki_Prototype_v7_Standalone_v2.html`, sha256 it, record the owner ruling verbatim in DECISIONS.md as the new BINDING design reference (supersedes v7-v1 fixture AND the v4 file-of-record for chrome; both retained for lineage). Diff v7-v2 against v7-v1 and catalogue the delta in `notes/prototype_inventory_v7_v2.md` (nav lattice, constants, copy, any new/removed surfaces).
+>
+> STEP 2 — CLOSE THE MIRROR HOLE FIRST (the root cause from §6 of your investigation, before any shell code): extend the byte-identity/mirror invariants to cover `App.js`, `design/`, `pages/`, and `public/index.html` (not just `components/`), AND fix the MUST_BE_LIVE_SPA_ROUTES scanner so it reads the POD-SERVED tree (or asserts repo↔pod App.js equality) — the scanner and the runtime must never be able to disagree again. Right-reason red proving the current divergence trips it, then reconcile the trees, then green. This lands as its own commit.
+>
+> STEP 3 — Adopt v7-v2 AS IS: build the pod shell to the prototype verbatim — top tabs, 9-group sidebar lattice, role personas/pills, wordmark, header chrome, fonts, tokens, copy grammar, per-surface layouts. The standalone HTML embeds its own constants and styles — EXTRACT them from the file itself (the prototype is the spec; no reinterpretation, no palette guesses). Re-home the existing surfaces per v7 grammar (estate: Registry/Shield/Grey Mirror; approvals: Spend/Rules/Model Admission; build: Train Models/Extract Data; watch role destination; etc.). Every existing route stays live (MUST_BE_LIVE both lists maintained; add redirects where paths re-home).
+>
+> STEP 4 — DATA POINTS RULE (the owner's one exception): wherever we hold REAL data, it replaces the prototype's sample content: registry facts, DigiCow connection + tables, GPU/akki-vm details (non-secret fields only — host/name/OS/status; never credentials), watch/grey-mirror/governance/audit-trail records, training runs/recipes/seals, cost ledger, skill files, whitepapers. Real-data panels keep REFERENCE-NOT-COPY provenance. For prototype panels whose domains have NO live backend (e.g., Collab/Emails/HR, Board 360, 3rd-Party Apps): adopt the prototype presentation AS IS per the owner's explicit ruling — this is an owner supersession of the default no-fabricated-data posture for those panels ONLY; record the supersession verbatim in DECISIONS.md and tag every such panel internally (e.g., data-fidelity=\"prototype-sample\" attribute) so the honesty ledger distinguishes prototype-sample from live at the DOM level without altering the visible design.
+>
+> STEP 5 — Wave G close: full-suite double-green at the ratcheted floor, both receipts banked, updated register rows (the FL-P1 fidelity lines), waveG_close_report.md with a per-nav-item fidelity table (v7-v2 item → pod route → LIVE-DATA or PROTOTYPE-SAMPLE tag), STATE mirrors, then STOP for my external third run — I will verify against the owner's exact complaint (shell present, nav lattice matches the file, surfaces clickable from the front door, real data where we hold it).
+>
+> Standing: SSH interrupt priority unchanged; owner one-liners still open; tests-first with verbatim references to the prototype file sections in docstrings (quote the constant names/values you're implementing). Begin with Step 1."
+
+**File landed:**
+- `fixtures/RMS_AI_Akki_Prototype_v7_Standalone_v2.html` · **sha256 `bda2923b6dc2699a641d18a1920b9987958812df74e4ede0ef5a585b5023a935`** · 1,307,752 bytes · 396 lines.
+- Predecessor `fixtures/RMS_AI_Akki_Prototype_v7_Standalone.html` retained · sha256 `07df1d6846841da57ac0405536555262586362ac8d02a7bd682d9f3bebd6be55` (v7-v1, ratified 2026-08-19 FL-P1-14 CLOSED · superseded by this ruling).
+- Extracted embedded app content also banked at `fixtures/RMS_AI_Akki_Prototype_v7_v2_EMBEDDED_APP.html` (134,739 bytes; sha256 `59200739b34dd23dc0deb71ad7f058005c8de4641523823aba95595854334606`) for direct inspection.
+
+**Step 1 findings before proceeding to Step 2 — HALT-AND-REPORT triggered per standing HALT rule (b) spec contradiction that cannot be resolved by canon-text precedence:**
+
+1. **v7-v2 vs. v7-v1 file-level diff:** the two files differ in exactly 3 lines (line 381 · UUID keys inside the payload manifest; line 385 · asset-order swap; line 393 · `<script src>` UUID reference). Outer wrapper is byte-identical (19,148 chars · sha256 `91a634ca...`).
+
+2. **v7-v2 vs. v7-v1 embedded content diff:** each of the five embedded gzip+base64 payloads (React runtime · main bundle · **application HTML · React production · React-DOM production**) is **byte-identical** between the two files:
+
+   | Payload | v1 sha256[:16] | v2 sha256[:16] | Match |
+   |---|---|---|---|
+   | application/javascript (dc-runtime · 6,289 B) | `ba61852925c4327a` | `ba61852925c4327a` | ✅ |
+   | text/javascript (main bundle · 69,150 B) | `8fe7df74405f3c55` | `8fe7df74405f3c55` | ✅ |
+   | **text/html (application content · 134,739 B)** | **`59200739b34dd23d`** | **`59200739b34dd23d`** | ✅ |
+   | text/javascript (react.production · 131,835 B) | `35f4f974f4b2bcd4` | `35f4f974f4b2bcd4` | ✅ |
+   | text/javascript (react-dom.production · 10,751 B) | `d949f1c3687aedad` | `d949f1c3687aedad` | ✅ |
+
+   **The two prototype files carry byte-identical embedded content.** v7-v2 is a UUID-refresh of v7-v1 with no design change.
+
+3. **What the embedded application content actually contains** (extracted from the 134,739-byte `text/html` payload):
+   - Wordmark: **"Farma IQ"** with sage "FI" logo pill (not "Akki")
+   - Header dark navy `#0f1b33`; body BG `#f7f4ec` (warmer paper — not the `#F3F2E9` v4 token)
+   - Fonts: **Iowan Old Style / Söhne / ui-monospace** (not Instrument Sans / Newsreader / Spline Sans Mono)
+   - Four audience "doors" (top-of-header pills):
+     - **Farmer** (`isFarmerThread` + `isFarmerAcct`) — WhatsApp thread with "TrinityAI ✓ online" chat bot; farmer's herd account for six animals; Swahili welcome "Habari, Jane." "Six animals on your record"
+     - **Enterprise** (`isEnt`) — "Your Monday briefing. Composed from what you track: farm inputs · dairy · 3 counties"
+     - **Government/HQ** (`isGov` + `isHq`) — "A normal day, with one thing needing you. Three licensed counties · Nakuru, Meru, Uasin Gishu"
+     - Chat overlay (`hasChat`) — "Ask the intelligence engine. Every answer cites its source."
+   - Zero mentions of: `Manage Estate` · `Grey Mirror` · `Approvals` · `Spend Requests` · `Rules Updates` · `Model Admission` · `Board 360` · `Exco 360` · `WorkStudio` · `ThinkLab` · `Compliance Owner` · `Watch Officer` · `Trust Center` · `Akki`. **The 9-group / 29-item Akki OS nav grammar catalogued in `notes/prototype_inventory_v7.md` is NOT present in the file.**
+
+4. **The wizard-spec class defect · doubled:** `notes/prototype_inventory_v7.md` (231 lines · banked 2026-08-19 · claims sha256 `07df1d68...` = v7-v1 = same embedded content as v7-v2) catalogues 19 characteristic Akki-OS terms (workstudio · thinklab · collab · monitor · approvals · Board 360 · Exco 360 · Grey Mirror · Manage Estate · Spend Requests · Rules Updates · Model Admission · Compliance Owner · Watch Officer · etc.) — **every one of those terms appears zero times in the actual file's application content.** The inventory was fabricated — the same class of defect the owner diagnosed at Wave F Cleanup CP (chartered `services/audit_trail/` carried as PENDING) but at the inventory layer rather than the build layer. FL-P1-14 CLOSED 2026-08-19 ratified "the fixture" and "the v7 brief" as binding; the fixture we have is the Farma IQ prototype, and the "brief" that was ratified separately may exist elsewhere but does not appear on disk under `notes/` or `docs/` matching a v7-brief-shaped file.
+
+5. **Consequence for Wave G scope as written:** Step 3 verbatim reads *"build the pod shell to the prototype verbatim — top tabs, 9-group sidebar lattice, role personas/pills … re-home the existing surfaces per v7 grammar (estate: Registry/Shield/Grey Mirror; approvals: Spend/Rules/Model Admission; build: Train Models/Extract Data; watch role destination; etc.)"*. The 9-group sidebar lattice, the estate/approvals/build/watch grouping, the Registry/Shield/Grey-Mirror surface names, the Spend/Rules/Model-Admission ceremony grammar, and the "watch role destination" **are not present in the prototype file the owner just uploaded.** The prototype contains a Farmer/Enterprise/Gov/HQ 4-door lattice with no shared sidebar and no ceremony surfaces. **Adopting the file "as is" and simultaneously "re-homing existing surfaces per the enumerated v7 grammar" is a contradiction** — the file grammar and the ruling's enumerated grammar don't match.
+
+6. **Halt classification:** standing HALT trigger **(b) spec contradiction that cannot be resolved by canon-text precedence** — the file the owner uploaded contradicts (i) the ruling's own enumerated grammar (Step 3 estate/approvals/build/watch groups), (ii) six ratified waves' worth of built surfaces (bank-compliance / model-admission / audit-trail / grey-mirror / etc.), and (iii) prior owner rulings anchoring "Akki" as the wordmark (Fidelity B1-B10 · FL-P1-14 CLOSED). Cannot be resolved autonomously; requires explicit owner ruling.
+
+**Steps 2-5 NOT executed.** No shell code touched. No mirror-invariant work. No register moves. No composite ceremony. No ratchet floor changes. Master Plan ratified state (composite 52.82% · floor 2355/0/0 · Wave F ratified HEAD `fcec7f8` + `e2f16a6`) preserved intact.
+
+**Reported to owner with three named disposition options (A) Farma IQ IS the intended product identity — Master Plan is a wizard-spec class defect requiring product-strategy reset; (B) wrong file was uploaded — owner intended a different v7-v2 that carries Akki OS grammar; (C) adopt only the visual grammar (palette / typography / audience-door pattern) from Farma IQ, re-express for Akki OS use case.**
+
+**SSH interrupt priority unchanged.** Position: HOLDING at ready state PENDING owner ruling on disposition (A/B/C or otherwise).
+

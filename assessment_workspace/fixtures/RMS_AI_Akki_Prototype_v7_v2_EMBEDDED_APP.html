@@ -1,0 +1,1656 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<script src="https://unpkg.com/d3@7.9.0/dist/d3.min.js" integrity="sha384-CjloA8y00+1SDAUkjs099PVfnY2KmDC2BZnws9kh8D/lX1s46w6EPhpXdqMfjK6i" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/topojson-client@3.1.0/dist/topojson-client.min.js" integrity="sha384-Ukv1p/xTma6P4/2bY5KzWBw+ydSpXmhCMtyciIQVDJ1RmOxtCYNMF1uXT9T63H67" crossorigin="anonymous"></script>
+<style>
+body{margin:0}
+*{box-sizing:border-box}
+a{color:#16274a;text-decoration:none}
+a:hover{color:#0f1b33}
+textarea,input{outline:none;font-family:inherit}
+</style>
+<script src="./county-map.js"></script>
+</helmet>
+<div style="--paper:#f7f4ec;--surface:#f0ece1;--surface2:#ede8da;--line:#e4dfd3;--ink:#1b1f27;--ink2:#3d4350;--ink3:#5b6270;--blue:#16274a;--blue2:#0f1b33;--oxblood:#b8395b;--brass:#b08d2e;--sage:#1d7a6e;--accent:#4c5fd5;--head:Iowan Old Style,Georgia,serif;--body:Söhne,Helvetica Neue,Arial,sans-serif;--mono:ui-monospace,Menlo,Consolas,monospace;background:#f7f4ec;color:#1b1f27;font-family:var(--body);height:100vh;display:flex;flex-direction:column;">
+
+  <div style="background:#0f1b33;color:#fff;padding:0 22px;height:58px;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;gap:18px;">
+    <div style="display:flex;align-items:center;gap:11px;min-width:0;">
+      <span style="width:30px;height:30px;border-radius:9px;background:rgba(29,122,110,.3);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:11px;font-weight:700;flex-shrink:0;">FI</span>
+      <div style="min-width:0;">
+        <div style="font-family:var(--head);font-size:16.5px;line-height:1.1;">Farma IQ</div>
+        <div style="font-size:10.5px;color:rgba(255,255,255,.55);white-space:nowrap;">{{ subline }}</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:3px;background:rgba(255,255,255,.09);border-radius:8px;padding:3px;">
+      <sc-for list="{{ doorsView }}" as="d" hint-placeholder-count="4">
+        <div onClick="{{ d.onClick }}" style="padding:6px 14px;border-radius:6px;font-size:12px;cursor:pointer;white-space:nowrap;background:{{ d.bg }};color:{{ d.color }};font-weight:{{ d.weight }};">{{ d.label }}</div>
+      </sc-for>
+    </div>
+    <div style="font-size:11.5px;color:rgba(255,255,255,.65);white-space:nowrap;flex-shrink:0;">{{ seat }}</div>
+  </div>
+
+  <div style="flex:1;display:flex;min-height:0;">
+
+    <sc-if value="{{ hasRail }}" hint-placeholder-val="{{ false }}">
+      <div style="width:212px;flex-shrink:0;border-right:1px solid var(--line);padding:18px 12px;display:flex;flex-direction:column;gap:2px;overflow-y:auto;background:#f2eee4;">
+        <sc-for list="{{ railView }}" as="nv" hint-placeholder-count="6">
+          <div onClick="{{ nv.onClick }}" style="padding:8px 12px;border-radius:7px;font-size:12.5px;cursor:pointer;background:{{ nv.bg }};color:{{ nv.color }};font-weight:{{ nv.weight }};">{{ nv.label }}</div>
+        </sc-for>
+      </div>
+    </sc-if>
+
+    <div style="flex:1;min-width:0;overflow-y:auto;position:relative;">
+
+      <sc-if value="{{ isFarmerThread }}" hint-placeholder-val="{{ true }}">
+        <div style="padding:24px 20px 50px;display:flex;flex-direction:column;align-items:center;">
+          <div style="max-width:520px;text-align:center;font-size:14px;color:var(--ink2);line-height:1.55;margin-bottom:20px;text-wrap:pretty;">One WhatsApp thread. Everything a farmer needs. Nothing to install, nothing to learn.</div>
+          <div style="width:392px;max-width:100%;border-radius:30px;background:#111;padding:9px;box-shadow:0 24px 60px rgba(15,27,51,.24);">
+            <div style="border-radius:23px;overflow:hidden;background:#e5ddd5;display:flex;flex-direction:column;height:720px;">
+              <div style="background:#075e54;color:#fff;padding:9px 12px;display:flex;align-items:center;gap:10px;flex-shrink:0;">
+                <span style="font-size:17px;opacity:.8;">&#8592;</span>
+                <span style="width:34px;height:34px;border-radius:50%;background:#0b7a6c;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;">DC</span>
+                <div style="min-width:0;">
+                  <div style="font-size:13.5px;font-weight:600;line-height:1.2;">TrinityAI <span style="color:#8fe3c8;">&check;</span></div>
+                  <div style="font-size:10.5px;color:rgba(255,255,255,.7);">online</div>
+                </div>
+              </div>
+              <div style="flex:1;overflow-y:auto;padding:12px 10px 16px;display:flex;flex-direction:column;gap:7px;">
+                <sc-for list="{{ threadView }}" as="m" hint-placeholder-count="8">
+                  <sc-if value="{{ m.isDay }}" hint-placeholder-val="{{ false }}">
+                    <div style="align-self:center;background:#dbe9d5;color:#4a5a4a;font-size:10px;font-weight:700;letter-spacing:.09em;padding:4px 11px;border-radius:6px;margin:6px 0 2px;">{{ m.label }}</div>
+                  </sc-if>
+                  <sc-if value="{{ m.isMsg }}" hint-placeholder-val="{{ true }}">
+                    <div style="align-self:{{ m.align }};max-width:82%;background:{{ m.bg }};border-radius:9px;padding:7px 9px 5px;box-shadow:0 1px 1px rgba(0,0,0,.12);">
+                      <div style="font-size:12.5px;line-height:1.45;color:#111b21;white-space:pre-line;text-wrap:pretty;">{{ m.text }}</div>
+                      <sc-if value="{{ m.hasGloss }}" hint-placeholder-val="{{ false }}">
+                        <div style="font-size:10.5px;color:#5b6270;font-style:italic;margin-top:3px;">{{ m.gloss }}</div>
+                      </sc-if>
+                      <div style="font-size:9.5px;color:#667781;text-align:right;margin-top:2px;">{{ m.time }} <span style="color:{{ m.tickColor }};">{{ m.tick }}</span></div>
+                    </div>
+                    <sc-if value="{{ m.hasChips }}" hint-placeholder-val="{{ false }}">
+                      <div style="align-self:flex-start;display:flex;flex-wrap:wrap;gap:5px;max-width:88%;margin:1px 0 3px;">
+                        <sc-for list="{{ m.chips }}" as="c" hint-placeholder-count="2">
+                          <div style="background:{{ c.bg }};color:{{ c.color }};border:1px solid {{ c.border }};border-radius:14px;padding:5px 11px;font-size:11.5px;font-weight:600;cursor:pointer;">{{ c.label }}</div>
+                        </sc-for>
+                      </div>
+                    </sc-if>
+                  </sc-if>
+                </sc-for>
+              </div>
+              <div style="background:#f0f0f0;padding:8px 10px;display:flex;align-items:center;gap:8px;flex-shrink:0;">
+                <div style="flex:1;background:#fff;border-radius:18px;padding:8px 12px;font-size:12px;color:#98a1a8;">Message</div>
+                <span style="width:33px;height:33px;border-radius:50%;background:#075e54;color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;">&#10148;</span>
+              </div>
+            </div>
+          </div>
+          <div onClick="{{ openAccount }}" style="margin-top:16px;font-size:13px;color:var(--blue);cursor:pointer;border-bottom:1px solid rgba(22,39,74,.3);">Jane&rsquo;s full account &rarr;</div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isFarmerAcct }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:22px 20px 60px;display:flex;flex-direction:column;align-items:center;">
+          <div style="width:100%;max-width:430px;">
+            <div onClick="{{ closeAccount }}" style="font-size:12.5px;color:var(--ink3);cursor:pointer;margin-bottom:14px;">&larr; Back to the WhatsApp thread</div>
+            <div style="border:1px solid var(--line);border-radius:16px;background:#fff;overflow:hidden;box-shadow:0 8px 28px rgba(15,27,51,.08);">
+              <div style="display:flex;overflow-x:auto;border-bottom:1px solid var(--line);background:#f7f4ec;">
+                <sc-for list="{{ acctTabsView }}" as="t" hint-placeholder-count="6">
+                  <div onClick="{{ t.onClick }}" style="padding:12px 13px;font-size:12px;font-weight:{{ t.weight }};white-space:nowrap;cursor:pointer;color:{{ t.color }};border-bottom:2px solid {{ t.border }};min-height:44px;display:flex;align-items:center;">{{ t.label }}</div>
+                </sc-for>
+              </div>
+              <div style="padding:20px 18px 26px;">
+
+                <sc-if value="{{ acctIsHome }}" hint-placeholder-val="{{ true }}">
+                  <div style="font-family:var(--head);font-size:23px;margin-bottom:14px;">Habari, Jane.</div>
+                  <div style="display:flex;flex-direction:column;gap:12px;">
+                    <sc-for list="{{ acctHomeLines }}" as="l" hint-placeholder-count="3">
+                      <div style="border-left:2px solid {{ l.tone }};padding-left:11px;">
+                        <div style="font-family:var(--mono);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink3);margin-bottom:4px;">{{ l.eyebrow }}</div>
+                        <div style="font-size:13.5px;line-height:1.5;text-wrap:pretty;">{{ l.text }}</div>
+                      </div>
+                    </sc-for>
+                  </div>
+                </sc-if>
+
+                <sc-if value="{{ acctIsHerd }}" hint-placeholder-val="{{ false }}">
+                  <div style="font-size:13.5px;line-height:1.5;margin-bottom:14px;">Six animals on your record.</div>
+                  <div style="display:flex;flex-direction:column;gap:9px;">
+                    <sc-for list="{{ herdView }}" as="a" hint-placeholder-count="6">
+                      <div style="border:1px solid var(--line);border-radius:11px;padding:12px 13px;">
+                        <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px;">
+                          <div style="font-size:13.5px;font-weight:600;">{{ a.name }}</div>
+                          <div style="font-family:var(--mono);font-size:10px;color:var(--ink3);">{{ a.tag }}</div>
+                        </div>
+                        <div style="font-size:11.5px;color:var(--ink3);margin-top:3px;">{{ a.meta }}</div>
+                        <sc-if value="{{ a.hasNotes }}" hint-placeholder-val="{{ false }}">
+                          <div style="margin-top:9px;display:flex;flex-direction:column;gap:7px;">
+                            <sc-for list="{{ a.notes }}" as="n" hint-placeholder-count="2">
+                              <div style="background:#f7f4ec;border-radius:8px;padding:8px 10px;">
+                                <div style="font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:3px;">{{ n.when }}</div>
+                                <div style="font-size:12px;line-height:1.5;text-wrap:pretty;">{{ n.text }}</div>
+                              </div>
+                            </sc-for>
+                          </div>
+                        </sc-if>
+                      </div>
+                    </sc-for>
+                  </div>
+                </sc-if>
+
+                <sc-if value="{{ acctIsVisits }}" hint-placeholder-val="{{ false }}">
+                  <div style="font-size:13.5px;line-height:1.5;margin-bottom:14px;">One visit on the record. Nothing else booked.</div>
+                  <div style="border:1px solid var(--line);border-radius:11px;padding:13px;">
+                    <div style="display:flex;justify-content:space-between;gap:10px;margin-bottom:5px;">
+                      <div style="font-size:13.5px;font-weight:600;">Thursday morning &middot; Zawadi</div>
+                      <span style="font-size:10.5px;font-weight:600;color:var(--sage);">Completed &check;</span>
+                    </div>
+                    <div style="font-size:11.5px;color:var(--ink3);margin-bottom:9px;">Daniel Kamau &middot; extension officer, Nakuru</div>
+                    <div style="background:#f7f4ec;border-radius:8px;padding:9px 10px;font-size:12px;line-height:1.5;">&ldquo;Hoof trimmed, minor infection treated. Keep her off wet ground 3 days.&rdquo;</div>
+                  </div>
+                </sc-if>
+
+                <sc-if value="{{ acctIsOrders }}" hint-placeholder-val="{{ false }}">
+                  <div style="font-size:13.5px;line-height:1.5;margin-bottom:14px;">One order this quarter.</div>
+                  <div style="border:1px solid var(--line);border-radius:11px;padding:13px;">
+                    <div style="display:flex;justify-content:space-between;gap:10px;">
+                      <div style="font-size:13.5px;font-weight:600;">Hoof spray &middot; 1 can</div>
+                      <div style="font-size:13.5px;font-weight:600;">KES 450</div>
+                    </div>
+                    <div style="font-size:11.5px;color:var(--ink3);margin-top:4px;">Delivered by Kamau, Saturday</div>
+                    <div style="margin-top:9px;display:flex;gap:7px;flex-wrap:wrap;">
+                      <span style="font-size:10.5px;font-weight:600;padding:4px 9px;border-radius:11px;background:rgba(29,122,110,.12);color:var(--sage);">Delivered &check;</span>
+                      <span style="font-size:10.5px;font-weight:600;padding:4px 9px;border-radius:11px;background:#f0ece1;color:var(--ink2);">Paid by M-Pesa</span>
+                    </div>
+                  </div>
+                </sc-if>
+
+                <sc-if value="{{ acctIsCompare }}" hint-placeholder-val="{{ false }}">
+                  <div style="font-size:13.5px;line-height:1.55;margin-bottom:14px;text-wrap:pretty;">How your quarter sits against other farms in Nakuru.</div>
+                  <div style="display:flex;flex-direction:column;gap:10px;">
+                    <sc-for list="{{ compareView }}" as="c" hint-placeholder-count="3">
+                      <div style="border:1px solid var(--line);border-radius:11px;padding:13px;">
+                        <div style="font-size:11.5px;color:var(--ink3);margin-bottom:5px;">{{ c.label }}</div>
+                        <div style="display:flex;align-items:baseline;gap:9px;">
+                          <div style="font-family:var(--head);font-size:24px;">{{ c.you }}</div>
+                          <div style="font-size:12px;color:var(--ink2);">{{ c.against }}</div>
+                        </div>
+                        <div style="font-size:10.5px;color:var(--ink3);margin-top:7px;font-style:italic;">anonymised benchmark &mdash; never shown to any paying customer as you</div>
+                      </div>
+                    </sc-for>
+                  </div>
+                </sc-if>
+
+                <sc-if value="{{ acctIsSettings }}" hint-placeholder-val="{{ false }}">
+                  <div style="border:1px solid var(--line);border-radius:11px;padding:14px;margin-bottom:14px;">
+                    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;">
+                      <div style="min-width:0;">
+                        <div style="font-size:13.5px;font-weight:600;margin-bottom:5px;">Share my anonymised records</div>
+                        <div style="font-size:12px;color:var(--ink2);line-height:1.5;text-wrap:pretty;">Powers the benchmark you receive. Withdraw any time.</div>
+                      </div>
+                      <div onClick="{{ toggleOptIn }}" style="width:48px;height:28px;border-radius:14px;flex-shrink:0;cursor:pointer;background:{{ optInBg }};position:relative;transition:background .18s;">
+                        <span style="position:absolute;top:3px;left:{{ optInX }};width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.3);transition:left .18s;"></span>
+                      </div>
+                    </div>
+                    <div style="font-size:11.5px;color:{{ optInNoteColor }};margin-top:10px;">{{ optInNote }}</div>
+                  </div>
+                  <div style="border:1px solid var(--line);border-radius:11px;padding:14px;">
+                    <div style="font-size:13.5px;font-weight:600;margin-bottom:10px;">Language</div>
+                    <div style="display:flex;gap:8px;">
+                      <sc-for list="{{ langView }}" as="l" hint-placeholder-count="2">
+                        <div onClick="{{ l.onClick }}" style="padding:9px 15px;border-radius:9px;font-size:12.5px;font-weight:600;cursor:pointer;min-height:44px;display:flex;align-items:center;background:{{ l.bg }};color:{{ l.color }};border:1px solid {{ l.border }};">{{ l.label }}</div>
+                      </sc-for>
+                    </div>
+                  </div>
+                </sc-if>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isHq }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:22px 30px 60px;">
+          <div style="display:flex;justify-content:flex-end;margin-bottom:16px;">
+            <div style="display:flex;gap:3px;background:#ede8da;border-radius:8px;padding:3px;">
+              <sc-for list="{{ hqViewsView }}" as="v" hint-placeholder-count="2">
+                <div onClick="{{ v.onClick }}" style="padding:7px 14px;border-radius:6px;font-size:12px;cursor:pointer;white-space:nowrap;background:{{ v.bg }};color:{{ v.color }};font-weight:{{ v.weight }};">{{ v.label }}</div>
+              </sc-for>
+            </div>
+          </div>
+
+          <sc-if value="{{ hqIsOverview }}" hint-placeholder-val="{{ true }}">
+            <div style="max-width:900px;">
+              <h2 style="font-family:var(--head);font-size:26px;font-weight:400;margin:0 0 6px;">A normal day, with one thing needing you.</h2>
+              <div style="font-size:12.5px;color:var(--ink3);margin-bottom:22px;">Three licensed counties &middot; Nakuru, Meru, Uasin Gishu</div>
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(206px,1fr));gap:10px;margin-bottom:26px;">
+                <sc-for list="{{ hqStatsView }}" as="st" hint-placeholder-count="6">
+                  <div style="border:1px solid var(--line);border-radius:11px;background:#fff;padding:15px 16px;">
+                    <div style="font-family:var(--head);font-size:26px;line-height:1;margin-bottom:7px;">{{ st.value }}</div>
+                    <div style="font-size:12px;color:var(--ink2);line-height:1.45;text-wrap:pretty;">{{ st.note }}</div>
+                  </div>
+                </sc-for>
+              </div>
+              <div style="font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#8b8371;font-weight:700;margin-bottom:10px;">Needing you</div>
+              <div style="display:flex;flex-direction:column;gap:8px;">
+                <sc-for list="{{ hqNeedView }}" as="n" hint-placeholder-count="2">
+                  <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;border:1px solid var(--line);border-left:3px solid {{ n.tone }};border-radius:9px;background:#fff;padding:14px 16px;flex-wrap:wrap;">
+                    <div style="font-size:13.5px;line-height:1.5;max-width:600px;text-wrap:pretty;">{{ n.text }}</div>
+                    <div style="font-size:11.5px;font-weight:600;color:{{ n.tone }};white-space:nowrap;">{{ n.action }}</div>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ hqIsConv }}" hint-placeholder-val="{{ false }}">
+            <div style="max-width:940px;">
+              <h2 style="font-family:var(--head);font-size:24px;font-weight:400;margin:0 0 6px;">Every conversation, read as a sentence.</h2>
+              <div style="font-size:12.5px;color:var(--ink3);margin-bottom:18px;">HQ sees that a conversation happened and how it ended. No paying customer sees any of it.</div>
+              <div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:16px;">
+                <sc-for list="{{ hqFiltersView }}" as="f" hint-placeholder-count="4">
+                  <div onClick="{{ f.onClick }}" style="padding:7px 13px;border-radius:15px;font-size:12px;font-weight:600;cursor:pointer;background:{{ f.bg }};color:{{ f.color }};border:1px solid {{ f.border }};">{{ f.label }}</div>
+                </sc-for>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:8px;">
+                <sc-for list="{{ hqConvView }}" as="c" hint-placeholder-count="3">
+                  <div onClick="{{ c.onOpen }}" style="display:flex;justify-content:space-between;align-items:center;gap:18px;border:1px solid var(--line);border-radius:9px;background:#fff;padding:14px 16px;cursor:pointer;flex-wrap:wrap;">
+                    <div style="font-size:13.5px;line-height:1.5;max-width:540px;text-wrap:pretty;">{{ c.text }}</div>
+                    <div style="display:flex;align-items:center;gap:14px;flex-shrink:0;">
+                      <span style="font-size:11.5px;color:var(--ink3);">{{ c.county }}</span>
+                      <span style="font-size:10.5px;font-weight:600;padding:4px 10px;border-radius:11px;background:{{ c.stateBg }};color:{{ c.stateColor }};">{{ c.state }}</span>
+                      <span style="font-size:11.5px;color:var(--ink3);width:54px;text-align:right;">{{ c.when }}</span>
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ hqIsField }}" hint-placeholder-val="{{ false }}">
+            <div style="max-width:940px;">
+              <h2 style="font-family:var(--head);font-size:24px;font-weight:400;margin:0 0 6px;">Thirty-one officers are out today.</h2>
+              <div style="font-size:12.5px;color:var(--ink3);margin-bottom:20px;">Today&rsquo;s dispatch, by county.</div>
+              <div style="display:flex;gap:18px;flex-wrap:wrap;align-items:flex-start;">
+                <div style="flex:1;min-width:280px;border:1px solid var(--line);border-radius:12px;background:#fff;padding:16px;">
+                  <div style="font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#8b8371;font-weight:700;margin-bottom:12px;">County schematic &middot; not to scale</div>
+                  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;">
+                    <sc-for list="{{ hqMapView }}" as="c" hint-placeholder-count="4">
+                      <div style="border-radius:9px;background:{{ c.bg }};border:1px solid {{ c.border }};padding:13px 12px;min-height:86px;display:flex;flex-direction:column;justify-content:space-between;">
+                        <div style="font-size:12.5px;font-weight:600;color:{{ c.ink }};">{{ c.name }}</div>
+                        <div style="font-size:11px;color:{{ c.ink }};opacity:.8;line-height:1.4;">{{ c.note }}</div>
+                      </div>
+                    </sc-for>
+                  </div>
+                </div>
+                <div style="flex:1;min-width:300px;">
+                  <div style="border:1px solid var(--line);border-radius:12px;background:#fff;padding:16px;margin-bottom:10px;">
+                    <div style="font-size:13.5px;font-weight:600;margin-bottom:10px;">Kamau &mdash; 4 stops in Nakuru</div>
+                    <div style="display:flex;flex-direction:column;gap:7px;">
+                      <sc-for list="{{ hqDispatchView }}" as="d" hint-placeholder-count="4">
+                        <div style="font-size:12.5px;color:var(--ink2);line-height:1.5;">{{ d.text }}</div>
+                      </sc-for>
+                    </div>
+                  </div>
+                  <div style="border:1px solid var(--line);border-left:3px solid var(--brass);border-radius:9px;background:#fff;padding:13px 15px;font-size:12.5px;line-height:1.5;text-wrap:pretty;">31 officers active today &middot; 3 wards uncovered &mdash; flagged</div>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ hqIsStub }}" hint-placeholder-val="{{ false }}">
+            <div style="max-width:820px;">
+              <h2 style="font-family:var(--head);font-size:24px;font-weight:400;margin:0 0 8px;">{{ hqStubTitle }}</h2>
+              <div style="font-size:13.5px;color:var(--ink2);line-height:1.55;margin-bottom:18px;max-width:620px;text-wrap:pretty;">{{ hqStubLead }}</div>
+              <div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:18px;">
+                <sc-for list="{{ hqStubChips }}" as="c" hint-placeholder-count="3">
+                  <div style="padding:7px 13px;border-radius:15px;font-size:12px;font-weight:600;background:#fff;color:var(--ink2);border:1px solid var(--line);">{{ c.label }}</div>
+                </sc-for>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;border:1px solid var(--line);border-left:3px solid {{ hqStubTone }};border-radius:9px;background:#fff;padding:14px 16px;flex-wrap:wrap;">
+                <div style="font-size:13.5px;line-height:1.5;max-width:540px;text-wrap:pretty;">{{ hqStubRow }}</div>
+                <span style="font-size:10.5px;font-weight:600;padding:4px 10px;border-radius:11px;background:{{ hqStubBadgeBg }};color:{{ hqStubBadgeColor }};white-space:nowrap;">{{ hqStubBadge }}</span>
+              </div>
+              <div style="font-size:11.5px;color:var(--ink3);margin-top:13px;font-style:italic;">One seeded row. This menu is not built deeper in the prototype.</div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ hqOffToday }}" hint-placeholder-val="{{ false }}">
+            <div style="max-width:660px;">
+              <h2 style="font-family:var(--head);font-size:24px;font-weight:400;margin:0 0 6px;">Thursday, Kamau. Four stops.</h2>
+              <div style="font-size:12.5px;color:var(--ink3);margin-bottom:20px;">Nakuru &middot; all four within 11 km</div>
+              <div style="display:flex;flex-direction:column;gap:9px;">
+                <sc-for list="{{ offTodayView }}" as="r" hint-placeholder-count="4">
+                  <div style="display:flex;justify-content:space-between;align-items:center;gap:14px;border:1px solid var(--line);border-radius:11px;background:#fff;padding:13px 15px;flex-wrap:wrap;">
+                    <div style="min-width:0;">
+                      <div style="font-size:13.5px;font-weight:600;margin-bottom:3px;">{{ r.title }}</div>
+                      <div style="font-size:12px;color:var(--ink3);line-height:1.45;">{{ r.meta }}</div>
+                    </div>
+                    <button onClick="{{ r.onStart }}" style="min-height:44px;padding:0 18px;border:none;border-radius:8px;background:var(--blue);color:#fff;font-size:12.5px;font-weight:600;cursor:pointer;flex-shrink:0;">Start visit</button>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ hqOffFarmers }}" hint-placeholder-val="{{ false }}">
+            <div style="max-width:840px;">
+              <h2 style="font-family:var(--head);font-size:24px;font-weight:400;margin:0 0 18px;">Your farmers in Nakuru.</h2>
+              <div style="display:flex;gap:18px;flex-wrap:wrap;align-items:flex-start;">
+                <div style="flex:1;min-width:220px;display:flex;flex-direction:column;gap:7px;">
+                  <sc-for list="{{ offFarmersView }}" as="f" hint-placeholder-count="4">
+                    <div style="border:1px solid var(--line);border-radius:9px;background:{{ f.bg }};padding:12px 14px;">
+                      <div style="font-size:13px;font-weight:600;">{{ f.name }}</div>
+                      <div style="font-size:11.5px;color:var(--ink3);margin-top:3px;">{{ f.meta }}</div>
+                    </div>
+                  </sc-for>
+                </div>
+                <div style="flex:1.3;min-width:300px;border:1px solid var(--line);border-radius:12px;background:#fff;padding:18px;">
+                  <div style="font-family:var(--head);font-size:19px;margin-bottom:3px;">Jane Wanjiru</div>
+                  <div style="font-size:11.5px;color:var(--ink3);margin-bottom:16px;">Nakuru &middot; herd of 6 &middot; opted in to benchmarking</div>
+                  <div style="font-family:var(--mono);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:#8b8371;font-weight:700;margin-bottom:8px;">What the chat told us</div>
+                  <div style="background:#f7f4ec;border-radius:9px;padding:11px 12px;font-size:12.5px;line-height:1.5;margin-bottom:18px;text-wrap:pretty;">Limping since Tuesday, left foreleg, eating normally.</div>
+                  <div style="font-family:var(--mono);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:#8b8371;font-weight:700;margin-bottom:8px;">Last three records</div>
+                  <div style="display:flex;flex-direction:column;gap:8px;">
+                    <sc-for list="{{ offJaneRecords }}" as="r" hint-placeholder-count="3">
+                      <div style="border-top:1px solid var(--line);padding-top:8px;">
+                        <div style="font-size:12.5px;line-height:1.5;text-wrap:pretty;">{{ r.text }}</div>
+                        <div style="font-size:11px;color:var(--ink3);margin-top:3px;">{{ r.when }}</div>
+                      </div>
+                    </sc-for>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ hqOffRecord }}" hint-placeholder-val="{{ false }}">
+            <div style="max-width:520px;">
+              <h2 style="font-family:var(--head);font-size:24px;font-weight:400;margin:0 0 18px;">Record a visit.</h2>
+              <div style="border:1px solid var(--line);border-radius:12px;background:#fff;padding:18px;">
+                <div style="font-family:var(--mono);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:#8b8371;font-weight:700;margin-bottom:7px;">Animal</div>
+                <div style="border:1px solid var(--line);border-radius:8px;padding:11px 12px;font-size:13px;margin-bottom:16px;">Zawadi <span style="color:var(--ink3);">&middot; NK-0412 &middot; Jane Wanjiru</span></div>
+                <div style="font-family:var(--mono);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:#8b8371;font-weight:700;margin-bottom:7px;">What I found</div>
+                <textarea value="{{ visitFound }}" onChange="{{ onVisitFound }}" placeholder="Hoof trimmed, minor infection treated." style="width:100%;min-height:74px;border:1px solid var(--line);border-radius:8px;padding:11px 12px;font-size:13px;line-height:1.5;color:var(--ink);resize:vertical;margin-bottom:16px;"></textarea>
+                <div style="font-family:var(--mono);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:#8b8371;font-weight:700;margin-bottom:7px;">What I did</div>
+                <div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:16px;">
+                  <sc-for list="{{ visitChipsView }}" as="c" hint-placeholder-count="4">
+                    <div onClick="{{ c.onClick }}" style="min-height:44px;display:flex;align-items:center;padding:0 15px;border-radius:15px;font-size:12.5px;font-weight:600;cursor:pointer;background:{{ c.bg }};color:{{ c.color }};border:1px solid {{ c.border }};">{{ c.label }}</div>
+                  </sc-for>
+                </div>
+                <div style="display:flex;align-items:center;gap:11px;margin-bottom:18px;">
+                  <span style="width:44px;height:44px;border-radius:50%;background:rgba(184,57,91,.1);color:var(--oxblood);display:flex;align-items:center;justify-content:center;font-size:17px;cursor:pointer;flex-shrink:0;">&#9679;</span>
+                  <div style="font-size:12.5px;color:var(--ink2);">Hold to record a voice note</div>
+                </div>
+                <button onClick="{{ saveVisit }}" style="width:100%;min-height:46px;border:none;border-radius:9px;background:var(--blue);color:#fff;font-size:13.5px;font-weight:600;cursor:pointer;">Save</button>
+                <div style="font-size:12px;color:{{ visitSavedColor }};margin-top:11px;line-height:1.5;">{{ visitSavedNote }}</div>
+              </div>
+              <div style="font-size:12.5px;color:var(--ink3);margin-top:14px;line-height:1.55;font-style:italic;text-wrap:pretty;">Three taps and a voice note. The record writes itself.</div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ hqOffOrders }}" hint-placeholder-val="{{ false }}">
+            <div style="max-width:660px;">
+              <h2 style="font-family:var(--head);font-size:24px;font-weight:400;margin:0 0 18px;">One delivery on Saturday.</h2>
+              <div style="border:1px solid var(--line);border-radius:11px;background:#fff;padding:15px 16px;margin-bottom:10px;">
+                <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+                  <div style="font-size:13.5px;font-weight:600;">Hoof spray &mdash; Jane Wanjiru</div>
+                  <div style="font-size:13.5px;font-weight:600;">KES 450 on delivery</div>
+                </div>
+                <div style="font-size:11.5px;color:var(--ink3);margin-top:4px;">To deliver Saturday &middot; M-Pesa on handover</div>
+              </div>
+              <div style="border:1px solid var(--line);border-left:3px solid var(--sage);border-radius:9px;background:#fff;padding:13px 15px;font-size:13px;">This month: <strong>KES 6,150</strong> earned in commission</div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ hqOffMonth }}" hint-placeholder-val="{{ false }}">
+            <div style="max-width:760px;">
+              <h2 style="font-family:var(--head);font-size:24px;font-weight:400;margin:0 0 18px;">Your month, Kamau.</h2>
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;">
+                <sc-for list="{{ offMonthView }}" as="m" hint-placeholder-count="3">
+                  <div style="border:1px solid var(--line);border-radius:11px;background:#fff;padding:15px 16px;">
+                    <div style="font-family:var(--head);font-size:26px;line-height:1;margin-bottom:7px;">{{ m.value }}</div>
+                    <div style="font-size:12px;color:var(--ink2);line-height:1.45;text-wrap:pretty;">{{ m.note }}</div>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+
+        <sc-if value="{{ hqConvDrawerOpen }}" hint-placeholder-val="{{ false }}">
+          <div onClick="{{ closeConv }}" style="position:fixed;inset:0;background:rgba(15,27,51,.42);z-index:60;display:flex;justify-content:flex-end;">
+            <div style="background:#fff;width:min(460px,94vw);height:100%;overflow-y:auto;box-shadow:-14px 0 48px rgba(15,27,51,.18);">
+              <div style="padding:22px 24px 18px;border-bottom:1px solid var(--line);">
+                <div style="font-family:var(--mono);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink3);margin-bottom:7px;">Conversation &middot; {{ convCounty }}</div>
+                <div style="font-family:var(--head);font-size:20px;line-height:1.2;">{{ convTitle }}</div>
+                <div style="font-size:12px;color:var(--ink3);margin-top:7px;line-height:1.5;text-wrap:pretty;">{{ convNote }}</div>
+              </div>
+              <div style="padding:18px 20px 40px;background:#e5ddd5;display:flex;flex-direction:column;gap:7px;min-height:100%;">
+                <sc-for list="{{ convTranscript }}" as="m" hint-placeholder-count="6">
+                  <div style="align-self:{{ m.align }};max-width:84%;background:{{ m.bg }};border-radius:9px;padding:7px 9px 5px;box-shadow:0 1px 1px rgba(0,0,0,.12);">
+                    <div style="font-size:12.5px;line-height:1.45;color:#111b21;text-wrap:pretty;">{{ m.text }}</div>
+                    <div style="font-size:9.5px;color:#667781;text-align:right;margin-top:2px;">{{ m.time }}</div>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+      </sc-if>
+      <sc-if value="{{ isEnt }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:24px 30px 60px;">
+
+          <sc-if value="{{ entIsBriefing }}" hint-placeholder-val="{{ true }}">
+            <div style="max-width:720px;">
+              <h2 style="font-family:var(--head);font-size:27px;font-weight:400;margin:0 0 8px;">Your Monday briefing.</h2>
+              <div style="font-size:12.5px;color:var(--ink3);margin-bottom:20px;line-height:1.5;">Composed from what you track: farm inputs &middot; dairy &middot; 3 counties. Change in Account.</div>
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:9px;margin-bottom:24px;">
+                <sc-for list="{{ entKpis }}" as="k" hint-placeholder-count="4">
+                  <div style="border:1px solid var(--line);border-radius:11px;background:#fff;padding:14px 15px;">
+                    <div style="display:flex;align-items:baseline;gap:7px;margin-bottom:6px;">
+                      <div style="font-family:var(--head);font-size:22px;line-height:1;">{{ k.value }}</div>
+                      <div style="font-size:11px;font-weight:600;color:{{ k.tone }};">{{ k.delta }}</div>
+                    </div>
+                    <div style="font-size:11.5px;color:var(--ink2);line-height:1.45;text-wrap:pretty;">{{ k.label }}</div>
+                  </div>
+                </sc-for>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:16px;">
+                <sc-for list="{{ entBriefView }}" as="b" hint-placeholder-count="3">
+                  <div style="border:1px solid var(--line);border-radius:12px;background:#fff;padding:19px 20px;">
+                    <div style="font-family:var(--head);font-size:17.5px;line-height:1.45;margin-bottom:12px;text-wrap:pretty;">{{ b.text }}</div>
+                    <div onClick="{{ b.onWorking }}" style="font-size:12.5px;font-weight:600;color:var(--accent);cursor:pointer;">See the working &rarr;</div>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ entIsMarket }}" hint-placeholder-val="{{ false }}">
+            <div style="max-width:900px;">
+              <h2 style="font-family:var(--head);font-size:24px;font-weight:400;margin:0 0 16px;">Market intelligence</h2>
+              <div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:22px;">
+                <sc-for list="{{ entSubsView }}" as="c" hint-placeholder-count="6">
+                  <div onClick="{{ c.onClick }}" style="padding:7px 13px;border-radius:15px;font-size:12px;font-weight:600;cursor:pointer;background:{{ c.bg }};color:{{ c.color }};border:1px solid {{ c.border }};">{{ c.label }}</div>
+                </sc-for>
+              </div>
+
+              <sc-if value="{{ mktIsShare }}" hint-placeholder-val="{{ true }}">
+                <div style="border:1px solid var(--line);border-radius:12px;background:#fff;padding:20px;max-width:660px;">
+                  <div style="font-size:15px;line-height:1.55;margin-bottom:20px;text-wrap:pretty;">Your dewormer: 23% of verified orders in your counties, up 2.3 points this quarter.</div>
+                  <div style="display:flex;flex-direction:column;gap:9px;">
+                    <sc-for list="{{ shareBars }}" as="b" hint-placeholder-count="4">
+                      <div style="display:flex;align-items:center;gap:12px;">
+                        <div style="width:96px;flex-shrink:0;font-size:11.5px;color:var(--ink3);text-align:right;">{{ b.label }}</div>
+                        <div style="flex:1;height:20px;background:#f0ece1;border-radius:4px;overflow:hidden;">
+                          <div style="width:{{ b.width }};height:100%;background:{{ b.fill }};"></div>
+                        </div>
+                        <div style="width:44px;flex-shrink:0;font-size:11.5px;font-weight:600;">{{ b.value }}</div>
+                      </div>
+                    </sc-for>
+                  </div>
+                </div>
+              </sc-if>
+
+              <sc-if value="{{ mktIsDemand }}" hint-placeholder-val="{{ false }}">
+                <div style="display:flex;gap:18px;flex-wrap:wrap;align-items:flex-start;">
+                  <div style="flex:1;min-width:280px;border:1px solid var(--line);border-radius:12px;background:#fff;padding:16px;">
+                    <div style="font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#8b8371;font-weight:700;margin-bottom:12px;">County schematic &middot; not to scale</div>
+                    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;">
+                      <sc-for list="{{ demandMap }}" as="c" hint-placeholder-count="4">
+                        <div style="border-radius:9px;background:{{ c.bg }};border:1px solid {{ c.border }};padding:13px 12px;min-height:84px;display:flex;flex-direction:column;justify-content:space-between;">
+                          <div style="font-size:12.5px;font-weight:600;color:{{ c.ink }};">{{ c.name }}</div>
+                          <div style="font-size:11px;color:{{ c.ink }};opacity:.8;line-height:1.4;">{{ c.note }}</div>
+                        </div>
+                      </sc-for>
+                    </div>
+                  </div>
+                  <div style="flex:1;min-width:280px;">
+                    <div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px;">
+                      <span style="padding:7px 13px;border-radius:15px;font-size:12px;font-weight:600;background:#fff;border:1px solid var(--line);color:var(--ink2);">Breed: Friesian</span>
+                      <span style="padding:7px 13px;border-radius:15px;font-size:12px;font-weight:600;background:#fff;border:1px solid var(--line);color:var(--ink2);">Product: dry-cow feed</span>
+                    </div>
+                    <div style="border:1px solid var(--line);border-radius:12px;background:#fff;padding:18px;font-size:15px;line-height:1.55;text-wrap:pretty;">Friesian-dominant wards buying dry-cow feed: 14 &mdash; concentrated in Uasin Gishu.</div>
+                  </div>
+                </div>
+              </sc-if>
+
+              <sc-if value="{{ mktIsWallet }}" hint-placeholder-val="{{ false }}">
+                <div style="display:flex;gap:12px;flex-wrap:wrap;max-width:700px;">
+                  <div style="flex:1;min-width:240px;border:1px solid var(--line);border-radius:12px;background:#fff;padding:19px;">
+                    <div style="font-family:var(--head);font-size:24px;margin-bottom:9px;">KES 3,400</div>
+                    <div style="font-size:12.5px;color:var(--ink2);line-height:1.5;">Average farmer input spend in your counties, per quarter.</div>
+                  </div>
+                  <div style="flex:1;min-width:240px;border:1px solid var(--line);border-radius:12px;background:#fff;padding:19px;">
+                    <div style="font-family:var(--head);font-size:19px;margin-bottom:9px;line-height:1.3;">dewormer + mineral licks</div>
+                    <div style="font-size:12.5px;color:var(--ink2);line-height:1.5;">Bought together most often.</div>
+                  </div>
+                </div>
+              </sc-if>
+
+              <sc-if value="{{ mktIsComp }}" hint-placeholder-val="{{ false }}">
+                <div style="max-width:660px;">
+                  <div style="border:1px solid rgba(29,122,110,.35);background:rgba(29,122,110,.08);border-radius:11px;padding:15px 17px;margin-bottom:14px;font-size:13px;line-height:1.55;color:#155e55;text-wrap:pretty;">Symmetric by design &mdash; everyone sees the category including themselves; nobody sees a rival&rsquo;s raw sales.</div>
+                  <div style="border:1px solid var(--line);border-radius:12px;background:#fff;padding:19px;font-size:15px;line-height:1.55;text-wrap:pretty;">Category leader in mineral licks holds 31%; your share 12%, up 1 point.</div>
+                </div>
+              </sc-if>
+
+              <sc-if value="{{ mktIsIndices }}" hint-placeholder-val="{{ false }}">
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;max-width:720px;margin-bottom:16px;">
+                  <sc-for list="{{ indicesView }}" as="ix" hint-placeholder-count="3">
+                    <div onClick="{{ ix.onOpen }}" style="border:{{ ix.borderW }} solid {{ ix.border }};border-radius:12px;background:#fff;padding:18px;cursor:pointer;">
+                      <div style="font-size:12px;color:var(--ink3);margin-bottom:8px;">{{ ix.name }}</div>
+                      <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:12px;">
+                        <div style="font-family:var(--head);font-size:30px;line-height:1;">{{ ix.value }}</div>
+                        <div style="font-size:11.5px;font-weight:600;color:{{ ix.tone }};">{{ ix.trend }}</div>
+                      </div>
+                      <div style="font-size:12px;font-weight:600;color:var(--accent);">by county &rarr;</div>
+                    </div>
+                  </sc-for>
+                </div>
+                <div style="max-width:720px;border:1px solid var(--line);border-radius:12px;background:#fff;padding:18px;">
+                  <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:14px;flex-wrap:wrap;">
+                    <div style="font-size:13.5px;font-weight:600;">{{ ixOpenName }} &middot; by county</div>
+                    <div style="font-size:11.5px;color:var(--ink3);">{{ ixOpenCadence }}</div>
+                  </div>
+                  <div style="display:flex;flex-direction:column;gap:9px;">
+                    <sc-for list="{{ ixRows }}" as="r" hint-placeholder-count="5">
+                      <div style="display:flex;align-items:center;gap:12px;">
+                        <div style="width:96px;flex-shrink:0;font-size:11.5px;color:var(--ink3);text-align:right;">{{ r.county }}</div>
+                        <div style="flex:1;height:18px;background:#f0ece1;border-radius:4px;overflow:hidden;">
+                          <div style="width:{{ r.width }};height:100%;background:var(--blue);"></div>
+                        </div>
+                        <div style="width:52px;flex-shrink:0;font-size:11.5px;font-weight:600;">{{ r.value }}</div>
+                        <div style="width:44px;flex-shrink:0;font-size:11px;font-weight:600;color:{{ r.tone }};text-align:right;">{{ r.delta }}</div>
+                      </div>
+                    </sc-for>
+                  </div>
+                  <div style="font-size:11.5px;color:var(--ink3);margin-top:14px;line-height:1.5;">{{ ixOpenMethod }}</div>
+                </div>
+              </sc-if>
+
+              <sc-if value="{{ mktIsSim }}" hint-placeholder-val="{{ false }}">
+                <div style="max-width:640px;border:1px solid var(--line);border-radius:12px;background:#fff;padding:20px;">
+                  <div style="font-family:var(--head);font-size:19px;margin-bottom:16px;">Test an idea before spending on it.</div>
+                  <div style="display:flex;flex-direction:column;gap:11px;margin-bottom:18px;">
+                    <sc-for list="{{ simInputs }}" as="i" hint-placeholder-count="3">
+                      <div style="display:flex;justify-content:space-between;align-items:center;gap:14px;border:1px solid var(--line);border-radius:9px;padding:11px 13px;">
+                        <span style="font-size:12px;color:var(--ink3);">{{ i.label }}</span>
+                        <span style="font-size:12.5px;font-weight:600;">{{ i.value }}</span>
+                      </div>
+                    </sc-for>
+                  </div>
+                  <div style="background:#f7f4ec;border-radius:10px;padding:15px 16px;font-size:14px;line-height:1.55;margin-bottom:8px;text-wrap:pretty;">Campaign-effect history suggests +8&ndash;12% order lift within 8 weeks, strongest in Meru.</div>
+                  <div style="font-size:12px;color:var(--ink3);margin-bottom:18px;">Confidence: moderate &mdash; based on 14 comparable campaigns.</div>
+                  <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                    <button onClick="{{ saveScenario }}" style="min-height:42px;padding:0 16px;border:none;border-radius:8px;background:var(--blue);color:#fff;font-size:12.5px;font-weight:600;cursor:pointer;">Save scenario</button>
+                    <button style="min-height:42px;padding:0 16px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink2);font-size:12.5px;font-weight:600;cursor:pointer;">Compare scenarios</button>
+                  </div>
+                  <div style="font-size:12px;color:var(--sage);margin-top:12px;">{{ scenarioNote }}</div>
+                </div>
+              </sc-if>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ entIsCampaign }}" hint-placeholder-val="{{ false }}">
+            <div style="max-width:800px;">
+              <h2 style="font-family:var(--head);font-size:24px;font-weight:400;margin:0 0 16px;">Campaign impact</h2>
+              <div style="border:1px solid var(--line);border-radius:12px;background:#fff;padding:20px;margin-bottom:14px;font-size:15px;line-height:1.6;text-wrap:pretty;">Your July training investment: KES 480k across 2 counties &rarr; +11% dewormer orders in trained wards vs untrained. Cost per added order: KES 96.</div>
+              <div style="display:flex;flex-direction:column;gap:8px;">
+                <sc-for list="{{ campaignRows }}" as="r" hint-placeholder-count="2">
+                  <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;border:1px solid var(--line);border-radius:9px;background:#fff;padding:14px 16px;flex-wrap:wrap;">
+                    <div style="min-width:0;">
+                      <div style="font-size:13.5px;font-weight:600;margin-bottom:3px;">{{ r.name }}</div>
+                      <div style="font-size:11.5px;color:var(--ink3);">{{ r.meta }}</div>
+                    </div>
+                    <div style="font-size:13px;font-weight:600;color:{{ r.tone }};white-space:nowrap;">{{ r.result }}</div>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ entIsPulse }}" hint-placeholder-val="{{ false }}">
+            <div style="max-width:700px;">
+              <h2 style="font-family:var(--head);font-size:24px;font-weight:400;margin:0 0 16px;">Pulse</h2>
+              <div style="display:flex;flex-direction:column;gap:12px;">
+                <sc-for list="{{ pulseView }}" as="p" hint-placeholder-count="3">
+                  <div style="border:1px solid var(--line);border-radius:12px;background:#fff;padding:18px 19px;">
+                    <div style="font-size:15px;line-height:1.55;margin-bottom:10px;text-wrap:pretty;">{{ p.text }}</div>
+                    <sc-if value="{{ p.hasCaption }}" hint-placeholder-val="{{ false }}">
+                      <div style="font-size:11.5px;color:var(--ink3);font-style:italic;margin-bottom:10px;line-height:1.5;">{{ p.caption }}</div>
+                    </sc-if>
+                    <div style="font-size:12.5px;font-weight:600;color:var(--accent);cursor:pointer;">Worth a look &rarr;</div>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ entIsAccess }}" hint-placeholder-val="{{ false }}">
+            <div style="max-width:840px;">
+              <h2 style="font-family:var(--head);font-size:24px;font-weight:400;margin:0 0 16px;">Access data</h2>
+              <div style="display:flex;gap:20px;border-bottom:1px solid var(--line);margin-bottom:20px;">
+                <sc-for list="{{ accessTabsView }}" as="t" hint-placeholder-count="3">
+                  <div onClick="{{ t.onClick }}" style="padding:9px 2px;font-size:13px;font-weight:600;cursor:pointer;color:{{ t.color }};border-bottom:2px solid {{ t.border }};">{{ t.label }}</div>
+                </sc-for>
+              </div>
+
+              <sc-if value="{{ accessIsBuy }}" hint-placeholder-val="{{ true }}">
+                <div style="display:flex;flex-direction:column;gap:8px;max-width:600px;">
+                  <sc-for list="{{ catalogueView }}" as="r" hint-placeholder-count="4">
+                    <div style="border:1px solid {{ r.border }};border-left:3px solid {{ r.tone }};border-radius:9px;background:{{ r.bg }};padding:14px 16px;">
+                      <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;">
+                        <div style="font-size:13.5px;font-weight:600;color:{{ r.ink }};">{{ r.name }}</div>
+                        <span style="font-size:10.5px;font-weight:600;padding:4px 10px;border-radius:11px;background:{{ r.chipBg }};color:{{ r.chipColor }};white-space:nowrap;">{{ r.chip }}</span>
+                      </div>
+                      <div style="font-size:12px;color:{{ r.subInk }};margin-top:5px;line-height:1.5;text-wrap:pretty;">{{ r.sub }}</div>
+                    </div>
+                  </sc-for>
+                </div>
+              </sc-if>
+
+              <sc-if value="{{ accessIsApi }}" hint-placeholder-val="{{ false }}">
+                <div style="max-width:600px;border:1px solid var(--line);border-radius:12px;background:#fff;padding:18px;">
+                  <div style="display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:12px;">
+                    <div style="min-width:0;">
+                      <div style="font-size:13.5px;font-weight:600;margin-bottom:3px;">Golden Fields Co-op &middot; production key</div>
+                      <div style="font-family:var(--mono);font-size:12px;color:var(--ink3);">{{ keyDisplay }}</div>
+                    </div>
+                    <button onClick="{{ revealKey }}" style="min-height:42px;padding:0 15px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink2);font-size:12.5px;font-weight:600;cursor:pointer;">{{ keyButton }}</button>
+                  </div>
+                  <div style="font-size:12px;color:{{ keyNoteColor }};line-height:1.55;">{{ keyNote }}</div>
+                </div>
+              </sc-if>
+
+              <sc-if value="{{ accessIsTrain }}" hint-placeholder-val="{{ false }}">
+                <div style="max-width:600px;border:1px solid var(--line);border-radius:12px;background:#fff;padding:20px;">
+                  <div style="font-size:15px;line-height:1.6;margin-bottom:16px;text-wrap:pretty;">Bring your models to the estate&rsquo;s data under terms. Nothing raw leaves. Quoted before anything runs.</div>
+                  <button style="min-height:44px;padding:0 18px;border:none;border-radius:8px;background:var(--blue);color:#fff;font-size:13px;font-weight:600;cursor:pointer;">Request a training run</button>
+                </div>
+              </sc-if>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ entIsAcct }}" hint-placeholder-val="{{ false }}">
+            <div style="max-width:700px;">
+              <h2 style="font-family:var(--head);font-size:24px;font-weight:400;margin:0 0 18px;">Account</h2>
+              <div style="border:1px solid var(--line);border-radius:12px;background:#fff;padding:19px;margin-bottom:12px;">
+                <div style="font-family:var(--head);font-size:19px;margin-bottom:4px;">Golden Fields Co-op</div>
+                <div style="font-size:12.5px;color:var(--ink3);">A. Otieno &middot; Commercial Director &middot; Professional subscription</div>
+              </div>
+              <div style="border:1px solid var(--line);border-radius:12px;background:#fff;padding:19px;margin-bottom:12px;">
+                <div style="font-family:var(--mono);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:#8b8371;font-weight:700;margin-bottom:11px;">What we track</div>
+                <div style="display:flex;gap:7px;flex-wrap:wrap;">
+                  <sc-for list="{{ trackChips }}" as="c" hint-placeholder-count="4">
+                    <span style="padding:7px 13px;border-radius:15px;font-size:12px;font-weight:600;background:#f7f4ec;border:1px solid var(--line);color:var(--ink2);">{{ c.label }}</span>
+                  </sc-for>
+                </div>
+              </div>
+              <div style="display:flex;gap:12px;flex-wrap:wrap;">
+                <sc-for list="{{ acctFacts }}" as="f" hint-placeholder-count="3">
+                  <div style="flex:1;min-width:170px;border:1px solid var(--line);border-radius:12px;background:#fff;padding:17px;">
+                    <div style="font-family:var(--head);font-size:22px;margin-bottom:7px;">{{ f.value }}</div>
+                    <div style="font-size:12px;color:var(--ink2);line-height:1.45;">{{ f.label }}</div>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+
+
+        <sc-if value="{{ workingOpen }}" hint-placeholder-val="{{ false }}">
+          <div onClick="{{ closeWorking }}" style="position:fixed;inset:0;background:rgba(15,27,51,.42);z-index:60;display:flex;justify-content:flex-end;">
+            <div style="background:#fff;width:min(460px,94vw);height:100%;overflow-y:auto;box-shadow:-14px 0 48px rgba(15,27,51,.18);">
+              <div style="padding:22px 24px 18px;border-bottom:1px solid var(--line);">
+                <div style="font-family:var(--mono);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink3);margin-bottom:7px;">The working</div>
+                <div style="font-size:14.5px;line-height:1.55;text-wrap:pretty;">{{ workingClaim }}</div>
+              </div>
+              <div style="padding:20px 24px 40px;">
+                <div style="font-family:var(--mono);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:#8b8371;font-weight:700;margin-bottom:10px;">What it rests on</div>
+                <div style="display:flex;flex-direction:column;gap:10px;">
+                  <sc-for list="{{ workingRows }}" as="w" hint-placeholder-count="3">
+                    <div style="border-top:1px solid var(--line);padding-top:10px;">
+                      <div style="font-size:13px;line-height:1.5;text-wrap:pretty;">{{ w.text }}</div>
+                      <div style="font-size:11px;color:var(--ink3);margin-top:4px;">{{ w.source }}</div>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+      </sc-if>
+      <sc-if value="{{ isGov }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:24px 30px 60px;">
+
+          <sc-if value="{{ govIsStatus }}" hint-placeholder-val="{{ true }}">
+            <div style="display:flex;gap:20px;flex-wrap:wrap;align-items:flex-start;max-width:1040px;">
+              <div style="flex:1;min-width:290px;border:1px solid var(--line);border-radius:12px;background:#fff;padding:16px;">
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px;flex-wrap:wrap;">
+                  <div style="font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#8b8371;font-weight:700;">{{ mapModeLabel }}</div>
+                  <div style="display:flex;gap:3px;background:#f0ece1;border-radius:7px;padding:3px;">
+                    <sc-for list="{{ mapModesView }}" as="m" hint-placeholder-count="2">
+                      <div onClick="{{ m.onClick }}" style="padding:5px 11px;border-radius:5px;font-size:11px;font-weight:{{ m.weight }};cursor:pointer;background:{{ m.bg }};color:{{ m.color }};">{{ m.label }}</div>
+                    </sc-for>
+                  </div>
+                </div>
+                <sc-if value="{{ mapIsGeo }}" hint-placeholder-val="{{ false }}">
+                  <x-import component-from-global-scope="county-map" places="{{ geoPlaces }}" legend="{{ geoLegend }}" selected="{{ govCountyName }}" height="330" onPick="{{ onGeoPick }}" hint-size="100%,360px"></x-import>
+                </sc-if>
+                <sc-if value="{{ mapIsSimple }}" hint-placeholder-val="{{ true }}">
+                <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:7px;">
+                  <sc-for list="{{ govMapView }}" as="c" hint-placeholder-count="9">
+                    <div onClick="{{ c.onClick }}" style="border-radius:8px;background:{{ c.bg }};border:{{ c.borderW }} solid {{ c.border }};padding:11px 9px;min-height:74px;display:flex;flex-direction:column;justify-content:space-between;cursor:pointer;">
+                      <div style="font-size:11.5px;font-weight:600;color:{{ c.ink }};line-height:1.25;">{{ c.name }}</div>
+                      <div style="font-size:10px;color:{{ c.ink }};opacity:.8;line-height:1.35;">{{ c.note }}</div>
+                    </div>
+                  </sc-for>
+                </div>
+                <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:14px;">
+                  <sc-for list="{{ govLegend }}" as="l" hint-placeholder-count="3">
+                    <div style="display:flex;align-items:center;gap:6px;">
+                      <span style="width:11px;height:11px;border-radius:3px;background:{{ l.swatch }};flex-shrink:0;"></span>
+                      <span style="font-size:11px;color:var(--ink3);">{{ l.label }}</span>
+                    </div>
+                  </sc-for>
+                </div>
+                </sc-if>
+              </div>
+
+              <div style="flex:1.15;min-width:320px;">
+                <h2 style="font-family:var(--head);font-size:22px;font-weight:400;margin:0 0 12px;">{{ govCountyName }}, this week</h2>
+                <div style="border:1px solid var(--line);border-radius:12px;background:#fff;padding:18px 19px;margin-bottom:14px;font-size:14.5px;line-height:1.6;text-wrap:pretty;">{{ govBrief }}</div>
+                <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-bottom:14px;">
+                  <sc-for list="{{ govRollup }}" as="r" hint-placeholder-count="4">
+                    <div style="border:1px solid var(--line);border-radius:10px;background:#fff;padding:13px 14px;">
+                      <div style="font-family:var(--head);font-size:22px;line-height:1;margin-bottom:6px;">{{ r.value }}</div>
+                      <div style="font-size:11.5px;color:var(--ink2);line-height:1.45;text-wrap:pretty;">{{ r.note }}</div>
+                    </div>
+                  </sc-for>
+                </div>
+                <div style="font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#8b8371;font-weight:700;margin-bottom:9px;">What changed</div>
+                <div style="display:flex;flex-direction:column;gap:7px;">
+                  <sc-for list="{{ govChanged }}" as="c" hint-placeholder-count="3">
+                    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;border:1px solid var(--line);border-left:3px solid {{ c.tone }};border-radius:9px;background:#fff;padding:11px 13px;flex-wrap:wrap;">
+                      <div style="font-size:12.5px;line-height:1.5;max-width:360px;text-wrap:pretty;">{{ c.text }}</div>
+                      <span style="font-size:11px;color:var(--ink3);white-space:nowrap;">{{ c.when }}</span>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ govIsWarning }}" hint-placeholder-val="{{ false }}">
+            <div style="max-width:900px;">
+              <h2 style="font-family:var(--head);font-size:24px;font-weight:400;margin:0 0 6px;">Two signals are live in your county.</h2>
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:20px;">
+                <div style="font-size:12.5px;color:var(--ink3);font-style:italic;max-width:520px;">The same intelligence farmers receive as warnings &mdash; this is the wholesale view.</div>
+                <button onClick="{{ openWizard }}" style="min-height:40px;padding:0 15px;border:none;border-radius:8px;background:var(--blue);color:#fff;font-size:12.5px;font-weight:600;cursor:pointer;flex-shrink:0;">Set up what I track</button>
+              </div>
+              <div style="border:1px solid var(--line);border-radius:10px;background:#fff;padding:13px 15px;margin-bottom:18px;">
+                <div style="font-family:var(--mono);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:#8b8371;font-weight:700;margin-bottom:9px;">You are tracking</div>
+                <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                  <sc-for list="{{ trackedView }}" as="t" hint-placeholder-count="3">
+                    <span style="font-size:11.5px;font-weight:600;padding:5px 11px;border-radius:13px;background:{{ t.bg }};color:{{ t.color }};">{{ t.label }}</span>
+                  </sc-for>
+                </div>
+                <div style="font-size:11.5px;color:var(--ink3);margin-top:10px;line-height:1.5;">{{ trackedNote }}</div>
+              </div>
+              <div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:20px;">
+                <sc-for list="{{ govEwChips }}" as="c" hint-placeholder-count="3">
+                  <div onClick="{{ c.onClick }}" style="padding:7px 13px;border-radius:15px;font-size:12px;font-weight:600;cursor:pointer;background:{{ c.bg }};color:{{ c.color }};border:1px solid {{ c.border }};">{{ c.label }}</div>
+                </sc-for>
+              </div>
+              <div style="display:flex;gap:18px;flex-wrap:wrap;align-items:flex-start;">
+                <div style="flex:1;min-width:290px;border:1px solid var(--line);border-radius:12px;background:#fff;padding:16px;">
+                  <div style="font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#8b8371;font-weight:700;margin-bottom:12px;">Ward schematic &middot; {{ govWeekLabel }}</div>
+                  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:16px;">
+                    <sc-for list="{{ govWardView }}" as="w" hint-placeholder-count="12">
+                      <div style="border-radius:6px;background:{{ w.bg }};border:1px solid {{ w.border }};min-height:48px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;color:{{ w.ink }};text-align:center;padding:4px;">{{ w.label }}</div>
+                    </sc-for>
+                  </div>
+                  <input type="range" min="1" max="4" step="1" value="{{ govWeek }}" onChange="{{ onGovWeek }}" style="width:100%;accent-color:#b8395b;"/>
+                  <div style="display:flex;justify-content:space-between;font-size:10.5px;color:var(--ink3);margin-top:5px;">
+                    <span>Week 1</span><span>Week 2</span><span>Week 3</span><span>Week 4</span>
+                  </div>
+                </div>
+                <div style="flex:1;min-width:280px;display:flex;flex-direction:column;gap:8px;">
+                  <sc-for list="{{ govSignalWall }}" as="s" hint-placeholder-count="2">
+                    <div style="border:1px solid var(--line);border-left:3px solid {{ s.tone }};border-radius:9px;background:#fff;padding:14px 16px;">
+                      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;">
+                        <div style="font-size:14px;font-weight:600;">{{ s.name }}</div>
+                        <span style="font-size:11px;font-weight:600;color:{{ s.tone }};">{{ s.trend }}</span>
+                      </div>
+                      <div style="font-size:12px;color:var(--ink3);margin-top:4px;">{{ s.where }}</div>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ wizardOpen }}" hint-placeholder-val="{{ false }}">
+            <div style="position:fixed;inset:0;background:rgba(15,27,51,.42);z-index:70;display:flex;justify-content:flex-end;">
+              <div style="background:#fff;width:min(480px,94vw);height:100%;overflow-y:auto;box-shadow:-14px 0 48px rgba(15,27,51,.18);display:flex;flex-direction:column;">
+                <div style="padding:22px 24px 18px;border-bottom:1px solid var(--line);flex-shrink:0;">
+                  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:14px;">
+                    <div>
+                      <div style="font-family:var(--mono);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink3);margin-bottom:7px;">Set up what I track &middot; step {{ wizStepLabel }}</div>
+                      <div style="font-family:var(--head);font-size:21px;line-height:1.2;">{{ wizTitle }}</div>
+                    </div>
+                    <div onClick="{{ closeWizard }}" style="font-size:19px;color:var(--ink3);cursor:pointer;line-height:1;flex-shrink:0;">&times;</div>
+                  </div>
+                  <div style="display:flex;gap:5px;margin-top:14px;">
+                    <sc-for list="{{ wizDots }}" as="d" hint-placeholder-count="4">
+                      <span style="height:3px;flex:1;border-radius:2px;background:{{ d.color }};"></span>
+                    </sc-for>
+                  </div>
+                </div>
+                <div style="flex:1;padding:20px 24px 24px;min-height:0;">
+                  <div style="font-size:13px;color:var(--ink2);line-height:1.55;margin-bottom:18px;text-wrap:pretty;">{{ wizLead }}</div>
+                  <div style="display:flex;flex-direction:column;gap:8px;">
+                    <sc-for list="{{ wizOptions }}" as="o" hint-placeholder-count="4">
+                      <div onClick="{{ o.onClick }}" style="display:flex;justify-content:space-between;align-items:center;gap:12px;border:1px solid {{ o.border }};border-radius:9px;background:{{ o.bg }};padding:13px 14px;cursor:pointer;min-height:44px;">
+                        <div style="min-width:0;">
+                          <div style="font-size:13px;font-weight:600;color:{{ o.ink }};">{{ o.label }}</div>
+                          <sc-if value="{{ o.hasNote }}" hint-placeholder-val="{{ false }}">
+                            <div style="font-size:11.5px;color:var(--ink3);margin-top:3px;line-height:1.45;">{{ o.note }}</div>
+                          </sc-if>
+                        </div>
+                        <span style="font-size:14px;color:{{ o.tickColor }};flex-shrink:0;">{{ o.tick }}</span>
+                      </div>
+                    </sc-for>
+                  </div>
+                  <sc-if value="{{ wizIsReview }}" hint-placeholder-val="{{ false }}">
+                    <div style="border:1px solid var(--line);border-radius:10px;background:#f7f4ec;padding:15px 16px;margin-top:4px;">
+                      <div style="font-size:13px;line-height:1.6;margin-bottom:12px;text-wrap:pretty;">{{ wizSummary }}</div>
+                      <div style="font-size:11.5px;color:var(--ink3);line-height:1.5;">Nothing you set here reaches a farmer. Farmer warnings are approved separately by TrinityAI.</div>
+                    </div>
+                  </sc-if>
+                </div>
+                <div style="padding:16px 24px 22px;border-top:1px solid var(--line);display:flex;gap:8px;justify-content:flex-end;flex-shrink:0;">
+                  <sc-if value="{{ wizCanBack }}" hint-placeholder-val="{{ false }}">
+                    <button onClick="{{ wizBack }}" style="min-height:44px;padding:0 16px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink2);font-size:12.5px;font-weight:600;cursor:pointer;">Back</button>
+                  </sc-if>
+                  <button onClick="{{ wizNext }}" style="min-height:44px;padding:0 18px;border:none;border-radius:8px;background:var(--blue);color:#fff;font-size:12.5px;font-weight:600;cursor:pointer;opacity:{{ wizNextOpacity }};">{{ wizNextLabel }}</button>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ govIsCoverage }}" hint-placeholder-val="{{ false }}">
+            <div style="max-width:860px;">
+              <h2 style="font-family:var(--head);font-size:24px;font-weight:400;margin:0 0 6px;">Vaccination is six points short of your target.</h2>
+              <div style="font-size:12.5px;color:var(--ink3);margin-bottom:20px;">Uasin Gishu &middot; this quarter</div>
+              <div style="display:flex;gap:18px;flex-wrap:wrap;align-items:flex-start;">
+                <div style="flex:1;min-width:280px;border:1px solid var(--line);border-radius:12px;background:#fff;padding:16px;">
+                  <div style="font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#8b8371;font-weight:700;margin-bottom:12px;">Ward coverage schematic</div>
+                  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;">
+                    <sc-for list="{{ govCoverMap }}" as="w" hint-placeholder-count="12">
+                      <div style="border-radius:6px;background:{{ w.bg }};border:1px solid var(--line);min-height:44px;"></div>
+                    </sc-for>
+                  </div>
+                  <div style="font-size:11px;color:var(--ink3);margin-top:12px;line-height:1.5;">Darker wards are further from the 70% target.</div>
+                </div>
+                <div style="flex:1;min-width:300px;display:flex;flex-direction:column;gap:16px;">
+                  <sc-for list="{{ govCoverBars }}" as="b" hint-placeholder-count="3">
+                    <div>
+                      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:7px;">
+                        <span style="font-size:13px;font-weight:600;">{{ b.label }}</span>
+                        <span style="font-size:13px;font-weight:600;">{{ b.value }}</span>
+                      </div>
+                      <div style="height:22px;background:#f0ece1;border-radius:5px;overflow:hidden;position:relative;">
+                        <div style="width:{{ b.width }};height:100%;background:{{ b.fill }};"></div>
+                        <sc-if value="{{ b.hasTarget }}" hint-placeholder-val="{{ false }}">
+                          <span style="position:absolute;top:0;left:{{ b.target }};width:2px;height:100%;background:var(--ink);"></span>
+                        </sc-if>
+                      </div>
+                      <div style="font-size:11.5px;color:var(--ink3);margin-top:5px;">{{ b.note }}</div>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ govIsProgrammes }}" hint-placeholder-val="{{ false }}">
+            <div style="max-width:760px;">
+              <h2 style="font-family:var(--head);font-size:24px;font-weight:400;margin:0 0 18px;">One programme running.</h2>
+              <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;border:1px solid var(--line);border-radius:11px;background:#fff;padding:15px 16px;flex-wrap:wrap;">
+                <div style="min-width:0;">
+                  <div style="font-size:13.5px;font-weight:600;margin-bottom:3px;">Calf-health drive &mdash; 2 counties</div>
+                  <div style="font-size:11.5px;color:var(--ink3);">Evidence pack ready &middot; quarterly brief due Sep 1</div>
+                </div>
+                <span style="font-size:10.5px;font-weight:600;padding:4px 10px;border-radius:11px;background:rgba(29,122,110,.12);color:var(--sage);white-space:nowrap;">Evidence ready</span>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ govIsData }}" hint-placeholder-val="{{ false }}">
+            <div style="max-width:800px;">
+              <h2 style="font-family:var(--head);font-size:24px;font-weight:400;margin:0 0 6px;">De-identified sets only.</h2>
+              <div style="font-size:12.5px;color:var(--ink3);margin-bottom:20px;">No farmer is named to a government seat, at any tier.</div>
+              <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px;">
+                <sc-for list="{{ govCatalogue }}" as="r" hint-placeholder-count="3">
+                  <div style="border:1px solid var(--line);border-radius:9px;background:#fff;padding:14px 16px;">
+                    <div style="display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;">
+                      <div style="font-size:13.5px;font-weight:600;">{{ r.name }}</div>
+                      <span style="font-size:10.5px;font-weight:600;padding:4px 10px;border-radius:11px;background:rgba(29,122,110,.12);color:var(--sage);white-space:nowrap;">De-identified</span>
+                    </div>
+                    <div style="font-size:12px;color:var(--ink3);margin-top:5px;line-height:1.5;">{{ r.sub }}</div>
+                  </div>
+                </sc-for>
+              </div>
+              <div style="font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#8b8371;font-weight:700;margin-bottom:10px;">Your requests</div>
+              <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;border:1px solid var(--line);border-left:3px solid var(--brass);border-radius:9px;background:#fff;padding:14px 16px;flex-wrap:wrap;">
+                <div style="font-size:13.5px;line-height:1.5;max-width:520px;text-wrap:pretty;">Ward-level ECF presentations, weekly, for the calf-health drive evidence pack</div>
+                <span style="font-size:10.5px;font-weight:600;padding:4px 10px;border-radius:11px;background:rgba(176,141,46,.14);color:var(--brass);white-space:nowrap;">With TrinityAI</span>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ govIsAcct }}" hint-placeholder-val="{{ false }}">
+            <div style="max-width:680px;">
+              <h2 style="font-family:var(--head);font-size:24px;font-weight:400;margin:0 0 18px;">Account</h2>
+              <div style="border:1px solid var(--line);border-radius:12px;background:#fff;padding:19px;margin-bottom:12px;">
+                <div style="font-family:var(--head);font-size:19px;margin-bottom:4px;">County Veterinary Directorate &middot; Uasin Gishu</div>
+                <div style="font-size:12.5px;color:var(--ink3);">Dr. R. Chebet &middot; County Veterinary Director &middot; Mission tier</div>
+              </div>
+              <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:12px;">
+                <div style="flex:1;min-width:170px;border:1px solid var(--line);border-radius:12px;background:#fff;padding:17px;">
+                  <div style="font-family:var(--head);font-size:22px;margin-bottom:7px;">4</div>
+                  <div style="font-size:12px;color:var(--ink2);line-height:1.45;">users on this seat</div>
+                </div>
+                <div style="flex:1;min-width:170px;border:1px solid var(--line);border-radius:12px;background:#fff;padding:17px;">
+                  <div style="font-family:var(--head);font-size:22px;margin-bottom:7px;">Mission</div>
+                  <div style="font-size:12px;color:var(--ink2);line-height:1.45;">rate, reviewed annually</div>
+                </div>
+              </div>
+              <div style="border:1px solid var(--line);border-radius:12px;background:#fff;padding:19px;">
+                <div style="font-family:var(--mono);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:#8b8371;font-weight:700;margin-bottom:11px;">Terms</div>
+                <div style="display:flex;flex-direction:column;gap:9px;">
+                  <sc-for list="{{ govTerms }}" as="t" hint-placeholder-count="3">
+                    <div style="font-size:12.5px;color:var(--ink2);line-height:1.5;text-wrap:pretty;">{{ t.text }}</div>
+                  </sc-for>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+      </sc-if>
+
+    </div>
+
+    <sc-if value="{{ hasChat }}" hint-placeholder-val="{{ false }}">
+      <div style="width:30%;min-width:300px;max-width:440px;flex-shrink:0;border-left:1px solid var(--line);background:#fff;display:flex;flex-direction:column;min-height:0;">
+        <div style="padding:15px 17px 13px;border-bottom:1px solid var(--line);flex-shrink:0;">
+          <div style="font-family:var(--head);font-size:16px;margin-bottom:4px;">Ask the intelligence engine</div>
+          <div style="font-size:11.5px;color:var(--ink3);line-height:1.45;">Every answer cites its source. An answer can change what you see on the left.</div>
+        </div>
+        <div style="flex:1;overflow-y:auto;padding:15px 17px;display:flex;flex-direction:column;gap:17px;min-height:0;">
+          <sc-for list="{{ chatLogView }}" as="x" hint-placeholder-count="2">
+            <div>
+              <div style="font-size:12.5px;font-weight:600;margin-bottom:8px;line-height:1.45;">{{ x.q }}</div>
+              <div style="font-size:12.5px;line-height:1.6;color:var(--ink2);text-wrap:pretty;">{{ x.a }}</div>
+              <sc-if value="{{ x.hasCites }}" hint-placeholder-val="{{ false }}">
+                <div style="display:flex;gap:5px;flex-wrap:wrap;margin-top:9px;">
+                  <sc-for list="{{ x.cites }}" as="c" hint-placeholder-count="2">
+                    <span style="font-size:10px;font-weight:600;padding:3px 8px;border-radius:10px;background:#f0ece1;color:var(--ink2);">{{ c.label }}</span>
+                  </sc-for>
+                </div>
+              </sc-if>
+              <sc-if value="{{ x.hasEffect }}" hint-placeholder-val="{{ false }}">
+                <div style="margin-top:9px;font-size:11px;color:var(--accent);font-weight:600;">{{ x.effect }}</div>
+              </sc-if>
+            </div>
+          </sc-for>
+        </div>
+        <div style="padding:13px 15px 15px;border-top:1px solid var(--line);flex-shrink:0;">
+          <div style="font-family:var(--mono);font-size:9px;letter-spacing:.09em;text-transform:uppercase;color:#8b8371;font-weight:700;margin-bottom:8px;">Try</div>
+          <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:11px;">
+            <sc-for list="{{ chatPromptsView }}" as="p" hint-placeholder-count="3">
+              <div onClick="{{ p.onClick }}" style="border:1px solid var(--line);border-radius:8px;padding:9px 11px;font-size:11.5px;line-height:1.4;color:var(--ink2);cursor:pointer;background:#f7f4ec;">{{ p.label }}</div>
+            </sc-for>
+          </div>
+          <div style="display:flex;gap:7px;">
+            <input value="{{ chatInput }}" onChange="{{ onChatInput }}" placeholder="Ask anything" style="flex:1;min-width:0;border:1px solid var(--line);border-radius:8px;padding:10px 11px;font-size:12.5px;color:var(--ink);"/>
+            <button onClick="{{ sendChat }}" style="min-height:40px;padding:0 14px;border:none;border-radius:8px;background:var(--blue);color:#fff;font-size:12.5px;font-weight:600;cursor:pointer;flex-shrink:0;">Ask</button>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showEnglishGloss&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Farmer door&quot;},&quot;startDoor&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;farmer&quot;,&quot;hq&quot;,&quot;ent&quot;,&quot;gov&quot;],&quot;default&quot;:&quot;farmer&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+const THREAD = [
+  {d:'MONDAY'},
+  {in:'Habari Jane \ud83d\udc4b This is TrinityAI on WhatsApp. Ask me anything about your animals, order supplies, or get a visit from Kamau, your extension officer. Msg & data rates may apply. Reply STOP anytime.', t:'08:12'},
+  {out:'Ngombe yangu inachechemea', t:'08:40', gloss:'my cow is limping'},
+  {in:'Pole Jane. Two quick questions: which cow, and since when?', t:'08:40'},
+  {out:'Zawadi. Since jana.', t:'08:42', gloss:'since yesterday'},
+  {in:'Asante. Is she eating normally?', t:'08:42', chips:['Yes','No'], tapped:'Yes'},
+  {out:'Yes', t:'08:43', tap:true},
+  {in:'Good sign. It may be a hoof problem. Keep her on soft ground today. This is worth an officer\u2019s eyes \u2014 Kamau can come Thursday morning. Should I ask him?', t:'08:43', chips:['Send Kamau','Just advice for now'], tapped:'Send Kamau'},
+  {out:'Send Kamau', t:'08:44', tap:true},
+  {in:'Done \u2713 Kamau will visit Thursday morning. I\u2019ll remind you Wednesday evening.', t:'08:44'},
+  {d:'WEDNESDAY'},
+  {in:'Reminder: Kamau visits tomorrow morning for Zawadi. Reply CHANGE if the time no longer works.', t:'19:30'},
+  {in:'\u26a0\ufe0f Be on the lookout: East Coast Fever cases are rising in your area this month. Check your animals for high fever and swollen glands, especially calves. If you see signs, reply here.', t:'19:31'},
+  {in:'Heavy rain expected in Nakuru Friday\u2013Sunday. Move feed to dry storage and check calf shelter before Friday.', t:'19:32'},
+  {d:'THURSDAY'},
+  {in:'Kamau has completed the visit \u2713 Note from Kamau: \u2018Hoof trimmed, minor infection treated. Keep her off wet ground 3 days.\u2019 This is now in Zawadi\u2019s record.', t:'11:05'},
+  {in:'Kamau says you may need hoof spray. 1 can \u2014 KES 450, he can bring it Saturday. Order it?', t:'11:06', chips:['Order \u00b7 pay now','Order \u00b7 pay on delivery','No thanks'], tapped:'Order \u00b7 pay on delivery'},
+  {out:'Order \u00b7 pay on delivery', t:'11:09', tap:true},
+  {in:'Ordered \u2713 Kamau brings it Saturday. You\u2019ll pay KES 450 by M-Pesa on delivery.', t:'11:09'},
+  {d:'SATURDAY'},
+  {in:'Kamau delivered your hoof spray \u2713 KES 450 received by M-Pesa. Receipt saved to your orders.', t:'10:22'},
+  {d:'DAY 21 \u00b7 TWO WEEKS LATER'},
+  {in:'Zawadi was inseminated 21 days ago. Have you seen her in heat again?', t:'07:30', chips:['Yes','No'], tapped:'No'},
+  {out:'No', t:'07:41', tap:true},
+  {in:'That\u2019s promising \ud83c\udf89 No heat at day 21 often means the AI held. I\u2019ve noted it. I\u2019ll check again at day 42.', t:'07:41'},
+  {in:'Vaccination reminder: your two calves are due for ECF vaccination this month. Kamau can do it on his next round \u2014 book it?', t:'07:42', chips:['Book it','Not now']},
+  {d:'END OF QUARTER'},
+  {in:'Your quarter, Jane \ud83d\udc04 Your AI success: 61% \u2014 Nakuru average is 54%. Your milk records: above average. Training sessions: 3 (2 more happening near you this month). Well done. Reply COMPARE for details.', t:'09:00'},
+  {out:'menu', t:'09:14'},
+  {in:'Here\u2019s everything I can do:', t:'09:14', chips:['Ask about my animals','Request a visit','Buy something','My herd','How I compare','Talk to a person'], tapped:'Talk to a person'},
+  {out:'Talk to a person', t:'09:15', tap:true},
+  {in:'Connecting you to the TrinityAI team \u2014 a person will reply in this chat within a few minutes. Karibu.', t:'09:15'}
+];
+
+const HERD = [
+  {name:'Zawadi', tag:'NK-0412', meta:'Cow \u00b7 Friesian cross \u00b7 in milk', notes:[
+    {when:'Thursday \u00b7 officer visit', text:'Hoof trimmed, minor infection treated. Keep her off wet ground 3 days. \u2014 Daniel Kamau'},
+    {when:'Day 21 \u00b7 insemination check', text:'No heat seen at day 21. Often means the AI held. Next check at day 42.'}]},
+  {name:'Name not recorded', tag:'NK-0413', meta:'Cow \u00b7 in milk'},
+  {name:'Name not recorded', tag:'NK-0414', meta:'Cow \u00b7 dry'},
+  {name:'Name not recorded', tag:'NK-0415', meta:'Heifer'},
+  {name:'Name not recorded', tag:'NK-0416', meta:'Calf \u00b7 ECF vaccination due this month'},
+  {name:'Name not recorded', tag:'NK-0417', meta:'Calf \u00b7 ECF vaccination due this month'}
+];
+
+const ACCT_TABS = [['home','Home'],['herd','My herd'],['visits','My visits'],['orders','My orders'],['compare','How I compare'],['settings','Settings']];
+
+class Component extends DCLogic {
+  state = {
+    door: 'farmer', farmerAcct:false, acctTab:'home', optIn:true, lang:'Kiswahili',
+    hqPage:'overview', hqView:'ops', hqConvOpen:null, hqFilter:'All', hqOffPage:'today', visitFound:'', visitChips:[],
+    entPage:'briefing', entSub:'share', entWorking:null, entAccess:'buy', entAsk:'', entScenarioSaved:false, keyRevealed:false,
+    govPage:'status', govCounty:'Uasin Gishu', govWeek:3, govEwSub:'disease'
+  };
+  componentDidMount(){ const d = this.props.startDoor; if(d && d!==this.state.door) this.setState({door:d}); }
+  setDoor(d){ return () => this.setState({door:d}); }
+  openAccount = () => this.setState({farmerAcct:true});
+  closeAccount = () => this.setState({farmerAcct:false});
+  setAcctTab(t){ return () => this.setState({acctTab:t}); }
+  toggleOptIn = () => this.setState(s=>({optIn:!s.optIn}));
+  setLang(l){ return () => this.setState({lang:l}); }
+
+  setHqPage(p){ return () => this.setState({hqPage:p}); }
+  setHqView(v){ return () => this.setState({hqView:v, hqPage: v==='ops'? 'overview':'today'}); }
+  setHqFilter(f){ return () => this.setState({hqFilter:f}); }
+  openConv(i){ return () => this.setState({hqConvOpen:i}); }
+  closeConv = () => this.setState({hqConvOpen:null});
+  onVisitFound = e => this.setState({visitFound:e.target.value});
+  toggleVisitChip(c){ return () => this.setState(s=>({visitChips: s.visitChips.includes(c)? s.visitChips.filter(x=>x!==c) : [...s.visitChips, c]})); }
+  saveVisit = () => this.setState({visitSaved:true});
+
+  hqVals(){
+    const s = this.state, isHq = s.door==='hq', off = s.hqView==='off';
+    const CONVS = [
+      {text:'Jane Wanjiru asked about a limping cow \u2014 answered, visit booked', county:'Nakuru', state:'Resolved', when:'Mon',
+       note:'Answered by the assistant in Kiswahili, then escalated to a visit because a hoof problem needs eyes.', kinds:['All','Quality'],
+       transcript:[[0,'Ngombe yangu inachechemea','08:40'],[1,'Pole Jane. Two quick questions: which cow, and since when?','08:40'],[0,'Zawadi. Since jana.','08:42'],[1,'Asante. Is she eating normally?','08:42'],[0,'Yes','08:43'],[1,'Good sign. It may be a hoof problem. Keep her on soft ground today. This is worth an officer\u2019s eyes \u2014 Kamau can come Thursday morning. Should I ask him?','08:43'],[0,'Send Kamau','08:44'],[1,'Done \u2713 Kamau will visit Thursday morning. I\u2019ll remind you Wednesday evening.','08:44']]},
+      {text:'A farmer asked about a loan \u2014 handed to a person', county:'Meru', state:'With the team', when:'12 min',
+       note:'Outside what the assistant may answer. Handed to a person, waiting 12 minutes.', kinds:['All','Escalated','Unanswered'],
+       transcript:[[0,'Naomba mkopo wa ng\u2019ombe','09:02'],[1,'That is a question for a person on our team, not for me. I am connecting you now \u2014 someone will reply in this chat.','09:02']]},
+      {text:'A calf-scours question answered in Kiswahili \u2014 farmer thanked', county:'Uasin Gishu', state:'Resolved', when:'Tue',
+       note:'Answered in full, no escalation needed. The farmer replied to thank the thread.', kinds:['All','Quality'],
+       transcript:[[0,'Ndama wangu anaharisha','16:20'],[1,'Keep the calf drinking \u2014 clean water with rehydration salts, small amounts often. If the stool is bloody or she stops feeding, reply here and I will send Kamau.','16:21'],[0,'Asante sana','16:24']]}
+    ];
+    const STUBS = {
+      farmers:{title:'Farmers on the platform.', lead:'Every farmer with a thread, the county they farm in, and whether they have opted in to benchmarking.',
+        chips:['All','Opted in','Opted out','Inactive 30 days'], row:'4,120 farmers in Uasin Gishu are opted in to anonymised benchmarking', badge:'Opted in', tone:'var(--sage)'},
+      orders:{title:'Orders through officers.', lead:'What farmers bought, who delivered it, and how it was paid.',
+        chips:['All','Pay now','Pay on delivery','Undelivered'], row:'Hoof spray \u2014 Jane Wanjiru \u2014 KES 450 \u2014 delivered Saturday, paid by M-Pesa', badge:'Delivered', tone:'var(--sage)'},
+      engagement:{title:'Campaigns and warnings.', lead:'What goes out to farmers, to whom, and who approved it. Nothing sends without a person.',
+        chips:['Drafted','Awaiting approval','Sent','Stopped'], row:'ECF warning \u2014 Uasin Gishu \u2014 drafted, awaiting approval \u2014 4,120 opted-in recipients', badge:'Awaiting approval', tone:'var(--brass)'},
+      customers:{title:'Who pays for the intelligence.', lead:'Each customer, their tier, and what their terms allow them to see.',
+        chips:['All','Professional','Mission','Trial'], row:'Golden Fields Co-op \u2014 Professional \u00b7 3 counties, farm inputs and dairy \u2014 and Amani Insurance \u2014 Professional \u00b7 financing signals', badge:'2 accounts', tone:'var(--line)'},
+      products:{title:'Products tracked in the data.', lead:'The input lines farmers buy, as they appear in verified order records.',
+        chips:['Animal health','Feed','Breeding'], row:'dewormer \u00b7 mineral licks \u00b7 dry-cow feed \u00b7 AI straws \u2014 all four verified against officer-delivered orders', badge:'4 tracked', tone:'var(--line)'},
+      rules:{title:'Rules and service promises.', lead:'What the assistant may answer alone, what must reach a person, and how fast.',
+        chips:['Answer rules','Escalation','Response times'], row:'A loan or credit question is never answered by the assistant \u2014 it goes to a person within 15 minutes', badge:'In force', tone:'var(--blue)'},
+      platform:{title:'The platform underneath.', lead:'Message delivery, language coverage, and where records are held.',
+        chips:['Delivery','Languages','Storage'], row:'Kiswahili and English both answered in-seam \u2014 no farmer message is translated off the estate', badge:'Healthy', tone:'var(--sage)'}
+    };
+    const RAIL_OPS = [['overview','Overview'],['conversations','Conversations'],['field','Field'],['farmers','Farmers'],['orders','Orders'],['engagement','Engagement'],['customers','Customers'],['products','Products'],['rules','Rules & SLA'],['platform','Platform']];
+    const RAIL_OFF = [['today','Today'],['myfarmers','My farmers'],['record','Record a visit'],['offorders','Orders'],['mymonth','My month']];
+    const stub = STUBS[s.hqPage];
+    const conv = s.hqConvOpen!=null? CONVS[s.hqConvOpen] : null;
+    const filtered = CONVS.map((c,i)=>({c,i})).filter(x=>x.c.kinds.includes(s.hqFilter));
+    return {
+      isHq, hqRail: off? RAIL_OFF : RAIL_OPS,
+      hqViewsView: [['ops','Operations'],['off','Officer view']].map(v=>({ label:v[1], onClick:this.setHqView(v[0]),
+        bg: s.hqView===v[0]? '#fff':'transparent', color: s.hqView===v[0]? 'var(--ink)':'var(--ink3)', weight: s.hqView===v[0]? 700:500 })),
+      hqIsOverview: isHq && !off && s.hqPage==='overview',
+      hqIsConv: isHq && !off && s.hqPage==='conversations',
+      hqIsField: isHq && !off && s.hqPage==='field',
+      hqIsStub: isHq && !off && !!stub,
+      hqOffToday: isHq && off && s.hqPage==='today',
+      hqOffFarmers: isHq && off && s.hqPage==='myfarmers',
+      hqOffRecord: isHq && off && s.hqPage==='record',
+      hqOffOrders: isHq && off && s.hqPage==='offorders',
+      hqOffMonth: isHq && off && s.hqPage==='mymonth',
+      hqStatsView: [
+        {value:'142', note:'farmer conversations today'},
+        {value:'9', note:'became visits'},
+        {value:'31', note:'became orders'},
+        {value:'4 min', note:'median first reply'},
+        {value:'3', note:'waiting for a person (oldest 12 min)'},
+        {value:'96%', note:'messages answered same day'}
+      ],
+      hqNeedView: [
+        {text:'A farmer in Meru asked a question the assistant couldn\u2019t answer \u2014 waiting 12 min', action:'Hand to a person', tone:'var(--brass)'},
+        {text:'ECF alert campaign for Uasin Gishu is drafted \u2014 approve to send (goes to 4,120 opted-in farmers)', action:'Review and approve', tone:'var(--oxblood)'}
+      ],
+      hqFiltersView: ['All','Escalated','Unanswered','Quality'].map(f=>({ label:f, onClick:this.setHqFilter(f),
+        bg: s.hqFilter===f? 'var(--blue)':'#fff', color: s.hqFilter===f? '#fff':'var(--ink2)', border: s.hqFilter===f? 'var(--blue)':'var(--line)' })),
+      hqConvView: filtered.map(x=>({ text:x.c.text, county:x.c.county, state:x.c.state, when:x.c.when, onOpen:this.openConv(x.i),
+        stateBg: x.c.state==='Resolved'? 'rgba(29,122,110,.12)':'rgba(176,141,46,.14)',
+        stateColor: x.c.state==='Resolved'? 'var(--sage)':'var(--brass)' })),
+      hqConvDrawerOpen: !!conv, closeConv:this.closeConv,
+      convTitle: conv? conv.text:'', convCounty: conv? conv.county:'', convNote: conv? conv.note:'',
+      convTranscript: (conv? conv.transcript:[]).map(t=>({ text:t[1], time:t[2],
+        align: t[0]===0? 'flex-end':'flex-start', bg: t[0]===0? '#dcf8c6':'#ffffff' })),
+      hqMapView: [
+        {name:'Nakuru', note:'11 officers \u00b7 4 stops on Kamau\u2019s round', bg:'rgba(29,122,110,.14)', border:'rgba(29,122,110,.35)', ink:'#155e55'},
+        {name:'Meru', note:'9 officers \u00b7 1 conversation with the team', bg:'rgba(29,122,110,.09)', border:'rgba(29,122,110,.25)', ink:'#155e55'},
+        {name:'Uasin Gishu', note:'11 officers \u00b7 ECF campaign awaiting approval', bg:'rgba(176,141,46,.16)', border:'rgba(176,141,46,.4)', ink:'#7d6320'},
+        {name:'3 wards', note:'uncovered today \u2014 flagged', bg:'#f7f4ec', border:'var(--line)', ink:'var(--ink3)'}
+      ],
+      hqDispatchView: [
+        {text:'1. Jane Wanjiru \u2014 follow-up on Zawadi'},
+        {text:'2. ECF vaccination \u2014 two calves'},
+        {text:'3. ECF vaccination \u2014 one calf'},
+        {text:'4. Delivery \u2014 hoof spray, KES 450 on delivery'}
+      ],
+      hqStubTitle: stub? stub.title:'', hqStubLead: stub? stub.lead:'', hqStubRow: stub? stub.row:'',
+      hqStubChips: (stub? stub.chips:[]).map(c=>({label:c})),
+      hqStubBadge: stub? stub.badge:'', hqStubTone: stub? stub.tone:'var(--line)',
+      hqStubBadgeBg: stub&&stub.tone==='var(--sage)'? 'rgba(29,122,110,.12)' : stub&&stub.tone==='var(--brass)'? 'rgba(176,141,46,.14)' : '#f0ece1',
+      hqStubBadgeColor: stub? (stub.tone==='var(--line)'? 'var(--ink2)':stub.tone) : 'var(--ink2)',
+      offTodayView: [
+        {title:'1. Jane Wanjiru \u2014 Zawadi, limping', meta:'Triage notes attached \u00b7 left foreleg, eating normally', onStart:this.setHqPage('record')},
+        {title:'2. ECF vaccination \u2014 two calves', meta:'Due this month \u00b7 booked from the farmer\u2019s thread', onStart:this.setHqPage('record')},
+        {title:'3. ECF vaccination \u2014 one calf', meta:'Due this month', onStart:this.setHqPage('record')},
+        {title:'4. Delivery: hoof spray', meta:'Jane Wanjiru \u00b7 KES 450 on delivery', onStart:this.setHqPage('offorders')}
+      ],
+      offFarmersView: ['Jane Wanjiru \u00b7 Nakuru \u00b7 herd of 6','Farmer 2 \u00b7 Nakuru \u00b7 herd of 3','Farmer 3 \u00b7 Nakuru \u00b7 herd of 11','Farmer 4 \u00b7 Nakuru \u00b7 herd of 2'].map((f,i)=>{
+        const p = f.split(' \u00b7 '); return { name:p[0], meta:p[1]+' \u00b7 '+p[2], bg: i===0? '#fff':'transparent' }; }),
+      offJaneRecords: [
+        {text:'Hoof trimmed, minor infection treated. Kept off wet ground 3 days.', when:'Thursday \u00b7 your visit'},
+        {text:'No heat seen at day 21 after insemination. Noted, next check at day 42.', when:'Day 21 \u00b7 from her thread'},
+        {text:'Hoof spray delivered, KES 450 received by M-Pesa.', when:'Saturday \u00b7 your delivery'}
+      ],
+      visitFound: s.visitFound, onVisitFound:this.onVisitFound, saveVisit:this.saveVisit,
+      visitChipsView: ['Treated','Vaccinated','AI','Advised'].map(c=>({ label:c, onClick:this.toggleVisitChip(c),
+        bg: s.visitChips.includes(c)? 'var(--blue)':'#fff', color: s.visitChips.includes(c)? '#fff':'var(--ink2)',
+        border: s.visitChips.includes(c)? 'var(--blue)':'var(--line)' })),
+      visitSavedNote: s.visitSaved? 'Saved \u2713 It is now in Zawadi\u2019s record, and Jane has been told in her thread.' : 'Not yet saved. Nothing reaches the farmer until you save.',
+      visitSavedColor: s.visitSaved? 'var(--sage)':'var(--ink3)',
+      offMonthView: [
+        {value:'38', note:'visits made this month'},
+        {value:'92%', note:'follow-ups done on time'},
+        {value:'58%', note:'your farmers\u2019 AI success \u2014 county average is 54%'}
+      ]
+    };
+  }
+  setEntPage(p){ return () => this.setState({entPage:p}); }
+  setGovPage(p){ return () => this.setState({govPage:p}); }
+  setEntSub(k){ return () => this.setState({entSub:k}); }
+  setIx(k){ return () => this.setState({ixOpen:k}); }
+  setAccess(k){ return () => this.setState({entAccess:k}); }
+  onEntAsk = e => this.setState({entAsk:e.target.value});
+  openWorking(i){ return () => this.setState({entWorking:i}); }
+  closeWorking = () => this.setState({entWorking:null});
+  saveScenario = () => this.setState({entScenarioSaved:true});
+  revealKey = () => this.setState({keyRevealed:true});
+
+  entVals(){
+    const s = this.state, isEnt = s.door==='ent';
+    const BRIEF = [
+      {text:'Your dewormer line gained ground in two counties this month \u2014 both where officer-led training on it ran in July.',
+       rows:[{text:'Verified orders naming your dewormer rose in Meru and Nakuru against the previous month.', source:'Verified input-sales records \u00b7 to Aug 14'},
+             {text:'Officer-led training on the line ran in both counties in July, and in no other county you track.', source:'TrinityAI training records \u00b7 July'},
+             {text:'No comparable price change happened in either county in the same window.', source:'Price observations \u00b7 rolling 90 days'}]},
+      {text:'Basket data says farmers buying your dewormer also buy mineral licks; yours isn\u2019t the lick they\u2019re choosing.',
+       rows:[{text:'Dewormer and mineral licks are the most frequent pair in your counties\u2019 verified baskets.', source:'Verified input-sales records \u00b7 this quarter'},
+             {text:'Your share of the lick category is 12% against a category leader at 31%.', source:'Category shares \u00b7 symmetric view'}]},
+      {text:'Demand for dry-cow feed is forming early in Uasin Gishu \u2014 three weeks ahead of last season.',
+       rows:[{text:'Dry-cow feed enquiries and orders are rising in 14 Friesian-dominant wards.', source:'Verified input-sales records \u00b7 to Aug 14'},
+             {text:'The same rise appeared three weeks later in the equivalent window last season.', source:'Season comparison \u00b7 last 2 seasons'}]}
+    ];
+    const w = s.entWorking!=null? BRIEF[s.entWorking] : null;
+    const SUBS = [['share','Share & position'],['demand','Demand map'],['wallet','Wallet & basket'],['comp','Competitor lens'],['indices','The Indices'],['sim','Planning simulator']];
+    return {
+      isEnt,
+      entIsBriefing: isEnt && s.entPage==='briefing', entIsMarket: isEnt && s.entPage==='market',
+      entIsCampaign: isEnt && s.entPage==='campaign', entIsPulse: isEnt && s.entPage==='pulse',
+      entIsAccess: isEnt && s.entPage==='access', entIsAcct: isEnt && s.entPage==='acct',
+      entBriefView: BRIEF.map((b,i)=>({ text:b.text, onWorking:this.openWorking(i) })),
+      workingOpen: !!w, closeWorking:this.closeWorking, workingClaim: w? w.text:'', workingRows: w? w.rows:[],
+      entSubsView: SUBS.map(k=>({ label:k[1], onClick:this.setEntSub(k[0]),
+        bg: s.entSub===k[0]? 'var(--blue)':'#fff', color: s.entSub===k[0]? '#fff':'var(--ink2)', border: s.entSub===k[0]? 'var(--blue)':'var(--line)' })),
+      mktIsShare: s.entSub==='share', mktIsDemand: s.entSub==='demand', mktIsWallet: s.entSub==='wallet',
+      mktIsComp: s.entSub==='comp', mktIsIndices: s.entSub==='indices', mktIsSim: s.entSub==='sim',
+      shareBars: [
+        {label:'Your dewormer', value:'23%', width:'23%', fill:'var(--blue)'},
+        {label:'Nearest rival', value:'19%', width:'19%', fill:'#9aa2b5'},
+        {label:'Third', value:'14%', width:'14%', fill:'#c3c8d4'},
+        {label:'All others', value:'44%', width:'44%', fill:'#e4dfd3'}
+      ],
+      demandMap: [
+        {name:'Uasin Gishu', note:'14 wards forming \u00b7 3 weeks early', bg:'rgba(76,95,213,.16)', border:'rgba(76,95,213,.4)', ink:'#2c3a9e'},
+        {name:'Nakuru', note:'steady against last season', bg:'rgba(76,95,213,.07)', border:'rgba(76,95,213,.2)', ink:'#2c3a9e'},
+        {name:'Meru', note:'steady against last season', bg:'rgba(76,95,213,.07)', border:'rgba(76,95,213,.2)', ink:'#2c3a9e'},
+        {name:'Outside terms', note:'not licensed to you', bg:'#f7f4ec', border:'var(--line)', ink:'var(--ink3)'}
+      ],
+      entKpis: [
+        {value:'23%', delta:'+2.3', label:'your dewormer share of verified orders', tone:'var(--sage)'},
+        {value:'12%', delta:'+1.0', label:'your share of the mineral-lick category', tone:'var(--sage)'},
+        {value:'14', delta:'3 wks early', label:'wards where dry-cow feed is forming', tone:'var(--brass)'},
+        {value:'KES 96', delta:'July', label:'cost per added order from training', tone:'var(--ink3)'}
+      ],
+      ...(()=>{
+        const IX = {
+          herd:{name:'Herd Health', value:'74', trend:'+2.1', good:true, cadence:'Quarterly \u00b7 Q2 2026', max:80,
+            method:'Built from clinical-grade veterinary records, not self-reported surveys.',
+            rows:[['Nakuru','78.2','+3.1',1],['Meru','74.9','+1.2',1],['Uasin Gishu','68.1','+2.4',1],['Kericho','65.5','\u22121.9',0],['Nandi','63.0','+0.4',1]]},
+          ai:{name:'AI Success', value:'57%', trend:'+1.6', good:true, cadence:'Quarterly \u00b7 Q2 2026', max:65,
+            method:'Built from recorded insemination outcomes, day-21 and day-42 checks included.',
+            rows:[['Nakuru','61%','+2.0',1],['Uasin Gishu','56%','+1.1',1],['Meru','52%','\u22121.4',0],['Kericho','49%','+0.6',1],['Nandi','47%','+0.9',1]]},
+          input:{name:'Input Adoption', value:'61', trend:'\u22120.4', good:false, cadence:'Monthly \u00b7 Jul 2026', max:70,
+            method:'Built from verified orders delivered by officers, not distributor estimates.',
+            rows:[['Nakuru','67.2','\u22122.1',0],['Uasin Gishu','63.9','+1.8',1],['Meru','56.0','+0.4',1],['Kericho','51.8','+1.2',1],['Nandi','48.3','\u22120.7',0]]}
+        };
+        const key = s.ixOpen || 'ai', ix = IX[key];
+        return {
+          indicesView: Object.keys(IX).map(k=>{ const d = IX[k], on = k===key;
+            return { name:d.name, value:d.value, trend:d.trend, onOpen:this.setIx(k),
+              tone: d.good? 'var(--sage)':'var(--brass)',
+              border: on? 'var(--blue)':'var(--line)', borderW: on? '2px':'1px' }; }),
+          ixOpenName: ix.name, ixOpenCadence: ix.cadence, ixOpenMethod: ix.method,
+          ixRows: ix.rows.map(r=>({ county:r[0], value:r[1], delta:(r[3]? '+':'')+String(r[2]).replace('+',''),
+            width: Math.round((parseFloat(r[1])/ix.max)*100)+'%', tone: r[3]? 'var(--sage)':'var(--brass)' }))
+        };
+      })(),
+      simInputs: [{label:'Product', value:'dewormer'},{label:'Counties', value:'Meru + Nakuru'},{label:'Action', value:'officer-led training'}],
+      saveScenario:this.saveScenario,
+      scenarioNote: s.entScenarioSaved? 'Saved \u2713 \u201cDewormer \u00b7 Meru + Nakuru \u00b7 training\u201d is in your scenarios.' : '',
+      campaignRows: [
+        {name:'July officer-led training \u2014 dewormer', meta:'Meru + Nakuru \u00b7 KES 480k \u00b7 8-week window', result:'+11% orders', tone:'var(--sage)'},
+        {name:'May shelf-talker trial \u2014 mineral licks', meta:'Nakuru only \u00b7 KES 90k \u00b7 8-week window', result:'Not yet measured', tone:'var(--ink3)'}
+      ],
+      pulseView: [
+        {text:'Repeat inseminations rising in Meru \u2014 semen-source pattern worth your attention', hasCaption:false, caption:''},
+        {text:'A feed brand you don\u2019t stock is gaining in your strongest ward', hasCaption:false, caption:''},
+        {text:'Insurance claims signal: drought-stress indicators forming in 2 counties', hasCaption:true, caption:'You see this because Golden Fields tracks financing as well as inputs and dairy.'}
+      ],
+      accessTabsView: [['buy','Buy'],['api','API keys'],['train','Train']].map(t=>({ label:t[1], onClick:this.setAccess(t[0]),
+        color: s.entAccess===t[0]? 'var(--ink)':'var(--ink3)', border: s.entAccess===t[0]? 'var(--ink)':'transparent' })),
+      accessIsBuy: s.entAccess==='buy', accessIsApi: s.entAccess==='api', accessIsTrain: s.entAccess==='train',
+      catalogueView: [
+        {name:'County input-adoption aggregates', sub:'Quarterly, de-identified, all three of your counties.', chip:'Your terms allow this', ok:true},
+        {name:'Ward-level demand signals', sub:'Monthly, de-identified to ward, Friesian and crossbreed splits.', chip:'Your terms allow this', ok:true},
+        {name:'Campaign-effect history', sub:'Comparable campaigns with outcome windows, used by the simulator.', chip:'Your terms allow this', ok:true},
+        {name:'Farmer-identified records', sub:'Outside your terms \u2014 ask TrinityAI.', chip:'Blocked by your terms', ok:false}
+      ].map(r=>({ name:r.name, sub:r.sub, chip:r.chip,
+        border: r.ok? 'var(--line)':'rgba(184,57,91,.35)', tone: r.ok? 'var(--line)':'var(--oxblood)',
+        bg: r.ok? '#fff':'rgba(184,57,91,.05)', ink: r.ok? 'var(--ink)':'var(--oxblood)',
+        subInk: r.ok? 'var(--ink3)':'var(--oxblood)',
+        chipBg: r.ok? 'rgba(29,122,110,.12)':'rgba(184,57,91,.12)', chipColor: r.ok? 'var(--sage)':'var(--oxblood)' })),
+      revealKey:this.revealKey,
+      keyDisplay: s.keyRevealed? 'fq_live_7Q4t\u00b7\u00b7\u00b7\u00b79bK2' : 'fq_live_\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022',
+      keyButton: s.keyRevealed? 'Revealed' : 'Reveal once',
+      keyNote: s.keyRevealed? 'Shown once. It is not stored in readable form \u2014 if you lose it, rotate the key.' : 'A key is shown once, at creation or on this reveal. After that it cannot be read back.',
+      keyNoteColor: s.keyRevealed? 'var(--brass)':'var(--ink3)',
+      entAsk: s.entAsk, onEntAsk:this.onEntAsk,
+      trackChips: ['farm inputs','dairy','3 counties','financing'].map(c=>({label:c})),
+      acctFacts: [{value:'3', label:'seats in use'},{value:'Professional', label:'subscription'},{value:'2', label:'payment receipts'}]
+    };
+  }
+  setGovCounty(c){ return () => this.setState({govCounty:c}); }
+  setMapMode(m){ return () => this.setState({mapMode:m}); }
+  onGeoPick = e => this.setState({govCounty: e.detail});
+  onGovWeek = e => this.setState({govWeek:Number(e.target.value)});
+  setGovEwSub(k){ return () => this.setState({govEwSub:k}); }
+  openWizard = () => this.setState({wizardOpen:true, wizStep:0});
+  closeWizard = () => this.setState({wizardOpen:false});
+  wizBack = () => this.setState(s=>({wizStep:Math.max(0,(s.wizStep||0)-1)}));
+  wizNext = () => this.setState(s=>{
+    const step = s.wizStep||0;
+    if(step<3) return {wizStep:step+1};
+    return {wizardOpen:false, tracked:[...(s.trackDiseases||['East Coast Fever','Mastitis']), ...(s.trackOther||[])], trackSaved:true};
+  });
+  wizPick(field, value, single){ return () => this.setState(s=>{
+    if(single) return {[field]:value};
+    const cur = s[field] || (field==='trackDiseases'? ['East Coast Fever','Mastitis'] : []);
+    return {[field]: cur.includes(value)? cur.filter(x=>x!==value) : [...cur, value]};
+  }); }
+
+  wizardVals(){
+    const s = this.state, step = s.wizStep||0;
+    const dis = s.trackDiseases || ['East Coast Fever','Mastitis'];
+    const other = s.trackOther || [];
+    const scope = s.trackScope || 'My county, by ward';
+    const trig = s.trackTrigger || 'Earlier than seasonal norm';
+    const STEPS = [
+      {title:'Which diseases?', lead:'Pick the diseases you want watched. Each one is read against its own seasonal norm, not a flat threshold.',
+       field:'trackDiseases', single:false, options:[
+         {label:'East Coast Fever', note:'tick-borne \u00b7 calves most exposed'},
+         {label:'Mastitis', note:'milk quality and yield'},
+         {label:'Foot and mouth', note:'notifiable \u00b7 movement controls follow'},
+         {label:'Lumpy skin disease', note:'vector-borne \u00b7 seasonal'},
+         {label:'Brucellosis', note:'zoonotic \u00b7 reproductive losses'}]},
+      {title:'Anything besides disease?', lead:'These are not diseases, but they move the same way and are worth a watch.',
+       field:'trackOther', single:false, options:[
+         {label:'Repeat inseminations', note:'breeding failure, by semen source'},
+         {label:'Vaccination coverage falling', note:'against your own target'},
+         {label:'Drought-stress indicators', note:'feed and water pressure'},
+         {label:'Milk-yield drop', note:'county-level, week on week'}]},
+      {title:'How closely?', lead:'The finer the geography, the earlier a signal shows \u2014 and the noisier it is.',
+       field:'trackScope', single:true, options:[
+         {label:'My county, by ward', note:'earliest warning, most noise'},
+         {label:'My county only', note:'one line per week'},
+         {label:'The Rift region', note:'neighbours included \u2014 spread visible before it arrives'}]},
+      {title:'When should this reach you?', lead:'A watch that fires on everything is a watch nobody reads.',
+       field:'trackTrigger', single:true, options:[
+         {label:'Earlier than seasonal norm', note:'the default \u2014 timing, not volume'},
+         {label:'Any rise at all', note:'expect several a week'},
+         {label:'Three wards or more', note:'spread, not first appearance'}]}
+    ];
+    const cur = STEPS[Math.min(step,3)];
+    const sel = cur.single? [s[cur.field] || (cur.field==='trackScope'? scope:trig)] : (s[cur.field] || (cur.field==='trackDiseases'? dis:other));
+    return {
+      wizardOpen: !!s.wizardOpen, openWizard:this.openWizard, closeWizard:this.closeWizard,
+      wizStepLabel: (step+1)+' of 4', wizTitle: cur.title, wizLead: cur.lead,
+      wizDots: [0,1,2,3].map(i=>({ color: i<=step? 'var(--blue)':'#e4dfd3' })),
+      wizOptions: cur.options.map(o=>{ const on = sel.includes(o.label);
+        return { label:o.label, note:o.note, hasNote:!!o.note, onClick:this.wizPick(cur.field, o.label, cur.single),
+          border: on? 'var(--blue)':'var(--line)', bg: on? 'rgba(22,39,74,.05)':'#fff', ink: on? 'var(--blue)':'var(--ink)',
+          tick: on? '\u2713':'', tickColor:'var(--blue)' }; }),
+      wizIsReview: step===3,
+      wizSummary: 'Watching '+dis.length+' disease'+(dis.length===1?'':'s')+(other.length? ' and '+other.length+' other signal'+(other.length===1?'':'s'):'')+' across '+scope.toLowerCase()+'. You hear about it when the pattern is '+trig.toLowerCase()+'.',
+      wizCanBack: step>0, wizBack:this.wizBack, wizNext:this.wizNext,
+      wizNextLabel: step<3? 'Next':'Save this watch', wizNextOpacity: (cur.single || sel.length)? 1:0.45,
+      trackedView: [...dis.map(d=>({label:d, kind:'d'})), ...other.map(o=>({label:o, kind:'o'}))].map(t=>({
+        label:t.label, bg: t.kind==='d'? 'rgba(184,57,91,.1)':'rgba(176,141,46,.14)',
+        color: t.kind==='d'? 'var(--oxblood)':'var(--brass)' })),
+      trackedNote: scope+' \u00b7 reaches you when the pattern is '+trig.toLowerCase()+(s.trackSaved? ' \u00b7 saved':'')
+    };
+  }
+
+  govVals(){
+    const s = this.state, isGov = s.door==='gov';
+    const COUNTIES = [
+      {name:'Uasin Gishu', note:'ECF rising \u00b7 3 wards', tone:'amber'},
+      {name:'Nakuru', note:'ECF rising \u00b7 1 ward', tone:'amber'},
+      {name:'Meru', note:'repeat AI \u00b7 watch', tone:'watch'},
+      {name:'Trans Nzoia', note:'ECF rising \u00b7 1 ward', tone:'amber'},
+      {name:'Kericho', note:'nothing flagged', tone:'flat'},
+      {name:'Nandi', note:'nothing flagged', tone:'flat'},
+      {name:'Bomet', note:'nothing flagged', tone:'flat'},
+      {name:'Kiambu', note:'nothing flagged', tone:'flat'},
+      {name:'Machakos', note:'nothing flagged', tone:'flat'}
+    ];
+    const TONE = {
+      amber:{bg:'rgba(176,141,46,.18)', border:'rgba(176,141,46,.45)', ink:'#7d6320'},
+      watch:{bg:'rgba(184,57,91,.12)', border:'rgba(184,57,91,.45)', ink:'#8e2b46'},
+      flat:{bg:'#f7f4ec', border:'var(--line)', ink:'var(--ink3)'}
+    };
+    const BRIEFS = {
+      'Uasin Gishu':'ECF presentations rising in 3 wards \u2014 earlier than seasonal norm. Vaccination coverage 64% against your 70% target. Extension visits up 9%.',
+      'Nakuru':'ECF presentations rising in 1 ward. Vaccination coverage 71% \u2014 above target. Extension visits flat.',
+      'Meru':'Repeat inseminations rising against two semen sources. No disease signal this week. Vaccination coverage 66%.',
+      'Trans Nzoia':'ECF presentations rising in 1 ward. Vaccination coverage not yet measured this quarter.',
+      'Kericho':'Nothing flagged this week. Vaccination coverage 69%.',
+      'Nandi':'Nothing flagged this week. Vaccination coverage 72%.',
+      'Bomet':'Nothing flagged this week. Vaccination coverage 68%.',
+      'Kiambu':'Nothing flagged this week. Vaccination coverage 74%.',
+      'Machakos':'Nothing flagged this week. Vaccination coverage not yet measured this quarter.'
+    };
+    const GEO = {
+      'Uasin Gishu':[0.5143,35.2698], 'Nakuru':[-0.3031,36.0800], 'Meru':[0.0500,37.6500],
+      'Trans Nzoia':[1.0157,35.0062], 'Kericho':[-0.3689,35.2863], 'Nandi':[0.2039,35.1050],
+      'Bomet':[-0.7816,35.3416], 'Kiambu':[-1.1714,36.8356], 'Machakos':[-1.5177,37.2634]
+    };
+    const wardSpread = { 1:1, 2:2, 3:3, 4:3 };
+    const hot = wardSpread[s.govWeek] || 3;
+    return {
+      isGov,
+      govIsStatus: isGov && s.govPage==='status', govIsWarning: isGov && s.govPage==='warning',
+      govIsCoverage: isGov && s.govPage==='coverage', govIsProgrammes: isGov && s.govPage==='programmes',
+      govIsData: isGov && s.govPage==='data', govIsAcct: isGov && s.govPage==='govacct',
+      govMapView: COUNTIES.map(c=>{ const t = TONE[c.tone], sel = s.govCounty===c.name;
+        return { name:c.name, note:c.note, bg:t.bg, ink:t.ink, onClick:this.setGovCounty(c.name),
+          border: sel? 'var(--blue)':t.border, borderW: sel? '2px':'1px' }; }),
+      govLegend: [
+        {label:'Signal rising', swatch:'rgba(176,141,46,.5)'},
+        {label:'Watch-flagged', swatch:'rgba(184,57,91,.45)'},
+        {label:'Nothing flagged', swatch:'#ece7da'}
+      ],
+      mapMode: s.mapMode||'simple',
+      mapIsSimple: (s.mapMode||'simple')==='simple', mapIsGeo: (s.mapMode||'simple')==='geo',
+      mapModeLabel: (s.mapMode||'simple')==='geo'? 'Kenya \u00b7 counties, real geometry' : 'Kenya \u00b7 county schematic, not to scale',
+      mapModesView: [['simple','Simple'],['geo','Map']].map(m=>({ label:m[1], onClick:this.setMapMode(m[0]),
+        bg: (s.mapMode||'simple')===m[0]? '#fff':'transparent', color: (s.mapMode||'simple')===m[0]? 'var(--ink)':'var(--ink3)',
+        weight: (s.mapMode||'simple')===m[0]? 700:500 })),
+      onGeoPick: this.onGeoPick,
+      geoLegend: JSON.stringify([
+        {label:'Signal rising', swatch:'rgba(176,141,46,.5)'},
+        {label:'Watch-flagged', swatch:'rgba(184,57,91,.45)'},
+        {label:'Nothing flagged', swatch:'#ece7da'}
+      ]),
+      geoPlaces: JSON.stringify(COUNTIES.map(c=>({
+        name:c.name, lat:GEO[c.name][0], lon:GEO[c.name][1],
+        fill: c.tone==='amber'? 'rgba(176,141,46,.4)' : c.tone==='watch'? 'rgba(184,57,91,.32)' : '#ece7da',
+        dot: c.tone==='amber'? '#b08d2e' : c.tone==='watch'? '#b8395b' : '#8b8371'
+      }))),
+      govCountyName: s.govCounty, govBrief: BRIEFS[s.govCounty] || 'Not yet measured.',
+      govChatView: [
+        {q:'What\u2019s new since I last looked?',
+         a:'Two things since Tuesday: ECF signal spread to a third ward, and AI activity in the county returned to normal after last month\u2019s dip.',
+         hasCites:true, cites:[{label:'Health records'},{label:'to Aug 14'}]},
+        {q:'What\u2019s emerging in the Rift?',
+         a:'A slow rise in repeat inseminations tied to two semen sources \u2014 worth a directive if it holds another two weeks.',
+         hasCites:false, cites:[]}
+      ],
+      govEwChips: [['disease','By disease'],['ward','By ward'],['alerts','Alert settings']].map(k=>({ label:k[1], onClick:this.setGovEwSub(k[0]),
+        bg: s.govEwSub===k[0]? 'var(--blue)':'#fff', color: s.govEwSub===k[0]? '#fff':'var(--ink2)', border: s.govEwSub===k[0]? 'var(--blue)':'var(--line)' })),
+      govWeek: s.govWeek, onGovWeek:this.onGovWeek, govWeekLabel: 'Week '+s.govWeek+' of 4',
+      govWardView: Array.from({length:12}, (_,i)=>{
+        const isHot = i < hot, isEdge = i===hot;
+        return { label: isHot? 'ECF' : '',
+          bg: isHot? 'rgba(184,57,91,.3)' : isEdge? 'rgba(176,141,46,.16)' : '#f7f4ec',
+          border: isHot? 'rgba(184,57,91,.5)' : 'var(--line)',
+          ink: isHot? '#8e2b46' : 'var(--ink3)' }; }),
+      govSignalWall: (()=>{
+        const FACTS = {
+          'East Coast Fever':{trend:'rising', where:'3 wards \u00b7 earlier than seasonal norm', tone:'var(--oxblood)'},
+          'Mastitis':{trend:'stable', where:'1 ward \u00b7 within seasonal norm', tone:'var(--brass)'},
+          'Foot and mouth':{trend:'nothing seen', where:'no presentations this quarter', tone:'var(--line)'},
+          'Lumpy skin disease':{trend:'nothing seen', where:'no presentations this quarter', tone:'var(--line)'},
+          'Brucellosis':{trend:'not yet measured', where:'reporting starts next quarter', tone:'var(--line)'},
+          'Repeat inseminations':{trend:'rising', where:'2 semen sources \u00b7 Meru, holding 2 weeks', tone:'var(--brass)'},
+          'Vaccination coverage falling':{trend:'below target', where:'64% against your 70% target', tone:'var(--brass)'},
+          'Drought-stress indicators':{trend:'forming', where:'2 counties \u00b7 feed and water pressure', tone:'var(--brass)'},
+          'Milk-yield drop':{trend:'not yet measured', where:'weekly series starts next month', tone:'var(--line)'}
+        };
+        const list = [...(s.trackDiseases||['East Coast Fever','Mastitis']), ...(s.trackOther||[])];
+        return list.map(n=>{ const fa = FACTS[n] || {trend:'not yet measured', where:'no series for this yet', tone:'var(--line)'};
+          return {name:n, trend:fa.trend, where:fa.where, tone:fa.tone}; });
+      })(),
+      govRollup: [
+        {value:'3', note:'counties with a signal rising'},
+        {value:'1', note:'county watch-flagged \u2014 Meru'},
+        {value:'64%', note:'vaccination coverage, against your 70% target'},
+        {value:'+9%', note:'extension visits this week'}
+      ],
+      govChanged: [
+        {text:'ECF signal spread to a third ward in Uasin Gishu', when:'since Tuesday', tone:'var(--oxblood)'},
+        {text:'AI activity returned to normal after last month\u2019s dip', when:'this week', tone:'var(--sage)'},
+        {text:'Repeat inseminations in Meru held for a second week', when:'this week', tone:'var(--brass)'}
+      ],
+      govCoverBars: [
+        {label:'Vaccination', value:'64%', width:'64%', fill:'var(--brass)', hasTarget:true, target:'70%', note:'Six points short of your 70% target'},
+        {label:'AI reach', value:'51%', width:'51%', fill:'var(--blue)', hasTarget:false, target:'0%', note:'No target set for this quarter'},
+        {label:'Extension reach', value:'58%', width:'58%', fill:'var(--blue)', hasTarget:false, target:'0%', note:'Up 9% on last quarter'}
+      ],
+      govCoverMap: [72,64,58,49,68,61,44,70,66,52,63,57].map(v=>({
+        bg: v>=70? 'rgba(29,122,110,.16)' : v>=60? 'rgba(176,141,46,.16)' : 'rgba(176,141,46,.34)' })),
+      govCatalogue: [
+        {name:'Ward-level disease presentations', sub:'Weekly, de-identified to ward. Feeds the early-warning wall.'},
+        {name:'Vaccination and extension coverage', sub:'Quarterly, de-identified, against your own targets.'},
+        {name:'Breeding activity aggregates', sub:'Monthly, de-identified. Repeat-insemination rates by county.'}
+      ],
+      govTerms: [
+        {text:'De-identified aggregates only. No farmer is named to a government seat, at any tier.'},
+        {text:'Mission-aligned rate, reviewed annually with the Directorate.'},
+        {text:'No export of row-level data. Evidence packs carry aggregates and their method.'}
+      ]
+    };
+  }
+
+  farmerVals(){
+    const s = this.state, english = this.props.showEnglishGloss ?? true;
+    return {
+      isFarmerThread: s.door==='farmer' && !s.farmerAcct,
+      isFarmerAcct: s.door==='farmer' && s.farmerAcct,
+      openAccount:this.openAccount, closeAccount:this.closeAccount,
+      threadView: THREAD.map(m => m.d ? {isDay:true, isMsg:false, label:m.d} : {
+        isDay:false, isMsg:true, text:m.in||m.out, time:m.t,
+        align: m.in? 'flex-start':'flex-end', bg: m.in? '#ffffff':'#dcf8c6',
+        tick: m.in? '':'\u2713\u2713', tickColor:'#53bdeb',
+        hasGloss: !!(m.gloss && english), gloss: m.gloss||'',
+        hasChips: !!m.chips,
+        chips: (m.chips||[]).map(c=>({ label:c,
+          bg: c===m.tapped? '#075e54':'#ffffff', color: c===m.tapped? '#ffffff':'#075e54',
+          border: c===m.tapped? '#075e54':'rgba(7,94,84,.35)' }))
+      }),
+      acctTabsView: ACCT_TABS.map(t=>({ label:t[1], onClick:this.setAcctTab(t[0]),
+        color: s.acctTab===t[0]? 'var(--ink)':'var(--ink3)', border: s.acctTab===t[0]? 'var(--sage)':'transparent', weight: s.acctTab===t[0]? 700:500 })),
+      acctIsHome: s.acctTab==='home', acctIsHerd: s.acctTab==='herd', acctIsVisits: s.acctTab==='visits',
+      acctIsOrders: s.acctTab==='orders', acctIsCompare: s.acctTab==='compare', acctIsSettings: s.acctTab==='settings',
+      acctHomeLines: [
+        {eyebrow:'Your next visit', text:'Kamau visited Thursday morning for Zawadi. Nothing else is booked.', tone:'var(--sage)'},
+        {eyebrow:'Your open order', text:'Hoof spray, KES 450 \u2014 delivered Saturday and paid by M-Pesa. Nothing outstanding.', tone:'var(--line)'},
+        {eyebrow:'Newest warning', text:'East Coast Fever cases are rising in your area this month. Check your animals for high fever and swollen glands, especially calves.', tone:'var(--brass)'}
+      ],
+      herdView: HERD.map(a=>({ name:a.name, tag:a.tag, meta:a.meta, hasNotes:!!a.notes, notes:a.notes||[] })),
+      compareView: [
+        {label:'Your AI success this quarter', you:'61%', against:'Nakuru average 54%'},
+        {label:'Your milk records', you:'Above average', against:'against farms of your herd size in Nakuru'},
+        {label:'Training sessions attended', you:'3', against:'2 more happening near you this month'}
+      ],
+      optInBg: s.optIn? 'var(--sage)':'#c9c2ae', optInX: s.optIn? '23px':'3px',
+      optInNote: s.optIn? 'On. Your records are pooled without your name, and your quarterly comparison keeps coming.' : 'Off. No records are pooled, and your quarterly comparison stops until you turn this back on.',
+      optInNoteColor: s.optIn? 'var(--ink3)':'var(--oxblood)',
+      langView: ['Kiswahili','English'].map(l=>({ label:l, onClick:this.setLang(l),
+        bg: s.lang===l? 'var(--blue)':'#fff', color: s.lang===l? '#fff':'var(--ink2)', border: s.lang===l? 'var(--blue)':'var(--line)' }))
+    };
+  }
+
+  onChatInput = e => this.setState({chatInput:e.target.value});
+  sendChat = () => {
+    const q = (this.state.chatInput||'').trim();
+    if(!q) return;
+    this.setState(s=>({ chatInput:'',
+      chatLog:[...(s.chatLog||this.seedChat(s.door)), {q, a:'Not yet measured against your terms. This prototype answers the seeded questions below in full; anything else is refused rather than guessed.', cites:['Refusal recorded']}] }));
+  };
+  askPrompt(p){ return () => {
+    this.setState(s=>({ chatLog:[...(s.chatLog||this.seedChat(s.door)), {q:p.q, a:p.a, cites:p.cites, effect:p.effect}], ...(p.apply||{}) }));
+  }; }
+
+  chatVals(){
+    const s = this.state, seeded = s.chatLog || this.seedChat(s.door);
+    const P = {
+      hq:[
+        {q:'What is waiting on a person right now?', a:'Three conversations. The oldest is a loan question in Meru, waiting 12 minutes \u2014 the assistant is not allowed to answer credit questions.', cites:['Conversation log','to 09:14'], effect:'Filtered Conversations to Escalated', apply:{hqPage:'conversations', hqFilter:'Escalated'}},
+        {q:'Which wards are uncovered today?', a:'Three, all in the north of Uasin Gishu. No officer is dispatched to them, and the coverage line on Field says so.', cites:['Dispatch \u00b7 today'], effect:'Opened Field', apply:{hqPage:'field'}},
+        {q:'What is drafted and not sent?', a:'One ECF warning for Uasin Gishu, drafted and awaiting approval. It reaches 4,120 opted-in farmers when a person approves it.', cites:['Campaign register'], effect:'Opened Engagement', apply:{hqPage:'engagement'}}
+      ],
+      ent:[
+        {q:'Where is dry-cow feed forming?', a:'Uasin Gishu, three weeks ahead of last season \u2014 14 Friesian-dominant wards. Nakuru and Meru are steady.', cites:['Verified input-sales','to Aug 14'], effect:'Opened the demand map', apply:{entPage:'market', entSub:'demand'}},
+        {q:'Did the July training pay for itself?', a:'In trained wards, dewormer orders rose 11% against untrained wards. KES 480k spent, KES 96 per added order.', cites:['Campaign-effect history'], effect:'Opened Campaign impact', apply:{entPage:'campaign'}},
+        {q:'What can I not see?', a:'Farmer-identified records. Your terms cover aggregates only \u2014 the row is shown to you blocked, with its reason, rather than hidden.', cites:['Your terms \u00b7 Professional'], effect:'Opened the catalogue', apply:{entPage:'access', entAccess:'buy'}}
+      ],
+      gov:[
+        {q:'What\u2019s new since I last looked?', a:'Two things since Tuesday: ECF signal spread to a third ward, and AI activity in the county returned to normal after last month\u2019s dip.', cites:['Health records','to Aug 14'], effect:'Scrubbed early warning to week 3', apply:{govPage:'warning', govWeek:3}},
+        {q:'What\u2019s emerging in the Rift?', a:'A slow rise in repeat inseminations tied to two semen sources \u2014 worth a directive if it holds another two weeks.', cites:['Breeding aggregates'], effect:'Selected Meru', apply:{govPage:'status', govCounty:'Meru'}},
+        {q:'Where is vaccination furthest from target?', a:'Uasin Gishu, at 64% against your 70% target. Four wards sit below 55% and carry most of the gap.', cites:['Coverage \u00b7 this quarter'], effect:'Opened Coverage', apply:{govPage:'coverage'}}
+      ]
+    };
+    const prompts = P[s.door] || [];
+    return {
+      hasChat: s.door!=='farmer',
+      chatInput: s.chatInput||'', onChatInput:this.onChatInput, sendChat:this.sendChat,
+      chatLogView: seeded.map(x=>({ q:x.q, a:x.a, hasCites:!!(x.cites&&x.cites.length),
+        cites:(x.cites||[]).map(c=>({label:c})), hasEffect:!!x.effect, effect: x.effect? '\u2713 '+x.effect:'' })),
+      chatPromptsView: prompts.map(p=>({ label:p.q, onClick:this.askPrompt(p) }))
+    };
+  }
+  seedChat(door){
+    if(door==='gov') return [
+      {q:'What\u2019s new since I last looked?', a:'Two things since Tuesday: ECF signal spread to a third ward, and AI activity in the county returned to normal after last month\u2019s dip.', cites:['Health records','to Aug 14']},
+      {q:'What\u2019s emerging in the Rift?', a:'A slow rise in repeat inseminations tied to two semen sources \u2014 worth a directive if it holds another two weeks.', cites:['Breeding aggregates']}
+    ];
+    if(door==='ent') return [
+      {q:'Why did my dewormer gain ground this month?', a:'It gained in Meru and Nakuru \u2014 the two counties where officer-led training on the line ran in July, and nowhere else you track. No price change accompanied it.', cites:['Verified input-sales','Training records \u00b7 July']}
+    ];
+    return [
+      {q:'How did today go?', a:'142 conversations, 9 became visits, 31 became orders. Median first reply four minutes. Three are waiting on a person.', cites:['Conversation log \u00b7 today']}
+    ];
+  }
+
+  renderVals(){
+    const s = this.state;
+    const DOORS = [['farmer','Farmer'],['hq','TrinityAI HQ'],['ent','Enterprise'],['gov','Government']];
+    const SEATS = { farmer:'Jane Wanjiru \u00b7 Nakuru \u00b7 herd of 6', hq:'M. Chen \u00b7 TrinityAI HQ',
+      ent:'Golden Fields Co-op \u00b7 A. Otieno \u00b7 Commercial Director', gov:'Dr. R. Chebet \u00b7 County Veterinary Director \u00b7 Uasin Gishu' };
+    const SUBS = { farmer:'One thread, in the farmer\u2019s own words', hq:'The service counter \u2014 usage, never content',
+      ent:'The reference intelligence layer for livestock and agriculture', gov:'The wholesale view \u2014 de-identified, county-level' };
+    return {
+      subline: SUBS[s.door], seat: SEATS[s.door], hasRail: s.door!=='farmer',
+      doorsView: DOORS.map(d=>({ label:d[1], onClick:this.setDoor(d[0]),
+        bg: s.door===d[0]? '#fff':'transparent', color: s.door===d[0]? 'var(--ink)':'rgba(255,255,255,.72)', weight: s.door===d[0]? 700:500 })),
+      ...this.farmerVals(), ...this.hqVals(), ...this.entVals(), ...this.govVals(), ...this.chatVals(), ...this.wizardVals(),
+      railView: (s.door==='hq'? (s.hqView==='off'
+          ? [['today','Today'],['myfarmers','My farmers'],['record','Record a visit'],['offorders','Orders'],['mymonth','My month']]
+          : [['overview','Overview'],['conversations','Conversations'],['field','Field'],['farmers','Farmers'],['orders','Orders'],['engagement','Engagement'],['customers','Customers'],['products','Products'],['rules','Rules & SLA'],['platform','Platform']])
+        : s.door==='ent'? [['briefing','Briefing'],['market','Market intelligence'],['campaign','Campaign impact'],['pulse','Pulse'],['access','Access data'],['acct','Account']]
+        : s.door==='gov'? [['status','Country status'],['warning','Early warning'],['coverage','Coverage'],['programmes','Programmes'],['data','Data'],['govacct','Account']]
+        : []).map(n=>{
+          const active = s.door==='hq'? s.hqPage===n[0] : s.door==='ent'? s.entPage===n[0] : s.govPage===n[0];
+          const on = s.door==='hq'? this.setHqPage(n[0]) : s.door==='ent'? this.setEntPage(n[0]) : this.setGovPage(n[0]);
+          return { label:n[1], onClick:on, bg: active? '#fff':'transparent', color: active? 'var(--ink)':'var(--ink2)', weight: active? 700:500 };
+        })
+    };
+  }
+}
+
+</script>
+</body>
+</html>
