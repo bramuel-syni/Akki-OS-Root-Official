@@ -4063,3 +4063,48 @@ External third-run WAVE-close ratification deferred to Wave F wave-close per own
 
 **SSH interrupt priority unchanged.** Position: HOLDING at ready state PENDING owner ruling on disposition (A/B/C or otherwise).
 
+
+---
+
+## Owner Disposition Ruling · Wave G RE-SCOPED · "V4 Shell to Pod" · v7 line declassified · v4 file-of-record re-instated · 2026-08-28T~00:50Z · Source: owner channel
+
+**Verbatim owner disposition:**
+
+> "Ignore FarmaIQ. Akki os is an AI and data governance operating system that house multiple applications - i hope this is how you built it."
+
+**Recorded effects (4 binding items):**
+
+1. **Farma IQ file (v7-v2 upload) is IGNORED as a design reference.** Retained at `fixtures/RMS_AI_Akki_Prototype_v7_Standalone_v2.html` and `fixtures/RMS_AI_Akki_Prototype_v7_v2_EMBEDDED_APP.html` in lineage-only status. Not to be quoted or extracted for any surface build under Wave G or later. sha256 `bda2923b…` remains the file's identifier for audit reference.
+
+2. **v7 fixture line is DECLASSIFIED as binding.** FL-P1-14 CLOSED (2026-08-19) ratified "the fixture is the attached screenshot plus the attached v7 brief" pointing at `RMS_AI_Akki_Prototype_v7_Standalone.html` (sha256 `07df1d68…` = byte-identical embedded content to the v7-v2 the owner uploaded 2026-08-27). That fixture's embedded application content is Farma IQ, not Akki OS grammar. **Inventory-vs-file mismatch finding**: `notes/prototype_inventory_v7.md` (231 lines · banked 2026-08-19) catalogues 19 characteristic Akki OS terms (workstudio · thinklab · collab · monitor · approvals · Board 360 · Exco 360 · Grey Mirror · Manage Estate · Spend Requests · Rules Updates · Model Admission · Compliance Owner · Watch Officer · Trust Center) — every one appears zero times in the file's application content. **The inventory doc is marked UNRELIABLE (describes a file that doesn't exist on disk).** A header banner is added to that file this session recording the finding + the ruling anchor; it is retained in place for lineage, not deleted.
+
+3. **v4 file-of-record RE-INSTATED as sole binding shell/design reference.** `docs/reference/Akki_v4_Standalone_2ab55d9f.html` (Owner ruling 3 · 2026-08-01 · sha SHA `2ab55d9f0f317e1e…`) is the only real, verifiable Akki OS design on disk. The AkkiV4Shell built to it already exists as ratified repo-tree code at:
+   - `Extraction-Akki/frontend/src/design/AkkiV4Shell.jsx` (17,265 B · 441 lines)
+   - `Extraction-Akki/frontend/src/design/AkkiV4ShellLayout.jsx` (559 B · 22 lines)
+   - `Extraction-Akki/frontend/src/design/akkiv4_design_system.js` (5,807 B · v4 tokens + typography)
+   - `Extraction-Akki/frontend/src/design/ratified_copy.js` (1,676 B · ratified copy strings)
+   - `Extraction-Akki/frontend/src/design/MarkedOpenSlot.jsx` · `ResponseClassPanel.jsx` · `AkkiShell.jsx` (pre-v4 base shell)
+   - `Extraction-Akki/frontend/src/pages/` — 43 pages across 11 module directories (auth · connect · govern · use_data · registry · prove · team · memory · master_admin · audit_trail · commission_view · trace)
+   - `Extraction-Akki/frontend/src/App.js` (154 lines · shell-wrapped)
+   - `Extraction-Akki/frontend/public/index.html` (16 lines · file-of-record fonts: Instrument Sans · Newsreader · Spline Sans Mono)
+
+4. **Product identity confirmed and recorded:** **Akki OS = AI & data governance operating system that HOUSES multiple applications.** The callable-skill-files seam + chokepoints (`services/chokepoint/`, `services/skill_files/`, callable-file mount at `pod_shell/backend/server.py`) are the app-hosting boundary. This framing is noted in the register (v4 file-of-record header) + close report (Wave G).
+
+**Wave G re-scoped scope (owner verbatim):**
+
+> "WAVE G RE-SCOPED — 'V4 Shell to Pod' (autonomous through close):
+>
+> STEP 1 (unchanged, still first): close the mirror hole — extend byte-identity/mirror invariants to App.js, design/, pages/, public/index.html; fix the SPA-route scanner to read the pod-served tree (or assert repo↔pod App.js equality). Right-reason red on the current divergence, then green.
+>
+> STEP 2: port the ratified repo-tree AkkiV4Shell (AkkiV4Shell.jsx + AkkiV4ShellLayout.jsx + akkiv4_design_system.js + pages/ + the 155-line App.js + file-of-record fonts in index.html) to the pod trees, byte-identical mirrors, per the v4 file-of-record EXACT-parity ruling. Root `/` → `/registry` redirect inside the shell. All existing routes stay live.
+>
+> STEP 3: home the post-v4 surfaces in the 6-item v4 sidebar WITHOUT inventing new chrome — conservative mapping: Govern → Governance ceremony, Watch, Grey Mirror, Audit Trail (as sub-navigation/sections within the Govern module per v4's module-page pattern); Use Data → Data Shield, Chat, ThinkLab, Cost Ledger; Registry → Models, Skill Files, Evidence Register; Connect → Connect wizard (existing); Prove/Team → their CP-D7/D8 surfaces. Every one of the 15 pod surfaces must be reachable by CLICKING from the shell — that is the acceptance test. Mark this mapping in the close report as EXTENSION-PENDING-OWNER-EYEBALL (the owner may re-home items after seeing it; the mapping must be trivially reconfigurable).
+>
+> STEP 4 (data): unchanged from prior ruling — real data everywhere we hold it, REFERENCE-NOT-COPY provenance, honest empties, SAMPLE-marked prototype content only where v4's file-of-record itself shows sample chrome (e.g., Census pill) — no Farma IQ content anywhere.
+>
+> STEP 5: Wave G close per the permanent standard — double-green at ratcheted floor, receipts, waveG_close_report.md with the per-surface reachability table (route → sidebar path → clicks-from-root → LIVE-DATA/SAMPLE tag), STATE mirrors, STOP for my external third run. My verification will be: shell present with v4 chrome + fonts + tokens exactly, all 15 surfaces click-reachable from /, real data rendering, no Farma IQ artifacts.
+>
+> Standing: SSH interrupt priority unchanged; all other holds unchanged. Begin."
+
+**Autonomous progression re-authorized under all standing disciplines** (tests-first · verbatim references in docstrings · Ship-Manifest DoD triple · byte-identical pod-shell/spine mirror · local commits only · no push · no testing subagent · terminal pytest only · post-compaction re-read). SSH interrupt priority unchanged.
+

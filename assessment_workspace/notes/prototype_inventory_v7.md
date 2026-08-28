@@ -1,5 +1,17 @@
 # v7 prototype inventory — RMS AI · Akki Prototype v7 (Standalone) · 2026-08-19
 
+> **⚠️ UNRELIABLE — DECLASSIFIED AS BINDING 2026-08-28T~00:50Z**
+>
+> Owner disposition ruling this session (verbatim): *"Ignore FarmaIQ. Akki os is an AI and data governance operating system that house multiple applications - i hope this is how you built it."*
+>
+> **This inventory does NOT match the file it claims to describe.** Verified 2026-08-27T22:50Z: the actual embedded application content of `fixtures/RMS_AI_Akki_Prototype_v7_Standalone.html` (sha256 `07df1d68…`) is **"Farma IQ"** — a Kenyan farmer/enterprise/gov-officer 4-door WhatsApp+herd demo (wordmark "Farma IQ", body BG `#f7f4ec`, fonts Iowan Old Style / Söhne / ui-monospace, four `sc-if` audience doors: `isFarmerThread` · `isFarmerAcct` · `isEnt` · `isGov` · `isHq`). The 19 characteristic Akki OS terms this inventory documents (workstudio · thinklab · collab · monitor · approvals · Board 360 · Exco 360 · Grey Mirror · Manage Estate · Spend Requests · Rules Updates · Model Admission · Compliance Owner · Watch Officer · Trust Center) each appear **zero times** in the actual file's application content.
+>
+> **The v4 file-of-record `docs/reference/Akki_v4_Standalone_2ab55d9f.html` (ratified 2026-08-01) is re-instated as the sole binding shell/design reference.** Wave G "V4 Shell to Pod" ports the ratified repo-tree AkkiV4Shell to the pod. See `STATE/DECISIONS.md` at 2026-08-28T~00:50Z for the full ruling + 4-effect record.
+>
+> **Retained in place** for lineage; not deleted. Never quoted as authoritative for surface builds.
+
+---
+
 Source: `fixtures/RMS_AI_Akki_Prototype_v7_Standalone.html` (sha256 `07df1d6846841da57ac0405536555262586362ac8d02a7bd682d9f3bebd6be55`, 1,307,752 bytes, 396 lines). Extract at `/tmp/v7_ingest/v7_extract.txt`. This is a **single-file standalone HTML** with an inline compiled React app (React.createElement in 10 places; 16 `React` refs; 107 onClick handlers; 119 top-level UPPER_SNAKE constants; no external routes, no fetch, no server).
 
 Companion doc for v6: `notes/prototype_inventory.md` (Chunk-1, 2026-08-14) — read as the baseline against which this delta reads.
