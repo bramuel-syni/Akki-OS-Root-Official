@@ -55,6 +55,14 @@ Failure to follow this sequence = paraphrase-not-spec failure class the owner ex
 
 Update this section at every CP/R-step close.
 
+- **CURRENT AS OF 2026-08-31T~21:30Z · W-G5c-COMPUTE-v2 CLOSED at floor 2703 (+11 from 2692).** 11 tile-value substitution rules (4 LIVE, 6 HONEST-EMPTY, 1 LIVE-TAUTOLOGY) bind `/api/compute/estate` facts into the Compute Connected sub-tab. Harness green: 20 rules / 20 marked_slots / 0 orphans merged across Registry+Compute views; compute-view distinctive dummies (`on-premise · RMS AI DC, Nairobi`, `A100 80GB · single node`) absent; live phrasings (`on-premise · akki-vm + akki-vm-ii`, `H200 140 GiB · 2 nodes`, `not measured`) present; slot #1 style signature (INTERRUPT 3) intact. Double-green terminal `pytest tests/invariants/` under `BASELINE_GUARD=1`: 2703 passed × 2 runs, stripped-diff = 0. Systemic latent bug fixed in `_app_js_executable()` and 4 other loci in `test_wave_g_v8_shell_port.py` (block-first comment strip was silently mangling App.js when a `//` line comment contained `/*` — the compute-v2 addition surfaced a `runs/*.json` glob that tripped it). Receipts: harness log + 3 screenshots at `phase0/eyeball_proxies/20260831T212715Z_wave_g5_realchrome_wave_g5c_compute_v2_close_v2_*`. Residuals banked NOT as bugs but as scope statements: **-r1** chart-caption substitution (`COMPUTE_CHARTS` object · captions like `'1,240 hrs committed'` on doughnut/stack chart) · **-r2** tile-note substitution (small-print notes beneath each tile value, e.g. `'43% of the month'`). GPU status: 2h dual-host burn launched detached at 21:21:16Z (RUN_ID `burn_20260831T212116Z_5a83c165` · all 4 H200s · 5-min poll receipts · ETA finish ~23:25Z). Owner authorized "run a longer one" as go-ahead; agent picked SIMPLE fallback (plain 2h dual-host burn) because improved-txttrain-v2 corpus prep exceeds owner's 30–40 min budget — improved run banked as **W-TxtTrain-v2** unblocked charter for a later slot.
+
+- **NEXT ACTIVE TRACK (owner-sequenced 2026-08-31T~19:15Z, ruling 8):** W-WPW-v1-c (Tier 1 lab notebook). Unblocked. Owner rulings R1/R2/R3 still with owner; Tier 3 stays design-only until they land; Tiers 1+2 may build. Follow-on unblocked charters: **W-TxtTrain-v2** (owner-authorized 2026-08-31T~21:20Z, "can you run a longer one like 2 hrs if not dependent on credits" — GPU time is on owner's EC2, no platform credits; agent-time is the constrained resource). Blocked (waiting owner): **W-Shield-Train** on masking-tier admission ruling, **W-Audio-P2** on archive access.
+
+- **Standing rule (still binding):** if R1/R2/R3 land mid-close of the next wave, bank them verbatim in DECISIONS.md and finish the close first; owner's sequencing wins at the NEXT clean commit boundary, not mid-work.
+
+- **PRIOR CURRENT-WAVE MARKER (Wave-G5c stages 1–3 · retained for continuity of ledger)**:
+
 - **Current wave**: **Wave-G5c stages 1–3 · LARGELY COMPLETE at floor 2680 (+69 from 2611 opening).** Owner rulings #1, #2, #5 landed with gates. First LIVE Census #1 fired against DigiCow cluster — owner expectation of >1 database CONFIRMED (2 DBs: digicow_live + ndume · 233 tables · 5,909,421 rows · single_database_visibility_flag=false · no permissions-gap finding to escalate). Slot #1 renders LIVE with Census #1 data ("RMS AI is reading 2 connected sources, holding with 233 tables read — size and completeness not yet measured, awaiting first census." — underline+oxblood styling intact per Wave-G5b interrupt). Compute-estate backend live-serving hosts+rollup. 6 compute-tile substitution rules declared+bind-ready. Doc 10 vs Doc 19B anchor verified (Doc 10=Promise #14 runtime evidence-records; Doc 19B=EP-4 terminal-test ordering guard, already landed Wave-D).
 
 - **HONEST GAP (banked at 2026-08-28T~16:10Z close):** Compute-tab DOM substitution deferred. dc-runtime navigation path unresolved: post Admin>Registry, `regTabsView` labels (`Data Connected`, `Compute Connected`, `LLMs & Trained Models`) are NOT rendered in DOM. Investigation confirmed: `<sc-if value="{{ isRegistryGroup }}">` + `<sc-if value="{{ isRegEstate }}">` gate the tabs. The `Admin > Registry` navigation from the top-nav does NOT set `isRegistryGroup=true` (or `isRegEstate=true`). The tabs live behind a nav state the top-nav walker doesn't reach. Follow-up needs: (a) identify what triggers `isRegistryGroup=true` in the prototype's state machine, (b) drive the harness through that path, (c) re-run harness → compute-tile substitution → real-Chromium bundle capture. Rules and endpoints are ready; only the nav-path is missing.
@@ -1098,3 +1106,58 @@ Assessment workspace repo (`master` branch):
 **Recorded**: 2026-08-26 · code freeze active · owner GO required to resume.
 
 
+
+---
+
+## 2026-08-31 · TONIGHT-GPU-ACTIVITY THREAD · pointer to sprint plan
+
+Owner rulings 3–5 landed tonight (2026-08-31). Full sequence banked verbatim in DECISIONS.md.
+
+**Sprint plan drafted:** `/app/assessment_workspace/STATE/SPRINT_PLAN.md` — four chartered tracks:
+1. **W-G5c-close** (in-flight, ~½–1 day) · Wave-G5c frontend close + owner eyeball bundle
+2. **W-Shield-Train** (2–4 days) · Shielded-training pipeline (masking policy → row executor → transport → LoRA unstub → cleanup) — owner authority-required for masking-tier admission
+3. **W-Audio-P2** (2–3 days after archive access) · Audio archive Phase 2 admission (manifest hash → representative slice → HSS → GPU smoke)
+4. **W-WPW-v1** (~2 days for Tier 1+2 after 30-min spec ingest) · Whitepaper Wizard v1 (Tier 3 blocked on R1/R2/R3)
+
+Sequencing is owner-only. Suggested prompts and one non-binding enhancement path are in the sprint plan.
+
+**Tonight-activity carrier:** `burn_20260831T183509Z_731f22ad` — fallback governed matmul burn on both hosts via `services.training_runner.ssh_seam.execute_remote_command`. Activity summary lands at `phase0/gpu_burn/burn_20260831T183509Z_731f22ad/activity_summary.{txt,json}` when the run completes.
+
+**Pending owner rulings (not blocking main-agent work; only decision-blocking):**
+- **A-vs-C** audio-vs-text training-material choice for the shielded-training pipeline (owner has this in front of him now, per ruling 5).
+- **R1/R2/R3** for WPW Tier 3 (banked as parked; frame crisply in W-WPW-v1-b charter).
+- **W-Shield-Train-b** masking-tier admission ruling (needed to unblock the shielded-training pipeline).
+- **W-Audio-P2-a** audio-archive access details (endpoint + credentials + manifest source) — needed to unblock W-Audio-P2.
+
+Ratchet floor unchanged: **2680**. Uncommitted local work: keypair-hardening tests (11 tests) + Wave-G5c-COMPUTE-FRONTEND (declared). Both roll into W-G5c-close double-green bump.
+
+---
+
+## 2026-08-31 · W-G5c-close CLOSED · WPW spec INGESTED · pointer updates
+
+**Closed tonight:**
+- **W-G5c-close**: ratchet 2680 → **2692**. Eyeball bundle at `phase0/eyeball_bundles/wave_g5c_close_20260831/` (portal + Registry aside live + Compute Connected tab + README with plain-language captions per screenshot + GPU-activity card covering both runs).
+- **W-WPW-v1-a (spec ingest)**: raw docx banked at `canon/fixtures/whitepaper_wizard_spec_v1/spec.docx` (sha256 recorded) + extracted text alongside (`spec.extracted.txt`) + `README.md` documenting the derived-artifact discipline.
+- **W-WPW-v1-b (charter + reuse assessment + R1/R2/R3 framing)**: `STATE/WPW_CHARTER.md`. R1/R2/R3 framed crisply for single-shot owner ruling.
+
+**Chartered but not yet started (owner-sequenced):**
+- **W-G5c-COMPUTE-v2**: successor to retired tile-compute-* rules · targets ACTUALLY rendered Compute Connected dummies · concrete DOM element table in `STATE/SPRINT_PLAN.md`. ~1–2 days · unblocked.
+- **W-Shield-Train**: shielded-training pipeline (a–g scope in charter) · 2–4 days · depends on masking-tier admission ruling.
+- **W-WPW-v1-c/d/f/g**: Tier 1 + Tier 2 + attribution + integration · ~2 days · unblocked.
+- **W-WPW-v1-e**: Tier 3 · BLOCKED on R1/R2/R3 · deliver ~1–2 days after rulings.
+- **W-Audio-P2**: audio archive Phase 2 admission · 2–3 days after archive access granted · BLOCKED on owner-provided access.
+
+**Pending owner rulings (not blocking any in-flight main-agent work; only decision-blocking):**
+- **A-vs-C** audio-vs-text training-material choice (owner ruled B tonight = text · that's satisfied).
+- **R1** WPW exceptional threshold (R1-a absolute margin or R1-b percentile bar · agent recommends R1-a with conservative X).
+- **R2** WPW external-release signatory (owner names authority + backup).
+- **R3** WPW DEFAULT ratifications + novelty-clause ratification (three sub-questions R3-a/b/c framed in charter).
+- **W-Shield-Train-b** masking-tier admission ruling.
+- **W-Audio-P2-a** audio archive endpoint + credentials + manifest source.
+
+**Next text-run recommendations (deferred to owner sequencing):**
+- Sample from `OFFSET 500000` in `ussd_question_response` to reach populated `value_chain`.
+- Add `sms_log.sms_sent` (longtext) as secondary corpus.
+- Pre-filter for unique Q×A pattern (1 example per unique combination) to escape memorisation regime.
+
+**Ratchet floor:** **2692** · double-green byte-identical last close · manifest updated in `backend/tests/invariants/baseline_failures.json`.

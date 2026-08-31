@@ -1,0 +1,10 @@
+{
+  "at": "2026-08-31T18:32:55Z",
+  "host_slug": "akki-vm",
+  "purpose": "torch_probe",
+  "receipt_id": "gpurcp-e2ed5baae03c",
+  "rc": 0,
+  "wallclock_seconds": 4.735399190001772,
+  "stdout_redacted": "{\"ok\": true, \"v\": \"2.11.0+cu128\", \"cuda\": \"12.8\", \"n\": 2}\n",
+  "stderr_redacted": "/home/ubuntu/.local/lib/python3.12/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.\n  import pynvml  # type: ignore[import]\n"
+}

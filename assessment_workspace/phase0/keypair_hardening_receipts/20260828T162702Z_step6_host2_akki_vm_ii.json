@@ -1,0 +1,60 @@
+{
+  "step": 6,
+  "phase": "disable_password_auth_host2",
+  "host": "akki-vm-ii",
+  "sub_steps": [
+    {
+      "purpose": "6.2a_check_include_dir_host2",
+      "rc": 0,
+      "wall": 3.2670232969976496,
+      "stdout_first_400": "Include /etc/ssh/sshd_config.d/*.conf\n",
+      "stderr_first_200": "",
+      "receipt_id": "gpurcp-35582838093d"
+    },
+    {
+      "purpose": "6.2b_write_dropin_host2",
+      "rc": 0,
+      "wall": 2.9935576299976674,
+      "stdout_first_400": "total 20\ndrwxr-xr-x 2 root root 4096 Aug 28 16:27 .\ndrwxr-xr-x 4 root root 4096 Aug 28 12:32 ..\n-rw-r--r-- 1 root root  284 Aug 28 16:27 10-akki-key-only.conf\n-rw------- 1 root root   27 Aug 28 12:32 50-cloud-init.conf\n-rw-r--r-- 1 root root   27 Aug 28 12:32 60-cloudimg-settings.conf\n",
+      "stderr_first_200": "",
+      "receipt_id": "gpurcp-ee634b590002"
+    },
+    {
+      "purpose": "6.3_sshd_config_test_host2",
+      "rc": 0,
+      "wall": 2.9944456220036955,
+      "stdout_first_400": "SSHD_CONFIG_OK\n",
+      "stderr_first_200": "",
+      "receipt_id": "gpurcp-d5a5f3391fe8"
+    },
+    {
+      "purpose": "6.4_reload_sshd_host2",
+      "rc": 0,
+      "wall": 3.0131416299991542,
+      "stdout_first_400": "SSHD_RELOAD_OK\n",
+      "stderr_first_200": "",
+      "receipt_id": "gpurcp-c4fcb28b2353"
+    },
+    {
+      "purpose": "6.5_fresh_key_auth_host2",
+      "rc": 0,
+      "wall": 2.872211355002946,
+      "stdout_first_400": "ubuntu\nakki-vm-ii\nFri Aug 28 16:27:19 UTC 2026\n",
+      "stderr_first_200": "",
+      "receipt_id": "gpurcp-c08ac14c8d36"
+    },
+    {
+      "purpose": "6.7_effective_sshd_config_host2",
+      "rc": 0,
+      "wall": 2.9056558280062745,
+      "stdout_first_400": "permitrootlogin without-password\npubkeyauthentication yes\npasswordauthentication no\n",
+      "stderr_first_200": "",
+      "receipt_id": "gpurcp-b25709c46944"
+    }
+  ],
+  "at_utc": "20260828T162702Z",
+  "config_test_ok": true,
+  "reverify_ok": true,
+  "password_probe": "PASSWORD_REJECTED_AS_EXPECTED",
+  "all_green": true
+}

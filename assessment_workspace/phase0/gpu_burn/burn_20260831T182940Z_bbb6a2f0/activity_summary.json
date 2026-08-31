@@ -1,0 +1,45 @@
+{
+  "run_id": "burn_20260831T182940Z_bbb6a2f0",
+  "at": "2026-08-31T18:30:29Z",
+  "totals": {
+    "gpu_hours": 0.0,
+    "wallclock_seconds_max": 0.0,
+    "gpu_count_total": 4,
+    "host_count": 2
+  },
+  "per_host": [
+    {
+      "host_slug": "akki-vm",
+      "gpu_count": 2,
+      "torch_version": "2.11.0+cu128",
+      "cuda_version": "12.8",
+      "wallclock_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "util_pct_median": null,
+      "power_w_median": null,
+      "temp_c_median": null,
+      "memory_used_mib_median": null,
+      "tflops_per_gpu_median": null,
+      "poll_count": 0,
+      "exit_code": -1,
+      "error": "TimeoutError: "
+    },
+    {
+      "host_slug": "akki-vm-ii",
+      "gpu_count": 2,
+      "torch_version": "2.11.0+cu128",
+      "cuda_version": "12.8",
+      "wallclock_seconds": 0.0,
+      "gpu_hours": 0.0,
+      "util_pct_median": null,
+      "power_w_median": null,
+      "temp_c_median": null,
+      "memory_used_mib_median": null,
+      "tflops_per_gpu_median": null,
+      "poll_count": 0,
+      "exit_code": -1,
+      "error": "TimeoutError: "
+    }
+  ],
+  "plain_language": "GPU Activity \u2014 burn_20260831T182940Z_bbb6a2f0\nWhen: 2026-08-31T18:29:40Z \u2192 2026-08-31T18:30:26Z UTC\nWall-clock: 0.0 minutes (both hosts in parallel).\nTotal GPU-hours delivered: 0.00 across 4 GPUs on 2 hosts.\nWorkload: sustained fp16 matmul (8192\u00d78192), no estate data \u2014 synthetic tensors only.\n\nPer host:\n  \u2022 akki-vm: 2 GPU(s), utilization median ?%, power draw median ? W, temperature median ? \u00b0C, memory used median ? MiB, compute throughput median ? TFLOPS/GPU, exit_code=-1, error=TimeoutError: \n  \u2022 akki-vm-ii: 2 GPU(s), utilization median ?%, power draw median ? W, temperature median ? \u00b0C, memory used median ? MiB, compute throughput median ? TFLOPS/GPU, exit_code=-1, error=TimeoutError: \n\nGovernance: every remote call went through the training_runner SSH seam (execute_remote_command), each with a governed crossing receipt written to phase0/crossing_receipts/ and a redacted seam receipt written to phase0/gpu_receipts/. Masking tier: attested_command. No PII, no estate data, on either host.\n\nShielded-data intent: NOT dropped. Chartered as a next-wave delivery per owner ruling. See DECISIONS.md entry banking the honest gap and the shielded-training pipeline scope."
+}

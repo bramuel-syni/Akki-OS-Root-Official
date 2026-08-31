@@ -1,0 +1,135 @@
+{
+  "authority": "owner ruling (A) 2026-08-31 fallback burn tonight",
+  "finished_at": "2026-08-31T18:30:26Z",
+  "governance": {
+    "chokepoint_kind": "ssh_seam_remote_exec",
+    "masking_tier": "attested_command",
+    "seam": "services.training_runner.ssh_seam.execute_remote_command",
+    "shielded_training_pipeline": "NOT_YET_BUILT \u00b7 charter forthcoming per owner ruling"
+  },
+  "hosts": [
+    {
+      "burn_log_tail": "",
+      "burn_summary": {},
+      "cuda_version": "12.8",
+      "error": "TimeoutError: ",
+      "exit_code": -1,
+      "finished_at": "2026-08-31T18:30:25Z",
+      "gpu_count": 2,
+      "host_slug": "akki-vm",
+      "nvidia_smi_after": null,
+      "nvidia_smi_before": {
+        "at": "2026-08-31T18:29:43Z",
+        "gpus": [
+          {
+            "clocks.current.graphics [MHz]": "345 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "0",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "0 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "76.88 W",
+            "temperature.gpu": "34",
+            "utilization.gpu [%]": "0 %"
+          },
+          {
+            "clocks.current.graphics [MHz]": "345 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "1",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "0 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "76.86 W",
+            "temperature.gpu": "37",
+            "utilization.gpu [%]": "0 %"
+          }
+        ],
+        "host_slug": "akki-vm",
+        "label": "before",
+        "rc": 0,
+        "receipt_id": "gpurcp-f96382acf42a"
+      },
+      "nvidia_smi_during_polls": [],
+      "receipts": [
+        "gpurcp-f96382acf42a",
+        "gpurcp-437d00b474c6",
+        "gpurcp-458994a52017",
+        "gpurcp-df56851e011e"
+      ],
+      "started_at": "2026-08-31T18:29:40Z",
+      "torch_ok": true,
+      "torch_version": "2.11.0+cu128",
+      "wallclock_seconds": 0.0
+    },
+    {
+      "burn_log_tail": "",
+      "burn_summary": {},
+      "cuda_version": "12.8",
+      "error": "TimeoutError: ",
+      "exit_code": -1,
+      "finished_at": "2026-08-31T18:30:26Z",
+      "gpu_count": 2,
+      "host_slug": "akki-vm-ii",
+      "nvidia_smi_after": null,
+      "nvidia_smi_before": {
+        "at": "2026-08-31T18:29:43Z",
+        "gpus": [
+          {
+            "clocks.current.graphics [MHz]": "345 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "0",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "0 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "76.47 W",
+            "temperature.gpu": "30",
+            "utilization.gpu [%]": "0 %"
+          },
+          {
+            "clocks.current.graphics [MHz]": "345 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "1",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "0 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "80.67 W",
+            "temperature.gpu": "36",
+            "utilization.gpu [%]": "0 %"
+          }
+        ],
+        "host_slug": "akki-vm-ii",
+        "label": "before",
+        "rc": 0,
+        "receipt_id": "gpurcp-16148e716377"
+      },
+      "nvidia_smi_during_polls": [],
+      "receipts": [
+        "gpurcp-16148e716377",
+        "gpurcp-309ac823728e",
+        "gpurcp-6c9bc92a737c",
+        "gpurcp-031adc1dc326"
+      ],
+      "started_at": "2026-08-31T18:29:40Z",
+      "torch_ok": true,
+      "torch_version": "2.11.0+cu128",
+      "wallclock_seconds": 0.0
+    }
+  ],
+  "kind": "benchmark_burn",
+  "run_id": "burn_20260831T182940Z_bbb6a2f0",
+  "started_at": "2026-08-31T18:29:40Z",
+  "totals": {
+    "gpu_count_total": 4,
+    "gpu_hours": 0.0,
+    "wallclock_seconds_max": 0.0
+  },
+  "workload": {
+    "data_source": "in-memory synthetic tensors (torch.randn)",
+    "dtype": "float16",
+    "duration_target_s": 1500,
+    "estate_data_used": false,
+    "matmul_size": 8192,
+    "pii_touched": false,
+    "workload_type": "sustained_matmul_fp16"
+  }
+}

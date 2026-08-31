@@ -1,0 +1,10 @@
+{
+  "at": "2026-08-31T18:33:03Z",
+  "host_slug": "akki-vm",
+  "purpose": "launch_burn",
+  "receipt_id": "gpurcp-529349f2d78c",
+  "rc": 0,
+  "wallclock_seconds": 4.871762650000164,
+  "stdout_redacted": "pid=77335\n---log---\n{\"at\":\"2026-08-31T18:33:02Z\",\"cuda_version\":\"12.8\",\"dtype\":\"float16\",\"duration_s\":45,\"kind\":\"boot\",\"n_gpu\":2,\"pid\":77335,\"size\":8192,\"torch_version\":\"2.11.0+cu128\"}\n{\"at\":\"2026-08-31T18:33:02Z\",\"device_name\":\"NVIDIA H200\",\"dtype\":\"float16\",\"gpu\":0,\"kind\":\"start\",\"size\":8192}\n{\"at\":\"2026-08-31T18:33:02Z\",\"device_name\":\"NVIDIA H200\",\"dtype\":\"float16\",\"gpu\":1,\"kind\":\"start\",\"size\":8192}\n",
+  "stderr_redacted": ""
+}

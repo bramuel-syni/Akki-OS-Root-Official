@@ -1,0 +1,20 @@
+{
+  "step": 9,
+  "phase": "post_outage_survey_confirm_hardening_intact",
+  "at_utc": "20260831T175519Z",
+  "hosts": {
+    "akki-vm": {
+      "rc": 0,
+      "effective_config": "permitrootlogin without-password\npubkeyauthentication yes\npasswordauthentication no",
+      "password_probe": "PASSWORD_REJECTED_AS_EXPECTED",
+      "receipt_id": "gpurcp-e2e17c4ef459"
+    },
+    "akki-vm-ii": {
+      "rc": 0,
+      "effective_config": "permitrootlogin without-password\npubkeyauthentication yes\npasswordauthentication no",
+      "password_probe": "PASSWORD_REJECTED_AS_EXPECTED",
+      "receipt_id": "gpurcp-c6bb744dad90"
+    }
+  },
+  "all_green": true
+}

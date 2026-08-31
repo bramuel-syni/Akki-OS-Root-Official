@@ -1,0 +1,25 @@
+{
+  "step": 3,
+  "phase": "verify_key_auth_fresh_connection",
+  "at_utc": "20260828T162325Z",
+  "hosts": {
+    "akki-vm": {
+      "rc": 0,
+      "auth_method_at_connect": "key",
+      "hostname_line_present": true,
+      "gpu_line_present": true,
+      "receipt_id": "gpurcp-93e5c7a7fdfc",
+      "wall": 3.0048098120023496
+    },
+    "akki-vm-ii": {
+      "rc": 0,
+      "auth_method_at_connect": "key",
+      "hostname_line_present": true,
+      "gpu_line_present": true,
+      "receipt_id": "gpurcp-159147dd80a0",
+      "wall": 2.964352737995796
+    }
+  },
+  "all_key_auth_verified": true,
+  "hard_stop_condition": "if all_key_auth_verified is False, STOP before disabling passwords (owner Ruling #4 discipline)"
+}

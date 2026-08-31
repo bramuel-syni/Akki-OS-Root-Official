@@ -1,0 +1,52 @@
+{
+  "step": 5,
+  "phase": "disable_password_auth_host1_v2_precedence_fix",
+  "host": "akki-vm",
+  "sub_steps": [
+    {
+      "purpose": "5.2c_rewrite_dropin_with_10_prefix",
+      "rc": 0,
+      "wall": 3.274129109006026,
+      "stdout_first_400": "total 20\ndrwxr-xr-x 2 root root 4096 Aug 28 16:26 .\ndrwxr-xr-x 4 root root 4096 Aug 28 07:19 ..\n-rw-r--r-- 1 root root  288 Aug 28 16:26 10-akki-key-only.conf\n-rw------- 1 root root   27 May  6 13:21 50-cloud-init.conf\n-rw-r--r-- 1 root root   26 Mar 21 13:14 60-cloudimg-settings.conf\n",
+      "stderr_first_200": "",
+      "receipt_id": "gpurcp-74a6e323daf4"
+    },
+    {
+      "purpose": "5.3b_sshd_config_test",
+      "rc": 0,
+      "wall": 2.8974300920017413,
+      "stdout_first_400": "SSHD_CONFIG_OK\n",
+      "stderr_first_200": "",
+      "receipt_id": "gpurcp-c99422c8460f"
+    },
+    {
+      "purpose": "5.4b_reload_sshd_v2",
+      "rc": 0,
+      "wall": 2.908420076004404,
+      "stdout_first_400": "SSHD_RELOAD_OK\n",
+      "stderr_first_200": "",
+      "receipt_id": "gpurcp-743cc2148d0c"
+    },
+    {
+      "purpose": "5.5b_fresh_key_auth_v2",
+      "rc": 0,
+      "wall": 2.88415554400126,
+      "stdout_first_400": "ubuntu\nakki-vm\nFri Aug 28 16:26:31 UTC 2026\n",
+      "stderr_first_200": "",
+      "receipt_id": "gpurcp-3f0503f24adb"
+    },
+    {
+      "purpose": "5.7b_effective_sshd_config",
+      "rc": 0,
+      "wall": 2.9098547879984835,
+      "stdout_first_400": "permitrootlogin without-password\npubkeyauthentication yes\npasswordauthentication no\n",
+      "stderr_first_200": "",
+      "receipt_id": "gpurcp-82a741f80e8f"
+    }
+  ],
+  "at_utc": "20260828T162617Z",
+  "config_test_ok": true,
+  "reverify_ok": true,
+  "password_probe": "PASSWORD_REJECTED_AS_EXPECTED",
+  "all_green": true
+}

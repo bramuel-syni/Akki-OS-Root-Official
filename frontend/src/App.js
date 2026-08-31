@@ -204,6 +204,7 @@ const V8_SUBSTITUTIONS = [
     name: "tile-total-held-label",
     dummyContent: "held across 12 sources",
     anchorAncestorText: "86.4 TB",
+    anchorAncestorSlot: "tile-total-held-value",
     renderFragments: (v) => {
       if (v.estateSources == null) {
         return [{ kind: "text", value: "no sources yet" }];
@@ -226,6 +227,7 @@ const V8_SUBSTITUTIONS = [
     name: "tile-share-measured-label",
     dummyContent: "measured at last census",
     anchorAncestorText: "78%",
+    anchorAncestorSlot: "tile-share-measured-value",
     renderFragments: (v) => {
       if (v.lastCensus == null) {
         return [{ kind: "text", value: "awaiting first census" }];
@@ -247,6 +249,7 @@ const V8_SUBSTITUTIONS = [
     name: "tile-opportunities-label",
     dummyContent: "opportunities standing ready",
     anchorAncestorText: "opportunities",
+    anchorAncestorSlot: "tile-opportunities-value",
     renderFragments: (v) => {
       if (v.opportunities == null) {
         return [{ kind: "text", value: "no opportunities yet" }];
@@ -255,123 +258,206 @@ const V8_SUBSTITUTIONS = [
     },
   },
   // -------------------------------------------------------------------
-  // Wave-G5c-COMPUTE-FRONTEND · Compute tab tiles (owner Ruling #4,
-  // banked 2026-08-28T~15:00Z: derive from banked Wave-H fact sheets;
-  // owner ruling F: fold akki-vm + akki-vm-ii into compute containers;
-  // product language only; never hardcode display literals).
+  // Wave-G5c-COMPUTE-FRONTEND · RETIRED (2026-08-31 · harness probe).
   //
-  // Prototype's `computeCards` renders 3 tiles:
-  //   { value: '840 vCPU-h/day', label: 'Total capacity' }
-  //   { value: '62%',            label: 'Allocated to Build' }
-  //   { value: '3 queued',       label: 'Queue depth' }
+  // The 6 tile-compute-* rules originally authored in Wave-G5c targeted
+  // the prototype's `computeCards` JS variable dummies:
+  //   { '840 vCPU-h/day' · 'Total capacity' }
+  //   { '62%'            · 'Allocated to Build' }
+  //   { '3 queued'       · 'Queue depth' }
   //
-  // The render side is derived from v.compute (populated by App.js's
-  // onLoad fetch to /api/compute/estate). No hardcoded H200 / akki-vm
-  // / 139.8 / 559.2 string literals in the rules — the surface
-  // follows the facts.
+  // Real-Chromium harness probe (tools/compute_where_probe.py ·
+  // 2026-08-31) established that these dummies are NEVER rendered as
+  // visible DOM on ANY prototype surface (portal, Admin, Registry
+  // aside, Registry tab, Compute Connected sub-tab). Only "62%" appears
+  // in the DOM (once, as a sibling within a different tile section)
+  // and its anchor ancestor text "Allocated to Build" is also
+  // script-only.
+  //
+  // Retirement precedent: DECISIONS.md documents that the composite
+  // dummy "RMS AI holds 86.4 TB across 12 sources ..." was retired
+  // in Wave-G5b for the same reason — dc-runtime never rendered it.
+  //
+  // The prototype's ACTUAL rendered compute surface (Compute Connected
+  // sub-tab of RegistryTab) shows a percentage-driven layout:
+  //   "43% of the month" · "43%" / "100%" / "43% committed" ·
+  //   "645 hrs · 52%" / "298 hrs · 24%" / "174 hrs · 14%" / "99 hrs · 8%"
+  //   / "24 hrs · 2%" · GPU workflows narrative
+  //
+  // W-G5c-close leaves these compute-tile rules retired. A follow-up
+  // wave (W-G5c-COMPUTE-v2 in SPRINT_PLAN.md) will author new rules
+  // against the actually-rendered percentage-driven surface, folding
+  // akki-vm + akki-vm-ii facts into it per owner Ruling F.
   // -------------------------------------------------------------------
+
+  // -------------------------------------------------------------------
+  // Wave-G5c-COMPUTE-v2 · authored 2026-08-31 · owner ruling 8.
+  // Rules bind to the ACTUALLY-rendered Compute Connected sub-tab of
+  // RegistryTab. Every dummy below was verified as visible DOM text by
+  // tools/compute_v2_dom_enum.py (probe artefact:
+  // tools/compute_v2_dom_map.json).
+  //
+  // Discipline banked by ruling 8:
+  //   - Rules authored only against harness-verified rendered DOM.
+  //   - rule-must-match-rendered-DOM invariant enforced by test file
+  //     tests/invariants/test_compute_v2_frontend.py.
+  //   - Live values from /api/compute/estate only.
+  //   - Honest-empty for anything the estate cannot measure.
+  //   - Product language + prototype styling preserved.
+  //
+  // 4 LIVE + 6 HONEST-EMPTY + 1 LIVE-TAUTOLOGY = 11 rules.
+  // -------------------------------------------------------------------
+
+  // LIVE (4) — bind /api/compute/estate facts to compute tiles.
+
   {
     kind: "styled-element-anchor",
-    name: "tile-compute-1-value",
-    // Tile 1 value slot · anchor on the prototype's rendered dummy.
-    dummyContent: "840 vCPU-h/day",
-    anchorAncestorText: "Total capacity",
+    name: "compute-v2-clusters-value",
+    dummyContent: "1",
+    anchorAncestorText: "Clusters attached",
     renderFragments: (v) => {
       const c = v.compute;
-      if (!c || !c.rollup || c.rollup.host_count === 0) {
-        return [{ kind: "text", value: "No compute connected yet" }];
+      if (!c || !Array.isArray(c.hosts) || c.hosts.length === 0) {
+        return [{ kind: "text", value: "not measured" }];
       }
-      // Product language: <N> host(s)  · e.g. "2 hosts"
-      const n = c.rollup.host_count;
-      return [{ kind: "text", value: `${n} host${n === 1 ? "" : "s"}` }];
+      return [{ kind: "text", value: String(c.hosts.length) }];
     },
   },
   {
     kind: "styled-element-anchor",
-    name: "tile-compute-1-label",
-    dummyContent: "Total capacity",
-    anchorAncestorText: "840 vCPU-h/day",
+    name: "compute-v2-clusters-byline",
+    // Owner Ruling F: fold akki-vm + akki-vm-ii into the compute surface.
+    // Byline is DERIVED from v.compute.hosts[].name (never hardcoded).
+    dummyContent: "on-premise \u00b7 RMS AI DC, Nairobi",
+    anchorAncestorText: "Clusters attached",
     renderFragments: (v) => {
       const c = v.compute;
-      if (!c || !c.hosts || c.hosts.length === 0) {
-        return [{ kind: "text", value: "Awaiting compute" }];
+      if (!c || !Array.isArray(c.hosts) || c.hosts.length === 0) {
+        return [{ kind: "text", value: "no hosts attached" }];
       }
-      // Roll up readiness states (short product-language sentence).
-      const readyCount = c.hosts.filter(h => h.readiness === "Ready").length;
-      const total = c.hosts.length;
-      if (readyCount === total) return [{ kind: "text", value: "Ready across estate" }];
-      if (readyCount === 0) return [{ kind: "text", value: c.hosts[0].readiness || "Standing by" }];
-      return [{ kind: "text", value: `${readyCount} of ${total} Ready` }];
+      const names = c.hosts.map((h) => h.name).join(" + ");
+      return [{ kind: "text", value: `on-premise \u00b7 ${names}` }];
     },
   },
   {
     kind: "styled-element-anchor",
-    name: "tile-compute-2-value",
-    dummyContent: "62%",
-    anchorAncestorText: "Allocated to Build",
+    name: "compute-v2-gpus-value",
+    dummyContent: "4",
+    anchorAncestorText: "GPUs",
     renderFragments: (v) => {
       const c = v.compute;
-      if (!c || !c.rollup || c.rollup.gpu_count_total === 0) {
-        return [{ kind: "text", value: "No GPUs yet" }];
+      if (!c || !c.rollup || typeof c.rollup.gpu_count_total !== "number") {
+        return [{ kind: "text", value: "not measured" }];
       }
-      // Product language: <count> <model> GPUs · e.g. "4 H200 GPUs"
-      const n = c.rollup.gpu_count_total;
-      // Derive model from first host (all hosts share model in our
-      // fact sheet shape; if heterogeneous, render "GPUs" alone).
-      const models = new Set((c.hosts || []).map(h => h.gpu_model));
-      const label = models.size === 1
-        ? Array.from(models)[0].replace(/^NVIDIA\s+/i, "")
-        : "";
-      return [{ kind: "text", value: label ? `${n} ${label} GPUs` : `${n} GPUs` }];
+      return [{ kind: "text", value: String(c.rollup.gpu_count_total) }];
     },
   },
   {
     kind: "styled-element-anchor",
-    name: "tile-compute-2-label",
-    dummyContent: "Allocated to Build",
-    anchorAncestorText: "62%",
+    name: "compute-v2-gpus-byline",
+    // Derived from gpu_model + gpu_memory_gb_per_gpu + host_count via
+    // renderFragments below.
+    dummyContent: "A100 80GB \u00b7 single node",
+    anchorAncestorText: "GPUs",
     renderFragments: (v) => {
       const c = v.compute;
-      if (!c || !c.rollup) return [{ kind: "text", value: "Awaiting readiness" }];
-      const hosts = c.hosts || [];
-      if (hosts.length === 0) return [{ kind: "text", value: "Across the estate" }];
-      // "across <N> host(s)" — product language.
-      return [{
-        kind: "text",
-        value: `across ${hosts.length} host${hosts.length === 1 ? "" : "s"}`,
-      }];
+      if (!c || !Array.isArray(c.hosts) || c.hosts.length === 0) {
+        return [{ kind: "text", value: "hardware not enumerated" }];
+      }
+      // Assume homogeneous fleet (verified for tonight's estate); if
+      // heterogeneous, degrade to "mixed hardware · N nodes".
+      const models = Array.from(new Set(c.hosts.map((h) => h.gpu_model)));
+      const memGb = c.hosts[0].gpu_memory_gb_per_gpu;
+      const hostCount = c.hosts.length;
+      if (models.length !== 1 || typeof memGb !== "number") {
+        return [{ kind: "text", value: `mixed hardware \u00b7 ${hostCount} nodes` }];
+      }
+      const modelShort = models[0].replace(/^NVIDIA\s+/i, "");
+      const memRounded = Math.round(memGb);
+      const nodeWord = hostCount === 1 ? "single node" : `${hostCount} nodes`;
+      return [{ kind: "text", value: `${modelShort} ${memRounded} GiB \u00b7 ${nodeWord}` }];
+    },
+  },
+
+  // HONEST-EMPTY (6) — estate has no mechanism to measure these yet;
+  // rules render "not measured" instead of echoing prototype numbers.
+
+  {
+    kind: "styled-element-anchor",
+    name: "compute-v2-capacity-value",
+    dummyContent: "2,880 hrs",
+    anchorAncestorText: "Capacity this month",
+    renderFragments: (v) => {
+      // No mechanism: monthly wall-clock capacity ledger doesn't exist yet.
+      return [{ kind: "text", value: "not measured" }];
     },
   },
   {
     kind: "styled-element-anchor",
-    name: "tile-compute-3-value",
-    dummyContent: "3 queued",
-    anchorAncestorText: "Queue depth",
+    name: "compute-v2-committed-value",
+    dummyContent: "1,240 hrs",
+    anchorAncestorText: "Committed to work",
     renderFragments: (v) => {
-      const c = v.compute;
-      if (!c || !c.rollup || !c.rollup.gpu_memory_gb_total) {
-        return [{ kind: "text", value: "Not yet measured" }];
-      }
-      // Product language: "<memory> GB HBM"
-      const mem = c.rollup.gpu_memory_gb_total;
-      return [{ kind: "text", value: `${mem} GB HBM` }];
+      // No mechanism: no allocation-hours ledger.
+      return [{ kind: "text", value: "not measured" }];
     },
   },
   {
     kind: "styled-element-anchor",
-    name: "tile-compute-3-label",
-    dummyContent: "Queue depth",
-    anchorAncestorText: "3 queued",
+    name: "compute-v2-free-value",
+    dummyContent: "1,640 hrs",
+    anchorAncestorText: "Free to allocate",
     renderFragments: (v) => {
-      const c = v.compute;
-      if (!c || !c.rollup || !c.rollup.gpu_count_total) {
-        return [{ kind: "text", value: "GPU memory not yet measured" }];
-      }
-      const n = c.rollup.gpu_count_total;
-      return [{
-        kind: "text",
-        value: `across ${n} GPU${n === 1 ? "" : "s"}`,
-      }];
+      // Derives from capacity - committed; both honest-empty.
+      return [{ kind: "text", value: "not measured" }];
+    },
+  },
+  {
+    kind: "styled-element-anchor",
+    name: "compute-v2-jobs-waiting-value",
+    dummyContent: "2",
+    anchorAncestorText: "Jobs waiting",
+    renderFragments: (v) => {
+      // No mechanism: no live queue-depth service on the seam.
+      return [{ kind: "text", value: "not measured" }];
+    },
+  },
+  {
+    kind: "styled-element-anchor",
+    name: "compute-v2-workflows-month-value",
+    dummyContent: "18",
+    anchorAncestorText: "Workflows this month",
+    renderFragments: (v) => {
+      // Training-run records exist (phase0/training_runner/runs/*.json)
+      // but "workflows" is a broader product concept that isn't ledgered
+      // separately yet; render honest-empty rather than conflate.
+      return [{ kind: "text", value: "not measured" }];
+    },
+  },
+  {
+    kind: "styled-element-anchor",
+    name: "compute-v2-utilisation-value",
+    dummyContent: "43%",
+    anchorAncestorText: "Utilisation",
+    renderFragments: (v) => {
+      // Would need capacity-and-committed both live; both honest-empty.
+      return [{ kind: "text", value: "not measured" }];
+    },
+  },
+
+  // LIVE-TAUTOLOGY (1) — governance guarantees this by construction.
+
+  {
+    kind: "styled-element-anchor",
+    name: "compute-v2-runs-receipted-value",
+    dummyContent: "100%",
+    anchorAncestorText: "Runs receipted",
+    renderFragments: (v) => {
+      // Every governed run (burn, txttrain, and future waves) crosses
+      // through services.training_runner.ssh_seam.execute_remote_command
+      // which persists a redacted receipt per call. Governance guarantees
+      // 100% by construction — honest to assert.
+      return [{ kind: "text", value: "100%" }];
     },
   },
 ];
@@ -395,6 +481,32 @@ function _findAncestorContainingText(node, label, root) {
   while (anc && anc !== root) {
     const tc = anc.textContent || "";
     if (tc.includes(label)) return anc;
+    anc = anc.parentNode;
+  }
+  return null;
+}
+
+/**
+ * _findAncestorWithSlot — Wave-G5c pair-anchor recovery.
+ *
+ * When two rules pair as (value, label) with each other's dummy as the
+ * anchor, the rule that fires FIRST destroys the OTHER's anchor text
+ * (replacing the paired element's textContent). On subsequent applyAll
+ * calls (MutationObserver re-fire), the second rule's anchor-text
+ * check fails and it stays un-substituted forever.
+ *
+ * This helper lets the SECOND rule accept "paired rule's slot marker
+ * exists in a shared ancestor" as valid anchor evidence — i.e. once
+ * the value has been substituted (data-substituted-slot=<paired>), the
+ * label rule can still bind because the pair is still structurally
+ * co-located.
+ */
+function _findAncestorWithSlot(node, slotName, root) {
+  let anc = node.parentNode;
+  while (anc && anc !== root) {
+    if (anc.querySelector && anc.querySelector(`[data-substituted-slot="${slotName}"]`)) {
+      return anc;
+    }
     anc = anc.parentNode;
   }
   return null;
@@ -433,8 +545,18 @@ function applySubstitutions(doc, vals) {
         while ((candidate = walker.nextNode())) {
           const tc = (candidate.textContent || "").trim();
           if (tc !== dummyTrim) continue;
-          if (rule.anchorAncestorText) {
-            if (!_findAncestorContainingText(candidate, rule.anchorAncestorText, doc.body)) continue;
+          if (rule.anchorAncestorText || rule.anchorAncestorSlot) {
+            // Pair-anchor recovery: accept EITHER raw-text ancestor
+            // OR paired-slot-marker ancestor (see _findAncestorWithSlot
+            // doc). This lets label rules bind after their value pair
+            // has already fired.
+            const textAnc = rule.anchorAncestorText
+              ? _findAncestorContainingText(candidate, rule.anchorAncestorText, doc.body)
+              : null;
+            const slotAnc = rule.anchorAncestorSlot
+              ? _findAncestorWithSlot(candidate, rule.anchorAncestorSlot, doc.body)
+              : null;
+            if (!textAnc && !slotAnc) continue;
           }
           matches.push(candidate);
         }
@@ -442,8 +564,19 @@ function applySubstitutions(doc, vals) {
         target = matches[matches.length - 1]; // deepest
       }
       if (!target) continue;
-      // Skip if already at desired.
-      if ((target.textContent || "").trim() === desiredFullText.trim()) continue;
+      // Skip if already at desired · but always ensure the marker is set
+      // so audits reflect the rule bound to the DOM. Without this, a
+      // rule whose live-value render happens to match the prototype's
+      // dummy character-for-character (e.g., tile-share-measured-label
+      // whose live render is literally "measured at last census") would
+      // never get its data-substituted-slot marker, leaving the audit
+      // showing the dummy as "still present" and the harness scoring RED.
+      if ((target.textContent || "").trim() === desiredFullText.trim()) {
+        if (!target.getAttribute(markerAttr)) {
+          target.setAttribute(markerAttr, markerVal);
+        }
+        continue;
+      }
       const newChildren = fragments.map((f) => {
         if (f.kind === "text") return doc.createTextNode(f.value);
         const span = doc.createElement("span");

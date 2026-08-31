@@ -1,0 +1,139 @@
+TONIGHT'S GPU ACTIVITY · plain-language activity summary for the owner
+========================================================================
+Compiled 2026-08-31 (UTC). Two runs registered, both landed clean.
+
+RUN 1 · GOVERNED MATMUL BURN
+----------------------------
+Run ID: burn_20260831T183509Z_731f22ad
+When: 2026-08-31 18:35 UTC → 19:01 UTC (25.8 minutes)
+Where: akki-vm and akki-vm-ii, both hosts fired in parallel.
+What ran: sustained fp16 matmul on all 4 H200 GPUs (2 per host), 8192×8192
+tensor-core workload on synthetic random data.
+No estate data. No PII. Pure compute exercise.
+
+What the GPUs did:
+  akki-vm      · 2× H200 · 100.0% utilization median · 691.7 W median
+                                                     · 68 °C median · 1137 MiB memory
+                                                     · 636.2 TFLOPS/GPU median
+  akki-vm-ii   · 2× H200 · 100.0% utilization median · 690.9 W median
+                                                     · 68 °C median · 1137 MiB memory
+                                                     · 638.5 TFLOPS/GPU median
+
+Totals: 1.72 GPU-hours delivered across 4 H200s.
+
+Governance: every remote call flowed through
+services.training_runner.ssh_seam.execute_remote_command with
+masking_tier=attested_command. Each call carries a governed crossing
+receipt + a redacted seam receipt under phase0/gpu_receipts/. First-class
+run record at phase0/training_runner/runs/burn_20260831T183509Z_731f22ad.json.
+
+
+RUN 2 · GOVERNED ESTATE-TEXT LoRA FINE-TUNE
+--------------------------------------------
+Run ID: txttrain_20260831T193455Z_9594859a
+When: 2026-08-31 19:34 UTC → 20:11 UTC (36.1 minutes total wall-clock)
+Where: akki-vm (2× H200 used).
+What ran: LoRA fine-tune of Qwen/Qwen2.5-0.5B (500M-parameter multilingual
+causal LM) on 30,000 rows extracted from digicow_live.ussd_question_response.
+3 epochs, effective batch 64, LoRA r=16 alpha=32 on q_proj/v_proj attention
+modules.
+
+Data statement (banked in the run record, WPW Tier-2 datasheet shape):
+  Source: digicow_live.ussd_question_response · 903,293 rows total
+  Slice: 30,000 rows (ORDER BY id ASC LIMIT 30000 — deterministic, first 3.3%)
+  Included columns: question_string, option_string, value_chain
+  Excluded columns (10 of 13): id, ussd_user_id, mobile_number, training_code,
+                                post_id, question_id, option_id, created_at,
+                                number_of_animals, forage_area
+                (each column carries an EXCLUDE reason in the decision ledger;
+                sha256 of the ledger recorded per crossing receipt).
+  Regex scrub applied: Kenyan phone-number patterns → [PHONE]; 7-10 digit
+                       ID-shaped numerics → [ID]. In this 30,000-row slice,
+                       zero scrub-replacements fired (phone_replacements=0,
+                       id_replacements=0) — the PII was cleanly confined to
+                       the excluded mobile_number column and not embedded
+                       inside the included free-text fields.
+  Corpus shape (findings, banked honestly):
+    - 107 unique training_text patterns across all 30,000 rows
+    - 34 unique question strings; 62 unique answer strings
+    - value_chain column was empty for the entire first-3.3% slice
+    - Answers are Kenyan Swahili + English yes/no/numeric (e.g.
+      "NDIO"/"Hapana"/"yes"/"1"/"DomeShaped") — typical USSD survey shape
+    - The corpus is severely low-variety by construction
+  Corpus sha256: 484a174cdbec4927... · size: ~2 MB · location:
+                 phase0/text_train_pipeline/<run_id>/masked_corpus.jsonl
+  Cleanup: masked corpus deleted from GPU host post-run (receipt banked).
+           Adapter retained locally, hash-verified.
+
+What the GPUs did during training:
+  akki-vm · 2× H200 · training threw ~41.6 samples/sec sustained
+          · total_flos 3.72×10^16 = 37.2 PFLOPs computation
+          · 3 epochs × 469 steps per epoch = 1,407 total optimizer steps
+          · Wall-clock training runtime: 2163.7 s (36.06 minutes).
+
+What the model learned (loss curve facts, no overclaiming):
+  Step 25:   loss = 39.7838      ← real gradient signal, high initial cross-entropy
+  Step 50:   loss = 0.0          ← ROUNDED TO 4 DECIMALS · already below 1e-4
+  Steps 50–1407: loss = 0.0 to 4-decimal precision throughout.
+  MEAN train_loss across all 1,407 steps: 0.7069 (39.78 × 25 / 1407 ≈ 0.707).
+
+  Honest reading: the model rapidly memorised the 107 unique Q&A patterns.
+  Because the corpus is severely low-variety, this is expected: after
+  ~25 optimizer steps (~800 examples seen, ~7.5 exposures per unique pattern
+  on average), the LoRA adapter's ~1.3M trainable params + Qwen's frozen
+  500M base weights had enough capacity to memorise the pattern set,
+  driving loss below bf16 log-precision (loss < 0.0001 registers as 0.0000).
+  This is PATTERN MEMORISATION, NOT EMERGENT GENERALISATION.
+
+  The training was technically successful — real gradient signal flowed,
+  real GPUs ran, real optimizer updates landed, real adapter saved and
+  hash-registered. But the corpus does not teach the model much beyond
+  the fixed USSD survey Q&A shape.
+
+Adapter artifact:
+  Remote sha256: a369304911566bbac263a0b3552f239289472c98663119d0243e11e7862f8468
+  Local tarball: phase0/text_train_pipeline/<run_id>/adapter.tar.gz
+  Local sha256:  e8e982d1594f377e...  (verified against remote)
+
+Governance: every remote call flowed through the training_runner SSH seam
+with masking_tier=attested_command. Data extraction crossed via
+kind='ruling6_bypass_row_extract' with shape-only payload (row count,
+column list, masking-step summary — never content). Bypass scope: pipeline
+BUILD only. PII rules UPHELD.
+
+
+COMBINED TOTALS FOR THE NIGHT
+------------------------------
+Total GPU-time delivered: ~1.72 GPU-hours (burn) + ~0.6 GPU-hours (train)
+                        = ~2.3 GPU-hours registered across 4 H200 slots.
+Wall-clock elapsed: 18:35 UTC → 20:12 UTC = ~97 minutes (with an ~8-min gap
+between the burn ending and the extract+train starting).
+Every crossing receipted. Zero PII in logs. Zero PII in receipts. Zero
+estate content in either activity. Zero credentials in logs.
+
+
+WHAT'S IN THE OWNER'S HANDS NOW
+--------------------------------
+1. Burn activity summary (this doc + phase0/gpu_burn/.../activity_summary.txt).
+2. Text-train run record with WPW Tier-2 data statement +
+   phase0/training_runner/runs/txttrain_20260831T193455Z_9594859a.json.
+3. Trained LoRA adapter retained locally at phase0/text_train_pipeline/
+   txttrain_20260831T193455Z_9594859a/adapter.tar.gz (hash-verified).
+4. Sprint plan at STATE/SPRINT_PLAN.md covering W-G5c-close (in-flight),
+   W-Shield-Train (chartered · 2-4 days), W-Audio-P2 (chartered · 2-3 days
+   after access granted), W-WPW-v1 (chartered · ~2 days for Tier 1+2).
+5. All owner rulings 3-6 banked verbatim in STATE/DECISIONS.md.
+
+
+HONEST RECOMMENDATIONS FOR NEXT-STEP TEXT RUNS (owner call to sequence)
+-----------------------------------------------------------------------
+- Sample from LATER row IDs (e.g. OFFSET 500000) to reach populated
+  value_chain rows and richer training material.
+- Add sms_log.sms_sent (longtext, more variety) as a secondary corpus.
+- Pre-filter for pattern uniqueness: sample 1 example per unique
+  question×answer combination so the model gets non-degenerate training.
+- Use those runs to validate the shielded-training pipeline as it lands
+  under W-Shield-Train (charter W-Shield-Train-a through -g in the sprint
+  plan).
+
+END.

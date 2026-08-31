@@ -1,0 +1,10 @@
+{
+  "at": "2026-08-31T19:40:35Z",
+  "host_slug": "akki-vm",
+  "purpose": "nvidia_smi_poll_287s",
+  "receipt_id": "gpurcp-bc0a487df20f",
+  "rc": 0,
+  "wallclock_seconds": 3.0001536759991723,
+  "stdout_redacted": "index, name, utilization.gpu [%], memory.used [MiB], memory.total [MiB], power.draw [W], temperature.gpu, clocks.current.graphics [MHz], clocks.current.memory [MHz]\n0, NVIDIA H200, 86 %, 64960 MiB, 143771 MiB, 246.43 W, 44, 1980 MHz, 3201 MHz\n1, NVIDIA H200, 77 %, 64910 MiB, 143771 MiB, 249.33 W, 45, 1980 MHz, 3201 MHz\n",
+  "stderr_redacted": ""
+}

@@ -1,0 +1,22 @@
+{
+  "step": 7,
+  "phase": "final_e2e_verify_both_hosts",
+  "at_utc": "20260828T162738Z",
+  "hosts": {
+    "akki-vm": {
+      "purpose": "final_verify_akki-vm",
+      "rc": 0,
+      "wall": 3.2817035159969237,
+      "stdout_first_200": "ubuntu\nakki-vm\nFri Aug 28 16:27:41 UTC 2026\n2\n",
+      "stderr_first_200": ""
+    },
+    "akki-vm-ii": {
+      "purpose": "final_verify_akki-vm-ii",
+      "rc": 0,
+      "wall": 2.9515837540020584,
+      "stdout_first_200": "ubuntu\nakki-vm-ii\nFri Aug 28 16:27:44 UTC 2026\n2\n",
+      "stderr_first_200": ""
+    }
+  },
+  "all_green": true
+}

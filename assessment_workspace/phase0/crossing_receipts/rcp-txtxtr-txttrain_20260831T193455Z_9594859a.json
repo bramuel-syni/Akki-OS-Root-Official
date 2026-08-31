@@ -1,0 +1,45 @@
+{
+  "actor": "tools.text_train_pipeline.extract_mask \u00b7 ussd_question_response",
+  "at_iso": "2026-08-31T19:35:02Z",
+  "authority_verbatim": "owner ruling 6 \u00b7 2026-08-31 \u00b7 estate-text training pivot (banked in DECISIONS.md)",
+  "endpoint_cluster_arn_prefix": "arn:aws:rds:eu-west-1:*:cluster:db-restore-603-cluster",
+  "kind": "ruling6_bypass_row_extract",
+  "masking_tier": "ruling6_bypass",
+  "payload_shape": {
+    "columns_excluded": [
+      "id",
+      "ussd_user_id",
+      "mobile_number",
+      "training_code",
+      "post_id",
+      "question_id",
+      "option_id",
+      "created_at",
+      "number_of_animals",
+      "forage_area"
+    ],
+    "columns_included": [
+      "option_string",
+      "question_string",
+      "value_chain"
+    ],
+    "database": "digicow_live",
+    "decision_ledger_sha256": "3aed8c41f87fb45934b734ee8c4ae90058f562c3f65975033516b8ee8b089397",
+    "output_jsonl_path": "/app/assessment_workspace/phase0/text_train_pipeline/txttrain_20260831T193455Z_9594859a/masked_corpus.jsonl",
+    "output_jsonl_sha256": "484a174cdbec4927fd21228b4fbca42a8f5265a431061fae114374df223fdcc8",
+    "regex_scrub_categories": [
+      "kenyan_phone_number",
+      "id_shaped_numeric_7_to_10_digits"
+    ],
+    "rows_extracted": 30000,
+    "slice_size_requested": 30000,
+    "sql_limit": 30000,
+    "sql_order_by": "id ASC (deterministic)",
+    "sql_where_clause_none": true,
+    "table": "ussd_question_response"
+  },
+  "receipt_id": "rcp-txtxtr-txttrain_20260831T193455Z_9594859a",
+  "residency_region": "eu-west-1",
+  "shielded_pipeline_status": "NOT_YET_BUILT \u00b7 charter W-Shield-Train in SPRINT_PLAN.md \u00b7 bypass applies to build gap only, PII rules upheld",
+  "verb": "SELECT"
+}

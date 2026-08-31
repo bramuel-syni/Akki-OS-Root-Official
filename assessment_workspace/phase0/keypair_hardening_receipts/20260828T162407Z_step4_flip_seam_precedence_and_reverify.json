@@ -1,0 +1,23 @@
+{
+  "step": 4,
+  "phase": "flip_seam_precedence_to_key_and_e2e_reverify",
+  "at_utc": "20260828T162407Z",
+  "hosts": {
+    "akki-vm": {
+      "auth_method_at_connect": "key",
+      "rc": 0,
+      "wall": 3.3588882900003227,
+      "stdout_first_120": "ubuntu\nakki-vm\n1\n",
+      "receipt_id": "gpurcp-665780f21b0d"
+    },
+    "akki-vm-ii": {
+      "auth_method_at_connect": "key",
+      "rc": 0,
+      "wall": 3.223781422995671,
+      "stdout_first_120": "ubuntu\nakki-vm-ii\n1\n",
+      "receipt_id": "gpurcp-b6dfa07d6d0f"
+    }
+  },
+  "all_green": true,
+  "env_backup": "/tmp/dotenv_snapshot_backup_available"
+}

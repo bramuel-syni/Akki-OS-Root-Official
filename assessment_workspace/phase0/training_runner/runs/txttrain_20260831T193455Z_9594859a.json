@@ -1,0 +1,86 @@
+{
+  "artifacts": {
+    "adapter_local_tarball": "/app/assessment_workspace/phase0/text_train_pipeline/txttrain_20260831T193455Z_9594859a/adapter.tar.gz",
+    "adapter_sha256_remote": "a369304911566bbac263a0b3552f239289472c98663119d0243e11e7862f8468",
+    "train_log_local": "/app/assessment_workspace/phase0/text_train_pipeline/txttrain_20260831T193455Z_9594859a/train.log"
+  },
+  "authority": "owner ruling 6 \u00b7 2026-08-31 \u00b7 estate-text training pivot (verbatim in DECISIONS.md)",
+  "authority_ruling_chain": [
+    "ruling 4 (bypass build)",
+    "ruling 6 (estate text \u00b7 ussd_question_response)"
+  ],
+  "data_statement": {
+    "columns_excluded": [
+      "id",
+      "ussd_user_id",
+      "mobile_number",
+      "training_code",
+      "post_id",
+      "question_id",
+      "option_id",
+      "created_at",
+      "number_of_animals",
+      "forage_area"
+    ],
+    "columns_included": [
+      "option_string",
+      "question_string",
+      "value_chain"
+    ],
+    "corpus_sha256": "484a174cdbec4927fd21228b4fbca42a8f5265a431061fae114374df223fdcc8",
+    "corpus_size_bytes": 5022696,
+    "decision_ledger_sha256": "3aed8c41f87fb45934b734ee8c4ae90058f562c3f65975033516b8ee8b089397",
+    "dropped_rows_empty_qa": 4648,
+    "masking_steps": [
+      "column-level exclusion at SQL layer (only INCLUDED cols read)",
+      "regex scrub for Kenyan phone-number patterns \u2192 [PHONE]",
+      "regex scrub for 7-10 digit ID-shaped numerics \u2192 [ID]",
+      "cautious-default: unclassified columns rejected via mask_row"
+    ],
+    "rows_extracted": 30000,
+    "scrub_replacements_applied": {
+      "id": 0,
+      "phone": 0
+    },
+    "shape": "WPW Tier-2 datasheet-level",
+    "slice_size_requested": 30000,
+    "source_database": "digicow_live",
+    "source_rows_total": 903293,
+    "source_table": "ussd_question_response"
+  },
+  "error": "",
+  "exit_code": 0,
+  "finished_at": "2026-08-31T20:12:25Z",
+  "governance": {
+    "bypass_scope": "pipeline BUILD only \u00b7 PII rules UPHELD (per owner ruling 6)",
+    "masking_tier_compute_side": "attested_command",
+    "row_extract_receipt_kind": "ruling6_bypass_row_extract",
+    "seam": "services.training_runner.ssh_seam.execute_remote_command",
+    "shielded_pipeline_status": "NOT_YET_BUILT \u00b7 charter W-Shield-Train in SPRINT_PLAN.md"
+  },
+  "host": "akki-vm",
+  "kind": "governed_estate_text_lora_train",
+  "receipts_count": 78,
+  "run_id": "txttrain_20260831T193455Z_9594859a",
+  "started_at": "2026-08-31T19:34:55Z",
+  "workload": {
+    "base_model": "Qwen/Qwen2.5-0.5B",
+    "batch_size_per_gpu": 16,
+    "effective_batch": 64,
+    "epochs": 3,
+    "final_metrics": {
+      "epoch": 3.0,
+      "total_flos": 3.721898999808e+16,
+      "train_loss": 0.7068903529228856,
+      "train_runtime": 2163.6969,
+      "train_samples_per_second": 41.595,
+      "train_steps_per_second": 0.65
+    },
+    "grad_accum": 2,
+    "learning_rate": 0.0002,
+    "max_seq_len": 192,
+    "n_gpu": 2,
+    "total_train_seconds": 2163.99,
+    "workload_type": "peft_lora_causal_lm"
+  }
+}

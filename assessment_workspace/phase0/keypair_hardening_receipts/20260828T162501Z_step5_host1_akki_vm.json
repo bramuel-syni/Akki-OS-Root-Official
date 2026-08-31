@@ -1,0 +1,68 @@
+{
+  "step": 5,
+  "phase": "disable_password_auth_host1",
+  "host": "akki-vm",
+  "sub_steps": [
+    {
+      "purpose": "5.1_snapshot_sshd_config_password_auth",
+      "rc": 0,
+      "wall": 3.4051963800011436,
+      "stdout_first_200": "NO_EXPLICIT_LINE\n",
+      "stderr_first_200": "",
+      "receipt_id": "gpurcp-a623cc51fc35"
+    },
+    {
+      "purpose": "5.2a_check_sshd_config_include_dir",
+      "rc": 0,
+      "wall": 2.939493947000301,
+      "stdout_first_200": "Include /etc/ssh/sshd_config.d/*.conf\n",
+      "stderr_first_200": "",
+      "receipt_id": "gpurcp-21c79b928d95"
+    },
+    {
+      "purpose": "5.2b_write_dropin_config",
+      "rc": 0,
+      "wall": 2.8915266529947985,
+      "stdout_first_200": "# Wave-G5c-KEYPAIR-HARDENING \u00b7 owner Ruling #4 \u00b7 2026-08-28T~16:22Z\nPasswordAuthentication no\nPermitRootLogin prohibit-password\nPubkeyAuthentication yes\n",
+      "stderr_first_200": "",
+      "receipt_id": "gpurcp-e5f947191a5e"
+    },
+    {
+      "purpose": "5.3_sshd_config_test",
+      "rc": 0,
+      "wall": 2.8759380530027556,
+      "stdout_first_200": "SSHD_CONFIG_OK\n",
+      "stderr_first_200": "",
+      "receipt_id": "gpurcp-a209e8ea308f"
+    },
+    {
+      "purpose": "5.4_reload_sshd",
+      "rc": 0,
+      "wall": 2.91488450000179,
+      "stdout_first_200": "SSHD_RELOAD_OK\n",
+      "stderr_first_200": "",
+      "receipt_id": "gpurcp-2cbce1e5cae6"
+    },
+    {
+      "purpose": "5.5_fresh_key_auth_after_reload",
+      "rc": 0,
+      "wall": 2.8860125220016926,
+      "stdout_first_200": "ubuntu\nakki-vm\nFri Aug 28 16:25:21 UTC 2026\n",
+      "stderr_first_200": "",
+      "receipt_id": "gpurcp-f716f7e3bc6b"
+    },
+    {
+      "purpose": "5.7_effective_sshd_config_snapshot",
+      "rc": 0,
+      "wall": 2.8776007080014097,
+      "stdout_first_200": "permitrootlogin without-password\npubkeyauthentication yes\npasswordauthentication yes\n",
+      "stderr_first_200": "",
+      "receipt_id": "gpurcp-2ad7fc7bc0da"
+    }
+  ],
+  "config_test_ok": true,
+  "reverify_ok_after_reload": true,
+  "password_auth_probe_after_hardening": "PASSWORD_STILL_WORKS_UNEXPECTED",
+  "all_green": false,
+  "at_utc": "20260828T162501Z"
+}

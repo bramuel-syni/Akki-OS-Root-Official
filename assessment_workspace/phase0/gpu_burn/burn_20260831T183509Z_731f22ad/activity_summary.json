@@ -1,0 +1,45 @@
+{
+  "run_id": "burn_20260831T183509Z_731f22ad",
+  "at": "2026-08-31T19:00:55Z",
+  "totals": {
+    "gpu_hours": 1.7164,
+    "wallclock_seconds_max": 1546.22,
+    "gpu_count_total": 4,
+    "host_count": 2
+  },
+  "per_host": [
+    {
+      "host_slug": "akki-vm",
+      "gpu_count": 2,
+      "torch_version": "2.11.0+cu128",
+      "cuda_version": "12.8",
+      "wallclock_seconds": 1543.3,
+      "gpu_hours": 0.8574,
+      "util_pct_median": 100.0,
+      "power_w_median": 691.745,
+      "temp_c_median": 68.0,
+      "memory_used_mib_median": 1137.0,
+      "tflops_per_gpu_median": 636.1949999999999,
+      "poll_count": 22,
+      "exit_code": 0,
+      "error": ""
+    },
+    {
+      "host_slug": "akki-vm-ii",
+      "gpu_count": 2,
+      "torch_version": "2.11.0+cu128",
+      "cuda_version": "12.8",
+      "wallclock_seconds": 1546.22,
+      "gpu_hours": 0.859,
+      "util_pct_median": 100.0,
+      "power_w_median": 690.9300000000001,
+      "temp_c_median": 68.0,
+      "memory_used_mib_median": 1137.0,
+      "tflops_per_gpu_median": 638.49,
+      "poll_count": 22,
+      "exit_code": 0,
+      "error": ""
+    }
+  ],
+  "plain_language": "GPU Activity \u2014 burn_20260831T183509Z_731f22ad\nWhen: 2026-08-31T18:35:09Z \u2192 2026-08-31T19:00:55Z UTC\nWall-clock: 25.8 minutes (both hosts in parallel).\nTotal GPU-hours delivered: 1.72 across 4 GPUs on 2 hosts.\nWorkload: sustained fp16 matmul (8192\u00d78192), no estate data \u2014 synthetic tensors only.\n\nPer host:\n  \u2022 akki-vm: 2 GPU(s), utilization median 100.0%, power draw median 691.745 W, temperature median 68.0 \u00b0C, memory used median 1137.0 MiB, compute throughput median 636.1949999999999 TFLOPS/GPU, exit_code=0\n  \u2022 akki-vm-ii: 2 GPU(s), utilization median 100.0%, power draw median 690.9300000000001 W, temperature median 68.0 \u00b0C, memory used median 1137.0 MiB, compute throughput median 638.49 TFLOPS/GPU, exit_code=0\n\nGovernance: every remote call went through the training_runner SSH seam (execute_remote_command), each with a governed crossing receipt written to phase0/crossing_receipts/ and a redacted seam receipt written to phase0/gpu_receipts/. Masking tier: attested_command. No PII, no estate data, on either host.\n\nShielded-data intent: NOT dropped. Chartered as a next-wave delivery per owner ruling. See DECISIONS.md entry banking the honest gap and the shielded-training pipeline scope."
+}

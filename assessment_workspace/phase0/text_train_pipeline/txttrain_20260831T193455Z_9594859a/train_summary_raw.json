@@ -1,0 +1,10 @@
+{
+  "at": "2026-08-31T20:12:06Z",
+  "host_slug": "akki-vm",
+  "purpose": "collect_summary",
+  "receipt_id": "gpurcp-32a160c8be6d",
+  "rc": 0,
+  "wallclock_seconds": 2.844257357002789,
+  "stdout_redacted": "{\n  \"adapter_path\": \"/tmp/akki_txttrain_txttrain_20260831T193455Z_9594859a/out/adapter\",\n  \"adapter_sha256\": \"a369304911566bbac263a0b3552f239289472c98663119d0243e11e7862f8468\",\n  \"at\": \"2026-08-31T20:11:53Z\",\n  \"base_model\": \"Qwen/Qwen2.5-0.5B\",\n  \"batch_size_per_gpu\": 16,\n  \"effective_batch\": 64,\n  \"epochs\": 3,\n  \"final_train_metrics\": {\n    \"epoch\": 3.0,\n    \"total_flos\": 3.721898999808e+16,\n    \"train_loss\": 0.7068903529228856,\n    \"train_runtime\": 2163.6969,\n    \"train_samples_per_second\": 41.595,\n    \"train_steps_per_second\": 0.65\n  },\n  \"grad_accum\": 2,\n  \"kind\": \"summary\",\n  \"n_examples\": 30000,\n  \"n_gpu\": 2,\n  \"total_train_s\": 2163.99\n}",
+  "stderr_redacted": ""
+}

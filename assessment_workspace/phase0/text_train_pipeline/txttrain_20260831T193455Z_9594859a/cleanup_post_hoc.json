@@ -1,0 +1,8 @@
+{
+  "at": "2026-08-31T20:13:28Z",
+  "purpose": "cleanup_post_hoc",
+  "receipt_id": "gpurcp-61357655bdd8",
+  "rc": 0,
+  "stdout_redacted": "93M\t/tmp/akki_txttrain_txttrain_20260831T193455Z_9594859a\ncleaned\n",
+  "note": "Re-cleanup after orchestrator step_8 rc=2; original rm did not fire due to shell exit code from trailing ls"
+}

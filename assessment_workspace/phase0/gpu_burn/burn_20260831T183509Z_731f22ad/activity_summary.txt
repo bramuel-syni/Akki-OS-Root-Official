@@ -1,0 +1,13 @@
+GPU Activity — burn_20260831T183509Z_731f22ad
+When: 2026-08-31T18:35:09Z → 2026-08-31T19:00:55Z UTC
+Wall-clock: 25.8 minutes (both hosts in parallel).
+Total GPU-hours delivered: 1.72 across 4 GPUs on 2 hosts.
+Workload: sustained fp16 matmul (8192×8192), no estate data — synthetic tensors only.
+
+Per host:
+  • akki-vm: 2 GPU(s), utilization median 100.0%, power draw median 691.745 W, temperature median 68.0 °C, memory used median 1137.0 MiB, compute throughput median 636.1949999999999 TFLOPS/GPU, exit_code=0
+  • akki-vm-ii: 2 GPU(s), utilization median 100.0%, power draw median 690.9300000000001 W, temperature median 68.0 °C, memory used median 1137.0 MiB, compute throughput median 638.49 TFLOPS/GPU, exit_code=0
+
+Governance: every remote call went through the training_runner SSH seam (execute_remote_command), each with a governed crossing receipt written to phase0/crossing_receipts/ and a redacted seam receipt written to phase0/gpu_receipts/. Masking tier: attested_command. No PII, no estate data, on either host.
+
+Shielded-data intent: NOT dropped. Chartered as a next-wave delivery per owner ruling. See DECISIONS.md entry banking the honest gap and the shielded-training pipeline scope.

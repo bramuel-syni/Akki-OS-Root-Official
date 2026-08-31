@@ -1,0 +1,1746 @@
+[
+  {
+    "burn_log_tail": "{\"at\":\"2026-08-31T18:58:55Z\",\"chunk_tflops\":636.61,\"elapsed_s\":1410.35,\"gpu\":0,\"iter_count\":816984,\"kind\":\"tick\"}\n{\"at\":\"2026-08-31T18:59:25Z\",\"chunk_tflops\":635.51,\"elapsed_s\":1440.28,\"gpu\":1,\"iter_count\":832312,\"kind\":\"tick\"}\n{\"at\":\"2026-08-31T18:59:25Z\",\"chunk_tflops\":636.68,\"elapsed_s\":1440.36,\"gpu\":0,\"iter_count\":834360,\"kind\":\"tick\"}\n{\"at\":\"2026-08-31T18:59:55Z\",\"chunk_tflops\":635.38,\"elapsed_s\":1470.29,\"gpu\":1,\"iter_count\":849656,\"kind\":\"tick\"}\n{\"at\":\"2026-08-31T18:59:55Z\",\"chunk_tflops\":636.64,\"elapsed_s\":1470.37,\"gpu\":0,\"iter_count\":851736,\"kind\":\"tick\"}\n{\"at\":\"2026-08-31T19:00:24Z\",\"dtype\":\"float16\",\"gpu\":0,\"iter_count\":868896,\"kind\":\"summary\",\"size\":8192,\"tflops_median\":636.85,\"tflops_samples_n\":49,\"wallclock_s\":1500.0}\n{\"at\":\"2026-08-31T19:00:24Z\",\"dtype\":\"float16\",\"gpu\":1,\"iter_count\":866840,\"kind\":\"summary\",\"size\":8192,\"tflops_median\":635.54,\"tflops_samples_n\":49,\"wallclock_s\":1500.01}\n{\"at\":\"2026-08-31T19:00:24Z\",\"kind\":\"done\",\"results\":[{\"at\":\"2026-08-31T19:00:24Z\",\"dtype\":\"float16\",\"gpu\":0,\"iter_count\":868896,\"kind\":\"summary\",\"size\":8192,\"tflops_median\":636.85,\"tflops_samples_n\":49,\"wallclock_s\":1500.0},{\"at\":\"2026-08-31T19:00:24Z\",\"dtype\":\"float16\",\"gpu\":1,\"iter_count\":866840,\"kind\":\"summary\",\"size\":8192,\"tflops_median\":635.54,\"tflops_samples_n\":49,\"wallclock_s\":1500.01}]}\n",
+    "burn_summary": {
+      "boot": {
+        "at": "2026-08-31T18:35:23Z",
+        "cuda_version": "12.8",
+        "dtype": "float16",
+        "duration_s": 1500,
+        "kind": "boot",
+        "n_gpu": 2,
+        "pid": 78222,
+        "size": 8192,
+        "torch_version": "2.11.0+cu128"
+      },
+      "per_gpu_summary": [
+        {
+          "at": "2026-08-31T19:00:24Z",
+          "dtype": "float16",
+          "gpu": 0,
+          "iter_count": 868896,
+          "kind": "summary",
+          "size": 8192,
+          "tflops_median": 636.85,
+          "tflops_samples_n": 49,
+          "wallclock_s": 1500.0
+        },
+        {
+          "at": "2026-08-31T19:00:24Z",
+          "dtype": "float16",
+          "gpu": 1,
+          "iter_count": 866840,
+          "kind": "summary",
+          "size": 8192,
+          "tflops_median": 635.54,
+          "tflops_samples_n": 49,
+          "wallclock_s": 1500.01
+        }
+      ]
+    },
+    "cuda_version": "12.8",
+    "error": "",
+    "exit_code": 0,
+    "finished_at": "2026-08-31T19:00:52Z",
+    "gpu_count": 2,
+    "host_slug": "akki-vm",
+    "nvidia_smi_after": {
+      "at": "2026-08-31T19:00:43Z",
+      "gpus": [
+        {
+          "clocks.current.graphics [MHz]": "345 MHz",
+          "clocks.current.memory [MHz]": "3201 MHz",
+          "index": "0",
+          "memory.total [MiB]": "143771 MiB",
+          "memory.used [MiB]": "0 MiB",
+          "name": "NVIDIA H200",
+          "power.draw [W]": "79.18 W",
+          "temperature.gpu": "42",
+          "utilization.gpu [%]": "0 %"
+        },
+        {
+          "clocks.current.graphics [MHz]": "345 MHz",
+          "clocks.current.memory [MHz]": "3201 MHz",
+          "index": "1",
+          "memory.total [MiB]": "143771 MiB",
+          "memory.used [MiB]": "0 MiB",
+          "name": "NVIDIA H200",
+          "power.draw [W]": "78.65 W",
+          "temperature.gpu": "44",
+          "utilization.gpu [%]": "0 %"
+        }
+      ],
+      "host_slug": "akki-vm",
+      "label": "after",
+      "rc": 0,
+      "receipt_id": "gpurcp-eb3a94a62f7a"
+    },
+    "nvidia_smi_before": {
+      "at": "2026-08-31T18:35:12Z",
+      "gpus": [
+        {
+          "clocks.current.graphics [MHz]": "345 MHz",
+          "clocks.current.memory [MHz]": "3201 MHz",
+          "index": "0",
+          "memory.total [MiB]": "143771 MiB",
+          "memory.used [MiB]": "0 MiB",
+          "name": "NVIDIA H200",
+          "power.draw [W]": "77.25 W",
+          "temperature.gpu": "35",
+          "utilization.gpu [%]": "0 %"
+        },
+        {
+          "clocks.current.graphics [MHz]": "345 MHz",
+          "clocks.current.memory [MHz]": "3201 MHz",
+          "index": "1",
+          "memory.total [MiB]": "143771 MiB",
+          "memory.used [MiB]": "0 MiB",
+          "name": "NVIDIA H200",
+          "power.draw [W]": "76.97 W",
+          "temperature.gpu": "37",
+          "utilization.gpu [%]": "0 %"
+        }
+      ],
+      "host_slug": "akki-vm",
+      "label": "before",
+      "rc": 0,
+      "receipt_id": "gpurcp-65962eb7a117"
+    },
+    "nvidia_smi_during_polls": [
+      {
+        "at": "2026-08-31T18:36:27Z",
+        "gpus": [
+          {
+            "clocks.current.graphics [MHz]": "1395 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "0",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "692.21 W",
+            "temperature.gpu": "67",
+            "utilization.gpu [%]": "100 %"
+          },
+          {
+            "clocks.current.graphics [MHz]": "1410 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "1",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "691.78 W",
+            "temperature.gpu": "69",
+            "utilization.gpu [%]": "100 %"
+          }
+        ],
+        "host_slug": "akki-vm",
+        "label": "poll_75s",
+        "rc": 0,
+        "receipt_id": "gpurcp-88d6d5389a1e"
+      },
+      {
+        "at": "2026-08-31T18:37:36Z",
+        "gpus": [
+          {
+            "clocks.current.graphics [MHz]": "1395 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "0",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "691.78 W",
+            "temperature.gpu": "68",
+            "utilization.gpu [%]": "100 %"
+          },
+          {
+            "clocks.current.graphics [MHz]": "1410 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "1",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "690.93 W",
+            "temperature.gpu": "70",
+            "utilization.gpu [%]": "100 %"
+          }
+        ],
+        "host_slug": "akki-vm",
+        "label": "poll_144s",
+        "rc": 0,
+        "receipt_id": "gpurcp-7c27c6e9022d"
+      },
+      {
+        "at": "2026-08-31T18:38:45Z",
+        "gpus": [
+          {
+            "clocks.current.graphics [MHz]": "1395 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "0",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "691.56 W",
+            "temperature.gpu": "68",
+            "utilization.gpu [%]": "100 %"
+          },
+          {
+            "clocks.current.graphics [MHz]": "1410 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "1",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "691.15 W",
+            "temperature.gpu": "70",
+            "utilization.gpu [%]": "100 %"
+          }
+        ],
+        "host_slug": "akki-vm",
+        "label": "poll_213s",
+        "rc": 0,
+        "receipt_id": "gpurcp-db47671db321"
+      },
+      {
+        "at": "2026-08-31T18:39:54Z",
+        "gpus": [
+          {
+            "clocks.current.graphics [MHz]": "1410 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "0",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "691.47 W",
+            "temperature.gpu": "67",
+            "utilization.gpu [%]": "100 %"
+          },
+          {
+            "clocks.current.graphics [MHz]": "1410 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "1",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "692.82 W",
+            "temperature.gpu": "69",
+            "utilization.gpu [%]": "100 %"
+          }
+        ],
+        "host_slug": "akki-vm",
+        "label": "poll_282s",
+        "rc": 0,
+        "receipt_id": "gpurcp-0ba23b598428"
+      },
+      {
+        "at": "2026-08-31T18:41:03Z",
+        "gpus": [
+          {
+            "clocks.current.graphics [MHz]": "1395 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "0",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "692.34 W",
+            "temperature.gpu": "68",
+            "utilization.gpu [%]": "100 %"
+          },
+          {
+            "clocks.current.graphics [MHz]": "1410 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "1",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "693.87 W",
+            "temperature.gpu": "68",
+            "utilization.gpu [%]": "100 %"
+          }
+        ],
+        "host_slug": "akki-vm",
+        "label": "poll_350s",
+        "rc": 0,
+        "receipt_id": "gpurcp-8340d0cb83b6"
+      },
+      {
+        "at": "2026-08-31T18:42:11Z",
+        "gpus": [
+          {
+            "clocks.current.graphics [MHz]": "1425 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "0",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "691.03 W",
+            "temperature.gpu": "67",
+            "utilization.gpu [%]": "100 %"
+          },
+          {
+            "clocks.current.graphics [MHz]": "1410 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "1",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "690.92 W",
+            "temperature.gpu": "68",
+            "utilization.gpu [%]": "100 %"
+          }
+        ],
+        "host_slug": "akki-vm",
+        "label": "poll_419s",
+        "rc": 0,
+        "receipt_id": "gpurcp-0aa59bc68c8e"
+      },
+      {
+        "at": "2026-08-31T18:43:20Z",
+        "gpus": [
+          {
+            "clocks.current.graphics [MHz]": "1410 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "0",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "692.09 W",
+            "temperature.gpu": "68",
+            "utilization.gpu [%]": "100 %"
+          },
+          {
+            "clocks.current.graphics [MHz]": "1410 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "1",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "690.61 W",
+            "temperature.gpu": "68",
+            "utilization.gpu [%]": "100 %"
+          }
+        ],
+        "host_slug": "akki-vm",
+        "label": "poll_488s",
+        "rc": 0,
+        "receipt_id": "gpurcp-190f0dd059ff"
+      },
+      {
+        "at": "2026-08-31T18:44:29Z",
+        "gpus": [
+          {
+            "clocks.current.graphics [MHz]": "1395 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "0",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "694.25 W",
+            "temperature.gpu": "68",
+            "utilization.gpu [%]": "100 %"
+          },
+          {
+            "clocks.current.graphics [MHz]": "1410 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "1",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "690.75 W",
+            "temperature.gpu": "68",
+            "utilization.gpu [%]": "100 %"
+          }
+        ],
+        "host_slug": "akki-vm",
+        "label": "poll_557s",
+        "rc": 0,
+        "receipt_id": "gpurcp-a17ca922adea"
+      },
+      {
+        "at": "2026-08-31T18:45:38Z",
+        "gpus": [
+          {
+            "clocks.current.graphics [MHz]": "1395 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "0",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "693.12 W",
+            "temperature.gpu": "68",
+            "utilization.gpu [%]": "100 %"
+          },
+          {
+            "clocks.current.graphics [MHz]": "1410 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "1",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "689.88 W",
+            "temperature.gpu": "68",
+            "utilization.gpu [%]": "100 %"
+          }
+        ],
+        "host_slug": "akki-vm",
+        "label": "poll_626s",
+        "rc": 0,
+        "receipt_id": "gpurcp-03791f72c32d"
+      },
+      {
+        "at": "2026-08-31T18:46:46Z",
+        "gpus": [
+          {
+            "clocks.current.graphics [MHz]": "1395 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "0",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "692.07 W",
+            "temperature.gpu": "68",
+            "utilization.gpu [%]": "100 %"
+          },
+          {
+            "clocks.current.graphics [MHz]": "1410 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "1",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "690.99 W",
+            "temperature.gpu": "68",
+            "utilization.gpu [%]": "100 %"
+          }
+        ],
+        "host_slug": "akki-vm",
+        "label": "poll_694s",
+        "rc": 0,
+        "receipt_id": "gpurcp-14392887c37f"
+      },
+      {
+        "at": "2026-08-31T18:47:55Z",
+        "gpus": [
+          {
+            "clocks.current.graphics [MHz]": "1410 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "0",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "691.07 W",
+            "temperature.gpu": "68",
+            "utilization.gpu [%]": "100 %"
+          },
+          {
+            "clocks.current.graphics [MHz]": "1410 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "1",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "691.21 W",
+            "temperature.gpu": "68",
+            "utilization.gpu [%]": "100 %"
+          }
+        ],
+        "host_slug": "akki-vm",
+        "label": "poll_763s",
+        "rc": 0,
+        "receipt_id": "gpurcp-1eaf35051a3b"
+      },
+      {
+        "at": "2026-08-31T18:49:04Z",
+        "gpus": [
+          {
+            "clocks.current.graphics [MHz]": "1395 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "0",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "692.95 W",
+            "temperature.gpu": "68",
+            "utilization.gpu [%]": "100 %"
+          },
+          {
+            "clocks.current.graphics [MHz]": "1410 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "1",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "689.64 W",
+            "temperature.gpu": "68",
+            "utilization.gpu [%]": "100 %"
+          }
+        ],
+        "host_slug": "akki-vm",
+        "label": "poll_832s",
+        "rc": 0,
+        "receipt_id": "gpurcp-16f1fa5c46d0"
+      },
+      {
+        "at": "2026-08-31T18:50:13Z",
+        "gpus": [
+          {
+            "clocks.current.graphics [MHz]": "1395 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "0",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "691.20 W",
+            "temperature.gpu": "68",
+            "utilization.gpu [%]": "100 %"
+          },
+          {
+            "clocks.current.graphics [MHz]": "1410 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "1",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "691.35 W",
+            "temperature.gpu": "68",
+            "utilization.gpu [%]": "100 %"
+          }
+        ],
+        "host_slug": "akki-vm",
+        "label": "poll_900s",
+        "rc": 0,
+        "receipt_id": "gpurcp-57a77f2e2fe7"
+      },
+      {
+        "at": "2026-08-31T18:51:21Z",
+        "gpus": [
+          {
+            "clocks.current.graphics [MHz]": "1395 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "0",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "693.80 W",
+            "temperature.gpu": "68",
+            "utilization.gpu [%]": "100 %"
+          },
+          {
+            "clocks.current.graphics [MHz]": "1410 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "1",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "689.41 W",
+            "temperature.gpu": "68",
+            "utilization.gpu [%]": "100 %"
+          }
+        ],
+        "host_slug": "akki-vm",
+        "label": "poll_969s",
+        "rc": 0,
+        "receipt_id": "gpurcp-ee3d5e684543"
+      },
+      {
+        "at": "2026-08-31T18:52:30Z",
+        "gpus": [
+          {
+            "clocks.current.graphics [MHz]": "1410 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "0",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "694.71 W",
+            "temperature.gpu": "68",
+            "utilization.gpu [%]": "100 %"
+          },
+          {
+            "clocks.current.graphics [MHz]": "1410 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "1",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "691.24 W",
+            "temperature.gpu": "68",
+            "utilization.gpu [%]": "100 %"
+          }
+        ],
+        "host_slug": "akki-vm",
+        "label": "poll_1038s",
+        "rc": 0,
+        "receipt_id": "gpurcp-166d7151ab44"
+      },
+      {
+        "at": "2026-08-31T18:53:39Z",
+        "gpus": [
+          {
+            "clocks.current.graphics [MHz]": "1395 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "0",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "693.24 W",
+            "temperature.gpu": "68",
+            "utilization.gpu [%]": "100 %"
+          },
+          {
+            "clocks.current.graphics [MHz]": "1425 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "1",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "692.06 W",
+            "temperature.gpu": "68",
+            "utilization.gpu [%]": "100 %"
+          }
+        ],
+        "host_slug": "akki-vm",
+        "label": "poll_1107s",
+        "rc": 0,
+        "receipt_id": "gpurcp-3934926b1249"
+      },
+      {
+        "at": "2026-08-31T18:54:48Z",
+        "gpus": [
+          {
+            "clocks.current.graphics [MHz]": "1395 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "0",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "693.43 W",
+            "temperature.gpu": "68",
+            "utilization.gpu [%]": "100 %"
+          },
+          {
+            "clocks.current.graphics [MHz]": "1410 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "1",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "691.71 W",
+            "temperature.gpu": "68",
+            "utilization.gpu [%]": "100 %"
+          }
+        ],
+        "host_slug": "akki-vm",
+        "label": "poll_1175s",
+        "rc": 0,
+        "receipt_id": "gpurcp-b3d90689faab"
+      },
+      {
+        "at": "2026-08-31T18:55:56Z",
+        "gpus": [
+          {
+            "clocks.current.graphics [MHz]": "1395 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "0",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "690.99 W",
+            "temperature.gpu": "68",
+            "utilization.gpu [%]": "100 %"
+          },
+          {
+            "clocks.current.graphics [MHz]": "1410 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "1",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "691.60 W",
+            "temperature.gpu": "68",
+            "utilization.gpu [%]": "100 %"
+          }
+        ],
+        "host_slug": "akki-vm",
+        "label": "poll_1244s",
+        "rc": 0,
+        "receipt_id": "gpurcp-f1294c2713dc"
+      },
+      {
+        "at": "2026-08-31T18:57:05Z",
+        "gpus": [
+          {
+            "clocks.current.graphics [MHz]": "1395 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "0",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "692.27 W",
+            "temperature.gpu": "67",
+            "utilization.gpu [%]": "100 %"
+          },
+          {
+            "clocks.current.graphics [MHz]": "1410 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "1",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "693.14 W",
+            "temperature.gpu": "68",
+            "utilization.gpu [%]": "100 %"
+          }
+        ],
+        "host_slug": "akki-vm",
+        "label": "poll_1313s",
+        "rc": 0,
+        "receipt_id": "gpurcp-2a12be71db05"
+      },
+      {
+        "at": "2026-08-31T18:58:14Z",
+        "gpus": [
+          {
+            "clocks.current.graphics [MHz]": "1410 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "0",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "693.69 W",
+            "temperature.gpu": "68",
+            "utilization.gpu [%]": "100 %"
+          },
+          {
+            "clocks.current.graphics [MHz]": "1410 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "1",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "692.30 W",
+            "temperature.gpu": "68",
+            "utilization.gpu [%]": "100 %"
+          }
+        ],
+        "host_slug": "akki-vm",
+        "label": "poll_1382s",
+        "rc": 0,
+        "receipt_id": "gpurcp-b2f091d5af2e"
+      },
+      {
+        "at": "2026-08-31T18:59:23Z",
+        "gpus": [
+          {
+            "clocks.current.graphics [MHz]": "1410 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "0",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "692.21 W",
+            "temperature.gpu": "68",
+            "utilization.gpu [%]": "100 %"
+          },
+          {
+            "clocks.current.graphics [MHz]": "1425 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "1",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "692.34 W",
+            "temperature.gpu": "68",
+            "utilization.gpu [%]": "100 %"
+          }
+        ],
+        "host_slug": "akki-vm",
+        "label": "poll_1451s",
+        "rc": 0,
+        "receipt_id": "gpurcp-ea00afbdf947"
+      },
+      {
+        "at": "2026-08-31T19:00:32Z",
+        "gpus": [
+          {
+            "clocks.current.graphics [MHz]": "345 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "0",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "0 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "80.89 W",
+            "temperature.gpu": "47",
+            "utilization.gpu [%]": "0 %"
+          },
+          {
+            "clocks.current.graphics [MHz]": "345 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "1",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "0 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "80.19 W",
+            "temperature.gpu": "49",
+            "utilization.gpu [%]": "0 %"
+          }
+        ],
+        "host_slug": "akki-vm",
+        "label": "poll_1519s",
+        "rc": 0,
+        "receipt_id": "gpurcp-cdd7dffe4489"
+      }
+    ],
+    "receipts": [
+      "gpurcp-65962eb7a117",
+      "gpurcp-6970d9045d57",
+      "gpurcp-dcdc5808e25a",
+      "gpurcp-ce4ae0f0a5c5",
+      "gpurcp-88d6d5389a1e",
+      "gpurcp-ce219fe3a933",
+      "gpurcp-ef9f969200f8",
+      "gpurcp-7c27c6e9022d",
+      "gpurcp-946bf55256e3",
+      "gpurcp-dae111605705",
+      "gpurcp-db47671db321",
+      "gpurcp-b1d8b5d57906",
+      "gpurcp-ac88d7c3502a",
+      "gpurcp-0ba23b598428",
+      "gpurcp-654593ba9a8e",
+      "gpurcp-4359f0320216",
+      "gpurcp-8340d0cb83b6",
+      "gpurcp-a0dfa397c822",
+      "gpurcp-154302e8d05b",
+      "gpurcp-0aa59bc68c8e",
+      "gpurcp-1ac09ac40c45",
+      "gpurcp-7b1d79313181",
+      "gpurcp-190f0dd059ff",
+      "gpurcp-2978a3f71e57",
+      "gpurcp-132518ae2093",
+      "gpurcp-a17ca922adea",
+      "gpurcp-06eeb9f9df9e",
+      "gpurcp-0caa3f50b7c1",
+      "gpurcp-03791f72c32d",
+      "gpurcp-4c9cc8b1ebb3",
+      "gpurcp-2c1e23f67131",
+      "gpurcp-14392887c37f",
+      "gpurcp-ebc2330d719a",
+      "gpurcp-8c8bf3f517ba",
+      "gpurcp-1eaf35051a3b",
+      "gpurcp-837d93e78e4a",
+      "gpurcp-b1a69ccd2af7",
+      "gpurcp-16f1fa5c46d0",
+      "gpurcp-c2adcf80089a",
+      "gpurcp-a7cc22264e0e",
+      "gpurcp-57a77f2e2fe7",
+      "gpurcp-ef238116bb86",
+      "gpurcp-095e4aa511c0",
+      "gpurcp-ee3d5e684543",
+      "gpurcp-41c24352cf06",
+      "gpurcp-301ef376c952",
+      "gpurcp-166d7151ab44",
+      "gpurcp-192892fc4a8d",
+      "gpurcp-e61ceaf45a4a",
+      "gpurcp-3934926b1249",
+      "gpurcp-71095bf00132",
+      "gpurcp-e4019901f149",
+      "gpurcp-b3d90689faab",
+      "gpurcp-cc3b07917056",
+      "gpurcp-ff9b51168151",
+      "gpurcp-f1294c2713dc",
+      "gpurcp-df4b463d210e",
+      "gpurcp-078ea91ec558",
+      "gpurcp-2a12be71db05",
+      "gpurcp-959a29d9d954",
+      "gpurcp-127173ace7fb",
+      "gpurcp-b2f091d5af2e",
+      "gpurcp-19d597d86b0e",
+      "gpurcp-7ef0e5f9640b",
+      "gpurcp-ea00afbdf947",
+      "gpurcp-d8482bb5ce52",
+      "gpurcp-81abb6c55db7",
+      "gpurcp-cdd7dffe4489",
+      "gpurcp-602602430aef",
+      "gpurcp-1cfee9c7c1a2",
+      "gpurcp-eb3a94a62f7a",
+      "gpurcp-1c9854646a0a",
+      "gpurcp-e50246e95fd4",
+      "gpurcp-19fa7af32476"
+    ],
+    "started_at": "2026-08-31T18:35:09Z",
+    "torch_ok": true,
+    "torch_version": "2.11.0+cu128",
+    "wallclock_seconds": 1543.3
+  },
+  {
+    "burn_log_tail": "{\"at\":\"2026-08-31T18:58:55Z\",\"chunk_tflops\":632.81,\"elapsed_s\":1410.35,\"gpu\":1,\"iter_count\":812800,\"kind\":\"tick\"}\n{\"at\":\"2026-08-31T18:59:25Z\",\"chunk_tflops\":643.92,\"elapsed_s\":1440.33,\"gpu\":0,\"iter_count\":843272,\"kind\":\"tick\"}\n{\"at\":\"2026-08-31T18:59:25Z\",\"chunk_tflops\":632.57,\"elapsed_s\":1440.36,\"gpu\":1,\"iter_count\":830064,\"kind\":\"tick\"}\n{\"at\":\"2026-08-31T18:59:55Z\",\"chunk_tflops\":643.66,\"elapsed_s\":1470.34,\"gpu\":0,\"iter_count\":860840,\"kind\":\"tick\"}\n{\"at\":\"2026-08-31T18:59:55Z\",\"chunk_tflops\":632.98,\"elapsed_s\":1470.36,\"gpu\":1,\"iter_count\":847336,\"kind\":\"tick\"}\n{\"at\":\"2026-08-31T19:00:24Z\",\"dtype\":\"float16\",\"gpu\":1,\"iter_count\":864408,\"kind\":\"summary\",\"size\":8192,\"tflops_median\":633.13,\"tflops_samples_n\":49,\"wallclock_s\":1500.01}\n{\"at\":\"2026-08-31T19:00:24Z\",\"dtype\":\"float16\",\"gpu\":0,\"iter_count\":878216,\"kind\":\"summary\",\"size\":8192,\"tflops_median\":643.85,\"tflops_samples_n\":49,\"wallclock_s\":1500.01}\n{\"at\":\"2026-08-31T19:00:24Z\",\"kind\":\"done\",\"results\":[{\"at\":\"2026-08-31T19:00:24Z\",\"dtype\":\"float16\",\"gpu\":0,\"iter_count\":878216,\"kind\":\"summary\",\"size\":8192,\"tflops_median\":643.85,\"tflops_samples_n\":49,\"wallclock_s\":1500.01},{\"at\":\"2026-08-31T19:00:24Z\",\"dtype\":\"float16\",\"gpu\":1,\"iter_count\":864408,\"kind\":\"summary\",\"size\":8192,\"tflops_median\":633.13,\"tflops_samples_n\":49,\"wallclock_s\":1500.01}]}\n",
+    "burn_summary": {
+      "boot": {
+        "at": "2026-08-31T18:35:24Z",
+        "cuda_version": "12.8",
+        "dtype": "float16",
+        "duration_s": 1500,
+        "kind": "boot",
+        "n_gpu": 2,
+        "pid": 82827,
+        "size": 8192,
+        "torch_version": "2.11.0+cu128"
+      },
+      "per_gpu_summary": [
+        {
+          "at": "2026-08-31T19:00:24Z",
+          "dtype": "float16",
+          "gpu": 1,
+          "iter_count": 864408,
+          "kind": "summary",
+          "size": 8192,
+          "tflops_median": 633.13,
+          "tflops_samples_n": 49,
+          "wallclock_s": 1500.01
+        },
+        {
+          "at": "2026-08-31T19:00:24Z",
+          "dtype": "float16",
+          "gpu": 0,
+          "iter_count": 878216,
+          "kind": "summary",
+          "size": 8192,
+          "tflops_median": 643.85,
+          "tflops_samples_n": 49,
+          "wallclock_s": 1500.01
+        }
+      ]
+    },
+    "cuda_version": "12.8",
+    "error": "",
+    "exit_code": 0,
+    "finished_at": "2026-08-31T19:00:55Z",
+    "gpu_count": 2,
+    "host_slug": "akki-vm-ii",
+    "nvidia_smi_after": {
+      "at": "2026-08-31T19:00:46Z",
+      "gpus": [
+        {
+          "clocks.current.graphics [MHz]": "345 MHz",
+          "clocks.current.memory [MHz]": "3201 MHz",
+          "index": "0",
+          "memory.total [MiB]": "143771 MiB",
+          "memory.used [MiB]": "0 MiB",
+          "name": "NVIDIA H200",
+          "power.draw [W]": "78.68 W",
+          "temperature.gpu": "39",
+          "utilization.gpu [%]": "0 %"
+        },
+        {
+          "clocks.current.graphics [MHz]": "345 MHz",
+          "clocks.current.memory [MHz]": "3201 MHz",
+          "index": "1",
+          "memory.total [MiB]": "143771 MiB",
+          "memory.used [MiB]": "0 MiB",
+          "name": "NVIDIA H200",
+          "power.draw [W]": "86.22 W",
+          "temperature.gpu": "51",
+          "utilization.gpu [%]": "0 %"
+        }
+      ],
+      "host_slug": "akki-vm-ii",
+      "label": "after",
+      "rc": 0,
+      "receipt_id": "gpurcp-6916bc6646bc"
+    },
+    "nvidia_smi_before": {
+      "at": "2026-08-31T18:35:12Z",
+      "gpus": [
+        {
+          "clocks.current.graphics [MHz]": "345 MHz",
+          "clocks.current.memory [MHz]": "3201 MHz",
+          "index": "0",
+          "memory.total [MiB]": "143771 MiB",
+          "memory.used [MiB]": "0 MiB",
+          "name": "NVIDIA H200",
+          "power.draw [W]": "76.78 W",
+          "temperature.gpu": "31",
+          "utilization.gpu [%]": "0 %"
+        },
+        {
+          "clocks.current.graphics [MHz]": "345 MHz",
+          "clocks.current.memory [MHz]": "3201 MHz",
+          "index": "1",
+          "memory.total [MiB]": "143771 MiB",
+          "memory.used [MiB]": "0 MiB",
+          "name": "NVIDIA H200",
+          "power.draw [W]": "81.02 W",
+          "temperature.gpu": "37",
+          "utilization.gpu [%]": "0 %"
+        }
+      ],
+      "host_slug": "akki-vm-ii",
+      "label": "before",
+      "rc": 0,
+      "receipt_id": "gpurcp-3af16c2e3dc2"
+    },
+    "nvidia_smi_during_polls": [
+      {
+        "at": "2026-08-31T18:36:28Z",
+        "gpus": [
+          {
+            "clocks.current.graphics [MHz]": "1425 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "0",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "689.45 W",
+            "temperature.gpu": "67",
+            "utilization.gpu [%]": "100 %"
+          },
+          {
+            "clocks.current.graphics [MHz]": "1395 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "1",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "693.95 W",
+            "temperature.gpu": "70",
+            "utilization.gpu [%]": "100 %"
+          }
+        ],
+        "host_slug": "akki-vm-ii",
+        "label": "poll_75s",
+        "rc": 0,
+        "receipt_id": "gpurcp-99df6db7a963"
+      },
+      {
+        "at": "2026-08-31T18:37:37Z",
+        "gpus": [
+          {
+            "clocks.current.graphics [MHz]": "1410 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "0",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "689.44 W",
+            "temperature.gpu": "67",
+            "utilization.gpu [%]": "100 %"
+          },
+          {
+            "clocks.current.graphics [MHz]": "1395 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "1",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "692.38 W",
+            "temperature.gpu": "71",
+            "utilization.gpu [%]": "100 %"
+          }
+        ],
+        "host_slug": "akki-vm-ii",
+        "label": "poll_144s",
+        "rc": 0,
+        "receipt_id": "gpurcp-1ba9d9e21953"
+      },
+      {
+        "at": "2026-08-31T18:38:45Z",
+        "gpus": [
+          {
+            "clocks.current.graphics [MHz]": "1425 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "0",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "689.17 W",
+            "temperature.gpu": "68",
+            "utilization.gpu [%]": "100 %"
+          },
+          {
+            "clocks.current.graphics [MHz]": "1410 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "1",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "692.80 W",
+            "temperature.gpu": "70",
+            "utilization.gpu [%]": "100 %"
+          }
+        ],
+        "host_slug": "akki-vm-ii",
+        "label": "poll_213s",
+        "rc": 0,
+        "receipt_id": "gpurcp-e4fa5fbb5a5b"
+      },
+      {
+        "at": "2026-08-31T18:39:54Z",
+        "gpus": [
+          {
+            "clocks.current.graphics [MHz]": "1410 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "0",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "690.04 W",
+            "temperature.gpu": "68",
+            "utilization.gpu [%]": "100 %"
+          },
+          {
+            "clocks.current.graphics [MHz]": "1395 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "1",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "691.04 W",
+            "temperature.gpu": "71",
+            "utilization.gpu [%]": "100 %"
+          }
+        ],
+        "host_slug": "akki-vm-ii",
+        "label": "poll_282s",
+        "rc": 0,
+        "receipt_id": "gpurcp-95b535cf0109"
+      },
+      {
+        "at": "2026-08-31T18:41:03Z",
+        "gpus": [
+          {
+            "clocks.current.graphics [MHz]": "1410 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "0",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "690.16 W",
+            "temperature.gpu": "68",
+            "utilization.gpu [%]": "100 %"
+          },
+          {
+            "clocks.current.graphics [MHz]": "1395 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "1",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "692.47 W",
+            "temperature.gpu": "71",
+            "utilization.gpu [%]": "100 %"
+          }
+        ],
+        "host_slug": "akki-vm-ii",
+        "label": "poll_351s",
+        "rc": 0,
+        "receipt_id": "gpurcp-99f17244603b"
+      },
+      {
+        "at": "2026-08-31T18:42:12Z",
+        "gpus": [
+          {
+            "clocks.current.graphics [MHz]": "1410 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "0",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "691.15 W",
+            "temperature.gpu": "67",
+            "utilization.gpu [%]": "100 %"
+          },
+          {
+            "clocks.current.graphics [MHz]": "1395 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "1",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "693.01 W",
+            "temperature.gpu": "73",
+            "utilization.gpu [%]": "100 %"
+          }
+        ],
+        "host_slug": "akki-vm-ii",
+        "label": "poll_420s",
+        "rc": 0,
+        "receipt_id": "gpurcp-ebc3e8b3882c"
+      },
+      {
+        "at": "2026-08-31T18:43:21Z",
+        "gpus": [
+          {
+            "clocks.current.graphics [MHz]": "1410 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "0",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "690.97 W",
+            "temperature.gpu": "66",
+            "utilization.gpu [%]": "100 %"
+          },
+          {
+            "clocks.current.graphics [MHz]": "1380 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "1",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "690.89 W",
+            "temperature.gpu": "74",
+            "utilization.gpu [%]": "100 %"
+          }
+        ],
+        "host_slug": "akki-vm-ii",
+        "label": "poll_489s",
+        "rc": 0,
+        "receipt_id": "gpurcp-a8e407595b14"
+      },
+      {
+        "at": "2026-08-31T18:44:30Z",
+        "gpus": [
+          {
+            "clocks.current.graphics [MHz]": "1410 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "0",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "688.71 W",
+            "temperature.gpu": "66",
+            "utilization.gpu [%]": "100 %"
+          },
+          {
+            "clocks.current.graphics [MHz]": "1395 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "1",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "693.53 W",
+            "temperature.gpu": "74",
+            "utilization.gpu [%]": "100 %"
+          }
+        ],
+        "host_slug": "akki-vm-ii",
+        "label": "poll_558s",
+        "rc": 0,
+        "receipt_id": "gpurcp-8d0687387090"
+      },
+      {
+        "at": "2026-08-31T18:45:39Z",
+        "gpus": [
+          {
+            "clocks.current.graphics [MHz]": "1410 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "0",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "691.60 W",
+            "temperature.gpu": "66",
+            "utilization.gpu [%]": "100 %"
+          },
+          {
+            "clocks.current.graphics [MHz]": "1395 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "1",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "691.93 W",
+            "temperature.gpu": "74",
+            "utilization.gpu [%]": "100 %"
+          }
+        ],
+        "host_slug": "akki-vm-ii",
+        "label": "poll_627s",
+        "rc": 0,
+        "receipt_id": "gpurcp-61715969f366"
+      },
+      {
+        "at": "2026-08-31T18:46:48Z",
+        "gpus": [
+          {
+            "clocks.current.graphics [MHz]": "1410 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "0",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "690.08 W",
+            "temperature.gpu": "66",
+            "utilization.gpu [%]": "100 %"
+          },
+          {
+            "clocks.current.graphics [MHz]": "1380 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "1",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "690.47 W",
+            "temperature.gpu": "74",
+            "utilization.gpu [%]": "100 %"
+          }
+        ],
+        "host_slug": "akki-vm-ii",
+        "label": "poll_696s",
+        "rc": 0,
+        "receipt_id": "gpurcp-82eb2939d1eb"
+      },
+      {
+        "at": "2026-08-31T18:47:57Z",
+        "gpus": [
+          {
+            "clocks.current.graphics [MHz]": "1410 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "0",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "690.64 W",
+            "temperature.gpu": "66",
+            "utilization.gpu [%]": "100 %"
+          },
+          {
+            "clocks.current.graphics [MHz]": "1395 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "1",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "693.57 W",
+            "temperature.gpu": "74",
+            "utilization.gpu [%]": "100 %"
+          }
+        ],
+        "host_slug": "akki-vm-ii",
+        "label": "poll_765s",
+        "rc": 0,
+        "receipt_id": "gpurcp-6393daed820d"
+      },
+      {
+        "at": "2026-08-31T18:49:06Z",
+        "gpus": [
+          {
+            "clocks.current.graphics [MHz]": "1425 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "0",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "690.58 W",
+            "temperature.gpu": "66",
+            "utilization.gpu [%]": "100 %"
+          },
+          {
+            "clocks.current.graphics [MHz]": "1395 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "1",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "692.20 W",
+            "temperature.gpu": "74",
+            "utilization.gpu [%]": "100 %"
+          }
+        ],
+        "host_slug": "akki-vm-ii",
+        "label": "poll_834s",
+        "rc": 0,
+        "receipt_id": "gpurcp-679a31fadb09"
+      },
+      {
+        "at": "2026-08-31T18:50:15Z",
+        "gpus": [
+          {
+            "clocks.current.graphics [MHz]": "1410 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "0",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "692.44 W",
+            "temperature.gpu": "66",
+            "utilization.gpu [%]": "100 %"
+          },
+          {
+            "clocks.current.graphics [MHz]": "1395 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "1",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "694.47 W",
+            "temperature.gpu": "74",
+            "utilization.gpu [%]": "100 %"
+          }
+        ],
+        "host_slug": "akki-vm-ii",
+        "label": "poll_902s",
+        "rc": 0,
+        "receipt_id": "gpurcp-20c00d0fc19c"
+      },
+      {
+        "at": "2026-08-31T18:51:23Z",
+        "gpus": [
+          {
+            "clocks.current.graphics [MHz]": "1410 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "0",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "691.46 W",
+            "temperature.gpu": "66",
+            "utilization.gpu [%]": "100 %"
+          },
+          {
+            "clocks.current.graphics [MHz]": "1395 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "1",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "692.24 W",
+            "temperature.gpu": "74",
+            "utilization.gpu [%]": "100 %"
+          }
+        ],
+        "host_slug": "akki-vm-ii",
+        "label": "poll_971s",
+        "rc": 0,
+        "receipt_id": "gpurcp-9e22f7f92b19"
+      },
+      {
+        "at": "2026-08-31T18:52:32Z",
+        "gpus": [
+          {
+            "clocks.current.graphics [MHz]": "1425 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "0",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "688.40 W",
+            "temperature.gpu": "66",
+            "utilization.gpu [%]": "100 %"
+          },
+          {
+            "clocks.current.graphics [MHz]": "1395 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "1",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "690.67 W",
+            "temperature.gpu": "74",
+            "utilization.gpu [%]": "100 %"
+          }
+        ],
+        "host_slug": "akki-vm-ii",
+        "label": "poll_1040s",
+        "rc": 0,
+        "receipt_id": "gpurcp-8ebdb9fb111b"
+      },
+      {
+        "at": "2026-08-31T18:53:41Z",
+        "gpus": [
+          {
+            "clocks.current.graphics [MHz]": "1425 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "0",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "689.10 W",
+            "temperature.gpu": "66",
+            "utilization.gpu [%]": "100 %"
+          },
+          {
+            "clocks.current.graphics [MHz]": "1395 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "1",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "691.84 W",
+            "temperature.gpu": "74",
+            "utilization.gpu [%]": "100 %"
+          }
+        ],
+        "host_slug": "akki-vm-ii",
+        "label": "poll_1109s",
+        "rc": 0,
+        "receipt_id": "gpurcp-c6066778fd7d"
+      },
+      {
+        "at": "2026-08-31T18:54:50Z",
+        "gpus": [
+          {
+            "clocks.current.graphics [MHz]": "1410 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "0",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "689.67 W",
+            "temperature.gpu": "66",
+            "utilization.gpu [%]": "100 %"
+          },
+          {
+            "clocks.current.graphics [MHz]": "1395 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "1",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "689.45 W",
+            "temperature.gpu": "74",
+            "utilization.gpu [%]": "100 %"
+          }
+        ],
+        "host_slug": "akki-vm-ii",
+        "label": "poll_1178s",
+        "rc": 0,
+        "receipt_id": "gpurcp-4f90a18e272c"
+      },
+      {
+        "at": "2026-08-31T18:55:59Z",
+        "gpus": [
+          {
+            "clocks.current.graphics [MHz]": "1425 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "0",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "689.72 W",
+            "temperature.gpu": "66",
+            "utilization.gpu [%]": "100 %"
+          },
+          {
+            "clocks.current.graphics [MHz]": "1395 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "1",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "692.12 W",
+            "temperature.gpu": "74",
+            "utilization.gpu [%]": "100 %"
+          }
+        ],
+        "host_slug": "akki-vm-ii",
+        "label": "poll_1247s",
+        "rc": 0,
+        "receipt_id": "gpurcp-32d705d02be6"
+      },
+      {
+        "at": "2026-08-31T18:57:08Z",
+        "gpus": [
+          {
+            "clocks.current.graphics [MHz]": "1410 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "0",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "690.20 W",
+            "temperature.gpu": "66",
+            "utilization.gpu [%]": "100 %"
+          },
+          {
+            "clocks.current.graphics [MHz]": "1395 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "1",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "690.52 W",
+            "temperature.gpu": "74",
+            "utilization.gpu [%]": "100 %"
+          }
+        ],
+        "host_slug": "akki-vm-ii",
+        "label": "poll_1316s",
+        "rc": 0,
+        "receipt_id": "gpurcp-ea0d00355a42"
+      },
+      {
+        "at": "2026-08-31T18:58:17Z",
+        "gpus": [
+          {
+            "clocks.current.graphics [MHz]": "1410 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "0",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "691.04 W",
+            "temperature.gpu": "66",
+            "utilization.gpu [%]": "100 %"
+          },
+          {
+            "clocks.current.graphics [MHz]": "1395 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "1",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "693.30 W",
+            "temperature.gpu": "74",
+            "utilization.gpu [%]": "100 %"
+          }
+        ],
+        "host_slug": "akki-vm-ii",
+        "label": "poll_1385s",
+        "rc": 0,
+        "receipt_id": "gpurcp-fb3790619cdf"
+      },
+      {
+        "at": "2026-08-31T18:59:26Z",
+        "gpus": [
+          {
+            "clocks.current.graphics [MHz]": "1425 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "0",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "689.95 W",
+            "temperature.gpu": "66",
+            "utilization.gpu [%]": "100 %"
+          },
+          {
+            "clocks.current.graphics [MHz]": "1395 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "1",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "1137 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "691.42 W",
+            "temperature.gpu": "74",
+            "utilization.gpu [%]": "100 %"
+          }
+        ],
+        "host_slug": "akki-vm-ii",
+        "label": "poll_1453s",
+        "rc": 0,
+        "receipt_id": "gpurcp-f84850e7076a"
+      },
+      {
+        "at": "2026-08-31T19:00:35Z",
+        "gpus": [
+          {
+            "clocks.current.graphics [MHz]": "345 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "0",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "0 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "79.56 W",
+            "temperature.gpu": "41",
+            "utilization.gpu [%]": "0 %"
+          },
+          {
+            "clocks.current.graphics [MHz]": "345 MHz",
+            "clocks.current.memory [MHz]": "3201 MHz",
+            "index": "1",
+            "memory.total [MiB]": "143771 MiB",
+            "memory.used [MiB]": "0 MiB",
+            "name": "NVIDIA H200",
+            "power.draw [W]": "87.24 W",
+            "temperature.gpu": "53",
+            "utilization.gpu [%]": "0 %"
+          }
+        ],
+        "host_slug": "akki-vm-ii",
+        "label": "poll_1522s",
+        "rc": 0,
+        "receipt_id": "gpurcp-dbaefede80d4"
+      }
+    ],
+    "receipts": [
+      "gpurcp-3af16c2e3dc2",
+      "gpurcp-8bf34981e3e5",
+      "gpurcp-89a87826b205",
+      "gpurcp-c39bfce047a8",
+      "gpurcp-99df6db7a963",
+      "gpurcp-3b358aae41b5",
+      "gpurcp-4f5a674393b6",
+      "gpurcp-1ba9d9e21953",
+      "gpurcp-0312106bb7fb",
+      "gpurcp-710806ddd736",
+      "gpurcp-e4fa5fbb5a5b",
+      "gpurcp-19e7303feabe",
+      "gpurcp-da863267a22a",
+      "gpurcp-95b535cf0109",
+      "gpurcp-87ee31a813b6",
+      "gpurcp-37223710b561",
+      "gpurcp-99f17244603b",
+      "gpurcp-8aff4ac44d01",
+      "gpurcp-9035d1f798be",
+      "gpurcp-ebc3e8b3882c",
+      "gpurcp-e194b8bb8408",
+      "gpurcp-3e1302b57e12",
+      "gpurcp-a8e407595b14",
+      "gpurcp-d0d2fc15006e",
+      "gpurcp-68e1f1166d60",
+      "gpurcp-8d0687387090",
+      "gpurcp-bda394a87a08",
+      "gpurcp-1d458b58b32b",
+      "gpurcp-61715969f366",
+      "gpurcp-fd91e7d93fc7",
+      "gpurcp-7b2d55e271c0",
+      "gpurcp-82eb2939d1eb",
+      "gpurcp-df4e95ceb861",
+      "gpurcp-bd4ad44483fd",
+      "gpurcp-6393daed820d",
+      "gpurcp-1a01e69c4976",
+      "gpurcp-0f13687ec9ad",
+      "gpurcp-679a31fadb09",
+      "gpurcp-2436c7671a93",
+      "gpurcp-241a665350fa",
+      "gpurcp-20c00d0fc19c",
+      "gpurcp-b32f7d4b892e",
+      "gpurcp-37c1d827ab53",
+      "gpurcp-9e22f7f92b19",
+      "gpurcp-af57834af576",
+      "gpurcp-19fadf4f71fe",
+      "gpurcp-8ebdb9fb111b",
+      "gpurcp-09c66bff2ee1",
+      "gpurcp-3bf4dd88e4b5",
+      "gpurcp-c6066778fd7d",
+      "gpurcp-ef25520dc605",
+      "gpurcp-aaee2754f325",
+      "gpurcp-4f90a18e272c",
+      "gpurcp-0ec156bfbe21",
+      "gpurcp-5bcfb88daa65",
+      "gpurcp-32d705d02be6",
+      "gpurcp-2b3214a75072",
+      "gpurcp-ced3c6e9db41",
+      "gpurcp-ea0d00355a42",
+      "gpurcp-a6b50692ac65",
+      "gpurcp-437d31680f49",
+      "gpurcp-fb3790619cdf",
+      "gpurcp-05ca1577d349",
+      "gpurcp-b73c44426ec4",
+      "gpurcp-f84850e7076a",
+      "gpurcp-37684253f7d4",
+      "gpurcp-f052ea5d782b",
+      "gpurcp-dbaefede80d4",
+      "gpurcp-0b23d0375874",
+      "gpurcp-a5c2c4ad371b",
+      "gpurcp-6916bc6646bc",
+      "gpurcp-52c8993a55bd",
+      "gpurcp-d14530e56060",
+      "gpurcp-120acdf9bfb6"
+    ],
+    "started_at": "2026-08-31T18:35:09Z",
+    "torch_ok": true,
+    "torch_version": "2.11.0+cu128",
+    "wallclock_seconds": 1546.22
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "at": "2026-08-31T18:34:12Z",
+  "host_slug": "akki-vm",
+  "purpose": "collect_burn_log",
+  "receipt_id": "gpurcp-64c78d6eb737",
+  "rc": 0,
+  "wallclock_seconds": 2.9159563849971164,
+  "stdout_redacted": "{\"at\":\"2026-08-31T18:33:02Z\",\"cuda_version\":\"12.8\",\"dtype\":\"float16\",\"duration_s\":45,\"kind\":\"boot\",\"n_gpu\":2,\"pid\":77335,\"size\":8192,\"torch_version\":\"2.11.0+cu128\"}\n{\"at\":\"2026-08-31T18:33:02Z\",\"device_name\":\"NVIDIA H200\",\"dtype\":\"float16\",\"gpu\":0,\"kind\":\"start\",\"size\":8192}\n{\"at\":\"2026-08-31T18:33:02Z\",\"device_name\":\"NVIDIA H200\",\"dtype\":\"float16\",\"gpu\":1,\"kind\":\"start\",\"size\":8192}\n{\"at\":\"2026-08-31T18:33:33Z\",\"chunk_tflops\":0.29,\"elapsed_s\":30.0,\"gpu\":0,\"iter_count\":17408,\"kind\":\"tick\"}\n{\"at\":\"2026-08-31T18:33:33Z\",\"chunk_tflops\":0.29,\"elapsed_s\":30.0,\"gpu\":1,\"iter_count\":17376,\"kind\":\"tick\"}\n{\"at\":\"2026-08-31T18:33:48Z\",\"dtype\":\"float16\",\"gpu\":1,\"iter_count\":26096,\"kind\":\"summary\",\"size\":8192,\"tflops_median\":0.29,\"tflops_samples_n\":1,\"wallclock_s\":45.0}\n{\"at\":\"2026-08-31T18:33:48Z\",\"dtype\":\"float16\",\"gpu\":0,\"iter_count\":26120,\"kind\":\"summary\",\"size\":8192,\"tflops_median\":0.29,\"tflops_samples_n\":1,\"wallclock_s\":45.0}\n{\"at\":\"2026-08-31T18:33:48Z\",\"kind\":\"done\",\"results\":[{\"at\":\"2026-08-31T18:33:48Z\",\"dtype\":\"float16\",\"gpu\":0,\"iter_count\":26120,\"kind\":\"summary\",\"size\":8192,\"tflops_median\":0.29,\"tflops_samples_n\":1,\"wallclock_s\":45.0},{\"at\":\"2026-08-31T18:33:48Z\",\"dtype\":\"float16\",\"gpu\":1,\"iter_count\":26096,\"kind\":\"summary\",\"size\":8192,\"tflops_median\":0.29,\"tflops_samples_n\":1,\"wallclock_s\":45.0}]}\n",
+  "stderr_redacted": ""
+}

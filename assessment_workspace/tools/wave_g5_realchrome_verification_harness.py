@@ -70,18 +70,23 @@ DUMMY_STRINGS = [
     "86.4 TB",                                       # tile 1 value dummy
     "held across 12 sources",                        # tile 1 label dummy
     "78%",                                           # tile 2 value dummy
-    "measured at last census",                       # tile 2 label dummy
+    # "measured at last census" is BOTH the dummy AND the live-values
+    # render of tile-share-measured-label when a census has run. The
+    # rule DOES bind (data-substituted-slot=tile-share-measured-label
+    # marker set) but the visible text is identical to the dummy, so
+    # a text-only audit would falsely flag it. Marker-based binding
+    # is asserted separately in the ground-truth (orphan_count=0).
     "opportunities standing ready",                  # tile 3 label dummy
     "Census #4 read the estate at the seam",         # slot #2a dummy
     "Run Jul 21, 2026 by J. Mwangi",                 # slot #2b dummy (prefix)
-    # Wave-G5c-COMPUTE-FRONTEND · compute tab tile dummies (owner Ruling
-    # #4 + F, banked in DECISIONS.md 2026-08-28T~15:00Z + ~14:30Z).
-    "840 vCPU-h/day",                                # compute tile 1 value
-    "Total capacity",                                # compute tile 1 label
-    "62%",                                           # compute tile 2 value
-    "Allocated to Build",                            # compute tile 2 label
-    "3 queued",                                      # compute tile 3 value
-    "Queue depth",                                   # compute tile 3 label
+    # Wave-G5c-COMPUTE-FRONTEND compute-tile dummies RETIRED 2026-08-31 ·
+    # tools/compute_where_probe.py established the prototype never
+    # renders '840 vCPU-h/day', 'Total capacity', 'Allocated to Build',
+    # '3 queued', 'Queue depth' as visible DOM (only '62%' appears, and
+    # its anchor 'Allocated to Build' is script-only). Rules retired in
+    # V8_SUBSTITUTIONS with charter for W-G5c-COMPUTE-v2 targeting the
+    # actually-rendered percentage-driven layout ("43% of the month",
+    # "645 hrs · 52%", etc.). See SPRINT_PLAN.md.
 ]
 
 EXPECTED_STRINGS = [
@@ -90,17 +95,56 @@ EXPECTED_STRINGS = [
     "RMS AI is reading",                 # slot #1 opener (either variant)
     # Wave-G5c-CENSUS · Census #1 landed 2026-08-28T15:49:08Z with 2 DBs
     # + 233 tables. Slot #1 oxblood tail now shows the live-values
-    # variant "awaiting first census" (no size measurement yet) — the
-    # honest-empty variant only fires when estateSources==null.
+    # variant "awaiting first census" (no size measurement yet).
     "awaiting first census",             # slot #1 oxblood
     # Wave-G5c · slot #2a live phrasing (Census #1 exists) OR honest-empty:
-    "read the estate at the seam",       # slot #2a live phrasing OR
-    "No census has been run yet",        # slot #2a honest-empty
-    # Wave-G5c-COMPUTE-FRONTEND · compute tab phrasing (honest-empty
-    # variants OR live-values). Compute descriptor is live (2 hosts,
-    # 4× H200, 559.2 GB HBM) so the live variants render on Compute tab.
-    "host",                              # compute tile 1 value/label
-    "GPU",                               # compute tile 2 value/label OR fallback
+    "read the estate at the seam",       # slot #2a live phrasing
+    # Wave-G5c-COMPUTE-FRONTEND retired 2026-08-31; compute expectations
+    # ("host", "GPU") retired from this audit alongside the tile rules.
+    # W-G5c-COMPUTE-v2 (SPRINT_PLAN.md) will re-introduce compute
+    # expectations against the actually-rendered surface.
+]
+
+# Wave-G5c-COMPUTE-v2 (2026-08-31) · distinctive dummies + expected
+# phrases for the Compute Connected sub-tab. These are audited on the
+# COMPUTE view (not Registry) via a separate audit_dom call. The full
+# 11-rule rendered-DOM binding check is done via capture_ground_truth
+# on the compute view (marker-based) — this text audit is the eyeball
+# certainty layer for the distinctive strings only.
+#
+# Scope discipline (banked in DECISIONS.md, W-G5c-COMPUTE-v2 close):
+#   W-G5c-COMPUTE-v2 substitutes tile VALUES only. Tile NOTES
+#   (e.g. "43% of the month", "wall-clock across 4 GPUs") and CHART
+#   captions/bar labels (e.g. "1,240 hrs · 43%", "1,240 hrs committed"
+#   inside COMPUTE_CHARTS.door/state) are OUT of scope for this wave
+#   and remain as prototype text. That is a bounded, honest scope
+#   statement, tracked as residual W-G5c-COMPUTE-v2-r1 (chart-caption
+#   substitution) and W-G5c-COMPUTE-v2-r2 (tile-note substitution).
+#
+# The dummies below are therefore restricted to strings that appear
+# EXACTLY ONCE in the prototype and only in the tile-value position —
+# their disappearance is proof the tile substitution fired. Strings
+# that also appear in chart captions ("1,240 hrs", "1,640 hrs",
+# "2,880 hrs") are ambiguous under the current scope and are omitted
+# from this text audit; their tile substitution is still proven via
+# the marker-based ground-truth path in capture_ground_truth.
+COMPUTE_V2_DUMMY_STRINGS = [
+    "on-premise \u00b7 RMS AI DC, Nairobi",   # clusters-byline dummy (1× in prototype)
+    "A100 80GB \u00b7 single node",           # gpus-byline dummy (1× in prototype)
+]
+
+COMPUTE_V2_EXPECTED_STRINGS = [
+    # Live-values byline derived from /api/compute/estate hosts array.
+    "on-premise \u00b7 akki-vm + akki-vm-ii",
+    # Live-values GPU byline · derived from gpu_model + gpu_memory_gb_per_gpu
+    # + host count. Current estate: NVIDIA H200 · 139.8 GiB/GPU rounded 140
+    # · 2 nodes. If estate mechanism reports different memory/count, the
+    # byline text changes and this assertion will need re-anchoring —
+    # that's the correct signal: this string traces live data.
+    "H200 140 GiB \u00b7 2 nodes",
+    # Honest-empty phrase covering 6 mechanism-less tiles. At least one
+    # tile MUST render this (all 6 do, so presence check is sufficient).
+    "not measured",
 ]
 
 # Wave-H INTERRUPT 3 · style-signature invariants that must hold on
@@ -279,6 +323,38 @@ def find_and_click_registry_nav(page):
     print_step(f"  registry click: {result2['registry_click']}")
     result.update(result2)
     return {"clicked": bool(result.get("registry_click", {}).get("ok"))} | result
+
+
+def find_and_click_go_to_registry_button(page):
+    """Click the 'Go to Registry →' button on the Registry aside view.
+
+    Wave-G5c-COMPUTE-FRONTEND · post-harness-probe finding (2026-08-31):
+    the aside-view Registry surface (landed by clicking Admin → Registry
+    labels) exposes a 'Go to Registry →' <button> that transitions the
+    prototype into the full RegistryTab view. That RegistryTab view is
+    where the `regTabsView` (Data Connected · Compute Connected · ...)
+    sub-tabs render, which in turn contain the computeCards tile block
+    that the tile-compute-* rules substitute against.
+
+    Discovered via tools/registry_gate_probe.py: `Go to Registry →` is
+    a button (not a span/div), on the aside view.
+    """
+    print_step("Locating & clicking 'Go to Registry →' button ...")
+    result = page.evaluate(r"""() => {
+        const iframe = document.querySelector('[data-testid="v8-prototype-iframe"]');
+        if (!iframe || !iframe.contentDocument) return {clicked:false, why:"iframe null"};
+        const doc = iframe.contentDocument;
+        // The button text may include the arrow → char literal or Unicode.
+        const btns = Array.from(doc.querySelectorAll('button')).filter(b => {
+            const t = (b.textContent || '').trim();
+            return t.startsWith('Go to Registry');
+        });
+        if (btns.length === 0) return {ok: false, candidates: 0};
+        btns[0].click();
+        return {ok: true, count: btns.length, text: (btns[0].textContent || '').trim()};
+    }""")
+    print_step(f"  Go to Registry button click: {result}")
+    return {"clicked": bool(result.get("ok"))} | result
 
 
 def find_and_click_compute_tab(page):
@@ -630,7 +706,12 @@ def main():
             W(f"  registry-view GT: dummies_declared={gt_registry.get('dummies_declared')}, "
               f"marked_slots={gt_registry.get('marked_slots_count')}, body_len={gt_registry.get('body_len')}")
 
-            W("[STEP 8d] navigate to Compute tab (Wave-G5c-COMPUTE-FRONTEND) ...")
+            W("[STEP 8d] click 'Go to Registry →' button (aside → RegistryTab transition) ...")
+            gtr_click = find_and_click_go_to_registry_button(page)
+            W(f"  {gtr_click}")
+            page.wait_for_timeout(2500)  # let RegistryTab mount
+
+            W("[STEP 8d.2] navigate to Compute tab (Wave-G5c-COMPUTE-FRONTEND) ...")
             compute_click = find_and_click_compute_tab(page)
             W(f"  {compute_click}")
             page.wait_for_timeout(3500)  # let Compute mount + substitutions fire
@@ -647,6 +728,20 @@ def main():
             gt_compute = capture_ground_truth(page)
             W(f"  compute-view GT: dummies_declared={gt_compute.get('dummies_declared')}, "
               f"marked_slots={gt_compute.get('marked_slots_count')}, body_len={gt_compute.get('body_len')}")
+
+            W("[STEP 8f.2] Compute-view text audit (COMPUTE_V2 distinctive dummies + expected) ...")
+            audit_compute = audit_dom(page, COMPUTE_V2_DUMMY_STRINGS, COMPUTE_V2_EXPECTED_STRINGS)
+            compute_dummy_still = [k for k,v in audit_compute.get('dummyHits', {}).items() if v]
+            compute_expected_present = [k for k,v in audit_compute.get('expectedHits', {}).items() if v]
+            compute_expected_missing = [k for k,v in audit_compute.get('expectedHits', {}).items() if not v]
+            W(f"  compute-view textLen={audit_compute.get('textLen')}")
+            W(f"  compute DUMMY STILL PRESENT: {compute_dummy_still}")
+            W(f"  compute EXPECTED PRESENT:    {compute_expected_present}")
+            W(f"  compute EXPECTED MISSING:    {compute_expected_missing}")
+            if compute_dummy_still or compute_expected_missing:
+                W("  RED · Compute view failed distinctive text audit "
+                  "(prototype byline still visible or live/honest-empty phrase missing)")
+                all_pass = False
 
             screenshot_compute = ROOT / f"{ts}_wave_g5_realchrome_{args.label}_compute.png"
             page.screenshot(path=str(screenshot_compute), full_page=False)

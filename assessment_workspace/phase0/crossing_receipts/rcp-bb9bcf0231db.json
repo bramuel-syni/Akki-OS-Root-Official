@@ -1,0 +1,16 @@
+{
+  "actor": "test",
+  "at_iso": "2026-08-31T21:06:35.334054Z",
+  "endpoint_host": "rds-data.eu-west-1.amazonaws.com",
+  "kind": "rds_data_api",
+  "masking_tier": "structure_only",
+  "payload_shape": {
+    "cluster_arn": "arn:aws:rds:eu-west-1:0:cluster:x",
+    "statement_shape": "census walker (schemata + tables + columns + null-counts)",
+    "wave": "G5c-CENSUS"
+  },
+  "receipt_id": "rcp-bb9bcf0231db",
+  "residency_region": "eu-west-1",
+  "tenant_id": "estate",
+  "verb": "ExecuteStatement"
+}

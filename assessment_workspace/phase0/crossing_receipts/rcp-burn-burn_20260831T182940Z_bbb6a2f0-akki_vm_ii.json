@@ -1,0 +1,17 @@
+{
+  "actor": "tools.gpu_burn_orchestrator \u00b7 akki-vm-ii",
+  "at_iso": "2026-08-31T18:30:29Z",
+  "endpoint_host": "akki-vm-ii",
+  "kind": "ssh_seam",
+  "masking_tier": "attested_command",
+  "payload_shape": {
+    "gpu_hours": 0.0,
+    "metering_source": "burn_orchestrator_wallclock",
+    "node_id": "akki-vm-ii",
+    "training_id": "burn_20260831T182940Z_bbb6a2f0",
+    "workload": "sustained_matmul_fp16"
+  },
+  "receipt_id": "rcp-burn-burn_20260831T182940Z_bbb6a2f0-akki_vm_ii",
+  "residency_region": "estate",
+  "verb": "EXEC"
+}

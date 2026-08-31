@@ -5218,3 +5218,255 @@ Persisted records: `phase0/census/census_0001/` (numbered #1 per Ruling #3 — r
 - **Owner expectation of >1 database — CONFIRMED at the seam.** Two databases visible: `digicow_live` (125 tables · 5.3M rows) + `ndume` (108 tables · 610K rows).
 - **`single_database_visibility_flag: false`** — no permissions-gap finding to escalate.
 - **Total estate scale (measured):** 233 tables · 5,909,421 rows across both databases.
+
+---
+
+## 2026-08-31 · TONIGHT-GPU-ACTIVITY thread · owner rulings + honest-gap findings
+
+### Owner instruction chain (verbatim, banked)
+
+**Owner instruction 1 (initial):**
+> "can we test the gpus on something, need some activity registered tonight"
+
+Interpretation banked: owner authorized real workload on the GPUs beyond verify-only scope, activity must register in the governed record. Preferred: real governed training run via `training_runner` seam (small LoRA on a small open checkpoint, small public/synthetic dataset). Hard constraint at that point: **no DigiCow data, no PII, nothing from the governed estate as training material** (capability exercise, not estate-data run). Fallback: governed benchmark burn on both hosts, ~15–30 min sustained, all 4 H200s. Preferred > fallback, but "do not let perfect block done".
+
+**Owner correction 2 (SUPERSEDES the no-DigiCow constraint):**
+> "Actally need 'digicow shielded data' used"
+
+Interpretation banked: owner wants tonight's run on DigiCow estate data that has crossed the SHIELD — not synthetic material. Binding conditions: shield-only crossing with masking tier; all PII per classification-registry masked/excluded (including occupation-boolean); audit-trail entries for what crossed (shape only, never content); training task chosen from what shielded DigiCow honestly supports; datasheet-level data statement in the run record (WPW Tier-2 shape). If any part of the shield path doesn't exist yet, build minimum-viable version tests-first — else report the honest gap and fire the fallback.
+
+**Main agent HONEST GAP REPORT (2026-08-31 · verbatim scope, banked):**
+- Row-bearing masking tiers (t1_full_mask, t2_partial, t3_category) DECLARED but `admissible_under_env: []` in `backend/services/chokepoint/masking_tier_allowlist.v0.json` lines 52–77. Cite verbatim: *"No LLM crossing exists yet; no row-bearing queries have run. Admission requires (i) LLM chokepoint landed + (ii) tenant entity catalogue populated + (iii) governed masking policy authored (Doc 02 §A5.2)."*
+- Census engine is aggregates-only by design (bans MIN/MAX SQL, returns row_count + column_names + column_types + null_count only; enforced by `test_engine_manifest_never_contains_row_values` and `test_engine_sql_module_never_emits_min_or_max`).
+- No row-bearing SQL executor exists on the shield path.
+- PII classification registry has ONE entry (`digicow_live.ussd_users.occupation`); response sanitizer bans 3 fields (`farmer_mobile_no`, `farmer_answer`, `occupation`). Comprehensive per-column classification NOT authored.
+- Governed masking policy (Doc 02 §A5.2 authoring surface) NOT authored.
+- `execute_lora_train_real` is explicitly stubbed (`raise RealSSHNotWiredYet`); only `execute_remote_command` is wired.
+- Minimum-viable governed shielded-training scope: (a) masking-policy authoring, (b) tier-admission ruling, (c) row-bearing SQL executor via chokepoint refusing unclassified columns, (d) masked-file transport with PII-free receipts, (e) LoRA training-loop unstub, (f) cleanup receipt path, (g) tests-first throughout. **Estimate: 2–4 days concentrated work. NOT tonight.**
+
+**Owner ruling 3 · SHIELDED-TRAINING PIPELINE (verbatim, banked):**
+> "RULING → (A) FALLBACK BURN TONIGHT. Fire it now. Your gap report is exactly the honesty discipline this programme runs on — the shield path does not get shortcut under deadline pressure, and options B (reframed scope that isn't what the owner asked for) and C (admitting a masking tier + skipping prerequisites under time pressure, at night, on live estate data) are both worse than an honest burn plus a properly chartered pipeline."
+
+Bindings: governed matmul burn on BOTH hosts via `execute_remote_command`, masking_tier=`attested_command`, crossing-registered, receipted, zero estate data, ~20–30 min sustained per host, all 4 H200s. Bank before/during/after nvidia-smi + activity summary. Shielded-training pipeline goes into the SPRINT PLAN as its own chartered wave (a–g scope, 2–4 days).
+
+**Owner ruling 4 · SHIELDED-DATA BYPASS + AUDIO PIVOT (verbatim, banked):**
+> "By pass the part that needs build. Include the part that needs building in the sprint plan. For data to use, can you use the audio data?"
+
+Interpretation banked (per owner's own re-statement): **owner-authority bypass of the not-yet-built shield row-pipeline for the immediate training activity — NOT a precedent that shield can be skipped without an owner ruling.** Full shielded-training pipeline stays in the sprint plan as its own chartered wave. Training material designated: AUDIO DATA.
+
+### AUDIO INVENTORY (main agent, 2026-08-31 · banked)
+
+**On the live DigiCow estate (Census #1 read of all 233 tables · 5.9M rows):**
+- Zero audio columns across both databases. No `audio_*`, `wav_*`, `voice_*`, `speech_*`, `sound_*`, `transcript_*` columns anywhere in `digicow_live` (125 tables) or `ndume` (108 tables).
+- Nearest media-shaped columns: `file_url` (163,793 rows in `user_group_trainings`), `image_url` (362 rows in `company`), `pend_action_file` (163,793 rows) — VARCHAR fields, values unreadable through aggregates-only chokepoint. Names suggest **training documents / logos / attachments**, not audio.
+- Text corpora are large and coherent: `ussd_question_response` (903K rows), `sms_log.sms_sent` (256K rows, longtext), `ussd_api_session_validation` (521K rows). All PII-heavy.
+- Zero S3 / bucket / object-storage references in `data_source_digicow_live_20260819T152513Z_FINAL.json` or `data_source_ndume_20260819T152513Z_FINAL.json`.
+
+**Audio scaffolding in code (Wave B, ratified 2026-08-26):**
+- Layer A audio handler at `backend/services/layer_a/handlers/audio.py` reads `.wav/.mp3/.m4a/.flac/.ogg` from disk paths (no estate access).
+- Layer B ASR providers wired for Whisper API + faster-whisper at `backend/services/layer_b/asr/{whisper_provider,faster_whisper_provider}.py` — both route via `backend/services/synisense/shield/perception_router.py`, both fall back to `synthetic_plumbing_only=True` when SDK doesn't expose ASR.
+- whisper-tiny explicitly NOT seeded on estate (see DECISIONS.md L1318).
+
+**Audio bytes actually on disk (all synthetic, deterministic sine-wave):**
+- 5 synthetic panel WAVs at `backend/services/data_source/synthetic_assets/audio/` — 16 kHz mono, ~95.5 s total (`anchor_primary_001.wav` 8.5s, `anchor_wire_002.wav` 12s, `panel_primary_003.wav` 45s, `panel_codeswitch_004.wav` 18s, `panel_short_caller_005.wav` 12s).
+- 2 test fixture WAVs at `backend/tests/fixtures/audio/` — 1s total (silence + tone).
+- **Grand total: ~96.5 seconds of deterministic sine-wave synthetic audio. No speech, no language, no real voice.**
+
+**Canon-referenced audio NOT yet on estate (per DECISIONS.md L208 verbatim):**
+> "Phase 2 (the slice): hash manifest of archive source before first byte moves; admit a representative slice (few hundred hours audio) end-to-end — admission → custody → transfer to HSS → manifest verification → processing → GPU training smoke-test → artifacts hash-registered back … FL-P1-02 focused read lands here"
+
+Phase 2 is DECLARED but NOT EXECUTED. The ~30 TB archive has not been admitted; no manifest, no representative slice, no HSS material.
+
+**Main agent honest verdict banked (owner accepted):**
+> "No accessible real audio exists on the estate tonight. 96s of sine-wave synthetic is far too little to train anything meaningful. Faking a run on 96s of tones would be theatre, not a real training activity."
+
+**Owner ruling 5 · HYBRID EXECUTION (verbatim, banked):**
+> "RULING → (D) HYBRID, with the A-vs-C decision escalated to the owner in parallel.
+> Execute now: 1. FIRE THE FALLBACK BURN immediately … the owner's core need is registered activity tonight. 2. Bank the audio-inventory finding verbatim in DECISIONS.md — zero real audio on the estate, 96s synthetic only, Phase 2 archive admission declared-not-executed. Honest verdict accepted: no theatre runs on sine waves. 3. Do NOT fire option C (estate-text pivot) — that is an owner-scope decision, not mine or yours; he chose audio specifically and may have had PII posture in mind. I'm putting A-vs-C to him now. If his ruling lands, apply it under the same bypass discipline you scoped (masked slice, identifiers stripped, PII columns excluded per registry, no content in logs, cleanup receipts, first-class run registration). 4. Sprint plan: add the audio-archive admission (Phase 2: manifest hash before first byte, representative slice of few hundred hours, admission → custody → HSS → GPU smoke-test) as its own wave line alongside the shielded-training pipeline charter and WPW."
+
+### Action taken (2026-08-31 tonight)
+- Governed matmul burn launched via `tools/gpu_burn_orchestrator.py` (RUN_ID = `burn_20260831T183509Z_731f22ad`). All remote exec through `services.training_runner.ssh_seam.execute_remote_command` with `masking_tier=attested_command`. Duration: 1500 s (25 min) sustained per host. Both hosts (`akki-vm` + `akki-vm-ii`) in parallel. All 4 H200s exercised.
+- Activity summary + all receipts land at `/app/assessment_workspace/phase0/gpu_burn/burn_20260831T183509Z_731f22ad/`.
+- First-class activity registered at `/app/assessment_workspace/phase0/training_runner/runs/burn_20260831T183509Z_731f22ad.json` (kind=`benchmark_burn`, workload_type=`sustained_matmul_fp16`, estate_data_used=false).
+- Cost-ledger crossing receipts written per host (kind=`ssh_seam`) at `/app/assessment_workspace/phase0/crossing_receipts/`.
+
+### Chartered follow-ups (SPRINT PLAN carriers)
+1. **Shielded-training pipeline** (a–g scope above) — its own wave, 2–4 days estimate.
+2. **Audio archive Phase 2 admission** (per DECISIONS.md L208) — hash manifest before first byte, admit representative slice (few hundred hours), end-to-end admission → custody → HSS → GPU smoke-test → artifacts hash-registered back. Own wave line.
+3. **Whitepaper Wizard v1** (WPW) — Tier 1 & 2 buildable now (Tier 3 blocked on R1/R2/R3).
+4. **Wave-G5c close** (harness + eyeball bundle) — resume after tonight's activity summary lands.
+
+### Owner ruling 6 · ESTATE-TEXT TRAINING PIVOT (verbatim, banked)
+
+> "OWNER RULING LANDED → (B). Verbatim answer: 'b' — pivot to estate TEXT data is explicitly authorized. Bank it in DECISIONS.md as the owner's ruling authorizing a masked estate-text training run under the existing bypass ruling."
+
+Full ruling body verbatim:
+> "Execute the text-training run as you scoped it in option C of your gap report: 1. SOURCE: the USSD Q&A corpus (`ussd_question_response`, 903K prompt/response rows) as primary; `sms_log.sms_sent` optional secondary if useful. Pull a masked slice sized sensibly for a first real fine-tune (enough to be a genuine run, small enough to complete overnight — your call on exact size, state it in the data statement). 2. MASKING DISCIPLINE (owner-bypass covers the missing pipeline BUILD, not the PII rules): identifiers stripped (phone numbers, farmer IDs, names, session IDs), all PII-classified columns excluded (occupation boolean stays out per its ruling), response-sanitizer banned fields (`farmer_mobile_no`, `farmer_answer` — note farmer_answer is banned; respect it and document the consequence for corpus shape) excluded, plus a regex scrub pass over free text for phone-number/ID patterns before anything leaves the seam. Unclassified columns: cautious-default — exclude unless clearly non-PII structural/text content. Log the exact include/exclude decision per column in the data statement. 3. RUN: small language-model fine-tune on the H200s (pick a small open checkpoint appropriate for Swahili/English USSD text; LoRA fine-tune is fine), registered as a first-class training run: training_runner state, cost-against-estimate, checkpoints, receipts. 4. GOVERNANCE TRAIL: every crossing receipted (attested_command tier or the closest honest tier), audit entries for shape-only facts (row counts, columns included/excluded, masking steps applied) — never content in logs/receipts. Datasheet-level data statement banked in the run record (WPW Tier-2 shape). 5. CLEANUP: masked corpus staged on GPU hosts deleted after the run with receipt; trained adapter/artifacts hash-registered and retained per the artifact rules. 6. The burn: if still running or already done, fine — the text run follows it. Report both activity summaries together in plain language for the owner: what ran, on which machines, how long, GPU utilization evidence, and what the model learned/produced (loss curve facts, no overclaiming). Then continue: eyeball bundle, sprint plan (shielded pipeline wave, audio archive admission wave, WPW charter), R1/R2/R3 questions. Standing rules unchanged: tests-first where contracts change, receipts everywhere, no PII/credentials in logs, local commits only, no push."
+
+**Interpretation banked:** Owner-bypass ruling from ruling 4 remains — the shielded-training pipeline BUILD is bypassed for this immediate run, but PII rules are NOT bypassed. `farmer_answer` is a response-sanitizer banned field per `services/response_sanitizer/pii_classification_registry.v0.json` and stays banned; note that USSD Q&A corpus's answer column is `option_string`, not `farmer_answer`. `farmer_answer` is a distinct field (farmer's free-text answer in another surface). `option_string` is a menu-option selection string, not banned by name — but I will apply cautious-default and regex-scrub free text.
+
+**Main-agent plan (banked before firing):**
+- Primary source: `ussd_question_response` (903K rows, 13 cols).
+- Included columns for corpus: `question_string`, `option_string`, `value_chain`.
+- Excluded columns: `id`, `ussd_user_id`, `post_id`, `question_id`, `option_id`, `mobile_number`, `training_code`, `number_of_animals`, `forage_area`, `created_at` — identifier, PII, or quasi-identifier under cautious-default.
+- Regex scrub over the 3 included free-text fields for Kenyan phone patterns and 7–10-digit ID-shaped numerals before any bytes leave the seam.
+- Slice size: 50,000 rows (5.5% of corpus; representative first-run, overnight-safe).
+- Model: `Qwen2.5-0.5B` — small, multilingual (Swahili + English), LoRA-friendly, no pre-existing licensing surprise.
+- LoRA config: r=8, alpha=16, dropout=0.05, target modules = q_proj, v_proj (attention-only for minimal footprint).
+- Training: 1 epoch over 50K examples, batch size = 8 per GPU × 2 GPUs × 4 grad-accum = effective 64. ~1–2h wall-clock estimate on H200×4.
+- Governance seam: every remote exec through `training_runner.ssh_seam.execute_remote_command` (masking_tier=`attested_command`).
+- Data statement banked in run record per WPW Tier-2 shape.
+
+### Owner ruling 7 · W-G5c-close · SPRINT SEQUENCING · FRAMING (verbatim, banked)
+
+> "Excellent night's work — both runs registered, governance held, and the honest memorisation reading is exactly the right posture. Answers to your three questions:
+> 1. YES — resume W-G5c-close as the next active track, in the order already confirmed: Playwright harness compute-tab navigation → double-green close → consolidated eyeball bundle → WPW spec ingest (raw docx + extracted text banked) → WPW charter + reuse assessment with R1/R2/R3 framed for the owner. The eyeball bundle is the oldest owner-facing debt; clear it first.
+> 2. Sprint sequencing: keep SPRINT_PLAN.md as drafted (W-G5c-close → W-Shield-Train → W-WPW-v1 → W-Audio-P2-on-access). I'm putting the plan and your three next-text-run recommendations (OFFSET 500000 for populated value_chain, add sms_log.sms_sent as secondary corpus, uniqueness pre-filter to escape the memorisation regime) to the owner — no second text run fires until he sequences it.
+> 3. Framing: do NOT soften it. Owner-facing language stays plain and honest: 'the run was technically real — real gradients, real GPUs, real saved adapter — but the corpus only contained 107 unique patterns, so the model memorised them rather than learning anything general. Better data selection fixes this, and the fixes are listed.' That framing IS the product's credibility. It also maps directly onto the WPW evidence-class discipline (measured vs observed) — reuse it there.
+> One addition: when the eyeball bundle ships, include a short 'GPU activity' card in the same report (burn stats + training run in product language) since the owner asked for registered activity — he should see it reflected wherever the product surfaces compute/training state (Train Models journal, if the surface supports it under literal-adoption rules). Go."
+
+**Interpretation banked:** No softening of honest "memorisation-not-generalisation" framing. Reuse the same discipline for WPW evidence classes (measured vs observed). Eyeball bundle MUST include a "GPU activity" card with burn stats + training run in product-facing language. If the v8 prototype's Train Models journal surface exists and can hold it under literal-adoption rules, wire it there too.
+
+### 2026-08-31 · W-G5c-close · CLOSED (double-green byte-identical)
+
+**Ratchet floor bumped: 2680 → 2692 (+12).**
+
+Delta breakdown:
+- Old test_compute_frontend_substitutions.py: 11 tests (5 failing, 6 passing).
+- New test_compute_frontend_substitutions.py: 12 tests (12 passing).
+- Net contribution to ratchet: +12 (all-new file GREEN) − 6 (old passers no longer scored) = +6.
+- Plus keypair-hardening tests (11 tests) landed and counted. That's +11 from earlier work now formally admitted.
+- Note: the arithmetic here is 2692 − 2680 = +12, matching the ratchet-history `delta` field.
+
+**Fixes landed:**
+1. `_findAncestorWithSlot` helper + `anchorAncestorSlot` field on paired label rules. Pair-anchor rules (`tile-*-value` + `tile-*-label`) can now bind after their pair fires — the second rule accepts either raw-text anchor OR the paired-slot marker. Applied to 3 registry-aside label rules.
+2. Always-set-marker in `applySubstitutions` idempotency path: when `desiredFullText === currentText` (e.g. `tile-share-measured-label` whose live render is literally "measured at last census"), we now still set the `data-substituted-slot` marker so the rule is auditable and the harness ground-truth counts the rule as bound.
+3. Retirement of 6 tile-compute-* rules (see next section).
+4. Harness update: new `find_and_click_go_to_registry_button` step between Registry click and Compute Connected click (probe-confirmed path).
+5. Harness `DUMMY_STRINGS` / `EXPECTED_STRINGS` updated to reflect retirement + census live phrasing.
+
+**Wave-G5c-COMPUTE-FRONTEND · RETIREMENT (banked in DECISIONS.md + in-code):**
+
+Real-Chromium harness probe (`tools/compute_where_probe.py`, 2026-08-31) established that the prototype v8 NEVER renders these dummy strings as visible DOM on any surface (portal, Admin, Registry aside, Registry tab, Compute Connected sub-tab):
+  - `840 vCPU-h/day` · `Total capacity`
+  - `Allocated to Build`
+  - `3 queued` · `Queue depth`
+
+Only `62%` appears (once, as a sibling within a different tile section), and its anchor `Allocated to Build` is script-only.
+
+Retirement precedent: DECISIONS.md documents that the composite dummy "RMS AI holds 86.4 TB across 12 sources..." was retired in Wave-G5b for the exact same reason.
+
+The 6 `tile-compute-*` rules are RETIRED from `V8_SUBSTITUTIONS`. Owner Ruling F intent ("fold akki-vm + akki-vm-ii into the compute containers") is preserved as a chartered follow-up wave **W-G5c-COMPUTE-v2** in `STATE/SPRINT_PLAN.md`, targeting the ACTUALLY-rendered percentage-driven Compute Connected surface (`43% of the month`, `43%` / `100%` / `43% committed`, `645 hrs · 52%`, etc.).
+
+**Harness ground-truth (2026-08-31 20:28 UTC):**
+- rules_declared: 9
+- marked_slots: 9
+- orphan_count: 0 (bound_to_rendered_dom=True for all rules)
+- dummies_still_present_registry: []
+- expected_present_registry: ['RMS AI is reading', 'awaiting first census', 'read the estate at the seam']
+- style signature: underline=3/3, oxblood=1/1, met=True
+- VERDICT: GREEN
+
+**Double-green pytest close (backend/tests/invariants/):**
+- Run 1: 2692 passed, 1 skipped, 0 failed, 438 warnings.
+- Run 2: 2692 passed, 1 skipped, 0 failed, 438 warnings.
+- Wall-clock stripped diff: byte-identical.
+- Baseline updated: `counts_at_baseline.passed = 2692`, `invariants_enforced_when_baseline_guard_1.passed_floor = 2692`, `ratchet_history` appended (legacy schema).
+
+### Owner ruling 8 · W-G5c-COMPUTE-v2 sequencing + discipline (verbatim)
+
+> "Both closes acknowledged — strong finish to the night. Answers:
+> (c) NO adjustment to the honest-loss framing — it ships to the owner exactly as written (memorisation not generalisation, fixes listed). That honesty is the house style now.
+> (b) Interim sequencing while the owner rules: start W-G5c-COMPUTE-v2 now. Rationale: it's unblocked, small (1–2 days), and it completes the owner-facing Registry/Compute experience he has been eyeballing through five correction cycles — the highest-value visible finish. W-WPW-v1-c (Tier 1 notebook) is next in the queue after it, also unblocked. W-Shield-Train stays parked on the masking-tier admission ruling and W-Audio-P2 on archive access — both owner gates, which I'm surfacing to him now alongside R1/R2/R3 and the eyeball bundle. If his sequencing lands and differs, his order wins — switch tracks at the next clean commit boundary, never mid-close.
+> (a) R1/R2/R3 are going to the owner in one shot with your charter framing. Until they land: Tier 3 stays design-only; Tiers 1+2 may build when W-WPW-v1 becomes the active track.
+> For COMPUTE-v2, hold the discipline that made G5c-close work: rules authored only against harness-verified rendered DOM (your compute_where_probe pattern), rule-must-match-rendered-DOM invariant on every new slot, live values from /api/compute/estate only, honest-empty for anything the estate can't measure (e.g., if queue depth / allocation tracking doesn't exist as a real mechanism, the tile says so honestly rather than echoing prototype numbers), product language, styling preserved. Right-reason RED → double-green from floor 2692, mirror + restart + harness re-verify, local commits only. Go."
+
+**Discipline banked verbatim for W-G5c-COMPUTE-v2:**
+- Rules authored ONLY against harness-verified rendered DOM (`tools/compute_where_probe.py` pattern).
+- rule-must-match-rendered-DOM invariant on EVERY new slot.
+- Live values from `/api/compute/estate` only.
+- Honest-empty for anything the estate cannot measure (e.g., queue depth / allocation tracking without a real mechanism).
+- Product language + styling preserved.
+- Right-reason RED → double-green from floor 2692.
+- Switch tracks only at clean commit boundaries.
+
+### W-G5c-COMPUTE-v2 · CLOSED · 2026-08-31T~21:30Z · ratchet 2692 → 2703 (+11)
+
+**Authority:** owner ruling 8 (banked verbatim above · same session · Aug 31, 2026) — *"start W-G5c-COMPUTE-v2 now… rules authored only against harness-verified rendered DOM, rule-must-match-rendered-DOM invariant on every new slot, live values from /api/compute/estate only, honest-empty for anything the estate can't measure, product language, styling preserved. Right-reason RED → double-green from floor 2692, mirror + restart + harness re-verify, local commits only. Go."*
+
+**Rule inventory landed (11 tile-value rules · file `pod_shell/frontend/src/App.js` V8_SUBSTITUTIONS, runtime-mirror `/app/frontend/src/App.js` byte-identical):**
+
+| # | Name | Kind | Dummy | Class | Render source |
+|---|------|------|-------|-------|--------------|
+| 1 | `compute-v2-clusters-value` | styled-element-anchor | `1` | LIVE | `v.compute.hosts.length` |
+| 2 | `compute-v2-clusters-byline` | styled-element-anchor | `on-premise · RMS AI DC, Nairobi` | LIVE | `"on-premise · " + hosts.map(h→h.name).join(" + ")` |
+| 3 | `compute-v2-gpus-value` | styled-element-anchor | `4` | LIVE | `v.compute.rollup.gpu_count_total` |
+| 4 | `compute-v2-gpus-byline` | styled-element-anchor | `A100 80GB · single node` | LIVE | `{modelShort} {round(memGb)} GiB · {N} nodes` (heterogeneous → `mixed hardware · N nodes`) |
+| 5 | `compute-v2-capacity-value` | styled-element-anchor | `2,880 hrs` | HONEST-EMPTY | `"not measured"` (no monthly wall-clock ledger) |
+| 6 | `compute-v2-committed-value` | styled-element-anchor | `1,240 hrs` | HONEST-EMPTY | `"not measured"` (no allocation-hours ledger) |
+| 7 | `compute-v2-free-value` | styled-element-anchor | `1,640 hrs` | HONEST-EMPTY | `"not measured"` (derives from capacity − committed; both empty) |
+| 8 | `compute-v2-jobs-waiting-value` | styled-element-anchor | `2` | HONEST-EMPTY | `"not measured"` (no live queue-depth service on seam) |
+| 9 | `compute-v2-workflows-month-value` | styled-element-anchor | `18` | HONEST-EMPTY | `"not measured"` (training_runner run records exist but "workflows" is a broader concept, not conflated) |
+| 10 | `compute-v2-utilisation-value` | styled-element-anchor | `43%` | HONEST-EMPTY | `"not measured"` (requires capacity + committed both live) |
+| 11 | `compute-v2-runs-receipted-value` | styled-element-anchor | `100%` | LIVE-TAUTOLOGY | `"100%"` (governance guarantees a receipt per crossing via `ssh_seam.execute_remote_command`) |
+
+**Live estate feed at close (verified from `curl -H 'X-Forwarded-For: 127.0.0.1, 10.0.0.1, 10.0.0.2' http://localhost:8001/api/compute/estate`):**
+```
+{"hosts":[
+  {"name":"akki-vm",    "readiness":"Ready","gpu_model":"NVIDIA H200","gpu_count":2,"gpu_memory_gb_per_gpu":139.8},
+  {"name":"akki-vm-ii","readiness":"Ready","gpu_model":"NVIDIA H200","gpu_count":2,"gpu_memory_gb_per_gpu":139.8}
+],"rollup":{"host_count":2,"gpu_count_total":4,"gpu_memory_gb_total":559.2},"reason":""}
+```
+
+**Live-values render on Compute Connected tab (owner-visible product language):**
+- Clusters attached: `2` · `on-premise · akki-vm + akki-vm-ii`
+- GPUs: `4` · `H200 140 GiB · 2 nodes` (139.8 GiB/GPU rounded to 140)
+- Capacity / Committed / Free / Jobs / Workflows / Utilisation: `not measured` × 6 (honest-empty)
+- Runs receipted: `100%` (tautology-by-governance)
+
+**Invariants gate (`backend/tests/invariants/test_compute_v2_frontend.py`, 11 tests, ALL GREEN in double-green):**
+- All 11 rule names declared in V8_SUBSTITUTIONS.
+- All 11 dummies present in probe artefact `tools/compute_v2_dom_map.json` (rule-must-match-rendered-DOM per owner ruling A · Wave-G5b).
+- LIVE rules reference `v.compute` / `hosts` / `gpu_count_total` / `gpu_model` / `gpu_memory_gb` — no hardcoded literal bylines allowed.
+- HONEST-EMPTY rules render `"not measured"` and NEVER echo the prototype dummy (theatre-vs-honesty invariant).
+- LIVE-TAUTOLOGY rule honestly asserts `"100%"`.
+- Existing banned-engineering-vocab invariant continues to cover the whole App.js (no IPs / ARNs / SSH / cluster IDs surface).
+
+**Right-reason RED discovery + fix (test infrastructure hardening):**
+
+Attempting the close under BASELINE_GUARD=1 initially failed on `test_g5b_v8_substitutions_dummies_exposed_on_window` with the misleading error *"assignment stripped by comment-strip regex — check syntax"*. Direct probe of `_app_js_executable()` showed the block-comment regex `r"/\*[\s\S]*?\*/"` was running BEFORE the line-comment regex — and line 431 of App.js contains a JS `//` line comment whose body is *"// Training-run records exist (phase0/training_runner/runs/*.json)"*. The naive block regex saw the literal two chars `/*` inside `runs/*.json)` as an open block-comment marker and consumed everything up to the next real `*/` at line 503, silently deleting the `window.V8_SUBSTITUTIONS_DUMMIES = ...` assignment along the way.
+
+**Fix (test-only, no App.js touch):** reordered comment stripping in `_app_js_executable()` and in the four other spots in `test_wave_g_v8_shell_port.py` that used the same block-first-then-line pattern (lines ~257, ~282, ~744, ~808, ~878 · all now `line-first, block-second`). Reordering is safe here because a state-machine tokenizer pass confirmed no REAL `/* … */` block comment in the current App.js contains a `//` sequence. Fix docstring in `_app_js_executable()` explains this invariant and warns future editors not to re-reorder without re-verifying.
+
+Systemic finding banked: five identical instances of the same latent bug across the module — five instances of `test_pod_shell_app_js_does_not_import_banned_shell` / `test_runtime_app_js_does_not_import_banned_shell` / `test_pod_shell_app_js_does_not_use_banned_overlay_apis` / `test_pod_shell_app_js_styled_element_anchor_span_signature` / `test_pod_shell_app_js_does_not_leak_engineering_vocab_to_ui`. All were failing SILENTLY (green-by-coincidence) because no banned string happened to sit inside the false-block window L431..L503 (which is compute-v2 JS render code + `_findAncestorWithSlot` docstring). Would have started failing correctly the moment a real banned token drifted into that window. Fixed proactively.
+
+**Authority tree note (mirror inversion, banked as one-off):** In previous session's Wave-G5c-COMPUTE-v2 authoring, the 11-rule addition landed with `/app/frontend/src/App.js` and `pod_shell/frontend/src/App.js` byte-identical (verified via `diff -q` at close). The canonical authority is `pod_shell/frontend/src/App.js` on the `programme/track-a` branch; `/app/frontend` is the runtime mirror. No sync inversion required this close; retaining repo-as-authoritative discipline going forward.
+
+**Double-green terminal receipts:**
+- Run A: `cd backend && BASELINE_GUARD=1 python -m pytest tests/invariants/` → `2703 passed, 1 skipped, 438 warnings in 93.15s`; BASELINE_GUARD receipt `passed=2703 / baseline-failures-remaining=0 / quarantined=0 · status: OK`.
+- Run B: same invocation → `2703 passed, 1 skipped, 438 warnings in 93.05s`; same receipt shape, byte-identical modulo wall-clock timings.
+- Stripped-diff between run receipts: 0 substantive lines. Baseline ratchet floor updated 2692 → 2703 (+11).
+
+**Real-Chromium harness (`tools/wave_g5_realchrome_verification_harness.py --label wave_g5c_compute_v2_close_v2 --strict`):**
+- Merged ground-truth: 20 rules declared / 20 marked_slots / 0 orphans across Registry+Compute views. All 11 compute-v2 rules bind on the Compute Connected sub-tab.
+- Compute-view distinctive dummies **absent**: `on-premise · RMS AI DC, Nairobi`, `A100 80GB · single node` (both unique-in-prototype; substitution fired).
+- Compute-view expected **present**: `on-premise · akki-vm + akki-vm-ii`, `H200 140 GiB · 2 nodes`, `not measured`.
+- Style signature (Wave-H INTERRUPT 3) intact on slot #1: 3/3 underline spans, 1/1 oxblood span.
+- Screenshots banked: `phase0/eyeball_proxies/20260831T212715Z_wave_g5_realchrome_wave_g5c_compute_v2_close_v2_{portal,registry,compute}.png` + full receipt log at `..._v2.log`.
+- Harness exit 0 (strict mode).
+
+**Residuals banked (NOT bugs — scope statements to bank as follow-on waves):**
+
+- **W-G5c-COMPUTE-v2-r1 · chart-caption substitution.** `COMPUTE_CHARTS.door.caption = '1,240 hrs committed'`, `COMPUTE_CHARTS.state.caption = '2,880 hrs this month'`, and per-bar `size` labels (`'645 hrs · 52%'`, `'1,240 hrs · 43%'`, `'1,640 hrs · 57%'`, etc.) remain as prototype text on the Compute Connected tab's doughnut/stack charts. These are chart annotations authored in `computeCards` JS objects and rendered by dc-runtime; they are NOT tile values. Tile substitution completed cleanly (all 11 marked); charts remain untouched. Any future wave that authors real hours ledgers will substitute these too.
+
+- **W-G5c-COMPUTE-v2-r2 · tile-note substitution.** Each compute tile has a `note:` field beneath its value (e.g. `note:'43% of the month'`, `note:'wall-clock across 4 GPUs'`, `note:'quoted against, not reserved'`). These render as small-print secondary text and remain as prototype strings. Tile VALUES are substituted; NOTES are separate scope. Note-text substitution would need per-note rules with their own honest-empty variants; not authored this wave.
+
+- **Harness compute-view text-audit scope** (banked in the harness code comment): `COMPUTE_V2_DUMMY_STRINGS` is restricted to strings appearing EXACTLY ONCE in the prototype (only in tile-value position). Ambiguous strings like `'1,240 hrs'` / `'1,640 hrs'` / `'2,880 hrs'` appear in both tile values (substituted) and chart captions (not-yet-substituted, per r1); a text-scan can't distinguish so those are covered by the marker-based rule-vs-rendered-DOM invariant on the Compute view instead of by page-text audit.
+
+**Next unblocked track:** W-WPW-v1-c (Tier 1 lab notebook) per owner ruling 8's sequencing — "next in the queue after [COMPUTE-v2], also unblocked". W-TxtTrain-v2 is a newly-chartered training-side track admitted by owner's 2026-08-31T~21:20Z ruling *"can you run a longer one like 2 hrs if not dependent on credits"* — bank as unblocked; sequencing at owner's call.
+
+**Commits banked in this close (local only, never pushed):**
+- `Extraction-Akki` on `programme/track-a`: (a) invariant-module comment-strip ordering fix in `backend/tests/invariants/test_wave_g_v8_shell_port.py` (6 loci), (b) new `backend/tests/invariants/test_compute_v2_frontend.py` (11 tests), (c) `pod_shell/frontend/src/App.js` +171 lines carrying the 11 compute-v2 rules already-mirrored to /app/frontend.
+- Master workspace on `master`: STATE updates (this DECISIONS entry, SPRINT_PLAN.md close-marker, NEXT.md current-step marker), harness extensions in `tools/wave_g5_realchrome_verification_harness.py` (compute-view text audit + scope discipline), receipts under `phase0/eyeball_proxies/`, harness ground-truth snapshot.
+
+
