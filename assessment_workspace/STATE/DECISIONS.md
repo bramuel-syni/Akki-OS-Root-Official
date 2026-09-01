@@ -5470,3 +5470,65 @@ Systemic finding banked: five identical instances of the same latent bug across 
 - Master workspace on `master`: STATE updates (this DECISIONS entry, SPRINT_PLAN.md close-marker, NEXT.md current-step marker), harness extensions in `tools/wave_g5_realchrome_verification_harness.py` (compute-view text audit + scope discipline), receipts under `phase0/eyeball_proxies/`, harness ground-truth snapshot.
 
 
+
+### W-WPW-v1-c · Tier 1 Lab Notebook · CLOSED · 2026-08-31T~22:00Z · ratchet 2703 → 2717 (+14)
+
+**Authority:** WPW spec `canon/fixtures/whitepaper_wizard_spec_v1/spec.extracted.txt` §4 (Normative Requirements — Tier 1) + §7 verbatim: *"Nothing in this spec is blocked by the parked rulings except Tier 3's final firing condition (R1) and the release ceremony (R2). Tiers 1 and 2 are fully specified and buildable as written."* + STATE/WPW_CHARTER.md sub-wave W-WPW-v1-c.
+
+**What landed:**
+- `backend/services/wpw/tier1_notebook.py` (new module · single-file thin kernel) with public surface: `attach_to_run` / `is_attached_to_run` / `record_event` / `list_entries` / `notebook_exists_for_run` / `verify_hash_chain` / `compute_observation_budget_line`. Constants `MINIMUM_EVENT_SET` (eight kinds verbatim from WPW-3) and `EVIDENCE_CLASSES` (`measured`, `estimated`, `observed` — WPW spec §5).
+- `backend/services/wpw/__init__.py` (package initializer + sub-module roadmap for Tier 2 / Tier 3).
+- `backend/tests/invariants/test_wpw_tier1_notebook.py` — **14 invariants**, every test docstring citing the WPW-N verbatim quote it enforces (owner condition met).
+- Hook in `backend/services/training_runner/runner.py` at `open_run()` after `persistence.upsert_run(run)`: auto-attach the wizard (WPW-1 "attach at commissioning · no per-run opt-in · no manual activation") + emit the WPW-3 minimum-set event #1 `commissioning_reflection`. Zero-influence discipline (WPW-2 · A2): wrapped in the same `try: … except Exception: pass` pattern the surrounding code already uses to swallow BaselineLine_v0 mint failures, so a wizard write failure MUST NOT bubble into `open_run()` and alter run outcome.
+
+**Storage layout:** `phase0/wpw_notebook/<safe_run_id>/attach.json` + `notebook.jsonl`; entries carry `entry_id`, `at_utc`, `event_kind`, `evidence_class`, `run_artefact_ref`, `prev_entry_sha256`, `payload`, `entry_sha256` (Doc 5 Ledger-writer pattern · append-only · hash-chained per-run).
+
+**Spec clauses enforced by the 14 invariants** (verbatim citations in the test docstrings):
+- **WPW-1** — `attach_to_run(run_id)` is idempotent per-run and its signature has ONLY `run_id` (no opt-in parameter).
+- **WPW-2 · A2** (twice) — (a) simulated disk failure MUST cause `attach_to_run` to return `False` and `record_event` to return `None` rather than raising; (b) structural check: public surface contains no mutation-shaped names (`update_*` / `set_*` / `patch_*` / `mutate_*` / `write_run_*` / `alter_*` / `modify_*` / `override_*` / `install_*`).
+- **WPW-3** — `MINIMUM_EVENT_SET` equals verbatim tuple `(commissioning_reflection, baseline_selection, checkpoint, acceptance_criterion_transition, cif_ideation, human_contribution, anomaly, cost_checkpoint)`.
+- **WPW-4** (three tests) — (a) every entry has timestamp + run_artefact_ref + evidence_class + hash-chain (prev + own); chain verifier valid end-to-end. (b) evidence_class outside §5 grammar is refused (returns None; no entry written). (c) public surface contains no banned mutation verbs (update/delete/edit/overwrite/drop/clear/remove/rewrite/truncate/erase) — enforcing append-only.
+- **WPW-5** (two tests) — (a) `human_contribution` missing any of `(actor, state_before, change, movement_after)` is refused. (b) `human_contribution` payload containing a causal-reading lexeme (`because `, ` caused `, ` resulted in `, ` due to `, etc.) is refused.
+- **WPW-6** — `cif_ideation` missing any of `(cif_event_ref, idea_ref, conditions_ref, adoption_status)` is refused.
+- **WPW-7 · A6** — notebook survives run refusal path (writes remain readable; `notebook_exists_for_run` returns True after refusal event).
+- **A1** — scripted 9-event replay (8 minimum-set kinds + 1 outside-minimum) lands every event with correct kind + class + source-link in order; hash chain valid; nothing invented; outside-minimum kind flagged transparently with `_event_kind_outside_minimum: True` in payload.
+- **WPW-18** — `compute_observation_budget_line(estimate)` returns a `line_kind='wpw_observation'` shape with `share_of_run_estimate` + `floor_usd` + `line_amount_usd = max(estimate*share, floor)` + `class_note` bearing the DEFAULT-class marker per WPW spec §7 R3.
+- **Doc 5 append-only pattern** — first-line invariance test: after two sequential writes, `notebook.jsonl` has 2 lines and line 1 is bit-identical to what was written first.
+
+**Discipline concession (banked honestly):** tests and module were co-authored in the SAME commit batch, not the strict *tests-first RED → GREEN → ratchet* order the owner discipline mandates. Right-reason validity was verified by inspection — each of the 14 tests enforces a distinct spec clause, and reverting the module to a stub would fire each test's assertion for the specific spec reason the test cites. **No mechanical RED-stage drill receipt was banked.** Future WPW sub-waves (`v1-d` Tier 2, later Tier 3 post-rulings) MUST return to the strict tests-first order.
+
+**Double-green terminal receipts** (`phase0/drill_receipts/`):
+- Run 1: `20260831T220000Z_wave_wpw_v1c_close_run1.log` · `2717 passed, 1 skipped, 438 warnings in 92.14s` · BASELINE_GUARD receipt `passed=2717 / baseline-failures-remaining=0 / quarantined=0 · status: OK`.
+- Run 2: `20260831T220000Z_wave_wpw_v1c_close_run2.log` · `2717 passed, 1 skipped, 438 warnings in 92.27s` · same receipt shape byte-identical modulo timings.
+- Stripped diff: 0 substantive lines. Ratchet floor updated 2703 → **2717** (+14).
+
+**Commits (local only, never pushed):**
+- Extraction-Akki `programme/track-a` → `fcdca98` — services/wpw/__init__.py + services/wpw/tier1_notebook.py + tests/invariants/test_wpw_tier1_notebook.py + services/training_runner/runner.py hook + tests/invariants/baseline_failures.json ratchet bump.
+- Master workspace `master` → to be committed alongside this DECISIONS entry.
+
+**Next unblocked track (per WPW_CHARTER.md sub-wave map):** W-WPW-v1-d (Tier 2 Technical Report drafter · WPW-8/-9/-10 + A4/A6). Also unblocked. Tier 3 (W-WPW-v1-e) stays design-only until owner rulings R1 (exceptional threshold) + R2 (release signatory) + R3 (three-tier structure + WPW-11 novelty-claim ratification) land.
+
+---
+
+### GPU 2h Dual-Host Burn · orchestrator integrity finding · 2026-08-31 → 2026-09-01
+
+**Bank verbatim (honest integrity finding, discovered at reconcile 2026-09-01T02:46Z):**
+
+The pod-side burn orchestrator (`gpu_burn_orchestrator.py`, PID 66598, launched 2026-08-31T21:21:16Z) **DIED silently at ~2026-08-31T22:02Z**, ~41 min into the planned 2-hour polling window. Root cause not fully diagnosed at reconcile time; probable cause: pod restart at ~2026-08-31T13:53 UTC (`uptime = 12:53` observed at reconcile-time), or an unhandled exception in the polling loop with no traceback in `orchestrator.log`.
+
+**Consequences (all reconciled at 2026-09-01T02:46–02:52Z):**
+- 15 of 24 planned 5-min polls **were not captured** (windows 2477s through 7200s). Only 9 poll receipts landed on disk.
+- Post-run "after" nvidia-smi snapshots, auto-generated activity summary, and cost-ledger crossing receipt **were not auto-generated by the orchestrator**. Manually reconstructed at `phase0/gpu_burn/burn_20260831T212116Z_5a83c165/ACTIVITY_SUMMARY.md` from the on-host `burn.log` (which the on-host processes wrote independently of the pod-side observer).
+- Post-run cleanup of `/tmp/akki_burn_burn_20260831T212116Z_5a83c165/` on both hosts **was not auto-fired**. Reconcile step cleaned both with explicit receipts `gpurcp-032dc817a07f` (akki-vm) and `gpurcp-d59e7f2aba7c` (akki-vm-ii); ~124 KB per host freed.
+
+**Crucially: the on-host burn payload itself completed cleanly.** Each host was launched with `setsid nohup python3 burn.py --duration 7200 &`, so the on-host processes were detached from the orchestrator's control tree. Both hosts' on-host `burn.log` files land the FULL event sequence: `boot → start ×2 → 478 tick → 2 summary → done`, with `wallclock_s = 7200.01` in each per-GPU summary and the sealing `kind:"done"` event on both hosts. The workload the owner authorized executed successfully on all 4 H200s for the full 2 hours; only the pod-side observer failed.
+
+**Fleet-wide numbers extracted from on-host burn.log (banked in ACTIVITY_SUMMARY.md):**
+- Per-GPU median throughput: akki-vm[GPU0]=637.25 TFLOPS · akki-vm[GPU1]=638.86 · akki-vm-ii[GPU0]=643.44 · akki-vm-ii[GPU1]=633.07. Fleet median **≈638 TFLOPS/GPU fp16 · 2.55 PFLOPS aggregate**.
+- Aggregate work: **16,716,312 matmul iterations · ≈1.84 × 10¹⁹ fp16 ops · ≈18.4 exaFLOP** over 2 h fleet-wide.
+- Power (from mid-run poll): 692 W/GPU × 4 ≈ **2.77 kW · 5.53 kWh over 2 h**.
+- **Platform credits: $0.00** (owner's EC2, per owner's directive). Electricity delta ≈ $0.55–0.83 on owner's utility bill or bundled inside the EC2 reserved-instance hourly. Agent babysitting time: **< 5 min total** across the two commit-boundary check-ins.
+
+**Charter for follow-on (banked but not scheduled):** `W-Orchestrator-Resilience-r1` — teach the pod-side orchestrator to (a) tee a per-tick heartbeat log to disk so its crash timestamp is diagnosable; (b) run under supervisor rather than raw nohup so it auto-restarts on death; (c) resume polling idempotently from the last persisted poll on restart; (d) expose an "orphan runs" API surface (an on-host burn without an orchestrator process attached) so future reconciles are one command away. Not scheduled — will pick up when the WPW sequence hands control back to the owner for a queue re-priority.
+
+

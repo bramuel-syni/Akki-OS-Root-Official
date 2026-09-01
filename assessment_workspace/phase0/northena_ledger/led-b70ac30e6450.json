@@ -1,0 +1,68 @@
+{
+  "artifact_ref": {
+    "artifact_id": "g3-test-artifact",
+    "artifact_type": "objective_request",
+    "version": "v0"
+  },
+  "at": "2026-09-01T02:22:23.044653Z",
+  "decision": "terminate_success",
+  "lawful_basis_ref": "g3-test-lawful-basis",
+  "reason": "solva_assertion_class=fact",
+  "row_id": "led-b70ac30e6450",
+  "run_id": "g3-test-run-dfc72d2a965f",
+  "stage": "converge",
+  "stamp_audit": {
+    "computed_class": "fact",
+    "conclusion": {
+      "claim": "Reflection on: Is this defensible?",
+      "context_only": null,
+      "kind": "assertion",
+      "klass": "fact"
+    },
+    "load_bearing_unit_ids": [
+      "u-a",
+      "u-b"
+    ],
+    "run_id": "g3-test-run-dfc72d2a965f",
+    "stages": [
+      {
+        "at": "2026-09-01T02:22:23.044498+00:00",
+        "input_summary": "question='Is this defensible?', units_count=2",
+        "output_summary": "conformant_units=2",
+        "stage_name": "layer_c_converge"
+      },
+      {
+        "at": "2026-09-01T02:22:23.044509+00:00",
+        "input_summary": "question='Is this defensible?', units_count=2",
+        "output_summary": "stage=frame keys=['candidate_unit_ids', 'question', 'stage']",
+        "stage_name": "frame"
+      },
+      {
+        "at": "2026-09-01T02:22:23.044515+00:00",
+        "input_summary": "stage=frame keys=['candidate_unit_ids', 'question', 'stage']",
+        "output_summary": "stage=candidate keys=['candidates', 'count', 'stage']",
+        "stage_name": "candidate"
+      },
+      {
+        "at": "2026-09-01T02:22:23.044523+00:00",
+        "input_summary": "stage=candidate keys=['candidates', 'count', 'stage']",
+        "output_summary": "stage=tension keys=['edges', 'has_contradiction', 'has_retraction', 'stage']",
+        "stage_name": "tension"
+      },
+      {
+        "at": "2026-09-01T02:22:23.044528+00:00",
+        "input_summary": "stage=tension keys=['edges', 'has_contradiction', 'has_retraction', 'stage']",
+        "output_summary": "stage=probability keys=['stage', 'tension_ack', 'weighted_unit_ids']",
+        "stage_name": "probability"
+      },
+      {
+        "at": "2026-09-01T02:22:23.044532+00:00",
+        "input_summary": "stage=probability keys=['stage', 'tension_ack', 'weighted_unit_ids']",
+        "output_summary": "stage=reflection keys=['conclusion_text', 'load_bearing_units', 'stage']",
+        "stage_name": "reflection"
+      }
+    ],
+    "trace_id": "g3-test-trace-5e6a288cbccc"
+  },
+  "trace_id": "g3-test-trace-5e6a288cbccc"
+}

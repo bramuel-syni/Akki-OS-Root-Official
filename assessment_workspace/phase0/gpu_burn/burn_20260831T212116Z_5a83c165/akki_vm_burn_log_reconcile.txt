@@ -1,0 +1,98 @@
+=== burn.log head ===
+{"at":"2026-08-31T21:21:45Z","cuda_version":"12.8","dtype":"float16","duration_s":7200,"kind":"boot","n_gpu":2,"pid":115888,"size":8192,"torch_version":"2.11.0+cu128"}
+{"at":"2026-08-31T21:21:45Z","device_name":"NVIDIA H200","dtype":"float16","gpu":0,"kind":"start","size":8192}
+{"at":"2026-08-31T21:21:46Z","device_name":"NVIDIA H200","dtype":"float16","gpu":1,"kind":"start","size":8192}
+{"at":"2026-08-31T21:22:16Z","chunk_tflops":635.33,"elapsed_s":30.0,"gpu":0,"iter_count":17336,"kind":"tick"}
+{"at":"2026-08-31T21:22:16Z","chunk_tflops":636.13,"elapsed_s":30.01,"gpu":1,"iter_count":17360,"kind":"tick"}
+{"at":"2026-08-31T21:22:46Z","chunk_tflops":638.24,"elapsed_s":60.01,"gpu":0,"iter_count":34752,"kind":"tick"}
+{"at":"2026-08-31T21:22:46Z","chunk_tflops":638.56,"elapsed_s":60.01,"gpu":1,"iter_count":34784,"kind":"tick"}
+{"at":"2026-08-31T21:23:16Z","chunk_tflops":638.01,"elapsed_s":90.01,"gpu":1,"iter_count":52192,"kind":"tick"}
+{"at":"2026-08-31T21:23:16Z","chunk_tflops":637.26,"elapsed_s":90.01,"gpu":0,"iter_count":52144,"kind":"tick"}
+{"at":"2026-08-31T21:23:46Z","chunk_tflops":637.63,"elapsed_s":120.01,"gpu":1,"iter_count":69592,"kind":"tick"}
+{"at":"2026-08-31T21:23:46Z","chunk_tflops":636.83,"elapsed_s":120.01,"gpu":0,"iter_count":69520,"kind":"tick"}
+{"at":"2026-08-31T21:24:16Z","chunk_tflops":637.89,"elapsed_s":150.02,"gpu":1,"iter_count":87000,"kind":"tick"}
+{"at":"2026-08-31T21:24:16Z","chunk_tflops":636.7,"elapsed_s":150.02,"gpu":0,"iter_count":86896,"kind":"tick"}
+{"at":"2026-08-31T21:24:46Z","chunk_tflops":637.94,"elapsed_s":180.02,"gpu":1,"iter_count":104408,"kind":"tick"}
+{"at":"2026-08-31T21:24:46Z","chunk_tflops":636.76,"elapsed_s":180.02,"gpu":0,"iter_count":104272,"kind":"tick"}
+{"at":"2026-08-31T21:25:16Z","chunk_tflops":637.89,"elapsed_s":210.03,"gpu":1,"iter_count":121816,"kind":"tick"}
+{"at":"2026-08-31T21:25:16Z","chunk_tflops":636.73,"elapsed_s":210.03,"gpu":0,"iter_count":121648,"kind":"tick"}
+{"at":"2026-08-31T21:25:46Z","chunk_tflops":638.51,"elapsed_s":240.03,"gpu":1,"iter_count":139240,"kind":"tick"}
+{"at":"2026-08-31T21:25:46Z","chunk_tflops":636.77,"elapsed_s":240.03,"gpu":0,"iter_count":139024,"kind":"tick"}
+{"at":"2026-08-31T21:26:16Z","chunk_tflops":638.44,"elapsed_s":270.04,"gpu":1,"iter_count":156664,"kind":"tick"}
+{"at":"2026-08-31T21:26:16Z","chunk_tflops":636.87,"elapsed_s":270.04,"gpu":0,"iter_count":156408,"kind":"tick"}
+{"at":"2026-08-31T21:26:46Z","chunk_tflops":638.11,"elapsed_s":300.05,"gpu":1,"iter_count":174080,"kind":"tick"}
+{"at":"2026-08-31T21:26:46Z","chunk_tflops":636.97,"elapsed_s":300.05,"gpu":0,"iter_count":173792,"kind":"tick"}
+{"at":"2026-08-31T21:27:16Z","chunk_tflops":638.49,"elapsed_s":330.05,"gpu":1,"iter_count":191504,"kind":"tick"}
+{"at":"2026-08-31T21:27:16Z","chunk_tflops":637.07,"elapsed_s":330.05,"gpu":0,"iter_count":191176,"kind":"tick"}
+
+=== burn.log tail (per-gpu summaries) ===
+{"at":"2026-08-31T23:07:18Z","chunk_tflops":637.34,"elapsed_s":6331.41,"gpu":0,"iter_count":3669392,"kind":"tick"}
+{"at":"2026-08-31T23:07:48Z","chunk_tflops":638.71,"elapsed_s":6361.4,"gpu":1,"iter_count":3695976,"kind":"tick"}
+{"at":"2026-08-31T23:07:48Z","chunk_tflops":637.41,"elapsed_s":6361.41,"gpu":0,"iter_count":3686784,"kind":"tick"}
+{"at":"2026-08-31T23:08:18Z","chunk_tflops":638.66,"elapsed_s":6391.41,"gpu":1,"iter_count":3713408,"kind":"tick"}
+{"at":"2026-08-31T23:08:18Z","chunk_tflops":637.15,"elapsed_s":6391.43,"gpu":0,"iter_count":3704176,"kind":"tick"}
+{"at":"2026-08-31T23:08:48Z","chunk_tflops":638.58,"elapsed_s":6421.41,"gpu":1,"iter_count":3730832,"kind":"tick"}
+{"at":"2026-08-31T23:08:48Z","chunk_tflops":637.23,"elapsed_s":6421.44,"gpu":0,"iter_count":3721568,"kind":"tick"}
+{"at":"2026-08-31T23:09:18Z","chunk_tflops":638.71,"elapsed_s":6451.42,"gpu":1,"iter_count":3748264,"kind":"tick"}
+{"at":"2026-08-31T23:09:18Z","chunk_tflops":637.2,"elapsed_s":6451.45,"gpu":0,"iter_count":3738960,"kind":"tick"}
+{"at":"2026-08-31T23:09:48Z","chunk_tflops":638.91,"elapsed_s":6481.43,"gpu":1,"iter_count":3765704,"kind":"tick"}
+{"at":"2026-08-31T23:09:48Z","chunk_tflops":637.35,"elapsed_s":6481.45,"gpu":0,"iter_count":3756352,"kind":"tick"}
+{"at":"2026-08-31T23:10:18Z","chunk_tflops":638.87,"elapsed_s":6511.43,"gpu":1,"iter_count":3783136,"kind":"tick"}
+{"at":"2026-08-31T23:10:18Z","chunk_tflops":637.17,"elapsed_s":6511.46,"gpu":0,"iter_count":3773744,"kind":"tick"}
+{"at":"2026-08-31T23:10:48Z","chunk_tflops":638.65,"elapsed_s":6541.45,"gpu":1,"iter_count":3800568,"kind":"tick"}
+{"at":"2026-08-31T23:10:48Z","chunk_tflops":637.36,"elapsed_s":6541.47,"gpu":0,"iter_count":3791136,"kind":"tick"}
+{"at":"2026-08-31T23:11:18Z","chunk_tflops":639.07,"elapsed_s":6571.45,"gpu":1,"iter_count":3818008,"kind":"tick"}
+{"at":"2026-08-31T23:11:18Z","chunk_tflops":637.08,"elapsed_s":6571.47,"gpu":0,"iter_count":3808520,"kind":"tick"}
+{"at":"2026-08-31T23:11:48Z","chunk_tflops":639.14,"elapsed_s":6601.45,"gpu":1,"iter_count":3835448,"kind":"tick"}
+{"at":"2026-08-31T23:11:48Z","chunk_tflops":637.21,"elapsed_s":6601.48,"gpu":0,"iter_count":3825912,"kind":"tick"}
+{"at":"2026-08-31T23:12:18Z","chunk_tflops":638.71,"elapsed_s":6631.46,"gpu":1,"iter_count":3852880,"kind":"tick"}
+{"at":"2026-08-31T23:12:18Z","chunk_tflops":636.92,"elapsed_s":6631.49,"gpu":0,"iter_count":3843296,"kind":"tick"}
+{"at":"2026-08-31T23:12:48Z","chunk_tflops":638.75,"elapsed_s":6661.47,"gpu":1,"iter_count":3870312,"kind":"tick"}
+{"at":"2026-08-31T23:12:48Z","chunk_tflops":636.92,"elapsed_s":6661.5,"gpu":0,"iter_count":3860680,"kind":"tick"}
+{"at":"2026-08-31T23:13:18Z","chunk_tflops":638.86,"elapsed_s":6691.47,"gpu":1,"iter_count":3887744,"kind":"tick"}
+{"at":"2026-08-31T23:13:18Z","chunk_tflops":637.06,"elapsed_s":6691.5,"gpu":0,"iter_count":3878064,"kind":"tick"}
+{"at":"2026-08-31T23:13:48Z","chunk_tflops":638.76,"elapsed_s":6721.47,"gpu":1,"iter_count":3905176,"kind":"tick"}
+{"at":"2026-08-31T23:13:48Z","chunk_tflops":637.19,"elapsed_s":6721.51,"gpu":0,"iter_count":3895456,"kind":"tick"}
+{"at":"2026-08-31T23:14:18Z","chunk_tflops":638.58,"elapsed_s":6751.48,"gpu":1,"iter_count":3922600,"kind":"tick"}
+{"at":"2026-08-31T23:14:18Z","chunk_tflops":637.18,"elapsed_s":6751.52,"gpu":0,"iter_count":3912848,"kind":"tick"}
+{"at":"2026-08-31T23:14:48Z","chunk_tflops":638.91,"elapsed_s":6781.49,"gpu":1,"iter_count":3940040,"kind":"tick"}
+{"at":"2026-08-31T23:14:48Z","chunk_tflops":637.34,"elapsed_s":6781.53,"gpu":0,"iter_count":3930240,"kind":"tick"}
+{"at":"2026-08-31T23:15:18Z","chunk_tflops":638.97,"elapsed_s":6811.5,"gpu":1,"iter_count":3957480,"kind":"tick"}
+{"at":"2026-08-31T23:15:18Z","chunk_tflops":637.5,"elapsed_s":6811.54,"gpu":0,"iter_count":3947640,"kind":"tick"}
+{"at":"2026-08-31T23:15:48Z","chunk_tflops":638.75,"elapsed_s":6841.5,"gpu":1,"iter_count":3974912,"kind":"tick"}
+{"at":"2026-08-31T23:15:48Z","chunk_tflops":637.07,"elapsed_s":6841.54,"gpu":0,"iter_count":3965024,"kind":"tick"}
+{"at":"2026-08-31T23:16:18Z","chunk_tflops":638.96,"elapsed_s":6871.51,"gpu":1,"iter_count":3992352,"kind":"tick"}
+{"at":"2026-08-31T23:16:18Z","chunk_tflops":637.35,"elapsed_s":6871.54,"gpu":0,"iter_count":3982416,"kind":"tick"}
+{"at":"2026-08-31T23:16:48Z","chunk_tflops":638.99,"elapsed_s":6901.52,"gpu":1,"iter_count":4009792,"kind":"tick"}
+{"at":"2026-08-31T23:16:48Z","chunk_tflops":637.43,"elapsed_s":6901.56,"gpu":0,"iter_count":3999816,"kind":"tick"}
+{"at":"2026-08-31T23:17:18Z","chunk_tflops":639.05,"elapsed_s":6931.53,"gpu":1,"iter_count":4027232,"kind":"tick"}
+{"at":"2026-08-31T23:17:18Z","chunk_tflops":637.51,"elapsed_s":6931.57,"gpu":0,"iter_count":4017216,"kind":"tick"}
+{"at":"2026-08-31T23:17:48Z","chunk_tflops":638.99,"elapsed_s":6961.54,"gpu":1,"iter_count":4044672,"kind":"tick"}
+{"at":"2026-08-31T23:17:48Z","chunk_tflops":637.27,"elapsed_s":6961.57,"gpu":0,"iter_count":4034608,"kind":"tick"}
+{"at":"2026-08-31T23:18:18Z","chunk_tflops":638.62,"elapsed_s":6991.55,"gpu":1,"iter_count":4062104,"kind":"tick"}
+{"at":"2026-08-31T23:18:18Z","chunk_tflops":637.29,"elapsed_s":6991.58,"gpu":0,"iter_count":4052000,"kind":"tick"}
+{"at":"2026-08-31T23:18:48Z","chunk_tflops":638.85,"elapsed_s":7021.55,"gpu":1,"iter_count":4079536,"kind":"tick"}
+{"at":"2026-08-31T23:18:48Z","chunk_tflops":637.37,"elapsed_s":7021.58,"gpu":0,"iter_count":4069392,"kind":"tick"}
+{"at":"2026-08-31T23:19:18Z","chunk_tflops":638.72,"elapsed_s":7051.56,"gpu":1,"iter_count":4096968,"kind":"tick"}
+{"at":"2026-08-31T23:19:18Z","chunk_tflops":637.33,"elapsed_s":7051.59,"gpu":0,"iter_count":4086784,"kind":"tick"}
+{"at":"2026-08-31T23:19:48Z","chunk_tflops":638.5,"elapsed_s":7081.57,"gpu":1,"iter_count":4114392,"kind":"tick"}
+{"at":"2026-08-31T23:19:48Z","chunk_tflops":637.04,"elapsed_s":7081.59,"gpu":0,"iter_count":4104168,"kind":"tick"}
+{"at":"2026-08-31T23:20:18Z","chunk_tflops":638.76,"elapsed_s":7111.57,"gpu":1,"iter_count":4131824,"kind":"tick"}
+{"at":"2026-08-31T23:20:18Z","chunk_tflops":637.01,"elapsed_s":7111.6,"gpu":0,"iter_count":4121552,"kind":"tick"}
+{"at":"2026-08-31T23:20:48Z","chunk_tflops":638.83,"elapsed_s":7141.57,"gpu":1,"iter_count":4149256,"kind":"tick"}
+{"at":"2026-08-31T23:20:48Z","chunk_tflops":637.19,"elapsed_s":7141.61,"gpu":0,"iter_count":4138944,"kind":"tick"}
+{"at":"2026-08-31T23:21:18Z","chunk_tflops":638.67,"elapsed_s":7171.58,"gpu":1,"iter_count":4166688,"kind":"tick"}
+{"at":"2026-08-31T23:21:18Z","chunk_tflops":637.33,"elapsed_s":7171.61,"gpu":0,"iter_count":4156336,"kind":"tick"}
+{"at":"2026-08-31T23:21:46Z","dtype":"float16","gpu":1,"iter_count":4183200,"kind":"summary","size":8192,"tflops_median":638.86,"tflops_samples_n":239,"wallclock_s":7200.01}
+{"at":"2026-08-31T23:21:46Z","dtype":"float16","gpu":0,"iter_count":4172800,"kind":"summary","size":8192,"tflops_median":637.25,"tflops_samples_n":239,"wallclock_s":7200.01}
+{"at":"2026-08-31T23:21:46Z","kind":"done","results":[{"at":"2026-08-31T23:21:46Z","dtype":"float16","gpu":0,"iter_count":4172800,"kind":"summary","size":8192,"tflops_median":637.25,"tflops_samples_n":239,"wallclock_s":7200.01},{"at":"2026-08-31T23:21:46Z","dtype":"float16","gpu":1,"iter_count":4183200,"kind":"summary","size":8192,"tflops_median":638.86,"tflops_samples_n":239,"wallclock_s":7200.01}]}
+
+=== ls of burn dir ===
+total 148
+drwxrwxr-x  2 ubuntu ubuntu  4096 Aug 31 21:21 .
+drwxrwxrwt 24 root   root    4096 Sep  1 02:34 ..
+-rw-rw-r--  1 ubuntu ubuntu  7036 Aug 31 21:21 burn.b64
+-rw-rw-r--  1 ubuntu ubuntu 55836 Aug 31 23:21 burn.log
+-rw-rw-r--  1 ubuntu ubuntu     7 Aug 31 21:21 burn.pid
+-rwxrwxr-x  1 ubuntu ubuntu  5207 Aug 31 21:21 burn.py
+-rw-rw-r--  1 ubuntu ubuntu 56162 Aug 31 23:21 burn.stdout
