@@ -1,0 +1,46 @@
+{
+  "kind": "campaign_record_annotation",
+  "authored_at_utc": "2026-09-06T19:12:00Z",
+  "authored_by": "programme.owner_sequencing_ruling_20260906T1912Z",
+  "owner_ruling_verbatim": "Commercial is after we have most base lines",
+  "banked_from_message_at_utc": "2026-09-06T~19:12Z",
+  "banking_channel": "user_proxy",
+
+  "campaigns_annotated": [
+    {
+      "campaign_id": "campaign-a-v2-ladder-20260906",
+      "host": "akki-vm",
+      "runs_covered": ["A-0-v2 (in flight)", "A-1-1p5B-v21", "A-2-3B-v21", "A-3-7B-v21 (window-fill)"]
+    },
+    {
+      "campaign_id": "campaign-a-v21-ladder-20260906",
+      "host": "akki-vm",
+      "runs_covered": "all v2.1 lane-0 + lane-1 entries"
+    },
+    {
+      "campaign_id": "campaign-b-v21-method-ablations-20260906",
+      "host": "akki-vm-ii",
+      "runs_covered": ["B-REF-3B-v21 (live GPU 0)", "B1-v21 (live GPU 1)", "B2-DEDUP-OFF-v21", "B3-RANK-8-v21", "B4-RANK-32-v21", "B5-CTX-512-v21", "B6-CTX-2048-v21"]
+    }
+  ],
+
+  "annotation": {
+    "training_privacy_mode": "non_dp",
+    "reason": "R-9 DP-Training-Default ruling deferred by owner 2026-09-06T~19:12Z per 'Commercial is after we have most base lines'. Baselines are the measurement priority; the DP-by-default ruling attaches to the commercial-admission stack (W-DP-Training-Default), which is chartered but not sequenced until most baselines have sealed.",
+    "retrospective_relabel_hook": {
+      "annotation_will_be_applied_if_R9_lands_as_dp_by_default": "pre_dp_default=true on every sealed baseline_record already banked at ruling-land time",
+      "annotation_field_name": "pre_dp_default",
+      "annotation_value": true,
+      "how_the_relabel_will_execute": "single JSON edit to each sealed baseline_record file under phase0/baseline_lines/ + phase0/shield_train_receipts/*/ACTIVITY_SUMMARY.md; no re-training, no retroactive DP re-application — the label is a historical marker, not a re-interpretation of the training run"
+    }
+  },
+
+  "consequence_declared_upfront": "If the owner rules R-9=DP-by-default at any future point, the baseline_record entries authored under this annotation carry a pre-DP marker. The training-time result was measured honestly; only the meta-label changes. This annotation exists so the owner is never surprised by pre-DP baselines when he reviews the ledger.",
+
+  "banking_paths": [
+    "STATE/DECISIONS.md · 2026-09-06T~19:12Z · Commercial deferred entry",
+    "phase0/campaign_drafts/campaign_pre_dp_annotation_20260906T191200Z.json (this file)"
+  ],
+
+  "not_a_ruling_this_annotation_ledgers": "This file is a caveat record, not an R-9 ruling. R-9 remains open. The annotation binds only if R-9 lands as DP-by-default; if R-9 lands as non-DP-by-default the annotation becomes a no-op historical marker."
+}

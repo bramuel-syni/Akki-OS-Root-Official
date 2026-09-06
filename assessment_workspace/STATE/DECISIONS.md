@@ -6293,3 +6293,37 @@ Owner ruling on (a) or (b) unblocks a follow-on `W-SMS-Body-Emit` wave that re-e
 - **W-Dispatcher-Concurrency-Lock** — a second dispatcher started within 5 min of the first will spawn a duplicate trainer on the same run_dir. Wave adds a flock-based lock at dispatcher startup so a duplicate launch is a no-op.
 - (previously chartered) **W-TaskEval-v1, W-Gradient-Step-Checkpoint, W-Row-Stream-Extractor, W-Adapter-Tensor-Persist, W-Cross-Table-Consistency-Check** — still in SPRINT_PLAN.md.
 
+
+---
+
+## 2026-09-06T~19:12Z · OWNER SEQUENCING RULING · Commercial-admission stack sequenced AFTER baselines
+
+**Verbatim (via user proxy):**
+
+> "Commercial is after we have most base lines".
+
+**Interpretation banked (per owner instruction in same message):**
+
+1. **FOUNDATION STACK is next build track** once the TRUE_STATE audit is accepted by the owner. Order proposed and banked:
+   - G-1 TCB enumeration
+   - G-2 architecture description
+   - G-3 triad classes
+   - W-Registry-Enforcement-Class-Backfill
+   - Rules-Service-Build (its 4 open rulings surface to owner when that wave approaches — not solicited now)
+
+2. **Commercial-admission stack DEFERRED until most baselines have sealed:**
+   - W-Estate-Release-Budget (R-7 release-budget ruling deferred until baselines are in)
+   - W-DP-Training-Default (R-9 DP-default ruling deferred until baselines are in)
+   - W-Artefact-Distance-Gate (also deferred)
+
+3. **v2 baselines proceed non-DP:** owner implicitly accepts current v2 / v2.1 campaigns running WITHOUT differential-privacy training, on the standing caveat that a later DP-by-default ruling **may relabel** these records (the sealed baseline_record entries would carry a `pre_dp_default=true` retrospective annotation if/when R-9 lands). Caveat banked in the campaign record so nothing surprises the owner when he reads sealed baselines that predate an eventual DP ruling.
+
+4. **Campaigns finishing their window remain the measurement priority.** Nothing about foundation-stack sequencing pre-empts the running v2.1 lanes.
+
+**Immediate work order unchanged (per owner):**
+- (a) verify/complete the maximize wave (empirical throughput + before/after utilization evidence).
+- (b) deliver TRUE_STATE_OF_CODE table verbatim + reconciliation + utilization numbers.
+- (c) STOP for owner review. Foundation stack does not fire until owner has seen and accepted the audit.
+
+**Standing rule (still binding):** verbatim quote in every close block. Banked here for the sequencing ruling itself.
+

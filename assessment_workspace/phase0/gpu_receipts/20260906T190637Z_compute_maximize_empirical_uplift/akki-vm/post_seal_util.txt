@@ -1,0 +1,46 @@
+2026-09-06T19:06:41.044335269Z
+===NVIDIA_SMI===
+0, NVIDIA H200, 67 %, 30891 MiB, 143771 MiB, 200.58 W, 44
+1, NVIDIA H200, 0 %, 30855 MiB, 143771 MiB, 204.68 W, 39
+===TRAINERS_BY_GPU===
+PID_194863:  — cmd: python3 /home/ubuntu/akki_journal/on_host_trainer.py --base-model Qwen/Qwen2.5-0.5B --campaign-id campaign-a-v2-ladder-20260906 --corpus /home/ubuntu/akki_journal/shield-train-campaign-a-v2-ladder-202
+PID_215330:  — cmd: python3 /home/ubuntu/akki_journal/on_host_trainer.py --base-model Qwen/Qwen2.5-0.5B --campaign-id campaign-a-v2-ladder-20260906 --corpus /home/ubuntu/akki_journal/shield-train-campaign-a-v2-ladder-202
+PID_215331:  — cmd: python3 /home/ubuntu/akki_journal/on_host_trainer.py --base-model Qwen/Qwen2.5-0.5B --campaign-id campaign-a-v2-ladder-20260906 --corpus /home/ubuntu/akki_journal/shield-train-campaign-a-v2-ladder-202
+===DISPATCHERS===
+ 213708 python3 /home/ubuntu/akki_journal/on_host_queue_dispatcher.py --queue-file /home/ubuntu/akki_journal/queue/campaign_a_v21_lane1_queue_manifest.json --campaign-id campaign-a-v21-ladder-20260906 --gpu-id 1
+ 213711 python3 /home/ubuntu/akki_journal/on_host_queue_dispatcher.py --queue-file /home/ubuntu/akki_journal/queue/campaign_a_v21_lane0_queue_manifest.json --campaign-id campaign-a-v21-ladder-20260906 --gpu-id 0
+===DISPATCHER_HB===
+-rw-r--r-- 1 ubuntu ubuntu 2463 Sep  6 14:50 /home/ubuntu/akki_journal/queue/campaign_a_queue.json
+-rw-r--r-- 1 ubuntu ubuntu 5383 Sep  6 18:34 /home/ubuntu/akki_journal/queue/campaign_a_v21_lane0_queue_manifest.json
+-rw-r--r-- 1 ubuntu ubuntu 5688 Sep  6 18:34 /home/ubuntu/akki_journal/queue/campaign_a_v21_lane1_queue_manifest.json
+-rw-r--r-- 1 ubuntu ubuntu 5654 Sep  6 16:46 /home/ubuntu/akki_journal/queue/campaign_a_v2_queue.json
+-rw-rw-r-- 1 ubuntu ubuntu  134 Sep  6 15:01 /home/ubuntu/akki_journal/queue/dispatch_error_A-1-1p5B.json
+-rw-rw-r-- 1 ubuntu ubuntu  132 Sep  6 15:01 /home/ubuntu/akki_journal/queue/dispatch_error_A-2-3B.json
+-rw-rw-r-- 1 ubuntu ubuntu  409 Sep  6 19:05 /home/ubuntu/akki_journal/queue/dispatcher_heartbeat.json
+---HB_LANE_0---
+{
+  "at_utc": "2026-09-06T19:05:57.151442Z",
+  "campaign_id": "campaign-a-v21-ladder-20260906",
+  "current_run_name": "A-1-1p5B-v21-seed1",
+  "current_state": "waiting_for_shield-train-campaign-a-v2-A-0-0p5B-20260906T170000Z",
+  "dispatcher_pid": 213708,
+  "gpu_id": 1,
+  "kind": "dispatcher_heartbeat",
+  "queue_progress": {
+    "current_run_name": "A-1-1p5B-v21-seed1",
+    "index": 0,
+    "total": 4
+  }
+}
+---HB_LANE_1---
+===A-0-v2_SEALED?===
+ls: cannot access '/home/ubuntu/akki_journal/shield-train-campaign-a-v2-A-0-0p5B-20260906T170000Z/ACTIVITY_SUMMARY.md': No such file or directory
+===A-0-v2_TAIL===
+{
+  "at_utc": "2026-09-06T19:06:16.338372Z",
+  "campaign_id": "campaign-a-v2-ladder-20260906",
+  "run_id": "shield-train-campaign-a-v2-A-0-0p5B-20260906T170000Z",
+  "run_name": "A-0-0p5B-v2",
+  "step": 2750,
+  "training_pid": 194863
+}

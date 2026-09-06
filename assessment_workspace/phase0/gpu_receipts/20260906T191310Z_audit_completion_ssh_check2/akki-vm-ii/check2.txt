@@ -1,0 +1,26 @@
+2026-09-06T19:13:13.708425203Z
+===NVIDIA===
+0, 100 %, 105451 MiB, 143771 MiB, 637.37 W, 66
+1, 100 %, 105451 MiB, 143771 MiB, 640.81 W, 67
+===TRAINERS===
+ 193765 python3 /home/ubuntu/akki_journal/on_host_trainer.py --base-model Qwen/Qwen2.5-3B --campaign-id campaign-b-v21-method-ablations-20260906 --corpus /home/ubuntu/akki_journal/
+ 193766 python3 /home/ubuntu/akki_journal/on_host_trainer.py --base-model Qwen/Qwen2.5-3B --campaign-id campaign-b-v21-method-ablations-20260906 --corpus /home/ubuntu/akki_journal/
+ 193862 python3 /home/ubuntu/akki_journal/on_host_trainer.py --base-model Qwen/Qwen2.5-3B --campaign-id campaign-b-v21-method-ablations-20260906 --corpus /home/ubuntu/akki_journal/
+ 193863 python3 /home/ubuntu/akki_journal/on_host_trainer.py --base-model Qwen/Qwen2.5-3B --campaign-id campaign-b-v21-method-ablations-20260906 --corpus /home/ubuntu/akki_journal/
+ 193943 python3 /home/ubuntu/akki_journal/on_host_trainer.py --base-model Qwen/Qwen2.5-3B --campaign-id campaign-b-v21-method-ablations-20260906 --corpus /home/ubuntu/akki_journal/
+ 193944 python3 /home/ubuntu/akki_journal/on_host_trainer.py --base-model Qwen/Qwen2.5-3B --campaign-id campaign-b-v21-method-ablations-20260906 --corpus /home/ubuntu/akki_journal/
+===HB===
+{
+  "at_utc": "2026-09-06T19:12:57.563979Z",
+  "campaign_id": "campaign-b-v21-method-ablations-20260906",
+  "current_run_name": "B1-CORPUS-USSD-ONLY-v21-seed1",
+  "current_state": "waiting_for_shield-train-campaign-b-v21-B1-USSD-ONLY-s1-20260906T200101Z",
+  "dispatcher_pid": 190497,
+  "gpu_id": 1,
+  "kind": "dispatcher_heartbeat",
+  "queue_progress": {
+    "current_run_name": "B1-CORPUS-USSD-ONLY-v21-seed1",
+    "index": 0,
+    "total": 4
+  }
+}

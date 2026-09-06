@@ -1,0 +1,17 @@
+===DATE===
+Sun Sep  6 18:50:13 UTC 2026
+===V21 DISPATCHERS===
+ 190497 python3 /home/ubuntu/akki_journal/on_host_queue_dispatcher.py --queue-file /home/ubuntu/akki_journal/queue/campaign_b_v21_lane1_queue_manifest.json --campaign-id campaign-b-v21-method-ablations-20260906 --gpu-id 1
+ 190500 python3 /home/ubuntu/akki_journal/on_host_queue_dispatcher.py --queue-file /home/ubuntu/akki_journal/queue/campaign_b_v21_lane0_queue_manifest.json --campaign-id campaign-b-v21-method-ablations-20260906 --gpu-id 0
+===B1-v1 STILL RUNNING===
+ 154017 bash -c cd ~ && setsid nohup python3 ~/akki_journal/on_host_trainer.py --run-id shield-train-campaign-b-method-ablations-20260906-20260906T141344Z --run-dir ~/akki_journal/shield-train-campaign-b-method-ablations-20260906-20260906T141344Z --campaign-id campaign-b-method-ablations-20260906 --run-name B1-CORPUS-USSD-ONLY --corpus ~/akki_journal/shield-train-campaign-b-method-ablations-20260906-20260906T141344Z/train_corpus.jsonl --held-out ~/akki_journal/shield-train-campaign-b-method-ablations-20260906-20260906T141344Z/held_out_corpus.jsonl --base-model Qwen/Qwen2.5-3B --seed 1 --lora-rank 16 --ctx-len 1024 --per-device-batch 2 --grad-accum 16 --lr 0.0002 --num-epochs 3 >> ~/akki_journal/shield-train-campaign-b-method-ablations-20260906-20260906T141344Z/trainer_stdout.log 2>&1 & echo $!
+ 154018 python3 /home/ubuntu/akki_journal/on_host_trainer.py --run-id shield-train-campaign-b-method-ablations-20260906-20260906T141344Z --run-dir /home/ubuntu/akki_journal/shield-train-campaign-b-method-ablations-20260906-20260906T141344Z --campaign-id campaign-b-method-ablations-20260906 --run-name B1-CORPUS-USSD-ONLY --corpus /home/ubuntu/akki_journal/shield-train-campaign-b-method-ablations-20260906-20260906T141344Z/train_corpus.jsonl --held-out /home/ubuntu/akki_journal/shield-train-campaign-b-method-ablations-20260906-20260906T141344Z/held_out_corpus.jsonl --base-model Qwen/Qwen2.5-3B --seed 1 --lora-rank 16 --ctx-len 1024 --per-device-batch 2 --grad-accum 16 --lr 0.0002 --num-epochs 3
+ 190683 python3 /home/ubuntu/akki_journal/on_host_trainer.py --run-id shield-train-campaign-b-method-ablations-20260906-20260906T141344Z --run-dir /home/ubuntu/akki_journal/shield-train-campaign-b-method-ablations-20260906-20260906T141344Z --campaign-id campaign-b-method-ablations-20260906 --run-name B1-CORPUS-USSD-ONLY --corpus /home/ubuntu/akki_journal/shield-train-campaign-b-method-ablations-20260906-20260906T141344Z/train_corpus.jsonl --held-out /home/ubuntu/akki_journal/shield-train-campaign-b-method-ablations-20260906-20260906T141344Z/held_out_corpus.jsonl --base-model Qwen/Qwen2.5-3B --seed 1 --lora-rank 16 --ctx-len 1024 --per-device-batch 2 --grad-accum 16 --lr 0.0002 --num-epochs 3
+===B1-v1 progress===
+{"at":"2026-09-06T18:42:07.043130Z","kind":"adapter_saved","path":"/home/ubuntu/akki_journal/shield-train-campaign-b-method-ablations-20260906-20260906T141344Z/adapter","sha256":"07d4ff5f899e76460224b250eff226a24319539fe7ca07d13f62fe3ab645cd11"}
+{"at":"2026-09-06T18:42:07.043199Z","kind":"held_out_eval_start"}
+===GPU BEFORE===
+0, 0 %, 22591 MiB
+1, 0 %, 22367 MiB
+===B1-v1 sealed?===
+ls: cannot access '/home/ubuntu/akki_journal/shield-train-campaign-b-method-ablations-20260906-20260906T141344Z/ACTIVITY_SUMMARY.md': No such file or directory

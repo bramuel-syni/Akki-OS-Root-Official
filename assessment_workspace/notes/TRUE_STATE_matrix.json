@@ -1,0 +1,1215 @@
+{
+  "generated_at_utc": "2026-09-06T19:00:00Z",
+  "repos": [
+    "RMS-IQ-Core-2",
+    "Akki-OS-V1",
+    "Akki-Executive-Core",
+    "Extraction-Akki"
+  ],
+  "repo_heads": {
+    "RMS-IQ-Core-2": "ea5aa01",
+    "Akki-OS-V1": "8c36190",
+    "Akki-Executive-Core": "5844eee9",
+    "Extraction-Akki": "3f7bb0f"
+  },
+  "services": {
+    "analyze_workspace": {
+      "RMS-IQ-Core-2": null,
+      "Akki-OS-V1": null,
+      "Akki-Executive-Core": {
+        "loc": 569,
+        "last_commit": "2026-06-25",
+        "files": 3
+      },
+      "Extraction-Akki": null
+    },
+    "approvals": {
+      "RMS-IQ-Core-2": null,
+      "Akki-OS-V1": null,
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 407,
+        "last_commit": "2026-08-26",
+        "files": 4
+      }
+    },
+    "artifact_store": {
+      "RMS-IQ-Core-2": {
+        "loc": 577,
+        "last_commit": "2026-07-14",
+        "files": 4
+      },
+      "Akki-OS-V1": {
+        "loc": 577,
+        "last_commit": "2026-07-14",
+        "files": 4
+      },
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 577,
+        "last_commit": "2026-07-14",
+        "files": 4
+      }
+    },
+    "audit_trail": {
+      "RMS-IQ-Core-2": null,
+      "Akki-OS-V1": null,
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 298,
+        "last_commit": "2026-08-27",
+        "files": 3
+      }
+    },
+    "auth": {
+      "RMS-IQ-Core-2": {
+        "loc": 1714,
+        "last_commit": "2026-08-01",
+        "files": 15
+      },
+      "Akki-OS-V1": {
+        "loc": 1469,
+        "last_commit": "2026-07-08",
+        "files": 14
+      },
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 1714,
+        "last_commit": "2026-08-01",
+        "files": 15
+      }
+    },
+    "baseline_line": {
+      "RMS-IQ-Core-2": null,
+      "Akki-OS-V1": null,
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 102,
+        "last_commit": "2026-08-25",
+        "files": 3
+      }
+    },
+    "campaign_infra": {
+      "RMS-IQ-Core-2": null,
+      "Akki-OS-V1": null,
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 1034,
+        "last_commit": "2026-09-06",
+        "files": 7
+      }
+    },
+    "canonical_projection": {
+      "RMS-IQ-Core-2": null,
+      "Akki-OS-V1": null,
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 88,
+        "last_commit": "2026-08-25",
+        "files": 2
+      }
+    },
+    "census_dimensions": {
+      "RMS-IQ-Core-2": {
+        "loc": 371,
+        "last_commit": "2026-07-10",
+        "files": 3
+      },
+      "Akki-OS-V1": {
+        "loc": 371,
+        "last_commit": "2026-07-10",
+        "files": 3
+      },
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 371,
+        "last_commit": "2026-07-10",
+        "files": 3
+      }
+    },
+    "census_engine": {
+      "RMS-IQ-Core-2": null,
+      "Akki-OS-V1": null,
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 810,
+        "last_commit": "2026-08-28",
+        "files": 3
+      }
+    },
+    "chat": {
+      "RMS-IQ-Core-2": null,
+      "Akki-OS-V1": null,
+      "Akki-Executive-Core": {
+        "loc": 308,
+        "last_commit": "2026-06-23",
+        "files": 2
+      },
+      "Extraction-Akki": {
+        "loc": 99,
+        "last_commit": "2026-08-26",
+        "files": 2
+      }
+    },
+    "checker": {
+      "RMS-IQ-Core-2": {
+        "loc": 751,
+        "last_commit": "2026-07-07",
+        "files": 6
+      },
+      "Akki-OS-V1": {
+        "loc": 751,
+        "last_commit": "2026-07-07",
+        "files": 6
+      },
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 751,
+        "last_commit": "2026-07-07",
+        "files": 6
+      }
+    },
+    "chokepoint": {
+      "RMS-IQ-Core-2": null,
+      "Akki-OS-V1": null,
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 1403,
+        "last_commit": "2026-09-06",
+        "files": 8
+      }
+    },
+    "cohort": {
+      "RMS-IQ-Core-2": null,
+      "Akki-OS-V1": null,
+      "Akki-Executive-Core": {
+        "loc": 1325,
+        "last_commit": "2026-05-27",
+        "files": 8
+      },
+      "Extraction-Akki": null
+    },
+    "compliance": {
+      "RMS-IQ-Core-2": {
+        "loc": 1594,
+        "last_commit": "2026-08-01",
+        "files": 15
+      },
+      "Akki-OS-V1": {
+        "loc": 1594,
+        "last_commit": "2026-07-14",
+        "files": 15
+      },
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 1594,
+        "last_commit": "2026-08-01",
+        "files": 15
+      }
+    },
+    "compute_estate": {
+      "RMS-IQ-Core-2": null,
+      "Akki-OS-V1": null,
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 227,
+        "last_commit": "2026-08-28",
+        "files": 3
+      }
+    },
+    "compute_seam": {
+      "RMS-IQ-Core-2": null,
+      "Akki-OS-V1": null,
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 1292,
+        "last_commit": "2026-08-25",
+        "files": 7
+      }
+    },
+    "connect": {
+      "RMS-IQ-Core-2": {
+        "loc": 530,
+        "last_commit": "2026-08-01",
+        "files": 4
+      },
+      "Akki-OS-V1": null,
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 2022,
+        "last_commit": "2026-08-28",
+        "files": 11
+      }
+    },
+    "connect_estate": {
+      "RMS-IQ-Core-2": null,
+      "Akki-OS-V1": null,
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 131,
+        "last_commit": "2026-08-14",
+        "files": 2
+      }
+    },
+    "cost_ledger": {
+      "RMS-IQ-Core-2": null,
+      "Akki-OS-V1": null,
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 497,
+        "last_commit": "2026-08-25",
+        "files": 4
+      }
+    },
+    "credentials_paste": {
+      "RMS-IQ-Core-2": null,
+      "Akki-OS-V1": null,
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 294,
+        "last_commit": "2026-08-26",
+        "files": 3
+      }
+    },
+    "critic_pass": {
+      "RMS-IQ-Core-2": null,
+      "Akki-OS-V1": {
+        "loc": 950,
+        "last_commit": "2026-07-25",
+        "files": 7
+      },
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 1035,
+        "last_commit": "2026-08-26",
+        "files": 8
+      }
+    },
+    "crypto": {
+      "RMS-IQ-Core-2": null,
+      "Akki-OS-V1": null,
+      "Akki-Executive-Core": {
+        "loc": 122,
+        "last_commit": "2026-05-27",
+        "files": 2
+      },
+      "Extraction-Akki": null
+    },
+    "data_source": {
+      "RMS-IQ-Core-2": {
+        "loc": 739,
+        "last_commit": "2026-07-14",
+        "files": 5
+      },
+      "Akki-OS-V1": {
+        "loc": 739,
+        "last_commit": "2026-07-14",
+        "files": 5
+      },
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 739,
+        "last_commit": "2026-07-14",
+        "files": 5
+      }
+    },
+    "declaration": {
+      "RMS-IQ-Core-2": null,
+      "Akki-OS-V1": null,
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 86,
+        "last_commit": "2026-08-14",
+        "files": 2
+      }
+    },
+    "documents": {
+      "RMS-IQ-Core-2": null,
+      "Akki-OS-V1": null,
+      "Akki-Executive-Core": {
+        "loc": 935,
+        "last_commit": "2026-06-23",
+        "files": 4
+      },
+      "Extraction-Akki": null
+    },
+    "economics": {
+      "RMS-IQ-Core-2": {
+        "loc": 827,
+        "last_commit": "2026-08-01",
+        "files": 8
+      },
+      "Akki-OS-V1": {
+        "loc": 827,
+        "last_commit": "2026-07-25",
+        "files": 8
+      },
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 827,
+        "last_commit": "2026-08-01",
+        "files": 8
+      }
+    },
+    "estate_keys": {
+      "RMS-IQ-Core-2": null,
+      "Akki-OS-V1": null,
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 86,
+        "last_commit": "2026-08-14",
+        "files": 2
+      }
+    },
+    "evidence_register": {
+      "RMS-IQ-Core-2": null,
+      "Akki-OS-V1": null,
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 521,
+        "last_commit": "2026-08-27",
+        "files": 5
+      }
+    },
+    "far_endpoint": {
+      "RMS-IQ-Core-2": null,
+      "Akki-OS-V1": {
+        "loc": 342,
+        "last_commit": "2026-07-25",
+        "files": 4
+      },
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": null
+    },
+    "g1_defensibility": {
+      "RMS-IQ-Core-2": {
+        "loc": 599,
+        "last_commit": "2026-07-14",
+        "files": 9
+      },
+      "Akki-OS-V1": {
+        "loc": 599,
+        "last_commit": "2026-07-14",
+        "files": 9
+      },
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 599,
+        "last_commit": "2026-07-14",
+        "files": 9
+      }
+    },
+    "generated_gates": {
+      "RMS-IQ-Core-2": null,
+      "Akki-OS-V1": {
+        "loc": 1953,
+        "last_commit": "2026-07-25",
+        "files": 16
+      },
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": null
+    },
+    "governance": {
+      "RMS-IQ-Core-2": null,
+      "Akki-OS-V1": null,
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 129,
+        "last_commit": "2026-08-26",
+        "files": 2
+      }
+    },
+    "grey_mirror": {
+      "RMS-IQ-Core-2": null,
+      "Akki-OS-V1": null,
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 91,
+        "last_commit": "2026-08-26",
+        "files": 2
+      }
+    },
+    "handoff": {
+      "RMS-IQ-Core-2": null,
+      "Akki-OS-V1": null,
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 75,
+        "last_commit": "2026-08-25",
+        "files": 2
+      }
+    },
+    "health": {
+      "RMS-IQ-Core-2": {
+        "loc": 72,
+        "last_commit": "2026-07-31",
+        "files": 2
+      },
+      "Akki-OS-V1": {
+        "loc": 62,
+        "last_commit": "2026-07-25",
+        "files": 2
+      },
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 91,
+        "last_commit": "2026-08-27",
+        "files": 2
+      }
+    },
+    "ideas_engine": {
+      "RMS-IQ-Core-2": null,
+      "Akki-OS-V1": null,
+      "Akki-Executive-Core": {
+        "loc": 979,
+        "last_commit": "2026-06-23",
+        "files": 8
+      },
+      "Extraction-Akki": null
+    },
+    "inbox_routing": {
+      "RMS-IQ-Core-2": null,
+      "Akki-OS-V1": null,
+      "Akki-Executive-Core": {
+        "loc": 2356,
+        "last_commit": "2026-06-23",
+        "files": 11
+      },
+      "Extraction-Akki": null
+    },
+    "ip_allowlist": {
+      "RMS-IQ-Core-2": null,
+      "Akki-OS-V1": null,
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 168,
+        "last_commit": "2026-08-26",
+        "files": 2
+      }
+    },
+    "layer_a": {
+      "RMS-IQ-Core-2": {
+        "loc": 457,
+        "last_commit": "2026-07-14",
+        "files": 9
+      },
+      "Akki-OS-V1": {
+        "loc": 457,
+        "last_commit": "2026-07-14",
+        "files": 9
+      },
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 457,
+        "last_commit": "2026-07-14",
+        "files": 9
+      }
+    },
+    "layer_b": {
+      "RMS-IQ-Core-2": {
+        "loc": 505,
+        "last_commit": "2026-07-14",
+        "files": 10
+      },
+      "Akki-OS-V1": {
+        "loc": 505,
+        "last_commit": "2026-07-14",
+        "files": 10
+      },
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 505,
+        "last_commit": "2026-07-14",
+        "files": 10
+      }
+    },
+    "layer_c": {
+      "RMS-IQ-Core-2": {
+        "loc": 227,
+        "last_commit": "2026-07-02",
+        "files": 3
+      },
+      "Akki-OS-V1": {
+        "loc": 227,
+        "last_commit": "2026-07-02",
+        "files": 3
+      },
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 227,
+        "last_commit": "2026-07-02",
+        "files": 3
+      }
+    },
+    "lowered_standard": {
+      "RMS-IQ-Core-2": null,
+      "Akki-OS-V1": null,
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 305,
+        "last_commit": "2026-08-25",
+        "files": 3
+      }
+    },
+    "master_admin": {
+      "RMS-IQ-Core-2": {
+        "loc": 115,
+        "last_commit": "2026-07-14",
+        "files": 2
+      },
+      "Akki-OS-V1": {
+        "loc": 115,
+        "last_commit": "2026-07-14",
+        "files": 2
+      },
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 115,
+        "last_commit": "2026-07-14",
+        "files": 2
+      }
+    },
+    "memory": {
+      "RMS-IQ-Core-2": {
+        "loc": 1429,
+        "last_commit": "2026-07-31",
+        "files": 11
+      },
+      "Akki-OS-V1": null,
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 1429,
+        "last_commit": "2026-07-31",
+        "files": 11
+      }
+    },
+    "model_admission": {
+      "RMS-IQ-Core-2": null,
+      "Akki-OS-V1": null,
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 342,
+        "last_commit": "2026-08-25",
+        "files": 3
+      }
+    },
+    "model_recheck": {
+      "RMS-IQ-Core-2": null,
+      "Akki-OS-V1": null,
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 126,
+        "last_commit": "2026-08-25",
+        "files": 3
+      }
+    },
+    "model_registry": {
+      "RMS-IQ-Core-2": null,
+      "Akki-OS-V1": null,
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 281,
+        "last_commit": "2026-08-26",
+        "files": 3
+      }
+    },
+    "monitor": {
+      "RMS-IQ-Core-2": null,
+      "Akki-OS-V1": null,
+      "Akki-Executive-Core": {
+        "loc": 2231,
+        "last_commit": "2026-06-26",
+        "files": 5
+      },
+      "Extraction-Akki": null
+    },
+    "mtafiti": {
+      "RMS-IQ-Core-2": {
+        "loc": 941,
+        "last_commit": "2026-07-10",
+        "files": 11
+      },
+      "Akki-OS-V1": {
+        "loc": 941,
+        "last_commit": "2026-07-10",
+        "files": 11
+      },
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 941,
+        "last_commit": "2026-07-10",
+        "files": 11
+      }
+    },
+    "multi_instance": {
+      "RMS-IQ-Core-2": {
+        "loc": 190,
+        "last_commit": "2026-07-16",
+        "files": 3
+      },
+      "Akki-OS-V1": {
+        "loc": 190,
+        "last_commit": "2026-07-16",
+        "files": 3
+      },
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 190,
+        "last_commit": "2026-07-16",
+        "files": 3
+      }
+    },
+    "n_series": {
+      "RMS-IQ-Core-2": null,
+      "Akki-OS-V1": null,
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 524,
+        "last_commit": "2026-08-27",
+        "files": 4
+      }
+    },
+    "northena": {
+      "RMS-IQ-Core-2": {
+        "loc": 773,
+        "last_commit": "2026-07-14",
+        "files": 7
+      },
+      "Akki-OS-V1": {
+        "loc": 773,
+        "last_commit": "2026-07-14",
+        "files": 7
+      },
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 1223,
+        "last_commit": "2026-08-27",
+        "files": 8
+      }
+    },
+    "open_questions": {
+      "RMS-IQ-Core-2": null,
+      "Akki-OS-V1": null,
+      "Akki-Executive-Core": {
+        "loc": 112,
+        "last_commit": "2026-05-27",
+        "files": 2
+      },
+      "Extraction-Akki": null
+    },
+    "opportunity_briefs": {
+      "RMS-IQ-Core-2": {
+        "loc": 601,
+        "last_commit": "2026-07-11",
+        "files": 8
+      },
+      "Akki-OS-V1": {
+        "loc": 601,
+        "last_commit": "2026-07-11",
+        "files": 8
+      },
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 696,
+        "last_commit": "2026-08-26",
+        "files": 9
+      }
+    },
+    "orchestrator_resilience": {
+      "RMS-IQ-Core-2": null,
+      "Akki-OS-V1": null,
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 677,
+        "last_commit": "2026-09-06",
+        "files": 6
+      }
+    },
+    "outer_gate": {
+      "RMS-IQ-Core-2": {
+        "loc": 285,
+        "last_commit": "2026-07-14",
+        "files": 4
+      },
+      "Akki-OS-V1": {
+        "loc": 285,
+        "last_commit": "2026-07-14",
+        "files": 4
+      },
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 285,
+        "last_commit": "2026-07-14",
+        "files": 4
+      }
+    },
+    "partitions": {
+      "RMS-IQ-Core-2": null,
+      "Akki-OS-V1": {
+        "loc": 331,
+        "last_commit": "2026-07-25",
+        "files": 2
+      },
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": null
+    },
+    "perception": {
+      "RMS-IQ-Core-2": {
+        "loc": 2158,
+        "last_commit": "2026-07-23",
+        "files": 29
+      },
+      "Akki-OS-V1": {
+        "loc": 2158,
+        "last_commit": "2026-07-23",
+        "files": 29
+      },
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 2158,
+        "last_commit": "2026-07-23",
+        "files": 29
+      }
+    },
+    "registry": {
+      "RMS-IQ-Core-2": {
+        "loc": 2134,
+        "last_commit": "2026-08-01",
+        "files": 5
+      },
+      "Akki-OS-V1": {
+        "loc": 1855,
+        "last_commit": "2026-07-25",
+        "files": 4
+      },
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 2153,
+        "last_commit": "2026-08-27",
+        "files": 5
+      }
+    },
+    "registry_context": {
+      "RMS-IQ-Core-2": null,
+      "Akki-OS-V1": {
+        "loc": 222,
+        "last_commit": "2026-07-25",
+        "files": 5
+      },
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": null
+    },
+    "registry_facts": {
+      "RMS-IQ-Core-2": null,
+      "Akki-OS-V1": null,
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 354,
+        "last_commit": "2026-08-25",
+        "files": 3
+      }
+    },
+    "response_sanitizer": {
+      "RMS-IQ-Core-2": null,
+      "Akki-OS-V1": null,
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 64,
+        "last_commit": "2026-08-28",
+        "files": 1
+      }
+    },
+    "retention": {
+      "RMS-IQ-Core-2": {
+        "loc": 173,
+        "last_commit": "2026-07-07",
+        "files": 2
+      },
+      "Akki-OS-V1": {
+        "loc": 173,
+        "last_commit": "2026-07-07",
+        "files": 2
+      },
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 619,
+        "last_commit": "2026-08-25",
+        "files": 5
+      }
+    },
+    "rights_quarantine": {
+      "RMS-IQ-Core-2": null,
+      "Akki-OS-V1": null,
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 262,
+        "last_commit": "2026-08-27",
+        "files": 3
+      }
+    },
+    "sequencing_harness": {
+      "RMS-IQ-Core-2": null,
+      "Akki-OS-V1": {
+        "loc": 426,
+        "last_commit": "2026-07-25",
+        "files": 7
+      },
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": null
+    },
+    "service_1": {
+      "RMS-IQ-Core-2": {
+        "loc": 3779,
+        "last_commit": "2026-07-14",
+        "files": 18
+      },
+      "Akki-OS-V1": {
+        "loc": 4006,
+        "last_commit": "2026-07-25",
+        "files": 19
+      },
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 3857,
+        "last_commit": "2026-08-27",
+        "files": 19
+      }
+    },
+    "shield_train": {
+      "RMS-IQ-Core-2": null,
+      "Akki-OS-V1": null,
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 1120,
+        "last_commit": "2026-09-06",
+        "files": 6
+      }
+    },
+    "skill_files": {
+      "RMS-IQ-Core-2": null,
+      "Akki-OS-V1": null,
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 265,
+        "last_commit": "2026-08-26",
+        "files": 4
+      }
+    },
+    "solva": {
+      "RMS-IQ-Core-2": null,
+      "Akki-OS-V1": null,
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 700,
+        "last_commit": "2026-08-25",
+        "files": 2
+      }
+    },
+    "solva_depth": {
+      "RMS-IQ-Core-2": {
+        "loc": 692,
+        "last_commit": "2026-07-02",
+        "files": 15
+      },
+      "Akki-OS-V1": {
+        "loc": 692,
+        "last_commit": "2026-07-02",
+        "files": 15
+      },
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 692,
+        "last_commit": "2026-07-02",
+        "files": 15
+      }
+    },
+    "solva_v2": {
+      "RMS-IQ-Core-2": null,
+      "Akki-OS-V1": null,
+      "Akki-Executive-Core": {
+        "loc": 10509,
+        "last_commit": "2026-06-26",
+        "files": 30
+      },
+      "Extraction-Akki": null
+    },
+    "solva_voice_audit": {
+      "RMS-IQ-Core-2": null,
+      "Akki-OS-V1": null,
+      "Akki-Executive-Core": {
+        "loc": 4315,
+        "last_commit": "2026-06-24",
+        "files": 24
+      },
+      "Extraction-Akki": null
+    },
+    "streaming": {
+      "RMS-IQ-Core-2": null,
+      "Akki-OS-V1": null,
+      "Akki-Executive-Core": {
+        "loc": 383,
+        "last_commit": "2026-05-27",
+        "files": 3
+      },
+      "Extraction-Akki": null
+    },
+    "synisense": {
+      "RMS-IQ-Core-2": {
+        "loc": 2835,
+        "last_commit": "2026-07-30",
+        "files": 18
+      },
+      "Akki-OS-V1": {
+        "loc": 2296,
+        "last_commit": "2026-07-14",
+        "files": 14
+      },
+      "Akki-Executive-Core": {
+        "loc": 6304,
+        "last_commit": "2026-07-04",
+        "files": 34
+      },
+      "Extraction-Akki": {
+        "loc": 2826,
+        "last_commit": "2026-08-25",
+        "files": 18
+      }
+    },
+    "targeta": {
+      "RMS-IQ-Core-2": {
+        "loc": 425,
+        "last_commit": "2026-07-14",
+        "files": 6
+      },
+      "Akki-OS-V1": {
+        "loc": 557,
+        "last_commit": "2026-07-25",
+        "files": 7
+      },
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 425,
+        "last_commit": "2026-07-14",
+        "files": 6
+      }
+    },
+    "tasks": {
+      "RMS-IQ-Core-2": null,
+      "Akki-OS-V1": null,
+      "Akki-Executive-Core": {
+        "loc": 1590,
+        "last_commit": "2026-06-25",
+        "files": 5
+      },
+      "Extraction-Akki": null
+    },
+    "tasks_initiatives": {
+      "RMS-IQ-Core-2": null,
+      "Akki-OS-V1": null,
+      "Akki-Executive-Core": {
+        "loc": 550,
+        "last_commit": "2026-05-28",
+        "files": 3
+      },
+      "Extraction-Akki": null
+    },
+    "team": {
+      "RMS-IQ-Core-2": {
+        "loc": 202,
+        "last_commit": "2026-08-01",
+        "files": 2
+      },
+      "Akki-OS-V1": null,
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 202,
+        "last_commit": "2026-08-01",
+        "files": 2
+      }
+    },
+    "trace": {
+      "RMS-IQ-Core-2": null,
+      "Akki-OS-V1": null,
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 211,
+        "last_commit": "2026-08-25",
+        "files": 3
+      }
+    },
+    "training": {
+      "RMS-IQ-Core-2": null,
+      "Akki-OS-V1": null,
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 1568,
+        "last_commit": "2026-08-26",
+        "files": 8
+      }
+    },
+    "training_runner": {
+      "RMS-IQ-Core-2": null,
+      "Akki-OS-V1": null,
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 1382,
+        "last_commit": "2026-09-06",
+        "files": 5
+      }
+    },
+    "transform_forms": {
+      "RMS-IQ-Core-2": {
+        "loc": 417,
+        "last_commit": "2026-07-10",
+        "files": 5
+      },
+      "Akki-OS-V1": {
+        "loc": 417,
+        "last_commit": "2026-07-10",
+        "files": 5
+      },
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 417,
+        "last_commit": "2026-07-10",
+        "files": 5
+      }
+    },
+    "use_data": {
+      "RMS-IQ-Core-2": {
+        "loc": 757,
+        "last_commit": "2026-07-31",
+        "files": 4
+      },
+      "Akki-OS-V1": null,
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 757,
+        "last_commit": "2026-07-31",
+        "files": 4
+      }
+    },
+    "v1_harness": {
+      "RMS-IQ-Core-2": {
+        "loc": 223,
+        "last_commit": "2026-07-14",
+        "files": 3
+      },
+      "Akki-OS-V1": {
+        "loc": 223,
+        "last_commit": "2026-07-14",
+        "files": 3
+      },
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 223,
+        "last_commit": "2026-07-14",
+        "files": 3
+      }
+    },
+    "v2_gate": {
+      "RMS-IQ-Core-2": {
+        "loc": 141,
+        "last_commit": "2026-07-14",
+        "files": 3
+      },
+      "Akki-OS-V1": {
+        "loc": 141,
+        "last_commit": "2026-07-14",
+        "files": 3
+      },
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 141,
+        "last_commit": "2026-07-14",
+        "files": 3
+      }
+    },
+    "v3_harness": {
+      "RMS-IQ-Core-2": {
+        "loc": 138,
+        "last_commit": "2026-07-02",
+        "files": 2
+      },
+      "Akki-OS-V1": {
+        "loc": 138,
+        "last_commit": "2026-07-02",
+        "files": 2
+      },
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 138,
+        "last_commit": "2026-07-02",
+        "files": 2
+      }
+    },
+    "watch": {
+      "RMS-IQ-Core-2": null,
+      "Akki-OS-V1": null,
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 2787,
+        "last_commit": "2026-08-28",
+        "files": 15
+      }
+    },
+    "whitepapers": {
+      "RMS-IQ-Core-2": null,
+      "Akki-OS-V1": null,
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 150,
+        "last_commit": "2026-08-26",
+        "files": 3
+      }
+    },
+    "wizard": {
+      "RMS-IQ-Core-2": {
+        "loc": 999,
+        "last_commit": "2026-07-31",
+        "files": 9
+      },
+      "Akki-OS-V1": {
+        "loc": 854,
+        "last_commit": "2026-07-06",
+        "files": 8
+      },
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 1258,
+        "last_commit": "2026-08-25",
+        "files": 10
+      }
+    },
+    "work_studio": {
+      "RMS-IQ-Core-2": null,
+      "Akki-OS-V1": null,
+      "Akki-Executive-Core": {
+        "loc": 307,
+        "last_commit": "2026-06-23",
+        "files": 2
+      },
+      "Extraction-Akki": null
+    },
+    "workbook_analyzer": {
+      "RMS-IQ-Core-2": null,
+      "Akki-OS-V1": null,
+      "Akki-Executive-Core": {
+        "loc": 2116,
+        "last_commit": "2026-06-26",
+        "files": 10
+      },
+      "Extraction-Akki": null
+    },
+    "wpw": {
+      "RMS-IQ-Core-2": null,
+      "Akki-OS-V1": null,
+      "Akki-Executive-Core": null,
+      "Extraction-Akki": {
+        "loc": 923,
+        "last_commit": "2026-09-06",
+        "files": 3
+      }
+    }
+  }
+}

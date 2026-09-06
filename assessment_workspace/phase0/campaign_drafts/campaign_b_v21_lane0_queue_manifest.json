@@ -1,0 +1,115 @@
+{
+  "campaign_id": "campaign-b-v21-method-ablations-20260906",
+  "generated_at_utc": "2026-09-06T18:30:00Z",
+  "wave_ref": "W-COMPUTE-MAXIMIZE \u00b7 lane 0",
+  "authored_by": "programme.track-a.W-COMPUTE-MAXIMIZE",
+  "gpu_id": 0,
+  "host": "akki-vm-ii",
+  "notes": "Campaign B v2.1 lane 0 (GPU 0). All 3B runs at per_device=16 accum=4 EB=64. Order: B-REF-3B seed 1 (reference anchor first) \u2192 B3-RANK-8 seed 1 \u2192 B5-CTX-512 seed 1 (fast) \u2192 B-REF-3B seed 2 \u2192 B4-RANK-32 seed 1 \u2192 B6-CTX-2048 seed 1. First entry waits for B1-v1 seal.",
+  "waits_behind_run_id": "shield-train-campaign-b-method-ablations-20260906-20260906T141344Z",
+  "corpus_refs": {
+    "ussd_plus_sms_deduplicated_v2": {
+      "train_corpus_path": "/home/ubuntu/akki_journal/shield-train-campaign-b-v2-dedup-ablations-20260906-20260906T164158Z/train_corpus.jsonl",
+      "held_out_corpus_path": "/home/ubuntu/akki_journal/shield-train-campaign-b-v2-dedup-ablations-20260906-20260906T164158Z/held_out_corpus.jsonl",
+      "train_row_count": 29597
+    }
+  },
+  "runs": [
+    {
+      "run_id": "shield-train-campaign-b-v21-B-REF-3B-s1-20260906T200100Z",
+      "run_name": "B-REF-3B-v21-seed1",
+      "gpu_id": 0,
+      "effective_batch": 64,
+      "packing_enabled": false,
+      "trainer_args": {
+        "--base-model": "Qwen/Qwen2.5-3B",
+        "--campaign-id": "campaign-b-v21-method-ablations-20260906",
+        "--corpus": "/home/ubuntu/akki_journal/shield-train-campaign-b-v2-dedup-ablations-20260906-20260906T164158Z/train_corpus.jsonl",
+        "--ctx-len": "1024",
+        "--grad-accum": "4",
+        "--held-out": "/home/ubuntu/akki_journal/shield-train-campaign-b-v2-dedup-ablations-20260906-20260906T164158Z/held_out_corpus.jsonl",
+        "--lora-rank": "16",
+        "--lr": "0.0002",
+        "--num-epochs": "3",
+        "--per-device-batch": "16",
+        "--run-dir": "/home/ubuntu/akki_journal/shield-train-campaign-b-v21-B-REF-3B-s1-20260906T200100Z",
+        "--run-id": "shield-train-campaign-b-v21-B-REF-3B-s1-20260906T200100Z",
+        "--run-name": "B-REF-3B-v21-seed1",
+        "--seed": "1"
+      },
+      "wait_for_run_id": "shield-train-campaign-b-method-ablations-20260906-20260906T141344Z"
+    },
+    {
+      "run_id": "shield-train-campaign-b-v21-B3-RANK-8-s1-20260906T200103Z",
+      "run_name": "B3-RANK-8-v21-seed1",
+      "gpu_id": 0,
+      "effective_batch": 64,
+      "packing_enabled": false,
+      "trainer_args": {
+        "--base-model": "Qwen/Qwen2.5-3B",
+        "--campaign-id": "campaign-b-v21-method-ablations-20260906",
+        "--corpus": "/home/ubuntu/akki_journal/shield-train-campaign-b-v2-dedup-ablations-20260906-20260906T164158Z/train_corpus.jsonl",
+        "--ctx-len": "1024",
+        "--grad-accum": "4",
+        "--held-out": "/home/ubuntu/akki_journal/shield-train-campaign-b-v2-dedup-ablations-20260906-20260906T164158Z/held_out_corpus.jsonl",
+        "--lora-rank": "8",
+        "--lr": "0.0002",
+        "--num-epochs": "3",
+        "--per-device-batch": "16",
+        "--run-dir": "/home/ubuntu/akki_journal/shield-train-campaign-b-v21-B3-RANK-8-s1-20260906T200103Z",
+        "--run-id": "shield-train-campaign-b-v21-B3-RANK-8-s1-20260906T200103Z",
+        "--run-name": "B3-RANK-8-v21-seed1",
+        "--seed": "1"
+      },
+      "wait_for_run_id": "shield-train-campaign-b-v21-B-REF-3B-s1-20260906T200100Z"
+    },
+    {
+      "run_id": "shield-train-campaign-b-v21-B5-CTX-512-s1-20260906T200105Z",
+      "run_name": "B5-CTX-512-v21-seed1",
+      "gpu_id": 0,
+      "effective_batch": 64,
+      "packing_enabled": false,
+      "trainer_args": {
+        "--base-model": "Qwen/Qwen2.5-3B",
+        "--campaign-id": "campaign-b-v21-method-ablations-20260906",
+        "--corpus": "/home/ubuntu/akki_journal/shield-train-campaign-b-v2-dedup-ablations-20260906-20260906T164158Z/train_corpus.jsonl",
+        "--ctx-len": "512",
+        "--grad-accum": "2",
+        "--held-out": "/home/ubuntu/akki_journal/shield-train-campaign-b-v2-dedup-ablations-20260906-20260906T164158Z/held_out_corpus.jsonl",
+        "--lora-rank": "16",
+        "--lr": "0.0002",
+        "--num-epochs": "3",
+        "--per-device-batch": "32",
+        "--run-dir": "/home/ubuntu/akki_journal/shield-train-campaign-b-v21-B5-CTX-512-s1-20260906T200105Z",
+        "--run-id": "shield-train-campaign-b-v21-B5-CTX-512-s1-20260906T200105Z",
+        "--run-name": "B5-CTX-512-v21-seed1",
+        "--seed": "1"
+      },
+      "wait_for_run_id": "shield-train-campaign-b-v21-B3-RANK-8-s1-20260906T200103Z"
+    },
+    {
+      "run_id": "shield-train-campaign-b-v21-B-REF-3B-s2-20260906T200110Z",
+      "run_name": "B-REF-3B-v21-seed2",
+      "gpu_id": 0,
+      "effective_batch": 64,
+      "packing_enabled": false,
+      "trainer_args": {
+        "--base-model": "Qwen/Qwen2.5-3B",
+        "--campaign-id": "campaign-b-v21-method-ablations-20260906",
+        "--corpus": "/home/ubuntu/akki_journal/shield-train-campaign-b-v2-dedup-ablations-20260906-20260906T164158Z/train_corpus.jsonl",
+        "--ctx-len": "1024",
+        "--grad-accum": "4",
+        "--held-out": "/home/ubuntu/akki_journal/shield-train-campaign-b-v2-dedup-ablations-20260906-20260906T164158Z/held_out_corpus.jsonl",
+        "--lora-rank": "16",
+        "--lr": "0.0002",
+        "--num-epochs": "3",
+        "--per-device-batch": "16",
+        "--run-dir": "/home/ubuntu/akki_journal/shield-train-campaign-b-v21-B-REF-3B-s2-20260906T200110Z",
+        "--run-id": "shield-train-campaign-b-v21-B-REF-3B-s2-20260906T200110Z",
+        "--run-name": "B-REF-3B-v21-seed2",
+        "--seed": "2"
+      },
+      "wait_for_run_id": "shield-train-campaign-b-v21-B5-CTX-512-s1-20260906T200105Z"
+    }
+  ]
+}
