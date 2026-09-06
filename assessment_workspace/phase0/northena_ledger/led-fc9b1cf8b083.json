@@ -1,0 +1,19 @@
+{
+  "artifact_ref": {
+    "artifact_id": "objreq-disp-1cb0675b07a5",
+    "artifact_type": "objective_request",
+    "version": "v2"
+  },
+  "at": "2026-09-06T10:09:28.525485Z",
+  "decision": "refused",
+  "lawful_basis_ref": "test_basis_4b",
+  "reason": "composition_below_floor",
+  "row_id": "led-fc9b1cf8b083",
+  "run_id": "cc-run-1491016459d1",
+  "stage": "admit",
+  "stamp_audit": {
+    "refusal_family": "composition_below_floor",
+    "source": "service_1.composed_conclusion.sync"
+  },
+  "trace_id": "disp-1cb0675b07a5"
+}

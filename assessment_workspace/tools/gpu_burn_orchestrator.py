@@ -476,12 +476,41 @@ def burn_one_host(host_slug: str) -> HostResult:
                      MATMUL_SIZE, DTYPE)
 
         # 5) Poll during burn
+        # W-Orchestrator-Resilience-r1: write a heartbeat on each cycle
+        # so a dead orchestrator is diagnosable. Compound key
+        # (RUN_ID__host_slug) sidesteps thread contention between the
+        # two host threads. Zero-influence discipline: heartbeat write
+        # failures MUST NOT break the poll loop.
+        _hb_run_id = f"{RUN_ID}__{host_slug}"
+        try:
+            from services.orchestrator_resilience import heartbeat as _wo_hb
+            _hb_available = True
+        except Exception:
+            _hb_available = False
         end = time.monotonic() + BURN_DURATION_SECONDS + 30
+        _hb_cycle = 0
         while time.monotonic() < end:
             time.sleep(POLL_INTERVAL_SECONDS)
-            snap = _capture_nvidia_smi(host_slug, hr, f"poll_{int(time.monotonic()-t0)}s")
+            elapsed_s = int(time.monotonic() - t0)
+            snap = _capture_nvidia_smi(host_slug, hr, f"poll_{elapsed_s}s")
             hr.nvidia_smi_during_polls.append(snap)
             tail = _tail_burn_log(host_slug, hr, remote_dir)
+            _hb_cycle += 1
+            if _hb_available:
+                try:
+                    from datetime import datetime as _dt, timezone as _tz, timedelta as _td
+                    _next_iso = ((_dt.now(_tz.utc)
+                                  + _td(seconds=POLL_INTERVAL_SECONDS))
+                                 .isoformat().replace("+00:00", "Z"))
+                    _wo_hb.write_heartbeat(
+                        run_id=_hb_run_id,
+                        orchestrator_pid=os.getpid(),
+                        cycle_count=_hb_cycle,
+                        on_host_status={host_slug: "polling"},
+                        next_poll_planned_utc=_next_iso,
+                    )
+                except Exception:
+                    pass  # zero-influence
             # If script exited early, break out.
             if not _burn_still_running(host_slug, hr, remote_dir):
                 # Give final flush a moment.
@@ -765,6 +794,27 @@ def main() -> int:
     print(f"[gpu_burn] BURN_ROOT = {BURN_ROOT}", flush=True)
     print(f"[gpu_burn] duration={BURN_DURATION_SECONDS}s size={MATMUL_SIZE} dtype={DTYPE}", flush=True)
     print(f"[gpu_burn] poll_interval={POLL_INTERVAL_SECONDS}s hosts={HOSTS}", flush=True)
+
+    # W-Orchestrator-Resilience-r1: reconcile-on-start. Report any
+    # orphaned in-flight runs (an on-host burn from a prior orchestrator
+    # that died silently — the case tonight's 22:02Z failure surfaced).
+    # This is INFORMATIONAL only in this wave; the orchestrator does
+    # not auto-adopt orphans yet (that's the r2 follow-on). Owner sees
+    # the report on stdout and decides.
+    try:
+        from services.orchestrator_resilience import orphan_detector as _wo_od
+        _orphans = _wo_od.find_orphaned_runs(max_staleness_s=600)
+        if _orphans:
+            print(f"[gpu_burn] RECONCILE: {len(_orphans)} orphaned in-flight "
+                  f"run(s) detected:", flush=True)
+            for o in _orphans:
+                print(f"[gpu_burn]   · {o['run_id']} · {o['reason']} · "
+                      f"last_heartbeat={o.get('last_heartbeat_utc')}", flush=True)
+        else:
+            print("[gpu_burn] RECONCILE: no orphaned runs detected.", flush=True)
+    except Exception as _e:
+        print(f"[gpu_burn] RECONCILE: orphan_detector unavailable ({_e!r})",
+              flush=True)
 
     with concurrent.futures.ThreadPoolExecutor(max_workers=len(HOSTS)) as ex:
         futs = {ex.submit(burn_one_host, h): h for h in HOSTS}

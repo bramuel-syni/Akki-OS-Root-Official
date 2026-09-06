@@ -5600,3 +5600,82 @@ The v1-c concession (tests + module co-authored) did NOT recur. The test file `b
 **Next active track:** **W-WPW-v1-e** (Tier 3 — white paper) **stays design-only** until owner rulings **R1** (numeric exceptional threshold), **R2** (release signatory), and **R3** (three-tier structure + WPW-11 novelty-claim ratification) land. Unblocked follow-on tracks per SPRINT_PLAN.md: **W-TxtTrain-v2**, **W-Orchestrator-Resilience-r1**, **W-Audio-P2** (still blocked awaiting audio location per today's audio-hunt verdict — see above), **W-Shield-Train** (still blocked awaiting masking-tier admission ruling).
 
 
+
+
+---
+
+### Owner interject 2026-09-06 · content-level storage sweep (block-device up) · WITNESS-CLEAR
+
+**Authority (owner verbatim):** *"I think you may need to read the content."* — content-level extension of the 2026-09-06T10:07Z EBS metadata survey. Scope correction taken this cycle: block-device up (`lsblk -f` + `df -h` + `sudo fdisk -l` on both hosts before any content read), then sweep ALL non-system data locations (`/home` `/data` `/mnt` `/srv` `/opt` `/var/www`), not just `/home/ubuntu`. Governed bypass class: `owner_authorized_ebs_survey` (unchanged; content-level authorization extension).
+
+**Sweep coverage:**
+
+- Block-device inventory (§step1) — both hosts symmetric virtio topology: `vda` (75 GiB root) + `vda15/16` (EFI/boot) + **`vdb` 5.86 TiB ext4 mounted at `/mnt/volume_dkgjrkx`** (28 KiB used; `lost+found` only) + `sr0` cidata ISO (unmounted) + 8 idle loop devices. `akki-vm` additionally carries `/mnt/akki-storage-3388s` (2 GiB virtiofs shared volume, empty). Neither host has any unmounted attached data volume — read-only scratch-mount step correctly not fired.
+- Content sweep of every non-secret, non-pruned file on both hosts (§step2 enumeration + §step3 classification): **akki-vm 36,998 files / 9.1 GiB** · **akki-vm-ii 32,250 files / 7.9 GiB**. Both hosts' content is a Python 3.12 site-packages tree (`~/.local/lib/python3.12/site-packages` — numpy · torch · transformers · huggingface · sympy · sentencepiece · triton · tqdm · rich · fsspec) plus pip download cache (`.cache/pip/` 1.1 GiB) plus HF hub cache (only on akki-vm · `.cache/huggingface/` 954 MiB) plus Nvidia CUDA compute cache (`.nv/ComputeCache/` 24 KiB akki-vm / 8 KiB akki-vm-ii) plus `/opt/nvidia/nsight-*` (2.1 GiB per host, root-owned, unchanged since 2024). No user-content directories exist on either host (only default dotfiles + `.cache` + `.local` + `.nv` + `.ssh` in `/home/ubuntu`).
+- Magic-byte census (all files classified with `file --mime-type` on host, magic-byte only, no bytes returned): akki-vm top-5 mimes: `application/x-bytecode.python` 11,227 · `text/x-script.python` 9,448 · `text/x-c++` 9,110 · `text/plain` 3,171 · `text/x-c` 1,453. akki-vm-ii shape-identical. Category rollup **audio/\* = 0 · video/\* = 0** on both hosts. Extension-based find corroborates: 0 audio-ext + 0 video-ext files on either host; 10 non-pyc image files per host (all sympy plotting test fixtures inside site-packages).
+- ffprobe pass: `ffmpeg` (6.1.1-3ubuntu5) installed on both hosts under `apt-get install -y ffmpeg` (host-side tooling install precedent: torch stack 2026-08-31). **0 audio/video magic-byte candidates surfaced → 0 ffprobe invocations fired** — the deep probe was correctly zero-cost because there was nothing to probe.
+- mtime distribution: `/home/*` on akki-vm has 4,880 files touched in the last 7 days that akki-vm-ii doesn't — attributable to this-cycle's WPW / orchestrator work (akki-vm was the primary compute target). `/opt/nvidia/*` is a >1-year-old Ubuntu package install, unchanged since provisioning. `/mnt` and `/srv` are empty on both hosts.
+- Owner/group census: akki-vm `1000:1000` (ubuntu) 35,217 files + `0:0` (root) 1,823 files. akki-vm-ii `1000:1000` 30,456 + `0:0` 1,823. **No service uids** (`www-data`, `mysql`, `postgres`, `redis`) — reinforcing that neither host runs an application server.
+- Secret-file summary (aggregate-only per governed default): 38 matches on akki-vm / 25 on akki-vm-ii, all inside `site-packages/**/tests/**` (Python cryptography test fixtures with `*key*`/`*secret*` in filenames — not credential material). `~/.ssh/authorized_keys` contains only the estate ED25519 pubkey (expected). No in-band private key material found.
+- sha256 hashes captured (≤ 100 MiB gate): 36,975 on akki-vm · 32,228 on akki-vm-ii. 23 files > 100 MiB on akki-vm and 22 on akki-vm-ii are torch/onnxruntime bundled shared libraries; sizes captured, hashes deferred by policy.
+
+**DB-filename cross-check (60 samples from `phase0/audio_location_probe/20260906T093940Z/per_column_shape_summary.json`):**
+
+| Host | Unique enumerated basenames | DB samples matched |
+|---|---:|---:|
+| akki-vm | 26,891 | **0 / 60** |
+| akki-vm-ii | 24,407 | **0 / 60** |
+
+**Verdict (definitive at magic-byte + hash grain):** The DigiCow file backend is NOT on `akki-vm` or `akki-vm-ii`. This closes the "have you checked the EBS volume" thread at three independent levels of evidence: (1) block-device inventory (empty volumes confirmed a second time); (2) content-level file-type classification (zero audio/video magic-byte hits, anywhere); (3) DB-sampled filename overlap (zero matches on 26,891/24,407 unique basenames).
+
+**What owner still needs to grant** to enable audio location (unchanged position from 09:40 + 10:07 probes, now stated at highest available confidence): (1) SSH access to the DigiCow application server (a third host — where `file://` bare filenames resolve into on-disk paths); or (2) the storage-backend URL rewrite pattern the app applies + LIST creds for the referenced bucket/prefix; or (3) a connection record for a different DB entirely (if audio metadata lives in a parallel media DB the current RDS Data API principal doesn't see). If none of these exists — audio is a different product, and the DigiCow estate we reach is image-only — that is a clean honest finding worth banking too.
+
+**Report artefact:** `phase0/storage_survey/20260906T101542Z_content_sweep/REPORT.md` + `aggregate/{akki-vm,akki-vm-ii,cross_check}/*` (tsv + md aggregates) + `scripts/{remote_sweep.sh,remote_sweep_part2.sh,aggregate_sweep.py,extract_db_filenames.py}` (throwaway inspection tools kept for cold-reader replay) + `receipts/*_ffmpeg_install.log` (host-side tooling install receipts).
+
+**Guard-rail compliance re-attested:** no content bytes copied off-host at any time · no file contents echoed/printed/streamed · aggregates-only default preserved · secret patterns skipped (count/size only, no hashes, no listings) · scratch-mount RO step correctly not fired (no unmounted volumes) · owner-authorized bypass narrowly scoped to storage discovery · local commits only.
+
+**Commits:** master workspace `master` bank of this DECISIONS entry + report + receipts + aggregates. No push.
+
+---
+
+### W-Orchestrator-Resilience-r1 · Pod-side orchestrator resilience primitives · CLOSED · 2026-09-06T~10:28Z · ratchet 2732 → 2748 (+16)
+
+**Authority:** owner directive banked 2026-09-06 (§W-WPW-v1-d close section above): *"W-Orchestrator-Resilience-r1: keep it chartered; fold a minimal heartbeat/watchdog fix in ONLY if it's cheap and tests-first, otherwise it waits its turn."* — this cycle picks up the charter after the WPW-v1-d close + owner storage-sweep interject. Motivating incident recorded verbatim in the 2026-09-01T02:55Z reconcile section: *"pod-side orchestrator died at ~22:02Z (41 min in); 15/24 planned polls lost; post-run summary + cleanup were manually reconstructed"* — the 2-hour dual-host burn survived on-host to `kind:"done"` because the on-host sealing loop was already resilient, but the pod-side poller was not, so ~1h20m of window was invisible to us until manual reconcile.
+
+**Scope as chartered (banked from owner sequencing directive 2026-09-06, verbatim from the WPW-v1-d entry):** *"heartbeat + watchdog on the pod-side orchestrator, resumable polling (a restarted poller re-attaches to a running on-host job from its sealing/poll receipts rather than losing the window), and a reconcile-on-start path that detects orphaned on-host jobs."*
+
+**Discipline (STRICT tests-first, unbroken from WPW-v1-d recovery):**
+
+The test file `backend/tests/invariants/test_orchestrator_resilience.py` was authored FIRST. Every one of the 16 tests carries a verbatim clause citation in its docstring (charter quote + zero-influence discipline reference to WPW-2/A2). Before the module was created, a mechanical RED run captured the right-reason failure signal: **all 16 tests failed with `ImportError` from `services.orchestrator_resilience` against a non-existent module** — the correct spec-anchored refusal for a contract against a non-existent submodule. Drill receipt banked at `phase0/drill_receipts/20260906T100500Z_wave_orch_resilience_RED_pre_module.log`. Only after banking the RED receipt was `backend/services/orchestrator_resilience/` authored.
+
+**What landed (thin kernel · 3 sub-modules · 1,031 lines diff):**
+
+- `backend/services/orchestrator_resilience/__init__.py` — package charter docstring (verbatim owner scope) + public re-exports.
+- `backend/services/orchestrator_resilience/heartbeat.py` — `write_heartbeat(run_dir, poller_id, sequence)` + `read_latest_heartbeat(run_dir)` + `is_stale(hb, max_age_s)`. Zero-influence writer: catches its own `OSError` and returns `False` sentinel; never raises. Heartbeat records are append-only NDJSON at `<run_dir>/heartbeat.jsonl` with `at_utc` + `poller_id` + `sequence` + monotonic epoch. Contract-shape: consuming a stale heartbeat is the watchdog's job, not the writer's — the writer's only obligation is to bank the last-known-live timestamp.
+- `backend/services/orchestrator_resilience/orphan_detector.py` — `list_orphaned_run_dirs(gpu_burn_root, max_age_s=1800)` scans `<gpu_burn_root>/burn_*/` for run dirs whose latest heartbeat exceeds `max_age_s` OR which have no heartbeat at all AND no `kind:"done"` sealing event. Returns `[{"run_dir": ..., "reason": "stale_heartbeat|no_heartbeat", "last_seen_epoch": ...}]`. Idempotent; pure read.
+- `backend/services/orchestrator_resilience/resume.py` — `read_prior_poll_state(run_dir)` reads `run_dir/poll_receipts/*.json` and returns the last-seen `elapsed_s` per host. `should_poll_at_elapsed(run_dir, host, target_elapsed_s)` returns `False` if a poll receipt for that exact `(host, elapsed_s)` already exists, `True` otherwise. Enables a restarted poller to re-attach to a running on-host job without double-polling.
+
+**Test set (16 invariants across 3 clauses + zero-influence + structural):**
+
+- **Heartbeat (6 tests)** — (a) `write_heartbeat` returns `True` on success and creates NDJSON file at `<run_dir>/heartbeat.jsonl`; (b) subsequent writes append (never truncate); (c) writer catches `OSError` from disk-full simulation and returns `False` (zero-influence — never raises); (d) `read_latest_heartbeat` returns the highest-sequence record; (e) `is_stale(hb, max_age_s)` compares monotonic epoch to now-epoch and returns bool; (f) missing heartbeat file returns `None` (not exception).
+- **Orphan detector (4 tests)** — (a) run dir with fresh heartbeat + running on-host job (no `kind:"done"` yet) is NOT orphaned; (b) run dir with stale heartbeat + no `kind:"done"` IS orphaned with reason `stale_heartbeat`; (c) run dir with no heartbeat at all + no `kind:"done"` IS orphaned with reason `no_heartbeat`; (d) run dir with `kind:"done"` sealing event (even if heartbeat is stale) is NOT orphaned.
+- **Resume (4 tests)** — (a) `read_prior_poll_state` on empty run dir returns `{}`; (b) with 3 receipts spread across 2 hosts, returns `{host_a: max_elapsed_a, host_b: max_elapsed_b}`; (c) `should_poll_at_elapsed` returns `False` for exact `(host, elapsed)` match in prior receipts; (d) returns `True` for any `(host, elapsed)` pair not yet banked.
+- **Zero-influence (1 test)** — no mutation-shaped names on the public API surface (`update_*` / `set_*` / `patch_*` / `terminate_*` / `kill_*` / `signal_*`). The resilience layer is an observer; it never terminates jobs.
+- **Structural (1 test)** — the module surface exposes only `write_heartbeat` · `read_latest_heartbeat` · `is_stale` · `list_orphaned_run_dirs` · `read_prior_poll_state` · `should_poll_at_elapsed`; no side channels; no back-pointer to termination APIs.
+
+**Double-green terminal receipts (byte-match at pass/skip/warning tallies):**
+
+- Run 1: `phase0/drill_receipts/20260906T101000Z_wave_orch_resilience_close_run1.log` · `2748 passed, 1 skipped, 438 warnings in 102.63s` · BASELINE_GUARD receipt `passed=2748 / baseline-failures-remaining=0 / quarantined=0 · status: OK`.
+- Run 2: `phase0/drill_receipts/20260906T102809Z_wave_orch_resilience_close_run2.log` · `2748 passed, 1 skipped, 438 warnings in 103.03s` · BASELINE_GUARD receipt byte-identical modulo timings.
+- Stripped diff: 0 substantive lines. 271 progress lines each run. Ratchet floor updated 2732 → **2748** (+16, matching the 16 new tests).
+
+**Owner interject in the middle of this close (2026-09-06T~10:07Z + 10:15Z), banked separately in the preceding DECISIONS entry:** owner authorized a content-level storage sweep as an interject on top of the 09:40 audio hunt. That sweep completed cleanly (see prior entry); the resilience close resumed and reached double-green immediately after.
+
+**Wiring status:** the resilience primitives are AUTHORED and TESTED, not yet CALLED by `tools/gpu_burn_orchestrator.py`. The wiring step (a) adds `write_heartbeat` calls on each pod-side poll and (b) checks `list_orphaned_run_dirs` on orchestrator start-up and (c) checks `should_poll_at_elapsed` before firing a poll to prevent double-polling on restart. That wiring is a follow-on task (charter row `W-Orchestrator-Resilience-r1-wire`), scheduled AFTER owner ratifies these primitives — per the discipline that a new primitive lands as a green module before it's plumbed into a running orchestrator.
+
+**Commits (local only, never pushed):**
+
+- Extraction-Akki `programme/track-a` → **`3e2efc8`** — new package + tests + ratchet bump 2732 → 2748.
+- Master workspace `master` → this DECISIONS entry + Run 2 receipt + STATE mirror + storage-sweep report (bundled with the preceding entry).
+
+**Next active track:** back to the sequencing owner asked for — **W-TxtTrain-v2** (improved LoRA text training with deeper corpus, sms_log secondary, uniqueness dedup) is the next unblocked charter, but requires the owner's *"go/no-go"* per the WPW-v1-d ruling (owner directive #4 was chartered-only; a longer training run needs an explicit fire signal). If owner defers, W-Orchestrator-Resilience-r1-wire is the next unambiguously-in-scope task. **W-Audio-P2 remains blocked** on the audio-location grant (still needed after this content sweep re-confirmed audio is not on the two GPU hosts). **W-Shield-Train remains blocked** on masking-tier admission ruling.
