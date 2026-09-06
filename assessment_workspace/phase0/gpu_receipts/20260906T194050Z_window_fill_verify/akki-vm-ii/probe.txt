@@ -1,0 +1,64 @@
+2026-09-06T19:40:53.892312770Z
+=NVIDIA=
+0, 91 %, 105451 MiB, 143771 MiB, 606.95 W, 65
+1, 100 %, 105451 MiB, 143771 MiB, 654.56 W, 67
+=TRAINERS=
+ 193765 python3 /home/ubuntu/akki_journal/on_host_trainer.py --base-model Qwen/Qwen2.5-3B --campaign-id campaign-b-v21-method-ablations-20260906 --corpus /home/ubuntu/akki_journal/
+ 193766 python3 /home/ubuntu/akki_journal/on_host_trainer.py --base-model Qwen/Qwen2.5-3B --campaign-id campaign-b-v21-method-ablations-20260906 --corpus /home/ubuntu/akki_journal/
+ 193943 python3 /home/ubuntu/akki_journal/on_host_trainer.py --base-model Qwen/Qwen2.5-3B --campaign-id campaign-b-v21-method-ablations-20260906 --corpus /home/ubuntu/akki_journal/
+ 193944 python3 /home/ubuntu/akki_journal/on_host_trainer.py --base-model Qwen/Qwen2.5-3B --campaign-id campaign-b-v21-method-ablations-20260906 --corpus /home/ubuntu/akki_journal/
+ 194394 python3 /home/ubuntu/akki_journal/on_host_trainer.py --base-model Qwen/Qwen2.5-3B --campaign-id campaign-b-v21-method-ablations-20260906 --corpus /home/ubuntu/akki_journal/
+ 194395 python3 /home/ubuntu/akki_journal/on_host_trainer.py --base-model Qwen/Qwen2.5-3B --campaign-id campaign-b-v21-method-ablations-20260906 --corpus /home/ubuntu/akki_journal/
+=CUDA_PINNING=
+pid=193765 CUDA_VISIBLE_DEVICES=0
+pid=193766 CUDA_VISIBLE_DEVICES=1
+pid=193943 CUDA_VISIBLE_DEVICES=1
+pid=193944 CUDA_VISIBLE_DEVICES=1
+pid=194394 CUDA_VISIBLE_DEVICES=0
+pid=194395 CUDA_VISIBLE_DEVICES=0
+=HB_LANE0=
+{
+  "at_utc": "2026-09-06T19:39:57.590455Z",
+  "campaign_id": "campaign-b-v21-method-ablations-20260906",
+  "current_run_name": "B1-CORPUS-USSD-ONLY-v21-seed1",
+  "current_state": "waiting_for_shield-train-campaign-b-v21-B1-USSD-ONLY-s1-20260906T200101Z",
+  "dispatcher_pid": 190497,
+  "gpu_id": 1,
+  "kind": "dispatcher_heartbeat",
+  "queue_progress": {
+    "current_run_name": "B1-CORPUS-USSD-ONLY-v21-seed1",
+    "index": 0,
+    "total": 4
+  }
+}
+=HB_LANE1=
+=QUEUE_MANIFESTS=
+-rw-r--r-- 1 ubuntu ubuntu 5682 Sep  6 18:34 /home/ubuntu/akki_journal/queue/campaign_b_v21_lane0_queue_manifest.json
+-rw-r--r-- 1 ubuntu ubuntu 6433 Sep  6 18:34 /home/ubuntu/akki_journal/queue/campaign_b_v21_lane1_queue_manifest.json
+=SEALED=
+shield-train-campaign-a-v2-ladder-20260906-20260906T163733Z
+shield-train-campaign-b-method-ablations-20260906-20260906T141344Z
+shield-train-campaign-b-multi-table-dedup-20260906-20260906T144651Z
+shield-train-campaign-b-multi-table-dedup-20260906-20260906T144804Z
+shield-train-campaign-b-multi-table-raw-20260906-20260906T144838Z
+shield-train-campaign-b-v2-dedup-ablations-20260906-20260906T164158Z
+shield-train-campaign-b-v2-raw-ablations-20260906-20260906T164301Z
+shield-train-campaign-b-v21-B-REF-3B-s1-20260906T200100Z
+shield-train-campaign-b-v21-B1-USSD-ONLY-s1-20260906T200101Z
+=LATEST_HB_STEPS=
+--- /home/ubuntu/akki_journal/shield-train-campaign-b-v21-B-REF-3B-s1-20260906T200100Z ---
+  "step": 900,
+  "training_pid": 193765
+}
+--- /home/ubuntu/akki_journal/shield-train-campaign-b-v21-B1-USSD-ONLY-s1-20260906T200101Z ---
+  "step": 900,
+  "training_pid": 193766
+}
+--- /home/ubuntu/akki_journal/shield-train-campaign-b-method-ablations-20260906-20260906T141344Z ---
+/home/ubuntu/akki_journal/shield-train-campaign-b-method-ablations-20260906-20260906T141344Z/ACTIVITY_SUMMARY.md
+  "step": 963,
+  "training_pid": 154018
+}
+--- /home/ubuntu/akki_journal/shield-train-campaign-a-v2-ladder-20260906-20260906T163733Z ---
+--- /home/ubuntu/akki_journal/shield-train-campaign-b-v2-raw-ablations-20260906-20260906T164301Z ---
+--- /home/ubuntu/akki_journal/shield-train-campaign-b-v2-dedup-ablations-20260906-20260906T164158Z ---

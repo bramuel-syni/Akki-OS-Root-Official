@@ -6327,3 +6327,47 @@ Owner ruling on (a) or (b) unblocks a follow-on `W-SMS-Body-Emit` wave that re-e
 
 **Standing rule (still binding):** verbatim quote in every close block. Banked here for the sequencing ruling itself.
 
+
+---
+
+## 2026-09-06T~19:20Z · OWNER RULINGS · audit ACCEPTED + Solva-v2 full lift IN + Registry priority + new HTML binding
+
+**Verbatim (via user proxy):**
+
+> "Surface audit report here. Solva needs to be fully lifted and tuned to the updated requirements. Solva is a foundation requirement, goes now. Priority building goes to registry. I need registry fully build. attached is the updated HTML."
+
+**Attached HTML:** `RMS AI Prototype v2 standalone.html` at `https://customer-assets-cm19k8pv.emergentagent.net/job_amazing-gates-8/artifacts/b103i6tj_RMS%20AI%20Prototype%20v2%20standalone.html`. Naming is confusing ("v2" vs our v8) — banked as **"Prototype v2-standalone drop 2026-09-07, supersedes RMS_AI_Akki_Prototype_v8_Standalone per owner 'attached is the updated HTML'"**.
+
+**Interpretation banked:**
+
+1. **TRUE_STATE_OF_CODE audit (workspace `34ca2267`, `notes/TRUE_STATE_OF_CODE.md`) is ACCEPTED as authoritative reference.** Foundation-stack sequencing (G-1 → G-2 → G-3 → W-Registry-Enforcement-Class-Backfill → Rules-Service-Build) is now UNBLOCKED but overridden below.
+2. **Solva-v2 full lift is ruled INTO foundation work and starts NOW** (donor pool 24 595 LOC vs 1 392 LOC lifted; Solva-v2 architecture entirely unlifted). Chartered as **W-SOLVA-V2-LIFT**.
+3. **W-REGISTRY-FULL-BUILD is priority ahead of Solva-v2 lift.** Registry must be a completely functional application per the new HTML: portal swap, all tabs live (Data-Connected/Compute-Connected/LLMs-and-Trained-Models), census status line, narrative slots, styling preserved. Substitution rules re-authored against NEW rendered DOM. Trained-models endpoint reading campaign/phase0 records built tests-first.
+4. **New HTML is the NEW binding design source.** Literal-adoption law unchanged: byte-identity, interpretation BANNED, substitutions bound to rendered DOM only. Rendered-DOM law: any substitution rule matching nothing = RED.
+5. **"Surface audit report here"** = produce a UI-SURFACE AUDIT against the new HTML (what the updated design defines per surface vs what's currently live) — table verbatim to owner BEFORE Registry code.
+
+**Work order banked (in sequence):**
+- STEP 1: ingest + sha256-lock new HTML + supersede v8 in `INDEX.json` + structural diff.
+- STEP 2: surface audit table (owner-facing, one table); STOP for owner review here.
+- STEP 3: W-REGISTRY-FULL-BUILD (portal swap + tabs live + rendered-DOM substitution + real-Chromium harness + trained-models endpoint tests-first).
+- STEP 4: W-SOLVA-V2-LIFT (diff Exec-Core solva_v2 10 509 vs Exec-Final solva_v2 9 771; review-then-adopt; reconcile with existing 1 392-LOC partial; tune to Doc 0 BR-2.x + Rules Service spec + new canon Solva refs; mount router; surface per new HTML if defined).
+
+**Discipline (still binding, restated):** mechanical RED receipts · double-green from floor 2986 · two-commit pattern · no push · PII/credentials rules absolute · campaigns untouched (on-demand SSH checks only).
+
+---
+
+## 2026-09-06T~19:40Z · OWNER DIRECTIVE · standing 72h full-GPU-consumption guarantee
+
+**Verbatim (via user proxy):**
+
+> "Ensure the GPUs are fully consume next 3 days".
+
+**Scope:** standing obligation on the campaign window (through 2026-09-09; extend to full 72h from now if queue math allows). Bounded interject BEFORE returning to Registry/Solva work order.
+
+**Sub-tasks banked:**
+1. Verify current consumption via SSH nvidia-smi per GPU. akki-vm-ii expected 100%/100%. akki-vm expected: legacy A-0-v2 sealed + both v2.1 lanes auto-fired at high utilization. If dispatcher stalled again → fix + relaunch now.
+2. Queue-depth guarantee: recompute drain projections from measured v2.1 throughput. Extend queues if projected drain < window end. Priority: (a) complete ladder seeds (2 seeds everywhere), (b) 7B rung 2 seeds, (c) 14B rung if it fits single-GPU LoRA bf16 (H200 140GB — verify empirically with a probe), (d) third seeds, (e) W-Sequence-Packing lift if it lands safely without destabilizing running lanes (packed runs count as a declared method variant, banked). Target: all 4 GPUs >85% busy through full window with ~10% margin.
+3. Idle-lane alarm: extend on-host watchdog so a drained queue is VISIBLE — dispatcher writes `QUEUE_DRAINED` marker with UTC timestamp into the journal on queue empty (reconciliation shows exactly when/if any GPU went idle). If trivial, also launch a governed fallback burn on idle GPU as a keep-consumed measure (owner-intent aligned: full consumption; burn is honest filler, LABELLED as such, NEVER mixed into training records).
+4. Bank updated window-fill math + before/after evidence, then return to Registry/Solva.
+
+**Discipline:** watchdog code changes go tests-first to track-a with double-green from floor 2986. Two-commit pattern. No push. Fallback-burn records are a separate journal namespace (`gpu_fill_burns/`, NOT `shield-train/*` or `baseline_lines/*`) — banked here so the owner is never surprised by burn records appearing in the training ledger.
