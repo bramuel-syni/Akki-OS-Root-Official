@@ -1,0 +1,117 @@
+[
+  {
+    "database": "digicow_live",
+    "table": "company",
+    "column": "image_url",
+    "sampled_rows": 30,
+    "empty_rows_skipped": 0,
+    "extension_histogram": {
+      "jpeg": 22,
+      "png": 4,
+      "jpg": 4
+    },
+    "scheme_histogram": {
+      "file": 30
+    },
+    "host_pattern_histogram": {
+      "(no-host)": 30
+    },
+    "first_path_seg_histogram": {
+      "0c21215eacbf0ae3d69cafb49b76ea7f.PNG": 1,
+      "f77a759917d9a77a8853b5276e9d35cd.jpg": 1,
+      "33b9e9907d1759ec9e7d374d120cac0e.jpeg": 1,
+      "21bd9f4cc62436437cf1509f418bed5a.jpeg": 1,
+      "e48e4869bf905d5bd65b0c9a986e2c1a.jpeg": 1,
+      "d7e2ce9a039601ac86175dca748c9074.jpeg": 1,
+      "88c3c466f36f00529c23deb304eb97c8.jpeg": 1,
+      "32d65a726919d02a5696468f457a54b3.jpg": 1,
+      "8d19469232642381567256d2e5c2c742.jpeg": 1,
+      "9a9af08ba19350c05e4460cbb08f8783.jpeg": 1,
+      "80b46555df16d0cf93ca9b463742786a.jpeg": 1,
+      "b6642fe504c5a881b7838943c61902a2.jpg": 1,
+      "721ac45282f8024158151c8b14e3b9ce.jpeg": 1,
+      "1aa92764c9181c389a6da00895aa64b4.jpeg": 1,
+      "c7c0d4da66c9a8cf11632810d060e9b9.jpeg": 1,
+      "b131a5699a0fe4ffa03ac82ee853cd83.jpg": 1,
+      "5d97d785b014fca0d6303a7702f13566.jpeg": 1,
+      "f2576f6ff6a2d4677831e5a6688815c5.jpeg": 1,
+      "da305702bb85765233e9b379382d2370.png": 1,
+      "bd2c19caf69c97cdaac8f1daa68b94cc.jpeg": 1,
+      "29a8d01e02f7815980db39e3b1a2c038.jpeg": 1,
+      "da61dd6450fe315273ae345506bd1d2d.jpeg": 1,
+      "0beaf4d8a1c4cac455d3eca709e430d6.PNG": 1,
+      "b1090da4c451d84906e3a2cd0fe80b5b.jpeg": 1,
+      "e29c841c4e4695541d3fd4a2f3b7b852.jpeg": 1,
+      "464aad247f1da1f59fd3c6f7fe8244e7.png": 1,
+      "e7889a75a6d84e921942905084405b8f.jpeg": 1,
+      "f314b0106e92a98655a356344bfc8c39.jpeg": 1,
+      "0d0385f98db6df89a28191dca583827d.jpeg": 1,
+      "4570ec336fd8b29cf0b71ec7570bbd28.jpeg": 1
+    },
+    "non_url_shape_count": 0,
+    "row_count_at_census": 362
+  },
+  {
+    "database": "digicow_live",
+    "table": "user_group_trainings",
+    "column": "file_url",
+    "sampled_rows": 30,
+    "empty_rows_skipped": 0,
+    "extension_histogram": {
+      "jpeg": 30
+    },
+    "scheme_histogram": {
+      "file": 30
+    },
+    "host_pattern_histogram": {
+      "(no-host)": 30
+    },
+    "first_path_seg_histogram": {
+      "training_5406.jpeg": 1,
+      "training_5582.jpeg": 1,
+      "training_6887.jpeg": 1,
+      "training_9427.jpeg": 1,
+      "training_10042.jpeg": 1,
+      "training_10305.jpeg": 1,
+      "training_11033.jpeg": 1,
+      "training_11061.jpeg": 1,
+      "training_11115.jpeg": 1,
+      "training_11119.jpeg": 1,
+      "training_11125.jpeg": 1,
+      "training_11168.jpeg": 1,
+      "training_11192.jpeg": 1,
+      "training_11195.jpeg": 1,
+      "training_11239.jpeg": 1,
+      "training_11269.jpeg": 1,
+      "training_11315.jpeg": 1,
+      "training_11356.jpeg": 1,
+      "training_11427.jpeg": 1,
+      "training_11493.jpeg": 1,
+      "training_11527.jpeg": 1,
+      "training_11550.jpeg": 1,
+      "training_11583.jpeg": 1,
+      "training_11599.jpeg": 1,
+      "training_11614.jpeg": 1,
+      "training_11618.jpeg": 1,
+      "training_11624.jpeg": 1,
+      "training_11644.jpeg": 1,
+      "training_11648.jpeg": 1,
+      "training_11657.jpeg": 1
+    },
+    "non_url_shape_count": 0,
+    "row_count_at_census": 163753
+  },
+  {
+    "database": "digicow_live",
+    "table": "user_group_trainings",
+    "column": "pend_action_file",
+    "sampled_rows": 0,
+    "empty_rows_skipped": 0,
+    "extension_histogram": {},
+    "scheme_histogram": {},
+    "host_pattern_histogram": {},
+    "first_path_seg_histogram": {},
+    "non_url_shape_count": 0,
+    "row_count_at_census": 163753
+  }
+]

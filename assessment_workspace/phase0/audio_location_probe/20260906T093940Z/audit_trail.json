@@ -1,0 +1,29 @@
+[
+  {
+    "at_utc": "2026-09-06T09:39:40.968821Z",
+    "sql_shape": "owner_authorized_audio_location_probe:sample_column",
+    "database": "digicow_live",
+    "table": "company",
+    "column": "image_url",
+    "principal": "owner",
+    "hard_cap": 30
+  },
+  {
+    "at_utc": "2026-09-06T09:39:41.609376Z",
+    "sql_shape": "owner_authorized_audio_location_probe:sample_column",
+    "database": "digicow_live",
+    "table": "user_group_trainings",
+    "column": "file_url",
+    "principal": "owner",
+    "hard_cap": 30
+  },
+  {
+    "at_utc": "2026-09-06T09:39:41.726083Z",
+    "sql_shape": "owner_authorized_audio_location_probe:sample_column",
+    "database": "digicow_live",
+    "table": "user_group_trainings",
+    "column": "pend_action_file",
+    "principal": "owner",
+    "hard_cap": 30
+  }
+]

@@ -1,0 +1,29 @@
+{
+  "at": "2026-08-31T19:35:05Z",
+  "gpus": [
+    {
+      "clocks.current.graphics [MHz]": "1980 MHz",
+      "clocks.current.memory [MHz]": "3201 MHz",
+      "index": "0",
+      "memory.total [MiB]": "143771 MiB",
+      "memory.used [MiB]": "51852 MiB",
+      "name": "NVIDIA H200",
+      "power.draw [W]": "208.68 W",
+      "temperature.gpu": "43",
+      "utilization.gpu [%]": "33 %"
+    },
+    {
+      "clocks.current.graphics [MHz]": "1980 MHz",
+      "clocks.current.memory [MHz]": "3201 MHz",
+      "index": "1",
+      "memory.total [MiB]": "143771 MiB",
+      "memory.used [MiB]": "51808 MiB",
+      "name": "NVIDIA H200",
+      "power.draw [W]": "224.34 W",
+      "temperature.gpu": "42",
+      "utilization.gpu [%]": "87 %"
+    }
+  ],
+  "label": "before",
+  "rc": 0
+}

@@ -1,0 +1,22 @@
+{
+  "adapter_path": "/tmp/akki_txttrain_txttrain_20260831T193455Z_9594859a/out/adapter",
+  "adapter_sha256": "a369304911566bbac263a0b3552f239289472c98663119d0243e11e7862f8468",
+  "at": "2026-08-31T20:11:53Z",
+  "base_model": "Qwen/Qwen2.5-0.5B",
+  "batch_size_per_gpu": 16,
+  "effective_batch": 64,
+  "epochs": 3,
+  "final_train_metrics": {
+    "epoch": 3.0,
+    "total_flos": 3.721898999808e+16,
+    "train_loss": 0.7068903529228856,
+    "train_runtime": 2163.6969,
+    "train_samples_per_second": 41.595,
+    "train_steps_per_second": 0.65
+  },
+  "grad_accum": 2,
+  "kind": "summary",
+  "n_examples": 30000,
+  "n_gpu": 2,
+  "total_train_s": 2163.99
+}

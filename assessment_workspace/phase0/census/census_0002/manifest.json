@@ -1,0 +1,1466 @@
+{
+  "census_id": 2,
+  "started_at_utc": "2026-09-06T09:35:28.357113Z",
+  "finished_at_utc": "2026-09-06T09:36:54.083469Z",
+  "initiator": "owner",
+  "databases": [
+    {
+      "name": "digicow_live",
+      "per_db_file": "digicow_live.json"
+    },
+    {
+      "name": "ndume",
+      "per_db_file": "ndume.json"
+    }
+  ],
+  "rollup": {
+    "database_count": 2,
+    "table_count": 233,
+    "total_row_count": 5908255
+  },
+  "single_database_visibility_flag": false,
+  "finding_sentence": null,
+  "audit_trail": [
+    {
+      "at_utc": "2026-09-06T09:35:29.504802+00:00",
+      "sql_shape": "schemata_list",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:29.878458+00:00",
+      "sql_shape": "tables_list",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:30.546117+00:00",
+      "sql_shape": "row_count",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:31.043673+00:00",
+      "sql_shape": "columns_list",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:31.280576+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:31.410714+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:31.545047+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:31.675219+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:31.807251+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:31.933895+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:32.067106+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:32.320383+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:32.453239+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:32.575350+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:32.691912+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:32.819559+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:32.960000+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:33.085944+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:33.214283+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:33.334748+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:33.455137+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:33.586879+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:33.710113+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:33.837992+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:33.970626+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:34.095818+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:34.243449+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:34.361350+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:34.481450+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:34.616066+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:34.747668+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:34.887865+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:35.037934+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:35.168968+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:35.289066+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:35.412607+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:35.536722+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:35.664509+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:35.787551+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:35.908898+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:36.032582+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:36.155175+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:36.276566+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:36.634674+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:36.752734+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:36.875261+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:36.994777+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:37.124310+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:37.242406+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:37.360992+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:37.483544+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:37.611335+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:37.734547+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:37.857926+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:38.024350+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:38.155568+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:38.276535+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:38.395564+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:38.519272+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:38.644260+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:38.765171+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:38.889644+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:39.010515+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:39.147548+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:39.268573+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:39.385980+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:39.508210+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:39.634379+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:39.754460+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:39.875033+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:39.996277+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:40.514041+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:40.805491+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:41.008957+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:41.154353+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:35:41.287497+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:00.109393+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:01.221584+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:01.343065+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:01.462433+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:01.581634+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:01.708463+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:01.829317+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:01.963900+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:02.085967+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:02.204126+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:02.322898+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:02.445080+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:04.052452+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:04.572789+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:05.054894+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:05.173442+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:05.295982+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:05.779029+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:10.695443+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:10.818059+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:10.938898+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:11.066795+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:11.197961+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:11.374385+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:12.135528+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:12.257602+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:12.371487+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:12.493782+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:12.622076+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:12.741757+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:13.931285+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:14.138560+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:14.257210+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:14.379075+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:14.503784+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:14.623918+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:14.741571+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:15.382887+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:15.544461+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:15.670103+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:15.787359+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:19.030612+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:19.155819+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:19.313120+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:21.660622+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:21.778184+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:34.820205+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:34.940572+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:35.065951+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:35.184478+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:35.304672+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:35.423118+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:35.549551+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "digicow_live",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:35.736876+00:00",
+      "sql_shape": "tables_list",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:36.140632+00:00",
+      "sql_shape": "row_count",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:36.633329+00:00",
+      "sql_shape": "columns_list",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:36.836484+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:36.963995+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:37.086404+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:37.211800+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:37.334213+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:37.455372+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:38.563772+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:38.737427+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:38.869980+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:38.989717+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:39.122889+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:39.241924+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:39.360861+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:39.477361+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:39.595048+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:39.712683+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:39.828914+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:39.943002+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:40.077295+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:40.881987+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:40.995622+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:41.112277+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:41.231864+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:41.348431+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:41.466442+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:41.588644+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:41.725224+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:41.946996+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:42.077685+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:42.194572+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:42.310669+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:42.429962+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:42.549955+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:42.670037+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:42.785518+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:42.902432+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:43.023514+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:43.326321+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:43.511255+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:43.630027+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:43.750449+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:43.867887+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:43.985384+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:44.101974+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:44.219002+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:44.336864+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:44.457002+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:44.573449+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:44.690249+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:44.809917+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:44.939414+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:45.064044+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:45.182098+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:45.299311+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:45.492553+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:45.616440+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:45.738365+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:45.873602+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:45.992340+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:46.109691+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:46.226147+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:47.110802+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:47.231585+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:47.352441+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:47.475528+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:47.592101+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:47.710226+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:47.828671+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:48.490167+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:48.606014+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:48.720706+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:48.837017+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:48.969226+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:49.085484+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:49.202855+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:49.670432+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:49.784971+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:49.900873+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:50.017354+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:50.148281+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:50.409966+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:50.525600+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:50.669118+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:50.805111+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:50.921393+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:51.036748+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:51.152891+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:51.266739+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:51.385912+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:51.502560+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:51.617930+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:51.732337+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:51.849826+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:51.966156+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:52.082427+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:52.195777+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:52.312033+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:52.427189+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:52.541018+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:52.661087+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:52.777006+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:53.280449+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:53.394772+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:53.571695+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:53.690806+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:53.822980+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:53.935629+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    },
+    {
+      "at_utc": "2026-09-06T09:36:54.077911+00:00",
+      "sql_shape": "null_count_per_column",
+      "database": "ndume",
+      "principal": "owner"
+    }
+  ],
+  "clarification_drawer": []
+}

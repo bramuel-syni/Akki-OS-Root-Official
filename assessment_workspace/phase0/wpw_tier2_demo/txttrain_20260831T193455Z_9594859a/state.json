@@ -1,0 +1,49 @@
+{
+  "run_id": "txttrain_20260831T193455Z_9594859a",
+  "status": "closed_rejected",
+  "started_at": "2026-08-31T19:34:55Z",
+  "finished_at": "2026-08-31T20:11:53Z",
+  "exit_code": 0,
+  "acceptance_criteria": {
+    "held_out_accuracy": {
+      "measured": null,
+      "threshold": 0.75,
+      "pass": false,
+      "honest_empty_reason": "no held-out slice was reserved; train-only corpus"
+    },
+    "abstention_calibration": {
+      "measured": null,
+      "threshold": 0.85,
+      "pass": false,
+      "honest_empty_reason": "no abstention head trained"
+    },
+    "cost_actual_vs_estimate": {
+      "measured": 1.0,
+      "threshold": 1.1,
+      "pass": true,
+      "note": "owner's EC2; both actual and estimate are $0.00"
+    },
+    "latency_p95_ms": {
+      "measured": null,
+      "threshold": 250,
+      "pass": false,
+      "honest_empty_reason": "adapter not served via an inference seat"
+    },
+    "refusal_rate_on_out_of_domain": {
+      "measured": null,
+      "threshold": 0.6,
+      "pass": false,
+      "honest_empty_reason": "no ood eval slice"
+    },
+    "adapter_size_mib": {
+      "measured": 8.4,
+      "threshold": 32,
+      "pass": true,
+      "note": "adapter.sha256 file present; approx 8.4 MiB (LoRA r=16 alpha=32)"
+    }
+  },
+  "refusal_reason": "MOAC 4-of-6 criteria HONEST-EMPTY (no held-out slice, no abstention head, no served seat, no OOD eval). Only 2 criteria measured cleanly (cost_actual_vs_estimate and adapter_size_mib). Per \u00a75 evidence grammar, this run must NOT claim acceptance without the missing measurements. Banked as an honest-refused settlement \u2014 the adapter is real but its held-out virtue is not.",
+  "cost_actual_usd": 0.0,
+  "cost_estimate_usd": 0.0,
+  "seed": null
+}

@@ -1,0 +1,224 @@
+{
+  "header": {
+    "c1_finished_at_utc": "2026-08-28T15:49:08.497030Z",
+    "c2_finished_at_utc": "2026-09-06T09:36:54.083469Z",
+    "elapsed_between_censuses_hours": 209.8,
+    "c1_rollup": {
+      "database_count": 2,
+      "table_count": 233,
+      "total_row_count": 5909421
+    },
+    "c2_rollup": {
+      "database_count": 2,
+      "table_count": 233,
+      "total_row_count": 5908255
+    },
+    "new_databases_visible": [],
+    "removed_databases_visible": []
+  },
+  "per_database": {
+    "digicow_live": {
+      "c1_table_count": 125,
+      "c2_table_count": 125,
+      "new_tables": [],
+      "removed_tables": [],
+      "common_tables_with_column_deltas": {},
+      "common_tables_with_row_count_deltas": [
+        {
+          "table": "ussd_users",
+          "row_count_c1": 2286019,
+          "row_count_c2": 2285336,
+          "delta": -683
+        },
+        {
+          "table": "shortcode_questions_response",
+          "row_count_c1": 400373,
+          "row_count_c2": 400122,
+          "delta": -251
+        },
+        {
+          "table": "post_view",
+          "row_count_c1": 293777,
+          "row_count_c2": 293709,
+          "delta": -68
+        },
+        {
+          "table": "user_group_trainings",
+          "row_count_c1": 163793,
+          "row_count_c2": 163753,
+          "delta": -40
+        },
+        {
+          "table": "delete_log",
+          "row_count_c1": 4162,
+          "row_count_c2": 4153,
+          "delta": -9
+        },
+        {
+          "table": "users",
+          "row_count_c1": 108342,
+          "row_count_c2": 108333,
+          "delta": -9
+        },
+        {
+          "table": "post_location",
+          "row_count_c1": 4731,
+          "row_count_c2": 4732,
+          "delta": 1
+        }
+      ],
+      "top_growing_tables_c1_to_c2": [
+        {
+          "table": "ussd_users",
+          "row_count_c1": 2286019,
+          "row_count_c2": 2285336,
+          "delta": -683
+        },
+        {
+          "table": "shortcode_questions_response",
+          "row_count_c1": 400373,
+          "row_count_c2": 400122,
+          "delta": -251
+        },
+        {
+          "table": "post_view",
+          "row_count_c1": 293777,
+          "row_count_c2": 293709,
+          "delta": -68
+        },
+        {
+          "table": "user_group_trainings",
+          "row_count_c1": 163793,
+          "row_count_c2": 163753,
+          "delta": -40
+        },
+        {
+          "table": "delete_log",
+          "row_count_c1": 4162,
+          "row_count_c2": 4153,
+          "delta": -9
+        },
+        {
+          "table": "users",
+          "row_count_c1": 108342,
+          "row_count_c2": 108333,
+          "delta": -9
+        },
+        {
+          "table": "post_location",
+          "row_count_c1": 4731,
+          "row_count_c2": 4732,
+          "delta": 1
+        }
+      ]
+    },
+    "ndume": {
+      "c1_table_count": 108,
+      "c2_table_count": 108,
+      "new_tables": [],
+      "removed_tables": [],
+      "common_tables_with_column_deltas": {},
+      "common_tables_with_row_count_deltas": [
+        {
+          "table": "breedings_straw_logs",
+          "row_count_c1": 5956,
+          "row_count_c2": 5896,
+          "delta": -60
+        },
+        {
+          "table": "sms_log",
+          "row_count_c1": 57978,
+          "row_count_c2": 57919,
+          "delta": -59
+        },
+        {
+          "table": "breedings",
+          "row_count_c1": 184417,
+          "row_count_c2": 184465,
+          "delta": 48
+        },
+        {
+          "table": "cows",
+          "row_count_c1": 131425,
+          "row_count_c2": 131392,
+          "delta": -33
+        },
+        {
+          "table": "calves",
+          "row_count_c1": 475,
+          "row_count_c2": 482,
+          "delta": 7
+        },
+        {
+          "table": "tbl_farmer_vet",
+          "row_count_c1": 75382,
+          "row_count_c2": 75376,
+          "delta": -6
+        },
+        {
+          "table": "salary",
+          "row_count_c1": 220,
+          "row_count_c2": 217,
+          "delta": -3
+        },
+        {
+          "table": "healths",
+          "row_count_c1": 24032,
+          "row_count_c2": 24031,
+          "delta": -1
+        }
+      ],
+      "top_growing_tables_c1_to_c2": [
+        {
+          "table": "breedings_straw_logs",
+          "row_count_c1": 5956,
+          "row_count_c2": 5896,
+          "delta": -60
+        },
+        {
+          "table": "sms_log",
+          "row_count_c1": 57978,
+          "row_count_c2": 57919,
+          "delta": -59
+        },
+        {
+          "table": "breedings",
+          "row_count_c1": 184417,
+          "row_count_c2": 184465,
+          "delta": 48
+        },
+        {
+          "table": "cows",
+          "row_count_c1": 131425,
+          "row_count_c2": 131392,
+          "delta": -33
+        },
+        {
+          "table": "calves",
+          "row_count_c1": 475,
+          "row_count_c2": 482,
+          "delta": 7
+        },
+        {
+          "table": "tbl_farmer_vet",
+          "row_count_c1": 75382,
+          "row_count_c2": 75376,
+          "delta": -6
+        },
+        {
+          "table": "salary",
+          "row_count_c1": 220,
+          "row_count_c2": 217,
+          "delta": -3
+        },
+        {
+          "table": "healths",
+          "row_count_c1": 24032,
+          "row_count_c2": 24031,
+          "delta": -1
+        }
+      ]
+    }
+  },
+  "new_media_shaped_columns": []
+}

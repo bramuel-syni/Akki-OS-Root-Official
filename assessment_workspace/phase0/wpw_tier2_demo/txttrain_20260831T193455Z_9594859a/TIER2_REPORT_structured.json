@@ -1,0 +1,53 @@
+{
+  "metadata": {
+    "run_id": "txttrain_20260831T193455Z_9594859a",
+    "tier": 2,
+    "internal_only": true,
+    "settlement": "refused",
+    "spec_ref": "whitepaper_wizard_spec_v1 \u00b7 WPW-8..10"
+  },
+  "figures": [
+    {
+      "figure_id": "corpus_shape",
+      "evidence_class": "measured",
+      "receipt_line": "extract_summary.json",
+      "summary_text": "30000 rows \u00b7 included=['option_string', 'question_string', 'value_chain'] \u00b7 excluded=['id', 'ussd_user_id', 'mobile_number', 'training_code', 'post_id', 'question_id', 'option_id', 'created_at', 'number_of_animals', 'forage_area'] \u00b7 scrub={'id': 0, 'phone': 0}"
+    },
+    {
+      "figure_id": "baseline_line",
+      "evidence_class": "measured",
+      "receipt_line": "baseline_line.json",
+      "summary_text": "baseline=bl_txttrain_20260831T193455Z_9594859a \u00b7 model=Qwen/Qwen2.5-0.5B"
+    },
+    {
+      "figure_id": "hardware_fingerprint",
+      "evidence_class": "measured",
+      "receipt_line": "nvidia_smi_before.json",
+      "summary_text": "gpus=2: NVIDIA H200 #0, NVIDIA H200 #1"
+    },
+    {
+      "figure_id": "wall_clock_and_flops",
+      "evidence_class": "measured",
+      "receipt_line": "train_summary_raw.json",
+      "summary_text": "duration=2163.99 s (~36 min) \u00b7 flops=3.721898999808e+16"
+    },
+    {
+      "figure_id": "acceptance_criteria",
+      "evidence_class": "measured",
+      "receipt_line": "state.json",
+      "summary_text": "6 acceptance criteria \u00b7 pass=2/6"
+    }
+  ],
+  "refused_figures": [],
+  "section_names": [
+    "problem_and_objective",
+    "data_statement",
+    "baseline_record",
+    "method",
+    "setup_and_reproducibility",
+    "results_on_held_out",
+    "ablations",
+    "limitations",
+    "negative_results"
+  ]
+}

@@ -5532,3 +5532,71 @@ The pod-side burn orchestrator (`gpu_burn_orchestrator.py`, PID 66598, launched 
 **Charter for follow-on (banked but not scheduled):** `W-Orchestrator-Resilience-r1` — teach the pod-side orchestrator to (a) tee a per-tick heartbeat log to disk so its crash timestamp is diagnosable; (b) run under supervisor rather than raw nohup so it auto-restarts on death; (c) resume polling idempotently from the last persisted poll on restart; (d) expose an "orphan runs" API surface (an on-host burn without an orchestrator process attached) so future reconciles are one command away. Not scheduled — will pick up when the WPW sequence hands control back to the owner for a queue re-priority.
 
 
+
+### Owner interject · Census #2 + audio-access hunt · 2026-09-06T09:35–09:40Z
+
+**Bank verbatim (owner instruction 2026-09-06, single message):**
+> "I also need another census on the digicow db. there should be access to the audion files."
+
+**Answer:**
+1. **Census #2 fired** via `POST /api/census/run` (initiator: owner) at 2026-09-06T09:35:28 UTC, finished 09:36:54 UTC (86 s wall-clock). All 5 whitelisted SQL shapes ran through the governed engine per manifest `audit_trail`. **Same shape as Census #1: 2 databases (`digicow_live` + `ndume`), 233 tables, `single_database_visibility_flag = false`.** Net **−1,166 rows** fleet-wide over 8.7 days across 15 tables (7 in digicow_live, 8 in ndume — small production write/delete churn); **zero column-schema drift**, **zero new tables**, **zero new/removed databases**. Registry surface picks up Census #2 as latest via `/api/census/latest` (`census_id: 2` returned at query time). Diff banked at `phase0/census/census_0002_diff_vs_0001.{json,md}`.
+2. **Audio-location hunt — AUDIO NOT FOUND in digicow_live estate.** Owner-authorized bounded bypass probe (`BYPASS_CLASS = owner_authorized_audio_location_probe`, tool at `tools/audio_location_probe.py`). 3 media-shaped columns Census #2 exposed were sampled at hard cap 30 rows each (90 sample reads total). Shape-only receipts (extension histogram + URL scheme + host pattern) — **no full URL banked anywhere**. Findings:
+   - `digicow_live.company.image_url` (362 rows, sampled 30): 30/30 image extensions (jpeg:22, png:4, jpg:4). Verdict: **IMAGE** — matches column name.
+   - `digicow_live.user_group_trainings.file_url` (163,753 rows, sampled 30): 30/30 image extensions (all jpeg). Verdict: **IMAGE** — generic column name, images inside.
+   - `digicow_live.user_group_trainings.pend_action_file` (163,753 rows): 0 non-null rows sampled. Verdict: **no readable values** — column is 100 % NULL/empty across the estate.
+   - **All URLs are bare filenames** with `file://` scheme and `(no-host)` — meaning the DB stores only filename; actual files live in a storage backend external to RDS.
+   - **Zero audio-ext strings** (`.mp3` / `.wav` / `.amr` / `.ogg` etc.) across all 60 non-empty samples.
+3. **What owner needs to grant to enable audio location** (banked verbatim so it can be actioned when convenient):
+   - the **S3 bucket** or **HTTP host** the DigiCow app resolves these bare filenames against (bucket/host names as patterns are enough, no signed URLs needed for enumeration),
+   - the **credential class** required to LIST that bucket/host (IAM role name, or IP-whitelist requirement for a VPC-internal host),
+   - if audio lives in a **different database entirely**, the connection record for that DB.
+4. Guard-rail compliance confirmed: aggregates-only default bypassed **only** for these 3 columns via the audio-location-scoped tool, hard cap 30 rows/column, PII columns explicitly banned inside the probe (`PII_COLUMNS_BANNED = {email, phone, password, occupation, national_id, id_number, ssn}` — none touched). No content downloaded (bare filenames left no host to hit). Every SQL statement in `phase0/audio_location_probe/20260906T093940Z/audit_trail.json` with (`at_utc`, `sql_shape`, `database`, `table`, `column`, `principal`, `hard_cap`).
+
+Commits: **master `08b1bba6`** banked the census diff, audio-probe receipts, and the probe tool. Local only, never pushed.
+
+---
+
+### W-WPW-v1-d · Tier 2 Technical Report drafter · CLOSED · 2026-09-06T~09:55Z · ratchet 2717 → 2732 (+15)
+
+**Authority:** WPW spec `canon/fixtures/whitepaper_wizard_spec_v1/spec.extracted.txt` §4 (Normative Requirements — Tier 2: WPW-8/-9/-10) + §8 (Build Acceptance Criteria A4/A6) + §7 verbatim: *"Tiers 1 and 2 are fully specified and buildable as written."* Owner directive banked verbatim before outage:
+> "1. STRICT tests-first — mechanical right-reason RED with banked drill receipt BEFORE implementation, then GREEN, then double-green exact-match close from floor 2717.
+> 2. Spec fidelity: section skeleton FIXED per spec §7 verbatim (quote in docstrings); every figure in a drafted report carries evidence class + receipt line resolving to a run artefact or it MUST NOT render (WPW-9 is the heart of the tier — make its refusal path a first-class test); internal-only marking on Tier 2 outputs (WPW-10); A4 traceability + A6 refused-run record in the acceptance set.
+> 3. Real-data proof: after the drafter lands, generate an actual Tier 2 report against a real banked run (the first estate-text LoRA run txttrain_20260831T193455Z is the richest — it has a data statement, baseline context, honest memorisation reading, cost receipts) and bank the drafted report as the wave's demonstration artefact. The burn runs are not training runs — use the LoRA run.
+> 4. W-Orchestrator-Resilience-r1: keep it chartered; fold a minimal heartbeat/watchdog fix in ONLY if it's cheap and tests-first, otherwise it waits its turn."
+
+**Discipline recovery — banked with evidence:**
+
+The v1-c concession (tests + module co-authored) did NOT recur. The test file `backend/tests/invariants/test_wpw_tier2_report.py` was authored FIRST — every one of the 15 tests carries a verbatim WPW-N docstring for the clause it enforces. Before the module was created, a mechanical RED run captured the right-reason failure signal: **all 15 tests failed with `ImportError: cannot import name 'tier2_report' from 'services.wpw'`** — the correct spec-anchored refusal for a contract against a non-existent module. Drill receipt banked at `phase0/drill_receipts/20260906T094500Z_wave_wpw_v1d_RED_pre_module.log`. Only after banking the RED receipt was `backend/services/wpw/tier2_report.py` authored. First GREEN pass: 15/15 in 0.71 s.
+
+**What landed (single-file thin kernel):**
+- `backend/services/wpw/tier2_report.py` — public surface: `draft_report(run_dir)`; module constants `SECTION_SKELETON` (frozen 9-tuple verbatim from WPW-8), `INTERNAL_ONLY_MARKER` (WPW-10 watermark string), `EVIDENCE_CLASSES` (WPW spec §5), `ACCEPTANCE_CRITERIA_ORDER` (the six criteria from WPW-8). Private section-builder helpers `_sec_*()` each return `(body_markdown, figures, refused_figures)` — pure functions over the on-disk artefact set.
+- `backend/tests/invariants/test_wpw_tier2_report.py` — 15 invariants across the WPW-8/-9/-10 + A4/A6 clauses (see per-test list below).
+
+**Spec clauses enforced by the 15 invariants** (verbatim citations in the test docstrings):
+- **WPW-8** (7 tests) — (a) `SECTION_SKELETON` is a frozen tuple equal to the 9 spec-mandated sections in order; (b) drafter emits all 9 sections on an accepted run; (c) problem/objective derives from `commissioning_reflection.txt`; (d) data statement is classification-driven (included/excluded/scrub from `extract_summary.json`); (e) baseline record cites the `BaselineLine` id + license; (f) method includes adopted `cif_ideation` events from the run notebook (mirrored by reference per WPW-6); (g) setup covers hardware + duration + cost actual-vs-estimate + seeds; (h) results carries all 6 acceptance criteria with numbers.
+- **WPW-9** (2 tests) — (a) every rendered figure carries `evidence_class ∈ EVIDENCE_CLASSES` and a `receipt_line` resolving to an existing artefact on disk; (b) **owner-flagged heart-of-tier refusal path**: when an artefact is missing, the corresponding figure MUST NOT render in `figures[]` and MUST appear in `refused_figures[]` with a plain-language reason. Test deletes `nvidia_smi_before.json`, asserts hardware-fingerprint figure disappears from `figures[]`, and asserts `refused_figures[]` names the missing artefact.
+- **WPW-10** (2 tests) — (a) report metadata carries `internal_only: True` + `tier: 2`; the `INTERNAL_ONLY_MARKER` string appears in the report body (visible watermark); (b) structural: no public function on the module surface has a name that suggests external release (`publish` / `release` / `export_public` / `outer_gate` / `egress` / `external` / `post_to_`). Publication is WPW-15 (separate governed egress crossing), never a Tier-2 capability.
+- **A4** — traceability: in a well-formed accepted run all figures resolve, `refused_figures[]` is empty.
+- **A6** — refused-run report is drafted with the refusal reason string + all six acceptance criteria numbers + explicit `settlement: refused` marker.
+- **Structural zero-influence** — same discipline as Tier 1: no mutation-shaped names on the public API surface (`update_*` / `set_*` / `patch_*` / etc.).
+
+**Right-reason RED discovered mid-close (independent, not from my code):** on the first full BASELINE_GUARD suite run, `test_harness_ground_truth_receipt_is_recent` fired because 6 days had elapsed since the last harness snapshot (24 h freshness invariant, defined in `test_v8_substitution_rules_bind_to_rendered_dom.py` as `_MAX_RECEIPT_AGE_HOURS = 24`). This is the invariant working as designed: harness snapshots must be recent for the ratchet close to trust them. Re-ran `tools/wave_g5_realchrome_verification_harness.py --label wave_wpw_v1d_close --strict`; harness green (20 rules / 20 marked_slots / 0 orphans across Registry+Compute merged views, distinctive dummies absent, live phrasings present, style signature intact). Fresh ground-truth banked at `phase0/harness_ground_truth/latest.json`. Second full-suite run cleared the invariant.
+
+**Real-data demonstration (owner directive #3):** `phase0/wpw_tier2_demo/txttrain_20260831T193455Z_9594859a/TIER2_REPORT.md` is a Tier 2 report drafted against the actual banked LoRA run `txttrain_20260831T193455Z_9594859a` (real `state.json` fields, real `extract_summary.json`, real `train_summary` extracted from state, real `nvidia_smi_before`/`after` snapshots). The drafter correctly rendered **9 sections + 5 figures** (`corpus_shape`, `baseline_line`, `hardware_fingerprint`, `wall_clock_and_flops`, `acceptance_criteria`), all with `evidence_class: measured` and `receipt_line` values resolving to on-disk artefacts. **0 refused figures on well-formed input.**
+
+**Settlement of the demo report: `refused`** — honest-empty verdict banked into acceptance_criteria: 4 of 6 criteria are `honest_empty_reason`'d (no held-out slice reserved, no abstention head trained, no served inference seat, no OOD eval slice). Only `cost_actual_vs_estimate` ($0 actual / $0 estimate on owner's EC2) and `adapter_size_mib` (~8.4 MiB LoRA) settled cleanly. Per §5 evidence grammar, the run MUST NOT claim acceptance without measurements — the drafter refused to fabricate what wasn't measured, and rendered the refusal reason in the Negative Results section. **The adapter is real; its held-out virtue is not measured** — which is the product-credibility discipline in action.
+
+**Double-green terminal receipts:**
+- Run 1: `phase0/drill_receipts/20260906T095000Z_wave_wpw_v1d_close_run1.log` · `2732 passed, 1 skipped, 438 warnings in 102.61s` · BASELINE_GUARD receipt `passed=2732 / baseline-failures-remaining=0 / quarantined=0 · status: OK`.
+- Run 2: `phase0/drill_receipts/20260906T095000Z_wave_wpw_v1d_close_run2.log` · `2732 passed, 1 skipped, 438 warnings in 102.29s` · same receipt shape byte-identical modulo timings.
+- Stripped diff: 0 substantive lines. Ratchet floor updated 2717 → **2732** (+15, matching the 15 new tests).
+
+**W-Orchestrator-Resilience-r1 decision (owner directive #4):** kept chartered but NOT folded in — this close was already dense (Tier 2 module + 15 invariants + real-data demo + census #2 + audio hunt + STATE mirror). Watchdog fix is not "cheap" alongside all that. Bank as unblocked charter to pick up when the WPW sequence hands control back for prioritisation.
+
+**Commits (local only, never pushed):**
+- Extraction-Akki `programme/track-a` → **`f42d0d5`** — new module + tests + ratchet bump.
+- Master workspace `master` → this DECISIONS entry + `phase0/wpw_tier2_demo/` demonstration report + STATE mirror.
+
+**Next active track:** **W-WPW-v1-e** (Tier 3 — white paper) **stays design-only** until owner rulings **R1** (numeric exceptional threshold), **R2** (release signatory), and **R3** (three-tier structure + WPW-11 novelty-claim ratification) land. Unblocked follow-on tracks per SPRINT_PLAN.md: **W-TxtTrain-v2**, **W-Orchestrator-Resilience-r1**, **W-Audio-P2** (still blocked awaiting audio location per today's audio-hunt verdict — see above), **W-Shield-Train** (still blocked awaiting masking-tier admission ruling).
+
+

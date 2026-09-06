@@ -1,0 +1,122 @@
+{
+  "total_media_shaped_columns": 13,
+  "columns": [
+    {
+      "db": "digicow_live",
+      "table": "ussd_users",
+      "column": "adoption_image",
+      "type": "varchar",
+      "row_count": 2286019,
+      "match_class": "IMAGE",
+      "match_pat": "image"
+    },
+    {
+      "db": "digicow_live",
+      "table": "user_group_trainings",
+      "column": "farmers_in_photo",
+      "type": "int",
+      "row_count": 163793,
+      "match_class": "IMAGE",
+      "match_pat": "photo"
+    },
+    {
+      "db": "digicow_live",
+      "table": "user_group_trainings",
+      "column": "rc_image_upload_datetime",
+      "type": "datetime",
+      "row_count": 163793,
+      "match_class": "IMAGE",
+      "match_pat": "image"
+    },
+    {
+      "db": "digicow_live",
+      "table": "post_gallery",
+      "column": "photo",
+      "type": "varchar",
+      "row_count": 1018,
+      "match_class": "IMAGE",
+      "match_pat": "photo"
+    },
+    {
+      "db": "ndume",
+      "table": "vet_training_gallery",
+      "column": "photo",
+      "type": "longtext",
+      "row_count": 57,
+      "match_class": "IMAGE",
+      "match_pat": "photo"
+    },
+    {
+      "db": "digicow_live",
+      "table": "adoption",
+      "column": "image_one",
+      "type": "varchar",
+      "row_count": 52,
+      "match_class": "IMAGE",
+      "match_pat": "image"
+    },
+    {
+      "db": "digicow_live",
+      "table": "adoption",
+      "column": "image_two",
+      "type": "varchar",
+      "row_count": 52,
+      "match_class": "IMAGE",
+      "match_pat": "image"
+    },
+    {
+      "db": "digicow_live",
+      "table": "farmer_adoption",
+      "column": "adoption_image",
+      "type": "varchar",
+      "row_count": 42,
+      "match_class": "IMAGE",
+      "match_pat": "image"
+    },
+    {
+      "db": "digicow_live",
+      "table": "banner",
+      "column": "image",
+      "type": "varchar",
+      "row_count": 28,
+      "match_class": "IMAGE",
+      "match_pat": "image"
+    },
+    {
+      "db": "digicow_live",
+      "table": "expert",
+      "column": "photo",
+      "type": "varchar",
+      "row_count": 18,
+      "match_class": "IMAGE",
+      "match_pat": "photo"
+    },
+    {
+      "db": "digicow_live",
+      "table": "user_group_trainings",
+      "column": "file_url",
+      "type": "varchar",
+      "row_count": 163793,
+      "match_class": "MEDIA-shaped",
+      "match_pat": "file"
+    },
+    {
+      "db": "digicow_live",
+      "table": "user_group_trainings",
+      "column": "pend_action_file",
+      "type": "varchar",
+      "row_count": 163793,
+      "match_class": "MEDIA-shaped",
+      "match_pat": "file"
+    },
+    {
+      "db": "digicow_live",
+      "table": "company",
+      "column": "image_url",
+      "type": "varchar",
+      "row_count": 362,
+      "match_class": "MEDIA-shaped",
+      "match_pat": "url"
+    }
+  ]
+}

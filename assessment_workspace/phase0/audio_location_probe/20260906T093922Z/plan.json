@@ -1,0 +1,58 @@
+{
+  "authority": "owner-authorized bounded probe \u00b7 audio-location scope only",
+  "bypass_class": "owner_authorized_audio_location_probe",
+  "census_source": "census_0002",
+  "at_utc": "2026-09-06T09:39:22.303789Z",
+  "columns_targeted": [
+    {
+      "database": "digicow_live",
+      "table": "company",
+      "column": "image_url",
+      "type": "varchar",
+      "row_count_at_census": 362,
+      "matched_pattern": "url"
+    },
+    {
+      "database": "digicow_live",
+      "table": "user_group_trainings",
+      "column": "file_url",
+      "type": "varchar",
+      "row_count_at_census": 163753,
+      "matched_pattern": "file"
+    },
+    {
+      "database": "digicow_live",
+      "table": "user_group_trainings",
+      "column": "pend_action_file",
+      "type": "varchar",
+      "row_count_at_census": 163753,
+      "matched_pattern": "file"
+    }
+  ],
+  "hard_cap_rows_per_column": 30,
+  "guard_rails": {
+    "allowed_column_patterns": [
+      "attachment",
+      "audio",
+      "clip",
+      "file",
+      "media",
+      "path",
+      "recording",
+      "sound",
+      "url",
+      "voice"
+    ],
+    "pii_columns_banned": [
+      "email",
+      "id_number",
+      "national_id",
+      "occupation",
+      "password",
+      "phone",
+      "ssn"
+    ],
+    "receipts_shape_only": true,
+    "content_downloads": false
+  }
+}
