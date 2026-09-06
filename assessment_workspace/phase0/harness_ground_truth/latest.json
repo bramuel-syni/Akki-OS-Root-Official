@@ -1,13 +1,13 @@
 {
-  "at_utc": "2026-09-06T10:09:04Z",
-  "label": "wave_orch_resilience_close",
-  "portal_screenshot": "/app/assessment_workspace/phase0/eyeball_proxies/20260906T100837Z_wave_g5_realchrome_wave_orch_resilience_close_portal.png",
-  "registry_screenshot": "/app/assessment_workspace/phase0/eyeball_proxies/20260906T100837Z_wave_g5_realchrome_wave_orch_resilience_close_registry.png",
-  "compute_screenshot": "/app/assessment_workspace/phase0/eyeball_proxies/20260906T100837Z_wave_g5_realchrome_wave_orch_resilience_close_compute.png",
+  "at_utc": "2026-09-06T12:16:16Z",
+  "label": "wave_compute_residuals_close",
+  "portal_screenshot": "/app/assessment_workspace/phase0/eyeball_proxies/20260906T121548Z_wave_g5_realchrome_wave_compute_residuals_close_portal.png",
+  "registry_screenshot": "/app/assessment_workspace/phase0/eyeball_proxies/20260906T121548Z_wave_g5_realchrome_wave_compute_residuals_close_registry.png",
+  "compute_screenshot": "/app/assessment_workspace/phase0/eyeball_proxies/20260906T121548Z_wave_g5_realchrome_wave_compute_residuals_close_compute.png",
   "ground_truth": {
-    "dummies_declared": 20,
-    "marked_slots_count": 20,
-    "body_len": 608168,
+    "dummies_declared": 37,
+    "marked_slots_count": 29,
+    "body_len": 608177,
     "per_rule": [
       {
         "name": "registry-aside-hero-sentence",
@@ -188,11 +188,164 @@
         "matched_by_marker": true,
         "dummy_still_in_body": true,
         "bound_to_rendered_dom": true
+      },
+      {
+        "name": "compute-residuals-r1-chart-caption-door",
+        "kind": "styled-element-anchor",
+        "dummyContent": "1,240 hrs committed",
+        "anchorAncestorText": "Committed hours by door",
+        "matched_by_marker": true,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "compute-residuals-r1-chart-caption-week",
+        "kind": "styled-element-anchor",
+        "dummyContent": "of 2,880 hrs available",
+        "anchorAncestorText": "Hours run by week",
+        "matched_by_marker": false,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "compute-residuals-r1-chart-caption-state",
+        "kind": "styled-element-anchor",
+        "dummyContent": "2,880 hrs this month",
+        "anchorAncestorText": "Hours by state",
+        "matched_by_marker": false,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "compute-residuals-r1-bar-door-train",
+        "kind": "styled-element-anchor",
+        "dummyContent": "645 hrs \u00b7 52%",
+        "anchorAncestorText": "Train",
+        "matched_by_marker": true,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "compute-residuals-r1-bar-door-extract",
+        "kind": "styled-element-anchor",
+        "dummyContent": "298 hrs \u00b7 24%",
+        "anchorAncestorText": "Extract",
+        "matched_by_marker": true,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "compute-residuals-r1-bar-door-export",
+        "kind": "styled-element-anchor",
+        "dummyContent": "174 hrs \u00b7 14%",
+        "anchorAncestorText": "Export",
+        "matched_by_marker": true,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "compute-residuals-r1-bar-door-measure",
+        "kind": "styled-element-anchor",
+        "dummyContent": "99 hrs \u00b7 8%",
+        "anchorAncestorText": "Measure",
+        "matched_by_marker": true,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "compute-residuals-r1-bar-door-prove",
+        "kind": "styled-element-anchor",
+        "dummyContent": "24 hrs \u00b7 2%",
+        "anchorAncestorText": "Prove",
+        "matched_by_marker": true,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "compute-residuals-r1-bar-week-1",
+        "kind": "styled-element-anchor",
+        "dummyContent": "274 hrs \u00b7 38%",
+        "anchorAncestorText": "Aug 1\u20137",
+        "matched_by_marker": false,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "compute-residuals-r1-bar-week-2",
+        "kind": "styled-element-anchor",
+        "dummyContent": "339 hrs \u00b7 47%",
+        "anchorAncestorText": "Aug 8\u201314",
+        "matched_by_marker": false,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "compute-residuals-r1-bar-week-3",
+        "kind": "styled-element-anchor",
+        "dummyContent": "65 hrs \u00b7 9%",
+        "anchorAncestorText": "Aug 15\u201321",
+        "matched_by_marker": false,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "compute-residuals-r1-bar-week-4",
+        "kind": "styled-element-anchor",
+        "dummyContent": "43 hrs \u00b7 6%",
+        "anchorAncestorText": "Not yet run",
+        "matched_by_marker": false,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "compute-residuals-r1-bar-state-committed",
+        "kind": "styled-element-anchor",
+        "dummyContent": "1,240 hrs \u00b7 43%",
+        "anchorAncestorText": "Committed",
+        "matched_by_marker": false,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "compute-residuals-r1-bar-state-free",
+        "kind": "styled-element-anchor",
+        "dummyContent": "1,640 hrs \u00b7 57%",
+        "anchorAncestorText": "Free to allocate",
+        "matched_by_marker": false,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "compute-residuals-r2-note-capacity",
+        "kind": "styled-element-anchor",
+        "dummyContent": "wall-clock across 4 GPUs",
+        "anchorAncestorText": "Capacity this month",
+        "matched_by_marker": true,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "compute-residuals-r2-note-committed",
+        "kind": "styled-element-anchor",
+        "dummyContent": "43% of the month",
+        "anchorAncestorText": "Committed to work",
+        "matched_by_marker": true,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "compute-residuals-r2-note-free",
+        "kind": "styled-element-anchor",
+        "dummyContent": "quoted against, not reserved",
+        "anchorAncestorText": "Free to allocate",
+        "matched_by_marker": true,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
       }
     ]
   },
   "ground_truth_registry": {
-    "dummies_declared": 20,
+    "dummies_declared": 37,
     "marked_slots_count": 9,
     "body_len": 601096,
     "per_rule": [
@@ -375,13 +528,166 @@
         "matched_by_marker": false,
         "dummy_still_in_body": true,
         "bound_to_rendered_dom": true
+      },
+      {
+        "name": "compute-residuals-r1-chart-caption-door",
+        "kind": "styled-element-anchor",
+        "dummyContent": "1,240 hrs committed",
+        "anchorAncestorText": "Committed hours by door",
+        "matched_by_marker": false,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "compute-residuals-r1-chart-caption-week",
+        "kind": "styled-element-anchor",
+        "dummyContent": "of 2,880 hrs available",
+        "anchorAncestorText": "Hours run by week",
+        "matched_by_marker": false,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "compute-residuals-r1-chart-caption-state",
+        "kind": "styled-element-anchor",
+        "dummyContent": "2,880 hrs this month",
+        "anchorAncestorText": "Hours by state",
+        "matched_by_marker": false,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "compute-residuals-r1-bar-door-train",
+        "kind": "styled-element-anchor",
+        "dummyContent": "645 hrs \u00b7 52%",
+        "anchorAncestorText": "Train",
+        "matched_by_marker": false,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "compute-residuals-r1-bar-door-extract",
+        "kind": "styled-element-anchor",
+        "dummyContent": "298 hrs \u00b7 24%",
+        "anchorAncestorText": "Extract",
+        "matched_by_marker": false,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "compute-residuals-r1-bar-door-export",
+        "kind": "styled-element-anchor",
+        "dummyContent": "174 hrs \u00b7 14%",
+        "anchorAncestorText": "Export",
+        "matched_by_marker": false,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "compute-residuals-r1-bar-door-measure",
+        "kind": "styled-element-anchor",
+        "dummyContent": "99 hrs \u00b7 8%",
+        "anchorAncestorText": "Measure",
+        "matched_by_marker": false,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "compute-residuals-r1-bar-door-prove",
+        "kind": "styled-element-anchor",
+        "dummyContent": "24 hrs \u00b7 2%",
+        "anchorAncestorText": "Prove",
+        "matched_by_marker": false,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "compute-residuals-r1-bar-week-1",
+        "kind": "styled-element-anchor",
+        "dummyContent": "274 hrs \u00b7 38%",
+        "anchorAncestorText": "Aug 1\u20137",
+        "matched_by_marker": false,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "compute-residuals-r1-bar-week-2",
+        "kind": "styled-element-anchor",
+        "dummyContent": "339 hrs \u00b7 47%",
+        "anchorAncestorText": "Aug 8\u201314",
+        "matched_by_marker": false,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "compute-residuals-r1-bar-week-3",
+        "kind": "styled-element-anchor",
+        "dummyContent": "65 hrs \u00b7 9%",
+        "anchorAncestorText": "Aug 15\u201321",
+        "matched_by_marker": false,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "compute-residuals-r1-bar-week-4",
+        "kind": "styled-element-anchor",
+        "dummyContent": "43 hrs \u00b7 6%",
+        "anchorAncestorText": "Not yet run",
+        "matched_by_marker": false,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "compute-residuals-r1-bar-state-committed",
+        "kind": "styled-element-anchor",
+        "dummyContent": "1,240 hrs \u00b7 43%",
+        "anchorAncestorText": "Committed",
+        "matched_by_marker": false,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "compute-residuals-r1-bar-state-free",
+        "kind": "styled-element-anchor",
+        "dummyContent": "1,640 hrs \u00b7 57%",
+        "anchorAncestorText": "Free to allocate",
+        "matched_by_marker": false,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "compute-residuals-r2-note-capacity",
+        "kind": "styled-element-anchor",
+        "dummyContent": "wall-clock across 4 GPUs",
+        "anchorAncestorText": "Capacity this month",
+        "matched_by_marker": false,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "compute-residuals-r2-note-committed",
+        "kind": "styled-element-anchor",
+        "dummyContent": "43% of the month",
+        "anchorAncestorText": "Committed to work",
+        "matched_by_marker": false,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "compute-residuals-r2-note-free",
+        "kind": "styled-element-anchor",
+        "dummyContent": "quoted against, not reserved",
+        "anchorAncestorText": "Free to allocate",
+        "matched_by_marker": false,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
       }
     ]
   },
   "ground_truth_compute": {
-    "dummies_declared": 20,
-    "marked_slots_count": 11,
-    "body_len": 608168,
+    "dummies_declared": 37,
+    "marked_slots_count": 20,
+    "body_len": 608177,
     "per_rule": [
       {
         "name": "registry-aside-hero-sentence",
@@ -562,10 +868,163 @@
         "matched_by_marker": true,
         "dummy_still_in_body": true,
         "bound_to_rendered_dom": true
+      },
+      {
+        "name": "compute-residuals-r1-chart-caption-door",
+        "kind": "styled-element-anchor",
+        "dummyContent": "1,240 hrs committed",
+        "anchorAncestorText": "Committed hours by door",
+        "matched_by_marker": true,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "compute-residuals-r1-chart-caption-week",
+        "kind": "styled-element-anchor",
+        "dummyContent": "of 2,880 hrs available",
+        "anchorAncestorText": "Hours run by week",
+        "matched_by_marker": false,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "compute-residuals-r1-chart-caption-state",
+        "kind": "styled-element-anchor",
+        "dummyContent": "2,880 hrs this month",
+        "anchorAncestorText": "Hours by state",
+        "matched_by_marker": false,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "compute-residuals-r1-bar-door-train",
+        "kind": "styled-element-anchor",
+        "dummyContent": "645 hrs \u00b7 52%",
+        "anchorAncestorText": "Train",
+        "matched_by_marker": true,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "compute-residuals-r1-bar-door-extract",
+        "kind": "styled-element-anchor",
+        "dummyContent": "298 hrs \u00b7 24%",
+        "anchorAncestorText": "Extract",
+        "matched_by_marker": true,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "compute-residuals-r1-bar-door-export",
+        "kind": "styled-element-anchor",
+        "dummyContent": "174 hrs \u00b7 14%",
+        "anchorAncestorText": "Export",
+        "matched_by_marker": true,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "compute-residuals-r1-bar-door-measure",
+        "kind": "styled-element-anchor",
+        "dummyContent": "99 hrs \u00b7 8%",
+        "anchorAncestorText": "Measure",
+        "matched_by_marker": true,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "compute-residuals-r1-bar-door-prove",
+        "kind": "styled-element-anchor",
+        "dummyContent": "24 hrs \u00b7 2%",
+        "anchorAncestorText": "Prove",
+        "matched_by_marker": true,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "compute-residuals-r1-bar-week-1",
+        "kind": "styled-element-anchor",
+        "dummyContent": "274 hrs \u00b7 38%",
+        "anchorAncestorText": "Aug 1\u20137",
+        "matched_by_marker": false,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "compute-residuals-r1-bar-week-2",
+        "kind": "styled-element-anchor",
+        "dummyContent": "339 hrs \u00b7 47%",
+        "anchorAncestorText": "Aug 8\u201314",
+        "matched_by_marker": false,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "compute-residuals-r1-bar-week-3",
+        "kind": "styled-element-anchor",
+        "dummyContent": "65 hrs \u00b7 9%",
+        "anchorAncestorText": "Aug 15\u201321",
+        "matched_by_marker": false,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "compute-residuals-r1-bar-week-4",
+        "kind": "styled-element-anchor",
+        "dummyContent": "43 hrs \u00b7 6%",
+        "anchorAncestorText": "Not yet run",
+        "matched_by_marker": false,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "compute-residuals-r1-bar-state-committed",
+        "kind": "styled-element-anchor",
+        "dummyContent": "1,240 hrs \u00b7 43%",
+        "anchorAncestorText": "Committed",
+        "matched_by_marker": false,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "compute-residuals-r1-bar-state-free",
+        "kind": "styled-element-anchor",
+        "dummyContent": "1,640 hrs \u00b7 57%",
+        "anchorAncestorText": "Free to allocate",
+        "matched_by_marker": false,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "compute-residuals-r2-note-capacity",
+        "kind": "styled-element-anchor",
+        "dummyContent": "wall-clock across 4 GPUs",
+        "anchorAncestorText": "Capacity this month",
+        "matched_by_marker": true,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "compute-residuals-r2-note-committed",
+        "kind": "styled-element-anchor",
+        "dummyContent": "43% of the month",
+        "anchorAncestorText": "Committed to work",
+        "matched_by_marker": true,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
+      },
+      {
+        "name": "compute-residuals-r2-note-free",
+        "kind": "styled-element-anchor",
+        "dummyContent": "quoted against, not reserved",
+        "anchorAncestorText": "Free to allocate",
+        "matched_by_marker": true,
+        "dummy_still_in_body": true,
+        "bound_to_rendered_dom": true
       }
     ]
   },
   "orphan_count": 0,
   "orphan_names": [],
-  "commit_sha_extraction_akki": "f42d0d5ce22999a6be4f47359b4d397b53949cf5"
+  "commit_sha_extraction_akki": "d5aadef7bc854933cedd6c222fef953f7a4f8716"
 }

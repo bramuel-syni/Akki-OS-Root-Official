@@ -5852,3 +5852,271 @@ Dual-host `RUN_ID = burn_20260906T110345Z_b1c2c20f`. 12 min wall-clock. Register
 - Master workspace `master` → this DECISIONS entry + updated `tools/gpu_burn_orchestrator.py` + new `tools/gpu_burn_watchdog.py` + drill directory (7 files including DRILL_REPORT.md) + drill run's gpu_burn dir (poll receipts, adoption ledger, activity_summary.*) + drill heartbeat file + `STATE/NEXT.md` prepend + r2 pytest receipts + `STATE/PINS.md` auto-emitted commissioning-record bump (committed with attribution per r1-wire close standing rule).
 
 **Next active track:** **W-TxtTrain-v2** — the improved LoRA text training with deeper corpus, sms_log secondary, uniqueness dedup, still awaiting owner's explicit *"go/no-go"* per the WPW-v1-d ruling. Now benefits from PROVEN pod-side resilience (both r1 wire + r2 auto-adopt rehearsed in a controlled drill). **W-Orchestrator-Resilience-r3** (candidates from §Wave-honest-limits above: retire_heartbeat + sealing-name-normalization + cross-generation dedupe + PID-aware select_adoptable_orphans + auto-execute watchdog + multi-scenario drill matrix) stays chartered but low-priority — r2 delivers the acceptance-required behaviour. **W-Audio-P2 remains blocked** on the audio-location grant (owner outbound message sent). **W-Shield-Train remains blocked** on masking-tier admission. **W-WPW-v1-e (Tier 3)** stays design-only until R1/R2/R3 land.
+
+
+---
+
+### W-Shield-Train-BUILD · Governed masking pipeline built + fixture-proven · CLOSED · 2026-09-06T~11:42Z · ratchet 2786 → 2836 (+50) · ADMISSION REMAINS PARKED
+
+**Authority:** owner ruling 2026-09-06T~11:20Z, verbatim:
+
+> "Next active track while all owner gates pend: W-Shield-Train BUILD PHASE. Rationale: the sprint plan the owner reviewed sequences it next, and most of its scope is buildable WITHOUT the masking-tier admission ruling — only live firing on estate data is gated. Build now, tests-first throughout: (1) Governed masking policy authoring surface (Doc 02 §A5.2) ... (2) Per-column PII classification expansion ... (3) Row-bearing SQL executor through the chokepoint ... (4) Masked-file transport + cleanup receipts + execute_lora_train_real unstub ... (5) The ADMISSION ITSELF stays parked ... Definition of done: pipeline fully built and fixture-proven, RED receipts banked, double-green from floor 2786, admission request drafted."
+
+**Discipline — STRICT tests-first HELD unbroken across FIVE consecutive closes** (WPW-v1-d + r1 + r1-wire + r2 + shield-train-build). Single mechanical RED drill receipt this wave: `phase0/drill_receipts/20260906T113342Z_wave_shield_train_build_RED_pre_impl.log` — 50/51 tests fail with mixed `ImportError` (services.shield_train not authored) + `AssertionError` (fields not present in seed JSON) + `FileNotFoundError` (masking_policy.v0.json missing) before implementation lands. Right-reason mechanical refusal.
+
+**What landed (2,414 insertions across 13 files):**
+
+- **`services/shield_train/authoring.py`** (91 lines) — masking-policy authoring surface (Doc 02 §A5.2):
+  - `add_entry(prev_policy, new_entry) -> new_policy` · pure, returns a deep-copied policy with the entry appended to `ledger` and `schema_version` incremented.
+  - `add_drawer_entry(prev_policy, drawer_entry) -> new_policy` · same shape but for the Ruling #5 clarification drawer.
+  - `resolve_drawer_entry(prev_policy, question_id, resolution) -> new_policy` · closes an open drawer entry with an owner-ruling resolution dict.
+  - Every mutation is pure; the on-disk `masking_policy.v0.json` is the seed, later versions land as sibling files or by rewriting v0 with incremented `schema_version` — caller choice.
+
+- **`services/shield_train/masking_policy.v0.json`** (375 lines) — seeded with:
+  - **25 ledger entries** covering both training candidate tables end-to-end:
+    - **`ussd_question_response` (13/13 cols):** `id` + 6 other `id`-family joins → `quasi-identifier`/`exclude` with closed declassification-path; `ussd_user_id` + `mobile_number` → `pii`/`exclude`; `option_string` + `question_string` → `non-pii-text`/`mask_regex_scrub`; `value_chain` → `non-pii-structural`/`include`; `number_of_animals` + `forage_area` + `created_at` → `quasi-identifier`/`exclude`.
+    - **`sms_log` (12/13 cols in ledger + 1 in drawer):** `id` → quasi-id exclude; `county_name`/`subcounty`/`ward` → geo quasi-ids exclude (Doc 02 §A5.2 linkage-risk clause); `farmer_name` + `phone_number` → `pii`/`exclude`; `sms_title` → `mask_regex_scrub`; `created_at`/`sms_id`/`clints_id`/`created_on_dt`/`breeding_id` → quasi-id exclude.
+  - **1 clarification_drawer entry (Ruling #5)** for `sms_log.sms_sent` (longtext body): `question_id: shield-2026-09-06-q001`, `cautious_default_applied: exclude`, `state: open`, `resolution: null`. Note frames the ruling choice: (a) INCLUDE with mask_regex_scrub accepting residual leak risk, or (b) EXCLUDE as untrusted PII surface. Owner ruling requested before this column can ever cross the seam.
+
+- **`services/shield_train/row_executor.py`** (305 lines) — governed row-bearing SQL executor:
+  - `execute_row_bearing_query(sql, params, database, table_context, principal, purpose, backend_execute) -> RowBearingResult`.
+  - Refusal order (cheap refusals first): (1) `UnclassifiedRefusal` if table has zero ledger entries; (2) `UnclassifiedRefusal` if any SELECT'd column is not in the ledger; (3) `PolicyRefusal` if any SELECT'd column has `action='exclude'`; (4) `SqlShapeRefusal` if SQL isn't a single-table SELECT with bare column names (also refuses `SELECT *` — cautious-default cannot classification-check an unbounded column list).
+  - `mask_regex_scrub` lifted verbatim from bypass-era `tools/text_train_pipeline/mask.py` (phone patterns + long-ID pattern → `[PHONE]`/`[ID]`).
+  - Backend is INJECTED — this executor is 100% testable against fixture backends without a live estate connection.
+  - Emits shape-only JSON receipts under `$SHIELD_TRAIN_RECEIPTS_DIR`. Receipt fields: `at_utc, database, table_context, principal, purpose, row_count, columns_included, columns_excluded, masking_steps_applied`. NEVER carries row content.
+  - Zero-influence extension: receipts fire even when the backend RAISES (with `error_class` + `error_message` fields), so backend outages are auditable.
+
+- **`services/shield_train/pipeline.py`** (247 lines) — masked-file transport + cleanup + governed LoRA run:
+  - `build_masked_corpus_file(rows, out_path, sha256=True)` → JSONL + deterministic sha256. Belt-and-braces PII leak-check refuses any post-mask row whose value matches phone/ID regex — defence-in-depth vs the row-executor's primary scrub. Deterministic hash across identical inputs.
+  - `stage_corpus_to_host(corpus_meta, host_slug, remote_dir, ssh_seam)` → transport receipt with local/remote sha256 comparison. Raises `TransportIntegrityRefusal` on mismatch (fatal, not recovered).
+  - `cleanup_remote_corpus(host_slug, remote_dir, ssh_seam)` → cleanup receipt with pre-rm `du -sb` estimate + `rm -rf` exit code.
+  - `execute_governed_lora_run(tier, recipe_version, base_model_id, material_admit_ref, host_slug, table_context, slice_size, backend_execute, ssh_seam)` → the end-to-end governed run. Gates on `services.chokepoint.masking_tier.validate_tier(tier, akki_env=AKKI_ENV)`; raises `MaskingTierNotAdmitted` when the tier is not admissible. When admission IS granted, raises `NotImplementedError` as honest place-holder — the full training loop is chartered as `W-Shield-Train-run` (next wave).
+
+- **`services/training_runner/ssh_seam.py` UNSTUB** — the pre-r2 unconditional `RealSSHNotWiredYet` raise in `execute_lora_train_real` is REMOVED. Delegates to `shield_train.pipeline.execute_governed_lora_run` with env-driven tier (`AKKI_LORA_MASKING_TIER`, default `t1_full_mask`) and table (`AKKI_LORA_TABLE_CONTEXT`, default `ussd_question_response`). **The STUB is gone; the ADMISSION GATE is what remains as the honest block.**
+
+- **`services/chokepoint/masking_tier_allowlist.v0.json`** extended on the three row-bearing tiers (`t1_full_mask`, `t2_partial`, `t3_category`):
+  - New field `admission_request_drafted_by_wave: "W-Shield-Train-build"` — names the wave that drafted the request.
+  - New field `prerequisites_status: [{prerequisite, satisfied_by_this_build, evidence, still_needed}, ...]` — one entry per prerequisite in the ORIGINAL `not_admissible_because` clause.
+  - `admissible_under_env: []` **stays empty**. Owner rules by editing this field — one-line action.
+  - **t1_full_mask prerequisites_status:** (i) LLM chokepoint landed → `satisfied_by_this_build: false, still_needed: "the row-bearing LLM chokepoint that composes prompts with de-identified row content and re-identifies on response. Out of W-Shield-Train scope."` · (ii) tenant entity catalogue populated → `satisfied_by_this_build: false, still_needed: "authored + ratified. Chartered as W-Tenant-Entity-Catalogue (future wave)."` · (iii) governed masking policy authored (Doc 02 §A5.2) → **`satisfied_by_this_build: true, evidence: "services/shield_train/masking_policy.v0.json (26 ledger entries + 1 drawer) authored via services/shield_train/authoring.py — invariants frozen in tests/invariants/test_shield_train_masking_policy.py + test_shield_train_pii_registry_expansion.py"`.**
+
+**Test set (50 new invariants across 5 files):**
+
+- `test_shield_train_masking_policy.py` (14): policy document structure (6), ledger entry shape (5), versioning + authoring surface (3).
+- `test_shield_train_pii_registry_expansion.py` (12): coverage (3), direct-PII (2), quasi-identifier (2), free-text scrub (2), clarification-drawer (2), response_sanitizer agreement (1).
+- `test_shield_train_row_executor.py` (10): module surface (2), classification-check refusals (3), include+scrub applied (3), shape-only receipts (2).
+- `test_shield_train_pipeline.py` (9): corpus file builder (3), transport+cleanup (3), execute_lora_train_real unstub gate (3).
+- `test_shield_train_admission_request.py` (5): admission parked + admission_request field + prerequisites_status + t1 prereqs addressed + policy-prerequisite satisfied-by-this-build.
+
+**Design decisions banked (each has a frozen invariant):**
+
+1. **`sms_sent` parked in `clarification_drawer` per Ruling #5** — the longtext SMS body can carry embedded PII in its content; owner ruling requested. Cautious-default applied: `exclude`.
+2. **`SELECT *` refused by construction** — cannot classification-check an unbounded column list. Enumerate columns explicitly.
+3. **sha256 mismatch on transport = fatal `TransportIntegrityRefusal`** — never recovered.
+4. **`execute_lora_train_real` unstub raises `NotImplementedError` when tier IS admitted** — honest place-holder; the full training loop lands only in `W-Shield-Train-run`.
+5. **Regex scrub lifted verbatim from bypass-era `tools/text_train_pipeline/mask.py`** — the phone + long-ID patterns are the same discipline that ran successfully in `txttrain_20260831T193455Z_9594859a`.
+6. **`response_sanitizer` agreement invariant** — `phone_number` + `mobile_number` classifications MUST match `DIGICOW_PII_BANNED_FIELDS` discipline (cross-check between shield_train ledger and the response-boundary sanitizer).
+
+**Wave-honest-limits (banked as candidates for next waves):**
+
+1. **`SELECT *` unsupported + joins unsupported** — this wave supports single-table SELECT with bare column names only. Joins (multi-table classification composition) are the next row-executor wave.
+2. **Tenant entity catalogue prerequisite (ii) still needed for t1 admission** — not this wave's scope; chartered as `W-Tenant-Entity-Catalogue`.
+3. **End-to-end training loop lands only when `W-Shield-Train-run` fires** — this wave builds the primitives, the pipeline, and the admission gate; the actual on-host LoRA fine-tune call is the next wave.
+4. **LLM chokepoint prerequisite (i) still needed** — the row-bearing LLM crossing (compose-with-masked-rows + re-identify-on-response) is chartered as `W-Chokepoint-LLM-row-bearing`.
+
+---
+
+## ADMISSION REQUEST (frozen in `masking_tier_allowlist.v0.json.entries[t1_full_mask].prerequisites_status`)
+
+**Which tier:** `t1_full_mask` (full de-identify + re-identify per Doc 01 §A5.2). This tier is the minimum admission needed for the shield-train row-bearing pipeline to fire against real estate data. `t2_partial` and `t3_category` remain parked pending the same LLM chokepoint prerequisite.
+
+**Which env:** owner names the env(s) — candidates are `development`, `staging`, `production`. This wave doesn't presume; the owner writes the list.
+
+**What is genuinely satisfied by this build (evidence-cited):**
+
+- **(iii) governed masking policy authored (Doc 02 §A5.2)** — **YES, satisfied by this wave.** Evidence: `backend/services/shield_train/masking_policy.v0.json` seeded with 25 ledger entries covering both training candidate tables (`ussd_question_response` + `sms_log`) end-to-end plus 1 clarification-drawer entry (Ruling #5) for the one genuinely-ambiguous column (`sms_log.sms_sent`). Authored via `backend/services/shield_train/authoring.py`. Frozen by 26 invariants in `test_shield_train_masking_policy.py` + `test_shield_train_pii_registry_expansion.py`. The row-executor (`backend/services/shield_train/row_executor.py`) enforces the policy at every row-bearing query by construction.
+
+**What still gates admission (unchanged, honest):**
+
+- **(i) LLM chokepoint landed** — **NO, still needed.** The non-row-bearing LLM chokepoint is landed for W3 crossings (`llm_prompt_governed_text`, `llm_reasoning_context`) but the ROW-BEARING LLM chokepoint (compose prompts with de-identified row content + re-identify on response) is not yet built. Chartered as `W-Chokepoint-LLM-row-bearing`. Out of W-Shield-Train scope.
+- **(ii) tenant entity catalogue populated** — **NO, still needed.** The census catalogue is the schema-level ground truth; the tenant entity catalogue (mapping DigiCow entity types to declared-confidential categories per Doc 02 §A3) is a separate artefact. Chartered as `W-Tenant-Entity-Catalogue`. Out of W-Shield-Train scope.
+
+**One-line owner ruling shape:** *"Admit `t1_full_mask` under env `<development|staging|...>`; (i) and (ii) can wait for their own waves and are documented as such."* — this rules if owner accepts that (i) and (ii) can be deferred while `t1_full_mask` fires in a restricted env for shield-train validation. Alternatively: *"Not admissible until (i) and (ii) also land — hold shield-train-run until then."* — this rules if owner insists the full three-prerequisite gate.
+
+**Where the ruling lands:** owner edits `backend/services/chokepoint/masking_tier_allowlist.v0.json.entries[t1_full_mask].admissible_under_env` from `[]` to the ruled env list. That single JSON edit is the entire admission action. This wave's `test_all_tiers_still_have_empty_admissible_under_env` invariant will trip the moment the edit lands — that's the intended trigger for the next-wave `W-Shield-Train-run`.
+
+---
+
+**Double-green terminal receipts (byte-match at pass/skip/warning tallies):**
+
+- Run 1: `phase0/drill_receipts/20260906T114005Z_wave_shield_train_build_close_run1.log` · `2836 passed, 1 skipped, 438 warnings in 104.10s` · BASELINE_GUARD receipt `passed=2836 / baseline-failures-remaining=0 / quarantined=0 · status: OK`.
+- Run 2: `phase0/drill_receipts/20260906T114201Z_wave_shield_train_build_close_run2.log` · `2836 passed, 1 skipped, 438 warnings in 105.59s` · BASELINE_GUARD receipt byte-identical modulo timings.
+- Ratchet floor updated 2786 → **2836** (+50).
+
+**Commits (local only, never pushed):**
+
+- Extraction-Akki `programme/track-a` → **`d5aadef`** — services/shield_train/{__init__,authoring,row_executor,pipeline}.py + masking_policy.v0.json + masking_tier_allowlist.v0.json extension + ssh_seam.py unstub + 5 invariant files + baseline manifest.
+- Master workspace `master` → this DECISIONS entry + STATE/NEXT.md prepend + all 3 pytest receipts + PINS.md auto-emitted commissioning-record bump (per r1-wire close standing rule).
+
+**Next active track:** **W-TxtTrain-v2** — the improved LoRA text training. Two paths depending on owner's next call: (A) if owner rules on admission for `t1_full_mask` in a dev/staging env, TxtTrain-v2 fires THROUGH this new governed pipeline (`execute_lora_train_real` → `execute_governed_lora_run` → row-extract → build corpus → stage → cleanup) — the acceptance-required behavior; (B) if owner defers admission, TxtTrain-v2 stays parked awaiting either the admission ruling OR a separate build wave that grants a narrow bypass class. **Standing rule holds:** if TxtTrain-v2's go lands mid-wave (e.g. during residuals work), finish the residual at a clean commit boundary first and re-verify the governed pipeline is still what fires. `W-Shield-Train-run` (the end-to-end training loop on the governed pipeline) is chartered but is the natural follow-on after admission lands. `W-Chokepoint-LLM-row-bearing` and `W-Tenant-Entity-Catalogue` are the two remaining prerequisites gating t1 in full. **Small residuals** (chart-captions r1, tile-notes r2) still queue behind unless a natural pause opens.
+
+
+---
+
+### W-G5c-COMPUTE-RESIDUALS · Chart-caption (r1) + per-bar (r1) + tile-note (r2) substitutions · CLOSED · 2026-09-06T~12:15Z · ratchet 2836 → 2847 (+11)
+
+**Authority:** owner ruling 2026-09-06T~12:XX, verbatim:
+
+> "(c) first: the small residuals wave — chart-caption substitutions (-r1: '1,240 hrs committed', '2,880 hrs this month', per-bar size labels) and tile-note substitutions (-r2: '43% of the month', 'wall-clock across 4 GPUs', 'quoted against, not reserved'). Same discipline as COMPUTE-v2: rules authored only against harness-verified rendered DOM, live values from /api/compute/estate where a real fact exists, honest-empty/honest-phrasing where no mechanism exists, styling preserved, RED receipts, double-green from floor 2836, harness re-verify with screenshot. This completes the Compute surface visually for the owner's pending eyeball."
+
+**Discipline — STRICT tests-first HELD unbroken across SIX consecutive closes** (WPW-v1-d + r1 + r1-wire + r2 + shield-train-build + compute-residuals). Mechanical RED drill receipt banked at `phase0/drill_receipts/20260906T120500Z_wave_compute_residuals_RED_pre_impl.log` (8 failed / 3 passed structural pre-checks · the 8 failures fire right-reason on 'rule not declared in App.js' before any implementation lands).
+
+**Authoring-time discovery (banked for future waves):** the original RED had FOUR tests vacuously-passing because they iterated over the rule inventory but only asserted on found rules (empty-list-passes-`assert not` pattern). All four were tightened during RED with full-iteration guards that (a) record 'rule not declared' as an explicit mismatch AND (b) assert `iterated_count == len(inventory)` at the end. Pattern banked for future substitution-rule invariant authoring — *vacuous-pass RED is not a right-reason RED*.
+
+**Grounding brief authored pre-RED** at `notes/wave_g5c_compute_residuals_grounding_brief.md` covering:
+- **§A** verbatim prototype source (COMPUTE_CHARTS object literal + computeStats array quoted byte-exactly from `pod_shell/frontend/public/v8_prototype.html` at bytes 766500-767760 and 1198800-1199650)
+- **§B** live-vs-honest-empty mapping (0 LIVE compute-estate mechanisms exist for hours-ledger / queue-depth / workflow-completion → all 17 rules are HONEST-EMPTY or HONEST-PHRASING)
+- **§C** anchor authorship (chartTitle for captions · row-label for per-bar · tile-label for notes)
+- **§D** DoD (8 numbered items from owner ruling verbatim)
+- **§E** wave-honest-limits (6 tile-notes remain uncovered · owner named only 3 · candidate -r3 scope · 0 LIVE facts land this wave)
+- **§F** commit protocol
+
+**What landed (17 rules · 219 App.js insertions · 454 test-file insertions · 20-line baseline manifest bump):**
+
+- **r1 CHART CAPTIONS (3)** — chartCaption slot for each of `door` / `week` / `state` chart states surfaced by `<sc-raw-select value="{{ computeChart }}">`:
+  - `compute-residuals-r1-chart-caption-door` (dummy `1,240 hrs committed`, anchor `Committed hours by door`) — renders `not measured`
+  - `compute-residuals-r1-chart-caption-week` (dummy `of 2,880 hrs available`, anchor `Hours run by week`) — renders `not measured`
+  - `compute-residuals-r1-chart-caption-state` (dummy `2,880 hrs this month`, anchor `Hours by state`) — renders `not measured`
+
+- **r1 PER-BAR LABELS · door (5)** — per-row `size` label (e.g. `645 hrs · 52%`), anchor pins on unique row-label text in same grid row:
+  - `compute-residuals-r1-bar-door-train` (`645 hrs · 52%` / `Train`) · `-extract` (`298 hrs · 24%` / `Extract`) · `-export` (`174 hrs · 14%` / `Export`) · `-measure` (`99 hrs · 8%` / `Measure`) · `-prove` (`24 hrs · 2%` / `Prove`) — all render `not measured`
+
+- **r1 PER-BAR LABELS · week (4)** — anchor uses verbatim week-range label text (contains U+2013 EN DASH):
+  - `-week-1` (`274 hrs · 38%` / `Aug 1–7`) · `-week-2` (`339 hrs · 47%` / `Aug 8–14`) · `-week-3` (`65 hrs · 9%` / `Aug 15–21`) · `-week-4` (`43 hrs · 6%` / `Not yet run`) — all render `not measured`
+
+- **r1 PER-BAR LABELS · state (2):**
+  - `-state-committed` (`1,240 hrs · 43%` / `Committed`) · `-state-free` (`1,640 hrs · 57%` / `Free to allocate`) — both render `not measured`
+
+- **r2 TILE NOTES (3)** — owner-named:
+  - `compute-residuals-r2-note-capacity` (dummy `wall-clock across 4 GPUs`, anchor `Capacity this month`) → renders **`wall-clock ledger not measured`** (HONEST-PHRASING · names missing mechanism)
+  - `compute-residuals-r2-note-committed` (dummy `43% of the month`, anchor `Committed to work`) → renders **`share-of-month not measured`** (HONEST-PHRASING · names missing mechanism)
+  - `compute-residuals-r2-note-free` (dummy `quoted against, not reserved`, anchor `Free to allocate`) → renders **`quoted against, not reserved`** (HONEST-PHRASING · VERBATIM preserve — honest product-language governance statement about allocation policy, not a numeric measurement · analogous to `compute-v2-runs-receipted-value` LIVE-TAUTOLOGY where governance guarantees the value by construction)
+
+**Rule-must-match-rendered-DOM discipline preserved** via new extended probe:
+- `tools/compute_residuals_dom_enum.py` — extends the compute-v2 probe with programmatic `<sc-raw-select>` state switching (`select.value = X` + `dispatchEvent(change)`) to enumerate all 3 chart states
+- `tools/compute_residuals_dom_map.json` — probe artefact · `chart_states_enumerated=["door","week","state"]` · `byText_union` covers all 17 target strings
+- Two invariants gate this: `test_probe_artefact_covers_all_17_target_strings` and `test_probe_artefact_enumerated_all_three_chart_states`
+
+**Test set (11 new invariants in `tests/invariants/test_compute_residuals_frontend.py`):**
+
+1. `test_grounding_brief_exists_and_is_nonempty` (CONDITION 1 · verbatim-quote source check · asserts owner-ruling quote fragment appears in brief)
+2. `test_probe_artefact_covers_all_17_target_strings` (rule-must-match-rendered-DOM discipline)
+3. `test_all_17_rule_names_declared_in_app_js`
+4. `test_each_rule_dummy_content_matches_inventory` — **with full-iteration guard** (records `<rule not declared in App.js>` mismatch + asserts iterated_count == inventory_size)
+5. `test_each_rule_anchor_ancestor_text_matches_inventory` — **with full-iteration guard**
+6. `test_r1_rules_render_not_measured` (HONEST-EMPTY discipline for all 14 r1 rules)
+7. `test_r2_rules_render_honest_phrasings` (HONEST-PHRASING mapping for the 3 r2 rules)
+8. `test_r1_rules_never_fabricate_prototype_numbers` — **with full-iteration guard** (scans renderFragments body for 23 prototype numeric strings the wave is refusing to fabricate)
+9. `test_every_rule_uses_styled_element_anchor_kind` — **with full-iteration guard**
+10. `test_exactly_17_compute_residuals_rules_declared` (rule-count parity · 14 r1 + 3 r2 = 17)
+11. `test_probe_artefact_enumerated_all_three_chart_states` (probe walked door/week/state programmatically · guards against silent chart-state-switch failure)
+
+**Wave-honest-limits (banked as candidates for `-r3`):**
+
+1. **6 tile-notes remain uncovered** (owner named only 3). Uncovered: `on-premise · RMS AI DC, Nairobi` (already covered by `compute-v2-clusters-byline` per owner Ruling F derivation), `A100 80GB · single node` (already covered by `compute-v2-gpus-byline`), `both under the auto-run ceiling` (Jobs waiting), `14 complete, 3 ongoing, 1 failed` (Workflows this month), `measured against wall-clock` (Utilisation), `runtime named in every receipt` (Runs receipted — could be LIVE-TAUTOLOGY like `compute-v2-runs-receipted-value` if owner extends r2). Candidate `-r3` scope.
+2. **0 LIVE facts landed this wave** (compute-estate has no hours-ledger / no queue-depth / no workflow-completion mechanism · grounding brief §B). The compute-estate visual surface is now at **4 LIVE + 6 HONEST-EMPTY + 1 LIVE-TAUTOLOGY** (COMPUTE-v2 · 11 rules) + **14 HONEST-EMPTY** (r1) + **3 HONEST-PHRASING** (r2) = **28 total rules** for the Compute Connected sub-tab. Future waves adding hour-ledger + queue-depth + workflow-completion measurement would let the r1 and r2 dummies flip to LIVE facts.
+3. **Chart-selector navigation depth** — probe extension required programmatic state switching. Discipline held (all 17 target strings verified by DOM probe across all 3 states). If a future wave adds a chart state, the probe extension must be updated to walk it.
+
+**Harness re-verify (real-Chromium eyeball proxy)** — `python3 tools/wave_g5_realchrome_verification_harness.py --label wave_compute_residuals_close --strict` fired at 20260906T121548Z and passed GREEN with:
+- Substitutions applied on compute-view: **17** (`wave_g5_substitutions applyAll_run count=17 bodyLen=608512` in console log — all 17 residuals rules fired)
+- Substitutions applied on Registry view: **8** (compute-v2 rules that render on Registry-Compute)
+- Dummies still present on Registry: **[]**
+- Compute DUMMY STILL PRESENT: **[]**
+- Compute EXPECTED PRESENT: `['on-premise · akki-vm + akki-vm-ii', 'H200 140 GiB · 2 nodes', 'not measured']` — the new `not measured` phrase now rendering on the compute view
+- Style signature (INTERRUPT 3): underline=3/3, oxblood=1/1, met=True
+- Merged GT across Registry + Compute views: **rules=37, marked_slots=29, rule orphans=0**
+- 3 screenshots banked at `phase0/eyeball_proxies/20260906T121548Z_wave_g5_realchrome_wave_compute_residuals_close_{portal,registry,compute}.png` + log at `..._close.log`
+- Owner eyeball ready
+
+**Double-green terminal receipts (byte-match at pass/skip/warning tallies):**
+
+- Run 1: `phase0/drill_receipts/20260906T121200Z_wave_compute_residuals_close_run1.log` · `2847 passed, 1 skipped, 438 warnings in 105.04s` · BASELINE_GUARD receipt `passed=2847 / baseline-failures-remaining=0 / quarantined=0 · status: OK`.
+- Run 2: `phase0/drill_receipts/20260906T121400Z_wave_compute_residuals_close_run2.log` · `2847 passed, 1 skipped, 438 warnings in 104.95s` · BASELINE_GUARD receipt byte-identical modulo timings.
+- Stripped-diff = 0 lines · byte-match on 2847/1/438 confirmed.
+- Ratchet floor updated 2836 → **2847** (+11, matching 11 new invariants).
+
+**Bank-for-audit-trail (initial run showing right-reason ratchet-mismatch RED, banked for the receipt-trail rather than discarded):** `phase0/drill_receipts/20260906T121000Z_wave_compute_residuals_close_run1.log` — first run1 attempt at floor 2847 fired with only `counts_at_baseline.passed` bumped, NOT the mirror field `invariants_enforced_when_baseline_guard_1.passed_floor`. `test_manifest_passed_floor_ratchet_monotonic_and_matches_baseline` fired right-reason RED (`assert 2836 == 2847` → self-check surfacing the tandem-bump-required contract). Both mirror fields were then bumped in tandem, and the subsequent 20260906T121200Z run1 passed cleanly. Banked as receipt of the manifest self-check working as designed — an operator forgetting the tandem bump would trip this test even after otherwise-correct new rules land.
+
+**Commits (local only, never pushed):**
+
+- Extraction-Akki `programme/track-a` → **`81fe5a6`** — pod_shell/frontend/src/App.js (+219, 17 new styled-element-anchor rules) + backend/tests/invariants/test_compute_residuals_frontend.py (new · 454 lines · 11 invariants) + backend/tests/invariants/baseline_failures.json (ratchet bump + ratchet_history append + source.receipt pin refresh).
+- Master workspace `master` → this DECISIONS entry + STATE/NEXT.md prepend + STATE/PINS.md auto-emitted commissioning-record bump (per r1-wire close standing rule) + tools/compute_residuals_dom_enum.py + tools/compute_residuals_dom_map.json + notes/wave_g5c_compute_residuals_grounding_brief.md + 4 drill receipts (RED + initial-audit-run + double-green run1 + double-green run2) + 4 eyeball_proxies (log + 3 pngs) + phase0/harness_ground_truth/latest.json refresh.
+
+**Next active track (owner ruling 2c continues):** **W-Orchestrator-Resilience-r3** if no owner ruling has landed by that close — owner directive verbatim: "*keep it lean, prioritize retire_heartbeat + the PID-aware select_adoptable_orphans fix + sealing-name normalization; the full drill matrix only if cheap*". Standing rule: if owner's admission ruling (t1_full_mask under development env) or TxtTrain-v2 go-signal lands mid-wave, bank verbatim in DECISIONS.md and finish the current wave at a clean commit boundary; then `W-Shield-Train-run` + `W-TxtTrain-v2` (which will fire through the governed pipeline) jump the queue. `W-WPW-v1-e` (Tier 3) stays design-only until R1/R2/R3 land. `W-Audio-P2` remains blocked on audio-location grant. `W-Chokepoint-LLM-row-bearing` and `W-Tenant-Entity-Catalogue` are chartered prerequisites for t1 admission's remaining two clauses.
+
+
+---
+
+### W-Campaign-Infra · CLOSED · 2026-09-06T~12:29Z · ratchet 2847 → 2893 (+46)
+
+**Authority — owner ruling banked verbatim in the grounding brief §Authority.** Superseded plain W-Orchestrator-Resilience-r3: owner asked for a 3-DAY UNATTENDED GPU JOB consuming zero platform credits; user proposed (pending owner one-line go) a queued LoRA experiment campaign; ruling fired **W-Campaign-Infra** — build the 3-day unattended machinery NOW so launch is ~1 hour of work when the go lands, **folding the lean r3 items in (they are the same fabric)**.
+
+**HARD GATE unchanged this wave and every wave until admission lands:** no estate data flows. Governed extraction stays parked behind `MaskingTierNotAdmitted`. Frozen by 2 regression invariants (`test_campaign_infra_does_not_bypass_masking_tier_admission` + `test_masking_tier_allowlist_row_bearing_tiers_still_parked`).
+
+**Zero-influence recovery-not-interference class newly banked (§Section-A of grounding brief):**
+> "restart-from-checkpoint is recovery, not interference"
+
+Enforced by 3 invariants: `test_on_host_watchdog_public_surface_carries_no_terminator_names` (bans `kill -9`, `kill -SIGKILL`, `kill -SIGTERM`, `pkill`, `killall` — only `kill -0` POSIX-signal-0-liveness-probe allowed) + `test_reconcile_adoptability_never_deletes_checkpoint` + `test_zero_influence_class_documented_in_grounding_brief` (grounding brief carries the 4 enforcement clauses: fires-only-against-dead + resumes-from-checkpoint + never-touches-live + journal-on-restart).
+
+**New subsystem: `backend/services/campaign_infra/`** — 6 modules · full docstring citations at commit `9506a80`:
+1. `manifest.py` — v0 campaign manifest schema · `load_manifest` + `validate_manifest` + `iter_runs` + `ManifestInvalid` · refuses duplicate `run_name`, non-int `seed`, missing required fields.
+2. `checkpoint.py` — `write_checkpoint_marker` + `read_checkpoint_marker` + `latest_checkpoint_step` · marker REPLACED per write · actual `.pt` persistence is training-loop-wave.
+3. `on_host_logging.py` — `write_host_heartbeat` + `write_host_poll_receipt` + `write_run_summary` + `host_journal_root` · writes to `AKKI_HOST_JOURNAL_ROOT` (default `~/akki_journal/`) · zero-influence writers swallow storage errors return False.
+4. `run_queue.py` — `execute_campaign` + `next_pending_run` + `CampaignRunAlreadyActive` (fcntl-lock on `AKKI_CAMPAIGN_HOST_LOCK`) + `CampaignPriorRunNotSealed` + `dry_run` mode returns planned order (test-fixture-friendly).
+5. `reconcile.py` — `adoptability_of_campaign_run` four-verdict returns (`still_running` / `restart_from_checkpoint` / `sealed` / `never_started`) + `list_host_runs` · case-insensitive seal check · PID liveness via `os.kill(pid, 0)`.
+6. `__init__.py` — package surface exports.
+
+**On-host script:** `tools/on_host_watchdog.sh` — cron/systemd-timer bash · reads `AKKI_ON_HOST_WATCHDOG_TARGETS_DIR` + `AKKI_ON_HOST_TRAINER_CMD` envs · **zero-influence via `kill -0` live-PID skip** (POSIX signal-0 probe that CANNOT terminate) · resume-from-checkpoint via marker sha + step interpolation · journal entry per restart at `watchdog_restart_<utc>.json` naming `prior_pid` + `prior_pid_state` + `resume_step` + `marker_sha` + `new_pid` · `setsid nohup` detached process group launch · deferred-mode when `TRAINER_CMD` not set writes intent-recorded journal.
+
+**r3 extensions folded in:**
+- **r3-A**: `orchestrator_resilience/heartbeat.py::retire_heartbeat(run_id)` — idempotent removal on clean exit · returns False on missing rather than raise · fixes r2 close honest-limit "*No heartbeat retirement on clean exit (stays on disk)*".
+- **r3-B**: `orchestrator_resilience/orphan_detector.py::_has_sealing_marker` — case-insensitive existence check accepts `ACTIVITY_SUMMARY.md` + `activity_summary.md` + `Activity_Summary.MD` · writers still use canonical `SEALING_FILENAME` · fixes r2 close honest-limit "*Sealing-filename case mismatch (uppercase ACTIVITY_SUMMARY.md vs lowercase in reconciler)*".
+- **r3-C**: `orchestrator_resilience/watchdog.py::select_adoptable_orphans(include_pid_dead=False|True)` new keyword · default preserves r2 staleness-gated behavior (backward-compat frozen by `test_select_adoptable_orphans_default_is_staleness_gated`) · True mode ADDITIONALLY enumerates fresh-heartbeat-but-dead-PID runs with `reason="pid_dead"` · dedupes on `run_id` · preserves r2 adoptable enrichment · fixes r2 close honest-limit "*select_adoptable_orphans blind spot for fresh-heartbeat-but-dead-PID (patched narrowly for adopt-mode but needs broader include_pid_dead=True mode)*".
+
+**46 new invariants** across 12 sections in `tests/invariants/test_campaign_infra.py`. **STRICT tests-first HELD unbroken across SEVEN consecutive closes** (WPW-v1-d + r1 + r1-wire + r2 + shield-train-build + compute-residuals + campaign-infra).
+
+**Mechanical RED drill receipt**: `phase0/drill_receipts/20260906T122400Z_wave_campaign_infra_RED_pre_impl.log` · 40 failed / 6 passed structural pre-checks · right-reason `ModuleNotFoundError` + `AttributeError` + `TypeError` + `FileNotFoundError` + `AssertionError` before any impl. **2 test-authoring bugs surfaced during initial RED** (wrong `execute_governed_lora_run` keyword signature + list-not-dict allowlist entries assumption) were corrected pre-implementation. **All 46 tests GREEN on first implementation run** (no impl churn).
+
+**Wave-honest-limits banked:**
+1. Actual `.pt` tensor persistence is NEXT-WAVE (training-loop wave chartered separately).
+2. No cron installation this wave. Script authored + shape-tested; installation on GPU hosts is a separate operator action.
+3. Reconcile pulls on-attach, does not stream real-time.
+4. Manifest hyperparams shape not validated (any dict accepted).
+5. `model_size_class` is a string not a rigorous enum.
+
+**Double-green terminal receipts:**
+- Run 1: `phase0/drill_receipts/20260906T122700Z_wave_campaign_infra_close_run1.log` · `2893 passed, 1 skipped, 438 warnings in 106.77s` · BASELINE_GUARD `passed=2893 / baseline-failures-remaining=0 / quarantined=0 · status: OK`.
+- Run 2: `phase0/drill_receipts/20260906T122900Z_wave_campaign_infra_close_run2.log` · `2893 passed, 1 skipped, 438 warnings in 105.46s` · byte-match confirmed on 2893/1/438.
+
+**Commits (local only, never pushed):**
+- Extraction-Akki `programme/track-a` → **`9506a80`** — 6 campaign_infra modules + 3 r3 extensions + `tools/on_host_watchdog.sh` + comprehensive test file + baseline manifest bump (+1731 / -9).
+- Master `master` → this DECISIONS entry + STATE/NEXT.md prepend + STATE/PINS.md auto-emitted commissioning-record bump (per r1-wire close standing rule) + `notes/wave_campaign_infra_grounding_brief.md` + 3 drill receipts (RED + double-green run1 + run2).
+
+**Next active track — OWNER 3-DAY CAMPAIGN SHAPING (banked verbatim 2026-09-06T~12:32Z via user proxy):**
+
+> "It could be a good run for us to establish certain base line based on objectives. You can shape two independent jobs for each VM. We can Also test the wizard logic(s) here."
+
+User expanded (verbatim ruling):
+> "CAMPAIGN A — akki-vm — BASELINE LADDER: establish the measured baseline record (Promise #24 shape) for estate-text capability. Sequential LoRA fine-tunes over a model-size ladder (e.g. Qwen2.5 0.5B → 1.5B → 3B → 7B), fixed corpus (deduplicated ussd_question_response), FIXED held-out slice (deterministic split, banked before any training), 2 seeds per size. Output: baseline_record per size — held-out loss/perplexity + task-shaped eval, cost actual, wall-clock, adapter hash. This gives every FUTURE run something to be 'exceptional' AGAINST (R1 needs baselines to mean anything).
+>
+> CAMPAIGN B — akki-vm-ii — METHOD ABLATIONS: fixed mid-ladder model (1.5B or 3B — your call with rationale), varying method: corpus mix (USSD-only vs USSD+SMS), dedup on/off, LoRA rank (8/16/32), context length. Each ablation declared as a CIF-ideation-shaped event BEFORE running (hypothesis stated), so the WPW novelty-chain mechanics (ideation → adoption → measured delta vs baseline) get exercised end-to-end with real material.
+>
+> WIZARD TESTING woven through (owner explicitly wants this): every campaign run must (i) auto-attach Tier 1 notebook and capture live events (checkpoints, anomalies, cost checkpoints), (ii) draft a Tier 2 report at settlement that can SETTLE — held-out measurements exist this time, so acceptance criteria measure rather than refuse, (iii) evaluate Tier 3 eligibility MECHANICALLY and record the verdict (eligible/not + why) with publication still blocked pending R1/R2/R3 — that tests the eligibility gates without violating the block. A1–A6 acceptance drills against real runs. Also plan the refused-run record path (A6): if any run crashes/refuses, its notebook must still be retained — the campaign will likely give us a real example.
+>
+> Manifest format: per your campaign-runner design — ordered run list per host with model, corpus variant, seed, hyperparams, held-out spec, expected duration; total budget fitting ~3 days per host with margin (~20%) for watchdog restarts. Also estimate: disk needs (checkpoints × runs — the 5.86 TiB volumes are the staging space), and whether 7B×2 seeds fits the window honestly — trim the ladder rather than overrun.
+>
+> Send me the two draft manifests in owner-readable form (one table each) when ready. Data gate unchanged: nothing extracts until the admission ruling lands. Campaign-infra build continues as scoped. Go."
+
+**Immediate action (pre-owner-final-approval design artifacts, NOT executable):** draft both manifests as JSON + owner-readable Markdown tables under `phase0/campaign_drafts/` with honest wall-clock estimates, disk estimates, and ladder-trim rationale. **No data flow. Admission gate still frozen.** Manifest files exist as design proposals only until (a) owner rules the final objectives + acceptance criteria and (b) admission for `t1_full_mask` under a dev/staging env lands (single JSON edit on `masking_tier_allowlist.v0.json`).
+
+

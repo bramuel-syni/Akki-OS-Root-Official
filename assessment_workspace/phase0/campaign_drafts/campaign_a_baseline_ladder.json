@@ -1,0 +1,123 @@
+{
+    "schema_version": 0,
+    "campaign_id": "campaign-a-baseline-ladder-20260906",
+    "campaign_window": {
+        "start_utc": "2026-09-06T12:45:00Z",
+        "end_utc": "2026-09-09T23:59:00Z",
+        "budget_hours": 72,
+        "watchdog_margin_pct": 20,
+        "productive_hours_target": 58
+    },
+    "host": "akki-vm",
+    "objective_ref": "Objective 1 · CAMPAIGN A · BASELINE LADDER · Promise #24 baseline_record shape",
+    "hard_gate": "t1_full_mask admitted under development env only per owner ruling 2026-09-06T~12:40Z · MaskingTierNotAdmitted still raises under sandbox/production",
+    "corpus_spec": {
+        "table": "ussd_question_response",
+        "dedup": "on",
+        "held_out_slice_spec": "deterministic_20pct_tail_seed_31337",
+        "held_out_split_banked_before_first_run": true,
+        "held_out_slice_hash_field": "held_out_slice_sha256"
+    },
+    "wizard_wiring_notes": "every run auto-attaches Tier 1 notebook via services.training_runner.open_run · WPW-1..WPW-7 events captured on checkpoints/anomalies/cost-checkpoints · Tier 2 report drafted at settlement · Tier 3 eligibility MECHANICALLY evaluated + verdict recorded (publication remains BLOCKED pending R1/R2/R3)",
+    "runs": [
+        {
+            "run_name": "A-0-0p5B-seed01",
+            "objective_ref": "Objective 1 · A · rung=0.5B · seed=1",
+            "model_size_class": "0.5B",
+            "base_model_id": "Qwen/Qwen2.5-0.5B",
+            "corpus_variant": "ussd_deduplicated",
+            "seed": 1,
+            "hyperparams": {"lora_rank": 16, "context_length": 1024, "learning_rate": 2e-4, "num_train_epochs": 3, "per_device_batch_size": 8, "gradient_accumulation_steps": 4},
+            "held_out_slice_spec": "deterministic_20pct_tail_seed_31337",
+            "expected_wall_clock_hours_min": 1.0,
+            "expected_wall_clock_hours_max": 2.0,
+            "expected_wall_clock_hours_mean": 1.5
+        },
+        {
+            "run_name": "A-0-0p5B-seed02",
+            "objective_ref": "Objective 1 · A · rung=0.5B · seed=2",
+            "model_size_class": "0.5B",
+            "base_model_id": "Qwen/Qwen2.5-0.5B",
+            "corpus_variant": "ussd_deduplicated",
+            "seed": 2,
+            "hyperparams": {"lora_rank": 16, "context_length": 1024, "learning_rate": 2e-4, "num_train_epochs": 3, "per_device_batch_size": 8, "gradient_accumulation_steps": 4},
+            "held_out_slice_spec": "deterministic_20pct_tail_seed_31337",
+            "expected_wall_clock_hours_min": 1.0,
+            "expected_wall_clock_hours_max": 2.0,
+            "expected_wall_clock_hours_mean": 1.5
+        },
+        {
+            "run_name": "A-1-1p5B-seed01",
+            "objective_ref": "Objective 1 · A · rung=1.5B · seed=1",
+            "model_size_class": "1.5B",
+            "base_model_id": "Qwen/Qwen2.5-1.5B",
+            "corpus_variant": "ussd_deduplicated",
+            "seed": 1,
+            "hyperparams": {"lora_rank": 16, "context_length": 1024, "learning_rate": 2e-4, "num_train_epochs": 3, "per_device_batch_size": 4, "gradient_accumulation_steps": 8},
+            "held_out_slice_spec": "deterministic_20pct_tail_seed_31337",
+            "expected_wall_clock_hours_min": 3.0,
+            "expected_wall_clock_hours_max": 6.0,
+            "expected_wall_clock_hours_mean": 4.5
+        },
+        {
+            "run_name": "A-1-1p5B-seed02",
+            "objective_ref": "Objective 1 · A · rung=1.5B · seed=2",
+            "model_size_class": "1.5B",
+            "base_model_id": "Qwen/Qwen2.5-1.5B",
+            "corpus_variant": "ussd_deduplicated",
+            "seed": 2,
+            "hyperparams": {"lora_rank": 16, "context_length": 1024, "learning_rate": 2e-4, "num_train_epochs": 3, "per_device_batch_size": 4, "gradient_accumulation_steps": 8},
+            "held_out_slice_spec": "deterministic_20pct_tail_seed_31337",
+            "expected_wall_clock_hours_min": 3.0,
+            "expected_wall_clock_hours_max": 6.0,
+            "expected_wall_clock_hours_mean": 4.5
+        },
+        {
+            "run_name": "A-2-3B-seed01",
+            "objective_ref": "Objective 1 · A · rung=3B · seed=1",
+            "model_size_class": "3B",
+            "base_model_id": "Qwen/Qwen2.5-3B",
+            "corpus_variant": "ussd_deduplicated",
+            "seed": 1,
+            "hyperparams": {"lora_rank": 16, "context_length": 1024, "learning_rate": 2e-4, "num_train_epochs": 3, "per_device_batch_size": 2, "gradient_accumulation_steps": 16},
+            "held_out_slice_spec": "deterministic_20pct_tail_seed_31337",
+            "expected_wall_clock_hours_min": 5.0,
+            "expected_wall_clock_hours_max": 10.0,
+            "expected_wall_clock_hours_mean": 7.5
+        },
+        {
+            "run_name": "A-2-3B-seed02",
+            "objective_ref": "Objective 1 · A · rung=3B · seed=2",
+            "model_size_class": "3B",
+            "base_model_id": "Qwen/Qwen2.5-3B",
+            "corpus_variant": "ussd_deduplicated",
+            "seed": 2,
+            "hyperparams": {"lora_rank": 16, "context_length": 1024, "learning_rate": 2e-4, "num_train_epochs": 3, "per_device_batch_size": 2, "gradient_accumulation_steps": 16},
+            "held_out_slice_spec": "deterministic_20pct_tail_seed_31337",
+            "expected_wall_clock_hours_min": 5.0,
+            "expected_wall_clock_hours_max": 10.0,
+            "expected_wall_clock_hours_mean": 7.5
+        },
+        {
+            "run_name": "A-3-7B-seed01",
+            "objective_ref": "Objective 1 · A · rung=7B · seed=1 (ladder cap · single-seed only per wall-clock honesty — 2-seed 7B does not fit the window per estimation)",
+            "model_size_class": "7B",
+            "base_model_id": "Qwen/Qwen2.5-7B",
+            "corpus_variant": "ussd_deduplicated",
+            "seed": 1,
+            "hyperparams": {"lora_rank": 16, "context_length": 1024, "learning_rate": 2e-4, "num_train_epochs": 3, "per_device_batch_size": 1, "gradient_accumulation_steps": 32},
+            "held_out_slice_spec": "deterministic_20pct_tail_seed_31337",
+            "expected_wall_clock_hours_min": 10.0,
+            "expected_wall_clock_hours_max": 25.0,
+            "expected_wall_clock_hours_mean": 17.5
+        }
+    ],
+    "wall_clock_budget_hours": {"min": 28.0, "max": 61.0, "mean": 44.5, "productive_hours_target": 58.0, "fits_at_mean_with_margin": true},
+    "disk_estimate_gb": {"base_model_snapshots": 24, "corpus_and_held_out": 2, "adapter_checkpoints_all_runs": 4, "total": 30, "volume_available_tib": 5.86, "headroom_ratio": 195},
+    "wave_honest_limits": [
+        "7B rung is single-seed only — 2-seed 7B (~20-50 hrs projected) does not fit the window with margin.  Trim rationale: single-seed 7B is a ladder-cap reference point; reproducibility measurement is preserved at 0.5B/1.5B/3B where 2 seeds fit honestly.",
+        "Held-out slice hash MUST be banked BEFORE first run starts — invariant frozen in campaign-runner (chartered as W-Campaign-Preflight follow-on if not already).",
+        "Actual .pt tensor persistence is training-loop wave (W-Shield-Train-run) — this manifest declares expected costs but the runner itself hasn't landed here.",
+        "Objective-3 wizard evidence (Tier 1 attach + Tier 2 settle + Tier 3 verdict) is auto-generated at run time; no per-run manifest field."
+    ]
+}

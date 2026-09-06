@@ -460,6 +460,225 @@ const V8_SUBSTITUTIONS = [
       return [{ kind: "text", value: "100%" }];
     },
   },
+
+  // -------------------------------------------------------------------
+  // Wave-G5c-COMPUTE-RESIDUALS · authored 2026-09-06 · owner ruling
+  // (verbatim in DECISIONS.md 2026-09-06T~12:XX). Completes the Compute
+  // Connected sub-tab visual surface with 14 r1 chart-caption/per-bar
+  // rules + 3 r2 tile-note rules = 17 all-honest-empty/honest-phrasing
+  // additions (compute-estate has no hours ledger / no queue-depth /
+  // no workflow-completion mechanism — 0 LIVE facts land this wave).
+  //
+  // Discipline (verbatim from owner ruling):
+  //   - Rules authored ONLY against harness-verified rendered DOM
+  //     (probe artefact: tools/compute_residuals_dom_map.json covering
+  //     all 3 chart states door/week/state).
+  //   - Live values from /api/compute/estate where a real fact exists
+  //     (0 this wave — see grounding brief §B).
+  //   - Honest-empty/honest-phrasing where no mechanism exists.
+  //   - Styling preserved.
+  //   - Grounding brief:
+  //     /app/assessment_workspace/notes/wave_g5c_compute_residuals_grounding_brief.md
+  //
+  // Invariants: tests/invariants/test_compute_residuals_frontend.py
+  // (11 tests · rule-must-match-rendered-DOM + full-iteration guards).
+  // -------------------------------------------------------------------
+
+  // r1 CHART CAPTIONS (3) — chartCaption slot for each of door/week/state.
+
+  {
+    kind: "styled-element-anchor",
+    name: "compute-residuals-r1-chart-caption-door",
+    dummyContent: "1,240 hrs committed",
+    anchorAncestorText: "Committed hours by door",
+    renderFragments: (v) => {
+      // No mechanism: no hours-committed-by-door ledger.
+      return [{ kind: "text", value: "not measured" }];
+    },
+  },
+  {
+    kind: "styled-element-anchor",
+    name: "compute-residuals-r1-chart-caption-week",
+    dummyContent: "of 2,880 hrs available",
+    anchorAncestorText: "Hours run by week",
+    renderFragments: (v) => {
+      // No mechanism: no wall-clock-capacity or hours-run-by-week ledger.
+      return [{ kind: "text", value: "not measured" }];
+    },
+  },
+  {
+    kind: "styled-element-anchor",
+    name: "compute-residuals-r1-chart-caption-state",
+    dummyContent: "2,880 hrs this month",
+    anchorAncestorText: "Hours by state",
+    renderFragments: (v) => {
+      // No mechanism: no monthly wall-clock capacity ledger.
+      return [{ kind: "text", value: "not measured" }];
+    },
+  },
+
+  // r1 PER-BAR LABELS · door state (5) — per-row `size` label
+  // (e.g. "645 hrs \u00b7 52%"). Anchor is the row's own label text
+  // (Train/Extract/Export/Measure/Prove) which is a unique text node in
+  // the same grid row as the size label.
+
+  {
+    kind: "styled-element-anchor",
+    name: "compute-residuals-r1-bar-door-train",
+    dummyContent: "645 hrs \u00b7 52%",
+    anchorAncestorText: "Train",
+    renderFragments: (v) => {
+      // No mechanism: no per-door hours-committed ledger.
+      return [{ kind: "text", value: "not measured" }];
+    },
+  },
+  {
+    kind: "styled-element-anchor",
+    name: "compute-residuals-r1-bar-door-extract",
+    dummyContent: "298 hrs \u00b7 24%",
+    anchorAncestorText: "Extract",
+    renderFragments: (v) => {
+      return [{ kind: "text", value: "not measured" }];
+    },
+  },
+  {
+    kind: "styled-element-anchor",
+    name: "compute-residuals-r1-bar-door-export",
+    dummyContent: "174 hrs \u00b7 14%",
+    anchorAncestorText: "Export",
+    renderFragments: (v) => {
+      return [{ kind: "text", value: "not measured" }];
+    },
+  },
+  {
+    kind: "styled-element-anchor",
+    name: "compute-residuals-r1-bar-door-measure",
+    dummyContent: "99 hrs \u00b7 8%",
+    anchorAncestorText: "Measure",
+    renderFragments: (v) => {
+      return [{ kind: "text", value: "not measured" }];
+    },
+  },
+  {
+    kind: "styled-element-anchor",
+    name: "compute-residuals-r1-bar-door-prove",
+    dummyContent: "24 hrs \u00b7 2%",
+    anchorAncestorText: "Prove",
+    renderFragments: (v) => {
+      return [{ kind: "text", value: "not measured" }];
+    },
+  },
+
+  // r1 PER-BAR LABELS · week state (4) — row anchor uses the verbatim
+  // week-range label text (contains U+2013 EN DASH).
+
+  {
+    kind: "styled-element-anchor",
+    name: "compute-residuals-r1-bar-week-1",
+    dummyContent: "274 hrs \u00b7 38%",
+    anchorAncestorText: "Aug 1\u20137",
+    renderFragments: (v) => {
+      // No mechanism: no hours-run-by-week ledger.
+      return [{ kind: "text", value: "not measured" }];
+    },
+  },
+  {
+    kind: "styled-element-anchor",
+    name: "compute-residuals-r1-bar-week-2",
+    dummyContent: "339 hrs \u00b7 47%",
+    anchorAncestorText: "Aug 8\u201314",
+    renderFragments: (v) => {
+      return [{ kind: "text", value: "not measured" }];
+    },
+  },
+  {
+    kind: "styled-element-anchor",
+    name: "compute-residuals-r1-bar-week-3",
+    dummyContent: "65 hrs \u00b7 9%",
+    anchorAncestorText: "Aug 15\u201321",
+    renderFragments: (v) => {
+      return [{ kind: "text", value: "not measured" }];
+    },
+  },
+  {
+    kind: "styled-element-anchor",
+    name: "compute-residuals-r1-bar-week-4",
+    dummyContent: "43 hrs \u00b7 6%",
+    anchorAncestorText: "Not yet run",
+    renderFragments: (v) => {
+      return [{ kind: "text", value: "not measured" }];
+    },
+  },
+
+  // r1 PER-BAR LABELS · state state (2).
+
+  {
+    kind: "styled-element-anchor",
+    name: "compute-residuals-r1-bar-state-committed",
+    dummyContent: "1,240 hrs \u00b7 43%",
+    anchorAncestorText: "Committed",
+    renderFragments: (v) => {
+      // No mechanism: no committed-hours-share ledger.
+      return [{ kind: "text", value: "not measured" }];
+    },
+  },
+  {
+    kind: "styled-element-anchor",
+    name: "compute-residuals-r1-bar-state-free",
+    dummyContent: "1,640 hrs \u00b7 57%",
+    anchorAncestorText: "Free to allocate",
+    renderFragments: (v) => {
+      // No mechanism: no free-hours-share ledger.
+      return [{ kind: "text", value: "not measured" }];
+    },
+  },
+
+  // r2 TILE NOTES (3) — owner-named tile-note substitutions.
+  // Grounding brief §B honest-phrasing mapping:
+  //   - capacity  : "wall-clock ledger not measured" (names missing mechanism)
+  //   - committed : "share-of-month not measured"   (names missing mechanism)
+  //   - free      : "quoted against, not reserved"  (VERBATIM prototype
+  //                                                  text preserved as
+  //                                                  honest product-language —
+  //                                                  not a numeric measurement,
+  //                                                  analogous to compute-v2
+  //                                                  runs-receipted LIVE-TAUTOLOGY)
+
+  {
+    kind: "styled-element-anchor",
+    name: "compute-residuals-r2-note-capacity",
+    dummyContent: "wall-clock across 4 GPUs",
+    anchorAncestorText: "Capacity this month",
+    renderFragments: (v) => {
+      // No mechanism: no monthly wall-clock capacity ledger.
+      return [{ kind: "text", value: "wall-clock ledger not measured" }];
+    },
+  },
+  {
+    kind: "styled-element-anchor",
+    name: "compute-residuals-r2-note-committed",
+    dummyContent: "43% of the month",
+    anchorAncestorText: "Committed to work",
+    renderFragments: (v) => {
+      // No mechanism: no share-of-month allocation ledger.
+      return [{ kind: "text", value: "share-of-month not measured" }];
+    },
+  },
+  {
+    kind: "styled-element-anchor",
+    name: "compute-residuals-r2-note-free",
+    dummyContent: "quoted against, not reserved",
+    anchorAncestorText: "Free to allocate",
+    renderFragments: (v) => {
+      // HONEST-PHRASING preserving verbatim prototype product-language.
+      // The prototype text is a governance statement about allocation
+      // policy (not a numeric measurement) — no allocation lock exists
+      // in the system by construction; quoting-against-not-reserving is
+      // guaranteed by the current absence of a compute-reservation seam.
+      // Analogous to compute-v2-runs-receipted-value LIVE-TAUTOLOGY.
+      return [{ kind: "text", value: "quoted against, not reserved" }];
+    },
+  },
 ];
 
 // Wave-G5b · expose the dummies (never the render output) to window so
