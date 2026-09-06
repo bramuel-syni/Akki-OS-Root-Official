@@ -1,0 +1,49 @@
+{
+  "campaign_id": "campaign-a-baseline-ladder-20260906",
+  "generated_at_utc": "2026-09-06T14:49:19.213688Z",
+  "notes": "A-3-7B trimmed per owner ruling ('cut Campaign A's 7B run or B's ctx-2048 BEFORE cutting anything else \u2014 window integrity beats ladder completeness'). Queue keeps A-1 + A-2 which fit the remaining window on a 2-H200 host. Corpus reused from A0 (identical ussd_deduplicated).",
+  "runs": [
+    {
+      "run_id": "shield-train-campaign-a-A-1-1p5B-20260906T144918Z",
+      "run_name": "A-1-1p5B",
+      "trainer_args": {
+        "--base-model": "Qwen/Qwen2.5-1.5B",
+        "--campaign-id": "campaign-a-baseline-ladder-20260906",
+        "--corpus": "/home/ubuntu/akki_journal/shield-train-campaign-a-baseline-ladder-20260906-20260906T140930Z/train_corpus.jsonl",
+        "--ctx-len": "1024",
+        "--grad-accum": "8",
+        "--held-out": "/home/ubuntu/akki_journal/shield-train-campaign-a-baseline-ladder-20260906-20260906T140930Z/held_out_corpus.jsonl",
+        "--lora-rank": "16",
+        "--lr": "0.0002",
+        "--num-epochs": "3",
+        "--per-device-batch": "4",
+        "--run-dir": "/home/ubuntu/akki_journal/shield-train-campaign-a-A-1-1p5B-20260906T144918Z",
+        "--run-id": "shield-train-campaign-a-A-1-1p5B-20260906T144918Z",
+        "--run-name": "A-1-1p5B",
+        "--seed": "1"
+      },
+      "wait_for_run_id": "shield-train-campaign-a-baseline-ladder-20260906-20260906T140930Z"
+    },
+    {
+      "run_id": "shield-train-campaign-a-A-2-3B-20260906T144919Z",
+      "run_name": "A-2-3B",
+      "trainer_args": {
+        "--base-model": "Qwen/Qwen2.5-3B",
+        "--campaign-id": "campaign-a-baseline-ladder-20260906",
+        "--corpus": "/home/ubuntu/akki_journal/shield-train-campaign-a-baseline-ladder-20260906-20260906T140930Z/train_corpus.jsonl",
+        "--ctx-len": "1024",
+        "--grad-accum": "16",
+        "--held-out": "/home/ubuntu/akki_journal/shield-train-campaign-a-baseline-ladder-20260906-20260906T140930Z/held_out_corpus.jsonl",
+        "--lora-rank": "16",
+        "--lr": "0.0002",
+        "--num-epochs": "3",
+        "--per-device-batch": "2",
+        "--run-dir": "/home/ubuntu/akki_journal/shield-train-campaign-a-A-2-3B-20260906T144919Z",
+        "--run-id": "shield-train-campaign-a-A-2-3B-20260906T144919Z",
+        "--run-name": "A-2-3B",
+        "--seed": "1"
+      }
+    }
+  ],
+  "waits_behind_run_id": "shield-train-campaign-a-baseline-ladder-20260906-20260906T140930Z"
+}

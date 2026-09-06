@@ -1,0 +1,74 @@
+{
+  "at_utc": "2026-09-06T14:48:00.307608Z",
+  "columns_excluded": [
+    "id",
+    "county_name",
+    "subcounty",
+    "ward",
+    "farmer_name",
+    "phone_number",
+    "created_at",
+    "sms_id",
+    "clints_id",
+    "created_on_dt",
+    "breeding_id"
+  ],
+  "columns_included": [
+    "sms_title"
+  ],
+  "database": "digicow_live",
+  "masking_steps_applied": [
+    {
+      "action": "exclude",
+      "column": "breeding_id"
+    },
+    {
+      "action": "exclude",
+      "column": "clints_id"
+    },
+    {
+      "action": "exclude",
+      "column": "county_name"
+    },
+    {
+      "action": "exclude",
+      "column": "created_at"
+    },
+    {
+      "action": "exclude",
+      "column": "created_on_dt"
+    },
+    {
+      "action": "exclude",
+      "column": "farmer_name"
+    },
+    {
+      "action": "exclude",
+      "column": "id"
+    },
+    {
+      "action": "exclude",
+      "column": "phone_number"
+    },
+    {
+      "action": "exclude",
+      "column": "sms_id"
+    },
+    {
+      "action": "mask_regex_scrub",
+      "column": "sms_title"
+    },
+    {
+      "action": "exclude",
+      "column": "subcounty"
+    },
+    {
+      "action": "exclude",
+      "column": "ward"
+    }
+  ],
+  "principal": "shield_train.execute_governed_lora_run::akki-vm-ii",
+  "purpose": "lora_train.ussd_plus_sms_deduplicated.campaign-b-multi-table-dedup-20260906::table=sms_log",
+  "row_count": 30000,
+  "table_context": "sms_log"
+}

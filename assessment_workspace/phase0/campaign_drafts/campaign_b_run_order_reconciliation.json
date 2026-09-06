@@ -1,0 +1,31 @@
+{
+  "kind": "campaign_run_order_reconciliation",
+  "campaign_id": "campaign-b-method-ablations-20260906",
+  "reconciled_at_utc": "2026-09-06T14:35:00Z",
+  "reconciled_by": "programme.track-a.W-Multi-Table-Extract",
+  "manifest_authored_order": [
+    "B-REF-3B",
+    "B1-CORPUS-USSD-ONLY",
+    "B2-DEDUP-OFF",
+    "B3-RANK-8",
+    "B4-RANK-32",
+    "B5-CTX-512",
+    "B6-CTX-2048"
+  ],
+  "actual_run_order": [
+    "B1-CORPUS-USSD-ONLY",
+    "B-REF-3B",
+    "B2-DEDUP-OFF",
+    "B3-RANK-8",
+    "B4-RANK-32",
+    "B5-CTX-512",
+    "B6-CTX-2048"
+  ],
+  "rationale": "B-REF-3B was authored to fire first but blocked on multi-table extraction gap (ussd_plus_sms_deduplicated corpus requires row extraction from two tables; shield_train.row_executor supported single-table SELECT only per W-Shield-Train-BUILD wave-honest-limit F.1). Rather than block the entire 3-day window, promoted B1-CORPUS-USSD-ONLY (already in-scope single-table variant per the ablation-B1 authored config: corpus_variant=ussd_deduplicated) to the front to establish first-heartbeat evidence and start burning training budget on estate GPUs. Owner ruled (2026-09-06T~14:XXZ verbatim): 'option (b) would silently rewrite the owner-approved campaign design — the corpus-mix ablation (USSD-only vs USSD+SMS) is one of Campaign B's declared hypotheses; substituting USSD-only everywhere deletes that experiment. The owner approved the design; we build to it.' W-Multi-Table-Extract wave delivers the missing multi-table primitive; B-REF-3B + B2-DEDUP-OFF + B3-RANK-8 + B4-RANK-32 + B5-CTX-512 + B6-CTX-2048 queue behind B1 in the manifest-authored order via on_host_queue_dispatcher.py.",
+  "b1_run_id": "shield-train-campaign-b-method-ablations-20260906-20260906T141344Z",
+  "queue_dispatcher_manifest": "phase0/campaign_drafts/campaign_b_queue_manifest.json",
+  "no_experiment_deleted": true,
+  "novelty_verdict_impact": "Zero. B1's ussd_only_deduplicated corpus produces the same measurement (loss/perplexity on held-out USSD slice) as the manifest anticipated; ablation comparison against B-REF-3B (which trains on ussd_plus_sms_deduplicated) proceeds as authored — the ablation is a corpus-mix ablation, not a run-order ablation.",
+  "held_out_slice_reproducibility": "Preserved. Each run banks its own held-out slice hash preflight before first byte crosses; B1 banked its slice at 2026-09-06T14:09:30Z (single-table, seed 31337); B-REF-3B will bank its own slice from the ussd_plus_sms deduplicated pool at queue-dispatch time (multi-table, seed 31337). The two slices are intentionally different because the ablation is corpus-mix.",
+  "wave_honest_limit_carried_over_from_shield_train_run": "shield-train-run's wave-honest-limit F.2 already banked that 'B-REF-3B's held-out slice will differ from B1's held-out slice' — this reconciliation record confirms that limit does not affect campaign integrity."
+}

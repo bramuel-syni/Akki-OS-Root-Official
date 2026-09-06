@@ -6182,3 +6182,63 @@ Ruling 2 · AWS credentials for DigiCow reach · 2026-09-06T~13:XXZ:
 8. Local commit only, no push (Owner Clarification 1 unchanged).
 
 ---
+
+
+---
+
+## Wave close · W-Multi-Table-Extract · 2026-09-06T~14:56Z · owner ruling verbatim
+
+**Verbatim (via user proxy):**
+
+> "Ruling on the blocker: (a) Charter and EXECUTE W-Multi-Table-Extract NOW, this session. Rationale: option (b) would silently rewrite the owner-approved campaign design — the corpus-mix ablation (USSD-only vs USSD+SMS) is one of Campaign B's declared hypotheses; substituting USSD-only everywhere deletes that experiment. The owner approved the design; we build to it. (b) is not authorized.
+>
+> Execution notes:
+> 1. STRICT tests-first as always: multi-table extraction in row_executor (UNION or sequential per-table extract + composed corpus — pick the design that keeps the refuse-unclassified-by-construction property per table; sms_log columns must be classified in masking_policy before a single row crosses — extend the policy if sms_log wasn't fully covered in the build wave, cautious-default on anything ambiguous).
+> 2. Extract the ussd_plus_sms corpora (deduplicated + raw variants per manifest), bank held-out slices BEFORE staging (same preflight discipline), stage to akki-vm-ii with sha256 verification, and update the on-host campaign queue so B-REF-3B, B2-B6 run as authored. Do NOT disturb the running B1 — queue behind it.
+> 3. Reconcile the manifest bookkeeping: B1 ran first as an in-scope substitution — bank the reorder rationale so the campaign record reflects what actually happened (B1 promoted, B-REF queued second) rather than pretending the original order held.
+> 4. While you're touching akki-vm-ii's queue, verify Campaign A's queue on akki-vm needs nothing (it's single-table USSD throughout — should be clean).
+> 5. Double-green from floor 2924, receipts, two-commit pattern, then STAND DOWN per runbook — no pod-side polling after the queue is verified healthy.
+>
+> Also bank the wave-honest limits you listed (loss/PPL-only eval, per-epoch checkpoints, in-memory batch fetch, HF adapter format) as chartered follow-ons in the sprint plan."
+
+**Actions taken (in owner-directive order):**
+
+1. Design chosen: sequential per-table extract + pipeline-level compose (see notes/wave_multi_table_extract_grounding_brief.md §A).
+2. `masking_policy.v0.json` audited: `sms_log` has 13 columns · 12 ledgered · 1 in clarification_drawer (`sms_sent`, cautious_default_applied=`exclude`, per Ruling #5 · state open). Wave respects Ruling #5 as-is → SMS emit = `sms_title` only. Wave-honest-limit F.6 banked in grounding brief.
+3. Grounding brief authored (verbatim + design + composition + variant map + dispatcher contract + wave-honest-limits + follow-on charters).
+4. `backend/tests/invariants/test_multi_table_extract.py` authored (+32 tests across 8 sections).
+5. Mechanical RED receipt banked at `phase0/drill_receipts/20260906T143700Z_wave_multi_table_extract_RED_pre_impl.log` (26 fail / 6 pass pre-impl).
+6. Implemented: `services/shield_train/multi_table.py` + extended `pipeline.py::execute_governed_lora_run` (str + list dispatch, backward compat preserved) + `campaign_infra/production_trainer.resolve_corpus_variant` + `tools/on_host_queue_dispatcher.py`.
+7. Ruling-#5 conflict resolved honestly (ledger add reverted; SMS formatter survives on `sms_title`; tests aligned).
+8. Ratchet bumped 2924 → 2956 in tandem. Double-green byte-match: 2956 passed × 2 runs.
+9. Track-a commit: `7a60680` → `0287482` (+1609/-453 across 7 files).
+10. `on_host_queue_dispatcher.py` rsync'd to both hosts.
+11. Extracted `ussd_plus_sms_deduplicated` corpus (25203 raw rows → 87 deduped, ideation finding banked) and `ussd_plus_sms_raw` corpus (25203 train + 6300 held-out) for akki-vm-ii. Row-bearing chokepoint receipts fired per-table (2 receipts × 2 corpora = 4 total).
+12. Built Campaign B queue (6 entries: B-REF/B2/B3/B4/B5/B6, dependency-wait behind B1's ACTIVITY_SUMMARY.md).
+13. Built Campaign A queue (2 entries: A-1/A-2, A-3-7B trimmed per owner's trim-last).
+14. Queue manifests scp'd to hosts + dispatchers fired detached via ssh -f. Both dispatchers alive (akki-vm PID 188774, akki-vm-ii PID 160175) with heartbeats emitting every 60s.
+15. Verified A0 and B1 trainers UNDISTURBED — A0 at step 950/963 loss 0.15 (seconds from seal), B1 at step 150/963 loss 0.16 (16% through).
+16. `campaign_b_run_order_reconciliation.json` banked (B1 promoted first, B-REF queued second, no experiment deleted).
+17. `SPRINT_PLAN.md` updated with 6 chartered follow-on waves (W-TaskEval-v1 + W-Gradient-Step-Checkpoint + W-Row-Stream-Extractor + W-Adapter-Tensor-Persist + W-Queue-Watchdog + W-Cross-Table-Consistency-Check).
+
+**Binding effects:**
+
+1. Multi-table governed extraction is LIVE. Track-a HEAD `0287482`.
+2. Ratchet floor `2924 → 2956` (+32 tests). Double-green byte-matched.
+3. Full Campaign A queue + full Campaign B queue dispatching serially with dependency-wait; no pod-side polling required.
+4. Ruling #5 (sms_sent classification) still open — owner ruling requested on (a)/(b).
+5. Dedup collapse (25203→87) banked as ideation finding; owner ruling requested on whether to re-extract with a diversifying strategy.
+6. STRICT tests-first HELD across TEN consecutive closes.
+7. Local commit only, no push.
+
+**Ruling #5 (a)/(b) framing for owner's explicit response:**
+
+> Ruling #5 (2026-09-06T11:34:00Z, banked in clarification_drawer entry `sms_log.sms_sent`):
+> Two viable rulings —
+> (a) INCLUDE with mask_regex_scrub — treat like ussd_question_response.question_string; accept residual leakage risk (regex won't catch every name).
+> (b) EXCLUDE — treat as untrusted PII surface, drop from training corpus entirely.
+> Cautious-default applied: EXCLUDE. Owner ruling requested before this column can ever cross the seam.
+
+Owner ruling on (a) or (b) unblocks a follow-on `W-SMS-Body-Emit` wave that re-extracts Campaign B corpora with sms_sent content (dramatically diversifies the dedup pool and lifts the 87-row collapse).
+
+---

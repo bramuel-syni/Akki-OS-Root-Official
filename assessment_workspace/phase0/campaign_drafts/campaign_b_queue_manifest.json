@@ -1,0 +1,129 @@
+{
+  "campaign_id": "campaign-b-method-ablations-20260906",
+  "generated_at_utc": "2026-09-06T14:49:13.416109Z",
+  "notes": "Corpus paths for B-REF/B3/B4/B5/B6 reference the shared ussd_plus_sms_deduplicated staged corpus (dedup_run_id: shield-train-campaign-b-multi-table-dedup-20260906-20260906T144804Z). B2 uses independently-staged ussd_plus_sms_raw (raw_run_id: shield-train-campaign-b-multi-table-raw-20260906-20260906T144838Z). SMS emit = sms_title only per Ruling #5.",
+  "runs": [
+    {
+      "run_id": "shield-train-campaign-b-B-REF-3B-20260906T144908Z",
+      "run_name": "B-REF-3B",
+      "trainer_args": {
+        "--base-model": "Qwen/Qwen2.5-3B",
+        "--campaign-id": "campaign-b-method-ablations-20260906",
+        "--corpus": "/home/ubuntu/akki_journal/shield-train-campaign-b-multi-table-dedup-20260906-20260906T144804Z/train_corpus.jsonl",
+        "--ctx-len": "1024",
+        "--grad-accum": "16",
+        "--held-out": "/home/ubuntu/akki_journal/shield-train-campaign-b-multi-table-dedup-20260906-20260906T144804Z/held_out_corpus.jsonl",
+        "--lora-rank": "16",
+        "--lr": "0.0002",
+        "--num-epochs": "3",
+        "--per-device-batch": "2",
+        "--run-dir": "/home/ubuntu/akki_journal/shield-train-campaign-b-B-REF-3B-20260906T144908Z",
+        "--run-id": "shield-train-campaign-b-B-REF-3B-20260906T144908Z",
+        "--run-name": "B-REF-3B",
+        "--seed": "1"
+      },
+      "wait_for_run_id": "shield-train-campaign-b-method-ablations-20260906-20260906T141344Z"
+    },
+    {
+      "run_id": "shield-train-campaign-b-B2-DEDUP-OFF-20260906T144909Z",
+      "run_name": "B2-DEDUP-OFF",
+      "trainer_args": {
+        "--base-model": "Qwen/Qwen2.5-3B",
+        "--campaign-id": "campaign-b-method-ablations-20260906",
+        "--corpus": "/home/ubuntu/akki_journal/shield-train-campaign-b-multi-table-raw-20260906-20260906T144838Z/train_corpus.jsonl",
+        "--ctx-len": "1024",
+        "--grad-accum": "16",
+        "--held-out": "/home/ubuntu/akki_journal/shield-train-campaign-b-multi-table-raw-20260906-20260906T144838Z/held_out_corpus.jsonl",
+        "--lora-rank": "16",
+        "--lr": "0.0002",
+        "--num-epochs": "3",
+        "--per-device-batch": "2",
+        "--run-dir": "/home/ubuntu/akki_journal/shield-train-campaign-b-B2-DEDUP-OFF-20260906T144909Z",
+        "--run-id": "shield-train-campaign-b-B2-DEDUP-OFF-20260906T144909Z",
+        "--run-name": "B2-DEDUP-OFF",
+        "--seed": "1"
+      }
+    },
+    {
+      "run_id": "shield-train-campaign-b-B3-RANK-8-20260906T144910Z",
+      "run_name": "B3-RANK-8",
+      "trainer_args": {
+        "--base-model": "Qwen/Qwen2.5-3B",
+        "--campaign-id": "campaign-b-method-ablations-20260906",
+        "--corpus": "/home/ubuntu/akki_journal/shield-train-campaign-b-multi-table-dedup-20260906-20260906T144804Z/train_corpus.jsonl",
+        "--ctx-len": "1024",
+        "--grad-accum": "16",
+        "--held-out": "/home/ubuntu/akki_journal/shield-train-campaign-b-multi-table-dedup-20260906-20260906T144804Z/held_out_corpus.jsonl",
+        "--lora-rank": "8",
+        "--lr": "0.0002",
+        "--num-epochs": "3",
+        "--per-device-batch": "2",
+        "--run-dir": "/home/ubuntu/akki_journal/shield-train-campaign-b-B3-RANK-8-20260906T144910Z",
+        "--run-id": "shield-train-campaign-b-B3-RANK-8-20260906T144910Z",
+        "--run-name": "B3-RANK-8",
+        "--seed": "1"
+      }
+    },
+    {
+      "run_id": "shield-train-campaign-b-B4-RANK-32-20260906T144911Z",
+      "run_name": "B4-RANK-32",
+      "trainer_args": {
+        "--base-model": "Qwen/Qwen2.5-3B",
+        "--campaign-id": "campaign-b-method-ablations-20260906",
+        "--corpus": "/home/ubuntu/akki_journal/shield-train-campaign-b-multi-table-dedup-20260906-20260906T144804Z/train_corpus.jsonl",
+        "--ctx-len": "1024",
+        "--grad-accum": "16",
+        "--held-out": "/home/ubuntu/akki_journal/shield-train-campaign-b-multi-table-dedup-20260906-20260906T144804Z/held_out_corpus.jsonl",
+        "--lora-rank": "32",
+        "--lr": "0.0002",
+        "--num-epochs": "3",
+        "--per-device-batch": "2",
+        "--run-dir": "/home/ubuntu/akki_journal/shield-train-campaign-b-B4-RANK-32-20260906T144911Z",
+        "--run-id": "shield-train-campaign-b-B4-RANK-32-20260906T144911Z",
+        "--run-name": "B4-RANK-32",
+        "--seed": "1"
+      }
+    },
+    {
+      "run_id": "shield-train-campaign-b-B5-CTX-512-20260906T144912Z",
+      "run_name": "B5-CTX-512",
+      "trainer_args": {
+        "--base-model": "Qwen/Qwen2.5-3B",
+        "--campaign-id": "campaign-b-method-ablations-20260906",
+        "--corpus": "/home/ubuntu/akki_journal/shield-train-campaign-b-multi-table-dedup-20260906-20260906T144804Z/train_corpus.jsonl",
+        "--ctx-len": "512",
+        "--grad-accum": "8",
+        "--held-out": "/home/ubuntu/akki_journal/shield-train-campaign-b-multi-table-dedup-20260906-20260906T144804Z/held_out_corpus.jsonl",
+        "--lora-rank": "16",
+        "--lr": "0.0002",
+        "--num-epochs": "3",
+        "--per-device-batch": "4",
+        "--run-dir": "/home/ubuntu/akki_journal/shield-train-campaign-b-B5-CTX-512-20260906T144912Z",
+        "--run-id": "shield-train-campaign-b-B5-CTX-512-20260906T144912Z",
+        "--run-name": "B5-CTX-512",
+        "--seed": "1"
+      }
+    },
+    {
+      "run_id": "shield-train-campaign-b-B6-CTX-2048-20260906T144913Z",
+      "run_name": "B6-CTX-2048",
+      "trainer_args": {
+        "--base-model": "Qwen/Qwen2.5-3B",
+        "--campaign-id": "campaign-b-method-ablations-20260906",
+        "--corpus": "/home/ubuntu/akki_journal/shield-train-campaign-b-multi-table-dedup-20260906-20260906T144804Z/train_corpus.jsonl",
+        "--ctx-len": "2048",
+        "--grad-accum": "32",
+        "--held-out": "/home/ubuntu/akki_journal/shield-train-campaign-b-multi-table-dedup-20260906-20260906T144804Z/held_out_corpus.jsonl",
+        "--lora-rank": "16",
+        "--lr": "0.0002",
+        "--num-epochs": "3",
+        "--per-device-batch": "1",
+        "--run-dir": "/home/ubuntu/akki_journal/shield-train-campaign-b-B6-CTX-2048-20260906T144913Z",
+        "--run-id": "shield-train-campaign-b-B6-CTX-2048-20260906T144913Z",
+        "--run-name": "B6-CTX-2048",
+        "--seed": "1"
+      }
+    }
+  ],
+  "waits_behind_run_id": "shield-train-campaign-b-method-ablations-20260906-20260906T141344Z"
+}

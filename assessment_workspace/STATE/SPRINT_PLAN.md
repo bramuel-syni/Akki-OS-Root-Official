@@ -1,13 +1,73 @@
 # SPRINT PLAN · post-tonight-GPU-activity
 
-**Author:** main agent · 2026-08-31
-**Authority:** synthesized under owner rulings 3–5 (2026-08-31 tonight thread, banked in DECISIONS.md)
+**Author:** main agent · 2026-08-31 · last-updated 2026-09-06T~14:35Z (post-W-Multi-Table-Extract close)
+**Authority:** synthesized under owner rulings 3–5 (2026-08-31 tonight thread, banked in DECISIONS.md) + W-Shield-Train-run + W-Multi-Table-Extract wave-honest-limits chartered as follow-ons (2026-09-06).
 **Discipline:** tests-first, thin-kernel, no-bypass, double-green ratchet, no push. Every line item below is chartered work — the owner ratifies scope and sequencing before commits land.
-**Current ratchet floor:** 2680 (per `backend/tests/invariants/baseline_failures.json · counts_at_baseline.passed`). Local uncommitted work: keypair-hardening tests (11 tests) + Wave-G5c-COMPUTE-FRONTEND (declared).
+**Current ratchet floor:** 2954 (per `backend/tests/invariants/baseline_failures.json · counts_at_baseline.passed`). W-Shield-Train-run closed 2024→2924; W-Multi-Table-Extract closed 2924→2954.
 
 ---
 
-## Executive framing — what's on the table
+## Chartered follow-on waves (post-2026-09-06 launch cycle)
+
+These follow-ons are derived from wave-honest-limits banked during the W-Shield-Train-run and W-Multi-Table-Extract closes (2026-09-06). Each has charter source, prerequisites, and owner-facing outcome. Owner picks sequencing.
+
+### P1 · Blocks meaningful Tier-2 report acceptance
+
+**W-TaskEval-v1** — task-shaped held-out eval.
+- Charter source: W-Shield-Train-run wave-honest-limit F.1 (loss/perplexity only this wave).
+- Scope: accuracy on option-picking task; distributional-shift metrics; per-value-chain slicing; paired eval vs Campaign-A rung-matched baseline_record.
+- Prerequisites: Campaigns A + B have settled (both have adapter.tar.gz + held_out_eval.json banked).
+- Outcome: WPW Tier 2 novelty_verdict is measured (better/worse/no-signal) against paired baseline on TASK, not just loss deltas. Objective 1 upgrades from loss-only to loss+task-shape.
+- Estimate: M (~600 LOC + tests).
+
+### P2 · Recovers mid-epoch resume fidelity
+
+**W-Gradient-Step-Checkpoint** — mid-epoch resume via `save_strategy='steps'`.
+- Charter source: W-Shield-Train-run wave-honest-limit F.5 (per-epoch checkpoints only).
+- Scope: trainer callback + on_host_trainer.py extension for step-level checkpoint markers every N gradient steps; update watchdog restart to resume from step-level.
+- Prerequisites: none (independent).
+- Outcome: watchdog restart preserves ~99% of training progress vs current up-to-1-epoch loss.
+- Estimate: S-M (~400 LOC + tests).
+
+### P3 · Enables >1M-row corpora
+
+**W-Row-Stream-Extractor** — bounded-memory row extraction.
+- Charter source: W-Shield-Train-run wave-honest-limit F.6 + W-Multi-Table-Extract wave-honest-limit F.3 (in-memory batch fetch).
+- Scope: streaming row_executor yielding batches; corpus builder writes JSONL incrementally; sha256 computed streaming.
+- Prerequisites: none.
+- Outcome: full-table extraction (>1M rows) feasible; unlocks larger corpora + future waves emitting multiple high-volume tables.
+- Estimate: M (~600 LOC).
+
+### P4 · Adapter registry
+
+**W-Adapter-Tensor-Persist** — .pt tensor persistence + adapter registry.
+- Charter source: W-Shield-Train-run wave-honest-limit F.7 (HF `save_pretrained` output only).
+- Scope: save raw `.pt` LoRA state dicts alongside HF adapter format; author adapter registry (adapter_id → base_model_id + hyperparams + corpus_sha256 + training_receipts + held_out_eval + adapter.sha256); index at `phase0/adapter_registry/index.json`.
+- Prerequisites: W-TaskEval-v1 (registry entries should carry task-shaped eval metrics not just loss).
+- Outcome: adapters become referenceable artifacts with full provenance; ties to Objective 3 (WPW A1-A6).
+- Estimate: M (~600 LOC).
+
+### P5 · Queue-level resilience
+
+**W-Queue-Watchdog** — dispatcher-level restart + queue-state symlink atomicity.
+- Charter source: W-Multi-Table-Extract wave-honest-limit F.1 (dispatcher is fire-once-per-campaign).
+- Scope: on-host systemd-style watchdog for the dispatcher process; symlink-atomic queue-state advance; heartbeat monitored by lightweight sidecar (`on_host_dispatcher_watchdog.sh`).
+- Prerequisites: none (independent).
+- Outcome: host reboots / OOM kills don't stall a 3-day campaign; dispatcher auto-recovers from last queue-index checkpoint.
+- Estimate: S (~300 LOC).
+
+### P6 · Multi-emitter-column consistency
+
+**W-Cross-Table-Consistency-Check** — for waves emitting multiple identifier-shaped columns.
+- Charter source: W-Multi-Table-Extract wave-honest-limit F.2 (cross-table PII correlation not checked when both columns excluded).
+- Scope: static + runtime check that no combination of emitted columns across tables can reconstruct an identifier.
+- Prerequisites: any wave emitting >1 identifier-shaped column from >1 table (preventive charter).
+- Outcome: refuses-unclassified-by-construction extends per-emitted-set, closing a theoretical cross-table leak channel.
+- Estimate: S (~250 LOC).
+
+---
+
+## Executive framing — what's on the table (updated 2026-09-06)
 
 Four independent tracks compete for wave slots. Each is chartered with scope, prerequisite, tests-first shape, receipts, and honest estimate. Owner picks sequencing; agent does not sequence.
 

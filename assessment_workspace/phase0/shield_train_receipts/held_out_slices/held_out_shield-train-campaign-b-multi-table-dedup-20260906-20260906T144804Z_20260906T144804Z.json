@@ -1,0 +1,14 @@
+{
+  "at_utc": "2026-09-06T14:48:04.262657Z",
+  "banked_before_first_run_starts": true,
+  "held_out_row_count": 21,
+  "held_out_sha256": "c4398738bd45fd0556c96c950eb3b5e79d721ce69c1e59d020e7181949b330ec",
+  "kind": "held_out_slice_hash_receipt",
+  "run_id": "shield-train-campaign-b-multi-table-dedup-20260906-20260906T144804Z",
+  "seed": 31337,
+  "split_method": "deterministic_20pct_tail",
+  "table_context": "ussd_question_response,sms_log",
+  "total_row_count": 108,
+  "train_row_count": 87,
+  "train_sha256": "1caadddc755f5a020958df6aefd1063e121096165f675c71d9879ac39109061d"
+}
