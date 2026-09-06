@@ -84,7 +84,19 @@ MATMUL_SIZE = int(os.environ.get("BURN_MATMUL_SIZE", "8192"))
 DTYPE = os.environ.get("BURN_DTYPE", "float16")
 HOSTS = ["akki-vm", "akki-vm-ii"]
 
-RUN_ID = f"burn_{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')}_{uuid.uuid4().hex[:8]}"
+# W-Orchestrator-Resilience-r2-wire: if AKKI_ADOPT_RUN_ID is set, this
+# orchestrator adopts the specified in-flight run instead of starting a
+# fresh one. The RUN_ID and BURN_ROOT are pinned to the orphan; the
+# per-host launch phases (torch probe / stage burn.py / launch burn)
+# are SKIPPED because the on-host burn is already running from the prior
+# orchestrator (detached process group). Zero-influence: adoption never
+# terminates or mutates the on-host job — it only resumes polling.
+_ADOPT_RUN_ID: Optional[str] = os.environ.get("AKKI_ADOPT_RUN_ID") or None
+
+if _ADOPT_RUN_ID:
+    RUN_ID = _ADOPT_RUN_ID
+else:
+    RUN_ID = f"burn_{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')}_{uuid.uuid4().hex[:8]}"
 
 # Workspace paths.
 BURN_ROOT = Path("/app/assessment_workspace/phase0/gpu_burn") / RUN_ID
@@ -499,12 +511,17 @@ def burn_one_host(host_slug: str) -> HostResult:
             hr.error = hr.error or "torch not usable"
             return hr
 
-        # 3) Stage burn.py
-        _stage_burn_script(host_slug, hr, remote_dir)
+        # 3) Stage burn.py — SKIPPED when adopting (on-host script already
+        #    staged by the prior orchestrator).
+        if not _ADOPT_RUN_ID:
+            _stage_burn_script(host_slug, hr, remote_dir)
 
-        # 4) Launch burn
-        _launch_burn(host_slug, hr, remote_dir, BURN_DURATION_SECONDS,
-                     MATMUL_SIZE, DTYPE)
+        # 4) Launch burn — SKIPPED when adopting (on-host burn already
+        #    running from prior orchestrator; re-launching would either
+        #    fail (dir exists) or spawn a second burn (bad)).
+        if not _ADOPT_RUN_ID:
+            _launch_burn(host_slug, hr, remote_dir, BURN_DURATION_SECONDS,
+                         MATMUL_SIZE, DTYPE)
 
         # 5) Poll during burn.
         # W-Orchestrator-Resilience-r1-wire: emit a heartbeat every poll cycle
@@ -847,31 +864,101 @@ def main() -> int:
     # W-Orchestrator-Resilience-r1-wire: reconcile-on-start. Surface any
     # orphaned in-flight runs (an on-host burn from a prior orchestrator
     # that died silently — motivating incident: the 2026-08-31T22:02Z
-    # pod-side orchestrator death). INFORMATIONAL only in this wave; the
-    # orchestrator does NOT auto-adopt orphans (that's the r2 follow-on).
-    # Owner sees the report on stdout and decides. Zero-influence: broken
-    # primitives / missing package MUST NOT halt orchestrator start.
+    # pod-side orchestrator death).
+    #
+    # W-Orchestrator-Resilience-r2-wire extension: upgraded from
+    # `find_orphaned_runs` to `select_adoptable_orphans` so operators see
+    # adoptability + reason per orphan. When `AKKI_ADOPT_RUN_ID` is set,
+    # the orchestrator additionally banks an `adoption_*.json` ledger
+    # entry via `adopt.mark_adopted` — proving on disk which orchestrator
+    # took over which run. r2 stays INFORMATIONAL for non-adopt paths;
+    # auto-adopt-without-env-var is NOT enabled (that's r3 scope).
+    # Zero-influence: broken primitives / missing package MUST NOT halt
+    # orchestrator start.
     try:
-        from services.orchestrator_resilience import orphan_detector as _wo_od
-        _orphans = _wo_od.find_orphaned_runs(max_staleness_s=600)
-        if _orphans:
+        from services.orchestrator_resilience import watchdog as _wo_wd
+        from services.orchestrator_resilience import adopt as _wo_adopt
+        _r2_orphans = _wo_wd.select_adoptable_orphans(
+            max_staleness_s=600, max_poll_age_s=900
+        )
+        if _r2_orphans:
             print(
-                f"[gpu_burn] RECONCILE: {len(_orphans)} orphaned in-flight "
+                f"[gpu_burn] RECONCILE: {len(_r2_orphans)} orphaned in-flight "
                 f"run(s) detected:",
                 flush=True,
             )
-            for _o in _orphans:
+            for _o in _r2_orphans:
+                _flag = "ADOPTABLE" if _o.get("adoptable") else "NOT_ADOPTABLE"
                 print(
                     f"[gpu_burn]   RECONCILE-ORPHAN: {_o['run_id']} · "
                     f"reason={_o['reason']} · "
-                    f"last_heartbeat={_o.get('last_heartbeat_utc')}",
+                    f"last_heartbeat={_o.get('last_heartbeat_utc')} · "
+                    f"{_flag} ({_o.get('adoptable_reason','')})",
                     flush=True,
                 )
         else:
             print("[gpu_burn] RECONCILE: no orphaned runs detected.", flush=True)
+
+        # If adopting: bank the adoption ledger entry. Adopt-mode does an
+        # explicit PID-check of the target run rather than relying on
+        # `select_adoptable_orphans` (which enumerates via staleness only —
+        # a just-killed orchestrator's heartbeat can still be fresh yet its
+        # PID dead). This design gap was surfaced by the 2026-09-06 runtime
+        # drill (W-Orchestrator-Resilience-r2 acceptance): with default
+        # max_staleness_s=600, a fresh-heartbeat-but-dead-PID target never
+        # appeared in the adoptable set → mark_adopted was never called.
+        # r2 fix (frozen by invariant
+        # test_orch_adopt_mode_uses_pid_check_not_just_staleness): if the
+        # target isn't in the enumeration, fall back to is_orchestrator_dead
+        # (PID-aware) and, if dead, construct the orphan dict from the
+        # target's run_dir and bank the ledger entry.
+        if _ADOPT_RUN_ID:
+            _adopted = None
+            for _o in _r2_orphans:
+                if _o.get("run_id") == _ADOPT_RUN_ID:
+                    _adopted = _wo_adopt.mark_adopted(_o, adopting_pid=os.getpid())
+                    break
+            if _adopted is None:
+                # Not in enumeration — PID-check directly.
+                _dead, _reason = _wo_wd.is_orchestrator_dead(
+                    _ADOPT_RUN_ID, max_staleness_s=600
+                )
+                if _dead:
+                    _hb_rec = None
+                    try:
+                        from services.orchestrator_resilience import heartbeat as _wo_hb2
+                        _hb_rec = _wo_hb2.read_heartbeat(_ADOPT_RUN_ID)
+                    except Exception:
+                        pass
+                    _orphan_shape = {
+                        "run_id": _ADOPT_RUN_ID,
+                        "run_dir": str(BURN_ROOT),
+                        "reason": _reason,
+                        "last_heartbeat_utc": (
+                            _hb_rec.get("at_utc") if _hb_rec else None
+                        ),
+                    }
+                    _adopted = _wo_adopt.mark_adopted(
+                        _orphan_shape, adopting_pid=os.getpid()
+                    )
+            if _adopted:
+                print(
+                    f"[gpu_burn] RECONCILE-ADOPT: run_id={_ADOPT_RUN_ID} "
+                    f"adopted (adopting_pid={os.getpid()}, "
+                    f"adopted_at_utc={_adopted.get('adopted_at_utc')})",
+                    flush=True,
+                )
+            else:
+                print(
+                    f"[gpu_burn] RECONCILE-ADOPT: run_id={_ADOPT_RUN_ID} "
+                    f"could not be confirmed dead (heartbeat fresh + PID "
+                    f"alive?). Proceeding with adopt-mode polling anyway; "
+                    f"no adoption ledger entry banked",
+                    flush=True,
+                )
     except Exception as _e:
         print(
-            f"[gpu_burn] RECONCILE: orphan_detector unavailable ({_e!r})",
+            f"[gpu_burn] RECONCILE: resilience layer unavailable ({_e!r})",
             flush=True,
         )
 
