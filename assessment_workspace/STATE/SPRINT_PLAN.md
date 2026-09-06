@@ -240,3 +240,21 @@ Ratchet discipline unchanged throughout. No push. Local commits only.
 - **Fallback burn ran tonight:** run_id `burn_20260831T183509Z_731f22ad` — see DECISIONS.md 2026-08-31 tonight entry for verbatim ruling + activity summary.
 - **Audio-vs-text A-vs-C owner ruling still pending** (per owner ruling 5, escalated in parallel by the owner's own hand). If it lands audio: W-Audio-P2-a is the immediate blocker. If it lands text: same shielded-training scope (W-Shield-Train) applies (bypass ruling would authorize a masked-text extract under identifier-strip + PII-column-exclusion discipline).
 
+
+---
+
+## Standing infrastructure notes (banked 2026-09-06 from storage sweep)
+
+**HSS / staging storage candidate — dual 5.86 TiB `/dev/vdb` ext4 volumes on `akki-vm` + `akki-vm-ii`.**
+
+The 2026-09-06 content-level storage sweep (`phase0/storage_survey/20260906T101542Z_content_sweep/REPORT.md`) confirmed that each GPU host carries an **empty 5.86 TiB `/dev/vdb` ext4 volume mounted at `/mnt/volume_dkgjrkx`** (28 KiB used, `lost+found` only; no unmounted attached data volumes). Symmetric between hosts.
+
+**Flag for future waves (do not forget):** these two volumes are candidate landing space for the **W-Audio-P2 transfer target** (§W-Audio-P2-c representative slice · §W-Audio-P2-d HSS ingest). A "few hundred hours" of raw audio at typical bit-rates (~48 kbps mono opus → ~22 MB/h; ~1.4 Mbps wav → ~630 MB/h) fits comfortably on a single 5.86 TiB volume (100 h wav = 63 GiB → 1 % capacity; 1000 h wav = 630 GiB → 10 %). Symmetric provisioning across two hosts gives us either:
+- (a) Primary + hot-mirror (rsync/rclone the slice to both, run smoke tests against local reads on either host), OR
+- (b) Two parallel slices (e.g., train + eval, or two speaker cohorts) landed side-by-side.
+
+Cost side-effect: no additional storage provisioning is needed before W-Audio-P2-c fires — the volumes are already attached, mounted, and empty. Only the ingest tool and manifest-hash-before-first-byte discipline need to land first.
+
+**Governance note:** the 5.86 TiB `/dev/vdb` volume is DigitalOcean-shaped (see `phase0/storage_survey/20260906T100700Z_ebs_survey.md` §4 for provider ID via label naming), NOT AWS EBS. Storage-lifecycle rules for W-Audio-P2 must reference "block volume attached to GPU host" not "EBS volume" to avoid AWS-specific idioms in receipts.
+
+**PINS.md auto-bump (identified 2026-09-06 during wire close).** The `commissioning_record:` field under `<!-- CONNECT-GPU-PINS -->` in `STATE/PINS.md` is auto-emitted by `backend/services/connect/gpu_submit.py` `_update_pins()` on every commissioning acceptance. This is legitimate workflow state (not stray) — the emitter is documented; the field updates on `POST /api/connect/gpu-submit`-driven commissioning. When it appears as a working-tree diff, it should be committed with attribution rather than left uncommitted; an unexplained perpetual diff is a hygiene risk.

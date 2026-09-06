@@ -56,10 +56,12 @@ import concurrent.futures
 import json
 import os
 import sys
+import threading
 import time
 import uuid
 from dataclasses import asdict, dataclass, field
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
+from itertools import count
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
@@ -90,6 +92,35 @@ BURN_ROOT.mkdir(parents=True, exist_ok=True)
 
 RUNS_DIR = Path("/app/assessment_workspace/phase0/training_runner/runs")
 RUNS_DIR.mkdir(parents=True, exist_ok=True)
+
+
+# ============================================================================
+# W-Orchestrator-Resilience-r1-wire — shared heartbeat state
+# ============================================================================
+# Owner directive verbatim (2026-09-06T~10:30Z, banked in DECISIONS.md
+# W-Orchestrator-Resilience-r1-wire entry): "Plumb the three green
+# primitives into tools/gpu_burn_orchestrator.py, tests-first with
+# mechanical RED receipt, double-green from floor 2748."
+#
+# Two host-threads (one per GPU host) share the heartbeat file for the
+# whole RUN_ID. Each thread updates its OWN slot in `_HB_ON_HOST_STATUS`
+# under `_HB_LOCK` and then writes the union view. The cycle counter is
+# a global itertools.count so the heartbeat's `cycle_count` is monotonic
+# across the whole run, not per-host.
+#
+# DONOR-REVIEW note: an earlier uncommitted 52-line diff used a compound
+# `run_id=f"{RUN_ID}__{host_slug}"` and inline `on_host_status={host_slug:
+# "polling"}` dict. Both were rejected in the tests-first pass because
+# they (a) break orphan_detector's RUN_ID lookup and (b) drop peer state
+# on every write. This shared-state design is the correction.
+#
+# Zero-influence discipline is preserved: every consumer of these globals
+# does so inside try/except at the call site (belt-and-braces on top of
+# the primitives' own zero-influence writers).
+
+_HB_LOCK = threading.Lock()
+_HB_ON_HOST_STATUS: Dict[str, str] = {}
+_HB_CYCLE_COUNTER = count(start=1)
 
 
 # ============================================================================
@@ -475,42 +506,60 @@ def burn_one_host(host_slug: str) -> HostResult:
         _launch_burn(host_slug, hr, remote_dir, BURN_DURATION_SECONDS,
                      MATMUL_SIZE, DTYPE)
 
-        # 5) Poll during burn
-        # W-Orchestrator-Resilience-r1: write a heartbeat on each cycle
-        # so a dead orchestrator is diagnosable. Compound key
-        # (RUN_ID__host_slug) sidesteps thread contention between the
-        # two host threads. Zero-influence discipline: heartbeat write
-        # failures MUST NOT break the poll loop.
-        _hb_run_id = f"{RUN_ID}__{host_slug}"
+        # 5) Poll during burn.
+        # W-Orchestrator-Resilience-r1-wire: emit a heartbeat every poll cycle
+        # (so a dead orchestrator is diagnosable) and guard each poll with
+        # resume.should_poll_at_elapsed (so a restarted poller doesn't
+        # double-count a window already receipted on disk). Zero-influence:
+        # every resilience call is wrapped in try/except at the call site;
+        # a broken/missing primitives package MUST NOT break the poll loop.
         try:
             from services.orchestrator_resilience import heartbeat as _wo_hb
-            _hb_available = True
+            from services.orchestrator_resilience import resume as _wo_resume
+            _resilience_available = True
         except Exception:
-            _hb_available = False
+            _resilience_available = False
         end = time.monotonic() + BURN_DURATION_SECONDS + 30
-        _hb_cycle = 0
         while time.monotonic() < end:
             time.sleep(POLL_INTERVAL_SECONDS)
             elapsed_s = int(time.monotonic() - t0)
-            snap = _capture_nvidia_smi(host_slug, hr, f"poll_{elapsed_s}s")
-            hr.nvidia_smi_during_polls.append(snap)
-            tail = _tail_burn_log(host_slug, hr, remote_dir)
-            _hb_cycle += 1
-            if _hb_available:
+            # Idempotency guard: skip windows already receipted on disk (e.g.
+            # after an orchestrator restart mid-run).
+            _do_poll = True
+            if _resilience_available:
                 try:
-                    from datetime import datetime as _dt, timezone as _tz, timedelta as _td
-                    _next_iso = ((_dt.now(_tz.utc)
-                                  + _td(seconds=POLL_INTERVAL_SECONDS))
-                                 .isoformat().replace("+00:00", "Z"))
+                    _do_poll = _wo_resume.should_poll_at_elapsed(
+                        RUN_ID, host_slug, elapsed_s
+                    )
+                except Exception:
+                    _do_poll = True  # zero-influence: never let the guard block us
+            if _do_poll:
+                snap = _capture_nvidia_smi(host_slug, hr, f"poll_{elapsed_s}s")
+                hr.nvidia_smi_during_polls.append(snap)
+                tail = _tail_burn_log(host_slug, hr, remote_dir)
+            # Heartbeat: update this host's slot in the shared status dict,
+            # snapshot under lock, then bank the union view keyed on plain RUN_ID.
+            if _resilience_available:
+                try:
+                    with _HB_LOCK:
+                        _HB_ON_HOST_STATUS[host_slug] = "polling"
+                        _cycle = next(_HB_CYCLE_COUNTER)
+                        _status_snapshot = dict(_HB_ON_HOST_STATUS)
+                    _next_iso = (
+                        (datetime.now(timezone.utc)
+                         + timedelta(seconds=POLL_INTERVAL_SECONDS))
+                        .isoformat()
+                        .replace("+00:00", "Z")
+                    )
                     _wo_hb.write_heartbeat(
-                        run_id=_hb_run_id,
+                        run_id=RUN_ID,
                         orchestrator_pid=os.getpid(),
-                        cycle_count=_hb_cycle,
-                        on_host_status={host_slug: "polling"},
+                        cycle_count=_cycle,
+                        on_host_status=_status_snapshot,
                         next_poll_planned_utc=_next_iso,
                     )
                 except Exception:
-                    pass  # zero-influence
+                    pass  # zero-influence: broken primitive MUST NOT stop the burn
             # If script exited early, break out.
             if not _burn_still_running(host_slug, hr, remote_dir):
                 # Give final flush a moment.
@@ -795,26 +844,36 @@ def main() -> int:
     print(f"[gpu_burn] duration={BURN_DURATION_SECONDS}s size={MATMUL_SIZE} dtype={DTYPE}", flush=True)
     print(f"[gpu_burn] poll_interval={POLL_INTERVAL_SECONDS}s hosts={HOSTS}", flush=True)
 
-    # W-Orchestrator-Resilience-r1: reconcile-on-start. Report any
+    # W-Orchestrator-Resilience-r1-wire: reconcile-on-start. Surface any
     # orphaned in-flight runs (an on-host burn from a prior orchestrator
-    # that died silently — the case tonight's 22:02Z failure surfaced).
-    # This is INFORMATIONAL only in this wave; the orchestrator does
-    # not auto-adopt orphans yet (that's the r2 follow-on). Owner sees
-    # the report on stdout and decides.
+    # that died silently — motivating incident: the 2026-08-31T22:02Z
+    # pod-side orchestrator death). INFORMATIONAL only in this wave; the
+    # orchestrator does NOT auto-adopt orphans (that's the r2 follow-on).
+    # Owner sees the report on stdout and decides. Zero-influence: broken
+    # primitives / missing package MUST NOT halt orchestrator start.
     try:
         from services.orchestrator_resilience import orphan_detector as _wo_od
         _orphans = _wo_od.find_orphaned_runs(max_staleness_s=600)
         if _orphans:
-            print(f"[gpu_burn] RECONCILE: {len(_orphans)} orphaned in-flight "
-                  f"run(s) detected:", flush=True)
-            for o in _orphans:
-                print(f"[gpu_burn]   · {o['run_id']} · {o['reason']} · "
-                      f"last_heartbeat={o.get('last_heartbeat_utc')}", flush=True)
+            print(
+                f"[gpu_burn] RECONCILE: {len(_orphans)} orphaned in-flight "
+                f"run(s) detected:",
+                flush=True,
+            )
+            for _o in _orphans:
+                print(
+                    f"[gpu_burn]   RECONCILE-ORPHAN: {_o['run_id']} · "
+                    f"reason={_o['reason']} · "
+                    f"last_heartbeat={_o.get('last_heartbeat_utc')}",
+                    flush=True,
+                )
         else:
             print("[gpu_burn] RECONCILE: no orphaned runs detected.", flush=True)
     except Exception as _e:
-        print(f"[gpu_burn] RECONCILE: orphan_detector unavailable ({_e!r})",
-              flush=True)
+        print(
+            f"[gpu_burn] RECONCILE: orphan_detector unavailable ({_e!r})",
+            flush=True,
+        )
 
     with concurrent.futures.ThreadPoolExecutor(max_workers=len(HOSTS)) as ex:
         futs = {ex.submit(burn_one_host, h): h for h in HOSTS}

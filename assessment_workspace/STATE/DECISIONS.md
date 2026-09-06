@@ -5679,3 +5679,98 @@ The test file `backend/tests/invariants/test_orchestrator_resilience.py` was aut
 - Master workspace `master` → this DECISIONS entry + Run 2 receipt + STATE mirror + storage-sweep report (bundled with the preceding entry).
 
 **Next active track:** back to the sequencing owner asked for — **W-TxtTrain-v2** (improved LoRA text training with deeper corpus, sms_log secondary, uniqueness dedup) is the next unblocked charter, but requires the owner's *"go/no-go"* per the WPW-v1-d ruling (owner directive #4 was chartered-only; a longer training run needs an explicit fire signal). If owner defers, W-Orchestrator-Resilience-r1-wire is the next unambiguously-in-scope task. **W-Audio-P2 remains blocked** on the audio-location grant (still needed after this content sweep re-confirmed audio is not on the two GPU hosts). **W-Shield-Train remains blocked** on masking-tier admission ruling.
+
+
+---
+
+### W-Orchestrator-Resilience-r1-wire · Primitives plumbed into `tools/gpu_burn_orchestrator.py` · CLOSED · 2026-09-06T~10:48Z · ratchet 2748 → 2762 (+14)
+
+**Authority:** owner ruling 2026-09-06T~10:30Z (verbatim, banked in the owner-message capture that preceded this wave):
+
+> "Next active track: W-Orchestrator-Resilience-r1-wire. Plumb the three green primitives into tools/gpu_burn_orchestrator.py, tests-first with mechanical RED receipt, double-green from floor 2748. Regarding the pre-existing uncommitted 52-line diff: treat it as UNTRUSTED donor material — review it, keep what survives your tests-first process, rewrite what doesn't, and note its provenance (pre-existing working-tree diff of unknown session origin) in DECISIONS.md when you commit the wire close. Also resolve the STATE/PINS.md auto-bump question while you're there: identify which process auto-emits it and either commit it with clear attribution or bank why it stays uncommitted — an unexplained perpetual working-tree diff is a hygiene risk."
+
+The owner also directed two out-of-line report notes to bank alongside this close, both actioned below (§Report notes).
+
+**Discipline — STRICT tests-first, unbroken across three consecutive closes (WPW-v1-d · Orch-Resilience-r1 · this wire close):**
+
+Invariant file `backend/tests/invariants/test_orchestrator_resilience_wire.py` (14 tests, AST-inspection of the tool source) was authored FIRST. Before ANY change to `tools/gpu_burn_orchestrator.py` landed (working-tree reset with `git checkout` beforehand — see §Donor-review below), a mechanical RED pytest run captured the right-reason failure signal: **12 tests fail with distinct AssertionError messages naming the specific missing seam** (e.g., "burn_one_host does not call write_heartbeat(...)", "find_orphaned_runs is not called BEFORE ThreadPoolExecutor", "No module-level shared heartbeat-status dict defined"). The 2 tests that pass at RED time (`test_orch_source_file_exists_and_parses`, `test_orch_no_top_level_resilience_import`) are correct structural pre-checks that always hold — file exists, no top-level import was ever added — so their passing is right-reason too (they encode "the tool must remain parseable and lazy-import-only," which the un-wired baseline honours). Drill receipt: `phase0/drill_receipts/20260906T104126Z_wave_orch_resilience_wire_RED_pre_impl.log`. Only after banking the RED did the wire code land in `tools/gpu_burn_orchestrator.py`.
+
+**What landed (thin wire · one file · 111 insertions):**
+
+Module-level (top of file):
+- Added `import threading`, `from itertools import count`, `timedelta` (already imported `datetime`, `timezone`).
+- Added module-level shared state block after the config section:
+  - `_HB_LOCK = threading.Lock()`
+  - `_HB_ON_HOST_STATUS: Dict[str, str] = {}` — per-host status coordinated by both threads
+  - `_HB_CYCLE_COUNTER = count(start=1)` — atomic monotonic cycle counter shared across threads (each `next()` call is atomic; guarantees monotonicity without further locking on the counter itself)
+
+`burn_one_host(host_slug)` poll loop (replaced the prior 10-line block):
+- Lazy import of `services.orchestrator_resilience.{heartbeat, resume}` wrapped in try/except (`_resilience_available` flag on success).
+- Idempotency guard: `_wo_resume.should_poll_at_elapsed(RUN_ID, host_slug, elapsed_s)` before capturing `nvidia_smi` — a restarted poller skips windows already receipted on disk (charter: "resumable polling").
+- Heartbeat write on each cycle: acquire `_HB_LOCK`, update `_HB_ON_HOST_STATUS[host_slug] = "polling"`, snapshot the dict (`_status_snapshot = dict(_HB_ON_HOST_STATUS)`), pull the next cycle number (`_cycle = next(_HB_CYCLE_COUNTER)`), release the lock. Then compute `_next_iso` (ISO-8601 UTC of the next planned poll) and call `_wo_hb.write_heartbeat(run_id=RUN_ID, orchestrator_pid=os.getpid(), cycle_count=_cycle, on_host_status=_status_snapshot, next_poll_planned_utc=_next_iso)`.
+- Whole heartbeat block wrapped in try/except (`pass` on any failure — zero-influence).
+
+`main()` reconcile-on-start (added right after the four config-print lines, before the `ThreadPoolExecutor`):
+- Lazy import `orphan_detector` in try/except.
+- Call `_wo_od.find_orphaned_runs(max_staleness_s=600)`.
+- If orphans: print `[gpu_burn] RECONCILE: N orphaned in-flight run(s) detected:` followed by one line per orphan (`  RECONCILE-ORPHAN: <run_id> · reason=<reason> · last_heartbeat=<utc>`).
+- Else: print `[gpu_burn] RECONCILE: no orphaned runs detected.`
+- If import fails: print `[gpu_burn] RECONCILE: orphan_detector unavailable (<err>)`. Never halts.
+- Charter observance: this is **informational only** in this wave; no auto-adoption of orphans, no termination signals, no state mutation on the orphaned runs. Owner reads the report on stdout and decides. The auto-adopt path is chartered separately as `W-Orchestrator-Resilience-r2` (future wave).
+
+**Test set (14 invariants, AST-based on the tool source):**
+- **Baseline (2):** source exists and parses as Module; no top-level import of `services.orchestrator_resilience` (imports must be lazy at call sites — zero-influence).
+- **`burn_one_host` wire (7):** lazy imports heartbeat + resume in the function body; calls `write_heartbeat(...)` inside the poll `while`; `run_id=` kwarg is the plain `RUN_ID` Name (not compound f-string — see DONOR-REVIEW); all five `write_heartbeat` kwargs present; `on_host_status=` kwarg is a shared Name not an inline Dict (see DONOR-REVIEW); every `write_heartbeat` call wrapped in try/except with no `sys.exit`/`.exit(...)` in the handler; `resume.should_poll_at_elapsed(...)` called inside the poll `while` before nvidia_smi capture.
+- **Module-level shared state (2):** module defines a name matching `/_?HB.*STATUS|on_host_status/` at top level; module defines a `Lock()` call at module scope.
+- **`main()` reconcile (3):** `find_orphaned_runs(...)` called before `ThreadPoolExecutor(...)` (line-number precedence); reconcile block inside try/except; reconcile block emits a `print(...)` whose f-string contains the literal `RECONCILE`.
+
+Test approach note (honest limit banked): AST-inspection freezes the wiring at the SOURCE level, not at RUNTIME. We do NOT execute the orchestrator inside pytest (needs live SSH + GPUs + 20+ min wall-clock). Wire-in-flight validation (a real heartbeat file appearing on disk during a real burn) is deferred to the next actual burn run (e.g., a W-TxtTrain-v2 kick-off run, or a future w-orch-r2 test-burn). The source-level invariants are the right shape for a green-before-plumbed close.
+
+**DONOR-REVIEW (owner directive verbatim, actioned in full):**
+
+*Provenance of donor material:* a 52-line uncommitted diff on `/app/assessment_workspace/tools/gpu_burn_orchestrator.py` surfaced at the start of the wire close as pre-existing working-tree modification. **Session origin: UNKNOWN** — the diff was not authored in the current or the immediately-prior committed session; it appears to be residue from an earlier compacted or interrupted attempt at wiring the same primitives. It was reset (`git checkout tools/gpu_burn_orchestrator.py`) before RED was banked, then reviewed against the tests-first output. See the diff dump preserved at `/tmp/donor_diff.patch` (deleted at pod restart; not banked in the repo because we do not retain untrusted material by policy — the review verdict is what's banked).
+
+*Review verdict:*
+
+- **KEPT (survives review):**
+  - Zero-influence discipline pattern: `try: from services.orchestrator_resilience import ...` + `try: ... write_heartbeat(...) ... except Exception: pass` at the call site. Correct discipline; matches the primitives' own zero-influence contract. Kept as the canonical pattern in the wire.
+  - Reconcile-on-start structural pattern: lazy import of `orphan_detector`, call `find_orphaned_runs(max_staleness_s=600)`, print stdout summary, whole block in try/except. Correct.
+  - `informational-only in this wave; auto-adopt is r2 follow-on` — the donor's scoping comment matches the primitives-close DECISIONS entry and this-wave charter. Kept verbatim in the wire's docstring.
+  - Heartbeat call's `orchestrator_pid=os.getpid()`, `cycle_count=<counter>`, `next_poll_planned_utc=<iso_utc>` shapes are API-correct against `heartbeat.py` L48-54. Kept.
+
+- **REJECTED (rewritten during tests-first):**
+  - `_hb_run_id = f"{RUN_ID}__{host_slug}"` (compound key): rejected because it breaks `orphan_detector.find_orphaned_runs`, which iterates `phase0/gpu_burn/<run_dir>/` and calls `_hb.read_heartbeat(run_dir.name)` where `run_dir.name == RUN_ID` (plain, matching `f"burn_..."`). A heartbeat filed under `burn_..._akki-vm.json` is INVISIBLE to orphan_detector's lookup — the orphan detector would classify every run as `no_heartbeat` even when heartbeats are being written. Rewritten to use plain `RUN_ID` as the key. Invariant `test_burn_one_host_write_heartbeat_uses_plain_run_id` freezes this correction.
+  - `on_host_status={host_slug: "polling"}` (inline single-host dict per thread): rejected because it drops peer-host state on every write. Two host-threads racing on the same file each write `{"akki-vm": "polling"}` or `{"akki-vm-ii": "polling"}`; the last-writer wins but its record has NO information about the peer. Rewritten to use module-level `_HB_ON_HOST_STATUS` dict updated per-host under `_HB_LOCK`, snapshotted-under-lock before write, so any heartbeat carries the union view of both hosts. Invariant `test_burn_one_host_on_host_status_is_shared_name_not_inline_dict` freezes this correction.
+
+- **ADDED beyond donor (charter-driven):**
+  - `resume.should_poll_at_elapsed(RUN_ID, host_slug, elapsed_s)` idempotency guard before nvidia_smi capture — the donor did NOT wire resume at all, but the primitives-close charter (owner's own words: "resumable polling — a restarted poller re-attaches to a running on-host job from its sealing/poll receipts rather than losing the window") requires it. Invariant `test_burn_one_host_calls_should_poll_at_elapsed_before_poll` freezes this.
+  - `threading.Lock` module-level (`_HB_LOCK`) and `itertools.count` cycle counter (`_HB_CYCLE_COUNTER`) — without these, the shared-state design would race on the dict + emit non-monotonic `cycle_count`s. Invariants `test_module_defines_shared_on_host_status_dict` + `test_module_defines_threading_lock_for_heartbeat_state` freeze these.
+
+**BACKFILL (surfaced by this-wave's Run 1 as a right-reason RED):**
+
+Run 1 of this wave's double-green initially failed at `test_manifest_passed_floor_ratchet_monotonic_and_matches_baseline` with `history[-1].passed=2732 != counts.passed=2748`. Root cause: the primitives-close commit (Extraction-Akki `3e2efc8`) correctly bumped `counts_at_baseline.passed` and `invariants_enforced_when_baseline_guard_1.passed_floor` from 2732 to 2748 but MISSED the paired `ratchet_history` append. That append was backfilled in this wave's manifest edit with a **BACKFILL:** note in the entry's `note` field explaining the omission and pointing at commit `3e2efc8`. The primitives-close double-green tallies (2748 passed × 2 runs, byte-match) are unchanged and honest — only the historical ledger append was missing. Two entries now appended in this cycle: one for the backfill (2732 → 2748, delta 16) and one for this wave (2748 → 2762, delta 14). `ratchet_history` length: 35 → 37.
+
+**Double-green terminal receipts (byte-match at pass/skip/warning tallies):**
+
+- Run 1: `phase0/drill_receipts/20260906T104615Z_wave_orch_resilience_wire_close_run1.log` · `2762 passed, 1 skipped, 438 warnings in 102.70s` · BASELINE_GUARD receipt `passed=2762 / baseline-failures-remaining=0 / quarantined=0 · status: OK`.
+- Run 2: `phase0/drill_receipts/20260906T104807Z_wave_orch_resilience_wire_close_run2.log` · `2762 passed, 1 skipped, 438 warnings in 102.30s` · BASELINE_GUARD receipt byte-identical modulo timings.
+- Stripped diff: 0 substantive lines. Ratchet floor updated 2748 → **2762** (+14, matching the 14 new tests).
+
+**Report notes actioned (per owner's 2026-09-06T~10:48Z ruling):**
+
+1. *"The 5.86 TiB empty ext4 volume mounted on both hosts is a notable finding — likely provisioned as landing space for the future audio-archive slice (W-Audio-P2's transfer target). Flag it in the sprint plan as candidate HSS/staging storage so it doesn't get forgotten."* — actioned. Standing-infrastructure note appended to `STATE/SPRINT_PLAN.md` this cycle (see §"Standing infrastructure notes (banked 2026-09-06 from storage sweep)"). Notes: symmetric 5.86 TiB attached to both hosts; capacity math for typical audio bit-rates (100 h wav = 63 GiB → 1 % cap; 1000 h wav = 630 GiB → 10 %); usable as primary + hot-mirror OR two parallel slices; already attached + mounted + empty, so no additional storage provisioning needed before W-Audio-P2-c fires; DO-shaped block volume (not AWS EBS) — receipts must use "block volume attached to GPU host" not "EBS volume" to avoid AWS-specific idioms.
+
+2. *"The three-level evidence verdict (no backend on either VM) is going to the owner now with the specific grant options."* — noted; no additional action on this side (owner is issuing the outbound message).
+
+**PINS.md auto-emitter resolution:**
+
+The `commissioning_record:` field under `<!-- CONNECT-GPU-PINS -->` in `STATE/PINS.md` is auto-emitted by **`backend/services/connect/gpu_submit.py` `_update_pins()` (line 60-91)** on every commissioning acceptance (stage `pins_update` in the commissioning pipeline). Emitter chain: `POST /api/connect/gpu-submit` → commissioning pipeline runs → stage 5 `commissioning_record_write` writes `phase0/commissioning_records/commissioning_<host>_<ts>.json` → stage 6 `pins_update` rewrites the PINS.md block with the new `commissioning_record:` path. Documented in the module docstring at L1-6. Verdict: legitimate workflow state, not stray. Committed with this wave's master mirror with clear attribution (this DECISIONS entry + STATE/SPRINT_PLAN.md standing note). Future workflow: when the field appears as a working-tree diff, commit it with attribution rather than leave it uncommitted — an unexplained perpetual diff is a hygiene risk (owner's phrasing).
+
+**Wire-in-flight validation status:** the wiring is SOURCE-LEVEL green (14 invariants freeze the wire shape). It is NOT YET runtime-tested against a live burn — that happens in the next actual burn/train run whose orchestrator is `tools/gpu_burn_orchestrator.py`. When it fires, the first artefact to check is `${ORCHESTRATOR_HEARTBEAT_DIR:-/app/assessment_workspace/phase0/orchestrator_heartbeat}/<RUN_ID>.json` appearing during the burn, with per-poll updates and both host-slugs eventually populating `on_host_status`. If any of that misbehaves at runtime, add a runtime-observation test in a follow-on w-orch-r2 wave (the primitives + wire will already be there to test).
+
+**Commits (local only, never pushed):**
+
+- Extraction-Akki `programme/track-a` → **`32d1180`** — new invariants file + baseline_failures.json ratchet bump 2748 → 2762 + ratchet_history backfill + wire entry.
+- Master workspace `master` → this DECISIONS entry + wired `tools/gpu_burn_orchestrator.py` + RED receipt + Run 1 receipt + Run 2 receipt + `STATE/NEXT.md` prepend + `STATE/SPRINT_PLAN.md` standing-infrastructure note + `STATE/PINS.md` auto-emitted commissioning-record bump (committed with attribution per owner directive).
+
+**Next active track:** back to the sequencing owner asked for — **W-TxtTrain-v2** (improved LoRA text training with deeper corpus, sms_log secondary, uniqueness dedup) is the next unblocked charter, still awaiting the owner's explicit *"go/no-go"* per the WPW-v1-d ruling. **W-Orchestrator-Resilience-r2** (auto-adopt orphans + watchdog respawn) is chartered as the next resilience wave AFTER a runtime observation from a real burn validates the wire. **W-Audio-P2 remains blocked** on the audio-location grant (see storage-sweep verdict in preceding DECISIONS entry). **W-Shield-Train remains blocked** on masking-tier admission. **W-WPW-v1-e (Tier 3)** stays design-only until R1/R2/R3 land.
