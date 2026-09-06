@@ -1,0 +1,338 @@
+{
+  "Security Assurance Set": {
+    "rows": [
+      [
+        "#",
+        "Doc",
+        "Promise",
+        "Standard",
+        "Implementation\nStatus",
+        "Bound / Ruling",
+        "Where It Lives / Notes",
+        "System Features",
+        "User Requirements \u2014 User can..."
+      ],
+      [
+        "#6",
+        "Doc 3",
+        "\u201cThe platform continuously watches everything happening across the estate and the AI it runs\u2026\u201d \u2014 composite, true iff S-1 through S-21 all hold; false if any one fails, regardless of the others.",
+        "\u2014 (composite; see S-1\u2013S-21 for standards)",
+        "By design",
+        "\u2014",
+        "No dedicated surface per source document. Grounded in S-1\u2013S-21, all Doc 3.",
+        "Composite \u2014 see S-1 through S-21.",
+        "Composite claim \u2014 delivered through S-1\u2013S-21; no dedicated delivery-experience text of its own."
+      ],
+      [
+        "S-1",
+        "Doc 3",
+        "The system will observe every actor, input, and action across the estate and the AI it runs, with no path by which any of the three reaches the estate or a model outside that observation.",
+        "NIST SP 800-53 SI-4 (System Monitoring) \u00b7 CSF 2.0 DE.CM-01/09",
+        "Present",
+        "Structural \u2014 held by two independent proofs (static, runtime), not a numeric bound",
+        "A3 \u201cTotality of sight\u201d; A6 truth-condition 1",
+        "\u2022 Macho (the eyes): observes, scores, asserts facts \u2014 no power to act\n\u2022 Totality held by static + runtime proof, independently",
+        "\u2022 User can (security officer) treat \u201cnothing reaches the estate unobserved\u201d as a proven structural fact, not an inventory claim taken on faith"
+      ],
+      [
+        "S-2",
+        "Doc 3",
+        "The system will detect the machine-speed attack, the slow play beneath every threshold, and the authorised attack that never breaks a rule \u2014 each by a distinct, named mechanism.",
+        "CC FAU_SAA.2 (profile-based anomaly detection) \u00b7 NIST SI-4(24) \u00b7 CSF DE.CM-09",
+        "Present",
+        "Unruled \u2014 detection latency per shape not confirmed to a value",
+        "A3, second property; direct link named to Promise #7",
+        "\u2022 Three distinct detection paths, one per attack shape\n\u2022 Intent reconciliation answers the authorised-attack shape, cross-referencing #7",
+        "\u2022 User can (security officer) trust a technically-permitted action is still caught if intent doesn't match what was declared"
+      ],
+      [
+        "S-3",
+        "Doc 3",
+        "The system will route probabilistic suspicion to friction, a narrowed envelope, or the mirage, and will convict only once the actor's own conduct converts suspicion into certainty.",
+        "CC FAU_ARP.1 (calibrated automated response) \u00b7 due-process analogues in automated-decision regimes",
+        "Present",
+        "Ruled mechanism \u2014 mirage entry threshold is baseline-period-deferred (Doc 3 Rulings)",
+        "A5.6; C1 (the mirage)",
+        "\u2022 Friction / narrowed envelope / mirage as the three refinement paths\n\u2022 Mirage's three functions: containment, observation, conviction",
+        "\u2022 User can, if wrongly suspected, expect their own later conduct \u2014 not a score \u2014 to clear or convict them, zero false positives by construction"
+      ],
+      [
+        "S-4",
+        "Doc 3",
+        "The system will act on a four-rung ladder \u2014 annotate, shape, contain, sever \u2014 bounded by a blast budget per window and a friction budget on legitimate work.",
+        "CC FAU_ARP.1 \u00b7 NIST IR-4 (Incident Handling) \u00b7 CSF RS.MA",
+        "Present",
+        "Ruled mechanism, values unruled \u2014 blast-budget share and friction ceiling named, not set",
+        "A5.14",
+        "\u2022 Four-rung action ladder: annotate / shape / contain / sever\n\u2022 Two ceilings: blast budget, friction budget\n\u2022 Over-budget actions queue for human release",
+        "\u2022 User can (security officer) see only the small number of things genuinely requiring a person, each with evidence and defined choices"
+      ],
+      [
+        "S-5",
+        "Doc 3",
+        "The system will make every autonomous act reversible, bounded, and witnessed \u2014 a time-to-live on every action, atomic act-and-attest, peer-countersigned.",
+        "NIST IR-4 \u00b7 CC FPT_RCV (recovery, analogous)",
+        "Present",
+        "Unruled \u2014 action time-to-live named, no value confirmed",
+        "A5.3",
+        "\u2022 TTL on every action\n\u2022 Atomic act-and-attest, peer countersignature\n\u2022 No \u201cdestroy\u201d capability anywhere in the Watch",
+        "\u2022 User can, if wrongly caught, experience a bounded delay that expires on its own \u2014 never unbounded or irreversible harm"
+      ],
+      [
+        "S-6",
+        "Doc 3",
+        "The system will write every verdict, action, attestation, and mark to the one authoritative record before the next gate is crossed, including its own mistakes.",
+        "NIST AU-2, AU-3 \u00b7 CC FAU_GEN.1 \u00b7 ISO/IEC 27001:2022 8.15",
+        "Present",
+        "Structural; timing qualitative \u2014 \u201cbefore the next gate,\u201d no numeric latency confirmed",
+        "A3; A5.5 \u201cone record, two readings\u201d",
+        "\u2022 Verdicts (signed, replayable), actions (citing the firing policy row), attestations, marks\n\u2022 Watch mints its own first-party account and a second-party account of nobody else's",
+        "\u2022 User can (auditor) read the compliance record and the defence record as the same facts under two readings \u2014 they can never disagree"
+      ],
+      [
+        "S-7",
+        "Doc 3",
+        "SPECIFICATION GAP \u2014 no mechanism specified. Doc 3's plain-language promise states the platform \u201clearns from every attack it defeats\u201d; every A5 clause on learning (A5.7, A5.8, A5.12) constrains what may NOT happen. None specifies what does update, on what evidence, at what layer.",
+        "CC FAU_SAA (would require a specified mechanism) \u00b7 ISO 27001 5.27 (learning from incidents) \u00b7 CSF 2.0 improvement functions",
+        "Absent \u2192 gap",
+        "Unruled \u2014 no mechanism exists to bound",
+        "Gap between A1 (plain-language promise) and A5 (constrains learning, never specifies it)",
+        "\u2022 None specified",
+        "\u2022 Not yet answerable \u2014 no mechanism exists for a user-facing guarantee"
+      ],
+      [
+        "S-8",
+        "Doc 3",
+        "The system will exercise every response rail on a standing drill cadence \u2014 full loop, both engines, latencies measured \u2014 and a rail not demonstrated firing is not in force.",
+        "NIST CA-7 (Continuous Monitoring) \u00b7 ISO 27001 8.16 \u00b7 CC ATE (independent testing, analogous)",
+        "Present",
+        "Ruled mechanism, cadence value unruled",
+        "A5.13; A3 \u201cself-proof on a standing cadence\u201d",
+        "\u2022 Full-loop drills, both engines, measured latencies\n\u2022 Results as receipts, assembled without human effort",
+        "\u2022 User can pull standing drill receipts proving each response mechanism actually fires, with nothing assembled by hand"
+      ],
+      [
+        "S-9",
+        "Doc 3",
+        "The system will, on release from the mirage, replay the actor's mirage-period work against the real platform, or tell them plainly it did not land.",
+        "No direct security-standard analogue \u2014 nearest is adverse-action notice in automated-decision regimes (GDPR Art. 22; Kenya DPA 2019 s.35)",
+        "Present",
+        "Ruled mechanism \u2014 reconciliation mode is baseline-period-deferred",
+        "C1, \u201creconciliation duty\u201d",
+        "\u2022 Automatic replay or plain notice on release\n\u2022 Short expiry with automatic release on zero incrimination",
+        "\u2022 User can, if wrongly caught and routed to the mirage, be told plainly whether their work landed \u2014 never left believing a false success"
+      ],
+      [
+        "S-10",
+        "Wave E \u00b7 CA1-N5 (no document home yet \u2014 proposed Doc 3 Part D)",
+        "The system will restore Ledger continuity within 3,600 seconds, under independent countersign, following any continuity-affecting incident.",
+        "NIST CP-10 / IR-4 (Recovery) \u00b7 ISO 27001 5.29/5.30 \u00b7 CSF 2.0 RC.RP",
+        "Absent \u2192 new",
+        "Ruled \u2014 CA1-N5, RTO 3,600s, DEFAULT-class, revisable on incident evidence",
+        "Wave E ruling CA1-N5; not yet written into Doc 3 as a Watch/Ledger promise",
+        "\u2022 3,600-second RTO\n\u2022 Independent countersign on restoration",
+        "\u2022 User can trust any continuity-affecting incident is bounded to a known, ruled recovery window, not an open-ended outage"
+      ],
+      [
+        "S-11",
+        "Wave E \u00b7 CA1-N2 (no document home yet \u2014 proposed Doc 3 Part D)",
+        "The system will issue breach notification within 72 hours of a qualifying incident, to the parties and authorities the incident requires.",
+        "NIST IR-6 \u00b7 ISO 27001 5.26 \u00b7 Kenya Data Protection Act 2019 (breach notification duty) \u00b7 GDPR Art. 33 (international analogue)",
+        "Absent \u2192 new",
+        "Ruled \u2014 CA1-N2, 72-hour duty",
+        "Wave E ruling CA1-N2; not yet written into Doc 3",
+        "\u2022 72-hour notification clock\n\u2022 Tied to the incident classes S-2 / S-4 detect and contain",
+        "\u2022 User can (compliance owner) trust a qualifying breach triggers notification on a ruled clock, not a judgement call made under pressure"
+      ],
+      [
+        "S-12",
+        "Doc 3",
+        "The system will fail closed independent of the Watch \u2014 custody gates fail closed on their own, with or without the Watch above them.",
+        "CC FPT_FLS.1 \u00b7 NIST SC-24 \u00b7 IEC 61508 (safe state)",
+        "Present",
+        "Structural",
+        "A5.9, parenthetical: \u201cCustody gates fail closed on their own, per Document 1, with or without the Watch above them\u201d",
+        "\u2022 Custody-gate fail-closed independent of Watch liveness\n\u2022 Watch silence is itself an alarm, not a fail-open trigger",
+        "\u2022 User can trust a compromised or silent Watch cannot cause a custody gate to fail open \u2014 the two failure modes are structurally independent"
+      ],
+      [
+        "S-13",
+        "Doc 3",
+        "The system will never let detection hold power to act, or response hold judgement to interpret \u2014 Macho asserts facts only; Mkono executes signed policy only; one verdict is the sole interface.",
+        "CC FAU_ARP (separation of detection/response) \u00b7 platform-wide \u201cdetect, never decide\u201d doctrine",
+        "Present",
+        "Structural",
+        "A5.1; C2 (verdict seam)",
+        "\u2022 Macho / Mkono split\n\u2022 Single signed, replayable, externally-versioned verdict interface",
+        "\u2022 User can (auditor) confirm detection quality was never silently tuned defensively \u2014 the detector never knew what action would follow its own verdict"
+      ],
+      [
+        "S-14",
+        "Doc 3",
+        "The system will never unlock its maximum autonomous force from a signal an outsider could fabricate \u2014 only from a closed, six-member registry of unfakeable signals.",
+        "No direct security-standard analogue \u2014 borrows the assertion-boundary discipline of Solva (Doc 4), an internal cross-reference",
+        "Present",
+        "Structural; registry membership is baseline-period-deferred",
+        "A5.2",
+        "\u2022 Closed six-signal registry (canary touch, attestation failure, mark hit, witness-write attempt, floor violation, mirage incrimination)\n\u2022 Certainty computation has no parameter a detector's confidence can enter",
+        "\u2022 User can trust no confidence score, however high, can trigger severance alone \u2014 only an unfakeable structural signal can"
+      ],
+      [
+        "S-15",
+        "Doc 3",
+        "The system will never let loss of behavioural conformance alone convict an actor \u2014 the worst it can do to an innocent actor is return them to baseline verification.",
+        "GDPR Art. 22 \u00b7 Kenya Data Protection Act 2019 s.35 \u2014 legal analogues, not security-conformance standards",
+        "Present",
+        "Structural, constitutional per A5.7 \u2014 not tunable",
+        "A5.7",
+        "\u2022 Conformance grants a trust discount\n\u2022 Non-conformance returns to baseline only, never sole grounds past friction",
+        "\u2022 User can lose their trust discount without ever being convicted by that loss alone \u2014 the asymmetry is fixed, not configurable"
+      ],
+      [
+        "S-16",
+        "Doc 3",
+        "The system will hold a ruled, deterministic floor beneath every adaptive layer, moved only by a delayed, two-signature ceremony that is itself a monitored tripwire.",
+        "NIST AC-3 (mandatory enforcement) \u00b7 CC FDP_ACF \u00b7 Document 0 Attribute 7 (mandatory baseline)",
+        "Present",
+        "Structural \u2014 floor values are the conservative defaults during the baseline period",
+        "A5.8",
+        "\u2022 Deterministic floor beneath adaptive layers\n\u2022 Two-signature, delayed-countdown ceremony to move it\n\u2022 Ceremony itself monitored as a tripwire",
+        "\u2022 User can trust the floor cannot be \u201cboiled\u201d one degree at a time \u2014 only moved in daylight, under two names, on a countdown, with the Watch watching"
+      ],
+      [
+        "S-17",
+        "Doc 3",
+        "The system will never delete \u2014 the Watch can stop anything and erase nothing; destruction remains solely the separately-authorised act specified elsewhere.",
+        "NIST AU-9 (protection of audit information) \u00b7 CC FAU_STG.1",
+        "Present",
+        "Structural",
+        "A3; A5.3 \u201cdestroy does not exist in the Watch\u201d",
+        "\u2022 No destroy capability anywhere in the Watch\n\u2022 Deletion authority lives in a separate, named document/act only (Document 14)",
+        "\u2022 User can trust nothing is ever erased by the Watch's response to a threat \u2014 only a separately-authorised act can delete anything"
+      ],
+      [
+        "S-18",
+        "Doc 3",
+        "The system will hold behavioural-conformance profiles as non-exportable, tenant-keyed, purpose-bound armoury \u2014 never rendered to any surface, export, or analytic, including the Watch's own console.",
+        "NIST SC-28 (protection of information at rest, analogous) \u2014 no direct standard for \u201cnever render to own console\u201d",
+        "Present",
+        "Structural; retention posture is baseline-period-deferred",
+        "A5.12",
+        "\u2022 Per-actor, tenant-keyed, non-exportable profile store\n\u2022 Holds learned parameters only, never raw action history",
+        "\u2022 User can trust their own behavioural profile is never visible to scoring, pricing, or management surfaces \u2014 including to the Watch's own operators"
+      ],
+      [
+        "S-19",
+        "Doc 3",
+        "The system will have its own liveness attested by a component holding no Watch credentials, will treat Watch silence itself as an alarm, and will subject its own records to a standing break-in test that must fail.",
+        "CC ADV_ARC.1 self-protection (verified, Document 0 Attribute 6) \u00b7 NIST SI-4 \u00b7 reference-monitor tamper-resistance generally",
+        "Present",
+        "Structural; break-in test cadence unruled",
+        "A5.9; C3 (the witness)",
+        "\u2022 External liveness attestation (no Watch credentials)\n\u2022 Silence-as-alarm\n\u2022 Standing break-in test against own production credentials, must fail",
+        "\u2022 User can (auditor) confirm the Watch's own tamper-resistance is measured, not asserted \u2014 a standing test actively tries to beat it and is expected to fail"
+      ],
+      [
+        "S-20",
+        "Doc 3",
+        "The system will execute every task under exactly one authority's identity and scope \u2014 a task that could see like security and decide like governance is unrepresentable, not merely forbidden.",
+        "NIST AC-6 (least privilege / separation of duties, analogous) \u00b7 CC FDP_ACC (separation of security policies)",
+        "Present",
+        "Structural \u2014 unrepresentable, not policy-enforced",
+        "A5.10; A5.11 \u201cpeer, not subordinate\u201d; cross-referenced to #26's single-crossing/no-side-door doctrine",
+        "\u2022 One-task-one-identity, structurally unrepresentable dual-hatting\n\u2022 Watch authors its own policy; rules service administers ceremony without editorial power",
+        "\u2022 User can (auditor) confirm no credential spans both the Watch's authority and governance's authority \u2014 the surface doesn't exist to be compromised"
+      ],
+      [
+        "S-21",
+        "Doc 3",
+        "The system will let the mirage deceive outward only \u2014 every mirage interaction writes truthfully marked records, and mirage state shares no store with production.",
+        "MITRE Engage (deception framework, closest analogue, no formal conformance standard) \u00b7 NIST SI-4 deception guidance (informal)",
+        "Present",
+        "Structural \u2014 mirage entry threshold is baseline-period-deferred (cross-ref S-3)",
+        "A5.5 \u201cthe record never lies inward\u201d; C1 (the mirage)",
+        "\u2022 Mirage renders outward deception only\n\u2022 Truthfully-marked records regardless of what's shown to the suspect\n\u2022 No shared store with production \u2014 bleed unrepresentable",
+        "\u2022 User can (auditor) trust the platform's deliberate deception layer never corrupts its own truthful record \u2014 the lie never reaches inward"
+      ],
+      [
+        "S-22",
+        "Doc 3 (proposed A5.15) \u00b7 DAP-33",
+        "The system will inspect what leaves, not only who sends it \u2014 every output leaving a component boundary is checked for controlled-unit content and tagged ADVISORY where it recommends, ranks, proposes, or evaluates an action.",
+        "Solva assertion floor (Doc 4) as internal precedent for output gating \u00b7 DLP practice at the component boundary \u2014 no direct security-conformance standard for output-content gating as a security function",
+        "Absent \u2192 new",
+        "Ruled \u2014 reproduction threshold and probe design are R-8 (DEFAULT-class, conservative, revised on evidence)",
+        "Security Amendments W-1; gate sits on the deterministic side of the verdict seam",
+        "\u2022 Deterministic output gate at every component boundary\n\u2022 Reproduction probe against the producing job's read set\n\u2022 ADVISORY tag carrying producer identity, content hash, units drawn on\n\u2022 Refusal with reason, never a redacted output",
+        "\u2022 User can (auditor) confirm no permitted output carried controlled content past the boundary\n\u2022 User can (human recipient) see that what they received is advice, from whom, drawing on what \u2014 before acting on it"
+      ],
+      [
+        "S-23",
+        "Document 0 Attribute 3 \u00b7 Doc 3 (proposed A5.18) \u00b7 DAP-34",
+        "The system will treat a coalition as one actor \u2014 cumulative conduct across principals sharing a party, a mandate lineage, or a detected coordination signature is evaluated jointly, not per principal.",
+        "Sybil resistance (Douceur 2002) \u00b7 Byzantine fault tolerance \u2014 established distributed-systems frames; no security-conformance standard names coalition-as-principal",
+        "Absent \u2192 new",
+        "Structural for shared-party and shared-lineage membership; coordination-signature threshold is R-11 \u2014 inferred, friction-only under A5.2",
+        "Security Amendments W-4; coalition is a connected component of the admission graph",
+        "\u2022 Coalition graph from DAP-1/DAP-2 admission records\n\u2022 Joint cumulative history and slow-play evaluation\n\u2022 Three membership classes: party, lineage (structural), coordination signature (inferred)",
+        "\u2022 User can (estate owner) see every principal evaluated jointly with a given party, and every inferred coalition labelled as suspicion\n\u2022 User can (external party) know at admission that its principals are evaluated jointly"
+      ],
+      [
+        "S-24",
+        "Doc 3 (proposed A5.17)",
+        "The system will hold the raiser of a finding to the same conformance as its target \u2014 a finding is conduct; the friction it causes is charged to the raiser's budget, not the target's; a finding not borne out accrues drift on the raiser; and no agent-raised finding, at any count, is an input to severance.",
+        "A5.2 (findings already excluded from the severance registry) \u00b7 A5.14 (friction budget) \u00b7 BFT source weighting \u2014 no direct conformance standard",
+        "Absent \u2192 new",
+        "Structural \u2014 A5.2's registry unchanged; friction debit follows A5.14's existing budget",
+        "Security Amendments W-3; two finding classes, D (deterministic) and A (advisory), never merged",
+        "\u2022 Class D vs Class A findings\n\u2022 Lineage collapse \u2014 N findings from one coalition count as one\n\u2022 Friction debited to raiser\n\u2022 Drift on raiser when a finding is not borne out",
+        "\u2022 User can (legitimate actor) not be harassed into friction by manufactured findings without the raiser paying for it\n\u2022 User can (auditor) see who raised what, what it cost, and whether it was borne out"
+      ],
+      [
+        "S-25",
+        "DAP-35, DAP-36 \u00b7 Document 0 Attribute 7 (new mandatory baseline)",
+        "The system will bound what the estate releases in total \u2014 across all parties, all operations, all time \u2014 so that no combination of parties can reconstruct what none of them is entitled to. Breaching the bound is a floor violation, severance-eligible without inference.",
+        "Differential privacy (Dwork et al. 2006) \u00b7 NIST SP 800-188 (2023) \u2014 de-identification, privacy budgets, composition \u00b7 DP-SGD (Abadi et al. 2016) for training",
+        "Absent \u2192 new",
+        "Ruled \u2014 the budget itself is R-7; per-run (\u03b5, \u03b4) is R-9. The floor never learns (A5.8)",
+        "Security Amendments W-7, W-8; the amendment that converts coalition prevention from detection into a ruling",
+        "\u2022 Estate-level release accumulator, debited per metered event before return\n\u2022 Differential-privacy budget composed across releases\n\u2022 DP-SGD default for every fine-tune\n\u2022 Floor violation on breach \u2014 one of the six unfakeable signals\n\u2022 Remaining budget never disclosed to parties",
+        "\u2022 User can (estate owner) set and see the estate's total exposure as a single number, and see consumption against it\n\u2022 User can (external party) know that the estate's releases are bounded \u2014 and never see the remaining budget"
+      ]
+    ],
+    "row_count": 27,
+    "max_col": 9
+  },
+  "Legend": {
+    "rows": [
+      [
+        "Security Assurance Promise Set \u2014 Legend"
+      ],
+      [
+        "Scope",
+        "Decomposes Promise #6 (Doc 3) into 21 assurance statements (S-1\u2013S-21), plus S-22\u2013S-25 added by the Security Amendments \u2014 Trojan Artefacts and Whisper Threats (5 Sep 2026). S-10, S-11 are sourced from Wave E rulings with no document home yet. Promises #7 and #26 are unchanged and cited, not reproduced."
+      ],
+      [
+        "Standard column",
+        "The clause each promise answers to. [V]/[K]/[P] confidence not marked per-cell here; treat citations as [K] (established knowledge, stable clause reference) unless a document says otherwise."
+      ],
+      [
+        "Bound / Ruling column",
+        "Structural = no numeric bound applies. Ruled = a specific value is set (cites the ruling). Baseline-period-deferred = Doc 3's own mechanism: conservative default until a defined observation period, then set by evidence. Unruled = a bound is named in A5 text with no value confirmed \u2014 a real gap, not a placeholder."
+      ],
+      [
+        "Status colours",
+        "Green = Present, built and grounded in canon text. Blue = Absent \u2192 new, a ruled value with no document promise yet. Amber = Absent \u2192 gap, no mechanism specified anywhere. Grey = By design, composite/umbrella row."
+      ],
+      [
+        "S-7",
+        "The one promise in this set marked as a specification gap rather than asserted. Doc 3 constrains learning in three places (A5.7, A5.8, A5.12) and specifies a learning mechanism in none. See amendments document, Item 1."
+      ],
+      [
+        "Removed from this set",
+        "\u201cNever run in shadow\u201d (A5.4) \u2014 deployment doctrine, not runtime assurance. Relocated to Document 0, Attribute 9 build requirements. See amendments document, Item 3."
+      ]
+    ],
+    "row_count": 7,
+    "max_col": 2
+  }
+}

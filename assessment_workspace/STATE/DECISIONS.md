@@ -6242,3 +6242,54 @@ Ruling 2 · AWS credentials for DigiCow reach · 2026-09-06T~13:XXZ:
 Owner ruling on (a) or (b) unblocks a follow-on `W-SMS-Body-Emit` wave that re-extracts Campaign B corpora with sms_sent content (dramatically diversifies the dedup pool and lifts the 87-row collapse).
 
 ---
+
+## 2026-09-06T~16:50Z · W-SMS-Body-Emit close · Campaign v2 LIVE
+
+**Ruling #5(a) landed via user proxy** (verbatim, banked in `phase0/policy_drawer_resolutions/drawer_resolution_shield-2026-09-06-q001_20260906T162000Z.json`):
+
+> "OWNER RULINGS LANDED — bank verbatim: Question #1 (sms_sent drawer item) → 'a' — INCLUDE message bodies with mask_regex_scrub. Question #2 (dedup-collapse remedy) → 'a' — re-extract with sms_sent-inclusive emit and re-base the queued ablations on the diversified corpus."
+
+**Owner corrections applied (in order):**
+
+1. **CORRECTION 1 — Diagnose BEFORE re-base.** akki-vm dispatcher DIED 15:01:13Z with `SubprocessError: Exception occurred in preexec_fn.` right-reason bug (banked at `phase0/gpu_receipts/20260906T160900Z_diagnosis/akki-vm/`). Root cause: `_dispatch_trainer` combined `start_new_session=True` AND `preexec_fn=os.setsid` on `subprocess.Popen` — double setsid raises PermissionError in child. **A-0-v1 SEALED CLEANLY** (2026-09-06T15:00:56Z, 50m54s wall-clock, train_loss=0.2799, held_out_loss=0.1232, held_out_ppl=1.1311, adapter_sha256=`49735d51ea7371eae6a7fe39ceed5f1160f969bf86a80b1a86d9eafaa046e55a`); banks as labelled v1-pilot record and reconciliation material.
+
+2. **CORRECTION 2 — Campaign v2 corpus-consistency.** ALL v2 ladder runs (Campaign A: A-0/A-1/A-2/A-3) execute on the SAME v2 corpus (ussd_deduplicated v2 slice=100K → 75,438 train + 18,859 held-out, sha256 `5a9b5dbb0694acf8...`). ALL v2 ablation runs (Campaign B: B-REF/B1/B2/B3/B4/B5/B6) execute on their respective v2 corpora (B1 shares Campaign A's ussd_deduplicated_v2; B-REF/B3/B4/B5/B6 share ussd_plus_sms_deduplicated_v2 → 29,597 train + 7,399 held-out sha256 `5bad3900f58634ce...`; B2 uses ussd_plus_sms_raw_v2 → 155,438 train + 38,859 held-out sha256 `7b270bb83edf3204...`). **v1 pilots stay banked untouched** (A-0-v1 sealed; B1-v1 mid-training will seal as pilot). Cross-boundary v1↔v2 comparisons BANNED (would confound ablation variable with corpus drift).
+
+3. **CORRECTION 3 — Ladder order preserved.** Campaign A v2 fires in strict ladder order 0.5B → 1.5B → 3B → 7B (not 7B-first on idle host). All ladder rungs seed=1. If A-3-v2 (7B) doesn't fit window at measured throughput, trim 7B first — NEVER trim corpus-consistency.
+
+**Wave scope actioned in this session:**
+
+1. **Mechanical RED** banked at `phase0/drill_receipts/20260906T161500Z_wave_sms_body_emit_RED_pre_impl.log` (16 right-reason failures on new-truth: 15 new `test_sms_body_emit.py` invariants + rewritten `test_sms_sent_lives_in_clarification_drawer` flipping old-truth (in_drawer, state=open) → new-truth (in ledger+drawer, state=resolved)).
+2. **Policy shape flip.** `masking_policy.v0.json`: sms_log.sms_sent added to ledger (class=non-pii-text, action=mask_regex_scrub, authored_by=`programme.track-a.W-SMS-Body-Emit`, resolves_drawer_question_id=`shield-2026-09-06-q001`); drawer entry state open → resolved with populated resolution slot (owner_ruling='a', evidence_record_path, retroactive_reclassification=True, wave='W-SMS-Body-Emit'). Drawer audit trail preserved (cautious_default_applied='exclude' kept as pre-ruling historical record).
+3. **Emit-composer swap.** `multi_table.py::_TABLE_FORMATTERS['sms_log']` required_fields flipped `('sms_title',) → ('sms_sent',)` so rows survive on body content; formatter composes `[sms_topic: TITLE]\nBODY` unconditionally (body-only survives when title empty).
+4. **5 pre-existing invariants flipped** in `test_multi_table_extract.py` to new-truth (2 policy-shape tests renamed; 3 fake-data tests updated with sms_sent-inclusive fixtures).
+5. **First complete drawer lifecycle** (Ruling #5 architecture proof, 8-step lifecycle: question opened → cautious default applied → main agent held ambiguity → owner ruled → governed decision written → evidence record banked → retroactive reclassification triggered → downstream re-extraction rebased). Reference lifecycle for all future drawer questions.
+6. **In-wave dispatcher fix.** `_dispatch_trainer` had `start_new_session=True` + `preexec_fn=os.setsid`. Removed the redundant preexec_fn line; start_new_session alone provides nohup semantics. New invariant `test_dispatcher_no_double_setsid.py` (2 tests) freezes both fix and diagnosis-receipt path. Deployed to both akki-vm and akki-vm-ii (sha256 `9bd7f46f21e4ef09e366800659689ee3c28fbb1f67c7d7f44e6c19f80d0aba36`).
+7. **v2 corpus extractions** completed successfully (95 s total end-to-end for 3 extractions): 
+   - `ussd_deduplicated_v2` (A + B1-v2): 75K/19K rows, sha256 `5a9b5dbb…`
+   - `ussd_plus_sms_deduplicated_v2` (B-REF, B3, B4, B5, B6): 29.6K/7.4K rows, sha256 `5bad3900…` (dedup collapse resolved; v1 was 87 rows total, v2 is 37K unique)
+   - `ussd_plus_sms_raw_v2` (B2): 155K/39K rows, sha256 `7b270bb8…`
+   Staged to hosts via manual scp (paramiko SFTP does not expand `~/`; monkey-patched put_file to strip leading `~/` inside `_SeamAdapter` in the extraction script — banks as follow-on wave charter, prod code untouched under thin-kernel).
+8. **v2 queue manifests authored + deployed** — `campaign_a_v2_queue.json` (4 runs, ladder order, corpus-consistent) on akki-vm; `campaign_b_v2_queue.json` (7 runs, waits behind B1-v1 seal) on akki-vm-ii.
+9. **Campaign v2 LIVE on both hosts:**
+   - akki-vm: dispatcher pid 194861 + A-0-0p5B-v2 trainer pid 194863 (started 2026-09-06T16:54:30Z; projected seal ~2h53m @ 19:47Z)
+   - akki-vm-ii: dispatcher pid 177780 waiting behind B1-v1 (which is still training; ETA seal ~18:30Z at step 400/963 loss 0.150 wall-clock 6549s as of 16:04Z)
+10. **Window-fill math** banked at `phase0/campaign_drafts/CAMPAIGN_V2_WINDOW_FILL_MATH.md` § C: projected total fill akki-vm 60/79h ≈ 76 % · akki-vm-ii 70/75h ≈ 93 %; trim tail (B6-v2 → B2-v2 → B4-v2 → A-3-v2) if actuals exceed projections; NEVER trim corpus-consistency.
+
+**Binding effects:**
+
+1. Ratchet floor `2956 → 2976 → 2978` (+22 tests: 20 SMS-Body-Emit + 2 dispatcher-double-setsid). Double-green byte-matched at each step.
+2. First complete drawer lifecycle proven (Ruling #5 architecture validated end-to-end).
+3. Dispatcher double-setsid regression frozen by invariant on Extraction-Akki `programme/track-a`.
+4. Campaign v2 (11 total runs across both hosts) LIVE with corpus-consistency ruling in effect.
+5. v1 pilots (A-0-v1 sealed, B1-v1 in-flight will seal) preserved as labelled pilot records — nothing deleted.
+6. STRICT tests-first HELD across ELEVEN consecutive closes (WPW-v1-d + Orch-Resilience-r1 + r1-wire + r2 + Shield-Train-build + Compute-Residuals + Campaign-Infra + Shield-Train-Admission + Shield-Train-run + Multi-Table-Extract + SMS-Body-Emit).
+7. Local commits only (Extraction-Akki `programme/track-a` for code · workspace `master` for STATE/receipts). No push.
+
+**Follow-on wave charters surfaced by this wave (not started):**
+
+- **W-Queue-Watchdog** — dispatcher-level heartbeat health check + auto-relaunch of dead dispatchers. Surfaced by akki-vm dispatcher death 15:01:13Z. In-wave preexec_fn fix addresses one root cause; broader watchdog scope (heartbeat freshness check, dispatcher-death detection, auto-relaunch) remains chartered.
+- **W-Seam-SFTP-Tilde-Expand** — `_SeamAdapter.put_file` sends `~/...` literally over SFTP wire; some OpenSSH sftp-server implementations do not expand `~`. Wave fixes stage_corpus_to_host to normalize `~/{run_id}/...` → `{run_id}/...` (relative) or `/home/{user}/{run_id}/...` (absolute) before sftp.put. Currently patched in the extraction helper script (not in prod code, per thin-kernel).
+- **W-Dispatcher-Concurrency-Lock** — a second dispatcher started within 5 min of the first will spawn a duplicate trainer on the same run_dir. Wave adds a flock-based lock at dispatcher startup so a duplicate launch is a no-op.
+- (previously chartered) **W-TaskEval-v1, W-Gradient-Step-Checkpoint, W-Row-Stream-Extractor, W-Adapter-Tensor-Persist, W-Cross-Table-Consistency-Check** — still in SPRINT_PLAN.md.
+

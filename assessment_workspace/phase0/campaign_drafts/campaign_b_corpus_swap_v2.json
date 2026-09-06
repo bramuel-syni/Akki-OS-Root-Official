@@ -1,0 +1,20 @@
+{
+  "kind": "campaign_b_corpus_swap_reconciliation_v2",
+  "authored_at_utc": "2026-09-06T16:20:00Z",
+  "wave": "W-SMS-Body-Emit",
+  "authored_by": "programme.track-a.W-SMS-Body-Emit",
+  "rationale": "Owner ruling 'a' on drawer question shield-2026-09-06-q001 (INCLUDE sms_sent with mask_regex_scrub) triggers a retroactive reclassification. Pre-Ruling-#5(a) corpora (v1) emitted only sms_title from sms_log; post-Ruling-#5(a) corpora (v2) include sms_sent bodies. Ablation comparability MUST be corpus-consistent per Campaign B design: comparisons that cross the swap boundary would confound the ablation variable with corpus drift.",
+  "dedup_v2_group": ["B-REF-3B", "B3-RANK-8", "B4-RANK-32", "B5-CTX-512", "B6-CTX-2048"],
+  "raw_v2_group": ["B2-DEDUP-OFF"],
+  "b1_comparability_note": "B1-CORPUS-USSD-ONLY runs on ussd_deduplicated single-table corpus and never emits from sms_log. B1-v1 currently mid-training on akki-vm-ii seals as a labelled pilot record (v1). Under Campaign v2 corpus-consistency ruling, a corpus-consistent B1-v2 rebases on the v2 USSD extraction (larger slice, same USSD-only shape). The corpus-mix ablation B1 vs B-REF becomes stronger post-Ruling-#5(a) because B-REF now carries diversified SMS bodies (not just titles).",
+  "campaign_v2_atomic_swap": {
+    "principle": "All ladder runs (Campaign A) and all ablation runs (Campaign B) execute on NEW corpora post-W-SMS-Body-Emit so every comparison inside v2 is corpus-consistent. Already-sealed v1 runs bank untouched as labelled pilot records that shaped v2 (nothing deleted \u2014 they are honest pilots + wizard-testing material).",
+    "campaign_a_v2_group": ["A-0-0p5B", "A-1-1p5B", "A-2-3B", "A-3-7B"],
+    "campaign_b_v2_group": ["B-REF-3B", "B1-CORPUS-USSD-ONLY", "B2-DEDUP-OFF", "B3-RANK-8", "B4-RANK-32", "B5-CTX-512", "B6-CTX-2048"]
+  },
+  "pilot_records_preserved": {
+    "campaign_a_v1_pilots": ["A-0-0p5B-seed01 (sealed 2026-09-06T15:00:56Z)"],
+    "campaign_b_v1_pilots": ["B1-CORPUS-USSD-ONLY (mid-training at authoring time)"],
+    "reason": "Owner ruling: 'already-sealed v1 runs stay banked untouched as labelled pilot records (nothing deleted \u2014 they're honest pilots that shaped v2, and wizard-testing material).'"
+  }
+}

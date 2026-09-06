@@ -1,0 +1,49 @@
+[P style=''] AKKI PLATFORM  ·  CHANGE REGISTER
+[P style=''] Amendments — Security Assurance Promise Set
+[P style=''] 8 amendments · 3 September 2026
+[P style=''] Amendment 1   S-7 Marked as a Specification Gap, Not a Promise
+[P style=''] TARGET  S-7 (“Learn”), Security Assurance Promise Set
+[P style=''] CURRENT  “Update the behavioural signature from every contained incident — above the floor, never at it.” Stated as a Present promise.
+[P style=''] AMENDED  Status changed to Absent → gap. Promise text replaced with an explicit statement that no learning mechanism is specified: Doc 3's plain-language promise (A1) states the platform “learns from every attack it defeats,” but every A5 clause touching learning — A5.7, A5.8, A5.12 — constrains what may not happen. None specifies what does update, on what evidence, or at what layer.
+[P style=''] PRINCIPLE  A promise cannot be asserted from the absence of a prohibition. Three clauses constrain learning and none specifies it; silence is a gap, not licence to infer a mechanism.
+[P style=''] Amendment 2   Recovery and Notification Given a Document Home
+[P style=''] TARGET  S-10, S-11, Security Assurance Promise Set
+[P style=''] CURRENT  Both cited only as Wave E rulings (CA1-N5, CA1-N2) with no document text — enforceable in isolation, invisible to a reader of Document 3.
+[P style=''] AMENDED  Proposed as a new Part D of Document 3 (“Recovery & Notification”), housing S-10 and S-11 as formally specified promises. Origination class RATIFIED-EXTERNAL under rule_criteria_spec_v1 §3, citing the Wave E ruling numbers as source.
+[P style=''] PRINCIPLE  A ruled value without a document home is real but unreadable — anyone reading Document 3 promise by promise would never learn recovery and notification exist as system behaviour.
+[P style=''] Amendment 3   “Never Run in Shadow” Relocated Out of the Assurance Set
+[P style=''] TARGET  A5.4, previously drafted as a candidate S-item in the promise set
+[P style=''] CURRENT  Included in an earlier draft of the set as a runtime assurance promise.
+[P style=''] AMENDED  Removed from the security assurance set entirely. Relocated to akki_governance_architecture_v1, Attribute 9 (Authority & Change Control), as a build requirement on how the Watch is deployed and changed.
+[P style=''] PRINCIPLE  The assurance set states what the running system does. A5.4 states a condition on deployment itself — a different register. Conflating the two weakens both: a deployment condition dilutes a runtime guarantee, and vice versa.
+[P style=''] Amendment 4   Six Unruled Bounds Carried Explicitly
+[P style=''] TARGET  S-2, S-4, S-5, S-19, Security Assurance Promise Set — Bound / Ruling column
+[P style=''] CURRENT  Mechanisms described qualitatively in A5 text (“a time-to-live,” “its ruled share,” “a hard ceiling,” “unattested beyond its bound”) with no numeric value confirmed in Document 3's own five-value ruling list.
+[P style=''] AMENDED  Each bound marked Unruled in its own row rather than implied resolved by the existence of a mechanism: detection latency per attack shape (S-2); blast-budget share and friction ceiling (S-4); action time-to-live (S-5); attestation-continuity interval and break-in test cadence (S-19).
+[P style=''] PRINCIPLE  A named bound with a described mechanism is not the same as a ruled value. Document 3's five-value ruling list should not be read as exhaustive of every bound the document names.
+[P style=''] Amendment 5   “No Standard” Claim Narrowed to What's True
+[P style=''] TARGET  S-14, S-15, Security Assurance Promise Set — Standard column
+[P style=''] CURRENT  “No standard states ‘never convict on statistics.’” Stated as an absence of any governing standard.
+[P style=''] AMENDED  Corrected to cite the legal analogues that do exist: GDPR Article 22 and Kenya Data Protection Act 2019 section 35, both establishing a right against solely-automated adverse decisions. Marked explicitly as legal analogues, not security-conformance standards.
+[P style=''] PRINCIPLE  Absence of a security standard is not absence of any standard. The narrower, accurate claim belongs in the document; the broader one overclaims.
+[P style=''] Amendment 6   The Watch Upgraded to a Full Reference Monitor Instance
+[P style=''] TARGET  akki_governance_architecture_v1, Part 2, Component 7 (The Watch)
+[P style=''] CURRENT  Tagged “Reference-Monitor-adjacent” — a partial instantiation of Attribute 6.
+[P style=''] AMENDED  Upgraded to a full Reference Monitor instantiation. Document 3 demonstrates all three defining properties directly: complete mediation via A3's totality of sight, held by two independent proofs; tamper-resistance via C3's external witness and standing break-in test; verifiability via A2's description of Mkono as “small enough to verify exhaustively.”
+[P style=''] PRINCIPLE  A component meeting a standard's properties in its own source document should be reclassified when the evidence is found. Under-classifying a strong instance is as much an accuracy failure as over-claiming a weak one. G-6's cross-monitor description requirement remains open for MOAC, the distance gate, and the format gate.
+[P style=''] Amendment 7   A5.9 Added to Attribute 11's Instantiation
+[P style=''] TARGET  akki_governance_architecture_v1, Attribute 11 (Failure Posture), Component 7 build requirements
+[P style=''] CURRENT  The Watch's failure posture was not separately instantiated in Component 7's build requirements.
+[P style=''] AMENDED  Added as a build requirement citing A5.9 directly (S-12 in the promise set): the system will fail closed independent of the Watch — custody gates fail closed on their own, with or without the Watch above them. Tagged Attribute 11, status Met.
+[P style=''] PRINCIPLE  A5.9 is explicitly a failure-posture statement — “the platform's fail-closed posture is independent of the Watch entirely.” Its absence from Attribute 11 was an oversight in the original component registry, not a judgement that it didn't apply.
+[P style=''] Amendment 8   Scope Statement Required for Eradication, Communication, and Evidence Custody
+[P style=''] TARGET  Document 3, scope — no current equivalent
+[P style=''] CURRENT  Silent. Document 3 specifies detect, contain, record, prove, and reconcile. It does not address eradication, external communication, or evidence custody for proceedings — all required by NIST SP 800-61's incident lifecycle.
+[P style=''] AMENDED  Recommend an explicit scope statement in Document 3, resolving one of two ways: (a) name these three as deliberately out of the Watch's scope — the Watch contains; a named separate function eradicates, communicates, and manages evidentiary custody — with that function identified; or (b) declare them open gaps if no such function exists.
+[P style=''] PRINCIPLE  Silence on a standard lifecycle's remaining stages reads as completeness to anyone unfamiliar with the full standard. The silence needs to be resolved one way or the other, not left ambiguous by omission.
+
+=== TABLE 0 · rows=2 cols=2 ===
+[T0·R0·C0] Applies to
+[T0·R0·C1] Security_Assurance_Promise_Set.xlsx (S-1–S-21) and akki_governance_architecture_v1 (Document 0)
+[T0·R1·C0] Nature
+[T0·R1·C1] Corrections to claims made while drafting the promise set, and cross-document updates the set's evidence requires. Not a gap report — each amendment states the fix directly.

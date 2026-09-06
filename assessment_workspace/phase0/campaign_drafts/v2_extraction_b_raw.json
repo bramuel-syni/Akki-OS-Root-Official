@@ -1,0 +1,36 @@
+{
+  "campaign": "b_raw",
+  "elapsed_s": 69.57341456413269,
+  "receipt": {
+    "receipt_utc": "2026-09-06T16:43:33.576167Z",
+    "run_id": "shield-train-campaign-b-v2-raw-ablations-20260906-20260906T164301Z",
+    "tier": "t1_full_mask",
+    "env": "development",
+    "host_slug": "akki-vm-ii",
+    "table_context": [
+      "ussd_question_response",
+      "sms_log"
+    ],
+    "corpus_variant": "raw",
+    "dedup": false,
+    "row_extraction_receipt_path": null,
+    "per_table_extraction_receipts": [
+      "/app/assessment_workspace/phase0/shield_train_receipts/shield_train_row_receipt_20260906T164242Z_a4790866.json",
+      "/app/assessment_workspace/phase0/shield_train_receipts/shield_train_row_receipt_20260906T164300Z_3f94972e.json"
+    ],
+    "held_out_slice_receipt_path": "/app/assessment_workspace/phase0/shield_train_receipts/held_out_slices/held_out_shield-train-campaign-b-v2-raw-ablations-20260906-20260906T164301Z_20260906T164301Z.json",
+    "train_corpus": {
+      "path": "/app/assessment_workspace/phase0/shield_train_receipts/staged_corpora/shield-train-campaign-b-v2-raw-ablations-20260906-20260906T164301Z/train_corpus.jsonl",
+      "sha256": "7b270bb83edf3204bc46b94dedd9d16126eb291ee989e2d791ea43e888ba7832",
+      "row_count": 155438,
+      "bytes": 25340253
+    },
+    "held_out_corpus": {
+      "path": "/app/assessment_workspace/phase0/shield_train_receipts/staged_corpora/shield-train-campaign-b-v2-raw-ablations-20260906-20260906T164301Z/held_out_corpus.jsonl",
+      "sha256": "857832f853e4e84eeea17a00b6f5364573dfb6675232ae4ae012194f9253fcf7",
+      "row_count": 38859,
+      "bytes": 7926318
+    },
+    "remote_dir": "~/akki_journal/shield-train-campaign-b-v2-raw-ablations-20260906-20260906T164301Z"
+  }
+}

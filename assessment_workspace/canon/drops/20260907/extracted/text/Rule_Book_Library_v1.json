@@ -1,0 +1,552 @@
+{
+  "Index": {
+    "rows": [
+      [
+        "Rule Book Library \u2014 v1 Index"
+      ],
+      [
+        "Each rule book is atomic (one regulatory domain). Profiles bundle rule books per business type \u2014 see Profiles sheet. Status: FULL = every rule written, cited, and checked against source text. SKELETON = sources named, sections and expected rule count set, rules not yet written."
+      ],
+      [
+        "Book ID",
+        "Rule book",
+        "Source standards / regulations",
+        "Free to verify?",
+        "Sections",
+        "Expected rules",
+        "v1 status"
+      ],
+      [
+        "RB-PDP",
+        "Personal Data Protection",
+        "Kenya Data Protection Act 2019 (primary) \u00b7 Data Protection (General) Regulations 2021 \u00b7 GDPR (EU) 2016/679 as international reference \u00b7 POPIA (ZA) and NDPA 2023 (NG) noted as regional variants",
+        "Yes \u2014 all",
+        "Lawful basis & consent \u00b7 Data-subject rights \u00b7 Sensitive-category data \u00b7 Cross-border transfer \u00b7 Retention & erasure \u00b7 Breach notification (72h) \u00b7 Automated decisions (s.35 / Art.22) \u00b7 DPO & accountability",
+        "18\u201322",
+        "FULL \u2014 next"
+      ],
+      [
+        "RB-AIG",
+        "AI-System Governance",
+        "EU AI Act 2024/1689 (Arts. 9\u201315 high-risk obligations, Art. 14 oversight) \u00b7 ISO/IEC 42001:2023 (paywalled) \u00b7 NIST AI RMF 1.0 \u00b7 ISO/IEC TR 5469:2024 (paywalled)",
+        "EU AI Act, NIST: yes \u00b7 ISO: paywalled",
+        "Risk classification \u00b7 Data & training governance \u00b7 Human oversight (5 capabilities) \u00b7 Transparency & record-keeping \u00b7 Accuracy, robustness, cybersecurity \u00b7 Post-market monitoring \u00b7 Determinism boundary (platform-native)",
+        "16\u201320",
+        "FULL \u2014 next"
+      ],
+      [
+        "RB-FIN",
+        "Financial Data Access",
+        "PCI DSS v4.0 (card data) \u00b7 CBK Prudential Guidelines & Banking Act (Kenya) \u00b7 BCBS 239 (risk-data aggregation) \u00b7 EU DORA 2022/2554 (operational resilience) \u00b7 IRA guidelines (insurance variant)",
+        "PCI DSS, BCBS 239, DORA, CBK: yes",
+        "Cardholder data handling \u00b7 Access control & least privilege \u00b7 Data aggregation & lineage \u00b7 Operational resilience & incident reporting \u00b7 Third-party / ICT risk \u00b7 Retention \u00b7 Insurance variant (IRA)",
+        "18\u201324",
+        "SKELETON"
+      ],
+      [
+        "RB-HLT",
+        "Health Data",
+        "Kenya Health Act 2017 \u00b7 DPA 2019 s.44 (health data as sensitive category) \u00b7 Digital Health Act 2023 (Kenya) \u00b7 HIPAA (US) as international reference",
+        "Kenya Acts, HIPAA: yes",
+        "Patient consent & confidentiality \u00b7 De-identification standard \u00b7 Access by role \u00b7 Research use of clinical data \u00b7 Retention \u00b7 Breach & disclosure",
+        "14\u201318",
+        "SKELETON"
+      ],
+      [
+        "RB-MED",
+        "Media & Archive Rights",
+        "Copyright Act (Kenya, Cap 130) \u00b7 Kenya Information and Communications Act & CA regulations \u00b7 KFCB classification guidelines \u00b7 Contributor / talent consent \u00b7 Licensing for content acquisition",
+        "Yes \u2014 Kenya Law",
+        "Archive rights & ownership \u00b7 Contributor consent & likeness \u00b7 Licensing & acquisition terms \u00b7 Training-use permission (rights-declared corpus, Doc 17 A17.15) \u00b7 Broadcast regulatory \u00b7 Retention & takedown",
+        "14\u201318",
+        "SKELETON \u2014 first industry book after base"
+      ],
+      [
+        "RB-RES",
+        "Research & Academic Data",
+        "NACOSTI research licensing (Kenya) \u00b7 Institutional ethics review \u00b7 DPA 2019 research exemptions & conditions \u00b7 FAIR data principles \u00b7 Funder data-management requirements",
+        "Mostly yes",
+        "Ethics approval & consent \u00b7 Anonymisation for research \u00b7 Data-management plans \u00b7 Open-data vs restricted \u00b7 Secondary use \u00b7 Retention",
+        "12\u201316",
+        "SKELETON"
+      ],
+      [
+        "Skeletons noted in Profiles but not yet indexed as books: agricultural data (agri-tech), telecoms regulator (Communications Authority), public-sector records. Each is a v2 candidate; none blocks a v1 profile because all three fall back to the base bundle."
+      ]
+    ],
+    "row_count": 10,
+    "max_col": 7
+  },
+  "Profiles": {
+    "rows": [
+      [
+        "Business-Type Profiles \u2014 which rule books the Rules Service recommends at onboarding (RBM-15, RBM-16)"
+      ],
+      [
+        "Business type",
+        "RB-PDP",
+        "RB-AIG",
+        "RB-FIN",
+        "RB-HLT",
+        "RB-MED",
+        "RB-RES",
+        "Industry-specific note"
+      ],
+      [
+        "Healthcare \u2014 hospital / clinic",
+        "\u25cf",
+        "\u25cf",
+        "",
+        "\u25cf",
+        "",
+        "",
+        "Health Act + DPA s.44 govern; HIPAA reference only."
+      ],
+      [
+        "Media \u2014 broadcaster",
+        "\u25cf",
+        "\u25cf",
+        "",
+        "",
+        "\u25cf",
+        "",
+        "Archive rights and contributor consent are the binding layer; RMS is the live deployment."
+      ],
+      [
+        "Media \u2014 content acquisition / production",
+        "\u25cf",
+        "\u25cf",
+        "",
+        "",
+        "\u25cf",
+        "",
+        "RB-MED with licensing emphasis; acquisition terms bind training-use permission."
+      ],
+      [
+        "Financial services \u2014 bank",
+        "\u25cf",
+        "\u25cf",
+        "\u25cf",
+        "",
+        "",
+        "",
+        "CBK prudential guidelines; PCI DSS where card data is held."
+      ],
+      [
+        "Financial services \u2014 insurer",
+        "\u25cf",
+        "\u25cf",
+        "\u25cf",
+        "",
+        "",
+        "",
+        "RB-FIN insurance variant \u2014 IRA guidelines replace CBK."
+      ],
+      [
+        "Agriculture / agri-tech",
+        "\u25cf",
+        "\u25cf",
+        "",
+        "",
+        "",
+        "",
+        "Base bundle; agricultural-data book is a v2 skeleton (DigiCow is the live estate)."
+      ],
+      [
+        "University / research institution",
+        "\u25cf",
+        "\u25cf",
+        "",
+        "",
+        "",
+        "\u25cf",
+        "NACOSTI licensing and ethics review are binding."
+      ],
+      [
+        "Telecommunications",
+        "\u25cf",
+        "\u25cf",
+        "",
+        "",
+        "",
+        "",
+        "Base bundle; CA-regulator book is a v2 skeleton."
+      ],
+      [
+        "Government / public sector",
+        "\u25cf",
+        "\u25cf",
+        "",
+        "",
+        "",
+        "",
+        "Base bundle; public-records book is a v2 skeleton."
+      ],
+      [
+        "Other / not listed",
+        "\u25cf",
+        "\u25cf",
+        "",
+        "",
+        "",
+        "",
+        "Base bundle + recorded finding (RBM-16)."
+      ],
+      [
+        "RB-PDP and RB-AIG appear in every profile \u2014 the base bundle. That is why they are built in full first."
+      ]
+    ],
+    "row_count": 13,
+    "max_col": 8
+  },
+  "RB-PDP": {
+    "rows": [
+      [
+        "RB-PDP \u2014 Personal Data Protection"
+      ],
+      [
+        "Sources: Kenya DPA 2019 \u00b7 DP (General) Regulations 2021 \u00b7 GDPR as reference \u00b7 POPIA / NDPA noted"
+      ],
+      [
+        "Status: FULL build next \u2014 rules to be written against the Act's text, each with section citation."
+      ],
+      [
+        "Rule ID",
+        "Section",
+        "Statement (plain language)",
+        "Enforced by (Akki component)",
+        "Enforcement class",
+        "Assessment procedure",
+        "Source clause",
+        "Status"
+      ],
+      [
+        "",
+        "Lawful basis & consent",
+        "\u2014 to be written \u2014"
+      ],
+      [
+        "",
+        "Data-subject rights",
+        "\u2014 to be written \u2014"
+      ],
+      [
+        "",
+        "Sensitive-category data",
+        "\u2014 to be written \u2014"
+      ],
+      [
+        "",
+        "Cross-border transfer",
+        "\u2014 to be written \u2014"
+      ],
+      [
+        "",
+        "Retention & erasure",
+        "\u2014 to be written \u2014"
+      ],
+      [
+        "",
+        "Breach notification",
+        "\u2014 to be written \u2014"
+      ],
+      [
+        "",
+        "Automated decisions",
+        "\u2014 to be written \u2014"
+      ],
+      [
+        "",
+        "DPO & accountability",
+        "\u2014 to be written \u2014"
+      ]
+    ],
+    "row_count": 12,
+    "max_col": 8
+  },
+  "RB-AIG": {
+    "rows": [
+      [
+        "RB-AIG \u2014 AI-System Governance"
+      ],
+      [
+        "Sources: EU AI Act 2024/1689 \u00b7 ISO/IEC 42001 (paywalled) \u00b7 NIST AI RMF 1.0 \u00b7 ISO/IEC TR 5469 (paywalled)"
+      ],
+      [
+        "Status: FULL build next \u2014 EU AI Act and NIST clauses verified against published text; ISO cited by clause number."
+      ],
+      [
+        "Rule ID",
+        "Section",
+        "Statement (plain language)",
+        "Enforced by (Akki component)",
+        "Enforcement class",
+        "Assessment procedure",
+        "Source clause",
+        "Status"
+      ],
+      [
+        "",
+        "Risk classification",
+        "\u2014 to be written \u2014"
+      ],
+      [
+        "",
+        "Data & training governance",
+        "\u2014 to be written \u2014"
+      ],
+      [
+        "",
+        "Human oversight",
+        "\u2014 to be written \u2014"
+      ],
+      [
+        "",
+        "Transparency & record-keeping",
+        "\u2014 to be written \u2014"
+      ],
+      [
+        "",
+        "Accuracy, robustness, cybersecurity",
+        "\u2014 to be written \u2014"
+      ],
+      [
+        "",
+        "Post-market monitoring",
+        "\u2014 to be written \u2014"
+      ],
+      [
+        "",
+        "Determinism boundary",
+        "\u2014 to be written \u2014"
+      ]
+    ],
+    "row_count": 11,
+    "max_col": 8
+  },
+  "RB-FIN": {
+    "rows": [
+      [
+        "RB-FIN \u2014 Financial Data Access"
+      ],
+      [
+        "Sources: PCI DSS v4.0 \u00b7 CBK Prudential Guidelines \u00b7 BCBS 239 \u00b7 EU DORA \u00b7 IRA guidelines"
+      ],
+      [
+        "Status: SKELETON \u2014 sections set; rules not yet written."
+      ],
+      [
+        "Rule ID",
+        "Section",
+        "Statement (plain language)",
+        "Enforced by (Akki component)",
+        "Enforcement class",
+        "Assessment procedure",
+        "Source clause",
+        "Status"
+      ],
+      [
+        "",
+        "Cardholder data handling",
+        "\u2014 to be written \u2014"
+      ],
+      [
+        "",
+        "Access control & least privilege",
+        "\u2014 to be written \u2014"
+      ],
+      [
+        "",
+        "Data aggregation & lineage",
+        "\u2014 to be written \u2014"
+      ],
+      [
+        "",
+        "Operational resilience & incident reporting",
+        "\u2014 to be written \u2014"
+      ],
+      [
+        "",
+        "Third-party / ICT risk",
+        "\u2014 to be written \u2014"
+      ],
+      [
+        "",
+        "Retention",
+        "\u2014 to be written \u2014"
+      ],
+      [
+        "",
+        "Insurance variant (IRA)",
+        "\u2014 to be written \u2014"
+      ]
+    ],
+    "row_count": 11,
+    "max_col": 8
+  },
+  "RB-HLT": {
+    "rows": [
+      [
+        "RB-HLT \u2014 Health Data"
+      ],
+      [
+        "Sources: Kenya Health Act 2017 \u00b7 DPA 2019 s.44 \u00b7 Digital Health Act 2023 \u00b7 HIPAA reference"
+      ],
+      [
+        "Status: SKELETON."
+      ],
+      [
+        "Rule ID",
+        "Section",
+        "Statement (plain language)",
+        "Enforced by (Akki component)",
+        "Enforcement class",
+        "Assessment procedure",
+        "Source clause",
+        "Status"
+      ],
+      [
+        "",
+        "Patient consent & confidentiality",
+        "\u2014 to be written \u2014"
+      ],
+      [
+        "",
+        "De-identification standard",
+        "\u2014 to be written \u2014"
+      ],
+      [
+        "",
+        "Access by role",
+        "\u2014 to be written \u2014"
+      ],
+      [
+        "",
+        "Research use of clinical data",
+        "\u2014 to be written \u2014"
+      ],
+      [
+        "",
+        "Retention",
+        "\u2014 to be written \u2014"
+      ],
+      [
+        "",
+        "Breach & disclosure",
+        "\u2014 to be written \u2014"
+      ]
+    ],
+    "row_count": 10,
+    "max_col": 8
+  },
+  "RB-MED": {
+    "rows": [
+      [
+        "RB-MED \u2014 Media & Archive Rights"
+      ],
+      [
+        "Sources: Copyright Act Cap 130 \u00b7 KICA & CA regulations \u00b7 KFCB \u00b7 contributor consent \u00b7 acquisition licensing"
+      ],
+      [
+        "Status: SKELETON \u2014 first industry book after the base pair (RMS live deployment)."
+      ],
+      [
+        "Rule ID",
+        "Section",
+        "Statement (plain language)",
+        "Enforced by (Akki component)",
+        "Enforcement class",
+        "Assessment procedure",
+        "Source clause",
+        "Status"
+      ],
+      [
+        "",
+        "Archive rights & ownership",
+        "\u2014 to be written \u2014"
+      ],
+      [
+        "",
+        "Contributor consent & likeness",
+        "\u2014 to be written \u2014"
+      ],
+      [
+        "",
+        "Licensing & acquisition terms",
+        "\u2014 to be written \u2014"
+      ],
+      [
+        "",
+        "Training-use permission",
+        "\u2014 to be written \u2014"
+      ],
+      [
+        "",
+        "Broadcast regulatory",
+        "\u2014 to be written \u2014"
+      ],
+      [
+        "",
+        "Retention & takedown",
+        "\u2014 to be written \u2014"
+      ]
+    ],
+    "row_count": 10,
+    "max_col": 8
+  },
+  "RB-RES": {
+    "rows": [
+      [
+        "RB-RES \u2014 Research & Academic Data"
+      ],
+      [
+        "Sources: NACOSTI \u00b7 institutional ethics review \u00b7 DPA 2019 research conditions \u00b7 FAIR \u00b7 funder DMP requirements"
+      ],
+      [
+        "Status: SKELETON."
+      ],
+      [
+        "Rule ID",
+        "Section",
+        "Statement (plain language)",
+        "Enforced by (Akki component)",
+        "Enforcement class",
+        "Assessment procedure",
+        "Source clause",
+        "Status"
+      ],
+      [
+        "",
+        "Ethics approval & consent",
+        "\u2014 to be written \u2014"
+      ],
+      [
+        "",
+        "Anonymisation for research",
+        "\u2014 to be written \u2014"
+      ],
+      [
+        "",
+        "Data-management plans",
+        "\u2014 to be written \u2014"
+      ],
+      [
+        "",
+        "Open-data vs restricted",
+        "\u2014 to be written \u2014"
+      ],
+      [
+        "",
+        "Secondary use",
+        "\u2014 to be written \u2014"
+      ],
+      [
+        "",
+        "Retention",
+        "\u2014 to be written \u2014"
+      ]
+    ],
+    "row_count": 10,
+    "max_col": 8
+  }
+}

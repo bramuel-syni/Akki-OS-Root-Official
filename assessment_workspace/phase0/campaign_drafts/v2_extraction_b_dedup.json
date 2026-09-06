@@ -1,0 +1,36 @@
+{
+  "campaign": "b_dedup",
+  "elapsed_s": 62.328681230545044,
+  "receipt": {
+    "receipt_utc": "2026-09-06T16:42:24.002610Z",
+    "run_id": "shield-train-campaign-b-v2-dedup-ablations-20260906-20260906T164158Z",
+    "tier": "t1_full_mask",
+    "env": "development",
+    "host_slug": "akki-vm-ii",
+    "table_context": [
+      "ussd_question_response",
+      "sms_log"
+    ],
+    "corpus_variant": "deduplicated",
+    "dedup": true,
+    "row_extraction_receipt_path": null,
+    "per_table_extraction_receipts": [
+      "/app/assessment_workspace/phase0/shield_train_receipts/shield_train_row_receipt_20260906T164140Z_bed265b2.json",
+      "/app/assessment_workspace/phase0/shield_train_receipts/shield_train_row_receipt_20260906T164158Z_f97fc38a.json"
+    ],
+    "held_out_slice_receipt_path": "/app/assessment_workspace/phase0/shield_train_receipts/held_out_slices/held_out_shield-train-campaign-b-v2-dedup-ablations-20260906-20260906T164158Z_20260906T164158Z.json",
+    "train_corpus": {
+      "path": "/app/assessment_workspace/phase0/shield_train_receipts/staged_corpora/shield-train-campaign-b-v2-dedup-ablations-20260906-20260906T164158Z/train_corpus.jsonl",
+      "sha256": "5bad3900f58634ce350e609dd7056167fd7436cfc7932445f9e9c698524ed922",
+      "row_count": 29597,
+      "bytes": 6559177
+    },
+    "held_out_corpus": {
+      "path": "/app/assessment_workspace/phase0/shield_train_receipts/staged_corpora/shield-train-campaign-b-v2-dedup-ablations-20260906-20260906T164158Z/held_out_corpus.jsonl",
+      "sha256": "f5b0d64aec4fbaed57ade9862675b673f5a1652d9f5cf99d03fe16d7f81cb58b",
+      "row_count": 7399,
+      "bytes": 1554928
+    },
+    "remote_dir": "~/akki_journal/shield-train-campaign-b-v2-dedup-ablations-20260906-20260906T164158Z"
+  }
+}

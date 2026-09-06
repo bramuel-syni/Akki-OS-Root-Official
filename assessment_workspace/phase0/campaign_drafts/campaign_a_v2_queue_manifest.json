@@ -1,0 +1,105 @@
+{
+  "campaign_id": "campaign-a-v2-ladder-20260906",
+  "generated_at_utc": "2026-09-06T16:45:00Z",
+  "wave_ref": "W-SMS-Body-Emit \u00b7 Campaign v2 corpus-consistency ruling",
+  "authored_by": "programme.track-a.W-SMS-Body-Emit",
+  "notes": "Campaign A v2 baseline ladder. Corpus-consistency ruling: every ladder rung fires on the SAME v2 corpus (ussd_deduplicated v2, staged at ~/akki_journal/shield-train-campaign-a-v2-ladder-20260906-20260906T163733Z/). A-0-v1 (sealed 2026-09-06T15:00:56Z, adapter_sha256 49735d51ea...) remains banked as labelled pilot record and is NEVER re-compared against v2 (cross-boundary comparisons banned). Ladder order preserved per Correction 3: 0.5B \u2192 1.5B \u2192 3B \u2192 7B. All seed=1 (7B second-seed does not fit window per §C math; drop 7B tail before touching corpus-consistency).",
+  "corpus_ref": {
+    "variant": "ussd_deduplicated",
+    "run_id": "shield-train-campaign-a-v2-ladder-20260906-20260906T163733Z",
+    "train_corpus_path": "/home/ubuntu/akki_journal/shield-train-campaign-a-v2-ladder-20260906-20260906T163733Z/train_corpus.jsonl",
+    "held_out_corpus_path": "/home/ubuntu/akki_journal/shield-train-campaign-a-v2-ladder-20260906-20260906T163733Z/held_out_corpus.jsonl",
+    "train_sha256": "5a9b5dbb0694acf8661e6c86fd2068686ff6361c5f554b2ee9b2e227e8cf220c",
+    "held_out_sha256": "ac2b1548c585415795c11f262f7492c659528f051fc79a05f287ed6e5a1ccb48",
+    "train_row_count": 75438,
+    "held_out_row_count": 18859,
+    "slice_size_per_table": 100000,
+    "dedup": true,
+    "held_out_slice_receipt": "phase0/shield_train_receipts/held_out_slices/held_out_shield-train-campaign-a-v2-ladder-20260906-20260906T163733Z_20260906T163733Z.json"
+  },
+  "runs": [
+    {
+      "run_id": "shield-train-campaign-a-v2-A-0-0p5B-20260906T170000Z",
+      "run_name": "A-0-0p5B-v2",
+      "trainer_args": {
+        "--base-model": "Qwen/Qwen2.5-0.5B",
+        "--campaign-id": "campaign-a-v2-ladder-20260906",
+        "--corpus": "/home/ubuntu/akki_journal/shield-train-campaign-a-v2-ladder-20260906-20260906T163733Z/train_corpus.jsonl",
+        "--ctx-len": "1024",
+        "--grad-accum": "4",
+        "--held-out": "/home/ubuntu/akki_journal/shield-train-campaign-a-v2-ladder-20260906-20260906T163733Z/held_out_corpus.jsonl",
+        "--lora-rank": "16",
+        "--lr": "0.0002",
+        "--num-epochs": "3",
+        "--per-device-batch": "8",
+        "--run-dir": "/home/ubuntu/akki_journal/shield-train-campaign-a-v2-A-0-0p5B-20260906T170000Z",
+        "--run-id": "shield-train-campaign-a-v2-A-0-0p5B-20260906T170000Z",
+        "--run-name": "A-0-0p5B-v2",
+        "--seed": "1"
+      }
+    },
+    {
+      "run_id": "shield-train-campaign-a-v2-A-1-1p5B-20260906T170001Z",
+      "run_name": "A-1-1p5B-v2",
+      "trainer_args": {
+        "--base-model": "Qwen/Qwen2.5-1.5B",
+        "--campaign-id": "campaign-a-v2-ladder-20260906",
+        "--corpus": "/home/ubuntu/akki_journal/shield-train-campaign-a-v2-ladder-20260906-20260906T163733Z/train_corpus.jsonl",
+        "--ctx-len": "1024",
+        "--grad-accum": "8",
+        "--held-out": "/home/ubuntu/akki_journal/shield-train-campaign-a-v2-ladder-20260906-20260906T163733Z/held_out_corpus.jsonl",
+        "--lora-rank": "16",
+        "--lr": "0.0002",
+        "--num-epochs": "3",
+        "--per-device-batch": "4",
+        "--run-dir": "/home/ubuntu/akki_journal/shield-train-campaign-a-v2-A-1-1p5B-20260906T170001Z",
+        "--run-id": "shield-train-campaign-a-v2-A-1-1p5B-20260906T170001Z",
+        "--run-name": "A-1-1p5B-v2",
+        "--seed": "1"
+      },
+      "wait_for_run_id": "shield-train-campaign-a-v2-A-0-0p5B-20260906T170000Z"
+    },
+    {
+      "run_id": "shield-train-campaign-a-v2-A-2-3B-20260906T170002Z",
+      "run_name": "A-2-3B-v2",
+      "trainer_args": {
+        "--base-model": "Qwen/Qwen2.5-3B",
+        "--campaign-id": "campaign-a-v2-ladder-20260906",
+        "--corpus": "/home/ubuntu/akki_journal/shield-train-campaign-a-v2-ladder-20260906-20260906T163733Z/train_corpus.jsonl",
+        "--ctx-len": "1024",
+        "--grad-accum": "16",
+        "--held-out": "/home/ubuntu/akki_journal/shield-train-campaign-a-v2-ladder-20260906-20260906T163733Z/held_out_corpus.jsonl",
+        "--lora-rank": "16",
+        "--lr": "0.0002",
+        "--num-epochs": "3",
+        "--per-device-batch": "2",
+        "--run-dir": "/home/ubuntu/akki_journal/shield-train-campaign-a-v2-A-2-3B-20260906T170002Z",
+        "--run-id": "shield-train-campaign-a-v2-A-2-3B-20260906T170002Z",
+        "--run-name": "A-2-3B-v2",
+        "--seed": "1"
+      },
+      "wait_for_run_id": "shield-train-campaign-a-v2-A-1-1p5B-20260906T170001Z"
+    },
+    {
+      "run_id": "shield-train-campaign-a-v2-A-3-7B-20260906T170003Z",
+      "run_name": "A-3-7B-v2",
+      "trainer_args": {
+        "--base-model": "Qwen/Qwen2.5-7B",
+        "--campaign-id": "campaign-a-v2-ladder-20260906",
+        "--corpus": "/home/ubuntu/akki_journal/shield-train-campaign-a-v2-ladder-20260906-20260906T163733Z/train_corpus.jsonl",
+        "--ctx-len": "1024",
+        "--grad-accum": "32",
+        "--held-out": "/home/ubuntu/akki_journal/shield-train-campaign-a-v2-ladder-20260906-20260906T163733Z/held_out_corpus.jsonl",
+        "--lora-rank": "16",
+        "--lr": "0.0002",
+        "--num-epochs": "3",
+        "--per-device-batch": "1",
+        "--run-dir": "/home/ubuntu/akki_journal/shield-train-campaign-a-v2-A-3-7B-20260906T170003Z",
+        "--run-id": "shield-train-campaign-a-v2-A-3-7B-20260906T170003Z",
+        "--run-name": "A-3-7B-v2",
+        "--seed": "1"
+      },
+      "wait_for_run_id": "shield-train-campaign-a-v2-A-2-3B-20260906T170002Z"
+    }
+  ]
+}
