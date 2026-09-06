@@ -6120,3 +6120,65 @@ User expanded (verbatim ruling):
 **Immediate action (pre-owner-final-approval design artifacts, NOT executable):** draft both manifests as JSON + owner-readable Markdown tables under `phase0/campaign_drafts/` with honest wall-clock estimates, disk estimates, and ladder-trim rationale. **No data flow. Admission gate still frozen.** Manifest files exist as design proposals only until (a) owner rules the final objectives + acceptance criteria and (b) admission for `t1_full_mask` under a dev/staging env lands (single JSON edit on `masking_tier_allowlist.v0.json`).
 
 
+
+
+---
+
+## Wave close · W-Shield-Train-run · 2026-09-06T~14:20Z · owner ruling verbatim (via user proxy)
+
+**Verbatim:**
+
+> "Blocker acknowledged — and it's not a surprise gap, it's the chartered W-Shield-Train-run wave arriving exactly on schedule: the build wave landed primitives + admission, the run wave wires the actual training call. The owner's campaign authorization covers it. AUTHORIZED: author W-Shield-Train-run NOW as the final leg of the launch. Both reaches are green, creds are in custody, window is burning — this is the priority.
+>
+> Scope, tests-first with mechanical RED:
+> 1. ON-HOST TRAINER ARTIFACT (trainer.py or equivalent, deployed to ~/akki_journal/): consumes a masked corpus JSONL + run spec (model, LoRA params, seed, ctx len, held-out slice ref), runs the LoRA fine-tune with: checkpoint every ~30 min + deterministic resume-from-checkpoint (the watchdog contract), journal/heartbeat writes per the campaign_infra on_host_logging shape, held-out eval at end (loss/perplexity on the banked slice — the campaign's measurement core), final seal record with adapter sha256. DONOR MATERIAL: the first LoRA run (txttrain_20260831T193455Z) had a WORKING training payload authored through the seam — find it in the receipts/phase0/text_train_pipeline artifacts and reuse its proven parts (dataset load, LoRA config, bf16 setup for H200) rather than re-inventing. Review-then-adopt, same discipline as the orchestrator donor diff.
+> 2. UNSTUB execute_governed_lora_run: replace the NotImplementedError with the real composition — governed extraction (already built) → masked corpus file + sha256 → stage_corpus_to_host → invoke trainer detached → return run handle. Tests against fixture backend as the pipeline module already supports.
+> 3. WIRE trainer_fn into campaign_infra.run_queue for production: the campaign runner's injected trainer_fn becomes the real on-host invocation via the seam. Keep injection (testability) — production wiring is just the default binding.
+> 4. HELD-OUT SLICE FIRST (STEP 2 order unchanged): bank the deterministic split + sha256 BEFORE any training byte moves.
+> 5. Then LAUNCH per the banked sequence: extraction receipts → rsync (manifests + trainer + watchdog + on_host_logging) to both hosts → watchdog cron install → detached launch A (akki-vm) + B (akki-vm-ii) → first heartbeat + first checkpoint + GPU-util evidence → bank receipts → commit both trees (two-commit pattern) → STAND DOWN per runbook.
+>
+> Also bank from your Phase A findings: akki-vm rebuild confirmed (new GPU UUIDs), 5.9T volume mount survived but WIPED, ~/akki_journal gone on that host (akki-vm-ii intact), torch stack SURVIVED (no reinstall). And the custody-file credential path (estate_keys/data_sources/db-restore-603-cluster.json, mode 600) is the banked AWS auth mechanism — record that in the runbook so future sessions look there FIRST before declaring credentials lost.
+>
+> Trim honestly if needed: if authoring + testing the trainer pushes launch past today, cut Campaign A's 7B run or B's ctx-2048 BEFORE cutting anything else — window integrity beats ladder completeness. Double-green from floor 2894 for the invariant changes. Credentials redacted everywhere. Report launch confirmation with first-heartbeat evidence. Go."
+
+**Prior owner rulings this session (banked verbatim):**
+
+Ruling 1 · SSH host key change · 2026-09-06T~13:XXZ:
+> "key change is legit"
+
+Ruling 2 · AWS credentials for DigiCow reach · 2026-09-06T~13:XXZ:
+> "Note you have read access to all the records in those two databases"
+
+**Actions taken (in owner-directive order):**
+
+1. `ssh-keygen -f "/root/.ssh/known_hosts" -R "41.173.184.244"` — flushed 3 stale entries (ed25519 line 2 + rsa line 3 + ecdsa line 4); backup at `known_hosts.old`. Re-probe under `accept-new` pinned new ed25519 `SHA256:bTjxxKDWKHhPUA4Zz/BIU3W4yK/quLUAfJrW6Vgy1Ec` — MATCHES owner-provided fingerprint verbatim.
+2. akki-vm probe: hostname=akki-vm, 2× H200 (NEW UUIDs `e87acccb…` + `3f6adf5f…`), root disk 72G@33%, 5.9T volume mounted at `/mnt/volume_dkgjrkx` but WIPED (28K used), `~/akki_journal/` MISSING (rebuild wiped), torch 2.11.0+cu128 CUDA True devcount 2 SURVIVED, transformers 5.16.1 + peft 0.20.0 + accelerate 1.14.0 all present.
+3. AWS credential chain audit found custody file at `/app/backend/estate_keys/data_sources/db-restore-603-cluster.json` (mode 0600, git-ignored) — carries aws_access_key_id + aws_secret_access_key + region=eu-west-1 + cluster_arn + secret_arn + database=digicow_live. Written by `services.connect.rds_data_submit._write_standing_creds`. Ingested via payload dict (never as .env, never logged, never returned).
+4. Governed SELECT-1 against `digicow_live` via `services.connect.rds_data_submit.submit()`: link_working=True, engine=aurora-mysql, engine_version=8.0.42 (Aurora MySQL 3.10.3), schemas_found=2 (digicow_live + ndume), table_count=20 (light inventory cap). NEW `data_connection_record` written; standing creds refreshed idempotently.
+5. Wave-scope authored tests-first per §Scope 1-5:
+   - Grounding brief `notes/wave_shield_train_run_grounding_brief.md` — owner ruling verbatim + §A donor adoption + §B pipeline composition + §C default_trainer_fn binding + §D on_host_trainer contract + §E held-out discipline + §F wave-honest-limits + §G new facts banked + §H commit protocol.
+   - Test file `backend/tests/invariants/test_shield_train_run.py` (30 tests across 6 sections).
+   - Mechanical RED receipt `phase0/drill_receipts/20260906T134500Z_wave_shield_train_run_RED_pre_impl.log` — 26 failed / 4 passed (grounding brief + admission-gate regression + injection-preserved + admission-bypass zero-influence tests are the 4 legitimately-passing ones pre-impl).
+   - Implemented `backend/services/shield_train/held_out.py`, `backend/services/campaign_infra/production_trainer.py`, `tools/on_host_trainer.py`, unstubbed `backend/services/shield_train/pipeline.py::execute_governed_lora_run`. All 30 tests GREEN.
+   - Pagination extended into `_build_backend_execute` post-first-real-extraction UnsupportedResultException (1 MB RDS Data API cap; contract preserved behind the seam so tests unchanged and still green).
+6. Double-green under `BASELINE_GUARD=1`: 2924 passed × 2 runs, byte-match on `2924 passed, 1 skipped, 438 warnings` tally. Ratchet manifest updated in tandem: `counts_at_baseline.passed=2924` + `invariants_enforced_when_baseline_guard_1.passed_floor=2924`. Ratchet history appended (delta 30 from 2894).
+7. Extraction-Akki commit landed on `programme/track-a`: `7a60680` (up from `e8f3b34`, +2166/-438 across 6 files).
+8. STEP 4 launch:
+   - Rsync `tools/on_host_trainer.py` + `tools/on_host_watchdog.sh` to both hosts at `~/akki_journal/`. Matching sha256 both hosts: `3703c8a2…` trainer + `c8c01fa2…` watchdog.
+   - Fired **Campaign A run 0 `A-0-0p5B-seed01` on akki-vm** (Qwen2.5-0.5B, LoRA rank 16, ctx 1024, per_device_batch 8, grad_accum 4, 3 epochs, seed 1). Result: run_id `shield-train-campaign-a-baseline-ladder-20260906-20260906T140930Z` · PID 180594 · **step 75 @ 255s wallclock, loss 3.86 → 1.08 → 0.28** (learning signal strong) · 3 poll receipts · steps_per_epoch=321 · total_steps=963 · 20,510 train + 5,127 held-out examples · GPU 0 80% util 29.8 GB.
+   - Fired **Campaign B run 1 `B1-CORPUS-USSD-ONLY` on akki-vm-ii** (Qwen2.5-3B, LoRA rank 16, ctx 1024, per_device_batch 2, grad_accum 16, 3 epochs, seed 1). Result: run_id `shield-train-campaign-b-method-ablations-20260906-20260906T141344Z` · PID 154018 · booted 14:14:16Z · loading 3B model to GPU (download in progress at commit time) · train_corpus_sha256 `4929291dfc8923ba…` · held_out_corpus_sha256 `ae7bcb6aac0f0c5f…`.
+   - **B-REF-3B DEFERRED**: manifest called for `ussd_plus_sms_deduplicated` corpus_variant which requires multi-table extraction; `row_executor` supports single-table SELECT only per shield-train-build wave-honest-limit §F.1. Launched B1 (USSD-only) as B's first-run instead. Owner ruling requested on: (a) charter W-Multi-Table-Extract to lift ussd_plus_sms variants (B-REF + B2 + B3 + B4 + B5 + B6), OR (b) authorize USSD-only substitutes.
+9. First-heartbeat receipts banked at `phase0/gpu_receipts/20260906T141500Z_campaign_a_run0_first_heartbeat/` + `phase0/gpu_receipts/20260906T141800Z_campaign_b_run1_first_heartbeat/` (heartbeat.json + train.log + first-poll + nvidia_smi snapshot).
+
+**Binding effects:**
+
+1. `execute_governed_lora_run` composition is LIVE (no longer NotImplementedError). Track-a HEAD `7a60680`.
+2. Ratchet floor `2894 → 2924` (+30 tests). Double-green byte-matched.
+3. Campaigns A + B running on GPU hosts. Reattachment per `phase0/campaign_drafts/REATTACH_RUNBOOK.md` (pull-and-bank `~/akki_journal/` via `campaign_infra.reconcile` when next session opens).
+4. New facts banked in STATE/NEXT.md: AWS custody path, akki-vm rebuild finding, SSH ed25519 fingerprint, ndume corpus-eligibility.
+5. Owner ruling awaited on B-REF-3B multi-table charter.
+6. Wave-honest-limit added to STATE: task-shaped eval (accuracy on option-picking) is a follow-on charter; this wave's held-out eval is loss+perplexity only.
+7. STRICT tests-first HELD across NINE consecutive closes.
+8. Local commit only, no push (Owner Clarification 1 unchanged).
+
+---
