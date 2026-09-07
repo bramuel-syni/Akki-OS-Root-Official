@@ -1,0 +1,71 @@
+2026-09-07T11:49:48.386763154Z
+=NVIDIA=
+0, 0 %, 0 MiB, 143771 MiB, 76.64 W, 31
+1, 0 %, 0 MiB, 143771 MiB, 83.90 W, 45
+=NVIDIA_PROCS=
+=DISPATCHERS=
+ 190497       1 python3 /home/ubuntu/akki_journal/on_host_queue_dispatcher.py --queue-file /home/ubuntu/akki_journal/queue/campaign_b_v21_lane1_queue_manifest.json --campaign-id campaign-b-v21-method-ablations-20260906 --gpu-id 1
+ 195771       1 python3 /home/ubuntu/akki_journal/queue_followon_launcher.py --host-slug akki-vm-ii --dispatcher /home/ubuntu/akki_journal/on_host_queue_dispatcher.py --queue-dir /home/ubuntu/akki_journal/queue --primary-manifest-lane0 /home/ubuntu/akki_journal/queue/campaign_b_v21_lane0_queue_manifest.json --ext1-manifest-lane0 /home/ubuntu/akki_journal/queue/campaign_b_v21_lane0_ext1_20260907T0100Z_queue_manifest.json --primary-manifest-lane1 /home/ubuntu/akki_journal/queue/campaign_b_v21_lane1_queue_manifest.json --ext1-manifest-lane1 /home/ubuntu/akki_journal/queue/campaign_b_v21_lane1_ext1_20260907T0100Z_queue_manifest.json --poll-interval-s 60 --daemon
+ 197763  195771 python3 /home/ubuntu/akki_journal/on_host_queue_dispatcher.py --queue-file /home/ubuntu/akki_journal/queue/campaign_b_v21_lane0_ext1_20260907T0100Z_queue_manifest.json --campaign-id campaign-b-v21-method-ablations-20260906 --gpu-id 0
+=LAUNCHER=
+ 195771       1    15:48:53 python3 /home/ubuntu/akki_journal/queue_followon_launcher.py --host-slug akki-vm-ii --dispatcher /home/ubuntu/akki_journal/on_host_queue_dispatcher.py --queue-dir /home/ubuntu/akki_journal/queue --primary-manifest-lane0 /home/ubuntu/akki_journal/queue/campaign_b_v21_lane0_queue_manifest.json --ext1-manifest-lane0 /home/ubuntu/akki_journal/queue/campaign_b_v21_lane0_ext1_20260907T0100Z_queue_manifest.json --primary-manifest-lane1 /home/ubuntu/akki_journal/queue/campaign_b_v21_lane1_queue_manifest.json --ext1-manifest-lane1 /home/ubuntu/akki_journal/queue/campaign_b_v21_lane1_ext1_20260907T0100Z_queue_manifest.json --poll-interval-s 60 --daemon
+=TRAINERS=
+=HB_ALL=
+-rw-rw-r-- 1 ubuntu ubuntu 429 Sep  7 11:48 /home/ubuntu/akki_journal/queue/dispatcher_heartbeat.json
+-rw-rw-r-- 1 ubuntu ubuntu 444 Sep  7 11:48 /home/ubuntu/akki_journal/queue/dispatcher_heartbeat_gpu0.json
+--- /home/ubuntu/akki_journal/queue/dispatcher_heartbeat.json ---
+{
+  "at_utc": "2026-09-07T11:48:58.848212Z",
+  "campaign_id": "campaign-b-v21-method-ablations-20260906",
+  "current_run_name": "B4-RANK-32-v21-seed1",
+  "current_state": "waiting_for_shield-train-campaign-b-v21-B4-RANK-32-s1-20260906T200104Z",
+  "dispatcher_pid": 190497,
+  "gpu_id": 1,
+  "kind": "dispatcher_heartbeat",
+  "queue_progress": {
+    "current_run_name": "B4-RANK-32-v21-seed1",
+    "index": 2,
+    "total": 4
+  }
+}
+--- /home/ubuntu/akki_journal/queue/dispatcher_heartbeat_gpu0.json ---
+{
+  "at_utc": "2026-09-07T11:48:56.069687Z",
+  "campaign_id": "campaign-b-v21-method-ablations-20260906",
+  "current_run_name": "B-REF-14B-v21-seed1-PROBE",
+  "current_state": "waiting_for_shield-train-campaign-b-v21-B-REF-14B-s1-PROBE-20260907T010003Z",
+  "dispatcher_pid": 197763,
+  "gpu_id": 0,
+  "kind": "dispatcher_heartbeat",
+  "queue_progress": {
+    "current_run_name": "B-REF-14B-v21-seed1-PROBE",
+    "index": 3,
+    "total": 8
+  }
+}
+=QUEUE_DRAINED=
+=SENTINELS=
+-rw-rw-r-- 1 ubuntu ubuntu 37 Sep  6 22:32 /home/ubuntu/akki_journal/queue/ext1_launched_lane0.marker
+=DISPATCH_ERRORS=
+=LAUNCHER_LOG_TAIL=
+{"at_utc": "2026-09-06T20:00:54.986626Z", "dispatcher": "/home/ubuntu/akki_journal/on_host_queue_dispatcher.py", "host_slug": "akki-vm-ii", "kind": "launcher_start", "lanes": [{"ext1": "/home/ubuntu/akki_journal/queue/campaign_b_v21_lane0_ext1_20260907T0100Z_queue_manifest.json", "ext2": null, "gpu_id": 0, "primary": "/home/ubuntu/akki_journal/queue/campaign_b_v21_lane0_queue_manifest.json"}, {"ext1": "/home/ubuntu/akki_journal/queue/campaign_b_v21_lane1_ext1_20260907T0100Z_queue_manifest.json", "ext2": null, "gpu_id": 1, "primary": "/home/ubuntu/akki_journal/queue/campaign_b_v21_lane1_queue_manifest.json"}], "pid": 195771}
+{"at_utc": "2026-09-06T22:32:55.135677Z", "campaign_id": "campaign-b-v21-method-ablations-20260906", "child_pid": 197763, "follow_on_queue_file": null, "gpu_id": 0, "kind": "followon_dispatched", "queue_file": "/home/ubuntu/akki_journal/queue/campaign_b_v21_lane0_ext1_20260907T0100Z_queue_manifest.json"}
+=SEALED_LIST=
+shield-train-campaign-b-multi-table-dedup-20260906-20260906T144804Z
+shield-train-campaign-b-multi-table-raw-20260906-20260906T144838Z
+shield-train-campaign-b-v2-dedup-ablations-20260906-20260906T164158Z
+shield-train-campaign-b-v2-raw-ablations-20260906-20260906T164301Z
+shield-train-campaign-b-v21-B-REF-14B-s1-PROBE-20260907T010003Z
+shield-train-campaign-b-v21-B-REF-3B-s1-20260906T200100Z
+shield-train-campaign-b-v21-B-REF-3B-s2-20260906T200110Z
+shield-train-campaign-b-v21-B-REF-7B-s1-20260907T010002Z
+shield-train-campaign-b-v21-B1-USSD-ONLY-s1-20260906T200101Z
+shield-train-campaign-b-v21-B2-DEDUP-OFF-s1-20260906T200102Z
+shield-train-campaign-b-v21-B3-RANK-8-s1-20260906T200103Z
+shield-train-campaign-b-v21-B3-RANK-8-s2-20260907T010000Z
+shield-train-campaign-b-v21-B4-RANK-32-s1-20260906T200104Z
+shield-train-campaign-b-v21-B5-CTX-512-s1-20260906T200105Z
+shield-train-campaign-b-v21-B5-CTX-512-s2-20260907T010001Z
+=DF=
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/vda1        72G   72G  5.8M 100% /

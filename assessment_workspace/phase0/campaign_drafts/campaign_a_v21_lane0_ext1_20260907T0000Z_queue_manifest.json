@@ -1,11 +1,11 @@
 {
   "campaign_id": "campaign-a-v21-ladder-20260906",
   "generated_at_utc": "2026-09-06T19:48:00Z",
-  "wave_ref": "W-WINDOW-FILL-GUARANTEE · lane 0 · ext1",
+  "wave_ref": "W-WINDOW-FILL-GUARANTEE \u00b7 lane 0 \u00b7 ext1",
   "authored_by": "programme.track-a.W-WINDOW-FILL-GUARANTEE",
   "gpu_id": 0,
   "host": "akki-vm",
-  "notes": "Campaign A v2.1 lane 0 (GPU 0) EXTENSION 1. Chains after primary lane 0 completes (last=A-3-7B-v21-seed1 seal). Priority order per owner directive 2026-09-06T~19:40Z: (b) 7B rung 2 seeds → A-3-7B-v21-seed2; (c) 14B rung PROBE if fits single-GPU LoRA bf16 → A-14B-v21-seed1-PROBE (H200 143GB · 28GB weights + LoRA r=16 + gradient checkpointing ~2GB activations at pd=4 ctx=1024 · budgeted ~35GB total); (d) third seeds → A-3-7B-v21-seed3 + A-2-3B-v21-seed3 + A-1-1p5B-v21-seed3. All EB=64 comparability preserved. If 14B PROBE OOMs, dispatcher records dispatch_error and continues to next run without stalling the lane.",
+  "notes": "Campaign A v2.1 lane 0 (GPU 0) EXTENSION 1. Chains after primary lane 0 completes (last=A-3-7B-v21-seed1 seal). Priority order per owner directive 2026-09-06T~19:40Z: (b) 7B rung 2 seeds \u2192 A-3-7B-v21-seed2; (c) 14B rung PROBE if fits single-GPU LoRA bf16 \u2192 A-14B-v21-seed1-PROBE (H200 143GB \u00b7 28GB weights + LoRA r=16 + gradient checkpointing ~2GB activations at pd=4 ctx=1024 \u00b7 budgeted ~35GB total); (d) third seeds \u2192 A-3-7B-v21-seed3 + A-2-3B-v21-seed3 + A-1-1p5B-v21-seed3. All EB=64 comparability preserved. If 14B PROBE OOMs, dispatcher records dispatch_error and continues to next run without stalling the lane.",
   "waits_behind_run_id": "shield-train-campaign-a-v21-A-3-7B-s1-20260906T200003Z",
   "corpus_refs": {
     "campaign_a_v2_ladder": {
@@ -46,7 +46,7 @@
       "effective_batch": 64,
       "packing_enabled": false,
       "owner_priority_letter": "c",
-      "probe_note": "First 14B run on H200 single-GPU LoRA bf16 — if OOM, dispatcher records dispatch_error and continues; if succeeds, opens the 14B rung for the campaign.",
+      "probe_note": "First 14B run on H200 single-GPU LoRA bf16 \u2014 if OOM, dispatcher records dispatch_error and continues; if succeeds, opens the 14B rung for the campaign.",
       "trainer_args": {
         "--base-model": "Qwen/Qwen2.5-14B",
         "--campaign-id": "campaign-a-v21-ladder-20260906",
@@ -127,12 +127,12 @@
         "--campaign-id": "campaign-a-v21-ladder-20260906",
         "--corpus": "/home/ubuntu/akki_journal/shield-train-campaign-a-v2-ladder-20260906-20260906T163733Z/train_corpus.jsonl",
         "--ctx-len": "1024",
-        "--grad-accum": "2",
+        "--grad-accum": "4",
         "--held-out": "/home/ubuntu/akki_journal/shield-train-campaign-a-v2-ladder-20260906-20260906T163733Z/held_out_corpus.jsonl",
         "--lora-rank": "16",
         "--lr": "0.0002",
         "--num-epochs": "3",
-        "--per-device-batch": "32",
+        "--per-device-batch": "16",
         "--run-dir": "/home/ubuntu/akki_journal/shield-train-campaign-a-v21-A-1-1p5B-s3-20260907T000004Z",
         "--run-id": "shield-train-campaign-a-v21-A-1-1p5B-s3-20260907T000004Z",
         "--run-name": "A-1-1p5B-v21-seed3",
@@ -140,5 +140,13 @@
       },
       "wait_for_run_id": "shield-train-campaign-a-v21-A-2-3B-s3-20260907T000003Z"
     }
-  ]
+  ],
+  "retroactive_correction": {
+    "at_utc": "2026-09-07T12:05:00Z",
+    "wave": "W-WINDOW-FILL-RESTORE",
+    "reason": "vocab-shaped logits OOM class \u00b7 pd \u00d7 ctx > 16 384 = ~10 GiB logits fp32 \u2192 OOM at step 0 \u00b7 fixed by capping pd at 16 for 0.5B/1.5B rungs \u00b7 EB=64 anchor preserved via grad_accum",
+    "fixed_runs": [
+      "  A-1-1p5B-v21-seed3: pd 32\u219216, ga 2\u21924 (EB=64 preserved)"
+    ]
+  }
 }

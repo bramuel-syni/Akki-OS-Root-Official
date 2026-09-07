@@ -28,12 +28,12 @@
         "--campaign-id": "campaign-a-v21-ladder-20260906",
         "--corpus": "/home/ubuntu/akki_journal/shield-train-campaign-a-v2-ladder-20260906-20260906T163733Z/train_corpus.jsonl",
         "--ctx-len": "1024",
-        "--grad-accum": "2",
+        "--grad-accum": "4",
         "--held-out": "/home/ubuntu/akki_journal/shield-train-campaign-a-v2-ladder-20260906-20260906T163733Z/held_out_corpus.jsonl",
         "--lora-rank": "16",
         "--lr": "0.0002",
         "--num-epochs": "3",
-        "--per-device-batch": "32",
+        "--per-device-batch": "16",
         "--run-dir": "/home/ubuntu/akki_journal/shield-train-campaign-a-v21-A-1-1p5B-s1-20260906T200001Z",
         "--run-id": "shield-train-campaign-a-v21-A-1-1p5B-s1-20260906T200001Z",
         "--run-name": "A-1-1p5B-v21-seed1",
@@ -52,12 +52,12 @@
         "--campaign-id": "campaign-a-v21-ladder-20260906",
         "--corpus": "/home/ubuntu/akki_journal/shield-train-campaign-a-v2-ladder-20260906-20260906T163733Z/train_corpus.jsonl",
         "--ctx-len": "1024",
-        "--grad-accum": "1",
+        "--grad-accum": "4",
         "--held-out": "/home/ubuntu/akki_journal/shield-train-campaign-a-v2-ladder-20260906-20260906T163733Z/held_out_corpus.jsonl",
         "--lora-rank": "16",
         "--lr": "0.0002",
         "--num-epochs": "3",
-        "--per-device-batch": "64",
+        "--per-device-batch": "16",
         "--run-dir": "/home/ubuntu/akki_journal/shield-train-campaign-a-v21-A-0-0p5B-s2-20260906T200010Z",
         "--run-id": "shield-train-campaign-a-v21-A-0-0p5B-s2-20260906T200010Z",
         "--run-name": "A-0-0p5B-v21-seed2",
@@ -76,12 +76,12 @@
         "--campaign-id": "campaign-a-v21-ladder-20260906",
         "--corpus": "/home/ubuntu/akki_journal/shield-train-campaign-a-v2-ladder-20260906-20260906T163733Z/train_corpus.jsonl",
         "--ctx-len": "1024",
-        "--grad-accum": "2",
+        "--grad-accum": "4",
         "--held-out": "/home/ubuntu/akki_journal/shield-train-campaign-a-v2-ladder-20260906-20260906T163733Z/held_out_corpus.jsonl",
         "--lora-rank": "16",
         "--lr": "0.0002",
         "--num-epochs": "3",
-        "--per-device-batch": "32",
+        "--per-device-batch": "16",
         "--run-dir": "/home/ubuntu/akki_journal/shield-train-campaign-a-v21-A-1-1p5B-s2-20260906T200011Z",
         "--run-id": "shield-train-campaign-a-v21-A-1-1p5B-s2-20260906T200011Z",
         "--run-name": "A-1-1p5B-v21-seed2",
@@ -113,5 +113,15 @@
       },
       "wait_for_run_id": "shield-train-campaign-a-v21-A-1-1p5B-s2-20260906T200011Z"
     }
-  ]
+  ],
+  "retroactive_correction": {
+    "at_utc": "2026-09-07T12:05:00Z",
+    "wave": "W-WINDOW-FILL-RESTORE",
+    "reason": "vocab-shaped logits OOM class \u00b7 pd \u00d7 ctx > 16 384 = ~10 GiB logits fp32 \u2192 OOM at step 0 \u00b7 fixed by capping pd at 16 for 0.5B/1.5B rungs \u00b7 EB=64 anchor preserved via grad_accum",
+    "fixed_runs": [
+      "  A-1-1p5B-v21-seed1: pd 32\u219216, ga 2\u21924 (EB=64 preserved)",
+      "  A-0-0p5B-v21-seed2: pd 64\u219216, ga 1\u21924 (EB=64 preserved)",
+      "  A-1-1p5B-v21-seed2: pd 32\u219216, ga 2\u21924 (EB=64 preserved)"
+    ]
+  }
 }

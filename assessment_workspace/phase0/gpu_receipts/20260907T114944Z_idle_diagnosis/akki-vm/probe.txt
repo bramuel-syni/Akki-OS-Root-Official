@@ -1,0 +1,54 @@
+2026-09-07T11:49:48.286942521Z
+=NVIDIA=
+0, 0 %, 0 MiB, 143771 MiB, 77.10 W, 35
+1, 0 %, 0 MiB, 143771 MiB, 76.44 W, 35
+=NVIDIA_PROCS=
+=DISPATCHERS=
+ 213708       1 python3 /home/ubuntu/akki_journal/on_host_queue_dispatcher.py --queue-file /home/ubuntu/akki_journal/queue/campaign_a_v21_lane1_queue_manifest.json --campaign-id campaign-a-v21-ladder-20260906 --gpu-id 1
+ 213711  213707 python3 /home/ubuntu/akki_journal/on_host_queue_dispatcher.py --queue-file /home/ubuntu/akki_journal/queue/campaign_a_v21_lane0_queue_manifest.json --campaign-id campaign-a-v21-ladder-20260906 --gpu-id 0
+ 229182       1 python3 /home/ubuntu/akki_journal/queue_followon_launcher.py --host-slug akki-vm --dispatcher /home/ubuntu/akki_journal/on_host_queue_dispatcher.py --queue-dir /home/ubuntu/akki_journal/queue --primary-manifest-lane0 /home/ubuntu/akki_journal/queue/campaign_a_v21_lane0_queue_manifest.json --ext1-manifest-lane0 /home/ubuntu/akki_journal/queue/campaign_a_v21_lane0_ext1_20260907T0000Z_queue_manifest.json --primary-manifest-lane1 /home/ubuntu/akki_journal/queue/campaign_a_v21_lane1_queue_manifest.json --ext1-manifest-lane1 /home/ubuntu/akki_journal/queue/campaign_a_v21_lane1_ext1_20260907T0000Z_queue_manifest.json --poll-interval-s 60 --daemon
+=LAUNCHER=
+ 229182       1    15:48:58 python3 /home/ubuntu/akki_journal/queue_followon_launcher.py --host-slug akki-vm --dispatcher /home/ubuntu/akki_journal/on_host_queue_dispatcher.py --queue-dir /home/ubuntu/akki_journal/queue --primary-manifest-lane0 /home/ubuntu/akki_journal/queue/campaign_a_v21_lane0_queue_manifest.json --ext1-manifest-lane0 /home/ubuntu/akki_journal/queue/campaign_a_v21_lane0_ext1_20260907T0000Z_queue_manifest.json --primary-manifest-lane1 /home/ubuntu/akki_journal/queue/campaign_a_v21_lane1_queue_manifest.json --ext1-manifest-lane1 /home/ubuntu/akki_journal/queue/campaign_a_v21_lane1_ext1_20260907T0000Z_queue_manifest.json --poll-interval-s 60 --daemon
+=TRAINERS=
+=HB_LANE0=
+-rw-rw-r-- 1 ubuntu ubuntu 413 Sep  7 11:48 /home/ubuntu/akki_journal/queue/dispatcher_heartbeat.json
+{
+  "at_utc": "2026-09-07T11:48:58.022575Z",
+  "campaign_id": "campaign-a-v21-ladder-20260906",
+  "current_run_name": "A-1-1p5B-v21-seed1",
+  "current_state": "waiting_for_shield-train-campaign-a-v21-A-1-1p5B-s1-20260906T200001Z",
+  "dispatcher_pid": 213708,
+  "gpu_id": 1,
+  "kind": "dispatcher_heartbeat",
+  "queue_progress": {
+    "current_run_name": "A-1-1p5B-v21-seed1",
+    "index": 0,
+    "total": 4
+  }
+}
+=QUEUE_DRAINED=
+=SENTINELS=
+=DISPATCH_ERRORS=
+-rw-rw-r-- 1 ubuntu ubuntu 134 Sep  6 15:01 /home/ubuntu/akki_journal/queue/dispatch_error_A-1-1p5B.json
+-rw-rw-r-- 1 ubuntu ubuntu 132 Sep  6 15:01 /home/ubuntu/akki_journal/queue/dispatch_error_A-2-3B.json
+=LAUNCHER_LOG_TAIL=
+{"at_utc": "2026-09-06T20:00:49.524685Z", "dispatcher": "/home/ubuntu/akki_journal/on_host_queue_dispatcher.py", "host_slug": "akki-vm", "kind": "launcher_start", "lanes": [{"ext1": "/home/ubuntu/akki_journal/queue/campaign_a_v21_lane0_ext1_20260907T0000Z_queue_manifest.json", "ext2": null, "gpu_id": 0, "primary": "/home/ubuntu/akki_journal/queue/campaign_a_v21_lane0_queue_manifest.json"}, {"ext1": "/home/ubuntu/akki_journal/queue/campaign_a_v21_lane1_ext1_20260907T0000Z_queue_manifest.json", "ext2": null, "gpu_id": 1, "primary": "/home/ubuntu/akki_journal/queue/campaign_a_v21_lane1_queue_manifest.json"}], "pid": 229182}
+=A0v2_SEAL=
+-rw-rw-r-- 1 ubuntu ubuntu 297 Sep  6 19:57 /home/ubuntu/akki_journal/shield-train-campaign-a-v2-A-0-0p5B-20260906T170000Z/ACTIVITY_SUMMARY.md
+=A0v2_HB=
+  "step": 3537,
+  "training_pid": 194863
+}
+=SEALED_LIST=
+shield-train-campaign-a-A-1-1p5B-20260906T144918Z
+shield-train-campaign-a-A-2-3B-20260906T144919Z
+shield-train-campaign-a-baseline-ladder-20260906-20260906T140930Z
+shield-train-campaign-a-v2-A-0-0p5B-20260906T170000Z
+shield-train-campaign-a-v2-ladder-20260906-20260906T163733Z
+shield-train-campaign-a-v21-A-0-0p5B-s1-20260906T200000Z
+shield-train-campaign-a-v21-A-1-1p5B-s1-20260906T200001Z
+=DF=
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/vda1        72G   27G   45G  38% /
+=HF_CACHE_SIZE=
+3.9G	/home/ubuntu/.cache/huggingface

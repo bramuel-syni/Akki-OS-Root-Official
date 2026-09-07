@@ -1,0 +1,60 @@
+2026-09-07T12:03:05.971289779Z
+=NVIDIA=
+0, 100 %, 105451 MiB, 143771 MiB, 636.90 W, 66
+1, 100 %, 105451 MiB, 143771 MiB, 620.68 W, 62
+=TRAINERS=
+ 232472 python3 /home/ubuntu/akki_journal/on_host_trainer.py --base-model Qwen/Qwen2.5-3B --campaign-id campaign-a-v21-ladder-20260906 --corpus /home/ubuntu/akki_journal/shield-tra
+ 232817 python3 /home/ubuntu/akki_journal/on_host_trainer.py --base-model Qwen/Qwen2.5-3B --campaign-id campaign-a-v21-ladder-20260906 --corpus /home/ubuntu/akki_journal/shield-tra
+ 233129 python3 /home/ubuntu/akki_journal/on_host_trainer.py --base-model Qwen/Qwen2.5-3B --campaign-id campaign-a-v21-ladder-20260906 --corpus /home/ubuntu/akki_journal/shield-tra
+ 233130 python3 /home/ubuntu/akki_journal/on_host_trainer.py --base-model Qwen/Qwen2.5-3B --campaign-id campaign-a-v21-ladder-20260906 --corpus /home/ubuntu/akki_journal/shield-tra
+ 233131 python3 /home/ubuntu/akki_journal/on_host_trainer.py --base-model Qwen/Qwen2.5-3B --campaign-id campaign-a-v21-ladder-20260906 --corpus /home/ubuntu/akki_journal/shield-tra
+ 233168 python3 /home/ubuntu/akki_journal/on_host_trainer.py --base-model Qwen/Qwen2.5-3B --campaign-id campaign-a-v21-ladder-20260906 --corpus /home/ubuntu/akki_journal/shield-tra
+=DISPATCHERS=
+ 233450 python3 /home/ubuntu/akki_journal/on_host_queue_dispatcher.py --queue-file /home/ubuntu/akki_journal/queue/campaign_a_v21_lane0_restore_20260907T120000Z_queue_manifest.json --campaign-id campaign-a-v21-ladder-20260906 --gpu-id 0 --poll-interval-s 60
+ 233545 python3 /home/ubuntu/akki_journal/on_host_queue_dispatcher.py --queue-file /home/ubuntu/akki_journal/queue/campaign_a_v21_lane1_restore_20260907T120000Z_queue_manifest.json --campaign-id campaign-a-v21-ladder-20260906 --gpu-id 1 --poll-interval-s 60
+=HB_ALL=
+--- /home/ubuntu/akki_journal/queue/dispatcher_heartbeat.json ---
+{
+  "at_utc": "2026-09-07T11:57:58.040717Z",
+  "campaign_id": "campaign-a-v21-ladder-20260906",
+  "current_run_name": "A-2-3B-v21-seed2",
+  "current_state": "waiting_for_shield-train-campaign-a-v21-A-2-3B-s2-20260906T200012Z",
+  "dispatcher_pid": 213708,
+  "gpu_id": 1,
+  "kind": "dispatcher_heartbeat",
+  "queue_progress": {
+    "current_run_name": "A-2-3B-v21-seed2",
+    "index": 3,
+    "total": 4
+  }
+}
+--- /home/ubuntu/akki_journal/queue/dispatcher_heartbeat_gpu0.json ---
+{
+  "at_utc": "2026-09-07T12:02:58.327480Z",
+  "campaign_id": "campaign-a-v21-ladder-20260906",
+  "current_run_name": "A-2-3B-v21-seed1",
+  "current_state": "waiting_for_shield-train-campaign-a-v21-A-2-3B-s1-20260906T200002Z",
+  "dispatcher_pid": 233450,
+  "gpu_id": 0,
+  "kind": "dispatcher_heartbeat",
+  "queue_progress": {
+    "current_run_name": "A-2-3B-v21-seed1",
+    "index": 0,
+    "total": 6
+  }
+}
+--- /home/ubuntu/akki_journal/queue/dispatcher_heartbeat_gpu1.json ---
+{
+  "at_utc": "2026-09-07T12:03:02.746544Z",
+  "campaign_id": "campaign-a-v21-ladder-20260906",
+  "current_run_name": "A-0-0p5B-v21-seed2R",
+  "current_state": "waiting_for_shield-train-campaign-a-v21-A-0-0p5B-s2R-20260907T120010Z",
+  "dispatcher_pid": 233545,
+  "gpu_id": 1,
+  "kind": "dispatcher_heartbeat",
+  "queue_progress": {
+    "current_run_name": "A-0-0p5B-v21-seed2R",
+    "index": 0,
+    "total": 7
+  }
+}

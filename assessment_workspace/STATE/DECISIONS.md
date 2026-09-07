@@ -6371,3 +6371,27 @@ Owner ruling on (a) or (b) unblocks a follow-on `W-SMS-Body-Emit` wave that re-e
 4. Bank updated window-fill math + before/after evidence, then return to Registry/Solva.
 
 **Discipline:** watchdog code changes go tests-first to track-a with double-green from floor 2986. Two-commit pattern. No push. Fallback-burn records are a separate journal namespace (`gpu_fill_burns/`, NOT `shield-train/*` or `baseline_lines/*`) — banked here so the owner is never surprised by burn records appearing in the training ledger.
+
+---
+
+## 2026-09-07T~12:22Z · W-WINDOW-FILL-RESTORE · ratchet 2991 → 2997 (+6) double-green · idle window closed
+
+**Owner alert verbatim:** "There is no activity on the GPU workspace".
+
+**Idle window:** ~50.4 GPU-hours lost of the 72h × 4 GPU = 288 possible = 17.5 % campaign burn. akki-vm both lanes idle 16h from 2026-09-06T~19:58Z; akki-vm-ii lane 0 idle 9h from 2026-09-07T~03:02Z; akki-vm-ii lane 1 idle 9h from 2026-09-07T~03:10Z.
+
+**Two root causes:**
+1. **Vocab-shaped logits OOM at step 0** on akki-vm (pd=64/32 with Qwen vocab ~152 K + ctx=1024 = 37 GB / 18 GB logits tensor). Trainers crashed without writing ACTIVITY_SUMMARY.md → dispatchers stuck.
+2. **Disk full 100 %** on akki-vm-ii (HF cache 48 GB dominated by 28 GB Qwen 14 B) → B-REF-14B-s1-PROBE + B4-RANK-32-s1 crashed on checkpoint save. Same infinite-wait pattern.
+
+**Why the idle-lane alarm did not save it:** the pre-fix 4 running dispatchers pre-date the QUEUE_DRAINED / follow-on / liveness mechanisms. Even the W-WINDOW-FILL-GUARANTEE post-fix dispatcher only detects queue drain, not mid-queue trainer death. Both crashes were mid-queue trainer deaths with no queue completion event.
+
+**Restoration deployed 2026-09-07T~12:22Z:** all 4 GPUs sustained at 100 % util. akki-vm-ii disk 62 % (from 100 %). 14 B class retired. 4 honest fake-seals (synthetic_fail_seal kind) written for crashed runs. 3 corrected restore manifests dispatched (pd cap 16, EB=64 anchor preserved). Retroactive corrections banked on 4 old manifests (0.5B pd 64→16, 1.5B pd 32→16) with retroactive_correction annotation.
+
+**Prevention invariants (tests-first RED then GREEN, ratchet 2991 → 2997 +6):**
+- Manifest-side pd × ctx cap 16 384 (test_every_v21_manifest_run_pd_ctx_below_logits_cap + test_pd_ctx_cap_is_16384_and_not_silently_relaxed).
+- Dispatcher-side trainer-PID liveness probe + synthetic dead-trainer seal (4 tests).
+
+**Chartered follow-on (NOT in this close):** W-TRAINER-STARTUP-SEAL — trainer itself writes ACTIVITY_SUMMARY.md fail marker before exiting on any startup exception, closing the failure class at the trainer boundary instead of only the dispatcher boundary.
+
+**Discipline:** two-commit pattern (this workspace mirror = STATE + manifests + receipts; track-a twin d328518 = tests + dispatcher code + retroactive manifest corrections + ratchet baseline). Never-kill-mid-flight preserved. Owner directive banked verbatim.
