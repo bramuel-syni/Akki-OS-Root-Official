@@ -6510,3 +6510,23 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 ---
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+## 2026-09-08T~04:50Z · OWNER DIRECTIVE · W-WINDOW-FILL-RESTORE-2 AUTHORIZED
+
+**Verbatim (via user proxy):**
+
+> "W-WINDOW-FILL-RESTORE-2 AUTHORIZED — fire it NOW, no owner wait needed: his standing directive 'Ensure the GPUs are fully consume next 3 days' (banked, STANDING_ORDERS §5) covers interrupt-priority restoration. ~30h remain in the window; every idle hour violates the guarantee.
+>
+> Execute:
+> 1. Diagnose both idle lanes: akki-vm lane1 (dispatcher alive, no trainer — inspect the lane's last run: ACTIVITY_SUMMARY present? synthetic_dead_trainer_seal? queue head remaining?) and akki-vm-ii lane0 (dispatcher gone — did it exit after QUEUE_DRAINED? did the followon launcher mis-detect? crash log?). Distinguish queue-drained-legitimately vs new failure class vs known class.
+> 2. Restore all 4 lanes to training. If queues genuinely drained: author ext2 NOW (this was the chartered T+30h authoring window) — comparability-safe extensions per the established levers (additional seeds first; sequence-packing variants only if safe), sized to drain at window close 2026-09-09 with margin. If a new failure class: fix tests-first (floor 3004) and bank the invariant.
+> 3. Verify: all 4 GPUs >85% with nvidia-smi evidence banked; idle-hours-lost computed from journals and added to the running ledger (51.3 + new).
+> 4. If the dispatcher-exit-without-respawn is real, the respawn gap gets a mechanism (the launcher should respawn dead dispatchers whose queues still hold work) — tests-first, small.
+> Then STOP and stand down per runbook. The audit review, DPO rulings, and wave sequencing are with the owner — do not fire any E.1-E.7 wave until he sequences. Report: restoration evidence + updated lost-hours ledger + queue drain projections to window close. Go."
+
+**Discipline:** tests-first if new failure class · ratchet floor 3004 · two-commit pattern · double-green byte-match · no push · terminal pytest only · idle hours logged to running ledger.
+
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

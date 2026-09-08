@@ -1,0 +1,91 @@
+--- dispatcher 233545 process info ---
+    PID     ELAPSED STAT CMD
+ 233545    16:41:34 S    python3 /home/ubuntu/akki_journal/on_host_queue_dispatcher.py --queue-file /home/ubuntu/akki_journal/queue/campaign_a_v21_lane1_restore_20260907T120000Z_queue_manifest.json --campaign-id campaign-a-v21-ladder-20260906 --gpu-id 1 --poll-interval-s 60
+
+--- lane1 restore queue manifest ---
+-rw-r--r-- 1 ubuntu ubuntu 8063 Sep  6 20:00 /home/ubuntu/akki_journal/queue/campaign_a_v21_lane1_ext1_20260907T0000Z_queue_manifest.json
+-rw-r--r-- 1 ubuntu ubuntu 5688 Sep  6 18:34 /home/ubuntu/akki_journal/queue/campaign_a_v21_lane1_queue_manifest.json
+-rw-r--r-- 1 ubuntu ubuntu 7705 Sep  7 12:00 /home/ubuntu/akki_journal/queue/campaign_a_v21_lane1_restore_20260907T120000Z_queue_manifest.json
+
+--- lane1 restore queue heads ---
+=== /home/ubuntu/akki_journal/queue/campaign_a_v21_lane1_restore_20260907T120000Z_queue_manifest.json ===
+total: 7
+done: 0  pending: 7
+first_pending: shield-train-campaign-a-v21-A-0-0p5B-s2R-20260907T120010Z
+last_status_transitions:
+  shield-train-campaign-a-v21-A-2-3B-s2-20260906T200012Z None 
+  shield-train-campaign-a-v21-A-3-7B-s4-20260907T120013Z None 
+  shield-train-campaign-a-v21-A-2-3B-s4-20260907T120014Z None 
+  shield-train-campaign-a-v21-A-1-1p5B-s4-20260907T120015Z None 
+  shield-train-campaign-a-v21-A-0-0p5B-s3-20260907T120016Z None 
+
+--- lane1 recent run dirs (last 5) ---
+=== /home/ubuntu/akki_journal/shield-train-campaign-a-v21-A-0-0p5B-s2R-20260907T120010Z ===
+total 28
+drwxrwxr-x  3 ubuntu ubuntu 4096 Sep  7 12:01 .
+drwxrwxr-x 19 ubuntu ubuntu 4096 Sep  8 03:39 ..
+-rw-rw-r--  1 ubuntu ubuntu  246 Sep  7 12:01 heartbeat.json
+drwxrwxr-x  2 ubuntu ubuntu 4096 Sep  7 12:01 hf_output
+-rw-rw-r--  1 ubuntu ubuntu 1789 Sep  7 12:01 train.log
+-rw-rw-r--  1 ubuntu ubuntu 7609 Sep  7 12:01 trainer_stdout.log
+=== /home/ubuntu/akki_journal/shield-train-campaign-a-v21-A-3-7B-s2-20260907T120000Z ===
+total 516
+drwxrwxr-x  6 ubuntu ubuntu   4096 Sep  7 23:16 .
+drwxrwxr-x 19 ubuntu ubuntu   4096 Sep  8 03:39 ..
+-rw-rw-r--  1 ubuntu ubuntu    305 Sep  7 23:16 ACTIVITY_SUMMARY.md
+drwxrwxr-x  2 ubuntu ubuntu   4096 Sep  7 23:06 adapter
+-rw-rw-r--  1 ubuntu ubuntu     65 Sep  7 23:06 adapter.sha256
+-rw-rw-r--  1 ubuntu ubuntu    168 Sep  7 23:06 checkpoint_marker.json
+-rw-rw-r--  1 ubuntu ubuntu    243 Sep  7 23:06 heartbeat.json
+-rw-rw-r--  1 ubuntu ubuntu     91 Sep  7 23:16 held_out_eval.json
+drwxrwxr-x  2 ubuntu ubuntu   4096 Sep  7 23:06 hf_eval
+drwxrwxr-x  5 ubuntu ubuntu   4096 Sep  7 23:06 hf_output
+drwxrwxr-x  2 ubuntu ubuntu  12288 Sep  7 23:06 polls
+--ACTIVITY_SUMMARY.md tail--
+# Campaign run activity summary
+
+campaign_id: campaign-a-v21-ladder-20260906
+run_name: A-3-7B-v21-seed2
+run_id: shield-train-campaign-a-v21-A-3-7B-s2-20260907T120000Z
+final_step: 3537
+final_loss: 0.8988638520240784
+started_at_utc: 2026-09-07T18:53:58.693036Z
+completed_at_utc: 2026-09-07T23:16:20.614412Z
+=== /home/ubuntu/akki_journal/shield-train-campaign-a-v21-A-3-7B-s3-20260907T120002Z ===
+total 516
+drwxrwxr-x  6 ubuntu ubuntu   4096 Sep  8 03:39 .
+drwxrwxr-x 19 ubuntu ubuntu   4096 Sep  8 03:39 ..
+-rw-rw-r--  1 ubuntu ubuntu    305 Sep  8 03:39 ACTIVITY_SUMMARY.md
+drwxrwxr-x  2 ubuntu ubuntu   4096 Sep  8 03:29 adapter
+-rw-rw-r--  1 ubuntu ubuntu     65 Sep  8 03:29 adapter.sha256
+-rw-rw-r--  1 ubuntu ubuntu    168 Sep  8 03:29 checkpoint_marker.json
+-rw-rw-r--  1 ubuntu ubuntu    243 Sep  8 03:29 heartbeat.json
+-rw-rw-r--  1 ubuntu ubuntu     92 Sep  8 03:39 held_out_eval.json
+drwxrwxr-x  2 ubuntu ubuntu   4096 Sep  8 03:29 hf_eval
+drwxrwxr-x  5 ubuntu ubuntu   4096 Sep  8 03:29 hf_output
+drwxrwxr-x  2 ubuntu ubuntu  12288 Sep  8 03:29 polls
+--ACTIVITY_SUMMARY.md tail--
+# Campaign run activity summary
+
+campaign_id: campaign-a-v21-ladder-20260906
+run_name: A-3-7B-v21-seed3
+run_id: shield-train-campaign-a-v21-A-3-7B-s3-20260907T120002Z
+final_step: 3537
+final_loss: 0.9274410009384155
+started_at_utc: 2026-09-07T23:16:58.928935Z
+completed_at_utc: 2026-09-08T03:39:30.479710Z
+=== /home/ubuntu/akki_journal/shield-train-campaign-a-v21-A-2-3B-s3-20260907T120003Z ===
+total 152
+drwxrwxr-x  4 ubuntu ubuntu   4096 Sep  8 04:29 .
+drwxrwxr-x 19 ubuntu ubuntu   4096 Sep  8 03:39 ..
+-rw-rw-r--  1 ubuntu ubuntu    168 Sep  8 04:29 checkpoint_marker.json
+-rw-rw-r--  1 ubuntu ubuntu    243 Sep  8 04:42 heartbeat.json
+drwxrwxr-x  3 ubuntu ubuntu   4096 Sep  8 04:29 hf_output
+drwxrwxr-x  2 ubuntu ubuntu   4096 Sep  8 04:42 polls
+-rw-rw-r--  1 ubuntu ubuntu  11325 Sep  8 04:42 train.log
+-rw-rw-r--  1 ubuntu ubuntu 112092 Sep  8 04:42 trainer_stdout.log
+
+--- QUEUE_DRAINED markers in lane1 ---
+ls: cannot access '/home/ubuntu/akki_journal/QUEUE_DRAINED*': No such file or directory
+
+--- last 30 lines of dispatcher log if any ---

@@ -1,0 +1,95 @@
+--- CUDA_VISIBLE for running trainer (PID 211383) ---
+CUDA_VISIBLE_DEVICES=1
+
+--- followon launcher log (last 60 lines) ---
+ls: cannot access '/home/ubuntu/akki_journal/*followon*.log': No such file or directory
+ls: cannot access '/home/ubuntu/akki_journal/*launcher*.log': No such file or directory
+
+--- ALL running python processes ---
+ 195771  1-08:43:12 S    python3 /home/ubuntu/akki_journal/queue_followon_launcher.py --host-slug akki-vm-ii --dispatcher /home/ubuntu/akki_journal/on_host_queue_dispatcher.py --queue-dir /home/ubuntu/akki_journal/queue --primary-manifest-lane0 /home/ubuntu/akki_journal/queue/campaign_b_v21_lane0_queue_manifest.json --ext1-manifest-lane0 /home/ubuntu/akki_journal/queue/campaign_b_v21_lane0_ext1_20260907T0100Z_queue_manifest.json --primary-manifest-lane1 /home/ubuntu/akki_journal/queue/campaign_b_v21_lane1_queue_manifest.json --ext1-manifest-lane1 /home/ubuntu/akki_journal/queue/campaign_b_v21_lane1_ext1_20260907T0100Z_queue_manifest.json --poll-interval-s 60 --daemon
+ 203012    16:43:00 S    python3 /home/ubuntu/akki_journal/on_host_queue_dispatcher.py --queue-file /home/ubuntu/akki_journal/queue/campaign_b_v21_lane1_restore_20260907T120000Z_queue_manifest.json --campaign-id campaign-b-v21-method-ablations-20260906 --gpu-id 1 --poll-interval-s 60
+ 204437    14:35:11 Ss   python3 /home/ubuntu/akki_journal/on_host_queue_dispatcher.py --queue-file /home/ubuntu/akki_journal/queue/campaign_b_v21_lane1_ext1_20260907T0100Z_queue_manifest.json --campaign-id campaign-b-v21-method-ablations-20260906 --gpu-id 1
+ 211383       47:59 Ssl  python3 /home/ubuntu/akki_journal/on_host_trainer.py --base-model Qwen/Qwen2.5-3B --campaign-id campaign-b-v21-method-ablations-20260906 --corpus /home/ubuntu/akki_journal/shield-train-campaign-b-v2-dedup-ablations-20260906-20260906T164158Z/train_corpus.jsonl --ctx-len 1024 --grad-accum 4 --held-out /home/ubuntu/akki_journal/shield-train-campaign-b-v2-dedup-ablations-20260906-20260906T164158Z/held_out_corpus.jsonl --lora-rank 16 --lr 0.0002 --num-epochs 3 --per-device-batch 16 --run-dir /home/ubuntu/akki_journal/shield-train-campaign-b-v21-B-REF-3B-s5-20260907T010017Z --run-id shield-train-campaign-b-v21-B-REF-3B-s5-20260907T010017Z --run-name B-REF-3B-v21-seed5 --seed 5
+ 211683       09:16 Sl   python3 /home/ubuntu/akki_journal/on_host_trainer.py --base-model Qwen/Qwen2.5-3B --campaign-id campaign-b-v21-method-ablations-20260906 --corpus /home/ubuntu/akki_journal/shield-train-campaign-b-v2-dedup-ablations-20260906-20260906T164158Z/train_corpus.jsonl --ctx-len 1024 --grad-accum 4 --held-out /home/ubuntu/akki_journal/shield-train-campaign-b-v2-dedup-ablations-20260906-20260906T164158Z/held_out_corpus.jsonl --lora-rank 16 --lr 0.0002 --num-epochs 3 --per-device-batch 16 --run-dir /home/ubuntu/akki_journal/shield-train-campaign-b-v21-B-REF-3B-s5-20260907T010017Z --run-id shield-train-campaign-b-v21-B-REF-3B-s5-20260907T010017Z --run-name B-REF-3B-v21-seed5 --seed 5
+ 211684       09:16 Sl   python3 /home/ubuntu/akki_journal/on_host_trainer.py --base-model Qwen/Qwen2.5-3B --campaign-id campaign-b-v21-method-ablations-20260906 --corpus /home/ubuntu/akki_journal/shield-train-campaign-b-v2-dedup-ablations-20260906-20260906T164158Z/train_corpus.jsonl --ctx-len 1024 --grad-accum 4 --held-out /home/ubuntu/akki_journal/shield-train-campaign-b-v2-dedup-ablations-20260906-20260906T164158Z/held_out_corpus.jsonl --lora-rank 16 --lr 0.0002 --num-epochs 3 --per-device-batch 16 --run-dir /home/ubuntu/akki_journal/shield-train-campaign-b-v21-B-REF-3B-s5-20260907T010017Z --run-id shield-train-campaign-b-v21-B-REF-3B-s5-20260907T010017Z --run-name B-REF-3B-v21-seed5 --seed 5
+
+--- ALL queue manifests ---
+-rw-rw-r-- 1 ubuntu ubuntu   340 Sep  7 16:08 /home/ubuntu/akki_journal/queue/QUEUE_DRAINED_lane0.json
+-rw-r--r-- 1 ubuntu ubuntu  6353 Sep  6 14:50 /home/ubuntu/akki_journal/queue/campaign_b_queue.json
+-rw-r--r-- 1 ubuntu ubuntu 10889 Sep  6 20:00 /home/ubuntu/akki_journal/queue/campaign_b_v21_lane0_ext1_20260907T0100Z_queue_manifest.json
+-rw-r--r-- 1 ubuntu ubuntu  5682 Sep  6 18:34 /home/ubuntu/akki_journal/queue/campaign_b_v21_lane0_queue_manifest.json
+-rw-r--r-- 1 ubuntu ubuntu 11334 Sep  6 20:00 /home/ubuntu/akki_journal/queue/campaign_b_v21_lane1_ext1_20260907T0100Z_queue_manifest.json
+-rw-r--r-- 1 ubuntu ubuntu  6433 Sep  6 18:34 /home/ubuntu/akki_journal/queue/campaign_b_v21_lane1_queue_manifest.json
+-rw-r--r-- 1 ubuntu ubuntu  9561 Sep  7 12:00 /home/ubuntu/akki_journal/queue/campaign_b_v21_lane1_restore_20260907T120000Z_queue_manifest.json
+-rw-r--r-- 1 ubuntu ubuntu 10398 Sep  6 16:46 /home/ubuntu/akki_journal/queue/campaign_b_v2_queue.json
+-rw-rw-r-- 1 ubuntu ubuntu   432 Sep  7 11:57 /home/ubuntu/akki_journal/queue/dispatcher_heartbeat.json
+-rw-rw-r-- 1 ubuntu ubuntu   332 Sep  7 16:08 /home/ubuntu/akki_journal/queue/dispatcher_heartbeat_gpu0.json
+-rw-rw-r-- 1 ubuntu ubuntu   426 Sep  8 04:43 /home/ubuntu/akki_journal/queue/dispatcher_heartbeat_gpu1.json
+
+--- lane 0 queue heads ---
+=== /home/ubuntu/akki_journal/queue/campaign_b_v21_lane0_ext1_20260907T0100Z_queue_manifest.json ===
+total= 8
+   shield-train-campaign-b-v21-B3-RANK-8-s2-20260907T010000Z None
+   shield-train-campaign-b-v21-B5-CTX-512-s2-20260907T010001Z None
+   shield-train-campaign-b-v21-B-REF-7B-s1-20260907T010002Z None
+   shield-train-campaign-b-v21-B-REF-14B-s1-PROBE-20260907T010003Z None
+   shield-train-campaign-b-v21-B-REF-7B-s2-20260907T010004Z None
+   shield-train-campaign-b-v21-B-REF-3B-s3-20260907T010005Z None
+   shield-train-campaign-b-v21-B3-RANK-8-s3-20260907T010006Z None
+   shield-train-campaign-b-v21-B5-CTX-512-s3-20260907T010007Z None
+=== /home/ubuntu/akki_journal/queue/campaign_b_v21_lane0_queue_manifest.json ===
+total= 4
+   shield-train-campaign-b-v21-B-REF-3B-s1-20260906T200100Z None
+   shield-train-campaign-b-v21-B3-RANK-8-s1-20260906T200103Z None
+   shield-train-campaign-b-v21-B5-CTX-512-s1-20260906T200105Z None
+   shield-train-campaign-b-v21-B-REF-3B-s2-20260906T200110Z None
+
+--- lane 1 queue heads (active) ---
+=== /home/ubuntu/akki_journal/queue/campaign_b_v21_lane1_ext1_20260907T0100Z_queue_manifest.json ===
+total= 8
+   shield-train-campaign-b-v21-B1-USSD-ONLY-s2-20260907T010010Z None
+   shield-train-campaign-b-v21-B2-DEDUP-OFF-s2-20260907T010011Z None
+   shield-train-campaign-b-v21-B4-RANK-32-s2-20260907T010012Z None
+   shield-train-campaign-b-v21-B6-CTX-2048-s2-20260907T010013Z None
+   shield-train-campaign-b-v21-B-REF-14B-s2-20260907T010014Z None
+   shield-train-campaign-b-v21-B-REF-7B-s3-20260907T010015Z None
+   shield-train-campaign-b-v21-B-REF-3B-s4-20260907T010016Z None
+   shield-train-campaign-b-v21-B-REF-3B-s5-20260907T010017Z None
+=== /home/ubuntu/akki_journal/queue/campaign_b_v21_lane1_queue_manifest.json ===
+total= 4
+   shield-train-campaign-b-v21-B1-USSD-ONLY-s1-20260906T200101Z None
+   shield-train-campaign-b-v21-B2-DEDUP-OFF-s1-20260906T200102Z None
+   shield-train-campaign-b-v21-B4-RANK-32-s1-20260906T200104Z None
+   shield-train-campaign-b-v21-B6-CTX-2048-s1-20260906T200106Z None
+=== /home/ubuntu/akki_journal/queue/campaign_b_v21_lane1_restore_20260907T120000Z_queue_manifest.json ===
+total= 8
+   shield-train-campaign-b-v21-B6-CTX-2048-s1-20260906T200106Z None
+   shield-train-campaign-b-v21-B1-USSD-ONLY-s2-20260907T010010Z None
+   shield-train-campaign-b-v21-B2-DEDUP-OFF-s2-20260907T010011Z None
+   shield-train-campaign-b-v21-B4-RANK-32-s2-20260907T010012Z None
+   shield-train-campaign-b-v21-B6-CTX-2048-s2-20260907T010013Z None
+   shield-train-campaign-b-v21-B-REF-7B-s3-20260907T010015Z None
+   shield-train-campaign-b-v21-B-REF-3B-s4-20260907T010016Z None
+   shield-train-campaign-b-v21-B-REF-3B-s5-20260907T010017Z None
+
+--- lane 0 recent activity (last 12 runs) ---
+IN-PROGRESS or REFUSED: shield-train-campaign-b-v21-B-REF-3B-s5-20260907T010017Z | mtime=2026-09-08 04:15:36.505165221 +0000
+COMPLETED: shield-train-campaign-b-v21-B-REF-3B-s4-20260907T010016Z | started_at_utc: 2026-09-08T02:55:08.227045Z | completed_at_utc: 2026-09-08T03:55:10.345503Z
+COMPLETED: shield-train-campaign-b-v21-B-REF-7B-s3-20260907T010015Z | started_at_utc: 2026-09-08T01:11:08.022620Z | completed_at_utc: 2026-09-08T02:54:55.202060Z
+IN-PROGRESS or REFUSED: shield-train-campaign-b-v21-B-REF-14B-s2-20260907T010014Z | mtime=2026-09-08 01:11:00.405115658 +0000
+COMPLETED: shield-train-campaign-b-v21-B6-CTX-2048-s2-20260907T010013Z | started_at_utc: 2026-09-07T22:57:56.564736Z | completed_at_utc: 2026-09-08T01:10:31.995634Z
+COMPLETED: shield-train-campaign-b-v21-B4-RANK-32-s2-20260907T010012Z | started_at_utc: 2026-09-07T21:57:07.826766Z | completed_at_utc: 2026-09-07T22:57:21.172743Z
+COMPLETED: shield-train-campaign-b-v21-B2-DEDUP-OFF-s2-20260907T010011Z | started_at_utc: 2026-09-07T16:41:56.176504Z | completed_at_utc: 2026-09-07T21:57:01.726773Z
+COMPLETED: shield-train-campaign-b-v21-B1-USSD-ONLY-s2-20260907T010010Z | started_at_utc: 2026-09-07T14:08:56.028637Z | completed_at_utc: 2026-09-07T16:41:43.364609Z
+COMPLETED: shield-train-campaign-b-v21-B5-CTX-512-s3-20260907T010007Z | started_at_utc: 2026-09-07T15:39:56.335935Z | completed_at_utc: 2026-09-07T16:08:54.489879Z
+COMPLETED: shield-train-campaign-b-v21-B3-RANK-8-s3-20260907T010006Z | started_at_utc: 2026-09-07T14:39:56.304555Z | completed_at_utc: 2026-09-07T15:39:44.482234Z
+COMPLETED: shield-train-campaign-b-v21-B-REF-3B-s3-20260907T010005Z | started_at_utc: 2026-09-07T13:39:56.242752Z | completed_at_utc: 2026-09-07T14:39:44.521809Z
+COMPLETED: shield-train-campaign-b-v21-B6-CTX-2048-s1-20260906T200106Z | started_at_utc: 2026-09-07T11:55:58.935677Z | completed_at_utc: 2026-09-07T14:08:14.981043Z
+
+--- QUEUE_DRAINED / lane_dead / stopped markers ---
+/home/ubuntu/akki_journal/queue/QUEUE_DRAINED_lane0.json
+
+--- disk state ---
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/vda1        72G   56G   17G  78% /
+/dev/vda1        72G   56G   17G  78% /

@@ -1,0 +1,19 @@
+--- pre-kill: current lane1 dispatcher ---
+    PID     ELAPSED CMD
+ 233545    16:46:56 python3 /home/ubuntu/akki_journal/on_host_queue_dispatcher.py --queue-file /home/ubuntu/akki_journal/queue/campaign_a_v21_lane1_restore_20260907T120000Z_queue_manifest.json --campaign-id campaign-a-v21-ladder-20260906 --gpu-id 1 --poll-interval-s 60
+
+--- kill stuck dispatcher (SIGTERM then verify) ---
+    PID     ELAPSED CMD
+
+--- launch fresh lane 1 dispatcher pointing at same restore manifest (fix will advance past dead A-0-0p5B-s2R) ---
+new dispatcher PID: 239914
+--- verify running ---
+    PID     ELAPSED CMD
+ 239914       00:06 python3 on_host_queue_dispatcher.py --queue-file /home/ubuntu/akki_journal/queue/campaign_a_v21_lane1_restore_20260907T120000Z_queue_manifest.json --campaign-id campaign-a-v21-ladder-20260906 --gpu-id 1 --poll-interval-s 60
+
+--- initial dispatcher log ---
+{"at_utc":"2026-09-08T04:48:02.026223Z","campaign_id":"campaign-a-v21-ladder-20260906","dispatcher_pid":239914,"kind":"dispatcher_start","queue_file":"/home/ubuntu/akki_journal/queue/campaign_a_v21_lane1_restore_20260907T120000Z_queue_manifest.json","run_count":7}
+{"at_utc":"2026-09-08T04:48:02.027995Z","gpu_id":1,"index":0,"kind":"dispatched","run_id":"shield-train-campaign-a-v21-A-0-0p5B-s2R-20260907T120010Z","run_name":"A-0-0p5B-v21-seed2R","trainer_pid":239916}
+{"at_utc":"2026-09-08T04:48:02.028195Z","index":0,"kind":"waiting_for_own_seal","run_id":"shield-train-campaign-a-v21-A-0-0p5B-s2R-20260907T120010Z","run_name":"A-0-0p5B-v21-seed2R"}
+
+--- wait 30s and check if trainer starts / dead-trainer-seal fires ---

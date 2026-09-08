@@ -1,0 +1,24 @@
+new lane 0 dispatcher PID: 212407
+    PID     ELAPSED CMD
+ 212407       00:02 python3 on_host_queue_dispatcher.py --queue-file /home/ubuntu/akki_journal/queue/campaign_b_v21_lane0_ext2_20260908T050000Z_queue_manifest.json --campaign-id campaign-b-v21-method-ablations-20260906 --gpu-id 0 --poll-interval-s 60
+
+--- initial log ---
+{"at_utc":"2026-09-08T04:52:06.828649Z","campaign_id":"campaign-b-v21-method-ablations-20260906","dispatcher_pid":212407,"kind":"dispatcher_start","queue_file":"/home/ubuntu/akki_journal/queue/campaign_b_v21_lane0_ext2_20260908T050000Z_queue_manifest.json","run_count":16}
+{"at_utc":"2026-09-08T04:52:06.831335Z","gpu_id":0,"index":0,"kind":"dispatched","run_id":"shield-train-campaign-b-v21-B3-RANK-8-s4-20260908T05000000Z","run_name":"B3-RANK-8-v21-seed4","trainer_pid":212409}
+{"at_utc":"2026-09-08T04:52:06.831553Z","index":0,"kind":"waiting_for_own_seal","run_id":"shield-train-campaign-b-v21-B3-RANK-8-s4-20260908T05000000Z","run_name":"B3-RANK-8-v21-seed4"}
+
+--- wait 30s and verify trainer starts ---
+{"at_utc":"2026-09-08T04:52:06.828649Z","campaign_id":"campaign-b-v21-method-ablations-20260906","dispatcher_pid":212407,"kind":"dispatcher_start","queue_file":"/home/ubuntu/akki_journal/queue/campaign_b_v21_lane0_ext2_20260908T050000Z_queue_manifest.json","run_count":16}
+{"at_utc":"2026-09-08T04:52:06.831335Z","gpu_id":0,"index":0,"kind":"dispatched","run_id":"shield-train-campaign-b-v21-B3-RANK-8-s4-20260908T05000000Z","run_name":"B3-RANK-8-v21-seed4","trainer_pid":212409}
+{"at_utc":"2026-09-08T04:52:06.831553Z","index":0,"kind":"waiting_for_own_seal","run_id":"shield-train-campaign-b-v21-B3-RANK-8-s4-20260908T05000000Z","run_name":"B3-RANK-8-v21-seed4"}
+
+--- nvidia-smi ---
+0, 100 %, 105403 MiB, 628.45 W
+1, 100 %, 105451 MiB, 631.86 W
+
+--- pgrep trainers ---
+7
+212406 bash -c  cd /home/ubuntu/akki_journal nohup python3 on_host_queue_dispatcher.py \   --queue-file /home/ubuntu/akki_journal/queue/campaign_b_v21_lane0_ext2_20260908T050000Z_queue_manifest.json \   --campaign-id campaign-b-v21-method-ablations-20260906 \   --gpu-id 0 \   --poll-interval-s 60 \   > /home/ubuntu/akki_journal/dispatcher_lane0_ext2_20260908T050000Z.log 2>&1 & NEW_PID=$! sleep 2 echo "new lane 0 dispatcher PID: $NEW_PID" ps -o pid,etime,cmd -p $NEW_PID 2>&1 echo "" echo "--- initial log ---" tail -10 /home/ubuntu/akki_journal/dispatcher_lane0_ext2_20260908T050000Z.log 2>&1 echo "" echo "--- wait 30s and verify trainer starts ---" sleep 30 tail -20 /home/ubuntu/akki_journal/dispatcher_lane0_ext2_20260908T050000Z.log 2>&1 echo "" echo "--- nvidia-smi ---" nvidia-smi --query-gpu=index,utilization.gpu,memory.used,power.draw --format=csv,noheader echo "" echo "--- pgrep trainers ---" pgrep -af on_host_trainer.py | wc -l pgrep -af "on_host_trainer.py.*seed 4" 2>&1 | head -5 
+212409 python3 /home/ubuntu/akki_journal/on_host_trainer.py --base-model Qwen/Qwen2.5-3B --campaign-id campaign-b-v21-method-ablations-20260906 --corpus /home/ubuntu/akki_journal/shield-train-campaign-b-v2-dedup-ablations-20260906-20260906T164158Z/train_corpus.jsonl --ctx-len 1024 --grad-accum 4 --held-out /home/ubuntu/akki_journal/shield-train-campaign-b-v2-dedup-ablations-20260906-20260906T164158Z/held_out_corpus.jsonl --lora-rank 8 --lr 0.0002 --num-epochs 3 --per-device-batch 16 --run-dir /home/ubuntu/akki_journal/shield-train-campaign-b-v21-B3-RANK-8-s4-20260908T05000000Z --run-id shield-train-campaign-b-v21-B3-RANK-8-s4-20260908T05000000Z --run-name B3-RANK-8-v21-seed4 --seed 4
+212460 python3 /home/ubuntu/akki_journal/on_host_trainer.py --base-model Qwen/Qwen2.5-3B --campaign-id campaign-b-v21-method-ablations-20260906 --corpus /home/ubuntu/akki_journal/shield-train-campaign-b-v2-dedup-ablations-20260906-20260906T164158Z/train_corpus.jsonl --ctx-len 1024 --grad-accum 4 --held-out /home/ubuntu/akki_journal/shield-train-campaign-b-v2-dedup-ablations-20260906-20260906T164158Z/held_out_corpus.jsonl --lora-rank 8 --lr 0.0002 --num-epochs 3 --per-device-batch 16 --run-dir /home/ubuntu/akki_journal/shield-train-campaign-b-v21-B3-RANK-8-s4-20260908T05000000Z --run-id shield-train-campaign-b-v21-B3-RANK-8-s4-20260908T05000000Z --run-name B3-RANK-8-v21-seed4 --seed 4
+212461 python3 /home/ubuntu/akki_journal/on_host_trainer.py --base-model Qwen/Qwen2.5-3B --campaign-id campaign-b-v21-method-ablations-20260906 --corpus /home/ubuntu/akki_journal/shield-train-campaign-b-v2-dedup-ablations-20260906-20260906T164158Z/train_corpus.jsonl --ctx-len 1024 --grad-accum 4 --held-out /home/ubuntu/akki_journal/shield-train-campaign-b-v2-dedup-ablations-20260906-20260906T164158Z/held_out_corpus.jsonl --lora-rank 8 --lr 0.0002 --num-epochs 3 --per-device-batch 16 --run-dir /home/ubuntu/akki_journal/shield-train-campaign-b-v21-B3-RANK-8-s4-20260908T05000000Z --run-id shield-train-campaign-b-v21-B3-RANK-8-s4-20260908T05000000Z --run-name B3-RANK-8-v21-seed4 --seed 4

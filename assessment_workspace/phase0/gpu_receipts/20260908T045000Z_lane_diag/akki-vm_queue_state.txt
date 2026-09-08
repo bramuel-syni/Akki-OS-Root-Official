@@ -1,0 +1,64 @@
+--- akki-vm disk state ---
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/vda1        72G   48G   24G  67% /
+/dev/vda1        72G   48G   24G  67% /
+
+--- akki-vm ALL dispatcher heartbeat files ---
+-rw-rw-r-- 1 ubuntu ubuntu 407 Sep  7 11:57 /home/ubuntu/akki_journal/queue/dispatcher_heartbeat.json
+-rw-rw-r-- 1 ubuntu ubuntu 407 Sep  8 04:44 /home/ubuntu/akki_journal/queue/dispatcher_heartbeat_gpu0.json
+-rw-rw-r-- 1 ubuntu ubuntu 416 Sep  8 04:45 /home/ubuntu/akki_journal/queue/dispatcher_heartbeat_gpu1.json
+
+--- akki-vm dispatcher_heartbeat_gpu0.json ---
+{
+  "at_utc": "2026-09-08T04:44:59.185233Z",
+  "campaign_id": "campaign-a-v21-ladder-20260906",
+  "current_run_name": "A-2-3B-v21-seed3",
+  "current_state": "waiting_for_shield-train-campaign-a-v21-A-2-3B-s3-20260907T120003Z",
+  "dispatcher_pid": 233450,
+  "gpu_id": 0,
+  "kind": "dispatcher_heartbeat",
+  "queue_progress": {
+    "current_run_name": "A-2-3B-v21-seed3",
+    "index": 4,
+    "total": 6
+  }
+}
+
+--- akki-vm dispatcher_heartbeat_gpu1.json ---
+{
+  "at_utc": "2026-09-08T04:45:04.870554Z",
+  "campaign_id": "campaign-a-v21-ladder-20260906",
+  "current_run_name": "A-0-0p5B-v21-seed2R",
+  "current_state": "waiting_for_shield-train-campaign-a-v21-A-0-0p5B-s2R-20260907T120010Z",
+  "dispatcher_pid": 233545,
+  "gpu_id": 1,
+  "kind": "dispatcher_heartbeat",
+  "queue_progress": {
+    "current_run_name": "A-0-0p5B-v21-seed2R",
+    "index": 0,
+    "total": 7
+  }
+}
+
+--- akki-vm lane 1 restore queue: what remains to run? ---
+  shield-train-campaign-a-v21-A-0-0p5B-s2R-20260907T120010Z  dir=True  summary=False
+  shield-train-campaign-a-v21-A-1-1p5B-s2R-20260907T120011Z  dir=False  summary=False
+  shield-train-campaign-a-v21-A-2-3B-s2-20260906T200012Z  dir=True  summary=True
+  shield-train-campaign-a-v21-A-3-7B-s4-20260907T120013Z  dir=False  summary=False
+  shield-train-campaign-a-v21-A-2-3B-s4-20260907T120014Z  dir=False  summary=False
+  shield-train-campaign-a-v21-A-1-1p5B-s4-20260907T120015Z  dir=False  summary=False
+  shield-train-campaign-a-v21-A-0-0p5B-s3-20260907T120016Z  dir=False  summary=False
+
+--- akki-vm lane 0 restore queue: current progress ---
+  shield-train-campaign-a-v21-A-2-3B-s1-20260906T200002Z  dir=True  summary=True
+  shield-train-campaign-a-v21-A-3-7B-s1-20260906T200003Z  dir=True  summary=True
+  shield-train-campaign-a-v21-A-3-7B-s2-20260907T120000Z  dir=True  summary=True
+  shield-train-campaign-a-v21-A-3-7B-s3-20260907T120002Z  dir=True  summary=True
+  shield-train-campaign-a-v21-A-2-3B-s3-20260907T120003Z  dir=True  summary=False
+  shield-train-campaign-a-v21-A-1-1p5B-s3-20260907T120004Z  dir=False  summary=False
+
+--- akki-vm ext1 manifests (queued after restore is done) ---
+-rw-r--r-- 1 ubuntu ubuntu 7270 Sep  6 20:00 /home/ubuntu/akki_journal/queue/campaign_a_v21_lane0_ext1_20260907T0000Z_queue_manifest.json
+-rw-r--r-- 1 ubuntu ubuntu 8063 Sep  6 20:00 /home/ubuntu/akki_journal/queue/campaign_a_v21_lane1_ext1_20260907T0000Z_queue_manifest.json
+lane0_ext1 total: 5
+lane1_ext1 total: 6

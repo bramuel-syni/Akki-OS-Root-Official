@@ -1,0 +1,66 @@
+--- QUEUE_DRAINED_lane0.json content ---
+{
+  "at_utc": "2026-09-07T16:08:56.321200Z",
+  "campaign_id": "campaign-b-v21-method-ablations-20260906",
+  "dispatcher_pid": 197763,
+  "follow_on_queue_file": null,
+  "gpu_id": 0,
+  "kind": "queue_drained",
+  "queue_file": "/home/ubuntu/akki_journal/queue/campaign_b_v21_lane0_ext1_20260907T0100Z_queue_manifest.json",
+  "total_runs": 8
+}
+
+--- dispatcher_heartbeat_gpu0.json (last known heartbeat) ---
+{
+  "at_utc": "2026-09-07T16:08:56.321650Z",
+  "campaign_id": "campaign-b-v21-method-ablations-20260906",
+  "current_run_name": null,
+  "current_state": "completed",
+  "dispatcher_pid": 197763,
+  "gpu_id": 0,
+  "kind": "dispatcher_heartbeat",
+  "queue_progress": {
+    "current_run_name": null,
+    "index": 8,
+    "total": 8
+  }
+}
+
+--- dispatcher_heartbeat_gpu1.json (still-alive lane 1) ---
+{
+  "at_utc": "2026-09-08T04:45:08.257265Z",
+  "campaign_id": "campaign-b-v21-method-ablations-20260906",
+  "current_run_name": "B-REF-3B-v21-seed5",
+  "current_state": "waiting_for_shield-train-campaign-b-v21-B-REF-3B-s5-20260907T010017Z",
+  "dispatcher_pid": 203012,
+  "gpu_id": 1,
+  "kind": "dispatcher_heartbeat",
+  "queue_progress": {
+    "current_run_name": "B-REF-3B-v21-seed5",
+    "index": 7,
+    "total": 8
+  }
+}
+
+--- launcher stdout (from PID 195771 via /proc/fd) ---
+l-wx------ 1 ubuntu ubuntu 64 Sep  6 20:01 /proc/195771/fd/1 -> /home/ubuntu/akki_journal/queue/queue_followon_launcher_stdout.log
+l-wx------ 1 ubuntu ubuntu 64 Sep  6 20:01 /proc/195771/fd/2 -> /home/ubuntu/akki_journal/queue/queue_followon_launcher_stdout.log
+--- ext1 manifest lane 0 head (verify still needed) ---
+  shield-train-campaign-b-v21-B3-RANK-8-s2-20260907T010000Z  dir=True  summary=True
+  shield-train-campaign-b-v21-B5-CTX-512-s2-20260907T010001Z  dir=True  summary=True
+  shield-train-campaign-b-v21-B-REF-7B-s1-20260907T010002Z  dir=True  summary=True
+  shield-train-campaign-b-v21-B-REF-14B-s1-PROBE-20260907T010003Z  dir=True  summary=True
+  shield-train-campaign-b-v21-B-REF-7B-s2-20260907T010004Z  dir=True  summary=True
+  shield-train-campaign-b-v21-B-REF-3B-s3-20260907T010005Z  dir=True  summary=True
+  shield-train-campaign-b-v21-B3-RANK-8-s3-20260907T010006Z  dir=True  summary=True
+  shield-train-campaign-b-v21-B5-CTX-512-s3-20260907T010007Z  dir=True  summary=True
+
+--- akki-vm-ii lane 1 restore queue vs actual completions (identify what remains) ---
+  shield-train-campaign-b-v21-B6-CTX-2048-s1-20260906T200106Z  dir=True  summary=True
+  shield-train-campaign-b-v21-B1-USSD-ONLY-s2-20260907T010010Z  dir=True  summary=True
+  shield-train-campaign-b-v21-B2-DEDUP-OFF-s2-20260907T010011Z  dir=True  summary=True
+  shield-train-campaign-b-v21-B4-RANK-32-s2-20260907T010012Z  dir=True  summary=True
+  shield-train-campaign-b-v21-B6-CTX-2048-s2-20260907T010013Z  dir=True  summary=True
+  shield-train-campaign-b-v21-B-REF-7B-s3-20260907T010015Z  dir=True  summary=True
+  shield-train-campaign-b-v21-B-REF-3B-s4-20260907T010016Z  dir=True  summary=True
+  shield-train-campaign-b-v21-B-REF-3B-s5-20260907T010017Z  dir=True  summary=False

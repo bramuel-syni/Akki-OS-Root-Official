@@ -1,0 +1,79 @@
+--- CUDA_VISIBLE_DEVICES for each trainer PID ---
+PID 239011:
+CUDA_VISIBLE_DEVICES=0
+PID 239294:
+CUDA_VISIBLE_DEVICES=0
+PID 239295:
+CUDA_VISIBLE_DEVICES=0
+
+--- lane 0 dispatcher log (last 40) ---
+ls: cannot access '/home/ubuntu/akki_journal/dispatcher_logs/*lane0*': No such file or directory
+
+--- lane 1 dispatcher log (last 40) ---
+ls: cannot access '/home/ubuntu/akki_journal/dispatcher_logs/*lane1*': No such file or directory
+
+--- lane 0 restore queue counts ---
+lane0_restore total= 6
+   shield-train-campaign-a-v21-A-2-3B-s1-20260906T200002Z None
+   shield-train-campaign-a-v21-A-3-7B-s1-20260906T200003Z None
+   shield-train-campaign-a-v21-A-3-7B-s2-20260907T120000Z None
+   shield-train-campaign-a-v21-A-3-7B-s3-20260907T120002Z None
+   shield-train-campaign-a-v21-A-2-3B-s3-20260907T120003Z None
+   shield-train-campaign-a-v21-A-1-1p5B-s3-20260907T120004Z None
+
+--- QUEUE_DRAINED markers system-wide ---
+
+--- run dirs completed since 22h ago (last-modified) ---
+11
+--- most recent ACTIVITY_SUMMARY.md files (last 12) ---
+=== /home/ubuntu/akki_journal/shield-train-campaign-a-v21-A-3-7B-s3-20260907T120002Z/ACTIVITY_SUMMARY.md ===
+run_name: A-3-7B-v21-seed3
+run_id: shield-train-campaign-a-v21-A-3-7B-s3-20260907T120002Z
+final_step: 3537
+final_loss: 0.9274410009384155
+started_at_utc: 2026-09-07T23:16:58.928935Z
+completed_at_utc: 2026-09-08T03:39:30.479710Z
+=== /home/ubuntu/akki_journal/shield-train-campaign-a-v21-A-3-7B-s2-20260907T120000Z/ACTIVITY_SUMMARY.md ===
+run_name: A-3-7B-v21-seed2
+run_id: shield-train-campaign-a-v21-A-3-7B-s2-20260907T120000Z
+final_step: 3537
+final_loss: 0.8988638520240784
+started_at_utc: 2026-09-07T18:53:58.693036Z
+completed_at_utc: 2026-09-07T23:16:20.614412Z
+=== /home/ubuntu/akki_journal/shield-train-campaign-a-v21-A-3-7B-s1-20260906T200003Z/ACTIVITY_SUMMARY.md ===
+run_name: A-3-7B-v21-seed1
+run_id: shield-train-campaign-a-v21-A-3-7B-s1-20260906T200003Z
+final_step: 3537
+final_loss: 0.9103229641914368
+started_at_utc: 2026-09-07T14:29:58.516060Z
+completed_at_utc: 2026-09-07T18:53:37.690338Z
+=== /home/ubuntu/akki_journal/shield-train-campaign-a-v21-A-2-3B-s1-20260906T200002Z/ACTIVITY_SUMMARY.md ===
+run_name: A-2-3B-v21-seed1
+run_id: shield-train-campaign-a-v21-A-2-3B-s1-20260906T200002Z
+final_step: 3537
+final_loss: 1.0879004001617432
+started_at_utc: 2026-09-07T11:55:58.086167Z
+completed_at_utc: 2026-09-07T14:29:36.724761Z
+=== /home/ubuntu/akki_journal/shield-train-campaign-a-v21-A-2-3B-s2-20260906T200012Z/ACTIVITY_SUMMARY.md ===
+run_name: A-2-3B-v21-seed2
+run_id: shield-train-campaign-a-v21-A-2-3B-s2-20260906T200012Z
+final_step: 3537
+final_loss: 0.994192898273468
+started_at_utc: 2026-09-07T11:56:58.103857Z
+completed_at_utc: 2026-09-07T14:29:21.861138Z
+=== /home/ubuntu/akki_journal/shield-train-campaign-a-v21-A-1-1p5B-s1-20260906T200001Z/ACTIVITY_SUMMARY.md ===
+=== /home/ubuntu/akki_journal/shield-train-campaign-a-v21-A-0-0p5B-s1-20260906T200000Z/ACTIVITY_SUMMARY.md ===
+=== /home/ubuntu/akki_journal/shield-train-campaign-a-v2-A-0-0p5B-20260906T170000Z/ACTIVITY_SUMMARY.md ===
+run_name: A-0-0p5B-v2
+run_id: shield-train-campaign-a-v2-A-0-0p5B-20260906T170000Z
+final_step: 3537
+final_loss: 1.0918000936508179
+started_at_utc: 2026-09-06T16:54:30.934858Z
+completed_at_utc: 2026-09-06T19:57:51.201458Z
+=== /home/ubuntu/akki_journal/shield-train-campaign-a-baseline-ladder-20260906-20260906T140930Z/ACTIVITY_SUMMARY.md ===
+run_name: A-0-0p5B-seed01
+run_id: shield-train-campaign-a-baseline-ladder-20260906-20260906T140930Z
+final_step: 963
+final_loss: 0.12320201843976974
+started_at_utc: 2026-09-06T14:10:02.524351Z
+completed_at_utc: 2026-09-06T15:00:56.426427Z
