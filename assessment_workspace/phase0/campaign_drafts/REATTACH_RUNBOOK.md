@@ -1,5 +1,7 @@
 # REATTACH_RUNBOOK · Campaign session pickup after context loss
 
+**Boot precondition (2026-09-08):** before running any step below, read `STATE/STANDING_ORDERS.md` — permanent standing law. It governs the session boot protocol, engagement discipline, build discipline, runtime law, GPU obligations, and current authoritative artifacts. Nothing in this runbook overrides it.
+
 **Purpose.** A concise "how the next session adopts the two active campaigns" runbook so reconciliation is MECHANICAL regardless of context loss between now (launch) and 2026-09-09 (window close).
 
 **Authority — owner ruling verbatim (2026-09-06T~12:32Z):**

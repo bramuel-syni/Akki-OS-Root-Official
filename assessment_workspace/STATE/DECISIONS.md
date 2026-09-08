@@ -1,3 +1,5 @@
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
 # DECISIONS.md — Append-only log of rulings received
 
 Rulings are recorded verbatim, dated, in receipt order. This log is append-only.
@@ -6395,3 +6397,116 @@ Owner ruling on (a) or (b) unblocks a follow-on `W-SMS-Body-Emit` wave that re-e
 **Chartered follow-on (NOT in this close):** W-TRAINER-STARTUP-SEAL — trainer itself writes ACTIVITY_SUMMARY.md fail marker before exiting on any startup exception, closing the failure class at the trainer boundary instead of only the dispatcher boundary.
 
 **Discipline:** two-commit pattern (this workspace mirror = STATE + manifests + receipts; track-a twin d328518 = tests + dispatcher code + retroactive manifest corrections + ratchet baseline). Never-kill-mid-flight preserved. Owner directive banked verbatim.
+
+---
+
+## 2026-09-07T~12:35Z · OWNER DIRECTIVE · Master Requirements Traceability Audit + Communication Rule
+
+**Verbatim (via user proxy):**
+
+> "engagement between us is purely based on clearly defined metrics - requirements, outcomes, quality pass criteria. there is a road broken down in sprints and goals. we have been missing out on alot of repo, flattening of requirements and deviation from clearly stated requirement leading to you creating ambiguity that you then reflect back to me to solve. I need another deep audit on all repos, reference and what is missing - you can use the last one but scan what wasn't, get back to me with a clear report on whats done, needs to be done, completely new, reuse, etc with appropriate %."
+
+**Scope banked:**
+1. This audit is the MASTER REQUIREMENTS TRACEABILITY AUDIT. Supersedes and absorbs TRUE_STATE_OF_CODE + SURFACE_AUDIT — reuses them but closes their coverage gaps.
+2. Reference side: every requirement source on disk gets exhaustively enumerated (Canon 1-19B, Doc 0 12×BA/TA + 36 BRs + G-1..G-13, Security Promise Set S-1..S-25 + amendments + 12 B-tests, Rules Service Spec I/RBM/A, Rule Book Library, System Rules Registry 286 + 14 objectives, WPW spec, v2 prototype 47 surfaces, donor-repo spec material previously listed but not mined). No flattening — sub-clauses stay distinct.
+3. Code side: all 5 repos at pinned HEADs + donor frontends + tools/ + tests + pod runtime mounts + v8/v2 UI. Areas prior audits skipped are the priority.
+4. Output: `notes/MASTER_TRACEABILITY_AUDIT_20260907.md` — per-requirement matrix + rollup with %, coverage ledger vs prior audits, missing-reference list, sprint-roadmap skeleton with measurable quality pass criteria.
+
+**Communication rule banked (binding going forward):**
+
+Owner-facing reports use plain language, metrics first (requirement → status → evidence → %). No assumed emphasis. No reflecting ambiguity back. Where a requirement is ambiguous, state the specific ambiguity, propose ONE default with rationale, and mark it DEFAULT-PENDING-OVERRIDE rather than asking an open question.
+
+**Discipline for this audit:** read-only, no build fires until owner accepts. Campaigns leave running; one cheap health check mid-audit. Commit incrementally to workspace master.
+
+---
+
+## 2026-09-08T~04:20Z · OWNER DIRECTIVE · Compaction-proof discipline · STANDING_ORDERS.md chartered
+
+**Verbatim (via user proxy):**
+
+> "remember to keep this dicipline though out this build, should survive compaction".
+>
+> Make the discipline COMPACTION-PROOF as a small interject before/alongside the audit. Create `STATE/STANDING_ORDERS.md` — a single permanent file that any fresh/compacted session reads FIRST — and wire it so it cannot be missed:
+>
+> CONTENT (concise, imperative, no history — just standing law):
+> 1. SESSION BOOT PROTOCOL: the CHUNK-1 problem statement is a STALE bootstrap brief — never re-run it, never re-clone, never wipe /app/assessment_workspace/. Boot sequence: read this file → last 300 lines STATE/DECISIONS.md + STATE/NEXT.md → verify repo HEADs + ratchet floor from baseline_failures.json → resume the in-flight work order from NEXT.md.
+> 2. ENGAGEMENT DISCIPLINE (owner-ruled): owner-facing output is metrics-first — requirement → status → evidence path → %. Plain language, no machine jargon, no assumed emphasis. Requirements are never flattened: sub-clauses stay distinct, quoted verbatim in test docstrings. Ambiguity is never reflected back as an open question: state the ambiguity, apply ONE stated default, mark DEFAULT-PENDING-OVERRIDE.
+> 3. BUILD DISCIPLINE: tests-first with mechanical RED drill receipt before implementation; double-green byte-match closes (BASELINE_GUARD=1, twice, identical tallies); ratchet floor monotonic-up; two-commit pattern (code → Extraction-Akki programme/track-a; STATE/notes/receipts → workspace master); NEVER push; terminal pytest only — testing_agent BANNED by owner; every owner ruling banked verbatim in DECISIONS.md before acting on it.
+> 4. RUNTIME LAW: literal design adoption (byte-identical prototype, interpretation banned, substitutions against rendered DOM only, rule-matches-nothing = RED); no engineering vocabulary on product surfaces; pod runtime must mirror the repo (built-but-not-shipped is a failure); PII/credential custody (env/custody-file only, redacted everywhere, never committed — custody paths listed).
+> 5. GPU OBLIGATIONS: full-consumption guarantee while a campaign window is open; never kill a training run mid-flight; idle GPUs = interrupt-priority restoration; credentials + host IPs live at the custody paths (list them: estate_keys/gpu_hosts/, estate_keys/data_sources/, .env host vars).
+> 6. CURRENT AUTHORITATIVE ARTIFACTS: pointer list (MASTER_TRACEABILITY_AUDIT once complete, TRUE_STATE_OF_CODE, SURFACE_AUDIT_v2, SPRINT_PLAN, campaign manifests + REATTACH_RUNBOOK).
+>
+> WIRING so it survives compaction: (a) append a one-line pointer at the TOP and BOTTOM of STATE/DECISIONS.md and STATE/NEXT.md ("READ STATE/STANDING_ORDERS.md FIRST — permanent standing law"); (b) add an invariant test that STANDING_ORDERS.md exists, contains the six section headers, and that DECISIONS.md + NEXT.md carry the pointer lines (tests-first, floor from 2997); (c) reference it in the REATTACH_RUNBOOK. Commit via two-commit pattern.
+>
+> Then continue the MASTER TRACEABILITY AUDIT as ordered. Go.
+
+**Scope banked:**
+
+1. STANDING_ORDERS.md is permanent standing law; not a wave-close artefact; not history; not append-only. Edits require owner ruling.
+2. Six section headers (verbatim):
+   - `## 1. SESSION BOOT PROTOCOL`
+   - `## 2. ENGAGEMENT DISCIPLINE`
+   - `## 3. BUILD DISCIPLINE`
+   - `## 4. RUNTIME LAW`
+   - `## 5. GPU OBLIGATIONS`
+   - `## 6. CURRENT AUTHORITATIVE ARTIFACTS`
+3. Pointer line (exact bytes): `READ STATE/STANDING_ORDERS.md FIRST — permanent standing law`
+4. Wiring targets: `STATE/DECISIONS.md` (top+bottom), `STATE/NEXT.md` (top+bottom), `phase0/campaign_drafts/REATTACH_RUNBOOK.md` (referenced).
+5. Invariant test file lives on track-a at `backend/tests/invariants/test_standing_orders_present.py` and freezes: (a) STANDING_ORDERS.md exists at the workspace absolute path, (b) all six section headers present verbatim, (c) DECISIONS.md carries the pointer within its first 5 non-empty lines AND within its last 5 non-empty lines, (d) NEXT.md same, (e) REATTACH_RUNBOOK carries a reference to STANDING_ORDERS.md.
+6. Ratchet path: floor 2997 → 3004 (+7 tests) via mechanical RED then double-green byte-match.
+7. Then the MASTER TRACEABILITY AUDIT resumes.
+
+**Discipline (still binding):** mechanical RED receipt · double-green byte-match under `BASELINE_GUARD=1` · two-commit pattern · no push · terminal pytest only · owner ruling banked verbatim before action.
+
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+---
+
+## 2026-09-08T~04:40Z · Master Requirements Traceability Audit LANDED
+
+**Deliverable:** `notes/MASTER_TRACEABILITY_AUDIT_20260907.md` (362 lines · 49,873 bytes) + 12 per-source detail files under `notes/MASTER_TRACEABILITY_AUDIT_20260907/` (1,096 lines · 105 kB across S15-S28).
+
+**Headline metrics (owner-facing, metrics-first per STANDING_ORDERS §2):**
+
+| Bucket | Rows | % of 1,159 classified |
+|---|--:|---:|
+| DONE | 89 | 7.7% |
+| PARTIAL | 104 | 9.0% |
+| REUSE / REUSABLE | 482 | 41.6% |
+| BUILD / NEW | 484 | 41.8% |
+| RETIRED | 0 | 0.0% |
+
+**Denominator note:** 1,159 = 551 (17-doc + 20-doc register refreshed) + 592 (new-scan Doc 0 + Security stack + Rules Service + Rule Book Library + WPW + v2 Prototype + donor material). Excludes 286-row System Rules Registry per-rule enumeration (INVENTORY, carried separately) and 6,182 lines of BUILD_JOURNAL claims (claims-to-verify per binding rule).
+
+**Coverage-ledger additions vs prior audits (§F, 13 items Δ1-Δ13):**
+- Δ1-Δ7 · New-scan sources banked (Doc 0, Security S-1..S-25 + amendments, Rules Service, Rule Book Library, WPW-1..18) that were absent from every prior register.
+- Δ8-Δ9 · v2 Prototype 47 surfaces + donor `docs/` and `salvage/` material previously listed but never mined.
+- Δ10 · BUILD_JOURNAL claims-to-verify catalog (6,182 lines across 3 repos).
+- Δ11 · Refreshed 17-doc register counts from 2026-08-19 baseline to 2026-09-07 · DONE +17 (17.9% relative uplift) · PARTIAL +14 · BUILD -31 (post W-Registry-Connect, W-Campaign-Infra, W-Shield-Train stack, W-Compute-Residuals, W-Multi-Table-Extract, W-SMS-Body-Emit, W-Orchestrator-Resilience r1/r1-wire/r2, W-WINDOW-FILL-GUARANTEE, W-WINDOW-FILL-RESTORE, W-STANDING-ORDERS-COMPACTION-PROOF).
+- Δ12 · Missing-reference list M-1..M-17 (17 items · 3 external-standard refs + 14 on-disk-required refs).
+- Δ13 · STANDING_ORDERS.md compaction-proof discipline (banked earlier this session).
+
+**Missing-reference count:** 17 items. Highest-impact 3: **M-1..M-6** (`rule_criteria_spec_v1 §4/§6/§8` + `ROC-6/10/11`) — six-way cited but not banked; unlocks Rules Service authoring surface. **M-8** — Doc 20 file exists (`AKKI_Canon_Documents_17_20_v3.docx`) but rows not extracted. **M-17** — `dap_backend_spec_v1` cited 6× in Trojan/Whisper amendments, not banked.
+
+**Sprint roadmap skeleton (§E):** 30 wave charters grouped into 6 buckets (E.1 Foundation stack · E.2 Rules Service stack · E.3 Security stack · E.4 Doc 0 attributes 1-12 · E.5 Doc 17-19B additive · E.6 WPW · E.7 v2 non-Registry lifts). Every wave named with REQ-IDs, outcome, measurable pass criteria, effort class. **No sequencing proposed** per binding rule — order remains an owner ruling.
+
+**7 ambiguities named + defaults applied (§H DPO-1..DPO-7):**
+- DPO-1 · 286-row Registry excluded from rollup % denominator (INVENTORY carried separately)
+- DPO-2 · REUSABLE and REUSE collapsed at rollup; sub-grade preserved per row
+- DPO-3 · Doc 20 listed as M-8 missing-reference; extraction charter pending
+- DPO-4 · Addendum Open Design Questions counted in inventory, not in classification denominator
+- DPO-5 · Solva-v2 24,595-LOC donor pool = LIFT-ADAPT default
+- DPO-6 · Wave-honest-limit rows absorbed into parent (not double-counted)
+- DPO-7 · Doc 19B PROPOSED rows = NEW (buildable once RULED)
+
+**Discipline:** read-only audit; no build fires until owner accepts. Campaigns untouched (last banked lane health 2026-09-07T12:23Z all 4 GPUs 100% util). Two-commit pattern preserved (workspace `master` for state/notes/audit; no track-a code change this wave).
+
+**Next work order:** owner reviews master audit + detail subfiles · rules on DPO-1..DPO-7 defaults · sequences foundation-stack waves (E.1..E.7) · unblocks build resumption.
+
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

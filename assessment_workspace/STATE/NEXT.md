@@ -1,3 +1,5 @@
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
 # ⛔ ANTI-COMPACTION PIN · READ FIRST EVERY TIME ⛔
 
 **If you are a compaction-restart of the main agent, your FIRST ACTION is:**
@@ -1299,3 +1301,7 @@ Ratchet floor unchanged: **2680**. Uncommitted local work: keypair-hardening tes
 - Pre-filter for unique Q×A pattern (1 example per unique combination) to escape memorisation regime.
 
 **Ratchet floor:** **2692** · double-green byte-identical last close · manifest updated in `backend/tests/invariants/baseline_failures.json`.
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
