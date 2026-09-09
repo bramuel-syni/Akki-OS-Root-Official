@@ -6586,4 +6586,26 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 ---
 
+## 2026-09-09T~11:40Z · OWNER RULING · STEP 1 verdict ratified · scope extended to prototypes/HTML design drops · proceed straight through STEPS 1-5
+
+**Verbatim (via user proxy):**
+
+> Proceed straight through — do not wait. The DEFAULT-PENDING-OVERRIDE (ROC framework = BANKED-DERIVED from System_Rules_Registry + Master_Requirements_Registry rows + eight-way citations) is exactly what STANDING_ORDERS §2 prescribes; write the audit-row schema on that default now. I am surfacing the verdict and the default to the owner in parallel — if he overrides or drops a standalone rule_criteria_spec file, fold it in at the next clean boundary.
+>
+> One addition to the tracking invariant: also index the two prototypes and any HTML design drops in the same {spec_id-or-design-id, filename, sha256} scheme — design sources have the same false-missing risk as spec docs.
+>
+> Then STEPS 2 → 5 exactly as ordered: ingest evening drop (13th spec + NON-CLAIMS register) → ruling ledger banked + DEFAULT-class values wired tests-first → audit rebuild on the corrected index → fire W-REGISTRY-FULL-BUILD from a clean floor. Mission-framed report at each landing. Go.
+
+**Interpretation banked:**
+
+1. `DEFAULT-PENDING-OVERRIDE ROC-1` **RATIFIED as owner-approved default**: rule_criteria_spec_v1 ROC framework treated as **BANKED-DERIVED** from `System_Rules_Registry.{md,json}` (drop 2026-09-07) + `Master_Requirements_Registry.md` rows 322-332 (drop 2026-09-10) + eight-way citation trail. Row status token in the rebuilt audit index: `BANKED-DERIVED`. If a standalone `rule_criteria_spec_v1.docx` arrives in a future drop, fold it in at the next clean boundary.
+2. Tracking-invariant scope **EXTENDED**: the `{id, filename, sha256}` index must cover **both**
+   - (a) spec-ID artifacts (`*_spec_v1`, `*_v1`, `*_annex_v1`) across canon, AND
+   - (b) design-ID artifacts — the two prototypes and any HTML design drops (v2, v3, DAP frontend, v6, v7, v8, addenda). Same false-missing risk applies.
+3. STEPS 2-5 execute straight through with mission-framed landings between; no additional owner wait required.
+
+**Discipline binding (still):** tests-first with mechanical RED before implementation · double-green byte-match under `BASELINE_GUARD=1` · ratchet floor monotonic-up from 3006 (harness refresh before ratchet bump) · two-commit pattern · no push · terminal pytest only · every owner ruling banked verbatim in DECISIONS.md before action.
+
+---
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

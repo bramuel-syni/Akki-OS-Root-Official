@@ -76,6 +76,10 @@ from routers import handoff as handoff_router  # noqa: E402
 from routers import registry as registry_router  # noqa: E402
 # W11 R4.6 · Doc 14-024 CA1-005 Whitepaper HTTP surface.
 from services.whitepapers.router import router as whitepapers_router  # noqa: E402
+# W-REGISTRY-FULL-BUILD · owner directive 2026-09-08T~06:15Z STEP 5 · D.1
+# route inventory: 6 registry ext + 2 census + 6 model_registry per-model +
+# 4 opportunity_briefs + 3 perception + 1 rules_updates = 22 new routes.
+from services.w_registry_full_build.routers import ALL_ROUTERS as W_REGISTRY_FULL_BUILD_ROUTERS  # noqa: E402
 # W11 R4.7 · Doc 15 N-series breach + erasure HTTP surface.
 from services.n_series.router import router as n_series_router  # noqa: E402
 from services.rights_quarantine.router import router as rights_quarantine_router  # noqa: E402  # W11 E · CP-E4 · Doc14-020
@@ -330,6 +334,17 @@ app.include_router(master_admin_router.router, prefix="/api")
 # Same-commit KNOWN_UNWIRED entry removal + MUST_BE_LIVE_ROUTES entries
 # in tests/invariants/test_ship_manifest_dod_route_table_drift.py.
 app.include_router(team_router.router)
+
+# W-REGISTRY-FULL-BUILD · owner directive 2026-09-08T~06:15Z STEP 5 · D.1
+# route inventory (22 routes total across 6 sub-routers):
+#   /api/registry/{mix,mix/reading,source/{id}/profile,cir,estate_intelligence,opportunities}
+#   /api/census/{history,status}
+#   /api/model_registry/{full_record,{id}/{journal,checks,refusals,traffic,answering}}
+#   /api/opportunity_briefs/{,{id},regenerate,by_source/{id}}
+#   /api/perception/{,execution_mode,{id}}
+#   /api/rules_updates/pending
+for _wrfb_router in W_REGISTRY_FULL_BUILD_ROUTERS:
+    app.include_router(_wrfb_router)
 
 app.add_middleware(
     CORSMiddleware,

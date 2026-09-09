@@ -1,0 +1,23 @@
+# Zero-hit grep receipt for spec-ID: eab_tier1_adoption_spec_v1
+
+Generated: 2026-09-09T11:45:41.627163+00:00
+Owner directive: 2026-09-08T~06:15Z (STEP 1 pipeline fix)
+Scope: canon/**/*.docx + fixtures/**/*.docx word/document.xml body scan
+
+## Opening-signature scan for `eab_tier1_adoption_spec_v1 — Draft|Ratified|Ruled`
+
+HITS: 0
+
+Verdict: no docx opens with this spec-ID signature.
+The spec-ID is CITED in canon/notes but no standalone spec document is banked.
+
+## Citation paths (2 total)
+
+  - notes/MASTER_TRACEABILITY_AUDIT_20260907.md
+  - notes/MASTER_TRACEABILITY_AUDIT_20260907/s24_donor_akki_os_v1.md
+
+## Status
+
+MISSING · not banked · listed in notes/spec_id_index.json under `missing[]`.
+Requires owner ruling: either (a) drop the standalone spec doc in a future artifact,
+or (b) rule the ID BANKED-DERIVED against a named derivation source (like ROC-1).

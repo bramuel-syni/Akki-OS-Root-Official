@@ -1,0 +1,504 @@
+{
+  "generated_at": "2026-09-09T11:45:41.627163+00:00",
+  "owner_directives": [
+    "2026-09-08T~06:15Z \u2014 spec-ID tracking defect fix",
+    "2026-09-09T~11:40Z \u2014 index scope extended to prototypes + HTML design drops"
+  ],
+  "ratchet_floor": 3006,
+  "counts": {
+    "spec_ids_total": 24,
+    "spec_ids_banked": 18,
+    "spec_ids_banked_derived": 1,
+    "spec_ids_missing": 5,
+    "design_ids_total": 11,
+    "design_ids_banked": 11,
+    "design_ids_missing": 0
+  },
+  "spec_ids": [
+    {
+      "id": "agent_containment_spec_v1",
+      "status": "BANKED",
+      "filename": "Agent_Swarm_Containment_Governance_Model_v1.docx",
+      "path": "canon/drops/20260910/raw/Agent_Swarm_Containment_Governance_Model_v1.docx",
+      "sha256": "2824796d06d7d0759e71c75f76a335e18b6da1b1c00be63dad96498f73f1e386",
+      "kind": "docx",
+      "signature_source": "opening_signature",
+      "citation_count": 3,
+      "citation_paths": [
+        "canon/drops/20260910/extracted/text/Agent_Swarm_Containment_Governance_Model_v1.txt",
+        "canon/drops/20260910/extracted/text/Master_Requirements_Registry.md",
+        "canon/drops/20260910/extracted/text/Ratification_Record_v1.txt"
+      ]
+    },
+    {
+      "id": "akki_governance_architecture_v0",
+      "status": "BANKED",
+      "filename": "doc0_governance_architecture.docx",
+      "path": "canon/drops/20260907/raw/doc0_governance_architecture.docx",
+      "sha256": "4fe658f20c8d422e7f9cd7a762963e05c12bb46e09e8361e6d5abb80b2a7da2d",
+      "kind": "docx",
+      "signature_source": "filename_fallback",
+      "citation_count": 0,
+      "citation_paths": []
+    },
+    {
+      "id": "akki_governance_architecture_v1",
+      "status": "BANKED",
+      "filename": "Akki_Governance_Architecture_v1.docx",
+      "path": "canon/drops/20260909/extracted/files_14/Akki_Governance_Architecture_v1.docx",
+      "sha256": "b8af25f48698b68e0d77c4c571f4c15721d06632c8ad6dce4057f74d856b4bd6",
+      "kind": "docx",
+      "signature_source": "filename_fallback",
+      "citation_count": 12,
+      "citation_paths": [
+        "canon/drops/20260907/extracted/text/Security_Promise_Set_Amendments.txt",
+        "canon/drops/20260907/extracted/text/doc0_governance_architecture.txt",
+        "canon/drops/20260909/extracted/text/Akki_Governance_Architecture_v1.txt",
+        "canon/drops/20260909/extracted/text/Security_Assurance_Promise_Set.md",
+        "canon/drops/20260909/extracted/text/Security_Function_Policies_v1.txt",
+        "canon/drops/20260909/extracted/text/TCB_Enumeration_v1.txt",
+        "canon/drops/20260910/extracted/text/Akki_Governance_Architecture_v1_from_15.txt",
+        "canon/drops/20260910/extracted/text/Master_Requirements_Registry.md",
+        "canon/drops/20260910/extracted/text/Ratification_Record_v1.txt",
+        "notes/MASTER_TRACEABILITY_AUDIT_20260907/s17_s18_security_amendments.md",
+        "notes/ingest_20260907/OWNER_RULINGS_ONESHOT.md",
+        "notes/ingest_20260907/canon_security_amendments_requirements.md"
+      ],
+      "duplicate_paths": [
+        "canon/drops/20260910/extracted/files_15/Akki_Governance_Architecture_v1.docx"
+      ]
+    },
+    {
+      "id": "business_continuity_v1",
+      "status": "BANKED",
+      "filename": "Business_Continuity_Annex_v1.docx",
+      "path": "canon/drops/20260909/extracted/files_14/Business_Continuity_Annex_v1.docx",
+      "sha256": "cf5b1f34cd7cdaaec65e6b9b72b15f922fa22643b44af6340e1b6e08c768fcc2",
+      "kind": "docx",
+      "signature_source": "opening_signature",
+      "citation_count": 1,
+      "citation_paths": [
+        "canon/drops/20260909/extracted/text/Business_Continuity_Annex_v1.txt"
+      ]
+    },
+    {
+      "id": "dap_backend_spec_v1",
+      "status": "BANKED",
+      "filename": "DAP_Backend_Spec_v1.docx",
+      "path": "canon/drops/20260909/raw/DAP_Backend_Spec_v1.docx",
+      "sha256": "e675990aa68e75141f41b418fd19c0a2c05b70441c6217ebdde44e5362c55263",
+      "kind": "docx",
+      "signature_source": "opening_signature",
+      "citation_count": 13,
+      "citation_paths": [
+        "canon/drops/20260907/extracted/text/Security_Amendments_Trojan_Whisper.txt",
+        "canon/drops/20260909/extracted/text/Akki_Governance_Architecture_v1.txt",
+        "canon/drops/20260909/extracted/text/DAP_Backend_Spec_v1.txt",
+        "canon/drops/20260909/extracted/text/Failure_Posture_Enumeration_v1.txt",
+        "canon/drops/20260909/extracted/text/Pruning_Unlearning_Amendment_v1.txt",
+        "canon/drops/20260909/extracted/text/TCB_Enumeration_v1.txt",
+        "canon/drops/20260909/extracted/text/Trust_Domain_Description_v1.txt",
+        "canon/drops/20260910/extracted/text/Akki_Governance_Architecture_v1_from_15.txt",
+        "canon/drops/20260910/extracted/text/Master_Requirements_Registry.md",
+        "canon/drops/20260910/extracted/text/Ratification_Record_v1.txt",
+        "notes/MASTER_TRACEABILITY_AUDIT_20260907/s17_s18_security_amendments.md",
+        "notes/MASTER_TRACEABILITY_AUDIT_20260908_UPDATE.md",
+        "notes/ingest_20260907/canon_security_amendments_requirements.md"
+      ]
+    },
+    {
+      "id": "determinism_inventory_v1",
+      "status": "BANKED",
+      "filename": "Determinism_Inventory_v1.docx",
+      "path": "canon/drops/20260909/extracted/files_14/Determinism_Inventory_v1.docx",
+      "sha256": "344ebf7466fee1f0ecb34cec00405d597c7263bd76e795111354992a1d2357e3",
+      "kind": "docx",
+      "signature_source": "opening_signature",
+      "citation_count": 3,
+      "citation_paths": [
+        "canon/drops/20260909/extracted/text/Akki_Governance_Architecture_v1.txt",
+        "canon/drops/20260909/extracted/text/Determinism_Inventory_v1.txt",
+        "canon/drops/20260910/extracted/text/Akki_Governance_Architecture_v1_from_15.txt"
+      ]
+    },
+    {
+      "id": "failure_posture_v1",
+      "status": "BANKED",
+      "filename": "Failure_Posture_Enumeration_v1.docx",
+      "path": "canon/drops/20260909/extracted/files_14/Failure_Posture_Enumeration_v1.docx",
+      "sha256": "589ebb6d0fe4b28cf455518322546d1b0665e537781efddbd08081dce9472aec",
+      "kind": "docx",
+      "signature_source": "opening_signature",
+      "citation_count": 5,
+      "citation_paths": [
+        "canon/drops/20260909/extracted/text/Akki_Governance_Architecture_v1.txt",
+        "canon/drops/20260909/extracted/text/Business_Continuity_Annex_v1.txt",
+        "canon/drops/20260909/extracted/text/Failure_Posture_Enumeration_v1.txt",
+        "canon/drops/20260909/extracted/text/Handoff_Generalisation_v1.txt",
+        "canon/drops/20260910/extracted/text/Akki_Governance_Architecture_v1_from_15.txt"
+      ]
+    },
+    {
+      "id": "handoff_registry_v1",
+      "status": "BANKED",
+      "filename": "Handoff_Generalisation_v1.docx",
+      "path": "canon/drops/20260909/extracted/files_14/Handoff_Generalisation_v1.docx",
+      "sha256": "d89bbba066fa507fccf8b170405434b89dc29f81c6d372ae8838c4a267bf139e",
+      "kind": "docx",
+      "signature_source": "opening_signature",
+      "citation_count": 3,
+      "citation_paths": [
+        "canon/drops/20260909/extracted/text/Akki_Governance_Architecture_v1.txt",
+        "canon/drops/20260909/extracted/text/Handoff_Generalisation_v1.txt",
+        "canon/drops/20260910/extracted/text/Akki_Governance_Architecture_v1_from_15.txt"
+      ]
+    },
+    {
+      "id": "pruning_unlearning_amendment_v1",
+      "status": "BANKED",
+      "filename": "Pruning_Unlearning_Amendment_v1.docx",
+      "path": "canon/drops/20260909/extracted/files_14/Pruning_Unlearning_Amendment_v1.docx",
+      "sha256": "14bbd73760f8a09353ca116abe75eeef41543abf7d56553702303e8858836ab0",
+      "kind": "docx",
+      "signature_source": "filename_fallback",
+      "citation_count": 0,
+      "citation_paths": []
+    },
+    {
+      "id": "ratification_record_v1",
+      "status": "BANKED",
+      "filename": "Ratification_Record_v1.docx",
+      "path": "canon/drops/20260910/extracted/files_15/Ratification_Record_v1.docx",
+      "sha256": "b4de066419cf462b410b5353b37340c4ccbf4a461a729ad5511dde46737fb597",
+      "kind": "docx",
+      "signature_source": "filename_fallback",
+      "citation_count": 1,
+      "citation_paths": [
+        "canon/drops/20260910/extracted/text/Ratification_Record_v1.txt"
+      ]
+    },
+    {
+      "id": "rule_criteria_spec_v1",
+      "status": "BANKED-DERIVED",
+      "filename": null,
+      "sha256": null,
+      "derived_from": [
+        "canon/drops/20260907/extracted/text/System_Rules_Registry.md",
+        "canon/drops/20260907/extracted/text/System_Rules_Registry.json",
+        "canon/drops/20260910/extracted/text/Master_Requirements_Registry.md"
+      ],
+      "citation_count": 21,
+      "citation_paths": [
+        "canon/drops/20260907/extracted/text/Rules_Service_Spec_v1.txt",
+        "canon/drops/20260907/extracted/text/Security_Promise_Set_Amendments.txt",
+        "canon/drops/20260907/extracted/text/System_Rules_Registry.json",
+        "canon/drops/20260907/extracted/text/System_Rules_Registry.md",
+        "canon/drops/20260907/extracted/text/doc0_governance_architecture.txt",
+        "canon/drops/20260909/extracted/text/Akki_Governance_Architecture_v1.txt",
+        "canon/drops/20260909/extracted/text/DAP_Backend_Spec_v1.txt",
+        "canon/drops/20260909/extracted/text/Security_Assurance_Promise_Set.md",
+        "canon/drops/20260910/extracted/text/Akki_Governance_Architecture_v1_from_15.txt",
+        "canon/drops/20260910/extracted/text/Master_Requirements_Registry.md",
+        "notes/MASTER_TRACEABILITY_AUDIT_20260907.md",
+        "notes/MASTER_TRACEABILITY_AUDIT_20260907/s15_doc0_governance_architecture.md",
+        "notes/MASTER_TRACEABILITY_AUDIT_20260907/s19_rules_service_spec_v1.md",
+        "notes/MASTER_TRACEABILITY_AUDIT_20260907/s21_system_rules_registry_INVENTORY.md",
+        "notes/MASTER_TRACEABILITY_AUDIT_20260908_UPDATE.md",
+        "notes/TRUE_STATE_OF_CODE.md",
+        "notes/ingest_20260907/GAPS_TO_WAVES.md",
+        "notes/ingest_20260907/canon_doc0_governance_architecture_requirements.md",
+        "notes/ingest_20260907/canon_rules_service_spec_v1_requirements.md",
+        "notes/ingest_20260907/canon_security_amendments_requirements.md",
+        "notes/ingest_20260907/canon_system_rules_registry_inventory.md"
+      ],
+      "owner_ruling": "2026-09-09T~11:40Z \u2014 DEFAULT-PENDING-OVERRIDE ROC-1 ratified"
+    },
+    {
+      "id": "rulebook_engine_spec_v1",
+      "status": "BANKED",
+      "filename": "Rules_Service_Spec_v1.docx",
+      "path": "canon/drops/20260907/extracted/files_11/Rules_Service_Spec_v1.docx",
+      "sha256": "9652fb47f10c9fd238a3ec26731f7b8331b22a0e066554ca9d703294fe9f6ae1",
+      "kind": "docx",
+      "signature_source": "opening_signature",
+      "citation_count": 6,
+      "citation_paths": [
+        "canon/drops/20260907/extracted/text/Rules_Service_Spec_v1.txt",
+        "canon/drops/20260909/extracted/text/Akki_Governance_Architecture_v1.txt",
+        "canon/drops/20260909/extracted/text/DAP_Backend_Spec_v1.txt",
+        "canon/drops/20260910/extracted/text/Akki_Governance_Architecture_v1_from_15.txt",
+        "canon/drops/20260910/extracted/text/Master_Requirements_Registry.md",
+        "canon/drops/20260910/extracted/text/Ratification_Record_v1.txt"
+      ]
+    },
+    {
+      "id": "security_amendments_trojan_whisper",
+      "status": "BANKED",
+      "filename": "Security_Amendments_Trojan_Whisper.docx",
+      "path": "canon/drops/20260907/extracted/files_13/Security_Amendments_Trojan_Whisper.docx",
+      "sha256": "20b459da0103c15126e25ea949bed34f767ab0a381c6ebc42fa875cd0a48bf65",
+      "kind": "docx",
+      "signature_source": "filename_fallback",
+      "citation_count": 0,
+      "citation_paths": []
+    },
+    {
+      "id": "security_architecture_v1",
+      "status": "BANKED",
+      "filename": "Security_Architecture_Description_v1.docx",
+      "path": "canon/drops/20260909/extracted/files_14/Security_Architecture_Description_v1.docx",
+      "sha256": "2d41f6001d0fa89fdb9fbfce8924829abf3a8ea15baabe278e01242d158b59a1",
+      "kind": "docx",
+      "signature_source": "opening_signature",
+      "citation_count": 4,
+      "citation_paths": [
+        "canon/drops/20260909/extracted/text/Akki_Governance_Architecture_v1.txt",
+        "canon/drops/20260909/extracted/text/Failure_Posture_Enumeration_v1.txt",
+        "canon/drops/20260909/extracted/text/Security_Architecture_Description_v1.txt",
+        "canon/drops/20260910/extracted/text/Akki_Governance_Architecture_v1_from_15.txt"
+      ]
+    },
+    {
+      "id": "security_function_policies_v1",
+      "status": "BANKED",
+      "filename": "Security_Function_Policies_v1.docx",
+      "path": "canon/drops/20260909/extracted/files_14/Security_Function_Policies_v1.docx",
+      "sha256": "8742fcd2666f5d3858085aa442839423f6707bfed8b4b4d69fc2510c127afe0c",
+      "kind": "docx",
+      "signature_source": "opening_signature",
+      "citation_count": 3,
+      "citation_paths": [
+        "canon/drops/20260909/extracted/text/Akki_Governance_Architecture_v1.txt",
+        "canon/drops/20260909/extracted/text/Security_Function_Policies_v1.txt",
+        "canon/drops/20260910/extracted/text/Akki_Governance_Architecture_v1_from_15.txt"
+      ]
+    },
+    {
+      "id": "security_promise_set_amendments",
+      "status": "BANKED",
+      "filename": "Security_Promise_Set_Amendments.docx",
+      "path": "canon/drops/20260907/extracted/files_12/Security_Promise_Set_Amendments.docx",
+      "sha256": "0adc3ff5222316110c8a3f09ff82da0f9d2b90da9e21a0f7cbbe5bc15cf65c42",
+      "kind": "docx",
+      "signature_source": "filename_fallback",
+      "citation_count": 0,
+      "citation_paths": []
+    },
+    {
+      "id": "tcb_enumeration_v1",
+      "status": "BANKED",
+      "filename": "TCB_Enumeration_v1.docx",
+      "path": "canon/drops/20260909/extracted/files_14/TCB_Enumeration_v1.docx",
+      "sha256": "3bfbe5b99438577a50a669d2d7cd1a997bbd37e6066a0541b90ff15ab63d8723",
+      "kind": "docx",
+      "signature_source": "opening_signature",
+      "citation_count": 7,
+      "citation_paths": [
+        "canon/drops/20260909/extracted/text/Akki_Governance_Architecture_v1.txt",
+        "canon/drops/20260909/extracted/text/Determinism_Inventory_v1.txt",
+        "canon/drops/20260909/extracted/text/Failure_Posture_Enumeration_v1.txt",
+        "canon/drops/20260909/extracted/text/Security_Architecture_Description_v1.txt",
+        "canon/drops/20260909/extracted/text/TCB_Enumeration_v1.txt",
+        "canon/drops/20260910/extracted/text/Akki_Governance_Architecture_v1_from_15.txt",
+        "canon/drops/20260910/extracted/text/Ratification_Record_v1.txt"
+      ]
+    },
+    {
+      "id": "trust_domains_v1",
+      "status": "BANKED",
+      "filename": "Trust_Domain_Description_v1.docx",
+      "path": "canon/drops/20260909/extracted/files_14/Trust_Domain_Description_v1.docx",
+      "sha256": "0d9fc546c9918b6abb7c7a46189171e761615bbf34b28a6bb2a850d45257fcd0",
+      "kind": "docx",
+      "signature_source": "opening_signature",
+      "citation_count": 4,
+      "citation_paths": [
+        "canon/drops/20260909/extracted/text/Akki_Governance_Architecture_v1.txt",
+        "canon/drops/20260909/extracted/text/Business_Continuity_Annex_v1.txt",
+        "canon/drops/20260909/extracted/text/Trust_Domain_Description_v1.txt",
+        "canon/drops/20260910/extracted/text/Akki_Governance_Architecture_v1_from_15.txt"
+      ]
+    },
+    {
+      "id": "whitepaper_wizard_spec_v1",
+      "status": "BANKED",
+      "filename": "spec.docx",
+      "path": "canon/fixtures/whitepaper_wizard_spec_v1/spec.docx",
+      "sha256": "7b51c5adf275ab176a18fa6a9277c593139ec6a132b7b5c923227153e4be5fed",
+      "kind": "docx",
+      "signature_source": "opening_signature",
+      "citation_count": 10,
+      "citation_paths": [
+        "canon/drops/20260907/extracted/text/System_Rules_Registry.json",
+        "canon/drops/20260907/extracted/text/System_Rules_Registry.md",
+        "canon/drops/20260907/extracted/text/doc0_governance_architecture.txt",
+        "canon/drops/20260909/extracted/text/Akki_Governance_Architecture_v1.txt",
+        "canon/drops/20260910/extracted/text/Akki_Governance_Architecture_v1_from_15.txt",
+        "canon/drops/20260910/extracted/text/Master_Requirements_Registry.md",
+        "canon/fixtures/whitepaper_wizard_spec_v1/spec.extracted.txt",
+        "notes/MASTER_TRACEABILITY_AUDIT_20260907.md",
+        "notes/MASTER_TRACEABILITY_AUDIT_20260907/s22_wpw_spec.md",
+        "notes/akki_holistic_inventory.md"
+      ]
+    }
+  ],
+  "missing": [
+    {
+      "id": "cif_spec_v1",
+      "status": "MISSING",
+      "citation_count": 3,
+      "citation_paths": [
+        "canon/fixtures/whitepaper_wizard_spec_v1/spec.extracted.txt",
+        "notes/MASTER_TRACEABILITY_AUDIT_20260907/s22_wpw_spec.md",
+        "notes/MASTER_TRACEABILITY_AUDIT_20260907/s24_donor_akki_os_v1.md"
+      ],
+      "zero_hit_receipt": "phase0/tracking_defect_20260908/grep_cif_spec_v1.txt"
+    },
+    {
+      "id": "eab_tier1_adoption_spec_v1",
+      "status": "MISSING",
+      "citation_count": 2,
+      "citation_paths": [
+        "notes/MASTER_TRACEABILITY_AUDIT_20260907.md",
+        "notes/MASTER_TRACEABILITY_AUDIT_20260907/s24_donor_akki_os_v1.md"
+      ],
+      "zero_hit_receipt": "phase0/tracking_defect_20260908/grep_eab_tier1_adoption_spec_v1.txt"
+    },
+    {
+      "id": "extraction_derisking_spec_v1",
+      "status": "MISSING",
+      "citation_count": 2,
+      "citation_paths": [
+        "notes/MASTER_TRACEABILITY_AUDIT_20260907/s24_donor_akki_os_v1.md",
+        "notes/w11_reassessment.md"
+      ],
+      "zero_hit_receipt": "phase0/tracking_defect_20260908/grep_extraction_derisking_spec_v1.txt"
+    },
+    {
+      "id": "training_techniques_spec_v1",
+      "status": "MISSING",
+      "citation_count": 7,
+      "citation_paths": [
+        "canon/drops/20260909/extracted/doc20/AKKI_Canon_17_20_v3_full.txt",
+        "canon/fixtures/whitepaper_wizard_spec_v1/spec.extracted.txt",
+        "canon/text/Akki_Canon_Documents_17_19.txt",
+        "canon/w11_batch2_v3/AKKI_Canon_Documents_17_20_v3.txt",
+        "notes/MASTER_TRACEABILITY_AUDIT_20260907/s24_donor_akki_os_v1.md",
+        "notes/w11_gap_map.md",
+        "notes/w11_reassessment.md"
+      ],
+      "zero_hit_receipt": "phase0/tracking_defect_20260908/grep_training_techniques_spec_v1.txt"
+    },
+    {
+      "id": "transformation_quality_spec_v1",
+      "status": "MISSING",
+      "citation_count": 2,
+      "citation_paths": [
+        "notes/MASTER_TRACEABILITY_AUDIT_20260907/s24_donor_akki_os_v1.md",
+        "notes/w11_reassessment.md"
+      ],
+      "zero_hit_receipt": "phase0/tracking_defect_20260908/grep_transformation_quality_spec_v1.txt"
+    }
+  ],
+  "design_ids": [
+    {
+      "id": "prototype_v3",
+      "status": "BANKED",
+      "filename": "RMS_AI_Prototype_standalone_v3.html",
+      "path": "canon/drops/20260909/raw/RMS_AI_Prototype_standalone_v3.html",
+      "sha256": "ee6ebe77e1c5f9e969767cf9a85f484ba258231d4e0827249b71b14f9c5f52a4",
+      "kind": "html",
+      "size_bytes": 2032024
+    },
+    {
+      "id": "prototype_v2_standalone",
+      "status": "BANKED",
+      "filename": "RMS_AI_Prototype_v2_Standalone.html",
+      "path": "canon/prototypes/20260907_v2_standalone/RMS_AI_Prototype_v2_Standalone.html",
+      "sha256": "4199c49f2e1b3fd633683205b5274d0afaba98757a3ccb4df6f1ee9e459a71f9",
+      "kind": "html",
+      "size_bytes": 1954907
+    },
+    {
+      "id": "prototype_v2_decoded",
+      "status": "BANKED",
+      "filename": "decoded_v2.html",
+      "path": "canon/prototypes/20260907_v2_standalone/decoded_v2.html",
+      "sha256": "823b5095c294d9ad5102b82b22aa7986c768bcc1972e5ddbcec3167ff95142e2",
+      "kind": "html",
+      "size_bytes": 1778832
+    },
+    {
+      "id": "prototype_v8_decoded",
+      "status": "BANKED",
+      "filename": "decoded_v8.html",
+      "path": "canon/prototypes/20260907_v2_standalone/decoded_v8.html",
+      "sha256": "9177c2b910b9caf5b07d6887317b37404443da83f548166da6f6e08f858e3a9a",
+      "kind": "html",
+      "size_bytes": 1111498
+    },
+    {
+      "id": "prototype_v7_standalone",
+      "status": "BANKED",
+      "filename": "RMS_AI_Akki_Prototype_v7_Standalone.html",
+      "path": "fixtures/RMS_AI_Akki_Prototype_v7_Standalone.html",
+      "sha256": "07df1d6846841da57ac0405536555262586362ac8d02a7bd682d9f3bebd6be55",
+      "kind": "html",
+      "size_bytes": 1307752
+    },
+    {
+      "id": "prototype_v7_standalone_v2",
+      "status": "BANKED",
+      "filename": "RMS_AI_Akki_Prototype_v7_Standalone_v2.html",
+      "path": "fixtures/RMS_AI_Akki_Prototype_v7_Standalone_v2.html",
+      "sha256": "bda2923b6dc2699a641d18a1920b9987958812df74e4ede0ef5a585b5023a935",
+      "kind": "html",
+      "size_bytes": 1307752
+    },
+    {
+      "id": "prototype_v7_v2_embedded_app",
+      "status": "BANKED",
+      "filename": "RMS_AI_Akki_Prototype_v7_v2_EMBEDDED_APP.html",
+      "path": "fixtures/RMS_AI_Akki_Prototype_v7_v2_EMBEDDED_APP.html",
+      "sha256": "59200739b34dd23dc0deb71ad7f058005c8de4641523823aba95595854334606",
+      "kind": "html",
+      "size_bytes": 134739
+    },
+    {
+      "id": "prototype_v8_standalone",
+      "status": "BANKED",
+      "filename": "RMS_AI_Akki_Prototype_v8_Standalone.html",
+      "path": "fixtures/RMS_AI_Akki_Prototype_v8_Standalone.html",
+      "sha256": "e56871d01a99c2f3aa173c9b0a0f09e983c9f0e54ba3e61795ac8cb8575f98f2",
+      "kind": "html",
+      "size_bytes": 1264425
+    },
+    {
+      "id": "dap_frontend_standalone",
+      "status": "BANKED",
+      "filename": "RMS_Data_Access_Portal_standalone.html",
+      "path": "canon/drops/20260909/raw/RMS_Data_Access_Portal_standalone.html",
+      "sha256": "d0fc1b498e07516c4c9acef45224be7add65ba23c35a56837e44074fc6e1c929",
+      "kind": "html",
+      "size_bytes": 230577
+    },
+    {
+      "id": "v8_template",
+      "status": "BANKED",
+      "filename": "v8_template.html",
+      "path": "notes/wave_g_step0_v8/v8_template.html",
+      "sha256": "47381de686612d941cf6f6bf1607e72b6f479493296b9189130f4c5c7850aa51",
+      "kind": "html",
+      "size_bytes": 1152815
+    },
+    {
+      "id": "v8_template_decoded",
+      "status": "BANKED",
+      "filename": "v8_template_decoded.html",
+      "path": "notes/wave_g_step0_v8/v8_template_decoded.html",
+      "sha256": "9177c2b910b9caf5b07d6887317b37404443da83f548166da6f6e08f858e3a9a",
+      "kind": "html",
+      "size_bytes": 1111498
+    }
+  ]
+}
