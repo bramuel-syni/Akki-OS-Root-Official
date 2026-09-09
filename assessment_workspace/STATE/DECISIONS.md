@@ -6586,9 +6586,7 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 ---
 
-## 2026-09-09T~11:40Z · OWNER RULING · STEP 1 verdict ratified · scope extended to prototypes/HTML design drops · proceed straight through STEPS 1-5
-
-**Verbatim (via user proxy):**
+## 2026-09-09T~11:40Z · OWNER RULING · STEP 1 verdict ratified · scope extended to prototypes/HTML design drops · proceed straight through STEPS 1-5**Verbatim (via user proxy):**
 
 > Proceed straight through — do not wait. The DEFAULT-PENDING-OVERRIDE (ROC framework = BANKED-DERIVED from System_Rules_Registry + Master_Requirements_Registry rows + eight-way citations) is exactly what STANDING_ORDERS §2 prescribes; write the audit-row schema on that default now. I am surfacing the verdict and the default to the owner in parallel — if he overrides or drops a standalone rule_criteria_spec file, fold it in at the next clean boundary.
 >
@@ -6605,6 +6603,63 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 3. STEPS 2-5 execute straight through with mission-framed landings between; no additional owner wait required.
 
 **Discipline binding (still):** tests-first with mechanical RED before implementation · double-green byte-match under `BASELINE_GUARD=1` · ratchet floor monotonic-up from 3006 (harness refresh before ratchet bump) · two-commit pattern · no push · terminal pytest only · every owner ruling banked verbatim in DECISIONS.md before action.
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+## 2026-09-09T~12:20Z · OWNER RULING · CP1 ack · CP2-CP10 straight through · report cadence CP4/CP8/CP10 · CP9 honest-state mapping
+
+**Verbatim (via user proxy):**
+
+> CP1 acknowledged — clean landing, discipline held. Proceed straight through CP2 → CP10 without pausing for my confirmation between CPs. Two adjustments for efficiency:
+>
+> 1. REPORT CADENCE: full mission-framed reports at THREE boundaries only — after CP4 (all data hydration behind Registry/census/model routes), after CP8 (v3 substitutions re-authored + harness green), and at CP10 wave close (with the real-Chromium screenshot set and the 77-runs-in-roster proof). CPs in between: one-line landings in your commit messages and DECISIONS entries, no long reports. This preserves budget for build work.
+>
+> 2. CP9 note: when unioning the campaign manifests with baseline_lines for the models roster, carry the honest state per run (sealed-clean vs synthetic-fail-seal vs pilot-v1 vs v2/v2.1) into the roster's product-language state field — the prototype's "in service / under evaluation / retired" grouping maps naturally (sealed baselines → under evaluation; failed → not shown or 'did not complete' if the design has a slot; pilots → labelled). No fabricated states.
+>
+> If anything in CP8's v3 DOM work surfaces a design ambiguity, apply the stated-default rule and keep moving. Owner-facing summary goes out from me after your CP10 report. Go.
+
+**Interpretation banked:**
+
+1. CP1 acknowledged — 22-route inventory + honest-empty payloads accepted.
+2. Report cadence for CP2-CP10: **one-line landing in commit + one-line DECISIONS entry per CP** (no full mission-framed reports) EXCEPT at CP4 close, CP8 close, and CP10 wave close (full mission-framed).
+3. CP9 honest-state map (banked verbatim as-authoritative for the roster's product-language state field):
+   - `sealed-clean` (successful baseline) → `under evaluation`
+   - `synthetic-fail-seal` (failed run banked with fake seal) → `did not complete` if roster design has that slot; otherwise NOT SHOWN
+   - `pilot-v1` → `pilot` (labelled)
+   - `v2` / `v2.1` → `under evaluation`
+   - No fabricated states — every roster row carries `state_evidence` naming which record file drove the state
+4. CP8 design-ambiguity policy: apply the stated-default rule (STANDING_ORDERS §2 DPO pattern), mark `DEFAULT-PENDING-OVERRIDE`, keep moving.
+
+**Discipline binding (still):** mechanical RED before every CP implementation · double-green byte-match under `BASELINE_GUARD=1` · ratchet monotonic-up · two-commit pattern · no push · terminal pytest only · every owner ruling banked verbatim in DECISIONS.md before action.
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+## 2026-09-09T~12:55Z · OWNER RULING · HOLD CP2 · compile HOLISTIC PROGRAMME PLAN before any further build
+
+**Verbatim (via user proxy):**
+
+> HOLD execution on CP2. The owner has asked for the HOLISTIC programme plan — the complete picture across ALL ingested requirements, not just the Registry wave. Before any further building, compile and return that plan.
+>
+> INSTRUCTIONS:
+> 1. Read STATE/STANDING_ORDERS.md, STATE/DECISIONS.md, STATE/NEXT.md, and notes/MASTER_TRACEABILITY_AUDIT_20260907.md as the source of truth. Do NOT paraphrase spec IDs — cite them verbatim.
+> 2. Produce a single holistic plan document covering the ENTIRE programme derived from all ingested specs (Doc 0 v2, Security Assurance, DAP_Backend_Spec_v1, Agent Swarm Containment, WPW, Rules Service, Prototype v3) plus donor-repo lifts (Solva v2 from Akki-Executive-Core, etc.).
+> 3. The plan must include, for the WHOLE programme end-to-end: every wave in execution order · what it delivers in plain language · verbatim spec IDs · rough size/effort · test gates · blockers · already-done ledger · background GPU campaign section · open owner rulings section · known debt · current ratchet floor + double-green close rule.
+> 4. Write the plan in PLAIN LANGUAGE, mission-framed ("What we are building, why, what closes it"). NO machine speak.
+> 5. Save it to assessment_workspace/STATE/HOLISTIC_PLAN.md, commit locally only (NEVER push to remote), and return the full plan text in your reply.
+> 6. Do NOT start CP2 or any new build work until the owner approves this plan. Reminder of standing law: no testing_agent, terminal pytest only under BASELINE_GUARD=1, local commits only.
+
+**Interpretation banked:**
+
+1. HOLD in effect — no further build work until this plan is approved.
+2. Honest disclosure required: since the owner's prior authorization ("Proceed straight through CP2 → CP10") was in flight, CP2 through CP10 have ALREADY been landed locally in this session (track-a `374f9c3` CP5+6+7 · `d691899` CP8 · CP9 · CP10). Ratchet floor is currently 3100, not 3064 as noted in the HOLD directive. Plan must name this transparently; owner may steer further.
+3. Plan must cite spec IDs verbatim (rule_criteria_spec_v1, business_continuity_v1, agent_containment_spec_v1, dap_backend_spec_v1, rulebook_engine_spec_v1, akki_governance_architecture_v1, security_architecture_v1, whitepaper_wizard_spec_v1, etc.).
+4. Standing law confirmed: no testing_agent, terminal pytest only under BASELINE_GUARD=1, local commits only, no push.
+
+**Discipline binding:** action = compile plan; commit local; no push; return full text; hold on all further build work.
 
 ---
 

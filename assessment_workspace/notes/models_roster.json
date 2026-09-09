@@ -1,0 +1,658 @@
+{
+  "generated_at": "2026-09-09T12:41:01.179473+00:00",
+  "owner_directive": "2026-09-08T~06:15Z STEP 5: 77 campaign runs visible in models roster \u00b7 2026-09-09T~12:20Z CP9 honest-state map",
+  "state_map_source": "owner ruling 2026-09-09T~12:20Z verbatim in DECISIONS.md",
+  "state_map": {
+    "sealed-clean": "under evaluation",
+    "synthetic-fail-seal": "did not complete",
+    "pilot-v1": "pilot",
+    "v2": "under evaluation",
+    "v2.1": "under evaluation",
+    "baseline": "under evaluation",
+    "solva": "under evaluation"
+  },
+  "count": 78,
+  "version_counts": {
+    "sealed-clean": 6,
+    "solva": 1,
+    "pilot-v1": 8,
+    "v2": 11,
+    "v2.1": 52
+  },
+  "state_counts": {
+    "under evaluation": 70,
+    "pilot": 8
+  },
+  "rows": [
+    {
+      "run_id": "bl_run-1787744079",
+      "run_name": "bl_run-1787744079",
+      "campaign_id": null,
+      "version": "sealed-clean",
+      "state": "under evaluation",
+      "state_evidence": "phase0/baseline_lines/bl_run-1787744079.json"
+    },
+    {
+      "run_id": "bl_run-live-chokepoint-1787747166",
+      "run_name": "bl_run-live-chokepoint-1787747166",
+      "campaign_id": null,
+      "version": "sealed-clean",
+      "state": "under evaluation",
+      "state_evidence": "phase0/baseline_lines/bl_run-live-chokepoint-1787747166.json"
+    },
+    {
+      "run_id": "bl_run-verify-1787747330",
+      "run_name": "bl_run-verify-1787747330",
+      "campaign_id": null,
+      "version": "sealed-clean",
+      "state": "under evaluation",
+      "state_evidence": "phase0/baseline_lines/bl_run-verify-1787747330.json"
+    },
+    {
+      "run_id": "bl_run_1",
+      "run_name": "bl_run_1",
+      "campaign_id": null,
+      "version": "sealed-clean",
+      "state": "under evaluation",
+      "state_evidence": "phase0/baseline_lines/bl_run_1.json"
+    },
+    {
+      "run_id": "bl_run_gov-1",
+      "run_name": "bl_run_gov-1",
+      "campaign_id": null,
+      "version": "sealed-clean",
+      "state": "under evaluation",
+      "state_evidence": "phase0/baseline_lines/bl_run_gov-1.json"
+    },
+    {
+      "run_id": "bl_trn_wp_close_resolution_test",
+      "run_name": "bl_trn_wp_close_resolution_test",
+      "campaign_id": null,
+      "version": "sealed-clean",
+      "state": "under evaluation",
+      "state_evidence": "phase0/baseline_lines/bl_trn_wp_close_resolution_test.json"
+    },
+    {
+      "run_id": "run-5c9cdc19d3da",
+      "run_name": "run-5c9cdc19d3da",
+      "campaign_id": "solva",
+      "version": "solva",
+      "state": "under evaluation",
+      "state_evidence": "phase0/solva_runs/run-5c9cdc19d3da.json"
+    },
+    {
+      "run_id": "shield-train-campaign-a-A-1-1p5B-20260906T144918Z",
+      "run_name": "A-1-1p5B",
+      "campaign_id": "campaign-a-baseline-ladder-20260906",
+      "version": "pilot-v1",
+      "state": "pilot",
+      "state_evidence": "phase0/campaign_drafts/campaign_a_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-a-A-2-3B-20260906T144919Z",
+      "run_name": "A-2-3B",
+      "campaign_id": "campaign-a-baseline-ladder-20260906",
+      "version": "pilot-v1",
+      "state": "pilot",
+      "state_evidence": "phase0/campaign_drafts/campaign_a_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-a-v2-A-0-0p5B-20260906T170000Z",
+      "run_name": "A-0-0p5B-v2",
+      "campaign_id": "campaign-a-v2-ladder-20260906",
+      "version": "v2",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_a_v2_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-a-v2-A-1-1p5B-20260906T170001Z",
+      "run_name": "A-1-1p5B-v2",
+      "campaign_id": "campaign-a-v2-ladder-20260906",
+      "version": "v2",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_a_v2_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-a-v2-A-2-3B-20260906T170002Z",
+      "run_name": "A-2-3B-v2",
+      "campaign_id": "campaign-a-v2-ladder-20260906",
+      "version": "v2",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_a_v2_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-a-v2-A-3-7B-20260906T170003Z",
+      "run_name": "A-3-7B-v2",
+      "campaign_id": "campaign-a-v2-ladder-20260906",
+      "version": "v2",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_a_v2_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-a-v21-A-0-0p5B-s1-20260906T200000Z",
+      "run_name": "A-0-0p5B-v21-seed1",
+      "campaign_id": "campaign-a-v21-ladder-20260906",
+      "version": "v2.1",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_a_v21_lane0_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-a-v21-A-0-0p5B-s2-20260906T200010Z",
+      "run_name": "A-0-0p5B-v21-seed2",
+      "campaign_id": "campaign-a-v21-ladder-20260906",
+      "version": "v2.1",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_a_v21_lane1_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-a-v21-A-0-0p5B-s2R-20260907T120010Z",
+      "run_name": "A-0-0p5B-v21-seed2R",
+      "campaign_id": "campaign-a-v21-ladder-20260906",
+      "version": "v2.1",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_a_v21_lane1_restore_20260907T120000Z_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-a-v21-A-0-0p5B-s3-20260907T000015Z",
+      "run_name": "A-0-0p5B-v21-seed3",
+      "campaign_id": "campaign-a-v21-ladder-20260906",
+      "version": "v2.1",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_a_v21_lane1_ext1_20260907T0000Z_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-a-v21-A-0-0p5B-s3-20260907T120016Z",
+      "run_name": "A-0-0p5B-v21-seed3",
+      "campaign_id": "campaign-a-v21-ladder-20260906",
+      "version": "v2.1",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_a_v21_lane1_restore_20260907T120000Z_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-a-v21-A-1-1p5B-s1-20260906T200001Z",
+      "run_name": "A-1-1p5B-v21-seed1",
+      "campaign_id": "campaign-a-v21-ladder-20260906",
+      "version": "v2.1",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_a_v21_lane1_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-a-v21-A-1-1p5B-s2-20260906T200011Z",
+      "run_name": "A-1-1p5B-v21-seed2",
+      "campaign_id": "campaign-a-v21-ladder-20260906",
+      "version": "v2.1",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_a_v21_lane1_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-a-v21-A-1-1p5B-s2R-20260907T120011Z",
+      "run_name": "A-1-1p5B-v21-seed2R",
+      "campaign_id": "campaign-a-v21-ladder-20260906",
+      "version": "v2.1",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_a_v21_lane1_restore_20260907T120000Z_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-a-v21-A-1-1p5B-s3-20260907T000004Z",
+      "run_name": "A-1-1p5B-v21-seed3",
+      "campaign_id": "campaign-a-v21-ladder-20260906",
+      "version": "v2.1",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_a_v21_lane0_ext1_20260907T0000Z_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-a-v21-A-1-1p5B-s3-20260907T120004Z",
+      "run_name": "A-1-1p5B-v21-seed3",
+      "campaign_id": "campaign-a-v21-ladder-20260906",
+      "version": "v2.1",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_a_v21_lane0_restore_20260907T120000Z_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-a-v21-A-1-1p5B-s4-20260907T000014Z",
+      "run_name": "A-1-1p5B-v21-seed4",
+      "campaign_id": "campaign-a-v21-ladder-20260906",
+      "version": "v2.1",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_a_v21_lane1_ext1_20260907T0000Z_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-a-v21-A-1-1p5B-s4-20260907T120015Z",
+      "run_name": "A-1-1p5B-v21-seed4",
+      "campaign_id": "campaign-a-v21-ladder-20260906",
+      "version": "v2.1",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_a_v21_lane1_restore_20260907T120000Z_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-a-v21-A-14B-s1-PROBE-20260907T000001Z",
+      "run_name": "A-14B-v21-seed1-PROBE",
+      "campaign_id": "campaign-a-v21-ladder-20260906",
+      "version": "v2.1",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_a_v21_lane0_ext1_20260907T0000Z_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-a-v21-A-14B-s2-20260907T000010Z",
+      "run_name": "A-14B-v21-seed2",
+      "campaign_id": "campaign-a-v21-ladder-20260906",
+      "version": "v2.1",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_a_v21_lane1_ext1_20260907T0000Z_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-a-v21-A-14B-s3-20260907T000012Z",
+      "run_name": "A-14B-v21-seed3",
+      "campaign_id": "campaign-a-v21-ladder-20260906",
+      "version": "v2.1",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_a_v21_lane1_ext1_20260907T0000Z_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-a-v21-A-2-3B-s1-20260906T200002Z",
+      "run_name": "A-2-3B-v21-seed1",
+      "campaign_id": "campaign-a-v21-ladder-20260906",
+      "version": "v2.1",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_a_v21_lane0_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-a-v21-A-2-3B-s2-20260906T200012Z",
+      "run_name": "A-2-3B-v21-seed2",
+      "campaign_id": "campaign-a-v21-ladder-20260906",
+      "version": "v2.1",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_a_v21_lane1_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-a-v21-A-2-3B-s3-20260907T000003Z",
+      "run_name": "A-2-3B-v21-seed3",
+      "campaign_id": "campaign-a-v21-ladder-20260906",
+      "version": "v2.1",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_a_v21_lane0_ext1_20260907T0000Z_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-a-v21-A-2-3B-s3-20260907T120003Z",
+      "run_name": "A-2-3B-v21-seed3",
+      "campaign_id": "campaign-a-v21-ladder-20260906",
+      "version": "v2.1",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_a_v21_lane0_restore_20260907T120000Z_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-a-v21-A-2-3B-s4-20260907T000013Z",
+      "run_name": "A-2-3B-v21-seed4",
+      "campaign_id": "campaign-a-v21-ladder-20260906",
+      "version": "v2.1",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_a_v21_lane1_ext1_20260907T0000Z_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-a-v21-A-2-3B-s4-20260907T120014Z",
+      "run_name": "A-2-3B-v21-seed4",
+      "campaign_id": "campaign-a-v21-ladder-20260906",
+      "version": "v2.1",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_a_v21_lane1_restore_20260907T120000Z_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-a-v21-A-3-7B-s1-20260906T200003Z",
+      "run_name": "A-3-7B-v21-seed1",
+      "campaign_id": "campaign-a-v21-ladder-20260906",
+      "version": "v2.1",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_a_v21_lane0_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-a-v21-A-3-7B-s2-20260907T000000Z",
+      "run_name": "A-3-7B-v21-seed2",
+      "campaign_id": "campaign-a-v21-ladder-20260906",
+      "version": "v2.1",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_a_v21_lane0_ext1_20260907T0000Z_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-a-v21-A-3-7B-s2-20260907T120000Z",
+      "run_name": "A-3-7B-v21-seed2",
+      "campaign_id": "campaign-a-v21-ladder-20260906",
+      "version": "v2.1",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_a_v21_lane0_restore_20260907T120000Z_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-a-v21-A-3-7B-s3-20260907T000002Z",
+      "run_name": "A-3-7B-v21-seed3",
+      "campaign_id": "campaign-a-v21-ladder-20260906",
+      "version": "v2.1",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_a_v21_lane0_ext1_20260907T0000Z_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-a-v21-A-3-7B-s3-20260907T120002Z",
+      "run_name": "A-3-7B-v21-seed3",
+      "campaign_id": "campaign-a-v21-ladder-20260906",
+      "version": "v2.1",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_a_v21_lane0_restore_20260907T120000Z_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-a-v21-A-3-7B-s4-20260907T000011Z",
+      "run_name": "A-3-7B-v21-seed4",
+      "campaign_id": "campaign-a-v21-ladder-20260906",
+      "version": "v2.1",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_a_v21_lane1_ext1_20260907T0000Z_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-a-v21-A-3-7B-s4-20260907T120013Z",
+      "run_name": "A-3-7B-v21-seed4",
+      "campaign_id": "campaign-a-v21-ladder-20260906",
+      "version": "v2.1",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_a_v21_lane1_restore_20260907T120000Z_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-b-B-REF-3B-20260906T144908Z",
+      "run_name": "B-REF-3B",
+      "campaign_id": "campaign-b-method-ablations-20260906",
+      "version": "pilot-v1",
+      "state": "pilot",
+      "state_evidence": "phase0/campaign_drafts/campaign_b_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-b-B2-DEDUP-OFF-20260906T144909Z",
+      "run_name": "B2-DEDUP-OFF",
+      "campaign_id": "campaign-b-method-ablations-20260906",
+      "version": "pilot-v1",
+      "state": "pilot",
+      "state_evidence": "phase0/campaign_drafts/campaign_b_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-b-B3-RANK-8-20260906T144910Z",
+      "run_name": "B3-RANK-8",
+      "campaign_id": "campaign-b-method-ablations-20260906",
+      "version": "pilot-v1",
+      "state": "pilot",
+      "state_evidence": "phase0/campaign_drafts/campaign_b_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-b-B4-RANK-32-20260906T144911Z",
+      "run_name": "B4-RANK-32",
+      "campaign_id": "campaign-b-method-ablations-20260906",
+      "version": "pilot-v1",
+      "state": "pilot",
+      "state_evidence": "phase0/campaign_drafts/campaign_b_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-b-B5-CTX-512-20260906T144912Z",
+      "run_name": "B5-CTX-512",
+      "campaign_id": "campaign-b-method-ablations-20260906",
+      "version": "pilot-v1",
+      "state": "pilot",
+      "state_evidence": "phase0/campaign_drafts/campaign_b_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-b-B6-CTX-2048-20260906T144913Z",
+      "run_name": "B6-CTX-2048",
+      "campaign_id": "campaign-b-method-ablations-20260906",
+      "version": "pilot-v1",
+      "state": "pilot",
+      "state_evidence": "phase0/campaign_drafts/campaign_b_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-b-v2-B-REF-3B-20260906T170100Z",
+      "run_name": "B-REF-3B-v2",
+      "campaign_id": "campaign-b-v2-method-ablations-20260906",
+      "version": "v2",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_b_v2_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-b-v2-B1-CORPUS-USSD-ONLY-20260906T170101Z",
+      "run_name": "B1-CORPUS-USSD-ONLY-v2",
+      "campaign_id": "campaign-b-v2-method-ablations-20260906",
+      "version": "v2",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_b_v2_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-b-v2-B2-DEDUP-OFF-20260906T170102Z",
+      "run_name": "B2-DEDUP-OFF-v2",
+      "campaign_id": "campaign-b-v2-method-ablations-20260906",
+      "version": "v2",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_b_v2_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-b-v2-B3-RANK-8-20260906T170103Z",
+      "run_name": "B3-RANK-8-v2",
+      "campaign_id": "campaign-b-v2-method-ablations-20260906",
+      "version": "v2",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_b_v2_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-b-v2-B4-RANK-32-20260906T170104Z",
+      "run_name": "B4-RANK-32-v2",
+      "campaign_id": "campaign-b-v2-method-ablations-20260906",
+      "version": "v2",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_b_v2_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-b-v2-B5-CTX-512-20260906T170105Z",
+      "run_name": "B5-CTX-512-v2",
+      "campaign_id": "campaign-b-v2-method-ablations-20260906",
+      "version": "v2",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_b_v2_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-b-v2-B6-CTX-2048-20260906T170106Z",
+      "run_name": "B6-CTX-2048-v2",
+      "campaign_id": "campaign-b-v2-method-ablations-20260906",
+      "version": "v2",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_b_v2_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-b-v21-B-REF-14B-s1-PROBE-20260907T010003Z",
+      "run_name": "B-REF-14B-v21-seed1-PROBE",
+      "campaign_id": "campaign-b-v21-method-ablations-20260906",
+      "version": "v2.1",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_b_v21_lane0_ext1_20260907T0100Z_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-b-v21-B-REF-14B-s2-20260907T010014Z",
+      "run_name": "B-REF-14B-v21-seed2",
+      "campaign_id": "campaign-b-v21-method-ablations-20260906",
+      "version": "v2.1",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_b_v21_lane1_ext1_20260907T0100Z_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-b-v21-B-REF-3B-s1-20260906T200100Z",
+      "run_name": "B-REF-3B-v21-seed1",
+      "campaign_id": "campaign-b-v21-method-ablations-20260906",
+      "version": "v2.1",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_b_v21_lane0_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-b-v21-B-REF-3B-s2-20260906T200110Z",
+      "run_name": "B-REF-3B-v21-seed2",
+      "campaign_id": "campaign-b-v21-method-ablations-20260906",
+      "version": "v2.1",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_b_v21_lane0_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-b-v21-B-REF-3B-s3-20260907T010005Z",
+      "run_name": "B-REF-3B-v21-seed3",
+      "campaign_id": "campaign-b-v21-method-ablations-20260906",
+      "version": "v2.1",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_b_v21_lane0_ext1_20260907T0100Z_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-b-v21-B-REF-3B-s4-20260907T010016Z",
+      "run_name": "B-REF-3B-v21-seed4",
+      "campaign_id": "campaign-b-v21-method-ablations-20260906",
+      "version": "v2.1",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_b_v21_lane1_ext1_20260907T0100Z_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-b-v21-B-REF-3B-s5-20260907T010017Z",
+      "run_name": "B-REF-3B-v21-seed5",
+      "campaign_id": "campaign-b-v21-method-ablations-20260906",
+      "version": "v2.1",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_b_v21_lane1_ext1_20260907T0100Z_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-b-v21-B-REF-7B-s1-20260907T010002Z",
+      "run_name": "B-REF-7B-v21-seed1",
+      "campaign_id": "campaign-b-v21-method-ablations-20260906",
+      "version": "v2.1",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_b_v21_lane0_ext1_20260907T0100Z_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-b-v21-B-REF-7B-s2-20260907T010004Z",
+      "run_name": "B-REF-7B-v21-seed2",
+      "campaign_id": "campaign-b-v21-method-ablations-20260906",
+      "version": "v2.1",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_b_v21_lane0_ext1_20260907T0100Z_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-b-v21-B-REF-7B-s3-20260907T010015Z",
+      "run_name": "B-REF-7B-v21-seed3",
+      "campaign_id": "campaign-b-v21-method-ablations-20260906",
+      "version": "v2.1",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_b_v21_lane1_ext1_20260907T0100Z_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-b-v21-B1-USSD-ONLY-s1-20260906T200101Z",
+      "run_name": "B1-CORPUS-USSD-ONLY-v21-seed1",
+      "campaign_id": "campaign-b-v21-method-ablations-20260906",
+      "version": "v2.1",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_b_v21_lane1_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-b-v21-B1-USSD-ONLY-s2-20260907T010010Z",
+      "run_name": "B1-CORPUS-USSD-ONLY-v21-seed2",
+      "campaign_id": "campaign-b-v21-method-ablations-20260906",
+      "version": "v2.1",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_b_v21_lane1_ext1_20260907T0100Z_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-b-v21-B2-DEDUP-OFF-s1-20260906T200102Z",
+      "run_name": "B2-DEDUP-OFF-v21-seed1",
+      "campaign_id": "campaign-b-v21-method-ablations-20260906",
+      "version": "v2.1",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_b_v21_lane1_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-b-v21-B2-DEDUP-OFF-s2-20260907T010011Z",
+      "run_name": "B2-DEDUP-OFF-v21-seed2",
+      "campaign_id": "campaign-b-v21-method-ablations-20260906",
+      "version": "v2.1",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_b_v21_lane1_ext1_20260907T0100Z_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-b-v21-B3-RANK-8-s1-20260906T200103Z",
+      "run_name": "B3-RANK-8-v21-seed1",
+      "campaign_id": "campaign-b-v21-method-ablations-20260906",
+      "version": "v2.1",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_b_v21_lane0_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-b-v21-B3-RANK-8-s2-20260907T010000Z",
+      "run_name": "B3-RANK-8-v21-seed2",
+      "campaign_id": "campaign-b-v21-method-ablations-20260906",
+      "version": "v2.1",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_b_v21_lane0_ext1_20260907T0100Z_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-b-v21-B3-RANK-8-s3-20260907T010006Z",
+      "run_name": "B3-RANK-8-v21-seed3",
+      "campaign_id": "campaign-b-v21-method-ablations-20260906",
+      "version": "v2.1",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_b_v21_lane0_ext1_20260907T0100Z_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-b-v21-B4-RANK-32-s1-20260906T200104Z",
+      "run_name": "B4-RANK-32-v21-seed1",
+      "campaign_id": "campaign-b-v21-method-ablations-20260906",
+      "version": "v2.1",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_b_v21_lane1_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-b-v21-B4-RANK-32-s2-20260907T010012Z",
+      "run_name": "B4-RANK-32-v21-seed2",
+      "campaign_id": "campaign-b-v21-method-ablations-20260906",
+      "version": "v2.1",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_b_v21_lane1_ext1_20260907T0100Z_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-b-v21-B5-CTX-512-s1-20260906T200105Z",
+      "run_name": "B5-CTX-512-v21-seed1",
+      "campaign_id": "campaign-b-v21-method-ablations-20260906",
+      "version": "v2.1",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_b_v21_lane0_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-b-v21-B5-CTX-512-s2-20260907T010001Z",
+      "run_name": "B5-CTX-512-v21-seed2",
+      "campaign_id": "campaign-b-v21-method-ablations-20260906",
+      "version": "v2.1",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_b_v21_lane0_ext1_20260907T0100Z_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-b-v21-B5-CTX-512-s3-20260907T010007Z",
+      "run_name": "B5-CTX-512-v21-seed3",
+      "campaign_id": "campaign-b-v21-method-ablations-20260906",
+      "version": "v2.1",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_b_v21_lane0_ext1_20260907T0100Z_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-b-v21-B6-CTX-2048-s1-20260906T200106Z",
+      "run_name": "B6-CTX-2048-v21-seed1",
+      "campaign_id": "campaign-b-v21-method-ablations-20260906",
+      "version": "v2.1",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_b_v21_lane1_queue_manifest.json"
+    },
+    {
+      "run_id": "shield-train-campaign-b-v21-B6-CTX-2048-s2-20260907T010013Z",
+      "run_name": "B6-CTX-2048-v21-seed2",
+      "campaign_id": "campaign-b-v21-method-ablations-20260906",
+      "version": "v2.1",
+      "state": "under evaluation",
+      "state_evidence": "phase0/campaign_drafts/campaign_b_v21_lane1_ext1_20260907T0100Z_queue_manifest.json"
+    }
+  ],
+  "honest_gap": null,
+  "sources": [
+    "phase0/campaign_drafts/*_queue_manifest.json",
+    "phase0/baseline_lines/*.json",
+    "phase0/solva_runs/*.json"
+  ]
+}
