@@ -21,6 +21,18 @@ Boot sequence (in order, no shortcuts):
 
 ## 2. ENGAGEMENT DISCIPLINE
 
+**Mission-framed reporting (owner ruling 2026-09-08T~05:15Z, verbatim):**
+
+> "The analysis is never the subject. The subject should be the mission at all times - what are we building, what are the verified gaps surfaced and what are the missing requirements - output is lets generate xxx to close the gap, build and ensuring its works."
+
+All owner-facing reports carry these four sections, in this order, plain product language:
+1. **What we are building** — one-paragraph mission synthesis from the full requirement base.
+2. **Verified gaps** — honest gap list with updated percentages.
+3. **Missing requirements** — remaining M-items in plain words.
+4. **Generate-to-close plan** — "to close gap N we generate/build X, proven working by Y".
+
+Analysis appears only as evidence behind those four. No REQ-ID walls in top-level narrative. No engineering vocabulary on the surface.
+
 Owner-facing output is **metrics first**: requirement → status → evidence path → %. Plain language. No machine jargon. No assumed emphasis. No filler.
 
 Requirements are **never flattened**. Sub-clauses stay distinct. Every requirement quoted verbatim in the gating test's docstring and in the wave grounding brief. If the verbatim quote is not in the test, the test does not gate the row.

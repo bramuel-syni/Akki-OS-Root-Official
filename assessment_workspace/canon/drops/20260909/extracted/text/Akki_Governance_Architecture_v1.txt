@@ -1,0 +1,528 @@
+AKKI PLATFORM  ·  FOUNDATIONAL SPECIFICATION  ·  DOCUMENT 0
+The Akki Governance Architecture
+Akki Defined as a Governance Operating System, Against the Standards That Define the Category
+akki_governance_architecture_v1
+Part 1 — Definition
+Akki is a governance operating system: software that lets an organisation's AI act on its data and models while making the constraints on that action structurally enforced, evidenced, and answerable to a named authority — rather than policed by review after the fact.
+A governance operating system is built from twelve attributes. Each is defined here independent of Akki, against the standard that already governs its category in established security and AI-governance practice. Akki's own name for each attribute is given as an alias, because the product's vocabulary is not being replaced — it is being measured. Where a mature standard does not yet exist for an attribute, the closest established practice is named as such, and the absence of a standard is stated plainly rather than filled with an invented one.
+The twelve are ordered as a dependency stack, not a list. Each attribute after the first presupposes the ones before it:
+An attribute is well-formed only if every attribute above it in this table is satisfied. A reference monitor without an enumerated TCB has nothing to be part of; a control without the governed triad has nothing to be stated over. Part 3's gap register is organised by this dependency: gaps in attributes 1–3 propagate, and are prioritised accordingly.
+1.  Trusted Computing Base   (the existence layer)
+Definition
+The totality of mechanisms — code, configuration, and process — whose correct operation the system's guarantees depend on. Present in every deployment, unconditionally, and not reachable for modification by anything outside it. A component either is inside this boundary, in which case the system's guarantees stand or fall with it, or it is outside, in which case it is untrusted by construction and its failure is contained rather than catastrophic.
+Governing Standard
+The Trusted Computing Base is a term of art from the U.S. Department of Defense Trusted Computer System Evaluation Criteria (TCSEC, DoD 5200.28-STD, 1985), defined as “the totality of protection mechanisms within a computer system — including hardware, firmware, and software — the combination of which is responsible for enforcing a security policy.” At assurance division B2, the TCSEC requires the TCB be internally structured into well-defined, largely independent modules, with protection-critical elements separated from those that are not. At division B3, it requires significant engineering directed at minimising the TCB's complexity and excluding modules that are not protection-critical — minimising complexity, not merely size.
+TCSEC (DoD 5200.28-STD), 1985, §3.2 (Division B2, Structured Protection) and §3.3 (Division B3, Security Domains). [V]
+Behavioural Specification
+BA-1.1  TCB membership is decided by a stated, applied test, not by convenience or by which team owns a component. This document proposes: a component is in the TCB if and only if it is deterministic and its failure would falsify a guarantee this document or a document it governs makes.
+BA-1.2  TCB membership is reviewed under the same authority and change-control discipline as any governed control (Attribute 9), and a component's addition to or removal from the TCB is itself a recorded event.
+BA-1.3  The TCB is enumerable on request — a named, current list exists, not an inference from doctrine.
+Technical Specification
+TA-1.1  No component outside the TCB can modify a component inside it. This is the isolation property, and it is what makes the membership test meaningful: if anything could reach in, the boundary would not bound anything.
+TA-1.2  The TCB is minimised by design: a learned or non-protection-critical component is excluded even where it is operationally central, because minimisation is what keeps the TCB small enough to analyse with confidence.
+TA-1.3  Every interface the TCB exposes to components outside it is declared and enumerated — an undeclared interface is an unminimised TCB by definition.
+2.  Subsystem   (an engine)
+Definition
+A component with a bounded responsibility — a defined set of outcomes it is accountable for and no others — a declared interface through which every other component must reach it, and internals that are not reachable from outside that interface. What a subsystem is built from are components; a component owns no outcome and is not itself a subsystem.
+Governing Standard
+ISO/IEC/IEEE 42010 (Systems and software engineering — Architecture description) requires an architecture description identifying stakeholders, their concerns, the viewpoints used to address those concerns, and the views that result, with correspondences recorded between them. Common Criteria (ISO/IEC 15408) ADV_TDS (TOE Design) requires the security functionality (the TSF) to be described in terms of subsystems, each classified as SFR-enforcing, SFR-supporting, or SFR-non-interfering according to its relationship to the security requirements it implements; ADV_FSP (Functional Specification) requires every TSF interface enumerated with its purpose, method of use, and parameters.
+ISO/IEC/IEEE 42010:2011/2022, cl. 5. [P] — paywalled; structure and clause numbering from the standard's public abstract and widely cited secondary summaries.
+Common Criteria for Information Technology Security Evaluation, Part 3, ADV_TDS and ADV_FSP families. [K]
+Behavioural Specification
+BA-2.1  For every outcome the system guarantees, exactly one subsystem can be named as accountable for it. Two candidate owners means the responsibility boundary is drawn wrong; no owner means the outcome is unowned and therefore not actually guaranteed.
+BA-2.2  A subsystem's classification — whether it enforces, merely supports, or is non-interfering with respect to governance — is stated, not left to be inferred from what it happens to do.
+BA-2.3  A subsystem composed of other subsystems' outputs, with no outcome of its own, is not a subsystem; it is a composite, and its correctness is a theorem over its constituents, stated as such.
+Technical Specification
+TA-2.1  A subsystem's interface is declared, and every access to it from outside originates through that interface — there is no side channel into a subsystem's internals.
+TA-2.2  A subsystem's internal state and logic are not readable or alterable by another subsystem except through the declared interface's own operations.
+TA-2.3  A subsystem's interfaces are enumerated in a form that could be checked mechanically against what actually accepts calls at runtime — an interface that exists in code but not in this enumeration is an unminimised, undeclared surface.
+3.  Governed Triad — Principal, Asset, Operation   (actor, estate/unit/record, crossing/read/train)
+Definition
+The three classes every control, checkpoint, and monitor in the system is stated over. A principal is anything that can initiate an action — a human, an application, or a subsystem acting on its own authority. An asset is anything the system protects or governs the state of — data, a model, a record, an artifact. An operation is a named action a principal may attempt to perform on an asset. A rule, a checkpoint, or a monitor that cannot be restated in the form ‘principal P performs operation O on asset A’ has not yet been made precise enough to enforce.
+Governing Standard
+Common Criteria's security policy model requires every Security Function Policy stated over exactly these three classes. FDP_ACC.1 (Subset Access Control), verified verbatim: ‘The TSF shall enforce the [assignment: access control SFP] on [assignment: list of subjects, objects, and operations among subjects and objects covered by the SFP].’ FDP_ACF.1 (Security Attribute Based Access Control) requires the rules governing access be stated in terms of security attributes carried by subjects and objects. NIST SP 800-162 (Attribute Based Access Control) defines the same triad for policy decisions: subject attributes, object attributes, and the operation requested, evaluated against environment conditions. ISO/IEC 27001:2022 Annex A control 5.9 requires an inventory of information and other associated assets, each with an identified owner.
+Common Criteria Part 2, FDP_ACC.1.1 and FDP_ACF.1. [V] — verified verbatim against a published Protection Profile's rendering of the CC text.
+NIST SP 800-162, Guide to Attribute Based Access Control. [K]
+ISO/IEC 27001:2022, Annex A, control 5.9 (Inventory of information and other associated assets). [P]
+Behavioural Specification
+BA-3.1  Every principal belongs to a stated class — human role, application, or subsystem acting under its own authority — and carries a mandate whose source can be named. A principal without a stated class cannot be the subject of a written control.
+BA-3.2  Every asset carries a custody class as a first-class, typed attribute, not a description that happens to appear in prose near it. Disclosure and handling rules are stated as functions of custody class, so that adding a new asset type does not require inventing new prose elsewhere.
+BA-3.3  Every operation the system performs is named once, consistently, and maps to exactly one checkpoint (Attribute 5) where it is evaluated. An operation performed through more than one code path with no shared checkpoint is not a single governed operation — it is two undergoverned ones.
+Technical Specification
+TA-3.1  The three classes are enumerable: a finite, named list of principal classes, asset classes, and operations exists and can be produced on request, not reconstructed by reading source code.
+TA-3.2  A principal that is also an asset — a model, which acts and is also protected — is tagged with both roles explicitly, and every control involving it states which role is in force for that control.
+TA-3.3  Asset and principal identifiers are stable across the system: the same asset referenced from two different subsystems resolves to the same identity, not two records that happen to describe the same thing.
+4.  Control / Invariant   (a rule)
+Definition
+The unit of governance: a requirement, owned by exactly one subsystem, stated over the governed triad, that is binding — a system is either in compliance with it or is not, with no third state — and decidable, meaning the compliance question can actually be answered for a given state or action. A control protects an invariant: the property that must remain true for the control to have been kept.
+Governing Standard
+NIST SP 800-53 Revision 5 organises its requirements as a control catalog: each control carries an identifier, a control statement, organisation-defined parameters where applicable, and — through the companion assessment methodology SP 800-53A — an assessment procedure specifying the examine, interview, and test objects that establish whether the control is satisfied. ISO/IEC 27001:2022 clause 6.1.3(d) requires a Statement of Applicability: every applicable control, its justification for inclusion, and its implementation status, each with a named owner.
+NIST SP 800-53 Rev 5 control catalog structure, and SP 800-53A assessment-procedure structure (examine/interview/test), illustrated by AU-3's six-element assessment (AU-03a through AU-03f). [V] for AU-3's own structure; [K] generally across the catalog.
+ISO/IEC 27001:2022, cl. 6.1.3(d) (Statement of Applicability). [P]
+Behavioural Specification
+BA-4.1  Every control carries an assessment procedure: a stated method — examine the artefact, test the behaviour, or both — by which a specific person could determine, without further judgement calls, whether the control currently holds. A control with no assessment procedure is a statement of intent, not a control.
+BA-4.2  Every control has one named owning subsystem, recorded as a field of the control itself, not inferred from which document it appears in.
+BA-4.3  Every control carries a status from the fixed set defined in rule_criteria_spec_v1 — CANON, RULED, DEFAULT, PROPOSED, or OPEN — and that status is current, not aspirational.
+Technical Specification
+TA-4.1  Every control carries a unique, stable identifier, under the naming and scheme-exclusivity discipline of rule_criteria_spec_v1 §4.
+TA-4.2  A control's satisfaction is, wherever the underlying property allows it, machine-checkable — expressed so that the assessment procedure can be automated rather than requiring a human judgement call for every instance.
+TA-4.3  A control's history — proposed, ratified, amended, retired — is retained in the Rule Registry (rule_criteria_spec_v1 §6), append-only, on the custody discipline of the Ledger.
+5.  Checkpoint   (a gate)
+Definition
+A point in a system's execution where an attempted operation is evaluated against applicable controls before it is allowed to proceed, and where what happens next depends on the result of that evaluation. A checkpoint's possible outcomes are not limited to a binary pass or refuse: it may also route the operation elsewhere, modify it, defer it pending further information, or annotate it and allow it to continue unmodified.
+Governing Standard
+NIST SP 800-162 formalises attribute-based access control around four architectural roles: the Policy Enforcement Point (PEP), which intercepts the operation and carries out the resulting decision; the Policy Decision Point (PDP), which evaluates the applicable policy and renders the decision; the Policy Information Point (PIP), the source of the attribute values the decision is made from; and the Policy Administration Point (PAP), where the policy itself is authored and maintained. OASIS XACML 3.0 standardises the same four-role architecture as an interoperable request/response protocol between them.
+NIST SP 800-162, Guide to Attribute Based Access Control (ABAC) Definition and Considerations, §2 (architecture). [K]
+OASIS eXtensible Access Control Markup Language (XACML) Version 3.0. [K]
+Behavioural Specification
+BA-5.1  Every checkpoint's decision role (PDP) and enforcement role (PEP) are named separately, even where the same subsystem performs both — naming them separately is what allows either to be replaced, audited, or hardened independently of the other.
+BA-5.2  Every checkpoint's outcome set is stated explicitly — which of pass, refuse, route, modify, defer, or annotate are possible at this checkpoint — rather than assumed to be a binary the reader supplies.
+BA-5.3  Every checkpoint's policy administration point (PAP) — where the rules it evaluates are authored and changed — is named, and is governed under Attribute 9.
+Technical Specification
+TA-5.1  Every checkpoint's policy information point (PIP) — where the attribute values it evaluates come from — is named and is itself either inside the Trusted Computing Base or explicitly documented as a trust dependency of the checkpoint.
+TA-5.2  A checkpoint's decision and enforcement, where co-located in one component, are nonetheless separable in the design — co-location is a deployment choice, not an architectural coupling that would make separating them a rewrite.
+TA-5.3  Identical inputs to a checkpoint, with identical attribute state, produce identical outcomes — a checkpoint whose decision depends on unstated context has an undeclared, and therefore unauditable, policy information point.
+6.  Reference Monitor   (an enforcement gate)
+Definition
+A checkpoint that additionally holds three specific properties, first formalised together under this name in U.S. Department of Defense trusted-systems doctrine: it mediates every relevant operation with no path around it (complete mediation); it cannot itself be modified by anything it mediates (tamper-resistance); and it is small and simple enough that its correctness can actually be verified (verifiability, sometimes rendered as analysability). A checkpoint lacking any one of the three is a checkpoint, not a reference monitor — the distinction is not a matter of degree.
+Governing Standard
+The reference monitor concept originates in TCSEC and is independently codified as a control in its own right in NIST SP 800-53 Revision 5, AC-25 (Reference Monitor): ‘Implement a reference monitor for [organisation-defined access control policies] that is tamperproof, always invoked, and small enough to be subject to analysis and testing, the completeness of which can be assured.’ Common Criteria's ADV_ARC family (Security Architecture, introduced in CC v3.1) requires a security architecture description demonstrating four properties together: non-bypassability (the CC's term for complete mediation — all SFR-related actions are mediated by the TSF), self-protection (the TSF protects itself from tampering by untrusted active entities), domain separation, and secure initialisation — the process of reaching a secure state from power-on or reset. ADV_ARC.1 is required from evaluation assurance level 2 upward.
+NIST SP 800-53 Rev 5, AC-25 (Reference Monitor), control statement and supplemental guidance. [V]
+TCSEC (DoD 5200.28-STD), reference validation mechanism, the three defining properties. [V]
+Common Criteria Part 3, ADV_ARC.1 (Security Architecture Description), and the CC v2→v3.1 transition guide noting ADV_ARC's properties were previously the SFR families FPT_RVM (non-bypassability) and FPT_SEP (domain separation), promoted to architecture requirements because ‘self-protection and non-bypassability largely have no directly observable interface.’ [K]
+Behavioural Specification
+BA-6.1  For every reference monitor, every path from before it to after it is enumerated, and each is shown to pass through the monitor's evaluation — non-bypassability is demonstrated per path, not asserted of the monitor as a whole.
+BA-6.2  A reference monitor's governing policy — what it checks, and against what — is changed only through the ceremony specified under Attribute 9, never by a code edit made by a party subject to the monitor's own mediation.
+BA-6.3  A security architecture description exists, in the sense required by ADV_ARC.1, for every reference monitor in the system: its domain separation, its self-protection mechanism, its secure initialisation sequence, and its non-bypassability argument, set out together rather than scattered across implementation notes.
+Technical Specification
+TA-6.1  A reference monitor's own code and configuration are held outside the reach of any principal it mediates — tamper-resistance is a property of where the monitor's logic lives, not a claim made about it after the fact.
+TA-6.2  A reference monitor is small enough that its complete logic can be read and independently verified in a single sitting by a qualified reviewer — verifiability is a design constraint on the monitor's size and structure, exercised at build time, not a property claimed retrospectively.
+TA-6.3  A reference monitor's secure initialisation is itself specified: what state it starts in, what must be true before it will evaluate its first request, and what happens if that precondition is not met — silent operation in an unready state is a non-bypassability failure at the boundary of time rather than of path.
+7.  Mandatory Baseline   (a governance floor)
+Definition
+A minimum condition a principal, operation, or asset state must satisfy to be permitted to exist or proceed in the system at all. A baseline is mandatory, as distinct from discretionary, when four properties hold together: it is set by an authority distinct from the party being measured against it; that party cannot lower it; it is identical for every principal in the same class, with no privileged path to a reduced version; and failing to meet it produces refusal, never a degraded or partial result passed through instead.
+Governing Standard
+TCSEC's mandatory access control (required from division B1) is policy set centrally and enforced regardless of any subject's own preference. Common Criteria formalises the same distinction through paired families: FDP_ACC.1 and FDP_ACF.1 for access control policies (verified, Attribute 3), and FDP_IFC.1 (Subset Information Flow Control) and FDP_IFF.1 (Simple Security Attributes) for information flow policies — both stated over the governed triad, both enforced independent of the subject's own attributes being alterable by that subject. NIST SP 800-53 AC-3 (Access Enforcement) requires enforcement of approved authorisations for logical access; AC-4 (Information Flow Enforcement) requires enforcement of approved authorisations for controlling information flow within and between systems.
+TCSEC (DoD 5200.28-STD), Division B1 and above, Mandatory Access Control. [K]
+Common Criteria Part 2, FDP_IFC.1 and FDP_IFF.1, paired with FDP_ACC.1/ACF.1 verified under Attribute 3. [K]
+NIST SP 800-53 Rev 5, AC-3 (Access Enforcement) and AC-4 (Information Flow Enforcement). [K]
+Behavioural Specification
+BA-7.1  Every mandatory baseline is stated as a named policy over the governed triad — which principals, which assets, which operations — not as free-standing prose describing an intention.
+BA-7.2  No baseline's value is alterable by the principal or subsystem being measured against it. A mechanism that allows a subject to adjust the standard it is held to, even temporarily or within stated limits, is a discretionary threshold and must be named as one — it is not a mandatory baseline regardless of how it is otherwise described.
+BA-7.3  Falling below a mandatory baseline produces refusal. A partial, degraded, or best-effort result returned in place of refusal is evidence the baseline in question is not, in fact, mandatory.
+Technical Specification
+TA-7.1  A baseline's value is held in versioned, ceremony-governed configuration (Attribute 9), not in a code path the measured component's own logic can branch on or adjust.
+TA-7.2  A baseline applies identically to every principal in its stated class — there is no code path that grants a specific principal a reduced baseline outside the ceremony that would authorise it for the whole class.
+TA-7.3  Where a system offers something that looks like a lowered baseline — a relaxed standard for a bounded session, for instance — it is implemented and labelled as a distinct, discretionary threshold, with its own authority and its own ceiling, never as the mandatory baseline itself with an exception clause.
+8.  Audit Record   (a receipt)
+Definition
+What a checkpoint emits to prove that it ran, what it evaluated, and what it decided — the evidence that makes a reference monitor's non-bypassability demonstrable after the fact rather than merely designed-in. An audit record is the record of an event, not a description of a policy; it exists per occurrence, not per rule.
+Governing Standard
+NIST SP 800-53 AU-3 (Content of Audit Records), verified verbatim: audit records contain information establishing (a) what type of event occurred, (b) when the event occurred, (c) where the event occurred, (d) the source of the event, (e) the outcome of the event, and (f) the identity of any individuals, subjects, or objects associated with the event. AU-9 requires audit information and audit tools be protected from unauthorised access, modification, and deletion. AU-10 requires non-repudiation — the record cannot later be credibly denied by the party who generated it. Common Criteria's parallel requirements: FAU_GEN.1.2 specifies the minimum fields — date and time, event type, subject identity, outcome; FAU_STG.1 requires protected audit trail storage; FPT_STM.1 requires a reliable time source, since AU-3(b) and FAU_GEN.1.2's date/time field are only as trustworthy as the clock producing them; FAU_SAR.1 requires an audit review capability.
+NIST SP 800-53 Rev 5, AU-3 (Content of Audit Records), full six-element control statement. [V]
+NIST SP 800-53 Rev 5, AU-9 (Protection of Audit Information) and AU-10 (Non-repudiation). [K]
+Common Criteria Part 2, FAU_GEN.1.2, FAU_STG.1, FPT_STM.1 (Reliable Time Stamps), FAU_SAR.1. [K]
+Behavioural Specification
+BA-8.1  Every audit record establishes all six AU-3 elements: event type, time, location or component, source, outcome — including failure outcomes, not successes only — and the identity of the principal associated with the event. A record missing any of the six is incomplete by this standard regardless of how much other detail it carries.
+BA-8.2  Audit records are generated for both successful and refused operations at every checkpoint. A record scheme that only captures what a checkpoint permitted cannot demonstrate non-bypassability, because a bypass and a permitted operation are indistinguishable in a record set that only shows outcomes it approved of.
+BA-8.3  Audit records are available for review through a stated capability, not only reconstructable by someone with direct access to the underlying store.
+Technical Specification
+TA-8.1  Every audit record's timestamp derives from a reliable, tamper-resistant time source shared across the system — a record whose time field cannot be trusted cannot establish AU-3(b), regardless of how precise the field's format is.
+TA-8.2  Audit records are protected from undetected modification and deletion, through append-only storage, cryptographic chaining, or an equivalent mechanism — protection sufficient that any tampering after the fact is itself detectable, not merely inconvenient.
+TA-8.3  Audit records are bound to their generating principal such that they cannot be forged as having originated elsewhere — non-repudiation is a property of the record's construction, not an assumption made about the store it lives in.
+9.  Authority & Change Control   (ratification and ceremony)
+Definition
+The named party or role empowered to create, amend, or retire a control or a mandatory baseline, and the procedure through which that party exercises the power. A control without a stated authority is a control nobody is accountable for changing correctly; a baseline without a change procedure is one that can be altered by whoever has write access, which is the condition mandatory baselines exist to prevent.
+Governing Standard
+NIST SP 800-53 CM-3 (Configuration Change Control) requires change types be determined and documented, changes reviewed with a documented security and privacy impact analysis, changes approved or denied by an authorised change-control element, decisions and outcomes documented, and records retained for a defined period. CM-5 (Access Restrictions for Change) requires defined, documented, approved, and enforced physical and logical access restrictions on who may make a change. Common Criteria's ALC_CMC (CM Capabilities) requires a configuration management system that uniquely identifies configuration items; ALC_CMS (CM Scope) requires the scope of what is under configuration management — the TOE, its evaluation evidence, and its implementation representation — be explicitly stated. ISO/IEC 27001:2022 Annex A control 8.32 requires changes to information processing facilities and systems be subject to change management procedures.
+NIST SP 800-53 Rev 5, CM-3 (Configuration Change Control) and CM-5 (Access Restrictions for Change). [K]
+Common Criteria Part 3, ALC_CMC and ALC_CMS families. [K]
+ISO/IEC 27001:2022, Annex A, control 8.32 (Change management). [P]
+Behavioural Specification
+BA-9.1  Every control and every mandatory baseline names the authority empowered to change it. Where that authority is a role rather than an individual, the role is named, and who currently holds it is a matter of record, not inference.
+BA-9.2  A change to a control or a baseline is preceded by a documented review of its impact — what depends on the thing being changed, and what changing it could break — before it is approved, not discovered afterward.
+BA-9.3  A change to a control or a baseline, once approved, is retained as a record: what changed, who approved it, when, and why, on the append-only discipline specified for the Rule Registry.
+Technical Specification
+TA-9.1  Every controlled item — a control, a baseline, a piece of governed configuration — carries a unique, stable identity under configuration management, distinct from its current value, so that its history can be traced across versions.
+TA-9.2  Access to make a change is logically restricted to the named authority's own credentials or role — the restriction is enforced by the system, not observed as a matter of practice.
+TA-9.3  The scope of what is under this discipline — which documents, which configuration, which code paths — is itself explicitly declared, so that ‘is this thing change-controlled’ has a definite answer rather than depending on which team is asked.
+10.  Determinism Boundary   (“detect, never decide”)
+Definition
+The line separating components whose behaviour is deterministic — given the same input and state, they produce the same output, and that output can be exhaustively reasoned about — from components whose behaviour is learned and therefore only statistically characterisable. Decision authority, the power to admit or refuse an operation, may be held only by components on the deterministic side of this line. A learned component may detect, score, rank, propose, or draft; it may not decide.
+Governing Standard
+No mature conformance standard governs this attribute as such, for the direct reason that the reference-monitor and mandatory-baseline literature (Attributes 6 and 7) predates systems whose behaviour is learned rather than specified. The closest established practice is runtime assurance architecture, first formalised as the Simplex architecture (Sha, 2001): a verified, simple controller monitors an unverified, complex controller, and a decision module switches authority to the verified controller whenever the complex one would leave a safe operating envelope — the complex controller may inform or optimise; only the verified one may hold final authority over the switch. ISO/IEC TR 5469:2024 (Artificial intelligence — Functional safety and AI systems) classifies AI usage in a safety function by the role it plays, distinguishing AI as an advisory input from AI in the decision path itself. The EU AI Act, Article 14 (Human Oversight), requires that for high-risk AI systems, natural persons assigned oversight be enabled, as verified against the Act's text: (a) to understand the system's capacities and limitations and monitor its operation, including detecting anomalies and unexpected performance; (b) to remain aware of automation bias — the tendency to over-rely on system output; (c) to correctly interpret the system's output; (d) to decide, in a given situation, not to use the system or to disregard, override, or reverse its output; and (e) to intervene in or halt the system's operation through a stop mechanism that brings it to a safe state. The NIST AI Risk Management Framework 1.0 organises the surrounding governance process into four functions — Govern (organisation-wide accountability and policy, which frames the other three), Map (establishing the context and boundary of a specific AI system), Measure (testing and evaluating identified risks), and Manage (allocating resources to treat risk and respond to incidents) — verified as the framework's structure, though the RMF itself specifies a risk-management process rather than a determinism boundary as such.
+This is the one attribute in this document assessed against closest practice rather than a mature conformance standard, and it is stated as such rather than dressed as conformance to something that does not yet exist. It is also the attribute where a governance operating system's own doctrine can be ahead of published practice — confining decision authority structurally to deterministic components is a stronger commitment than Article 14's human-oversight-as-safeguard model or the RMF's risk-management process require, and it should be recorded as a contribution to the practice, not merely measured against it.
+Behavioural Specification
+BA-10.1  Every subsystem and every component within a subsystem is classified deterministic or learned, and that classification is a matter of record, not an inference left to whoever is asking.
+BA-10.2  For every learned component, the specific structural mechanism that denies it decision authority is named — which deterministic component holds the actual admit/refuse power the learned component's output feeds into, and how that deterministic component's authority is protected from being silently delegated back to the learned one.
+BA-10.3  Human oversight, where a human rather than a deterministic component is the check on a learned component's output, is implemented to the standard of EU AI Act Article 14: the overseer can understand the system's limitations, is positioned to notice automation bias rather than merely warned about it, can correctly interpret what the system produced, can override or disregard it in a specific instance, and can halt the system to a safe state — five distinct capabilities, not one ‘a human is in the loop’ statement standing in for all five.
+Technical Specification
+TA-10.1  A verified, deterministic decision module can override any learned component's recommendation, and the override path itself is inside the Trusted Computing Base — the mechanism that enforces ‘detect, never decide’ cannot itself be a component whose correctness is only statistically characterised.
+TA-10.2  The boundary between a learned component's output and a deterministic component's decision is a structural seam — an interface a learned component's output must cross, checked on the deterministic side — not a convention observed by the code that happens to call both.
+TA-10.3  Learned components are excluded from the Trusted Computing Base by the membership test given under Attribute 1: not deterministic, therefore not eligible, regardless of how central their function is to the system's value.
+11.  Failure Posture   (fail-closed / fail-safe)
+Definition
+The behaviour a component commits to when it cannot complete its evaluation — a declared, specific answer to ‘what happens here when this breaks,’ stated per component rather than assumed to be uniform across the system. A component's failure posture is either fail-closed (unable to evaluate means refuse) or fail-safe-open (unable to evaluate means proceed toward a state that is safe precisely because it is recoverable, such as recomputing from source) — and which of the two is correct depends on which failure mode leaves the system in a better state, not on a single rule applied uniformly regardless of context.
+Governing Standard
+Common Criteria FPT_FLS.1 (Failure with Preservation of Secure State) requires the TSF preserve a secure state when a specified, enumerated list of failure types occurs — the enumeration is the requirement; a general commitment to fail safely without naming the failure types it covers does not satisfy this family. NIST SP 800-53 SC-24 (Fail in Known State) requires the system fail to a defined known state for defined types of failures, preserving defined system state information in the failed state to facilitate recovery. IEC 61508 (Functional Safety of Electrical/Electronic/Programmable Electronic Safety-related Systems) requires a defined safe state be reached for every identified failure mode of a safety function, with the safe state itself specified as part of the safety requirement, not assumed to be self-evident.
+Common Criteria Part 2, FPT_FLS.1 (Failure with preservation of secure state). [K]
+NIST SP 800-53 Rev 5, SC-24 (Fail in Known State). [K]
+IEC 61508, safe-state requirement for identified failure modes of a safety function. [P]
+Behavioural Specification
+BA-11.1  Every component's failure types are enumerated — the specific ways it can fail to complete an evaluation — rather than covered by a single unqualified ‘handles failures gracefully’ statement that names no failure and specifies no state.
+BA-11.2  Every reference monitor and every component inside the Trusted Computing Base fails closed, without exception: an evaluation that cannot complete is a refusal, because a reference monitor that fails open on internal error is not tamper-resistant against the specific attack of inducing that error.
+BA-11.3  Where a component fails safe-open — correctly, because the safe direction is to proceed toward recomputation or an equivalently recoverable state rather than to block — that choice is declared for that component specifically, with the reasoning on record, not left to be discovered by an auditor reading the code.
+Technical Specification
+TA-11.1  The state preserved across a failure is specified per component: what survives, in what form, sufficient to support recovery or forensic reconstruction of what was in progress when the failure occurred.
+TA-11.2  Where a recovery time objective applies — a maximum duration a governed capability may be unavailable before the unavailability itself becomes a breach of a mandatory baseline — it is a stated, ratified value, not an assumption.
+TA-11.3  A component's failure posture is testable: the failure can be induced under controlled conditions and the resulting state checked against what was specified, rather than the posture being a claim that is only ever exercised by accident.
+12.  Trust Domain   (the tenant / platform boundary)
+Definition
+The boundary of one governed instance — the set of principals, assets, and operations within which every attribute in this document is guaranteed to hold, and outside of which no guarantee this document makes extends. A system with more than one trust domain — a platform layer and a tenant layer, for instance — must state which attributes are guaranteed platform-wide and identically for every tenant, and which are guaranteed within a tenant's own domain but not shared with or visible to any other.
+Governing Standard
+Common Criteria's ADV_ARC family (Attribute 6) requires the security domains the TSF maintains be described as part of the security architecture — domain separation is one of the four properties a reference monitor must demonstrate, and a domain left undescribed cannot be shown separated from another. NIST SP 800-53 SC-3 (Security Function Isolation) requires security functions be isolated from non-security functions; SC-7 (Boundary Protection) requires communications be monitored and controlled at external boundaries and at key internal boundaries; SC-2 (Separation of System and User Functionality) requires user functionality be separated from system management functionality. ISO/IEC 27017 (Code of practice for information security controls for cloud services) provides controls specific to segregation of tenants sharing virtualised or physical infrastructure, applicable wherever more than one tenant's trust domain shares an underlying platform.
+Common Criteria Part 3, ADV_ARC.1, security domains as part of the architecture description — cross-referenced from Attribute 6. [K]
+NIST SP 800-53 Rev 5, SC-2, SC-3, SC-7. [K]
+ISO/IEC 27017:2015, controls for tenant segregation in shared cloud environments. [P]
+Behavioural Specification
+BA-12.1  Every trust domain in the system is named — the platform domain, each tenant's domain, and any domain (such as an internal monitoring function) that is deliberately isolated even from the platform's own primary domain — and what is guaranteed within each is stated per domain, not assumed to be the whole document uniformly.
+BA-12.2  The deployment model — whether multiple tenants share infrastructure with logical separation, or each tenant's instance is physically or virtually dedicated — is explicitly stated, because ISO/IEC 27017's segregation controls apply to the former and not, in the same form, to the latter, and a system that has not stated its model cannot state which controls apply to it.
+BA-12.3  Under the NIST AI Risk Management Framework's Map function — establishing the context and boundary of a specific AI system before its risks can be measured — every governed AI capability in the system has a stated trust domain as part of that context, so that Map's output for this system is this section, not a separate exercise reinventing it.
+Technical Specification
+TA-12.1  Every boundary between trust domains — inbound from outside the platform, and internal between subsystems that do not share a domain — has a managed interface: a declared, monitored point of crossing, with no undeclared path between domains.
+TA-12.2  Data and identifiers do not resolve across trust domains by default — a principal or asset identifier meaningful in one tenant's domain does not, without an explicit, governed crossing, resolve to anything in another tenant's domain or in the platform domain.
+TA-12.3  A domain that is isolated from the platform's own primary domain by design — a monitoring function whose isolation from what it monitors is the point — has that isolation itself specified: what it shares with the domain it observes, and, more importantly, what it deliberately does not.
+Part 2 — Product Component Registry & Build Requirements
+Every named component in the Akki canon, tagged to the attribute(s) of Part 1 it instantiates, its scope of function stated plainly, and — for each attribute it instantiates — the specific, derived requirements it must satisfy to be built correctly against that attribute's standard. A build requirement is not a restatement of Part 1's general standard; it is that standard translated into what is concretely true, or must become true, of this specific component. Each carries the status of that translation today: Met, Partial, or Not Met. A Partial or Not Met requirement here is the source a corresponding entry in Part 3 specifies in full — Part 2 states the target; Part 3 specifies the distance to it.
+Component names are Akki's own, unchanged. Attribute tags and derivations are drawn only from Part 1's twelve. Where a component's exact scope is inferred rather than stated outright in a specification, that inference is marked and is not the basis of a build requirement — a requirement is only written where the underlying canon text supports it.
+1.  SyniSense (“Shield”)
+Instantiates: Subsystem · Reference Monitor · Governed Triad (custody class) · Audit Record
+SCOPE
+Owns the custody crossing: the single point through which any organisation's data reaches an external model, and the closed outbound network that makes it the only path out of an organisation's perimeter.
+BUILD REQUIREMENTS
+BR-1.1  Every code path capable of reaching the external model client is enumerated and shown to route through the single chokepoint function; violation fails the build via negative-scan test.  [derives: Attribute 6, TA-6.1 (non-bypassability)]
+STATUS  Met — A5.1.
+BR-1.2  The chokepoint's custody-sequence logic and the closed-network allowlist are held in configuration a subject to the crossing cannot alter at runtime, with integrity verified at load, not only enforced at build time.  [derives: Attribute 6, TA-6.1 (self-protection, runtime)]
+STATUS  Partial — build-time gates exist (A5.5); runtime integrity verification of the loaded policy is unspecified. See G-6.
+BR-1.3  The trust receipt schema carries invoking-principal identity and a reliable timestamp alongside the custody evidence it already records.  [derives: Attribute 8, BA-8.1 (AU-3 six elements)]
+STATUS  Not Met — A5.7's specified content omits both fields. See G-8.
+BR-1.4  Every asset passing the crossing carries an explicit, typed custody classification consumed by the de-identification logic, rather than custody being correct in behaviour without being a queryable field.  [derives: Attribute 3, BA-3.2 (custody class as typed attribute)]
+STATUS  Partial — custody classes are distinguished in practice (A5.3 vs. Promise #4's retained files) but not confirmed as a typed, queryable attribute. See G-3.
+BR-1.5  The chokepoint fails closed on any internal error — an evaluation that cannot complete refuses the crossing rather than allowing it.  [derives: Attribute 11, BA-11.2 (fail-closed for TCB components)]
+STATUS  Met — consistent with A5.6's structural-impossibility doctrine; not separately enumerated as a stated failure type. See G-11.
+2.  Solva
+Instantiates: Subsystem · Determinism Boundary
+SCOPE
+Owns reasoning and grounding: the platform's assertion floor, and the boundary between what is stated as established and what is offered only as a possibility. Its ThinkLab surface is where a reasoning session is framed, candidates weighed, and a load-bearing set produced before a conclusion is locked in.
+BUILD REQUIREMENTS
+BR-2.1  The two-faculty seam is enforced by an import assertion, not a coding convention — one faculty cannot invoke the other's authority even inadvertently, because the import itself is the enforcement point.  [derives: Attribute 10, TA-10.2 (structural denial of decision authority)]
+STATUS  Met — #31's architecture, “enforced by import assertion.”
+BR-2.2  Solva's role in any “innovate” outcome is recorded as joint with CIF's governance, never as Solva's unassisted output, at the point the outcome is produced — not reconstructed afterward from context.  [derives: Attribute 10, BA-10.1 (per-component classification)]
+STATUS  Partial — the joint-delivery principle is stated (#31); a recorded, per-instance joint-attribution mechanism is not confirmed. See G-10.
+BR-2.3  A reasoning trace is retained from the first commit of a ThinkLab session, sufficient that a reviewer can independently verify what was weighed and why a conclusion was reached, without re-running the session.  [derives: Attribute 6, TA-6.3 (verifiability)]
+STATUS  Met — “full reasoning trace from first commit” (#31).
+3.  Northena
+Instantiates: Subsystem · Governed Triad (operation integrity)
+SCOPE
+Owns direction, scope, and focus: keeping a task's stated objective aligned with its actual boundaries as work proceeds, disclosing progressively, and freezing a job's objective so it cannot be quietly recalibrated mid-delivery — the mechanism Promise #32 (Component 6) depends on directly.
+BUILD REQUIREMENTS
+BR-3.1  The objective-freeze mechanism is a single, shared implementation invoked identically by every subsystem that hands off a job, not a per-caller reimplementation of the same guarantee.  [derives: Attribute 3, BA-3.3 (one operation, one checkpoint)]
+STATUS  Met — “Northena's objective freeze (shared mechanism)”, Promise #32.
+BR-3.2  Progressive disclosure's own checkpoint states explicitly which outcomes are possible — full disclosure, partial disclosure, deferred disclosure — rather than a single implicit behaviour assumed by callers.  [derives: Attribute 5, BA-5.2 (stated outcome set)]
+STATUS  Not confirmed from canon material located for this document — recorded as an open item rather than asserted either way.
+4.  Mtafiti (“the Registry”)
+Instantiates: Subsystem · Governed Triad (asset inventory, partial)
+SCOPE
+Owns the estate registry: connection to an organisation's data sources, census of what exists across them, and the comprehensive record of estate composition other subsystems and the customer both draw on.
+BUILD REQUIREMENTS
+BR-4.1  The registry's asset coverage is extended from estate sources to the full asset class Attribute 3 defines — models, artifacts, receipts, and rules — each entry carrying a named owner.  [derives: Attribute 3, BA-3.1 (asset inventory with owners, ISO 27001 A.5.9)]
+STATUS  Not Met — current coverage is estate sources only (Promises #12, #13). See G-3.
+BR-4.2  The registry exposes its asset classification scheme in a form producible on request — a finite, named list of the asset types it recognises — rather than a scheme only inferrable from the records it happens to hold.  [derives: Attribute 3, TA-3.1 (enumerable classes)]
+STATUS  Partial — census and connection are specified (Promise #12); a published class list was not located.
+5.  Targeta
+Instantiates: Subsystem · Determinism Boundary · Mandatory Baseline
+SCOPE
+Owns training and targeting: shaping what a model is trained to do, and the walled yield layer separating a model's raw output from what the platform accepts as a trained result.
+BUILD REQUIREMENTS
+BR-5.1  Model acceptance requires every stated criterion satisfied; a run failing any one criterion is refused in full, with no partial or degraded acceptance path.  [derives: Attribute 7, BA-7.3 (refusal, not degradation)]
+STATUS  Met — MOAC, Promise #22: “every criterion or no service.”
+BR-5.2  The yield wall detects and optimises but cannot itself grant acceptance — acceptance authority sits in a deterministic component the wall's output feeds into, never in the wall itself.  [derives: Attribute 10, TA-10.1 (verified module holds override authority)]
+STATUS  Met — 19A.2, “detects and optimises, never decides.”
+BR-5.3  The acceptance policy is stated as a named security function policy — which principals may invoke training, which assets (models, datasets) it governs, which operations (commission, accept, refuse) it covers — rather than implemented correctly without being named as a policy.  [derives: Attribute 7, BA-7.1 (named SFP over the triad)]
+STATUS  Not Met — no named SFP located. See G-7.
+6.  Mkondo — Task & Job Orchestration
+Instantiates: Subsystem · Governed Triad (operation hand-off) · Checkpoint
+SCOPE
+Owns platform orchestration and governance ceremony jointly with Northena (Doc 15), and specifically the guarantee that any job has a defined path to success: clean hand-offs with no context spillage, and an objective that is never quietly recalibrated mid-delivery (Promise #32). Its concrete built instance is Task Manager, the recipient of a hand-off from a ThinkLab reasoning session — Solva's session ends, its load-bearing set is packaged, and Task Manager receives it as a registered hand-off rather than a bare conclusion. This is the platform's task-orchestration function; it has not, to this document's knowledge, been given a separate proper name from Mkondo in canon, and none is invented here.
+BUILD REQUIREMENTS
+BR-6.1  Every job hand-off between subsystems, not only the ThinkLab-to-Task-Manager instance, crosses a registered hand-off checkpoint carrying what was commissioned, its shape, the identity of both ends, and a receipt.  [derives: Attribute 3, BA-3.3 (one operation, one checkpoint)]
+STATUS  Partial — Promise #32 is itself marked Partial in canon: “one concrete instance … no generalised registered handoff contract per crossing.” See G-13.
+BR-6.2  A hand-off that is unregistered or malformed surfaces as a finding at the point of hand-off; it does not pass silently into Task Manager as if it were well-formed.  [derives: Attribute 5, BA-5.1 (checkpoint outcome set)]
+STATUS  Met for the one instantiated crossing — stated explicitly as a userCan guarantee of Promise #32. Not yet true generally, per BR-6.1.
+BR-6.3  A single task cannot simultaneously be treated as two logically distinct jobs by two different consumers — the no-dual-hatted-task rule is enforced at the hand-off checkpoint, not left as a convention the receiving subsystem is expected to honour.  [derives: Attribute 3, BA-3.3 (no-dual-hatted-task rule)]
+STATUS  Named as a feature of Promise #32; enforcement mechanism not independently confirmed beyond the one instantiated crossing.
+7.  The Watch (Grey Mirror + the Watch)
+Instantiates: Subsystem, outside the six · Reference-Monitor-adjacent · Trust Domain · Checkpoint
+SCOPE
+Intent and security monitoring. Grey Mirror is the detection half — mirage, marks, baits, a continuous self-test. The Watch proper is the response half — state, record, an action ladder of annotate, shape, contain, sever — behind one verdict interface.
+BUILD REQUIREMENTS
+BR-7.1  Grey Mirror's detection role and the Watch's decision-and-enforcement role are implemented as separable components behind the shared verdict interface, not fused such that separating them would require a rewrite.  [derives: Attribute 5, BA-5.1 (decision/enforcement named separately)]
+STATUS  Met — the Macho (detection) / Mkono (response) split is named explicitly, one verdict interface.
+BR-7.2  The Watch's own trust domain — its separate task-identity, its own record classes — is described as a domain distinct from the domains it observes, with the boundary between them stated.  [derives: Attribute 12, BA-12.1 (named, isolated domain)]
+STATUS  Partial — the isolation exists (separate task-identity, external witness); a domain description in the ADV_ARC sense is not confirmed. See G-12.
+BR-7.3  Changes to the Watch's own governing policy pass through the platform's slowest change-control tier, with an external witness holding no Watch credentials, as a documented procedure rather than an informal norm.  [derives: Attribute 9, BA-9.1 (named authority, documented procedure)]
+STATUS  Met — stated explicitly for the Watch's own ceremony, ahead of the general system-control procedure specified in Component-9-level detail. See G-9 for the general case.
+BR-7.4  Grey Mirror's detection mechanisms, where they rely on learned pattern-matching rather than fixed signatures, are classified as learned and excluded from the Watch's own decision authority — detection may propose a finding; only the Watch's deterministic response half acts on it.  [derives: Attribute 10, BA-10.1 (per-component classification)]
+STATUS  Not confirmed from canon material located for this document. See G-10; this is the Watch-specific instance of that gap.
+8.  The Ledger
+Instantiates: Audit Record (primary instantiation) · Trusted Computing Base
+SCOPE
+The one authoritative record: append-only, hash-chained, single writer. Referenced by name from every other document's audit and evidence provisions rather than each inventing its own retention scheme.
+BUILD REQUIREMENTS
+BR-8.1  The Ledger accepts and retains records of refused operations on the same terms as accepted ones — a refusal is as much a record as a success.  [derives: Attribute 8, BA-8.2 (records for refused operations too)]
+STATUS  Met — consistent with the refused-run retention pattern generalised across Doc 5's dependents (e.g. whitepaper_wizard_spec_v1 WPW-7).
+BR-8.2  The Ledger's append-only, hash-chained structure is independently verifiable — a party with read access can confirm the chain has not been altered without trusting the writer's own attestation that it hasn't.  [derives: Attribute 8, TA-8.2 (protection from undetected modification)]
+STATUS  Met in structure (append-only, hash-chained); independent verifiability by a party other than the writer not separately confirmed.
+BR-8.3  The Ledger's writer is included in the Trusted Computing Base enumeration required under Attribute 1, as a named, explicit member — not implied by its role.  [derives: Attribute 1, BA-1.3 (enumerable TCB membership)]
+STATUS  Not Met — no TCB enumeration exists yet. See G-1.
+9.  CIF — Conditioned Ideation Faculty
+Instantiates: Determinism Boundary (primary instantiation) · Trusted Computing Base (explicit exclusion)
+SCOPE
+Governed ideation and self-learning. Corrections retire an error class, not a single instance; a rejected idea persists with the condition that would revive it named explicitly; a reframe propagates to everything the old frame touched. Ratified 23 July 2026.
+BUILD REQUIREMENTS
+BR-9.1  CIF is excluded from the Trusted Computing Base by the Attribute 1 membership test — it is learned, and therefore ineligible regardless of how central its function is — and this exclusion is a recorded, deliberate application of the test, not an oversight.  [derives: Attribute 1, TA-1.2 (minimisation, learned components excluded)]
+STATUS  Met by doctrine (“learning may detect, never decide”, Promise #29); not yet recorded as an applied instance of a published TCB test, because the test itself is not yet published. See G-1, G-10.
+BR-9.2  Every CIF-originated idea that is adopted into a run passes through a deterministic acceptance point before it affects the run's outcome — CIF proposes; the deterministic point admits or refuses.  [derives: Attribute 10, TA-10.1 (verified module holds override authority)]
+STATUS  Met — consistent with the single-experiment principle: existence is unconditional, claims and adoption are gated.
+BR-9.3  CIF's own normative requirements (its MUST/MUST-NOT set) each carry an assessment procedure under rule_criteria_spec_v1's discipline, consistent with every other control in the Rule Registry.  [derives: Attribute 4, BA-4.1 (assessment procedure per control)]
+STATUS  Not confirmed — CIF's rule-by-rule enumeration was not located in canon material available to this document. Recorded as a standing gap in the rule count generally, not specific to this document.
+10.  The Critic Seam (Document 19A)
+Instantiates: Checkpoint · Determinism Boundary
+SCOPE
+Quality assurance over evidence integrity: a deterministic first pass (RV-1 through RV-6) verifying records mechanically, and a model-based second pass (QA-1 through QA-6) finding what the deterministic pass cannot.
+BUILD REQUIREMENTS
+BR-10.1  QA-tier findings do not, on their own, block execution — a finding is routed to a deterministic decision point (RV-tier or a named ruling authority) rather than the model-based pass acting on its own output.  [derives: Attribute 10, BA-10.1 (structural denial of decision authority)]
+STATUS  Met — QA-1 explicitly: “detect, never decide; no finding blocks execution on its own.”
+BR-10.2  The seam's outcome set — pass, finding-raised-not-blocking, or a defined escalation — is stated per check, not left implicit in RV/QA's pass/fail language.  [derives: Attribute 5, BA-5.2 (stated outcome set)]
+STATUS  Partial — RV/QA's own naming implies the outcome set; a stated enumeration was not located.
+11.  MOAC
+Instantiates: Reference Monitor (partial) · Mandatory Baseline
+SCOPE
+The acceptance gate a model's output passes before being treated as a usable result, with no human in the decision path. Acronym not expanded in canon material located for this document; none is asserted here.
+BUILD REQUIREMENTS
+BR-11.1  MOAC's acceptance criteria are not alterable by the run being evaluated, at any point in that run's execution.  [derives: Attribute 7, BA-7.2 (non-lowerable by the measured subject)]
+STATUS  Met — “no human may confer eligibility,” consistent with Promise #22's design.
+BR-11.2  MOAC's own non-bypassability — every path to model-output acceptance shown to pass through it — and tamper-resistance — its criteria held outside the reach of the run it measures — are demonstrated in a security architecture description, to the same standard SyniSense's chokepoint meets.  [derives: Attribute 6, TA-6.1 / TA-6.2 (non-bypassability and tamper-resistance demonstrated)]
+STATUS  Not Met — asserted in doctrine, not demonstrated to this standard. See G-6.
+12.  Manage Rules (customer rule books)
+Instantiates: Authority & Change Control (customer-facing instantiation)
+SCOPE
+The mechanism by which a customer organisation authors and governs its own rules within the boundaries system rules set: plain-language authoring, template adoption, a ceremony of propose / countersign / cancellable countdown / apply, full version history, destruction attestation on retirement.
+BUILD REQUIREMENTS
+BR-12.1  Every customer rule change is preceded by the stated ceremony and retained in full version history — no customer rule takes effect without having passed through propose, countersign, and countdown.  [derives: Attribute 9, BA-9.1 / BA-9.3 (documented procedure, retained record)]
+STATUS  Met — Promise #27's full ceremony.
+BR-12.2  No customer rule authored through this mechanism can relax a system rule tagged STRUCTURAL or MECHANICAL enforcement under rule_criteria_spec_v1's Axis 2 — the boundary is enforced at the point a customer rule is proposed, not merely stated as a principle.  [derives: rule_criteria_spec_v1 §8 (non-scope boundary)]
+STATUS  Partial — the principle is stated (rule_criteria_spec_v1 §8); enforcement of the boundary at proposal time is not separately confirmed.
+13.  Whitepaper Wizard
+Instantiates: Checkpoint · Control / Invariant · Audit Record
+SCOPE
+A research observer attached to every training run: a contemporaneous notebook on every run, a technical report on every settled run, and a white paper only where a run clears a two-path eligibility checkpoint. Specified in whitepaper_wizard_spec_v1, eighteen controls.
+BUILD REQUIREMENTS
+BR-13.1  Tier-3 eligibility's outcome set — eligible via results path, eligible via methods path, eligible via both, or not eligible — is stated explicitly rather than assumed binary.  [derives: Attribute 5, BA-5.1 (stated outcome set)]
+STATUS  Met — WPW-11's two-path design.
+BR-13.2  Every notebook entry carries a timestamp, a link to the run artefact it derives from, and an evidence class — measured, estimated, or observed.  [derives: Attribute 8, BA-8.1 (AU-3 elements)]
+STATUS  Met — WPW-4.
+BR-13.3  The wizard cannot alter training state, schedule, parameters, or outcomes — verified by a build-time zero-influence check comparing identical runs with and without the wizard attached.  [derives: Attribute 2, TA-2.2 (isolation — read-only with respect to what it observes)]
+STATUS  Met — WPW-2, with A2 in the spec's own acceptance criteria as the verification method.
+14.  Connect Wizard
+Instantiates: Checkpoint (admission)
+SCOPE
+The onboarding checkpoint through which an organisation's data sources connect to Mtafiti's registry: rights recorded at setup, a per-source profile maintained from first connection.
+BUILD REQUIREMENTS
+BR-14.1  Rights recorded at connection setup are the explicit policy information point every downstream checkpoint touching that source draws from — not re-derived or re-asked-for at each later checkpoint.  [derives: Attribute 5, TA-5.1 (named policy information point)]
+STATUS  Met in function (“rights recorded at setup”, “per-source profile”); not independently confirmed as the named PIP for other checkpoints specifically.
+15.  Agent-Deploy Wizard
+Instantiates: Checkpoint
+SCOPE
+The deployment step in the model-ladder progression, evaluating whether a given capability rung is appropriate for a given deployment context before proceeding.
+BUILD REQUIREMENTS
+BR-15.1  The checkpoint's outcome set — deploy at requested rung, deploy at a lower rung, defer pending review — is stated explicitly.  [derives: Attribute 5, BA-5.1 (stated outcome set)]
+STATUS  Not confirmed — scope of function beyond “a step in the ladder” was not detailed further in canon material located for this document. Recorded as an open item, not a resolved gap.
+16.  Deck Rendering Engine
+Instantiates: Control / Invariant · Determinism Boundary
+SCOPE
+Deterministic rendering of governed decks from a content-only specification: identical inputs produce byte-identical output, so document generation spends no model inference on styling. Fourteen controls (DR-R1–DR-R14).
+BUILD REQUIREMENTS
+BR-16.1  Byte-identical output for identical DeckSpec input is a build-time verified property, checked as part of acceptance, not an assertion about the renderer's design.  [derives: Attribute 10, TA-10.3 (demonstrable determinism)]
+STATUS  Met — DR-R2, verification method already specified as identical-input comparison.
+BR-16.2  The Deck Rendering Engine's fourteen controls carry an explicit owning subsystem field, consistent with rule_criteria_spec_v1's requirement, notwithstanding that the engine's own document does not follow the standard six-part promise structure.  [derives: Attribute 4, BA-4.2 (named owning subsystem)]
+STATUS  Partial — ownership is implied by the document itself; an explicit field per rule_criteria_spec_v1's schema was not confirmed.
+Part 3 — Gap Register
+Every gap between Part 1's definitions, Part 2's build requirements, and Akki's current instantiation. Section 1 names each gap. Section 2 specifies each in full: precisely what is missing, the consequence of leaving it open, and the fix stated as an actual specification — draft normative language where the fix is a description, concrete design direction where it is a change. A gap is not considered specified by naming it; naming is Section 1's job only.
+1   Gaps Identified
+Ordered by the dependency stack of Part 1 §0. G-13 is placed by attribute dependency, not by discovery order — it depends on G-3 and G-5 (the triad and checkpoint definitions its generalised contract would be written against).
+STATUS AS OF 9 SEPTEMBER 2026
+“Spec-drafted” and “spec-closed” both mean documentation exists; neither means code exists. This table is a pointer, not a re-statement — each closing document carries its own full reasoning, which this update does not duplicate.
+2   Gap Specifications
+G-1   No Enumerated Trusted Computing Base   · Documentary
+Statement
+Doctrine states the platform's base is structural and deterministic (Document 16 §2), and Attribute 1 gives a membership test — deterministic and protection-critical. No document applies that test to produce a named, current list of which components satisfy it. “The TCB” exists as a concept, not as an artefact anyone can open.
+Consequence
+Without a published list, “is component X in the TCB” has no fixed answer — it is re-derived from doctrine on demand, and two people applying the same test can reach different conclusions without either being wrong on the doctrine. TCSEC B3's minimisation requirement is unverifiable in this state: minimisation can only be checked against a list, not against a principle. Every downstream attribute that references the TCB — determinism boundary, reference monitor, audit record — inherits this ambiguity.
+Fix, Specified
+Apply the Attribute 1 test to every component in Part 2 and publish the result as a Rule-Registry-tracked artefact, versioned and change-controlled like any governed configuration (Attribute 9). First-pass membership, applying the test as given: SyniSense's chokepoint function and custody-sequence logic (BR-1.1, BR-1.2); the Watch's response half pending Ruling R-3; the Ledger's writer (BR-8.3); Northena's objective-freeze mechanism (BR-3.1); MOAC's acceptance logic. Explicitly excluded on the same pass, and recorded as excluded rather than silently omitted: CIF, Grey Mirror's detection half, the Critic Seam's QA-tier — each learned, each therefore ineligible under the test regardless of operational centrality.
+G-2   No Architecture Description   · Documentary
+Statement
+No document exists in the ISO/IEC/IEEE 42010 or Common Criteria ADV_TDS sense: stakeholders and their concerns, subsystems classified by relationship to enforcement, interfaces enumerated. Two specific architectural facts are consequently unrecorded as decisions: the Watch's placement outside the six subsystems, and the derivation of composite promises #5 and #29 from their named constituents rather than from a dedicated owner.
+Consequence
+An architecture visible only as scattered document text cannot be checked for Attribute 2's own completeness test — that every guaranteed outcome has exactly one accountable owner — without first assembling the whole picture from scratch each time the question is asked. The Watch's exclusion from “the six” reads, to anyone encountering it without this document, as an inconsistency rather than the deliberate isolation choice §12 (Trust Domain) requires it to be.
+Fix, Specified
+Produce the description Part 2 of this document already implies: the subsystem list with each entry's classification (SFR-enforcing, SFR-supporting, or non-interfering with respect to governance), declared interfaces per subsystem. Record, as explicit ratified decisions rather than incidental narrative: (a) the Watch sits outside the six because Attribute 12 requires its trust domain separated from what it observes — replicating it inside the six would collapse that separation; (b) promises #5 and #29 are composite theorems, true if and only if their named constituent promises hold, owned jointly by those constituents' owners — no seventh subsystem is invented to hold them, and none should be.
+G-3   Governed Triad Not Formally Classed; Asset Inventory Incomplete   · Documentary · Mechanical
+Statement
+Prior to this document, no specification defined principal, asset, or operation as classes — the vocabulary existed scattered across canon (“actor,” “estate,” “unit,” “crossing”) without a formal type system behind it. Separately, Mtafiti's registry — the nearest built instance of Attribute 3's asset-inventory requirement — covers estate sources only; the full asset class Attribute 3 defines also includes models, artifacts, receipts, and rules, none of which the registry currently inventories with a named owner.
+Consequence
+This is the single gap with the widest blast radius in the register: every control, checkpoint, and monitor Part 1 defines is stated over the triad, and a control that cannot name its subject, its object, and its operation precisely is a control whose FDP_ACC.1-style policy statement (Attribute 3's governing clause, verified) cannot actually be written. Attributes 5, 7, and 8 each depend on this directly.
+Fix, Specified
+The documentary half is closed by this document's own Part 1 §3 — the classes now exist, defined. What remains is mechanical: tag every existing principal, asset, and operation reference across Documents 1–20 and their extensions against these classes, and extend Mtafiti's registry scope from estate sources to the full asset class, with custody class carried as a typed, queryable attribute per BR-1.4 and BR-4.1 rather than a description in prose.
+G-4   No Assessment Procedure on Any Rule   · Documentary
+Statement
+None of the 272 rules tracked under rule_criteria_spec_v1 carries an assessment procedure — a stated examine/test method by which a specific person could determine, without a further judgement call, whether the rule currently holds. No Statement-of-Applicability equivalent (ISO 27001 cl. 6.1.3(d)) exists listing every rule with its implementation status.
+Consequence
+A rule without an assessment procedure is, by Attribute 4's own definition (Part 1 BA-4.1), a statement of intent rather than a control — this is not a minor completeness gap, it is the difference between a governed system and a documented one. Every other finding in this register that depends on “verify X holds” has no defined method until this closes.
+Fix, Specified
+Attach an assessment procedure to every rule as part of the Rule Registry rollout already scheduled under rule_criteria_spec_v1 OR-1 (retrofit vs. prospective-only ruling). Each procedure states its method — examine (inspect an artefact), test (exercise the behaviour), or both — and its objects, following the AU-3/AU-03a–f pattern verified in Part 1 Attribute 4. Produce the Statement of Applicability as the Registry's own summary view, not a separate document to maintain.
+G-5   Checkpoint Roles Named Only for the Watch   · Documentary
+Statement
+NIST SP 800-162's four roles — policy decision point, policy enforcement point, policy information point, policy administration point — are named separately only for the Watch (Macho/Mkono, verdict interface). MOAC, the chokepoint, the distance gate, and the format gate co-locate decision and enforcement without naming either role, and none of the four names its information source or administration point explicitly.
+Consequence
+Where roles are undistinguished, a checkpoint cannot be hardened or replaced piece by piece — changing how a decision is made and changing how it is enforced become the same undertaking by default, which is precisely the coupling naming the roles separately exists to avoid. An unnamed policy information point is also an unnamed trust dependency: if a checkpoint's decision draws on an attribute source outside the Trusted Computing Base, that dependency is currently invisible.
+Fix, Specified
+For MOAC, the chokepoint, the distance gate, and the format gate: name the decision role, the enforcement role (even where co-located in one component today), the information point each draws its attribute values from, and the administration point where its governing policy is authored — Manage Rules for customer-facing checkpoints, the Attribute 9 procedure (once G-9 closes) for system-facing ones.
+G-6   No Security Architecture Description; Runtime Self-Protection Unaddressed   · Documentary · Mechanical
+Statement
+No ADV_ARC-style description exists for any reference monitor in the system. “Tamper” does not appear anywhere in the canon text located for this document. Non-bypassability is demonstrated per-path for SyniSense's chokepoint (A5.1's negative-scan build test); for MOAC, the distance gate, and the format gate it is asserted in doctrine but not shown path-by-path, and runtime protection of their governing policy from modification is unaddressed by any build-time or load-time mechanism identified.
+Common Criteria's own history is instructive here, not incidental: non-bypassability and self-protection were originally the SFR families FPT_RVM and FPT_SEP — testable functional requirements — and were promoted to the architecture-description family ADV_ARC in CC v3.1 specifically because, as the transition guidance states, they “largely have no directly observable interface at the TSF” and can only be demonstrated through a description, not through a functional test alone.
+Consequence
+A monitor's correctness in practice is not evidence of Attribute 6 conformance if its non-bypassability and self-protection cannot be shown — this is the precise reason the standard requires a description rather than accepting observed behaviour as sufficient. Three of the platform's four load-bearing monitors currently rest on assertion where the fourth rests on demonstration.
+Fix, Specified
+Write the description, covering all four ADV_ARC properties for each of the four monitors. For MOAC, the distance gate, and the format gate specifically: (a) state where each monitor's governing policy is stored; (b) confirm that store is unreachable by any code path available to the run or output being evaluated; (c) add a load-time integrity check — a signature or hash comparison against the value recorded in the Rule Registry — so that an unauthorised modification is detected at the point the monitor next loads its policy, not merely prevented by convention.
+G-7   No Named Security Function Policies; a Subject-Alterable Floor   · Documentary · Ruling
+Statement
+No mandatory baseline in the system is stated as a named policy over the governed triad — which principals, which assets, which operations — in the form FDP_ACC.1 requires. Separately and more specifically: the evidence floor's “lower the standard” refusal action allows the party being measured to adjust, within stated limits and a session scope, the very standard it is being held to.
+Consequence
+Attribute 7's four defining properties include that a baseline is set by an authority distinct from the party measured, and that the party cannot lower it. A floor with a subject-alterable path fails this test regardless of how bounded the alteration is — bounded discretion is still discretion, and a mandatory baseline with a discretionary escape hatch is, precisely at the hatch, no longer mandatory. This is not a hypothetical risk: it is the one place in the register where the system's own design has already made the choice the standard exists to prevent, and made it in good faith, for good operational reasons, without naming it as the exception it is.
+Fix, Specified
+Name every mandatory baseline's SFP explicitly. For the evidence floor: two concrete resolutions, either is sufficient, and this document does not choose between them (Ruling R-2). Option A — re-home the lowering decision under Attribute 9's change-control ceremony, so a named human authority, not the measured subject, invokes it, on the record, per instance. Option B — retain the subject-facing path exactly as built, but rename and re-specify it as a discretionary threshold with its own identity, distinct from and strictly below the assertion floor, which remains mandatory and untouched by it.
+G-8   Trust Receipt Omits Identity and Timestamp   · Mechanical
+Statement
+A5.7's specified receipt content is: evidence the call happened, the custody status, a signature binding it to the organisation. It does not specify the invoking principal's identity or a timestamp, though AU-3 requires both as two of its six elements.
+Consequence
+Two AU-3 elements are unmet in the specification itself — this is not an implementation shortfall to audit for, it is a gap in what the receipt is defined to contain. It also weakens non-repudiation (AU-10): a record cannot bind a party to an action if it does not establish who the party was and when the action occurred, so the receipt's signature currently proves the organisation stands behind the call without proving which identity within the organisation initiated it or exactly when.
+Fix, Specified
+Amend A5.7 to require, in addition to its current content: the invoking principal's identity (from Attribute 3's principal class), and a timestamp from a reliable time source. Add that reliable-time source as its own platform control — the FPT_STM.1 requirement verified in Part 1 Attribute 8 — referenced by SyniSense's receipt and by every other audit-emitting component in Part 2, rather than each component sourcing time independently. This is prospective: a receipt already issued cannot be retrofitted, so the fix takes effect for calls made after ratification, and the gap between old-format and new-format receipts is itself worth one line in whichever document ratifies the amendment.
+CLOSED AT SPEC LEVEL, 9 Sep 2026: this exact fix is written into Security_Promise_Set_Amendments.docx, Amendment 3. Not yet built.
+G-9   System-Rule Change Control Is Ratification Alone   · Documentary
+Statement
+The 272 rules tracked under rule_criteria_spec_v1 change through Owner ratification, with no further documented procedure: no stated change types, no required impact analysis before approval, no declared configuration-management scope stating which artefacts — documents, code, configuration — fall under this discipline.
+Consequence
+Without impact analysis preceding approval, a change to a foundational rule has no structured check for what depends on it before the change is made — the exact failure mode Attribute 9 exists to close. This document is itself an instance of the risk: as the foundation every other specification instantiates, an unreviewed change to a definition here propagates to everything built on it, and nothing currently requires that propagation be checked before the change is approved.
+Fix, Specified
+Specify a two-tier procedure, matching the criticality split Attribute 1 already draws. Tier one, for system rules generally: mirror Manage Rules' ceremony (Component 12) — propose, documented impact analysis, approve, cancellable countdown, apply, version history retained. Tier two, for rules governing Trusted-Computing-Base components specifically: the Watch's own precedent (BR-7.3) — the platform's slowest countdown, plus an external witness holding no credentials over the component being changed. Declare configuration-management scope explicitly: every document in this canon, the Rule Registry itself, and named configuration artefacts (training_params@v0 and equivalents) are in scope; general application code outside governed configuration is not, and is named as such rather than left ambiguous.
+CLOSED AT SPEC LEVEL, 9 Sep 2026: this exact two-tier procedure is rulebook_engine_spec_v1's RBM-7 (tier one) and RBM-8 (tier two). Not yet built.
+G-10   Determinism Boundary Stated, Not Inventoried; Oversight Not Mapped   · Documentary
+Statement
+“Detect, never decide” is independently implemented four times — Solva's import-asserted seam, Targeta's wall, CIF's single-experiment principle, the Critic Seam's QA-tier — with no single inventory classifying every component in the system as deterministic or learned. Separately, the platform's ruling loop — the pattern of proposal, scrutiny, and explicit ratification this canon's own governance runs on — is not mapped against the five oversight capabilities Article 14 specifies.
+Consequence
+Four independent implementations of the same principle, with no registry cross-referencing them, is exactly the condition that produced this document's own Doc-19 finding: a real inconsistency discovered only by manual comparison, not caught by any standing check. A fifth component implementing this principle incorrectly would not be caught until someone happened to compare it against the other four by hand. On oversight: Article 14 names five distinct capabilities, not one — understand-and-monitor, automation-bias awareness, correct interpretation, override, and halt-to-safe-state — and a ruling loop that provides some of these well (override, in particular, is thoroughly exercised throughout this canon's own history) does not thereby provide all five.
+Fix, Specified
+Classify every Part 2 component as deterministic or learned, in one place, cross-referenced from each component's own entry rather than re-derived per component. Map the existing ruling loop against Article 14's five capabilities explicitly: override is well-evidenced; understand-and-monitor is plausibly served by the STATE/NEXT.md-style tracking already in practice but not confirmed as designed for this purpose; automation-bias awareness, correct interpretation as distinct from override, and halt-to-safe-state for a specific learned component (can CIF's ideation be halted independent of halting Targeta's training run it feeds into?) are none of them confirmed and should be treated as open until checked.
+G-11   Failure Types Not Enumerated; Posture Undeclared Per Checkpoint   · Documentary
+Statement
+No component's failure types are enumerated in the FPT_FLS.1 / SC-24 sense — a stated list of specific ways it can fail, each with its required resulting state. Both correct postures already appear in the system — the chokepoint and the distance gate fail closed; the consumption levers correctly fail safe-open toward recomputation — but neither the enumeration nor the declaration of which posture applies where is written down.
+Consequence
+The system is not behaving incorrectly here — both postures observed are the right ones for their respective components. The gap is that this correctness is not a documented, checkable property: a new checkpoint added later has no stated precedent to follow and must reason the fail-open-versus-fail-closed question from first principles each time, with no record of how the existing cases were reasoned about to check against.
+Fix, Specified
+Enumerate failure types per Trusted-Computing-Base and reference-monitor component: what specifically can cause SyniSense's chokepoint, MOAC, or the Ledger's writer to fail to complete an evaluation. Declare posture per checkpoint with its reasoning retained, not only its conclusion — the consumption levers' fail-safe-open choice, reasoned from “recomputation is a safe, recoverable direction here,” becomes the template future checkpoints are checked against, rather than each reinventing the reasoning.
+G-12   Trust Domains Not Described; Deployment Model Unstated   · Documentary · Ruling
+Statement
+No document describes the system's trust domains as a set — platform, each tenant, the Watch's own deliberately separated domain. Whether deployments share infrastructure with logical tenant separation or run on dedicated infrastructure per tenant is not stated, though the canon's own vocabulary gestures at both: “tenant” (A5.4) implies the former; “perimeter” (A5.5) and appliance-style framing found elsewhere in this programme's own discussion imply the latter.
+Consequence
+ISO/IEC 27017's tenant-segregation controls apply to shared infrastructure and are inapplicable, in the same form, to dedicated infrastructure — which means the applicability of an entire standard is blocked upstream of its own requirements until the deployment model is stated. This is not a documentation nicety; it determines which of two different control sets the platform should even be assessed against.
+Fix, Specified
+Describe the domains: platform, each tenant, the Watch. Resolve Ruling R-5 — shared infrastructure with tenant-level separation, dedicated infrastructure per tenant, or both offered as distinct deployment options with the boundary between them stated per instance, which the appliance work referenced elsewhere in this programme suggests may in fact be the intended answer rather than an open question.
+G-13   Job Hand-Off Contract Instantiated Once, Not Generalised   · Mechanical
+Statement
+Promise #32 (Document 15) is marked Partial in the canon's own status field: exactly one crossing — ThinkLab handing a completed reasoning session to Task Manager — carries a registered hand-off contract (what was commissioned, its shape, the identity of both ends, a receipt). No generalised contract exists for hand-offs between other subsystem pairs.
+Consequence
+Attribute 3's BA-3.3 requires every operation map to exactly one checkpoint; a hand-off is an operation, and today most hand-offs in the system have no checkpoint at all, structurally, rather than an unenforced one. The specific guarantees Promise #32 exists to make — no context spillage, no silent objective drift, no dual-hatted task — are proven for one crossing and simply absent everywhere else, which means a job passed between any two subsystems other than Solva and Mkondo currently has none of these guarantees.
+Fix, Specified
+Generalise the existing pattern rather than inventing a new one: the registered-handoff-contract shape (what / shape / identity / receipt) that already works for ThinkLab → Task Manager becomes a shared checkpoint every subsystem-to-subsystem hand-off routes through. Half the underlying mechanism is already reusable — Northena's objective-freeze is explicitly a shared mechanism, per BR-3.1, not specific to this one crossing. The remaining build is the registration and receipt half: a hand-off registry, owned by Mkondo per its Component 6 scope, that every crossing writes to and every receiving subsystem checks before accepting a hand-off as well-formed.
+3   Rulings Required
+Four decisions this document surfaces and does not make. Nothing in Parts 1–3 is blocked by them; each affects the specific fix named against it.
+R-4 (change-control tier for non-TCB system controls) resolved into G-9's two-tier fix directly and required no separate ruling. No ruling is attached to G-13: its fix is a build task, not a judgement call.
+4   Standing
+This document is the layer every other Akki specification instantiates. A new engine specification names which of the twelve attributes it serves. A new rule, under rule_criteria_spec_v1, is classified against Part 1's definitions before it is assigned a domain. A new component is added to Part 2 with build requirements derived the same way the sixteen above were derived — cited to the attribute and clause they come from, not restated as a generic obligation. A new gap, found after ratification, is added to Part 3 in the same two-section form: named in Section 1, specified in full in Section 2.
+Where a future specification appears to conflict with a definition in Part 1, Part 1 governs, on the principle Document 16 already applies platform-wide: the foundation does not yield to what was built on it.
+[TABLE 0]
+Position in canon | Foundational. This document defines the categories every other Akki specification instantiates. It precedes Document 1 in dependency, not in number — referenced as Document 0.
+Governs | What Akki is, attribute by attribute: the definition of each attribute at the standard that defines its category, independent of Akki; the Akki component that instantiates it; and the current gap between the two.
+Does not govern | Individual engine behaviour — specified in Documents 1–20 and their extensions. Rule identity and classification — specified in rule_criteria_spec_v1. This document is what those specifications instantiate, not a replacement for them.
+Status | Draft v1, for owner ratification. Every attribute below is defined independent of Akki; Part 2's mapping and Part 3's gap register are the current state of the instantiation, dated to this document's date.
+Citation discipline | Every governing clause is marked [V] verified against published text during preparation of this document, [K] cited from established knowledge of a freely published standard with a stable clause reference, or [P] a paywalled standard cited by clause number and title, requirement paraphrased. No clause is asserted beyond what its marking supports.
+Date | 1 September 2026
+[/TABLE]
+[TABLE 1]
+# | Attribute | Depends on
+1 | Trusted Computing Base | Nothing — the base
+2 | Subsystem | 1
+3 | Governed Triad | 2 — subsystems act on something
+4 | Control / Invariant | 2, 3 — a subsystem's accountability, stated over the triad
+5 | Checkpoint | 3, 4 — where a control is evaluated
+6 | Reference Monitor | 5 — the checkpoints that cannot be bypassed
+7 | Mandatory Baseline | 6 — what a reference monitor applies
+8 | Audit Record | 5 — what a checkpoint emits as evidence
+9 | Authority & Change Control | 4 — who may alter a control or a floor
+10 | Determinism Boundary | 1, 2 — which subsystems may hold decision authority
+11 | Failure Posture | 5, 6 — behaviour when evaluation cannot complete
+12 | Trust Domain | 1–9 — the boundary within which all of the above holds
+[/TABLE]
+[TABLE 2]
+ID | Attribute | Kind | Gap
+G-1 | 1 · TCB | Documentary | No enumerated, published list of Trusted Computing Base members.
+G-2 | 2 · Subsystem | Documentary | No architecture description; the Watch's placement and the composite promises' ownership are undocumented decisions.
+G-3 | 3 · Governed Triad | Documentary · Mechanical | No formal principal/asset/operation classes prior to this document; asset inventory covers estate sources only.
+G-4 | 4 · Control | Documentary | No assessment procedure on any of the 272 rules; no Statement of Applicability.
+G-5 | 5 · Checkpoint | Documentary | Decision/enforcement/information-point roles named only for the Watch.
+G-6 | 6 · Reference Monitor | Documentary · Mechanical | No security architecture description; runtime tamper-resistance unaddressed beyond the chokepoint's build-time gates.
+G-7 | 7 · Mandatory Baseline | Documentary | No named security function policies. (Ruling R-2 originally attached here is resolved — no violation found on re-examination; see §3.)
+G-8 | 8 · Audit Record | Mechanical | Trust receipt specification omits principal identity and timestamp; no reliable-time control.
+G-9 | 9 · Authority | Documentary | System-rule change control is “Owner ratifies,” with no CM-3-style procedure or declared scope.
+G-10 | 10 · Determinism Boundary | Documentary | No per-component deterministic/learned inventory; ruling loop not mapped to Article 14's five capabilities.
+G-11 | 11 · Failure Posture | Documentary | Failure types not enumerated per component; posture not declared per checkpoint.
+G-12 | 12 · Trust Domain | Documentary · Ruling | Domains not described as a set; deployment model unstated.
+G-13 | 6 · Mkondo, Checkpoint | Mechanical | Job hand-off contract is instantiated once (ThinkLab → Task Manager); not generalised across crossings.
+[/TABLE]
+[TABLE 3]
+ID | Closing document | State
+G-1 | tcb_enumeration_v1 | Spec-drafted — 27 components evaluated, R-3 resolved as a consequence. Not built.
+G-2 | security_architecture_v1 (partial) | Partial — the reference-monitor half is drafted; general subsystem classification remains open.
+G-3 | dap_backend_spec_v1 DAP-1/DAP-2 (external-party case only) | Partial — general triad formalisation and Mtafiti's full asset-inventory extension remain open.
+G-4 | Not yet drafted | Open.
+G-5 | dap_backend_spec_v1 §4 (DAP case only) | Partial — general case (MOAC, chokepoint) remains open.
+G-6 | security_architecture_v1 | Spec-drafted — seven reference monitors assessed, SEC-1 through SEC-7 close what was missing. Not built.
+G-7 | security_function_policies_v1 | Spec-drafted — seven SFPs named; R-2 resolved as no-violation. Not built.
+G-8 | Security_Promise_Set_Amendments.docx, Amendment 3 | Spec-closed. Not built.
+G-9 | Rules Service RBM-7/RBM-8 | Spec-closed. Not built.
+G-10 | determinism_inventory_v1 | Spec-drafted — 16 components classified, Article 14 mapped. Not built.
+G-11 | failure_posture_v1 | Spec-drafted — platform default plus two departures specified. Not built.
+G-12 | trust_domains_v1 | Spec-drafted — R-5 resolved by cross-reference to the appliance spec. Not built.
+G-13 | handoff_registry_v1 | Spec-drafted. Not built.
+[/TABLE]
+[TABLE 4]
+ID | Ruling
+R-1 | TCB membership test (G-1): ratify the test proposed in Attribute 1 — deterministic and protection-critical — or set a different one before the list is published.
+R-2 | RESOLVED, 9 Sep 2026 (security_function_policies_v1): re-checking Doc 4 A5.5 against Doc 3 A5.2 found no violation — “lower the standard” is Solva's query-recalibration option for the party asking a question, not a bar a measured subject can weaken. A5.2 itself is explicitly unalterable by the party it measures. Neither original option was needed; the SFP-naming work G-7 also asked for proceeds separately, in the same document.
+R-3 | The Watch's TCB membership (G-1): the service in full, or its deterministic response half only, with Grey Mirror's detection half excluded as learned under Attribute 10.
+R-5 | Deployment model (G-12): shared infrastructure with tenant separation, dedicated per tenant, or both, with the boundary stated per deployment.
+[/TABLE]

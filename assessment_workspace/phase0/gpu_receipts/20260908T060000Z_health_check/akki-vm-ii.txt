@@ -1,0 +1,11 @@
+at_utc: 2026-09-09T09:00:21Z
+0, 0 %, 0 MiB, 76.67 W
+1, 0 %, 0 MiB, 83.15 W
+=trainers=
+1
+=dispatchers=
+195771 python3 /home/ubuntu/akki_journal/queue_followon_launcher.py --host-slug akki-vm-ii --dispatcher /home/ubuntu/akki_journal/on_host_queue_dispatcher.py --queue-dir /home/ubuntu/akki_journal/queue --primary-manifest-lane0 /home/ubuntu/akki_journal/queue/campaign_b_v21_lane0_queue_manifest.json --ext1-manifest-lane0 /home/ubuntu/akki_journal/queue/campaign_b_v21_lane0_ext1_20260907T0100Z_queue_manifest.json --primary-manifest-lane1 /home/ubuntu/akki_journal/queue/campaign_b_v21_lane1_queue_manifest.json --ext1-manifest-lane1 /home/ubuntu/akki_journal/queue/campaign_b_v21_lane1_ext1_20260907T0100Z_queue_manifest.json --poll-interval-s 60 --daemon
+204437 python3 /home/ubuntu/akki_journal/on_host_queue_dispatcher.py --queue-file /home/ubuntu/akki_journal/queue/campaign_b_v21_lane1_ext1_20260907T0100Z_queue_manifest.json --campaign-id campaign-b-v21-method-ablations-20260906 --gpu-id 1
+230899 bash -c echo "at_utc: $(date -u +%FT%TZ)"; nvidia-smi --query-gpu=index,utilization.gpu,memory.used,power.draw --format=csv,noheader; echo "=trainers="; pgrep -af on_host_trainer.py | wc -l; echo "=dispatchers="; pgrep -af on_host_queue_dispatcher.py | head -5; echo "=watchers="; pgrep -f wave_ext2_watcher | wc -l
+=watchers=
+1

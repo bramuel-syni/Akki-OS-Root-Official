@@ -1,0 +1,101 @@
+AKKI PLATFORM  ·  ENGINE SPECIFICATION  ·  2 OF 9
+Security Architecture Description
+security_architecture_v1 — Draft for owner ratification · Closes Document 0 G-6
+1   SyniSense — The Chokepoint
+1.1. The Chokepoint
+Verdict: Three of four fully met. Self-protection is partial — build-time gates exist; runtime tamper-resistance for the loaded policy is proposed below, not yet built.
+SEC-1  SyniSense's custody-sequence policy and network allowlist MUST be integrity-verified at load — a signature or hash comparison against the value recorded in the Rule Registry — so that a runtime modification is detected, not merely prevented by the absence of an edit path.  [Closes the remaining gap in 1.1]
+2   The Watch — Mkono (Response)
+2.1. Mkono, the deterministic response half
+Verdict: All four met, directly from canon text. The strongest-evidenced monitor on the platform after the chokepoint.
+3   The Watch — Grey Mirror (Macho)
+Grey Mirror is not itself evaluated as a reference monitor. Per tcb_enumeration_v1, Macho is learned and holds no decision authority — “it cannot block, throttle, mark, reroute, or notify. Its sole output is a verdict” (A2, verified verbatim). ADV_ARC.1 applies to components that mediate and decide; Macho detects and proposes. Its self-protection is covered separately, under C3 below, as the subject the witness watches — not as a monitor in its own right.
+4   The External Witness (C3)
+4.1. The witness — the mechanism that makes 2.1's self-protection checkable
+Verdict: Structurally sound and directly evidenced. The one open item is the schedule's actual cadence — a ruling, not a design gap.
+5   MOAC
+5.1. The acceptance gate
+Verdict: Non-bypassability asserted, not demonstrated. The other three properties do not exist in canon and are specified fresh immediately below.
+SEC-2  MOAC's acceptance criteria MUST be held in versioned, Rules-Service-governed configuration — the same discipline as SyniSense's custody policy — with integrity verified at load. No criterion is editable by the run it measures, by construction rather than by convention.  [Self-protection]
+SEC-3  MOAC operates entirely within Targeta's boundary and reads only the run artefacts Targeta produces. It does not query Solva, Mtafiti, or any other engine to reach its decision.  [Domain separation]
+SEC-4  MOAC MUST refuse to evaluate — not default-accept, not skip — if its criteria configuration is unset or fails integrity verification at load, on the same pattern as A17.9's execution-mode raise.  [Secure initialisation]
+SEC-5  Every path by which a run's result could be treated as accepted MUST be enumerated and shown to pass through MOAC's evaluation, in a build-time test comparable to SyniSense's negative-scan gate.  [Non-bypassability, demonstrated not asserted]
+6   DAP-31 — The Artefact Egress Distance Gate
+6.1. The distance gate
+Verdict: Three of four met by the amendment that created it. Secure initialisation is the one gap.
+SEC-6  DAP-31's probe MUST refuse to run — and MUST refuse egress by default in that state — if the reproduction threshold, sample size, or probe design values are unset. Absence of configuration is a refusal condition, not a bypass.  [Secure initialisation]
+7   DAP-32 — Admission-Integrity Probe
+7.1. The mirage battery
+Verdict: Three of four met, inherited directly from the mirage's own established properties. Secure initialisation is the gap, same shape as 6.1's.
+SEC-7  DAP-32's battery MUST refuse to admit a model — default to refusal, not default to pass — if battery composition or deviation thresholds are unset.  [Secure initialisation]
+SEC-4, SEC-6, and SEC-7 are the same rule applied three times: an unconfigured gate refuses. Worth ratifying once, as a platform-wide default under Attribute 11 (Failure Posture), rather than as three separate clauses that happen to say the same thing — flagged for the Failure Posture Enumeration (document 5 of this set) to absorb.
+8   QA-2 — The Format Gate
+8.1. Schema-completeness check
+Verdict: Non-bypassability and domain separation reasonably inferred from its position in the loop; self-protection and initialisation are unspecified. Lowest priority to close — QA-2 gates form, not access or disclosure.
+9   Summary
+Seven requirements (SEC-1 through SEC-7) close every proposed gap above except QA-2's self-protection and initialisation, left open as the lowest-consequence item on this list — named rather than silently dropped.
+[TABLE 0]
+Requirement answered | Common Criteria ADV_ARC.1: for every reference monitor, demonstrate non-bypassability, self-protection, domain separation, and secure initialisation — as a description, since these properties “largely have no directly observable interface” (the CC v2→v3.1 transition rationale, verified earlier this programme).
+Scope | Every candidate reference monitor named in tcb_enumeration_v1: SyniSense's chokepoint, the Watch's Mkono, MOAC, the DAP-31 distance gate, the DAP-32 admission probe, and QA-2's format gate. Each treated separately — meeting the properties for one does not transfer to another.
+Method | Each property is demonstrated by citation where canon text already establishes it, and specified fresh where it does not. Fresh specification is marked as such — this document does not claim as existing what it is proposing for the first time.
+Date | 9 September 2026
+[/TABLE]
+[TABLE 1]
+Property | Demonstrated as
+Non-bypassability | Exactly one function may invoke the external model client; a negative-scan build test fails the build if any second path is introduced. Demonstrated at build time, on every build, not asserted once.
+Self-protection | Custody-sequence logic and the closed-network allowlist are held in configuration outside the reach of any subject the crossing mediates. Runtime integrity verification of the loaded policy is not yet specified — the one property this monitor does not yet fully meet.
+Domain separation | The chokepoint operates entirely within SyniSense's own boundary; it does not reach into Solva, Targeta, or Mtafiti to make its decision.
+Secure initialisation | The closed outbound network and allowlist are build-time invariants, present before the component accepts its first request — there is no partially-initialised state in which the chokepoint runs without them.
+[/TABLE]
+[TABLE 2]
+Property | Demonstrated as
+Non-bypassability | “Totality of sight” (A3, verified verbatim): no path reaches the estate or a model outside the Watch's observed surface, held by two independent proofs, static and runtime. This is Mkono's mediation guarantee — it acts on everything Macho can see, and Macho sees everything.
+Self-protection | Mkono “contains no model, no content parsing, no reasoning — a deterministic mapping from verdict properties to actions, small enough to verify exhaustively” (A2, verified verbatim). It reaches behind the verdict seam for nothing; there is no surface for a mediated party to tamper with beyond the seam itself.
+Domain separation | Mkono and Macho “meet at exactly one interface: a signed, replayable verdict” (A2). The hand never inspects raw behaviour. This is domain separation stated in the source text, not inferred.
+Secure initialisation | The Watch's own ceremony — slowest countdown, external witness — governs any change to Mkono's policy tables (A5.8, A5.11), which is the initialisation discipline for a component whose “policy” is closer to configuration than code.
+[/TABLE]
+[TABLE 3]
+Property | Demonstrated as
+Non-bypassability | Not applicable in the usual sense — the witness doesn't mediate operations. Its role is to make the Watch's own self-protection an ongoing measurement rather than a one-time claim.
+Self-protection | “A watchdog that alarms on Watch silence holds no Watch credentials and lives in neither authority's deployment; a standing break-in test attempts, on schedule, to modify the Watch's own records with the Watch's own production credentials — and must fail” (C3, verified verbatim). This is self-protection demonstrated as a repeated test, not asserted once at design time.
+Domain separation | Explicitly “belongs to neither authority” — domain separation is the witness's entire purpose.
+Secure initialisation | The break-in test runs “on schedule” — its own cadence is a ruled value (Security Amendments §5 R-8 family; not yet set).
+[/TABLE]
+[TABLE 4]
+Property | Demonstrated as
+Non-bypassability | “Every criterion or no service” (Promise #22), no human in the acceptance path. Every path to a trained result accepted as usable is required to pass through it — asserted in doctrine; not yet demonstrated path-by-path the way the chokepoint's negative-scan test demonstrates SyniSense's.
+Self-protection | Not specified anywhere in canon before this document. This is the gap Document 0 named and this document now closes with a proposal, not a citation.
+Domain separation | Not specified. Proposed below alongside self-protection, since the two are naturally answered together for this monitor.
+Secure initialisation | Not specified. Proposed below.
+[/TABLE]
+[TABLE 5]
+Property | Demonstrated as
+Non-bypassability | Specified in DAP-31 itself: the gate runs after MOAC's acceptance and before registry entry; an artefact that fails is never registered, and an unregistered artefact cannot leave. Every egress path terminates at registration — there is no second door.
+Self-protection | “The probe's own code and parameters are system-TCB tier under the Rules Service” (DAP-31, as written). Self-protection is specified in the source amendment, not newly proposed here.
+Domain separation | The probe operates on the artefact inside estate compute; “the artefact is held in estate compute throughout — it does not leave to be tested” (DAP-31). It does not reach into the party's domain to run.
+Secure initialisation | Not explicitly specified. The gate's precondition — a valid, ruled threshold and sample size — is implied but not stated as a refuse-if-unset rule.
+[/TABLE]
+[TABLE 6]
+Property | Demonstrated as
+Non-bypassability | Every base model entering under DAP-9 passes the battery before contact with any estate unit — stated as a precondition in DAP-32 itself, not a parallel path.
+Self-protection | The mirage shares no store with production (C1); a model under test cannot reach real estate data regardless of what it does inside the battery.
+Domain separation | The battery runs inside the mirage's own isolated domain — by construction, per C1.
+Secure initialisation | Not specified. As with DAP-31, the precondition of a valid battery configuration is implied, not stated as a refuse-if-unset rule.
+[/TABLE]
+[TABLE 7]
+Property | Demonstrated as
+Non-bypassability | “The single hard gate — a submission missing its required sections is returned for completion before it enters the loop” (QA-2, verified verbatim). Every submission passes through it before any further review.
+Self-protection | Not specified in canon. QA-2 is form-only by its own text (“form, never substance”) — its lowest-stakes monitor on this list, and correspondingly the least specified.
+Domain separation | Operates within the Critic Seam's own boundary, ahead of RV/QA tiers.
+Secure initialisation | Not specified.
+[/TABLE]
+[TABLE 8]
+Monitor | Non-bypass | Self-protect | Domain sep. | Init
+SyniSense chokepoint | Met | Partial (SEC-1) | Met | Met
+Watch — Mkono | Met | Met | Met | Met
+External witness | N/A | Met | Met | Ruling pending
+MOAC | Proposed (SEC-5) | Proposed (SEC-2) | Proposed (SEC-3) | Proposed (SEC-4)
+DAP-31 distance gate | Met | Met | Met | Proposed (SEC-6)
+DAP-32 admission probe | Met | Met | Met | Proposed (SEC-7)
+QA-2 format gate | Inferred | Open | Inferred | Open
+[/TABLE]

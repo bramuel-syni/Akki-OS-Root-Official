@@ -1,0 +1,36 @@
+AKKI PLATFORM  ·  ENGINE SPECIFICATION  ·  5 OF 9
+Failure Posture Enumeration
+failure_posture_v1 — Draft for owner ratification · Closes Document 0 G-11
+1   The Platform Default
+FP-1  Every component in the Trusted Computing Base fails closed by default. An evaluation that cannot complete — configuration unset, a dependency unreachable, a check erroring — refuses the operation it governs. This is the default; §3 lists the components that correctly depart from it, and why.
+FP-2  A gate whose governing configuration is unset or fails integrity verification at load refuses by default rather than passing by default. This absorbs security_architecture_v1's SEC-4 (MOAC), SEC-6 (the distance gate), and SEC-7 (the admission probe) as one rule rather than three restatements of it — an unconfigured gate is a closed gate, platform-wide, not per-component.
+2   Per-Component Enumeration
+3   The Departures — Where Fail-Safe-Open Is Correct
+Two departures from §1's default, both already correct in the system as built, now stated as deliberate rather than left to be discovered.
+FP-3  Mtafiti's read path fails safe-open: a write failure never blocks a query against already-committed estate composition. The alternative — refusing to answer “what exists” because “what changed most recently” cannot be confirmed — would make an outage indistinguishable from data loss to everyone reading the registry, which is a worse failure than serving slightly stale data marked as such.
+FP-4  The Watch's already-active containments persist through a Watch outage rather than lapsing. This is fail-closed for new decisions and explicitly not fail-open for standing ones — the two are evaluated separately, and conflating them would silently release every contained actor the moment the Watch itself failed, which is precisely when containment matters most.
+Recovery time objective and recovery point objective for the Ledger writer specifically are covered in the Business Continuity Annex (document 8 of this set), not restated here — this document specifies posture per component; that one specifies how long a failure may last and how much may be lost before it is a breach in its own right.
+4   Standing
+A component added to the Trusted Computing Base under tcb_enumeration_v1's own standing clause is added here in the same turn — posture, failure types, and preserved state, not deferred to a later pass. §1's default applies until stated otherwise; a new TCB member that departs from it states so explicitly, the way §3 does for Mtafiti and the Watch.
+[TABLE 0]
+Requirement answered | CC FPT_FLS.1: preserve a secure state for an enumerated list of failure types — the enumeration is the requirement, not a general commitment. NIST SC-24: fail to a known state, preserving defined state information.
+Scope | Every component in tcb_enumeration_v1's IN column, plus DAP's already-specified posture (DAP-28–30), carried here rather than re-derived, and the three unconfigured-gate defaults flagged in security_architecture_v1 (SEC-4, SEC-6, SEC-7), absorbed as one platform-wide rule rather than three separate clauses.
+Finding, stated up front | The platform already gets this right in the cases that have been examined closely — the chokepoint fails closed, the consumption levers correctly fail safe-open toward recomputation. What was missing was the enumeration, not the behaviour.
+Date | 9 September 2026
+[/TABLE]
+[TABLE 1]
+Component | Failure types | Posture | Preserved state
+SyniSense — chokepoint | Custody policy unreadable; de-identification step errors; re-identification key unavailable | Fail-closed | The crossing attempt itself — who, what, when — written before the attempt, so a failed crossing is still evidenced
+SyniSense — closed network | Allowlist configuration unreachable | Fail-closed | No outbound connection attempted; the refusal reason
+Solva — assertion-boundary seam | Anchor map cannot be computed; source material unreachable | Fail-closed | The unanchored draft is discarded, not served; the refusal with structured reason (A5.5)
+Northena — objective-freeze | Freeze record unreadable at a hand-off point | Fail-closed | The job halts rather than proceeding on an unverifiable scope
+Mtafiti — registry | Write path unavailable | Fail-closed for writes; fail-safe-open for reads of already-committed data | Last successfully committed state remains queryable even while writes are refused
+Targeta — yield wall / MOAC | Criteria configuration unset or unverifiable | Fail-closed | The run's own artefacts remain intact; nothing is marked accepted
+Mkondo — hand-off registry | Registry write fails mid-handoff | Fail-closed | Neither side treats the hand-off as complete; the attempt is recorded as failed, not silently retried as success
+The Watch — Mkono | Verdict cannot be read; policy table unreachable | Fail-closed on new actions; already-active containments persist | Every action already in force stays in force — a Watch outage does not release a contained actor
+The Ledger — writer | Storage unreachable; hash-chain verification fails on write | Fail-closed — and everything that depends on writing to it (§1 FP-1) fails closed in consequence | The chain up to the last verified entry; no entry is ever appended out of order to “catch up”
+MOAC | As Targeta's wall — same component, listed once above | — | —
+Critic Seam — RV-tier | A deterministic check cannot execute | Fail-closed — escalates to a human rather than passing unchecked | The submission awaiting review; nothing is marked reviewed
+Rules Service — ceremony engine | Countdown timer or countersign verification unreachable | Fail-closed — no rule reaches CANON on an unverifiable ceremony | The rule remains PROPOSED; the ceremony's partial progress, so it can resume rather than restart
+DAP — release budget, distance gate, output-content gate | As specified in dap_backend_spec_v1 DAP-28–30 and this set's own SEC-6/security_architecture_v1 | Fail-closed | Carried by reference — not restated
+[/TABLE]

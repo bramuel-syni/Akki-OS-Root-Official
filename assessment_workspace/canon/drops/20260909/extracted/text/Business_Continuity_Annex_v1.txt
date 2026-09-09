@@ -1,0 +1,29 @@
+AKKI PLATFORM  ·  ENGINE SPECIFICATION  ·  8 OF 9
+Business Continuity Annex
+business_continuity_v1 — Draft for owner ratification · Document 3, Part D · Houses S-10, S-11
+1   Recovery — S-10
+S-10  The system will restore Ledger continuity within 3,600 seconds, under independent countersign, following any continuity-affecting incident.  [Ruled — CA1-N5]
+Recovery Time Objective: 3,600 seconds (one hour). DEFAULT-class — revisable on incident evidence, not a number derived from a formal risk assessment. Applies to the Ledger writer specifically; other components' recovery times are addressed in failure_posture_v1, which this annex does not duplicate.
+BC-1  Restoration MUST be countersigned by someone independent of the primary Ledger writer's own infrastructure — the same logic as the Watch's external witness: the verifier cannot be the thing that might be down. A countersigner whose own access depends on the failed infrastructure does not satisfy this.
+BC-2  Ledger continuity is itself attested on a standing cadence, independent of any incident — proposed quarterly, DEFAULT-class, revisable on evidence. This is a routine health check, not a response to failure; its purpose is confirming the RTO would hold if tested, before it has to be.
+2   Notification — S-11
+S-11  The system will issue breach notification within 72 hours of a qualifying incident, to the parties and authorities the incident requires.  [Ruled — CA1-N2]
+3   What Remains Open
+BC-3  Recovery Point Objective — how much committed activity may be lost, not merely how long recovery may take — is not ruled anywhere in this canon. RTO (§1) bounds downtime; it does not bound data loss during that downtime. This is a genuine gap, not a restatement of S-10.
+RPO cannot be answered responsibly without first knowing whether a replica Ledger writer exists or is planned — an RPO of zero requires synchronous replication; a non-zero RPO requires stating exactly how much is acceptable to lose, in what unit (time, or number of unwritten entries). Neither is specified in canon. This document does not invent an answer; it names the precondition the answer depends on.
+BC-4  Disaster scenarios beyond single-component failure — total site loss, where the appliance itself (Akki_Appliance_Assembly_Spec_RevA) is destroyed or inaccessible — are not addressed by S-10 or S-11, both of which assume the Ledger writer is recoverable in place. Given the appliance's own dedicated, per-site deployment model (trust_domains_v1 §1), a total site loss scenario has no ruled answer: whether there is an off-site backup, and if so its own RPO/RTO, is unaddressed.
+4   Standing
+This annex is Document 3, Part D. S-10 and S-11 move from “ruled, no document” to “ruled, homed” on ratification. BC-3 and BC-4 are not blocking — the platform functions without an RPO ruling or a disaster-recovery plan for total site loss — but both should be resolved before the appliance programme scales past a small number of deployed units, since the cost of resolving them after an actual incident is considerably higher than the cost of ruling them now.
+[TABLE 0]
+What this closes | The document flagged as missing outright when the builder's requirements audit was reconciled. Formally homes S-10 (recover) and S-11 (notify), which existed as Wave E rulings with no document — the gap named explicitly when the security assurance set was built.
+Ruled already, restated here as canon rather than scattered ruling log entries | CA1-N5 (Ledger continuity) and CA1-N2 (breach notification), both from Wave E. Nothing in §1–§2 is newly decided; it is gathered and given a home.
+What's genuinely new here | The Recovery Point Objective is not ruled anywhere in this canon. §3 names this rather than inventing a number to fill the gap.
+Date | 9 September 2026
+[/TABLE]
+[TABLE 1]
+Element | Ruling
+Recipients | The DPO (Document 2's owner role) and the Watch's external witness — specifically because that witness is already independent of the Watch by design, which is what makes it the right party to also check the Watch's own containment failures.
+Window | 72 hours, matching Kenya's Data Protection Act 2019 and the GDPR standard it is modelled on. Not an arbitrary figure chosen for this annex.
+Channel | The existing enforcement-view record, plus a real-time alert to both recipients. A Ledger row alone does not guarantee visibility inside 72 hours — the alert is what makes the window meetable, not merely recordable.
+Threshold | A hard line actually crossed — not a contained or shaped event. The Watch successfully catching and containing an attempt is the system working as designed; treating every caught attempt as a reportable breach would drown the incidents that are genuinely reportable in noise from the ones that weren't.
+[/TABLE]

@@ -1,0 +1,58 @@
+AKKI PLATFORM  ·  ENGINE SPECIFICATION  ·  1 OF 9
+The Trusted Computing Base — Enumeration
+tcb_enumeration_v1 — Draft for owner ratification · Closes Document 0 G-1
+1   The Test, Applied Literally
+BA-1.1 sets a conjunction, not a list of examples: deterministic, and protection-critical. A component can be highly consequential and still fail the test if it is learned — CIF is the standing example, excluded under BR-9.1 regardless of how central its ideation is. A component can be perfectly deterministic and still fail the test if nothing depends on it — deterministic housekeeping code that no guarantee cites is not TCB by virtue of being predictable.
+“Deterministic” is evaluated at the level of the mechanism actually making a decision, not the subsystem that hosts it. Several entries below split a subsystem in two for exactly this reason: the decision point inside it is deterministic even where the subsystem's broader function is not.
+“Protection-critical” is evaluated by BA-1.1's own clause: would this component's failure falsify a stated guarantee. Each row below names the guarantee.
+2   The Enumeration
+3   Minimisation — What Was Kept Out, and Why That's Correct
+TA-1.2 requires the TCB stay small by design, excluding a learned or non-critical component “even where it is operationally central.” Four exclusions above are worth stating plainly rather than leaving as table rows, because each is operationally central and excluded anyway: Solva's actual reasoning — the platform's most visible capability — is not TCB; CIF, the self-improving core of the training story, is not TCB; Grey Mirror, the detection half of the platform's own security layer, is not TCB; and the Deck Rendering Engine, despite being genuinely, verifiably deterministic, is excluded because determinism alone was never the bar.
+This is the minimisation property working as intended, not a set of gaps. A small TCB is a stronger guarantee than a large one — it is what makes G-2's forthcoming architecture description and G-6's security architecture description tractable to write and to verify.
+4   What This Unblocks
+Recommendation, not a ruling this document makes unilaterally: ratify this list as the TCB, formally closing R-3 as stated in §2. The Owner's sign-off is the ceremony act (RBM-8, once the Rules Service is built); this document is the evidence that ceremony would ratify.
+[TABLE 0]
+Applies BA-1.1 | “A component is in the TCB if and only if it is deterministic and its failure would falsify a guarantee this document or a document it governs makes.” Two conditions, both required. Neither alone qualifies.
+Method | Every component named in akki_governance_architecture_v1 Part 2, plus every mechanism added since by dap_backend_spec_v1 and the Security Amendments, evaluated against both conditions separately. Where a component is internally mixed — part deterministic, part learned — it is split rather than given one verdict for the whole.
+Resolves | Document 0 Ruling R-3 (the Watch's TCB membership) — not by new policy, but as the mechanical output of applying BA-1.1 consistently. Confirmed compatible with BR-9.1 (CIF) and BR-7.4 (Grey Mirror), both already on record.
+Status | Draft v1. This list is itself TCB-tier content per BA-1.2 — its own future changes go through the Rules Service's system-TCB ceremony (RBM-8) once ratified.
+Date | 9 September 2026
+[/TABLE]
+[TABLE 1]
+Component / mechanism | Guarantee at risk if it fails | Deterministic? | Verdict | Reasoning
+SyniSense — chokepoint (custody sequence) | No leakage of confidential information (#1) | Yes | IN | Sole invoking function, negative-scan build test. Deterministic and directly protection-critical — the platform's founding guarantee.
+SyniSense — closed outbound network | No leakage; no path around the crossing | Yes | IN | Allowlist and static-analysis gate. Removing it doesn't change behaviour probabilistically — it removes the boundary.
+Solva — assertion-boundary seam (import assertion) | Assertion floor (Doc 4) | Yes | IN | The enforcement mechanism is deterministic even though what it constrains — Solva's generated reasoning — is not. Split below.
+Solva — reasoning / generation itself | — | No | OUT | Learned. Informs; the seam decides what may be asserted. Excluded by the same logic as CIF.
+Northena — objective-freeze mechanism | No silent scope recalibration (#32) | Yes | IN | A shared, deterministic lock on a job's declared scope.
+Mtafiti — registry write/query path | Estate composition is what it's recorded to be | Yes | IN | Storage and retrieval logic. Any AI-assisted classification suggestion feeding it is a separate, learned input — not itself TCB.
+Targeta — yield wall / acceptance gate (MOAC) | No result accepted without every criterion (#22) | Yes | IN | Fixed criteria evaluated mechanically. No human, and no model, decides acceptance.
+Targeta — the training process itself | — | Partial | OUT | Reproducible under a fixed seed, but not a decision point — nothing is admitted or refused by training running. The wall, not the run, is TCB.
+Mkondo — hand-off registry | Clean hand-offs, no dropped context (#32) | Yes | IN (pending build) | Deterministic by design once built (BR-6.1). Included now so the enumeration doesn't need revisiting the day it ships.
+The Watch — Mkono (response: annotate/shape/contain/sever) | Nothing is misused (#6/#7), acted on before a human wakes | Yes | IN | Executes signed policy against the certainty registry (A5.2). Resolves R-3: the response half qualifies on its own terms.
+The Watch — Grey Mirror (Macho: detection) | — | No | OUT | Learned pattern-matching, per BR-7.4 already on record. Detects; does not decide. Resolves R-3's other half.
+The Ledger — writer | Every claim traceable to evidence (A8) | Yes | IN | Append-only, hash-chained, single writer. If this fails, nothing else on this list is verifiable either — the platform's evidentiary floor.
+CIF — ideation faculty | — | No | OUT | Confirms BR-9.1, already on record. Included here for completeness, not as a new finding.
+Critic Seam — RV-tier (deterministic record checks) | Evidence integrity (Doc 19A) | Yes | IN | Six mechanical verification checks against the record itself.
+Critic Seam — QA-tier (model-based judgement) | — | No | OUT | QA-1's own rule: detect, never decide. Findings route to RV-tier or a human.
+MOAC — acceptance-criteria evaluation | No result accepted without every criterion (#22) | Yes | IN | Same guarantee as Targeta's wall; MOAC is the mechanism that evaluates it.
+Rules Service — ceremony engine (RBM-7–RBM-13) | No rule in force without ceremony (I-1) | Yes | IN | Countdown, countersign verification, atomic apply. Procedural logic, not judgement.
+Rules Service — AI-assisted drafting (RBM-2) | — | No | OUT | Proposes rule text; a named human confirms. The confirmation step is TCB; the proposal isn't.
+Whitepaper Wizard — Tier 3 eligibility gate (WPW-11) | No human may confer eligibility outside stated conditions | Yes | IN | Two-path mechanical check against a run's own results.
+Whitepaper Wizard — prose assembly | — | No | OUT | Drafting draws on Tier 1/2 artefacts (WPW-13) but the composition itself is not a governance decision.
+Connect Wizard — rights-recording at admission | Downstream checkpoints have a trustworthy PIP (BR-14.1) | Yes | IN | What's recorded here is what every later checkpoint reads. If this is wrong, everything downstream inherits the error.
+Agent-Deploy Wizard | — | Undetermined | UNDETERMINED | BR-15.1 already flags this as an open item — the checkpoint's own outcome set isn't confirmed. No verdict forced here; carried as open.
+Deck Rendering Engine — determinism contract (DR-R2) | — | Yes | OUT | Genuinely deterministic, verified by build test — but not protection-critical to governance. Nothing on this platform's security or access guarantees depends on deck rendering. Deterministic is necessary, not sufficient.
+DAP — estate release budget (DAP-35) | No party or coalition exceeds the ruled total (Attribute 7 instance) | Yes | IN | Accumulator and threshold check. A floor violation under A5.2 — among the platform's least tunable mechanisms by design.
+DAP — artefact egress distance gate (DAP-31) | No artefact carries controlled-unit content past a ruled threshold | Yes | IN | Under a fixed seed the probe is deterministic — stated explicitly in the amendment that introduced it.
+DAP — output-content gate (A5.15) | No permitted output carries controlled content undetected | Yes | IN | Already specified as “a deterministic classifier held in the TCB” in the amendment itself. This entry confirms rather than newly decides it.
+DAP — admission-integrity probe, canary check (DAP-32, A5.2 half) | No trojaned model touches estate data (T-2) | Yes | IN | Canary touch is on A5.2's closed registry — unfakeable by construction.
+DAP — admission-integrity probe, trigger scan (DAP-32, capability-comparison half) | — | Mixed | SPLIT | Backdoor trigger-scanning commonly uses statistical methods in the literature this probe implements. Where it does, that half informs; the canary-touch half decides. Flagged for the build to confirm which technique is used.
+[/TABLE]
+[TABLE 2]
+Downstream item | How this closes or advances it
+Ruling R-3 | Resolved: the Watch's response half (Mkono) is TCB; Grey Mirror's detection half is not. Consistent with, not overriding, the Owner's authority to confirm it.
+G-2 — architecture description | The subsystem classification (SFR-enforcing / supporting / non-interfering) can now be written against a named list instead of first having to produce one.
+G-6 — security architecture description | Every reference-monitor candidate is now named. The next document in this set writes their ADV_ARC properties.
+G-10 — determinism inventory | This enumeration is deliberately reused as its starting point, not re-derived — the two questions (TCB membership; deterministic-or-learned) share almost all their evidence.
+[/TABLE]

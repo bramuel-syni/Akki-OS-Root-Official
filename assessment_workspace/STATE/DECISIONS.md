@@ -6530,3 +6530,33 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 ---
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+## 2026-09-08T~05:15Z · OWNER DIRECTIVE · MISSION-FRAMED REPORTING · 4 artifacts drop
+
+**Verbatim (via user proxy):**
+
+> "The analysis is never the subject. The subject should be the mission at all times - what are we building, what are the verified gaps surfaced and what are the missing requirements - output is lets generate xxx to close the gap, build and ensuring its works."
+
+**All future owner-facing reports:** MISSION-FRAMED. Four sections:
+1. What we are building
+2. Verified gaps
+3. Missing requirements
+4. Generate-to-close plan
+
+Analysis appears only as evidence behind those four. No REQ-ID walls in the top-level narrative. Plain product language.
+
+**Amendment to STANDING_ORDERS §2** (ENGAGEMENT DISCIPLINE): add the mission-framed rule as standing law. Tests-first invariant freezes the exact clause into §2 (invariant currently freezes header presence only; new invariant freezes clause presence within §2).
+
+**4 artifacts drop:**
+- DAP_Backend_Spec_v1.docx (M-17 closure candidate · cited 6× by Trojan/Whisper)
+- files (14).zip (unknown contents; M-1..M-7, M-14 closure candidates)
+- RMS Data Access Portal standalone.html (DAP frontend · pairs with backend spec)
+- RMS AI Prototype (standalone) (1).html (v3? · diff against v2 sha 4199c49f…)
+
+**Doc 20 extraction** (M-8 · DEFAULT-PENDING-OVERRIDE) — owner's "close the loop" reasonably covers it.
+
+**Discipline:** tests-first for new invariants · ratchet floor 3006 · two-commit pattern · double-green byte-match · no push · terminal pytest only.
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

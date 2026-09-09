@@ -1,0 +1,8 @@
+at_utc: 2026-09-09T09:00:18Z
+0, 0 %, 0 MiB, 76.85 W
+1, 0 %, 0 MiB, 76.17 W
+=trainers=
+1
+=dispatchers=
+239914 python3 on_host_queue_dispatcher.py --queue-file /home/ubuntu/akki_journal/queue/campaign_a_v21_lane1_restore_20260907T120000Z_queue_manifest.json --campaign-id campaign-a-v21-ladder-20260906 --gpu-id 1 --poll-interval-s 60
+253169 bash -c echo "at_utc: $(date -u +%FT%TZ)"; nvidia-smi --query-gpu=index,utilization.gpu,memory.used,power.draw --format=csv,noheader; echo "=trainers="; pgrep -af on_host_trainer.py | wc -l; echo "=dispatchers="; pgrep -af on_host_queue_dispatcher.py | head -5

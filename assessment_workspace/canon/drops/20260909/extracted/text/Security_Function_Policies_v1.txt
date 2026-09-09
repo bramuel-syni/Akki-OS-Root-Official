@@ -1,0 +1,26 @@
+AKKI PLATFORM  ·  ENGINE SPECIFICATION  ·  4 OF 9
+Named Security Function Policies
+security_function_policies_v1 — Draft for owner ratification · Closes Document 0 G-7
+1   A Correction Before the Substance
+G-7, as originally stated in akki_governance_architecture_v1, characterised “the evidence floor's lower-the-standard path” as subject-alterable — a party being measured able to weaken the bar it is held to — and R-2 offered two options to fix it. Re-checking the source text this document was supposed to fix shows that characterisation is wrong.
+“Lower the standard” is Document 4 A5.5, Solva's refusal mechanism, verified verbatim: when a conclusion cannot be supported at the class an objective asked for, the platform refuses visibly and offers the person asking three actions — accept the result as recorded at the class it did achieve, narrow the objective, or lower the standard being asked for. This is a query-recalibration option for the party asking a question. It is not a mechanism by which a party under evaluation weakens the evaluation it is subject to.
+The mechanism this was conflated with — the Watch's own binding of certainty to evidence — is A5.2 (Doc 3), verified verbatim: severance may be unlocked only by signals “an outsider cannot fabricate,” computed by “a function with no parameter through which a detector's confidence can enter,” explicitly built by transplanting “the same assertion-boundary discipline Solva uses.” A5.2 is not alterable by the party it measures. It is the opposite of the gap G-7 described.
+R-2 is therefore closed with a different finding than either option it originally offered: no violation exists. What remains genuinely open — and is the actual substance of G-7 — is that no mandatory baseline in the system, A5.2 included, has ever been written as a named security function policy in the form Attribute 7 and FDP_ACC.1 require. That work was never blocked by the lower-the-standard question. It proceeds below.
+Standing correction to R-2's entry in akki_governance_architecture_v1 §3 and to the Security Amendments' G-7 row: both should read “RESOLVED — no violation found on re-examination of Doc 4 A5.5 and Doc 3 A5.2” rather than carrying two unresolved options. Update 11 of this batch applies this correction to the governance architecture directly.
+2   Method
+FDP_ACC.1's form, applied to every mandatory baseline found across the canon: the TSF enforces a named policy on a stated set of subjects, objects, and operations. Each entry below states that triple explicitly — the thing G-7 actually found missing — and cites the floor's own source text.
+3   The Policies
+4   What Was Deliberately Not Named as a Policy
+Solva's “lower the standard” option (A5.5) is not listed above, on the finding in §1: it is not a policy constraining a subject, because nothing is being measured against it in the Attribute 7 sense. It remains exactly as specified in Document 4, unchanged by this document.
+5   Standing
+These seven are the platform's complete set of mandatory baselines as currently identified. A future floor — any new “no X without Y” rule — is added here in the same form, with its own subject/object/operation triple, at the point it is ratified, rather than left implicit in whichever document first states it.
+[TABLE 0]
+ID | Name | Policy
+SFP-1 | Assertion Floor | Subjects: any principal requesting a composed answer. Objects: the claim being composed. Operations: assert, compose, refuse. Rule: no sentence enters a composed answer without a per-sentence anchor to material; an unanchorable sentence is refused, not weakened (Doc 4 A2, A5.5).
+SFP-2 | Certainty-to-Evidence Binding | Subjects: the Watch's response function (Mkono). Objects: severance authority. Operations: unlock, withhold. Rule: severance unlocks only from the closed six-signal registry; no confidence score, however high, is an eligible input (Doc 3 A5.2).
+SFP-3 | Acceptance Floor | Subjects: any training run. Objects: model output. Operations: accept, refuse. Rule: every stated criterion satisfied or the run is refused in full; no partial acceptance (Promise #22, MOAC).
+SFP-4 | Custody Floor | Subjects: any data crossing the chokepoint. Objects: the crossing itself. Operations: cross, de-identify, re-identify. Rule: no asset crosses without de-identification appropriate to its custody class (Promise #1, A5.1–A5.3).
+SFP-5 | Non-Conformance Ceiling | Subjects: any actor whose behavioural signature drifts from its declared conduct. Objects: the actor's trust discount. Operations: reduce, revoke. Rule: loss of conformance alone returns an actor to baseline verification; it is never, by itself, grounds for conviction (Doc 3 A5.7).
+SFP-6 | Release Budget | Subjects: all external parties, jointly and severally. Objects: the estate's total information release. Operations: release, refuse. Rule: total release across all parties, operations, and time is bounded; exceeding it is a floor violation, not a negotiable ceiling (DAP-35).
+SFP-7 | Reproduction Ceiling | Subjects: any artefact or output leaving a component boundary. Objects: controlled-unit content. Operations: egress, refuse. Rule: no artefact or output passes carrying reproduction of a controlled unit above the ruled threshold (DAP-31, A5.15).
+[/TABLE]
