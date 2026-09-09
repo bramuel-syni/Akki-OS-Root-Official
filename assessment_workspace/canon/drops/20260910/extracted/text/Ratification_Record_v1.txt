@@ -1,0 +1,73 @@
+AKKI PLATFORM  ·  RATIFICATION RECORD
+Open Rulings — Consolidated
+ratification_record_v1 — every open ruling across all thirteen specs, one place to close them
+1   akki_governance_architecture_v1 (Document 0)
+2   rulebook_engine_spec_v1 (Rules Service)
+3   dap_backend_spec_v1
+4   Security Amendments — Trojan Artefacts and Whisper Threats
+5   Pruning & Unlearning Amendment
+6   agent_containment_spec_v1
+7   Dependency Order
+Three items should not be ratified independently of what they depend on:
+8   Sign-Off
+A section's sign-off ratifies every row within it at the stated status — resolved rows as confirmed, recommended rows as accepted defaults unless annotated otherwise, owner-input rows as still open until a value is written in. Partial ratification (accepting some rows in a section, not others) should be noted directly on this record rather than assumed from a blank signature.
+[TABLE 0]
+Purpose | Every ruling parked across akki_governance_architecture_v1, rulebook_engine_spec_v1, dap_backend_spec_v1, the Security Amendments (Trojan/Whisper), the Pruning & Unlearning Amendment, and agent_containment_spec_v1 — in one record, so ratifying does not mean opening thirteen documents to find what's still waiting.
+How to use | Green rows are resolved — sign off to formalise, nothing to decide. Amber rows carry a recommended default — ratify with one line, or override. Red rows need your own input directly — no default was proposed, either because it names a person or because it's a genuine business or risk-tolerance call this document can't make for you.
+Count | 26 items: 5 resolved, 12 with a recommended default, 6 requiring named input, plus 3 items flagged as dependent on another ruling landing first.
+Date | 9 September 2026
+[/TABLE]
+[TABLE 1]
+ID | Question | Status | Direction / Recommendation
+R-1 | TCB membership test — ratify Attribute 1's test itself | Resolved by use | tcb_enumeration_v1 applied it to 27 components without incident. Sign off to formalise.
+R-3 | Watch's TCB membership — full service, or Mkono only | Resolved | Mkono in, Grey Mirror out — tcb_enumeration_v1, consistent with BR-7.4. Sign off.
+R-5 | Deployment model — shared, dedicated, or both | Resolved | Dedicated per tenant, by cross-reference to the already-ratified appliance spec. Sign off.
+[/TABLE]
+[TABLE 2]
+ID | Question | Status | Direction / Recommendation
+R-1 | Countdown lengths per tier | Recommended default | 48 hours system-ordinary; 7 days system-TCB.
+R-2 | Second signatory role, system-ordinary rules | Owner input | Recommend the shape — a named engineering role distinct from the rule's own author. The person is yours to name.
+R-3 | External witness, system-TCB rules — same as the Watch's, or separate | Recommended default | Reuse the Watch's existing witness (C3). A second role buys no more independence.
+R-4 | Ratify v1 business-type taxonomy | Recommended default | Ratify as proposed.
+[/TABLE]
+[TABLE 3]
+ID | Question | Status | Direction / Recommendation
+R-1 | Controlled-unit definition | Recommended default | Ratify as proposed — already used as settled throughout everything built since.
+R-2 | Approving authority at RMS | Owner input | Named person required.
+R-3 | Per-party extraction ceilings | Dependent | Should be an allocation against the estate release budget (Security Amendments R-7), not an independent number. Rule after R-7, not before.
+R-4 | API key lifetime / rotation | Recommended default | 90-day rotation.
+R-5 | External-party taxonomy entry | Recommended default | Give AI labs their own entry — their rule-book mix matches no existing profile.
+R-6 | Licensing and pricing model | Owner input | Commercial decision. No technical default applies.
+[/TABLE]
+[TABLE 4]
+ID | Question | Status | Direction / Recommendation
+R-7 | Estate release budget size | Owner input — highest priority | Risk tolerance for this specific estate's data. Everything else in §3 and §5 waits on this number.
+R-8 | Reproduction threshold, sample size, probe design | Recommended default | Baseline-period approach — conservative default, revised from observed evidence, same pattern as the Watch's own five deferred values. Don't hand-pick a number now.
+R-9 | Per-run differential-privacy parameter (ε, δ) | Recommended default | Baseline-period approach, as R-8.
+R-10 | Recommendation window (A5.16) | Recommended default | 24 hours.
+R-11 | Coordination-signature threshold | Recommended default | Baseline-period approach, as R-8.
+[/TABLE]
+[TABLE 5]
+ID | Question | Status | Direction / Recommendation
+R-12 | Mandatory re-derivation, or recall sufficient, when unsharded | Recommended default | Re-derivation is default. Recall requires explicit, case-by-case Owner sign-off documenting why re-derivation was uneconomic — keeps the stronger protection as the norm.
+[/TABLE]
+[TABLE 6]
+ID | Question | Status | Direction / Recommendation
+R-1 | Capability-ceiling list (AC-1) | Recommended default | Ratify as proposed — traces directly to instrumental convergence (Omohundro 2008, Bostrom 2012), not an arbitrary list.
+R-2 | Independent scope-ratifying authority (AC-2) | Recommended default | Syni.ai holds this role for early deployments — the lab never grades its own exam. Also a sellable positioning point.
+R-3 | Sample rate, observation window | Recommended default | Baseline-period approach, as R-8 above.
+[/TABLE]
+[TABLE 7]
+Rule this first | Because it gates
+Security Amendments R-7 (estate release budget) | DAP R-3 (per-party ceilings) is an allocation against it, not a separate number.
+Document 0 R-1, R-3, R-5 | All three already resolved by later documents — sign-off only, no live dependency, listed here for completeness.
+[/TABLE]
+[TABLE 8]
+Section | Ratified by | Date
+1 — Document 0 |  | 
+2 — Rules Service |  | 
+3 — DAP |  | 
+4 — Security Amendments |  | 
+5 — Pruning & Unlearning |  | 
+6 — Agent Containment |  | 
+[/TABLE]

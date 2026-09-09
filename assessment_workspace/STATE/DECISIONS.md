@@ -6560,3 +6560,30 @@ Analysis appears only as evidence behind those four. No REQ-ID walls in the top-
 ---
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+## 2026-09-08T~06:15Z · OWNER DIRECTIVE · Pipeline defect challenge + new drop + rulings
+
+**Verbatim (via user proxy):**
+
+> STEP 1 — PIPELINE FIX (owner's exact instruction, do this FIRST): literally search the entire store for the strings "rule_criteria_spec_v1" and "business_continuity_v1" — grep across canon/ (all drops, all zips' extracted contents — re-unzip any zip not fully extracted), notes/, all five repos, STATE/, everything. Owner verbatim: "If those strings return nothing, they genuinely never arrived and I resend today. If they return something, the tracking indexes by description, not spec ID — that's the actual defect." Report the literal result either way: found-at-path or zero-hits, per string. If found: the missing-list entries M-1..M-7 were a TRACKING DEFECT — fix the tracking system itself: every requirement-source row in the master audit gets indexed by spec ID + exact filename + sha256, not by prose description; add an invariant that any doc cited by spec-ID anywhere in canon must either resolve to a banked file or appear on the missing list with a zero-hit grep receipt.
+>
+> STEP 2 — INGEST NEW DROP: Agent_Swarm_Containment_Governance_Model_v1.docx + files (15).zip. Bank byte-identical, unzip fully, inventory, extract WORD FOR WORD. Owner verbatim: "Ensure you read all documents word for word because you are claiming somethings are missing but are there". Specifically expect agent_containment_spec_v1 — 12 requirements AC-1..AC-12 plus 5 explicit NON-CLAIMS LIM-1..LIM-5. Owner rule: LIM-1..5 NOT requirements — track in distinct NON-CLAIMS register "so nobody later assumes condition 3 was solved". 13th spec, untracked in 1,192.
+>
+> STEP 3 — RULINGS:
+> RESOLVED/RATIFIED (5): Rules-Service R-4 taxonomy ratified as proposed · DAP R-1 controlled-unit definition ratified as proposed · Agent-Containment R-1 capability-ceiling list ratified as proposed · Rules-Service R-3 witness = same witness the Watch already uses (C3) · Agent-Containment R-2 scope-ratifying authority = Syni.ai for early deployments.
+> RECOMMENDED DEFAULTS, DEFAULT-class, revisable (9): Rules-Service R-1 countdown = 48h system-ordinary / 7 days system-TCB · DAP R-4 API-key lifetime = 90-day rotation · DAP R-5 AI labs get their own external-party taxonomy entry · Security R-10 recommendation window = 24h · Security R-8/R-9/R-11 = baseline-period approach · Agent-Containment R-3 sample rate/observation window = baseline-period approach · Pruning R-12 = re-derivation is default, recall requires explicit case-by-case owner sign-off.
+> COUPLED (1): DAP R-3 per-party ceilings MUST NOT be ruled alone — allocation against Security R-7 estate release budget; rule together.
+> GENUINELY OPEN (4): Security R-7 estate release budget number · DAP R-6 pricing model · WPW R-2 external-release signatory · DAP named approving authority.
+> Wire every DEFAULT-class value into config where mechanism exists (countdown lengths, key rotation, recommendation window) — tests-first where contracts change.
+>
+> STEP 4 — UPDATE MASTER AUDIT: 13th spec added (AC rows counted, LIM rows in non-claims register), missing-list rebuilt from STEP 1 literal-search + this drop, rollup recounted, ruling ledger updated (5 ratified / 9 defaults / 1 coupled / 4 open).
+>
+> STEP 5 — THEN FIRE W-REGISTRY-FULL-BUILD. Standing ruling ("Priority building goes to registry. I need registry fully build") remains. Defaults stand: prototype v3 = binding design, Doc 0 v2 = binding. Build per D.1: 22 missing routes, substitution rules against v3 rendered DOM, mount opportunity_briefs + perception, 77 campaign runs visible, real-Chromium proof, floor 3006 (fix/refresh stale harness-receipt invariant first — refresh the harness, don't relax the threshold). Solva-v2 lift queues immediately behind.
+>
+> Report: STEP 1 literal-search verdict first, then ingest summary + updated counts, then Registry build progress. Mission-framed, plain language. Go.
+
+**Discipline binding:** literal-search verdict is metrics-first evidence · new drop word-for-word · ratched into new NON-CLAIMS register · tests-first where contracts change · floor 3006 (harness refresh before ratchet) · no push.
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
