@@ -25,13 +25,28 @@ Boot sequence (in order, no shortcuts):
 
 > "The analysis is never the subject. The subject should be the mission at all times - what are we building, what are the verified gaps surfaced and what are the missing requirements - output is lets generate xxx to close the gap, build and ensuring its works."
 
-All owner-facing reports carry these four sections, in this order, plain product language:
-1. **What we are building** — one-paragraph mission synthesis from the full requirement base.
-2. **Verified gaps** — honest gap list with updated percentages.
-3. **Missing requirements** — remaining M-items in plain words.
-4. **Generate-to-close plan** — "to close gap N we generate/build X, proven working by Y".
+**Communication doctrine refinement (owner ruling 2026-09-09T~13:15Z, verbatim, superseding cadence rules below):**
 
-Analysis appears only as evidence behind those four. No REQ-ID walls in top-level narrative. No engineering vocabulary on the surface.
+> "It is to be applied once you have run analysis and you need to take a decision especially when on autonomous mode or you want to recommend a way forward. On updates, give an update of progress made, how much to go, decisions you have taken, discoveries made that were not envisioned at planning, recommendations to make experience better inline with the mission and this is only at the end of a large building sprint/wave - eg Solva building. for micro sprints, keep progress updates within the sprint plan."
+
+**Two report formats — pick by trigger:**
+
+- **DECISION-POINT format** (autonomous-mode calls, recommendations, plan compilations) — four sections, plain product language:
+  1. What we are building — one-paragraph mission synthesis from the full requirement base.
+  2. Verified gaps — honest gap list with updated percentages.
+  3. Missing requirements — remaining M-items in plain words.
+  4. Generate-to-close plan — "to close gap N we generate/build X, proven working by Y".
+
+- **END-OF-WAVE format** (owner-facing at large wave close only — Registry-Full-Build, Solva-Lift, DAP waves, etc.) — five sections, plain product language:
+  1. Progress made.
+  2. How much to go.
+  3. Decisions taken.
+  4. Discoveries not envisioned at planning.
+  5. Recommendations to make the experience better, in line with the mission.
+
+**Micro-sprint (CP-level) updates** stay INSIDE the sprint plan / grounding brief · never owner-facing as separate reports. Commit messages + DECISIONS entries + `STATE/NEXT.md` step markers carry the CP-level record. Owner sees the wave-close roll-up, not CP-by-CP narration.
+
+Analysis appears only as evidence behind those sections. No REQ-ID walls in top-level narrative. No engineering vocabulary on the surface.
 
 Owner-facing output is **metrics first**: requirement → status → evidence path → %. Plain language. No machine jargon. No assumed emphasis. No filler.
 

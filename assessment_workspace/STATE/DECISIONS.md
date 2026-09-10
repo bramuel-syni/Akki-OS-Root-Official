@@ -6664,3 +6664,38 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 ---
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+## 2026-09-09T~13:15Z · OWNER RULING · STANDING COMMUNICATION DOCTRINE · end-of-wave vs micro-sprint reporting
+
+**Verbatim (via user proxy):**
+
+> "The analysis is never the subject. The subject should be the mission at all times - what are we building, what are the verified gaps surfaced and what are the missing requirements - output is lets generate xxx to close the gap, build and ensuring its works - It is to be applied once you have run analysis and you need to take a decision especially when on autonomous mode or you want to recommend a way forward. On updates, give an update of progress made, how much to go, decisions you have taken, discoveries made that were not envisioned at planning, recommendations to make experience better inline with the mission and this is only at the end of a large building sprint/wave - eg Solva building. for micro sprints, keep progress updates within the sprint plan."
+
+**Operationalization (banked as standing law):**
+
+1. **End-of-wave reports** (owner-facing at wave close only) use the five-section format:
+   - Progress made
+   - How much to go
+   - Decisions taken
+   - Discoveries not envisioned at planning
+   - Recommendations to make the experience better, in line with the mission
+2. **Micro-sprint updates** (CP-level within a wave) stay INSIDE the sprint plan / grounding brief · never owner-facing as separate reports. Owner sees the wave-close roll-up.
+3. **Decision-point framing** (autonomous mode / recommendation): mission → verified gaps → missing requirements → "generate X to close the gap, build, prove it works."
+
+**Precedence over prior mission-framed reporting:** this refines STANDING_ORDERS §2. The prior four-section format (What we are building · Verified gaps · Missing requirements · Generate-to-close plan) remains the DECISION-POINT format. The five-section format is the END-OF-WAVE format. Micro-sprint CP closes drop out of owner-facing reporting entirely (they land in the sprint plan / commit message only).
+
+**Discipline binding:** compile the % report next per DIRECTIVE 2; then hold; no build.
+
+---
+
+## 2026-09-09T~13:15Z · OWNER DIRECTIVE 2 · "what are the %" · build status + load distribution + requirements tie-up
+
+**Verbatim (via user proxy):**
+
+> DIRECTIVE 2 — OWNER ASKS: "what are the %" — BUILD STATUS + LOAD DISTRIBUTION + REQUIREMENTS TIE-UP. Produce a mission-framed status report computed from real on-disk truth (master traceability audit, spec_id_index, surface audits, ratchet history). No estimates without a stated basis. Required contents: [component completion table · overall programme % · load distribution · requirements tie-up · mission-framed recommendation]. Commit to workspace master as notes/BUILD_STATUS_PERCENT_20260909.md. Local only. No push. Do NOT commit CP10 or start any build.
+
+**Interpretation banked:** compile status report from real files (MASTER_TRACEABILITY_AUDIT_20260907.md · 20260909_UPDATE.md · notes/spec_id_index.json · notes/models_roster.json · SURFACE_AUDIT_v2_prototype_20260907.md · baseline_failures.json ratchet history · RULING_LEDGER.md). Every percentage carries its numerator/denominator and source-file citation. No hand-waved numbers.
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
