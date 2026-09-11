@@ -1,0 +1,463 @@
+{
+  "ts": "2026-09-11T19:27:27.078454+00:00",
+  "domain_id": "3f9d29266af74046bfb637cabb995c39",
+  "rds": [
+    {
+      "name": "RDS-INTERACTIONS",
+      "id": "012de8d88d734339a2f50278128e0062in01",
+      "region": "af-south-1",
+      "engine": "MySQL 8.0",
+      "flavor": "rds.mysql.n1.large.2",
+      "charge_mode": "postPaid",
+      "period_type": null,
+      "period_num": null,
+      "is_auto_renew": null,
+      "public_ips": [
+        "159.138.162.220"
+      ],
+      "private_ips": [
+        "10.10.150.3"
+      ],
+      "created": "2025-08-04T11:04:53+0000"
+    },
+    {
+      "name": "weego-replica-d536",
+      "id": "01a1ecfa0fe14679bc8ab80f8b9b8b24in01",
+      "region": "af-south-1",
+      "engine": "MySQL 8.0",
+      "flavor": "rds.mysql.n1.large.4.rr",
+      "charge_mode": "postPaid",
+      "period_type": null,
+      "period_num": null,
+      "is_auto_renew": null,
+      "public_ips": [],
+      "private_ips": [
+        "10.10.150.115"
+      ],
+      "created": "2025-05-19T11:03:08+0000"
+    },
+    {
+      "name": "rds-shikisha",
+      "id": "87629ec62e2e492a8f3aa70b8c492df1in01",
+      "region": "af-south-1",
+      "engine": "MySQL 8.0",
+      "flavor": "rds.mysql.n1.large.2",
+      "charge_mode": "postPaid",
+      "period_type": null,
+      "period_num": null,
+      "is_auto_renew": null,
+      "public_ips": [
+        "203.123.83.144"
+      ],
+      "private_ips": [
+        "10.10.150.82"
+      ],
+      "created": "2025-02-25T06:14:03+0000"
+    },
+    {
+      "name": "Weego_and_marketing-analytics",
+      "id": "f5f29903117245469acd1c9abeeac2acin01",
+      "region": "af-south-1",
+      "engine": "MySQL 8.0",
+      "flavor": "rds.mysql.n1.xlarge.4",
+      "charge_mode": "postPaid",
+      "period_type": null,
+      "period_num": null,
+      "is_auto_renew": null,
+      "public_ips": [
+        "159.138.162.146"
+      ],
+      "private_ips": [
+        "10.10.150.54"
+      ],
+      "created": "2024-02-12T08:22:10+0000"
+    },
+    {
+      "name": "election-prod-db2",
+      "id": "ab72064f4b1640598e43b3151b8244c6in01",
+      "region": "af-south-1",
+      "engine": "MySQL 5.7",
+      "flavor": "rds.mysql.x1.large.2",
+      "charge_mode": "postPaid",
+      "period_type": null,
+      "period_num": null,
+      "is_auto_renew": null,
+      "public_ips": [
+        "110.238.77.61"
+      ],
+      "private_ips": [
+        "10.10.150.48"
+      ],
+      "created": "2024-01-30T14:28:20+0000"
+    },
+    {
+      "name": "visitors-database-cluster",
+      "id": "ff9f901597f94949bfe40450fa14f9d7in01",
+      "region": "af-south-1",
+      "engine": "MySQL 5.7",
+      "flavor": "rds.mysql.n1.xlarge.2",
+      "charge_mode": "postPaid",
+      "period_type": null,
+      "period_num": null,
+      "is_auto_renew": null,
+      "public_ips": [
+        "110.238.75.83"
+      ],
+      "private_ips": [
+        "10.10.150.168"
+      ],
+      "created": "2024-01-30T14:28:20+0000"
+    },
+    {
+      "name": "dbms-trf-req-database-3",
+      "id": "05e256cf1f8a4d2e8544213021d9b7d1in01",
+      "region": "af-south-1",
+      "engine": "MySQL 5.7",
+      "flavor": "rds.mysql.x1.large.2",
+      "charge_mode": "postPaid",
+      "period_type": null,
+      "period_num": null,
+      "is_auto_renew": null,
+      "public_ips": [
+        "159.138.175.179"
+      ],
+      "private_ips": [
+        "10.10.150.121"
+      ],
+      "created": "2024-01-30T14:28:11+0000"
+    },
+    {
+      "name": "citizen-digital-dev-db-cluster",
+      "id": "7d9c9aab51264c6886a5793904c2f96bin01",
+      "region": "af-south-1",
+      "engine": "MySQL 5.7",
+      "flavor": "rds.mysql.x1.large.2",
+      "charge_mode": "postPaid",
+      "period_type": null,
+      "period_num": null,
+      "is_auto_renew": null,
+      "public_ips": [
+        "159.138.164.124"
+      ],
+      "private_ips": [
+        "10.10.150.206"
+      ],
+      "created": "2024-01-30T14:26:18+0000"
+    },
+    {
+      "name": "rms-ai-pg",
+      "id": "2ce731854be043aaaaa9363d0a1b6585in03",
+      "region": "ap-southeast-1",
+      "engine": "PostgreSQL 16",
+      "flavor": "rds.pg.n1.large.4.ha",
+      "charge_mode": "prePaid",
+      "period_type": null,
+      "period_num": null,
+      "is_auto_renew": null,
+      "public_ips": [],
+      "private_ips": [
+        "192.168.1.30"
+      ],
+      "created": "2026-07-13T07:20:03+0000"
+    }
+  ],
+  "eip": {
+    "by_region": {
+      "af-south-1": {
+        "publicip_count": 71,
+        "publicips_matched_targets": [
+          "159.138.175.179",
+          "110.238.77.61",
+          "159.138.162.146",
+          "159.138.162.220",
+          "203.123.83.144",
+          "159.138.164.124",
+          "110.238.75.83"
+        ],
+        "bandwidth_count": 70
+      },
+      "ap-southeast-1": {
+        "publicip_count": 4,
+        "publicips_matched_targets": [],
+        "bandwidth_count": 4
+      }
+    },
+    "our_target_ips": {
+      "159.138.175.179": {
+        "public_ip": "159.138.175.179",
+        "id": "38752b76-eaad-428b-aa6c-a7a2eca106c3",
+        "type": "5_bgp",
+        "status": "ACTIVE",
+        "bandwidth_id": "4148f21b-45ba-4a35-800f-1763eb4a7ad5",
+        "bandwidth_size": 20,
+        "bandwidth_share_type": "PER",
+        "port_id": "c4049e23-9501-45db-bf80-d2be8ddffd15",
+        "tenant_id": "517a45cac3994683abcf0cc155b3c01b",
+        "profile": "{}",
+        "create_time": "2024-01-16 09:46:18",
+        "bandwidth_charge_mode": "traffic",
+        "bandwidth_billing_info": "",
+        "bandwidth_name": "ecs-5c55-bandwidth-1d6a",
+        "bandwidth_size_final": 20,
+        "bandwidth_publicip_info": [
+          "159.138.175.179"
+        ]
+      },
+      "110.238.77.61": {
+        "public_ip": "110.238.77.61",
+        "id": "3c8ff2b7-aa85-45cc-9499-32014ebee3cc",
+        "type": "5_bgp",
+        "status": "ACTIVE",
+        "bandwidth_id": "807b7aaf-9764-40e7-b3f9-dfb4447a0a84",
+        "bandwidth_size": 20,
+        "bandwidth_share_type": "PER",
+        "port_id": "5543f206-21eb-4797-b9b3-5edad94d47d6",
+        "tenant_id": "517a45cac3994683abcf0cc155b3c01b",
+        "profile": "{}",
+        "create_time": "2024-01-18 15:32:00",
+        "bandwidth_charge_mode": "traffic",
+        "bandwidth_billing_info": "",
+        "bandwidth_name": "ecs-d104-bandwidth-979f",
+        "bandwidth_size_final": 20,
+        "bandwidth_publicip_info": [
+          "110.238.77.61"
+        ]
+      },
+      "159.138.162.146": {
+        "public_ip": "159.138.162.146",
+        "id": "5e4d4771-5fd7-41d1-b460-b92391e82dc7",
+        "type": "5_bgp",
+        "status": "ACTIVE",
+        "bandwidth_id": "b338b4c5-081c-4876-913e-f5fe24306f7e",
+        "bandwidth_size": 300,
+        "bandwidth_share_type": "PER",
+        "port_id": "c472e4fd-469a-4fc4-9459-02312e879a05",
+        "tenant_id": "517a45cac3994683abcf0cc155b3c01b",
+        "profile": "{}",
+        "create_time": "2024-02-12 09:30:48",
+        "bandwidth_charge_mode": "traffic",
+        "bandwidth_billing_info": "",
+        "bandwidth_name": "bandwidth-6f8c",
+        "bandwidth_size_final": 300,
+        "bandwidth_publicip_info": [
+          "159.138.162.146"
+        ]
+      },
+      "159.138.162.220": {
+        "public_ip": "159.138.162.220",
+        "id": "760a0862-8fd4-4c38-af01-728821ccb418",
+        "type": "5_bgp",
+        "status": "ACTIVE",
+        "bandwidth_id": "3e506227-0725-4297-87a8-761e3436d8af",
+        "bandwidth_size": 300,
+        "bandwidth_share_type": "PER",
+        "port_id": "e41a4e5e-f31e-4eb1-b9ae-93a779f9854e",
+        "tenant_id": "517a45cac3994683abcf0cc155b3c01b",
+        "profile": "{}",
+        "create_time": "2025-08-01 08:08:50",
+        "bandwidth_charge_mode": "traffic",
+        "bandwidth_billing_info": "",
+        "bandwidth_name": "bandwidth-30b3",
+        "bandwidth_size_final": 300,
+        "bandwidth_publicip_info": [
+          "159.138.162.220"
+        ]
+      },
+      "203.123.83.144": {
+        "public_ip": "203.123.83.144",
+        "id": "7fe4caa7-0e88-4795-9d5a-8a2680290caf",
+        "type": "5_bgp",
+        "status": "ACTIVE",
+        "bandwidth_id": "ac27dd8a-dd5e-4b77-a879-58c3031b00ae",
+        "bandwidth_size": 300,
+        "bandwidth_share_type": "PER",
+        "port_id": "b25f744f-d5a1-4ca6-ad12-ea0b96525424",
+        "tenant_id": "517a45cac3994683abcf0cc155b3c01b",
+        "profile": "{}",
+        "create_time": "2025-02-25 05:02:38",
+        "bandwidth_charge_mode": "traffic",
+        "bandwidth_billing_info": "",
+        "bandwidth_name": "bandwidth-a63d",
+        "bandwidth_size_final": 300,
+        "bandwidth_publicip_info": [
+          "203.123.83.144"
+        ]
+      },
+      "159.138.164.124": {
+        "public_ip": "159.138.164.124",
+        "id": "88ddd597-a8d3-4dd5-b5b9-0ff46e139072",
+        "type": "5_bgp",
+        "status": "ACTIVE",
+        "bandwidth_id": "2791c162-4391-40a8-8c54-164e64ac0a11",
+        "bandwidth_size": 20,
+        "bandwidth_share_type": "PER",
+        "port_id": "e8fa00f4-74ca-4763-ba78-3730888401a0",
+        "tenant_id": "517a45cac3994683abcf0cc155b3c01b",
+        "profile": "{}",
+        "create_time": "2024-01-17 12:17:38",
+        "bandwidth_charge_mode": "traffic",
+        "bandwidth_billing_info": "",
+        "bandwidth_name": "ecs-6fcf-bandwidth-adda",
+        "bandwidth_size_final": 20,
+        "bandwidth_publicip_info": [
+          "159.138.164.124"
+        ]
+      },
+      "110.238.75.83": {
+        "public_ip": "110.238.75.83",
+        "id": "9090b82a-030e-4574-8d03-f20f396a1b82",
+        "type": "5_bgp",
+        "status": "ACTIVE",
+        "bandwidth_id": "47a21472-255d-408f-88c7-852d9b72924c",
+        "bandwidth_size": 300,
+        "bandwidth_share_type": "PER",
+        "port_id": "4cf60008-5530-437d-826d-7a7f4f7f0ab8",
+        "tenant_id": "517a45cac3994683abcf0cc155b3c01b",
+        "profile": "{}",
+        "create_time": "2024-01-23 08:43:10",
+        "bandwidth_charge_mode": "traffic",
+        "bandwidth_billing_info": "",
+        "bandwidth_name": "ip-10-10-100-213-bandwidth-a957",
+        "bandwidth_size_final": 300,
+        "bandwidth_publicip_info": [
+          "110.238.75.83"
+        ]
+      }
+    }
+  },
+  "data_volume": {
+    "host": "110.238.76.159",
+    "per_db": [
+      {
+        "db": "db_jipange",
+        "tables": 22,
+        "data_mb": 5555.7,
+        "index_mb": 7019.3,
+        "total_mb": 12575.0,
+        "total_gb": 12.28
+      },
+      {
+        "db": "db_skiza",
+        "tables": 24,
+        "data_mb": 5252.3,
+        "index_mb": 2786.9,
+        "total_mb": 8039.2,
+        "total_gb": 7.851
+      },
+      {
+        "db": "viupay_fare",
+        "tables": 42,
+        "data_mb": 998.1,
+        "index_mb": 618.7,
+        "total_mb": 1616.8,
+        "total_gb": 1.579
+      },
+      {
+        "db": "viupay_fare_test",
+        "tables": 41,
+        "data_mb": 925.3,
+        "index_mb": 611.3,
+        "total_mb": 1536.6,
+        "total_gb": 1.501
+      },
+      {
+        "db": "viusasa_staging",
+        "tables": 162,
+        "data_mb": 405.0,
+        "index_mb": 80.8,
+        "total_mb": 485.8,
+        "total_gb": 0.474
+      },
+      {
+        "db": "viutickets",
+        "tables": 56,
+        "data_mb": 215.7,
+        "index_mb": 60.1,
+        "total_mb": 275.7,
+        "total_gb": 0.269
+      },
+      {
+        "db": "citizen_digital",
+        "tables": 39,
+        "data_mb": 47.2,
+        "index_mb": 2.9,
+        "total_mb": 50.1,
+        "total_gb": 0.049
+      },
+      {
+        "db": "viusasa_dev",
+        "tables": 132,
+        "data_mb": 13.0,
+        "index_mb": 9.5,
+        "total_mb": 22.6,
+        "total_gb": 0.022
+      },
+      {
+        "db": "viusasa_staging_2",
+        "tables": 138,
+        "data_mb": 14.6,
+        "index_mb": 4.4,
+        "total_mb": 19.0,
+        "total_gb": 0.019
+      },
+      {
+        "db": "viusasa_staging_dev",
+        "tables": 151,
+        "data_mb": 2.3,
+        "index_mb": 4.6,
+        "total_mb": 7.0,
+        "total_gb": 0.007
+      },
+      {
+        "db": "tafaria_ecommerce",
+        "tables": 130,
+        "data_mb": 2.0,
+        "index_mb": 3.9,
+        "total_mb": 6.0,
+        "total_gb": 0.006
+      },
+      {
+        "db": "tafaria_shop",
+        "tables": 117,
+        "data_mb": 2.1,
+        "index_mb": 2.6,
+        "total_mb": 4.7,
+        "total_gb": 0.005
+      },
+      {
+        "db": "viupay_dev",
+        "tables": 37,
+        "data_mb": 2.8,
+        "index_mb": 0.9,
+        "total_mb": 3.7,
+        "total_gb": 0.004
+      },
+      {
+        "db": "freddy_dev",
+        "tables": 38,
+        "data_mb": 1.6,
+        "index_mb": 1.4,
+        "total_mb": 3.0,
+        "total_gb": 0.003
+      },
+      {
+        "db": "viutickets_dev",
+        "tables": 44,
+        "data_mb": 1.8,
+        "index_mb": 1.0,
+        "total_mb": 2.7,
+        "total_gb": 0.003
+      },
+      {
+        "db": "miniapps",
+        "tables": 21,
+        "data_mb": 1.8,
+        "index_mb": 0.6,
+        "total_mb": 2.4,
+        "total_gb": 0.002
+      }
+    ],
+    "total_gb": 24.073999999999998,
+    "row_count_estimate": 179289626
+  }
+}

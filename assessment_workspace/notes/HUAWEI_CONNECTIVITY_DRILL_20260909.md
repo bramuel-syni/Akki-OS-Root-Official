@@ -291,3 +291,161 @@ I deliberately did **not** open any of the obviously PII-bearing tables (`active
 - `/app/assessment_workspace/tools/_scratch/live_sql_enum.json` — schema + row-count map
 - `/app/backend/estate_keys/data_sources/db_credentials.csv` — source CSV, 0600, gitignored, sha256 `d8a7f0e2…0cf22`
 
+
+---
+
+# PART 3 — Cost of running mtafiti / extraction against the Huawei estate
+
+**Directive:** OWNER OPERATIONAL REQUEST — "Are we going to be charged to run mtafiti on this estate?" Grounded answer from actual estate config, not generic pricing.
+
+## Verdict line
+
+**Running mtafiti/extraction costs: ~$2–$4 (rough band) for a full one-shot pull of the currently reachable host, driven entirely by outbound EIP traffic (traffic-billed at $/GB, not per-query), charged to the Huawei account that OWNS THE EIP — for the 7 EIPs we can see in `af-south-1`, that is domain `3f9d29266af74046bfb637cabb995c39` (BramwelMwalo). For the reachable host `110.238.76.159` itself, the EIP is NOT visible to this AK/SK — likely a different Huawei tenant, which means someone else's account bears the cost of that specific extraction.**
+
+Nothing is charged to our pod/account. Queries themselves are free. What is metered is the return-path bytes leaving the RDS's EIP.
+
+## Part A — "mtafiti" terminology (in-repo confirmation)
+
+Yes, `mtafiti` is a first-class named engine in the codebase and canon. Findings (case-insensitive grep, both repos + canon):
+
+**In `Extraction-Akki` (tracked source):**
+- `backend/services/mtafiti/` — 9 modules: `census.py, declaration.py, feasibility.py, floor_feasibility.py, inference.py, measure.py, registry.py, source_standing.py, v3_overlay.py, verdict.py`
+- `backend/contracts/mtafiti_registry.py` (Pydantic frozen contract)
+- `backend/routers/mtafiti.py`
+- `backend/tests/invariants/test_mtafiti_invariants.py` (16 tests exercised per `REUSE_ASSESSMENT.md:108`)
+- `docs/mandates/RMS_Mtafiti_Specification.md` + `docs/mandates/source/RMS_Mtafiti_Specification.docx`
+- `docs/audits/g4_mtafiti_conformance_v1.md` — "17 MATCH / 2 SPEC_EXPANSION / 0 MATERIAL_GAP" (`BUILD_JOURNAL.md:1128`)
+
+**In canon (workspace):**
+- `notes/canon_4_requirements.md` §5–§10 defines Mtafiti as **the Measurement engine**:
+  - C4-003 §5 Charter: "Mtafiti measures WHAT THE ESTATE ACTUALLY CONTAINS, at whatever scale (whole org, department, archive, single file — Doc 1 §1.1)"
+  - C4-004 §5 Objective-blind: "Measures the ESTATE, never the ANSWER"
+  - C4-010 §8 Census records: "Mtafiti writes census/registry records"
+  - C4-011 §9 Composition: "by language, era, source, condition, evidence class"
+  - C4-013 §10 Repeatable
+- Also called "The Registry" per `canon/drops/20260907/extracted/text/doc0_governance_architecture.txt:235` ("Mtafiti (the Registry)")
+- 22 canon rules in `System_Rules_Registry.json` mapped to Mtafiti as the owning engine.
+
+**In owner's language:** "running mtafiti on this estate" = executing our objective-blind census/measurement workload against the Huawei RDS databases — a bulk read for schema + row counts + data profiling to populate the registry. That is exactly the shape of what we just did in the connectivity drill, at greater volume.
+
+## Part B — Actual billing config (from `list_instances`, `list_publicips`, `list_bandwidths`)
+
+### B.1 RDS instance charging_mode (already-billed vs metered)
+
+Per Huawei RDS API `charge_info.charge_mode`:
+
+| Instance | Region | Engine | Flavour | `charge_mode` |
+|----------|--------|--------|---------|:-------------:|
+| RDS-INTERACTIONS | af-south-1 | MySQL 8.0 | rds.mysql.n1.large.2 | **postPaid** |
+| weego-replica-d536 | af-south-1 | MySQL 8.0 | rds.mysql.n1.large.4.rr | **postPaid** |
+| rds-shikisha | af-south-1 | MySQL 8.0 | rds.mysql.n1.large.2 | **postPaid** |
+| Weego_and_marketing-analytics | af-south-1 | MySQL 8.0 | rds.mysql.n1.xlarge.4 | **postPaid** |
+| election-prod-db2 | af-south-1 | MySQL 5.7 | rds.mysql.x1.large.2 | **postPaid** |
+| visitors-database-cluster | af-south-1 | MySQL 5.7 | rds.mysql.n1.xlarge.2 | **postPaid** |
+| dbms-trf-req-database-3 | af-south-1 | MySQL 5.7 | rds.mysql.x1.large.2 | **postPaid** |
+| citizen-digital-dev-db-cluster | af-south-1 | MySQL 5.7 | rds.mysql.x1.large.2 | **postPaid** |
+| rms-ai-pg | ap-southeast-1 | PostgreSQL 16 | rds.pg.n1.large.4.ha | **prePaid** |
+
+Reading: `postPaid` = pay-per-use, billed hourly by CPU/RAM/storage class regardless of query load; `prePaid` = the monthly/yearly commitment has already been paid up-front, no metered charge at all until the term rolls over. **Query load itself does NOT change the RDS bill** on either mode — there is no per-query, per-CPU-second, or per-row-read charge line in the Huawei RDS pricing model. The instance-hour price bought you the compute; using it more is free.
+
+### B.2 EIP bandwidth billing (this is the metered driver)
+
+Per `list_publicips` + `list_bandwidths` in `af-south-1` (matched to our 7 visible RDS EIPs):
+
+| Public IP | Bound to | `bandwidth_size` | `share_type` | **`charge_mode`** |
+|-----------|----------|:----------------:|:------------:|:-----------------:|
+| 159.138.162.220 | RDS-INTERACTIONS | 300 Mbps | PER (dedicated) | **traffic** |
+| 159.138.162.146 | Weego_and_marketing-analytics | 300 Mbps | PER | **traffic** |
+| 203.123.83.144 | rds-shikisha | 300 Mbps | PER | **traffic** |
+| 110.238.75.83 | visitors-database-cluster | 300 Mbps | PER | **traffic** |
+| 110.238.77.61 | election-prod-db2 | 20 Mbps | PER | **traffic** |
+| 159.138.175.179 | dbms-trf-req-database-3 | 20 Mbps | PER | **traffic** |
+| 159.138.164.124 | citizen-digital-dev-db-cluster | 20 Mbps | PER | **traffic** |
+
+**All 7 visible EIPs are `charge_mode=traffic`** — pay-per-GB egress. The `bandwidth_size` field is a bandwidth cap (throttling ceiling), not a billing floor. In `traffic` mode, you are billed by the volume of outbound bytes leaving the EIP; the Mbps figure only limits peak rate, it does not commit you to a monthly bandwidth block.
+
+Reading: on `charge_mode=traffic`, downloading 1 GB out costs `1 × rate_per_GB_af-south-1`. Huawei public rate card for `af-south-1` (Johannesburg) EIP outbound traffic is in the **$0.08–$0.13 / GB** band (I have not confirmed the exact tier at this exact moment; owner should sanity-check against the invoice). No fixed monthly bandwidth commitment shielding this — every GB is metered.
+
+`ap-southeast-1` publicip count was 4 in that project — none matched our targets (the only ap-southeast-1 instance `rms-ai-pg` has no public IP anyway; internal-only).
+
+### B.3 The reachable host is in a **different tenant** than the AK/SK owner
+
+Important honesty flag: `list_publicips` in `af-south-1` returned 71 EIPs but the reachable-live host `110.238.76.159` **is not among them**. Same for `203.123.86.10` and `159.138.164.93` from the DB creds CSV — none appear in this AK/SK's EIP visibility. That means:
+
+- The RDS instance behind `110.238.76.159` is not one of the 9 the AK/SK could list.
+- Its EIP lives under a different Huawei domain / project that the AK/SK is not authorised to inspect.
+- We can still read the DATA (the DB credential worked; SG accepts our egress; the DB grants `bramuel@%`), but we cannot confirm its `charge_mode` from this AK/SK.
+- Reasonable inference (same operator estate, same egress-pricing region): `traffic`-billed with a `bandwidth_size` cap. Not a fact — an inference. Owner can confirm from the Huawei billing console.
+
+### B.4 Cross-region egress? No, this is single-hop internet egress
+
+Our pod (`34.170.12.145`, GCP block) reaches the RDS EIP over public internet directly. Huawei doesn't distinguish "cross-region" for EIP outbound traffic — the EIP bills its own traffic in its own region regardless of destination. No secondary hop bills stack up on top of it.
+
+### B.5 Data volume — how many GB is a full mtafiti pull
+
+From `information_schema.TABLES.data_length + index_length` on the reachable host (`110.238.76.159`):
+
+| Database | Tables | data (MB) | index (MB) | total | GB |
+|----------|-------:|----------:|-----------:|------:|---:|
+| db_jipange | 22 | 5,555.7 | 7,019.3 | 12,575.0 MB | **12.28** |
+| db_skiza | 24 | 5,252.3 | 2,786.9 | 8,039.2 MB | **7.85** |
+| viupay_fare | 42 | 998.1 | 618.7 | 1,616.8 MB | **1.58** |
+| viupay_fare_test | 41 | 925.3 | 611.3 | 1,536.6 MB | **1.50** |
+| viusasa_staging | 162 | 405.0 | 80.8 | 485.8 MB | 0.47 |
+| viutickets | 56 | 215.7 | 60.1 | 275.7 MB | 0.27 |
+| citizen_digital | 39 | 47.2 | 2.9 | 50.1 MB | 0.05 |
+| viusasa_dev | 132 | 13.0 | 9.5 | 22.6 MB | 0.02 |
+| viusasa_staging_2 | 138 | 14.6 | 4.4 | 19.0 MB | 0.02 |
+| viusasa_staging_dev | 151 | 2.3 | 4.6 | 7.0 MB | 0.007 |
+| tafaria_ecommerce | 130 | 2.0 | 3.9 | 6.0 MB | 0.006 |
+| tafaria_shop | 117 | 2.1 | 2.6 | 4.7 MB | 0.005 |
+| viupay_dev | 37 | 2.8 | 0.9 | 3.7 MB | 0.004 |
+| freddy_dev | 38 | 1.6 | 1.4 | 3.0 MB | 0.003 |
+| viutickets_dev | 44 | 1.8 | 1.0 | 2.7 MB | 0.003 |
+| miniapps | 21 | 1.8 | 0.6 | 2.4 MB | 0.002 |
+| **TOTAL** | **1,193** | **13,441.4** | **11,208.9** | **24,650.3 MB** | **~24.07 GB** |
+
+Approximate row count across the 16 non-system schemas: **~179 M rows** (from `information_schema.TABLES.table_rows`, which is an estimator, not authoritative — actual could be 10–30% off in either direction).
+
+Mtafiti's real payload will be smaller than 24 GB because:
+- Indexes (11 GB, 45% of the estate) do not transit — census reads scan tables, not index blocks over the wire.
+- Mtafiti-Spec measures + composes but does not necessarily pull every row of every table — it can sample stratified rows and count via `COUNT(*)`, `MIN/MAX`, and metadata queries. That's the whole point of "objective-blind census, not full replication".
+- A full replicate-everything worst-case is bounded by `~13.4 GB` of actual data pages (`data_length` only).
+
+### B.6 Rough cost band
+
+Using the Huawei af-south-1 EIP `charge_mode=traffic` public rate band of ~$0.08–$0.13/GB:
+
+| Scenario | Egress bytes | Approx cost (owner's account) |
+|----------|:------------:|:-----------------------------:|
+| Mtafiti census-only (metadata + `COUNT(*)` + stratified samples, ≈ 1–3% of data) | 0.1–0.4 GB | **< $0.05** |
+| Realistic mtafiti scan (sample rows, first N per table, key-column projections, ≈ 10–20%) | 1.3–2.7 GB | **~$0.10–$0.35** |
+| Full one-shot pull of `data_length` (all rows all tables all columns, uncompressed wire) | ~13.4 GB | **~$1.07–$1.74** |
+| Full pull of data + indexes | ~24 GB | **~$1.93–$3.13** |
+
+Rough band therefore: **cents to a few dollars** for the currently reachable host, one-time. Multiply by however-often the census runs and by whichever hosts we open next.
+
+If we later open the other 6 af-south-1 RDS instances (or the 2 blocked hosts from the DB creds CSV), you can scale by their `data_length` — but note that some of those (`election-prod-db2`, `visitors-database-cluster`, `dbms-trf-req-database-3`, `citizen-digital-dev-db-cluster`) have **20 Mbps EIP caps** which will act as a soft throttle on how fast a pull can complete (20 Mbps = ~2.4 MB/s = ~8.6 GB/hour max), not a cost multiplier.
+
+## Answers to the four owner-questions, plainly
+
+1. **Does running queries cost extra?** No. RDS `charge_mode` is `postPaid` on 8 of 9 instances (already billed hourly by the owner regardless of our SELECTs) and `prePaid` on `rms-ai-pg` (already paid for a term). Neither mode meters per-query. SQL execution against the instance is a zero-marginal-cost activity on the RDS side.
+2. **What IS the metered driver?** Outbound EIP traffic. All 7 visible EIPs are `charge_mode=traffic`, meaning every byte that leaves the RDS's public IP toward our pod is billed on a $/GB basis. Not covered under a bandwidth-commit — every GB counts.
+3. **Order-of-magnitude for full extraction?** The one reachable host holds ~13 GB of data (~24 GB with indexes) across 16 schemas / ~179 M rows. A full worst-case pull is roughly **$1–$3** in EIP egress on that host at Huawei af-south-1 rates. Mtafiti's actual pattern (objective-blind census with sampling, metadata, and stratified counts) will be an order of magnitude smaller — cents.
+4. **Whose account bears it?** For the 7 EIPs bound to the RDS instances the AK/SK can see, all live in domain `3f9d29266af74046bfb637cabb995c39` (BramwelMwalo / owner). Huawei bills EIP traffic to the account that owns the EIP, not the receiver — so **the owner's Huawei account, not ours**. For `110.238.76.159` (the actual reachable-live host from Part 2), the EIP is invisible to this AK/SK, which strongly suggests a different Huawei tenant/domain — whoever owns THAT account bears the cost of pulling from THAT host. Owner should verify from the console which of their linked accounts covers it.
+
+## Guardrail attestation (Part 3)
+
+- No product code touched. `programme/track-a` untouched. `master` workspace untouched.
+- Ratchet floor **3098** unchanged. No pytest invoked. No testing_agent invoked.
+- HOLD respected — no build wave, no CP10 commit.
+- No commits. No push. Credential CSVs remain outside `git status` on both repos (verified).
+- Only read-only APIs called: `rds.list_instances`, `eip.list_publicips`, `eip.list_bandwidths`, `information_schema.TABLES` SELECT. No writes to any DB, no changes to any SG or EIP.
+- Password never written cleartext beyond source CSV.
+
+## Additional artefacts (uncommitted, local only)
+
+- `/app/assessment_workspace/tools/huawei_billing_probe.py`
+- `/app/assessment_workspace/tools/_scratch/billing_probe.json`
+- `/app/assessment_workspace/tools/_scratch/billing_stdout.log`
+
