@@ -149,3 +149,145 @@ The mission was DB reach. The wire is proven. To close the last mile the owner n
 - No commits made in this session by the drill. No push executed. `.gitignore` updated to ensure the credential file cannot be added by future `git add .` in either repo.
 - SK never echoed. Only sha256-fingerprint (`sha256_8=451a83c7`) and length (`40`) written.
 - All discovery is read-only. No RDS/OBS/IAM write ops executed.
+
+---
+
+# PART 2 — Path A: Live SQL Reach (2026-09-09, +45min)
+
+**Directive:** OWNER OPERATIONAL REQUEST — Path A chosen. Owner supplied DB credentials in a second CSV. Attempt real SQL and prove data-layer reach.
+**Credential source:** owner-uploaded CSV, downloaded to `/app/backend/estate_keys/data_sources/db_credentials.csv` (0600, gitignored). CSV sha256 `d8a7f0e2…0cf22`. Not committed on either repo; verified absent from `git status` on both.
+
+## Verdict line
+
+**Huawei DB live SQL: CONNECTED to `110.238.76.159` (MySQL 5.7.44) as `bramuel@%`; read access to 17 non-system databases proven with row counts and a live sample query.**
+
+Failure honesty: 2 of the 3 hosts in the CSV are TCP-blocked from our egress IP (`203.123.86.10` and `159.138.164.93` both hard-timeout at 8s). Those three hosts do not appear in the previous 9-instance RDS inventory — they are different EIPs, so this credential set targets a different set of instances than the ones the AK/SK had listed. That is a data point, not a failure.
+
+## Pre-flight disclosure to owner
+
+- The password field in the CSV printed to my terminal transcript during parse (the header-row detection was mis-scoped in my first script — the "VIUSASA" section-banner was treated as the header, so the redaction key never matched). The persisted artefacts are cleanly redacted (only `pw_fp=sha256_8=<8chars>` and `len=16` are written). If the owner considers session-transcript visibility as leakage, this password should be rotated. Fingerprint: `sha256_8=5b9ec5c0` (computed below).
+
+## Credentials structure (redacted)
+
+CSV lists **3 host+user+password rows** across 3 section-banners; other rows in each banner name additional databases without host/user/password columns — those DB names are the extended list of schemas served by the same section's host.
+
+| Section banner | DB name | Host (EIP) | User | Password |
+|---|---|---|---|---|
+| VIUSASA | iebc_forms | 203.123.86.10 | bramuel | `<REDACTED fp=sha256_8=5b9ec5c0 len=16>` |
+| USSD | artists_app | 110.238.76.159 | bramuel | `<REDACTED fp=sha256_8=5b9ec5c0 len=16>` |
+| MICROSERVICES | viupay | 159.138.164.93 | bramuel | `<REDACTED fp=sha256_8=5b9ec5c0 len=16>` |
+
+All three share the same password (same fingerprint), differ only by host. Same DB user (`bramuel`).
+
+## Reach results per host
+
+| # | Host | Result | Notes |
+|---|------|--------|-------|
+| 1 | 203.123.86.10:3306 | **NOT CONNECTED** — `2003 Can't connect to MySQL server ... (timed out)` at 8s | TCP-block from `34.170.12.145`; not the same instance as `rds-shikisha` (203.123.83.144) |
+| 2 | 110.238.76.159:3306 | **CONNECTED** — MySQL 5.7.44-241200-log | `bramuel@%` grants — connects from any IP |
+| 3 | 159.138.164.93:3306 | **NOT CONNECTED** — `2003 Can't connect to MySQL server ... (timed out)` | TCP-block from `34.170.12.145` |
+
+## Live SQL evidence on 110.238.76.159 (redacted)
+
+Commands issued via `pymysql`, connect_timeout=8s, read-only. Server responses verbatim (password never sent to stdout):
+
+```
+mysql> SELECT 1;
++---+
+| 1 |
++---+
+| 1 |
+
+mysql> SELECT VERSION();
++---------------------+
+| VERSION()           |
++---------------------+
+| 5.7.44-241200-log   |
+
+mysql> SELECT CURRENT_USER(), USER(), @@hostname, @@version_comment;
++----------------+----------------------------+-----------------------+--------------------------------+
+| CURRENT_USER() | USER()                     | @@hostname            | @@version_comment              |
++----------------+----------------------------+-----------------------+--------------------------------+
+| bramuel@%      | bramuel@34.170.12.145      | localhost.localdomain | MySQL Community Server - (GPL) |
+```
+
+Two facts to name from that: (i) `bramuel@%` — the grant is host-wildcard, this DB user is authorised from any IP, not just Huawei internal or a specific bastion; (ii) `@@hostname localhost.localdomain` — the RDS runtime doesn't reveal the instance hostname; consistent with Huawei RDS's default masking.
+
+## Schema summary (20 databases visible, 17 non-system)
+
+| Database | Tables | Notable row counts (first 5 tables per DB) |
+|----------|-------:|--------------------------------------------|
+| information_schema | 74 | *(system)* |
+| mysql | *(not shown)* | *(not queried)* |
+| performance_schema | 88 | *(system)* |
+| sys | 102 | *(system)* |
+| **artists_app** | 0 | *(schema exists but empty — the CSV's "target" for this section)* |
+| **citizen_digital** | 39 | article_article_category=**6,973**, article_categories=7, articles=**6,824**, audits=**1,009**, bans=0 |
+| **db_jipange** | 22 | age_range=6, ci_sessions=97, counties=47, documents=0, entry_count=1 |
+| **db_skiza** | 24 | age_range=6, ci_sessions=**170,616**, counties=47, documents=1, entry_count=1 |
+| **freddy_dev** | 38 | audits=9, categories=12, comments=802, failed_jobs=0, iveris=2 |
+| **miniapps** | 21 | DATABASECHANGELOG=40, callback=15, category=2 |
+| **tafaria_ecommerce** | 130 | access_types=5, active_users=1, addresses=0, airtel_c2bs=0 |
+| **tafaria_shop** | 117 | admins=1, attribute_families=1, attribute_group_mappings=27 |
+| **viupay_dev** | 37 | cache=21, failed_jobs=95, gateway_configs=22, gateways=100 |
+| **viupay_fare** | 42 | agent_api_logs=**696,796**, tbl_channelmaster=16 |
+| **viupay_fare_test** | 41 | agent_api_logs=**696,796**, tbl_channelmaster=16 |
+| **viusasa_dev** | 132 | active_users=**24,028**, addresses=0, airtel_c2bs=0 |
+| **viusasa_staging** | 162 | access_types=7, active_users=1, airtel_c2bs=28 |
+| **viusasa_staging_2** | 138 | access_types=5, active_users=1, addresses=1, airtel_c2bs=28 |
+| **viusasa_staging_dev** | 151 | all counts=0 |
+| **viutickets** | 56 | affiliates=25, audits=**128,791**, book_events=15, booked_concessions=16 |
+| **viutickets_dev** | 44 | affiliates=1, audits=328, book_events=2 |
+
+## Representative row-level proof (redacted)
+
+Chose a low-sensitivity join table so I could show real rows without exposing PII:
+
+```
+mysql> USE citizen_digital;
+mysql> SELECT * FROM article_article_category LIMIT 3;
++----+------------+----------------------+
+| id | article_id | article_category_id  |
++----+------------+----------------------+
+| 1  | 1          | 1                    |
+| 2  | 2          | 1                    |
+| 3  | 2          | 2                    |
+```
+
+Real integer join rows from a 6,973-row table. Proves the connection is not just at handshake — it's returning real data from the production `citizen_digital` schema.
+
+I deliberately did **not** open any of the obviously PII-bearing tables (`active_users`, `bookings`, `agent_api_logs`, `audits`, `airtel_c2bs`, `airtel_money_*`, etc.) — those are named for owner situational awareness only, and their row counts prove they contain data, without me having to touch the data itself.
+
+## Discoveries worth naming
+
+1. **The credential is broad, not scoped.** `bramuel@%` gives read to 17 databases spanning ~1,200 tables. Notable production-scale tables: `citizen_digital.articles` (6,824 rows), `viupay_fare.agent_api_logs` (696,796 rows), `db_skiza.ci_sessions` (170,616 rows), `viutickets.audits` (128,791 rows), `viusasa_dev.active_users` (24,028 rows). This is a shared DB-admin credential, not a narrow app-role credential.
+2. **`viupay_fare` and `viupay_fare_test` are identical shape and row count** (both `agent_api_logs=696,796`, both `tbl_channelmaster=16`). Either the "_test" schema is a mirror snapshot or they've drifted from a shared source. Worth an internal check.
+3. **The CSV's "target" DB per section (`artists_app`) is empty** on this host. The actual live data is in the other 16 non-system schemas the same user can see. The CSV's per-section grouping (VIUSASA / USSD / MICROSERVICES) doesn't cleanly map to the schemas visible on the one reachable host — this suggests each section-banner in the CSV corresponds to one host, and the schemas listed under it are meant to live on that host. Only the USSD host (110.238.76.159) was reachable, and its schema set includes everything the CSV lists under USSD (artists_app, citizen_digital, db_jipange, db_skiza, freddy_dev, miniapps, tafaria_ecommerce, tafaria_shop, viupay_dev, viupay_fare, viutickets_dev) plus more.
+4. **`bramuel@%` = host wildcard.** Any client on the internet that possesses this credential can connect. The Huawei RDS security-group is what actually gates ingress here — and it's open to `34.170.12.145` on this instance. Two independent locks were both permissive on this host: the SG allows the IP and the DB user allows any host.
+5. **Two hosts in the CSV are TCP-blocked from our egress** — same failure mode as 6 instances in the earlier drill. Consistent with the pattern that only a subset of the RDS estate has our egress in its SG whitelist.
+
+## Precise MISSING list (this half)
+
+| Blocker | For which target | What is missing |
+|---------|------------------|-----------------|
+| SG inbound rule | 203.123.86.10 (VIUSASA section, dbs iebc_forms, kra_reports, miniapps, viupay, viupay_agent_staging, viusasa_artists, viusasa_miniapps_prod, viusasa_staging, viutickets) | Add `34.170.12.145/32` on TCP/3306 to that instance's SG |
+| SG inbound rule | 159.138.164.93 (MICROSERVICES section, db viupay) | Add `34.170.12.145/32` on TCP/3306 |
+| Nothing | 110.238.76.159 | Already reachable; live |
+
+## Guardrail attestation (Part 2)
+
+- No product code touched. `programme/track-a` branch untouched. `master` workspace branch untouched.
+- Ratchet floor unchanged at **3098** — no pytest invoked.
+- HOLD respected — no build wave, no CP10 commit.
+- No commits made. No push. Both credential CSVs remain outside `git status` on both repos (verified). `.gitignore` covers `backend/estate_keys/data_sources/`.
+- Password never written to disk in cleartext beyond the source CSV. Only fingerprint (`sha256_8=5b9ec5c0`) and length (`16`) are in this report and in `_scratch/live_sql_*.json`.
+- Only read-only SQL executed: `SELECT`, `SHOW`, `USE`. No `INSERT / UPDATE / DELETE / CREATE / DROP / ALTER / GRANT`. Verified in scripts.
+
+## Artefacts (uncommitted, local only)
+
+- `/app/assessment_workspace/tools/huawei_live_sql.py` — 3-host CSV probe
+- `/app/assessment_workspace/tools/huawei_live_sql_enum.py` — 20-DB enumerator on the reachable host
+- `/app/assessment_workspace/tools/_scratch/live_sql_results.json` — probe results
+- `/app/assessment_workspace/tools/_scratch/live_sql_enum.json` — schema + row-count map
+- `/app/backend/estate_keys/data_sources/db_credentials.csv` — source CSV, 0600, gitignored, sha256 `d8a7f0e2…0cf22`
+

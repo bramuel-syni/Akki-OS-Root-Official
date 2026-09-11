@@ -1,0 +1,119 @@
+{
+  "started_at": "2026-09-11T19:21:04.861997+00:00",
+  "target_count": 3,
+  "results": [
+    {
+      "group": "VIUSASA",
+      "dbname": "iebc_forms",
+      "host": "203.123.86.10",
+      "user": "bramuel",
+      "pw_fp": "sha256_8=5b9ec5c0",
+      "connected": false,
+      "steps": [],
+      "error": {
+        "type": "OperationalError",
+        "code": 2003,
+        "message": "Can't connect to MySQL server on '203.123.86.10' (timed out)"
+      }
+    },
+    {
+      "group": "USSD",
+      "dbname": "artists_app",
+      "host": "110.238.76.159",
+      "user": "bramuel",
+      "pw_fp": "sha256_8=5b9ec5c0",
+      "connected": true,
+      "steps": [
+        {
+          "sql": "SELECT 1;",
+          "row": [
+            1
+          ]
+        },
+        {
+          "sql": "SELECT VERSION();",
+          "row": [
+            "5.7.44-241200-log"
+          ]
+        },
+        {
+          "sql": "SELECT CURRENT_USER(), USER(), @@hostname, @@version_comment;",
+          "row": [
+            "bramuel@%",
+            "bramuel@34.170.12.145",
+            "localhost.localdomain",
+            "MySQL Community Server - (GPL)"
+          ]
+        },
+        {
+          "sql": "SHOW DATABASES;",
+          "count": 20,
+          "sample": [
+            "information_schema",
+            "artists_app",
+            "citizen_digital",
+            "db_jipange",
+            "db_skiza",
+            "freddy_dev",
+            "miniapps",
+            "performance_schema",
+            "sys",
+            "tafaria_ecommerce",
+            "tafaria_shop",
+            "viupay_dev",
+            "viupay_fare",
+            "viupay_fare_test",
+            "viusasa_dev",
+            "viusasa_staging",
+            "viusasa_staging_2",
+            "viusasa_staging_dev",
+            "viutickets",
+            "viutickets_dev"
+          ]
+        }
+      ],
+      "databases": [
+        "information_schema",
+        "artists_app",
+        "citizen_digital",
+        "db_jipange",
+        "db_skiza",
+        "freddy_dev",
+        "miniapps",
+        "performance_schema",
+        "sys",
+        "tafaria_ecommerce",
+        "tafaria_shop",
+        "viupay_dev",
+        "viupay_fare",
+        "viupay_fare_test",
+        "viusasa_dev",
+        "viusasa_staging",
+        "viusasa_staging_2",
+        "viusasa_staging_dev",
+        "viutickets",
+        "viutickets_dev"
+      ],
+      "use_target_ok": true,
+      "target_db": "artists_app",
+      "target_tables_count": 0,
+      "target_tables_sample": [],
+      "target_table_row_counts": {}
+    },
+    {
+      "group": "MICROSERVICES",
+      "dbname": "viupay",
+      "host": "159.138.164.93",
+      "user": "bramuel",
+      "pw_fp": "sha256_8=5b9ec5c0",
+      "connected": false,
+      "steps": [],
+      "error": {
+        "type": "OperationalError",
+        "code": 2003,
+        "message": "Can't connect to MySQL server on '159.138.164.93' (timed out)"
+      }
+    }
+  ],
+  "finished_at": "2026-09-11T19:21:23.780740+00:00"
+}
