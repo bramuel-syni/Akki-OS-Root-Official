@@ -449,3 +449,117 @@ If we later open the other 6 af-south-1 RDS instances (or the 2 blocked hosts fr
 - `/app/assessment_workspace/tools/_scratch/billing_probe.json`
 - `/app/assessment_workspace/tools/_scratch/billing_stdout.log`
 
+
+---
+
+# PART 4 — Pod egress IP (for Huawei SG whitelisting)
+
+**Directive:** OWNER OPERATIONAL REQUEST — authoritative current egress IP for firewall whitelisting. Not the value from an auth-error line, but a fresh cross-checked observation with a persistence caveat.
+
+## Verdict line
+
+**Pod egress IP: `34.170.12.145` — stable within this session (20/20 checks agreed) — ASN AS396982 Google LLC, network 34.170.0.0/17, us-central1 (Council Bluffs, Iowa) — whitelist as `34.170.12.145/32` for now, but treat as EPHEMERAL: not guaranteed to survive a pod restart / environment rebuild / redeploy. If the owner needs a durable long-term whitelist, we need Emergent to expose a static-egress mechanism (dedicated Cloud NAT with reserved IP or bastion routing), otherwise the whitelist will silently break on the next redeploy.**
+
+## Evidence (single-shot cross-check, 4 independent echo services)
+
+```
+$ curl -sS https://ifconfig.me           → 34.170.12.145
+$ curl -sS https://api.ipify.org         → 34.170.12.145
+$ curl -sS https://ipinfo.io/ip          → 34.170.12.145
+$ curl -sS https://checkip.amazonaws.com → 34.170.12.145
+$ curl -s4 https://api.ipify.org         → 34.170.12.145  (forced IPv4)
+$ curl -s6 https://api64.ipify.org       → (no v6 egress)
+```
+
+All 4 services agreed on the first shot. No IPv6 egress path.
+
+## Stability sweep (12 sequential samples over 60s, alternating providers)
+
+```
+t=19:43:23  #1  api.ipify.org   -> 34.170.12.145
+t=19:43:28  #2  ipinfo.io       -> 34.170.12.145
+t=19:43:33  #3  checkip.aws     -> 34.170.12.145
+t=19:43:38  #4  ifconfig.me     -> 34.170.12.145
+t=19:43:44  #5  api.ipify.org   -> 34.170.12.145
+t=19:43:49  #6  ipinfo.io       -> 34.170.12.145
+t=19:43:54  #7  checkip.aws     -> 34.170.12.145
+t=19:43:59  #8  ifconfig.me     -> 34.170.12.145
+t=19:44:04  #9  api.ipify.org   -> 34.170.12.145
+t=19:44:10  #10 ipinfo.io       -> 34.170.12.145
+t=19:44:15  #11 checkip.aws     -> 34.170.12.145
+t=19:44:20  #12 ifconfig.me     -> 34.170.12.145
+```
+
+## Parallel-burst probe (8 concurrent connections — checks for NAT-pool round-robin)
+
+```
+burst 1..8 (parallel) → 34.170.12.145 × 8
+```
+
+## Multi-destination probe (Cloudflare-fronted vs origin backends, same moment)
+
+```
+ipify (Cloudflare edge 104.26.12.205)  → source 34.170.12.145
+ifconfig.co (different backend)         → source 34.170.12.145
+```
+
+**Result: no per-flow NAT variance, no NAT-pool round-robin, no destination-based egress steering.** This session presents a single deterministic source IP.
+
+## Whose block is it?
+
+Authoritative provider/route data:
+
+- **`ipinfo.io` org**: `AS396982 Google LLC`
+- **Reverse DNS**: `145.12.170.34.bc.googleusercontent.com` (the `bc.googleusercontent.com` pattern is the reverse-DNS Google uses for Google Cloud Kubernetes Engine (GKE) node/egress addresses)
+- **BGP announced prefix (RIPE)**: `34.170.0.0/17` (32,768 IPs, ASN 396982 Google LLC)
+- **ARIN direct allocation**: `34.128.0.0/10` — `34.128.0.0` – `34.191.255.255` — GOOGL-2, DIRECT ALLOCATION to Google LLC
+- **`ipapi.co` network**: `34.170.0.0/15` (secondary confirmation)
+- **Location**: Council Bluffs, Iowa (us-central1 GCP region)
+
+## Does this match the earlier Huawei auth-handshake value?
+
+**Yes — exact match.** The Huawei MySQL server reported the connecting client as `bramuel@34.170.12.145` in its `1045` denial packet, and independently in the `USER()` result from the successful login. Cross-check between the DB-observed source IP and 4 external echo services returns the same value. No discrepancy.
+
+## Pod / cluster context
+
+- **Pod hostname**: `agent-env-8cbaa956-ec53-44c0-af87-9627ae90175e` (Emergent's `agent-env` pod naming pattern; the UUID suffix is per-instance)
+- **Default gateway (link-local)**: `169.254.4.6 dev eth0 mtu 1460` — standard GKE kubelet virtual gateway; the actual source-NAT sits behind this
+- **Kubernetes API IP**: `34.118.224.1` (also Google Cloud range)
+- **`/proc/self/cgroup`** confirms containerised runtime
+- **`traceroute` not installed** in this image; couldn't trace the NAT gateway directly, but the reverse-DNS pattern + ASN + BGP data is authoritative that the source-NAT is a Google Cloud node external IP or a GCP Cloud NAT gateway.
+
+## Persistence caveat — READ BEFORE WHITELISTING
+
+The stability observed above is **within-this-session stability**. It does NOT guarantee persistence across:
+
+1. **Pod restart** (supervisor restart of individual services keeps the pod → IP stays; but a container/pod restart at the k8s level does not).
+2. **Environment rebuild / redeploy** (agent-env pods get destroyed and re-scheduled to different nodes; a new node has a different external IP unless there's a dedicated Cloud NAT with reserved static IP).
+3. **Cluster maintenance / node preemption** (GKE nodes are commonly rotated; when this happens, the pod moves and its egress source may change).
+4. **Multiple concurrent agent-env pods** (a different Emergent session may present a different source IP).
+
+I did NOT observe direct evidence of an Emergent-configured Cloud NAT with reserved static egress in the pod environment (no `NAT_GATEWAY_IP` env var, no reserved-IP annotations visible from inside the pod). This does not prove one doesn't exist — Emergent's infra layer is not exposed to the container. But **if there is no static-egress guarantee provided by Emergent, then `34.170.12.145` is EPHEMERAL and the whitelist will silently break on the next redeploy.**
+
+## Recommendation to owner
+
+**Tactical (for the current drill):** Add `34.170.12.145/32` to the security-groups behind the RDS instances the owner wants us to reach. This unblocks the 6 currently SG-blocked af-south-1 instances (`rds-shikisha`, `election-prod-db2`, `visitors-database-cluster`, `dbms-trf-req-database-3`, `citizen-digital-dev-db-cluster`, and — if desired — `weego-replica-d536`'s private IP path via bastion) and — via the same SG-change on the third-party tenant — the 2 currently SG-blocked DB-creds hosts (`203.123.86.10`, `159.138.164.93`).
+
+**Durable (for ongoing mtafiti operation):** ask Emergent whether they can provision a **dedicated Cloud NAT with a reserved static external IP** for our agent-env, and expose that IP (or CIDR block) as an infrastructure guarantee. If yes, whitelist that. If no, the alternatives are:
+
+- Route our RDS traffic through an owner-controlled bastion (any small VM in af-south-1 with a static EIP; we SSH-forward or use a socks proxy to reach the RDS via the bastion's whitelisted internal IP — no Huawei-side SG changes needed on ongoing basis).
+- Or accept that the whitelist will need to be re-issued whenever the egress IP rolls.
+
+**DO NOT** whitelist the announced `34.170.0.0/17` or `34.128.0.0/10` block as a "safer" superset — that block houses tens of thousands to millions of unrelated Google Cloud tenants and would effectively neuter the SG. `/32` is the correct granularity.
+
+## Answers to the four owner-questions, plainly
+
+1. **Current egress IP: `34.170.12.145`.** Confirmed by 4 independent echo services and independently by the Huawei MySQL server's own view of our client.
+2. **Stable? Within this session, yes** (20/20 checks over parallel + sequential probing, single IP, no NAT-pool round-robin observed).
+3. **Same as the 34.170.12.145 from earlier?** Yes, exact.
+4. **ASN / owner**: `AS396982 Google LLC`, prefix `34.170.0.0/17`, GKE node/egress addressing (`bc.googleusercontent.com` reverse DNS), us-central1 (Council Bluffs, Iowa).
+5. **Persistent across pod restart / redeploy? NO GUARANTEE.** Within-session-stable, cross-session-ephemeral unless Emergent provides a static-egress mechanism. For durable whitelisting the owner should either (a) request static egress from Emergent, or (b) route through an owner-controlled bastion with a stable EIP.
+
+## Guardrail attestation (Part 4)
+
+- No product code touched. No commits. No push. HOLD respected. Ratchet floor **3098** unchanged.
+- Only outbound HTTPS to echo services and public RDAP/BGP APIs. No credentials transmitted. No Huawei SDK calls. No DB queries.
+
