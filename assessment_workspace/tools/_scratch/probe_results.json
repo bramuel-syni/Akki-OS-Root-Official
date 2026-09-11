@@ -1,0 +1,1162 @@
+{
+  "started_at": "2026-09-11T18:29:13.398685+00:00",
+  "iam": {
+    "attempts": [
+      {
+        "region": "ap-southeast-1",
+        "endpoint": "https://iam.ap-southeast-1.myhuaweicloud.com",
+        "ok": true,
+        "error": null,
+        "domain_id": "3f9d29266af74046bfb637cabb995c39",
+        "domain_name": "hid_mroq3ef3gos5pjp",
+        "projects_count": 18,
+        "catalogue_regions": [
+          "af-north-1",
+          "af-south-1",
+          "ap-southeast-1",
+          "ap-southeast-2",
+          "ap-southeast-3",
+          "ap-southeast-4",
+          "ap-southeast-5",
+          "cn-east-2",
+          "cn-east-201",
+          "cn-east-3",
+          "cn-east-4",
+          "cn-east-5",
+          "cn-north-1",
+          "cn-north-12",
+          "cn-north-219",
+          "cn-north-4",
+          "cn-north-9",
+          "cn-south-1",
+          "cn-south-4",
+          "cn-southwest-2",
+          "la-north-2",
+          "la-south-2",
+          "me-east-1",
+          "na-mexico-1",
+          "sa-brazil-1",
+          "tr-west-1"
+        ]
+      }
+    ],
+    "domain_id": "3f9d29266af74046bfb637cabb995c39",
+    "projects": [
+      {
+        "id": "f32336b4facb4307b86a8bbfba7e8fb5",
+        "name": "af-north-1",
+        "enabled": true,
+        "domain_id": "3f9d29266af74046bfb637cabb995c39"
+      },
+      {
+        "id": "517a45cac3994683abcf0cc155b3c01b",
+        "name": "af-south-1",
+        "enabled": true,
+        "domain_id": "3f9d29266af74046bfb637cabb995c39"
+      },
+      {
+        "id": "b2c3b9b1ef6346ab9e45818f8a6714ba",
+        "name": "ap-southeast-1",
+        "enabled": true,
+        "domain_id": "3f9d29266af74046bfb637cabb995c39"
+      },
+      {
+        "id": "b7f32ca3dde54457aa9c7dc9c9d09f9c",
+        "name": "ap-southeast-2",
+        "enabled": true,
+        "domain_id": "3f9d29266af74046bfb637cabb995c39"
+      },
+      {
+        "id": "1aa44a4c98234a43b0a05587f528af82",
+        "name": "ap-southeast-3",
+        "enabled": true,
+        "domain_id": "3f9d29266af74046bfb637cabb995c39"
+      },
+      {
+        "id": "3cf01bccecd94561abeff083d9c83d16",
+        "name": "ap-southeast-4",
+        "enabled": true,
+        "domain_id": "3f9d29266af74046bfb637cabb995c39"
+      },
+      {
+        "id": "62b8295c19a84aed89ad3da0a82ddaec",
+        "name": "cn-east-3",
+        "enabled": true,
+        "domain_id": "3f9d29266af74046bfb637cabb995c39"
+      },
+      {
+        "id": "8491d4e96b70408fbd0ba212a51cc8ca",
+        "name": "cn-north-1",
+        "enabled": true,
+        "domain_id": "3f9d29266af74046bfb637cabb995c39"
+      },
+      {
+        "id": "67ad786898c84df1848e64b1e7221189",
+        "name": "cn-north-4",
+        "enabled": true,
+        "domain_id": "3f9d29266af74046bfb637cabb995c39"
+      },
+      {
+        "id": "edcd03062c72443a85fa481da0d5c2f1",
+        "name": "cn-south-1",
+        "enabled": true,
+        "domain_id": "3f9d29266af74046bfb637cabb995c39"
+      },
+      {
+        "id": "15dfcc3e0f4f44539667f0963d510982",
+        "name": "cn-southwest-2",
+        "enabled": true,
+        "domain_id": "3f9d29266af74046bfb637cabb995c39"
+      },
+      {
+        "id": "c833fdbcdff34c7fbda5c7a02a3c82c1",
+        "name": "la-north-2",
+        "enabled": true,
+        "domain_id": "3f9d29266af74046bfb637cabb995c39"
+      },
+      {
+        "id": "14b1cc65021647b694f64321e60275f6",
+        "name": "la-south-2",
+        "enabled": true,
+        "domain_id": "3f9d29266af74046bfb637cabb995c39"
+      },
+      {
+        "id": "09cb0bd93d2c46058298520a979d09e2",
+        "name": "me-east-1",
+        "enabled": true,
+        "domain_id": "3f9d29266af74046bfb637cabb995c39"
+      },
+      {
+        "id": "09627a48e8ec466c891beca5dc09a343",
+        "name": "MOS",
+        "enabled": true,
+        "domain_id": "3f9d29266af74046bfb637cabb995c39"
+      },
+      {
+        "id": "cb7ab7fdc6144eb09b03530d6709246e",
+        "name": "na-mexico-1",
+        "enabled": true,
+        "domain_id": "3f9d29266af74046bfb637cabb995c39"
+      },
+      {
+        "id": "277ea467c30c40a1bd237695b829826f",
+        "name": "sa-brazil-1",
+        "enabled": true,
+        "domain_id": "3f9d29266af74046bfb637cabb995c39"
+      },
+      {
+        "id": "062c93d8113c491ea6220215d8e337a2",
+        "name": "tr-west-1",
+        "enabled": true,
+        "domain_id": "3f9d29266af74046bfb637cabb995c39"
+      }
+    ],
+    "regions_seen": [
+      "af-north-1",
+      "af-south-1",
+      "ap-southeast-1",
+      "ap-southeast-2",
+      "ap-southeast-3",
+      "ap-southeast-4",
+      "cn-east-3",
+      "cn-north-1",
+      "cn-north-4",
+      "cn-south-1",
+      "cn-southwest-2",
+      "la-north-2",
+      "la-south-2",
+      "me-east-1",
+      "MOS",
+      "na-mexico-1",
+      "sa-brazil-1",
+      "tr-west-1"
+    ],
+    "user_id": null
+  },
+  "obs": {
+    "buckets": [
+      {
+        "name": "2024offairrecs",
+        "location": "af-south-1",
+        "create_date": "2024/12/20 08:12:36"
+      },
+      {
+        "name": "apr252017",
+        "location": "tr-west-1",
+        "create_date": "2024/04/17 09:10:52"
+      },
+      {
+        "name": "cal-docs",
+        "location": "af-south-1",
+        "create_date": "2024/03/21 10:58:27"
+      },
+      {
+        "name": "caldocs",
+        "location": "af-south-1",
+        "create_date": "2024/03/21 11:07:34"
+      },
+      {
+        "name": "chamgei-backup",
+        "location": "af-south-1",
+        "create_date": "2024/03/21 11:13:40"
+      },
+      {
+        "name": "chris-test-b",
+        "location": "af-south-1",
+        "create_date": "2024/03/21 11:16:19"
+      },
+      {
+        "name": "citizen-classifieds",
+        "location": "af-south-1",
+        "create_date": "2024/03/13 13:49:57"
+      },
+      {
+        "name": "citizen-digital-cms-files",
+        "location": "af-south-1",
+        "create_date": "2024/03/04 14:09:11"
+      },
+      {
+        "name": "citizen-digital-cms-files-copy",
+        "location": "af-south-1",
+        "create_date": "2024/03/21 11:21:14"
+      },
+      {
+        "name": "citizen-vod",
+        "location": "ap-southeast-3",
+        "create_date": "2026/05/13 11:02:40"
+      },
+      {
+        "name": "citizentv",
+        "location": "af-south-1",
+        "create_date": "2024/03/04 14:09:27"
+      },
+      {
+        "name": "database-backup-dlbms",
+        "location": "af-south-1",
+        "create_date": "2024/03/21 11:28:08"
+      },
+      {
+        "name": "datauploadroyalmedia.co.ke",
+        "location": "af-south-1",
+        "create_date": "2024/03/21 11:34:57"
+      },
+      {
+        "name": "drivesdata.royalmedia",
+        "location": "af-south-1",
+        "create_date": "2024/03/21 11:37:22"
+      },
+      {
+        "name": "edaily",
+        "location": "af-south-1",
+        "create_date": "2024/03/21 11:40:04"
+      },
+      {
+        "name": "edailynew",
+        "location": "af-south-1",
+        "create_date": "2024/03/21 11:42:28"
+      },
+      {
+        "name": "elections",
+        "location": "af-south-1",
+        "create_date": "2025/11/26 07:11:47"
+      },
+      {
+        "name": "elections-portal",
+        "location": "af-south-1",
+        "create_date": "2024/03/21 11:44:39"
+      },
+      {
+        "name": "elections-portal-backup",
+        "location": "af-south-1",
+        "create_date": "2024/03/21 11:47:12"
+      },
+      {
+        "name": "email-footers",
+        "location": "af-south-1",
+        "create_date": "2025/02/06 11:32:09"
+      },
+      {
+        "name": "fast-channels",
+        "location": "af-south-1",
+        "create_date": "2024/12/17 08:48:20"
+      },
+      {
+        "name": "feb272017",
+        "location": "tr-west-1",
+        "create_date": "2024/04/15 02:31:01"
+      },
+      {
+        "name": "good-bucket-f",
+        "location": "af-south-1",
+        "create_date": "2024/03/21 11:51:33"
+      },
+      {
+        "name": "google-transcripts",
+        "location": "af-south-1",
+        "create_date": "2024/03/21 11:54:42"
+      },
+      {
+        "name": "hot96backup",
+        "location": "af-south-1",
+        "create_date": "2024/03/21 11:56:56"
+      },
+      {
+        "name": "inoorotv",
+        "location": "af-south-1",
+        "create_date": "2024/03/21 11:59:26"
+      },
+      {
+        "name": "instore-radio-items",
+        "location": "af-south-1",
+        "create_date": "2026/01/13 06:30:43"
+      },
+      {
+        "name": "iso-rms-storage",
+        "location": "ap-southeast-3",
+        "create_date": "2025/09/11 07:00:46"
+      },
+      {
+        "name": "kapubskt",
+        "location": "af-south-1",
+        "create_date": "2024/03/21 12:01:47"
+      },
+      {
+        "name": "kemediahse",
+        "location": "af-south-1",
+        "create_date": "2024/03/21 12:05:04"
+      },
+      {
+        "name": "librarydirectupload2",
+        "location": "tr-west-1",
+        "create_date": "2024/04/15 02:35:46"
+      },
+      {
+        "name": "mar142017",
+        "location": "af-south-1",
+        "create_date": "2024/03/21 12:08:21"
+      },
+      {
+        "name": "may172017",
+        "location": "af-south-1",
+        "create_date": "2024/03/21 12:10:32"
+      },
+      {
+        "name": "miss-intl-somalia",
+        "location": "af-south-1",
+        "create_date": "2024/03/21 12:12:41"
+      },
+      {
+        "name": "music-bucket-rms",
+        "location": "af-south-1",
+        "create_date": "2024/03/21 12:14:58"
+      },
+      {
+        "name": "na7p4100",
+        "location": "tr-west-1",
+        "create_date": "2024/04/15 02:32:06"
+      },
+      {
+        "name": "na7p410c",
+        "location": "tr-west-1",
+        "create_date": "2024/04/15 02:32:27"
+      },
+      {
+        "name": "na7p419y",
+        "location": "tr-west-1",
+        "create_date": "2024/04/15 02:32:43"
+      },
+      {
+        "name": "na7p41ab",
+        "location": "tr-west-1",
+        "create_date": "2024/04/17 09:00:46"
+      },
+      {
+        "name": "na7p41f4",
+        "location": "tr-west-1",
+        "create_date": "2024/04/15 02:33:12"
+      },
+      {
+        "name": "na7p41hj",
+        "location": "af-south-1",
+        "create_date": "2024/03/21 09:09:44"
+      },
+      {
+        "name": "na7p41j6",
+        "location": "tr-west-1",
+        "create_date": "2024/04/15 01:57:40"
+      },
+      {
+        "name": "na7p41jk",
+        "location": "tr-west-1",
+        "create_date": "2024/04/15 02:33:33"
+      },
+      {
+        "name": "na7p41kh",
+        "location": "af-south-1",
+        "create_date": "2024/03/21 09:18:21"
+      },
+      {
+        "name": "na7p42rl.rms",
+        "location": "af-south-1",
+        "create_date": "2024/03/21 09:21:06"
+      },
+      {
+        "name": "na7p42ry",
+        "location": "tr-west-1",
+        "create_date": "2024/04/15 02:30:36"
+      },
+      {
+        "name": "na7p42s5",
+        "location": "tr-west-1",
+        "create_date": "2024/04/15 01:56:43"
+      },
+      {
+        "name": "na7p42s7",
+        "location": "tr-west-1",
+        "create_date": "2024/04/15 02:27:49"
+      },
+      {
+        "name": "na7p42tq",
+        "location": "tr-west-1",
+        "create_date": "2024/04/15 02:27:18"
+      },
+      {
+        "name": "na7p42tz",
+        "location": "tr-west-1",
+        "create_date": "2024/04/15 02:30:50"
+      },
+      {
+        "name": "na7p42xe",
+        "location": "af-south-1",
+        "create_date": "2024/03/21 09:35:29"
+      },
+      {
+        "name": "na7p42xw",
+        "location": "af-south-1",
+        "create_date": "2024/03/21 09:37:48"
+      },
+      {
+        "name": "na7p42yg",
+        "location": "af-south-1",
+        "create_date": "2024/03/21 09:39:55"
+      },
+      {
+        "name": "na7p434j",
+        "location": "af-south-1",
+        "create_date": "2024/03/21 09:42:55"
+      },
+      {
+        "name": "na7p4357",
+        "location": "af-south-1",
+        "create_date": "2024/03/21 09:45:55"
+      },
+      {
+        "name": "na7p435c",
+        "location": "tr-west-1",
+        "create_date": "2024/04/15 06:00:31"
+      },
+      {
+        "name": "na7p4374",
+        "location": "tr-west-1",
+        "create_date": "2024/04/15 02:33:58"
+      },
+      {
+        "name": "na7p43ax",
+        "location": "af-south-1",
+        "create_date": "2024/03/21 09:53:00"
+      },
+      {
+        "name": "na7p43d3",
+        "location": "af-south-1",
+        "create_date": "2024/03/21 09:55:17"
+      },
+      {
+        "name": "na7p43d6",
+        "location": "tr-west-1",
+        "create_date": "2024/04/15 02:30:21"
+      },
+      {
+        "name": "na7p43df",
+        "location": "af-south-1",
+        "create_date": "2024/03/21 10:00:20"
+      },
+      {
+        "name": "na7p43dj",
+        "location": "tr-west-1",
+        "create_date": "2024/04/15 02:30:05"
+      },
+      {
+        "name": "na7p43do",
+        "location": "af-south-1",
+        "create_date": "2024/03/21 10:06:30"
+      },
+      {
+        "name": "na7p43hs",
+        "location": "tr-west-1",
+        "create_date": "2024/04/15 02:29:51"
+      },
+      {
+        "name": "na7p43js",
+        "location": "af-south-1",
+        "create_date": "2024/03/21 10:10:44"
+      },
+      {
+        "name": "na7p43jw",
+        "location": "tr-west-1",
+        "create_date": "2024/04/15 02:29:38"
+      },
+      {
+        "name": "na7p49p9",
+        "location": "af-south-1",
+        "create_date": "2024/03/21 10:14:41"
+      },
+      {
+        "name": "na7p49pc",
+        "location": "tr-west-1",
+        "create_date": "2024/04/15 02:29:22"
+      },
+      {
+        "name": "na7p4oco",
+        "location": "af-south-1",
+        "create_date": "2024/03/21 10:18:36"
+      },
+      {
+        "name": "na7p4omz",
+        "location": "tr-west-1",
+        "create_date": "2024/04/15 02:29:05"
+      },
+      {
+        "name": "na7p4oxs",
+        "location": "tr-west-1",
+        "create_date": "2024/04/15 02:28:42"
+      },
+      {
+        "name": "na7p4oy4",
+        "location": "tr-west-1",
+        "create_date": "2024/04/15 02:31:34"
+      },
+      {
+        "name": "na7p4oz6",
+        "location": "tr-west-1",
+        "create_date": "2024/04/15 02:31:50"
+      },
+      {
+        "name": "newlibrary-uploads-19-08-2018",
+        "location": "af-south-1",
+        "create_date": "2024/03/21 12:31:21"
+      },
+      {
+        "name": "news-vault",
+        "location": "af-south-1",
+        "create_date": "2024/03/21 12:34:38"
+      },
+      {
+        "name": "obituariesdata",
+        "location": "tr-west-1",
+        "create_date": "2024/04/15 02:33:45"
+      },
+      {
+        "name": "obituariesnew",
+        "location": "af-south-1",
+        "create_date": "2024/03/21 12:38:49"
+      },
+      {
+        "name": "one-signal-live-service",
+        "location": "ap-southeast-3",
+        "create_date": "2026/04/07 06:27:07"
+      },
+      {
+        "name": "onesignal-logos",
+        "location": "ap-southeast-3",
+        "create_date": "2026/05/10 15:37:24"
+      },
+      {
+        "name": "onsignal-bucket",
+        "location": "af-south-1",
+        "create_date": "2026/02/10 13:25:46"
+      },
+      {
+        "name": "private-isos",
+        "location": "af-south-1",
+        "create_date": "2026/08/20 07:06:38"
+      },
+      {
+        "name": "radio-news",
+        "location": "af-south-1",
+        "create_date": "2024/03/21 12:41:31"
+      },
+      {
+        "name": "raz-backup",
+        "location": "af-south-1",
+        "create_date": "2024/03/21 12:45:01"
+      },
+      {
+        "name": "razuna-application-server",
+        "location": "af-south-1",
+        "create_date": "2024/03/21 12:48:15"
+      },
+      {
+        "name": "razuna-direct-access",
+        "location": "tr-west-1",
+        "create_date": "2024/04/15 02:35:34"
+      },
+      {
+        "name": "razuna-ireland-replication-7sep2017",
+        "location": "af-south-1",
+        "create_date": "2024/03/21 12:53:09"
+      },
+      {
+        "name": "razuna.royalmedia",
+        "location": "af-south-1",
+        "create_date": "2024/03/21 12:55:56"
+      },
+      {
+        "name": "registers-13-17",
+        "location": "af-south-1",
+        "create_date": "2024/03/21 12:59:09"
+      },
+      {
+        "name": "rekognition-video-console-demo-dub-917562226170-nm20tsok0pm1ea",
+        "location": "af-south-1",
+        "create_date": "2024/03/21 13:02:08"
+      },
+      {
+        "name": "rms-acronis-backup-bucket",
+        "location": "tr-west-1",
+        "create_date": "2024/04/15 01:57:16"
+      },
+      {
+        "name": "rms-ai",
+        "location": "ap-southeast-1",
+        "create_date": "2026/07/13 07:11:38"
+      },
+      {
+        "name": "rmsbroadcast",
+        "location": "af-south-1",
+        "create_date": "2024/03/21 13:07:43"
+      },
+      {
+        "name": "rmsradio",
+        "location": "af-south-1",
+        "create_date": "2024/03/21 13:10:21"
+      },
+      {
+        "name": "royalmedia",
+        "location": "af-south-1",
+        "create_date": "2024/03/21 13:13:14"
+      },
+      {
+        "name": "s3hub-806142fb68af5725514152f0ae3fb5978d4899aaf394fc186460f3fe2",
+        "location": "af-south-1",
+        "create_date": "2024/03/21 13:15:41"
+      },
+      {
+        "name": "sdatauploadroyalmedia.co.ke",
+        "location": "tr-west-1",
+        "create_date": "2024/04/15 01:53:55"
+      },
+      {
+        "name": "seconddatauploadroyalmedia.co.ke",
+        "location": "tr-west-1",
+        "create_date": "2024/04/15 02:31:19"
+      },
+      {
+        "name": "shikisha",
+        "location": "af-south-1",
+        "create_date": "2024/03/21 13:21:26"
+      },
+      {
+        "name": "skizaaudio",
+        "location": "af-south-1",
+        "create_date": "2024/03/21 13:24:08"
+      },
+      {
+        "name": "test-regionireland",
+        "location": "af-south-1",
+        "create_date": "2024/03/21 13:26:50"
+      },
+      {
+        "name": "test-viusasa-bucket",
+        "location": "af-south-1",
+        "create_date": "2024/10/03 09:16:07"
+      },
+      {
+        "name": "test.test-viusasa-bucket",
+        "location": "af-south-1",
+        "create_date": "2024/10/16 15:28:38"
+      },
+      {
+        "name": "upload.test.test-viusasa-bucket",
+        "location": "af-south-1",
+        "create_date": "2024/10/17 14:47:48"
+      },
+      {
+        "name": "uploads.test-viusasa-bucket",
+        "location": "af-south-1",
+        "create_date": "2024/10/16 15:19:44"
+      },
+      {
+        "name": "viusasanews",
+        "location": "af-south-1",
+        "create_date": "2024/03/21 13:28:58"
+      },
+      {
+        "name": "voters-2013",
+        "location": "af-south-1",
+        "create_date": "2024/03/21 13:31:22"
+      }
+    ],
+    "attempts": [
+      {
+        "endpoint": "https://obs.ap-southeast-1.myhuaweicloud.com",
+        "status": 200,
+        "errorCode": null,
+        "errorMessage": null,
+        "ok": true
+      }
+    ]
+  },
+  "rds": {
+    "by_region": {
+      "af-north-1": {
+        "ok": true,
+        "error": null,
+        "count": 0
+      },
+      "af-south-1": {
+        "ok": true,
+        "error": null,
+        "count": 8
+      },
+      "ap-southeast-1": {
+        "ok": true,
+        "error": null,
+        "count": 1
+      },
+      "ap-southeast-2": {
+        "ok": true,
+        "error": null,
+        "count": 0
+      },
+      "ap-southeast-3": {
+        "ok": true,
+        "error": null,
+        "count": 0
+      },
+      "ap-southeast-4": {
+        "ok": true,
+        "error": null,
+        "count": 0
+      },
+      "cn-east-3": {
+        "ok": true,
+        "error": null,
+        "count": 0
+      },
+      "cn-north-1": {
+        "ok": false,
+        "error": "403:APIGW.0802:The IAM user is forbidden in the currently selected region",
+        "count": 0
+      },
+      "cn-north-4": {
+        "ok": true,
+        "error": null,
+        "count": 0
+      },
+      "cn-south-1": {
+        "ok": true,
+        "error": null,
+        "count": 0
+      },
+      "cn-southwest-2": {
+        "ok": true,
+        "error": null,
+        "count": 0
+      },
+      "la-north-2": {
+        "ok": true,
+        "error": null,
+        "count": 0
+      },
+      "la-south-2": {
+        "ok": true,
+        "error": null,
+        "count": 0
+      },
+      "me-east-1": {
+        "ok": true,
+        "error": null,
+        "count": 0
+      },
+      "MOS": {
+        "ok": false,
+        "error": "KeyError:\"region_id 'MOS' is not in the following supported regions of service 'Rds': [ae-ad-1, af-north-1, af-south-1, ap-southeast-1, ap-southeast-2, ap-southeast-3, a",
+        "count": 0
+      },
+      "na-mexico-1": {
+        "ok": true,
+        "error": null,
+        "count": 0
+      },
+      "sa-brazil-1": {
+        "ok": true,
+        "error": null,
+        "count": 0
+      },
+      "tr-west-1": {
+        "ok": true,
+        "error": null,
+        "count": 0
+      }
+    },
+    "instances": [
+      {
+        "id": "012de8d88d734339a2f50278128e0062in01",
+        "name": "RDS-INTERACTIONS",
+        "status": "ACTIVE",
+        "engine": "MySQL",
+        "engine_version": "8.0",
+        "port": 3306,
+        "region": "af-south-1",
+        "private_ips": [
+          "10.10.150.3"
+        ],
+        "public_ips": [
+          "159.138.162.220"
+        ]
+      },
+      {
+        "id": "01a1ecfa0fe14679bc8ab80f8b9b8b24in01",
+        "name": "weego-replica-d536",
+        "status": "ACTIVE",
+        "engine": "MySQL",
+        "engine_version": "8.0",
+        "port": 3306,
+        "region": "af-south-1",
+        "private_ips": [
+          "10.10.150.115"
+        ],
+        "public_ips": []
+      },
+      {
+        "id": "87629ec62e2e492a8f3aa70b8c492df1in01",
+        "name": "rds-shikisha",
+        "status": "ACTIVE",
+        "engine": "MySQL",
+        "engine_version": "8.0",
+        "port": 3306,
+        "region": "af-south-1",
+        "private_ips": [
+          "10.10.150.82"
+        ],
+        "public_ips": [
+          "203.123.83.144"
+        ]
+      },
+      {
+        "id": "f5f29903117245469acd1c9abeeac2acin01",
+        "name": "Weego_and_marketing-analytics",
+        "status": "ACTIVE",
+        "engine": "MySQL",
+        "engine_version": "8.0",
+        "port": 3306,
+        "region": "af-south-1",
+        "private_ips": [
+          "10.10.150.54"
+        ],
+        "public_ips": [
+          "159.138.162.146"
+        ]
+      },
+      {
+        "id": "ab72064f4b1640598e43b3151b8244c6in01",
+        "name": "election-prod-db2",
+        "status": "ACTIVE",
+        "engine": "MySQL",
+        "engine_version": "5.7",
+        "port": 3306,
+        "region": "af-south-1",
+        "private_ips": [
+          "10.10.150.48"
+        ],
+        "public_ips": [
+          "110.238.77.61"
+        ]
+      },
+      {
+        "id": "ff9f901597f94949bfe40450fa14f9d7in01",
+        "name": "visitors-database-cluster",
+        "status": "ACTIVE",
+        "engine": "MySQL",
+        "engine_version": "5.7",
+        "port": 3306,
+        "region": "af-south-1",
+        "private_ips": [
+          "10.10.150.168"
+        ],
+        "public_ips": [
+          "110.238.75.83"
+        ]
+      },
+      {
+        "id": "05e256cf1f8a4d2e8544213021d9b7d1in01",
+        "name": "dbms-trf-req-database-3",
+        "status": "ACTIVE",
+        "engine": "MySQL",
+        "engine_version": "5.7",
+        "port": 3306,
+        "region": "af-south-1",
+        "private_ips": [
+          "10.10.150.121"
+        ],
+        "public_ips": [
+          "159.138.175.179"
+        ]
+      },
+      {
+        "id": "7d9c9aab51264c6886a5793904c2f96bin01",
+        "name": "citizen-digital-dev-db-cluster",
+        "status": "ACTIVE",
+        "engine": "MySQL",
+        "engine_version": "5.7",
+        "port": 3306,
+        "region": "af-south-1",
+        "private_ips": [
+          "10.10.150.206"
+        ],
+        "public_ips": [
+          "159.138.164.124"
+        ]
+      },
+      {
+        "id": "2ce731854be043aaaaa9363d0a1b6585in03",
+        "name": "rms-ai-pg",
+        "status": "ACTIVE",
+        "engine": "PostgreSQL",
+        "engine_version": "16",
+        "port": 5432,
+        "region": "ap-southeast-1",
+        "private_ips": [
+          "192.168.1.30"
+        ],
+        "public_ips": []
+      }
+    ]
+  },
+  "dws": {
+    "by_region": {
+      "af-north-1": {
+        "ok": false,
+        "error": "403:DWS.01010007:Policy doesn't allow dws:cluster:list to be performed",
+        "count": 0
+      },
+      "af-south-1": {
+        "ok": false,
+        "error": "403:DWS.01010013:User: iam::3f9d29266af74046bfb637cabb995c39:user:BramwelMwalo is not authorized to perform: dws:cluster:list on resource",
+        "count": 0
+      },
+      "ap-southeast-1": {
+        "ok": false,
+        "error": "403:DWS.01010007:Policy doesn't allow dws:cluster:list to be performed",
+        "count": 0
+      },
+      "ap-southeast-2": {
+        "ok": false,
+        "error": "403:DWS.01010007:Policy doesn't allow dws:cluster:list to be performed",
+        "count": 0
+      },
+      "ap-southeast-3": {
+        "ok": false,
+        "error": "403:DWS.01010007:Policy doesn't allow dws:cluster:list to be performed",
+        "count": 0
+      },
+      "ap-southeast-4": {
+        "ok": false,
+        "error": "403:DWS.01010007:Policy doesn't allow dws:cluster:list to be performed",
+        "count": 0
+      },
+      "cn-east-3": {
+        "ok": false,
+        "error": "403:DWS.01010007:Policy doesn't allow dws:cluster:list to be performed",
+        "count": 0
+      },
+      "cn-north-1": {
+        "ok": false,
+        "error": "403:APIGW.0802:The IAM user is forbidden in the currently selected region",
+        "count": 0
+      },
+      "cn-north-4": {
+        "ok": false,
+        "error": "403:DWS.01010007:Policy doesn't allow dws:cluster:list to be performed",
+        "count": 0
+      },
+      "cn-south-1": {
+        "ok": false,
+        "error": "403:DWS.01010007:Policy doesn't allow dws:cluster:list to be performed",
+        "count": 0
+      },
+      "cn-southwest-2": {
+        "ok": false,
+        "error": "403:DWS.01010007:Policy doesn't allow dws:cluster:list to be performed",
+        "count": 0
+      },
+      "la-north-2": {
+        "ok": false,
+        "error": "403:DWS.01010007:Policy doesn't allow dws:cluster:list to be performed",
+        "count": 0
+      },
+      "la-south-2": {
+        "ok": false,
+        "error": "403:DWS.01010007:Policy doesn't allow dws:cluster:list to be performed",
+        "count": 0
+      },
+      "me-east-1": {
+        "ok": false,
+        "error": "403:DWS.01010007:Policy doesn't allow dws:cluster:list to be performed",
+        "count": 0
+      },
+      "MOS": {
+        "ok": false,
+        "error": "NoRegion:\"region_id 'MOS' is not in the following supported regions of service 'Dws': [ae-ad-1, af-north-1, a",
+        "count": 0
+      },
+      "na-mexico-1": {
+        "ok": false,
+        "error": "403:DWS.01010007:Policy doesn't allow dws:cluster:list to be performed",
+        "count": 0
+      },
+      "sa-brazil-1": {
+        "ok": false,
+        "error": "403:DWS.01010007:Policy doesn't allow dws:cluster:list to be performed",
+        "count": 0
+      },
+      "tr-west-1": {
+        "ok": false,
+        "error": "403:DWS.01010007:Policy doesn't allow dws:cluster:list to be performed",
+        "count": 0
+      }
+    },
+    "clusters": []
+  },
+  "dds": {
+    "by_region": {
+      "af-north-1": {
+        "ok": false,
+        "error": "403:DBS.280063:You do not have following permission to perform this operation: dds:instance:list. Contact the administrator to obtain p",
+        "count": 0
+      },
+      "af-south-1": {
+        "ok": false,
+        "error": "403:DBS.280063:You do not have following permission to perform this operation: dds:instance:listAll. Contact the administrator to obtai",
+        "count": 0
+      },
+      "ap-southeast-1": {
+        "ok": false,
+        "error": "403:DBS.280063:You do not have following permission to perform this operation: dds:instance:list. Contact the administrator to obtain p",
+        "count": 0
+      },
+      "ap-southeast-2": {
+        "ok": false,
+        "error": "403:DBS.280063:You do not have following permission to perform this operation: dds:instance:list. Contact the administrator to obtain p",
+        "count": 0
+      },
+      "ap-southeast-3": {
+        "ok": false,
+        "error": "403:DBS.280063:You do not have following permission to perform this operation: dds:instance:list. Contact the administrator to obtain p",
+        "count": 0
+      },
+      "ap-southeast-4": {
+        "ok": false,
+        "error": "403:DBS.280063:You do not have following permission to perform this operation: dds:instance:list. Contact the administrator to obtain p",
+        "count": 0
+      },
+      "cn-east-3": {
+        "ok": false,
+        "error": "403:DBS.280063:You do not have following permission to perform this operation: dds:instance:list. Contact the administrator to obtain p",
+        "count": 0
+      },
+      "cn-north-1": {
+        "ok": false,
+        "error": "403:APIGW.0802:The IAM user is forbidden in the currently selected region",
+        "count": 0
+      },
+      "cn-north-4": {
+        "ok": false,
+        "error": "403:DBS.280063:You do not have following permission to perform this operation: dds:instance:list. Contact the administrator to obtain p",
+        "count": 0
+      },
+      "cn-south-1": {
+        "ok": false,
+        "error": "403:DBS.280063:You do not have following permission to perform this operation: dds:instance:list. Contact the administrator to obtain p",
+        "count": 0
+      },
+      "cn-southwest-2": {
+        "ok": false,
+        "error": "403:DBS.280063:You do not have following permission to perform this operation: dds:instance:list. Contact the administrator to obtain p",
+        "count": 0
+      },
+      "la-north-2": {
+        "ok": false,
+        "error": "403:DBS.280063:You do not have following permission to perform this operation: dds:instance:list. Contact the administrator to obtain p",
+        "count": 0
+      },
+      "la-south-2": {
+        "ok": false,
+        "error": "403:DBS.280063:You do not have following permission to perform this operation: dds:instance:list. Contact the administrator to obtain p",
+        "count": 0
+      },
+      "me-east-1": {
+        "ok": false,
+        "error": "403:DBS.280063:You do not have following permission to perform this operation: dds:instance:list. Contact the administrator to obtain p",
+        "count": 0
+      },
+      "MOS": {
+        "ok": false,
+        "error": "NoRegion:\"region_id 'MOS' is not in the following supported regions of service 'Dds': [ae-ad-1, af-north-1, a",
+        "count": 0
+      },
+      "na-mexico-1": {
+        "ok": false,
+        "error": "403:DBS.280063:You do not have following permission to perform this operation: dds:instance:list. Contact the administrator to obtain p",
+        "count": 0
+      },
+      "sa-brazil-1": {
+        "ok": false,
+        "error": "403:DBS.280063:You do not have following permission to perform this operation: dds:instance:list. Contact the administrator to obtain p",
+        "count": 0
+      },
+      "tr-west-1": {
+        "ok": false,
+        "error": "403:DBS.280063:You do not have following permission to perform this operation: dds:instance:list. Contact the administrator to obtain p",
+        "count": 0
+      }
+    },
+    "instances": []
+  },
+  "user_name": "BramwelMwalo",
+  "ak_prefix": "HPUA\u2026NS",
+  "ak_len": 20,
+  "sk_fingerprint": "sha256_8=451a83c7",
+  "sk_len": 40,
+  "region_sweep": [
+    "af-north-1",
+    "af-south-1",
+    "ap-southeast-1",
+    "ap-southeast-2",
+    "ap-southeast-3",
+    "ap-southeast-4",
+    "cn-east-3",
+    "cn-north-1",
+    "cn-north-4",
+    "cn-south-1",
+    "cn-southwest-2",
+    "la-north-2",
+    "la-south-2",
+    "me-east-1",
+    "MOS",
+    "na-mexico-1",
+    "sa-brazil-1",
+    "tr-west-1"
+  ],
+  "finished_at": "2026-09-11T18:31:03.412616+00:00"
+}

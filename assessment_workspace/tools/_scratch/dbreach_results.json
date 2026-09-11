@@ -1,0 +1,325 @@
+{
+  "started_at": "2026-09-11T18:32:10.714466+00:00",
+  "targets": [
+    {
+      "name": "RDS-INTERACTIONS",
+      "region": "af-south-1",
+      "engine": "MySQL",
+      "engine_version": "8.0",
+      "port": 3306,
+      "private_ips": [
+        "10.10.150.3"
+      ],
+      "public_ips": [
+        "159.138.162.220"
+      ],
+      "probes": [
+        {
+          "endpoint": "159.138.162.220",
+          "tcp": {
+            "host": "159.138.162.220",
+            "port": 3306,
+            "tcp_ok": true,
+            "error": null,
+            "latency_ms": 250.7,
+            "handshake_bytes": 85,
+            "handshake_prefix_hex": "510000000a382e302e32382d323331303033000b252c0c5a7674350805072e00fff7ff0200ff9f15000000000000000000004209096d55717f3c43660f53006d",
+            "mysql_protocol": 10,
+            "mysql_version": "8.0.28-231003",
+            "mysql_greeting_parsed": true
+          },
+          "auth": {
+            "host": "159.138.162.220",
+            "port": 3306,
+            "user_tried": "rms_probe_readonly",
+            "outcome": "OPERATIONAL_ERROR",
+            "sqlstate": null,
+            "code": 1045,
+            "message": "Access denied for user 'rms_probe_readonly'@'34.170.12.145' (using password: YES)"
+          }
+        },
+        {
+          "endpoint": "10.10.150.3",
+          "tcp": {
+            "host": "10.10.150.3",
+            "port": 3306,
+            "tcp_ok": false,
+            "error": "TimeoutError:timed out",
+            "latency_ms": 6001.9
+          }
+        }
+      ]
+    },
+    {
+      "name": "weego-replica-d536",
+      "region": "af-south-1",
+      "engine": "MySQL",
+      "engine_version": "8.0",
+      "port": 3306,
+      "private_ips": [
+        "10.10.150.115"
+      ],
+      "public_ips": [],
+      "probes": [
+        {
+          "endpoint": "10.10.150.115",
+          "tcp": {
+            "host": "10.10.150.115",
+            "port": 3306,
+            "tcp_ok": false,
+            "error": "TimeoutError:timed out",
+            "latency_ms": 6004.1
+          }
+        }
+      ]
+    },
+    {
+      "name": "rds-shikisha",
+      "region": "af-south-1",
+      "engine": "MySQL",
+      "engine_version": "8.0",
+      "port": 3306,
+      "private_ips": [
+        "10.10.150.82"
+      ],
+      "public_ips": [
+        "203.123.83.144"
+      ],
+      "probes": [
+        {
+          "endpoint": "203.123.83.144",
+          "tcp": {
+            "host": "203.123.83.144",
+            "port": 3306,
+            "tcp_ok": false,
+            "error": "TimeoutError:timed out",
+            "latency_ms": 6002.9
+          }
+        },
+        {
+          "endpoint": "10.10.150.82",
+          "tcp": {
+            "host": "10.10.150.82",
+            "port": 3306,
+            "tcp_ok": false,
+            "error": "TimeoutError:timed out",
+            "latency_ms": 6006.2
+          }
+        }
+      ]
+    },
+    {
+      "name": "Weego_and_marketing-analytics",
+      "region": "af-south-1",
+      "engine": "MySQL",
+      "engine_version": "8.0",
+      "port": 3306,
+      "private_ips": [
+        "10.10.150.54"
+      ],
+      "public_ips": [
+        "159.138.162.146"
+      ],
+      "probes": [
+        {
+          "endpoint": "159.138.162.146",
+          "tcp": {
+            "host": "159.138.162.146",
+            "port": 3306,
+            "tcp_ok": true,
+            "error": null,
+            "latency_ms": 266.4,
+            "handshake_bytes": 85,
+            "handshake_prefix_hex": "510000000a382e302e32382d32333130303300be15e20069430e0f037b342200fff7ff0200ff9f15000000000000000000004b37466f36470d13075e5511006d",
+            "mysql_protocol": 10,
+            "mysql_version": "8.0.28-231003",
+            "mysql_greeting_parsed": true
+          },
+          "auth": {
+            "host": "159.138.162.146",
+            "port": 3306,
+            "user_tried": "rms_probe_readonly",
+            "outcome": "OPERATIONAL_ERROR",
+            "sqlstate": null,
+            "code": 1045,
+            "message": "Access denied for user 'rms_probe_readonly'@'34.170.12.145' (using password: YES)"
+          }
+        },
+        {
+          "endpoint": "10.10.150.54",
+          "tcp": {
+            "host": "10.10.150.54",
+            "port": 3306,
+            "tcp_ok": false,
+            "error": "TimeoutError:timed out",
+            "latency_ms": 6006.2
+          }
+        }
+      ]
+    },
+    {
+      "name": "election-prod-db2",
+      "region": "af-south-1",
+      "engine": "MySQL",
+      "engine_version": "5.7",
+      "port": 3306,
+      "private_ips": [
+        "10.10.150.48"
+      ],
+      "public_ips": [
+        "110.238.77.61"
+      ],
+      "probes": [
+        {
+          "endpoint": "110.238.77.61",
+          "tcp": {
+            "host": "110.238.77.61",
+            "port": 3306,
+            "tcp_ok": false,
+            "error": "TimeoutError:timed out",
+            "latency_ms": 6002.5
+          }
+        },
+        {
+          "endpoint": "10.10.150.48",
+          "tcp": {
+            "host": "10.10.150.48",
+            "port": 3306,
+            "tcp_ok": false,
+            "error": "TimeoutError:timed out",
+            "latency_ms": 6001.8
+          }
+        }
+      ]
+    },
+    {
+      "name": "visitors-database-cluster",
+      "region": "af-south-1",
+      "engine": "MySQL",
+      "engine_version": "5.7",
+      "port": 3306,
+      "private_ips": [
+        "10.10.150.168"
+      ],
+      "public_ips": [
+        "110.238.75.83"
+      ],
+      "probes": [
+        {
+          "endpoint": "110.238.75.83",
+          "tcp": {
+            "host": "110.238.75.83",
+            "port": 3306,
+            "tcp_ok": false,
+            "error": "TimeoutError:timed out",
+            "latency_ms": 6004.1
+          }
+        },
+        {
+          "endpoint": "10.10.150.168",
+          "tcp": {
+            "host": "10.10.150.168",
+            "port": 3306,
+            "tcp_ok": false,
+            "error": "TimeoutError:timed out",
+            "latency_ms": 6006.2
+          }
+        }
+      ]
+    },
+    {
+      "name": "dbms-trf-req-database-3",
+      "region": "af-south-1",
+      "engine": "MySQL",
+      "engine_version": "5.7",
+      "port": 3306,
+      "private_ips": [
+        "10.10.150.121"
+      ],
+      "public_ips": [
+        "159.138.175.179"
+      ],
+      "probes": [
+        {
+          "endpoint": "159.138.175.179",
+          "tcp": {
+            "host": "159.138.175.179",
+            "port": 3306,
+            "tcp_ok": false,
+            "error": "TimeoutError:timed out",
+            "latency_ms": 6006.2
+          }
+        },
+        {
+          "endpoint": "10.10.150.121",
+          "tcp": {
+            "host": "10.10.150.121",
+            "port": 3306,
+            "tcp_ok": false,
+            "error": "TimeoutError:timed out",
+            "latency_ms": 6002.5
+          }
+        }
+      ]
+    },
+    {
+      "name": "citizen-digital-dev-db-cluster",
+      "region": "af-south-1",
+      "engine": "MySQL",
+      "engine_version": "5.7",
+      "port": 3306,
+      "private_ips": [
+        "10.10.150.206"
+      ],
+      "public_ips": [
+        "159.138.164.124"
+      ],
+      "probes": [
+        {
+          "endpoint": "159.138.164.124",
+          "tcp": {
+            "host": "159.138.164.124",
+            "port": 3306,
+            "tcp_ok": false,
+            "error": "TimeoutError:timed out",
+            "latency_ms": 6006.2
+          }
+        },
+        {
+          "endpoint": "10.10.150.206",
+          "tcp": {
+            "host": "10.10.150.206",
+            "port": 3306,
+            "tcp_ok": false,
+            "error": "TimeoutError:timed out",
+            "latency_ms": 6005.0
+          }
+        }
+      ]
+    },
+    {
+      "name": "rms-ai-pg",
+      "region": "ap-southeast-1",
+      "engine": "PostgreSQL",
+      "engine_version": "16",
+      "port": 5432,
+      "private_ips": [
+        "192.168.1.30"
+      ],
+      "public_ips": [],
+      "probes": [
+        {
+          "endpoint": "192.168.1.30",
+          "tcp": {
+            "host": "192.168.1.30",
+            "port": 5432,
+            "tcp_ok": false,
+            "error": "TimeoutError:timed out",
+            "latency_ms": 6005.8
+          }
+        }
+      ]
+    }
+  ],
+  "finished_at": "2026-09-11T18:33:37.951899+00:00"
+}

@@ -1,0 +1,241 @@
+{
+  "RDS-INTERACTIONS": {
+    "instance_detail": {
+      "name": "RDS-INTERACTIONS",
+      "status": "ACTIVE",
+      "engine": "MySQL 8.0",
+      "port": 3306,
+      "private_dns_names": [
+        "012de8d88d734339a2f50278128e0062in01.internal.af-south-1.mysql.rds.myhuaweicloud.com"
+      ],
+      "public_ips": [
+        "159.138.162.220"
+      ],
+      "private_ips": [
+        "10.10.150.3"
+      ],
+      "vpc_id": "de3ba6f7-d0e7-4228-8da2-19bd33a07ff2",
+      "subnet_id": "c7fef874-8aef-4b91-9d3b-7e84ce53104d",
+      "security_group_id": "aed8d060-16fc-489d-8b62-1a2c3ea45cca,2cc0ad09-8d8f-464d-9d39-4fe1f3052b57",
+      "db_user_name": "root",
+      "flavor": "rds.mysql.n1.large.2",
+      "created": "2025-08-04T11:04:53+0000",
+      "az": null,
+      "az_code_ha": null
+    },
+    "databases": [
+      {
+        "name": "interactions",
+        "charset": "utf8mb4"
+      }
+    ],
+    "db_users": [],
+    "backup_policy": {
+      "keep_days": 7,
+      "start_time": "23:00-00:00",
+      "period": "1,2,3,4,5,6,7"
+    },
+    "audit_policy": null,
+    "endpoints": {
+      "public_fqdn": null
+    }
+  },
+  "Weego_and_marketing-analytics": {
+    "instance_detail": {
+      "name": "Weego_and_marketing-analytics",
+      "status": "ACTIVE",
+      "engine": "MySQL 8.0",
+      "port": 3306,
+      "private_dns_names": [
+        "f5f29903117245469acd1c9abeeac2acin01.internal.af-south-1.mysql.rds.myhuaweicloud.com"
+      ],
+      "public_ips": [
+        "159.138.162.146"
+      ],
+      "private_ips": [
+        "10.10.150.54"
+      ],
+      "vpc_id": "de3ba6f7-d0e7-4228-8da2-19bd33a07ff2",
+      "subnet_id": "c7fef874-8aef-4b91-9d3b-7e84ce53104d",
+      "security_group_id": "2cc0ad09-8d8f-464d-9d39-4fe1f3052b57",
+      "db_user_name": "root",
+      "flavor": "rds.mysql.n1.xlarge.4",
+      "created": "2024-02-12T08:22:10+0000",
+      "az": null,
+      "az_code_ha": null
+    },
+    "databases": [
+      {
+        "name": "analytics",
+        "charset": "utf8mb4"
+      },
+      {
+        "name": "sql_demo",
+        "charset": "utf8mb4"
+      },
+      {
+        "name": "sql_trial1",
+        "charset": "utf8mb4"
+      },
+      {
+        "name": "weego",
+        "charset": "utf8mb4"
+      }
+    ],
+    "db_users": [
+      "readuser",
+      "weego"
+    ],
+    "backup_policy": {
+      "keep_days": 30,
+      "start_time": "23:00-00:00",
+      "period": "1,2,3,4,5,6,7"
+    },
+    "audit_policy": null,
+    "endpoints": {
+      "public_fqdn": null
+    }
+  },
+  "rds-shikisha": {
+    "instance_detail": {
+      "name": "rds-shikisha",
+      "status": "ACTIVE",
+      "engine": "MySQL 8.0",
+      "port": 3306,
+      "private_dns_names": [
+        "87629ec62e2e492a8f3aa70b8c492df1in01.internal.af-south-1.mysql.rds.myhuaweicloud.com"
+      ],
+      "public_ips": [
+        "203.123.83.144"
+      ],
+      "private_ips": [
+        "10.10.150.82"
+      ],
+      "vpc_id": "de3ba6f7-d0e7-4228-8da2-19bd33a07ff2",
+      "subnet_id": "c7fef874-8aef-4b91-9d3b-7e84ce53104d",
+      "security_group_id": "803fb5f5-1f24-4d09-847d-e921a66b4e45,aed8d060-16fc-489d-8b62-1a2c3ea45cca",
+      "db_user_name": "root",
+      "flavor": "rds.mysql.n1.large.2",
+      "created": "2025-02-25T06:14:03+0000",
+      "az": null,
+      "az_code_ha": null
+    },
+    "databases": [
+      {
+        "name": "citizen-pulse",
+        "charset": "utf8mb4"
+      },
+      {
+        "name": "corporate",
+        "charset": "utf8mb4"
+      },
+      {
+        "name": "correspondents",
+        "charset": "utf8mb4"
+      },
+      {
+        "name": "saa",
+        "charset": "utf8mb4"
+      }
+    ],
+    "db_users": [
+      "corporate",
+      "saa"
+    ],
+    "backup_policy": {
+      "keep_days": 7,
+      "start_time": "22:00-23:00",
+      "period": "1,2,3,4,5,6,7"
+    },
+    "audit_policy": null,
+    "endpoints": {
+      "public_fqdn": null
+    }
+  },
+  "weego-replica-d536": {
+    "instance_detail": {
+      "name": "weego-replica-d536",
+      "status": "ACTIVE",
+      "engine": "MySQL 8.0",
+      "port": 3306,
+      "private_dns_names": [
+        "01a1ecfa0fe14679bc8ab80f8b9b8b24in01.internal.af-south-1.mysql.rds.myhuaweicloud.com"
+      ],
+      "public_ips": [],
+      "private_ips": [
+        "10.10.150.115"
+      ],
+      "vpc_id": "de3ba6f7-d0e7-4228-8da2-19bd33a07ff2",
+      "subnet_id": "c7fef874-8aef-4b91-9d3b-7e84ce53104d",
+      "security_group_id": "2cc0ad09-8d8f-464d-9d39-4fe1f3052b57",
+      "db_user_name": "root",
+      "flavor": "rds.mysql.n1.large.4.rr",
+      "created": "2025-05-19T11:03:08+0000",
+      "az": null,
+      "az_code_ha": null
+    },
+    "databases": [
+      {
+        "name": "analytics",
+        "charset": "utf8mb4"
+      },
+      {
+        "name": "sql_demo",
+        "charset": "utf8mb4"
+      },
+      {
+        "name": "sql_trial1",
+        "charset": "utf8mb4"
+      },
+      {
+        "name": "weego",
+        "charset": "utf8mb4"
+      }
+    ],
+    "db_users": null,
+    "backup_policy": {
+      "keep_days": 0,
+      "start_time": null,
+      "period": null
+    },
+    "audit_policy": null,
+    "endpoints": {
+      "public_fqdn": null
+    },
+    "db_users_err": "409:DBS.280406:Operation not allowed by the DB instance type or status."
+  },
+  "rms-ai-pg": {
+    "instance_detail": {
+      "name": "rms-ai-pg",
+      "status": "ACTIVE",
+      "engine": "PostgreSQL 16",
+      "port": 5432,
+      "private_dns_names": [
+        "2ce731854be043aaaaa9363d0a1b6585in03.internal.ap-southeast-1.postgresql.rds.myhuaweicloud.com"
+      ],
+      "public_ips": [],
+      "private_ips": [
+        "192.168.1.30"
+      ],
+      "vpc_id": "35528a18-8076-41a2-9796-e2334503c193",
+      "subnet_id": "bd97d46a-e4c7-4d9f-b2c4-b15444986a41",
+      "security_group_id": "f0cbb3b1-bcc6-4085-9072-af4c89c05c9c",
+      "db_user_name": "root",
+      "flavor": "rds.pg.n1.large.4.ha",
+      "created": "2026-07-13T07:20:03+0000",
+      "az": null,
+      "az_code_ha": null
+    },
+    "databases": null,
+    "db_users": null,
+    "backup_policy": {
+      "keep_days": 7,
+      "start_time": "22:00-23:00",
+      "period": "1,2,3,4,5,6,7"
+    },
+    "audit_policy": null,
+    "endpoints": {
+      "public_fqdn": null
+    }
+  }
+}
