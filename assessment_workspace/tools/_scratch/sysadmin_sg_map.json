@@ -1,0 +1,244 @@
+{
+  "instances": [
+    {
+      "name": "RDS-INTERACTIONS",
+      "id": "012de8d88d734339a2f50278128e0062in01",
+      "security_groups": [
+        "aed8d060-16fc-489d-8b62-1a2c3ea45cca",
+        "2cc0ad09-8d8f-464d-9d39-4fe1f3052b57"
+      ],
+      "public_ips": [
+        "159.138.162.220"
+      ],
+      "private_ips": [
+        "10.10.150.3"
+      ],
+      "engine": "MySQL 8.0"
+    },
+    {
+      "name": "weego-replica-d536",
+      "id": "01a1ecfa0fe14679bc8ab80f8b9b8b24in01",
+      "security_groups": [
+        "2cc0ad09-8d8f-464d-9d39-4fe1f3052b57"
+      ],
+      "public_ips": [],
+      "private_ips": [
+        "10.10.150.115"
+      ],
+      "engine": "MySQL 8.0"
+    },
+    {
+      "name": "rds-shikisha",
+      "id": "87629ec62e2e492a8f3aa70b8c492df1in01",
+      "security_groups": [
+        "803fb5f5-1f24-4d09-847d-e921a66b4e45",
+        "aed8d060-16fc-489d-8b62-1a2c3ea45cca"
+      ],
+      "public_ips": [
+        "203.123.83.144"
+      ],
+      "private_ips": [
+        "10.10.150.82"
+      ],
+      "engine": "MySQL 8.0"
+    },
+    {
+      "name": "Weego_and_marketing-analytics",
+      "id": "f5f29903117245469acd1c9abeeac2acin01",
+      "security_groups": [
+        "2cc0ad09-8d8f-464d-9d39-4fe1f3052b57"
+      ],
+      "public_ips": [
+        "159.138.162.146"
+      ],
+      "private_ips": [
+        "10.10.150.54"
+      ],
+      "engine": "MySQL 8.0"
+    },
+    {
+      "name": "election-prod-db2",
+      "id": "ab72064f4b1640598e43b3151b8244c6in01",
+      "security_groups": [
+        "92233ae5-f4d2-4ace-8685-023881e189f1",
+        "aed8d060-16fc-489d-8b62-1a2c3ea45cca"
+      ],
+      "public_ips": [
+        "110.238.77.61"
+      ],
+      "private_ips": [
+        "10.10.150.48"
+      ],
+      "engine": "MySQL 5.7"
+    },
+    {
+      "name": "visitors-database-cluster",
+      "id": "ff9f901597f94949bfe40450fa14f9d7in01",
+      "security_groups": [
+        "92233ae5-f4d2-4ace-8685-023881e189f1",
+        "aed8d060-16fc-489d-8b62-1a2c3ea45cca"
+      ],
+      "public_ips": [
+        "110.238.75.83"
+      ],
+      "private_ips": [
+        "10.10.150.168"
+      ],
+      "engine": "MySQL 5.7"
+    },
+    {
+      "name": "dbms-trf-req-database-3",
+      "id": "05e256cf1f8a4d2e8544213021d9b7d1in01",
+      "security_groups": [
+        "92233ae5-f4d2-4ace-8685-023881e189f1"
+      ],
+      "public_ips": [
+        "159.138.175.179"
+      ],
+      "private_ips": [
+        "10.10.150.121"
+      ],
+      "engine": "MySQL 5.7"
+    },
+    {
+      "name": "citizen-digital-dev-db-cluster",
+      "id": "7d9c9aab51264c6886a5793904c2f96bin01",
+      "security_groups": [
+        "92233ae5-f4d2-4ace-8685-023881e189f1",
+        "a6456cfb-696e-45c7-8147-13028a53dcea"
+      ],
+      "public_ips": [
+        "159.138.164.124"
+      ],
+      "private_ips": [
+        "10.10.150.206"
+      ],
+      "engine": "MySQL 5.7"
+    }
+  ],
+  "sg_map": {
+    "a6456cfb-696e-45c7-8147-13028a53dcea": {
+      "id": "a6456cfb-696e-45c7-8147-13028a53dcea",
+      "name": "sg-Citizen-Digital",
+      "description": "The security group is for general-purpose web servers. It allows inbound ICMP and other traffic on ports 22, 80, 443, and 3389. This group is used for remote login, ping, and hosting websites on ECSs.",
+      "rule_count": 6,
+      "ingress_3306": [
+        "proto=tcp port=3306-3306 remote=105.27.124.210/32",
+        "proto=tcp port=3306-3306 remote=105.163.251.110/32"
+      ],
+      "ingress_5432": [],
+      "ingress_22": [],
+      "ingress_total": 5,
+      "ingress_sample": [
+        "proto=tcp port=3306-3306 remote=105.27.124.210/32",
+        "proto=tcp port=3306-3306 remote=105.163.251.110/32",
+        "proto=None port=None-None remote=a6456cfb-696e-45c7-8147-13028a53dcea",
+        "proto=tcp port=443-443 remote=0.0.0.0/0",
+        "proto=tcp port=80-80 remote=0.0.0.0/0"
+      ]
+    },
+    "92233ae5-f4d2-4ace-8685-023881e189f1": {
+      "id": "92233ae5-f4d2-4ace-8685-023881e189f1",
+      "name": "sg-Mysql",
+      "description": "The security group is for general-purpose web servers. It allows inbound ICMP and other traffic on ports 22, 80, 443, and 3389. This group is used for remote login, ping, and hosting websites on ECSs.",
+      "rule_count": 15,
+      "ingress_3306": [
+        "proto=tcp port=3306-3306 remote=34.170.12.145/32",
+        "proto=tcp port=3306-3306 remote=41.90.184.244/32",
+        "proto=tcp port=3306-3306 remote=105.165.115.186/32",
+        "proto=tcp port=3306-3306 remote=159.138.165.40/32",
+        "proto=tcp port=3306-3306 remote=203.123.87.72/32",
+        "proto=tcp port=3306-3306 remote=159.138.174.129/32",
+        "proto=tcp port=3306-3306 remote=105.27.206.54/32",
+        "proto=tcp port=3306-3306 remote=102.220.169.7/32",
+        "proto=tcp port=3306-3306 remote=105.163.0.109/32",
+        "proto=tcp port=3306-3306 remote=197.232.61.222/32",
+        "proto=tcp port=3306-3306 remote=41.72.192.190/32",
+        "proto=tcp port=3306-3306 remote=197.248.182.2/32"
+      ],
+      "ingress_5432": [],
+      "ingress_22": [],
+      "ingress_total": 14,
+      "ingress_sample": [
+        "proto=tcp port=3306-3306 remote=34.170.12.145/32",
+        "proto=tcp port=3306-3306 remote=41.90.184.244/32",
+        "proto=tcp port=3306-3306 remote=105.165.115.186/32",
+        "proto=tcp port=3306-3306 remote=159.138.165.40/32",
+        "proto=tcp port=3306-3306 remote=203.123.87.72/32",
+        "proto=tcp port=3306-3306 remote=159.138.174.129/32"
+      ]
+    },
+    "2cc0ad09-8d8f-464d-9d39-4fe1f3052b57": {
+      "id": "2cc0ad09-8d8f-464d-9d39-4fe1f3052b57",
+      "name": "default",
+      "description": "default",
+      "rule_count": 30,
+      "ingress_3306": [
+        "proto=tcp port=3306-3306 remote=0.0.0.0/0",
+        "proto=tcp port=3306-3306 remote=aed8d060-16fc-489d-8b62-1a2c3ea45cca",
+        "proto=tcp port=3306-3306 remote=None",
+        "proto=tcp port=3306-3306 remote=10.10.150.0/24"
+      ],
+      "ingress_5432": [],
+      "ingress_22": [
+        "proto=tcp port=22-22 remote=41.90.137.59/32",
+        "proto=tcp port=22-22 remote=41.220.231.2/32",
+        "proto=tcp port=22-22 remote=41.90.208.73/32",
+        "proto=tcp port=22-22 remote=41.90.209.191/32",
+        "proto=tcp port=22-22 remote=None",
+        "proto=tcp port=22-22 remote=41.90.140.185/32"
+      ],
+      "ingress_total": 28,
+      "ingress_sample": [
+        "proto=tcp port=22-22 remote=41.90.137.59/32",
+        "proto=tcp port=22-22 remote=41.220.231.2/32",
+        "proto=tcp port=22-22 remote=41.90.208.73/32",
+        "proto=tcp port=3306-3306 remote=0.0.0.0/0",
+        "proto=tcp port=3306-3306 remote=aed8d060-16fc-489d-8b62-1a2c3ea45cca",
+        "proto=None port=None-None remote=41.90.208.14/32"
+      ]
+    },
+    "aed8d060-16fc-489d-8b62-1a2c3ea45cca": {
+      "id": "aed8d060-16fc-489d-8b62-1a2c3ea45cca",
+      "name": "RMS-IPS",
+      "description": "RMS-PUBLIC-IPS",
+      "rule_count": 9,
+      "ingress_3306": [
+        "proto=tcp port=3306-3306 remote=34.170.12.145/32",
+        "proto=tcp port=3306-3306 remote=41.90.184.244/32",
+        "proto=tcp port=3306-3306 remote=154.159.252.206/32"
+      ],
+      "ingress_5432": [],
+      "ingress_22": [
+        "proto=tcp port=22-22 remote=154.159.252.206/32"
+      ],
+      "ingress_total": 8,
+      "ingress_sample": [
+        "proto=tcp port=3306-3306 remote=34.170.12.145/32",
+        "proto=tcp port=3306-3306 remote=41.90.184.244/32",
+        "proto=tcp port=3306-3306 remote=154.159.252.206/32",
+        "proto=tcp port=22-22 remote=154.159.252.206/32",
+        "proto=None port=None-None remote=197.248.182.2/32",
+        "proto=None port=None-None remote=105.27.206.54/32"
+      ]
+    },
+    "803fb5f5-1f24-4d09-847d-e921a66b4e45": {
+      "id": "803fb5f5-1f24-4d09-847d-e921a66b4e45",
+      "name": "sg-shikisha",
+      "description": "",
+      "rule_count": 5,
+      "ingress_3306": [],
+      "ingress_5432": [],
+      "ingress_22": [
+        "proto=tcp port=22-22 remote=0.0.0.0/0"
+      ],
+      "ingress_total": 4,
+      "ingress_sample": [
+        "proto=tcp port=22-22 remote=0.0.0.0/0",
+        "proto=tcp port=443-443 remote=0.0.0.0/0",
+        "proto=tcp port=80-80 remote=0.0.0.0/0",
+        "proto=None port=None-None remote=803fb5f5-1f24-4d09-847d-e921a66b4e45"
+      ]
+    }
+  }
+}

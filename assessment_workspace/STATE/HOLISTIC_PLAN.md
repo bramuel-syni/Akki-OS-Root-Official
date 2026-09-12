@@ -260,27 +260,30 @@ Plan default: **hold on rulings #1, #3, #5, #6** for their respective waves. **R
 
 ---
 
-## §5 · Background GPU campaign — status + remaining runway
+## §5 · Prior GPU campaign — CONCLUDED · GPU-mtafiti now precedence
 
-**What we're running:** The three-day full-consumption campaign on `akki-vm` (Campaign A · Baseline Ladder) + `akki-vm-ii` (Campaign B · Method Ablations). Owner directive: "full-consumption GPU obligations remain interrupt-priority" (STANDING_ORDERS §5).
+**Status (reconciled 2026-09-09T~evening after owner ruling + live SSH probe):** the three-day full-consumption campaign window has **CONCLUDED**. Both H200 hosts read **0% GPU utilisation, 0 MiB VRAM in use, no compute processes** at real-time probe. Owner has confirmed verbatim: *"On GPU availability, the previous run concluded and this should take precedence now."*
 
-**Numbers on record:**
+**Reconciliation note (what the prior plan claimed vs the probed truth):**
+
+| Prior HOLISTIC_PLAN claim | Probed live state (2026-09-09) | Reconciliation |
+|---|---|---|
+| "The three-day full-consumption campaign on `akki-vm` (Campaign A) + `akki-vm-ii` (Campaign B)" is running | Both hosts 100% idle for at least the current live window (0% util, 0 MiB used, no compute PIDs) | Prior window CLOSED per owner; plan text refined here |
+| "72h campaign window closes 2026-09-09 evening" | Window has closed (owner confirmation) | CONCLUDED |
+| "Full-consumption GPU obligations remain interrupt-priority" (STANDING_ORDERS §5) | Standing rule preserved — retains authority when a NEW training window opens | Rule survives; not currently active because no training is currently scheduled |
+
+**Numbers on record (from the concluded window, retained for the WPW draft trail):**
 - **78 unique run_ids** across queue manifests + baseline_lines + solva_runs (roster at `notes/models_roster.json`). Owner target 77 met.
 - **State breakdown per owner honest-state map** (2026-09-09T~12:20Z verbatim): 70 "under evaluation" · 8 "pilot" · 0 "did not complete".
 - **Version breakdown:** 52 v2.1 · 11 v2 · 8 pilot-v1 · 6 sealed-clean baseline · 1 solva.
 
-**Window-fill guarantee:** `queue_followon_launcher.py` + `on_host_queue_dispatcher.py` + dispatcher-respawn-on-death (W-WINDOW-FILL-RESTORE-2 · already banked at floor 3006). Both dispatchers idempotent; both hosts reattach after session interruption via `campaign_infra.reconcile.pull_and_bank`.
+**Window-fill guarantee machinery preserved:** `queue_followon_launcher.py` + `on_host_queue_dispatcher.py` + dispatcher-respawn-on-death (W-WINDOW-FILL-RESTORE-2, banked at floor 3006) remain intact. When a new training window opens, GPU-mtafiti will register as a **fill-only tenant** that yields immediately to training on arrival — this is the interrupt discipline the owner asked to preserve, expressed as a dispatcher tenancy tier rather than a separate orchestration.
 
-**Watchdogs:**
-- `tools/on_host_watchdog.sh` on each host — dispatcher heartbeat monitor; auto-restart on death.
-- Ratchet-side: `test_launcher_respawns_dead_dispatcher.py` invariant (STEP 1 close).
-- Fallback burns at `phase0/gpu_burn/` + `phase0/gpu_fill_burns/`; never mixed into `shield-train/*` or `baseline_lines/*` (STANDING_ORDERS §5).
+**Current precedence workload — GPU-mtafiti discovery:** GPUs are free · ~560 GiB VRAM total across 4× H200 · owner has ruled this is the take-precedence-now workload. New wave opened: `W-MTAFITI-GPU-DISCOVERY` (grounding brief at `notes/W_MTAFITI_GPU_DISCOVERY_grounding_brief.md`). Product-build HOLD unchanged for CP10/Solva/DAP-stack; only this GPU-mtafiti wave is lifted from HOLD per owner ruling 2026-09-09T~evening.
 
-**Remaining runway:** as of 2026-09-09 · window opened 2026-09-06 · budget was 72 productive hours · **72h campaign window closes 2026-09-09 evening.** Owner has previously ruled ("Commercial after baselines") that baselines complete before commercial waves.
+**Post-campaign work stream (deferred, not lost):** window-close ceremony (WPW Tier 1+2 drafts fired per baseline_line record); data collection feeds Doc 14 Model Ecosystem rows; adapter walk sha256 banked per run per already-live `on_host_trainer.py`. This becomes background work now that the primary GPU tenant has shifted to mtafiti-discovery.
 
-**Post-campaign work stream:** window-close ceremony (WPW Tier 1+2 drafts fired per baseline_line record); data collection feeds Doc 14 Model Ecosystem rows; adapter walk sha256 banked per run per already-live `on_host_trainer.py`.
-
-**Nothing in this plan opens or closes a campaign run.** The campaign machinery is self-driving; the plan is orthogonal.
+**Nothing in this plan opens or closes a campaign run.** The campaign machinery is self-driving and will resume via the same dispatcher shape when the owner authorises the next training window.
 
 ---
 

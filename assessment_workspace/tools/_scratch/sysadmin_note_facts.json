@@ -1,0 +1,405 @@
+{
+  "ts": "2026-09-12T04:59:33.371778+00:00",
+  "domain": {
+    "id": "3f9d29266af74046bfb637cabb995c39",
+    "name": "hid_mroq3ef3gos5pjp",
+    "enabled": true
+  },
+  "projects": [
+    {
+      "id": "f32336b4facb4307b86a8bbfba7e8fb5",
+      "name": "af-north-1",
+      "domain_id": "3f9d29266af74046bfb637cabb995c39",
+      "enabled": true
+    },
+    {
+      "id": "517a45cac3994683abcf0cc155b3c01b",
+      "name": "af-south-1",
+      "domain_id": "3f9d29266af74046bfb637cabb995c39",
+      "enabled": true
+    },
+    {
+      "id": "b2c3b9b1ef6346ab9e45818f8a6714ba",
+      "name": "ap-southeast-1",
+      "domain_id": "3f9d29266af74046bfb637cabb995c39",
+      "enabled": true
+    },
+    {
+      "id": "b7f32ca3dde54457aa9c7dc9c9d09f9c",
+      "name": "ap-southeast-2",
+      "domain_id": "3f9d29266af74046bfb637cabb995c39",
+      "enabled": true
+    },
+    {
+      "id": "1aa44a4c98234a43b0a05587f528af82",
+      "name": "ap-southeast-3",
+      "domain_id": "3f9d29266af74046bfb637cabb995c39",
+      "enabled": true
+    },
+    {
+      "id": "3cf01bccecd94561abeff083d9c83d16",
+      "name": "ap-southeast-4",
+      "domain_id": "3f9d29266af74046bfb637cabb995c39",
+      "enabled": true
+    },
+    {
+      "id": "62b8295c19a84aed89ad3da0a82ddaec",
+      "name": "cn-east-3",
+      "domain_id": "3f9d29266af74046bfb637cabb995c39",
+      "enabled": true
+    },
+    {
+      "id": "8491d4e96b70408fbd0ba212a51cc8ca",
+      "name": "cn-north-1",
+      "domain_id": "3f9d29266af74046bfb637cabb995c39",
+      "enabled": true
+    },
+    {
+      "id": "67ad786898c84df1848e64b1e7221189",
+      "name": "cn-north-4",
+      "domain_id": "3f9d29266af74046bfb637cabb995c39",
+      "enabled": true
+    },
+    {
+      "id": "edcd03062c72443a85fa481da0d5c2f1",
+      "name": "cn-south-1",
+      "domain_id": "3f9d29266af74046bfb637cabb995c39",
+      "enabled": true
+    },
+    {
+      "id": "15dfcc3e0f4f44539667f0963d510982",
+      "name": "cn-southwest-2",
+      "domain_id": "3f9d29266af74046bfb637cabb995c39",
+      "enabled": true
+    },
+    {
+      "id": "c833fdbcdff34c7fbda5c7a02a3c82c1",
+      "name": "la-north-2",
+      "domain_id": "3f9d29266af74046bfb637cabb995c39",
+      "enabled": true
+    },
+    {
+      "id": "14b1cc65021647b694f64321e60275f6",
+      "name": "la-south-2",
+      "domain_id": "3f9d29266af74046bfb637cabb995c39",
+      "enabled": true
+    },
+    {
+      "id": "09cb0bd93d2c46058298520a979d09e2",
+      "name": "me-east-1",
+      "domain_id": "3f9d29266af74046bfb637cabb995c39",
+      "enabled": true
+    },
+    {
+      "id": "09627a48e8ec466c891beca5dc09a343",
+      "name": "MOS",
+      "domain_id": "3f9d29266af74046bfb637cabb995c39",
+      "enabled": true
+    },
+    {
+      "id": "cb7ab7fdc6144eb09b03530d6709246e",
+      "name": "na-mexico-1",
+      "domain_id": "3f9d29266af74046bfb637cabb995c39",
+      "enabled": true
+    },
+    {
+      "id": "277ea467c30c40a1bd237695b829826f",
+      "name": "sa-brazil-1",
+      "domain_id": "3f9d29266af74046bfb637cabb995c39",
+      "enabled": true
+    },
+    {
+      "id": "062c93d8113c491ea6220215d8e337a2",
+      "name": "tr-west-1",
+      "domain_id": "3f9d29266af74046bfb637cabb995c39",
+      "enabled": true
+    }
+  ],
+  "af_south_1_project": {
+    "id": "517a45cac3994683abcf0cc155b3c01b",
+    "name": "af-south-1",
+    "domain_id": "3f9d29266af74046bfb637cabb995c39",
+    "enabled": true
+  },
+  "ap_southeast_1_project": {
+    "id": "b2c3b9b1ef6346ab9e45818f8a6714ba",
+    "name": "ap-southeast-1",
+    "domain_id": "3f9d29266af74046bfb637cabb995c39",
+    "enabled": true
+  },
+  "rds_vpc": {
+    "id": "de3ba6f7-d0e7-4228-8da2-19bd33a07ff2",
+    "name": "vpc-media-web",
+    "cidr": "10.10.150.0/24",
+    "status": "OK",
+    "enterprise_project_id": "0",
+    "description": ""
+  },
+  "rds_subnet": {
+    "id": "c7fef874-8aef-4b91-9d3b-7e84ce53104d",
+    "name": "subnet-media-web",
+    "cidr": "10.10.150.0/24",
+    "gateway_ip": "10.10.150.1",
+    "status": "ACTIVE",
+    "vpc_id": "de3ba6f7-d0e7-4228-8da2-19bd33a07ff2",
+    "availability_zone": "",
+    "primary_dns": "100.125.1.250",
+    "secondary_dns": "100.125.1.14"
+  },
+  "all_af_south_1_vpcs": [
+    {
+      "id": "0031ee12-d0aa-4d7f-ba6d-4a32415a2ff3",
+      "name": "Migrate-SystemProject-Calvin-1",
+      "cidr": "192.168.0.0/16"
+    },
+    {
+      "id": "3ca805e2-7bf4-483e-ba38-1a001eebc5b9",
+      "name": "instore-radio-vpc",
+      "cidr": "192.168.0.0/16"
+    },
+    {
+      "id": "48482dbc-5774-47e2-b5bc-1c0b4f42973e",
+      "name": "viusasa-vpc",
+      "cidr": "192.168.0.0/16"
+    },
+    {
+      "id": "4e409d67-876e-4a69-b055-5ab40919a0d3",
+      "name": "vpc-236-services",
+      "cidr": "192.168.0.0/16"
+    },
+    {
+      "id": "71678cbf-6910-4ee8-8db5-8bf067653ce0",
+      "name": "Migrate-SystemProject-Calvin-2",
+      "cidr": "172.16.0.0/12"
+    },
+    {
+      "id": "7ff2ebaf-3378-47bb-9a8d-f029676fbf74",
+      "name": "vpc-media-website-hosting",
+      "cidr": "172.26.0.0/16"
+    },
+    {
+      "id": "a9b882b5-e144-4e64-9e67-bbfbb7b964f8",
+      "name": "vpc-c77b-temporary-fms",
+      "cidr": "192.168.0.0/16"
+    },
+    {
+      "id": "de3ba6f7-d0e7-4228-8da2-19bd33a07ff2",
+      "name": "vpc-media-web",
+      "cidr": "10.10.150.0/24"
+    }
+  ],
+  "all_af_south_1_subnets": [
+    {
+      "id": "472b8eab-35f2-4385-9adf-34f0a44117b1",
+      "name": "subnet-6751",
+      "cidr": "192.168.0.0/24",
+      "vpc_id": "4e409d67-876e-4a69-b055-5ab40919a0d3",
+      "gateway_ip": "192.168.0.1"
+    },
+    {
+      "id": "4a59b368-e8d1-4679-8a9a-fbe76f30d049",
+      "name": "subnet-c785",
+      "cidr": "192.168.0.0/24",
+      "vpc_id": "a9b882b5-e144-4e64-9e67-bbfbb7b964f8",
+      "gateway_ip": "192.168.0.1"
+    },
+    {
+      "id": "7c2c93fd-0679-4c19-8d00-7cd53a6c0838",
+      "name": "subnet-8cf4",
+      "cidr": "192.168.0.0/24",
+      "vpc_id": "3ca805e2-7bf4-483e-ba38-1a001eebc5b9",
+      "gateway_ip": "192.168.0.1"
+    },
+    {
+      "id": "c7fef874-8aef-4b91-9d3b-7e84ce53104d",
+      "name": "subnet-media-web",
+      "cidr": "10.10.150.0/24",
+      "vpc_id": "de3ba6f7-d0e7-4228-8da2-19bd33a07ff2",
+      "gateway_ip": "10.10.150.1"
+    },
+    {
+      "id": "db68e421-9db6-48ea-b005-c04517433d09",
+      "name": "Migrate-SystemProject-Calvin-35",
+      "cidr": "172.31.19.0/24",
+      "vpc_id": "71678cbf-6910-4ee8-8db5-8bf067653ce0",
+      "gateway_ip": "172.31.19.1"
+    },
+    {
+      "id": "df59befa-4ac6-4e1d-9210-9a4aeaae7ca2",
+      "name": "subnet-media-website-hosting",
+      "cidr": "172.26.13.0/24",
+      "vpc_id": "7ff2ebaf-3378-47bb-9a8d-f029676fbf74",
+      "gateway_ip": "172.26.13.1"
+    },
+    {
+      "id": "e9134223-e349-4a2d-abc3-9118805a06ff",
+      "name": "subnet-viusasa",
+      "cidr": "192.168.0.0/24",
+      "vpc_id": "48482dbc-5774-47e2-b5bc-1c0b4f42973e",
+      "gateway_ip": "192.168.0.1"
+    },
+    {
+      "id": "f32a2b26-3239-4362-b2a7-9c2f34e5158f",
+      "name": "Migrate-SystemProject-Calvin-10",
+      "cidr": "192.168.0.0/24",
+      "vpc_id": "0031ee12-d0aa-4d7f-ba6d-4a32415a2ff3",
+      "gateway_ip": "192.168.0.1"
+    }
+  ],
+  "rds_instances": [
+    {
+      "name": "RDS-INTERACTIONS",
+      "id": "012de8d88d734339a2f50278128e0062in01",
+      "region": "af-south-1",
+      "engine": "MySQL 8.0",
+      "port": 3306,
+      "public_ips": [
+        "159.138.162.220"
+      ],
+      "private_ips": [
+        "10.10.150.3"
+      ],
+      "vpc_id": "de3ba6f7-d0e7-4228-8da2-19bd33a07ff2",
+      "subnet_id": "c7fef874-8aef-4b91-9d3b-7e84ce53104d",
+      "security_group_id": "aed8d060-16fc-489d-8b62-1a2c3ea45cca,2cc0ad09-8d8f-464d-9d39-4fe1f3052b57",
+      "az": null
+    },
+    {
+      "name": "weego-replica-d536",
+      "id": "01a1ecfa0fe14679bc8ab80f8b9b8b24in01",
+      "region": "af-south-1",
+      "engine": "MySQL 8.0",
+      "port": 3306,
+      "public_ips": [],
+      "private_ips": [
+        "10.10.150.115"
+      ],
+      "vpc_id": "de3ba6f7-d0e7-4228-8da2-19bd33a07ff2",
+      "subnet_id": "c7fef874-8aef-4b91-9d3b-7e84ce53104d",
+      "security_group_id": "2cc0ad09-8d8f-464d-9d39-4fe1f3052b57",
+      "az": null
+    },
+    {
+      "name": "rds-shikisha",
+      "id": "87629ec62e2e492a8f3aa70b8c492df1in01",
+      "region": "af-south-1",
+      "engine": "MySQL 8.0",
+      "port": 3306,
+      "public_ips": [
+        "203.123.83.144"
+      ],
+      "private_ips": [
+        "10.10.150.82"
+      ],
+      "vpc_id": "de3ba6f7-d0e7-4228-8da2-19bd33a07ff2",
+      "subnet_id": "c7fef874-8aef-4b91-9d3b-7e84ce53104d",
+      "security_group_id": "803fb5f5-1f24-4d09-847d-e921a66b4e45,aed8d060-16fc-489d-8b62-1a2c3ea45cca",
+      "az": null
+    },
+    {
+      "name": "Weego_and_marketing-analytics",
+      "id": "f5f29903117245469acd1c9abeeac2acin01",
+      "region": "af-south-1",
+      "engine": "MySQL 8.0",
+      "port": 3306,
+      "public_ips": [
+        "159.138.162.146"
+      ],
+      "private_ips": [
+        "10.10.150.54"
+      ],
+      "vpc_id": "de3ba6f7-d0e7-4228-8da2-19bd33a07ff2",
+      "subnet_id": "c7fef874-8aef-4b91-9d3b-7e84ce53104d",
+      "security_group_id": "2cc0ad09-8d8f-464d-9d39-4fe1f3052b57",
+      "az": null
+    },
+    {
+      "name": "election-prod-db2",
+      "id": "ab72064f4b1640598e43b3151b8244c6in01",
+      "region": "af-south-1",
+      "engine": "MySQL 5.7",
+      "port": 3306,
+      "public_ips": [
+        "110.238.77.61"
+      ],
+      "private_ips": [
+        "10.10.150.48"
+      ],
+      "vpc_id": "de3ba6f7-d0e7-4228-8da2-19bd33a07ff2",
+      "subnet_id": "c7fef874-8aef-4b91-9d3b-7e84ce53104d",
+      "security_group_id": "92233ae5-f4d2-4ace-8685-023881e189f1,aed8d060-16fc-489d-8b62-1a2c3ea45cca",
+      "az": null
+    },
+    {
+      "name": "visitors-database-cluster",
+      "id": "ff9f901597f94949bfe40450fa14f9d7in01",
+      "region": "af-south-1",
+      "engine": "MySQL 5.7",
+      "port": 3306,
+      "public_ips": [
+        "110.238.75.83"
+      ],
+      "private_ips": [
+        "10.10.150.168"
+      ],
+      "vpc_id": "de3ba6f7-d0e7-4228-8da2-19bd33a07ff2",
+      "subnet_id": "c7fef874-8aef-4b91-9d3b-7e84ce53104d",
+      "security_group_id": "92233ae5-f4d2-4ace-8685-023881e189f1,aed8d060-16fc-489d-8b62-1a2c3ea45cca",
+      "az": null
+    },
+    {
+      "name": "dbms-trf-req-database-3",
+      "id": "05e256cf1f8a4d2e8544213021d9b7d1in01",
+      "region": "af-south-1",
+      "engine": "MySQL 5.7",
+      "port": 3306,
+      "public_ips": [
+        "159.138.175.179"
+      ],
+      "private_ips": [
+        "10.10.150.121"
+      ],
+      "vpc_id": "de3ba6f7-d0e7-4228-8da2-19bd33a07ff2",
+      "subnet_id": "c7fef874-8aef-4b91-9d3b-7e84ce53104d",
+      "security_group_id": "92233ae5-f4d2-4ace-8685-023881e189f1",
+      "az": null
+    },
+    {
+      "name": "citizen-digital-dev-db-cluster",
+      "id": "7d9c9aab51264c6886a5793904c2f96bin01",
+      "region": "af-south-1",
+      "engine": "MySQL 5.7",
+      "port": 3306,
+      "public_ips": [
+        "159.138.164.124"
+      ],
+      "private_ips": [
+        "10.10.150.206"
+      ],
+      "vpc_id": "de3ba6f7-d0e7-4228-8da2-19bd33a07ff2",
+      "subnet_id": "c7fef874-8aef-4b91-9d3b-7e84ce53104d",
+      "security_group_id": "92233ae5-f4d2-4ace-8685-023881e189f1,a6456cfb-696e-45c7-8147-13028a53dcea",
+      "az": null
+    }
+  ],
+  "security_groups": {
+    "2cc0ad09-8d8f-464d-9d39-4fe1f3052b57": {
+      "id": "2cc0ad09-8d8f-464d-9d39-4fe1f3052b57",
+      "name": "default",
+      "description": "default",
+      "vpc_id": "default",
+      "enterprise_project_id": "0",
+      "region": "af-south-1",
+      "rule_count": 30
+    },
+    "92233ae5-f4d2-4ace-8685-023881e189f1": {
+      "id": "92233ae5-f4d2-4ace-8685-023881e189f1",
+      "name": "sg-Mysql",
+      "description": "The security group is for general-purpose web servers. It allows inbound ICMP and other traffic on ports 22, 80, 443, and 3389. This group is used for remote login, ping, and hosting websites on ECSs.",
+      "vpc_id": null,
+      "enterprise_project_id": "0",
+      "region": "af-south-1",
+      "rule_count": 15
+    }
+  }
+}

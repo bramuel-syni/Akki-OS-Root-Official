@@ -6699,3 +6699,72 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 ---
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+## 2026-09-09T~evening · OWNER RULING · Mtafiti is "OBJECTIVE-GENERATION blind" — multi-objective facilitation is IN-SCOPE
+
+**Verbatim (via user proxy) — CANON REFINEMENT:**
+
+> "The registry building function goes beyond the reading file names. Its should be 'objective generation' blind but can carry multiple objectives which it facilitates but not create new objectives. I think this is why it works hand in hand with Targeta and CIF to a clean more stable discover. It should do exactly what you have described as a mtafiti powered by GPUs."
+
+**Verbatim (via user proxy) — GPU AVAILABILITY:**
+
+> "On GPU availability, the previous run concluded and this should take precedence now."
+
+**Interpretation banked (spec-consistent refinement, not amendment):**
+
+1. **"Objective-generation blind" replaces the loose reading of "objective-blind."** The precise reading is:
+   - Mtafiti/Registry MUST NOT create/invent/originate new objectives. Origination is closed by construction (this is the CIF Origination Port rule extended to the discovery engine).
+   - Mtafiti CAN carry and FACILITATE multiple objectives handed to it. One measure serves every objective it is asked to serve.
+   - Objectives are SUPPLIED by Targeta and CIF; mtafiti facilitates a cleaner, more stable discovery in service of them.
+
+2. **The GPU-powered detection layer is owner-approved and in-scope**, exactly as designed in the mtafiti-GPU design note (report Part 8 §3). Approved detection enrichments: PII/sensitive-data detection, semantic column classification, data-quality profiling, embeddings for dedup/entity-resolution (as signals), cross-table relationship candidates (as signals), language detection, content-type profiling, genre-form detection, source-attachment marker detection, cross-estate corroboration. **Adaptive sampling admitted ONLY in determinised form** (pinned policy + fixed seed, C4-013 repeatability preserved). Online/path-dependent adaptive stays OUT pending a separate owner ruling.
+
+3. **The bright invariants that carry this ruling into code:**
+   - `RED` — mtafiti creates a new objective from its own detections. **Refused by construction.** New invariant: `test_mtafiti_refuses_to_originate_objective.py`.
+   - `RED` — the learned detection layer emits a verdict (defensibility_verdict / sensitivity_class authority / same-entity ruling). **Refused by construction.** Existing Canon 4 §7-§9 boundary; the invariant already lives in `test_mtafiti_invariants.py` and gets extended.
+   - `GREEN` — mtafiti accepts an objective carrier from Targeta or CIF (typed origin enum: `TARGETA | CIF | COACH_ORIGINATION_PORT`) and facilitates discovery under it. New contract `backend/contracts/mtafiti_objective_carrier.py`.
+
+**Canon grounding (verbatim clauses that this refinement is consistent with):**
+
+- **RMS_Mtafiti_Specification.md §1** *(verbatim, lines 33-39)*: "Mtafiti is the discovery engine. It censuses the estate exhaustively and writes the Registry: what exists, at what sensitivity, and how defensible each source is. **It is objective-blind — it measures the estate as it is, without reference to any particular objective — so that Targeta and Layer C read one measure that serves every objective.** It discovers and measures; it does not extract, target, or govern."
+   - Read: "one measure that serves every objective" is EXACTLY the multi-objective-carry the owner is naming. The refinement makes explicit what §1 already implies: mtafiti doesn't originate; it serves what Targeta/Layer-C bring.
+
+- **RMS_Mtafiti_Specification.md §4 — Detect versus Decide** *(verbatim, lines 71-79)*: "The inference overlay is learned, and the single rule that keeps learning from laundering authority into the measure is this: **the learned component produces detections, never verdicts.** … Learning detects; the governed Matrix decides; the declaration baseline floors; the V3 gate admits."
+   - Read: the detect-not-decide boundary is unchanged. GPU enrichments produce DETECTIONS, not verdicts.
+
+- **Canon 4 §5 · C4-003**: "Mtafiti measures WHAT THE ESTATE ACTUALLY CONTAINS, at whatever scale (whole org, department, archive, single file — Doc 1 §1.1)."
+
+- **Canon 4 §5 · C4-004**: "Mtafiti measures without reference to any objective. It measures the ESTATE, never the ANSWER. Reads for Watch tripwire coverage, never writes for them (Doc 9 §3)."
+   - Read: "without reference to any objective" applies at READ time (measure the estate as it is). It does not forbid mtafiti from FACILITATING objectives supplied by Targeta/CIF — it forbids mtafiti from BENDING its measurement to any specific objective, which is a different rule and unchanged by the refinement.
+
+- **Canon 4 §11 · C4-014 Targeta Charter**: "Targeta plans extraction — WHICH material, WHICH order, WHICH standards, WITHIN WHICH rights — against a **frozen objective**. Writes mining plans."
+
+- **Canon 4 §11 · C4-015**: "Targeta operates ONLY on frozen objectives (Doc 3 §5). Never plans against an amending or drafting objective."
+   - Read: objectives arrive at Targeta already frozen — they are set upstream by CIF/coach. Targeta reads mtafiti's registry to plan against them.
+
+- **Canon 4 §13 · C4-018**: "The coverage figure is a MEASURED anticipation drawn from **Mtafiti composition**, not a projection. It is stated as a RANGE, never a point estimate."
+   - Read: Targeta's plans DEPEND on mtafiti's composition. Mtafiti serves as Targeta's substrate; the direction of authority is Targeta reads mtafiti, not mtafiti steers Targeta.
+
+- **Canon 2 §11 · C2-030**: "The faculty DETECTS. It NEVER adopts a frame on the strength of its own signature."
+
+- **Canon 2 §12 · C2-031 Origination**: "A new frame enters ONLY through the origination port: the coach, ground reality observed in deployment, or a genuinely outside reviewer. This seat is constitutionally load-bearing and permanent in every configuration."
+   - Read: CIF's origination-port rule is the DIRECT PRECEDENT for the mtafiti refinement. If CIF (the judgement engine) cannot originate new frames, then mtafiti (the discovery engine) certainly cannot originate new objectives — the discipline extends by construction.
+
+- **Canon 2 §6 · C2-015**: "A planner's learning never widens what an objective may reach; a critic detects and never decides. **CIF operates inside these walls everywhere.**"
+   - Read: engine-wall rule; applies verbatim to mtafiti's GPU layer.
+
+**Consistency check across the four docs:** no conflict. The refinement makes explicit what Mtafiti-Spec §1, C4-004, and C2-030/031 already imply. If any clause LATER conflicts, canon text wins per owner Standing Condition 1 (2026-08-26) and the conflict gets logged here.
+
+**Discipline binding for the next actions:**
+- Open a new wave `W-MTAFITI-GPU-DISCOVERY` under the tests-first / thin-kernel / double-green / two-commit / no-push regime.
+- Author its grounding brief with verbatim spec quotes per Standing Condition 1.
+- Lift the HOLD ONLY for this wave. Product-build HOLD on CP10/Solva/DAP-stack remains until owner rules otherwise.
+- Ratchet floor 3098 → grows per CP.
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
