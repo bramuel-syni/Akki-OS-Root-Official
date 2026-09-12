@@ -327,11 +327,41 @@ These items gate full-estate reach and are NOT solved by W-MTAFITI-GPU-DISCOVERY
 
 ---
 
-## §I · Awaiting owner decision — CP1 START
+## §I · CP1 CLOSED · 2026-09-12T06:17Z
 
-Owner asked for the CP plan for relay before deep implementation. **This brief is the plan.** On owner nod, CP1 lands under the discipline above.
+**Ratchet:** 3098 → **3164** (+66; 64 direct CP1 tests + 2 frozen-contract-parity self-heal via new snapshot files).
 
-CP1 RED test scaffolding is drafted (not yet committed) at:
-`programme/track-a` → `backend/tests/invariants/test_w_mtafiti_gpu_discovery_grounding_brief.py`
+**Delta bundled per owner refinement this session:** four foundational governance invariants landed together — the user compressed CP1..CP3 + CP9-governance-surface into a single CP1 landing so the discovery engine has all bright-lines in place before any executor / detector scaffolding is touched.
 
-Ready to fire on owner "go."
+**Invariant files (`programme/track-a`):**
+- `backend/tests/invariants/test_mtafiti_gpu_discovery_objective_generation_blind.py` — 5 tests (C2-031 extension: origin ∈ {TARGETA, CIF, COACH_ORIGINATION_PORT}; carrier frozen; mtafiti-internal origin refused; module surface has no origination-suggesting symbol; schema forbids origination-authorship fields).
+- `backend/tests/invariants/test_mtafiti_gpu_discovery_detect_not_decide.py` — 5 tests (DetectionSignal frozen with `extra="forbid"`; no verdict-shaped field names; 5-value evidence taxonomy pinned; confidence bounded [0,1]).
+- `backend/tests/invariants/test_mtafiti_gpu_discovery_deterministic_adaptive_sampling.py` — 5 tests (constants pinned verbatim; same-input → byte-identical manifest_sha256; different-input → different manifest; manifest carries seed + policy_id; walker forbids online / stateful mutation).
+- `backend/tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py` — 49 tests (SELECT/SHOW/USE/DESCRIBE/DESC/EXPLAIN admitted; INSERT/UPDATE/DELETE/CREATE/DROP/ALTER/GRANT/REVOKE/TRUNCATE/REPLACE/RENAME/MERGE/CALL/EXECUTE/LOCK/UNLOCK/SET/COMMIT/ROLLBACK/BEGIN/START refused; multi-statement refused; empty/comment-only refused; comment-hidden writes still refused; refusal-by-construction).
+
+**Kernel (`programme/track-a`):**
+- `backend/contracts/mtafiti_objective_carrier.py` — ObjectiveOrigin enum · MtafitiObjectiveCarrier (frozen, extra="forbid") · ObjectiveOriginationForbidden · admit_carrier().
+- `backend/contracts/mtafiti_detection_signal.py` — EvidenceClass enum · DetectionSignal (frozen, extra="forbid", closed schema).
+- `backend/services/mtafiti/gpu_discovery_constants.py` — `MTAFITI_GPU_SAMPLING_SEED = 20260909` · `POLICY_ID = "mtafiti-gpu-discovery-v1"`.
+- `backend/services/mtafiti/sampling/deterministic_adaptive_walker.py` — `deterministic_walk(inputs, sample_size)` emits pinned-policy manifest with canonical sha256.
+- `backend/services/mtafiti/executor/readonly_sql_guard.py` — `refuse_if_write(sql)` + `WriteVerbRefused`.
+
+**Frozen-contract-parity self-heal:**
+- `backend/tests/invariants/mtafiti_objective_carrier.contract_snapshot.json` (new)
+- `backend/tests/invariants/mtafiti_detection_signal.contract_snapshot.json` (new)
+- `backend/tests/invariants/test_frozen_contract_snapshot_parity.py` — added 2 CONTRACT_TO_SNAPSHOT entries.
+
+**Discipline receipts:**
+- Harness refreshed pre-CP1 (real-Chromium, orphan_count=0): `phase0/harness_ground_truth/latest.json` at 2026-09-12T06:01:36Z; screenshot triples at `phase0/eyeball_proxies/20260912T060100Z_wave_g5_realchrome_pre_cp1_mtafiti_gpu_discovery_harness_refresh_{portal,registry,compute}.png`.
+- Mechanical RED: `phase0/drill_receipts/20260912T060604Z_wave_mtafiti_gpu_discovery_cp1_RED_pre_impl.log` (64 failed / 3098 passed; right-reason ImportError against modules-not-yet-created).
+- Double-green byte-match: `phase0/drill_receipts/20260912T061522Z_wave_mtafiti_gpu_discovery_cp1_close_run1.log` and `20260912T061711Z_..._run2.log` — both `3164 passed, 1 skipped, 438 warnings in 101.[23]s`, BASELINE_GUARD receipt `passed=3164 / baseline-failures-remaining=0 / quarantined=0 · status: OK`.
+
+**Ratchet manifest:** `backend/tests/invariants/baseline_failures.json` bumped in tandem (counts.passed=3164 · passed_floor=3164 · ratchet_history entry appended).
+
+**One decision-point surfaced and resolved autonomously (STANDING_ORDERS §2 DPO):** pre-CP1 baseline showed 3097/1 due to a 65.2h-old harness ground-truth receipt (threshold 48h). Owner precedent (DECISIONS 2026-09-08T~06:15Z STEP 5, verbatim: "refresh the harness, don't relax the threshold") was applied — the real-Chromium harness was re-run, ground-truth receipt refreshed against unchanged App.js. Then and only then did CP1 tests-first work begin. Full narrative in the wave-close DECISIONS entry.
+
+**Wave-honest-limit (adds to §E):** none of CP2..CP11 has started. This CP1 hardens the GOVERNANCE walls of the engine; the DETECTORS (CP5-CP10) and the LIVE READ-ONLY SELECTs against Weego / USSD (CP3 / CP11) remain deferred. The read-only SQL guard is now green-and-committed; per owner ruling this session, "BOTH the read-only guard AND the PII redaction guard must be GREEN before CP3's first live SELECT" — PII redaction guard is CP2 opener.
+
+**Next active step:** CP2 opener (PII redaction guard). CP2 owner-scope confirmation to be requested at CP2 open per owner comms doctrine (micro-sprint updates stay inside the sprint plan).
+
+---

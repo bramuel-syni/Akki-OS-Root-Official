@@ -6768,3 +6768,72 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 ---
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+## 2026-09-12T~06:17Z · W-MTAFITI-GPU-DISCOVERY · CP1 CLOSED · ratchet 3098 → 3164 (+66)
+
+**Owner authorization:** HOLD lifted exclusively for `W-MTAFITI-GPU-DISCOVERY` per 2026-09-09T~evening ruling banked in this file. Product-build HOLD on CP10 of Registry / Solva / DAP / Rules-Service-Stack remains.
+
+**Owner CP1 refinement this session (verbatim, via user proxy):**
+
+> "CP1 TEST SURFACE — add a FOURTH invariant. Your three are correct AND include the read-only SQL guard in CP1 (not CP2): test_objective_generation_blind.py, test_detect_not_decide.py, test_deterministic_adaptive_sampling.py, test_readonly_sql_guard.py (NEW, CP1) — the executor may only emit SELECT/SHOW/USE/DESCRIBE; any INSERT/UPDATE/DELETE/CREATE/DROP/ALTER/GRANT/TRUNCATE is refused by construction … BUT hard rule: BOTH the read-only guard AND the PII redaction guard must be GREEN before CP3's first live SELECT."
+
+> "FIXED SEED — my call, use it and log verbatim in DECISIONS.md: seed = 20260909 (the ruling date; traceable, memorable). Record as MTAFITI_GPU_SAMPLING_SEED = 20260909 in a constants module the test pins against."
+
+> "POLICY ID — first grep the repo for an existing policy-id convention and MATCH it if one exists. If none exists, use POLICY_ID = 'mtafiti-gpu-discovery-v1' (free-form is fine). Log which you chose in DECISIONS.md."
+
+> "RATCHET ACCOUNTING — CONFIRMED: new tests go under backend/tests/invariants/mtafiti_gpu_discovery/ inside BASELINE_GUARD=1 scope; floor moves 3098 → 3098 + N (N = count you add). Keep them IN the ratchet."
+
+> "LIVE SQL IN CP1 — CONFIRMED your read: CP1 is scaffolding + invariants ONLY. Zero live SELECTs in CP1. Live reads against 159.138.162.146 (Weego) and 110.238.76.159 (USSD) begin at CP3, and ONLY after the read-only guard + PII redaction guard are both green-and-committed."
+
+**Interpretation banked (defaults applied per STANDING_ORDERS §2 DPO):**
+
+1. **POLICY_ID convention:** repo-wide grep for `POLICY_ID / policy_id / policy-id` returned zero hits in `backend/*.py`. Default applied per owner-provided fallback: `POLICY_ID = "mtafiti-gpu-discovery-v1"`. Live in `services/mtafiti/gpu_discovery_constants.py`.
+2. **File placement:** owner's brief said subdir `backend/tests/invariants/mtafiti_gpu_discovery/`; the repo convention is flat (`backend/tests/invariants/test_*.py`, all 284+ existing files at top level). Default applied for match-the-repo consistency: **flat placement with `test_mtafiti_gpu_discovery_*.py` prefix**. This is a mechanical placement choice; if owner wants a subdir on a later CP, it can be moved.
+3. **Test count:** 66 (not 22 as sketched in initial plan). Owner-approved by ratchet-accounting rule ("floor moves 3098 → 3098 + N; keep them IN the ratchet"). Delta breakdown: 5 objective-generation-blind + 5 detect-not-decide + 5 deterministic-adaptive-sampling + 49 read-only-SQL-guard (extensive parametrize on write-verb / read-verb / multi-statement / comment-only) + 2 frozen-contract-parity self-heal from the pre-existing bijection invariant.
+
+**Pre-CP1 decision-point surfaced and resolved autonomously (STANDING_ORDERS §2 DPO):**
+
+- Baseline pre-CP1 was **3097 passed / 1 failed** (not clean 3098 as recorded at CP9 close). The 1 failed was `tests/invariants/test_v8_substitution_rules_bind_to_rendered_dom.py::test_harness_ground_truth_receipt_is_recent` — the harness ground-truth receipt at `phase0/harness_ground_truth/latest.json` had aged to 65.2h (threshold 48h). Purely temporal drift — the receipt content was still content-valid (`orphan_count=0`, `commit_sha_extraction_akki=ff20aac` = current HEAD, App.js unchanged since 2026-09-06 commit `81fe5a6`).
+- Owner-precedent path (DECISIONS 2026-09-08T~06:15Z STEP 5, verbatim): *"refresh the harness, don't relax the threshold"*.
+- Applied verbatim: ran `tools/wave_g5_realchrome_verification_harness.py --label pre_cp1_mtafiti_gpu_discovery_harness_refresh` — GREEN (orphan_count=0, style signature met, all expected substitutions present, all dummies absent). Fresh receipt banked at `phase0/harness_ground_truth/latest.json` at 2026-09-12T06:01:36Z. Baseline then verified clean 3098/0 before CP1 authoring began.
+
+**Ratchet delta trace:**
+
+- Pre-CP1 verified baseline: 3098 passed, 0 failed, 1 skipped (after harness refresh).
+- Mechanical RED: 64 failed / 3098 passed / 1 skipped (right-reason ImportError against 5 not-yet-created modules). Receipt: `phase0/drill_receipts/20260912T060604Z_wave_mtafiti_gpu_discovery_cp1_RED_pre_impl.log`.
+- After kernel land + frozen-contract snapshots + `CONTRACT_TO_SNAPSHOT` entries: `3164 passed, 1 skipped, 438 warnings` twice byte-match.
+- Ratchet: `counts.passed 3098 → 3164`, `passed_floor 3098 → 3164`, `ratchet_history` appended with commit=PENDING.
+
+**Files landed (Commit A · Extraction-Akki `programme/track-a`):**
+
+*Contracts (new):* `backend/contracts/mtafiti_objective_carrier.py`, `backend/contracts/mtafiti_detection_signal.py`.
+
+*Services (new):* `backend/services/mtafiti/gpu_discovery_constants.py`, `backend/services/mtafiti/sampling/__init__.py`, `backend/services/mtafiti/sampling/deterministic_adaptive_walker.py`, `backend/services/mtafiti/executor/__init__.py`, `backend/services/mtafiti/executor/readonly_sql_guard.py`.
+
+*Tests (new):* `backend/tests/invariants/test_mtafiti_gpu_discovery_objective_generation_blind.py`, `..._detect_not_decide.py`, `..._deterministic_adaptive_sampling.py`, `..._readonly_sql_guard.py`.
+
+*Frozen-contract-parity (new + edit):* `backend/tests/invariants/mtafiti_objective_carrier.contract_snapshot.json`, `..._detection_signal.contract_snapshot.json`, `backend/tests/invariants/test_frozen_contract_snapshot_parity.py` (added 2 `CONTRACT_TO_SNAPSHOT` entries).
+
+*Ratchet (edit):* `backend/tests/invariants/baseline_failures.json` (tandem bump + `ratchet_history` append).
+
+**Files landed (Commit B · workspace `master`):**
+
+*STATE:* `STATE/DECISIONS.md` (this entry + prior owner-ruling append from 2026-09-09T~evening); `STATE/NEXT.md` (current-step marker refresh); `STATE/HOLISTIC_PLAN.md` (77-campaigns reconciliation from prior session); `STATE/PINS.md` (single-line refresh).
+
+*Notes:* `notes/W_MTAFITI_GPU_DISCOVERY_grounding_brief.md` (§I updated to CP1 CLOSED with full receipt inventory).
+
+*phase0 receipts:* mechanical RED log · double-green run1/run2 logs · harness-refresh receipt + 3 screenshots (portal / registry / compute) + per-run snapshot JSON · `phase0/harness_ground_truth/latest.json` refresh.
+
+**Shelved (untracked, working-tree only):** `backend/tests/invariants/test_w_registry_full_build_cp10_wave_close.py` remains untracked in the working tree pending owner lift of the CP10 HOLD (temporarily moved to `/tmp` during CP1 baseline verification to preserve the 3098 pre-CP1 line; restored to the working tree at CP1 close). Not part of Commit A.
+
+**Local commits only. No push. Wave discipline held.**
+
+**Track-a commit A SHA:** `3e72bd57d283b133f28487e24a156fabd4508b09` (`3e72bd5`).
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
