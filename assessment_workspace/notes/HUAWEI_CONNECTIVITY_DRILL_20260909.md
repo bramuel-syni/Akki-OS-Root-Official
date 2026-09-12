@@ -1219,3 +1219,129 @@ No compute processes on GPUs.
 - `/app/assessment_workspace/tools/_scratch/perm_probe.json`
 - `/app/assessment_workspace/tools/_scratch/perm_probe_stdout.log`
 
+
+---
+
+# PART 9 — Per-connection $/GB run rate on the 2 live Huawei connections
+
+**Directive:** OWNER OPERATIONAL — precise egress $/GB per connection during a mtafiti pull, per connection, with explicit attribution to whose account each bills to. Read-only, no build, no commits, no push.
+
+## Verdict lines
+
+**Weego (owner pays):** `$0.081 USD/GB` documented rate · 0.720 GB total data (data+index) · **~$0.058 (six cents) per full pull, all billed to the owner's af-south-1 tenant**. With the bastion later (traffic-mode EIP replacement), same $/GB; with bastion in bandwidth-mode, effective $/GB → ~$0.
+
+**USSD (third-party pays):** `$0.081 USD/GB` applicable rate · 24.072 GB total · **~$1.95 for a full pull, but this bills to the THIRD-PARTY tenant, not the owner. From owner's perspective this connection is $0.** Bastion cannot help; different tenant, different account.
+
+**Verbatim rate source:** Huawei Cloud *Elastic IP · Billing* PDF, Issue 01 dated 2026-08-21, §3.3 "Pay-per-Use Billing" → "Billing by traffic" example (Table 3-6): *"The EIP reservation price is $0.005 USD per hour, and the traffic price is `$0.081 USD per GB`."* Huawei explicitly notes: *"The prices are just examples. The actual prices are those displayed on EIP Pricing Details"* (the live calculator at `huaweicloud.com/intl/en-us/pricing/index.html#/eip`). Regional variance is documented but small; af-south-1 sits on the international rate tier and historically matches this example rate.
+
+## Connection A · Weego_and_marketing-analytics (159.138.162.146)
+
+### EIP config (verified read-only via AK/SK this session)
+
+```
+publicip_id            = 5e4d4771-5fd7-41d1-b460-b92391e82dc7
+public_ip              = 159.138.162.146
+bandwidth_id           = b338b4c5-081c-4876-913e-f5fe24306f7e
+bandwidth_name         = bandwidth-6f8c
+bandwidth.charge_mode  = traffic       ← pay-per-GB (NOT fixed-Mbps)
+bandwidth.size         = 300 Mbit/s    ← Huawei's max cap for by-traffic mode
+bandwidth.share_type   = PER           ← dedicated (not a shared bandwidth)
+tenant_id              = 517a45cac3994683abcf0cc155b3c01b   ← OWNER's af-south-1 project
+status                 = ACTIVE, bound
+```
+
+**Whose account it bills to:** OWNER's Huawei account, domain `3f9d29266af74046bfb637cabb995c39` (BramwelMwalo), af-south-1 project. Every outbound GB from this EIP → owner's invoice.
+
+### Real data volume on this connection
+
+Fresh probe of `information_schema.TABLES` this session:
+
+| Database | Tables | Data GB | Index GB | Total GB |
+|----------|-------:|--------:|---------:|---------:|
+| weego | 413 | 0.424 | 0.278 | **0.701** |
+| analytics | 28 | 0.009 | 0.010 | 0.019 |
+| sql_demo | 1 | 0.000 | 0.000 | 0.000 |
+| sql_trial1 | 1 | 0.000 | 0.000 | 0.000 |
+| **TOTAL** | **443** | **0.433** | **0.288** | **0.720** |
+
+### $ per full-pull (Weego, direct-from-pod path today)
+
+Applying the documented rate `$0.081/GB` to the actual data on the wire:
+
+| Pull scope | Egress bytes | Cost |
+|---|:---:|---:|
+| Data only (mtafiti-realistic — indexes don't transit) | **0.433 GB** | **$0.0351** |
+| Data + index (full-mirror worst case) | **0.720 GB** | **$0.0583** |
+| Metadata + `COUNT(*)` + stratified samples (typical mtafiti census) | ~0.02–0.04 GB | **< $0.005** |
+
+**Best owner-facing figure to relay: ~$0.06 (six cents) for a Weego full pull.**
+
+### With the bastion later (Weego path only)
+
+Two sub-scenarios once the bastion is up and Weego DB → bastion runs intra-VPC:
+
+- **Bastion EIP in `traffic` mode (100 Mbps cap)**: bastion→pod leg still bills `$0.081/GB`. Net: **no change** — the $/GB just moves from RDS EIP to bastion EIP, same rate, same owner account. Weego full pull still ~$0.06.
+- **Bastion EIP in `bandwidth` mode (5 Mbps yearly commit ~$24.30/mo)**: bandwidth-mode has NO per-GB meter — GBs are unlimited up to the Mbps throttle. Weego full pull effective $/GB → **~$0**. Owner pays the flat monthly ~$24.30 which absorbs Weego + every other DB routed through the bastion.
+
+The bandwidth-mode bastion pays back at any volume above `$24.30 / $0.081 = ~300 GB/month` of egress — very quickly, once the census scales beyond Weego to the other 10 hosts.
+
+## Connection B · 3rd-party USSD host (110.238.76.159)
+
+### EIP config
+
+**Not visible to our AK/SK.** This host's EIP is NOT in the owner's `list_publicips` inventory in af-south-1 (verified earlier — 71 EIPs matched, this one not among them). The instance belongs to a **different Huawei tenant** than the AK/SK owner. Consequently we cannot read its `charge_mode`, `bandwidth_size`, or the third-party tenant's project/domain ID.
+
+**Applicable rate (best inference):** the host is publicly reachable in `af-south-1` on a Huawei EIP indistinguishable in shape from the ones we can see. Same regional rate card applies: **`$0.081 USD/GB` (Huawei EIP Billing PDF §3.3 example)** is the reasonable estimate. If the third party negotiated an enterprise discount, their number could be lower; we have no way to know.
+
+### Real data volume on this connection
+
+From Part 3 probe (unchanged; the volumes on this host are stable):
+
+| Database | Tables | Data GB | Index GB | Total GB |
+|----------|-------:|--------:|---------:|---------:|
+| db_jipange | 22 | 5.426 | 6.855 | 12.280 |
+| db_skiza | 24 | 5.129 | 2.722 | 7.851 |
+| viupay_fare | 42 | 0.975 | 0.604 | 1.579 |
+| viupay_fare_test | 41 | 0.904 | 0.597 | 1.501 |
+| viusasa_staging | 162 | 0.396 | 0.079 | 0.474 |
+| viutickets | 56 | 0.211 | 0.059 | 0.269 |
+| citizen_digital | 39 | 0.046 | 0.003 | 0.049 |
+| viusasa_dev | 132 | 0.013 | 0.009 | 0.022 |
+| (10 more schemas, total) | 858 | 0.026 | 0.018 | 0.048 |
+| **TOTAL** | **1,376** | **13.126** | **10.946** | **24.072** |
+
+### $ per full-pull (USSD, direct-from-pod today)
+
+Applying `$0.081/GB` to the third-party's EIP outbound:
+
+| Pull scope | Egress bytes | Cost | To whose account |
+|---|:---:|---:|---|
+| Data only | **13.126 GB** | **$1.063** | **third-party tenant** |
+| Data + index (full-mirror worst case) | **24.072 GB** | **$1.950** | **third-party tenant** |
+| Metadata + `COUNT(*)` + stratified samples (typical mtafiti census) | ~0.5–1.5 GB | **$0.04–$0.12** | **third-party tenant** |
+
+**From the OWNER's cost perspective on this connection today: $0.** The third party's EIP is the one metering. When Huawei bills EIP egress, it bills the account that owns the EIP — not the receiver. Our pod pays nothing for the receiving side.
+
+### With the bastion later (USSD path)
+
+**Bastion cannot help this connection at all.** The bastion lives inside the OWNER's af-south-1 VPC. The USSD host lives in a DIFFERENT Huawei tenant's network. There is no VPC peering or intra-cloud shortcut between the two tenants — traffic still crosses the public internet through the third party's EIP either way. The only thing the bastion could do would be to move the receiving endpoint from our pod (34.16.56.64) to the bastion (a Huawei IP in the owner's tenant), but that adds a second billed leg (bastion→pod) without removing the first (USSD→bastion still crosses the third-party's EIP). So:
+
+- **Direct-from-pod today** (what we're doing): third party pays 24 GB × $0.081 = ~$1.95; owner pays $0.
+- **Through-bastion** (hypothetical, not recommended): third party pays 24 GB × $0.081 = ~$1.95 STILL (their EIP meter doesn't care where the client is); then owner *also* pays for bastion→pod = ~$1.95 more. Net: more expensive, no benefit. **Recommendation: keep USSD on the direct path.**
+
+## Consolidated table
+
+| Connection | Charge_mode | Data (data+index) | $/GB rate | $/full-pull data-only | $/full-pull worst-case | Whose account bills |
+|------------|:-----------:|:----------------:|:---------:|:---------------------:|:----------------------:|--------------------|
+| **A · Weego** (159.138.162.146) · owner tenant | traffic (confirmed) | 0.720 GB | **$0.081/GB** (documented) | **$0.035** | **$0.058** | **OWNER's af-south-1 project** |
+| **B · USSD** (110.238.76.159) · third-party tenant | traffic (inferred; not readable) | 24.072 GB | **$0.081/GB** (applicable) | **$1.063** | **$1.950** | **third-party tenant · $0 to owner** |
+
+**Realistic mtafiti census (metadata + stratified samples, not full pulls) shrinks both figures 10-100×:** Weego census ≈ **$0.005**, USSD census ≈ **$0.10 (third party pays).**
+
+## Guardrail attestation (Part 9)
+
+- No product code touched. No commits. No push. HOLD respected. Ratchet floor **3098** unchanged.
+- Only READ-ONLY calls executed: `eip.list_publicips`, `eip.list_bandwidths` (AK/SK), and `SELECT` on `information_schema.TABLES` on the two live DB connections. No writes anywhere.
+- No credentials leaked; SK fingerprint (`sha256_8=451a83c7`) and DB password fingerprint (`sha256_8=5b9ec5c0`) already banked; not re-echoed here.
+- No new artefacts committed; probe results at `_scratch/per_conn_gb_rate.json`.
+

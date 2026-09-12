@@ -1,0 +1,172 @@
+{
+  "ts": "2026-09-12T05:37:55.619516+00:00",
+  "weego_eip": {
+    "public_ip": "159.138.162.146",
+    "publicip_id": "5e4d4771-5fd7-41d1-b460-b92391e82dc7",
+    "type": "5_bgp",
+    "status": "ACTIVE",
+    "bandwidth_id": "b338b4c5-081c-4876-913e-f5fe24306f7e",
+    "bandwidth_size": 300,
+    "bandwidth_share_type": "PER",
+    "port_id": "c472e4fd-469a-4fc4-9459-02312e879a05",
+    "tenant_id": "517a45cac3994683abcf0cc155b3c01b",
+    "create_time": "2024-02-12 09:30:48",
+    "bandwidth_charge_mode": "traffic",
+    "bandwidth_name": "bandwidth-6f8c",
+    "bandwidth_size_final": 300
+  },
+  "weego_data_volume": {
+    "per_db": [
+      {
+        "db": "weego",
+        "tables": 413,
+        "data_gb": 0.4237,
+        "index_gb": 0.2775,
+        "total_gb": 0.7012
+      },
+      {
+        "db": "analytics",
+        "tables": 28,
+        "data_gb": 0.0089,
+        "index_gb": 0.0103,
+        "total_gb": 0.0191
+      },
+      {
+        "db": "sql_demo",
+        "tables": 1,
+        "data_gb": 0.0,
+        "index_gb": 0.0,
+        "total_gb": 0.0
+      },
+      {
+        "db": "sql_trial1",
+        "tables": 1,
+        "data_gb": 0.0,
+        "index_gb": 0.0,
+        "total_gb": 0.0
+      }
+    ],
+    "total_data_gb": 0.43260000000000004,
+    "total_index_gb": 0.2878,
+    "total_gb": 0.7203
+  },
+  "ussd_data_volume": {
+    "per_db": [
+      {
+        "db": "db_jipange",
+        "tables": 22,
+        "data_gb": 5.4255,
+        "index_gb": 6.8548,
+        "total_gb": 12.2803
+      },
+      {
+        "db": "db_skiza",
+        "tables": 24,
+        "data_gb": 5.1292,
+        "index_gb": 2.7216,
+        "total_gb": 7.8508
+      },
+      {
+        "db": "viupay_fare",
+        "tables": 42,
+        "data_gb": 0.9747,
+        "index_gb": 0.6042,
+        "total_gb": 1.5789
+      },
+      {
+        "db": "viupay_fare_test",
+        "tables": 41,
+        "data_gb": 0.9036,
+        "index_gb": 0.597,
+        "total_gb": 1.5006
+      },
+      {
+        "db": "viusasa_staging",
+        "tables": 162,
+        "data_gb": 0.3955,
+        "index_gb": 0.0789,
+        "total_gb": 0.4744
+      },
+      {
+        "db": "viutickets",
+        "tables": 56,
+        "data_gb": 0.2106,
+        "index_gb": 0.0587,
+        "total_gb": 0.2693
+      },
+      {
+        "db": "citizen_digital",
+        "tables": 39,
+        "data_gb": 0.0461,
+        "index_gb": 0.0028,
+        "total_gb": 0.0489
+      },
+      {
+        "db": "viusasa_dev",
+        "tables": 132,
+        "data_gb": 0.0127,
+        "index_gb": 0.0093,
+        "total_gb": 0.022
+      },
+      {
+        "db": "viusasa_staging_2",
+        "tables": 138,
+        "data_gb": 0.0142,
+        "index_gb": 0.0043,
+        "total_gb": 0.0185
+      },
+      {
+        "db": "viusasa_staging_dev",
+        "tables": 151,
+        "data_gb": 0.0023,
+        "index_gb": 0.0045,
+        "total_gb": 0.0068
+      },
+      {
+        "db": "tafaria_ecommerce",
+        "tables": 130,
+        "data_gb": 0.002,
+        "index_gb": 0.0038,
+        "total_gb": 0.0058
+      },
+      {
+        "db": "tafaria_shop",
+        "tables": 117,
+        "data_gb": 0.002,
+        "index_gb": 0.0026,
+        "total_gb": 0.0046
+      },
+      {
+        "db": "viupay_dev",
+        "tables": 37,
+        "data_gb": 0.0028,
+        "index_gb": 0.0009,
+        "total_gb": 0.0036
+      },
+      {
+        "db": "freddy_dev",
+        "tables": 38,
+        "data_gb": 0.0016,
+        "index_gb": 0.0013,
+        "total_gb": 0.0029
+      },
+      {
+        "db": "viutickets_dev",
+        "tables": 44,
+        "data_gb": 0.0017,
+        "index_gb": 0.0009,
+        "total_gb": 0.0027
+      },
+      {
+        "db": "miniapps",
+        "tables": 21,
+        "data_gb": 0.0018,
+        "index_gb": 0.0006,
+        "total_gb": 0.0024
+      }
+    ],
+    "total_data_gb": 13.1263,
+    "total_index_gb": 10.946200000000001,
+    "total_gb": 24.072499999999998
+  }
+}
