@@ -6953,3 +6953,49 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 ---
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+## Owner Ruling · Audio-Census POC Addendum · 2026-09-12T~12:00Z · Source: owner channel
+
+**Verbatim (six-point owner addendum to the Media/Audio Scoping directive, banked BEFORE any action taken on it per STANDING_ORDERS §2):**
+
+> ADDENDUM to the audio-census scoping task — owner has answered my 5 shaping questions. This does NOT change the ordering: still confirm your re-grounding from the STATE files first, then complete the 5 read-only scoping items. These answers define the POC that comes AFTER scoping. Bank all owner rulings VERBATIM in STATE/DECISIONS.md (2026-09-XX) before acting on them.
+>
+> OWNER RULINGS (bank verbatim, then interpret):
+> 1. Audio capability location → "find out" — confirmed: locate it via your repo grep (scoping item #2). Report exact component/paths + maturity.
+> 2. Rights → "yes - full rights" — owner asserts FULL RIGHTS to the off-air recordings for building and selling the corpus. This clears the COPYRIGHT chokepoint for the sale. IMPORTANT nuance to preserve: this covers copyright; it does NOT by itself resolve voice-biometric / data-protection / named-individuals (see #5) — keep those distinct in the governance map.
+> 3. First pass → "3 stations" — POC on 3 stations, not all 16. Recommend 3 linguistically-diverse NON-English vernacular stations to maximise the "how many languages" signal (my default proposal: Inooro FM = Kikuyu, Ramogi FM = Dholuo/Luo, and one Luhya or Kamba station e.g. Mulembe FM or Musyi FM) — but let the station→language research + actual recording availability guide the final 3; propose them to me before the POC runs.
+> 4. Text → "there are human generated + machine generated no english text" — the target text is NON-ENGLISH and includes BOTH human-generated text (any existing transcripts/captions/subtitles present in/with the recordings) AND machine-generated text (our ASR transcripts). So ASR is in scope for the POC, AND capture any human-authored text that already exists. Label/segregate English vs non-English; the lab wants non-English only.
+> 5. Named individuals / biometrics → "i will decide once i have the data - extract all context you can" — EXTRACT MAXIMUM CONTEXT now: speaker diarization, voice/biometric embeddings, individual-identity signals, everything the audio capability can produce. CRITICAL governance line to keep intact: extracting this context internally is fine and detect-only; RELEASING/SELLING any identifiable-voice or named-individual data to the lab stays GATED on the owner's #5 decision + data-protection ruling. Extraction != cleared-to-sell. Encode that separation.
+> 6. "this to be run by the GPUs" — the audio processing (segmentation, music/speech split, language-ID, ASR, speaker/biometric embeddings, quality scoring) runs on the idle Cassava H200 hosts (akki-vm, akki-vm-ii), $0 marginal. Confirm they're still idle before the POC.
+>
+> WHAT THIS MEANS FOR SEQUENCING:
+> - Scoping (the 5 read-only items) still comes first and gates everything — especially NAS reachability and locating the audio capability. If we can't reach the NAS or the audio capability is a stub, say so plainly; the POC can't run until those are resolved.
+> - The POC itself (3-station audio extraction on the GPUs) is a NEW WAVE — it needs its own grounding brief + tests-first CP plan (objective-generation-blind, detect-not-decide, deterministic sampling, read-only on the source media, extraction!=sale gate). Do NOT start the POC build inside the scoping task. Propose the wave name + CP breakdown to me after scoping, and I'll confirm before you execute.
+>
+> Reminder of standing law: terminal pytest under BASELINE_GUARD=1 only, NO testing_agent, local commits only NO push, credentials 0600/gitignored, ratchet floor 3251 untouched during scoping. Return: your re-grounding confirmation + the 5 scoping findings + the proposed 3 stations + the proposed POC wave/CP plan.
+
+**Binding effects (this addendum):**
+
+1. **Ruling banking discipline held.** Six numbered points recorded VERBATIM in this DECISIONS entry before any action taken on them (STANDING_ORDERS §2). Order of receipt preserved. Append-only.
+
+2. **Ruling #1 — audio-capability discovery outcome:** located in `Extraction-Akki` and only in `Extraction-Akki` — details banked in `notes/W_AUDIO_POC_SCOPING_20260912.md` §II. Highlights: (a) `services/perception/eab_1_pipeline/*` (7 atomic modules · demux → segmentation → VAD → dedup → occurrence-writer → trace-walker → licence-class) + `services/perception/{asr_worker,diarization_worker,gpu_execution}` + `services/layer_b/{asr/whisper_provider, asr/faster_whisper_provider, diarization/pyannote_provider, vision/frame_perception_provider}` + frozen contracts `audio_segment_v0` + `perception_job_v0` + `perception_result_v0`; (b) `faster-whisper==1.2.1` + `ctranslate2==4.8.1` + `onnxruntime==1.27.0` present in requirements; `pyannote.audio` ABSENT — install-and-token-gate before diarization; (c) `models_registry.v0.json` seeded only with `whisper-tiny` (CI fixture); (d) music/speech binary split, language-ID module, cross-recording speaker-identity linking are DETECTED GAPS.
+
+3. **Ruling #2 — full-rights assertion for the COPYRIGHT layer only.** Encoded as `licence_class:owner_full_rights` on every corpus artifact via existing `services/perception/eab_1_pipeline/a2_license_class.py`. **Six other governance chokepoints remain open** (KDPA biometric, KDPA named-individuals, cross-border §48, purpose-limitation §51, DAP R-6 pricing, DAP R-7 disclosure budget) — enumerated in scoping doc §V.5. Ruling #2 does not touch any of them.
+
+4. **Ruling #3 — POC scope pinned at 3 stations.** Owner's default proposal (Inooro + Ramogi + Mulembe/Musyi) is not binding; builder's confirmed 3-station proposal is **Inooro FM · Ramogi FM · Musyi FM** with rationale in scoping doc §VII. Musyi chosen over Mulembe because Luhya is a 14+ sub-dialect macro-family and Musyi keeps three distinct geographic regions represented (Mt Kenya · Nyanza · Eastern). **Awaiting owner confirm before CP0 of the POC wave.**
+
+5. **Ruling #4 — corpus = non-English text, both human-authored AND ASR-generated.** POC pipeline segregates English vs non-English at CP4 (language-ID over speech spans). English content stays in the estate with `english_content:True` flag but NEVER lands in the release bundle. Human-authored text (transcripts/captions/subtitles co-located with recordings on the NAS) captured at CP2 alongside the file-level composition census.
+
+6. **Ruling #5 — extract-maximum-context internally, gate release-to-lab.** Encoded as **two orthogonal primitives** in the POC wave: (a) `internal_extraction_admissible` default TRUE for POC — diarization + biometric embeddings + named-persons detection all run on the estate side, at scale; (b) `release_gate.admit_release(artifact, tier)` under `services/shield_train/` refuses tiers `biometric_embedding | named_identity | speaker_labeled_audio` by default; four verdict fields per artifact — `kdpa_verdict` + `named_persons_verdict` + `transfer_basis` + `licence_class`. Every biometric artifact carries `kdpa_verdict:PENDING` and `named_persons_verdict:PENDING` until owner rules. **Extraction != cleared-to-sell** encoded by construction.
+
+7. **Ruling #6 — GPU dispatch on idle Cassava H200 hosts.** Verified live-SSH 2026-09-12T12:10:52Z (`akki-vm`) + 12:10:55Z (`akki-vm-ii`): both hosts, both cards, **0% util / 0 MiB memory**, dispatchers alive but idle-polling. Marginal cost $0 per Cassava lease. GPU capacity confirmed available. Adoption discipline from `W-Orchestrator-Resilience-r2` remains in force — a new POC campaign attaches via `queue_followon_launcher` + `on_host_queue_dispatcher` without disturbing the existing dispatchers.
+
+8. **Sequencing preserved.** Scoping items (5/5) close in the response accompanying this DECISIONS append. POC wave `W-AUDIO-POC-3-STATIONS` is a SEPARATE new wave with its own grounding brief + tests-first CP plan + mechanical RED + double-green BASELINE_GUARD=1 byte-match discipline. **No product code written under the scoping task. No pytest invoked. Ratchet floor 3251 untouched.**
+
+9. **NAS reachability = external blocker.** Pod cannot reach `10.10.55.55:5000` (private RFC-1918 address from a us-central1 GKE pod). Same failure class as the Huawei drill's SG-drift finding (`FL-P2-09`) — routing / bastion / VPN resolution needed on the on-premise side before any live NAS probe can execute. Encoded as CP2 prerequisite of the POC wave. No adaptation-around; escalate-and-stop per prior FL-P2 doctrine.
+
+10. **Egress-IP drift confirmed AGAIN this session.** Pod egress at scoping time: `35.225.230.28` (previously `34.16.56.64` in `FL-P2-09`, prior-to-that `34.170.12.145`). Two drifts recorded across the same estate. Standing rule holds: no minted / no whitelist-by-pod-IP for durable access — same rationale as `WS-STOP-ORDER 2026-08-14`. If NAS needs an allowlist, it needs a bastion-EIP, not a pod /32.
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
