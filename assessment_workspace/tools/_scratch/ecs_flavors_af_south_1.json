@@ -1,0 +1,34 @@
+{
+  "flavors_small": [],
+  "tcp_reprobe": {
+    "159.138.162.146": {
+      "name": "Weego_and_marketing-analytics",
+      "tcp_ok": true,
+      "err": null,
+      "latency_ms": 266.9,
+      "mysql_version": "8.0.28-231003"
+    },
+    "159.138.164.124": {
+      "name": "citizen-digital-dev-db-cluster",
+      "tcp_ok": false,
+      "err": "TimeoutError:timed out",
+      "latency_ms": 8003.5,
+      "mysql_version": null
+    },
+    "110.238.75.83": {
+      "name": "visitors-database-cluster",
+      "tcp_ok": false,
+      "err": "TimeoutError:timed out",
+      "latency_ms": 8008.2,
+      "mysql_version": null
+    },
+    "203.123.83.144": {
+      "name": "rds-shikisha",
+      "tcp_ok": false,
+      "err": "TimeoutError:timed out",
+      "latency_ms": 8008.2,
+      "mysql_version": null
+    }
+  },
+  "ts": "2026-09-12T04:31:14.619693+00:00"
+}

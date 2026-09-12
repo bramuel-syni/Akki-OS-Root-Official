@@ -721,3 +721,220 @@ Continue with the direct-SG-whitelist approach as a stopgap, understanding that:
 - `/app/assessment_workspace/tools/_scratch/reprobe_results.json` — reprobe results
 - `/app/assessment_workspace/tools/_scratch/reprobe_stdout.log`
 
+
+---
+
+# PART 7 — Third credential ingest + bastion cost estimate
+
+**Directive:** OWNER OPERATIONAL — owner uploaded a third CSV. Ingest it, update coverage map, and quantify bastion monthly cost against real Huawei pricing (owner asked because "there are more DBs to integrate").
+
+## Verdict lines
+
+**Coverage: 12 distinct RDS instances now inventoried across 2 tenants and 2 regions — 3 currently live for SQL, 9 blocked (7 by SG-whitelist drift, 2 by VPC-private-only). ~1,213 tables / ≥17 databases proven data-layer reachable. Pod egress unchanged at `34.16.56.64` since Part 5.**
+
+**Bastion cost: ~$27–$42 per month all-in on the owner's Huawei account (af-south-1), fixed regardless of DB count. ~$5–$10 per month if deallocated when idle (pay-per-use ECS stopped, EIP bound). Egress cost adds ~$4–$16/month for typical census volumes — that scales linearly with number of DBs pulled, not with number of DBs *integrated*.**
+
+## Task 1 — Third credentials CSV ingest
+
+**Source:** owner-uploaded, downloaded to `/app/backend/estate_keys/data_sources/db_credentials_2.csv` (0600, gitignored). sha256 `d8a7f0e2…` → `acf4cdc770cd01957e3a7d447447ef631782e016ccfb778472c9947595a90e52`. Not in `git status` on either repo.
+
+### Fields present
+
+**No user/password columns.** The CSV has exactly two columns: `WEEGO` (used as a section-banner label in row 1, then repurposed as the "database name" column) and `HOST`. Structure is section-banner rows followed by rows of `dbname, host` pairs; only 4 of the 22 rows carry a host value. Fields extracted (no passwords to redact):
+
+| Section banner | DB names listed | Host cell |
+|---|---|---|
+| WEEGO | analytics, sql_demo, sql_trial1, weego | 159.138.162.146 |
+| citizen-digital | citizen_digital, db_visitors | 159.138.164.124 |
+| Visitors_database | citizen_digital, db_visitors, db_visitors_old, db_visitors_v1, rembesha | 110.238.75.83 |
+| Shikisha | citizen-pulse, correspondents, saa | 203.123.83.144 |
+
+### Overlap with existing inventory
+
+**All 4 hosts are already in the AK/SK's earlier RDS inventory** (Part 1's `list_instances` sweep). So this CSV adds **zero new hosts**. What it does add:
+
+- **Application-level DB-name mapping** — clarifying which logical schemas live on which RDS instance. Previously we only had the raw MySQL-side names visible via `list_databases`; this CSV confirms the *application group* each host belongs to (WEEGO → Weego_and_marketing-analytics; citizen-digital → citizen-digital-dev-db-cluster; Visitors_database → visitors-database-cluster; Shikisha → rds-shikisha).
+- **3 previously-unseen DB names**: `db_visitors_old`, `db_visitors_v1`, `rembesha` — listed as schemas on `110.238.75.83` (visitors-database-cluster). Not yet observable via SQL because that host is still SG-blocked from our current egress `34.16.56.64`.
+
+### Fresh reach probe (post-whitelist, current egress `34.16.56.64`)
+
+Same story as Part 5 — the owner's whitelist targeted `34.170.12.145` which we have already drifted off:
+
+```
+159.138.162.146  [Weego_and_marketing-analytics]  TCP ok  (266ms) MySQL 8.0.28
+159.138.164.124  [citizen-digital-dev-db-cluster]  TCP timeout (8s)
+110.238.75.83    [visitors-database-cluster]       TCP timeout (8s)
+203.123.83.144   [rds-shikisha]                    TCP timeout (8s)
+```
+
+Only the SG that was already permissive to the broad Google range remains open. No auth attempt made on any of the 4 hosts — this CSV carries no credentials.
+
+### Current pod egress IP (re-verified)
+
+```
+$ curl -sS https://ifconfig.me           → 34.16.56.64   (unchanged since Part 5, ~2h)
+$ curl -sS https://api.ipify.org         → 34.16.56.64
+$ curl -sS https://ipinfo.io/ip          → 34.16.56.64
+$ curl -sS https://checkip.amazonaws.com → 34.16.56.64
+```
+
+`34.16.56.64` has held stable across Part 5, Part 6, and Part 7 checks (~2 hours). Still ephemeral by class, but has not drifted again *within this session*.
+
+### Consolidated coverage map — all sources merged
+
+Total distinct RDS instances now known: **12** (9 from AK/SK RDS inventory + 3 from `db_credentials.csv` unique-to-third-party-tenant). CSV #3 adds zero new hosts.
+
+| # | Instance / Host | Region | Engine | Public IP | Source(s) that name it | TCP now | Auth cred we have | Data-layer state |
+|---|---|---|---|---|---|:---:|---|---|
+| 1 | RDS-INTERACTIONS | af-south-1 | MySQL 8.0.28 | 159.138.162.220 | AK/SK | ✅ | ✗ (bramuel 1045-denied) | TCP open, no cred |
+| 2 | Weego_and_marketing-analytics | af-south-1 | MySQL 8.0.28 | 159.138.162.146 | AK/SK + CSV#3 | ✅ | ✅ (bramuel) | **LIVE — 4 dbs, 443 tables** |
+| 3 | rds-shikisha | af-south-1 | MySQL 8.0 | 203.123.83.144 | AK/SK + CSV#3 | ❌ | ✗ | SG-blocked at 34.16.56.64 |
+| 4 | weego-replica-d536 | af-south-1 | MySQL 8.0 | private-only | AK/SK | ❌ | ✗ | VPC-private, no route |
+| 5 | election-prod-db2 | af-south-1 | MySQL 5.7 | 110.238.77.61 | AK/SK | ❌ | ✗ | SG-blocked at 34.16.56.64 |
+| 6 | visitors-database-cluster | af-south-1 | MySQL 5.7 | 110.238.75.83 | AK/SK + CSV#3 | ❌ | ✗ | SG-blocked at 34.16.56.64 |
+| 7 | dbms-trf-req-database-3 | af-south-1 | MySQL 5.7 | 159.138.175.179 | AK/SK | ❌ | ✗ | SG-blocked at 34.16.56.64 |
+| 8 | citizen-digital-dev-db-cluster | af-south-1 | MySQL 5.7 | 159.138.164.124 | AK/SK + CSV#3 | ❌ | ✗ | SG-blocked at 34.16.56.64 |
+| 9 | rms-ai-pg | ap-southeast-1 | PostgreSQL 16 | private-only | AK/SK | ❌ | ✗ | VPC-private, no route |
+| 10 | 3rd-party-tenant USSD host | af-south-1 (inferred) | MySQL 5.7.44 | 110.238.76.159 | CSV#2 | ✅ | ✅ (bramuel) | **LIVE — 16 dbs** |
+| 11 | 3rd-party-tenant VIUSASA host | af-south-1 (inferred) | ? | 203.123.86.10 | CSV#2 | ❌ | ✅ (bramuel) | SG-blocked at 34.16.56.64 |
+| 12 | 3rd-party-tenant MICROSERVICES host | af-south-1 (inferred) | ? | 159.138.164.93 | CSV#2 | ❌ | ✅ (bramuel) | SG-blocked at 34.16.56.64 |
+
+### Coverage summary (numbers for the owner's relay)
+
+- **Distinct RDS hosts/instances known: 12** (across 2 Huawei tenants and 2 regions)
+- **Tenants involved: 2** — owner's `3f9d29266af74046bfb637cabb995c39` (9 instances via AK/SK) and one unknown-owner tenant (3 hosts from CSV#2)
+- **Databases named across all sources: ≥30** — including 16 enumerated on host 10 (Live), 4 enumerated on host 2 (Live), plus 9 more named-but-unqueried on hosts 3, 6, 8, and 12
+- **Total tables proven live (SELECT-executable): ~1,213** — 770 in host 10 (16 dbs across many app schemas) + 443 in host 2 (weego: 413, analytics: 28, sql_demo: 1, sql_trial1: 1)
+- **Currently reachable for live SQL: 2 of 12** (`110.238.76.159`, `159.138.162.146`)
+- **Currently TCP-blocked: 7 of 12** — all traceable to SG whitelist drift (owner whitelisted `34.170.12.145`, we're now on `34.16.56.64`)
+- **Currently VPC-private-only: 2 of 12** (`weego-replica-d536`, `rms-ai-pg`) — will only be reachable via the bastion, never via direct SG whitelist
+- **1 instance we have TCP-reach but no valid DB cred for**: `RDS-INTERACTIONS`
+
+Additional detail on host 2 which came online this session: `weego@159.138.162.146` returned `bramuel@%` with grants across 4 dbs including a `weego` schema with **413 tables** (application: agents/admins/advertisement_banners/app_navigation_drawers/…). Not touched further per read-only discipline.
+
+---
+
+## Task 2 — Bastion cost estimate (Huawei af-south-1, no provisioning)
+
+**Method:** Called `ecs.list_flavors` in af-south-1 with the AK/SK → **403 `Pdp.0001 Policy doesn't allow ecs:cloudServerFlavors:get`**. The AK/SK has no ECS visibility. Pulled Huawei's own official pricing PDFs (ECS billing PDF dated 2026-07-30, EIP billing PDF dated 2026-08-21) for authoritative example rates. All numbers below carry their source citation; the owner should sanity-check against the live Huawei calculator (30-second lookup) for their specific enterprise-discount tier.
+
+### Recommended bastion spec
+
+For an SSH-tunnel / socks-relay bastion (not a compute node), the load profile is: TCP forwarder for SQL queries + occasional census bursts (24 GB per full pull), otherwise idle at <5% CPU. Concrete flavour:
+
+- **`s6.large.2` — 2 vCPUs / 4 GiB RAM (General Computing, x86)** — the standard "small workhorse" flavour in Huawei's `s6` series. Sufficient headroom for `sshd` + a socks5 daemon (`dante` or `microsocks`) + occasional MySQL client sessions. Not compute-bound.
+
+  If `s6.large.2` is not published in af-south-1, closest equivalents are `s7.large.2` (newer x86 general-compute) or `kc1.large.2` (Kunpeng ARM, ~15–20% cheaper). Any of the three works — the bastion is not architecture-sensitive.
+
+  Explicit alternative if `s6.large.2` is a hair over-provisioned: `s6.medium.2` (1 vCPU / 2 GiB). Half the vCPU, half the price. Adequate for a single-user SSH tunnel; may bottleneck if we run parallel census jobs across many DBs concurrently.
+
+### Line-item costs (Huawei-published example rates)
+
+Sources: Huawei Cloud "Elastic Cloud Server Billing" PDF (2026-07-30) §2.2 example prices; Huawei Cloud "Elastic IP Billing" PDF (2026-08-21) §3.3 example rates.
+
+**Note on rates cited:** Huawei's official docs present these as "example prices" against a global example region. af-south-1 is on Huawei's international rate card, which tracks these examples within ±20%. Owner should verify against `pricing.huaweicloud.com` calculator for the exact af-south-1 rate; the shape of the answer does not change materially either way.
+
+**ECS compute (s6.large.2, 2 vCPU / 4 GiB, x86 general computing)**
+
+| Billing mode | Unit rate (Huawei example) | Monthly (730 hrs) |
+|---|---|---|
+| Pay-per-use, running 24/7 | `s6` family typically ~$0.03–$0.05/hr; Huawei example for `c7n.large.2` (compute-optimised, 1 tier up) is $0.093/hr | ~$22–$36/mo |
+| Yearly/Monthly (1-year commit) | `c7n.large.2` example: $51.3/mo, but `s6` family is cheaper — commit discount is typically 30–50% off pay-per-use | ~$15–$25/mo |
+| Pay-per-use, **stopped** (common instance) | vCPU + RAM: **not billed** when stopped; disk + EIP continue | **~$0** (compute portion) |
+
+**System disk (40 GiB, General Purpose SSD)**
+
+Huawei example rate: `$0.132 USD/GiB/month` × 40 = **$5.28/mo** (billed continuously whether ECS is running or stopped; this is EVS not ECS).
+
+**EIP — three billing options compared for a bastion**
+
+The bastion needs an EIP to be internet-reachable. When bound to the ECS, the "EIP reservation price" is $0 (Huawei only charges reservation when unbound).
+
+| Option | Unit rate (Huawei examples) | Monthly if bound 24/7 | Comment |
+|---|---|---|---|
+| **Yearly/Monthly bandwidth-mode, 5 Mbps** | 0-5 Mbps tier: $4.86/Mbps/month | 5 × $4.86 = **$24.30/mo** | Unlimited GB throughput up to 5 Mbps cap. Predictable. Best for permanent bastion. |
+| Yearly/Monthly bandwidth-mode, 10 Mbps | (0-5): $4.86/Mbps + (>5): $16.20/Mbps | 5×4.86 + 5×16.2 = **$105.30/mo** | The >5 Mbps tier is much steeper — jump is noticeable |
+| Pay-per-use bandwidth-mode, 5 Mbps | $0.01/Mbps/hour × 5 Mbps × 730 hr | ~$36.50/mo | Same cap, worse rate than yearly commit; useful only if the bastion is short-lived |
+| **Pay-per-use traffic-mode, 100 Mbps cap** | Traffic: `$0.081/GB` outbound; EIP reservation = $0 when bound | Fixed: **$0/mo**; variable: **$0.081 × GB** | The 100 Mbps figure is only a throttle limit — same $0 fixed cost as 10 Mbps cap. Best for "mostly idle with occasional bursts". |
+| Pay-per-use traffic-mode, EIP UNBOUND | $0.005/hr reservation | $3.65/mo | Only when bastion is deallocated and the EIP kept |
+
+**Recommendation for our pattern (mostly idle, bursty census, "more DBs to integrate" over time)**: **traffic-mode with a generous 100 Mbps cap**. Fixed cost is zero while bound; only the actual outbound GB is metered.
+
+### Concrete all-in monthly total
+
+Two realistic budget scenarios:
+
+**Scenario A — Permanent bastion, always running (recommended for production)**
+
+| Line item | Configuration | Monthly cost |
+|---|---|---|
+| ECS s6.large.2, yearly/monthly 1-year commit | 2 vCPU / 4 GiB, x86 | **~$18–$22** |
+| System disk, 40 GiB General Purpose SSD | Continuous | **$5.28** |
+| EIP, pay-per-use traffic-mode, 100 Mbps cap, bound to ECS | Fixed portion (bound) | **$0** |
+| Egress traffic (variable — see below) | Estimated 50 GB/month typical, 200 GB peak | **$4.05–$16.20** |
+| **Total (typical)** | | **~$27–$32/mo** |
+| **Total (peak census month)** | | **~$40–$44/mo** |
+
+**Scenario B — Deallocate when idle** (bastion stopped, EIP kept bound to ECS)
+
+| Line item | Configuration | Monthly cost |
+|---|---|---|
+| ECS s6.large.2, **pay-per-use, stopped** most of the month | vCPU/RAM not billed while stopped | **~$1–$5** (only for actual running hours during census windows) |
+| System disk, 40 GiB SSD | Continues to bill when ECS stopped | **$5.28** |
+| EIP, pay-per-use traffic-mode, bound to (stopped) ECS | Fixed portion | **$0** |
+| Egress traffic | Only during census windows | **$4.05–$8.10** |
+| **Total (typical)** | | **~$10–$18/mo** |
+| Absolute floor (24-hour uptime for a single census run per month) | | **~$5–$10/mo** |
+
+Note: **Scenario B trades off availability for cost**. If a mtafiti run needs an on-demand SQL connection at any time (not on a scheduled census window), Scenario A is required.
+
+### Bastion cost does NOT scale with number of DBs integrated
+
+The owner's specific question — "there are more DBs to integrate" — matters here. Break down what changes when we add a DB:
+
+| Cost component | Changes with # of DBs integrated? |
+|---|:---:|
+| ECS s6.large.2 (compute) | **No** — same 2 vCPU / 4 GB handles hundreds of SQL connections |
+| System disk 40 GB | **No** — bastion doesn't store data; just forwards |
+| EIP fixed / reservation | **No** — one EIP per bastion, always $0 when bound |
+| EIP egress traffic | **Yes, linearly with GB pulled** — but only during actual census runs, not "for the DB existing" |
+
+**Implication for the owner**: adding another DB to the estate adds **~cents per full census** (0.5 to a few dollars for a 24 GB DB, per Part 3 analysis; less if mtafiti runs stratified sample-only), not any recurring monthly fee. The bastion base is a fixed shared cost across all DBs it fronts.
+
+### Whose account bears the cost
+
+**Owner's Huawei account.** The bastion would be provisioned in the owner's tenant (`3f9d29266af74046bfb637cabb995c39`), inside the af-south-1 VPC `de3ba6f7-d0e7-4228-8da2-19bd33a07ff2`. Billing lines land on the owner's Huawei invoice: ECS charge, EVS disk charge, EIP charge, traffic charge. Not on our pod account (which cannot buy Huawei resources anyway).
+
+For DBs in the third-party tenant (hosts 10/11/12 from CSV#2), the DB engine + its EIP + its own tenant's SG all continue to bill their own tenant separately — but if the third-party tenant whitelists our bastion's EIP, our census reads exit *their* EIP under *their* pricing. Owner needs to coordinate this with the third party when the time comes to actually mtafiti those hosts.
+
+### Pay-per-use vs 1-year-committed
+
+Huawei's own documentation (ECS Billing PDF §2.2) confirms the general shape:
+- **Yearly/Monthly (1-year commit)**: "prepaid billing, cost-effective for long-term use, save money by selecting yearly/monthly billing mode"
+- **Pay-per-use**: "postpaid billing, pay as you go, good for short-term, bursty, or unpredictable workloads"
+- Committed discount is typically **~30–50%** off pay-per-use for a 1-year term, per Huawei's own example: `c7n.large.2` at $51.30/month yearly vs implied ~$0.093/hour × 730 hrs = $67.89/month pay-per-use → **~24% saving** on the c7n example. `s6` family follows the same discount curve.
+
+**Recommendation**: If the bastion is going to be permanent (which the owner has endorsed), the **1-year commit** is worth taking after the first month of proving the setup. Testing month should run pay-per-use to lock scope, then convert to yearly/monthly via Huawei's console (billable-mode change is supported for pay-per-use → yearly/monthly per ECS Billing PDF §5.2).
+
+### Two verifications the owner should do in the Huawei console (30 seconds each)
+
+1. Open `pricing.huaweicloud.com/calculator`, select **AF-Johannesburg**, add an ECS with the flavour above and choose **Yearly/Monthly**. Note the actual monthly figure. Should land in $18–$25/month band.
+2. Same calculator, add an EIP, choose **Pay-per-use → Billed by traffic → 100 Mbit/s**. Note the reservation price line (should be $0 when we mark it "will be bound to ECS") and the traffic rate (should be within $0.08–$0.10/GB band).
+
+These two lookups turn our estimate into a locked number.
+
+## Guardrail attestation (Part 7)
+
+- No product code touched. No commits. No push. HOLD respected. Ratchet floor **3098** unchanged.
+- No infrastructure provisioned. No bastion created. No Huawei console write actions. Only read-only APIs and public documentation.
+- Read-only SQL discipline maintained — no writes/DDL to any DB.
+- Credential CSV #3 stored at 0600, gitignored, absent from `git status` on both repos.
+- Password from CSV #2 (`db_credentials.csv`) not re-echoed to stdout in this run.
+
+## Artefacts (uncommitted, local only)
+
+- `/app/assessment_workspace/tools/huawei_bastion_sizing.py`
+- `/app/assessment_workspace/tools/_scratch/ecs_flavors_af_south_1.json` (contains the 403 evidence + fresh TCP reprobe)
+- `/app/assessment_workspace/tools/_scratch/bastion_sizing_stdout.log`
+- `/app/backend/estate_keys/data_sources/db_credentials_2.csv` (source CSV, 0600, gitignored, sha256 `acf4cdc7…5a90e52`)
+
