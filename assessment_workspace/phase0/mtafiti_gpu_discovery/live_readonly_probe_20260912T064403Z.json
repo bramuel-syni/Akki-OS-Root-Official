@@ -1,0 +1,38 @@
+{
+  "at_utc": "2026-09-12T06:44:03Z",
+  "label": "cp3_live_readonly_probe",
+  "hosts": [
+    "159.138.162.146",
+    "110.238.76.159"
+  ],
+  "per_host": {
+    "159.138.162.146": {
+      "at_utc": "2026-09-12T06:43:57Z",
+      "label": "weego",
+      "host": "159.138.162.146",
+      "connected": false,
+      "sql_trace": [],
+      "errors": [
+        {
+          "stage": "credentials",
+          "err": "no matching row in credential CSV"
+        }
+      ],
+      "receipt_sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "110.238.76.159": {
+      "at_utc": "2026-09-12T06:44:03Z",
+      "label": "ussd",
+      "host": "110.238.76.159",
+      "connected": false,
+      "sql_trace": [],
+      "errors": [
+        {
+          "stage": "probe",
+          "err": "RawPiiLeakForbidden: raw PII detected in payload; call redact_row() before persisting."
+        }
+      ],
+      "receipt_sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    }
+  }
+}

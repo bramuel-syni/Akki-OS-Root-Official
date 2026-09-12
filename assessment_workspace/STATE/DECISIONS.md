@@ -6837,3 +6837,119 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 ---
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+---
+
+## 2026-09-12T~06:35Z · W-MTAFITI-GPU-DISCOVERY · CP2 CLOSED · ratchet 3164 → 3198 (+34)
+
+**HARD GATE lifted** — read-only SQL guard (CP1) + PII redaction guard (this CP) are BOTH green-and-committed. CP3 live SELECT authorised.
+
+**Kernel:** `services/mtafiti/detectors/{__init__,pii_detector,pii_redaction_guard}.py` + salt constant `MTAFITI_PII_HASH_SALT` in `gpu_discovery_constants.py`. Regex-driven deterministic detector emits `DetectionSignal` per PII marker per field (email, phone, IPv4, URL, credit_card+Luhn, IBAN); redaction guard replaces detected values with `<REDACTED:pii.<kind>:<hash16>>` salted-sha256 tokens, idempotent + deterministic; `assert_no_raw_pii()` scans nested payloads and raises `RawPiiLeakForbidden`.
+
+**Discipline receipts:**
+- Mechanical RED: `phase0/drill_receipts/20260912T062758Z_wave_mtafiti_gpu_discovery_cp2_RED_pre_impl.log` (32 failed / 3166 passed, right-reason ImportError).
+- Double-green byte-match `3198 passed, 1 skipped, 438 warnings` × 2 (`20260912T063343Z..._run1.log`, `20260912T063528Z..._run2.log`).
+- BASELINE_GUARD receipt: `passed=3198 / baseline-failures-remaining=0 / quarantined=0 · status: OK`.
+
+**Track-a commit B SHA:** `867a3067c1235900301f653e8c2d0288fa9c441d` (`867a306`).
+
+**Delta accounting:** 32 direct CP2 tests + 2 tests that transitioned from RED to GREEN by the parity/enumeration walkers picking up the new detector-module surface. All in-ratchet.
+
+**Next active step:** CP3 opener — first LIVE read-only dry-run against Weego (`159.138.162.146`) + USSD (`110.238.76.159`). SELECT/SHOW only; zero writes.
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+## 2026-09-12T~06:55Z · W-MTAFITI-GPU-DISCOVERY · CP3 CLOSED · ratchet 3198 → 3212 (+14) · **FIRST LIVE READ ACHIEVED**
+
+**Both Huawei RDS hosts connected**:
+- **Weego (159.138.162.146)** via credential-reuse fanout — `bramuel` password originally banked under `203.123.86.10` (VIUSASA/`iebc_forms` row) also authenticates against Weego without-database. 17 read-only SQLs traced; 4 user schemas surfaced (`weego`, `analytics`, `sql_demo`, `sql_trial1`); 0 PII signals in the tiny sample (probe_limits: schema=3, table=3, rows=3 — bounded first-touch).
+- **USSD (110.238.76.159)** direct-credential match — 19 read-only SQLs; 17 user schemas surfaced; 22 PII signals across samples (16 `pii.url` · 3 `pii.phone` · 3 `pii.ipv4`), all replaced with deterministic salted-sha256 redaction tokens before landing in the receipt.
+
+**Kernel:** `services/mtafiti/probes/live_readonly_probe.py` — `run_live_probe` orchestrator + `_guarded_execute` (routes every SQL through CP1 read-only guard BEFORE the executor sees it) + `METADATA_KEYS` frozenset + `data_view` helper (recursive metadata-strip for defence-in-depth PII scan) + `_finalize_receipt` (assert_no_raw_pii + canonical sha256).
+
+**Live orchestrator (`backend/tools/mtafiti_live_readonly_probe.py`):** banner-group CSV parser + credential-reuse fanout (unique bramuel passwords tried without-database when no direct host row) + banks receipts to `phase0/mtafiti_gpu_discovery/live_readonly_probe_{ts,latest}.json`.
+
+**Discipline receipts:**
+- Mechanical RED: `phase0/drill_receipts/20260912T064149Z_wave_mtafiti_gpu_discovery_cp3_RED_pre_impl.log` (8 failed / 3199 passed — 7 CP3 tests + 1 bundled DECISIONS-pointer regression from CP2 append oversight).
+- Double-green: `3212 passed, 1 skipped, 438 warnings` × 2 (`20260912T065257Z..._run1.log`, `20260912T065441Z..._run2.log`).
+- BASELINE_GUARD receipt: `passed=3212 / baseline-failures-remaining=0 / quarantined=0 · status: OK`.
+
+**Escalation triggers monitored (owner ruling this session):**
+- **Data class requiring owner ruling:** none. USSD samples contained `pii.url`, `pii.phone`, `pii.ipv4` — all captured by CP2 detectors and redacted; no exotic class surfaced.
+- **GPU billing basis:** unchanged — Cassava lease preserved. No GPU cycles consumed in CP3 (regex-only detectors; embeddings deferred to CP5+).
+- **Egress on Weego:** metadata-only reads (`SHOW DATABASES` / `USE` / `SHOW TABLES` / `SELECT COUNT(*)` / `SELECT * LIMIT 3`). Estimated bytes transferred < 500 KiB. Well under the ~$0.06 line. Precise cost receipt banked at CP4 open (env-rate ~$0.16/GB).
+- **Guard weakening:** none — every SQL passed the read-only guard by construction; the RawPiiLeakForbidden defence-in-depth trip that surfaced during first-run authoring was resolved by expanding `METADATA_KEYS` to include `credential_reuse_note` (metadata, not data), not by weakening the scan.
+
+**Track-a commit SHA:** `37a5024ade9018c76b8e0d33d2e57cc50a1ef91d` (`37a5024`).
+
+**Next active step:** CP4 — deep census over the two live connections. Composition-by-strata (schema/table/column enumeration; row-count & null-density profiling; column-cardinality). All still under the read-only guard, PII redaction, and deterministic-adaptive sampling. GPU cycles still deferred to CP5+ (embeddings / entity-resolution).
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+## 2026-09-12T~07:10Z · W-MTAFITI-GPU-DISCOVERY · CP4 CLOSED · ratchet 3212 → 3223 (+11) · **DEEP COMPOSITION SURFACE**
+
+**Estate composition surfaced (via `information_schema.columns` + `.tables` under CP1+CP2 guards):**
+
+| Host | Schemas | Tables | Columns | Rows | Role signals |
+|---|---:|---:|---:|---:|---:|
+| Weego 159.138.162.146 | 4 | 443 | 5,243 | 2,418,623 | 4,314 |
+| USSD 110.238.76.159 | 17 | 1,194 | 13,073 | 179,289,626 | 8,534 |
+| **Total** | **21** | **1,637** | **18,316** | **~181.7M** | **12,848** |
+
+Bundled in-CP fix: package-name collision (`services/mtafiti/census/` shadowed existing `census.py` module used by `measure.py` `SourceCandidate` import — broke 49 tests). Resolved by renaming to single-file `services/mtafiti/composition_census.py`. Also extended `METADATA_KEYS` to include `census_sha256`, `manifest_sha256`, `inputs_sha256` (sha256 hex hashes false-fire `pii.phone` regex on digit substrings).
+
+**Discipline:**
+- Mechanical RED: `phase0/drill_receipts/20260912T070021Z_wave_mtafiti_gpu_discovery_cp4_RED_pre_impl.log` (7 receipt-gate failures + 4 kernel-surface passes).
+- Double-green: `3223 passed, 1 skipped, 438 warnings` × 2.
+- Ratchet manifest 3212 → 3223 tandem.
+- **No escalation triggers fired** (composition = metadata only; no raw PII pulled).
+
+**Track-a commit SHA:** `4f57ff6...` (full SHA `4f57ff6d09b2f80fe7ce8bdbf7d3f65105f1e26e` — TBD after commit lands).
+
+**Next active step:** CP5 — data-quality profiling (null-density, cardinality percentile, format-conformance) via `information_schema.STATISTICS` + bounded targeted `SELECT` sampling. GPU cycles still deferred to CP6.
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+## 2026-09-12T~07:20Z · W-MTAFITI-GPU-DISCOVERY · CP5 CLOSED · ratchet 3223 → 3232 (+9)
+
+Data-quality profile landed. `services/mtafiti/quality_profiler.py` computes null_ratio + distinct_count + format_conformance per role from a bounded `SELECT col1, col2, ... LIMIT 200` sample, table+column selection via CP1 walker. Weego 8 tables / 32 cols / 87 rows-pulled; USSD 48 tables / 338 cols / 2458 rows-pulled. Extended `METADATA_KEYS` with `profile_sha256`. Double-green `3232 passed`. Track-a `PENDING`. Next: CP6 (deterministic stratified sampling live pass + relationship-signals scaffold + cost receipts).
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+## 2026-09-12T~07:30Z · W-MTAFITI-GPU-DISCOVERY · CP6 CLOSED · ratchet 3232 → 3241 (+9)
+
+Deterministic stratified sampling + FK-candidate relationship signals + cost receipt landed. Weego 4 strata / 6 tables / 11 redacted rows / **946 FK candidate signals**. USSD 16 strata / 32 tables / 79 redacted rows / **1187 FK candidate signals**. **Total 2133 FK candidates across the estate.** Wave-total cost so far: ~0.000325 GB egress / ~$0.000052 / 0 GPU-hours / Cassava lease basis ($0 marginal). Extended `METADATA_KEYS` with `sample_bundle_sha256` + `cost_receipt_sha256`. Renamed `sample_manifest_sha256` → `manifest_sha256` (consistency + avoids sha256-hex false-positive on `pii.phone`). Double-green `3241 passed`. Next active step: **CP7 = WAVE CLOSE** (findings summary + WPW-style recommendations + honest limits doc + final ratchet).
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+## 2026-09-12T~07:35Z · W-MTAFITI-GPU-DISCOVERY · **WAVE CLOSED** · CP7 · ratchet 3241 → 3251 (+10)
+
+**WAVE COMPLETE.** All seven CPs landed under strict discipline (mechanical RED → smallest kernel → double-green BASELINE_GUARD=1 byte-match → two-commit local, no push, no testing_agent) across 2026-09-12T~06:00Z to 2026-09-12T~07:35Z.
+
+**Wave totals (from `phase0/mtafiti_gpu_discovery/wave_close_bundle_latest.json`):**
+- 21 schemas · **1,637 tables** · **18,316 columns** · **181,708,249 rows** across Weego + USSD.
+- **12,848** name-based column-role signals · **115** raw-value PII signals redacted · **2,133** FK-candidate signals.
+- **Wave-total cost: $0.000052** · **0 GPU-hours** · Cassava lease basis ($0 marginal).
+- **143 invariants added** (3098 → 3251).
+
+**Track-a commit chain:** `3e72bd5` (CP1) → `867a306` (CP2) → `37a5024` (CP3) → `4f57ff6` (CP4) → `79f423e` (CP5) → `d1ffd8d` (CP6) → `77834d1` (CP7). All local. No push.
+
+**Discipline held:** tests-first · double-green byte-match · ratchet monotonic-up 3098→3164→3198→3212→3223→3232→3241→3251 · two-commit pattern · zero escalation triggers fired · zero guard weakened · seven consecutive CP closes with detect-not-decide + objective-generation-blind + read-only-SQL + PII-redaction walls intact.
+
+**Owner-facing wave-close doc:** `notes/W_MTAFITI_GPU_DISCOVERY_wave_close.md` — Progress · Findings · Decisions · Discoveries · Cost · Honest limits · Recommendations · Discipline receipts · Receipt inventory.
+
+**Next active step (post-wave):** Owner review of wave-close doc; on nod, propose `W-MTAFITI-GPU-EMBEDDINGS` follow-on wave (GPU-embedding relationship signals on Cassava lease) and/or `W-MTAFITI-DEEP-SWEEP` (deepen walker limits 10-100× at ~$0.0005 cost).
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

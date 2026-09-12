@@ -1,0 +1,1130 @@
+{
+  "at_utc": "2026-09-12T06:50:42Z",
+  "label": "cp3_live_readonly_probe",
+  "hosts": [
+    "159.138.162.146",
+    "110.238.76.159"
+  ],
+  "per_host": {
+    "159.138.162.146": {
+      "at_utc": "2026-09-12T06:50:32Z",
+      "label": "weego",
+      "host": "159.138.162.146",
+      "port": 3306,
+      "user": "bramuel",
+      "database": null,
+      "probe_limits": {
+        "schema_probe_limit": 3,
+        "table_probe_limit": 3,
+        "sample_rows": 3
+      },
+      "sql_trace": [
+        {
+          "sql": "SHOW DATABASES",
+          "lead_verb": "SHOW",
+          "row_count": 7,
+          "columns": [
+            "Database"
+          ],
+          "ok": true
+        },
+        {
+          "sql": "USE `analytics`",
+          "lead_verb": "USE",
+          "row_count": 0,
+          "columns": [],
+          "ok": true
+        },
+        {
+          "sql": "SHOW TABLES",
+          "lead_verb": "SHOW",
+          "row_count": 28,
+          "columns": [
+            "Tables_in_analytics"
+          ],
+          "ok": true
+        },
+        {
+          "sql": "SELECT COUNT(*) FROM `analytics`.`age_groups`",
+          "lead_verb": "SELECT",
+          "row_count": 1,
+          "columns": [
+            "COUNT(*)"
+          ],
+          "ok": true
+        },
+        {
+          "sql": "SELECT * FROM `analytics`.`age_groups` LIMIT 3",
+          "lead_verb": "SELECT",
+          "row_count": 3,
+          "columns": [
+            "id",
+            "name",
+            "min_age",
+            "max_age",
+            "created_at",
+            "updated_at",
+            "deleted_at"
+          ],
+          "ok": true
+        },
+        {
+          "sql": "SELECT COUNT(*) FROM `analytics`.`campaign_age_groups`",
+          "lead_verb": "SELECT",
+          "row_count": 1,
+          "columns": [
+            "COUNT(*)"
+          ],
+          "ok": true
+        },
+        {
+          "sql": "SELECT * FROM `analytics`.`campaign_age_groups` LIMIT 3",
+          "lead_verb": "SELECT",
+          "row_count": 1,
+          "columns": [
+            "campaign_id",
+            "age_group_id"
+          ],
+          "ok": true
+        },
+        {
+          "sql": "SELECT COUNT(*) FROM `analytics`.`campaign_counties`",
+          "lead_verb": "SELECT",
+          "row_count": 1,
+          "columns": [
+            "COUNT(*)"
+          ],
+          "ok": true
+        },
+        {
+          "sql": "SELECT * FROM `analytics`.`campaign_counties` LIMIT 3",
+          "lead_verb": "SELECT",
+          "row_count": 0,
+          "columns": [
+            "campaign_id",
+            "county_id"
+          ],
+          "ok": true
+        },
+        {
+          "sql": "USE `sql_demo`",
+          "lead_verb": "USE",
+          "row_count": 0,
+          "columns": [],
+          "ok": true
+        },
+        {
+          "sql": "SHOW TABLES",
+          "lead_verb": "SHOW",
+          "row_count": 1,
+          "columns": [
+            "Tables_in_sql_demo"
+          ],
+          "ok": true
+        },
+        {
+          "sql": "SELECT COUNT(*) FROM `sql_demo`.`marketting`",
+          "lead_verb": "SELECT",
+          "row_count": 1,
+          "columns": [
+            "COUNT(*)"
+          ],
+          "ok": true
+        },
+        {
+          "sql": "SELECT * FROM `sql_demo`.`marketting` LIMIT 3",
+          "lead_verb": "SELECT",
+          "row_count": 3,
+          "columns": [
+            "staff_id",
+            "staff_name",
+            "dob",
+            "staff_gender"
+          ],
+          "ok": true
+        },
+        {
+          "sql": "USE `sql_trial1`",
+          "lead_verb": "USE",
+          "row_count": 0,
+          "columns": [],
+          "ok": true
+        },
+        {
+          "sql": "SHOW TABLES",
+          "lead_verb": "SHOW",
+          "row_count": 1,
+          "columns": [
+            "Tables_in_sql_trial1"
+          ],
+          "ok": true
+        },
+        {
+          "sql": "SELECT COUNT(*) FROM `sql_trial1`.`programming`",
+          "lead_verb": "SELECT",
+          "row_count": 1,
+          "columns": [
+            "COUNT(*)"
+          ],
+          "ok": true
+        },
+        {
+          "sql": "SELECT * FROM `sql_trial1`.`programming` LIMIT 3",
+          "lead_verb": "SELECT",
+          "row_count": 3,
+          "columns": [
+            "staff_payroll",
+            "staff_name",
+            "staff_doa",
+            "gender"
+          ],
+          "ok": true
+        }
+      ],
+      "schemas": [
+        "analytics",
+        "information_schema",
+        "performance_schema",
+        "sql_demo",
+        "sql_trial1",
+        "sys",
+        "weego"
+      ],
+      "tables": {
+        "analytics": [
+          "age_groups",
+          "campaign_age_groups",
+          "campaign_counties",
+          "campaign_l_s_m_s",
+          "campaign_regions",
+          "campaign_s_e_c_s",
+          "campaign_stations",
+          "campaign_time_slots",
+          "campaigns",
+          "counties",
+          "failed_jobs",
+          "l_s_m_s",
+          "migrations",
+          "password_reset_tokens",
+          "periods",
+          "personal_access_tokens",
+          "regions",
+          "respondents",
+          "responses",
+          "roadshow_stops",
+          "roadshows",
+          "s_e_c_s",
+          "stations",
+          "time_slots",
+          "users",
+          "youtube_channel_views",
+          "youtube_channels",
+          "youtube_time_blocks"
+        ],
+        "sql_demo": [
+          "marketting"
+        ],
+        "sql_trial1": [
+          "programming"
+        ]
+      },
+      "row_counts": {
+        "analytics.age_groups": 5,
+        "analytics.campaign_age_groups": 1,
+        "analytics.campaign_counties": 0,
+        "sql_demo.marketting": 3,
+        "sql_trial1.programming": 3
+      },
+      "samples": {
+        "analytics.age_groups": {
+          "columns": [
+            "id",
+            "name",
+            "min_age",
+            "max_age",
+            "created_at",
+            "updated_at",
+            "deleted_at"
+          ],
+          "rows_redacted": [
+            {
+              "id": 1,
+              "name": "25-34 Years",
+              "min_age": 25,
+              "max_age": 34,
+              "created_at": "2024-07-08 09:23:27",
+              "updated_at": "2024-07-08 09:23:27",
+              "deleted_at": null
+            },
+            {
+              "id": 2,
+              "name": "45+  Years",
+              "min_age": 45,
+              "max_age": null,
+              "created_at": "2024-07-08 09:23:28",
+              "updated_at": "2024-07-08 09:23:28",
+              "deleted_at": null
+            },
+            {
+              "id": 3,
+              "name": "35-44 Years",
+              "min_age": 35,
+              "max_age": 44,
+              "created_at": "2024-07-08 09:23:28",
+              "updated_at": "2024-07-08 09:23:28",
+              "deleted_at": null
+            }
+          ],
+          "pii_signals": []
+        },
+        "analytics.campaign_age_groups": {
+          "columns": [
+            "campaign_id",
+            "age_group_id"
+          ],
+          "rows_redacted": [
+            {
+              "campaign_id": 1,
+              "age_group_id": 5
+            }
+          ],
+          "pii_signals": []
+        },
+        "analytics.campaign_counties": {
+          "columns": [
+            "campaign_id",
+            "county_id"
+          ],
+          "rows_redacted": [],
+          "pii_signals": []
+        },
+        "sql_demo.marketting": {
+          "columns": [
+            "staff_id",
+            "staff_name",
+            "dob",
+            "staff_gender"
+          ],
+          "rows_redacted": [
+            {
+              "staff_id": 1,
+              "staff_name": "James",
+              "dob": "1900-11-05",
+              "staff_gender": "M"
+            },
+            {
+              "staff_id": 2,
+              "staff_name": "Muthoni",
+              "dob": "1991-10-23",
+              "staff_gender": "F"
+            },
+            {
+              "staff_id": 3,
+              "staff_name": "Renee",
+              "dob": "1992-02-12",
+              "staff_gender": "F"
+            }
+          ],
+          "pii_signals": []
+        },
+        "sql_trial1.programming": {
+          "columns": [
+            "staff_payroll",
+            "staff_name",
+            "staff_doa",
+            "gender"
+          ],
+          "rows_redacted": [
+            {
+              "staff_payroll": 231,
+              "staff_name": "Jane",
+              "staff_doa": "2024-01-23",
+              "gender": "F"
+            },
+            {
+              "staff_payroll": 1123,
+              "staff_name": "Kanyi",
+              "staff_doa": "2023-11-21",
+              "gender": "M"
+            },
+            {
+              "staff_payroll": 1323,
+              "staff_name": "James",
+              "staff_doa": "2023-11-23",
+              "gender": "M"
+            }
+          ],
+          "pii_signals": []
+        }
+      },
+      "detector_signals_summary": {
+        "total": 0,
+        "by_kind": {}
+      },
+      "connected": true,
+      "errors": [],
+      "schemas_user": [
+        "analytics",
+        "sql_demo",
+        "sql_trial1",
+        "weego"
+      ],
+      "receipt_sha256": "14a95ca71062ae681180b06d8a0e7f1d069144efee79d78b5f96d2d6a35fb2f2",
+      "credential_reuse_note": "reused bramuel credential originally banked under CSV host '203.123.86.10' \u2014 matches prior-session credential-reuse finding"
+    },
+    "110.238.76.159": {
+      "at_utc": "2026-09-12T06:50:37Z",
+      "label": "ussd",
+      "host": "110.238.76.159",
+      "port": 3306,
+      "user": "bramuel",
+      "database": "artists_app",
+      "probe_limits": {
+        "schema_probe_limit": 3,
+        "table_probe_limit": 3,
+        "sample_rows": 3
+      },
+      "sql_trace": [
+        {
+          "sql": "SHOW DATABASES",
+          "lead_verb": "SHOW",
+          "row_count": 20,
+          "columns": [
+            "Database"
+          ],
+          "ok": true
+        },
+        {
+          "sql": "USE `artists_app`",
+          "lead_verb": "USE",
+          "row_count": 0,
+          "columns": [],
+          "ok": true
+        },
+        {
+          "sql": "SHOW TABLES",
+          "lead_verb": "SHOW",
+          "row_count": 0,
+          "columns": [
+            "Tables_in_artists_app"
+          ],
+          "ok": true
+        },
+        {
+          "sql": "USE `citizen_digital`",
+          "lead_verb": "USE",
+          "row_count": 0,
+          "columns": [],
+          "ok": true
+        },
+        {
+          "sql": "SHOW TABLES",
+          "lead_verb": "SHOW",
+          "row_count": 39,
+          "columns": [
+            "Tables_in_citizen_digital"
+          ],
+          "ok": true
+        },
+        {
+          "sql": "SELECT COUNT(*) FROM `citizen_digital`.`article_article_category`",
+          "lead_verb": "SELECT",
+          "row_count": 1,
+          "columns": [
+            "COUNT(*)"
+          ],
+          "ok": true
+        },
+        {
+          "sql": "SELECT * FROM `citizen_digital`.`article_article_category` LIMIT 3",
+          "lead_verb": "SELECT",
+          "row_count": 3,
+          "columns": [
+            "id",
+            "article_id",
+            "article_category_id"
+          ],
+          "ok": true
+        },
+        {
+          "sql": "SELECT COUNT(*) FROM `citizen_digital`.`article_categories`",
+          "lead_verb": "SELECT",
+          "row_count": 1,
+          "columns": [
+            "COUNT(*)"
+          ],
+          "ok": true
+        },
+        {
+          "sql": "SELECT * FROM `citizen_digital`.`article_categories` LIMIT 3",
+          "lead_verb": "SELECT",
+          "row_count": 3,
+          "columns": [
+            "id",
+            "name",
+            "slug",
+            "status",
+            "created_by",
+            "priority",
+            "platforms",
+            "thumbnails",
+            "menus",
+            "created_at",
+            "updated_at",
+            "deleted_at"
+          ],
+          "ok": true
+        },
+        {
+          "sql": "SELECT COUNT(*) FROM `citizen_digital`.`articles`",
+          "lead_verb": "SELECT",
+          "row_count": 1,
+          "columns": [
+            "COUNT(*)"
+          ],
+          "ok": true
+        },
+        {
+          "sql": "SELECT * FROM `citizen_digital`.`articles` LIMIT 3",
+          "lead_verb": "SELECT",
+          "row_count": 3,
+          "columns": [
+            "id",
+            "post_id",
+            "title",
+            "title_plain",
+            "slug",
+            "status",
+            "content",
+            "excerpt",
+            "breaking",
+            "developing",
+            "pinned_story",
+            "commentable",
+            "notifiable",
+            "developing_story_text",
+            "breaking_news_text",
+            "priority",
+            "author_id",
+            "views",
+            "caption",
+            "type",
+            "source",
+            "stream_url",
+            "thumbnails",
+            "expires_at",
+            "model_type",
+            "menu_id",
+            "created_at",
+            "updated_at",
+            "deleted_at"
+          ],
+          "ok": true
+        },
+        {
+          "sql": "USE `db_jipange`",
+          "lead_verb": "USE",
+          "row_count": 0,
+          "columns": [],
+          "ok": true
+        },
+        {
+          "sql": "SHOW TABLES",
+          "lead_verb": "SHOW",
+          "row_count": 22,
+          "columns": [
+            "Tables_in_db_jipange"
+          ],
+          "ok": true
+        },
+        {
+          "sql": "SELECT COUNT(*) FROM `db_jipange`.`age_range`",
+          "lead_verb": "SELECT",
+          "row_count": 1,
+          "columns": [
+            "COUNT(*)"
+          ],
+          "ok": true
+        },
+        {
+          "sql": "SELECT * FROM `db_jipange`.`age_range` LIMIT 3",
+          "lead_verb": "SELECT",
+          "row_count": 3,
+          "columns": [
+            "id",
+            "name"
+          ],
+          "ok": true
+        },
+        {
+          "sql": "SELECT COUNT(*) FROM `db_jipange`.`ci_sessions`",
+          "lead_verb": "SELECT",
+          "row_count": 1,
+          "columns": [
+            "COUNT(*)"
+          ],
+          "ok": true
+        },
+        {
+          "sql": "SELECT * FROM `db_jipange`.`ci_sessions` LIMIT 3",
+          "lead_verb": "SELECT",
+          "row_count": 3,
+          "columns": [
+            "id",
+            "ip_address",
+            "timestamp",
+            "data"
+          ],
+          "ok": true
+        },
+        {
+          "sql": "SELECT COUNT(*) FROM `db_jipange`.`counties`",
+          "lead_verb": "SELECT",
+          "row_count": 1,
+          "columns": [
+            "COUNT(*)"
+          ],
+          "ok": true
+        },
+        {
+          "sql": "SELECT * FROM `db_jipange`.`counties` LIMIT 3",
+          "lead_verb": "SELECT",
+          "row_count": 3,
+          "columns": [
+            "id",
+            "name"
+          ],
+          "ok": true
+        }
+      ],
+      "schemas": [
+        "information_schema",
+        "artists_app",
+        "citizen_digital",
+        "db_jipange",
+        "db_skiza",
+        "freddy_dev",
+        "miniapps",
+        "performance_schema",
+        "sys",
+        "tafaria_ecommerce",
+        "tafaria_shop",
+        "viupay_dev",
+        "viupay_fare",
+        "viupay_fare_test",
+        "viusasa_dev",
+        "viusasa_staging",
+        "viusasa_staging_2",
+        "viusasa_staging_dev",
+        "viutickets",
+        "viutickets_dev"
+      ],
+      "tables": {
+        "artists_app": [],
+        "citizen_digital": [
+          "article_article_category",
+          "article_categories",
+          "articles",
+          "audits",
+          "bans",
+          "comments",
+          "csv_samples",
+          "episodes",
+          "failed_jobs",
+          "favorites",
+          "fcm_tokens",
+          "media",
+          "menus",
+          "migrations",
+          "model_has_permissions",
+          "model_has_presenters",
+          "model_has_roles",
+          "moderation_reasons",
+          "otps",
+          "password_resets",
+          "permissions",
+          "personal_access_tokens",
+          "podcast_categories",
+          "podcasts",
+          "presenters",
+          "production_houses",
+          "programmes",
+          "role_has_permissions",
+          "roles",
+          "sessions",
+          "settings",
+          "shows",
+          "sms",
+          "sound_tracks",
+          "stations",
+          "taggables",
+          "tags",
+          "users",
+          "wp_postmeta"
+        ],
+        "db_jipange": [
+          "age_range",
+          "ci_sessions",
+          "counties",
+          "documents",
+          "entry_count",
+          "gender",
+          "groups",
+          "occcupation",
+          "raffle_transactions",
+          "raffle_transactions_268",
+          "raffle_transactions_copy",
+          "raffle_transactions_old",
+          "raffle_winners",
+          "report_summaries",
+          "ruffle_entries",
+          "send_reminders",
+          "stations",
+          "status",
+          "summaries",
+          "test",
+          "user_station",
+          "users"
+        ]
+      },
+      "row_counts": {
+        "citizen_digital.article_article_category": 6973,
+        "citizen_digital.article_categories": 7,
+        "citizen_digital.articles": 6824,
+        "db_jipange.age_range": 6,
+        "db_jipange.ci_sessions": 97,
+        "db_jipange.counties": 47
+      },
+      "samples": {
+        "citizen_digital.article_article_category": {
+          "columns": [
+            "id",
+            "article_id",
+            "article_category_id"
+          ],
+          "rows_redacted": [
+            {
+              "id": 1,
+              "article_id": 1,
+              "article_category_id": 1
+            },
+            {
+              "id": 2,
+              "article_id": 2,
+              "article_category_id": 1
+            },
+            {
+              "id": 3,
+              "article_id": 2,
+              "article_category_id": 2
+            }
+          ],
+          "pii_signals": []
+        },
+        "citizen_digital.article_categories": {
+          "columns": [
+            "id",
+            "name",
+            "slug",
+            "status",
+            "created_by",
+            "priority",
+            "platforms",
+            "thumbnails",
+            "menus",
+            "created_at",
+            "updated_at",
+            "deleted_at"
+          ],
+          "rows_redacted": [
+            {
+              "id": 1,
+              "name": "Business",
+              "slug": "business",
+              "status": "active",
+              "created_by": null,
+              "priority": 0,
+              "platforms": "[\"mobile\", \"web\", \"tv\"]",
+              "thumbnails": null,
+              "menus": "[3, 5, 6, 7, 8, 4, 2]",
+              "created_at": "2021-07-08 15:45:05",
+              "updated_at": "2021-07-12 11:00:12",
+              "deleted_at": null
+            },
+            {
+              "id": 2,
+              "name": "news",
+              "slug": "news",
+              "status": "active",
+              "created_by": null,
+              "priority": 0,
+              "platforms": "[\"mobile\", \"web\", \"tv\"]",
+              "thumbnails": null,
+              "menus": "[3, 5, 7, 8, 4, 6, 2]",
+              "created_at": "2021-07-08 15:45:05",
+              "updated_at": "2021-07-12 09:00:10",
+              "deleted_at": null
+            },
+            {
+              "id": 3,
+              "name": "Opinions & Blogs",
+              "slug": "opinions-blogs",
+              "status": "active",
+              "created_by": null,
+              "priority": 0,
+              "platforms": "[\"mobile\", \"web\", \"tv\"]",
+              "thumbnails": null,
+              "menus": "[5, 8, 3, 7]",
+              "created_at": "2021-07-08 15:45:11",
+              "updated_at": "2021-07-10 23:00:21",
+              "deleted_at": null
+            }
+          ],
+          "pii_signals": []
+        },
+        "citizen_digital.articles": {
+          "columns": [
+            "id",
+            "post_id",
+            "title",
+            "title_plain",
+            "slug",
+            "status",
+            "content",
+            "excerpt",
+            "breaking",
+            "developing",
+            "pinned_story",
+            "commentable",
+            "notifiable",
+            "developing_story_text",
+            "breaking_news_text",
+            "priority",
+            "author_id",
+            "views",
+            "caption",
+            "type",
+            "source",
+            "stream_url",
+            "thumbnails",
+            "expires_at",
+            "model_type",
+            "menu_id",
+            "created_at",
+            "updated_at",
+            "deleted_at"
+          ],
+          "rows_redacted": [
+            {
+              "id": 1,
+              "post_id": 659600,
+              "title": "Absa Bank nine month profit falls by 66 per cent",
+              "title_plain": "Absa Bank nine month profit falls by 66 per cent",
+              "slug": "absa-bank-nine-month-profit-falls-by-66-per-cent",
+              "status": "published",
+              "content": "<p>Absa Bank Kenya PLC has reported a 66.1 per cent profit wipe out in nine months to September to Ksh.1.9 billion from Ksh.5.6 billion last year.</p>\n<p>The steep earnings decline is broadly attributable to rising costs from loan loss provisioning and ongoing transition costs which are edging to conclusion.</p>\n<p>The lender\u2019s operational costs picked up by 28 per cent to Ksh.20.1 billion from Ksh.15.7 billion as the bank\u2019s cover for loan defaults grew by 245 per cent to Ksh.7.6 billion.</p>\n<p>Meanwhile, Absa\u2019s transition costs from the Barclays Bank brand grew by 11.8 per cent in three months to Ksh.1.9 billion from Ksh.1.7 billion in June.</p>\n<p>Cumulatively, the higher costs grew ahead of operating income which picked up by a mere 2.4 per cent to Ksh.25.4 billion from Ksh.24.8 billion last year.</p>\n<p>This is as net interest income hit Ksh.17.1 billion from Ksh.16.8 billion and non-interest funded income (NFI) picked up to Ksh.8.3 billion from a flat Ksh.8 billion last year.</p>\n<p>The lender has tied the weakened earnings which have seen the entire banking sector set billions aside to cater for potential loan defaults by borrowers who now exhibit riskier credit profiles.</p>\n<p>Absa\u2019s stock of gross non-performing loans for instance surged by 20.8 per cent to hit Ksh.16.8 billion from Ksh.13.9 billion at the same time last year.</p>\n<p>\u201cThe level of uncertainty relating to the COVID-19 pandemic is high and unprecedented, and its impact on markets and the global economy is profound.\u00a0 The impact of the pandemic on our financial performance has become clearer in the third quarter of 2020,\u201d the bank noted in a statement.</p>\n<p>Absa has nevertheless expanded its balance sheet in the period with loans & advances and customer deposits hitting Ksh.209.2 billion and Ksh.246.6 billion, respectively.</p>\n<p>From the resulting profit decline, Absa\u2019s earning per share has shrunk to 35 cents from Ksh.1.02 last year</p>\n",
+              "excerpt": " ",
+              "breaking": 0,
+              "developing": 0,
+              "pinned_story": 0,
+              "commentable": 1,
+              "notifiable": 0,
+              "developing_story_text": null,
+              "breaking_news_text": null,
+              "priority": null,
+              "author_id": 386,
+              "views": 0,
+              "caption": null,
+              "type": "article",
+              "source": "article",
+              "stream_url": null,
+              "thumbnails": null,
+              "expires_at": null,
+              "model_type": "article",
+              "menu_id": 3,
+              "created_at": "2020-11-18 18:10:08",
+              "updated_at": "2020-11-18 18:10:08",
+              "deleted_at": null
+            },
+            {
+              "id": 2,
+              "post_id": 650847,
+              "title": "Kenya insulates critical industries in UK trade deal",
+              "title_plain": "Kenya insulates critical industries in UK trade deal",
+              "slug": "kenya-insulates-critical-industries-uk-trade-deal",
+              "status": "published",
+              "content": "<p><span style=\"line-height: 150%;font-family: 'Times New Roman',serif;font-size: 12pt\"><span style=\"color: #000000\">Kenya has moved to insulate its nascent industries under its new trade deal with the United Kingdom (UK) ahead of the agreement\u2019s ratification.</span></span></p>\n<p><span style=\"line-height: 150%;font-family: 'Times New Roman',serif;font-size: 12pt\"><span style=\"color: #000000\">In a brief to Parliament, the Ministry of Industrialization, Trade, Enterprise and Development has said Kenya will be offering to open 82.6% of its total trade to the UK.</span></span></p>\n<p><span style=\"line-height: 150%;font-family: 'Times New Roman',serif;font-size: 12pt\"><span style=\"color: #000000\">The opening will however occur over an extended transition period of up to 25 years with a seven year moratorium and will constitute mainly of raw materials, capital goods and intermediate products.</span></span></p>\n<p><span style=\"line-height: 150%;font-family: 'Times New Roman',serif;font-size: 12pt\"><span style=\"color: #000000\">\u201cThe prolonged transition period protects infant industries. This was aimed at safeguarding agriculture, industry and Kenya\u2019s market interest in the region,\u201d the ministry noted.</span></span></p>\n<p><span style=\"line-height: 150%;font-family: 'Times New Roman',serif;font-size: 12pt\"><span style=\"color: #000000\">\u201cThe exclusion list is the means by which the Government addresses the welfare loss and threats posed by economic partnership agreements (EPAs) on Agriculture and Industry. The products in the exclusion list include agricultural and industrial products.\u201d</span></span></p>\n<p><span style=\"line-height: 150%;font-family: 'Times New Roman',serif;font-size: 12pt\"><span style=\"color: #000000\">Further, the ministry has outlined inbuilt measures to mitigate the threat of UK imports to Kenya\u2019s domestic and regional markets.</span></span></p>\n<p><span style=\"line-height: 150%;font-family: 'Times New Roman',serif;font-size: 12pt\"><span style=\"color: #000000\">The safeguards include trade remedy provisions against unfair trade practices such as dumping which create market distortion.</span></span></p>\n<p><span style=\"line-height: 150%;font-family: 'Times New Roman',serif;font-size: 12pt\"><span style=\"color: #000000\">The deal further encompasses an amendment clause allowing for the revision of the trade agreement which includes a mandatory five-year review clause.</span></span></p>\n<p><span style=\"line-height: 150%;font-family: 'Times New Roman',serif;font-size: 12pt\"><span style=\"color: #000000\">Moreover, the new trade deal has an exit clause and allows partner states in the East African Community (EAC) to join the agreement.</span></span></p>\n<p><span style=\"line-height: 150%;font-family: 'Times New Roman',serif;font-size: 12pt\"><span style=\"color: #000000\">Kenya reached a new deal in principle with the UK on November 3 to see it retain a <a href=\"<REDACTED:pii.url:b1a9f3d64160f5b2>/\">duty free market access</a> into the country ahead of Brexit on December 31, 2020.</span></span></p>\n<p><span style=\"line-height: 150%;font-family: 'Times New Roman',serif;font-size: 12pt\"><span style=\"color: #000000\">The deal sees Kenyan goods retain the same trade terms with the UK as was the case with the previous EAC-European Union trade pact.</span></span></p>\n<p><span style=\"line-height: 150%;font-family: 'Times New Roman',serif;font-size: 12pt\"><span style=\"color: #000000\">Earlier this week, Trade Cabinet Secretary Betty Maina defended the country\u2019s <a href=\"<REDACTED:pii.url:c5974357e78877d3>/\">solo path</a> in negotiating both the UK and US trade deals at the expense of its partners who have previously expressed caution in joining the negotiation table in spite of Kenya maintaining an open door policy.</span></span></p>\n<p><span style=\"line-height: 150%;font-family: 'Times New Roman',serif;font-size: 12pt\"><span style=\"color: #000000\">\u201cWe\u2019ve made the decisions based on our strategic interests. Being the only country considered as developing, we would have for instance lost open market access unlike our regional partners upon the end of the Brexit transition period,\u201d she said.</span></span></p>\n<p><span style=\"line-height: 150%;font-family: 'Times New Roman',serif;font-size: 12pt\"><span style=\"color: #000000\">The new Kenya-UK trade deal was announced in record time with slightly over two months of initial negotiations which begun at the end of August.</span></span></p>\n",
+              "excerpt": " ",
+              "breaking": 0,
+              "developing": 0,
+              "pinned_story": 0,
+              "commentable": 1,
+              "notifiable": 0,
+              "developing_story_text": null,
+              "breaking_news_text": null,
+              "priority": null,
+              "author_id": 386,
+              "views": 0,
+              "caption": null,
+              "type": "article",
+              "source": "article",
+              "stream_url": null,
+              "thumbnails": "{\"tv\": \"<REDACTED:pii.url:14e9888c5f2ec081>\", \"web\": \"<REDACTED:pii.url:14e9888c5f2ec081>\", \"mobile\": \"<REDACTED:pii.url:71b7459190b88637>\", \"responsive\": [{\"url\": \"<REDACTED:pii.url:1a4046dd36043498>\", \"width\": 946, \"height\": 648}, {\"url\": \"<REDACTED:pii.url:24d678efb2565048>\", \"width\": 120, \"height\": 90}, {\"url\": \"<REDACTED:pii.url:1a4046dd36043498>\", \"width\": 946, \"height\": 648}, {\"url\": \"<REDACTED:pii.url:1a4046dd36043498>\", \"width\": 946, \"height\": 648}, {\"url\": \"<REDACTED:pii.url:1bf6da12fa2faebf>\", \"width\": 672, \"height\": 372}, {\"url\": \"<REDACTED:pii.url:2be0e0f9b1ac2940>\", \"width\": 725, \"height\": 450}, {\"url\": \"<REDACTED:pii.url:6c3317ab14eb0419>\", \"width\": 135, \"height\": 80}, {\"url\": \"<REDACTED:pii.url:3de8da1b421c62c8>\", \"width\": 320, \"height\": 180}, {\"url\": \"<REDACTED:pii.url:28b41b4319eeb463>\", \"width\": 480, \"height\": 360}]}",
+              "expires_at": null,
+              "model_type": "article",
+              "menu_id": 3,
+              "created_at": "2020-11-18 16:00:19",
+              "updated_at": "2020-11-18 16:08:57",
+              "deleted_at": null
+            },
+            {
+              "id": 3,
+              "post_id": 651960,
+              "title": "EABL doubles raw material purchases on rebounding alcohol consumption",
+              "title_plain": "EABL doubles raw material purchases on rebounding alcohol consumption",
+              "slug": "eabl-doubles-raw-material-purchases-rebounding-alcohol-consumption",
+              "status": "published",
+              "content": "<p><span style=\"line-height: 150%;font-family: 'Times New Roman',serif;font-size: 12pt\"><span style=\"color: #000000\">East African Breweries Limited (EABL) has revised its demand for grains used in the production of alcoholic beverages on the back of a rebound in sales.</span></span></p>\n<p><span style=\"line-height: 150%;font-family: 'Times New Roman',serif;font-size: 12pt\"><span style=\"color: #000000\">The company says it will now double its purchase of sorghum and barley to a combined 40,000 tonnes as it sees a resurgence in the demand for drinks following the re-opening of on-trade outlets such as bars and pubs.</span></span></p>\n<p><span style=\"background: white;color: #222222;line-height: 150%;font-family: 'Times New Roman',serif;font-size: 12pt\">\u201cThe easing of Covid-19 restrictions such as the reopening of on-trade outlets by the government has paved way for the revision of Kenya Breweries Limited\u2019s grain demand. The company has reaffirmed its commitment to locally sourced sorghum and barley, the raw materials for brewing, by revising its grain demand upwards to 20,000 tonnes sorghum and 20,000 tonnes barley, which is almost double the volumes projected in August during the lockdown,\u201d the manufacturer noted in a statement on Wednesday.</span></p>\n<p><span style=\"background: white;color: #222222;line-height: 150%;font-family: 'Times New Roman',serif;font-size: 12pt\">Earlier in August, EABL had moved to trim its grain purchases by <a href=\"<REDACTED:pii.url:8b174637bcb946e1>/\">71 per cent</a> in response to muted alcoholic drinks demand to a mere 22,000 tonnes.</span></p>\n<p><span style=\"background: white;color: #222222;line-height: 150%;font-family: 'Times New Roman',serif;font-size: 12pt\">The reversal of fortunes at the market is now expected to see farmers contracted by EABL to supply it with the essential grains receive a returns boost.</span></p>\n<p><span style=\"background: white;color: #222222;line-height: 150%;font-family: 'Times New Roman',serif;font-size: 12pt\">\u201cDuring the lock down due to Covid-19, the economic restrictions depressed our sales and in turn caused us to reduce our grain demand. However, we took various steps to mitigate the impacts of the pandemic to our farmers. We also promised to review our grain demand upwards once trade was reopened warranting a greater supply from farmers as the demand for our beer grows\u201d, said Eric Kiniti, EABL Group Corporate Relations Director.</span></p>\n<p><span style=\"background: white;color: #222222;line-height: 150%;font-family: 'Times New Roman',serif;font-size: 12pt\">\u201cOur local sourcing programme is a crucial business priority for us because it enables us to grow value together with the farmers in Kenya. We are currently working with over 47,000 farmers across Kenya who earned over Ksh.2 billion last year.\u201d</span></p>\n<p><span style=\"background: white;color: #222222;line-height: 150%;font-family: 'Times New Roman',serif;font-size: 12pt\">The COVID-19 led disruptions dented EABL\u2019s earnings </span><span style=\"background: white;color: #222222;line-height: 150%;font-family: 'Times New Roman',serif;font-size: 12pt\">to the end of June 2020 as its <a href=\"<REDACTED:pii.url:c796e4f210f3d3b2>/\">profit</a> slumped by 39 per cent to Ksh.7 billion on the back of depressed sales.</span></p>\n<p><span style=\"background: white;color: #222222;line-height: 150%;font-family: 'Times New Roman',serif;font-size: 12pt\">Net sales in its Kenyan and Uganda market was dented by COVID-19 restrictions which saw bars shut limiting trade in alcoholic drinks to take away outlets such as supermarkets and Wines & Spirits.</span></p>\n<p><span style=\"background: white;color: #222222;line-height: 150%;font-family: 'Times New Roman',serif;font-size: 12pt\">EABL is betting on the recovery of physical drinking joints to see a rebound in its own growth and has since set aside Ksh.500 million to support the recovery of on-trade outlets in Nairobi, Kampala and Dar es Salam.</span></p>\n<p><span style=\"background: white;color: #333333;line-height: 150%;font-family: 'Times New Roman',serif;font-size: 12pt\">\u201cGoing forward, our market teams have put in place robust plans to help us emerge stronger from this crisis once the measures are eased across our markets. We will continue to execute with discipline and invest prudently to ensure we are strongly positioned for a recovery in consumer demand,\u201d EABL Managing Director Andrew Cowan said in July.</span></p>\n",
+              "excerpt": " ",
+              "breaking": 0,
+              "developing": 0,
+              "pinned_story": 0,
+              "commentable": 1,
+              "notifiable": 0,
+              "developing_story_text": null,
+              "breaking_news_text": null,
+              "priority": null,
+              "author_id": 386,
+              "views": 0,
+              "caption": null,
+              "type": "article",
+              "source": "article",
+              "stream_url": null,
+              "thumbnails": null,
+              "expires_at": null,
+              "model_type": "article",
+              "menu_id": 3,
+              "created_at": "2020-11-18 15:02:29",
+              "updated_at": "2020-11-18 15:02:29",
+              "deleted_at": null
+            }
+          ],
+          "pii_signals": [
+            {
+              "kind": "pii.url",
+              "field": "content",
+              "confidence": 0.75
+            },
+            {
+              "kind": "pii.url",
+              "field": "content",
+              "confidence": 0.75
+            },
+            {
+              "kind": "pii.url",
+              "field": "thumbnails",
+              "confidence": 0.75
+            },
+            {
+              "kind": "pii.url",
+              "field": "thumbnails",
+              "confidence": 0.75
+            },
+            {
+              "kind": "pii.url",
+              "field": "thumbnails",
+              "confidence": 0.75
+            },
+            {
+              "kind": "pii.url",
+              "field": "thumbnails",
+              "confidence": 0.75
+            },
+            {
+              "kind": "pii.url",
+              "field": "thumbnails",
+              "confidence": 0.75
+            },
+            {
+              "kind": "pii.url",
+              "field": "thumbnails",
+              "confidence": 0.75
+            },
+            {
+              "kind": "pii.url",
+              "field": "thumbnails",
+              "confidence": 0.75
+            },
+            {
+              "kind": "pii.url",
+              "field": "thumbnails",
+              "confidence": 0.75
+            },
+            {
+              "kind": "pii.url",
+              "field": "thumbnails",
+              "confidence": 0.75
+            },
+            {
+              "kind": "pii.url",
+              "field": "thumbnails",
+              "confidence": 0.75
+            },
+            {
+              "kind": "pii.url",
+              "field": "thumbnails",
+              "confidence": 0.75
+            },
+            {
+              "kind": "pii.url",
+              "field": "thumbnails",
+              "confidence": 0.75
+            },
+            {
+              "kind": "pii.url",
+              "field": "content",
+              "confidence": 0.75
+            },
+            {
+              "kind": "pii.url",
+              "field": "content",
+              "confidence": 0.75
+            }
+          ]
+        },
+        "db_jipange.age_range": {
+          "columns": [
+            "id",
+            "name"
+          ],
+          "rows_redacted": [
+            {
+              "id": 1,
+              "name": "18-24"
+            },
+            {
+              "id": 2,
+              "name": "25-34"
+            },
+            {
+              "id": 3,
+              "name": "35-44"
+            }
+          ],
+          "pii_signals": []
+        },
+        "db_jipange.ci_sessions": {
+          "columns": [
+            "id",
+            "ip_address",
+            "timestamp",
+            "data"
+          ],
+          "rows_redacted": [
+            {
+              "id": "m0iac6trht5o65obu4piu6vjfkt4qnpe",
+              "ip_address": "<REDACTED:pii.ipv4:30edfbf345e203e9>",
+              "timestamp": 1706270401,
+              "data": "__ci_last_regenerate|i:<REDACTED:pii.phone:2c2169e00e3ffc90>;"
+            },
+            {
+              "id": "n0id8vr60t7nd8o1ji5rodi4r2lhtr3c",
+              "ip_address": "<REDACTED:pii.ipv4:11a0d72e3187e4d7>",
+              "timestamp": 1706270406,
+              "data": "__ci_last_regenerate|i:<REDACTED:pii.phone:3cd2f642904da7ab>;"
+            },
+            {
+              "id": "iaqdo7jctea8v6g7mbk24l141husmi1r",
+              "ip_address": "<REDACTED:pii.ipv4:30edfbf345e203e9>",
+              "timestamp": 1706270431,
+              "data": "__ci_last_regenerate|i:<REDACTED:pii.phone:1cfbe7b943d80980>;"
+            }
+          ],
+          "pii_signals": [
+            {
+              "kind": "pii.phone",
+              "field": "data",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.ipv4",
+              "field": "ip_address",
+              "confidence": 0.9
+            },
+            {
+              "kind": "pii.phone",
+              "field": "data",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.ipv4",
+              "field": "ip_address",
+              "confidence": 0.9
+            },
+            {
+              "kind": "pii.phone",
+              "field": "data",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.ipv4",
+              "field": "ip_address",
+              "confidence": 0.9
+            }
+          ]
+        },
+        "db_jipange.counties": {
+          "columns": [
+            "id",
+            "name"
+          ],
+          "rows_redacted": [
+            {
+              "id": 1,
+              "name": "Mombasa"
+            },
+            {
+              "id": 2,
+              "name": "Kwale"
+            },
+            {
+              "id": 3,
+              "name": "Kilifi"
+            }
+          ],
+          "pii_signals": []
+        }
+      },
+      "detector_signals_summary": {
+        "total": 22,
+        "by_kind": {
+          "pii.url": 16,
+          "pii.phone": 3,
+          "pii.ipv4": 3
+        }
+      },
+      "connected": true,
+      "errors": [],
+      "schemas_user": [
+        "artists_app",
+        "citizen_digital",
+        "db_jipange",
+        "db_skiza",
+        "freddy_dev",
+        "miniapps",
+        "tafaria_ecommerce",
+        "tafaria_shop",
+        "viupay_dev",
+        "viupay_fare",
+        "viupay_fare_test",
+        "viusasa_dev",
+        "viusasa_staging",
+        "viusasa_staging_2",
+        "viusasa_staging_dev",
+        "viutickets",
+        "viutickets_dev"
+      ],
+      "receipt_sha256": "b4323b4b5c070566fc03bc76d0fc46d69c495d974340916d4a66b33dd30cc6c6"
+    }
+  }
+}
