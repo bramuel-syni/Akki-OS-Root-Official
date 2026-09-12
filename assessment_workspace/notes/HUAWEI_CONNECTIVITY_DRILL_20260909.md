@@ -938,3 +938,284 @@ These two lookups turn our estimate into a locked number.
 - `/app/assessment_workspace/tools/_scratch/bastion_sizing_stdout.log`
 - `/app/backend/estate_keys/data_sources/db_credentials_2.csv` (source CSV, 0600, gitignored, sha256 `acf4cdc7…5a90e52`)
 
+
+---
+
+# PART 8 — Bastion provisioning attempt · all-hosts integration · GPU-dynamic mtafiti design
+
+**Directive:** OWNER OPERATIONAL — (1) provision the bastion, (2) integrate all 12 hosts to live reach, (3) design analysis for making mtafiti "more dynamic — do more as it reads" against current GPU capacity. HOLD on product-build waves unchanged; connectivity/infra work in-scope; no product code, no pytest, no commits.
+
+## Verdict lines (all three)
+
+1. **Bastion: NOT PROVISIONED — HARD STOP.** The AK/SK is **403-denied on `ecs:cloudServers:list` and `ecs:cloudServerFlavors:get`**. Cannot create what we can't list. VPC/subnet/SG READS work; ECS reads and (by inference) all ECS writes do not. Owner must grant ECS + EVS + EIP-write permissions to `BramwelMwalo` before this can proceed. Zero infrastructure was created; zero cost incurred.
+2. **All-hosts live-ledger below** — but decoupled from Task 1 by force: since the bastion doesn't exist, network reach is unchanged from Part 7. Live SQL = 2 of 12. What's precisely missing for each of the other 10 is enumerated.
+3. **Mtafiti-GPU design: real headroom TODAY is 4× idle H200s** (0% utilisation observed live on both hosts, no training processes running — STATE-file claim of "77 campaigns running" is stale). Concrete GPU-enabled enrichments enumerated and classified against the canon's detect-vs-decide boundary. The boundary line is bright: **any enrichment that DETECTS is fair game; anything that DECIDES is a violation of Canon 4 §7-§9 and requires an explicit owner ruling + a new invariant.** Design note reference in Part 8.3 below (kept in this file, not a sibling, to keep the drill artefact single).
+
+---
+
+## Task 1 — Bastion provisioning attempt
+
+### Permission probe (read-only, no side effects)
+
+Six read operations against the target region `af-south-1` under the current AK/SK:
+
+| Operation | IAM permission | Result |
+|-----------|----------------|:------:|
+| `ecs.list_servers_details` | `ecs:cloudServers:list` | **403 `Pdp.0001`** — "User `iam::3f9d29266af74046bfb637cabb995c39:user:BramwelMwalo` is not authorized" |
+| `ecs.list_flavors` | `ecs:cloudServerFlavors:get` | **403 `Pdp.0001`** — "Policy doesn't allow" |
+| `vpc.list_vpcs` | `vpc:vpcs:list` | ✅ 8 VPCs visible |
+| `vpc.list_subnets` | `vpc:subnets:list` | ✅ 8 subnets visible |
+| `vpc.list_security_groups` | `vpc:securityGroups:list` | ✅ 28 SGs visible |
+| `vpc.show_vpc(de3ba6f7-…)` | `vpc:vpcs:get` | ✅ RDS-estate VPC exists and is visible |
+| `vpc.show_subnet(c7fef874-…)` | `vpc:subnets:get` | ✅ RDS-estate subnet exists and is visible |
+
+**Verdict at IAM level:** ECS is fully denied. VPC is fully readable. Since we cannot list ECS instances, we cannot create ECS instances either — a create call would fail identically with `Pdp.0001` or `ecs:cloudServers:create` denial. Per the owner's directive ("if IAM returns 403 / policy-denied, STOP and report exactly which permission is missing"), stopping.
+
+### Exact permissions the owner needs to grant
+
+To create a bastion under this AK/SK, the following IAM actions must be added to the `BramwelMwalo` user's policy (or a role assumed by that user) in region scope `af-south-1`:
+
+**Minimum viable — ECS + attached resources**
+- `ecs:cloudServers:list`
+- `ecs:cloudServers:get`
+- `ecs:cloudServers:create`
+- `ecs:cloudServers:delete`
+- `ecs:cloudServers:start`
+- `ecs:cloudServers:stop`
+- `ecs:cloudServers:reboot`
+- `ecs:cloudServerFlavors:get`
+- `ecs:cloudServerKeypairs:list`
+- `ecs:cloudServerKeypairs:create` *(needed only if we generate the keypair via API; alternative is to inject the public key at create-time from a keypair we generate locally — I recommend the local-generation path so the private key never touches Huawei)*
+- `ecs:serverVolumes:use` *(to attach the 40 GB system disk)*
+- `evs:volumes:create` *(to create the 40 GB SSD)*
+- `evs:volumes:get`
+- `evs:volumes:delete`
+
+**Networking — bastion EIP + SG**
+- `eip:publicips:create`
+- `eip:publicips:get`
+- `eip:publicips:list` *(already granted — `list_publicips` worked in Part 3)*
+- `eip:publicips:delete`
+- `eip:publicIpTags:create`
+- `eip:bandwidths:create`
+- `eip:bandwidths:update` *(needed to attach a bandwidth to the EIP)*
+- `eip:bandwidths:delete`
+- `vpc:securityGroups:create` *(to make a bastion-specific SG rather than pollute an existing one)*
+- `vpc:securityGroups:delete`
+- `vpc:securityGroupRules:create` *(to allow SSH from our pod IP and to allow the bastion to egress 3306 to RDS)*
+- `vpc:securityGroupRules:delete`
+- `vpc:ports:create` *(may be required by ECS to attach the SG at boot; conservative addition)*
+
+**Post-provisioning — write access to the DB instance SGs so we can whitelist the bastion's private IP**
+- `vpc:securityGroupRules:create` on the specific SGs bound to the RDS instances we want to reach. These SGs (from Part 1's `list_instances` output) are:
+  - `2cc0ad09-8d8f-464d-9d39-4fe1f3052b57` (currently permissive to our pod's Google range)
+  - `aed8d060-16fc-489d-8b62-1a2c3ea45cca`
+  - `803fb5f5-1f24-4d09-847d-e921a66b4e45`
+  - `f0cbb3b1-bcc6-4085-9072-af4c89c05c9c` (ap-southeast-1, `rms-ai-pg`)
+  - and any others surfaced when we list the RDS instances' SGs
+
+**Simplest grant path for the owner (recommended):** attach the Huawei-managed policies **`ECS FullAccess`**, **`VPC FullAccess`**, **`EVS FullAccess`**, and **`EIP FullAccess`** to `BramwelMwalo` in af-south-1 project scope. This is more permission than the minimum list above but is one console click each and short-circuits any missing-action gotchas.
+
+### What has NOT been done
+
+- No ECS created. No EIP allocated. No SG created. No SG rule modified on any instance (owner's estate or third-party).
+- No SSH keypair generated (would have been a no-op since we couldn't inject the public key at create-time anyway).
+- No side effects on the Huawei account: zero API calls executed a `POST`, `PUT`, or `DELETE`.
+- **Cost incurred: $0.**
+
+### If the owner grants the permissions, resume path
+
+Zero rework — the plan in Part 6 stands. Concretely, on the next run under new permissions:
+
+1. `list_flavors` in af-south-1 → verify `s6.large.2` (or equivalent `s7.large.2` / `kc1.large.2`) is available in the target AZ. If not, downgrade to `s6.medium.2` or upgrade to whatever the next-available small general-compute flavour is.
+2. Locally generate an ed25519 keypair at `/app/backend/estate_keys/data_sources/bastion_af_south_1_ed25519` (0600). Never write the private key to Huawei; only inject the public.
+3. `create_post_paid_servers` with the pinned VPC `de3ba6f7-…`, subnet `c7fef874-…`, a fresh SG we also create, and the injected public key. AZ selected by inspecting `list_availability_zones`; recommend the AZ that already houses the most RDS instances (per Part 1, all af-south-1 instances share subnet `c7fef874-…` which is single-AZ).
+4. Attach a pay-per-use traffic-mode EIP (100 Mbps cap, `charge_mode=traffic`, bound-at-create so reservation price is $0).
+5. Wait until instance is `ACTIVE`, capture the private VPC IP.
+6. Add `<bastion_private_ip>/32` to the inbound rules on each RDS instance's SG on TCP/3306.
+7. Test the SSH tunnel from this pod to the bastion, then MySQL through it to each RDS.
+8. Report the full inventory: instance-id, EIP address, SG id, private IP, AZ, tag them all with `purpose=akki-bastion-mtafiti` for easy find/tear-down.
+
+Expected time under granted permissions: ~5–8 minutes wall-clock (ECS boot + EIP attach + SG rule writes).
+
+---
+
+## Task 2 — All-hosts live ledger (bastion-independent honesty)
+
+Since the bastion cannot be provisioned right now, no new network reach is available. Below is the ledger the owner asked for, showing exactly where each host stands and what's missing.
+
+Format: `TCP` = TCP handshake to `:3306` from pod egress `34.16.56.64`; `Auth` = do we hold a DB user/pw pair that this host accepts.
+
+| # | Host | Tenant | TCP (pod egress) | TCP (via bastion, hypothetical) | Have valid DB cred? | LIVE (both Y)? | What's missing |
+|---|------|--------|:---:|:---:|:---:|:---:|-----|
+| 1 | `RDS-INTERACTIONS` (159.138.162.220) | owner's | ✅ | ✅ (after bastion) | ❌ (bramuel 1045-denied) | ❌ | **DB password** for a user with SELECT on schema `interactions` — root or a purpose-built read-only user |
+| 2 | `Weego_and_marketing-analytics` (159.138.162.146) | owner's | ✅ | ✅ | ✅ (bramuel) | ✅ **LIVE** | Nothing |
+| 3 | `rds-shikisha` (203.123.83.144) | owner's | ❌ | ✅ (after bastion) | ❌ (no cred tried) | ❌ | **Bastion + DB password** for `corporate` or `saa` user (surfaced by earlier API enum); or a root pw |
+| 4 | `weego-replica-d536` (private 10.10.150.115) | owner's | ❌ | ✅ (after bastion) | ❌ (replica; API refused user list with `DBS.280406`) | ❌ | **Bastion + DB password** — read-replica typically inherits the primary's users, so a valid pw for the WEEGO primary would likely work here |
+| 5 | `election-prod-db2` (110.238.77.61) | owner's | ❌ | ✅ (after bastion) | ❌ (no cred at all — never surfaced by any CSV) | ❌ | **Bastion + DB username + password** for this instance |
+| 6 | `visitors-database-cluster` (110.238.75.83) | owner's | ❌ | ✅ (after bastion) | ❌ (no cred at all — CSV#3 names dbs but no creds) | ❌ | **Bastion + DB username + password** for this instance |
+| 7 | `dbms-trf-req-database-3` (159.138.175.179) | owner's | ❌ | ✅ (after bastion) | ❌ (no cred at all) | ❌ | **Bastion + DB username + password** for this instance |
+| 8 | `citizen-digital-dev-db-cluster` (159.138.164.124) | owner's | ❌ | ✅ (after bastion) | ❌ (no cred at all — CSV#3 names dbs but no creds) | ❌ | **Bastion + DB username + password** for this instance |
+| 9 | `rms-ai-pg` (private 192.168.1.30, ap-southeast-1) | owner's | ❌ | ⚠️ (requires SECOND bastion in ap-southeast-1 OR VPC peering) | ❌ (no cred at all) | ❌ | **A second bastion in ap-southeast-1** (or VPC peering) + **DB username + password**; also this is PostgreSQL not MySQL, so the PG credential set is separate |
+| 10 | 3rd-party USSD host (110.238.76.159) | different tenant | ✅ | ✅ | ✅ (bramuel) | ✅ **LIVE** | Nothing |
+| 11 | 3rd-party VIUSASA host (203.123.86.10) | different tenant | ❌ | ⚠️ bastion cannot help here — different tenant, we cannot whitelist its SG | ✅ (bramuel would probably work; same-fp password) | ❌ | **Third-party tenant's owner must whitelist our bastion's public EIP** (or our pod's `34.16.56.64/32`) on their SG. The bastion is in owner's tenant; the third-party tenant's SG is independent |
+| 12 | 3rd-party MICROSERVICES host (159.138.164.93) | different tenant | ❌ | ⚠️ same as #11 | ✅ (bramuel — same-fp password) | ❌ | **Third-party tenant SG whitelist**; same as #11 |
+
+### Cred-vs-network gap summary
+
+For the owner's staffing / next-owner-action clarity:
+
+- **Instances needing ONLY network unblock (bastion + SG whitelist), where we already hold a valid DB credential**: **0 of the 10 currently non-live**. The bramuel credential authenticates for 3 hosts (#2, #10, and possibly #11/#12 — but #11/#12 need third-party SG changes anyway).
+- **Instances needing ONLY a DB password, where we already have network reach**: **1** — `RDS-INTERACTIONS` (#1). Currently TCP-open from our pod, but bramuel 1045-denied there. A single password unlocks it.
+- **Instances needing BOTH a bastion AND a DB password (owner tenant only)**: **6** — #3, #4, #5, #6, #7, #8.
+- **Instances needing a DIFFERENT bastion in a different region**: **1** — #9 (`rms-ai-pg` in ap-southeast-1).
+- **Instances requiring third-party-tenant SG change**: **2** — #11, #12.
+
+### What owner needs to hand us to reach 100% (verbatim shopping list)
+
+1. **IAM grant** on `BramwelMwalo` for the ECS/EVS/EIP/VPC-write permissions listed in Part 8 Task 1 above. (Unlocks bastion.)
+2. **A DB password** for `RDS-INTERACTIONS` (any user with SELECT on `interactions`).
+3. **DB usernames + passwords** for 5 instances that have no known credential: `election-prod-db2`, `visitors-database-cluster`, `dbms-trf-req-database-3`, `citizen-digital-dev-db-cluster`, and `rds-shikisha` (`corporate` and `saa` users are known via API enum but their passwords are not).
+4. **A PostgreSQL user + password** for `rms-ai-pg` — plus a decision on whether we stand up a second bastion in ap-southeast-1, or use VPC peering, or defer this instance.
+5. **A read-only DB password** for the WEEGO primary — this same password should work on `weego-replica-d536` after the bastion opens the network path.
+6. **Third-party tenant coordination** for whitelisting our bastion's public EIP on SGs behind hosts #11 and #12 (or, if simpler, ask the third party to add a scoped account for us on their side of the estate).
+
+### What is NOT missing
+
+- Auth for `Weego_and_marketing-analytics` — bramuel works there (4 dbs, 443 tables live).
+- Auth for the 3rd-party USSD host — bramuel works there (16 dbs, 770 tables live).
+- Network reach to `RDS-INTERACTIONS` — TCP is already open from our pod (its SG must already whitelist our Google range).
+
+**Census is NOT executed** — per owner's directive, all-live first then census. Right now `all_live = 2/12 = 17%`; the census stays on hold until either the bastion is up + creds land, or the owner rules to scope down the census to only what's live today.
+
+---
+
+## Task 3 — Design note: GPU-dynamic mtafiti
+
+### Canon anchor (verbatim from `notes/canon_4_requirements.md`)
+
+- **C4-003 §5 Charter**: *"Mtafiti measures WHAT THE ESTATE ACTUALLY CONTAINS, at whatever scale (whole org, department, archive, single file — Doc 1 §1.1)."*
+- **C4-004 §5 Objective-blind**: *"Mtafiti measures without reference to any objective. It measures the ESTATE, never the ANSWER. Reads for Watch tripwire coverage, never writes for them (Doc 9 §3)."*
+- **C4-007 §7 Two-layer defensibility**: *"Defensibility is produced in two layers: a DECLARATION layer (deterministic, per source, always available — the FLOOR) and an INFERENCE layer (signals detected in content — corroboration and contested status)."*
+- **C4-008 §7 V3 gate**: *"Inference contributes ONLY after its own accuracy has been proven on the tenant's own material. Until then, declaration STANDS ALONE."*
+- **C4-009 §7 Verdict is not a model output**: *"Neither layer decides what a measurement means. Meaning is a governed, versioned lookup — never a model's output."*
+- **C4-013 §10 Repeatable**: *"Every Mtafiti measurement is repeatable — same inputs, same time-boundary, same declaration set → same measured output."*
+
+And from `RMS_Mtafiti_Specification.md` §4 verbatim: *"Detect versus Decide — the Boundary. The inference overlay is learned, and the single rule that keeps learning from laundering authority into the measure is this: **the learned component produces detections, never verdicts**."*
+
+### Does the current spec contemplate GPU-assisted reading?
+
+**Yes — explicitly and by design.** The two-layer defensibility model (C4-007) already carries a learned "inference overlay" alongside the deterministic declaration baseline. Spec §3 says the inference layer is *"a learned signal refining the baseline from content — source-attachment markers, genre-form, cross-estate corroboration."* And §7 makes the module layout ready for it: `services/mtafiti/inference.py` + `services/mtafiti/v3_overlay.py` are already present in the tree.
+
+**But** the spec is emphatic on two guardrails: (i) inference only ADMITS after V3 has proven its accuracy on the tenant's own material (C4-008 gate); (ii) the learned component may DETECT but **never DECIDE** — the verdict is a governed matrix lookup (C4-009, §4 boundary).
+
+So the answer to the owner's implicit question — "can we use GPUs to do more as mtafiti reads?" — is **yes, but only for detection-shaped enrichments; anything that crosses into deciding is a spec violation.**
+
+### Concrete GPU-enabled enrichments, classified against the boundary
+
+| # | Enrichment | What it does | Value | Boundary class | Fits mtafiti today? |
+|---|------------|--------------|-------|----------------|:-------------------:|
+| **1** | **PII / sensitive-data detection** on text/blob columns | Regex + small NER model flags likely PII (email, phone, IDs, addresses, names) in column samples; produces a *detection stream* {"column": X, "PII_signal": "email", "confidence": 0.87} | Feeds `sensitivity_class` (Canon 4 §5.7 "Sensitivity classification is the single entitlement attribute") — currently declared once per feed, this is a per-column detector floor | **DETECT** — outputs signals, does not assign a verdict; verdict/entitlement still comes from the governed matrix | ✅ **Fits** |
+| **2** | **Semantic column classification** (name/date/currency/geo/identifier/free-text/etc.) | Small classifier over column-name + column-value samples labels each column with a semantic type | Feeds Registry composition-by-strata (C4-011 "by language, era, source, condition, evidence class"); reduces per-item labelling burden | **DETECT** — signals only; the Matrix decides how classifications combine into a defensibility verdict | ✅ **Fits** |
+| **3** | **Language detection** on text columns | fastText or small LM identifies language of text-column samples | Directly feeds C4-011 "composition-by-strata: by language" | **DETECT** — pure signal | ✅ **Fits** |
+| **4** | **Content-type / data-quality profiling** (nulls, uniqueness, cardinality, format-conformance, date ranges) | Statistics + small model over column samples | Feeds the "degraded measurement" state (C4-005/006 "Measured — degraded, limitation named") with concrete degradation reasons | **DETECT** — measures shape of data, doesn't assign meaning | ✅ **Fits** |
+| **5** | **Embedding generation for text columns** (dedup / entity-resolution / similarity) | Sentence-transformer produces embeddings on sampled rows; ANN index over embeddings surfaces duplicate/near-duplicate rows and cross-table entity clusters | Feeds Canon 4 §7 "cross-estate corroboration" (contested-status signals); enables the deduplication / cleanliness rule (Doc 10 A5.3 "Cleanliness and duplication [CANON, assembled + RULED]") | **DETECT** — the embedding is a signal; verdict on "these are the same entity" is a Matrix lookup, not a cosine-similarity threshold | ✅ **Fits** (embedding itself), ⚠️ **watch the threshold** (if the code auto-decides "same entity" from cosine ≥ 0.8 without a governed rule, that's DECIDE) |
+| **6** | **Cross-table relationship inference** (implicit FKs, join columns, table-to-table lineage) | Embed column-value distributions + column names; propose join candidates where distributions overlap | Feeds Doc 10 A5.4 "Linkage to other datasets" (RULED — no canon home) | **DETECT** — proposes candidate links | ✅ **Fits**, ⚠️ if it starts auto-committing links to Registry as canonical, that's DECIDE |
+| **7** | **Genre-form detection** on text (monologic / dialogic / narrative / procedural / etc.) | Small classifier over sampled text rows | Directly named in Canon 4 §7 as an inference-layer output ("genre-form is monologic") | **DETECT** — spec §4 lists this by name as a detection | ✅ **Fits** — spec-blessed |
+| **8** | **Source-attachment marker detection** (attribution present? byline? citation?) | Rule-based + small model over text/document rows | Named verbatim in Canon 4 §7 and RMS_Mtafiti_Spec §3 | **DETECT** — spec-blessed | ✅ **Fits** |
+| **9** | **Cross-estate corroboration** (does this claim/entity recur elsewhere?) | Embedding + ANN across the census; report {"seen_in": [table_a, table_b], "count": 3} | Named in Canon 4 §7 verbatim | **DETECT** | ✅ **Fits** — spec-blessed |
+| **10** | **Adaptive sampling** — a model that decides where mtafiti reads deeper next | RL / bandit or simple heuristic that looks at signals from #1–#9 and directs the walker to sample more rows from "interesting" columns / tables / partitions | **This is the "more dynamic" the owner is asking about.** Value: cheaper full-estate census, better coverage on high-signal regions | **AMBIGUOUS — LEANS DECIDE** (see below) | ⚠️ **Requires owner ruling + new invariant** |
+| **11** | **Semantic verdict** ("this source is defensible: yes/no") direct from LLM | Feed the LLM the source + samples, ask for a defensibility rating | Would obviate the Qualification Matrix | **DECIDE** | ❌ **Violates Canon 4 §7-§9 and RMS_Mtafiti_Spec §4** — the boundary exists to prevent exactly this |
+| **12** | **Auto-assigning sensitivity class from LLM read** | LLM says "this column is PII → sensitivity = high"; write that into Registry | Would compress classification into a model output | **DECIDE** | ❌ **Violates Doc 3 A5.2 sensitivity-class-as-governed-attribute + C4-009** |
+
+### The governance line (bright, non-negotiable)
+
+**DETECT** = the enrichment outputs signals, features, distributions, embeddings, candidate links, per-column labels, or per-row detections. It is *observable data* that the Qualification Matrix (or another governed lookup) then combines into a verdict. **This is objective-blind and repeatable.**
+
+**DECIDE** = the enrichment collapses a set of signals into an authority-carrying answer ("this is PII", "this source is defensible", "these two rows are the same entity", "sample this next"). **A model output that changes what mtafiti reports without going through a governed lookup violates Canon 4 §7-§9.**
+
+The bright test: *"Can I replay the census tomorrow with the same inputs and get bit-identical outputs?"* Enrichments 1–9 pass (deterministic given a pinned model version + seeded sampling); enrichments 11–12 fail (an LLM output can shift between runs). Enrichment 10 is the interesting middle:
+
+**On adaptive sampling (#10) specifically — the "more dynamic" ask:**
+
+The value is real — a bandit that steers reads toward columns with high-detection density gives you meaningfully cheaper full-estate coverage. But strict Mtafiti canon (C4-013 "Every Mtafiti measurement is repeatable — same inputs, same time-boundary, same declaration set → same measured output") is problematic here: an adaptive walker introduces path-dependence — what it reads depends on what it saw. Two runs with the same inputs could produce different sample sets.
+
+Two ways to reconcile:
+
+1. **Determinised adaptive**: the walker is a seeded RL policy pinned to a version + seed; same inputs → same walk. Preserves C4-013 exactly. Costs some of the "dynamic" quality — the walker is fixed at the run boundary, no online learning during the run.
+2. **Owner ruling for a new invariant**: adaptive walk is admitted but audited — every sampling decision is written to the Registry as a signal, and repeatability is redefined as "same governed policy version + same starting-seed → same walk". Requires a spec addendum and a test in `test_mtafiti_invariants.py`.
+
+**Recommendation**: start with (1) — determinised adaptive under a pinned policy — and if the owner later wants online-adaptive, table it as a ruling with a spec addendum. Neither approach violates the detect-vs-decide boundary as long as the walker outputs *what it read* to the Registry (which is a signal), and the *verdict* on defensibility still comes from the Matrix lookup.
+
+### Capacity reality — GPU state RIGHT NOW
+
+Real-time probe via SSH to both GPU hosts (2026-09-12, ~04:45 UTC):
+
+```
+=== akki-vm (41.173.184.244) ===
+GPU 0 · NVIDIA H200 · 143,771 MiB total ·      0 MiB used ·   0% GPU util · 0% mem util · 35°C
+GPU 1 · NVIDIA H200 · 143,771 MiB total ·      0 MiB used ·   0% GPU util · 0% mem util · 35°C
+Uptime: 14 days, 21 hours · load 0.00, 0.01, 0.00
+Top CPU process: ubuntu-release-upgrader (61.1% CPU)
+No compute processes on GPUs.
+
+=== akki-vm-ii (41.173.184.247) ===
+GPU 0 · NVIDIA H200 · 143,771 MiB total ·      0 MiB used ·   0% GPU util · 0% mem util · 30°C
+GPU 1 · NVIDIA H200 · 143,771 MiB total ·      0 MiB used ·   0% GPU util · 0% mem util · 35°C
+Uptime: 14 days, 17 hours · load 0.06, 0.03, 0.00
+Top CPU process: ubuntu-release-upgrader (51.2% CPU)
+No compute processes on GPUs.
+```
+
+**Both hosts are 100% idle.** 4× H200 · ~280 GiB VRAM per host · ~560 GiB VRAM total · 0 MiB in use anywhere. Uptime 14 days on both — these hosts have been running steadily but nothing has been scheduled onto the GPUs for at least the last few days.
+
+**Honest flag for the owner**: this contradicts the STATE-file narrative. `STATE/HOLISTIC_PLAN.md` says *"What we're running: The three-day full-consumption campaign on `akki-vm` (Campaign A · Baseline Ladder) + `akki-vm-ii` (Campaign B · Method Ablations)"* and cites the window-fill guarantee as active. The actual live state contradicts that: no compute processes, 0% utilisation. Either the campaigns completed, they haven't launched, they crashed silently, or the STATE narrative is stale. This is worth an explicit owner reconciliation — not something I should fix; something I should surface.
+
+**For the mtafiti-GPU question**: whether the training campaigns are "supposed to be running" or not, right now there is **~560 GiB VRAM of headroom across 4 idle H200s**. That is enough to run any of the enrichments #1–#9 comfortably in parallel. Sentence-transformer embeddings on a full 24 GB MySQL host would cost ~10–20 GB VRAM and finish in minutes; the entire census across all live hosts fits into one H200 with room to spare.
+
+**Standing rule preserved**: `STANDING_ORDERS §5` says *"full-consumption GPU obligations remain interrupt-priority"* — if/when the training campaigns resume, mtafiti-GPU workloads should either yield or run on the currently-idle capacity as a preempt-me-first tier. Concretely: a `mtafiti_gpu` process should register with the dispatcher's window-fill guarantee as a **fill-only** tenant that gets killed on training-job arrival, not as a co-equal scheduler. Dispatcher already has this shape (`queue_followon_launcher.py` + `on_host_queue_dispatcher.py`).
+
+### Design note summary
+
+**What we can do now (deterministic, spec-compliant, DETECT-only, fits Canon 4 §5-§10):**
+- PII/sensitive-data detection (feeds sensitivity)
+- Semantic column classification (feeds composition-by-strata)
+- Language detection
+- Content-type / data-quality profiling (feeds degraded-measurement state)
+- Embeddings for dedup / entity-resolution *as signals*
+- Cross-table relationship candidates *as signals*
+- Genre-form detection *(spec-blessed)*
+- Source-attachment marker detection *(spec-blessed)*
+- Cross-estate corroboration *(spec-blessed)*
+- Determinised adaptive sampling (pinned seed + policy version)
+
+**What requires an owner ruling + new invariant:**
+- Online-adaptive sampling (path-dependent walker)
+- Any single-shot embedding-threshold auto-decision (e.g. "cosine ≥ 0.8 → dedup" without a governed rule table)
+
+**What is a bright violation and should NOT be done without a spec change:**
+- LLM assigning defensibility verdict
+- LLM assigning sensitivity class
+- Any model output that becomes an authority-carrying answer without transiting the Qualification Matrix
+
+**Capacity today**: 4× H200 idle, 560 GiB VRAM available. Sufficient for all detect-tier enrichments across the currently-live 2 hosts (and, when the bastion lands, all 12).
+
+**Interrupt discipline**: register any GPU-mtafiti work as a fill-only tenant so it yields to training on arrival. Doesn't need new orchestration; the dispatcher shape is already in place.
+
+## Guardrail attestation (Part 8)
+
+- **No product code touched.** `programme/track-a` untouched. `master` workspace untouched (this report is untracked).
+- **Ratchet floor 3098 unchanged.** No pytest, no testing_agent.
+- **HOLD respected** — no product build wave, no CP10 commit.
+- **No commits, no push.** All three credential CSVs remain at 0600, gitignored, absent from `git status` on both repos.
+- **No Huawei infrastructure created**: zero POST/PUT/DELETE calls made to Huawei APIs. Only permission-probing reads.
+- **No writes to any DB.** Task 2 ledger built from prior probes; no new SQL executed against RDS in this session.
+- **GPU hosts read-only**: two SSH sessions to run `nvidia-smi --query-gpu` and `ps -eo`. No installs, no config changes, no process kills.
+- **Cost incurred this session on owner's Huawei account: $0.** Cost incurred on GPU hosts: $0 (SSH read-only).
+
+## Artefacts (uncommitted, local only)
+
+- `/app/assessment_workspace/tools/huawei_bastion_perm_probe.py`
+- `/app/assessment_workspace/tools/_scratch/perm_probe.json`
+- `/app/assessment_workspace/tools/_scratch/perm_probe_stdout.log`
+

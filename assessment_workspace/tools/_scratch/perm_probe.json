@@ -1,0 +1,229 @@
+{
+  "ts": "2026-09-12T04:44:13.827091+00:00",
+  "region": "af-south-1",
+  "probes": [
+    {
+      "name": "ecs:cloudServers:list (ListServersDetails)",
+      "ok": false,
+      "code": "403:Pdp.0001",
+      "error_msg": "User: iam::3f9d29266af74046bfb637cabb995c39:user:BramwelMwalo is not authorized to perform: ecs:cloudServers:listServersDetails on resource: * because no identity-based policy allows the ecs:cloudServ",
+      "sample": null
+    },
+    {
+      "name": "ecs:cloudServerFlavors:get (ListFlavors)",
+      "ok": false,
+      "code": "403:Pdp.0001",
+      "error_msg": "Policy doesn't allow ecs:cloudServerFlavors:get to be performed.",
+      "sample": null
+    },
+    {
+      "name": "vpc:vpcs:list (ListVpcs)",
+      "ok": true,
+      "code": null,
+      "error_msg": null,
+      "sample": "vpcs_count=8",
+      "vpcs": [
+        {
+          "id": "0031ee12-d0aa-4d7f-ba6d-4a32415a2ff3",
+          "name": "Migrate-SystemProject-Calvin-1",
+          "cidr": "192.168.0.0/16"
+        },
+        {
+          "id": "3ca805e2-7bf4-483e-ba38-1a001eebc5b9",
+          "name": "instore-radio-vpc",
+          "cidr": "192.168.0.0/16"
+        },
+        {
+          "id": "48482dbc-5774-47e2-b5bc-1c0b4f42973e",
+          "name": "viusasa-vpc",
+          "cidr": "192.168.0.0/16"
+        },
+        {
+          "id": "4e409d67-876e-4a69-b055-5ab40919a0d3",
+          "name": "vpc-236-services",
+          "cidr": "192.168.0.0/16"
+        },
+        {
+          "id": "71678cbf-6910-4ee8-8db5-8bf067653ce0",
+          "name": "Migrate-SystemProject-Calvin-2",
+          "cidr": "172.16.0.0/12"
+        },
+        {
+          "id": "7ff2ebaf-3378-47bb-9a8d-f029676fbf74",
+          "name": "vpc-media-website-hosting",
+          "cidr": "172.26.0.0/16"
+        },
+        {
+          "id": "a9b882b5-e144-4e64-9e67-bbfbb7b964f8",
+          "name": "vpc-c77b-temporary-fms",
+          "cidr": "192.168.0.0/16"
+        },
+        {
+          "id": "de3ba6f7-d0e7-4228-8da2-19bd33a07ff2",
+          "name": "vpc-media-web",
+          "cidr": "10.10.150.0/24"
+        }
+      ]
+    },
+    {
+      "name": "vpc:subnets:list (ListSubnets)",
+      "ok": true,
+      "code": null,
+      "error_msg": null,
+      "sample": "subnets_count=8",
+      "subnets": [
+        {
+          "id": "472b8eab-35f2-4385-9adf-34f0a44117b1",
+          "name": "subnet-6751",
+          "cidr": "192.168.0.0/24",
+          "vpc_id": "4e409d67-876e-4a69-b055-5ab40919a0d3"
+        },
+        {
+          "id": "4a59b368-e8d1-4679-8a9a-fbe76f30d049",
+          "name": "subnet-c785",
+          "cidr": "192.168.0.0/24",
+          "vpc_id": "a9b882b5-e144-4e64-9e67-bbfbb7b964f8"
+        },
+        {
+          "id": "7c2c93fd-0679-4c19-8d00-7cd53a6c0838",
+          "name": "subnet-8cf4",
+          "cidr": "192.168.0.0/24",
+          "vpc_id": "3ca805e2-7bf4-483e-ba38-1a001eebc5b9"
+        },
+        {
+          "id": "c7fef874-8aef-4b91-9d3b-7e84ce53104d",
+          "name": "subnet-media-web",
+          "cidr": "10.10.150.0/24",
+          "vpc_id": "de3ba6f7-d0e7-4228-8da2-19bd33a07ff2"
+        },
+        {
+          "id": "db68e421-9db6-48ea-b005-c04517433d09",
+          "name": "Migrate-SystemProject-Calvin-35",
+          "cidr": "172.31.19.0/24",
+          "vpc_id": "71678cbf-6910-4ee8-8db5-8bf067653ce0"
+        },
+        {
+          "id": "df59befa-4ac6-4e1d-9210-9a4aeaae7ca2",
+          "name": "subnet-media-website-hosting",
+          "cidr": "172.26.13.0/24",
+          "vpc_id": "7ff2ebaf-3378-47bb-9a8d-f029676fbf74"
+        },
+        {
+          "id": "e9134223-e349-4a2d-abc3-9118805a06ff",
+          "name": "subnet-viusasa",
+          "cidr": "192.168.0.0/24",
+          "vpc_id": "48482dbc-5774-47e2-b5bc-1c0b4f42973e"
+        },
+        {
+          "id": "f32a2b26-3239-4362-b2a7-9c2f34e5158f",
+          "name": "Migrate-SystemProject-Calvin-10",
+          "cidr": "192.168.0.0/24",
+          "vpc_id": "0031ee12-d0aa-4d7f-ba6d-4a32415a2ff3"
+        }
+      ]
+    },
+    {
+      "name": "vpc:securityGroups:list (ListSecurityGroups)",
+      "ok": true,
+      "code": null,
+      "error_msg": null,
+      "sample": "sgs_count=28",
+      "sgs": [
+        {
+          "id": "1c747500-ff56-4135-b0ac-f803d4cf37fb",
+          "name": "viusasa-sg"
+        },
+        {
+          "id": "270bb068-ece1-4d81-8396-5888758e1ba5",
+          "name": "sg-media-website-hosting"
+        },
+        {
+          "id": "2be4fd9d-945a-4dfb-b7e2-f5906b871f5d",
+          "name": "sg-self-service-password"
+        },
+        {
+          "id": "2cc0ad09-8d8f-464d-9d39-4fe1f3052b57",
+          "name": "default"
+        },
+        {
+          "id": "3f55799a-6f4e-4322-ba2b-4ed53b2f79f7",
+          "name": "sg-perpayserver"
+        },
+        {
+          "id": "5ba10113-aa76-4b44-bc63-ee9578014740",
+          "name": "sg-fms"
+        },
+        {
+          "id": "65525fd0-bae8-459f-83d3-3740adb925c6",
+          "name": "streaming-sg"
+        },
+        {
+          "id": "6ceabebc-1e0f-405e-a903-06b77e8f95ef",
+          "name": "Freshdesk"
+        },
+        {
+          "id": "6f562237-44aa-4e1f-9a0d-fba4ae17bd5d",
+          "name": "sg-Mysql-election"
+        },
+        {
+          "id": "7bb754b3-279f-4077-8450-64f70f5c4df0",
+          "name": "sg-Mysql-Obituaries"
+        },
+        {
+          "id": "7bdc93c9-8f5c-4392-bf3f-704a3ebe867a",
+          "name": "sg-rembesha"
+        },
+        {
+          "id": "803fb5f5-1f24-4d09-847d-e921a66b4e45",
+          "name": "sg-shikisha"
+        },
+        {
+          "id": "8d8c53f5-d1fc-47ad-a2be-3f0cc03182a6",
+          "name": "sg-gitlab-runner"
+        },
+        {
+          "id": "92233ae5-f4d2-4ace-8685-023881e189f1",
+          "name": "sg-Mysql"
+        },
+        {
+          "id": "9aaaf095-83ce-4fa3-ab7f-577b3dde90da",
+          "name": "SMS-APP-SG"
+        },
+        {
+          "id": "9fff2ff4-4c72-4a4b-baa7-b22d9a3a7cc1",
+          "name": "sg-visitor-security-group"
+        },
+        {
+          "id": "a6456cfb-696e-45c7-8147-13028a53dcea",
+          "name": "sg-Citizen-Digital"
+        },
+        {
+          "id": "aed8d060-16fc-489d-8b62-1a2c3ea45cca",
+          "name": "RMS-IPS"
+        },
+        {
+          "id": "b38d6fe4-9b00-454b-8b5b-dc9b43793151",
+          "name": "sg-ad-monitor"
+        },
+        {
+          "id": "b907eaa1-ee2e-400e-8687-21ef6d1712dd",
+          "name": "sg-AD-Server"
+        }
+      ]
+    },
+    {
+      "name": "vpc:vpcs:show (ShowVpc de3ba6f7...)",
+      "ok": true,
+      "code": null,
+      "error_msg": null,
+      "sample": null
+    },
+    {
+      "name": "vpc:subnets:show (ShowSubnet c7fef874...)",
+      "ok": true,
+      "code": null,
+      "error_msg": null,
+      "sample": null
+    }
+  ]
+}
