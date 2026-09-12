@@ -1,0 +1,475 @@
+{
+  "ts": "2026-09-12T04:14:03.358852+00:00",
+  "creds_fp": "sha256_8=5b9ec5c0",
+  "creds_user": "bramuel",
+  "hosts": [
+    {
+      "host": "203.123.86.10",
+      "port": 3306,
+      "name": "VIUSASA host",
+      "source": "db_creds_csv",
+      "prior_state": "was TCP-blocked",
+      "tcp": {
+        "tcp_ok": false,
+        "err": "TimeoutError:timed out",
+        "latency_ms": 8006.0,
+        "mysql_version": null,
+        "handshake_bytes": 0
+      }
+    },
+    {
+      "host": "159.138.164.93",
+      "port": 3306,
+      "name": "MICROSERVICES host",
+      "source": "db_creds_csv",
+      "prior_state": "was TCP-blocked",
+      "tcp": {
+        "tcp_ok": false,
+        "err": "TimeoutError:timed out",
+        "latency_ms": 8006.3,
+        "mysql_version": null,
+        "handshake_bytes": 0
+      }
+    },
+    {
+      "host": "110.238.76.159",
+      "port": 3306,
+      "name": "USSD host (sanity)",
+      "source": "db_creds_csv",
+      "prior_state": "was reachable+authed",
+      "tcp": {
+        "tcp_ok": true,
+        "err": null,
+        "latency_ms": 255.3,
+        "mysql_version": "5.7.44-241200-log",
+        "handshake_bytes": 89
+      },
+      "auth": {
+        "outcome": "CONNECTED",
+        "code": null,
+        "message": null,
+        "databases": [
+          "information_schema",
+          "artists_app",
+          "citizen_digital",
+          "db_jipange",
+          "db_skiza",
+          "freddy_dev",
+          "miniapps",
+          "performance_schema",
+          "sys",
+          "tafaria_ecommerce",
+          "tafaria_shop",
+          "viupay_dev",
+          "viupay_fare",
+          "viupay_fare_test",
+          "viusasa_dev",
+          "viusasa_staging",
+          "viusasa_staging_2",
+          "viusasa_staging_dev",
+          "viutickets",
+          "viutickets_dev"
+        ],
+        "server_user": "bramuel@34.16.56.64",
+        "current_user": "bramuel@%",
+        "version": "5.7.44-241200-log",
+        "databases_count": 20,
+        "per_db": {
+          "information_schema": {
+            "system": true
+          },
+          "artists_app": {
+            "tables_count": 0,
+            "tables_sample": []
+          },
+          "citizen_digital": {
+            "tables_count": 39,
+            "tables_sample": [
+              "article_article_category",
+              "article_categories",
+              "articles",
+              "audits",
+              "bans",
+              "comments",
+              "csv_samples",
+              "episodes"
+            ]
+          },
+          "db_jipange": {
+            "tables_count": 22,
+            "tables_sample": [
+              "age_range",
+              "ci_sessions",
+              "counties",
+              "documents",
+              "entry_count",
+              "gender",
+              "groups",
+              "occcupation"
+            ]
+          },
+          "db_skiza": {
+            "tables_count": 24,
+            "tables_sample": [
+              "age_range",
+              "ci_sessions",
+              "counties",
+              "documents",
+              "entry_count",
+              "gender",
+              "groups",
+              "occcupation"
+            ]
+          },
+          "freddy_dev": {
+            "tables_count": 38,
+            "tables_sample": [
+              "audits",
+              "categories",
+              "comments",
+              "failed_jobs",
+              "iveris",
+              "live_events",
+              "live_streams",
+              "media"
+            ]
+          },
+          "miniapps": {
+            "tables_count": 21,
+            "tables_sample": [
+              "DATABASECHANGELOG",
+              "DATABASECHANGELOGLOCK",
+              "bill",
+              "callback",
+              "category",
+              "client",
+              "client_category",
+              "client_category_template"
+            ]
+          },
+          "performance_schema": {
+            "system": true
+          },
+          "sys": {
+            "system": true
+          },
+          "tafaria_ecommerce": {
+            "tables_count": 130,
+            "tables_sample": [
+              "access_types",
+              "active_users",
+              "addresses",
+              "airtel_c2bs",
+              "airtel_ussd_pushes",
+              "album_track",
+              "albums",
+              "api_providers"
+            ]
+          },
+          "tafaria_shop": {
+            "tables_count": 117,
+            "tables_sample": [
+              "addresses",
+              "admin_password_resets",
+              "admins",
+              "attribute_families",
+              "attribute_group_mappings",
+              "attribute_groups",
+              "attribute_option_translations",
+              "attribute_options"
+            ]
+          },
+          "viupay_dev": {
+            "tables_count": 37,
+            "tables_sample": [
+              "cache",
+              "cache_locks",
+              "failed_jobs",
+              "gateway_configs",
+              "gateways",
+              "iveri_operations",
+              "jobs",
+              "merchants"
+            ]
+          },
+          "viupay_fare": {
+            "tables_count": 42,
+            "tables_sample": [
+              "agent_api_logs",
+              "tbl_banner_details",
+              "tbl_callurl",
+              "tbl_channelMaster- Bkp",
+              "tbl_channelmaster",
+              "tbl_chargetype_master",
+              "tbl_customer",
+              "tbl_customer_transaction"
+            ]
+          },
+          "viupay_fare_test": {
+            "tables_count": 41,
+            "tables_sample": [
+              "agent_api_logs",
+              "tbl_banner_details",
+              "tbl_callurl",
+              "tbl_channelMaster- Bkp",
+              "tbl_channelmaster",
+              "tbl_chargetype_master",
+              "tbl_customer",
+              "tbl_customer_transaction"
+            ]
+          },
+          "viusasa_dev": {
+            "tables_count": 132,
+            "tables_sample": [
+              "access_types",
+              "active_users",
+              "addresses",
+              "airtel_c2bs",
+              "airtel_money_customer_requests",
+              "airtel_money_merchant_requests",
+              "airtel_ussd_pushes",
+              "album_track"
+            ]
+          },
+          "viusasa_staging": {
+            "tables_count": 162,
+            "tables_sample": [
+              "access_types",
+              "active_users",
+              "airtel_c2bs",
+              "airtel_money_customer_requests",
+              "airtel_money_merchant_requests",
+              "airtel_ussd_pushes",
+              "album_track",
+              "albums"
+            ]
+          },
+          "viusasa_staging_2": {
+            "tables_count": 138,
+            "tables_sample": [
+              "access_types",
+              "active_users",
+              "addresses",
+              "airtel_c2bs",
+              "airtel_money_customer_requests",
+              "airtel_money_merchant_requests",
+              "airtel_ussd_pushes",
+              "album_track"
+            ]
+          },
+          "viusasa_staging_dev": {
+            "tables_count": 151,
+            "tables_sample": [
+              "access_types",
+              "active_users",
+              "airtel_c2bs",
+              "airtel_money_customer_requests",
+              "airtel_money_merchant_requests",
+              "airtel_ussd_pushes",
+              "album_track",
+              "albums"
+            ]
+          },
+          "viutickets": {
+            "tables_count": 56,
+            "tables_sample": [
+              "affiliates",
+              "audits",
+              "book_events",
+              "booked_concessions",
+              "bookings",
+              "cache",
+              "cache_locks",
+              "categories"
+            ]
+          },
+          "viutickets_dev": {
+            "tables_count": 44,
+            "tables_sample": [
+              "affiliates",
+              "audits",
+              "book_events",
+              "bookings",
+              "cache",
+              "cache_locks",
+              "categories",
+              "complimentaries"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "host": "159.138.162.220",
+      "port": 3306,
+      "name": "RDS-INTERACTIONS",
+      "source": "aksk_rds",
+      "prior_state": "was reachable (auth)",
+      "tcp": {
+        "tcp_ok": true,
+        "err": null,
+        "latency_ms": 265.2,
+        "mysql_version": "8.0.28-231003",
+        "handshake_bytes": 85
+      },
+      "auth": {
+        "outcome": "AUTH_ERROR",
+        "code": 1045,
+        "message": "Access denied for user 'bramuel'@'34.16.56.64' (using password: YES)",
+        "databases": null,
+        "server_user": null
+      }
+    },
+    {
+      "host": "159.138.162.146",
+      "port": 3306,
+      "name": "Weego_and_marketing-analytics",
+      "source": "aksk_rds",
+      "prior_state": "was reachable (auth)",
+      "tcp": {
+        "tcp_ok": true,
+        "err": null,
+        "latency_ms": 265.4,
+        "mysql_version": "8.0.28-231003",
+        "handshake_bytes": 85
+      },
+      "auth": {
+        "outcome": "CONNECTED",
+        "code": null,
+        "message": null,
+        "databases": [
+          "analytics",
+          "information_schema",
+          "performance_schema",
+          "sql_demo",
+          "sql_trial1",
+          "sys",
+          "weego"
+        ],
+        "server_user": "bramuel@34.16.56.64",
+        "current_user": "bramuel@%",
+        "version": "8.0.28-231003",
+        "databases_count": 7,
+        "per_db": {
+          "analytics": {
+            "tables_count": 28,
+            "tables_sample": [
+              "age_groups",
+              "campaign_age_groups",
+              "campaign_counties",
+              "campaign_l_s_m_s",
+              "campaign_regions",
+              "campaign_s_e_c_s",
+              "campaign_stations",
+              "campaign_time_slots"
+            ]
+          },
+          "information_schema": {
+            "system": true
+          },
+          "performance_schema": {
+            "system": true
+          },
+          "sql_demo": {
+            "tables_count": 1,
+            "tables_sample": [
+              "marketting"
+            ]
+          },
+          "sql_trial1": {
+            "tables_count": 1,
+            "tables_sample": [
+              "programming"
+            ]
+          },
+          "sys": {
+            "system": true
+          },
+          "weego": {
+            "tables_count": 413,
+            "tables_sample": [
+              "account_types",
+              "admins",
+              "advertisement_banners",
+              "agents",
+              "app_navigation_drawers",
+              "application_configurations",
+              "application_merchant_strings",
+              "application_modules"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "host": "203.123.83.144",
+      "port": 3306,
+      "name": "rds-shikisha",
+      "source": "aksk_rds",
+      "prior_state": "was TCP-blocked",
+      "tcp": {
+        "tcp_ok": false,
+        "err": "TimeoutError:timed out",
+        "latency_ms": 8006.5,
+        "mysql_version": null,
+        "handshake_bytes": 0
+      }
+    },
+    {
+      "host": "110.238.77.61",
+      "port": 3306,
+      "name": "election-prod-db2",
+      "source": "aksk_rds",
+      "prior_state": "was TCP-blocked",
+      "tcp": {
+        "tcp_ok": false,
+        "err": "TimeoutError:timed out",
+        "latency_ms": 8007.5,
+        "mysql_version": null,
+        "handshake_bytes": 0
+      }
+    },
+    {
+      "host": "110.238.75.83",
+      "port": 3306,
+      "name": "visitors-database-cluster",
+      "source": "aksk_rds",
+      "prior_state": "was TCP-blocked",
+      "tcp": {
+        "tcp_ok": false,
+        "err": "TimeoutError:timed out",
+        "latency_ms": 8008.0,
+        "mysql_version": null,
+        "handshake_bytes": 0
+      }
+    },
+    {
+      "host": "159.138.175.179",
+      "port": 3306,
+      "name": "dbms-trf-req-database-3",
+      "source": "aksk_rds",
+      "prior_state": "was TCP-blocked",
+      "tcp": {
+        "tcp_ok": false,
+        "err": "TimeoutError:timed out",
+        "latency_ms": 8008.2,
+        "mysql_version": null,
+        "handshake_bytes": 0
+      }
+    },
+    {
+      "host": "159.138.164.124",
+      "port": 3306,
+      "name": "citizen-digital-dev-db-cluster",
+      "source": "aksk_rds",
+      "prior_state": "was TCP-blocked",
+      "tcp": {
+        "tcp_ok": false,
+        "err": "TimeoutError:timed out",
+        "latency_ms": 8008.2,
+        "mysql_version": null,
+        "handshake_bytes": 0
+      }
+    }
+  ]
+}
