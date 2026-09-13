@@ -2,7 +2,9 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 # PHASE_C_SYSTEMATIC_BUILD_PLAN.md
 
-**Purpose.** A systematic build plan for three named waves — W-REGISTRY-FULL-BUILD, W-DAP-STACK, W-SOLVA-V2-LIFT — grounded on the amended `SYSTEM_OBJECTIVES_AND_PROMISES_CHARTER.md` (Phase B) and constrained by the platform-vs-job separation doctrine and the W1/W1b/W1c Work-Supervisor primitives.
+**Purpose.** A systematic build plan for three named waves — `W-REGISTRY-EXTENSION-G3`, `W-DAP-STACK`, `W-SOLVA-V2-LIFT` — grounded on the amended `SYSTEM_OBJECTIVES_AND_PROMISES_CHARTER.md` (Phase B) and constrained by the platform-vs-job separation doctrine and the W1/W1b/W1c Work-Supervisor primitives.
+
+**Wave labels are `[framing, not canon]`.** Owner ruling 2026-09-13: this cycle's Registry wave is `W-REGISTRY-EXTENSION-G3`, distinct from the prior `W-REGISTRY-FULL-BUILD` wave (2026-09-09, CP1..CP9 closed at ratchet 3098, CP10 on owner HOLD with its close test shelved-untracked). Prior-wave track-a code (`backend/services/w_registry_full_build/*`), pod-shell mount, invariant suite, and state artefacts are its untouched lineage; nothing in this plan renames them.
 
 **Date.** 2026-09-13 (Phase C, per owner ruling D this session).
 **Standing.** Document-only. NO code, NO tests, NO ratchet movement, NO egress. All standing orders unchanged: SO §2 DECISION-POINT reporting; SO §3 no-silence; SO §4 local commits only / NEVER push; `BASELINE_GUARD=1`; ratchet 3503 untouched; `testing_agent` BANNED (terminal pytest only).
@@ -46,7 +48,7 @@ Per owner Amendment 3 (Phase C, this session, verbatim):
 **Risk R-C2 · Reliable time source dependency (Doc-0 G-8 fix)**
 
 - **Statement.** DAP-21 metering defensibility requires a reliable, tamper-resistant time source shared across the system (Doc-0 Attribute 8 §TA-8.1 verbatim, first-hand: "Every audit record's timestamp derives from a reliable, tamper-resistant time source shared across the system — a record whose time field cannot be trusted cannot establish AU-3(b), regardless of how precise the field's format is.").
-- **Bounds what W-REGISTRY-FULL-BUILD and W-DAP-STACK can claim.** Both waves write metered, timestamped records; neither meters defensibly until the reliable-time control exists. Metered rows written under a non-reliable time source are still ledgered (P1: refusals recorded on the same terms as successes), but AU-3(b) is not established for them.
+- **Bounds what `W-REGISTRY-EXTENSION-G3` and `W-DAP-STACK` can claim.** Both waves write metered, timestamped records; neither meters defensibly until the reliable-time control exists. Metered rows written under a non-reliable time source are still ledgered (P1: refusals recorded on the same terms as successes), but AU-3(b) is not established for them.
 - **Owner.** Platform / infra.
 - **Cross-reference.** Doc-0 Part 3 STATUS AS OF (charter §3.7, first-hand): `G-8 | Security_Promise_Set_Amendments.docx, Amendment 3 | Spec-closed. Not built.`
 
@@ -54,7 +56,7 @@ These risks are stated at Phase C so no wave close inside the plan claims defens
 
 ---
 
-## §W-REGISTRY-FULL-BUILD — the full asset inventory
+## §W-REGISTRY-EXTENSION-G3 — the full asset inventory
 
 ### §1 Canon anchor and gap it closes
 
@@ -119,8 +121,8 @@ Tests-first, mechanical RED. No code lands without a drill receipt on the pre-im
 
 - All CP-R1..CP-R6 tests pass double-green byte-match under `BASELINE_GUARD=1`.
 - Ratchet floor bumped from 3503 to `3503 + N` (N = count of new invariants); `baseline_failures.json` `counts_at_baseline.passed` and `invariants_enforced_when_baseline_guard_1.passed_floor` update in tandem; ratchet_history entry appended.
-- `output_verified_seal` written with `Kind: registry_full_build` (SO §3.1).
-- Close report at `notes/W_REGISTRY_FULL_BUILD_close.md` — note: a Phase A file exists at that path (fork banked, dated 2026-09-09); the close artifact for this wave will supersede it with a new dated close, retaining lineage.
+- `output_verified_seal` written with `Kind: registry_extension_g3` (SO §3.1).
+- Close report at `notes/W_REGISTRY_EXTENSION_G3_close.md` — a new file. Distinct from the prior wave's `notes/W_REGISTRY_FULL_BUILD_close.md` (2026-09-09, CP1..CP9 closed, CP10 HELD), which is preserved verbatim as the prior-wave lineage.
 - Doc-0 §STATUS AS OF row for G-3 remains "Partial" until the general triad formalisation half also closes (which is a documentary wave, not this build wave); this wave closes the mechanical half.
 
 ### §5 Risks this wave carries
@@ -328,7 +330,7 @@ Sequenced by what each wave requires from another. **Phases can proceed in paral
                             |
       +---------------------+---------------------+
       |                     |                     |
-  W-REGISTRY-FULL-BUILD  W-SOLVA-V2-LIFT     W-DAP-STACK (2A..2H)
+  W-REGISTRY-EXTENSION-G3  W-SOLVA-V2-LIFT   W-DAP-STACK (2A..2H)
       |                     |                     |
       |                     |                     |
       +----------+----------+                     |
@@ -339,11 +341,11 @@ Sequenced by what each wave requires from another. **Phases can proceed in paral
                         crossing DAP-8, Canon-4 §36 Composed conclusion form)
 ```
 
-- **W-REGISTRY-FULL-BUILD** depends only on W1c primitives (banked). Starts as soon as owner rules.
-- **W-SOLVA-V2-LIFT** depends only on W1c primitives (banked). Independent of W-REGISTRY (does not require Registry's asset-class extension to instantiate its two-faculty seam).
+- **W-REGISTRY-EXTENSION-G3** depends only on W1c primitives (banked). Starts as soon as owner rules.
+- **W-SOLVA-V2-LIFT** depends only on W1c primitives (banked). Independent of `W-REGISTRY-EXTENSION-G3` (does not require the asset-class extension to instantiate its two-faculty seam).
 - **W-DAP-STACK 2A..2B** depend on Registry CP-R1..R3 (external-party principal + trust domain + typed custody class field).
 - **W-DAP-STACK 2C..2H** depend on Solva CP-S1..S5 for DAP-8 (Processed intelligence), because that crossing is bounded by Solva's assertion floor (DAP-Spec §7 Composition Map: "Solva — reasoning | Processed intelligence, held to the assertion floor").
-- **Bastion / additional-data-system as future SourceConnector** (per owner directive this session): the retrieved handle `${bastion.jump_server_radio_system}` is banked at 0600, non-echoed. **Not load-bearing for W-REGISTRY / W-DAP / W-SOLVA at this planning stage**; noted here only so a future SourceConnector touchpoint has its handle already available. Egress against on-prem may run only in the window **11:00–05:00** (owner ruling this session, verbatim: "any egress against the on-prem environment / additional data system is permitted ONLY within the window 11:00–05:00 (avoid interrupting daily operation). Operations that do not affect day-to-day system function may run anytime."). Recorded here as a STANDING OPERATIONAL CONSTRAINT.
+- **Bastion / additional-data-system as future SourceConnector** (per owner directive this session): the retrieved handle `${bastion.jump_server_radio_system}` is banked at 0600, non-echoed. **Not load-bearing for `W-REGISTRY-EXTENSION-G3` / `W-DAP-STACK` / `W-SOLVA-V2-LIFT` at this planning stage**; noted here only so a future SourceConnector touchpoint has its handle already available. Egress against on-prem may run only in the window **11:00–05:00** (owner ruling this session, verbatim: "any egress against the on-prem environment / additional data system is permitted ONLY within the window 11:00–05:00 (avoid interrupting daily operation). Operations that do not affect day-to-day system function may run anytime."). Recorded here as a STANDING OPERATIONAL CONSTRAINT.
 
 ---
 
@@ -358,7 +360,7 @@ For the END-OF-WAVE report (STANDING_ORDERS §2, plain-language format) that eac
 
 **R-C2 · Reliable time source (Doc-0 G-8 fix)**
 - Owner: platform / infra.
-- Impact this wave: W-REGISTRY and W-DAP-STACK both write metered, timestamped records; neither meters defensibly under AU-3(b) until this control exists.
+- Impact this wave: `W-REGISTRY-EXTENSION-G3` and `W-DAP-STACK` both write metered, timestamped records; neither meters defensibly under AU-3(b) until this control exists.
 - Cross-reference: Doc-0 §STATUS AS OF row for G-8 (charter §3.7 first-hand): `G-8 | Security_Promise_Set_Amendments.docx, Amendment 3 | Spec-closed. Not built.`
 
 ---

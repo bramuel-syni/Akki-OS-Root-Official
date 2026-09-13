@@ -1,0 +1,22 @@
+Kind: registry_extension_g3
+Wave: W-REGISTRY-EXTENSION-G3
+Label-provenance: owner ruling Option A · 2026-09-13
+Owner-lineage-note: distinct from prior W-REGISTRY-FULL-BUILD (2026-09-09) which stays untouched (CP1..CP9 closed, CP10 on owner HOLD).
+Sealed-at-utc: 2026-09-13T10:32:20Z
+Canon-closes: Doc-0 §STATUS AS OF row G-3 (Mtafiti asset-inventory extension mechanical half)
+CPs: CP-R1 · CP-R2 · CP-R3 · CP-R4 · CP-R5 · CP-R6
+Ratchet: 3503 -> 3531 (+28)
+Green1-passed: 3531
+Green1-skipped: 1
+Green1-baseline-failures: 0
+Green1-log-sha256: c131daf6f724e83c699d931d298fd6fbb780020927d89ff952476c30c9790749
+Green2-passed: 3531
+Green2-skipped: 1
+Green2-baseline-failures: 0
+Green2-log-sha256: 83b8f533cb3124182ce5d66f1312927adf455c8729a393f2f246377250aa0009
+Byte-match-pass-count: TRUE
+Ratchet-manifest-sha256: 237f661cad89cde11ef22b697e0a33554f8b26eb8015d8c2372d1506837275e4
+R-C1-carriage: R_C1_RULES_SERVICE_NOT_BUILT_FALLBACK_TRUE=True (asserted invariant; silent flip forbidden)
+R-C2-carriage: WriteReceipt.au_3b_defensible=False (asserted invariant; silent flip forbidden)
+Zero-track-a-churn-to-prior-wave: confirmed (services/w_registry_full_build/*, pod_shell mount, prior test suite untouched)
+Two-commit-pattern: track-a code + workspace state · LOCAL only · NEVER push

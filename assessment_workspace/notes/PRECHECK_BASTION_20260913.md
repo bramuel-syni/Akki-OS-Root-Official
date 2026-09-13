@@ -2,7 +2,7 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 # PRECHECK_BASTION_20260913.md — connection-credential precheck receipt
 
-**Purpose.** Non-secret, handle-only record of the bastion/radio connection-credential precheck ordered by the owner as a HARD GATE before W-REGISTRY-FULL-BUILD.
+**Purpose.** Non-secret, handle-only record of the bastion/radio connection-credential precheck ordered by the owner as a HARD GATE before `W-REGISTRY-EXTENSION-G3` (owner-ruled label 2026-09-13; distinct from the prior `W-REGISTRY-FULL-BUILD` wave of 2026-09-09).
 
 **Standing.** Read-only, notes/-only. No code, no ratchet touch, no push. Secret material referenced by handle only; never echoed to this file, to logs, to git tree, or to any surface.
 
@@ -121,7 +121,7 @@ Timezone for this window: **PENDING OWNER RULING** (see §2).
 
 - Does not verify Radio system reachability, credential validity, or protocol assumptions (T4 HELD).
 - Does not confirm the CSV's port/protocol assumption for either target (session assumption in §1).
-- Does not authorise W-REGISTRY-FULL-BUILD to open. That authorisation is owner-gated per this session's ruling: "Do NOT write any W-REGISTRY code until the precheck result is reported and I relay owner go."
+- Does not authorise `W-REGISTRY-EXTENSION-G3` to open. That authorisation is owner-gated per this session's ruling: "Do NOT write any W-REGISTRY code until the precheck result is reported and I relay owner go."
 
 ## §8 Ready for owner ruling
 
@@ -129,7 +129,7 @@ Timezone for this window: **PENDING OWNER RULING** (see §2).
 
 **Owner rulings requested**:
 1. **Timezone** for the 11:00–05:00 window (UTC / EAT / CAT / other) — unblocks T4.
-2. **Go / no-go on W-REGISTRY-FULL-BUILD open** now that JUMP-side is proven — since W-REGISTRY does not itself depend on the Radio system (per Phase C plan §D), owner may open Registry before T4 completes if that sequencing suits.
+2. **Go / no-go on `W-REGISTRY-EXTENSION-G3` open** now that JUMP-side is proven — since it does not itself depend on the Radio system (per Phase C plan §D), owner may open it before T4 completes if that sequencing suits.
 3. **T4 execution mode** once window is inside: SSH auth handshake only (no radio-plane work), same `SSH_ASKPASS`+`setsid` discipline as T3, radio credential kind (`OPAQUE_UNKNOWN`) to be classified on inspection at test time.
 
 ---

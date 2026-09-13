@@ -1,0 +1,79 @@
+{
+  "at_utc": "2026-09-13T10:29:48.099669Z",
+  "columns_excluded": [
+    "id",
+    "ussd_user_id",
+    "mobile_number",
+    "training_code",
+    "post_id",
+    "question_id",
+    "option_id",
+    "created_at",
+    "number_of_animals",
+    "forage_area"
+  ],
+  "columns_included": [
+    "question_string",
+    "option_string",
+    "value_chain"
+  ],
+  "database": "digicow_live",
+  "masking_steps_applied": [
+    {
+      "action": "exclude",
+      "column": "created_at"
+    },
+    {
+      "action": "exclude",
+      "column": "forage_area"
+    },
+    {
+      "action": "exclude",
+      "column": "id"
+    },
+    {
+      "action": "exclude",
+      "column": "mobile_number"
+    },
+    {
+      "action": "exclude",
+      "column": "number_of_animals"
+    },
+    {
+      "action": "exclude",
+      "column": "option_id"
+    },
+    {
+      "action": "mask_regex_scrub",
+      "column": "option_string"
+    },
+    {
+      "action": "exclude",
+      "column": "post_id"
+    },
+    {
+      "action": "exclude",
+      "column": "question_id"
+    },
+    {
+      "action": "mask_regex_scrub",
+      "column": "question_string"
+    },
+    {
+      "action": "exclude",
+      "column": "training_code"
+    },
+    {
+      "action": "exclude",
+      "column": "ussd_user_id"
+    },
+    {
+      "action": "include",
+      "column": "value_chain"
+    }
+  ],
+  "principal": "test-principal",
+  "purpose": "test/success",
+  "row_count": 3,
+  "table_context": "ussd_question_response"
+}
