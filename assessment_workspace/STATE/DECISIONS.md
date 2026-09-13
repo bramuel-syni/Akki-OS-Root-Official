@@ -7197,4 +7197,129 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 ---
 
+## Ruling · 2026-09-13T~07:15Z · Source: owner channel · W1b charter approval
+
+**Verbatim (banked from user's turn preceding W1b execution):**
+
+> W1 accepted — clean close (3282→3392), case-agnostic kernel
+> confirmed ... Good work.
+>
+> CHARTER W1b as you scoped it — with ONE consistency refinement,
+> same principle we applied to job_kind:
+>
+> CP5 refinement — keep the platform DOMAIN-AGNOSTIC. Do NOT bake
+> an audio-specific AudioAttributeStreamBundle_v0 into the platform.
+> Instead build a GENERIC AttributeStreamBundle_v0 abstraction in
+> W1b ... The AUDIO-specific schema (the §1.1 eight columns) is a
+> DOMAIN schema that registers at W2 job-mount via the same registry
+> mechanism as kind_registry — not resident in platform code. Add
+> an anti-leak invariant mirroring CP1's ...
+>
+> Synology connector (CP3): correct as scoped — a reusable
+> SourceConnector IMPLEMENTATION (interface only, no live NAS call)
+> is platform; the specific 10.10.55.55 host + creds are the JOB
+> binding at W2, not platform. Hold that line.
+>
+> Approved W1b CP order: CP1 RetentionPolicy → CP2 SourceConnector
+> Protocol + read_only_guard → CP3 Synology FileStation impl → CP4
+> Capability registry generalisation → CP5 generic
+> AttributeStreamBundle_v0 + L2/L4 contract shells → CP6 wave close.
+>
+> Discipline: tests-first mechanical RED per CP, double-green
+> BASELINE_GUARD=1 byte-match at wave close, ratchet monotonic from
+> 3392 ...
+>
+> HARD STOP after W1b close: do NOT open W2. W2 (job mount + real
+> audio) is BLOCKED pending the owner's storage Path A/B/C ruling,
+> the NAS network path, and 3-station confirm. Report to me at the
+> W1b double-green close. Keep intra-CP chatter inside the sprint
+> plan. Go.
+
+**Binding effects (this addendum):**
+
+1. **Ruling banked verbatim before code action** (grounding brief
+   `notes/W1b_PLATFORM_PRIMITIVES_grounding_brief.md` §A).
+
+2. **CP5 domain-neutrality refinement executed.** The
+   `services/attribute_stream_bundle/__init__.py` module carries NO
+   audio-column tokens (`content`/`language`/`condition`/`prosody`/
+   `occurrence`/`switch`/`music`/`character`) and NO domain tokens
+   (`audio`/`harvest`/`transcribe`/`diarize`/`ingest`/`transcode`).
+   Two anti-leak invariants freeze the discipline
+   (`test_module_source_has_no_audio_column_tokens` +
+   `test_module_source_has_no_domain_tokens`). Two docstring rewrites
+   were needed mid-CP to satisfy the anti-leak — recorded honestly
+   in wave-close doc §4.
+
+3. **CP3 held the interface-only line.** Runtime is gated by exact
+   `AKKI_SYNOLOGY_ALLOWED_RUNTIME == "1"` (not truthy-string). No
+   hard-coded IP addresses, no hard-coded credentials, constructor
+   accepts NO password/api_key/token/secret kwargs (frozen by
+   inspection test). Concrete host + creds land at W2 mount.
+
+4. **CP4 compose-freeze, not refactor.** `layer_b.factory` is
+   untouched. `test_layer_b_factory_registries_re_expressible_in_
+   capability_registry` proves strict superset by re-registering the
+   three registries into the generic mechanism and asserting
+   retrieval. Thin-kernel discipline held.
+
+5. **RetentionPolicy construction invariants enforce the shape.**
+   `DELIVERABLE_GOVERNED` requires `release_gate_verdicts_required=True`;
+   `SOURCE_UNTOUCHED` forbids `ttl_days`. Unsafe policies are
+   unrepresentable, not just discouraged.
+
+6. **Class-vs-payload allowed-mapping is a CLOSED table.** Extending
+   requires editing `_ALLOWED_PAYLOADS` — test suite forces every
+   regime to declare its allowed set (natural extension seam banked
+   for later waves).
+
+7. **CP3 mechanical RED required a recapture.** The initial parallel
+   invocation of `mcp_execute_bash` (RED sweep) and `mcp_create_file`
+   (impl) raced — the impl was on disk by the time pytest actually
+   ran. Corrected by moving the impl aside, re-running the tests to
+   capture the true RED, then restoring the impl. Banked in the CP3
+   receipt log. Lesson banked in the wave-close doc §4.
+
+8. **W1b double-green byte-match.** `BASELINE_GUARD=1 python -m
+   pytest tests/invariants/` returned `3492 passed / 1 skipped / 438
+   warnings` across three consecutive runs. Ratchet
+   **3392 → 3492 (+100)**. Test files:
+     tests/invariants/test_w1b_cp1_retention_policy.py (+16)
+     tests/invariants/test_w1b_cp2_source_connector.py (+27)
+     tests/invariants/test_w1b_cp3_synology_file_station.py (+14)
+     tests/invariants/test_w1b_cp4_capability_registry.py (+15)
+     tests/invariants/test_w1b_cp5_attribute_stream_bundle.py (+14)
+     tests/invariants/test_w1b_cp5_contract_shells.py (+14)
+
+9. **Discipline receipts (all banked):**
+   - Grounding: `notes/W1b_PLATFORM_PRIMITIVES_grounding_brief.md`
+   - Wave close: `notes/W1b_PLATFORM_PRIMITIVES_close.md`
+   - Per-CP RED at
+     `phase0/drill_receipts/20260913T072500Z…T080000Z_w1b_cp*_RED.log`
+   - Wave-close double-green at
+     `phase0/drill_receipts/20260913T081000Z_w1b_platform_primitives_wave_close_double_green.log`
+
+10. **HARD STOP after W1b close.** W2 is NOT opened this turn and is
+    NOT scoped. W2 remains BLOCKED on three external items enumerated
+    in the wave-close doc §5:
+    (a) owner storage Path A/B/C ruling for
+        `corpus-deliverable-audio-segment-bytes` retention binding,
+    (b) NAS network path (sysadmin bastion or VPN — pod cannot reach
+        10.10.55.55 today),
+    (c) 3-station confirm (owner ratifies the 3-of-16 stations for
+        the end-to-end W2 mount).
+
+11. **Two-commit local.** Code to Extraction-Akki `programme/track-a`,
+    state to workspace `master`. NO push. NO testing_agent. Terminal
+    pytest only.
+
+12. **Security hygiene held.** HF token never echoed. `hf_token.csv`
+    remains at mode 0600, git-ignored. `EMERGENT_LLM_KEY` never
+    echoed. `SEC-2026-09-12-01` rotation still owed by owner
+    post-session.
+
+13. **W2 remains BLOCKED.** Not touched this wave.
+
+---
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
