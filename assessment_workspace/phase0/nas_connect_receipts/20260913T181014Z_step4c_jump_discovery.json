@@ -1,0 +1,25 @@
+{
+  "at_utc": "2026-09-13T18:10:14Z",
+  "phase": "STEP_4C_JUMP_DISCOVERY_LOCAL_NAS_HINTS",
+  "method": "read-only introspection on JUMP (mount / fstab / routes / listeners / arp / /etc/hosts / ~/.ssh)",
+  "read_only": true,
+  "sections": {
+    "OS_RELEASE": "PRETTY_NAME=\"Ubuntu 24.04.4 LTS\"\nNAME=\"Ubuntu\"\nVERSION_ID=\"24.04\"\nVERSION=\"24.04.4 LTS (Noble Numbat)\"\nVERSION_CODENAME=noble\nID=ubuntu\nID_LIKE=debian\nHOME_URL=\"https://www.ubuntu.com/\"\nSUPPORT_URL=\"https://help.ubuntu.com/\"\nBUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"\nPRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\nUBUNTU_CODENAME=noble\nLOGO=ubuntu-logo",
+    "KERNEL": "Linux ecs-b896 6.8.0-106-generic x86_64",
+    "IF_ADDR": "lo 127.0.0.1/8\neth0 10.10.150.93/24",
+    "ROUTES": "default via 10.10.150.1 dev eth0 proto dhcp src 10.10.150.93 metric 100 \n10.10.150.0/24 dev eth0 proto kernel scope link src 10.10.150.93 metric 100 \n169.254.169.254 via 10.10.150.1 dev eth0 proto dhcp src 10.10.150.93 metric 100",
+    "RESOLV": "# This is /run/systemd/resolve/stub-resolv.conf managed by man:systemd-resolved(8).\n# Do not edit.\n#\n# This file might be symlinked as /etc/resolv.conf. If you're looking at\n# /etc/resolv.conf and seeing this text, you have followed the symlink.\n#\n# This is a dynamic resolv.conf file for connecting local clients to the\n# internal DNS stub resolver of systemd-resolved. This file lists all\n# configured search domains.\n#\n# Run \"resolvectl status\" to see details about the uplink DNS servers\n# currently in use.\n#\n# Third party programs should typically not access this file directly, but only\n# through the symlink at /etc/resolv.conf. To manage man:resolv.conf(5) in a\n# different way, replace this symlink by a static file or a different symlink.\n#\n# See man:systemd-resolved.service(8) for details about the supported modes of\n# operation for /etc/resolv.conf.",
+    "HOSTS_FILE": "127.0.0.1\tlocalhost\n\n# The following lines are desirable for IPv6 capable hosts\n::1\tip6-localhost\tip6-loopback\nfe00::0\tip6-localnet\nff00::0\tip6-mcastprefix\nff02::1\tip6-allnodes\nff02::2\tip6-allrouters\n127.0.1.1\tlocalhost\n127.0.1.1\tecs-b896\tecs-b896",
+    "MOUNTS": "fusectl on /sys/fs/fuse/connections type fusectl (rw,nosuid,nodev,noexec,relatime)",
+    "FSTAB": "# /etc/fstab: static file system information.\n#\n# Use 'blkid' to print the universally unique identifier for a\n# device; this may be used with UUID= as a more robust way to name devices\n# that works even if disks are added and removed. See fstab(5).\n#\n# <file system> <mount point>   <type>  <options>       <dump>  <pass>\n# / was on /dev/vda1 during curtin installation\nUUID=35f7b939-7473-4e43-8527-a2f647b4c6a2 / ext4 defaults 0 1",
+    "EXPORTS": "",
+    "SAMBA_CONF": "",
+    "LOCAL_LISTEN": "0.0.0.0:22\n127.0.0.1:29338\n127.0.0.1:29339\n127.0.0.53%lo:53\n127.0.0.54:53\n[::]:22",
+    "LOCAL_LISTEN_UDP": "127.0.0.1:323\n127.0.0.53%lo:53\n127.0.0.54:53\n[::1]:323",
+    "ARP": "10.10.150.1 dev eth0 lladdr fa:16:3e:9e:be:75 REACHABLE",
+    "KNOWN_HOSTS_SSH": "total 8\ndrwx------ 2 root root 4096 Sep 13 15:24 .\ndrwx------ 4 root root 4096 Mar 30 11:54 ..\n-rw------- 1 root root    0 Sep 13 15:24 authorized_keys",
+    "NAS_TOOLS": "MISSING:smbclient\nMISSING:mount.cifs\nMISSING:mount.nfs\nMISSING:showmount\nAVAIL:rsync\nAVAIL:curl\nAVAIL:wget\nAVAIL:nc\nMISSING:nmap\nAVAIL:tcpdump\nAVAIL:ping",
+    "SCAN_FSTAB_LOCAL": "EXISTS:/etc/fstab\nlines:9\nMISSING:/etc/exports\nMISSING:/etc/samba/smb.conf\nMISSING:/etc/nfs.conf\nMISSING:/etc/auto.master\nMISSING:/etc/auto.direct",
+    "USER_ID": "uid=0(root) gid=0(root) groups=0(root)"
+  }
+}

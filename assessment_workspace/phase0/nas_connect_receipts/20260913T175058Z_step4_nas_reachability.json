@@ -1,0 +1,428 @@
+{
+  "at_utc": "2026-09-13T17:50:58Z",
+  "phase": "STEP_4_NAS_REACHABILITY_PROBE_FROM_JUMP",
+  "method": "bash /dev/tcp exec 3<>/dev/tcp/HOST/PORT (read-only TCP connect); 3s bounded timeout per probe",
+  "read_only": true,
+  "position_redaction": true,
+  "ports_probed": {
+    "22": "SSH",
+    "111": "NFS_PORTMAP",
+    "445": "SMB",
+    "548": "AFP",
+    "873": "RSYNC",
+    "2049": "NFS",
+    "5000": "DSM_HTTP",
+    "5001": "DSM_HTTPS",
+    "5005": "WEBDAV_ALT",
+    "5006": "WEBDAV_ALT_TLS"
+  },
+  "candidates": [
+    {
+      "handle": "JUMP",
+      "source": "bastion_csv[1,0]",
+      "ip": "159.138.173.250"
+    },
+    {
+      "handle": "RADIO",
+      "source": "bastion_csv[1,1]",
+      "ip_sha256_salted": "aff00d64a5cf1f85"
+    },
+    {
+      "handle": "HUAWEI_RDS_1",
+      "source": "prior_receipt",
+      "ip": "159.138.162.146"
+    },
+    {
+      "handle": "VIUSASA_HOST_4",
+      "source": "db_credentials.csv[2,1]",
+      "ip_sha256_salted": "1aa4613d49cb5930"
+    },
+    {
+      "handle": "VIUSASA_HOST_5",
+      "source": "db_credentials.csv[14,1]",
+      "ip_sha256_salted": "4c841af719b0315a"
+    },
+    {
+      "handle": "VIUSASA_HOST_6",
+      "source": "db_credentials.csv[27,1]",
+      "ip_sha256_salted": "741ad9964d09b308"
+    },
+    {
+      "handle": "WEEGO_HOST_7",
+      "source": "db_credentials_2.csv[8,1]",
+      "ip_sha256_salted": "70a242725d598e14"
+    },
+    {
+      "handle": "WEEGO_HOST_8",
+      "source": "db_credentials_2.csv[12,1]",
+      "ip_sha256_salted": "2927614071931551"
+    },
+    {
+      "handle": "WEEGO_HOST_9",
+      "source": "db_credentials_2.csv[19,1]",
+      "ip_sha256_salted": "5da1935b2d1a51ee"
+    }
+  ],
+  "matrix_by_handle_port": {
+    "JUMP:22": {
+      "verdict": "OPEN",
+      "raw": "OPEN"
+    },
+    "JUMP:111": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "JUMP:445": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "JUMP:548": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "JUMP:873": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "JUMP:2049": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "JUMP:5000": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "JUMP:5001": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "JUMP:5005": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "JUMP:5006": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "RADIO:22": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "RADIO:111": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "RADIO:445": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "RADIO:548": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "RADIO:873": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "RADIO:2049": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "RADIO:5000": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "RADIO:5001": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "RADIO:5005": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "RADIO:5006": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "HUAWEI_RDS_1:22": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "HUAWEI_RDS_1:111": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "HUAWEI_RDS_1:445": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "HUAWEI_RDS_1:548": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "HUAWEI_RDS_1:873": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "HUAWEI_RDS_1:2049": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "HUAWEI_RDS_1:5000": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "HUAWEI_RDS_1:5001": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "HUAWEI_RDS_1:5005": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "HUAWEI_RDS_1:5006": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "VIUSASA_HOST_4:22": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "VIUSASA_HOST_4:111": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "VIUSASA_HOST_4:445": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "VIUSASA_HOST_4:548": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "VIUSASA_HOST_4:873": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "VIUSASA_HOST_4:2049": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "VIUSASA_HOST_4:5000": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "VIUSASA_HOST_4:5001": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "VIUSASA_HOST_4:5005": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "VIUSASA_HOST_4:5006": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "VIUSASA_HOST_5:22": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "VIUSASA_HOST_5:111": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "VIUSASA_HOST_5:445": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "VIUSASA_HOST_5:548": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "VIUSASA_HOST_5:873": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "VIUSASA_HOST_5:2049": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "VIUSASA_HOST_5:5000": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "VIUSASA_HOST_5:5001": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "VIUSASA_HOST_5:5005": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "VIUSASA_HOST_5:5006": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "VIUSASA_HOST_6:22": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "VIUSASA_HOST_6:111": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "VIUSASA_HOST_6:445": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "VIUSASA_HOST_6:548": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "VIUSASA_HOST_6:873": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "VIUSASA_HOST_6:2049": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "VIUSASA_HOST_6:5000": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "VIUSASA_HOST_6:5001": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "VIUSASA_HOST_6:5005": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "VIUSASA_HOST_6:5006": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "WEEGO_HOST_7:22": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "WEEGO_HOST_7:111": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "WEEGO_HOST_7:445": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "WEEGO_HOST_7:548": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "WEEGO_HOST_7:873": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "WEEGO_HOST_7:2049": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "WEEGO_HOST_7:5000": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "WEEGO_HOST_7:5001": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "WEEGO_HOST_7:5005": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "WEEGO_HOST_7:5006": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "WEEGO_HOST_8:22": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "WEEGO_HOST_8:111": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "WEEGO_HOST_8:445": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "WEEGO_HOST_8:548": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "WEEGO_HOST_8:873": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "WEEGO_HOST_8:2049": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "WEEGO_HOST_8:5000": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "WEEGO_HOST_8:5001": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "WEEGO_HOST_8:5005": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "WEEGO_HOST_8:5006": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "WEEGO_HOST_9:22": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "WEEGO_HOST_9:111": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "WEEGO_HOST_9:445": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "WEEGO_HOST_9:548": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "WEEGO_HOST_9:873": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "WEEGO_HOST_9:2049": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "WEEGO_HOST_9:5000": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "WEEGO_HOST_9:5001": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "WEEGO_HOST_9:5005": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "WEEGO_HOST_9:5006": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    }
+  }
+}
