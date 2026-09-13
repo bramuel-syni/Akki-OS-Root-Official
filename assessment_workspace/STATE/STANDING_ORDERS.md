@@ -120,6 +120,43 @@ Every owner ruling is banked **verbatim** in `STATE/DECISIONS.md` **before** any
    through `output_verified_seal` is a right-reason RED failure
    under BASELINE_GUARD=1.
 
+### 3.2 NO RUN WITHOUT A PROGRESS SIGNAL — runtime silent-no-progress ban (W1 CP2b, 2026-09-13)
+
+**Standing order (verbatim, banked by owner directive "W1 CP breakdown approval" 2026-09-13):**
+
+> **NO RUN WITHOUT A PROGRESS SIGNAL** — every commissioned run must
+> emit a progress signal within its SLA or the supervisor raises a
+> starvation alarm and HALTS the run.
+
+**Binding contract on every commissioned run:**
+
+1. Every dispatch surface in the codebase MUST bind its run_id to
+   the `services.work_supervisor.runtime_supervisor` progress-ring:
+   the running trainer/harvester/extractor emits `ProgressSignal`
+   records at least once per SLA window via
+   `runtime_supervisor.record_progress(sig, ring_root=…)`.
+
+2. Before treating a run as still-in-flight, callers MUST invoke
+   `runtime_supervisor.output_verification_watchdog(job_id,
+   sla_seconds=…, ring_root=…, now_utc=…)`. A returned
+   `HaltVerdict` binds the caller to STOP dispatching further work
+   on that run and surface the verdict.
+
+3. Halt reasons are closed-enum data (`starvation_no_signal` /
+   `starvation_stale_signal` / `starvation_output_flatline`). A
+   HALT verdict is DATA — the runtime supervisor NEVER kills any
+   process. Callers act on the verdict; observation and mutation
+   remain separate (zero-influence discipline preserved).
+
+4. Wave-honest limit: the W1 watchdog measures BYTE growth, not
+   semantic growth. A run that writes zeros steadily would pass
+   the flatline check. Semantic watchdogs (per-kind output shape
+   validators) are Part-B concerns.
+
+5. Invariant `test_w1_cp2b_runtime_supervisor.py` freezes this
+   contract. Any dispatch surface added later that does NOT bind
+   to the progress ring is a right-reason RED under BASELINE_GUARD=1.
+
 ---
 
 ## 4. RUNTIME LAW

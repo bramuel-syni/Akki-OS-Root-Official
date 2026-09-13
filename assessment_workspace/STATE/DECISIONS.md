@@ -7059,4 +7059,142 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 ---
 
+## Ruling · 2026-09-13T~06:07Z · Source: owner channel · W1 CP breakdown approval
+
+**Verbatim (banked from user's turn preceding W1 execution):**
+
+> W0 accepted — clean close (3251→3282), and the honest correction
+> (only 1 of 4 drifts real; 3 were green on pinned HEAD; nothing
+> amended that wasn't broken; standing-order placed at §3.1 to
+> preserve the six-header surface) is exactly right. Good work.
+>
+> W1 CP breakdown APPROVED with ONE correction and ONE addition.
+>
+> CORRECTION — job_kind must stay CASE-AGNOSTIC ... Do NOT lock a
+> closed 5-value audio-harvest enum into the platform JobManifest at
+> CP1 ... Instead make job_kind reference an OPEN, registry-backed
+> kind ... At CP1 define the registry mechanism and the manifest field
+> that validates against it; register ZERO or one generic sentinel
+> kind in the platform.
+>
+> ADDITION — the RUNTIME work-supervisor must land in W1 ... Add a CP
+> (call it CP2b) for the runtime supervision primitives:
+> progress_signal, output_verification_watchdog, starvation_alarm ...
+> Test them against SIMULATED run states ... a run whose GPU-util
+> stays 0 / whose output artifact doesn't grow past its SLA → the
+> watchdog must raise a starvation alarm and emit a HALT verdict; a
+> run producing real growing output past its gate → passes ... Also
+> append the second STANDING ORDER verbatim: "NO RUN WITHOUT A
+> PROGRESS SIGNAL — every commissioned run must emit a progress
+> signal within its SLA or the supervisor raises a starvation alarm
+> and HALTS the run." Bank in DECISIONS too.
+>
+> TRACKING — the remaining generic platform primitives are NOT
+> dropped, they're a follow-on platform wave (call it W1b) that MUST
+> land before W2 job-mount: RetentionPolicy (four regimes) ·
+> SourceConnector Protocol + read_only_guard + Synology FileStation
+> impl · Capability registry generalisation of layer_b.factory ·
+> L2/L4 contracts ... · AudioAttributeStreamBundle_v0.
+>
+> Governance-rule seed (CP3): your three generic rules are fine ...
+>
+> Proceed W1: CP1 → CP2 → CP2b → CP3 → CP4 → CP5. Tests-first RED
+> each, double-green byte-match, ratchet bump in tandem from 3282,
+> two-commit local, NO push, NO testing_agent, credentials 0600 ...
+> report to me at the W1 double-green close. Go.
+
+**Binding effects (this addendum):**
+
+1. **Ruling banking discipline held.** Verbatim before code action.
+
+2. **Case-agnostic correction executed.** Platform now exposes an
+   open registry (`services.work_supervisor.kind_registry`) seeded
+   with EXACTLY ONE sentinel kind `"platform.generic"`. NO audio-
+   case tokens in `job_manifest.py`, `supervisor.py`,
+   `runtime_supervisor.py`, `governance.py`, or `kind_registry.py`
+   at close. Invariant `test_no_audio_kinds_leaked_into_platform_seed`
+   + `test_seeded_rules_are_generic_no_audio_specifics` freeze the
+   discipline. Downstream Part-B waves register their own kinds at
+   mount time via `kind_registry.register_kind()`.
+
+3. **Runtime supervisor CP2b delivered.** New module
+   `services.work_supervisor.runtime_supervisor` exposes
+   `ProgressSignal` (frozen dataclass, data emission — not a process
+   signal), `record_progress` / `load_progress` (ring persistence),
+   `output_verification_watchdog(job_id, sla_seconds, ring_root,
+   now_utc, output_path)` → `HaltVerdict | None`, `StarvationAlarm`
+   (RuntimeError subclass). Watchdog checks three starvation gates
+   in order: `starvation_no_signal` → `starvation_stale_signal` →
+   `starvation_output_flatline`. Zero-influence held — HALT verdicts
+   are DATA, no process is signalled.
+
+4. **STANDING ORDER §3.2 banked verbatim.**
+   `STATE/STANDING_ORDERS.md §3.2 NO RUN WITHOUT A PROGRESS SIGNAL`
+   inserted as subsection of §3 BUILD DISCIPLINE (mirrors §3.1
+   placement — preserves the six-header top-level surface frozen
+   by `test_standing_orders_present`).
+
+5. **Governance seeded with the three generic rules exactly as
+   approved:** `LicenceClassRequired`, `DispatchIntentConfigured`,
+   `OutputContractNamesRealKind`. Third rule composes over W0
+   `NON_REAL_KINDS` — a manifest that declares expected_kind ∈
+   {stub, synthetic, unfinished, test_fixture, ""} is vetoed at
+   admission, closing the silent-success loop through the manifest
+   surface as well as the seal surface.
+
+6. **Compose freeze at CP4.** `supervisor.admit_job_with_governance`
+   iterates rules in list order, first-veto wins, ledger row banked
+   via `governance.bank_verdict` on refusal. If all rules pass,
+   delegates to `admit_job` (precondition_seal → depends_on →
+   dispatch_intent_configured gates). No dispatch. Ledger row
+   banked ONLY on veto (admits are inferred from row absence).
+
+7. **W1 wave close double-green byte-match.** BASELINE_GUARD=1
+   returned `3392 passed / 1 skipped / 438 warnings` across three
+   consecutive runs. Ratchet **3282 → 3392 (+110)**. Test files:
+     tests/invariants/test_w1_cp1_job_manifest_and_kind_registry.py
+       (+41)
+     tests/invariants/test_w1_cp2_admission_supervisor.py (+19)
+     tests/invariants/test_w1_cp2b_runtime_supervisor.py (+16)
+     tests/invariants/test_w1_cp3_governance.py (+23)
+     tests/invariants/test_w1_cp4_supervisor_governance_compose.py
+       (+11)
+
+8. **Discipline receipts (all banked):**
+   - Grounding: `notes/W1_WORK_SUPERVISOR_grounding_brief.md`
+   - Wave close: `notes/W1_WORK_SUPERVISOR_close.md`
+   - Per-CP RED at
+     `phase0/drill_receipts/20260913T061000Z…T065000Z_w1_cp*_RED.log`
+   - Wave-close double-green at
+     `phase0/drill_receipts/20260913T071000Z_w1_work_supervisor_wave_close_double_green.log`
+
+9. **W1b hold-list confirmed.** Recorded here + in wave-close doc
+   §5 recommendations. Pre-W2 platform primitives held for W1b:
+   RetentionPolicy, SourceConnector Protocol + read_only_guard +
+   FileStation impl, Capability registry generalisation, L2/L4
+   contracts (TargetOutcome_v0, StratumAcceptance, CommissionSpec,
+   Milestone, WorkerLane, WorkerJD), AudioAttributeStreamBundle_v0.
+   Recommended CP order surfaced in wave-close doc §5.
+
+10. **Zero-influence discipline preserved throughout.** No dispatch
+    surface added. No process spawn. No signal delivered. Watchdog
+    is READ-only. Governance ledger writes are best-effort. `signal`
+    token appears legitimately in `ProgressSignal` — invariant refined
+    to ban only `terminate`/`kill` on public surfaces, banked as a
+    narrow refinement of the r2 rule for the data-emission concept
+    of a progress signal (vs a process-signal terminator).
+
+11. **Two-commit local.** Code to Extraction-Akki `programme/track-a`,
+    state to workspace `master`. NO push. NO testing_agent. NO
+    deployment_agent. Terminal pytest only.
+
+12. **Security hygiene held.** HF token never echoed. `hf_token.csv`
+    remains at mode 0600, git-ignored. `EMERGENT_LLM_KEY` never
+    echoed. `SEC-2026-09-12-01` rotation still owed by owner
+    post-session.
+
+13. **NAS/W2 remains BLOCKED.** Not touched this wave.
+
+---
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
