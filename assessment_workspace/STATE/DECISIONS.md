@@ -7322,4 +7322,110 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 ---
 
+## Ruling · 2026-09-13T~08:15Z · Source: owner channel · W1c Integration Proof charter
+
+**Verbatim (banked from user's turn preceding W1c execution):**
+
+> RULING: proceed with option (a) — the interior-only platform
+> integration proof — but land it as a COMMITTED end-to-end
+> integration invariant, not a throwaway demo. This is the "prove it
+> actually works, not stubs" step the whole programme is built
+> around, so it must be permanent and regression-guarding.
+>
+> Scope (call it a small wave, e.g. W1c-PLATFORM-INTEGRATION-PROOF):
+> one tests-first integration invariant (or a tight set) that drives
+> the FULL platform spine end-to-end with a generic (non-domain)
+> capability and NO NAS ...
+> - register a `platform.generic` capability ... register a generic
+>   schema + mount a bundle ... exercise a RetentionPolicy write-
+>   check ... submit a JobManifest ... run it through
+>   admit_job_with_governance ... feed a SIMULATED stalled run state
+>   ... prove a bare (no-`Kind:`) seal is refused ...
+>
+> Assert the whole chain composes and that "done" is only reached
+> via output_verified_seal. Produce an owner-inspectable trace/
+> artifact of the run (a plain-language step-by-step of what
+> happened, banked under phase0/ or notes/) so there's concrete
+> evidence the platform works.
+>
+> Discipline: mechanical RED first, double-green BASELINE_GUARD=1
+> byte-match, ratchet monotonic from 3492 ... HARD STOP after this
+> proof closes: do NOT open W2 ...
+
+**Binding effects (this addendum):**
+
+1. **Ruling banked verbatim before code action** (grounding brief
+   `notes/W1c_PLATFORM_INTEGRATION_PROOF_grounding_brief.md` §A).
+
+2. **Single-file integration invariant delivered.** One test file
+   `tests/invariants/test_w1c_platform_integration_proof.py`
+   (+11 invariants) drives the FULL platform spine end-to-end using
+   ONLY a generic (non-domain) capability. Ten spine steps + one
+   trace-artifact freeze. NO domain tokens. NO NAS reach. NO real
+   dispatch (runtime supervisor exercised on simulated progress
+   signals only).
+
+3. **Owner-inspectable trace artifact banked.** 6496-byte
+   plain-language Markdown at
+   `phase0/integration_proofs/w1c_integration_proof_trace.md`.
+   Content is byte-deterministic (no timestamps) so re-runs are
+   identical. Hand-banked at close time, NOT test-generated — any
+   change to the template must be paired with a manual re-bank so
+   drift surfaces as a legitimate RED.
+
+4. **Composition summary in the trace artifact:** kind_registry →
+   capability_registry → attribute_stream_bundle → retention_policy
+   → job_manifest → supervisor → governance → runtime_supervisor →
+   output_verified_seal. Every arrow exercised. Zero domain code
+   executed. Zero NAS reached. Zero processes signalled.
+
+5. **Tests-first RED discipline · honest disclosure.** 9 of 10
+   spine invariants passed on first-write because they COMPOSE
+   existing green primitives from W1 + W1b. This is the CORRECT
+   behavior for an integration proof over a fully-implemented
+   spine — no new code is being tested, only the composition. The
+   mechanical RED WAS captured cleanly on step_10 (trace artifact
+   missing before hand-banking): 10 passed / 1 failed pre-bank, then
+   after hand-banking the trace: 11 passed. Recorded verbatim in
+   `phase0/drill_receipts/20260913T082500Z_w1c_integration_proof_RED.log`
+   and in the wave-close doc §4.
+
+6. **The integration proof surfaced ZERO composition bugs.** This
+   is a positive proof, not a null result: had there been a
+   coupling bug, this wave would have surfaced it as a RED on one
+   of the compose steps. Recorded honestly.
+
+7. **W1c double-green byte-match.** `BASELINE_GUARD=1 python -m
+   pytest tests/invariants/` returned `3503 passed / 1 skipped /
+   438 warnings` across three consecutive runs. Ratchet
+   **3492 → 3503 (+11)**.
+
+8. **Discipline receipts (all banked):**
+   - Grounding: `notes/W1c_PLATFORM_INTEGRATION_PROOF_grounding_brief.md`
+   - Wave close: `notes/W1c_PLATFORM_INTEGRATION_PROOF_close.md`
+   - Pre-bank RED at
+     `phase0/drill_receipts/20260913T082500Z_w1c_integration_proof_RED.log`
+   - Wave-close double-green at
+     `phase0/drill_receipts/20260913T083500Z_w1c_integration_proof_wave_close_double_green.log`
+   - Trace artifact at
+     `phase0/integration_proofs/w1c_integration_proof_trace.md`
+
+9. **HARD STOP after W1c close.** W2 is NOT opened this turn and is
+    NOT scoped. Remains BLOCKED on the same three external items
+    banked at W1b close (Path A/B/C ruling · NAS network path ·
+    3-station confirm).
+
+10. **Two-commit local.** Code to Extraction-Akki
+    `programme/track-a`. State to workspace `master`. NO push.
+    NO testing_agent. Terminal pytest only.
+
+11. **Security hygiene held.** HF token never echoed. `hf_token.csv`
+    remains at mode 0600, git-ignored. `EMERGENT_LLM_KEY` never
+    echoed. `SEC-2026-09-12-01` rotation still owed by owner
+    post-session.
+
+12. **W2 remains BLOCKED.** Not touched this wave.
+
+---
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
