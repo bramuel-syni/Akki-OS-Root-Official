@@ -1,0 +1,27 @@
+{
+  "at_utc": "2026-09-13T17:21:33Z",
+  "phase": "STEP_3_DISCOVERY_ON_JUMP",
+  "window_check": "UTC hour=17; window 08:00\u201302:00 UTC (EAT 11:00\u201305:00)",
+  "in_window": true,
+  "known_hosts_pinned": "/app/backend/estate_keys/known_hosts",
+  "jump_target": {
+    "user": "root",
+    "ip_seen_in_pinned_known_hosts": true,
+    "cred_kind": "LIKELY_PASSWORD (12 chars) - flagged SEC-2026-09-13-T4-01"
+  },
+  "exit_code": null,
+  "discovery": {
+    "hostname": "ecs-b896",
+    "uname": "Linux 6.8.0-106-generic x86_64",
+    "id": "root",
+    "ss_listen": "0.0.0.0:22\n127.0.0.1:29338\n127.0.0.1:29339\n127.0.0.53%lo:53\n127.0.0.54:53\n[::]:22",
+    "ss_listen_procs": "State  Recv-Q Send-Q Local Address:Port  Peer Address:PortProcess                                                 \nLISTEN 0      10         127.0.0.1:29339      0.0.0.0:*    users:((\"uniagentd\",pid=5541,fd=4))                    \nLISTEN 0      10         127.0.0.1:29338      0.0.0.0:*    users:((\"uniagentd\",pid=5540,fd=5))                    \nLISTEN 0      4096      127.0.0.54:53         0.0.0.0:*    users:((\"systemd-resolve\",pid=403,fd=17))              \nLISTEN 0      4096         0.0.0.0:22         0.0.0.0:*    users:((\"sshd\",pid=5277,fd=3),(\"systemd\",pid=1,fd=120))\nLISTEN 0      4096   127.0.0.53%lo:53         0.0.0.0:*    users:((\"systemd-resolve\",pid=403,fd=15))              \nLISTEN 0      4096            [::]:22            [::]:*    users:((\"sshd\",pid=5277,fd=4),(\"systemd\",pid=1,fd=121))",
+    "db_procs": "",
+    "which_clients": "",
+    "mysql_cnf": "",
+    "mysql_socket": "",
+    "etc_hosts_dbs": "",
+    "mysql_defaults_show_dbs": "no /root/.my.cnf readable"
+  },
+  "read_only_assertion": "Every discovery command in DISCOVERY_CMDS is read-only. No writes, no DDL, no schema changes. `ss`, `ps`, `ls`, `which`, `grep /etc/hosts`, and `mysql SHOW DATABASES` only."
+}

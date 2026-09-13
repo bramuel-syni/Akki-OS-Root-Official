@@ -1,0 +1,1530 @@
+{
+  "at_utc": "2026-09-13T17:25:52Z",
+  "phase": "STEP_2_TUNNELED_DB_CONNECT",
+  "window_check": "UTC hour=17; EAT window 08:00-02:00 UTC",
+  "in_window": true,
+  "tunnel": {
+    "engine": "paramiko",
+    "jump": {
+      "user": "root",
+      "ip": "<pinned>"
+    },
+    "local": "127.0.0.1:13306",
+    "remote": "159.138.162.146:3306",
+    "reachability_probe_receipt": "phase0/db_connect_receipts/20260913T172245Z_step3_reachability_probe.json"
+  },
+  "credentials_loaded": {
+    "viusasa_full_rows": 4,
+    "viusasa_row_shape": "col0=db_name, col1=host_hint, col2=user, col3=pw (ALL VALUES REDACTED-BY-POSITION)",
+    "weego_host_rows": 4
+  },
+  "read_only_assertion": "pymysql opens with init_command='SET SESSION TRANSACTION READ ONLY'; no non-SELECT/SHOW statements are issued from this driver.",
+  "attempts": [
+    {
+      "cred_label": "viusasa/DATABASE NAME",
+      "ok": false,
+      "cls": "AUTH_REJECTED",
+      "code": 1045,
+      "msg": "(1045, \"Access denied for user 'USERNAME'@'159.138.173.250' (using password: YES)\")"
+    },
+    {
+      "cred_label": "viusasa/iebc_forms",
+      "ok": true,
+      "cls": null,
+      "code": null,
+      "msg": null
+    }
+  ],
+  "schema_report": {
+    "winning_cred_label": "viusasa/iebc_forms",
+    "server_version": "8.0.28-231003",
+    "read_only_global": 0,
+    "read_only_session": 1,
+    "databases_all_names": [
+      "analytics",
+      "information_schema",
+      "performance_schema",
+      "sql_demo",
+      "sql_trial1",
+      "sys",
+      "weego"
+    ],
+    "user_databases_total": 4,
+    "per_database_schema": {
+      "analytics": {
+        "tables_returned": 28,
+        "tables": [
+          {
+            "name": "age_groups",
+            "kind": "BASE TABLE",
+            "row_estimate": 5
+          },
+          {
+            "name": "campaign_age_groups",
+            "kind": "BASE TABLE",
+            "row_estimate": 1
+          },
+          {
+            "name": "campaign_counties",
+            "kind": "BASE TABLE",
+            "row_estimate": 4
+          },
+          {
+            "name": "campaign_l_s_m_s",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "campaign_regions",
+            "kind": "BASE TABLE",
+            "row_estimate": 4
+          },
+          {
+            "name": "campaign_s_e_c_s",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "campaign_stations",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "campaign_time_slots",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "campaigns",
+            "kind": "BASE TABLE",
+            "row_estimate": 4
+          },
+          {
+            "name": "counties",
+            "kind": "BASE TABLE",
+            "row_estimate": 46
+          },
+          {
+            "name": "failed_jobs",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "l_s_m_s",
+            "kind": "BASE TABLE",
+            "row_estimate": 16
+          },
+          {
+            "name": "migrations",
+            "kind": "BASE TABLE",
+            "row_estimate": 32
+          },
+          {
+            "name": "password_reset_tokens",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "periods",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "personal_access_tokens",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "regions",
+            "kind": "BASE TABLE",
+            "row_estimate": 10
+          },
+          {
+            "name": "respondents",
+            "kind": "BASE TABLE",
+            "row_estimate": 14725
+          },
+          {
+            "name": "responses",
+            "kind": "BASE TABLE",
+            "row_estimate": 39120
+          },
+          {
+            "name": "roadshow_stops",
+            "kind": "BASE TABLE",
+            "row_estimate": 1398
+          },
+          {
+            "name": "roadshows",
+            "kind": "BASE TABLE",
+            "row_estimate": 12
+          },
+          {
+            "name": "s_e_c_s",
+            "kind": "BASE TABLE",
+            "row_estimate": 4
+          },
+          {
+            "name": "stations",
+            "kind": "BASE TABLE",
+            "row_estimate": 14
+          },
+          {
+            "name": "time_slots",
+            "kind": "BASE TABLE",
+            "row_estimate": 48
+          },
+          {
+            "name": "users",
+            "kind": "BASE TABLE",
+            "row_estimate": 19
+          },
+          {
+            "name": "youtube_channel_views",
+            "kind": "BASE TABLE",
+            "row_estimate": 62302
+          },
+          {
+            "name": "youtube_channels",
+            "kind": "BASE TABLE",
+            "row_estimate": 2
+          },
+          {
+            "name": "youtube_time_blocks",
+            "kind": "BASE TABLE",
+            "row_estimate": 17
+          }
+        ]
+      },
+      "sql_demo": {
+        "tables_returned": 1,
+        "tables": [
+          {
+            "name": "marketting",
+            "kind": "BASE TABLE",
+            "row_estimate": 3
+          }
+        ]
+      },
+      "sql_trial1": {
+        "tables_returned": 1,
+        "tables": [
+          {
+            "name": "programming",
+            "kind": "BASE TABLE",
+            "row_estimate": 3
+          }
+        ]
+      },
+      "weego": {
+        "tables_returned": 200,
+        "tables": [
+          {
+            "name": "account_types",
+            "kind": "BASE TABLE",
+            "row_estimate": 2
+          },
+          {
+            "name": "admins",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "advertisement_banners",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "agents",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "app_navigation_drawers",
+            "kind": "BASE TABLE",
+            "row_estimate": 24
+          },
+          {
+            "name": "application_configurations",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "application_merchant_strings",
+            "kind": "BASE TABLE",
+            "row_estimate": 1724
+          },
+          {
+            "name": "application_modules",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "application_string_languages",
+            "kind": "BASE TABLE",
+            "row_estimate": 39311
+          },
+          {
+            "name": "application_strings",
+            "kind": "BASE TABLE",
+            "row_estimate": 3467
+          },
+          {
+            "name": "application_themes",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "applications",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "applied_jobs",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "automated_reply_messages",
+            "kind": "BASE TABLE",
+            "row_estimate": 144
+          },
+          {
+            "name": "banners",
+            "kind": "BASE TABLE",
+            "row_estimate": 3
+          },
+          {
+            "name": "bill_periods",
+            "kind": "BASE TABLE",
+            "row_estimate": 4
+          },
+          {
+            "name": "bookeey_transactions",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "booking_bidding_drivers",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "booking_checkouts",
+            "kind": "BASE TABLE",
+            "row_estimate": 8299
+          },
+          {
+            "name": "booking_configurations",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "booking_coordinates",
+            "kind": "BASE TABLE",
+            "row_estimate": 816
+          },
+          {
+            "name": "booking_delivery_details",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "booking_details",
+            "kind": "BASE TABLE",
+            "row_estimate": 8334
+          },
+          {
+            "name": "booking_ratings",
+            "kind": "BASE TABLE",
+            "row_estimate": 1773
+          },
+          {
+            "name": "booking_request_drivers",
+            "kind": "BASE TABLE",
+            "row_estimate": 33202
+          },
+          {
+            "name": "booking_transactions",
+            "kind": "BASE TABLE",
+            "row_estimate": 1861
+          },
+          {
+            "name": "bookings",
+            "kind": "BASE TABLE",
+            "row_estimate": 14252
+          },
+          {
+            "name": "brand_segment",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "brands",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "bus_booking_checkouts",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "bus_booking_details",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "bus_booking_masters",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "bus_bookings",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "bus_bus_service",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "bus_configurations",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "bus_documents",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "bus_driver_mappings",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "bus_pickup_drop_point_bus_stop",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "bus_pickup_drop_points",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "bus_price_card_bus_stops",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "bus_price_cards",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "bus_route_mappings",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "bus_routes",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "bus_routes_bus_stops",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "bus_seat_details",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "bus_services",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "bus_stops",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "buses",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "business_segment_cashouts",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "business_segment_configurations",
+            "kind": "BASE TABLE",
+            "row_estimate": 1475
+          },
+          {
+            "name": "business_segment_driver_agency",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "business_segment_onesignals",
+            "kind": "BASE TABLE",
+            "row_estimate": 1280
+          },
+          {
+            "name": "business_segment_service_type",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "business_segment_style_management",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "business_segment_wallet_transactions",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "business_segments",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "cancel_policies",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "cancel_policy_translations",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "cancel_rates",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "cancel_reasons",
+            "kind": "BASE TABLE",
+            "row_estimate": 14
+          },
+          {
+            "name": "carpooling_config_countries",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "carpooling_configurations",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "carpooling_coordinates",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "carpooling_offer_ride_checkout_details",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "carpooling_offer_ride_checkouts",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "carpooling_price_card_cancel_charges",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "carpooling_ride_checkouts",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "carpooling_ride_details",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "carpooling_ride_user_details",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "carpooling_rides",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "cashback_details",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "cashbacks",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "categories",
+            "kind": "BASE TABLE",
+            "row_estimate": 5
+          },
+          {
+            "name": "category_segment",
+            "kind": "BASE TABLE",
+            "row_estimate": 5
+          },
+          {
+            "name": "category_vehicle_type",
+            "kind": "BASE TABLE",
+            "row_estimate": 31
+          },
+          {
+            "name": "chats",
+            "kind": "BASE TABLE",
+            "row_estimate": 1129
+          },
+          {
+            "name": "child_terms",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "cinetpay_transactions",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "cms_pages",
+            "kind": "BASE TABLE",
+            "row_estimate": 6
+          },
+          {
+            "name": "configurations",
+            "kind": "BASE TABLE",
+            "row_estimate": 1
+          },
+          {
+            "name": "corporate_approval_settings",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "corporate_booking_approvals",
+            "kind": "BASE TABLE",
+            "row_estimate": 4
+          },
+          {
+            "name": "corporate_credit_settings",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "corporate_department_approvers",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "corporate_departments",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "corporate_geofences",
+            "kind": "BASE TABLE",
+            "row_estimate": 1
+          },
+          {
+            "name": "corporate_limits",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "corporate_price_cards",
+            "kind": "BASE TABLE",
+            "row_estimate": 21
+          },
+          {
+            "name": "corporate_spend_alerts",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "corporate_timing_rules",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "corporate_wallet_transactions",
+            "kind": "BASE TABLE",
+            "row_estimate": 232
+          },
+          {
+            "name": "corporates",
+            "kind": "BASE TABLE",
+            "row_estimate": 6
+          },
+          {
+            "name": "countries",
+            "kind": "BASE TABLE",
+            "row_estimate": 1
+          },
+          {
+            "name": "country_area_document",
+            "kind": "BASE TABLE",
+            "row_estimate": 44
+          },
+          {
+            "name": "country_area_package",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "country_area_payment_method",
+            "kind": "BASE TABLE",
+            "row_estimate": 92
+          },
+          {
+            "name": "country_area_segment",
+            "kind": "BASE TABLE",
+            "row_estimate": 16
+          },
+          {
+            "name": "country_area_segment_document",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "country_area_service_type",
+            "kind": "BASE TABLE",
+            "row_estimate": 80
+          },
+          {
+            "name": "country_area_subscription_package",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "country_area_vehicle_document",
+            "kind": "BASE TABLE",
+            "row_estimate": 1141
+          },
+          {
+            "name": "country_area_vehicle_type",
+            "kind": "BASE TABLE",
+            "row_estimate": 244
+          },
+          {
+            "name": "country_areas",
+            "kind": "BASE TABLE",
+            "row_estimate": 25
+          },
+          {
+            "name": "country_carpooling_document",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "country_cashout_payment",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "country_document",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "country_payment",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "country_payment_operator",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "credit_account_details",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "customer_supports",
+            "kind": "BASE TABLE",
+            "row_estimate": 24
+          },
+          {
+            "name": "default_onesignals",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "delivery_checkout_details",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "delivery_configurations",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "delivery_packages",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "delivery_products",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "demo_configurations",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "distance_methods",
+            "kind": "BASE TABLE",
+            "row_estimate": 9
+          },
+          {
+            "name": "distance_settings",
+            "kind": "BASE TABLE",
+            "row_estimate": 1
+          },
+          {
+            "name": "distance_slabs",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "documents",
+            "kind": "BASE TABLE",
+            "row_estimate": 8
+          },
+          {
+            "name": "dpo_transactions",
+            "kind": "BASE TABLE",
+            "row_estimate": 197
+          },
+          {
+            "name": "driver_accounts",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "driver_addresses",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "driver_agencies",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "driver_agency_wallet_transactions",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "driver_cancel_bookings",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "driver_cards",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "driver_cashouts",
+            "kind": "BASE TABLE",
+            "row_estimate": 321
+          },
+          {
+            "name": "driver_commission_choices",
+            "kind": "BASE TABLE",
+            "row_estimate": 2
+          },
+          {
+            "name": "driver_configurations",
+            "kind": "BASE TABLE",
+            "row_estimate": 1
+          },
+          {
+            "name": "driver_destinations",
+            "kind": "BASE TABLE",
+            "row_estimate": 1
+          },
+          {
+            "name": "driver_documents",
+            "kind": "BASE TABLE",
+            "row_estimate": 26333
+          },
+          {
+            "name": "driver_downgraded_vehicle_types",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "driver_driver_vehicle",
+            "kind": "BASE TABLE",
+            "row_estimate": 12996
+          },
+          {
+            "name": "driver_franchisee",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "driver_galleries",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "driver_launch_events",
+            "kind": "BASE TABLE",
+            "row_estimate": 40435
+          },
+          {
+            "name": "driver_launches",
+            "kind": "BASE TABLE",
+            "row_estimate": 10876
+          },
+          {
+            "name": "driver_online",
+            "kind": "BASE TABLE",
+            "row_estimate": 9936
+          },
+          {
+            "name": "driver_online_times",
+            "kind": "BASE TABLE",
+            "row_estimate": 5037
+          },
+          {
+            "name": "driver_preferred_routes",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "driver_redeemed_rewards",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "driver_reward_points",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "driver_ride_configs",
+            "kind": "BASE TABLE",
+            "row_estimate": 5677
+          },
+          {
+            "name": "driver_segment",
+            "kind": "BASE TABLE",
+            "row_estimate": 10623
+          },
+          {
+            "name": "driver_segment_documents",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "driver_segment_ratings",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "driver_service_time_slot_detail",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "driver_service_type",
+            "kind": "BASE TABLE",
+            "row_estimate": 10851
+          },
+          {
+            "name": "driver_settlements",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "driver_subscription_records",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "driver_vehicle_documents",
+            "kind": "BASE TABLE",
+            "row_estimate": 47080
+          },
+          {
+            "name": "driver_vehicle_service_type",
+            "kind": "BASE TABLE",
+            "row_estimate": 12037
+          },
+          {
+            "name": "driver_vehicle_type_switch_logs",
+            "kind": "BASE TABLE",
+            "row_estimate": 152
+          },
+          {
+            "name": "driver_vehicles",
+            "kind": "BASE TABLE",
+            "row_estimate": 12165
+          },
+          {
+            "name": "driver_wallet_transactions",
+            "kind": "BASE TABLE",
+            "row_estimate": 4896
+          },
+          {
+            "name": "drivers",
+            "kind": "BASE TABLE",
+            "row_estimate": 28206
+          },
+          {
+            "name": "email_configs",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "email_templates",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "employee_designations",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "engagement_notification_settings",
+            "kind": "BASE TABLE",
+            "row_estimate": 120
+          },
+          {
+            "name": "event_segment",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "events",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "extra_charges",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "fail_bookings",
+            "kind": "BASE TABLE",
+            "row_estimate": 24
+          },
+          {
+            "name": "failed_booking_attempts",
+            "kind": "BASE TABLE",
+            "row_estimate": 887
+          },
+          {
+            "name": "failed_jobs",
+            "kind": "BASE TABLE",
+            "row_estimate": 78
+          },
+          {
+            "name": "family_members",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "favourite_business_segments",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "favourite_drivers",
+            "kind": "BASE TABLE",
+            "row_estimate": 185
+          },
+          {
+            "name": "franchisee_user",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "franchisees",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "gateway_log",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "geofence_area_queue",
+            "kind": "BASE TABLE",
+            "row_estimate": 4
+          },
+          {
+            "name": "good_translations",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "goods",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "guest_users",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "handyman_bidding_order_driver",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "handyman_bidding_orders",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "handyman_booking_carts",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "handyman_categories",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "handyman_category_service_type",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "handyman_charge_types",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "handyman_commissions",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "handyman_configurations",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "handyman_order_details",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "handyman_orders",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "home_screen_config_vehicle_types",
+            "kind": "BASE TABLE",
+            "row_estimate": 12
+          },
+          {
+            "name": "home_screen_configs",
+            "kind": "BASE TABLE",
+            "row_estimate": 4
+          },
+          {
+            "name": "home_screen_holders",
+            "kind": "BASE TABLE",
+            "row_estimate": 14
+          },
+          {
+            "name": "hotels",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "hotels_wallet_transaction",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "ihela_transactions",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "illico_cash_transactions",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "imepay_payment_transaction",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "import_user_fails",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "info_settings",
+            "kind": "BASE TABLE",
+            "row_estimate": 83
+          },
+          {
+            "name": "intouch_configuration",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "intouch_transactions",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          },
+          {
+            "name": "job_vacancies",
+            "kind": "BASE TABLE",
+            "row_estimate": 0
+          }
+        ]
+      }
+    },
+    "structural_proof_row_information_schema_schemata": [
+      {
+        "col_name": "SCHEMA_NAME",
+        "type_code": 253,
+        "value_shape": "str(len=18)"
+      },
+      {
+        "col_name": "DEFAULT_CHARACTER_SET_NAME",
+        "type_code": 253,
+        "value_shape": "str(len=4)"
+      },
+      {
+        "col_name": "DEFAULT_COLLATION_NAME",
+        "type_code": 253,
+        "value_shape": "str(len=15)"
+      }
+    ],
+    "representative_db_column_metadata": {
+      "database": "analytics",
+      "columns_returned": 40,
+      "columns": [
+        {
+          "table": "age_groups",
+          "column": "created_at",
+          "data_type": "timestamp",
+          "column_type": "timestamp",
+          "nullable": "YES"
+        },
+        {
+          "table": "age_groups",
+          "column": "deleted_at",
+          "data_type": "timestamp",
+          "column_type": "timestamp",
+          "nullable": "YES"
+        },
+        {
+          "table": "age_groups",
+          "column": "id",
+          "data_type": "bigint",
+          "column_type": "bigint unsigned",
+          "nullable": "NO"
+        },
+        {
+          "table": "age_groups",
+          "column": "max_age",
+          "data_type": "int",
+          "column_type": "int",
+          "nullable": "YES"
+        },
+        {
+          "table": "age_groups",
+          "column": "min_age",
+          "data_type": "int",
+          "column_type": "int",
+          "nullable": "NO"
+        },
+        {
+          "table": "age_groups",
+          "column": "name",
+          "data_type": "varchar",
+          "column_type": "varchar(255)",
+          "nullable": "NO"
+        },
+        {
+          "table": "age_groups",
+          "column": "updated_at",
+          "data_type": "timestamp",
+          "column_type": "timestamp",
+          "nullable": "YES"
+        },
+        {
+          "table": "campaign_age_groups",
+          "column": "age_group_id",
+          "data_type": "bigint",
+          "column_type": "bigint unsigned",
+          "nullable": "NO"
+        },
+        {
+          "table": "campaign_age_groups",
+          "column": "campaign_id",
+          "data_type": "bigint",
+          "column_type": "bigint unsigned",
+          "nullable": "NO"
+        },
+        {
+          "table": "campaign_counties",
+          "column": "campaign_id",
+          "data_type": "bigint",
+          "column_type": "bigint unsigned",
+          "nullable": "NO"
+        },
+        {
+          "table": "campaign_counties",
+          "column": "county_id",
+          "data_type": "bigint",
+          "column_type": "bigint unsigned",
+          "nullable": "NO"
+        },
+        {
+          "table": "campaign_l_s_m_s",
+          "column": "campaign_id",
+          "data_type": "bigint",
+          "column_type": "bigint unsigned",
+          "nullable": "NO"
+        },
+        {
+          "table": "campaign_l_s_m_s",
+          "column": "l_s_m_id",
+          "data_type": "bigint",
+          "column_type": "bigint unsigned",
+          "nullable": "NO"
+        },
+        {
+          "table": "campaign_regions",
+          "column": "campaign_id",
+          "data_type": "bigint",
+          "column_type": "bigint unsigned",
+          "nullable": "NO"
+        },
+        {
+          "table": "campaign_regions",
+          "column": "region_id",
+          "data_type": "bigint",
+          "column_type": "bigint unsigned",
+          "nullable": "NO"
+        },
+        {
+          "table": "campaign_s_e_c_s",
+          "column": "campaign_id",
+          "data_type": "bigint",
+          "column_type": "bigint unsigned",
+          "nullable": "NO"
+        },
+        {
+          "table": "campaign_s_e_c_s",
+          "column": "s_e_c_id",
+          "data_type": "bigint",
+          "column_type": "bigint unsigned",
+          "nullable": "NO"
+        },
+        {
+          "table": "campaign_stations",
+          "column": "campaign_id",
+          "data_type": "bigint",
+          "column_type": "bigint unsigned",
+          "nullable": "NO"
+        },
+        {
+          "table": "campaign_stations",
+          "column": "station_id",
+          "data_type": "bigint",
+          "column_type": "bigint unsigned",
+          "nullable": "NO"
+        },
+        {
+          "table": "campaign_time_slots",
+          "column": "campaign_id",
+          "data_type": "bigint",
+          "column_type": "bigint unsigned",
+          "nullable": "NO"
+        },
+        {
+          "table": "campaign_time_slots",
+          "column": "time_slot_id",
+          "data_type": "bigint",
+          "column_type": "bigint unsigned",
+          "nullable": "NO"
+        },
+        {
+          "table": "campaigns",
+          "column": "audience",
+          "data_type": "int",
+          "column_type": "int",
+          "nullable": "YES"
+        },
+        {
+          "table": "campaigns",
+          "column": "created_at",
+          "data_type": "timestamp",
+          "column_type": "timestamp",
+          "nullable": "YES"
+        },
+        {
+          "table": "campaigns",
+          "column": "created_by",
+          "data_type": "bigint",
+          "column_type": "bigint unsigned",
+          "nullable": "NO"
+        },
+        {
+          "table": "campaigns",
+          "column": "days",
+          "data_type": "json",
+          "column_type": "json",
+          "nullable": "YES"
+        },
+        {
+          "table": "campaigns",
+          "column": "deleted_at",
+          "data_type": "timestamp",
+          "column_type": "timestamp",
+          "nullable": "YES"
+        },
+        {
+          "table": "campaigns",
+          "column": "description",
+          "data_type": "text",
+          "column_type": "text",
+          "nullable": "YES"
+        },
+        {
+          "table": "campaigns",
+          "column": "end_date",
+          "data_type": "timestamp",
+          "column_type": "timestamp",
+          "nullable": "YES"
+        },
+        {
+          "table": "campaigns",
+          "column": "genders",
+          "data_type": "json",
+          "column_type": "json",
+          "nullable": "YES"
+        },
+        {
+          "table": "campaigns",
+          "column": "id",
+          "data_type": "bigint",
+          "column_type": "bigint unsigned",
+          "nullable": "NO"
+        },
+        {
+          "table": "campaigns",
+          "column": "name",
+          "data_type": "varchar",
+          "column_type": "varchar(255)",
+          "nullable": "YES"
+        },
+        {
+          "table": "campaigns",
+          "column": "settings",
+          "data_type": "json",
+          "column_type": "json",
+          "nullable": "YES"
+        },
+        {
+          "table": "campaigns",
+          "column": "start_date",
+          "data_type": "timestamp",
+          "column_type": "timestamp",
+          "nullable": "YES"
+        },
+        {
+          "table": "campaigns",
+          "column": "updated_at",
+          "data_type": "timestamp",
+          "column_type": "timestamp",
+          "nullable": "YES"
+        },
+        {
+          "table": "counties",
+          "column": "created_at",
+          "data_type": "timestamp",
+          "column_type": "timestamp",
+          "nullable": "YES"
+        },
+        {
+          "table": "counties",
+          "column": "deleted_at",
+          "data_type": "timestamp",
+          "column_type": "timestamp",
+          "nullable": "YES"
+        },
+        {
+          "table": "counties",
+          "column": "id",
+          "data_type": "bigint",
+          "column_type": "bigint unsigned",
+          "nullable": "NO"
+        },
+        {
+          "table": "counties",
+          "column": "name",
+          "data_type": "varchar",
+          "column_type": "varchar(255)",
+          "nullable": "NO"
+        },
+        {
+          "table": "counties",
+          "column": "region_id",
+          "data_type": "bigint",
+          "column_type": "bigint unsigned",
+          "nullable": "NO"
+        },
+        {
+          "table": "counties",
+          "column": "updated_at",
+          "data_type": "timestamp",
+          "column_type": "timestamp",
+          "nullable": "YES"
+        }
+      ]
+    }
+  },
+  "overall_verdict": "PASS"
+}

@@ -1,0 +1,70 @@
+{
+  "at_utc": "2026-09-13T17:22:45Z",
+  "phase": "STEP_3_REACHABILITY_PROBE_FROM_JUMP",
+  "method": "bash /dev/tcp exec 3<>/dev/tcp/HOST/PORT (read-only TCP connect)",
+  "read_only": true,
+  "candidates": {
+    "hosts_from": "db_credentials_2.csv (WEEGO)",
+    "hosts": [
+      "159.138.162.146",
+      "159.138.164.124",
+      "110.238.75.83",
+      "203.123.83.144"
+    ],
+    "ports": {
+      "3306": "MySQL/MariaDB",
+      "5432": "PostgreSQL",
+      "27017": "MongoDB"
+    }
+  },
+  "matrix": {
+    "159.138.162.146:3306": {
+      "verdict": "OPEN",
+      "raw": "OPEN"
+    },
+    "159.138.162.146:5432": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "159.138.162.146:27017": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "159.138.164.124:3306": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "159.138.164.124:5432": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "159.138.164.124:27017": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "110.238.75.83:3306": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "110.238.75.83:5432": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "110.238.75.83:27017": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "203.123.83.144:3306": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "203.123.83.144:5432": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    },
+    "203.123.83.144:27017": {
+      "verdict": "CLOSED_OR_TIMEOUT",
+      "raw": "CLOSED_OR_TIMEOUT"
+    }
+  }
+}
