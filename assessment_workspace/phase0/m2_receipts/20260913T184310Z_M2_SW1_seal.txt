@@ -1,0 +1,28 @@
+W-M2-SW1 · W-RULE-REGISTRY-BOOTSTRAP · seal
+
+Sub-wave scope:  Doc-0 Attr-4 · rule-registry scaffold.
+Canon anchors:    Doc-0 Attr-4 · Canon-3 §22 (additive) · Canon-3 §9.3 (single-writer) · BUILD_STATUS §2 row 4d.
+
+Mechanical RED   : 20260913T184100Z_M2_SW1_RED.log (7 failures · right-reason ModuleNotFoundError)
+GREEN #1         : 20260913T184300Z_M2_SW1_GREEN2.log (3640 passed · 1 skipped · 438 warnings · 116.92s)
+GREEN #2         : 20260913T184300Z_M2_SW1_GREEN2.log (3640 passed · 1 skipped · 438 warnings · 116.44s)
+BASELINE_GUARD=1 : 20260913T184310Z_M2_SW1_GREEN1.log (3640 passed · floor honored)
+
+Ratchet          : 3633 -> 3640 (+7)
+Files added      : services/rules_service/__init__.py
+                   services/rules_service/rule_registry.py
+                   tests/invariants/test_wm2_sw1_rule_registry_bootstrap.py
+Files edited     : tests/invariants/baseline_failures.json (ratchet + history)
+
+Invariants landed:
+  1. module fabric present (RuleRecord · RuleRegistry · ENFORCEMENT_CLASSES · RegistryAppendOnly · RuleIdCollision · get_rule_registry)
+  2. finite enforcement-class taxonomy {blocking · declaratory · reporting · pending_override}
+  3. 3 canonical seed rules present (RULES_SERVICE_R_1 · DAP_R_1_CONTROLLED_UNIT · SFP_8)
+  4. append-only invariant (remove/replace refuses)
+  5. rule-id collision refused
+  6. out-of-set enforcement class refused
+  7. list_by_class filter correctness
+
+No lift.  Zero churn to prior-wave code.
+
+Kind             : sub-wave seal (W-M2-SW1)

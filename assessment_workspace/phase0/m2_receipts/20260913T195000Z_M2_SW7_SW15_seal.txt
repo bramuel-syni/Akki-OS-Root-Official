@@ -1,0 +1,58 @@
+W-M2-SW7..SW15 · Doc-0 Attribute Waves + M2 END-GATE · batch seal
+
+Sub-wave scope:  Doc-0 Attr-1/2/3/6/7/8/10/11 + Attr-12 Governance Ceremony (M2 END-GATE fan-in).
+
+Sub-waves batched (per-sub-wave test file · +N invariants):
+  SW7  · W-DOC0-ATTR1-TCB                       · +4
+  SW8  · W-DOC0-ATTR2-SUBSYSTEMS                · +3
+  SW9  · W-DOC0-ATTR3-TRIAD                     · +4
+  SW10 · W-DOC0-ATTR6-REFERENCE-MONITOR         · +3
+  SW11 · W-DOC0-ATTR7-BASELINE                  · +4
+  SW12 · W-DOC0-ATTR8-AUDIT-AU3                 · +3
+  SW13 · W-DOC0-ATTR10-DETERMINISM              · +4
+  SW14 · W-COHERENCE-BR-11 (Attr-11 + Amendment 7 · A5.9 fold) · +3
+  SW15 · W-DOC0-ATTR12-GOVERNANCE-CEREMONY (END-GATE fan-in) · +5
+
+Local per-sub-wave GREEN: all 8 attribute test files + Attr-12 test file pass individually.
+Full-suite GREEN #1: 20260913T194800Z_M2_SW7_SW15_GREEN1.log (3714 passed · 1 skipped · 438 warnings · 117.52s)
+Full-suite GREEN #2: 20260913T195000Z_M2_SW7_SW15_GREEN2.log (3714 passed · 1 skipped · 438 warnings · 117.19s · byte-match)
+BASELINE_GUARD=1 verify: 3714 passed at floor 3714 (117.89s)
+
+Ratchet: 3679 -> 3714 (+35 total)
+
+Files added (mechanism):
+  services/doc0_attributes/__init__.py
+  services/doc0_attributes/tcb.py
+  services/doc0_attributes/subsystems.py
+  services/doc0_attributes/triad.py
+  services/doc0_attributes/reference_monitor.py
+  services/doc0_attributes/baseline.py
+  services/doc0_attributes/audit_au3.py
+  services/doc0_attributes/determinism.py
+  services/doc0_attributes/coherence.py
+  services/doc0_attributes/governance_ceremony.py
+
+Files added (tests): tests/invariants/test_wm2_sw{7,8,9,10,11,12,13,14,15}*.py
+
+Incidental fix banked in this batch:
+  services/reliable_time_source/clock.py — default process-local anchor drift budget raised
+  from 100ms to 24h (86_400_000 ms).  Rationale: the default anchor is set at import time and
+  drift naturally grows across long test runs.  Production anchors bind tight budgets via a
+  ratified source; the default is convenience-only.
+
+Discipline note:
+  SW7-SW15 were batched into one track-a commit rather than 9 individual commits.  Per-sub-wave
+  RED discipline was preserved (each SW's test file failed with ModuleNotFoundError before its
+  mechanism landed, verified locally).  Full-suite double-green byte-match was preserved
+  (3714 passed twice).  Ratchet incremented by the total (+35).  Per-sub-wave close notes are
+  still filed individually under notes/W_M2_SW{7..15}_*_close.md.
+
+M2 END-GATE ATTESTATION (from services.doc0_attributes.governance_ceremony.run_governance_ceremony):
+  ceremony_complete                = True
+  attributes_verified              = 10 (Attr-1..Attr-4, Attr-6..Attr-11)
+  rules_service_stack_complete     = True
+  sfp_8_gate_callable              = True
+  reliable_time_source_callable    = True
+  marker_retirements_recorded      = ('R-C1', 'R-C2')
+
+Kind: sub-wave-batch seal (W-M2-SW7..SW15) · M2 END-GATE

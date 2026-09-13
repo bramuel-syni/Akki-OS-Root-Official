@@ -1,0 +1,31 @@
+W-M2-SW6 · W-SFP-8-SERVING-INTEGRITY · seal
+
+Sub-wave scope:  A20.15 SFP-8 serving floor · DAP-31+/DAP-32+ dependency resolution.
+Canon anchors:   Serving_Integrity_Amendment_v1 §B V-2 · Doc-0 Attr-7 · MILESTONE_PROMISE_BINDING §M0 line 11.
+Mechanical RED   : 20260913T193500Z_M2_SW6_RED.log (7 fails · ModuleNotFoundError)
+GREEN #1         : 20260913T193700Z_M2_SW6_GREEN1.log (3679 passed · 1 skipped · 118.00s)
+GREEN #2         : 20260913T193900Z_M2_SW6_GREEN2.log (3679 passed · 1 skipped · 117.34s · byte-match)
+Ratchet          : 3672 -> 3679 (+7)
+
+Files added:
+  services/serving_floor/__init__.py
+  services/serving_floor/sfp_8.py
+  tests/invariants/test_wm2_sw6_sfp_8_serving_integrity.py
+
+Invariants landed:
+  1. SFP-8 module fabric (ServingPathContext · SFP8ConformanceError · is_sfp_8_conforming · sfp_8_gate · SFP_8_VERSION).
+  2. Conforming context passes (signed + audit_recorded + fail-closed + 64-hex artefact_hash).
+  3. Non-signed context refuses.
+  4. Non-fail-closed context refuses.
+  5. sfp_8_gate raises SFP8ConformanceError on non-conforming.
+  6. DAP-31+/DAP-32+ dependency markers still in place (lineage) + SFP-8 gate is now callable.
+  7. SFP_8_VERSION named constant is a version string.
+
+Dependency resolution:
+  W-DAP-STACK 2H (M1 · CLOSED) landed DAP_31_PLUS_DEPENDS_ON_SFP_8 and DAP_32_PLUS_DEPENDS_ON_SFP_8 as
+  declared-dependency markers.  SW6 provides the callable SFP-8 mechanism at
+  services.serving_floor.sfp_8 that those markers point to.  The markers themselves stay in place
+  as Canon-3 §22 lineage anchors; downstream consumers (any reproduction probe / admission battery)
+  can now invoke sfp_8_gate(ctx) directly and fail-close on non-conforming paths.
+
+Kind             : sub-wave seal (W-M2-SW6)

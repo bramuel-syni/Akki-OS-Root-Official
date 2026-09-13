@@ -1,0 +1,24 @@
+W-M2-SW3 · W-RULE-BOOK-LIBRARY · seal
+
+Sub-wave scope:  Doc-0 Attr-4 · rule-book library (persistence over SW1 registry).
+Canon anchors:   Doc-0 Attribute 4 · Canon-3 §22 (additive) · Canon-3 §9.3 (single-writer) · BUILD_STATUS §2 row 4d.
+
+Mechanical RED   : 20260913T191500Z_M2_SW3_RED.log (6 fails · right-reason ModuleNotFoundError pre-impl)
+GREEN #1         : 20260913T191700Z_M2_SW3_GREEN1.log (3657 passed · 1 skipped · 438 warnings · 116.60s)
+GREEN #2         : 20260913T191900Z_M2_SW3_GREEN2.log (3657 passed · 1 skipped · 438 warnings · 116.43s)
+BASELINE_GUARD=1 : 3657 passed at floor 3657 (116.12s)
+
+Ratchet          : 3651 -> 3657 (+6)
+
+Files added      : services/rules_service/rule_book_library.py
+                   tests/invariants/test_wm2_sw3_rule_book_library.py
+
+Invariants landed:
+  1. Module fabric present (RuleBook · RuleBookImmutable · RuleBookIntegrityError · load_rule_book_from_jsonl · materialise_into_registry).
+  2. Deterministic load-from-jsonl (same file bytes -> same rule ordering).
+  3. RuleBook frozen (pydantic model_config frozen=True; mutation raises).
+  4. materialise_into_registry appends (additive; skip-existing counted).
+  5. Duplicate rule ids in source raise RuleBookIntegrityError.
+  6. RuleBook.content_hash exposed (sha256 hex of canonical JSON dump).
+
+Kind             : sub-wave seal (W-M2-SW3)

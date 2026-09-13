@@ -1,0 +1,41 @@
+W-M2-SW4 · W-286-RULE-ENUMERATION-CLASSIFY · seal
+
+Sub-wave scope:  Doc-0 Attr-4 · Rules-Service stack #4 (final) · G-4 enumeration classify.
+Canon anchors:   Doc-0 Attribute 4 · canon System Rules Registry (Master_Requirements_Registry.xlsx sheet 'System Rules Registry' · 445 rows · 313 unique canonical ids after dedupe) · PHASE_C G-4 gap doctrine.
+
+Delta RED        : 20260913T192300Z_M2_SW4_RED.log (1 right-reason ImportError for g4_pending_override_count · added after main mechanism)
+GREEN #1 (init)  : 20260913T192200Z_M2_SW4_GREEN1.log (7 passed for main mechanism)
+GREEN full-suite : 20260913T192500Z_M2_SW4_GREEN2.log (3665 passed · 1 skipped · 438 warnings · 119.91s)
+GREEN full-suite : 20260913T192700Z_M2_SW4_GREEN3.log (3665 passed · 1 skipped · 438 warnings · 116.83s · byte-match)
+BASELINE_GUARD=1 : 3665 passed at floor 3665 (117.50s)
+
+Ratchet          : 3657 -> 3665 (+8)
+
+Files added:
+  services/rules_service/rule_enumeration_classifier.py
+  services/rules_service/rule_book_seed.jsonl   (313 canon-derived rule records, generated deterministically)
+  tests/invariants/test_wm2_sw4_286_rule_enumeration_classify.py
+
+Invariants landed:
+  1. Classifier module fabric present (classify_row · generate_seed_from_canon · load_seed_summary · g4_pending_override_count · CANON_XLSX_PATH · SEED_JSONL_PATH).
+  2. Seed jsonl banked on disk with >=250 rules (actual 313).
+  3. Every seeded row has a valid enforcement_class in ENFORCEMENT_CLASSES.
+  4. Canonical anchors classify as 'blocking' (A5.1, A5.2, AC-*, RBM-*).
+  5. Unmatched rows default to 'pending_override' (DEFAULT-PENDING-OVERRIDE marker).
+  6. Classifier is deterministic (same input -> same output).
+  7. Seed loads via SW3 rule_book_library and materialises additively into a fresh registry (313 appended, 0 skipped).
+  8. g4_pending_override_count() surface: residual G-4 gap size is first-class (currently 261).
+
+Seed classification breakdown:
+  blocking          : 36    (canon-anchored ceremony/ceiling rules)
+  declaratory       : 16    (BR-*.1 build-requirement first-lines)
+  reporting         : 0
+  pending_override  : 261   (residual G-4 gap · awaits owner ratification)
+
+Rules-Service stack (SW1..SW4) COMPLETE:
+  SW1 : RuleRegistry scaffold
+  SW2 : Rules-Service ceremony (+ R-C1 governed retirement)
+  SW3 : Rule-book library (jsonl persistence)
+  SW4 : 286-rule enumeration classify (seed + classifier + G-4 gap surface)
+
+Kind             : sub-wave seal (W-M2-SW4) · Rules-Service stack close-marker

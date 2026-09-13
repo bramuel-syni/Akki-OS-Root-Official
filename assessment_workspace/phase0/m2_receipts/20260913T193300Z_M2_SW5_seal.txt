@@ -1,0 +1,31 @@
+W-M2-SW5 · W-G8-RELIABLE-TIME-SOURCE · seal
+
+Sub-wave scope:  Doc-0 Gap G-8 · reliable time source for AU-3(b)-defensible timestamps.
+Canon anchors:   Doc-0 G-8 (PHASE_C plan) · SP 800-53 AU-3(b) · Ratification_Record_v1 R-16 (owner-input · ratifier + cadence).
+
+Mechanical RED   : 20260913T192900Z_M2_SW5_RED.log (7 fails · right-reason ModuleNotFoundError pre-impl)
+GREEN #1         : 20260913T193100Z_M2_SW5_GREEN1.log (3672 passed · 1 skipped · 438 warnings · 116.47s)
+GREEN #2         : 20260913T193300Z_M2_SW5_GREEN2.log (3672 passed · 1 skipped · 438 warnings · 115.93s · byte-match)
+
+Ratchet          : 3665 -> 3672 (+7)
+
+Files added:
+  services/reliable_time_source/__init__.py
+  services/reliable_time_source/clock.py
+  tests/invariants/test_wm2_sw5_g8_reliable_time_source.py
+
+Invariants landed:
+  1. Module fabric (ReliableClock · TimeAnchor · DriftExceededError · AnchorMissingError · AU_3B_DEFENSIBLE_DRIFT_BUDGET_MS · au_3b_defensible_now).
+  2. Clock is monotonic across reads.
+  3. Bare clock (no anchor) refuses au_3b_defensible_stamp() with AnchorMissingError.
+  4. Defensible stamp shape (wall_time_iso · anchor_source_id · drift_from_anchor_ms · au_3b_defensible=True).
+  5. Drift beyond budget refuses with DriftExceededError.
+  6. R-C2 lineage anchors preserved on services/mtafiti/asset_registry_writer.py · services/dap/metering.py · services/solva_v2/trace.py.
+  7. au_3b_defensible_now() convenience wrapper returns defensible stamp.
+
+R-C2 governed retirement (opt-in style):
+  Retirement doctrine (owner ruling 2026-09-13) requires mechanism-backed retirement.
+  SW5 provides the mechanism (ReliableClock).  Rather than flipping the module-level DEFAULTS on WriteReceipt · MeteredEvent · SolvaTrace (which would break their existing R-C2 lineage-anchor invariants), SW5 exposes an OPT-IN retirement path: callers construct records with au_3b_defensible=True after passing through the clock.  Lineage anchors on the three modules stay named — any future silent flip is caught by the pre-existing R-C2 marker invariants.
+  Enabling commit: track-a f4fc201.
+
+Kind             : sub-wave seal (W-M2-SW5)

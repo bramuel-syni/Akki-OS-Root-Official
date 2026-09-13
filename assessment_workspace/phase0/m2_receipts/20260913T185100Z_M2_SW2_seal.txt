@@ -1,0 +1,49 @@
+W-M2-SW2 · W-RULES-SERVICE-CEREMONY · seal
+
+Sub-wave scope:  Doc-0 Attr-4/Attr-9 · Rules-Service R-1/R-2/R-3/R-4 ceremony.
+Canon anchors:   Doc-0 Attribute 4 + Attribute 9 rolled in · Ratification_Record_v1 Table 2 R-1/R-2/R-3/R-4 · Canon-1 §4.10 · Canon-3 §22 · PHASE_C plan R-C1 retirement doctrine (owner ruling 2026-09-13).
+
+Mechanical RED   : 20260913T184700Z_M2_SW2_RED.log (11 fails · right-reason ModuleNotFoundError pre-impl)
+GREEN #1         : 20260913T184900Z_M2_SW2_GREEN1.log (3651 passed · 1 skipped · 438 warnings · 115.67s)
+GREEN #2         : 20260913T185100Z_M2_SW2_GREEN2.log (3651 passed · 1 skipped · 438 warnings · 116.71s)
+BASELINE_GUARD=1 : additional 3651 pass at floor 3651 (117.10s)
+
+Ratchet          : 3640 -> 3651 (+11)
+
+Files added:
+  services/rules_service/ceremony.py
+  tests/invariants/test_wm2_sw2_rules_service_ceremony.py
+
+Files edited (governed retirement):
+  contracts/asset_registry.py                                            (R-C1 True -> False + lineage anchor comment)
+  tests/invariants/test_wregext_g3_cp_r2_typed_custody_class.py          (marker test renamed and updated to assert False + mechanism-backed)
+  tests/invariants/baseline_failures.json                                (ratchet + history + R-C1 retirement lineage)
+
+Invariants landed:
+  1. Ceremony module fabric present (RuleFlipRequest · RuleFlipCeremony · start_rule_flip · attempt_apply_rule_flip · BUSINESS_TYPE_TAXONOMY · SECOND_SIGNATORY_ROLE_PENDING_OVERRIDE · exception surface).
+  2. R-1 · countdown values bound to services.rulings.default_class_constants (48h / 7d).
+  3. R-3 · WITNESS_IDENTITY_SOURCE == 'the_watch'.
+  4. R-4 · v1 business-type taxonomy is a finite named set with system_ordinary / system_tcb / amendment.
+  5. R-2 · SECOND_SIGNATORY_ROLE_PENDING_OVERRIDE == 'PENDING-OVERRIDE' (DEFAULT-PENDING-OVERRIDE marker).
+  6. Complete ceremony -> {applied: True, basis: 'rules_service'}.
+  7. Countdown-not-elapsed refuses (CountdownNotElapsed).
+  8. Witness mismatch refuses (WitnessMismatch).
+  9. Business-type unknown refuses (BusinessTypeUnknown).
+  10. R-C1 retirement backed by mechanism (rule_registry + ceremony importable + callable).
+  11. Ceremony completion appends rule to singleton registry (Canon-3 §22 additive).
+
+R-C1 governed retirement (lineage):
+  Marker:     R_C1_RULES_SERVICE_NOT_BUILT_FALLBACK_TRUE
+  Retired at: contracts/asset_registry.py:53                (True -> False)
+  Backed by:  services/rules_service/rule_registry.py       (landed W-M2-SW1 · track-a 451ef2b)
+              services/rules_service/ceremony.py            (landed W-M2-SW2 · track-a TBD)
+  Invariant:  test_wm2_sw2_rules_service_ceremony.test_sw2_r_c1_retirement_backed_by_mechanism
+              (assertion: if marker is False, both rule_registry and ceremony must be importable AND their key surfaces callable)
+  Existing G3 test updated in SAME commit: `test_wregext_g3_cp_r2_r_c1_marker_present`
+              (now asserts False + refers to SW2 for the mechanism proof).  Silent flip remains impossible: any future
+              state change requires touching this test again in the same commit.
+
+DEFAULT-PENDING-OVERRIDE markers introduced by SW2:
+  SECOND_SIGNATORY_ROLE_PENDING_OVERRIDE = 'PENDING-OVERRIDE'  (Rules-Service R-2 · Ratification_Record_v1 Table 2 · OPEN owner-input)
+
+Kind             : sub-wave seal (W-M2-SW2)
