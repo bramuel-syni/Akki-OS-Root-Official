@@ -6998,4 +6998,65 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 ---
 
+## Ruling · 2026-09-13T~05:15Z · Source: owner channel · BUILD GO · CP0.a → W0
+
+**Verbatim (banked from user's turn preceding CP0.a execution):**
+
+> Plan approved with TWO refinements and answers to (a)-(d).
+>
+> REFINEMENT 1 — reporting cadence: do NOT sprint silently through to Phase 2. Sequence is: close CP0.a + W0 together to double-green → REPORT to me at that close with the ratchet delta and DECISIONS entries → then give me the W1 CP breakdown and WAIT for my nod → then execute W1 → report at W1 close.
+>
+> REFINEMENT 2 — make the drift-repaired tests DETERMINISTIC, don't adapt them to ambient pod state. This is the rigorous fix and it structurally prevents "amend to green."
+>
+> (a) APPROVED as stated, with the two refinements above.
+>
+> (b) test_registry_facts — do NOT branch on ambient os.environ. Instead make the test control its own input with monkeypatch and assert BOTH branches deterministically ... AND the discriminator you use must be the SAME signal the production registry code actually keys off ... Deterministic, both branches, mirrors prod logic.
+>
+> (c) test_ssh_seam — prefer the explicit-fixture approach over loosening ... Each test asserts the SPECIFIC refusal its scenario should produce — don't widen one assertion to swallow both paths.
+>
+> (d) Constraints before you open the codebase: Fork from current HEADs: Extraction-Akki programme/track-a HEAD (77834d1) for code; workspace master for STATE/notes ... commit messages: follow the existing repo wave/CP convention; include the wave/CP id and the ratchet delta ... Capture the mechanical RED receipt for each of the 4 drifts BEFORE fixing (drill_receipts), and for W0's kernel tests ... ABSOLUTE RULE restated: if any of the 4 drifts, on inspection, masks a REAL behavior regression rather than env/time drift, STOP and report — do not amend to green.
+>
+> Confirmed — proceed with CP0.a, then W0, then STOP and report to me. Go.
+
+**Binding effects (this addendum):**
+
+1. **Ruling banking discipline held.** Ruling recorded verbatim before any code action on it.
+
+2. **CP0.a executed as an HONEST DRIFT REPAIR, not a 4-fix.** The mechanical RED sweep on pinned HEAD `77834d1` proved only ONE drifted invariant (`test_cp10_harness_receipt_is_still_recent` · receipt age 23.61h > 12h threshold), NOT the four claimed in the session-briefing analysis. The three tests named as also-drifting in the briefing (`test_models_returns_empty_with_honest_reason` + two `test_ssh_seam_multihost_password_auth` tests) are GREEN on pinned HEAD because pytest's `monkeypatch` fixture isolates env-var leakage during each test — the ambient pod `.env` values (`EMERGENT_LLM_KEY`, `AKKI_GPU_HOSTS`) do not reach the tests through the pytest process. Correction banked in `phase0/drill_receipts/20260913T053800Z_cp0a_baseline_drift_red_receipt.log` §Discovery. **No test amended · no threshold relaxed · no drift papered over.**
+
+3. **CP0.a fix mechanism.** Ran `tools/wave_g5_realchrome_verification_harness.py --label cp0a_baseline_drift_repair --strict` organically against the pod's own frontend+backend (Playwright real-Chromium, X-Forwarded-For admit headers). Rendered GREEN natively: portal 8 substitutions, registry-view 8, compute-view 25, style signature met=True, dummies still present [], expected present 3/3, merged GT rules=37 marked_slots=29 orphans=0. Fresh receipt banked at `phase0/harness_ground_truth/latest.json` at `2026-09-13T05:41:45Z`. No fake timestamps. No threshold shims.
+
+4. **CP0.a double-green byte-match.** `BASELINE_GUARD=1 python -m pytest tests/invariants/` returned `3251 passed, 1 skipped, 438 warnings` twice back-to-back. Floor 3251 restored. Ratchet unchanged (drift-only repair, per Refinement 2).
+
+5. **W0 Integrity Fix authored tests-first as per BUILD DISCIPLINE §3.**
+   - RED banked at `phase0/drill_receipts/20260913T060000Z_w0_output_verified_seal_RED.log` (29 failed / 2 passed pre-impl).
+   - New module `services/output_verified_seal/__init__.py` exports `SEALING_FILENAME` + `NON_REAL_KINDS` + `parse_seal` + `is_real_seal` + `output_verified_seal`.
+   - Contract: a real seal is a file at `ACTIVITY_SUMMARY.md` (case-insensitive) that carries a `Kind:` line whose value is NOT in `NON_REAL_KINDS = {stub, synthetic, unfinished, test_fixture, ""}`.
+   - 6 sites refactored to route through the primitive:
+     (i) `reconcile._is_sealed`,
+     (ii) `run_queue._is_run_sealed`,
+     (iii) `orphan_detector._has_sealing_marker`,
+     (iv) `adopt.can_adopt` (bare `.exists()` on line 85 replaced),
+     (v) `watchdog` (unchanged code — freeze compose via new test asserting no bare filename check present),
+     (vi) writer `on_host_logging.write_run_summary` (now delegates to `output_verified_seal`; emits `Kind:` in every seal; default kind `training_run_complete` for backward-compat).
+   - Standing order §3.1 ALIVE IS NOT DONE added to `STATE/STANDING_ORDERS.md` as a subsection of §3 BUILD DISCIPLINE — chosen deliberately over a new top-level §6 to preserve the six-header surface frozen by `test_standing_orders_present.py::test_standing_orders_has_six_section_headers`. (Attempted top-level §6 first, tripped the invariant · reverted · inserted as §3.1 · invariant restored to green. No test bumped.)
+
+6. **Pre-W0 test fixture corrections.** 3 pre-W0 test files wrote bare `ACTIVITY_SUMMARY.md` bodies without `Kind:` and expected them to be treated as sealed. Each fixture write updated to `Kind: training_run_complete\n` alongside the legacy sealing line. The tests still assert the same "sealed run is not adopted/orphaned/next-pending" semantic; only the fixture now writes a real seal per the corrected contract. This is a fixture correction (the tests were freezing the defective pre-W0 contract), NOT weaken-to-green.
+
+7. **W0 double-green byte-match.** `BASELINE_GUARD=1 python -m pytest tests/invariants/` returned `3282 passed, 1 skipped, 438 warnings` twice back-to-back. Ratchet **3251 → 3282 (+31 new invariants)** for `test_output_verified_seal.py`. Floor bumped. `baseline_failures.json` updated with two ratchet_history entries (CP0.a drift-repair · no bump; W0 close · +31).
+
+8. **Discipline receipts (all banked):**
+   - RED · CP0.a: `phase0/drill_receipts/20260913T053800Z_cp0a_baseline_drift_red_receipt.log`
+   - GREEN · CP0.a: `phase0/drill_receipts/20260913T054400Z_cp0a_baseline_drift_double_green.log`
+   - RED · W0: `phase0/drill_receipts/20260913T060000Z_w0_output_verified_seal_RED.log`
+   - GREEN · W0: `phase0/drill_receipts/20260913T063000Z_w0_output_verified_seal_double_green.log`
+
+9. **Sequencing preserved.** Report cadence held: CP0.a + W0 close together, report to owner, WAIT for W1 nod. **W1 build not started.** Two-commit local (code `programme/track-a` in Extraction-Akki, state `master` in workspace) at the CP0.a+W0 close. **NO push.**
+
+10. **Security hygiene held.** HF token never echoed. `hf_token.csv` retained at `/app/backend/estate_keys/data_sources/hf_token.csv` mode 0600, git-ignored. `EMERGENT_LLM_KEY` never echoed. Owner still owes a token rotation post-session per `SEC-2026-09-12-01`.
+
+11. **NAS/W2 remains BLOCKED.** Not touched this wave.
+
+---
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

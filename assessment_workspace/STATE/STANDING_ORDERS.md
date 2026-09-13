@@ -71,6 +71,55 @@ Every owner ruling is banked **verbatim** in `STATE/DECISIONS.md` **before** any
 - **No refactor.** Thin-kernel discipline — do only what the current wave scopes.
 - **Grounding brief before every wave.** File in `notes/`, verbatim owner quote in §A, wave-honest-limits in §E, commit protocol in §F.
 
+### 3.1 ALIVE IS NOT DONE — silent-success ban (W0 integrity fix, 2026-09-13)
+
+**Standing order (verbatim, banked by owner directive "BUILD GO" 2026-09-13 · CP0.a→W0 close):**
+
+> **ALIVE IS NOT DONE.** The existence of a heartbeat, a running PID,
+> a directory on disk, or a filename in that directory is NOT proof of
+> completion. Completion requires an OUTPUT ARTIFACT — a seal file
+> whose contents, when parsed, prove the specific real work-kind that
+> just finished. A seal read that does not parse `Kind:` and refuse
+> non-real kinds silently promotes stubs, synthetic fixtures, and
+> unfinished runs to success. This is banned.
+
+**Binding contract on every seal read:**
+
+1. Every sealing check in the codebase MUST route through
+   `services.output_verified_seal.is_real_seal(run_dir)` (or the
+   sibling `parse_seal` primitive when the caller needs the parsed
+   payload). Bare filename-existence checks against `ACTIVITY_SUMMARY.md`
+   are banned. Refactoring around the primitive is not optional.
+
+2. A "real seal" is a file that (a) exists at the canonical
+   `ACTIVITY_SUMMARY.md` path (case-insensitive), (b) carries a
+   `Kind:` line in its body, and (c) whose `Kind:` value names a
+   real-work kind — NOT `stub`, `synthetic`, `unfinished`,
+   `test_fixture`, or the empty string.
+
+3. Every seal write MUST route through
+   `services.output_verified_seal.output_verified_seal(run_dir,
+   kind=..., body=...)`. The writer emits `Kind: <value>` as a first-
+   class field in the body. A write without a kind is refused
+   (`ValueError`).
+
+4. Silent-success attack surface enumerated at W0 open (2026-09-13 ·
+   6 code sites, all refactored in this wave):
+     - `services/campaign_infra/reconcile.py::_is_sealed`
+     - `services/campaign_infra/run_queue.py::_is_run_sealed`
+     - `services/orchestrator_resilience/orphan_detector.py::_has_sealing_marker`
+     - `services/orchestrator_resilience/adopt.py::can_adopt`
+       (direct `.exists()` on line 85)
+     - `services/orchestrator_resilience/watchdog.py` (via
+       `_od._has_sealing_marker` on line 126)
+     - `services/campaign_infra/on_host_logging.py::write_run_summary`
+       (writer side — emits `Kind:` on every write)
+
+5. Invariant `test_output_verified_seal.py` freezes this contract.
+   Adding a new seal read/write in the codebase without routing
+   through `output_verified_seal` is a right-reason RED failure
+   under BASELINE_GUARD=1.
+
 ---
 
 ## 4. RUNTIME LAW
