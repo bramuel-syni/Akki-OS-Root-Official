@@ -1,0 +1,24 @@
+Kind: solva_v2_lift
+Wave: W-SOLVA-V2-LIFT
+Label-provenance: standing owner ruling 2026-09-06T~19:20Z (Solva-v2 lift queues immediately behind Registry) + owner directive 2026-09-13
+Component-standing: STANDALONE reasoning component (owner directive: NOT a sub-component of Registry or DAP)
+Sealed-at-utc: 2026-09-13T10:58:42Z
+Canon-anchors: Canon-4 §19, §21.1, §22, §23, §23.1, §24, §26; Canon-7 §35-40, §44, §44.1; Doc-0 §BR-2.1
+CPs (order-of-landing): CP-S2 (FIRST · parameterless assertion-boundary signature) · CP-S1 · CP-S3 · CP-S4 · CP-S5 · CP-S6 · CP-S7 · CP-S8
+Ratchet: 3531 -> 3562 (+31)
+Green1-passed: 3562
+Green1-skipped: 1
+Green1-baseline-failures: 0
+Green1-log-sha256: 1318d4dec14f64646a7fcb9e34d47221431e079651deebb3f129d4ef6ebe663b
+Green2-passed: 3562
+Green2-skipped: 1
+Green2-baseline-failures: 0
+Green2-log-sha256: 7e71ae1d7d224f5d872683431ece95ef397842c3705d00900a1d3f6cb190a9af
+Byte-match-pass-count: TRUE
+Ratchet-manifest-sha256: f40928b8c47bc4c982775552aa354b3bf485a9ca1318a5e1ab9f12e5479f7532
+R-C2-carriage: SolvaTrace.au_3b_defensible=False (asserted invariant; silent flip forbidden)
+HALT-declared: DPO-S2 · engines/reflection.py::run() raises NotImplementedError with HALT message (donor LOCKED_QUESTIONS executive-domain; case-agnostic reflection contract requires owner ruling)
+DPO-S1: donor refusal categories {clean, jailbreak_attempt, out_of_scope} NOT lifted; Canon-4 §24 three-action envelope adopted instead
+Zero-track-a-churn-to-prior-waves: confirmed (W-REGISTRY-FULL-BUILD prior-wave lineage + W-REGISTRY-EXTENSION-G3 wave lineage untouched)
+Book-keeping-fix-in-same-commit: ratchet_history[-2] field new_floor renamed to canonical passed (schema alignment with test_manifest_passed_floor_ratchet_monotonic_and_matches_baseline)
+Two-commit-pattern: track-a code + workspace state · LOCAL only · NEVER push
