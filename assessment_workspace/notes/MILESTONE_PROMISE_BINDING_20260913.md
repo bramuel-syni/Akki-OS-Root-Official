@@ -2,6 +2,27 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 # MILESTONE_PROMISE_BINDING_20260913.md
 
+**M3-ADDENDUM (added 2026-09-13 · M0 close) — Serving Integrity Amendment v1 + Security Assurance Promise Set v2 delta:**
+
+Two new canon artefacts landed 2026-09-13 (owner-attached · see `notes/canon_serving_integrity_amendment_v1_requirements.md` + `notes/canon_security_assurance_promise_set_v2_delta.md`). Material updates to the binding:
+
+- **S-27** (new · V-1..V-4 composite) — Watch composite-promise cluster grows from `#6 · S-1..S-21` to `#6 · S-1..S-21 + S-22..S-27`. S-22..S-25 already carried; S-26 already carried via Pruning; **S-27 is new and lands in M3**.
+- **AC-13 (session freeze)** + **AC-14 (contained-agent SFP-8 serving)** — Agent-Containment set grows from AC-1..AC-12 to AC-1..AC-14; both land in M3 W-AGENT-CONTAINMENT.
+- **A20.15 · SFP-8 · Serving Floor** — SFP-8 discharges in M2 W-DOC0-ATTR7-BASELINE + W-RULES-SERVICE-CEREMONY (was 7 SFP rows, now 8). TCB row `serving-integrity gate` lands in M2 W-DOC0-ATTR1-TCB. FP row `hash-mismatch → fail-closed refuse-to-serve` lands in M2 W-DOC0-ATTR11.
+- **DAP-31+ / DAP-32+ · gate-conformance** — DAP-31 (reproduction probe) and DAP-32 (admission-integrity probe) both grow a conformance clause requiring SFP-8-conforming serving path. Land in M1 as **declared dependency markers** (per owner C5 disposition · reflection HALTed · declared dependency, not guess). M1 acceptance criteria A1..A10 unaffected in scope — SFP-8 is a serving-path dependency, not a §9 pass criterion.
+- **A5.7+ · frontier-crossing receipt fields** — Existing A5.7 (already amended to include principal identity + timestamp per Security_Promise_Set_Amendments Amendment 3) grows to also record provider + provider-stated model version for frontier crossings. Discharges in M4 (composed with DAP-20 assistance-chat receipt surface).
+- **TGT+ · Targeta acceptance evaluations SFP-8-conforming** — MOAC verdict + yield-wall per-stratum measurements land on SFP-8-conforming serving only. Discharges in M5 W-DATA-SUITE-v2-LIFT as dependency.
+- **R-13 · validation cadence** — RATIFIED per C3 batch 2026-09-13 (monthly + per-engine-version + per-artefact-version). No milestone-level scope change.
+- **R-14 · Colibri engine admission** — deliberately unruled; added to RULING_LEDGER OPEN set. Not assigned to any milestone; gated by appliance benchmark + TCB-tier admission ceremony.
+
+**Not a blocker for the Registry+DAP block.** DAP-Spec §9 A1..A10 pass criteria unchanged; SFP-8 conformance is a serving-path dependency; M1 rows carry declared dependency markers per C5.
+
+**Updated §END coverage-count for M3:** 1 composite (`#6`) + **21 → 26 S-rows** (S-1..S-21 + S-24 + S-26 + new S-27; plus S-22/S-23/S-25 partial remainders) + **12 → 14 AC** + 1 RBM + 1 CP-close + 1 doctrine.
+
+**Updated §END coverage-count for M2:** 12 Attributes + 3 Rules-R + 3 Promise-# + 2 Amendments + 2 doctrines + **1 new SFP-8** + TCB serving-integrity-gate row + FP hash-mismatch row.
+
+---
+
 **Purpose.** Unambiguous milestone ↔ work ↔ promise binding for the owner-ratified M0–M5 spine. Every promise ID is drawn verbatim from an on-disk catalog. Read-only, document-only. `[framing, not canon]` tags mark my interpretation.
 
 **Standing.** ROLE OVERRIDE · Phase-1 Canon Assessment · NO production code · NO scaffolding touched · local commit only, NEVER push · NO egress · HALT after delivery. SO §1 boot honoured; SO §2 DECISION-POINT / END-OF-WAVE reporting doctrine respected.

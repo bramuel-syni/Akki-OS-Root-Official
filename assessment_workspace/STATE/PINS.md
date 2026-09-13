@@ -15,7 +15,7 @@ Spine cited throughout BUILD_STRATEGY as **Extraction-Akki** (≡ RMS-IQ-Core-2 
 
 ## Canon document pins
 
-Nine `.docx` documents, source archive: `https://customer-assets-v7afamib.emergentagent.net/job_a963bf18-f7d3-42c9-b8dd-aba51af40caf/artifacts/96u2c488_files%20%288%29.zip` (236,005 bytes). Extracted to plain text via `python-docx` at `/app/assessment_workspace/canon/text/`.
+**Core 9-doc canon pack** — source archive: `https://customer-assets-v7afamib.emergentagent.net/job_a963bf18-f7d3-42c9-b8dd-aba51af40caf/artifacts/96u2c488_files%20%288%29.zip` (236,005 bytes · sha256 `5a46676d9c8506cc4d65616e3dbfa9db76885362fbaa0c210894295daae30759`). Extracted to plain text via `python-docx` at `/app/assessment_workspace/canon/text/`. Verified byte-identical to on-disk `/app/assessment_workspace/canon/canon_pack.zip` on 2026-09-13.
 
 | Canon | Filename | Bytes | Extracted-text line count |
 |---|---|---:|---:|
@@ -29,7 +29,20 @@ Nine `.docx` documents, source archive: `https://customer-assets-v7afamib.emerge
 | 8 · The Watch | `Akki_Canon_8_The_Watch.docx` | | 223 |
 | 9 · Mkondo Charter | `Akki_Canon_9_Mkondo_Charter.docx` | | 38 |
 
-Prototype: `/app/assessment_workspace/prototype/prototype.html` (v6 Standalone, 626,618 bytes, 395 lines).
+**Canon-family expansion beyond the core 9** (accumulated 2026-08-27 → 2026-09-13; refreshed at M0 close 2026-09-13):
+
+| Batch | Path | Content | Extraction |
+|---|---|---|---|
+| Addendum 1 (2026-08-27) | `canon/AKKI_Canon_Addendum_1.docx` sha256 `9f00f7bc20…` (16,794 B) | AKKI CANON — ADDENDUM 1 | `notes/canon_addendum_1_requirements.md` (Aug 27) |
+| W11 batch v3 (2026-08-28) | `canon/w11_batch2_v3/AKKI_Canon_Documents_17_20_v3.docx` sha256 `991e02adf3…` (45,102 B) | Canon Documents 17–20 · GOVERNED ARTIFACT SPECIFICATION | ❌ pending scope decision |
+| W11 new docs (2026-08-28) | `canon/w11_new_docs/canon_17_19.docx` sha `9b632df11f…` (32,600 B) · `audio_intel_plane_spec.docx` sha `b6ad57b369…` (26,623 B) · `training_capacity.docx` sha `d4c11f3c1b…` (21,783 B) · `training_techniques.docx` sha `5ca268505e…` (13,538 B) | 17-19 (older) · Audio Intelligence Plane · Training Capacity · Training Techniques | `notes/AUDIO_INTELLIGENCE_PLANE_SPEC_DEEP_EXTRACT.md` (partial); rest ❌ pending scope decision |
+| Drop 2026-09-09 (files_14 · 11 docs) | `canon/drops/20260909/extracted/files_14/*.docx` + `DAP_Backend_Spec_v1.docx` (`e675990aa6…` · 21,346 B) | TCB Enumeration · Security Architecture Description · Determinism Inventory · Security Function Policies · Failure Posture Enumeration · Trust Domain Description · Handoff Generalisation · Business Continuity Annex · Pruning-Unlearning Amendment · Governance Architecture v1 (`b8af25f486…` · 51,456 B) · Security Assurance Promise Set v1 (`8c7a3b7205…` · 16,864 B) · DAP Backend Spec | Full row-level extraction M0 2026-09-13: `notes/canon_dap_backend_spec_v1_requirements.md` · `canon_tcb_enumeration_v1_requirements.md` · `canon_determinism_inventory_v1_requirements.md` · `canon_security_architecture_description_v1_requirements.md` · `canon_security_function_policies_v1_requirements.md` · `canon_failure_posture_enumeration_v1_requirements.md` · `canon_trust_domain_description_v1_requirements.md` · `canon_business_continuity_annex_v1_requirements.md` · `canon_handoff_generalisation_v1_requirements.md` · `canon_pruning_unlearning_amendment_v1_requirements.md` |
+| Drop 2026-09-10 (files_15 · 3 docs) | `canon/drops/20260910/extracted/files_15/Agent_Swarm_Containment_Governance_Model_v1.docx` (`2824796d06…` · 18,435 B) · `Ratification_Record_v1.docx` (`b4de066419…` · 14,164 B) · `Master_Requirements_Registry.xlsx` (`27d413221e…` · 57,047 B) · `Akki_Governance_Architecture_v1.docx` **REVISED** (`b03932000c…` · 51,587 B · +131 bytes vs files_14) | Agent Containment · Ratification Record · Master Requirements Registry · Governance Architecture v1 (revised) | `notes/canon_agent_containment_spec_v1_requirements.md` (Sep 9) · Ratification-Record parsed into `MILESTONE_PROMISE_BINDING_20260913.md §D` and executed as `notes/RATIFICATION_C3_BATCH_20260913.md` · Governance-Architecture-v1 revised delta at `notes/canon_governance_architecture_v1_files15_delta.md` (M0 2026-09-13; base extraction at `notes/ingest_20260907/canon_doc0_governance_architecture_requirements.md`) · Master_Requirements_Registry cross-walk **deferred to scope decision** |
+| Drop 2026-09-13 (owner-attached · 2 docs) | `canon/drops/20260913/raw/Security_Assurance_Promise_Set_v2.xlsx` sha256 `72a4e7620c959a8d0dd36c73ed5c712689ed8f0663630803b79a43f0db453088` (17,480 B; +S-27 row) · `Serving_Integrity_Amendment_v1.docx` sha256 `56af9f09c93e38ad8b80c6f70cd07c1dc03efba8c9661d2d9e717d54b3144269` (15,863 B) | Security Assurance Promise Set v2 (S-1..S-27; 27th is new) · Serving Integrity Amendment (V-1..V-4, R-13/14, adds A20.15/SFP-8/DAP-31+/DAP-32+/AC-13/AC-14/A5.7+) | `notes/canon_security_assurance_promise_set_v2_delta.md` · `notes/canon_serving_integrity_amendment_v1_requirements.md` |
+
+**Verified count of unique canon-family artefacts on disk (M0 close 2026-09-13):** **29 unique .docx** (by sha256) · **2 unique .xlsx** · **2 unique .zip** (files_14, files_15) · **2 unique .html** (`RMS_AI_Prototype_standalone_v3.html`, `RMS_Data_Access_Portal_standalone.html`).
+
+Prototype: `/app/assessment_workspace/prototype/prototype.html` (v6 Standalone · 626,618 bytes · 395 lines · sha256 `794fcd86374d0450d853afa47e2fdf4bd34a7aab85cb1945cae209a2cf60c25b`; v6 remains the assessment reference per Q4 DEFAULT-PENDING-OVERRIDE. Drop-09-09 ships `RMS_AI_Prototype_standalone_v3.html` and `RMS_Data_Access_Portal_standalone.html` as separate lineages — enter as additional surfaces flagged in prototype_inventory v9 at Phase-2 open).
 
 ## Deliverables — absolute paths
 
