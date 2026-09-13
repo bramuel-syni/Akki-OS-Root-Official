@@ -1,0 +1,22 @@
+{
+  "wave": "W-DAP-STACK",
+  "sub_wave": "2C",
+  "cp": "approval routing + controlled ops",
+  "canon_anchors": [
+    "DAP-11",
+    "DAP-14",
+    "DAP-15",
+    "DAP-16",
+    "DAP-17"
+  ],
+  "invariants_added": 7,
+  "passed_before": 3578,
+  "passed_after": 3585,
+  "receipts": {
+    "wdap_2c_RED.log": "346c3ab6ab9d1c4d2e9cf94e17e91944546d7d8dec8a038769072b2e3a94a8e1",
+    "wdap_2c_GREEN1.log": "f73d69b24abc1e5141547d4892ac404e68dfb85e6affe8b352f4da8ecdf8adff",
+    "wdap_2c_GREEN2.log": "0cd7a3804eee43b417207a463bf47ab217c516634903e3e02ddbe5232a704661"
+  },
+  "owner_ruling": "verbatim 'Gate 1 rescinded' 2026-09-13",
+  "c4_marker": "DAP_R2_APPROVING_AUTHORITY=DEFAULT-PENDING-OVERRIDE (per C4 owner ruling 2026-09-13)"
+}

@@ -1,0 +1,24 @@
+{
+  "wave": "W-DAP-STACK",
+  "sub_wave": "2D",
+  "cp": "objective freeze + assistance chat boundary",
+  "canon_anchors": [
+    "DAP-Spec DAP-18",
+    "DAP-Spec DAP-19",
+    "DAP-Spec DAP-20"
+  ],
+  "invariants_added": 5,
+  "passed_before": 3585,
+  "passed_after": 3590,
+  "receipts": {
+    "20260913T153632Z_wdap_2d_RED.log": "5843c1511174aa39482a91948b3041d5f8d40f80a780b46e83ca47fe9a4ee772",
+    "20260913T154122Z_wdap_2d_GREEN1.log": "03e1a7506b5d2bb57d473734e125c6b01edb2df876b0291c272b2409460e2948",
+    "20260913T154326Z_wdap_2d_GREEN2.log": "138cea4828eb963bb28e6cebae4dec762c46ab2118ce444fa1b15c2a727df491",
+    "20260913T154537Z_wdap_2d_PIPFREEZE.txt": "7c45a54d1264b9098875fb92f16b01460dc7702bbb6decf03212d996ffd162b8",
+    "20260913T154537Z_wdap_2d_COLLECTONLY.txt": "d076b8a92e861c7707ce341747b8efdedef8cb7d6bf184dc65f5bb4c1f83515f"
+  },
+  "owner_ruling": "verbatim 2026-09-13 'Gate 1 rescinded, Gate 2 - b, Gate 3 - in-block' + confirm G-A..G-E (with G-D/G-E amendments)",
+  "byte_match_check": "identical modulo wall-time (both GREEN runs: 3590 passed, 1 skipped, 438 warnings; strip-of-time diff empty; both 36946 bytes)",
+  "rider_1": "pip freeze (187 packages) + collect-only (3591 items) banked",
+  "decision_point_filed": "notes/DECISION_POINT_ORPHAN_CP10_20260913.md — 2 orphan CP10 tests quarantined to preserve declared +5 delta"
+}

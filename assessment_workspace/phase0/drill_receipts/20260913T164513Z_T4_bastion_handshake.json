@@ -1,0 +1,52 @@
+{
+  "at_utc": "2026-09-13T16:45:13Z",
+  "window_check": "UTC hour=16; window 08:00\u201302:00 UTC (EAT 11:00\u201305:00)",
+  "in_window": true,
+  "known_hosts_pinned": {
+    "path": "/app/backend/estate_keys/known_hosts",
+    "mode": "0o600",
+    "size_bytes": 843,
+    "T2_match": "3/3 SHA256 fingerprints (rsa/ecdsa/ed25519) verified vs precheck record"
+  },
+  "targets": {
+    "JUMP": {
+      "user": "root",
+      "cred_kind": "LIKELY_PASSWORD",
+      "cred_len": 12
+    },
+    "RADIO": {
+      "user": "ubuntu",
+      "cred_kind": "OPAQUE_UNKNOWN_but_treated_as_password",
+      "cred_len": 14
+    }
+  },
+  "auth_handshake": {
+    "remote_cmd": "id -un && uname -srm",
+    "exit_code": null,
+    "pw_prompts_seen": 1,
+    "fp_prompts_seen": 0,
+    "stdout_scrubbed_tail": "\nroot@159.138.173.250's password: \n<pw_written>\n\nConnection timed out during banner exchange\n"
+  },
+  "security_observations": [
+    "SEC-2026-09-13-T4-01: earlier session-cell inadvertently echoed the JUMP password from CSV row 3 col 0 (12 chars) into my transcript. Owner-side rotation required (adds to SEC-2026-09-12-01 pending rotation).",
+    "SEC-2026-09-13-T4-02 [from admin ruling 4]: Public-internet root SSH with password auth on JUMP is a hardening risk. Recorded for owner's later attention; NOT acted on per admin instruction 'do not change any server config'.",
+    "SEC-2026-09-13-T4-03: The v1 driver's buffer re-match bug caused the RADIO credential to be written to the pty briefly (visible in pty echo during the interval between JUMP auth and the failed RADIO banner exchange). The credential was scrubbed in-memory before receipt write and never persisted to disk or a shell prompt. This is nonetheless a proximity-to-leak event and should be treated as if the RADIO credential (14 chars, OPAQUE_UNKNOWN kind) had been briefly exposed to an operator watching the pty. Recommend rotating the RADIO credential alongside the JUMP password rotation."
+  ],
+  "overall_verdict": "PARTIAL_PASS (JUMP proven; RADIO deep-probe fails at post-TCP banner exchange)",
+  "verdict_per_target": {
+    "JUMP": {
+      "status": "PASS",
+      "evidence": "Pinned known_hosts (3/3 T2 SHA256 fingerprints verified pre-run) consulted with StrictHostKeyChecking=accept-new; no fingerprint prompt appeared (host was already known). Single password prompt observed and fed via pty (no secret echoed). ssh proceeded past JUMP auth to attempt RADIO channel setup \u2014 proving JUMP auth succeeded."
+    },
+    "RADIO": {
+      "status": "FAIL",
+      "classification": "NETWORK_TIMEOUT (post-TCP) per PRECHECK_BASTION_20260913.md \u00a75",
+      "evidence": "ssh reported 'Connection timed out during banner exchange' during the JUMP -> RADIO channel setup. RADIO never emitted a password prompt (pw_prompts_seen=1, only JUMP's). Root-cause hypothesis per \u00a75 legend: stateful firewall dropping the JUMP->RADIO connection mid-session, OR RADIO listening on a different port than the assumed tcp/22, OR RADIO not currently up.",
+      "auth_verified": false
+    }
+  },
+  "driver_notes": [
+    "Driver v1 (receipt 20260913T164231Z) had a buffer re-match bug: the accumulated pty tail retained the 'password:' substring after the JUMP prompt was handled, causing my code to write the RADIO password to the pty even though RADIO had not prompted. The RADIO credential appeared in the pty echo briefly and was scrubbed in-memory before receipt write; no secret persisted to disk. Driver v2 (this run) burns consumed_bytes and does not re-match.",
+    "Driver used stdlib pty only (no pexpect / sshpass / expect); this keeps egress footprint to zero packages beyond the CP10 Playwright install."
+  ]
+}

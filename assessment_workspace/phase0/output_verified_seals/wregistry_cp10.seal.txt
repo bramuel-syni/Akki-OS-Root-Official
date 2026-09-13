@@ -1,0 +1,44 @@
+{
+  "wave": "W-REGISTRY-FULL-BUILD",
+  "sub_wave": "CP10",
+  "cp": "real-Chromium DOM proof + wave-close manifest finalization",
+  "canon_anchors": [
+    "Owner directive verbatim 2026-09-08T~06:15Z STEP 5 (real-Chromium proof)",
+    "MILESTONE_PROMISE_BINDING 2026-09-13 Task 2 (this session's ratified sequence)",
+    "notes/v3_substitution_rules.json (24 rules re-authored at CP8)"
+  ],
+  "invariants_added": 2,
+  "passed_before": 3625,
+  "passed_after": 3627,
+  "gate_2_option_b_egress_authorization": {
+    "authorised_by_owner_verbatim": "2026-09-13 · G-C confirmed the one-time public Playwright/Chromium download for CP10 only",
+    "install_log": "phase0/cp10_egress_log/20260913T162655Z_playwright_install.log",
+    "packages_added": ["greenlet==3.5.5", "playwright==1.62.0", "pyee==13.0.1"],
+    "chromium_binary": "/pw-browsers/chromium-1234/chrome-linux/chrome (Chrome Headless Shell 151.0.7922.34 · playwright chromium-headless-shell v1234)",
+    "on_prem_egress": "ZERO \u2014 harness targets http://localhost:3000/ only (in-container frontend)"
+  },
+  "harness": {
+    "script": "tools/cp10_real_chromium_harness.py",
+    "target": "http://localhost:3000/v8_prototype.html (deep static-file navigation) + http://localhost:3000/ (portal iframe host)",
+    "xff_header_used": "34.16.56.64, edge-proxy, gcp-lb (SPINE_ALLOWED_IPS = 34.16.56.64 · SPINE_TRUSTED_PROXY_HOPS=2)",
+    "capture_method": "page.content() + frame.content() over every same-origin iframe (rendered HTML including hidden sections)"
+  },
+  "receipt": {
+    "path": "phase0/harness_ground_truth/latest.json",
+    "at_utc": "2026-09-13T16:30:40Z",
+    "rules_declared": 24,
+    "rules_bound_to_rendered_dom": 24,
+    "body_len": 1356810,
+    "unbound_rules": []
+  },
+  "receipts": {
+    "20260913T163119Z_wregistry_cp10_RED.log": "062f4fbecb997b5b32c8464869440c57e669832e822ad4433658889d52210793",
+    "20260913T163217Z_wregistry_cp10_GREEN1.log": "fdae0d5ed67bfe74c68305756028f48eb1f8dc650f30ff3ec32e234576497d4f",
+    "20260913T163422Z_wregistry_cp10_GREEN2.log": "5929401bd57c45726624d63e1b627363288b384e4a4dce48f0971872200aab4f",
+    "20260913T163645Z_wregistry_cp10_PIPFREEZE.txt": "f6296cd2848bcf2eb6189ed1c68c35a7f262317f90ef176df3cf69b24c6778a0",
+    "20260913T163645Z_wregistry_cp10_COLLECTONLY.txt": "38fa9c172e9121ae027ba5804915713f6e44bd2325f7324a9a21ff801009c7a1"
+  },
+  "owner_ruling": "verbatim 2026-09-13 confirm G-A..G-E (with G-D/G-E amendments) \u00b7 G-C confirmed CP10 Playwright/Chromium egress",
+  "byte_match_check": "identical modulo wall-time (both GREEN runs: 3627 passed, 1 skipped, 438 warnings; strip-of-time diff empty; both 37589 bytes)",
+  "rider_1_env_delta": "pip freeze went 187 \u2192 190 packages this wave (playwright 1.62.0 + greenlet 3.5.5 + pyee 13.0.1 added under Gate 2 Option B one-time authorised install). Every prior DAP-STACK PIPFREEZE hashed 7c45a54d... \u00b7 this CP10 PIPFREEZE hashes f6296cd2... \u00b7 delta is honestly recorded and expected."
+}

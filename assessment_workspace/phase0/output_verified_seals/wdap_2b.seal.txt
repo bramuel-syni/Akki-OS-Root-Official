@@ -1,0 +1,22 @@
+{
+  "wave": "W-DAP-STACK",
+  "sub_wave": "2B",
+  "cp": "trust-domain + browse + pull-seam + API keys",
+  "canon_anchors": [
+    "DAP-Spec DAP-5",
+    "DAP-Spec DAP-6",
+    "DAP-Spec DAP-7",
+    "DAP-Spec DAP-8 partial",
+    "DAP-Spec DAP-13"
+  ],
+  "invariants_added": 8,
+  "passed_before": 3570,
+  "passed_after": 3578,
+  "receipts": {
+    "wdap_2b_RED.log": "fe79b7942cd5d7013a0159583a9c2304e00ed5aed867ed3b5ea5ff3e4e0909ac",
+    "wdap_2b_GREEN1.log": "6816c22d5c33741869d644aaf642d1cc7758fe0a4018db7b5803b937c72ef522",
+    "wdap_2b_GREEN2.log": "d9042d2bade9a8a36e185f806f4d84af0d65b00f34470007dd319f9bf3c4a6f9"
+  },
+  "owner_ruling": "verbatim 'Gate 1 rescinded, Gate 2 - b, Gate 3 - in-block' \u2014 2026-09-13",
+  "byte_match": "3578 passed, 1 skipped, 438 warnings \u2014 identical modulo wall-time"
+}

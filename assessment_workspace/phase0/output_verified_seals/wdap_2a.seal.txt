@@ -1,0 +1,23 @@
+{
+  "wave": "W-DAP-STACK",
+  "sub_wave": "2A",
+  "cp": "external-party principal + admission",
+  "canon_anchors": [
+    "DAP-Spec DAP-1..4",
+    "DAP-Spec DAP-12",
+    "DAP-Spec DAP-24",
+    "DAP-Spec \u00a77 composition",
+    "DAP-Spec \u00a79 A5 slow-play"
+  ],
+  "invariants_added": 9,
+  "passed_before": 3560,
+  "passed_after": 3570,
+  "receipts": {
+    "20260913T150500Z_wdap_2a_RED.log": "286e3adaeee17149e3ed261626f075e3af46b059b214307ae87553d3f165f786",
+    "20260913T151600Z_wdap_2a_GREEN1.log": "5e8b211997177e3e327d3d63c2c38126882c45e4df910a678f0b1d20ddfdf8f0",
+    "20260913T152000Z_wdap_2a_GREEN2.log": "242325412540951a5484b1b90912f375962e93befd5c1818e2b9a14c3908a4e3"
+  },
+  "owner_ruling": "verbatim 'Gate 1 rescinded, Gate 2 - b, Gate 3 - in-block' \u2014 2026-09-13",
+  "role_override_rescission": "Owner explicitly rescinds no-production-code prohibition for this session, banked verbatim.",
+  "byte_match_check": "identical modulo wall-time (both runs: 3570 passed, 1 skipped, 438 warnings)"
+}

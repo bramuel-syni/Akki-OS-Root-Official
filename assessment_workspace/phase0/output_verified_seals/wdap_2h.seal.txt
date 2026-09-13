@@ -1,0 +1,34 @@
+{
+  "wave": "W-DAP-STACK",
+  "sub_wave": "2H",
+  "cp": "component boundary + composition close",
+  "canon_anchors": [
+    "DAP-Spec DAP-30 [honesty grammar]",
+    "DAP-Spec DAP-31+ [Serving_Integrity_Amendment_v1 \u00a7B V-2 \u00b7 declared dependency on SFP-8]",
+    "DAP-Spec DAP-32+ [Serving_Integrity_Amendment_v1 \u00a7B V-2 \u00b7 declared dependency on SFP-8]",
+    "MILESTONE_PROMISE_BINDING \u00a7A1 (compute-to-data acceptance)",
+    "DAP-Spec \u00a77 (component boundary \u2014 DAP composes, DAP does not execute)"
+  ],
+  "invariants_added": 8,
+  "passed_before": 3617,
+  "passed_after": 3625,
+  "declared_dependency_markers": {
+    "DAP_31_PLUS_DEPENDS_ON_SFP_8": "M2 Rules-Service scope · DECLARED_DEPENDENCY_NOT_GUESS",
+    "DAP_32_PLUS_DEPENDS_ON_SFP_8": "M2 Rules-Service scope · DECLARED_DEPENDENCY_NOT_GUESS"
+  },
+  "receipts": {
+    "20260913T161725Z_wdap_2h_RED.log": "f72f27884116ece284b84b4d5ec8015a6928493b7f8fbd0835b83791eac9bdfc",
+    "20260913T161820Z_wdap_2h_GREEN1.log": "79663be62a448eda99c0b3fd586945d3e0a9e45eba4cc7358cf3c98416c2b28d",
+    "20260913T162022Z_wdap_2h_GREEN2.log": "899a46d2098866a733470186281db005a07f89d3db1f5941f1067a0555dcbabf",
+    "20260913T162228Z_wdap_2h_PIPFREEZE.txt": "7c45a54d1264b9098875fb92f16b01460dc7702bbb6decf03212d996ffd162b8",
+    "20260913T162228Z_wdap_2h_COLLECTONLY.txt": "3610af119aca9559de1a9574d0d2716ab4c25e968440cf206e4448a6ddd06208"
+  },
+  "owner_ruling": "verbatim 2026-09-13 confirm G-A..G-E (with G-D/G-E amendments)",
+  "byte_match_check": "identical modulo wall-time (both GREEN runs: 3625 passed, 1 skipped, 438 warnings; strip-of-time diff empty; both 37509 bytes)",
+  "rider_1": "pip freeze (187 packages) + collect-only (3626 items) banked",
+  "dap_stack_totals_end_of_2h": {
+    "sub_waves_closed": ["2A", "2B", "2C", "2D", "2E", "2F", "2G", "2H"],
+    "ratchet_moves": "3560 (post env-drift reset) \u2192 3625 (+65 across DAP-STACK)",
+    "canon_coverage": "DAP-1..DAP-32 landed at mechanism grade (partial where R-6/R-7/R-11/SFP-8 gate); DAP-34/DAP-35 landed at kernel + deferred markers; A1..A9 discharged fully by kernel; A10 partial (M3 remainder)."
+  }
+}

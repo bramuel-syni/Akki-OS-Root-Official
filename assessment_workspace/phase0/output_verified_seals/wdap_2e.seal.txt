@@ -1,0 +1,32 @@
+{
+  "wave": "W-DAP-STACK",
+  "sub_wave": "2E",
+  "cp": "metering + cumulative disclosure budget",
+  "canon_anchors": [
+    "DAP-Spec DAP-21 [AU-3]",
+    "DAP-Spec DAP-22 (partial \u2014 R-6 pricing OPEN)",
+    "DAP-Spec DAP-25 (fail-closed)",
+    "DAP-Spec DAP-26",
+    "R-C2 marker \u00b7 MeteredEvent.au_3b_defensible=False flip-forbidden",
+    "S-25 marker \u00b7 DEFAULT_RELEASE_BUDGET='DEFAULT-PENDING-OVERRIDE' (blocked on Security R-7)"
+  ],
+  "invariants_added": 10,
+  "passed_before": 3590,
+  "passed_after": 3600,
+  "receipts": {
+    "20260913T155239Z_wdap_2e_RED.log": "b29fb9f00f5c1a06aa8188ef0b5dc006a325d4e9e7bbe35ee0f9848918e9aa78",
+    "20260913T155423Z_wdap_2e_GREEN1.log": "2002d2a2c688578819ee83814e5d19839d4dff462f51279e2511ae561d40ad60",
+    "20260913T155624Z_wdap_2e_GREEN2.log": "452c7414c3f726214ed13c0dd63fc211964b7254d82e38d91c1bcac3b8c5c7de",
+    "20260913T155830Z_wdap_2e_PIPFREEZE.txt": "7c45a54d1264b9098875fb92f16b01460dc7702bbb6decf03212d996ffd162b8",
+    "20260913T155830Z_wdap_2e_COLLECTONLY.txt": "76994e3bddce0a39ce1c6bb54e5d06dc46a3b4a4210baad6c3109f787790ff39"
+  },
+  "owner_ruling": "verbatim 2026-09-13 confirm G-A..G-E (with G-D/G-E amendments)",
+  "byte_match_check": "identical modulo wall-time (both GREEN runs: 3600 passed, 1 skipped, 438 warnings; strip-of-time diff empty; both 37106 bytes)",
+  "rider_1": "pip freeze (187 packages) + collect-only (3601 items) banked",
+  "g_d_already_satisfied_rows": [
+    {
+      "test": "test_dap_21_metered_event_carries_all_required_fields",
+      "note": "RED-NOT-PRODUCIBLE: MeteredEvent field set already satisfied by W-DAP-STACK 2A commit e578582 (contracts/dap.py:237-257). Landed anyway as regression guard per G-D amended (owner ruling 2026-09-13)."
+    }
+  ]
+}

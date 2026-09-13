@@ -1,0 +1,27 @@
+{
+  "wave": "W-DAP-STACK",
+  "sub_wave": "2G",
+  "cp": "coalition joint evaluation + estate-wide bound",
+  "canon_anchors": [
+    "DAP-Spec DAP-34 [S-23 \u00b7 Doc 0 Att 3 \u00b7 Doc 3 A5.18]",
+    "DAP-Spec DAP-35 [S-25 \u00b7 new mandatory baseline]",
+    "canon_agent_containment_spec_v1 AC-10"
+  ],
+  "invariants_added": 8,
+  "passed_before": 3609,
+  "passed_after": 3617,
+  "deferred_markers_landed": {
+    "DEFAULT_ESTATE_WIDE_BUDGET": "DEFAULT-PENDING-OVERRIDE (blocked on Security R-7)",
+    "R11_COORDINATION_SIGNATURE_DEFERRED": "DEFAULT-PENDING-OVERRIDE (blocked on Security R-11 · friction-only per A5.2 until ruled)"
+  },
+  "receipts": {
+    "20260913T160938Z_wdap_2g_RED.log": "27c63460cab8650b941dc48eea22f702b4674a0c15415f567fa5873718bdfe94",
+    "20260913T161036Z_wdap_2g_GREEN1.log": "c00e2cc5112fe9eead352c43271f59ae68ecc763feac7805aaa87deff0d34639",
+    "20260913T161238Z_wdap_2g_GREEN2.log": "ec394b35cb1a9f8ed30237c2a73b2924bdb5a241f5dd57b075800596fdd94c1d",
+    "20260913T161445Z_wdap_2g_PIPFREEZE.txt": "7c45a54d1264b9098875fb92f16b01460dc7702bbb6decf03212d996ffd162b8",
+    "20260913T161445Z_wdap_2g_COLLECTONLY.txt": "a7c42eb2c195e98b779a110e29239ddc67ff4d46828341d60c0bb846c49f03fb"
+  },
+  "owner_ruling": "verbatim 2026-09-13 confirm G-A..G-E (with G-D/G-E amendments)",
+  "byte_match_check": "identical modulo wall-time (both GREEN runs: 3617 passed, 1 skipped, 438 warnings; strip-of-time diff empty; both 37346 bytes)",
+  "rider_1": "pip freeze (187 packages) + collect-only (3618 items) banked"
+}

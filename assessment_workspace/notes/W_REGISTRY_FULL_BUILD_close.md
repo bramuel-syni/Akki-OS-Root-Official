@@ -3,7 +3,7 @@
 **Wave:** `W-REGISTRY-FULL-BUILD`
 **Owner directive banked:** DECISIONS.md 2026-09-08T~06:15Z STEP 5 + 2026-09-09T~11:40Z + 2026-09-09T~12:20Z (report cadence + honest-state map)
 **Wave opened:** 2026-09-09 · ratchet floor 3040 (after STEPS 1-4)
-**Wave closed:** 2026-09-09 · ratchet floor **3100**
+**Wave closed:** 2026-09-09 (CP1..CP9 committed track-a) · CP10 wave-close finalized 2026-09-13 · ratchet floor **3627** (from DAP-STACK arc 3625 + CP10 +2)
 **Track-a commits (7):** `7f3c8cc` STEP 1 · `a5324dd` STEP 2+3 · `9874b1d` CP1 · `872ed36` CP2+3+4 · `374f9c3` CP5+6+7 · `d691899` CP8 · CP9 · CP10 (final)
 
 ---
@@ -21,7 +21,7 @@
 | CP7 | +1 | rules_updates reads phase0/rules_ledger/ | `374f9c3` |
 | CP8 | +7 | v3 substitution rules re-authored: 24 rules bind to v3 body (13 v2/v8 rules retired per DPO-CP8-1; owner law rule-matches-nothing = RED honored) | `d691899` |
 | CP9 | +5 | 78 campaign runs in models roster (target 77) with owner-ruled honest-state map (verbatim 2026-09-09T~12:20Z); every row carries state_evidence | (post-CP9 HEAD) |
-| CP10 | +N | Real-Chromium proof + wave-close manifest | (this commit) |
+| CP10 | +2 | Real-Chromium proof + wave-close manifest | (2026-09-13 session · restored from quarantine + finalized) |
 
 ## §A · What was built
 
@@ -66,7 +66,7 @@ Cumulative session delta: **3006 → 3100 = +94 invariants**.
 | STEP 5 CP5+6+7 · wires (374f9c3) | +8 | 3086 |
 | STEP 5 CP8 · v3 substitutions (d691899) | +7 | 3093 |
 | STEP 5 CP9 · roster 77 runs | +5 | 3098 |
-| STEP 5 CP10 · real-Chromium proof + wave close | +2 | **3100** |
+| STEP 5 CP10 · real-Chromium proof + wave close (finalized 2026-09-13 session · fresh receipt at_utc=2026-09-13T16:30:40Z · 24/24 v3 rules bound to rendered DOM · Playwright/Chromium under authorised Gate 2 Option B one-time public egress · pod-runtime frontend at localhost:3000/v8_prototype.html · XFF header 34.16.56.64/edge/lb applied) | +2 | **3627** |
 
 Double-green byte-identical BASELINE_GUARD=1 confirmed at every CP close.
 

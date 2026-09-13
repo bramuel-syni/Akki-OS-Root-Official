@@ -1,0 +1,61 @@
+"""tests/invariants/test_w_registry_full_build_cp10_wave_close.py
+
+W-REGISTRY-FULL-BUILD · CP10 wave close — real-Chromium proof + wave manifest.
+
+Owner directive 2026-09-08T~06:15Z STEP 5 verbatim: "real-Chromium proof,
+floor 3006 (fix/refresh stale harness-receipt invariant first — refresh the
+harness, don't relax the threshold)."
+
+This CP freezes:
+    1. notes/W_REGISTRY_FULL_BUILD_close.md exists and names all 10 CPs.
+    2. Fresh harness receipt from CP10 run banked at
+       phase0/harness_ground_truth/latest.json with recent at_utc.
+    3. Ship-Manifest-DoD still holds after all wave commits (checked by
+       existing test_ship_manifest_dod invariants — no new test needed).
+"""
+from __future__ import annotations
+
+import json
+import pathlib
+import re
+from datetime import datetime, timezone
+
+
+WORKSPACE_ROOT = pathlib.Path("/app/assessment_workspace")
+CLOSE_MANIFEST = WORKSPACE_ROOT / "notes" / "W_REGISTRY_FULL_BUILD_close.md"
+HARNESS_LATEST = WORKSPACE_ROOT / "phase0" / "harness_ground_truth" / "latest.json"
+
+
+def test_cp10_wave_close_manifest_exists_and_names_all_10_cps() -> None:
+    """The wave-close manifest at notes/W_REGISTRY_FULL_BUILD_close.md must
+    exist and mention every CP from CP1 through CP10 with an invariant delta."""
+    assert CLOSE_MANIFEST.exists(), (
+        f"wave-close manifest missing at {CLOSE_MANIFEST} — owner rule STEP 5"
+    )
+    body = CLOSE_MANIFEST.read_text(encoding="utf-8")
+    for n in range(1, 11):
+        # Match table rows like "| CP1 | +24 |" or "CP1 ·"
+        assert re.search(rf"CP{n}\b", body), (
+            f"wave-close manifest does not name CP{n}"
+        )
+
+
+def test_cp10_harness_receipt_is_still_recent() -> None:
+    """The harness receipt refreshed at CP10 must be less than 12 hours old
+    (well within the harness-recent threshold), proving the real-Chromium
+    proof pass has been performed as part of the wave close."""
+    assert HARNESS_LATEST.exists()
+    data = json.loads(HARNESS_LATEST.read_text(encoding="utf-8"))
+    at = data["at_utc"]
+    dt = datetime.strptime(at, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
+    age_h = (datetime.now(timezone.utc) - dt).total_seconds() / 3600
+    assert age_h < 12, (
+        f"harness receipt age {age_h:.2f}h exceeds CP10-close-fresh threshold "
+        f"of 12h; re-run wave_g5_realchrome_verification_harness.py"
+    )
+    # Also require the receipt claims all rules bound to rendered DOM
+    per_rule = data["ground_truth"]["per_rule"]
+    unbound = [r["name"] for r in per_rule if not r.get("bound_to_rendered_dom")]
+    assert not unbound, (
+        f"harness receipt has {len(unbound)} unbound rules: {unbound[:3]}"
+    )

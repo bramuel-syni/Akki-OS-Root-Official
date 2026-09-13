@@ -1,0 +1,23 @@
+{
+  "wave": "W-DAP-STACK",
+  "sub_wave": "2F",
+  "cp": "suspension + revocation + fail-closed gates",
+  "canon_anchors": [
+    "DAP-Spec DAP-27 [Doc 3 A5.3 \u2014 stop, never delete]",
+    "DAP-Spec DAP-28 [FPT_FLS.1]",
+    "DAP-Spec DAP-29 [I-4 pattern]"
+  ],
+  "invariants_added": 9,
+  "passed_before": 3600,
+  "passed_after": 3609,
+  "receipts": {
+    "20260913T160145Z_wdap_2f_RED.log": "e2390b0b490cb9d04b58136f20267921f1f3055c69bf0c82f9699cc31137d167",
+    "20260913T160240Z_wdap_2f_GREEN1.log": "0281af8a9eeff1f66a801152b4ad7d98b24cae465e1ac64b5755ae16af6afb1e",
+    "20260913T160443Z_wdap_2f_GREEN2.log": "d1bbf43f0db9e3702374298ddbd26a6a789f68de59cae37eac9eb081353cf1d0",
+    "20260913T160651Z_wdap_2f_PIPFREEZE.txt": "7c45a54d1264b9098875fb92f16b01460dc7702bbb6decf03212d996ffd162b8",
+    "20260913T160651Z_wdap_2f_COLLECTONLY.txt": "80d5fcbf27c09523223ec9908295fc1128f5a5f2ebc9ef219339da77fdddd466"
+  },
+  "owner_ruling": "verbatim 2026-09-13 confirm G-A..G-E (with G-D/G-E amendments)",
+  "byte_match_check": "identical modulo wall-time (both GREEN runs: 3609 passed, 1 skipped, 438 warnings; strip-of-time diff empty; both 37186 bytes)",
+  "rider_1": "pip freeze (187 packages) + collect-only (3610 items) banked"
+}

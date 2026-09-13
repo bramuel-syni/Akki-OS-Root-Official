@@ -59,7 +59,7 @@ All prior DEFAULT rows flipped to RATIFIED per C3 batch 2026-09-13. New DEFAULT 
 |--:|---|---|
 | 1 | DAP **R-3** per-party ceilings | MUST NOT be ruled alone — allocation against Security **R-7** estate release budget; rule together. |
 
-## OPEN (6 — genuine owner decisions; +2 reconcile from `Ratification_Record_v1` + Serving-Integrity Amendment)
+## OPEN (7 — genuine owner decisions; +2 reconcile from `Ratification_Record_v1` + Serving-Integrity Amendment + 2A env-drift-tracked-unknown)
 
 | # | Ruling | What owner has explicitly reserved for himself |
 |--:|---|---|
@@ -69,6 +69,7 @@ All prior DEFAULT rows flipped to RATIFIED per C3 batch 2026-09-13. New DEFAULT 
 | 4 | DAP named approving authority (DAP **R-2**) | Person/role identity |
 | 5 | Rules-Service **R-2** | Second-signatory named role (reconciled from `Ratification_Record_v1` Section 2 R-2; not previously in RULING_LEDGER; added M0 2026-09-13) |
 | 6 | Serving-Integrity Amendment **R-14** | Colibri engine admission — deliberately unruled; gated by appliance benchmark + TCB-tier admission ceremony (added M0 2026-09-13) |
+| 7 | **ENV-DRIFT-2TESTS-20260913** | 2 tests present in close-time env (recorded 3562 floor) but not collected in current sandbox at HEAD `e2ae44b0`. Preflight rebased floor to 3560 per owner Option A ruling 2026-09-13. Closed when close-time env info surfaces (e.g. per-test collect-only log from the close-time sandbox). Tracked, not lost. |
 
 ---
 

@@ -1,0 +1,32 @@
+{
+  "wave": "W-G3-REMAINDER",
+  "sub_wave": "single",
+  "cp": "Mtafiti full asset-inventory generalisation \u2014 Doc-0 G-3 mechanical-half remainder",
+  "canon_anchors": [
+    "Doc-0 \u00a7STATUS AS OF row G-3 (Mtafiti's full asset-inventory extension)",
+    "Doc-0 Component 4 BR-4.1 (STATUS lifted: estate-sources-only \u2192 5-AssetClass coverage)",
+    "Doc-0 Attribute 3 \u00a7TA-3.1 (finite named list producible on request)",
+    "Canon-9 \u00a73 (single writer; second writer defect on sight)",
+    "Canon-3 \u00a722.1 (custody-class attribute for ABAC)",
+    "Canon-1 \u00a74.6 (extension not sibling)"
+  ],
+  "invariants_added": 6,
+  "passed_before": 3627,
+  "passed_after": 3633,
+  "receipts": {
+    "20260913T164948Z_wg3_remainder_RED.log": "a15cd2794def774f126b34acea743da77773611ffd0c5517372f1a74e68f2af9",
+    "20260913T165725Z_wg3_remainder_GREEN1.log": "7d6fcd34d6bd391f3e4412a44709b2f37c82220b72bb23b0b1c4d1b871415932",
+    "20260913T165929Z_wg3_remainder_GREEN2.log": "30fbb37199c7936e73d999a4bc3173a51a3d2fecf21d000ed372a2c7093aa79e",
+    "20260913T170139Z_wg3_remainder_PIPFREEZE.txt": "f6296cd2848bcf2eb6189ed1c68c35a7f262317f90ef176df3cf69b24c6778a0",
+    "20260913T170139Z_wg3_remainder_COLLECTONLY.txt": "ace8a2d2e66dfdee98f4e87954c4c8336af95390d27337749c195392296636ab"
+  },
+  "intermediate_iteration_receipts": [
+    "20260913T165210Z_wg3_remainder_GREEN1.log (superseded \u2014 test-authoring field-name fixes)",
+    "20260913T165503Z_wg3_remainder_GREEN1.log (superseded \u2014 negative-scan false-positive fix)"
+  ],
+  "owner_ruling": "verbatim 2026-09-13 confirm G-A..G-E (with G-D/G-E amendments)",
+  "byte_match_check": "identical modulo wall-time (both authoritative GREEN runs: 3633 passed, 1 skipped, 438 warnings; strip-of-time diff empty; both 37749 bytes)",
+  "rider_1": "pip freeze (190 packages; same hash as CP10 post-Playwright install \u2014 no new env delta this wave) + collect-only (3634 items) banked",
+  "extension_not_sibling_check": "asset_inventory.py composes OVER services.mtafiti.asset_registry_writer without modifying it or its contracts.asset_registry schema. Canon-1 \u00a74.6 preserved. Canon-9 \u00a73 negative-scan (test_wregext_g3_cp_r6_no_second_writer_negative_scan) confirms no second writer path introduced (asset_inventory carries no `ASSET_REGISTRY_COLLECTION` or `write_asset_record` string reference).",
+  "sequence_end_note": "This is the FINAL wave in the ratified block sequence (2E \u2192 2F \u2192 2G \u2192 2H \u2192 CP10 \u2192 G-3 remainder). STOP before M2 per owner instruction."
+}

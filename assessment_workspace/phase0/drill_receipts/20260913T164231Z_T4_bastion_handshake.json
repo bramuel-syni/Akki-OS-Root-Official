@@ -1,0 +1,35 @@
+{
+  "at_utc": "2026-09-13T16:42:31Z",
+  "window_check": "UTC hour=16; window 08:00\u201302:00 UTC (EAT 11:00\u201305:00)",
+  "in_window": true,
+  "known_hosts_pinned": {
+    "path": "/app/backend/estate_keys/known_hosts",
+    "mode": "0o600",
+    "size_bytes": 843,
+    "T2_match": "3/3 SHA256 fingerprints (rsa/ecdsa/ed25519) verified vs precheck record"
+  },
+  "targets": {
+    "JUMP": {
+      "user": "root",
+      "cred_kind": "LIKELY_PASSWORD",
+      "cred_len": 12
+    },
+    "RADIO": {
+      "user": "ubuntu",
+      "cred_kind": "OPAQUE_UNKNOWN_but_treated_as_password",
+      "cred_len": 14
+    }
+  },
+  "auth_handshake": {
+    "remote_cmd": "id -un && uname -srm",
+    "exit_code": null,
+    "pw_prompts_seen": 2,
+    "fp_prompts_seen": 1,
+    "stdout_scrubbed_tail": "\nThe authenticity of host '159.138.173.250 (159.138.173.250)' can't be established.\nED25519 key fingerprint is SHA256:W45xvjhsARJOcFj9U/bcWC3KDte30T+Amu3eCx4UrwU.\nThis key is not known by any other names.\nAre you sure you want to continue connecting (yes/no/[fingerprint])? \n<fp_accepted>\nyes\nWarning: Permanently added '159.138.173.250' (ED25519) to the list of known hosts.\n\n\nroot@159.138.173.250's password: \n<pw_written>\n\n\n<pw_written>\n<SCRUBBED_SECRET>\nConnection timed out during banner exchange\n"
+  },
+  "security_observations": [
+    "SEC-2026-09-13-T4-01: earlier session-cell inadvertently echoed the JUMP password from CSV row 3 col 0 (12 chars) into my transcript. Owner-side rotation required (adds to SEC-2026-09-12-01 pending rotation).",
+    "SEC-2026-09-13-T4-02 [from admin ruling 4]: Public-internet root SSH with password auth on JUMP is a hardening risk. Recorded for owner's later attention; NOT acted on per admin instruction 'do not change any server config'."
+  ],
+  "overall_verdict": "FAIL"
+}
