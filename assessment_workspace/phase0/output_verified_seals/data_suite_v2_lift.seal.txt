@@ -1,0 +1,37 @@
+Kind: data_suite_v2_lift
+Wave: W-DATA-SUITE-V2-LIFT
+Label-provenance: owner directive 2026-09-14T~13:00Z clause 2 Task 2 (amended M5 sequence: W-AUDIO-POC FIRST, then W-DATA-SUITE-V2-LIFT) + owner GO already banked at wave-open with DPO-D1/DPO-D2 defaults standing (no amendments)
+Component-standing: STANDALONE Data-Suite workspace family (Canon-1 §4.6 extension-not-proliferation; one workspace surface family, not a proliferation of sibling engines)
+Sealed-at-utc: 2026-09-14T15:11:27Z
+Canon-anchors: DAP-Spec §A10 (artefact-egress remainder · discharged by CP-D6), Canon-1 §4.6 (extension not proliferation), Canon-3 §9.3 (append-only ledger spirit · CP-D5 append_session), Canon-4 §22 (UnitRefs-only · CP-D3 SourceRef + CP-D4 AnalyzeDeepDive/AnalyzeSources shape), Solva-V2-LIFT precedent (parameterless boundary FIRST · engine-shell skeletons · word-boundary executive-domain negative-scan · HALT non-token-strippable donor constructs)
+CPs (order-of-landing): CP-D1 (FIRST · parameterless workspace-boundary signature per Solva-V2 CP-S2 precedent) · CP-D2 · CP-D3 · CP-D4 (TRUE_RED discipline restored after banked-false-RED violation in prior turn) · CP-D5 · CP-D6 · CP-D7 · CP-D8
+Ratchet: 3929 -> 3979 (+50 = 8 + 6*7 · +7 new CP-D1 + 1 cross-benefit + 6 each for CP-D2..CP-D8)
+Green1-passed: 3979
+Green1-skipped: 1
+Green1-baseline-failures: 0
+Green1-log-sha256: e8dcaeff467397891d4dad53a8cabd5e1f1d72fd93751c97d6b805851cb211f2
+Green2-passed: 3979
+Green2-skipped: 1
+Green2-baseline-failures: 0
+Green2-log-sha256: 540377497c8d69948f2bd65ac7afde2d97fa6ee3757fcec4738e8db09b6e7ea4
+Byte-match-pass-count: TRUE
+Ratchet-manifest-sha256: 80d309b8bc741238e0b935b1d958d8c7e5e4164412c14f3f4afa9cfa07bbcd2b
+CP-D1-invariants: 8 (7 new + 1 cross-benefit · parameterless compute_surface(workspace: WorkspaceState) -> SurfaceClass · closed 3-value SurfaceClass enum · frozen WorkspaceState contract · NON_CONTRACT_UTILITY_MODULES exemption)
+CP-D2-invariants: 6 (workspace_state_machine · WorkspaceLifecycleState closed 4-value · TRANSITIONS 3-edge linear · TERMINAL_STATES · IllegalWorkspaceTransition + assert_transition_legal)
+CP-D3-invariants: 6 (source_registry · SourceRef frozen 3-field · SOURCE_KINDS closed 4-value · SourceRefInvalid · list_sources signature-locked · Canon-4 §22 UnitRefs-only)
+CP-D4-invariants: 6 (analyze_tabs · 3 frozen dataclasses AnalyzeRapid/AnalyzeDeepDive/AnalyzeSources · ANALYZE_TAB_KINDS closed 3-value · export tab refused universally · AnalyzeDeepDive hash-only-no-raw-text · AnalyzeSources unit-refs-only)
+CP-D5-invariants: 6 (analysis_session · AnalysisSession frozen 5-field · compute_snapshot_fingerprint deterministic sha256 · append_session refuses id collision · Canon-3 §9.3 append-only)
+CP-D6-invariants: 6 (export_artefact + export_gate · ExportArtefact frozen 4-carrier · admit_export refuses release naming missing carrier via ExportRefused · DAP-Spec §A10 discharge)
+CP-D7-invariants: 6 (analysis_lifecycle · AnalysisLifecycleState closed 4-value · type-separated from CP-D2 workspace lifecycle · 3-edge linear pipeline · back-edge/skip-edge/self-loop/post-terminal refused)
+CP-D8-invariants: 6 (engines/ package · analyze_workspace_engine + deep_dive_engine skeletons · executive-domain word-boundary negative-scan clean · engine run() HALT · engine module canon anchors · engine no LLM/HTTP/DB imports)
+Tests-first-discipline: TRUE at close · CP-D4 in-session correction executed: prior turn banked GREEN (6 passed) as RED_pre_impl; this session rolled back mechanism, captured true ModuleNotFoundError × 6 as v2_true receipt, deleted false receipt, restored mechanism, resumed close · corrective ritual banked in DECISIONS.md 2026-09-14T~14:36Z
+DPO-D1-default-applied: TRUE (surfaces 2 and 3 = Analyze-family sibling views · analyze_tabs closed 3-value set · no owner amendment received)
+DPO-D2-default-applied: TRUE (W-TRUST-SURFACE-v2 + W-EXECUTIVE-SUITE-v2-LIFT stay OUT-OF-SESSION-SCOPE · no owner amendment received)
+HALT-declared: E.4 · engines/analyze_workspace_engine.run() and engines/deep_dive_engine.run() both raise NotImplementedError with 'HALT' in message per Solva-V2 CP-S8 precedent (LLM/HTTP/DB donor plumbing not lifted this wave)
+Zero-track-a-churn-to-prior-waves: confirmed (W-AUDIO-POC + Solva-V2 + Registry lineage untouched by this wave · negative-scan scoped to services/data_suite_v2/ only)
+Executive-domain-negative-scan: clean · word-boundary regex across services/data_suite_v2/ rglob('*.py') · token set verbatim from W_SOLVA_V2_LIFT_close.md §B
+Track-a-HEAD-at-close: 6549c31
+Master-HEAD-at-close: to-fill (Commit B of CP-D8 close lands imminently)
+Grounding-brief: notes/wave_data_suite_v2_lift_grounding_brief.md
+Owner-facing-report: notes/W_DATA_SUITE_V2_LIFT_close.md
+Two-commit-pattern: track-a code + workspace state · LOCAL only · NEVER push

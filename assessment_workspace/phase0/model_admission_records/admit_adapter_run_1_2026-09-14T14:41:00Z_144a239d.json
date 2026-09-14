@@ -1,0 +1,59 @@
+{
+  "candidate_model_id": "adapter_run_1",
+  "outcome": "refused",
+  "reason": "moac_criterion_below_floor",
+  "refusal_note": "MOAC criterion 'accuracy_uncurated' did not meet the owner-supplied floor at measurement time. See admission record for the exact measured_value / floor_value pair.",
+  "registry_version_after": null,
+  "moac_card": {
+    "candidate_model_id": "adapter_run_1",
+    "evidence_source_kind": "uncurated_registry_sample",
+    "evidence_purpose_id": null,
+    "accuracy_uncurated": {
+      "measured_value": 0.0,
+      "unit": "kwer_delta",
+      "method_of_measurement": "Trainer six-check M-a · mock harness · derived from MOAC card 'moac/run/1' verdict_summary '4 of 6 checks passed (mocked)'",
+      "floor_value": 0.99,
+      "canon_anchor": "Canon 4 §26.1"
+    },
+    "coverage_strata": {
+      "measured_value": 0.0,
+      "unit": "coverage_ratio",
+      "method_of_measurement": "Trainer six-check M-b · mock",
+      "floor_value": 0.99,
+      "canon_anchor": "Canon 4 §26.2"
+    },
+    "refusal_behaviour": {
+      "measured_value": 0.0,
+      "unit": "refusal_score",
+      "method_of_measurement": "Trainer six-check M-f · mock (awaits CP8 real flip)",
+      "floor_value": 0.99,
+      "canon_anchor": "Canon 4 §26.3"
+    },
+    "provenance_integrity": {
+      "measured_value": 0.0,
+      "unit": "integrity_score",
+      "method_of_measurement": "Trainer six-check · mock",
+      "floor_value": 0.99,
+      "canon_anchor": "Canon 4 §26.4"
+    },
+    "cost_per_operation": {
+      "measured_value": 999.0,
+      "unit": "cost_units",
+      "method_of_measurement": "Trainer six-check · mock",
+      "floor_value": 0.5,
+      "canon_anchor": "Canon 4 §26.5"
+    },
+    "time_to_answer_p95": {
+      "measured_value": 999.0,
+      "unit": "seconds",
+      "method_of_measurement": "Trainer six-check · mock",
+      "floor_value": 5.0,
+      "canon_anchor": "Canon 4 §26.6"
+    },
+    "training_lineage_resolved": true,
+    "training_lineage_note": "Trainer run run/1 · base_model_id='model/qwen3-c1' · recipe_version='training_params@v0/muon_v1' · material_admit_ref='admit/1' · MOAC card 'moac/run/1'.",
+    "computed_at": "2026-09-14T14:41:00.199169+00:00"
+  },
+  "ca1_011_watch_seam": "services.watch.route_recheck_failure (lands W9)",
+  "computed_at": "2026-09-14T14:41:00Z"
+}
