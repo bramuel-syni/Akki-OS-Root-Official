@@ -1,0 +1,57 @@
+{
+  "task": "connectivity_task2_mysql_seven_hosts",
+  "at_utc": "2026-09-14T09:53:37Z",
+  "rights_at_setup_basis": "Owner ruling verbatim 2026-09-14: 'these are file labels but no confidential information. We have full rights on this data.'",
+  "jump_host_len": 15,
+  "results": [
+    {
+      "host": "203.123.86.10",
+      "auth_attempts": [],
+      "schemas": null,
+      "connected_with_cred_label": null,
+      "tunnel_error": "AttributeError:module 'paramiko' has no attribute 'DSSKey'"
+    },
+    {
+      "host": "110.238.76.159",
+      "auth_attempts": [],
+      "schemas": null,
+      "connected_with_cred_label": null,
+      "tunnel_error": "AttributeError:module 'paramiko' has no attribute 'DSSKey'"
+    },
+    {
+      "host": "159.138.164.93",
+      "auth_attempts": [],
+      "schemas": null,
+      "connected_with_cred_label": null,
+      "tunnel_error": "AttributeError:module 'paramiko' has no attribute 'DSSKey'"
+    },
+    {
+      "host": "159.138.162.146",
+      "auth_attempts": [],
+      "schemas": null,
+      "connected_with_cred_label": null,
+      "tunnel_error": "AttributeError:module 'paramiko' has no attribute 'DSSKey'"
+    },
+    {
+      "host": "159.138.164.124",
+      "auth_attempts": [],
+      "schemas": null,
+      "connected_with_cred_label": null,
+      "tunnel_error": "AttributeError:module 'paramiko' has no attribute 'DSSKey'"
+    },
+    {
+      "host": "110.238.75.83",
+      "auth_attempts": [],
+      "schemas": null,
+      "connected_with_cred_label": null,
+      "tunnel_error": "AttributeError:module 'paramiko' has no attribute 'DSSKey'"
+    },
+    {
+      "host": "203.123.83.144",
+      "auth_attempts": [],
+      "schemas": null,
+      "connected_with_cred_label": null,
+      "tunnel_error": "AttributeError:module 'paramiko' has no attribute 'DSSKey'"
+    }
+  ]
+}

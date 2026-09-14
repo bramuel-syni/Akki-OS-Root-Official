@@ -1,0 +1,747 @@
+{
+  "task": "connectivity_task2_mysql_bounded_content_read",
+  "at_utc": "2026-09-14T09:55:46Z",
+  "rights_at_setup_basis": "Owner ruling verbatim 2026-09-14: 'these are file labels but no confidential information. We have full rights on this data.'",
+  "position_redaction_note": "Cell values NOT emitted. Only column names, SQL types, and value-lengths.",
+  "results": [
+    {
+      "host": "159.138.162.146",
+      "schema": "analytics",
+      "n_tables": 28,
+      "tables_sampled": [
+        {
+          "table": "age_groups",
+          "row_count": 5,
+          "columns": [
+            [
+              "id",
+              "bigint unsigned"
+            ],
+            [
+              "name",
+              "varchar(255)"
+            ],
+            [
+              "min_age",
+              "int"
+            ],
+            [
+              "max_age",
+              "int"
+            ],
+            [
+              "created_at",
+              "timestamp"
+            ],
+            [
+              "updated_at",
+              "timestamp"
+            ],
+            [
+              "deleted_at",
+              "timestamp"
+            ]
+          ]
+        },
+        {
+          "table": "campaign_age_groups",
+          "row_count": 1,
+          "columns": [
+            [
+              "campaign_id",
+              "bigint unsigned"
+            ],
+            [
+              "age_group_id",
+              "bigint unsigned"
+            ]
+          ]
+        },
+        {
+          "table": "campaign_counties",
+          "row_count": 0,
+          "columns": [
+            [
+              "campaign_id",
+              "bigint unsigned"
+            ],
+            [
+              "county_id",
+              "bigint unsigned"
+            ]
+          ]
+        },
+        {
+          "table": "campaign_l_s_m_s",
+          "row_count": 0,
+          "columns": [
+            [
+              "campaign_id",
+              "bigint unsigned"
+            ],
+            [
+              "l_s_m_id",
+              "bigint unsigned"
+            ]
+          ]
+        },
+        {
+          "table": "campaign_regions",
+          "row_count": 6,
+          "columns": [
+            [
+              "campaign_id",
+              "bigint unsigned"
+            ],
+            [
+              "region_id",
+              "bigint unsigned"
+            ]
+          ]
+        }
+      ],
+      "sample_row_shape": {
+        "table": "age_groups",
+        "error": "list index out of range"
+      }
+    },
+    {
+      "host": "159.138.162.146",
+      "schema": "weego",
+      "n_tables": 413,
+      "tables_sampled": [
+        {
+          "table": "account_types",
+          "row_count": 2,
+          "columns": [
+            [
+              "id",
+              "int unsigned"
+            ],
+            [
+              "merchant_id",
+              "int unsigned"
+            ],
+            [
+              "status",
+              "int"
+            ],
+            [
+              "admin_delete",
+              "int"
+            ],
+            [
+              "created_at",
+              "timestamp"
+            ],
+            [
+              "updated_at",
+              "timestamp"
+            ],
+            [
+              "deleted_at",
+              "timestamp"
+            ]
+          ]
+        },
+        {
+          "table": "admins",
+          "row_count": 1,
+          "columns": [
+            [
+              "id",
+              "int unsigned"
+            ],
+            [
+              "name",
+              "varchar(191)"
+            ],
+            [
+              "email",
+              "varchar(191)"
+            ],
+            [
+              "password",
+              "varchar(191)"
+            ],
+            [
+              "remember_token",
+              "varchar(100)"
+            ],
+            [
+              "created_at",
+              "timestamp"
+            ],
+            [
+              "updated_at",
+              "timestamp"
+            ]
+          ]
+        },
+        {
+          "table": "advertisement_banners",
+          "row_count": 0,
+          "columns": [
+            [
+              "id",
+              "int unsigned"
+            ],
+            [
+              "merchant_id",
+              "int unsigned"
+            ],
+            [
+              "segment_id",
+              "int unsigned"
+            ],
+            [
+              "business_segment_id",
+              "int unsigned"
+            ],
+            [
+              "name",
+              "varchar(191)"
+            ],
+            [
+              "image",
+              "text"
+            ],
+            [
+              "action_type",
+              "text"
+            ],
+            [
+              "redirect_url",
+              "text"
+            ],
+            [
+              "product_id",
+              "int unsigned"
+            ],
+            [
+              "category_id",
+              "int unsigned"
+            ],
+            [
+              "validity",
+              "tinyint"
+            ],
+            [
+              "home_screen",
+              "tinyint"
+            ],
+            [
+              "activate_date",
+              "date"
+            ],
+            [
+              "expire_date",
+              "date"
+            ],
+            [
+              "sequence",
+              "int"
+            ],
+            [
+              "status",
+              "int"
+            ],
+            [
+              "is_deleted",
+              "int"
+            ],
+            [
+              "banner_for",
+              "varchar(191)"
+            ],
+            [
+              "home_screen_holder_id",
+              "int unsigned"
+            ],
+            [
+              "created_at",
+              "timestamp"
+            ],
+            [
+              "updated_at",
+              "timestamp"
+            ]
+          ]
+        },
+        {
+          "table": "agents",
+          "row_count": 0,
+          "columns": [
+            [
+              "id",
+              "int unsigned"
+            ],
+            [
+              "merchant_id",
+              "int unsigned"
+            ],
+            [
+              "name",
+              "varchar(191)"
+            ],
+            [
+              "alias_name",
+              "varchar(191)"
+            ],
+            [
+              "email",
+              "varchar(191)"
+            ],
+            [
+              "country_id",
+              "int unsigned"
+            ],
+            [
+              "password",
+              "varchar(191)"
+            ],
+            [
+              "agent_image",
+              "varchar(191)"
+            ],
+            [
+              "phone",
+              "varchar(191)"
+            ],
+            [
+              "contact_person",
+              "varchar(191)"
+            ],
+            [
+              "address",
+              "text"
+            ],
+            [
+              "status",
+              "int"
+            ],
+            [
+              "remember_token",
+              "varchar(100)"
+            ],
+            [
+              "bank_name",
+              "varchar(191)"
+            ],
+            [
+              "account_holder_name",
+              "varchar(191)"
+            ],
+            [
+              "account_number",
+              "varchar(191)"
+            ],
+            [
+              "account_type_id",
+              "int unsigned"
+            ],
+            [
+              "online_transaction",
+              "varchar(191)"
+            ],
+            [
+              "deleted_at",
+              "timestamp"
+            ],
+            [
+              "created_at",
+              "timestamp"
+            ],
+            [
+              "updated_at",
+              "timestamp"
+            ]
+          ]
+        },
+        {
+          "table": "app_navigation_drawers",
+          "row_count": 24,
+          "columns": [
+            [
+              "id",
+              "int unsigned"
+            ],
+            [
+              "name",
+              "varchar(191)"
+            ],
+            [
+              "image",
+              "varchar(200)"
+            ],
+            [
+              "type",
+              "int"
+            ],
+            [
+              "status",
+              "int"
+            ],
+            [
+              "slug",
+              "text"
+            ],
+            [
+              "created_at",
+              "timestamp"
+            ],
+            [
+              "updated_at",
+              "timestamp"
+            ],
+            [
+              "deleted_at",
+              "timestamp"
+            ]
+          ]
+        }
+      ],
+      "sample_row_shape": {
+        "table": "account_types",
+        "columns_shape": [
+          [
+            "id",
+            "int unsigned",
+            "len=3"
+          ],
+          [
+            "name",
+            "varchar(191)",
+            "len=3"
+          ],
+          [
+            "image",
+            "varchar(200)",
+            "len=1"
+          ],
+          [
+            "type",
+            "int",
+            "len=1"
+          ],
+          [
+            "status",
+            "int",
+            "len=19"
+          ],
+          [
+            "slug",
+            "text",
+            "len=19"
+          ],
+          [
+            "created_at",
+            "timestamp",
+            "len=0"
+          ]
+        ]
+      }
+    },
+    {
+      "host": "110.238.76.159",
+      "schema": "viusasa_dev",
+      "n_tables": 132,
+      "tables_sampled": [
+        {
+          "table": "access_types",
+          "row_count": 5,
+          "columns": [
+            [
+              "id",
+              "bigint(20) unsigned"
+            ],
+            [
+              "name",
+              "varchar(191)"
+            ],
+            [
+              "slug",
+              "varchar(191)"
+            ],
+            [
+              "status",
+              "varchar(191)"
+            ],
+            [
+              "created_by",
+              "bigint(20) unsigned"
+            ],
+            [
+              "created_at",
+              "timestamp"
+            ],
+            [
+              "updated_at",
+              "timestamp"
+            ]
+          ]
+        },
+        {
+          "table": "active_users",
+          "row_count": 24028,
+          "columns": [
+            [
+              "id",
+              "bigint(20) unsigned"
+            ],
+            [
+              "user_id",
+              "bigint(20) unsigned"
+            ],
+            [
+              "phone",
+              "varchar(191)"
+            ],
+            [
+              "first_name",
+              "varchar(191)"
+            ],
+            [
+              "last_name",
+              "varchar(191)"
+            ],
+            [
+              "email",
+              "varchar(191)"
+            ],
+            [
+              "email_verified_at",
+              "timestamp"
+            ],
+            [
+              "phone_verified_at",
+              "timestamp"
+            ],
+            [
+              "created_at",
+              "timestamp"
+            ],
+            [
+              "updated_at",
+              "timestamp"
+            ],
+            [
+              "deleted_at",
+              "timestamp"
+            ]
+          ]
+        },
+        {
+          "table": "addresses",
+          "row_count": 0,
+          "columns": [
+            [
+              "id",
+              "int(10) unsigned"
+            ],
+            [
+              "type",
+              "varchar(191)"
+            ],
+            [
+              "name",
+              "varchar(191)"
+            ],
+            [
+              "street_name",
+              "varchar(191)"
+            ],
+            [
+              "building_name",
+              "varchar(191)"
+            ],
+            [
+              "neighbourhood",
+              "varchar(191)"
+            ],
+            [
+              "country",
+              "varchar(191)"
+            ],
+            [
+              "city",
+              "varchar(191)"
+            ],
+            [
+              "user_id",
+              "bigint(20) unsigned"
+            ],
+            [
+              "created_at",
+              "timestamp"
+            ],
+            [
+              "updated_at",
+              "timestamp"
+            ],
+            [
+              "deleted_at",
+              "timestamp"
+            ]
+          ]
+        },
+        {
+          "table": "airtel_c2bs",
+          "row_count": 0,
+          "columns": [
+            [
+              "id",
+              "bigint(20) unsigned"
+            ],
+            [
+              "reference",
+              "varchar(191)"
+            ],
+            [
+              "customer_msisdn",
+              "varchar(191)"
+            ],
+            [
+              "merchant_msisdn",
+              "varchar(191)"
+            ],
+            [
+              "amount",
+              "double(10,2)"
+            ],
+            [
+              "transaction_reference",
+              "varchar(191)"
+            ],
+            [
+              "transaction_id",
+              "varchar(191)"
+            ],
+            [
+              "type",
+              "varchar(191)"
+            ],
+            [
+              "pin",
+              "varchar(191)"
+            ],
+            [
+              "username",
+              "varchar(191)"
+            ],
+            [
+              "password",
+              "varchar(191)"
+            ],
+            [
+              "user_id",
+              "bigint(20) unsigned"
+            ],
+            [
+              "created_at",
+              "timestamp"
+            ],
+            [
+              "updated_at",
+              "timestamp"
+            ]
+          ]
+        },
+        {
+          "table": "airtel_money_customer_requests",
+          "row_count": 0,
+          "columns": [
+            [
+              "id",
+              "bigint(20) unsigned"
+            ],
+            [
+              "msisdn",
+              "varchar(191)"
+            ],
+            [
+              "amount",
+              "varchar(191)"
+            ],
+            [
+              "reference",
+              "varchar(191)"
+            ],
+            [
+              "reference1",
+              "varchar(191)"
+            ],
+            [
+              "transaction_id",
+              "varchar(191)"
+            ],
+            [
+              "status",
+              "varchar(191)"
+            ],
+            [
+              "message",
+              "varchar(191)"
+            ],
+            [
+              "user_id",
+              "bigint(20) unsigned"
+            ],
+            [
+              "package_id",
+              "bigint(20) unsigned"
+            ],
+            [
+              "created_at",
+              "timestamp"
+            ],
+            [
+              "updated_at",
+              "timestamp"
+            ]
+          ]
+        }
+      ],
+      "sample_row_shape": {
+        "table": "access_types",
+        "columns_shape": [
+          [
+            "id",
+            "bigint(20) unsigned",
+            "len=1"
+          ],
+          [
+            "msisdn",
+            "varchar(191)",
+            "len=6"
+          ],
+          [
+            "amount",
+            "varchar(191)",
+            "len=6"
+          ],
+          [
+            "reference",
+            "varchar(191)",
+            "len=6"
+          ],
+          [
+            "reference1",
+            "varchar(191)",
+            "len=0"
+          ],
+          [
+            "transaction_id",
+            "varchar(191)",
+            "len=19"
+          ],
+          [
+            "status",
+            "varchar(191)",
+            "len=19"
+          ]
+        ]
+      }
+    }
+  ]
+}

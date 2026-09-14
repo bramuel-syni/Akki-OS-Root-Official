@@ -17,7 +17,7 @@ Two new canon artefacts landed 2026-09-13 (owner-attached · see `notes/canon_se
 - **A5.7+ · frontier-crossing receipt fields** — Existing A5.7 (already amended to include principal identity + timestamp per Security_Promise_Set_Amendments Amendment 3) grows to also record provider + provider-stated model version for frontier crossings. Discharges in M4 (composed with DAP-20 assistance-chat receipt surface).
 - **TGT+ · Targeta acceptance evaluations SFP-8-conforming** — MOAC verdict + yield-wall per-stratum measurements land on SFP-8-conforming serving only. Discharges in M5 W-DATA-SUITE-v2-LIFT as dependency.
 - **R-13 · validation cadence** — RATIFIED per C3 batch 2026-09-13 (monthly + per-engine-version + per-artefact-version). No milestone-level scope change.
-- **R-14 · Colibri engine admission** — deliberately unruled; added to RULING_LEDGER OPEN set. Not assigned to any milestone; gated by appliance benchmark + TCB-tier admission ceremony.
+- **R-14 · candidate serving engine admission** — deliberately unruled; added to RULING_LEDGER OPEN set. Not assigned to any milestone; gated by appliance benchmark + TCB-tier admission ceremony. [Engine name scrubbed per owner ruling 2026-09-14.]
 
 **Not a blocker for the Registry+DAP block.** DAP-Spec §9 A1..A10 pass criteria unchanged; SFP-8 conformance is a serving-path dependency; M1 rows carry declared dependency markers per C5.
 

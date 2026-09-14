@@ -2,10 +2,13 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 # canon_serving_integrity_amendment_v1_requirements.md
 
+
+**`[framing, not canon]` · Scrub note 2026-09-14:** Per owner ruling ("*In R-14, drop that engine's name, should not surface anywhere in the system or documentation*", dated 2026-09-14), every occurrence of the specific engine name (formerly present in Table 0 R2 origin honesty condition, §A DERIVATION, and §F R-14 text) has been replaced with a neutral descriptor bracketed and dated.  The extractions are marked *(verbatim)* where the surrounding wording is preserved and only the engine name is substituted; underlying substance (invariant, principle, gating conditions for R-14) is unchanged.
+
 **Source.** `canon/drops/20260913/raw/Serving_Integrity_Amendment_v1.docx` sha256 `56af9f09c93e38ad8b80c6f70cd07c1dc03efba8c9661d2d9e717d54b3144269` · 15,863 B (owner-attached 2026-09-13).
 **Spec id.** `serving_integrity_v1` (per §1 opening line).
 **Standing.** 4 amendments · 1 new promise · 2 rulings · 13 September 2026. Governs **Akki-controlled serving paths only**. The frontier tier (Doc 14's gateway-only class: OpenAI, Anthropic, Google) runs on engines outside the platform's control; the floor cannot be imposed there — V-4 makes the receipt record which side of the boundary answered.
-**Origin honesty condition (verbatim, Table 0 R2).** *"Identified while evaluating the Colibri inference engine (JustVugg/colibri, Apache 2.0), whose stated invariant — placement decides speed, never semantics — named the gap. The invariant is adopted as platform doctrine. The engine itself is NOT adopted by this amendment; admission of any specific engine is R-14."*
+**Origin honesty condition (verbatim, Table 0 R2).** *"Identified while evaluating [a reference inference engine · name scrubbed per owner ruling 2026-09-14 · original attribution: reference impl · Apache 2.0], whose stated invariant — placement decides speed, never semantics — named the gap. The invariant is adopted as platform doctrine. The engine itself is NOT adopted by this amendment; admission of any specific engine is R-14."*
 **Applies to (verbatim, Table 0 R0).** *"Doc 20 (new A20.15) · security_function_policies_v1 (new SFP-8) · dap_backend_spec_v1 (DAP-31, DAP-32 conformance clauses) · Targeta's evaluation path · agent_containment_spec_v1 (new AC-13, AC-14) · the trust receipt (Doc 1 A5.7, as amended by Security_Promise_Set_Amendments Amendment 3)."*
 **What this closes (verbatim, Table 0 R1).** *"An unnamed gap: no rule anywhere governs the serving path between the registry and the gates. A5.8 forbids silent recalibration of rules; the registry hashes artefacts; MOAC accepts a specific model — nothing requires that the model served is, semantically, the one that was accepted."*
 
@@ -23,7 +26,7 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 > *"Subjects: any serving path executing a registered artefact. Objects: the artefact's semantics — precision, routing behaviour, context window, sampling. Operations: serve, degrade, refuse. Rule: degradation affects latency only, never semantics; a serving path that cannot prove semantic conformance refuses rather than serves. Anchor: Doc 3 A5.8 — the same no-silent-recalibration ethos applied one layer down, to the substrate under the rules layer, so the rules are administered on the model they were tested on."*
 
-- **DERIVATION** (verbatim): *"Colibri's design rule ('insufficient fast memory may reduce speed; it must not quietly redefine the model'), generalised from one engine's internal discipline into a platform floor. A5.8 — the same no-silent-recalibration ethos, at the rules layer."*
+- **DERIVATION** (verbatim): *"[The reference engine · name scrubbed per owner ruling 2026-09-14]'s design rule ('insufficient fast memory may reduce speed; it must not quietly redefine the model'), generalised from one engine's internal discipline into a platform floor. A5.8 — the same no-silent-recalibration ethos, at the rules layer."*
 - **PRINCIPLE** (verbatim): *"'We tested the model' is only worth something if the tested model is the one running. Pressure may make it slower, never different."*
 
 ## §B · V-2 — Gate Verdicts Inherit the Path That Computed Them
@@ -71,7 +74,7 @@ Reproduced verbatim from `Security_Assurance_Promise_Set_v2.xlsx` R28 (col "Prom
 ## §F · Rulings (§7)
 
 - **R-13** (DEFAULT-class): *"The reference-validation cadence for A20.15's operational check. Recommended default: on every engine version change and every artefact version change, plus a standing monthly run. DEFAULT-class — revisable on evidence, on Doc 3's own baseline-period pattern."*
-- **R-14** (open, deliberately unruled): *"Whether the Colibri engine itself is admitted as the local rung's serving infrastructure. Not ruled here, and deliberately so: admission is gated on (a) the appliance benchmark — the smallest registered-family candidate on actual appliance hardware, per the appliance programme's own test discipline — and (b) the same admission ceremony any TCB-tier component undergoes. Neither has been run; ruling now would circumvent them."*
+- **R-14** (open, deliberately unruled): *"Whether [the candidate serving engine · name scrubbed per owner ruling 2026-09-14] is admitted as the local rung's serving infrastructure. Not ruled here, and deliberately so: admission is gated on (a) the appliance benchmark — the smallest registered-family candidate on actual appliance hardware, per the appliance programme's own test discipline — and (b) the same admission ceremony any TCB-tier component undergoes. Neither has been run; ruling now would circumvent them."*
 
 ## §G · Placement in Standing Enumerations (§6)
 

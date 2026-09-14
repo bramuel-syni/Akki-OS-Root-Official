@@ -1,0 +1,56 @@
+{
+  "task": "connectivity_task2_mysql_preflight",
+  "at_utc": "2026-09-14T09:53:08Z",
+  "rights_at_setup_basis": "Owner ruling verbatim 2026-09-14: 'these are file labels but no confidential information. We have full rights on this data.'",
+  "credentialed_dbs": [
+    {
+      "label": "DATABASE NAME",
+      "host": "203.123.86.10",
+      "user_len": 7,
+      "pw_len": 16
+    },
+    {
+      "label": "USSD",
+      "host": "110.238.76.159",
+      "user_len": 7,
+      "pw_len": 16
+    },
+    {
+      "label": "MICROSERVICES",
+      "host": "159.138.164.93",
+      "user_len": 7,
+      "pw_len": 16
+    }
+  ],
+  "catalog_dbs": [
+    {
+      "section": null,
+      "host": "159.138.162.146",
+      "first_schema_hint": "analytics"
+    },
+    {
+      "section": "citizen-digital",
+      "host": "159.138.164.124",
+      "first_schema_hint": "citizen_digital"
+    },
+    {
+      "section": "Visitors_database",
+      "host": "110.238.75.83",
+      "first_schema_hint": "citizen_digital"
+    },
+    {
+      "section": "Shikisha",
+      "host": "203.123.83.144",
+      "first_schema_hint": "citizen-pulse"
+    }
+  ],
+  "unique_hosts": [
+    "203.123.86.10",
+    "110.238.76.159",
+    "159.138.164.93",
+    "159.138.162.146",
+    "159.138.164.124",
+    "110.238.75.83",
+    "203.123.83.144"
+  ]
+}

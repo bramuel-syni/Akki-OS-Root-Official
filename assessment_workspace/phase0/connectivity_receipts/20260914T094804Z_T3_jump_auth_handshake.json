@@ -1,0 +1,27 @@
+{
+  "task": "connectivity_task2_jump_auth_handshake",
+  "at_utc": "2026-09-14T09:48:04Z",
+  "tofu_verified": true,
+  "fingerprints_expected_vs_actual": {
+    "ssh-rsa": {
+      "expected": "SHA256:qEUrMRNdP9rUzetuJ2qYMDKGFrUlLUeaVI6UHPaM/Xc",
+      "actual": "SHA256:qEUrMRNdP9rUzetuJ2qYMDKGFrUlLUeaVI6UHPaM/Xc"
+    },
+    "ecdsa-sha2-nistp256": {
+      "expected": "SHA256:dMz9wmWATBTN1pfwmxvLpMvcdchm77aaVr3q0zIOmk8",
+      "actual": "SHA256:dMz9wmWATBTN1pfwmxvLpMvcdchm77aaVr3q0zIOmk8"
+    },
+    "ssh-ed25519": {
+      "expected": "SHA256:W45xvjhsARJOcFj9U/bcWC3KDte30T+Amu3eCx4UrwU",
+      "actual": "SHA256:W45xvjhsARJOcFj9U/bcWC3KDte30T+Amu3eCx4UrwU"
+    }
+  },
+  "rc": 0,
+  "auth_ok_in_stdout": true,
+  "stdout_lines_redacted": [
+    "AUTH_OK",
+    "root",
+    "Linux 6.8.0-106-generic x86_64"
+  ],
+  "stderr_first_120": ""
+}

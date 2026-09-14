@@ -1,0 +1,23 @@
+{
+  "task": "connectivity_task2_obs_content_read_bounded",
+  "at_utc": "2026-09-14T09:52:09Z",
+  "rights_at_setup_basis": "Owner ruling verbatim 2026-09-14: 'these are file labels but no confidential information. We have full rights on this data.'",
+  "reads": [
+    {
+      "bucket": "google-transcripts",
+      "key": "brenda.obura/WOMEN.mp3.txt",
+      "status": 200,
+      "bytes_read": 26,
+      "first_200_ascii_safe": "This is another fileghhfhf",
+      "content_type": "text/plain"
+    },
+    {
+      "bucket": "google-transcripts",
+      "key": "datasets/bxk/manifest.tsv",
+      "status": 200,
+      "bytes_read": 39,
+      "first_200_ascii_safe": "File Name,Language Code,Folder ID,Link\n",
+      "content_type": "text/tab-separated-values"
+    }
+  ]
+}

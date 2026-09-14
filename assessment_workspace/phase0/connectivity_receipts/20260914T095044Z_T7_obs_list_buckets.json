@@ -1,0 +1,552 @@
+{
+  "task": "connectivity_task2_obs_list_buckets",
+  "at_utc": "2026-09-14T09:50:44Z",
+  "creds_shape": {
+    "user_len": 12,
+    "ak_len": 20,
+    "sk_len": 40
+  },
+  "endpoints_tried": [
+    {
+      "endpoint": "https://obs.ap-southeast-1.myhuaweicloud.com",
+      "status": 200,
+      "errorCode": null,
+      "errorMessage": null,
+      "ok": true,
+      "n_buckets": 106
+    }
+  ],
+  "buckets_found": [
+    {
+      "name": "2024offairrecs",
+      "location": "af-south-1",
+      "create_date": "2024/12/20 08:12:36"
+    },
+    {
+      "name": "apr252017",
+      "location": "tr-west-1",
+      "create_date": "2024/04/17 09:10:52"
+    },
+    {
+      "name": "cal-docs",
+      "location": "af-south-1",
+      "create_date": "2024/03/21 10:58:27"
+    },
+    {
+      "name": "caldocs",
+      "location": "af-south-1",
+      "create_date": "2024/03/21 11:07:34"
+    },
+    {
+      "name": "chamgei-backup",
+      "location": "af-south-1",
+      "create_date": "2024/03/21 11:13:40"
+    },
+    {
+      "name": "chris-test-b",
+      "location": "af-south-1",
+      "create_date": "2024/03/21 11:16:19"
+    },
+    {
+      "name": "citizen-classifieds",
+      "location": "af-south-1",
+      "create_date": "2024/03/13 13:49:57"
+    },
+    {
+      "name": "citizen-digital-cms-files",
+      "location": "af-south-1",
+      "create_date": "2024/03/04 14:09:11"
+    },
+    {
+      "name": "citizen-digital-cms-files-copy",
+      "location": "af-south-1",
+      "create_date": "2024/03/21 11:21:14"
+    },
+    {
+      "name": "citizen-vod",
+      "location": "ap-southeast-3",
+      "create_date": "2026/05/13 11:02:40"
+    },
+    {
+      "name": "citizentv",
+      "location": "af-south-1",
+      "create_date": "2024/03/04 14:09:27"
+    },
+    {
+      "name": "database-backup-dlbms",
+      "location": "af-south-1",
+      "create_date": "2024/03/21 11:28:08"
+    },
+    {
+      "name": "datauploadroyalmedia.co.ke",
+      "location": "af-south-1",
+      "create_date": "2024/03/21 11:34:57"
+    },
+    {
+      "name": "drivesdata.royalmedia",
+      "location": "af-south-1",
+      "create_date": "2024/03/21 11:37:22"
+    },
+    {
+      "name": "edaily",
+      "location": "af-south-1",
+      "create_date": "2024/03/21 11:40:04"
+    },
+    {
+      "name": "edailynew",
+      "location": "af-south-1",
+      "create_date": "2024/03/21 11:42:28"
+    },
+    {
+      "name": "elections",
+      "location": "af-south-1",
+      "create_date": "2025/11/26 07:11:47"
+    },
+    {
+      "name": "elections-portal",
+      "location": "af-south-1",
+      "create_date": "2024/03/21 11:44:39"
+    },
+    {
+      "name": "elections-portal-backup",
+      "location": "af-south-1",
+      "create_date": "2024/03/21 11:47:12"
+    },
+    {
+      "name": "email-footers",
+      "location": "af-south-1",
+      "create_date": "2025/02/06 11:32:09"
+    },
+    {
+      "name": "fast-channels",
+      "location": "af-south-1",
+      "create_date": "2024/12/17 08:48:20"
+    },
+    {
+      "name": "feb272017",
+      "location": "tr-west-1",
+      "create_date": "2024/04/15 02:31:01"
+    },
+    {
+      "name": "good-bucket-f",
+      "location": "af-south-1",
+      "create_date": "2024/03/21 11:51:33"
+    },
+    {
+      "name": "google-transcripts",
+      "location": "af-south-1",
+      "create_date": "2024/03/21 11:54:42"
+    },
+    {
+      "name": "hot96backup",
+      "location": "af-south-1",
+      "create_date": "2024/03/21 11:56:56"
+    },
+    {
+      "name": "inoorotv",
+      "location": "af-south-1",
+      "create_date": "2024/03/21 11:59:26"
+    },
+    {
+      "name": "instore-radio-items",
+      "location": "af-south-1",
+      "create_date": "2026/01/13 06:30:43"
+    },
+    {
+      "name": "iso-rms-storage",
+      "location": "ap-southeast-3",
+      "create_date": "2025/09/11 07:00:46"
+    },
+    {
+      "name": "kapubskt",
+      "location": "af-south-1",
+      "create_date": "2024/03/21 12:01:47"
+    },
+    {
+      "name": "kemediahse",
+      "location": "af-south-1",
+      "create_date": "2024/03/21 12:05:04"
+    },
+    {
+      "name": "librarydirectupload2",
+      "location": "tr-west-1",
+      "create_date": "2024/04/15 02:35:46"
+    },
+    {
+      "name": "mar142017",
+      "location": "af-south-1",
+      "create_date": "2024/03/21 12:08:21"
+    },
+    {
+      "name": "may172017",
+      "location": "af-south-1",
+      "create_date": "2024/03/21 12:10:32"
+    },
+    {
+      "name": "miss-intl-somalia",
+      "location": "af-south-1",
+      "create_date": "2024/03/21 12:12:41"
+    },
+    {
+      "name": "music-bucket-rms",
+      "location": "af-south-1",
+      "create_date": "2024/03/21 12:14:58"
+    },
+    {
+      "name": "na7p4100",
+      "location": "tr-west-1",
+      "create_date": "2024/04/15 02:32:06"
+    },
+    {
+      "name": "na7p410c",
+      "location": "tr-west-1",
+      "create_date": "2024/04/15 02:32:27"
+    },
+    {
+      "name": "na7p419y",
+      "location": "tr-west-1",
+      "create_date": "2024/04/15 02:32:43"
+    },
+    {
+      "name": "na7p41ab",
+      "location": "tr-west-1",
+      "create_date": "2024/04/17 09:00:46"
+    },
+    {
+      "name": "na7p41f4",
+      "location": "tr-west-1",
+      "create_date": "2024/04/15 02:33:12"
+    },
+    {
+      "name": "na7p41hj",
+      "location": "af-south-1",
+      "create_date": "2024/03/21 09:09:44"
+    },
+    {
+      "name": "na7p41j6",
+      "location": "tr-west-1",
+      "create_date": "2024/04/15 01:57:40"
+    },
+    {
+      "name": "na7p41jk",
+      "location": "tr-west-1",
+      "create_date": "2024/04/15 02:33:33"
+    },
+    {
+      "name": "na7p41kh",
+      "location": "af-south-1",
+      "create_date": "2024/03/21 09:18:21"
+    },
+    {
+      "name": "na7p42rl.rms",
+      "location": "af-south-1",
+      "create_date": "2024/03/21 09:21:06"
+    },
+    {
+      "name": "na7p42ry",
+      "location": "tr-west-1",
+      "create_date": "2024/04/15 02:30:36"
+    },
+    {
+      "name": "na7p42s5",
+      "location": "tr-west-1",
+      "create_date": "2024/04/15 01:56:43"
+    },
+    {
+      "name": "na7p42s7",
+      "location": "tr-west-1",
+      "create_date": "2024/04/15 02:27:49"
+    },
+    {
+      "name": "na7p42tq",
+      "location": "tr-west-1",
+      "create_date": "2024/04/15 02:27:18"
+    },
+    {
+      "name": "na7p42tz",
+      "location": "tr-west-1",
+      "create_date": "2024/04/15 02:30:50"
+    },
+    {
+      "name": "na7p42xe",
+      "location": "af-south-1",
+      "create_date": "2024/03/21 09:35:29"
+    },
+    {
+      "name": "na7p42xw",
+      "location": "af-south-1",
+      "create_date": "2024/03/21 09:37:48"
+    },
+    {
+      "name": "na7p42yg",
+      "location": "af-south-1",
+      "create_date": "2024/03/21 09:39:55"
+    },
+    {
+      "name": "na7p434j",
+      "location": "af-south-1",
+      "create_date": "2024/03/21 09:42:55"
+    },
+    {
+      "name": "na7p4357",
+      "location": "af-south-1",
+      "create_date": "2024/03/21 09:45:55"
+    },
+    {
+      "name": "na7p435c",
+      "location": "tr-west-1",
+      "create_date": "2024/04/15 06:00:31"
+    },
+    {
+      "name": "na7p4374",
+      "location": "tr-west-1",
+      "create_date": "2024/04/15 02:33:58"
+    },
+    {
+      "name": "na7p43ax",
+      "location": "af-south-1",
+      "create_date": "2024/03/21 09:53:00"
+    },
+    {
+      "name": "na7p43d3",
+      "location": "af-south-1",
+      "create_date": "2024/03/21 09:55:17"
+    },
+    {
+      "name": "na7p43d6",
+      "location": "tr-west-1",
+      "create_date": "2024/04/15 02:30:21"
+    },
+    {
+      "name": "na7p43df",
+      "location": "af-south-1",
+      "create_date": "2024/03/21 10:00:20"
+    },
+    {
+      "name": "na7p43dj",
+      "location": "tr-west-1",
+      "create_date": "2024/04/15 02:30:05"
+    },
+    {
+      "name": "na7p43do",
+      "location": "af-south-1",
+      "create_date": "2024/03/21 10:06:30"
+    },
+    {
+      "name": "na7p43hs",
+      "location": "tr-west-1",
+      "create_date": "2024/04/15 02:29:51"
+    },
+    {
+      "name": "na7p43js",
+      "location": "af-south-1",
+      "create_date": "2024/03/21 10:10:44"
+    },
+    {
+      "name": "na7p43jw",
+      "location": "tr-west-1",
+      "create_date": "2024/04/15 02:29:38"
+    },
+    {
+      "name": "na7p49p9",
+      "location": "af-south-1",
+      "create_date": "2024/03/21 10:14:41"
+    },
+    {
+      "name": "na7p49pc",
+      "location": "tr-west-1",
+      "create_date": "2024/04/15 02:29:22"
+    },
+    {
+      "name": "na7p4oco",
+      "location": "af-south-1",
+      "create_date": "2024/03/21 10:18:36"
+    },
+    {
+      "name": "na7p4omz",
+      "location": "tr-west-1",
+      "create_date": "2024/04/15 02:29:05"
+    },
+    {
+      "name": "na7p4oxs",
+      "location": "tr-west-1",
+      "create_date": "2024/04/15 02:28:42"
+    },
+    {
+      "name": "na7p4oy4",
+      "location": "tr-west-1",
+      "create_date": "2024/04/15 02:31:34"
+    },
+    {
+      "name": "na7p4oz6",
+      "location": "tr-west-1",
+      "create_date": "2024/04/15 02:31:50"
+    },
+    {
+      "name": "newlibrary-uploads-19-08-2018",
+      "location": "af-south-1",
+      "create_date": "2024/03/21 12:31:21"
+    },
+    {
+      "name": "news-vault",
+      "location": "af-south-1",
+      "create_date": "2024/03/21 12:34:38"
+    },
+    {
+      "name": "obituariesdata",
+      "location": "tr-west-1",
+      "create_date": "2024/04/15 02:33:45"
+    },
+    {
+      "name": "obituariesnew",
+      "location": "af-south-1",
+      "create_date": "2024/03/21 12:38:49"
+    },
+    {
+      "name": "one-signal-live-service",
+      "location": "ap-southeast-3",
+      "create_date": "2026/04/07 06:27:07"
+    },
+    {
+      "name": "onesignal-logos",
+      "location": "ap-southeast-3",
+      "create_date": "2026/05/10 15:37:24"
+    },
+    {
+      "name": "onsignal-bucket",
+      "location": "af-south-1",
+      "create_date": "2026/02/10 13:25:46"
+    },
+    {
+      "name": "private-isos",
+      "location": "af-south-1",
+      "create_date": "2026/08/20 07:06:38"
+    },
+    {
+      "name": "radio-news",
+      "location": "af-south-1",
+      "create_date": "2024/03/21 12:41:31"
+    },
+    {
+      "name": "raz-backup",
+      "location": "af-south-1",
+      "create_date": "2024/03/21 12:45:01"
+    },
+    {
+      "name": "razuna-application-server",
+      "location": "af-south-1",
+      "create_date": "2024/03/21 12:48:15"
+    },
+    {
+      "name": "razuna-direct-access",
+      "location": "tr-west-1",
+      "create_date": "2024/04/15 02:35:34"
+    },
+    {
+      "name": "razuna-ireland-replication-7sep2017",
+      "location": "af-south-1",
+      "create_date": "2024/03/21 12:53:09"
+    },
+    {
+      "name": "razuna.royalmedia",
+      "location": "af-south-1",
+      "create_date": "2024/03/21 12:55:56"
+    },
+    {
+      "name": "registers-13-17",
+      "location": "af-south-1",
+      "create_date": "2024/03/21 12:59:09"
+    },
+    {
+      "name": "rekognition-video-console-demo-dub-917562226170-nm20tsok0pm1ea",
+      "location": "af-south-1",
+      "create_date": "2024/03/21 13:02:08"
+    },
+    {
+      "name": "rms-acronis-backup-bucket",
+      "location": "tr-west-1",
+      "create_date": "2024/04/15 01:57:16"
+    },
+    {
+      "name": "rms-ai",
+      "location": "ap-southeast-1",
+      "create_date": "2026/07/13 07:11:38"
+    },
+    {
+      "name": "rmsbroadcast",
+      "location": "af-south-1",
+      "create_date": "2024/03/21 13:07:43"
+    },
+    {
+      "name": "rmsradio",
+      "location": "af-south-1",
+      "create_date": "2024/03/21 13:10:21"
+    },
+    {
+      "name": "royalmedia",
+      "location": "af-south-1",
+      "create_date": "2024/03/21 13:13:14"
+    },
+    {
+      "name": "s3hub-806142fb68af5725514152f0ae3fb5978d4899aaf394fc186460f3fe2",
+      "location": "af-south-1",
+      "create_date": "2024/03/21 13:15:41"
+    },
+    {
+      "name": "sdatauploadroyalmedia.co.ke",
+      "location": "tr-west-1",
+      "create_date": "2024/04/15 01:53:55"
+    },
+    {
+      "name": "seconddatauploadroyalmedia.co.ke",
+      "location": "tr-west-1",
+      "create_date": "2024/04/15 02:31:19"
+    },
+    {
+      "name": "shikisha",
+      "location": "af-south-1",
+      "create_date": "2024/03/21 13:21:26"
+    },
+    {
+      "name": "skizaaudio",
+      "location": "af-south-1",
+      "create_date": "2024/03/21 13:24:08"
+    },
+    {
+      "name": "test-regionireland",
+      "location": "af-south-1",
+      "create_date": "2024/03/21 13:26:50"
+    },
+    {
+      "name": "test-viusasa-bucket",
+      "location": "af-south-1",
+      "create_date": "2024/10/03 09:16:07"
+    },
+    {
+      "name": "test.test-viusasa-bucket",
+      "location": "af-south-1",
+      "create_date": "2024/10/16 15:28:38"
+    },
+    {
+      "name": "upload.test.test-viusasa-bucket",
+      "location": "af-south-1",
+      "create_date": "2024/10/17 14:47:48"
+    },
+    {
+      "name": "uploads.test-viusasa-bucket",
+      "location": "af-south-1",
+      "create_date": "2024/10/16 15:19:44"
+    },
+    {
+      "name": "viusasanews",
+      "location": "af-south-1",
+      "create_date": "2024/03/21 13:28:58"
+    },
+    {
+      "name": "voters-2013",
+      "location": "af-south-1",
+      "create_date": "2024/03/21 13:31:22"
+    }
+  ],
+  "n_buckets": 106
+}

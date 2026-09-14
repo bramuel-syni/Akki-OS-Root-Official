@@ -68,7 +68,7 @@ All prior DEFAULT rows flipped to RATIFIED per C3 batch 2026-09-13. New DEFAULT 
 | 3 | WPW **R-2** | External-release signatory |
 | 4 | DAP named approving authority (DAP **R-2**) | Person/role identity |
 | 5 | Rules-Service **R-2** | Second-signatory named role (reconciled from `Ratification_Record_v1` Section 2 R-2; not previously in RULING_LEDGER; added M0 2026-09-13) |
-| 6 | Serving-Integrity Amendment **R-14** | Colibri engine admission — deliberately unruled; gated by appliance benchmark + TCB-tier admission ceremony (added M0 2026-09-13) |
+| 6 | Serving-Integrity Amendment **R-14** | candidate serving engine admission — deliberately unruled; gated by appliance benchmark + TCB-tier admission ceremony (added M0 2026-09-13; engine name scrubbed per owner ruling 2026-09-14) |
 | 7 | **ENV-DRIFT-2TESTS-20260913** | 2 tests present in close-time env (recorded 3562 floor) but not collected in current sandbox at HEAD `e2ae44b0`. Preflight rebased floor to 3560 per owner Option A ruling 2026-09-13. Closed when close-time env info surfaces (e.g. per-test collect-only log from the close-time sandbox). Tracked, not lost. |
 
 ---

@@ -1,0 +1,16 @@
+{
+  "task": "connectivity_task2_nas_smb_via_tunnel",
+  "at_utc": "2026-09-14T09:56:59Z",
+  "nas_host_seen_from_jump": "10.10.150.119:445",
+  "anonymous_probe": {
+    "rc": 1,
+    "stdout_first_1500": "session setup failed: NT_STATUS_ACCESS_DENIED\n",
+    "stderr_first_400": ""
+  },
+  "jump_cred_probe": {
+    "rc": 1,
+    "stdout_first_1500": "Password for [WORKGROUP\\root]:\nsession setup failed: NT_STATUS_LOGON_FAILURE\n",
+    "stderr_first_400": ""
+  },
+  "rights_at_setup_basis": "Owner ruling verbatim 2026-09-14: 'these are file labels but no confidential information. We have full rights on this data.'"
+}

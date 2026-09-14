@@ -1,0 +1,6 @@
+{
+  "task": "connectivity_task2_nas_smb_sweep_from_jump",
+  "at_utc": "2026-09-14T09:56:25Z",
+  "sweep_output": "---ip addr---\neth0 10.10.150.93/24\n---arp---\n? (10.10.150.1) at fa:16:3e:9e:be:75 [ether] on eth0\n---nmb-status (445 sweep on JUMP's /24)---\n  sweeping subnet=10.10.150..1..254 tcp/445 (bounded, batched)...\nOPEN 10.10.150.119:445\n---nmap-ish scan tcp/445 tcp/139 on internal known IPs---\n---nslookup nas synology---\n---iface routes---\ndefault via 10.10.150.1 dev eth0 proto dhcp src 10.10.150.93 metric 100 \n10.10.150.0/24 dev eth0 proto kernel scope link src 10.10.150.93 metric 100 \n169.254.169.254 via 10.10.150.1 dev eth0 proto dhcp src 10.10.150.93 metric 100 \n",
+  "stderr_first_400": ""
+}

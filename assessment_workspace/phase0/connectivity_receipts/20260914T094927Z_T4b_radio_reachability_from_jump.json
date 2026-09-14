@@ -1,0 +1,23 @@
+{
+  "task": "connectivity_task2_radio_reachability_from_jump",
+  "at_utc": "2026-09-14T09:49:27Z",
+  "radio_host_len": 11,
+  "stdout_lines": [
+    "CLOSED 22",
+    "CLOSED 2222",
+    "CLOSED 8022",
+    "CLOSED 80",
+    "CLOSED 443",
+    "CLOSED 8080",
+    "---ping---",
+    "PING 10.10.19.40 (10.10.19.40) 56(84) bytes of data.",
+    "--- 10.10.19.40 ping statistics ---",
+    "2 packets transmitted, 0 received, 100% packet loss, time 1047ms",
+    "---ip---",
+    "if: lo 127.0.0.1/8",
+    "if: eth0 10.10.150.93/24",
+    "---dns---",
+    "getent: no result"
+  ],
+  "stderr_first_300": ""
+}

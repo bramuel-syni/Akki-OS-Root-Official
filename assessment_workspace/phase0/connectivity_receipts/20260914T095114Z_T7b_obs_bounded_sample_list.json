@@ -1,0 +1,32 @@
+{
+  "task": "connectivity_task2_obs_bounded_sample_list",
+  "at_utc": "2026-09-14T09:51:14Z",
+  "strategic_buckets": [
+    {
+      "bucket": "radio-news",
+      "location": null,
+      "locate_status": 404
+    },
+    {
+      "bucket": "rms-ai",
+      "location": "ap-southeast-1",
+      "locate_status": 200,
+      "list_error": "ObsClient.listObjects() got an unexpected keyword argument 'maxKeys'"
+    },
+    {
+      "bucket": "google-transcripts",
+      "location": null,
+      "locate_status": 404
+    },
+    {
+      "bucket": "news-vault",
+      "location": null,
+      "locate_status": 404
+    },
+    {
+      "bucket": "iso-rms-storage",
+      "location": null,
+      "locate_status": 404
+    }
+  ]
+}

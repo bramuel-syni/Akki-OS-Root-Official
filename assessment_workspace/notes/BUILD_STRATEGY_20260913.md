@@ -58,7 +58,7 @@ Also per C5 (DPO-S2 reflection HALT stays):
 - Any DAP row genuinely requiring reflection's semantic content carries a **declared dependency marker**, not a guess.
 
 Also per SIA:
-- `SIA_R14_COLIBRI_ENGINE_ADMISSION = DEFAULT-PENDING-OVERRIDE` (deliberately unruled; awaits appliance benchmark + TCB ceremony).
+- `SIA_R14_CANDIDATE_ENGINE_ADMISSION = DEFAULT-PENDING-OVERRIDE` (deliberately unruled; awaits appliance benchmark + TCB ceremony). [Name of candidate engine scrubbed per owner ruling 2026-09-14.]
 
 ## §E · Flip-forbidden invariants (R-C1 / R-C2 / DPO-1 linkage) — carried per PHASE_C plan
 

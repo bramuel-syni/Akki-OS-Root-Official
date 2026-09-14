@@ -67,7 +67,7 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 | Row | Prior status | New status |
 |---|---|---|
 | SIA R-13 (validation cadence · monthly + per-version) | Recommended default (new spec, 2026-09-13) | **RATIFIED** — under same C3 en-masse ratification of recommended defaults. |
-| **SIA R-14 (Colibri engine admission)** | Deliberately unruled per amendment §7 | **STILL OPEN** — gated by appliance benchmark + TCB-tier admission ceremony |
+| **SIA R-14 (candidate serving engine admission)** | Deliberately unruled per amendment §7 | **STILL OPEN** — gated by appliance benchmark + TCB-tier admission ceremony |
 
 ## §B · Summary counts
 

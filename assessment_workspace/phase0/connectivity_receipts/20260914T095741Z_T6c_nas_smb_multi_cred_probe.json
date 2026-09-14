@@ -1,0 +1,51 @@
+{
+  "task": "connectivity_task2_nas_smb_multi_cred_probe",
+  "at_utc": "2026-09-14T09:57:41Z",
+  "nas_host_via_jump": "10.10.150.119:445",
+  "attempts_summary": [
+    {
+      "attempt_label": "radio_user + radio_pw",
+      "user_len": 6,
+      "pw_len": 14,
+      "rc": 1,
+      "ok": false,
+      "stdout_first_400": "session setup failed: NT_STATUS_LOGON_FAILURE\n"
+    },
+    {
+      "attempt_label": "root + radio_pw",
+      "user_len": 4,
+      "pw_len": 14,
+      "rc": 1,
+      "ok": false,
+      "stdout_first_400": "session setup failed: NT_STATUS_LOGON_FAILURE\n"
+    },
+    {
+      "attempt_label": "admin + radio_pw",
+      "user_len": 5,
+      "pw_len": 14,
+      "rc": 1,
+      "ok": false,
+      "stdout_first_400": "session setup failed: NT_STATUS_LOGON_FAILURE\n"
+    },
+    {
+      "attempt_label": "admin + jump_pw",
+      "user_len": 5,
+      "pw_len": 12,
+      "rc": 1,
+      "ok": false,
+      "stdout_first_400": "session setup failed: NT_STATUS_LOGON_FAILURE\n"
+    },
+    {
+      "attempt_label": "guest + empty",
+      "user_len": 5,
+      "pw_len": 0,
+      "rc": 1,
+      "ok": false,
+      "stdout_first_400": "session setup failed: NT_STATUS_ACCOUNT_DISABLED\n"
+    }
+  ],
+  "nmblookup": {
+    "rc": 1,
+    "stdout": "Looking up status of 10.10.150.119\nNo reply from 10.10.150.119\n\n"
+  }
+}

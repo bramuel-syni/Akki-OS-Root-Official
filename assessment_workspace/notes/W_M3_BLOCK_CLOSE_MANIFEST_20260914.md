@@ -51,7 +51,7 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 * **BC-3** (RPO) + **BC-4** (site-loss / off-site backup) — `DEFAULT-PENDING-OVERRIDE`.
 * **S-24 (A5.17 raiser-held-to-target-conformance)** — canon anchor pinned in SW12; mechanism DEFERRED beyond SW11 (honest gap).
 * **R-13** (SIA reference-validation cadence) — DEFAULT-class monthly; auto-ratified under C3 batch.
-* **R-14** (SIA Colibri engine admission) — OPEN; deliberately unruled.
+* **R-14** (SIA candidate serving engine admission) — OPEN; deliberately unruled. [Engine name scrubbed per owner ruling 2026-09-14.]
 
 ## Security / owner-side items still USER-VERIFICATION-PENDING
 
@@ -63,10 +63,10 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 None of these blocked M3 code+tests work; all remain awaiting owner-side rotation.
 
-## Queued post-M3 tasks (not started)
+## Queued post-M3 tasks
 
-* **Connectivity setup pass** (NAS SMB via tunnel or JUMP-install fallback · SSH Radio + Transcription server · Huawei OBS S3-compatible endpoint enumeration).  Deferred per owner directive 2026-09-14 ("don't interrupt E1").  Do NOT start until explicit owner GO relayed.
-* **W-REGISTRY-FULL-BUILD CP10** wave-close — remains on owner HOLD; drafted close test still shelved-untracked.
+* **Connectivity setup pass** (NAS SMB via tunnel or JUMP-install fallback · SSH Radio + Transcription server · Huawei OBS S3-compatible endpoint enumeration).  Ran 2026-09-14T09:45..09:59Z under `Task 2` owner GO.  Result: 4 PASS (JUMP, MySQL WEEGO, MySQL USSD, Huawei OBS 106 buckets) + 8 HARD_GAP + missing_bind_detail list; governance sub-wave `W-CONN-SP1` landed (ratchet 3797→3804).  Close-note: `notes/TASK2_CONNECTIVITY_CLOSE_20260914.md`.
+* **W-REGISTRY-FULL-BUILD CP10** wave-close — HOLD LIFTED by owner 2026-09-14 verbatim: *"CP10 - confirm."*  Real-Chromium DOM proof already banked (see `tests/invariants/test_w_registry_full_build_cp10_wave_close.py` at track-a `b51bfb0`, 2/2 GREEN; manifest at `notes/W_REGISTRY_FULL_BUILD_close.md`; harness receipt at `phase0/harness_ground_truth/latest.json` 2026-09-14T05:15Z).  CP10 is DONE.
 
 ## Stopped before M4 per owner standing order
 

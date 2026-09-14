@@ -1,0 +1,132 @@
+{
+  "task": "connectivity_task2_mysql_seven_hosts_via_paramiko_tunnel",
+  "at_utc": "2026-09-14T09:54:49Z",
+  "rights_at_setup_basis": "Owner ruling verbatim 2026-09-14: 'these are file labels but no confidential information. We have full rights on this data.'",
+  "results": [
+    {
+      "host": "203.123.86.10",
+      "auth_attempts": [],
+      "schemas": null,
+      "connected_with_cred_label": null,
+      "tcp_check": "CLOSED"
+    },
+    {
+      "host": "110.238.76.159",
+      "auth_attempts": [
+        {
+          "cred_label": "DATABASE NAME",
+          "ok": true,
+          "version": "5.7.44-241200-log",
+          "schemas_count": 20,
+          "schemas": [
+            "information_schema",
+            "artists_app",
+            "citizen_digital",
+            "db_jipange",
+            "db_skiza",
+            "freddy_dev",
+            "miniapps",
+            "performance_schema",
+            "sys",
+            "tafaria_ecommerce",
+            "tafaria_shop",
+            "viupay_dev",
+            "viupay_fare",
+            "viupay_fare_test",
+            "viusasa_dev",
+            "viusasa_staging",
+            "viusasa_staging_2",
+            "viusasa_staging_dev",
+            "viutickets",
+            "viutickets_dev"
+          ]
+        }
+      ],
+      "schemas": [
+        "information_schema",
+        "artists_app",
+        "citizen_digital",
+        "db_jipange",
+        "db_skiza",
+        "freddy_dev",
+        "miniapps",
+        "performance_schema",
+        "sys",
+        "tafaria_ecommerce",
+        "tafaria_shop",
+        "viupay_dev",
+        "viupay_fare",
+        "viupay_fare_test",
+        "viusasa_dev",
+        "viusasa_staging",
+        "viusasa_staging_2",
+        "viusasa_staging_dev",
+        "viutickets",
+        "viutickets_dev"
+      ],
+      "connected_with_cred_label": "DATABASE NAME",
+      "tcp_check": "OPEN",
+      "version": "5.7.44-241200-log"
+    },
+    {
+      "host": "159.138.164.93",
+      "auth_attempts": [],
+      "schemas": null,
+      "connected_with_cred_label": null,
+      "tcp_check": "CLOSED"
+    },
+    {
+      "host": "159.138.162.146",
+      "auth_attempts": [
+        {
+          "cred_label": "DATABASE NAME",
+          "ok": true,
+          "version": "8.0.28-231003",
+          "schemas_count": 7,
+          "schemas": [
+            "analytics",
+            "information_schema",
+            "performance_schema",
+            "sql_demo",
+            "sql_trial1",
+            "sys",
+            "weego"
+          ]
+        }
+      ],
+      "schemas": [
+        "analytics",
+        "information_schema",
+        "performance_schema",
+        "sql_demo",
+        "sql_trial1",
+        "sys",
+        "weego"
+      ],
+      "connected_with_cred_label": "DATABASE NAME",
+      "tcp_check": "OPEN",
+      "version": "8.0.28-231003"
+    },
+    {
+      "host": "159.138.164.124",
+      "auth_attempts": [],
+      "schemas": null,
+      "connected_with_cred_label": null,
+      "tcp_check": "CLOSED"
+    },
+    {
+      "host": "110.238.75.83",
+      "auth_attempts": [],
+      "schemas": null,
+      "connected_with_cred_label": null,
+      "tcp_check": "CLOSED"
+    },
+    {
+      "host": "203.123.83.144",
+      "auth_attempts": [],
+      "schemas": null,
+      "connected_with_cred_label": null,
+      "tcp_check": "CLOSED"
+    }
+  ]
+}
