@@ -1,0 +1,35 @@
+Kind: audio_poc_wave_close
+Wave: W-AUDIO-POC
+Label-provenance: owner directive 2026-09-14 (sequence amendment · W-AUDIO-POC FIRST, then W-DATA-SUITE-V2-LIFT) + owner ACK 2026-09-14 on grounding brief + CP plan
+Component-standing: STANDALONE audio-plane enumerate-and-gap-fill component (Canon-1 §4.6 extension of Mtafiti, not sibling; Audio-Plane §1.2 no parallel machinery)
+Sealed-at-utc: 2026-09-14T13:58:45Z
+Canon-anchors: Canon-1 §4.6, Audio-Plane §1.2, Doc-0 Promise #12 (partial → discharged by extension), DAP-Spec A10 (artefact-egress remainder), Owner Ruling #2 (licence_class:owner_full_rights, DECISIONS 2026-09-12T~12:00Z), KDPA §V.2/V.3
+CPs (order-of-landing): CP-A1 (governance walls FIRST) · CP-A2 · CP-A3 · CP-A4 · CP-A5 · CP-A6
+Ratchet: 3858 -> 3929 (+71)
+Green1-passed: 3929
+Green1-skipped: 1
+Green1-baseline-failures: 0
+Green1-log-sha256: d4a2b61b03595b501f70ad4ca1ffd75a2122797ceded2218b19506af871e27b0
+Green2-passed: 3929
+Green2-skipped: 1
+Green2-baseline-failures: 0
+Green2-log-sha256: 4d710c78160c669baaaa4f2257b10b5ec4ec99919708f0b3f2e48afc942e7717
+Byte-match-pass-count: TRUE
+Ratchet-manifest-sha256: 1d4d05d9aa2a0028bfb0a50e243480e2146d94cf6631d3e41ab9bb3d42eedf76
+CP-A1-invariants: 14 (three governance walls: readonly_nas_guard + readonly_obs_guard + release_gate)
+CP-A2-invariants: 13 (recording_inventory contract: extract_canonical_key + parse_smbclient_ls_line + canonicalize_inventory + inventory_snapshot_sha256)
+CP-A3-invariants: 13 (transcript_inventory contract: extract_transcript_canonical_key + classify_transcript_status + canonicalize_transcript_inventory + transcript_inventory_snapshot_sha256)
+CP-A4-invariants: 13 (pairing_registry + gap_set: pair_inventories 4-state + pairing_snapshot_sha256 + compute_gap_set)
+CP-A5-invariants: 12 (hf_transcribe + gap_fill_writer: GapFillTranscript no-text-field + transcribe_gap env-only + write_gap_transcript_or_refuse leak-guard-first + release-gate integration)
+CP-A6-invariants: 6 (wave_close constants + composite integration test)
+Live-HF-Inference-API-probe: PARTIAL · auth PASSED at router.huggingface.co/hf-inference/models/<model_id> (HTTP=400 not 401/403) · whisper-small refused by hf-inference provider (HF-side hosting constraint) · blocker banked at notes/W_AUDIO_POC_CP_A5_LIVE_PROBE_BLOCKER_20260914.md
+Live-HF-whoami-boot: PASSED · HTTP=200 (env-only loader confirmed working, active token authorised)
+Egress-window-compliance: TRUE · all live probes at UTC 13:03Z + 13:44Z + 13:53Z (within 08:00-02:00 UTC policy)
+Token-value-in-transcript: NEVER (whole wave scanned; only length + sha256 hex surfaced; guard active + smoke-tested)
+Known-blockers-escalated: BLOCKER-HF-A5-01 (HF model hosting) · BLOCKER-HF-A5-02 (NAS-to-bytes plumbing) · BLOCKER-HF-A5-03 (release-gate verdicts R-7/R-15/R-16/R-17 PENDING)
+Wave-honest-limits: E.1..E.8 declared at wave open in notes/wave_audio_poc_grounding_brief.md; all held at close (no scope creep)
+HALT-declared: none · wave completed all 6 CPs · CP-A5 live probe surfaced blockers but did not HALT the wave (per owner directive "flow directly into W-DATA-SUITE-V2-LIFT")
+Track-a-HEAD-at-close: to-fill (Commit A of CP-A6 close lands imminently)
+Master-HEAD-at-close: to-fill (Commit B of CP-A6 close lands imminently)
+Grounding-brief: notes/wave_audio_poc_grounding_brief.md
+Owner-facing-report: notes/W_AUDIO_POC_wave_close.md

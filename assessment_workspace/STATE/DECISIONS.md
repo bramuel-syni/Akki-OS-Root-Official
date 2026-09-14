@@ -7590,6 +7590,96 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 ---
 
 
+## Ruling · 2026-09-14T~13:15Z · Main-agent execution · W-AUDIO-POC · CP-A1 close · governance walls
+
+Owner ACK verbatim: *"Governance walls (CP-A1) before any live-source touch — correct ordering, keep it."* Landed three governance walls at `backend/services/audio_poc/`: `readonly_nas_guard` (NAS ops confined to List/Read/Status · path confined to OFFAIRRECS share) + `readonly_obs_guard` (OBS ops confined to ListObjects/HeadObject/GetObject · bucket confined to `google-transcripts`) + `release_gate` (`TranscriptArtefact` frozen dataclass · `admit_transcript_release` refuses biometric/named-identity/speaker-labelled tiers by default AND refuses if any of 4 verdicts is PENDING). 14 invariants GREEN. RED right-reason ModuleNotFoundError. Double-green byte-match `3872 passed, 1 skipped, 438 warnings` × 2 (41207 B each). Ratchet 3858 → **3872** (+14). Commit A track-a `24928de` · Commit B master (this entry to be included in next state commit due to insert-line miss on prior turn). Correct wave-open posture: all 4 verdicts PENDING → CP-A5 writer will HALT per §G until owner rulings on R-7/R-15/R-16/R-17 land.
+
+Next active step: **CP-A2 · NAS OFFAIRRECS recording inventory** (first live-source touch · bounded SMB-through-JUMP · position-redacted · no bytes off NAS · target +10–14 invariants · ratchet target 3880–3888).
+
+---
+
+
+
+## Ruling · 2026-09-14T~13:24Z · Main-agent execution · W-AUDIO-POC · CP-A2 close · NAS OFFAIRRECS recording inventory contract
+
+Landed `services/audio_poc/recording_inventory.py`: `RecordingEntry` (frozen · 7 fields) + `RecordingKey` (frozen · hashable · 4 fields) + `RecordingKeyInvalid` + `extract_canonical_key` (regex parse of canonical NAS path) + `parse_smbclient_ls_line` (regex parse of smbclient `ls` output; returns None on directories/dot-entries/malformed lines; never raises) + `canonicalize_inventory` (deterministic sort + dedup first-occurrence + silent-skip on invalid paths) + `inventory_snapshot_sha256` (canonical-JSON hex fingerprint, sensitive to content change). 13 invariants GREEN.
+
+RED right-reason `ModuleNotFoundError` at 20260914T132047Z. Double-green byte-match `3885 passed, 1 skipped, 438 warnings` × 2 (Run 1 115.61s · Run 2 115.73s · both 41367 B). Ratchet 3872 → **3885** (+13). Track-a `84bc5e6`.
+
+CP-A2 landed the CONTRACT only (no live-source touch). The live SMB probe against NAS OFFAIRRECS runs at CP-A3+ or CP-A5 as a receipt-banking action outside the ratchet.
+
+Next active step: **CP-A3 · OBS `google-transcripts` transcript inventory contract** (parse + canonicalise + fingerprint + `transcript_status` classifier ∈ {FINISHED, PARTIAL, MISSING, MALFORMED} · target +10–14 invariants · ratchet target 3895–3899).
+
+---
+
+
+
+## Ruling · 2026-09-14T~13:33Z · Main-agent execution · W-AUDIO-POC · CP-A3 close · OBS transcript inventory contract
+
+Landed `services/audio_poc/transcript_inventory.py`: `TranscriptEntry` (frozen · 8 fields incl. `transcript_status`) + `TranscriptKey` (frozen hashable · 4 fields) + `TranscriptKeyInvalid` + `TranscriptStatus = frozenset({FINISHED, PARTIAL, MALFORMED})` + `FINISHED_MIN_BYTES=512` + `extract_transcript_canonical_key` (regex parse of `<station>/<YYYYMMDD>/<YYYYMMDD>_<HHMM>_<stem>.json` with date-dir/filename cross-check) + `classify_transcript_status` (MALFORMED on shape mismatch, FINISHED if `size>=FINISHED_MIN_BYTES`, PARTIAL otherwise) + `canonicalize_transcript_inventory` (deterministic sort + dedup + silent-skip malformed) + `transcript_inventory_snapshot_sha256` (canonical-JSON hex, sensitive to status change). 13 invariants GREEN. **MISSING deliberately NOT an inventory-side status** — pairing surface at CP-A4 only.
+
+RED right-reason `ModuleNotFoundError` at 20260914T132803Z. Double-green byte-match `3898 passed, 1 skipped, 438 warnings` × 2 (Run 1 115.56s · Run 2 115.39s · both 41527 B). Ratchet 3885 → **3898** (+13). Track-a `815500a`.
+
+Next active step: **CP-A4 · Pairing registry + gap-set compute** (pure function over CP-A2 + CP-A3 outputs · target +10–14 invariants · ratchet target 3908–3912).
+
+---
+
+
+
+
+## Ruling · 2026-09-14T~13:40Z · Main-agent execution · W-AUDIO-POC · CP-A4 close · pairing registry + gap-set
+
+Landed `services/audio_poc/pairing_registry.py` + `services/audio_poc/gap_set.py`: `AudioTranscriptPair` frozen (7 fields incl. `pair_state` + both sha256_hex) + `PAIR_STATES = frozenset({PAIRED, RECORDING_ONLY, TRANSCRIPT_ONLY, RECORDING_ONLY_PARTIAL})` + `pair_inventories(r, t)` (deterministic join on canonical key: PAIRED if transcript FINISHED, RECORDING_ONLY_PARTIAL if not FINISHED, RECORDING_ONLY if transcript absent, TRANSCRIPT_ONLY if recording absent) + `pairing_snapshot_sha256` + `compute_gap_set(pairs)` (returns RecordingKey subset for RECORDING_ONLY + RECORDING_ONLY_PARTIAL, excludes TRANSCRIPT_ONLY). 13 invariants GREEN. Pure function only — no live-source touch.
+
+Wave-honest limit: DOUBLE_MISSING requires a schedule/roster source not present this wave; only 4 states observable.
+
+RED right-reason `ModuleNotFoundError` at 20260914T133512Z. Double-green byte-match `3911 passed, 1 skipped, 438 warnings` × 2 (Run 1 115.64s · Run 2 115.54s · both 41687 B). Ratchet 3898 → **3911** (+13). Track-a `4b7ca3a`.
+
+Next active step: **CP-A5 · HF-model gap-fill transcription** (first LIVE HF egress · one proof file first · then bounded loop · target +10–14 invariants · ratchet target 3921–3925 · HALT triggers per §G on any 401/403/rate-limit/window-close/leak).
+
+---
+
+
+
+## Ruling · 2026-09-14T~13:50Z · Main-agent execution · W-AUDIO-POC · CP-A5 close · HF gap-fill transcribe + gated write-back (live probe partial)
+
+Mechanism landed: `services/audio_poc/hf_transcribe.py` (`GapFillTranscript` frozen no-text dataclass · `HFTranscribeError` hierarchy · `transcribe_gap` env-only + empty-bytes refusal · endpoint updated to `router.huggingface.co/hf-inference/models/<model_id>` per SO §3.5 reality-catches-up after live probe) + `services/audio_poc/gap_fill_writer.py` (`WriteBackRefused` · `emit_gap_fill_receipt` deterministic canonical-JSON · `write_gap_transcript_or_refuse` leak-guard-first + release-gate integration). 12 invariants GREEN. Track-a `6243a24`.
+
+**Live probe result (in-egress-window 2026-09-14T13:44Z):** AUTH PASSED at `router.huggingface.co/hf-inference/models/openai/whisper-small` (HTTP=400, not 401/403); model returns *"Model not supported by provider hf-inference"* — HF-side model-hosting constraint. Blocker banked at `notes/W_AUDIO_POC_CP_A5_LIVE_PROBE_BLOCKER_20260914.md`. Three blockers on end-to-end gap-fill escalated:
+* `BLOCKER-HF-A5-01`: whisper-small not on hf-inference provider (alt provider / self-hosted transcription server / different model choice)
+* `BLOCKER-HF-A5-02`: NAS-to-bytes SMB fetch plumbing not landed this wave
+* `BLOCKER-HF-A5-03`: release-gate verdicts R-7/R-15/R-16/R-17 PENDING (already on owner still-blocked list)
+
+Disposition per owner directive *"On W-AUDIO-POC wave close (CP-A6), do NOT halt for ack — flow directly into W-DATA-SUITE-V2-LIFT"*: wave continues to CP-A6 (composite close) then to Task 2.
+
+RED right-reason `ModuleNotFoundError` at 20260914T134304Z. Double-green byte-match `3923 passed, 1 skipped, 438 warnings` × 2 (Run 1 117.40s · Run 2 116.95s · both 41767 B). Ratchet 3911 → **3923** (+12).
+
+Next active step: **CP-A6 · Wave close** (composite bundle + sha256 chain + seal `Kind: audio_poc_wave_close` + 5-section owner-facing report · target +6–10 invariants · ratchet target 3929–3933).
+
+---
+
+
+
+## Ruling · 2026-09-14T~13:58Z · Main-agent execution · W-AUDIO-POC · CP-A6 · WAVE CLOSE
+
+`W-AUDIO-POC` wave CLOSED. **+71 invariants** across CP-A1..A6 (14+13+13+13+12+6). Ratchet 3858 → **3929**. Track-a HEAD `dc498fd`. All 6 CPs green, byte-match on every double-green, guardrails held whole wave (no push · no testing_agent · no refactor · no wipe · no re-clone · no head/cat on custody · token never echoed · EAT-window compliant).
+
+Seal banked at `phase0/output_verified_seals/audio_poc_v1.seal.txt` (Kind: audio_poc_wave_close · Ratchet-manifest-sha256 `1d4d05d9…dedf76` · Green1-log-sha256 `d4a2b61b…27b0` · Green2-log-sha256 `4d710c78…7717` · Byte-match-pass-count TRUE).
+
+Rider 1: `pip freeze` 192 lines + `pytest --collect-only -q` 3932 lines/3930 tests collected.
+
+Owner-facing 5-section report at `notes/W_AUDIO_POC_wave_close.md`: (1) progress made · (2) how much to go · (3) decisions taken (5 items incl. RECORDING_ONLY_PARTIAL pair-state addition + HF endpoint URL update per SO §3.5) · (4) discoveries not envisioned (HF Inference DNS retirement · HF Inference-Providers routed platform · release-gate is dominant governance gate) · (5) recommendations (5 items incl. small NAS-fetch follow-on wave + 3 verdict ratifications + BLOCKER-HF-A5-01 escalation).
+
+**Known blockers escalated to owner:**
+* `BLOCKER-HF-A5-01` · HF `hf-inference` provider does not host whisper-small
+* `BLOCKER-HF-A5-02` · NAS-to-bytes SMB fetch plumbing follow-on
+* `BLOCKER-HF-A5-03` · release-gate verdicts R-7/R-15/R-16/R-17 PENDING
+
+**Next active step:** Task 2 · W-DATA-SUITE-V2-LIFT (per owner directive "flow directly"). Grounding brief authoring begins immediately; ratchet target from 3929 to 3929 + N. DPO-D1 + DPO-D2 defaults stand.
+
+---
+
+
 
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
