@@ -1,0 +1,20 @@
+{
+  "artefact": "hf_token_rotated_20260914.csv",
+  "received_utc": "2026-09-14T12:23:58Z",
+  "delivered_by": "owner (attached during 2026-09-14 M5 open directive)",
+  "sha256": "3ea89c945d58b62b71fbda1089773af2ab0f62ebe86b67c97b7f4172326b19c5",
+  "size_bytes": 37,
+  "content_class": "Hugging Face access token (plaintext, single-line, hf_-prefix)",
+  "supersedes": "hf_token.csv (original · leaked via SEC-2026-09-12-01)",
+  "on_disk_paths": [
+    "/app/backend/estate_keys/data_sources/hf_token_rotated_20260914.csv",
+    "/app/assessment_workspace/canon/drops/20260914_hf_token/hf_token.csv"
+  ],
+  "modes": "0600 (both copies)",
+  "rights_at_setup_basis": "Owner ruling verbatim 2026-09-14: 'these are file labels but no confidential information. We have full rights on this data.'",
+  "position_redaction_policy": "MUST NEVER be echoed. Env-var injection only (HUGGING_FACE_HUB_TOKEN / HF_TOKEN). Never on a command line visible to ps. Never head/cat/print.",
+  "sec_history": {
+    "SEC-2026-09-12-01": "OWNER-ROTATED-BUT-RE-LEAKED",
+    "SEC-2026-09-14-04": "the rotated replacement itself leaked via head -1 during registration; requires ANOTHER owner-side rotation post-close"
+  }
+}

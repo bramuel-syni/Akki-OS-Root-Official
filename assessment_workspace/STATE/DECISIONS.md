@@ -7426,6 +7426,121 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 12. **W2 remains BLOCKED.** Not touched this wave.
 
+
 ---
+
+## Ruling · 2026-09-14T~13:00Z · Source: owner channel · M5 open + HF-token rotation state ledger + M5 SW1 scope correction + secret-hygiene wave sequencing
+
+**Verbatim owner turns banked (in order this session, one paragraph each):**
+
+1. **M5 open · reachable-path directive:**
+
+   > "recommendation approved, but M5 being the last thing in the sprint. As we wait for the admin, we can proceed with what is reachable."
+
+2. **HF-token drop framing (attached to M5 open, 2026-09-14T~12:24Z):**
+
+   > "these are file labels but no confidential information. We have full rights on this data."
+
+3. **Secret-hygiene rule (2026-09-14, verbatim):**
+
+   > "env-var injection only — same for ALL secrets from now on: env/askpass, never printed, never on a command line visible to ps."
+
+4. **M5 SW1 scope correction (this session, in response to a prior-session phantom framing that had M5 SW1 as HF-token/guard work):**
+
+   > "CORRECTION — M5 SW1 IS NOT 'HF-token rotation / secret guards.' Reject option (c)'s scope. M5's milestone content per the ratified spine is: W-DATA-SUITE-V2-LIFT then W-AUDIO-POC."
+
+5. **§A citations authorized for the M5 milestone brief (option-a + option-b combined):**
+
+   > "M5 SW1 = W-DATA-SUITE-V2-LIFT (the case-agnostic donor lift, same discipline as W-SOLVA-V2-LIFT). Its TECHNICAL contract is already owner-ratified ON DISK — lift it from `notes/MILESTONE_PROMISE_BINDING_20260913.md` §M5 + the Phase-C plan §M5/§lift + the Data-Suite donor path in the Executive donor repos. That banked, ratified plan IS the authorization for the technical scope (your option b); §A cites the owner M5 go quote above. Do NOT invent scope; do NOT ask the owner to re-paste a contract that's already banked."
+
+6. **HF-token rotation as state-ledger update (not a ratchet wave):**
+
+   > "HF-TOKEN ROTATION — this is a STATE/LEDGER update, NOT a ratchet wave: register the new token (0600, env-only, never printed), mark `SEC-2026-09-12-01` OWNER-ROTATED (pending owner confirmation), pin the new token active. Commit to master state. No RED/ratchet needed for a ledger update."
+
+7. **Secret-leak guard = own hardening wave (own RED, own ratchet), BEFORE Audio-POC live reads:**
+
+   > "SECRET-LEAK GUARD — authorized as a HARDENING INVARIANT (justified: 5+ recurrences incl. SEC-2026-09-14-01/02/03). Land it TESTS-FIRST as its own small hardening wave BEFORE the Audio-POC live reads (so it protects them). §A cites `notes/SEC_INCIDENTS_20260914.md` + the owner-endorsed hard-lock posture + this standing orchestrator directive — label it clearly as hygiene/hardening, not milestone content. Repurpose the untracked `test_wm5_sw1_hf_token_rotation.py` into THIS guard test (bank a real RED) or discard it — no phantom RED."
+
+8. **Session sequence + constraints (autonomous, standing terms):**
+
+   > "SEQUENCE from here (autonomous, standing terms): (0) HF-token ledger update; (1) secret-leak-guard hardening wave (real RED → mechanism → double-green → ratchet from 3851 → seal → two commits); (2) W-DATA-SUITE-V2-LIFT; (3) W-AUDIO-POC against live NAS `OFFAIRRECS` + OBS `google-transcripts` (verify transcripts-exist-first; transcribe only gaps with the HF model). Path A/B/C: use the on-disk ruling if found, else the reachable-path default marked DEFAULT-PENDING-OVERRIDE. Egress inside EAT window only. testing_agent BANNED, position-redaction hard-lock, local only / NEVER push, HALT-rather-than-guess. At M5 close: FULL SPRINT COMPLETION REPORT (M0→M5). Proceed — no need to check back for the §A; it's supplied. Interim DECISION-POINT per sub-wave close."
+
+**Binding effects — Step 0 (this ruling · state-only, no ratchet):**
+
+1. **Ledger banked at** `notes/HF_TOKEN_ROTATION_LEDGER_20260914.md` (canonical record for the active HF token: SHA-pinned artefact, supersession chain, SEC state transitions, custody-path inventory, downstream-consumer note, standing hygiene reminder).
+
+2. **`SEC-2026-09-12-01` state transition:** PENDING-OWNER-ROTATION → **OWNER-ROTATED-PENDING-CONFIRMATION**. Confirmation gate = owner reply banking that the leaked pre-rotation value is de-authorised on the HF side.
+
+3. **`SEC-2026-09-14-04` filed** in `notes/SEC_INCIDENTS_20260914.md`: transcript leak of the rotated replacement via `head -1` during registration. State = PENDING-SECOND-ROTATION. Corrective owner-side follow-up added.
+
+4. **Prior-session phantom framing withdrawn:** the analysis-block claim of "M5 SW1 · HF-token rotation record + secret-hygiene hardening · RED phase banked (7 test failures)" is REJECTED. On-disk verification: no RED drill receipt at `phase0/drill_receipts/wm5*|sw1*|hf_token*`; no wave grounding brief at `notes/wave_m5*|wm5*`; only artefact was the untracked test file itself. **No phantom RED carried forward.** The test file will be repurposed under a hygiene-clear filename in Step 1.
+
+5. **Custody hygiene enforced during this step (verified via inspection commands):** the ledger and incidents-file edits used no `head`/`cat`/`sed` against custody-root artefacts. Custody inspections used `stat -c '%s %a %U:%G %y'` and `wc -c` only. SHA256 field in the ledger was lifted from the drop's paired manifest (already banked at drop time), NOT re-hashed by inspecting the file value.
+
+6. **Ratchet unchanged.** `baseline_failures.json.counts_at_baseline.passed = 3851`; `passed_floor = 3851`. No `ratchet_history` entry. `programme/track-a` HEAD unchanged (state-only change).
+
+7. **Master-only single commit** for Step 0: files in the delta are `notes/HF_TOKEN_ROTATION_LEDGER_20260914.md` (new) + `notes/SEC_INCIDENTS_20260914.md` (SEC-14-04 entry + SEC-12-01 state transition + owner-side follow-up expansion) + `STATE/NEXT.md` (current-step marker refreshed) + `STATE/DECISIONS.md` (this ruling entry).
+
+8. **NEXT ACTIVE STEP (Step 1 · secret-leak-guard hardening wave):** authored as its own tests-first wave BEFORE the Audio-POC live reads. Repurpose `test_wm5_sw1_hf_token_rotation.py` → `test_secret_hygiene_hf_token_guard.py`. Grounding brief authored first. Real mechanical RED banked. Mechanism at `services/secret_hygiene/hf_token.py`. Double-green byte-match. Ratchet from 3851. Seal + two commits.
+
+
+---
+
+## Ruling · 2026-09-14T~12:50Z · Source: main-agent execution under owner directive · W-HYGIENE-HF-TOKEN-GUARD wave close
+
+**Authorization anchor:** owner directive 2026-09-14 ruling clause 7 (banked verbatim in the immediately-preceding DECISIONS entry): *"SECRET-LEAK GUARD — authorized as a HARDENING INVARIANT (justified: 5+ recurrences incl. SEC-2026-09-14-01/02/03). Land it TESTS-FIRST as its own small hardening wave BEFORE the Audio-POC live reads (so it protects them)."*
+
+**Wave class:** hygiene / hardening (NOT M5 milestone content).
+
+**Binding effects — Step 1 close:**
+
+1. **Grounding brief authored + banked** at `notes/wave_secret_hygiene_hf_token_guard_grounding_brief.md` (§A verbatim owner rulings + §B canon anchors + §C mechanism scope + §D DoD + §E wave-honest limits + §F commit protocol).
+
+2. **Test file repurposed, not phantom-carried.** The untracked `backend/tests/invariants/test_wm5_sw1_hf_token_rotation.py` was renamed to `test_secret_hygiene_hf_token_guard.py` and its module docstring re-labelled from M5-SW1 framing to hygiene-wave framing. Test function names retained (`test_sw1_*`) as impl-only tokens per the minimal-change repurpose directive; wave labelling is on the module docstring.
+
+3. **Mechanical RED banked** at `phase0/drill_receipts/20260914T124119Z_wave_secret_hygiene_hf_token_guard_RED_pre_impl.log`. 7 failed / 0 passed. All 7 failures traceable to `ModuleNotFoundError: No module named 'services.secret_hygiene'` — right-reason (module did not exist pre-impl).
+
+4. **Mechanism landed** at `backend/services/secret_hygiene/__init__.py` (package marker) + `backend/services/secret_hygiene/hf_token.py` (141 lines). All 9 fabric names exported. Never prints token value. Module cache holds active-artefact value in a module-private variable; not surfaced through any accessor. Env-only loader (`load_hf_token_or_raise`) fail-closed on missing injection (does NOT fall back to reading the on-disk artefact into a string).
+
+5. **Double-green byte-match** under `BASELINE_GUARD=1 python -m pytest tests/invariants/`:
+   - Run 1: `phase0/drill_receipts/20260914T124604Z_wave_secret_hygiene_hf_token_guard_wave_close_double_green_run1.log` — `3858 passed, 1 skipped, 438 warnings in 113.71s`.
+   - Run 2: `phase0/drill_receipts/20260914T124805Z_wave_secret_hygiene_hf_token_guard_wave_close_double_green_run2.log` — `3858 passed, 1 skipped, 438 warnings in 114.76s`.
+   - Tally byte-identity confirmed on `pass/skip/warning` count.
+
+6. **Ratchet monotonic-up in tandem** in `backend/tests/invariants/baseline_failures.json`:
+   - `counts_at_baseline.passed`: 3851 → **3858** (+7).
+   - `invariants_enforced_when_baseline_guard_1.passed_floor`: 3851 → **3858** (+7).
+   - `ratchet_history` appended: `at_utc: 20260914T124119Z`, `wave: W-HYGIENE-HF-TOKEN-GUARD`, `sub_wave: SECRET_LEAK_GUARD_HARDENING`, `passed: 3858`, `invariants_added: 7`, `commit: TBD` (backfill in follow-on state commit per convention seen in prior M4 entries).
+
+7. **Rider 1** banked:
+   - `phase0/drill_receipts/20260914T125022Z_wave_secret_hygiene_hf_token_guard_rider1_pip_freeze.log` — 192 lines.
+   - `phase0/drill_receipts/20260914T125022Z_wave_secret_hygiene_hf_token_guard_rider1_pytest_collect.log` — 3861 lines / 3859 tests collected.
+
+8. **Seal banked** at `notes/W_HYGIENE_HF_TOKEN_GUARD_close.md` with `Kind: hygiene_hardening_wave_close` line so future scans read it as a real seal under SO §3.1's contract.
+
+9. **Two commits landed local**, per protocol:
+   - **Commit A** (code · `repos/Extraction-Akki/` · `programme/track-a`): `c044112`. Delta = 4 files (2 new mechanism files + 1 new test file + 1 ratchet-manifest bump). No push.
+   - **Commit B** (state · `/app/assessment_workspace/` · `master`): to land with this ruling. Delta = seal + brief + 5 drill receipts + DECISIONS.md addendum + NEXT.md refresh. No push.
+
+10. **Guardrails held (verified in-wave):**
+    - NO push. NO `testing_agent`. Terminal pytest only.
+    - NO refactor. Only files touched: 4 code paths + 5 receipts + 2 notes + 2 STATE files.
+    - NO scaffolding of a new app. NO wipe of `/app/assessment_workspace/`. NO re-clone.
+    - NO custody-root inspection via `head`/`cat`/`sed`. `stat -c` + `wc -c` only. Manifest SHA256 was lifted from the drop's paired manifest, NOT re-hashed by inspecting the value.
+    - Token value NEVER echoed to transcript. Diff scan of staged code delta clean of any `hf_[a-z0-9]{30,}` match.
+    - EAT window compliant: this wave performed NO egress.
+
+11. **Wave-honest limits banked (candidates for follow-on):**
+    - E.1 Guard is HF-token-specific; generalisation is follow-on.
+    - E.2 `HFTokenNotRotatedError` declared but not wired to a file-path-refusing loader.
+    - E.3 Module cache concurrency window (no caller today).
+    - E.4 Substring-only match; encoded copies not caught.
+    - E.5 No identity-check between env-provided and file-pinned tokens.
+
+12. **NEXT ACTIVE STEP · Step 2 · M5 SW1 = W-DATA-SUITE-V2-LIFT** per owner directive 2026-09-14 (verbatim, banked in preceding entry clause 5): case-agnostic donor lift, same discipline as W-SOLVA-V2-LIFT. §A citation = owner M5-open quote + `notes/MILESTONE_PROMISE_BINDING_20260913.md §M5` + Phase-C plan §M5/§lift + Data-Suite donor path in Executive donor repos (option-b path: cite banked ratified plan, do NOT ask owner to re-paste). Mechanical RED → mechanism → double-green byte-match → ratchet monotonic from **3858** → seal → two local commits.
+
+---
+
+
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
