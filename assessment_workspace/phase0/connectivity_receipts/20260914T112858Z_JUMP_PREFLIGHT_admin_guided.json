@@ -1,0 +1,24 @@
+{
+  "task": "connectivity_redo_admin_guided_jump_preflight",
+  "at_utc": "2026-09-14T11:28:58.227516+00:00",
+  "jump_host": "159.138.173.250",
+  "nas_host_seen_in_sheet": "10.10.55.55",
+  "radio_host_seen_in_sheet": "10.10.19.40",
+  "stdout_lines": [
+    "---JUMP ip + routes---",
+    "if: eth0 10.10.150.93/24",
+    "default via 10.10.150.1 dev eth0 proto dhcp src 10.10.150.93 metric 100 ",
+    "10.10.150.0/24 dev eth0 proto kernel scope link src 10.10.150.93 metric 100 ",
+    "169.254.169.254 via 10.10.150.1 dev eth0 proto dhcp src 10.10.150.93 metric 100 ",
+    "---Reach NAS at http://10.10.55.55:5000/#/signin---",
+    "NAS_HOST=10.10.55.55",
+    "NAS 10.10.55.55:5000 OPEN",
+    "NAS 10.10.55.55:445 OPEN",
+    "NAS 10.10.55.55:5001 OPEN",
+    "NAS 10.10.55.55:139 OPEN",
+    "---Reach RADIO 10.10.19.40---",
+    "RADIO 10.10.19.40:22 CLOSED",
+    "---Existing cifs / smbclient tooling on JUMP---"
+  ],
+  "stderr_first_400": ""
+}

@@ -1,0 +1,29 @@
+{
+  "task": "connectivity_redo_nas_list_shares_from_jump",
+  "nas_host": "10.10.55.55",
+  "method": "JUMP-hosted smbclient (admin-guided; no tunnel)",
+  "stdout_lines": [
+    "---smbclient -L list shares---",
+    "\tSharename       Type      Comment",
+    "\t---------       ----      -------",
+    "\tADS             Disk       ADS",
+    "\tATTENDANCE      Disk      aTTENDANCE",
+    "\tBACKUP1         Disk      BACKUP1",
+    "\tCOMMERCIALS     Disk      COMMERCIALS",
+    "\tGRAPHICS        Disk      ",
+    "\tHRMIS           Disk      TIME AND ATTENDANCE",
+    "\tNetBackup       Disk      System default shared folder",
+    "\tNEWSCLIPS       Disk      NEWSCLIPS",
+    "\tPROMOS          Disk      PROMOS",
+    "\tvideo           Disk      System default shared folder",
+    "\tweb             Disk      System default shared folder",
+    "\tweb_packages    Disk      ",
+    "\tIPC$            IPC       IPC Service ()",
+    "SMB1 disabled -- no workgroup available",
+    "---smbclient rc=0---",
+    "ls: cannot access '/dev/shm/creds.1DMsUe': No such file or directory",
+    "cred file removed"
+  ],
+  "stderr_first_400": "",
+  "secret_hygiene": "cred file staged in /dev/shm at 0600, shred+unlink after use"
+}

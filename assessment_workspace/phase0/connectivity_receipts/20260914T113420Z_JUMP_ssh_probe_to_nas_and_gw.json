@@ -1,0 +1,16 @@
+{
+  "task": "connectivity_redo_ssh_probe_to_nas_and_gw",
+  "stdout_lines": [
+    "---Attempt: SSH to NAS 10.10.55.55 using NAS creds (Bramwel)---",
+    "installing sshpass...",
+    "No VM guests are running outdated hypervisor (qemu) binaries on this host.",
+    "Warning: Permanently added '10.10.55.55' (ED25519) to the list of known hosts.",
+    "Permission denied, please try again.",
+    "---Attempt: SSH to NAS 10.10.55.55 using RADIO creds (ubuntu)---",
+    "Warning: Permanently added '10.10.55.55' (ED25519) to the list of known hosts.",
+    "Permission denied, please try again.",
+    "---Attempt: SSH to 10.10.55.1 (subnet gateway) with either cred---",
+    "Warning: Permanently added '10.10.55.1' (ED25519) to the list of known hosts.",
+    "Permission denied, please try again."
+  ]
+}

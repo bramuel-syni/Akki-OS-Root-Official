@@ -1,0 +1,20 @@
+{
+  "artefact": "RMS_Connection_Creds.xlsx",
+  "received_utc": "2026-09-14T11:26:23Z",
+  "delivered_by": "owner (attached during 2026-09-14 connectivity-redo directive)",
+  "sha256": "d778eb1eb2cbe94a7f994eec8d5b6584108b85a7522426ec057dc3613d9b72db",
+  "size_bytes": 9399,
+  "source_url_shape": "customer-assets-cm19k8pv.emergentagent.net/job_amazing-gates-8/artifacts/*.xlsx",
+  "on_disk_paths": [
+    "/app/assessment_workspace/canon/drops/20260914_rms_creds/RMS_Connection_Creds.xlsx"
+  ],
+  "sheets": [
+    "NAS creds",
+    "NAS Guide + Cred",
+    "Huawei Creds"
+  ],
+  "content_class": "credentials + admin guidance (mixed)",
+  "rights_at_setup_basis": "Owner ruling verbatim 2026-09-14: 'these are file labels but no confidential information. We have full rights on this data.'",
+  "credential_rotation_basis": "Owner ruling verbatim 2026-09-14: 'we will clean up the rotation once done.' Rotation pending owner-side after task close.",
+  "position_redaction_policy": "Cell values MAY be used to connect but MUST NEVER be echoed to transcript / receipts / logs. Every credential cell renders as <cred len=N>."
+}

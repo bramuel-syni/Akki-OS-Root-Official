@@ -1,0 +1,40 @@
+{
+  "task": "connectivity_redo_nas_offairrecs_record_layout",
+  "nas_host": "10.10.55.55",
+  "share": "OFFAIRRECS",
+  "path_enumerated": [
+    "Record/",
+    "Record/1/"
+  ],
+  "stdout_lines": [
+    "---Record/ (channel folders)---",
+    "  .                                   D        0  Tue Sep 16 14:24:10 2025",
+    "  ..                                 DA        0  Tue Mar 25 01:24:00 2025",
+    "  .DS_Store                          AH    10244  Tue Apr 15 01:41:01 2025",
+    "  channel01                           D        0  Mon Sep 14 05:06:02 2026",
+    "  channel02                           D        0  Mon Sep 14 05:06:11 2026",
+    "  channel03                           D        0  Mon Sep 14 05:06:20 2026",
+    "  channel04                           D        0  Mon Sep 14 05:06:23 2026",
+    "  channel05                           D        0  Mon Sep 14 05:04:51 2026",
+    "  channel06                           D        0  Mon Sep 14 05:06:25 2026",
+    "  channel07                           D        0  Mon Sep 14 05:06:28 2026",
+    "  channel08                           D        0  Mon Sep 14 05:04:53 2026",
+    "  Channel09                           D        0  Mon Sep 14 05:04:56 2026",
+    "  Channel10                           D        0  Mon Sep 14 05:06:31 2026",
+    "  Channel11                           D        0  Mon Sep 14 05:07:46 2026",
+    "  Channel12                           D        0  Mon Sep 14 05:06:33 2026",
+    "  Channel13                           D        0  Thu Aug 27 12:38:46 2026",
+    "  Channel14                           D        0  Mon Sep 14 05:04:59 2026",
+    "  Channel15                           D        0  Mon Sep 14 05:03:48 2026",
+    "  channel16                           D        0  Mon Sep 14 05:06:36 2026",
+    "\t\t52437524156 blocks of size 1024. 3938056064 blocks available",
+    "---Record/1 (channel 1 \u00b7 Citizen TV; sample date folders)---",
+    "cd \\Record\\1\\: NT_STATUS_OBJECT_NAME_NOT_FOUND",
+    "  .                                  DA        0  Tue Mar 25 01:24:00 2025",
+    "  ..                                 DA        0  Sun Mar 22 07:55:30 2026",
+    "  Record                              D        0  Tue Sep 16 14:24:10 2025",
+    "  .DS_Store                          AH    10244  Tue Apr 15 01:39:53 2025",
+    "\t\t52437524156 blocks of size 1024. 3938056064 blocks available"
+  ],
+  "stderr_first_400": ""
+}

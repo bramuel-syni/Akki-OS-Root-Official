@@ -1,0 +1,21 @@
+{
+  "task": "connectivity_redo_admin_guided_jump_tool_install",
+  "admin_authorization": "Owner directive 2026-09-14 + admin sheet: 'The Jump Box is an empty linux box, so please ask your agent to install the necessary CIFS services'",
+  "packages_requested": [
+    "cifs-utils",
+    "smbclient"
+  ],
+  "stdout_lines": [
+    "---install cifs-utils smbclient---",
+    "No containers need to be restarted.",
+    "No user sessions are running outdated binaries.",
+    "No VM guests are running outdated hypervisor (qemu) binaries on this host.",
+    "---which---",
+    "/usr/sbin/mount.cifs",
+    "/usr/bin/smbclient",
+    "---versions---",
+    "mount.cifs version: 7.0",
+    "Version 4.19.5-Ubuntu"
+  ],
+  "stderr_first_400": ""
+}

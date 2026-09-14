@@ -1,0 +1,18 @@
+{
+  "task": "connectivity_redo_mysql_tcp_sweep_from_jump",
+  "stdout_lines": [
+    "---Install mysql-client on JUMP (admin authorized)---",
+    "No user sessions are running outdated binaries.",
+    "No VM guests are running outdated hypervisor (qemu) binaries on this host.",
+    "/usr/bin/mysql",
+    "mysql  Ver 8.0.46-0ubuntu0.24.04.4 for Linux on x86_64 ((Ubuntu))",
+    "---tcp/3306 sweep from JUMP for the 7 clusters---",
+    "MYSQL_TCP_OPEN 159.138.162.146:3306",
+    "MYSQL_TCP_OPEN 110.238.76.159:3306",
+    "MYSQL_TCP_CLOSED 159.138.164.93:3306",
+    "MYSQL_TCP_CLOSED 203.123.86.10:3306",
+    "MYSQL_TCP_CLOSED 159.138.164.124:3306",
+    "MYSQL_TCP_CLOSED 110.238.75.83:3306",
+    "MYSQL_TCP_CLOSED 203.123.83.144:3306"
+  ]
+}

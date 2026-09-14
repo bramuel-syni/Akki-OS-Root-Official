@@ -1,0 +1,27 @@
+{
+  "task": "connectivity_redo_jump_hygiene_cleanup",
+  "actions_taken": [
+    "shred /root/.mysql_history (mysql -p exposed pw on process args + written history)",
+    "shred /root/.bash_history + history -c",
+    "confirm /dev/shm free of cred material (transient files already shred+unlinked per-op)",
+    "known_hosts kept (identity anchoring; not secret)"
+  ],
+  "stdout_lines": [
+    "---.mysql_history---",
+    "  no .mysql_history",
+    "  cleared.",
+    "---/dev/shm sweep---",
+    "drwxrwxrwt  2 root root   40 Sep 14 19:32 .",
+    "drwxr-xr-x 19 root root 3980 Sep 13 15:23 ..",
+    "---.bash_history---",
+    "0 /root/.bash_history",
+    "  cleared.",
+    "---confirm no residual cred material in /tmp or /dev/shm---",
+    "/tmp/install_uniagentd_simple",
+    "/tmp/install_uniagentd.error",
+    "/tmp/install_uniagentd",
+    "/tmp/CmsSignatureVerify",
+    "---known_hosts (kept: identity anchoring, not secrets)---",
+    "  none"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "task": "connectivity_redo_ssh_sweep_from_jump",
+  "stdout_lines": [
+    "---sanity: JUMP can reach NAS subnet 10.10.55.0/24 for ssh---",
+    "SSH 10.10.55.55:22 OPEN",
+    "---sweep 10.10.19.0/24 for tcp/22 (RADIO subnet, previously closed)---",
+    "---known_hosts hints---",
+    "  none",
+    "---/etc/hosts hints---",
+    "fe00::0\tip6-localnet",
+    "ff00::0\tip6-mcastprefix",
+    "ff02::1\tip6-allnodes",
+    "ff02::2\tip6-allrouters"
+  ]
+}

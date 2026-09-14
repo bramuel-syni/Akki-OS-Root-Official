@@ -1,0 +1,21 @@
+{
+  "task": "connectivity_redo_nas_top_level_of_candidate_shares",
+  "nas_host": "10.10.55.55",
+  "shares_probed": [
+    "NEWSCLIPS",
+    "COMMERCIALS",
+    "PROMOS",
+    "ADS"
+  ],
+  "stdout_lines": [
+    "=== share=NEWSCLIPS ===",
+    "tree connect failed: NT_STATUS_ACCESS_DENIED",
+    "=== share=COMMERCIALS ===",
+    "tree connect failed: NT_STATUS_ACCESS_DENIED",
+    "=== share=PROMOS ===",
+    "tree connect failed: NT_STATUS_ACCESS_DENIED",
+    "=== share=ADS ===",
+    "tree connect failed: NT_STATUS_ACCESS_DENIED"
+  ],
+  "stderr_first_400": ""
+}
