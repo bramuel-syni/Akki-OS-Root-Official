@@ -7542,5 +7542,54 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 ---
 
 
+## Ruling · 2026-09-14T~13:00Z · Source: owner channel · M5 sequence amendment (Audio-POC FIRST) + HF-credential verification receipts
+
+**Owner directive verbatim (this turn):**
+
+> "The M5 order is reordered by the owner: **W-AUDIO-POC runs FIRST, then W-DATA-SUITE-V2-LIFT.** Record this ruling in STATE/DECISIONS.md and the ruling ledger with today's date, then proceed."
+
+> "TASK 1 (NOW): W-AUDIO-POC (P0) — Built against the LIVE NAS `OFFAIRRECS` corpus (SMB via JUMP, creds already validated on disk/ops notes) and OBS bucket `google-transcripts` (user-provided OBS API keys). Scope: (a) enumerate/verify FINISHED transcripts already present; (b) transcribe via HF models ONLY where transcripts are missing; (c) never re-transcribe what already exists. HF token was recently rotated — load from existing secret storage, never print it. Tests-first: author invariants before implementation; every checkpoint closes with double-green byte-match and ratchet increase. Author a grounding brief note in assessment_workspace/notes/ before implementation (consistent with prior wave-open convention), commit to master. If NAS/OBS/HF connectivity fails or the egress window blocks you, do NOT mock anything. Record the blocker in a decision-point note and move to Task 2 while flagging the blocker back to me."
+
+> "TASK 2 (AFTER W-AUDIO-POC CLOSES): W-DATA-SUITE-V2-LIFT Step 2 — Owner has given the GO. Defaults DPO-D1 and DPO-D2 stand as proposed (no amendments received). Author the grounding brief, then build CP-D1 through CP-D8: case-agnostic donor lift from `analyze_workspace/`. Steps 0 + 1 are already closed; Step 2 discovery is complete — build directly on that discovery output, do not redo discovery. Same discipline: tests-first, double-green, two-commit pattern, ratchet up only."
+
+**Owner also confirmed (still-blocked list explicitly):**
+
+> "STILL BLOCKED (do not block on these; keep tracked in ledger) — Credential rotations pending user action: SEC-2026-09-12-01, SEC-2026-09-14-04 (HF), SEC-2026-09-13-T4-01/03/04/05, SEC-2026-09-14-01/02/03 (JUMP, RADIO, NAS, DB). Missing binds: Transcription server host+creds, RADIO routing (JUMP-side route to 10.10.19.0/24), security-group openings for 5 closed MySQL hosts. Owner ratifications pending: R-7, R-15, R-16, R-17, BC-3, BC-4, S-24, R-13, R-14 (leave DEFAULT-PENDING-OVERRIDE markers as-is). 165 quarantined D1a-1 legacy tests: leave quarantined; do not attempt fixes in this wave."
+
+**Owner directed HF-credential boot verifications (targeted follow-up this turn):**
+
+> "as part of your SO §1 boot receipts, VERIFY AND REPORT the HF credential filing status, position-redacted only: (1) Confirm the owner-attached HF token is registered in secret storage — presence, storage path, file mode, and token LENGTH ONLY. Never print any part of the token, not even head/tail characters. (2) Confirm ledger entries exist. (3) Confirm the SEC-2026-09-14-04 status is still accurately tracked. (4) Confirm the token loads correctly via the env/askpass pattern (a redacted whoami-style validation against HF within the egress window is acceptable; report only PASS/FAIL + HTTP status)."
+
+**Binding effects of this ruling:**
+
+1. **M5 SW1 = W-AUDIO-POC** (renamed from prior "M5 SW2"). M5 SW2 = W-DATA-SUITE-V2-LIFT (renamed from prior "M5 SW1"). All prior banked references to the earlier order remain historically accurate; new work uses the amended order.
+
+2. **Sequence for this session (definitive):**
+   - **Task 1 (Step 2 in aggregate session sequence · M5 SW1) · W-AUDIO-POC** — enumerate/gap-fill against LIVE NAS OFFAIRRECS + OBS `google-transcripts`. No mocks. Blockers → decision-point note + escalate + advance to Task 2.
+   - **Task 2 (M5 SW2) · W-DATA-SUITE-V2-LIFT** — case-agnostic donor lift from `analyze_workspace/` (CP-D1..CP-D8 per Solva-V2 precedent template). DPO-D1 + DPO-D2 defaults stand (not amended).
+   - **M5 close** — full sprint completion report (M0→M5).
+
+3. **HF-credential boot verification banked (2026-09-14T~13:03Z):**
+
+   | Item | Result | Evidence |
+   |---|---|---|
+   | 1 · token registered in secret storage | **PASS** | `/app/backend/estate_keys/data_sources/hf_token_rotated_20260914.csv` · 37 bytes · mode 0600 · owner root:root · sha256 `3ea89c94…19c5` (matches manifest pin) |
+   | 1b · pre-rotation forensic retention | **PASS** | `/app/backend/estate_keys/data_sources/hf_token.csv` · 37 bytes · mode 0600 · retained for forensic per SEC-2026-09-12-01 |
+   | 2 · ledger note on disk | **PASS** | `notes/HF_TOKEN_ROTATION_LEDGER_20260914.md` · 6861 B · SEC-12-01 refs=5 · OWNER-ROTATED-PENDING-CONFIRMATION marker present |
+   | 3 · SEC-14-04 tracked | **PASS** | `notes/SEC_INCIDENTS_20260914.md` · 6867 B · SEC-14-04 refs=2 · PENDING-SECOND-ROTATION marker present |
+   | 4 · env-injected loader | **PASS** | `services.secret_hygiene.hf_token.load_hf_token_or_raise()` returned token via env-only path (HF_TOKEN env var) · length=37 · sha256_pin matched |
+   | 4b · transcript-leak guard smoke test | **PASS** | Safe string passed; leak-shaped string raised RuntimeError; guard message contained value = **False** (no leak in the exception itself) |
+   | 4c · redacted HF whoami (network egress, in-window) | **PASS · HTTP=200** | body_bytes=895 · keys returned = `[auth, avatarUrl, billingMode, canPay, fullname, id, isPro, name, orgs, periodEnd, type]` · every value surfaced ONLY as `type + length` shape, never as value · account confirmed active on HF |
+   | egress-window compliance | **PASS** | UTC=2026-09-14T13:03:56Z · policy 08:00-02:00 UTC / 11:00-05:00 EAT · in_window=true |
+   | boot-ritual baseline green | **PASS** | `BASELINE_GUARD=1 python -m pytest tests/invariants/` returned **3858 passed, 1 skipped, 438 warnings in 114.94s** · receipt at `phase0/drill_receipts/20260914T130032Z_wave_m5_sw2_audio_poc_boot_ritual_baseline_green.log` (filename retained under pre-amendment SW-order convention; ledger references it correctly here) |
+
+4. **No re-clone. No wipe. No re-run of Chunk 1. No scaffold. No push. Terminal pytest only.** All standing rules held during boot.
+
+5. **NEXT ACTIVE STEP · W-AUDIO-POC grounding brief authoring + owner ack of checkpoint plan.** Brief lands at `notes/wave_audio_poc_grounding_brief.md`. Report on brief summary + checkpoint plan surfaced to owner in-transcript per owner directive "*Report back with: boot ritual receipts (files read + baseline green count), then W-AUDIO-POC grounding brief summary and checkpoint plan before implementation.*" On owner ack (or on "proceed autonomously" restatement), open CP-A1 with mechanical RED.
+
+---
+
+
+
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
