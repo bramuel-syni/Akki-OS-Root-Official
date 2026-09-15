@@ -8626,4 +8626,25 @@ Owner verbatim: *"Keep the CD/Visitors re-probe loop running at boundaries while
 
 ---
 
+## D12-03 · CORPUS-LEVEL FINDING · sealed 2026-09-15T~11:12Z (in-house diagnosis · not owner-desk)
+
+**Wave summary.** Owner directive verbatim 2026-09-15T~11:05Z: D12-03 diagnosis moved in-house (JUMP access + working mount.cifs = agent-owned). Executed 4-stage diagnosis: (1) ffprobe channel01 · (2) 16-channel corpus characterization via mount.cifs + ffprobe on JUMP · (3) skipped (no audio-bearing file found) · (4) matrix banked. Auxiliary probe: 5 candidate audio-bearing shares (NEWSCLIPS/PROMOS/COMMERCIALS/ADS/video) all Permission denied for Bramwel account.
+
+**Corpus finding (definitive):** OFFAIRRECS is video-only-with-null-audio-track across 9 media-bearing channels (audio duration 1.5-16.5 ms while video duration 300 s uniformly). 7 channels (09-15) have no media in any date-dir. This is effectively the owner-directive close-condition ('NO audio anywhere') = D12-03 CLOSED via corpus-level finding.
+
+**Per-hour projection update:** UNMEASURABLE for current OFFAIRRECS corpus (0 transcription value per file · faster-whisper empty on <20 ms audio · NAS throughput bound moot). Recomputable if NEWSCLIPS/etc shares unlock (Path α).
+
+**Owner-desk items added:** (1) NEWSCLIPS/PROMOS/COMMERCIALS/ADS/video NAS credentials for Bramwel or alternative account · (2) OFFAIRRECS channels 09-15 dark investigation · (3) ActRecord.exe null-audio-recording investigation.
+
+**Impact on ratified chain:**
+- M8 #5 W-CENSUS-RUNTIME-ORCHESTRATION scope EXPANDS per owner ADDITION verbatim: fold ffprobe characterization into live NAS enumeration; new SourceRecord fields `media_types` + `audio_bearing_share` become measured census fields (Canon-4 §4.1 + §8 enrichments).
+- M6 W-M6-INGEST-STAGE-1 charter may need re-scope depending on which path opens (α = re-enumerate to NEWSCLIPS/etc · β = video-plane ingestion for OFFAIRRECS).
+- W-AUDIO-PROD-MODEL-SELECT should defer until real audio source enumerated.
+
+**Boundary probe #10:** CD+Visitors BOTH FAIL errno-110-ETIMEDOUT (unchanged from probes 1-9).
+
+**Guardrails unchanged.** Position-redaction hard-lock preserved throughout (zero credential material in transcript for the 3 mount.cifs runs + 5 share probes + 16 ffprobe calls). All 4 new SEC guard functions from CP-M8-G1 remained silent (no leak patterns fired).
+
+---
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

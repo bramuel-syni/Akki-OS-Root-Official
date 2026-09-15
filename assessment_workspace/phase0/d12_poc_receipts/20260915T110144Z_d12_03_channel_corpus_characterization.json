@@ -1,0 +1,83 @@
+{
+  "wave": "W-D12-POC",
+  "sub_wave": "D12_03_CHANNEL_CORPUS_CHARACTERIZATION",
+  "sealed_at_utc": "20260915T110144Z",
+  "kind": "d12_03_corpus_characterization",
+  "poc_flag": "POC-NOT-PRODUCTION",
+  "target_date_dir_preferred": "2026_09_14",
+  "summary": {
+    "total_channels_probed": 9,
+    "audio_bearing_count": 0,
+    "video_only_count": 9,
+    "audio_bearing_channels": [],
+    "video_only_channels": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "per_channel": [
+    {
+      "raw_line": "{channel:channel01,date_dir:2026_09_14,file_basename:channel01_2026_09_14_00_00_00.mp4,file_size:79394452,probe:{ \"programs\": [ ], \"streams\": [ { \"index\": 0, \"codec_name\": \"h264\", \"codec_type\": \"video\", \"width\": 960, \"height\": 540, \"duration\": \"300.000000\", \"bit_rate\": \"2043893\" }, { \"index\": 1, \"codec_name\": \"aac\", \"codec_type\": \"audio\", \"sample_rate\": \"48000\", \"channels\": 2, \"duration\": \"0.01064",
+      "parse_error": "Expecting property name enclosed in double quotes: line 1 column 2 (char 1)",
+      "audio_track_count": 0,
+      "video_track_count": 0
+    },
+    {
+      "raw_line": "{channel:channel02,date_dir:2026_09_14,file_basename:channel02_2026_09_14_00_00_00.mp4,file_size:79553141,probe:{ \"programs\": [ ], \"streams\": [ { \"index\": 0, \"codec_name\": \"h264\", \"codec_type\": \"video\", \"width\": 960, \"height\": 540, \"duration\": \"300.000000\", \"bit_rate\": \"2048119\" }, { \"index\": 1, \"codec_name\": \"aac\", \"codec_type\": \"audio\", \"sample_rate\": \"48000\", \"channels\": 2, \"duration\": \"0.01600",
+      "parse_error": "Expecting property name enclosed in double quotes: line 1 column 2 (char 1)",
+      "audio_track_count": 0,
+      "video_track_count": 0
+    },
+    {
+      "raw_line": "{channel:channel03,date_dir:2026_09_14,file_basename:channel03_2026_09_14_00_00_00.mp4,file_size:21932229,probe:{ \"programs\": [ ], \"streams\": [ { \"index\": 0, \"codec_name\": \"h264\", \"codec_type\": \"video\", \"width\": 512, \"height\": 288, \"duration\": \"300.000000\", \"bit_rate\": \"512000\" }, { \"index\": 1, \"codec_name\": \"aac\", \"codec_type\": \"audio\", \"sample_rate\": \"44100\", \"channels\": 2, \"duration\": \"0.016508",
+      "parse_error": "Expecting property name enclosed in double quotes: line 1 column 2 (char 1)",
+      "audio_track_count": 0,
+      "video_track_count": 0
+    },
+    {
+      "raw_line": "{channel:channel04,date_dir:2026_09_14,file_basename:channel04_2026_09_14_00_00_00.mp4,file_size:21931209,probe:{ \"programs\": [ ], \"streams\": [ { \"index\": 0, \"codec_name\": \"h264\", \"codec_type\": \"video\", \"width\": 512, \"height\": 288, \"duration\": \"300.000000\", \"bit_rate\": \"512000\" }, { \"index\": 1, \"codec_name\": \"aac\", \"codec_type\": \"audio\", \"sample_rate\": \"44100\", \"channels\": 2, \"duration\": \"0.014694",
+      "parse_error": "Expecting property name enclosed in double quotes: line 1 column 2 (char 1)",
+      "audio_track_count": 0,
+      "video_track_count": 0
+    },
+    {
+      "raw_line": "{channel:channel05,date_dir:2026_09_14,file_basename:channel05_2026_09_14_00_00_00.mp4,file_size:21932250,probe:{ \"programs\": [ ], \"streams\": [ { \"index\": 0, \"codec_name\": \"h264\", \"codec_type\": \"video\", \"width\": 512, \"height\": 288, \"duration\": \"300.000000\", \"bit_rate\": \"512000\" }, { \"index\": 1, \"codec_name\": \"aac\", \"codec_type\": \"audio\", \"sample_rate\": \"44100\", \"channels\": 2, \"duration\": \"0.016054",
+      "parse_error": "Expecting property name enclosed in double quotes: line 1 column 2 (char 1)",
+      "audio_track_count": 0,
+      "video_track_count": 0
+    },
+    {
+      "raw_line": "{channel:channel06,date_dir:2026_09_14,file_basename:channel06_2026_09_14_00_00_00.mp4,file_size:21931022,probe:{ \"programs\": [ ], \"streams\": [ { \"index\": 0, \"codec_name\": \"h264\", \"codec_type\": \"video\", \"width\": 512, \"height\": 288, \"duration\": \"300.000000\", \"bit_rate\": \"512000\" }, { \"index\": 1, \"codec_name\": \"aac\", \"codec_type\": \"audio\", \"sample_rate\": \"44100\", \"channels\": 2, \"duration\": \"0.013152",
+      "parse_error": "Expecting property name enclosed in double quotes: line 1 column 2 (char 1)",
+      "audio_track_count": 0,
+      "video_track_count": 0
+    },
+    {
+      "raw_line": "{channel:channel07,date_dir:2026_09_14,file_basename:channel07_2026_09_14_00_00_00.mp4,file_size:21932232,probe:{ \"programs\": [ ], \"streams\": [ { \"index\": 0, \"codec_name\": \"h264\", \"codec_type\": \"video\", \"width\": 512, \"height\": 288, \"duration\": \"300.000000\", \"bit_rate\": \"512000\" }, { \"index\": 1, \"codec_name\": \"aac\", \"codec_type\": \"audio\", \"sample_rate\": \"44100\", \"channels\": 2, \"duration\": \"0.001542",
+      "parse_error": "Expecting property name enclosed in double quotes: line 1 column 2 (char 1)",
+      "audio_track_count": 0,
+      "video_track_count": 0
+    },
+    {
+      "raw_line": "{channel:channel08,date_dir:2026_09_14,file_basename:channel08_2026_09_14_00_00_00.mp4,file_size:21928889,probe:{ \"programs\": [ ], \"streams\": [ { \"index\": 0, \"codec_name\": \"h264\", \"codec_type\": \"video\", \"width\": 512, \"height\": 288, \"duration\": \"300.000000\", \"bit_rate\": \"511910\" }, { \"index\": 1, \"codec_name\": \"aac\", \"codec_type\": \"audio\", \"sample_rate\": \"44100\", \"channels\": 2, \"duration\": \"0.001542",
+      "parse_error": "Expecting property name enclosed in double quotes: line 1 column 2 (char 1)",
+      "audio_track_count": 0,
+      "video_track_count": 0
+    },
+    {
+      "raw_line": "{channel:channel16,date_dir:2026_09_14,file_basename:channel16_2026_09_14_00_00_00.mp4,file_size:79719824,probe:{ \"programs\": [ ], \"streams\": [ { \"index\": 0, \"codec_name\": \"h264\", \"codec_type\": \"video\", \"width\": 960, \"height\": 540, \"duration\": \"300.000000\", \"bit_rate\": \"2052564\" }, { \"index\": 1, \"codec_name\": \"aac\", \"codec_type\": \"audio\", \"sample_rate\": \"48000\", \"channels\": 2, \"duration\": \"0.01600",
+      "parse_error": "Expecting property name enclosed in double quotes: line 1 column 2 (char 1)",
+      "audio_track_count": 0,
+      "video_track_count": 0
+    }
+  ],
+  "ffprobe_scan_dt_s": 27.85,
+  "provenance_note": "shape-only ffprobe \u00b7 zero file bytes emitted \u00b7 position-redaction hard-lock preserved \u00b7 to be folded into W-CENSUS-RUNTIME-ORCHESTRATION as measured census media_types/audio_bearing_share field per owner directive 2026-09-15T~11:05Z"
+}

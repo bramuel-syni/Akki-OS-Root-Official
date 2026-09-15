@@ -1,0 +1,41 @@
+{
+  "wave": "W-D12-POC",
+  "sub_wave": "D12_03_SHARE_LEVEL_PROBE",
+  "sealed_at_utc": "20260915T110930Z",
+  "kind": "d12_03_share_probe_matrix",
+  "shares_probed": [
+    "NEWSCLIPS",
+    "PROMOS",
+    "COMMERCIALS",
+    "ADS",
+    "video"
+  ],
+  "results": [
+    {
+      "share": "NEWSCLIPS",
+      "mount": "FAIL",
+      "err_tail": "mount error(13): Permission denied\nRefer to the mount.cifs(8) manual page (e.g. man mount.cifs) and kernel log messages (dmesg)\n"
+    },
+    {
+      "share": "PROMOS",
+      "mount": "FAIL",
+      "err_tail": "mount error(13): Permission denied\nRefer to the mount.cifs(8) manual page (e.g. man mount.cifs) and kernel log messages (dmesg)\n"
+    },
+    {
+      "share": "COMMERCIALS",
+      "mount": "FAIL",
+      "err_tail": "mount error(13): Permission denied\nRefer to the mount.cifs(8) manual page (e.g. man mount.cifs) and kernel log messages (dmesg)\n"
+    },
+    {
+      "share": "ADS",
+      "mount": "FAIL",
+      "err_tail": "mount error(13): Permission denied\nRefer to the mount.cifs(8) manual page (e.g. man mount.cifs) and kernel log messages (dmesg)\n"
+    },
+    {
+      "share": "video",
+      "mount": "FAIL",
+      "err_tail": "mount error(13): Permission denied\nRefer to the mount.cifs(8) manual page (e.g. man mount.cifs) and kernel log messages (dmesg)\n"
+    }
+  ],
+  "provenance_note": "shape-only per-share ffprobe \u00b7 zero file bytes emitted"
+}

@@ -1,0 +1,561 @@
+{
+  "wave": "W-D12-POC",
+  "sub_wave": "D12_03_CHANNEL_CORPUS_CHARACTERIZATION_v2",
+  "sealed_at_utc": "20260915T110724Z",
+  "kind": "d12_03_corpus_characterization",
+  "poc_flag": "POC-NOT-PRODUCTION",
+  "summary": {
+    "total_channels_probed": 9,
+    "audio_bearing_count": 0,
+    "audio_bearing_channels": [],
+    "audio_stream_present_but_empty_count": 9,
+    "audio_stream_present_but_empty_channels": [
+      "channel01",
+      "channel02",
+      "channel03",
+      "channel04",
+      "channel05",
+      "channel06",
+      "channel07",
+      "channel08",
+      "channel16"
+    ],
+    "video_only_count": 0,
+    "video_only_channels": []
+  },
+  "per_channel": [
+    {
+      "channel": "channel01",
+      "date_dir": "2026_09_15",
+      "file_basename": "channel01_2026_09_15_00_00_00.mp4",
+      "file_size": 79185785,
+      "probe": {
+        "programs": [],
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 960,
+            "height": 540,
+            "duration": "300.000000",
+            "bit_rate": "2038328",
+            "nb_frames": "7500"
+          },
+          {
+            "index": 1,
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "sample_rate": "48000",
+            "channels": 2,
+            "duration": "0.008000",
+            "bit_rate": "64028",
+            "nb_frames": "14062"
+          }
+        ],
+        "format": {
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "duration": "300.000000",
+          "size": "79185785",
+          "bit_rate": "2111620"
+        }
+      },
+      "audio_track_count": 1,
+      "video_track_count": 1,
+      "audio_summary": [
+        {
+          "codec": "aac",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration_s": "0.008000",
+          "bit_rate": "64028",
+          "nb_frames": "14062"
+        }
+      ],
+      "video_summary": [
+        {
+          "codec": "h264",
+          "width": 960,
+          "height": 540,
+          "duration_s": "300.000000",
+          "bit_rate": "2038328"
+        }
+      ],
+      "max_audio_duration_s": 0.008
+    },
+    {
+      "channel": "channel02",
+      "date_dir": "2026_09_15",
+      "file_basename": "channel02_2026_09_15_00_00_00.mp4",
+      "file_size": 79608780,
+      "probe": {
+        "programs": [],
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 960,
+            "height": 540,
+            "duration": "300.000000",
+            "bit_rate": "2049608",
+            "nb_frames": "7500"
+          },
+          {
+            "index": 1,
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "sample_rate": "48000",
+            "channels": 2,
+            "duration": "0.016000",
+            "bit_rate": "64031",
+            "nb_frames": "14062"
+          }
+        ],
+        "format": {
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "duration": "300.000000",
+          "size": "79608780",
+          "bit_rate": "2122900"
+        }
+      },
+      "audio_track_count": 1,
+      "video_track_count": 1,
+      "audio_summary": [
+        {
+          "codec": "aac",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration_s": "0.016000",
+          "bit_rate": "64031",
+          "nb_frames": "14062"
+        }
+      ],
+      "video_summary": [
+        {
+          "codec": "h264",
+          "width": 960,
+          "height": 540,
+          "duration_s": "300.000000",
+          "bit_rate": "2049608"
+        }
+      ],
+      "max_audio_duration_s": 0.016
+    },
+    {
+      "channel": "channel03",
+      "date_dir": "2026_09_15",
+      "file_basename": "channel03_2026_09_15_00_00_00.mp4",
+      "file_size": 21932194,
+      "probe": {
+        "programs": [],
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 512,
+            "height": 288,
+            "duration": "300.000000",
+            "bit_rate": "512000",
+            "nb_frames": "7500"
+          },
+          {
+            "index": 1,
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "sample_rate": "44100",
+            "channels": 2,
+            "duration": "0.016508",
+            "bit_rate": "64081",
+            "nb_frames": "12920"
+          }
+        ],
+        "format": {
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "duration": "300.000000",
+          "size": "21932194",
+          "bit_rate": "584858"
+        }
+      },
+      "audio_track_count": 1,
+      "video_track_count": 1,
+      "audio_summary": [
+        {
+          "codec": "aac",
+          "sample_rate": "44100",
+          "channels": 2,
+          "duration_s": "0.016508",
+          "bit_rate": "64081",
+          "nb_frames": "12920"
+        }
+      ],
+      "video_summary": [
+        {
+          "codec": "h264",
+          "width": 512,
+          "height": 288,
+          "duration_s": "300.000000",
+          "bit_rate": "512000"
+        }
+      ],
+      "max_audio_duration_s": 0.016508
+    },
+    {
+      "channel": "channel04",
+      "date_dir": "2026_09_15",
+      "file_basename": "channel04_2026_09_15_00_00_00.mp4",
+      "file_size": 21932237,
+      "probe": {
+        "programs": [],
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 512,
+            "height": 288,
+            "duration": "300.000000",
+            "bit_rate": "512000",
+            "nb_frames": "7500"
+          },
+          {
+            "index": 1,
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "sample_rate": "44100",
+            "channels": 2,
+            "duration": "0.014694",
+            "bit_rate": "64083",
+            "nb_frames": "12920"
+          }
+        ],
+        "format": {
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "duration": "300.000000",
+          "size": "21932237",
+          "bit_rate": "584859"
+        }
+      },
+      "audio_track_count": 1,
+      "video_track_count": 1,
+      "audio_summary": [
+        {
+          "codec": "aac",
+          "sample_rate": "44100",
+          "channels": 2,
+          "duration_s": "0.014694",
+          "bit_rate": "64083",
+          "nb_frames": "12920"
+        }
+      ],
+      "video_summary": [
+        {
+          "codec": "h264",
+          "width": 512,
+          "height": 288,
+          "duration_s": "300.000000",
+          "bit_rate": "512000"
+        }
+      ],
+      "max_audio_duration_s": 0.014694
+    },
+    {
+      "channel": "channel05",
+      "date_dir": "2026_09_15",
+      "file_basename": "channel05_2026_09_15_00_00_00.mp4",
+      "file_size": 21932238,
+      "probe": {
+        "programs": [],
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 512,
+            "height": 288,
+            "duration": "300.000000",
+            "bit_rate": "512000",
+            "nb_frames": "7500"
+          },
+          {
+            "index": 1,
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "sample_rate": "44100",
+            "channels": 2,
+            "duration": "0.016054",
+            "bit_rate": "64083",
+            "nb_frames": "12920"
+          }
+        ],
+        "format": {
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "duration": "300.000000",
+          "size": "21932238",
+          "bit_rate": "584859"
+        }
+      },
+      "audio_track_count": 1,
+      "video_track_count": 1,
+      "audio_summary": [
+        {
+          "codec": "aac",
+          "sample_rate": "44100",
+          "channels": 2,
+          "duration_s": "0.016054",
+          "bit_rate": "64083",
+          "nb_frames": "12920"
+        }
+      ],
+      "video_summary": [
+        {
+          "codec": "h264",
+          "width": 512,
+          "height": 288,
+          "duration_s": "300.000000",
+          "bit_rate": "512000"
+        }
+      ],
+      "max_audio_duration_s": 0.016054
+    },
+    {
+      "channel": "channel06",
+      "date_dir": "2026_09_15",
+      "file_basename": "channel06_2026_09_15_00_00_00.mp4",
+      "file_size": 21932247,
+      "probe": {
+        "programs": [],
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 512,
+            "height": 288,
+            "duration": "300.000000",
+            "bit_rate": "512000",
+            "nb_frames": "7500"
+          },
+          {
+            "index": 1,
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "sample_rate": "44100",
+            "channels": 2,
+            "duration": "0.013152",
+            "bit_rate": "64083",
+            "nb_frames": "12920"
+          }
+        ],
+        "format": {
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "duration": "300.000000",
+          "size": "21932247",
+          "bit_rate": "584859"
+        }
+      },
+      "audio_track_count": 1,
+      "video_track_count": 1,
+      "audio_summary": [
+        {
+          "codec": "aac",
+          "sample_rate": "44100",
+          "channels": 2,
+          "duration_s": "0.013152",
+          "bit_rate": "64083",
+          "nb_frames": "12920"
+        }
+      ],
+      "video_summary": [
+        {
+          "codec": "h264",
+          "width": 512,
+          "height": 288,
+          "duration_s": "300.000000",
+          "bit_rate": "512000"
+        }
+      ],
+      "max_audio_duration_s": 0.013152
+    },
+    {
+      "channel": "channel07",
+      "date_dir": "2026_09_15",
+      "file_basename": "channel07_2026_09_15_00_00_00.mp4",
+      "file_size": 21923529,
+      "probe": {
+        "programs": [],
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 512,
+            "height": 288,
+            "duration": "300.000000",
+            "bit_rate": "512000",
+            "nb_frames": "7500"
+          },
+          {
+            "index": 1,
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "sample_rate": "44100",
+            "channels": 2,
+            "duration": "0.013152",
+            "bit_rate": "63871",
+            "nb_frames": "12877"
+          }
+        ],
+        "format": {
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "duration": "300.000000",
+          "size": "21923529",
+          "bit_rate": "584627"
+        }
+      },
+      "audio_track_count": 1,
+      "video_track_count": 1,
+      "audio_summary": [
+        {
+          "codec": "aac",
+          "sample_rate": "44100",
+          "channels": 2,
+          "duration_s": "0.013152",
+          "bit_rate": "63871",
+          "nb_frames": "12877"
+        }
+      ],
+      "video_summary": [
+        {
+          "codec": "h264",
+          "width": 512,
+          "height": 288,
+          "duration_s": "300.000000",
+          "bit_rate": "512000"
+        }
+      ],
+      "max_audio_duration_s": 0.013152
+    },
+    {
+      "channel": "channel08",
+      "date_dir": "2026_09_15",
+      "file_basename": "channel08_2026_09_15_00_00_00.mp4",
+      "file_size": 21928895,
+      "probe": {
+        "programs": [],
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 512,
+            "height": 288,
+            "duration": "300.000000",
+            "bit_rate": "511910",
+            "nb_frames": "7500"
+          },
+          {
+            "index": 1,
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "sample_rate": "44100",
+            "channels": 2,
+            "duration": "0.001542",
+            "bit_rate": "64083",
+            "nb_frames": "12920"
+          }
+        ],
+        "format": {
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "duration": "300.000000",
+          "size": "21928895",
+          "bit_rate": "584770"
+        }
+      },
+      "audio_track_count": 1,
+      "video_track_count": 1,
+      "audio_summary": [
+        {
+          "codec": "aac",
+          "sample_rate": "44100",
+          "channels": 2,
+          "duration_s": "0.001542",
+          "bit_rate": "64083",
+          "nb_frames": "12920"
+        }
+      ],
+      "video_summary": [
+        {
+          "codec": "h264",
+          "width": 512,
+          "height": 288,
+          "duration_s": "300.000000",
+          "bit_rate": "511910"
+        }
+      ],
+      "max_audio_duration_s": 0.001542
+    },
+    {
+      "channel": "channel16",
+      "date_dir": "2026_09_15",
+      "file_basename": "channel16_2026_09_15_00_00_00.mp4",
+      "file_size": 79569826,
+      "probe": {
+        "programs": [],
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 960,
+            "height": 540,
+            "duration": "300.000000",
+            "bit_rate": "2048563",
+            "nb_frames": "7500"
+          },
+          {
+            "index": 1,
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "sample_rate": "48000",
+            "channels": 2,
+            "duration": "0.005312",
+            "bit_rate": "64034",
+            "nb_frames": "14063"
+          }
+        ],
+        "format": {
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "duration": "300.000000",
+          "size": "79569826",
+          "bit_rate": "2121862"
+        }
+      },
+      "audio_track_count": 1,
+      "video_track_count": 1,
+      "audio_summary": [
+        {
+          "codec": "aac",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration_s": "0.005312",
+          "bit_rate": "64034",
+          "nb_frames": "14063"
+        }
+      ],
+      "video_summary": [
+        {
+          "codec": "h264",
+          "width": 960,
+          "height": 540,
+          "duration_s": "300.000000",
+          "bit_rate": "2048563"
+        }
+      ],
+      "max_audio_duration_s": 0.005312
+    }
+  ],
+  "ffprobe_scan_dt_s": 208.219,
+  "provenance_note": "shape-only ffprobe \u00b7 zero file bytes emitted \u00b7 position-redaction hard-lock preserved \u00b7 to be folded into W-CENSUS-RUNTIME-ORCHESTRATION as measured census media_types/audio_bearing_share field per owner directive 2026-09-15T~11:05Z"
+}
