@@ -8839,3 +8839,262 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 ---
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+## OPS · 2026-09-15T~17:52Z · estate contact audit exposed for direct download (owner-directed)
+
+**Not a wave.** Owner-directed ops convenience. No invariants touched · no ratchet change (floor stays 4112) · no push · no code refactor.
+
+**Action:** copied banked audit artefacts (not moved · sources unchanged) into `/app/frontend/public/audit/` so the CRA dev-server static path serves them under the preview URL. IPAllowlistMiddleware continues to gate — owner accesses from an allowlisted IP; the middleware config is untouched.
+
+**Public URLs (owner-side, allowlisted-IP required):**
+- `https://akki-reuse-assess.preview.emergentagent.com/audit/ESTATE_CONTACT_AUDIT_20260915.md`
+- `https://akki-reuse-assess.preview.emergentagent.com/audit/estate_contact_audit_20260915.json`
+
+**Served-bytes verification (via internal loopback with SPINE-allowlisted XFF, no IP echoed):**
+- MD  · `HTTP 200` · `size=15991` · `sha256=5f4040a5f7755ce72420c95ec666e9e264a9d7d86ca4aa3e5596388c138e9ca9`
+- JSON · `HTTP 200` · `size=54282` · `sha256=2559f6b8a66cc6e55f2402467a499803d1dc48aa3ce0036e76f89ed95e7f2c93`
+
+**Banked-pin match:**
+- JSON served-bytes sha256 = `2559f6b8…` = `integrity_chain_sha256_register.json.audit_self_json.estate_contact_audit_20260915.json`. **MATCH.**
+- MD: `integrity_chain_sha256_register.json` carries NO md self-sha entry (audit self-sha pin exists only for the JSON). Owner's request cited `2559f6b8…` as the *md self-sha*; measurement shows `2559f6b8…` is the *JSON* sha and the MD sha is `5f4040a5…`. Reporting the discrepancy as a finding, not papering over. **Recommend banking `5f4040a5f7755ce72420c95ec666e9e264a9d7d86ca4aa3e5596388c138e9ca9` as the md self-sha pin at next state seal.**
+
+**Custody-guard scan (pre-serve):** re-ran keyword sweep across the two files — no credential material (no passwords/tokens/keys/PEMs). The two `:3306` occurrences are the CD/Visitors host findings that the audit itself documents, i.e., part of the artefact's own findings — not fresh secret emission. Position-redaction hard-lock intact (no cred value emitted to STDOUT during this op — XFF-source IP read into an in-memory shell variable and consumed by curl, never echoed).
+
+**Ratchet floor:** unchanged at **4112**. No `programme/track-a` changes. State-only commit on `master`.
+
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+## OWNER RULING · 2026-09-15T~17:57Z · ALLOWLIST_MODE=permissive (owner cannot reach audit URLs)
+
+**Verbatim owner ruling (banked):** *"remove the white listing rule for now - i cant access"*
+
+**Change made — OWNER-TEMP-EXEMPTION-20260915:**
+- `/app/backend/.env` · `ALLOWLIST_MODE=strict` → `ALLOWLIST_MODE=permissive`. (Single-key edit. No `.env` comment per environment hygiene rule; the marker `OWNER-TEMP-EXEMPTION-20260915` lives in this ledger entry.)
+- No code refactor. The `permissive` branch is pre-existing sanctioned code (`plugins/ip-allowlist/check.js` + `services/ip_allowlist/middleware.py`) — the invariants in `test_ip_allowlist_owner_access.py` (`test_permissive_mode_admits_any_ip`, `test_permissive_mode_admits_without_xff`, `test_permissive_mode_still_logs_admit`) demand its existence and its `mode=permissive layer=permissive` structured-log attribution.
+- Both middleware layers (FastAPI app · CRA dev-server) reload the same env — restarted `supervisorctl restart backend frontend`. Every admit still logs `ip_allowlist_decision mode=permissive layer=permissive` (nothing silent per §A).
+
+**Invariant impact — none:**
+- `test_ip_allowlist_owner_access.py` uses `monkeypatch.setenv` to control mode per-test → runtime default is not fixed by any invariant.
+- `test_ip_allowlist_middleware.py` (strict-mode 16/16) — unaffected by runtime env because tests self-configure.
+- No `.env`-literal invariant scans `ALLOWLIST_MODE` value.
+- **Ratchet floor unchanged: 4112.** No tests amended. Not rebaselining.
+
+**External verification (owner-view path via preview ingress):**
+- `https://akki-reuse-assess.preview.emergentagent.com/audit/ESTATE_CONTACT_AUDIT_20260915.md` · `HTTP 200` · `size=15991` · `sha256=5f4040a5f7755ce72420c95ec666e9e264a9d7d86ca4aa3e5596388c138e9ca9`.
+- `https://akki-reuse-assess.preview.emergentagent.com/audit/estate_contact_audit_20260915.json` · `HTTP 200` · `size=54282` · `sha256=2559f6b8a66cc6e55f2402467a499803d1dc48aa3ce0036e76f89ed95e7f2c93` (matches banked JSON self-pin).
+
+**RE-ENABLE — OWNER-DESK CARRY-FORWARD (do not silently persist):**
+> **OPEN item:** allowlist re-enable pending owner "restore" ruling. When owner rules restore: flip `/app/backend/.env` `ALLOWLIST_MODE=permissive` → `ALLOWLIST_MODE=strict`, restart backend + frontend, verify `test_strict_mode_default_still_blocks_unknown` semantics via loopback probe, bank restore in DECISIONS. This carry-forward is also pinned in NEXT.md so no fresh/compacted session misses it.
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+## CP-M6-1-2 · Code-switch point detection pluggable seam · sealed 2026-09-15T~18:07Z (M6 sub-wave 1 second CP)
+
+**Track-a HEAD at seal:** `9b654f6`
+
+**CP charter.** M6 sub-wave 1 (W-M6-INGEST-STAGE-1) second CP per pre-banked M6 grounding brief §C. Landed `services/audio_plane_v1/code_switch_detector.py` — pluggable-seam mechanism for Audio-Plane §4.1 P061 verbatim: *"Recorded per segment: languages[], confidences, and code-switch points where multiple languages occur in one utterance."* + §4.2 P065 verbatim (four switch-point fields · registered facts with provenance): *"Switch points (position, from-language, to-language, context class) are registered facts with provenance — not preprocessing metadata."*
+
+Public API: `detect_code_switch_points(*, segments, backend) -> List[CodeSwitchPointDetection]` · `AudioSegment` (re-exported from CP-M6-1-1 · single source of truth · CP-M6-1-1 module unchanged) · `CodeSwitchPoint` (frozen 5-carrier: position + from_language + to_language + context_class + confidence) · `CodeSwitchPointDetection` (frozen 3-carrier: segment_ref + switch_points tuple + backend_name · D10 attribution) · `CodeSwitchDetectorBackend` (Protocol) · `UnratifiedCodeSwitchInferredBackend` (placeholder refuses with `[INFERRED-pending-ratification]` marker per D10 open ruling · RULING_LEDGER row 13). Refusals: `SegmentsEmptyError` (re-exported) · `SegmentInvalidError` (re-exported) · `BackendUnratifiedError` (CP-M6-1-2-local class · separate from CP-M6-1-1's homonym so each backend's ratification story is tracked independently).
+
+Pure orchestration; no LLM/HTTP/filesystem; no audio bytes cross the seam. Case-agnostic — word-boundary executive-domain negative-scan CLEAN. Ratchet 4112 → 4119 (+7).
+
+**Discipline receipts.**
+- RED: `phase0/drill_receipts/20260915T175539Z_wm6_1_2_RED_pre_impl.log` (7 right-reason ModuleNotFoundError).
+- GREEN 1: `phase0/drill_receipts/20260915T180136Z_wm6_1_2_double_green_run1.log` (`4119 passed, 1 skipped, 438 warnings`).
+- GREEN 2: `phase0/drill_receipts/20260915T180344Z_wm6_1_2_double_green_run2.log` (byte-match · stripped-sha256 `bc508caecd97c528d86a47ab75d2af567d6c45c1eb5327c106eb105c1eaa3d47`).
+- Seal: `phase0/output_verified_seals/cp_m6_1_2_code_switch_detector.seal.txt` (`Kind: cp_m6_1_2_code_switch_detector`).
+- Rider: `phase0/wave_riders/w_m6_ingest_stage_1_cp2/` (pip_freeze 192 lines no drift + collect_only 4120 tests).
+
+**Boundary probes.**
+- Probe **#18** (CP-M6-1-2 open · 17:54:17Z): CD + Visitors BOTH FAIL · 6.000s / 6.002s. Receipt: `phase0/boundary_probes/probe_18_20260915T175417Z.json`.
+- Probe **#19** (CP-M6-1-2 seal · 18:06:12Z): CD + Visitors BOTH FAIL · 6.006s / 6.006s. Receipt: `phase0/boundary_probes/probe_19_20260915T180612Z.json`.
+- Zero PASS across probes #1–#19. Admin SG opening still-in-progress on Huawei Cloud side · retry loop continues at next CP boundary.
+
+**D10 discipline banked.** Owner ratification unlocks a concrete backend; the seam accepts any owner-ratified `CodeSwitchDetectorBackend` implementation without mechanism change. `UnratifiedCodeSwitchInferredBackend` refuses live invocation until then.
+
+**Guardrails unchanged.** Tests-first double-green byte-match · ratchet monotonic-up · two-commit local-only · never push · terminal pytest only · testing_agent BANNED · position-redaction hard-lock · verbatim-canon · HALT-rather-than-guess · no refactor · case-agnostic negative-scan CLEAN.
+
+**Onward chain (unchanged from M6 grounding brief §C):**
+1. CP-M6-1-3 · channel condition profile derivation (§4.3 N2 verbatim).
+2. CP-M6-1-4 · synthesis attributes (§4.4 P068..P070 · N7 numbering gap resolution).
+3. W-M6-INGEST-STAGE-1 seals.
+4. M6 sub-wave 2 (W-M6-DEDUP-INSTANCE-CONDITION-MAP §4.5) opens.
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+## CP-M6-1-3 · Channel condition profile derivation pluggable seam · sealed 2026-09-15T~18:22Z (M6 sub-wave 1 third CP)
+
+**Track-a HEAD at seal:** `c457ef6`
+
+**CP charter.** M6 sub-wave 1 third CP per pre-banked M6 grounding brief §C. Landed `services/audio_plane_v1/channel_condition_profiler.py` — pluggable-seam mechanism for Audio-Plane §4.3 P067 verbatim: *"Channel condition — studio / field / telephone band, transmission artefacts, background class — is derived per segment at first ingestion."*
+
+Public API: `derive_channel_condition_profile(*, segments, backend) -> List[ChannelConditionProfile]` · `AudioSegment` (re-exported) · `ChannelConditionProfile` (frozen 5-carrier: segment_ref + channel_condition + transmission_artefacts + background_class + backend_name) · `ChannelConditionProfilerBackend` (Protocol) · `UnratifiedChannelConditionInferredBackend` (placeholder refuses with `[INFERRED-pending-ratification]`) · `CHANNEL_CONDITION_VALUES` (frozenset three-set {studio, field, telephone_band}). Refusals: `SegmentsEmptyError` (re-exported) · `SegmentInvalidError` (re-exported) · `BackendUnratifiedError` (CP-M6-1-3-local) · **`ChannelConditionInvalidError`** (§4.3 vocabulary discipline · orchestrator refuses backend returns outside CHANNEL_CONDITION_VALUES).
+
+Pure orchestration; no LLM/HTTP/filesystem; no audio bytes cross the seam. Case-agnostic — word-boundary executive-domain negative-scan CLEAN. Ratchet 4119 → 4127 (+8).
+
+**New discipline this CP.** Vocabulary constraint. Backend freedom on the language-tag axis (§4.1 unconstrained) does NOT extend to the channel-condition axis (§4.3 constrained). Orchestrator validates every backend return.
+
+**Discipline receipts.**
+- RED: `phase0/drill_receipts/20260915T181550Z_wm6_1_3_RED_pre_impl.log` (8 right-reason ModuleNotFoundError).
+- GREEN 1: `phase0/drill_receipts/20260915T181641Z_wm6_1_3_double_green_run1.log` (`4127 passed, 1 skipped`).
+- GREEN 2: `phase0/drill_receipts/20260915T181849Z_wm6_1_3_double_green_run2.log` (byte-match · stripped-sha256 `561b8dae691fa73b397a52306e1b27bcf7c05a0c531c1ba9a1e3dc51cc5a3a56`).
+- Seal: `phase0/output_verified_seals/cp_m6_1_3_channel_condition_profiler.seal.txt`.
+- Rider: `phase0/wave_riders/w_m6_ingest_stage_1_cp3/` (pip_freeze 192 lines no drift + collect_only 4128 tests).
+
+**Boundary probes.**
+- Probe **#20** (CP-M6-1-3 open): CD + Visitors BOTH FAIL · timeout. Receipt: `phase0/boundary_probes/probe_20_*.json`.
+- Probe **#21** (CP-M6-1-3 seal · 18:22:04Z): CD + Visitors BOTH FAIL · 6.006s / 6.006s. Receipt: `phase0/boundary_probes/probe_21_*.json`.
+- Zero PASS across probes #1–#21.
+
+**Guardrails unchanged.** Tests-first double-green byte-match · ratchet monotonic-up · two-commit local-only · never push · terminal pytest only · testing_agent BANNED · position-redaction hard-lock · verbatim-canon · HALT-rather-than-guess · no refactor · case-agnostic negative-scan CLEAN.
+
+**Onward chain:**
+1. CP-M6-1-4 · synthesis attributes (§4.4 P068..P070 · N7 numbering gap resolution).
+2. W-M6-INGEST-STAGE-1 seals.
+3. M6 sub-wave 2 opens (W-M6-DEDUP-INSTANCE-CONDITION-MAP §4.5).
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+## CP-M6-1-4 · Synthesis-relevant attribute capture pluggable seam · sealed 2026-09-15T~18:31Z (M6 sub-wave 1 FINAL CP · W-M6-INGEST-STAGE-1 SUB-WAVE 1 COMPLETE)
+
+**Track-a HEAD at seal:** `b472369`
+
+**CP charter.** M6 sub-wave 1 fourth (final) CP per pre-banked M6 grounding brief §C. Landed `services/audio_plane_v1/synthesis_attribute_capturer.py` — pluggable-seam mechanism for Audio-Plane §4.4 P069 verbatim: *"During the same ingestion pass, group-level acoustic attributes required by any future synthesis capability (pitch statistics, energy contours, duration patterns) are captured, subject to the custody conditions of §6.4."*
+
+Public API: `capture_synthesis_attributes(*, segments, backend) -> List[SynthesisAttributes]` · `AudioSegment` (re-exported) · `SynthesisAttributes` (frozen 5-carrier: segment_ref + pitch_statistics tuple + energy_contours tuple + duration_patterns tuple + backend_name) · `SynthesisAttributeCapturerBackend` (Protocol) · `UnratifiedSynthesisInferredBackend` (placeholder refuses with `[INFERRED-pending-ratification]`). Refusals: `SegmentsEmptyError` (re-exported) · `SegmentInvalidError` (re-exported) · `BackendUnratifiedError` (CP-M6-1-4-local class). Backend-emitted Sequences coerced to tuples for frozen-dataclass immutability discipline.
+
+Pure orchestration; no LLM/HTTP/filesystem; no audio bytes cross the seam. Case-agnostic — word-boundary executive-domain negative-scan CLEAN. Ratchet 4127 → 4134 (+7).
+
+**N7 book-keeping.** M6 grounding brief §Correction-1 verbatim 2026-09-15T~17:50Z: prior observation that N7 was skipped is RETRACTED. All 10 N-items enumerated correctly. N7 (§8.4 P139..P142 wizard compile-refusal machinery) rolls into sub-wave 6 CP-M6-6-1, NOT this CP.
+
+**§6.4 custody cross-link.** Enforcement lives in downstream custody guard, NOT in this seam. This CP lands the capture surface only.
+
+**Discipline receipts.**
+- RED: `phase0/drill_receipts/20260915T182745Z_wm6_1_4_RED_pre_impl.log` (7 right-reason ModuleNotFoundError).
+- GREEN 1: `phase0/drill_receipts/20260915T182834Z_wm6_1_4_double_green_run1.log` (`4134 passed, 1 skipped`).
+- GREEN 2: `phase0/drill_receipts/20260915T183041Z_wm6_1_4_double_green_run2.log` (byte-match · stripped-sha256 `177a23c6302c959b802d4c3ec37953486a73ce6ff8a8934651b7b0b316fc5785`).
+- Seal: `phase0/output_verified_seals/cp_m6_1_4_synthesis_attribute_capturer.seal.txt`.
+- Rider: `phase0/wave_riders/w_m6_ingest_stage_1_cp4/` (pip_freeze 192 lines no drift + collect_only 4135 tests).
+
+**Boundary probes.**
+- Probe **#22** (CP-M6-1-4 open): CD + Visitors BOTH FAIL · timeout. Receipt: `phase0/boundary_probes/probe_22_*.json`.
+- Probe **#23** (CP-M6-1-4 seal · sub-wave 1 COMPLETE): CD + Visitors BOTH FAIL · 6.006s / 6.0s. Receipt: `phase0/boundary_probes/probe_23_*.json`.
+- Zero PASS across probes #1–#23.
+
+**W-M6-INGEST-STAGE-1 SUB-WAVE 1 · COMPLETION SUMMARY.** Four §15 P232 Ingestion-capture CPs landed: CP-M6-1-1 (Language ID · +7 · 4105→4112) · CP-M6-1-2 (Code-switch detection · +7 · 4112→4119) · CP-M6-1-3 (Channel condition profile · +8 · 4119→4127) · CP-M6-1-4 (Synthesis attributes · +7 · 4127→4134). Total: +29 invariants · ratchet 4105 → 4134 · 4 seals · double-green byte-match at every seal · zero silent skips · zero rebaseline. All four seams are pluggable-until-ratified per D10-family discipline.
+
+**Guardrails unchanged.** Tests-first double-green byte-match · ratchet monotonic-up · two-commit local-only · never push · terminal pytest only · testing_agent BANNED · position-redaction hard-lock · verbatim-canon · HALT-rather-than-guess · no refactor · case-agnostic negative-scan CLEAN.
+
+**Onward chain:**
+1. M6 sub-wave 2 opens: W-M6-DEDUP-INSTANCE-CONDITION-MAP (§4.5 P070..P071 dedup-as-augmentation).
+2. Then M6 sub-wave 3: W-M6-CHARACTER-REGISTER (§6).
+3. Interleave: M7 open (W0..W9 per pre-ratified sequencing).
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+## CP-M6-2-1 · Instance condition map schema · sealed 2026-09-15T~18:43Z (M6 sub-wave 2 first CP)
+
+**Track-a HEAD at seal:** `4d8a52e`
+
+**CP charter.** M6 sub-wave 2 first CP per pre-banked M6 grounding brief §C. Landed `services/audio_plane_v1/instance_condition_map.py` — pure schema + constructor for the occurrence-index contract extension per Audio-Plane §4.5 P071 verbatim: *"for each deduplicated item, the instance condition map — the set of channel/time/condition variants under which identical content occurred — is retained. One canonical extraction is stored"* + §4.6 P074 verbatim invariant gate: *"A deduplicated item without its instance condition map fails the ingestion invariant test."*
+
+**Pattern departure from sub-wave 1.** CP-M6-1-* landed four pluggable-seam mechanisms with `Unratified*Backend` placeholders per D10-family discipline. CP-M6-2-1 lands pure schema + constructor (no backend · no seam) — §4.5 P071 verbatim: *"No new detection work; this is a change to what dedup keeps"* — there is no detection to plug. Map population is caller-driven from already-collected §4.1..§4.4 outputs. CP-M6-2-2 will wire the dedup path.
+
+Public API: `construct_instance_condition_map(*, canonical_extraction_ref, occurrence_index_ref, variants) -> InstanceConditionMap` · `InstanceConditionVariant` (frozen 3-carrier: segment_ref + channel_time_ref + condition_profile_ref) · `InstanceConditionMap` (frozen 3-carrier: canonical_extraction_ref + occurrence_index_ref + variants tuple) · `dedup_item_has_instance_condition_map(item) -> bool` (§4.6 P074 gate helper · fail-closed on missing/None/wrong-type/empty). Refusals: `VariantsEmptyError` (§4.5 P071 requires non-empty variant set) · `VariantInvalidError`.
+
+Pure orchestration; no LLM/HTTP/filesystem; no audio bytes cross into carriers. Case-agnostic — word-boundary executive-domain negative-scan CLEAN. Ratchet 4134 → 4141 (+7).
+
+**Discipline receipts.**
+- RED: `phase0/drill_receipts/20260915T183923Z_wm6_2_1_RED_pre_impl.log` (7 right-reason ModuleNotFoundError).
+- GREEN 1: `phase0/drill_receipts/20260915T184001Z_wm6_2_1_double_green_run1.log` (`4141 passed, 1 skipped`).
+- GREEN 2: `phase0/drill_receipts/20260915T184208Z_wm6_2_1_double_green_run2.log` (byte-match · stripped-sha256 `0ccdced6d32d074fa937259d3c0902f0dbcc9972d4aed29a9b5109912d615720`).
+- Seal: `phase0/output_verified_seals/cp_m6_2_1_instance_condition_map.seal.txt`.
+- Rider: `phase0/wave_riders/w_m6_dedup_icm_cp1/` (pip_freeze 192 lines no drift + collect_only 4142 tests).
+
+**Boundary probes.** Probe #24 (open) + probe #25 (seal · 18:43Z): CD + Visitors BOTH FAIL · 6.0s / 6.006s. Zero PASS across probes #1–#25.
+
+**Guardrails unchanged.** Tests-first double-green byte-match · ratchet monotonic-up · two-commit local-only · never push · terminal pytest only · testing_agent BANNED · position-redaction hard-lock · verbatim-canon · HALT-rather-than-guess · no refactor · case-agnostic negative-scan CLEAN.
+
+**Onward.** CP-M6-2-2 dedup path extension → sub-wave 2 seal → M6 sub-wave 3 (W-M6-CHARACTER-REGISTER §6) opens.
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+## CP-M6-2-2 · Dedup path extension · sealed 2026-09-15T~18:53Z (M6 sub-wave 2 FINAL CP · W-M6-DEDUP-INSTANCE-CONDITION-MAP SUB-WAVE 2 COMPLETE)
+
+**Track-a HEAD at seal:** `ba413dc`
+
+**CP charter.** M6 sub-wave 2 second (final) CP. Landed `services/audio_plane_v1/dedup_path.py` — wires §4.5 P071 contract extension: *"for each deduplicated item, the instance condition map — the set of channel/time/condition variants under which identical content occurred — is retained. One canonical extraction is stored"* + §4.6 P074 gate + §14 P216 interface.
+
+**Core invariant** (per M6 grounding brief §C): dedup collapse never drops a distinct condition; distinct conditions produce distinct variants in the map even when text-identical. Anchored by `test_wm6_2_2_text_identical_distinct_variants_collapse_one_dedup_item_map_carries_both`.
+
+Public API: `dedup_with_condition_awareness(*, items) -> List[DedupItem]` · `DedupInputItem` (frozen 2-carrier: text_ref + variant) · `DedupItem` (frozen 2-carrier: text_ref + instance_condition_map · §14 P216 shape). Refusals: `ItemsEmptyError` · `ItemInvalidError`. Deterministic — first-seen ordering preserved. Every returned `DedupItem` passes `dedup_item_has_instance_condition_map` (§4.6 P074 gate anchored end-to-end).
+
+Pure orchestration; no LLM/HTTP/filesystem; no audio bytes cross into carriers. Case-agnostic — word-boundary executive-domain negative-scan CLEAN. Ratchet 4141 → 4150 (+9).
+
+**W-M6-DEDUP-INSTANCE-CONDITION-MAP SUB-WAVE 2 COMPLETION.** Both CPs landed: CP-M6-2-1 schema (+7 · 4134→4141) · CP-M6-2-2 dedup path extension (+9 · 4141→4150). Total: +16 invariants · ratchet 4134 → 4150 · 2 seals · double-green byte-match at every seal.
+
+**Discipline receipts.**
+- RED: `phase0/drill_receipts/20260915T185012Z_wm6_2_2_RED_pre_impl.log` (9 right-reason ModuleNotFoundError).
+- GREEN 1: `phase0/drill_receipts/20260915T185049Z_wm6_2_2_double_green_run1.log` (`4150 passed, 1 skipped`).
+- GREEN 2: `phase0/drill_receipts/20260915T185257Z_wm6_2_2_double_green_run2.log` (byte-match · stripped-sha256 `ba027a185180379da2bd5205c53a6a2457f9724c26b02e29d5417ede4714692b`).
+- Seal: `phase0/output_verified_seals/cp_m6_2_2_dedup_path.seal.txt`.
+- Rider: `phase0/wave_riders/w_m6_dedup_icm_cp2/` (pip_freeze 192 lines no drift + collect_only 4151 tests).
+
+**Boundary probes.** #26 (open) + #27 (seal · sub-wave 2 COMPLETE): CD + Visitors BOTH FAIL. Zero PASS across probes #1–#27.
+
+**Guardrails unchanged.** Tests-first double-green byte-match · ratchet monotonic-up · two-commit local-only · never push · terminal pytest only · testing_agent BANNED · position-redaction hard-lock · verbatim-canon · HALT-rather-than-guess · no refactor · case-agnostic negative-scan CLEAN.
+
+**Onward.** M6 sub-wave 3 opens: W-M6-CHARACTER-REGISTER (§6 schema + custody-invariant harness · load-bearing §6.3 P100 leakage-path invariant). Then interleave M7 open · on audio-source unblock W-AUDIO-PROD-MODEL-SELECT.
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+## CP-M6-3-1 · Character Register schema (schema-only) · sealed 2026-09-15T~19:05Z (M6 sub-wave 3 first CP)
+
+**Track-a HEAD at seal:** `0956974`
+
+**CP charter.** M6 sub-wave 3 first CP per pre-banked M6 grounding brief §C (schema-only bounded scope). Landed `services/audio_plane_v1/character_register.py` — frozen dataclass carriers per Audio-Plane §5.1 P078 + §5.2 P082..P085 (four layers) + §6.1 P092/P093 + §6.2 P098 verbatim.
+
+**Scope bounded — deferred to subsequent CPs in sub-wave 3:**
+- CP-M6-3-2: four-leakage-path invariant harness (§6.3 P100 verbatim: *"attempts each known leakage path (small stratum, idiolect marker, narrowing combination, exemplar storage) and must fail to store all of them"*).
+- CP-M6-3-3: write-path leakage-refusal boundary (§6.1 P093 organic-refusal, etc.).
+- CP-M6-3-4: §6.4 read-path scope enforcement.
+
+Public API: `REGISTER_LAYER_VALUES` (frozenset four-set {phonetic, prosodic, condition, code_switch}) · `CharacterEntry` (frozen 7-carrier: attribute_name + layer + description tuple + provenance_material_ref + occurrence_count + n_distinct_speakers + is_learned) · `CharacterRegister` (frozen 1-carrier: entries tuple) · `construct_character_entry` · `construct_character_register` · `LayerInvalidError`.
+
+**§6.2 P098 negative-scan CLEAN** across module + tests: no `audio_bytes` · `waveform` · `samples` · `voiceprint` · `speaker_embedding` · `utterance_embedding` · `speaker_id` · `individual_id` carriers. Provenance points to material (`provenance_material_ref`), never to speaker identity.
+
+`is_learned=False` NOT refused at construction — §6.1 P093 write-path refusal is CP-M6-3-3 scope.
+
+Case-agnostic — word-boundary executive-domain negative-scan CLEAN. Ratchet 4150 → 4157 (+7).
+
+**Discipline receipts.**
+- RED: `phase0/drill_receipts/20260915T190126Z_wm6_3_1_RED_pre_impl.log` (7 right-reason ModuleNotFoundError).
+- GREEN 1: `phase0/drill_receipts/20260915T190212Z_wm6_3_1_double_green_run1.log` (`4157 passed, 1 skipped`).
+- GREEN 2: `phase0/drill_receipts/20260915T190419Z_wm6_3_1_double_green_run2.log` (byte-match · stripped-sha256 `6a36ad2f0d977eafebce8d38dcff0f7315b86e7c99c82fce1ae3a5e0c4644a9f`).
+- Seal: `phase0/output_verified_seals/cp_m6_3_1_character_register_schema.seal.txt`.
+- Rider: `phase0/wave_riders/w_m6_character_register_cp1/` (pip_freeze 192 lines no drift + collect_only 4158 tests).
+
+**Boundary probes.** #28 (open) + #29 (seal): CD + Visitors BOTH FAIL. Zero PASS across probes #1–#29.
+
+**Guardrails unchanged.** Tests-first double-green byte-match · ratchet monotonic-up · two-commit local-only · never push · terminal pytest only · testing_agent BANNED · position-redaction hard-lock · verbatim-canon · HALT-rather-than-guess · no refactor · case-agnostic negative-scan CLEAN.
+
+**AUTONOMOUS WALK PAUSED · owner steer requested.** CP-M6-3-2 is the load-bearing §6.3 P100 four-leakage-path invariant harness (biometric-adjacent custody). Pausing at CP-M6-3-1 seal so the owner can steer: continue straight to CP-M6-3-2, or take a review pass over sub-wave 1+2+first-CP-of-3, or redirect.
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

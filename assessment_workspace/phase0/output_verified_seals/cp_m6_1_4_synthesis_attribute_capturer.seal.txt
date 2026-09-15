@@ -1,0 +1,104 @@
+Kind: cp_m6_1_4_synthesis_attribute_capturer
+
+# CP-M6-1-4 · Synthesis-relevant attribute capture (pluggable seam) · Seal
+
+**Sealed at UTC:** 2026-09-15T~18:31Z
+**Milestone:** M6 (Audio-Plane v1.0 Production Build · §15 order · OPEN 2026-09-15T~17:50Z)
+**Sub-wave:** W-M6-INGEST-STAGE-1 (§15 item 1 · Ingestion capture · §4.1–§4.4) — **SUB-WAVE 1 COMPLETE with this seal**.
+**CP:** CP-M6-1-4 (fourth / final CP of sub-wave 1)
+**Invariants added:** +7
+**Ratchet:** 4127 → 4134
+**Track-a HEAD at seal:** TBD (commit pending)
+**Master HEAD at seal:** TBD (commit pending)
+
+---
+
+## §A · Discharge summary
+
+CP-M6-1-4 lands `services/audio_plane_v1/synthesis_attribute_capturer.py` — the pluggable-seam mechanism for Audio-Plane §4.4 P069 verbatim:
+
+> §4.4 P069 (V49): "During the same ingestion pass, group-level acoustic attributes required by any future synthesis capability (pitch statistics, energy contours, duration patterns) are captured, subject to the custody conditions of §6.4. This forecloses nothing and costs little; omitting it forecloses the invention function or forces re-ingestion."
+
+Public API:
+- `capture_synthesis_attributes(*, segments: Sequence[AudioSegment], backend: SynthesisAttributeCapturerBackend) -> List[SynthesisAttributes]`
+- `AudioSegment` — **re-exported from CP-M6-1-1**.
+- `SynthesisAttributes` (frozen 5-carrier: `segment_ref` + `pitch_statistics` tuple + `energy_contours` tuple + `duration_patterns` tuple + `backend_name`).  Three §4.4 P069 acoustic families are stored as tuples (backend-emitted Sequences are coerced to tuples) so the frozen dataclass stays immutable.
+- `SynthesisAttributeCapturerBackend` (`Protocol`).
+- `UnratifiedSynthesisInferredBackend` (placeholder; refuses with `[INFERRED-pending-ratification]` marker per D10-family open ruling).
+- Refusals: `SegmentsEmptyError` (re-exported) · `SegmentInvalidError` (re-exported) · `BackendUnratifiedError` (CP-M6-1-4-local class).
+
+Pull-seam discipline preserved. Pure orchestration — no LLM, no HTTP, no filesystem, no direct audio-byte reading. Case-agnostic — word-boundary case-insensitive executive-domain negative-scan CLEAN across module + tests.
+
+**N7 book-keeping (M6 grounding brief §Correction-1 verbatim 2026-09-15T~17:50Z):** prior observation that N7 was skipped is RETRACTED. All 10 N-items enumerated correctly. N7 (§8.4 P139..P142 wizard compile-refusal machinery) rolls into sub-wave 6 CP-M6-6-1, NOT this CP. No gap work here.
+
+**§6.4 custody cross-link:** the §4.4 P069 acoustic families are captured "subject to the custody conditions of §6.4". Enforcement lives in a downstream custody guard, NOT in this seam. This CP lands the capture surface; downstream custody-guard hard-lock enforcement is out of scope for the seam.
+
+---
+
+## §B · Discipline receipts
+
+| Step | Path |
+|---|---|
+| RED (7 right-reason ModuleNotFoundError) | `phase0/drill_receipts/20260915T182745Z_wm6_1_4_RED_pre_impl.log` |
+| GREEN 1 (full baseline) | `phase0/drill_receipts/20260915T182834Z_wm6_1_4_double_green_run1.log` |
+| GREEN 2 (full baseline · byte-match) | `phase0/drill_receipts/20260915T183041Z_wm6_1_4_double_green_run2.log` |
+| Rider · pip freeze | `phase0/wave_riders/w_m6_ingest_stage_1_cp4/pip_freeze.txt` (192 lines · no drift) |
+| Rider · pytest --collect-only | `phase0/wave_riders/w_m6_ingest_stage_1_cp4/collect_only_summary.txt` (4135 tests) |
+
+**Double-green byte-match verdict:**
+- Stripped (timing normalised): both identical.
+- Stripped-sha256: `177a23c6302c959b802d4c3ec37953486a73ce6ff8a8934651b7b0b316fc5785` (identical across both GREEN runs).
+- Both: `4134 passed, 1 skipped, 438 warnings`.
+
+---
+
+## §C · Boundary-hygiene probes fired
+
+- Probe **#22** at CP-M6-1-4 open: CD + Visitors BOTH FAIL · timeout. Receipt: `phase0/boundary_probes/probe_22_*.json`.
+- Probe **#23** at CP-M6-1-4 seal (W-M6-INGEST-STAGE-1 sub-wave 1 COMPLETE): CD + Visitors BOTH FAIL · 6.006s / 6.0s. Receipt: `phase0/boundary_probes/probe_23_*.json`.
+- Zero PASS across probes #1–#23.
+
+---
+
+## §D · Discipline held
+
+- Tests-first: mechanical RED (7 right-reason ModuleNotFoundError) before mechanism.
+- Double-green byte-match at close.
+- Ratchet monotonic-up: 4127 → 4134 (+7 · no cross-benefit · pure new-service extension · CP-M6-1-1/2/3 contracts untouched).
+- Word-boundary executive-domain negative-scan CLEAN.
+- Pull-seam discipline: audio bytes never cross the seam.
+- D10-family pluggable-seam-until-ratified.
+- Single source of truth: `AudioSegment` + `SegmentsEmptyError` + `SegmentInvalidError` reused from CP-M6-1-1 by import; CP-M6-1-1 module unchanged.
+- Backend-emitted Sequences coerced to tuples for frozen-dataclass immutability discipline.
+- Two-commit local-only. Never push. Terminal pytest only. `testing_agent` BANNED.
+- Position-redaction hard-lock preserved.
+- No refactor.
+
+---
+
+## §E · W-M6-INGEST-STAGE-1 sub-wave 1 · COMPLETION SUMMARY
+
+All four §15 P232 "Ingestion capture" CPs landed:
+
+| CP | Discharge | Anchor | Invariants | Ratchet |
+|---|---|---|---|---|
+| CP-M6-1-1 | Language ID pluggable seam | §4.1 N1 verbatim | +7 | 4105 → 4112 |
+| CP-M6-1-2 | Code-switch point detection pluggable seam | §4.1 P061 + §4.2 P065 verbatim | +7 | 4112 → 4119 |
+| CP-M6-1-3 | Channel condition profile derivation pluggable seam | §4.3 P067 verbatim + vocabulary discipline | +8 | 4119 → 4127 |
+| CP-M6-1-4 | Synthesis-relevant attribute capture pluggable seam | §4.4 P069 verbatim | +7 | 4127 → 4134 |
+
+**Total for sub-wave 1: +29 invariants across 4 CPs · ratchet 4105 → 4134 · 4 seals · double-green byte-match at every seal · zero silent skips · zero rebaseline.** All four seams are pluggable-until-ratified per D10-family discipline; owner ratification unlocks concrete backend implementations without mechanism changes.
+
+---
+
+## §F · Onward chain
+
+W-M6-INGEST-STAGE-1 sub-wave 1 COMPLETE. Next per pre-banked M6 grounding brief §C:
+1. **M6 sub-wave 2** — W-M6-DEDUP-INSTANCE-CONDITION-MAP (§4.5) — opens.
+2. **Then:** M6 sub-wave 3 — W-M6-CHARACTER-REGISTER (§6) — opens.
+3. **Interleave:** M7 open (W0..W9 per pre-ratified sequencing).
+4. **On audio-source unblock:** W-AUDIO-PROD-MODEL-SELECT (M8 #6) resumes as M6-lateral wave.
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

@@ -1,0 +1,73 @@
+Kind: cp_m6_3_1_character_register_schema
+
+# CP-M6-3-1 · Character Register schema · Seal
+
+**Sealed at UTC:** 2026-09-15T~19:05Z
+**Milestone:** M6 · Sub-wave 3 (W-M6-CHARACTER-REGISTER · §6) — first CP
+**Invariants added:** +7 · **Ratchet:** 4150 → 4157
+**Track-a HEAD at seal:** TBD (commit pending) · **Master HEAD:** TBD (commit pending)
+
+---
+
+## §A · Discharge · schema only
+
+CP-M6-3-1 lands `services/audio_plane_v1/character_register.py` — frozen dataclass carriers per Audio-Plane §5.1 P078 + §5.2 P082..P085 + §6.1 P092/P093 + §6.2 P098 verbatim. **Schema only.** Explicitly out-of-scope this CP:
+
+- **NOT this CP:** four-leakage-path invariant harness (§6.3 P100) — that lands in CP-M6-3-2.
+- **NOT this CP:** write-path leakage-refusal boundary (§6.1 P093 organic-refusal, etc.) — that lands in CP-M6-3-3.
+- **NOT this CP:** §6.4 read-path scope enforcement — that lands in CP-M6-3-4.
+
+`is_learned=False` is NOT refused at construction — §6.1 P093 write-path refusal is CP-M6-3-3 scope.
+
+**Public API:**
+- `REGISTER_LAYER_VALUES = frozenset({"phonetic", "prosodic", "condition", "code_switch"})` — §5.2 P082..P085 verbatim four-set.
+- `CharacterEntry` (frozen 7-carrier: `attribute_name` + `layer` + `description` tuple + `provenance_material_ref` + `occurrence_count` + `n_distinct_speakers` + `is_learned`).
+- `CharacterRegister` (frozen 1-carrier: `entries` tuple).
+- `construct_character_entry(**kwargs) -> CharacterEntry` (layer-vocabulary validation).
+- `construct_character_register(*, entries) -> CharacterRegister`.
+- Refusals: `LayerInvalidError`.
+
+**§6.2 P098 negative-scan CLEAN** across module + tests: no `audio_bytes` · `waveform` · `samples` · `voiceprint` · `speaker_embedding` · `utterance_embedding` · `speaker_id` · `individual_id` carriers. Provenance points to material via `provenance_material_ref`, never to speaker identity.
+
+Case-agnostic — word-boundary executive-domain negative-scan CLEAN.
+
+---
+
+## §B · Discipline receipts
+
+| Step | Path |
+|---|---|
+| RED (7 right-reason ModuleNotFoundError) | `phase0/drill_receipts/20260915T190126Z_wm6_3_1_RED_pre_impl.log` |
+| GREEN 1 | `phase0/drill_receipts/20260915T190212Z_wm6_3_1_double_green_run1.log` |
+| GREEN 2 (byte-match) | `phase0/drill_receipts/20260915T190419Z_wm6_3_1_double_green_run2.log` |
+| Rider · pip freeze | `phase0/wave_riders/w_m6_character_register_cp1/pip_freeze.txt` (192 lines · no drift) |
+| Rider · pytest --collect-only | `phase0/wave_riders/w_m6_character_register_cp1/collect_only_summary.txt` (4158 tests) |
+
+**Double-green byte-match:** stripped-sha256 `6a36ad2f0d977eafebce8d38dcff0f7315b86e7c99c82fce1ae3a5e0c4644a9f` identical across both runs. Both `4157 passed, 1 skipped, 438 warnings`.
+
+---
+
+## §C · Boundary probes
+
+- Probe **#28** at CP-M6-3-1 open: CD + Visitors BOTH FAIL · timeout.
+- Probe **#29** at CP-M6-3-1 seal: CD + Visitors BOTH FAIL · timeout.
+- Zero PASS across probes #1–#29.
+
+---
+
+## §D · Discipline held
+
+Tests-first double-green byte-match · ratchet monotonic-up (4150→4157 · +7) · word-boundary executive-domain negative-scan CLEAN · pull-seam + §6.2 cond-4 negative-scan CLEAN · two-commit local-only · never push · terminal pytest only · testing_agent BANNED · position-redaction hard-lock preserved · no refactor.
+
+---
+
+## §E · Owner-steer prompt · next CP is biometric-sensitive
+
+CP-M6-3-2 (custody-invariant leakage-path harness) is the load-bearing §6.3 P100 invariant that "attempts each known leakage path (small stratum, idiolect marker, narrowing combination, exemplar storage) and must fail to store all of them on every change to the register code." This is biometric-adjacent custody territory. **Pausing autonomous walk here** so the owner can steer:
+- Proceed straight to CP-M6-3-2 (author the 4 leakage-path RED tests as a harness against the CP-M6-3-1 schema, then land CP-M6-3-3 write-path refusals to turn them GREEN), or
+- Pause the M6 walk here for owner review of the sub-wave 1+2+first-CP-of-3 track before opening the leakage harness, or
+- Any other direction the owner sees.
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

@@ -1,0 +1,89 @@
+Kind: cp_m6_1_2_code_switch_detector
+
+# CP-M6-1-2 · Code-switch point detection (pluggable seam) · Seal
+
+**Sealed at UTC:** 2026-09-15T~18:07Z
+**Milestone:** M6 (Audio-Plane v1.0 Production Build · §15 order · OPEN 2026-09-15T~17:50Z)
+**Sub-wave:** W-M6-INGEST-STAGE-1 (§15 item 1 · Ingestion capture · §4.1–§4.4)
+**CP:** CP-M6-1-2 (second CP of sub-wave 1)
+**Invariants added:** +7
+**Ratchet:** 4112 → 4119
+**Track-a HEAD at seal:** TBD (commit pending)
+**Master HEAD at seal:** TBD (commit pending)
+
+---
+
+## §A · Discharge summary
+
+CP-M6-1-2 lands `services/audio_plane_v1/code_switch_detector.py` — the pluggable-seam mechanism for Audio-Plane §4.1 P061 + §4.2 P065 verbatim:
+
+> §4.1 P061 (V44): "Recorded per segment: languages[], confidences, and code-switch points where multiple languages occur in one utterance."
+>
+> §4.2 P065 (V47): "Switch points (position, from-language, to-language, context class) are registered facts with provenance — not preprocessing metadata. They populate the register's code-switch layer and stratify test sets."
+
+Public API:
+- `detect_code_switch_points(*, segments: Sequence[AudioSegment], backend: CodeSwitchDetectorBackend) -> List[CodeSwitchPointDetection]`
+- `AudioSegment` — **re-exported from CP-M6-1-1** (single source of truth for the §4 per-segment shape · no refactor of CP-M6-1-1).
+- `CodeSwitchPoint` (frozen 5-carrier: `position` + `from_language` + `to_language` + `context_class` + `confidence`).  Four §4.2 P065 verbatim carriers + confidence attribution per CP charter (code-switch points annotated with confidence + language-pair).
+- `CodeSwitchPointDetection` (frozen 3-carrier: `segment_ref` + `switch_points` tuple + `backend_name` · D10 attribution).
+- `CodeSwitchDetectorBackend` (`Protocol` with `backend_name` attr + `detect(segment_ref, duration_s) -> Tuple[CodeSwitchPoint, ...]`).
+- `UnratifiedCodeSwitchInferredBackend` (placeholder; satisfies protocol structurally; refuses to detect with `[INFERRED-pending-ratification]` marker per D10 open ruling · RULING_LEDGER row 13).
+- Refusals: `SegmentsEmptyError` (re-exported) · `SegmentInvalidError` (re-exported) · `BackendUnratifiedError` (CP-M6-1-2-local class · separate from CP-M6-1-1's homonym so each backend's ratification story is tracked independently).
+
+Pull-seam discipline preserved: **audio bytes DO NOT cross the seam** — only the opaque caller-scoped `segment_ref` handle + `duration_s` metadata. Pure orchestration — no LLM, no HTTP, no filesystem, no direct audio-byte reading. Real backend awaits owner ratification; the seam admits any owner-ratified backend on ratification.
+
+Case-agnostic — word-boundary case-insensitive executive-domain negative-scan CLEAN across module + tests.
+
+---
+
+## §B · Discipline receipts
+
+| Step | Path |
+|---|---|
+| RED (7 right-reason ModuleNotFoundError) | `phase0/drill_receipts/20260915T175539Z_wm6_1_2_RED_pre_impl.log` |
+| GREEN 1 (full baseline) | `phase0/drill_receipts/20260915T180136Z_wm6_1_2_double_green_run1.log` |
+| GREEN 2 (full baseline · byte-match) | `phase0/drill_receipts/20260915T180344Z_wm6_1_2_double_green_run2.log` |
+| Rider · pip freeze | `phase0/wave_riders/w_m6_ingest_stage_1_cp2/pip_freeze.txt` (192 lines · no drift) |
+| Rider · pytest --collect-only | `phase0/wave_riders/w_m6_ingest_stage_1_cp2/collect_only_summary.txt` (4120 tests) |
+
+**Double-green byte-match verdict:**
+- Stripped (timing normalised): 9585 B both.
+- Stripped-sha256: `bc508caecd97c528d86a47ab75d2af567d6c45c1eb5327c106eb105c1eaa3d47` (identical across both GREEN runs).
+- Both: `4119 passed, 1 skipped, 438 warnings`.
+
+---
+
+## §C · Boundary-hygiene probes fired
+
+- Probe **#18** at CP-M6-1-2 open (17:54:17 UTC): CD + Visitors BOTH FAIL · timeout · 6.000s / 6.002s. Receipt: `phase0/boundary_probes/probe_18_20260915T175417Z.json`.
+- Probe **#19** at CP-M6-1-2 seal (18:06:12 UTC): CD + Visitors BOTH FAIL · timeout · 6.006s / 6.006s. Receipt: `phase0/boundary_probes/probe_19_20260915T180612Z.json`.
+- Zero PASS across probes #1–#19.  Admin SG opening still-in-progress on Huawei Cloud side.  Retry loop continues at next CP boundary.
+
+---
+
+## §D · Discipline held
+
+- Tests-first: mechanical RED (7 right-reason ModuleNotFoundError) before mechanism.
+- Double-green byte-match at close.
+- Ratchet monotonic-up: 4112 → 4119 (+7 · no cross-benefit · pure new-service extension · CP-M6-1-1 contract untouched).
+- Word-boundary executive-domain negative-scan CLEAN.
+- Pull-seam discipline: audio bytes never cross the `CodeSwitchDetectorBackend` seam.
+- D10 pluggable-seam-until-ratified: `UnratifiedCodeSwitchInferredBackend` refuses with `[INFERRED-pending-ratification]` marker; owner ratification unlocks concrete backend.
+- Single source of truth: `AudioSegment` + `SegmentsEmptyError` + `SegmentInvalidError` reused from CP-M6-1-1 by import; CP-M6-1-1 module unchanged.
+- Two-commit local-only. Never push. Terminal pytest only. `testing_agent` BANNED.
+- Position-redaction hard-lock preserved.
+- No refactor.
+
+---
+
+## §E · Onward chain
+
+Next CPs in W-M6-INGEST-STAGE-1 (per pre-banked M6 grounding brief §C):
+1. **CP-M6-1-3** · channel condition profile derivation (§4.3 N2 verbatim · TESTS-FIRST · per-segment channel condition ∈ {studio, field, telephone-band} + transmission-artefacts + background-class carriers).
+2. **CP-M6-1-4** · synthesis attributes (§4.4 P068..P070 · N7 numbering gap resolution · TESTS-FIRST · synthesis-attribute carrier per verbatim §4.4).
+3. Then W-M6-INGEST-STAGE-1 seals.
+4. Then M6 sub-wave 2 opens (W-M6-DEDUP-INSTANCE-CONDITION-MAP §4.5).
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

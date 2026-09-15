@@ -1,0 +1,68 @@
+Kind: cp_m6_2_1_instance_condition_map
+
+# CP-M6-2-1 · Instance condition map schema · Seal
+
+**Sealed at UTC:** 2026-09-15T~18:43Z
+**Milestone:** M6 · Sub-wave 2 (W-M6-DEDUP-INSTANCE-CONDITION-MAP · §4.5) — first CP
+**Invariants added:** +7 · **Ratchet:** 4134 → 4141
+**Track-a HEAD at seal:** TBD (commit pending) · **Master HEAD:** TBD (commit pending)
+
+---
+
+## §A · Discharge
+
+CP-M6-2-1 lands `services/audio_plane_v1/instance_condition_map.py` — pure schema + constructor for the occurrence-index contract extension per §4.5 P071 verbatim:
+
+> §4.5 P071 (V50): "The occurrence index already identifies repeated content. Its output contract is extended: for each deduplicated item, the instance condition map — the set of channel/time/condition variants under which identical content occurred — is retained. One canonical extraction is stored; the variant set enters training curricula as a designated robustness stratum at zero acquisition cost. No new detection work; this is a change to what dedup keeps."
+>
+> §4.6 P074 (V52 · invariant gate): "A deduplicated item without its instance condition map fails the ingestion invariant test."
+
+**Pattern departure from sub-wave 1.** Sub-wave 1 landed four pluggable-seam mechanisms with `Unratified*Backend` placeholders. CP-M6-2-1 lands a pure schema + constructor — §4.5 P071 verbatim states *"No new detection work; this is a change to what dedup keeps"* — there is no detection to plug. Map population is caller-driven from already-collected §4.1..§4.4 outputs. CP-M6-2-2 will wire the dedup path to attach an `InstanceConditionMap` per dedup item.
+
+**Public API:**
+- `construct_instance_condition_map(*, canonical_extraction_ref, occurrence_index_ref, variants) -> InstanceConditionMap`
+- `InstanceConditionVariant` (frozen 3-carrier: `segment_ref` + `channel_time_ref` + `condition_profile_ref`).
+- `InstanceConditionMap` (frozen 3-carrier: `canonical_extraction_ref` + `occurrence_index_ref` + `variants` tuple).
+- `dedup_item_has_instance_condition_map(item) -> bool` — §4.6 P074 gate helper · fail-closed on missing/None/wrong-type/empty.
+- Refusals: `VariantsEmptyError` · `VariantInvalidError`.
+
+Backend Sequences coerced to tuples for frozen-dataclass immutability. Pull-seam preserved. Pure orchestration — no LLM, no HTTP, no filesystem, no audio bytes cross into carriers. Case-agnostic negative-scan CLEAN.
+
+---
+
+## §B · Discipline receipts
+
+| Step | Path |
+|---|---|
+| RED (7 right-reason ModuleNotFoundError) | `phase0/drill_receipts/20260915T183923Z_wm6_2_1_RED_pre_impl.log` |
+| GREEN 1 | `phase0/drill_receipts/20260915T184001Z_wm6_2_1_double_green_run1.log` |
+| GREEN 2 (byte-match) | `phase0/drill_receipts/20260915T184208Z_wm6_2_1_double_green_run2.log` |
+| Rider · pip freeze | `phase0/wave_riders/w_m6_dedup_icm_cp1/pip_freeze.txt` (192 lines · no drift) |
+| Rider · pytest --collect-only | `phase0/wave_riders/w_m6_dedup_icm_cp1/collect_only_summary.txt` (4142 tests) |
+
+**Double-green byte-match:** stripped-sha256 `0ccdced6d32d074fa937259d3c0902f0dbcc9972d4aed29a9b5109912d615720` identical across both runs. Both `4141 passed, 1 skipped, 438 warnings`.
+
+---
+
+## §C · Boundary probes
+
+- Probe **#24** at CP-M6-2-1 open: CD + Visitors BOTH FAIL · timeout. `probe_24_*.json`.
+- Probe **#25** at CP-M6-2-1 seal: CD + Visitors BOTH FAIL · 6.0s / 6.006s. `probe_25_*.json`.
+- Zero PASS across probes #1–#25.
+
+---
+
+## §D · Discipline held
+
+Tests-first double-green byte-match · ratchet monotonic-up (4134→4141 · +7 · no cross-benefit · pure new schema module · CP-M6-1-* contracts untouched) · word-boundary executive-domain negative-scan CLEAN · pull-seam preserved · two-commit local-only · never push · terminal pytest only · testing_agent BANNED · position-redaction hard-lock preserved · no refactor.
+
+---
+
+## §E · Onward
+
+1. **CP-M6-2-2** · dedup path extension — TESTS-FIRST · new invariant: dedup collapse never drops a distinct condition; distinct conditions produce distinct instances even when text-identical. On seal, W-M6-DEDUP-INSTANCE-CONDITION-MAP sub-wave 2 completes.
+2. Then M6 sub-wave 3 · W-M6-CHARACTER-REGISTER (§6) opens.
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

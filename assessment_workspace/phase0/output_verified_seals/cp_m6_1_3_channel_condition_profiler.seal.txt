@@ -1,0 +1,87 @@
+Kind: cp_m6_1_3_channel_condition_profiler
+
+# CP-M6-1-3 · Channel condition profile derivation (pluggable seam) · Seal
+
+**Sealed at UTC:** 2026-09-15T~18:22Z
+**Milestone:** M6 (Audio-Plane v1.0 Production Build · §15 order · OPEN 2026-09-15T~17:50Z)
+**Sub-wave:** W-M6-INGEST-STAGE-1 (§15 item 1 · Ingestion capture · §4.1–§4.4)
+**CP:** CP-M6-1-3 (third CP of sub-wave 1)
+**Invariants added:** +8
+**Ratchet:** 4119 → 4127
+**Track-a HEAD at seal:** TBD (commit pending)
+**Master HEAD at seal:** TBD (commit pending)
+
+---
+
+## §A · Discharge summary
+
+CP-M6-1-3 lands `services/audio_plane_v1/channel_condition_profiler.py` — the pluggable-seam mechanism for Audio-Plane §4.3 P067 verbatim:
+
+> §4.3 P067 (V48): "Channel condition — studio / field / telephone band, transmission artefacts, background class — is derived per segment at first ingestion. It is cheap to compute, directly predictive of extraction error, and required for training stratification. It is captured at first ingestion because re-ingesting an estate to recover it is the unaffordable mistake."
+
+Public API:
+- `derive_channel_condition_profile(*, segments: Sequence[AudioSegment], backend: ChannelConditionProfilerBackend) -> List[ChannelConditionProfile]`
+- `AudioSegment` — **re-exported from CP-M6-1-1** (single source of truth · no refactor of CP-M6-1-1).
+- `ChannelConditionProfile` (frozen 5-carrier: `segment_ref` + `channel_condition` + `transmission_artefacts` + `background_class` + `backend_name`).
+- `ChannelConditionProfilerBackend` (`Protocol` with `backend_name` attr + `derive(segment_ref, duration_s) -> Mapping[str, Any]` returning the three required keys).
+- `UnratifiedChannelConditionInferredBackend` (placeholder; refuses with `[INFERRED-pending-ratification]` marker per D10-family open ruling).
+- `CHANNEL_CONDITION_VALUES` = `frozenset({"studio", "field", "telephone_band"})` — §4.3 P067 verbatim three-set (Python-identifier form of the space-separated "telephone band").
+- Refusals: `SegmentsEmptyError` (re-exported) · `SegmentInvalidError` (re-exported) · `BackendUnratifiedError` (CP-M6-1-3-local class) · `ChannelConditionInvalidError` (§4.3 vocabulary discipline — orchestrator refuses backend returns outside CHANNEL_CONDITION_VALUES).
+
+Pull-seam discipline preserved. Pure orchestration — no LLM, no HTTP, no filesystem, no direct audio-byte reading. Case-agnostic — word-boundary case-insensitive executive-domain negative-scan CLEAN across module + tests.
+
+**New discipline this CP:** vocabulary constraint. Backend freedom on the language-tag axis (§4.1 unconstrained) does NOT extend to the channel-condition axis (§4.3 constrained to the verbatim three-set). The orchestrator validates every backend return and refuses unknown values with `ChannelConditionInvalidError`.
+
+---
+
+## §B · Discipline receipts
+
+| Step | Path |
+|---|---|
+| RED (8 right-reason ModuleNotFoundError) | `phase0/drill_receipts/20260915T181550Z_wm6_1_3_RED_pre_impl.log` |
+| GREEN 1 (full baseline) | `phase0/drill_receipts/20260915T181641Z_wm6_1_3_double_green_run1.log` |
+| GREEN 2 (full baseline · byte-match) | `phase0/drill_receipts/20260915T181849Z_wm6_1_3_double_green_run2.log` |
+| Rider · pip freeze | `phase0/wave_riders/w_m6_ingest_stage_1_cp3/pip_freeze.txt` (192 lines · no drift) |
+| Rider · pytest --collect-only | `phase0/wave_riders/w_m6_ingest_stage_1_cp3/collect_only_summary.txt` (4128 tests) |
+
+**Double-green byte-match verdict:**
+- Stripped (timing normalised): both identical.
+- Stripped-sha256: `561b8dae691fa73b397a52306e1b27bcf7c05a0c531c1ba9a1e3dc51cc5a3a56` (identical across both GREEN runs).
+- Both: `4127 passed, 1 skipped, 438 warnings`.
+
+---
+
+## §C · Boundary-hygiene probes fired
+
+- Probe **#20** at CP-M6-1-3 open: CD + Visitors BOTH FAIL · timeout. Receipt: `phase0/boundary_probes/probe_20_*.json`.
+- Probe **#21** at CP-M6-1-3 seal: CD + Visitors BOTH FAIL · 6.006s / 6.006s. Receipt: `phase0/boundary_probes/probe_21_*.json`.
+- Zero PASS across probes #1–#21. Retry loop continues at next CP boundary.
+
+---
+
+## §D · Discipline held
+
+- Tests-first: mechanical RED (8 right-reason ModuleNotFoundError) before mechanism.
+- Double-green byte-match at close.
+- Ratchet monotonic-up: 4119 → 4127 (+8 · no cross-benefit · pure new-service extension · CP-M6-1-1/2 contracts untouched).
+- Word-boundary executive-domain negative-scan CLEAN.
+- Pull-seam discipline: audio bytes never cross the seam.
+- D10-family pluggable-seam-until-ratified.
+- Single source of truth: `AudioSegment` + `SegmentsEmptyError` + `SegmentInvalidError` reused from CP-M6-1-1 by import; CP-M6-1-1 module unchanged.
+- Vocabulary discipline: `ChannelConditionInvalidError` refuses backend returns outside §4.3 P067 verbatim three-set.
+- Two-commit local-only. Never push. Terminal pytest only. `testing_agent` BANNED.
+- Position-redaction hard-lock preserved.
+- No refactor.
+
+---
+
+## §E · Onward chain
+
+Next CPs in W-M6-INGEST-STAGE-1 (per pre-banked M6 grounding brief §C):
+1. **CP-M6-1-4** · synthesis attributes (§4.4 P068..P070 · N7 numbering gap resolution · TESTS-FIRST).
+2. Then W-M6-INGEST-STAGE-1 seals (four sub-wave-1 CPs landed).
+3. Then M6 sub-wave 2 opens (W-M6-DEDUP-INSTANCE-CONDITION-MAP §4.5).
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

@@ -1,0 +1,89 @@
+Kind: cp_m6_2_2_dedup_path
+
+# CP-M6-2-2 · Dedup path extension · Seal · **W-M6-DEDUP-INSTANCE-CONDITION-MAP SUB-WAVE 2 COMPLETE**
+
+**Sealed at UTC:** 2026-09-15T~18:53Z
+**Milestone:** M6 · Sub-wave 2 (W-M6-DEDUP-INSTANCE-CONDITION-MAP · §4.5) — second/final CP
+**Invariants added:** +9 · **Ratchet:** 4141 → 4150
+**Track-a HEAD at seal:** TBD (commit pending) · **Master HEAD:** TBD (commit pending)
+
+---
+
+## §A · Discharge
+
+CP-M6-2-2 lands `services/audio_plane_v1/dedup_path.py` — wires the §4.5 P071 contract extension:
+
+> §4.5 P071 (V50): "for each deduplicated item, the instance condition map — the set of channel/time/condition variants under which identical content occurred — is retained. One canonical extraction is stored…"
+>
+> §4.6 P074 (V52): "A deduplicated item without its instance condition map fails the ingestion invariant test."
+>
+> §14 P216 (V133): "Occurrence index (ext.) ⎢ dedup item → + instance condition map."
+
+**CP-M6-2-2 core invariant** (per M6 grounding brief §C): *dedup collapse never drops a distinct condition; distinct conditions produce distinct variants in the map even when text-identical.* Anchored by `test_wm6_2_2_text_identical_distinct_variants_collapse_one_dedup_item_map_carries_both`.
+
+**Public API:**
+- `dedup_with_condition_awareness(*, items: Sequence[DedupInputItem]) -> List[DedupItem]`.
+- `DedupInputItem` (frozen 2-carrier: `text_ref` + `variant`).
+- `DedupItem` (frozen 2-carrier: `text_ref` + `instance_condition_map`).
+- Refusals: `ItemsEmptyError` · `ItemInvalidError`.
+
+**Behaviour:**
+- Groups items by `text_ref` — one canonical extraction per text.
+- Within each text group, preserves distinct `InstanceConditionVariant` records (dedup within-group by variant equality).
+- Deterministic — first-seen ordering preserved for both `DedupItem`s and variants.
+- Every returned `DedupItem` passes the §4.6 P074 gate helper `dedup_item_has_instance_condition_map`.
+
+Pure orchestration; no LLM/HTTP/filesystem; no audio bytes cross into carriers. Case-agnostic negative-scan CLEAN.
+
+---
+
+## §B · Discipline receipts
+
+| Step | Path |
+|---|---|
+| RED (9 right-reason ModuleNotFoundError) | `phase0/drill_receipts/20260915T185012Z_wm6_2_2_RED_pre_impl.log` |
+| GREEN 1 | `phase0/drill_receipts/20260915T185049Z_wm6_2_2_double_green_run1.log` |
+| GREEN 2 (byte-match) | `phase0/drill_receipts/20260915T185257Z_wm6_2_2_double_green_run2.log` |
+| Rider · pip freeze | `phase0/wave_riders/w_m6_dedup_icm_cp2/pip_freeze.txt` (192 lines · no drift) |
+| Rider · pytest --collect-only | `phase0/wave_riders/w_m6_dedup_icm_cp2/collect_only_summary.txt` (4151 tests) |
+
+**Double-green byte-match:** stripped-sha256 `ba027a185180379da2bd5205c53a6a2457f9724c26b02e29d5417ede4714692b` identical across both runs. Both `4150 passed, 1 skipped, 438 warnings`.
+
+---
+
+## §C · Boundary probes
+
+- Probe **#26** at CP-M6-2-2 open: CD + Visitors BOTH FAIL · timeout.
+- Probe **#27** at CP-M6-2-2 seal (sub-wave 2 COMPLETE): CD + Visitors BOTH FAIL · timeout.
+- Zero PASS across probes #1–#27.
+
+---
+
+## §D · Discipline held
+
+Tests-first double-green byte-match · ratchet monotonic-up (4141→4150 · +9 · no cross-benefit · CP-M6-1-* + CP-M6-2-1 contracts untouched) · word-boundary executive-domain negative-scan CLEAN · pull-seam preserved · two-commit local-only · never push · terminal pytest only · testing_agent BANNED · position-redaction hard-lock preserved · no refactor.
+
+---
+
+## §E · W-M6-DEDUP-INSTANCE-CONDITION-MAP · SUB-WAVE 2 COMPLETION SUMMARY
+
+Both §4.5 P071 + §4.6 P074 contract-extension CPs landed:
+
+| CP | Discharge | Anchor | Invariants | Ratchet |
+|---|---|---|---|---|
+| CP-M6-2-1 | Instance condition map schema | §4.5 P071 + §4.6 P074 verbatim | +7 | 4134 → 4141 |
+| CP-M6-2-2 | Dedup path extension (distinct-condition preservation invariant) | §4.5 P071 + §4.6 P074 + §14 P216 | +9 | 4141 → 4150 |
+
+**Total for sub-wave 2: +16 invariants across 2 CPs · ratchet 4134 → 4150 · 2 seals · double-green byte-match at every seal.**
+
+---
+
+## §F · Onward
+
+1. **M6 sub-wave 3 opens: W-M6-CHARACTER-REGISTER (§6)** — Character Register schema + custody-invariant harness. Sub-wave 3 is §15 build-sequence item 3: "The boundary must exist before the first cluster is stored; retrofitting means rebuilding from source." Load-bearing §6 leakage-path invariant harness (§6.3 P100 "attempts each known leakage path (small stratum, idiolect marker, narrowing combination, exemplar storage) and must fail to store all of them").
+2. Interleave M7 open (W0..W9).
+3. On audio-source unblock: W-AUDIO-PROD-MODEL-SELECT.
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
