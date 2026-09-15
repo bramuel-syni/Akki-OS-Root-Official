@@ -1,0 +1,122 @@
+Kind: cp_m6_6_4_backend_registry
+
+# CP-M6-6-4 · Ratified-vs-INFERRED backend registry surface · Seal
+
+**Sealed at UTC:** 2026-09-15T~22:41Z
+**Milestone:** M6 · Sub-wave 6 · fourth CP · Rec-3-M6SW6 · CLOSES SUB-WAVE 6
+**Invariants added:** +8 · **Ratchet:** 4274 → 4282
+**Track-a HEAD at seal:** `b4f5a6b` · **Master HEAD:** `75fa22d3` (commit B: 75fa22d3870b362bd11add8eba324910f084571c · landed under §3.3 · NO SEAL WITHOUT BOTH SHAs rule satisfied)
+
+---
+
+## §A · Discharge
+
+Landed `services/audio_plane_v1/backend_registry.py` — the read-only registry surface enumerating every pluggable audio-plane seam with status ∈ {ratified, inferred_pending_ratification}, closed-set refusal on unknown status, deterministic output per Rec-3-M6SW6.
+
+> **Rec-3-M6SW6** (owner ruling 2026-09-15T~21:25Z verbatim): *"add a fourth CP to sub-wave 6 that lands a read-only registry surface enumerating every pluggable seam (LID, code-switch, channel-condition, synthesis-attributes, clustering, and any codec/backends registered) with status ∈ {RATIFIED, INFERRED-pending-ratification}, closed-set refusal on unknown status, deterministic output — the M6-seal-story 'what is truly live' table."*
+
+> **D10 pluggable-seam discipline**: *"Each pluggable seam registers backends with a ratification_state that is either 'ratified' (owner-ratified for live invocation) or 'inferred_pending_ratification' (placeholder registered by canon but not yet owner-ratified for live invocation). Live-invocation paths refuse on any 'inferred_pending_ratification' backend."*
+
+**Public API (10 exports):**
+
+- `BACKEND_RATIFICATION_STATES` = `frozenset({"ratified", "inferred_pending_ratification"})` — verbatim two-state closed set from D10 vocabulary.
+- `RegisteredBackendEntry` — frozen 5-carrier: `seam_name` · `backend_name` · `ratification_state` · `canon_anchor` · `ratified_at_utc: Optional[str]` (ISO-8601 when ratified, `None` when inferred).
+- `BackendRegistrySurface` — frozen 1-carrier: `entries: Tuple[RegisteredBackendEntry, ...]`.
+- `register_backend(*, registry, seam_name, backend_name, ratification_state, canon_anchor, ratified_at_utc=None) -> BackendRegistrySurface` — appends entry; returns new surface (immutability preserved). Refuses `BackendRatificationStateInvalidError` on state ∉ closed set (Rec-3 "closed-set refusal on unknown status"). Refuses `BackendRatifiedButMissingRatifiedAtError` on `ratified` + `None` timestamp (§P036 receipt-before-result).
+- `list_ratified_backends(*, registry) -> Tuple[RegisteredBackendEntry, ...]` — insertion-order filter; provenance for M6-seal-story "what is truly live" table.
+- `list_inferred_backends(*, registry) -> Tuple[RegisteredBackendEntry, ...]` — mirror-surface filter; provenance for M6-seal-story "pending owner ratification" table.
+- `assert_seam_has_ratified_backend(*, registry, seam_name) -> None` — load-bearing gate for future live-invocation paths; refuses `SeamHasNoRatifiedBackendError` when no ratified backend for the given seam_name.
+- `BackendRatificationStateInvalidError` · `BackendRatifiedButMissingRatifiedAtError` · `SeamHasNoRatifiedBackendError`.
+
+**Refusals (3):** `BackendRatificationStateInvalidError` (V123) · `BackendRatifiedButMissingRatifiedAtError` (V124) · `SeamHasNoRatifiedBackendError` (V125).
+
+---
+
+## §B · Wave-honest limits (§E.5 grounding brief)
+
+1. **METADATA-ONLY.** Registry does not call backends; it records their ratification state. Live-invocation paths remain untouched — each seam already refuses on invocation of an unratified backend per D10 discipline. The registry adds a QUERY surface, not an enforcement path.
+2. **Case-agnostic.** No coupling to any specific pluggable seam class. Any Python string is a valid `seam_name` (semantic validation belongs to callers).
+3. **Immutable surface.** `register_backend` returns a new `BackendRegistrySurface` (no in-place mutation); frozen-dataclass discipline enforced by `@dataclass(frozen=True)`.
+4. **Deterministic output.** Insertion order preserved on read (Rec-3-M6SW6 verbatim "deterministic output").
+5. **§3.1 P038 tokens-not-waveforms discipline preserved.**  No audio bytes / waveform / raw samples cross this surface; `seam_name` and `backend_name` are opaque tokens.
+
+---
+
+## §C · Composition · No-refactor
+
+**No-refactor:** No modifications to any pluggable seam module (`language_identifier.py`, `code_switch_detector.py`, `channel_condition_profiler.py`, `synthesis_attribute_capturer.py`, `clustering.py`, or the audio-codec service). No modifications to any other audio-plane module (`character_register.py`, `instance_condition_map.py`, `dedup_path.py`, `objective_wizard.py`, `collection_schema.py`, `commission_registry_namespace.py`, `human_validation.py`, `cluster_stability.py`). The registry is populated by explicit `register_backend` calls at composition points (case-agnostic; the registry is passive metadata — seams do NOT self-register at import time).
+
+---
+
+## §D · Invariants (8 · owner-set ≤8 ceiling · WITHIN)
+
+Test file: `tests/invariants/test_wm6_6_4_backend_registry.py` (275 lines).
+
+1. `test_wm6_6_4_module_fabric` — all 10 public exports present.
+2. `test_wm6_6_4_ratification_states_verbatim` — closed-set frozenset {ratified, inferred_pending_ratification} verbatim.
+3. `test_wm6_6_4_register_backend_refuses_invalid_state` — Rec-3 "closed-set refusal on unknown status" (V123).
+4. `test_wm6_6_4_register_backend_refuses_ratified_without_timestamp` — §P036 receipt-before-result: no ratification claim without dated receipt (V124).
+5. `test_wm6_6_4_register_backend_passes_on_both_valid_states` — positive-path merged (ratified+ISO / inferred+None; insertion order preserved).
+6. `test_wm6_6_4_list_filters_partition_registry_deterministically` — filter-partition merged (list_ratified + list_inferred; exhaustive-and-disjoint over registry.entries; insertion order preserved within each partition).
+7. `test_wm6_6_4_assert_seam_refuses_when_only_inferred_backends` — load-bearing live-invocation gate refuses on inferred-only seam (V125).
+8. `test_wm6_6_4_assert_seam_passes_silently_when_ratified_present` — positive counterpart: passes when ≥1 ratified backend.
+
+---
+
+## §E · Discipline receipts
+
+- **RED**: `phase0/drill_receipts/20260915T223452Z_wm6_6_4_RED_pre_impl.log` — 8 failed / 4274 passed / 1 skipped · right-reason `ModuleNotFoundError: No module named 'services.audio_plane_v1.backend_registry'` on every test.
+- **GREEN 1**: `phase0/drill_receipts/20260915T223617Z_wm6_6_4_double_green_run1.log` — `4282 passed, 1 skipped, 438 warnings`.
+- **GREEN 2**: `phase0/drill_receipts/20260915T223838Z_wm6_6_4_double_green_run2.log` — `4282 passed, 1 skipped, 438 warnings`.
+- **Byte-match**: raw 9764 B each · stripped 9751 B each · stripped-sha256 `9a2fb1a50c4f88e3920c3a6b8c5ec792c5e0cbf68b1750cb159e03ee08e8037e` (identical across both runs).
+- **Rider**: `phase0/wave_riders/w_m6_objective_wizard_cp4/` — pip_freeze 192 lines (zero drift vs prior CP-M6-6-2 rider) · collect-only 4283 tests.
+- **Boundary probe #54**: NOTE-SKIPPED (SEC incident `sec_incident_jump_cred_leak_20260915T222935Z`; owner ruling Path β 2026-09-15T~22:30Z). Receipt `phase0/boundary_probes/probe_54_20260915T223210Z.json` · commit `0546bca9`.
+- **Boundary probe #55**: NOT FIRED (probe loop suspended pending helper + tool landing per Redaction Hardening Option 1 ratified same turn; will resume at first boundary AFTER the hygiene CP seal).
+- **Word-boundary negative-scan (executive-domain + audio-material)**: CLEAN on both mechanism + test.
+
+---
+
+## §F · M6-seal-story deliverable
+
+`phase0/backend_ratification_snapshot.json` populated at seal — 5 seams enumerated, all `inferred_pending_ratification`, 0 ratified. Enumeration method: filesystem grep for `[INFERRED-pending-ratification]` marker across `services/audio_plane_v1/*.py`. Codec service (CP-M6-4-1..4-4) is a SERVICE, not a pluggable-backend seam — excluded per shape mismatch (documented in snapshot's `codec_note` field).
+
+The snapshot is the source-of-truth "what is truly live" table for the M6-seal report. All backends currently pending owner ratification. Future ratification lands as (i) specific model choice per seam, (ii) `ratified_at_utc` ISO-8601, (iii) track-a commit banking the ratified backend class — followed by a snapshot refresh.
+
+---
+
+## §G · Sub-wave 6 · CLOSED
+
+**W-M6-OBJECTIVE-WIZARD-COLLECTION-SCHEMA** closes with this seal:
+
+| CP | Landing module | Invariants | Ratchet | Track-a | Master |
+|---|---|--:|---|---|---|
+| CP-M6-6-1 | `objective_wizard.py` | 14 | 4240 → 4254 | 6802806 | c98a113a |
+| CP-M6-6-2 | `collection_schema.py` | 9 | 4254 → 4263 | 7c856fa | d9766459 |
+| CP-M6-6-3 | `commission_registry_namespace.py` | 11 | 4263 → 4274 | 75447ac | ea823aa3 |
+| CP-M6-6-4 | `backend_registry.py` | 8 | 4274 → 4282 | b4f5a6b | 75fa22d3 |
+
+**Totals: 4 CPs · +42 invariants · 4240 → 4282 · zero refactor of prior CPs · 4 seals · double-green byte-match at every seal.**
+
+Sub-wave 6 DoD-item review:
+- ✓ CP-M6-6-1..3 sealed under §3.3 (both SHAs banked).
+- ✓ CP-M6-6-4 sealed under §3.3 (both SHAs bank on commit C).
+- ⏳ Wave-close report `notes/W_M6_OBJECTIVE_WIZARD_COLLECTION_SCHEMA_close.md` — authors this shift after the seal commit lands.
+- ✓ `phase0/backend_ratification_snapshot.json` populated at CP-M6-6-4 seal.
+- ✓ Ratchet delta actual: +42 · 4240 → 4282. Target-band was +34..+38; actual came in slightly higher due to parametric expansion at CP-M6-6-1 (14 vs target 10).
+- ⚠ Boundary probes #50..#57 target — actual: #50, #51, #52, #53 fired FAIL (probes #48/#49 opened sub-wave 5, not 6); #54 NOTE-SKIPPED per SEC incident; #55..#57 SUSPENDED pending helper + tool landing.
+- ✓ Word-boundary executive-domain negative-scan CLEAN on every seal.
+- ✓ §3.1 P038 tokens-not-waveforms discipline preserved on every new API surface.
+- ✓ HALT boundary held — no CP required real estate voice/biometric material.
+- ✓ Word-boundary audio-material negative-scan CLEAN on every new module.
+
+---
+
+## §H · Onward
+
+Two items this shift after this seal:
+
+1. **Hygiene CP · Redaction Hardening Option 1** (owner ruling 2026-09-15T~22:30Z): land `services/secret_hygiene/credential_metadata.py` with `read_custody_metadata(path)` shape-only helper + STANDING_ORDERS §E clause + invariant tests. Separate tight standalone CP inside this shift's window (does NOT fold into CP-M6-6-4 scope; keeps 6-4 strict to Rec-3 brief).
+
+2. **Probe tool close** (same ruling): version-control `tools/boundary_probe_cd_visitors.py` on state repo using the new helper + env-injection pattern. Probe loop resumes at first boundary AFTER the tool lands.
+
+Then sub-wave 7 opens: **W-M6-TARGET-OUTCOME-PLANNER · §10 + §11.1 + §11.4**.

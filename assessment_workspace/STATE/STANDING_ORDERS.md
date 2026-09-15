@@ -197,6 +197,26 @@ Every owner ruling is banked **verbatim** in `STATE/DECISIONS.md` **before** any
 
 ---
 
+### 4.1 §E · CREDENTIAL CUSTODY READ DISCIPLINE — Redaction Hardening Option 1 (owner ruling 2026-09-15T~22:30Z)
+
+**Ratified same turn as SEC incident `sec_incident_jump_cred_leak_20260915T222935Z` (JUMP root pw leaked to agent-tool STDOUT via a bad sed redaction).**
+
+**Rule.** Custody files under `CUSTODY_PATH_PREFIXES` (currently `/app/backend/estate_keys/`) may only be read through one of two disciplines:
+
+1. **Shape-only helper** — `services.secret_hygiene.custody_file.read_custody_metadata(*, path)` returns a frozen `CustodyFileMetadata` carrier whose per-field entries expose ONLY `field_name` + `value_length_bytes` + `value_sha256`. The helper structurally cannot return raw column values: the returned dataclass has no value-bearing attribute.
+
+2. **Env-injection into the target process** — any consumer needing the actual secret binds it directly into the target process's environment (`MYSQL_PWD`, `sshpass -e`, `Authorization: Bearer $TOKEN`, AWS SDK credential providers) so that the value never crosses a stdout-visible layer. The injecting shell script itself must not fall foul of §3.3 or the existing `assert_no_transcript_set_x_with_password_var` guard.
+
+**Any direct read outside these two paths is a SEC-class violation.** Direct reads specifically include, but are not limited to: `cat`/`head`/`tail`/`less`/`more`/`bat`/`view`/`type` against a custody path (caught at authoring-time by `assert_no_transcript_cat_on_custody`); `csv.reader(open(...))` + `print(...)` co-occurrence (caught by `assert_no_transcript_csv_header_emit_on_custody`); `openpyxl.load_workbook(...)` + `print(...)` co-occurrence (caught by `assert_no_transcript_openpyxl_iter_rows_on_custody`); shell tracing (`set -x`, `bash -x`, `-o xtrace`) co-occurring with a credential-shaped env var (caught by `assert_no_transcript_set_x_with_password_var`); and — as of this ruling — any pattern that reads a custody file's bytes through the agent-tool STDOUT surface even with a redaction filter unless the redaction is proven structurally-safe by the shape-only helper.
+
+**Scope this CP (CP-SW6-HYG-1):** JSON custody support. CSV / xlsx / raw-key formats refuse with `CustodyFileFormatUnsupportedError` — extension is a follow-on CP when a specific schema is standardised.
+
+**Option 2 (encrypt-at-rest) was DECLINED same turn** — key custody would live on the same pod, adding ceremony without a real trust-boundary gain at pilot stage. Revisit at BC-build time.
+
+**Enforcement.** At any future CP that adds custody surfaces, the CP's grounding brief must state one of: (i) the surface is read only via `read_custody_metadata` + env-injection, or (ii) an owner ruling explicitly ratifies a scoped exception. Silent direct reads land as SEC incidents with the same discipline as this session's `sec_incident_jump_cred_leak_20260915T222935Z`.
+
+---
+
 ## 5. GPU OBLIGATIONS
 
 - **Full-consumption guarantee** while a campaign window is open. All 4 GPUs across the two hosts (`akki-vm`, `akki-vm-ii`) run at high utilization until the window closes. Idle lanes are an **interrupt-priority** condition that outranks documentation and audit work.

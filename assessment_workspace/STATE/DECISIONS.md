@@ -9630,5 +9630,53 @@ No-refactor: collection_schema.py + objective_wizard.py + all prior modules unch
 
 ---
 
+## CP-M6-6-4 · Ratified-vs-INFERRED backend registry surface · SEAL · CLOSES SUB-WAVE 6
+
+**Sealed at UTC:** 2026-09-15T~22:41Z.  **Ratchet:** 4274 → 4282 (+8).
+**Track-a HEAD at seal:** `b4f5a6b`.  **Master HEAD:** `75fa22d3` (commit B: 75fa22d3870b362bd11add8eba324910f084571c · landed under STANDING_ORDERS §3.3 · commit C-fixup pinned the master SHA · NO SEAL WITHOUT BOTH SHAs rule satisfied).
+
+CP-M6-6-4 lands `services/audio_plane_v1/backend_registry.py` — Rec-3-M6SW6 verbatim read-only registry surface enumerating every pluggable audio-plane seam with status ∈ {ratified, inferred_pending_ratification}, closed-set refusal on unknown status, deterministic output.
+
+> Rec-3-M6SW6 (owner ruling 2026-09-15T~21:25Z verbatim): *"add a fourth CP to sub-wave 6 that lands a read-only registry surface enumerating every pluggable seam (LID, code-switch, channel-condition, synthesis-attributes, clustering, and any codec/backends registered) with status ∈ {RATIFIED, INFERRED-pending-ratification}, closed-set refusal on unknown status, deterministic output — the M6-seal-story 'what is truly live' table."*
+
+Public API (10 exports): `BACKEND_RATIFICATION_STATES` (frozenset {ratified, inferred_pending_ratification} · D10 vocabulary) · `RegisteredBackendEntry` (frozen 5-carrier: seam_name + backend_name + ratification_state + canon_anchor + ratified_at_utc:Optional[str]) · `BackendRegistrySurface` (frozen 1-carrier: entries tuple) · `register_backend` (appends entry; refuses BackendRatificationStateInvalidError on state ∉ closed set; refuses BackendRatifiedButMissingRatifiedAtError on ratified+None timestamp per §P036 receipt-before-result) · `list_ratified_backends` (insertion-order filter · provenance for "what is truly live") · `list_inferred_backends` (mirror-surface filter · provenance for "pending owner ratification") · `assert_seam_has_ratified_backend` (refuses SeamHasNoRatifiedBackendError · load-bearing gate for future live-invocation) · 3 error classes.  Refusals (3): V123 · V124 · V125.
+
+**M6-seal-story deliverable populated at seal:** `phase0/backend_ratification_snapshot.json` — 5 seams enumerated (language_identifier · code_switch_detector · channel_condition_profiler · synthesis_attribute_capturer · clustering); all 5 in state `inferred_pending_ratification`; 0 ratified.  Codec service (CP-M6-4-1..4-4) excluded per shape mismatch (SERVICE not pluggable-backend seam · documented in `codec_note`).
+
+**Discipline receipts.**  RED `20260915T223452Z_wm6_6_4_RED_pre_impl.log` (8 right-reason ModuleNotFoundError).  GREEN 1 `20260915T223617Z_wm6_6_4_double_green_run1.log` · GREEN 2 `20260915T223838Z_wm6_6_4_double_green_run2.log` · byte-match stripped-sha256 `9a2fb1a50c4f88e3920c3a6b8c5ec792c5e0cbf68b1750cb159e03ee08e8037e` · both `4282 passed, 1 skipped, 438 warnings`.  Rider `phase0/wave_riders/w_m6_objective_wizard_cp4/` zero-drift vs prior CP · collect-only 4283.  Boundary probe #54 NOTE-SKIPPED per SEC incident `sec_incident_jump_cred_leak_20260915T222935Z` (owner ruling Path β).  Seal `phase0/output_verified_seals/cp_m6_6_4_backend_registry.seal.txt`.
+
+No-refactor: language_identifier.py + code_switch_detector.py + channel_condition_profiler.py + synthesis_attribute_capturer.py + clustering.py + all prior modules unchanged.  Case-agnostic · executive-domain word-boundary negative-scan CLEAN · audio-material word-boundary negative-scan CLEAN · §3.1 P038 preserved · synthetic-fixtures-only · no LLM/HTTP/filesystem.
+
+**SUB-WAVE 6 CLOSED**: 4 CPs · +42 invariants · ratchet 4240 → 4282 · 4 seals · double-green byte-match at every seal · zero refactor of prior CPs.  Wave-close report authors this shift after seal commits land.
+
+**Onward.**  Hygiene CP · `services/secret_hygiene/credential_metadata.py` (Redaction Hardening Option 1 ratified 2026-09-15T~22:30Z) — tight standalone CP inside this shift's window (does NOT fold into CP-M6-6-4 scope).  Then `tools/boundary_probe_cd_visitors.py` version-controlled on state repo.  Then sub-wave 7 opens: W-M6-TARGET-OUTCOME-PLANNER · §10 + §11.1 + §11.4.
+
+---
+
+## CP-SW6-HYG-1 · Credential metadata shape helper · SEAL · Sub-wave 6 hygiene · Redaction Hardening Option 1
+
+**Sealed at UTC:** 2026-09-15T~22:59Z.  **Ratchet:** 4282 → 4288 (+6).
+**Track-a HEAD at seal:** `053d3f1`.  **Master HEAD:** `76a8476e` (commit B: 76a8476e1b9ebc6fb48b62d60f8fe970739fa52f · landed under STANDING_ORDERS §3.3 · commit C-fixup pinned the master SHA · NO SEAL WITHOUT BOTH SHAs rule satisfied).
+
+CP-SW6-HYG-1 EXTENDS `services/secret_hygiene/custody_file.py` (append-only under `# Part-C extension` header · no refactor of existing functions) with the positive-shape `read_custody_metadata` helper per owner ruling 2026-09-15T~22:30Z Redaction Hardening Option 1 (ratified same turn as SEC incident `sec_incident_jump_cred_leak_20260915T222935Z`).  Packaging decision (per owner delegation "or extend custody_file.py"): extended the existing module rather than land a new file.
+
+> Owner ruling verbatim: *"Land services/secret_hygiene/credential_metadata.py (or extend custody_file.py): a read_custody_metadata(path) helper that yields ONLY shape data (field names, value lengths, sha256s) and structurally CANNOT return raw column values — any consumer needing the actual secret gets it via env-injection into the target process (MYSQL_PWD / sshpass -e / Authorization header patterns already banked), never via stdout-visible reads."*
+
+Public API additions (5 new exports on `custody_file`): `CustodyFieldMetadata` (frozen 3-carrier: field_name + value_length_bytes + value_sha256 · structurally cannot carry a raw value) · `CustodyFileMetadata` (frozen 2-carrier: path + fields tuple) · `read_custody_metadata(*, path)` (JSON custody read · raw values held only in private local scope) · `NonCustodyPathRefused` (path-scope refusal) · `CustodyFileFormatUnsupportedError` (non-JSON refusal).
+
+**STANDING_ORDERS.md amended** with §4.1 §E CREDENTIAL CUSTODY READ DISCIPLINE clause — makes the two-path rule (helper OR env-injection) authoritative from this seal forward.
+
+**Tool version-controlled** at `/app/assessment_workspace/tools/boundary_probe_cd_visitors.py` — probe tool using helper + env-injection · dry-run + opt-in-CSV modes · never echoes creds · shape-only receipts.
+
+**Discipline receipts.**  RED `20260915T224949Z_sw6_hyg_1_RED_pre_impl.log` (6 right-reason ImportError).  GREEN 1 `20260915T225147Z_sw6_hyg_1_double_green_run1.log` · GREEN 2 `20260915T225358Z_sw6_hyg_1_double_green_run2.log` · byte-match stripped-sha256 `583ac87dc5d90088d1671a8b0e17c97f7765bc8646f4963c10fb14d110a6be10` · both `4288 passed, 1 skipped, 438 warnings`.  Rider `phase0/wave_riders/w_sw6_hygiene_cp1/` zero-drift · collect-only 4289.  Seal `phase0/output_verified_seals/cp_sw6_hyg_1_credential_metadata.seal.txt`.  Boundary probe #55 NOT FIRED (probe loop remains suspended pending JUMP custody rotation to JSON per SEC discipline · tool is version-controlled and ready).
+
+No-refactor: existing custody_file.py functions unchanged (append-only extension).  Executive-domain word-boundary negative-scan CLEAN.  Audio-material word-boundary negative-scan CLEAN.  §3.1 P038 preserved.  Case-agnostic.  Synthetic fixtures only in tests.
+
+**Post-CP-SW6-HYG-1 total shift-window delta:** 4240 → 4288 · **+48 invariants across 5 seals** (4 M6 sub-wave 6 CPs + 1 hygiene CP).
+
+**Onward.**  Sub-wave 6 wave-close report → sub-wave 7 opens (W-M6-TARGET-OUTCOME-PLANNER · §10 + §11.1 + §11.4).  §11.6 full training runs on real estate data will HALT to owner when that sub-wave/CP opens.
+
+---
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 

@@ -1,0 +1,15 @@
+{
+  "probe_id": "boundary_probe_54",
+  "at_utc": "2026-09-15T22:32:10Z",
+  "wave_boundary": "CP-M6-6-3 seal (per-commission registry namespace · §12.1 P195 verbatim · sealed-not-deleted) post-fixup Commit C c1ed5bc6",
+  "status": "NOTE-SKIPPED",
+  "skip_reason": "SEC incident sec_incident_jump_cred_leak_20260915T222935Z halted probe firing pending owner ratification + JUMP root credential rotation. Owner ruling 2026-09-15T22:30Z Path β RATIFIED: probes observe, they never gate; record NOTE-SKIPPED and proceed. Probe loop resumes from next boundary AFTER services/secret_hygiene/credential_metadata.py helper + tools/boundary_probe_cd_visitors.py land under Redaction Hardening Option 1 (ratified same turn).",
+  "results": [],
+  "sec_incident_ref": {
+    "receipt": "phase0/security_incidents/sec_incident_jump_cred_leak_20260915T222935Z.json",
+    "note": "notes/SEC_INCIDENT_JUMP_CRED_LEAK_20260915.md",
+    "commit": "75bf8e1f"
+  },
+  "owner_ruling_ref": "STATE/DECISIONS.md pending owner-turn ratification; interim ruling captured in NEXT.md and this receipt.",
+  "cumulative_probe_pass_count_across_1_through_54": 0
+}

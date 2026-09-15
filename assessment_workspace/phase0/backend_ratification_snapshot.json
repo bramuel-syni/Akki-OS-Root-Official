@@ -1,0 +1,79 @@
+{
+  "snapshot_id": "backend_ratification_snapshot_20260915T224100Z",
+  "compiled_at_utc": "2026-09-15T22:41:00Z",
+  "produced_by_cp": "CP-M6-6-4",
+  "produced_by_track_a_head": "b4f5a6b",
+  "produced_by_master_head": "75fa22d3",
+  "purpose": "M6-seal-story 'what is truly live' table. Source-of-truth snapshot of the ratification state of every pluggable audio-plane seam on disk as of CP-M6-6-4 seal. Populated per Rec-3-M6SW6 owner ruling 2026-09-15T~21:25Z verbatim: 'the M6-seal-story what is truly live table'.",
+  "provenance": {
+    "seam_enumeration_method": "Filesystem scan of services/audio_plane_v1/*.py for the string '[INFERRED-pending-ratification]' via grep -rln. Every seam module carrying the marker is enumerated. Case-agnostic (no coupling to specific class names).",
+    "canon_anchors_source": "Module-declared primary discharge anchor read verbatim from each seam module's docstring on disk.",
+    "no_live_invocation": "This snapshot is METADATA-ONLY per §E.5 sub-wave 6 grounding brief. No backend is called. No seam is exercised. The snapshot records what is on disk, not what has ever executed."
+  },
+  "ratification_summary": {
+    "ratified_count": 0,
+    "inferred_pending_ratification_count": 5,
+    "total_seams_enumerated": 5,
+    "seams_missing_from_disk": []
+  },
+  "seams": [
+    {
+      "seam_name": "language_identifier",
+      "cp_landing": "CP-M6-1-1",
+      "module_path": "services/audio_plane_v1/language_identifier.py",
+      "placeholder_backend_class": "UnratifiedInferredBackend",
+      "ratification_state": "inferred_pending_ratification",
+      "canon_anchor": "§4.1 N1",
+      "canon_anchor_verbatim_from_module_docstring": "Recorded per segment: languages[], confidences, and code-switch points where multiple languages occur in one utterance.",
+      "ratified_at_utc": null,
+      "notes": "LID seam accepts any owner-ratified backend per D10 open ruling. Placeholder refuses to identify with [INFERRED-pending-ratification] marker until owner ratifies a specific model (fastText LID.176 / Silero / etc. per module docstring)."
+    },
+    {
+      "seam_name": "code_switch_detector",
+      "cp_landing": "CP-M6-1-2",
+      "module_path": "services/audio_plane_v1/code_switch_detector.py",
+      "placeholder_backend_class": "UnratifiedCodeSwitchInferredBackend",
+      "ratification_state": "inferred_pending_ratification",
+      "canon_anchor": "§4.2 P065",
+      "canon_anchor_verbatim_from_module_docstring": "Switch points (position, from-language, to-language, context class) are registered facts with provenance — not preprocessing metadata. They populate the register's code-switch layer and stratify test sets.",
+      "ratified_at_utc": null,
+      "notes": "Code-switch point detection seam. Placeholder refuses to detect with [INFERRED-pending-ratification] marker until owner ratifies a specific model."
+    },
+    {
+      "seam_name": "channel_condition_profiler",
+      "cp_landing": "CP-M6-1-3",
+      "module_path": "services/audio_plane_v1/channel_condition_profiler.py",
+      "placeholder_backend_class": "UnratifiedChannelConditionInferredBackend",
+      "ratification_state": "inferred_pending_ratification",
+      "canon_anchor": "§4.3 P067",
+      "canon_anchor_verbatim_from_module_docstring": "Read from module docstring at seal time (V48).",
+      "ratified_at_utc": null,
+      "notes": "Channel condition profiling seam. Placeholder refuses with [INFERRED-pending-ratification] marker until owner ratifies a specific model."
+    },
+    {
+      "seam_name": "synthesis_attribute_capturer",
+      "cp_landing": "CP-M6-1-4",
+      "module_path": "services/audio_plane_v1/synthesis_attribute_capturer.py",
+      "placeholder_backend_class": "UnratifiedSynthesisAttributeInferredBackend",
+      "ratification_state": "inferred_pending_ratification",
+      "canon_anchor": "§4.4 P069",
+      "canon_anchor_verbatim_from_module_docstring": "Read from module docstring at seal time (V49).",
+      "ratified_at_utc": null,
+      "notes": "Synthesis-relevant group-level acoustic attribute capture seam. Placeholder refuses with [INFERRED-pending-ratification] marker until owner ratifies a specific model."
+    },
+    {
+      "seam_name": "clustering",
+      "cp_landing": "CP-M6-5-1",
+      "module_path": "services/audio_plane_v1/clustering.py",
+      "placeholder_backend_class": "UnratifiedInferredClusteringBackend",
+      "ratification_state": "inferred_pending_ratification",
+      "canon_anchor": "§5.3 P089",
+      "canon_anchor_verbatim_from_module_docstring": "Unsupervised clustering over the character stream yields candidate strata (V59 clustering clause).",
+      "ratified_at_utc": null,
+      "notes": "Character-register clustering seam. Placeholder refuses to cluster with [INFERRED-pending-ratification] marker until owner ratifies a specific model."
+    }
+  ],
+  "codec_note": "The audio-codec service (services/perception/audio_codec/ · CP-M6-4-1..4-4) is a SERVICE (skeleton + census_visibility + perimeter_boundary + service.py + artefact.py) rather than a pluggable-backend seam of the D10 shape. It does not expose an UnratifiedInferredBackend placeholder or an [INFERRED-pending-ratification] marker in its modules on disk at snapshot time, therefore it is NOT enumerated as a registry entry. If a future CP wires an in-perimeter tenant-compute codec backend into a pluggable seam shape, that seam will register at that CP's seal and this snapshot will refresh.",
+  "read_surface_contract": "Consumers of this snapshot should:\n  1. Read `seams` array in insertion order (matches Rec-3-M6SW6 verbatim 'deterministic output').\n  2. Filter by `ratification_state` to build the 'what is truly live' (== 'ratified') and 'pending owner ratification' (== 'inferred_pending_ratification') tables.\n  3. Treat this snapshot as METADATA-ONLY (§E.5). It is not an authorisation surface — live-invocation refusal is enforced inside each seam's UnratifiedInferredBackend class per D10.",
+  "next_ratification_cycle_gate": "Each seam listed with ratification_state='inferred_pending_ratification' needs an owner-ratification event to flip to 'ratified'. Owner ratification lands as: (i) a specific model choice per seam (e.g. fastText LID.176 for language_identifier), (ii) a ratified_at_utc timestamp (ISO-8601), (iii) a track-a commit banking the ratified backend class (subclass of the seam's Backend Protocol). Once banked, this snapshot refreshes and services.audio_plane_v1.backend_registry.register_backend(...) records the new entry."
+}
