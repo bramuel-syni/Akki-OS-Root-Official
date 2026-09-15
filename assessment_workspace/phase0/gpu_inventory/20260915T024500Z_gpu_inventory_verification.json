@@ -1,0 +1,114 @@
+{
+  "at_utc": "2026-09-15T02:45:00Z",
+  "kind": "gpu_inventory_verification",
+  "wave": "W-CENSUS-CANON-ALIGN",
+  "trigger": "Owner GPU protocol (verbatim, this turn): 'Connected GPU has CUDA and Pytorch, this was confirmed from previous run. ... verify locally: nvidia-smi, and python -c \"import torch; print(torch.cuda.is_available(), torch.cuda.get_device_name(0) if torch.cuda.is_available() else 'none')\" - on this pod first, then JUMP if the pod is negative. Also grep prior receipts/notes for the earlier GPU confirmation ... and cite where it was previously proven.'",
+  "supersedes": [
+    "BLOCKER-CENSUS-GPU-BIND-01 (from CP-C1 close DECISIONS 2026-09-15T~02:21Z)",
+    "GPU-INV-01 chore (from CP-C2 close DECISIONS 2026-09-15T~02:35Z)"
+  ],
+  "position_redaction": "Host aliases only in this record. Host IPs, SSH usernames, key material excluded per SO §4 PII / credential custody. All raw hostnames live only in /app/backend/.env (AKKI_VM_HOST, AKKI_VM_II_HOST, AKKI_VM_USERNAME, AKKI_VM_II_USERNAME) with SSH key at /app/backend/estate_keys/gpu_hosts/id_ed25519_akki_gpu (mode 0600).",
+
+  "step_1_this_pod": {
+    "command_a": "nvidia-smi",
+    "command_a_result": "command not found (bash: nvidia-smi: command not found)",
+    "command_b": "python3 -c 'import torch; print(torch.cuda.is_available(), ...)'",
+    "command_b_result": "ModuleNotFoundError: No module named 'torch'",
+    "device_probe_dev_nvidia": "ls: cannot access '/dev/nvidia*': No such file or directory",
+    "device_probe_proc_driver": "ls: cannot access '/proc/driver/nvidia*': No such file or directory",
+    "lspci_command": "command not found",
+    "verdict": "no_gpu_visible",
+    "verdict_reason": "No nvidia driver, no nvidia device nodes, no torch stack installed on this pod. This is a governance pod; GPU compute lives on named estate hosts."
+  },
+
+  "step_2_estate_gpu_hosts_prior_confirmation_cited": {
+    "protocol_note": "Per owner directive this turn, prior on-disk receipts serve as the authoritative confirmation citation. Egress window is CLOSED at receipt time (02:45 UTC vs 02:00 UTC close; reopens 08:00 UTC), which prevents live SSH re-verification without a live-egress halt-note. On-disk receipts are non-egress and are themselves the earlier owner-proven evidence.",
+    "hosts": [
+      {
+        "host_alias": "akki-vm",
+        "device_count": 2,
+        "device_model": "NVIDIA H200",
+        "vram_mib_total_per_gpu": 143771,
+        "vram_gib_total_per_gpu": 140.4,
+        "verdict": "gpu_present",
+        "evidence_receipts": [
+          {
+            "at_utc": "2026-09-06T14:15:00Z",
+            "path": "phase0/gpu_receipts/20260906T141500Z_campaign_a_run0_first_heartbeat/nvidia_smi_snapshot.csv",
+            "verbatim_snapshot_head": "0, NVIDIA H200, 0 %, 29799 MiB, 143771 MiB, 40\n1, NVIDIA H200, 0 %, 29761 MiB, 143771 MiB, 42",
+            "context": "Campaign A run 0 first-heartbeat under W-Shield-Train-run close (DECISIONS 2026-09-06T~14:20Z); Qwen2.5-0.5B LoRA on 2×H200."
+          },
+          {
+            "at_utc": "2026-09-09T09:00:18Z",
+            "path": "phase0/gpu_receipts/20260908T060000Z_health_check/akki-vm.txt",
+            "verbatim_head": "0, 0 %, 0 MiB, 76.85 W\n1, 0 %, 0 MiB, 76.17 W",
+            "context": "Health-check snapshot 2026-09-09; 2 GPUs idle at 76-77 W each (nvidia-smi query still functional)."
+          }
+        ]
+      },
+      {
+        "host_alias": "akki-vm-ii",
+        "device_count": 2,
+        "device_model": "NVIDIA H200",
+        "vram_mib_total_per_gpu": 143771,
+        "vram_gib_total_per_gpu": 140.4,
+        "verdict": "gpu_present",
+        "evidence_receipts": [
+          {
+            "at_utc": "2026-09-06T14:18:00Z",
+            "path": "phase0/gpu_receipts/20260906T141800Z_campaign_b_run1_first_heartbeat/nvidia_smi_snapshot.csv",
+            "verbatim_snapshot_head": "0, NVIDIA H200, 43 %, 20903 MiB, 143771 MiB, 38\n1, NVIDIA H200, 49 %, 20679 MiB, 143771 MiB, 41",
+            "context": "Campaign B run 1 first-heartbeat under W-Shield-Train-run close (DECISIONS 2026-09-06T~14:20Z); Qwen2.5-3B LoRA on 2×H200; both cards actively training at 43% + 49% utilization."
+          },
+          {
+            "at_utc": "2026-09-09T09:00:21Z",
+            "path": "phase0/gpu_receipts/20260908T060000Z_health_check/akki-vm-ii.txt",
+            "verbatim_head": "0, 0 %, 0 MiB, 76.67 W\n1, 0 %, 0 MiB, 83.15 W",
+            "context": "Health-check snapshot 2026-09-09; 2 GPUs idle at 76-83 W."
+          }
+        ]
+      }
+    ],
+    "aggregate_verdict": "gpu_present_across_two_estate_hosts",
+    "aggregate_shape": "4 x NVIDIA H200 total (2 per host x 2 hosts) with 143771 MiB (140.4 GiB) VRAM per GPU"
+  },
+
+  "cuda_and_torch_confirmation_prior_run": {
+    "source_ruling": "DECISIONS 2026-09-06T~14:20Z (W-Shield-Train-run close, verbatim excerpt): 'Torch stack (2.11.0+cu128 · CUDA 12.8 · 2× H200) + transformers 5.16.1 + peft 0.20.0 + accelerate 1.14.0 SURVIVED [akki-vm rebuild].'",
+    "torch_version": "2.11.0+cu128",
+    "cuda_version": "12.8",
+    "transformers_version": "5.16.1",
+    "peft_version": "0.20.0",
+    "accelerate_version": "1.14.0",
+    "confirmed_on_hosts": ["akki-vm", "akki-vm-ii"],
+    "matches_owner_statement": "Owner statement this turn ('Connected GPU has CUDA and Pytorch, this was confirmed from previous run') is corroborated by DECISIONS 2026-09-06T~14:20Z ruling + Campaign A/B first-heartbeat receipts."
+  },
+
+  "credentials_custody_present_this_pod": {
+    "gpu_ssh_key_path": "/app/backend/estate_keys/gpu_hosts/id_ed25519_akki_gpu",
+    "gpu_ssh_key_mode": "0600",
+    "env_vars_present_in_backend_dot_env": ["AKKI_VM_HOST", "AKKI_VM_PORT", "AKKI_VM_USERNAME", "AKKI_VM_II_HOST", "AKKI_VM_II_PORT", "AKKI_VM_II_USERNAME", "AKKI_VM_SSH_PRIVATE_KEY_PATH"],
+    "note": "SSH path from this pod to akki-vm / akki-vm-ii is provisioned. Live re-verification is an egress operation held until 08:00 UTC window re-open per owner egress hold protocol (DECISIONS 2026-09-15T~02:35Z clause 6)."
+  },
+
+  "routing_directive_this_turn_owner_verbatim": "If verified: bank a GPU-AVAILABLE note (device name, VRAM, CUDA version - no secrets involved) and route compute-bearing census stages and the future model-bearing waves to it.",
+
+  "routing_effect_banked": {
+    "census_run_item_3_route": "CPU-viable on this pod (I/O + metadata dominated per grounding brief §E.6). GPU routing is NOT required for the census walk itself. Reaffirmed here: census proceeds on CPU regardless.",
+    "future_model_bearing_waves_route": {
+      "target_hosts": ["akki-vm (2xH200)", "akki-vm-ii (2xH200)"],
+      "seam": "services/training_runner/ssh_seam.py (existing, tested under W-Shield-Train-BUILD close DECISIONS 2026-09-06T~11:42Z; wired via services.compute_seam custody)",
+      "receipt_path_pattern": "phase0/gpu_receipts/<yyyymmddThhmmssZ>_<wave>_<run_id>/",
+      "campaigns_precedent": "Campaign A on akki-vm; Campaign B on akki-vm-ii (2026-09-06 through 2026-09-09; 4x H200 aggregate; both hosts idle at last health check)."
+    },
+    "d12_transcription_poc_still_held": "Owner ruled this turn: 'D12 transcription POC still HELD.' No transcription-POC work opens this wave; owner rules after census results."
+  },
+
+  "discrepancy_status": "none - owner statement is corroborated by prior on-disk evidence; no argument raised, no discrepancy note banked.",
+
+  "next_verification_gate": {
+    "when": "next egress-window open (08:00 UTC 2026-09-15)",
+    "how": "SSH akki-vm and akki-vm-ii, run nvidia-smi + python3 -c 'import torch; print(torch.cuda.is_available())' each, bank live receipt at phase0/gpu_inventory/<yyyymmddThhmmssZ>_live_ssh_verification.json",
+    "note": "This is a follow-on receipt that reaffirms the prior evidence with a live-timestamped snapshot; not blocking on the current census wave close."
+  }
+}

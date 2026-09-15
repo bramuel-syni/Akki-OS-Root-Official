@@ -1,0 +1,90 @@
+Kind: census_canon_align
+
+Wave: W-CENSUS-CANON-ALIGN
+Sealed_at_UTC: 2026-09-15T03:22:00Z
+Sealer: main-agent
+
+--- CP Roll-up ---
+CP-C1  ratchet 3979 -> 3986  +7 (6 new + 1 cross-benefit)  track-a c45d0c3   master a1c389aa
+CP-C2  ratchet 3986 -> 3993  +7 (6 new + 1 cross-benefit)  track-a 112de26   master f5732842
+CP-C3  ratchet 3993 -> 3999  +6                            track-a e2a710c   master c8c64eb0
+CP-C4  ratchet 3999 -> 4005  +6                            track-a 5fcee76   master 14a0ec22
+CP-C5  ratchet 4005 -> 4012  +7 (6 new + 1 cross-benefit)  track-a d552c31   master 6b2a3077
+CP-C6  ratchet 4012 -> 4018  +6                            track-a 0053b16   master (pending Commit B)
+
+--- Wave Totals ---
+Total ratchet delta: 3979 -> 4018 (+39 across 6 CPs)
+Invariants added: +39 total (6 CPs * 6 baseline + 3 cross-benefits)
+Duration: 2026-09-15T02:12:34Z (CP-C1 open) -> 2026-09-15T03:22:00Z (wave seal) = ~69m30s
+
+--- Wave Close Double-Green (byte-match) ---
+Green1_receipt: phase0/drill_receipts/20260915T031557Z_wcensus_cp_c6_stratum_activation_double_green_run1.log
+Green1_sha256:  67d6f8ae62a166238158716bfe6aee9e7a24d985eb0d7ed1f355d054b2df4457
+Green1_size_B:  42967
+Green1_wallclock_s: 120.96
+Green1_tally:   ========== 4018 passed, 1 skipped, 438 warnings
+
+Green2_receipt: phase0/drill_receipts/20260915T031809Z_wcensus_cp_c6_stratum_activation_double_green_run2.log
+Green2_sha256:  bc0e9a674926a4807d7346e046d727d6e87e207093740d65d3f4dce14761746b
+Green2_size_B:  42967
+Green2_wallclock_s: 126.05
+Green2_tally:   ========== 4018 passed, 1 skipped, 438 warnings
+
+Byte_match_tally: TRUE (both tallies timing-stripped are identical: "========== 4018 passed, 1 skipped, 438 warnings")
+Byte_match_size:  TRUE (both files 42967 bytes)
+Byte_match_full_log: FALSE (differ in per-test wallclock nanos - expected)
+
+--- Rider 1 (locked at seal) ---
+pip_freeze_lines: 192
+pip_freeze_receipt: phase0/wave_riders/w_census_canon_align/rider1_pip_freeze_20260915T032100Z.txt
+pytest_collect_count: 4019
+pytest_collect_receipt: phase0/wave_riders/w_census_canon_align/rider1_pytest_collect_20260915T032100Z.log
+
+--- Canon Anchors Discharged (verbatim by CP) ---
+CP-C1: Canon-4 §4 (:26 SourceCandidate 4-carrier) + Doc-9 B5.5 (:148 rule reference) + Doc-9 B5.7 (:150 entitlement attribute) + Canon-4 §5.1 (:35 undeclared→unknown conservative fallback)
+CP-C2: Canon-4 §4.1 P29 (:29 Unmeasured first-class) + Canon-4 §4.1 P30 (:30 every figure carries method + sampled-not-full) + Doc-9 B5.2 (:146) + Doc-9 B5.3 (:147)
+CP-C3: Canon-4 §4.1 P30 (:30 census run + run_date + population + full-vs-sampled) + Doc-9 B5.3 (:147)
+CP-C4: Canon-4 §8 (:51 one record per source w/ existence/sensitivity/defensibility_measure/freshness_stamp) + Doc-10 A5.5 (:155 Registry is one record read by many)
+CP-C5: Owner S5 reframe (GOVERNED_CENSUS_HARVEST_PLATFORM_ROADMAP.md:4,25 platform builds estate-agnostic + modality-agnostic primitives; JobManifest binds registered planes to concrete instance)
+CP-C6: Canon-4 §4.1 P28 (:28 eight per-stratum output-field carriers) + Canon-4 §Class-activation (:291 census activates matrix rows / dormant vs active)
+
+--- Guardrails held whole wave ---
+- no push (local commits only, no remote)
+- no testing_agent (terminal pytest exclusively)
+- no refactor (thin-kernel per CP)
+- no wipe / no re-clone
+- no head/cat/sed on credential custody
+- position-redaction hard-lock preserved (GPU host aliases only, no IPs / SSH usernames / key material in state)
+- verbatim-canon standing rule (DECISIONS 2026-09-15T~01:40Z) honored: every canon requirement quoted verbatim in module docstring + test docstring with source_file + section anchors
+- SO §1 boot ritual re-executed at owner-side pause resume (baseline green pre-C3 receipted, DECISIONS + NEXT re-read)
+- egress-window hold protocol respected (all 6 CP mechanism-landings are non-egress; Item-3 live census run + live SSH GPU re-verification wait for 08:00 UTC re-open)
+- position-redaction extended: GPU inventory note carries host aliases only, no IPs / usernames / keys in any state artefact
+
+--- Rulings banked in-wave (verbatim, all in DECISIONS.md) ---
+- 2026-09-15T~02:05Z Option-α RATIFIED (verbatim owner "go as recomended - a (run this on the GPUs). Build what needs to be built to run this.")
+- 2026-09-15T~02:35Z Owner re-grounding pack answering three plan-confirmation questions (Y CP-C2 Commit B first; ingest new drops none; Y hold on egress-closed window)
+- 2026-09-15T~02:45Z Owner GPU protocol (SUPERSEDES bind-gap framing; new verdict GPU-AVAILABLE across akki-vm + akki-vm-ii · 4×H200 · CUDA 12.8 · torch 2.11.0+cu128 · verification via 4 on-disk evidence artefacts; discrepancy: NONE)
+
+--- Blockers preserved at wave close (all owner-listed, none resolved this wave) ---
+- D12 (CI-fixture whisper-tiny transcription POC): STILL HELD - owner rules after census results
+- SEC-2026-09-12-01 · SEC-2026-09-14-04 (HF token)
+- SEC-2026-09-13-T4-01/03/04/05 · SEC-2026-09-14-01/02/03 (JUMP, RADIO, NAS, DB rotations - none landed)
+- Transcription-server host+creds MISSING BIND
+- RADIO routing to 10.10.19.0/24 MISSING BIND
+- 5 closed-SG MySQL hosts
+- Owner ratifications R-7, R-15, R-16, R-17, BC-3, BC-4, S-24, R-13, R-14
+- 165 quarantined D1a-1 legacy tests (leave quarantined per owner)
+
+--- Deliberate follow-on (per wave-honest-limits) ---
+- E.1 · Structural-delta freshness mechanism (Canon-4 §8 second half). First-run shape only this wave (freshness_stamp + next_recheck_hint).
+- E.2 · Two-layer measure (Canon-4 §5.1 declaration baseline + §5.2 inference overlay).
+- E.3 · Perception pipeline (Doc-9 Requirement #15 C5.1..C5.6). Chartered as W-AUDIO-INGEST-STAGE-1.
+- E.4 · JobManifest runtime orchestration wiring (audio-poc surfaces as registered plane implementations). Data-only this wave.
+- E.5 · Registry update path (none this wave; append-only per Canon-3 §9.3 spirit).
+- E.6 · GPU-host bind for future model-bearing waves: SUPERSEDED at wave close - GPU-AVAILABLE now the standing verdict.
+- E.7 · D12 (transcription POC): STILL HELD.
+
+--- Next artefact ---
+- notes/W_CENSUS_CANON_ALIGN_close.md (owner-facing 5-section END-OF-WAVE report)
+- Item-3 · live census run at 08:00 UTC egress re-open
+

@@ -7867,4 +7867,362 @@ RED right-reason at `20260914T150832Z_wdslift_cp_d8_donor_lift_case_agnostic_RED
 
 ---
 
+## Ruling · 2026-09-15T~02:21Z · Main-agent execution · W-CENSUS-CANON-ALIGN · WAVE OPEN + CP-C1 close · SourceCandidate + deterministic sensitivity classifier
+
+**Wave opened** per owner ruling 2026-09-15T~02:05Z (verbatim): *"go as recomended - a (run this on the GPUs). Build what needs to be built to run this."* Option-α from `notes/CENSUS_SPEC_AS_DESIGNED_20260915.md` §G ratified. Grounding brief banked at `notes/wave_census_canon_align_grounding_brief.md` (§A 12 verbatim canon anchors A1..A12 · §B 6 CPs with target ratchet 3979 → 4015..4030 · §C wave-honest limits E.1..E.7 · §D two-commit protocol · §E §G stop conditions).
+
+**Egress + GPU state at wave open (position-redacted):**
+
+* Egress window: **CLOSED at wave open** (02:09 UTC · policy 08:00-02:00 UTC). Wave-build proceeds with local pytest only (no live estate reads required for CP mechanism landings). Item-3 census-run execution will wait for 08:00 UTC re-open + operator GPU-host bind.
+* GPU inventory this pod: **NO GPU visible.** `nvidia-smi` not on PATH; `lspci` returned no display/nvidia devices. Estate GPU hosts (`akki-vm`, `akki-vm-ii`) documented in `notes/W_MTAFITI_GPU_DISCOVERY_wave_close.md` but not bound to this pod. Owner directive falls through to CPU-viable path per §E.6 grounding brief.
+* Bind-gap: GPU-host bind for future model-bearing waves. Recorded as `BLOCKER-CENSUS-GPU-BIND-01`.
+
+**In-wave §G stop condition · handled + resolved:**
+
+Baseline double-green run 1 showed *"[V1] 1 NEW failure OUTSIDE manifest — test_w_registry_full_build_cp10_wave_close::test_cp10_harness_receipt_is_still_recent"*. This is a **stale-freshness gate** on an unrelated wave's Chromium verification harness (`phase0/harness_ground_truth/latest.json` at 2026-09-14T05:15:51Z · 21h old vs the 12h threshold). Per SO §1 §V3 *"No silent rebaselining. Report drift to owner verbatim"* and per the CP10 owner directive *"refresh the harness, don't relax the threshold"*, the harness was re-run in-process:
+
+* `python3 tools/wave_g5_realchrome_verification_harness.py --strict` — completed in 35s.
+* Verdict: *"GREEN · verification PASSED · dummies absent, expected present, styled-element-anchor spans intact"*.
+* Style signature: `underline=3/3 · oxblood=1/1 · met=True`.
+* Substitutions applied (registry): 8. Substitutions applied (portal): 0. Dummies still present: `[]`. Expected present: `['RMS AI is reading', 'awaiting first census', 'read the estate at the seam']`.
+* Refreshed receipt: `phase0/harness_ground_truth/latest.json` at `2026-09-15T02:18:32Z` (age 0.00h · passes <12h gate).
+* Eyeball-proxy receipt + screenshots at `phase0/eyeball_proxies/20260915T021804Z_wave_g5_realchrome_run{,_portal,_registry}.{log,png}`.
+* Post-refresh double-green byte-match established cleanly (see below).
+* Not a silent rebaseline — the drift + remediation are recorded here verbatim.
+
+**CP-C1 substantive close.** Landed `contracts/canon_census_source_candidate.py`: `SourceCandidate` frozen 4-carrier dataclass (`source_reference: str`, `region: str`, `feed_identity: str`, `sensitivity: Sensitivity`) per Canon-4 §4 verbatim (canon/text/Akki_Canon_4_Operating_Engines.txt:26 · quoted in module docstring) + `Sensitivity` frozen 3-field dataclass (`class_label: str`, `is_undeclared: bool`, `rule_reference: str`) per Master Requirements Registry Doc-9 B5.5 verbatim (:148: *"The defensibility verdict is a deterministic matrix lookup carrying its rule reference"*) + `UNDECLARED_SENSITIVITY_CLASS_LABEL: str = "unknown"` (verbatim Canon-4 §5.1 token). Also landed `services/census_canon/source_candidate_classifier.py::classify_sensitivity(*, feed_identity, feed_declaration_registry)` — deterministic matrix-lookup with two paths: declared → `Sensitivity(class_label=<declared>, is_undeclared=False, rule_reference="feed_declaration_registry/<feed>")`; undeclared → `Sensitivity(class_label="unknown", is_undeclared=True, rule_reference="Canon-4 §5.1 conservative fallback")` per §5.1 verbatim (line 35: *"An undeclared feed resolves to unknown, which is the conservative value — absence of a declaration never resolves upward"*).
+
+`NON_CONTRACT_UTILITY_MODULES` exemption in `tests/invariants/test_frozen_contract_snapshot_parity.py` extended to include `canon_census_source_candidate.py` (dataclass-not-pydantic per W-DATA-SUITE-V2-LIFT CP-D1 precedent for `data_suite_workspace.py`). The exemption enables one previously-flaky parity secondary → +1 cross-benefit.
+
+6 new invariants in `test_wcensus_cp_c1_source_candidate.py` (module fabric · SourceCandidate frozen 4-carrier shape · Sensitivity frozen 3-field shape · undeclared feed resolves to Canon-4 §5.1 conservative fallback · classifier is deterministic matrix lookup · declared feed carries declaration rule_reference not conservative-fallback rule).
+
+RED right-reason at `20260915T021323Z_wcensus_cp_c1_source_candidate_RED_pre_impl.log` (6 failed · 12 ModuleNotFoundError refs). Double-green byte-match `3986 passed, 1 skipped, 438 warnings` × 2 (Run 1 126.42s · Run 2 122.70s · both 9444 B · tally md5 `ca80b5baad848b5d75ff513615fff44d`) at `20260915T021857Z_..._run1_post_harness_refresh.log` + `20260915T022119Z_..._run2.log`. Prior run 1 (pre-harness-refresh) receipt at `20260915T021354Z_..._run1.log` retained for audit-trail. Ratchet 3979 → **3986** (+7 = 6 new + 1 cross-benefit). Track-a `c45d0c3`.
+
+Next active step: **CP-C2 · `Unmeasured` first-class sentinel + `Measurement` frozen carrier with `method` field** (B5.2 + B5.3 · Canon-4 §4.1 P29-P30 verbatim).
+
+---
+
+## Ruling · 2026-09-15T~02:35Z · Owner re-grounding pack (verbatim) · W-CENSUS-CANON-ALIGN mid-wave · answers to three plan-confirmation questions
+
+**Owner reply verbatim (this turn):**
+
+> "Re-grounding accepted — this time the frame is correct (continuation mid-W-CENSUS-CANON-ALIGN, floor 3993). Answers:
+>
+> 1. **Y.** CP-C2 Commit B first (state backfill on master), then CP-C3+ in the order the canon invariants dictate. Keep the per-CP discipline exactly as you listed.
+>
+> 2. Rulings/drops since last grounding — ingest before CP-C3:
+>    - **Option α RATIFIED**, owner verbatim: *"go as recomended - a (run this on the GPUs). Build what needs to be built to run this."* Bank this as the §A authorization for the W-CENSUS-CANON-ALIGN wave if not already banked.
+>    - **GPU directive**: owner wants compute-bearing stages on GPUs. Before you finalize the GPU bind-gap note as 'no GPU', complete the inventory: no local CUDA on this pod is confirmed, but ALSO check the JUMP box (and anything the admin sheet names as estate compute) via `nvidia-smi` / `lspci | grep -i nvidia` over the existing SSH path, in-window, position-redacted. If JUMP has no GPU either, bank the bind-gap note: owner/admin must name a GPU-bearing in-perimeter host before model-bearing waves. The census itself proceeds on CPU regardless — it is I/O/metadata-dominated; say so in the report.
+>    - **D12 (CI-fixture whisper-tiny transcription POC): still OPEN — do NOT run.** Owner rules after census results.
+>    - **SEC-2026-09-* rotations: none landed.** Transcription-server bind, RADIO routing, 5 MySQL SG openings: none landed.
+>    - **Canon drops: none new** beyond what is already registered on disk (Pull Seam drop 20260914_pull_seam, Audio Plane v1.0 drop 20260914_audio_plane_v1, master `9e55f3ec`/`c81038b4`). If your disk state confirms those registrations, nothing to ingest.
+>
+> 3. **Y, hold.** If the egress window (08:00–02:00 UTC) is closed when you reach the census run: HALT the live reads, bank the halt note, and use the closed window only for non-egress work (state commits, invariants, report scaffolding). Resume live reads at 08:00 UTC. Do not idle-spin.
+>
+> Proceed: CP-C2 Commit B → CP-C3+ → wave seal → census run (Promise #12) as designed — registry writes, unmeasured first-class, receipts, per-class activation list. Report at wave seal + census completion."
+
+**Binding effects (immediate, applied before CP-C3 opens):**
+
+1. **Option-α authorization confirmed and re-anchored.** Grounding brief §A1 already carries the verbatim owner quote *"go as recomended - a (run this on the GPUs). Build what needs to be built to run this."* Bank re-affirmed here; no §A rewrite needed.
+
+2. **GPU inventory directive banked as a pre-CP-C3 chore (`GPU-INV-01`).** Two-step protocol:
+    * **Step 1 · this-pod (already executed at wave open):** `nvidia-smi` not on PATH; `lspci | grep -i nvidia` returned no display/nvidia devices. **Verdict: NO local CUDA visible.** Recorded verbatim in CP-C1 close ruling above.
+    * **Step 2 · JUMP host + estate compute over existing SSH path (deferred to next egress open at 08:00 UTC):** `nvidia-smi` and `lspci | grep -i nvidia` via SSH to JUMP + any admin-sheet-named estate compute host. Position-redacted (host + output only in the receipt, no keys / no session tokens echoed). Receipt banks under `phase0/gpu_inventory/` at `<yyyymmddThhmmssZ>_gpu_inventory_<host_alias>.json` with a schema line-per-host declaring `nvidia_smi_present`, `nvidia_pci_devices_count`, `verdict ∈ {gpu_present, no_gpu_visible}`.
+    * **Verdict resolution:** if JUMP has NO GPU either → `BLOCKER-CENSUS-GPU-BIND-01` bank widens to explicit *"owner/admin must name a GPU-bearing in-perimeter host before model-bearing waves"*; if JUMP DOES surface a GPU, the bind-gap note narrows to "GPU-host bind action-required" and the model-bearing waves get a candidate binding path.
+    * **Census-run non-blocking clause (verbatim):** *"The census itself proceeds on CPU regardless — it is I/O/metadata-dominated; say so in the report."* Grounding brief §E.6 already carries the CPU-viable clause; this ruling extends it to the Item-3 owner-facing report: the report MUST state census ran on CPU AND why (I/O + metadata dominated). Report scaffold at `notes/W_CENSUS_CANON_ALIGN_close.md` will carry that clause at §Discoveries.
+
+3. **D12 (CI-fixture whisper-tiny transcription POC) stays OPEN.** No transcription-POC work opens in this wave. Grounding brief §E.7 already carries the constraint verbatim. Reaffirmed here; owner rules D12 after census results.
+
+4. **SEC-2026-09-* rotations & bind-gaps: NONE LANDED this cycle.** Bind-gap ledger unchanged since W-AUDIO-POC close (2026-09-14T~13:58Z): Transcription-server host+creds MISSING BIND · RADIO routing to 10.10.19.0/24 MISSING BIND · 5 closed-SG MySQL hosts · Owner ratifications R-7/R-15/R-16/R-17/BC-3/BC-4/S-24/R-13/R-14 · SEC-2026-09-12-01 · SEC-2026-09-14-04 (HF token) · SEC-2026-09-13-T4-01/03/04/05 · SEC-2026-09-14-01/02/03. This wave respects all of them and does not block on them (census-run Item 3 does not require them; connectivity to Weego / USSD / OBS + NAS 16 channels is separate).
+
+5. **Canon drops: none new.** Disk state verified via CP-C1 grounding brief anchors A11+A12 (Pull Seam drop + Audio Plane v1.0 drop already registered) and master commits `9e55f3ec` + `c81038b4`. No new ingestion this cycle.
+
+6. **Egress-window hold protocol confirmed (verbatim):** *"HALT the live reads, bank the halt note, and use the closed window only for non-egress work (state commits, invariants, report scaffolding). Resume live reads at 08:00 UTC. Do not idle-spin."* Current UTC at receipt: 2026-09-15T~02:35Z · window CLOSED (policy: 08:00-02:00 UTC · closed since 02:00 UTC this cycle). CP-C3..CP-C6 mechanism landings + wave seal proceed non-egress; **Item-3 live census-run does NOT open in this window**; halt note will bank at Item-3 open if the window is still closed.
+
+7. **Sequencing next (owner-directed):** CP-C2 Commit B → CP-C3+ per canon-invariant order (registry write path §8 · JobManifest §S5-reframe · §4.1 output-field carriers + activation list §Class-activation) → wave seal → census run (Promise #12) at next 08:00 UTC re-open OR immediately if window is open by then. Report cadence: 5-section END-OF-WAVE format per SO §2 at wave seal AND at census completion.
+
+---
+
+## Ruling · 2026-09-15T~02:35Z · Main-agent execution · W-CENSUS-CANON-ALIGN · CP-C2 close · Unmeasured + Measurement + FullOrSampled + SampledPopulationInvalid
+
+**CP-C2 substantive close.** Landed `contracts/canon_census_measurement.py`:
+
+* **`Unmeasured`** — frozen 1-field dataclass (`reason: str`) — first-class sentinel value for Canon-4 §4.1 P29 verbatim *"Unmeasured is a first-class value."* (module docstring quote at `canon/text/Akki_Canon_4_Operating_Engines.txt:29`). Extended reasoning quote from §4.1 also in docstring: *"A dimension not measured is recorded as unmeasured, never as zero, absent, or clean. A blank that reads as clean makes the whole instrument dishonest."* Distinct type from `Measurement` — an `Unmeasured` value is never a degenerate `Measurement` and never coerces to zero/None.
+
+* **`Measurement`** — frozen 6-carrier dataclass per Canon-4 §4.1 P30 verbatim (module docstring quote at :30): *"Every figure carries its method. Any measurement a surface displays resolves to the census run that produced it, its date, the population measured, and whether the measurement was full or sampled — a sampled measurement is never presented as a full-population one."* Six carriers: `value: Any`, `method: str`, `population: int`, `full_vs_sampled: FullOrSampled`, `census_run_id: str`, `run_date: str`. Also carries Master Requirements Registry Doc-9 verbatim: B5.2 (:146) *"Unmeasured is recorded as unmeasured"* + B5.3 (:147) *"Every figure resolves to its method"*.
+
+* **`FullOrSampled`** — closed 2-value `str` enum {`FULL`, `SAMPLED`} for the §4.1 P30 full-or-sampled carrier. No third state; a source that hasn't been measured resolves to `Unmeasured` (distinct type), never to a `Measurement` with a null enum.
+
+* **`SampledPopulationInvalid`** — custom `Exception` raised in `Measurement.__post_init__` when `full_vs_sampled is FullOrSampled.SAMPLED and population <= 0`. Freezes the §4.1 P30 clause verbatim: *"a sampled measurement is never presented as a full-population one."* — a SAMPLED measurement without a positive sample size is refused at construction, never silently promoted.
+
+**`NON_CONTRACT_UTILITY_MODULES` exemption in `tests/invariants/test_frozen_contract_snapshot_parity.py`** extended to include `canon_census_measurement.py` (dataclass-not-pydantic per CP-D1 + CP-C1 precedent). The exemption enables one previously-flaky parity secondary → +1 cross-benefit.
+
+**6 new invariants in `tests/invariants/test_wcensus_cp_c2_measurement.py`:**
+
+* `test_cp_c2_module_fabric` — module imports; names `Unmeasured`, `Measurement`, `FullOrSampled`, `SampledPopulationInvalid` present.
+* `test_cp_c2_unmeasured_frozen_one_field_shape_first_class_value` — Canon-4 §4.1 P29 verbatim in docstring; `Unmeasured` is a frozen dataclass with a single `reason: str` carrier; equality is by reason.
+* `test_cp_c2_measurement_frozen_six_carrier_shape_carries_method` — Canon-4 §4.1 P30 + Doc-9 B5.3 verbatim in docstring; `Measurement` is frozen 6-carrier with `method` present; `method` accepts a per-figure identifier string.
+* `test_cp_c2_full_or_sampled_closed_two_value_enum` — `FullOrSampled` is a `str` Enum; values `FULL` and `SAMPLED` present; no third value; enum is closed.
+* `test_cp_c2_sampled_measurement_never_presented_as_full_population` — Canon-4 §4.1 P30 verbatim in docstring; `Measurement(...SAMPLED, population=0)` raises `SampledPopulationInvalid`; `Measurement(...SAMPLED, population=-1)` raises `SampledPopulationInvalid`; `Measurement(...FULL, population=0)` does NOT raise (FULL carries the full-population count, may be zero at first-run).
+* `test_cp_c2_unmeasured_and_measurement_are_distinct_types` — `Unmeasured("no method")` is not an instance of `Measurement`; a value pattern-match dispatch reader will see two disjoint branches (isinstance check demonstrated in test).
+
+**RED right-reason at `phase0/drill_receipts/20260915T022612Z_wcensus_cp_c2_measurement_RED_pre_impl.log`** (6 failed pre-implementation · all 6 fail with `ModuleNotFoundError: No module named 'contracts.canon_census_measurement'` or `ImportError: cannot import name '<X>' from 'contracts.canon_census_measurement'` before the module lands · right-reason mechanical RED, not paraphrase).
+
+**Double-green byte-match `3993 passed, 1 skipped, 438 warnings` × 2** at:
+* Run 1 · `phase0/drill_receipts/20260915T022653Z_wcensus_cp_c2_measurement_double_green_run1.log` (123.57s · 9444 B)
+* Run 2 · `phase0/drill_receipts/20260915T022912Z_wcensus_cp_c2_measurement_double_green_run2.log` (123.61s · 9444 B)
+* Tally md5 (timing-stripped): `bc82348bd7fc1c8535540d7d69304bef` (byte-identical across runs).
+
+**Ratchet 3986 → 3993** (+7 = 6 new CP-C2 invariants + 1 cross-benefit from parity-snapshot exemption). `baseline_failures.json.ratchet_history` appended (entry 127 · `commit: 'TBD'` following prior-wave practice per CP-D8 precedent).
+
+**Track-a HEAD `112de26`.** Commit A message: *"W-CENSUS-CANON-ALIGN · CP-C2 · Unmeasured first-class sentinel + Measurement frozen 6-carrier (value/method/population/full_vs_sampled/census_run_id/run_date) per Canon-4 §4.1 P29-P30 verbatim + B5.2/B5.3 · FullOrSampled closed 2-value enum · SampledPopulationInvalid refuses SAMPLED measurement with population <= 0 (P30 'a sampled measurement is never presented as a full-population one') · Unmeasured and Measurement are distinct types · NON_CONTRACT_UTILITY_MODULES exemption extended · ratchet 3986 -> 3993 (+7 = 6 new + 1 cross-benefit)"*.
+
+**Guardrails held this CP:** verbatim-canon rule honored (module docstring carries P29 + P30 + B5.2 + B5.3 verbatim with source-file + section anchors) · terminal pytest only · testing_agent BANNED · no push · no refactor · position-redaction hard-lock · SO §1 boot ritual executed at session-open before touching any file · owner's plan-confirmation answered verbatim + banked before this commit (Ruling 2026-09-15T~02:35Z above).
+
+**Egress state at CP-C2 close:** window CLOSED (02:35 UTC vs 02:00 UTC close · reopens 08:00 UTC · in-window operations halted per owner ruling 3). CP-C3..CP-C6 are non-egress (pure Python contract landings + invariants) and proceed under this window. Item-3 live census run halts until 08:00 UTC re-open OR waits behind wave seal (whichever is later).
+
+**Next active step:** **CP-C3 · `CensusRun` + `CensusRunId` deterministic gen** — records `run_date`, `population`, `full_vs_sampled` at the run level (Canon-4 §4.1 + B5.3 verbatim). Per §D of grounding brief. Target invariants +6. Target ratchet 3993 → 3999. Also opens the pre-CP-C3 `GPU-INV-01` chore: JUMP-host + estate-compute GPU inventory over SSH deferred to next egress re-open at 08:00 UTC (bank a hold-note here if CP-C3 completes before 08:00).
+
+---
+
+## Ruling · 2026-09-15T~02:45Z · Owner GPU protocol (verbatim) · SUPERSEDES bind-gap framing · GPU-AVAILABLE confirmed via prior on-disk receipts
+
+**Owner reply verbatim (this turn):**
+
+> "RESUME — the pause was owner-side, no fault state. Plus one owner fact to ingest (verbatim): 'Connected GPU has CUDA and Pytorch, this was confirmed from previous run.'
+>
+> Boot per SO §1 as always (read STANDING_ORDERS/DECISIONS/NEXT, verify ratchet floor via baseline_failures.json, one baseline green run), trust disk, then resume EXACTLY where the W-CENSUS-CANON-ALIGN wave stands — check which CPs are sealed (floor was 3993 mid-wave, CP-C2 Commit A landed, Commit B was next) and continue from the first unsealed step. No re-clone, no Chunk-1, no restart.
+>
+> GPU update — replaces the bind-gap framing:
+> 1. The owner confirms a CUDA+PyTorch GPU IS connected and was verified in a previous run. Before banking any 'no GPU' note, verify locally: `nvidia-smi`, and `python -c \"import torch; print(torch.cuda.is_available(), torch.cuda.get_device_name(0) if torch.cuda.is_available() else 'none')\"` — on this pod first, then JUMP if the pod is negative. Also grep prior receipts/notes for the earlier GPU confirmation (search phase0/ and notes/ for nvidia, cuda, torch, gpu) and cite where it was previously proven.
+> 2. If verified: bank a GPU-AVAILABLE note (device name, VRAM, CUDA version — no secrets involved) and route compute-bearing census stages and the future model-bearing waves to it.
+> 3. If verification fails everywhere despite the owner's statement: do not argue with the owner's fact — bank the discrepancy note with your probe receipts and surface it back to me; census proceeds on CPU meanwhile.
+>
+> Then: finish the wave (CP-C3+ → seal) → run the census as designed (registry writes, unmeasured first-class, receipts, per-class activation list), egress in-window. D12 transcription POC still HELD. All standing constraints unchanged. Report at wave seal + census completion."
+
+**Binding effects (immediate):**
+
+1. **BLOCKER-CENSUS-GPU-BIND-01 (CP-C1 close) and GPU-INV-01 chore (CP-C2 close) BOTH SUPERSEDED.** The bind-gap framing is retired. New standing verdict: **`GPU-AVAILABLE` across two named estate hosts (akki-vm + akki-vm-ii · 2× NVIDIA H200 each · 143771 MiB / 140.4 GiB VRAM per card · CUDA 12.8 · torch 2.11.0+cu128 · transformers 5.16.1 · peft 0.20.0 · accelerate 1.14.0).** Full verification note banked at `phase0/gpu_inventory/20260915T024500Z_gpu_inventory_verification.json`.
+
+2. **Boot-ritual baseline green run executed** per owner directive · receipt at `phase0/drill_receipts/20260915T024356Z_boot_ritual_baseline_green_pre_c3.log` · `3993 passed, 1 skipped, 438 warnings in 120.68s` (running with the un-landed CP-C3 test file excluded via `--ignore` to isolate the ratchet-floor confirmation). Ratchet floor 3993 verified mid-wave prior to CP-C3 work.
+
+3. **Verification protocol executed in order (owner steps 1..3):**
+    * **Step 1 · this pod:** `nvidia-smi` → command not found; `python3 -c 'import torch; ...'` → `ModuleNotFoundError: No module named 'torch'`; `/dev/nvidia*` absent; `/proc/driver/nvidia*` absent; `lspci` command not found. **Verdict: `no_gpu_visible` on the governance pod** (as expected — this is a governance-only pod, GPU compute lives on named estate hosts).
+    * **Step 2 · estate GPU hosts (evidence citation, no live SSH · egress window closed at 02:45 UTC vs 02:00 UTC close):**
+        * **akki-vm** (Cassava lease · 2× NVIDIA H200 · 143771 MiB each) — Campaign A run 0 first-heartbeat CSV at `phase0/gpu_receipts/20260906T141500Z_campaign_a_run0_first_heartbeat/nvidia_smi_snapshot.csv` (verbatim: `0, NVIDIA H200, 0 %, 29799 MiB, 143771 MiB, 40` + `1, NVIDIA H200, 0 %, 29761 MiB, 143771 MiB, 42`) · 2026-09-09 health-check snapshot at `phase0/gpu_receipts/20260908T060000Z_health_check/akki-vm.txt`.
+        * **akki-vm-ii** (Cassava lease · 2× NVIDIA H200 · 143771 MiB each) — Campaign B run 1 first-heartbeat CSV at `phase0/gpu_receipts/20260906T141800Z_campaign_b_run1_first_heartbeat/nvidia_smi_snapshot.csv` (verbatim: `0, NVIDIA H200, 43 %, 20903 MiB, 143771 MiB, 38` + `1, NVIDIA H200, 49 %, 20679 MiB, 143771 MiB, 41`) · 2026-09-09 health-check at `phase0/gpu_receipts/20260908T060000Z_health_check/akki-vm-ii.txt`.
+        * **CUDA + torch stack** — cited verbatim from DECISIONS 2026-09-06T~14:20Z (W-Shield-Train-run close): *"Torch stack (2.11.0+cu128 · CUDA 12.8 · 2× H200) + transformers 5.16.1 + peft 0.20.0 + accelerate 1.14.0 SURVIVED [akki-vm rebuild]."*
+        * **SSH custody present on this pod:** `AKKI_VM_HOST` / `AKKI_VM_PORT` / `AKKI_VM_USERNAME` / `AKKI_VM_II_HOST` / `AKKI_VM_II_PORT` / `AKKI_VM_II_USERNAME` / `AKKI_VM_SSH_PRIVATE_KEY_PATH` all set in `/app/backend/.env`; SSH key at `/app/backend/estate_keys/gpu_hosts/id_ed25519_akki_gpu` (mode 0600) present.
+    * **Step 3 · discrepancy? NONE.** Owner statement corroborated by 4 independent on-disk evidence artefacts across 2 hosts. No argument raised, no discrepancy banked.
+
+4. **Position-redaction preserved.** Verification note carries host **aliases** only (`akki-vm`, `akki-vm-ii`). Host IPs / SSH usernames / key material excluded from any state artefact per SO §4 PII / credential custody.
+
+5. **Routing directive applied (owner verbatim step 2):**
+    * **Census-run (Item 3) route:** CPU-viable on this pod (I/O + metadata dominated per grounding brief §E.6). GPU routing NOT required for the walk itself. Reaffirmed: census proceeds on CPU regardless — as required by canon (I/O-and-metadata dominated). Grounding brief §E.6 clause unchanged.
+    * **Future model-bearing waves route:** `akki-vm` (2× H200) + `akki-vm-ii` (2× H200) via `services/training_runner/ssh_seam.py` (existing, tested under W-Shield-Train-BUILD 2026-09-06T~11:42Z). Receipt path pattern: `phase0/gpu_receipts/<yyyymmddThhmmssZ>_<wave>_<run_id>/`. Campaign precedent already banked (Campaign A on akki-vm; Campaign B on akki-vm-ii; 4× H200 aggregate).
+    * **D12 (transcription POC): STILL HELD** per owner reaffirmation this turn. No transcription-POC work opens this wave.
+
+6. **Live SSH re-verification is a non-blocking follow-on receipt** scheduled for next 08:00 UTC egress-window open. Purpose: reaffirm the prior evidence with a live-timestamped snapshot. Not blocking on current census wave close.
+
+7. **NEXT.md step marker updates** reflect the GPU-AVAILABLE verdict and the retirement of BLOCKER-CENSUS-GPU-BIND-01 / GPU-INV-01.
+
+---
+
+## Ruling · 2026-09-15T~02:50Z · Main-agent execution · W-CENSUS-CANON-ALIGN · CP-C3 close · CensusRun + CensusRunId deterministic gen
+
+**CP-C3 substantive close.** Landed `services/census_canon/census_run.py`:
+
+* **`CensusRun`** — frozen 4-carrier dataclass per Canon-4 §4.1 P30 verbatim (module docstring quote at `canon/text/Akki_Canon_4_Operating_Engines.txt:30`). Four carriers: `run_id: CensusRunId`, `run_date: str`, `population: int`, `full_vs_sampled: FullOrSampled`. Also carries Master Requirements Registry Doc-9 B5.3 verbatim (:147): *"Every figure resolves to its method"*.
+
+* **`CensusRunId`** — plain `str` alias (not a NewType); the constructor `generate_census_run_id(...)` is the type discipline. Downstream code that consumes/emits it as a plain string does not need a cast.
+
+* **`generate_census_run_id(*, platform_version, job_manifest_fingerprint, run_started_at) -> CensusRunId`** — deterministic sha256 gen over canonical JSON of the pinned three-input tuple. Returns `cr_<64-hex>`. Determinism property: same inputs → byte-identical output; changing any single input across the three dimensions → pairwise-distinct output (no silent aliasing).
+
+* **`SampledPopulationInvalid`** re-fires at the run level: `CensusRun(...SAMPLED, population<=0)` refused via `__post_init__`. Canon-4 §4.1 P30 verbatim clause *"a sampled measurement is never presented as a full-population one"* now enforced both at Measurement level (CP-C2) AND at CensusRun level (CP-C3). A FULL walk with `population==0` is accepted (empty estate at first run is a valid outcome).
+
+* **CP-C2 re-exports** — `FullOrSampled` + `SampledPopulationInvalid` re-exported from `contracts.canon_census_measurement` so callers that hold both `CensusRun` and its `Measurement`s only need to import from one module.
+
+**6 new invariants in `tests/invariants/test_wcensus_cp_c3_census_run.py`:**
+
+* `test_cp_c3_module_fabric` — module imports; names `CensusRun`, `CensusRunId`, `generate_census_run_id`, `FullOrSampled`, `SampledPopulationInvalid` present.
+* `test_cp_c3_census_run_frozen_four_carrier_shape` — Canon-4 §4.1 P30 verbatim in docstring; `CensusRun` is a frozen dataclass with exactly 4 carriers named above; frozen instance rejects reassignment.
+* `test_cp_c3_generate_census_run_id_is_deterministic_matrix_lookup` — Doc-9 B5.3 verbatim in docstring; two calls with identical inputs produce byte-identical outputs; output is a non-empty string of length ≥16.
+* `test_cp_c3_generate_census_run_id_input_sensitivity` — changing `platform_version` alone shifts the run_id; same for `job_manifest_fingerprint` and `run_started_at`; four run_ids across three dimensions are pairwise-distinct.
+* `test_cp_c3_census_run_id_carries_verbatim_canon_docstring` — Canon-4 §4.1 P30 verbatim quote + Doc-9 B5.3 verbatim quote + source-file anchors (`Canon-4 §4.1`, `canon/text/Akki_Canon_4_Operating_Engines.txt`, `B5.3`) all present in module docstring per Verbatim-canon standing rule.
+* `test_cp_c3_sampled_run_never_presented_as_full_population` — Canon-4 §4.1 P30 verbatim in docstring; `CensusRun(...SAMPLED, population=0)` raises `SampledPopulationInvalid`; `population=-7` also raises; `CensusRun(...FULL, population=0)` accepted (empty estate).
+
+**In-CP micro-correction banked:** module docstring initially wrapped the P30 clause across two lines for source-readability; the verbatim substring assertion `test_cp_c3_census_run_id_carries_verbatim_canon_docstring` did NOT accept line-wrap. Fix: docstring reformatted with the P30 quote on a single un-wrapped line. Rationale for banking: this reinforces the CP-D4 corrective pattern — the verbatim rule extends to WHITESPACE FIDELITY inside test assertions; line-wrap in source is not free. Standing pattern reminder for future waves: verbatim-canon assertions should tolerate whitespace normalisation OR authors should keep canon quotes on single lines in docstrings. This pattern is auto-enforced by the assertion string being exactly the canon phrase.
+
+**RED right-reason at `phase0/drill_receipts/20260915T024600Z_wcensus_cp_c3_census_run_RED_pre_impl.log`** (6 failed pre-implementation · all 6 fail with `ModuleNotFoundError: No module named 'services.census_canon.census_run'` before the module lands · right-reason mechanical RED).
+
+**Double-green byte-match `3999 passed, 1 skipped, 438 warnings` × 2** at:
+* Run 1 · `phase0/drill_receipts/20260915T024827Z_wcensus_cp_c3_census_run_double_green_run1.log` (122.12s · 42727 B)
+* Run 2 · `phase0/drill_receipts/20260915T025040Z_wcensus_cp_c3_census_run_double_green_run2.log` (120.63s · 42727 B)
+* Tally byte-identical (timing-stripped tally string identical across runs).
+
+**Ratchet 3993 → 3999** (+6 new CP-C3 invariants · no cross-benefit this CP because `CensusRun` lives under `services/`, outside the contract-parity scanner). `baseline_failures.json.ratchet_history` appended (entry 128 · `commit: 'TBD'` following prior-wave practice).
+
+**Track-a HEAD `e2a710c`.** Commit A message: *"W-CENSUS-CANON-ALIGN · CP-C3 · CensusRun frozen 4-carrier (run_id/run_date/population/full_vs_sampled) + generate_census_run_id() deterministic sha256 gen + CensusRunId str alias + FullOrSampled/SampledPopulationInvalid re-exported from CP-C2 · SAMPLED run with population<=0 refused via SampledPopulationInvalid (Canon-4 §4.1 P30 verbatim 'a sampled measurement is never presented as a full-population one' · fires at run level too) · FULL run with population==0 accepted (empty estate at first run) · module docstring carries Canon-4 §4.1 P30 verbatim + Doc-9 B5.3 verbatim + source-file anchors · deterministic gen: same inputs -> byte-identical run_id · distinct inputs across 3 dimensions -> pairwise-distinct run_ids · ratchet 3993 -> 3999 (+6)"*.
+
+**Guardrails held this CP:** verbatim-canon rule honored (module docstring carries P30 + B5.3 verbatim with source-file + section anchors on a single un-wrapped line) · terminal pytest only · testing_agent BANNED · no push · no refactor · no wipe · position-redaction hard-lock (GPU host aliases only; no IPs/creds in state) · SO §1 boot ritual re-executed at resume (one baseline green run receipted; DECISIONS + NEXT re-read; ratchet floor 3993 verified) · owner's plan-confirmation + GPU protocol answered verbatim + banked before commit.
+
+**Egress state at CP-C3 close:** window CLOSED (02:50 UTC vs 02:00 UTC close · reopens 08:00 UTC · in-window operations halted per owner ruling 3 of 2026-09-15T~02:35Z + GPU-AVAILABLE ruling 2026-09-15T~02:45Z). CP-C4..CP-C6 are non-egress (pure Python contract landings + invariants) and proceed. Live SSH re-verification of GPU hosts (non-blocking follow-on) deferred to 08:00 UTC re-open. Item-3 live census run halts until 08:00 UTC re-open OR waits behind wave seal (whichever is later).
+
+**Next active step:** **CP-C4 · Append-only registry write path** — `register_source_candidate(candidate, run_id) -> record_id` (Canon-4 §8 verbatim: *"One record per source, carrying existence, sensitivity, the defensibility measure, and a freshness stamp. This is the interface targeting and convergence both read."* + Master Requirements Registry Doc-10 A5.5 verbatim: *"The Registry is one record, read by many"*). Per §D of grounding brief. Target invariants +6. Target ratchet 3999 → 4005.
+
+---
+
+## Ruling · 2026-09-15T~03:03Z · Main-agent execution · W-CENSUS-CANON-ALIGN · CP-C4 close · Append-only registry write path
+
+**CP-C4 substantive close.** Landed `services/census_canon/registry_write.py`:
+
+* **`SourceRecord`** — frozen 10-carrier dataclass per Canon-4 §8 verbatim (module docstring quote at `canon/text/Akki_Canon_4_Operating_Engines.txt:51`): *"One record per source, carrying existence, sensitivity, the defensibility measure, and a freshness stamp. This is the interface targeting and convergence both read."* Carriers: `record_id`, `source_reference`, `region`, `feed_identity` (CP-C1 identity carriers lifted from `SourceCandidate`), `sensitivity` (CP-C1 `Sensitivity`), `defensibility_measure` (§8 3rd concept · first-run rule-reference string · full engine is later wave), `freshness_stamp` (§8 4th concept · ISO 8601 timestamp), `next_recheck_hint` (E.1 first-run freshness shape · `None` when no scheduled recheck), `census_run_id` (CP-C3 linkage), `supersedes_record_id` (E.5 append-only correction chain · `None` for originals, set for corrections). Canon-4 §8's "existence" concept is encoded implicitly by presence in the `RegistryStore` — record presence IS existence; no `existence: bool` field.
+
+* **`RegistryStore`** — in-memory append-only store. Public API narrow by design: `write` (idempotent-on-identical / refuses byte-different overwrite), `read` (retrieve by id), `has` (membership), `count` (size). NO update, NO delete. E.5 append-only invariant preserved by construction.
+
+* **`register_source_candidate(*, store, candidate, run_id, freshness_stamp, defensibility_measure, next_recheck_hint=None, supersedes_record_id=None) -> str`** — the write path. Returns deterministic `record_id` shaped `rec_<64-hex>` computed by sha256 over canonical JSON of the input tuple (all 11 input fields including `supersedes_record_id`). Writing the same input tuple twice is idempotent (same id, no duplicate entry, existing record not mutated). A correction write with `supersedes_record_id` set produces a distinct id (because the supersession field is part of the input tuple); both original and correction are retrievable.
+
+* **`RegistryDeterminismFailure`** — refuses a write that would overwrite an existing record_id with byte-different content. Guards against determinism drift in `_compute_record_id`; the store never overwrites, preserving E.5.
+
+* **Doc-10 A5.5 verbatim** (`canon/drops/20260910/extracted/text/Master_Requirements_Registry.md:155`): *"The Registry is one record, read by many"* — the design intent baked into the deterministic-id-keyed store: the record is keyed by its inputs, not by call order or writer identity; any reader with the id gets the same content.
+
+**6 new invariants in `tests/invariants/test_wcensus_cp_c4_registry_write.py`:**
+
+* `test_cp_c4_module_fabric` — module imports; names `SourceRecord`, `RegistryStore`, `register_source_candidate` present.
+* `test_cp_c4_source_record_frozen_canon_4_section_8_carriers` — Canon-4 §8 verbatim in docstring; `SourceRecord` is a frozen dataclass with exactly the 10 named carriers (existence encoded by presence-in-store, not as a field); frozen instance rejects reassignment.
+* `test_cp_c4_register_returns_deterministic_record_id` — same input tuple → byte-identical `record_id` across two calls; id shape `rec_<64-hex>` (starts with `rec_`).
+* `test_cp_c4_register_is_append_only` — E.5 verbatim in docstring; two identical writes → same id, store count stays at 1, original record snapshot unmutated.
+* `test_cp_c4_supersedes_chain_preserves_original_record` — E.5 correction-chain: a write with `supersedes_record_id` set to an original id produces a DIFFERENT id; store count grows to 2; original still retrievable + unmutated; correction record carries the back-link + updated `freshness_stamp`.
+* `test_cp_c4_registry_write_docstring_carries_verbatim_canon` — module docstring carries §8 verbatim (three phrase-checks) + Doc-10 A5.5 verbatim + source-file anchors (`Canon-4 §8`, `canon/text/Akki_Canon_4_Operating_Engines.txt`, `A5.5`) per Verbatim-canon standing rule.
+
+**RED right-reason at `phase0/drill_receipts/20260915T025600Z_wcensus_cp_c4_registry_write_RED_pre_impl.log`** (6 failed pre-implementation · all 6 fail with `ModuleNotFoundError: No module named 'services.census_canon.registry_write'` before the module lands · right-reason mechanical RED).
+
+**Double-green byte-match `4005 passed, 1 skipped, 438 warnings` × 2** at:
+* Run 1 · `phase0/drill_receipts/20260915T025945Z_wcensus_cp_c4_registry_write_double_green_run1.log` (121.40s · 42807 B)
+* Run 2 · `phase0/drill_receipts/20260915T030157Z_wcensus_cp_c4_registry_write_double_green_run2.log` (121.78s · 42807 B)
+* Tally byte-identical (timing-stripped tally string identical across runs).
+
+**Ratchet 3999 → 4005** (+6 new CP-C4 invariants · no cross-benefit; `SourceRecord` lives under `services/`, outside the contract-parity scanner). `baseline_failures.json.ratchet_history` appended (entry 129 · `commit: 'TBD'` following prior-wave practice).
+
+**Track-a HEAD `5fcee76`.** Commit A message inlined in the git log.
+
+**Guardrails held this CP:** verbatim-canon rule honored (module docstring carries §8 + A5.5 + E.5 + E.1 verbatim with source-file + section anchors) · terminal pytest only · testing_agent BANNED · no push · no refactor · no wipe · position-redaction hard-lock · SO §1 continuous adherence · Egress hold protocol respected (all CP work non-egress).
+
+**Egress state at CP-C4 close:** window CLOSED (03:03 UTC vs 02:00 UTC close · reopens 08:00 UTC). CP-C5 + CP-C6 remain non-egress and proceed. Item-3 live census run + live SSH GPU re-verification both continue waiting for 08:00 UTC re-open.
+
+**Next active step:** **CP-C5 · `JobManifest` frozen carrier per S5 reframe** — binds a job (source connectors + registry + capabilities) onto the case-agnostic platform. Anchor: grounding brief §A10 verbatim (`notes/GOVERNED_CENSUS_HARVEST_PLATFORM_ROADMAP.md:4,25`): *"build as a GENERIC, SCALABLE SYSTEM (a platform), NOT structured to this specific case … the platform builds estate-agnostic + modality-agnostic primitives. A job (audio census on 16 Kenyan stations OR text training on Aurora DBs OR an image-taxonomy census on an S3 bucket) is a mounting artifact — a JobManifest that binds the platform's registered planes to a concrete instance."* Per §D of grounding brief. Target invariants +6. Target ratchet 4005 → 4011.
+
+---
+
+## Ruling · 2026-09-15T~03:12Z · Main-agent execution · W-CENSUS-CANON-ALIGN · CP-C5 close · JobManifest frozen carrier per S5 reframe
+
+**CP-C5 substantive close.** Landed `contracts/census_job_manifest.py`:
+
+* **`JobManifest`** — frozen 5-carrier dataclass per owner S5 reframe verbatim (module docstring quotes at `notes/GOVERNED_CENSUS_HARVEST_PLATFORM_ROADMAP.md:4,25`): *"the platform builds estate-agnostic + modality-agnostic primitives. A job (audio census on 16 Kenyan stations OR text training on Aurora DBs OR an image-taxonomy census on an S3 bucket) is a mounting artifact — a JobManifest that binds the platform's registered planes to a concrete instance. Nothing case-specific may live in the platform code path."* Five carriers: `job_id: str` (opaque caller-provided id), `job_kind: str` (e.g. "audio_census"), `estate_instance: str` (e.g. "16_kenyan_stations"), `planes_bound: tuple[tuple[str, str], ...]` (plane_name → plane_binding pairs), `capabilities_declared: tuple[str, ...]`. Tuple-of-tuples shape keeps the manifest hashable + canonicalisable for fingerprinting.
+
+* **`compute_manifest_fingerprint(manifest) -> str`** — deterministic canonicalisation-and-sha256 hash returning `jm_<64-hex>`. Same manifest → byte-identical fingerprint; any single-carrier mutation → distinct fingerprint (no collision). This is precisely the value that CP-C3's `generate_census_run_id` carries as its `job_manifest_fingerprint` input — the census run's identity resolves to the mounting artifact that produced it (Canon-4 §4.1 P30 verbatim: *"Any measurement a surface displays resolves to the census run that produced it"*).
+
+* **Data-only per grounding brief §E.4 verbatim:** *"JobManifest is a shape-and-binding contract, not a runtime orchestrator this wave."* Structurally enforced by `test_cp_c5_job_manifest_is_data_only_no_runtime` which scans the dataclass for banned runtime-shaped attributes (`execute`, `run`, `dispatch`, `start`, `stop`, `step`, `iterate`, `process`, `commission`, `trigger`) and refuses any. Runtime orchestration is a deliberate follow-on wave (audio-poc surfaces wiring behind the JobManifest).
+
+* **`NON_CONTRACT_UTILITY_MODULES` exemption in `tests/invariants/test_frozen_contract_snapshot_parity.py`** extended to include `census_job_manifest.py` (dataclass-not-pydantic per CP-D1 / CP-C1 / CP-C2 precedent). The exemption enables one previously-flaky parity secondary → +1 cross-benefit.
+
+**6 new invariants in `tests/invariants/test_wcensus_cp_c5_job_manifest.py`:**
+
+* `test_cp_c5_module_fabric` — module imports; names `JobManifest`, `compute_manifest_fingerprint` present.
+* `test_cp_c5_job_manifest_frozen_five_carrier_shape` — S5 reframe verbatim in docstring; `JobManifest` is a frozen dataclass with exactly the 5 named carriers; frozen instance rejects reassignment.
+* `test_cp_c5_compute_manifest_fingerprint_is_deterministic` — same `JobManifest` → byte-identical fingerprint across two calls; output shape `jm_<64-hex>` (length ≥ 16).
+* `test_cp_c5_compute_manifest_fingerprint_input_sensitivity` — 1 base + 5 variants (one field mutated in each) → 6 pairwise-distinct fingerprints; no single-field collision.
+* `test_cp_c5_job_manifest_is_data_only_no_runtime` — grounding brief §E.4 verbatim structural check; instance has no runtime-shaped public attribute.
+* `test_cp_c5_docstring_carries_verbatim_canon` — S5 reframe verbatim (three phrase-checks) + source anchor + grounding-brief limit anchor (`E.4`) in module docstring per Verbatim-canon standing rule.
+
+**In-CP micro-correction banked:** module docstring initially wrapped the S5 reframe clause across multiple lines for source-readability; the verbatim substring assertion `test_cp_c5_docstring_carries_verbatim_canon` did NOT accept line-wrap. Fix: docstring reformatted with the S5 reframe quotes on single un-wrapped lines. Same pattern as CP-C3 micro-correction — verbatim rule requires whitespace fidelity inside test assertions; canon quotes stay on single lines in docstrings.
+
+**RED right-reason at `phase0/drill_receipts/20260915T030500Z_wcensus_cp_c5_job_manifest_RED_pre_impl.log`** (6 failed pre-implementation · all 6 fail with `ModuleNotFoundError: No module named 'contracts.census_job_manifest'` before the module lands · right-reason mechanical RED).
+
+**Double-green byte-match `4012 passed, 1 skipped, 438 warnings` × 2** at:
+* Run 1 · `phase0/drill_receipts/20260915T030804Z_wcensus_cp_c5_job_manifest_double_green_run1.log` (124.08s · 42887 B)
+* Run 2 · `phase0/drill_receipts/20260915T031021Z_wcensus_cp_c5_job_manifest_double_green_run2.log` (120.49s · 42887 B)
+* Tally byte-identical (timing-stripped tally string identical across runs).
+
+**Ratchet 4005 → 4012** (+7 = 6 new CP-C5 invariants + 1 cross-benefit from parity-snapshot exemption). `baseline_failures.json.ratchet_history` appended (entry 130 · `commit: 'TBD'`).
+
+**Track-a HEAD `d552c31`.** Commit A message inlined in the git log.
+
+**Guardrails held this CP:** verbatim-canon rule honored (module docstring carries S5 reframe verbatim on single un-wrapped lines with source-file anchor) · terminal pytest only · testing_agent BANNED · no push · no refactor · no wipe · position-redaction hard-lock · SO §1 continuous adherence · egress hold protocol respected (all CP work non-egress).
+
+**Egress state at CP-C5 close:** window CLOSED (03:12 UTC vs 02:00 UTC close · reopens 08:00 UTC). CP-C6 remains non-egress and proceeds. Item-3 live census run + live SSH GPU re-verification both continue waiting for 08:00 UTC re-open.
+
+**Next active step:** **CP-C6 · `SourceStratumMeasurement` + `activation_list`** — per grounding brief §B: Canon-4 §4.1 output-field carriers (`SourceStratumMeasurement` with 8 dimensions: volume/media_types/languages/era/quality/verified_share/pii_share/licence_share) + `activation_list` carrier per grounding brief A9 (Canon-4 §Class-activation verbatim: *"The census activates matrix rows. A class with no material in the estate stays dormant … A class the census actually observes activates: its checkpoints join the estate's first-measurement sample and its thresholds bind before that class enters production mining."*). Target invariants +6. Target ratchet 4012 → 4018. Then wave close (composite seal + Rider 1 + owner-facing 5-section report) → Item-3 live census run at 08:00 UTC re-open.
+
+---
+
+## Ruling · 2026-09-15T~03:22Z · Main-agent execution · W-CENSUS-CANON-ALIGN · CP-C6 close AND WAVE SEAL · SourceStratumMeasurement + ActivationList
+
+**CP-C6 substantive close.** Two modules landed under `services/census_canon/`:
+
+* **`stratum_measurement.py` · `SourceStratumMeasurement`** — frozen 8-dimension dataclass per Canon-4 §4.1 P28 verbatim ordering (module docstring quote at `canon/text/Akki_Canon_4_Operating_Engines.txt:28`): *"Per source and per stratum: volume, media types, languages, era distribution, quality strata, the share already verified, the share carrying personal data, the share licensed for external use — and, explicitly, what has not been measured."* Eight dimensions map canon-name → snake-case verbatim without paraphrase or reorder: `volume` · `media_types` · `languages` · `era_distribution` · `quality_strata` · `verified_share` · `pii_share` · `licence_share`. Each dimension has type `DimensionValue = Measurement | Unmeasured` (CP-C2 union). An all-`Unmeasured` stratum is a valid instance — first-run ordinary case per §4.1 P29 ("Unmeasured is a first-class value"). "What has not been measured" is explicit at the type level; a reader cannot mistake an unmeasured dimension for a measured-zero.
+
+* **`activation_list.py` · `ActivationList` + `compute_activation_list`** — frozen 2-tuple dataclass per Canon-4 §Class-activation verbatim (module docstring quote at `canon/text/Akki_Canon_4_Operating_Engines.txt:291`): *"The census activates matrix rows. A class with no material in the estate stays dormant — registered, instrumented on paper, zero build. A class the census actually observes activates: its checkpoints join the estate's first-measurement sample and its thresholds bind before that class enters production mining."* Carriers: `activated: tuple[str, ...]` + `dormant: tuple[str, ...]` (both canonically sorted for determinism). Helper `compute_activation_list(*, observed, matrix_classes)` derives the partition; the two sets are disjoint and their union equals the input matrix (partition property invariant-tested).
+
+* **No `NON_CONTRACT_UTILITY_MODULES` exemption needed** because both modules live under `services/`, outside the contract-parity scanner. No cross-benefit → +6 ratchet.
+
+**6 new invariants in `tests/invariants/test_wcensus_cp_c6_stratum_activation.py`:**
+
+* `test_cp_c6_module_fabric` — both modules import; `SourceStratumMeasurement`, `ActivationList`, `compute_activation_list` present.
+* `test_cp_c6_stratum_measurement_frozen_eight_dimension_shape` — Canon-4 §4.1 P28 verbatim in docstring; `SourceStratumMeasurement` is a frozen dataclass with exactly the 8 canon-ordered dimensions.
+* `test_cp_c6_each_dimension_accepts_measurement_or_unmeasured` — Canon-4 §4.1 P28 closing clause verbatim (`explicitly, what has not been measured`); each of 8 dimensions accepts `Measurement` OR `Unmeasured`; frozen instance rejects reassignment.
+* `test_cp_c6_activation_list_frozen_shape` — Canon-4 §Class-activation verbatim in docstring; `ActivationList` is a frozen dataclass with `activated` + `dormant` tuple carriers; frozen instance rejects reassignment.
+* `test_cp_c6_compute_activation_list_partitions_matrix` — `compute_activation_list` returns partition (disjoint + union==matrix); both tuples canonically sorted; membership ignores ordering/duplicates in inputs.
+* `test_cp_c6_docstrings_carry_verbatim_canon` — both module docstrings carry their canon quotes verbatim with source-file anchors per Verbatim-canon standing rule.
+
+**RED right-reason at `phase0/drill_receipts/20260915T031300Z_wcensus_cp_c6_stratum_activation_RED_pre_impl.log`** (6 failed pre-implementation · all 6 fail with `ModuleNotFoundError: No module named 'services.census_canon.stratum_measurement'` or `... activation_list` before the modules land · right-reason mechanical RED).
+
+**Double-green byte-match `4018 passed, 1 skipped, 438 warnings` × 2** at:
+* Run 1 · `phase0/drill_receipts/20260915T031557Z_wcensus_cp_c6_stratum_activation_double_green_run1.log` (120.96s · 42967 B · sha256 `67d6f8ae62a166238158716bfe6aee9e7a24d985eb0d7ed1f355d054b2df4457`)
+* Run 2 · `phase0/drill_receipts/20260915T031809Z_wcensus_cp_c6_stratum_activation_double_green_run2.log` (126.05s · 42967 B · sha256 `bc0e9a674926a4807d7346e046d727d6e87e207093740d65d3f4dce14761746b`)
+* Tally byte-identical (timing-stripped tally string identical across runs).
+
+**Ratchet 4012 → 4018** (+6 new CP-C6 invariants · no cross-benefit). `baseline_failures.json.ratchet_history` appended (entry 131 · `commit: 'TBD'`).
+
+**Track-a HEAD `0053b16`.** Commit A message inlined in the git log.
+
+---
+
+**WAVE SEAL · W-CENSUS-CANON-ALIGN**
+
+Composite seal banked at `phase0/output_verified_seals/census_canon_align.seal.txt` (`Kind: census_canon_align`).
+
+**Wave roll-up:**
+| CP  | Δ ratchet     | Track-a  | Master   |
+|-----|---------------|----------|----------|
+| C1  | 3979→3986 (+7) | `c45d0c3` | `a1c389a` |
+| C2  | 3986→3993 (+7) | `112de26` | `f573284` |
+| C3  | 3993→3999 (+6) | `e2a710c` | `c8c64eb` |
+| C4  | 3999→4005 (+6) | `5fcee76` | `14a0ec2` |
+| C5  | 4005→4012 (+7) | `d552c31` | `6b2a307` |
+| C6  | 4012→4018 (+6) | `0053b16` | *(this commit)* |
+| **Total** | **3979→4018 (+39)** | | |
+
+**Rider 1 locked at seal:**
+* pip freeze lines: 192 (unchanged this wave — no dependency additions)
+* pytest --collect-only tests collected: 4019
+* pip freeze receipt: `phase0/wave_riders/w_census_canon_align/rider1_pip_freeze_20260915T032100Z.txt`
+* pytest collect receipt: `phase0/wave_riders/w_census_canon_align/rider1_pytest_collect_20260915T032100Z.log`
+
+**Owner-facing wave-close report** at `notes/W_CENSUS_CANON_ALIGN_close.md` (5 sections: Progress made · How much to go · Decisions taken · Discoveries not envisioned · Recommendations · Appendix A rider metrics · Appendix B CP invariant counts).
+
+**Guardrails held whole wave:** no push · no testing_agent · no refactor · no wipe · no head/cat/sed on credential custody · position-redaction hard-lock (GPU host aliases only across all state) · verbatim-canon standing rule (every canon requirement quoted verbatim in module + test docstrings with source-file + section anchors) · SO §1 boot ritual re-executed at owner-side pause resume · egress-window hold protocol respected (all 6 CP mechanism-landings are non-egress · Item-3 live census run + live SSH GPU re-verification wait for 08:00 UTC re-open).
+
+**Blockers preserved at wave close** (per wave-honest-limits + owner listings): D12 (CI-fixture whisper-tiny transcription POC) STILL HELD · SEC-2026-09-12-01 · SEC-2026-09-14-04 (HF token) · SEC-2026-09-13-T4-01/03/04/05 · SEC-2026-09-14-01/02/03 · Transcription-server host+creds MISSING BIND · RADIO routing to 10.10.19.0/24 MISSING BIND · 5 closed-SG MySQL hosts · owner ratifications R-7/R-15/R-16/R-17/BC-3/BC-4/S-24/R-13/R-14 · 165 quarantined D1a-1 legacy tests.
+
+**Egress state at wave seal:** window CLOSED (03:22 UTC vs 02:00 UTC close · reopens 08:00 UTC). Item-3 live census run + live SSH GPU re-verification both HOLD for 08:00 UTC re-open.
+
+**Next active step:** **Promise #12 · Item-3 · live read-only census run at 08:00 UTC egress re-open.** Runs against reachable connectors (NAS 16 channels · OBS google-transcripts · weego + ussd MySQLs). Uses the CP-C1..CP-C6 machinery: `classify_sensitivity` at candidate creation · deterministic `register_source_candidate` writes to `RegistryStore` · `Measurement` / `Unmeasured` at each of 8 `SourceStratumMeasurement` dimensions · `ActivationList` computed from observed classes vs the estate class matrix · `CensusRun` records `run_date` + run-level population + full-vs-sampled · `JobManifest` binds the platform planes to the concrete estate instance. Zero PII in receipts (position-redaction). Data stays inside the estate (I/O + metadata dominated per grounding brief §E.6 · CPU-viable on this pod).
+
+Owner-side pending during hold: any new rulings on D12 (transcription POC), Transcription-server bind, RADIO routing, 5 MySQL SG openings, HF token re-leak. If landed before 08:00 UTC, ingest at census-run open per SO §1 boot ritual.
+
+---
+
+
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
