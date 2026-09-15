@@ -9514,5 +9514,121 @@ Case-agnostic — word-boundary executive-domain negative-scan CLEAN. §3.1 P038
 
 ---
 
+## Owner ruling 2026-09-15T~21:25Z · Sub-wave 6 GO + three ratifications
+
+**Verbatim (owner message received in-thread):**
+
+> "GO — open sub-wave 6 (W-M6-OBJECTIVE-WIZARD-COLLECTION-SCHEMA, §8 + §9 + §12.1, N7 fold-in): author the grounding brief with verbatim anchors, then walk the CPs tests-first under §3.3, autonomously.
+>
+> Steer on your recommendations:
+> 1. Rec 1 RATIFIED — wire assert_cluster_carries_no_human_name into sub-wave 6's objective→cluster write path as a mandatory gate, not a downstream check. Make it an explicit invariant in the sub-wave 6 brief.
+> 2. Rec 2 — escalated to the owner again (49 timeouts / 17h since ratification is definitive). Keep the every-CP probe loop; not blocking sub-wave 6.
+> 3. Rec 3 RATIFIED as a small single-CP addition — the ratified-vs-INFERRED backend registry surface. Home it wherever cleanest: appended CP at sub-wave 6 close or an M8 mini-wave; your call, keep it tight (~+6-8 invariants). It becomes the M6-seal story's 'what is truly live' table.
+>
+> Discipline notes accepted: the ValidatedStratum value-equality fill and the fifth leak-vocabulary attribute were exactly right; HUMAN_NAME_ATTRIBUTE_NAMES stays owner-extendable. HALT boundary unchanged (synthetic fixtures only; real voice/biometric material halts to owner — §7 voice verification territory especially). Report at sub-wave 6 seal or genuine HALT."
+
+**Effects (banked verbatim; no paraphrase):**
+
+1. **Sub-wave 6 OPEN authorized.**  Grounding brief to be authored at `notes/M6_SW6_OBJECTIVE_WIZARD_COLLECTION_SCHEMA_grounding_brief.md` with verbatim §8 (P123..P145) + §9 (P146..P152) + §12.1 (P195) + N7 (`AUDIO_PLANE_V1_DRIFT_AUDIT_20260914.md:98` = §8.4 P139..P142) anchors.
+2. **Rec 1 RATIFIED — Rec-1-M6SW6 wiring** binds `assert_cluster_carries_no_human_name` (from CP-M6-5-3 `services/audio_plane_v1/cluster_stability.py`) as a **mandatory compile-time gate** in the Objective Wizard's objective→cluster write path.  This is a WRITE-PATH invariant, not a downstream sanity check.  Explicit surfacing in sub-wave 6 brief §C required.  A fourth compile-time refusal on top of the three canon-anchored refusals (test_set_ref missing · per-stratum acceptance bar missing · Collection Schema §6.2 custody violation).
+3. **Rec 2 escalation:** logged — CD + Visitors admin bind failure is now definitive.  49 consecutive timeouts × ~6.0s over 17h since owner-side SG opening ratified 2026-09-15T~04:25Z.  Every-CP boundary probe loop continues.  Not blocking sub-wave 6.
+4. **Rec 3 RATIFIED — Rec-3-M6SW6 backend registry surface** homed as **CP-M6-6-4 (appended to sub-wave 6 close)**.  Rationale for the home decision (agent's call per owner delegation): (a) directly composes with CP-M6-1-1..1-4 audio-plane pluggable seams + CP-M6-5-1 ClusteringBackend — the exact set the registry surfaces; (b) produces the M6-seal-story "what is truly live" table WITHOUT delaying the M6-seal narrative behind a separate M8 mini-wave; (c) sub-wave 6 already touches registry-namespace territory (§12.1 P195), so the second registry-shape surface composes naturally.  Target: +6-8 invariants (owner-set ceiling).
+5. **HALT boundary carried forward:** synthetic-fixtures-only through §7 voice verification (§5.3 clustering now done at CP-M6-5-3).  Any sub-wave 6 mechanism that requires real estate voice/biometric material → HALT to owner immediately.
+6. **HUMAN_NAME_ATTRIBUTE_NAMES stays owner-extendable** — frozen 5-tuple at CP-M6-5-3 close; extension is an owner-ratification-only path (no autonomous additions).
+7. **Reporting cadence:** owner requested report at sub-wave 6 seal OR genuine HALT.  No CP-level owner-facing updates.  Micro-sprint CP updates carried inside grounding brief + DECISIONS + NEXT + commit messages per §2 doctrine.
+
+**Ratification tokens:**
+- `Rec-1-M6SW6` (mandatory §5.3-clause-2 write-path gate in Objective Wizard).
+- `Rec-3-M6SW6` (backend registry surface as CP-M6-6-4).
+
+**Onward.** Author sub-wave 6 grounding brief.  Bank sub-wave 6 open probe #50.  Walk CP-M6-6-1 (§8.4 P139..P142 compile-refusal + Rec-1-M6SW6 fourth refusal) → CP-M6-6-2 (§9 P148..P152 Collection Schema type) → CP-M6-6-3 (§12.1 P195 per-commission namespace) → CP-M6-6-4 (Rec-3-M6SW6 backend registry surface, +6-8 invariants).
+
+---
+
+## CP-M6-6-1 · Objective Wizard audio-variant compile-refusal + Rec-1-M6SW6 gate · SEAL (OPENS SUB-WAVE 6)
+
+**Sealed at UTC:** 2026-09-15T~21:51Z.  **Ratchet:** 4240 → 4254 (+14).
+**Track-a HEAD at seal:** `6802806` (commit A: 680280628c2b5982fc4eff6cde225a44a3668e91).
+**Master HEAD:** `c98a113a` (commit B: c98a113ae2b763e90801c4c9179f53183da75b3e · landed under STANDING_ORDERS §3.3 · commit C-fixup pinned the master SHA · NO SEAL WITHOUT BOTH SHAs rule satisfied).
+
+CP-M6-6-1 lands `services/audio_plane_v1/objective_wizard.py` — the Objective Wizard audio-variant compile-time refusal contract per §8.4 P139..P142 verbatim, composing CP-M6-5-3 `assert_cluster_carries_no_human_name` as a WRITE-PATH gate per owner ruling 2026-09-15T~21:25Z Rec-1-M6SW6.
+
+> §8.4 P140 (V90) verbatim: *"An Outcome without an existing test_set_ref."*
+> §8.4 P141 (V91) verbatim: *"An acceptance bar missing the per-stratum dimension."*
+> §8.4 P142 (V92) verbatim: *"A Collection Schema requiring a column whose capture violates the custody conditions of §6.2."*
+> Owner ruling 2026-09-15T~21:25Z (Rec-1-M6SW6) verbatim: *"wire assert_cluster_carries_no_human_name into sub-wave 6's objective→cluster write path as a mandatory gate, not a downstream check."*
+
+Public API: `AcceptanceBar` (frozen 2-carrier) · `TargetOutcomeStub` (frozen 3-carrier · STUB territory) · `CollectionSchemaColumnStub` (frozen 3-carrier · custody-marker + bound_cluster) · `compile_objective_artifact(*, outcome, columns) -> None` (4-refusal compile-time contract).
+
+Refusals (4 · P036 receipt-before-result ordering): `TargetOutcomeMissingTestSetRefError` (V90) · `AcceptanceBarMissingPerStratumDimensionError` (V91) · `CollectionSchemaCustodyViolationError` (V92) · `CollectionSchemaClusterHumanNameLeakError` (Rec-1-M6SW6).  Refusal ordering test_set_ref → per_stratum_dimension → custody_violation → cluster_human_name_leak; first refusal wins.
+
+**Composition with CP-M6-5-3.**  Imports `HUMAN_NAME_ATTRIBUTE_NAMES` + `ClusterHumanNameLeakError` + `assert_cluster_carries_no_human_name` from cluster_stability.py.  No mutation of CP-M6-5-3 module.  Rec-1-M6SW6 gate: on each column with non-None bound_cluster, invokes assert; on `ClusterHumanNameLeakError` re-raises as `CollectionSchemaClusterHumanNameLeakError` chained (`raise ... from exc`).
+
+**Wave-honest limits.**  STUB territory only — full §10 TargetOutcome lands at CP-M6-7-1.  `captures_custody_violating_field` is MARKER — sub-wave 6 does not re-import §6.2 conditions.  N7 [VERIFY] per §16.1 P245: standalone contract; does NOT extend existing shaping-wizard state machine.  Owner may re-home per V94 disposition without breaking invariants.
+
+**No-refactor discipline held.**  cluster_stability.py + human_validation.py + clustering.py + character_register.py + all sub-wave 1..5 modules unchanged.
+
+Case-agnostic — word-boundary executive-domain negative-scan CLEAN.  §3.1 P038 tokens-not-waveforms + §5.3 clause 2 disciplines preserved throughout.  No LLM/HTTP/filesystem.  Synthetic-fixtures-only in tests.  Ratchet 4240 → 4254 (+14).
+
+**Discipline receipts.**
+- RED: `phase0/drill_receipts/20260915T213905Z_wm6_6_1_RED_pre_impl.log` (14 right-reason ModuleNotFoundError on objective_wizard import; 4240 passed unrelated invariants).
+- GREEN 1: `phase0/drill_receipts/20260915T214331Z_wm6_6_1_double_green_run1.log` (`4254 passed, 1 skipped, 438 warnings`).
+- GREEN 2: `phase0/drill_receipts/20260915T214536Z_wm6_6_1_double_green_run2.log` (byte-match · stripped-sha256 `ab14ba54599b4432b155462e8093671f158a735fb8cadf7bd9f6ba3fde52e58d` · raw 9764 B each · stripped 9751 B each).
+- Seal: `phase0/output_verified_seals/cp_m6_6_1_objective_wizard_compile_refusal.seal.txt` (Kind: `cp_m6_6_1_objective_wizard_compile_refusal`).
+- Rider: `phase0/wave_riders/w_m6_objective_wizard_cp1/pip_freeze.txt` (192 lines · zero drift · empty diff vs CP-M6-5-3 rider) + `collect_only_summary.txt` (4255 tests collected).
+- Grounding brief: `notes/M6_SW6_OBJECTIVE_WIZARD_COLLECTION_SCHEMA_grounding_brief.md`.
+
+**Boundary probes.**  #50 (sub-wave 6 open + CP-M6-6-1 open · 2026-09-15T21:34:29Z) + #51 (seal · 2026-09-15T21:50:30Z): CD + Visitors BOTH FAIL 6.0s across both.  Zero PASS across probes #1–#51.
+
+**Guardrails unchanged.**  Tests-first double-green byte-match · ratchet monotonic-up · **3-commit pattern under STANDING_ORDERS §3.3** · never push · terminal pytest only · `testing_agent` BANNED · position-redaction hard-lock · verbatim-canon · HALT-rather-than-guess · no refactor · case-agnostic negative-scan CLEAN · synthetic-fixtures-only.
+
+**Onward.**  CP-M6-6-2 · Collection Schema type (§9 P148..P152) — baseline five-item frozen content set + objective tier (candidates through §8.3 propose–qualify–graduate only).
+
+---
+
+## CP-M6-6-2 · Collection Schema type · SEAL
+
+**Sealed at UTC:** 2026-09-15T~22:02Z.  **Ratchet:** 4254 → 4263 (+9).
+**Track-a HEAD at seal:** `7c856fa` (commit A: 7c856fa76e03dfaee9faa3267dbb56dfa5cefdf3).
+**Master HEAD:** `d9766459` (commit B: d97664591f908c1121ad72752c574e7d3113f014 · landed under STANDING_ORDERS §3.3 · NO SEAL WITHOUT BOTH SHAs rule satisfied).
+
+CP-M6-6-2 lands `services/audio_plane_v1/collection_schema.py` — §9 verbatim two-tier Collection Schema.
+
+> §9.2 P150 verbatim (baseline v1.0 contents): *"Contents at v1.0: language identification, code-switch points, condition profile, dedup instance condition map, synthesis-relevant group-level acoustics (§4)."*
+> §9.3 P152 verbatim (objective tier): *"Candidate columns enter through propose–qualify–graduate (§8.3) only."*
+
+Public API: `BASELINE_TIER_CONTENTS_V1_0` (frozen 5-tuple · verbatim canonical order) · `SCHEMA_TIER_VALUES` (frozenset {baseline, objective}) · `CollectionSchemaColumn` (frozen 4-carrier · refuses invalid tier at `__post_init__`) · `CollectionSchema` (frozen 3-carrier) · `construct_collection_schema` (refuses BaselineTierIncompleteError on missing v1.0 baseline; refuses ObjectiveTierProvenanceMissingError on objective-tier None provenance_ref; coerces Iterable to Tuple).  Refusals (3): `SchemaTierInvalidError` · `BaselineTierIncompleteError` · `ObjectiveTierProvenanceMissingError`.
+
+Baseline seam-governance held: `BASELINE_TIER_CONTENTS_V1_0` is a module-level frozen 5-tuple; extension is owner-ratification-only (same discipline as `HUMAN_NAME_ATTRIBUTE_NAMES` from CP-M6-5-3).  Composition with CP-M6-6-1: `CollectionSchemaColumnStub` (CP-M6-6-1) is compile-refusal STUB; `CollectionSchemaColumn` (CP-M6-6-2) is the full §9 carrier for downstream data-plane use.
+
+**Discipline receipts.**  RED `20260915T215523Z_wm6_6_2_RED_pre_impl.log` (9 right-reason).  GREEN 1 `20260915T215906Z_wm6_6_2_double_green_run1.log` · GREEN 2 `20260915T220110Z_wm6_6_2_double_green_run2.log` byte-match stripped-sha256 `71d78288b4024ddd0edd64e6cf7845cd4f39ae9f8cdafa6d6adfebf587995030` · both `4263 passed, 1 skipped, 438 warnings`.  Rider zero-drift · collect-only 4264 tests.  Seal `phase0/output_verified_seals/cp_m6_6_2_collection_schema.seal.txt`.  Boundary probe #52 (seal · 2026-09-15T22:03Z): CD+Visitors BOTH FAIL 6.002s/6.006s.  Zero PASS across probes #1–#52.
+
+No-refactor: objective_wizard.py + cluster_stability.py + human_validation.py + clustering.py + character_register.py all unchanged.  Case-agnostic · negative-scan CLEAN · §3.1 P038 preserved · synthetic-fixtures-only.
+
+**Onward.**  CP-M6-6-3 · Registry namespace (§12.1 P195).
+
+---
+
+## CP-M6-6-3 · Per-commission registry namespace · SEAL
+
+**Sealed at UTC:** 2026-09-15T~22:15Z.  **Ratchet:** 4263 → 4274 (+11).
+**Track-a HEAD at seal:** `75447ac`.  **Master HEAD:** `ea823aa3` (commit B: ea823aa327d1a19b7899e3bc14c5608d523b169a · landed under STANDING_ORDERS §3.3 · commit C-fixup pinned the master SHA · NO SEAL WITHOUT BOTH SHAs rule satisfied).
+
+CP-M6-6-3 lands `services/audio_plane_v1/commission_registry_namespace.py` — §12.1 P195 verbatim per-commission scoped registry namespace with sealed-not-deleted discipline.
+
+> §12.1 P195 verbatim: *"On close, the namespace is sealed, not deleted: it is the record of what was collected and why, and the next objective's wizard session queries prior schemas and coverage so the second project starts from the first project's map."*
+
+Public API: `NAMESPACE_STATE_VALUES` · `COLUMN_COLLECTION_STATE_VALUES` · `NamespaceColumnEntry` · `NamespaceStratumCoverageEntry` · `CommissionRegistryNamespace` (frozen 6-carrier) · `open_namespace` · `record_declared_column` · `record_column_collected` · `seal_namespace`.  Refusals (3): `NamespaceSealedError` · `NamespaceAlreadySealedError` · `NamespaceColumnUnknownError`.
+
+Sealed-not-deleted anchored by `test_wm6_6_3_sealed_namespace_preserves_entries_queryable` — sealed namespace's entries remain populated and queryable per §12.1 P195 verbatim.
+
+**Discipline receipts.**  RED `20260915T220901Z_wm6_6_3_RED_pre_impl.log` (11 right-reason).  GREEN 1 `20260915T221243Z_wm6_6_3_double_green_run1.log` · GREEN 2 `20260915T221449Z_wm6_6_3_double_green_run2.log` · byte-match stripped-sha256 `d01332ef5cfdb671ebe42a5a2bf176df999bc5f542c2b225f575a8b8a1514c2d` · both `4274 passed, 1 skipped, 438 warnings`.  Rider zero-drift · collect-only 4275.  Seal `phase0/output_verified_seals/cp_m6_6_3_commission_registry_namespace.seal.txt`.  Boundary probe #53 (seal): CD+Visitors BOTH FAIL 6.005s/6.006s.  Zero PASS across probes #1–#53.
+
+No-refactor: collection_schema.py + objective_wizard.py + all prior modules unchanged.  Case-agnostic · negative-scan CLEAN · §3.1 P038 preserved · synthetic-fixtures-only.
+
+**Onward.**  CP-M6-6-4 · Rec-3-M6SW6 · Ratified-vs-INFERRED backend registry surface (owner-set ceiling ~+6-8 invariants) — CLOSES SUB-WAVE 6.
+
+---
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 

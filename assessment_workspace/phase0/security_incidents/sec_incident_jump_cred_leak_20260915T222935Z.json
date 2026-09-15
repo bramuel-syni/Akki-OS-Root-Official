@@ -1,0 +1,53 @@
+{
+  "incident_id": "sec_incident_jump_cred_leak_20260915T222935Z",
+  "detected_at_utc": "2026-09-15T22:29:35Z",
+  "banked_at_utc": "2026-09-15T22:29:35Z",
+  "severity": "high",
+  "category": "credential_leak_to_stdout",
+  "affected_credential": {
+    "system": "JUMP server (bastion) · SSH root account",
+    "storage_path": "/app/backend/estate_keys/bastion/jump_server_radio_system.csv",
+    "storage_mode": "0600",
+    "user_tag": "root",
+    "host_tag": "159.138.173.250",
+    "protocol": "ssh (tcp 22)"
+  },
+  "operator_at_fault": "E1 build agent (main agent · this session)",
+  "leak_channel": "bash STDOUT of mcp_execute_bash tool call within main-agent transcript",
+  "leak_command_class": "head -5 /app/backend/estate_keys/bastion/jump_server_radio_system.csv | sed 's/,.*/,<REDACTED>/'",
+  "root_cause": "Redaction pattern masked only substrings right of the first comma. The CSV file's column-0 (left of comma) carries the sensitive values (per step3_reachability_probe.py::load_jump reading rows[i][0]). Cleartext password value therefore rendered in STDOUT.",
+  "leak_scope": {
+    "transcript_captured": true,
+    "receipt_files_touched": false,
+    "commit_messages_touched": false,
+    "log_files_touched": false,
+    "note_files_touched": false,
+    "third_party_visibility": "unknown (transcript stays within the pod + agent framework)"
+  },
+  "standing_orders_clauses_violated": [
+    "position-redaction hard-lock (all guard modules · no host/user/password ever printed to STDOUT)",
+    "NEVER echo or print DB values, tokens, or passwords to standard output or test logs under any circumstances"
+  ],
+  "immediate_containment_actions_taken": [
+    "Halted probe #54 firing (in progress at time of leak).",
+    "Halted CP-M6-6-4 walk pending owner ratification.",
+    "Banked this incident receipt on disk under phase0/security_incidents/.",
+    "Filed accompanying owner-facing note at notes/SEC_INCIDENT_JUMP_CRED_LEAK_20260915.md.",
+    "Refused to re-open the CSV via any command that would print column-0 values."
+  ],
+  "recommended_owner_actions": [
+    "Rotate the JUMP root password immediately at 159.138.173.250 via sysadmin desk (same authority that owns the bastion).",
+    "Re-issue new value under the existing 0600 storage path with matching sha256 pin update.",
+    "Sweep the agent transcript (this session) at framework layer to determine transcript retention scope; agent cannot self-inspect that layer.",
+    "Decide whether to add the position-redaction hard-lock a stronger enforcement mechanism (e.g., a CSV read helper that refuses to yield column-0 without a receipt discipline)."
+  ],
+  "related_open_items": [
+    "SEC-2026-09-15-05 (rotation already OWNER-DESK per ADMIN_BINDS §D #6) — this incident increases urgency but is a distinct event."
+  ],
+  "guardrail_state_after_incident": {
+    "probe_54_status": "NOT_FIRED — halted pending owner ratification of this incident + credential rotation",
+    "cp_m6_6_4_status": "NOT_STARTED — halted pending owner ratification of this incident",
+    "cp_m6_6_3_seal_status": "COMPLETE (Commit A track-a 75447ac · Commit B master ea823aa3 · Commit C master c1ed5bc6)",
+    "ratchet_floor": 4274
+  }
+}

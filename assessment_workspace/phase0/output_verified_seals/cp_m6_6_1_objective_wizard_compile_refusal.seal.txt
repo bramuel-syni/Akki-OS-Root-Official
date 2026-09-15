@@ -1,0 +1,92 @@
+Kind: cp_m6_6_1_objective_wizard_compile_refusal
+
+# CP-M6-6-1 · Objective Wizard audio-variant compile-refusal + Rec-1-M6SW6 gate · Seal (OPENS SUB-WAVE 6)
+
+**Sealed at UTC:** 2026-09-15T~21:51Z
+**Milestone:** M6 · Sub-wave 6 (W-M6-OBJECTIVE-WIZARD-COLLECTION-SCHEMA · §8, §9, §12.1) — first CP · **SUB-WAVE 6 OPEN**
+**Invariants added:** +14 · **Ratchet:** 4240 → 4254
+**Track-a HEAD at seal:** `6802806` · **Master HEAD:** `c98a113a` (landed under STANDING_ORDERS §3.3 · commit C-fixup pinned the master SHA · NO SEAL WITHOUT BOTH SHAs rule satisfied)
+
+---
+
+## §A · Discharge
+
+CP-M6-6-1 lands `services/audio_plane_v1/objective_wizard.py` — the Objective Wizard's audio-variant compile-time refusal contract per §8.4 P139..P142 verbatim, composing CP-M6-5-3 `assert_cluster_carries_no_human_name` as a **write-path gate** per owner ruling 2026-09-15T~21:25Z (Rec-1-M6SW6).
+
+> §8.4 P139 (V89) verbatim preamble: *"The wizard cannot emit an artifact the downstream contracts would refuse. Rejected at compile, not warned:"*
+>
+> §8.4 P140 (V90) verbatim: *"An Outcome without an existing test_set_ref."*
+>
+> §8.4 P141 (V91) verbatim: *"An acceptance bar missing the per-stratum dimension."*
+>
+> §8.4 P142 (V92) verbatim: *"A Collection Schema requiring a column whose capture violates the custody conditions of §6.2."*
+>
+> §5.3 P089 (V59) verbatim clause 2 (cross-anchor for Rec-1-M6SW6): *"A cluster asserts that a distinct variant exists — not what it is called."*
+>
+> Owner ruling 2026-09-15T~21:25Z verbatim (Rec-1-M6SW6): *"wire assert_cluster_carries_no_human_name into sub-wave 6's objective→cluster write path as a mandatory gate, not a downstream check."*
+
+**Public API:**
+- `AcceptanceBar` — frozen 2-carrier: `has_per_stratum_dimension: bool` · `per_stratum_thresholds: Tuple[Tuple[str, float, float], ...]`.
+- `TargetOutcomeStub` — frozen 3-carrier: `outcome_id: str` · `test_set_ref: Optional[str]` · `acceptance_bar: Optional[AcceptanceBar]`.  STUB territory (full §10 TargetOutcome lands at CP-M6-7-1).
+- `CollectionSchemaColumnStub` — frozen 3-carrier: `column_name: str` · `captures_custody_violating_field: bool` (MARKER field) · `bound_cluster: Optional[Any]`.
+- `compile_objective_artifact(*, outcome, columns) -> None` — 4-refusal compile-time contract.
+
+**Refusals (4):** `TargetOutcomeMissingTestSetRefError` (V90) · `AcceptanceBarMissingPerStratumDimensionError` (V91) · `CollectionSchemaCustodyViolationError` (V92) · `CollectionSchemaClusterHumanNameLeakError` (Rec-1-M6SW6).
+
+**Refusal ordering (P036 receipt-before-result carrier discipline):** test_set_ref → per_stratum_dimension → custody_violation (per column) → cluster_human_name_leak (per column).  First refusal wins; no partial success.  Anchored by `test_wm6_6_1_refusal_ordering_test_set_ref_beats_others_p036` — verifies that with ALL four violations present simultaneously, `TargetOutcomeMissingTestSetRefError` fires first.
+
+**Rec-1-M6SW6 WRITE-PATH gate.**  On each column with non-None `bound_cluster`, the compile-refusal invokes `assert_cluster_carries_no_human_name(cluster=col.bound_cluster)` from `services.audio_plane_v1.cluster_stability`.  On `ClusterHumanNameLeakError`, the wizard re-raises as `CollectionSchemaClusterHumanNameLeakError` (with `human-readable` and `not what it is called` phrases in the message) chained (`raise ... from exc`).  The wizard cannot emit an artifact whose downstream data-plane contracts would surface a human-readable cluster name.
+
+**Composition with CP-M6-5-3.** Imports `HUMAN_NAME_ATTRIBUTE_NAMES` + `ClusterHumanNameLeakError` + `assert_cluster_carries_no_human_name` from `services.audio_plane_v1.cluster_stability`.  No mutation of the CP-M6-5-3 module.
+
+**No-refactor discipline held.**  cluster_stability.py + human_validation.py + clustering.py + character_register.py + all sub-wave 1..5 modules untouched.
+
+Case-agnostic — word-boundary executive-domain negative-scan CLEAN.  No LLM/HTTP/filesystem.  Synthetic-fixtures-only in tests.  §3.1 P038 tokens-not-waveforms + §5.3 clause 2 disciplines preserved throughout.
+
+**Wave-honest limits:**
+- STUB territory only — full §10 TargetOutcome carrier lands at sub-wave 7 CP-M6-7-1 with all seven fields (task, domain, population, acceptance, gate_policy, test_set_ref, constraints).  The compile-refusal contract composes with the future full carrier without breaking.
+- `captures_custody_violating_field` is a MARKER — sub-wave 6 does not re-import §6.2 conditions.  A future CP wire may promote this marker to a live §6.2 check (from CP-M6-3-3 register write-boundary) without breaking the sub-wave 6 refusal contract.
+- N7 `[VERIFY]` status per §16.1 P245 — this CP builds compile-refusal as a **standalone** contract; it does NOT extend the existing shaping-wizard state machine.  Owner may later re-home per V94 disposition; invariants transfer verbatim.
+
+---
+
+## §B · Discipline receipts
+
+| Step | Path |
+|---|---|
+| RED (14 right-reason ModuleNotFoundError) | `phase0/drill_receipts/20260915T213905Z_wm6_6_1_RED_pre_impl.log` |
+| GREEN 1 | `phase0/drill_receipts/20260915T214331Z_wm6_6_1_double_green_run1.log` |
+| GREEN 2 (byte-match) | `phase0/drill_receipts/20260915T214536Z_wm6_6_1_double_green_run2.log` |
+| Rider · pip freeze | `phase0/wave_riders/w_m6_objective_wizard_cp1/pip_freeze.txt` (192 lines · zero drift · empty diff vs CP-M6-5-3 rider) |
+| Rider · pytest --collect-only | `phase0/wave_riders/w_m6_objective_wizard_cp1/collect_only_summary.txt` (4255 tests collected) |
+| Grounding brief | `notes/M6_SW6_OBJECTIVE_WIZARD_COLLECTION_SCHEMA_grounding_brief.md` |
+
+**Double-green byte-match:** stripped-sha256 `ab14ba54599b4432b155462e8093671f158a735fb8cadf7bd9f6ba3fde52e58d`.  Both `4254 passed, 1 skipped, 438 warnings`.  Raw byte lengths identical (9764 each).  Stripped byte lengths identical (9751 each) — the only inter-run divergence is the closing `in T.TTs (H:MM:SS)` timing line, normalized in the strip.
+
+**RED confirmation:** 14 failed (all `test_wm6_6_1_objective_wizard_compile_refusal.py::*`) + 4240 passed (floor match, zero unrelated regression) + 1 skipped + 438 warnings.  Failure reason: `services.audio_plane_v1.objective_wizard` module missing → import fails on every CP-M6-6-1 test.  Right-reason RED.
+
+---
+
+## §C · Boundary probes
+
+- Probe **#50** at SUB-WAVE 6 open + CP-M6-6-1 open (2026-09-15T21:34:29Z): CD + Visitors BOTH FAIL · elapsed 6.005s / 6.006s.
+- Probe **#51** at CP-M6-6-1 seal (2026-09-15T21:50:30Z): CD + Visitors BOTH FAIL · elapsed 6.006s / 6.006s.
+- **Zero PASS across probes #1–#51.**  Admin escalation ongoing (Rec-2 escalated by owner 2026-09-15T~21:25Z as definitive; not blocking sub-wave 6).
+
+---
+
+## §D · Discipline held
+
+Tests-first double-green byte-match · ratchet monotonic-up (4240 → 4254 · +14) · word-boundary executive-domain negative-scan CLEAN · §3.1 P038 tokens-not-waveforms discipline preserved on all new API surfaces (no `audio_bytes`/`waveform`/`samples`/`raw_audio`/`voiceprint`/`speaker_embedding` carriers) · §5.3 clause 2 discipline enforced on the write-path via Rec-1-M6SW6 gate · owner ruling 2026-09-15T~21:25Z honored (Rec-1-M6SW6 wired as mandatory compile-time gate, not downstream check) · no LLM/HTTP/filesystem · no refactor of any prior CP · **3-commit pattern under STANDING_ORDERS §3.3** (Commit A code + Commit B state · master SHA `TBD` at seal-write time + Commit C state-fixup landing master SHA per NO SEAL WITHOUT BOTH SHAs rule) · never push · terminal pytest only · `testing_agent` BANNED · position-redaction hard-lock preserved · synthetic-fixtures-only · HALT boundary preserved (no mechanism required real estate voice/biometric material this CP).
+
+---
+
+## §E · Onward (sub-wave 6 walk)
+
+1. **CP-M6-6-2** · Collection Schema type (§9 P148..P152) — baseline tier (v1.0 five-item frozen content set: language_identification · code_switch_points · condition_profile · dedup_instance_condition_map · synthesis_relevant_group_level_acoustics) + objective tier (candidates through §8.3 propose–qualify–graduate only).
+2. **CP-M6-6-3** · Registry namespace (§12.1 P195) — per-commission scoped namespace · declared-but-not-yet-collected first-class · sealed-not-deleted on close.
+3. **CP-M6-6-4** · Rec-3-M6SW6 · Ratified-vs-INFERRED backend registry surface (owner-set ceiling ~+6-8 invariants) — CLOSES SUB-WAVE 6 with M6-seal-story "what is truly live" table snapshot.
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

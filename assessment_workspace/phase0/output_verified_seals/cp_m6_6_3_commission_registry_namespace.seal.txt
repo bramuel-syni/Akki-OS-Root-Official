@@ -1,0 +1,74 @@
+Kind: cp_m6_6_3_commission_registry_namespace
+
+# CP-M6-6-3 · Per-commission registry namespace · Seal
+
+**Sealed at UTC:** 2026-09-15T~22:15Z
+**Milestone:** M6 · Sub-wave 6 · third CP · §12.1 P195 verbatim
+**Invariants added:** +11 · **Ratchet:** 4263 → 4274
+**Track-a HEAD at seal:** `75447ac` · **Master HEAD:** `ea823aa3` (commit B: ea823aa327d1a19b7899e3bc14c5608d523b169a · landed under §3.3 · NO SEAL WITHOUT BOTH SHAs rule satisfied)
+
+---
+
+## §A · Discharge
+
+Landed `services/audio_plane_v1/commission_registry_namespace.py` — the per-commission scoped registry namespace with sealed-not-deleted discipline per §12.1 P195 verbatim.
+
+> §12.1 P195 (V121) verbatim: *"Per commission, a scoped namespace within the registry holds: the Collection Schema (versioned), collected data points mapped against it — with declared-but-not-yet-collected as first-class state — the strata referenced by the Outcome, and coverage state per stratum. Reads compose with the global registry; writes are namespace-scoped. On close, the namespace is sealed, not deleted: it is the record of what was collected and why, and the next objective's wizard session queries prior schemas and coverage so the second project starts from the first project's map."*
+
+**Public API:**
+- `NAMESPACE_STATE_VALUES` = `frozenset({"open", "sealed"})`.
+- `COLUMN_COLLECTION_STATE_VALUES` = `frozenset({"declared_not_yet_collected", "collected"})` — declared-but-not-yet-collected as first-class state per §12.1 P195 verbatim.
+- `NamespaceColumnEntry` — frozen 3-carrier: `column_ref` · `collection_state` · `coverage_metric: Optional[float]`.
+- `NamespaceStratumCoverageEntry` — frozen 2-carrier: `stratum_id` · `coverage_state`.
+- `CommissionRegistryNamespace` — frozen 6-carrier: `commission_id` · `state` (open/sealed) · `collection_schema_versioned_ref` · `column_entries` · `stratum_coverage_entries` · `sealed_at_utc: Optional[str]`.
+- `open_namespace(*, commission_id, collection_schema_versioned_ref)` — constructs open namespace with empty entries.
+- `record_declared_column(*, namespace, column_ref)` — appends entry with state=`declared_not_yet_collected` · refuses `NamespaceSealedError` on sealed.
+- `record_column_collected(*, namespace, column_ref, coverage_metric)` — flips to `collected` · refuses `NamespaceSealedError` + `NamespaceColumnUnknownError`.
+- `seal_namespace(*, namespace, sealed_at_utc)` — flips to sealed · preserves entries · refuses `NamespaceAlreadySealedError` on double-seal.
+
+**Refusals (3):** `NamespaceSealedError` · `NamespaceAlreadySealedError` · `NamespaceColumnUnknownError`.
+
+**Sealed-not-deleted discipline** anchored by `test_wm6_6_3_sealed_namespace_preserves_entries_queryable` — after `seal_namespace`, `column_entries` and `stratum_coverage_entries` remain populated and queryable by next-objective wizard session per §12.1 P195 verbatim.
+
+**No-refactor discipline held.**  collection_schema.py + objective_wizard.py + cluster_stability.py + all prior modules unchanged.
+
+Case-agnostic · no LLM/HTTP/filesystem · synthetic-fixtures-only · §3.1 P038 preserved.
+
+---
+
+## §B · Discipline receipts
+
+| Step | Path |
+|---|---|
+| RED (11 right-reason ModuleNotFoundError) | `phase0/drill_receipts/20260915T220901Z_wm6_6_3_RED_pre_impl.log` |
+| GREEN 1 | `phase0/drill_receipts/20260915T221243Z_wm6_6_3_double_green_run1.log` |
+| GREEN 2 (byte-match) | `phase0/drill_receipts/20260915T221449Z_wm6_6_3_double_green_run2.log` |
+| Rider · pip freeze | `phase0/wave_riders/w_m6_objective_wizard_cp3/pip_freeze.txt` (192 lines · zero drift vs CP-M6-6-2 rider) |
+| Rider · pytest --collect-only | `phase0/wave_riders/w_m6_objective_wizard_cp3/collect_only_summary.txt` (4275 tests collected) |
+
+**Double-green byte-match:** stripped-sha256 `d01332ef5cfdb671ebe42a5a2bf176df999bc5f542c2b225f575a8b8a1514c2d`.  Both `4274 passed, 1 skipped, 438 warnings`.  Raw 9764 B each · stripped 9751 B each.
+
+**RED confirmation:** 11 failed (all `test_wm6_6_3_commission_registry_namespace.py::*`) + 4263 passed (floor match, zero unrelated regression).  Right-reason.
+
+---
+
+## §C · Boundary probes
+
+- Probe **#53** at CP-M6-6-3 seal (2026-09-15T22:17Z): CD + Visitors BOTH FAIL 6.005s / 6.006s.
+- Zero PASS across probes #1–#53.
+
+---
+
+## §D · Discipline held
+
+Tests-first double-green byte-match · ratchet monotonic-up (4263 → 4274 · +11) · negative-scan CLEAN · §3.1 P038 preserved · §12.1 P195 sealed-not-deleted anchored end-to-end · no refactor · **§3.3 3-commit pattern** · never push · terminal pytest only · `testing_agent` BANNED · synthetic-fixtures-only · HALT boundary preserved.
+
+---
+
+## §E · Onward
+
+CP-M6-6-4 · Rec-3-M6SW6 · Ratified-vs-INFERRED backend registry surface (owner-set ceiling ~+6-8 invariants) — CLOSES SUB-WAVE 6 with M6-seal-story "what is truly live" table snapshot.
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

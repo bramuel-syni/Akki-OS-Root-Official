@@ -1,0 +1,77 @@
+Kind: cp_m6_6_2_collection_schema
+
+# CP-M6-6-2 · Collection Schema type · Seal
+
+**Sealed at UTC:** 2026-09-15T~22:02Z
+**Milestone:** M6 · Sub-wave 6 · second CP · §9 P148..P152 verbatim
+**Invariants added:** +9 · **Ratchet:** 4254 → 4263
+**Track-a HEAD at seal:** `7c856fa` · **Master HEAD:** `d9766459` (commit B: d97664591f908c1121ad72752c574e7d3113f014 · landed under §3.3 · NO SEAL WITHOUT BOTH SHAs rule satisfied)
+
+---
+
+## §A · Discharge
+
+Landed `services/audio_plane_v1/collection_schema.py` — §9 verbatim two-tier Collection Schema type with baseline seam-governance discipline.
+
+> §9.1 P148 (V95): *"The declared data dictionary of a commission: what is extracted from the sound, for what purpose, at what quality bar. It is the admission standard of the audio estate, per objective (§1.1). It has two tiers."*
+>
+> §9.2 P150 (V96): *"Standing, objective-independent, collected at first ingestion for all admitted material. Membership criterion: cheap to collect now, unaffordable to collect later. Contents at v1.0: language identification, code-switch points, condition profile, dedup instance condition map, synthesis-relevant group-level acoustics (§4). Changes to the baseline are seam-governed — ceremony, countersignature, waiting period — because silently narrowing the baseline is how an estate quietly becomes unre-readable."*
+>
+> §9.3 P152 (V97): *"Declared per commission by the Objective Wizard. Collected against material already in governed scope, priced before collection starts, recorded in the commission's registry namespace. Candidate columns enter through propose–qualify–graduate (§8.3) only."*
+
+**Public API:**
+- `BASELINE_TIER_CONTENTS_V1_0: Tuple[str, ...]` — frozen 5-tuple in verbatim canonical order: `("language_identification", "code_switch_points", "condition_profile", "dedup_instance_condition_map", "synthesis_relevant_group_level_acoustics")`.
+- `SCHEMA_TIER_VALUES: FrozenSet[str]` — `frozenset({"baseline", "objective"})` verbatim two-tier.
+- `CollectionSchemaColumn` — frozen 4-carrier: `column_name` · `tier` (∈ SCHEMA_TIER_VALUES) · `quality_bar` · `provenance_ref: Optional[str]`.  Refuses invalid tier at `__post_init__`.
+- `CollectionSchema` — frozen 3-carrier: `schema_id` · `commission_id` · `columns: Tuple[CollectionSchemaColumn, ...]`.
+- `construct_collection_schema(*, schema_id, commission_id, columns)` — refuses `BaselineTierIncompleteError` on missing v1.0 baseline contents; refuses `ObjectiveTierProvenanceMissingError` on objective-tier column with None provenance_ref.  Coerces Iterable to Tuple.
+
+**Refusals (3):** `SchemaTierInvalidError` · `BaselineTierIncompleteError` · `ObjectiveTierProvenanceMissingError`.
+
+**Baseline seam-governance held.**  `BASELINE_TIER_CONTENTS_V1_0` is a module-level frozen 5-tuple.  Extension is owner-ratification-only (same discipline as `HUMAN_NAME_ATTRIBUTE_NAMES` from CP-M6-5-3).  Any silent narrowing of the baseline is a code-change requirement, not a data-change one.
+
+**Composition with CP-M6-6-1.**  `CollectionSchemaColumnStub` from CP-M6-6-1 remains a STUB for compile-refusal territory; `CollectionSchemaColumn` from CP-M6-6-2 is the full §9 carrier for downstream data-plane use.  Distinct types by design.
+
+**No-refactor discipline held.**  objective_wizard.py + cluster_stability.py + human_validation.py + clustering.py + character_register.py all unchanged.
+
+Case-agnostic · no LLM/HTTP/filesystem · synthetic-fixtures-only · §3.1 P038 tokens-not-waveforms preserved.
+
+---
+
+## §B · Discipline receipts
+
+| Step | Path |
+|---|---|
+| RED (9 right-reason ModuleNotFoundError) | `phase0/drill_receipts/20260915T215523Z_wm6_6_2_RED_pre_impl.log` |
+| GREEN 1 | `phase0/drill_receipts/20260915T215906Z_wm6_6_2_double_green_run1.log` |
+| GREEN 2 (byte-match) | `phase0/drill_receipts/20260915T220110Z_wm6_6_2_double_green_run2.log` |
+| Rider · pip freeze | `phase0/wave_riders/w_m6_objective_wizard_cp2/pip_freeze.txt` (192 lines · zero drift vs CP-M6-6-1 rider) |
+| Rider · pytest --collect-only | `phase0/wave_riders/w_m6_objective_wizard_cp2/collect_only_summary.txt` (4264 tests collected) |
+
+**Double-green byte-match:** stripped-sha256 `71d78288b4024ddd0edd64e6cf7845cd4f39ae9f8cdafa6d6adfebf587995030`.  Both `4263 passed, 1 skipped, 438 warnings`.  Raw 9764 B each · stripped 9751 B each.
+
+**RED confirmation:** 9 failed (all `test_wm6_6_2_collection_schema.py::*`) + 4254 passed (floor match, zero unrelated regression) + 1 skipped + 438 warnings.  Right-reason.
+
+---
+
+## §C · Boundary probes
+
+- Probe **#51** (CP-M6-6-1 seal · re-used as CP-M6-6-2 open by shared boundary) noted; no fresh open-probe fired for CP-M6-6-2 as sub-wave 6 was already open at #50.
+- Probe **#52** at CP-M6-6-2 seal (2026-09-15T22:03Z): CD + Visitors BOTH FAIL 6.002s / 6.006s.
+- Zero PASS across probes #1–#52.
+
+---
+
+## §D · Discipline held
+
+Tests-first double-green byte-match · ratchet monotonic-up (4254 → 4263 · +9) · word-boundary executive-domain negative-scan CLEAN · §3.1 P038 tokens-not-waveforms discipline preserved · §9.2 P150 baseline seam-governance discipline preserved (frozen 5-tuple; extension owner-ratification-only) · §9.3 P152 propose-qualify-graduate discipline preserved (objective-tier requires provenance_ref) · no LLM/HTTP/filesystem · no refactor of any prior CP · **3-commit pattern under STANDING_ORDERS §3.3** · never push · terminal pytest only · `testing_agent` BANNED · position-redaction hard-lock preserved · synthetic-fixtures-only · HALT boundary preserved.
+
+---
+
+## §E · Onward
+
+CP-M6-6-3 · Registry namespace (§12.1 P195) — per-commission scoped namespace · declared-but-not-yet-collected first-class · sealed-not-deleted on close.
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
