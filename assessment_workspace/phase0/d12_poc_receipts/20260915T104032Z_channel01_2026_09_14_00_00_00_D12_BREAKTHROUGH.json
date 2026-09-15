@@ -1,0 +1,55 @@
+{
+  "wave": "W-D12-POC",
+  "sub_wave": "CP-D12P1_LIVE_BREAKTHROUGH_D12_01_APPROACH_A",
+  "sealed_at_utc": "20260915T104032Z",
+  "kind": "d12_poc_receipt",
+  "poc_flag": "POC-NOT-PRODUCTION",
+  "blocker_d12_01_status": "CLOSED_VIA_APPROACH_A_MOUNT_CIFS_SMB3_RSIZE_4M",
+  "input_canonical_key": {
+    "station": "channel01",
+    "date_utc": "20260914",
+    "slot": "0000",
+    "filename_stem": "channel01_2026_09_14_00_00_00"
+  },
+  "input_sha256": "0bd775469b1a1592c737d4d8804b3d0c84136009c80b7dcfe077b2bfbef819bc",
+  "input_bytes": 79394452,
+  "model_id": "faster-whisper:tiny",
+  "model_version": "ctranslate2",
+  "compute_type": "int8",
+  "beam_size": 1,
+  "legs": {
+    "nas_to_jump_via_mount_cifs": {
+      "dt_s": 86.967,
+      "kb_per_s": 891.5,
+      "bytes": 79394452,
+      "params": "vers=3.0,rsize=4M,wsize=4M,cache=loose,ro"
+    },
+    "jump_to_pod_scp": {
+      "dt_s": 16.646,
+      "kb_per_s": 4657.7
+    },
+    "pod_to_gpu_scp": {
+      "dt_s": 172.56,
+      "kb_per_s": 449.3
+    },
+    "gpu_transcribe_end_to_end": {
+      "dt_s": 30.869
+    }
+  },
+  "transcription_receipt": {
+    "poc_flag": "POC-NOT-PRODUCTION",
+    "input_bytes": 79394452,
+    "input_sha256": "0bd775469b1a1592c737d4d8804b3d0c84136009c80b7dcfe077b2bfbef819bc",
+    "wall_clock_load_s": 11.677,
+    "wall_clock_transcribe_s": 13.832,
+    "device_used": "cuda",
+    "segment_count": 0,
+    "word_count_approx": 0,
+    "language_hint": "en",
+    "language_probability": 0.2898,
+    "audio_duration_s": 0.02,
+    "avg_logprob": null,
+    "gpu_host": "akki-vm"
+  },
+  "provenance_note": "raw transcript body NEVER emitted \u00b7 release-gate admission deferred per owner Option-A 2026-09-15T~09:50Z \u00b7 blocker D12-01 CLOSED this run via mount.cifs SMB3.0 rsize=4M"
+}

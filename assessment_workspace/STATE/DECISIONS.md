@@ -8606,4 +8606,24 @@ Owner verbatim: *"Keep the CD/Visitors re-probe loop running at boundaries while
 
 ---
 
+## W-M8-TESTS-FIRST-GUARD-INVARIANT · CP-M8-G1 · sealed 2026-09-15T~10:56Z (part-B pull-forward)
+
+**Wave summary.** Part-B scope of the M8 W-TESTS-FIRST-GUARD-INVARIANT wave pulled forward per owner directive verbatim 2026-09-15T~10:30Z: 'M8 opening (W-TESTS-FIRST-GUARD-INVARIANT with part-B scope pulled forward), then the remaining M8 quick wins in the ratified order.' Extends services/secret_hygiene/custody_file.py (sealed at CP-RG-HYGIENE-01) with 3 new python-level / shell-tracing leak-class refusal functions. Discharges Standing Rules 4 (csv.reader header emit · SEC-15-08) + 5 (openpyxl iter_rows print · SEC-15-09) + 6 (shell tracing + password-var co-occurrence · SEC-15-10) banked in this session's SEC ledger. Ratchet 4068 → 4074 (+6 · no cross-benefit). Track-a HEAD `e02dd4d6`.
+
+**Guard scope now covers full recurrence class:** shell-command family (CP-RG-HYGIENE-01 · 8 commands · SEC-14-01/02/03/04 + 15-06/07 class) + python-level csv.reader header emit family (SEC-15-08) + python-level openpyxl iter_rows print family (SEC-15-09) + shell tracing + password-variable co-occurrence family (SEC-15-10). Full leak-class recurrence coverage across 10 documented incidents.
+
+**D12-01 breakthrough banked in commit `ddb4cee7`** (mount.cifs SMB3.0 rsize=4M · 7× throughput improvement · pipe proved end-to-end · CP-A precedent · zero SEC re-leak). **NEW BLOCKER-D12-03 filed** (mp4 audio decode edge · owner-desk cost LOW). Boundary probe #9 at CP-M8-G1 seal: CD+Visitors BOTH FAIL errno-110-ETIMEDOUT (unchanged from probes #1-8).
+
+**Onward chain (unchanged from ratified sequencing 2026-09-15T~04:12Z §Δ5):**
+1. **W-EXPORT-ARTEFACT-RENDER** (M8 quick-hardening #2).
+2. **W-DATA-SUITE-ANALYZE-WORKSPACE-REAL + W-DEEP-DIVE-REAL paired** (M8 #3+#4).
+3. **W-CENSUS-RUNTIME-ORCHESTRATION** (M8 #5 · benefits from D12-01 breakthrough for live SMB fetches · will supersede CP-CSAIM1 placeholders via CP-C4 E.5).
+4. **W-AUDIO-PROD-MODEL-SELECT** (M8 #6 · gated on census activation list per §A17.11 · benefits from resolved D12-03 for real-audio quality shape).
+5. **M6 opens** (§15 walk · benefits from D12-01 breakthrough params: mount.cifs vers=3.0 rsize=4M cache=loose is the ingestion transport baseline).
+6. **M7 opens** (ALREADY RATIFIED 2026-09-15T~04:12Z Effect 1 · W0..W9).
+
+**Guardrails unchanged.** Tests-first double-green byte-match · ratchet monotonic-up · two-commit local-only · never push · terminal pytest only · testing_agent BANNED · position-redaction hard-lock · verbatim-canon · HALT-rather-than-guess.
+
+---
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

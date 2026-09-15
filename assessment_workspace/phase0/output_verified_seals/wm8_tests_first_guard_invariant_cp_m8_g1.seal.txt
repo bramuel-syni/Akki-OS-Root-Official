@@ -1,0 +1,81 @@
+{
+  "wave": "W-M8-TESTS-FIRST-GUARD-INVARIANT",
+  "sub_wave": "CP-M8-G1",
+  "cp": "part-B scope · extend services/secret_hygiene/custody_file.py with 3 python-level custody-read leak-class assertions + 2 exception subclasses + 2 module-frozen tuples",
+  "sealed_at_utc": "2026-09-15T10:55:00Z",
+  "kind": "m8_tests_first_guard_invariant_part_b_landing",
+  "wave_scope": "part_b_only · part_a_shell_command_family_already_sealed_at_cp_rg_hygiene_01",
+  "canon_anchors": [
+    "Owner directive · 2026-09-15T~10:30Z-11:00Z verbatim: 'M8 opening (W-TESTS-FIRST-GUARD-INVARIANT with part-B scope pulled forward), then the remaining M8 quick wins in the ratified order.'",
+    "SEC-2026-09-15-08 (CSV-header-emit via python csv.reader print · Standing Rule 4)",
+    "SEC-2026-09-15-09 (openpyxl.iter_rows + print on custody xlsx · Standing Rule 5)",
+    "SEC-2026-09-15-10 (shell `set -x` + `PASSWD=` co-occurrence · Standing Rule 6)",
+    "CP-RG-HYGIENE-01 seal (phase0/output_verified_seals/wrg_cp_rg_hygiene_01.seal.txt · shell-command family part-A · sealed 2026-09-15T~08:54Z)",
+    "notes/wave_m8_tests_first_guard_invariant_grounding_brief.md §B (design) + §C (invariants) + §E (wave-honest-limits)"
+  ],
+  "discharges": [
+    "Standing Rule 4 (SEC-15-08 class · csv.reader header emit) via assert_no_transcript_csv_header_emit_on_custody",
+    "Standing Rule 5 (SEC-15-09 class · openpyxl iter_rows print) via assert_no_transcript_openpyxl_iter_rows_on_custody",
+    "Standing Rule 6 (SEC-15-10 class · shell tracing + password-var co-occurrence) via assert_no_transcript_set_x_with_password_var",
+    "Owner-desk item · M8 W-TESTS-FIRST-GUARD-INVARIANT part-B pulled forward from post-M8 to in-scope per SEC recurrence pattern this session"
+  ],
+  "landing_modules": [
+    "backend/services/secret_hygiene/custody_file.py (extended · new: 3 assertion functions + 2 exception subclasses + 2 module-frozen tuples + 3 regex builders + 1 print-call pattern)",
+    "backend/tests/invariants/test_wm8_tests_first_guard_invariant_part_b.py (new · 6 invariants)"
+  ],
+  "canonical_tokens_frozen": {
+    "PASSWORD_ENV_VAR_TOKENS": ["PASSWD", "PASSWORD", "SSHPASS", "SECRET", "TOKEN", "APIKEY", "API_KEY", "AUTH"],
+    "SHELL_TRACING_TOKENS": ["set -x", "set -o xtrace", "bash -x", "sh -x", "-o xtrace"]
+  },
+  "invariants_added": 6,
+  "invariant_ids": [
+    "test_wm8_tests_first_guard_invariant_part_b.py::test_module_fabric_present_part_b",
+    "test_wm8_tests_first_guard_invariant_part_b.py::test_assert_no_csv_header_emit_refuses_csv_reader_with_custody_path",
+    "test_wm8_tests_first_guard_invariant_part_b.py::test_assert_no_csv_header_emit_allows_non_custody_paths",
+    "test_wm8_tests_first_guard_invariant_part_b.py::test_assert_no_openpyxl_iter_rows_refuses_custody_workbook",
+    "test_wm8_tests_first_guard_invariant_part_b.py::test_assert_no_set_x_with_password_var_refuses_when_co_occurring",
+    "test_wm8_tests_first_guard_invariant_part_b.py::test_assert_no_set_x_with_password_var_allows_set_x_alone"
+  ],
+  "cross_benefit_added": 0,
+  "cross_benefit_note": "None. Extends the sealed services/secret_hygiene/custody_file.py module (part-A) with new functions and constants; contracts/ untouched; NON_CONTRACT_UTILITY_MODULES scope unchanged; test_frozen_contract_snapshot_parity.py scope unchanged.",
+  "passed_before": 4068,
+  "passed_after": 4074,
+  "ratchet_delta": 6,
+  "ratchet_manifest_sha256": "6ce6164525cf875beeba1a542fea056ce89d12635ba0bd70f13ba4f20440390a",
+  "ratchet_history_entry": {
+    "at_utc": "20260915T105100Z",
+    "sub_wave": "CP-M8-G1_PART_B_PYTHON_LEVEL_CUSTODY_READ_GUARDS",
+    "passed": 4074,
+    "invariants_added": 6,
+    "commit": "TBD"
+  },
+  "receipts": {
+    "20260915T104935Z_wm8_tests_first_guard_invariant_part_b_RED_pre_impl.log": "20690897d58ce668c7bdd56b19acfd97a5028142b8255bd6a4f14cc9b9a89651",
+    "20260915T105040Z_wm8_tests_first_guard_invariant_part_b_GREEN1.log": "6caf86be1397e46524cf024332db60a78ab278addc6c32f8547b28e166fda3e7",
+    "20260915T105248Z_wm8_tests_first_guard_invariant_part_b_GREEN2.log": "a3166a9c602cbf17a1a41f9112f5fe3829b0dbaaf5599bfa022d6e35628c9e5e",
+    "20260915T105455Z_wm8_g1_COLLECTONLY.log": "9e4b04754048c5fdf9e46a2b923a943bc27f682b75f663fcb8ee773958572239",
+    "20260915T105455Z_wm8_g1_PIPFREEZE.log": "7efbe6c7ea3250223e1a0074a6b4588268f11fdebdb0729c0e549f1db6c5b92c"
+  },
+  "byte_match_check": "identical modulo wall-time (both GREEN runs: 4074 passed, 1 skipped, 438 warnings; strip-of-time diff empty; both raw 9524 bytes / stripped 9507 bytes; both stripped sha256 = a9bf81a9d479751ec14d4db6356098efb7cbf8b5040b900a661e34c9d25d5eee)",
+  "red_drill_class": "module-missing right-reason (6/6 tests failed with ImportError/AttributeError on new part-B exports before mechanism extended)",
+  "wave_honest_limits": {
+    "E.1_no_new_custody_prefix": "CUSTODY_PATH_PREFIXES unchanged from CP-RG-HYGIENE-01",
+    "E.2_authoring_time_prevention": "text-pattern-matching guard fires when script text passes through it before invocation; cannot catch runtime side-effects the guard didn't see",
+    "E.3_approved_safe_labels_allowlist_deferred": "Standing Rule 5's approved-safe-labels allowlist (Host/Server/IP/Port/URL/Region/BucketName/etc.) is a policy annotation on content, not pattern; robust runtime hook deferred to later wave",
+    "E.4_regex_based_detection": "obfuscated Python reads (getattr(csv,'reader')+getattr(builtins,'print')) evade this guard; trade-off preserves fast+deterministic+covers-authoring-accidents; adversarial evasion not design goal"
+  },
+  "boundary_probe_9": {
+    "at_utc": "2026-09-15T~10:56:00Z",
+    "cp_boundary": "CP-M8-G1_SEAL",
+    "citizen_digital": {"host": "159.138.164.103:3306", "verdict": "FAIL", "errno": 110, "reason": "ETIMEDOUT", "dt_seconds": 6.006},
+    "visitors": {"host": "110.238.75.83:3306", "verdict": "FAIL", "errno": 110, "reason": "ETIMEDOUT", "dt_seconds": 6.006},
+    "pass_verdicts_to_fold": 0,
+    "custody_cat_guard_fires": 0,
+    "position_redaction_hard_lock": "preserved (zero credential material in transcript · standing retry loop continues at next CP boundary)"
+  },
+  "commit_a_track_a_head_at_seal": "TBD (imminent)",
+  "commit_b_master_head_at_seal": "TBD (imminent)",
+  "grounding_brief": "notes/wave_m8_tests_first_guard_invariant_grounding_brief.md",
+  "reporting_cadence": "Owner directive verbatim 2026-09-15T~10:30Z: 'Report at M8 guard-wave seal or on D12-01 breakthrough, whichever first.' D12-01 breakthrough already banked in commit ddb4cee7; this seal is the second report trigger.",
+  "next_step": "Continue M8 remaining quick wins in ratified order: W-EXPORT-ARTEFACT-RENDER -> W-DATA-SUITE-ANALYZE-WORKSPACE-REAL + W-DEEP-DIVE-REAL paired -> W-CENSUS-RUNTIME-ORCHESTRATION -> W-AUDIO-PROD-MODEL-SELECT · then M6 opens (W-M6-INGEST-STAGE-1 first) · then M7 (already ratified · W0..W9)"
+}

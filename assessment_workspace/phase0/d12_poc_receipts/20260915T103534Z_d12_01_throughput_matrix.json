@@ -1,0 +1,37 @@
+{
+  "kind": "d12_01_throughput_matrix",
+  "sealed_at_utc": "20260915T103534Z",
+  "approaches_tested_this_run": [
+    "a"
+  ],
+  "results": {
+    "approach_a": {
+      "approach": "a_mount_cifs_smb3_rsize4M",
+      "verdict": "PASS",
+      "dt_setup_s": 3.331,
+      "dt_mount_s": 5.526,
+      "dt_fetch_s": 89.932,
+      "dt_measured_on_jump_s": 86.967,
+      "bytes_transferred": 79394452,
+      "kb_per_second": 891.5,
+      "sha256_line": "0bd775469b1a1592c737d4d8804b3d0c84136009c80b7dcfe077b2bfbef819bc  /tmp/d12_a_tes",
+      "staged_file_on_jump": "/tmp/d12_a_test_1789468437.mp4",
+      "fetch_stdout_tail": "BYTES=79394452\nDT_S=86.967\n",
+      "fetch_stderr_tail": ""
+    },
+    "approach_a_full_details": {
+      "approach": "a_mount_cifs_smb3_rsize4M",
+      "verdict": "PASS",
+      "dt_setup_s": 3.331,
+      "dt_mount_s": 5.526,
+      "dt_fetch_s": 89.932,
+      "dt_measured_on_jump_s": 86.967,
+      "bytes_transferred": 79394452,
+      "kb_per_second": 891.5,
+      "sha256_line": "0bd775469b1a1592c737d4d8804b3d0c84136009c80b7dcfe077b2bfbef819bc  /tmp/d12_a_tes",
+      "staged_file_on_jump": "/tmp/d12_a_test_1789468437.mp4",
+      "fetch_stdout_tail": "BYTES=79394452\nDT_S=86.967\n",
+      "fetch_stderr_tail": ""
+    }
+  }
+}
