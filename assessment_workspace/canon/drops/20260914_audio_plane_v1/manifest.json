@@ -1,0 +1,58 @@
+{
+  "drop_id": "20260914_audio_plane_v1",
+  "canon_title": "The Audio Intelligence Plane · Extraction · Learning · Training · Invention — end to end",
+  "canon_class": "engineering_specification_consolidated_build_reference",
+  "version_string_verbatim": "v1.0 · 14 September 2026",
+  "supersedes_verbatim": "Audio Capability Spec v1.0 and Addendum v1.1.2",
+  "self_declared_status_verbatim": "consolidated build specification. It supersedes the working drafts (Audio Capability Spec v1.0 and Addendum v1.1.2) and is the single reference for build.",
+  "provenance": {
+    "docx_source_url": "https://customer-assets-cm19k8pv.emergentagent.net/job_amazing-gates-8/artifacts/ufg3embu_Akki_OS_Audio_Intelligence_Plane_Specification_v1_0.docx",
+    "md_source_url": "https://customer-assets-cm19k8pv.emergentagent.net/job_amazing-gates-8/artifacts/en4j8khc_Audio_Intelligence_Plane.md",
+    "downloaded_at_utc": "2026-09-15T01:41:13Z",
+    "downloaded_by": "main_agent_session_20260914",
+    "egress_window_at_download": "in_window (01:41 UTC · policy 08:00-02:00 UTC)"
+  },
+  "raw_artefacts": [
+    {
+      "path": "canon/drops/20260914_audio_plane_v1/raw/Akki_OS_Audio_Intelligence_Plane_Specification_v1_0.docx",
+      "size_bytes": 26623,
+      "sha256": "b6ad57b369ad3125f25a81f0790d5226a7630206092ea096023d04650cbe43a9",
+      "kind": "docx (Office Open XML zip)"
+    },
+    {
+      "path": "canon/drops/20260914_audio_plane_v1/raw/Audio_Intelligence_Plane.md",
+      "size_bytes": 30767,
+      "sha256": "c8ee75ae756004af5dd68d48b94376f3b9005aaf5ee3f413ed456566d2da2c5e",
+      "kind": "markdown (utf-8)"
+    }
+  ],
+  "extracted_artefacts": [
+    {
+      "path": "canon/drops/20260914_audio_plane_v1/extracted/Audio_Plane_Spec_STRUCTURED.txt",
+      "size_bytes": 34431,
+      "line_count": 253,
+      "extraction_method": "python zipfile + XML ElementTree over word/document.xml · paragraphs tagged [P### · style=<style>] · table rows preserved verbatim",
+      "last_paragraph_index": "P253"
+    },
+    {
+      "path": "canon/drops/20260914_audio_plane_v1/extracted/Audio_Plane_Spec.txt",
+      "size_bytes": 29109,
+      "line_count": 241,
+      "extraction_method": "flat text (paragraph + table-cell text only)"
+    }
+  ],
+  "parity_check_docx_vs_md": {
+    "method": "case-insensitive whitespace-normalised substring containment for 34 distinctive phrases from every §-heading and every load-bearing sentence",
+    "probes_total": 34,
+    "probes_matched": 34,
+    "probes_mismatched": 0,
+    "verdict": "PARITY_TRUE (both artefacts carry identical content — the .md is a markdown rendering of the .docx source)"
+  },
+  "requirements_document": "notes/AUDIO_PLANE_SPEC_V1_REQUIREMENTS_VERBATIM_20260914.md",
+  "model_spec_document": "notes/CANON_MODEL_SPECS_VERBATIM_20260914.md",
+  "drift_audit_document": "notes/AUDIO_PLANE_V1_DRIFT_AUDIT_20260914.md",
+  "canon_pack_register_status": "REGISTERED_AS_STANDALONE_DROP (supersedes prior Audio Capability Spec v1.0 + Addendum v1.1.2 per self-declared status statement)",
+  "wave_scope_this_session": "INGEST_AND_MAP_ONLY (no build; drift audit surfaces deviations for owner ruling; census run + POC are separate deliverables per owner directive)",
+  "verbatim_canon_discipline_applied": true,
+  "verbatim_canon_discipline_anchor": "DECISIONS.md ruling 2026-09-15T~01:40Z"
+}

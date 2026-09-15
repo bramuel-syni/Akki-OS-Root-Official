@@ -1,0 +1,123 @@
+SYNI.AI  ·  AKKI OS  ·  DESIGN PRINCIPLES
+The Pull Seam
+How Akki processes data without moving it
+What this is
+The design principles behind the pull seam — the mechanism by which an outside party can query, analyse, or train on a data estate while the estate's data stays inside its owner's perimeter.
+Who it is for
+Any technical reader. It assumes familiarity with networks, databases, and machine learning, and nothing about Akki.
+The one idea
+Reverse the direction of travel. Instead of sending data to where the compute is, put the compute where the data is, and let only governed results travel out.
+Version
+pull_seam_principles_v1 · 14 September 2026 · External
+1   The Problem
+Almost every arrangement for letting an outside party work with your data moves the data. It is uploaded to a vendor's cloud, or a credential to all of it is handed to a service outside your network, or a contract promises it will be deleted afterwards. Once data is elsewhere, control of it is elsewhere too: it can be copied, breached, retained, or reused, and the owner learns about it after the fact if at all.
+Data is most valuable exactly where it is most sensitive — in health, finance, government, research, media archives. Those are also the estates least able to move their data anywhere. The pull seam exists to make those estates usable without moving them.
+2   The Principles
+Principle 1  Compute comes to the data. Never the reverse.
+The platform runs on a sealed appliance installed inside the customer's own server room or field site. The appliance holds the GPUs. Queries execute on it. Models train on it. An outside party who wants a model shaped by the estate's data sends the model in; the model trains next to the data and leaves as weights. There is no configuration in which estate data is transferred to compute outside the perimeter. This is a prohibition with no exception, not a default setting.
+Principle 2  One seam. Two ports. No third path.
+The appliance exposes exactly two network interfaces on physically separate connectors, colour-keyed and labelled: ESTATE, which faces the customer's data network, and WAN, which faces the outside world. Data is read through ESTATE. Parties connect through WAN. Everything that moves from one side to the other passes through a single software crossing. That crossing is enforced at build time: exactly one function may perform it, and a scan on every build fails the build if a second path is introduced. Outbound network connections are allow-listed, so there is no route to an unlisted destination.
+Principle 3  The two sides share nothing.
+The estate and the outside party are separate trust domains. They share no identifiers, no storage, and no credentials. A record's identifier inside the estate means nothing outside it and resolves to nothing there. A party's key is its own — revocable in one act, expiring, non-transferable, never written to logs — and identifies an organisation that was admitted through a governed act by the estate owner's named authority.
+Principle 4  Identity never crosses.
+Before any result leaves, it passes through the crossing, which replaces identifiers and declared-confidential values with placeholder tokens according to each record's custody class. The party receives the answer to its question with identifying content substituted. Re-identification happens only inside the perimeter, and only for the estate's own use.
+Principle 5  Six crossings, each governed on its own terms.
+An outside party can do six things, and each is a different crossing with its own rules for what enters, what leaves, whether a human must approve, and what is recorded. Five of the six release a derivative — a count, a de-identified result, a derived finding, a trained model, a skill. Only one releases estate data itself, and it is deliberately not the ordinary crossing.
+Operation
+What enters
+What leaves
+Human approval
+What is recorded
+Browse the estate
+Nothing
+Aggregate composition only — never record contents
+None
+The access
+Query (API)
+The party's query
+Results, de-identified
+Only if controlled data is touched
+Every query, every result
+Processed intelligence
+The party's objective
+Derived output only — never source records
+Only if controlled data is touched
+Objective, output, records read
+Train a model
+The party's base model
+Trained weights, with rights and hash stamped
+Always
+Training manifest, weights hash, terms
+Build a skill
+The party's skill objective
+The skill file
+Always
+Skill hash, records read, terms
+Download raw data
+Nothing
+Estate data itself
+Always for controlled; owner-set otherwise
+Every record, redaction log, sign-off
+Principle 6  A trained model leaves only after it is measured.
+Training changes weights, and weights carry the statistical influence of what they trained on. The platform does not pretend otherwise; it bounds that influence three ways. Training is differentially private by default, which limits how much any single record can shape the result. Before release, the trained model is probed for memorisation — sampled against the records it trained on — and does not pass until it sits beyond a set distance from every controlled record. And every release, of any kind, is debited against the estate's release budget: a ceiling on the total information that can ever leave, across all parties, all operations, and all time.
+Principle 7  Every crossing is recorded — or it does not happen.
+Each operation writes a receipt: what was accessed, in what quantity, under which terms, by which party, at what time. The receipt is written before the result is returned. If it cannot be written, the operation is refused. The same holds for every governing check: if an approval cannot be reached, a terms lookup returns nothing, or a check errors, the crossing fails closed. No path returns data, a result, or a model when a check did not complete.
+Principle 8  Raw data leaves only through a separate outer gate.
+Downloading estate data itself is not the ordinary crossing. It is a distinct outer gate with its own rules: disclosure depth is bounded by rights and custody, redaction runs as a gate rather than a suggestion, a named human signs off, and every released record is individually recorded. Everything else the seam supports releases a derivative. This is the only operation that releases the thing itself, and it is built to be the exception.
+3   Seeing It Work: A Query
+1.  The party connects on the WAN side  with its own key.
+2.  The query enters.  Nothing about the party crosses with it — no identifier from the party's side resolves inside the estate.
+3.  The query runs inside the perimeter,  on the estate's own compute, against data that never leaves the ESTATE side.
+4.  The result passes the crossing.  Identifiers and confidential values are replaced with placeholders according to custody class.
+5.  De-identified results leave on the WAN side.  If controlled data was touched, approval was required before step 3 ran; otherwise no human was in the loop.
+6.  A receipt is written.  If it cannot be, the operation is refused.
+4   Seeing It Work: A Training Run
+1.  The party's base model enters on the WAN side  and is admitted to estate compute. Before it touches any data it is run in a synthetic environment that probes it for hidden behaviour — a model is not trusted on arrival.
+2.  Training runs on the estate's GPUs,  against data in place, with a differentially private optimiser by default.
+3.  The result is gated before it can leave.  It must meet every accuracy criterion set before training started, or it is refused in full. It is probed for memorisation. Its draw against the release budget is checked.
+4.  Weights leave through the model registry,  carrying a rights posture, a recorded hash, and the terms in force. Weights derived from controlled data carry that fact on their registry entry permanently.
+5.  A receipt is written:  the training manifest, the weights hash, the terms.
+What left: a trained model, measured and budgeted. What did not leave: any record it trained on. The data stayed on the ESTATE side of the appliance throughout.
+5   What Leaves, Stated Precisely
+“Nothing leaves” is a slogan. The precise statement is this: no raw record leaves except through the outer gate with a named human's sign-off, and everything else that leaves is a governed derivative — de-identified results, derived intelligence, or measured artefacts — bounded in aggregate by the release budget and recorded individually. Nothing crosses outward that is not one of those, and each crossing has a receipt.
+6   Where the Principle Comes From
+Compute-to-data is not new. Stored procedures send logic into the database rather than pulling rows out. Hadoop schedules jobs onto the nodes that hold the data because moving terabytes is the expensive part. Federated learning sends a model to where data lives and returns only the weight updates. Data clean rooms let two parties compute over combined data without either seeing the other's rows. Confidential computing processes data in a region the host cannot read.
+The pull seam applies the same direction of travel to a whole estate and adds what those approaches mostly lack: one enforced boundary that every crossing passes through, six distinct crossings each governed on its own terms, measured release of trained artefacts, a finite budget on total release, and a receipt for everything. The principle is familiar. The enforcement is the design.
+7   The Trade-Off
+Compute-to-data means the estate hosts the compute. GPU capacity sits on premises rather than being rented by the hour, and throughput is bounded by that hardware. An outside party's training job runs at the estate's speed. Batch and asynchronous work — analysis, extraction, training — fits this well; interactive, low-latency work fits it less well.
+What the estate gets in return is the removal of an entire class of risk: no copy of the data elsewhere to breach, no egress to pay for, no deletion promise to audit, and no credential to a full dataset in someone else's key store. For a regulated or sovereignty-constrained estate, that is usually the right trade.
+8   What You Can Observe
+Each principle above corresponds to something a technical reader can see directly on a deployed system.
+Look at
+What it shows
+The appliance's front panel
+Two ports, ESTATE and WAN, and nothing else. The GPUs are inside.
+The build test output
+The single-crossing check, passing on the current build.
+The outbound allow-list
+The only destinations the appliance can reach.
+A receipt and its ledger entry
+What crossed, how much, under which terms, by whom, when.
+A memorisation probe result
+A trained model measured against its own training records before release.
+The release budget and its consumption
+The ceiling on total release, and how much of it has been used.
+The configuration
+There is no setting that moves estate data to outside compute.
+9   Glossary
+Term
+Meaning
+Estate
+A data holding under one owner's custody — an archive, a database set, a corpus.
+Seam
+The single interface where the estate's domain meets an outside party's. Nothing else is shared across it.
+Crossing
+One of six governed operations by which something moves from one side of the seam to the other.
+Custody class
+A per-record classification governing how it may cross — what is de-identified, whether approval is required.
+Controlled record
+A record whose custody class requires approval before an operation touching it may run.
+Release budget
+A ceiling on the total information released from an estate across all parties, operations, and time.
+Receipt
+The record written for every crossing. If it cannot be written, the crossing does not happen.

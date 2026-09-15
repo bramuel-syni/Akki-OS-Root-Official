@@ -1,0 +1,30 @@
+{
+  "drop_id": "20260914_pull_seam",
+  "canon_title": "The Pull Seam",
+  "canon_class": "design_principles",
+  "version_string_verbatim": "pull_seam_principles_v1 · 14 September 2026 · External",
+  "provenance": {
+    "source_url": "https://customer-assets-cm19k8pv.emergentagent.net/job_amazing-gates-8/artifacts/348ry0x4_The_Pull_Seam%20%281%29.docx",
+    "downloaded_at_utc": "2026-09-15T01:32:25Z",
+    "downloaded_by": "main_agent_session_20260914",
+    "egress_window_at_download": "in_window (01:32 UTC · policy 08:00-02:00 UTC · pre-midnight boundary)"
+  },
+  "raw_artefact": {
+    "path": "canon/drops/20260914_pull_seam/raw/The_Pull_Seam.docx",
+    "size_bytes": 16429,
+    "sha256": "0a3084422726dd76aee6a6d80d9e3534ded2677cfe95947215c9762fe305afab",
+    "mode": "0644",
+    "container_kind": "docx (Office Open XML zip)"
+  },
+  "extracted_artefact": {
+    "path": "canon/drops/20260914_pull_seam/extracted/The_Pull_Seam.txt",
+    "size_bytes": 11742,
+    "extraction_method": "python zipfile + XML ElementTree over word/document.xml",
+    "extractor_side_effects_declared_none": true,
+    "non_blank_paragraphs": 123
+  },
+  "requirements_document": "notes/canon_pull_seam_requirements.md",
+  "conformance_gap_document": "notes/PULL_SEAM_CONFORMANCE_20260914.md",
+  "wave_scope_this_session": "INGEST_AND_MAP_ONLY (no build; owner will scope the wave)",
+  "canon_pack_register_status": "REGISTERED_AS_STANDALONE_DROP (not part of the original 9-canon pack)"
+}

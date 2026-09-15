@@ -7833,4 +7833,38 @@ RED right-reason at `20260914T150832Z_wdslift_cp_d8_donor_lift_case_agnostic_RED
 
 ---
 
+## Ruling · 2026-09-15T~01:40Z · Owner directive (verbatim) · STANDING RULE · Verbatim-canon discipline extends parse-not-paraphrase to requirements
+
+**Owner correction (verbatim, this turn):**
+
+> "The requirements do all have these specifications mapped out clearly. Are you reading these docs word for word. Seems like you are making things up as we go."
+
+> "OWNER CHALLENGE — treat as a discipline correction, effective immediately … The document itself is the source. … Convert The_Pull_Seam docx to plain text LOCALLY (python-docx or equivalent, already your convention). Read EVERY line — no sampling, no skimming. Produce a numbered requirement extraction … where EVERY row is: (a) verbatim quote, (b) exact location (section/heading/paragraph index), (c) requirement classification. Zero invented terminology — use only the document's own words for names of components, crossings, gates, budgets."
+
+> "STANDING RULE from now on (bank in DECISIONS.md): any requirement cited in a grounding brief, note, or invariant docstring must carry a verbatim quote + source file + section. If a claimed requirement cannot be located verbatim in a canon document, it is marked INFERRED and requires owner ratification BEFORE mechanism lands. My paraphrases in directives are routing, not requirements."
+
+**Binding effects (immediate):**
+
+1. **Every requirement cited in a grounding brief, note, or invariant docstring** MUST carry:
+   * a **verbatim quote** from a canon document,
+   * the **source file path** (typically under `canon/`, `notes/canon_*_requirements.md`, or `notes/*_REQUIREMENTS_VERBATIM_*`),
+   * the **section anchor** (heading + paragraph index or line range in the extracted text).
+
+2. **Any claimed requirement that cannot be located verbatim in a canon document is marked `INFERRED`** and requires **owner ratification BEFORE mechanism lands.**
+
+3. **Owner directives are routing, not requirement source.** When an owner directive paraphrases a canon requirement for context, the mechanism must still gate on the verbatim canon text, not on the directive's phrasing.
+
+4. **Extension of SO §3.1 (ALIVE IS NOT DONE) and the CP-D4 corrective ritual (parse-RED-receipt-content-not-filename):** the same parse-not-paraphrase discipline that already applies to seals (SO §3.1) and to RED receipts (DECISIONS 2026-09-14T~14:36Z) now applies to requirement extractions. Read the canon words; do not compress, gloss, or re-organise under an invented numbering scheme without explicit citation to the source structure.
+
+5. **In-session self-correction (this turn):**
+   * `notes/canon_pull_seam_requirements.md` (authored 2026-09-15T~01:34Z with invented `PS-P1.1..PS-P8.5` sub-numbering + prose gloss) is **SUPERSEDED** by `notes/PULL_SEAM_REQUIREMENTS_VERBATIM_20260914.md`.
+   * `notes/PULL_SEAM_CONFORMANCE_20260914.md` (authored 2026-09-15T~01:36Z citing the invented `PS-*` IDs) is **SUPERSEDED** by `notes/PULL_SEAM_CONFORMANCE_VERBATIM_20260914.md` which rebuilds the gap table from the verbatim extraction.
+   * The superseded documents are kept on disk with a `SUPERSEDED` banner at their heads for audit-trail continuity; downstream references must use the verbatim versions.
+
+6. **Drift audit** against already-sealed mechanism is triggered by this ruling. Any invariant docstring, grounding brief clause, or DECISIONS entry that encodes an INFERRED or paraphrased requirement is a candidate finding. Findings are surfaced to the owner, NOT silently fixed — the owner rules on each individually.
+
+7. **Sanction for recurrence:** a subsequent turn that lands a mechanism or a grounding-brief clause carrying an INFERRED requirement without owner ratification is a right-reason RED under this ruling. The next agent that inherits the session MUST HALT and surface, per SO §1 boot ritual + this ruling.
+
+---
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
