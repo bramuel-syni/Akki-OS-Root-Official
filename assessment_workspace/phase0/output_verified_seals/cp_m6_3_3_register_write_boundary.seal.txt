@@ -1,0 +1,67 @@
+Kind: cp_m6_3_3_register_write_boundary
+
+# CP-M6-3-3 · Register write-path leakage-refusal boundary · §6.3 P100 end-to-end lock · Seal
+
+**Sealed at UTC:** 2026-09-15T~19:33Z
+**Milestone:** M6 · Sub-wave 3 (W-M6-CHARACTER-REGISTER · §6) — third CP
+**Invariants added:** +10 · **Ratchet:** 4165 → 4175
+**Track-a HEAD at seal:** TBD (commit pending) · **Master HEAD:** TBD (commit pending)
+
+---
+
+## §A · Discharge · §6.3 P100 end-to-end lock
+
+CP-M6-3-3 lands `services/audio_plane_v1/register_write_boundary.py` — the concrete write-path leakage-refusal boundary that turns the CP-M6-3-2 harness GREEN and anchors the §6.3 P100 invariant end-to-end.
+
+**§6.3 P100 canonical assertion** (anchored by `test_wm6_3_3_p100_end_to_end_lock_run_leakage_harness_passes_with_boundary`): running `run_leakage_path_harness(write_callable=RegisterWriteBoundary().write)` returns normally — every §6.3 P100 synthetic leakage-path scenario is refused with the correct refusal-type subclass of `LeakageRefusalError`.
+
+**Public API — 5 refusal classes** (all subclass `LeakageRefusalError`):
+- `OrganicCharacteristicRefused` — §6.1 P092 (`is_learned=False`).
+- `IdiolectMarkerRefused` — §6.4 P102 (attribute_name marks idiolect / habitual / idiosyncratic).
+- `ExemplarStorageRefused` — §6.2 P098 cond-4 (description dims > max).
+- `NarrowingCombinationRefused` — §6.2 P097 cond-3 (multi-axis combinatorial re-id).
+- `SmallStratumRefused` — §6.2 P096 cond-2 (n_distinct_speakers < threshold).
+
+**`RegisterWriteBoundary`** — inspects every `CharacterEntry` and refuses in fixed order (organic → idiolect → exemplar → narrowing → small_stratum). Pluggable idiolect + narrowing detectors via constructor kwargs; defaults refuse the CP-M6-3-2 synthetic scenarios. Configurable thresholds: `min_distinct_speakers_threshold=3` (§6.2 P096 N seam-value default) · `max_description_dimensions=32` (§6.2 P098 cond-4 exemplar/description heuristic boundary).
+
+Case-agnostic negative-scan CLEAN. Synthetic-fixtures-only in tests.
+
+---
+
+## §B · Discipline receipts
+
+| Step | Path |
+|---|---|
+| RED (10 right-reason ModuleNotFoundError) | `phase0/drill_receipts/20260915T192557Z_wm6_3_3_RED_pre_impl.log` |
+| GREEN 1 | `phase0/drill_receipts/20260915T192658Z_wm6_3_3_double_green_run1.log` |
+| GREEN 2 (byte-match) | `phase0/drill_receipts/…_wm6_3_3_double_green_run2.log` |
+| Rider · pip freeze | `phase0/wave_riders/w_m6_character_register_cp3/pip_freeze.txt` (192 lines · no drift) |
+| Rider · pytest --collect-only | `phase0/wave_riders/w_m6_character_register_cp3/collect_only_summary.txt` (4176 tests) |
+
+**Double-green byte-match:** stripped-sha256 `82906156be5e021ca0a732ea71984b348e3071500efa77658567665187a57f22`. Both `4175 passed, 1 skipped, 438 warnings`.
+
+---
+
+## §C · Boundary probes
+
+- Probe **#32** at CP-M6-3-3 open: CD + Visitors BOTH FAIL · timeout.
+- Probe **#33** at CP-M6-3-3 seal (§6.3 P100 end-to-end lock): CD + Visitors BOTH FAIL · timeout.
+- Zero PASS across probes #1–#33.
+
+---
+
+## §D · Discipline held
+
+Tests-first double-green byte-match · ratchet monotonic-up (4165→4175 · +10 · pure new-service extension · CP-M6-3-1/3-2 contracts untouched) · word-boundary executive-domain negative-scan CLEAN · synthetic-fixtures-only in every scenario · pull-seam + §6.2 cond-4 negative-scan CLEAN · two-commit local-only · never push · terminal pytest only · testing_agent BANNED · position-redaction hard-lock preserved · no refactor.
+
+---
+
+## §E · Onward
+
+1. **CP-M6-3-4** · §6.4 read-path scope enforcement (final CP of sub-wave 3). Then W-M6-CHARACTER-REGISTER sub-wave 3 seals.
+2. **Then:** sub-wave 4 (codec service). §15 P235.s2 permits parallel with sub-waves 1–3.
+3. **Then:** sub-waves 5 (clustering + human validation — HALT-check for real biometric material dependency) and 6 (Objective Wizard variant).
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

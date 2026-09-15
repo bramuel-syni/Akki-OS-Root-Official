@@ -1,0 +1,77 @@
+Kind: cp_m6_4_1_audio_codec_service_skeleton
+
+# CP-M6-4-1 · perception/audio_codec/ module skeleton · Seal
+
+**Sealed at UTC:** 2026-09-15T~19:56Z
+**Milestone:** M6 · Sub-wave 4 (W-M6-CODEC-SERVICE · §3) — first CP
+**Invariants added:** +7 · **Ratchet:** 4183 → 4190
+**Track-a HEAD at seal:** TBD (commit pending) · **Master HEAD:** TBD (commit pending)
+
+---
+
+## §A · Discharge
+
+CP-M6-4-1 lands `services/perception/audio_codec/__init__.py` + `services/perception/audio_codec/service.py` — canon-anchored perception/audio_codec/ service skeleton per §3.2 P045 verbatim (V33 · N4 anchor).
+
+> §3.2 P045 (V33): "perception/audio_codec/ — registered like any other perception model; census-visible; runs in-perimeter on tenant compute."
+
+> §3.2 P047 (V35): "{ content_tokens[], character_stream, codec_version } · Target token rate 50–100 tokens/second of audio."
+
+> §3.2 P049 (V37): "The codec pretrains unsupervised on unlabelled estate audio, under the standard commissioned-job contract."
+
+**Public API:**
+- `AUDIO_CODEC_SERVICE_PATH = "perception/audio_codec/"` (verbatim canon anchor).
+- `AudioCodecServiceDescriptor` (frozen 3-carrier: `service_path` + `pretraining_contract` + `token_rate_target` tuple).
+- `build_service_descriptor() -> AudioCodecServiceDescriptor` (canon-verbatim values).
+- `assert_registered_like_perception_model(descriptor) -> None` (refuses on service_path drift or token_rate_target outside verbatim range).
+- `PerceptionRegistrationError`.
+
+**§3.1 P038 tokens-not-waveforms discipline held**: no `audio_bytes` / `waveform` / `samples` / `raw_audio` carriers on the descriptor shape.
+
+Scope bounded — deferred to subsequent CPs:
+- CP-M6-4-2: codec_version carrier (D7 fold-in) invariant.
+- CP-M6-4-3: census-visibility invariant.
+- CP-M6-4-4: in-perimeter-on-tenant-compute invariant.
+
+Case-agnostic negative-scan CLEAN.
+
+---
+
+## §B · Discipline receipts
+
+| Step | Path |
+|---|---|
+| RED (7 right-reason ModuleNotFoundError) | `phase0/drill_receipts/20260915T194919Z_wm6_4_1_RED_pre_impl.log` |
+| GREEN 1 | `phase0/drill_receipts/20260915T194956Z_wm6_4_1_double_green_run1.log` |
+| GREEN 2 (byte-match) | `phase0/drill_receipts/20260915T195209Z_wm6_4_1_double_green_run2.log` |
+| Rider · pip freeze | `phase0/wave_riders/w_m6_codec_service_cp1/pip_freeze.txt` (192 lines · no drift) |
+| Rider · pytest --collect-only | `phase0/wave_riders/w_m6_codec_service_cp1/collect_only_summary.txt` (4191 tests) |
+
+**Double-green byte-match:** stripped-sha256 `74325bff34e42b33d7f8cc40bc20cde58d8d63f5bc79606365c56f12e073aa78`. Both `4190 passed, 1 skipped, 438 warnings`.
+
+---
+
+## §C · Boundary probes
+
+- Probe **#36** at CP-M6-4-1 open: CD + Visitors BOTH FAIL · timeout.
+- Probe **#37** at CP-M6-4-1 seal: CD + Visitors BOTH FAIL · timeout.
+- Zero PASS across probes #1–#37.
+
+---
+
+## §D · Discipline held
+
+Tests-first double-green byte-match · ratchet monotonic-up (4183→4190 · +7) · word-boundary executive-domain negative-scan CLEAN · §3.1 P038 tokens-not-waveforms negative-scan CLEAN · two-commit local-only · never push · terminal pytest only · testing_agent BANNED · position-redaction hard-lock preserved · no refactor.
+
+---
+
+## §E · Onward
+
+1. **CP-M6-4-2** · codec_version carrier (D7 fold-in) — TESTS-FIRST · every codec artefact carries `codec_version` and the version identifier is a first-class carrier.
+2. **CP-M6-4-3** · census-visibility invariant.
+3. **CP-M6-4-4** · in-perimeter-on-tenant-compute invariant.
+4. Sub-wave 4 seals · then sub-wave 5 (HALT-check for real biometric material).
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

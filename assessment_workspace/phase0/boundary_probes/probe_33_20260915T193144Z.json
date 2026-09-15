@@ -1,0 +1,19 @@
+{
+  "probe_id": "boundary_probe_33",
+  "at_utc": "2026-09-15T19:31:44Z",
+  "wave_boundary": "CP-M6-3-3 seal (\u00a76.3 P100 END-TO-END LOCK \u00b7 register write-path leakage-refusal boundary)",
+  "results": [
+    {
+      "name": "citizen_digital",
+      "verdict": "FAIL",
+      "elapsed_s": 6.002,
+      "errno": null
+    },
+    {
+      "name": "visitors",
+      "verdict": "FAIL",
+      "elapsed_s": 6.006,
+      "errno": null
+    }
+  ]
+}

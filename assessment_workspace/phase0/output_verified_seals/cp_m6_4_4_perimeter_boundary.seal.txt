@@ -1,0 +1,88 @@
+Kind: cp_m6_4_4_perimeter_boundary
+
+# CP-M6-4-4 · in-perimeter-on-tenant-compute invariant · Seal · W-M6-CODEC-SERVICE SUB-WAVE 4 COMPLETE
+
+**Sealed at UTC:** 2026-09-15T~20:32Z
+**Milestone:** M6 · Sub-wave 4 (W-M6-CODEC-SERVICE · §3) — fourth · FINAL CP
+**Invariants added:** +8 · **Ratchet:** 4205 → 4213
+**Track-a HEAD at seal:** `20bed02` · **Master HEAD:** TBD (commit B pending)
+
+---
+
+## §A · Discharge
+
+CP-M6-4-4 lands `services/perception/audio_codec/perimeter_boundary.py` — the §3.2 P045 verbatim "runs in-perimeter on tenant compute" conjunctive clause discharged as a frozen carrier + pure predicate + refusal.
+
+> §3.2 P045 (V33 · N4 anchor · in-perimeter clause): "perception/audio_codec/ — registered like any other perception model; census-visible; runs in-perimeter on tenant compute."
+
+> M6 grounding brief §Sub-wave 4 CP breakdown (verbatim): "CP-M6-4-4 · in-perimeter-on-tenant-compute invariant — TESTS-FIRST · codec service refuses cross-perimeter dispatch."
+
+**Public API:**
+- Canonical tokens: `IN_PERIMETER = "in-perimeter"` · `OUT_OF_PERIMETER = "out-of-perimeter"` · `TENANT_COMPUTE = "tenant"`.
+- `PerimeterProfile` — frozen 2-carrier dataclass (`perimeter: str` · `compute_kind: str`).
+- `is_in_perimeter_on_tenant_compute(*, perimeter_profile) -> bool` — pure conjunctive predicate; True iff `perimeter == IN_PERIMETER AND compute_kind == TENANT_COMPUTE`.
+- `assert_runs_in_perimeter_on_tenant_compute(*, perimeter_profile) -> None` — refuses with `PerimeterViolationError` on any violation, naming the specific violated clause (`perimeter` or `compute`).
+- `PerimeterViolationError` — subclass of `PerceptionRegistrationError` (from CP-M6-4-1 `service.py`) for refusal-family cohesion; single-catch of the perception-registration family preserved across CP-M6-4-1, CP-M6-4-3, and CP-M6-4-4.
+
+**Conjunctive per canon.** An in-perimeter dispatch on non-tenant compute is refused; an out-of-perimeter dispatch on tenant compute is refused; only the `(IN_PERIMETER, TENANT_COMPUTE)` profile passes — per §3.2 P045 verbatim "runs in-perimeter **on** tenant compute".
+
+**No-refactor discipline held.** CP-M6-4-1 `service.py`, CP-M6-4-2 `artefact.py`, and CP-M6-4-3 `census_visibility.py` all unchanged. New module composes with, does not modify, prior CPs.
+
+**§3.1 P038 tokens-not-waveforms discipline preserved.** `PerimeterProfile` field-set frozen to `{perimeter, compute_kind}` — negative-scan gate on `audio_bytes`/`waveform`/`samples`/`raw_audio` in `test_wm6_4_4_perimeter_profile_two_carrier_shape`.
+
+Case-agnostic — word-boundary executive-domain negative-scan CLEAN. No LLM/HTTP/filesystem.
+
+---
+
+## §B · Discipline receipts
+
+| Step | Path |
+|---|---|
+| RED (8 right-reason ModuleNotFoundError) | `phase0/drill_receipts/20260915T202712Z_wm6_4_4_RED_pre_impl.log` |
+| GREEN 1 | `phase0/drill_receipts/20260915T202804Z_wm6_4_4_double_green_run1.log` |
+| GREEN 2 (byte-match) | `phase0/drill_receipts/20260915T203008Z_wm6_4_4_double_green_run2.log` |
+| Rider · pip freeze | `phase0/wave_riders/w_m6_codec_service_cp4/pip_freeze.txt` (192 lines · zero drift from CP-M6-4-3 rider · empty diff) |
+| Rider · pytest --collect-only | `phase0/wave_riders/w_m6_codec_service_cp4/collect_only_summary.txt` (4214 tests collected) |
+
+**Double-green byte-match:** stripped-sha256 `67aaf4c86c34a9c77964cb52883d582877c7cfd724d9bf8ca10deead2d132317`. Both `4213 passed, 1 skipped, 438 warnings`. Raw byte lengths identical (9684 each). Stripped byte lengths identical (9674 each).
+
+---
+
+## §C · Boundary probes
+
+- Probe **#42** at CP-M6-4-4 open (2026-09-15T20:26:32Z): CD + Visitors BOTH FAIL · elapsed 6.006s / 6.006s.
+- Probe **#43** at CP-M6-4-4 seal (2026-09-15T20:32:41Z): CD + Visitors BOTH FAIL · elapsed 6.006s / 6.004s.
+- Zero PASS across probes #1–#43. Admin SG opening still-in-progress; every-CP cadence retained.
+
+---
+
+## §D · Discipline held
+
+Tests-first double-green byte-match · ratchet monotonic-up (4205 → 4213 · +8) · word-boundary executive-domain negative-scan CLEAN · §3.1 P038 tokens-not-waveforms negative-scan CLEAN on `PerimeterProfile` field set · no LLM/HTTP/filesystem · no refactor of CP-M6-4-1, CP-M6-4-2, CP-M6-4-3 (compose-not-modify) · two-commit local-only · never push · terminal pytest only · `testing_agent` BANNED · position-redaction hard-lock preserved · synthetic-fixtures-only in tests.
+
+---
+
+## §E · W-M6-CODEC-SERVICE SUB-WAVE 4 COMPLETION
+
+Four CPs landed this sub-wave:
+
+| CP | Discharge | Ratchet |
+|---|---|---|
+| CP-M6-4-1 | perception/audio_codec/ module skeleton · §3.2 P045 verbatim canon anchor | 4183 → 4190 (+7) |
+| CP-M6-4-2 | codec_version carrier · D7 fold-in · §3.2 P047 + P048 verbatim | 4190 → 4197 (+7) |
+| CP-M6-4-3 | census-visibility invariant · §3.2 P045 verbatim "census-visible" | 4197 → 4205 (+8) |
+| CP-M6-4-4 | in-perimeter-on-tenant-compute invariant · §3.2 P045 verbatim "runs in-perimeter on tenant compute" | 4205 → 4213 (+8) |
+
+**Sub-wave 4 total:** 4 CPs · +30 invariants · ratchet 4183 → 4213 (+30) · 4 seals · double-green byte-match at every seal · zero refactor of prior CPs · refusal-family cohesion preserved (all four CPs share `PerceptionRegistrationError` root · single-catch of the perception-registration family remains possible). Case-agnostic negative-scan CLEAN throughout. §3.1 P038 tokens-not-waveforms discipline preserved throughout.
+
+---
+
+## §F · Onward
+
+1. **Sub-wave 5 opens** · W-M6-CLUSTERING-HUMAN-VALIDATION · §5.3 · clustering algorithm registration + sampled human validation loop + cluster stability invariants. **HALT-check for real biometric material in force** per owner-ratified boundary this shift; any mechanism requiring real estate voice/biometric material triggers HALT-for-owner-ruling per Standing Orders §1.
+2. Then **sub-wave 6** · W-M6-OBJECTIVE-WIZARD-COLLECTION-SCHEMA · §8, §9, §12.1 · Objective Wizard audio variant + Collection Schema type + registry namespace + N7 fold-in.
+3. Interleave possibilities: M3 W-BC-DYNAMIC-RECOVERY-BUILD · M2 W-PULL-SEAM-RECEIPT-UNIFY.
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

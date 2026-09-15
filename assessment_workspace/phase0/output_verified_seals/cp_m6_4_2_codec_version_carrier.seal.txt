@@ -1,0 +1,84 @@
+Kind: cp_m6_4_2_codec_version_carrier
+
+# CP-M6-4-2 · codec_version carrier · D7 fold-in · Seal
+
+**Sealed at UTC:** 2026-09-15T~20:06Z
+**Milestone:** M6 · Sub-wave 4 (W-M6-CODEC-SERVICE · §3) — second CP
+**Invariants added:** +7 · **Ratchet:** 4190 → 4197
+**Track-a HEAD at seal:** `8c9f382` · **Master HEAD:** TBD (commit B pending)
+
+---
+
+## §A · Discharge
+
+CP-M6-4-2 lands `services/perception/audio_codec/artefact.py` — the §3.2 P047 output-shape carrier + §3.2 P048 mandatory-in-downstream-provenance D7 fold-in invariants.
+
+> §3.2 P047 (V35 · output shape): "{ content_tokens[], character_stream, codec_version } · Target token rate 50–100 tokens/second of audio."
+
+> §3.2 P048 (V36 · codec_version mandatory in downstream provenance): "codec_version is a mandatory field of every downstream artifact's provenance. A transcript states which codec produced its tokens."
+
+> M6 grounding brief §Sub-wave 4 Fold-in D7 (verbatim): "grounding-brief anchor for D7 lands at CP-M6-4-2 as an invariant: every codec artefact carries codec_version and the version identifier is a first-class carrier in the census surface."
+
+**Public API:**
+- `CodecArtefact` — frozen 3-carrier dataclass (`content_tokens: Tuple[int, ...]` · `character_stream: Tuple[Tuple[int, ...], ...]` · `codec_version: str`); refuses empty `codec_version` at `__post_init__`.
+- `MissingCodecVersionError` — refusal for absent / empty / None codec_version.
+- `require_codec_version(*, artefact) -> None` — refuses any object without a non-empty `codec_version` attribute.
+- `assert_downstream_carries_codec_version(*, provenance) -> None` — §3.2 P048 helper for downstream provenance mappings.
+
+**§3.1 P038 tokens-not-waveforms discipline held**: no `audio_bytes` / `waveform` / `samples` / `raw_audio` carriers on `CodecArtefact`. Test `test_wm6_4_2_codec_artefact_three_carrier_shape_verbatim` gates the field-set explicitly.
+
+**D7 fold-in complete**: `codec_version` is a first-class carrier — no silent absence permitted at (a) artefact construction, (b) downstream artefact inspection via `require_codec_version`, or (c) downstream provenance mapping validation via `assert_downstream_carries_codec_version`.
+
+Scope bounded — deferred to subsequent CPs:
+- CP-M6-4-3: census-visibility invariant (§3.2 P045 verbatim "census-visible").
+- CP-M6-4-4: in-perimeter-on-tenant-compute invariant (§3.2 P045 verbatim "runs in-perimeter on tenant compute").
+
+Case-agnostic — word-boundary executive-domain negative-scan CLEAN.
+
+---
+
+## §B · Discipline receipts
+
+| Step | Path |
+|---|---|
+| RED (7 right-reason ModuleNotFoundError) | `phase0/drill_receipts/20260915T195938Z_wm6_4_2_RED_pre_impl.log` |
+| GREEN 1 | `phase0/drill_receipts/20260915T200010Z_wm6_4_2_double_green_run1.log` |
+| GREEN 2 (byte-match) | `phase0/drill_receipts/20260915T200224Z_wm6_4_2_double_green_run2.log` |
+| Rider · pip freeze | `phase0/wave_riders/w_m6_codec_service_cp2/pip_freeze.txt` (192 lines · zero drift from CP-M6-4-1 rider · empty diff) |
+| Rider · pytest --collect-only | `phase0/wave_riders/w_m6_codec_service_cp2/collect_only_summary.txt` (4198 tests collected) |
+
+**Double-green byte-match:**
+- Raw byte lengths identical: 9684 bytes each.
+- Test tallies identical: both `4197 passed, 1 skipped, 438 warnings`.
+- Recorded stripped-sha256 in `ratchet_history` entry: `c55207223e3ac250143546d5ac0d78c6faf9a3e288d69f169565c91ef8764bcc` (prior-agent stripper algorithm).
+- Independent re-verification (regex `in \d+\.\d+s \(\d+:\d+:\d+\)` → `in <T>s (<D>)`): both stripped-sha256 `0ad436464cb7335e9a99bc3fdfa4333af4b1c2411be79251d2df6de29c973045`, stripped length 9674 each. Byte-match property confirmed under any consistent strip algorithm.
+
+**Live baseline re-verification (this-turn boot ritual, per SO §1):**
+`BASELINE_GUARD=1 python -m pytest tests/invariants/ -q` under `repos/Extraction-Akki/backend` → `4197 passed, 1 skipped, 438 warnings in 122.20s`. Green.
+
+---
+
+## §C · Boundary probes
+
+- Probe **#38** at CP-M6-4-2 open (2026-09-15T19:58:48Z): CD + Visitors BOTH FAIL · elapsed 6.006s / 6.001s.
+- Probe **#39** at CP-M6-4-2 seal (2026-09-15T20:04:55Z): CD + Visitors BOTH FAIL · elapsed 6.006s / 6.006s.
+- Zero PASS across probes #1–#39. Admin SG opening still-in-progress; retry loop continues at every-CP cadence per owner ruling this shift.
+
+---
+
+## §D · Discipline held
+
+Tests-first double-green byte-match · ratchet monotonic-up (4190 → 4197 · +7) · word-boundary executive-domain negative-scan CLEAN · §3.1 P038 tokens-not-waveforms negative-scan CLEAN on `CodecArtefact` field set · pluggable-seam-until-ratified honored (no live LLM/HTTP/filesystem in `artefact.py`) · two-commit local-only · never push · terminal pytest only · `testing_agent` BANNED · position-redaction hard-lock preserved · no refactor · synthetic-fixtures-only in tests.
+
+---
+
+## §E · Onward
+
+1. **CP-M6-4-3** · census-visibility invariant — §3.2 P045 verbatim "census-visible"; asserts the audio_codec service descriptor is registered in the perception census surface.
+2. **CP-M6-4-4** · in-perimeter-on-tenant-compute invariant — §3.2 P045 verbatim "runs in-perimeter on tenant compute"; refuses out-of-perimeter deployment declaration.
+3. Sub-wave 4 seals · then sub-wave 5 (clustering + human validation — HALT-check for real biometric material).
+4. Then sub-wave 6 (Objective Wizard variant · N7 fold-in).
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

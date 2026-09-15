@@ -1,0 +1,77 @@
+Kind: cp_m6_3_4_register_read_boundary
+
+# CP-M6-3-4 · Register read-path scope enforcement · Seal · **W-M6-CHARACTER-REGISTER SUB-WAVE 3 COMPLETE**
+
+**Sealed at UTC:** 2026-09-15T~19:44Z
+**Milestone:** M6 · Sub-wave 3 (W-M6-CHARACTER-REGISTER · §6) — fourth/FINAL CP
+**Invariants added:** +8 · **Ratchet:** 4175 → 4183
+**Track-a HEAD at seal:** TBD (commit pending) · **Master HEAD:** TBD (commit pending)
+
+---
+
+## §A · Discharge
+
+CP-M6-3-4 lands `services/audio_plane_v1/register_read_boundary.py` — §6.4 read-path scope enforcement per §6.4 P102 verbatim: *"…the four conditions are conjunctive."*
+
+**Reuse-not-refactor discipline:** wraps CP-M6-3-3's `RegisterWriteBoundary.write` as the single source-of-truth conjunctive-four-conditions check across write + read paths. CP-M6-3-3 module unchanged.
+
+**Public API:**
+- `ReadScopeViolationError` (subclass of `LeakageRefusalError` · same family as CP-M6-3-3 write-path refusals).
+- `RegisterReadBoundary(*, write_boundary: Optional[RegisterWriteBoundary] = None)` with two access modes:
+  - `read_or_refuse(*, entries) -> Tuple[CharacterEntry, ...]` — all-or-raise (raises on first violation).
+  - `read_scope_filter(*, entries) -> Tuple[CharacterEntry, ...]` — subset-passing (drops silently).
+
+Synthetic-fixtures-only in tests. Case-agnostic negative-scan CLEAN.
+
+---
+
+## §B · Discipline receipts
+
+| Step | Path |
+|---|---|
+| RED (8 right-reason ModuleNotFoundError) | `phase0/drill_receipts/20260915T193712Z_wm6_3_4_RED_pre_impl.log` |
+| GREEN 1 | `phase0/drill_receipts/20260915T193744Z_wm6_3_4_double_green_run1.log` |
+| GREEN 2 (byte-match) | `phase0/drill_receipts/20260915T193957Z_wm6_3_4_double_green_run2.log` |
+| Rider · pip freeze | `phase0/wave_riders/w_m6_character_register_cp4/pip_freeze.txt` (192 lines · no drift) |
+| Rider · pytest --collect-only | `phase0/wave_riders/w_m6_character_register_cp4/collect_only_summary.txt` (4184 tests) |
+
+**Double-green byte-match:** stripped-sha256 `95ccc71abdf2ba3c9ac332efa00a5632234436f91a9c93d6f60cab3e58b70e47`. Both `4183 passed, 1 skipped, 438 warnings`.
+
+---
+
+## §C · Boundary probes
+
+- Probe **#34** at CP-M6-3-4 open: CD + Visitors BOTH FAIL · timeout.
+- Probe **#35** at CP-M6-3-4 seal (sub-wave 3 COMPLETE): CD + Visitors BOTH FAIL · timeout.
+- Zero PASS across probes #1–#35.
+
+---
+
+## §D · W-M6-CHARACTER-REGISTER SUB-WAVE 3 · COMPLETION SUMMARY
+
+Four §6 Character-Register CPs landed:
+
+| CP | Discharge | Anchor | Invariants | Ratchet |
+|---|---|---|---|---|
+| CP-M6-3-1 | Schema (frozen carriers · §6.2 P098 negative-scan clean) | §5.1 P078 + §5.2 P082..P085 + §6.1 P092/P093 + §6.2 P098 | +7 | 4150 → 4157 |
+| CP-M6-3-2 | §6.3 P100 four-leakage-path harness framework | §6.3 P100 · §6.2 conds 1–4 · §6.4 P102 | +8 | 4157 → 4165 |
+| CP-M6-3-3 | Write-path leakage-refusal boundary · §6.3 P100 END-TO-END LOCK | §6.1 P092 + §6.2 conds 1–4 + §6.4 P102 | +10 | 4165 → 4175 |
+| CP-M6-3-4 | §6.4 read-path scope enforcement | §6.4 P102 conjunctive-four-conditions | +8 | 4175 → 4183 |
+
+**Total for sub-wave 3: +33 invariants across 4 CPs · ratchet 4150 → 4183 · 4 seals · double-green byte-match at every seal · zero rebaseline · zero silent skip.** §6.3 P100 END-TO-END LOCK anchored (canonical §6.3 P100 assertion holds — the automated test attempts each of the four leakage paths and every one fails to store). Synthetic-fixtures-only discipline held throughout. Owner-ratified HALT-trigger for real biometric material remained un-tripped.
+
+---
+
+## §E · Onward chain
+
+Per §15 P235.s2 the following MAY parallel with sub-waves 1–3:
+
+1. **Sub-wave 4** — W-M6-CODEC-SERVICE opens. `services/audio_plane_v1/audio_codec_bytes_v1.py` per §9 P148..P150 verbatim + boundary permeability (fingerprint out, no audio bytes) per §9 P154 verbatim.
+2. **Sub-wave 5** — W-M6-CLUSTERING-VALIDATION opens (§5.3 · §6.2 cond-4 embedding-destruction discipline). **HALT-CHECK** at this boundary: if the clustering mechanism would require REAL estate voice/biometric material to validate → HALT per owner ruling 2026-09-15T~19:07Z.
+3. **Sub-wave 6** — W-M6-OBJECTIVE-WIZARD-VARIANT (§8.4 · N7 fold-in point).
+
+**Rolling session count:** 11 CPs sealed autonomously (4 in sub-wave 1 · 2 in sub-wave 2 · 4 in sub-wave 3 · 1 ops task) · ratchet 4105 → 4183 · +78 invariants total this session extension · 18 boundary probes fired (#18–#35).
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

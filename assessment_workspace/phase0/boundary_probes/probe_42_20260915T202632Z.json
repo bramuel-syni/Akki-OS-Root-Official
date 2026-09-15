@@ -1,0 +1,19 @@
+{
+  "probe_id": "boundary_probe_42",
+  "at_utc": "2026-09-15T20:26:32Z",
+  "wave_boundary": "CP-M6-4-4 open (M6 sub-wave 4 fourth \u00b7 final CP \u00b7 in-perimeter-on-tenant-compute invariant \u00b7 \u00a73.2 P045 verbatim 'runs in-perimeter on tenant compute')",
+  "results": [
+    {
+      "name": "citizen_digital",
+      "verdict": "FAIL",
+      "elapsed_s": 6.006,
+      "errno": null
+    },
+    {
+      "name": "visitors",
+      "verdict": "FAIL",
+      "elapsed_s": 6.006,
+      "errno": null
+    }
+  ]
+}

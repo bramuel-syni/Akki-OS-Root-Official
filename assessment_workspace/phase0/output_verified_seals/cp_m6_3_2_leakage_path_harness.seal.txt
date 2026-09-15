@@ -1,0 +1,73 @@
+Kind: cp_m6_3_2_leakage_path_harness_framework
+
+# CP-M6-3-2 · §6.3 P100 four-leakage-path harness framework · Seal
+
+**Sealed at UTC:** 2026-09-15T~19:20Z
+**Milestone:** M6 · Sub-wave 3 (W-M6-CHARACTER-REGISTER · §6) — second CP
+**Invariants added:** +8 · **Ratchet:** 4157 → 4165
+**Track-a HEAD at seal:** TBD (commit pending) · **Master HEAD:** TBD (commit pending)
+
+---
+
+## §A · Discharge
+
+CP-M6-3-2 lands `services/audio_plane_v1/leakage_path_harness.py` — the harness framework that codifies §6.3 P100 verbatim:
+
+> §6.3 P100 (V66): "The register write path exposes no field through which an instance-level representation can be stored: the schema cannot represent a voiceprint. Unrepresentable, not policed (§1.5). An automated invariant test attempts each known leakage path (small stratum, idiolect marker, narrowing combination, exemplar storage) and must fail to store all of them on every change to the register code."
+
+Owner ruling banked (2026-09-15T~19:07Z): protective mechanism, no biometric data touched, synthetic-fixtures-only. HALT-trigger pinned in NEXT.
+
+**Public API:**
+- `LEAKAGE_PATHS = ("small_stratum", "idiolect_marker", "narrowing_combination", "exemplar_storage")` — §6.3 P100 verbatim four-tuple in verbatim order.
+- `LeakageScenario` (frozen 3-carrier: `path_name` + `rationale` + `attempt_entry`).
+- `LeakageRefusalError` — base exception; concrete subclasses land in CP-M6-3-3.
+- `HarnessAcceptedForbiddenError` — §6.3 P100 invariant fire.
+- `HarnessRefusalTypeError` — refusal-type discipline breach.
+- `build_leakage_scenarios() -> Tuple[LeakageScenario, ...]` — four synthetic scenarios.
+- `run_leakage_path_harness(*, write_callable) -> None` — runs all four scenarios; asserts each is refused with `LeakageRefusalError`.
+
+**Synthetic-fixtures-only discipline held:** every scenario's `attempt_entry.provenance_material_ref` carries the `mat://synthetic/…` scheme prefix. Zero real-estate biometric material referenced.
+
+**Scope bounded** — deferred to subsequent CPs:
+- CP-M6-3-3: concrete write-path refusal logic + `LeakageRefusalError` subclasses.
+- CP-M6-3-4: §6.4 read-path scope enforcement.
+
+---
+
+## §B · Discipline receipts
+
+| Step | Path |
+|---|---|
+| RED (8 right-reason ModuleNotFoundError) | `phase0/drill_receipts/20260915T191443Z_wm6_3_2_RED_pre_impl.log` |
+| GREEN 1 | `phase0/drill_receipts/20260915T191536Z_wm6_3_2_double_green_run1.log` |
+| GREEN 2 (byte-match) | `phase0/drill_receipts/20260915T191749Z_wm6_3_2_double_green_run2.log` |
+| Rider · pip freeze | `phase0/wave_riders/w_m6_character_register_cp2/pip_freeze.txt` (192 lines · no drift) |
+| Rider · pytest --collect-only | `phase0/wave_riders/w_m6_character_register_cp2/collect_only_summary.txt` (4166 tests) |
+
+**Double-green byte-match:** stripped-sha256 `61ad4d336f4c7f5103c9ef3edd543a2b0640ccf3be3681837a09953e8e4c661c`. Both `4165 passed, 1 skipped, 438 warnings`.
+
+---
+
+## §C · Boundary probes
+
+- Probe **#30** at CP-M6-3-2 open: CD + Visitors BOTH FAIL · timeout.
+- Probe **#31** at CP-M6-3-2 seal: CD + Visitors BOTH FAIL · timeout.
+- Zero PASS across probes #1–#31.
+
+---
+
+## §D · Discipline held
+
+Tests-first double-green byte-match · ratchet monotonic-up (4157→4165 · +8) · word-boundary executive-domain negative-scan CLEAN · **synthetic-fixtures-only** per owner ruling · pull-seam + §6.2 cond-4 negative-scan CLEAN across module + tests · two-commit local-only · never push · terminal pytest only · testing_agent BANNED · position-redaction hard-lock preserved · no refactor.
+
+---
+
+## §E · Onward
+
+1. **CP-M6-3-3** · write-path leakage-refusal boundary — TESTS-FIRST · concrete `LeakageRefusalError` subclasses + a `WriteBoundary.write(entry)` that inspects the entry and refuses each of the four leakage patterns per §6.2 conds 1–4 + §6.4. Then wires directly to `run_leakage_path_harness` for an end-to-end §6.3 P100 invariant lock.
+2. **CP-M6-3-4** · §6.4 read-path scope enforcement.
+3. Sub-wave 3 seals · then sub-wave 4 (codec service).
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

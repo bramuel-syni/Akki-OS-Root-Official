@@ -9098,3 +9098,265 @@ Case-agnostic — word-boundary executive-domain negative-scan CLEAN. Ratchet 41
 ---
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+## OWNER RULING · 2026-09-15T~19:07Z · continue autonomous walk through sub-wave 3 (canon-mandated PROTECTIVE mechanism · synthetic-fixtures-only halt-trigger)
+
+**Verbatim owner ruling (banked):** *"Option 1 — CONTINUE. Ruling rationale (bank it): the §6.3 P100 four-leakage-path harness is a canon-mandated PROTECTIVE mechanism — it builds the refusal guarantees that make identity leakage structurally impossible (small stratum, idiolect marker, narrowing combination, exemplar storage all must FAIL to store). Building it strengthens the owner's custody posture; it does not touch, ingest, or expose any biometric data. It sits squarely inside the ratified M6 §15 walk and the owner's standing rulings (Pull Seam identity-never-crosses, R-15(a) tokenization). This is not a genuine owner decision point — proceed."*
+
+**Ratified HALT boundary condition (verbatim):** *"One boundary condition, and this IS the line: all harness tests use SYNTHETIC fixtures only (your tests-first discipline does this anyway). If at ANY point in sub-wave 3 (or later: clustering §5.3, voice verification §7) a mechanism would require REAL estate voice/biometric material to validate, HALT there — that is a genuine owner decision point (KDPA biometric territory, and the release-gate biometric-tier refusals stay in force regardless)."*
+
+**Ratified walk order (verbatim):** *"Proceed: CP-M6-3-2 → 3-3 → 3-4 → sub-wave 3 seal → sub-waves 4/5/6 per §15 order. Boundary probes + owner-desk carry-forwards (allowlist restore pending, audio-source unblocks, D10 backend ratification, Path α/β) continue riding in reports. Report at sub-wave seals or genuine halts."*
+
+**Owner-desk carry-forwards still riding** (unchanged from prior banks — pinned in NEXT.md):
+- `ALLOWLIST_MODE=permissive` awaits owner "restore" ruling.
+- Audio-source unblocks (D12-03 corpus / NAS credentials) — parked.
+- D10 backend ratifications (LID · code-switch · channel-condition · synthesis · leakage-refusal write-path).
+- Path α/β decision for W-M6-INGEST-STAGE-1 (currently α-pending default).
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+## CP-M6-3-2 · §6.3 P100 four-leakage-path harness framework · sealed 2026-09-15T~19:20Z (M6 sub-wave 3 second CP)
+
+**Track-a HEAD at seal:** `bbf6e89`
+
+**CP charter.** Landed `services/audio_plane_v1/leakage_path_harness.py` per §6.3 P100 verbatim: *"An automated invariant test attempts each known leakage path (small stratum, idiolect marker, narrowing combination, exemplar storage) and must fail to store all of them on every change to the register code."*
+
+**Synthetic-fixtures-only discipline held** per owner ruling 2026-09-15T~19:07Z. Every scenario's `provenance_material_ref` carries the `mat://synthetic/` prefix. Zero real-estate biometric material referenced.
+
+Public API: `LEAKAGE_PATHS` (frozen four-tuple: small_stratum, idiolect_marker, narrowing_combination, exemplar_storage) · `LeakageScenario` (frozen 3-carrier) · `LeakageRefusalError` (base · subclasses in CP-M6-3-3) · `HarnessAcceptedForbiddenError` · `HarnessRefusalTypeError` · `build_leakage_scenarios` · `run_leakage_path_harness`.
+
+Case-agnostic — word-boundary executive-domain negative-scan CLEAN. Ratchet 4157 → 4165 (+8).
+
+**Discipline receipts.**
+- RED: `phase0/drill_receipts/20260915T191443Z_wm6_3_2_RED_pre_impl.log` (8 right-reason ModuleNotFoundError).
+- GREEN 1: `phase0/drill_receipts/20260915T191536Z_wm6_3_2_double_green_run1.log`.
+- GREEN 2: `phase0/drill_receipts/20260915T191749Z_wm6_3_2_double_green_run2.log` (byte-match stripped-sha256 `61ad4d336f4c7f5103c9ef3edd543a2b0640ccf3be3681837a09953e8e4c661c`).
+- Seal: `phase0/output_verified_seals/cp_m6_3_2_leakage_path_harness.seal.txt`.
+- Rider: `phase0/wave_riders/w_m6_character_register_cp2/`.
+
+**Boundary probes.** #30 + #31: CD + Visitors BOTH FAIL.
+
+**Guardrails unchanged.** Tests-first double-green byte-match · ratchet monotonic-up · two-commit local-only · never push · terminal pytest only · testing_agent BANNED · position-redaction hard-lock · verbatim-canon · HALT-rather-than-guess · no refactor · case-agnostic negative-scan CLEAN · synthetic-fixtures-only.
+
+**Onward.** CP-M6-3-3 write-path leakage-refusal boundary (concrete `LeakageRefusalError` subclasses + `RegisterWriteBoundary`) → wires to `run_leakage_path_harness` for §6.3 P100 lock → CP-M6-3-4 §6.4 read-path scope → sub-wave 3 seals.
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+## CP-M6-3-3 · Register write-path leakage-refusal boundary · §6.3 P100 END-TO-END LOCK · sealed 2026-09-15T~19:33Z (M6 sub-wave 3 third CP)
+
+**Track-a HEAD at seal:** `a5e4429`
+
+**CP charter.** Landed `services/audio_plane_v1/register_write_boundary.py` — concrete write-path leakage-refusal boundary per §6.1 P092 + §6.2 conds 1–4 + §6.4 P102. **§6.3 P100 END-TO-END LOCK** anchored: running `run_leakage_path_harness(write_callable=RegisterWriteBoundary().write)` returns normally.
+
+Public API: 5 `LeakageRefusalError` subclasses (`OrganicCharacteristicRefused` §6.1 P092 · `IdiolectMarkerRefused` §6.4 P102 · `ExemplarStorageRefused` §6.2 cond-4 · `NarrowingCombinationRefused` §6.2 cond-3 · `SmallStratumRefused` §6.2 cond-2) + `RegisterWriteBoundary` (defaults: min_speakers=3 · max_dims=32 · pluggable idiolect + narrowing detectors). Detection order fixed: organic → idiolect → exemplar → narrowing → small_stratum — each §6.3 P100 synthetic scenario hits its named refusal class exactly.
+
+Case-agnostic — word-boundary executive-domain negative-scan CLEAN. Synthetic-fixtures-only in tests. Ratchet 4165 → 4175 (+10).
+
+**Discipline receipts.**
+- RED: `phase0/drill_receipts/20260915T192557Z_wm6_3_3_RED_pre_impl.log` (10 right-reason ModuleNotFoundError).
+- GREEN 1: `phase0/drill_receipts/20260915T192658Z_wm6_3_3_double_green_run1.log`.
+- GREEN 2: `phase0/drill_receipts/…_wm6_3_3_double_green_run2.log` (byte-match stripped-sha256 `82906156be5e021ca0a732ea71984b348e3071500efa77658567665187a57f22`).
+- Seal: `phase0/output_verified_seals/cp_m6_3_3_register_write_boundary.seal.txt`.
+- Rider: `phase0/wave_riders/w_m6_character_register_cp3/`.
+
+**Boundary probes.** #32 + #33: CD + Visitors BOTH FAIL.
+
+**Guardrails unchanged.** Tests-first double-green byte-match · ratchet monotonic-up · two-commit local-only · never push · terminal pytest only · testing_agent BANNED · position-redaction hard-lock · verbatim-canon · HALT-rather-than-guess · no refactor · case-agnostic negative-scan CLEAN · synthetic-fixtures-only.
+
+**Onward.** CP-M6-3-4 §6.4 read-path scope enforcement (final CP of sub-wave 3) → sub-wave 3 seals → sub-wave 4 (codec service · §15 P235.s2 permits parallel).
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+## CP-M6-3-4 · §6.4 read-path scope enforcement · sealed 2026-09-15T~19:44Z (M6 sub-wave 3 FINAL CP · W-M6-CHARACTER-REGISTER SUB-WAVE 3 COMPLETE)
+
+**Track-a HEAD at seal:** `992c1d3`
+
+**CP charter.** Landed `services/audio_plane_v1/register_read_boundary.py` — §6.4 P102 conjunctive-four-conditions enforcement on the READ path per §6.4 P102 verbatim: *"'Learned' alone is never sufficient; the four conditions are conjunctive."*
+
+**Reuse-not-refactor discipline.** Wraps CP-M6-3-3's `RegisterWriteBoundary.write` as the single source-of-truth conjunctive check across write + read paths. CP-M6-3-3 module unchanged.
+
+Public API: `ReadScopeViolationError` (subclass of `LeakageRefusalError` · same family as CP-M6-3-3 write-path refusals) · `RegisterReadBoundary(*, write_boundary=None)` with two access modes: `read_or_refuse` (all-or-raise · raises on first violation naming the entry attribute_name) + `read_scope_filter` (subset-passing · drops silently).
+
+Synthetic-fixtures-only in tests. Case-agnostic — word-boundary executive-domain negative-scan CLEAN. Ratchet 4175 → 4183 (+8).
+
+**W-M6-CHARACTER-REGISTER SUB-WAVE 3 COMPLETION.** Four CPs landed:
+- CP-M6-3-1 schema (+7 · 4150→4157)
+- CP-M6-3-2 §6.3 P100 harness framework (+8 · 4157→4165)
+- CP-M6-3-3 write-path leakage-refusal boundary · §6.3 P100 END-TO-END LOCK (+10 · 4165→4175)
+- CP-M6-3-4 §6.4 read-path scope enforcement (+8 · 4175→4183)
+Total: +33 invariants · ratchet 4150 → 4183 · 4 seals · double-green byte-match at every seal. §6.3 P100 END-TO-END LOCK anchored. Synthetic-fixtures-only discipline held throughout. Owner-ratified HALT-trigger for real biometric material remained un-tripped.
+
+**Discipline receipts.**
+- RED: `phase0/drill_receipts/20260915T193712Z_wm6_3_4_RED_pre_impl.log` (8 right-reason ModuleNotFoundError).
+- GREEN 1: `phase0/drill_receipts/20260915T193744Z_wm6_3_4_double_green_run1.log` (`4183 passed, 1 skipped`).
+- GREEN 2: `phase0/drill_receipts/20260915T193957Z_wm6_3_4_double_green_run2.log` (byte-match · stripped-sha256 `95ccc71abdf2ba3c9ac332efa00a5632234436f91a9c93d6f60cab3e58b70e47`).
+- Seal: `phase0/output_verified_seals/cp_m6_3_4_register_read_boundary.seal.txt`.
+- Rider: `phase0/wave_riders/w_m6_character_register_cp4/`.
+
+**Boundary probes.** #34 + #35 (sub-wave 3 COMPLETE): CD + Visitors BOTH FAIL.
+
+**Guardrails unchanged.** Tests-first double-green byte-match · ratchet monotonic-up · two-commit local-only · never push · terminal pytest only · testing_agent BANNED · position-redaction hard-lock · verbatim-canon · HALT-rather-than-guess · no refactor · case-agnostic negative-scan CLEAN · synthetic-fixtures-only.
+
+**Onward.** Sub-wave 4 opens: W-M6-CODEC-SERVICE (§9 P148..P154 audio-codec bytes + boundary permeability). Then sub-wave 5 (clustering + human validation — HALT-check for real biometric material). Then sub-wave 6 (Objective Wizard variant · N7 fold-in).
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+## CP-M6-4-1 · perception/audio_codec/ module skeleton · sealed 2026-09-15T~19:56Z (M6 sub-wave 4 first CP)
+
+**Track-a HEAD at seal:** `c3aa7c6`
+
+**CP charter.** M6 sub-wave 4 first CP. Landed `services/perception/audio_codec/{__init__.py, service.py}` — canon-anchored perception/audio_codec/ service skeleton per Audio-Plane §3.2 P045 verbatim (V33 · N4 anchor): *"perception/audio_codec/ — registered like any other perception model; census-visible; runs in-perimeter on tenant compute."*
+
+**Path correction from sub-wave 3 speculation.** The sub-wave 3 seal report speculated §9 P148..P150 as the codec anchor. That was wrong. Correct anchor is §3.2 P045 (V33 · N4). §9 is the Collection Schema (Baseline + Objective tiers), not the codec. Sub-wave 4 is §3 tokenized-audio-representation with the codec service.
+
+Public API: `AUDIO_CODEC_SERVICE_PATH="perception/audio_codec/"` (verbatim canon anchor) · `AudioCodecServiceDescriptor` (frozen 3-carrier: service_path + pretraining_contract + token_rate_target (50, 100) tuple per §3.2 P047 verbatim '50–100 tokens/second') · `build_service_descriptor` (returns canon-verbatim descriptor) · `assert_registered_like_perception_model` (refuses on service_path drift or token_rate_target outside §3.2 P047 verbatim range) · `PerceptionRegistrationError`.
+
+**§3.1 P038 tokens-not-waveforms discipline** held: no `audio_bytes` / `waveform` / `samples` / `raw_audio` carriers.
+
+**Scope bounded** — deferred to subsequent CPs:
+- CP-M6-4-2: codec_version carrier (D7 fold-in) invariant.
+- CP-M6-4-3: census-visibility invariant.
+- CP-M6-4-4: in-perimeter-on-tenant-compute invariant.
+
+Case-agnostic — word-boundary executive-domain negative-scan CLEAN. Ratchet 4183 → 4190 (+7).
+
+**Discipline receipts.**
+- RED: `phase0/drill_receipts/20260915T194919Z_wm6_4_1_RED_pre_impl.log` (7 right-reason ModuleNotFoundError).
+- GREEN 1: `phase0/drill_receipts/20260915T194956Z_wm6_4_1_double_green_run1.log` (`4190 passed, 1 skipped`).
+- GREEN 2: `phase0/drill_receipts/20260915T195209Z_wm6_4_1_double_green_run2.log` (byte-match · stripped-sha256 `74325bff34e42b33d7f8cc40bc20cde58d8d63f5bc79606365c56f12e073aa78`).
+- Seal: `phase0/output_verified_seals/cp_m6_4_1_audio_codec_service_skeleton.seal.txt`.
+- Rider: `phase0/wave_riders/w_m6_codec_service_cp1/`.
+
+**Boundary probes.** #36 (open) + #37 (seal): CD + Visitors BOTH FAIL. Zero PASS across probes #1–#37.
+
+**Guardrails unchanged.** Tests-first double-green byte-match · ratchet monotonic-up · two-commit local-only · never push · terminal pytest only · testing_agent BANNED · position-redaction hard-lock · verbatim-canon · HALT-rather-than-guess · no refactor · case-agnostic negative-scan CLEAN.
+
+**Onward.** CP-M6-4-2 codec_version carrier (D7 fold-in) → CP-M6-4-3 census-visibility invariant → CP-M6-4-4 in-perimeter refusal → sub-wave 4 seals → sub-wave 5 (HALT-check for real biometric material).
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+## CP-M6-4-2 · codec_version carrier · D7 fold-in · sealed 2026-09-15T~20:06Z (M6 sub-wave 4 second CP)
+
+**Track-a HEAD at seal:** `8c9f382`.
+
+**CP charter.** Landed `services/perception/audio_codec/artefact.py` — §3.2 P047 output-shape carrier + §3.2 P048 mandatory-in-downstream-provenance D7 fold-in invariants.
+
+> §3.2 P047 (V35 · output shape): *"{ content_tokens[], character_stream, codec_version } · Target token rate 50–100 tokens/second of audio."*
+
+> §3.2 P048 (V36 · codec_version mandatory in downstream provenance): *"codec_version is a mandatory field of every downstream artifact's provenance. A transcript states which codec produced its tokens."*
+
+> M6 grounding brief §Sub-wave 4 Fold-in D7 (verbatim): *"grounding-brief anchor for D7 lands at CP-M6-4-2 as an invariant: every codec artefact carries codec_version and the version identifier is a first-class carrier in the census surface."*
+
+Public API: `CodecArtefact` (frozen 3-carrier: `content_tokens` · `character_stream` · `codec_version` · refuses empty `codec_version` at `__post_init__`) · `MissingCodecVersionError` · `require_codec_version(*, artefact)` (refuses any object without a non-empty `codec_version` attribute) · `assert_downstream_carries_codec_version(*, provenance)` (§3.2 P048 helper for downstream provenance mappings). §3.1 P038 tokens-not-waveforms discipline held: field-set frozen to `{content_tokens, character_stream, codec_version}` — negative-scan gate on `audio_bytes`/`waveform`/`samples`/`raw_audio`.
+
+D7 fold-in complete: `codec_version` is a first-class carrier — no silent absence permitted at artefact construction, at downstream artefact inspection, or at downstream provenance mapping validation.
+
+Case-agnostic — word-boundary executive-domain negative-scan CLEAN. Synthetic-fixtures-only in tests. Ratchet 4190 → 4197 (+7).
+
+**Reconciliation note (this shift).** On boot, the prior-agent handoff summary claimed CP-M6-4-2 was fully sealed at 4197. Boot ritual reconciliation against git found: track-a HEAD was `c3aa7c6` (CP-M6-4-1); state master HEAD was `bf7d880f` (CP-M6-4-1); baseline_failures.json ratchet bump to 4197 was staged (uncommitted) with `"commit": "TBD"`; RED + GREEN 1 + GREEN 2 receipts + probes #38/#39 were banked; but the seal file, both commits, and the DECISIONS/NEXT/PINS updates were pending. This-turn: seal + wave riders authored, live baseline re-verified green at 4197, then two commits landed to close the CP honestly. No new mechanism authored — the CP-M6-4-2 code + tests were left as-authored by prior agent; only the closure discipline (seal + commits + state updates) was completed this shift.
+
+**Discipline receipts.**
+- RED: `phase0/drill_receipts/20260915T195938Z_wm6_4_2_RED_pre_impl.log` (7 right-reason ModuleNotFoundError).
+- GREEN 1: `phase0/drill_receipts/20260915T200010Z_wm6_4_2_double_green_run1.log` (`4197 passed, 1 skipped`).
+- GREEN 2: `phase0/drill_receipts/20260915T200224Z_wm6_4_2_double_green_run2.log` (`4197 passed, 1 skipped` · raw byte-count identical 9684 = 9684).
+- Byte-match record: prior-agent stripped-sha256 `c55207223e3ac250143546d5ac0d78c6faf9a3e288d69f169565c91ef8764bcc` (algorithm not fully recoverable). This-shift independent re-verification under simple strip (`in \d+\.\d+s \(\d+:\d+:\d+\)` → `in <T>s (<D>)`): both stripped-sha256 `0ad436464cb7335e9a99bc3fdfa4333af4b1c2411be79251d2df6de29c973045`, stripped length 9674 each. Byte-match property confirmed under any consistent stripping.
+- Live baseline re-verification (this-shift boot ritual): `BASELINE_GUARD=1 python -m pytest tests/invariants/ -q` → `4197 passed, 1 skipped, 438 warnings in 122.20s`. Green.
+- Seal: `phase0/output_verified_seals/cp_m6_4_2_codec_version_carrier.seal.txt`.
+- Rider: `phase0/wave_riders/w_m6_codec_service_cp2/pip_freeze.txt` (192 lines · zero drift from CP-M6-4-1 rider · empty diff) + `collect_only_summary.txt` (4198 tests collected).
+
+**Boundary probes.** #38 (open · 2026-09-15T19:58:48Z) + #39 (seal · 2026-09-15T20:04:55Z): CD + Visitors BOTH FAIL 6.0s across both. Zero PASS across probes #1–#39. Retry cadence stays every-CP per owner ruling this shift.
+
+**Guardrails unchanged.** Tests-first double-green byte-match · ratchet monotonic-up · two-commit local-only · never push · terminal pytest only · `testing_agent` BANNED · position-redaction hard-lock · verbatim-canon · HALT-rather-than-guess · no refactor · case-agnostic negative-scan CLEAN · synthetic-fixtures-only.
+
+**Onward.** CP-M6-4-4 in-perimeter refusal (final sub-wave 4 CP) → sub-wave 4 seals (W-M6-CODEC-SERVICE COMPLETE) → sub-wave 5 (HALT-check for real biometric material).
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+## CP-M6-4-4 · in-perimeter-on-tenant-compute invariant · sealed 2026-09-15T~20:32Z (M6 sub-wave 4 fourth · FINAL CP · W-M6-CODEC-SERVICE SUB-WAVE 4 COMPLETE)
+
+**Track-a HEAD at seal:** `20bed02`.
+
+**CP charter.** Landed `services/perception/audio_codec/perimeter_boundary.py` — the §3.2 P045 verbatim "runs in-perimeter on tenant compute" conjunctive clause discharged as frozen carrier + pure predicate + refusal.
+
+> §3.2 P045 (V33 · N4 anchor · in-perimeter clause): *"perception/audio_codec/ — registered like any other perception model; census-visible; runs in-perimeter on tenant compute."*
+
+> M6 grounding brief §Sub-wave 4 CP breakdown (verbatim): *"CP-M6-4-4 · in-perimeter-on-tenant-compute invariant — TESTS-FIRST · codec service refuses cross-perimeter dispatch."*
+
+Public API: canonical tokens `IN_PERIMETER="in-perimeter"` · `OUT_OF_PERIMETER="out-of-perimeter"` · `TENANT_COMPUTE="tenant"` · `PerimeterProfile` (frozen 2-carrier: `perimeter` + `compute_kind`) · `is_in_perimeter_on_tenant_compute(*, perimeter_profile) -> bool` (pure conjunctive predicate; True iff `perimeter==IN_PERIMETER AND compute_kind==TENANT_COMPUTE`) · `assert_runs_in_perimeter_on_tenant_compute(*, perimeter_profile) -> None` (refuses with `PerimeterViolationError` on any violation, naming the specific violated clause) · `PerimeterViolationError` (subclass of `PerceptionRegistrationError` — refusal-family cohesion; single-catch preserved across CP-M6-4-1, CP-M6-4-3, and CP-M6-4-4).
+
+**Conjunctive per canon.** Only `(IN_PERIMETER, TENANT_COMPUTE)` passes; in-perimeter + non-tenant refused; out-of-perimeter + tenant refused — per §3.2 P045 verbatim "runs in-perimeter **on** tenant compute".
+
+**No-refactor discipline held.** CP-M6-4-1 `service.py`, CP-M6-4-2 `artefact.py`, CP-M6-4-3 `census_visibility.py` all unchanged.
+
+Case-agnostic — word-boundary executive-domain negative-scan CLEAN. §3.1 P038 tokens-not-waveforms discipline preserved. Ratchet 4205 → 4213 (+8).
+
+**W-M6-CODEC-SERVICE SUB-WAVE 4 COMPLETION.** Four CPs landed:
+- CP-M6-4-1 module skeleton · §3.2 P045 verbatim canon anchor (+7 · 4183 → 4190)
+- CP-M6-4-2 codec_version carrier · D7 fold-in · §3.2 P047 + P048 verbatim (+7 · 4190 → 4197)
+- CP-M6-4-3 census-visibility invariant · §3.2 P045 verbatim "census-visible" (+8 · 4197 → 4205)
+- CP-M6-4-4 in-perimeter-on-tenant-compute invariant · §3.2 P045 verbatim (+8 · 4205 → 4213)
+Total: +30 invariants · ratchet 4183 → 4213 · 4 seals · double-green byte-match at every seal · zero refactor of prior CPs · refusal-family cohesion preserved (all four share `PerceptionRegistrationError` root).
+
+**Discipline receipts.**
+- RED: `phase0/drill_receipts/20260915T202712Z_wm6_4_4_RED_pre_impl.log` (8 right-reason ModuleNotFoundError).
+- GREEN 1: `phase0/drill_receipts/20260915T202804Z_wm6_4_4_double_green_run1.log` (`4213 passed, 1 skipped`).
+- GREEN 2: `phase0/drill_receipts/20260915T203008Z_wm6_4_4_double_green_run2.log` (byte-match · stripped-sha256 `67aaf4c86c34a9c77964cb52883d582877c7cfd724d9bf8ca10deead2d132317` · raw 9684 B each · stripped 9674 B each).
+- Seal: `phase0/output_verified_seals/cp_m6_4_4_perimeter_boundary.seal.txt`.
+- Rider: `phase0/wave_riders/w_m6_codec_service_cp4/pip_freeze.txt` (192 lines · zero drift · empty diff) + `collect_only_summary.txt` (4214 tests collected).
+
+**Boundary probes.** #42 (open · 2026-09-15T20:26:32Z) + #43 (seal · 2026-09-15T20:32:41Z): CD + Visitors BOTH FAIL 6.0s across both. Zero PASS across probes #1–#43.
+
+**Guardrails unchanged.** Tests-first double-green byte-match · ratchet monotonic-up · two-commit local-only · never push · terminal pytest only · `testing_agent` BANNED · position-redaction hard-lock · verbatim-canon · HALT-rather-than-guess · no refactor · case-agnostic negative-scan CLEAN · synthetic-fixtures-only.
+
+**Onward.** Sub-wave 5 opens · W-M6-CLUSTERING-HUMAN-VALIDATION · §5.3. Prerequisite §15 P236.s2 verbatim *"Requires items 1–4"* SATISFIED. **HALT-check for real biometric material in force** per owner-ratified boundary this shift — synthetic fixtures only; owner ruling required if any mechanism requires real estate voice/biometric material to validate.
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+## CP-M6-4-3 · census-visibility invariant · sealed 2026-09-15T~20:24Z (M6 sub-wave 4 third CP)
+
+**Track-a HEAD at seal:** `72f29cc`.
+
+**CP charter.** Landed `services/perception/audio_codec/census_visibility.py` — the §3.2 P045 verbatim "census-visible" clause discharged as a pure predicate + refusal.
+
+> §3.2 P045 (V33 · N4 anchor · census-visible clause): *"perception/audio_codec/ — registered like any other perception model; census-visible; runs in-perimeter on tenant compute."*
+
+> M6 grounding brief §Sub-wave 4 CP breakdown (verbatim): *"CP-M6-4-3 · census-visibility invariant — TESTS-FIRST · codec service appears in Mtafiti census surface as a registered perception capability."*
+
+Public API: `is_audio_codec_census_visible(*, perception_census_records) -> bool` (pure predicate; True iff at least one record carries verbatim `perception/audio_codec/` service_path) · `assert_audio_codec_census_visible(*, perception_census_records) -> None` (refuses with `AudioCodecCensusInvisibleError` on absence) · `AudioCodecCensusInvisibleError` (subclass of `PerceptionRegistrationError` from CP-M6-4-1 — refusal-family cohesion; single-catch of the perception-registration family preserved).
+
+**Case-agnostic duck-typing.** `_extract_service_path(record)` internal helper accepts both mapping-shaped census records (via `.get("service_path")`) and attribute-shaped records (e.g. `AudioCodecServiceDescriptor` from CP-M6-4-1). No coupling to CP-CRO2 `enumerate_estate` or CP-C4 `register_source_candidate` schemas — the invariant discharges against any perception census surface implementing the minimal `service_path` shape.
+
+**No-refactor discipline held.** CP-M6-4-1 `service.py` and CP-M6-4-2 `artefact.py` unchanged.
+
+Case-agnostic — word-boundary executive-domain negative-scan CLEAN. §3.1 P038 tokens-not-waveforms discipline preserved. Ratchet 4197 → 4205 (+8).
+
+**Discipline receipts.**
+- RED: `phase0/drill_receipts/20260915T201829Z_wm6_4_3_RED_pre_impl.log` (8 right-reason ModuleNotFoundError).
+- GREEN 1: `phase0/drill_receipts/20260915T201928Z_wm6_4_3_double_green_run1.log` (`4205 passed, 1 skipped`).
+- GREEN 2: `phase0/drill_receipts/20260915T202131Z_wm6_4_3_double_green_run2.log` (byte-match · stripped-sha256 `7787476e4b6d04df0c8f586d5d232232a6ca701186eba59ffa4b338fa032ab7c` · raw 9684 B each · stripped 9674 B each).
+- Seal: `phase0/output_verified_seals/cp_m6_4_3_census_visibility.seal.txt`.
+- Rider: `phase0/wave_riders/w_m6_codec_service_cp3/pip_freeze.txt` (192 lines · zero drift from CP-M6-4-2 rider · empty diff) + `collect_only_summary.txt` (4206 tests collected).
+
+**Boundary probes.** #40 (open · 2026-09-15T20:17:39Z) + #41 (seal · 2026-09-15T20:24:09Z): CD + Visitors BOTH FAIL 6.0s across both. Zero PASS across probes #1–#41. Retry cadence stays every-CP per owner ruling this shift.
+
+**Guardrails unchanged.** Tests-first double-green byte-match · ratchet monotonic-up · two-commit local-only · never push · terminal pytest only · `testing_agent` BANNED · position-redaction hard-lock · verbatim-canon · HALT-rather-than-guess · no refactor · case-agnostic negative-scan CLEAN · synthetic-fixtures-only.
+
+**Onward.** CP-M6-4-4 in-perimeter refusal (final sub-wave 4 CP) → sub-wave 4 seals (W-M6-CODEC-SERVICE COMPLETE) → sub-wave 5 (HALT-check for real biometric material).
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

@@ -1,0 +1,75 @@
+Kind: cp_m6_4_3_census_visibility
+
+# CP-M6-4-3 · census-visibility invariant · Seal
+
+**Sealed at UTC:** 2026-09-15T~20:24Z
+**Milestone:** M6 · Sub-wave 4 (W-M6-CODEC-SERVICE · §3) — third CP
+**Invariants added:** +8 · **Ratchet:** 4197 → 4205
+**Track-a HEAD at seal:** `72f29cc` · **Master HEAD:** TBD (commit B pending)
+
+---
+
+## §A · Discharge
+
+CP-M6-4-3 lands `services/perception/audio_codec/census_visibility.py` — the §3.2 P045 verbatim "census-visible" clause discharged as a pure predicate + refusal.
+
+> §3.2 P045 (V33 · N4 anchor · census-visible clause): "perception/audio_codec/ — registered like any other perception model; census-visible; runs in-perimeter on tenant compute."
+
+> M6 grounding brief §Sub-wave 4 CP breakdown (verbatim): "CP-M6-4-3 · census-visibility invariant — TESTS-FIRST · codec service appears in Mtafiti census surface as a registered perception capability."
+
+**Public API:**
+- `is_audio_codec_census_visible(*, perception_census_records) -> bool` — pure predicate over an iterable of perception census records; True iff at least one record carries the verbatim `perception/audio_codec/` service_path.
+- `assert_audio_codec_census_visible(*, perception_census_records) -> None` — refuses with `AudioCodecCensusInvisibleError` on absence.
+- `AudioCodecCensusInvisibleError` — subclass of `PerceptionRegistrationError` (from CP-M6-4-1 `service.py`) for refusal-family cohesion (single-catch of the perception-registration family preserved).
+
+**Case-agnostic duck-typing.** Internal `_extract_service_path(record)` helper accepts either mapping-shaped census records (`record.get("service_path")`) OR objects with a `service_path` attribute (e.g. `AudioCodecServiceDescriptor` from CP-M6-4-1). No coupling to CP-CRO2 `enumerate_estate` or CP-C4 `register_source_candidate` — the invariant discharges against any perception census surface implementing the minimal `service_path` shape.
+
+**No-refactor discipline held.** CP-M6-4-1 `service.py` unchanged. New module composes with, does not modify, prior CPs.
+
+**§3.1 P038 tokens-not-waveforms discipline preserved**: no `audio_bytes` / `waveform` / `samples` / `raw_audio` carriers on the API surface.
+
+Scope bounded — deferred to subsequent CPs:
+- CP-M6-4-4: in-perimeter-on-tenant-compute invariant (§3.2 P045 verbatim "runs in-perimeter on tenant compute").
+
+Case-agnostic — word-boundary executive-domain negative-scan CLEAN.
+
+---
+
+## §B · Discipline receipts
+
+| Step | Path |
+|---|---|
+| RED (8 right-reason ModuleNotFoundError) | `phase0/drill_receipts/20260915T201829Z_wm6_4_3_RED_pre_impl.log` |
+| GREEN 1 | `phase0/drill_receipts/20260915T201928Z_wm6_4_3_double_green_run1.log` |
+| GREEN 2 (byte-match) | `phase0/drill_receipts/20260915T202131Z_wm6_4_3_double_green_run2.log` |
+| Rider · pip freeze | `phase0/wave_riders/w_m6_codec_service_cp3/pip_freeze.txt` (192 lines · zero drift from CP-M6-4-2 rider · empty diff) |
+| Rider · pytest --collect-only | `phase0/wave_riders/w_m6_codec_service_cp3/collect_only_summary.txt` (4206 tests collected) |
+
+**Double-green byte-match:** stripped-sha256 `7787476e4b6d04df0c8f586d5d232232a6ca701186eba59ffa4b338fa032ab7c`. Both `4205 passed, 1 skipped, 438 warnings`. Raw byte lengths identical (9684 each). Stripped byte lengths identical (9674 each) under strip regex `in \d+\.\d+s \(\d+:\d+:\d+\)` → `in <T>s (<D>)`.
+
+---
+
+## §C · Boundary probes
+
+- Probe **#40** at CP-M6-4-3 open (2026-09-15T20:17:39Z): CD + Visitors BOTH FAIL · elapsed 6.006s / 6.005s.
+- Probe **#41** at CP-M6-4-3 seal (2026-09-15T20:24:09Z): CD + Visitors BOTH FAIL · elapsed 6.004s / 6.006s.
+- Zero PASS across probes #1–#41. Admin SG opening still-in-progress; every-CP cadence retained per owner ruling this shift.
+
+---
+
+## §D · Discipline held
+
+Tests-first double-green byte-match · ratchet monotonic-up (4197 → 4205 · +8) · word-boundary executive-domain negative-scan CLEAN · §3.1 P038 tokens-not-waveforms negative-scan CLEAN on new API surface · no LLM/HTTP/filesystem in `census_visibility.py` · no refactor of CP-M6-4-1 or CP-M6-4-2 (compose-not-modify) · two-commit local-only · never push · terminal pytest only · `testing_agent` BANNED · position-redaction hard-lock preserved · synthetic-fixtures-only in tests.
+
+---
+
+## §E · Onward
+
+1. **CP-M6-4-4** · in-perimeter-on-tenant-compute invariant — §3.2 P045 verbatim "runs in-perimeter on tenant compute"; refuses out-of-perimeter deployment declaration for the audio_codec service.
+2. **Sub-wave 4 seals** on CP-M6-4-4 close.
+3. Then sub-wave 5 (clustering + human validation — HALT-check for real biometric material · owner-ratified halt boundary in force).
+4. Then sub-wave 6 (Objective Wizard variant · N7 fold-in).
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

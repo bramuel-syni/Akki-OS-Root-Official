@@ -1,0 +1,19 @@
+{
+  "probe_id": "boundary_probe_30",
+  "at_utc": "2026-09-15T19:13:26Z",
+  "wave_boundary": "CP-M6-3-2 open (M6 sub-wave 3 second CP \u00b7 \u00a76.3 P100 four-leakage-path harness \u00b7 synthetic-fixtures-only per owner ruling)",
+  "results": [
+    {
+      "name": "citizen_digital",
+      "verdict": "FAIL",
+      "elapsed_s": 6.003,
+      "errno": null
+    },
+    {
+      "name": "visitors",
+      "verdict": "FAIL",
+      "elapsed_s": 6.006,
+      "errno": null
+    }
+  ]
+}
