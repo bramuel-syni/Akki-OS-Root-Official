@@ -1,0 +1,52 @@
+{
+  "wave": "W-D12-POC",
+  "sub_wave": "CP-D12P1_LIVE_RUN",
+  "sealed_at_utc": "20260915T101724Z",
+  "kind": "d12_poc_receipt",
+  "poc_flag": "POC-NOT-PRODUCTION",
+  "input_canonical_key": {
+    "station": "channel01",
+    "date_utc": "20260914",
+    "slot": "0000",
+    "filename_stem": "channel01_2026_09_14_00_00_00"
+  },
+  "input_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "input_bytes": 0,
+  "model_id": "faster-whisper:tiny",
+  "model_version": "ctranslate2",
+  "compute_type": "int8",
+  "beam_size": 1,
+  "live_run_stages": {
+    "stage_5": {
+      "stage": "stage_5_fetch_nas_to_pod",
+      "verdict": "PASS",
+      "dt_fetch_on_jump_s": 63.63,
+      "dt_scp_to_pod_s": 5.351,
+      "dt_total_s": 68.981,
+      "pod_path": "/tmp/d12_poc_full_qalb_im6/channel01_2026_09_14_00_00_00.mp4",
+      "file_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stage_6": {
+      "stage": "stage_6_scp_pod_to_gpu",
+      "verdict": "PASS",
+      "dt_seconds": 5.213,
+      "rc": 0,
+      "dest_path": "/tmp/d12_poc_1789467431/channel01_2026_09_14_00_00_00.mp4",
+      "stderr_shape": {
+        "lines": 0
+      }
+    },
+    "stage_7": {
+      "stage": "stage_7_install_and_transcribe_on_gpu",
+      "verdict": "FAIL",
+      "dt_seconds": 4.148,
+      "rc": 1,
+      "stderr_shape": {
+        "lines": 31,
+        "tail_100chars": "e \"<stdin>\", line 4, in <module>\nModuleNotFoundError: No module named 'faster_whisper'\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"<stdin>\", line 7, in <module>\n  File \"/usr/lib/python3.12/subprocess.py\", line 571, in run\n    raise CalledProcessError(retcode, process.args,\nsubprocess.CalledProcessError: Command '['/usr/bin/python3', '-m', 'pip', 'install', '--user', '--quiet', 'faster-whisper']' returned non-zero exit status 1."
+      }
+    }
+  },
+  "provenance_note": "raw transcript body NEVER emitted \u00b7 release-gate admission deferred per owner Option-A 2026-09-15T~09:50Z"
+}

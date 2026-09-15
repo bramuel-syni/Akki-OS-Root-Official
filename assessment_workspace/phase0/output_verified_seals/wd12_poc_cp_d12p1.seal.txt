@@ -1,0 +1,85 @@
+{
+  "wave": "W-D12-POC",
+  "sub_wave": "CP-D12P1",
+  "cp": "receipt-contract landing (frozen D12PocReceipt 16-carrier + D12InputCanonicalKey 4-carrier + assemble_d12_poc_receipt pure-data function + module-frozen canonical tokens + allowed/forbidden field-set disjointness)",
+  "sealed_at_utc": "2026-09-15T10:10:20Z",
+  "kind": "d12_poc_receipt_contract",
+  "wave_scope": "single_cp_receipt_contract · live_run_out_of_scope_for_ratchet_per_grounding_brief_E1",
+  "canon_anchors": [
+    "Owner directive · DECISIONS 2026-09-15T~03:55Z Effect 6 (verbatim): 'After the census completes: run the transcription pipe-proof with the canon CI fixture (whisper-tiny + faster-whisper) on a SMALL BOUNDED set of real NAS files (single-digit count), on the GPU hosts, all outputs labeled POC-NOT-PRODUCTION in provenance, receipts banked. Production model selection still follows census activation per §A17.11 — the POC does not pre-empt it.'",
+    "Owner Option-A ratification · DECISIONS 2026-09-15T~09:50Z (verbatim): 'Option A — ratified. Proceed with the D12 POC now: bounded single-digit NAS files, GPU hosts, POC-NOT-PRODUCTION provenance, raw transcription receipts banked under phase0/d12_poc_receipts/, release-gate admission explicitly deferred.'",
+    "CP-A5 precedent · notes/W_AUDIO_POC_CP_A5_LIVE_PROBE_BLOCKER_20260914.md §7 (verbatim): 'Wave continues to CP-A6 (wave close) per owner directive · Full end-to-end gap-fill remains BLOCKED on the three items above · Ratchet-worthy work (12 CP-A5 invariants + mechanism modules) closes CP-A5 with ratchet 3911 → 3923 (+12).'",
+    "Canon-17-19 §A17.11 (production model selection binding · owner citation)",
+    "notes/wave_d12_poc_grounding_brief.md §B (design) + §C (invariants) + §E.1 (live-run out-of-scope-for-ratchet)"
+  ],
+  "discharges": [
+    "Owner DECISIONS 2026-09-15T~03:55Z Effect 6 'POC-NOT-PRODUCTION' labeling verbatim (POC_NOT_PRODUCTION_FLAG module constant)",
+    "Owner Option-A ratification 2026-09-15T~09:50Z release-gate deferred + raw receipts under phase0/d12_poc_receipts/ (D12PocReceipt shape frozen with no transcript-body field)"
+  ],
+  "landing_modules": [
+    "backend/services/d12_poc/__init__.py (new · package init)",
+    "backend/services/d12_poc/receipt_contract.py (new · frozen dataclass D12PocReceipt + D12InputCanonicalKey + assemble_d12_poc_receipt + module-frozen canonical tokens + D12_POC_RECEIPT_ALLOWED_FIELDS/FORBIDDEN_TEXT_FIELDS frozensets)",
+    "backend/tests/invariants/test_wd12_poc_receipt_contract.py (new · 6 invariants)"
+  ],
+  "canonical_tokens_frozen": {
+    "POC_NOT_PRODUCTION_FLAG": "POC-NOT-PRODUCTION",
+    "D12_MODEL_ID": "faster-whisper:tiny",
+    "D12_MODEL_VERSION": "ctranslate2",
+    "D12_COMPUTE_TYPE": "int8",
+    "D12_BEAM_SIZE": 1
+  },
+  "invariants_added": 6,
+  "invariant_ids": [
+    "test_wd12_poc_receipt_contract.py::test_module_fabric_present",
+    "test_wd12_poc_receipt_contract.py::test_poc_not_production_flag_is_canonical_token",
+    "test_wd12_poc_receipt_contract.py::test_d12_model_and_compute_and_beam_are_canonical_tokens",
+    "test_wd12_poc_receipt_contract.py::test_assemble_d12_poc_receipt_frozen_carrier_shape",
+    "test_wd12_poc_receipt_contract.py::test_assemble_d12_poc_receipt_never_carries_transcript_text_field",
+    "test_wd12_poc_receipt_contract.py::test_assemble_d12_poc_receipt_stamps_poc_flag_regardless_of_success"
+  ],
+  "cross_benefit_added": 0,
+  "cross_benefit_note": "None. Module lives under services/d12_poc/ (not contracts/); test_frozen_contract_snapshot_parity.py scope unchanged; NON_CONTRACT_UTILITY_MODULES exemption unchanged.",
+  "passed_before": 4062,
+  "passed_after": 4068,
+  "ratchet_delta": 6,
+  "ratchet_manifest_sha256": "a6a47306678c51b1c73a8f6833c72bb7b8605c17e6c6b20e51d9cabe0c9516a3",
+  "ratchet_history_entry": {
+    "at_utc": "20260915T100300Z",
+    "sub_wave": "CP-D12P1_RECEIPT_CONTRACT",
+    "passed": 4068,
+    "invariants_added": 6,
+    "commit": "TBD"
+  },
+  "receipts": {
+    "20260915T100215Z_wd12_poc_cp_d12p1_RED_pre_impl.log": "3646478c6534685c424c02943b3be247cdb4eee6b83e17099bc0081260324507",
+    "20260915T100532Z_wd12_poc_cp_d12p1_GREEN1_v2.log": "2560c01c9ae7b1f6741a2f0f1b1f316b0a78dac35d1c9dceea9e4467a0b93d93",
+    "20260915T100741Z_wd12_poc_cp_d12p1_GREEN2.log": "b53bf0f7d3500aac599293ac50d0fc710f9c8b772b5edb86fcf433472640a1e4",
+    "20260915T101014Z_wd12_poc_cp_d12p1_COLLECTONLY.log": "6ffb28170e0e0c55f23581b3138aa10655efdefbf1a6524108142ff05af04962",
+    "20260915T101014Z_wd12_poc_cp_d12p1_PIPFREEZE.log": "7efbe6c7ea3250223e1a0074a6b4588268f11fdebdb0729c0e549f1db6c5b92c"
+  },
+  "byte_match_check": "identical modulo wall-time (both GREEN runs: 4068 passed, 1 skipped, 438 warnings; strip-of-time diff empty; both raw 9524 bytes / stripped 9510 bytes; both stripped sha256 = d66f0cae7913d1a76bfd477b5543db8bf194e24f644a1dc6f5c6f456e5619464)",
+  "red_drill_class": "module-missing right-reason (6/6 tests failed with ModuleNotFoundError on services.d12_poc before mechanism landed · mechanism temporarily stashed to services/d12_poc.stash for RED capture per tests-first discipline)",
+  "green1_failure_and_remediation": {
+    "green1_v1_result": "4067 passed, 1 failed (test_decisions_carries_pointer_near_top) at 20260915T100233Z",
+    "root_cause": "prior sentinel-restoration script (earlier this turn) applied `lines = [ln for ln in lines if ln != sentinel]` which removed ALL sentinel occurrences including the top-of-file one · file's line-1 pointer was silently deleted",
+    "remediation": "top pointer re-inserted as line 1 of DECISIONS.md · standing-orders invariants re-verified GREEN before proceeding · green1_v2 captured cleanly at 20260915T100532Z",
+    "no_ratchet_regression": "the mid-turn breakage was BELOW-floor caused by a state-side error (this turn) not a code-side error; the ratchet manifest is bumped to 4068 only after the remediation restored the file structure · no silent rebaselining"
+  },
+  "wave_honest_limits": {
+    "E.1_live_run_out_of_scope_for_ratchet": "receipt-contract lands at CP close; live run is a wave-close artefact under notes/wave_d12_poc_close.md (matching CP-A5 precedent: contract landed at CP-A5 close, live run banked as blocker note; wave sealed at the contract-only state)",
+    "E.2_no_release_gate_composition": "admit_transcript_release_pilot_open NOT called by D12 · outputs bank raw as POC-NOT-PRODUCTION per Option A verbatim",
+    "E.3_no_transcript_text_emission": "receipt shape enumerates fields WITHOUT any text/segments-content field · invariant 5 freezes the disjointness of ALLOWED_FIELDS and FORBIDDEN_TEXT_FIELDS",
+    "E.4_bounded_size_cap_20mb": "live-run stage refuses files > 20 MB (FileTooLargeForPoc) per SO §5 bounded-egress-cost discipline",
+    "E.5_gpu_host_state_discovery_findings": "at 09:52Z: SSH:22 PASS · 2x H200 143771 MiB each · driver 570.211.01 · Python 3.12.3 · faster-whisper NOT installed · NAS 10.10.55.55:445 NOT reachable from GPU host (TCP timeout · subnet gap) · smbclient NOT installed on GPU host"
+  },
+  "sec_incidents_this_wave_open": {
+    "SEC-2026-09-15-08": "P1 · agent-side · CSV-header-emit via python print pattern · HF token re-emitted (sha256 3ea89c94... · length 37 · both hf_token.csv + hf_token_rotated_20260914.csv carry same value) · custody-cat guard scope insufficient for python-level reads · Standing Rule 4 banked",
+    "SEC-2026-09-15-09": "P1 · agent-side · openpyxl iter_rows + print pattern · re-emission of 4 already-PENDING-ROTATION values (NAS Bramwel user/pw + JUMP root pw + RADIO ubuntu pw) · same class as SEC-15-08 · Standing Rule 5 banked",
+    "corrective_deferred": "M8 W-TESTS-FIRST-GUARD-INVARIANT part-B scope extension for python-level custody reads (openpyxl/csv.reader/json.load emission-via-print patterns)"
+  },
+  "commit_a_track_a_head_at_seal": "TBD (imminent)",
+  "commit_b_master_head_at_seal": "TBD (imminent)",
+  "grounding_brief": "notes/wave_d12_poc_grounding_brief.md",
+  "reporting_cadence": "no mid-wave owner-facing report per SO §2; wave outcome folds into M5 sprint-close report per owner cadence 2026-09-15T~09:50Z verbatim: 'Report at M5 sprint-close.' M5 sprint-close authoring includes D12 POC results per owner-specified content (wall-clock per file · quality observations shape-only · cost · per-hour projection for full gap-set) IF live-run stages complete this session · otherwise M5 sprint-close carries D12 receipt-contract landing + live-run blocker enumeration + follow-on next-recheck-hint",
+  "next_step": "Live-run stages 2-8 best-effort attempt this session · then wave-close END-OF-WAVE note notes/wave_d12_poc_close.md · then M5 sprint-close (M0→M5 END-OF-WAVE milestone-boundary report)"
+}

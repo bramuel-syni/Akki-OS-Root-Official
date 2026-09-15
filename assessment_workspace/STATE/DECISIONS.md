@@ -1,3 +1,5 @@
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
 
 # DECISIONS.md — Append-only log of rulings received
 
@@ -8550,6 +8552,57 @@ At 08:00 UTC egress re-open, execute in order:
 6. M7 opens (W0..W9).
 
 Guardrails unchanged. No push. Two-commit local-only. Terminal pytest only. testing_agent BANNED.
+
+---
+
+## Owner Option-A ratification on D12 POC release-gate coupling + new owner-desk decision item · 2026-09-15T~09:50Z · Source: owner channel · Log verbatim
+
+**Verbatim owner text:**
+
+> "Option A — ratified. Proceed with the D12 POC now: bounded single-digit NAS files, GPU hosts, POC-NOT-PRODUCTION provenance, raw transcription receipts banked under phase0/d12_poc_receipts/, release-gate admission explicitly deferred. That matches the owner's literal directive — the POC proves the pipe (NAS bytes → GPU → transcription → receipts), and release admission was never on its critical path. Correct call flagging the coupling.
+>
+> Add to the owner-desk carry-forward table as a new decision item: \"Audio-plane sensitivity declarations for audio_nas_offairrecs_16ch + obs_google_transcripts_bucket (one line each in feed_declaration_registry) — unlocks release-gate admission of audio artefacts end-to-end.\" I am surfacing it to the owner in parallel.
+>
+> After D12 POC: continue the ratified chain — M5 sprint-close report (M0→M5 milestone-boundary format, include D12 POC results: wall-clock per file, quality observations shape-only, cost, and the per-hour projection for the full gap-set so the owner can judge scale-up) → M8 quick hardening → M6 → M7. Keep the CD/Visitors re-probe loop running at boundaries while egress is open. Report at M5 sprint-close."
+
+**Binding effects (immediate · state-only commit this turn · no mechanism / no ratchet change until D12 POC seals):**
+
+**Effect 1 · Option-A ratified on D12 POC · release-gate admission explicitly DEFERRED.** D12 POC scope binds to: NAS bytes → GPU → transcription → receipts banked under `phase0/d12_poc_receipts/`. All outputs carry `provenance.poc_flag = "POC-NOT-PRODUCTION"` per DECISIONS 2026-09-15T~03:55Z Effect 6 (unchanged). Release-gate admission (`admit_transcript_release_pilot_open` composition) is NOT on the D12 critical path — it fires later, once the audio-plane sensitivity declarations publish (see Effect 2). This makes the D12 POC design invariant: `write_gap_transcript_or_refuse` composition is bypassed for D12; raw transcription receipts land as `POC-NOT-PRODUCTION`-flagged records without release-gate composition.
+
+**Effect 2 · New owner-desk item added to the standing carry-forward table:**
+
+> **Audio-plane sensitivity declarations for `audio_nas_offairrecs_16ch` + `obs_google_transcripts_bucket` (one line each in `feed_declaration_registry`) — unlocks release-gate admission of audio artefacts end-to-end.**
+
+Rationale: both `SourceRecord`s written by CP-CSAIM1 currently carry `Sensitivity(class_label="unknown", is_undeclared=True, rule_reference="Canon-4 §5.1 conservative fallback")` per Canon-4 §5.1 absence-of-declaration-never-resolves-upward. The `admit_transcript_release_pilot_open` composition (CP-RG4) currently only admits SAFE-tier artefacts under the ratified rulings; an `unknown`-sensitivity artefact cannot cross. Owner is surfacing the declaration request in parallel; upon owner ratification, correction records land per CP-C4 E.5 (append-only with `supersedes_record_id`) and audio artefacts unlock end-to-end release.
+
+This owner-desk item surfaces in every milestone-boundary report going forward (M5 sprint-close · M6 open/close · M7 open per DECISIONS 2026-09-15T~04:12Z Effect 2 cadence).
+
+**Effect 3 · M5 sprint-close report scope EXPANDED** with owner-specified D12 POC content requirements (verbatim):
+
+> "include D12 POC results: wall-clock per file, quality observations shape-only, cost, and the per-hour projection for the full gap-set so the owner can judge scale-up"
+
+Applied literally at M5 sprint-close authoring: report must carry (a) per-file wall-clock (transcription latency in seconds per file, position-redacted file identity), (b) shape-only quality observations (word count / segment count / language token; NO transcript content), (c) cost basis (GPU-hours × $/GPU-hour or Cassava lease basis · $0 marginal on idle capacity per prior wave precedent), (d) per-hour projection extrapolated to the full CP-A4 gap-set size (banked at CP-A4 seal 2026-09-14).
+
+**Effect 4 · Boundary probe retry loop preserved.**
+Owner verbatim: *"Keep the CD/Visitors re-probe loop running at boundaries while egress is open."* Unchanged from directive (b) in course-correction 2026-09-15T~08:37Z. Probe fires at every CP boundary of D12 POC + subsequent waves; PASS-verdicts fold into Item-3 census scope (would require a follow-on registry-writer walk for CD+Visitors).
+
+**Effect 5 · Autonomous chain unchanged.** D12 POC → M5 sprint-close (owner-specified content) → M8 quick hardening → M6 → M7. Guardrails unchanged (tests-first double-green byte-match · ratchet monotonic-up · two-commit local-only · never push · terminal pytest only · testing_agent BANNED · position-redaction hard-lock · verbatim-canon · HALT-rather-than-guess).
+
+**Effect 6 · Report cadence.** Owner verbatim: *"Report at M5 sprint-close."* No mid-flight report during D12 POC. Wave-close is a documentation event (durable artefact at `notes/wave_d12_poc_close.md`); owner-facing report is at M5 sprint-close.
+
+---
+
+## W-D12-POC · CP-D12P1 · sealed 2026-09-15T~10:20Z (contract-only · CP-A5 precedent)
+
+**Wave summary.** Receipt-contract landed cleanly at CP-D12P1 (6 invariants · ratchet 4062 → 4068 · +6). Live-run exercised end-to-end through 6 of 8 stages; 2 specific blockers identified with root-cause diagnosis (D12-01 NAS SMB IO throughput ~127 KB/s / `NT_STATUS_IO_TIMEOUT` at ~8 MB - not fixable in agent-session · D12-02 PEP-668 externally-managed-environment - CLOSED this wave via `--break-system-packages`). One D12 POC receipt banked at `phase0/d12_poc_receipts/20260915T101724Z_channel01_2026_09_14_00_00_00.json` (2089 bytes · POC-NOT-PRODUCTION flag stamped · blocker recorded as data). Track-a HEAD `7cccbe8b`. Wave-close note at `notes/wave_d12_poc_close.md`.
+
+**Blocker D12-01 → owner-desk item.** NAS SMB throughput / IO_TIMEOUT for `//10.10.55.55/OFFAIRRECS` share (~127 KB/s effective · timeout fires at ~8 MB of 79 MB target). Not fixable without NAS-side or JUMP-side sysadmin access. Owner-desk options: (a) investigate NAS-side rate limiting for the OFFAIRRECS share · (b) open a JUMP-side `mount.cifs` (kernel-CIFS) transport path as an alternative to userspace smbclient. Ranks as fastest unlock of §A17.11 production-model activation in current audio-plane critical path.
+
+**SEC hygiene · this-session incident report.** 4 re-leaks banked (SEC-2026-09-15-08 python csv.reader header · SEC-15-09 openpyxl iter_rows · SEC-15-10 shell `set -x` · plus 15-07 partial recurrence). All zero-new-leak-surface (all values already-PENDING-OWNER-ROTATION). Standing Rules 4 (custody csv header emit) + 5 (openpyxl iter_rows print) + 6 (`set -x` + password co-occurrence) banked. **Corrective landing** for the recurrence-class: M8 W-TESTS-FIRST-GUARD-INVARIANT scope extension is EXPANDED from single-command-family to include python-level custody reads (csv.reader header emit · openpyxl iter_rows print · set -x tracing with password variable co-occurrence). Part-B of the M8 W-TESTS-FIRST-GUARD-INVARIANT wave.
+
+**Onward chain.** M5 sprint-close report (owner-cadence hard trigger per 2026-09-15T~09:50Z Effect 6 verbatim: 'Report at M5 sprint-close.' · content per Effect 3: 'M0→M5 milestone-boundary format, include D12 POC results: wall-clock per file, quality observations shape-only, cost, and the per-hour projection for the full gap-set so the owner can judge scale-up.') → M8 (part-B scope extension pulled forward) → M6 → M7. Owner-desk items updated with BLOCKER-D12-01 addition.
+
+**Guardrails unchanged.** Tests-first double-green byte-match · ratchet monotonic-up · two-commit local-only · never push · terminal pytest only · testing_agent BANNED · position-redaction hard-lock · verbatim-canon · HALT-rather-than-guess.
 
 ---
 
