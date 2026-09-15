@@ -67,6 +67,44 @@ Every field above:
 
 ---
 
+## §G · EXTERNAL-RESEARCH · Huawei-Viusasa migration reframe (2026-09-15T~15:52Z · owner-passed research · NOT canon)
+
+**Provenance:** owner-passed public-web research summary 2026-09-15T~15:52Z. Marked **EXTERNAL-RESEARCH not canon** per owner directive. Verbatim owner note banked at receipt time.
+
+### G.1 · Findings (verbatim from owner)
+
+1. Viusasa (operated by Content Aggregation Limited, RMS ecosystem) MIGRATED from private cloud to Huawei Cloud — one-stop OTT stack (VOD, Media Processing Center transcoding HLS/DASH/MP4, CDN, live streaming), availability now 99.99%. Source: `huaweicloud.com/intl/en-us/cases/royalmediaservices.html`.
+2. Data layer: **GaussDB(for MySQL) on Huawei Cloud** is used for user-behavior analysis — the live Viusasa database is likely a Huawei Cloud GaussDB(for MySQL) instance, NOT the on-prem host in the current ledger (viusasa `203.123.86.10`, port closed, tagged on-prem).
+3. App stack per public sources: Angular frontend, Flutter mobile, Laravel/PHP backend, MySQL + PostgreSQL + Redis, M-PESA billing.
+4. May 2024: RMS + Huawei + Mango TV MoU on AI-powered media.
+
+### G.2 · Implication for the bind-gap ledger
+
+The `viusasa 203.123.86.10` on-prem IP may be legacy/stale.
+
+**Revised admin ask (preferred bind path — bank as the preferred item):**
+
+> Viusasa GaussDB(for MySQL) endpoint hostname + read-only creds + security-group opening for JUMP `159.138.173.250` — same pattern as the working weego/ussd Huawei RDS binds.
+
+**Fallback:** keep the on-prem IP `203.123.86.10` as a fallback probe target in case the migration is not 100% complete.
+
+**Shikisha reframe (parallel unknown):** same logic MAY apply to `shikisha 203.123.83.144` (currently tagged on-prem). Flag as **UNKNOWN — needs admin confirmation** whether shikisha has also migrated to a Huawei Cloud GaussDB(for MySQL) instance.
+
+### G.3 · Ledger update — Standing bind-gap table (append)
+
+| # | Owner-desk item | State | Impact on M5 completion path |
+|--:|---|---|---|
+| 7 | **Viusasa GaussDB(for MySQL) endpoint + creds + SG opening for JUMP** (revised preferred path per §G.2 · EXTERNAL-RESEARCH) | ⛔ ADMIN-BIND-PENDING · fallback: `viusasa 203.123.86.10` on-prem | Not blocking M5 · unmeasured-with-reason A5.4 · candidate M6 census expansion |
+| 8 | **Shikisha bind-status confirmation** (`shikisha 203.123.83.144` may be migrated to Huawei Cloud GaussDB · admin to confirm on-prem vs cloud) | ⛔ UNKNOWN · admin confirmation required | Not blocking M5 · unmeasured-with-reason A5.4 · candidate M6 census expansion |
+
+### G.4 · Provenance discipline (banked · EXTERNAL-RESEARCH class)
+
+- Item 7 + Item 8 are EXTERNAL-RESEARCH-SOURCED per owner directive; they are not canon anchors.
+- No mechanism is landed on the basis of this research this session — the code and invariants remain unchanged.
+- The reframe surfaces the revised admin ask; ratification of the reframe (and any follow-on registry-writer walk if binds land) awaits owner ruling + admin action.
+
+---
+
 ## §F · Next action pin (post-this-turn)
 
 **AT 08:00 UTC egress re-open** — sequenced per `STATE/NEXT.md` refreshed pin 2026-09-15T~04:25Z:

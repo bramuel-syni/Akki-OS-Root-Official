@@ -8648,3 +8648,46 @@ Owner verbatim: *"Keep the CD/Visitors re-probe loop running at boundaries while
 ---
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+## W-EXPORT-ARTEFACT-RENDER · CP-EXR1 · sealed 2026-09-15T~15:58Z (M8 quick-hardening #2)
+
+**Wave charter source (owner directive verbatim 2026-09-15T~15:35Z):**
+
+> "Use the ratified framing from the W-DATA-SUITE-V2-LIFT close report (its §5 rec): CP-D6 already landed the ExportArtefact 4-carrier contract + admit_export gate; this wave lands the actual export payload RENDERING (CSV and PDF at minimum) that was declared out-of-wave under §E.3. Scope additions that are already-ratified law, not new scope: every rendered export must route through the release gate under the pilot rules (receipt+debit per R-7 PILOT-OPEN, tokenization where named persons appear per R-15(a), derivative-only content per R-16(a), receipt-written-before-result per P036) and carry derivation_unit_refs per Canon-4 §22 UnitRefs-only. Small wave — keep it tight, no scope creep into new export types beyond what the Data-Suite surfaces already declare."
+
+**Wave summary.** Single CP (CP-EXR1). Lands `services/data_suite_v2/export_render.py`: `render_export_and_release(*, ...) -> Tuple[bytes, ReleaseLedgerDebit]`. Closed-set discipline on `export_kind ∈ {"csv", "pdf"}` via `ExportKindUnknown`. Composes CP-D6 `admit_export` (DAP-A10) + CP-RG2 `tokenize_named_persons` (R-15(a) when named_persons non-empty) + CP-RG3/RG4 `admit_transcript_release_pilot_open` (R-7 PILOT_OPEN receipt+debit; R-15(a) `named_persons_verdict=TOKENIZED`; R-16(a) `transfer_basis=DERIVATIVE_ONLY_VIA_PULL_SEAM`; P036 receipt-before-result ordering). CSV renderer via `csv.writer` with 4-line preamble carrying DAP-A10 carriers verbatim (Canon-4 §22 UnitRefs-only). PDF renderer hand-rolled minimal PDF-1.4 single-page ASCII text stream with exact XREF offsets, no external deps. On any refusal, NO payload bytes rendered and NO debit written for the refused branch. Ratchet 4074 → 4083 (+9 · no cross-benefit). Seal at `phase0/output_verified_seals/w_export_artefact_render.seal.txt` (`Kind: w_export_artefact_render`).
+
+**Track-a HEAD at seal:** `264f2fde99007f5e663b5682a5993a885036a35f`
+
+**Discipline receipts.**
+- Grounding brief: `notes/wave_export_artefact_render_grounding_brief.md`.
+- RED: `phase0/drill_receipts/20260915T154800Z_wexr_cp_exr1_RED_pre_impl.log` (right-reason ModuleNotFoundError × 9 before mechanism).
+- GREEN 1: `phase0/drill_receipts/20260915T155500Z_wexr_cp_exr1_double_green_run1.log` (`4083 passed, 1 skipped, 438 warnings`).
+- GREEN 2: `phase0/drill_receipts/20260915T155800Z_wexr_cp_exr1_double_green_run2.log` (byte-match with GREEN 1 · stripped-sha256 `bcb9c245c21fe178cc332bea1627b95beba97c29a77c8be2ecccf7a22541fde7`).
+- Rider: `phase0/wave_riders/w_export_artefact_render/pip_freeze.txt` (192 lines · matches CP-RG5 rider · no dependency drift) + `collect_only.txt` (4084 tests).
+
+**Standing Rule 2 exercise banked (Boot Ritual · receipt-freshness).** Baseline was time-drifted at boot (CP10 harness receipt age 13.3h > 12h threshold). Sanctioned pattern per Owner Option-A ruling 2026-09-15T~04:40Z Effect 3+4 applied: regenerated the receipt via `tools/wave_g5_realchrome_verification_harness.py --strict` at 2026-09-15T15:40:21Z (fresh receipt banked at `phase0/harness_ground_truth/latest.json` · underline=3/3 · oxblood=1/1 · verification PASSED · zero unbound rules). This is NOT rebaselining — receipt regeneration is the owner-approved regeneration path for the freshness invariant. Baseline confirmed green at floor 4074 before wave code work started.
+
+**Boundary probes fired this wave (per owner directive 2026-09-15T~09:50Z Effect 4: "Keep the CD/Visitors re-probe loop running at boundaries while egress is open."):**
+- Probe #11 (wave open · 15:43:44 UTC): CD + Visitors BOTH FAIL · timeout · 6.002s / 6.006s. Receipt: `phase0/boundary_probes/probe_11_20260915T154344Z.json`.
+- Probe #12 (CP-EXR1 seal · 15:58:00 UTC): CD + Visitors BOTH FAIL · timeout · 6.003s / 6.004s. Receipt: `phase0/boundary_probes/probe_12_20260915T155800Z.json`.
+- Zero PASS across this wave. Standing retry loop continues.
+
+**EXTERNAL-RESEARCH ledger update banked at this seal boundary (per owner note 2026-09-15T~15:52Z · EXTERNAL-RESEARCH not canon).** Two new bind-gap items appended to `notes/ADMIN_BINDS_20260915.md` §G:
+- Item 7 · Viusasa GaussDB(for MySQL) revised preferred path (Huawei Cloud migration per `huaweicloud.com/intl/en-us/cases/royalmediaservices.html`) · on-prem IP `203.123.86.10` retained as fallback.
+- Item 8 · Shikisha (`203.123.83.144`) UNKNOWN — needs admin confirmation whether on-prem or Huawei Cloud.
+- Provenance discipline: EXTERNAL-RESEARCH class · no mechanism landed on this basis · surfaces revised admin ask · awaits owner ratification + admin action.
+
+**Guardrails unchanged.** Tests-first double-green byte-match · ratchet monotonic-up · two-commit local-only · never push · terminal pytest only · testing_agent BANNED · position-redaction hard-lock · verbatim-canon · HALT-rather-than-guess.
+
+**Onward chain (unchanged from ratified sequencing 2026-09-15T~04:12Z §Δ5 as revised at CP-M8-G1 close):**
+1. W-DATA-SUITE-ANALYZE-WORKSPACE-REAL + W-DEEP-DIVE-REAL paired (M8 #3+#4).
+2. W-CENSUS-RUNTIME-ORCHESTRATION (M8 #5 · scope EXPANDED per owner 2026-09-15T~11:05Z).
+3. W-AUDIO-PROD-MODEL-SELECT (M8 #6 · deferred per D12-03).
+4. M6 opens (§15 walk · Path α/β decision flag in M6-open report).
+5. M7 opens (W0..W9).
+6. Interleave: M3 W-BC-DYNAMIC-RECOVERY-BUILD · M2 W-PULL-SEAM-RECEIPT-UNIFY.
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

@@ -1,0 +1,123 @@
+Kind: w_export_artefact_render
+
+# W-EXPORT-ARTEFACT-RENDER · Wave Seal · CP-EXR1
+
+**Sealed at UTC:** 2026-09-15T~15:58Z
+**Wave:** W-EXPORT-ARTEFACT-RENDER (M8 quick-hardening #2)
+**CP count:** 1 (CP-EXR1 · single-CP small wave per owner directive "keep it tight")
+**Invariants added:** +9 (no cross-benefit)
+**Ratchet:** 4074 → 4083
+**Track-a HEAD at seal:** `264f2fde99007f5e663b5682a5993a885036a35f`
+**Master HEAD at seal:** TBD (commit pending)
+
+---
+
+## §A · Discharge summary
+
+CP-EXR1 lands `services/data_suite_v2/export_render.py`:
+
+    render_export_and_release(*, export_kind, rows, rights_posture,
+                              derivation_hash, derivation_unit_refs,
+                              terms_cited, named_persons, transcript_id,
+                              kdpa_verdict, licence_class,
+                              release_receipt_id, release_budget_state,
+                              usage_quantity, usage_unit, debited_by_party)
+        -> Tuple[bytes, ReleaseLedgerDebit]
+
+Composes:
+- CP-D6 `admit_export` (DAP-A10 4-carrier gate).
+- CP-RG2 `tokenize_named_persons` (R-15(a) when `named_persons` non-empty).
+- CP-RG3/RG4 `admit_transcript_release_pilot_open` (R-7 PILOT_OPEN receipt+debit · R-15(a) `named_persons_verdict=TOKENIZED` · R-16(a) `transfer_basis=DERIVATIVE_ONLY_VIA_PULL_SEAM` · P036 receipt-before-result ordering).
+
+Closed-set discipline on `export_kind ∈ {"csv", "pdf"}` via `ExportKindUnknown`. Extending the set is an owner-ratified snapshot-parity event.
+
+CSV renderer: `csv.writer` with 4-line preamble carrying DAP-A10 carriers verbatim (Canon-4 §22 UnitRefs-only). No embedded timestamps → deterministic across calls with byte-identical inputs.
+
+PDF renderer: hand-rolled minimal PDF-1.4 single-page ASCII text stream with exact XREF byte offsets. No external deps. Starts `%PDF-1.4`, ends `%%EOF`, single page object.
+
+Refusal ordering (P036 receipt-before-result): on `ExportKindUnknown | ExportRefused | ReceiptMissingRefused | BudgetStateRefused | TranscriptTierRefused | TranscriptVerdictPending | TranscriptVerdictUnknown`, NO payload bytes are rendered and NO debit is written for the refused branch.
+
+---
+
+## §B · Discipline receipts (all banked)
+
+| Step | Path |
+|---|---|
+| Grounding brief | `notes/wave_export_artefact_render_grounding_brief.md` |
+| RED (mechanical, right-reason ImportError × 9) | `phase0/drill_receipts/20260915T154800Z_wexr_cp_exr1_RED_pre_impl.log` |
+| GREEN 1 (full baseline) | `phase0/drill_receipts/20260915T155500Z_wexr_cp_exr1_double_green_run1.log` |
+| GREEN 2 (full baseline) | `phase0/drill_receipts/20260915T155800Z_wexr_cp_exr1_double_green_run2.log` |
+| Rider · pip freeze | `phase0/wave_riders/w_export_artefact_render/pip_freeze.txt` (192 lines) |
+| Rider · pytest --collect-only | `phase0/wave_riders/w_export_artefact_render/collect_only.txt` (4084 tests) |
+
+**Double-green byte-match verdict:**
+- GREEN 1 raw 9524 B · GREEN 2 raw 9524 B.
+- Stripped (timing normalised): 9514 B both.
+- Stripped-sha256: `bcb9c245c21fe178cc332bea1627b95beba97c29a77c8be2ecccf7a22541fde7` (identical).
+- Both: `4083 passed, 1 skipped, 438 warnings`.
+
+---
+
+## §C · Boundary-hygiene probes fired (this wave)
+
+- Probe #11 at wave open (15:43:44 UTC): CD + Visitors BOTH FAIL · errno-timeout · 6.002s / 6.006s. Receipt: `phase0/boundary_probes/probe_11_20260915T154344Z.json`.
+- Probe #12 at CP-EXR1 seal (15:58:00 UTC): CD + Visitors BOTH FAIL · timeout · 6.003s / 6.004s. Receipt: `phase0/boundary_probes/probe_12_20260915T155800Z.json`.
+- Zero PASS across this wave. Standing retry loop continues at next CP boundary.
+
+Custody-cat guard (CP-RG-HYGIENE-01) exercised: zero fires. Position-redaction hard-lock preserved.
+
+---
+
+## §D · Discipline held whole wave
+
+- Tests-first: mechanical RED banked BEFORE mechanism (right-reason `ModuleNotFoundError` × 9).
+- Double-green byte-match at close.
+- Ratchet monotonic-up (`counts_at_baseline.passed` + `invariants_enforced_when_baseline_guard_1.passed_floor` bumped in tandem; `ratchet_history` appended).
+- Two-commit local-only pattern (Commit A: track-a code · Commit B: master state · to be executed after this seal).
+- Never push.
+- Terminal pytest only. `testing_agent` BANNED.
+- No refactor. Thin-kernel discipline.
+- No LLM transit.
+- Verbatim-canon on every discharge anchor in module + test docstrings.
+- Position-redaction hard-lock: no credential material in transcript across all boundary probes.
+- Standing Rule 2 exercised: CP10 harness receipt time-drift (13.3h > 12h threshold) refreshed in-window per sanctioned pattern (NOT rebaselining) at 15:40:21 UTC before baseline was declared green.
+
+---
+
+## §E · Wave-honest limits (declared at open · unchanged at seal)
+
+1. Export kinds: `csv` and `pdf` only this wave.  Additional kinds (xlsx, json, html, etc.) are follow-on waves.
+2. PDF is minimal PDF-1.4 single-page ASCII stream.  No embedded fonts, no multi-page layout.
+3. `usage_quantity` unit is caller-provided (typical: `rendered_bytes`).
+4. Named-persons detection is caller-provided.  Auto-detection is CIF-owned; out of scope.
+5. Deterministic CSV/PDF payloads (no embedded timestamps).  Debit `at_utc` carried in the `ReleaseLedgerDebit` return value (P036 evidence surface).
+
+---
+
+## §F · Onward chain
+
+Unchanged from ratified sequencing 2026-09-15T~04:12Z §Δ5 (as revised at CP-M8-G1 close):
+
+1. **W-DATA-SUITE-ANALYZE-WORKSPACE-REAL + W-DEEP-DIVE-REAL paired** (M8 #3+#4).
+2. **W-CENSUS-RUNTIME-ORCHESTRATION** (M8 #5 · scope EXPANDED per owner 2026-09-15T~11:05Z: fold ffprobe `media_types` + `audio_bearing_share` into live NAS enumeration · new SourceRecord fields).
+3. **W-AUDIO-PROD-MODEL-SELECT** (M8 #6 · defer per D12-03 corpus finding until real audio source enumerated).
+4. **M6 opens** (§15 walk · Path α/β decision to be flagged in M6-open report).
+5. **M7 opens** (W0..W9).
+6. **Interleave:** M3 W-BC-DYNAMIC-RECOVERY-BUILD (on packet ratification) · M2 W-PULL-SEAM-RECEIPT-UNIFY (on D9 ratification).
+
+Owner-desk items surface in next milestone-boundary report per DECISIONS 2026-09-15T~04:12Z Effect 2 cadence.
+
+---
+
+## §G · Non-blocking ledger update (arrived this wave · to be banked in `notes/ADMIN_BINDS_20260915.md`)
+
+Owner externally-researched note (2026-09-15T~15:52Z · EXTERNAL-RESEARCH not canon):
+- Viusasa migrated to Huawei Cloud (huaweicloud.com/intl/en-us/cases/royalmediaservices.html).  Data layer likely GaussDB(for MySQL) on Huawei Cloud, NOT the on-prem host `203.123.86.10` currently tagged in the ledger.
+- Revised admin ask (preferred bind path): Viusasa GaussDB(for MySQL) endpoint hostname + read-only creds + SG opening for JUMP `159.138.173.250` — same pattern as working weego/ussd Huawei RDS binds.  Keep on-prem IP as fallback.
+- Shikisha (`203.123.83.144`, on-prem tag): UNKNOWN — flag needs admin confirmation.  Same reframe may apply.
+
+Ledger bank scheduled at this seal boundary (next commit cycle).
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
