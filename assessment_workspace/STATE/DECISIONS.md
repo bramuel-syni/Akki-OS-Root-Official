@@ -8317,6 +8317,53 @@ Current UTC at ruling receipt: 2026-09-15T~03:55Z. Window CLOSED (02:00 UTC clos
 
 ---
 
+## Owner ratification of milestone re-homing + autonomous execution authorization · 2026-09-15T~04:12Z · Source: owner channel · Log verbatim
+
+**Verbatim (owner directive received in reply to `master f4a2a2df` re-homing tree):**
+
+> "OK. Proceed with tree autonomously as per initial guardrails when setting up milestones."
+
+**Follow-on bindings (owner-attached effects clauses, verbatim):**
+
+> "Effects — bank in DECISIONS.md + RULING_LEDGER:
+> 1. The re-homed milestone tree at master f4a2a2df is RATIFIED as the formal programme structure. 🧭M6 (Audio-Plane production build, §15 order), 🧭M7 (Governed Census/Harvest Platform W0..W9 — the owner's own reframe; this ratification lifts the roadmap's POC-BUILD-HOLD), and 🧭M8 (hardening + catch-all) are now FORMAL milestones. Update the milestone binding accordingly (successor binding note on master, verbatim owner quote as §A).
+> 2. AUTONOMOUS EXECUTION AUTHORIZED through the tree in dependency order, under the initial guardrails unchanged: SO §1 boot每 session · tests-first RED→GREEN→GREEN byte-match · ratchet monotonic-up · two-commit local-only pattern · NEVER push · terminal pytest only, testing_agent banned · position-redaction hard-lock · egress window 08:00–02:00 UTC · verbatim-canon discipline · HALT-rather-than-guess.
+> 3. Items blocked on owner input remain decision-point items — proceed AROUND them, never through them: BC tier selection (M3 build waits on packet ratification), DAP R-2/R-3/R-6, Rules-Service R-2, Watch-Learning R-15(b)/16(b)/17(b), S-24/S-27/28/29 build charters, D9 receipt-unify ratification, Amendment 8 HOLD, admin binds (5 MySQL SGs, RADIO route, transcription server), SEC rotations. Surface them in every milestone-boundary report.
+> 4. M5-LIFTING deferrals (Trust-Surface-v2, Executive-Suite-v2) stay DEFERRED — DPO-D2 default stands, no override was given. List them in each report so the owner can override any time.
+>
+> Execution order (dependency-driven):
+> - Now → M5 completion: census at 08:00 UTC → W-RELEASE-GATE-PILOT-LIFT (CP-RG1..RG5) → D12 POC (bounded, GPU hosts, POC-NOT-PRODUCTION) → M5 sprint-close report (the M0→M5 completion report in END-OF-WAVE format).
+> - Then M8 unblocked quick hardening (small waves, high value): W-TESTS-FIRST-GUARD-INVARIANT → W-EXPORT-ARTEFACT-RENDER → W-DATA-SUITE-ANALYZE-WORKSPACE-REAL + W-DEEP-DIVE-REAL (paired) → W-CENSUS-RUNTIME-ORCHESTRATION → W-AUDIO-PROD-MODEL-SELECT (gated on census activation list — use census results; this names the production model per §A17.11 and is the natural successor to D12).
+> - Then M6 open: author the M6 grounding brief (fix the N7 numbering gap there), then walk §15 items in canon order starting W-M6-INGEST-STAGE-1. Post the brief in your report and PROCEED — no ack gate, per owner autonomy ruling.
+> - Then M7 open: same pattern — reframe-activation note + W0 platform integrity → W1 generalisation → W2+ as unblocked.
+> - Interleave: BC build (M3) the moment the owner ratifies the packet; Pull-Seam receipt-unify (M2) the moment D9 ratifies — also complete the Pull-Seam P2..P6 verbatim extraction backfill BEFORE that wave opens (book-keeping item, closed-window work).
+> - Quarantine-restoration (M8): pilot 3–5 files first as banked, then scale.
+>
+> Reporting cadence: wave-close reports as usual; milestone-boundary reports at M5 close, M6 open/close, M7 open — each with: ratchet trail, what's newly unblocked, owner-desk items outstanding. Egress-closed windows = non-egress work only, never idle.
+>
+> Proceed. Census at 08:00 UTC remains the next hard action."
+
+**Binding effects (immediate · this-turn state commits · no mechanism / no ratchet change this commit):**
+
+**Effect 1 · Tree at `master f4a2a2df` is RATIFIED as the formal programme structure.** Successor binding note authored this turn at `notes/MILESTONE_PROMISE_BINDING_20260915_delta_M6M7M8_ratified.md` (verbatim owner quote as §A). M0..M5 owner-ratified binding of 2026-09-13 (`notes/MILESTONE_PROMISE_BINDING_20260913.md`) unchanged in scope. 🧭M6 · 🧭M7 · 🧭M8 flip from PROPOSED to FORMAL. M7 reframe-activation lifts the `POC-BUILD-HOLD` posture on `notes/GOVERNED_CENSUS_HARVEST_PLATFORM_ROADMAP.md:3` per owner ruling above.
+
+**Effect 2 · Autonomous execution mode ARMED.** Autonomous mode is bounded strictly by initial guardrails (verbatim clause 2 above). No new guardrail is created; no existing guardrail is relaxed. HALT-rather-than-guess remains binding — any ambiguity that cannot be resolved by canon-text precedence stops execution and returns a DECISION-POINT report. Reporting cadence: END-OF-WAVE format at wave close; milestone-boundary reports at M5-close · M6-open/close · M7-open — each with ratchet trail + newly-unblocked + owner-desk items outstanding.
+
+**Effect 3 · Owner-desk item list carried forward VERBATIM (proceed AROUND, never through):** BC tier selection (M3 W-BC-DYNAMIC-RECOVERY-BUILD waits on `notes/BC_DYNAMIC_RECOVERY_PACKET_20260915.md` ratification) · DAP R-2 approving-authority · DAP R-3 per-party ceilings (COUPLED · re-rules at pilot end) · DAP R-6 pricing · Rules-Service R-2 second-signatory · Watch-Learning R-15(b) · R-16(b) · R-17(b) · S-24 · S-27 · S-28 · S-29 build charters · D9 universal receipt-before-result ratification (gates M2 W-PULL-SEAM-RECEIPT-UNIFY) · Amendment 8 HOLD · admin binds (5 MySQL SG blocks · RADIO 10.10.19.0/24 route · transcription server host+creds) · SEC rotations · R-17(a) licence-class hardening (non-blocking).
+
+**Effect 4 · M5-LIFTING deferrals carried forward VERBATIM:** W-TRUST-SURFACE-v2 (2 surfaces · binding line 408) + W-EXECUTIVE-SUITE-v2-LIFT (7 surfaces · binding line 409). DPO-D2 default stands · no override given. Surfaced in every milestone-boundary report for owner-override availability.
+
+**Effect 5 · Book-keeping item RETRACTED (Pull-Seam P2..P6 backfill).** Verification this turn confirms `notes/PULL_SEAM_REQUIREMENTS_VERBATIM_20260914.md` §2 already contains all 8 principle bodies verbatim (39 sentence-rows: P015.s1..s7 + P017.s1..s6 + P019.s1..s4 + P021.s1..s3 + P023.s1..s3 + P034.s1..s5 + P036.s1..s5 + P038.s1..s4) plus the six-crossing table (P024..P032 · 6 rows × 5 columns = 30 cell-quotes). Prior book-keeping observation at `notes/PROGRAMME_STATE_BEYOND_M5_20260915.md` §D and inline in agent reply 2026-09-15T~04:00Z was WRONG — retracting. No backfill required before W-PULL-SEAM-RECEIPT-UNIFY (M2 charter) opens.
+
+**Effect 6 · Book-keeping item RETRACTED (Audio-Plane §15 N7 numbering gap).** Verification this turn confirms `notes/AUDIO_PLANE_V1_DRIFT_AUDIT_20260914.md:98` carries the N7 row with full verbatim quote (v1.0 §8.4 P139..P142 · wizard-compile-refusal clause) with `[VERIFY]` status per v1.0 §16.1 P245. All 10 N-items (N1..N10) enumerated correctly. Prior "N7 skipped" observation was WRONG — retracting. No numbering fix required in the M6 grounding brief; brief notes the retraction under §Book-keeping-corrections.
+
+**Effect 7 · M6 grounding brief authored this turn** at `notes/M6_AUDIO_PLANE_PRODUCTION_BUILD_grounding_brief.md` — verbatim §15 build sequence (11 items · 10 core + 1 P2-deferred) with owner ratification quote as §A. Per owner ruling: "Post the brief in your report and PROCEED — no ack gate."
+
+**Effect 8 · Next active step per owner sequencing.** This turn (closed egress window · 04:12–08:00 UTC): bank ruling + author successor binding note + author M6 grounding brief + refresh STATE/NEXT.md sequencing pin + master state commit. Then HOLD until 08:00 UTC egress re-open. Then Item-3 census run. Then W-RELEASE-GATE-PILOT-LIFT CP walk. Then D12 POC. Then M5 sprint-close END-OF-WAVE report. Then M8 quick hardening in the sequence owner authored. Then M6 opens (grounding brief already banked · walk §15 items starting W-M6-INGEST-STAGE-1). Then M7 opens (reframe-activation note + W0 platform integrity → W1 generalisation → W2+ as unblocked).
+
+---
+
+
 
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
