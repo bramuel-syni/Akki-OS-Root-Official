@@ -1,0 +1,44 @@
+{
+  "wave": "W-RELEASE-GATE-PILOT-LIFT",
+  "sub_wave": "CP-RG2",
+  "cp": "tokenize_named_persons + TokenizationReceipt (R-15(a) TOKENIZED discharge + Pull Seam §2 P1 P015.s6 identity-never-crosses)",
+  "canon_anchors": [
+    "R-15(a) · DECISIONS.md 2026-09-15T~03:55Z · Effect 2 (owner verbatim): 'People's names are tokenized before anything leaves — placeholder tokens per custody class (Pull Seam identity-never-crosses). named_persons_verdict resolves to TOKENIZED for release purposes; build/wire the tokenization step into the transcript release path (tests-first).'",
+    "Pull Seam §2 P1 · P015.s6 · canon/drops/20260914_pull_seam/extracted/The_Pull_Seam_STRUCTURED.txt · P015.s6 (verbatim): 'There is no configuration in which estate data is transferred to compute outside the perimeter.'",
+    "notes/wave_release_gate_pilot_lift_grounding_brief.md §B row CP-RG2"
+  ],
+  "landing_modules": [
+    "contracts/tokenization_receipt.py (frozen dataclass TokenizationReceipt · 7 carriers exact order)",
+    "services/de_identify/__init__.py (new package)",
+    "services/de_identify/tokenize_named_persons.py (tokenize_named_persons + get_token_table + TokenTableMissing + _TOKEN_TABLES custody store + _reset_for_tests · deterministic sha256-derived tr_<64hex> receipt_id · deterministic tt_<64hex> table_ref · placeholder shape <TOKEN_NP_NN> two-digit zero-padded widened at 100+ · longer-name-first replacement order for partial-match safety)"
+  ],
+  "invariants_added": 6,
+  "invariant_ids": [
+    "test_wrg_cp_rg2_tokenize_named_persons.py::test_cp_rg2_module_fabric",
+    "test_wrg_cp_rg2_tokenize_named_persons.py::test_cp_rg2_tokenization_receipt_frozen_seven_carrier_exact_order",
+    "test_wrg_cp_rg2_tokenize_named_persons.py::test_cp_rg2_tokenize_named_persons_replaces_all_name_occurrences",
+    "test_wrg_cp_rg2_tokenize_named_persons.py::test_cp_rg2_tokenize_named_persons_deterministic_placeholder_shape",
+    "test_wrg_cp_rg2_tokenize_named_persons.py::test_cp_rg2_receipt_never_carries_token_to_name_mapping",
+    "test_wrg_cp_rg2_tokenize_named_persons.py::test_cp_rg2_get_token_table_separate_from_tokenize_call_and_missing_refuses"
+  ],
+  "cross_benefit_added": 1,
+  "cross_benefit_note": "NON_CONTRACT_UTILITY_MODULES extension for tokenization_receipt.py — same class as release_budget.py from CP-RG1 (frozen dataclass without pydantic BaseModel).",
+  "passed_before": 4025,
+  "passed_after": 4032,
+  "ratchet_delta": 7,
+  "receipts": {
+    "20260915T084436Z_wave_release_gate_pilot_lift_cp_rg2_RED_pre_impl.log": "489bd7994861c30b41ebd61405337296cb0e43de021474f9acc42f9fa2ef46bc",
+    "20260915T084541Z_wave_release_gate_pilot_lift_cp_rg2_GREEN1.log": "4e51b9346c3517bd076de0ad71858b76792cf38418dddee54e12f09b8fdba67a",
+    "20260915T084740Z_wave_release_gate_pilot_lift_cp_rg2_GREEN2.log": "13954a9a71a1ff7f2ad1aa165341fe90755b5adb84778545c12f5049f546f0c8",
+    "20260915T084939Z_wrg_cp_rg2_PIPFREEZE.txt": "7efbe6c7ea3250223e1a0074a6b4588268f11fdebdb0729c0e549f1db6c5b92c",
+    "20260915T084939Z_wrg_cp_rg2_COLLECTONLY.txt": "b101d545a79662a2fceaed24c747c9fc28e20bdbae0500aaa449538d4205174e"
+  },
+  "byte_match_check": "identical modulo wall-time (both GREEN runs: 4032 passed, 1 skipped, 438 warnings; strip-of-time diff empty; both raw 9524 bytes)",
+  "rider_1": "pip freeze (192 packages) + collect-only (4035 lines · 4032 pass + 1 skip + 2 header/footer) banked",
+  "red_drill_class": "module-missing right-reason RED (ModuleNotFoundError on contracts.tokenization_receipt before frozen carrier module authored)",
+  "cp_boundary_probe_history": {
+    "cd_visitors_probe_2_at_08_39_49Z": "BOTH FAIL · errno 110 ETIMEDOUT · admin SG opening still-in-progress"
+  },
+  "sequencing_pin": "Per owner Option-A step 2(f) + course-correction 2026-09-15T~08:37Z clause 2 (CD/Visitors retry at each CP boundary): probe re-fired at CP-RG2 boundary — both still fail; retry loop continues at CP-RG-HYGIENE-01 boundary + CP-RG3 boundary + CP-RG4 boundary + CP-RG5 boundary + census-supplement boundary.",
+  "next_cp": "CP-RG-HYGIENE-01 · assert_no_transcript_cat_on_custody guard (pulled forward from M8 per owner course-correction 2026-09-15T~08:37Z clause 3 · mirrors HF-token guard · prevents SEC-2026-09-14-01/02/03/04 + SEC-2026-09-15-06/07 recurrence class)"
+}

@@ -1,4 +1,3 @@
-READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 # DECISIONS.md — Append-only log of rulings received
 
@@ -6461,7 +6460,6 @@ Owner-facing reports use plain language, metrics first (requirement → status �
 
 ---
 
-READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 ---
 
@@ -6509,7 +6507,6 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 ---
 
-READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 ## 2026-09-08T~04:50Z · OWNER DIRECTIVE · W-WINDOW-FILL-RESTORE-2 AUTHORIZED
 
@@ -6529,7 +6526,6 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 ---
 
-READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 ## 2026-09-08T~05:15Z · OWNER DIRECTIVE · MISSION-FRAMED REPORTING · 4 artifacts drop
 
@@ -6559,7 +6555,6 @@ Analysis appears only as evidence behind those four. No REQ-ID walls in the top-
 
 ---
 
-READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 ## 2026-09-08T~06:15Z · OWNER DIRECTIVE · Pipeline defect challenge + new drop + rulings
 
@@ -6606,7 +6601,6 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 ---
 
-READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 ## 2026-09-09T~12:20Z · OWNER RULING · CP1 ack · CP2-CP10 straight through · report cadence CP4/CP8/CP10 · CP9 honest-state mapping
 
@@ -6636,7 +6630,6 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 ---
 
-READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 ## 2026-09-09T~12:55Z · OWNER RULING · HOLD CP2 · compile HOLISTIC PROGRAMME PLAN before any further build
 
@@ -6663,7 +6656,6 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 ---
 
-READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 ## 2026-09-09T~13:15Z · OWNER RULING · STANDING COMMUNICATION DOCTRINE · end-of-wave vs micro-sprint reporting
 
@@ -6698,11 +6690,9 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 ---
 
-READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 ---
 
-READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 ## 2026-09-09T~evening · OWNER RULING · Mtafiti is "OBJECTIVE-GENERATION blind" — multi-objective facilitation is IN-SCOPE
 
@@ -6767,11 +6757,9 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 ---
 
-READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 ---
 
-READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 ## 2026-09-12T~06:17Z · W-MTAFITI-GPU-DISCOVERY · CP1 CLOSED · ratchet 3098 → 3164 (+66)
 
@@ -6836,7 +6824,6 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 ---
 
-READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 ---
 
@@ -6859,7 +6846,6 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 ---
 
-READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 ## 2026-09-12T~06:55Z · W-MTAFITI-GPU-DISCOVERY · CP3 CLOSED · ratchet 3198 → 3212 (+14) · **FIRST LIVE READ ACHIEVED**
 
@@ -6888,7 +6874,6 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 ---
 
-READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 ## 2026-09-12T~07:10Z · W-MTAFITI-GPU-DISCOVERY · CP4 CLOSED · ratchet 3212 → 3223 (+11) · **DEEP COMPOSITION SURFACE**
 
@@ -6914,7 +6899,6 @@ Bundled in-CP fix: package-name collision (`services/mtafiti/census/` shadowed e
 
 ---
 
-READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 ## 2026-09-12T~07:20Z · W-MTAFITI-GPU-DISCOVERY · CP5 CLOSED · ratchet 3223 → 3232 (+9)
 
@@ -6922,7 +6906,6 @@ Data-quality profile landed. `services/mtafiti/quality_profiler.py` computes nul
 
 ---
 
-READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 ## 2026-09-12T~07:30Z · W-MTAFITI-GPU-DISCOVERY · CP6 CLOSED · ratchet 3232 → 3241 (+9)
 
@@ -6930,7 +6913,6 @@ Deterministic stratified sampling + FK-candidate relationship signals + cost rec
 
 ---
 
-READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 ## 2026-09-12T~07:35Z · W-MTAFITI-GPU-DISCOVERY · **WAVE CLOSED** · CP7 · ratchet 3241 → 3251 (+10)
 
@@ -6952,7 +6934,6 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 ---
 
-READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 ## Owner Ruling · Audio-Census POC Addendum · 2026-09-12T~12:00Z · Source: owner channel
 
@@ -8527,5 +8508,49 @@ At 08:00 UTC egress re-open, execute in order:
 
 
 
+
+
+## W-CENSUS-SUPPLEMENT-AUDIO-INVENTORY-MOUNT · CP-CSAIM1 · sealed 2026-09-15T~09:40Z
+
+**Wave charter source (verbatim owner directive · course-correction 2026-09-15T~08:37Z clause a):**
+
+> "(a) census supplement for NAS+OBS via the sealed audio_poc inventories mounted into the census registry (do not defer to M8)"
+
+**Wave scope.** Single CP. In-scope M5 CENSUS-RUN discharge supplement pulled forward from what would otherwise be M8 W-CENSUS-RUNTIME-ORCHESTRATION. Discharges the "no live-scan tool" unmeasured-with-reason entries the Item-3 census run banked for NAS 16ch + OBS at `notes/ITEM_3_CENSUS_RUN_20260915.md` §D rows 3–4.
+
+**Mechanism landed.**
+
+* `backend/services/census_canon/audio_inventory_supplement.py` (new · composes CP-C1 `classify_sensitivity` + CP-C4 `register_source_candidate`).
+* Canonical feed_identity tokens: `audio_nas_offairrecs_16ch` (NAS) + `obs_google_transcripts_bucket` (OBS).
+* Defensibility_measure pointers to sealed CP-A2 recording_inventory + CP-A3 transcript_inventory contracts (audio_poc_v1.seal).
+* Sensitivity via Canon-4 §5.1 conservative fallback ("unknown" · empty feed_declaration_registry · absence-of-declaration-never-resolves-upward).
+* `next_recheck_hint = "M8·W-CENSUS-RUNTIME-ORCHESTRATION"` on both records (post-M8 correction records land per CP-C4 E.5 append-only with `supersedes_record_id` set).
+
+**Invariants landed: 6** (test_wcensus_supplement_audio_inventory_mount.py). Ratchet 4056 → 4062 (+6 · no cross-benefit · services-package extension · contracts untouched).
+
+**Discipline.**
+
+* Mechanical RED at `phase0/drill_receipts/20260915T093339Z_wcensus_supplement_audio_inventory_mount_RED_pre_impl.log` (6 failed / 4056 passed · right-reason ModuleNotFoundError/ImportError × 6 before mechanism landed).
+* Double-green byte-match: GREEN1 + GREEN2 both `4062 passed, 1 skipped, 438 warnings` · both raw 9524 bytes · stripped 9510 bytes · stripped-sha256 identical (`4e45c6ed1b52fcd2763fae0ffd96d91833d93dd15bfb8a6373c1e46946633b6f`).
+* Rider bank: collect-only 4063 tests + pip freeze 192 lines (matches CP-RG5 rider · no dependency drift).
+* Seal at `phase0/output_verified_seals/wcensus_supplement_audio_inventory_mount.seal.txt` (Kind `census_supplement_audio_inventory_mount`).
+
+**Boundary-hygiene probe #7** (owner directive b · CD+Visitors retry loop at every CP boundary):
+* citizen_digital (159.138.164.103:3306) → FAIL · errno 110 · ETIMEDOUT · 6.005s (admin SG opening still-in-progress).
+* visitors (110.238.75.83:3306) → FAIL · errno 110 · ETIMEDOUT · 6.005s.
+* Zero PASS to fold. Retry loop continues at next CP boundary (D12 POC opening).
+* Custody-cat guard (CP-RG-HYGIENE-01) exercised on all probe commands · zero fires. Position-redaction hard-lock preserved.
+
+**Onward chain** (unchanged from ratified sequencing 2026-09-15T~04:12Z + owner course-correction 2026-09-15T~08:37Z):
+1. W-RELEASE-GATE-PILOT-LIFT wave-close END-OF-WAVE report (folds in CP-CSAIM1 supplement · owner cadence "at RG wave seal + census completion" · one combined report).
+2. D12 POC (bounded single-digit NAS files · GPU hosts · `POC-NOT-PRODUCTION` provenance).
+3. M5 sprint-close report (M0→M5 END-OF-WAVE).
+4. M8 quick hardening waves in owner-authored order.
+5. M6 opens (walk §15).
+6. M7 opens (W0..W9).
+
+Guardrails unchanged. No push. Two-commit local-only. Terminal pytest only. testing_agent BANNED.
+
+---
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

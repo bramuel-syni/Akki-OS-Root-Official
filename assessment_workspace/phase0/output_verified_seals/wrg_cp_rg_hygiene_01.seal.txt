@@ -1,0 +1,42 @@
+{
+  "wave": "W-RELEASE-GATE-PILOT-LIFT",
+  "sub_wave": "CP-RG-HYGIENE-01",
+  "cp": "assert_no_transcript_cat_on_custody guard (pulled forward from M8 per owner course-correction 2026-09-15T~08:37Z clause 3)",
+  "canon_anchors": [
+    "Owner course-correction 2026-09-15T~08:37Z clause 3 (verbatim): 'SEC-2026-09-15-06/07 (custody-file cat re-leaks): good containment and honest logging. Pull the custody-cat guard FORWARD — land assert_no_transcript_cat_on_custody as a small invariant inside the current wave walk (it mirrors the HF-token guard, ~1 CP-sized, prevents the exact violation class that has now recurred 4 times across sessions). Do not wait for M8.'",
+    "SEC-2026-09-14 §D bullet 3 (standing rule): 'never -p<pw> on the command line, use MYSQL_PWD env or --defaults-file'",
+    "SEC ledger recurrence: SEC-2026-09-14-01/02/03/04 + SEC-2026-09-15-06/07 (six documented instances of cat/head-class custody-file transcript emission)"
+  ],
+  "landing_modules": [
+    "services/secret_hygiene/custody_file.py (assert_no_transcript_cat_on_custody + CustodyCatLeakDetected + CUSTODY_PATH_PREFIXES tuple + LEAK_COMMANDS tuple (8 commands: cat/head/tail/less/more/bat/view/type) + compiled _LEAK_PATTERN regex + CUSTODY_CAT_GUARD_RULING_VERBATIM module constant)"
+  ],
+  "invariants_added": 6,
+  "invariant_ids": [
+    "test_wrg_cp_rg_hygiene_01_custody_cat_guard.py::test_cp_rg_hygiene_01_module_fabric",
+    "test_wrg_cp_rg_hygiene_01_custody_cat_guard.py::test_cp_rg_hygiene_01_raises_on_cat_of_custody_file",
+    "test_wrg_cp_rg_hygiene_01_custody_cat_guard.py::test_cp_rg_hygiene_01_raises_on_every_leak_command_class",
+    "test_wrg_cp_rg_hygiene_01_custody_cat_guard.py::test_cp_rg_hygiene_01_does_not_raise_on_safe_patterns",
+    "test_wrg_cp_rg_hygiene_01_custody_cat_guard.py::test_cp_rg_hygiene_01_detects_pattern_inside_larger_command_string",
+    "test_wrg_cp_rg_hygiene_01_custody_cat_guard.py::test_cp_rg_hygiene_01_exception_message_never_contains_file_contents"
+  ],
+  "cross_benefit_added": 0,
+  "cross_benefit_note": "no cross-benefit · pure services module (not a frozen contract · no NON_CONTRACT_UTILITY_MODULES extension needed).",
+  "passed_before": 4032,
+  "passed_after": 4038,
+  "ratchet_delta": 6,
+  "receipts": {
+    "20260915T085307Z_wave_release_gate_pilot_lift_cp_rg_hygiene_01_RED_pre_impl.log": "03606fa54713cbbd3a0f854513b3dc77f938a983a39282cf03bcc1d35c01525d",
+    "20260915T085410Z_wave_release_gate_pilot_lift_cp_rg_hygiene_01_GREEN1.log": "d4f0ea6bedccbd5a3d73592a8088b117c995c80691aff4e6475532f988b0b6b2",
+    "20260915T085608Z_wave_release_gate_pilot_lift_cp_rg_hygiene_01_GREEN2.log": "8c84f081328e9c58af054191adf728d44bf7287deaf9b1cd1efe6c7b2d8d3892",
+    "20260915T085808Z_wrg_cp_rg_hygiene_01_PIPFREEZE.txt": "7efbe6c7ea3250223e1a0074a6b4588268f11fdebdb0729c0e549f1db6c5b92c",
+    "20260915T085808Z_wrg_cp_rg_hygiene_01_COLLECTONLY.txt": "f0eb11ce8712c46e587529d9e21a541c2b58ab60d78d6b8ec44018a551abc284"
+  },
+  "byte_match_check": "identical modulo wall-time (both GREEN runs: 4038 passed, 1 skipped, 438 warnings; strip-of-time diff empty; both raw 9524 bytes)",
+  "rider_1": "pip freeze (192 packages) + collect-only (4041 lines) banked",
+  "red_drill_class": "module-missing right-reason RED (ModuleNotFoundError on services.secret_hygiene.custody_file)",
+  "cp_boundary_probe_history": {
+    "probe_3_at_08_51_52Z": "CD+Visitors BOTH FAIL · errno 110 ETIMEDOUT · admin SG opening still-in-progress"
+  },
+  "wave_scope_expansion_note": "This CP was authored under owner course-correction clause 3 — pulling M8 W-TESTS-FIRST-GUARD-INVARIANT hygiene-guard slice forward into the current wave (W-RELEASE-GATE-PILOT-LIFT). The wave now carries 6 CPs (CP-RG1..CP-RG5 + CP-RG-HYGIENE-01) instead of the original 5-CP charter. Total wave ratchet delta target updated: 4018 → 4048..4050 target becomes 4018 → 4054..4056 (with +6 for this CP). Actual so far: 4018 → 4038 (+20 across CP-RG1 + CP-RG2 + CP-RG-HYGIENE-01).",
+  "next_cp": "CP-RG3 · TranscriptArtefact TOKENIZED verdict + DERIVATIVE_ONLY basis (R-15(a) verdict + R-16(a) transfer_basis discharges via extension of existing services/audio_poc/release_gate.py TranscriptArtefact frozen carrier)"
+}

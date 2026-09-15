@@ -1,0 +1,87 @@
+{
+  "wave": "W-CENSUS-SUPPLEMENT-AUDIO-INVENTORY-MOUNT",
+  "sub_wave": "CP-CSAIM1",
+  "cp": "mount NAS + OBS into CP-C4 census RegistryStore as first-class SourceRecords (single-CP wave · pulled forward from M8 W-CENSUS-RUNTIME-ORCHESTRATION)",
+  "sealed_at_utc": "2026-09-15T09:40:30Z",
+  "kind": "census_supplement_audio_inventory_mount",
+  "wave_scope": "single_cp",
+  "canon_anchors": [
+    "Owner directive · course-correction 2026-09-15T~08:37Z clause a (verbatim): '(a) census supplement for NAS+OBS via the sealed audio_poc inventories mounted into the census registry (do not defer to M8)'",
+    "Canon-4 §4 · canon/text/Akki_Canon_4_Operating_Engines.txt:26 verbatim: 'The census walks the estate exhaustively and objective-blind, producing one candidate source record per discovered source. It enumerates and classifies; measurement follows separately. Each candidate carries the source reference, its region, the feed identity that keys the declaration baseline, and a deterministically classified sensitivity.'",
+    "Canon-4 §5.1 · line 35 verbatim: 'An undeclared feed resolves to unknown, which is the conservative value - absence of a declaration never resolves upward.'",
+    "Canon-4 §8 · canon/text/Akki_Canon_4_Operating_Engines.txt:51 verbatim: 'One record per source, carrying existence, sensitivity, the defensibility measure, and a freshness stamp. This is the interface targeting and convergence both read.'",
+    "Canon-4 §4.1 P29 (first-class Unmeasured · CP-C2 landing 2026-09-15T~02:35Z)",
+    "W-AUDIO-POC seal · phase0/output_verified_seals/audio_poc_v1.seal.txt · Sealed-at-utc 2026-09-14T13:58:45Z · Kind audio_poc_wave_close · CP-A2 (13 invariants · recording_inventory contract) + CP-A3 (13 invariants · transcript_inventory contract)",
+    "notes/wave_census_supplement_grounding_brief.md §B (design) + §C (invariants) + §E (wave-honest-limits)"
+  ],
+  "discharges": [
+    "notes/ITEM_3_CENSUS_RUN_20260915.md §D row 3 (NAS 16ch · from 'unmeasured-with-reason: no live-scan tool' to 'registered-but-unenumerated · next_recheck_hint = M8·W-CENSUS-RUNTIME-ORCHESTRATION')",
+    "notes/ITEM_3_CENSUS_RUN_20260915.md §D row 4 (OBS google-transcripts · same path)"
+  ],
+  "landing_modules": [
+    "backend/services/census_canon/audio_inventory_supplement.py (new · module-level constants + mount_audio_inventory_into_census function · composes CP-C1 classify_sensitivity + CP-C4 register_source_candidate)",
+    "backend/tests/invariants/test_wcensus_supplement_audio_inventory_mount.py (new · 6 invariants)"
+  ],
+  "canonical_tokens_frozen": {
+    "NAS_FEED_IDENTITY": "audio_nas_offairrecs_16ch",
+    "OBS_FEED_IDENTITY": "obs_google_transcripts_bucket",
+    "NAS_REGION": "estate.audio_plane",
+    "OBS_REGION": "estate.audio_plane",
+    "NAS_DEFENSIBILITY_MEASURE": "sealed_cp_a2_recording_inventory@audio_poc_v1.seal",
+    "OBS_DEFENSIBILITY_MEASURE": "sealed_cp_a3_transcript_inventory@audio_poc_v1.seal",
+    "NEXT_RECHECK_HINT_M8": "M8·W-CENSUS-RUNTIME-ORCHESTRATION"
+  },
+  "invariants_added": 6,
+  "invariant_ids": [
+    "test_wcensus_supplement_audio_inventory_mount.py::test_module_fabric_present",
+    "test_wcensus_supplement_audio_inventory_mount.py::test_feed_identity_constants_are_canonical_tokens",
+    "test_wcensus_supplement_audio_inventory_mount.py::test_defensibility_measure_references_sealed_cp_a2_a3_contracts",
+    "test_wcensus_supplement_audio_inventory_mount.py::test_mount_writes_two_records_under_same_run_id",
+    "test_wcensus_supplement_audio_inventory_mount.py::test_mount_uses_canon_4_5_1_conservative_sensitivity_fallback",
+    "test_wcensus_supplement_audio_inventory_mount.py::test_mount_is_idempotent_on_identical_inputs"
+  ],
+  "cross_benefit_added": 0,
+  "cross_benefit_note": "None. Module lives under services/census_canon/ (not contracts/); test_frozen_contract_snapshot_parity.py scope unchanged; NON_CONTRACT_UTILITY_MODULES exemption unchanged.",
+  "passed_before": 4056,
+  "passed_after": 4062,
+  "ratchet_delta": 6,
+  "ratchet_manifest_sha256": "a2a2c0cc63ae9378a68e3acf3b7aa203d68245cced0127f24ce7cf4a1b2f960d",
+  "ratchet_history_entry": {
+    "at_utc": "20260915T093700Z",
+    "sub_wave": "CP-CSAIM1_MOUNT_NAS_OBS_INTO_REGISTRY",
+    "passed": 4062,
+    "invariants_added": 6,
+    "commit": "TBD"
+  },
+  "receipts": {
+    "20260915T093339Z_wcensus_supplement_audio_inventory_mount_RED_pre_impl.log": "66dd3db4f32b695e0c8405e381c64da15f608c3a60379affdfbf839233633489",
+    "20260915T093450Z_wcensus_supplement_audio_inventory_mount_GREEN1.log": "68b00625596a3107261e17382670291f4bf65c2aebf4a18a18e37d3974135d0e",
+    "20260915T093654Z_wcensus_supplement_audio_inventory_mount_GREEN2.log": "ab3abf2d0134ddd7159eaf4ee0fa3d64aeeac9ffa5ddc9432f379143cd3aacd2",
+    "20260915T093913Z_wcensus_supplement_audio_inventory_mount_COLLECTONLY.log": "e1ed718065e86db73c0ea6b634f1a5614927efcc67c2bcfa5958bcab71a36d44",
+    "20260915T093914Z_wcensus_supplement_audio_inventory_mount_PIPFREEZE.log": "7efbe6c7ea3250223e1a0074a6b4588268f11fdebdb0729c0e549f1db6c5b92c"
+  },
+  "byte_match_check": "identical modulo wall-time (both GREEN runs: 4062 passed, 1 skipped, 438 warnings; strip-of-time diff empty; both raw 9524 bytes / stripped 9510 bytes each; both stripped sha256 = 4e45c6ed1b52fcd2763fae0ffd96d91833d93dd15bfb8a6373c1e46946633b6f)",
+  "red_drill_class": "module-missing right-reason (6/6 tests failed with ModuleNotFoundError/ImportError on services.census_canon.audio_inventory_supplement before mechanism landed)",
+  "wave_honest_limits": {
+    "E.1_first_run_shape": "defensibility_measure is a string pointer to sealed CP-A2/A3 contracts; full defensibility engine is later wave",
+    "E.2_no_live_scan": "placeholder SourceRecords; next_recheck_hint = M8 W-CENSUS-RUNTIME-ORCHESTRATION for live enumeration",
+    "E.3_no_new_contracts": "composes CP-C1 + CP-C4 frozen contracts; contracts/ untouched",
+    "E.4_data_only": "pure composer; no execute/run/dispatch/start/stop/step/iterate/process/commission/trigger surface",
+    "E.5_caller_supplies_run_id": "supplement does not compute Item-3 run_id; callers pass CP-C3 generate_census_run_id value"
+  },
+  "boundary_probe_7": {
+    "at_utc": "2026-09-15T~09:40:00Z",
+    "cp_boundary": "CP-CSAIM1_SEAL",
+    "citizen_digital": {"host": "159.138.164.103:3306", "verdict": "FAIL", "errno": 110, "reason": "ETIMEDOUT", "dt_seconds": 6.005},
+    "visitors": {"host": "110.238.75.83:3306", "verdict": "FAIL", "errno": 110, "reason": "ETIMEDOUT", "dt_seconds": 6.005},
+    "pass_verdicts_to_fold": 0,
+    "custody_cat_guard_fires": 0,
+    "position_redaction_hard_lock": "preserved (zero credential material in transcript)",
+    "note": "Standing retry loop continues at next CP boundary (D12 POC opening)."
+  },
+  "commit_a_track_a_head_at_seal": "4308620003db63ce37be533791d058a888e1d68f",
+  "commit_b_master_head_at_seal": "TBD (imminent)",
+  "grounding_brief": "notes/wave_census_supplement_grounding_brief.md",
+  "reporting_cadence": "no mid-wave owner-facing report per SO §2; wave outcome folds into W-RELEASE-GATE-PILOT-LIFT wave-close END-OF-WAVE report per owner cadence 'at RG wave seal + census completion' (one combined report)",
+  "next_step": "W-RELEASE-GATE-PILOT-LIFT wave-close END-OF-WAVE report (folds in this in-scope census supplement) -> D12 POC -> M5 sprint-close -> M8 quick hardening -> M6 -> M7"
+}

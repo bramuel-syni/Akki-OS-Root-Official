@@ -1,0 +1,30 @@
+{
+  "wave": "W-RELEASE-GATE-PILOT-LIFT",
+  "sub_wave": "CP-RG3",
+  "cp": "TranscriptArtefact TOKENIZED verdict + DERIVATIVE_ONLY basis + closed-set refusal (R-15(a) + R-16(a) discharge)",
+  "canon_anchors": [
+    "R-15(a) · DECISIONS 2026-09-15T~03:55Z · Effect 2: 'named_persons_verdict resolves to TOKENIZED for release purposes'",
+    "R-16(a) · DECISIONS 2026-09-15T~03:55Z · Effect 3: 'Set transfer_basis:DERIVATIVE_ONLY_VIA_PULL_SEAM for the transcript-text-only tier'"
+  ],
+  "landing_modules": [
+    "services/audio_poc/release_gate.py (extended: +2 frozensets TRANSCRIPT_NAMED_PERSONS_VERDICTS_ACCEPTABLE + TRANSCRIPT_TRANSFER_BASIS_ACCEPTABLE · +1 exception TranscriptVerdictUnknown · +2 closed-set refusal branches in admit_transcript_release)"
+  ],
+  "invariants_added": 6,
+  "cross_benefit_added": 0,
+  "passed_before": 4038,
+  "passed_after": 4044,
+  "ratchet_delta": 6,
+  "receipts": {
+    "20260915T085913Z_wave_release_gate_pilot_lift_cp_rg3_RED_pre_impl.log": "4157babd16ec2c46f09c3770b874f10eb6804a27335c371cba5cf2740c0bb846",
+    "20260915T085900Z_wave_release_gate_pilot_lift_cp_rg3_GREEN1.log": "5d40b0611275089991dd48499386a61cc96d17eac56a427eaf4ab378f4659f58",
+    "20260915T090057Z_wave_release_gate_pilot_lift_cp_rg3_GREEN2.log": "2a5084d9d288970ee3d3c5563313a8a410bc9a68b501049afd1619508fe84776",
+    "20260915T090254Z_wrg_cp_rg3_PIPFREEZE.txt": "7efbe6c7ea3250223e1a0074a6b4588268f11fdebdb0729c0e549f1db6c5b92c",
+    "20260915T090254Z_wrg_cp_rg3_COLLECTONLY.txt": "400ee449d540db8f8b7f048f788e190ad051b0662ced2cb2d4132c473b74f144"
+  },
+  "byte_match_check": "identical modulo wall-time · both raw 9524 bytes",
+  "rider_1": "pip freeze 192 pkgs · collect-only 4047 lines · banked",
+  "red_drill_class": "5 fail (ImportError on TranscriptVerdictUnknown + AttributeError on new frozensets) + 1 already-passing (admit-with-tokenized-values worked pre-CP-RG3 since string-typed carrier accepted anything; CP-RG3 adds closed-set discipline that REFUSES unknown values while preserving R-15/R-16 admissions)",
+  "regression_note": "RATIFIED added to both frozensets to preserve backward compatibility with existing CP-A1 tests (14/14 still pass · no-refactor discipline honored · RATIFIED was pre-CP-RG3 valid string value)",
+  "cp_boundary_probe_history": {"probe_4_at_08_59_13Z": "CD+Visitors BOTH FAIL"},
+  "next_cp": "CP-RG4 · admit_transcript_release end-to-end wiring across all four rulings (grounding brief §B row 4)"
+}

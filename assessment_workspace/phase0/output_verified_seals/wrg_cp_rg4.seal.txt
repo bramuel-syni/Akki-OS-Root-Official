@@ -1,0 +1,24 @@
+{
+  "wave": "W-RELEASE-GATE-PILOT-LIFT",
+  "sub_wave": "CP-RG4",
+  "cp": "admit_transcript_release_pilot_open · end-to-end compose (R-7 + R-15(a) + R-16(a) + R-17-licence + P036 all-must-hold)",
+  "landing_modules": [
+    "services/audio_poc/release_gate.py (extended: +admit_transcript_release_pilot_open compose function + TYPE_CHECKING forward refs for ReleaseBudgetState/ReleaseLedgerDebit)"
+  ],
+  "invariants_added": 6,
+  "cross_benefit_added": 0,
+  "passed_before": 4044,
+  "passed_after": 4050,
+  "ratchet_delta": 6,
+  "receipts": {
+    "RED_pre_impl": "d3190bafbb7547824e742c0781609b7b3a22cdd0ed74af120c2f8c8b07446c7c",
+    "GREEN1": "97d57e740a11e5d5e3e17f576d00a57a01d43be2e379514f7336183420b6da72",
+    "GREEN2": "e836c30278eb1f7b72d11e2359675709eba1205f4a503ff3ec18d0c65daf02d5",
+    "PIPFREEZE": "7efbe6c7ea3250223e1a0074a6b4588268f11fdebdb0729c0e549f1db6c5b92c",
+    "COLLECTONLY": "277bbec81e5b982cc42777767fa8a26e674e9f4f399454fc1c45fa193203c8be"
+  },
+  "byte_match_check": "identical modulo wall-time · 4050 passed both runs",
+  "canon_discharge_summary": "R-7 PILOT_OPEN + R-15(a) TOKENIZED + R-16(a) DERIVATIVE_ONLY_VIA_PULL_SEAM + R-17 licence-owner_full_rights + P036 receipt-before-result — all compose into a single admission function. P036 ordering enforced: artefact validation fires FIRST; refused artefact leaves ledger empty (test_cp_rg4_artefact_gate_fires_before_debit_write).",
+  "cp_boundary_probe_history": {"probe_5_at_09_07_01Z": "CD+Visitors BOTH FAIL"},
+  "next_cp": "CP-RG5 · aggregate_usage_query for pilot-end budget-number derivation (grounding brief §B row 5)"
+}

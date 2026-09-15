@@ -1,0 +1,24 @@
+{
+  "wave": "W-RELEASE-GATE-PILOT-LIFT",
+  "sub_wave": "CP-RG5",
+  "cp": "aggregate_usage_query · pilot-end budget-number derivation API",
+  "landing_modules": [
+    "services/release_gate/release_ledger.py (extended: +aggregate_usage_query function with AND-composed filters unit/budget_state/debited_by_party)"
+  ],
+  "invariants_added": 6,
+  "cross_benefit_added": 0,
+  "passed_before": 4050,
+  "passed_after": 4056,
+  "ratchet_delta": 6,
+  "receipts": {
+    "RED": "ba5a0f62b7ab7bfc246c2e38bac2a46de3ce6783606314fd5717661ea8510992",
+    "GREEN1": "3eb6540510033dba08e7df302b309bf1a8cdcdd54b8b3f44cb4cecc6157d60cf",
+    "GREEN2": "9918bb3f26b08c4e89fc0d017d162f32ae00b533bc94dc7c78faf028f062e2fd",
+    "PIPFREEZE": "7efbe6c7ea3250223e1a0074a6b4588268f11fdebdb0729c0e549f1db6c5b92c",
+    "COLLECTONLY": "ac9fa07f7471d657e2ef4242074707c2ed3b65fc765ac886586da8c39957eed2"
+  },
+  "byte_match_check": "identical modulo wall-time · 4056 passed both runs",
+  "canon_discharge": "R-7 verbatim pilot-end derivation: aggregate_usage_query is the owner-facing API for 'real budget number is set from measured usage, not guessed'. Composition-of-compositions integration test (test_cp_rg5_integration_full_release_cycle) covers the full transcript-release cycle: tokenize (CP-RG2) → admit_pilot_open (CP-RG4) → aggregate (CP-RG5).",
+  "wave_close_summary": "5 planned CPs + 1 pulled-forward (CP-RG-HYGIENE-01) = 6 CPs total. Ratchet 4018 -> 4056 (+38). Target was 4018 -> 4048..4050 (+30..+32); actual exceeded target due to CP-RG-HYGIENE-01 pull-forward (+6) + cross-benefits on CP-RG1/CP-RG2 (+2).",
+  "next_step": "Census supplement (owner course-correction clause 1) · then W-RELEASE-GATE-PILOT-LIFT wave-close END-OF-WAVE report"
+}
