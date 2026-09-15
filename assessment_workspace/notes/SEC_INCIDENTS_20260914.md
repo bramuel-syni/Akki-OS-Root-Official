@@ -57,6 +57,26 @@ Filed by main agent 2026-09-14T11:29Z during connectivity-redo task.  Owner inst
 * Rotate the rotated-HF-token (SEC-2026-09-14-04 · **second rotation on the same secret**) once the follow-on hygiene-hardening wave lands its guard mechanism.  Confirm on the HF side that both the pre-rotation value AND the current-rotated value are de-authorised.
 * Rotate any MySQL account cred values that appeared in the process-args warning of the JUMP-side mysql client output (mysql-client emitted a warning; the plaintext appeared briefly on JUMP's process table — session-transient, no persistence).
 
+### `SEC-2026-09-15-05` (P1 · **new · owner-side transcript transmission**)
+
+* **Class**: live credential transmission via owner chat transcript. Owner-authored, not agent-authored (distinct class from SEC-2026-09-14-01/02/03/04 which were agent-side transcript emissions; this class is owner-side transmission-mode).
+* **Values transmitted**: MySQL shared credential (username: `bramuel`, password: `<12-char alphanumeric mixed case · sha256 a7a616be4577319d10387f15e2e6302e508f1cddc035d017dda8bd7d8717f70d · stored at /app/backend/estate_keys/data_sources/admin_bind_20260915_bramuel_cd_visitors.json mode 0600>`).
+* **When**: 2026-09-15T~04:25Z owner turn.
+* **Applies to**: MySQL hosts `citizen_digital` (159.138.164.103:3306) + `visitors` (110.238.75.83:3306).
+* **Blast radius**: owner-chat transcript to agent. Value filed under position-redaction custody within the same session (mode 0600 · sha256-pinned · drop-manifest inline in file). Leak-guard sweep verifies zero occurrences in git-tracked workspace (`/app/assessment_workspace/`); one occurrence in the estate_keys custody file (expected · not git-tracked · not logged · not committed). NEVER echoed again in transcripts / receipts / notes / commit-messages going forward per owner directive verbatim: *"NEVER echo any part of it again in any transcript, receipt, or note — refer to it only by storage path + length"*.
+* **Class parallel to `SEC-2026-09-14-01`**: owner-side transmission-mode is the mirror class of agent-side transcript-emission-mode. Both classes require post-verification rotation of the transmitted value on the credential-owning side.
+* **Ledger state**: `PENDING-OWNER-ROTATION-POST-VERIFICATION`.
+* **Owner rotation recommendation** (verbatim): *"recommend rotation once connectivity is confirmed, same class as prior SEC entries."*
+* **Corrective standing**: no agent-side corrective mechanism needed (this class of leak originates outside the agent's control surface). The agent's file-then-forget custody discipline PASSED this turn (credential filed to estate_keys mode 0600 within the same turn as receipt; zero echo in any git-tracked artefact; owner's one-time DECISIONS.md-banking exception used with type+length redaction and now spent).
+
+### `SEC-2026-09-15-05` ledger correction (2026-09-15T~04:25Z)
+
+* **Class**: durable-ledger correction on `citizen_digital` public IP.
+* **Prior stale value**: `159.138.164.124` (scratch files under `tools/_scratch/`).
+* **Admin authoritative value**: `159.138.164.103`.
+* **Correction landed**: `notes/ADMIN_BINDS_20260915.md` §A.
+* **Not a SEC-class issue** (no credential leak); listed here alongside SEC-2026-09-15-05 so post-incident-scans surface the correction from the same anchor.
+
 ---
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

@@ -8363,6 +8363,103 @@ Current UTC at ruling receipt: 2026-09-15T~03:55Z. Window CLOSED (02:00 UTC clos
 
 ---
 
+## Owner GO + Admin binds landed · 2026-09-15T~04:25Z · Source: owner channel · Log verbatim (password redacted to type+length per owner's one-time exception clause)
+
+**Verbatim owner text (password value redacted to storage-path + type + length + sha256 per owner's own directive):**
+
+> "OWNER GO + ADMIN BINDS LANDED. Owner verbatim: 'Seems like we are good to go. Fire autonomous, with the requisite guard rails.'
+>
+> === SECRET HANDLING FIRST (read this whole block before acting) ===
+> The admin response arrived via owner chat and includes a live credential. HANDLE UNDER POSITION-REDACTION: file it immediately into estate_keys (mode 600, sha256 pin, drop-manifest), then NEVER echo any part of it again in any transcript, receipt, or note — refer to it only by storage path + length. Also log a SEC incident (owner-side transcript transmission, not an agent leak): recommend rotation once connectivity is confirmed, same class as prior SEC entries. Run your transcript-leak guard against it.
+>
+> CREDENTIAL (file then forget):
+> - username: bramuel
+> - password: <REDACTED · 12-char alphanumeric mixed case · sha256 a7a616be4577319d10387f15e2e6302e508f1cddc035d017dda8bd7d8717f70d · stored at /app/backend/estate_keys/data_sources/admin_bind_20260915_bramuel_cd_visitors.json mode 0600>
+> - applies to MySQL hosts below (admin: 'shared privately')
+>
+> === ADMIN BIND DETAILS ===
+> 1. MySQL security groups: admin has opened/is opening 3306 for JUMP (159.138.173.250) on:
+>    - Citizen Digital → 159.138.164.103 (NOTE: prior ledger had 159.138.164.124 for citizen_digital — bank the correction, admin value supersedes)
+>    - Visitors → 110.238.75.83
+>    Try the filed creds on both. Schema-only reads as per standing DB discipline.
+> 2. RADIO routing: admin verbatim: 'We will provide you with 10.10.55.x based IPs for access to these services, this is being handled this morning.' — no action yet; bank as INBOUND-BIND-PENDING, probe when IPs arrive.
+>
+> === EXECUTION (all in-window, window opens 08:00 UTC) ===
+> 1. At egress open: connectivity probes to the 2 newly-opened MySQL hosts from JUMP (redacted receipts: host tag, PASS/FAIL, schema/table counts only — no data values).
+> 2. If reachable: FOLD THEM INTO THE CENSUS SCOPE before/with the Item-3 run — census is exhaustive across reachable connectors, so the run should now cover NAS 16ch + OBS + weego + ussd + citizen_digital + visitors. If a probe fails, census proceeds without it and the connector is recorded unmeasured-with-reason (A5.4).
+> 3. Fire the census run as pinned.
+> 4. Continue the ratified autonomous chain: W-RELEASE-GATE-PILOT-LIFT → D12 POC → M5 sprint report → M8 quick wins → M6 → M7, guardrails unchanged, decision-point items routed around.
+>
+> Bank the owner GO + admin response verbatim in DECISIONS.md WITH THE PASSWORD REDACTED to type+length (the only verbatim exception, per position-redaction hard-lock). Report at census completion."
+
+**Binding effects (immediate · this-turn state commits · credential-filing is not egress work):**
+
+**Effect 1 · Credential FILED under custody discipline.**
+- Path: `/app/backend/estate_keys/data_sources/admin_bind_20260915_bramuel_cd_visitors.json`
+- Mode: `0600` (root:root · confirmed by `stat`)
+- SHA256: `a7a616be4577319d10387f15e2e6302e508f1cddc035d017dda8bd7d8717f70d`
+- Size: 1321 bytes
+- Password length: 12
+- Password class: alphanumeric mixed case
+- Applies to: `citizen_digital` (159.138.164.103:3306) + `visitors` (110.238.75.83:3306)
+- Access pattern: from JUMP `159.138.173.250` only · schema-only reads per standing DB discipline
+- Reference discipline (per owner directive verbatim above): storage path + length ONLY going forward; NEVER echo any part of the password in any transcript, receipt, note, log, or commit-message. Owner's one-time exception was for this DECISIONS.md banking WITH REDACTION; the exception is now spent.
+
+**Effect 2 · Transcript-leak guard swept — CLEAN across git-tracked workspace.**
+- `grep -rn "<pw-value>" /app/assessment_workspace/` returned ZERO hits.
+- `grep -rn "<pw-value>" /app/backend/` returned exactly ONE hit at the estate_keys custody file (expected · mode 0600 · not git-tracked).
+- Post-sweep verdict: credential exists ONLY in the estate_keys file (mode 0600) and in the ephemeral session context; no persistent leak surface exists.
+
+**Effect 3 · SEC incident logged (owner-side transcript transmission · not agent leak).**
+- `SEC-2026-09-15-05` (P1 · owner-side · **new**): live-credential transmission via owner chat transcript. Distinct class from SEC-2026-09-14-01/02/03/04 which were agent-authored transcript emissions; this class is owner-authored transmission-mode. Rotation recommendation: post-connectivity-verification rotation same class as prior SEC entries. Ledger state at filing: `PENDING-OWNER-ROTATION-POST-VERIFICATION`.
+- Filed at `notes/SEC_INCIDENTS_20260914.md` (same session-active ledger; new-date suffix noted inside the entry).
+
+**Effect 4 · Ledger correction banked: `citizen_digital` public IP.**
+- Prior ledger record: `159.138.164.124` (scratch files under `tools/_scratch/reprobe_results.json`, `sysadmin_note_facts.json`, `billing_probe.json`, `ecs_flavors_af_south_1.json`, `sysadmin_sg_map.json`, `dbreach_results.json` · pre-admin-bind session material).
+- Admin authoritative record (2026-09-15): `159.138.164.103` — SUPERSEDES.
+- Correction note authored at `notes/ADMIN_BINDS_20260915.md` §A (this turn) so future scans do not surface the stale IP as authoritative.
+- Scratch files under `tools/_scratch/` are historical evidence · left intact (they carry timestamped context; they are not authoritative ledger).
+
+**Effect 5 · RADIO routing status: INBOUND-BIND-PENDING (`10.10.55.x` replacement path).**
+- Admin verbatim: *"We will provide you with 10.10.55.x based IPs for access to these services, this is being handled this morning."*
+- Prior approach: JUMP-side route to `10.10.19.0/24` (see `notes/TASK_CONNECTIVITY_REDO_ADMIN_GUIDED_CLOSE_20260914.md:31` HARD_GAP verdict).
+- New approach: admin will bind RADIO services under `10.10.55.x` (same subnet as NAS which is proven reachable via JUMP — simplifies routing path).
+- Status now: **INBOUND-BIND-PENDING** — no action until admin drops the IP set. Probe when IPs arrive.
+- `BLOCKER-RADIO-ROUTING-01` (from prior work) SUPERSEDED by this admin bind approach. The 10.10.19.0/24 path is retired.
+
+**Effect 6 · Census scope EXPANDED (Item-3 target set updated).**
+Prior scope pinned in `STATE/NEXT.md` sequencing pin: NAS 16 channels + OBS google-transcripts + weego + ussd. This turn's admin bind adds 2 MySQL connectors conditional on probe PASS at 08:00 UTC:
+- `citizen_digital` (159.138.164.103:3306) — probe from JUMP
+- `visitors` (110.238.75.83:3306) — probe from JUMP
+
+Full new scope at 08:00 UTC: **NAS 16ch + OBS + weego + ussd + citizen_digital + visitors**.
+
+On probe FAIL for any connector: unreachable connector recorded `unmeasured-with-reason` per Canon-4 §5.1 verbatim + Doc-9 A5.4 verbatim in registry · census proceeds without it. This preserves the exhaustive-across-reachable-connectors property (Canon-4 §5.1) without turning admin-bind failure into a wave block.
+
+**Effect 7 · Autonomous mode fires per owner GO.**
+Owner verbatim: *"Seems like we are good to go. Fire autonomous, with the requisite guard rails."* Initial guardrails unchanged (per autonomous-execution ratification 2026-09-15T~04:12Z). Sequencing pin holds:
+1. **AT 08:00 UTC** — connectivity probes to 2 MySQL hosts from JUMP · then Item-3 live census run (expanded scope · 6 connectors).
+2. W-RELEASE-GATE-PILOT-LIFT CP-RG1..RG5.
+3. D12 POC.
+4. M5 sprint-close report (M0→M5 END-OF-WAVE format).
+5. M8 quick hardening (5 waves in owner-authored order).
+6. M6 opens (grounding brief already banked · no ack gate).
+7. M7 opens (reframe-activation note + W0..W9).
+8. Interleave: M3 BC-build on packet-ratification · M2 Pull-Seam-receipt-unify on D9-ratification.
+
+**Effect 8 · Report cadence.**
+Owner directive: *"Report at census completion."* Report will be in wave-close END-OF-WAVE format (SO §2) with census scope expansion outcome + connector probe verdicts + registry counts + owner-desk items outstanding.
+
+**Effect 9 · Standing at commit time.**
+- Master HEAD: this-turn commit pending.
+- Track-a HEAD: `0053b16` (unchanged this turn · state-only commit).
+- Ratchet floor: **4018** (unchanged this turn · document-lane commit).
+- Egress: **CLOSED** · 04:25 UTC · reopens 08:00 UTC (~3h35m).
+- All initial guardrails preserved verbatim.
+
+---
+
+
 
 
 
