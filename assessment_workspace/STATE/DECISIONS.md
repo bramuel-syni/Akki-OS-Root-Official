@@ -8223,6 +8223,100 @@ Owner-side pending during hold: any new rulings on D12 (transcription POC), Tran
 
 ---
 
+## Ruling · 2026-09-15T~03:55Z · Owner ruling packet (verbatim · full-message) · R-7 + R-15(a) + R-16(a) RATIFIED · D12 APPROVED · BC-3/BC-4 dynamic-recovery direction · admin items tracked
+
+**Banking receipt.** The owner explicitly asked *"was this discussion logged?"* This ruling ledger row IS the receipt. Banked in DECISIONS.md 2026-09-15T~03:55Z + RULING_LEDGER.md same UTC + NEXT.md marker refresh + PENDING_RATIFICATIONS_LEDGER row-flips + BC packet authoring under `notes/BC_DYNAMIC_RECOVERY_PACKET_20260915.md` + W-RELEASE-GATE-PILOT-LIFT wave grounding-brief under `notes/wave_release_gate_pilot_lift_grounding_brief.md` + this-turn master commit.
+
+**Owner verbatim (full message, unedited):**
+
+> "1. budget - a) for now keep this open as we are piloting, peoples names should be tokenized, at this point - we are processing using pull seam capability and only intelligence gathered is transfered - eg audio attributes with requisite context for learning etc. was this discussion logged? 2,3,4 - working on them. 5. This has to be dynamic recovery and we shouldnt loose data because some of these runs that include GPUs can be expensive... What is the seasoned best practice here? 6. yes"
+
+**Owner-supplied binding notes (verbatim from same message · applies-as-follows section):**
+
+> "=== R-7 · RELEASE BUDGET → PILOT-OPEN (owner-ratified) === Budget number deliberately kept open during pilot. Implement: budget state = PILOT-OPEN (owner-ratified, supersedes DEFAULT-PENDING-OVERRIDE refusal), BUT every release is still receipted AND debited into a running release ledger from day one — so when the pilot ends, the real budget number is set from measured usage, not guessed. The gate's refusal on unset-budget is replaced by pilot-mode admission WITH mandatory receipt+debit; a missing receipt still refuses (Pull Seam P7 unchanged)."
+
+> "=== R-15(a) · NAMED-PERSONS → TOKENIZE (owner-ratified) === People's names are tokenized before anything leaves — placeholder tokens per custody class (Pull Seam identity-never-crosses). named_persons_verdict resolves to TOKENIZED for release purposes; build/wire the tokenization step into the transcript release path (tests-first)."
+
+> "=== R-16(a) · TRANSFER BASIS → DERIVATIVE-ONLY VIA PULL SEAM (owner-ratified) === Owner's words: 'we are processing using pull seam capability and only intelligence gathered is transferred — eg audio attributes with requisite context for learning.' transfer_basis resolves to derived-intelligence-only: derivatives (attributes, features, transcripts-as-derived-text with tokenized identities) may cross; raw estate data never does except via the outer gate. Encode as the transfer-basis verdict."
+
+> "With these three, the release gate should now admit tokenized text-only transcript derivatives end-to-end (licence full-rights already ratified). Charter this as a proper wave (e.g. W-RELEASE-GATE-PILOT-LIFT): tests-first, RED for each verdict transition, double-green, seals, two commits. R-17(a) hardening stays open (non-blocking). The Watch-Learning R-15(b)/R-16(b)/R-17(b) set stays OPEN — do not conflate (the mnemonic collision you flagged)."
+
+> "=== D12 → APPROVED (owner 'yes') === After the census completes: run the transcription pipe-proof with the canon CI fixture (whisper-tiny + faster-whisper) on a SMALL BOUNDED set of real NAS files (single-digit count), on the GPU hosts, all outputs labeled POC-NOT-PRODUCTION in provenance, receipts banked. Production model selection still follows census activation per §A17.11 — the POC does not pre-empt it."
+
+> "=== BC-3/BC-4 → DO NOT SET A STATIC NUMBER · BUILD THE DYNAMIC-RECOVERY DECISION PACKET === Owner rejects the static framing: recovery must be dynamic, and expensive GPU runs must not lose work. Author notes/BC_DYNAMIC_RECOVERY_PACKET_20260915.md proposing a TIERED policy for owner ratification (research-grounded, cite the practice): 1. GPU training runs: asynchronous distributed checkpointing (PyTorch DCP, process-based async save, pinned-memory staging), two-tier storage (frequent local NVMe checkpoints + periodic durable remote base checkpoints), checkpoint interval set DYNAMICALLY by the Young/Daly rule τ ≈ √(2·C·MTBF) — cadence scales with run cost/failure rate; a correct resume restores weights + optimizer + data-pipeline offset + RNG state. Practical target: never lose more than ~10–15 min of GPU compute. 2. Ledgers/registry (append-only truth): continuous WAL/append archiving → near-zero RPO, point-in-time recovery to any transaction boundary. 3. Artifacts/receipts/seals: versioned, immutable (WORM) object storage so corruption or deletion cannot propagate — replication alone faithfully replicates corruption, so snapshots+immutability are a separate layer. 4. Site loss (BC-4): propose warm-standby as the pilot-appropriate option (scaled-down functional copy; hours-not-days recovery; far cheaper than active-active), with pilot-light and active-active as priced alternatives; quarterly restore DRILLS with integrity checks (row counts, checksums, invariant runs) — an untested plan is a hypothesis. Map each tier to a concrete RPO/RTO and to which estate assets it covers. Owner ratifies the packet; only then charter the implementation wave."
+
+> "=== ADMIN ITEMS (2,3,4) === Owner is working on firewalls/radio/transcription binds — keep tracked, no action."
+
+> "Sequencing: census at 08:00 UTC (unchanged, first priority) → W-RELEASE-GATE-PILOT-LIFT → D12 POC → BC packet authoring can happen in closed-window time as it's non-egress. Report at census completion with the banking receipt for these rulings."
+
+---
+
+**Binding effects (immediate · this-turn state commits · no mechanism / no ratchet change this commit):**
+
+**Effect 1 · R-7 status flip: OPEN → RATIFIED (PILOT-OPEN mode).**
+Owner authorization (verbatim §A above): *"for now keep this open as we are piloting ... budget state = PILOT-OPEN (owner-ratified, supersedes DEFAULT-PENDING-OVERRIDE refusal)"*. New in-code posture (to be landed inside W-RELEASE-GATE-PILOT-LIFT under tests-first discipline):
+* `RELEASE_BUDGET_STATE = "PILOT_OPEN"` (owner-ratified state · not the DEFAULT-PENDING-OVERRIDE sentinel).
+* Every release-gate admission MUST write a `ReleaseLedgerDebit` receipt (author, tier, byte-count, timestamp, licence_class, TokenizedIdentityCount, `transfer_basis` verdict).
+* A missing receipt STILL refuses admission (Pull Seam P036 verbatim unchanged: *"If it cannot be written, the operation is refused."*).
+* At pilot end, aggregate the receipt ledger to compute the real budget number from measured usage; that becomes the ratified budget.
+* Effect on other coupled rulings: DAP R-3 (per-party ceilings) STILL COUPLED per RULING_LEDGER COUPLED-1 clause; owner may re-rule at pilot end. DAP-6 pricing STILL awaits R-6.
+
+**Effect 2 · R-15(a) status flip: OPEN → RATIFIED (TOKENIZE).**
+Owner authorization (verbatim §A above): *"People's names are tokenized before anything leaves — placeholder tokens per custody class (Pull Seam identity-never-crosses)."* New in-code posture (to be landed inside W-RELEASE-GATE-PILOT-LIFT):
+* `TranscriptArtefact.named_persons_verdict` accepts a new admissible value: `"TOKENIZED"`.
+* Release path invokes `tokenize_named_persons(transcript_text) -> (transcript_text_tokenized, tokenization_receipt)` BEFORE cross-boundary emission.
+* The tokenization step is a NEW `Capability` under `capability_class: "de_identify"` (per `GOVERNED_CENSUS_HARVEST_PLATFORM_ROADMAP.md:143` verbatim enum row).
+* Per-custody-class placeholder token scheme: default `<person_1>`, `<person_2>`, … with a per-transcript scoped token-table; token-table is NEVER emitted alongside the tokenized artefact (identity-never-crosses per Pull Seam P015.s6 verbatim).
+
+**Effect 3 · R-16(a) status flip: OPEN → RATIFIED (DERIVATIVE-ONLY VIA PULL SEAM).**
+Owner authorization (verbatim §A above): *"transfer_basis resolves to derived-intelligence-only: derivatives (attributes, features, transcripts-as-derived-text with tokenized identities) may cross; raw estate data never does except via the outer gate."* New in-code posture (to be landed inside W-RELEASE-GATE-PILOT-LIFT):
+* `TranscriptArtefact.transfer_basis` accepts a new admissible value: `"DERIVATIVE_ONLY_VIA_PULL_SEAM"`.
+* Release-gate composition guards: `admit_transcript_release` refuses tiers `{raw_audio, waveform_bytes, per_utterance_speaker_embedding, biometric_embedding, named_identity, speaker_labeled_audio}` under this basis; admits `{transcript_text_tokenized, audio_attributes, feature_summary, derived_transcript_with_tokenized_identities}`.
+* The outer gate remains the sole crossing point for anything not admissible under this basis (i.e., raw bytes may only cross via the DAP outer-gate ceremony, not the release-gate). This encodes Pull Seam P007 verbatim: *"Reverse the direction of travel. Instead of sending data to where the compute is, put the compute where the data is, and let only governed results travel out."*
+
+**Effect 4 · R-17(a) STAYS OPEN (owner-scoped non-blocking).**
+Owner authorization (verbatim §A above): *"R-17(a) hardening stays open (non-blocking)."* The current `owner_full_rights` licence-class admits SAFE tier `transcript_text_only` with R-7/R-15(a)/R-16(a) all landed; tighter-tier granularity awaits R-17(a) hardening in a follow-on wave.
+
+**Effect 5 · R-15(b), R-16(b), R-17(b) STAY OPEN (Watch-Learning Amendment).**
+Owner authorization (verbatim §A above): *"The Watch-Learning R-15(b)/R-16(b)/R-17(b) set stays OPEN — do not conflate (the mnemonic collision you flagged)."* PENDING_RATIFICATIONS_LEDGER §A rows for R-15(b)/R-16(b)/R-17(b) are UNCHANGED. This resolves the mnemonic-conflation book-keeping observation banked at 2026-09-15T~03:35Z.
+
+**Effect 6 · D12 status flip: STILL-HELD → APPROVED (bounded POC).**
+Owner authorization (verbatim §A above): *"After the census completes: run the transcription pipe-proof with the canon CI fixture (whisper-tiny + faster-whisper) on a SMALL BOUNDED set of real NAS files (single-digit count), on the GPU hosts, all outputs labeled POC-NOT-PRODUCTION in provenance, receipts banked. Production model selection still follows census activation per §A17.11 — the POC does not pre-empt it."*
+* D12 POC bounded to **single-digit count** of real NAS files.
+* Run on GPU hosts (`akki-vm` / `akki-vm-ii` per GPU-AVAILABLE verdict 2026-09-15T~02:45Z).
+* All outputs carry `provenance.poc_flag = "POC-NOT-PRODUCTION"` label (owner-mandated).
+* Receipts banked under `phase0/d12_poc_receipts/<yyyymmddThhmmssZ>_<file_stem>.json`.
+* Production model selection is a **separate charter** (`W-AUDIO-PROD-MODEL-SELECT` per §A17.11) — the POC does not pre-empt it.
+* Sequencing: fires after census completion + after W-RELEASE-GATE-PILOT-LIFT lands (so releases from D12 outputs go through the tokenized/derivative-only gate).
+
+**Effect 7 · BC-3 / BC-4 status flip: DEFAULT-PENDING-OVERRIDE (static number) → DYNAMIC-RECOVERY-PACKET (tiered policy authoring).**
+Owner authorization (verbatim §A above): *"DO NOT SET A STATIC NUMBER · BUILD THE DYNAMIC-RECOVERY DECISION PACKET ... recovery must be dynamic, and expensive GPU runs must not lose work."* The DEFAULT-PENDING-OVERRIDE sentinel and its silent-flip invariant remain in force at the code layer (`services/business_continuity/anchors.py`); the disposition of THIS OWNER RULING is to author a decision packet at `notes/BC_DYNAMIC_RECOVERY_PACKET_20260915.md` (this turn, non-egress). Owner ratifies the packet; only then charter the implementation wave. Four-tier policy authored per owner's own five-point structure (verbatim above): GPU-checkpointing / ledger-WAL / WORM-artefacts / site-loss warm-standby. Practical GPU target verbatim: *"never lose more than ~10–15 min of GPU compute."*
+
+**Effect 8 · Admin items (2, 3, 4) tracked · no action.**
+Owner authorization (verbatim §A above): *"Owner is working on firewalls/radio/transcription binds — keep tracked, no action."* Standing bind-gap ledger UNCHANGED. Owner-side execution in progress.
+
+**Effect 9 · New wave charter: `W-RELEASE-GATE-PILOT-LIFT`.**
+Owner authorization (verbatim §A above): *"Charter this as a proper wave (e.g. W-RELEASE-GATE-PILOT-LIFT): tests-first, RED for each verdict transition, double-green, seals, two commits."* Grounding brief authored this turn at `notes/wave_release_gate_pilot_lift_grounding_brief.md`. Wave OPEN status carried in NEXT.md. Actual CP RED-then-mechanism land AFTER 08:00 UTC egress re-open per owner sequencing (census fires first).
+
+**Effect 10 · Sequencing pin (verbatim owner directive):**
+
+> "Sequencing: census at 08:00 UTC (unchanged, first priority) → W-RELEASE-GATE-PILOT-LIFT → D12 POC → BC packet authoring can happen in closed-window time as it's non-egress."
+
+Applied literally:
+1. Census (Item-3) at 08:00 UTC re-open — non-negotiable first.
+2. W-RELEASE-GATE-PILOT-LIFT — tests-first CP walk on `programme/track-a` post-census.
+3. D12 POC — bounded-set transcription-pipe-proof on GPU hosts after W-RELEASE-GATE-PILOT-LIFT seals.
+4. BC packet authoring — happens NOW in the closed window (this turn).
+
+**Effect 11 · Egress-hold protocol respected.**
+Current UTC at ruling receipt: 2026-09-15T~03:55Z. Window CLOSED (02:00 UTC close · reopens 08:00 UTC). This-turn work is entirely non-egress state / notes / docs commit on master. No mechanism change · no ratchet change · ratchet floor still 4018.
+
+---
+
+**Next active step:** BC packet authored + W-RELEASE-GATE-PILOT-LIFT grounding brief authored + RULING_LEDGER row-flips + PENDING_RATIFICATIONS row-flips + NEXT.md marker refresh — ALL this turn on master. Then HOLD until 08:00 UTC re-open for Item-3 census run. Then W-RELEASE-GATE-PILOT-LIFT CP walk. Then D12 POC.
+
+---
+
 
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

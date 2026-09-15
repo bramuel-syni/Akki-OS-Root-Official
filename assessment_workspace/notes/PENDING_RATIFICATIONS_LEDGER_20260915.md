@@ -4,6 +4,8 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 **Purpose.** Owner information request 2026-09-15T~03:35Z (verbatim): *"For EACH pending owner item (R-7, R-13, R-14, R-15, R-16, R-17, BC-3, BC-4, S-24, plus drift items D7 codec_version / D9 receipt-before-result / D10/D11 silero+pyannote INFERRED, and D12): verbatim text of the pending ruling/marker from the ruling ledger or code docstring, source file+line, what behavior is currently defaulted, and exactly what ratifying it unblocks. Position-redaction applies as always."*
 
+**Row-flip banking · 2026-09-15T~03:55Z ·** OWNER RULING PACKET LANDED (verbatim in `STATE/DECISIONS.md` same UTC · RULING_LEDGER row 18/19/20/21 in RATIFIED · Effect 1..11 detailed in DECISIONS). Four rows below FLIPPED from `OPEN` → `RATIFIED`; three rows explicitly clarified as STAYS-OPEN (R-17(a), R-15(b)/R-16(b)/R-17(b) — mnemonic-collision now resolved); BC-3/BC-4 direction changed from `static-number-pending` to `DYNAMIC-RECOVERY-PACKET-authored-awaits-ratification`.
+
 **Compiled during** closed egress window (03:22 UTC seal → 08:00 UTC reopen). Non-egress work only. State/docs only; **no mechanism change, no ratchet change**.
 
 **Position-redaction rule applied:** no PII, no secrets, no host IPs, no SSH usernames, no keys, no full paths inside credential custody. Aliases and citations only.
@@ -14,7 +16,11 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 ### R-7 · Security · Estate release budget number
 
-**Verbatim (source-of-truth ledger `notes/RATIFICATION_C3_BATCH_20260913.md:49`):**
+**Status:** ~~**OPEN · highest priority**~~ **→ RATIFIED (PILOT-OPEN) 2026-09-15T~03:55Z** (owner ruling packet · RULING_LEDGER row 18 in RATIFIED).
+
+**Ratification value:** `PILOT-OPEN`. Owner-verbatim: *"budget state = PILOT-OPEN (owner-ratified, supersedes DEFAULT-PENDING-OVERRIDE refusal), BUT every release is still receipted AND debited into a running release ledger from day one — so when the pilot ends, the real budget number is set from measured usage, not guessed. The gate's refusal on unset-budget is replaced by pilot-mode admission WITH mandatory receipt+debit; a missing receipt still refuses (Pull Seam P7 unchanged)."*
+
+**Prior verbatim anchor (kept for lineage):**
 > "**Sec R-7 (estate release budget number)** | **OPEN — owner input · highest priority** | **STILL OPEN** — gates DAP R-3, DAP-6"
 
 **Verbatim (`notes/RULING_LEDGER.md:66`):**
@@ -87,6 +93,12 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 **R-15(a) · Audio-POC release-gate KDPA-named-persons verdict.**
 
+**Status:** ~~**OPEN · release-gate**~~ **→ RATIFIED (TOKENIZED) 2026-09-15T~03:55Z** (owner ruling packet · RULING_LEDGER row 19 in RATIFIED · wiring wave `W-RELEASE-GATE-PILOT-LIFT` CP-RG2).
+
+**Ratification value:** `TOKENIZED`. Owner-verbatim: *"People's names are tokenized before anything leaves — placeholder tokens per custody class (Pull Seam identity-never-crosses). named_persons_verdict resolves to TOKENIZED for release purposes; build/wire the tokenization step into the transcript release path (tests-first)."*
+
+**Prior verbatim anchor (kept for lineage):**
+
 **Verbatim (`notes/W_AUDIO_POC_wave_close.md:85`):**
 > "R-7 (KDPA), R-15 (named-persons), R-16 (transfer-basis), R-17 (licence class hardening) all PENDING on your side per still-blocked list. Until any of the three non-licence verdicts land, `admit_transcript_release` DETERMINISTICALLY refuses every write-back — which is the CORRECT structural posture, not a defect."
 
@@ -116,6 +128,12 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 ### R-16 · Transfer-basis verdict (release-gate) · AND · Watch Learning Amendment v1 · ratifier role + research cadence
 
 **R-16(a) · Audio-POC release-gate KDPA-transfer-basis verdict.**
+
+**Status:** ~~**OPEN · release-gate**~~ **→ RATIFIED (DERIVATIVE_ONLY_VIA_PULL_SEAM) 2026-09-15T~03:55Z** (owner ruling packet · RULING_LEDGER row 20 in RATIFIED · wiring wave `W-RELEASE-GATE-PILOT-LIFT` CP-RG3+CP-RG4).
+
+**Ratification value:** `DERIVATIVE_ONLY_VIA_PULL_SEAM`. Owner-verbatim: *"transfer_basis resolves to derived-intelligence-only: derivatives (attributes, features, transcripts-as-derived-text with tokenized identities) may cross; raw estate data never does except via the outer gate."*
+
+**Prior verbatim anchor (kept for lineage):**
 
 **Verbatim (`notes/W_AUDIO_POC_wave_close.md:85,118`):** (same block as R-15(a) above).
 
@@ -162,6 +180,14 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 ### BC-3 · Business Continuity Annex §3 · Recovery-point objective (RPO)
 
+**Status:** ~~**OPEN · DEFAULT-PENDING-OVERRIDE**~~ **→ DYNAMIC-RECOVERY-PACKET-DIRECTION 2026-09-15T~03:55Z** (owner rejects the static-number framing · owner-verbatim: *"DO NOT SET A STATIC NUMBER · BUILD THE DYNAMIC-RECOVERY DECISION PACKET"*).
+
+**Packet authored this turn:** `notes/BC_DYNAMIC_RECOVERY_PACKET_20260915.md` (four tiers: GPU-checkpointing / ledger-WAL / WORM-artefacts / site-loss warm-standby · 18 invariants for post-ratification implementation wave `W-BC-DYNAMIC-RECOVERY-BUILD`).
+
+**Owner ratifies THE PACKET** — the packet's per-tier RPO/RTO/cost matrix + Tier 3 lock-mode choice + Tier 4 site-loss regime + drill cadence — via the checklist in packet §J.
+
+**Prior verbatim anchor (kept for lineage):**
+
 **Verbatim (`notes/W_M3_SW10_BCA_S10_S11_BC1_BC2_close.md:42`):**
 > "BC-3 (RPO) and BC-4 (site-loss) remain open per canon §3. This sub-wave preserves the DEFAULT-PENDING-OVERRIDE markers so that any silent flip breaks the ratchet."
 
@@ -185,6 +211,12 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 ---
 
 ### BC-4 · Business Continuity Annex §3 · Site-loss recovery
+
+**Status:** ~~**OPEN · DEFAULT-PENDING-OVERRIDE**~~ **→ DYNAMIC-RECOVERY-PACKET-DIRECTION 2026-09-15T~03:55Z** (same owner ruling as BC-3 · packet §E proposes warm-standby with pilot-light + active-active as priced alternatives).
+
+**Packet authored:** `notes/BC_DYNAMIC_RECOVERY_PACKET_20260915.md` §E (Tier 4 · Site loss) · quarterly restore-drill invariants §E.4.
+
+**Prior verbatim anchor (kept for lineage):**
 
 **Same verbatim sources as BC-3.**
 
@@ -307,6 +339,20 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 ---
 
 ### D12 · whisper-tiny + faster-whisper (ctranslate2) · CI-fixture straddle · POC gate
+
+**Status:** ~~**STILL HELD · owner rules after census**~~ **→ APPROVED (bounded POC) 2026-09-15T~03:55Z** (owner ruling packet · RULING_LEDGER row 21 in RATIFIED).
+
+**Ratification value:** APPROVED for bounded POC. Owner-verbatim: *"After the census completes: run the transcription pipe-proof with the canon CI fixture (whisper-tiny + faster-whisper) on a SMALL BOUNDED set of real NAS files (single-digit count), on the GPU hosts, all outputs labeled POC-NOT-PRODUCTION in provenance, receipts banked. Production model selection still follows census activation per §A17.11 — the POC does not pre-empt it."*
+
+**Sequencing (owner verbatim):** fires AFTER census + AFTER `W-RELEASE-GATE-PILOT-LIFT` lands (so D12 outputs pass through the tokenized/derivative-only gate).
+
+**Bounded parameters:**
+- **File count:** single-digit count (owner verbatim).
+- **Compute:** GPU hosts `akki-vm` / `akki-vm-ii` (per GPU-AVAILABLE verdict 2026-09-15T~02:45Z).
+- **Provenance label:** `poc_flag = "POC-NOT-PRODUCTION"` on every output (owner-mandated).
+- **Receipts:** banked under `phase0/d12_poc_receipts/<yyyymmddThhmmssZ>_<file_stem>.json`.
+
+**Prior verbatim anchor (kept for lineage):**
 
 **Verbatim (`notes/AUDIO_PLANE_V1_DRIFT_AUDIT_20260914.md:67`):**
 > "D12 | Owner-suggested POC target: **whisper-tiny + faster-whisper (ctranslate2)** | Canon-17-19 §A17.10 (M-01, M-02): *'The registry seeds with whisper-tiny … backend: faster-whisper (ctranslate2) … CI CPU-mode ASR fixture model. NOT for production use.'* | Canon-17-19 §A17.10 | **MATCH for CI/POC path.** The POC therefore proceeds against the canon-named CI-fixture. Straddles the CI-vs-production line at the moment we transcribe REAL NAS bytes (production data on a CI model). Marked **DEFAULT-PENDING-OVERRIDE** — owner rules whether the POC on real data may run against the CI fixture, or a wave must charter production-model selection first."
