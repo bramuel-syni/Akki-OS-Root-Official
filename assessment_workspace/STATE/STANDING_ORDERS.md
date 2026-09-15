@@ -157,6 +157,30 @@ Every owner ruling is banked **verbatim** in `STATE/DECISIONS.md` **before** any
    contract. Any dispatch surface added later that does NOT bind
    to the progress ring is a right-reason RED under BASELINE_GUARD=1.
 
+### 3.3 NO SEAL WITHOUT BOTH SHAs — post-seal receipt rule (2026-09-15)
+
+**Standing order (verbatim, banked by owner directive "Discovery-1 ratification" 2026-09-15T~20:35Z · CP-M6-4-2 partial-seal reconciliation precedent · owner authorization in DECISIONS.md same date):**
+
+> "No CP may be reported 'sealed' in any summary or handoff unless BOTH commit SHAs (track-a Commit A + master Commit B) are recorded in the seal/DECISIONS entry."
+
+**Owner §A authorization (verbatim, same channel, same date):**
+
+> "Your Discovery-1 recommendation is RATIFIED under the owner's standing 'requisite guardrails' mandate — it strengthens discipline with zero scope impact. Amend STANDING_ORDERS with the one-line post-seal receipt rule: 'No CP may be reported "sealed" in any summary or handoff unless BOTH commit SHAs (track-a Commit A + master Commit B) are recorded in the seal/DECISIONS entry.' Bank the amendment with this message as §A authorization."
+
+**Binding contract on every CP seal:**
+
+1. Every CP seal file MUST carry at seal completion:
+   - `Track-a HEAD at seal:` — the actual `programme/track-a` Commit A SHA (never `TBD`).
+   - `Master HEAD:` — the actual `master` Commit B SHA (never `TBD`).
+2. Every DECISIONS.md CP entry MUST carry both SHAs at CP close.
+3. Every NEXT.md CURRENT AS OF pin MUST carry the track-a SHA at CP close (master SHA discoverable via state repo `git log`).
+4. Handoff / status summaries that claim a CP is "sealed" MUST include both SHAs, or the CP MUST NOT be reported sealed.
+5. This closes the partial-seal drift class the CP-M6-4-2 reconciliation exposed (mechanism + tests + receipts + ratchet-bump present, both commits absent, seal file absent — the CP was NOT actually sealed but was reported as such in the handoff summary).
+
+**Enforcement:** at seal-check time the reader compares the seal-file `Track-a HEAD at seal:` value against `git log --oneline -1 programme/track-a` in the code repo AND the seal-file `Master HEAD:` value against `git log --oneline -1 master` in the state repo. Any `TBD` or missing SHA is a right-reason RED under §3.3.
+
+**Rationale.** ALIVE IS NOT DONE (§3.1) closes the seal-file-missing class. NO RUN WITHOUT A PROGRESS SIGNAL (§3.2) closes the runtime-silent class. §3.3 closes the seal-claimed-but-commit-absent class: the last honesty gap in the tests-first → RED → GREEN → SEAL → COMMITS discipline chain.
+
 ---
 
 ## 4. RUNTIME LAW

@@ -1,0 +1,89 @@
+Kind: cp_m6_5_3_cluster_stability
+
+# CP-M6-5-3 · Cluster-stability invariants · Seal (CLOSES SUB-WAVE 5)
+
+**Sealed at UTC:** 2026-09-15T~21:22Z
+**Milestone:** M6 · Sub-wave 5 (W-M6-CLUSTERING-HUMAN-VALIDATION · §5.3) — third · FINAL CP · **SUB-WAVE 5 COMPLETE**
+**Invariants added:** +8 · **Ratchet:** 4232 → 4240
+**Track-a HEAD at seal:** `62e5a1d` · **Master HEAD:** `fe024740` (landed under STANDING_ORDERS §3.3 · commit C-fixup pinned the master SHA · NO SEAL WITHOUT BOTH SHAs rule satisfied)
+
+---
+
+## §A · Discharge
+
+CP-M6-5-3 lands `services/audio_plane_v1/cluster_stability.py` — the §5.3 clause 2 discipline gate discharged as **end-to-end invariants** composing the CP-M6-5-1 `CandidateStratum` and CP-M6-5-2 `ValidatedStratum` frozen carriers.
+
+> §5.3 P089 (V59) verbatim clause 2: *"A cluster asserts that a distinct variant exists — not what it is called."*
+
+> M6 sub-wave 5 grounding brief §C · CP-M6-5-3 (verbatim): *"Cluster stability invariants. §5.3 clause 2 end-to-end: no cluster carrier carries a human-readable name across sample→bind lifecycle · clustering determinism gate on synthetic deterministic backend · clustering non-determinism refusal gate on synthetic non-deterministic reference backend."*
+
+**Public API:**
+- `HUMAN_NAME_ATTRIBUTE_NAMES: Tuple[str, ...]` — frozen 5-tuple `("human_name", "label", "display_name", "speaker_name", "cluster_name")`.  Negative-scan attribute set for §5.3 clause 2 verbatim discipline.
+- `assert_cluster_carries_no_human_name(*, cluster) -> None` — refuses `ClusterHumanNameLeakError` (message carries `human-readable`) when any attribute in `HUMAN_NAME_ATTRIBUTE_NAMES` is present on `cluster` with a non-None value.  None-valued attributes pass — None is the canonical *"not what it is called"* value (matches the CP-M6-5-2 `HumanValidationVerdict.named_by_human` Optional default).
+- `assert_clustering_is_deterministic(*, backend, character_register) -> None` — runs `backend.cluster(entries=character_register.entries)` twice back-to-back and compares stratum_id sequences; refuses `ClusteringNonDeterministicError` (message carries `stratum_id`) when the two runs emit different stratum_id sequences.
+- `assert_validated_stratum_preserves_candidate(*, validated, original_candidate) -> None` — refuses `ValidatedStratumMutatedError` (message carries `candidate`) when `validated.candidate_stratum != original_candidate` (frozen-dataclass value equality; identity-preserving in-lifecycle usage trivially satisfies value equality).
+
+**Refusals (3):** `ClusterHumanNameLeakError` · `ClusteringNonDeterministicError` · `ValidatedStratumMutatedError`.
+
+**§5.3 clause 2 discipline held end-to-end.** The CP-M6-5-1 `CandidateStratum` has no human-readable name carrier by construction (gate landed at CP-M6-5-1).  The CP-M6-5-2 `HumanValidationVerdict.named_by_human` defaults to `None` (canonical *"not what it is called"* value).  The CP-M6-5-2 `bind_verdict_to_stratum` preserves the original `CandidateStratum` by reference.  CP-M6-5-3 wires all three into a single lifecycle assertion (`test_wm6_5_3_validated_stratum_preserves_candidate_end_to_end`) that fires the full cluster → sample → verdict.named_by_human=None → bind path and asserts no human-readable name is introduced anywhere.
+
+**Composition with CP-M6-5-1 and CP-M6-5-2.** Imports `CharacterRegister` (CP-M6-3-1) · `ClusteringBackend` (CP-M6-5-1) · `ValidatedStratum` (CP-M6-5-2).  No mutation of any prior carrier.
+
+**No-refactor discipline held.**  CP-M6-5-1 `clustering.py` unchanged · CP-M6-5-2 `human_validation.py` unchanged · CP-M6-3-1 `character_register.py` unchanged.
+
+Case-agnostic — word-boundary executive-domain negative-scan CLEAN.  No LLM/HTTP/filesystem.  Synthetic-fixtures-only in tests (all cluster objects hand-built or produced by synthetic backends returning `CandidateStratum` with `mat://synthetic/` provenance).  §3.1 P038 tokens-not-waveforms discipline preserved throughout.
+
+---
+
+## §B · Discipline receipts
+
+| Step | Path |
+|---|---|
+| RED (8 right-reason ModuleNotFoundError) | `phase0/drill_receipts/20260915T211102Z_wm6_5_3_RED_pre_impl.log` |
+| GREEN 1 | `phase0/drill_receipts/20260915T211517Z_wm6_5_3_double_green_run1.log` |
+| GREEN 2 (byte-match) | `phase0/drill_receipts/20260915T211722Z_wm6_5_3_double_green_run2.log` |
+| Rider · pip freeze | `phase0/wave_riders/w_m6_clustering_human_validation_cp3/pip_freeze.txt` (192 lines · zero drift · empty diff vs CP-M6-5-2 rider) |
+| Rider · pytest --collect-only | `phase0/wave_riders/w_m6_clustering_human_validation_cp3/collect_only_summary.txt` (4241 tests collected) |
+
+**Double-green byte-match:** stripped-sha256 `42277b58b611827a7f53cd15d6a74d732fe8633d6f852f6c924d0af6df052cb6`.  Both `4240 passed, 1 skipped, 438 warnings`.  Raw byte lengths identical (9684 each).  Stripped byte lengths identical (9671 each) — the only inter-run divergence is the closing `in T.TTs (H:MM:SS)` timing line, normalized in the strip.
+
+**RED confirmation:** 8 failed (all `test_wm6_5_3_cluster_stability.py::*`) + 4232 passed (floor match, zero unrelated regression) + 1 skipped + 438 warnings.  Failure reason: `services.audio_plane_v1.cluster_stability` module missing → import fails on every CP-M6-5-3 test.  Right-reason RED.
+
+---
+
+## §C · Boundary probes
+
+- Probe **#48** at CP-M6-5-3 open (2026-09-15T21:05:24Z): CD + Visitors BOTH FAIL · elapsed 6.006s / 6.003s.
+- Probe **#49** at CP-M6-5-3 seal (2026-09-15T21:21:29Z): CD + Visitors BOTH FAIL · elapsed 6.004s / 6.006s.
+- **Zero PASS across probes #1–#49.**  Admin escalation continues (44+ consecutive timeouts on the two bound MySQL hosts `citizen_digital` 159.138.164.103:3306 and `visitors` 110.238.75.83:3306; admin bindings pending per `notes/ADMIN_BINDS_20260915.md`).
+
+---
+
+## §D · Discipline held
+
+Tests-first double-green byte-match · ratchet monotonic-up (4232 → 4240 · +8) · word-boundary executive-domain negative-scan CLEAN · §3.1 P038 tokens-not-waveforms discipline preserved on all new API surfaces (no `audio_bytes`/`waveform`/`samples`/`raw_audio`/`voiceprint`/`speaker_embedding` carriers) · §5.3 clause 2 discipline held **end-to-end** across CP-M6-5-1 + CP-M6-5-2 + CP-M6-5-3 · owner ruling 2026-09-15T~20:37Z honored (mechanism only · synthetic fixtures only) · no LLM/HTTP/filesystem · no refactor of any prior CP · **3-commit pattern under STANDING_ORDERS §3.3** (Commit A code + Commit B state · master SHA `TBD` at seal-write time + Commit C state-fixup landing master SHA per NO SEAL WITHOUT BOTH SHAs rule) · never push · terminal pytest only · `testing_agent` BANNED · position-redaction hard-lock preserved · synthetic-fixtures-only.
+
+---
+
+## §E · SUB-WAVE 5 COMPLETE — Onward
+
+**W-M6-CLUSTERING-HUMAN-VALIDATION completion:**
+
+| CP | Anchor | Invariants | Ratchet | Seal file |
+|---|---|---:|---|---|
+| CP-M6-5-1 | §5.3 clause 1 — clustering algorithm registration | +7 | 4213 → 4220 | `cp_m6_5_1_clustering_registration.seal.txt` |
+| CP-M6-5-2 | §5.3 clause 3 + §16.2 P249 — sampled human validation loop mechanism | +12 | 4220 → 4232 | `cp_m6_5_2_human_validation_loop.seal.txt` |
+| CP-M6-5-3 | §5.3 clause 2 — cluster-stability invariants end-to-end | +8 | 4232 → 4240 | (this seal) |
+| **TOTAL** | §5.3 P089 discharged in full | **+27** | **4213 → 4240** | 3 seals · double-green byte-match at every seal · zero refactor of prior CPs · refusal-family cohesion preserved |
+
+**Wave-close report:** `notes/W_M6_CLUSTERING_HUMAN_VALIDATION_close.md`.
+
+**Onward:**
+
+1. **Sub-wave 6** · W-M6-OBJECTIVE-WIZARD-COLLECTION-SCHEMA · §8, §9, §12.1 · N7 fold-in.
+2. **Interleave possibilities:** M3 W-BC-DYNAMIC-RECOVERY-BUILD · M2 W-PULL-SEAM-RECEIPT-UNIFY.
+3. **After M6 seals:** M7 opens (W0..W9 · ALREADY RATIFIED).
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

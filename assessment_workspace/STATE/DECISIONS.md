@@ -9211,7 +9211,7 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 ## CP-M6-4-1 · perception/audio_codec/ module skeleton · sealed 2026-09-15T~19:56Z (M6 sub-wave 4 first CP)
 
-**Track-a HEAD at seal:** `c3aa7c6`
+**Track-a HEAD at seal:** `c3aa7c6` · **Master HEAD:** `bf7d880f` (Master HEAD landed under STANDING_ORDERS §3.3 · owner ruling 2026-09-15T~20:35Z)
 
 **CP charter.** M6 sub-wave 4 first CP. Landed `services/perception/audio_codec/{__init__.py, service.py}` — canon-anchored perception/audio_codec/ service skeleton per Audio-Plane §3.2 P045 verbatim (V33 · N4 anchor): *"perception/audio_codec/ — registered like any other perception model; census-visible; runs in-perimeter on tenant compute."*
 
@@ -9247,7 +9247,7 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 ## CP-M6-4-2 · codec_version carrier · D7 fold-in · sealed 2026-09-15T~20:06Z (M6 sub-wave 4 second CP)
 
-**Track-a HEAD at seal:** `8c9f382`.
+**Track-a HEAD at seal:** `8c9f382` · **Master HEAD:** `0d83b0da` (Master HEAD landed under STANDING_ORDERS §3.3 · owner ruling 2026-09-15T~20:35Z).
 
 **CP charter.** Landed `services/perception/audio_codec/artefact.py` — §3.2 P047 output-shape carrier + §3.2 P048 mandatory-in-downstream-provenance D7 fold-in invariants.
 
@@ -9286,7 +9286,7 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 ## CP-M6-4-4 · in-perimeter-on-tenant-compute invariant · sealed 2026-09-15T~20:32Z (M6 sub-wave 4 fourth · FINAL CP · W-M6-CODEC-SERVICE SUB-WAVE 4 COMPLETE)
 
-**Track-a HEAD at seal:** `20bed02`.
+**Track-a HEAD at seal:** `20bed02` · **Master HEAD:** `aeb9deb5` (Master HEAD landed under STANDING_ORDERS §3.3 · owner ruling 2026-09-15T~20:35Z).
 
 **CP charter.** Landed `services/perception/audio_codec/perimeter_boundary.py` — the §3.2 P045 verbatim "runs in-perimeter on tenant compute" conjunctive clause discharged as frozen carrier + pure predicate + refusal.
 
@@ -9328,7 +9328,7 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 ## CP-M6-4-3 · census-visibility invariant · sealed 2026-09-15T~20:24Z (M6 sub-wave 4 third CP)
 
-**Track-a HEAD at seal:** `72f29cc`.
+**Track-a HEAD at seal:** `72f29cc` · **Master HEAD:** `60284ab7` (Master HEAD landed under STANDING_ORDERS §3.3 · owner ruling 2026-09-15T~20:35Z).
 
 **CP charter.** Landed `services/perception/audio_codec/census_visibility.py` — the §3.2 P045 verbatim "census-visible" clause discharged as a pure predicate + refusal.
 
@@ -9360,3 +9360,159 @@ Case-agnostic — word-boundary executive-domain negative-scan CLEAN. §3.1 P038
 ---
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+## Owner Ruling · Discovery-1 Ratification · Post-Seal Receipt Rule · 2026-09-15T~20:35Z · Source: owner channel
+
+**Verbatim:**
+
+> "Your Discovery-1 recommendation is RATIFIED under the owner's standing 'requisite guardrails' mandate — it strengthens discipline with zero scope impact. Amend STANDING_ORDERS with the one-line post-seal receipt rule: 'No CP may be reported "sealed" in any summary or handoff unless BOTH commit SHAs (track-a Commit A + master Commit B) are recorded in the seal/DECISIONS entry.' Bank the amendment with this message as §A authorization. Good honest handling of the CP-M6-4-2 partial-seal reconciliation and the dual-sha byte-match transparency — exactly the right pattern."
+
+**Binding effects:**
+
+1. **STANDING_ORDERS §3.3 authored** ("NO SEAL WITHOUT BOTH SHAs — post-seal receipt rule (2026-09-15)") — the owner's verbatim ruling above lands as §A authorization in that subsection.
+
+2. **Rule text (verbatim on the standing law):** *"No CP may be reported 'sealed' in any summary or handoff unless BOTH commit SHAs (track-a Commit A + master Commit B) are recorded in the seal/DECISIONS entry."*
+
+3. **Binding contract going forward:**
+    - Every CP seal file MUST carry, at seal completion, both `Track-a HEAD at seal:` (Commit A SHA) and `Master HEAD:` (Commit B SHA) — never `TBD`.
+    - Every DECISIONS.md CP entry MUST carry both SHAs at CP close.
+    - Every NEXT.md CURRENT AS OF pin MUST carry the track-a SHA at CP close (master SHA discoverable via state repo git log).
+    - Handoff / status summaries that claim a CP is "sealed" MUST include both SHAs, or the CP MUST NOT be reported sealed.
+
+4. **Retroactive discipline-strengthening application (this-shift only, one-time cleanup).** The four M6 sub-wave 4 CP entries (CP-M6-4-1 through CP-M6-4-4) plus their four seal files land Master HEAD SHA references in this same state commit, in the spirit of the newly-in-force rule. This is zero-scope-impact record-strengthening; it does not mutate the content of the CP charter beyond adding the discoverable master SHAs. Not a precedent for further retroactive edits — future CPs comply at seal.
+
+5. **Reconciliation precedent.** The rule was recommended in the CP-M6-4-2 partial-seal reconciliation report (this-shift, 2026-09-15T~20:35Z). CP-M6-4-2 was found in a state where all discipline receipts existed on disk (RED, GREEN 1, GREEN 2, probes #38/#39, ratchet-bump-to-4197 staged) but the seal file, both commits, and DECISIONS/NEXT/PINS updates were pending. Boot ritual per SO §1 caught it, but only because the reader consulted the git log. A summary-only reader could have proceeded on the false claim. §3.3 closes that gap.
+
+6. **File-order note on the CP-M6-4-3 / CP-M6-4-4 DECISIONS entries.** During the shift, my CP-M6-4-4 search-replace pattern accidentally matched the CP-M6-4-2 Onward footer instead of the CP-M6-4-3 Onward footer, resulting in CP-M6-4-4 being physically appended above CP-M6-4-3 in the DECISIONS file. Chronological receipt order (M6-4-1 → M6-4-2 → M6-4-3 → M6-4-4 by seal timestamps + git commit history) is unaltered. Per DECISIONS append-only discipline (line 6: "Correction is by NEW ENTRY citing the corrected id, never by mutation"), the file order is NOT retroactively rearranged. Chronological receipt order is authoritative and evidenced by seal timestamps + Track-a commit history.
+
+7. **Master HEAD SHA table (this-shift M6 sub-wave 4 CPs, retroactively landed under §3.3 spirit):**
+    - CP-M6-4-1: Track-a `c3aa7c6` · Master `bf7d880f`
+    - CP-M6-4-2: Track-a `8c9f382` · Master `0d83b0da`
+    - CP-M6-4-3: Track-a `72f29cc` · Master `60284ab7`
+    - CP-M6-4-4: Track-a `20bed02` · Master `aeb9deb5`
+
+8. **Admin escalation for CD/Visitors surfaced to owner directly this shift** (43 consecutive timeouts is definitive: the SG opening never landed). Probe loop stays every-CP per owner ruling.
+
+9. **NEXT step unchanged.** Sub-wave 5 opens · W-M6-CLUSTERING-HUMAN-VALIDATION · §5.3 · under standing HALT boundary (synthetic fixtures only; instant a mechanism needs real estate voice/biometric material, HALT to owner). Human-validation loop CP: mechanism (sampling · validation record · verdict binding) provable with synthetic fixtures — actual human validators binding real samples is post-unblock owner activity.
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+
+## CP-M6-5-1 · Unsupervised clustering algorithm registration · sealed 2026-09-15T~20:50Z (M6 sub-wave 5 first CP · Sub-wave 5 opens)
+
+**Track-a HEAD at seal:** `ed0c740` (commit A) · **Master HEAD:** `94cf67c4` (commit B · both SHAs recorded at seal completion per STANDING_ORDERS §3.3).
+
+**Sub-wave 5 opens.** W-M6-CLUSTERING-HUMAN-VALIDATION · §5.3 · prerequisite §15 P236.s2 verbatim *"Requires items 1–4"* SATISFIED as of CP-M6-4-4 seal. Grounding brief authored at `notes/M6_SW5_CLUSTERING_HUMAN_VALIDATION_grounding_brief.md` with verbatim owner ruling in §A + verbatim §5.3 canon anchor in §B + CP breakdown in §C + wave-honest limits (HALT-check for real biometric material in force · synthetic fixtures only) in §E + commit protocol under §3.3 in §F.
+
+**CP charter.** Landed `services/audio_plane_v1/clustering.py` — pluggable-seam clustering algorithm registration per §5.3 clause 1 verbatim.
+
+> §5.3 P089 (V59) verbatim clause 1: *"Unsupervised clustering over the character stream yields candidate strata."*
+
+> §5.3 P089 (V59) verbatim clause 2 (discipline gate on this CP): *"A cluster asserts that a distinct variant exists — not what it is called."*
+
+Public API: `CandidateStratum` (frozen 3-carrier: `stratum_id` + `member_attribute_names` + `backend_name` · NO `human_name` / `label` / `display_name` / `speaker_name` / `cluster_name` carrier per §5.3 clause 2) · `ClusteringBackend` (Protocol · case-agnostic duck-typing · `.name` + `.cluster(entries)`) · `UnratifiedInferredClusteringBackend` (placeholder refuses live invocation with `[INFERRED-pending-ratification]` marker per D10 pluggable-seam discipline · same pattern as CP-M6-1-1..1-4) · `cluster_character_register(*, character_register, backend) -> Tuple[CandidateStratum, ...]` (pluggable seam over CP-M6-3-1 CharacterRegister.entries · refuses `CharacterRegisterEmptyError` on empty · delegates to `backend.cluster(entries=...)` and returns verbatim output — composition trust) · `CharacterRegisterEmptyError` · `ClusteringBackendUnratifiedError`.
+
+**§5.3 clause 2 gate anchored** by `test_wm6_5_1_candidate_stratum_three_carrier_shape_no_human_name`.
+
+**No-refactor discipline held.** CP-M6-3-1 `character_register.py` unchanged; seam composes against `CharacterRegister` as opaque carrier.
+
+**§3.1 P038 tokens-not-waveforms + §6.2 P098 no-speaker-identity disciplines preserved.**
+
+Case-agnostic — word-boundary executive-domain negative-scan CLEAN. Synthetic-fixtures-only in tests. Ratchet 4213 → 4220 (+7).
+
+**Discipline receipts.**
+- RED: `phase0/drill_receipts/20260915T204426Z_wm6_5_1_RED_pre_impl.log` (7 right-reason ModuleNotFoundError).
+- GREEN 1: `phase0/drill_receipts/20260915T204525Z_wm6_5_1_double_green_run1.log` (`4220 passed, 1 skipped`).
+- GREEN 2: `phase0/drill_receipts/20260915T204730Z_wm6_5_1_double_green_run2.log` (byte-match · stripped-sha256 `62f3312ebe52424e9fee379a14332be82d831c15db7b7b3831f7dfbb14ea9a88` · raw 9684 B each · stripped 9674 B each).
+- Seal: `phase0/output_verified_seals/cp_m6_5_1_clustering_registration.seal.txt`.
+- Rider: `phase0/wave_riders/w_m6_clustering_human_validation_cp1/pip_freeze.txt` (192 lines · zero drift · empty diff) + `collect_only_summary.txt` (4221 tests collected).
+- Grounding brief: `notes/M6_SW5_CLUSTERING_HUMAN_VALIDATION_grounding_brief.md`.
+
+**Boundary probes.** #44 (sub-wave 5 open + CP-M6-5-1 open · 2026-09-15T20:43:11Z) + #45 (CP-M6-5-1 seal · 2026-09-15T20:50:04Z): CD + Visitors BOTH FAIL 6.0s across both. Zero PASS across probes #1–#45. Admin escalation surfaced to owner directly this shift.
+
+**Guardrails unchanged.** Tests-first double-green byte-match · ratchet monotonic-up · **3-commit pattern under new STANDING_ORDERS §3.3** (Commit A code + Commit B state + Commit C state-fixup for master SHA landing per NO SEAL WITHOUT BOTH SHAs rule) · never push · terminal pytest only · `testing_agent` BANNED · position-redaction hard-lock · verbatim-canon · HALT-rather-than-guess · no refactor · case-agnostic negative-scan CLEAN · synthetic-fixtures-only.
+
+**Onward.** CP-M6-5-2 sampled human validation loop mechanism (§5.3 clause 3 + P249) → CP-M6-5-3 cluster-stability invariants (§5.3 clause 2 end-to-end) → sub-wave 5 seals → sub-wave 6.
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+
+## CP-M6-5-2 · Sampled human validation loop mechanism · sealed 2026-09-15T~21:02Z (M6 sub-wave 5 second CP)
+
+**Track-a HEAD at seal:** `7ed9ad9` (commit A) · **Master HEAD:** `88b388c8` (commit B · both SHAs recorded at seal completion per STANDING_ORDERS §3.3).
+
+**CP charter.** Landed `services/audio_plane_v1/human_validation.py` — sampled human validation loop **mechanism** per §5.3 clause 3 verbatim + §16.2 P249 verbatim. **MECHANISM ONLY** per owner ruling 2026-09-15T~20:37Z: sampling · validation record · verdict binding all provable with SYNTHETIC fixtures. Actual human validators binding real samples is post-unblock owner activity.
+
+> §5.3 P089 (V59) verbatim clause 3: *"Naming and validation are human work applied to a sample, commissioned like any other qualified work with quoted cost."*
+
+> §16.2 P249 (V157) verbatim: *"Cluster naming validation: commissioned internally or delegated to an external evaluation partner where one exists (§5.3)."*
+
+Public API: `COMMISSIONING_CHANNELS` (frozenset {internal, external_partner} · §16.2 P249 verbatim two-set) · `VALIDATION_VERDICTS` (frozenset {variant_confirmed, variant_refused, ambiguous}) · `sample_stratum_for_human_validation` (deterministic sampler via `random.Random(seed).sample` — same seed → byte-identical output) · `HumanValidationTask` (frozen 5-carrier: task_id + stratum_id + sample_attribute_names + quoted_cost_reference + commissioning_channel · refuses invalid channel at `__post_init__`) · `HumanValidationVerdict` (frozen 4-carrier: task_id + verdict + `named_by_human` Optional[str] + commissioning_receipt_ref · refuses invalid verdict at `__post_init__` · **§5.3 clause 2 preserved in-flight: `named_by_human=None` default preserves *"not what it is called"* until owner-unblocked real binding**) · `ValidatedStratum` (frozen 3-carrier: candidate_stratum + verdict + bound_at_utc ISO-8601) · `derive_task_id` (deterministic from stratum.stratum_id — pivot for bind gate) · `bind_verdict_to_stratum` (refuses `VerdictTaskIdMismatchError` on cross-binding; preserves frozen `CandidateStratum` reference) · 6 refusals.
+
+**Composition with CP-M6-5-1.** `bind_verdict_to_stratum` operates on `CandidateStratum` from `clustering.py`. Frozen immutability preserved — the candidate stratum is referenced, never mutated.
+
+**No-refactor discipline held.** CP-M6-5-1 clustering.py + CP-M6-3-1 character_register.py both unchanged.
+
+Case-agnostic — word-boundary executive-domain negative-scan CLEAN. §3.1 P038 tokens-not-waveforms discipline preserved throughout. No LLM/HTTP/filesystem. Synthetic-fixtures-only in tests. Ratchet 4220 → 4232 (+12).
+
+**Discipline receipts.**
+- RED: `phase0/drill_receipts/20260915T205629Z_wm6_5_2_RED_pre_impl.log` (12 right-reason ModuleNotFoundError).
+- GREEN 1: `phase0/drill_receipts/20260915T205748Z_wm6_5_2_double_green_run1.log` (`4232 passed, 1 skipped`).
+- GREEN 2: `phase0/drill_receipts/20260915T205951Z_wm6_5_2_double_green_run2.log` (byte-match · stripped-sha256 `fe75bcb7c496c2f65b1e7fb2af654660188d0b53ea5dfc1f8d2e4c604d1197f2` · raw 9684 B each · stripped 9674 B each).
+- Seal: `phase0/output_verified_seals/cp_m6_5_2_human_validation_loop.seal.txt`.
+- Rider: `phase0/wave_riders/w_m6_clustering_human_validation_cp2/pip_freeze.txt` (192 lines · zero drift · empty diff) + `collect_only_summary.txt` (4233 tests collected).
+
+**Boundary probes.** #46 (open · 2026-09-15T20:55:22Z) + #47 (seal · 2026-09-15T21:02:24Z): CD + Visitors BOTH FAIL 6.0s across both. Zero PASS across probes #1–#47.
+
+**Guardrails unchanged.** Tests-first double-green byte-match · ratchet monotonic-up · **3-commit pattern under STANDING_ORDERS §3.3** · never push · terminal pytest only · `testing_agent` BANNED · position-redaction hard-lock · verbatim-canon · HALT-rather-than-guess · no refactor · case-agnostic negative-scan CLEAN · synthetic-fixtures-only.
+
+**Onward.** CP-M6-5-3 cluster-stability invariants (§5.3 clause 2 end-to-end) → sub-wave 5 seals (W-M6-CLUSTERING-HUMAN-VALIDATION COMPLETE) → sub-wave 6.
+
+---
+
+## CP-M6-5-3 · Cluster-stability invariants · SEAL (SUB-WAVE 5 COMPLETE)
+
+**Sealed at UTC:** 2026-09-15T~21:22Z.  **Ratchet:** 4232 → 4240 (+8).
+**Track-a HEAD at seal:** `62e5a1d` (commit A: 62e5a1d8a10e7dced33b3f33bec510fcf37ac821).
+**Master HEAD:** `fe024740` (commit B: fe0247401972236b2a3402258c75622931ec31e2 · landed under STANDING_ORDERS §3.3 · commit C-fixup pinned the master SHA · NO SEAL WITHOUT BOTH SHAs rule satisfied).
+
+CP-M6-5-3 lands `services/audio_plane_v1/cluster_stability.py` — the §5.3 clause 2 discipline gate discharged as end-to-end invariants composing CP-M6-5-1 `CandidateStratum` and CP-M6-5-2 `ValidatedStratum` carriers.
+
+> §5.3 P089 (V59) verbatim clause 2: *"A cluster asserts that a distinct variant exists — not what it is called."*
+
+Public API:
+- `HUMAN_NAME_ATTRIBUTE_NAMES` (frozen 5-tuple: `human_name` · `label` · `display_name` · `speaker_name` · `cluster_name`) — negative-scan attribute set for §5.3 clause 2 verbatim discipline.
+- `assert_cluster_carries_no_human_name(*, cluster) -> None` — refuses `ClusterHumanNameLeakError` (match `human-readable`) on any non-None attribute in the set; None-valued attributes pass (canonical *"not what it is called"* value matching CP-M6-5-2 `named_by_human=None` default).
+- `assert_clustering_is_deterministic(*, backend, character_register) -> None` — runs `backend.cluster(entries=…)` twice and compares stratum_id sequences; refuses `ClusteringNonDeterministicError` (match `stratum_id`) on divergence.
+- `assert_validated_stratum_preserves_candidate(*, validated, original_candidate) -> None` — refuses `ValidatedStratumMutatedError` (match `candidate`) on frozen-dataclass value inequality.
+
+Refusals (3): `ClusterHumanNameLeakError` · `ClusteringNonDeterministicError` · `ValidatedStratumMutatedError`.
+
+**Composition with CP-M6-5-1 and CP-M6-5-2.** Imports `CharacterRegister` (CP-M6-3-1) · `ClusteringBackend` (CP-M6-5-1) · `ValidatedStratum` (CP-M6-5-2). No mutation of any prior carrier. **No-refactor discipline held.** clustering.py + human_validation.py + character_register.py all unchanged.
+
+Case-agnostic — word-boundary executive-domain negative-scan CLEAN. §3.1 P038 tokens-not-waveforms discipline preserved throughout. §5.3 clause 2 discipline held end-to-end across CP-M6-5-1 + CP-M6-5-2 + CP-M6-5-3. No LLM/HTTP/filesystem. Synthetic-fixtures-only in tests. Ratchet 4232 → 4240 (+8).
+
+**Discipline receipts.**
+- RED: `phase0/drill_receipts/20260915T211102Z_wm6_5_3_RED_pre_impl.log` (8 right-reason ModuleNotFoundError on cluster_stability import; 4232 passed unrelated invariants).
+- GREEN 1: `phase0/drill_receipts/20260915T211517Z_wm6_5_3_double_green_run1.log` (`4240 passed, 1 skipped, 438 warnings`).
+- GREEN 2: `phase0/drill_receipts/20260915T211722Z_wm6_5_3_double_green_run2.log` (byte-match · stripped-sha256 `42277b58b611827a7f53cd15d6a74d732fe8633d6f852f6c924d0af6df052cb6` · raw 9684 B each · stripped 9671 B each).
+- Seal: `phase0/output_verified_seals/cp_m6_5_3_cluster_stability.seal.txt` (Kind: `cp_m6_5_3_cluster_stability`).
+- Rider: `phase0/wave_riders/w_m6_clustering_human_validation_cp3/pip_freeze.txt` (192 lines · zero drift · empty diff vs CP-M6-5-2 rider) + `collect_only_summary.txt` (4241 tests collected).
+- Wave-close report: `notes/W_M6_CLUSTERING_HUMAN_VALIDATION_close.md`.
+
+**Boundary probes.** #48 (open · 2026-09-15T21:05:24Z) + #49 (seal · 2026-09-15T21:21:29Z): CD + Visitors BOTH FAIL 6.0s across both. Zero PASS across probes #1–#49. Admin escalation continues (44+ consecutive timeouts on `citizen_digital` 159.138.164.103:3306 + `visitors` 110.238.75.83:3306 · admin bindings pending per `notes/ADMIN_BINDS_20260915.md`).
+
+**Guardrails unchanged.** Tests-first double-green byte-match · ratchet monotonic-up · **3-commit pattern under STANDING_ORDERS §3.3** · never push · terminal pytest only · `testing_agent` BANNED · position-redaction hard-lock · verbatim-canon · HALT-rather-than-guess · no refactor · case-agnostic negative-scan CLEAN · synthetic-fixtures-only.
+
+**SUB-WAVE 5 COMPLETE.** W-M6-CLUSTERING-HUMAN-VALIDATION rolls up: 3 CPs · +27 invariants · ratchet 4213 → 4240 · 3 seals · double-green byte-match at every seal · zero refactor of prior CPs · refusal-family discipline preserved (all three CPs use plain `Exception` subclasses with canon-anchored docstrings) · §3.3 3-commit pattern executed cleanly across all three CPs.
+
+**Onward.** Sub-wave 6 · W-M6-OBJECTIVE-WIZARD-COLLECTION-SCHEMA · §8 + §9 + §12.1 · N7 fold-in. Then remaining §15 items → M6 seal → M7 opens (W0..W9 · ALREADY RATIFIED). Interleave possibilities: M3 W-BC-DYNAMIC-RECOVERY-BUILD · M2 W-PULL-SEAM-RECEIPT-UNIFY.
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
