@@ -1,0 +1,50 @@
+{
+  "wave_seals": {
+    "audio_poc_v1.seal.txt": "43de5fbfc55e9ba13e2c26b72c585b3d82fdca8b4ce707feab10e673b9dd96e1",
+    "census_canon_align.seal.txt": "e72d16290dff22d2b584ca54f78d7d7695d254e494083469a5ed06d1be2689ea",
+    "data_suite_v2_lift.seal.txt": "39ade8a28a8dedc3003da0444fb261bb06d4ddcfd795ac9e30f92e077680fb3e",
+    "registry_extension_g3.seal.txt": "0ba27118e7301aac02f2c71d96dcefc40d2b93b0b8225219c268b0a1af5954bc",
+    "solva_v2_lift.seal.txt": "f929f026209e02b1d929100ff091e39321fa5125d4632f9626b9920f2ea06023",
+    "w_export_artefact_render.seal.txt": "ece3367197db8fb3132f04d9b4bf3fb6cb9a8f2e173c5f3bc6fcd8f63d3f4b93",
+    "wcensus_supplement_audio_inventory_mount.seal.txt": "fbd19b800a32d68d9ed9a5bbc9a622519046ae429785d9707d16d73a54cecb9d",
+    "wd12_poc_cp_d12p1.seal.txt": "2ae718639057d97007b5b608559aaafcc31bea5ad1d5ec43231471944fad2717",
+    "wdap_2a.seal.txt": "8bb2658161ba52af9e8d1735258c8ae23b8be65111096f32e166aa0c74126891",
+    "wdap_2b.seal.txt": "34a5a00bb36dbee5dc7d99ea99a51fd7611a7ebc73d158ed33d529d136987245",
+    "wdap_2c.seal.txt": "359d400f024aeed98f1482e4f2109d5ef9af9cfa864be84ff2986715cd5446a8",
+    "wdap_2d.seal.txt": "feb67c5a61a33134426848fcc9da6efe8e07e0fbcb8482431747c221a460fc7c",
+    "wdap_2e.seal.txt": "08c10b39550513ac69e13902429a9a6ce3a16434f8dc976233366470806331f0",
+    "wdap_2f.seal.txt": "ef6f046ea1dffef43485dd1ed3375e333162103e48343edd6d1b555a9e0d316c",
+    "wdap_2g.seal.txt": "9688785d5627ebedfef1031edd0373027493f30daf6d4c0dd11b196bf7da0f92",
+    "wdap_2h.seal.txt": "e5f13e0b9f832546dbdea0d4db8f45a6d63a64f9a2f66dd1db4277ec693e9b44",
+    "wg3_remainder.seal.txt": "a30e5c1e06163d64d73d2f760b4cc6a48d0f3bf9df9b23a986058109de917899",
+    "wm8_tests_first_guard_invariant_cp_m8_g1.seal.txt": "e0541a6767f9a13b0c6a97d76d6e84303a51007b63a54bc1d04ef239e430d845",
+    "wregistry_cp10.seal.txt": "c82c7c9ec4443565f1deff21fda10c366018f6ebcd87f66ca12a426e3012839c",
+    "wrg_cp_rg1.seal.txt": "0935a0ce2648b07272828390e114fe93840c7ff14ce7e6822347066fec2c8f4e",
+    "wrg_cp_rg2.seal.txt": "a8c537a2e7f5bcfee0af06db396979a27dc54eaf237e6bc58b67d1e8be5e61bb",
+    "wrg_cp_rg3.seal.txt": "c651518614e06b3207686801140d491883cbfd223d7637570b5cdd02e62d1263",
+    "wrg_cp_rg4.seal.txt": "f5ff4a5fccd77f54a7f6f4e9ffba1c2d95b9cd2a80a7e40ea694d1bb883c3050",
+    "wrg_cp_rg5.seal.txt": "d107809466bd92fe17eff634051643a7eafb1d0b358ba4882962e01b83adfffb",
+    "wrg_cp_rg_hygiene_01.seal.txt": "3692ae6b95a99a304843783671995e9327924a6e014168fca53235d90079f9e8"
+  },
+  "ratchet_manifest": {
+    "repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json": "c5a66ad165c9b268e18276b38bd5635ce75f70214e493146137996d49f83585f"
+  },
+  "drill_receipts_wexr": {
+    "20260915T154800Z_wexr_cp_exr1_RED_pre_impl.log": "019445aaef965172a1074d6978ef45979b5c02267887c68245dc0d74546f3c1a",
+    "20260915T155500Z_wexr_cp_exr1_double_green_run1.log": "e300f5996a26574287501fa3a99e91ba37b177ff3fb3dc6c3341d0dc70630a85",
+    "20260915T155800Z_wexr_cp_exr1_double_green_run2.log": "16b1941f54f49a84ce3afd17cc865f1ce498a8943ffcf005adcc2025515e6d7d"
+  },
+  "boundary_probes": {
+    "probe_11_20260915T154344Z.json": "da00054977fa4e698b9925e488f3e88d9efc2e48df3d01dd8d947cecc801ebfe",
+    "probe_12_20260915T155800Z.json": "c726826ad2778c902678511f844c13be41b6ec6e67da104c3b4c013be62aa654"
+  },
+  "audit_self_json": {
+    "estate_contact_audit_20260915.json": "2559f6b8a66cc6e55f2402467a499803d1dc48aa3ce0036e76f89ed95e7f2c93"
+  },
+  "canon_drop_manifests": {
+    "canon/drops/20260914_audio_plane_v1/manifest.json": "ba6597ad9a5d7b977c8f79ccd2be2b94049a0d4bd33c6a3f9f9e573815045fa0",
+    "canon/drops/20260914_hf_token/manifest.json": "4e95e75c0b761eb8fcc1270a75a144df667a49290ca1c6bb09d70476564abd2e",
+    "canon/drops/20260914_pull_seam/manifest.json": "b977fac23232055f91e0d6dafc96c81d5e29223dd83bd90f1057d20e13a9ed23",
+    "canon/drops/20260914_rms_creds/manifest.json": "e4f358f92a13b83faa26c471fc1572a647cafe0ca1c23d2cc954356f20d87f99"
+  }
+}

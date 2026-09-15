@@ -1,0 +1,19 @@
+{
+  "probe_id": "boundary_probe_13",
+  "at_utc": "2026-09-15T16:41:27Z",
+  "wave_boundary": "estate_contact_audit close (owner-priority interleave \u00b7 post CP-EXR1)",
+  "results": [
+    {
+      "name": "citizen_digital",
+      "verdict": "FAIL",
+      "elapsed_s": 6.007,
+      "errno": null
+    },
+    {
+      "name": "visitors",
+      "verdict": "FAIL",
+      "elapsed_s": 6.003,
+      "errno": null
+    }
+  ]
+}

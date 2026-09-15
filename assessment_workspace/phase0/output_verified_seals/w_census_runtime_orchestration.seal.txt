@@ -1,0 +1,102 @@
+Kind: w_census_runtime_orchestration
+
+# W-CENSUS-RUNTIME-ORCHESTRATION · Wave Seal (M8 #5 · scope EXPANDED)
+
+**Sealed at UTC:** 2026-09-15T~17:45Z
+**Wave:** M8 quick-hardening #5 · scope EXPANDED per owner directive 2026-09-15T~11:05Z
+**CP count:** 2 (CP-CRO1 · CP-CRO2)
+**Invariants added:** +12 (6 per CP · no cross-benefit)
+**Net ratchet:** 4093 → 4105
+**Track-a HEAD at seal:** `29ff3984b03225c403625637e9393b00ac2e7558`
+**Master HEAD at seal:** TBD (commit pending)
+
+---
+
+## §A · Discharge summary
+
+**CP-CRO1** extended `SourceRecord` from 10 → 12 carriers with two Canon-4 §4.1 measurement fields:
+- `media_types: Tuple[str, ...]` (default `()` = Unmeasured)
+- `audio_bearing_share: Optional[float]` (default `None` = Unmeasured; float in [0.0, 1.0] when measured)
+
+Both Optional-default so pre-CRO1 writes still succeed unchanged. `register_source_candidate` accepts optional new kwargs. `_compute_record_id` extended to hash the new fields (records with different probe data get distinct ids — §4.1 measurement participates in record identity).
+
+CP-C4 shape test `test_cp_c4_source_record_frozen_canon_4_section_8_carriers` **UPDATED IN-PLACE** with audit-trail docstring pointing at CP-CRO1 (prior 10-carrier expected set discharged; new expected set is 12 carriers).
+
+**CP-CRO2** landed `services/census_canon/estate_enumerator.py :: enumerate_estate(*, run_id, freshness_stamp, targets, probe_fn=None, feed_declaration_registry=None, store) -> List[str]`:
+- Case-agnostic runtime orchestrator (Canon-4 §4 verbatim: "walks the estate exhaustively and objective-blind, producing one candidate source record per discovered source").
+- `EstateTarget` = frozen dataclass with 4 carriers `(source_reference, region, feed_identity, sample_ref)`.
+- Composes CP-C1 `classify_sensitivity` (Canon-4 §5.1 conservative fallback when feed absent) + CP-C4 `register_source_candidate` (append-only write path).
+- `probe_fn` is **DEPENDENCY-INJECTED** — the orchestrator does NOT invoke `ffprobe` directly (case-agnostic + test-safe; caller wraps the actual shell-out under `readonly_nas_guard`).
+- Refusals: `CensusTargetsEmptyError` (empty targets) · `CensusTargetInvalidError` (non-EstateTarget element).
+- Deterministic — same inputs + same `probe_fn` returns produce the same list of record_ids.
+
+Word-boundary case-insensitive executive-domain negative-scan CLEAN across module + tests (14-token set from CP-S8/CP-D8/CP-DASWR1/CP-DDDR1 precedent).
+
+---
+
+## §B · Discipline receipts (all banked)
+
+| Step | Path |
+|---|---|
+| Grounding brief | `notes/wave_census_runtime_orchestration_grounding_brief.md` |
+| RED (mechanical · right-reason ImportError × 12) | `phase0/drill_receipts/20260915T173000Z_wcro_RED_pre_impl.log` |
+| GREEN 1 (full baseline) | `phase0/drill_receipts/20260915T174200Z_wcro_double_green_run1.log` |
+| GREEN 2 (full baseline · byte-match) | `phase0/drill_receipts/20260915T174500Z_wcro_double_green_run2.log` |
+| Rider · pip freeze | `phase0/wave_riders/w_census_runtime_orchestration/pip_freeze.txt` (192 lines · no drift) |
+| Rider · pytest --collect-only | `phase0/wave_riders/w_census_runtime_orchestration/collect_only.txt` (4106 tests) |
+
+**Double-green byte-match verdict:**
+- GREEN 1 raw 9604 B · GREEN 2 raw 9604 B.
+- Stripped (timing normalised): 9594 B both.
+- Stripped-sha256: `6821e25e2b51156d723a79afd642e22b6780a038be182a7c4053a6ae6408bea3` (identical).
+- Both: `4105 passed, 1 skipped, 438 warnings`.
+
+---
+
+## §C · Boundary-hygiene probe fired
+
+- Probe #15 at wave-close (17:12:23 UTC): CD + Visitors BOTH FAIL · timeout · 6.007s / 6.006s. Receipt: `phase0/boundary_probes/probe_15_20260915T171223Z.json`.
+- Zero PASS across probes #1–#15 (15 consecutive timeouts).
+
+---
+
+## §D · Discipline held whole wave
+
+- Tests-first: mechanical RED banked BEFORE mechanism (right-reason ImportError × 12).
+- Double-green byte-match at close.
+- Ratchet monotonic-up (`counts_at_baseline.passed` + `invariants_enforced_when_baseline_guard_1.passed_floor` bumped in tandem; `ratchet_history` appended twice — one per CP).
+- Word-boundary case-insensitive executive-domain negative-scan CLEAN.
+- CP-C4 shape invariant updated in-place with full audit-trail docstring (discharge-in-place per CP-D8/CP-DASWR1 precedent).
+- CP-CSAIM1's 2 pre-CRO1 records untouched by this wave (Optional-default fields; the 2 records simply carry the Unmeasured defaults; correction records via CP-C4 E.5 append-only remain a separate operator-driven follow-on).
+- Two-commit local-only pattern (Commit A: track-a code · Commit B: master state · executed after this seal).
+- Never push. Terminal pytest only. `testing_agent` BANNED.
+- No refactor. Thin-kernel discipline.
+- No LLM. No HTTP. No filesystem. No direct `ffprobe` invocation (dependency-injected).
+- Verbatim-canon on every discharge anchor in module + test docstrings.
+- Position-redaction hard-lock: no credential material across boundary probe #15.
+
+---
+
+## §E · Wave-honest limits (declared at open · unchanged at seal)
+
+1. No LLM invocation. No HTTP call. No filesystem write. No direct `ffprobe` invocation — `probe_fn` is dependency-injected. Actual `ffprobe` shell-out is a caller responsibility for a follow-on ops-wave (wrapped under `readonly_nas_guard`).
+2. `SourceRecord` extension is minimal (2 optional fields with sensible Unmeasured defaults). No breaking rewrite of the CP-C4 register write path.
+3. Case-agnostic. Word-boundary case-insensitive executive-domain negative-scan CLEAN.
+4. CP-CSAIM1 records untouched by this wave. Probe-data correction records land via CP-C4 E.5 append-only with `supersedes_record_id` in a separate operator-driven follow-on.
+5. `EstateTarget` is frozen with exactly 4 fields. Extending it requires owner ratification.
+6. No mutation of caller inputs.
+
+---
+
+## §F · Onward chain
+
+Unchanged from ratified sequencing:
+
+1. **W-AUDIO-PROD-MODEL-SELECT** (M8 #6 · deferred per D12-03 corpus finding until real audio source enumerated).
+2. **M6 opens** (§15 walk · Path α/β decision flag in M6-open report).
+3. **M7 opens** (W0..W9).
+4. Interleave: M3 W-BC-DYNAMIC-RECOVERY-BUILD · M2 W-PULL-SEAM-RECEIPT-UNIFY.
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

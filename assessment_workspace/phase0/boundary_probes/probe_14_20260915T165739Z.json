@@ -1,0 +1,19 @@
+{
+  "probe_id": "boundary_probe_14",
+  "at_utc": "2026-09-15T16:57:39Z",
+  "wave_boundary": "W-DATA-SUITE-ANALYZE-WORKSPACE-REAL + W-DEEP-DIVE-REAL (paired M8 #3+#4) wave-close",
+  "results": [
+    {
+      "name": "citizen_digital",
+      "verdict": "FAIL",
+      "elapsed_s": 6.004,
+      "errno": null
+    },
+    {
+      "name": "visitors",
+      "verdict": "FAIL",
+      "elapsed_s": 6.005,
+      "errno": null
+    }
+  ]
+}

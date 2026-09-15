@@ -1,0 +1,19 @@
+{
+  "probe_id": "boundary_probe_15",
+  "at_utc": "2026-09-15T17:12:23Z",
+  "wave_boundary": "W-CENSUS-RUNTIME-ORCHESTRATION (M8 #5 \u00b7 scope EXPANDED) wave-close",
+  "results": [
+    {
+      "name": "citizen_digital",
+      "verdict": "FAIL",
+      "elapsed_s": 6.007,
+      "errno": null
+    },
+    {
+      "name": "visitors",
+      "verdict": "FAIL",
+      "elapsed_s": 6.006,
+      "errno": null
+    }
+  ]
+}

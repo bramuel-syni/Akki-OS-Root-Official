@@ -8691,3 +8691,151 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 ---
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+## Estate Contact Audit · owner-priority interleave · sealed 2026-09-15T~16:42Z
+
+**Owner ask (verbatim · banked at receipt time 2026-09-15T~16:20Z):**
+
+> "Is E1 the one reading or is it Akki? If Akki, can i get SHA 256 level audit trail and analysis of everything that has transpired bettween Akki and the estage we have bee trying to connect."
+
+**Answer, precise.** E1 is the OPERATOR. Akki is the INSTRUMENT. Every estate contact recorded on disk was operator-driven (E1 invoking Akki OS's governed mechanisms). **Zero autonomous-Akki-estate-contact events.** Enforcement evidence: readonly_nas_guard, readonly_obs_guard, live_census_engine (SQL-lead-verb whitelist), release_gate (P036/R-7/R-15(a)/R-16(a)), CP-M8-G1 part-B custody read guard, position-redaction hard-lock — each backed by invariant tests inside the 4083-floor ratchet.
+
+**Deliverables banked.**
+- `notes/ESTATE_CONTACT_AUDIT_20260915.md` (compact ledger + analysis · full row-by-row table on disk).
+- `phase0/estate_contact_audit/estate_contact_audit_20260915.json` (82 events · sha256 `2559f6b8a66cc6e55f2402467a499803d1dc48aa3ce0036e76f89ed95e7f2c93`).
+- `phase0/estate_contact_audit/integrity_chain_sha256_register.json` (36 sha256 entries: wave seals + ratchet manifest + drill receipts + boundary probes + canon drop manifests + audit self-sha).
+
+**Ledger summary counts.**
+- Total events: **82** (from disk · no reconstruction).
+- By direction: **69 READ-IN · 11 IN-PERIMETER-TRANSFER · 1 INBOUND-MODEL · 1 IN-PERIMETER-CONFIG · 1 IN-PERIMETER-HYGIENE** · **0 DERIVATIVE-OUT** · **0 RAW-DATA-OUT**.
+- Bytes touched (measured): **79,396,235 B total** — 79,394,452 B (single D12 breakthrough channel01.mp4 · NAS→JUMP→pod→GPU-akki-vm, all in-perimeter per Pull Seam P1 + owner GPU ruling · content sha256 `0bd775469b1a1592c737d4d8804b3d0c84136009c80b7dcfe077b2bfbef819bc`) + 1,783 B (3 NAS config/status bounded reads on Sep-14, staged in `/dev/shm` shred+unlink after read).
+- HF contact: 1 event (INBOUND-MODEL config.json HEAD from GPU-akki-vm · HTTP 200 · no weights pulled · no HF cache present after probe).
+
+**Four honestly-named denied surfaces:** `mysql_citizen_digital` + `mysql_visitors` (13 probes now with #13 · all timeout) · 5 NAS audio-bearing shares (Permission-denied for bramwel) · radio_subnet + transcription_server (SSH sweep zero-open).
+
+**Absence-as-finding.** Boundary probes #1–#10 were fired inline at wave/CP boundaries with wave-close notes as their record; no dedicated receipt files exist on disk for #1–#10. From CP-EXR1 onward (probes #11, #12, #13 now), probes bank as JSON receipts in `phase0/boundary_probes/`. This gap is named honestly rather than papered over.
+
+**Boundary probe #13** (audit-close · 16:41:27 UTC): CD + Visitors BOTH FAIL · timeout · 6.007s / 6.003s. Receipt: `phase0/boundary_probes/probe_13_20260915T164127Z.json`.
+
+**Guardrails held during audit compile.** Position-redaction hard-lock preserved (no host/user/cred in transcript across 82 rows) · from-disk evidence only · no reconstruction from memory · absence banked as finding.
+
+**Baseline confirmed green post-audit** (single-run · 4083 passed · same as CP-EXR1 seal).
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+## W-DATA-SUITE-ANALYZE-WORKSPACE-REAL + W-DEEP-DIVE-REAL · paired wave sealed 2026-09-15T~17:20Z (M8 quick-hardening #3+#4)
+
+**Track-a HEAD at seal:** `7bde883aeff453d650618cd54d00813e56a322e7`
+
+**Wave charter source (owner GO chain 2026-09-15T~16:20Z verbatim):** *"After the audit lands, resume: paired W-DATA-SUITE-ANALYZE-WORKSPACE-REAL + W-DEEP-DIVE-REAL → W-CENSUS-RUNTIME-ORCHESTRATION (expanded) → M6 open (Path α/β flagged) → M7 open."*
+
+**Wave summary.** Paired CP wave (CP-DASWR1 + CP-DDDR1). Replaces the CP-D8 HALT-skeleton `run()` in the two engine modules under `services/data_suite_v2/engines/` with real case-agnostic mechanisms. Both engines are pure functions of typed inputs — NO LLM, NO HTTP, NO storage. CP-DASWR1 lands `analyze_workspace_engine.run(*, session_id, source_refs) -> Tuple[AnalyzeRapid, AnalyzeSources]`. CP-DDDR1 lands `deep_dive_engine.run(*, session_id, source_refs, prior_notes=()) -> AnalyzeDeepDive` with deterministic `synthesis_sha256_hex` from canonical UTF-8 serialization + ASCII UNIT SEPARATOR (0x1f) intra-field delimiter (Canon-4 §22 + Pull Seam P1 hash-only carrier — synthesis body NEVER materialised). Shared exception classes (`WorkspaceEmptyError`, `WorkspaceInvalidError`) land in `engines/__init__.py`. Refusals: empty/non-string `session_id` + empty `source_refs` + non-string element in `source_refs`/`prior_notes`. Word-boundary case-insensitive executive-domain negative-scan CLEAN across module + tests (14-token set from CP-S8/CP-D8 precedent). **CP-D8 `test_cp_d8_engine_run_raises_halt` invariant DISCHARGED in-place** (retired-as-passing-no-op with full audit-trail docstring pointing at CP-DASWR1 + CP-DDDR1; gating condition HALT-until-real-engine-lands dissolved by this wave). Net ratchet: 4083 → 4093 (+10 · no cross-benefit).
+
+**Discipline receipts.**
+- Grounding brief: `notes/wave_data_suite_analyze_workspace_deep_dive_real_grounding_brief.md`.
+- RED: `phase0/drill_receipts/20260915T164500Z_wdaswr_wdddr_RED_pre_impl.log` (10 failures right-reason mix: 5 ImportError for shared exceptions + 5 NotImplementedError:HALT from CP-D8 skeletons before mechanism).
+- GREEN 1: `phase0/drill_receipts/20260915T171500Z_wdaswr_wdddr_double_green_run1.log` (`4093 passed, 1 skipped, 438 warnings`).
+- GREEN 2: `phase0/drill_receipts/20260915T171800Z_wdaswr_wdddr_double_green_run2.log` (byte-match with GREEN 1 · stripped-sha256 `cf5ce0f91c1429d96bc94aa1eea8aa1f2bf4fbbde8b828085b4a1624a7bcfe9d`).
+- Rider: `phase0/wave_riders/w_data_suite_analyze_workspace_deep_dive_real/pip_freeze.txt` (192 lines · matches CP-EXR1 rider · no dependency drift) + `collect_only.txt` (4094 tests).
+- Seal: `phase0/output_verified_seals/w_data_suite_analyze_workspace_deep_dive_real.seal.txt` (`Kind: w_data_suite_analyze_workspace_deep_dive_real`).
+
+**Boundary probe fired (per owner directive 2026-09-15T~09:50Z Effect 4):**
+- Probe #14 (wave-close · 16:57:39 UTC): CD + Visitors BOTH FAIL · timeout · 6.004s / 6.005s. Receipt: `phase0/boundary_probes/probe_14_20260915T165739Z.json`.
+- Zero PASS across this wave. Standing retry loop continues at next CP boundary.
+
+**Guardrails unchanged.** Tests-first double-green byte-match · ratchet monotonic-up · two-commit local-only · never push · terminal pytest only · testing_agent BANNED · position-redaction hard-lock · verbatim-canon · HALT-rather-than-guess · no refactor · no LLM/HTTP/storage.
+
+**Onward chain (unchanged from ratified sequencing):**
+1. **W-CENSUS-RUNTIME-ORCHESTRATION** (M8 #5 · scope EXPANDED per owner 2026-09-15T~11:05Z: fold ffprobe `media_types` + `audio_bearing_share` into live NAS enumeration · new SourceRecord fields).
+2. W-AUDIO-PROD-MODEL-SELECT (M8 #6 · deferred per D12-03).
+3. M6 opens (Path α/β decision flag in M6-open report).
+4. M7 opens (W0..W9).
+5. Interleave: M3 W-BC-DYNAMIC-RECOVERY-BUILD · M2 W-PULL-SEAM-RECEIPT-UNIFY.
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+## W-CENSUS-RUNTIME-ORCHESTRATION · sealed 2026-09-15T~17:45Z (M8 quick-hardening #5 · scope EXPANDED)
+
+**Track-a HEAD at seal:** `29ff3984b03225c403625637e9393b00ac2e7558`
+
+**Wave charter source (owner directive verbatim 2026-08-27T~02:35Z · line 8319):** *"Then M8 unblocked quick hardening (small waves, high value): W-TESTS-FIRST-GUARD-INVARIANT → W-EXPORT-ARTEFACT-RENDER → W-DATA-SUITE-ANALYZE-WORKSPACE-REAL + W-DEEP-DIVE-REAL (paired) → W-CENSUS-RUNTIME-ORCHESTRATION → W-AUDIO-PROD-MODEL-SELECT."*
+
+**Scope expansion source (owner directive verbatim 2026-09-15T~11:05Z · line 8640):** *"M8 #5 W-CENSUS-RUNTIME-ORCHESTRATION scope EXPANDS per owner ADDITION verbatim: fold ffprobe characterization into live NAS enumeration; new SourceRecord fields media_types + audio_bearing_share become measured census fields (Canon-4 §4.1 + §8 enrichments)."*
+
+**Wave summary.** Paired-CP wave (CP-CRO1 + CP-CRO2). CP-CRO1 extended `SourceRecord` from 10 → 12 carriers with two §4.1 measurement fields (`media_types: Tuple[str, ...]` default `()` = Unmeasured · `audio_bearing_share: Optional[float]` default `None` = Unmeasured); both Optional-default so pre-CRO1 writes still succeed unchanged. `register_source_candidate` accepts new kwargs; `_compute_record_id` extended to hash new fields (§4.1 measurement participates in record identity). CP-C4 shape test UPDATED IN-PLACE with audit-trail docstring pointing at CP-CRO1. CP-CRO2 landed `services/census_canon/estate_enumerator.py :: enumerate_estate(*, run_id, freshness_stamp, targets, probe_fn=None, feed_declaration_registry=None, store) -> List[str]` — case-agnostic runtime orchestrator composing CP-C1 `classify_sensitivity` + CP-C4 `register_source_candidate` with dependency-injected `probe_fn` (orchestrator does NOT invoke ffprobe directly; caller wraps shell-out under `readonly_nas_guard`). `EstateTarget` frozen dataclass with 4 carriers. Refusals: `CensusTargetsEmptyError` / `CensusTargetInvalidError`. Deterministic. Word-boundary executive-domain negative-scan CLEAN. Net ratchet 4093 → 4105 (+12 · no cross-benefit).
+
+**Discipline receipts.**
+- Grounding brief: `notes/wave_census_runtime_orchestration_grounding_brief.md`.
+- RED: `phase0/drill_receipts/20260915T173000Z_wcro_RED_pre_impl.log` (12 failures right-reason ImportError before mechanism).
+- GREEN 1: `phase0/drill_receipts/20260915T174200Z_wcro_double_green_run1.log` (`4105 passed, 1 skipped, 438 warnings`).
+- GREEN 2: `phase0/drill_receipts/20260915T174500Z_wcro_double_green_run2.log` (byte-match with GREEN 1 · stripped-sha256 `6821e25e2b51156d723a79afd642e22b6780a038be182a7c4053a6ae6408bea3`).
+- Rider: `phase0/wave_riders/w_census_runtime_orchestration/pip_freeze.txt` (192 lines · matches CP-EXR1 rider · no dependency drift) + `collect_only.txt` (4106 tests).
+- Seal: `phase0/output_verified_seals/w_census_runtime_orchestration.seal.txt` (`Kind: w_census_runtime_orchestration`).
+
+**Boundary probe #15** (wave-close · 17:12:23 UTC): CD + Visitors BOTH FAIL · timeout · 6.007s / 6.006s. Receipt: `phase0/boundary_probes/probe_15_20260915T171223Z.json`. Zero PASS across probes #1–#15.
+
+**Guardrails unchanged.** Tests-first double-green byte-match · ratchet monotonic-up · two-commit local-only · never push · terminal pytest only · testing_agent BANNED · position-redaction hard-lock · verbatim-canon · HALT-rather-than-guess · no refactor · no LLM/HTTP/storage · no direct ffprobe invocation (dependency-injected).
+
+**CP-CSAIM1 pre-CRO1 records untouched** by this wave (wave-honest-limit E.4). Optional-default new fields; the 2 records simply carry the Unmeasured defaults. Probe-data correction records via CP-C4 E.5 append-only remain a separate operator-driven follow-on.
+
+**Onward chain (unchanged from ratified sequencing):**
+1. **W-AUDIO-PROD-MODEL-SELECT** (M8 #6 · deferred per D12-03 corpus finding until real audio source enumerated).
+2. **M6 opens** (§15 walk · Path α/β decision flag in M6-open report).
+3. **M7 opens** (W0..W9).
+4. Interleave: M3 W-BC-DYNAMIC-RECOVERY-BUILD · M2 W-PULL-SEAM-RECEIPT-UNIFY.
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+## M6 OPEN · milestone-boundary report banked 2026-09-15T~17:50Z (post CP-CRO2)
+
+**Milestone status:** M6 (Audio-Plane v1.0 Production Build · §15 order) — **OPENING** per owner ratified sequencing 2026-09-15T~04:12Z Effect 8 as confirmed by GO-chain 2026-09-15T~16:20Z.
+
+**Preconditions verified:** M5 complete (`notes/M5_SPRINT_CLOSE_20260915.md`) · M8 #1-#5 complete · M8 #6 W-AUDIO-PROD-MODEL-SELECT HALT-flagged DEFERRED per D12-03 corpus finding · ratchet 4105 green · track-a HEAD 29ff3984 · M6 grounding brief pre-banked (`notes/M6_AUDIO_PLANE_PRODUCTION_BUILD_grounding_brief.md` · 10 sub-waves + P2-deferred).
+
+**M6-open deliverable:** `notes/M6_OPEN_REPORT_20260915.md`. Path α/β decision flag banked. **Path α-pending default framing** (do NOT self-rule β; owner ruling required BEFORE first live-estate run of CP-M6-1-1). 4 owner-desk items surfaced (audio-plane sensitivity declarations · alternative NAS creds · radio subnet route · transcription server host+creds). N7 numbering gap banked for CP-M6-1-4 open. Pluggable-seam-until-ratified discipline for D10/D11 open rulings.
+
+**Boundary probe #16** (M6-open · 17:17:41 UTC): CD + Visitors BOTH FAIL · timeout · 6.007s / 6.006s. Receipt: `phase0/boundary_probes/probe_16_20260915T171741Z.json`. Zero PASS across probes #1–#16.
+
+**Next active step:** CP-M6-1-1 · Language ID at segment level (W-M6-INGEST-STAGE-1 sub-wave 1 first CP · pluggable seam per D10 open ruling · pure orchestration · no LLM/HTTP/filesystem · no audio bytes cross the seam · real backend awaits owner D10 ratification).
+
+**Onward chain:** CP-M6-1-1 → CP-M6-1-2 → CP-M6-1-3 → CP-M6-1-4 → W-M6-INGEST-STAGE-1 seals → sub-wave 2 opens per §15 dependency ordering · interleave M7 open · W-AUDIO-PROD-MODEL-SELECT resumes on audio-source unblock as M6-lateral wave.
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+## CP-M6-1-1 · Language ID pluggable seam · sealed 2026-09-15T~18:05Z (M6 sub-wave 1 first CP)
+
+**Track-a HEAD at seal:** `b105aa067a2d64e23605108030ec2ddc4c05d892`
+
+**CP charter.** M6 sub-wave 1 (W-M6-INGEST-STAGE-1) first CP per pre-banked M6 grounding brief §C. Landed `services/audio_plane_v1/language_identifier.py` — pluggable-seam mechanism for Audio-Plane §4.1 N1 verbatim: *"A lightweight offline language identifier (CPU-viable, in-perimeter) runs at segment level during ingestion."*  Public API: `identify_language_per_segment(*, segments, backend) -> List[LanguageIDResult]` · `AudioSegment` (frozen 2-carrier · pull-seam discipline: audio bytes DO NOT cross the seam) · `LanguageIDResult` (frozen 4-carrier) · `LanguageIDBackend` (Protocol) · `UnratifiedInferredBackend` (placeholder refuses with `[INFERRED-pending-ratification]` marker per D10 open ruling). Refusals: `SegmentsEmptyError` · `SegmentInvalidError` · `BackendUnratifiedError`. Pure orchestration; no LLM/HTTP/filesystem; no audio bytes cross the seam. Case-agnostic — word-boundary executive-domain negative-scan CLEAN. Ratchet 4105 → 4112 (+7).
+
+**Discipline receipts.**
+- RED: `phase0/drill_receipts/20260915T175500Z_wm6_1_1_RED_pre_impl.log` (7 right-reason ModuleNotFoundError).
+- GREEN 1: `phase0/drill_receipts/20260915T180000Z_wm6_1_1_double_green_run1.log` (`4112 passed, 1 skipped, 438 warnings`).
+- GREEN 2: `phase0/drill_receipts/20260915T180300Z_wm6_1_1_double_green_run2.log` (byte-match · stripped-sha256 `fb09f9e421fbaafe60fc9a3505f30fd3f97c04a2216fb738bb01056b430c3867`).
+- Seal: `phase0/output_verified_seals/cp_m6_1_1_language_identifier.seal.txt` (`Kind: cp_m6_1_1_language_identifier`).
+- Rider: `phase0/wave_riders/w_m6_ingest_stage_1_cp1/` (pip_freeze 192 lines no drift + collect_only 4113 tests).
+
+**Boundary probe #17** (CP-M6-1-1 seal · 17:25:33 UTC): CD + Visitors BOTH FAIL · 6.007s / 6.006s. Receipt: `phase0/boundary_probes/probe_17_20260915T172533Z.json`. Zero PASS across probes #1–#17.
+
+**D10 discipline banked.** Owner ratification unlocks a concrete backend (fastText LID.176 / Silero / etc.); the seam accepts any owner-ratified `LanguageIDBackend` implementation without mechanism change. `UnratifiedInferredBackend` refuses live invocation until then.
+
+**Guardrails unchanged.** Tests-first double-green byte-match · ratchet monotonic-up · two-commit local-only · never push · terminal pytest only · testing_agent BANNED · position-redaction hard-lock · verbatim-canon · HALT-rather-than-guess · no refactor · case-agnostic negative-scan CLEAN.
+
+**Onward chain (unchanged from M6 grounding brief §C):**
+1. CP-M6-1-2 · code-switch point detection (§4.2 P061..P062).
+2. CP-M6-1-3 · channel condition profile derivation (§4.3 N2 verbatim).
+3. CP-M6-1-4 · synthesis attributes (§4.4 P068..P070 · N7 numbering gap resolution).
+4. W-M6-INGEST-STAGE-1 seals.
+5. M6 sub-wave 2 (W-M6-DEDUP-INSTANCE-CONDITION-MAP §4.5) opens.
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

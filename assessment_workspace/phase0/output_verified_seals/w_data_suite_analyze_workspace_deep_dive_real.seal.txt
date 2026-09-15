@@ -1,0 +1,107 @@
+Kind: w_data_suite_analyze_workspace_deep_dive_real
+
+# W-DATA-SUITE-ANALYZE-WORKSPACE-REAL + W-DEEP-DIVE-REAL · Paired Wave Seal (M8 #3+#4)
+
+**Sealed at UTC:** 2026-09-15T~17:20Z
+**Wave:** paired wave · M8 quick-hardening #3+#4
+**CP count:** 2 (CP-DASWR1 · CP-DDDR1)
+**Invariants added:** +10 (5 per CP · no cross-benefit)
+**Invariants retired:** -0 (CP-D8 HALT invariant discharged in-place as passing no-op; ratchet count unchanged)
+**Net ratchet:** 4083 → 4093
+**Track-a HEAD at seal:** `7bde883aeff453d650618cd54d00813e56a322e7`
+**Master HEAD at seal:** TBD (commit pending)
+
+---
+
+## §A · Discharge summary
+
+CP-DASWR1 lands the real case-agnostic mechanism at `services/data_suite_v2/engines/analyze_workspace_engine.py`:
+
+    run(*, session_id, source_refs) -> Tuple[AnalyzeRapid, AnalyzeSources]
+
+Pure function of typed inputs — no LLM, no HTTP, no storage, no side-effects. Composes CP-D4 tab shapes (`AnalyzeRapid.tab_kind="rapid"`, `AnalyzeSources.tab_kind="sources"`). Canon-4 §22 UnitRefs-only: `AnalyzeSources.unit_refs` is a straight pass-through of the caller-provided refs. Refusals: `WorkspaceInvalidError` (empty/non-string `session_id`; non-string element in `source_refs`) · `WorkspaceEmptyError` (empty `source_refs`).
+
+CP-DDDR1 lands the real case-agnostic mechanism at `services/data_suite_v2/engines/deep_dive_engine.py`:
+
+    run(*, session_id, source_refs, prior_notes=()) -> AnalyzeDeepDive
+
+Pure function of typed inputs — no LLM, no HTTP, no storage. Composes CP-D4 `AnalyzeDeepDive` with `synthesis_sha256_hex` = SHA-256 of a canonical UTF-8 serialization of `(session_id, sorted(source_refs), prior_notes)` with ASCII UNIT SEPARATOR (`0x1f`) intra-field delimiter. Canon-4 §22 + Pull Seam P1: hash-only carrier; synthesis body NEVER materialised. Refusals: same shape as CP-DASWR1 + `WorkspaceInvalidError` on non-string element in `prior_notes`.
+
+Shared exception classes (`WorkspaceEmptyError`, `WorkspaceInvalidError`) land in `services/data_suite_v2/engines/__init__.py`.
+
+Word-boundary case-insensitive executive-domain negative-scan across module + tests is CLEAN (14-token set from CP-S8/CP-D8 precedent). Zero donor-token surfaces.
+
+CP-D8 `test_cp_d8_engine_run_raises_halt` invariant is DISCHARGED in-place (retired as passing no-op with a full audit-trail docstring pointing at CP-DASWR1 + CP-DDDR1). The gating condition (HALT-until-real-engine-lands) is dissolved by this wave; the invariant's ratchet count is preserved to keep the CP-D8 test file at its historical shape while the discharge is banked audit-trail-visible.
+
+---
+
+## §B · Discipline receipts (all banked)
+
+| Step | Path |
+|---|---|
+| Grounding brief | `notes/wave_data_suite_analyze_workspace_deep_dive_real_grounding_brief.md` |
+| RED (mechanical · right-reason `NotImplementedError: HALT` + `ImportError` × 10) | `phase0/drill_receipts/20260915T164500Z_wdaswr_wdddr_RED_pre_impl.log` |
+| GREEN 1 (full baseline · after CP-D8 discharge) | `phase0/drill_receipts/20260915T171500Z_wdaswr_wdddr_double_green_run1.log` |
+| GREEN 2 (full baseline) | `phase0/drill_receipts/20260915T171800Z_wdaswr_wdddr_double_green_run2.log` |
+| Rider · pip freeze | `phase0/wave_riders/w_data_suite_analyze_workspace_deep_dive_real/pip_freeze.txt` (192 lines · matches CP-EXR1 rider · no dependency drift) |
+| Rider · pytest --collect-only | `phase0/wave_riders/w_data_suite_analyze_workspace_deep_dive_real/collect_only.txt` (4094 tests) |
+
+**Double-green byte-match verdict:**
+- GREEN 1 raw 9524 B · GREEN 2 raw 9524 B.
+- Stripped (timing normalised): 9514 B both.
+- Stripped-sha256: `cf5ce0f91c1429d96bc94aa1eea8aa1f2bf4fbbde8b828085b4a1624a7bcfe9d` (identical).
+- Both: `4093 passed, 1 skipped, 438 warnings`.
+
+---
+
+## §C · Boundary-hygiene probe fired (this wave)
+
+- Probe #14 at wave-close (16:57:39 UTC): CD + Visitors BOTH FAIL · timeout · 6.004s / 6.005s. Receipt: `phase0/boundary_probes/probe_14_20260915T165739Z.json`.
+- Zero PASS across this wave. Standing retry loop continues.
+
+Custody guard silent · zero SEC re-leak · position-redaction hard-lock preserved.
+
+---
+
+## §D · Discipline held whole wave
+
+- Tests-first: mechanical RED banked BEFORE both mechanisms (right-reason mix of `ImportError` for shared exceptions and `NotImplementedError: HALT` from the CP-D8 skeletons before real mechanism landed).
+- Double-green byte-match at close.
+- Ratchet monotonic-up (`counts_at_baseline.passed` + `invariants_enforced_when_baseline_guard_1.passed_floor` bumped in tandem in two entries; `ratchet_history` appended twice — one per CP).
+- Word-boundary case-insensitive executive-domain negative-scan across module + tests CLEAN.
+- CP-D8 HALT invariant discharged in-place with full audit-trail docstring (retired-as-passing-no-op rather than deleted).
+- Two-commit local-only pattern (Commit A: track-a code + tests + ratchet bump · Commit B: master state · to be executed after this seal).
+- Never push. Terminal pytest only. `testing_agent` BANNED.
+- No refactor. Thin-kernel discipline.
+- No LLM transit. No HTTP. No storage.
+- Verbatim-canon on every discharge anchor in module + test docstrings.
+- Position-redaction hard-lock: no credential material across boundary probe #14.
+
+---
+
+## §E · Wave-honest limits (declared at open · unchanged at seal)
+
+1. No LLM invocation. No HTTP call. No filesystem write. No database read. Both engines are pure functions of typed inputs.
+2. The synthesis body itself is NOT materialised. `AnalyzeDeepDive` carries `synthesis_sha256_hex` as a derivative-shape carrier per Canon-4 §22 + Pull Seam P1. Producing a real synthesis body (with actual textual content) is a follow-on wave that must route through the release gate + P036 receipt-before-result.
+3. Case-agnostic. Word-boundary case-insensitive executive-domain negative-scan across module + tests. Any donor-token surfaces would HALT this wave; zero surfaced at open + at seal.
+4. `prior_notes` is an OPTIONAL sequence of pre-existing notes to fold into the deep-dive hash; default empty tuple.
+5. `source_refs` is a caller-provided `Sequence[str]` of unit-ref labels. This wave does NOT enforce a particular unit-ref format; a follow-on wave may add a shape guard.
+6. No mutation of caller inputs. Both engines take Sequence inputs and treat them as immutable; the `tuple(...)` coercion is defensive but harmless.
+
+---
+
+## §F · Onward chain
+
+Unchanged from ratified sequencing 2026-09-15T~04:12Z §Δ5 (as revised at CP-M8-G1 close):
+
+1. **W-CENSUS-RUNTIME-ORCHESTRATION** (M8 #5 · scope EXPANDED per owner 2026-09-15T~11:05Z: fold `ffprobe` `media_types` + `audio_bearing_share` into live NAS enumeration · new SourceRecord fields).
+2. **W-AUDIO-PROD-MODEL-SELECT** (M8 #6 · defer per D12-03 corpus finding until real audio source enumerated).
+3. **M6 opens** (§15 walk · Path α/β decision to be flagged in M6-open report).
+4. **M7 opens** (W0..W9).
+5. **Interleave:** M3 W-BC-DYNAMIC-RECOVERY-BUILD · M2 W-PULL-SEAM-RECEIPT-UNIFY.
+
+Owner-desk items surface in next milestone-boundary report per DECISIONS 2026-09-15T~04:12Z Effect 2 cadence.
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

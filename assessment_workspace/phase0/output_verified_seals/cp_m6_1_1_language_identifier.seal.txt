@@ -1,0 +1,86 @@
+Kind: cp_m6_1_1_language_identifier
+
+# CP-M6-1-1 · Language ID at segment level (pluggable seam) · Seal
+
+**Sealed at UTC:** 2026-09-15T~18:05Z
+**Milestone:** M6 (Audio-Plane v1.0 Production Build · §15 order · OPEN 2026-09-15T~17:50Z)
+**Sub-wave:** W-M6-INGEST-STAGE-1 (§15 item 1 · Ingestion capture · §4.1–§4.4)
+**CP:** CP-M6-1-1 (first CP of sub-wave 1)
+**Invariants added:** +7
+**Ratchet:** 4105 → 4112
+**Track-a HEAD at seal:** `b105aa067a2d64e23605108030ec2ddc4c05d892`
+**Master HEAD at seal:** TBD (commit pending)
+
+---
+
+## §A · Discharge summary
+
+CP-M6-1-1 lands `services/audio_plane_v1/language_identifier.py` — the pluggable-seam mechanism for Audio-Plane §4.1 N1 verbatim:
+
+> "A lightweight offline language identifier (CPU-viable, in-perimeter) runs at segment level during ingestion."
+
+Public API:
+- `identify_language_per_segment(*, segments: Sequence[AudioSegment], backend: LanguageIDBackend) -> List[LanguageIDResult]`
+- `AudioSegment` (frozen 2-carrier: `segment_ref` + `duration_s`). Pull-seam discipline: **audio bytes DO NOT cross the seam** — only the opaque caller-scoped `segment_ref` handle + `duration_s` metadata.
+- `LanguageIDResult` (frozen 4-carrier: `segment_ref` + `language_tag` + `confidence` + `backend_name`).
+- `LanguageIDBackend` (`Protocol` with `backend_name` attr + `identify(segment_ref, duration_s) -> Tuple[str, float]`).
+- `UnratifiedInferredBackend` (placeholder; satisfies protocol structurally; refuses to identify with `[INFERRED-pending-ratification]` marker per D10 open ruling · RULING_LEDGER row 13).
+- Refusals: `SegmentsEmptyError` · `SegmentInvalidError` · `BackendUnratifiedError`.
+
+Pure orchestration — no LLM, no HTTP, no filesystem, no direct audio-byte reading. Real backend (fastText LID.176 / Silero / etc.) awaits owner D10 ratification; the seam is real and admits any owner-ratified backend on ratification.
+
+Case-agnostic — word-boundary case-insensitive executive-domain negative-scan CLEAN across module + tests (14-token set from CP-S8/CP-D8/CP-DASWR1/CP-DDDR1/CP-CRO precedent).
+
+---
+
+## §B · Discipline receipts
+
+| Step | Path |
+|---|---|
+| RED (7 right-reason ImportError) | `phase0/drill_receipts/20260915T175500Z_wm6_1_1_RED_pre_impl.log` |
+| GREEN 1 (full baseline) | `phase0/drill_receipts/20260915T180000Z_wm6_1_1_double_green_run1.log` |
+| GREEN 2 (full baseline · byte-match) | `phase0/drill_receipts/20260915T180300Z_wm6_1_1_double_green_run2.log` |
+| Rider · pip freeze | `phase0/wave_riders/w_m6_ingest_stage_1_cp1/pip_freeze.txt` (192 lines · no drift) |
+| Rider · pytest --collect-only | `phase0/wave_riders/w_m6_ingest_stage_1_cp1/collect_only.txt` (4113 tests) |
+
+**Double-green byte-match verdict:**
+- GREEN 1 raw 9604 B · GREEN 2 raw 9604 B.
+- Stripped (timing normalised): 9594 B both.
+- Stripped-sha256: `fb09f9e421fbaafe60fc9a3505f30fd3f97c04a2216fb738bb01056b430c3867` (identical).
+- Both: `4112 passed, 1 skipped, 438 warnings`.
+
+---
+
+## §C · Boundary-hygiene probe fired
+
+- Probe #17 at CP-M6-1-1 seal (17:25:33 UTC): CD + Visitors BOTH FAIL · timeout · 6.007s / 6.006s. Receipt: `phase0/boundary_probes/probe_17_20260915T172533Z.json`.
+- Zero PASS across probes #1–#17.
+
+---
+
+## §D · Discipline held
+
+- Tests-first: mechanical RED before mechanism.
+- Double-green byte-match at close.
+- Ratchet monotonic-up.
+- Word-boundary executive-domain negative-scan CLEAN.
+- Pull-seam discipline: audio bytes never cross the `LanguageIDBackend` seam.
+- D10 pluggable-seam-until-ratified: `UnratifiedInferredBackend` refuses with `[INFERRED-pending-ratification]` marker; owner ratification unlocks concrete backend.
+- Two-commit local-only. Never push. Terminal pytest only. `testing_agent` BANNED.
+- Position-redaction hard-lock preserved.
+- No refactor.
+
+---
+
+## §E · Onward chain
+
+Next CPs in W-M6-INGEST-STAGE-1 (per pre-banked M6 grounding brief §C):
+1. **CP-M6-1-2** · code-switch point detection (§4.2 P061..P062 · TESTS-FIRST · code-switch points annotated with confidence + language-pair).
+2. **CP-M6-1-3** · channel condition profile derivation (§4.3 N2 verbatim · TESTS-FIRST · per-segment channel condition ∈ {studio, field, telephone-band} + transmission-artefacts + background-class carriers).
+3. **CP-M6-1-4** · synthesis attributes (§4.4 P068..P070 · N7 numbering gap resolution · TESTS-FIRST · synthesis-attribute carrier per verbatim §4.4).
+4. Then W-M6-INGEST-STAGE-1 seals.
+5. Then M6 sub-wave 2 opens (W-M6-DEDUP-INSTANCE-CONDITION-MAP §4.5).
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
