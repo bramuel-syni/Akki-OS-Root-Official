@@ -1,0 +1,3574 @@
+{
+  "at_utc": "2026-09-15T08:16:13Z",
+  "label": "cp5_quality_profile",
+  "hosts": [
+    "159.138.162.146",
+    "110.238.76.159"
+  ],
+  "per_host": {
+    "159.138.162.146": {
+      "at_utc": "2026-09-15T08:15:56Z",
+      "label": "weego",
+      "host": "159.138.162.146",
+      "port": 3306,
+      "user": "bramuel",
+      "connected": true,
+      "sql_trace": [
+        {
+          "sql": "SELECT `campaign_id`, `l_s_m_id` FROM `analytics`.`campaign_l_s_m_s` LIMIT 200",
+          "lead_verb": "SELECT",
+          "row_count": 0,
+          "ok": true
+        },
+        {
+          "sql": "SELECT `campaign_id`, `time_slot_id` FROM `analytics`.`campaign_time_slots` LIMIT 200",
+          "lead_verb": "SELECT",
+          "row_count": 0,
+          "ok": true
+        },
+        {
+          "sql": "SELECT `campaign_id`, `region_id` FROM `analytics`.`campaign_regions` LIMIT 200",
+          "lead_verb": "SELECT",
+          "row_count": 6,
+          "ok": true
+        },
+        {
+          "sql": "SELECT `staff_id`, `dob`, `staff_gender`, `staff_name` FROM `sql_demo`.`marketting` LIMIT 200",
+          "lead_verb": "SELECT",
+          "row_count": 3,
+          "ok": true
+        },
+        {
+          "sql": "SELECT `gender`, `staff_payroll`, `staff_name`, `staff_doa` FROM `sql_trial1`.`programming` LIMIT 200",
+          "lead_verb": "SELECT",
+          "row_count": 3,
+          "ok": true
+        },
+        {
+          "sql": "SELECT `country_id`, `document_id`, `check_offer_user`, `check_user` FROM `weego`.`country_carpooling_document` LIMIT 200",
+          "lead_verb": "SELECT",
+          "row_count": 0,
+          "ok": true
+        },
+        {
+          "sql": "SELECT `id`, `country_area_id`, `service_type_id`, `segment_id` FROM `weego`.`country_area_service_type` LIMIT 200",
+          "lead_verb": "SELECT",
+          "row_count": 77,
+          "ok": true
+        },
+        {
+          "sql": "SELECT `id`, `merchant_id`, `business_segment_id`, `segment_id`, `product_variant_id`, `product_cost`, `product_selling_price`, `created_at`, `updated_at`, `current_stock` FROM `weego`.`product_inventories` LIMIT 200",
+          "lead_verb": "SELECT",
+          "row_count": 0,
+          "ok": true
+        }
+      ],
+      "per_column": {
+        "analytics.campaign_l_s_m_s.campaign_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "analytics.campaign_l_s_m_s.l_s_m_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "analytics.campaign_time_slots.campaign_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "analytics.campaign_time_slots.time_slot_id": {
+          "roles": [
+            "role.timestamp",
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "analytics.campaign_regions.campaign_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 2,
+          "sample_n": 6,
+          "format_conformance": {}
+        },
+        "analytics.campaign_regions.region_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 5,
+          "sample_n": 6,
+          "format_conformance": {}
+        },
+        "sql_demo.marketting.staff_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 3,
+          "sample_n": 3,
+          "format_conformance": {}
+        },
+        "sql_demo.marketting.dob": {
+          "roles": [
+            "role.dob"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 3,
+          "sample_n": 3,
+          "format_conformance": {}
+        },
+        "sql_demo.marketting.staff_gender": {
+          "roles": [
+            "role.gender"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 2,
+          "sample_n": 3,
+          "format_conformance": {}
+        },
+        "sql_demo.marketting.staff_name": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 3,
+          "sample_n": 3,
+          "format_conformance": {}
+        },
+        "sql_trial1.programming.gender": {
+          "roles": [
+            "role.gender"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 2,
+          "sample_n": 3,
+          "format_conformance": {}
+        },
+        "sql_trial1.programming.staff_payroll": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 3,
+          "sample_n": 3,
+          "format_conformance": {}
+        },
+        "sql_trial1.programming.staff_name": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 3,
+          "sample_n": 3,
+          "format_conformance": {}
+        },
+        "sql_trial1.programming.staff_doa": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 3,
+          "sample_n": 3,
+          "format_conformance": {}
+        },
+        "weego.country_carpooling_document.country_id": {
+          "roles": [
+            "role.address",
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "weego.country_carpooling_document.document_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "weego.country_carpooling_document.check_offer_user": {
+          "roles": [],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "weego.country_carpooling_document.check_user": {
+          "roles": [],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "weego.country_area_service_type.id": {
+          "roles": [
+            "role.pk_candidate"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 77,
+          "sample_n": 77,
+          "format_conformance": {}
+        },
+        "weego.country_area_service_type.country_area_id": {
+          "roles": [
+            "role.address",
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 16,
+          "sample_n": 77,
+          "format_conformance": {}
+        },
+        "weego.country_area_service_type.service_type_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 5,
+          "sample_n": 77,
+          "format_conformance": {}
+        },
+        "weego.country_area_service_type.segment_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 1,
+          "sample_n": 77,
+          "format_conformance": {}
+        },
+        "weego.product_inventories.id": {
+          "roles": [
+            "role.pk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "weego.product_inventories.merchant_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "weego.product_inventories.business_segment_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "weego.product_inventories.segment_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "weego.product_inventories.product_variant_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "weego.product_inventories.product_cost": {
+          "roles": [
+            "role.amount"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "weego.product_inventories.product_selling_price": {
+          "roles": [
+            "role.amount"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "weego.product_inventories.created_at": {
+          "roles": [
+            "role.timestamp"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "weego.product_inventories.updated_at": {
+          "roles": [
+            "role.timestamp"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "weego.product_inventories.current_stock": {
+          "roles": [],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        }
+      },
+      "totals": {
+        "tables_profiled": 8,
+        "columns_profiled": 32,
+        "sample_rows_pulled": 89
+      },
+      "errors": [],
+      "profile_sha256": "91ac5c0eab2a767403966c56b7b02b7d596433cddcf5783516cc7da6d8a921fd",
+      "credential_reuse_note": "reused bramuel credential from '203.123.86.10'"
+    },
+    "110.238.76.159": {
+      "at_utc": "2026-09-15T08:16:00Z",
+      "label": "ussd",
+      "host": "110.238.76.159",
+      "port": 3306,
+      "user": "bramuel",
+      "connected": true,
+      "sql_trace": [
+        {
+          "sql": "SELECT `meta_id`, `post_id`, `meta_value`, `cronned`, `meta_key` FROM `citizen_digital`.`wp_postmeta` LIMIT 200",
+          "lead_verb": "SELECT",
+          "row_count": 200,
+          "ok": true
+        },
+        {
+          "sql": "SELECT `id`, `meta_value`, `user_id`, `created_at`, `updated_at`, `data_type`, `meta_key`, `status`, `guard` FROM `citizen_digital`.`settings` LIMIT 200",
+          "lead_verb": "SELECT",
+          "row_count": 6,
+          "ok": true
+        },
+        {
+          "sql": "SELECT `id`, `user_id`, `favoriteable_id`, `created_at`, `updated_at`, `deleted_at`, `favoriteable_type` FROM `citizen_digital`.`favorites` LIMIT 200",
+          "lead_verb": "SELECT",
+          "row_count": 0,
+          "ok": true
+        },
+        {
+          "sql": "SELECT `id`, `MSISDN`, `FirstName`, `LastName`, `station_id`, `payload`, `TransAmount`, `TransactionType`, `TransTime`, `BillRefNumber` FROM `db_jipange`.`raffle_transactions` LIMIT 200",
+          "lead_verb": "SELECT",
+          "row_count": 200,
+          "ok": true
+        },
+        {
+          "sql": "SELECT `text` FROM `db_jipange`.`test` LIMIT 200",
+          "lead_verb": "SELECT",
+          "row_count": 2,
+          "ok": true
+        },
+        {
+          "sql": "SELECT `id`, `name` FROM `db_jipange`.`age_range` LIMIT 200",
+          "lead_verb": "SELECT",
+          "row_count": 6,
+          "ok": true
+        },
+        {
+          "sql": "SELECT `id`, `phone`, `skiza_id`, `created_at`, `updated_at`, `skiza_code`, `skiza_name`, `genres`, `skiza_tune`, `status` FROM `db_skiza`.`skiza_tunes` LIMIT 200",
+          "lead_verb": "SELECT",
+          "row_count": 200,
+          "ok": true
+        },
+        {
+          "sql": "SELECT `id`, `phone`, `date_time`, `trans_id`, `won`, `points` FROM `db_skiza`.`ruffle_entries` LIMIT 200",
+          "lead_verb": "SELECT",
+          "row_count": 200,
+          "ok": true
+        },
+        {
+          "sql": "SELECT `id`, `MSISDN`, `FirstName`, `LastName`, `station_id`, `BillRefNumber`, `TransactionType`, `CreatedBy`, `CreatedOn`, `TransID` FROM `db_skiza`.`raffle_transactions` LIMIT 200",
+          "lead_verb": "SELECT",
+          "row_count": 0,
+          "ok": true
+        },
+        {
+          "sql": "SELECT `permission_id`, `role_id` FROM `freddy_dev`.`role_has_permissions` LIMIT 200",
+          "lead_verb": "SELECT",
+          "row_count": 0,
+          "ok": true
+        },
+        {
+          "sql": "SELECT `id`, `created_at`, `updated_at`, `slug`, `name`, `order_column`, `type` FROM `freddy_dev`.`tags` LIMIT 200",
+          "lead_verb": "SELECT",
+          "row_count": 200,
+          "ok": true
+        },
+        {
+          "sql": "SELECT `id`, `amount`, `user_id`, `payment_gateway_id`, `created_at`, `updated_at`, `reason`, `extras`, `status` FROM `freddy_dev`.`payment_references` LIMIT 200",
+          "lead_verb": "SELECT",
+          "row_count": 5,
+          "ok": true
+        },
+        {
+          "sql": "SELECT `code`, `name` FROM `miniapps`.`designation` LIMIT 200",
+          "lead_verb": "SELECT",
+          "row_count": 4,
+          "ok": true
+        },
+        {
+          "sql": "SELECT `id`, `name`, `date_deleted`, `date_created`, `date_last_updated`, `created_by` FROM `miniapps`.`role` LIMIT 200",
+          "lead_verb": "SELECT",
+          "row_count": 1,
+          "ok": true
+        },
+        {
+          "sql": "SELECT `code`, `name` FROM `miniapps`.`status` LIMIT 200",
+          "lead_verb": "SELECT",
+          "row_count": 7,
+          "ok": true
+        },
+        {
+          "sql": "SELECT `id`, `stream_url`, `parental_guide_id`, `paid_type_id`, `created_at`, `updated_at`, `deleted_at`, `town`, `description`, `title` FROM `tafaria_ecommerce`.`live_streams` LIMIT 200",
+          "lead_verb": "SELECT",
+          "row_count": 0,
+          "ok": true
+        },
+        {
+          "sql": "SELECT `id`, `migration`, `batch` FROM `tafaria_ecommerce`.`migrations` LIMIT 200",
+          "lead_verb": "SELECT",
+          "row_count": 198,
+          "ok": true
+        },
+        {
+          "sql": "SELECT `id`, `music_type_id`, `track_id`, `hls_url`, `datapass_hls_url`, `thumbnail_url`, `created_at`, `updated_at`, `skiza_code`, `sequence` FROM `tafaria_ecommerce`.`music_type_track` LIMIT 200",
+          "lead_verb": "SELECT",
+          "row_count": 0,
+          "ok": true
+        },
+        {
+          "sql": "SELECT `parent_id`, `child_id` FROM `tafaria_shop`.`product_up_sells` LIMIT 200",
+          "lead_verb": "SELECT",
+          "row_count": 0,
+          "ok": true
+        },
+        {
+          "sql": "SELECT `parent_id`, `child_id` FROM `tafaria_shop`.`product_relations` LIMIT 200",
+          "lead_verb": "SELECT",
+          "row_count": 0,
+          "ok": true
+        },
+        {
+          "sql": "SELECT `id`, `price`, `base_price`, `total`, `base_total`, `tax_amount`, `base_tax_amount`, `product_id`, `order_item_id`, `invoice_id` FROM `tafaria_shop`.`invoice_items` LIMIT 200",
+          "lead_verb": "SELECT",
+          "row_count": 0,
+          "ok": true
+        },
+        {
+          "sql": "SELECT `id`, `MSISDN`, `FirstName`, `LastName`, `created_at`, `updated_at`, `ThirdPartyTransID`, `TransAmount`, `TransactionType`, `OrgAccountBalance` FROM `viupay_dev`.`mpesa_c2b_callbacks` LIMIT 200",
+          "lead_verb": "SELECT",
+          "row_count": 0,
+          "ok": true
+        },
+        {
+          "sql": "SELECT `id`, `created_at`, `attempts`, `reserved_at`, `payload`, `queue`, `available_at` FROM `viupay_dev`.`jobs` LIMIT 200",
+          "lead_verb": "SELECT",
+          "row_count": 0,
+          "ok": true
+        },
+        {
+          "sql": "SELECT `id`, `created_at`, `updated_at`, `telco`, `params`, `enabled`, `type`, `slug`, `name` FROM `viupay_dev`.`gateways` LIMIT 200",
+          "lead_verb": "SELECT",
+          "row_count": 100,
+          "ok": true
+        },
+        {
+          "sql": "SELECT `id`, `msisdn`, `currency`, `sacco_id`, `channel_id`, `provider_id`, `entrydate`, `channel`, `otp`, `callurl` FROM `viupay_fare`.`tbl_paymentreq` LIMIT 200",
+          "lead_verb": "SELECT",
+          "row_count": 200,
+          "ok": true
+        },
+        {
+          "sql": "SELECT `id`, `msisdn`, `password`, `nationalid`, `first_name_director1`, `first_name_director2`, `last_name_director1`, `last_name_director2`, `operating_address`, `consumer_secret` FROM `viupay_fare`.`tbl_sacco` LIMIT 200",
+          "lead_verb": "SELECT",
+          "row_count": 200,
+          "ok": true
+        },
+        {
+          "sql": "SELECT `id`, `payment_modename`, `payment_mode` FROM `viupay_fare`.`tbl_paymentmode_master` LIMIT 200",
+          "lead_verb": "SELECT",
+          "row_count": 2,
+          "ok": true
+        },
+        {
+          "sql": "SELECT `id`, `entrydate`, `lowerlimit`, `withdraw_charges`, `higherlimit` FROM `viupay_fare_test`.`tbl_withdraw_charges` LIMIT 200",
+          "lead_verb": "SELECT",
+          "row_count": 2,
+          "ok": true
+        },
+        {
+          "sql": "SELECT `id`, `source_address`, `destination_address`, `total_seats`, `customer_msisdn`, `national_id`, `amount`, `user_id`, `manager_username`, `refund_amount` FROM `viupay_fare_test`.`tbl_matatu_booking_trans` LIMIT 200",
+          "lead_verb": "SELECT",
+          "row_count": 117,
+          "ok": true
+        },
+        {
+          "sql": "SELECT `id`, `button_redirect_link`, `banner_text`, `is_button`, `banner_heading`, `button_label`, `banner_image` FROM `viupay_fare_test`.`tbl_banner_details` LIMIT 200",
+          "lead_verb": "SELECT",
+          "row_count": 3,
+          "ok": true
+        },
+        {
+          "sql": "SELECT `id`, `email`, `phone`, `firstname`, `lastname`, `tax_nr`, `address_id`, `created_at`, `updated_at`, `is_eu_registered` FROM `viusasa_dev`.`billpayers` LIMIT 200",
+          "lead_verb": "SELECT",
+          "row_count": 0,
+          "ok": true
+        },
+        {
+          "sql": "SELECT `id`, `api_provider_id`, `full_url`, `application_url`, `created_at`, `updated_at`, `description`, `meta`, `is_featured`, `summary` FROM `viusasa_dev`.`job_adverts` LIMIT 200",
+          "lead_verb": "SELECT",
+          "row_count": 0,
+          "ok": true
+        },
+        {
+          "sql": "SELECT `id`, `order_id`, `total_amount`, `currency`, `created_at`, `updated_at`, `invoice_number`, `invoice_count` FROM `viusasa_dev`.`invoices` LIMIT 200",
+          "lead_verb": "SELECT",
+          "row_count": 0,
+          "ok": true
+        },
+        {
+          "sql": "SELECT `id`, `user_id`, `preferable_id`, `created_at`, `updated_at`, `preferable_type`, `type` FROM `viusasa_staging`.`preferences` LIMIT 200",
+          "lead_verb": "SELECT",
+          "row_count": 3,
+          "ok": true
+        },
+        {
+          "sql": "SELECT `id`, `user_id`, `sub_user_id`, `playable_id`, `season_id`, `series_id`, `production_house_id`, `playback_session_id`, `country`, `address` FROM `viusasa_staging`.`playbacks_reports` LIMIT 200",
+          "lead_verb": "SELECT",
+          "row_count": 0,
+          "ok": true
+        },
+        {
+          "sql": "SELECT `id`, `user_id`, `url`, `ip`, `created_at`, `updated_at`, `method` FROM `viusasa_staging`.`page_logs` LIMIT 200",
+          "lead_verb": "SELECT",
+          "row_count": 74,
+          "ok": true
+        },
+        {
+          "sql": "SELECT `id`, `menu_id`, `production_house_id`, `parental_guide_id`, `paid_type_id`, `created_at`, `updated_at`, `deleted_at`, `valid_from`, `valid_to` FROM `viusasa_staging_2`.`albums` LIMIT 200",
+          "lead_verb": "SELECT",
+          "row_count": 0,
+          "ok": true
+        },
+        {
+          "sql": "SELECT `id`, `created_at`, `updated_at`, `deleted_at`, `priority`, `slug`, `name`, `status`, `created_by` FROM `viusasa_staging_2`.`school_levels` LIMIT 200",
+          "lead_verb": "SELECT",
+          "row_count": 2,
+          "ok": true
+        },
+        {
+          "sql": "SELECT `id`, `user_id`, `sub_user_id`, `series_id`, `created_at`, `updated_at` FROM `viusasa_staging_2`.`watchlists` LIMIT 200",
+          "lead_verb": "SELECT",
+          "row_count": 0,
+          "ok": true
+        },
+        {
+          "sql": "SELECT `id`, `playlist_id`, `playlistable_id`, `created_at`, `updated_at`, `playlistable_type` FROM `viusasa_staging_dev`.`model_has_playlists` LIMIT 200",
+          "lead_verb": "SELECT",
+          "row_count": 0,
+          "ok": true
+        },
+        {
+          "sql": "SELECT `id`, `phone`, `currency`, `order_amount`, `user_id`, `created_at`, `updated_at`, `deleted_at`, `instructions`, `order_count` FROM `viusasa_staging_dev`.`ecommerce_orders` LIMIT 200",
+          "lead_verb": "SELECT",
+          "row_count": 0,
+          "ok": true
+        },
+        {
+          "sql": "SELECT `id`, `user_id`, `sub_user_id`, `series_id`, `created_at`, `updated_at` FROM `viusasa_staging_dev`.`watchlists` LIMIT 200",
+          "lead_verb": "SELECT",
+          "row_count": 0,
+          "ok": true
+        },
+        {
+          "sql": "SELECT `value`, `expiration`, `key` FROM `viutickets`.`cache` LIMIT 200",
+          "lead_verb": "SELECT",
+          "row_count": 0,
+          "ok": true
+        },
+        {
+          "sql": "SELECT `id`, `event_id`, `price`, `created_at`, `updated_at`, `expires_on`, `starts_on`, `tier`, `seasoned_ticket_days`, `is_seasoned_ticket` FROM `viutickets`.`ticket_prices` LIMIT 200",
+          "lead_verb": "SELECT",
+          "row_count": 200,
+          "ok": true
+        },
+        {
+          "sql": "SELECT `id`, `email_address`, `created_at`, `updated_at`, `deleted_at`, `name`, `status` FROM `viutickets`.`newsletter_customers` LIMIT 200",
+          "lead_verb": "SELECT",
+          "row_count": 200,
+          "ok": true
+        },
+        {
+          "sql": "SELECT `id`, `migration`, `batch` FROM `viutickets_dev`.`migrations` LIMIT 200",
+          "lead_verb": "SELECT",
+          "row_count": 39,
+          "ok": true
+        },
+        {
+          "sql": "SELECT `id`, `phone`, `country_code`, `broadcast_id`, `api_message_id`, `customer_id`, `created_at`, `updated_at`, `network`, `length` FROM `viutickets_dev`.`sms` LIMIT 200",
+          "lead_verb": "SELECT",
+          "row_count": 86,
+          "ok": true
+        },
+        {
+          "sql": "SELECT `id`, `redirect_url`, `image_url`, `created_at`, `updated_at`, `deleted_at`, `params`, `description`, `slug`, `status` FROM `viutickets_dev`.`gateways` LIMIT 200",
+          "lead_verb": "SELECT",
+          "row_count": 1,
+          "ok": true
+        }
+      ],
+      "per_column": {
+        "citizen_digital.wp_postmeta.meta_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 200,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "citizen_digital.wp_postmeta.post_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 200,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "citizen_digital.wp_postmeta.meta_value": {
+          "roles": [
+            "role.amount"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 198,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "citizen_digital.wp_postmeta.cronned": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 1,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "citizen_digital.wp_postmeta.meta_key": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 1,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "citizen_digital.settings.id": {
+          "roles": [
+            "role.pk_candidate"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 6,
+          "sample_n": 6,
+          "format_conformance": {}
+        },
+        "citizen_digital.settings.meta_value": {
+          "roles": [
+            "role.amount"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 4,
+          "sample_n": 6,
+          "format_conformance": {}
+        },
+        "citizen_digital.settings.user_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": 1.0,
+          "distinct_count": 0,
+          "sample_n": 6,
+          "format_conformance": {}
+        },
+        "citizen_digital.settings.created_at": {
+          "roles": [
+            "role.timestamp"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 1,
+          "sample_n": 6,
+          "format_conformance": {}
+        },
+        "citizen_digital.settings.updated_at": {
+          "roles": [
+            "role.timestamp"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 1,
+          "sample_n": 6,
+          "format_conformance": {}
+        },
+        "citizen_digital.settings.data_type": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 3,
+          "sample_n": 6,
+          "format_conformance": {}
+        },
+        "citizen_digital.settings.meta_key": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 6,
+          "sample_n": 6,
+          "format_conformance": {}
+        },
+        "citizen_digital.settings.status": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 1,
+          "sample_n": 6,
+          "format_conformance": {}
+        },
+        "citizen_digital.settings.guard": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 1,
+          "sample_n": 6,
+          "format_conformance": {}
+        },
+        "citizen_digital.favorites.id": {
+          "roles": [
+            "role.pk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "citizen_digital.favorites.user_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "citizen_digital.favorites.favoriteable_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "citizen_digital.favorites.created_at": {
+          "roles": [
+            "role.timestamp"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "citizen_digital.favorites.updated_at": {
+          "roles": [
+            "role.timestamp"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "citizen_digital.favorites.deleted_at": {
+          "roles": [
+            "role.timestamp"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "citizen_digital.favorites.favoriteable_type": {
+          "roles": [],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "db_jipange.raffle_transactions.id": {
+          "roles": [
+            "role.pk_candidate"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 200,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "db_jipange.raffle_transactions.MSISDN": {
+          "roles": [
+            "role.phone"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 174,
+          "sample_n": 200,
+          "format_conformance": {
+            "role.phone": 1.0
+          }
+        },
+        "db_jipange.raffle_transactions.FirstName": {
+          "roles": [
+            "role.name_person"
+          ],
+          "null_ratio": 0.485,
+          "distinct_count": 69,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "db_jipange.raffle_transactions.LastName": {
+          "roles": [
+            "role.name_person"
+          ],
+          "null_ratio": 0.5,
+          "distinct_count": 69,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "db_jipange.raffle_transactions.station_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": 1.0,
+          "distinct_count": 0,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "db_jipange.raffle_transactions.payload": {
+          "roles": [],
+          "null_ratio": 1.0,
+          "distinct_count": 0,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "db_jipange.raffle_transactions.TransAmount": {
+          "roles": [],
+          "null_ratio": 0.005,
+          "distinct_count": 4,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "db_jipange.raffle_transactions.TransactionType": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 3,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "db_jipange.raffle_transactions.TransTime": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 177,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "db_jipange.raffle_transactions.BillRefNumber": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 182,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "db_jipange.test.text": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 2,
+          "sample_n": 2,
+          "format_conformance": {}
+        },
+        "db_jipange.age_range.id": {
+          "roles": [
+            "role.pk_candidate"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 6,
+          "sample_n": 6,
+          "format_conformance": {}
+        },
+        "db_jipange.age_range.name": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 6,
+          "sample_n": 6,
+          "format_conformance": {}
+        },
+        "db_skiza.skiza_tunes.id": {
+          "roles": [
+            "role.pk_candidate"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 200,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "db_skiza.skiza_tunes.phone": {
+          "roles": [
+            "role.phone"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 164,
+          "sample_n": 200,
+          "format_conformance": {
+            "role.phone": 1.0
+          }
+        },
+        "db_skiza.skiza_tunes.skiza_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 20,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "db_skiza.skiza_tunes.created_at": {
+          "roles": [
+            "role.timestamp"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 197,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "db_skiza.skiza_tunes.updated_at": {
+          "roles": [
+            "role.timestamp"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 67,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "db_skiza.skiza_tunes.skiza_code": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 20,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "db_skiza.skiza_tunes.skiza_name": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 20,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "db_skiza.skiza_tunes.genres": {
+          "roles": [],
+          "null_ratio": 0.01,
+          "distinct_count": 10,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "db_skiza.skiza_tunes.skiza_tune": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 21,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "db_skiza.skiza_tunes.status": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 1,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "db_skiza.ruffle_entries.id": {
+          "roles": [
+            "role.pk_candidate"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 200,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "db_skiza.ruffle_entries.phone": {
+          "roles": [
+            "role.phone"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 164,
+          "sample_n": 200,
+          "format_conformance": {
+            "role.phone": 1.0
+          }
+        },
+        "db_skiza.ruffle_entries.date_time": {
+          "roles": [
+            "role.timestamp"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 197,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "db_skiza.ruffle_entries.trans_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 200,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "db_skiza.ruffle_entries.won": {
+          "roles": [],
+          "null_ratio": 0.9,
+          "distinct_count": 1,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "db_skiza.ruffle_entries.points": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 1,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "db_skiza.raffle_transactions.id": {
+          "roles": [
+            "role.pk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "db_skiza.raffle_transactions.MSISDN": {
+          "roles": [
+            "role.phone"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "db_skiza.raffle_transactions.FirstName": {
+          "roles": [
+            "role.name_person"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "db_skiza.raffle_transactions.LastName": {
+          "roles": [
+            "role.name_person"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "db_skiza.raffle_transactions.station_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "db_skiza.raffle_transactions.BillRefNumber": {
+          "roles": [],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "db_skiza.raffle_transactions.TransactionType": {
+          "roles": [],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "db_skiza.raffle_transactions.CreatedBy": {
+          "roles": [],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "db_skiza.raffle_transactions.CreatedOn": {
+          "roles": [],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "db_skiza.raffle_transactions.TransID": {
+          "roles": [],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "freddy_dev.role_has_permissions.permission_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "freddy_dev.role_has_permissions.role_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "freddy_dev.tags.id": {
+          "roles": [
+            "role.pk_candidate"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 200,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "freddy_dev.tags.created_at": {
+          "roles": [
+            "role.timestamp"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 7,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "freddy_dev.tags.updated_at": {
+          "roles": [
+            "role.timestamp"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 7,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "freddy_dev.tags.slug": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 200,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "freddy_dev.tags.name": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 200,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "freddy_dev.tags.order_column": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 200,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "freddy_dev.tags.type": {
+          "roles": [],
+          "null_ratio": 1.0,
+          "distinct_count": 0,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "freddy_dev.payment_references.id": {
+          "roles": [
+            "role.pk_candidate"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 5,
+          "sample_n": 5,
+          "format_conformance": {}
+        },
+        "freddy_dev.payment_references.amount": {
+          "roles": [
+            "role.amount"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 3,
+          "sample_n": 5,
+          "format_conformance": {}
+        },
+        "freddy_dev.payment_references.user_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 2,
+          "sample_n": 5,
+          "format_conformance": {}
+        },
+        "freddy_dev.payment_references.payment_gateway_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 2,
+          "sample_n": 5,
+          "format_conformance": {}
+        },
+        "freddy_dev.payment_references.created_at": {
+          "roles": [
+            "role.timestamp"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 5,
+          "sample_n": 5,
+          "format_conformance": {}
+        },
+        "freddy_dev.payment_references.updated_at": {
+          "roles": [
+            "role.timestamp"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 5,
+          "sample_n": 5,
+          "format_conformance": {}
+        },
+        "freddy_dev.payment_references.reason": {
+          "roles": [],
+          "null_ratio": 0.4,
+          "distinct_count": 2,
+          "sample_n": 5,
+          "format_conformance": {}
+        },
+        "freddy_dev.payment_references.extras": {
+          "roles": [],
+          "null_ratio": 1.0,
+          "distinct_count": 0,
+          "sample_n": 5,
+          "format_conformance": {}
+        },
+        "freddy_dev.payment_references.status": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 3,
+          "sample_n": 5,
+          "format_conformance": {}
+        },
+        "miniapps.designation.code": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 4,
+          "sample_n": 4,
+          "format_conformance": {}
+        },
+        "miniapps.designation.name": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 4,
+          "sample_n": 4,
+          "format_conformance": {}
+        },
+        "miniapps.role.id": {
+          "roles": [
+            "role.pk_candidate"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 1,
+          "sample_n": 1,
+          "format_conformance": {}
+        },
+        "miniapps.role.name": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 1,
+          "sample_n": 1,
+          "format_conformance": {}
+        },
+        "miniapps.role.date_deleted": {
+          "roles": [],
+          "null_ratio": 1.0,
+          "distinct_count": 0,
+          "sample_n": 1,
+          "format_conformance": {}
+        },
+        "miniapps.role.date_created": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 1,
+          "sample_n": 1,
+          "format_conformance": {}
+        },
+        "miniapps.role.date_last_updated": {
+          "roles": [],
+          "null_ratio": 1.0,
+          "distinct_count": 0,
+          "sample_n": 1,
+          "format_conformance": {}
+        },
+        "miniapps.role.created_by": {
+          "roles": [],
+          "null_ratio": 1.0,
+          "distinct_count": 0,
+          "sample_n": 1,
+          "format_conformance": {}
+        },
+        "miniapps.status.code": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 7,
+          "sample_n": 7,
+          "format_conformance": {}
+        },
+        "miniapps.status.name": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 7,
+          "sample_n": 7,
+          "format_conformance": {}
+        },
+        "tafaria_ecommerce.live_streams.id": {
+          "roles": [
+            "role.pk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "tafaria_ecommerce.live_streams.stream_url": {
+          "roles": [
+            "role.url"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "tafaria_ecommerce.live_streams.parental_guide_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "tafaria_ecommerce.live_streams.paid_type_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "tafaria_ecommerce.live_streams.created_at": {
+          "roles": [
+            "role.timestamp"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "tafaria_ecommerce.live_streams.updated_at": {
+          "roles": [
+            "role.timestamp"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "tafaria_ecommerce.live_streams.deleted_at": {
+          "roles": [
+            "role.timestamp"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "tafaria_ecommerce.live_streams.town": {
+          "roles": [],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "tafaria_ecommerce.live_streams.description": {
+          "roles": [],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "tafaria_ecommerce.live_streams.title": {
+          "roles": [],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "tafaria_ecommerce.migrations.id": {
+          "roles": [
+            "role.pk_candidate"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 198,
+          "sample_n": 198,
+          "format_conformance": {}
+        },
+        "tafaria_ecommerce.migrations.migration": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 198,
+          "sample_n": 198,
+          "format_conformance": {}
+        },
+        "tafaria_ecommerce.migrations.batch": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 1,
+          "sample_n": 198,
+          "format_conformance": {}
+        },
+        "tafaria_ecommerce.music_type_track.id": {
+          "roles": [
+            "role.pk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "tafaria_ecommerce.music_type_track.music_type_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "tafaria_ecommerce.music_type_track.track_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "tafaria_ecommerce.music_type_track.hls_url": {
+          "roles": [
+            "role.url"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "tafaria_ecommerce.music_type_track.datapass_hls_url": {
+          "roles": [
+            "role.url"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "tafaria_ecommerce.music_type_track.thumbnail_url": {
+          "roles": [
+            "role.url"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "tafaria_ecommerce.music_type_track.created_at": {
+          "roles": [
+            "role.timestamp"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "tafaria_ecommerce.music_type_track.updated_at": {
+          "roles": [
+            "role.timestamp"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "tafaria_ecommerce.music_type_track.skiza_code": {
+          "roles": [],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "tafaria_ecommerce.music_type_track.sequence": {
+          "roles": [],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "tafaria_shop.product_up_sells.parent_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "tafaria_shop.product_up_sells.child_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "tafaria_shop.product_relations.parent_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "tafaria_shop.product_relations.child_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "tafaria_shop.invoice_items.id": {
+          "roles": [
+            "role.pk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "tafaria_shop.invoice_items.price": {
+          "roles": [
+            "role.amount"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "tafaria_shop.invoice_items.base_price": {
+          "roles": [
+            "role.amount"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "tafaria_shop.invoice_items.total": {
+          "roles": [
+            "role.amount"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "tafaria_shop.invoice_items.base_total": {
+          "roles": [
+            "role.amount"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "tafaria_shop.invoice_items.tax_amount": {
+          "roles": [
+            "role.amount"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "tafaria_shop.invoice_items.base_tax_amount": {
+          "roles": [
+            "role.amount"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "tafaria_shop.invoice_items.product_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "tafaria_shop.invoice_items.order_item_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "tafaria_shop.invoice_items.invoice_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viupay_dev.mpesa_c2b_callbacks.id": {
+          "roles": [
+            "role.pk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viupay_dev.mpesa_c2b_callbacks.MSISDN": {
+          "roles": [
+            "role.phone"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viupay_dev.mpesa_c2b_callbacks.FirstName": {
+          "roles": [
+            "role.name_person"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viupay_dev.mpesa_c2b_callbacks.LastName": {
+          "roles": [
+            "role.name_person"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viupay_dev.mpesa_c2b_callbacks.created_at": {
+          "roles": [
+            "role.timestamp"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viupay_dev.mpesa_c2b_callbacks.updated_at": {
+          "roles": [
+            "role.timestamp"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viupay_dev.mpesa_c2b_callbacks.ThirdPartyTransID": {
+          "roles": [],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viupay_dev.mpesa_c2b_callbacks.TransAmount": {
+          "roles": [],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viupay_dev.mpesa_c2b_callbacks.TransactionType": {
+          "roles": [],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viupay_dev.mpesa_c2b_callbacks.OrgAccountBalance": {
+          "roles": [],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viupay_dev.jobs.id": {
+          "roles": [
+            "role.pk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viupay_dev.jobs.created_at": {
+          "roles": [
+            "role.timestamp"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viupay_dev.jobs.attempts": {
+          "roles": [],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viupay_dev.jobs.reserved_at": {
+          "roles": [],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viupay_dev.jobs.payload": {
+          "roles": [],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viupay_dev.jobs.queue": {
+          "roles": [],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viupay_dev.jobs.available_at": {
+          "roles": [],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viupay_dev.gateways.id": {
+          "roles": [
+            "role.pk_candidate"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 100,
+          "sample_n": 100,
+          "format_conformance": {}
+        },
+        "viupay_dev.gateways.created_at": {
+          "roles": [
+            "role.timestamp"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 25,
+          "sample_n": 100,
+          "format_conformance": {}
+        },
+        "viupay_dev.gateways.updated_at": {
+          "roles": [
+            "role.timestamp"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 25,
+          "sample_n": 100,
+          "format_conformance": {}
+        },
+        "viupay_dev.gateways.telco": {
+          "roles": [],
+          "null_ratio": 0.25,
+          "distinct_count": 3,
+          "sample_n": 100,
+          "format_conformance": {}
+        },
+        "viupay_dev.gateways.params": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 4,
+          "sample_n": 100,
+          "format_conformance": {}
+        },
+        "viupay_dev.gateways.enabled": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 2,
+          "sample_n": 100,
+          "format_conformance": {}
+        },
+        "viupay_dev.gateways.type": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 2,
+          "sample_n": 100,
+          "format_conformance": {}
+        },
+        "viupay_dev.gateways.slug": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 4,
+          "sample_n": 100,
+          "format_conformance": {}
+        },
+        "viupay_dev.gateways.name": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 4,
+          "sample_n": 100,
+          "format_conformance": {}
+        },
+        "viupay_fare.tbl_paymentreq.id": {
+          "roles": [
+            "role.pk_candidate"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 200,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "viupay_fare.tbl_paymentreq.msisdn": {
+          "roles": [
+            "role.phone"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 39,
+          "sample_n": 200,
+          "format_conformance": {
+            "role.phone": 0.955
+          }
+        },
+        "viupay_fare.tbl_paymentreq.currency": {
+          "roles": [
+            "role.currency"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 1,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "viupay_fare.tbl_paymentreq.sacco_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": 0.255,
+          "distinct_count": 13,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "viupay_fare.tbl_paymentreq.channel_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": 0.21,
+          "distinct_count": 4,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "viupay_fare.tbl_paymentreq.provider_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 1,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "viupay_fare.tbl_paymentreq.entrydate": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 199,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "viupay_fare.tbl_paymentreq.channel": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 12,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "viupay_fare.tbl_paymentreq.otp": {
+          "roles": [],
+          "null_ratio": 1.0,
+          "distinct_count": 0,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "viupay_fare.tbl_paymentreq.callurl": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 187,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "viupay_fare.tbl_sacco.id": {
+          "roles": [
+            "role.pk_candidate"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 200,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "viupay_fare.tbl_sacco.msisdn": {
+          "roles": [
+            "role.phone"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 200,
+          "sample_n": 200,
+          "format_conformance": {
+            "role.phone": 1.0
+          }
+        },
+        "viupay_fare.tbl_sacco.password": {
+          "roles": [
+            "role.password"
+          ],
+          "null_ratio": 0.665,
+          "distinct_count": 50,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "viupay_fare.tbl_sacco.nationalid": {
+          "roles": [
+            "role.national_id"
+          ],
+          "null_ratio": 0.58,
+          "distinct_count": 77,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "viupay_fare.tbl_sacco.first_name_director1": {
+          "roles": [
+            "role.name_person"
+          ],
+          "null_ratio": 0.87,
+          "distinct_count": 2,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "viupay_fare.tbl_sacco.first_name_director2": {
+          "roles": [
+            "role.name_person"
+          ],
+          "null_ratio": 0.87,
+          "distinct_count": 1,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "viupay_fare.tbl_sacco.last_name_director1": {
+          "roles": [
+            "role.name_person"
+          ],
+          "null_ratio": 0.87,
+          "distinct_count": 1,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "viupay_fare.tbl_sacco.last_name_director2": {
+          "roles": [
+            "role.name_person"
+          ],
+          "null_ratio": 0.87,
+          "distinct_count": 1,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "viupay_fare.tbl_sacco.operating_address": {
+          "roles": [
+            "role.address"
+          ],
+          "null_ratio": 0.84,
+          "distinct_count": 18,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "viupay_fare.tbl_sacco.consumer_secret": {
+          "roles": [
+            "role.token"
+          ],
+          "null_ratio": 0.835,
+          "distinct_count": 2,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "viupay_fare.tbl_paymentmode_master.id": {
+          "roles": [
+            "role.pk_candidate"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 2,
+          "sample_n": 2,
+          "format_conformance": {}
+        },
+        "viupay_fare.tbl_paymentmode_master.payment_modename": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 2,
+          "sample_n": 2,
+          "format_conformance": {}
+        },
+        "viupay_fare.tbl_paymentmode_master.payment_mode": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 2,
+          "sample_n": 2,
+          "format_conformance": {}
+        },
+        "viupay_fare_test.tbl_withdraw_charges.id": {
+          "roles": [
+            "role.pk_candidate"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 2,
+          "sample_n": 2,
+          "format_conformance": {}
+        },
+        "viupay_fare_test.tbl_withdraw_charges.entrydate": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 2,
+          "sample_n": 2,
+          "format_conformance": {}
+        },
+        "viupay_fare_test.tbl_withdraw_charges.lowerlimit": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 2,
+          "sample_n": 2,
+          "format_conformance": {}
+        },
+        "viupay_fare_test.tbl_withdraw_charges.withdraw_charges": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 2,
+          "sample_n": 2,
+          "format_conformance": {}
+        },
+        "viupay_fare_test.tbl_withdraw_charges.higherlimit": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 2,
+          "sample_n": 2,
+          "format_conformance": {}
+        },
+        "viupay_fare_test.tbl_matatu_booking_trans.id": {
+          "roles": [
+            "role.pk_candidate"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 117,
+          "sample_n": 117,
+          "format_conformance": {}
+        },
+        "viupay_fare_test.tbl_matatu_booking_trans.source_address": {
+          "roles": [
+            "role.address"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 18,
+          "sample_n": 117,
+          "format_conformance": {}
+        },
+        "viupay_fare_test.tbl_matatu_booking_trans.destination_address": {
+          "roles": [
+            "role.address"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 20,
+          "sample_n": 117,
+          "format_conformance": {}
+        },
+        "viupay_fare_test.tbl_matatu_booking_trans.total_seats": {
+          "roles": [
+            "role.amount"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 8,
+          "sample_n": 117,
+          "format_conformance": {}
+        },
+        "viupay_fare_test.tbl_matatu_booking_trans.customer_msisdn": {
+          "roles": [
+            "role.phone"
+          ],
+          "null_ratio": 0.03418803418803419,
+          "distinct_count": 38,
+          "sample_n": 117,
+          "format_conformance": {
+            "role.phone": 0.8584070796460177
+          }
+        },
+        "viupay_fare_test.tbl_matatu_booking_trans.national_id": {
+          "roles": [
+            "role.national_id",
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": 0.03418803418803419,
+          "distinct_count": 46,
+          "sample_n": 117,
+          "format_conformance": {}
+        },
+        "viupay_fare_test.tbl_matatu_booking_trans.amount": {
+          "roles": [
+            "role.amount"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 16,
+          "sample_n": 117,
+          "format_conformance": {}
+        },
+        "viupay_fare_test.tbl_matatu_booking_trans.user_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 12,
+          "sample_n": 117,
+          "format_conformance": {}
+        },
+        "viupay_fare_test.tbl_matatu_booking_trans.manager_username": {
+          "roles": [
+            "role.name_person"
+          ],
+          "null_ratio": 0.017094017094017096,
+          "distinct_count": 19,
+          "sample_n": 117,
+          "format_conformance": {}
+        },
+        "viupay_fare_test.tbl_matatu_booking_trans.refund_amount": {
+          "roles": [
+            "role.amount"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 3,
+          "sample_n": 117,
+          "format_conformance": {}
+        },
+        "viupay_fare_test.tbl_banner_details.id": {
+          "roles": [
+            "role.pk_candidate"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 3,
+          "sample_n": 3,
+          "format_conformance": {}
+        },
+        "viupay_fare_test.tbl_banner_details.button_redirect_link": {
+          "roles": [
+            "role.url"
+          ],
+          "null_ratio": 0.3333333333333333,
+          "distinct_count": 2,
+          "sample_n": 3,
+          "format_conformance": {
+            "role.url": 0.0
+          }
+        },
+        "viupay_fare_test.tbl_banner_details.banner_text": {
+          "roles": [],
+          "null_ratio": 0.3333333333333333,
+          "distinct_count": 2,
+          "sample_n": 3,
+          "format_conformance": {}
+        },
+        "viupay_fare_test.tbl_banner_details.is_button": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 2,
+          "sample_n": 3,
+          "format_conformance": {}
+        },
+        "viupay_fare_test.tbl_banner_details.banner_heading": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 3,
+          "sample_n": 3,
+          "format_conformance": {}
+        },
+        "viupay_fare_test.tbl_banner_details.button_label": {
+          "roles": [],
+          "null_ratio": 0.3333333333333333,
+          "distinct_count": 2,
+          "sample_n": 3,
+          "format_conformance": {}
+        },
+        "viupay_fare_test.tbl_banner_details.banner_image": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 3,
+          "sample_n": 3,
+          "format_conformance": {}
+        },
+        "viusasa_dev.billpayers.id": {
+          "roles": [
+            "role.pk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_dev.billpayers.email": {
+          "roles": [
+            "role.email"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_dev.billpayers.phone": {
+          "roles": [
+            "role.phone"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_dev.billpayers.firstname": {
+          "roles": [
+            "role.name_person"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_dev.billpayers.lastname": {
+          "roles": [
+            "role.name_person"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_dev.billpayers.tax_nr": {
+          "roles": [
+            "role.amount"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_dev.billpayers.address_id": {
+          "roles": [
+            "role.address",
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_dev.billpayers.created_at": {
+          "roles": [
+            "role.timestamp"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_dev.billpayers.updated_at": {
+          "roles": [
+            "role.timestamp"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_dev.billpayers.is_eu_registered": {
+          "roles": [],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_dev.job_adverts.id": {
+          "roles": [
+            "role.pk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_dev.job_adverts.api_provider_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_dev.job_adverts.full_url": {
+          "roles": [
+            "role.url"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_dev.job_adverts.application_url": {
+          "roles": [
+            "role.url"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_dev.job_adverts.created_at": {
+          "roles": [
+            "role.timestamp"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_dev.job_adverts.updated_at": {
+          "roles": [
+            "role.timestamp"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_dev.job_adverts.description": {
+          "roles": [],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_dev.job_adverts.meta": {
+          "roles": [],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_dev.job_adverts.is_featured": {
+          "roles": [],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_dev.job_adverts.summary": {
+          "roles": [],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_dev.invoices.id": {
+          "roles": [
+            "role.pk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_dev.invoices.order_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_dev.invoices.total_amount": {
+          "roles": [
+            "role.amount"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_dev.invoices.currency": {
+          "roles": [
+            "role.currency"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_dev.invoices.created_at": {
+          "roles": [
+            "role.timestamp"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_dev.invoices.updated_at": {
+          "roles": [
+            "role.timestamp"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_dev.invoices.invoice_number": {
+          "roles": [],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_dev.invoices.invoice_count": {
+          "roles": [],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_staging.preferences.id": {
+          "roles": [
+            "role.pk_candidate"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 3,
+          "sample_n": 3,
+          "format_conformance": {}
+        },
+        "viusasa_staging.preferences.user_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 1,
+          "sample_n": 3,
+          "format_conformance": {}
+        },
+        "viusasa_staging.preferences.preferable_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 3,
+          "sample_n": 3,
+          "format_conformance": {}
+        },
+        "viusasa_staging.preferences.created_at": {
+          "roles": [
+            "role.timestamp"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 2,
+          "sample_n": 3,
+          "format_conformance": {}
+        },
+        "viusasa_staging.preferences.updated_at": {
+          "roles": [
+            "role.timestamp"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 2,
+          "sample_n": 3,
+          "format_conformance": {}
+        },
+        "viusasa_staging.preferences.preferable_type": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 1,
+          "sample_n": 3,
+          "format_conformance": {}
+        },
+        "viusasa_staging.preferences.type": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 1,
+          "sample_n": 3,
+          "format_conformance": {}
+        },
+        "viusasa_staging.playbacks_reports.id": {
+          "roles": [
+            "role.pk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_staging.playbacks_reports.user_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_staging.playbacks_reports.sub_user_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_staging.playbacks_reports.playable_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_staging.playbacks_reports.season_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_staging.playbacks_reports.series_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_staging.playbacks_reports.production_house_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_staging.playbacks_reports.playback_session_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_staging.playbacks_reports.country": {
+          "roles": [
+            "role.address"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_staging.playbacks_reports.address": {
+          "roles": [
+            "role.address"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_staging.page_logs.id": {
+          "roles": [
+            "role.pk_candidate"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 74,
+          "sample_n": 74,
+          "format_conformance": {}
+        },
+        "viusasa_staging.page_logs.user_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 1,
+          "sample_n": 74,
+          "format_conformance": {}
+        },
+        "viusasa_staging.page_logs.url": {
+          "roles": [
+            "role.url"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 32,
+          "sample_n": 74,
+          "format_conformance": {
+            "role.url": 1.0
+          }
+        },
+        "viusasa_staging.page_logs.ip": {
+          "roles": [
+            "role.ip"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 5,
+          "sample_n": 74,
+          "format_conformance": {}
+        },
+        "viusasa_staging.page_logs.created_at": {
+          "roles": [
+            "role.timestamp"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 70,
+          "sample_n": 74,
+          "format_conformance": {}
+        },
+        "viusasa_staging.page_logs.updated_at": {
+          "roles": [
+            "role.timestamp"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 70,
+          "sample_n": 74,
+          "format_conformance": {}
+        },
+        "viusasa_staging.page_logs.method": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 2,
+          "sample_n": 74,
+          "format_conformance": {}
+        },
+        "viusasa_staging_2.albums.id": {
+          "roles": [
+            "role.pk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_staging_2.albums.menu_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_staging_2.albums.production_house_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_staging_2.albums.parental_guide_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_staging_2.albums.paid_type_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_staging_2.albums.created_at": {
+          "roles": [
+            "role.timestamp"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_staging_2.albums.updated_at": {
+          "roles": [
+            "role.timestamp"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_staging_2.albums.deleted_at": {
+          "roles": [
+            "role.timestamp"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_staging_2.albums.valid_from": {
+          "roles": [],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_staging_2.albums.valid_to": {
+          "roles": [],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_staging_2.school_levels.id": {
+          "roles": [
+            "role.pk_candidate"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 2,
+          "sample_n": 2,
+          "format_conformance": {}
+        },
+        "viusasa_staging_2.school_levels.created_at": {
+          "roles": [
+            "role.timestamp"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 1,
+          "sample_n": 2,
+          "format_conformance": {}
+        },
+        "viusasa_staging_2.school_levels.updated_at": {
+          "roles": [
+            "role.timestamp"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 1,
+          "sample_n": 2,
+          "format_conformance": {}
+        },
+        "viusasa_staging_2.school_levels.deleted_at": {
+          "roles": [
+            "role.timestamp"
+          ],
+          "null_ratio": 1.0,
+          "distinct_count": 0,
+          "sample_n": 2,
+          "format_conformance": {}
+        },
+        "viusasa_staging_2.school_levels.priority": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 1,
+          "sample_n": 2,
+          "format_conformance": {}
+        },
+        "viusasa_staging_2.school_levels.slug": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 2,
+          "sample_n": 2,
+          "format_conformance": {}
+        },
+        "viusasa_staging_2.school_levels.name": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 2,
+          "sample_n": 2,
+          "format_conformance": {}
+        },
+        "viusasa_staging_2.school_levels.status": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 1,
+          "sample_n": 2,
+          "format_conformance": {}
+        },
+        "viusasa_staging_2.school_levels.created_by": {
+          "roles": [],
+          "null_ratio": 1.0,
+          "distinct_count": 0,
+          "sample_n": 2,
+          "format_conformance": {}
+        },
+        "viusasa_staging_2.watchlists.id": {
+          "roles": [
+            "role.pk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_staging_2.watchlists.user_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_staging_2.watchlists.sub_user_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_staging_2.watchlists.series_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_staging_2.watchlists.created_at": {
+          "roles": [
+            "role.timestamp"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_staging_2.watchlists.updated_at": {
+          "roles": [
+            "role.timestamp"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_staging_dev.model_has_playlists.id": {
+          "roles": [
+            "role.pk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_staging_dev.model_has_playlists.playlist_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_staging_dev.model_has_playlists.playlistable_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_staging_dev.model_has_playlists.created_at": {
+          "roles": [
+            "role.timestamp"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_staging_dev.model_has_playlists.updated_at": {
+          "roles": [
+            "role.timestamp"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_staging_dev.model_has_playlists.playlistable_type": {
+          "roles": [],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_staging_dev.ecommerce_orders.id": {
+          "roles": [
+            "role.pk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_staging_dev.ecommerce_orders.phone": {
+          "roles": [
+            "role.phone"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_staging_dev.ecommerce_orders.currency": {
+          "roles": [
+            "role.currency"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_staging_dev.ecommerce_orders.order_amount": {
+          "roles": [
+            "role.amount"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_staging_dev.ecommerce_orders.user_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_staging_dev.ecommerce_orders.created_at": {
+          "roles": [
+            "role.timestamp"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_staging_dev.ecommerce_orders.updated_at": {
+          "roles": [
+            "role.timestamp"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_staging_dev.ecommerce_orders.deleted_at": {
+          "roles": [
+            "role.timestamp"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_staging_dev.ecommerce_orders.instructions": {
+          "roles": [],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_staging_dev.ecommerce_orders.order_count": {
+          "roles": [],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_staging_dev.watchlists.id": {
+          "roles": [
+            "role.pk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_staging_dev.watchlists.user_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_staging_dev.watchlists.sub_user_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_staging_dev.watchlists.series_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_staging_dev.watchlists.created_at": {
+          "roles": [
+            "role.timestamp"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viusasa_staging_dev.watchlists.updated_at": {
+          "roles": [
+            "role.timestamp"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viutickets.cache.value": {
+          "roles": [
+            "role.amount"
+          ],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viutickets.cache.expiration": {
+          "roles": [],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viutickets.cache.key": {
+          "roles": [],
+          "null_ratio": null,
+          "distinct_count": 0,
+          "sample_n": 0,
+          "format_conformance": {}
+        },
+        "viutickets.ticket_prices.id": {
+          "roles": [
+            "role.pk_candidate"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 200,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "viutickets.ticket_prices.event_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 76,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "viutickets.ticket_prices.price": {
+          "roles": [
+            "role.amount"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 59,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "viutickets.ticket_prices.created_at": {
+          "roles": [
+            "role.timestamp"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 88,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "viutickets.ticket_prices.updated_at": {
+          "roles": [
+            "role.timestamp"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 102,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "viutickets.ticket_prices.expires_on": {
+          "roles": [],
+          "null_ratio": 0.02,
+          "distinct_count": 110,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "viutickets.ticket_prices.starts_on": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 119,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "viutickets.ticket_prices.tier": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 133,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "viutickets.ticket_prices.seasoned_ticket_days": {
+          "roles": [],
+          "null_ratio": 0.69,
+          "distinct_count": 2,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "viutickets.ticket_prices.is_seasoned_ticket": {
+          "roles": [],
+          "null_ratio": 0.25,
+          "distinct_count": 2,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "viutickets.newsletter_customers.id": {
+          "roles": [
+            "role.pk_candidate"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 200,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "viutickets.newsletter_customers.email_address": {
+          "roles": [
+            "role.email",
+            "role.address"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 200,
+          "sample_n": 200,
+          "format_conformance": {
+            "role.email": 0.99
+          }
+        },
+        "viutickets.newsletter_customers.created_at": {
+          "roles": [
+            "role.timestamp"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 159,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "viutickets.newsletter_customers.updated_at": {
+          "roles": [
+            "role.timestamp"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 159,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "viutickets.newsletter_customers.deleted_at": {
+          "roles": [
+            "role.timestamp"
+          ],
+          "null_ratio": 1.0,
+          "distinct_count": 0,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "viutickets.newsletter_customers.name": {
+          "roles": [],
+          "null_ratio": 1.0,
+          "distinct_count": 0,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "viutickets.newsletter_customers.status": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 1,
+          "sample_n": 200,
+          "format_conformance": {}
+        },
+        "viutickets_dev.migrations.id": {
+          "roles": [
+            "role.pk_candidate"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 39,
+          "sample_n": 39,
+          "format_conformance": {}
+        },
+        "viutickets_dev.migrations.migration": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 39,
+          "sample_n": 39,
+          "format_conformance": {}
+        },
+        "viutickets_dev.migrations.batch": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 1,
+          "sample_n": 39,
+          "format_conformance": {}
+        },
+        "viutickets_dev.sms.id": {
+          "roles": [
+            "role.pk_candidate"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 86,
+          "sample_n": 86,
+          "format_conformance": {}
+        },
+        "viutickets_dev.sms.phone": {
+          "roles": [
+            "role.phone"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 29,
+          "sample_n": 86,
+          "format_conformance": {
+            "role.phone": 0.9767441860465116
+          }
+        },
+        "viutickets_dev.sms.country_code": {
+          "roles": [
+            "role.address"
+          ],
+          "null_ratio": 1.0,
+          "distinct_count": 0,
+          "sample_n": 86,
+          "format_conformance": {}
+        },
+        "viutickets_dev.sms.broadcast_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": 1.0,
+          "distinct_count": 0,
+          "sample_n": 86,
+          "format_conformance": {}
+        },
+        "viutickets_dev.sms.api_message_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 83,
+          "sample_n": 86,
+          "format_conformance": {}
+        },
+        "viutickets_dev.sms.customer_id": {
+          "roles": [
+            "role.pk_candidate",
+            "role.fk_candidate"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 29,
+          "sample_n": 86,
+          "format_conformance": {}
+        },
+        "viutickets_dev.sms.created_at": {
+          "roles": [
+            "role.timestamp"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 83,
+          "sample_n": 86,
+          "format_conformance": {}
+        },
+        "viutickets_dev.sms.updated_at": {
+          "roles": [
+            "role.timestamp"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 83,
+          "sample_n": 86,
+          "format_conformance": {}
+        },
+        "viutickets_dev.sms.network": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 1,
+          "sample_n": 86,
+          "format_conformance": {}
+        },
+        "viutickets_dev.sms.length": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 13,
+          "sample_n": 86,
+          "format_conformance": {}
+        },
+        "viutickets_dev.gateways.id": {
+          "roles": [
+            "role.pk_candidate"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 1,
+          "sample_n": 1,
+          "format_conformance": {}
+        },
+        "viutickets_dev.gateways.redirect_url": {
+          "roles": [
+            "role.url"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 1,
+          "sample_n": 1,
+          "format_conformance": {
+            "role.url": 1.0
+          }
+        },
+        "viutickets_dev.gateways.image_url": {
+          "roles": [
+            "role.url"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 1,
+          "sample_n": 1,
+          "format_conformance": {
+            "role.url": 1.0
+          }
+        },
+        "viutickets_dev.gateways.created_at": {
+          "roles": [
+            "role.timestamp"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 1,
+          "sample_n": 1,
+          "format_conformance": {}
+        },
+        "viutickets_dev.gateways.updated_at": {
+          "roles": [
+            "role.timestamp"
+          ],
+          "null_ratio": 0.0,
+          "distinct_count": 1,
+          "sample_n": 1,
+          "format_conformance": {}
+        },
+        "viutickets_dev.gateways.deleted_at": {
+          "roles": [
+            "role.timestamp"
+          ],
+          "null_ratio": 1.0,
+          "distinct_count": 0,
+          "sample_n": 1,
+          "format_conformance": {}
+        },
+        "viutickets_dev.gateways.params": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 1,
+          "sample_n": 1,
+          "format_conformance": {}
+        },
+        "viutickets_dev.gateways.description": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 1,
+          "sample_n": 1,
+          "format_conformance": {}
+        },
+        "viutickets_dev.gateways.slug": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 1,
+          "sample_n": 1,
+          "format_conformance": {}
+        },
+        "viutickets_dev.gateways.status": {
+          "roles": [],
+          "null_ratio": 0.0,
+          "distinct_count": 1,
+          "sample_n": 1,
+          "format_conformance": {}
+        }
+      },
+      "totals": {
+        "tables_profiled": 48,
+        "columns_profiled": 338,
+        "sample_rows_pulled": 2458
+      },
+      "errors": [],
+      "profile_sha256": "fc8fab9634cb56635b6a2394b80c94582356b127d1069573eb793b6bd7b8b3f8"
+    }
+  }
+}

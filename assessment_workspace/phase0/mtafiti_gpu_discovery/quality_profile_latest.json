@@ -1,5 +1,5 @@
 {
-  "at_utc": "2026-09-12T07:13:44Z",
+  "at_utc": "2026-09-15T08:16:13Z",
   "label": "cp5_quality_profile",
   "hosts": [
     "159.138.162.146",
@@ -7,7 +7,7 @@
   ],
   "per_host": {
     "159.138.162.146": {
-      "at_utc": "2026-09-12T07:13:28Z",
+      "at_utc": "2026-09-15T08:15:56Z",
       "label": "weego",
       "host": "159.138.162.146",
       "port": 3306,
@@ -53,7 +53,7 @@
         {
           "sql": "SELECT `id`, `country_area_id`, `service_type_id`, `segment_id` FROM `weego`.`country_area_service_type` LIMIT 200",
           "lead_verb": "SELECT",
-          "row_count": 75,
+          "row_count": 77,
           "ok": true
         },
         {
@@ -230,8 +230,8 @@
             "role.pk_candidate"
           ],
           "null_ratio": 0.0,
-          "distinct_count": 75,
-          "sample_n": 75,
+          "distinct_count": 77,
+          "sample_n": 77,
           "format_conformance": {}
         },
         "weego.country_area_service_type.country_area_id": {
@@ -241,8 +241,8 @@
             "role.fk_candidate"
           ],
           "null_ratio": 0.0,
-          "distinct_count": 15,
-          "sample_n": 75,
+          "distinct_count": 16,
+          "sample_n": 77,
           "format_conformance": {}
         },
         "weego.country_area_service_type.service_type_id": {
@@ -252,7 +252,7 @@
           ],
           "null_ratio": 0.0,
           "distinct_count": 5,
-          "sample_n": 75,
+          "sample_n": 77,
           "format_conformance": {}
         },
         "weego.country_area_service_type.segment_id": {
@@ -262,7 +262,7 @@
           ],
           "null_ratio": 0.0,
           "distinct_count": 1,
-          "sample_n": 75,
+          "sample_n": 77,
           "format_conformance": {}
         },
         "weego.product_inventories.id": {
@@ -361,14 +361,14 @@
       "totals": {
         "tables_profiled": 8,
         "columns_profiled": 32,
-        "sample_rows_pulled": 87
+        "sample_rows_pulled": 89
       },
       "errors": [],
-      "profile_sha256": "a3e4666e27812b675e29faa2dd40f3c7de7957ad304b57a110cca79a2dde2345",
+      "profile_sha256": "91ac5c0eab2a767403966c56b7b02b7d596433cddcf5783516cc7da6d8a921fd",
       "credential_reuse_note": "reused bramuel credential from '203.123.86.10'"
     },
     "110.238.76.159": {
-      "at_utc": "2026-09-12T07:13:32Z",
+      "at_utc": "2026-09-15T08:16:00Z",
       "label": "ussd",
       "host": "110.238.76.159",
       "port": 3306,
@@ -3568,7 +3568,7 @@
         "sample_rows_pulled": 2458
       },
       "errors": [],
-      "profile_sha256": "9a043cf66101de5e347633191ff34049ce92c4b00fc9811951b91cf55cfd569d"
+      "profile_sha256": "fc8fab9634cb56635b6a2394b80c94582356b127d1069573eb793b6bd7b8b3f8"
     }
   }
 }

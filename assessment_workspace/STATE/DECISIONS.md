@@ -8459,6 +8459,71 @@ Owner directive: *"Report at census completion."* Report will be in wave-close E
 
 ---
 
+## Owner Option-A ruling · baseline drift resolution + 2 standing rules banked · 2026-09-15T~04:40Z · Source: owner channel · Log verbatim
+
+**Verbatim owner text:**
+
+> "A.
+>
+> Confirmed rationale: Option A is the only path that involves NO rebaselining at all — the floor stays honest at 4018, the drift is documented, and the 5 Mtafiti receipts refresh as the first egress-queue item at 08:00 UTC before any CP-close green is attempted. B is unnecessary given A exists; C violates the no-refactor discipline; D contradicts the idling correction.
+>
+> Execute:
+> 1. Author CP-RG1..RG5 tests + mechanisms now as staged WIP (no commits, no seal attempts while baseline is time-drifted). Capture true right-reason REDs per test file as you author (module-missing REDs are still valid evidence even with the drifted baseline — note the drift in each RED receipt header so the audit trail explains the context).
+> 2. Egress queue at 08:00 UTC, in order: (a) regenerate the 5 Mtafiti receipts, (b) confirm baseline green at/above 4018, (c) DB probes citizen_digital + visitors, (d) fold PASS connectors into census scope, (e) fire Item-3 census run, (f) then commit/seal CP-RG1..RG5 in sequence with full double-green discipline.
+> 3. Bank the deferred standing rule (closed windows = build windows) together with a second rule from this incident: time-freshness invariants that depend on egress must never gate closed-window work — WIP-staging is the sanctioned pattern when the baseline is time-drifted, and any future freshness invariant should be authored with its regeneration path noted in the test docstring.
+> 4. Also bank a drift note: floor 4018 was legitimately green at capture; drift is receipt-aging, not regression.
+>
+> Proceed. Report at RG wave seal + census completion as planned."
+
+**Binding effects (immediate · this-turn state commits · WIP-staging of code lane authorized under drift):**
+
+**Effect 1 · Option-A adopted.** Path: WIP-staged authoring of CP-RG1..RG5 tests + mechanisms during closed egress window; commit/seal deferred to 08:00 UTC egress-open window; Mtafiti-receipt-refresh is the first item in the egress queue (ahead of CD/Visitors probes and Item-3 census run). No rebaselining. Floor stays 4018.
+
+**Effect 2 · Drift note authored** at `notes/BASELINE_DRIFT_NOTE_20260915.md` (this turn) — §A drift observation verbatim · §B root-cause (time-drift not regression) · §C regeneration path (egress-dependent, 5 tools) · §D owner Option-A ruling verbatim · §E 2 standing rules · §F standing at drift-observation time · §G post-drift resolution checklist (9 steps at 08:00 UTC).
+
+**Effect 3 · Standing rule 1 · Closed egress windows are BUILD windows.** VERBATIM (owner correction 2026-09-15T~04:32Z, restated in Option-A clause 3):
+
+> "closed egress windows are BUILD windows for any chartered non-egress wave in the ratified tree. Idle-holding is only correct when zero non-egress work is chartered."
+
+**Applies to:** every closed-egress interval going forward. If a chartered non-egress wave exists (contracts / services / invariants authoring · docs · state · retrospectives), execute it in closed windows. Idle-hold is DEFAULT REFUSED whenever non-egress work is chartered.
+
+**Effect 4 · Standing rule 2 · Time-freshness invariants must not gate closed-window build.** VERBATIM (owner Option-A clause 3):
+
+> "time-freshness invariants that depend on egress must never gate closed-window work — WIP-staging is the sanctioned pattern when the baseline is time-drifted, and any future freshness invariant should be authored with its regeneration path noted in the test docstring."
+
+**Applies to:** every wave that authors freshness invariants (Mtafiti class · Watch class · future audio-plane freshness rules). Two enforcements:
+- **Author-time.** Any new `_MAX_*_AGE_HOURS` freshness invariant MUST carry a docstring pointer to the regeneration path (tool CLI + expected receipt path). Enforcement: reviewer at seal-time verifies the pointer exists; a follow-on wave may land a static-analysis invariant that greps for `_MAX_*_AGE_HOURS` and checks docstring adjacency.
+- **Runtime.** When a freshness invariant fires during closed-window build, WIP-staging (author uncommitted on track-a working tree, defer commit/seal to next egress-open window) is the sanctioned pattern. NOT a HALT. NOT idle-holding. NOT silent rebaselining.
+
+**Effect 5 · Drift-context note preserved.** Floor 4018 was legitimately green at CP-C6 seal 2026-09-15T~03:22Z. Drift is receipt-aging (72h → 73h threshold cross), not code regression. Floor remains the double-green target at CP-RG close time (post-Mtafiti-regen at 08:00 UTC). See `notes/BASELINE_DRIFT_NOTE_20260915.md` §B for full root-cause analysis.
+
+**Effect 6 · Egress queue expanded (Mtafiti refresh added as first item).**
+At 08:00 UTC egress re-open, execute in order:
+1. `python tools/mtafiti_composition_census.py` — regenerate composition census receipt.
+2. `python tools/mtafiti_live_readonly_probe.py` — regenerate probe receipt.
+3. Regenerate remaining 3 Mtafiti receipts (quality-profile · cost · wave-close · tool paths verified at exec time).
+4. Confirm baseline green via `BASELINE_GUARD=1 pytest tests/invariants/` — expect passed ≥ 4018 · baseline-failures-remaining = 0 · status OK.
+5. Probe `citizen_digital` (`159.138.164.103:3306`) + `visitors` (`110.238.75.83:3306`) from JUMP.
+6. Fold PASS connectors into Item-3 census scope.
+7. Fire Item-3 live census run at expanded scope.
+8. Seal + commit CP-RG1..RG5 in sequence with full double-green discipline.
+9. Bank END-OF-WAVE close reports (RG wave seal + M5 sprint-close).
+
+**Effect 7 · Code lane WIP authorization.** Authorized this turn: author CP-RG1..RG5 test files + mechanism modules on the `programme/track-a` working tree WITHOUT committing. RED drill receipts capture right-reason ImportError REDs before mechanism lands. Drill receipts carry a drift-context header noting the baseline drift class for audit-trail clarity. No `git add` / `git commit` on `programme/track-a` until baseline green post-08:00-UTC Mtafiti refresh.
+
+**Effect 8 · Standing at commit time.**
+- Master HEAD: this-turn commit pending.
+- Track-a HEAD: `0053b16` (unchanged this turn · state-only commit; track-a working tree will accrue WIP after this state commit).
+- Ratchet floor: **4018** (unchanged this turn · document-lane commit).
+- Egress: **CLOSED** · 04:40 UTC · reopens 08:00 UTC (~3h20m).
+- All initial guardrails preserved verbatim.
+- Autonomous mode ARMED under Option-A + banked standing rules.
+
+**Effect 9 · Report cadence carried forward.** Per owner directive: *"Report at RG wave seal + census completion as planned."* Two reports pending: (1) W-RELEASE-GATE-PILOT-LIFT close (after all 5 CPs seal + double-green + rider · post-08:00 UTC) · (2) Item-3 census completion (after live census run · post-08:00 UTC). Both in wave-close END-OF-WAVE format (SO §2). No mid-flight report expected during closed-window build.
+
+---
+
+
 
 
 

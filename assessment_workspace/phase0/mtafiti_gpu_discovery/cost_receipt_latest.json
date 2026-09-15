@@ -1,5 +1,5 @@
 {
-  "at_utc": "2026-09-12T07:26:26Z",
+  "at_utc": "2026-09-15T08:16:25Z",
   "label": "cp6_cost_receipt",
   "billing_basis": "cassava_lease \u00b7 $0 marginal on idle capacity (banked prior-session)",
   "huawei_egress_rate_usd_per_gb": 0.16,
@@ -15,21 +15,21 @@
       "stratified_sql_count": 32
     },
     "159.138.162.146": {
-      "egress_bytes_estimated": 14646,
-      "egress_gb_estimated": 1.3640150427818298e-05,
-      "egress_usd_estimated": 2.182424068450928e-06,
+      "egress_bytes_estimated": 14896,
+      "egress_gb_estimated": 1.3872981071472168e-05,
+      "egress_usd_estimated": 2.219676971435547e-06,
       "composition_sql_count": 9,
       "quality_sql_count": 8,
       "stratified_sql_count": 6
     }
   },
   "totals": {
-    "egress_bytes_estimated": 348524,
-    "egress_gb_estimated": 0.00032458826899528503,
-    "egress_usd_estimated": 5.193412303924561e-05,
+    "egress_bytes_estimated": 348774,
+    "egress_gb_estimated": 0.0003248210996389389,
+    "egress_usd_estimated": 5.197137594223023e-05,
     "gpu_hours": 0.0,
     "gpu_usd": 0.0,
-    "wave_total_usd_estimated": 5.193412303924561e-05
+    "wave_total_usd_estimated": 5.197137594223023e-05
   },
-  "cost_receipt_sha256": "4737ac531cdb00b52eb5249e49fd4c024361d1cf9292475012c3175e597fcf77"
+  "cost_receipt_sha256": "10b3b6670eda332b6593a2dd772ecc16164ac55b36a6ce7e0a6a2a4529461062"
 }

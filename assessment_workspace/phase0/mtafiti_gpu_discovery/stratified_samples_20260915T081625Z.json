@@ -1,0 +1,2893 @@
+{
+  "at_utc": "2026-09-15T08:16:25Z",
+  "label": "cp6_stratified_samples",
+  "hosts": [
+    "159.138.162.146",
+    "110.238.76.159"
+  ],
+  "per_host": {
+    "159.138.162.146": {
+      "at_utc": "2026-09-15T08:16:14Z",
+      "label": "weego",
+      "host": "159.138.162.146",
+      "port": 3306,
+      "user": "bramuel",
+      "connected": true,
+      "sql_trace": [
+        {
+          "sql": "SELECT * FROM `analytics`.`campaign_l_s_m_s` LIMIT 5",
+          "lead_verb": "SELECT",
+          "row_count": 0,
+          "ok": true
+        },
+        {
+          "sql": "SELECT * FROM `analytics`.`campaign_time_slots` LIMIT 5",
+          "lead_verb": "SELECT",
+          "row_count": 0,
+          "ok": true
+        },
+        {
+          "sql": "SELECT * FROM `sql_demo`.`marketting` LIMIT 5",
+          "lead_verb": "SELECT",
+          "row_count": 3,
+          "ok": true
+        },
+        {
+          "sql": "SELECT * FROM `sql_trial1`.`programming` LIMIT 5",
+          "lead_verb": "SELECT",
+          "row_count": 3,
+          "ok": true
+        },
+        {
+          "sql": "SELECT * FROM `weego`.`country_carpooling_document` LIMIT 5",
+          "lead_verb": "SELECT",
+          "row_count": 0,
+          "ok": true
+        },
+        {
+          "sql": "SELECT * FROM `weego`.`country_area_service_type` LIMIT 5",
+          "lead_verb": "SELECT",
+          "row_count": 5,
+          "ok": true
+        }
+      ],
+      "strata": {
+        "analytics": {
+          "tables_picked": [
+            "analytics.campaign_l_s_m_s",
+            "analytics.campaign_time_slots"
+          ],
+          "manifest_sha256": "95769a97470eb1304ea74bc3d2cead6cc49ec90507736ab80ae17b1357829eb3"
+        },
+        "sql_demo": {
+          "tables_picked": [
+            "sql_demo.marketting"
+          ],
+          "manifest_sha256": "167b576e37f78fac6d44cc16bad30aaa3fc0d659e089ecf4e664629efb9ba831"
+        },
+        "sql_trial1": {
+          "tables_picked": [
+            "sql_trial1.programming"
+          ],
+          "manifest_sha256": "ac741edb891383908f1b736cf087f7616230a5ac53148a203f4aa7e51db8eeff"
+        },
+        "weego": {
+          "tables_picked": [
+            "weego.country_carpooling_document",
+            "weego.country_area_service_type"
+          ],
+          "manifest_sha256": "0cb2cdf2dbf5bd8a2c41b77e92ed00ad16f7db85e1b4069b055ba6b2ba4343f6"
+        }
+      },
+      "samples": {
+        "analytics.campaign_l_s_m_s": {
+          "columns": [
+            "campaign_id",
+            "l_s_m_id"
+          ],
+          "rows_redacted": [],
+          "pii_signals": []
+        },
+        "analytics.campaign_time_slots": {
+          "columns": [
+            "campaign_id",
+            "time_slot_id"
+          ],
+          "rows_redacted": [],
+          "pii_signals": []
+        },
+        "sql_demo.marketting": {
+          "columns": [
+            "staff_id",
+            "staff_name",
+            "dob",
+            "staff_gender"
+          ],
+          "rows_redacted": [
+            {
+              "staff_id": 1,
+              "staff_name": "James",
+              "dob": "1900-11-05",
+              "staff_gender": "M"
+            },
+            {
+              "staff_id": 2,
+              "staff_name": "Muthoni",
+              "dob": "1991-10-23",
+              "staff_gender": "F"
+            },
+            {
+              "staff_id": 3,
+              "staff_name": "Renee",
+              "dob": "1992-02-12",
+              "staff_gender": "F"
+            }
+          ],
+          "pii_signals": []
+        },
+        "sql_trial1.programming": {
+          "columns": [
+            "staff_payroll",
+            "staff_name",
+            "staff_doa",
+            "gender"
+          ],
+          "rows_redacted": [
+            {
+              "staff_payroll": 231,
+              "staff_name": "Jane",
+              "staff_doa": "2024-01-23",
+              "gender": "F"
+            },
+            {
+              "staff_payroll": 1123,
+              "staff_name": "Kanyi",
+              "staff_doa": "2023-11-21",
+              "gender": "M"
+            },
+            {
+              "staff_payroll": 1323,
+              "staff_name": "James",
+              "staff_doa": "2023-11-23",
+              "gender": "M"
+            }
+          ],
+          "pii_signals": []
+        },
+        "weego.country_carpooling_document": {
+          "columns": [
+            "country_id",
+            "document_id",
+            "check_user",
+            "check_offer_user"
+          ],
+          "rows_redacted": [],
+          "pii_signals": []
+        },
+        "weego.country_area_service_type": {
+          "columns": [
+            "id",
+            "country_area_id",
+            "service_type_id",
+            "segment_id"
+          ],
+          "rows_redacted": [
+            {
+              "id": 121948,
+              "country_area_id": 2009,
+              "service_type_id": 1,
+              "segment_id": 1
+            },
+            {
+              "id": 121949,
+              "country_area_id": 2009,
+              "service_type_id": 2,
+              "segment_id": 1
+            },
+            {
+              "id": 121950,
+              "country_area_id": 2009,
+              "service_type_id": 3,
+              "segment_id": 1
+            },
+            {
+              "id": 121951,
+              "country_area_id": 2009,
+              "service_type_id": 4,
+              "segment_id": 1
+            },
+            {
+              "id": 121952,
+              "country_area_id": 2009,
+              "service_type_id": 8,
+              "segment_id": 1
+            }
+          ],
+          "pii_signals": []
+        }
+      },
+      "pii_signals_summary": {
+        "total": 0,
+        "by_kind": {}
+      },
+      "totals": {
+        "strata": 4,
+        "tables_sampled": 6,
+        "rows_redacted": 11
+      },
+      "errors": [],
+      "sample_bundle_sha256": "69d9d0238f8f63eb75e06ee6bff6db586c2e0a664ede31c7e3a760bdb7647fce",
+      "credential_reuse_note": "reused bramuel credential from '203.123.86.10'"
+    },
+    "110.238.76.159": {
+      "at_utc": "2026-09-15T08:16:17Z",
+      "label": "ussd",
+      "host": "110.238.76.159",
+      "port": 3306,
+      "user": "bramuel",
+      "connected": true,
+      "sql_trace": [
+        {
+          "sql": "SELECT * FROM `citizen_digital`.`wp_postmeta` LIMIT 5",
+          "lead_verb": "SELECT",
+          "row_count": 5,
+          "ok": true
+        },
+        {
+          "sql": "SELECT * FROM `citizen_digital`.`settings` LIMIT 5",
+          "lead_verb": "SELECT",
+          "row_count": 5,
+          "ok": true
+        },
+        {
+          "sql": "SELECT * FROM `db_jipange`.`raffle_transactions` LIMIT 5",
+          "lead_verb": "SELECT",
+          "row_count": 5,
+          "ok": true
+        },
+        {
+          "sql": "SELECT * FROM `db_jipange`.`test` LIMIT 5",
+          "lead_verb": "SELECT",
+          "row_count": 2,
+          "ok": true
+        },
+        {
+          "sql": "SELECT * FROM `db_skiza`.`skiza_tunes` LIMIT 5",
+          "lead_verb": "SELECT",
+          "row_count": 5,
+          "ok": true
+        },
+        {
+          "sql": "SELECT * FROM `db_skiza`.`ruffle_entries` LIMIT 5",
+          "lead_verb": "SELECT",
+          "row_count": 5,
+          "ok": true
+        },
+        {
+          "sql": "SELECT * FROM `freddy_dev`.`role_has_permissions` LIMIT 5",
+          "lead_verb": "SELECT",
+          "row_count": 0,
+          "ok": true
+        },
+        {
+          "sql": "SELECT * FROM `freddy_dev`.`tags` LIMIT 5",
+          "lead_verb": "SELECT",
+          "row_count": 5,
+          "ok": true
+        },
+        {
+          "sql": "SELECT * FROM `miniapps`.`designation` LIMIT 5",
+          "lead_verb": "SELECT",
+          "row_count": 4,
+          "ok": true
+        },
+        {
+          "sql": "SELECT * FROM `miniapps`.`role` LIMIT 5",
+          "lead_verb": "SELECT",
+          "row_count": 1,
+          "ok": true
+        },
+        {
+          "sql": "SELECT * FROM `tafaria_ecommerce`.`live_streams` LIMIT 5",
+          "lead_verb": "SELECT",
+          "row_count": 0,
+          "ok": true
+        },
+        {
+          "sql": "SELECT * FROM `tafaria_ecommerce`.`migrations` LIMIT 5",
+          "lead_verb": "SELECT",
+          "row_count": 5,
+          "ok": true
+        },
+        {
+          "sql": "SELECT * FROM `tafaria_shop`.`product_up_sells` LIMIT 5",
+          "lead_verb": "SELECT",
+          "row_count": 0,
+          "ok": true
+        },
+        {
+          "sql": "SELECT * FROM `tafaria_shop`.`product_relations` LIMIT 5",
+          "lead_verb": "SELECT",
+          "row_count": 0,
+          "ok": true
+        },
+        {
+          "sql": "SELECT * FROM `viupay_dev`.`mpesa_c2b_callbacks` LIMIT 5",
+          "lead_verb": "SELECT",
+          "row_count": 0,
+          "ok": true
+        },
+        {
+          "sql": "SELECT * FROM `viupay_dev`.`jobs` LIMIT 5",
+          "lead_verb": "SELECT",
+          "row_count": 0,
+          "ok": true
+        },
+        {
+          "sql": "SELECT * FROM `viupay_fare`.`tbl_paymentreq` LIMIT 5",
+          "lead_verb": "SELECT",
+          "row_count": 5,
+          "ok": true
+        },
+        {
+          "sql": "SELECT * FROM `viupay_fare`.`tbl_sacco` LIMIT 5",
+          "lead_verb": "SELECT",
+          "row_count": 5,
+          "ok": true
+        },
+        {
+          "sql": "SELECT * FROM `viupay_fare_test`.`tbl_withdraw_charges` LIMIT 5",
+          "lead_verb": "SELECT",
+          "row_count": 2,
+          "ok": true
+        },
+        {
+          "sql": "SELECT * FROM `viupay_fare_test`.`tbl_matatu_booking_trans` LIMIT 5",
+          "lead_verb": "SELECT",
+          "row_count": 5,
+          "ok": true
+        },
+        {
+          "sql": "SELECT * FROM `viusasa_dev`.`billpayers` LIMIT 5",
+          "lead_verb": "SELECT",
+          "row_count": 0,
+          "ok": true
+        },
+        {
+          "sql": "SELECT * FROM `viusasa_dev`.`job_adverts` LIMIT 5",
+          "lead_verb": "SELECT",
+          "row_count": 0,
+          "ok": true
+        },
+        {
+          "sql": "SELECT * FROM `viusasa_staging`.`preferences` LIMIT 5",
+          "lead_verb": "SELECT",
+          "row_count": 3,
+          "ok": true
+        },
+        {
+          "sql": "SELECT * FROM `viusasa_staging`.`playbacks_reports` LIMIT 5",
+          "lead_verb": "SELECT",
+          "row_count": 0,
+          "ok": true
+        },
+        {
+          "sql": "SELECT * FROM `viusasa_staging_2`.`albums` LIMIT 5",
+          "lead_verb": "SELECT",
+          "row_count": 0,
+          "ok": true
+        },
+        {
+          "sql": "SELECT * FROM `viusasa_staging_2`.`school_levels` LIMIT 5",
+          "lead_verb": "SELECT",
+          "row_count": 2,
+          "ok": true
+        },
+        {
+          "sql": "SELECT * FROM `viusasa_staging_dev`.`model_has_playlists` LIMIT 5",
+          "lead_verb": "SELECT",
+          "row_count": 0,
+          "ok": true
+        },
+        {
+          "sql": "SELECT * FROM `viusasa_staging_dev`.`ecommerce_orders` LIMIT 5",
+          "lead_verb": "SELECT",
+          "row_count": 0,
+          "ok": true
+        },
+        {
+          "sql": "SELECT * FROM `viutickets`.`cache` LIMIT 5",
+          "lead_verb": "SELECT",
+          "row_count": 0,
+          "ok": true
+        },
+        {
+          "sql": "SELECT * FROM `viutickets`.`ticket_prices` LIMIT 5",
+          "lead_verb": "SELECT",
+          "row_count": 5,
+          "ok": true
+        },
+        {
+          "sql": "SELECT * FROM `viutickets_dev`.`migrations` LIMIT 5",
+          "lead_verb": "SELECT",
+          "row_count": 5,
+          "ok": true
+        },
+        {
+          "sql": "SELECT * FROM `viutickets_dev`.`sms` LIMIT 5",
+          "lead_verb": "SELECT",
+          "row_count": 5,
+          "ok": true
+        }
+      ],
+      "strata": {
+        "citizen_digital": {
+          "tables_picked": [
+            "citizen_digital.wp_postmeta",
+            "citizen_digital.settings"
+          ],
+          "manifest_sha256": "cd0058ff031c16dbaa16844679b3ad67b2026dc23184097e020e1cb0e7e40b77"
+        },
+        "db_jipange": {
+          "tables_picked": [
+            "db_jipange.raffle_transactions",
+            "db_jipange.test"
+          ],
+          "manifest_sha256": "f40831c180bc916f99864a50083548dd34b2b634a44b2e074c23a286cebd7eee"
+        },
+        "db_skiza": {
+          "tables_picked": [
+            "db_skiza.skiza_tunes",
+            "db_skiza.ruffle_entries"
+          ],
+          "manifest_sha256": "027a7dc35db1577538f4cf8012d28c4973e8b7049ae7ece0bc8c49d1b2b383e5"
+        },
+        "freddy_dev": {
+          "tables_picked": [
+            "freddy_dev.role_has_permissions",
+            "freddy_dev.tags"
+          ],
+          "manifest_sha256": "a34d994556be6bbdc1dd4cdef0b3a9980744861fea0cd80e38488fb43423f6b0"
+        },
+        "miniapps": {
+          "tables_picked": [
+            "miniapps.designation",
+            "miniapps.role"
+          ],
+          "manifest_sha256": "ea60e331afa393e78af71dd436afc2a0ff4927fb0cbbc6bc0713d1dd9c019f94"
+        },
+        "tafaria_ecommerce": {
+          "tables_picked": [
+            "tafaria_ecommerce.live_streams",
+            "tafaria_ecommerce.migrations"
+          ],
+          "manifest_sha256": "5a59fdf518ad7bd824d2e9a87bd78d9d272feb6e6210d6e6c7239cc9e14f102d"
+        },
+        "tafaria_shop": {
+          "tables_picked": [
+            "tafaria_shop.product_up_sells",
+            "tafaria_shop.product_relations"
+          ],
+          "manifest_sha256": "0b514fb36dee13d021cabdf181cc71c64b011ebfbfcf9258fbe7cb089e84cb46"
+        },
+        "viupay_dev": {
+          "tables_picked": [
+            "viupay_dev.mpesa_c2b_callbacks",
+            "viupay_dev.jobs"
+          ],
+          "manifest_sha256": "c8a58655a2091b53874fc4867da6b5c0b78c23661704d7dee14895deed45175c"
+        },
+        "viupay_fare": {
+          "tables_picked": [
+            "viupay_fare.tbl_paymentreq",
+            "viupay_fare.tbl_sacco"
+          ],
+          "manifest_sha256": "162616901c2bbd2c3b92454211d84f9007d856acf341933e9e7837d4d2f5067f"
+        },
+        "viupay_fare_test": {
+          "tables_picked": [
+            "viupay_fare_test.tbl_withdraw_charges",
+            "viupay_fare_test.tbl_matatu_booking_trans"
+          ],
+          "manifest_sha256": "5773170779452609177bfc57c048d06e110f44e20121ad788395c6ee3ee360d0"
+        },
+        "viusasa_dev": {
+          "tables_picked": [
+            "viusasa_dev.billpayers",
+            "viusasa_dev.job_adverts"
+          ],
+          "manifest_sha256": "62fa0e265391b53002942a4890c0746062cc6a783ef77dbb4c0290551cbeb8e6"
+        },
+        "viusasa_staging": {
+          "tables_picked": [
+            "viusasa_staging.preferences",
+            "viusasa_staging.playbacks_reports"
+          ],
+          "manifest_sha256": "b6c09697c228d39a1c01127f8d906e6cb0b14dae15ca4733f3471d29fa357a46"
+        },
+        "viusasa_staging_2": {
+          "tables_picked": [
+            "viusasa_staging_2.albums",
+            "viusasa_staging_2.school_levels"
+          ],
+          "manifest_sha256": "c70129775b4843072dbd122dffd18bae51f495891c7771f0ea58503563ab8d41"
+        },
+        "viusasa_staging_dev": {
+          "tables_picked": [
+            "viusasa_staging_dev.model_has_playlists",
+            "viusasa_staging_dev.ecommerce_orders"
+          ],
+          "manifest_sha256": "4816b6d4287671d31c6e2d1dd39ddc2b41f9aab89a3f3e67d603e0c8b3b54c35"
+        },
+        "viutickets": {
+          "tables_picked": [
+            "viutickets.cache",
+            "viutickets.ticket_prices"
+          ],
+          "manifest_sha256": "8aad90338f2c7265a02454dbdd3f8ac5494324ed69decd7085ae3cf60fcdff63"
+        },
+        "viutickets_dev": {
+          "tables_picked": [
+            "viutickets_dev.migrations",
+            "viutickets_dev.sms"
+          ],
+          "manifest_sha256": "32054b251bcd11b446282f583e0adc19ca2753b99a6f969413baffb936e21d06"
+        }
+      },
+      "samples": {
+        "citizen_digital.wp_postmeta": {
+          "columns": [
+            "meta_id",
+            "post_id",
+            "meta_key",
+            "meta_value",
+            "cronned"
+          ],
+          "rows_redacted": [
+            {
+              "meta_id": 114819,
+              "post_id": 66538,
+              "meta_key": "post_video",
+              "meta_value": "2NtZJZfW_6A",
+              "cronned": "No"
+            },
+            {
+              "meta_id": 114864,
+              "post_id": 66548,
+              "meta_key": "post_video",
+              "meta_value": "C8IUKujsO_g",
+              "cronned": "No"
+            },
+            {
+              "meta_id": 114900,
+              "post_id": 66556,
+              "meta_key": "post_video",
+              "meta_value": "wl-v4ocf4vI",
+              "cronned": "No"
+            },
+            {
+              "meta_id": 114936,
+              "post_id": 66564,
+              "meta_key": "post_video",
+              "meta_value": "3sgdJlp_ht4",
+              "cronned": "No"
+            },
+            {
+              "meta_id": 114954,
+              "post_id": 66568,
+              "meta_key": "post_video",
+              "meta_value": "AxK-uefCUKc",
+              "cronned": "No"
+            }
+          ],
+          "pii_signals": []
+        },
+        "citizen_digital.settings": {
+          "columns": [
+            "id",
+            "meta_key",
+            "meta_value",
+            "guard",
+            "data_type",
+            "status",
+            "user_id",
+            "created_at",
+            "updated_at"
+          ],
+          "rows_redacted": [
+            {
+              "id": 1,
+              "meta_key": "android_version",
+              "meta_value": "1.0",
+              "guard": "api",
+              "data_type": "integer",
+              "status": "active",
+              "user_id": null,
+              "created_at": "2021-07-01 14:46:16",
+              "updated_at": "2021-07-01 14:46:16"
+            },
+            {
+              "id": 2,
+              "meta_key": "ios_version",
+              "meta_value": "1.0",
+              "guard": "api",
+              "data_type": "integer",
+              "status": "active",
+              "user_id": null,
+              "created_at": "2021-07-01 14:46:16",
+              "updated_at": "2021-07-01 14:46:16"
+            },
+            {
+              "id": 3,
+              "meta_key": "playstore_link",
+              "meta_value": "<REDACTED:pii.url:32e25fd8ba577e89>",
+              "guard": "api",
+              "data_type": "string",
+              "status": "active",
+              "user_id": null,
+              "created_at": "2021-07-01 14:46:16",
+              "updated_at": "2021-07-01 14:46:16"
+            },
+            {
+              "id": 4,
+              "meta_key": "appstore_link",
+              "meta_value": "<REDACTED:pii.url:80504cb469b2c6fb><REDACTED:pii.phone:f64a6db9b34f160e>",
+              "guard": "api",
+              "data_type": "string",
+              "status": "active",
+              "user_id": null,
+              "created_at": "2021-07-01 14:46:16",
+              "updated_at": "2021-07-01 14:46:16"
+            },
+            {
+              "id": 5,
+              "meta_key": "android_force_update",
+              "meta_value": "0",
+              "guard": "api",
+              "data_type": "boolean",
+              "status": "active",
+              "user_id": null,
+              "created_at": "2021-07-01 14:46:16",
+              "updated_at": "2021-07-01 14:46:16"
+            }
+          ],
+          "pii_signals": [
+            {
+              "kind": "pii.url",
+              "field": "meta_value",
+              "confidence": 0.75
+            },
+            {
+              "kind": "pii.phone",
+              "field": "meta_value",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.url",
+              "field": "meta_value",
+              "confidence": 0.75
+            }
+          ]
+        },
+        "db_jipange.raffle_transactions": {
+          "columns": [
+            "id",
+            "MSISDN",
+            "BillRefNumber",
+            "TransID",
+            "TransAmount",
+            "BusinessShortCode",
+            "TransactionType",
+            "TransTime",
+            "FirstName",
+            "MiddleName",
+            "LastName",
+            "OrgAccountBalance",
+            "message",
+            "station_id",
+            "OriginatorConversationID",
+            "ConversationID",
+            "AccNo",
+            "payload",
+            "CreatedBy",
+            "CreatedOn"
+          ],
+          "rows_redacted": [
+            {
+              "id": 3837,
+              "MSISDN": "<REDACTED:pii.phone:1ea25e5c868c985a>",
+              "BillRefNumber": "<REDACTED:pii.phone:bfa5551c4f56a701>",
+              "TransID": "RIM1G7D7RV",
+              "TransAmount": 60,
+              "BusinessShortCode": 724177,
+              "TransactionType": "STK Push",
+              "TransTime": "2023-09-22 14:57:33",
+              "FirstName": "",
+              "MiddleName": "",
+              "LastName": "",
+              "OrgAccountBalance": 0.0,
+              "message": null,
+              "station_id": null,
+              "OriginatorConversationID": null,
+              "ConversationID": null,
+              "AccNo": null,
+              "payload": null,
+              "CreatedBy": null,
+              "CreatedOn": "2023-09-22 14:57:41"
+            },
+            {
+              "id": 3838,
+              "MSISDN": "<REDACTED:pii.phone:71f860bbf6aef925>",
+              "BillRefNumber": "<REDACTED:pii.phone:51f3cef4b1a22148>",
+              "TransID": "RIM8G7F22G",
+              "TransAmount": 60,
+              "BusinessShortCode": 724177,
+              "TransactionType": "STK Push",
+              "TransTime": "2023-09-22 14:58:02",
+              "FirstName": "Sylvia",
+              "MiddleName": "",
+              "LastName": "Marango",
+              "OrgAccountBalance": 0.0,
+              "message": null,
+              "station_id": null,
+              "OriginatorConversationID": null,
+              "ConversationID": null,
+              "AccNo": null,
+              "payload": null,
+              "CreatedBy": null,
+              "CreatedOn": "2023-09-22 14:58:10"
+            },
+            {
+              "id": 3839,
+              "MSISDN": "<REDACTED:pii.phone:659e7fa4635cf846>",
+              "BillRefNumber": "<REDACTED:pii.phone:852c055d5d5808cd>",
+              "TransID": "RIM4G7PGO6",
+              "TransAmount": 60,
+              "BusinessShortCode": 724177,
+              "TransactionType": "STK Push",
+              "TransTime": "2023-09-22 15:00:58",
+              "FirstName": null,
+              "MiddleName": "",
+              "LastName": null,
+              "OrgAccountBalance": 0.0,
+              "message": null,
+              "station_id": null,
+              "OriginatorConversationID": null,
+              "ConversationID": null,
+              "AccNo": null,
+              "payload": null,
+              "CreatedBy": null,
+              "CreatedOn": "2023-09-22 15:01:04"
+            },
+            {
+              "id": 3840,
+              "MSISDN": "<REDACTED:pii.phone:ecf5972b75c9ff9a>",
+              "BillRefNumber": "<REDACTED:pii.phone:8a2988329e44449d>",
+              "TransID": "RIM1G7UAHB",
+              "TransAmount": 60,
+              "BusinessShortCode": 724177,
+              "TransactionType": "STK Push",
+              "TransTime": "2023-09-22 15:02:19",
+              "FirstName": null,
+              "MiddleName": "",
+              "LastName": null,
+              "OrgAccountBalance": 0.0,
+              "message": null,
+              "station_id": null,
+              "OriginatorConversationID": null,
+              "ConversationID": null,
+              "AccNo": null,
+              "payload": null,
+              "CreatedBy": null,
+              "CreatedOn": "2023-09-22 15:02:26"
+            },
+            {
+              "id": 3841,
+              "MSISDN": "<REDACTED:pii.phone:397c86616a169211>",
+              "BillRefNumber": "<REDACTED:pii.phone:d249d4fb8674c2cc>",
+              "TransID": "RIM2G8FXQO",
+              "TransAmount": 60,
+              "BusinessShortCode": 724177,
+              "TransactionType": "STK Push",
+              "TransTime": "2023-09-22 15:08:06",
+              "FirstName": null,
+              "MiddleName": "",
+              "LastName": null,
+              "OrgAccountBalance": 0.0,
+              "message": null,
+              "station_id": null,
+              "OriginatorConversationID": null,
+              "ConversationID": null,
+              "AccNo": null,
+              "payload": null,
+              "CreatedBy": null,
+              "CreatedOn": "2023-09-22 15:08:14"
+            }
+          ],
+          "pii_signals": [
+            {
+              "kind": "pii.phone",
+              "field": "BillRefNumber",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "MSISDN",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "BillRefNumber",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "MSISDN",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "BillRefNumber",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "MSISDN",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "BillRefNumber",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "MSISDN",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "BillRefNumber",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "MSISDN",
+              "confidence": 0.85
+            }
+          ]
+        },
+        "db_jipange.test": {
+          "columns": [
+            "text"
+          ],
+          "rows_redacted": [
+            {
+              "text": "Kali GNU/Linux Rolling \n l"
+            },
+            {
+              "text": ""
+            }
+          ],
+          "pii_signals": []
+        },
+        "db_skiza.skiza_tunes": {
+          "columns": [
+            "id",
+            "phone",
+            "skiza_id",
+            "skiza_name",
+            "skiza_code",
+            "artist",
+            "genres",
+            "skiza_tune",
+            "status",
+            "processed",
+            "created_at",
+            "updated_at"
+          ],
+          "rows_redacted": [
+            {
+              "id": 1,
+              "phone": "<REDACTED:pii.phone:eca7e88f6eb430af>",
+              "skiza_id": 26,
+              "skiza_name": "TENABAIKI-",
+              "skiza_code": "<REDACTED:pii.phone:ee722a157ef1623d>",
+              "artist": "{\"id\": 1, \"artistic_name\": \"Drury\", \"official_name\": \"Peter Drury\"}",
+              "genres": null,
+              "skiza_tune": "{\"id\": 26, \"code\": \"<REDACTED:pii.phone:ee722a157ef1623d>\", \"name\": \"TENABAIKI-\", \"artist\": {\"id\": 1, \"artistic_name\": \"Drury\", \"official_name\": \"Peter Drury\"}}",
+              "status": 1,
+              "processed": 2,
+              "created_at": "2024-01-26 11:48:04",
+              "updated_at": "2024-03-15 13:55:03"
+            },
+            {
+              "id": 2,
+              "phone": "<REDACTED:pii.phone:fa34ca48763158aa>",
+              "skiza_id": 26,
+              "skiza_name": "TENABAIKI-",
+              "skiza_code": "<REDACTED:pii.phone:ee722a157ef1623d>",
+              "artist": "{\"id\": 1, \"artistic_name\": \"Drury\", \"official_name\": \"Peter Drury\"}",
+              "genres": null,
+              "skiza_tune": "{\"id\": 26, \"code\": \"<REDACTED:pii.phone:ee722a157ef1623d>\", \"name\": \"TENABAIKI-\", \"artist\": {\"id\": 1, \"artistic_name\": \"Drury\", \"official_name\": \"Peter Drury\"}}",
+              "status": 1,
+              "processed": 2,
+              "created_at": "2024-01-26 12:02:49",
+              "updated_at": "2024-03-15 13:54:59"
+            },
+            {
+              "id": 3,
+              "phone": "<REDACTED:pii.phone:6f958245f6b2ecc2>",
+              "skiza_id": 19,
+              "skiza_name": "Twainua Macho",
+              "skiza_code": "<REDACTED:pii.phone:0c6f8b7415493a96>",
+              "artist": "{\"id\": 2420, \"artistic_name\": \"REV KATHY KIUNA\", \"official_name\": \"CATHERINE WANGUI KIUNA\"}",
+              "genres": "{\"data\": [{\"id\": 5, \"name\": \"Gospel\", \"description\": \"Religious songs\"}, {\"id\": 1, \"name\": \"Top Tunes\", \"description\": null}]}",
+              "skiza_tune": "{\"artist\": {\"id\": 2420, \"artistic_name\": \"REV KATHY KIUNA\", \"official_name\": \"CATHERINE WANGUI KIUNA\"}, \"genres\": {\"data\": [{\"id\": 5, \"name\": \"Gospel\", \"description\": \"Religious songs\"}, {\"id\": 1, \"name\": \"Top Tunes\", \"description\": null}]}, \"skiza_id\": 19, \"skiza_code\": \"<REDACTED:pii.phone:0c6f8b7415493a96>\", \"skiza_name\": \"Twainua Macho\"}",
+              "status": 1,
+              "processed": 2,
+              "created_at": "2024-02-05 12:57:37",
+              "updated_at": "2024-03-15 13:55:00"
+            },
+            {
+              "id": 4,
+              "phone": "<REDACTED:pii.phone:8294fab797ee7f94>",
+              "skiza_id": 24,
+              "skiza_name": "Halo",
+              "skiza_code": "<REDACTED:pii.phone:072515d3f00c51f9>",
+              "artist": "{\"id\": 4, \"artistic_name\": \"Abeddy Ngosso\", \"official_name\": \"Abeddy Ngosso\"}",
+              "genres": "{\"data\": [{\"id\": 5, \"name\": \"Gospel\", \"description\": \"Religious songs\"}]}",
+              "skiza_tune": "{\"artist\": {\"id\": 4, \"artistic_name\": \"Abeddy Ngosso\", \"official_name\": \"Abeddy Ngosso\"}, \"genres\": {\"data\": [{\"id\": 5, \"name\": \"Gospel\", \"description\": \"Religious songs\"}]}, \"skiza_id\": 24, \"skiza_code\": \"<REDACTED:pii.phone:072515d3f00c51f9>\", \"skiza_name\": \"Halo\"}",
+              "status": 1,
+              "processed": 2,
+              "created_at": "2024-02-05 15:28:48",
+              "updated_at": "2024-03-15 13:54:59"
+            },
+            {
+              "id": 5,
+              "phone": "<REDACTED:pii.phone:e682871db6796b3f>",
+              "skiza_id": 20,
+              "skiza_name": "Mukayo",
+              "skiza_code": "<REDACTED:pii.phone:09087921fb7ea135>",
+              "artist": "{\"id\": 2110, \"artistic_name\": null, \"official_name\": \"Jian Ndungu\"}",
+              "genres": "{\"data\": [{\"id\": 5, \"name\": \"Gospel\", \"description\": \"Religious songs\"}]}",
+              "skiza_tune": "{\"artist\": {\"id\": 2110, \"artistic_name\": null, \"official_name\": \"Jian Ndungu\"}, \"genres\": {\"data\": [{\"id\": 5, \"name\": \"Gospel\", \"description\": \"Religious songs\"}]}, \"skiza_id\": 20, \"skiza_code\": \"<REDACTED:pii.phone:09087921fb7ea135>\", \"skiza_name\": \"Mukayo\"}",
+              "status": 1,
+              "processed": 2,
+              "created_at": "2024-02-05 17:01:18",
+              "updated_at": "2024-03-15 13:55:00"
+            }
+          ],
+          "pii_signals": [
+            {
+              "kind": "pii.phone",
+              "field": "phone",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "skiza_code",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "skiza_tune",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "phone",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "skiza_code",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "skiza_tune",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "phone",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "skiza_code",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "skiza_tune",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "phone",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "skiza_code",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "skiza_tune",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "phone",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "skiza_code",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "skiza_tune",
+              "confidence": 0.85
+            }
+          ]
+        },
+        "db_skiza.ruffle_entries": {
+          "columns": [
+            "id",
+            "phone",
+            "date_time",
+            "trans_id",
+            "points",
+            "won"
+          ],
+          "rows_redacted": [
+            {
+              "id": 1,
+              "phone": 254725467278,
+              "date_time": "2024-01-26 11:48:04",
+              "trans_id": 1,
+              "points": 1,
+              "won": 1
+            },
+            {
+              "id": 2,
+              "phone": 254707902805,
+              "date_time": "2024-01-26 12:02:49",
+              "trans_id": 2,
+              "points": 1,
+              "won": null
+            },
+            {
+              "id": 3,
+              "phone": 254725145304,
+              "date_time": "2024-02-05 12:57:37",
+              "trans_id": 3,
+              "points": 1,
+              "won": 1
+            },
+            {
+              "id": 4,
+              "phone": 254792518355,
+              "date_time": "2024-02-05 15:28:48",
+              "trans_id": 4,
+              "points": 1,
+              "won": null
+            },
+            {
+              "id": 5,
+              "phone": 254712818944,
+              "date_time": "2024-02-05 17:01:18",
+              "trans_id": 5,
+              "points": 1,
+              "won": 1
+            }
+          ],
+          "pii_signals": []
+        },
+        "freddy_dev.role_has_permissions": {
+          "columns": [
+            "permission_id",
+            "role_id"
+          ],
+          "rows_redacted": [],
+          "pii_signals": []
+        },
+        "freddy_dev.tags": {
+          "columns": [
+            "id",
+            "name",
+            "slug",
+            "type",
+            "order_column",
+            "created_at",
+            "updated_at"
+          ],
+          "rows_redacted": [
+            {
+              "id": 1,
+              "name": "{\"en\": \"Quo.\"}",
+              "slug": "{\"en\": \"quo\"}",
+              "type": null,
+              "order_column": 1,
+              "created_at": "2021-08-24 18:08:05",
+              "updated_at": "2021-08-24 18:08:05"
+            },
+            {
+              "id": 2,
+              "name": "{\"en\": \"Illo rerum.\"}",
+              "slug": "{\"en\": \"illo-rerum\"}",
+              "type": null,
+              "order_column": 2,
+              "created_at": "2021-08-24 18:08:05",
+              "updated_at": "2021-08-24 18:08:05"
+            },
+            {
+              "id": 3,
+              "name": "{\"en\": \"Porro ratione.\"}",
+              "slug": "{\"en\": \"porro-ratione\"}",
+              "type": null,
+              "order_column": 3,
+              "created_at": "2021-08-24 18:08:05",
+              "updated_at": "2021-08-24 18:08:05"
+            },
+            {
+              "id": 4,
+              "name": "{\"en\": \"Eum.\"}",
+              "slug": "{\"en\": \"eum\"}",
+              "type": null,
+              "order_column": 4,
+              "created_at": "2021-08-24 18:08:05",
+              "updated_at": "2021-08-24 18:08:05"
+            },
+            {
+              "id": 5,
+              "name": "{\"en\": \"Et voluptatem.\"}",
+              "slug": "{\"en\": \"et-voluptatem\"}",
+              "type": null,
+              "order_column": 5,
+              "created_at": "2021-08-24 18:08:05",
+              "updated_at": "2021-08-24 18:08:05"
+            }
+          ],
+          "pii_signals": []
+        },
+        "miniapps.designation": {
+          "columns": [
+            "code",
+            "name"
+          ],
+          "rows_redacted": [
+            {
+              "code": "CEO",
+              "name": "CEO"
+            },
+            {
+              "code": "CTO",
+              "name": "Chief Technology Officer (CTO)"
+            },
+            {
+              "code": "DEV",
+              "name": "Software Engineer / Developer"
+            },
+            {
+              "code": "DIR",
+              "name": "Director / Owner / Founder"
+            }
+          ],
+          "pii_signals": []
+        },
+        "miniapps.role": {
+          "columns": [
+            "id",
+            "name",
+            "created_by",
+            "date_created",
+            "date_last_updated",
+            "date_deleted"
+          ],
+          "rows_redacted": [
+            {
+              "id": 1,
+              "name": "ROOT",
+              "created_by": null,
+              "date_created": "2022-02-01 00:00:00",
+              "date_last_updated": null,
+              "date_deleted": null
+            }
+          ],
+          "pii_signals": []
+        },
+        "tafaria_ecommerce.live_streams": {
+          "columns": [
+            "id",
+            "title",
+            "slug",
+            "description",
+            "venue",
+            "town",
+            "start_date",
+            "end_date",
+            "stream_url",
+            "status",
+            "views",
+            "parental_guide_id",
+            "paid_type_id",
+            "created_by",
+            "access_type_valid_to",
+            "model_type",
+            "created_at",
+            "updated_at",
+            "deleted_at"
+          ],
+          "rows_redacted": [],
+          "pii_signals": []
+        },
+        "tafaria_ecommerce.migrations": {
+          "columns": [
+            "id",
+            "migration",
+            "batch"
+          ],
+          "rows_redacted": [
+            {
+              "id": 1,
+              "migration": "2016_06_01_000001_create_oauth_auth_codes_table",
+              "batch": 1
+            },
+            {
+              "id": 2,
+              "migration": "2016_06_01_000002_create_oauth_access_tokens_table",
+              "batch": 1
+            },
+            {
+              "id": 3,
+              "migration": "2016_06_01_000003_create_oauth_refresh_tokens_table",
+              "batch": 1
+            },
+            {
+              "id": 4,
+              "migration": "2016_06_01_000004_create_oauth_clients_table",
+              "batch": 1
+            },
+            {
+              "id": 5,
+              "migration": "2016_06_01_000005_create_oauth_personal_access_clients_table",
+              "batch": 1
+            }
+          ],
+          "pii_signals": []
+        },
+        "tafaria_shop.product_up_sells": {
+          "columns": [
+            "parent_id",
+            "child_id"
+          ],
+          "rows_redacted": [],
+          "pii_signals": []
+        },
+        "tafaria_shop.product_relations": {
+          "columns": [
+            "parent_id",
+            "child_id"
+          ],
+          "rows_redacted": [],
+          "pii_signals": []
+        },
+        "viupay_dev.mpesa_c2b_callbacks": {
+          "columns": [
+            "id",
+            "TransactionType",
+            "TransID",
+            "TransTime",
+            "TransAmount",
+            "BusinessShortCode",
+            "BillRefNumber",
+            "InvoiceNumber",
+            "ThirdPartyTransID",
+            "OrgAccountBalance",
+            "MSISDN",
+            "FirstName",
+            "MiddleName",
+            "LastName",
+            "created_at",
+            "updated_at"
+          ],
+          "rows_redacted": [],
+          "pii_signals": []
+        },
+        "viupay_dev.jobs": {
+          "columns": [
+            "id",
+            "queue",
+            "payload",
+            "attempts",
+            "reserved_at",
+            "available_at",
+            "created_at"
+          ],
+          "rows_redacted": [],
+          "pii_signals": []
+        },
+        "viupay_fare.tbl_paymentreq": {
+          "columns": [
+            "id",
+            "customerid",
+            "driverid",
+            "merchantid",
+            "serviceid",
+            "msisdn",
+            "entrydate",
+            "status",
+            "transid",
+            "paymentamt",
+            "callurl",
+            "urlresponse",
+            "lastsessionid",
+            "currency",
+            "mpesaresponse",
+            "mpesadescription",
+            "referral_number",
+            "customer_name",
+            "channel",
+            "sacco_id",
+            "channel_id",
+            "provider_id",
+            "otp"
+          ],
+          "rows_redacted": [
+            {
+              "id": 2965,
+              "customerid": "16541",
+              "driverid": "130",
+              "merchantid": "86",
+              "serviceid": 20,
+              "msisdn": 254723985277,
+              "entrydate": "2023-07-18 06:05:19",
+              "status": 0,
+              "transid": "<REDACTED:pii.phone:6b39819626e21177>",
+              "paymentamt": 5.0,
+              "callurl": "msisdn=<REDACTED:pii.phone:b59d4527175d5098>&amount=5&transid=<REDACTED:pii.phone:6b39819626e21177>&currency=KSH&callbackurl=<REDACTED:pii.url:9d2e90ba51c335d9>=<REDACTED:pii.phone:6b39819626e21177>&account_number=1053",
+              "urlresponse": "Invalid URL",
+              "lastsessionid": null,
+              "currency": "KSH",
+              "mpesaresponse": null,
+              "mpesadescription": null,
+              "referral_number": "",
+              "customer_name": null,
+              "channel": "Pay Fare",
+              "sacco_id": null,
+              "channel_id": null,
+              "provider_id": 1,
+              "otp": null
+            },
+            {
+              "id": 2966,
+              "customerid": "",
+              "driverid": "130",
+              "merchantid": "86",
+              "serviceid": 20,
+              "msisdn": 2544545454545,
+              "entrydate": "2023-07-18 06:26:12",
+              "status": 0,
+              "transid": "67",
+              "paymentamt": 5.0,
+              "callurl": "msisdn=<REDACTED:pii.phone:e0fa2057a3c9db45>&amount=5&transid=67&currency=KSH&callbackurl=<REDACTED:pii.url:5deee23a1082508a>",
+              "urlresponse": "Invalid URL",
+              "lastsessionid": null,
+              "currency": "KSH",
+              "mpesaresponse": null,
+              "mpesadescription": null,
+              "referral_number": null,
+              "customer_name": null,
+              "channel": "Pay Fare-Cash",
+              "sacco_id": null,
+              "channel_id": null,
+              "provider_id": 1,
+              "otp": null
+            },
+            {
+              "id": 2967,
+              "customerid": "",
+              "driverid": "130",
+              "merchantid": "86",
+              "serviceid": 20,
+              "msisdn": 254725467278,
+              "entrydate": "2023-07-18 06:36:57",
+              "status": 1,
+              "transid": "68",
+              "paymentamt": 5.0,
+              "callurl": "msisdn=<REDACTED:pii.phone:eca7e88f6eb430af>&amount=5&transid=68&currency=KSH&callbackurl=<REDACTED:pii.url:65abfe9b416ad740>",
+              "urlresponse": "{\n            \"MerchantRequestID\":\"12138-<REDACTED:pii.phone:d99c1b66f27afb81>-1\",\n            \"CheckoutRequestID\":\"ws_CO_18072023120657719725467278\",\n            \"ResponseCode\": \"0\",\n            \"ResponseDescription\":\"Success. Request accepted for processing\",\n            \"CustomerMessage\":\"Success. Request accepted for processing\"\n        }\n        ",
+              "lastsessionid": "767688",
+              "currency": "KSH",
+              "mpesaresponse": "0",
+              "mpesadescription": "The service request is processed successfully.",
+              "referral_number": null,
+              "customer_name": null,
+              "channel": "Pay Fare-Cash",
+              "sacco_id": null,
+              "channel_id": null,
+              "provider_id": 1,
+              "otp": null
+            },
+            {
+              "id": 2968,
+              "customerid": "22",
+              "driverid": "124",
+              "merchantid": "60",
+              "serviceid": 20,
+              "msisdn": 254725467278,
+              "entrydate": "2023-07-18 06:43:30",
+              "status": 2,
+              "transid": "<REDACTED:pii.phone:4ed26eee486b2c0a>",
+              "paymentamt": 6.0,
+              "callurl": "msisdn=<REDACTED:pii.phone:eca7e88f6eb430af>&amount=6&transid=<REDACTED:pii.phone:4ed26eee486b2c0a>&currency=KSH&callbackurl=<REDACTED:pii.url:9d2e90ba51c335d9>=<REDACTED:pii.phone:4ed26eee486b2c0a>&account_number=1047",
+              "urlresponse": "Invalid URL",
+              "lastsessionid": null,
+              "currency": "KSH",
+              "mpesaresponse": "1037",
+              "mpesadescription": "DS timeout user cannot be reached",
+              "referral_number": "",
+              "customer_name": null,
+              "channel": "Pay Fare",
+              "sacco_id": null,
+              "channel_id": null,
+              "provider_id": 1,
+              "otp": null
+            },
+            {
+              "id": 2969,
+              "customerid": "22",
+              "driverid": "124",
+              "merchantid": "60",
+              "serviceid": 20,
+              "msisdn": 254725467278,
+              "entrydate": "2023-07-18 08:03:02",
+              "status": 1,
+              "transid": "<REDACTED:pii.phone:725ca8d8eff664e4>",
+              "paymentamt": 5.0,
+              "callurl": "msisdn=<REDACTED:pii.phone:eca7e88f6eb430af>&amount=5&transid=<REDACTED:pii.phone:725ca8d8eff664e4>&currency=KSH&callbackurl=<REDACTED:pii.url:9d2e90ba51c335d9>=<REDACTED:pii.phone:725ca8d8eff664e4>&account_number=1047",
+              "urlresponse": "{\n            \"MerchantRequestID\":\"29644-<REDACTED:pii.phone:2d9feabc55d0ffbc>-1\",\n            \"CheckoutRequestID\":\"ws_CO_18072023133302464725467278\",\n            \"ResponseCode\": \"0\",\n            \"ResponseDescription\":\"Success. Request accepted for processing\",\n            \"CustomerMessage\":\"Success. Request accepted for processing\"\n        }\n        ",
+              "lastsessionid": "102346",
+              "currency": "KSH",
+              "mpesaresponse": "0",
+              "mpesadescription": "The service request is processed successfully.",
+              "referral_number": "",
+              "customer_name": null,
+              "channel": "Pay Fare",
+              "sacco_id": null,
+              "channel_id": null,
+              "provider_id": 1,
+              "otp": null
+            }
+          ],
+          "pii_signals": [
+            {
+              "kind": "pii.phone",
+              "field": "callurl",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "callurl",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "callurl",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.url",
+              "field": "callurl",
+              "confidence": 0.75
+            },
+            {
+              "kind": "pii.phone",
+              "field": "transid",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "callurl",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.url",
+              "field": "callurl",
+              "confidence": 0.75
+            },
+            {
+              "kind": "pii.phone",
+              "field": "callurl",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.url",
+              "field": "callurl",
+              "confidence": 0.75
+            },
+            {
+              "kind": "pii.phone",
+              "field": "urlresponse",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "callurl",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "callurl",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "callurl",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.url",
+              "field": "callurl",
+              "confidence": 0.75
+            },
+            {
+              "kind": "pii.phone",
+              "field": "transid",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "callurl",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "callurl",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "callurl",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.url",
+              "field": "callurl",
+              "confidence": 0.75
+            },
+            {
+              "kind": "pii.phone",
+              "field": "transid",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "urlresponse",
+              "confidence": 0.85
+            }
+          ]
+        },
+        "viupay_fare.tbl_sacco": {
+          "columns": [
+            "id",
+            "msisdn",
+            "password",
+            "sacco_route",
+            "sacco_region",
+            "paybill_number",
+            "nationalid",
+            "bussiness_name",
+            "business_registration_number",
+            "kra_pin",
+            "bussiness_category",
+            "type",
+            "first_name_director1",
+            "first_name_director2",
+            "middle_name_director1",
+            "middle_name_director2",
+            "last_name_director1",
+            "last_name_director2",
+            "operating_address",
+            "payment_mode",
+            "transaction_charge_type",
+            "consumer_key",
+            "consumer_secret",
+            "pass_key",
+            "vechiles_count",
+            "floatwallet",
+            "earningwallet",
+            "comission_percentage",
+            "status",
+            "recieved_fare",
+            "entrydate",
+            "lastupdatedate",
+            "app_token",
+            "number_masking",
+            "created_by",
+            "created_by_type",
+            "slug_password"
+          ],
+          "rows_redacted": [
+            {
+              "id": 1,
+              "msisdn": "<REDACTED:pii.phone:eca7e88f6eb430af>",
+              "password": "8f53ce5d7d34540b<REDACTED:pii.phone:c4824ec920dae125>cc516a",
+              "sacco_route": "Super Admin",
+              "sacco_region": "nairobi",
+              "paybill_number": "",
+              "nationalid": "<REDACTED:pii.phone:ebfad8ff1ed4195d>",
+              "bussiness_name": "Twst Biz ",
+              "business_registration_number": "hhh",
+              "kra_pin": "test12345",
+              "bussiness_category": "Transportation",
+              "type": "Individual",
+              "first_name_director1": null,
+              "first_name_director2": null,
+              "middle_name_director1": null,
+              "middle_name_director2": null,
+              "last_name_director1": null,
+              "last_name_director2": null,
+              "operating_address": "p.o.box 51266",
+              "payment_mode": "1",
+              "transaction_charge_type": "1",
+              "consumer_key": null,
+              "consumer_secret": null,
+              "pass_key": null,
+              "vechiles_count": null,
+              "floatwallet": "0",
+              "earningwallet": "39.<REDACTED:pii.phone:858e747bd338b522>",
+              "comission_percentage": "2,2,2,2",
+              "status": 1,
+              "recieved_fare": 0,
+              "entrydate": "2024-06-05 18:01:25",
+              "lastupdatedate": "2024-06-05 21:01:25",
+              "app_token": null,
+              "number_masking": 1,
+              "created_by": null,
+              "created_by_type": null,
+              "slug_password": null
+            },
+            {
+              "id": 434,
+              "msisdn": "<REDACTED:pii.phone:a60325d4f388ca21>",
+              "password": "39c3f82b0f479fa61bf46f78e8b4df35",
+              "sacco_route": "DirectLine LTD",
+              "sacco_region": "CBD",
+              "paybill_number": "",
+              "nationalid": "111100",
+              "bussiness_name": "Directline LTD",
+              "business_registration_number": "<REDACTED:pii.phone:ea25a6e03dac9971>",
+              "kra_pin": "1234",
+              "bussiness_category": "Transportation",
+              "type": "Limited Liability Company",
+              "first_name_director1": "Anthony",
+              "first_name_director2": "",
+              "middle_name_director1": "Macharia",
+              "middle_name_director2": "",
+              "last_name_director1": "",
+              "last_name_director2": "",
+              "operating_address": "Maalim Juma Road,Denis Pritt",
+              "payment_mode": "1",
+              "transaction_charge_type": "1",
+              "consumer_key": "",
+              "consumer_secret": "",
+              "pass_key": "",
+              "vechiles_count": "0",
+              "floatwallet": "0",
+              "earningwallet": "206240.<REDACTED:pii.phone:d725b50546535a32>",
+              "comission_percentage": "0,0,0,0",
+              "status": 1,
+              "recieved_fare": 0,
+              "entrydate": "2026-01-02 08:18:44",
+              "lastupdatedate": "2026-01-02 11:18:44",
+              "app_token": "fcb320873fd25c66fdbd4d5d93971a47",
+              "number_masking": 1,
+              "created_by": null,
+              "created_by_type": null,
+              "slug_password": null
+            },
+            {
+              "id": 435,
+              "msisdn": "<REDACTED:pii.phone:9899d5b52d9d6751>",
+              "password": "1234",
+              "sacco_route": "Reeju",
+              "sacco_region": "Nairobi west",
+              "paybill_number": "",
+              "nationalid": "iiii",
+              "bussiness_name": "C2f",
+              "business_registration_number": "90888",
+              "kra_pin": "",
+              "bussiness_category": "Transportation",
+              "type": "Individual",
+              "first_name_director1": "",
+              "first_name_director2": "",
+              "middle_name_director1": "",
+              "middle_name_director2": "",
+              "last_name_director1": "",
+              "last_name_director2": "",
+              "operating_address": "naorobi",
+              "payment_mode": "1",
+              "transaction_charge_type": "1",
+              "consumer_key": "",
+              "consumer_secret": "",
+              "pass_key": "",
+              "vechiles_count": "",
+              "floatwallet": "0",
+              "earningwallet": "2",
+              "comission_percentage": "2,2,2,2",
+              "status": 1,
+              "recieved_fare": 0,
+              "entrydate": "2023-05-16 17:42:04",
+              "lastupdatedate": "2023-05-16 17:42:04",
+              "app_token": null,
+              "number_masking": 1,
+              "created_by": null,
+              "created_by_type": null,
+              "slug_password": null
+            },
+            {
+              "id": 436,
+              "msisdn": "<REDACTED:pii.phone:39559bd390099a61>",
+              "password": "4567",
+              "sacco_route": "PERMINOUS,KAMAU",
+              "sacco_region": null,
+              "paybill_number": "<REDACTED:pii.phone:db84cb31dd739207>",
+              "nationalid": "<REDACTED:pii.phone:4a027b749a4389bf>",
+              "bussiness_name": "BARBER",
+              "business_registration_number": "<REDACTED:pii.phone:e087fa78af48a0b4>",
+              "kra_pin": "5887",
+              "bussiness_category": "Goods and Services",
+              "type": null,
+              "first_name_director1": null,
+              "first_name_director2": null,
+              "middle_name_director1": null,
+              "middle_name_director2": null,
+              "last_name_director1": null,
+              "last_name_director2": null,
+              "operating_address": null,
+              "payment_mode": "1",
+              "transaction_charge_type": "1",
+              "consumer_key": null,
+              "consumer_secret": null,
+              "pass_key": null,
+              "vechiles_count": null,
+              "floatwallet": "0",
+              "earningwallet": "0",
+              "comission_percentage": "2,2,2,2",
+              "status": 1,
+              "recieved_fare": 0,
+              "entrydate": "2023-05-16 17:42:04",
+              "lastupdatedate": "2023-05-16 17:42:04",
+              "app_token": null,
+              "number_masking": 1,
+              "created_by": null,
+              "created_by_type": null,
+              "slug_password": null
+            },
+            {
+              "id": 437,
+              "msisdn": "<REDACTED:pii.phone:4f9d5128eecdef63>",
+              "password": "6547",
+              "sacco_route": "WILLY,NGUGI",
+              "sacco_region": null,
+              "paybill_number": "658743",
+              "nationalid": "<REDACTED:pii.phone:fd25ce601535a84c>",
+              "bussiness_name": "STUDENT",
+              "business_registration_number": "<REDACTED:pii.phone:f6b1e56e09b90cd9>",
+              "kra_pin": "1234",
+              "bussiness_category": "Goods and Services",
+              "type": null,
+              "first_name_director1": null,
+              "first_name_director2": null,
+              "middle_name_director1": null,
+              "middle_name_director2": null,
+              "last_name_director1": null,
+              "last_name_director2": null,
+              "operating_address": null,
+              "payment_mode": "1",
+              "transaction_charge_type": "1",
+              "consumer_key": null,
+              "consumer_secret": null,
+              "pass_key": null,
+              "vechiles_count": null,
+              "floatwallet": "0",
+              "earningwallet": "0",
+              "comission_percentage": "2,2,2,2",
+              "status": 1,
+              "recieved_fare": 0,
+              "entrydate": "2023-05-16 17:42:04",
+              "lastupdatedate": "2023-05-16 17:42:04",
+              "app_token": null,
+              "number_masking": 1,
+              "created_by": null,
+              "created_by_type": null,
+              "slug_password": null
+            }
+          ],
+          "pii_signals": [
+            {
+              "kind": "pii.phone",
+              "field": "earningwallet",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "msisdn",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "nationalid",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "password",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "business_registration_number",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "earningwallet",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "msisdn",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "msisdn",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "business_registration_number",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "msisdn",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "nationalid",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "paybill_number",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "business_registration_number",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "msisdn",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "nationalid",
+              "confidence": 0.85
+            }
+          ]
+        },
+        "viupay_fare_test.tbl_withdraw_charges": {
+          "columns": [
+            "id",
+            "lowerlimit",
+            "higherlimit",
+            "withdraw_charges",
+            "entrydate"
+          ],
+          "rows_redacted": [
+            {
+              "id": 1,
+              "lowerlimit": 10.0,
+              "higherlimit": 2000.0,
+              "withdraw_charges": 15.0,
+              "entrydate": "2020-12-16 11:14:11"
+            },
+            {
+              "id": 2,
+              "lowerlimit": 2001.0,
+              "higherlimit": 70000.0,
+              "withdraw_charges": 22.0,
+              "entrydate": "2020-12-16 11:14:47"
+            }
+          ],
+          "pii_signals": []
+        },
+        "viupay_fare_test.tbl_matatu_booking_trans": {
+          "columns": [
+            "id",
+            "driverid",
+            "source_address",
+            "destination_address",
+            "total_seats",
+            "seats_no",
+            "customer_msisdn",
+            "customer_name",
+            "national_id",
+            "amount",
+            "payment_method",
+            "managed_by",
+            "user_id",
+            "manager_username",
+            "refund_amount",
+            "cancel_date",
+            "cancelled_by",
+            "status",
+            "booking_date",
+            "created_at"
+          ],
+          "rows_redacted": [
+            {
+              "id": 1,
+              "driverid": 82,
+              "source_address": "dsd",
+              "destination_address": "fdf",
+              "total_seats": "1",
+              "seats_no": "1_2",
+              "customer_msisdn": "2540",
+              "customer_name": "ffd",
+              "national_id": "dfdf",
+              "amount": "10",
+              "payment_method": "cash",
+              "managed_by": "sacco",
+              "user_id": "433",
+              "manager_username": "<REDACTED:pii.phone:eca7e88f6eb430af>",
+              "refund_amount": "0",
+              "cancel_date": null,
+              "cancelled_by": null,
+              "status": 1,
+              "booking_date": "2022-11-30 13:06:00",
+              "created_at": "2022-11-24 13:14:53"
+            },
+            {
+              "id": 9,
+              "driverid": 82,
+              "source_address": "nairobi",
+              "destination_address": "nakuru",
+              "total_seats": "2",
+              "seats_no": "2_1,2_2",
+              "customer_msisdn": "<REDACTED:pii.phone:eca7e88f6eb430af>",
+              "customer_name": "chrispine",
+              "national_id": "12345",
+              "amount": "10",
+              "payment_method": "mpesa",
+              "managed_by": "sacco",
+              "user_id": "433",
+              "manager_username": null,
+              "refund_amount": "2",
+              "cancel_date": "2022-11-24 10:47:29",
+              "cancelled_by": "<REDACTED:pii.phone:eca7e88f6eb430af> ()",
+              "status": 2,
+              "booking_date": "2022-11-23 12:25:00",
+              "created_at": "2022-11-21 00:00:00"
+            },
+            {
+              "id": 13,
+              "driverid": 82,
+              "source_address": "dsd",
+              "destination_address": "fdf",
+              "total_seats": "1",
+              "seats_no": "1_1",
+              "customer_msisdn": "<REDACTED:pii.phone:0ab159f186397ca0>",
+              "customer_name": "nakul",
+              "national_id": "dfdf",
+              "amount": "10",
+              "payment_method": "cash",
+              "managed_by": "sacco",
+              "user_id": "433",
+              "manager_username": "<REDACTED:pii.phone:eca7e88f6eb430af> ()",
+              "refund_amount": "2",
+              "cancel_date": "2022-11-24 10:45:09",
+              "cancelled_by": "<REDACTED:pii.phone:eca7e88f6eb430af> ()",
+              "status": 2,
+              "booking_date": "2022-11-30 13:06:00",
+              "created_at": "2022-11-24 13:03:03"
+            },
+            {
+              "id": 14,
+              "driverid": 82,
+              "source_address": "dsd",
+              "destination_address": "fdf",
+              "total_seats": "1",
+              "seats_no": "1_2",
+              "customer_msisdn": "2540",
+              "customer_name": "ffd",
+              "national_id": "dfdf",
+              "amount": "10",
+              "payment_method": "cash",
+              "managed_by": "sacco",
+              "user_id": "433",
+              "manager_username": "<REDACTED:pii.phone:eca7e88f6eb430af>",
+              "refund_amount": "5",
+              "cancel_date": "2022-11-24 10:45:27",
+              "cancelled_by": "<REDACTED:pii.phone:eca7e88f6eb430af> ()",
+              "status": 2,
+              "booking_date": "2022-11-30 13:06:00",
+              "created_at": "2022-11-24 13:14:54"
+            },
+            {
+              "id": 15,
+              "driverid": 82,
+              "source_address": "nairobi",
+              "destination_address": "nakuru",
+              "total_seats": "2",
+              "seats_no": "2_1,2_2",
+              "customer_msisdn": "<REDACTED:pii.phone:eca7e88f6eb430af>",
+              "customer_name": "chrispine",
+              "national_id": "12345",
+              "amount": "10",
+              "payment_method": "mpesa",
+              "managed_by": "sacco",
+              "user_id": "433",
+              "manager_username": null,
+              "refund_amount": "0",
+              "cancel_date": null,
+              "cancelled_by": null,
+              "status": 2,
+              "booking_date": "2022-11-23 12:25:00",
+              "created_at": "2022-11-21 00:00:00"
+            }
+          ],
+          "pii_signals": [
+            {
+              "kind": "pii.phone",
+              "field": "manager_username",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "cancelled_by",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "customer_msisdn",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "cancelled_by",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "customer_msisdn",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "manager_username",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "cancelled_by",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "manager_username",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "customer_msisdn",
+              "confidence": 0.85
+            }
+          ]
+        },
+        "viusasa_dev.billpayers": {
+          "columns": [
+            "id",
+            "email",
+            "phone",
+            "firstname",
+            "lastname",
+            "company_name",
+            "tax_nr",
+            "registration_nr",
+            "is_eu_registered",
+            "is_organization",
+            "address_id",
+            "created_at",
+            "updated_at"
+          ],
+          "rows_redacted": [],
+          "pii_signals": []
+        },
+        "viusasa_dev.job_adverts": {
+          "columns": [
+            "id",
+            "api_provider_id",
+            "is_featured",
+            "title",
+            "summary",
+            "description",
+            "full_url",
+            "meta",
+            "is_active",
+            "application_url",
+            "created_at",
+            "updated_at"
+          ],
+          "rows_redacted": [],
+          "pii_signals": []
+        },
+        "viusasa_staging.preferences": {
+          "columns": [
+            "id",
+            "user_id",
+            "preferable_type",
+            "preferable_id",
+            "type",
+            "created_at",
+            "updated_at"
+          ],
+          "rows_redacted": [
+            {
+              "id": 1,
+              "user_id": 341,
+              "preferable_type": "genre",
+              "preferable_id": 218,
+              "type": "video",
+              "created_at": "2023-02-06 15:15:17",
+              "updated_at": "2023-02-06 15:15:17"
+            },
+            {
+              "id": 2,
+              "user_id": 341,
+              "preferable_type": "genre",
+              "preferable_id": 2,
+              "type": "video",
+              "created_at": "2023-02-06 15:15:35",
+              "updated_at": "2023-02-06 15:15:35"
+            },
+            {
+              "id": 3,
+              "user_id": 341,
+              "preferable_type": "genre",
+              "preferable_id": 159,
+              "type": "video",
+              "created_at": "2023-02-06 15:15:35",
+              "updated_at": "2023-02-06 15:15:35"
+            }
+          ],
+          "pii_signals": []
+        },
+        "viusasa_staging.playbacks_reports": {
+          "columns": [
+            "id",
+            "user_id",
+            "sub_user_id",
+            "playable_type",
+            "content_category",
+            "playable_id",
+            "season_id",
+            "series_id",
+            "duration",
+            "content_duration",
+            "production_house_id",
+            "playback_session_id",
+            "event",
+            "country",
+            "address",
+            "longitude",
+            "latitude",
+            "internet_connection",
+            "internet_connection_type",
+            "device_model",
+            "device_manufacturer",
+            "device_platform",
+            "ip",
+            "type",
+            "playback_time",
+            "device_platform_version",
+            "platform_id",
+            "app_version",
+            "month_year",
+            "created_at",
+            "updated_at"
+          ],
+          "rows_redacted": [],
+          "pii_signals": []
+        },
+        "viusasa_staging_2.albums": {
+          "columns": [
+            "id",
+            "name",
+            "description",
+            "release_year",
+            "status",
+            "valid_from",
+            "valid_to",
+            "access_type_valid_to",
+            "priority",
+            "views",
+            "menu_id",
+            "production_house_id",
+            "parental_guide_id",
+            "paid_type_id",
+            "created_by",
+            "model_type",
+            "created_at",
+            "updated_at",
+            "deleted_at"
+          ],
+          "rows_redacted": [],
+          "pii_signals": []
+        },
+        "viusasa_staging_2.school_levels": {
+          "columns": [
+            "id",
+            "name",
+            "slug",
+            "priority",
+            "status",
+            "created_by",
+            "created_at",
+            "updated_at",
+            "deleted_at"
+          ],
+          "rows_redacted": [
+            {
+              "id": 1,
+              "name": "Primary",
+              "slug": "primary",
+              "priority": 0,
+              "status": "pending",
+              "created_by": null,
+              "created_at": "2021-05-11 11:14:25",
+              "updated_at": "2021-05-11 11:14:25",
+              "deleted_at": null
+            },
+            {
+              "id": 2,
+              "name": "Secondary",
+              "slug": "secondary",
+              "priority": 0,
+              "status": "pending",
+              "created_by": null,
+              "created_at": "2021-05-11 11:14:25",
+              "updated_at": "2021-05-11 11:14:25",
+              "deleted_at": null
+            }
+          ],
+          "pii_signals": []
+        },
+        "viusasa_staging_dev.model_has_playlists": {
+          "columns": [
+            "id",
+            "playlist_id",
+            "playlistable_type",
+            "playlistable_id",
+            "created_at",
+            "updated_at"
+          ],
+          "rows_redacted": [],
+          "pii_signals": []
+        },
+        "viusasa_staging_dev.ecommerce_orders": {
+          "columns": [
+            "id",
+            "number",
+            "redeem_code",
+            "phone",
+            "order_count",
+            "currency",
+            "order_amount",
+            "status",
+            "user_id",
+            "instructions",
+            "notes",
+            "created_at",
+            "updated_at",
+            "deleted_at"
+          ],
+          "rows_redacted": [],
+          "pii_signals": []
+        },
+        "viutickets.cache": {
+          "columns": [
+            "key",
+            "value",
+            "expiration"
+          ],
+          "rows_redacted": [],
+          "pii_signals": []
+        },
+        "viutickets.ticket_prices": {
+          "columns": [
+            "id",
+            "event_id",
+            "tier",
+            "price",
+            "ticket_type",
+            "no_of_tickets",
+            "type",
+            "is_seasoned_ticket",
+            "seasoned_ticket_days",
+            "starts_on",
+            "expires_on",
+            "created_at",
+            "updated_at"
+          ],
+          "rows_redacted": [
+            {
+              "id": 1,
+              "event_id": 1,
+              "tier": "Advance Booking",
+              "price": 2500,
+              "ticket_type": "open",
+              "no_of_tickets": 0,
+              "type": null,
+              "is_seasoned_ticket": 0,
+              "seasoned_ticket_days": null,
+              "starts_on": "2022-12-08 15:06:00",
+              "expires_on": "2022-12-11 23:59:00",
+              "created_at": "2022-12-08 15:07:31",
+              "updated_at": "2022-12-08 15:07:31"
+            },
+            {
+              "id": 2,
+              "event_id": 1,
+              "tier": "Regular",
+              "price": 3500,
+              "ticket_type": "fixed",
+              "no_of_tickets": 100,
+              "type": null,
+              "is_seasoned_ticket": 0,
+              "seasoned_ticket_days": null,
+              "starts_on": "2022-12-08 15:07:00",
+              "expires_on": "2022-12-12 23:59:00",
+              "created_at": "2022-12-08 15:07:31",
+              "updated_at": "2022-12-08 15:07:31"
+            },
+            {
+              "id": 3,
+              "event_id": 2,
+              "tier": "Regular",
+              "price": 1000,
+              "ticket_type": "open",
+              "no_of_tickets": 0,
+              "type": null,
+              "is_seasoned_ticket": 0,
+              "seasoned_ticket_days": null,
+              "starts_on": "2022-12-08 15:09:00",
+              "expires_on": "2022-12-17 15:09:00",
+              "created_at": "2022-12-08 15:09:20",
+              "updated_at": "2022-12-08 15:09:20"
+            },
+            {
+              "id": 4,
+              "event_id": 2,
+              "tier": "VIP",
+              "price": 2000,
+              "ticket_type": "open",
+              "no_of_tickets": 0,
+              "type": null,
+              "is_seasoned_ticket": 0,
+              "seasoned_ticket_days": null,
+              "starts_on": "2022-12-08 15:09:00",
+              "expires_on": "2022-12-17 15:09:00",
+              "created_at": "2022-12-08 15:09:20",
+              "updated_at": "2022-12-08 15:09:20"
+            },
+            {
+              "id": 5,
+              "event_id": 3,
+              "tier": "Regular",
+              "price": 1000,
+              "ticket_type": "open",
+              "no_of_tickets": 0,
+              "type": null,
+              "is_seasoned_ticket": 0,
+              "seasoned_ticket_days": null,
+              "starts_on": "2022-12-08 15:10:00",
+              "expires_on": "2022-12-31 15:10:00",
+              "created_at": "2022-12-08 15:10:39",
+              "updated_at": "2022-12-08 15:10:39"
+            }
+          ],
+          "pii_signals": []
+        },
+        "viutickets_dev.migrations": {
+          "columns": [
+            "id",
+            "migration",
+            "batch"
+          ],
+          "rows_redacted": [
+            {
+              "id": 1,
+              "migration": "2014_10_12_000000_create_users_table",
+              "batch": 1
+            },
+            {
+              "id": 2,
+              "migration": "2014_10_12_000001_create_customers_table",
+              "batch": 1
+            },
+            {
+              "id": 3,
+              "migration": "2014_10_12_100000_create_password_resets_table",
+              "batch": 1
+            },
+            {
+              "id": 4,
+              "migration": "2019_08_19_000000_create_failed_jobs_table",
+              "batch": 1
+            },
+            {
+              "id": 5,
+              "migration": "2019_12_14_000001_create_personal_access_tokens_table",
+              "batch": 1
+            }
+          ],
+          "pii_signals": []
+        },
+        "viutickets_dev.sms": {
+          "columns": [
+            "id",
+            "phone",
+            "message",
+            "network",
+            "country_code",
+            "broadcast_id",
+            "length",
+            "chunk",
+            "delivery_status",
+            "delivery_message",
+            "type",
+            "api_message_id",
+            "customer_id",
+            "created_by",
+            "created_at",
+            "updated_at"
+          ],
+          "rows_redacted": [
+            {
+              "id": 1,
+              "phone": "<REDACTED:pii.phone:4a2f234f25ab3cfa>",
+              "message": "Hi, your Mercedes Benz Festival KE ticket code is PRNY3812. Download your ticket from <REDACTED:pii.url:ca4713f6de187293> Queries, call <REDACTED:pii.phone:65f0eebfd306a9f2>",
+              "network": "nitext",
+              "country_code": null,
+              "broadcast_id": null,
+              "length": 204,
+              "chunk": 2,
+              "delivery_status": "sent",
+              "delivery_message": "Your message have been sent successfully",
+              "type": "single",
+              "api_message_id": "<REDACTED:pii.phone:b653026ea89738cb>",
+              "customer_id": 28,
+              "created_by": null,
+              "created_at": "2023-01-24 11:16:11",
+              "updated_at": "2023-01-24 11:16:11"
+            },
+            {
+              "id": 2,
+              "phone": "<REDACTED:pii.phone:4a2f234f25ab3cfa>",
+              "message": "Hi, your Mercedes Benz Festival KE ticket code is PRNY3812. Download your ticket from <REDACTED:pii.url:43da456578a8ba42> Queries, call <REDACTED:pii.phone:65f0eebfd306a9f2>",
+              "network": "nitext",
+              "country_code": null,
+              "broadcast_id": null,
+              "length": 204,
+              "chunk": 2,
+              "delivery_status": "sent",
+              "delivery_message": "Your message have been sent successfully",
+              "type": "single",
+              "api_message_id": "<REDACTED:pii.phone:b937a55b6087d9ad>",
+              "customer_id": 28,
+              "created_by": null,
+              "created_at": "2023-01-24 11:16:12",
+              "updated_at": "2023-01-24 11:16:12"
+            },
+            {
+              "id": 3,
+              "phone": "<REDACTED:pii.phone:43d0f1240d41b484>",
+              "message": "Hi, your Betrayal In The City ticket code is PRSJWSHL. Download your ticket from <REDACTED:pii.url:22f8fec7e119b389> Queries, call <REDACTED:pii.phone:8303e8a0eee6152d>",
+              "network": "nitext",
+              "country_code": null,
+              "broadcast_id": null,
+              "length": 199,
+              "chunk": 2,
+              "delivery_status": "sent",
+              "delivery_message": "Your message have been sent successfully",
+              "type": "single",
+              "api_message_id": "<REDACTED:pii.phone:7853d221eb838329>",
+              "customer_id": 10,
+              "created_by": null,
+              "created_at": "2023-01-26 16:32:41",
+              "updated_at": "2023-01-26 16:32:41"
+            },
+            {
+              "id": 4,
+              "phone": "<REDACTED:pii.phone:923ada739261be89>",
+              "message": "Hi, your The \"L\" Things Show ticket code is PR3KECCI. Download your ticket from <REDACTED:pii.url:5ae8ed3c7ae68370> Queries, call <REDACTED:pii.phone:deb0af39e8e8a091>",
+              "network": "nitext",
+              "country_code": null,
+              "broadcast_id": null,
+              "length": 198,
+              "chunk": 2,
+              "delivery_status": "sent",
+              "delivery_message": "Your message have been sent successfully",
+              "type": "single",
+              "api_message_id": "<REDACTED:pii.phone:0460e768e70fb79d>",
+              "customer_id": 39,
+              "created_by": null,
+              "created_at": "2023-02-03 10:38:50",
+              "updated_at": "2023-02-03 10:38:50"
+            },
+            {
+              "id": 5,
+              "phone": "<REDACTED:pii.phone:43d0f1240d41b484>",
+              "message": "Hi, your Hell's Gate - Olkaria Day Trip ticket code is PRCDSF33. Download your ticket from <REDACTED:pii.url:195f8b5510a7e2fb> Queries, call <REDACTED:pii.phone:6aee5c7b75617dd7>",
+              "network": "nitext",
+              "country_code": null,
+              "broadcast_id": null,
+              "length": 209,
+              "chunk": 2,
+              "delivery_status": "sent",
+              "delivery_message": "Your message have been sent successfully",
+              "type": "single",
+              "api_message_id": "<REDACTED:pii.phone:eea25aa7557c14e4>",
+              "customer_id": 10,
+              "created_by": null,
+              "created_at": "2023-02-03 13:52:34",
+              "updated_at": "2023-02-03 13:52:34"
+            }
+          ],
+          "pii_signals": [
+            {
+              "kind": "pii.phone",
+              "field": "api_message_id",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "message",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.url",
+              "field": "message",
+              "confidence": 0.75
+            },
+            {
+              "kind": "pii.phone",
+              "field": "phone",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "api_message_id",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "message",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.url",
+              "field": "message",
+              "confidence": 0.75
+            },
+            {
+              "kind": "pii.phone",
+              "field": "phone",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "api_message_id",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "message",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.url",
+              "field": "message",
+              "confidence": 0.75
+            },
+            {
+              "kind": "pii.phone",
+              "field": "phone",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "api_message_id",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "message",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.url",
+              "field": "message",
+              "confidence": 0.75
+            },
+            {
+              "kind": "pii.phone",
+              "field": "phone",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "api_message_id",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.phone",
+              "field": "message",
+              "confidence": 0.85
+            },
+            {
+              "kind": "pii.url",
+              "field": "message",
+              "confidence": 0.75
+            },
+            {
+              "kind": "pii.phone",
+              "field": "phone",
+              "confidence": 0.85
+            }
+          ]
+        }
+      },
+      "pii_signals_summary": {
+        "total": 93,
+        "by_kind": {
+          "pii.url": 12,
+          "pii.phone": 81
+        }
+      },
+      "totals": {
+        "strata": 16,
+        "tables_sampled": 32,
+        "rows_redacted": 79
+      },
+      "errors": [],
+      "sample_bundle_sha256": "464101650ab620598c7e4772a1d3de4ff252bee1c1bf412f627825264273fd09"
+    }
+  },
+  "fk_candidate_signals_by_host": {
+    "159.138.162.146": {
+      "total": 946,
+      "sample": [
+        {
+          "signal_name": "signal.fk_candidate",
+          "source_ref": "analytics.campaign_age_groups.campaign_id->analytics.campaigns",
+          "confidence": 0.65
+        },
+        {
+          "signal_name": "signal.fk_candidate",
+          "source_ref": "analytics.campaign_age_groups.age_group_id->analytics.age_groups",
+          "confidence": 0.65
+        },
+        {
+          "signal_name": "signal.fk_candidate",
+          "source_ref": "analytics.campaign_counties.campaign_id->analytics.campaigns",
+          "confidence": 0.65
+        },
+        {
+          "signal_name": "signal.fk_candidate",
+          "source_ref": "analytics.campaign_l_s_m_s.campaign_id->analytics.campaigns",
+          "confidence": 0.65
+        },
+        {
+          "signal_name": "signal.fk_candidate",
+          "source_ref": "analytics.campaign_regions.campaign_id->analytics.campaigns",
+          "confidence": 0.65
+        },
+        {
+          "signal_name": "signal.fk_candidate",
+          "source_ref": "analytics.campaign_regions.region_id->analytics.regions",
+          "confidence": 0.65
+        },
+        {
+          "signal_name": "signal.fk_candidate",
+          "source_ref": "analytics.campaign_s_e_c_s.campaign_id->analytics.campaigns",
+          "confidence": 0.65
+        },
+        {
+          "signal_name": "signal.fk_candidate",
+          "source_ref": "analytics.campaign_stations.campaign_id->analytics.campaigns",
+          "confidence": 0.65
+        },
+        {
+          "signal_name": "signal.fk_candidate",
+          "source_ref": "analytics.campaign_stations.station_id->analytics.stations",
+          "confidence": 0.65
+        },
+        {
+          "signal_name": "signal.fk_candidate",
+          "source_ref": "analytics.campaign_time_slots.campaign_id->analytics.campaigns",
+          "confidence": 0.65
+        },
+        {
+          "signal_name": "signal.fk_candidate",
+          "source_ref": "analytics.campaign_time_slots.time_slot_id->analytics.time_slots",
+          "confidence": 0.65
+        },
+        {
+          "signal_name": "signal.fk_candidate",
+          "source_ref": "analytics.counties.region_id->analytics.regions",
+          "confidence": 0.65
+        },
+        {
+          "signal_name": "signal.fk_candidate",
+          "source_ref": "analytics.respondents.period_id->analytics.periods",
+          "confidence": 0.65
+        },
+        {
+          "signal_name": "signal.fk_candidate",
+          "source_ref": "analytics.respondents.age_group_id->analytics.age_groups",
+          "confidence": 0.65
+        },
+        {
+          "signal_name": "signal.fk_candidate",
+          "source_ref": "analytics.responses.respondent_id->analytics.respondents",
+          "confidence": 0.65
+        },
+        {
+          "signal_name": "signal.fk_candidate",
+          "source_ref": "analytics.responses.station_id->analytics.stations",
+          "confidence": 0.65
+        },
+        {
+          "signal_name": "signal.fk_candidate",
+          "source_ref": "analytics.responses.time_slot_id->analytics.time_slots",
+          "confidence": 0.65
+        },
+        {
+          "signal_name": "signal.fk_candidate",
+          "source_ref": "analytics.roadshow_stops.roadshow_id->analytics.roadshows",
+          "confidence": 0.65
+        },
+        {
+          "signal_name": "signal.fk_candidate",
+          "source_ref": "weego.account_types.merchant_id->weego.merchants",
+          "confidence": 0.65
+        },
+        {
+          "signal_name": "signal.fk_candidate",
+          "source_ref": "weego.advertisement_banners.merchant_id->weego.merchants",
+          "confidence": 0.65
+        }
+      ]
+    },
+    "110.238.76.159": {
+      "total": 1187,
+      "sample": [
+        {
+          "signal_name": "signal.fk_candidate",
+          "source_ref": "citizen_digital.articles.menu_id->citizen_digital.menus",
+          "confidence": 0.65
+        },
+        {
+          "signal_name": "signal.fk_candidate",
+          "source_ref": "citizen_digital.article_article_category.article_id->citizen_digital.articles",
+          "confidence": 0.65
+        },
+        {
+          "signal_name": "signal.fk_candidate",
+          "source_ref": "citizen_digital.audits.user_id->citizen_digital.users",
+          "confidence": 0.65
+        },
+        {
+          "signal_name": "signal.fk_candidate",
+          "source_ref": "citizen_digital.comments.user_id->citizen_digital.users",
+          "confidence": 0.65
+        },
+        {
+          "signal_name": "signal.fk_candidate",
+          "source_ref": "citizen_digital.comments.comment_id->citizen_digital.comments",
+          "confidence": 0.65
+        },
+        {
+          "signal_name": "signal.fk_candidate",
+          "source_ref": "citizen_digital.episodes.station_id->citizen_digital.stations",
+          "confidence": 0.65
+        },
+        {
+          "signal_name": "signal.fk_candidate",
+          "source_ref": "citizen_digital.episodes.show_id->citizen_digital.shows",
+          "confidence": 0.65
+        },
+        {
+          "signal_name": "signal.fk_candidate",
+          "source_ref": "citizen_digital.favorites.user_id->citizen_digital.users",
+          "confidence": 0.65
+        },
+        {
+          "signal_name": "signal.fk_candidate",
+          "source_ref": "citizen_digital.fcm_tokens.user_id->citizen_digital.users",
+          "confidence": 0.65
+        },
+        {
+          "signal_name": "signal.fk_candidate",
+          "source_ref": "citizen_digital.model_has_permissions.permission_id->citizen_digital.permissions",
+          "confidence": 0.65
+        },
+        {
+          "signal_name": "signal.fk_candidate",
+          "source_ref": "citizen_digital.model_has_presenters.presenter_id->citizen_digital.presenters",
+          "confidence": 0.65
+        },
+        {
+          "signal_name": "signal.fk_candidate",
+          "source_ref": "citizen_digital.model_has_roles.role_id->citizen_digital.roles",
+          "confidence": 0.65
+        },
+        {
+          "signal_name": "signal.fk_candidate",
+          "source_ref": "citizen_digital.otps.user_id->citizen_digital.users",
+          "confidence": 0.65
+        },
+        {
+          "signal_name": "signal.fk_candidate",
+          "source_ref": "citizen_digital.podcasts.production_house_id->citizen_digital.production_houses",
+          "confidence": 0.65
+        },
+        {
+          "signal_name": "signal.fk_candidate",
+          "source_ref": "citizen_digital.production_houses.user_id->citizen_digital.users",
+          "confidence": 0.65
+        },
+        {
+          "signal_name": "signal.fk_candidate",
+          "source_ref": "citizen_digital.programmes.station_id->citizen_digital.stations",
+          "confidence": 0.65
+        },
+        {
+          "signal_name": "signal.fk_candidate",
+          "source_ref": "citizen_digital.role_has_permissions.permission_id->citizen_digital.permissions",
+          "confidence": 0.65
+        },
+        {
+          "signal_name": "signal.fk_candidate",
+          "source_ref": "citizen_digital.role_has_permissions.role_id->citizen_digital.roles",
+          "confidence": 0.65
+        },
+        {
+          "signal_name": "signal.fk_candidate",
+          "source_ref": "citizen_digital.sessions.user_id->citizen_digital.users",
+          "confidence": 0.65
+        },
+        {
+          "signal_name": "signal.fk_candidate",
+          "source_ref": "citizen_digital.settings.user_id->citizen_digital.users",
+          "confidence": 0.65
+        }
+      ]
+    }
+  }
+}

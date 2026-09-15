@@ -1,0 +1,367 @@
+{
+  "at_utc": "2026-09-15T08:16:25Z",
+  "label": "cp7_wave_close_bundle",
+  "wave": "W-MTAFITI-GPU-DISCOVERY",
+  "hosts": [
+    "110.238.76.159",
+    "159.138.162.146"
+  ],
+  "per_host_summary": {
+    "110.238.76.159": {
+      "connected": true,
+      "composition_totals": {
+        "schemas": 17,
+        "tables": 1194,
+        "columns": 13073,
+        "rows": 179289626
+      },
+      "column_role_signals_summary": {
+        "total": 8534,
+        "by_role": {
+          "role.pk_candidate": 2906,
+          "role.fk_candidate": 1780,
+          "role.url": 235,
+          "role.timestamp": 2167,
+          "role.address": 189,
+          "role.ip": 53,
+          "role.token": 95,
+          "role.email": 95,
+          "role.name_person": 169,
+          "role.amount": 385,
+          "role.phone": 202,
+          "role.password": 59,
+          "role.national_id": 24,
+          "role.gender": 9,
+          "role.currency": 89,
+          "role.geo": 66,
+          "role.dob": 11
+        }
+      },
+      "pii_signals_summary_live_probe": {
+        "total": 22,
+        "by_kind": {
+          "pii.url": 16,
+          "pii.phone": 3,
+          "pii.ipv4": 3
+        }
+      },
+      "pii_signals_summary_stratified": {
+        "total": 93,
+        "by_kind": {
+          "pii.url": 12,
+          "pii.phone": 81
+        }
+      },
+      "quality_totals": {
+        "tables_profiled": 48,
+        "columns_profiled": 338,
+        "sample_rows_pulled": 2458
+      },
+      "stratified_totals": {
+        "strata": 16,
+        "tables_sampled": 32,
+        "rows_redacted": 79
+      },
+      "fk_candidate_signals": {
+        "total": 1187,
+        "sample": [
+          {
+            "signal_name": "signal.fk_candidate",
+            "source_ref": "citizen_digital.articles.menu_id->citizen_digital.menus",
+            "confidence": 0.65
+          },
+          {
+            "signal_name": "signal.fk_candidate",
+            "source_ref": "citizen_digital.article_article_category.article_id->citizen_digital.articles",
+            "confidence": 0.65
+          },
+          {
+            "signal_name": "signal.fk_candidate",
+            "source_ref": "citizen_digital.audits.user_id->citizen_digital.users",
+            "confidence": 0.65
+          },
+          {
+            "signal_name": "signal.fk_candidate",
+            "source_ref": "citizen_digital.comments.user_id->citizen_digital.users",
+            "confidence": 0.65
+          },
+          {
+            "signal_name": "signal.fk_candidate",
+            "source_ref": "citizen_digital.comments.comment_id->citizen_digital.comments",
+            "confidence": 0.65
+          },
+          {
+            "signal_name": "signal.fk_candidate",
+            "source_ref": "citizen_digital.episodes.station_id->citizen_digital.stations",
+            "confidence": 0.65
+          },
+          {
+            "signal_name": "signal.fk_candidate",
+            "source_ref": "citizen_digital.episodes.show_id->citizen_digital.shows",
+            "confidence": 0.65
+          },
+          {
+            "signal_name": "signal.fk_candidate",
+            "source_ref": "citizen_digital.favorites.user_id->citizen_digital.users",
+            "confidence": 0.65
+          },
+          {
+            "signal_name": "signal.fk_candidate",
+            "source_ref": "citizen_digital.fcm_tokens.user_id->citizen_digital.users",
+            "confidence": 0.65
+          },
+          {
+            "signal_name": "signal.fk_candidate",
+            "source_ref": "citizen_digital.model_has_permissions.permission_id->citizen_digital.permissions",
+            "confidence": 0.65
+          },
+          {
+            "signal_name": "signal.fk_candidate",
+            "source_ref": "citizen_digital.model_has_presenters.presenter_id->citizen_digital.presenters",
+            "confidence": 0.65
+          },
+          {
+            "signal_name": "signal.fk_candidate",
+            "source_ref": "citizen_digital.model_has_roles.role_id->citizen_digital.roles",
+            "confidence": 0.65
+          },
+          {
+            "signal_name": "signal.fk_candidate",
+            "source_ref": "citizen_digital.otps.user_id->citizen_digital.users",
+            "confidence": 0.65
+          },
+          {
+            "signal_name": "signal.fk_candidate",
+            "source_ref": "citizen_digital.podcasts.production_house_id->citizen_digital.production_houses",
+            "confidence": 0.65
+          },
+          {
+            "signal_name": "signal.fk_candidate",
+            "source_ref": "citizen_digital.production_houses.user_id->citizen_digital.users",
+            "confidence": 0.65
+          },
+          {
+            "signal_name": "signal.fk_candidate",
+            "source_ref": "citizen_digital.programmes.station_id->citizen_digital.stations",
+            "confidence": 0.65
+          },
+          {
+            "signal_name": "signal.fk_candidate",
+            "source_ref": "citizen_digital.role_has_permissions.permission_id->citizen_digital.permissions",
+            "confidence": 0.65
+          },
+          {
+            "signal_name": "signal.fk_candidate",
+            "source_ref": "citizen_digital.role_has_permissions.role_id->citizen_digital.roles",
+            "confidence": 0.65
+          },
+          {
+            "signal_name": "signal.fk_candidate",
+            "source_ref": "citizen_digital.sessions.user_id->citizen_digital.users",
+            "confidence": 0.65
+          },
+          {
+            "signal_name": "signal.fk_candidate",
+            "source_ref": "citizen_digital.settings.user_id->citizen_digital.users",
+            "confidence": 0.65
+          }
+        ]
+      }
+    },
+    "159.138.162.146": {
+      "connected": true,
+      "composition_totals": {
+        "schemas": 4,
+        "tables": 443,
+        "columns": 5243,
+        "rows": 2780916
+      },
+      "column_role_signals_summary": {
+        "total": 4314,
+        "by_role": {
+          "role.pk_candidate": 1537,
+          "role.timestamp": 846,
+          "role.fk_candidate": 1159,
+          "role.address": 118,
+          "role.email": 36,
+          "role.token": 46,
+          "role.gender": 12,
+          "role.geo": 164,
+          "role.dob": 4,
+          "role.password": 19,
+          "role.url": 23,
+          "role.phone": 26,
+          "role.amount": 305,
+          "role.name_person": 14,
+          "role.currency": 4,
+          "role.ip": 1
+        }
+      },
+      "pii_signals_summary_live_probe": {
+        "total": 0,
+        "by_kind": {}
+      },
+      "pii_signals_summary_stratified": {
+        "total": 0,
+        "by_kind": {}
+      },
+      "quality_totals": {
+        "tables_profiled": 8,
+        "columns_profiled": 32,
+        "sample_rows_pulled": 89
+      },
+      "stratified_totals": {
+        "strata": 4,
+        "tables_sampled": 6,
+        "rows_redacted": 11
+      },
+      "fk_candidate_signals": {
+        "total": 946,
+        "sample": [
+          {
+            "signal_name": "signal.fk_candidate",
+            "source_ref": "analytics.campaign_age_groups.campaign_id->analytics.campaigns",
+            "confidence": 0.65
+          },
+          {
+            "signal_name": "signal.fk_candidate",
+            "source_ref": "analytics.campaign_age_groups.age_group_id->analytics.age_groups",
+            "confidence": 0.65
+          },
+          {
+            "signal_name": "signal.fk_candidate",
+            "source_ref": "analytics.campaign_counties.campaign_id->analytics.campaigns",
+            "confidence": 0.65
+          },
+          {
+            "signal_name": "signal.fk_candidate",
+            "source_ref": "analytics.campaign_l_s_m_s.campaign_id->analytics.campaigns",
+            "confidence": 0.65
+          },
+          {
+            "signal_name": "signal.fk_candidate",
+            "source_ref": "analytics.campaign_regions.campaign_id->analytics.campaigns",
+            "confidence": 0.65
+          },
+          {
+            "signal_name": "signal.fk_candidate",
+            "source_ref": "analytics.campaign_regions.region_id->analytics.regions",
+            "confidence": 0.65
+          },
+          {
+            "signal_name": "signal.fk_candidate",
+            "source_ref": "analytics.campaign_s_e_c_s.campaign_id->analytics.campaigns",
+            "confidence": 0.65
+          },
+          {
+            "signal_name": "signal.fk_candidate",
+            "source_ref": "analytics.campaign_stations.campaign_id->analytics.campaigns",
+            "confidence": 0.65
+          },
+          {
+            "signal_name": "signal.fk_candidate",
+            "source_ref": "analytics.campaign_stations.station_id->analytics.stations",
+            "confidence": 0.65
+          },
+          {
+            "signal_name": "signal.fk_candidate",
+            "source_ref": "analytics.campaign_time_slots.campaign_id->analytics.campaigns",
+            "confidence": 0.65
+          },
+          {
+            "signal_name": "signal.fk_candidate",
+            "source_ref": "analytics.campaign_time_slots.time_slot_id->analytics.time_slots",
+            "confidence": 0.65
+          },
+          {
+            "signal_name": "signal.fk_candidate",
+            "source_ref": "analytics.counties.region_id->analytics.regions",
+            "confidence": 0.65
+          },
+          {
+            "signal_name": "signal.fk_candidate",
+            "source_ref": "analytics.respondents.period_id->analytics.periods",
+            "confidence": 0.65
+          },
+          {
+            "signal_name": "signal.fk_candidate",
+            "source_ref": "analytics.respondents.age_group_id->analytics.age_groups",
+            "confidence": 0.65
+          },
+          {
+            "signal_name": "signal.fk_candidate",
+            "source_ref": "analytics.responses.respondent_id->analytics.respondents",
+            "confidence": 0.65
+          },
+          {
+            "signal_name": "signal.fk_candidate",
+            "source_ref": "analytics.responses.station_id->analytics.stations",
+            "confidence": 0.65
+          },
+          {
+            "signal_name": "signal.fk_candidate",
+            "source_ref": "analytics.responses.time_slot_id->analytics.time_slots",
+            "confidence": 0.65
+          },
+          {
+            "signal_name": "signal.fk_candidate",
+            "source_ref": "analytics.roadshow_stops.roadshow_id->analytics.roadshows",
+            "confidence": 0.65
+          },
+          {
+            "signal_name": "signal.fk_candidate",
+            "source_ref": "weego.account_types.merchant_id->weego.merchants",
+            "confidence": 0.65
+          },
+          {
+            "signal_name": "signal.fk_candidate",
+            "source_ref": "weego.advertisement_banners.merchant_id->weego.merchants",
+            "confidence": 0.65
+          }
+        ]
+      }
+    }
+  },
+  "totals": {
+    "schemas": 21,
+    "tables": 1637,
+    "columns": 18316,
+    "rows_estimated": 182070542,
+    "column_role_signals": 12848,
+    "pii_signals_live": 22,
+    "pii_signals_stratified": 93,
+    "fk_candidate_signals": 2133,
+    "tables_profiled_quality": 56,
+    "columns_profiled_quality": 370,
+    "tables_sampled_stratified": 38,
+    "rows_redacted_stratified": 90
+  },
+  "cost_summary": {
+    "gpu_hours_consumed": 0.0,
+    "gpu_marginal_cost_usd": 0.0,
+    "egress_gb_estimated": 0.0003248210996389389,
+    "egress_usd_estimated": 5.197137594223023e-05,
+    "wave_total_usd_estimated": 5.197137594223023e-05,
+    "billing_basis": "cassava_lease \u00b7 $0 marginal on idle capacity (banked prior-session)"
+  },
+  "receipt_chain_sha256": {
+    "live_probe": {
+      "110.238.76.159": "1f1433dbee32bb6bac69612fd1275389076b5053a102ffea1172368a2279119d",
+      "159.138.162.146": "e5a4d73d31dec018d2b62eeb8d0c64ba0b471644a9d128dae5419c36bde634a5"
+    },
+    "composition": {
+      "110.238.76.159": "4e45f71abc9db02a5e0748558ba6ed83060fa0c71397c4554f4ccea31fe02712",
+      "159.138.162.146": "0bff3d5ac7145bf199c22cad46c3ee62159df8ec63cdb4c23dfb91dbe9e55aba"
+    },
+    "quality": {
+      "110.238.76.159": "fc8fab9634cb56635b6a2394b80c94582356b127d1069573eb793b6bd7b8b3f8",
+      "159.138.162.146": "91ac5c0eab2a767403966c56b7b02b7d596433cddcf5783516cc7da6d8a921fd"
+    },
+    "stratified": {
+      "110.238.76.159": "464101650ab620598c7e4772a1d3de4ff252bee1c1bf412f627825264273fd09",
+      "159.138.162.146": "69d9d0238f8f63eb75e06ee6bff6db586c2e0a664ede31c7e3a760bdb7647fce"
+    },
+    "cost_receipt": "10b3b6670eda332b6593a2dd772ecc16164ac55b36a6ce7e0a6a2a4529461062"
+  },
+  "wave_close_sha256": "e72aa97bcfe5360a9ad05996608013a2319a56f6298dc0a2cf4b982399e715a8"
+}

@@ -1,5 +1,5 @@
 {
-  "at_utc": "2026-09-12T07:26:26Z",
+  "at_utc": "2026-09-15T08:16:25Z",
   "label": "cp6_stratified_samples",
   "hosts": [
     "159.138.162.146",
@@ -7,7 +7,7 @@
   ],
   "per_host": {
     "159.138.162.146": {
-      "at_utc": "2026-09-12T07:26:15Z",
+      "at_utc": "2026-09-15T08:16:14Z",
       "label": "weego",
       "host": "159.138.162.146",
       "port": 3306,
@@ -76,7 +76,7 @@
             "weego.country_carpooling_document",
             "weego.country_area_service_type"
           ],
-          "manifest_sha256": "1571ee5bcc7db9865233eca8395cba55a9cd2f277854494f880bd8bb3de0daa2"
+          "manifest_sha256": "0cb2cdf2dbf5bd8a2c41b77e92ed00ad16f7db85e1b4069b055ba6b2ba4343f6"
         }
       },
       "samples": {
@@ -216,11 +216,11 @@
         "rows_redacted": 11
       },
       "errors": [],
-      "sample_bundle_sha256": "d053e67a1c11614523c721e908869d4114d590f4786d576a458692bb7948c088",
+      "sample_bundle_sha256": "69d9d0238f8f63eb75e06ee6bff6db586c2e0a664ede31c7e3a760bdb7647fce",
       "credential_reuse_note": "reused bramuel credential from '203.123.86.10'"
     },
     "110.238.76.159": {
-      "at_utc": "2026-09-12T07:26:18Z",
+      "at_utc": "2026-09-15T08:16:17Z",
       "label": "ussd",
       "host": "110.238.76.159",
       "port": 3306,
@@ -2675,7 +2675,7 @@
         "rows_redacted": 79
       },
       "errors": [],
-      "sample_bundle_sha256": "3d4cb3d9a94ea323d677f2feb125281b193a372184b2e6c49d8aafb34948a288"
+      "sample_bundle_sha256": "464101650ab620598c7e4772a1d3de4ff252bee1c1bf412f627825264273fd09"
     }
   },
   "fk_candidate_signals_by_host": {

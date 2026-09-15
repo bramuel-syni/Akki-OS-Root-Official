@@ -1,5 +1,5 @@
 {
-  "at_utc": "2026-09-12T06:50:42Z",
+  "at_utc": "2026-09-15T08:15:00Z",
   "label": "cp3_live_readonly_probe",
   "hosts": [
     "159.138.162.146",
@@ -7,7 +7,7 @@
   ],
   "per_host": {
     "159.138.162.146": {
-      "at_utc": "2026-09-12T06:50:32Z",
+      "at_utc": "2026-09-15T08:14:49Z",
       "label": "weego",
       "host": "159.138.162.146",
       "port": 3306,
@@ -369,11 +369,11 @@
         "sql_trial1",
         "weego"
       ],
-      "receipt_sha256": "14a95ca71062ae681180b06d8a0e7f1d069144efee79d78b5f96d2d6a35fb2f2",
+      "receipt_sha256": "e5a4d73d31dec018d2b62eeb8d0c64ba0b471644a9d128dae5419c36bde634a5",
       "credential_reuse_note": "reused bramuel credential originally banked under CSV host '203.123.86.10' \u2014 matches prior-session credential-reuse finding"
     },
     "110.238.76.159": {
-      "at_utc": "2026-09-12T06:50:37Z",
+      "at_utc": "2026-09-15T08:14:55Z",
       "label": "ussd",
       "host": "110.238.76.159",
       "port": 3306,
@@ -1124,7 +1124,7 @@
         "viutickets",
         "viutickets_dev"
       ],
-      "receipt_sha256": "b4323b4b5c070566fc03bc76d0fc46d69c495d974340916d4a66b33dd30cc6c6"
+      "receipt_sha256": "1f1433dbee32bb6bac69612fd1275389076b5053a102ffea1172368a2279119d"
     }
   }
 }

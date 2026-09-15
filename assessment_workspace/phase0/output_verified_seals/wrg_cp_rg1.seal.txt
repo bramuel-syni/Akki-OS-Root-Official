@@ -1,0 +1,44 @@
+{
+  "wave": "W-RELEASE-GATE-PILOT-LIFT",
+  "sub_wave": "CP-RG1",
+  "cp": "ReleaseBudgetState + ReleaseLedgerDebit + record_debit (R-7 PILOT-OPEN receipt+debit invariant + Pull Seam P036 receipt-before-result)",
+  "canon_anchors": [
+    "R-7 · DECISIONS.md 2026-09-15T~03:55Z · Effect 1 (owner verbatim): 'budget state = PILOT-OPEN (owner-ratified, supersedes DEFAULT-PENDING-OVERRIDE refusal), BUT every release is still receipted AND debited into a running release ledger from day one — so when the pilot ends, the real budget number is set from measured usage, not guessed. The gate's refusal on unset-budget is replaced by pilot-mode admission WITH mandatory receipt+debit; a missing receipt still refuses (Pull Seam P7 unchanged).'",
+    "Pull Seam §2 P7 · P036 · canon/drops/20260914_pull_seam/extracted/The_Pull_Seam_STRUCTURED.txt · P036 (verbatim): 'Each operation writes a receipt: what was accessed, in what quantity, under which terms, by which party, at what time.' + 'The receipt is written before the result is returned. If it cannot be written, the operation is refused.'",
+    "notes/wave_release_gate_pilot_lift_grounding_brief.md §B row CP-RG1"
+  ],
+  "landing_modules": [
+    "contracts/release_budget.py (frozen dataclass ReleaseLedgerDebit + closed Enum ReleaseBudgetState)",
+    "services/release_gate/__init__.py (new package)",
+    "services/release_gate/release_ledger.py (record_debit + list_debits + ReceiptMissingRefused + BudgetStateRefused + append-only in-memory _LEDGER)"
+  ],
+  "invariants_added": 6,
+  "invariant_ids": [
+    "test_wrg_cp_rg1_release_budget_ledger.py::test_cp_rg1_module_fabric",
+    "test_wrg_cp_rg1_release_budget_ledger.py::test_cp_rg1_release_budget_state_is_closed_three_value_enum",
+    "test_wrg_cp_rg1_release_budget_ledger.py::test_cp_rg1_release_ledger_debit_frozen_seven_carrier_exact_order",
+    "test_wrg_cp_rg1_release_budget_ledger.py::test_cp_rg1_record_debit_refuses_empty_receipt_id",
+    "test_wrg_cp_rg1_release_budget_ledger.py::test_cp_rg1_record_debit_refuses_default_pending_override",
+    "test_wrg_cp_rg1_release_budget_ledger.py::test_cp_rg1_record_debit_admits_pilot_open_and_appends_to_ledger"
+  ],
+  "cross_benefit_added": 1,
+  "cross_benefit_note": "NON_CONTRACT_UTILITY_MODULES extension in test_frozen_contract_snapshot_parity.py (line 156) admits release_budget.py under the frozen-dataclass-plus-closed-enum exemption class (no pydantic BaseModel · frozen-contract-parity domain does not apply). +1 previously-suppressed parity assertion becomes GREEN.",
+  "passed_before": 4018,
+  "passed_after": 4025,
+  "ratchet_delta": 7,
+  "receipts": {
+    "20260915T081246Z_wave_release_gate_pilot_lift_cp_rg1_RED_pre_impl.log": "619bfd8f6d8e597559edbf1090327f072e65f588f6ef96beae46a160c495c98a",
+    "20260915T083042Z_wave_release_gate_pilot_lift_cp_rg1_GREEN1.log": "e08d3309c8bb00f433cce30d7a336be857a91c93f1af68a4a495c5985323e106",
+    "20260915T083241Z_wave_release_gate_pilot_lift_cp_rg1_GREEN2.log": "2dcce2cef4e3cd6219df41eaf4178e4bc4ca747be88169d51499c6e591ed30b0",
+    "20260915T083439Z_wrg_cp_rg1_PIPFREEZE.txt": "7efbe6c7ea3250223e1a0074a6b4588268f11fdebdb0729c0e549f1db6c5b92c",
+    "20260915T083439Z_wrg_cp_rg1_COLLECTONLY.txt": "187cae9ff6ad6b8d09ac284b2de02e37bf2642ea98121bb33822a0aa76718f5d"
+  },
+  "byte_match_check": "identical modulo wall-time (both GREEN runs: 4025 passed, 1 skipped, 438 warnings; strip-of-time diff empty; both raw 9441 bytes / stripped 9436 bytes)",
+  "rider_1": "pip freeze (192 packages) + collect-only (4028 items · 4025 pass + 1 skip + 2 header/footer + 0 fail) banked at phase0/wave_riders/w_release_gate_pilot_lift/",
+  "red_drill_class": "module-missing right-reason RED (ModuleNotFoundError on contracts.release_budget + services.release_gate.release_ledger before mechanism landed)",
+  "baseline_drift_context": "RED captured during closed-egress window at 08:12 UTC 2026-09-15 when baseline was time-drifted (5 Mtafiti is_recent tests aged 73h past 72h threshold since M5 CP-C6 seal 03:22Z). Owner Option-A ruling 2026-09-15T~04:40Z authorized WIP-staged authoring during closed window. Mtafiti receipts regenerated at 08:15-08:16 UTC (first item in egress queue) restoring baseline to 4018-green before this CP-RG1 seal. See notes/BASELINE_DRIFT_NOTE_20260915.md for full analysis.",
+  "wip_staging_verdict": "CP-RG1 landed under WIP-staging pattern authorized by owner Option-A. Mechanism modules, test file, NON_CONTRACT_UTILITY_MODULES extension, and baseline_failures.json ratchet-up all authored/updated during closed window; sealed and committed AFTER Mtafiti-refresh restored baseline green post-08:00-UTC egress open. Standing Rule 2 (time-freshness invariants must not gate closed-window build) exercised for the first time; pattern proved sound.",
+  "sequencing_pin": "Per owner Option-A step 2(f): commit/seal CP-RG1..RG5 in sequence AFTER egress queue completes. Egress queue this session: (a) Mtafiti refresh ✅ 08:15-08:16Z · (b) baseline green confirmed at 4018 · (c) CD+Visitors JUMP probe FAIL·errno-110-ETIMEDOUT (admin SG opening still-in-progress; unmeasured-with-reason recorded per Canon-4 §5.1 + Doc-9 A5.4) · (d) no PASS connectors to fold · (e) Item-3 census run FIRED for Weego+USSD reachable subset (2/6 observed · 4/6 unmeasured-with-reason · notes/ITEM_3_CENSUS_RUN_20260915.md banked) · (f) CP-RG1 sealed here. Continuing: CP-RG2..RG5 → wave close → D12 POC → M5 sprint report.",
+  "owner_ruling_gate": "R-7 PILOT-OPEN (RATIFIED · RULING_LEDGER row 18 · DECISIONS 2026-09-15T~03:55Z) discharges via CP-RG1 receipt+debit invariant. R-15(a) TOKENIZED + R-16(a) DERIVATIVE_ONLY_VIA_PULL_SEAM discharge queued for CP-RG2 + CP-RG3.",
+  "next_cp": "CP-RG2 · tokenize_named_persons + TokenizationReceipt (grounding brief §B row 2 · R-15(a) discharge)"
+}

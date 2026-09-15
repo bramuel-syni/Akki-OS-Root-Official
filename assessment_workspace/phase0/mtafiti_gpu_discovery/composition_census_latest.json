@@ -1,5 +1,5 @@
 {
-  "at_utc": "2026-09-12T07:02:25Z",
+  "at_utc": "2026-09-15T08:15:54Z",
   "label": "cp4_composition_census",
   "hosts": [
     "159.138.162.146",
@@ -7,7 +7,7 @@
   ],
   "per_host": {
     "159.138.162.146": {
-      "at_utc": "2026-09-12T07:02:11Z",
+      "at_utc": "2026-09-15T08:15:40Z",
       "label": "weego",
       "host": "159.138.162.146",
       "port": 3306,
@@ -122,7 +122,7 @@
             "time": 4,
             "date": 2
           },
-          "total_rows": 117603
+          "total_rows": 117873
         },
         "sql_demo": {
           "tables": [
@@ -584,7 +584,7 @@
             "time": 4,
             "char": 3
           },
-          "total_rows": 2301014
+          "total_rows": 2663037
         }
       },
       "per_table": {
@@ -2374,7 +2374,7 @@
           ]
         },
         "analytics.youtube_channel_views": {
-          "row_count": 62122,
+          "row_count": 62392,
           "data_length_bytes": 3686400,
           "column_count": 5,
           "columns": [
@@ -6705,7 +6705,7 @@
           ]
         },
         "weego.booking_coordinates": {
-          "row_count": 801,
+          "row_count": 830,
           "data_length_bytes": 60293120,
           "column_count": 4,
           "columns": [
@@ -6915,7 +6915,7 @@
           ]
         },
         "weego.booking_details": {
-          "row_count": 8282,
+          "row_count": 8378,
           "data_length_bytes": 4685824,
           "column_count": 36,
           "columns": [
@@ -7245,7 +7245,7 @@
           ]
         },
         "weego.booking_ratings": {
-          "row_count": 1758,
+          "row_count": 1785,
           "data_length_bytes": 98304,
           "column_count": 12,
           "columns": [
@@ -7371,7 +7371,7 @@
           ]
         },
         "weego.booking_request_drivers": {
-          "row_count": 33053,
+          "row_count": 33355,
           "data_length_bytes": 3686400,
           "column_count": 13,
           "columns": [
@@ -7518,7 +7518,7 @@
           ]
         },
         "weego.booking_transactions": {
-          "row_count": 1846,
+          "row_count": 1875,
           "data_length_bytes": 344064,
           "column_count": 39,
           "columns": [
@@ -7916,7 +7916,7 @@
           ]
         },
         "weego.bookings": {
-          "row_count": 14151,
+          "row_count": 14334,
           "data_length_bytes": 50954240,
           "column_count": 114,
           "columns": [
@@ -16235,7 +16235,7 @@
           ]
         },
         "weego.chats": {
-          "row_count": 1119,
+          "row_count": 1131,
           "data_length_bytes": 475136,
           "column_count": 9,
           "columns": [
@@ -19970,7 +19970,7 @@
           ]
         },
         "weego.countries": {
-          "row_count": 1,
+          "row_count": 2,
           "data_length_bytes": 16384,
           "column_count": 31,
           "columns": [
@@ -20215,7 +20215,7 @@
           ]
         },
         "weego.country_area_document": {
-          "row_count": 44,
+          "row_count": 46,
           "data_length_bytes": 16384,
           "column_count": 3,
           "columns": [
@@ -20345,7 +20345,7 @@
           ]
         },
         "weego.country_area_payment_method": {
-          "row_count": 92,
+          "row_count": 94,
           "data_length_bytes": 16384,
           "column_count": 2,
           "columns": [
@@ -20499,7 +20499,7 @@
           ]
         },
         "weego.country_area_service_type": {
-          "row_count": 80,
+          "row_count": 79,
           "data_length_bytes": 16384,
           "column_count": 4,
           "columns": [
@@ -20618,7 +20618,7 @@
           ]
         },
         "weego.country_area_vehicle_document": {
-          "row_count": 1141,
+          "row_count": 1147,
           "data_length_bytes": 65536,
           "column_count": 4,
           "columns": [
@@ -20691,7 +20691,7 @@
           ]
         },
         "weego.country_area_vehicle_type": {
-          "row_count": 244,
+          "row_count": 248,
           "data_length_bytes": 16384,
           "column_count": 5,
           "columns": [
@@ -20775,7 +20775,7 @@
           ]
         },
         "weego.country_areas": {
-          "row_count": 25,
+          "row_count": 26,
           "data_length_bytes": 180224,
           "column_count": 23,
           "columns": [
@@ -22548,7 +22548,7 @@
           ]
         },
         "weego.dpo_transactions": {
-          "row_count": 196,
+          "row_count": 198,
           "data_length_bytes": 65536,
           "column_count": 13,
           "columns": [
@@ -23672,7 +23672,7 @@
           ]
         },
         "weego.driver_cashouts": {
-          "row_count": 320,
+          "row_count": 321,
           "data_length_bytes": 65536,
           "column_count": 16,
           "columns": [
@@ -24118,7 +24118,7 @@
           ]
         },
         "weego.driver_destinations": {
-          "row_count": 1,
+          "row_count": 3,
           "data_length_bytes": 16384,
           "column_count": 13,
           "columns": [
@@ -24245,7 +24245,7 @@
           ]
         },
         "weego.driver_documents": {
-          "row_count": 26171,
+          "row_count": 26435,
           "data_length_bytes": 2637824,
           "column_count": 15,
           "columns": [
@@ -24440,7 +24440,7 @@
           ]
         },
         "weego.driver_driver_vehicle": {
-          "row_count": 12668,
+          "row_count": 13050,
           "data_length_bytes": 1163264,
           "column_count": 3,
           "columns": [
@@ -24624,7 +24624,7 @@
           ]
         },
         "weego.driver_launch_events": {
-          "row_count": 36031,
+          "row_count": 43235,
           "data_length_bytes": 2637824,
           "column_count": 4,
           "columns": [
@@ -24682,7 +24682,7 @@
           ]
         },
         "weego.driver_launches": {
-          "row_count": 9601,
+          "row_count": 11471,
           "data_length_bytes": 1589248,
           "column_count": 8,
           "columns": [
@@ -24779,7 +24779,7 @@
           ]
         },
         "weego.driver_online": {
-          "row_count": 9881,
+          "row_count": 9972,
           "data_length_bytes": 1589248,
           "column_count": 4,
           "columns": [
@@ -24852,7 +24852,7 @@
           ]
         },
         "weego.driver_online_times": {
-          "row_count": 3982,
+          "row_count": 6008,
           "data_length_bytes": 1556480,
           "column_count": 12,
           "columns": [
@@ -25266,7 +25266,7 @@
           ]
         },
         "weego.driver_ride_configs": {
-          "row_count": 5644,
+          "row_count": 5704,
           "data_length_bytes": 327680,
           "column_count": 13,
           "columns": [
@@ -25388,7 +25388,7 @@
           ]
         },
         "weego.driver_segment": {
-          "row_count": 10569,
+          "row_count": 10658,
           "data_length_bytes": 409600,
           "column_count": 2,
           "columns": [
@@ -25731,7 +25731,7 @@
           ]
         },
         "weego.driver_service_type": {
-          "row_count": 10797,
+          "row_count": 10887,
           "data_length_bytes": 458752,
           "column_count": 6,
           "columns": [
@@ -26173,8 +26173,8 @@
           ]
         },
         "weego.driver_vehicle_documents": {
-          "row_count": 44829,
-          "data_length_bytes": 4734976,
+          "row_count": 47268,
+          "data_length_bytes": 5783552,
           "column_count": 14,
           "columns": [
             {
@@ -26311,7 +26311,7 @@
           ]
         },
         "weego.driver_vehicle_service_type": {
-          "row_count": 11983,
+          "row_count": 12073,
           "data_length_bytes": 540672,
           "column_count": 3,
           "columns": [
@@ -26368,7 +26368,7 @@
           ]
         },
         "weego.driver_vehicle_type_switch_logs": {
-          "row_count": 96,
+          "row_count": 187,
           "data_length_bytes": 16384,
           "column_count": 10,
           "columns": [
@@ -26502,7 +26502,7 @@
           ]
         },
         "weego.driver_vehicles": {
-          "row_count": 12103,
+          "row_count": 12206,
           "data_length_bytes": 3686400,
           "column_count": 26,
           "columns": [
@@ -26757,7 +26757,7 @@
           ]
         },
         "weego.driver_wallet_transactions": {
-          "row_count": 4870,
+          "row_count": 4914,
           "data_length_bytes": 1589248,
           "column_count": 18,
           "columns": [
@@ -26974,7 +26974,7 @@
           ]
         },
         "weego.drivers": {
-          "row_count": 27816,
+          "row_count": 28498,
           "data_length_bytes": 17350656,
           "column_count": 111,
           "columns": [
@@ -28914,8 +28914,8 @@
           ]
         },
         "weego.failed_booking_attempts": {
-          "row_count": 574,
-          "data_length_bytes": 294912,
+          "row_count": 1172,
+          "data_length_bytes": 540672,
           "column_count": 15,
           "columns": [
             {
@@ -29093,8 +29093,8 @@
           ]
         },
         "weego.failed_jobs": {
-          "row_count": 30,
-          "data_length_bytes": 524288,
+          "row_count": 118,
+          "data_length_bytes": 2637824,
           "column_count": 6,
           "columns": [
             {
@@ -34805,7 +34805,7 @@
           ]
         },
         "weego.language_countries": {
-          "row_count": 2,
+          "row_count": 3,
           "data_length_bytes": 16384,
           "column_count": 11,
           "columns": [
@@ -34930,7 +34930,7 @@
           ]
         },
         "weego.language_country_areas": {
-          "row_count": 25,
+          "row_count": 26,
           "data_length_bytes": 16384,
           "column_count": 8,
           "columns": [
@@ -36698,7 +36698,7 @@
           ]
         },
         "weego.language_vehicle_models": {
-          "row_count": 305,
+          "row_count": 307,
           "data_length_bytes": 49152,
           "column_count": 9,
           "columns": [
@@ -39131,8 +39131,8 @@
           ]
         },
         "weego.notification_logs": {
-          "row_count": 1497896,
-          "data_length_bytes": 151732224,
+          "row_count": 1818253,
+          "data_length_bytes": 187416576,
           "column_count": 10,
           "columns": [
             {
@@ -39245,7 +39245,7 @@
           ]
         },
         "weego.oauth_access_tokens": {
-          "row_count": 105553,
+          "row_count": 107455,
           "data_length_bytes": 23232512,
           "column_count": 9,
           "columns": [
@@ -39581,7 +39581,7 @@
           ]
         },
         "weego.oauth_refresh_tokens": {
-          "row_count": 91212,
+          "row_count": 92969,
           "data_length_bytes": 29966336,
           "column_count": 4,
           "columns": [
@@ -42948,7 +42948,7 @@
           ]
         },
         "weego.price_card_commissions": {
-          "row_count": 82,
+          "row_count": 83,
           "data_length_bytes": 16384,
           "column_count": 16,
           "columns": [
@@ -43426,7 +43426,7 @@
           ]
         },
         "weego.price_card_values": {
-          "row_count": 279,
+          "row_count": 282,
           "data_length_bytes": 16384,
           "column_count": 13,
           "columns": [
@@ -43588,7 +43588,7 @@
           ]
         },
         "weego.price_cards": {
-          "row_count": 82,
+          "row_count": 83,
           "data_length_bytes": 16384,
           "column_count": 46,
           "columns": [
@@ -45468,8 +45468,8 @@
           ]
         },
         "weego.promotion_notifications": {
-          "row_count": 73,
-          "data_length_bytes": 16384,
+          "row_count": 84,
+          "data_length_bytes": 49152,
           "column_count": 14,
           "columns": [
             {
@@ -46227,7 +46227,7 @@
           ]
         },
         "weego.referral_discounts": {
-          "row_count": 16,
+          "row_count": 18,
           "data_length_bytes": 16384,
           "column_count": 19,
           "columns": [
@@ -46415,7 +46415,7 @@
           ]
         },
         "weego.referral_driver_discounts": {
-          "row_count": 13,
+          "row_count": 15,
           "data_length_bytes": 16384,
           "column_count": 11,
           "columns": [
@@ -46926,7 +46926,7 @@
           ]
         },
         "weego.refresh_tokens": {
-          "row_count": 42722,
+          "row_count": 43559,
           "data_length_bytes": 7880704,
           "column_count": 7,
           "columns": [
@@ -47787,8 +47787,8 @@
           ]
         },
         "weego.ride_match_events": {
-          "row_count": 24791,
-          "data_length_bytes": 8929280,
+          "row_count": 31189,
+          "data_length_bytes": 12075008,
           "column_count": 8,
           "columns": [
             {
@@ -51265,7 +51265,7 @@
           "role_signals": []
         },
         "weego.testing_parameter_activity_logs": {
-          "row_count": 17,
+          "row_count": 32,
           "data_length_bytes": 16384,
           "column_count": 9,
           "columns": [
@@ -51353,7 +51353,7 @@
           ]
         },
         "weego.testing_parameters": {
-          "row_count": 9,
+          "row_count": 11,
           "data_length_bytes": 16384,
           "column_count": 8,
           "columns": [
@@ -51583,7 +51583,7 @@
           ]
         },
         "weego.transactions": {
-          "row_count": 1703,
+          "row_count": 1725,
           "data_length_bytes": 294912,
           "column_count": 28,
           "columns": [
@@ -52758,8 +52758,8 @@
           ]
         },
         "weego.user_devices": {
-          "row_count": 32675,
-          "data_length_bytes": 7864320,
+          "row_count": 35870,
+          "data_length_bytes": 8912896,
           "column_count": 14,
           "columns": [
             {
@@ -53202,7 +53202,7 @@
           ]
         },
         "weego.user_launch_events": {
-          "row_count": 20353,
+          "row_count": 24771,
           "data_length_bytes": 1589248,
           "column_count": 4,
           "columns": [
@@ -53260,7 +53260,7 @@
           ]
         },
         "weego.user_launches": {
-          "row_count": 9392,
+          "row_count": 11750,
           "data_length_bytes": 1572864,
           "column_count": 11,
           "columns": [
@@ -53529,7 +53529,7 @@
           ]
         },
         "weego.user_locations": {
-          "row_count": 11907,
+          "row_count": 14544,
           "data_length_bytes": 1589248,
           "column_count": 8,
           "columns": [
@@ -54325,7 +54325,7 @@
           ]
         },
         "weego.user_wallet_transactions": {
-          "row_count": 1636,
+          "row_count": 1637,
           "data_length_bytes": 294912,
           "column_count": 23,
           "columns": [
@@ -54602,7 +54602,7 @@
           ]
         },
         "weego.users": {
-          "row_count": 40133,
+          "row_count": 41250,
           "data_length_bytes": 11026432,
           "column_count": 77,
           "columns": [
@@ -55394,7 +55394,7 @@
           ]
         },
         "weego.vehicle_models": {
-          "row_count": 305,
+          "row_count": 307,
           "data_length_bytes": 49152,
           "column_count": 9,
           "columns": [
@@ -56268,7 +56268,7 @@
           ]
         },
         "weego.viupay_payment_instruments": {
-          "row_count": 608,
+          "row_count": 680,
           "data_length_bytes": 81920,
           "column_count": 9,
           "columns": [
@@ -57628,14 +57628,14 @@
         "schemas": 4,
         "tables": 443,
         "columns": 5243,
-        "rows": 2418623
+        "rows": 2780916
       },
       "errors": [],
-      "census_sha256": "627871b19b8aec1e9c10b59802691d09dfd10ca1fb9b62ca2517d077ff1bb53e",
+      "census_sha256": "0bff3d5ac7145bf199c22cad46c3ee62159df8ec63cdb4c23dfb91dbe9e55aba",
       "credential_reuse_note": "reused bramuel credential from CSV host '203.123.86.10'"
     },
     "110.238.76.159": {
-      "at_utc": "2026-09-12T07:02:15Z",
+      "at_utc": "2026-09-15T08:15:45Z",
       "label": "ussd",
       "host": "110.238.76.159",
       "port": 3306,
@@ -191277,7 +191277,7 @@
         "rows": 179289626
       },
       "errors": [],
-      "census_sha256": "58ccab94540f16ff5119d99f614bc6171e5b4a2ee57a23994d707677f9e67ca9"
+      "census_sha256": "4e45f71abc9db02a5e0748558ba6ed83060fa0c71397c4554f4ccea31fe02712"
     }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "at_utc": "2026-09-12T07:33:35Z",
+  "at_utc": "2026-09-15T08:16:25Z",
   "label": "cp7_wave_close_bundle",
   "wave": "W-MTAFITI-GPU-DISCOVERY",
   "hosts": [
@@ -174,7 +174,7 @@
         "schemas": 4,
         "tables": 443,
         "columns": 5243,
-        "rows": 2418623
+        "rows": 2780916
       },
       "column_role_signals_summary": {
         "total": 4314,
@@ -208,7 +208,7 @@
       "quality_totals": {
         "tables_profiled": 8,
         "columns_profiled": 32,
-        "sample_rows_pulled": 87
+        "sample_rows_pulled": 89
       },
       "stratified_totals": {
         "strata": 4,
@@ -326,7 +326,7 @@
     "schemas": 21,
     "tables": 1637,
     "columns": 18316,
-    "rows_estimated": 181708249,
+    "rows_estimated": 182070542,
     "column_role_signals": 12848,
     "pii_signals_live": 22,
     "pii_signals_stratified": 93,
@@ -339,29 +339,29 @@
   "cost_summary": {
     "gpu_hours_consumed": 0.0,
     "gpu_marginal_cost_usd": 0.0,
-    "egress_gb_estimated": 0.00032458826899528503,
-    "egress_usd_estimated": 5.193412303924561e-05,
-    "wave_total_usd_estimated": 5.193412303924561e-05,
+    "egress_gb_estimated": 0.0003248210996389389,
+    "egress_usd_estimated": 5.197137594223023e-05,
+    "wave_total_usd_estimated": 5.197137594223023e-05,
     "billing_basis": "cassava_lease \u00b7 $0 marginal on idle capacity (banked prior-session)"
   },
   "receipt_chain_sha256": {
     "live_probe": {
-      "110.238.76.159": "b4323b4b5c070566fc03bc76d0fc46d69c495d974340916d4a66b33dd30cc6c6",
-      "159.138.162.146": "14a95ca71062ae681180b06d8a0e7f1d069144efee79d78b5f96d2d6a35fb2f2"
+      "110.238.76.159": "1f1433dbee32bb6bac69612fd1275389076b5053a102ffea1172368a2279119d",
+      "159.138.162.146": "e5a4d73d31dec018d2b62eeb8d0c64ba0b471644a9d128dae5419c36bde634a5"
     },
     "composition": {
-      "110.238.76.159": "58ccab94540f16ff5119d99f614bc6171e5b4a2ee57a23994d707677f9e67ca9",
-      "159.138.162.146": "627871b19b8aec1e9c10b59802691d09dfd10ca1fb9b62ca2517d077ff1bb53e"
+      "110.238.76.159": "4e45f71abc9db02a5e0748558ba6ed83060fa0c71397c4554f4ccea31fe02712",
+      "159.138.162.146": "0bff3d5ac7145bf199c22cad46c3ee62159df8ec63cdb4c23dfb91dbe9e55aba"
     },
     "quality": {
-      "110.238.76.159": "9a043cf66101de5e347633191ff34049ce92c4b00fc9811951b91cf55cfd569d",
-      "159.138.162.146": "a3e4666e27812b675e29faa2dd40f3c7de7957ad304b57a110cca79a2dde2345"
+      "110.238.76.159": "fc8fab9634cb56635b6a2394b80c94582356b127d1069573eb793b6bd7b8b3f8",
+      "159.138.162.146": "91ac5c0eab2a767403966c56b7b02b7d596433cddcf5783516cc7da6d8a921fd"
     },
     "stratified": {
-      "110.238.76.159": "3d4cb3d9a94ea323d677f2feb125281b193a372184b2e6c49d8aafb34948a288",
-      "159.138.162.146": "d053e67a1c11614523c721e908869d4114d590f4786d576a458692bb7948c088"
+      "110.238.76.159": "464101650ab620598c7e4772a1d3de4ff252bee1c1bf412f627825264273fd09",
+      "159.138.162.146": "69d9d0238f8f63eb75e06ee6bff6db586c2e0a664ede31c7e3a760bdb7647fce"
     },
-    "cost_receipt": "4737ac531cdb00b52eb5249e49fd4c024361d1cf9292475012c3175e597fcf77"
+    "cost_receipt": "10b3b6670eda332b6593a2dd772ecc16164ac55b36a6ce7e0a6a2a4529461062"
   },
-  "wave_close_sha256": "23625f55daaf405059a51138ebad78be9467d4d7d81555165b20cb91986fed88"
+  "wave_close_sha256": "e72aa97bcfe5360a9ad05996608013a2319a56f6298dc0a2cf4b982399e715a8"
 }
