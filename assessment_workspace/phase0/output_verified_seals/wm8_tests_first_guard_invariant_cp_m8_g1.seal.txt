@@ -73,8 +73,9 @@
     "custody_cat_guard_fires": 0,
     "position_redaction_hard_lock": "preserved (zero credential material in transcript · standing retry loop continues at next CP boundary)"
   },
-  "commit_a_track_a_head_at_seal": "TBD (imminent)",
-  "commit_b_master_head_at_seal": "TBD (imminent)",
+  "commit_a_track_a_head_at_seal": "e02dd4d6a4bbfc6bcf82e6b5c96fa63d7f7ee9b8",
+  "commit_b_master_head_at_seal": "f298b6cd7c4e0f37e0801fde17dd4ce4ae30dd3a",
+  "commit_c_master_fixup": "banked retroactively 2026-09-16T~08:15Z per owner ruling 2026-09-16T~08:10Z (§3.3 back-compat batch · matches CP-M7-W1-POST-1 fixup precedent · no code · no ratchet)",
   "grounding_brief": "notes/wave_m8_tests_first_guard_invariant_grounding_brief.md",
   "reporting_cadence": "Owner directive verbatim 2026-09-15T~10:30Z: 'Report at M8 guard-wave seal or on D12-01 breakthrough, whichever first.' D12-01 breakthrough already banked in commit ddb4cee7; this seal is the second report trigger.",
   "next_step": "Continue M8 remaining quick wins in ratified order: W-EXPORT-ARTEFACT-RENDER -> W-DATA-SUITE-ANALYZE-WORKSPACE-REAL + W-DEEP-DIVE-REAL paired -> W-CENSUS-RUNTIME-ORCHESTRATION -> W-AUDIO-PROD-MODEL-SELECT · then M6 opens (W-M6-INGEST-STAGE-1 first) · then M7 (already ratified · W0..W9)"

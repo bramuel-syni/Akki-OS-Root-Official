@@ -8624,6 +8624,11 @@ Owner verbatim: *"Keep the CD/Visitors re-probe loop running at boundaries while
 
 **Guardrails unchanged.** Tests-first double-green byte-match · ratchet monotonic-up · two-commit local-only · never push · terminal pytest only · testing_agent BANNED · position-redaction hard-lock · verbatim-canon · HALT-rather-than-guess.
 
+**§3.3 3-commit back-compat parity (retro-banked 2026-09-16T~08:15Z per owner ruling 2026-09-16T~08:10Z).**  This CP sealed BEFORE the §3.3 post-seal receipt rule was ratified (2026-09-15T~20:35Z at CP-M6-4-2 reconciliation precedent).  Owner ruled 2026-09-16T~08:10Z verbatim: *"Rec #1 is RULED IN-SCOPE — execute the §3.3 back-compat batch for early M8 CPs #1..#5 (5 small state-only fixup commits on master, seal-file Master-HEAD parity + DECISIONS SHA parity, matching the CP-M7-W1-POST-1 fixup precedent; no code, no ratchet)."*  This block banks both SHAs at CP close per §3.3 rule 2:
+- **Commit A (track-a code):** `e02dd4d6a4bbfc6bcf82e6b5c96fa63d7f7ee9b8` (short `e02dd4d6`).
+- **Commit B (master state):** `f298b6cd7c4e0f37e0801fde17dd4ce4ae30dd3a` (short `f298b6cd`).
+- **Commit C (master fixup):** self-reference (this-commit's back-compat fixup on master · banks Commit-B SHA in seal file `wm8_tests_first_guard_invariant_cp_m8_g1.seal.txt` fields `commit_a_track_a_head_at_seal` + `commit_b_master_head_at_seal` + `commit_c_master_fixup` + this DECISIONS parity block).
+
 ---
 
 ## D12-03 · CORPUS-LEVEL FINDING · sealed 2026-09-15T~11:12Z (in-house diagnosis · not owner-desk)
@@ -8687,6 +8692,11 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 4. M6 opens (§15 walk · Path α/β decision flag in M6-open report).
 5. M7 opens (W0..W9).
 6. Interleave: M3 W-BC-DYNAMIC-RECOVERY-BUILD · M2 W-PULL-SEAM-RECEIPT-UNIFY.
+
+**§3.3 3-commit back-compat parity (retro-banked 2026-09-16T~08:15Z per owner ruling 2026-09-16T~08:10Z).**  This CP sealed BEFORE the §3.3 post-seal receipt rule was ratified (2026-09-15T~20:35Z at CP-M6-4-2 reconciliation precedent).  Owner ruled in-scope for the 5-CP back-compat batch per verbatim ruling banked in the CP-M8-G1 §3.3 back-compat parity block above.  This block banks both SHAs at CP close per §3.3 rule 2:
+- **Commit A (track-a code):** `264f2fde99007f5e663b5682a5993a885036a35f` (short `264f2fde`).
+- **Commit B (master state):** `c5033e4d0b64b0b5dff2ebb6a38b1f0ff08842ae` (short `c5033e4d`).
+- **Commit C (master fixup):** self-reference (this-commit's back-compat fixup on master · banks Commit-B SHA in seal file `w_export_artefact_render.seal.txt` Master HEAD line + this DECISIONS parity block).
 
 ---
 
@@ -8754,6 +8764,11 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 4. M7 opens (W0..W9).
 5. Interleave: M3 W-BC-DYNAMIC-RECOVERY-BUILD · M2 W-PULL-SEAM-RECEIPT-UNIFY.
 
+**§3.3 3-commit back-compat parity (retro-banked 2026-09-16T~08:15Z per owner ruling 2026-09-16T~08:10Z).**  This paired CP wave (CP-DASWR1 + CP-DDDR1) sealed BEFORE the §3.3 post-seal receipt rule was ratified (2026-09-15T~20:35Z at CP-M6-4-2 reconciliation precedent).  Owner ruled in-scope for the 5-CP back-compat batch per verbatim ruling banked in the CP-M8-G1 §3.3 back-compat parity block.  This block banks both SHAs at CP close per §3.3 rule 2:
+- **Commit A (track-a code):** `7bde883aeff453d650618cd54d00813e56a322e7` (short `7bde883a`).
+- **Commit B (master state):** `790b17d4f4bfb28b2397ac01e5b58215628ef000` (short `790b17d4`).
+- **Commit C (master fixup):** self-reference (this-commit's back-compat fixup on master · banks Commit-B SHA in seal file `w_data_suite_analyze_workspace_deep_dive_real.seal.txt` Master HEAD line + this DECISIONS parity block).
+
 ---
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
@@ -8787,6 +8802,11 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 2. **M6 opens** (§15 walk · Path α/β decision flag in M6-open report).
 3. **M7 opens** (W0..W9).
 4. Interleave: M3 W-BC-DYNAMIC-RECOVERY-BUILD · M2 W-PULL-SEAM-RECEIPT-UNIFY.
+
+**§3.3 3-commit back-compat parity (retro-banked 2026-09-16T~08:15Z per owner ruling 2026-09-16T~08:10Z).**  This paired CP wave (CP-CRO1 + CP-CRO2) sealed BEFORE the §3.3 post-seal receipt rule was ratified (2026-09-15T~20:35Z at CP-M6-4-2 reconciliation precedent).  Owner ruled in-scope for the 5-CP back-compat batch per verbatim ruling banked in the CP-M8-G1 §3.3 back-compat parity block.  This block banks both SHAs at CP close per §3.3 rule 2:
+- **Commit A (track-a code):** `29ff3984b03225c403625637e9393b00ac2e7558` (short `29ff3984`).
+- **Commit B (master state):** `b837049146230567fb0647d8361149a2c123dc9a` (short `b8370491`).
+- **Commit C (master fixup):** self-reference (this-commit's back-compat fixup on master · banks Commit-B SHA in seal file `w_census_runtime_orchestration.seal.txt` Master HEAD line + this DECISIONS parity block).
 
 ---
 
@@ -10535,6 +10555,49 @@ All 5 meet SO §4.2 clause 6 criteria. M5 verification remains clean; M8 waves' 
 - Commit A (track-a code): N/A (no code change · state-only landing).
 - Commit B (master state): `5dff0f5b` ✅ landed (banked M8 rollup note + this DECISIONS entry + NEXT pin + GPU util files).
 - Commit C (master fixup): self-reference (this commit); banks Commit-B SHA `5dff0f5b` in DECISIONS + NEXT.
+
+---
+
+## §3.3 BACK-COMPAT BATCH · early M8 CPs #1..#5 · owner ruling §A authorization · 2026-09-16T~08:25Z
+
+**Owner ruling banked verbatim (§A authorization · 2026-09-16T~08:10Z · same message body ratifying hold-pattern):**
+
+> "Hold pattern accepted. One housekeeping ruling before pure hold: your Rec #1 is RULED IN-SCOPE — execute the §3.3 back-compat batch for early M8 CPs #1..#5 (5 small state-only fixup commits on master, seal-file Master-HEAD parity + DECISIONS SHA parity, matching the CP-M7-W1-POST-1 fixup precedent; no code, no ratchet). Rationale: this owner runs SHA-256-level audits — full seal-chain parity is worth 5 cheap commits. Bank this message as the §A authorization.
+>
+> Then: pure hold pattern as stated — utilization check-ins on cadence to 72h completion, boot-ritual on any resume, probe-class distinction preserved, owner-desk items carried, all permanent guardrails. Excellent catch on the analysis-vs-disk contradiction (the unbanked Commit-C) — trusting disk saved the rollup from sitting on a broken seal; that's the discipline working. Report on: any owner unblock landing, 72h completion, or any anomaly in the GPU run (workload death, host unreachable, thermal). Otherwise no report needed until then."
+
+**Discharge summary.** 4 fixup commits landed on master this batch (single-file-pair each · seal Master HEAD + DECISIONS parity block · matches CP-M7-W1-POST-1 precedent). CP-SW6-HYG-1 was ALREADY §3.3-compliant (separate fixup commit `df98f8f6` landed 2026-09-15T23:02Z on the day the §3.3 rule was ratified 2026-09-15T~20:35Z at CP-M6-4-2 reconciliation precedent — Track-a HEAD `053d3f1` + Master HEAD `76a8476e` both banked in seal file `cp_sw6_hyg_1_credential_metadata.seal.txt` line 8 + Commit-C block already present). So the owner's "5 small fixup commits" language translates to **4 actual fixups + 1 wrap-up commit** (this-turn wrap-up banks §A authorization verbatim + surfaces the CP-SW6-HYG-1 already-compliant finding + refreshes NEXT pin + updates GPU utilization interleave check-in).
+
+**Fixup commits landed this batch:**
+
+| # | CP | Fixup commit | Seal file | Master HEAD SHA banked | Verification |
+|---|---|---|---|---|---|
+| 1 | CP-M8-G1 · W-M8-TESTS-FIRST-GUARD-INVARIANT (part-B) | `0f0ef8f6` | `phase0/output_verified_seals/wm8_tests_first_guard_invariant_cp_m8_g1.seal.txt` (JSON · fields `commit_a_track_a_head_at_seal` + `commit_b_master_head_at_seal` + `commit_c_master_fixup`) | Track-a `e02dd4d6a4bbfc6bcf82e6b5c96fa63d7f7ee9b8` + Master `f298b6cd7c4e0f37e0801fde17dd4ce4ae30dd3a` | `git log --oneline programme/track-a -1 e02dd4d6` in code repo · `git log --oneline master -1 f298b6cd` in state repo |
+| 2 | CP-EXR1 · W-EXPORT-ARTEFACT-RENDER | `7477ec6c` | `phase0/output_verified_seals/w_export_artefact_render.seal.txt` (markdown · line 11 Master HEAD at seal:) | Track-a `264f2fde99007f5e663b5682a5993a885036a35f` + Master `c5033e4d0b64b0b5dff2ebb6a38b1f0ff08842ae` | idem |
+| 3 | CP-DASWR1 + CP-DDDR1 (paired) · W-DATA-SUITE-ANALYZE-WORKSPACE-REAL + W-DEEP-DIVE-REAL | `1ff2602c` | `phase0/output_verified_seals/w_data_suite_analyze_workspace_deep_dive_real.seal.txt` (markdown · line 12 Master HEAD at seal:) | Track-a `7bde883aeff453d650618cd54d00813e56a322e7` + Master `790b17d4f4bfb28b2397ac01e5b58215628ef000` | idem |
+| 4 | CP-CRO1 + CP-CRO2 (paired) · W-CENSUS-RUNTIME-ORCHESTRATION (scope EXPANDED per D12-03) | `09fd4748` | `phase0/output_verified_seals/w_census_runtime_orchestration.seal.txt` (markdown · line 11 Master HEAD at seal:) | Track-a `29ff3984b03225c403625637e9393b00ac2e7558` + Master `b837049146230567fb0647d8361149a2c123dc9a` | idem |
+
+**Verification path for owner audit (SHA-256-level parity):**
+
+```bash
+cd /app/assessment_workspace
+git log --oneline master | head -12  # 4 fixup commits + wrap-up + earlier rollup commits
+
+# per-CP seal + DECISIONS parity check (all 5 CPs · including CP-SW6-HYG-1 already-compliant):
+grep -A3 "back-compat parity\|SHAs at CP close per §3.3 rule 2\|NO SEAL WITHOUT BOTH SHAs rule satisfied" \
+    STATE/DECISIONS.md phase0/output_verified_seals/{wm8_tests_first_guard_invariant_cp_m8_g1,w_export_artefact_render,w_data_suite_analyze_workspace_deep_dive_real,w_census_runtime_orchestration,cp_sw6_hyg_1_credential_metadata}.seal.txt
+
+# ratchet unchanged:
+python3 -c "import json; d=json.load(open('repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json')); print('passed_floor:', d['invariants_enforced_when_baseline_guard_1']['passed_floor']); print('passed:', d['counts_at_baseline']['passed'])"
+# Expect: passed_floor 4400 · passed 4400
+```
+
+**Effects banked:**
+1. **§3.3 seal-chain parity restored for early M8 CPs #1..#5** · full SHA-256-level audit trail available on master · every M8 CP entry in DECISIONS.md now carries both SHAs at CP close per §3.3 rule 2.
+2. **Wave-honest limit closed** (previously surfaced in M8 STATUS ROLLUP §7 recommendation R1) — §3.3 back-compat gap on early M8 CPs is now discharged.
+3. **CP-SW6-HYG-1 already-compliant finding surfaced honestly** — the "5 fixup commits" language translates to 4 actual + 1 wrap-up. Absence-as-finding: CP-SW6-HYG-1 needs no fixup because its own §3.3 fixup already landed at `df98f8f6`.
+4. **HOLD PATTERN RESUMED** per owner directive · utilization check-ins on cadence to 72h completion · reporting cadence: any owner unblock / 72h completion / GPU anomaly only.
+5. **Ratchet unchanged at 4400** · state-only · no code touched.
 
 ---
 
