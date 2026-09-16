@@ -1,8 +1,8 @@
 # GPU Utilization Report · 72-hour appliance benchmark suite
 
-**Generated at UTC:** 2026-09-16T05:05:31Z
+**Generated at UTC:** 2026-09-16T05:34:27Z
 **Launch (earliest host):** 2026-09-16T03:41:28Z
-**Elapsed:** 1.40 hours · **Remaining:** 70.60 hours (of 72)
+**Elapsed:** 1.88 hours · **Remaining:** 70.12 hours (of 72)
 
 ## Workloads
 
@@ -21,24 +21,24 @@
 ### Host `akki-vm`
 
 - Start (UTC): `2026-09-16T03:41:28Z`
-- Telemetry samples: **44**
-- Bench iterations: **166** (ok: 166)
+- Telemetry samples: **56**
+- Bench iterations: **224** (ok: 224)
 
 | GPU | Name | Samples | Util avg | Util peak | Power avg (W) | Power peak (W) | Temp avg (°C) | Temp peak (°C) | Mem peak (MiB) |
 |---:|---|---:|---:|---:|---:|---:|---:|---:|---:|
-| 0 | NVIDIA H200 | 22 | 69.1% | 100.0% | 521.7 | 692.3 | 59.6 | 70.0 | 41187 |
-| 1 | NVIDIA H200 | 22 | 69.7% | 100.0% | 522.6 | 692.4 | 59.2 | 69.0 | 41187 |
+| 0 | NVIDIA H200 | 28 | 74.8% | 100.0% | 557.5 | 692.3 | 61.6 | 70.0 | 51683 |
+| 1 | NVIDIA H200 | 28 | 75.4% | 100.0% | 558.7 | 694.4 | 61.1 | 69.0 | 51683 |
 
 ### Host `akki-vm-ii`
 
 - Start (UTC): `2026-09-16T03:41:36Z`
-- Telemetry samples: **38**
-- Bench iterations: **166** (ok: 166)
+- Telemetry samples: **50**
+- Bench iterations: **224** (ok: 224)
 
 | GPU | Name | Samples | Util avg | Util peak | Power avg (W) | Power peak (W) | Temp avg (°C) | Temp peak (°C) | Mem peak (MiB) |
 |---:|---|---:|---:|---:|---:|---:|---:|---:|---:|
-| 0 | NVIDIA H200 | 19 | 80.0% | 100.0% | 591.5 | 693.1 | 62.9 | 70.0 | 41187 |
-| 1 | NVIDIA H200 | 19 | 79.8% | 100.0% | 592.9 | 693.9 | 64.7 | 71.0 | 41187 |
+| 0 | NVIDIA H200 | 25 | 83.6% | 100.0% | 614.8 | 693.1 | 64.4 | 70.0 | 51683 |
+| 1 | NVIDIA H200 | 25 | 83.5% | 100.0% | 616.1 | 693.9 | 66.2 | 71.0 | 51683 |
 
 ## Receipts index
 

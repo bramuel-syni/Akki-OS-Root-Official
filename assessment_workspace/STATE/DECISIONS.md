@@ -9935,5 +9935,155 @@ Public API added (9 new exports · combined module surface 19 exports): Commissi
 
 ---
 
+## Owner ruling banked verbatim · 2026-09-16T~05:10Z · §3/§4 default OVERRIDDEN · reconciliation-then-POST-1-then-POST-2
+
+> "Ruling on §3/§4 — the default is OVERRIDDEN; you have more authority than you're using. The contract-shape question is ALREADY RULED by owner precedent: the 2026-09-13 verbatim correction ('job_kind must stay CASE-AGNOSTIC … Do NOT lock a closed 5-value enum into the platform') is the governing shape ruling for ALL W1-family platform kernels. Applying existing owner law is not speculation. Execute in this order:
+>
+> 1. **(d) ROADMAP §A.12/§A.11 reconciliation** — single master commit: mark the aspirational 9-field ProgressSignal shape SUPERSEDED by the owner's case-agnostic correction (cite it verbatim), document the actual 5-field kernel as canonical. The roadmap must never again read as if the actual W1 close under-delivered by mistake — it delivered the CORRECTED scope.
+>
+> 2. **(a) CP-M7-W1-POST-1 · Resource Registry** — land services/resource_registry/* in case-agnostic-simplified shape per the same precedent (registration + enumeration + status surface; no closed workload enums; deterministic; tests-first). SCOPE BOUNDARY: registry surface ONLY — do NOT wire the §3.2 clause-5 cross-service hard-gate (refusing dispatch of unregistered resources); that enforcement semantics is a genuine owner ruling and stays on the P2 desk. Registry-without-gate is useful and shape-safe.
+>
+> 3. **(b) CP-M7-W1-POST-2 · Capability Registry** — same pattern: generalise services/layer_b/factory.py into services/capability_registry/* case-agnostically, registry surface only, no enforcement gate. Compose with (not modify) the existing factory per no-refactor discipline; it can delegate.
+>
+> 4. **(c) W2 unblock items stay parked owner-desk** (NAS audio reach, 3-station selection, retention Path A/B/C, HF token state). Do not pre-build W2 mounts.
+>
+> Utilization interleave continues at every CP boundary as you've been doing (LIVE, 100% peak, ~650 TFLOPS sustained is exactly the evidence the owner wanted). Tests-first, §3.3 seals, all permanent constraints. Report at POST-1 + POST-2 seals with utilization snapshots."
+
+**Applied this shift.**
+
+Step (d) executed 2026-09-16T~05:15Z · single master commit. Edits banked on `notes/GOVERNED_CENSUS_HARVEST_PLATFORM_ROADMAP.md`:
+- §A.8 · SUPERSEDED banner + verbatim 2026-09-13 correction + canonical 5-field ProgressSignal, 5-field HaltVerdict, StarvationAlarm(RuntimeError) exception, primitive interface, zero-influence contract, wave-honest limit. Aspirational 9-field ProgressSignal + 3-field StarvationAlarm shapes retained as historical reference marked SUPERSEDED.
+- §A.11 · SUPERSEDED banner + verbatim 2026-09-13 correction + canonical 10-field case-agnostic JobManifest v0 (`services/work_supervisor/job_manifest.py::JobManifest`). Aspirational 15-field shape retained as historical reference marked SUPERSEDED. Explicitly documented that the 15-field shape lives (if a mounting job chooses) inside `scope: dict` opaque field, NOT in the platform kernel schema.
+- §A.12 W1 · ACTUAL-VS-ASPIRATIONAL SCOPE RECONCILIATION banner + explicit list of DELIVERED-at-close vs DELIVERED-post-W1 vs NOT-DELIVERED-at-close items + citation of W-M7-W0-VERIFICATION close + W-M7-W1-VERIFICATION close + CP-M7-W1-POST-1 + CP-M7-W1-POST-2 sequencing. Aspirational 6-item list retained as historical reference reconciled above.
+
+Step (a) CP-M7-W1-POST-1 · Resource Registry landing — tests-first RED → mechanism → double-green → seal → §3.3 3-commit. Scope boundary honoured per owner: registry surface ONLY · no §3.2 clause-5 cross-service hard-gate.
+
+Step (b) CP-M7-W1-POST-2 · Capability Registry landing — same pattern; delegate to `services/layer_b/factory.py` (compose-not-modify).
+
+Step (c) W2 unblock parked — NAS audio reach · 3-station selection · retention Path A/B/C · HF token state stay on P1/P2 owner-desk. No W2 mount pre-build authored.
+
+Utilization interleave continues at every CP boundary of POST-1 + POST-2.
+
+---
+
+## CP-M7-W1-POST-1 · Resource Registry SEAL · 2026-09-16T~05:45Z · Path α clean · ratchet 4358 -> 4384 (+26)
+
+**Owner ruling verbatim (2026-09-16T~05:10Z):** see reconciliation-then-POST-1-then-POST-2 entry above; scope boundary registry-only preserved.
+
+**Owner ruling verbatim (2026-09-13 · governing case-agnostic precedent):** "CORRECTION — job_kind must stay CASE-AGNOSTIC ... Do NOT lock a closed 5-value audio-harvest enum into the platform JobManifest at CP1 — that leaks the audio case into generic platform code."
+
+**Landed:**
+- `services/resource_registry/__init__.py` (73 L exports).
+- `services/resource_registry/registry.py` (199 L canonical implementation).
+- `tests/invariants/test_wm7_w1_post_1_resource_registry.py` (524 L · 26 invariants).
+
+**Case-agnostic doctrine applied:**
+- `resource_class: str` (OPEN string, not `Literal[...]`) — no closed-enum leakage.
+- No platform seed (unlike `kind_registry.PLATFORM_SEED_KIND`) — resources register at their case wave.
+- Omitted aspirational §A.1 closed-enum `cost_class` (banned by 2026-09-13 correction), off-scope `max_concurrent_workers` (belongs on `WorkerLane`/`CommissionSpec`), off-scope `ssh_seam_ref` (source-plane concern).
+
+**Scope boundary honoured (verbatim owner 2026-09-16T~05:10Z):**
+- Registry surface ONLY: `register_resource` / `is_registered` / `list_resources` / `select_by_capability` / `get_resource` / `_reset_registry_for_tests`.
+- Zero cross-service hard-gate (§3.2 clause-5 owner-desk P2).
+- Zero imports of dispatch surfaces (`services.training_runner`, `services.audio_poc`, `services.work_supervisor.supervisor`, `services.campaign_infra`, `services.layer_a.dispatcher`, `services.perception.job_dispatcher`) — verified by `test_registry_does_not_import_dispatch_surfaces` (grep-based negative invariant).
+- Zero refactor of prior surfaces (thin-kernel discipline).
+- Registry is append-only this CP: no `unregister` — verified by `test_registry_no_terminator_names_on_public_surface`.
+
+**Wave-honest limits (per grounding brief §D):**
+- **D.1** Registry-only surface. Dispatch of unregistered resources is not refused by the platform (owner-desk P2).
+- **D.2** No status surface. Whether a registered resource is reachable/available is a `runtime_supervisor.output_verification_watchdog`-style read, not a resource-registry concern.
+- **D.3** No `max_concurrent_workers` / `cost_class` / `ssh_seam_ref` fields. `cost_class` was a closed enum banned by 2026-09-13 correction; the other two belong on `WorkerLane`/`CommissionSpec` and `source_plane` respectively.
+- **D.4** Process-scope registry. Durable on-disk audit trail is a later refinement (mirrors `kind_registry.py` wave-honest limit E-4).
+
+**Mechanical RED drill:**
+- `phase0/drill_receipts/20260916T053000Z_cp_m7_w1_post_1_resource_registry_RED.log` · 15134 bytes · sha256 `9f22c0bdcfb42fb19fd7a639dc2e1251ff74a4f3dc3839f1b98eafd0325fc0b7` · 26 failed right-reason (mechanism not landed).
+
+**Double-green byte-match:**
+- GREEN 1: `phase0/drill_receipts/20260916T053700Z_cp_m7_w1_post_1_resource_registry_double_green_1.log` · raw 9844 · stripped 9789 · stripped sha256 `db32fd5a022be282176686ed33a5a2ba203b5da77e3a861e06edf3d83774b992` · `4384 passed, 1 skipped, 438 warnings in 144.27s`.
+- GREEN 2: `phase0/drill_receipts/20260916T054000Z_cp_m7_w1_post_1_resource_registry_double_green_2.log` · raw 9844 · stripped 9789 · stripped sha256 `db32fd5a022be282176686ed33a5a2ba203b5da77e3a861e06edf3d83774b992` · `4384 passed, 1 skipped, 438 warnings in 127.54s`.
+- Raw byte-identical (9844=9844) · stripped byte-identical · stripped sha256 identical. Byte-match discharged.
+
+**Ratchet:** 4358 → **4384** (+26) monotonic-up. `counts_at_baseline.passed` + `passed_floor` bumped in tandem; `ratchet_history` entry appended at `20260916T053500Z`.
+
+**Seal file:** `phase0/output_verified_seals/w_m7_w1_post_1_resource_registry.seal.txt` · Kind: `w_m7_w1_post_1_resource_registry` · Track-a HEAD at seal: `2c7a8f0c6157d4103feeebad1171a3bdc92d952c` · Master HEAD: TBD (Commit-C fixup per §3.3).
+
+**§3.3 3-commit pattern:**
+- **Commit A · track-a:** `2c7a8f0c6157d4103feeebad1171a3bdc92d952c` (code + tests + baseline_failures.json).
+- **Commit B · master:** `515555120a0772acaa468d4f544eb0209a16a788` (landed 2026-09-16T~05:45Z · state + seal + grounding brief + drill receipts + NEXT pin + this entry + GPU check-in artefacts).
+- **Commit C · master fixup:** replaced TBD → `515555120a0772acaa468d4f544eb0209a16a788` in seal + this DECISIONS entry + NEXT pin.
+
+**GPU utilization check-in at CP-seal (per grounding brief §G):**
+- Elapsed 1.69 h · Remaining 70.31 h of 72.
+- akki-vm: `sampler_alive`+`workload_alive` · 48 telemetry samples · 202 bench iters (ok=202) · peak 100% GPU util · peak ~691 W · peak ~70°C.
+- akki-vm-ii: `sampler_alive`+`workload_alive` · 46 telemetry samples · 202 bench iters (ok=202) · peak 100% GPU util · peak ~693 W · peak ~71°C.
+- 404 total bench artefacts banked · zero synthetic burn · in-perimeter · env-injection creds · position-redaction preserved.
+- Report served: `https://akki-reuse-assess.preview.emergentagent.com/audit/GPU_UTILIZATION_72H.md`.
+
+**Effects banked:**
+
+1. **Resource Registry primitive LANDED** (case-agnostic minimal · registry surface only). Downstream mounting jobs can now register a `ComputeResource` at their case wave without the platform kernel adopting any case-specific field.
+2. **Ratchet floor 4358 → 4384**. All prior invariants still gated. 26 new invariants freeze the case-agnostic Resource Registry surface.
+3. **§3.3 3-commit protocol** initiated: Commit A landed (track-a `2c7a8f0c`); Commit B + C to follow this-turn on master.
+4. **Next CP**: CP-M7-W1-POST-2 · Capability Registry. Same case-agnostic pattern; delegate to `services/layer_b/factory.py` (compose-not-modify per no-refactor discipline).
+5. **W-M7-UTILIZATION-72H interleave continues**: check-in fired at CP-seal (1.69 h elapsed · 202+202 iters).
+
+---
+
+## CP-M7-W1-POST-2 · Capability Registry CLOSE · 2026-09-16T~06:05Z · Path α clean · zero-delta · VERIFICATION WALK (revised from-disk)
+
+**Owner ruling verbatim (2026-09-16T~05:10Z, applied):** see reconciliation-then-POST-1-then-POST-2 entry above; INTENT satisfied by pre-existing W1b module (see below).
+
+**From-disk discovery this shift.** Attempted CP-M7-W1-POST-2 as a mechanism build; RED drill (`phase0/drill_receipts/20260916T060000Z_cp_m7_w1_post_2_capability_registry_RED.log` · 16428 bytes · sha256 `c537ea03294d583b18bb178e44f54c75693a0511deddd02c2a919070f583287c`) returned 22 failed + **5 unexpectedly passed**. `test_capability_registry_module_importable PASSED` at RED was the tell — a pre-existing module was importing successfully.
+
+**Discovery finding.** `services/capability_registry.py` (single-file module · 112 lines · 3709 bytes) was landed **2026-09-13T06:59:30Z** by commit `53645935` in **W1b · Platform Primitives wave close** (26 minutes after W1 close at `fe01e5e` 06:33:22Z · ratchet 3392 → 3492 · +100). Its shape:
+
+- **Public surface** (`__all__`): `register_capability` · `get_capability` · `list_categories` · `list_capabilities_in` · `CapabilityNotRegistered` · `_reset_capabilities_for_tests`.
+- **Case-agnostic** per module docstring line 15-17 verbatim: *"this module carries NO category-specific tokens. It merely stores (category, name) -> import_path mappings and resolves them lazily."*
+- **Compose-not-modify with `services/layer_b/factory.py`** — W1b test `test_layer_b_factory_registries_re_expressible_in_capability_registry` (in `tests/invariants/test_w1b_cp4_capability_registry.py`) freezes the compose-freeze property; factory is NOT refactored.
+- **15 W1b invariants** pass under file-scoped pytest in 0.64 s.
+
+**Under Audio-Plane §1.2 verbatim** (*"Anything ... that reads as a parallel to an existing service is rule proliferation and must be collapsed into the existing service before build"*), authoring a NEW `services/capability_registry/` package alongside the pre-existing W1b single-file module would be rule proliferation. **POST-2 revised** to verification walk on the pre-existing module — analog of W0/W1 verification shape.
+
+**Draft POST-2 mechanism-build test file** (`tests/invariants/test_wm7_w1_post_2_capability_registry.py` · 27 draft invariants for a `services/capability_registry/{__init__, registry}` package) **DELETED** prior to any track-a commit. No mechanism artefacts landed on track-a; track-a HEAD unchanged at `2c7a8f0c` from POST-1 close.
+
+**Six from-disk checks (C.1–C.6) all clean:**
+
+- **C.1** Primitive surface: `__all__` matches expected 6-name set.
+- **C.2** 15 W1b invariants pass in 0.64 s (`python -m pytest tests/invariants/test_w1b_cp4_capability_registry.py -q`).
+- **C.3** Case-agnostic doctrine: 0 domain tokens (asr/diarization/vision/audio/harvest) in module source.
+- **C.4** Module unchanged since W1b close: last-touched 2026-09-13T06:59:30Z by `5364593`.
+- **C.5** Compose-not-modify: W1b test passes; `services/layer_b/factory.py` unchanged at 3353 bytes (pre-CP size).
+- **C.6** Registry-only surface: no `enforce_/refuse_/kill_/terminate_` tokens on public surface.
+
+**Verification receipt.** `phase0/m7_w1_post_2_verification/verification_receipt_20260916.json` · verdict=`clean` · path_taken=Path α · ratchet_delta=0.
+
+**Wave-honest limits banked:**
+
+- **D.1** M7 W1 verification receipt this shift (2026-09-16T~04:15Z) covered only W1 close (`fe01e5e` at 06:33Z); missed W1b close (`53645935` at 06:59Z · 26 minutes later). **Candidate CP-M7-W1-POST-3-VERIFICATION** covers the remaining 5 W1b deliverables (RetentionPolicy · SourceConnector Protocol · Synology FileStation · AttributeStreamBundle_v0 · L2/L4 shells).
+- **D.2** ROADMAP §A.12 W1 reconciliation refined this shift to include W1b close as a first-class delivery row (banked at same master commit as this entry).
+- **D.3** POST-1 (Resource Registry) vs POST-2 (Capability Registry) asymmetry: POST-1 was a genuine mechanism build (+26 invariants); POST-2 is zero-delta verification because W1b already shipped it. Both satisfy owner INTENT.
+- **D.4** `services/capability_registry.py` is a single-file module (not the package convention the owner ruling wrote as `services/capability_registry/*`). Wave-honest choice from W1b close; not modified this CP.
+
+**Commit protocol.** Single-master-commit (analog of W0/W1 verification-walk shape): no track-a Commit-A · Commit-B on master banks state entirety (this DECISIONS entry + close note + verification receipt + revised grounding brief + ROADMAP §A.12 refinement + NEXT.md pin + GPU util check-in artefacts) · no Commit-C fixup (no seal file references a master SHA).
+
+**GPU utilization check-in at CP-seal (per grounding brief §G):**
+
+- Elapsed 1.88 h · Remaining 70.12 h.
+- akki-vm: sampler_alive+workload_alive · 52 telemetry samples · 224 bench iters (ok=224) · peak 100% util per GPU · peak ~691 W · peak ~70°C.
+- akki-vm-ii: sampler_alive+workload_alive · 50 telemetry samples · 224 bench iters (ok=224) · peak 100% util per GPU · peak ~693 W · peak ~71°C.
+- 448 total bench artefacts banked · zero synthetic burn · in-perimeter.
+- Report served: `https://akki-reuse-assess.preview.emergentagent.com/audit/GPU_UTILIZATION_72H.md`.
+
+**Effects banked:**
+
+1. **Capability Registry ratified at CP-M7-W1-POST-2**: pre-existing W1b `services/capability_registry.py` verified to satisfy owner ruling INTENT (case-agnostic + compose-not-modify · registry-only surface). Zero new mechanism landed.
+2. **Ratchet unchanged at 4384** (from POST-1 close). Verification walk, not mechanism build.
+3. **ROADMAP §A.12 W1 reconciliation refined** to include W1b close as a first-class delivery row.
+4. **NEW candidate CP-M7-W1-POST-3-VERIFICATION** banked as owner-desk P2 item: verify remaining 5 W1b deliverables (RetentionPolicy · SourceConnector Protocol · Synology FileStation · AttributeStreamBundle_v0 · L2/L4 shells). Autonomously authorable by same precedent as POST-2.
+5. **W-M7-UTILIZATION-72H interleave continues** at check-in cadence.
+6. **W2..W9 remain BLOCKED-ON-OWNER** per ROADMAP §E.2 (NAS reach · HF token · 3-station selection · RetentionPolicy Path A/B/C · Ruling #5 sub-verdicts).
+
+---
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 

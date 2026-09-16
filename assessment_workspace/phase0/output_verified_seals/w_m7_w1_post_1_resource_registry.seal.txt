@@ -1,0 +1,101 @@
+Kind: w_m7_w1_post_1_resource_registry
+
+CP-M7-W1-POST-1 · Resource Registry · services/resource_registry/*.
+
+Owner ruling verbatim (2026-09-16T~05:10Z via user relay):
+  "CP-M7-W1-POST-1 · Resource Registry — land services/resource_registry/*
+  in case-agnostic-simplified shape per the same precedent (registration
+  + enumeration + status surface; no closed workload enums; deterministic;
+  tests-first). SCOPE BOUNDARY: registry surface ONLY — do NOT wire the
+  §3.2 clause-5 cross-service hard-gate (refusing dispatch of unregistered
+  resources); that enforcement semantics is a genuine owner ruling and
+  stays on the P2 desk. Registry-without-gate is useful and shape-safe."
+
+Owner ruling verbatim (2026-09-13 · governing case-agnostic precedent):
+  "CORRECTION — job_kind must stay CASE-AGNOSTIC ... Do NOT lock a closed
+  5-value audio-harvest enum into the platform JobManifest at CP1 — that
+  leaks the audio case into generic platform code."
+
+Delivered:
+  services/resource_registry/__init__.py       (73 lines, exports).
+  services/resource_registry/registry.py       (199 lines, canonical impl).
+  tests/invariants/test_wm7_w1_post_1_resource_registry.py
+                                               (524 lines, 26 invariants).
+
+Public surface (case-agnostic minimal · registry surface ONLY):
+  ComputeResource            frozen dataclass
+    resource_id: str         (non-empty)
+    resource_class: str      (non-empty OPEN string · no closed enum)
+    capability_tags: tuple[str, ...]   (sorted at construct time)
+    registered_at_utc: str   (ISO-8601 Z suffix)
+  ResourceRegistryInvalid    (ValueError) construct-time refusal
+  ResourceNotRegistered      (KeyError) lookup miss
+  register_resource(r)       idempotent for same id+payload; refuses
+                             id-with-mismatched-payload (mutation is a
+                             NEW resource, mirrors §10.2 discipline)
+  is_registered(id)          bool
+  list_resources()           tuple sorted by resource_id
+  select_by_capability(tags) tuple superset match · sorted
+  get_resource(id)           ComputeResource or ResourceNotRegistered
+  _reset_registry_for_tests  test-only determinism helper
+
+Scope boundary honoured (verbatim owner ruling):
+  - Registry surface ONLY. No cross-service hard-gate (§3.2 clause-5 P2).
+  - Zero imports of dispatch surfaces (training_runner, audio_poc,
+    work_supervisor.supervisor, campaign_infra, layer_a.dispatcher).
+    Verified by test_registry_does_not_import_dispatch_surfaces.
+  - Zero closed enums (resource_class is OPEN string).
+  - No platform seed (unlike kind_registry.PLATFORM_SEED_KIND).
+  - Registry is append-only this CP: no `unregister` operation.
+
+Wave-honest limits (per grounding brief §D):
+  D.1 · Registry-only (cross-service enforcement is P2).
+  D.2 · No status surface (liveness is runtime_supervisor's concern).
+  D.3 · Omitted aspirational §A.1 fields (max_concurrent_workers,
+        cost_class [banned closed enum], ssh_seam_ref).
+  D.4 · Process-scope registry (durable audit trail is later refinement,
+        mirrors kind_registry.py E-4).
+
+RED drill:
+  phase0/drill_receipts/20260916T053000Z_cp_m7_w1_post_1_resource_registry_RED.log
+  bytes=15134
+  sha256=9f22c0bdcfb42fb19fd7a639dc2e1251ff74a4f3dc3839f1b98eafd0325fc0b7
+  result: 26 failed (right-reason: mechanism not landed)
+
+Double-green byte-match:
+  GREEN 1: phase0/drill_receipts/20260916T053700Z_cp_m7_w1_post_1_resource_registry_double_green_1.log
+    raw_bytes=9844
+    stripped_bytes=9789
+    stripped_sha256=db32fd5a022be282176686ed33a5a2ba203b5da77e3a861e06edf3d83774b992
+    result: 4384 passed, 1 skipped, 438 warnings in 144.27s
+  GREEN 2: phase0/drill_receipts/20260916T054000Z_cp_m7_w1_post_1_resource_registry_double_green_2.log
+    raw_bytes=9844
+    stripped_bytes=9789
+    stripped_sha256=db32fd5a022be282176686ed33a5a2ba203b5da77e3a861e06edf3d83774b992
+    result: 4384 passed, 1 skipped, 438 warnings in 127.54s
+  MATCH: raw byte-identical (9844=9844), stripped byte-identical, stripped
+         sha256 identical. Byte-match discipline discharged.
+
+Ratchet 4358 -> 4384 (+26) monotonic-up:
+  counts_at_baseline.passed 4358 -> 4384.
+  passed_floor 4358 -> 4384.
+  ratchet_history entry appended at 20260916T053500Z.
+
+Grounding brief: notes/wm7_w1_post_1_resource_registry_grounding_brief.md.
+
+Track-a HEAD at seal: 2c7a8f0c6157d4103feeebad1171a3bdc92d952c
+Master HEAD: 515555120a0772acaa468d4f544eb0209a16a788
+
+GPU utilization interleave check-in fired at CP-seal (per grounding
+brief §G):
+  elapsed=1.69h  remaining=70.31h
+  akki-vm: sampler_alive + workload_alive · telemetry_samples=48 · bench_iters=202 (ok=202)
+  akki-vm-ii: sampler_alive + workload_alive · telemetry_samples=46 · bench_iters=202 (ok=202)
+  peak GPU util 100% across all 4 H200s · peak power ~691-693W · peak temp ~70-71°C
+  report served: https://akki-reuse-assess.preview.emergentagent.com/audit/GPU_UTILIZATION_72H.md
+
+Owner-desk items unchanged (P1: JUMP custody rotation · CD+Visitors admin
+binds · Amendment 8 · Watch-Learning R-15(b)/16(b)/17(b) · BC tier · DAP
+R-2/R-3/R-6 · Rules-Service R-2 · S-24/S-27-29 · D9/D10/D11 · SEC rotations
+· WPW R-2 · R-14; P2: SW-10 A.1-A.5 · Audio-bytes-retention Path A/B/C ·
+R-17(a) · §3.2 clause-5 cross-service binding enforcement ruling).

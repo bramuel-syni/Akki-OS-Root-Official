@@ -351,8 +351,43 @@ class WorkerJD(BaseModel):
 
 ### Contract
 
+> **⚠ SUPERSEDED SHAPE (aspirational · authored 2026-09-11) ⚠**
+>
+> The 9-field `ProgressSignal` shape below (`run_id · resource_id · at_utc · gpu_util_pct_rolling_avg · output_artifact_growth_bytes · checkpoint_step_delta · loss_delta_last_n_steps · verdict Literal["PROGRESSING", "STALLED", "ZERO_UTIL_ALARM", "OUTPUT_STARVATION_ALARM"]`) plus the 3-field `StarvationAlarm` with closed-enum `reason` are **SUPERSEDED** by the actual W1 close (2026-09-13T06:33:22Z · commit `fe01e5e`).
+>
+> **Owner CP-breakdown correction verbatim (2026-09-13 · W1 CP approval):**
+>
+> > "CORRECTION — job_kind must stay CASE-AGNOSTIC ... Do NOT lock a closed 5-value audio-harvest enum into the platform JobManifest at CP1 — that leaks the audio case into generic platform code. Instead make job_kind reference an OPEN, registry-backed kind: a capability/job-kind REGISTRY that jobs register into."
+>
+> The same correction binds ALL W1-family platform kernels: closed-value enums (`verdict Literal[...]` · `reason Literal[...]`) that name specific-case verdict spaces leak the case into generic platform code and are BANNED. Under that correction, the W1 kernel deliberately ships **case-agnostic minimal** primitives:
+>
+> **Canonical W1 `ProgressSignal` (5 fields, frozen dataclass):**
+> `job_id: str · at_utc: str (ISO Z) · magnitude: float (opaque scalar; downstream interprets) · output_bytes: int (cumulative) · output_path: str (or "" if no artifact)`.
+>
+> **Canonical W1 `HaltVerdict` (5 fields, frozen dataclass):**
+> `job_id: str · reason: str ∈ {starvation_no_signal, starvation_stale_signal, starvation_output_flatline} · at_utc: str · last_progress_at_utc: str · message: str`.
+>
+> The three closed-enum reason strings on `HaltVerdict.reason` describe STARVATION MODES (universal across every commissioned run · not case-specific verdict spaces). This preserves case-agnostic discipline while giving callers a structured refusal.
+>
+> **Canonical W1 `StarvationAlarm(RuntimeError)`:** named exception class for wrapping-boundary use. Not a dataclass; not a data return value. The public watchdog returns `HaltVerdict` (data); callers may raise `StarvationAlarm` at their own boundary if desired.
+>
+> **Canonical W1 primitive interface** (`services/work_supervisor/runtime_supervisor.py`):
+>
+> - `record_progress(sig: ProgressSignal, *, ring_root: Path) -> Path` — writer; returns the ring file path.
+> - `load_progress(job_id: str, *, ring_root: Path) -> List[ProgressSignal]` — reader; returns list sorted by at_utc.
+> - `output_verification_watchdog(job_id, *, sla_seconds, ring_root, now_utc, output_path=None) -> HaltVerdict | None` — readiness gate; returns HaltVerdict on first starvation hit, None on healthy.
+>
+> **Zero-influence contract** (verbatim `runtime_supervisor.py` docstring lines 19-21): the watchdog READS progress signals + optionally STATs the named output artifact. It never kills any process. A HALT verdict is DATA (a returned dataclass); callers act on it. Observation and mutation remain separate.
+>
+> **Wave-honest limit** (verbatim SO §3.2 clause 4): the W1 watchdog measures BYTE growth, not semantic growth. A run that writes zeros steadily would pass the flatline check. Semantic watchdogs (per-kind output shape validators) are Part-B concerns.
+>
+> The aspirational 9-field `ProgressSignal` + 3-field `StarvationAlarm` shapes below are retained here as historical reference of what the pre-correction plan looked like; they are NOT the platform kernel's schema. Reading the shapes below as required platform-kernel schemas misreads what actually landed under the 2026-09-13 case-agnostic correction.
+
+**Aspirational shapes (SUPERSEDED — kept for historical reference · not a build target):**
+
 ```python
 class ProgressSignal(BaseModel):
+    """[SUPERSEDED — see above · not the platform kernel schema.]"""
     run_id: str
     resource_id: str                                    # supervisor watches ANY resource
     at_utc: str
@@ -363,6 +398,7 @@ class ProgressSignal(BaseModel):
     verdict: Literal["PROGRESSING", "STALLED", "ZERO_UTIL_ALARM", "OUTPUT_STARVATION_ALARM"]
 
 class StarvationAlarm(BaseModel):
+    """[SUPERSEDED — the canonical class is an exception, not a dataclass.]"""
     lane_id: str
     since_utc: str
     reason: Literal["queue_drained", "trainer_dead", "zero_util_over_sla"]
@@ -476,9 +512,29 @@ class RetentionPolicy(BaseModel):
 
 The declarative artifact that mounts a specific job onto the platform. **This is the case-specific artifact — everything else in Part A is case-agnostic.**
 
+> **⚠ SUPERSEDED SHAPE (aspirational · authored 2026-09-11) ⚠**
+>
+> The 15-field shape below (job_class · mounted_at · mounted_by · objective_carrier_ref · target_outcome_ref · source_bindings · resource_bindings · capability_pipeline · gate_composition · commission_spec_ref · supervision_config · hitl_config · retention_policy_ref · owner_rulings · release_gate_verdicts_current · manifest_sha256) is **SUPERSEDED** by the actual W1 close (2026-09-13T06:33:22Z · commit `fe01e5e`).
+>
+> **Owner CP-breakdown correction verbatim (2026-09-13 · W1 CP approval):**
+>
+> > "CORRECTION — job_kind must stay CASE-AGNOSTIC ... Do NOT lock a closed 5-value audio-harvest enum into the platform JobManifest at CP1 — that leaks the audio case into generic platform code. Instead make job_kind reference an OPEN, registry-backed kind: a capability/job-kind REGISTRY that jobs register into."
+>
+> Under that correction, the W1 JobManifest kernel deliberately ships **v0** with a **10-field case-agnostic surface** — `manifest_version=0 · job_id · job_kind (registry-backed) · submitter · submitted_at_utc · scope (opaque dict) · output_contract (dict) · depends_on (list[str]) · dispatch_intent · precondition_seals (list[{run_dir, expected_kind}])` — and pushes all case-specific plane bindings into the `scope: dict` opaque field where downstream job waves (W2+) attach them WITHOUT the platform kernel adopting any case-specific field.
+>
+> The aspirational 15-field shape below is retained here as the **case-specific expansion** a mounting job's YAML instance may carry inside its `scope: dict` — it is NOT the platform kernel's schema. Reading the shape below as a required platform-kernel schema misreads what actually landed.
+>
+> **Canonical W1 platform kernel:** `services/work_supervisor/job_manifest.py::JobManifest` (v0 · 10 fields).
+> **Canonical parse:** `services/work_supervisor/job_manifest.py::parse_job_manifest(payload: dict) -> JobManifest`.
+> **Canonical failure:** `JobManifestInvalid(ValueError)`.
+> **Canonical kind registration:** `services/work_supervisor/kind_registry.py::register_kind(name)` + `is_registered(name)`. Sole platform-side seed: `platform.generic`. Case-specific kinds register at their own case wave.
+
+**Aspirational 15-field shape (SUPERSEDED — kept for historical reference · not a build target):**
+
 ```python
 class JobManifest(BaseModel):
-    """Binds platform planes to a specific job instance. Frozen at mount time."""
+    """[SUPERSEDED — see above · not the platform kernel schema.]
+    Binds platform planes to a specific job instance. Frozen at mount time."""
     model_config = ConfigDict(extra="forbid", frozen=True)
 
     # Identity
@@ -541,7 +597,24 @@ Fixes six specific code sites where the platform conflates process-liveness with
 
 ### W1 · Work-supervisor + Resource Registry + Capability Registry generalisation (M-class · PLATFORM)
 
-Delivers:
+> **⚠ ACTUAL-VS-ASPIRATIONAL SCOPE RECONCILIATION (banked 2026-09-16T~05:15Z per owner ruling) ⚠**
+>
+> The five-item deliverable list below (authored 2026-09-11) is the aspirational W1 scope. The **actual W1 close** landed 2026-09-13T06:33:22Z (commit `fe01e5e` · ratchet 3282→3392) delivered ONE of the five items in ratified case-agnostic-simplified form:
+>
+> - **DELIVERED at W1 close:** `services/work_supervisor/{runtime_supervisor, supervisor, governance, job_manifest, kind_registry}.py` — case-agnostic under the 2026-09-13 verbatim owner correction ("job_kind must stay CASE-AGNOSTIC ... Do NOT lock a closed 5-value enum into the platform"). See §A.8 SUPERSEDED reconciliation for canonical shapes. STANDING ORDER §3.2 "NO RUN WITHOUT A PROGRESS SIGNAL" appended to STANDING_ORDERS.md.
+> - **DELIVERED at W1b close (2026-09-13T06:59:30Z · commit `53645935` · 26 minutes after W1 close · ratchet 3392 → 3492 · +100):** `services/capability_registry.py` (case-agnostic capability registry · compose-not-modify with `services/layer_b/factory.py` · frozen by 15 W1b CP4 invariants at `tests/invariants/test_w1b_cp4_capability_registry.py`) + `services/governance_plane/retention_policy.py` (RetentionPolicy primitive) + `services/source_plane/connector.py` (SourceConnector Protocol) + `services/source_plane/synology_file_station.py` (interface-only) + `services/audio_plane_v1/attribute_stream_bundle.py` (generic AttributeStreamBundle_v0) + L2/L4 contract shells. **This W1b close was OVERLOOKED by the M7 W1 verification receipt (this-shift · 2026-09-16T~04:15Z)** — the receipt covered only W1 close (commit `fe01e5e` at 06:33Z), missing W1b 26 minutes later. Surfaced as a wave-honest gap in the CP-M7-W1-POST-2 verification walk (2026-09-16T~06:00Z · Path α clean).
+> - **NOT DELIVERED at W1 close but DELIVERED at CP-M7-W1-POST-1 (this shift · 2026-09-16T~05:45Z · track-a `2c7a8f0c` · master `51555512` · ratchet 4358 → 4384 · +26):** `services/resource_registry/{__init__, registry}.py` (case-agnostic Resource Registry · scope boundary registry-surface-only per owner ruling 2026-09-16T~05:10Z).
+> - **CAPABILITY REGISTRY ratified at CP-M7-W1-POST-2 (this shift · 2026-09-16T~06:00Z · verification walk · Path α clean · zero-delta):** pre-existing W1b `services/capability_registry.py` verified to satisfy owner ruling INTENT (case-agnostic + compose-not-modify). No new mechanism landed; ratchet unchanged 4384.
+> - **STILL UNVERIFIED (candidate CP-M7-W1-POST-3-VERIFICATION):** the other 5 W1b deliverables — RetentionPolicy + SourceConnector Protocol + Synology FileStation + AttributeStreamBundle_v0 + L2/L4 shells — remain unverified as of this shift. Owner-desk item.
+>
+> **W1 close did NOT under-deliver by mistake.** It delivered the CORRECTED case-agnostic-minimal scope under the 2026-09-13 verbatim owner correction. Reading the aspirational 5-item list below as a completed-vs-shipped checklist misreads the correction; the correction narrowed W1's kernel scope while leaving `resource_registry` + `capability_registry` for the same case-agnostic pattern in a later CP.
+>
+> **W-M7-W0-VERIFICATION** (Path α clean · 2026-09-16T~04:00Z) verified the §3.1 primitive is enforced.
+> **W-M7-W1-VERIFICATION** (Path α clean · 2026-09-16T~04:15Z) verified the §3.2 kernel is enforced and unchanged since W1 close.
+> **CP-M7-W1-POST-1** (this shift) lands `services/resource_registry/*`.
+> **CP-M7-W1-POST-2** (this shift) lands `services/capability_registry/*` via compose-not-modify delegation to `services/layer_b/factory.py`.
+
+**Aspirational W1 deliverable list (historical reference · reconciled above):**
 
 - `services/work_supervisor/{progress_signal, output_verification_watchdog, starvation_alarm}.py` (per §A.8).
 - `services/resource_registry/*` (per §A.1).

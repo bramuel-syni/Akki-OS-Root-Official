@@ -1,0 +1,117 @@
+{
+  "wave": "W-M7-W1-POST-2 \u00b7 Capability Registry",
+  "type": "VERIFICATION WALK (revised from-disk discovery \u00b7 analog of W0/W1)",
+  "generated_at_utc": "2026-09-16T05:33:41Z",
+  "ratchet_floor": 4384,
+  "track_a_head": "2c7a8f0c6157d4103feeebad1171a3bdc92d952c",
+  "master_head_pre_this_commit": "358ea3d400037a24fea8c4180b2cb79da98669ba",
+  "predecessor_seal": "CP-M7-W1-POST-1 \u00b7 Resource Registry SEALED \u00b7 master 358ea3d4 \u00b7 ratchet 4384",
+  "discovery": {
+    "finding": "services/capability_registry.py ALREADY EXISTS as case-agnostic capability-registry surface, landed 2026-09-13T06:59:30Z by W1b close commit 53645935 (ratchet 3392 -> 3492 +100).",
+    "wave_honest_gap_in_prior_w1_verification": "M7 W1 verification receipt phase0/m7_w1_verification/verification_receipt_20260916.json covered only W1 close (fe01e5e \u00b7 06:33Z); missed W1b close (53645935 \u00b7 06:59Z \u00b7 26 minutes later).",
+    "consequence_for_owner_ruling": "Owner ruling INTENT (case-agnostic capability registry landed with compose-not-modify posture) is ALREADY SATISFIED by W1b close 2026-09-13T06:59Z. POST-2 becomes a from-disk parse-not-paraphrase verification, not a fresh mechanism build. Authoring a NEW services/capability_registry/ package alongside pre-existing services/capability_registry.py would be rule proliferation per Audio-Plane \u00a71.2 verbatim ('Anything ... that reads as a parallel to an existing service is rule proliferation and must be collapsed into the existing service before build')."
+  },
+  "checks": {
+    "C.1_primitive_module_importable_and_exports": {
+      "importable": true,
+      "expected_exports": [
+        "register_capability",
+        "get_capability",
+        "list_categories",
+        "list_capabilities_in",
+        "CapabilityNotRegistered",
+        "_reset_capabilities_for_tests"
+      ],
+      "actual_exports": [
+        "register_capability",
+        "get_capability",
+        "list_categories",
+        "list_capabilities_in",
+        "CapabilityNotRegistered",
+        "_reset_capabilities_for_tests"
+      ],
+      "evidence": "services/capability_registry.py __all__ line 104-111",
+      "verdict": "clean"
+    },
+    "C.2_w1b_invariant_tests_present_and_pass": {
+      "test_file": "tests/invariants/test_w1b_cp4_capability_registry.py",
+      "total_tests_collected": 15,
+      "run_summary_verbatim": "15 passed in 0.64s",
+      "expected_total": 15,
+      "verdict": "clean"
+    },
+    "C.3_case_agnostic_no_domain_tokens": {
+      "domain_tokens_checked": [
+        "asr",
+        "diarization",
+        "vision",
+        "audio",
+        "harvest"
+      ],
+      "token_counts": {
+        "asr": 0,
+        "diarization": 0,
+        "vision": 0,
+        "audio": 0,
+        "harvest": 0
+      },
+      "all_zero": true,
+      "evidence": "grep -c -i on services/capability_registry.py source",
+      "verdict": "clean"
+    },
+    "C.4_w1b_module_unchanged_since_close": {
+      "w1b_close_commit": "536459350b85473ffa19d00cb200053723efc73e",
+      "w1b_close_date": "2026-09-13T06:59:30Z",
+      "last_touched": "2026-09-13T06:59:30+00:00 536459350b85473ffa19d00cb200053723efc73e",
+      "unchanged": true,
+      "verdict": "clean"
+    },
+    "C.5_compose_not_modify_verified": {
+      "compose_freeze_test": "test_layer_b_factory_registries_re_expressible_in_capability_registry (in tests/invariants/test_w1b_cp4_capability_registry.py)",
+      "test_passes": true,
+      "note": "W1b test covers the compose-freeze property: layer_b.factory provider dicts can be re-registered into the generic registry and retrieved by (category, name); factory itself is NOT refactored.",
+      "verdict": "clean"
+    },
+    "C.6_registry_only_surface_no_hard_gate": {
+      "public_surface": "register_capability / get_capability / list_categories / list_capabilities_in / CapabilityNotRegistered / _reset_capabilities_for_tests",
+      "banned_tokens_in_surface": [
+        "refuse_pipeline",
+        "hard_gate",
+        "enforce_",
+        "kill_",
+        "terminate_"
+      ],
+      "banned_tokens_present": false,
+      "verdict": "clean"
+    }
+  },
+  "verdict": "clean",
+  "path_taken": "Path \u03b1",
+  "drift_items": [],
+  "wave_honest_limits": [
+    {
+      "ref": "D.1",
+      "content": "W1 verification scope hole surfaced this-shift: W1b close (53645935 \u00b7 06:59Z) shipped 6 additional deliverables (capability_registry [verified in this POST-2] + RetentionPolicy + SourceConnector Protocol + Synology FileStation interface + generic AttributeStreamBundle_v0 + L2/L4 contract shells) which the M7 W1 verification receipt did not cover. Candidate CP-M7-W1-POST-3-VERIFICATION covers the remaining 5 W1b deliverables."
+    },
+    {
+      "ref": "D.2",
+      "content": "ROADMAP \u00a7A.12 W1 reconciliation refinement required: the reconciliation banked at master 221573f1 said 'NOT DELIVERED at W1 close: services/capability_registry/*' but missed W1b close delivering it as services/capability_registry.py (file, not package). This POST-2 close authors a refinement bumping the W1b close date + commit into the reconciliation record."
+    },
+    {
+      "ref": "D.3",
+      "content": "POST-1 (Resource Registry) vs POST-2 (Capability Registry) asymmetry: POST-1 was a genuine mechanism build (+26 invariants); POST-2 is a zero-delta verification walk because W1b already shipped it. Both satisfy the owner INTENT."
+    },
+    {
+      "ref": "D.4",
+      "content": "services/capability_registry.py is a single-file module; owner ruling wrote services/capability_registry/* (package convention). Python does not distinguish at the import site. Wave-honest choice from W1b close; not modified this CP."
+    }
+  ],
+  "ratchet_delta": 0,
+  "notes": [
+    "SO \u00a73.2/W1b CP4 case-agnostic capability_registry enforced by 15 invariants unchanged since 2026-09-13T06:59:30Z W1b close.",
+    "Compose-not-modify with services/layer_b/factory.py verified by W1b test_layer_b_factory_registries_re_expressible_in_capability_registry (all 15 W1b invariants pass).",
+    "Case-agnostic doctrine explicit-verify: 0 domain tokens (asr/diarization/vision/audio/harvest) in services/capability_registry.py source.",
+    "Zero refactor. Zero track-a code change. Single master commit banks state entirety.",
+    "Ratchet delta: 0. Track-a HEAD 2c7a8f0c unchanged from POST-1 close."
+  ]
+}
