@@ -10414,5 +10414,129 @@ All 5 meet SO §4.2 clause 6 criteria. M5 verification remains clean; M8 waves' 
 
 ---
 
+## CP-M8-CTCC-1 · Cross-Table Consistency Check SEALED (4400) · 2026-09-16T~07:45Z · Path α clean · double-green byte-match · track-a HEAD b547cd4 · Master HEAD (this-turn Commit-B pending)
+
+**Owner ruling verbatim (2026-09-16T~07:30Z):**
+
+> "Path A — build CP-M8-CTCC-1 (W-Cross-Table-Consistency-Check) now under full §3.3 protocol, then produce the M8 status rollup and hold with utilization interleave. Your Lane-1/Lane-2 triage is accepted in full — good catches all three: the quarantine class being already-retired (from-disk truth beats my stale instruction; that's POST-2 discipline paying off again), TaskEval correctly blocked on Campaign-B settlement (owner scope), and the on-host watchdog deferral under SO §5 zero-perturbation during the live campaign (do NOT touch the GPU hosts' dispatch config until the 72h run completes; bank it as a chartered post-campaign operator action). After the M8 rollup: hold pattern = utilization check-ins to 72h completion + boot-ritual discipline on any resume + owner-desk items carried. If the owner lands any unblock (firewall PASS on a boundary probe... note probes are still NOTE-SKIPPED pending JUMP rotation; CD/Visitors would show via the mysql-path probe tool once rotation lands — keep that distinction clean), fold it in per the banked directives. Report at CTCC seal + rollup."
+
+**Charter source (verbatim STATE/SPRINT_PLAN.md:61-66):** SPRINT P6 · W-Cross-Table-Consistency-Check · for waves emitting multiple identifier-shaped columns · static + runtime check that no combination of emitted columns across tables can reconstruct an identifier · preventive charter · outcome closes theoretical cross-table leak channel · estimate S (~250 LOC).
+
+**Files landed on `programme/track-a` (Commit-A `b547cd4`):**
+- `services/governance_plane/cross_table_consistency.py` (102 LOC · 5 primitives · case-agnostic).
+- `services/governance_plane/__init__.py` (updated · 5-name `__all__` re-export list added · was docstring-only before).
+- `tests/invariants/test_wm8_ctcc_1_cross_table_consistency.py` (283 LOC · 16 invariants).
+- `tests/invariants/baseline_failures.json` (ratchet 4384 → 4400 + `ratchet_history` append at `20260916T073800Z`).
+
+**Mechanism (5 primitives · case-agnostic):**
+1. `EmittedColumnRef` frozen dataclass · 2 carriers `(table_id: str, column_name: str)`.
+2. `IdentifierClass` frozen dataclass · 2 carriers `(class_id: str, columns_in_class: tuple[EmittedColumnRef, ...])`. **`class_id` is OPEN str** (case-agnostic doctrine · matches CP-M7-W1-POST-1 precedent per 2026-09-13 owner correction).
+3. `assess_reconstruction_risk(*, emitted_columns, identifier_class_declarations) -> tuple[str, ...]` pure function · returns deterministic sorted tuple of `class_id`s at risk · empty = safe.
+4. `assert_no_cross_table_identifier_reconstruction(*, emitted_columns, identifier_class_declarations) -> None` refusal wrapper · raises `CrossTableIdentifierReconstructionRefused` when risk non-empty.
+5. `CrossTableIdentifierReconstructionRefused(Exception)` refusal exception.
+
+**Reconstruction rule.** An identifier class `ic` is at cross-table reconstruction risk iff `{c.table_id for c in ic.columns_in_class if c in emitted_set}` has cardinality ≥ 2. Coarse rule by design (wave-honest D.2); statistical linkability / k-anonymity / entropy are chartered-forward refinements.
+
+**POST-2 lesson applied at authoring time.** Home selected `services/governance_plane/cross_table_consistency.py` composing into existing sub-tree (containing `retention_policy.py` from W1b CP1) · NO parallel `data_governance/` package · avoids Audio-Plane §1.2 rule-proliferation ban. Owner accepted this catch verbatim: "the quarantine class being already-retired (from-disk truth beats my stale instruction; that's POST-2 discipline paying off again)".
+
+**Mechanical RED drill.** `phase0/drill_receipts/20260916T073500Z_cp_m8_ctcc_1_cross_table_consistency_RED.log` · 13822 bytes · sha256 `e41ffff8577eaa93da2801a6bc4ed62a73a4a47849ef2ecf1958061d2977db37` · 16 failed right-reason (13 ModuleNotFoundError + 3 FileNotFoundError-on-grep-tests · no test-authoring bugs).
+
+**Double-green byte-match under BASELINE_GUARD=1:**
+- GREEN1 `4400 passed, 1 skipped, 438 warnings in 128.93s` · raw 9933 bytes.
+- GREEN2 `4400 passed, 1 skipped, 438 warnings in 128.15s` · raw 9933 bytes.
+- Stripped bytes (time + completion-marker sentinel stripped): 9909 = 9909.
+- Stripped sha256: `10fb222ce7daaf82b3cba1d73287c469d2ca1ceab2de4866ae1d01d1ddb15105` (byte-identical both runs).
+- Receipts: `phase0/drill_receipts/20260916T074000Z_cp_m8_ctcc_1_GREEN1.log` + `phase0/drill_receipts/20260916T074400Z_cp_m8_ctcc_1_GREEN2.log`.
+
+**Ratchet 4384 → 4400 (+16) monotonic-up.** `counts_at_baseline.passed` + `passed_floor` bumped in tandem · `ratchet_history` entry appended at `20260916T073800Z`.
+
+**Seal file** at `phase0/output_verified_seals/w_m8_ctcc_1_cross_table_consistency.seal.txt` · Kind: `w_m8_cross_table_consistency_check` · Track-a HEAD `b547cd4` · Master HEAD `TBD` (Commit-C fixup this-turn will replace).
+
+**Wave-honest limits (banked in grounding brief §E):**
+- D.1 Preventive charter · runtime enforcement fires only when caller invokes.
+- D.2 Coarse rule (cardinality of table_ids) · not statistical linkability / k-anonymity / entropy.
+- D.3 Opaque `(table_id, column_name)` refs · no `column_type` / `column_schema` carriers.
+- D.4 Pure data-in / data-out · no I/O · no logging · composes with any dispatch surface without coupling.
+
+**Case-agnostic doctrine freezes.** Zero closed enums on identifier discriminator · 0 domain tokens · 0 banned enforcement · 0 dispatch-surface imports. Verified by 4 grep-negative invariants passing this walk.
+
+**§3.3 3-commit protocol.** Commit-A `b547cd4` on `programme/track-a` (code + tests + ratchet) ✅ landed · Commit-B `a8e13913` on `master` (state + seal + close note + DECISIONS + NEXT + GPU util) ✅ landed · Commit-C fixup on `master` this-turn (Master HEAD `a8e13913` in seal + DECISIONS + NEXT).
+
+**GPU utilization check-in at CP-M8-CTCC-1 seal (per §G interleave):**
+- Elapsed 3.01 h · Remaining 68.99 h.
+- akki-vm: sampler_alive+workload_alive · bench iters 360 (ok=360) · peak 100% util per GPU · ~691 W · ~70°C.
+- akki-vm-ii: sampler_alive+workload_alive · 78 telemetry samples · bench iters 360 (ok=360) · peak 100% util per GPU · ~693 W · ~71°C.
+- 720 total bench artefacts banked · zero synthetic burn · in-perimeter.
+- Report served: `https://akki-reuse-assess.preview.emergentagent.com/audit/GPU_UTILIZATION_72H.md`.
+
+**Effects banked:**
+1. **CP-M8-CTCC-1 SEALED** · +16 ratchet · Path α clean · case-agnostic preventive contract shipped.
+2. **M8 catch-all P6 discharged** as shape-frozen refusal · runtime enforcement fires only when triggered.
+3. **POST-2 discipline exercised in real time** — home selection avoided parallel-package proliferation · owner accepted verbatim.
+4. **Chartered follow-on operator action banked**: on-host portion of W-Queue-Watchdog (SPRINT P5 · post-72h-campaign · SO §5 zero-perturbation discipline).
+5. **NEXT per owner directive verbatim**: produce M8 STATUS ROLLUP (same shape as M7 VERIFICATION ROLLUP), then hold with utilization interleave only.
+
+---
+
+## M8 STATUS ROLLUP AUTHORED · CP-M8-CTCC-1 §3.3 Commit-C fixup LANDED · HOLD PATTERN ENTERED · 2026-09-16T~08:00Z
+
+**Owner directive discharged (verbatim 2026-09-16T~07:30Z · same message that ordered Path A):**
+
+> "After the M8 rollup: hold pattern = utilization check-ins to 72h completion + boot-ritual discipline on any resume + owner-desk items carried. If the owner lands any unblock ... fold it in per the banked directives. Report at CTCC seal + rollup."
+
+**§3.3 Commit-C fixup for CP-M8-CTCC-1 landed at master `ecf59a14`.** Master HEAD `a8e13913` banked in three places: (a) seal file `phase0/output_verified_seals/w_m8_ctcc_1_cross_table_consistency.seal.txt` (Master HEAD line + Commit-B protocol line — the two lines that carried `TBD` at Commit-B time); (b) DECISIONS.md CP-M8-CTCC-1 §3.3 protocol status line (§3.3 block above); (c) NEXT.md CURRENT AS OF pin. Full §3.3 3-commit satisfied: Commit-A `b547cd4` (track-a) ✅ + Commit-B `a8e13913` (master) ✅ + Commit-C `ecf59a14` (master fixup) ✅.
+
+**M8 STATUS ROLLUP note authored at `notes/M8_VERIFICATION_ROLLUP_20260916.md`.** 7-section platform-integrity story matching M7 rollup shape. Ratchet floor **4400** stable.
+
+**§1 · Canonical M8 CP-status table** — 6 sealed CPs to date:
+| # | CP | Track-a SHA | Master state SHA | Ratchet Δ | Tests | Sealed-at |
+|---|---|---|---|---|---|---|
+| 1 | CP-M8-G1 · W-M8-TESTS-FIRST-GUARD-INVARIANT (part-B) | `e02dd4d` | `f298b6cd` | 4068→4074 (+6) | 6 | 2026-09-15T~10:56Z |
+| 2 | CP-EXR1 · W-EXPORT-ARTEFACT-RENDER | `264f2fd` | `c5033e4d` | 4074→4083 (+9) | 9 | 2026-09-15T~11:12Z (post-D12-03 window) |
+| 3 | CP-DASWR1 + CP-DDDR1 (paired) · W-DATA-SUITE-ANALYZE-WORKSPACE-REAL + W-DEEP-DIVE-REAL | `7bde883` | `790b17d4` | 4083→4093 (+10 · CP-D8 HALT discharged in-place) | 10 | 2026-09-15T |
+| 4 | CP-CRO1 + CP-CRO2 (paired) · W-CENSUS-RUNTIME-ORCHESTRATION (scope EXPANDED per D12-03) | `29ff398` | `b8370491` | 4093→4105 (+12) | 12 | 2026-09-15T |
+| 5 | CP-SW6-HYG-1 · Credential metadata shape helper (Redaction Hardening Option 1) | `053d3f1` | (batched into subsequent master state commit) | 4282→4288 (+6) | 6 | 2026-09-15T~22:30Z (ratified same turn as SEC-15 incident) |
+| 6 | CP-M8-CTCC-1 · W-M8-CROSS-TABLE-CONSISTENCY-CHECK | `b547cd4` | `a8e13913` + fixup `ecf59a14` | 4384→4400 (+16) | 16 | 2026-09-16T~07:45Z |
+
+**Additional this-shift triage output** (no CP · no ratchet · finding-only): `notes/M8_CATCHALL_FROMDISK_FINDINGS_20260916.md` (master `f63ddd27`) — Lane 1 EXHAUSTED (D1a-1 quarantine retired 19 days ago at Wave F Scope A); Lane 2 P1 BLOCKED-ON-PREREQUISITE (Campaign B unsettled); P5 PARTIAL (on-host portion campaign-perturbation-blocked); P6 BUILDABLE-NOW → CP-M8-CTCC-1 built this shift.
+
+**§2 · Aggregate metrics:** 6 track-a code commits · 6 Commit-B master state commits + 1 Commit-C fixup (this shift) · 5 distinct code sites first-added-or-extended · 59 test invariants added (6+9+10+12+6+16) · ratchet delta 4068 → 4400 = **+332 monotonic-up across chain** · zero rollback anywhere.
+
+**§2 · Cross-wave lineage:** 4 of 6 M8 CPs are legitimate M5→M8 cross-wave-out extensions under SO §4.2 clause 6 (custody_file × 2 · data_suite_v2 engines · census_canon registry_write) · 2 of 6 are M8-native new modules (CP-EXR1 `export_render` · CP-M8-CTCC-1 `governance_plane/cross_table_consistency.py`).
+
+**§3 · Standing-orders discipline exercised:** §3.1 ALIVE IS NOT DONE · §3.2 NO RUN WITHOUT A PROGRESS SIGNAL (CP-CRO extensions bind commissioning-record emit to runtime-supervisor progress-ring) · §3.3 NO SEAL WITHOUT BOTH SHAs (first fully-exercised at CP-M8-CTCC-1 this shift) · **§4.1 CREDENTIAL CUSTODY READ DISCIPLINE amended in-place at CP-SW6-HYG-1** (Redaction Hardening Option 1 · shape-only helper · post-ratification zero SEC-class incidents) · §4.2 clause 6 retroactively vindicates the 4 M5→M8 extension pattern · §5 GPU obligations (interleave check-in fired at CP-M8-CTCC-1 seal · W-Queue-Watchdog on-host portion DEFERRED-TO-POST-72H-CAMPAIGN per zero-perturbation discipline).
+
+**§4 · Platform integrity assertion (7 points):**
+1. All 6 M8 CPs cleared Path α at seal time.
+2. All 4 cross-wave-out extensions are legitimate under SO §4.2 clause 6.
+3. Case-agnostic doctrine held chain-wide (zero closed enums · zero domain tokens · zero dispatch-surface imports on preventive/refusal contract modules).
+4. Ratchet monotonic-up throughout (+332 · zero rollback · zero silent-floor-lowering).
+5. Credential custody discipline HARDENED IN M8 (CP-SW6-HYG-1 discharged SEC-15 recurrence class).
+6. POST-2 lesson exercised at from-disk triage this shift (Lane 1 retired 19 days ago · zero re-execution of already-discharged work).
+7. Preventive-charter shape adopted for CP-M8-CTCC-1 (runtime enforcement fires only when caller invokes · no global gate · no premature invariant).
+
+**§5 · Receipts index:** 2 dedicated seal files (CP-M8-G1 · CP-M8-CTCC-1) · earlier CPs recorded inline in DECISIONS.md + STATE/NEXT.md pins (pre-§3.3 ratification) · SO amendments banked verbatim at §4.1 · full ratchet manifest at `baseline_failures.json` (passed_floor=4400).
+
+**§6 · GPU utilization at rollup boundary:** elapsed 3.18h · remaining 68.82h · both hosts sampler_alive+workload_alive · bench iters 380+380 (ok=380+380) · telemetry_samples 88+82 · peak 100% GPU util per H200 · peak power ~691-693W · peak temp ~70-71°C · 760 total bench artefacts banked · zero synthetic burn · zero training kills · report served at owner-facing URL.
+
+**§7 · What this rollup UNBLOCKS · owner-desk state · wave-honest limits:**
+- **Buildable-now: 0 remaining this shift.** All buildable-now items in the from-disk sweep are discharged.
+- **Owner-input-required P1 unchanged (3 items):** JUMP root credential rotation · Admin bindings for CD + Visitors (bramuel vs bramwel disambiguation) · Campaign B settlement (adapter.tar.gz + held_out_eval.json paired set).
+- **Owner-input-required P2 unchanged (chain):** SW-10 A.1-A.5 · Audio-bytes-retention Path A/B/C · R-17(a) · §3.2 clause 5 cross-service binding enforcement ruling · Amendment 8 · Watch-Learning R-15(b)/R-16(b)/R-17(b) · BC tier selection · DAP R-2/R-3/R-6 · Rules-Service R-2 · S-24/27/28/29 · W-WPW-v1-e Tier-3.
+- **Campaign-perturbation-blocked (1 chartered follow-on):** W-Queue-Watchdog on-host portion (SPRINT P5 remainder) post-72h-campaign.
+- **Probe-class distinction preserved** per owner standing note this shift: SEC-suspended JUMP-path probes NOTE-SKIPPED pending rotation · mysql-path CD/Visitors probes fire only on rotation-land or explicit owner order with `--allow-csv-custody` opt-in.
+- **Wave-honest limits surfaced:** (a) §3.3 back-compat gap on early M8 CPs #1..#5 (they sealed before the §3.3 rule ratified; carry Track-a HEAD but not Master HEAD line — candidate retroactive fixup batch if owner rules it in-scope; NOT proposed here per SO §3 no-refactor). (b) CP-CRO1/CRO2 scope-expansion driver blocked on NAS-account owner-desk item. (c) M8 has no consolidated wave-close because catch-all bucket · CPs surface as they clear owner-input.
+
+**HOLD PATTERN ENTERED** per owner directive: utilization check-ins on cadence to 72h completion · boot-ritual discipline on any resume · probe-class distinction preserved · owner-desk P1/P2 items carried unchanged · permanent guardrails held (testing_agent BANNED · no push · no refactor · no re-clone · CHUNK-1 problem statement DISAVOWED).
+
+**§3.3 3-commit protocol for this rollup landing.** Following M7 rollup precedent (single-master-commit batching alongside POST-8 CP), M8 rollup is state-only (no code / no ratchet touch). Per owner-confirmed shape this shift ("§3.3 expectation (B+C only, no code)"): Commit-B on master lands the rollup note + this DECISIONS entry + NEXT pin with Master HEAD TBD; Commit-C fixup lands the Master HEAD SHA in DECISIONS + NEXT.
+
+**Commit protocol for this landing:**
+- Commit A (track-a code): N/A (no code change · state-only landing).
+- Commit B (master state): `5dff0f5b` ✅ landed (banked M8 rollup note + this DECISIONS entry + NEXT pin + GPU util files).
+- Commit C (master fixup): self-reference (this commit); banks Commit-B SHA `5dff0f5b` in DECISIONS + NEXT.
+
+---
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 

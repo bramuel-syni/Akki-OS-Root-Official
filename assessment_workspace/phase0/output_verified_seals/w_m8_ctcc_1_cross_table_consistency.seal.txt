@@ -1,0 +1,71 @@
+Kind: w_m8_cross_table_consistency_check
+Wave: W-M8-CROSS-TABLE-CONSISTENCY-CHECK
+CP: CP-M8-CTCC-1
+Milestone: M8 catch-all (per MILESTONE_STRUCTURE_REHOMED_20260915.md · SPRINT P6)
+
+Sealed-at-utc: 2026-09-16T~07:45Z
+Track-a HEAD at seal: b547cd4
+Master HEAD: a8e13913
+
+Ratchet-floor bump: 4384 -> 4400 (+16 invariants · no cross-benefit)
+Ratchet-history entry: baseline_failures.json ratchet_history[-1] at_utc=20260916T073800Z
+
+Files landed on programme/track-a (Commit-A · b547cd4):
+  backend/services/governance_plane/cross_table_consistency.py    (5 primitives · 102 LOC incl. docstring)
+  backend/services/governance_plane/__init__.py                    (re-exports updated · +18 LOC)
+  backend/tests/invariants/test_wm8_ctcc_1_cross_table_consistency.py    (16 invariants · 283 LOC)
+  backend/tests/invariants/baseline_failures.json                  (ratchet 4384 -> 4400 · ratchet_history append)
+
+Charter source (verbatim STATE/SPRINT_PLAN.md:61-66):
+  "W-Cross-Table-Consistency-Check — for waves emitting multiple identifier-shaped columns.
+   Scope: static + runtime check that no combination of emitted columns across tables can
+   reconstruct an identifier. Prerequisites: any wave emitting >1 identifier-shaped column
+   from >1 table (preventive charter). Outcome: refuses-unclassified-by-construction extends
+   per-emitted-set, closing a theoretical cross-table leak channel."
+
+Owner authorization (verbatim 2026-09-16T~07:30Z):
+  "Path A — build CP-M8-CTCC-1 (W-Cross-Table-Consistency-Check) now under full §3.3 protocol,
+   then produce the M8 status rollup and hold with utilization interleave."
+
+Mechanical RED drill receipt:
+  path: phase0/drill_receipts/20260916T073500Z_cp_m8_ctcc_1_cross_table_consistency_RED.log
+  bytes: 13822
+  sha256: e41ffff8577eaa93da2801a6bc4ed62a73a4a47849ef2ecf1958061d2977db37
+  outcome: 16 failed / right-reason (ModuleNotFoundError + FileNotFoundError before mechanism landed)
+
+Double-green byte-match receipts:
+  GREEN1: phase0/drill_receipts/20260916T074000Z_cp_m8_ctcc_1_GREEN1.log
+    raw bytes: 9933
+    duration: 128.93s
+    result: 4400 passed, 1 skipped, 438 warnings
+  GREEN2: phase0/drill_receipts/20260916T074400Z_cp_m8_ctcc_1_GREEN2.log
+    raw bytes: 9933
+    duration: 128.15s
+    result: 4400 passed, 1 skipped, 438 warnings
+  Stripped byte-match (time + GREEN{N}_DONE marker stripped): TRUE
+    stripped bytes: 9909 = 9909
+    stripped sha256: 10fb222ce7daaf82b3cba1d73287c469d2ca1ceab2de4866ae1d01d1ddb15105
+    byte-identity: TRUE
+
+Case-agnostic doctrine verified (grep-negative invariants):
+  - class_id is OPEN str (test_class_id_is_open_string_not_closed_enum PASS)
+  - 0 domain tokens in module source (test_case_agnostic_zero_domain_tokens_in_module_source PASS)
+  - 0 banned enforcement tokens on public surface (test_module_no_banned_enforcement_tokens_on_public_surface PASS)
+  - 0 imports of dispatch surfaces (test_module_zero_imports_of_dispatch_surfaces PASS)
+
+POST-2 lesson applied at authoring time:
+  Home selected: services/governance_plane/cross_table_consistency.py
+  Rationale: services/governance_plane/ already exists (contains retention_policy.py from W1b CP1);
+             composing into existing sub-tree avoids parallel data_governance/ package
+             (which would be rule proliferation per Audio-Plane §1.2 verbatim).
+
+Wave-honest limits (banked in grounding brief §E):
+  D.1 Preventive charter · runtime enforcement fires only when caller invokes.
+  D.2 Coarse rule (cardinality of contributing table_ids) · not statistical linkability / k-anonymity / entropy.
+  D.3 Opaque (table_id, column_name) refs · no column_type / column_schema carriers.
+  D.4 Pure data-in / data-out · no I/O · no logging.
+
+Commit protocol (§3.3 3-commit):
+  Commit A: b547cd4 (track-a · code + tests + ratchet)  ✅ landed
+  Commit B: a8e13913 (master · state + seal + close note + DECISIONS + NEXT + GPU util)  ✅ landed
+  Commit C: TBD    (master · fixup Master HEAD in seal + DECISIONS + NEXT)
