@@ -1,0 +1,61 @@
+Kind: w_m7_w9_cp1_corpus_deliverable_v1
+CP: CP-M7-W9-CONTRACT-1
+Wave: M7 · W9 · CONTRACT
+Charter: ROADMAP §C.2 Path C default (POINTER-ONLY DELIVERABLE)
+Owner authority: verbatim 2026-09-16T~08:35Z ("advance the milestone frontier as far as existing owner law allows... Do NOT cross the standing lines: no training on estate audio, no biometric material, no enforcement hard-gate, no speculative shapes")
+
+Track-a HEAD at seal: 2e227dd22deb5bae52452fedcfe7f6b200aab9d6
+Master HEAD: bc68198eae7f6d7701d43a739046bd389aab7094 (Commit-B · landed 2026-09-16T~16:41Z)
+Master HEAD (Commit-C fixup): banks the Master HEAD SHA above (this commit)
+
+Ratchet: 4400 -> 4406 (+6)
+Invariants added: 6 (all §C.2 shape-freeze + §6.2 unrepresentable-by-construction + case-agnostic doctrine)
+
+Modules landed:
+- backend/services/audio_plane_v1/corpus_deliverable_v1.py (116 LOC · 5 exports · Path C default schema · zero closed enums · zero domain tokens · zero dispatch-surface imports · zero retention_policy import)
+- backend/tests/invariants/test_wm7_w9_cp1_corpus_deliverable_v1.py (237 LOC · 6 invariants)
+
+Verbatim canon anchors quoted in module source:
+- "Default if no ruling by W2 CP0: Path C"
+- "source-file-pointer"
+- "segment_offsets_ms"
+- "transcript"
+
+Standing-line proof:
+- No `bytes` type-hint on any field of either dataclass (§6.2 unrepresentable-by-construction).
+- No field-name reads as audio-bytes / voiceprint / embedding / raw-audio carrier.
+- Runtime enforcement fires only when caller invokes CorpusDeliverableRefused / AudioBytesPayloadRefused (preventive-charter pattern matching CP-M8-CTCC-1).
+- Case-agnostic doctrine: 21-token grep-negative in module source (kikuyu/dholuo/kamba/swahili/nairobi/inooro/ramogi/musyi/sunbird/whisper/pyannote/htdemucs/mms-1b/mms-lid/wavlm/panns/squim/dnsmos/broadcast/off-air/synology).
+- No `services.governance_plane.retention_policy` import (composition surface only; caller-side binding via opaque retention_policy_ref str).
+
+Mechanical RED drill: phase0/drill_receipts/20260916T083800Z_cp_m7_w9_cp1_corpus_deliverable_v1_RED.log (banked pre-seal 2026-09-16T~08:38Z).
+
+Double-green byte-match under BASELINE_GUARD=1:
+- GREEN1: 4406 passed, 1 skipped, 438 warnings in 124.21s (raw 9924 bytes) · phase0/drill_receipts/20260916T163200Z_cp_m7_w9_cp1_corpus_deliverable_v1_GREEN1.log
+- GREEN2: 4406 passed, 1 skipped, 438 warnings in 123.32s (raw 9924 bytes) · phase0/drill_receipts/20260916T163400Z_cp_m7_w9_cp1_corpus_deliverable_v1_GREEN2.log
+- Stripped bytes (time-in-Xs sentinel stripped): 9913 = 9913.
+- Stripped sha256: 08d65378c86fee0c05e7f1cb3e795079fe129d8b77efb9bd877c6dd0a8019f5b (byte-identical both runs).
+
+Pre-seal drift-repair (banked wave-honest):
+- CP10 harness receipt aged 12.48h > 12h threshold at first-green attempt (time-drift during hold pattern). Refreshed per owner directive verbatim 2026-09-08T~06:15Z: "real-Chromium proof, floor 3006 (fix/refresh stale harness-receipt invariant first — refresh the harness, don't relax the threshold)." New harness receipt at phase0/harness_ground_truth/latest.json (at_utc 2026-09-16T16:26:53Z · all rules bound_to_rendered_dom · dummies absent · expected present). Zero-perturbation to GPU hosts (harness runs against localhost pod only).
+
+Wave-honest limits (banked):
+- W.1 Path A/B upgrades remain BLOCKED-on-Ruling-#5 sub-verdicts (kdpa_verdict / named_persons_verdict / transfer_basis). Path C default in force per §C.2.
+- W.2 CorpusDeliverable_v1 has no `regime` field — regime binding lives on caller-side composition with services.governance_plane.retention_policy (SOURCE_UNTOUCHED for audio · DELIVERABLE_GOVERNED for the manifest). Wave-honest: composition surface only; caller enforces regime.
+- W.3 No canonical segment ordering imposed. The schema does not opinionate ordering; caller-defined per §C.2 (deliverable_id is opaque).
+- W.4 AudioBytesPayloadRefused is a defensive-symmetry class only — no caller yet triggers it (Path A upgrades will).
+
+§3.3 3-commit protocol:
+- Commit A `2e227dd22deb5bae52452fedcfe7f6b200aab9d6` on programme/track-a (code + tests + ratchet_history append + passed_floor bump) ✅ landed 2026-09-16T~16:37Z.
+- Commit B: master state landing (this seal + close note + grounding brief + DECISIONS + NEXT pin + GPU util files) — this turn.
+- Commit C: master fixup — replaces "TBD" above with the actual master Commit-B SHA.
+
+GPU utilization at seal boundary (elapsed 12.93h · remaining 59.07h):
+- akki-vm: sampler_alive + workload_alive · telemetry_samples=320 · bench_iters=1548 (ok across 2 GPUs) · peak 100% GPU util per H200.
+- akki-vm-ii: sampler_alive + workload_alive · telemetry_samples=314 · bench_iters=1548 (ok across 2 GPUs) · peak 100% GPU util per H200.
+- Zero synthetic burn · in-perimeter · report served at owner-facing URL.
+
+Effect:
+- CP-M7-W9-CONTRACT-1 SEALED (Path α clean · double-green byte-match · +6 ratchet).
+- Path C default corpus deliverable schema authored — unblocks W2 CP2.6 bundle-composition authoring the deliverable shape without requiring the audio-bytes retention ruling.
+- Standing lines held throughout (no training on estate audio · no biometric material · no enforcement hard-gate · no speculative shapes).

@@ -10601,5 +10601,214 @@ python3 -c "import json; d=json.load(open('repos/Extraction-Akki/backend/tests/i
 
 ---
 
+## CP-M7-W9-CONTRACT-1 · Path C default corpus_deliverable_v1 schema SEALED (4406) · Path α clean · double-green byte-match · TRACK-A HEAD 2e227dd · MASTER HEAD (this-turn Commit-B pending) · 2026-09-16T~16:37Z
+
+**Owner directive verbatim (2026-09-16T~08:35Z · same message that ordered the W2..W9 gating triage):**
+
+> "OWNER STEER: 'On to the nxt milestone?' — read as: advance the milestone frontier as far as existing owner law allows. Exit pure hold, run this sequence (boot ritual first if resuming): 1. W2..W9 GATING TRIAGE (from-disk, honest) ... 2. FIRE whatever is BUILDABLE-NOW or PARTIALLY-BUILDABLE, in dependency order, tests-first, case-agnostic, §3.3 seals ... 3. M6/M8 seal-readiness notes ... 4. Utilization interleave continues at every boundary. Report at triage completion with the table + what you started building."
+
+**Standing lines the owner reasserted (verbatim):**
+- No training on estate audio (SW-10 deferred).
+- No biometric material.
+- No enforcement hard-gate.
+- No speculative shapes beyond existing owner law.
+
+**Continuation ruling (verbatim 2026-09-16T~16:20Z):**
+
+> "(a) Do NOT stop after Task 3 — roll straight into Task 4. The M6/M8 seal-readiness notes are owner-facing artifacts, not gates; I'll relay them without pausing your walk.
+> (b) Yes — notes/M7_W9_CP1_SEAL_20260916.md convention, consistent with the triage/rollup naming.
+> (c) Earliest-numbered unblocked wave/CP from the triage doc, in dependency order — with the POST-2 from-disk existence check before every build, and the standing lines intact (no estate-audio training, no biometric material, no enforcement hard-gate, no speculative shapes; blocked slices banked honestly).
+> Otherwise plan approved exactly as written: boot ritual with fresh baseline at 4406 → seal CP-M7-W9-CONTRACT-1 per §3.3 (verify from disk what's already committed before creating) → seal-readiness notes → next buildable slices with GPU check-ins at every boundary until frontier exhaustion or a genuine HALT."
+
+**Charter source verbatim (ROADMAP §C.2):**
+
+> "Path C · DEFER — W2/W3 build with `pointer_or_bytes` schema; audio-bytes retention lands in W9 after Ruling #5 arrives. Corpus is transcript-only through W3.
+> Default if no ruling by W2 CP0: Path C.
+> Path C · POINTER-ONLY DELIVERABLE — corpus is `{source-file-pointer, segment_offsets_ms, transcript}` triples. Audio bytes stay on the source estate. `regime=SOURCE_UNTOUCHED` for audio, `regime=DELIVERABLE_GOVERNED` for the manifest."
+
+**Files landed on `programme/track-a` (Commit-A `2e227dd22deb5bae52452fedcfe7f6b200aab9d6`):**
+- `services/audio_plane_v1/corpus_deliverable_v1.py` (116 LOC · 5 exports · Path C default schema).
+- `tests/invariants/test_wm7_w9_cp1_corpus_deliverable_v1.py` (237 LOC · 6 invariants).
+- `tests/invariants/baseline_failures.json` (`passed_floor` 4400 → 4406 · `ratchet_history` append at `20260916T163000Z`).
+
+**Mechanism (5 primitives · case-agnostic · preventive-charter pattern matching CP-M8-CTCC-1):**
+1. `PATH_C_DEFAULT_ROADMAP_ANCHOR` — module-level verbatim anchor string quoting §C.2.
+2. `CorpusSegment_v1` — frozen dataclass · exact-order 3 carriers `(source_file_pointer: str, segment_offsets_ms: Tuple[Tuple[int, int], ...], transcript: str)`. §C.2 verbatim triple.
+3. `CorpusDeliverable_v1` — frozen dataclass · exact-order 3 carriers `(deliverable_id: str, retention_policy_ref: str, segments: Tuple[CorpusSegment_v1, ...])`. **deliverable_id + retention_policy_ref are OPEN str** (case-agnostic per 2026-09-13 owner correction · matches CP-M7-W1-POST-1 + CP-M8-CTCC-1 precedent).
+4. `CorpusDeliverableRefused(Exception)` — root refusal.
+5. `AudioBytesPayloadRefused(CorpusDeliverableRefused)` — defensive-symmetry refusal (no caller yet triggers · Path A upgrades will).
+
+**§6.2 unrepresentable-by-construction proof (six invariants freeze this at the shape level):**
+- No `bytes` / `bytearray` / `memoryview` type-hint on any field of either dataclass.
+- No `audio_bytes` / `wav_bytes` / `pcm_bytes` / `voiceprint` / `embedding` / `raw_audio` field-name substring.
+- Runtime enforcement fires only when caller invokes (preventive-charter pattern matching CP-M8-CTCC-1).
+
+**Case-agnostic doctrine held.** Zero closed enums · deliverable_id + retention_policy_ref are OPEN str · zero domain tokens in module source (21-token grep-negative: kikuyu/dholuo/kamba/swahili/nairobi/inooro/ramogi/musyi/sunbird/whisper/pyannote/htdemucs/mms-1b/mms-lid/wavlm/panns/squim/dnsmos/broadcast/off-air/synology · verified by invariant #6) · zero imports of `services.governance_plane.retention_policy` or dispatch surfaces (composition surface only · caller-side binding via opaque retention_policy_ref str).
+
+**POST-2 discipline exercised at authoring.** From-disk existence check before build (per owner ruling verbatim "(c) ... with the POST-2 from-disk existence check before every build"): `services/audio_plane_v1/corpus_deliverable_v1.py` DID NOT exist pre-authoring; module was authored fresh in this CP. No parallel-package proliferation risk (Audio-Plane §1.2). Home selected in existing `audio_plane_v1/` sub-tree (composes alongside `commission_view.py`, `character_register.py`, `code_switch_detector.py`, `channel_condition_profiler.py`, `synthesis_attribute_capturer.py`, `instance_condition_map.py`, `dedup_path.py`, `language_identifier.py`, `leakage_path_harness.py`, `clustering.py`, `cluster_stability.py`, `human_validation.py`, `register_read_boundary.py`, `register_write_boundary.py`).
+
+**Mechanical RED drill.** `phase0/drill_receipts/20260916T083800Z_cp_m7_w9_cp1_corpus_deliverable_v1_RED.log` (banked pre-seal 2026-09-16T~08:38Z · right-reason 6 `ModuleNotFoundError` on `services.audio_plane_v1.corpus_deliverable_v1`).
+
+**Double-green byte-match under BASELINE_GUARD=1:**
+- GREEN1 `4406 passed, 1 skipped, 438 warnings in 124.21s` · raw 9924 bytes · `phase0/drill_receipts/20260916T163200Z_cp_m7_w9_cp1_corpus_deliverable_v1_GREEN1.log`.
+- GREEN2 `4406 passed, 1 skipped, 438 warnings in 123.32s` · raw 9924 bytes · `phase0/drill_receipts/20260916T163400Z_cp_m7_w9_cp1_corpus_deliverable_v1_GREEN2.log`.
+- Stripped bytes (time-in-Xs sentinel stripped): 9913 = 9913.
+- Stripped sha256: `08d65378c86fee0c05e7f1cb3e795079fe129d8b77efb9bd877c6dd0a8019f5b` (byte-identical both runs).
+
+**Pre-seal drift-repair (banked wave-honest).** CP10 harness receipt aged 12.48h > 12h threshold at first-green attempt (time-drift accumulated during hold-pattern period between last CP-M8-CTCC-1 close 2026-09-16T~08:00Z and this CP open 2026-09-16T~16:26Z). Refreshed per owner directive verbatim 2026-09-08T~06:15Z: *"real-Chromium proof, floor 3006 (fix/refresh stale harness-receipt invariant first — refresh the harness, don't relax the threshold)."* New harness receipt at `phase0/harness_ground_truth/latest.json` (at_utc `2026-09-16T16:26:53Z` · all 37 rules `bound_to_rendered_dom` · dummies absent · expected present · style signature MET). Zero-perturbation to GPU hosts (harness runs against localhost pod only; the 72h GPU campaign runs on `akki-vm` + `akki-vm-ii` and is untouched).
+
+**Ratchet 4400 → 4406 (+6) monotonic-up.** `counts_at_baseline.passed` + `passed_floor` bumped in tandem · `ratchet_history` entry appended at `20260916T163000Z`.
+
+**Seal file** at `phase0/output_verified_seals/w_m7_w9_cp1_corpus_deliverable_v1.seal.txt` · Kind: `w_m7_w9_cp1_corpus_deliverable_v1` · Track-a HEAD `2e227dd22deb5bae52452fedcfe7f6b200aab9d6` · Master HEAD `bc68198eae7f6d7701d43a739046bd389aab7094` (Commit-B · landed 2026-09-16T~16:41Z · Commit-C fixup this-turn banks the SHA in seal + DECISIONS + NEXT).
+
+**Grounding brief** at `notes/wm7_w9_cp1_corpus_deliverable_v1_grounding_brief.md` · **seal note** at `notes/M7_W9_CP1_SEAL_20260916.md` (matches triage/rollup naming per owner ruling verbatim "(b) Yes — notes/M7_W9_CP1_SEAL_20260916.md convention").
+
+**Wave-honest limits (banked):**
+- W.1 Path A/B upgrades remain BLOCKED-on-Ruling-#5 sub-verdicts (kdpa_verdict / named_persons_verdict / transfer_basis). Path C default in force per §C.2.
+- W.2 `CorpusDeliverable_v1` has no `regime` field — regime binding lives on caller-side composition with `services.governance_plane.retention_policy` (SOURCE_UNTOUCHED for audio · DELIVERABLE_GOVERNED for the manifest). Composition surface only; caller enforces regime.
+- W.3 No canonical segment ordering imposed. Caller-defined per §C.2 (deliverable_id is opaque caller-supplied str).
+- W.4 `AudioBytesPayloadRefused` is a defensive-symmetry class only — no caller yet triggers (Path A upgrades will).
+- W.5 No import of `services.governance_plane.retention_policy` — case-agnostic decoupling. `retention_policy_ref` is opaque str; caller-side composition is expected to bind.
+
+**§3.3 3-commit protocol:**
+- **Commit A** `2e227dd22deb5bae52452fedcfe7f6b200aab9d6` on `programme/track-a` ✅ landed 2026-09-16T~16:37Z (code + tests + ratchet).
+- **Commit B** `bc68198eae7f6d7701d43a739046bd389aab7094` on `master` ✅ landed 2026-09-16T~16:41Z (state + seal + grounding brief + seal note + DECISIONS + NEXT pin + GPU util files + harness drift-repair receipt).
+- **Commit C** on `master` this-turn (fixup · replaces `TBD` in seal + DECISIONS + NEXT with actual Master HEAD SHA `bc68198e`).
+
+**GPU utilization check-in at CP-M7-W9-CONTRACT-1 seal boundary** (per SO §5 interleave):
+- Elapsed 12.93 h · Remaining 59.07 h.
+- akki-vm: sampler_alive + workload_alive · telemetry_samples=320 · bench_iters=1548 (ok=1548 across 2 GPUs).
+- akki-vm-ii: sampler_alive + workload_alive · telemetry_samples=314 · bench_iters=1548 (ok=1548 across 2 GPUs).
+- 3096 total bench artefacts banked · zero synthetic burn · in-perimeter.
+- Report served at owner-facing URL.
+
+**Effects banked:**
+1. **CP-M7-W9-CONTRACT-1 SEALED** · +6 ratchet · Path α clean · case-agnostic Path-C-default corpus-deliverable shape shipped.
+2. **Milestone frontier advanced** — first buildable slice from the W2..W9 triage FIRED per owner directive verbatim (dependency-free slice at the top of the ordered list). Slices 2..6 (W2 contract + W5/W6/W7/W8 verification notes) queued.
+3. **Standing lines held throughout** (no training on estate audio · no biometric material · no enforcement hard-gate · no speculative shapes beyond existing owner law).
+4. **Roll-straight per owner directive verbatim "(a) Do NOT stop after Task 3"** — M6/M8 seal-readiness notes will be authored inline with the walk (owner-facing artifacts · relayed without pause) · next buildable slice (CP-M7-W2-CONTRACT-1) fires immediately after this seal completes.
+
+---
+
+## CP-M7-W2-CONTRACT-1 · Audio-census job scope sub-carrier + owner-ratification gate SEALED (4412) · Path α clean · double-green byte-match · TRACK-A HEAD 757c0c5 · MASTER HEAD (this-turn Commit-B pending) · 2026-09-16T~17:15Z
+
+**Owner directive verbatim (2026-09-16T~08:35Z · same message that ordered the triage) + continuation (2026-09-16T~16:20Z · "(c) Earliest-numbered unblocked wave/CP from the triage doc, in dependency order").** M6/M8 seal-readiness notes authored inline per the "roll-straight" directive; both live under `notes/M6_SEAL_READINESS_20260916.md` and `notes/M8_SEAL_READINESS_20260916.md`.
+
+**Charter source verbatim (M7 W2..W9 gating triage §1 W2 buildable-slice row):**
+
+> "CP-M7-W2-CONTRACT-1 JobManifest v1 CONTRACT SHELL for `job_class=\"audio-census\"` — extends existing `services/work_supervisor/job_manifest.py` with an audio-census `scope` sub-carrier as a frozen dataclass with opaque strings for station identifiers · `stations_owner_ratified: bool = False` gate that refuses mount until owner ratification lands. Case-agnostic composition. Blocked remainder: CP2.3..CP2.8 (live station data)."
+
+**Design departure (POST-2 discipline exercised at authoring).** The triage phrasing "extends existing job_manifest.py" was re-read against the pre-existing surface: `services/work_supervisor/job_manifest.py` v0 has an opaque `scope: dict` field by design (docstring verbatim: *"opaque to platform"*). Corrupting the platform kernel with domain-specific fields would violate the case-agnostic doctrine (SO §3 no-refactor · Audio-Plane §1.2 anti-proliferation). Correct composition pattern: NEW module in `services/audio_plane_v1/` (matches CP-M7-W9-CONTRACT-1 precedent) that carries the scope shape as an opaque payload plus a caller-invoked refusal wrapper. Owner directive verbatim "no enforcement hard-gate" preserved by the preventive-charter shape (matches CP-M8-CTCC-1).
+
+**Files landed on `programme/track-a` (Commit-A `757c0c5a407cd6ddf0472ff2eda88a5eecfa1a7b`):**
+- `services/audio_plane_v1/audio_census_job_scope.py` (162 LOC · 6 exports).
+- `tests/invariants/test_wm7_w2_cp1_audio_census_job_scope.py` (232 LOC · 6 invariants).
+- `tests/invariants/baseline_failures.json` (`passed_floor` 4406 → 4412 · `ratchet_history` append at `20260916T170800Z`).
+
+**Mechanism (2 primitives · 2 refusals · 1 constant · case-agnostic · preventive-charter pattern matching CP-M8-CTCC-1 + CP-M7-W9-CONTRACT-1):**
+1. `AUDIO_CENSUS_SCOPE_ANCHOR` — module-level verbatim charter anchor string.
+2. `AudioCensusJobScope` — frozen dataclass · exact-order 4 carriers `(job_manifest_ref: str, station_refs: Tuple[str, ...], stations_owner_ratified: bool, output_contract_ref: str)`. **All identifier discriminators OPEN str** (case-agnostic per 2026-09-13 owner correction). No import of `services.work_supervisor.job_manifest` (preserves platform kernel's opaque `scope: dict` contract). No import of `services.audio_plane_v1.corpus_deliverable_v1` (case-agnostic decoupling; caller-side composition binds `output_contract_ref` to the Path C default sealed at CP-M7-W9-CONTRACT-1).
+3. `assert_mount_allowed(*, scope) -> None` — preventive-charter refusal wrapper. Raises `StationRefsEmptyError` if `scope.station_refs` empty; raises `StationsNotOwnerRatifiedError` if `scope.stations_owner_ratified` False; returns None on success. Runtime enforcement fires only when caller invokes.
+4. `AudioCensusJobScopeRefused(Exception)` — root refusal class.
+5. `StationsNotOwnerRatifiedError(AudioCensusJobScopeRefused)` — refusal for mount-not-ratified.
+6. `StationRefsEmptyError(AudioCensusJobScopeRefused)` — refusal for zero-station scope.
+
+**Case-agnostic doctrine held.** Zero closed enums · station_refs are opaque str tuple · zero domain tokens in module source (21-token grep-negative verified by invariant #6; matches CP-M7-W9-CONTRACT-1 list · verified twice — first attempt at GREEN1 failed with `[b'inooro']` because docstring quoted §B.3 CP2.1 verbatim including station name "Inooro FM"; docstring rewritten to paraphrase without domain tokens; second attempt clean). Zero imports of composition surfaces.
+
+**Standing lines held throughout:**
+- No training on estate audio — scope carrier describes admissibility, not training.
+- No biometric material — station_refs are opaque str; no speaker/voiceprint carriers.
+- No enforcement hard-gate — preventive-charter · caller invokes `assert_mount_allowed`.
+- No speculative shapes — 4-field carrier is minimal to the M7 W2 buildable-slice charter.
+
+**Self-catching RED-during-GREEN pattern banked as discipline win.** Invariant #6 caught the "Inooro" domain-token leak in the initial docstring before Commit-A. The mechanism (grep-negative test) enforced the case-agnostic doctrine automatically, not the author's vigilance. This is the case-agnostic doctrine working through mechanism rather than through discipline.
+
+**Mechanical RED drill.** `phase0/drill_receipts/20260916T170500Z_cp_m7_w2_cp1_audio_census_job_scope_RED.log` (banked pre-Commit-A · right-reason: 5 `ModuleNotFoundError` + 1 `ImportError` on the audio_plane_v1 sub-package · captured by temporarily hiding the module while the tests fired).
+
+**Double-green byte-match under BASELINE_GUARD=1:**
+- GREEN1 `4412 passed, 1 skipped, 438 warnings in 124.22s` · raw 9924 bytes · `phase0/drill_receipts/20260916T171200Z_cp_m7_w2_cp1_audio_census_job_scope_GREEN1.log`.
+- GREEN2 `4412 passed, 1 skipped, 438 warnings in 124.38s` · raw 9924 bytes · `phase0/drill_receipts/20260916T171400Z_cp_m7_w2_cp1_audio_census_job_scope_GREEN2.log`.
+- Stripped bytes: 9913 = 9913. Stripped sha256: `2cb1079326664748b443ea67d08518b3e35e55fca3d7ff3229b1b425b43959d1` (byte-identical both runs).
+
+**Ratchet 4406 → 4412 (+6) monotonic-up.** `counts_at_baseline.passed` + `passed_floor` bumped in tandem · `ratchet_history` entry appended at `20260916T170800Z`.
+
+**Seal file** at `phase0/output_verified_seals/w_m7_w2_cp1_audio_census_job_scope.seal.txt` · Kind: `w_m7_w2_cp1_audio_census_job_scope` · Track-a HEAD `757c0c5a407cd6ddf0472ff2eda88a5eecfa1a7b` · Master HEAD `4fc272348d2c00d71ccfbf066b366fcd98b8ac05` (Commit-B · landed 2026-09-16T~17:20Z · Commit-C fixup this-turn banks the SHA).
+
+**Seal note** at `notes/M7_W2_CP1_SEAL_20260916.md` (matches triage/rollup/W9-CP1 naming convention).
+
+**Wave-honest limits (banked):**
+- W.1 Blocked remainder from triage: CP2.3..CP2.8 (live station data) remain BLOCKED-on-owner-inputs (3-station selection · NAS reach · HF token status).
+- W.2 No coupling to `job_manifest` v0 — caller-side composition binds `job_manifest_ref` to a specific JobManifest instance.
+- W.3 No coupling to `corpus_deliverable_v1` — caller-side composition binds `output_contract_ref` to the Path C default.
+- W.4 `stations_owner_ratified` default False; flipping to True is a caller responsibility anchored to a banked owner ratification.
+
+**§3.3 3-commit protocol:**
+- **Commit A** `757c0c5a407cd6ddf0472ff2eda88a5eecfa1a7b` on `programme/track-a` ✅ landed 2026-09-16T~17:15Z (code + tests + ratchet).
+- **Commit B** `4fc272348d2c00d71ccfbf066b366fcd98b8ac05` on `master` ✅ landed 2026-09-16T~17:20Z (state + seal + seal note + DECISIONS + NEXT pin + GPU util + M6/M8 seal-readiness notes).
+- **Commit C** on `master` this-turn (fixup · replaces `TBD` in seal + DECISIONS + NEXT with actual Master HEAD SHA `4fc27234`).
+
+**GPU utilization check-in at CP-M7-W2-CONTRACT-1 seal boundary** (per SO §5 interleave):
+- Elapsed 13.25 h · Remaining 58.75 h.
+- akki-vm: sampler_alive + workload_alive · telemetry_samples=~324 · bench_iters=~1586 (ok across 2 GPUs).
+- akki-vm-ii: sampler_alive + workload_alive · telemetry_samples=~322 · bench_iters=~1586 (ok across 2 GPUs).
+- Zero synthetic burn · in-perimeter · report served at owner-facing URL.
+
+**Effects banked:**
+1. **CP-M7-W2-CONTRACT-1 SEALED** · +6 ratchet · Path α clean · audio-census scope sub-carrier + owner-ratification gate shipped.
+2. **Milestone frontier advanced** — second-earliest slice from triage fired per owner directive verbatim "(c) Earliest-numbered unblocked wave/CP from the triage doc, in dependency order". W9 CP1 + W2 CP1 both sealed this-shift.
+3. **POST-2 discipline exercised at authoring** — recognized that the triage's "extends job_manifest.py" phrasing would corrupt the platform kernel's opaque scope:dict contract; authored new module in audio_plane_v1/ instead (matches W9 CP1 pattern).
+4. **Self-catching RED-during-GREEN pattern surfaced** — invariant #6 caught "Inooro" domain-token leak in initial docstring before Commit-A. Mechanism enforced doctrine automatically.
+5. **Standing lines held throughout**.
+
+**Next actions per owner directive** — continue rolling through triage §2 dependency order (M6/M8 seal-readiness notes already authored). Slice 3: **W5 verification note** (analog of M7 verification-walk shape · maps M6 sub-wave 5 + sub-wave 6 CPs to the W5 charter clauses · no code · no ratchet). Slice 4: W6 verification note. Slice 5: W7 verification note. Slice 6: W8 verification note. GPU util interleave continues at every boundary until frontier exhaustion or genuine HALT.
+
+---
+
+## W5/W6/W7/W8 VERIFICATION NOTES · state-only batch · Path α clean · ratchet unchanged at 4412 · 2026-09-16T~17:30Z
+
+**Owner directive verbatim (2026-09-16T~08:35Z + continuation 2026-09-16T~16:20Z · "roll straight into Task 4 · earliest-numbered unblocked wave/CP from the triage doc, in dependency order").**
+
+**Charter source verbatim (M7 W2..W9 gating triage §2 · dependency order slices 3-6):** verification notes analog of M7 verification-walk shape · no code · no ratchet · maps extant modules to W-charter clauses + pins single-owner-input blockers per wave.
+
+**Notes authored (all state-only · no track-a change · no Commit-A · no ratchet delta):**
+
+| Note | Verdict | Blocker |
+|---|---|---|
+| `notes/M7_W5_VERIFICATION_20260916.md` | W5 CHARTER SATISFIED via M6 SW5+SW6 mechanism (7 modules · +84 invariants collectively) | None (charter fully satisfied) |
+| `notes/M7_W6_VERIFICATION_20260916.md` | W6 CHARTER 3/4 SATISFIED (R-7 PILOT_OPEN + R-15(a) TOKENIZED + R-16(a) DERIVATIVE_ONLY discharged) | R-6 pricing carrier ruling |
+| `notes/M7_W7_VERIFICATION_20260916.md` | W7 CHARTER 2/3 SATISFIED (Tier-1 + Tier-2 emitters landed) | WPW R1/R2/R3 triple ruling (Tier-3) |
+| `notes/M7_W8_VERIFICATION_20260916.md` | W8 CHARTER 0/3 SATISFIED · 1/1 REFUSAL-SURFACE SATISFIED (biometric_embedding / named_identity / speaker_labeled_audio refused by default) | Ruling #5 three-sub-verdict landing (kdpa_verdict + named_persons_verdict + transfer_basis) — SAME BLOCKER AS M6 SEAL-READINESS §2 |
+
+**POST-2 discipline exercised at authoring** — for each of the 15 extant modules referenced across the four notes, from-disk existence verified at track-a HEAD `757c0c5a407cd6ddf0472ff2eda88a5eecfa1a7b`. All 15 modules present. No speculative claims.
+
+**Zero new invariants · zero new mechanism · zero ratchet delta.** State-only.
+
+**Cross-note consolidation:**
+- **W5** requires no further owner input (charter satisfied via M6 SW5+SW6).
+- **W6** blocker is R-6 pricing (owner-desk P2 chain).
+- **W7** blocker is WPW R1/R2/R3 (owner-desk P2 chain).
+- **W8** blocker is Ruling #5 (owner-desk P2 chain · SAME as M6 seal-readiness §2 · SAME as W9 Path A/B upgrade path).
+
+**Triage §2 dependency-order slices 3-6 DISCHARGED.** Slice 1 (W9 CP1) sealed at 4406. Slice 2 (W2 CP1) sealed at 4412. Slices 3-6 (W5/W6/W7/W8 verification notes) authored state-only this batch. **Triage buildable-now items EXHAUSTED for this-shift.**
+
+**Commit protocol** (matches M7 verification rollup precedent + M8 rollup precedent):
+- Commit A (track-a code): N/A (state-only).
+- Commit B (master state): `c6855c5756013a3525ce891f1c585a95ff1435b6` ✅ landed 2026-09-16T~17:32Z (batched 4 verification notes + this DECISIONS entry + NEXT pin + GPU util interleave check-in files).
+- Commit C (master fixup): self-reference (this commit); banks Commit-B SHA `c6855c57` in DECISIONS + NEXT.
+
+**GPU utilization check-in at batch boundary** (per SO §5 interleave · post-W2-CP1-fixup):
+- Elapsed 13.32 h · Remaining 58.68 h.
+- akki-vm: sampler_alive + workload_alive · telemetry_samples=~324 · bench_iters=~1596 (ok across 2 GPUs).
+- akki-vm-ii: sampler_alive + workload_alive · telemetry_samples=~324 · bench_iters=~1596 (ok across 2 GPUs).
+- Zero synthetic burn · in-perimeter · report served at owner-facing URL.
+
+**Effects banked:**
+1. **Triage §2 slices 3-6 DISCHARGED** state-only.
+2. **This-shift W2..W9 walk EXHAUSTED buildable-now items.** Two sealed CPs (W9 CP1 + W2 CP1) + four verification notes + two seal-readiness notes.
+3. **Owner-desk chain consolidated in the verification notes**: R-6 pricing (W6) · WPW R1/R2/R3 (W7) · Ruling #5 (W8 + M6 seal + W9 Path A/B upgrade). Same blockers seen from every angle.
+4. **This-shift ends at frontier exhaustion.** Report to owner: (i) two sealed CPs · (ii) two milestone seal-readiness notes · (iii) four W-verification notes · (iv) GPU utilization live and healthy · (v) waiting on owner-desk chain for further advance.
+
+---
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 

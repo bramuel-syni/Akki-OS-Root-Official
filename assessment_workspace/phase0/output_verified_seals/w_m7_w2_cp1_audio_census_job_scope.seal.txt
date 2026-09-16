@@ -1,0 +1,63 @@
+Kind: w_m7_w2_cp1_audio_census_job_scope
+CP: CP-M7-W2-CONTRACT-1
+Wave: M7 · W2 · CONTRACT
+Charter: M7 W2..W9 gating triage §1 W2 verbatim charter — audio-census scope sub-carrier + stations_owner_ratified gate
+Owner authority: verbatim 2026-09-16T~08:35Z + continuation 2026-09-16T~16:20Z
+
+Track-a HEAD at seal: 757c0c5a407cd6ddf0472ff2eda88a5eecfa1a7b
+Master HEAD: 4fc272348d2c00d71ccfbf066b366fcd98b8ac05 (Commit-B · landed 2026-09-16T~17:20Z)
+Master HEAD (Commit-C fixup): banks the Master HEAD SHA above (this commit)
+
+Ratchet: 4406 -> 4412 (+6)
+Invariants added: 6 (frozen carrier shape + preventive-charter refusal semantics + case-agnostic doctrine)
+
+Modules landed:
+- backend/services/audio_plane_v1/audio_census_job_scope.py (162 LOC · 6 exports · audio-census scope sub-carrier + preventive-charter refusal wrapper · zero closed enums · zero domain tokens · zero imports of work_supervisor.job_manifest or audio_plane_v1.corpus_deliverable_v1)
+- backend/tests/invariants/test_wm7_w2_cp1_audio_census_job_scope.py (232 LOC · 6 invariants)
+
+Verbatim charter anchors quoted in module source:
+- "stations_owner_ratified"
+- "gate that refuses mount"
+- "audio-census"
+
+Standing-line proof:
+- No training on estate audio — scope carrier describes admissibility, not training.
+- No biometric material — station_refs are opaque str; no speaker/voiceprint carriers.
+- No enforcement hard-gate — preventive-charter · runtime enforcement fires only when caller invokes assert_mount_allowed.
+- No speculative shapes — 4-field carrier is minimal to the M7 W2 buildable-slice charter (opaque station refs + owner-ratification gate + composition refs into job manifest and output contract).
+- Case-agnostic doctrine: 21-token grep-negative in module source (kikuyu/dholuo/kamba/swahili/nairobi/inooro/ramogi/musyi/sunbird/whisper/pyannote/htdemucs/mms-1b/mms-lid/wavlm/panns/squim/dnsmos/broadcast/off-air/synology) — verified by invariant #6.
+- Composition surface only: no import of services.work_supervisor.job_manifest (preserves platform kernel's opaque scope:dict contract) · no import of services.audio_plane_v1.corpus_deliverable_v1 (caller-side composition binds output_contract_ref to Path C default sealed at CP-M7-W9-CONTRACT-1).
+
+Post-authoring drift-repair (banked wave-honest):
+- Docstring initially quoted §B.3 CP2.1 verbatim which included station name "Inooro FM". Own invariant #6 21-token grep-negative caught this as domain-token violation. Docstring rewritten to paraphrase without domain tokens. Self-catching RED-during-GREEN pattern is a discipline win: the case-agnostic doctrine is enforced by mechanism, not by author vigilance.
+
+Mechanical RED drill: phase0/drill_receipts/20260916T170500Z_cp_m7_w2_cp1_audio_census_job_scope_RED.log (banked pre-Commit-A 2026-09-16T~17:05Z · right-reason 6 failures · 5 ModuleNotFoundError on services.audio_plane_v1.audio_census_job_scope + 1 ImportError on the audio_plane_v1 sub-package · captured by temporarily hiding the module).
+
+Double-green byte-match under BASELINE_GUARD=1:
+- GREEN1: 4412 passed, 1 skipped, 438 warnings in 124.22s (raw 9924 bytes) · phase0/drill_receipts/20260916T171200Z_cp_m7_w2_cp1_audio_census_job_scope_GREEN1.log
+- GREEN2: 4412 passed, 1 skipped, 438 warnings in 124.38s (raw 9924 bytes) · phase0/drill_receipts/20260916T171400Z_cp_m7_w2_cp1_audio_census_job_scope_GREEN2.log
+- Stripped bytes (time-in-Xs sentinel stripped): 9913 = 9913.
+- Stripped sha256: 2cb1079326664748b443ea67d08518b3e35e55fca3d7ff3229b1b425b43959d1 (byte-identical both runs).
+
+Wave-honest limits (banked):
+- W.1 station_refs are opaque str; no station identifier grammar imposed. Case-agnostic within audio-plane scope.
+- W.2 stations_owner_ratified default False; flipping to True is a caller responsibility anchored to a banked owner ratification. No global state.
+- W.3 No coupling to job_manifest v0 — the caller-side composition binds job_manifest_ref to a specific JobManifest instance. Platform kernel's opaque scope:dict contract preserved.
+- W.4 No coupling to corpus_deliverable_v1 — the caller-side composition binds output_contract_ref to the Path C default (or Path A/B when Ruling #5 lands).
+- W.5 Blocked remainder from triage: CP2.3..CP2.8 (live station data) remain BLOCKED-on-owner-inputs: 3-station selection · NAS reach · HF token status. This CP addresses the CONTRACT-SHELL slice only.
+
+§3.3 3-commit protocol:
+- Commit A `757c0c5a407cd6ddf0472ff2eda88a5eecfa1a7b` on programme/track-a (code + tests + ratchet_history append + passed_floor bump) ✅ landed 2026-09-16T~17:15Z.
+- Commit B: master state landing (this seal + close note + grounding brief + DECISIONS + NEXT pin + GPU util files) — this turn.
+- Commit C: master fixup — replaces "TBD" above with the actual master Commit-B SHA.
+
+GPU utilization at CP boundary (elapsed 13.25h · remaining 58.75h):
+- akki-vm: sampler_alive + workload_alive · telemetry_samples=~324 · bench_iters=~1586 (ok across 2 GPUs) · peak 100% GPU util per H200.
+- akki-vm-ii: sampler_alive + workload_alive · telemetry_samples=~322 · bench_iters=~1586 (ok across 2 GPUs) · peak 100% GPU util per H200.
+- Zero synthetic burn · in-perimeter · report served at owner-facing URL.
+
+Effect:
+- CP-M7-W2-CONTRACT-1 SEALED (Path α clean · double-green byte-match · +6 ratchet).
+- Audio-census scope sub-carrier + owner-ratification gate authored — unblocks caller-side composition of a full W2 admission path once owner ratifies the 3-station selection.
+- Preventive-charter pattern held (matches CP-M8-CTCC-1 + CP-M7-W9-CONTRACT-1).
+- Standing lines held throughout.
