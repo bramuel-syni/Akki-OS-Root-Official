@@ -217,6 +217,34 @@ Every owner ruling is banked **verbatim** in `STATE/DECISIONS.md` **before** any
 
 ---
 
+### 4.2 VERIFICATION-WALK SCOPE DISCIPLINE — wave-window commit enumeration (owner ruling 2026-09-16T~06:15Z)
+
+**Ratified same turn as CP-M7-W1-POST-2 close (2026-09-16T~06:00Z), which surfaced the discipline gap.**
+
+**Rule.** When a wave-close is being verified (e.g. M7-open W0/W1 verification walks, or any future milestone-open verification walk), the verification MUST enumerate **every commit within the wave-window**, not just the canonically-named wave-close commit.
+
+**Concrete this-shift precedent (why the rule exists).** The M7 W1 verification receipt (2026-09-16T~04:15Z · `phase0/m7_w1_verification/verification_receipt_20260916.json`) enumerated only the 5 W1-close modules last-touched by commit `fe01e5e` (W1 close 2026-09-13T06:33:22Z). It missed the W1b close 26 minutes later (`53645935` at 06:59:30Z · ratchet 3392 → 3492 · +100) that shipped 6 additional platform primitives (`services/capability_registry.py`, `services/governance_plane/retention_policy.py`, `services/source_plane/connector.py`, `services/source_plane/synology_file_station.py`, `services/audio_plane_v1/attribute_stream_bundle.py`, plus L2/L4 contract shells). The gap was surfaced by CP-M7-W1-POST-2's tests-first RED drill (`test_capability_registry_module_importable PASSED` at RED · a pre-existing module was importing), and rescued the walk from rule-proliferation.
+
+**Enforcement mechanics for every future verification walk:**
+
+1. **Compute the wave-window** = `[wave-open commit .. next-wave-open commit)` on `programme/track-a`. If the wave-close is the final wave in a milestone, the window closes at the milestone's next-milestone-open commit or `HEAD` at verification time.
+2. **Enumerate ALL commits in the window** via `git log --format="%H %cI %s" <open>..<close_or_next>` on `programme/track-a`.
+3. **Enumerate ALL first-added `services/` and `tests/invariants/` files** across the window via `git log --diff-filter=A --name-only --format="%H|%cI" <open>..<close_or_next> -- 'backend/services/**' 'backend/tests/invariants/**'`.
+4. **For each enumerated file**, apply the six-check schema (C.1 primitive surface · C.2 invariant tests present + pass · C.3 case-agnostic doctrine · C.4 unchanged since add · C.5 compose/scope-boundary honoured · C.6 no banned enforcement/refusal tokens on public surface unless owner ruling ratifies).
+5. **Any file missed by prior verification** is a first-class **wave-honest limit** to be surfaced in the current receipt with a candidate follow-up CP (as CP-M7-W1-POST-2 surfaced W1b).
+
+**Ban on canonical-close-commit-only enumeration.** Restricting a verification walk to the canonically-named wave-close commit (`git log -1 <close-commit-name>`) is a right-reason RED failure under this rule. Verifications MUST use the window-enumeration disciplines above.
+
+**Clause 6 · CROSS-WAVE MODIFICATION HANDLING (added 2026-09-16T~06:35Z per CP-M7-W1-POST-4 wave-honest discovery).** When a module added in Wave A is legitimately extended by a later Wave B (via B's own CP · with B's own ratchet delta · with B's own owner-directive citation · via APPEND-ONLY-EXTENSION discipline), Wave A's verification walk (via `git log --format=%cI %h <wave-A-open>^..<wave-A-close>`) tests the module's last-touched **WITHIN** the wave-A window and SURFACES any post-wave-A modifications as wave-honest discoveries in the receipt. Post-wave-A modifications are NOT treated as drift under Wave A's verification; the modifying wave's own verification (Wave B's POST-*-VERIFICATION) enforces the shape of Wave B's changes.
+
+A cross-wave modification is DRIFT only when it (a) has no CP citation / ratchet delta / owner directive, or (b) violates SO §3 (no refactor / thin-kernel discipline).
+
+Concrete this-shift precedent (CP-M7-W1-POST-4 · 2026-09-16T~06:30Z): `services/reliable_time_source/clock.py` was added at M2 SW5 (`f4fc201f` · 2026-09-13T19:35:41Z · `AU_3B_DEFENSIBLE_DRIFT_BUDGET_MS=100ms`) → modified at M2 END-GATE (`95d688cd` · 19:54:49Z · loosened 100ms → 24h for M2 tests · incidental note in commit message) → LATER MODIFIED at M3 SW1 (`eaa0e04` · 2026-09-14T05:24:59Z · Flag-2 tight-budget guard: `TIGHT_DRIFT_BUDGET_MAX_MS=5000` + `LooseAnchorRefused` + `assert_defensible_for_governed_write()`). The M3 SW1 modification is out of M2 wave-window scope; M2 POST-4-VERIFICATION surfaces it as a cross-wave note and does not fire drift. M3's future POST-5-VERIFICATION will enforce the M3-scope shape of the extension.
+
+**Wave-honest bootstrap.** This rule was ratified after the W0 + W1 verifications this shift landed with the narrower canonical-close-only scope. Those closes stay clean-as-closed (Path α zero-delta each); the W1b gap is being closed forward via **CP-M7-W1-POST-3-VERIFICATION** (this-shift-next). Future verifications land with the wider window-enumeration scope from the start.
+
+---
+
 ## 5. GPU OBLIGATIONS
 
 - **Full-consumption guarantee** while a campaign window is open. All 4 GPUs across the two hosts (`akki-vm`, `akki-vm-ii`) run at high utilization until the window closes. Idle lanes are an **interrupt-priority** condition that outranks documentation and audit work.

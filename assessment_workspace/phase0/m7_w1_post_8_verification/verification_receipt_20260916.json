@@ -1,0 +1,830 @@
+{
+  "c2_invariants": {
+    "cmd": "python -m pytest -q <29> file-scoped",
+    "duration_s": 2.19,
+    "passed": 253,
+    "returncode": 0,
+    "tail": [
+      "........................................................................ [ 85%]",
+      ".....................................                                    [100%]",
+      "253 passed in 2.19s"
+    ]
+  },
+  "c3_no_kernel_leak": {
+    "clean": true,
+    "kernels_probed": [
+      "services/work_supervisor",
+      "services/capability_registry.py",
+      "services/resource_registry",
+      "services/output_verified_seal"
+    ],
+    "per_commit": [
+      {
+        "commit": "b105aa0",
+        "kernel_touches": []
+      },
+      {
+        "commit": "9b654f6",
+        "kernel_touches": []
+      },
+      {
+        "commit": "c457ef6",
+        "kernel_touches": []
+      },
+      {
+        "commit": "b472369",
+        "kernel_touches": []
+      },
+      {
+        "commit": "4d8a52e",
+        "kernel_touches": []
+      },
+      {
+        "commit": "ba413dc",
+        "kernel_touches": []
+      },
+      {
+        "commit": "0956974",
+        "kernel_touches": []
+      },
+      {
+        "commit": "bbf6e89",
+        "kernel_touches": []
+      },
+      {
+        "commit": "a5e4429",
+        "kernel_touches": []
+      },
+      {
+        "commit": "992c1d3",
+        "kernel_touches": []
+      },
+      {
+        "commit": "c3aa7c6",
+        "kernel_touches": []
+      },
+      {
+        "commit": "8c9f382",
+        "kernel_touches": []
+      },
+      {
+        "commit": "72f29cc",
+        "kernel_touches": []
+      },
+      {
+        "commit": "20bed02",
+        "kernel_touches": []
+      },
+      {
+        "commit": "ed0c740",
+        "kernel_touches": []
+      },
+      {
+        "commit": "7ed9ad9",
+        "kernel_touches": []
+      },
+      {
+        "commit": "62e5a1d",
+        "kernel_touches": []
+      },
+      {
+        "commit": "6802806",
+        "kernel_touches": []
+      },
+      {
+        "commit": "7c856fa",
+        "kernel_touches": []
+      },
+      {
+        "commit": "75447ac",
+        "kernel_touches": []
+      },
+      {
+        "commit": "b4f5a6b",
+        "kernel_touches": []
+      },
+      {
+        "commit": "053d3f1",
+        "kernel_touches": []
+      },
+      {
+        "commit": "479377c",
+        "kernel_touches": []
+      },
+      {
+        "commit": "55aceaf",
+        "kernel_touches": []
+      },
+      {
+        "commit": "d411cc7",
+        "kernel_touches": []
+      },
+      {
+        "commit": "877e8d8",
+        "kernel_touches": []
+      },
+      {
+        "commit": "b7ebccb",
+        "kernel_touches": []
+      },
+      {
+        "commit": "8d2cc05",
+        "kernel_touches": []
+      },
+      {
+        "commit": "7b45a89",
+        "kernel_touches": []
+      }
+    ],
+    "total_kernel_touches": 0
+  },
+  "c4_within_window": {
+    "per_module": [
+      {
+        "added_when": "2026-09-16T02:54:25+00:00",
+        "in_window_last_touched": "7b45a89|2026-09-16T03:07:30+00:00",
+        "path": "backend/services/audio_plane_v1/commission_view.py",
+        "post_window_modifications": [],
+        "sw_commit": "8d2cc05"
+      },
+      {
+        "added_when": "2026-09-16T02:37:23+00:00",
+        "in_window_last_touched": "b7ebccb|2026-09-16T02:37:23+00:00",
+        "path": "backend/services/audio_plane_v1/milestones.py",
+        "post_window_modifications": [],
+        "sw_commit": "b7ebccb"
+      },
+      {
+        "added_when": "2026-09-16T02:18:38+00:00",
+        "in_window_last_touched": "877e8d8|2026-09-16T02:18:38+00:00",
+        "path": "backend/services/audio_plane_v1/calibration.py",
+        "post_window_modifications": [],
+        "sw_commit": "877e8d8"
+      },
+      {
+        "added_when": "2026-09-16T01:51:52+00:00",
+        "in_window_last_touched": "d411cc7|2026-09-16T02:05:56+00:00",
+        "path": "backend/services/audio_plane_v1/training_planner.py",
+        "post_window_modifications": [],
+        "sw_commit": "55aceaf"
+      },
+      {
+        "added_when": "2026-09-16T01:28:56+00:00",
+        "in_window_last_touched": "479377c|2026-09-16T01:28:56+00:00",
+        "path": "backend/services/audio_plane_v1/target_outcome.py",
+        "post_window_modifications": [],
+        "sw_commit": "479377c"
+      },
+      {
+        "added_when": "2026-09-15T22:45:36+00:00",
+        "in_window_last_touched": "b4f5a6b|2026-09-15T22:45:36+00:00",
+        "path": "backend/services/audio_plane_v1/backend_registry.py",
+        "post_window_modifications": [],
+        "sw_commit": "b4f5a6b"
+      },
+      {
+        "added_when": "2026-09-15T22:20:13+00:00",
+        "in_window_last_touched": "75447ac|2026-09-15T22:20:13+00:00",
+        "path": "backend/services/audio_plane_v1/commission_registry_namespace.py",
+        "post_window_modifications": [],
+        "sw_commit": "75447ac"
+      },
+      {
+        "added_when": "2026-09-15T22:06:34+00:00",
+        "in_window_last_touched": "7c856fa|2026-09-15T22:06:34+00:00",
+        "path": "backend/services/audio_plane_v1/collection_schema.py",
+        "post_window_modifications": [],
+        "sw_commit": "7c856fa"
+      },
+      {
+        "added_when": "2026-09-15T21:51:15+00:00",
+        "in_window_last_touched": "6802806|2026-09-15T21:51:15+00:00",
+        "path": "backend/services/audio_plane_v1/objective_wizard.py",
+        "post_window_modifications": [],
+        "sw_commit": "6802806"
+      },
+      {
+        "added_when": "2026-09-15T21:24:26+00:00",
+        "in_window_last_touched": "62e5a1d|2026-09-15T21:24:26+00:00",
+        "path": "backend/services/audio_plane_v1/cluster_stability.py",
+        "post_window_modifications": [],
+        "sw_commit": "62e5a1d"
+      },
+      {
+        "added_when": "2026-09-15T21:04:14+00:00",
+        "in_window_last_touched": "7ed9ad9|2026-09-15T21:04:14+00:00",
+        "path": "backend/services/audio_plane_v1/human_validation.py",
+        "post_window_modifications": [],
+        "sw_commit": "7ed9ad9"
+      },
+      {
+        "added_when": "2026-09-15T20:54:09+00:00",
+        "in_window_last_touched": "ed0c740|2026-09-15T20:54:09+00:00",
+        "path": "backend/services/audio_plane_v1/clustering.py",
+        "post_window_modifications": [],
+        "sw_commit": "ed0c740"
+      },
+      {
+        "added_when": "2026-09-15T20:34:14+00:00",
+        "in_window_last_touched": "20bed02|2026-09-15T20:34:14+00:00",
+        "path": "backend/services/perception/audio_codec/perimeter_boundary.py",
+        "post_window_modifications": [],
+        "sw_commit": "20bed02"
+      },
+      {
+        "added_when": "2026-09-15T20:25:36+00:00",
+        "in_window_last_touched": "72f29cc|2026-09-15T20:25:36+00:00",
+        "path": "backend/services/perception/audio_codec/census_visibility.py",
+        "post_window_modifications": [],
+        "sw_commit": "72f29cc"
+      },
+      {
+        "added_when": "2026-09-15T20:15:40+00:00",
+        "in_window_last_touched": "8c9f382|2026-09-15T20:15:40+00:00",
+        "path": "backend/services/perception/audio_codec/artefact.py",
+        "post_window_modifications": [],
+        "sw_commit": "8c9f382"
+      },
+      {
+        "added_when": "2026-09-15T19:57:39+00:00",
+        "in_window_last_touched": "c3aa7c6|2026-09-15T19:57:39+00:00",
+        "path": "backend/services/perception/audio_codec/__init__.py",
+        "post_window_modifications": [],
+        "sw_commit": "c3aa7c6"
+      },
+      {
+        "added_when": "2026-09-15T19:57:39+00:00",
+        "in_window_last_touched": "c3aa7c6|2026-09-15T19:57:39+00:00",
+        "path": "backend/services/perception/audio_codec/service.py",
+        "post_window_modifications": [],
+        "sw_commit": "c3aa7c6"
+      },
+      {
+        "added_when": "2026-09-15T19:45:32+00:00",
+        "in_window_last_touched": "992c1d3|2026-09-15T19:45:32+00:00",
+        "path": "backend/services/audio_plane_v1/register_read_boundary.py",
+        "post_window_modifications": [],
+        "sw_commit": "992c1d3"
+      },
+      {
+        "added_when": "2026-09-15T19:34:40+00:00",
+        "in_window_last_touched": "a5e4429|2026-09-15T19:34:40+00:00",
+        "path": "backend/services/audio_plane_v1/register_write_boundary.py",
+        "post_window_modifications": [],
+        "sw_commit": "a5e4429"
+      },
+      {
+        "added_when": "2026-09-15T19:23:24+00:00",
+        "in_window_last_touched": "bbf6e89|2026-09-15T19:23:24+00:00",
+        "path": "backend/services/audio_plane_v1/leakage_path_harness.py",
+        "post_window_modifications": [],
+        "sw_commit": "bbf6e89"
+      },
+      {
+        "added_when": "2026-09-15T19:09:54+00:00",
+        "in_window_last_touched": "0956974|2026-09-15T19:09:54+00:00",
+        "path": "backend/services/audio_plane_v1/character_register.py",
+        "post_window_modifications": [],
+        "sw_commit": "0956974"
+      },
+      {
+        "added_when": "2026-09-15T18:58:34+00:00",
+        "in_window_last_touched": "ba413dc|2026-09-15T18:58:34+00:00",
+        "path": "backend/services/audio_plane_v1/dedup_path.py",
+        "post_window_modifications": [],
+        "sw_commit": "ba413dc"
+      },
+      {
+        "added_when": "2026-09-15T18:47:45+00:00",
+        "in_window_last_touched": "4d8a52e|2026-09-15T18:47:45+00:00",
+        "path": "backend/services/audio_plane_v1/instance_condition_map.py",
+        "post_window_modifications": [],
+        "sw_commit": "4d8a52e"
+      },
+      {
+        "added_when": "2026-09-15T18:36:28+00:00",
+        "in_window_last_touched": "b472369|2026-09-15T18:36:28+00:00",
+        "path": "backend/services/audio_plane_v1/synthesis_attribute_capturer.py",
+        "post_window_modifications": [],
+        "sw_commit": "b472369"
+      },
+      {
+        "added_when": "2026-09-15T18:25:05+00:00",
+        "in_window_last_touched": "c457ef6|2026-09-15T18:25:05+00:00",
+        "path": "backend/services/audio_plane_v1/channel_condition_profiler.py",
+        "post_window_modifications": [],
+        "sw_commit": "c457ef6"
+      },
+      {
+        "added_when": "2026-09-15T18:12:30+00:00",
+        "in_window_last_touched": "9b654f6|2026-09-15T18:12:30+00:00",
+        "path": "backend/services/audio_plane_v1/code_switch_detector.py",
+        "post_window_modifications": [],
+        "sw_commit": "9b654f6"
+      },
+      {
+        "added_when": "2026-09-15T17:26:25+00:00",
+        "in_window_last_touched": "b105aa0|2026-09-15T17:26:25+00:00",
+        "path": "backend/services/audio_plane_v1/__init__.py",
+        "post_window_modifications": [],
+        "sw_commit": "b105aa0"
+      },
+      {
+        "added_when": "2026-09-15T17:26:25+00:00",
+        "in_window_last_touched": "b105aa0|2026-09-15T17:26:25+00:00",
+        "path": "backend/services/audio_plane_v1/language_identifier.py",
+        "post_window_modifications": [],
+        "sw_commit": "b105aa0"
+      }
+    ],
+    "post_window_modification_count": 0
+  },
+  "c6_no_banned_tokens": {
+    "banned_tokens": [
+      "kill",
+      "terminate",
+      "refuse_dispatch",
+      "unregister"
+    ],
+    "clean": true,
+    "per_module": [
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/audio_plane_v1/commission_view.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/audio_plane_v1/milestones.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/audio_plane_v1/calibration.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/audio_plane_v1/training_planner.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/audio_plane_v1/target_outcome.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/audio_plane_v1/backend_registry.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/audio_plane_v1/commission_registry_namespace.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/audio_plane_v1/collection_schema.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/audio_plane_v1/objective_wizard.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/audio_plane_v1/cluster_stability.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/audio_plane_v1/human_validation.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/audio_plane_v1/clustering.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/perception/audio_codec/perimeter_boundary.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/perception/audio_codec/census_visibility.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/perception/audio_codec/artefact.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/perception/audio_codec/__init__.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/perception/audio_codec/service.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/audio_plane_v1/register_read_boundary.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/audio_plane_v1/register_write_boundary.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/audio_plane_v1/leakage_path_harness.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/audio_plane_v1/character_register.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/audio_plane_v1/dedup_path.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/audio_plane_v1/instance_condition_map.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/audio_plane_v1/synthesis_attribute_capturer.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/audio_plane_v1/channel_condition_profiler.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/audio_plane_v1/code_switch_detector.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/audio_plane_v1/__init__.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/audio_plane_v1/language_identifier.py"
+      }
+    ],
+    "total_hits_on_public_surface": 0
+  },
+  "commit_count": 29,
+  "commits_enumerated": [
+    {
+      "commit": "b105aa0",
+      "subject": "CP-M6-1-1: Language ID pluggable seam \u00b7 ratchet 4105->4112 (+7)",
+      "when": "2026-09-15T17:26:25+00:00"
+    },
+    {
+      "commit": "9b654f6",
+      "subject": "CP-M6-1-2: Code-switch point detection \u00b7 pluggable seam \u00b7 ratchet 4112->4119 (+7)",
+      "when": "2026-09-15T18:12:30+00:00"
+    },
+    {
+      "commit": "c457ef6",
+      "subject": "CP-M6-1-3: Channel condition profile derivation \u00b7 pluggable seam \u00b7 ratchet 4119->4127 (+8)",
+      "when": "2026-09-15T18:25:05+00:00"
+    },
+    {
+      "commit": "b472369",
+      "subject": "CP-M6-1-4: Synthesis-relevant attribute capture \u00b7 pluggable seam \u00b7 W-M6-INGEST-STAGE-1 sub-wave 1 COMPLETE \u00b7 ratchet 4127->4134 (+7)",
+      "when": "2026-09-15T18:36:28+00:00"
+    },
+    {
+      "commit": "4d8a52e",
+      "subject": "CP-M6-2-1: Instance condition map schema \u00b7 \u00a74.5 P071 + \u00a74.6 P074 \u00b7 ratchet 4134->4141 (+7)",
+      "when": "2026-09-15T18:47:45+00:00"
+    },
+    {
+      "commit": "ba413dc",
+      "subject": "CP-M6-2-2: Dedup path extension \u00b7 distinct-condition preservation invariant \u00b7 W-M6-DEDUP-INSTANCE-CONDITION-MAP sub-wave 2 COMPLETE \u00b7 ratchet 4141->4150 (+9)",
+      "when": "2026-09-15T18:58:34+00:00"
+    },
+    {
+      "commit": "0956974",
+      "subject": "CP-M6-3-1: Character Register schema (schema only \u00b7 \u00a75.1 P078 + \u00a75.2 P082..P085 + \u00a76.1 P092/P093 + \u00a76.2 P098) \u00b7 ratchet 4150->4157 (+7)",
+      "when": "2026-09-15T19:09:54+00:00"
+    },
+    {
+      "commit": "bbf6e89",
+      "subject": "CP-M6-3-2: \u00a76.3 P100 four-leakage-path harness framework \u00b7 synthetic-fixtures-only \u00b7 ratchet 4157->4165 (+8)",
+      "when": "2026-09-15T19:23:24+00:00"
+    },
+    {
+      "commit": "a5e4429",
+      "subject": "CP-M6-3-3: Register write-path leakage-refusal boundary \u00b7 \u00a76.3 P100 end-to-end lock \u00b7 ratchet 4165->4175 (+10)",
+      "when": "2026-09-15T19:34:40+00:00"
+    },
+    {
+      "commit": "992c1d3",
+      "subject": "CP-M6-3-4: \u00a76.4 read-path scope enforcement \u00b7 W-M6-CHARACTER-REGISTER sub-wave 3 COMPLETE \u00b7 ratchet 4175->4183 (+8)",
+      "when": "2026-09-15T19:45:32+00:00"
+    },
+    {
+      "commit": "c3aa7c6",
+      "subject": "CP-M6-4-1: perception/audio_codec/ module skeleton \u00b7 \u00a73.2 P045 verbatim canon anchor \u00b7 ratchet 4183->4190 (+7)",
+      "when": "2026-09-15T19:57:39+00:00"
+    },
+    {
+      "commit": "8c9f382",
+      "subject": "CP-M6-4-2: codec_version carrier \u00b7 D7 fold-in \u00b7 \u00a73.2 P047 output shape + \u00a73.2 P048 mandatory-in-downstream-provenance \u00b7 ratchet 4190->4197 (+7)",
+      "when": "2026-09-15T20:15:40+00:00"
+    },
+    {
+      "commit": "72f29cc",
+      "subject": "CP-M6-4-3: census-visibility invariant \u00b7 \u00a73.2 P045 verbatim 'census-visible' \u00b7 ratchet 4197->4205 (+8)",
+      "when": "2026-09-15T20:25:36+00:00"
+    },
+    {
+      "commit": "20bed02",
+      "subject": "CP-M6-4-4: in-perimeter-on-tenant-compute invariant \u00b7 \u00a73.2 P045 verbatim 'runs in-perimeter on tenant compute' \u00b7 W-M6-CODEC-SERVICE SUB-WAVE 4 COMPLETE \u00b7 ratchet 4205->4213 (+8)",
+      "when": "2026-09-15T20:34:14+00:00"
+    },
+    {
+      "commit": "ed0c740",
+      "subject": "CP-M6-5-1: Unsupervised clustering algorithm registration \u00b7 \u00a75.3 P089 clause 1 verbatim \u00b7 pluggable-seam \u00b7 Sub-wave 5 opens (W-M6-CLUSTERING-HUMAN-VALIDATION) \u00b7 ratchet 4213->4220 (+7)",
+      "when": "2026-09-15T20:54:09+00:00"
+    },
+    {
+      "commit": "7ed9ad9",
+      "subject": "CP-M6-5-2: Sampled human validation loop MECHANISM \u00b7 \u00a75.3 P089 clause 3 verbatim + \u00a716.2 P249 verbatim \u00b7 synthetic-fixtures-only per owner ruling 2026-09-15T~20:37Z \u00b7 ratchet 4220->4232 (+12)",
+      "when": "2026-09-15T21:04:14+00:00"
+    },
+    {
+      "commit": "62e5a1d",
+      "subject": "CP-M6-5-3 \u00b7 Cluster-stability invariants MECHANISM \u00b7 \u00a75.3 P089 clause 2 verbatim end-to-end \u00b7 CLOSES SUB-WAVE 5 W-M6-CLUSTERING-HUMAN-VALIDATION (\u00a73.3 \u00b7 master SHA to land in commit C-fixup)",
+      "when": "2026-09-15T21:24:26+00:00"
+    },
+    {
+      "commit": "6802806",
+      "subject": "CP-M6-6-1 \u00b7 Objective Wizard audio-variant compile-refusal + Rec-1-M6SW6 gate \u00b7 N7 fold-in \u00b7 OPENS SUB-WAVE 6 W-M6-OBJECTIVE-WIZARD-COLLECTION-SCHEMA (\u00a73.3 \u00b7 master SHA to land in commit C-fixup)",
+      "when": "2026-09-15T21:51:15+00:00"
+    },
+    {
+      "commit": "7c856fa",
+      "subject": "CP-M6-6-2 \u00b7 Collection Schema type \u00b7 \u00a79 P148..P152 verbatim (baseline tier five-item + objective tier propose-qualify-graduate) \u00b7 ratchet 4254->4263 (+9) (\u00a73.3 \u00b7 master SHA to land in commit C-fixup)",
+      "when": "2026-09-15T22:06:34+00:00"
+    },
+    {
+      "commit": "75447ac",
+      "subject": "CP-M6-6-3 \u00b7 Per-commission registry namespace \u00b7 \u00a712.1 P195 verbatim (scoped namespace + declared-not-yet-collected first-class + sealed-not-deleted) \u00b7 ratchet 4263->4274 (+11) (\u00a73.3)",
+      "when": "2026-09-15T22:20:13+00:00"
+    },
+    {
+      "commit": "b4f5a6b",
+      "subject": "CP-M6-6-4 \u00b7 Ratified-vs-INFERRED backend registry surface \u00b7 Rec-3-M6SW6 verbatim owner ruling 2026-09-15T~21:25Z ('read-only registry surface enumerating every pluggable seam ... with status \u2208 {RATIFIED, INFERRED-pending-ratification}, closed-set refusal on unknown status, deterministic output \u2014 the M6-seal-story what is truly live table') \u00b7 ratchet 4274->4282 (+8) \u00b7 CLOSES SUB-WAVE 6 (\u00a73.3 \u00b7 master SHA to land in commit C-fixup)",
+      "when": "2026-09-15T22:45:36+00:00"
+    },
+    {
+      "commit": "053d3f1",
+      "subject": "CP-SW6-HYG-1 \u00b7 Credential metadata shape helper \u00b7 Redaction Hardening Option 1 \u00b7 owner ruling 2026-09-15T~22:30Z (ratified same turn as SEC incident sec_incident_jump_cred_leak_20260915T222935Z) \u00b7 ratchet 4282->4288 (+6) (\u00a73.3 \u00b7 master SHA to land in commit C-fixup)",
+      "when": "2026-09-15T23:01:19+00:00"
+    },
+    {
+      "commit": "479377c",
+      "subject": "CP-M6-7-1 \u00b7 Full \u00a710 TargetOutcome carrier + \u00a710.2 binding rules (V98..V108 verbatim) \u00b7 OPENS SUB-WAVE 7 W-M6-TARGET-OUTCOME-PLANNER \u00b7 ratchet 4288->4298 (+10) (\u00a73.3 \u00b7 master SHA to land in commit C-fixup)",
+      "when": "2026-09-16T01:28:56+00:00"
+    },
+    {
+      "commit": "55aceaf",
+      "subject": "CP-M6-7-2 \u00b7 \u00a711.1 P171..P178 Training Planner architecture (V109..V112 verbatim) \u00b7 four-clause seam \u00b7 ratchet 4298->4308 (+10) (\u00a73.3 \u00b7 master SHA to land in commit C-fixup)",
+      "when": "2026-09-16T01:51:52+00:00"
+    },
+    {
+      "commit": "d411cc7",
+      "subject": "CP-M6-7-3 \u00b7 \u00a711.4 P184..P188 Planner outputs (V115..V118 verbatim) \u00b7 Part-B append-only extension of training_planner.py \u00b7 CLOSES SUB-WAVE 7 \u00b7 ratchet 4308->4318 (+10) (\u00a73.3 \u00b7 master SHA to land in commit C-fixup)",
+      "when": "2026-09-16T02:05:56+00:00"
+    },
+    {
+      "commit": "877e8d8",
+      "subject": "CP-M6-8-1 \u00b7 \u00a711.2 P179..P180 Calibration Procedure (V113 LOAD-BEARING verbatim) \u00b7 OPENS SUB-WAVE 8 W-M6-CALIBRATION-ACCEPTANCE \u00b7 ratchet 4318->4328 (+10) (\u00a73.3 \u00b7 master SHA to land in commit C-fixup)",
+      "when": "2026-09-16T02:18:38+00:00"
+    },
+    {
+      "commit": "b7ebccb",
+      "subject": "CP-M6-8-2 \u00b7 \u00a711.3 P181..P182 Milestone-list contract (V114 verbatim) \u00b7 CLOSES SUB-WAVE 8 W-M6-CALIBRATION-ACCEPTANCE \u00b7 ratchet 4328->4338 (+10) (\u00a73.3 \u00b7 master SHA to land in commit C-fixup)",
+      "when": "2026-09-16T02:37:23+00:00"
+    },
+    {
+      "commit": "8d2cc05",
+      "subject": "CP-M6-9-1 \u00b7 \u00a713.1 P216 + \u00a713.2 P217 + \u00a713.4 P219 Commission View schema + reads-only discipline (V119 + V120 LOAD-BEARING + V122 LOAD-BEARING verbatim) \u00b7 OPENS SUB-WAVE 9 W-M6-COMMISSION-VIEW \u00b7 ratchet 4338->4348 (+10) (\u00a73.3 \u00b7 master SHA to land in commit C-fixup)",
+      "when": "2026-09-16T02:54:25+00:00"
+    },
+    {
+      "commit": "7b45a89",
+      "subject": "CP-M6-9-2 \u00b7 \u00a713.2 V120a render + \u00a713.3 V121 modality leaf + \u00a713.1 V119c internals refusal + \u00a713.4 V122c reads-only defence \u00b7 Part-B append-only extension of commission_view.py \u00b7 CLOSES SUB-WAVE 9 W-M6-COMMISSION-VIEW \u00b7 ratchet 4348->4358 (+10) (\u00a73.3 \u00b7 master SHA to land in commit C-fixup)",
+      "when": "2026-09-16T03:07:30+00:00"
+    }
+  ],
+  "cp": "CP-M7-W1-POST-8-VERIFICATION",
+  "description": "M6 \u00b7 Audio Plane v1 Production Build (9 sub-waves \u00b7 SW1..SW9)",
+  "module_count": 28,
+  "modules_enumerated": [
+    [
+      "8d2cc05",
+      "backend/services/audio_plane_v1/commission_view.py",
+      "2026-09-16T02:54:25+00:00"
+    ],
+    [
+      "b7ebccb",
+      "backend/services/audio_plane_v1/milestones.py",
+      "2026-09-16T02:37:23+00:00"
+    ],
+    [
+      "877e8d8",
+      "backend/services/audio_plane_v1/calibration.py",
+      "2026-09-16T02:18:38+00:00"
+    ],
+    [
+      "55aceaf",
+      "backend/services/audio_plane_v1/training_planner.py",
+      "2026-09-16T01:51:52+00:00"
+    ],
+    [
+      "479377c",
+      "backend/services/audio_plane_v1/target_outcome.py",
+      "2026-09-16T01:28:56+00:00"
+    ],
+    [
+      "b4f5a6b",
+      "backend/services/audio_plane_v1/backend_registry.py",
+      "2026-09-15T22:45:36+00:00"
+    ],
+    [
+      "75447ac",
+      "backend/services/audio_plane_v1/commission_registry_namespace.py",
+      "2026-09-15T22:20:13+00:00"
+    ],
+    [
+      "7c856fa",
+      "backend/services/audio_plane_v1/collection_schema.py",
+      "2026-09-15T22:06:34+00:00"
+    ],
+    [
+      "6802806",
+      "backend/services/audio_plane_v1/objective_wizard.py",
+      "2026-09-15T21:51:15+00:00"
+    ],
+    [
+      "62e5a1d",
+      "backend/services/audio_plane_v1/cluster_stability.py",
+      "2026-09-15T21:24:26+00:00"
+    ],
+    [
+      "7ed9ad9",
+      "backend/services/audio_plane_v1/human_validation.py",
+      "2026-09-15T21:04:14+00:00"
+    ],
+    [
+      "ed0c740",
+      "backend/services/audio_plane_v1/clustering.py",
+      "2026-09-15T20:54:09+00:00"
+    ],
+    [
+      "20bed02",
+      "backend/services/perception/audio_codec/perimeter_boundary.py",
+      "2026-09-15T20:34:14+00:00"
+    ],
+    [
+      "72f29cc",
+      "backend/services/perception/audio_codec/census_visibility.py",
+      "2026-09-15T20:25:36+00:00"
+    ],
+    [
+      "8c9f382",
+      "backend/services/perception/audio_codec/artefact.py",
+      "2026-09-15T20:15:40+00:00"
+    ],
+    [
+      "c3aa7c6",
+      "backend/services/perception/audio_codec/__init__.py",
+      "2026-09-15T19:57:39+00:00"
+    ],
+    [
+      "c3aa7c6",
+      "backend/services/perception/audio_codec/service.py",
+      "2026-09-15T19:57:39+00:00"
+    ],
+    [
+      "992c1d3",
+      "backend/services/audio_plane_v1/register_read_boundary.py",
+      "2026-09-15T19:45:32+00:00"
+    ],
+    [
+      "a5e4429",
+      "backend/services/audio_plane_v1/register_write_boundary.py",
+      "2026-09-15T19:34:40+00:00"
+    ],
+    [
+      "bbf6e89",
+      "backend/services/audio_plane_v1/leakage_path_harness.py",
+      "2026-09-15T19:23:24+00:00"
+    ],
+    [
+      "0956974",
+      "backend/services/audio_plane_v1/character_register.py",
+      "2026-09-15T19:09:54+00:00"
+    ],
+    [
+      "ba413dc",
+      "backend/services/audio_plane_v1/dedup_path.py",
+      "2026-09-15T18:58:34+00:00"
+    ],
+    [
+      "4d8a52e",
+      "backend/services/audio_plane_v1/instance_condition_map.py",
+      "2026-09-15T18:47:45+00:00"
+    ],
+    [
+      "b472369",
+      "backend/services/audio_plane_v1/synthesis_attribute_capturer.py",
+      "2026-09-15T18:36:28+00:00"
+    ],
+    [
+      "c457ef6",
+      "backend/services/audio_plane_v1/channel_condition_profiler.py",
+      "2026-09-15T18:25:05+00:00"
+    ],
+    [
+      "9b654f6",
+      "backend/services/audio_plane_v1/code_switch_detector.py",
+      "2026-09-15T18:12:30+00:00"
+    ],
+    [
+      "b105aa0",
+      "backend/services/audio_plane_v1/__init__.py",
+      "2026-09-15T17:26:25+00:00"
+    ],
+    [
+      "b105aa0",
+      "backend/services/audio_plane_v1/language_identifier.py",
+      "2026-09-15T17:26:25+00:00"
+    ]
+  ],
+  "path_taken": "Path \u03b1",
+  "ratchet_delta": 0,
+  "so_ref": "SO \u00a74.2 wave-window commit enumeration + clause 6 cross-wave modification handling",
+  "sub_waves_declared": [],
+  "test_count": 29,
+  "tests_enumerated": [
+    "tests/invariants/test_wm6_9_2_commission_view_render.py",
+    "tests/invariants/test_wm6_9_1_commission_view.py",
+    "tests/invariants/test_wm6_8_2_milestones.py",
+    "tests/invariants/test_wm6_8_1_calibration.py",
+    "tests/invariants/test_wm6_7_3_planner_outputs.py",
+    "tests/invariants/test_wm6_7_2_training_planner.py",
+    "tests/invariants/test_wm6_7_1_target_outcome.py",
+    "tests/invariants/test_sw6_hyg_1_credential_metadata.py",
+    "tests/invariants/test_wm6_6_4_backend_registry.py",
+    "tests/invariants/test_wm6_6_3_commission_registry_namespace.py",
+    "tests/invariants/test_wm6_6_2_collection_schema.py",
+    "tests/invariants/test_wm6_6_1_objective_wizard_compile_refusal.py",
+    "tests/invariants/test_wm6_5_3_cluster_stability.py",
+    "tests/invariants/test_wm6_5_2_human_validation_loop.py",
+    "tests/invariants/test_wm6_5_1_clustering_registration.py",
+    "tests/invariants/test_wm6_4_4_perimeter_boundary.py",
+    "tests/invariants/test_wm6_4_3_census_visibility.py",
+    "tests/invariants/test_wm6_4_2_codec_version_carrier.py",
+    "tests/invariants/test_wm6_4_1_audio_codec_service_skeleton.py",
+    "tests/invariants/test_wm6_3_4_register_read_boundary.py",
+    "tests/invariants/test_wm6_3_3_register_write_boundary.py",
+    "tests/invariants/test_wm6_3_2_leakage_path_harness.py",
+    "tests/invariants/test_wm6_3_1_character_register.py",
+    "tests/invariants/test_wm6_2_2_dedup_path.py",
+    "tests/invariants/test_wm6_2_1_instance_condition_map.py",
+    "tests/invariants/test_wm6_1_4_synthesis_attribute_capturer.py",
+    "tests/invariants/test_wm6_1_3_channel_condition_profiler.py",
+    "tests/invariants/test_wm6_1_2_code_switch_detector.py",
+    "tests/invariants/test_wm6_1_1_language_identifier.py"
+  ],
+  "type": "verification_walk",
+  "verdict": "clean",
+  "wave_window": "M6",
+  "wave_window_now_fully_verified": true,
+  "window_close_commit": "7b45a89",
+  "window_next_family_open_commit": "2c7a8f0",
+  "window_open_commit": "b105aa0"
+}

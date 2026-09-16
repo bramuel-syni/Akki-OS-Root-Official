@@ -1,0 +1,168 @@
+{
+  "c2_invariants": {
+    "cmd": "python -m pytest -q tests/invariants/test_wm4_sw1_solva_explain_surface.py tests/invariants/test_wm4_sw2_never_pre_fill_invariant.py tests/invariants/test_wm4_sw3_estate_check_chip.py tests/invariants/test_wm4_sw4_three_verdicts.py tests/invariants/test_wm4_sw5_handoff_contract.py tests/invariants/test_wm4_sw6_m4_block_completion.py",
+    "duration_s": 0.9,
+    "passed": 47,
+    "returncode": 0,
+    "tail": [
+      "...............................................                          [100%]",
+      "47 passed in 0.90s"
+    ]
+  },
+  "c3_no_kernel_leak": {
+    "clean": true,
+    "kernels_probed": [
+      "services/work_supervisor",
+      "services/capability_registry.py",
+      "services/resource_registry",
+      "services/output_verified_seal"
+    ],
+    "per_commit": [
+      {
+        "commit": "6888f35",
+        "kernel_touches": []
+      },
+      {
+        "commit": "26e9c7c",
+        "kernel_touches": []
+      },
+      {
+        "commit": "cdbc268",
+        "kernel_touches": []
+      },
+      {
+        "commit": "b7d2fc6",
+        "kernel_touches": []
+      },
+      {
+        "commit": "589fe1f",
+        "kernel_touches": []
+      },
+      {
+        "commit": "72a1201",
+        "kernel_touches": []
+      }
+    ],
+    "total_kernel_touches": 0
+  },
+  "c4_within_window": {
+    "per_module": [
+      {
+        "in_window_last_touched": "6888f35|2026-09-14T10:13:24+00:00",
+        "kind": "ADDED",
+        "path": "services/journey_assistant/__init__.py",
+        "post_window_modifications": [],
+        "sub_wave": "W-M4-SW1",
+        "sw_commit": "6888f35"
+      },
+      {
+        "in_window_last_touched": "6888f35|2026-09-14T10:13:24+00:00",
+        "kind": "ADDED",
+        "path": "services/journey_assistant/solva_explain.py",
+        "post_window_modifications": [],
+        "sub_wave": "W-M4-SW1",
+        "sw_commit": "6888f35"
+      },
+      {
+        "in_window_last_touched": "26e9c7c|2026-09-14T10:18:55+00:00",
+        "kind": "ADDED",
+        "path": "services/journey_assistant/never_pre_fill.py",
+        "post_window_modifications": [],
+        "sub_wave": "W-M4-SW2",
+        "sw_commit": "26e9c7c"
+      },
+      {
+        "in_window_last_touched": "cdbc268|2026-09-14T10:24:21+00:00",
+        "kind": "ADDED",
+        "path": "services/journey_assistant/estate_check_chip.py",
+        "post_window_modifications": [],
+        "sub_wave": "W-M4-SW3",
+        "sw_commit": "cdbc268"
+      },
+      {
+        "in_window_last_touched": "b7d2fc6|2026-09-14T10:29:36+00:00",
+        "kind": "ADDED",
+        "path": "services/journey_assistant/three_verdicts.py",
+        "post_window_modifications": [],
+        "sub_wave": "W-M4-SW4",
+        "sw_commit": "b7d2fc6"
+      },
+      {
+        "in_window_last_touched": "589fe1f|2026-09-14T10:35:25+00:00",
+        "kind": "ADDED",
+        "path": "services/journey_assistant/handoff_contract.py",
+        "post_window_modifications": [],
+        "sub_wave": "W-M4-SW5",
+        "sw_commit": "589fe1f"
+      },
+      {
+        "in_window_last_touched": "72a1201|2026-09-14T10:41:04+00:00",
+        "kind": "ADDED",
+        "path": "services/journey_assistant/m4_block_completion.py",
+        "post_window_modifications": [],
+        "sub_wave": "W-M4-SW6",
+        "sw_commit": "72a1201"
+      }
+    ]
+  },
+  "c6_no_banned_tokens": {
+    "banned_tokens": [
+      "kill",
+      "terminate",
+      "refuse_dispatch",
+      "unregister"
+    ],
+    "clean": true,
+    "per_module": [
+      {
+        "exists": true,
+        "hits": [],
+        "path": "services/journey_assistant/__init__.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "services/journey_assistant/solva_explain.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "services/journey_assistant/never_pre_fill.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "services/journey_assistant/estate_check_chip.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "services/journey_assistant/three_verdicts.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "services/journey_assistant/handoff_contract.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "services/journey_assistant/m4_block_completion.py"
+      }
+    ],
+    "total_hits_on_public_surface": 0
+  },
+  "cp": "CP-M7-W1-POST-6-VERIFICATION",
+  "modules_enumerated": 7,
+  "path_taken": "Path \u03b1",
+  "ratchet_delta": 0,
+  "so_ref": "SO \u00a74.2 wave-window commit enumeration + clause 6 cross-wave modification handling",
+  "tests_enumerated": 6,
+  "type": "verification_walk",
+  "verdict": "clean",
+  "wave_window": "M4",
+  "wave_window_now_fully_verified": true,
+  "window_close_commit": "72a1201",
+  "window_next_family_open_commit": "d6bf1bc",
+  "window_open_commit": "6888f35"
+}

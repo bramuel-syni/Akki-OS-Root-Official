@@ -1,0 +1,298 @@
+{
+  "c2_invariants": {
+    "cmd": "python -m pytest -q tests/invariants/test_wm3_sw1_flag2_tight_budget_defensible_write.py tests/invariants/test_wm3_sw2_watch_stack_core.py tests/invariants/test_wm3_sw3_watch_learning_certificate_library.py tests/invariants/test_wm3_sw4_watch_learning_mirage_provocation.py tests/invariants/test_wm3_sw5_watch_learning_research_queue.py tests/invariants/test_wm3_sw6_watch_learning_capability_admission.py tests/invariants/test_wm3_sw7_agent_containment.py tests/invariants/test_wm3_sw8_pruning_unlearning.py tests/invariants/test_wm3_sw9_ac13_ac14_serving_freeze.py tests/invariants/test_wm3_sw10_bca_s10_s11_bc1_bc2.py tests/invariants/test_wm3_sw11_dap33_dap34_dap35_m3_remainder.py tests/invariants/test_wm3_sw12_m3_block_completion.py",
+    "duration_s": 1.19,
+    "passed": 83,
+    "returncode": 0,
+    "tail": [
+      "........................................................................ [ 86%]",
+      "...........                                                              [100%]",
+      "83 passed in 1.19s"
+    ]
+  },
+  "c3_no_kernel_leak": {
+    "clean": true,
+    "kernels_probed": [
+      "services/work_supervisor",
+      "services/capability_registry.py",
+      "services/resource_registry",
+      "services/output_verified_seal"
+    ],
+    "per_commit": [
+      {
+        "commit": "eaa0e04",
+        "kernel_touches": []
+      },
+      {
+        "commit": "43889de",
+        "kernel_touches": []
+      },
+      {
+        "commit": "80198a5",
+        "kernel_touches": []
+      },
+      {
+        "commit": "0640553",
+        "kernel_touches": []
+      },
+      {
+        "commit": "156c21d",
+        "kernel_touches": []
+      },
+      {
+        "commit": "0b64c68",
+        "kernel_touches": []
+      },
+      {
+        "commit": "48f0ba9",
+        "kernel_touches": []
+      },
+      {
+        "commit": "9309330",
+        "kernel_touches": []
+      },
+      {
+        "commit": "d859cc6",
+        "kernel_touches": []
+      },
+      {
+        "commit": "c9469c8",
+        "kernel_touches": []
+      },
+      {
+        "commit": "10a3deb",
+        "kernel_touches": []
+      },
+      {
+        "commit": "7123cf8",
+        "kernel_touches": []
+      }
+    ],
+    "total_kernel_touches": 0
+  },
+  "c4_within_window": {
+    "per_module": [
+      {
+        "in_window_last_touched": "eaa0e04|2026-09-14T05:24:59+00:00",
+        "kind": "MODIFIED (cross-wave extension of M2 SW5 addition \u00b7 Flag-2 tight-budget guard)",
+        "overall_last_touched": "eaa0e04|2026-09-14T05:24:59+00:00|W-M3-SW1 \u00b7 FLAG-2 tight-budget guard \u00b7 loose 24h default cannot reach governed defensible write \u00b7 TIGHT_DRIFT_BUDGET_MAX_MS=5000 \u00b7 LooseAnchorRefused \u00b7 ratchet 3714->3719 (+5)",
+        "path": "services/reliable_time_source/clock.py",
+        "post_window_modifications": [],
+        "sub_wave": "W-M3-SW1",
+        "sw_commit": "eaa0e04"
+      },
+      {
+        "in_window_last_touched": "43889de|2026-09-14T05:30:46+00:00",
+        "kind": "ADDED",
+        "overall_last_touched": "43889de|2026-09-14T05:30:46+00:00|W-M3-SW2 \u00b7 W-WATCH-STACK core \u00b7 verdict interface + four-rung action ladder \u00b7 BR-7.4 Learned-source refusal \u00b7 ratchet 3719->3725 (+6)",
+        "path": "services/watch/verdict_interface.py",
+        "post_window_modifications": [],
+        "sub_wave": "W-M3-SW2",
+        "sw_commit": "43889de"
+      },
+      {
+        "in_window_last_touched": "80198a5|2026-09-14T05:36:19+00:00",
+        "kind": "ADDED",
+        "overall_last_touched": "80198a5|2026-09-14T05:36:19+00:00|W-M3-SW3 \u00b7 Watch Learning L-1/L-2 \u00b7 certificate library scaffold + A5.20 deterministic gate \u00b7 R-15 seed (DAP-32 canary + 4 AC-1 ceilings) with PENDING-OVERRIDE ratifier \u00b7 S-7 chartered path \u00b7 ratchet 3725->3732 (+7)",
+        "path": "services/watch/certificate_library.py",
+        "post_window_modifications": [],
+        "sub_wave": "W-M3-SW3",
+        "sw_commit": "80198a5"
+      },
+      {
+        "in_window_last_touched": "0640553|2026-09-14T05:41:57+00:00",
+        "kind": "ADDED",
+        "overall_last_touched": "0640553|2026-09-14T05:41:57+00:00|W-M3-SW4 \u00b7 Watch Learning L-3 + DAP-32+ minor-flag extension \u00b7 mirage as certificate ground (A5.21) \u00b7 run_provocation_battery \u00b7 cross-ref W-DAP-STACK 2H marker \u00b7 ratchet 3732->3740 (+8)",
+        "path": "services/watch/mirage_provocation.py",
+        "post_window_modifications": [],
+        "sub_wave": "W-M3-SW4",
+        "sw_commit": "0640553"
+      },
+      {
+        "in_window_last_touched": "156c21d|2026-09-14T05:47:32+00:00",
+        "kind": "ADDED",
+        "overall_last_touched": "156c21d|2026-09-14T05:47:32+00:00|W-M3-SW5 \u00b7 Watch Learning L-4 \u00b7 research queue \u00b7 A5.22 three-role-one-order \u00b7 AC-16 reclass without touching actions taken \u00b7 R-16 cadence PENDING-OVERRIDE \u00b7 ratchet 3740->3746 (+6)",
+        "path": "services/watch/research_queue.py",
+        "post_window_modifications": [],
+        "sub_wave": "W-M3-SW5",
+        "sw_commit": "156c21d"
+      },
+      {
+        "in_window_last_touched": "0b64c68|2026-09-14T05:52:54+00:00",
+        "kind": "ADDED",
+        "overall_last_touched": "0b64c68|2026-09-14T05:52:54+00:00|W-M3-SW6 \u00b7 Watch Learning L-5 \u00b7 capability admission \u00b7 AC-1 ceilings never admissible \u00b7 learner cannot ratify \u00b7 AC-17 first-exercise foundation floor \u00b7 R-17 PENDING-OVERRIDE \u00b7 ratchet 3746->3753 (+7)",
+        "path": "services/watch/capability_admission.py",
+        "post_window_modifications": [],
+        "sub_wave": "W-M3-SW6",
+        "sw_commit": "0b64c68"
+      },
+      {
+        "in_window_last_touched": "48f0ba9|2026-09-14T05:58:14+00:00",
+        "kind": "ADDED",
+        "overall_last_touched": "48f0ba9|2026-09-14T05:58:14+00:00|W-M3-SW7 \u00b7 W-AGENT-CONTAINMENT \u00b7 AC-1..AC-12 base ceilings \u00b7 narrow start + contained env invariants \u00b7 ratchet 3753->3759 (+6)",
+        "path": "services/agent_containment/__init__.py",
+        "post_window_modifications": [],
+        "sub_wave": "W-M3-SW7",
+        "sw_commit": "48f0ba9"
+      },
+      {
+        "in_window_last_touched": "48f0ba9|2026-09-14T05:58:14+00:00",
+        "kind": "ADDED",
+        "overall_last_touched": "48f0ba9|2026-09-14T05:58:14+00:00|W-M3-SW7 \u00b7 W-AGENT-CONTAINMENT \u00b7 AC-1..AC-12 base ceilings \u00b7 narrow start + contained env invariants \u00b7 ratchet 3753->3759 (+6)",
+        "path": "services/agent_containment/ceilings.py",
+        "post_window_modifications": [],
+        "sub_wave": "W-M3-SW7",
+        "sw_commit": "48f0ba9"
+      },
+      {
+        "in_window_last_touched": "9309330|2026-09-14T08:50:22+00:00",
+        "kind": "ADDED",
+        "overall_last_touched": "9309330|2026-09-14T08:50:22+00:00|W-M3-SW8 \u00b7 W-PRUNING-UNLEARNING \u00b7 Pruning_Unlearning_Amendment_v1 \u00b7 DAP-37 pruned-artefact-new-hash (constructor refuses collision, PruningHashCollision raised directly) \u00b7 DAP-38 rights-withdrawal dispatch (sharded\u2192re_derive, unsharded\u2192recall+R-12 marker) \u00b7 budget_refund_forbidden invariant \u00b7 R-12 PENDING-OVERRIDE prevents silent flip \u00b7 ratchet 3759->3765 (+6)",
+        "path": "services/dap/pruning_unlearning.py",
+        "post_window_modifications": [],
+        "sub_wave": "W-M3-SW8",
+        "sw_commit": "9309330"
+      },
+      {
+        "in_window_last_touched": "d859cc6|2026-09-14T09:03:36+00:00",
+        "kind": "ADDED",
+        "overall_last_touched": "d859cc6|2026-09-14T09:03:36+00:00|W-M3-SW9 \u00b7 V-3 \u00b7 AC-13 session-freeze contain + AC-14 SFP-8-conforming path \u00b7 SessionCheckpoint monotonic-depth resume \u00b7 stop-without-destroy refuses delete \u00b7 classify_containment_signal decision-vs-finding on SFP-8 \u00b7 ratchet 3765->3772 (+7)",
+        "path": "services/agent_containment/serving_freeze.py",
+        "post_window_modifications": [],
+        "sub_wave": "W-M3-SW9",
+        "sw_commit": "d859cc6"
+      },
+      {
+        "in_window_last_touched": "c9469c8|2026-09-14T09:10:07+00:00",
+        "kind": "ADDED",
+        "overall_last_touched": "c9469c8|2026-09-14T09:10:07+00:00|W-M3-SW10 \u00b7 Business_Continuity_Annex_v1 Doc-3 Part-D \u00b7 S-10 (RTO 3600s) + BC-1 (countersigner independence) + BC-2 (quarterly DEFAULT cadence) + S-11 (72h breach window) verbatim canon anchors pinned to Wave-E CA1-N5/CA1-N2 mechanism \u00b7 BC-3/BC-4 DEFAULT-PENDING-OVERRIDE preserved \u00b7 ratchet 3772->3782 (+10)",
+        "path": "services/business_continuity/__init__.py",
+        "post_window_modifications": [],
+        "sub_wave": "W-M3-SW10",
+        "sw_commit": "c9469c8"
+      },
+      {
+        "in_window_last_touched": "c9469c8|2026-09-14T09:10:07+00:00",
+        "kind": "ADDED",
+        "overall_last_touched": "c9469c8|2026-09-14T09:10:07+00:00|W-M3-SW10 \u00b7 Business_Continuity_Annex_v1 Doc-3 Part-D \u00b7 S-10 (RTO 3600s) + BC-1 (countersigner independence) + BC-2 (quarterly DEFAULT cadence) + S-11 (72h breach window) verbatim canon anchors pinned to Wave-E CA1-N5/CA1-N2 mechanism \u00b7 BC-3/BC-4 DEFAULT-PENDING-OVERRIDE preserved \u00b7 ratchet 3772->3782 (+10)",
+        "path": "services/business_continuity/anchors.py",
+        "post_window_modifications": [],
+        "sub_wave": "W-M3-SW10",
+        "sw_commit": "c9469c8"
+      },
+      {
+        "in_window_last_touched": "10a3deb|2026-09-14T09:17:48+00:00",
+        "kind": "ADDED",
+        "overall_last_touched": "10a3deb|2026-09-14T09:17:48+00:00|W-M3-SW11 \u00b7 DAP-33 (S-22) + DAP-34 (S-23) + DAP-35/36 (S-25) M3-remainder canon anchors verbatim \u00b7 R-8/R-11 baseline_period pins \u00b7 R-7 estate budget DEFAULT-PENDING-OVERRIDE preserved on both disclosure_budget + coalition surfaces \u00b7 silent flip fires here \u00b7 ratchet 3782->3790 (+8)",
+        "path": "services/dap/m3_remainder.py",
+        "post_window_modifications": [],
+        "sub_wave": "W-M3-SW11",
+        "sw_commit": "10a3deb"
+      },
+      {
+        "in_window_last_touched": "7123cf8|2026-09-14T09:24:26+00:00",
+        "kind": "ADDED",
+        "overall_last_touched": "7123cf8|2026-09-14T09:24:26+00:00|W-M3-SW12 \u00b7 M3 block-close composite invariant \u00b7 every SW1..SW11 close-note on disk \u00b7 every PENDING-OVERRIDE marker preserved (R-7 x2 \u00b7 R-12 \u00b7 BC-3/BC-4) \u00b7 ratchet_history records every W-M3-SW* wave \u00b7 S-24 (A5.17) canon-anchor pinned with MECHANISM-DEFERRED-BEYOND-SW11 honest gap \u00b7 ratchet 3790->3797 (+7)",
+        "path": "services/dap/m3_block_completion.py",
+        "post_window_modifications": [],
+        "sub_wave": "W-M3-SW12",
+        "sw_commit": "7123cf8"
+      }
+    ]
+  },
+  "c6_no_banned_tokens": {
+    "banned_tokens": [
+      "kill",
+      "terminate",
+      "refuse_dispatch",
+      "unregister"
+    ],
+    "clean": true,
+    "per_module": [
+      {
+        "exists": true,
+        "hits": [],
+        "path": "services/reliable_time_source/clock.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "services/watch/verdict_interface.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "services/watch/certificate_library.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "services/watch/mirage_provocation.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "services/watch/research_queue.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "services/watch/capability_admission.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "services/agent_containment/__init__.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "services/agent_containment/ceilings.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "services/dap/pruning_unlearning.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "services/agent_containment/serving_freeze.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "services/business_continuity/__init__.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "services/business_continuity/anchors.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "services/dap/m3_remainder.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "services/dap/m3_block_completion.py"
+      }
+    ],
+    "total_hits_on_public_surface": 0
+  },
+  "cp": "CP-M7-W1-POST-5-VERIFICATION",
+  "modules_enumerated": 14,
+  "path_taken": "Path \u03b1",
+  "ratchet_delta": 0,
+  "so_ref": "SO \u00a74.2 wave-window commit enumeration + clause 6 cross-wave modification handling",
+  "tests_enumerated": 12,
+  "type": "verification_walk",
+  "verdict": "clean",
+  "wave_window": "M3",
+  "wave_window_now_fully_verified": true,
+  "window_close_commit": "7123cf8",
+  "window_next_family_open_commit": "4b0909a",
+  "window_open_commit": "eaa0e04"
+}

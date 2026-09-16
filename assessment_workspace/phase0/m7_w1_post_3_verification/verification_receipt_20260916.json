@@ -1,0 +1,308 @@
+{
+  "wave": "W-M7-W1-POST-3-VERIFICATION",
+  "type": "VERIFICATION WALK (wave-window commit enumeration per SO \u00a74.2)",
+  "generated_at_utc": "2026-09-16T05:43:09Z",
+  "ratchet_floor": 4384,
+  "track_a_head": "2c7a8f0c6157d4103feeebad1171a3bdc92d952c",
+  "master_head_pre_this_commit": "cb061265441b56039eb72562ddd4905f9b717f92",
+  "predecessor_seal": "CP-M7-W1-POST-2 \u00b7 Capability Registry CLOSED \u00b7 master cb061265 \u00b7 ratchet 4384 (unchanged, verification walk)",
+  "standing_rule_applied": "SO \u00a74.2 \u00b7 Verification-walk scope discipline \u00b7 wave-window commit enumeration (ratified same shift as this walk).",
+  "wave_window_definition": {
+    "wave_open_anchor": "CP0.a + W0 close (backfill commit) at 2026-09-13T06:05:55Z",
+    "wave_close_anchors": [
+      "W1 close \u00b7 fe01e5ea02c6e777d3f313e58dce3bc37eaa2c5d \u00b7 2026-09-13T06:33:22Z \u00b7 ratchet 3282 -> 3392 (+110)",
+      "W1b close \u00b7 536459350b85473ffa19d00cb200053723efc73e \u00b7 2026-09-13T06:59:30Z \u00b7 ratchet 3392 -> 3492 (+100)",
+      "W1c close \u00b7 e1712a16f33cd64db678c6f53c348b3602f7d596 \u00b7 2026-09-13T07:16:30Z \u00b7 ratchet 3492 -> 3503 (+11)"
+    ],
+    "wave_close_next_family_open": "W-REGISTRY-EXTENSION-G3 \u00b7 33edf56b \u00b7 2026-09-13T10:34:08Z (starts M2 work, closes W1-family window)."
+  },
+  "coverage_delta_over_prior_verifications": {
+    "prior_m7_w1_verification_2026_09_16T041500Z": "covered ONLY W1 close (fe01e5e \u00b7 5 modules).",
+    "prior_cp_m7_w1_post_2_verification_2026_09_16T060000Z": "covered ONLY services/capability_registry.py (W1b partial \u00b7 1 of 6 W1b module additions).",
+    "this_post_3_verification": "covers the REMAINING 5 W1b module additions (RetentionPolicy \u00b7 SourceConnector Protocol \u00b7 Synology FileStation \u00b7 AttributeStreamBundle_v0 \u00b7 L2/L4 contract shells) + the W1c end-to-end integration proof.",
+    "wave_window_now_fully_verified": true
+  },
+  "checks": {
+    "C.1_C.3_C.4_C.6_per_module": [
+      {
+        "module": "services/governance_plane/retention_policy.py",
+        "test_file": "tests/invariants/test_w1b_cp1_retention_policy.py",
+        "C.1_primitive_surface": {
+          "expected_exports": [
+            "RetentionRegime",
+            "RetentionPolicy",
+            "RetentionMismatch",
+            "register_policy",
+            "get_policy",
+            "check_write_admissible",
+            "_reset_policies_for_tests"
+          ],
+          "verdict": "clean"
+        },
+        "C.3_case_agnostic_doctrine": {
+          "domain_tokens": {
+            "asr": 0,
+            "diarization": 0,
+            "vision": 0,
+            "music_detect": 0,
+            "audio_census": 0
+          },
+          "all_zero": true,
+          "verdict": "clean"
+        },
+        "C.4_unchanged_since_w1b_close": {
+          "last_touched": "2026-09-13T06:59:30+00:00 5364593",
+          "w1b_close_commit_short": "5364593",
+          "unchanged": true,
+          "verdict": "clean"
+        },
+        "C.6_no_banned_enforcement_tokens": {
+          "banned_tokens_checked": [
+            "kill",
+            "terminate",
+            "refuse_",
+            "enforce_gate"
+          ],
+          "banned_present": false,
+          "verdict": "clean"
+        }
+      },
+      {
+        "module": "services/source_plane/connector.py",
+        "test_file": "tests/invariants/test_w1b_cp2_source_connector.py",
+        "C.1_primitive_surface": {
+          "expected_exports": [
+            "SourceConnector",
+            "SourceHandle",
+            "ReadOnlyGuard",
+            "SourceConnectorWriteRefused",
+            "is_read_only_method_name",
+            "WRITE_METHOD_PATTERNS"
+          ],
+          "verdict": "clean"
+        },
+        "C.3_case_agnostic_doctrine": {
+          "domain_tokens": {
+            "asr": 0,
+            "diarization": 0,
+            "vision": 0,
+            "music_detect": 0,
+            "audio_census": 0
+          },
+          "all_zero": true,
+          "verdict": "clean"
+        },
+        "C.4_unchanged_since_w1b_close": {
+          "last_touched": "2026-09-13T06:59:30+00:00 5364593",
+          "w1b_close_commit_short": "5364593",
+          "unchanged": true,
+          "verdict": "clean"
+        },
+        "C.6_no_banned_enforcement_tokens": {
+          "banned_tokens_checked": [
+            "kill",
+            "terminate",
+            "refuse_",
+            "enforce_gate"
+          ],
+          "banned_present": false,
+          "verdict": "clean"
+        }
+      },
+      {
+        "module": "services/source_plane/synology_file_station.py",
+        "test_file": "tests/invariants/test_w1b_cp3_synology_file_station.py",
+        "C.1_primitive_surface": {
+          "expected_exports": [
+            "SynologyFileStationConnector",
+            "NotConfiguredForRuntime"
+          ],
+          "verdict": "clean"
+        },
+        "C.3_case_agnostic_doctrine": {
+          "domain_tokens": {
+            "asr": 0,
+            "diarization": 0,
+            "vision": 0,
+            "music_detect": 0,
+            "audio_census": 0
+          },
+          "all_zero": true,
+          "verdict": "clean"
+        },
+        "C.4_unchanged_since_w1b_close": {
+          "last_touched": "2026-09-13T06:59:30+00:00 5364593",
+          "w1b_close_commit_short": "5364593",
+          "unchanged": true,
+          "verdict": "clean"
+        },
+        "C.6_no_banned_enforcement_tokens": {
+          "banned_tokens_checked": [
+            "kill",
+            "terminate",
+            "refuse_",
+            "enforce_gate"
+          ],
+          "banned_present": false,
+          "verdict": "clean"
+        }
+      },
+      {
+        "module": "services/attribute_stream_bundle/__init__.py",
+        "test_file": "tests/invariants/test_w1b_cp5_attribute_stream_bundle.py",
+        "C.1_primitive_surface": {
+          "expected_exports": [
+            "AttributeStreamSchema",
+            "AttributeStreamBundle_v0",
+            "register_schema",
+            "get_schema",
+            "SchemaNotRegistered",
+            "_reset_schemas_for_tests"
+          ],
+          "verdict": "clean"
+        },
+        "C.3_case_agnostic_doctrine": {
+          "domain_tokens": {
+            "asr": 0,
+            "diarization": 0,
+            "vision": 0,
+            "music_detect": 0,
+            "audio_census": 0
+          },
+          "all_zero": true,
+          "verdict": "clean"
+        },
+        "C.4_unchanged_since_w1b_close": {
+          "last_touched": "2026-09-13T06:59:30+00:00 5364593",
+          "w1b_close_commit_short": "5364593",
+          "unchanged": true,
+          "verdict": "clean"
+        },
+        "C.6_no_banned_enforcement_tokens": {
+          "banned_tokens_checked": [
+            "kill",
+            "terminate",
+            "refuse_",
+            "enforce_gate"
+          ],
+          "banned_present": false,
+          "verdict": "clean"
+        }
+      },
+      {
+        "module": "services/contract_shells/__init__.py",
+        "test_file": "tests/invariants/test_w1b_cp5_contract_shells.py",
+        "C.1_primitive_surface": {
+          "expected_exports": [
+            "TargetOutcome_v0",
+            "StratumAcceptance",
+            "CommissionSpec",
+            "Milestone",
+            "WorkerLane",
+            "WorkerJD"
+          ],
+          "verdict": "clean"
+        },
+        "C.3_case_agnostic_doctrine": {
+          "domain_tokens": {
+            "asr": 0,
+            "diarization": 0,
+            "vision": 0,
+            "music_detect": 0,
+            "audio_census": 0
+          },
+          "all_zero": true,
+          "verdict": "clean"
+        },
+        "C.4_unchanged_since_w1b_close": {
+          "last_touched": "2026-09-13T06:59:30+00:00 5364593",
+          "w1b_close_commit_short": "5364593",
+          "unchanged": true,
+          "verdict": "clean"
+        },
+        "C.6_no_banned_enforcement_tokens": {
+          "banned_tokens_checked": [
+            "kill",
+            "terminate",
+            "refuse_",
+            "enforce_gate"
+          ],
+          "banned_present": false,
+          "verdict": "clean"
+        }
+      }
+    ],
+    "C.2_invariant_tests_present_and_pass": {
+      "test_files": [
+        "tests/invariants/test_w1b_cp1_retention_policy.py",
+        "tests/invariants/test_w1b_cp2_source_connector.py",
+        "tests/invariants/test_w1b_cp3_synology_file_station.py",
+        "tests/invariants/test_w1b_cp4_capability_registry.py",
+        "tests/invariants/test_w1b_cp5_attribute_stream_bundle.py",
+        "tests/invariants/test_w1b_cp5_contract_shells.py",
+        "tests/invariants/test_w1c_platform_integration_proof.py"
+      ],
+      "run_summary_verbatim": "111 passed in 1.13s",
+      "verdict": "clean",
+      "note": "W1b CP4 capability_registry (15 tests) already verified at CP-M7-W1-POST-2 close; re-run this walk confirms count unchanged."
+    },
+    "C.5_compose_scope_boundary_via_test_invariants": {
+      "note": "W1b test invariants freeze compose contracts (e.g. test_w1b_cp2_source_connector.py freezes SourceConnector Protocol shape + ReadOnlyGuard write-refusal semantics; test_w1b_cp3_synology_file_station.py freezes interface-only-no-runtime-config; test_w1b_cp1_retention_policy.py freezes register/get/check_admissible; test_w1b_cp5_attribute_stream_bundle.py freezes schema + bundle read semantics; test_w1b_cp5_contract_shells.py freezes 6 Type shells as frozen dataclasses). All 111 invariants pass = compose + scope-boundary contracts still enforced.",
+      "verdict": "clean"
+    },
+    "C.6_no_banned_enforcement_tokens_verified_via_all_export_scan": {
+      "banned_tokens_scanned": [
+        "kill",
+        "terminate",
+        "refuse_",
+        "enforce_gate"
+      ],
+      "modules_scanned": [
+        "services/governance_plane/retention_policy.py",
+        "services/source_plane/connector.py",
+        "services/source_plane/synology_file_station.py",
+        "services/attribute_stream_bundle/__init__.py",
+        "services/contract_shells/__init__.py"
+      ],
+      "banned_present_anywhere": false,
+      "verdict": "clean"
+    },
+    "w1c_integration_proof_unchanged": {
+      "module": "tests/invariants/test_w1c_platform_integration_proof.py",
+      "note": "W1c end-to-end platform-integration-proof invariant. Not a services/ module; it is a compose-test suite that exercises the W1+W1b primitives together (job_manifest+kind_registry+capability_registry+governance+admission+runtime_supervisor+source_plane).",
+      "C.4_unchanged_since_w1c_close": {
+        "last_touched": "2026-09-13T07:16:30+00:00 e1712a1",
+        "w1c_close_commit_short": "e1712a1",
+        "unchanged": true,
+        "verdict": "clean"
+      }
+    }
+  },
+  "verdict": "clean",
+  "path_taken": "Path \u03b1",
+  "drift_items": [],
+  "wave_honest_limits": [
+    {
+      "ref": "D.1",
+      "content": "SO \u00a74.2 standing verification rule ratified this shift. Wave-window enumeration is now the default discipline for all future verification walks (M7 W2..W9, M8, etc.)."
+    },
+    {
+      "ref": "D.2",
+      "content": "W1c end-to-end integration proof (test_w1c_platform_integration_proof.py \u00b7 662 lines \u00b7 +11 invariants) is a compose-test suite exercising W1+W1b primitives together. Not a services/ module. Unchanged since W1c close 2026-09-13T07:16:30Z."
+    },
+    {
+      "ref": "D.3",
+      "content": "Wave-window scope now closed: [W0-close 2026-09-13T06:05Z .. W-REGISTRY-EXTENSION-G3 2026-09-13T10:34Z]. All service/ + test/invariants/ files added within this window enumerated and verified clean."
+    }
+  ],
+  "ratchet_delta": 0,
+  "notes": [
+    "SO \u00a74.2 wave-window commit enumeration discipline exercised this walk (ratified same shift).",
+    "Full W1-family wave-window (W1+W1b+W1c) now verified: 5 W1b module additions + 1 W1c integration proof + prior POST-2 capability_registry verification = 6 primary items across the wave-window.",
+    "111 W1b+W1c invariants all pass in 1.11s under python -m pytest -q (file-scoped).",
+    "Case-agnostic doctrine verified from-disk for all 5 W1b modules: 0 domain tokens across asr/diarization/vision/music_detect/audio_census scan.",
+    "All 5 W1b modules unchanged since W1b close (2026-09-13T06:59:30Z \u00b7 5364593). W1c invariant unchanged since W1c close (2026-09-13T07:16:30Z \u00b7 e1712a1).",
+    "Zero refactor. Zero track-a code change. Single-master-commit shape (analog of W0/W1/POST-2).",
+    "Ratchet delta: 0. Track-a HEAD 2c7a8f0c unchanged."
+  ]
+}

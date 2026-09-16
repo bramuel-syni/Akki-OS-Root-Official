@@ -1,0 +1,1043 @@
+{
+  "c2_invariants": {
+    "cmd": "python -m pytest -q <28> file-scoped",
+    "duration_s": 2.02,
+    "passed": 204,
+    "returncode": 0,
+    "tail": [
+      "........................................................................ [ 70%]",
+      "............................................................             [100%]",
+      "204 passed in 2.02s"
+    ]
+  },
+  "c3_no_kernel_leak": {
+    "clean": true,
+    "kernels_probed": [
+      "services/work_supervisor",
+      "services/capability_registry.py",
+      "services/resource_registry",
+      "services/output_verified_seal"
+    ],
+    "per_commit": [
+      {
+        "commit": "24928de",
+        "kernel_touches": []
+      },
+      {
+        "commit": "84bc5e6",
+        "kernel_touches": []
+      },
+      {
+        "commit": "815500a",
+        "kernel_touches": []
+      },
+      {
+        "commit": "4b7ca3a",
+        "kernel_touches": []
+      },
+      {
+        "commit": "6243a24",
+        "kernel_touches": []
+      },
+      {
+        "commit": "dc498fd",
+        "kernel_touches": []
+      },
+      {
+        "commit": "ed0265f",
+        "kernel_touches": []
+      },
+      {
+        "commit": "6df2a40",
+        "kernel_touches": []
+      },
+      {
+        "commit": "2b002df",
+        "kernel_touches": []
+      },
+      {
+        "commit": "cdcab77",
+        "kernel_touches": []
+      },
+      {
+        "commit": "aebec40",
+        "kernel_touches": []
+      },
+      {
+        "commit": "7202916",
+        "kernel_touches": []
+      },
+      {
+        "commit": "3dc0d63",
+        "kernel_touches": []
+      },
+      {
+        "commit": "6549c31",
+        "kernel_touches": []
+      },
+      {
+        "commit": "c45d0c3",
+        "kernel_touches": []
+      },
+      {
+        "commit": "112de26",
+        "kernel_touches": []
+      },
+      {
+        "commit": "e2a710c",
+        "kernel_touches": []
+      },
+      {
+        "commit": "5fcee76",
+        "kernel_touches": []
+      },
+      {
+        "commit": "d552c31",
+        "kernel_touches": []
+      },
+      {
+        "commit": "0053b16",
+        "kernel_touches": []
+      },
+      {
+        "commit": "e8a40b8",
+        "kernel_touches": []
+      },
+      {
+        "commit": "d28d2d0",
+        "kernel_touches": []
+      },
+      {
+        "commit": "440b995",
+        "kernel_touches": []
+      },
+      {
+        "commit": "4c4500a",
+        "kernel_touches": []
+      },
+      {
+        "commit": "ee45e69",
+        "kernel_touches": []
+      },
+      {
+        "commit": "7a5f431",
+        "kernel_touches": []
+      },
+      {
+        "commit": "4308620",
+        "kernel_touches": []
+      },
+      {
+        "commit": "7cccbe8",
+        "kernel_touches": []
+      }
+    ],
+    "total_kernel_touches": 0
+  },
+  "c4_within_window": {
+    "per_module": [
+      {
+        "added_when": "2026-09-15T10:11:40+00:00",
+        "in_window_last_touched": "7cccbe8|2026-09-15T10:11:40+00:00",
+        "path": "backend/services/d12_poc/__init__.py",
+        "post_window_modifications": [],
+        "sw_commit": "7cccbe8"
+      },
+      {
+        "added_when": "2026-09-15T10:11:40+00:00",
+        "in_window_last_touched": "7cccbe8|2026-09-15T10:11:40+00:00",
+        "path": "backend/services/d12_poc/receipt_contract.py",
+        "post_window_modifications": [],
+        "sw_commit": "7cccbe8"
+      },
+      {
+        "added_when": "2026-09-15T09:43:17+00:00",
+        "in_window_last_touched": "4308620|2026-09-15T09:43:17+00:00",
+        "path": "backend/services/census_canon/audio_inventory_supplement.py",
+        "post_window_modifications": [],
+        "sw_commit": "4308620"
+      },
+      {
+        "added_when": "2026-09-15T08:59:13+00:00",
+        "in_window_last_touched": "440b995|2026-09-15T08:59:13+00:00",
+        "path": "backend/services/secret_hygiene/custody_file.py",
+        "post_window_modifications": [
+          "053d3f1|2026-09-15T23:01:19+00:00|CP-SW6-HYG-1 \u00b7 Credential metadata shape helper \u00b7 Redaction Hardening Option 1 \u00b7 owner ruling 2026-09-15T~22:30Z (ratified same turn as SEC incident sec_incident_jump_cred_leak_20260915T222935Z) \u00b7 ratchet 4282->4288 (+6) (\u00a73.3 \u00b7 master SHA to land in commit C-fixup)",
+          "e02dd4d|2026-09-15T10:56:18+00:00|W-M8-TESTS-FIRST-GUARD-INVARIANT \u00b7 CP-M8-G1 \u00b7 part-B custody-read leak-class guards \u00b7 extends CP-RG-HYGIENE-01 shell-command family (part-A) to python-level custody reads + shell-tracing-with-password-variable co-occurrence \u00b7 owner directive verbatim 2026-09-15T~10:30Z: 'M8 opening (W-TESTS-FIRST-GUARD-INVARIANT with part-B scope pulled forward), then the remaining M8 quick wins in the ratified order' \u00b7 extends services/secret_hygiene/custody_file.py (module already sealed at CP-RG-HYGIENE-01) with 3 new assertion functions: assert_no_transcript_csv_header_emit_on_custody (discharges Standing Rule 4 \u00b7 SEC-15-08 class \u00b7 refuses csv.reader(open(<custody>))+print co-occurrence) + assert_no_transcript_openpyxl_iter_rows_on_custody (Standing Rule 5 \u00b7 SEC-15-09 class \u00b7 refuses load_workbook(<custody>)+print co-occurrence) + assert_no_transcript_set_x_with_password_var (Standing Rule 6 \u00b7 SEC-15-10 class \u00b7 refuses shell-tracing co-occurring with credential-shaped variable-name family) \u00b7 2 new exception subclasses CustodyPythonReadLeakDetected + CustodySetXPasswordCoOccurrenceDetected (both subclass CustodyCatLeakDetected for single-catch of whole custody-file leak family) \u00b7 2 module-frozen tuples PASSWORD_ENV_VAR_TOKENS (PASSWD/PASSWORD/SSHPASS/SECRET/TOKEN/APIKEY/API_KEY/AUTH) + SHELL_TRACING_TOKENS ('set -x'/'set -o xtrace'/'bash -x'/'sh -x'/'-o xtrace') \u00b7 6 new invariants: module_fabric_present_part_b + assert_no_csv_header_emit_refuses_csv_reader_with_custody_path + assert_no_csv_header_emit_allows_non_custody_paths + assert_no_openpyxl_iter_rows_refuses_custody_workbook + assert_no_set_x_with_password_var_refuses_when_co_occurring + assert_no_set_x_with_password_var_allows_set_x_alone \u00b7 ratchet 4068 -> 4074 (+6 \u00b7 no cross-benefit \u00b7 services-package extension \u00b7 contracts untouched \u00b7 CustodyCatLeakDetected subclassing preserves single-catch idiom) \u00b7 mechanical RED phase0/drill_receipts/20260915T104935Z (6 failed \u00b7 right-reason ImportError/AttributeError on new part-B exports before mechanism extended) \u00b7 double-green byte-match 4074 passed both runs (raw 9524 bytes each \u00b7 stripped 9507 bytes \u00b7 both stripped sha256 a9bf81a9d479751ec14d4db6356098efb7cbf8b5040b900a661e34c9d25d5eee \u00b7 strip-of-time diff empty) \u00b7 collect-only 4075 tests \u00b7 pip freeze 192 lines \u00b7 boundary probe #9 at CP-M8-G1 seal CD+Visitors BOTH FAIL errno-110-ETIMEDOUT (admin SG opening still-in-progress \u00b7 retry loop continues at next CP boundary) \u00b7 no push (Owner Clarification 1) \u00b7 autonomous mode ARMED \u00b7 next: continue M8 remaining quick wins W-EXPORT-ARTEFACT-RENDER -> W-DATA-SUITE-ANALYZE-WORKSPACE-REAL + W-DEEP-DIVE-REAL paired -> W-CENSUS-RUNTIME-ORCHESTRATION -> W-AUDIO-PROD-MODEL-SELECT \u00b7 then M6 opens \u00b7 then M7"
+        ],
+        "sw_commit": "440b995"
+      },
+      {
+        "added_when": "2026-09-15T08:50:35+00:00",
+        "in_window_last_touched": "d28d2d0|2026-09-15T08:50:35+00:00",
+        "path": "backend/services/de_identify/__init__.py",
+        "post_window_modifications": [],
+        "sw_commit": "d28d2d0"
+      },
+      {
+        "added_when": "2026-09-15T08:50:35+00:00",
+        "in_window_last_touched": "d28d2d0|2026-09-15T08:50:35+00:00",
+        "path": "backend/services/de_identify/tokenize_named_persons.py",
+        "post_window_modifications": [],
+        "sw_commit": "d28d2d0"
+      },
+      {
+        "added_when": "2026-09-15T08:35:54+00:00",
+        "in_window_last_touched": "e8a40b8|2026-09-15T08:35:54+00:00",
+        "path": "backend/services/release_gate/__init__.py",
+        "post_window_modifications": [],
+        "sw_commit": "e8a40b8"
+      },
+      {
+        "added_when": "2026-09-15T08:35:54+00:00",
+        "in_window_last_touched": "7a5f431|2026-09-15T09:20:31+00:00",
+        "path": "backend/services/release_gate/release_ledger.py",
+        "post_window_modifications": [],
+        "sw_commit": "e8a40b8"
+      },
+      {
+        "added_when": "2026-09-15T03:20:35+00:00",
+        "in_window_last_touched": "0053b16|2026-09-15T03:20:35+00:00",
+        "path": "backend/services/census_canon/activation_list.py",
+        "post_window_modifications": [],
+        "sw_commit": "0053b16"
+      },
+      {
+        "added_when": "2026-09-15T03:20:35+00:00",
+        "in_window_last_touched": "0053b16|2026-09-15T03:20:35+00:00",
+        "path": "backend/services/census_canon/stratum_measurement.py",
+        "post_window_modifications": [],
+        "sw_commit": "0053b16"
+      },
+      {
+        "added_when": "2026-09-15T03:04:18+00:00",
+        "in_window_last_touched": "5fcee76|2026-09-15T03:04:18+00:00",
+        "path": "backend/services/census_canon/registry_write.py",
+        "post_window_modifications": [
+          "29ff398|2026-09-15T17:13:29+00:00|W-CENSUS-RUNTIME-ORCHESTRATION (M8 #5 \u00b7 scope EXPANDED): CP-CRO1 + CP-CRO2 \u00b7 ratchet 4093->4105 (+12)"
+        ],
+        "sw_commit": "5fcee76"
+      },
+      {
+        "added_when": "2026-09-15T02:53:12+00:00",
+        "in_window_last_touched": "e2a710c|2026-09-15T02:53:12+00:00",
+        "path": "backend/services/census_canon/census_run.py",
+        "post_window_modifications": [],
+        "sw_commit": "e2a710c"
+      },
+      {
+        "added_when": "2026-09-15T02:23:49+00:00",
+        "in_window_last_touched": "c45d0c3|2026-09-15T02:23:49+00:00",
+        "path": "backend/services/census_canon/__init__.py",
+        "post_window_modifications": [],
+        "sw_commit": "c45d0c3"
+      },
+      {
+        "added_when": "2026-09-15T02:23:49+00:00",
+        "in_window_last_touched": "c45d0c3|2026-09-15T02:23:49+00:00",
+        "path": "backend/services/census_canon/source_candidate_classifier.py",
+        "post_window_modifications": [],
+        "sw_commit": "c45d0c3"
+      },
+      {
+        "added_when": "2026-09-14T15:13:47+00:00",
+        "in_window_last_touched": "6549c31|2026-09-14T15:13:47+00:00",
+        "path": "backend/services/data_suite_v2/engines/__init__.py",
+        "post_window_modifications": [
+          "7bde883|2026-09-15T16:58:59+00:00|W-DATA-SUITE-ANALYZE-WORKSPACE-REAL + W-DEEP-DIVE-REAL (paired M8 #3+#4): CP-DASWR1 + CP-DDDR1 \u00b7 ratchet 4083->4093 (+10 \u00b7 CP-D8 HALT discharged in-place)"
+        ],
+        "sw_commit": "6549c31"
+      },
+      {
+        "added_when": "2026-09-14T15:13:47+00:00",
+        "in_window_last_touched": "6549c31|2026-09-14T15:13:47+00:00",
+        "path": "backend/services/data_suite_v2/engines/analyze_workspace_engine.py",
+        "post_window_modifications": [
+          "7bde883|2026-09-15T16:58:59+00:00|W-DATA-SUITE-ANALYZE-WORKSPACE-REAL + W-DEEP-DIVE-REAL (paired M8 #3+#4): CP-DASWR1 + CP-DDDR1 \u00b7 ratchet 4083->4093 (+10 \u00b7 CP-D8 HALT discharged in-place)"
+        ],
+        "sw_commit": "6549c31"
+      },
+      {
+        "added_when": "2026-09-14T15:13:47+00:00",
+        "in_window_last_touched": "6549c31|2026-09-14T15:13:47+00:00",
+        "path": "backend/services/data_suite_v2/engines/deep_dive_engine.py",
+        "post_window_modifications": [
+          "7bde883|2026-09-15T16:58:59+00:00|W-DATA-SUITE-ANALYZE-WORKSPACE-REAL + W-DEEP-DIVE-REAL (paired M8 #3+#4): CP-DASWR1 + CP-DDDR1 \u00b7 ratchet 4083->4093 (+10 \u00b7 CP-D8 HALT discharged in-place)"
+        ],
+        "sw_commit": "6549c31"
+      },
+      {
+        "added_when": "2026-09-14T15:06:18+00:00",
+        "in_window_last_touched": "3dc0d63|2026-09-14T15:06:18+00:00",
+        "path": "backend/services/data_suite_v2/analysis_lifecycle.py",
+        "post_window_modifications": [],
+        "sw_commit": "3dc0d63"
+      },
+      {
+        "added_when": "2026-09-14T14:59:17+00:00",
+        "in_window_last_touched": "7202916|2026-09-14T14:59:17+00:00",
+        "path": "backend/services/data_suite_v2/export_artefact.py",
+        "post_window_modifications": [],
+        "sw_commit": "7202916"
+      },
+      {
+        "added_when": "2026-09-14T14:59:17+00:00",
+        "in_window_last_touched": "7202916|2026-09-14T14:59:17+00:00",
+        "path": "backend/services/data_suite_v2/export_gate.py",
+        "post_window_modifications": [],
+        "sw_commit": "7202916"
+      },
+      {
+        "added_when": "2026-09-14T14:52:53+00:00",
+        "in_window_last_touched": "aebec40|2026-09-14T14:52:53+00:00",
+        "path": "backend/services/data_suite_v2/analysis_session.py",
+        "post_window_modifications": [],
+        "sw_commit": "aebec40"
+      },
+      {
+        "added_when": "2026-09-14T14:42:28+00:00",
+        "in_window_last_touched": "cdcab77|2026-09-14T14:42:28+00:00",
+        "path": "backend/services/data_suite_v2/analyze_tabs.py",
+        "post_window_modifications": [],
+        "sw_commit": "cdcab77"
+      },
+      {
+        "added_when": "2026-09-14T14:27:23+00:00",
+        "in_window_last_touched": "2b002df|2026-09-14T14:27:23+00:00",
+        "path": "backend/services/data_suite_v2/source_registry.py",
+        "post_window_modifications": [],
+        "sw_commit": "2b002df"
+      },
+      {
+        "added_when": "2026-09-14T14:22:09+00:00",
+        "in_window_last_touched": "6df2a40|2026-09-14T14:22:09+00:00",
+        "path": "backend/services/data_suite_v2/workspace_state_machine.py",
+        "post_window_modifications": [],
+        "sw_commit": "6df2a40"
+      },
+      {
+        "added_when": "2026-09-14T14:17:02+00:00",
+        "in_window_last_touched": "ed0265f|2026-09-14T14:17:02+00:00",
+        "path": "backend/services/data_suite_v2/__init__.py",
+        "post_window_modifications": [],
+        "sw_commit": "ed0265f"
+      },
+      {
+        "added_when": "2026-09-14T14:17:02+00:00",
+        "in_window_last_touched": "ed0265f|2026-09-14T14:17:02+00:00",
+        "path": "backend/services/data_suite_v2/workspace_boundary.py",
+        "post_window_modifications": [],
+        "sw_commit": "ed0265f"
+      },
+      {
+        "added_when": "2026-09-14T14:00:38+00:00",
+        "in_window_last_touched": "dc498fd|2026-09-14T14:00:38+00:00",
+        "path": "backend/services/audio_poc/wave_close.py",
+        "post_window_modifications": [],
+        "sw_commit": "dc498fd"
+      },
+      {
+        "added_when": "2026-09-14T13:51:45+00:00",
+        "in_window_last_touched": "6243a24|2026-09-14T13:51:45+00:00",
+        "path": "backend/services/audio_poc/gap_fill_writer.py",
+        "post_window_modifications": [],
+        "sw_commit": "6243a24"
+      },
+      {
+        "added_when": "2026-09-14T13:51:45+00:00",
+        "in_window_last_touched": "6243a24|2026-09-14T13:51:45+00:00",
+        "path": "backend/services/audio_poc/hf_transcribe.py",
+        "post_window_modifications": [],
+        "sw_commit": "6243a24"
+      },
+      {
+        "added_when": "2026-09-14T13:40:18+00:00",
+        "in_window_last_touched": "4b7ca3a|2026-09-14T13:40:18+00:00",
+        "path": "backend/services/audio_poc/gap_set.py",
+        "post_window_modifications": [],
+        "sw_commit": "4b7ca3a"
+      },
+      {
+        "added_when": "2026-09-14T13:40:18+00:00",
+        "in_window_last_touched": "4b7ca3a|2026-09-14T13:40:18+00:00",
+        "path": "backend/services/audio_poc/pairing_registry.py",
+        "post_window_modifications": [],
+        "sw_commit": "4b7ca3a"
+      },
+      {
+        "added_when": "2026-09-14T13:33:38+00:00",
+        "in_window_last_touched": "815500a|2026-09-14T13:33:38+00:00",
+        "path": "backend/services/audio_poc/transcript_inventory.py",
+        "post_window_modifications": [],
+        "sw_commit": "815500a"
+      },
+      {
+        "added_when": "2026-09-14T13:26:30+00:00",
+        "in_window_last_touched": "84bc5e6|2026-09-14T13:26:30+00:00",
+        "path": "backend/services/audio_poc/recording_inventory.py",
+        "post_window_modifications": [],
+        "sw_commit": "84bc5e6"
+      },
+      {
+        "added_when": "2026-09-14T13:18:12+00:00",
+        "in_window_last_touched": "24928de|2026-09-14T13:18:12+00:00",
+        "path": "backend/services/audio_poc/__init__.py",
+        "post_window_modifications": [],
+        "sw_commit": "24928de"
+      },
+      {
+        "added_when": "2026-09-14T13:18:12+00:00",
+        "in_window_last_touched": "24928de|2026-09-14T13:18:12+00:00",
+        "path": "backend/services/audio_poc/readonly_nas_guard.py",
+        "post_window_modifications": [],
+        "sw_commit": "24928de"
+      },
+      {
+        "added_when": "2026-09-14T13:18:12+00:00",
+        "in_window_last_touched": "24928de|2026-09-14T13:18:12+00:00",
+        "path": "backend/services/audio_poc/readonly_obs_guard.py",
+        "post_window_modifications": [],
+        "sw_commit": "24928de"
+      },
+      {
+        "added_when": "2026-09-14T13:18:12+00:00",
+        "in_window_last_touched": "ee45e69|2026-09-15T09:14:15+00:00",
+        "path": "backend/services/audio_poc/release_gate.py",
+        "post_window_modifications": [],
+        "sw_commit": "24928de"
+      }
+    ],
+    "post_window_modification_count": 5
+  },
+  "c6_no_banned_tokens": {
+    "banned_tokens": [
+      "kill",
+      "terminate",
+      "refuse_dispatch",
+      "unregister"
+    ],
+    "clean": true,
+    "per_module": [
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/d12_poc/__init__.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/d12_poc/receipt_contract.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/census_canon/audio_inventory_supplement.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/secret_hygiene/custody_file.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/de_identify/__init__.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/de_identify/tokenize_named_persons.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/release_gate/__init__.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/release_gate/release_ledger.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/census_canon/activation_list.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/census_canon/stratum_measurement.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/census_canon/registry_write.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/census_canon/census_run.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/census_canon/__init__.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/census_canon/source_candidate_classifier.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/data_suite_v2/engines/__init__.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/data_suite_v2/engines/analyze_workspace_engine.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/data_suite_v2/engines/deep_dive_engine.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/data_suite_v2/analysis_lifecycle.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/data_suite_v2/export_artefact.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/data_suite_v2/export_gate.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/data_suite_v2/analysis_session.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/data_suite_v2/analyze_tabs.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/data_suite_v2/source_registry.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/data_suite_v2/workspace_state_machine.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/data_suite_v2/__init__.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/data_suite_v2/workspace_boundary.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/audio_poc/wave_close.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/audio_poc/gap_fill_writer.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/audio_poc/hf_transcribe.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/audio_poc/gap_set.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/audio_poc/pairing_registry.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/audio_poc/transcript_inventory.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/audio_poc/recording_inventory.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/audio_poc/__init__.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/audio_poc/readonly_nas_guard.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/audio_poc/readonly_obs_guard.py"
+      },
+      {
+        "exists": true,
+        "hits": [],
+        "path": "backend/services/audio_poc/release_gate.py"
+      }
+    ],
+    "total_hits_on_public_surface": 0
+  },
+  "commit_count": 28,
+  "commits_enumerated": [
+    {
+      "commit": "24928de",
+      "subject": "W-AUDIO-POC \u00b7 CP-A1 \u00b7 governance walls (readonly_nas_guard + readonly_obs_guard + release_gate) landed BEFORE any live-source touch \u00b7 ratchet 3858 -> 3872 (+14)",
+      "when": "2026-09-14T13:18:12+00:00"
+    },
+    {
+      "commit": "84bc5e6",
+      "subject": "W-AUDIO-POC \u00b7 CP-A2 \u00b7 NAS OFFAIRRECS recording inventory contract \u00b7 ratchet 3872 -> 3885 (+13)",
+      "when": "2026-09-14T13:26:30+00:00"
+    },
+    {
+      "commit": "815500a",
+      "subject": "W-AUDIO-POC \u00b7 CP-A3 \u00b7 OBS google-transcripts transcript inventory contract \u00b7 ratchet 3885 -> 3898 (+13)",
+      "when": "2026-09-14T13:33:38+00:00"
+    },
+    {
+      "commit": "4b7ca3a",
+      "subject": "W-AUDIO-POC \u00b7 CP-A4 \u00b7 pairing registry + gap-set compute (pure function over CP-A2+CP-A3) \u00b7 ratchet 3898 -> 3911 (+13)",
+      "when": "2026-09-14T13:40:18+00:00"
+    },
+    {
+      "commit": "6243a24",
+      "subject": "W-AUDIO-POC \u00b7 CP-A5 \u00b7 HF gap-fill transcribe + gated write-back \u00b7 ratchet 3911 -> 3923 (+12) \u00b7 live probe partial (BLOCKER-HF-A5-01 hf-inference provider does not host whisper-small; auth PASSED)",
+      "when": "2026-09-14T13:51:45+00:00"
+    },
+    {
+      "commit": "dc498fd",
+      "subject": "W-AUDIO-POC \u00b7 CP-A6 \u00b7 wave-close composite invariants + wave_close.py constants module \u00b7 ratchet 3923 -> 3929 (+6) \u00b7 WAVE CLOSED \u00b7 total +71 invariants across CP-A1..A6",
+      "when": "2026-09-14T14:00:38+00:00"
+    },
+    {
+      "commit": "ed0265f",
+      "subject": "W-DATA-SUITE-V2-LIFT \u00b7 CP-D1 \u00b7 parameterless workspace-boundary signature (lands FIRST per Solva-V2 CP-S2 precedent) \u00b7 ratchet 3929 -> 3937 (+8: 7 new + 1 cross-benefit)",
+      "when": "2026-09-14T14:17:02+00:00"
+    },
+    {
+      "commit": "6df2a40",
+      "subject": "W-DATA-SUITE-V2-LIFT \u00b7 CP-D2 \u00b7 workspace state machine (case-agnostic DRAFT->PROCESSING->READY->ARCHIVED) \u00b7 ratchet 3937 -> 3943 (+6)",
+      "when": "2026-09-14T14:22:09+00:00"
+    },
+    {
+      "commit": "2b002df",
+      "subject": "W-DATA-SUITE-V2-LIFT \u00b7 CP-D3 \u00b7 source registry contract (UnitRefs-only, Canon-4 \u00a722) \u00b7 ratchet 3943 -> 3949 (+6)",
+      "when": "2026-09-14T14:27:23+00:00"
+    },
+    {
+      "commit": "cdcab77",
+      "subject": "W-DATA-SUITE-V2-LIFT \u00b7 CP-D4 \u00b7 Analyze-tab contracts (3 frozen classes: AnalyzeRapid/AnalyzeDeepDive/AnalyzeSources) \u00b7 export tab explicitly refused via closed 3-value ANALYZE_TAB_KINDS \u00b7 ratchet 3949 -> 3955 (+6) \u00b7 TRUE_RED discipline restored (prior receipt was mislabelled GREEN 20260914T142800Z, deleted, re-captured as 20260914T143647Z v2_true)",
+      "when": "2026-09-14T14:42:28+00:00"
+    },
+    {
+      "commit": "aebec40",
+      "subject": "W-DATA-SUITE-V2-LIFT \u00b7 CP-D5 \u00b7 analysis-session record (Canon-3 \u00a79.3 append-only) \u00b7 AnalysisSession frozen 5-field \u00b7 compute_snapshot_fingerprint deterministic sha256 \u00b7 append_session refuses id collision (AnalysisSessionCollision) \u00b7 ratchet 3955 -> 3961 (+6)",
+      "when": "2026-09-14T14:52:53+00:00"
+    },
+    {
+      "commit": "7202916",
+      "subject": "W-DATA-SUITE-V2-LIFT \u00b7 CP-D6 \u00b7 export-artefact contract (DAP-Spec \u00a7A10 discharge) \u00b7 ExportArtefact frozen 4-carrier (rights_posture/derivation_hash/derivation_unit_refs/terms_cited) \u00b7 export_gate.admit_export refuses release with ExportRefused naming missing carrier \u00b7 ratchet 3961 -> 3967 (+6)",
+      "when": "2026-09-14T14:59:17+00:00"
+    },
+    {
+      "commit": "3dc0d63",
+      "subject": "W-DATA-SUITE-V2-LIFT \u00b7 CP-D7 \u00b7 analysis-lifecycle state machine (donor case-agnostic re-shape) \u00b7 AnalysisLifecycleState closed 4-value enum {DRAFT/PROCESSING/READY/ARCHIVED} \u00b7 ANALYSIS_TRANSITIONS 3-edge linear pipeline \u00b7 IllegalAnalysisTransition \u00b7 type-separated from CP-D2 workspace lifecycle \u00b7 ratchet 3967 -> 3973 (+6)",
+      "when": "2026-09-14T15:06:18+00:00"
+    },
+    {
+      "commit": "6549c31",
+      "subject": "W-DATA-SUITE-V2-LIFT \u00b7 CP-D8 \u00b7 case-agnostic donor lift + wave close \u00b7 engines/{analyze_workspace_engine,deep_dive_engine}.py skeletons expose run() raising NotImplementedError('HALT...') per \u00a7E.4 \u00b7 word-boundary executive-domain negative-scan across services/data_suite_v2/ clean \u00b7 no LLM/HTTP/DB imports in engine skeletons \u00b7 ratchet 3973 -> 3979 (+6) \u00b7 WAVE CLOSED \u00b7 total +50 across CP-D1..CP-D8 (8+6*7)",
+      "when": "2026-09-14T15:13:47+00:00"
+    },
+    {
+      "commit": "c45d0c3",
+      "subject": "W-CENSUS-CANON-ALIGN \u00b7 CP-C1 \u00b7 SourceCandidate frozen 4-carrier (source_reference/region/feed_identity/sensitivity) + Sensitivity frozen 3-field (class_label/is_undeclared/rule_reference) per Canon-4 \u00a74 + B5.5 \u00b7 deterministic classify_sensitivity(feed_declaration_registry) with Canon-4 \u00a75.1 conservative-fallback ('unknown' verbatim token) \u00b7 NON_CONTRACT_UTILITY_MODULES exemption added for canon_census_source_candidate.py (dataclass-not-pydantic per CP-D1 precedent) \u00b7 ratchet 3979 -> 3986 (+7 = 6 new + 1 cross-benefit)",
+      "when": "2026-09-15T02:23:49+00:00"
+    },
+    {
+      "commit": "112de26",
+      "subject": "W-CENSUS-CANON-ALIGN \u00b7 CP-C2 \u00b7 Unmeasured first-class sentinel + Measurement frozen 6-carrier (value/method/population/full_vs_sampled/census_run_id/run_date) per Canon-4 \u00a74.1 P29-P30 verbatim + B5.2/B5.3 \u00b7 FullOrSampled closed 2-value enum \u00b7 SampledPopulationInvalid refuses SAMPLED measurement with population <= 0 (P30 'a sampled measurement is never presented as a full-population one') \u00b7 Unmeasured and Measurement are distinct types \u00b7 NON_CONTRACT_UTILITY_MODULES exemption extended \u00b7 ratchet 3986 -> 3993 (+7 = 6 new + 1 cross-benefit)",
+      "when": "2026-09-15T02:31:38+00:00"
+    },
+    {
+      "commit": "e2a710c",
+      "subject": "W-CENSUS-CANON-ALIGN \u00b7 CP-C3 \u00b7 CensusRun frozen 4-carrier (run_id/run_date/population/full_vs_sampled) + generate_census_run_id() deterministic sha256 gen + CensusRunId str alias + FullOrSampled/SampledPopulationInvalid re-exported from CP-C2 \u00b7 SAMPLED run with population<=0 refused via SampledPopulationInvalid (Canon-4 \u00a74.1 P30 verbatim 'a sampled measurement is never presented as a full-population one' \u00b7 fires at run level too) \u00b7 FULL run with population==0 accepted (empty estate at first run) \u00b7 module docstring carries Canon-4 \u00a74.1 P30 verbatim + Doc-9 B5.3 verbatim + source-file anchors \u00b7 deterministic gen: same inputs -> byte-identical run_id \u00b7 distinct inputs across 3 dimensions -> pairwise-distinct run_ids \u00b7 ratchet 3993 -> 3999 (+6)",
+      "when": "2026-09-15T02:53:12+00:00"
+    },
+    {
+      "commit": "5fcee76",
+      "subject": "W-CENSUS-CANON-ALIGN \u00b7 CP-C4 \u00b7 Append-only registry write path \u00b7 SourceRecord frozen 10-carrier (record_id/source_reference/region/feed_identity/sensitivity/defensibility_measure/freshness_stamp/next_recheck_hint/census_run_id/supersedes_record_id) per Canon-4 \u00a78 verbatim + Doc-10 A5.5 verbatim \u00b7 RegistryStore append-only in-memory (write/read/has/count \u00b7 no update \u00b7 no delete API) \u00b7 register_source_candidate() deterministic sha256 record_id gen (idempotent on identical writes; correction writes with supersedes_record_id land distinct id) \u00b7 RegistryDeterminismFailure refuses byte-different overwrite under same id (preserves E.5 append-only invariant) \u00b7 module docstring carries \u00a78 + A5.5 + E.5 + E.1 verbatim with source-file anchors \u00b7 ratchet 3999 -> 4005 (+6)",
+      "when": "2026-09-15T03:04:18+00:00"
+    },
+    {
+      "commit": "d552c31",
+      "subject": "W-CENSUS-CANON-ALIGN \u00b7 CP-C5 \u00b7 JobManifest frozen 5-carrier (job_id/job_kind/estate_instance/planes_bound/capabilities_declared) per owner S5 reframe verbatim (GOVERNED_CENSUS_HARVEST_PLATFORM_ROADMAP.md:4,25) \u00b7 JobManifest binds platform's registered planes to concrete estate instance \u00b7 nothing case-specific may live in platform code path \u00b7 planes_bound tuple[tuple[str,str],...] keeps manifest hashable + canonicalisable \u00b7 capabilities_declared tuple[str,...] \u00b7 compute_manifest_fingerprint() deterministic sha256 gen (returns jm_<64-hex>) matching CP-C3 generate_census_run_id job_manifest_fingerprint input \u00b7 JobManifest DATA-ONLY per grounding brief \u00a7E.4 (no execute/run/dispatch/start/stop/step/iterate/process/commission/trigger method exposed) \u00b7 NON_CONTRACT_UTILITY_MODULES exemption extended \u00b7 ratchet 4005 -> 4012 (+7 = 6 new + 1 cross-benefit)",
+      "when": "2026-09-15T03:12:42+00:00"
+    },
+    {
+      "commit": "0053b16",
+      "subject": "W-CENSUS-CANON-ALIGN \u00b7 CP-C6 \u00b7 SourceStratumMeasurement frozen 8-dimension (volume/media_types/languages/era_distribution/quality_strata/verified_share/pii_share/licence_share) per Canon-4 \u00a74.1 P28 verbatim ordering \u00b7 each dimension DimensionValue = Measurement|Unmeasured (CP-C2 union \u00b7 what has not been measured is explicit at type level) \u00b7 ActivationList frozen 2-tuple (activated, dormant) per Canon-4 \u00a7Class-activation verbatim \u00b7 compute_activation_list(*, observed, matrix_classes) partitions matrix deterministic sorted (disjoint \u00b7 union==matrix) \u00b7 two modules land under services/ (stratum_measurement.py + activation_list.py) no parity exemption needed \u00b7 ratchet 4012 -> 4018 (+6)",
+      "when": "2026-09-15T03:20:35+00:00"
+    },
+    {
+      "commit": "e8a40b8",
+      "subject": "W-RELEASE-GATE-PILOT-LIFT \u00b7 CP-RG1 \u00b7 ReleaseBudgetState + ReleaseLedgerDebit + record_debit \u00b7 R-7 PILOT-OPEN receipt+debit invariant (DECISIONS 2026-09-15T~03:55Z Effect 1) + Pull Seam \u00a72 P7 P036 receipt-before-result (canon/drops/20260914_pull_seam/extracted/The_Pull_Seam_STRUCTURED.txt \u00b7 P036) \u00b7 3 modules land: contracts/release_budget.py (frozen dataclass ReleaseLedgerDebit 7-carrier exact-order + closed Enum ReleaseBudgetState 3-value DEFAULT_PENDING_OVERRIDE/PILOT_OPEN/ENFORCED_POST_PILOT) + services/release_gate/__init__.py (new package \u00b7 package plan \u00a7B) + services/release_gate/release_ledger.py (record_debit + list_debits + ReceiptMissingRefused P036 + BudgetStateRefused R-7 + append-only in-memory _LEDGER + deterministic sha256-derived rd_<64hex> debit_id + _reset_for_tests fixture) \u00b7 6 new invariants: module_fabric + release_budget_state_closed_three_value_enum + release_ledger_debit_frozen_seven_carrier_exact_order + record_debit_refuses_empty_receipt_id (P036) + record_debit_refuses_default_pending_override (R-7 default-refusal-not-universally-lifted) + record_debit_admits_pilot_open_and_appends_to_ledger \u00b7 NON_CONTRACT_UTILITY_MODULES extended with release_budget.py (test_frozen_contract_snapshot_parity.py line 156 \u00b7 @dataclass frozen + closed Enum \u00b7 no pydantic BaseModel) \u00b7 ratchet 4018 -> 4025 (+7 = 6 CP-RG1 + 1 cross-benefit) \u00b7 double-green byte-match verified (both GREEN runs 4025 passed 1 skipped 438 warnings \u00b7 strip-of-time diff empty \u00b7 both raw 9441 bytes / stripped 9436 bytes \u00b7 sha256s pinned in seal) \u00b7 red_drill_class module-missing right-reason RED (ModuleNotFoundError before mechanism landed \u00b7 captured 08:12Z with baseline-drift-context header per Owner Option-A ruling clause 3) \u00b7 baseline_drift_context: closed-window WIP-staging per owner Option-A 2026-09-15T~04:40Z \u00b7 Mtafiti receipts refreshed at 08:15-08:16Z (first item in 08:00 UTC egress queue) restoring baseline 4018-green before this seal \u00b7 Standing Rule 2 (time-freshness invariants must not gate closed-window build) exercised \u00b7 sequencing pin owner-verbatim step 2(f) \u00b7 next: CP-RG2 tokenize_named_persons + TokenizationReceipt (R-15(a) discharge)",
+      "when": "2026-09-15T08:35:54+00:00"
+    },
+    {
+      "commit": "d28d2d0",
+      "subject": "W-RELEASE-GATE-PILOT-LIFT \u00b7 CP-RG2 \u00b7 tokenize_named_persons + TokenizationReceipt \u00b7 R-15(a) TOKENIZED discharge (DECISIONS 2026-09-15T~03:55Z Effect 2) + Pull Seam \u00a72 P1 P015.s6 identity-never-crosses (canon/drops/20260914_pull_seam/extracted/The_Pull_Seam_STRUCTURED.txt \u00b7 P015.s6) \u00b7 3 modules land: contracts/tokenization_receipt.py (frozen dataclass TokenizationReceipt 7-carrier exact order receipt_id/transcript_id/tokenized_at_utc/token_count/token_table_ref/custody_class/algorithm_version) + services/de_identify/__init__.py (new package) + services/de_identify/tokenize_named_persons.py (tokenize_named_persons + get_token_table + TokenTableMissing custody-refusal + _TOKEN_TABLES module-scope singleton custody store + _reset_for_tests fixture \u00b7 deterministic sha256-derived receipt_id tr_<64hex> \u00b7 deterministic table_ref tt_<64hex> \u00b7 placeholder shape <TOKEN_NP_NN> two-digit zero-padded widened at 100+ \u00b7 longer-name-first replacement order for partial-match safety \u00b7 first-appearance dedup preservation) \u00b7 6 new invariants: module_fabric \u00b7 tokenization_receipt_frozen_seven_carrier_exact_order \u00b7 tokenize_named_persons_replaces_all_name_occurrences (zero name leakage in tokenized_text) \u00b7 tokenize_named_persons_deterministic_placeholder_shape (byte-identical output on byte-identical input \u00b7 test-independence) \u00b7 receipt_never_carries_token_to_name_mapping (identity-never-crosses runtime assertion on receipt attribute values) \u00b7 get_token_table_separate_from_tokenize_call_and_missing_refuses (never-emitted-alongside-artefact + TokenTableMissing custody refusal on unknown receipt_id) \u00b7 NON_CONTRACT_UTILITY_MODULES extended with tokenization_receipt.py (test_frozen_contract_snapshot_parity.py \u00b7 same class as release_budget.py from CP-RG1) \u00b7 ratchet 4025 -> 4032 (+7 = 6 CP-RG2 + 1 cross-benefit NON_CONTRACT_UTILITY_MODULES exemption) \u00b7 double-green byte-match verified (both GREEN runs 4032 passed 1 skipped 438 warnings \u00b7 strip-of-time diff empty \u00b7 both raw 9524 bytes \u00b7 sha256s pinned in seal) \u00b7 red_drill_class module-missing right-reason RED (ModuleNotFoundError on contracts.tokenization_receipt before frozen carrier module authored) \u00b7 cp_boundary_probe #2 at 08:39:49Z: CD+Visitors BOTH FAIL errno-110-ETIMEDOUT admin SG opening still-in-progress \u00b7 retry loop continues per owner course-correction 2026-09-15T~08:37Z clause 2 \u00b7 next: CP-RG-HYGIENE-01 assert_no_transcript_cat_on_custody guard pulled forward from M8 (owner course-correction clause 3 \u00b7 mirrors HF-token guard \u00b7 prevents SEC-14-01/02/03/04 + SEC-15-06/07 recurrence class)",
+      "when": "2026-09-15T08:50:35+00:00"
+    },
+    {
+      "commit": "440b995",
+      "subject": "W-RELEASE-GATE-PILOT-LIFT \u00b7 CP-RG-HYGIENE-01 \u00b7 custody-cat guard pulled forward from M8 \u00b7 assert_no_transcript_cat_on_custody + CustodyCatLeakDetected \u00b7 owner course-correction 2026-09-15T~08:37Z clause 3 verbatim \u00b7 mirrors HF-token guard pattern \u00b7 prevents SEC-2026-09-14-01/02/03/04 + SEC-2026-09-15-06/07 recurrence class (cat/head/tail/less/more/bat/view/type on /app/backend/estate_keys/** paths \u00b7 8-command family) \u00b7 1 module lands: services/secret_hygiene/custody_file.py (guard function + exception class + CUSTODY_PATH_PREFIXES tuple + LEAK_COMMANDS tuple + compiled _LEAK_PATTERN regex + CUSTODY_CAT_GUARD_RULING_VERBATIM module constant) \u00b7 6 new invariants: module_fabric \u00b7 raises_on_cat_of_custody_file \u00b7 raises_on_every_leak_command_class (parametric over 8 commands) \u00b7 does_not_raise_on_safe_patterns (python-c/stat/ls/wc/sha256sum/chmod/non-custody-cat) \u00b7 detects_pattern_inside_larger_command_string (multi-command shell strings) \u00b7 exception_message_never_contains_file_contents (self-hygiene) \u00b7 ratchet 4032 -> 4038 (+6 \u00b7 no cross-benefit \u00b7 pure services module not frozen contract) \u00b7 double-green byte-match 4038 passed both runs \u00b7 cp_boundary_probe #3 at 08:51:52Z: CD+Visitors BOTH FAIL errno-110-ETIMEDOUT \u00b7 retry continues at CP-RG3 boundary \u00b7 wave scope expanded from 5 to 6 CPs per owner course-correction \u00b7 next: CP-RG3 TranscriptArtefact extension",
+      "when": "2026-09-15T08:59:13+00:00"
+    },
+    {
+      "commit": "4c4500a",
+      "subject": "W-RELEASE-GATE-PILOT-LIFT \u00b7 CP-RG3 \u00b7 TranscriptArtefact TOKENIZED verdict + DERIVATIVE_ONLY basis + closed-set refusal \u00b7 R-15(a) + R-16(a) discharge \u00b7 extends services/audio_poc/release_gate.py: +2 frozensets (TRANSCRIPT_NAMED_PERSONS_VERDICTS_ACCEPTABLE + TRANSCRIPT_TRANSFER_BASIS_ACCEPTABLE both include {PENDING,RATIFIED,DPO-APPROVED,+R-owner-ratified-value}) + TranscriptVerdictUnknown exception + 2 closed-set refusal branches \u00b7 6 new invariants \u00b7 RATIFIED preserved in acceptable sets for existing CP-A1 tests backward compat (no-refactor discipline honored) \u00b7 ratchet 4038 -> 4044 (+6 \u00b7 no cross-benefit \u00b7 extends existing module) \u00b7 double-green byte-match 4044 passed both runs \u00b7 cp_boundary_probe #4 at 08:59:13Z: CD+Visitors BOTH FAIL errno-110 \u00b7 retry continues \u00b7 next: CP-RG4 end-to-end wiring",
+      "when": "2026-09-15T09:07:00+00:00"
+    },
+    {
+      "commit": "ee45e69",
+      "subject": "W-RELEASE-GATE-PILOT-LIFT \u00b7 CP-RG4 \u00b7 admit_transcript_release_pilot_open end-to-end compose \u00b7 R-7 PILOT_OPEN + R-15(a) TOKENIZED + R-16(a) DERIVATIVE_ONLY + R-17-licence + P036 receipt-before-result all-must-hold \u00b7 extends services/audio_poc/release_gate.py with compose function (validates artefact via CP-RG3 admit_transcript_release then records debit via CP-RG1 record_debit \u00b7 P036 ordering: refused artefact leaves ledger empty) + TYPE_CHECKING forward refs \u00b7 6 new invariants: module_fabric + admits_full_ruling_chain_and_records_debit + refuses_when_artefact_tier_refused + refuses_on_missing_release_receipt_id (P036) + refuses_on_default_pending_override + artefact_gate_fires_before_debit_write (P036 ordering) \u00b7 ratchet 4044 -> 4050 (+6) \u00b7 double-green byte-match 4050 both runs \u00b7 probe #5 09:07:01Z CD+Visitors FAIL \u00b7 next: CP-RG5 aggregate_usage_query",
+      "when": "2026-09-15T09:14:15+00:00"
+    },
+    {
+      "commit": "7a5f431",
+      "subject": "W-RELEASE-GATE-PILOT-LIFT \u00b7 CP-RG5 \u00b7 aggregate_usage_query \u00b7 pilot-end budget-number derivation API \u00b7 R-7 verbatim: 'when the pilot ends, the real budget number is set from measured usage, not guessed' \u00b7 extends services/release_gate/release_ledger.py with aggregate_usage_query function \u00b7 AND-composed optional filters unit/budget_state/debited_by_party \u00b7 returns dict debit_count/total_quantity \u00b7 6 new invariants including composition-of-compositions integration test (tokenize CP-RG2 + admit_pilot_open CP-RG4 + aggregate CP-RG5 full release cycle) \u00b7 ratchet 4050 -> 4056 (+6) \u00b7 double-green byte-match 4056 both runs \u00b7 WAVE COMPLETE: 5 planned + 1 pulled-forward (CP-RG-HYGIENE-01) = 6 CPs total \u00b7 wave delta 4018 -> 4056 (+38) exceeded target +30..+32 \u00b7 probe #6 09:14:15Z CD+Visitors FAIL \u00b7 next: census supplement + wave-close report",
+      "when": "2026-09-15T09:20:31+00:00"
+    },
+    {
+      "commit": "4308620",
+      "subject": "W-CENSUS-SUPPLEMENT-AUDIO-INVENTORY-MOUNT \u00b7 CP-CSAIM1 \u00b7 mount NAS + OBS into CP-C4 census RegistryStore as first-class SourceRecords \u00b7 owner directive verbatim (course-correction 2026-09-15T~08:37Z clause a): '(a) census supplement for NAS+OBS via the sealed audio_poc inventories mounted into the census registry (do not defer to M8)' \u00b7 closes ITEM_3_CENSUS_RUN \u00a7D rows 3-4 (NAS 16ch + OBS google-transcripts) from 'unmeasured-with-reason: no-tool' to 'registered-but-unenumerated \u00b7 next-recheck-hint M8\u00b7W-CENSUS-RUNTIME-ORCHESTRATION' (Canon-4 \u00a78 first-run shape) \u00b7 single kernel services/census_canon/audio_inventory_supplement.py composes CP-C1 classify_sensitivity + CP-C4 register_source_candidate \u00b7 canonical feed_identity tokens audio_nas_offairrecs_16ch + obs_google_transcripts_bucket \u00b7 defensibility_measure pointers to sealed CP-A2 recording_inventory + CP-A3 transcript_inventory contracts (audio_poc_v1.seal) \u00b7 sensitivity via Canon-4 \u00a75.1 conservative fallback ('unknown' \u00b7 empty feed_declaration_registry \u00b7 absence-of-declaration-never-resolves-upward) \u00b7 next_recheck_hint = M8\u00b7W-CENSUS-RUNTIME-ORCHESTRATION on both (post-M8 correction records via CP-C4 E.5 append-only with supersedes_record_id) \u00b7 6 new invariants: module_fabric_present + feed_identity_constants_are_canonical_tokens + defensibility_measure_references_sealed_cp_a2_a3_contracts + mount_writes_two_records_under_same_run_id + mount_uses_canon_4_5_1_conservative_sensitivity_fallback + mount_is_idempotent_on_identical_inputs \u00b7 ratchet 4056 -> 4062 (+6 \u00b7 no cross-benefit \u00b7 services-package extension \u00b7 contracts untouched) \u00b7 mechanical RED phase0/drill_receipts/20260915T093339Z_wcensus_supplement_audio_inventory_mount_RED_pre_impl.log (6 failed / 4056 passed \u00b7 right-reason ModuleNotFoundError/ImportError) \u00b7 double-green byte-match 4062 passed both runs (raw 9524 bytes each \u00b7 stripped 9510 bytes \u00b7 both stripped sha256 4e45c6ed1b52fcd2763fae0ffd96d91833d93dd15bfb8a6373c1e46946633b6f \u00b7 strip-of-time diff empty) \u00b7 collect-only 4063 tests \u00b7 pip freeze 192 lines (matches CP-RG5 rider \u00b7 no dependency drift) \u00b7 boundary probe #7 at CP-CSAIM1 seal: CD (159.138.164.103:3306) + Visitors (110.238.75.83:3306) BOTH FAIL errno-110-ETIMEDOUT \u00b7 zero PASS to fold \u00b7 retry loop continues at next CP boundary \u00b7 custody-cat guard CP-RG-HYGIENE-01 exercised on all probe commands \u00b7 zero fires \u00b7 position-redaction hard-lock preserved \u00b7 no push (Owner Clarification 1) \u00b7 autonomous mode ARMED under initial guardrails unchanged",
+      "when": "2026-09-15T09:43:17+00:00"
+    },
+    {
+      "commit": "7cccbe8",
+      "subject": "W-D12-POC \u00b7 CP-D12P1 \u00b7 receipt-contract landing (matches CP-A5 precedent \u00b7 contract now \u00b7 live-run best-effort follow-on) \u00b7 owner directives verbatim: (a) DECISIONS 2026-09-15T~03:55Z Effect 6 'run the transcription pipe-proof with the canon CI fixture (whisper-tiny + faster-whisper) on a SMALL BOUNDED set of real NAS files (single-digit count), on the GPU hosts, all outputs labeled POC-NOT-PRODUCTION in provenance, receipts banked' + (b) Option-A ratification 2026-09-15T~09:50Z 'raw transcription receipts banked under phase0/d12_poc_receipts/, release-gate admission explicitly deferred' \u00b7 3 modules land: services/d12_poc/__init__.py (new package) + services/d12_poc/receipt_contract.py (frozen dataclass D12PocReceipt 16-carrier + D12InputCanonicalKey 4-carrier + assemble_d12_poc_receipt pure-data function + module-frozen canonical tokens POC_NOT_PRODUCTION_FLAG=POC-NOT-PRODUCTION + D12_MODEL_ID=faster-whisper:tiny + D12_MODEL_VERSION=ctranslate2 + D12_COMPUTE_TYPE=int8 + D12_BEAM_SIZE=1 + D12_POC_RECEIPT_ALLOWED_FIELDS/FORBIDDEN_TEXT_FIELDS disjoint frozensets) + test_wd12_poc_receipt_contract.py (6 invariants: module_fabric_present + poc_not_production_flag_is_canonical_token + d12_model_and_compute_and_beam_are_canonical_tokens + assemble_d12_poc_receipt_frozen_carrier_shape + assemble_d12_poc_receipt_never_carries_transcript_text_field + assemble_d12_poc_receipt_stamps_poc_flag_regardless_of_success) \u00b7 ratchet 4062 -> 4068 (+6 \u00b7 no cross-benefit \u00b7 services-package extension \u00b7 contracts untouched) \u00b7 mechanical RED phase0/drill_receipts/20260915T100215Z (6 failed \u00b7 right-reason ModuleNotFoundError on services.d12_poc \u00b7 mechanism temporarily stashed to services/d12_poc.stash for RED capture per tests-first discipline) \u00b7 GREEN1_v1 detected pre-existing state-side breakage (DECISIONS.md top pointer removed by prior sentinel-restoration script this turn \u00b7 test_decisions_carries_pointer_near_top failed \u00b7 fixed inline via top-pointer re-insertion \u00b7 no ratchet regression \u00b7 ratchet manifest bumped ONLY after remediation) \u00b7 GREEN1_v2 + GREEN2 double-green byte-match 4068 passed both runs (raw 9524 bytes each \u00b7 stripped 9510 bytes \u00b7 both stripped sha256 d66f0cae7913d1a76bfd477b5543db8bf194e24f644a1dc6f5c6f456e5619464 \u00b7 strip-of-time diff empty) \u00b7 collect-only 4069 tests \u00b7 pip freeze 192 lines \u00b7 SEC-2026-09-15-08 (CSV-header-emit via python print \u00b7 HF token re-emitted) + SEC-2026-09-15-09 (openpyxl iter_rows re-emit \u00b7 4 already-PENDING-ROTATION values re-echoed) both filed with sha256 identity match to prior SEC entries \u00b7 zero new leak surface \u00b7 Standing Rules 4+5 banked \u00b7 M8 W-TESTS-FIRST-GUARD-INVARIANT gets python-level custody-read scope extension (deferred) \u00b7 no push (Owner Clarification 1) \u00b7 autonomous mode ARMED under initial guardrails unchanged",
+      "when": "2026-09-15T10:11:40+00:00"
+    }
+  ],
+  "cp": "CP-M7-W1-POST-7-VERIFICATION",
+  "description": "M5 \u00b7 Data-Suite-v2 lift + Audio-POC + Census-run + Release-gate + D12 POC (compound milestone \u00b7 6 named sub-waves + 1 supplement)",
+  "module_count": 37,
+  "modules_enumerated": [
+    [
+      "7cccbe8",
+      "backend/services/d12_poc/__init__.py",
+      "2026-09-15T10:11:40+00:00"
+    ],
+    [
+      "7cccbe8",
+      "backend/services/d12_poc/receipt_contract.py",
+      "2026-09-15T10:11:40+00:00"
+    ],
+    [
+      "4308620",
+      "backend/services/census_canon/audio_inventory_supplement.py",
+      "2026-09-15T09:43:17+00:00"
+    ],
+    [
+      "440b995",
+      "backend/services/secret_hygiene/custody_file.py",
+      "2026-09-15T08:59:13+00:00"
+    ],
+    [
+      "d28d2d0",
+      "backend/services/de_identify/__init__.py",
+      "2026-09-15T08:50:35+00:00"
+    ],
+    [
+      "d28d2d0",
+      "backend/services/de_identify/tokenize_named_persons.py",
+      "2026-09-15T08:50:35+00:00"
+    ],
+    [
+      "e8a40b8",
+      "backend/services/release_gate/__init__.py",
+      "2026-09-15T08:35:54+00:00"
+    ],
+    [
+      "e8a40b8",
+      "backend/services/release_gate/release_ledger.py",
+      "2026-09-15T08:35:54+00:00"
+    ],
+    [
+      "0053b16",
+      "backend/services/census_canon/activation_list.py",
+      "2026-09-15T03:20:35+00:00"
+    ],
+    [
+      "0053b16",
+      "backend/services/census_canon/stratum_measurement.py",
+      "2026-09-15T03:20:35+00:00"
+    ],
+    [
+      "5fcee76",
+      "backend/services/census_canon/registry_write.py",
+      "2026-09-15T03:04:18+00:00"
+    ],
+    [
+      "e2a710c",
+      "backend/services/census_canon/census_run.py",
+      "2026-09-15T02:53:12+00:00"
+    ],
+    [
+      "c45d0c3",
+      "backend/services/census_canon/__init__.py",
+      "2026-09-15T02:23:49+00:00"
+    ],
+    [
+      "c45d0c3",
+      "backend/services/census_canon/source_candidate_classifier.py",
+      "2026-09-15T02:23:49+00:00"
+    ],
+    [
+      "6549c31",
+      "backend/services/data_suite_v2/engines/__init__.py",
+      "2026-09-14T15:13:47+00:00"
+    ],
+    [
+      "6549c31",
+      "backend/services/data_suite_v2/engines/analyze_workspace_engine.py",
+      "2026-09-14T15:13:47+00:00"
+    ],
+    [
+      "6549c31",
+      "backend/services/data_suite_v2/engines/deep_dive_engine.py",
+      "2026-09-14T15:13:47+00:00"
+    ],
+    [
+      "3dc0d63",
+      "backend/services/data_suite_v2/analysis_lifecycle.py",
+      "2026-09-14T15:06:18+00:00"
+    ],
+    [
+      "7202916",
+      "backend/services/data_suite_v2/export_artefact.py",
+      "2026-09-14T14:59:17+00:00"
+    ],
+    [
+      "7202916",
+      "backend/services/data_suite_v2/export_gate.py",
+      "2026-09-14T14:59:17+00:00"
+    ],
+    [
+      "aebec40",
+      "backend/services/data_suite_v2/analysis_session.py",
+      "2026-09-14T14:52:53+00:00"
+    ],
+    [
+      "cdcab77",
+      "backend/services/data_suite_v2/analyze_tabs.py",
+      "2026-09-14T14:42:28+00:00"
+    ],
+    [
+      "2b002df",
+      "backend/services/data_suite_v2/source_registry.py",
+      "2026-09-14T14:27:23+00:00"
+    ],
+    [
+      "6df2a40",
+      "backend/services/data_suite_v2/workspace_state_machine.py",
+      "2026-09-14T14:22:09+00:00"
+    ],
+    [
+      "ed0265f",
+      "backend/services/data_suite_v2/__init__.py",
+      "2026-09-14T14:17:02+00:00"
+    ],
+    [
+      "ed0265f",
+      "backend/services/data_suite_v2/workspace_boundary.py",
+      "2026-09-14T14:17:02+00:00"
+    ],
+    [
+      "dc498fd",
+      "backend/services/audio_poc/wave_close.py",
+      "2026-09-14T14:00:38+00:00"
+    ],
+    [
+      "6243a24",
+      "backend/services/audio_poc/gap_fill_writer.py",
+      "2026-09-14T13:51:45+00:00"
+    ],
+    [
+      "6243a24",
+      "backend/services/audio_poc/hf_transcribe.py",
+      "2026-09-14T13:51:45+00:00"
+    ],
+    [
+      "4b7ca3a",
+      "backend/services/audio_poc/gap_set.py",
+      "2026-09-14T13:40:18+00:00"
+    ],
+    [
+      "4b7ca3a",
+      "backend/services/audio_poc/pairing_registry.py",
+      "2026-09-14T13:40:18+00:00"
+    ],
+    [
+      "815500a",
+      "backend/services/audio_poc/transcript_inventory.py",
+      "2026-09-14T13:33:38+00:00"
+    ],
+    [
+      "84bc5e6",
+      "backend/services/audio_poc/recording_inventory.py",
+      "2026-09-14T13:26:30+00:00"
+    ],
+    [
+      "24928de",
+      "backend/services/audio_poc/__init__.py",
+      "2026-09-14T13:18:12+00:00"
+    ],
+    [
+      "24928de",
+      "backend/services/audio_poc/readonly_nas_guard.py",
+      "2026-09-14T13:18:12+00:00"
+    ],
+    [
+      "24928de",
+      "backend/services/audio_poc/readonly_obs_guard.py",
+      "2026-09-14T13:18:12+00:00"
+    ],
+    [
+      "24928de",
+      "backend/services/audio_poc/release_gate.py",
+      "2026-09-14T13:18:12+00:00"
+    ]
+  ],
+  "path_taken": "Path \u03b1",
+  "ratchet_delta": 0,
+  "so_ref": "SO \u00a74.2 wave-window commit enumeration + clause 6 cross-wave modification handling",
+  "sub_waves_declared": [
+    [
+      "W-AUDIO-POC",
+      [
+        "24928de",
+        "84bc5e6",
+        "815500a",
+        "4b7ca3a",
+        "6243a24",
+        "dc498fd"
+      ]
+    ],
+    [
+      "W-DATA-SUITE-V2-LIFT",
+      [
+        "ed0265f",
+        "6df2a40",
+        "2b002df",
+        "cdcab77",
+        "aebec40",
+        "7202916",
+        "3dc0d63",
+        "6549c31"
+      ]
+    ],
+    [
+      "W-CENSUS-CANON-ALIGN",
+      [
+        "c45d0c3",
+        "112de26",
+        "e2a710c",
+        "5fcee76",
+        "d552c31",
+        "0053b16"
+      ]
+    ],
+    [
+      "W-RELEASE-GATE-PILOT-LIFT",
+      [
+        "e8a40b8",
+        "d28d2d0",
+        "440b995",
+        "4c4500a",
+        "ee45e69",
+        "7a5f431"
+      ]
+    ],
+    [
+      "W-CENSUS-SUPPLEMENT-AUDIO-INVENTORY-MOUNT",
+      [
+        "4308620"
+      ]
+    ],
+    [
+      "W-D12-POC",
+      [
+        "7cccbe8"
+      ]
+    ]
+  ],
+  "test_count": 28,
+  "tests_enumerated": [
+    "tests/invariants/test_wd12_poc_receipt_contract.py",
+    "tests/invariants/test_wcensus_supplement_audio_inventory_mount.py",
+    "tests/invariants/test_wrg_cp_rg5_aggregate_usage_query.py",
+    "tests/invariants/test_wrg_cp_rg4_admit_transcript_release_end_to_end.py",
+    "tests/invariants/test_wrg_cp_rg3_transcript_artefact_tokenized_derivative_only.py",
+    "tests/invariants/test_wrg_cp_rg_hygiene_01_custody_cat_guard.py",
+    "tests/invariants/test_wrg_cp_rg2_tokenize_named_persons.py",
+    "tests/invariants/test_wrg_cp_rg1_release_budget_ledger.py",
+    "tests/invariants/test_wcensus_cp_c6_stratum_activation.py",
+    "tests/invariants/test_wcensus_cp_c5_job_manifest.py",
+    "tests/invariants/test_wcensus_cp_c4_registry_write.py",
+    "tests/invariants/test_wcensus_cp_c3_census_run.py",
+    "tests/invariants/test_wcensus_cp_c2_measurement.py",
+    "tests/invariants/test_wcensus_cp_c1_source_candidate.py",
+    "tests/invariants/test_wdslift_cp_d8_donor_lift_case_agnostic.py",
+    "tests/invariants/test_wdslift_cp_d7_analysis_lifecycle.py",
+    "tests/invariants/test_wdslift_cp_d6_export_artefact.py",
+    "tests/invariants/test_wdslift_cp_d5_analysis_session.py",
+    "tests/invariants/test_wdslift_cp_d4_analyze_tabs.py",
+    "tests/invariants/test_wdslift_cp_d3_source_registry.py",
+    "tests/invariants/test_wdslift_cp_d2_workspace_state_machine.py",
+    "tests/invariants/test_wdslift_cp_d1_workspace_boundary.py",
+    "tests/invariants/test_wave_audio_poc_cp_a6_wave_close.py",
+    "tests/invariants/test_wave_audio_poc_cp_a5_hf_gap_fill.py",
+    "tests/invariants/test_wave_audio_poc_cp_a4_pairing_gap_set.py",
+    "tests/invariants/test_wave_audio_poc_cp_a3_transcript_inventory.py",
+    "tests/invariants/test_wave_audio_poc_cp_a2_recording_inventory.py",
+    "tests/invariants/test_wave_audio_poc_cp_a1_governance_walls.py"
+  ],
+  "type": "verification_walk",
+  "verdict": "clean",
+  "wave_window": "M5",
+  "wave_window_now_fully_verified": true,
+  "window_close_commit": "7cccbe8",
+  "window_next_family_open_commit": "e02dd4d",
+  "window_open_commit": "24928de"
+}
