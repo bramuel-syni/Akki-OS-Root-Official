@@ -1,0 +1,118 @@
+{
+  "wave": "W-M7-W0-VERIFICATION",
+  "generated_at_utc": "2026-09-16T03:56:49Z",
+  "ratchet_floor": 4358,
+  "track_a_head": "7b45a89014c75610d61dbee876909d77ec82749d",
+  "master_head_pre_this_commit": "78e258b69d8c2fc2e0e8a36ab4b6db2a310f7749",
+  "predecessor_seal": "CP-M6-9-2 \u00b7 4358 \u00b7 track-a 7b45a890 \u00b7 master 89371cdd (SW-9 close)",
+  "verification_type": "parse-not-paraphrase read against current-shift tree",
+  "sites_original_w0_refactor_count": 6,
+  "sites_original_w0_refactor": [
+    {
+      "path": "backend/services/campaign_infra/reconcile.py",
+      "symbol": "_is_sealed",
+      "routes_through_primitive": true,
+      "evidence": "line 66-67 \u00b7 'from services.output_verified_seal import is_real_seal' + 'return is_real_seal(run_dir)'"
+    },
+    {
+      "path": "backend/services/campaign_infra/run_queue.py",
+      "symbol": "_is_run_sealed",
+      "routes_through_primitive": true,
+      "evidence": "line 53-54 \u00b7 'from services.output_verified_seal import is_real_seal' + 'return is_real_seal(_seal_run_dir(campaign_id, run_name))'"
+    },
+    {
+      "path": "backend/services/orchestrator_resilience/orphan_detector.py",
+      "symbol": "_has_sealing_marker",
+      "routes_through_primitive": true,
+      "evidence": "line 39-40 \u00b7 'from services.output_verified_seal import is_real_seal' + 'return is_real_seal(run_dir)'"
+    },
+    {
+      "path": "backend/services/orchestrator_resilience/adopt.py",
+      "symbol": "can_adopt",
+      "routes_through_primitive": true,
+      "evidence": "line 91-92 \u00b7 'from services.output_verified_seal import is_real_seal' + 'if is_real_seal(run_dir): ...'"
+    },
+    {
+      "path": "backend/services/orchestrator_resilience/watchdog.py",
+      "symbol": "select_adoptable_orphans",
+      "routes_through_primitive": true,
+      "evidence": "line 126 \u00b7 composition via '_od._has_sealing_marker(run_dir)' which routes through orphan_detector -> is_real_seal (verified at site 3 above)"
+    },
+    {
+      "path": "backend/services/campaign_infra/on_host_logging.py",
+      "symbol": "write_run_summary",
+      "routes_through_primitive": true,
+      "evidence": "line 134-135 \u00b7 'from services.output_verified_seal import output_verified_seal' + write via 'output_verified_seal(...)'"
+    }
+  ],
+  "new_sites_since_w0_close_count": 5,
+  "new_sites_since_w0_close": [
+    {
+      "path": "backend/services/audio_poc/wave_close.py",
+      "symbol": "SEAL_KIND constant",
+      "routes_through_primitive": true,
+      "evidence": "pure constants module (39 lines) \u00b7 SEAL_KIND='audio_poc_wave_close' + WAVE_NAME + CP_ORDER \u00b7 no read/write logic \u00b7 docstring references seal file path only",
+      "commit_note": "W-AUDIO-POC \u00b7 CP-A6 close 2026-09-14"
+    },
+    {
+      "path": "backend/services/census_canon/audio_inventory_supplement.py",
+      "symbol": "audio_inventory_supplement (docstring reference only)",
+      "routes_through_primitive": true,
+      "evidence": "docstring at line 34 references seal file path 'phase0/output_verified_seals/audio_poc_v1.seal.txt' \u00b7 no seal read/write logic",
+      "commit_note": "census-canon composition surface (M8-catch-all)"
+    },
+    {
+      "path": "backend/services/output_verified_seal/__init__.py",
+      "symbol": "THE PRIMITIVE ITSELF",
+      "routes_through_primitive": true,
+      "evidence": "IS the primitive module \u00b7 exports parse_seal, is_real_seal, output_verified_seal (writer), NON_REAL_KINDS, SEALING_FILENAME",
+      "commit_note": "W0 seal \u00b7 2026-09-13"
+    },
+    {
+      "path": "backend/services/work_supervisor/governance.py",
+      "symbol": "governance clause referencing NON_REAL_KINDS",
+      "routes_through_primitive": true,
+      "evidence": "line 41 \u00b7 'from services.output_verified_seal import NON_REAL_KINDS' + line 145 \u00b7 'if expected in NON_REAL_KINDS: ...' (gates against W0 banned kinds)",
+      "commit_note": "W1 close \u00b7 2026-09-13"
+    },
+    {
+      "path": "backend/services/work_supervisor/supervisor.py",
+      "symbol": "run_dir seal verification path",
+      "routes_through_primitive": true,
+      "evidence": "line 35 \u00b7 'from services.output_verified_seal import is_real_seal, parse_seal' \u00b7 lines 101, 106, 133 use parse_seal + is_real_seal + SEALING_FILENAME",
+      "commit_note": "W1 close \u00b7 2026-09-13"
+    }
+  ],
+  "w0_invariant_file_present": true,
+  "w0_invariant_file_path": "backend/tests/invariants/test_output_verified_seal.py",
+  "w0_invariant_count": 31,
+  "w0_invariant_count_expected": 31,
+  "w0_invariants_all_pass_this_shift": true,
+  "verdict": "clean",
+  "drift_items": [],
+  "path_taken": "Path \u03b1",
+  "freshness_class_drift": {
+    "standing_rule_2_exercised": true,
+    "test": "test_cp10_harness_receipt_is_still_recent",
+    "cause": "harness receipt age crossed 12h threshold during this shift (first-boot baseline at 03:37Z was clean 4358/4358; second baseline at 03:53Z fired the 12h threshold as receipt aged past 12.0h). NOT a real regression.",
+    "regeneration_utc": "2026-09-16T03:55:59Z",
+    "regeneration_tool": "tools/wave_g5_realchrome_verification_harness.py --strict",
+    "regeneration_result_verbatim": "GREEN \u00b7 verification PASSED \u00b7 dummies absent, expected present, styled-element-anchor spans intact \u00b7 substitutions applied (portal): 0 \u00b7 substitutions applied (registry): 8 \u00b7 style signature met (underline=3/3, oxblood=1/1)",
+    "harness_receipt_new_age_h": 0.0,
+    "ground_truth_unchanged": true,
+    "ground_truth_metrics": {
+      "body_len": 608177,
+      "dummies_declared": 37,
+      "marked_slots_count": 29
+    }
+  },
+  "ratchet_delta": 0,
+  "notes": [
+    "SO \u00a73.1 output_verified_seal contract enforced across all 6 W0-original refactored sites (parse-not-paraphrase read against current tree).",
+    "5 seal-adjacent surfaces authored/modified since 2026-09-13 W0 close, all correctly compose with the primitive (no bypass).",
+    "31 W0 invariants in test_output_verified_seal.py all pass (file-scoped BASELINE_GUARD run confirms).",
+    "Freshness-class drift on test_cp10_harness_receipt_is_still_recent resolved via Standing Rule 2 sanctioned regeneration; ground-truth metrics unchanged.",
+    "Ratchet delta this walk: 0 (verification walk, not mechanism build). Track-a HEAD unchanged: 7b45a890.",
+    "Master commit banks: this receipt + M7-open note + W0 grounding brief + W0 close note + NEXT.md pin + DECISIONS.md entry + freshness-regeneration artefacts."
+  ]
+}

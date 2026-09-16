@@ -9838,5 +9838,66 @@ Public API added (9 new exports · combined module surface 19 exports): Commissi
 
 ---
 
+## Owner ruling · SW-10 DEFERRED-TO-CLOSE · M7 OPENS · 72h GPU Utilization Priority-Interleave · 2026-09-16T~03:08Z
+
+**Owner ruling verbatim (relayed by user 2026-09-16T~03:08Z):**
+
+> "defer to close. Open m7. as you do this i need to show utilization over the next 3 days (72 hours) can you build a job and comments a run" [read: commence a run].
+>
+> Effects:
+> 1. **SW-10 DEFERRED-TO-CLOSE.** M6 banks at 9/10 sub-waves closed with the SW-10 charter held open (A.1–A.5 unruled). Record in DECISIONS + milestone ledger.
+> 2. **M7 OPENS** per the ratified tree (W0 platform integrity → W1 generalisation → W2..W9). Author the M7-open milestone-boundary note + W0 grounding brief, then walk autonomously under all standing guardrails.
+> 3. **PRIORITY INTERLEAVE — 72-HOUR GPU UTILIZATION JOB (owner-facing deliverable, build FIRST, commence immediately):**
+>    The owner needs to SHOW UTILIZATION of the GPU estate over the next 72 hours. Build and launch a governed job now:
+>    - **Workload selection** (mission-aligned, enumerate briefly then pick — owner wants it RUNNING, not deliberated): recommended pair (a) **Mtafiti GPU embeddings + deep-sweep** over already-censused weego/ussd data (M8 catch-all items pulled forward — real product value), and (b) **appliance benchmark suite** on both H200 boxes (discharges precondition (a) of the deliberately-unruled R-14 serving-engine admission — real governance value). NOT model training on estate audio — that stays inside deferred SW-10; do not cross that line.
+>    - **Persistence**: launch as detached processes on akki-vm / akki-vm-ii (nohup/tmux/systemd-run) so the run survives agent session boundaries. 72h wall-clock from launch timestamp.
+>    - **Telemetry**: sampler on each host every 5 minutes — nvidia-smi query (utilization.gpu, utilization.memory, memory.used, power.draw, temperature) per GPU → append-only JSONL on the host, synced back to workspace receipts at every check-in.
+>    - **Owner-facing utilization report**: generate/refresh a report (MD + JSON) at each check-in — launch time, hours elapsed/remaining, per-host per-GPU average + peak utilization, jobs completed, receipts index — and SERVE it alongside the audit files (e.g., https://akki-reuse-assess.preview.emergentagent.com/audit/GPU_UTILIZATION_72H.md). Reply with the exact URL once live.
+>    - **Governance**: everything in-perimeter (DB data transits JUMP→vm under the banked compute-to-data rulings); env-injection creds only (§E discipline); shape-only receipts; the SEC probe-halt does NOT block this job (owner's utilization order is the initiation authorization — bank that reading); position-redaction throughout.
+>    - **Check-in cadence**: snapshot utilization + sync receipts at every CP boundary of the M7 walk (and at least every few hours of session time). If a workload finishes early, chain the next mission-aligned workload (embeddings → deep-sweep → benchmark permutations) so utilization stays real, not idle-spin fakery — NEVER run synthetic burn loops; every GPU-hour must produce a banked artefact.
+> 4. Sequence: utilization job built + launched + URL reported → M7-open note + W0 brief → W0 walk with check-ins interleaved.
+>
+> Report: (i) immediately once the 72h job is LIVE with the report URL, (ii) then at W0 seal per cadence. All other constraints and parked owner-desk items unchanged.
+
+**Effects banked at this ruling:**
+
+1. **SW-10 DEFERRED-TO-CLOSE.**  M6 banks at 9/10 sub-waves closed.  SW-10 charter held open (A.1–A.5 unruled).  Milestone ledger entry follows in M7-open note.
+2. **M7 OPENS** per ratified tree.  M7-open milestone-boundary note + W0 grounding brief author immediately after utilization job is LIVE.
+3. **SEC probe-halt reading amended for this job only:** owner's utilization order IS the initiation authorization for the 72h utilization job.  Boundary probes remain NOTE-SKIPPED for CP-boundary purposes; SSH connectivity to akki-vm/akki-vm-ii for this job is authorized via env-injection creds under §E discipline.
+4. **Wave chartered:** W-M7-UTILIZATION-72H (priority interleave · runs concurrent with M7 walk · 72h wall-clock · owner-facing).
+
+**Sequence:** build launcher + sampler + report generator → verify SSH → stage workloads → launch detached → serve report URL → REPORT URL TO OWNER → then M7 open + W0.
+
+---
+
+## M7 OPEN · W-M7-W0-VERIFICATION close · 2026-09-16T~04:00Z · Path α clean · zero-delta
+
+**Milestone activation.** 🧭M7 (Governed Census/Harvest Platform · W0..W9 · owner's own reframe) OPENED this shift per owner ruling 2026-09-16T~03:08Z. Milestone-boundary note banked at `notes/M7_OPEN_REPORT_20260916.md`.
+
+**Wave scope.** W-M7-W0-VERIFICATION = platform integrity verification walk against STANDING_ORDERS §3.1 "ALIVE IS NOT DONE" contract (originally sealed 2026-09-13 at ratchet 3282). Grounding brief at `notes/M7_W0_PLATFORM_INTEGRITY_grounding_brief.md` with Path α (clean) / Path β (drift) decision surface.
+
+**Verification outcome.** Path α · CLEAN · zero-delta close.
+
+- All 6 W0-original refactored sites (reconcile.py · run_queue.py · orphan_detector.py · adopt.py · watchdog.py · on_host_logging.py) still route through `services.output_verified_seal` primitive (line-referenced evidence in receipt).
+- 5 new seal-adjacent surfaces added since 2026-09-13 W0 close (audio_poc/wave_close · census_canon/audio_inventory_supplement · output_verified_seal/__init__ [the primitive itself] · work_supervisor/governance · work_supervisor/supervisor) all correctly compose with the primitive or are pure constants/docstring references (no bypass).
+- 31 W0 invariants in `tests/invariants/test_output_verified_seal.py` all pass (unchanged count since 2026-09-13 close).
+- Baseline confirmed `4358 passed, 1 skipped, 438 warnings in 139.15 s` post-close.
+
+**Verification receipt.** `phase0/m7_w0_verification/verification_receipt_20260916.json` · sites_verified=11 · verdict=clean · ratchet_delta=0.
+
+**Standing Rule 2 exercise.** `test_cp10_harness_receipt_is_still_recent` fired between two baseline runs this shift (age crossed 12h threshold during shift). Sanctioned regeneration via `tools/wave_g5_realchrome_verification_harness.py --strict` at 03:55:59Z returned GREEN · ground-truth unchanged. Not a rebaselining. Precedent: CP-EXR1 shift 2026-09-15T~15:58Z.
+
+**Commit protocol.** No track-a code change lands (verification walk). §3.3 3-commit pattern deviation: single Commit-B on master banks this-wave state entirety (M7-open note, W0 grounding brief, verification receipt, W0 close report, NEXT.md pin update, this DECISIONS entry, freshness regeneration artefacts). No Commit-C fixup needed because no seal file references a master SHA.
+
+**Effects banked:**
+
+1. **M7 formally OPEN** on the ratified 10-wave tree (W0..W9). Prior W0 (2026-09-13 platform seal) and prior W1 (2026-09-13 platform seal) are carried forward as prerequisites-already-met; M7-internal W0/W1 walks are VERIFICATION WALKS against the same primitives.
+2. **W0 CLOSED · zero-delta**. Wave-close report at `notes/W_M7_W0_VERIFICATION_close.md` (5-section END-OF-WAVE format · plain product language).
+3. **Next M7 wave**: W-M7-W1-VERIFICATION (SO §3.2 progress-signal contract · identical shape as W0). Estimated single-shift walk.
+4. **W2..W9 remain BLOCKED-ON-OWNER** per ROADMAP §E.2 (NAS reachability · HF token · 3-station selection · RetentionPolicy Path A/B/C · Ruling #5 sub-verdicts).
+5. **W-M7-UTILIZATION-72H interleave continues**: check-in fired at W0 close (elapsed 0.31h · remaining 71.69h · 34+36 bench iterations banked · peak 100% util per H200 · report served at owner-facing URL).
+
+---
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
