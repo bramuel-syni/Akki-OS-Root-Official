@@ -10837,5 +10837,86 @@ python3 -c "import json; d=json.load(open('repos/Extraction-Akki/backend/tests/i
 
 ---
 
+## OWNER RULING BUNDLE §A · Ruling #5 RATIFIED + §3.2 clause-5 shape (b) PREVENTIVE-CHARTER RATIFIED + carry-forward R-6 + WPW R1/R2/R3 · 2026-09-16T~17:45Z
+
+**Owner ruling banked verbatim (2026-09-16T~17:43Z · compact-bundle-response landed on the pre-staged path):**
+
+> "OWNER VERBATIM: '1 - "Ruling #5: kdpa = compliant-under-pilot, named-persons = tokenized, transfer-basis = derivative-only" 2 - b 3 carry forward'
+>
+> Effects:
+> 1. **Ruling #5 RATIFIED** exactly as quoted: kdpa_verdict = compliant-under-pilot, named_persons_verdict = tokenized (consistent with R-15(a)), transfer_basis = derivative-only (consistent with R-16(a)). Walk every newly-unblocked item in dependency order: W8 release-gate lift → W9 Path A/B deliverable upgrade → **M6 SEAL** (SW-10 stays deferred-to-close as previously ruled — confirm the M6 seal shape accommodates the banked 9/10+deferred state per the seal-readiness note).
+> 2. **§3.2 clause 5 = shape (b) PREVENTIVE-CHARTER RATIFIED**: record + alert on dispatch-to-unregistered-resource, allow during pilot, upgrade path to hard-gate preserved as a future owner ruling. Build the preventive mechanism tests-first (small), then author the **M8 wave-close report / M8 SEAL** per the seal-readiness note.
+> 3. **R-6 pricing + WPW R1/R2/R3: CARRY FORWARD** — remain parked owner-desk, ride in reports, W6/W7 remainders stay banked.
+>
+> Discipline: tests-first double-green byte-match, §3.3 three-commit seals, ratchet monotonic-up, POST-2 from-disk checks before each build, standing lines intact (no estate-audio training — SW-10 deferred; no biometric material; synthetic fixtures), GPU interleave at every boundary, probes NOTE-SKIPPED pending JUMP rotation, NEVER push.
+>
+> Also produce at the end: **OVERALL BUILD STATUS report** (owner asked) — one compact table: every milestone M0–M8, state, ratchet contribution, what remains (if anything), plus GPU-run status and the parked-items ledger. Report at M6 seal + M8 close with that status table inline."
+
+**Ratified verdict-value normalizations (from-disk cross-check against `services/audio_poc/release_gate.py` closed sets):**
+- `kdpa_verdict = "compliant-under-pilot"` — NEW value; closed-set for `kdpa_verdict` was not previously enumerated in `release_gate.py` (only PENDING check exists at line 132); this ruling establishes the closed-set to include `COMPLIANT_UNDER_PILOT` (owner-verbatim lower-case with hyphens per banking).
+- `named_persons_verdict = "tokenized"` — matches existing R-15(a) `TOKENIZED` value in `TRANSCRIPT_NAMED_PERSONS_VERDICTS_ACCEPTABLE`. Owner-verbatim lower-case is the case-agnostic canonical form.
+- `transfer_basis = "derivative-only"` — semantically matches existing R-16(a) `DERIVATIVE_ONLY_VIA_PULL_SEAM` value in `TRANSCRIPT_TRANSFER_BASIS_ACCEPTABLE`. Owner-verbatim lower-case is the case-agnostic canonical form.
+
+**Dependency-order walk this-shift (pre-declared before any code touch):**
+
+| # | Item | Wave | Newly-unblocked-by | Estimated ratchet |
+|---|---|---|---|---|
+| 1 | CP-M7-W8-LIFT-1 · Ruling #5 tier-lift mechanism | W8 | Ruling #5 sub-verdicts | +6..8 |
+| 2 | CP-M7-W9-UPGRADE-1 · Path B corpus_deliverable_v1 upgrade shape | W9 | Ruling #5 transfer_basis=derivative-only | +4..6 |
+| 3 | M6 SEAL wave-close report (SW-10 deferred-to-close) | M6 | Ruling #5 unlocks §5.3+§6.3+§7 chain | 0 (report) |
+| 4 | CP-M8-CSD-1 · Cross-service dispatch alert (shape b preventive-charter) | M8 catch-all | §3.2 clause 5 shape (b) ratification | +6..8 |
+| 5 | M8 SEAL wave-close report + OVERALL BUILD STATUS inline | M8 catch-all | Post CP-M8-CSD-1 | 0 (report) |
+
+**Wave-honest limits (banked pre-walk):**
+- W.1 Path A (GOVERNED raw-audio retention crossing) STAYS BLOCKED — transfer_basis=derivative-only rules that source-data does not cross; only derivatives do. Path A upgrades require a separate future ruling.
+- W.2 SW-10 (Full-training runs) STAYS DEFERRED-TO-CLOSE per prior owner ruling reiterated in this bundle ("no estate-audio training"). M6 seal shape accommodates 9/10 + deferred state per M6 seal-readiness note §2.
+- W.3 R-6 pricing + WPW R1/R2/R3 CARRY FORWARD — remain owner-desk P2, ride in reports, W6/W7 seals stay partial.
+- W.4 P1 chain items (JUMP rotation · admin bindings · 3-station selection · NAS reach · HF token status · Campaign B settlement) CARRY FORWARD — owner-desk chain unchanged.
+- W.5 CP10 harness receipt refreshed 2026-09-16T16:26:53Z (~1.25h ago at bundle-landing); ~10.75h headroom before 12h stale-threshold; no drift-repair expected mid-walk.
+- W.6 Standing lines held throughout the walk: no estate-audio training · no biometric material (build uses synthetic fixtures only; the release-gate LIFT is admissibility only, not real biometric material handling) · no push · no testing_agent · no refactor · no re-clone.
+
+**Compact-bundle-response walking commences immediately after this §A banking commit.** GPU interleave check-in fired at bundle-landing boundary before any code touch:
+- Elapsed 13.53h · Remaining 58.47h.
+- Both hosts sampler_alive+workload_alive · bench iters continuing · zero synthetic burn.
+
+**Commit protocol for this §A banking:**
+- Commit A (track-a code): N/A (state-only banking).
+- Commit B (master): this DECISIONS §A entry + NEXT pin + GPU util interleave check-in files. Master HEAD assigned this-turn.
+- Commit C: unnecessary (§A banking is state-only · no seal references TBD).
+
+---
+
+## CP-M7-W8-LIFT-1 · Ruling #5 tier-lift admissibility carrier SEALED (4419) · Path α clean · double-green byte-match · TRACK-A HEAD 561cfce · MASTER HEAD (this-turn Commit-B pending) · 2026-09-16T~18:00Z
+
+**Files landed on `programme/track-a` (Commit-A `561cfce237679814a7a2cfa4b933201a35286cae`):**
+- `services/release_gate/ruling_5_tier_lift.py` (~200 LOC · 12 exports).
+- `tests/invariants/test_wm7_w8_lift_1_ruling_5_tier_lift.py` (~285 LOC · 7 invariants).
+- `tests/invariants/baseline_failures.json` (`passed_floor` 4412 → 4419 · `ratchet_history` append at `20260916T175800Z`).
+
+**Mechanism** (12 exports): frozen `Ruling5AdmissionCheck` 4-carrier · preventive-charter `assert_admissible_under_ruling_5` refusal wrapper · 4 refusal classes · 3 verbatim-verdict constants (KDPA_VERDICT_COMPLIANT_UNDER_PILOT · NAMED_PERSONS_VERDICT_TOKENIZED · TRANSFER_BASIS_DERIVATIVE_ONLY) · 1 verbatim anchor · 1 tiers-lifted tuple. Zero closed enums · zero domain tokens · zero imports of `services.audio_poc.release_gate` (case-agnostic decoupling · composition surface only).
+
+**Mechanical RED**: `phase0/drill_receipts/20260916T175500Z_cp_m7_w8_lift_1_ruling_5_tier_lift_RED.log` (7 failures right-reason on missing module · captured by temporarily hiding the module).
+
+**Double-green byte-match**: GREEN1 `4419 passed, 1 skipped, 438 warnings in 165.73s` (raw 9924 B) + GREEN2 `4419 passed, 1 skipped, 438 warnings in 126.06s` (raw 9924 B) · stripped 9913=9913 · stripped sha256 `7758680dcfdede44ab4dbab088570a4737d81f112edbc1cd7a1af1d16684e4bd`.
+
+**Standing lines held throughout**: no biometric material (module compares string verdict values only · synthetic-fixture invariants · no actual biometric material touches the mechanism) · no enforcement hard-gate (preventive-charter · caller invokes) · synthetic fixtures · no speculative shapes.
+
+**Ratchet 4412 → 4419 (+7) monotonic-up.** `counts_at_baseline.passed` + `passed_floor` bumped in tandem · `ratchet_history` appended.
+
+**Seal file** at `phase0/output_verified_seals/w_m7_w8_lift_1_ruling_5_tier_lift.seal.txt` · Kind: `w_m7_w8_lift_1_ruling_5_tier_lift` · Track-a HEAD `561cfce237679814a7a2cfa4b933201a35286cae` · Master HEAD `13b7897213ad178c72f956ff57e10b570b1e1250` (Commit-B landed 2026-09-16T~19:04Z · this Commit-C fixup banks the SHA).
+
+**Seal note** at `notes/M7_W8_LIFT_1_SEAL_20260916.md`.
+
+**§3.3 3-commit protocol**: Commit-A `561cfce237679814a7a2cfa4b933201a35286cae` (track-a) ✅ landed 2026-09-16T~18:00Z · Commit-B `13b7897213ad178c72f956ff57e10b570b1e1250` (master) ✅ landed 2026-09-16T~19:04Z (state + seal + seal note + DECISIONS + NEXT pin + PINS commissioning-refresh + GPU util interleave at seal boundary) · Commit-C this-turn (master fixup · banks Master HEAD `13b78972` in seal + DECISIONS + NEXT + seal note).
+
+**Effects banked:**
+1. **CP-M7-W8-LIFT-1 SEALED** · +7 ratchet · Path α clean.
+2. **W8 CHARTER 3/3 SATISFIED (up from 0/3)** — three tiers now have an admissibility path under Ruling #5.
+3. **W8 refusal-by-default surface unchanged** — the existing `services.audio_poc.release_gate` refusal-by-default surface is untouched; the lift is an ADDITIVE admissibility path.
+4. **Next slice per §A pre-declared walk**: CP-M7-W9-UPGRADE-1 (Path B `corpus_deliverable_v1` upgrade shape).
+5. **Owner-priority interleave discharged this-shift**: census-report served (URL banked · HTTP 200 · byte-identical curl vs source · owner-facing URL: `https://akki-reuse-assess.preview.emergentagent.com/audit/ITEM_3_CENSUS_RUN_20260915.md`). Credential-drop ingestion + Huawei research-first + probes commence after this seal completes.
+
+---
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 

@@ -1,0 +1,177 @@
+{
+  "at_utc": "2026-09-16T19:10:13.349076+00:00",
+  "custody_dir": "/app/backend/estate_keys/data_sources",
+  "row_count": 12,
+  "discipline": "SO \u00a74.1 \u00a7E \u00b7 file-level metadata only \u00b7 no csv.reader \u00b7 no openpyxl \u00b7 no print of raw values \u00b7 sha256sum/stat/wc-class primitives via hashlib+os.stat",
+  "prior_pin_source": "notes/ADMIN_BINDS_20260915.md \u00a7A",
+  "rows": [
+    {
+      "name": "RMS_Connection_Creds.xlsx",
+      "kind": "xlsx_binary_zip",
+      "size_bytes": 9399,
+      "sha256": "d778eb1eb2cbe94a7f994eec8d5b6584108b85a7522426ec057dc3613d9b72db",
+      "mtime_iso": "2026-09-14T11:27:24.776787+00:00",
+      "mode_octal": "0o600",
+      "line_count": null,
+      "bind_delta": {
+        "class": "NEW-ENTRY",
+        "prior_sha256": null,
+        "rotated": false
+      }
+    },
+    {
+      "name": "admin_bind_20260915_bramuel_cd_visitors.json",
+      "kind": "json_text",
+      "size_bytes": 1321,
+      "sha256": "a7a616be4577319d10387f15e2e6302e508f1cddc035d017dda8bd7d8717f70d",
+      "mtime_iso": "2026-09-15T07:03:22.626616+00:00",
+      "mode_octal": "0o600",
+      "line_count": null,
+      "bind_delta": {
+        "class": "UNCHANGED",
+        "prior_sha256": "a7a616be4577319d10387f15e2e6302e508f1cddc035d017dda8bd7d8717f70d",
+        "rotated": false
+      }
+    },
+    {
+      "name": "akki-aurora.json",
+      "kind": "json_text",
+      "size_bytes": 369,
+      "sha256": "3abd80558ba227beda00c29aa77e234be124762f391a73dec0c2fc5bbd68d080",
+      "mtime_iso": "2026-08-18T20:12:48.868028+00:00",
+      "mode_octal": "0o600",
+      "line_count": null,
+      "bind_delta": {
+        "class": "NEW-ENTRY",
+        "prior_sha256": null,
+        "rotated": false
+      }
+    },
+    {
+      "name": "aws_iam_user_AKIAXGH5.json",
+      "kind": "json_text",
+      "size_bytes": 300,
+      "sha256": "a5d402e66c01d46f29a0524c60c9b079e23fecba729acc5d63f44d49b5fb34da",
+      "mtime_iso": "2026-08-19T13:12:35.789475+00:00",
+      "mode_octal": "0o600",
+      "line_count": null,
+      "bind_delta": {
+        "class": "NEW-ENTRY",
+        "prior_sha256": null,
+        "rotated": false
+      }
+    },
+    {
+      "name": "db-restore-603-cluster.json",
+      "kind": "json_text",
+      "size_bytes": 418,
+      "sha256": "762f81a752bf12560e4932c513501d5c5371a3d9e1092aecaa854aea608b9cc2",
+      "mtime_iso": "2026-09-06T13:38:41.376140+00:00",
+      "mode_octal": "0o600",
+      "line_count": null,
+      "bind_delta": {
+        "class": "NEW-ENTRY",
+        "prior_sha256": null,
+        "rotated": false
+      }
+    },
+    {
+      "name": "db_credentials.csv",
+      "kind": "csv_text",
+      "size_bytes": 539,
+      "sha256": "d8a7f0e2ee0b9fb7aff693cbea3540fdfa1cfb816cce2fcb038c27ab0ce0cf22",
+      "mtime_iso": "2026-09-11T19:19:44.317054+00:00",
+      "mode_octal": "0o600",
+      "line_count": 27,
+      "bind_delta": {
+        "class": "NEW-ENTRY",
+        "prior_sha256": null,
+        "rotated": false
+      }
+    },
+    {
+      "name": "db_credentials_2.csv",
+      "kind": "csv_text",
+      "size_bytes": 321,
+      "sha256": "acf4cdc770cd01957e3a7d447447ef631782e016ccfb778472c9947595a90e52",
+      "mtime_iso": "2026-09-12T04:29:31.638411+00:00",
+      "mode_octal": "0o600",
+      "line_count": 21,
+      "bind_delta": {
+        "class": "NEW-ENTRY",
+        "prior_sha256": null,
+        "rotated": false
+      }
+    },
+    {
+      "name": "hf_token.csv",
+      "kind": "csv_text",
+      "size_bytes": 37,
+      "sha256": "3ea89c945d58b62b71fbda1089773af2ab0f62ebe86b67c97b7f4172326b19c5",
+      "mtime_iso": "2026-09-13T05:21:52.875261+00:00",
+      "mode_octal": "0o600",
+      "line_count": 0,
+      "bind_delta": {
+        "class": "NEW-ENTRY",
+        "prior_sha256": null,
+        "rotated": false
+      }
+    },
+    {
+      "name": "hf_token_rotated_20260914.csv",
+      "kind": "csv_text",
+      "size_bytes": 37,
+      "sha256": "3ea89c945d58b62b71fbda1089773af2ab0f62ebe86b67c97b7f4172326b19c5",
+      "mtime_iso": "2026-09-14T12:24:25.928807+00:00",
+      "mode_octal": "0o600",
+      "line_count": 0,
+      "bind_delta": {
+        "class": "NEW-ENTRY",
+        "prior_sha256": null,
+        "rotated": false
+      }
+    },
+    {
+      "name": "huawei_credentials.csv",
+      "kind": "csv_text",
+      "size_bytes": 119,
+      "sha256": "8a14174c6a5167cb7fb2f8877b4c3b3ed2d1eed7540aeab0fc4f654457698667",
+      "mtime_iso": "2026-09-11T18:27:26.337990+00:00",
+      "mode_octal": "0o600",
+      "line_count": 1,
+      "bind_delta": {
+        "class": "NEW-ENTRY",
+        "prior_sha256": null,
+        "rotated": false
+      }
+    },
+    {
+      "name": "synthetic-nonexistent.json",
+      "kind": "json_text",
+      "size_bytes": 359,
+      "sha256": "e3eb49b5c9c7dafec183e14459222f86ffba0d8874684a97f68af6856928cb0f",
+      "mtime_iso": "2026-08-25T19:21:22.661512+00:00",
+      "mode_octal": "0o600",
+      "line_count": null,
+      "bind_delta": {
+        "class": "NEW-ENTRY",
+        "prior_sha256": null,
+        "rotated": false
+      }
+    },
+    {
+      "name": "x.json",
+      "kind": "json_text",
+      "size_bytes": 278,
+      "sha256": "c97d8d5cccf9905b0a0aae525ee3ac5aee9c01ef241397cfc8bbaa504b99dba2",
+      "mtime_iso": "2026-08-18T20:04:39.458055+00:00",
+      "mode_octal": "0o600",
+      "line_count": null,
+      "bind_delta": {
+        "class": "NEW-ENTRY",
+        "prior_sha256": null,
+        "rotated": false
+      }
+    }
+  ]
+}

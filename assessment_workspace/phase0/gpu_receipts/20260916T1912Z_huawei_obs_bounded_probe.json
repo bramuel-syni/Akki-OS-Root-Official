@@ -1,0 +1,27 @@
+{
+  "at_utc": "2026-09-16T19:13:57.816869+00:00",
+  "kind": "huawei_obs_bounded_probe",
+  "discipline": "SO \u00a74.1 \u00a7E + readonly_obs_guard \u00b7 env-injection only \u00b7 no csv.reader \u00b7 no raw-value stdout \u00b7 listObjects allow-list op",
+  "custody_file": "/app/backend/estate_keys/data_sources/huawei_credentials.csv",
+  "parse_outcome": "success",
+  "custody_shape": {
+    "file_size_bytes": 119,
+    "line_count_nonempty": 2,
+    "ak_len": 20,
+    "sk_len": 40,
+    "ak_sha256_first10": "6da66c162f",
+    "sk_sha256_first10": "451a83c785"
+  },
+  "probe": {
+    "endpoint": "obs.af-south-1.myhuaweicloud.com",
+    "target_bucket": "google-transcripts",
+    "op": "listObjects",
+    "max_keys": 1,
+    "status": 200,
+    "reason": "OK",
+    "contents_count": 1,
+    "is_truncated": true,
+    "at_least_one_object_present": true,
+    "outcome": "response_received"
+  }
+}

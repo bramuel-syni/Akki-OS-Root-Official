@@ -1,0 +1,61 @@
+Kind: w_m7_w8_lift_1_ruling_5_tier_lift
+CP: CP-M7-W8-LIFT-1
+Wave: M7 · W8 · LIFT
+Charter: Owner ruling #5 verbatim (§A banked 2026-09-16T~17:43Z · master a04c65a8): "Ruling #5: kdpa = compliant-under-pilot, named-persons = tokenized, transfer-basis = derivative-only"
+
+Track-a HEAD at seal: 561cfce237679814a7a2cfa4b933201a35286cae
+Master HEAD: 13b7897213ad178c72f956ff57e10b570b1e1250
+
+Ratchet: 4412 -> 4419 (+7)
+Invariants added: 7
+
+Modules landed:
+- backend/services/release_gate/ruling_5_tier_lift.py (~200 LOC · 12 exports · Ruling #5 tier-lift admissibility carrier · zero closed enums · zero domain tokens · zero imports of services.audio_poc.release_gate)
+- backend/tests/invariants/test_wm7_w8_lift_1_ruling_5_tier_lift.py (~285 LOC · 7 invariants)
+
+Verbatim owner ruling anchors quoted in module source:
+- "kdpa = compliant-under-pilot"
+- "named-persons = tokenized"
+- "transfer-basis = derivative-only"
+
+Ratified verdict-value normalizations (case-agnostic canonical form owner-verbatim lower-case with hyphens):
+- KDPA_VERDICT_COMPLIANT_UNDER_PILOT = "compliant-under-pilot" (NEW closed-set value; not previously enumerated in release_gate.py)
+- NAMED_PERSONS_VERDICT_TOKENIZED = "tokenized" (consistent with existing R-15(a) TOKENIZED)
+- TRANSFER_BASIS_DERIVATIVE_ONLY = "derivative-only" (consistent with existing R-16(a) DERIVATIVE_ONLY_VIA_PULL_SEAM)
+
+Three tiers lifted under Ruling #5:
+- biometric_embedding
+- named_identity
+- speaker_labeled_audio
+
+Standing-line proof:
+- No biometric material — module compares string verdict values; synthetic-fixture invariants exercise the refusal semantics; no actual biometric material touches the mechanism.
+- No enforcement hard-gate — preventive-charter · runtime enforcement fires only when caller invokes assert_admissible_under_ruling_5.
+- No speculative shapes — 4-carrier check + 4 refusal classes + 12 exports bind 1:1 to Ruling #5 verbatim triple + non-lifted-tier refusal.
+- Case-agnostic doctrine: 21-token grep-negative in module source · verified by invariant #7.
+- Composition surface only: no import of services.audio_poc.release_gate (verified by invariant #7 · case-agnostic decoupling). Caller-side composition binds this admissibility check with the existing release-gate refusal-by-default surface.
+
+Mechanical RED drill: phase0/drill_receipts/20260916T175500Z_cp_m7_w8_lift_1_ruling_5_tier_lift_RED.log (banked pre-Commit-A · right-reason 7 failures on missing module · captured by temporarily hiding the module while the tests fired).
+
+Double-green byte-match under BASELINE_GUARD=1:
+- GREEN1: 4419 passed, 1 skipped, 438 warnings in 165.73s (raw 9924 bytes) · phase0/drill_receipts/20260916T175600Z_cp_m7_w8_lift_1_ruling_5_tier_lift_GREEN1.log
+- GREEN2: 4419 passed, 1 skipped, 438 warnings in 126.06s (raw 9924 bytes) · phase0/drill_receipts/20260916T180000Z_cp_m7_w8_lift_1_ruling_5_tier_lift_GREEN2.log
+- Stripped bytes: 9913 = 9913.
+- Stripped sha256: 7758680dcfdede44ab4dbab088570a4737d81f112edbc1cd7a1af1d16684e4bd (byte-identical both runs).
+
+Wave-honest limits (banked):
+- W.1 admits only under exact Ruling #5 verbatim triple; any deviation refuses.
+- W.2 the always-safe `transcript_text_only` tier is not lifted by this module — callers route through the existing services.audio_poc.release_gate.admit_transcript_release path for that tier.
+- W.3 caller-side composition binds this admissibility check with the existing release-gate refusal-by-default surface via the caller's own composition point (this module carries no import into audio_poc).
+- W.4 downstream composition may translate the case-agnostic canonical form (lower-case-with-hyphens) to whatever normalization the existing services.audio_poc.release_gate closed sets require (TOKENIZED, DERIVATIVE_ONLY_VIA_PULL_SEAM) at the caller boundary.
+
+§3.3 3-commit protocol:
+- Commit A `561cfce237679814a7a2cfa4b933201a35286cae` on programme/track-a (code + tests + ratchet_history append + passed_floor bump) ✅ landed 2026-09-16T~18:00Z.
+- Commit B: master state landing (this seal + close note + DECISIONS + NEXT pin + GPU util files) — this turn.
+- Commit C: master fixup — replaces "TBD" above with the actual master Commit-B SHA.
+
+Effect:
+- CP-M7-W8-LIFT-1 SEALED (Path α clean · double-green byte-match · +7 ratchet).
+- Newly-unblocked lane: W9 Path B corpus_deliverable_v1 upgrade (next slice per §A pre-declared dependency-order walk).
+- Standing lines held throughout.
+- W8 CHARTER 3/3 (up from 0/3 at hold-entry) + 1/1 REFUSAL-SURFACE STILL SATISFIED (existing services.audio_poc.release_gate refusal-by-default surface is unchanged; the lift is an ADDITIVE admissibility path).
