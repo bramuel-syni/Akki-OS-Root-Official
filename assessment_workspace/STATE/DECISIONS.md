@@ -10810,5 +10810,32 @@ python3 -c "import json; d=json.load(open('repos/Extraction-Akki/backend/tests/i
 
 ---
 
+## HOLD PATTERN WITH ANOMALY WATCH · owner ruling verbatim §A authorization · 2026-09-16T~17:40Z
+
+**Owner ruling banked verbatim (2026-09-16T~17:38Z):**
+
+> "Frontier exhaustion accepted — excellent shift (+12 ratchet, 6 owner-facing notes, the Inooro token self-catch is the case-agnostic discipline proving itself). Enter HOLD PATTERN WITH ANOMALY WATCH: GPU check-ins on cadence to 72h completion, immediate surface on any anomaly (workload death, host unreachable, thermal, telemetry gap), boot ritual on any resume, report otherwise only when an owner input lands. The consolidated ruling chain (Ruling #5 · clause-5 shape · R-6 · WPW R1/R2/R3 · P1 items) is being put to the owner now with plain-language framing and suggested defaults. If the owner's reply lands as a compact bundle, apply each per the banked directives with verbatim §A banking, and walk every newly-unblocked seal/lift in dependency order."
+
+**Discipline clarifications banked from this ruling:**
+
+1. **Anomaly-surface class** (verbatim owner enumeration): workload death · host unreachable · thermal · telemetry gap. Any of these fires an immediate owner-facing surface interrupt outside the "report only when owner input lands" default.
+2. **Reporting cadence**: silent otherwise (GPU check-ins continue on cadence; not owner-facing narration).
+3. **Resume discipline**: full boot ritual (STANDING_ORDERS §1 · DECISIONS tail · NEXT tail · ratchet-floor verify · baseline green) on any resume.
+4. **Compact-bundle-response path**: owner is putting the consolidated ruling chain to himself with plain-language framing + suggested defaults; if a bundle lands, verbatim §A banking + dependency-order walk of newly-unblocked seals/lifts is the action shape (matches CP-M7-W1-POST-1 / CP-M8-CTCC-1 precedents this-month).
+
+**Hold-entry state (from-disk at ruling boundary):**
+- Ratchet **4412** (this-shift walk closed at CP-M7-W2-CONTRACT-1 seal + fixup + W5..W8 verification-notes batch fixup).
+- Track-a HEAD `757c0c5` · Master HEAD `0b76cfa1` (W5..W8 verification-notes fixup · latest state commit before this hold-entry).
+- GPU utilization LIVE: elapsed 13.46h · remaining 58.54h · both hosts sampler_alive+workload_alive · bench iters ~1612+~1612 (ok across 2 GPUs per host) · zero synthetic burn.
+- Owner-desk chain unchanged (Ruling #5 · §3.2 clause 5 shape · R-6 pricing · WPW R1/R2/R3 · JUMP rotation · admin bindings · 3-station selection · NAS reach · HF token status · Campaign B settlement).
+- All permanent guardrails intact: no push · no testing_agent · no refactor · no re-clone · CHUNK-1 DISAVOWED · standing lines (no training on estate audio · no biometric material · no enforcement hard-gate · no speculative shapes).
+
+**Commit protocol for this hold-entry:**
+- Commit A (track-a code): N/A (state-only).
+- Commit B (master): this DECISIONS entry + NEXT pin + GPU util interleave check-in files. Master HEAD assigned this-turn.
+- Commit C: unnecessary (single-commit hold-entry pattern · no seal file references TBD).
+
+---
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
