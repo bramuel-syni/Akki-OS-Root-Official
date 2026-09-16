@@ -1,0 +1,84 @@
+Kind: cp_m6_9_2_commission_view_render
+
+# CP-M6-9-2 · §13.2 render + §13.3 modality leaf + §13.1 V119c + §13.4 V122c · Seal · CLOSES SUB-WAVE 9 W-M6-COMMISSION-VIEW
+
+**Sealed at UTC:** 2026-09-16T~03:07Z
+**Milestone:** M6 · Sub-wave 9 · second CP (final · closes sub-wave 9) · §13.2 P217 V120a + §13.3 P218 V121 + §13.1 P216 V119c + §13.4 P219 V122c
+**Invariants added:** +10 · **Ratchet:** 4348 → 4358
+**Track-a HEAD at seal:** `7b45a89014c75610d61dbee876909d77ec82749d` · **Master HEAD:** `89371cddc618060a840a322e9bb20bf7cb05d2e6` (§3.3 · both SHAs recorded at CP close)
+
+---
+
+## §A · Discharge
+
+Append-only Part-B extension of `services/audio_plane_v1/commission_view.py` — §13.2 V120a milestones-first render + §13.3 V121 modality leaf + §13.1 V119c internals-projection refusal + §13.4 V122c reads-only allow-list defence.
+
+> **§13.2 P217 (V120a milestones-first) verbatim:** *"The surface is milestones. The artifacts are evidence behind them."*
+
+> **§13.3 P218 (V121) verbatim:** *"Modality appears at exactly one leaf: evidence inspection. Where provenance resolves to a recording, the source plays at its timestamp rather than rendering as a page region — the existing trust-receipt pattern (\"a disputed number is answered by playing the tape\"), unchanged."*
+
+> **§13.1 P216 (V119c) verbatim:** *"no surface is a rendering of backend internals: rendering internals quietly commits the backend to building displayable versions of its own machinery."*
+
+> **§13.4 P219 (V122c reads-only) verbatim:** *"No new machinery is built for display. Any surface element in this section found to require new backend computation beyond reading existing artifacts is out of specification and must be removed or re-specified."*
+
+**Public API added (9 new exports · combined module surface 19 exports):**
+
+- `CommissionViewProjection` — frozen 4-carrier: `milestones_head: Tuple[MilestoneRow, ...]` (V120a milestones-first) + `spend_head: SpendAgainstQuote` (V120e same plain level) + `evidence_leaves: Tuple[EvidenceRef, ...]` (V120f · body · never front page) + `snapshot_ref: str`.
+- `MilestoneRow` — frozen 4-carrier: `milestone_id` + `done_condition` + `owner` + `status`.  No evidence-content fields (V120f).
+- `render_commission_view(*, snapshot) -> CommissionViewProjection` — deterministic projection.  Orders by `snapshot.milestone_list.milestones` (V114a); assembles MilestoneRow head list; attaches spend at head level (V120e); attaches evidence at leaf level (V120f).  Defence-in-depth: refuses `MilestoneListNotAgreedError` if the snapshot's milestone list is unagreed (V120b · family-catch preserved via `MilestoneListNotAgreedError <: CommissionOpenBeforeAgreementError`).
+- `RecordingEvidenceLeaf` — frozen 3-carrier: `evidence_ref: EvidenceRef` (must be kind=='recording' at construction · refuses `RecordingEvidenceKindMismatchError`) + `plays_at_timestamp: str` (V121b timestamp seam) + `recording_provenance_ref: str` (opaque · no audio bytes cross · §3.1 P038).
+- `assert_no_internals_projected(*, projection) -> None` — V119c refusal: walks `dataclasses.fields(projection)`; refuses `InternalsProjectedError` if any field name matches (equals or is prefixed by) an entry in the closed forbidden-name set (`ratchet`, `invariant`, `seam`, `pytest_stripped_sha256`, `mongodb_`, `redis_`, `http_`, `grpc_`, `backend_`).
+- `assert_no_new_backend_computation(*, projection, snapshot) -> None` — V122c refusal: `type(projection).__name__` must be in the closed allow-list of five carrier types authored this sub-wave (`CommissionViewProjection`, `MilestoneRow`, `SpendAgainstQuote`, `EvidenceRef`, `RecordingEvidenceLeaf`); each entry in `projection.evidence_leaves` (if present) must also be in the same allow-list.
+- `RecordingEvidenceKindMismatchError` — V121a refusal.
+- `InternalsProjectedError` — V119c refusal.
+- `NewBackendComputationError` — V122c refusal.
+
+**Refusals (3 new):** `RecordingEvidenceKindMismatchError` (V121a) · `InternalsProjectedError` (V119c) · `NewBackendComputationError` (V122c).  Plus Part-A's 5 refusals (`MilestoneStatusInvalidError` · `MilestoneListNotAgreedError` · `StatusEntryCountMismatchError` · `StatusEntryOrderingMismatchError` · `EvidenceKindInvalidError`) all unchanged.
+
+---
+
+## §B · Wave-honest limits
+
+1. **V121b recording-modality is a REF-carrier only.**  `RecordingEvidenceLeaf.plays_at_timestamp` is an opaque timestamp string · `recording_provenance_ref` is an opaque ref.  No audio bytes cross the seam.  Actual playback is a Watch/UI concern.
+2. **V119c internals-projection refusal is NAME-SCAN based.**  Forbidden-field-name closed-set is fixed at authoring time.  A benign-named field carrying an internals-shaped value is NOT caught by name-scan alone.  Documented in `assert_no_internals_projected`'s docstring.
+3. **V122c reads-only defence is ALLOW-LIST based at authoring boundary.**  Type-name allow-list of five carriers authored this sub-wave.  A carrier legitimately named `CommissionViewProjection` that computed new totals internally is NOT caught by name-scan alone · caller-side integration tests carry the total discipline.
+4. **V120b defence-in-depth in render.**  Even if a caller bypasses the CP-M6-9-1 factory (e.g., constructs a `CommissionViewSnapshot` directly with an unagreed milestone list), `render_commission_view` re-checks and refuses.  Family-catch preserved.
+5. **No LLM / HTTP / filesystem / network.  Case-agnostic.  §3.1 P038 preserved.**  Synthetic fixtures only in tests.
+
+---
+
+## §C · Composition · No-refactor
+
+**No-refactor.** `commission_view.py` Part-A (CP-M6-9-1) is preserved verbatim; Part-B is append-only under a marked header (`# Part-B · CP-M6-9-2 · ...`).  Module docstring extended to add V121 anchor + updated wave-honest limits section (V119c + V121 + V122c now land in this CP · Part-A anchors V119 + V120 + V122 retained verbatim).  `milestones.py` · `calibration.py` · `training_planner.py` · all prior `audio_plane_v1/*` modules unchanged.
+
+---
+
+## §D · Discipline receipts
+
+- **RED** `phase0/drill_receipts/20260916T030030Z_wm6_9_2_RED_pre_impl.log` — 10 right-reason failures: `ImportError`/`AttributeError` on Part-B exports (`CommissionViewProjection`, `render_commission_view`, `RecordingEvidenceLeaf`, `assert_no_internals_projected`, `assert_no_new_backend_computation`, refusal classes) before Part-B mechanism landed.
+- **GREEN 1** `phase0/drill_receipts/20260916T030300Z_wm6_9_2_double_green_run1.log` — `4358 passed, 1 skipped, 438 warnings`.
+- **GREEN 2** `phase0/drill_receipts/20260916T030505Z_wm6_9_2_double_green_run2.log` — `4358 passed, 1 skipped, 438 warnings`.
+- **Byte-match:** raw `9844 B` each · stripped `9823 B` each (21 B transient-timing suffix stripped) · stripped-sha256 `52107ea2110def014ecaf2adeb63f95579101c35797d7f61a4b5b7e862f0912b`.
+- **Rider** `phase0/wave_riders/w_m6_commission_view_cp2/` — `pip_freeze.txt` 192 lines · zero drift vs CP-M6-9-1 rider · `collect_only_summary.txt` 4359 tests collected.
+- **Boundary probe #61** `phase0/boundary_probes/probe_61_20260916T030700Z.json` — NOTE-SKIPPED per SEC halt.
+- **Word-boundary executive-domain + audio-material negative-scans:** CLEAN.
+
+---
+
+## §E · §3.3 three-commit pattern
+
+- **Commit A (code · programme/track-a):** `7b45a89014c75610d61dbee876909d77ec82749d` — `services/audio_plane_v1/commission_view.py` (Part-B append-only) + `tests/invariants/test_wm6_9_2_commission_view_render.py` (new) + `tests/invariants/baseline_failures.json` (ratchet 4348 → 4358 + ratchet_history entry).
+- **Commit B (state · master):** `89371cddc618060a840a322e9bb20bf7cb05d2e6` — DECISIONS + NEXT + seal + rider + probe #61 + drill receipts + sub-wave 9 close report + SW-10 HALT grounding brief.
+- **Commit C (state · master · fixup):** replaces `Master HEAD: TBD` with Commit-B's SHA in seal + DECISIONS + NEXT.
+
+---
+
+## §F · Onward — Sub-wave 9 CLOSED
+
+**Sub-wave 9 · W-M6-COMMISSION-VIEW · COMPLETE.**  Two CPs · +20 invariants · ratchet 4338 → 4358 · 2 seals · double-green byte-match at every seal.  Wave-close report at `notes/W_M6_COMMISSION_VIEW_close.md`.
+
+Next: **sub-wave 10 · W-M6-FULL-TRAINING-RUNS · §11.6 full training runs — MANDATORY HALT-TO-OWNER at sub-wave open.**  Grounding brief follows in same session turn · then STOP for owner ruling on real-estate audio access (§4.1 language corpus · §4.3 channel classes · §6.4 P102 read-scope enforcement · Audio-bytes-retention Path A/B/C).
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

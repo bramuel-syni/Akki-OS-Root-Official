@@ -1,0 +1,21 @@
+{
+  "probe_id": "boundary_probe_57",
+  "at_utc": "2026-09-16T~01:59Z",
+  "wave_boundary": "CP-M6-7-3 seal (§11.4 P184..P188 planner outputs · V115..V118 verbatim · Part-B extension of training_planner.py · CLOSES SUB-WAVE 7 W-M6-TARGET-OUTCOME-PLANNER)",
+  "status": "NOTE-SKIPPED",
+  "skip_reason": "SEC halt in force pending JUMP root credential rotation to JSON custody format. Owner ruling 2026-09-15T~22:30Z: probe loop resumes from the next boundary AFTER JUMP custody rotates to JSON. Custody helper + boundary probe tool landed under Redaction Hardening Option 1 (CP-SW6-HYG-1 · master 76a8476e / df98f8f6). JUMP custody remains CSV as of this boundary; tool refuses to invoke CSV env-injection without explicit --allow-csv-custody opt-in. Probe #57 records NOTE-SKIPPED under the same discipline as probes #54, #55, and #56.",
+  "results": [],
+  "sec_incident_ref": {
+    "receipt": "phase0/security_incidents/sec_incident_jump_cred_leak_20260915T222935Z.json",
+    "note": "notes/SEC_INCIDENT_JUMP_CRED_LEAK_20260915.md",
+    "commit": "75bf8e1f"
+  },
+  "tool_ref": {
+    "path": "/app/assessment_workspace/tools/boundary_probe_cd_visitors.py",
+    "cp_landing": "CP-SW6-HYG-1",
+    "state_repo_commit": "76a8476e"
+  },
+  "owner_ruling_ref": "STATE/DECISIONS.md · owner Path β ratification pending JUMP rotation. Owner-desk item carried in every milestone-boundary report.",
+  "owner_desk_ledger_note": "Owner is confirming whether the CD/Visitors MySQL username is 'bramuel' (as filed) or 'bramwel' (NAS spelling) — custody file correction may follow; neither is being tested against the servers (firewall still closed anyway).",
+  "cumulative_probe_pass_count_across_1_through_57": 0
+}

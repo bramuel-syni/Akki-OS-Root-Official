@@ -1,0 +1,114 @@
+Kind: cp_m6_7_1_target_outcome
+
+# CP-M6-7-1 · Full §10 TargetOutcome carrier · Seal · OPENS SUB-WAVE 7
+
+**Sealed at UTC:** 2026-09-16T~01:26Z
+**Milestone:** M6 · Sub-wave 7 · first CP · §10.1 P154..P164 + §10.2 P165..P169 verbatim (V98..V108)
+**Invariants added:** +10 · **Ratchet:** 4288 → 4298
+**Track-a HEAD at seal:** `479377c00805640f7e58b1df954403dc5d2c1d69` · **Master HEAD:** `868f694ed88f731da892469104e51141edf4aec9` (§3.3 · both SHAs recorded at CP close)
+
+---
+
+## §A · Discharge
+
+Landed `services/audio_plane_v1/target_outcome.py` — full §10 TargetOutcome 7-carrier with §10.2 binding rules (V105..V108) enforced as construction-time refusals.  Composes with CP-M6-6-1 `AcceptanceBar` (imported and re-exported so callers only need one import).  No modification to `objective_wizard.py`; `TargetOutcomeStub` remains untouched for backward compat.
+
+> **§10.1 P154..P164 (V98..V104) verbatim TargetOutcome block:**
+>
+> *"task — operational statement of what the model must do · domain — context of use · population — defined by reference to register strata, not labels · acceptance — threshold per stratum; two-dimensional (accuracy, coverage) · gate_policy — per Outcome: missed stratum gates release | ships documented · test_set_ref — must exist before the Outcome is accepted · constraints — latency, compute budget, deployment target"*
+
+> **§10.2 P165..P169 (V105..V108) binding rules:**
+>
+> V105 (P166): *"Population is register-defined. 'Language L, accent clusters 1–4, telephone band and studio, adult' — never 'speakers of L.' This is what makes coverage computable."*
+>
+> V106 (P167): *"Acceptance is per stratum. A single global threshold hides the failure that matters: 94% on the majority variant and 61% on the rest passes one test and fails the one that decides whether the work reaches the people it was built for."*
+>
+> V107 (P168 · LOAD-BEARING): *"The test set precedes the training. An Outcome without an existing, stratified test set is rejected at definition time."*
+>
+> V108 (P169): *"The gate decision is recorded on the Outcome at definition — not decided ad hoc at ship time."*
+
+**Public API (10 exports):**
+
+- `GATE_POLICY_VALUES` — `frozenset({"missed_stratum_gates_release", "ships_documented"})` (V102 closed-set verbatim).
+- `PopulationSpec` — frozen 1-carrier: `stratum_refs: Tuple[str, ...]` (V100).  Refuses empty at `__post_init__` per V105.
+- `Constraints` — frozen 3-carrier: `latency` + `compute_budget` + `deployment_target` (V104 verbatim triple).
+- `TargetOutcome` — frozen 7-carrier: `task` · `domain` · `population: PopulationSpec` · `acceptance: AcceptanceBar` · `gate_policy: str` (∈ GATE_POLICY_VALUES; V102 enforced at `__post_init__`; V108 gate-at-definition enforced by frozen discipline) · `test_set_ref: str` (V103 · LOAD-BEARING · mandatory not Optional) · `constraints: Constraints`.
+- `construct_target_outcome(...)` — factory enforcing cross-field V107 + V106 in P036 receipt-before-result order.
+- `GatePolicyInvalidError` · `PopulationEmptyStrataRefsError` · `TestSetRefMissingError` · `AcceptancePerStratumMissingError`.
+- `AcceptanceBar` — re-exported from `objective_wizard.py` for caller convenience.
+
+**Refusals (4 · P036 receipt-before-result order in factory):**
+
+1. `TestSetRefMissingError` (V107 · load-bearing · fires first at factory).
+2. `AcceptancePerStratumMissingError` (V106 · per-stratum acceptance).
+3. `GatePolicyInvalidError` (V102 · closed-set · fires at TargetOutcome `__post_init__`).
+4. `PopulationEmptyStrataRefsError` (V105 · propagates from PopulationSpec `__post_init__` if caller pre-constructs an empty spec).
+
+---
+
+## §B · Wave-honest limits (per M6 SW7 grounding brief §D)
+
+1. **Population shape only.**  Enforces "population references register strata (non-empty stratum_refs)".  Does NOT verify that referenced stratum_refs exist in the CP-M6-3-1 CharacterRegister — that is a downstream composition, out of scope this CP.
+2. **No LLM / HTTP / filesystem / network.**  Case-agnostic; no coupling to any specific stratum class.
+3. **§3.1 P038 tokens-not-waveforms discipline preserved.**  No audio bytes / waveforms cross the TargetOutcome surface; every field is opaque metadata.
+4. **Composes with sub-wave 6 without modifying it.**  Imports `AcceptanceBar` from `objective_wizard.py`; does not modify that module.  `TargetOutcomeStub` remains callable — backward compat preserved for CP-M6-6-1's compile-refusal machinery.
+
+---
+
+## §C · Composition · No-refactor
+
+**No-refactor.** No modifications to any prior audio_plane_v1 module.  Composition is import-only: `target_outcome` reads `AcceptanceBar` from `objective_wizard`.
+
+**Composition surface at seal:**
+
+- `TargetOutcome.acceptance` accepts any `AcceptanceBar` instance from CP-M6-6-1.
+- `TargetOutcomeStub` (CP-M6-6-1) and `TargetOutcome` (this CP) coexist — STUB is deprecated in-place but not removed.  Future work may re-wire `compile_objective_artifact` to accept full `TargetOutcome`; that is a follow-on CP.
+- `PopulationSpec.stratum_refs` are string references consumed downstream by CP-M6-7-2 planner architecture (V110 "register strata" contract-cell).
+
+---
+
+## §D · Invariants (10 · owner-set ≤10 ceiling · WITHIN)
+
+Test file: `tests/invariants/test_wm6_7_1_target_outcome.py` (287 lines).
+
+1. `test_wm6_7_1_module_fabric` — all 10 public exports present.
+2. `test_wm6_7_1_gate_policy_values_verbatim` — closed-set frozenset {missed_stratum_gates_release, ships_documented} verbatim.
+3. `test_wm6_7_1_constraints_frozen_three_carrier` — V104 verbatim triple (latency + compute_budget + deployment_target); frozen dataclass discipline.
+4. `test_wm6_7_1_population_spec_refuses_empty_strata_refs` — V105 register-defined: empty stratum_refs → `PopulationEmptyStrataRefsError`.
+5. `test_wm6_7_1_target_outcome_frozen_seven_carrier` — V98..V104 7-carrier shape; V108 gate-at-definition enforced by frozen-instance discipline.
+6. `test_wm6_7_1_target_outcome_refuses_invalid_gate_policy` — V102 closed-set: any string ∉ GATE_POLICY_VALUES → `GatePolicyInvalidError` at `__post_init__`.
+7. `test_wm6_7_1_construct_refuses_missing_test_set_ref` — V107 load-bearing: empty test_set_ref → `TestSetRefMissingError` at factory.
+8. `test_wm6_7_1_construct_refuses_acceptance_without_per_stratum` — V106 per-stratum: `has_per_stratum_dimension=False` → `AcceptancePerStratumMissingError` at factory.
+9. `test_wm6_7_1_construct_pass_through_population_refusal` — factory propagates `PopulationEmptyStrataRefsError` from PopulationSpec `__post_init__` (does not swallow).
+10. `test_wm6_7_1_construct_passes_on_wellformed_input_both_gate_values` — positive-path invariant: both closed-set gate_policy values construct successfully with all §10 fields present.
+
+---
+
+## §E · Discipline receipts
+
+- **RED**: `phase0/drill_receipts/20260916T011942Z_wm6_7_1_RED_pre_impl.log` — 10 failed / 4288 passed / 1 skipped · right-reason `ModuleNotFoundError: No module named 'services.audio_plane_v1.target_outcome'` on every test.
+- **GREEN 1**: `phase0/drill_receipts/20260916T012058Z_wm6_7_1_double_green_run1.log` — `4298 passed, 1 skipped, 438 warnings`.
+- **GREEN 2**: `phase0/drill_receipts/20260916T012334Z_wm6_7_1_double_green_run2.log` — `4298 passed, 1 skipped, 438 warnings`.
+- **Byte-match**: raw 9764 B each · stripped 9751 B each · stripped-sha256 `fd7f5fa1c74e436360af15daa4ad2273833a59ec0f1e3fa580abada9e3f21ff8` (identical across both runs).
+- **Rider**: `phase0/wave_riders/w_m6_target_outcome_planner_cp1/` — pip_freeze 192 lines (zero drift vs prior CP-SW6-HYG-1 rider) · collect-only 4299 tests.
+- **Boundary probe #55**: NOTE-SKIPPED per SEC halt (receipt `phase0/boundary_probes/probe_55_20260916T012636Z.json` · references helper + tool landed at CP-SW6-HYG-1).
+- **Word-boundary negative-scan (executive-domain + audio-material)**: CLEAN.  ("executive-domain tokens" phrase in test docstring header is the standing self-referential discipline declaration convention used by every prior wm6 test file — not a violation.)
+
+---
+
+## §F · Sub-wave 7 opens
+
+**W-M6-TARGET-OUTCOME-PLANNER** opens with this seal.
+
+Position on M6 §15 walk: **V147 · TABLE-ROW-08** verbatim: *"TargetOutcome type + planner core (§10, §11.1, §11.4).  Requires register strata to plan against and the wizard to author Outcomes."*
+
+Sub-wave 7 will discharge three CPs:
+1. **CP-M6-7-1** — this seal (§10 TargetOutcome carrier · V98..V108).
+2. **CP-M6-7-2** — §11.1 Planner architecture four-carrier (V109..V112).
+3. **CP-M6-7-3** — §11.4 Planner outputs (V115..V118) · CLOSES SUB-WAVE 7.
+
+---
+
+## §G · Onward
+
+**CP-M6-7-2** — `services/audio_plane_v1/training_planner.py` · §11.1 P171..P178 verbatim four-carrier planner architecture (V109..V112).  Deterministic core + learned-reorder layer + eligibility gate + reproducibility witness.

@@ -1,0 +1,12 @@
+{
+  "probe_id": "boundary_probe_59",
+  "at_utc": "2026-09-16T~02:36Z",
+  "wave_boundary": "CP-M6-8-2 seal (§11.3 P181..P182 V114 Milestone-list contract · services/audio_plane_v1/milestones.py · CLOSES SUB-WAVE 8 W-M6-CALIBRATION-ACCEPTANCE)",
+  "status": "NOTE-SKIPPED",
+  "skip_reason": "SEC halt in force pending JUMP root credential rotation to JSON custody format. Owner ruling 2026-09-15T~22:30Z: probe loop resumes from the next boundary AFTER JUMP custody rotates to JSON. Custody helper + boundary probe tool landed under Redaction Hardening Option 1 (CP-SW6-HYG-1). JUMP custody remains CSV as of this boundary; tool refuses to invoke CSV env-injection without explicit --allow-csv-custody opt-in. Probe #59 records NOTE-SKIPPED under same discipline as probes #54..#58.",
+  "results": [],
+  "sec_incident_ref": {"receipt": "phase0/security_incidents/sec_incident_jump_cred_leak_20260915T222935Z.json", "note": "notes/SEC_INCIDENT_JUMP_CRED_LEAK_20260915.md", "commit": "75bf8e1f"},
+  "tool_ref": {"path": "/app/assessment_workspace/tools/boundary_probe_cd_visitors.py", "cp_landing": "CP-SW6-HYG-1", "state_repo_commit": "76a8476e"},
+  "owner_ruling_ref": "STATE/DECISIONS.md · owner Path β ratification pending JUMP rotation.",
+  "cumulative_probe_pass_count_across_1_through_59": 0
+}

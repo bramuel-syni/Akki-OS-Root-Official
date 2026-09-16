@@ -1,0 +1,71 @@
+Kind: cp_m6_8_2_milestones
+
+# CP-M6-8-2 · §11.3 Milestone-list contract · Seal · CLOSES SUB-WAVE 8 W-M6-CALIBRATION-ACCEPTANCE
+
+**Sealed at UTC:** 2026-09-16T~02:36Z
+**Milestone:** M6 · Sub-wave 8 · second CP (final) · §11.3 P181..P182 verbatim (V114)
+**Invariants added:** +10 · **Ratchet:** 4328 → 4338
+**Track-a HEAD at seal:** `b7ebccbeffd9795573a0a9f6c1e3ed439fa235a7` · **Master HEAD:** `0b91b1dd6d7fa14a58a63f548180771d97aac5c4` (§3.3 · both SHAs recorded at CP close)
+
+---
+
+## §A · Discharge
+
+Landed `services/audio_plane_v1/milestones.py` — §11.3 V114 Milestone-list contract carriers + factory + agreement gate + refusals.
+
+> **§11.3 P181..P182 (V114) verbatim:** *"Sampling & Reflection has two customers. It prices the real job, and it authors the accountability structure: its output to the objective owner is not a curve but a proposed milestone list — the checklist of what must be done, in what order, for the commission to succeed. Each milestone carries a done-condition and an owner. The objective owner reviews and agrees the list at commission; from that point, all reporting is against it. Accountability is set before spend, not discovered during."*
+
+**Public API (10 exports):** `Milestone` (frozen 3-carrier · `milestone_id` + `done_condition` + `owner` · refuses `MilestoneMissingDoneConditionError` / `MilestoneMissingOwnerError` at `__post_init__` per V114b) · `MilestoneList` (frozen 3-carrier · `milestones` ordered tuple + `commission_agreement_ref` Optional + `commission_id` · V114a ordering load-bearing) · `construct_milestone_list` (V114a factory · refuses `MilestoneListEmptyError` on empty milestones) · `agree_milestone_list` (V114c gate · returns a new frozen `MilestoneList` via `dataclasses.replace`; refuses `MilestoneListAlreadyAgreedError` on re-agreement per V114d "from that point, all reporting is against it") · `assert_commission_open_only_after_agreement` (V114c refusal · raises `CommissionOpenBeforeAgreementError` when `commission_agreement_ref is None`) · 5 error classes.
+
+**Refusals (5):** `MilestoneMissingDoneConditionError` (V114b · empty done-condition branch) · `MilestoneMissingOwnerError` (V114b · empty owner branch) · `MilestoneListEmptyError` (V114a · empty milestones branch) · `MilestoneListAlreadyAgreedError` (V114d · re-agreement branch) · `CommissionOpenBeforeAgreementError` (V114c · None agreement_ref branch).
+
+**Standalone V114 authoring surface.** No composition-import with `calibration.py` (CP-M6-8-1) or `training_planner.py` (CP-M6-7-2/CP-M6-7-3) in this CP.  V117 forward-reference `MilestoneListRef` (in `training_planner.py`) is a ref-string carrier; §11.3 content lands here.  The two surfaces connect at §13 Commission View (sub-wave 9) where `MilestoneListRef.ref` will resolve to a concrete `MilestoneList` via a downstream registry — that composition-check is a sub-wave 9 concern, not this CP.
+
+---
+
+## §B · Wave-honest limits
+
+1. **Compile-time authoring surface + agreement gate only.**  Runtime status (`done` / `on-track` / `behind` / `missed`) is §13.2 Commission View territory — lands sub-wave 9.
+2. **V114c agreement ref is opaque.**  Ref-verification (signature / authenticator / receipt) is a Watch / Commission View concern; this CP only enforces the gate's shape (None → refused; non-None → accepted; already-set → re-agreement refused).
+3. **No LLM / HTTP / filesystem / network.  Case-agnostic.  §3.1 P038 preserved.**  Synthetic fixtures only in tests.
+4. **V114a ordering.**  `MilestoneList.milestones` is a `Tuple[Milestone, ...]` — ordered by construction; the test `test_wm6_8_2_milestone_list_frozen_three_carrier_ordering_preserved` walks m0..m3 in order and asserts `(m0, m1, m2, m3)` roundtrip.  Ordering-semantics enforcement downstream (e.g., "milestone k+1 done-condition depends on milestone k") is a §13.2 concern.
+
+---
+
+## §C · Composition · No-refactor
+
+**No-refactor.** `calibration.py` (CP-M6-8-1) · `training_planner.py` (CP-M6-7-2 + CP-M6-7-3 Part-B) · all prior `audio_plane_v1/*` modules unchanged.  This CP adds one new module and does not import from or modify any prior module.
+
+---
+
+## §D · Discipline receipts
+
+- **RED** `phase0/drill_receipts/20260916T022001Z_wm6_8_2_RED_pre_impl.log` — 10 right-reason `ModuleNotFoundError: No module named 'services.audio_plane_v1.milestones'` (all 10 tests · exit non-zero).
+- **GREEN 1** `phase0/drill_receipts/20260916T022059Z_wm6_8_2_double_green_run1.log` — `4338 passed, 1 skipped, 438 warnings`.
+- **GREEN 2** `phase0/drill_receipts/20260916T023153Z_wm6_8_2_double_green_run2.log` — `4338 passed, 1 skipped, 438 warnings`.
+- **Byte-match:** raw `9844 B` each · stripped `9823 B` each (transient-timing suffix `" in NNN.NNs (H:MM:SS)"` stripped · 21 B) · stripped-sha256 `56e402a6a07614bd4f95563005e1a4348ed559c5c9452472ca4f605183ea8967`.
+- **Rider** `phase0/wave_riders/w_m6_calibration_acceptance_cp2/` — `pip_freeze.txt` 192 lines · zero drift vs CP-M6-8-1 rider · `collect_only_summary.txt` 4339 tests collected.
+- **Boundary probe #59** `phase0/boundary_probes/probe_59_20260916T023600Z.json` — NOTE-SKIPPED per SEC halt (SEC receipt `phase0/security_incidents/sec_incident_jump_cred_leak_20260915T222935Z.json` · owner Path β pending JUMP rotation).
+- **Word-boundary executive-domain + audio-material negative-scans:** CLEAN.
+
+---
+
+## §E · §3.3 three-commit pattern
+
+- **Commit A (code · programme/track-a):** `b7ebccbeffd9795573a0a9f6c1e3ed439fa235a7` — `services/audio_plane_v1/milestones.py` (new) + `tests/invariants/test_wm6_8_2_milestones.py` (new) + `tests/invariants/baseline_failures.json` (ratchet 4328 → 4338 + ratchet_history entry).
+- **Commit B (state · master):** `0b91b1dd6d7fa14a58a63f548180771d97aac5c4` — DECISIONS + NEXT + seal + rider + probe #59 + drill receipts + sub-wave 8 close report.
+- **Commit C (state · master · fixup):** replaces `Master HEAD: TBD` with Commit-B's SHA in seal + DECISIONS + NEXT.
+
+---
+
+## §F · Onward — Sub-wave 8 CLOSED
+
+**Sub-wave 8 · W-M6-CALIBRATION-ACCEPTANCE · COMPLETE.**  Two CPs · +20 invariants · ratchet 4318 → 4338 · 2 seals · double-green byte-match at every seal.  Wave-close report at `notes/W_M6_CALIBRATION_ACCEPTANCE_close.md`.
+
+Next: **sub-wave 9 · W-M6-COMMISSION-VIEW · §13 Commission View surface** (owner standing GO covers SW-9 · synthetic-fixture-safe surface work).  Author grounding brief and open the walk.
+
+Then: **sub-wave 10 · W-M6-FULL-TRAINING-RUNS · §11.6 full training runs — HALT-TO-OWNER at open** (real estate voice / biometric material triggers M6 §E.5 HALT boundary · SW-10 grounding brief will surface the HALT and stop until owner rules on real-estate audio access).
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

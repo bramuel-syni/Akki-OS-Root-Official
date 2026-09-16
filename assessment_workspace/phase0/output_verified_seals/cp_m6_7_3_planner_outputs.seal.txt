@@ -1,0 +1,88 @@
+Kind: cp_m6_7_3_planner_outputs
+
+# CP-M6-7-3 · §11.4 Planner Outputs · Seal · CLOSES SUB-WAVE 7
+
+**Sealed at UTC:** 2026-09-16T~01:59Z
+**Milestone:** M6 · Sub-wave 7 · third CP (CLOSING) · §11.4 P184..P188 verbatim (V115..V118)
+**Invariants added:** +10 · **Ratchet:** 4308 → 4318
+**Track-a HEAD at seal:** `d411cc70bea163f75f082e3ac5a0e688338d6e54` · **Master HEAD:** `664c51f7d93aae7605aa08656b70086857fcf1b5` (§3.3 · both SHAs recorded at CP close)
+
+---
+
+## §A · Discharge
+
+Extended `services/audio_plane_v1/training_planner.py` (append-only Part-B header · no refactor) with §11.4 verbatim planner-outputs.
+
+> **§11.4 P185 (V115) verbatim:** *"Coverage report — per target stratum: hours available, quality distribution, gaps, cost of closing each gap."*
+>
+> **§11.4 P186 (V116) verbatim:** *"Curriculum — ordering and weighting across strata derived from the register, not from the corpus's natural distribution, which is always skewed toward whatever occurred most. The dedup instance condition map enters as a designated robustness stratum."*
+>
+> **§11.4 P187 (V117) verbatim:** *"Proposed milestone list (§11.3)."*
+>
+> **§11.4 P188 (V118) verbatim (LOAD-BEARING):** *"Cost quote with a stated confidence interval."*
+
+**Public API added (8 new exports):**
+
+- `PerStratumCoverageEntry` — frozen 5-carrier: `stratum_ref` · `hours_available_h` · `quality_distribution_summary_ref` · `gap_hours_h` · `cost_of_closing_gap`.  V115 per-stratum row.
+- `CoverageReport` — frozen 1-carrier: `entries: Tuple[PerStratumCoverageEntry, ...]`.  V115 coverage-report container.
+- `CurriculumOrdering` — frozen 2-carrier: `stratum_weight_pairs: Tuple[Tuple[str, float], ...]` (register-derived) · `robustness_stratum_ref: str | None`.  V116 · refuses non-normalized weights at `__post_init__` under 1e-9 tolerance.
+- `CostQuoteWithCI` — frozen 3-carrier: `point_estimate: float` · `ci_low: float | None` · `ci_high: float | None`.  V118 LOAD-BEARING · refuses `ci_low is None` or `ci_high is None` at `__post_init__`.
+- `MilestoneListRef` — frozen 1-carrier: `ref: str`.  V117 forward-reference stub (§11.3 content lands sub-wave 8).
+- `PlannerOutputs` — frozen 4-carrier composition: `coverage_report` · `curriculum` · `milestone_list_ref` · `cost_quote`.
+- `CostQuoteMissingCIError` — V118 refusal.
+- `CurriculumWeightNormalizationError` — V116 refusal.
+
+**Refusals (2):**
+
+1. `CostQuoteMissingCIError` — construction of `CostQuoteWithCI` with either `ci_low is None` or `ci_high is None`.
+2. `CurriculumWeightNormalizationError` — construction of `CurriculumOrdering` with weights that do not sum to 1.0 under 1e-9 floating-point tolerance.
+
+**No-refactor discipline verified.**  All CP-M6-7-2 exports (10) remain present and unchanged; module_fabric test asserts both 8-new + 10-prior = 18 exports.
+
+---
+
+## §B · Wave-honest limits (per M6 SW7 grounding brief §D)
+
+1. **§11.4 landed as append-only Part-B.**  Part-A (CP-M6-7-2 · §11.1 architecture seam · V109..V112) untouched.  No refactor of `run_eligibility_gate`, protocols, strip, or any prior carrier.
+2. **V117 is a forward-reference stub.**  `MilestoneListRef` carries only a `ref` string; the §11.3 milestone-list content contract (V114) is scheduled for sub-wave 8.
+3. **V116 register-not-corpus derivation is stated but not enforced by shape.**  The refusal fires only on non-normalized weights (V116's numerical clause); the "derived from the register, not from the corpus's natural distribution" clause is architectural intent enforced by downstream composition, not by carrier shape.  Documented as a wave-honest limit.
+4. **No LLM / HTTP / filesystem / network.  Case-agnostic.  §3.1 P038 preserved.**  Synthetic-fixtures-only in tests.
+
+---
+
+## §C · Composition · No-refactor
+
+**No-refactor.** No modifications to Part-A (`PlanInputs` / `EligibilityDecision` / `EligibleStripped` / `PlanReproducibilityWitness` / `PlannerCore` / `LearnedReorderLayer` / `strip_eligibility_decision` / `run_eligibility_gate` / `LearnedReorderStrippingViolationError` / `EligibilityGateSlippageError`).  No modifications to any prior audio_plane_v1 module.  Composition is import-only; Part-B lands as append-only under the marked header.
+
+---
+
+## §D · Discipline receipts
+
+- **RED** `phase0/drill_receipts/20260916T015454Z_wm6_7_3_RED_pre_impl.log` — 10 right-reason `ImportError: cannot import name 'CostQuoteWithCI' from 'services.audio_plane_v1.training_planner'` (and similar for other new symbols) before Part-B existed.
+- **GREEN 1** `phase0/drill_receipts/20260916T015628Z_wm6_7_3_double_green_run1.log` — `4318 passed, 1 skipped, 438 warnings`.
+- **GREEN 2** `phase0/drill_receipts/20260916T015859Z_wm6_7_3_double_green_run2.log` — `4318 passed, 1 skipped, 438 warnings`.
+- **Byte-match:** raw `9764 B` each · stripped `9743 B` each · stripped-sha256 `9f460985886bf60aa0dd19c82c79595a82d275a4b079ce6695c8435da76bc14d`.
+- **Rider** `phase0/wave_riders/w_m6_target_outcome_planner_cp3/` — `pip_freeze.txt` 192 lines · zero drift vs CP-M6-7-2 rider · `collect_only_summary.txt` 4319 tests.
+- **Boundary probe #57** `phase0/boundary_probes/probe_57_20260916T015900Z.json` — NOTE-SKIPPED per SEC halt.
+- **Word-boundary executive-domain negative-scan:** CLEAN.
+- **Word-boundary audio-material negative-scan:** CLEAN.
+
+---
+
+## §E · §3.3 three-commit pattern
+
+- **Commit A (code · programme/track-a):** landed at `d411cc70bea163f75f082e3ac5a0e688338d6e54` — training_planner.py Part-B append (8 new classes + docstring anchor additions + __all__ update) + test file `test_wm6_7_3_planner_outputs.py` + `baseline_failures.json` ratchet-bump 4308 → 4318.  (Drill receipts + rider + seal live in the state repo · Commits B/C.)
+- **Commit B (state · master):** landed at `664c51f7d93aae7605aa08656b70086857fcf1b5` — DECISIONS + NEXT + seal (this file, `Master HEAD: TBD` at write-time) + rider + probe #57 + drill receipts + wave-close report.
+- **Commit C (state · master · fixup):** replaced `Master HEAD: TBD` with Commit-B's SHA in seal + DECISIONS + NEXT + wave-close report.
+
+---
+
+## §F · Sub-wave 7 close
+
+CP-M6-7-3 CLOSES SUB-WAVE 7 W-M6-TARGET-OUTCOME-PLANNER.  Sub-wave 7 wave-close report at `notes/W_M6_TARGET_OUTCOME_PLANNER_close.md` (banked on master alongside this seal).
+
+**Sub-wave 7 rollup:** 3 CPs (CP-M6-7-1 + CP-M6-7-2 + CP-M6-7-3) · +30 invariants · ratchet 4288 → 4318 · 3 seals · double-green byte-match at every seal · zero refactor of prior CPs · verbatim canon anchors (V98..V108 §10 + V109..V112 §11.1 + V115..V118 §11.4) in every gating test docstring + module docstring.  Owner-desk items unchanged (SEC ratification pending; JUMP rotation pending; CD/Visitors admin binds pending; CD/Visitors NAS-username spelling correction pending — 'bramuel' filed vs 'bramwel' as NAS spelling).
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

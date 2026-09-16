@@ -9678,5 +9678,165 @@ No-refactor: existing custody_file.py functions unchanged (append-only extension
 
 ---
 
+## CP-M6-7-1 · Full §10 TargetOutcome carrier · SEAL · OPENS SUB-WAVE 7 W-M6-TARGET-OUTCOME-PLANNER
+
+**Sealed at UTC:** 2026-09-16T~01:26Z.  **Ratchet:** 4288 → 4298 (+10).
+**Track-a HEAD at seal:** `479377c00805640f7e58b1df954403dc5d2c1d69`.  **Master HEAD:** `868f694ed88f731da892469104e51141edf4aec9` (§3.3 · both SHAs recorded at CP close).
+
+CP-M6-7-1 lands `services/audio_plane_v1/target_outcome.py` — full §10.1 P154..P164 verbatim 7-carrier `TargetOutcome` + §10.2 P165..P169 verbatim binding rules (V105..V108) as construction-time refusals.  Composes with CP-M6-6-1 `AcceptanceBar` via import + re-export.  Sub-wave 7 opens with V147 M6 §15 walk item verbatim: *"TargetOutcome type + planner core (§10, §11.1, §11.4). Requires register strata to plan against and the wizard to author Outcomes."*
+
+> §10.1 P154..P164 verbatim block: task · domain · population · acceptance · gate_policy · test_set_ref · constraints.
+>
+> §10.2 P166 (V105): *"Population is register-defined ... never speakers of L."* · P167 (V106): *"Acceptance is per stratum ..."* · P168 (V107 · LOAD-BEARING): *"The test set precedes the training."* · P169 (V108): *"The gate decision is recorded on the Outcome at definition."*
+
+Public API (10 exports): `GATE_POLICY_VALUES` (frozenset {missed_stratum_gates_release, ships_documented} · V102 closed-set) · `PopulationSpec` (frozen 1-carrier · refuses empty per V105) · `Constraints` (frozen 3-carrier · V104 verbatim triple) · `TargetOutcome` (frozen 7-carrier · V108 gate-at-definition enforced by frozen discipline · V102 closed-set at __post_init__) · `construct_target_outcome` factory (refuses TestSetRefMissingError per V107; refuses AcceptancePerStratumMissingError per V106; propagates PopulationSpec refusal) · 4 error classes · AcceptanceBar re-exported.  Refusals (4 · P036 order): TestSetRefMissingError → AcceptancePerStratumMissingError → GatePolicyInvalidError → PopulationEmptyStrataRefsError.
+
+Wave-honest limits (§D grounding brief): population shape only (no CharacterRegister verification); no LLM/HTTP/filesystem/network; case-agnostic; §3.1 P038 preserved.
+
+**Discipline receipts.**  RED `20260916T011942Z_wm6_7_1_RED_pre_impl.log` (10 right-reason ModuleNotFoundError).  GREEN 1 `20260916T012058Z_wm6_7_1_double_green_run1.log` · GREEN 2 `20260916T012334Z_wm6_7_1_double_green_run2.log` · byte-match stripped-sha256 `fd7f5fa1c74e436360af15daa4ad2273833a59ec0f1e3fa580abada9e3f21ff8` · both `4298 passed, 1 skipped, 438 warnings`.  Rider `phase0/wave_riders/w_m6_target_outcome_planner_cp1/` zero-drift · collect-only 4299.  Seal `phase0/output_verified_seals/cp_m6_7_1_target_outcome.seal.txt`.  Boundary probe #55 NOTE-SKIPPED per SEC halt (receipt `probe_55_20260916T012636Z.json`).
+
+No-refactor: `objective_wizard.py` unchanged (TargetOutcomeStub remains); all other prior modules unchanged.  Executive-domain word-boundary negative-scan CLEAN (self-referential "executive-domain tokens" phrase in test docstring header is standing convention).  Audio-material negative-scan CLEAN.  §3.1 P038 preserved.  Case-agnostic.  Synthetic-fixtures-only.
+
+**Onward.**  CP-M6-7-2 · `services/audio_plane_v1/training_planner.py` · §11.1 P171..P178 four-carrier planner architecture (V109..V112).
+
+---
+
+## CP-M6-7-2 · §11.1 Training Planner Architecture · SEAL
+
+**Sealed at UTC:** 2026-09-16T~01:47Z.  **Ratchet:** 4298 → 4308 (+10).
+**Track-a HEAD at seal:** `55aceaf13e14a57c1251fbc0f51c2d833baa0240`.  **Master HEAD:** `4d3967defd737a5a82b5317e72742038cab44342` (§3.3 · both SHAs recorded at CP close).
+
+CP-M6-7-2 lands `services/audio_plane_v1/training_planner.py` — the §11.1 P172 (V109) four-clause architecture seam.  Composes with CP-M6-7-1 `TargetOutcome` via import; does NOT modify `target_outcome.py`.
+
+> §11.1 P172 (V109) verbatim: *"The existing planner pattern is reused unchanged: a deterministic core computes eligibility; a learned layer may only reorder an already-eligible set it receives stripped of the values that decided eligibility; a gate compares learned output against the deterministic baseline; every plan is reproducible from its recorded inputs."*
+
+Public API (10 exports · owner ≤10 ceiling · WITHIN): `PlanInputs` (frozen 3-carrier · V109 fourth clause reproducibility) · `EligibilityDecision` (frozen 2-carrier · V109 first clause) · `EligibleStripped` (frozen 1-carrier · V109 second clause · forbidden-name negative-scan against values_that_decided/score/value/eligibility_value/values/decision_values) · `PlanReproducibilityWitness` (frozen 2-carrier sha256 pair) · `PlannerCore` (@runtime_checkable Protocol · V109 first clause) · `LearnedReorderLayer` (@runtime_checkable Protocol · V109 second clause · signature accepts ONLY eligible_stripped) · `strip_eligibility_decision` (strict `type(x) is EligibilityDecision` check · refuses subclasses AND duck-types) · `run_eligibility_gate` (composes the four V109 clauses; deterministic core → strip → learned reorder → gate → reproducibility witness) · `LearnedReorderStrippingViolationError` (V109 second clause refusal) · `EligibilityGateSlippageError` (V109 third clause refusal).  Refusals (2): LearnedReorderStrippingViolationError → EligibilityGateSlippageError.  Reproducibility canonicalisation via ASCII UNIT SEPARATOR (`\x1f`)-joined field digest hashed with `hashlib.sha256(...).hexdigest()` — deterministic and case-agnostic.
+
+Wave-honest limits (§D grounding brief): §11 scope-limited to §11.1 (calibration + milestones = sub-wave 8; planner outputs = CP-M6-7-3; run governance = sub-wave 10 HALT); V109 "learned layer" Protocol-only (no live training); V110/V111/V112 are architectural contrast rows enforced at CP-M6-7-3; no LLM/HTTP/filesystem/network; synthetic-fixtures-only.
+
+**Discipline receipts.**  RED `20260916T014111Z_wm6_7_2_RED_pre_impl.log` (10 right-reason ModuleNotFoundError).  GREEN 1 `20260916T014307Z_wm6_7_2_double_green_run1.log` · GREEN 2 `20260916T014533Z_wm6_7_2_double_green_run2.log` · byte-match stripped-sha256 `69e2c63608e0a43b0379f56f9096cc9ea0bb18d31e63fab38c4b38ae25d76653` · both `4308 passed, 1 skipped, 438 warnings`.  Rider `phase0/wave_riders/w_m6_target_outcome_planner_cp2/` (192 lines · zero drift vs CP-M6-7-1 rider · collect-only 4309).  Seal `phase0/output_verified_seals/cp_m6_7_2_training_planner.seal.txt`.  Boundary probe #56 NOTE-SKIPPED per SEC halt (receipt `probe_56_20260916T014700Z.json`).
+
+No-refactor: no modifications to any prior audio_plane_v1 module (target_outcome.py + objective_wizard.py + collection_schema.py + commission_registry_namespace.py + backend_registry.py + all earlier sub-wave modules unchanged).  Executive-domain word-boundary negative-scan CLEAN (self-referential "no executive-domain tokens" convention preserved).  Audio-material negative-scan CLEAN.  §3.1 P038 preserved.  Case-agnostic.  Synthetic-fixtures-only.
+
+**Onward.**  CP-M6-7-3 · `services/audio_plane_v1/training_planner.py` (append-only Part-B) · §11.4 P184..P188 planner outputs (V115..V118) — CLOSES SUB-WAVE 7.
+
+---
+
+## CP-M6-7-3 · §11.4 Planner Outputs · SEAL · CLOSES SUB-WAVE 7
+
+**Sealed at UTC:** 2026-09-16T~01:59Z.  **Ratchet:** 4308 → 4318 (+10).
+**Track-a HEAD at seal:** `d411cc70bea163f75f082e3ac5a0e688338d6e54`.  **Master HEAD:** `664c51f7d93aae7605aa08656b70086857fcf1b5` (§3.3 · both SHAs recorded at CP close).
+
+CP-M6-7-3 extends `services/audio_plane_v1/training_planner.py` under an append-only Part-B header — §11.4 P184..P188 verbatim (V115..V118).  No refactor of Part-A (CP-M6-7-2) or any prior audio_plane_v1 module.
+
+> §11.4 P185 verbatim (V115): *"Coverage report — per target stratum: hours available, quality distribution, gaps, cost of closing each gap."*
+>
+> §11.4 P186 verbatim (V116): *"Curriculum — ordering and weighting across strata derived from the register, not from the corpus's natural distribution, which is always skewed toward whatever occurred most. The dedup instance condition map enters as a designated robustness stratum."*
+>
+> §11.4 P187 verbatim (V117): *"Proposed milestone list (§11.3)."*  (Forward-reference stub · §11.3 content lands sub-wave 8.)
+>
+> §11.4 P188 verbatim (V118 · LOAD-BEARING): *"Cost quote with a stated confidence interval."*
+
+Public API added (8 exports): `PerStratumCoverageEntry` (frozen 5-carrier · V115 per-stratum row) · `CoverageReport` (frozen 1-carrier · entries tuple) · `CurriculumOrdering` (frozen 2-carrier · stratum_weight_pairs + robustness_stratum_ref · V116 · refuses non-normalized weights at __post_init__ under 1e-9 tolerance) · `CostQuoteWithCI` (frozen 3-carrier · point_estimate + ci_low + ci_high · V118 LOAD-BEARING · refuses None ci_low/ci_high at __post_init__) · `MilestoneListRef` (frozen 1-carrier · V117 forward-reference stub) · `PlannerOutputs` (frozen 4-carrier composition) · `CostQuoteMissingCIError` · `CurriculumWeightNormalizationError`.  Refusals (2): CostQuoteMissingCIError (V118 · both ci_low and ci_high branches) · CurriculumWeightNormalizationError (V116 · over-sum and under-sum branches).
+
+Wave-honest limits: V117 forward-reference stub (§11.3 content lands sub-wave 8); V116 register-not-corpus derivation stated as architectural intent enforced by downstream composition, not by carrier shape (numerical clause enforced by weight-sum refusal); no LLM/HTTP/filesystem/network; synthetic-fixtures-only.  No-refactor discipline verified: CP-M6-7-2 exports (10) all present and unchanged; module_fabric test asserts both 8-new + 10-prior = 18 exports.
+
+**Discipline receipts.**  RED `20260916T015454Z_wm6_7_3_RED_pre_impl.log` (10 right-reason ImportError before Part-B exists).  GREEN 1 `20260916T015628Z_wm6_7_3_double_green_run1.log` · GREEN 2 `20260916T015859Z_wm6_7_3_double_green_run2.log` · byte-match stripped-sha256 `9f460985886bf60aa0dd19c82c79595a82d275a4b079ce6695c8435da76bc14d` · both `4318 passed, 1 skipped, 438 warnings`.  Rider `phase0/wave_riders/w_m6_target_outcome_planner_cp3/` (192 lines · zero drift vs CP-M6-7-2 rider · collect-only 4319).  Seal `phase0/output_verified_seals/cp_m6_7_3_planner_outputs.seal.txt`.  Boundary probe #57 NOTE-SKIPPED per SEC halt (receipt `probe_57_20260916T015900Z.json`).  Wave-close report `notes/W_M6_TARGET_OUTCOME_PLANNER_close.md`.
+
+Executive-domain word-boundary negative-scan CLEAN.  Audio-material negative-scan CLEAN.  §3.1 P038 preserved.  Case-agnostic.  Synthetic-fixtures-only.
+
+**Sub-wave 7 rollup.**  3 CPs (CP-M6-7-1 + CP-M6-7-2 + CP-M6-7-3) · +30 invariants across 3 seals · ratchet 4288 → 4318 · zero refactor of prior CPs · verbatim canon anchors (V98..V108 §10 + V109..V112 §11.1 + V115..V118 §11.4) in every gating test docstring + module docstring.  M6 §15 walk position: 7 of 10 sub-waves complete.
+
+**Onward.**  Sub-wave 8 · W-M6-CALIBRATION-ACCEPTANCE · §11.2 (V113 · sampling & reflection · calibration procedure) + §11.3 (V114 · milestone-list contract).  Grounding brief at wave open.  Then sub-wave 9 · Commission View surface (§13).  Then sub-wave 10 · §11.6 full training runs — **expected HALT-to-owner** at sub-wave open (real estate voice/biometric material triggers M6 §E.5 HALT boundary).
+
+---
+
+## CP-M6-8-1 · §11.2 Calibration Procedure · SEAL · OPENS SUB-WAVE 8
+
+**Sealed at UTC:** 2026-09-16T~02:14Z.  **Ratchet:** 4318 → 4328 (+10).
+**Track-a HEAD at seal:** `877e8d83b0271c28a28c8deef95b7c7a15e2de84`.  **Master HEAD:** `00a34bf1c224a8efbe732fd6267b892c8505f388` (§3.3 · both SHAs recorded at CP close).
+
+CP-M6-8-1 lands `services/audio_plane_v1/calibration.py` — §11.2 V113 LOAD-BEARING calibration procedure carriers + refusals + composition-checks.  Sub-wave 8 opens with grounding brief at `notes/M6_SW8_CALIBRATION_ACCEPTANCE_grounding_brief.md`.
+
+> §11.2 P179..P180 (V113 · LOAD-BEARING) verbatim: *"Data requirements for low-resource fine-tuning are empirical; no analytical answer exists. The first commissioned stage is therefore a calibration: train at three to four data volumes, evaluate per stratum against the test set, fit the scaling curve, extrapolate to the acceptance threshold. Only then is the full run quoted, with a stated confidence interval — never a point estimate. A plan without a calibration stage is rejected. The first job prices the real job."*
+
+Public API (11 exports): CALIBRATION_MIN_VOLUMES=3 · CALIBRATION_MAX_VOLUMES=4 · CalibrationVolume (frozen 2-carrier · V113a) · PerStratumTestSetEval (frozen 3-carrier · V113b) · ScalingCurveFit (frozen 2-carrier · V113c) · CalibrationOutput (frozen 4-carrier · refuses CalibrationVolumeCountError at __post_init__ when volumes count ∉ [3, 4] per V113a; V113d extrapolation carrier) · assert_full_run_quote_has_ci (refuses PointEstimateOnlyQuoteRefused on non-CostQuoteWithCI · V113e · closes bare-number / duck-type surface) · assert_plan_has_calibration_stage (refuses PlanWithoutCalibrationStageRefused on False · V113f) · 3 error classes.  Refusals (3): CalibrationVolumeCountError · PointEstimateOnlyQuoteRefused · PlanWithoutCalibrationStageRefused.
+
+Composes with CP-M6-7-3: imports CostQuoteWithCI from training_planner.py; module_fabric test asserts CP-M6-7-3's 18 exports remain present (no-refactor discipline verified).  §3.1 P038 preserved.  Case-agnostic.  Synthetic-fixtures-only.
+
+**Discipline receipts.**  RED `20260916T021033Z_wm6_8_1_RED_pre_impl.log` (9 right-reason ModuleNotFoundError + 1 valid pass on composition-check).  GREEN 1 `20260916T021131Z_wm6_8_1_double_green_run1.log` · GREEN 2 `20260916T021404Z_wm6_8_1_double_green_run2.log` · byte-match stripped-sha256 `2f88dd072cab50bad621f08a0c4a5ce16481058e4eb0d0a5ba9563f70309743f` · both `4328 passed, 1 skipped, 438 warnings`.  Rider `phase0/wave_riders/w_m6_calibration_acceptance_cp1/` (192 lines · zero drift vs CP-M6-7-3 rider · collect-only 4329).  Seal `phase0/output_verified_seals/cp_m6_8_1_calibration.seal.txt`.  Boundary probe #58 NOTE-SKIPPED per SEC halt.
+
+**Onward.**  CP-M6-8-2 · `services/audio_plane_v1/milestones.py` · §11.3 V114 Milestone-list contract — CLOSES SUB-WAVE 8.
+
+---
+
+## CP-M6-8-2 · §11.3 Milestone-list contract · SEAL · CLOSES SUB-WAVE 8 W-M6-CALIBRATION-ACCEPTANCE
+
+**Sealed at UTC:** 2026-09-16T~02:36Z.  **Ratchet:** 4328 → 4338 (+10).
+**Track-a HEAD at seal:** `b7ebccbeffd9795573a0a9f6c1e3ed439fa235a7`.  **Master HEAD:** `0b91b1dd6d7fa14a58a63f548180771d97aac5c4` (§3.3 · both SHAs recorded at CP close).
+
+CP-M6-8-2 lands `services/audio_plane_v1/milestones.py` — §11.3 V114 Milestone-list contract carriers + factory + agreement gate + refusals.  Sub-wave 8 CLOSES with this CP.
+
+> §11.3 P181..P182 (V114) verbatim: *"Sampling & Reflection has two customers. It prices the real job, and it authors the accountability structure: its output to the objective owner is not a curve but a proposed milestone list — the checklist of what must be done, in what order, for the commission to succeed. Each milestone carries a done-condition and an owner. The objective owner reviews and agrees the list at commission; from that point, all reporting is against it. Accountability is set before spend, not discovered during."*
+
+Public API (10 exports): Milestone (frozen 3-carrier · milestone_id + done_condition + owner · refuses MilestoneMissingDoneConditionError / MilestoneMissingOwnerError at __post_init__ per V114b) · MilestoneList (frozen 3-carrier · milestones ordered tuple + commission_agreement_ref Optional + commission_id · V114a ordering load-bearing) · construct_milestone_list (V114a factory · refuses MilestoneListEmptyError) · agree_milestone_list (V114c gate · returns new frozen MilestoneList via dataclasses.replace; refuses MilestoneListAlreadyAgreedError on re-agreement per V114d) · assert_commission_open_only_after_agreement (V114c refusal · CommissionOpenBeforeAgreementError on None ref) · 5 error classes.  Refusals (5): MilestoneMissingDoneConditionError · MilestoneMissingOwnerError · MilestoneListEmptyError · MilestoneListAlreadyAgreedError · CommissionOpenBeforeAgreementError.
+
+Standalone V114 authoring surface.  No composition-import with calibration.py (CP-M6-8-1) or training_planner.py (CP-M6-7-2/CP-M6-7-3) this CP; V117 forward-reference MilestoneListRef.ref will resolve to a concrete MilestoneList at sub-wave 9 Commission View §13.  §3.1 P038 preserved.  Case-agnostic.  Synthetic-fixtures-only.
+
+**Discipline receipts.**  RED `20260916T022001Z_wm6_8_2_RED_pre_impl.log` (10 right-reason ModuleNotFoundError).  GREEN 1 `20260916T022059Z_wm6_8_2_double_green_run1.log` · GREEN 2 `20260916T023153Z_wm6_8_2_double_green_run2.log` · byte-match raw 9844 B each · stripped 9823 B each (21 B transient-timing suffix stripped) · stripped-sha256 `56e402a6a07614bd4f95563005e1a4348ed559c5c9452472ca4f605183ea8967` · both `4338 passed, 1 skipped, 438 warnings`.  Rider `phase0/wave_riders/w_m6_calibration_acceptance_cp2/` (192 lines · zero drift · collect-only 4339).  Seal `phase0/output_verified_seals/cp_m6_8_2_milestones.seal.txt`.  Boundary probe #59 NOTE-SKIPPED per SEC halt.
+
+**Sub-wave 8 · W-M6-CALIBRATION-ACCEPTANCE · CLOSED.**  Two CPs · +20 invariants · ratchet 4318 → 4338 · 2 seals · double-green byte-match at every seal · zero refactor of prior CPs · verbatim canon anchors in every gating test + module docstring.  Wave-close report at `notes/W_M6_CALIBRATION_ACCEPTANCE_close.md`.
+
+**Onward.**  Sub-wave 9 · W-M6-COMMISSION-VIEW · §13 Commission View surface (owner standing GO covers SW-9 · synthetic-fixture-safe).  Grounding brief follows in same session turn.  Then sub-wave 10 · §11.6 full training runs — **HALT-TO-OWNER at sub-wave open** (real estate voice/biometric material triggers M6 §E.5 HALT boundary · grounding brief authored, then stop for owner ruling).
+
+---
+
+## CP-M6-9-1 · §13 Commission View schema + reads-only · SEAL · OPENS SUB-WAVE 9 W-M6-COMMISSION-VIEW
+
+**Sealed at UTC:** 2026-09-16T~02:55Z.  **Ratchet:** 4338 → 4348 (+10).
+**Track-a HEAD at seal:** `8d2cc05b8aaf618b93194e3a67fbe42b7f36f870`.  **Master HEAD:** `e1af271888958a56a0474634041632f4fbd85570` (§3.3 · both SHAs recorded at CP close).
+
+CP-M6-9-1 lands `services/audio_plane_v1/commission_view.py` (Part-A) — §13.1 P216 (V119) + §13.2 P217 (V120 LOAD-BEARING) + §13.4 P219 (V122 LOAD-BEARING · reads-only) Commission View schema + reads-only discipline.  Sub-wave 9 OPENS with grounding brief at `notes/M6_SW9_COMMISSION_VIEW_grounding_brief.md`.
+
+> §13.1 P216 (V119) verbatim: *"This surface adjustment applies to all commissioned work on the platform — extraction, census, and training commissions alike, across every extraction type. No modality receives its own UI, and no surface is a rendering of backend internals: rendering internals quietly commits the backend to building displayable versions of its own machinery."*
+
+> §13.2 P217 (V120 · LOAD-BEARING) verbatim: *"The surface is milestones. The artifacts are evidence behind them. At Sampling & Reflection, the proposed milestone list is presented to the objective owner for agreement. Commission does not open until it is agreed. The Commission View reports against the agreed checklist: each milestone with its done-condition and owner; status in plain terms — done, on track, behind, missed. Missed is shown as plainly as done. Spend against quote is shown at the same plain level. Technical material — calibration results, strata coverage, Collection Schema state — is drill-down evidence for whoever asks why a milestone reads as it does. It is never the front page."*
+
+> §13.4 P219 (V122 · LOAD-BEARING · reads-only) verbatim: *"Milestones are records with done-conditions; the platform already stamps events. No new machinery is built for display. Any surface element in this section found to require new backend computation beyond reading existing artifacts is out of specification and must be removed or re-specified."*
+
+Public API (10 exports): MILESTONE_STATUS_VALUES frozenset four-set (done/on_track/behind/missed per V120c) · MilestoneStatusEntry (frozen 2-carrier · refuses MilestoneStatusInvalidError on non-canonical status) · SpendAgainstQuote (frozen 2-carrier · V120e + V122b · refuses SpendAgainstQuoteRefMissingError on empty cost_quote_ref) · EvidenceRef (frozen 2-carrier · V120f · refuses EvidenceKindInvalidError on non-canonical kind from {calibration, strata_coverage, collection_schema, recording}) · CommissionViewSnapshot (frozen 4-carrier · composes CP-M6-8-2 MilestoneList via import) · construct_commission_view_snapshot (factory · V120b agreement gate + V120c parity + V120a/V114a ordering-alignment) · MilestoneStatusInvalidError · MilestoneListNotAgreedError (subclass of CommissionOpenBeforeAgreementError from CP-M6-8-2 · family-catch preserved) · StatusEntryCountMismatchError · EvidenceKindInvalidError.  Refusals (5 including SpendAgainstQuoteRefMissingError non-export): MilestoneStatusInvalidError · MilestoneListNotAgreedError · StatusEntryCountMismatchError · StatusEntryOrderingMismatchError · EvidenceKindInvalidError.
+
+Composes with CP-M6-8-2: imports MilestoneList + CommissionOpenBeforeAgreementError; no modification.  Refusal-family cohesion preserved (MilestoneListNotAgreedError <: CommissionOpenBeforeAgreementError).  No-refactor.  §3.1 P038 preserved.  Case-agnostic.  Synthetic-fixtures-only.
+
+**Discipline receipts.**  RED `20260916T024657Z_wm6_9_1_RED_pre_impl.log` (10 right-reason ModuleNotFoundError · mechanism temporarily moved aside then restored post-receipt).  GREEN 1 `20260916T024830Z_wm6_9_1_double_green_run1.log` · GREEN 2 `20260916T025045Z_wm6_9_1_double_green_run2.log` · byte-match raw 9844 B each · stripped 9823 B each · stripped-sha256 `00267709eb8cc7b4de9a33361582c81059761d22ab410de47851d9ad975d0701` · both `4348 passed, 1 skipped, 438 warnings`.  Rider `phase0/wave_riders/w_m6_commission_view_cp1/` (192 lines · zero drift vs CP-M6-8-2 · collect-only 4349).  Seal `phase0/output_verified_seals/cp_m6_9_1_commission_view_schema.seal.txt`.  Boundary probe #60 NOTE-SKIPPED per SEC halt.
+
+**Onward.**  CP-M6-9-2 · `commission_view.py` Part-B (append-only) · §13.2 V120a milestones-first render + §13.3 V121 modality leaf + V119c internals-projection refusal + V122c reads-only defence — CLOSES SUB-WAVE 9.
+
+---
+
+## CP-M6-9-2 · §13.2 render + §13.3 modality + V119c + V122c · SEAL · CLOSES SUB-WAVE 9 W-M6-COMMISSION-VIEW
+
+**Sealed at UTC:** 2026-09-16T~03:07Z.  **Ratchet:** 4348 → 4358 (+10).
+**Track-a HEAD at seal:** `7b45a89014c75610d61dbee876909d77ec82749d`.  **Master HEAD:** `89371cddc618060a840a322e9bb20bf7cb05d2e6` (§3.3 · both SHAs recorded at CP close).
+
+CP-M6-9-2 lands `services/audio_plane_v1/commission_view.py` Part-B (append-only) — §13.2 V120a milestones-first render + §13.3 V121 modality leaf + §13.1 V119c internals-projection refusal + §13.4 V122c reads-only allow-list defence.  Sub-wave 9 CLOSES with this CP.
+
+> §13.2 P217 (V120a): *"The surface is milestones. The artifacts are evidence behind them."*
+> §13.3 P218 (V121): *"Modality appears at exactly one leaf: evidence inspection. Where provenance resolves to a recording, the source plays at its timestamp rather than rendering as a page region — the existing trust-receipt pattern (\"a disputed number is answered by playing the tape\"), unchanged."*
+> §13.1 P216 (V119c): *"no surface is a rendering of backend internals: rendering internals quietly commits the backend to building displayable versions of its own machinery."*
+> §13.4 P219 (V122c reads-only): *"No new machinery is built for display. Any surface element in this section found to require new backend computation beyond reading existing artifacts is out of specification and must be removed or re-specified."*
+
+Public API added (9 new exports · combined module surface 19 exports): CommissionViewProjection (frozen 4-carrier · milestones_head + spend_head + evidence_leaves + snapshot_ref · V120a milestones-first) · MilestoneRow (frozen 4-carrier · milestone_id + done_condition + owner + status · no evidence-content field per V120f) · render_commission_view (deterministic projection · V114a ordering-load-bearing · V120b defence-in-depth re-check on unagreed) · RecordingEvidenceLeaf (frozen 3-carrier · V121b timestamp seam · refuses RecordingEvidenceKindMismatchError on non-recording kind) · assert_no_internals_projected (V119c refusal via forbidden-field-name closed-set scan) · assert_no_new_backend_computation (V122c reads-only defence via type-name allow-list of five carriers) · RecordingEvidenceKindMismatchError · InternalsProjectedError · NewBackendComputationError.  Refusals (3 new): RecordingEvidenceKindMismatchError (V121a) · InternalsProjectedError (V119c) · NewBackendComputationError (V122c).
+
+§3.1 P038 preserved: RecordingEvidenceLeaf field-set frozen to timestamp + provenance ref (negative-scan on audio_bytes/waveform/samples/raw_audio).  No refactor of Part-A (CP-M6-9-1) or any prior audio_plane_v1 module.  Case-agnostic.  Synthetic-fixtures-only.
+
+**Discipline receipts.**  RED `20260916T030030Z_wm6_9_2_RED_pre_impl.log` (10 right-reason ImportError/AttributeError on Part-B exports).  GREEN 1 `20260916T030300Z_wm6_9_2_double_green_run1.log` · GREEN 2 `20260916T030505Z_wm6_9_2_double_green_run2.log` · byte-match raw 9844 B each · stripped 9823 B each · stripped-sha256 `52107ea2110def014ecaf2adeb63f95579101c35797d7f61a4b5b7e862f0912b` · both `4358 passed, 1 skipped, 438 warnings`.  Rider `phase0/wave_riders/w_m6_commission_view_cp2/` (192 lines · zero drift vs CP-M6-9-1 · collect-only 4359).  Seal `phase0/output_verified_seals/cp_m6_9_2_commission_view_render.seal.txt`.  Boundary probe #61 NOTE-SKIPPED per SEC halt.
+
+**Sub-wave 9 · W-M6-COMMISSION-VIEW · CLOSED.**  Two CPs · +20 invariants · ratchet 4338 → 4358 · 2 seals · double-green byte-match at every seal.  Wave-close report at `notes/W_M6_COMMISSION_VIEW_close.md`.
+
+**Onward.**  Sub-wave 10 · W-M6-FULL-TRAINING-RUNS · §11.6 full training runs — **MANDATORY HALT-TO-OWNER at sub-wave open.**  Grounding brief authored this turn at `notes/M6_SW10_FULL_TRAINING_RUNS_grounding_brief.md` · halt surfaced · STOP for owner ruling on real-estate audio access.
+
+---
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 

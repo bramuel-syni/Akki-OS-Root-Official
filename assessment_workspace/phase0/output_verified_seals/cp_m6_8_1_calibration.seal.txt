@@ -1,0 +1,66 @@
+Kind: cp_m6_8_1_calibration
+
+# CP-M6-8-1 · §11.2 Calibration Procedure · Seal · OPENS SUB-WAVE 8
+
+**Sealed at UTC:** 2026-09-16T~02:14Z
+**Milestone:** M6 · Sub-wave 8 · first CP · §11.2 P179..P180 verbatim (V113 · LOAD-BEARING)
+**Invariants added:** +10 · **Ratchet:** 4318 → 4328
+**Track-a HEAD at seal:** `877e8d83b0271c28a28c8deef95b7c7a15e2de84` · **Master HEAD:** `00a34bf1c224a8efbe732fd6267b892c8505f388` (§3.3 · both SHAs recorded at CP close)
+
+---
+
+## §A · Discharge
+
+Landed `services/audio_plane_v1/calibration.py` — §11.2 V113 LOAD-BEARING calibration procedure carriers + refusals + composition-checks.
+
+> **§11.2 P179..P180 (V113 · LOAD-BEARING) verbatim:** *"Data requirements for low-resource fine-tuning are empirical; no analytical answer exists. The first commissioned stage is therefore a calibration: train at three to four data volumes, evaluate per stratum against the test set, fit the scaling curve, extrapolate to the acceptance threshold. Only then is the full run quoted, with a stated confidence interval — never a point estimate. A plan without a calibration stage is rejected. The first job prices the real job."*
+
+**Public API (11 exports):** `CALIBRATION_MIN_VOLUMES=3` · `CALIBRATION_MAX_VOLUMES=4` · `CalibrationVolume` (frozen 2-carrier) · `PerStratumTestSetEval` (frozen 3-carrier · V113b) · `ScalingCurveFit` (frozen 2-carrier · V113c) · `CalibrationOutput` (frozen 4-carrier · refuses `CalibrationVolumeCountError` at `__post_init__` when volumes count ∉ [3, 4] per V113a) · `assert_full_run_quote_has_ci` (refuses `PointEstimateOnlyQuoteRefused` on non-`CostQuoteWithCI` instances per V113e · closes bare-number / duck-type surface) · `assert_plan_has_calibration_stage` (refuses `PlanWithoutCalibrationStageRefused` on False per V113f) · 3 error classes.
+
+**Refusals (3):** `CalibrationVolumeCountError` (V113a · below-min 2 AND above-max 5 branches tested) · `PointEstimateOnlyQuoteRefused` (V113e · bare-float + duck-type branches tested) · `PlanWithoutCalibrationStageRefused` (V113f).
+
+**Composes with CP-M6-7-3.**  Imports `CostQuoteWithCI` from `training_planner.py`; module_fabric test asserts CP-M6-7-3's 18 exports remain present (no-refactor discipline verified).
+
+---
+
+## §B · Wave-honest limits
+
+1. **Carriers + refusals + composition-checks only.**  Training not executed; V113a "three to four" enforced as shape rule on tuple length.
+2. **V113e CI-composition is a defensive gate.**  `CostQuoteWithCI.__post_init__` already enforces CI at construction; this helper closes the bare-number / duck-type surface.
+3. **No LLM / HTTP / filesystem / network.  Case-agnostic.  §3.1 P038 preserved.**
+
+---
+
+## §C · Composition · No-refactor
+
+**No-refactor.** No modifications to `training_planner.py` (CP-M6-7-2 + CP-M6-7-3) or any prior audio_plane_v1 module.  Composition is import-only.
+
+---
+
+## §D · Discipline receipts
+
+- **RED** `phase0/drill_receipts/20260916T021033Z_wm6_8_1_RED_pre_impl.log` — 9 right-reason `ModuleNotFoundError: No module named 'services.audio_plane_v1.calibration'` + 1 valid pass on composition-check invariant against CP-M6-7-3's existing exports (not a vacuous-pass — right-reason true).
+- **GREEN 1** `phase0/drill_receipts/20260916T021131Z_wm6_8_1_double_green_run1.log` — `4328 passed, 1 skipped, 438 warnings`.
+- **GREEN 2** `phase0/drill_receipts/20260916T021404Z_wm6_8_1_double_green_run2.log` — `4328 passed, 1 skipped, 438 warnings`.
+- **Byte-match:** raw `9844 B` each · stripped `9823 B` each · stripped-sha256 `2f88dd072cab50bad621f08a0c4a5ce16481058e4eb0d0a5ba9563f70309743f`.
+- **Rider** `phase0/wave_riders/w_m6_calibration_acceptance_cp1/` — `pip_freeze.txt` 192 lines · zero drift vs CP-M6-7-3 rider · collect-only 4329 tests.
+- **Boundary probe #58** `phase0/boundary_probes/probe_58_20260916T021500Z.json` — NOTE-SKIPPED per SEC halt.
+- **Word-boundary executive-domain + audio-material negative-scans:** CLEAN.
+
+---
+
+## §E · §3.3 three-commit pattern
+
+- **Commit A (code · programme/track-a):** `877e8d83b0271c28a28c8deef95b7c7a15e2de84` — `calibration.py` (new module) + `test_wm6_8_1_calibration.py` + `baseline_failures.json` ratchet 4318 → 4328.
+- **Commit B (state · master):** `00a34bf1c224a8efbe732fd6267b892c8505f388` — DECISIONS + NEXT + seal + rider + probe #58 + drill receipts + grounding brief.
+- **Commit C (state · master · fixup):** replaces `Master HEAD: TBD` with Commit-B's SHA in seal + DECISIONS + NEXT.
+
+---
+
+## §F · Onward
+
+CP-M6-8-2 · `services/audio_plane_v1/milestones.py` · §11.3 V114 Milestone-list contract (mandatory done-condition + owner per milestone · agreement gate) · CLOSES SUB-WAVE 8.
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

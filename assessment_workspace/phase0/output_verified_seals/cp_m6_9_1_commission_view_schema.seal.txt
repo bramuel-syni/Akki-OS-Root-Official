@@ -1,0 +1,72 @@
+Kind: cp_m6_9_1_commission_view_schema
+
+# CP-M6-9-1 · §13 Commission View schema + reads-only discipline · Seal · OPENS SUB-WAVE 9 W-M6-COMMISSION-VIEW
+
+**Sealed at UTC:** 2026-09-16T~02:55Z
+**Milestone:** M6 · Sub-wave 9 · first CP · §13.1 P216 (V119) + §13.2 P217 (V120 LOAD-BEARING) + §13.4 P219 (V122 LOAD-BEARING · reads-only)
+**Invariants added:** +10 · **Ratchet:** 4338 → 4348
+**Track-a HEAD at seal:** `8d2cc05b8aaf618b93194e3a67fbe42b7f36f870` · **Master HEAD:** `e1af271888958a56a0474634041632f4fbd85570` (§3.3 · both SHAs recorded at CP close)
+
+---
+
+## §A · Discharge
+
+Landed `services/audio_plane_v1/commission_view.py` (Part-A) — §13 Commission View schema + reads-only discipline: closed four-status enum + status entries + spend-against-quote carrier + evidence-ref subordinate carrier + `CommissionViewSnapshot` 4-carrier composition + factory that gates on V120b agreement.
+
+> **§13.1 P216 (V119) verbatim:** *"This surface adjustment applies to all commissioned work on the platform — extraction, census, and training commissions alike, across every extraction type. No modality receives its own UI, and no surface is a rendering of backend internals: rendering internals quietly commits the backend to building displayable versions of its own machinery."*
+
+> **§13.2 P217 (V120 · LOAD-BEARING) verbatim:** *"The surface is milestones. The artifacts are evidence behind them. At Sampling & Reflection, the proposed milestone list is presented to the objective owner for agreement. Commission does not open until it is agreed. The Commission View reports against the agreed checklist: each milestone with its done-condition and owner; status in plain terms — done, on track, behind, missed. Missed is shown as plainly as done. Spend against quote is shown at the same plain level. Technical material — calibration results, strata coverage, Collection Schema state — is drill-down evidence for whoever asks why a milestone reads as it does. It is never the front page."*
+
+> **§13.4 P219 (V122 · LOAD-BEARING · reads-only) verbatim:** *"Milestones are records with done-conditions; the platform already stamps events. No new machinery is built for display. Any surface element in this section found to require new backend computation beyond reading existing artifacts is out of specification and must be removed or re-specified."*
+
+**Public API (10 exports):** `MILESTONE_STATUS_VALUES` (frozenset four-set: done · on_track · behind · missed per V120c) · `MilestoneStatusEntry` (frozen 2-carrier · refuses `MilestoneStatusInvalidError` on non-canonical status) · `SpendAgainstQuote` (frozen 2-carrier · V120e + V122b · refuses `SpendAgainstQuoteRefMissingError` on empty cost_quote_ref) · `EvidenceRef` (frozen 2-carrier · V120f · refuses `EvidenceKindInvalidError` on non-canonical kind out of {calibration, strata_coverage, collection_schema, recording}) · `CommissionViewSnapshot` (frozen 4-carrier · composes CP-M6-8-2 `MilestoneList` via import) · `construct_commission_view_snapshot` (factory · V120b agreement gate + V120c parity + V120a/V114a ordering-alignment) · `MilestoneStatusInvalidError` · `MilestoneListNotAgreedError` · `StatusEntryCountMismatchError` · `EvidenceKindInvalidError`.
+
+**Refusals (5):** `MilestoneStatusInvalidError` (V120c · closed-enum) · `MilestoneListNotAgreedError` (V120b · **subclass of `CommissionOpenBeforeAgreementError` from CP-M6-8-2** · family-catch preserved) · `StatusEntryCountMismatchError` (V120c parity) · `StatusEntryOrderingMismatchError` (V120a milestones-first + V114a ordering) · `EvidenceKindInvalidError` (V120f · closed-enum).  Plus `SpendAgainstQuoteRefMissingError` (V120e/V122b · not in `__all__` per API minimalism · surfaces via `SpendAgainstQuote.__post_init__`).
+
+**Composes with CP-M6-8-2.**  Imports `MilestoneList` + `CommissionOpenBeforeAgreementError` from `milestones.py`; no modification.  Refusal-family cohesion preserved: `MilestoneListNotAgreedError <: CommissionOpenBeforeAgreementError` so callers catching `CommissionOpenBeforeAgreementError` also catch snapshot-time refusals.
+
+---
+
+## §B · Wave-honest limits
+
+1. **Schema + factory + reads-only discipline only this CP.**  Runtime render (V120a milestones-first head projection) + modality leaf (V121) + no-internals-projection defence (V119c) + no-new-backend-computation defence (V122c) land in Part-B (CP-M6-9-2 · closes sub-wave 9).
+2. **V120c closed four-status enum is EXACT.**  No new status tokens accepted this CP.  Any future expansion (e.g., "awaiting-input") is a §13.2 amendment · not a silent addition.
+3. **V120e/V122b reads existing carriers only.**  `SpendAgainstQuote.actual` is caller-supplied · this CP does NOT compute totals.  The cost_quote_ref is opaque · resolution to a `CostQuoteWithCI` is a caller/downstream concern.
+4. **V120b agreement gate is defence-first.**  `construct_commission_view_snapshot` refuses at factory time; Part-B's `render_commission_view` will re-check for defence-in-depth (test 10 in the grounding brief).
+5. **No LLM / HTTP / filesystem / network.  Case-agnostic.  §3.1 P038 preserved.**  Synthetic fixtures only in tests.
+
+---
+
+## §C · Composition · No-refactor
+
+**No-refactor.** `milestones.py` (CP-M6-8-2) · `calibration.py` (CP-M6-8-1) · `training_planner.py` (CP-M6-7-2 + CP-M6-7-3 Part-B) · all prior `audio_plane_v1/*` modules unchanged.  This CP adds one new module and imports two symbols from `milestones.py`.
+
+---
+
+## §D · Discipline receipts
+
+- **RED** `phase0/drill_receipts/20260916T024657Z_wm6_9_1_RED_pre_impl.log` — 10 right-reason `ModuleNotFoundError: No module named 'services.audio_plane_v1.commission_view'` (all 10 tests · captured before mechanism authored · mechanism temporarily moved aside via `mv .../commission_view.py /tmp/commission_view.py.staged` then restored post-receipt).
+- **GREEN 1** `phase0/drill_receipts/20260916T024830Z_wm6_9_1_double_green_run1.log` — `4348 passed, 1 skipped, 438 warnings`.
+- **GREEN 2** `phase0/drill_receipts/20260916T025045Z_wm6_9_1_double_green_run2.log` — `4348 passed, 1 skipped, 438 warnings`.
+- **Byte-match:** raw `9844 B` each · stripped `9823 B` each (21 B transient-timing suffix stripped) · stripped-sha256 `00267709eb8cc7b4de9a33361582c81059761d22ab410de47851d9ad975d0701`.
+- **Rider** `phase0/wave_riders/w_m6_commission_view_cp1/` — `pip_freeze.txt` 192 lines · zero drift vs CP-M6-8-2 rider · `collect_only_summary.txt` 4349 tests collected.
+- **Boundary probe #60** `phase0/boundary_probes/probe_60_20260916T025500Z.json` — NOTE-SKIPPED per SEC halt (SEC receipt · owner Path β pending JUMP rotation).
+- **Word-boundary executive-domain + audio-material negative-scans:** CLEAN.
+
+---
+
+## §E · §3.3 three-commit pattern
+
+- **Commit A (code · programme/track-a):** `8d2cc05b8aaf618b93194e3a67fbe42b7f36f870` — `services/audio_plane_v1/commission_view.py` (new) + `tests/invariants/test_wm6_9_1_commission_view.py` (new) + `tests/invariants/baseline_failures.json` (ratchet 4338 → 4348 + ratchet_history entry).
+- **Commit B (state · master):** `e1af271888958a56a0474634041632f4fbd85570` — DECISIONS + NEXT + seal + rider + probe #60 + drill receipts + grounding brief.
+- **Commit C (state · master · fixup):** replaces `Master HEAD: TBD` with Commit-B's SHA in seal + DECISIONS + NEXT.
+
+---
+
+## §F · Onward
+
+CP-M6-9-2 · `services/audio_plane_v1/commission_view.py` Part-B (append-only) · §13.2 V120a milestones-first render + §13.3 V121 modality leaf + V119c internals-projection refusal + V122c reads-only defence · CLOSES SUB-WAVE 9.
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

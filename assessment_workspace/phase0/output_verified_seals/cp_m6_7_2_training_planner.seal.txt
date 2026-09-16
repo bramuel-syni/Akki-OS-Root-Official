@@ -1,0 +1,88 @@
+Kind: cp_m6_7_2_training_planner
+
+# CP-M6-7-2 · §11.1 Training Planner Architecture · Seal
+
+**Sealed at UTC:** 2026-09-16T~01:47Z
+**Milestone:** M6 · Sub-wave 7 · second CP · §11.1 P171..P178 verbatim (V109..V112)
+**Invariants added:** +10 · **Ratchet:** 4298 → 4308
+**Track-a HEAD at seal:** `55aceaf13e14a57c1251fbc0f51c2d833baa0240` · **Master HEAD:** `4d3967defd737a5a82b5317e72742038cab44342` (§3.3 · both SHAs recorded at CP close)
+
+---
+
+## §A · Discharge
+
+Landed `services/audio_plane_v1/training_planner.py` — the four-clause §11.1 P172 (V109) architecture seam.  Composes with CP-M6-7-1 `TargetOutcome` via import; does NOT modify `target_outcome.py`.
+
+> **§11.1 P172 (V109) verbatim (LOAD-BEARING):**
+>
+> *"The existing planner pattern is reused unchanged: a deterministic core computes eligibility; a learned layer may only reorder an already-eligible set it receives stripped of the values that decided eligibility; a gate compares learned output against the deterministic baseline; every plan is reproducible from its recorded inputs."*
+
+**Public API (10 exports · owner-set ≤10 ceiling · WITHIN):**
+
+- `PlanInputs` — frozen 3-carrier: `outcome: TargetOutcome` · `register_strata_refs: Tuple[str, ...]` · `seed: int`.  V109 fourth clause: every input the planner reads MUST live here so that the reproducibility witness's `plan_inputs_sha256` binds to the exact input set.
+- `EligibilityDecision` — frozen 2-carrier: `eligible_ids: FrozenSet[str]` · `values_that_decided: Mapping[str, Any]`.  V109 first clause: the deterministic core's output.
+- `EligibleStripped` — frozen 1-carrier: `ids: FrozenSet[str]`.  V109 second clause: carries ONLY the ids.  Forbidden-name negative-scan against `values_that_decided`, `score`, `value`, `eligibility_value`, `values`, `decision_values`.
+- `PlanReproducibilityWitness` — frozen 2-carrier: `plan_inputs_sha256: str` · `plan_output_sha256: str`.  V109 fourth clause: binds sha256 of recorded inputs to sha256 of plan output.
+- `PlannerCore` — `@runtime_checkable Protocol`.  Method: `compute_eligibility(*, plan_inputs: PlanInputs) -> EligibilityDecision`.  V109 first clause seam.
+- `LearnedReorderLayer` — `@runtime_checkable Protocol`.  Method: `reorder(*, eligible_stripped: EligibleStripped) -> Tuple[str, ...]`.  V109 second clause seam; signature accepts ONLY the stripped carrier.
+- `strip_eligibility_decision(decision) -> EligibleStripped` — V109 second clause enforcement.  Strict `type(x) is EligibilityDecision` check refuses subclasses AND duck-typed lookalikes.
+- `run_eligibility_gate(*, plan_inputs, planner_core, learned_reorder_layer) -> Tuple[Tuple[str, ...], PlanReproducibilityWitness]` — composes the four V109 clauses.
+- `LearnedReorderStrippingViolationError` — V109 second clause refusal.
+- `EligibilityGateSlippageError` — V109 third clause refusal.
+
+**Refusals (2):**
+
+1. `LearnedReorderStrippingViolationError` — `strip_eligibility_decision` receives an input that is not an actual `EligibilityDecision` instance.
+2. `EligibilityGateSlippageError` — learned reorder output's set-membership diverges from the deterministic baseline (both drop and add cases refused; ordering may differ).
+
+**Reproducibility witness canonicalisation:**
+
+`_canonical_plan_inputs_bytes` walks the frozen-dataclass structure and emits an ASCII UNIT SEPARATOR (`\x1f`)-joined field digest covering: `task`, `domain`, `population.stratum_refs` (sorted), `acceptance.has_per_stratum_dimension`, `acceptance.per_stratum_thresholds` (sorted), `gate_policy`, `test_set_ref`, `constraints.{latency,compute_budget,deployment_target}`, `register_strata_refs` (sorted), `seed`.  `_canonical_plan_output_bytes` emits `\x1f`-joined ordered plan ids.  Both hash via `hashlib.sha256(...).hexdigest()`.  Deterministic and case-agnostic.
+
+---
+
+## §B · Wave-honest limits (per M6 SW7 grounding brief §D)
+
+1. **§11 body scope-limited.**  This CP lands §11.1 (architecture) ONLY.  §11.2 (V113 · calibration) + §11.3 (V114 · milestones) land in sub-wave 8.  §11.4 (V115..V118 · planner outputs) lands in CP-M6-7-3.  §11.5 (V119 · provenance) is post-M6.  §11.6 (V120 · run governance) — sub-wave 10 with expected HALT-to-owner.
+2. **V109 "learned layer" is Protocol-only.**  The actual model that instantiates `LearnedReorderLayer` is out of scope for M6 v1 (no live training in M6).  The four-clause discipline is enforced at seam-composition, not at any specific backend.
+3. **V110–V112 rows are contrast rows.**  §11.1's V110/V111/V112 canon anchors describe the extraction-vs-training contrast (Object · Source locations · Register strata · Floor · Defensibility class · Acceptance threshold · Output · Mining plan · Training plan + curriculum + milestones).  These are architectural context — enforced downstream when planner outputs land at CP-M6-7-3, NOT this CP.
+4. **No LLM invocation. No HTTP call. No filesystem write. No network. Synthetic fixtures only in tests.**
+5. **§3.1 P038 tokens-not-waveforms discipline preserved.**  No audio bytes / waveforms cross this surface; every field is opaque metadata.
+6. **Composes with sub-wave 6 + CP-M6-7-1 without modifying them.**  Imports `TargetOutcome` from `target_outcome.py`; no changes to any prior audio_plane_v1 module.
+
+---
+
+## §C · Composition · No-refactor
+
+**No-refactor.** No modifications to any prior audio_plane_v1 module.  Composition is import-only: `training_planner` reads `TargetOutcome` from `target_outcome`.  `target_outcome.py`, `objective_wizard.py`, `collection_schema.py`, `commission_registry_namespace.py`, `backend_registry.py`, and all earlier sub-wave modules remain unchanged.
+
+---
+
+## §D · Discipline receipts
+
+- **RED** `phase0/drill_receipts/20260916T014111Z_wm6_7_2_RED_pre_impl.log` — 10 right-reason `ModuleNotFoundError: No module named 'services.audio_plane_v1.training_planner'` before the module existed.
+- **GREEN 1** `phase0/drill_receipts/20260916T014307Z_wm6_7_2_double_green_run1.log` — `4308 passed, 1 skipped, 438 warnings`.
+- **GREEN 2** `phase0/drill_receipts/20260916T014533Z_wm6_7_2_double_green_run2.log` — `4308 passed, 1 skipped, 438 warnings`.
+- **Byte-match:** raw `9764 B` each · stripped `9743 B` each · stripped-sha256 `69e2c63608e0a43b0379f56f9096cc9ea0bb18d31e63fab38c4b38ae25d76653` (both runs).
+- **Rider** `phase0/wave_riders/w_m6_target_outcome_planner_cp2/` — `pip_freeze.txt` 192 lines · zero drift vs CP-M6-7-1 rider · `collect_only_summary.txt` 4309 tests.
+- **Boundary probe #56** `phase0/boundary_probes/probe_56_20260916T014700Z.json` — NOTE-SKIPPED per SEC halt.
+- **Word-boundary executive-domain negative-scan:** CLEAN (self-referential "no executive-domain tokens" phrase in test docstring header is standing convention per CP-M6-4-2 seal note).
+- **Word-boundary audio-material negative-scan:** CLEAN.
+
+---
+
+## §E · §3.3 three-commit pattern
+
+- **Commit A (code · programme/track-a):** landed at `55aceaf13e14a57c1251fbc0f51c2d833baa0240` — new module `training_planner.py` + test file `test_wm6_7_2_training_planner.py` + `baseline_failures.json` ratchet-bump 4298 → 4308.  (Drill receipts + rider + seal live in the state repo on master · Commits B/C.)
+- **Commit B (state · master):** landed at `4d3967defd737a5a82b5317e72742038cab44342` — DECISIONS + NEXT + seal (this file, `Master HEAD: TBD` at write-time) + rider + probe #56 + drill receipts.
+- **Commit C (state · master · fixup):** replaced `Master HEAD: TBD` in seal + DECISIONS + NEXT with Commit-B's SHA.
+
+---
+
+## §F · Onward
+
+CP-M6-7-3 · §11.4 P184..P188 verbatim (V115..V118): planner outputs — Coverage report + Curriculum + Milestone-list forward-reference stub + Cost quote with mandatory CI — CLOSES SUB-WAVE 7.  Then sub-wave 7 wave-close report at `notes/W_M6_TARGET_OUTCOME_PLANNER_close.md`.
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
