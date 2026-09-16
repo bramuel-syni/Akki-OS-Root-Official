@@ -1,0 +1,162 @@
+{
+  "wave": "W-M7-W1-VERIFICATION",
+  "generated_at_utc": "2026-09-16T04:57:51Z",
+  "ratchet_floor": 4358,
+  "track_a_head": "7b45a89014c75610d61dbee876909d77ec82749d",
+  "master_head_pre_this_commit": "6fd96b100aaaa9b2c113434254a68a72bfcd1d83",
+  "predecessor_seal": "W-M7-W0-VERIFICATION \u00b7 Path \u03b1 clean \u00b7 master 6fd96b10",
+  "verification_type": "parse-not-paraphrase read against current-shift tree",
+  "checks": {
+    "C.1_primitive_module_importable_and_exports": {
+      "importable": true,
+      "expected_exports": [
+        "ProgressSignal",
+        "HaltVerdict",
+        "StarvationAlarm",
+        "record_progress",
+        "load_progress",
+        "output_verification_watchdog"
+      ],
+      "evidence": "services/work_supervisor/runtime_supervisor.py :: __all__ lines 222-229 \u00b7 matches expected set exactly",
+      "verdict": "clean"
+    },
+    "C.2_w1_invariant_tests_present_and_pass": {
+      "test_files": [
+        "tests/invariants/test_w1_cp1_job_manifest_and_kind_registry.py",
+        "tests/invariants/test_w1_cp2b_runtime_supervisor.py",
+        "tests/invariants/test_w1_cp4_supervisor_governance_compose.py"
+      ],
+      "total_tests_collected": 68,
+      "run_summary_verbatim": "68 passed in 0.87s",
+      "expected_total": 68,
+      "cp2b_invariant_test_count": 16,
+      "verdict": "clean"
+    },
+    "C.3_standing_order_text_present_verbatim": {
+      "heading_present": true,
+      "contract_key_phrases_present": true,
+      "so_path": "STATE/STANDING_ORDERS.md",
+      "so_section": "\u00a73.2",
+      "verdict": "clean"
+    },
+    "C.4_w1_modules_unchanged_since_close": {
+      "w1_close_commit": "fe01e5ea02c6e777d3f313e58dce3bc37eaa2c5d",
+      "w1_close_date": "2026-09-13T06:33:22Z",
+      "modules": [
+        {
+          "path": "backend/services/work_supervisor/runtime_supervisor.py",
+          "last_touched": "2026-09-13T06:33:22+00:00 fe01e5e"
+        },
+        {
+          "path": "backend/services/work_supervisor/supervisor.py",
+          "last_touched": "2026-09-13T06:33:22+00:00 fe01e5e"
+        },
+        {
+          "path": "backend/services/work_supervisor/governance.py",
+          "last_touched": "2026-09-13T06:33:22+00:00 fe01e5e"
+        },
+        {
+          "path": "backend/services/work_supervisor/job_manifest.py",
+          "last_touched": "2026-09-13T06:33:22+00:00 fe01e5e"
+        },
+        {
+          "path": "backend/services/work_supervisor/kind_registry.py",
+          "last_touched": "2026-09-13T06:33:22+00:00 fe01e5e"
+        },
+        {
+          "path": "backend/services/work_supervisor/__init__.py",
+          "last_touched": "2026-09-13T06:33:22+00:00 fe01e5e"
+        }
+      ],
+      "verdict": "clean"
+    },
+    "C.5_companion_w1_invariants_pass": {
+      "note": "Covered under C.2 (68 total tests: 21 CP1 + 16 CP2b + 31 CP4).",
+      "verdict": "clean"
+    },
+    "C.6_cross_service_binding_honest_read": {
+      "candidate_dispatch_surfaces": [
+        {
+          "path": "backend/services/training_runner/runner.py",
+          "kind": "trainer-dispatch",
+          "first_added": "2026-08-26T11:03:00Z (pre-W1)",
+          "binds_to_ring": false,
+          "binding_hits_grep": 0,
+          "note": "Mock-seam trainer dispatcher (execute_run() -> ssh_seam.execute_lora_train mock-or-real). Does not import runtime_supervisor. Pre-W1 addition; W1 CP2b invariant does not gate cross-service binding (wave-honest limit D.1)."
+        },
+        {
+          "path": "backend/services/training_runner/ssh_seam.py",
+          "kind": "trainer-dispatch-seam",
+          "first_added": "2026-08-26T11:03:00Z (pre-W1)",
+          "binds_to_ring": false,
+          "binding_hits_grep": 0,
+          "note": "SSH executor for LoRA train (mock + real paths). No progress-signal emission. Pre-W1 addition."
+        },
+        {
+          "path": "backend/services/audio_poc/hf_transcribe.py",
+          "kind": "external-API-dispatch",
+          "first_added": "2026-09-14T13:51:45Z (POST W1 close)",
+          "binds_to_ring": false,
+          "binding_hits_grep": 0,
+          "note": "HF Inference API ASR dispatch (long-running outbound call). Post-W1 addition; CP2b invariant does not gate this. Documented as wave-honest limit D.1."
+        },
+        {
+          "path": "backend/services/audio_poc/gap_fill_writer.py",
+          "kind": "admit-or-refuse-gate (NOT dispatch surface)",
+          "first_added": "2026-09-14T13:51:45Z (POST W1 close)",
+          "binds_to_ring": "N/A",
+          "binding_hits_grep": 0,
+          "note": "Not a dispatch surface: emits shape-only receipt + returns admit/refuse marker dict. Actual OBS PutObject is upstream OS-boundary code. \u00a73.2 does not apply."
+        },
+        {
+          "path": "backend/services/campaign_infra/run_queue.py",
+          "kind": "run-queue (dispatch adjacent)",
+          "first_added": "2026-09-06T12:39:06Z (pre-W1)",
+          "binds_to_ring": false,
+          "binding_hits_grep": 0,
+          "note": "Queue-side of commissioned runs. Uses is_real_seal (W0 primitive) to detect completion but does not emit progress signals. Pre-W1 addition."
+        }
+      ],
+      "surfaces_binding_to_ring_count": 0,
+      "surfaces_not_binding_count": 4,
+      "surface_admit_gate_only_count": 1,
+      "wave_honest_limit_ref": "D.1",
+      "verdict": "wave-honest-limit-noted (NOT drift under strict CP2b freeze; per SO \u00a73.2 clause 5 aspirational reading)"
+    }
+  },
+  "verdict": "clean",
+  "path_taken": "Path \u03b1",
+  "drift_items": [],
+  "wave_honest_limits": [
+    {
+      "ref": "D.1",
+      "content": "CP2b invariant freezes primitive shape + standing order text; does NOT freeze cross-service binding enforcement. Candidate dispatch surfaces (training_runner, audio_poc/hf_transcribe) do not bind to the progress ring. Not a drift under strict CP2b reading. Future CP-M7-W1-POST-* candidate if owner rules cross-service binding is a hard-gate."
+    },
+    {
+      "ref": "D.2",
+      "content": "Byte-growth-only watchdog. Semantic watchdogs are Part-B (verbatim SO \u00a73.2 clause 4)."
+    },
+    {
+      "ref": "D.3",
+      "content": "Zero-influence separation (watchdog cannot kill processes). Enforced by test_watchdog_public_surface_has_no_terminator_names."
+    },
+    {
+      "ref": "D.4",
+      "content": {
+        "job": "W-M7-UTILIZATION-72H",
+        "path": "tools/m7_util_72h_orchestrator.py (state-repo, NOT services/)",
+        "binds_to_runtime_supervisor": false,
+        "reason": "One-off tooling for owner-facing 72h deliverable; carries its own progress signal (sampler JSONL + workload JSONL + regenerated owner report). \u00a73.2 applies to services/ commissioned runs; tools/ scripts are state-repo utilities.",
+        "documented_as": "Wave-honest note D.4 (not a drift item)"
+      }
+    }
+  ],
+  "ratchet_delta": 0,
+  "notes": [
+    "SO \u00a73.2 NO RUN WITHOUT A PROGRESS SIGNAL contract enforced by CP2b invariant (16 tests) as of current-shift tree.",
+    "All 5 W1 modules (runtime_supervisor + supervisor + governance + job_manifest + kind_registry) unchanged since W1 close commit fe01e5e 2026-09-13T06:33:22Z (git log --format).",
+    "68 W1 invariants across CP1 + CP2b + CP4 all pass under file-scoped pytest (BASELINE_GUARD unset due to ratchet-gate refusal on file-scoped runs; the same tests pass as part of the 4358 full-baseline).",
+    "5 candidate dispatch surfaces exist in services/; NONE bind to runtime_supervisor.record_progress. This is documented as wave-honest limit D.1, not drift.",
+    "Ratchet delta this walk: 0 (verification walk, not mechanism build). Track-a HEAD unchanged: 7b45a89014c75610d61dbee876909d77ec82749d."
+  ]
+}

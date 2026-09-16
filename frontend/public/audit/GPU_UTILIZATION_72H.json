@@ -1,70 +1,70 @@
 {
   "kind": "w_m7_utilization_72h_report",
-  "generated_at_utc": "2026-09-16T04:00:03Z",
+  "generated_at_utc": "2026-09-16T05:05:31Z",
   "launch_earliest_utc": "2026-09-16T03:41:28Z",
   "wall_clock_hours_total": 72,
-  "elapsed_hours": 0.31,
-  "remaining_hours": 71.69,
+  "elapsed_hours": 1.4,
+  "remaining_hours": 70.6,
   "hosts": [
     {
       "host": "akki-vm",
       "start_utc": "2026-09-16T03:41:28Z",
-      "telemetry_samples": 18,
-      "bench_iterations": 34,
-      "bench_ok": 34,
+      "telemetry_samples": 44,
+      "bench_iterations": 166,
+      "bench_ok": 166,
       "per_gpu": {
         "0": {
           "gpu_name": "NVIDIA H200",
-          "samples": 9,
-          "utilization_gpu_pct_avg": 31.9,
+          "samples": 22,
+          "utilization_gpu_pct_avg": 69.1,
           "utilization_gpu_pct_peak": 100.0,
-          "power_w_avg": 280.4,
-          "power_w_peak": 689.5,
-          "temp_c_avg": 46.2,
-          "temp_c_peak": 69.0,
-          "mem_used_mib_peak": 12931.0
+          "power_w_avg": 521.7,
+          "power_w_peak": 692.3,
+          "temp_c_avg": 59.6,
+          "temp_c_peak": 70.0,
+          "mem_used_mib_peak": 41187.0
         },
         "1": {
           "gpu_name": "NVIDIA H200",
-          "samples": 9,
-          "utilization_gpu_pct_avg": 31.9,
+          "samples": 22,
+          "utilization_gpu_pct_avg": 69.7,
           "utilization_gpu_pct_peak": 100.0,
-          "power_w_avg": 280.5,
-          "power_w_peak": 691.8,
-          "temp_c_avg": 46.0,
+          "power_w_avg": 522.6,
+          "power_w_peak": 692.4,
+          "temp_c_avg": 59.2,
           "temp_c_peak": 69.0,
-          "mem_used_mib_peak": 12931.0
+          "mem_used_mib_peak": 41187.0
         }
       }
     },
     {
       "host": "akki-vm-ii",
       "start_utc": "2026-09-16T03:41:36Z",
-      "telemetry_samples": 12,
-      "bench_iterations": 36,
-      "bench_ok": 36,
+      "telemetry_samples": 38,
+      "bench_iterations": 166,
+      "bench_ok": 166,
       "per_gpu": {
         "0": {
           "gpu_name": "NVIDIA H200",
-          "samples": 6,
-          "utilization_gpu_pct_avg": 47.3,
+          "samples": 19,
+          "utilization_gpu_pct_avg": 80.0,
           "utilization_gpu_pct_peak": 100.0,
-          "power_w_avg": 382.0,
-          "power_w_peak": 691.1,
-          "temp_c_avg": 49.5,
+          "power_w_avg": 591.5,
+          "power_w_peak": 693.1,
+          "temp_c_avg": 62.9,
           "temp_c_peak": 70.0,
-          "mem_used_mib_peak": 12931.0
+          "mem_used_mib_peak": 41187.0
         },
         "1": {
           "gpu_name": "NVIDIA H200",
-          "samples": 6,
-          "utilization_gpu_pct_avg": 47.5,
+          "samples": 19,
+          "utilization_gpu_pct_avg": 79.8,
           "utilization_gpu_pct_peak": 100.0,
-          "power_w_avg": 385.1,
-          "power_w_peak": 692.8,
-          "temp_c_avg": 52.3,
+          "power_w_avg": 592.9,
+          "power_w_peak": 693.9,
+          "temp_c_avg": 64.7,
           "temp_c_peak": 71.0,
-          "mem_used_mib_peak": 12931.0
+          "mem_used_mib_peak": 41187.0
         }
       }
     }

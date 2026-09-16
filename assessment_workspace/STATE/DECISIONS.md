@@ -9899,5 +9899,41 @@ Public API added (9 new exports · combined module surface 19 exports): Commissi
 
 ---
 
+## W-M7-W1-VERIFICATION close · 2026-09-16T~04:15Z · Path α clean · zero-delta
+
+**Owner GO banked verbatim (2026-09-16T~04:05Z · via user relay):** "Continue with build."
+
+**Wave scope.** W-M7-W1-VERIFICATION = generalisation-primitive verification walk against STANDING_ORDERS §3.2 "NO RUN WITHOUT A PROGRESS SIGNAL" contract (originally sealed 2026-09-13 at ratchet 3282 via W1 close commit `fe01e5e`). Grounding brief at `notes/M7_W1_GENERALISATION_grounding_brief.md` with six-check schema (C.1–C.6) and Path α (clean) / Path β (drift) decision surface.
+
+**Verification outcome.** Path α · CLEAN · zero-delta close.
+
+- **C.1** `runtime_supervisor.py` primitive surface `__all__` still exports the exact expected 6-name set (ProgressSignal · HaltVerdict · StarvationAlarm · record_progress · load_progress · output_verification_watchdog).
+- **C.2** 68/68 W1 invariants pass (21 CP1 + 16 CP2b + 31 CP4) via `python -m pytest -q` in 0.87 s. Same tests contribute to the 4358 full-baseline that passed clean at boot this shift.
+- **C.3** SO §3.2 standing-order text present verbatim in `STATE/STANDING_ORDERS.md` at `### 3.2 NO RUN WITHOUT A PROGRESS SIGNAL` heading (3-line contract + 5-clause binding).
+- **C.4** All 5 W1 modules (runtime_supervisor + supervisor + governance + job_manifest + kind_registry) unchanged since W1 close commit `fe01e5e` 2026-09-13T06:33:22Z. Zero drift across 253 downstream invariant additions during M6.
+- **C.5** Companion W1 invariants pass (covered under C.2).
+- **C.6** 5 candidate dispatch surfaces enumerated: NONE bind to runtime_supervisor.record_progress. Documented as **wave-honest limit D.1** (NOT Path β drift under strict CP2b freeze reading; per 2026-09-13 owner directive scoping CP2b to primitive-shape + SIMULATED run states, not cross-service enforcement).
+
+**Verification receipt.** `phase0/m7_w1_verification/verification_receipt_20260916.json` · surfaces_verified=5 W1 modules + 6 checks + 5 dispatch-surface honest reads · verdict=clean · ratchet_delta=0.
+
+**Wave-honest limits banked:**
+
+- **D.1** Cross-service binding enforcement deferred (candidate CP-M7-W1-POST-1 · owner-desk P2 item · authorable when a real commissioned run lands, e.g. W2 mount close · not authored speculatively per premature-invariant discipline).
+- **D.2** Byte-growth-only watchdog (SO §3.2 clause 4 verbatim · semantic watchdogs are Part-B).
+- **D.3** Zero-influence separation (watchdog cannot kill processes · enforced by `test_watchdog_public_surface_has_no_terminator_names`).
+- **D.4** 72h utilization job is state-repo tooling with its own progress-signal architecture · out of §3.2 scope.
+
+**Commit protocol.** Matches W0-precedented shape: no track-a code change (verification walk), so no Commit-A. Single Commit-B on master banks this-wave state entirety (W1 grounding brief · verification receipt · W1 close report · NEXT.md pin · this DECISIONS entry · GPU util check-in artefacts). No Commit-C fixup needed.
+
+**Effects banked:**
+
+1. **W1 CLOSED · zero-delta**. Wave-close report at `notes/W_M7_W1_VERIFICATION_close.md` (5-section END-OF-WAVE format).
+2. **M7 W0+W1 verification chain complete**. Both platform primitives (§3.1 output_verified_seal · §3.2 runtime_supervisor) verified unchanged and enforced.
+3. **W2..W9 remain BLOCKED-ON-OWNER** per ROADMAP §E.2. This-shift-optional W2 JobManifest skeleton preparation is authorable only if ratified-roadmap deterministic fields alone are sufficient (owner ratification of 3-station selection + RetentionPolicy still required for a load-bearing manifest).
+4. **W-M7-UTILIZATION-72H interleave continues**: check-in fired at W1 close (elapsed 1.29h · remaining 70.71h · 152+152 bench iterations banked · peak 100% util per H200 · report served at owner-facing URL).
+5. **NEW OWNER-DESK P2 ITEM banked**: Cross-service binding enforcement ruling (§3.2 clause 5 hard-gate authorisation) — required to unblock CP-M7-W1-POST-1 mechanism build. Not blocking any current wave.
+
+---
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
