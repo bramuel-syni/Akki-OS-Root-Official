@@ -1,0 +1,18 @@
+Kind: cp_p4_cp4_task_scope_enforcement
+Wave: M9 · P4
+CP: CP-P4-CP4 · Platform-layer task-scope enforcement (§7.5 M-A-3 + M-A-4)
+Module: backend/services/platform_control_plane/task_scope_enforcement.py
+Anchor: §7.5 M-A-3 verbatim (job cannot read a connector not listed on its task) + §7.5 M-A-4 verbatim (job cannot use a connector at a higher mode than the task specifies or the connector permits)
+Invariants: 10 · backend/tests/invariants/test_p4_cp4_task_scope_enforcement.py
+Ratchet: 4599 -> 4609 (+10)
+Track-a HEAD (Commit-A): ee70c4ab103440e1e151af6c2224d516feb52797
+Master HEAD (Commit-B): f6c4909b41a182671c1f276ab68e08f1a7fe702b
+Double-green: GREEN1 4609/1/0 · GREEN2 4609/1/0
+RED→GREEN evidence: RED = 10 errors when task_scope_enforcement.py absent · GREEN = 10 passed
+Raw sweep prior to ratchet bump: BASELINE_GUARD=0 → 4609 passed (delta +10)
+Shape: assert_job_connector_admissible(*, task_connector_modes, job_connector_id, job_mode) preventive-charter refusal wrapper · fail-fast order (1) ConnectorNotOnTaskRefused (M-A-3), (2) ModeAboveTaskSpecRefused (M-A-4) · returns None on admit · 3 refusal classes (TaskScopeRefused root + 2 subclasses)
+Composition: composes with CP-P4-CP3 TaskEntity.connector_modes tuple shape · with CP-P3-CP3 connector_mode_lattice.mode_rank + UnknownModeRefused (bubbled to caller for unknown job_mode after membership passes)
+Contract-modeled note: M-A-4 sub-clause "or the connector permits" is left as a caller-composition against CP-P3-CP2 ConnectorEntity.mode ceiling · not modelled inline here because the caller has both TaskEntity + ConnectorEntity in scope while this CP is the task-side gate only
+Standing lines held: no biometric material · no enforcement hard-gate · preventive-charter · caller invokes · synthetic fixtures · no speculative shapes · upgrade path preserved · zero closed enum type · zero domain tokens · zero data-plane imports
+GPU util at seal: elapsed 26.92h · remaining 45.08h
+Signed off: 2026-09-17T~06:37Z · CP-P4-CP4 SEALED

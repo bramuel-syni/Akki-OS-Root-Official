@@ -1,0 +1,13 @@
+Kind: cp_p5_cp2_app_enablement
+Wave: M9 · P5
+CP: CP-P5-CP2 · Platform-layer app_enablement (§10 + §9 M-Ac-1/M-Ac-2 + §6.6 M-Cp-7)
+Module: backend/services/platform_control_plane/app_enablement.py
+Anchor: §10 app_enablement verbatim + §9 M-Ac-1 "with min-mode per type" + §9 M-Ac-2 "validated against tenant's connectors and compute integrations at enable time" + §6.6 M-Cp-7 "at least one healthy integration of each required compute class"
+Invariants: 13 · backend/tests/invariants/test_p5_cp2_app_enablement.py
+Ratchet: 4664 -> 4677 (+13)
+Track-a HEAD (Commit-A): 74577d83521b1b75ae52a31287043b2101291f61
+Master HEAD (Commit-B): f6c4909b41a182671c1f276ab68e08f1a7fe702b
+Double-green: GREEN1 4677/1/0 · GREEN2 4677/1/0
+Shape: AppEnablement frozen 6-carrier (id, tenant_id, app_id, status, enabled_by, enabled_at) all str · assert_app_enablement_admissible fail-fast (1) MissingRequiredConnectorTypeRefused, (2) InsufficientConnectorModeRefused, (3) MissingRequiredComputeClassRefused · 4 refusal classes · composes CP-P3-CP3 mode_rank
+GPU util at seal: elapsed 27.82h · remaining 44.18h
+Signed off: 2026-09-17T~07:31Z · CP-P5-CP2 SEALED

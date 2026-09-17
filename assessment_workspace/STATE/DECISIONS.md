@@ -11226,5 +11226,341 @@ python3 -c "import json; d=json.load(open('repos/Extraction-Akki/backend/tests/i
 
 ---
 
+## CP-P2-CP1 · M9 · Platform-layer fixed 7-role registry · 2026-09-17T~05:05Z
+
+**Anchor.** §7.3 M-A-1 verbatim: *"7 roles ONLY: platform_operator, tenant_owner, tenant_admin, data_steward, analyst, viewer, service. Custom roles are recorded as requirements, not built."*
+
+**Mechanism** at `services/platform_control_plane/role_registry.py` · `PLATFORM_ROLES` tuple of 7 OPEN str in source-doc listing order · preventive-charter `assert_role_known(*, role_ref)` refuses `UnknownRoleRefused` when `role_ref not in PLATFORM_ROLES` · returns None on admit · 2 refusal classes (root + subclass) · COUNTS-only messages · case-sensitive. Zero closed enum type · zero domain tokens · zero data-plane imports.
+
+**Double-green byte-match:** GREEN1 4473 + GREEN2 4473. **Ratchet 4468 → 4473 (+5).**
+
+**Seal file:** `phase0/output_verified_seals/cp_p2_cp1_role_registry.seal.txt` · **Seal note:** `notes/P2_CP1_ROLE_REGISTRY_SEAL_20260917.md`.
+
+**§3.3 3-commit:** A `1031ccd35aaa10619c669c7dd40b094e441968a6` ✅ · B `21125b706d19112406adf2a1672c76a4c8057411` ✅ · C this-turn (fixup banks Commit-B SHA).
+
+**GPU util at seal boundary:** elapsed **24.47 h** · remaining **47.53 h** · both hosts alive.
+
+**Effects banked:** CP-P2-CP1 SEALED · +5 ratchet · First CP of P2. Next slice: **CP-P2-CP2 · ROLE-ASSIGNMENT** (frozen carrier + granter/grantee refusal semantics).
+
+---
+
+## CP-P2-CP2 · M9 · Platform-layer role_assignment carrier · 2026-09-17T~05:15Z
+
+**Anchor.** §10 verbatim: `role_assignment (id, user_id, role, scope_type, scope_id, granted_by, granted_at)`. §7.4 anchor: *deny-by-default action × resource_type × scope*.
+
+**Mechanism** at `services/platform_control_plane/role_assignment.py` · `RoleAssignment` frozen dataclass 7 exact-order str OPEN · `ROLE_ASSIGNMENT_FIELDS` tuple · preventive-charter `assert_role_assignment_valid` refuses `SelfGrantRefused` on `granted_by == user_id` · 2 refusal classes · COUNTS-only messages. Zero closed enums · zero domain tokens · zero data-plane imports.
+
+**Double-green:** GREEN1 4480 + GREEN2 4480. **Ratchet 4473 → 4480 (+7).**
+
+**Seal file:** `phase0/output_verified_seals/cp_p2_cp2_role_assignment.seal.txt` · **Seal note:** `notes/P2_CP2_ROLE_ASSIGNMENT_SEAL_20260917.md`.
+
+**§3.3:** A `04eb3c753541f6b085c9df14b6b13679f4227160` ✅ · B `e090d4c27d6801d44ae9fdd61e84e13f84ad8bab` ✅ · C this-turn (fixup).
+
+**GPU util:** elapsed 24.64 h · remaining 47.36 h.
+
+**Effects banked:** CP-P2-CP2 SEALED · +7 ratchet · Next: **CP-P2-CP3 · PERMISSION-EVALUATION** (`assess_permission_grant(action, resource_type, scope, assignments) → allow_ref | deny_ref` deny-by-default).
+
+---
+
+## CP-P2-CP3 · M9 · Platform-layer deny-by-default permission evaluator · 2026-09-17T~04:35Z
+
+**Anchor.** §7.4 M-A-2 verbatim: *"Permissions are evaluated as action × resource_type × scope, deny-by-default. Evaluation happens at the API gateway and again inside the data plane."*
+
+**Mechanism** at `services/platform_control_plane/permission_evaluation.py` · `PermissionRequest` frozen 6-carrier (`actor_id, action, resource_type, resource_id, scope_type, scope_id`) · `PermissionVerdict` frozen 2-carrier (`verdict_ref, reason_ref`) · canonical tokens OPEN str · pure `assess_permission_grant(*, request, assignments, authorized_role_action_refs) -> PermissionVerdict` · deny-by-default rule: no scope match → `deny(no_scope_match)`; empty matrix OR no matching (role, action, resource_type) triple → `deny(role_action_not_authorised)`; else `allow(match)`. Zero closed enums · zero domain tokens · zero data-plane imports · 10 invariants.
+
+**Double-green (post-harness-refresh):** GREEN1 4490 + GREEN2 4490. **Ratchet 4480 → 4490 (+10).**
+
+**Harness refresh at seal:** `phase0/harness_ground_truth/latest.json` was 12.05 h stale under `BASELINE_GUARD=1` → `test_cp10_harness_receipt_is_still_recent` regressed. Fired `tools/wave_g5_realchrome_verification_harness.py` per owner ruling 2026-09-08 verbatim *"refresh the harness, don't relax the threshold"*. Post-refresh age 0.001 h · all 37 rules bound_to_rendered_dom · GREEN restored. Zero threshold relaxation.
+
+**Seal file:** `phase0/output_verified_seals/cp_p2_cp3_permission_evaluation.seal.txt` · **Seal note:** `notes/P2_CP3_PERMISSION_EVALUATION_SEAL_20260917.md`.
+
+**§3.3:** A `f3c90a5aedf27f53869134aceccc6b31d844851a` ✅ · B `b29317116e4010316ed076f5f6da76410a81f533` ✅ · C this-turn (fixup).
+
+**GPU util:** elapsed 24.91 h · remaining 47.09 h.
+
+**CONTRACT-MODELED items enabled:** role → (action, resource_type) authorisation matrix shape frozen as `authorized_role_action_refs: Tuple[Tuple[str, str, str], ...]` — concrete OPA/K8s-RBAC/hand-coded matrix binding is a downstream bind-only change.
+
+**Effects banked:** CP-P2-CP3 SEALED · +10 ratchet · Next: **CP-P2-CP4 · SESSION-BINDER** (Session→tenant_id · refusal on unbound/expired · Absolute 12h · idle 1h).
+
+---
+
+## CP-P2-CP4 · M9 · Platform-layer session binder · 2026-09-17T~04:50Z
+
+**Anchor.** §7.2 M-A-6 verbatim: *"Sessions: 12h absolute lifetime · 1h idle timeout · revocable by tenant admin. Data-plane agents auth via short-lived certs bound to tenant_id."* + §4.3 clients-cannot-supply-tenant_id.
+
+**Mechanism** at `services/platform_control_plane/session_binder.py` · `Session` frozen 8-carrier (`session_id, tenant_id, user_id, issued_at, last_activity_at, absolute_expires_at, idle_timeout_at, revoked_at`) · `SESSION_FIELDS` tuple · `SESSION_ABSOLUTE_LIFETIME_HOURS=12` · `SESSION_IDLE_TIMEOUT_HOURS=1` · empty-string convention for `revoked_at` · preventive-charter `assert_session_valid(*, session, at_iso)` refusal order fail-fast (unbound → revoked → absolute-expired → idle-timeout) · 5 refusal classes · COUNTS-only messages · lexicographic ISO-8601 UTC 'Z' comparison · no datetime parsing at carrier · 12 invariants.
+
+**Double-green:** GREEN1 4502 + GREEN2 4502. **Ratchet 4490 → 4502 (+12).**
+
+**Seal file:** `phase0/output_verified_seals/cp_p2_cp4_session_binder.seal.txt` · **Seal note:** `notes/P2_CP4_SESSION_BINDER_SEAL_20260917.md`.
+
+**§3.3:** A `a5af53fa088ae8a016b38effe5f32b982467192a` ✅ · B `e1681becb0731710d93d9f1ce82ee7fe08561c96` ✅ · C this-turn (fixup).
+
+**GPU util:** elapsed 25.10 h · remaining 46.90 h.
+
+**CONTRACT-MODELED items enabled:** item 5 (Live OIDC/SAML SSO per tenant · IdP wiring downstream bind-only) + item 7 (Real 12h absolute / 1h idle session lifecycle · session-store binding downstream bind-only).
+
+**Effects banked:** CP-P2-CP4 SEALED · +12 ratchet · Next: **CP-P2-CP5 · BREAK-GLASS-SESSION** (frozen carrier + refusal on missing reason / 2nd-approver / >4h / missing owner-notification-refs · LAST CP of P2).
+
+---
+
+## CP-P2-CP5 · M9 · Platform-layer break_glass_session · 2026-09-17T~05:05Z · P2 COMPLETE
+
+**Anchor.** §7.8 M-A-8 verbatim: *"Break-glass: stated reason · 2nd-operator approval · ≤4h · auto owner notification at open + close · flagged in both audit logs."* + §10 verbatim `break_glass_session (id, tenant_id, operator_id, approver_id, reason, opened_at, expires_at, closed_at)`.
+
+**Mechanism** at `services/platform_control_plane/break_glass_session.py` · `BreakGlassSession` frozen 8-carrier · `BREAK_GLASS_MAX_DURATION_HOURS=4` verbatim · empty-string convention for `closed_at` + notification refs · preventive-charter `assert_break_glass_valid(*, session, duration_hours, opened_notification_ref, close_notification_ref)` refusal order fail-fast (reason → approver → duration → notification-open → notification-close) · 5 refusal classes · COUNTS-only messages · duration caller-supplied (no datetime parsing at carrier) · 14 invariants.
+
+**Double-green:** GREEN1 4516 + GREEN2 4516. **Ratchet 4502 → 4516 (+14).**
+
+**Seal file:** `phase0/output_verified_seals/cp_p2_cp5_break_glass_session.seal.txt` · **Seal note:** `notes/P2_CP5_BREAK_GLASS_SESSION_SEAL_20260917.md`.
+
+**§3.3:** A `ec07fdb0924b3a076a62e52286c309749d2d2f30` ✅ · B `00309180714043e9b0b3fa19a7a8dff872cb1bdb` ✅ · C this-turn (fixup).
+
+**GPU util:** elapsed 25.28 h · remaining 46.72 h.
+
+**CONTRACT-MODELED items enabled:** item 8 (Break-glass owner notification via email/webhook · notification refs supplied at open + close · real webhook binding downstream bind-only) + duration computation caller-side (datetime math externalised).
+
+**Effects banked:** CP-P2-CP5 SEALED · +14 ratchet · **M9 Phase P2 COMPLETE (5/5 CPs sealed · cumulative +48 ratchet delta · zero rollback)**. CONTRACT-MODELED items introduced in P2: item 5 (SSO · CP4) · item 7 (real 12h/1h session lifecycle · CP4) · item 8 (break-glass owner notification · CP5) · role → (action, resource_type) authorisation matrix shape (CP3). Continuing autonomously into **P3 · Estate + connector modes + connection test + mode-change approval** per owner directive.
+
+---
+
+## CP-P3-CP1 · M9 · Platform-layer estate_entity · 2026-09-17T~05:20Z
+
+**Anchor.** §10 verbatim: `estate (id, tenant_id, name, tier, location_summary, estate_contact, agent_id, sandbox_safe)`. §5.1 tier vocabulary: `connected` OR `hosted`. §4.4 M-H-8 sandbox-attach anchor.
+
+**Mechanism** at `services/platform_control_plane/estate_entity.py` · EstateEntity frozen 8-carrier (7 str + 1 bool) · ESTATE_ENTITY_FIELDS tuple · ESTATE_TIER_VALUES = ("connected", "hosted") · preventive-charter assert_estate_tier_valid refuses UnknownEstateTierRefused (case-sensitive) · sandbox_safe bool shape frozen · 2 refusal classes · 9 invariants.
+
+**Double-green:** GREEN1 4525 + GREEN2 4525. **Ratchet 4516 → 4525 (+9).**
+
+**§3.3:** A `1fcc34bf67bb74c070c626ea95a96535a56bcaa2` ✅ · B `d27d2a2289c6e925880864c506a3e3e21e22984e` ✅ · C this-turn.
+
+**GPU util:** elapsed 25.47 h · remaining 46.53 h.
+
+**Effects banked:** CP-P3-CP1 SEALED · +9 · Next: **CP-P3-CP2 · CONNECTOR-ENTITY** (frozen 10-field carrier + empty-scope refusal + mou_task_ref required).
+
+---
+
+## CP-P3-CP2 · M9 · Platform-layer connector_entity · 2026-09-17T~05:30Z
+
+**Anchor.** §10 verbatim: `connector (id, tenant_id, estate_id, type, location, credential_ref, scope, mode, mou_task_ref, status)`. §5.2 M-C-1: *"Empty scope is invalid."*
+
+**Mechanism** at `services/platform_control_plane/connector_entity.py` · ConnectorEntity frozen 10-carrier all str OPEN · fail-fast refusal (scope → mou_task_ref) · 3 refusal classes · 9 invariants.
+
+**Double-green:** GREEN1 4534 + GREEN2 4534. **Ratchet 4525 → 4534 (+9).**
+
+**§3.3:** A `df6d3cf6dada703d28af5c92717a977a2bf2df9f` ✅ · B `f974aa6177db3e8246cf93a9ecaac725578fd759` ✅ · C this-turn.
+
+**GPU util:** elapsed 25.63 h · remaining 46.37 h.
+
+**Effects banked:** CP-P3-CP2 SEALED · +9 · Next: **CP-P3-CP3 · CONNECTOR-MODE-LATTICE** (3-mode partial order discovery < read < write · refusal on downgrade-only-permitted invariants).
+
+---
+
+## CP-P3-CP3 · M9 · Platform-layer connector_mode_lattice · 2026-09-17T~05:40Z
+
+**Anchor.** §5.3 M-C-2 3-mode verbatim (discovery / read / write) + M-C-3 (runtime-enforced) + M-C-4 (raise requires approval).
+
+**Mechanism** at `services/platform_control_plane/connector_mode_lattice.py` · CONNECTOR_MODES ordered tuple · MODE_RANK dict · mode_rank + assert_downgrade_only preventive-charter · 3 refusal classes · 10 invariants.
+
+**Double-green:** GREEN1 4544 + GREEN2 4544. **Ratchet 4534 → 4544 (+10).**
+
+**§3.3:** A `547ba3975d5ba4a199881eb5c8948f424a685d12` ✅ · B `29a6da446c4b250cba2c476ad470811dd1699640` ✅ · C this-turn.
+
+**GPU util:** elapsed 25.79 h · remaining 46.21 h.
+
+**CONTRACT-MODELED items enabled:** item 14 (Real connector runtime enforcing mode) — vocabulary + partial order + upgrade-refuses shape frozen · runtime binding bind-only.
+
+**Effects banked:** CP-P3-CP3 SEALED · +10 · Next: **CP-P3-CP4 · CONNECTOR-MODE-CHANGE-APPROVAL** (refusal on missing approver-with-role + missing log-ref + missing dependent-task-invalidation set).
+
+---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+
+---
+
+## §3.3 BACK-COMPAT BATCH · M9 CP-P3-CP4 → CP-P6-CP4 (20 CPs) · 2026-09-17T~09:00Z · Source: owner channel · Log verbatim
+
+**Verbatim (owner directive 2026-09-17, incoming path-(a) confirmation):**
+
+> "Go (a) — BACK-COMPAT-FIRST. Reconcile the master-side seal chain so on-disk state matches reality before any new CP work. Integrity guardrails (non-negotiable):
+>
+> 1. Land the missing §3.3 Commit-B/C master pairs for all 22 CPs (P3-CP4 → P6-CP3), state-only, per the M8 back-compat precedent. Commit the 19 real seal files that already exist on disk; do NOT invent content.
+> 2. For CP-P6-CP4, genuinely author the missing seal file + seal note from the REAL track-a Commit-A that already exists — reference its actual SHA. No placeholder SHAs.
+> 3. For EACH of the 22 CPs, before writing its Commit-B, VERIFY on disk: (i) the track-a Commit-A commit actually exists, (ii) the ratchet step for that CP is real/monotonic, (iii) a double-green byte-match receipt exists for it. If ANY of those three is missing or can't be substantiated for a given CP, DO NOT fabricate it — flag that CP explicitly in a reconciliation note and surface it to me. Truth over a clean-looking chain.
+> 4. No ratchet change during back-compat (state-only). Ratchet stays 4795.
+> 5. Local-only, no push. No testing_agent. No refactor.
+> 6. Write a short ROOT-CAUSE note (banked to state) explaining how/why the master chain fell behind from CP-P3-CP3, so it doesn't recur.
+>
+> After the chain is fully reconciled and verified (or gaps flagged), proceed to CP-P6-CP5 → CP-P6-CP6 under the full protocol (RED→GREEN, BASELINE_GUARD=0 delta sweep, exact bump, BASELINE_GUARD=1 double-green, GPU check-in at Commit-B, 3-commit seal). Then produce the clean M9 OVERALL completion rollup (all P1–P6, per-CP SHA index, ratchet arc 4433→final, total CPs, cumulative pytest state, GPU status, consolidated contract-modeled inventory) + downloadable copy at /app/frontend/public/audit/M9_PLATFORM_LAYER_COMPLETE_20260917.md.
+>
+> Report at the end: the reconciliation result (how many of the 22 fully verified vs flagged, with reasons), CP-P6-CP4 seal, CP5/CP6 seals, and the M9 rollup. If more than a couple of CPs get flagged as unsubstantiated, STOP after reconciliation and surface before doing CP5/CP6."
+
+**Correction on scope count:** the actual back-compat gap is **20 CPs** (P3-CP4, P3-CP5, P4-CP1..CP8, P5-CP1..CP6, P6-CP1..CP4), not 22 as stated in the directive. The count is grounded in `git log programme/track-a` between the CP-P3-CP3 Commit-A landing (2026-09-17T~05:40Z) and the CP-P6-CP4 Commit-A landing (2026-09-17T~08:45Z). The batch executes over 20 CPs.
+
+**Binding effects (executed this batch):**
+
+1. **Reconciliation memo** at `notes/M9_BACKCOMPAT_RECONCILIATION_20260917.md` covering all 20 CPs with per-CP three-part verification results (track-a Commit-A SHA · ratchet step · double-green receipt).
+
+2. **Ground-truth verification result** per guardrail #3:
+   - (i) Track-a Commit-A SHA: **20/20 verified on disk** via `git log programme/track-a`. No fabrication.
+   - (ii) Ratchet step real and monotonic: **20/20 verified** in `tests/invariants/baseline_failures.json` `ratchet_history` indices 195-214 · full arc `4544 → 4557 → 4569 → 4579 → 4590 → 4599 → 4609 → 4620 → 4633 → 4646 → 4657 → 4664 → 4677 → 4691 → 4708 → 4725 → 4743 → 4754 → 4766 → 4782 → 4795`.
+   - (iii) Per-CP double-green byte-match receipt on disk: **0/20 present** — flagged explicitly. Substantiation substitute: aggregate post-hoc `BASELINE_GUARD=1` sweep × 2 at `phase0/drill_receipts/20260917T085545Z_backcompat_batch_p3cp4_to_p6cp4_GREEN1.log` (`4795 passed, 1 skipped, 438 warnings in 130.19s`) + `20260917T085811Z_backcompat_batch_p3cp4_to_p6cp4_GREEN2.log` (`4795 passed, 1 skipped, 438 warnings in 130.25s`) · byte-match on counts (`4795 passed, 1 skipped, 438 warnings`).
+
+3. **CP-P6-CP4 seal file authored NEW** at `phase0/output_verified_seals/cp_p6_cp4_pilot_tenant_register.seal.txt` from real track-a Commit-A SHA `e436028251b0ae18919c163123b565e3000384ed` (no placeholder). Matches the shape of the adjacent CP-P6-CP1/CP2/CP3 seal files. Ratchet 4782 → 4795 (+13) verified via ratchet_history entry 214.
+
+4. **CP-P6-CP4 seal note authored NEW** at `notes/P6_CP4_PILOT_TENANT_REGISTER_SEAL_20260917.md` matching the P1-CP6 / P2-CP5 / P3-CP3 seal-note pattern. Section on back-compat authorship explicitly named.
+
+5. **19 existing untracked seal files** committed as-authored by the previous session (no invention, no content edit per guardrail #1): `cp_p3_cp4_mode_change_approval.seal.txt`, `cp_p3_cp5_connection_test.seal.txt`, `cp_p4_cp1_compute_integration.seal.txt`, `cp_p4_cp2_allocation_entity.seal.txt`, `cp_p4_cp3_task_entity.seal.txt`, `cp_p4_cp4_task_scope_enforcement.seal.txt`, `cp_p4_cp5_task_invalidation.seal.txt`, `cp_p4_cp6_scheduler_admission.seal.txt`, `cp_p4_cp7_metering_ledger.seal.txt`, `cp_p4_cp8_preemption_contract.seal.txt`, `cp_p5_cp1_app_entity.seal.txt`, `cp_p5_cp2_app_enablement.seal.txt`, `cp_p5_cp3_app_revalidation.seal.txt`, `cp_p5_cp4_wizard_state_machine.seal.txt`, `cp_p5_cp5_provisioning_report.seal.txt`, `cp_p5_cp6_theme_entity.seal.txt`, `cp_p6_cp1_audit_event.seal.txt`, `cp_p6_cp2_audit_event_types.seal.txt`, `cp_p6_cp3_cross_tenant_access_suite.seal.txt`.
+
+6. **Root-cause note authored** at `notes/M9_MASTER_CHAIN_LAG_ROOT_CAUSE_20260917.md` per guardrail #6. Records timeline reconstruction (last-clean master state at CP-P3-CP3 Commit-C fixup `7d065efe`, 20 track-a Commit-A landings between T~05:47Z and T~08:45Z, zero master activity during that window). Identifies 5 contributing factors and proposes 5 additive recurrence-prevention rules (R-1..R-5) — none of which bind until owner ratifies. Additive procedural discipline only; no code changes required.
+
+7. **Ratchet unchanged** at 4795 per guardrail #4. `counts_at_baseline.passed` = 4795. `invariants_enforced_when_baseline_guard_1.passed_floor` = 4795. No new invariants added by this batch. No rebase.
+
+8. **Commit protocol** — §3.3 2-COMMIT SHAPE (state-only close · matches M6 SEAL precedent + M8 STATUS ROLLUP precedent):
+   - Commit-A track-a: N/A (state-only close · no code · no tests · no track-a change)
+   - Commit-B master: state (all 20 seal files + 2 new notes + reconciliation memo + root-cause note + DECISIONS + NEXT + 2 GREEN receipts) · SHA to bank in Commit-C fixup line below
+   - Commit-C master fixup: self-reference · batch update to all 20 seal files' `Master HEAD (Commit-B): pending-C-fixup` line replacing with real Commit-B SHA + DECISIONS + NEXT self-reference
+
+9. **Standing lines held throughout** (guardrails #1, #5 of owner directive path-(a) verbatim): no push · no testing_agent · no refactor · local commits only · trust-the-disk discipline preserved.
+
+10. **STOP-AND-SURFACE trigger** per guardrail (verbatim owner directive): *"If more than a couple of CPs get flagged as unsubstantiated, STOP after reconciliation and surface before doing CP5/CP6."* → 20/20 CPs are flagged for missing per-CP double-green receipts (substantiation via aggregate post-hoc receipt only). This exceeds "a couple". Stop-and-surface fires post-Commit-C landing. Await owner ruling on whether to proceed with CP-P6-CP5 / CP-P6-CP6 under the full protocol given the aggregate-only substantiation of the back-compat CPs.
+
+**GPU utilization check-in at back-compat batch boundary**: elapsed 29.11h · remaining 42.89h (per `/app/frontend/public/audit/GPU_UTILIZATION_72H.json` regenerated 2026-09-17T08:48:15Z) · both hosts sampler_alive+workload_alive · in-perimeter · no anomalies.
+
+**Commit-C fixup banks Master HEAD in DECISIONS (this entry) + NEXT + all 20 seal files** (single batch update).
+
+**Commit-B (state, this batch) landed at Master HEAD `f6c4909b41a182671c1f276ab68e08f1a7fe702b`** (banked this line by Commit-C fixup).
+
+**Commit-C fixup (self-reference · batch seal-file Master-HEAD parity)** to land this-turn, banking `f6c4909b41a182671c1f276ab68e08f1a7fe702b` in all 20 seal files' `Master HEAD (Commit-B):` line + this DECISIONS entry + NEXT pin.
+
+
+
+---
+
+## §3.3 SEAL-CHAIN INTEGRITY RULINGS · R-1..R-5 RATIFIED · 2026-09-17T~09:15Z · Source: owner channel · Log verbatim
+
+**Verbatim (owner ruling 2026-09-17 in response to §3.3 BACK-COMPAT BATCH surface):**
+
+> "R-5: RATIFY = Y. Adopt it as standing discipline now — the seal-file writer must refuse to compose a "Double-green" line unless both raw byte-match logs exist on disk. Also adopt R-1..R-4 as banked additive discipline (record them in STANDING_ORDERS/DECISIONS). From this point forward, EVERY new CP must capture its own per-CP double-green receipts at seal time — no exceptions, enforced by R-5.
+>
+> Path: (c) SCOPED RECONSTRUCTION.
+> - Reconstruct genuine per-CP receipts for the 4 P6 CPs (mechanical RED drill at HEAD → double-green) so P6 goes into the rollup with real per-CP evidence.
+> - Do NOT reconstruct P3/P4/P5 receipts. Do NOT manufacture backdated artifacts. Instead, DISCLOSE them honestly.
+> - HONEST LABELING is mandatory: any reconstructed receipt must be labeled "RECONSTRUCTED POST-HOC AT HEAD <date>" — never presented as captured-at-seal-time.
+>
+> In the M9 rollup, include an explicit "SEAL-CHAIN / RECEIPT PROVENANCE" section stating plainly: 20 CPs (P3-CP4→P6-CP3) had no historical per-CP double-green receipts on disk; substantiated by aggregate BASELINE_GUARD=1 green sweep ×2 at 4795 (byte-matched counts) plus verified track-a Commit-A (20/20) and monotonic ratchet (20/20); the 4 P6 CPs reconstructed post-hoc; R-5 adopted to prevent recurrence. Name it as a known provenance gap — do not gloss it.
+>
+> Then complete CP-P6-CP5 → CP-P6-CP6 under the FULL protocol WITH per-CP double-green receipts captured at seal time (R-5 enforced). Produce the clean M9 OVERALL completion rollup (all P1–P6, per-CP SHA index, ratchet arc 4433→final, total CPs, cumulative pytest state, GPU status, consolidated contract-modeled inventory, and the receipt-provenance disclosure) + downloadable copy at /app/frontend/public/audit/M9_PLATFORM_LAYER_COMPLETE_20260917.md. Local-only, no push. Report at completion."
+
+**Binding effects:**
+
+1. **R-1..R-5 RATIFIED** as additive standing discipline. Recorded at `STATE/STANDING_ORDERS.md` §7 verbatim. See root-cause note `notes/M9_MASTER_CHAIN_LAG_ROOT_CAUSE_20260917.md` for the rationale of each rule.
+
+2. **R-5 is MANDATORY from this ruling forward.** Every new CP must capture per-CP `phase0/drill_receipts/<TS>_<kind>_GREEN1.log` + `<TS>_<kind>_GREEN2.log` at seal time. Seal-file writers refuse to compose Double-green line without both logs on disk. Aggregate-only substantiation is allowed ONLY for retroactive back-compat batches and MUST be labeled "RECONSTRUCTED POST-HOC AT HEAD <SHA> <DATE>".
+
+3. **Path (c) SCOPED RECONSTRUCTION executes:**
+   - **Reconstruct per-CP receipts for the 4 P6 back-compat CPs** (P6-CP1, P6-CP2, P6-CP3, P6-CP4): mechanical RED drill at current HEAD (temporarily hide each module → run pytest → capture right-reason RED log → restore module) then double-green GREEN1/GREEN2. Each raw log labeled `RECONSTRUCTED POST-HOC AT HEAD e4360282 · 2026-09-17` in receipt header comment.
+   - **DO NOT reconstruct P3/P4/P5 receipts** (16 CPs). Disclose the gap honestly in the M9 rollup.
+   - **DO NOT manufacture backdated artefacts.** All 4 reconstructed receipts carry explicit "RECONSTRUCTED POST-HOC" labelling in filename + header comment + updated seal-file Double-green line ("Double-green (RECONSTRUCTED POST-HOC): ...").
+
+4. **P3/P4/P5 back-compat CPs (16 CPs)** stay substantiated via the aggregate post-hoc receipts landed at Commit-B `f6c4909b` (`20260917T085545Z_backcompat_batch_p3cp4_to_p6cp4_GREEN1.log` + `20260917T085811Z_backcompat_batch_p3cp4_to_p6cp4_GREEN2.log`). Their seal files' Double-green lines are NOT overwritten (previous session's authorship preserved · reconciliation memo already flags the gap · this owner ruling adopts the "honest disclosure" position for P3/P4/P5).
+
+5. **CP-P6-CP5 and CP-P6-CP6** proceed under FULL protocol WITH per-CP double-green receipts captured at seal time (R-5 enforced from this ruling forward). Each will produce its own `phase0/drill_receipts/<TS>_p6_cp5_*_RED.log`, `<TS>_p6_cp5_*_GREEN1.log`, `<TS>_p6_cp5_*_GREEN2.log` trio (and equivalent for CP-P6-CP6) — no exceptions.
+
+6. **M9 OVERALL completion rollup** authored at `notes/M9_PLATFORM_LAYER_COMPLETE_20260917.md` (working papers) + downloadable copy at `/app/frontend/public/audit/M9_PLATFORM_LAYER_COMPLETE_20260917.md` (uncommitted · outside git tree · matches Owner Ruling on downloadable-copy-outside-git precedent from 2026-09-17T~03:00Z M8 SEAL wave-close). Contents per owner directive verbatim: all P1–P6, per-CP SHA index, ratchet arc 4433→final, total CPs sealed in M9, cumulative pytest state, GPU status, consolidated CONTRACT-MODELED-vs-real inventory across the whole platform layer, and the receipt-provenance disclosure section.
+
+7. **SEAL-CHAIN / RECEIPT PROVENANCE section in the rollup** — mandatory, explicit, no glossing. Per owner directive verbatim: *"Name it as a known provenance gap — do not gloss it."* Records: (a) 20 back-compat CPs' historical gap; (b) aggregate substantiation SHA + byte-match; (c) 4 P6 CPs reconstructed post-hoc; (d) R-5 adopted.
+
+8. **Standing lines held**: local commits only · no push · no `testing_agent` · no refactor.
+
+9. **Report at completion** — final report to owner covers: R-1..R-5 ratification, path (c) execution result, CP-P6-CP5 + CP-P6-CP6 seals, M9 OVERALL rollup + audit-URL delivery.
+
+
+
+---
+
+
+---
+
+## CP-P6-CP5 · M9 · Platform-layer sandbox_offboarding SEALED · 2026-09-17T~09:25Z · §3.3 3-COMMIT COMPLETE · Source: builder log
+
+**Track-a HEAD (Commit-A):** `2e82e4f`. **Master HEAD (Commit-B):** `df6ed42445305b8c6ccb0274a5a08d2486ffa88c` · this-turn Commit-C fixup banks. **Ratchet:** 4795 → **4809** (+14).
+
+**Anchor**: PLATFORM_LAYER_REQUIREMENTS_v0_2.md §4.7 tenant lifecycle terminal state `offboarded` + Row 210 verbatim: *"30-day irreversible-delete contract; refusal on missing cert-revocation / allocation-return / artefact-delete evidence refs."*
+
+**Mechanism** at `services/platform_control_plane/sandbox_offboarding.py`: `SANDBOX_OFFBOARDING_ANCHOR` verbatim module-level anchor · `SANDBOX_OFFBOARDING_RECORD_FIELDS = ("id", "tenant_id", "cert_revocation_ref", "allocation_return_ref", "artefact_delete_ref", "initiated_at", "committed_at")` 7-tuple · `SandboxOffboardingRecord` frozen 7-carrier all str OPEN · `assert_sandbox_offboarding_valid(*, record)` preventive-charter refusal order fail-fast (cert → allocation → artefact) · returns `None` on admit · COUNTS-only messages · positional-index refusal bodies · 4 refusal classes (`SandboxOffboardingRefused` root + 3 subclasses).
+
+**Composition**: caller invokes only when tenant transitions INTO `offboarded` per CP-P1-CP6 TenantLifecycleFSM. Combined P1-CP6 lifecycle FSM + P6-CP5 evidence carrier fully shape-freeze CONTRACT-MODELED item 12 (30-day irreversible offboarding delete) at carrier layer.
+
+**Standing lines held**: no biometric material · no enforcement hard-gate · preventive-charter · caller invokes · synthetic fixtures · no speculative shapes · zero closed enum type · zero domain tokens (21-token grep-negative via obfuscated pair-halves per CP-M7-W2-CP1 precedent) · zero data-plane imports · 14 invariants.
+
+**R-5 COMPLIANCE (FIRST CP UNDER R-5 ENFORCEMENT)**: per-CP double-green raw drill logs captured at seal time and verified on disk pre-seal-file-authorship:
+- RED: `phase0/drill_receipts/20260917T091401Z_p6_cp5_sandbox_offboarding_RED.log` (14 failed with `ModuleNotFoundError` right-reason)
+- DELTA_GUARD0_v2: `phase0/drill_receipts/20260917T091806Z_p6_cp5_sandbox_offboarding_DELTA_GUARD0_v2.log` (4809 passed = +14 exact from floor 4795)
+- GREEN1: `phase0/drill_receipts/20260917T092056Z_p6_cp5_sandbox_offboarding_GREEN1.log` (`4809 passed, 1 skipped, 438 warnings`)
+- GREEN2: `phase0/drill_receipts/20260917T092325Z_p6_cp5_sandbox_offboarding_GREEN2.log` (`4809 passed, 1 skipped, 438 warnings`)
+- Byte-match on counts (`4809 passed, 1 skipped, 438 warnings`): MATCHED
+
+**Self-catch discipline honored** (case-agnostic doctrine):
+- Initial DELTA sweep caught `test_p6_cp5_zero_domain_tokens` failing on its OWN test source containing `"kikuyu"` in the tuple literal → fixed by obfuscating to pair-halves rebuilt at runtime (CP-M7-W2-CP1 precedent).
+- Initial DELTA sweep caught `test_decisions_carries_pointer_near_bottom` failing because the previous DECISIONS.md ratification entry didn't end with the standing-orders pointer → fixed by appending the pointer line.
+- Both fixes landed pre-Commit-A. Second DELTA sweep clean at 4809. **The mechanism enforced the doctrines, not the author's vigilance.**
+
+**GPU util at seal boundary**: elapsed ~29.6h · remaining ~42.4h · both hosts sampler_alive+workload_alive · in-perimeter · no anomalies.
+
+**Seal file** at `phase0/output_verified_seals/cp_p6_cp5_sandbox_offboarding.seal.txt`. **Seal note** at `notes/P6_CP5_SANDBOX_OFFBOARDING_SEAL_20260917.md`.
+
+**§3.3 3-COMMIT PROTOCOL**:
+- Commit-A `2e82e4f` (track-a) ✅ landed 2026-09-17T~09:25Z
+- Commit-B this-turn (master · state + seal + seal note + DECISIONS + NEXT + GPU util + 4 drill receipts)
+- Commit-C this-turn (master fixup · Master HEAD banked in seal file + DECISIONS + NEXT)
+
+**Next**: **CP-P6-CP6 · M9-SEAL** = wave-close report per Row 211 verbatim ("Inline OVERALL BUILD STATUS table per owner directive"). State-only §3.3 2-COMMIT SHAPE. Then M9 OVERALL completion rollup + downloadable copy at `/app/frontend/public/audit/M9_PLATFORM_LAYER_COMPLETE_20260917.md`.
+
+
+
+---
+
+## M9 SEAL LANDED · CP-P6-CP6 wave-close · 2026-09-17T~09:30Z · §3.3 2-COMMIT SHAPE · Source: builder log
+
+**Track-a HEAD (unchanged):** `2e82e4f` (CP-P6-CP5 Commit-A · no code change at M9 SEAL). **Master HEAD (Commit-B):** `c72a003d` · this-turn Commit-C fixup banks. **Ratchet:** **4809** (unchanged · state-only close · matches M6 SEAL / M8 SEAL precedent).
+
+**M9 Wave Window CLOSED**: `programme/track-a` HEAD `1a2c3faa` (M8 SEAL close · 4433) → HEAD `2e82e4f` (CP-P6-CP5 · 4809). Master HEAD arc: `db98cf64` (M8 SEAL) → `7cc5b637` (CP-P6-CP5 fixup) → this-turn (M9 SEAL Commit-B/C).
+
+**Deliverable**: `notes/M9_SEAL_20260917.md` (322 lines · this document is the CP-P6-CP6 wave-close artefact per PLATFORM_LAYER_REQUIREMENTS_v0_2.md Row 211 verbatim: *"wave-close report notes/M9_SEAL_YYYYMMDD.md · Inline OVERALL BUILD STATUS table per owner directive."*).
+
+**Downloadable copy**: `/app/frontend/public/audit/M9_PLATFORM_LAYER_COMPLETE_20260917.md` (uncommitted · outside git tree per owner directive verbatim ("+ downloadable copy at /app/frontend/public/audit/M9_PLATFORM_LAYER_COMPLETE_20260917.md") · matches M8 SEAL wave-close precedent 2026-09-17T~03:00Z).
+
+**Content sections** (12 total):
+- §1 Progress (what now works end-to-end) · §2 How-much-to-go · §3 Decisions taken · §4 Discoveries · §5 Recommendations · §6 OVERALL BUILD STATUS TABLE (36 code CPs across P1..P6 with full per-CP track-a Commit-A + master Commit-B SHA index + ratchet arc + invariant counts) · §7 Consolidated CONTRACT-MODELED-vs-Real inventory (15 §8 items + items 19 + 22) · **§8 SEAL-CHAIN / RECEIPT PROVENANCE (mandatory disclosure section)** · §9 GPU utilization at seal boundary · §10 Standing lines held · §11 Receipts index · §12 Wave-honest limits.
+
+**M9 completion metrics**:
+- **36 code CPs sealed** (P1=6 · P2=5 · P3=5 · P4=8 · P5=6 · P6=6 including CP-P6-CP6 wave-close)
+- **373 invariants added**
+- **Ratchet delta: 4433 → 4809 (+376 monotonic-up · zero rollback)**
+- **Phase-total deltas**: P1 +35 · P2 +48 · P3 +53 · P4 +88 · P5 +86 · P6 +66
+- **All 15 CONTRACT-MODELED §8 items shape-frozen** (bind-only wiring downstream)
+- **R-1..R-5 seal-chain integrity rules banked** (R-5 mandatory · R-1..R-4 additive discipline)
+
+**SEAL-CHAIN / RECEIPT PROVENANCE disclosure (per owner directive verbatim)**:
+- 16 CPs (P3-CP4 · P3-CP5 · P4-CP1..CP8 · P5-CP1..CP6) have aggregate-only substantiation (byte-matched BASELINE_GUARD=1 sweep × 2 at ratchet 4795 · track-a Commit-A verified 16/16 · monotonic ratchet 16/16 · NO per-CP raw drill receipts on disk)
+- 4 P6 CPs (P6-CP1..CP4) RECONSTRUCTED POST-HOC AT HEAD `e436028251b0ae18919c163123b565e3000384ed` · 2026-09-17 (12 raw drill receipts with explicit `# RECONSTRUCTED POST-HOC` header · seal files carry appended `Double-green (RECONSTRUCTED POST-HOC AT HEAD ... · 2026-09-17):` line)
+- **CP-P6-CP5 was the FIRST CP sealed under R-5 enforcement** — full 5-receipt suite captured at seal time (RED · DELTA_GUARD0 · DELTA_GUARD0_v2 · GREEN1 · GREEN2)
+- Root-cause note at `notes/M9_MASTER_CHAIN_LAG_ROOT_CAUSE_20260917.md` records the 5 contributing factors + R-1..R-5 proposal
+- Reconciliation memo at `notes/M9_BACKCOMPAT_RECONCILIATION_20260917.md` records per-CP 3-part verification result
+
+**Standing lines held throughout M9**: no push · no `testing_agent` · no refactor · no biometric material · no enforcement hard-gate (all preventive-charter) · no speculative shapes · zero closed enums in any P1-P6 module · zero data-plane imports · zero domain tokens (21-token grep-negative on module sources) · local git history IS the record.
+
+**GPU utilization at M9 SEAL boundary**: elapsed ~29.6h · remaining ~42.4h · both hosts sampler_alive+workload_alive · in-perimeter · no anomalies · zero synthetic burn · GPU campaign continues on cadence to 72h completion.
+
+**§3.3 2-COMMIT SHAPE (state-only close · matches M6 SEAL / M8 SEAL precedent)**:
+- Commit-A track-a: N/A (state-only · no code · no ratchet)
+- Commit-B this-turn (master · M9 SEAL note + this DECISIONS entry + NEXT pin + downloadable copy at /app/frontend/public/audit/... uncommitted)
+- Commit-C this-turn (master fixup · self-reference · banks Commit-B SHA in DECISIONS + NEXT)
+
+**Next actions**: M9 COMPLETE. Report to owner at M9 SEAL per owner directive verbatim ("Report at completion"). Continue GPU utilization interleave check-ins on cadence to 72h completion. Await owner ruling for next work.
+
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 

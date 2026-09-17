@@ -1,0 +1,13 @@
+Kind: cp_p5_cp4_wizard_state_machine
+Wave: M9 · P5
+CP: CP-P5-CP4 · Platform-layer wizard state machine (§8.1 M-W-1 + §8.2 M-W-2)
+Module: backend/services/platform_control_plane/wizard_state_machine.py
+Anchor: §8.1 M-W-1 verbatim + §8.2 M-W-2 verbatim 9-step wizard producing a provisioned sandbox tenant with 30-day drafts
+Invariants: 17 · backend/tests/invariants/test_p5_cp4_wizard_state_machine.py
+Ratchet: 4691 -> 4708 (+17)
+Track-a HEAD (Commit-A): 7f34c3dc9bb77510d84a93192842011e2c2c6001
+Master HEAD (Commit-B): f6c4909b41a182671c1f276ab68e08f1a7fe702b
+Double-green: GREEN1 4708/1/0 · GREEN2 4708/1/0
+Shape: WIZARD_STEPS 9-tuple verbatim · WIZARD_MAX_DRAFT_DAYS=30 · WIZARD_OUTPUT_ENVIRONMENT="sandbox" · step_ordinal + 3 preventive-charter asserts · 5 refusal classes
+GPU util at seal: elapsed 28.12h · remaining 43.88h
+Signed off: 2026-09-17T~07:49Z · CP-P5-CP4 SEALED

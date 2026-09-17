@@ -1,0 +1,35 @@
+{
+  "kind": "commissioning_record",
+  "at": "2026-09-17T05:26:05.311281+00:00",
+  "host_name": "aisca-gpu-01",
+  "vm_host": "127.0.0.1",
+  "deploy_date": "2026-08-14",
+  "hardening_section": {
+    "status": "attested",
+    "failed_step": null,
+    "external_probe_ok": true,
+    "receipt_path": "/tmp/pytest-of-root/pytest-41/test_drill_host_produces_disti0/hardening_receipt.json"
+  },
+  "acceptance_section": {
+    "status": "green",
+    "exit_code": 0,
+    "checks": [
+      {
+        "name": "HSS mounted ~30 TB",
+        "ok": true,
+        "sentence": "The 30 TB high-speed storage is mounted, writable, and survives restart."
+      },
+      {
+        "name": "4x H200 NVLink active",
+        "ok": true,
+        "sentence": "Four H200 GPUs are visible with NVLink active."
+      },
+      {
+        "name": "Password auth dead",
+        "ok": true,
+        "sentence": "Password authentication is refused from outside."
+      }
+    ]
+  },
+  "ruling_reference": "DECISIONS.md \u00b7 WS-BUILD-CONNECT-GPU \u00b7 2026-08-14"
+}

@@ -1,0 +1,13 @@
+Kind: cp_p5_cp3_app_revalidation
+Wave: M9 · P5
+CP: CP-P5-CP3 · Platform-layer app revalidation with named missing requirement (§9 M-Ac-2)
+Module: backend/services/platform_control_plane/app_revalidation.py
+Anchor: §9 M-Ac-2 verbatim — apps whose requirements lapse are marked degraded with the missing requirement named
+Invariants: 14 · backend/tests/invariants/test_p5_cp3_app_revalidation.py
+Ratchet: 4677 -> 4691 (+14)
+Track-a HEAD (Commit-A): 6819fd1100fcf89cd801622c412df3a742c92f34
+Master HEAD (Commit-B): f6c4909b41a182671c1f276ab68e08f1a7fe702b
+Double-green: GREEN1 4691/1/0 · GREEN2 4691/1/0
+Shape: ENABLEMENT_STATUS = ("enabled", "degraded") · EnablementHealthAssessment frozen 2-carrier (status, missing_requirements sorted tuple) · assess_enablement_health pure computation returning sorted canonical missing-requirement refs · assert_assessment_valid preventive-charter refusal wrapper · 4 refusal classes
+GPU util at seal: elapsed 27.97h · remaining 44.03h
+Signed off: 2026-09-17T~07:40Z · CP-P5-CP3 SEALED

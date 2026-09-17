@@ -1,0 +1,13 @@
+Kind: cp_p3_cp2_connector_entity
+Wave: M9 · P3
+CP: CP-P3-CP2 · Platform-layer connector_entity carrier
+Module: services/platform_control_plane/connector_entity.py
+Anchor: §10 verbatim connector 10-field · §5.2 M-C-1 verbatim (Empty scope is invalid · mou_task_ref required)
+Invariants: 9 · tests/invariants/test_p3_cp2_connector_entity.py
+Ratchet: 4525 -> 4534 (+9)
+Track-a HEAD (Commit-A): df6d3cf6dada703d28af5c92717a977a2bf2df9f
+Master HEAD (Commit-B): f974aa6177db3e8246cf93a9ecaac725578fd759
+Double-green: GREEN1 4534/1/0 · GREEN2 4534/1/0 (BASELINE_GUARD=1)
+Shape: ConnectorEntity frozen 10-carrier all str OPEN · preventive-charter assert_connector_carrier_valid fail-fast (scope empty → EmptyScopeRefused · mou_task_ref empty → MissingMouTaskRefRefused) · 3 refusal classes
+GPU util: elapsed 25.63h · remaining 46.37h
+Signed off: 2026-09-17T~05:30Z · CP-P3-CP2 SEALED

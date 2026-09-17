@@ -1,0 +1,17 @@
+Kind: cp_p4_cp5_task_invalidation
+Wave: M9 · P4
+CP: CP-P4-CP5 · Platform-layer task-approval-invalidation on connectors/modes/compute change (§7.5 M-A-5)
+Module: backend/services/platform_control_plane/task_invalidation.py
+Anchor: §7.5 M-A-5 verbatim — Any change to a task's connectors, modes or compute invalidates its approval; the task returns to pending_approval
+Invariants: 11 · backend/tests/invariants/test_p4_cp5_task_invalidation.py
+Ratchet: 4609 -> 4620 (+11)
+Track-a HEAD (Commit-A): dcbd5d0777ef04a5b27a97ca28d291d66510bd33
+Master HEAD (Commit-B): f6c4909b41a182671c1f276ab68e08f1a7fe702b
+Double-green: GREEN1 4620/1/0 · GREEN2 4620/1/0
+RED→GREEN evidence: RED = 11 errors when task_invalidation.py absent · GREEN = 11 passed
+Raw sweep prior to ratchet bump: BASELINE_GUARD=0 → 4620 passed (delta +11)
+Shape: assert_task_approval_valid(*, before_approved, after_proposed) · fail-fast order (1) StaleApprovalOnConnectorModesChangeRefused when connector_modes tuple differs AND after.status != TASK_PENDING_APPROVAL; (2) StaleApprovalOnComputeIntegrationChangeRefused when compute_integration_id differs AND after.status != TASK_PENDING_APPROVAL · returns None on admit · TASK_PENDING_APPROVAL = "pending_approval" verbatim · 3 refusal classes (TaskApprovalRefused root + 2 subclasses)
+Composition: composes with CP-P4-CP3 TaskEntity via before/after snapshots · connector_modes tuple-equality catches mode changes AND connector-membership changes AND reordering (M-A-5 "connectors, modes" verbatim)
+Standing lines held: no biometric material · no enforcement hard-gate · preventive-charter · caller invokes · synthetic fixtures · no speculative shapes · upgrade path preserved · zero closed enum type · zero domain tokens · zero data-plane imports
+GPU util at seal: elapsed 27.07h · remaining 44.93h
+Signed off: 2026-09-17T~06:46Z · CP-P4-CP5 SEALED

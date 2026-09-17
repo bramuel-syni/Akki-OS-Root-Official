@@ -1,0 +1,15 @@
+Kind: cp_p6_cp3_cross_tenant_access_suite
+Wave: M9 · P6
+CP: CP-P6-CP3 · Platform-layer cross-tenant access acceptance suite (Row 208 + §6 acceptance criterion 2)
+Module: backend/services/platform_control_plane/cross_tenant_access_suite.py
+Anchor: Row 208 verbatim (refusal aggregator: tenant_context, task_scope, permission_evaluation, scheduler_admission, metering, audit visibility) + §6 acceptance criterion 2 verbatim
+Invariants: 16 · backend/tests/invariants/test_p6_cp3_cross_tenant_access_suite.py
+Ratchet: 4766 -> 4782 (+16)
+Track-a HEAD (Commit-A): db1aafaad8f46a2100580741455771fa8150809a
+Master HEAD (Commit-B): f6c4909b41a182671c1f276ab68e08f1a7fe702b
+Double-green: GREEN1 4782/1/0 · GREEN2 4782/1/0
+Double-green (RECONSTRUCTED POST-HOC AT HEAD e436028251b0ae18919c163123b565e3000384ed · 2026-09-17): scoped pytest tests/invariants/test_p6_cp3_cross_tenant_access_suite.py · RED 16 error (module hidden) · GREEN1 16 passed · GREEN2 16 passed · raw receipts: phase0/drill_receipts/20260917T090923Z_p6_cp3_cross_tenant_access_suite_{RED,GREEN1,GREEN2}_RECONSTRUCTED_POST_HOC.log · R-5 provenance: per-CP receipts NOT captured at Commit-A landing; reconstructed 2026-09-17T~09:09Z during §3.3 BACK-COMPAT BATCH path (c) SCOPED RECONSTRUCTION per owner ruling 2026-09-17T~09:15Z (DECISIONS.md §3.3 SEAL-CHAIN INTEGRITY RULINGS)
+Shape: CROSS_TENANT_SUITE_PLANES 6-tuple · assert_cross_tenant_suite_admits pure meta-refusal aggregator · fail-fast order (context → task_scope → permission → scheduler → metering → audit_visibility) · 7 refusal classes (root + 6 plane-specific subclasses)
+Composition: composes with CP-P1-CP1 tenant_context + CP-P4-CP4 task_scope_enforcement + CP-P2-CP3 permission_evaluation + CP-P4-CP6 scheduler_admission + CP-P4-CP7 metering_ledger + CP-P6-CP1 audit_event visibility via 6 pre-computed booleans (verdicts from owning CPs)
+GPU util at seal: elapsed 28.92h · remaining 43.08h
+Signed off: 2026-09-17T~08:37Z · CP-P6-CP3 SEALED

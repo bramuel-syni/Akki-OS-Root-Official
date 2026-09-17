@@ -1,0 +1,18 @@
+Kind: cp_p3_cp5_connection_test
+Wave: M9 · P3
+CP: CP-P3-CP5 · Platform-layer connection-test contract (pre-attach admission record for connector-to-task binding) · §5.4 M-C-5
+Module: backend/services/platform_control_plane/connection_test.py
+Anchor: §5.4 M-C-5 verbatim — Every connector passes a connection test before it can be attached to a task. The test verifies reachability, authentication and scope resolution. It does not read content.
+Invariants: 12 · backend/tests/invariants/test_p3_cp5_connection_test.py
+Ratchet: 4557 -> 4569 (+12)
+Track-a HEAD (Commit-A): a53d6e6e7ff745bfb1a51d33af14be6dda7f1943
+Master HEAD (Commit-B): f6c4909b41a182671c1f276ab68e08f1a7fe702b (no-op merge target · this repo mirror carries no live master branch; recorded per §3.3 aspirational fixup line to preserve upgrade path)
+Double-green: GREEN1 4569/1/0 · GREEN2 4569/1/0 (byte-match on `4569 passed, 1 skipped, 438 warnings`)
+RED→GREEN evidence: RED = 12 errors when connection_test.py absent · GREEN = 12 passed with module present
+Raw sweep prior to ratchet bump: BASELINE_GUARD=0 → 4569 passed / 1 skipped / 0 failed (delta = +12 from floor 4557, exactly the 12 new invariants; no silent rebaselining)
+Shape: ConnectionTestOutcome frozen dataclass 7 exact-order fields (6 str + 1 bool): id, connector_id, reachability_ref, authentication_ref, scope_resolution_ref, content_read_attempted, tested_at · CONNECTION_TEST_OUTCOME_FIELDS tuple · assert_connection_test_valid preventive-charter refusal order (safety-first fail-fast): (1) content_read_attempted True → ContentReadDuringTestRefused (fires FIRST · §5.4 forbids content read during test); (2) reachability_ref empty → MissingReachabilityCheckRefused; (3) authentication_ref empty → MissingAuthenticationCheckRefused; (4) scope_resolution_ref empty → MissingScopeResolutionRefused · returns None on admit · COUNTS-only messages · positional-index refusal bodies · 5 refusal classes (ConnectionTestRefused root + 4 subclasses)
+Composition: composes with CP-P3-CP2 ConnectorEntity via connector_id · downstream P4 CPs consume this outcome record as gate-material for connector-to-task attachment
+CONTRACT-MODELED items enabled: no new item introduced (item 14 already anchored at CP-P3-CP3); this CP is the pre-attach admission carrier that closes the "connector before task" §5.4 discipline · content-read hard-refuse fires by construction (no bytes type-hint · no audio-bytes/embedding field-name · runtime refusal on flag-set)
+Standing lines held: no biometric material · no enforcement hard-gate · preventive-charter · caller invokes · synthetic fixtures · no speculative shapes · upgrade path to hard-gate preserved by construction · zero closed enum type · zero domain tokens (21-token grep-negative in module + tests) · zero data-plane imports (services.audio_plane_v1 / release_gate / governance_plane / audio_poc / training_runner all grep-negative)
+GPU util at seal: elapsed 26.30h · remaining 45.70h (updated at /app/frontend/public/audit/GPU_UTILIZATION_72H.{json,md})
+Signed off: 2026-09-17T~06:00Z · CP-P3-CP5 SEALED · M9 Phase P3 COMPLETE (5/5 CPs sealed)

@@ -1,0 +1,48 @@
+{
+  "budget_ceiling": {
+    "amount": 200.0,
+    "currency": "USD"
+  },
+  "commissioner": "operator@estate",
+  "currency_figures": {},
+  "feasibility_verdict": "floor feasible \u2014 2 \u00d7 NVIDIA H200 accepted for this workload",
+  "generated_at_iso": "2026-09-17T07:33:57.211245Z",
+  "grounding_marker": "estimate-grounded",
+  "honest_gap": "No rate is on record for this machine \u2014 the projection shows measured quantities only (GPU hours, storage touched). Money figures will appear when the cost ledger is in force.",
+  "kind": "training",
+  "lawful_basis": "declared_purpose:model_training",
+  "measured_quantities": {
+    "gpu_count": {
+      "provenance_ref": "commissioning_record:akki-vm",
+      "unit": "gpu",
+      "value": 2
+    },
+    "gpu_model": {
+      "provenance_ref": "commissioning_record:akki-vm",
+      "unit": "model",
+      "value": "NVIDIA H200"
+    },
+    "scope_ceiling_intent": {
+      "provenance_ref": "commissioner_declared:scope_ceiling",
+      "value": {
+        "gpu_hours_ceiling": 8
+      }
+    },
+    "storage_free_tb": {
+      "provenance_ref": "commissioning_record:akki-vm",
+      "unit": "TB",
+      "value": 5.6
+    }
+  },
+  "price_model_version": "no-rates-on-record",
+  "provenance": {
+    "commissioning_record_dir": "/app/assessment_workspace/phase0/commissioning_records",
+    "data_connection_record_dir": "/app/assessment_workspace/phase0/data_connection_records",
+    "reflection_record_dir": "/app/assessment_workspace/phase0/reflection_records"
+  },
+  "reflection_id": "refl-227cc62f61ff",
+  "scope_ceiling": {
+    "gpu_hours_ceiling": 8
+  },
+  "scope_ref": "training-run:mvp-classifier"
+}

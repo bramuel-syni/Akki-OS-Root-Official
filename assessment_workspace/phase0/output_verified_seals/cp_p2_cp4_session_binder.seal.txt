@@ -1,0 +1,16 @@
+Kind: cp_p2_cp4_session_binder
+Wave: M9 · P2 · RBAC
+CP: CP-P2-CP4 · Platform-layer session binder
+Module: services/platform_control_plane/session_binder.py
+Anchor: Akki OS Pilot Platform Reference v0.2 §7.2 M-A-6 verbatim: Sessions: 12h absolute lifetime · 1h idle timeout · revocable by tenant admin. Data-plane agents auth via short-lived certs bound to tenant_id. §4.3 verbatim: The API gateway resolves tenant_id from the authenticated session and injects it into every request. Clients cannot supply it.
+Invariants: 12 · tests/invariants/test_p2_cp4_session_binder.py
+Ratchet: 4490 -> 4502 (+12) monotonic-up
+Track-a HEAD (Commit-A): a5af53fa088ae8a016b38effe5f32b982467192a
+Master HEAD (Commit-B): e1681becb0731710d93d9f1ce82ee7fe08561c96
+Double-green byte-match: GREEN1 4502/1/0 in 124.68s + GREEN2 4502/1/0 in 125.31s (BASELINE_GUARD=1)
+Shape: Session frozen dataclass 8 exact-order str OPEN · SESSION_FIELDS tuple · SESSION_ABSOLUTE_LIFETIME_HOURS=12 · SESSION_IDLE_TIMEOUT_HOURS=1 · empty-string convention for revoked_at · preventive-charter assert_session_valid(*, session, at_iso) refusal order fail-fast (unbound → revoked → absolute-expired → idle-timeout) · 5 refusal classes (SessionRefused root + 4 subclasses) · COUNTS-only messages · lexicographic ISO-8601 UTC 'Z' comparison
+Standing lines held: no biometric material · no enforcement hard-gate · caller invokes with at_iso · synthetic fixtures · no speculative shapes (empty-string convention instead of Optional)
+Case-agnostic: no datetime parsing at carrier (lexicographic str) · zero closed enums · zero domain tokens (21-token grep-negative) · zero data-plane imports
+CONTRACT-MODELED items enabled: item 5 (Live OIDC/SAML SSO per tenant · auth_method rides on user entity · session only carries resolved tenant_id + timing · IdP wiring downstream bind-only) · item 7 (Real 12h absolute / 1h idle session lifecycle · wall-clock at caller · session-store wiring downstream bind-only)
+GPU util at seal: elapsed 25.10h · remaining 46.90h · both hosts alive
+Signed off: 2026-09-17T~04:50Z · CP-P2-CP4 SEALED

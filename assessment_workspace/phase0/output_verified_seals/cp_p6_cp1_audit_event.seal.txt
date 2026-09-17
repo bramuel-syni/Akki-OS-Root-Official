@@ -1,0 +1,15 @@
+Kind: cp_p6_cp1_audit_event
+Wave: M9 · P6
+CP: CP-P6-CP1 · Platform-layer audit_event (§10 + §7.7 M-A-7 + Row 206)
+Module: backend/services/platform_control_plane/audit_event.py
+Anchor: §10 audit_event verbatim + §7.7 M-A-7 verbatim (append-only per tenant + one platform log + pilot+12 months retention) + Row 206 (mutate/delete refusal)
+Invariants: 11 · backend/tests/invariants/test_p6_cp1_audit_event.py
+Ratchet: 4743 -> 4754 (+11)
+Track-a HEAD (Commit-A): eede16f3da6eda54adcd5e5778668b5d1281772c
+Master HEAD (Commit-B): f6c4909b41a182671c1f276ab68e08f1a7fe702b
+Double-green: GREEN1 4754/1/0 · GREEN2 4754/1/0
+Double-green (RECONSTRUCTED POST-HOC AT HEAD e436028251b0ae18919c163123b565e3000384ed · 2026-09-17): scoped pytest tests/invariants/test_p6_cp1_audit_event.py · RED 11 error (module hidden) · GREEN1 11 passed · GREEN2 11 passed · raw receipts: phase0/drill_receipts/20260917T090917Z_p6_cp1_audit_event_{RED,GREEN1,GREEN2}_RECONSTRUCTED_POST_HOC.log · R-5 provenance: per-CP receipts NOT captured at Commit-A landing; reconstructed 2026-09-17T~09:09Z during §3.3 BACK-COMPAT BATCH path (c) SCOPED RECONSTRUCTION per owner ruling 2026-09-17T~09:15Z (DECISIONS.md §3.3 SEAL-CHAIN INTEGRITY RULINGS)
+Shape: AuditEvent frozen 9-carrier · assert_append_only refusal wrapper · 3 refusal classes (root + AuditEventMutationRefused + AuditEventDeletionRefused) · deletion fires before mutation · composes CP-P2-CP5 BreakGlassSession
+Retention pilot+12mo CONTRACT-MODELED: retention scheduler is downstream (real wall-clock scheduler binding)
+GPU util at seal: elapsed 28.57h · remaining 43.43h
+Signed off: 2026-09-17T~08:15Z · CP-P6-CP1 SEALED · First CP of P6

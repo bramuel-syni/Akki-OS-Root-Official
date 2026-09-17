@@ -1,0 +1,17 @@
+Kind: cp_p4_cp7_metering_ledger
+Wave: M9 · P4
+CP: CP-P4-CP7 · Platform-layer metering ledger + reconciliation invariant (§6.5 M-Cp-6)
+Module: backend/services/platform_control_plane/metering_ledger.py
+Anchor: §6.5 M-Cp-6 verbatim — Metering records GPU-seconds + CPU-seconds + RAM-seconds + bytes-read + bytes-written per tenant_id + compute_integration_id · Reconciliation invariant: sum(job_gpu_seconds per tenant per period) == allocation_ledger
+Invariants: 13 · backend/tests/invariants/test_p4_cp7_metering_ledger.py
+Ratchet: 4633 -> 4646 (+13)
+Track-a HEAD (Commit-A): 6af22a3690c74ee9b71ab7276584f6c20c8b93ec
+Master HEAD (Commit-B): f6c4909b41a182671c1f276ab68e08f1a7fe702b
+Double-green: GREEN1 4646/1/0 · GREEN2 4646/1/0
+RED→GREEN evidence: RED = 13 errors when metering_ledger.py absent · GREEN = 13 passed
+Raw sweep prior to ratchet bump: BASELINE_GUARD=0 → 4646 passed (delta +13)
+Shape: MeteringRecord frozen dataclass 9 exact-order str OPEN fields (id, tenant_id, compute_integration_id, period_ref, gpu_seconds, cpu_seconds, ram_seconds, bytes_read, bytes_written) · assert_metering_ledger_reconciled preventive-charter refusal wrapper · fail-fast order (1) MeteringRecordWrongTenantRefused; (2) MeteringRecordWrongPeriodRefused; (3) MeteringReconciliationRefused · 4 refusal classes (MeteringLedgerRefused root + 3 subclasses) · returns None on admit
+Composition: composes with CP-P4-CP1 ComputeIntegrationEntity via compute_integration_id · with allocation ledger identity refs at caller (numeric sum + comparison against allocation_ledger CONTRACT-MODELED at caller per CP-P4-CP2 note)
+Standing lines held: no biometric material · no enforcement hard-gate · preventive-charter · caller invokes · synthetic fixtures · no speculative shapes · upgrade path preserved · zero closed enum type · zero domain tokens · zero data-plane imports
+GPU util at seal: elapsed 27.37h · remaining 44.63h
+Signed off: 2026-09-17T~07:04Z · CP-P4-CP7 SEALED

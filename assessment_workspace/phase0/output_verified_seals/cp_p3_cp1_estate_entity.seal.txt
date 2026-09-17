@@ -1,0 +1,15 @@
+Kind: cp_p3_cp1_estate_entity
+Wave: M9 · P3 · Estate + Connectors
+CP: CP-P3-CP1 · Platform-layer estate_entity carrier
+Module: services/platform_control_plane/estate_entity.py
+Anchor: §10 verbatim estate (id, tenant_id, name, tier, location_summary, estate_contact, agent_id, sandbox_safe) · §5.1 tier vocabulary connected/hosted · §4.4 M-H-8 sandbox-attach anchor
+Invariants: 9 · tests/invariants/test_p3_cp1_estate_entity.py
+Ratchet: 4516 -> 4525 (+9)
+Track-a HEAD (Commit-A): 1fcc34bf67bb74c070c626ea95a96535a56bcaa2
+Master HEAD (Commit-B): d27d2a2289c6e925880864c506a3e3e21e22984e
+Double-green: GREEN1 4525/1/0 in 125.23s + GREEN2 4525/1/0 in 125.27s (BASELINE_GUARD=1)
+Shape: EstateEntity frozen 8-carrier (7 str + 1 bool sandbox_safe) · ESTATE_ENTITY_FIELDS tuple · ESTATE_TIER_VALUES tuple ('connected', 'hosted') OPEN str · preventive-charter assert_estate_tier_valid refuses UnknownEstateTierRefused case-sensitive · 2 refusal classes (root + subclass) · COUNTS-only messages · sandbox_safe rule: bool shape frozen · downstream sandbox-attach CP composes runtime rule
+Standing lines held: no biometric material · no enforcement hard-gate · caller composes · synthetic fixtures · no speculative shapes
+Case-agnostic: zero closed enum type · zero domain tokens · zero data-plane imports
+GPU util at seal: elapsed 25.47h · remaining 46.53h
+Signed off: 2026-09-17T~05:20Z · CP-P3-CP1 SEALED

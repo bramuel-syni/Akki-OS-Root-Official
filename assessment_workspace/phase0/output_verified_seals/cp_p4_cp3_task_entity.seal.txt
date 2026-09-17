@@ -1,0 +1,17 @@
+Kind: cp_p4_cp3_task_entity
+Wave: M9 · P4
+CP: CP-P4-CP3 · Platform-layer task entity (§10 verbatim + row-186 connector_modes shape)
+Module: backend/services/platform_control_plane/task_entity.py
+Anchor: §10 verbatim task (id, tenant_id, workspace_id, mou_task_ref, objective, connector_modes, compute_integration_id, status, approved_by, approved_at) · Row 186 connector_modes = tuple of (connector_id, mode) OPEN pairs · §7.5 M-A-3..M-A-5 downstream at CP4/CP5
+Invariants: 9 · backend/tests/invariants/test_p4_cp3_task_entity.py
+Ratchet: 4590 -> 4599 (+9)
+Track-a HEAD (Commit-A): 8158de62e73a474eb8d31d758ac07c45a6a394e6
+Master HEAD (Commit-B): f6c4909b41a182671c1f276ab68e08f1a7fe702b
+Double-green: GREEN1 4599/1/0 · GREEN2 4599/1/0 (byte-match on `4599 passed, 1 skipped, 438 warnings`)
+RED→GREEN evidence: RED = 9 errors when task_entity.py absent · GREEN = 9 passed with module present
+Raw sweep prior to ratchet bump: BASELINE_GUARD=0 → 4599 passed / 1 skipped / 0 failed (delta = +9 from floor 4590)
+Shape: TaskEntity frozen dataclass 10 exact-order fields (9 str + 1 tuple[tuple[str, str], ...] connector_modes) · TASK_ENTITY_FIELDS tuple · Pure carrier · no refusal wrapper · caller composes downstream validation · Ownership isolation at tenant_id index 1 · connector_modes index 5 · workspace_id index 2 · compute_integration_id index 6
+Composition: composes with CP-P1-CP2 tenant_entity via tenant_id · with CP-P1-CP3 workspace_entity via workspace_id · with CP-P3-CP2 connector_entity via each connector_id in connector_modes pairs · with CP-P3-CP3 connector_mode_lattice via each mode in connector_modes pairs (downstream CP-P4-CP4 composes mode-rank refusal against task-specified mode) · with CP-P4-CP1 compute_integration_entity via compute_integration_id
+Standing lines held: no biometric material · no enforcement hard-gate · pure carrier · synthetic fixtures · no speculative shapes · upgrade path preserved · zero closed enum type · zero domain tokens (21-token grep-negative) · zero data-plane imports
+GPU util at seal: elapsed 26.78h · remaining 45.22h
+Signed off: 2026-09-17T~06:28Z · CP-P4-CP3 SEALED

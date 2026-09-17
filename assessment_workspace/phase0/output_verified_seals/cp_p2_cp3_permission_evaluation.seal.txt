@@ -1,0 +1,17 @@
+Kind: cp_p2_cp3_permission_evaluation
+Wave: M9 · P2 · RBAC
+CP: CP-P2-CP3 · Platform-layer deny-by-default permission evaluator
+Module: services/platform_control_plane/permission_evaluation.py
+Anchor: Akki OS Pilot Platform Reference v0.2 §7.4 M-A-2 verbatim: Permissions are evaluated as action × resource_type × scope, deny-by-default. Evaluation happens at the API gateway and again inside the data plane.
+Invariants: 10 · tests/invariants/test_p2_cp3_permission_evaluation.py
+Ratchet: 4480 -> 4490 (+10) monotonic-up
+Track-a HEAD (Commit-A): f3c90a5aedf27f53869134aceccc6b31d844851a
+Master HEAD (Commit-B): b29317116e4010316ed076f5f6da76410a81f533
+Double-green byte-match: GREEN1 4490/1/0 in 125.20s + GREEN2 4490/1/0 in 124.47s (BASELINE_GUARD=1 · post-harness-refresh)
+Shape: PermissionRequest frozen 6-carrier (actor_id, action, resource_type, resource_id, scope_type, scope_id) · PermissionVerdict frozen 2-carrier (verdict_ref, reason_ref) · assess_permission_grant pure data-in/data-out deterministic · Rule 1) filter in_scope on (user_id + scope_type + scope_id) · 2) empty in_scope → deny(no_scope_match) · 3) any in-scope assignment (role, action, resource_type) ∈ authorized_role_action_refs → allow(match) · 4) else deny(role_action_not_authorised) · Deny-by-default preserved when authorized_role_action_refs empty
+Standing lines held: no biometric material · no enforcement hard-gate · pure data-in/data-out · caller composes · synthetic fixtures · no speculative shapes
+Case-agnostic: canonical verdict/reason tokens OPEN str · zero closed enums · zero domain tokens (21-token grep-negative) · zero data-plane imports · intra-platform_control_plane import of RoleAssignment is composition (not data-plane)
+CONTRACT-MODELED items enabled: Role → (action, resource_type) authorisation matrix is CONTRACT-MODELED · shape frozen at authorized_role_action_refs: Tuple[Tuple[str, str, str], ...] · concrete policy binding (OPA / K8s RBAC / hand-coded matrix) is a downstream bind-only change
+GPU util at seal: elapsed 24.91h · remaining 47.09h · both hosts alive
+Harness receipt refresh at seal: at phase0/harness_ground_truth/latest.json refreshed 2026-09-17T04:30:41Z via tools/wave_g5_realchrome_verification_harness.py (owner ruling 2026-09-08T~06:15Z: refresh the harness, don't relax the threshold) · pre-refresh: 12.05h stale under BASELINE_GUARD=1 causing test_cp10_harness_receipt_is_still_recent regression · post-refresh: 0.001h age · all rules bound_to_rendered_dom · GREEN restored on rerun
+Signed off: 2026-09-17T~04:35Z · CP-P2-CP3 SEALED

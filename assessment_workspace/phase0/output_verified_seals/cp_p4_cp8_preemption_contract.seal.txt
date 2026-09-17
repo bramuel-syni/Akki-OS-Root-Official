@@ -1,0 +1,18 @@
+Kind: cp_p4_cp8_preemption_contract
+Wave: M9 · P4
+CP: CP-P4-CP8 · Platform-layer preemption contract (§6.4 M-Cp-4 · CONTRACT-MODELED)
+Module: backend/services/platform_control_plane/preemption_contract.py
+Anchor: §6.4 M-Cp-4 verbatim (CONTRACT-MODELED) — Reserved-capacity jobs are never pre-empted · Burst jobs are pre-emptible by another tenant's reserved-capacity jobs within SLA
+Invariants: 11 · backend/tests/invariants/test_p4_cp8_preemption_contract.py
+Ratchet: 4646 -> 4657 (+11)
+Track-a HEAD (Commit-A): be94bfee294b2862f82575836e5abb16b7ab2436
+Master HEAD (Commit-B): f6c4909b41a182671c1f276ab68e08f1a7fe702b
+Double-green: GREEN1 4657/1/0 · GREEN2 4657/1/0
+RED→GREEN evidence: RED = 11 errors when preemption_contract.py absent · GREEN = 11 passed
+Raw sweep prior to ratchet bump: BASELINE_GUARD=0 → 4657 passed (delta +11)
+Shape: CAPACITY_KINDS = ("reserved", "burst") · assert_preemption_admissible pure refusal wrapper · fail-fast order (1) UnknownCapacityKindRefused for victim; (2) UnknownCapacityKindRefused for attacker; (3) PreemptingReservedRefused (M-Cp-4 clause 1); (4) BurstPreemptorMustBeReservedRefused (M-Cp-4 clause 2) · 4 refusal classes (PreemptionContractRefused root + 3 subclasses) · returns None on admit
+Composition: cross-tenant "another tenant's" sub-clause CONTRACT-MODELED at caller against ComputeIntegrationEntity.tenant_id / AllocationEntity.tenant_id (CP-P4-CP1/CP2)
+CONTRACT-MODELED items enabled: item 22 (Real preemption controller) shape-frozen · victim/attacker kind vocabulary + refusal ordering enable real preemption controller binding as bind-only change
+Standing lines held: no biometric material · no enforcement hard-gate · preventive-charter · caller invokes · synthetic fixtures · no speculative shapes · upgrade path preserved · zero closed enum type · zero domain tokens · zero data-plane imports
+GPU util at seal: elapsed 27.53h · remaining 44.47h
+Signed off: 2026-09-17T~07:13Z · CP-P4-CP8 SEALED · M9 Phase P4 COMPLETE (8/8 CPs sealed)

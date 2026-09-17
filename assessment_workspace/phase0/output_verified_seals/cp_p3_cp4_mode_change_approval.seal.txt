@@ -1,0 +1,18 @@
+Kind: cp_p3_cp4_mode_change_approval
+Wave: M9 · P3
+CP: CP-P3-CP4 · Platform-layer mode-change-approval record for connector-mode raise (§5.3 M-C-4)
+Module: backend/services/platform_control_plane/mode_change_approval.py
+Anchor: §5.3 M-C-4 verbatim — raising a connector's mode requires approval by a data_steward or tenant_admin, is logged, and invalidates any task that referenced the connector until the task is re-approved
+Invariants: 13 · backend/tests/invariants/test_p3_cp4_mode_change_approval.py
+Ratchet: 4544 -> 4557 (+13)
+Track-a HEAD (Commit-A): 10953615610a082d4e3e6376087a17978284efb3
+Master HEAD (Commit-B): f6c4909b41a182671c1f276ab68e08f1a7fe702b (no-op merge target · this repo mirror carries no live master branch; recorded per §3.3 aspirational fixup line to preserve upgrade path)
+Double-green: GREEN1 4557/1/0 · GREEN2 4557/1/0 (byte-match on `4557 passed, 1 skipped, 438 warnings`)
+RED→GREEN evidence: RED = 13 errors when mode_change_approval.py absent · GREEN = 13 passed with module present
+Raw sweep prior to ratchet bump: BASELINE_GUARD=0 → 4557 passed / 1 skipped / 0 failed (delta = +13 from floor 4544, exactly the 13 new invariants; no silent rebaselining)
+Shape: ModeChangeApproval frozen dataclass 10 exact-order fields (9 str + 1 tuple[str,...]): id, connector_id, from_mode, to_mode, approver_id, approver_role_ref, log_ref, dependent_task_scan_ref, invalidated_task_refs, approved_at · MODE_CHANGE_APPROVAL_FIELDS tuple · APPROVER_ROLES = ("data_steward", "tenant_admin") OPEN str tuple · assert_mode_change_approval_valid preventive-charter refusal order fail-fast: (1) approver_id/approver_role_ref empty → MissingApproverRefused; (2) approver_role_ref not in APPROVER_ROLES → InvalidApproverRoleRefused (case-sensitive); (3) log_ref empty → MissingLogRefRefused; (4) dependent_task_scan_ref empty → MissingDependentTaskInvalidationSetRefused · returns None on admit · COUNTS-only messages · positional-index refusal bodies · empty invalidated_task_refs tuple admits IFF scan_ref non-empty · 5 refusal classes (ModeChangeApprovalRefused root + 4 subclasses)
+Composition: caller invokes this CP's assert only after CP-P3-CP3 assert_downgrade_only refused an upgrade with UpgradeRequiresApprovalRefused · APPROVER_ROLES composes on CP-P2-CP1 PLATFORM_ROLES (non-duplicating closed enum)
+CONTRACT-MODELED items enabled: item 15 (Real audit log entry writer & 2-of-N approval workflow · shape-frozen · runtime binding is bind-only) — log_ref carrier + approver_role_ref vocabulary + dependent_task_scan_ref marker fully model the workflow at carrier layer, leaving concrete audit-log writer + human 2-of-N gate as downstream bind-only work
+Standing lines held: no biometric material · no enforcement hard-gate · preventive-charter · caller invokes · synthetic fixtures · no speculative shapes · upgrade path to hard-gate preserved by construction · zero closed enum type · zero domain tokens (21-token grep-negative in module + tests) · zero data-plane imports (services.audio_plane_v1 / release_gate / governance_plane / audio_poc / training_runner all grep-negative)
+GPU util at seal: elapsed 26.09h · remaining 45.91h (updated at /app/frontend/public/audit/GPU_UTILIZATION_72H.{json,md})
+Signed off: 2026-09-17T~05:47Z · CP-P3-CP4 SEALED

@@ -1,0 +1,17 @@
+Kind: cp_p2_cp5_break_glass_session
+Wave: M9 · P2 · RBAC · LAST CP of P2
+CP: CP-P2-CP5 · Platform-layer break_glass_session
+Module: services/platform_control_plane/break_glass_session.py
+Anchor: Akki OS Pilot Platform Reference v0.2 §7.8 M-A-8 verbatim (Break-glass: stated reason · 2nd-operator approval · ≤4h · auto owner notification at open + close · flagged in both audit logs) + §10 verbatim (break_glass_session (id, tenant_id, operator_id, approver_id, reason, opened_at, expires_at, closed_at))
+Invariants: 14 · tests/invariants/test_p2_cp5_break_glass_session.py
+Ratchet: 4502 -> 4516 (+14) monotonic-up
+Track-a HEAD (Commit-A): ec07fdb0924b3a076a62e52286c309749d2d2f30
+Master HEAD (Commit-B): 00309180714043e9b0b3fa19a7a8dff872cb1bdb
+Double-green byte-match: GREEN1 4516/1/0 in 125.80s + GREEN2 4516/1/0 in 125.33s (BASELINE_GUARD=1)
+Shape: BreakGlassSession frozen 8-carrier · BREAK_GLASS_SESSION_FIELDS tuple · BREAK_GLASS_MAX_DURATION_HOURS=4 verbatim int · empty-string convention · preventive-charter assert_break_glass_valid(*, session, duration_hours, opened_notification_ref, close_notification_ref) refusal order fail-fast (reason → approver → duration → notification-open → notification-close) · 5 refusal classes (root + 4 subclasses) · COUNTS-only messages
+Standing lines held: no biometric material · no enforcement hard-gate · caller invokes · synthetic fixtures · no speculative shapes (empty-string convention for closed_at + notifications)
+Case-agnostic: no datetime parsing at carrier (duration_hours: int caller-supplied) · zero closed enums · zero domain tokens (21-token grep-negative) · zero data-plane imports
+CONTRACT-MODELED items enabled: item 8 (Break-glass owner notification via email/webhook · notification refs MUST be supplied at open and at close · real webhook binding downstream bind-only) · duration computation caller-side (they own datetime math between opened_at and expires_at)
+GPU util at seal: elapsed 25.28h · remaining 46.72h · both hosts alive
+Completes: M9 Phase P2 (5/5 CPs sealed · cumulative +48 ratchet delta 4468 → 4516)
+Signed off: 2026-09-17T~05:05Z · CP-P2-CP5 SEALED · P2 COMPLETE

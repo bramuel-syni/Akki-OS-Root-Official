@@ -1,0 +1,16 @@
+Kind: cp_p2_cp1_role_registry
+Wave: M9 · P2 · RBAC
+CP: CP-P2-CP1 · Platform-layer fixed 7-role registry
+Module: services/platform_control_plane/role_registry.py
+Anchor: Akki OS Pilot Platform Reference v0.2 §7.3 M-A-1 verbatim: 7 roles ONLY: platform_operator, tenant_owner, tenant_admin, data_steward, analyst, viewer, service. Custom roles are recorded as requirements, not built.
+Invariants: 5 · tests/invariants/test_p2_cp1_role_registry.py
+Ratchet: 4468 -> 4473 (+5) monotonic-up
+Track-a HEAD (Commit-A): 1031ccd35aaa10619c669c7dd40b094e441968a6
+Master HEAD (Commit-B): 21125b706d19112406adf2a1672c76a4c8057411
+Double-green byte-match: GREEN1 4473 passed / 1 skipped / 0 failed / 124.00s + GREEN2 4473 passed / 1 skipped / 0 failed / 124.72s (BASELINE_GUARD=1 · byte-identical count outcome)
+Shape: PLATFORM_ROLES frozen tuple of 7 OPEN str in source-doc listing order · preventive-charter assert_role_known · UnknownRoleRefused (subclass of RoleRegistryRefused) on unknown role_ref · returns None on admit · COUNTS-only messages · case-sensitive
+Standing lines held: no biometric material · no enforcement hard-gate · caller composes · synthetic fixtures · no speculative shapes
+Case-agnostic: no closed enum type (values fixed by §7.3 but exposure remains tuple[str, ...]) · zero domain tokens (21-token grep-negative) · zero data-plane imports
+GPU util at seal: elapsed 24.47h · remaining 47.53h · both hosts alive
+First CP of P2 · foundation vocabulary for CP-P2-CP2..CP5
+Signed off: 2026-09-17T~05:05Z · CP-P2-CP1 SEALED

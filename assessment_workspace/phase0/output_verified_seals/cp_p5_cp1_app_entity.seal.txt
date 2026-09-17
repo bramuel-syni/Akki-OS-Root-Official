@@ -1,0 +1,17 @@
+Kind: cp_p5_cp1_app_entity
+Wave: M9 · P5
+CP: CP-P5-CP1 · Platform-layer app entity (§10 verbatim + §9 M-Ac-1)
+Module: backend/services/platform_control_plane/app_entity.py
+Anchor: §10 verbatim app (id, name, version, required_connector_types, required_compute_classes, run_roles, view_roles, availability) · §9 M-Ac-1 required_connector_types with min-mode per type
+Invariants: 7 · backend/tests/invariants/test_p5_cp1_app_entity.py
+Ratchet: 4657 -> 4664 (+7)
+Track-a HEAD (Commit-A): ffae1f86650228a66a622fe55bfb3d68b6eafd57
+Master HEAD (Commit-B): f6c4909b41a182671c1f276ab68e08f1a7fe702b
+Double-green: GREEN1 4664/1/0 · GREEN2 4664/1/0
+RED→GREEN evidence: RED = 7 errors when app_entity.py absent · GREEN = 7 passed
+Raw sweep prior to ratchet bump: BASELINE_GUARD=0 → 4664 passed (delta +7)
+Shape: AppEntity frozen dataclass 8 exact-order fields (4 str + 4 tuple variants) · required_connector_types is Tuple[Tuple[str, str], ...] per §9 M-Ac-1 min-mode-per-type · pure carrier no refusal wrapper
+Composition: composes with CP-P2-CP1 PLATFORM_ROLES via run_roles/view_roles tuples · with CP-P3-CP2 ConnectorEntity.type via required_connector_types pairs · with CP-P4-CP1 ComputeIntegrationEntity.class_ref via required_compute_classes · downstream CP-P5-CP2/CP3 compose enablement + revalidation refusals
+Standing lines held: pure carrier · zero closed enum type · zero domain tokens · zero data-plane imports
+GPU util at seal: elapsed 27.67h · remaining 44.33h
+Signed off: 2026-09-17T~07:22Z · CP-P5-CP1 SEALED · First CP of P5

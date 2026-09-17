@@ -1,0 +1,15 @@
+Kind: cp_p2_cp2_role_assignment
+Wave: M9 · P2 · RBAC
+CP: CP-P2-CP2 · Platform-layer role_assignment carrier
+Module: services/platform_control_plane/role_assignment.py
+Anchor: Akki OS Pilot Platform Reference v0.2 §10 verbatim role_assignment (id, user_id, role, scope_type, scope_id, granted_by, granted_at) · §7.4 verbatim Permissions are evaluated as action × resource_type × scope, deny-by-default. Evaluation happens at the API gateway and again inside the data plane.
+Invariants: 7 · tests/invariants/test_p2_cp2_role_assignment.py
+Ratchet: 4473 -> 4480 (+7) monotonic-up
+Track-a HEAD (Commit-A): 04eb3c753541f6b085c9df14b6b13679f4227160
+Master HEAD (Commit-B): e090d4c27d6801d44ae9fdd61e84e13f84ad8bab
+Double-green byte-match: GREEN1 4480 / 1 / 0 in 124.07s + GREEN2 4480 / 1 / 0 in 124.79s (BASELINE_GUARD=1)
+Shape: RoleAssignment frozen dataclass 7 exact-order str OPEN (id, user_id, role, scope_type, scope_id, granted_by, granted_at) · ROLE_ASSIGNMENT_FIELDS tuple · preventive-charter assert_role_assignment_valid refuses SelfGrantRefused when granted_by == user_id · returns None on admit · 2 refusal classes (root + SelfGrantRefused subclass) · COUNTS-only messages
+Standing lines held: no biometric material · no enforcement hard-gate · caller composes second-authoriser · synthetic fixtures · no speculative shapes
+Case-agnostic: zero closed enums · zero domain tokens (21-token grep-negative) · zero data-plane imports · role/scope_type OPEN str per §7.4 case-agnostic
+GPU util at seal: elapsed 24.64h · remaining 47.36h · both hosts alive
+Signed off: 2026-09-17T~05:15Z · CP-P2-CP2 SEALED

@@ -1,0 +1,15 @@
+Kind: cp_p6_cp2_audit_event_types
+Wave: M9 · P6
+CP: CP-P6-CP2 · Platform-layer audit-event-types superset check (§7.7 + Row 207)
+Module: backend/services/platform_control_plane/audit_event_types.py
+Anchor: §7.7 M-A-7 verbatim + Row 207 (emitted-event-types must be superset of §7.7 required set)
+Invariants: 12 · backend/tests/invariants/test_p6_cp2_audit_event_types.py
+Ratchet: 4754 -> 4766 (+12)
+Track-a HEAD (Commit-A): 601297ab2b96733ec86cb22c7739c88e1344df2b
+Master HEAD (Commit-B): f6c4909b41a182671c1f276ab68e08f1a7fe702b
+Double-green: GREEN1 4766/1/0 · GREEN2 4766/1/0
+Double-green (RECONSTRUCTED POST-HOC AT HEAD e436028251b0ae18919c163123b565e3000384ed · 2026-09-17): scoped pytest tests/invariants/test_p6_cp2_audit_event_types.py · RED 12 error (module hidden) · GREEN1 12 passed · GREEN2 12 passed · raw receipts: phase0/drill_receipts/20260917T090920Z_p6_cp2_audit_event_types_{RED,GREEN1,GREEN2}_RECONSTRUCTED_POST_HOC.log · R-5 provenance: per-CP receipts NOT captured at Commit-A landing; reconstructed 2026-09-17T~09:09Z during §3.3 BACK-COMPAT BATCH path (c) SCOPED RECONSTRUCTION per owner ruling 2026-09-17T~09:15Z (DECISIONS.md §3.3 SEAL-CHAIN INTEGRITY RULINGS)
+Shape: find_missing_event_types pure computation (sorted tuple) + assert_emitted_event_types_superset preventive-charter refusal wrapper · 2 refusal classes · case-sensitive
+CONTRACT-MODELED: concrete §7.7 event-type enumeration loaded by caller at run time · CP holds AUDIT_EVENT_TYPES_REQUIRED_SOURCE = "§7.7" reference token only · superset shape freeze enables real §7.7-verbatim binding as bind-only downstream
+GPU util at seal: elapsed 28.72h · remaining 43.28h
+Signed off: 2026-09-17T~08:25Z · CP-P6-CP2 SEALED

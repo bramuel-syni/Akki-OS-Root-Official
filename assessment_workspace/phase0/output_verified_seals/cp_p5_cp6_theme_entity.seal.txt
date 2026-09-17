@@ -1,0 +1,14 @@
+Kind: cp_p5_cp6_theme_entity
+Wave: M9 · P5
+CP: CP-P5-CP6 · Platform-layer theme entity + fixed 8-token set + Row 201 ceilings
+Module: backend/services/platform_control_plane/theme_entity.py
+Anchor: §10 theme verbatim + §8.3 M-W-3 verbatim + Row 201 verbatim (unknown token / oversized logo / long display_name / long login_message · WCAG-AA CONTRACT-MODELED)
+Invariants: 18 · backend/tests/invariants/test_p5_cp6_theme_entity.py
+Ratchet: 4725 -> 4743 (+18)
+Track-a HEAD (Commit-A): 51a39530b38e6f2a485235e714d9c32ec95db063
+Master HEAD (Commit-B): f6c4909b41a182671c1f276ab68e08f1a7fe702b
+Double-green: GREEN1 4743/1/0 · GREEN2 4743/1/0
+Shape: ThemeEntity frozen 5-carrier · THEME_TOKEN_NAMES 8-tuple · THEME_MODE_VALUES 3-tuple · numeric ceilings verbatim (512KB / 40 / 200) · 5 preventive-charter refusal wrappers · 6 refusal classes
+WCAG-AA CONTRACT-MODELED: contrast/accessibility refusal deferred as bind-only downstream binding
+GPU util at seal: elapsed 28.42h · remaining 43.58h
+Signed off: 2026-09-17T~08:07Z · CP-P5-CP6 SEALED · M9 Phase P5 COMPLETE (6/6 CPs sealed)

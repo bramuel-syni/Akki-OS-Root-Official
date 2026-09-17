@@ -1,0 +1,14 @@
+Kind: cp_p3_cp3_connector_mode_lattice
+Wave: M9 · P3
+CP: CP-P3-CP3 · Platform-layer connector-mode 3-level partial-order lattice
+Module: services/platform_control_plane/connector_mode_lattice.py
+Anchor: §5.3 M-C-2 (discovery/read/write verbatim) + M-C-3 (mode enforced in connector runtime) + M-C-4 (upgrade requires approval, is logged, invalidates dependent tasks)
+Invariants: 10 · tests/invariants/test_p3_cp3_connector_mode_lattice.py
+Ratchet: 4534 -> 4544 (+10)
+Track-a HEAD (Commit-A): 547ba3975d5ba4a199881eb5c8948f424a685d12
+Master HEAD (Commit-B): 29a6da446c4b250cba2c476ad470811dd1699640
+Double-green: GREEN1 4544/1/0 · GREEN2 4544/1/0
+Shape: CONNECTOR_MODES tuple in ascending rank · MODE_RANK dict · mode_rank raises UnknownModeRefused · assert_downgrade_only refuses UpgradeRequiresApprovalRefused when rank(to) > rank(from) · 3 refusal classes
+CONTRACT-MODELED items enabled: item 14 (Real connector runtime enforcing mode · shape-frozen · runtime binding is bind-only)
+GPU util at seal: elapsed 25.79h · remaining 46.21h
+Signed off: 2026-09-17T~05:40Z · CP-P3-CP3 SEALED

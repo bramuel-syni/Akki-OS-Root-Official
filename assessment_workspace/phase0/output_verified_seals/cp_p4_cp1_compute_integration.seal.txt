@@ -1,0 +1,18 @@
+Kind: cp_p4_cp1_compute_integration
+Wave: M9 · P4
+CP: CP-P4-CP1 · Platform-layer compute_integration entity (§10 verbatim + §6 kind vocabulary)
+Module: backend/services/platform_control_plane/compute_integration.py
+Anchor: §10 verbatim compute_integration (id, tenant_id, kind, estate_id, class, capacity, agent_id, status) · §6 kind ∈ {central_allocation, tenant_provided} · §6.4 M-Cp-1: Every job names a compute_integration_id
+Invariants: 10 · backend/tests/invariants/test_p4_cp1_compute_integration.py
+Ratchet: 4569 -> 4579 (+10)
+Track-a HEAD (Commit-A): bcaa5e8a0a05c571600c8fb715b78de9d87e9d48
+Master HEAD (Commit-B): f6c4909b41a182671c1f276ab68e08f1a7fe702b (no-op merge target)
+Double-green: GREEN1 4579/1/0 · GREEN2 4579/1/0 (byte-match on `4579 passed, 1 skipped, 438 warnings`)
+RED→GREEN evidence: RED = 10 errors when compute_integration.py absent · GREEN = 10 passed with module present
+Raw sweep prior to ratchet bump: BASELINE_GUARD=0 → 4579 passed / 1 skipped / 0 failed (delta = +10 from floor 4569, exactly the 10 new invariants; no silent rebaselining)
+Shape: ComputeIntegrationEntity frozen dataclass 8 str OPEN fields (Python-safe with `class` → `class_ref` shim documented and reconciled in COMPUTE_INTEGRATION_ENTITY_FIELDS + COMPUTE_INTEGRATION_ENTITY_FIELDS_SPEC_VERBATIM index-aligned tuples) · COMPUTE_INTEGRATION_KINDS = ("central_allocation", "tenant_provided") · 2 refusal classes (ComputeIntegrationEntityRefused root + UnknownComputeIntegrationKindRefused subclass) · assert_compute_integration_kind_valid refuses on kind ∉ vocabulary (case-sensitive)
+Composition: composes with CP-P1-CP2 tenant_entity via tenant_id (ownership isolation index 1) · with CP-P3-CP1 estate_entity via estate_id · with CP-P4-CP2 allocation_entity via id (referenced as compute_integration_id) · with CP-P4-CP6 SCHEDULER-ADMISSION via kind + class_ref + capacity
+CONTRACT-MODELED items enabled: no new item introduced by this CP; carrier + vocabulary shape-freeze the "every job names a compute_integration_id" M-Cp-1 gate as a bind-only downstream binding
+Standing lines held: no biometric material · no enforcement hard-gate · preventive-charter · caller invokes · synthetic fixtures · no speculative shapes · upgrade path preserved · zero closed enum type · zero domain tokens (21-token grep-negative in module + tests) · zero data-plane imports (services.audio_plane_v1 / release_gate / governance_plane / audio_poc / training_runner all grep-negative)
+GPU util at seal: elapsed 26.49h · remaining 45.51h
+Signed off: 2026-09-17T~06:11Z · CP-P4-CP1 SEALED · First CP of P4

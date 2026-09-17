@@ -279,4 +279,20 @@ Read alongside this file; do not paraphrase.
 
 ---
 
+## 7. §3.3 SEAL-CHAIN INTEGRITY RULES (owner-ratified 2026-09-17)
+
+Ratified in DECISIONS.md §3.3 SEAL-CHAIN INTEGRITY RULINGS 2026-09-17. All five additive to prior discipline; none overrides existing rules.
+
+**R-1 · Master-parity check at CP boundary.** Before opening a new Commit-A on track-a for CP-N+1, verify Master HEAD banks the Commit-B SHA for CP-N in each of (a) the seal file at `phase0/output_verified_seals/cp_p*_*.seal.txt`, (b) `STATE/DECISIONS.md` tail, and (c) `STATE/NEXT.md` "CURRENT AS OF" line. If any of (a)/(b)/(c) shows `pending-C-fixup` or a stale SHA, STOP and reconcile before opening CP-N+1.
+
+**R-2 · Seal-file `pending-C-fixup` counter.** Every boot ritual and every pre-CP-open probe counts occurrences of the string `pending-C-fixup` in `phase0/output_verified_seals/`. If the count is > 0, the seal chain is not clean; refuse to open a new CP until Commit-C fixup lands and reduces the count to 0.
+
+**R-3 · Ratchet-history / git-log cross-check.** Every boot ritual walks `tests/invariants/baseline_failures.json` `ratchet_history` from the last-known-clean master HEAD forward and verifies each entry with `commit: "PENDING"` or a real SHA has a matching `git log programme/track-a` entry and a matching seal file. Divergences are surfaced.
+
+**R-4 · Session-handoff brief reconciliation.** When an incoming session receives a brief claiming CP-N is "sealed", the incoming agent's FIRST action is to verify §3.3 3-commit completeness for CP-N on disk before touching any downstream work. "Sealed" without Commit-B + Commit-C fixup on master is a discipline mislabel and must trigger reconciliation before forward progress.
+
+**R-5 · Per-CP double-green raw-log requirement (NEW DISCIPLINE · MANDATORY).** The seal-file writer MUST refuse to compose a `Double-green: GREEN1 X/Y/Z · GREEN2 X/Y/Z` line unless both raw log files exist on disk at the referenced timestamps (`phase0/drill_receipts/<TS>_<kind>_GREEN1.log` and `phase0/drill_receipts/<TS>_<kind>_GREEN2.log`). No exceptions. Every new CP must capture its own per-CP double-green receipts at seal time. Aggregate-only substantiation is allowed ONLY for retroactive back-compat batches and must be labeled "RECONSTRUCTED POST-HOC AT HEAD <SHA> <DATE>" — never presented as captured-at-seal-time.
+
+---
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

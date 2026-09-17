@@ -1,0 +1,18 @@
+Kind: cp_p4_cp6_scheduler_admission
+Wave: M9 · P4
+CP: CP-P4-CP6 · Platform-layer scheduler-admission (§6.4 M-Cp-1 + M-Cp-2)
+Module: backend/services/platform_control_plane/scheduler_admission.py
+Anchor: §6.4 M-Cp-1 verbatim (every job names a compute_integration_id) + §6.4 M-Cp-2 verbatim (scheduler admits only if tenant + class + reservation + burst + hours + concurrency all admit; rejections state the reason)
+Invariants: 13 · backend/tests/invariants/test_p4_cp6_scheduler_admission.py
+Ratchet: 4620 -> 4633 (+13)
+Track-a HEAD (Commit-A): 09ed7d4f8a3225f2c57848ecb9c2cdde9f074bfb
+Master HEAD (Commit-B): f6c4909b41a182671c1f276ab68e08f1a7fe702b
+Double-green: GREEN1 4633/1/0 · GREEN2 4633/1/0
+RED→GREEN evidence: RED = 13 errors when scheduler_admission.py absent · GREEN = 13 passed
+Raw sweep prior to ratchet bump: BASELINE_GUARD=0 → 4633 passed (delta +13)
+Shape: assert_scheduler_admits pure refusal wrapper · 7-step fail-fast: (1) MissingComputeIntegrationIdRefused (M-Cp-1); (2) WrongTenantRefused; (3) WrongClassRefused; (4) ExceedsReservationRefused; (5) ExceedsBurstCeilingRefused; (6) ExceedsHourBudgetRefused; (7) ExceedsConcurrencyLimitRefused · returns None on admit · 8 refusal classes (SchedulerAdmissionRefused root + 7 subclasses)
+Composition: composes with CP-P4-CP1 ComputeIntegrationEntity (integration.tenant_id/class_ref) + CP-P4-CP2 AllocationEntity (retained in signature as identity anchor for reservation/burst/hours/concurrency refs). Numeric capacity comparison is CONTRACT-MODELED at caller (4 pre-computed booleans) per CP-P4-CP2 note
+CONTRACT-MODELED items enabled: no new item introduced by this CP; carrier + refusal freeze M-Cp-1/M-Cp-2 discipline as bind-only work at concrete scheduler + numeric-usage collector at caller
+Standing lines held: no biometric material · no enforcement hard-gate · preventive-charter · caller invokes · synthetic fixtures · no speculative shapes · upgrade path preserved · zero closed enum type · zero domain tokens · zero data-plane imports
+GPU util at seal: elapsed 27.22h · remaining 44.78h
+Signed off: 2026-09-17T~06:55Z · CP-P4-CP6 SEALED

@@ -1,0 +1,17 @@
+Kind: cp_p4_cp2_allocation_entity
+Wave: M9 · P4
+CP: CP-P4-CP2 · Platform-layer allocation entity (§10 verbatim + §4.4/§10 env vocabulary + §6.4 M-Cp-2 anchor)
+Module: backend/services/platform_control_plane/allocation_entity.py
+Anchor: §10 verbatim allocation (id, tenant_id, compute_integration_id, class, reserved, burst_ceiling, hours_per_period, max_concurrent_jobs, environment, granted_by, granted_at, expires_at) · §4.4 + §10 environment ∈ {sandbox, production} · §6.4 M-Cp-2 scheduler admission preconditions
+Invariants: 11 · backend/tests/invariants/test_p4_cp2_allocation_entity.py
+Ratchet: 4579 -> 4590 (+11)
+Track-a HEAD (Commit-A): f1b39fd51762ea9645a71a1a2605aa6252e8e7e8
+Master HEAD (Commit-B): f6c4909b41a182671c1f276ab68e08f1a7fe702b
+Double-green: GREEN1 4590/1/0 · GREEN2 4590/1/0 (byte-match on `4590 passed, 1 skipped, 438 warnings`)
+RED→GREEN evidence: RED = 11 errors when allocation_entity.py absent · GREEN = 11 passed with module present
+Raw sweep prior to ratchet bump: BASELINE_GUARD=0 → 4590 passed / 1 skipped / 0 failed (delta = +11 from floor 4579)
+Shape: AllocationEntity frozen dataclass 12 str OPEN fields (Python-safe with `class` → `class_ref` shim documented and reconciled index-aligned in ALLOCATION_ENTITY_FIELDS + ALLOCATION_ENTITY_FIELDS_SPEC_VERBATIM) · ALLOCATION_ENVIRONMENTS = ("sandbox", "production") · 2 refusal classes (AllocationEntityRefused root + UnknownAllocationEnvironmentRefused) · assert_allocation_environment_valid refuses on environment ∉ vocabulary (case-sensitive) · reserved/burst_ceiling/hours_per_period/max_concurrent_jobs surfaced as OPEN str · numeric parsing CONTRACT-MODELED at CP-P4-CP6 SCHEDULER-ADMISSION
+Composition: composes with CP-P1-CP2 tenant_entity via tenant_id (ownership index 1) · with CP-P4-CP1 ComputeIntegrationEntity via compute_integration_id (index 2)
+Standing lines held: no biometric material · no enforcement hard-gate · preventive-charter · caller invokes · synthetic fixtures · no speculative shapes · upgrade path preserved · zero closed enum type · zero domain tokens (21-token grep-negative) · zero data-plane imports
+GPU util at seal: elapsed 26.63h · remaining 45.37h
+Signed off: 2026-09-17T~06:20Z · CP-P4-CP2 SEALED

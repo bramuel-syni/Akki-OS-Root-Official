@@ -1,0 +1,13 @@
+Kind: cp_p5_cp5_provisioning_report
+Wave: M9 · P5
+CP: CP-P5-CP5 · Platform-layer provisioning report (§8.1 M-W-1 + Row 200)
+Module: backend/services/platform_control_plane/provisioning_report.py
+Anchor: §8.1 M-W-1 verbatim + Row 200 verbatim (missing sub-list / mou_task_ref reconciliation)
+Invariants: 17 · backend/tests/invariants/test_p5_cp5_provisioning_report.py
+Ratchet: 4708 -> 4725 (+17)
+Track-a HEAD (Commit-A): 68af117d4ee18e483c375c3af4b54bbe80713f0c
+Master HEAD (Commit-B): f6c4909b41a182671c1f276ab68e08f1a7fe702b
+Double-green: GREEN1 4725/1/0 · GREEN2 4725/1/0
+Shape: ProvisioningReport frozen 10-carrier (2 str + 8 tuple[str,...]) · PROVISIONING_REPORT_SUBLISTS 6-tuple · assert_provisioning_report_valid refusal wrapper · 3 refusal classes (root + MissingSubListRefused + MouTaskRefReconciliationRefused) · sorted-set equality for mou_task_ref reconciliation
+GPU util at seal: elapsed 28.27h · remaining 43.73h
+Signed off: 2026-09-17T~07:58Z · CP-P5-CP5 SEALED
