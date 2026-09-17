@@ -11039,5 +11039,86 @@ python3 -c "import json; d=json.load(open('repos/Extraction-Akki/backend/tests/i
 
 ---
 
+## M8 SEAL wave-close · 2026-09-17T~03:35Z · state-only close (§A pre-declared walk slice #5 · LAST)
+
+**Owner directive verbatim (2026-09-17T~03:00Z priority reorder):** *"close M8 first ... Author the M8 SEAL wave-close report + the inline OVERALL BUILD STATUS table ... Seal M8 via the established protocol. If this is state-only (no track-a code), follow the M6 SEAL precedent."*
+
+**Discharge shape.** State-only close · matches M6 SEAL precedent (`93fb95c7` Commit-B + `6b6b52cb` Commit-C fixup · 2-commit chain · no track-a code · no ratchet change). Wave-close consolidates the 7 M8 CPs sealed to date under §3.3 into a single wave-close narrative.
+
+**Wave-close artefact** at `notes/M8_SEAL_20260917.md` (this-turn · 23 315 B). Downloadable copy dropped uncommitted at `/app/frontend/public/audit/M8_SEAL_WAVE_CLOSE_20260917.md` per owner suggestion.
+
+**Sealed shape.** 7 of 7 M8 CPs closed under §3.3. Wave-honest limit W.5 from M8_SEAL_READINESS §2 (§3.2 clause 5 owner ruling required) DISCHARGED this-shift at CP-M8-CSD-1 (owner picked shape (b) per §A bundle master `a04c65a8`).
+
+**Ratchet at M8 seal:** **4433** (unchanged from CP-M8-CSD-1 seal · state-only close). **Ratchet arc across chain:** 4068 → 4433 = **+365 monotonic-up · zero rollback**.
+
+**Track-a HEAD at seal:** `40b6ee0244375606550294aa5d08f81fb1b0b670` (unchanged · CP-M8-CSD-1 preventive-charter mechanism).
+
+**Master HEAD at seal:** `db98cf64` (Commit-B this-turn · Commit-C fixup below banks the SHA).
+
+**OVERALL BUILD STATUS table inline** (per owner directive · authored in §8 of `notes/M8_SEAL_20260917.md`):
+- Milestones sealed to date: **M2 · M3 · M4 · M5 · M6 (9/10 + SW-10 deferred) · M7 (5 CPs) · M8 (7 CPs THIS-TURN)**.
+- Milestones opened: **M9** (Akki OS Pilot Platform Layer · P1..P6 · ingest banked at `notes/PLATFORM_LAYER_REQUIREMENTS_v0_2.md` · CP-P1-CP1 authored + byte-match verified + held back in stash pre-M8-seal).
+- Total seal files on disk: **63** (`ls phase0/output_verified_seals/ | wc -l`).
+- Total invariant test files: **544**. **Passing invariants floor: 4433**. Total ratchet history entries: 181 (`baseline_failures.json`).
+
+**§3.3 3-commit protocol** (state-only · matches M6 precedent):
+- Commit A: NONE (state-only close).
+- Commit B on `master` this-turn (M8 SEAL note + DECISIONS + NEXT entries).
+- Commit C on `master` this-turn (fixup · replaces `TBD` in DECISIONS + NEXT with actual Master HEAD SHA).
+
+**GPU utilization check-in at M8 SEAL boundary** (per SO §5 interleave): **elapsed 23.24 h · remaining 48.76 h** · both hosts sampler_alive + workload_alive (`akki-vm` telemetry_samples=568 bench_iters=2786 per_gpu=2 · `akki-vm-ii` telemetry_samples=562 bench_iters=2786 per_gpu=2) · zero synthetic burn · no anomalies · in-perimeter. Reports at `/app/frontend/public/audit/GPU_UTILIZATION_72H.{md,json}` regenerated this-turn.
+
+**Effects banked:**
+1. **M8 SEALED · 7/7 CPs closed** · §3.3 discipline held chain-wide · zero rollback.
+2. **§A pre-declared 5-slice walk DISCHARGED IN FULL** — slice 1 (W9-UPGRADE-1) + 2 (M6 SEAL) + 3 (CP-M8-CSD-1) + 4 (CP-M8-CSD-1 §3.3 close) + 5 (M8 SEAL + OVERALL BUILD STATUS) all sealed.
+3. **Standing lines held** throughout · case-agnostic doctrine intact · zero SEC-class credential incidents post-CP-SW6-HYG-1.
+4. **Next slice**: RESUME CP-P1-CP1 (M9 P1 foundation) pop from stash + full §3.3 3-commit landing per owner priority-reorder tail ("THEN resume the P1 platform-layer work") — CP-P1-CP1 code + test file + baseline bump to 4440 already authored + byte-match verified this-shift · reversible restore.
+
+---
+
+## CP-P1-CP1 · M9 · Platform-layer tenant-context enforcement · 2026-09-17T~04:00Z · post-M8-SEAL priority-reorder resume
+
+**Owner directive verbatim (2026-09-17T~03:00Z priority reorder tail):** *"THEN resume the P1 platform-layer work (data model + tenancy core + isolation invariants) exactly as previously briefed."*
+
+**Ingest.** Akki OS Pilot Platform Reference v0.2 (17 September 2026) fetched from customer-assets URL and banked at `notes/PLATFORM_LAYER_REQUIREMENTS_v0_2.md` with full CP breakdown proposal (P1..P6 · 35+ CPs) and CONTRACT-MODELED-vs-real inventory (15 items).
+
+**Anchor §3.1 + §4.3 verbatim.** *"§3.1: A tenant maps one-to-one to a legal entity. All resources are owned by exactly one tenant and carry its tenant_id."* AND *"§4.3: The API gateway resolves tenant_id from the authenticated session and injects it into every request. Clients cannot supply it. Every data-plane service validates tenant_id on every call against its own provisioned identity and rejects mismatches."*
+
+**Mechanism** at `services/platform_control_plane/tenant_context.py` (POST-2 **new-home** selected — no peer existed prior to this-turn; naming mirrors source doc §4.1 *"Control plane"* language · foundation isolation invariant for entire M9 milestone). 8-name `__all__`:
+- `TENANT_CONTEXT_ENFORCEMENT_ANCHOR` verbatim anchor
+- frozen `TenantContext` exact-order 1 carrier (`tenant_id: str` OPEN)
+- frozen `TenantOwnedResourceRef` exact-order 3 carriers (`tenant_id: str · resource_type: str · resource_id: str` all OPEN)
+- pure `assess_tenant_context_drift` returning sorted tuple of drifts (deterministic ordering by `(tenant_id, resource_type, resource_id)`)
+- preventive-charter `assert_tenant_context_valid` (COUNTS-only refusal message)
+- refusal classes: `TenantContextRefused` root + `ClientSuppliedTenantIdRefused` + `CrossTenantAccessRefused`
+
+**Refusal order (fail fast on the more fundamental violation):** if `client_supplied_tenant_id is not None` → `ClientSuppliedTenantIdRefused`; else if drift tuple non-empty → `CrossTenantAccessRefused`.
+
+**Zero closed enums** · `tenant_id/resource_type/resource_id` all OPEN str per case-agnostic doctrine (2026-09-13 owner correction). **Zero domain tokens** (21-token grep-negative). **Zero imports of data-plane surfaces** (`services.audio_plane_v1 · services.release_gate · services.governance_plane · services.audio_poc · services.training_runner · services.ssh_seam · services.resource_registry` all grep-negative).
+
+**Double-green byte-match under BASELINE_GUARD=1:** GREEN1 `4440 passed, 1 skipped, 438 warnings in 190.71s` (pre-M8-SEAL-priority-reorder) + GREEN2 `4440 passed, 1 skipped, 438 warnings in 124.10s` (post-M8-SEAL-priority-reorder, post-stash-pop + rebuild) · byte-identical mechanism source across the stash-restore cycle.
+
+**Ratchet 4433 → 4440 (+7) monotonic-up.** `counts_at_baseline.passed` + `passed_floor` bumped in tandem · `ratchet_history` appended at `20260917T040000Z`.
+
+**Seal file** at `phase0/output_verified_seals/cp_p1_cp1_tenant_context_enforcement.seal.txt` · Kind: `cp_p1_cp1_tenant_context_enforcement` · Track-a HEAD `e697ba63a9f5aa16065552109d2a86b6e17332c2` (Commit-A) · Master HEAD `1a2c3faa042d31d73c3376babb63221aa719fc8d` (Commit-B landed 2026-09-17T~04:05Z · this Commit-C fixup banks the SHA).
+
+**Seal note** at `notes/P1_CP1_TENANT_CONTEXT_SEAL_20260917.md`.
+
+**§3.3 3-commit protocol:**
+- Commit A `e697ba63a9f5aa16065552109d2a86b6e17332c2` (track-a) ✅ landed 2026-09-17T~04:00Z (code + tests + ratchet).
+- Commit B on `master` this-turn (state + seal + note + DECISIONS + NEXT pin + GPU util).
+- Commit C on `master` this-turn (fixup · replaces `TBD` in seal + DECISIONS + NEXT with actual Master HEAD SHA).
+
+**Standing lines held throughout:** no biometric material · no enforcement hard-gate (preventive-charter · caller invokes) · synthetic fixtures · no speculative shapes · upgrade path to hard-gate preserved by construction (a future CP can wrap this check in a global request-time interceptor without refactoring this module).
+
+**Effects banked:**
+1. **CP-P1-CP1 SEALED** · +7 ratchet · Path α clean · M9 P1 foundation isolation invariant shipped.
+2. **M9 milestone OPEN + P1 CP1 discharged.** Every downstream M9 CP (P1-CP2 through P6-CP6, ~34 more) composes on top of `assert_tenant_context_valid` at the API-gateway ingest boundary.
+3. **CONTRACT-MODELED item 15** (storage namespaced by tenant_id at bucket/prefix/schema · per PLATFORM_LAYER_REQUIREMENTS_v0_2.md §8) directly enabled — real-infra wiring becomes a bind-only change.
+4. **Standing lines held** throughout.
+5. **Next slice**: CP-P1-CP2 · TENANT-ENTITY (frozen carrier for the 7-field `tenant` record with lifecycle enum values as OPEN str refs).
+
+---
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 

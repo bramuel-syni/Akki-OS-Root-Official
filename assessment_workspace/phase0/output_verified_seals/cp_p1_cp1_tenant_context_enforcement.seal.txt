@@ -1,0 +1,16 @@
+Kind: cp_p1_cp1_tenant_context_enforcement
+Wave: M9 · P1 · Foundation (control-plane data model + tenancy core + isolation invariants)
+CP: CP-P1-CP1 · Platform-layer tenant-context enforcement
+Module: services/platform_control_plane/tenant_context.py
+Anchor: Akki OS Pilot Platform Reference v0.2 (17 September 2026) §3.1 + §4.3 verbatim
+Ingest: notes/PLATFORM_LAYER_REQUIREMENTS_v0_2.md
+Home: services/platform_control_plane/ (POST-2 new-home · no peer existed prior · naming mirrors source doc §4.1 'Control plane' language)
+Invariants: 7 · frozen at tests/invariants/test_p1_cp1_tenant_context_enforcement.py
+Ratchet: 4433 -> 4440 (+7) monotonic-up
+Track-a HEAD (Commit-A): e697ba63a9f5aa16065552109d2a86b6e17332c2
+**Master HEAD (Commit-B):** 1a2c3faa042d31d73c3376babb63221aa719fc8d (landed 2026-09-17T~04:05Z · Commit-C fixup below banks)
+Double-green byte-match: GREEN1 4440 passed / GREEN2 4440 passed (both BASELINE_GUARD=1 · full-suite green · byte-identical over stash-restore cycle)
+Refusal classes: TenantContextRefused (root) + ClientSuppliedTenantIdRefused + CrossTenantAccessRefused
+Standing lines held: no biometric material · no enforcement hard-gate (preventive-charter · caller invokes) · synthetic fixtures · no speculative shapes · upgrade path preserved by construction
+Case-agnostic: zero closed enums · zero domain tokens (21-token grep-negative) · zero data-plane imports (services.audio_plane_v1/release_gate/governance_plane/audio_poc/training_runner/ssh_seam/resource_registry all grep-negative)
+Signed off: 2026-09-17T~04:00Z · CP-P1-CP1 SEALED · M9 P1 foundation landed
