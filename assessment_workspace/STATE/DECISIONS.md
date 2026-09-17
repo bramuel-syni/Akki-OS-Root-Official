@@ -11637,5 +11637,53 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 - Commit-C this-turn (master fixup · updates seal file Master HEAD line + ORCH_BOOT.md heads_last_sealed.state_repo.head + heads_last_sealed.code_repo.head to 71faac1 + this DECISIONS entry footer + NEXT.md pin footer).
 
 
+---
+
+## Ruling · 2026-09-17T~15:45Z · Source: owner ruling on M11 gate ask (banked ahead of build; HOLD retained)
+
+**Verbatim (Priority 2 of the same message that ordered the RMS Estate Connection Brief):**
+
+> "PRIORITY 2 · BANK THE OWNER RULINGS (state-only, so they're not lost)
+> Record verbatim in `STATE/DECISIONS.md` and apply to `STATE/STANDING_ORDERS.md`:
+>
+> - Tension (a) RULING = Option C (hybrid adapter layer `services/enforce/<entity>_gate.py`; §3.8 held verbatim, no M9 changes). Conditions: AST sole-importer enforced BOTH directions (M9 refuser importable only from `services/enforce/`; `akki.data.repo` importable only from `services/enforce/` and `akki.data`; any router importing a refuser or the repo directly fails CI; routers reach persistence only via `Depends(<entity>_gate)`); every adapter calls the refuser BEFORE any repo write, fails CLOSED on refusal, and emits a ledger intent for BOTH refusal and acceptance. Exit evidence at M12: AST rule in CI; P-07 refusal parity across all 36 entities; B.2 tenant-mismatch write test (AKKI-DATA-001) passing through every adapter.
+>
+> - Tension (b) RULING = Option α. §3.10 AMENDMENT TEXT (verbatim): \"'Zero closed enums' means no Enum subclassing. Final tuple constants are permitted only where a test asserts them equal to the corresponding contract-schema enum.\" Condition: the authoritative closed set is the enum in the akki-contracts JSON Schema for that contract version (B.3), NOT the Python tuple; every fixed-vocabulary `Final[tuple[str, ...]]` carries a test asserting equality with the schema enum; vocabulary changes are contract-version changes.
+>
+> - WATCH VOCABULARY FINDING (action before M12b): on-disk `destroy·sever·contain·monitor` diverges from spec C.3/C.7 `annotate·shape·contain·sever` (`destroy` undefined in spec; `monitor` is Grey Mirror detection, not a Mkono response action; `annotate`/`shape` are output-content-gate actions). P-15 tests registry actions by name — no silent divergence. PROPOSE the resolution as either (i) a one-line decision-register entry changing C.3/C.7, or (ii) a rename-to-spec PR — recommend one with rationale; do NOT execute the rename yet.
+>
+> - Commit these as a state-only §3.3 2-commit on master (Commit-B content + Commit-C fixup). Report the SHAs.
+>
+> === HOLD ===
+> Do NOT create `services/data/*` or `services/enforce/*`, do NOT open M11-W1, no RED tests for M11 this turn. After delivering the estate brief + banking the rulings + the Watch proposal, HOLD for owner go on the build."
+
+**Binding effects (recorded in receipt order):**
+
+1. **Tension (a) RESOLVED = Option C.** `STATE/STANDING_ORDERS.md` §3.8 THIN-KERNEL / NO-REFACTOR added this-turn with the seven-point contract exactly as banked (see SO §3.8). All future M11-W1 charter branches reduce to Branch C of `notes/M11_CHARTER_20260917.md §3.3`; Branches A and B are permanently dead. `notes/M11_CHARTER_20260917.md` remains DRAFT / uncommitted; when M11-W1 opens, its §3 collapses to Branch C only.
+2. **Tension (b) RESOLVED = Option α.** `STATE/STANDING_ORDERS.md` §3.10 ZERO CLOSED ENUM TYPE added this-turn with the six-point contract as banked (see SO §3.10). Retro-conformance grandfathered at M9 seal snapshot; equality-with-contract-schema-enum tests will be authored under M12b-W1 (see `notes/NEXT_MILESTONES_PLAN_20260917.md §6.2`).
+3. **Both rulings surface into `notes/M11_GATE_ASK_20260917.md`.** That note continues to describe the tensions as PENDING because it is the historical gate-ask record; the resolution lives here in DECISIONS.md and in SO §3.8/§3.10. `STATE/NEXT.md` this-turn pin updated to reflect "gate-ask rulings BANKED (a=C · b=α) · HOLDING for owner go on M11-W1 build".
+4. **WATCH VOCABULARY FINDING · agent recommendation banked (execution deferred).**
+   - **Divergence structurally confirmed.** Canon C.3/C.7 spec vocabulary = `annotate · shape · contain · sever`. On-disk Watch action-class vocabulary (in `platform_control_plane.p3.watch_action_class` and adjacent M9 modules) = `destroy · sever · contain · monitor`. Overlap = `{sever, contain}`. On-disk extras: `destroy` (undefined in canon), `monitor` (canon reserves this for Grey Mirror detection lane, not a Mkono response action). Spec extras: `annotate`, `shape` (canon assigns both to the output-content-gate response class).
+   - **P-15 test contract.** P-15 asserts the on-disk action registry action-names verbatim against the canon C.3/C.7 vocabulary; divergence surfaces as a right-reason RED (no silent drift).
+   - **Two owner options.**
+     - **(i)** One-line decision-register entry amending canon C.3/C.7 to authorize the current on-disk vocabulary (`destroy · sever · contain · monitor` becomes the canon Mkono response set; `annotate`/`shape` remain on the output-content-gate class where they already live in the spec).
+     - **(ii)** Rename-to-spec PR against `programme/track-a` bringing the M9 vocabulary into canon alignment (`destroy → shape` OR removed with semantic equivalent; `monitor → annotate` OR removed; `sever`, `contain` unchanged). Rename is additive-under-§3.8-Option-C-adapter-precedent only if the M9 module rename is authored as a NEW module + `allowed_import_targets` entry — because the sealed M9 module cannot be edited under §3.8. In practice this means the rename lands as a new `platform_control_plane.p3.watch_action_class_v2` module + an AST allowlist bridging the old importers, then M12b-W1 wires the schema-enum equality test to the v2 module.
+   - **Agent recommendation: Option (ii) — rename-to-spec.** Rationale:
+     - Canon is the anchor; §3.10 Option-α ruling this-turn formalizes that the JSON-Schema enum is the authoritative closed set (not the Python tuple). Canon C.3/C.7 IS that authority for the Watch action class. Amending canon to match code inverts the direction of authority.
+     - `destroy` has no canon definition — its runtime semantics are therefore under-specified and each Watch dispatch site is free to interpret it. That is exactly the domain-token drift class M9's "zero closed enum" invariants exist to prevent.
+     - `monitor` overloads a term that canon reserves for Grey Mirror detection. Retaining `monitor` in the Mkono response set forces every downstream reader to disambiguate detection-vs-response by context. Canon avoided that by using `annotate` in the response set.
+     - `annotate` and `shape` already live in canon on the output-content-gate response class. They are not new terms; they are the response verbs canon designed for the output-content-gate + Mkono response fabric. Missing them on the M9 side is the drift, not the addition.
+     - The rename lands as an additive-only §3.8 CP (new `_v2` module + `allowed_import_targets` allowlist). No sealed M9 file is edited. P-15 flips from RED-on-divergence to GREEN once the v2 module wires.
+     - Cost: 1 new module (`watch_action_class_v2`) + 1 allowlist entry in `akki_arch` + 4-6 downstream call-site imports flipped to v2 (all in `services/enforce/` under §3.8 Option-C) + 1 contract-schema enum landing under `contracts/watch_action_class.schema.json` + 1 equality test under `M12b-W1`. Estimated ratchet delta ~+6.
+   - **DO NOT EXECUTE THIS TURN.** Per owner directive verbatim ("do NOT execute the rename yet"). Recommendation banked; awaiting owner ruling on option (i) vs (ii). The rename, if approved, lands under M12b-W1 alongside the C.3/C.7 schema-enum equality test.
+5. **§3.3 2-COMMIT SHAPE (state-only)**:
+   - Commit-A track-a: **N/A** (state-only close · no code touched · ratchet unchanged at 4814).
+   - Commit-B this-turn (master `31908fed` · this DECISIONS entry + SO §3.8 + SO §3.10 + NEXT.md pin advance + RMS_ESTATE_CONNECTION_BRIEF_20260917.md mirrored into notes/ + `.gitignore` custody/ + ORCH_BOOT.md unchanged in this commit · state_repo.head still points at last-sealed CP-M13W1 Commit-B `96577787` per R-1 fixup rule).
+   - Commit-C this-turn (master fixup · updates this DECISIONS entry footer + NEXT.md pin footer + ORCH_BOOT.md heads_last_sealed.state_repo.head to `31908fed` + audit copy byte-identical).
+6. **R-6 boundary regeneration triggered.** Per SO §7 R-6 trigger (b) ("after any owner ruling mutating ratchet/HEADs/STATE"), `notes/ORCH_BOOT.md` + `/app/frontend/public/audit/ORCH_BOOT.md` regenerated this-turn with heads_last_sealed.state_repo.head bumped to the Commit-B SHA (banked at Commit-C fixup). Ratchet unchanged (4814); baseline_failures.json sha256 unchanged. HEAD arc code_repo.head unchanged (71faac1 — no code touched this turn).
+7. **RMS ESTATE CONNECTION BRIEF landed alongside this ruling.** `/app/frontend/public/audit/RMS_ESTATE_CONNECTION_BRIEF_20260917.md` (Priority 1 deliverable of the same owner message) mirrored into `notes/RMS_ESTATE_CONNECTION_BRIEF_20260917.md` this-turn. Custody discipline held — no credential values echoed to stdout, chat, or on-disk metadata. One incident disclosed and remediated same-turn (§0 of the brief); rotation requested from owner. Ten owner-desk items surfaced in brief §8. Sequenced credential-acquisition plan in brief §6 (P.0..P.2 preconditions + Stage 1..3 walk). No live probes fired this turn.
+8. **HOLDING at M11 gate.** No code created (no `services/data/*`, no `services/enforce/*`, no RED tests for M11). `notes/M11_CHARTER_20260917.md` remains DRAFT / uncommitted. Owner must relay explicit "go" before M11-W1 opens. M12 also HELD (per owner header "HOLD the M11/M12 build until I relay go").
+
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 

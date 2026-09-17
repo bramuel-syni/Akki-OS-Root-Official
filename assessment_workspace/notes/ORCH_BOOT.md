@@ -33,9 +33,9 @@ STATE files, and on any boot ritual that detects drift.
 
 ```yaml
 schema_version: 1
-generated_at_utc: 2026-09-17T13:48:00Z
-generator: main-agent Autopilot Task 4 (CP-M13W1 · R-6 boundary regen at Commit-C fixup)
-regeneration_reason: r6-boundary-regen-at-cp-m13w1-commit-c-fixup-banking-master-commit-b-sha
+generated_at_utc: 2026-09-17T15:48:00Z
+generator: main-agent Autopilot (Owner-Ruling-2026-09-17T~15:45Z · state-only 2-commit · R-6 boundary regen at Commit-C fixup)
+regeneration_reason: r6-boundary-regen-at-owner-ruling-2026-09-17T15-45Z-commit-c-fixup-banking-master-commit-b-sha
 
 ratchet:
   passed_floor: 4814
@@ -47,9 +47,9 @@ heads_last_sealed:
   state_repo:
     workdir: /app/assessment_workspace
     branch: master
-    head: 96577787913712d896f4b17a43f13fa5a11accfd
-    sealed_at_utc: 2026-09-17T13:46:00Z
-    seal_kind: "CP-M13W1 · state Commit-B · TCB.yaml + akki.arch scoped landing (Commit-C fixup banks this SHA)"
+    head: 31908fedb5e7afb5a1b46674dff3bdc821e67874
+    sealed_at_utc: 2026-09-17T15:47:00Z
+    seal_kind: "OWNER RULING 2026-09-17T~15:45Z · state Commit-B · Tension (a)=Option C + Tension (b)=Option α + SO §3.8/§3.10 verbatim + RMS ESTATE BRIEF + Watch-vocabulary finding (Commit-C fixup banks this SHA)"
   code_repo:
     workdir: /app/assessment_workspace/repos/Extraction-Akki
     branch: programme/track-a

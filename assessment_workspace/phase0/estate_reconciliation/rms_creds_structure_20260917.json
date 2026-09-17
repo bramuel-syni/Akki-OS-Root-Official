@@ -1,0 +1,525 @@
+{
+  "source_path": "/app/assessment_workspace/custody/credentials/rms_connection_creds_v1.xlsx",
+  "sheet_count": 4,
+  "sheets": [
+    {
+      "name": "NAS creds",
+      "rows_total_incl_header": 100,
+      "rows_with_any_data": 26,
+      "header_kinds": [
+        "UNKNOWN"
+      ],
+      "column_count": 1,
+      "columns": [
+        {
+          "col_index": 0,
+          "header_kind": "UNKNOWN",
+          "profile": {
+            "present": 26,
+            "empty": 74,
+            "len_band_hist": {
+              "EMPTY": 74,
+              "17-32": 5,
+              "33-64": 2,
+              "65+": 2,
+              "1-8": 17
+            },
+            "multiline_count": 0,
+            "nonascii_count": 0,
+            "looks_like_ipv4_count": 0,
+            "looks_like_port_count": 0
+          }
+        }
+      ],
+      "row_kind_fingerprints": [
+        [
+          "FREEFORM"
+        ],
+        [
+          "SUSPECTED_SECRET"
+        ],
+        [
+          "FREEFORM"
+        ],
+        [
+          "FREEFORM"
+        ],
+        [
+          "FREEFORM"
+        ],
+        [
+          "FREEFORM"
+        ],
+        [
+          "FREEFORM"
+        ],
+        [
+          "FREEFORM"
+        ],
+        [
+          "FREEFORM"
+        ],
+        [
+          "IDENTIFIER"
+        ],
+        [
+          "FREEFORM"
+        ],
+        [
+          "FREEFORM"
+        ],
+        [
+          "FREEFORM"
+        ],
+        [
+          "FREEFORM"
+        ],
+        [
+          "FREEFORM"
+        ],
+        [
+          "FREEFORM"
+        ],
+        [
+          "FREEFORM"
+        ],
+        [
+          "FREEFORM"
+        ],
+        [
+          "FREEFORM"
+        ],
+        [
+          "FREEFORM"
+        ],
+        [
+          "FREEFORM"
+        ],
+        [
+          "FREEFORM"
+        ],
+        [
+          "FREEFORM"
+        ],
+        [
+          "FREEFORM"
+        ],
+        [
+          "FREEFORM"
+        ],
+        [
+          "FREEFORM"
+        ]
+      ]
+    },
+    {
+      "name": "Sheet1",
+      "rows_total_incl_header": 1,
+      "rows_with_any_data": 0,
+      "header_kinds": [
+        "SUSPECTED_VALUE_IN_HEADER"
+      ],
+      "column_count": 1,
+      "columns": [
+        {
+          "col_index": 0,
+          "header_kind": "SUSPECTED_VALUE_IN_HEADER",
+          "profile": {
+            "present": 1,
+            "empty": 0,
+            "len_band_hist": {
+              "65+": 1
+            },
+            "multiline_count": 1,
+            "nonascii_count": 0,
+            "looks_like_ipv4_count": 0,
+            "looks_like_port_count": 0
+          }
+        }
+      ],
+      "row_kind_fingerprints": []
+    },
+    {
+      "name": "NAS Guide + Cred",
+      "rows_total_incl_header": 100,
+      "rows_with_any_data": 7,
+      "header_kinds": [
+        "OTHER"
+      ],
+      "column_count": 1,
+      "columns": [
+        {
+          "col_index": 0,
+          "header_kind": "OTHER",
+          "profile": {
+            "present": 8,
+            "empty": 92,
+            "len_band_hist": {
+              "9-16": 5,
+              "1-8": 2,
+              "EMPTY": 92,
+              "17-32": 1
+            },
+            "multiline_count": 0,
+            "nonascii_count": 0,
+            "looks_like_ipv4_count": 2,
+            "looks_like_port_count": 0
+          }
+        }
+      ],
+      "row_kind_fingerprints": [
+        [
+          "IDENTIFIER"
+        ],
+        [
+          "FREEFORM"
+        ],
+        [
+          "FREEFORM"
+        ],
+        [
+          "IPV4"
+        ],
+        [
+          "IDENTIFIER"
+        ],
+        [
+          "FREEFORM"
+        ],
+        [
+          "FREEFORM"
+        ]
+      ]
+    },
+    {
+      "name": "Huawei Creds",
+      "rows_total_incl_header": 100,
+      "rows_with_any_data": 41,
+      "header_kinds": [
+        "DB",
+        "HOST",
+        "USER",
+        "SECRET"
+      ],
+      "column_count": 4,
+      "columns": [
+        {
+          "col_index": 0,
+          "header_kind": "DB",
+          "profile": {
+            "present": 42,
+            "empty": 58,
+            "len_band_hist": {
+              "9-16": 26,
+              "1-8": 12,
+              "17-32": 4,
+              "EMPTY": 58
+            },
+            "multiline_count": 0,
+            "nonascii_count": 0,
+            "looks_like_ipv4_count": 0,
+            "looks_like_port_count": 0
+          }
+        },
+        {
+          "col_index": 1,
+          "header_kind": "HOST",
+          "profile": {
+            "present": 9,
+            "empty": 91,
+            "len_band_hist": {
+              "1-8": 2,
+              "9-16": 7,
+              "EMPTY": 91
+            },
+            "multiline_count": 0,
+            "nonascii_count": 0,
+            "looks_like_ipv4_count": 7,
+            "looks_like_port_count": 0
+          }
+        },
+        {
+          "col_index": 2,
+          "header_kind": "USER",
+          "profile": {
+            "present": 4,
+            "empty": 96,
+            "len_band_hist": {
+              "1-8": 4,
+              "EMPTY": 96
+            },
+            "multiline_count": 0,
+            "nonascii_count": 0,
+            "looks_like_ipv4_count": 0,
+            "looks_like_port_count": 0
+          }
+        },
+        {
+          "col_index": 3,
+          "header_kind": "SECRET",
+          "profile": {
+            "present": 4,
+            "empty": 96,
+            "len_band_hist": {
+              "1-8": 1,
+              "9-16": 3,
+              "EMPTY": 96
+            },
+            "multiline_count": 0,
+            "nonascii_count": 0,
+            "looks_like_ipv4_count": 0,
+            "looks_like_port_count": 0
+          }
+        }
+      ],
+      "row_kind_fingerprints": [
+        [
+          "DB",
+          "HOST",
+          "USER",
+          "SECRET"
+        ],
+        [
+          "DB",
+          "EMPTY",
+          "EMPTY",
+          "EMPTY"
+        ],
+        [
+          "DB",
+          "EMPTY",
+          "EMPTY",
+          "EMPTY"
+        ],
+        [
+          "DB",
+          "EMPTY",
+          "EMPTY",
+          "EMPTY"
+        ],
+        [
+          "DB",
+          "EMPTY",
+          "EMPTY",
+          "EMPTY"
+        ],
+        [
+          "DB",
+          "EMPTY",
+          "EMPTY",
+          "EMPTY"
+        ],
+        [
+          "DB",
+          "EMPTY",
+          "EMPTY",
+          "EMPTY"
+        ],
+        [
+          "DB",
+          "EMPTY",
+          "EMPTY",
+          "EMPTY"
+        ],
+        [
+          "DB",
+          "EMPTY",
+          "EMPTY",
+          "EMPTY"
+        ],
+        [
+          "DB",
+          "EMPTY",
+          "EMPTY",
+          "EMPTY"
+        ],
+        [
+          "DB",
+          "HOST",
+          "USER",
+          "SECRET"
+        ],
+        [
+          "DB",
+          "EMPTY",
+          "EMPTY",
+          "EMPTY"
+        ],
+        [
+          "DB",
+          "EMPTY",
+          "EMPTY",
+          "EMPTY"
+        ],
+        [
+          "DB",
+          "EMPTY",
+          "EMPTY",
+          "EMPTY"
+        ],
+        [
+          "DB",
+          "EMPTY",
+          "EMPTY",
+          "EMPTY"
+        ],
+        [
+          "DB",
+          "EMPTY",
+          "EMPTY",
+          "EMPTY"
+        ],
+        [
+          "DB",
+          "EMPTY",
+          "EMPTY",
+          "EMPTY"
+        ],
+        [
+          "DB",
+          "EMPTY",
+          "EMPTY",
+          "EMPTY"
+        ],
+        [
+          "DB",
+          "EMPTY",
+          "EMPTY",
+          "EMPTY"
+        ],
+        [
+          "DB",
+          "EMPTY",
+          "EMPTY",
+          "EMPTY"
+        ],
+        [
+          "DB",
+          "EMPTY",
+          "EMPTY",
+          "EMPTY"
+        ],
+        [
+          "DB",
+          "HOST",
+          "USER",
+          "SECRET"
+        ],
+        [
+          "DB",
+          "EMPTY",
+          "EMPTY",
+          "EMPTY"
+        ],
+        [
+          "DB",
+          "HOST",
+          "EMPTY",
+          "EMPTY"
+        ],
+        [
+          "DB",
+          "HOST",
+          "EMPTY",
+          "EMPTY"
+        ],
+        [
+          "DB",
+          "EMPTY",
+          "EMPTY",
+          "EMPTY"
+        ],
+        [
+          "DB",
+          "EMPTY",
+          "EMPTY",
+          "EMPTY"
+        ],
+        [
+          "DB",
+          "EMPTY",
+          "EMPTY",
+          "EMPTY"
+        ],
+        [
+          "DB",
+          "EMPTY",
+          "EMPTY",
+          "EMPTY"
+        ],
+        [
+          "DB",
+          "HOST",
+          "EMPTY",
+          "EMPTY"
+        ],
+        [
+          "DB",
+          "EMPTY",
+          "EMPTY",
+          "EMPTY"
+        ],
+        [
+          "DB",
+          "EMPTY",
+          "EMPTY",
+          "EMPTY"
+        ],
+        [
+          "DB",
+          "HOST",
+          "EMPTY",
+          "EMPTY"
+        ],
+        [
+          "DB",
+          "EMPTY",
+          "EMPTY",
+          "EMPTY"
+        ],
+        [
+          "DB",
+          "EMPTY",
+          "EMPTY",
+          "EMPTY"
+        ],
+        [
+          "DB",
+          "EMPTY",
+          "EMPTY",
+          "EMPTY"
+        ],
+        [
+          "DB",
+          "EMPTY",
+          "EMPTY",
+          "EMPTY"
+        ],
+        [
+          "DB",
+          "EMPTY",
+          "EMPTY",
+          "EMPTY"
+        ],
+        [
+          "DB",
+          "HOST",
+          "EMPTY",
+          "EMPTY"
+        ],
+        [
+          "DB",
+          "EMPTY",
+          "EMPTY",
+          "EMPTY"
+        ],
+        [
+          "DB",
+          "EMPTY",
+          "EMPTY",
+          "EMPTY"
+        ]
+      ]
+    }
+  ]
+}

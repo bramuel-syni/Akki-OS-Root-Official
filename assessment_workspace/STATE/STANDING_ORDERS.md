@@ -183,6 +183,52 @@ Every owner ruling is banked **verbatim** in `STATE/DECISIONS.md` **before** any
 
 ---
 
+### 3.8 THIN-KERNEL / NO-REFACTOR — additive-only discipline (Owner ruling 2026-09-17 · Tension (a) = Option C · thin adapter layer)
+
+**Standing order (verbatim · owner ruling relayed 2026-09-17T~15:45Z on the M11 gate ask):**
+
+> "Tension (a) RULING = Option C (hybrid adapter layer `services/enforce/<entity>_gate.py`; §3.8 held verbatim, no M9 changes). Conditions: AST sole-importer enforced BOTH directions (M9 refuser importable only from `services/enforce/`; `akki.data.repo` importable only from `services/enforce/` and `akki.data`; any router importing a refuser or the repo directly fails CI; routers reach persistence only via `Depends(<entity>_gate)`); every adapter calls the refuser BEFORE any repo write, fails CLOSED on refusal, and emits a ledger intent for BOTH refusal and acceptance. Exit evidence at M12: AST rule in CI; P-07 refusal parity across all 36 entities; B.2 tenant-mismatch write test (AKKI-DATA-001) passing through every adapter."
+
+**Binding contract:**
+
+1. **Additive-only.** No CP may modify a sealed module. Every new capability lands as a new file, a new class, or a new function on a NEW package path — never as an edit to an existing sealed carrier.
+2. **Sole-importer AST invariants (both directions).** `akki_arch` invariants MUST enforce, at CI:
+   - M9 refusers (`platform_control_plane.<module>.assert_*`, `refuse_*`, etc.) are importable ONLY from `backend/services/enforce/**/*.py` and from paired-tests directories.
+   - `akki.data.repository.Repository` and its factories are importable ONLY from `backend/services/enforce/**/*.py` and `backend/services/data/**/*.py` and from paired-tests directories.
+   - Any router / handler / service outside `services/enforce/` that imports a refuser or the repository directly is a HARD RED at CI.
+3. **Router persistence path.** Routers reach persistence ONLY via `Depends(<entity>_gate)` where `<entity>_gate` lives under `services/enforce/`. The gate function calls the M9 refuser first; only on refuser-pass may the gate invoke the repository.
+4. **Fail-CLOSED on refusal.** If the M9 refuser rejects (raises a refusal or returns a REFUSED verdict), the adapter MUST NOT call the repository. It MUST emit a ledger intent tagged `refuser_verdict=REFUSED` and propagate the refusal to the caller.
+5. **Ledger intent parity.** Every adapter emits a ledger intent for BOTH refuser-REFUSED and refuser-ACCEPTED paths (parity is the invariant — asymmetric emission is a RED).
+6. **Exit evidence at M12 seal:** (i) the `akki_arch` AST rule enforcing (2) is on and green in CI; (ii) `P-07` refusal-parity acceptance test passes for all 36 M9 entities; (iii) `B.2` tenant-mismatch write test refuses with `AKKI-DATA-001` when invoked through every adapter.
+7. **`allowed_import_targets` exception mechanism.** The M13-W1 precedent (Ruling · 2026-09-17T~13:30Z Binding-effect 4) established that shared-primitive cross-imports may be resolved by whitelisting specific import targets in the `akki_arch` rule's `allowed_import_targets:` list rather than by refactor. This mechanism is available for §3.8 to preserve verbatim status. Any new use of `allowed_import_targets` must be surfaced in the seal note.
+
+**Interaction with prior wording.** Prior SO §4.2 line "SO §3 (no refactor / thin-kernel discipline)" now formally resolves to this §3.8. The clause replaces no earlier text; it names what was previously referenced only in aggregate.
+
+---
+
+### 3.10 ZERO CLOSED ENUM TYPE — technical reading amended (Owner ruling 2026-09-17 · Tension (b) = Option α)
+
+**Amendment text (verbatim · owner ruling relayed 2026-09-17T~15:45Z):**
+
+> "'Zero closed enums' means no Enum subclassing. Final tuple constants are permitted only where a test asserts them equal to the corresponding contract-schema enum."
+
+**Amendment conditions (verbatim · same channel):**
+
+> "The authoritative closed set is the enum in the akki-contracts JSON Schema for that contract version (B.3), NOT the Python tuple; every fixed-vocabulary `Final[tuple[str, ...]]` carries a test asserting equality with the schema enum; vocabulary changes are contract-version changes."
+
+**Binding contract:**
+
+1. **Banned constructs.** No `from enum import Enum, IntEnum, StrEnum, Flag, IntFlag` in any P1–P6 M9 module, TCB package, or downstream service. No `class X(Enum): ...`. No `class X(str, Enum): ...`. No `IntEnum`, `Flag`, `IntFlag`. Existing wording "zero closed enum type" resolves to this exact ban surface.
+2. **Permitted constructs.** `Final[tuple[str, ...]]` (or `Final[tuple[Literal[...], ...]]`) module-level constants ARE permitted. Existing on-disk practice (`ACTION_CLASSES`, `PILOT_TENANT_KEYS = ("RMS", "DigiCow", "BDO", "Trinity")`, etc.) is retroactively ratified.
+3. **Authoritative source.** For every fixed-vocabulary constant, the AUTHORITY is the corresponding JSON Schema enum in `contracts/*.schema.json` (or the akki-contracts contract-version bound to that surface). The Python tuple is a MIRROR of the schema enum; it is not the source of truth.
+4. **Mandatory equality test.** For every `Final[tuple[str, ...]]` closed-vocabulary constant, a paired test MUST assert `tuple(sorted(PY_CONST)) == tuple(sorted(SCHEMA_ENUM))`. Failure is a right-reason RED. Suggested test-ID pattern: `test_<constant_name>_matches_contract_schema_enum`.
+5. **Vocabulary changes are contract-version changes.** Adding or removing a value from a closed vocabulary is a CONTRACT-VERSION change (B.3). It cannot land as a code-only PR. The schema version bump + the code mirror-update must land together; the equality test at step 4 keeps them synchronized by construction.
+6. **Retro-conformance.** M9 already-frozen closed vocabularies (Watch verdict actions, permission verbs, capability ceilings, pilot tenant keys, etc.) are grandfathered as-is at M9 seal snapshot. Their equality tests will be authored under `M12b-W1` alongside the schema-enum landing. Where the schema enum does not yet exist, the M12b wave authors it; the equality test forces the two to agree.
+
+**Interaction with existing invariants.** Existing M9 grep-negative invariants (21-token grep-negative on module sources, "zero closed enum type" in every M9 seal note) continue in force. This amendment does NOT loosen them; it clarifies that they target `enum.Enum` subclassing, not fixed-vocabulary tuples.
+
+---
+
 ## 4. RUNTIME LAW
 
 - **Literal design adoption.** Prototype HTML is byte-identical; interpretation is banned. Substitution rules bind to rendered DOM only. A rule that matches nothing is a RED right-reason failure — it does not silently degrade.
