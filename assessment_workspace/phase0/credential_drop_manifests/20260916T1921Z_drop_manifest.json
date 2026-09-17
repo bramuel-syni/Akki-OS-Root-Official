@@ -1,7 +1,7 @@
 {
-  "at_utc": "2026-09-16T19:10:13.349076+00:00",
+  "at_utc": "2026-09-16T19:22:09.347370+00:00",
   "custody_dir": "/app/backend/estate_keys/data_sources",
-  "row_count": 12,
+  "row_count": 13,
   "discipline": "SO \u00a74.1 \u00a7E \u00b7 file-level metadata only \u00b7 no csv.reader \u00b7 no openpyxl \u00b7 no print of raw values \u00b7 sha256sum/stat/wc-class primitives via hashlib+os.stat",
   "prior_pin_source": "notes/ADMIN_BINDS_20260915.md \u00a7A",
   "rows": [
@@ -137,6 +137,20 @@
       "size_bytes": 119,
       "sha256": "8a14174c6a5167cb7fb2f8877b4c3b3ed2d1eed7540aeab0fc4f654457698667",
       "mtime_iso": "2026-09-11T18:27:26.337990+00:00",
+      "mode_octal": "0o600",
+      "line_count": 1,
+      "bind_delta": {
+        "class": "NEW-ENTRY",
+        "prior_sha256": null,
+        "rotated": false
+      }
+    },
+    {
+      "name": "huawei_credentials_2_20260916.csv",
+      "kind": "csv_text",
+      "size_bytes": 119,
+      "sha256": "8a14174c6a5167cb7fb2f8877b4c3b3ed2d1eed7540aeab0fc4f654457698667",
+      "mtime_iso": "2026-09-16T19:21:36.613210+00:00",
       "mode_octal": "0o600",
       "line_count": 1,
       "bind_delta": {

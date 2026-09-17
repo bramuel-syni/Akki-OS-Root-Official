@@ -1,0 +1,16 @@
+{
+  "artifact_ref": {
+    "artifact_id": "objreq-disp-3e8f5bb318b9",
+    "artifact_type": "objective_request",
+    "version": "v2"
+  },
+  "at": "2026-09-16T19:26:50.032226Z",
+  "decision": "terminate_success",
+  "lawful_basis_ref": "test_basis_4b",
+  "reason": "composed_conclusion:class=fact:load_bearing=cc-unit-s://lb/f1.raw,cc-unit-s://lb/f2.raw,cc-unit-s://lb/f3.raw",
+  "row_id": "led-f998a4281ec4",
+  "run_id": "cc-run-1dd127712063",
+  "stage": "converge",
+  "stamp_audit": null,
+  "trace_id": "disp-3e8f5bb318b9"
+}

@@ -1,0 +1,62 @@
+Kind: w_m8_csd_1_cross_service_binding
+CP: CP-M8-CSD-1
+Wave: M8 (catch-all) · §3.2 clause 5 · Cross-Service Dispatch preventive-charter
+Charter: Owner ruling §A verbatim (banked master `a04c65a8` 2026-09-16T~17:43Z): "§3.2 clause 5 = shape (b) PREVENTIVE-CHARTER RATIFIED: record + alert on dispatch-to-unregistered-resource, allow during pilot, upgrade path to hard-gate preserved as a future owner ruling."
+
+Track-a HEAD at seal: 40b6ee0244375606550294aa5d08f81fb1b0b670
+Master HEAD: 00b1623243a060f83addbe3a3ed7fbbbe3ab5d3c
+
+Ratchet: 4426 -> 4433 (+7)
+Invariants added: 7
+
+Modules landed:
+- backend/services/governance_plane/cross_service_binding.py (~140 LOC · 6 exports · analog of cross_table_consistency.py sealed at CP-M8-CTCC-1 · pure data-in/data-out · zero closed enums · zero domain tokens · zero dispatch imports)
+- backend/tests/invariants/test_wm8_csd_1_cross_service_binding.py (~230 LOC · 7 invariants)
+
+Mechanism (6 exports):
+- CROSS_SERVICE_BINDING_SHAPE_B_ANCHOR — module-level verbatim charter anchor
+- DispatchSurfaceRef — frozen dataclass · exact-order 2 carriers (surface_id: str · resource_ref: str)
+- RegisteredResourceRef — frozen dataclass · exact-order 2 carriers (resource_ref: str · registry_id: str)
+- assess_binding_drift(*, dispatch_surfaces, registered_resources) — pure function · returns sorted tuple of DispatchSurfaceRef whose resource_ref is NOT in registered_resources set · coarse rule (set-membership only · matches CP-M8-CTCC-1 wave-honest D.2) · deterministic ordering by (surface_id, resource_ref)
+- assert_no_cross_service_binding_drift(*, dispatch_surfaces, registered_resources) — preventive-charter refusal wrapper · raises CrossServiceBindingDriftRefused when at_risk tuple non-empty · returns None on admit · message reports COUNTS only (never surface_id / resource_ref values)
+- CrossServiceBindingDriftRefused — Exception subclass · caller-invoked refusal class
+
+POST-2 discipline exercised at authoring:
+- Seal-readiness note §4 aspirationally named `services/work_supervisor/cross_service_binding.py`.
+- From-disk truth: the analog peer (cross_table_consistency.py) lives in `services/governance_plane/`.
+- Home selected `services/governance_plane/` composing into existing sub-tree (retention_policy.py from W1b CP1 + cross_table_consistency.py from CP-M8-CTCC-1). NO parallel work_supervisor addition. Avoids Audio-Plane §1.2 rule-proliferation.
+- Matches CP-M8-CTCC-1 POST-2 lesson banked verbatim: "from-disk truth beats my stale instruction; that's POST-2 discipline paying off again".
+
+Verbatim owner-ruling anchors quoted in module source:
+- "§3.2 clause 5"
+- "shape (b)"
+- "PREVENTIVE-CHARTER RATIFIED"
+- "record + alert on dispatch-to-unregistered-resource"
+- "allow during pilot"
+- "upgrade path to hard-gate preserved as a future owner ruling"
+
+Standing-line proof:
+- No biometric material — pure data-in/data-out primitives · synthetic-fixture invariants · no biometric material touches mechanism.
+- No enforcement hard-gate — preventive-charter · runtime enforcement fires only when caller invokes assert_no_cross_service_binding_drift.
+- No speculative shapes — 2 carriers × 2 refs + 1 pure function + 1 refusal wrapper + 1 exception + 1 anchor = 6 exports bind 1:1 to owner-ratified shape (b).
+- Case-agnostic doctrine: 21-token grep-negative in module source · verified by invariant #7.
+- Composition surface only: zero imports of services.work_supervisor · services.resource_registry · services.campaign_infra · services.audio_poc.hf_transcribe · services.audio_poc.gap_fill_writer · services.training_runner · services.ssh_seam (verified by invariant #7 · case-agnostic decoupling · caller composes).
+- Upgrade path to hard-gate preserved by construction: a future CP can wrap this check in a global dispatch gate without refactoring this module.
+
+Mechanical RED drill: phase0/drill_receipts/20260916T1943Z_cp_m8_csd_1_cross_service_binding_RED.log (banked pre-Commit-A · right-reason 7 ModuleNotFoundError on hidden module).
+
+Double-green byte-match under BASELINE_GUARD=1:
+- GREEN1: phase0/drill_receipts/20260916T1944Z_cp_m8_csd_1_cross_service_binding_GREEN1.log · `4433 passed, 1 skipped, 438 warnings in 125.32s` · raw 9924 bytes.
+- GREEN2: phase0/drill_receipts/20260916T1947Z_cp_m8_csd_1_cross_service_binding_GREEN2.log · `4433 passed, 1 skipped, 438 warnings in 126.56s` · raw 9924 bytes.
+- Stripped bytes both runs: 9910 = 9910.
+- Stripped sha256 (byte-identical): 2f7a499d29ac7c438e36cd4290823c72cf281d1376b2ff6d337ad095f363c3e8
+
+§3.3 3-commit protocol:
+- Commit A: track-a — code + tests + baseline_failures.json (`40b6ee0244375606550294aa5d08f81fb1b0b670`) LANDED 2026-09-16T~19:48Z.
+- Commit B: master — state + seal + note + DECISIONS + NEXT + GPU util (this-turn Master HEAD assigned).
+- Commit C: master fixup — replaces "TBD" above with the actual master Commit-B SHA.
+
+Post-seal effects:
+- §3.2 clause 5 shape (b) discharged — dispatch-to-unregistered-resource preventive-charter mechanism landed as an M8 catch-all CP.
+- M8 SEAL now authorable this-shift (§A pre-declared walk slice #4 discharged).
+- The only remaining slice is M8 SEAL wave-close report + OVERALL BUILD STATUS table inline.

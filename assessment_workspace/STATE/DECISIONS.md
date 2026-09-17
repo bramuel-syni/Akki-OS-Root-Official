@@ -10918,5 +10918,126 @@ python3 -c "import json; d=json.load(open('repos/Extraction-Akki/backend/tests/i
 
 ---
 
+## CP-M7-W9-UPGRADE-1 · Path B upgrade derivative carrier SEALED (4426) · Path α clean · double-green byte-match · TRACK-A HEAD cdf2312d · MASTER HEAD (this-turn Commit-B pending) · 2026-09-16T~19:32Z
+
+**Charter (§A verbatim owner ruling · banked master `a04c65a8` 2026-09-16T~17:43Z):** *"Ruling #5: kdpa = compliant-under-pilot, named-persons = tokenized, transfer-basis = derivative-only."* **+ Shape β ruling (banked master `d9df33f1` 2026-09-16T~19:22Z):** *"Shape ruling: β — the 6-carrier segment with `derivative_kind_ref: str` (open string, no closed enum). ... append-only new module, zero closed enums, zero release_gate/ruling_5_tier_lift imports, caller-side composition, preventive-charter refusal wrapper, defensive symmetry."*
+
+**Files landed on `programme/track-a` (Commit-A `cdf2312d0d1e677d62e036dbc70dd68e1a83584c`):**
+- `services/audio_plane_v1/corpus_deliverable_v1_derivative.py` (~180 LOC · 9 exports).
+- `tests/invariants/test_wm7_w9_upgrade_1_derivative_corpus_deliverable.py` (~270 LOC · 7 invariants).
+- `tests/invariants/baseline_failures.json` (`passed_floor` 4419 → 4426 · `ratchet_history` append at `20260916T192800Z`).
+
+**Mechanism · 9 exports:** `PATH_B_UPGRADE_RULING_5_ANCHOR` · `DerivativeSegment_v1` (frozen · 6 carriers exact-order: `source_file_pointer`, `segment_offsets_ms`, `transcript`, `derivative_content_ref`, `tier_admission_ref`, `derivative_kind_ref`) · `DerivativeCorpusDeliverable_v1` (frozen · 4 carriers exact-order: `deliverable_id`, `retention_policy_ref`, `segments`, `ruling_5_admission_ref`) · `DerivativeCorpusDeliverableRefused` (root · NOT inheriting from `CorpusDeliverableRefused` · peer carrier not subclass) · `DerivativeAudioBytesPayloadRefused` (defensive-symmetry §6.2) · `MissingTierAdmissionRefError` · `MissingRuling5AdmissionRefError` · `MissingDerivativeContentRefError` · `assert_derivative_admissible` (preventive-charter refusal wrapper).
+
+**Case-agnostic doctrine held.** Zero closed enums · `derivative_kind_ref: str` OPEN per owner ruling verbatim shape-β · zero domain tokens (21-token grep-negative verified by invariant #7) · zero imports of `services.release_gate.ruling_5_tier_lift` · zero imports of `services.audio_plane_v1.corpus_deliverable_v1` (peer carrier · not subclass).
+
+**Standing lines held throughout:** no biometric material · no enforcement hard-gate (preventive-charter · caller invokes) · synthetic fixtures · no speculative shapes · Path A raw-audio retention STAYS BLOCKED per Ruling #5 (no `bytes` type-hint · no audio-bytes-shaped field name).
+
+**Mechanical RED drill.** `phase0/drill_receipts/20260916T1926Z_cp_m7_w9_upgrade_1_derivative_RED.log` (banked pre-Commit-A · right-reason 7 ModuleNotFoundError on hidden module).
+
+**Double-green byte-match under BASELINE_GUARD=1:** GREEN1 `4426 passed, 1 skipped, 438 warnings in 126.22s` (raw 9924 B) + GREEN2 `4426 passed, 1 skipped, 438 warnings in 125.98s` (raw 9924 B) · stripped 9910=9910 · stripped sha256 `e3e9ff2a076cf0a9a278a5c3e3c81a82d2276423f7c6ab0427f43c65cd4b1fa8` (byte-identical both runs).
+
+**Ratchet 4419 → 4426 (+7) monotonic-up.** `counts_at_baseline.passed` + `passed_floor` bumped in tandem · `ratchet_history` appended at `20260916T192800Z`.
+
+**Seal file** at `phase0/output_verified_seals/w_m7_w9_upgrade_1_derivative_corpus_deliverable.seal.txt` · Kind: `w_m7_w9_upgrade_1_derivative_corpus_deliverable` · Track-a HEAD `cdf2312d0d1e677d62e036dbc70dd68e1a83584c` · Master HEAD `92eaad74f2d41aa4def014326fc0cd9504893e3c` (Commit-B landed 2026-09-16T~19:33Z · this Commit-C fixup banks the SHA).
+
+**Seal note** at `notes/M7_W9_UPGRADE_1_SEAL_20260916.md`.
+
+**§3.3 3-commit protocol:**
+- Commit A `cdf2312d0d1e677d62e036dbc70dd68e1a83584c` (track-a) ✅ landed 2026-09-16T~19:32Z (code + tests + ratchet).
+- Commit B on `master` this-turn (state + seal + note + DECISIONS + NEXT pin + GPU util).
+- Commit C on `master` this-turn (fixup · replaces `TBD` in seal + DECISIONS + NEXT with actual Master HEAD SHA).
+
+**GPU utilization check-in at CP-M7-W9-UPGRADE-1 seal boundary** (per SO §5 interleave): elapsed 15.86 h · remaining 56.14 h · both hosts sampler_alive+workload_alive · telemetry_samples=386+386 · bench_iters=1900+1900 (ok across 2 GPUs per host) · zero synthetic burn · no anomalies · in-perimeter · report served at owner-facing URL.
+
+**Effects banked:**
+1. **CP-M7-W9-UPGRADE-1 SEALED** · +7 ratchet · Path α clean · Path B derivative-path carrier shipped.
+2. **All Ruling #5–dependent items discharged**: W8 tier-lift ✅ + W9 Path B upgrade ✅ · **M6 SEAL now authorable this-shift** (9/10 + deferred SW-10 per seal-readiness note §2).
+3. **Standing lines held** throughout.
+4. **Next slice per §A pre-declared walk**: **M6 SEAL wave-close report** (state-only owner-facing artefact · matches M7 VERIFICATION ROLLUP + M8 STATUS ROLLUP shape).
+
+---
+
+## M6 SEAL LANDED · 9/10 + DEFERRED SW-10 · state-only wave-close report · Path α clean · ratchet 4426 unchanged · TRACK-A HEAD cdf2312d (unchanged from W9 UPGRADE seal) · MASTER HEAD (this-turn Commit-B pending) · 2026-09-16T~19:36Z
+
+**Wave:** M6 · W-M6-AUDIO-PLANE-V1-PRODUCTION-BUILD.
+
+**Sealed shape:** 9 of 10 sub-waves closed under §3.3 · SW-10 DEFERRED-TO-CLOSE per owner ruling verbatim 2026-09-16T~03:08Z (*"SW-10 DEFERRED-TO-CLOSE + M7 OPENS"*) reiterated in §A bundle 2026-09-16T~17:43Z (*"SW-10 stays deferred-to-close ... M6 seal shape accommodates 9/10+deferred"*).
+
+**M6 SEAL note authored at:** `notes/M6_SEAL_20260916.md` · 9-section END-OF-WAVE format per SO §2 large-wave rule.
+
+**Sections:**
+- §1 Progress made (owner-facing summary · what-now-works end-to-end · platform-integrity verified via CP-M7-W1-POST-8-VERIFICATION 253 M6 invariants passing).
+- §2 How much to go (one sub-wave · Ruling #5 discharged in §A bundle · SW-10 authorable path forward · grounding brief pre-authored).
+- §3 Decisions taken this-wave (7 banked · Ruling #5 sub-verdict format normalisation · Shape β ratification · §3.2 clause 5 shape (b) ratification · SW-10 deferral · §3.3 enforcement · preventive-charter pattern · case-agnostic doctrine enforcement by mechanism).
+- §4 Discoveries not envisioned at planning (5 items · F.3 HF-token rotation-marker byte-identical · F.1 Huawei URL duplication · case-agnostic self-catch precedent · peer-carrier decoupling · bounded-shape-only-probe production-grade §E).
+- §5 Recommendations (5 items · §E extension for CSV/xlsx metadata · durable sha-pin ledger · peer-carrier precedent doc · SW-10 close post-processing · owner-relayed URL landing receipt).
+- §6 M6 canonical CP-status table (10 sub-waves · 9 SEALED · 1 DEFERRED-TO-CLOSE).
+- §7 Platform-integrity assertion (7-point).
+- §8 Receipts index.
+- §9 Wave-honest limits.
+
+**Ratchet at M6 SEAL: 4426** (added +26 M7/M8-adjacent since M6 verification-walk close: W9 CP1 +6 + W2 CP1 +6 + W8 LIFT +7 + W9 UPGRADE +7).
+
+**Standing lines held throughout M6 wave:** no training on estate audio (SW-10 deferred) · no biometric material · no enforcement hard-gate (all M6 refusal surfaces preventive-charter · caller-invoked) · no speculative shapes.
+
+**§3.3 3-commit protocol (COMPLETE):**
+- Commit A (track-a code): N/A (state-only).
+- Commit B (master state): `93fb95c7a2aa5cec99b37ff4e03b8f26c6d2a9fd` ✅ landed 2026-09-16T~19:37Z (master · M6 SEAL note + this DECISIONS entry + NEXT pin + GPU util check-in files).
+- Commit C (master fixup): this-turn · self-reference; banks Commit-B SHA `93fb95c7` in DECISIONS + NEXT.
+
+**GPU utilization check-in at M6 SEAL boundary** (per SO §5 interleave): elapsed 15.95 h · remaining 56.05 h · both hosts sampler_alive + workload_alive · zero synthetic burn · no anomalies · in-perimeter · report served at owner-facing URL.
+
+**REPORTED TO OWNER at M6 SEAL** per §A directive verbatim (*"Report at M6 seal and M8 seal with the status table"*) — this DECISIONS entry + the M6 SEAL note + the NEXT pin are the report shape.
+
+**Next actions per §A pre-declared walk:**
+1. Commit-B + Commit-C fixup this-turn to bank M6 SEAL SHA.
+2. **CP-M8-CSD-1** (§3.2 clause 5 shape (b) preventive-charter mechanism · tests-first · §3.3 3-commit).
+3. **M8 SEAL wave-close report + OVERALL BUILD STATUS table inline** — REPORT to owner at M8 seal.
+
+---
+
+## CP-M8-CSD-1 · §3.2 clause 5 shape (b) preventive-charter SEALED (4433) · Path α clean · double-green byte-match · TRACK-A HEAD 40b6ee02 · MASTER HEAD (this-turn Commit-B pending) · 2026-09-16T~19:49Z
+
+**Charter (§A verbatim owner ruling · banked master `a04c65a8` 2026-09-16T~17:43Z):** *"§3.2 clause 5 = shape (b) PREVENTIVE-CHARTER RATIFIED: record + alert on dispatch-to-unregistered-resource, allow during pilot, upgrade path to hard-gate preserved as a future owner ruling. Build the preventive mechanism tests-first (small), then author the M8 wave-close report / M8 SEAL per the seal-readiness note."*
+
+**Files landed on `programme/track-a` (Commit-A `40b6ee0244375606550294aa5d08f81fb1b0b670`):**
+- `services/governance_plane/cross_service_binding.py` (~140 LOC · 6 exports).
+- `tests/invariants/test_wm8_csd_1_cross_service_binding.py` (~230 LOC · 7 invariants).
+- `tests/invariants/baseline_failures.json` (`passed_floor` 4426 → 4433 · `ratchet_history` append at `20260916T194400Z`).
+
+**Mechanism · 6 exports:** `CROSS_SERVICE_BINDING_SHAPE_B_ANCHOR` · frozen `DispatchSurfaceRef` 2-carrier exact-order (surface_id: str · resource_ref: str) · frozen `RegisteredResourceRef` 2-carrier exact-order (resource_ref: str · registry_id: str) · pure `assess_binding_drift(*, dispatch_surfaces, registered_resources) -> Tuple[DispatchSurfaceRef, ...]` returning sorted tuple of unregistered surfaces (coarse set-membership rule · deterministic ordering by (surface_id, resource_ref)) · preventive-charter `assert_no_cross_service_binding_drift(*, dispatch_surfaces, registered_resources) -> None` raising `CrossServiceBindingDriftRefused` with COUNTS-only refusal message · `CrossServiceBindingDriftRefused` Exception subclass root.
+
+**POST-2 discipline exercised at authoring.** Seal-readiness note §4 aspirationally named `services/work_supervisor/cross_service_binding.py`; from-disk truth places the analog peer (`cross_table_consistency.py`) in `services/governance_plane/`. Home selected `services/governance_plane/` composing into existing sub-tree · avoids Audio-Plane §1.2 rule-proliferation. Matches CP-M8-CTCC-1 POST-2 lesson.
+
+**Case-agnostic doctrine held.** Zero closed enums · surface_id/resource_ref/registry_id all OPEN str per 2026-09-13 owner correction · zero domain tokens (21-token grep-negative verified by invariant #7) · zero imports of dispatch surfaces (`services.work_supervisor` · `services.resource_registry` · `services.campaign_infra` · `services.audio_poc.hf_transcribe` · `services.audio_poc.gap_fill_writer` · `services.training_runner` · `services.ssh_seam` all grep-negative).
+
+**Standing lines held throughout:** no biometric material · no enforcement hard-gate (preventive-charter · caller invokes) · synthetic fixtures · no speculative shapes · upgrade path to hard-gate preserved by construction (a future CP can wrap this check in a global dispatch gate without refactoring this module).
+
+**Mechanical RED drill.** `phase0/drill_receipts/20260916T1943Z_cp_m8_csd_1_cross_service_binding_RED.log` (banked pre-Commit-A · right-reason 7 ModuleNotFoundError on hidden module).
+
+**Double-green byte-match under BASELINE_GUARD=1:** GREEN1 `4433 passed, 1 skipped, 438 warnings in 125.32s` (raw 9924 B) + GREEN2 `4433 passed, 1 skipped, 438 warnings in 126.56s` (raw 9924 B) · stripped 9910=9910 · stripped sha256 `2f7a499d29ac7c438e36cd4290823c72cf281d1376b2ff6d337ad095f363c3e8` (byte-identical both runs).
+
+**Ratchet 4426 → 4433 (+7) monotonic-up.** `counts_at_baseline.passed` + `passed_floor` bumped in tandem · `ratchet_history` appended at `20260916T194400Z`.
+
+**Seal file** at `phase0/output_verified_seals/w_m8_csd_1_cross_service_binding.seal.txt` · Kind: `w_m8_csd_1_cross_service_binding` · Track-a HEAD `40b6ee0244375606550294aa5d08f81fb1b0b670` · Master HEAD `00b1623243a060f83addbe3a3ed7fbbbe3ab5d3c` (Commit-B landed 2026-09-16T~19:50Z · this Commit-C fixup banks the SHA).
+
+**Seal note** at `notes/M8_CSD_1_SEAL_20260916.md`.
+
+**§3.3 3-commit protocol:**
+- Commit A `40b6ee0244375606550294aa5d08f81fb1b0b670` (track-a) ✅ landed 2026-09-16T~19:48Z (code + tests + ratchet).
+- Commit B on `master` this-turn (state + seal + note + DECISIONS + NEXT pin + GPU util).
+- Commit C on `master` this-turn (fixup · replaces `TBD` in seal + DECISIONS + NEXT with actual Master HEAD SHA).
+
+**GPU utilization check-in at CP-M8-CSD-1 seal boundary** (per SO §5 interleave): elapsed 16.14 h · remaining 55.86 h · both hosts sampler_alive + workload_alive · zero synthetic burn · no anomalies · in-perimeter · report served at owner-facing URL.
+
+**Effects banked:**
+1. **CP-M8-CSD-1 SEALED** · +7 ratchet · Path α clean · §3.2 clause 5 shape (b) preventive-charter mechanism shipped.
+2. **M8 SEAL now authorable** — all §A pre-declared walk slices except #5 (M8 SEAL wave-close + OVERALL BUILD STATUS) discharged.
+3. **Standing lines held** throughout.
+4. **Next slice per §A pre-declared walk**: **M8 SEAL wave-close report + OVERALL BUILD STATUS table inline** — REPORT to owner at M8 seal.
+
+---
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 

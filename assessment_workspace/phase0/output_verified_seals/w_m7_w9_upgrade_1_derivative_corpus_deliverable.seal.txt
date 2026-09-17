@@ -1,0 +1,61 @@
+Kind: w_m7_w9_upgrade_1_derivative_corpus_deliverable
+CP: CP-M7-W9-UPGRADE-1
+Wave: M7 · W9 · UPGRADE (Path B derivative-path)
+Charter: Ruling #5 owner verbatim §A (banked 2026-09-16T~17:43Z · master a04c65a8): "Ruling #5: kdpa = compliant-under-pilot, named-persons = tokenized, transfer-basis = derivative-only" + Shape β ruling banked 2026-09-16T~19:22Z (verbatim): "Shape ruling: β — the 6-carrier segment with `derivative_kind_ref: str` (open string, no closed enum). ... append-only new module, zero closed enums, zero release_gate/ruling_5_tier_lift imports, caller-side composition, preventive-charter refusal wrapper, defensive symmetry."
+
+Track-a HEAD at seal: cdf2312d0d1e677d62e036dbc70dd68e1a83584c
+Master HEAD: 92eaad74f2d41aa4def014326fc0cd9504893e3c
+
+Ratchet: 4419 -> 4426 (+7)
+Invariants added: 7
+
+Modules landed:
+- backend/services/audio_plane_v1/corpus_deliverable_v1_derivative.py (~180 LOC · 9 exports · Path B upgrade derivative carrier · Shape β · 6-carrier segment · 4-carrier deliverable · zero closed enums · zero domain tokens · zero imports of services.release_gate.ruling_5_tier_lift · zero imports of services.audio_plane_v1.corpus_deliverable_v1)
+- backend/tests/invariants/test_wm7_w9_upgrade_1_derivative_corpus_deliverable.py (~270 LOC · 7 invariants)
+
+Shape β carriers (exact-order · frozen · owner-ratified):
+- DerivativeSegment_v1(source_file_pointer: str, segment_offsets_ms: Tuple[Tuple[int, int], ...], transcript: str, derivative_content_ref: str, tier_admission_ref: str, derivative_kind_ref: str)
+- DerivativeCorpusDeliverable_v1(deliverable_id: str, retention_policy_ref: str, segments: Tuple[DerivativeSegment_v1, ...], ruling_5_admission_ref: str)
+
+Preventive-charter refusal wrapper:
+- assert_derivative_admissible(*, deliverable) -> None raises MissingRuling5AdmissionRefError / MissingTierAdmissionRefError / MissingDerivativeContentRefError; returns None on admit
+
+Refusal class hierarchy (all subclass DerivativeCorpusDeliverableRefused root · deliberately NOT inheriting from CorpusDeliverableRefused · case-agnostic decoupling · peer carrier not subclass):
+- DerivativeCorpusDeliverableRefused (root)
+- DerivativeAudioBytesPayloadRefused (defensive-symmetry §6.2)
+- MissingTierAdmissionRefError
+- MissingRuling5AdmissionRefError
+- MissingDerivativeContentRefError
+
+Verbatim owner-ruling anchors quoted in module source:
+- "kdpa = compliant-under-pilot"
+- "named-persons = tokenized"
+- "transfer-basis = derivative-only"
+- "6-carrier segment with `derivative_kind_ref: str`" (Shape β rationale)
+
+Standing-line proof:
+- No biometric material — module holds only opaque str refs; synthetic-fixture invariants exercise refusal semantics; no actual biometric material touches the mechanism.
+- No enforcement hard-gate — preventive-charter · runtime enforcement fires only when caller invokes assert_derivative_admissible.
+- No speculative shapes — 6-carrier segment + 4-carrier deliverable + 5 refusal classes + 9 exports bind 1:1 to owner-ratified Shape β.
+- Case-agnostic doctrine: 21-token grep-negative in module source · verified by invariant #7 (kikuyu/dholuo/kamba/swahili/nairobi/inooro/ramogi/musyi/sunbird/whisper/pyannote/htdemucs/mms-1b/mms-lid/wavlm/panns/squim/dnsmos/broadcast/off-air/synology).
+- Composition surface only: no import of services.release_gate.ruling_5_tier_lift (caller-side composition binds tier_admission_ref to a Ruling5AdmissionCheck payload · verified by invariant #7) · no import of services.audio_plane_v1.corpus_deliverable_v1 (case-agnostic decoupling · peer carrier not subclass · verified by invariant #7).
+- Path A (raw-audio retention) STAYS BLOCKED per Ruling #5's transfer_basis=derivative-only refusing raw source crossing — module intentionally does not model raw-audio deliverable shape · no `bytes` type-hint on any field · no audio-bytes/voiceprint/embedding/raw-audio field-name substring.
+
+Mechanical RED drill: phase0/drill_receipts/20260916T1926Z_cp_m7_w9_upgrade_1_derivative_RED.log (banked pre-Commit-A · right-reason 7 ERRORs on missing module `services.audio_plane_v1.corpus_deliverable_v1_derivative` · captured by temporarily hiding the module while the tests fired).
+
+Double-green byte-match under BASELINE_GUARD=1:
+- GREEN1: phase0/drill_receipts/20260916T1928Z_cp_m7_w9_upgrade_1_derivative_GREEN1.log · `4426 passed, 1 skipped, 438 warnings in 126.22s` · raw 9924 bytes.
+- GREEN2: phase0/drill_receipts/20260916T1930Z_cp_m7_w9_upgrade_1_derivative_GREEN2.log · `4426 passed, 1 skipped, 438 warnings in 125.98s` · raw 9924 bytes.
+- Stripped bytes both runs: 9910 = 9910.
+- Stripped sha256 (byte-identical): e3e9ff2a076cf0a9a278a5c3e3c81a82d2276423f7c6ab0427f43c65cd4b1fa8
+
+§3.3 3-commit protocol:
+- Commit A: track-a — code + tests + baseline_failures.json (`cdf2312d0d1e677d62e036dbc70dd68e1a83584c`) LANDED 2026-09-16T~19:32Z.
+- Commit B: master — state + seal + note + DECISIONS + NEXT + GPU util (this-turn Master HEAD assigned).
+- Commit C: master fixup — replaces "TBD" above with the actual master Commit-B SHA.
+
+Post-seal effects:
+- W8 CHARTER 3/3 SATISFIED (unchanged from W8 LIFT) + W9 UPGRADE Path B derivative-path carrier LANDED — derivative-only crossings under Ruling #5 now have a shape-frozen deliverable carrier.
+- Path A raw-audio retention STAYS BLOCKED per Ruling #5.
+- SW-10 (Full-training runs) STAYS DEFERRED-TO-CLOSE per prior owner ruling.
+- Next slice per §A pre-declared walk: M6 SEAL wave-close report (9/10 + deferred SW-10 shape).
