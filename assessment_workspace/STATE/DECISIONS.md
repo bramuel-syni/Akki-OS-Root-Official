@@ -11562,5 +11562,80 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 **Next actions**: M9 COMPLETE. Report to owner at M9 SEAL per owner directive verbatim ("Report at completion"). Continue GPU utilization interleave check-ins on cadence to 72h completion. Await owner ruling for next work.
 
 
+---
+
+## Ruling · 2026-09-17T~20:45Z · Source: owner autopilot directive
+
+**Verbatim:**
+
+> "RATCHET floor: hard dynamic assertion — ORCH_BOOT's ratchet line MUST equal `baseline_failures.json.passed_floor` (and its recorded baseline sha256 must match). Keep this always-on. This is the field that actually drifted and burned us; it's the priority guard.
+>
+> HEADs: do NOT assert ORCH_BOOT's HEAD lines == live `git rev-parse HEAD` on every run — that races with the §3.3 commit protocol (HEAD advances at Commit-A while the boot file still shows the last-sealed HEAD) and would make the suite perpetually red until regen. Instead: assert the HEAD fields are present + well-formed (40-hex) AND equal to the LAST-SEALED HEADs recorded in STATE (DECISIONS/NEXT). Freshness of the HEADs is enforced by the R-6 boundary regeneration, not by an always-on equality-to-live-HEAD test. Pick whichever concrete shape satisfies that without racing.
+>
+> Commit-protocol correction: in the §3.3 STATE-ONLY 2-commit, Commit-C is the FIXUP that self-references Commit-B's SHA — it is NOT a second content commit. Put ALL state content together in Commit-B: snapshot + roadmap + ORCH_BOOT.md + the R-6 STANDING_ORDERS.md edit. Commit-C only banks Commit-B's SHA back into the docs. Do not put ORCH_BOOT.md in the Commit-C slot.
+>
+> Also: Task 1 adds an invariant TEST (track-a code + ratchet bump) → that's its own real CP with Commit-A on `programme/track-a`; ORCH_BOOT.md (state) lives on `master`. Keep code on track-a, all state (incl. ORCH_BOOT) on master, as always."
+
+**Binding effects (recorded in receipt order):**
+
+1. **R-6 standing rule ADDED to `STATE/STANDING_ORDERS.md` §7 same commit.** R-6 codifies anti-forget boot manifest regeneration: `notes/ORCH_BOOT.md` + byte-identical audit copy at `/app/frontend/public/audit/ORCH_BOOT.md` + always-on invariant `backend/tests/invariants/test_orch_boot.py`. Ratchet block hard-dynamic-asserted; HEADs asserted last-sealed + banked (not live rev-parse). Regen triggers: (a) after every §3.3 Commit-C fixup; (b) after any owner ruling mutating ratchet/HEADs/STATE; (c) on boot ritual when §1 detects drift.
+2. **CP-Anti-Forget-1 landed** as a real §3.3 3-commit CP with Commit-A on track-a (test + ratchet bump 4809 → 4810) and state-only Commit-B/Commit-C on master (snapshot delta + this DECISIONS entry + NEXT pin + ORCH_BOOT.md + audit copy + STANDING_ORDERS §7 R-6 + seal file). Commit-A SHA: `fd4432aadf7bfe2450fd64555c1679e6613427ba`. Commit-B SHA: **`4248ae76025585d8d3ae0a113497a1490de045b9`** (banked at Commit-C fixup this-turn).
+3. **Owner refinement on ORCH_BOOT test concrete shape (verbatim above) IMPLEMENTED**: test asserts (i) both file copies exist + byte-identical, (ii) `ratchet.passed_floor == baseline_failures.passed_floor`, (iii) `ratchet.baseline_failures_sha256 == live sha256`, (iv) HEADs are 40-hex + banked in STATE (accept full-40, 8-hex, or 7-hex short form; git's default `--short` on this repo is 7 chars). Two self-catches surfaced and fixed during RED→DELTA cycle: (i) initial `state_repo.head` set to Commit-C fixup SHA `0c7634e8` which by design is not banked in DECISIONS/NEXT — corrected to Commit-B SHA `c72a003d` which IS banked per R-1 fixup rule; (ii) short-SHA acceptance widened 8-hex → 7-hex to match git default.
+4. **§3.3 3-commit shape correction ratified** (verbatim above): Commit-B carries ALL state content; Commit-C is fixup-only (self-references Commit-B's SHA back into DECISIONS/NEXT/seal). Applied to this CP and standing forward.
+5. **Two rule-tensions REMAIN OPEN for owner ruling BEFORE M11 opens** — surfaced in `notes/PROJECT_STATE_AND_RULES_SNAPSHOT_20260917.md` §5.1 (thin-kernel vs B.2 repository layer · agent recommends Option C — thin adapter layer at `services/enforce/` with its own AST gate) and §5.2 (zero closed enums vs B.8 determinism fixed enumerations · agent recommends Option α — SO §3.10 means "no `enum.Enum` subclass" not "no fixed-vocabulary tuple"). Persisted as note at `notes/M11_GATE_ASK_20260917.md`.
+6. **Roadmap resequence confirmed** in `notes/NEXT_MILESTONES_PLAN_20260917.md`: M13-W1 → M11 → M10 → M12 → M12b → remaining M13 sub-waves. M13-W1 (TCB.yaml + `akki.arch` global import assertions CI) is MANDATORY FIRST. M11 precedes M10 (Ledger must land in per-tenant DBs from the start · migration later is prohibited by B.3/B.7).
+
+**M9 DoD gates satisfied**: (1) every I-x mapped to a test ID passing at BASELINE_GUARD=1 (373 M9 test IDs · 4809 total). (4) D.5 regenerated from levelled table (snapshot §2). (3) affected components re-levelled (snapshot §2.1-§2.9). Gates (2) D.3 acceptance suite and (5) Ledger rows visible end-to-end are NOT-STARTED per M10/M11 owner sequence.
+
+**CP-Anti-Forget-1 DoD gates satisfied**: (1) 1 I-x (R-6 anti-forget) mapped to `test_orch_boot.py` at BASELINE_GUARD=1 (4810). (4) D.5 regenerated (snapshot §2.9). (3) new anti-forget component levelled at L5. Gates (2) and (5) not applicable to discipline CPs.
+
+**§3.3 3-commit shape THIS CP**:
+- Commit-A track-a: `fd4432aadf7bfe2450fd64555c1679e6613427ba` (test_orch_boot.py + baseline_failures.json ratchet 4809 → 4810).
+- Commit-B this-turn (master · this DECISIONS entry + NEXT pin + snapshot deltas + roadmap resequence already-on-disk + ORCH_BOOT.md + audit copy + STANDING_ORDERS §7 R-6 + seal file).
+- Commit-C this-turn (master fixup · updates seal file Master HEAD line + ORCH_BOOT.md heads_last_sealed.state_repo.head + this DECISIONS entry footer + NEXT.md pin footer).
+
+
+---
+
+## Ruling · 2026-09-17T~13:30Z · Source: owner autopilot Option A (M13-W1 scoped current-tree only)
+
+**Verbatim:**
+
+> "Proceed with OPTION A — scoped M13-W1 now (current-tree only). Rationale: the two tension rulings (a)+(b) are M11-gate items, not M13-W1 prerequisites, so M13-W1 can land under autopilot without guessing on owner-reserved decisions.
+>
+> M13-W1 Option A specifics, confirmed:
+> - Author TCB.yaml enumerating ONLY packages currently on disk (chokepoint · watch · rules_service · model_admission · critic_pass · solva/reasoning · agent_containment · platform_control_plane · contracts) with explicit `PENDING M10/M11/M12` markers for future packages. This current-tree enumeration is the accepted STARTING row-list; the owner can add/remove rows at the M11 review — note that in the doc.
+> - Author `tools/akki_arch/check_imports.py` with the 4 test IDs + `test_akki_arch_current_tree_green` calibrated so the current tree passes at floor+4.
+> - DEFER C3 CI-job activation and C4 branch-protection (admin-blocked) — surface both as owner/infra inputs at the seal boundary.
+> - Full §3.3 3-commit under DoD (RED → BASELINE_GUARD=0 delta sweep → exact bump → BASELINE_GUARD=1 double-green → GPU check-in → seal), regen+commit the R-6 boot files at the boundary. Local-only, no push.
+>
+> HOUSEKEEPING: LEAVE the ~300 untracked `phase0/commissioning_records/*.json`, `downloads/`, modified `PINS.md` pointer, and telemetry jsonl UNCOMMITTED. Do NOT bundle pre-existing operational carryover into any seal or a housekeeping commit — keep the seals clean and honor zero-perturbation during the live GPU campaign. We revisit housekeeping post-campaign.
+>
+> Then HOLD at the M11 gate. In your M13-W1 boundary report, include: the M13-W1 seal result (SHAs, ratchet delta, GPU check-in); the levelled D.5 table + revised roadmap confirmation; the state-only commit SHAs for the record; the TWO tension-reconciliation proposals PASTED VERBATIM (both options + your recommendation for each) so I can relay them to the owner unaltered; and the M11-gate ask (the owner inputs needed before M11: rulings (a)+(b), Mongo pilot confirmation, and any TCB row-list changes). Do not open M11."
+
+**Binding effects (recorded in receipt order):**
+
+1. **CP-M13W1 SCOPED landed** as a real §3.3 3-commit CP under Option A (current-tree only). Commit-A SHA: `71faac1cd9c5bd6fe1db1ec6ca340485a34c251a`. Commit-B SHA: **`96577787913712d896f4b17a43f13fa5a11accfd`** (banked at Commit-C fixup this-turn).
+2. **TCB.yaml at code-repo root** (216 lines): 10 present-on-disk TCB packages (services.chokepoint · services.watch · services.rules_service · services.model_admission · services.critic_pass · services.agent_containment · services.solva.reasoning frame boundary · services.solva app · contracts · services.platform_control_plane · services.training_runner learned counterpart) + 3 PENDING_M10/M11/M12 future rows + 3 protected_sdks (openai · anthropic · google.generativeai) + 4 rules + review_policy PENDING_OWNER_RATIFICATION. **OWNER: at M11 gate please review the row list and rule/target additions/deletions** — the current-tree enumeration is the STARTING baseline, not final.
+3. **`tools/akki_arch/check_imports.py`** (435 LOC · AST-based checker) with 4 rules: R-A-1 llm_sdk_sole_importer HARD · R-A-2 governor_cross_import_ban HARD with `allowed_import_targets` [`services.chokepoint` + `services.watch.capability_admission` shared-primitive submodule] · R-A-3 learned_decision_cross_import_ban HARD bidirectional (services.training_runner ↔ services.rules_service) · R-A-4 layer_up_import WARN advisory (may promote to HARD in future waves after M11/M12 restructure).
+4. **RED-phase discovery banked**: initial `test_akki_arch_current_tree_green` surfaced 1 HARD R-A-2 violation at `backend/services/agent_containment/ceilings.py:8` importing `services.watch.capability_admission` (the shared `CapabilityClass` + `CapabilityRegister` primitives Watch's Learning L-5 layer exposes). Resolved by extending R-A-2 with an `allowed_import_targets` list (chokepoint + capability_admission) rather than refactoring `ceilings.py` — **SO §3.8 no-refactor held verbatim**. `services.watch.capability_admission` MOVE-TO-`contracts/` flagged for M12 structural restructure. This is the FIRST use of the `allowed_import_targets` exception mechanism; the pattern is now cataloged.
+5. **Ratchet bump**: 4810 → **4814** (+4). Double-green byte-match on `4814 passed, 1 skipped, 438 warnings` across GREEN1 (20260917T134332Z · 131.57s) and GREEN2 (20260917T134551Z · 132.26s). DELTA_GUARD0 log 20260917T134007Z (4814 passed exact +4 delta from floor 4810 · no silent rebaselining).
+6. **DEFERRED-ADMIN-BLOCKED (SURFACE ONLY per owner ruling)**: CP-M13W1-C3 (CI job activation on GitHub Actions) and CP-M13W1-C4 (branch protection: 2-reviewer + security-group requirement on TCB paths). Both are admin-session territory. TCB.yaml `review_policy:` block declares the policy PENDING_OWNER_RATIFICATION so the intent is on-disk even without wiring.
+7. **HOUSEKEEPING per owner ruling**: ~300 untracked `phase0/commissioning_records/*.json` + `downloads/` + modified `STATE/PINS.md` (commissioning_record pointer) + phase0 telemetry jsonl left UNCOMMITTED. NOT bundled into this seal. Zero-perturbation honored during the live GPU campaign; revisit post-campaign.
+8. **HOLDING at M11 gate**: M11 is NOT opened this session. Owner-inputs needed before M11 open are: (a) tension (a) ruling on thin-kernel-vs-B.2-repository — agent recommends Option C (thin adapter layer at `services/enforce/`); (b) tension (b) ruling on zero-closed-enums-vs-B.8-determinism — agent recommends Option α (SO §3.10 means "no `enum.Enum` subclass"; fixed-vocabulary tuples allowed); (c) Mongo pilot infrastructure confirmation (per-tenant replica-set + IAM + retention TTL policies); (d) any TCB row-list changes owner wants to make to `TCB.yaml`.
+
+**CP-M13W1 DoD gate coverage**:
+- Gate 1 (test IDs mapped at BASELINE_GUARD=1): 4 IDs ✅ (test_akki_arch_refuses_learned_to_decision · test_akki_arch_refuses_governor_cross_import · test_akki_arch_refuses_layer_up_import · test_akki_arch_current_tree_green).
+- Gate 2 (D.3 acceptance suite passes): P-01..P-15 land at M11/M10 — NOT-STARTED for M13-W1 (documented).
+- Gate 3 (affected components re-levelled): snapshot §2.10 new TCB governance regime row added ✅.
+- Gate 4 (D.5 regenerated from levelled table): snapshot revised 2026-09-17T~21:46Z ✅.
+- Gate 5 (Ledger rows visible end-to-end): N/A — Ledger is M10 target; discipline CP does not emit Ledger intents.
+
+**§3.3 3-commit shape THIS CP (M13-W1)**:
+- Commit-A track-a: `71faac1cd9c5bd6fe1db1ec6ca340485a34c251a` (TCB.yaml + tools/akki_arch/{__init__.py, check_imports.py} + test_akki_arch_import_assertions.py + baseline_failures.json ratchet bump).
+- Commit-B this-turn (master · this DECISIONS entry + NEXT pin advance + snapshot §2.10 row + snapshot §1.1/§1.2 header updates + ORCH_BOOT.md regen with ratchet 4814 + new baseline sha256 + seal file `cp_m13w1_tcb_akki_arch.seal.txt`).
+- Commit-C this-turn (master fixup · updates seal file Master HEAD line + ORCH_BOOT.md heads_last_sealed.state_repo.head + heads_last_sealed.code_repo.head to 71faac1 + this DECISIONS entry footer + NEXT.md pin footer).
+
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 

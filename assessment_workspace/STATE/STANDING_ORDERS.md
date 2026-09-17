@@ -281,7 +281,7 @@ Read alongside this file; do not paraphrase.
 
 ## 7. §3.3 SEAL-CHAIN INTEGRITY RULES (owner-ratified 2026-09-17)
 
-Ratified in DECISIONS.md §3.3 SEAL-CHAIN INTEGRITY RULINGS 2026-09-17. All five additive to prior discipline; none overrides existing rules.
+Ratified in DECISIONS.md §3.3 SEAL-CHAIN INTEGRITY RULINGS 2026-09-17. All six additive to prior discipline; none overrides existing rules.
 
 **R-1 · Master-parity check at CP boundary.** Before opening a new Commit-A on track-a for CP-N+1, verify Master HEAD banks the Commit-B SHA for CP-N in each of (a) the seal file at `phase0/output_verified_seals/cp_p*_*.seal.txt`, (b) `STATE/DECISIONS.md` tail, and (c) `STATE/NEXT.md` "CURRENT AS OF" line. If any of (a)/(b)/(c) shows `pending-C-fixup` or a stale SHA, STOP and reconcile before opening CP-N+1.
 
@@ -292,6 +292,8 @@ Ratified in DECISIONS.md §3.3 SEAL-CHAIN INTEGRITY RULINGS 2026-09-17. All five
 **R-4 · Session-handoff brief reconciliation.** When an incoming session receives a brief claiming CP-N is "sealed", the incoming agent's FIRST action is to verify §3.3 3-commit completeness for CP-N on disk before touching any downstream work. "Sealed" without Commit-B + Commit-C fixup on master is a discipline mislabel and must trigger reconciliation before forward progress.
 
 **R-5 · Per-CP double-green raw-log requirement (NEW DISCIPLINE · MANDATORY).** The seal-file writer MUST refuse to compose a `Double-green: GREEN1 X/Y/Z · GREEN2 X/Y/Z` line unless both raw log files exist on disk at the referenced timestamps (`phase0/drill_receipts/<TS>_<kind>_GREEN1.log` and `phase0/drill_receipts/<TS>_<kind>_GREEN2.log`). No exceptions. Every new CP must capture its own per-CP double-green receipts at seal time. Aggregate-only substantiation is allowed ONLY for retroactive back-compat batches and must be labeled "RECONSTRUCTED POST-HOC AT HEAD <SHA> <DATE>" — never presented as captured-at-seal-time.
+
+**R-6 · Anti-forget boot manifest regeneration (owner ruling 2026-09-17T~20:45Z · MANDATORY).** A machine-checkable boot manifest is maintained at `notes/ORCH_BOOT.md` (state repo · master) with a byte-identical downloadable copy at `/app/frontend/public/audit/ORCH_BOOT.md`. Its ratchet block (`passed_floor` + `baseline_failures_sha256`) is asserted equal to live `backend/tests/invariants/baseline_failures.json` by the always-on invariant test `backend/tests/invariants/test_orch_boot.py` — this is the drift-and-burn priority guard the owner named verbatim ("Ratchet is the field that actually drifted and burned us; it's the priority guard."). Its `heads_last_sealed.*.head` fields carry the LAST-SEALED HEADs (Commit-B SHAs banked in DECISIONS/NEXT per R-1), NOT live `git rev-parse HEAD` — the always-on test asserts 40-hex well-formed + banked-in-STATE presence (full-40 or git 7/8-hex short form), which avoids racing the §3.3 Commit-A/B/C ordering. **Regeneration triggers (MUST regenerate both copies byte-identically at each of these boundaries):** (a) after Commit-C fixup of every §3.3 3-commit seal; (b) after any owner ruling that mutates ratchet, HEADs, or STATE files; (c) on every boot ritual when §1 boot verification detects drift. Freshness of the HEADs is enforced by this boundary-regeneration discipline, not by an always-on equality-to-live-HEAD test. `test_orch_boot.py` is part of the BASELINE_GUARD=1 ratchet; if the manifest goes missing or drifts, the ratchet breaks and forces regen.
 
 ---
 
