@@ -1,0 +1,16 @@
+Kind: cp_p1_cp6_tenant_lifecycle
+Wave: M9 · P1 · Foundation
+CP: CP-P1-CP6 · Platform-layer tenant lifecycle FSM
+Module: services/platform_control_plane/tenant_lifecycle.py
+Anchor: Akki OS Pilot Platform Reference v0.2 §4.7 verbatim tenant lifecycle FSM provisioning → sandbox_active → production_active → suspended → offboarded (terminal · irreversible) · §4.4 sandbox → production promotion requires tenant_owner + platform_operator joint approval (approver_refs tuple carrier · NOT enforced here · caller composes via CP-P2-CP1 role-registry)
+Invariants: 8 · tests/invariants/test_p1_cp6_tenant_lifecycle.py
+Ratchet: 4460 -> 4468 (+8) monotonic-up
+Track-a HEAD (Commit-A): 07fccbd0f142f0a58e7972577750aa840516e642
+Master HEAD (Commit-B): 5b7944d1bd417f66fb2e2303c8e3144b80ec45b0
+Double-green byte-match: GREEN1 4468 passed / 1 skipped / 0 failed / 124.37s + GREEN2 4468 passed / 1 skipped / 0 failed / 124.54s (BASELINE_GUARD=1 · full-suite green · byte-identical count outcome)
+Shape: TenantLifecycleTransition frozen dataclass exact-order 6 carriers (tenant_id: str · source_state: str · target_state: str · reason_ref: str · approver_refs: Tuple[str, ...] · effects_refs: Tuple[str, ...]) · TENANT_LIFECYCLE_STATES tuple of 5 OPEN str · TENANT_LIFECYCLE_TERMINAL_STATES tuple = ('offboarded',) · TENANT_LIFECYCLE_TRANSITIONS tuple of 8 (source, target) OPEN str pairs verbatim from §4.7 · pure assess_transition_drift returning sorted tuple · preventive-charter assert_transition_valid (terminal check fires FIRST → TerminalStateOutboundRefused · then matrix check → IllegalTransitionRefused · returns None on admit) · 3 refusal classes (TenantLifecycleTransitionRefused root + 2 subclasses)
+Standing lines held: no biometric material · no enforcement hard-gate (preventive-charter · caller-invoked) · synthetic fixtures · no speculative shapes · upgrade path to hard-gate preserved by construction
+Case-agnostic: zero closed enums (states as OPEN str) · zero domain tokens (21-token grep-negative) · zero data-plane imports (audio_plane_v1/release_gate/governance_plane/audio_poc/training_runner all grep-negative)
+CONTRACT-MODELED items enabled: item 12 (30-day irreversible offboarding delete · real wall-clock scheduler required · terminal-state invariant shaped at carrier layer · 30-day delete itself is downstream P5 CP)
+Completes: M9 Phase P1 (CP1 · CP2 · CP3 · CP4 · CP5 · CP6 all sealed · 6/6 platform-layer foundation isolation invariants shipped)
+Signed off: 2026-09-17T~04:55Z · CP-P1-CP6 SEALED · P1 COMPLETE

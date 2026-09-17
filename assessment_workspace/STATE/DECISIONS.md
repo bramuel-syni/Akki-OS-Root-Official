@@ -11120,5 +11120,111 @@ python3 -c "import json; d=json.load(open('repos/Extraction-Akki/backend/tests/i
 
 ---
 
+## CP-P1-CP2 · M9 · Platform-layer tenant entity carrier · 2026-09-17T~04:15Z
+
+**Anchor.** Akki OS Pilot Platform Reference v0.2 §10 verbatim: `tenant(id, legal_name, short_name, jurisdiction, status, mou_ref, created_at)`. §3.1: *"A tenant maps one-to-one to a legal entity."*
+
+**Mechanism** at `services/platform_control_plane/tenant_entity.py` · pure frozen `TenantEntity` (7 exact-order str OPEN fields) · `TENANT_ENTITY_FIELDS` tuple · no refusal wrapper (caller composes: CP-P1-CP1 for cross-tenant · CP-P1-CP6 for lifecycle FSM).
+
+**Zero closed enums · zero domain tokens · zero data-plane imports** (21-token grep-negative · 10 forbidden import patterns clean).
+
+**Double-green byte-match:** GREEN1 `4445 passed / 1 skipped / 0 failed in 124.13s` + GREEN2 `4445 passed / 1 skipped / 0 failed in 124.11s` (BASELINE_GUARD=1).
+
+**Ratchet 4440 → 4445 (+5) monotonic-up.**
+
+**Seal file:** `phase0/output_verified_seals/cp_p1_cp2_tenant_entity.seal.txt` · **Seal note:** `notes/P1_CP2_TENANT_ENTITY_SEAL_20260917.md`.
+
+**§3.3 3-commit:**
+- Commit A `95fbd8ebcd9f785927c4237363ec052ff6960678` (track-a) ✅.
+- Commit B `a14e668dbe0b8d7bb3118882432a2ff63bf2a90e` (master) ✅.
+- Commit C this-turn (`master` fixup).
+
+**GPU util at CP-P1-CP2 seal boundary:** elapsed **23.61 h** · remaining **48.39 h** · both hosts alive · in-perimeter.
+
+**Effects banked:**
+1. CP-P1-CP2 SEALED · +5 ratchet · Path α clean.
+2. Standing lines held.
+3. Next slice: **CP-P1-CP3 · WORKSPACE-ENTITY**.
+
+---
+
+## CP-P1-CP3 · M9 · Platform-layer workspace entity carrier · 2026-09-17T~04:25Z
+
+**Anchor.** §10 verbatim: `workspace(id, tenant_id, name, is_default)`. §2: *"Workspace — division inside a tenant used to scope users and outputs. Every tenant has at least one."*
+
+**Mechanism** at `services/platform_control_plane/workspace_entity.py` · pure frozen `WorkspaceEntity` (4 exact-order fields: `id: str · tenant_id: str · name: str · is_default: bool`) · ownership isolation anchored at `tenant_id` index 1 · `WORKSPACE_ENTITY_FIELDS` tuple.
+
+**Note.** `is_default: bool` is the sole non-str field in P1 carriers · §10 uses boolean semantics by domain nature. Case-agnostic doctrine preserved (OPEN-str exception applies only to identifier-shaped fields).
+
+**Double-green byte-match:** GREEN1 4450 + GREEN2 4450 (BASELINE_GUARD=1). **Ratchet 4445 → 4450 (+5).**
+
+**Seal file:** `phase0/output_verified_seals/cp_p1_cp3_workspace_entity.seal.txt` · **Seal note:** `notes/P1_CP3_WORKSPACE_ENTITY_SEAL_20260917.md`.
+
+**§3.3 3-commit:** A `1f32d8d18dd1db73ad28978389b38c1cd61335cf` (track-a) ✅ · B `868c4af13dc8badd3ac866666b5ba9285a3c1a2c` (master) ✅ · C this-turn.
+
+**GPU util at seal boundary:** elapsed **23.74 h** · remaining **48.26 h** · in-perimeter.
+
+**Effects banked:** CP-P1-CP3 SEALED · +5 ratchet · Next slice: **CP-P1-CP4 · USER-ENTITY**.
+
+---
+
+## CP-P1-CP4 · M9 · Platform-layer user entity carrier · 2026-09-17T~04:35Z
+
+**Anchor.** §10 verbatim: `user(id, tenant_id, email, status, auth_method, mfa_enrolled, created_at)`. §7.2: users tenant-scoped · auth_method OPEN str (native + SSO OIDC + SSO SAML) · mfa_enrolled bool.
+
+**Mechanism** at `services/platform_control_plane/user_entity.py` · pure frozen `UserEntity` (7 exact-order fields: 6 str + 1 bool `mfa_enrolled`) · ownership isolation at `tenant_id` index 1 · `USER_ENTITY_FIELDS` tuple.
+
+**Double-green byte-match:** GREEN1 4455 + GREEN2 4455 (BASELINE_GUARD=1). **Ratchet 4450 → 4455 (+5).**
+
+**Seal file:** `phase0/output_verified_seals/cp_p1_cp4_user_entity.seal.txt` · **Seal note:** `notes/P1_CP4_USER_ENTITY_SEAL_20260917.md`.
+
+**§3.3 3-commit:** A `711817de204aef74f78ca57a343658f50c26234f` ✅ · B `2ec94b18caf5e638c220b4b8c5a897b953190a88` ✅ · C this-turn.
+
+**GPU util at seal boundary:** elapsed **23.86 h** · remaining **48.14 h**.
+
+**Effects banked:** CP-P1-CP4 SEALED · +5 ratchet · Next slice: **CP-P1-CP5 · SERVICE-ACCOUNT-ENTITY**.
+
+---
+
+## CP-P1-CP5 · M9 · Platform-layer service-account entity carrier · 2026-09-17T~04:45Z
+
+**Anchor.** §10 verbatim: `service_account(id, tenant_id, name, cert_fingerprint, expires_at)`. §7.2: data-plane agents auth via short-lived certs bound to tenant_id.
+
+**Mechanism** at `services/platform_control_plane/service_account_entity.py` · pure frozen `ServiceAccountEntity` (5 exact-order str OPEN fields) · ownership isolation at `tenant_id` index 1 · `SERVICE_ACCOUNT_ENTITY_FIELDS` tuple. `cert_fingerprint` OPEN str · algorithm-agnostic (admits sha-256, sha-1, ed25519-thumbprint without closed enum).
+
+**Double-green byte-match:** GREEN1 4460 + GREEN2 4460. **Ratchet 4455 → 4460 (+5).**
+
+**Seal file:** `phase0/output_verified_seals/cp_p1_cp5_service_account_entity.seal.txt` · **Seal note:** `notes/P1_CP5_SERVICE_ACCOUNT_ENTITY_SEAL_20260917.md`.
+
+**§3.3 3-commit:** A `a2857843fa8f80dde6330a926245ef02b930aeef` ✅ · B `d0cdcb39ca74831c6d09494f17c99efe1d0d70e2` ✅ · C this-turn.
+
+**GPU util at seal boundary:** elapsed **23.98 h** · remaining **48.02 h**.
+
+**CONTRACT-MODELED items enabled:** item 6 (real PKI cert issuance) directly enabled at carrier layer.
+
+**Effects banked:** CP-P1-CP5 SEALED · +5 ratchet · Next slice: **CP-P1-CP6 · TENANT-LIFECYCLE-FSM** (state machine + core ownership/isolation invariant per owner scope).
+
+---
+
+## CP-P1-CP6 · M9 · Platform-layer tenant lifecycle FSM · 2026-09-17T~04:55Z
+
+**Anchor.** §4.7 verbatim tenant lifecycle FSM: `provisioning → sandbox_active → production_active → suspended → offboarded` (terminal · irreversible) · `suspended` may unsuspend to `production_active`. §4.4: `sandbox → production` promotion requires `tenant_owner + platform_operator` joint approval — recorded as `approver_refs` tuple on the Transition carrier · NOT enforced here · caller composes via CP-P2-CP1 role-registry.
+
+**Mechanism** at `services/platform_control_plane/tenant_lifecycle.py` · `TENANT_LIFECYCLE_STATES` tuple of 5 OPEN str · `TENANT_LIFECYCLE_TERMINAL_STATES = ('offboarded',)` · `TENANT_LIFECYCLE_TRANSITIONS` tuple of 8 (source, target) OPEN str pairs verbatim from §4.7 · `TenantLifecycleTransition` frozen dataclass 6 exact-order fields (`tenant_id · source_state · target_state · reason_ref · approver_refs · effects_refs`) · ownership isolation at `tenant_id` index 0 · pure `assess_transition_drift` returning sorted tuple · preventive-charter `assert_transition_valid` · terminal check fires FIRST → `TerminalStateOutboundRefused` · then matrix check → `IllegalTransitionRefused` · returns None on admit · 3 refusal classes (root + 2 subclasses) · COUNTS-only refusal messages. Zero closed enums (states OPEN str) · zero domain tokens (21-token grep-negative) · zero data-plane imports.
+
+**Double-green byte-match:** GREEN1 4468 + GREEN2 4468. **Ratchet 4460 → 4468 (+8).**
+
+**Seal file:** `phase0/output_verified_seals/cp_p1_cp6_tenant_lifecycle.seal.txt` · **Seal note:** `notes/P1_CP6_TENANT_LIFECYCLE_SEAL_20260917.md`.
+
+**§3.3 3-commit:** A `07fccbd0f142f0a58e7972577750aa840516e642` ✅ · B `5b7944d1bd417f66fb2e2303c8e3144b80ec45b0` ✅ · C this-turn (fixup banks Commit-B SHA).
+
+**GPU util at seal boundary:** elapsed **24.22 h** · remaining **47.78 h** · both hosts sampler+workload alive · telemetry 592/586 · bench 2902/2902 · per_gpu=2.
+
+**CONTRACT-MODELED items enabled:** item 12 (30-day irreversible offboarding delete · real wall-clock scheduler) directly shaped at carrier layer via terminal-state invariant · 30-day delete itself is downstream P5 CP.
+
+**Effects banked:** CP-P1-CP6 SEALED · +8 ratchet · **M9 Phase P1 COMPLETE (6/6 CPs sealed · CP1..CP6 · cumulative +35 ratchet delta · zero rollback)**. Next: report P1 completion to owner. STOP. Await explicit owner "go" before P2 (RBAC · 7 roles · deny-by-default · action × resource × scope · session/break-glass).
+
+---
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 

@@ -1,0 +1,19 @@
+{
+  "artifact_ref": {
+    "artifact_id": "seam3-test-artifact",
+    "artifact_type": "objective_request",
+    "version": "v2"
+  },
+  "at": "2026-09-17T03:48:20.523755Z",
+  "decision": "refused",
+  "lawful_basis_ref": "lb-ref-seam3",
+  "reason": "some_admission_reason",
+  "row_id": "led-b6f93a425885",
+  "run_id": "run-d8e3d6da763a",
+  "stage": "admit",
+  "stamp_audit": {
+    "refusal_family": "admission_refusals",
+    "source": "seam3_test.i6"
+  },
+  "trace_id": "trace-b4d927f48cb1"
+}

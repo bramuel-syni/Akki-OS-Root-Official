@@ -1,0 +1,14 @@
+Kind: cp_p1_cp3_workspace_entity
+Wave: M9 · P1 · Foundation
+CP: CP-P1-CP3 · Platform-layer workspace entity carrier
+Module: services/platform_control_plane/workspace_entity.py
+Anchor: Akki OS Pilot Platform Reference v0.2 §10 verbatim workspace(id, tenant_id, name, is_default) · §2 'Workspace — division inside a tenant used to scope users and outputs. Every tenant has at least one.'
+Invariants: 5 · tests/invariants/test_p1_cp3_workspace_entity.py
+Ratchet: 4445 -> 4450 (+5) monotonic-up
+Track-a HEAD (Commit-A): 1f32d8d18dd1db73ad28978389b38c1cd61335cf
+Master HEAD (Commit-B): 868c4af13dc8badd3ac866666b5ba9285a3c1a2c (Commit-C fixup this-turn banks)
+Double-green byte-match: GREEN1 4450 passed / GREEN2 4450 passed (BASELINE_GUARD=1 · full-suite green · byte-identical outcome)
+Shape: WorkspaceEntity frozen dataclass exact-order 4 carriers (id: str · tenant_id: str · name: str · is_default: bool) · ownership isolation anchored at tenant_id index 1
+Standing lines held: no biometric material · no enforcement hard-gate · caller composes validation · synthetic fixtures · no speculative shapes · upgrade path preserved
+Case-agnostic: zero closed enums · zero domain tokens (21-token grep-negative) · zero data-plane imports
+Signed off: 2026-09-17T~04:25Z · CP-P1-CP3 SEALED

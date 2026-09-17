@@ -1,0 +1,14 @@
+Kind: cp_p1_cp4_user_entity
+Wave: M9 · P1 · Foundation
+CP: CP-P1-CP4 · Platform-layer user entity carrier
+Module: services/platform_control_plane/user_entity.py
+Anchor: Akki OS Pilot Platform Reference v0.2 §10 verbatim user(id, tenant_id, email, status, auth_method, mfa_enrolled, created_at) · §7.2 anchors on tenant-scoped users, SSO auth_method open-str, mfa_enrolled bool
+Invariants: 5 · tests/invariants/test_p1_cp4_user_entity.py
+Ratchet: 4450 -> 4455 (+5) monotonic-up
+Track-a HEAD (Commit-A): 711817de204aef74f78ca57a343658f50c26234f
+Master HEAD (Commit-B): 2ec94b18caf5e638c220b4b8c5a897b953190a88 (Commit-C fixup this-turn banks)
+Double-green byte-match: GREEN1 4455 passed / GREEN2 4455 passed (BASELINE_GUARD=1 · full-suite green · byte-identical outcome)
+Shape: UserEntity frozen dataclass exact-order 7 carriers (6 str · 1 bool mfa_enrolled) · ownership isolation at tenant_id index 1
+Standing lines held: no biometric material · no enforcement hard-gate · caller composes validation · synthetic fixtures · no speculative shapes · upgrade path preserved
+Case-agnostic: zero closed enums (auth_method + status OPEN str) · zero domain tokens · zero data-plane imports
+Signed off: 2026-09-17T~04:35Z · CP-P1-CP4 SEALED

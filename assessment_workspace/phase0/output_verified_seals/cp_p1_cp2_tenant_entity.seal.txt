@@ -1,0 +1,14 @@
+Kind: cp_p1_cp2_tenant_entity
+Wave: M9 · P1 · Foundation
+CP: CP-P1-CP2 · Platform-layer tenant entity carrier
+Module: services/platform_control_plane/tenant_entity.py
+Anchor: Akki OS Pilot Platform Reference v0.2 §10 verbatim tenant(id, legal_name, short_name, jurisdiction, status, mou_ref, created_at) · §3.1 'A tenant maps one-to-one to a legal entity.'
+Invariants: 5 · tests/invariants/test_p1_cp2_tenant_entity.py
+Ratchet: 4440 -> 4445 (+5) monotonic-up
+Track-a HEAD (Commit-A): 95fbd8ebcd9f785927c4237363ec052ff6960678
+Master HEAD (Commit-B): a14e668dbe0b8d7bb3118882432a2ff63bf2a90e (Commit-C fixup this-turn banks)
+Double-green byte-match: GREEN1 4445 passed / GREEN2 4445 passed (BASELINE_GUARD=1 · full-suite green · byte-identical outcome)
+Shape: TenantEntity frozen dataclass exact-order 7 carriers all str OPEN
+Standing lines held: no biometric material · no enforcement hard-gate · caller composes validation · synthetic fixtures · no speculative shapes · upgrade path preserved
+Case-agnostic: zero closed enums · zero domain tokens (21-token grep-negative) · zero data-plane imports
+Signed off: 2026-09-17T~04:15Z · CP-P1-CP2 SEALED
