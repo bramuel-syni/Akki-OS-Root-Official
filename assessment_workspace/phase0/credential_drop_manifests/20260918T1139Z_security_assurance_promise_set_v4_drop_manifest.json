@@ -1,0 +1,26 @@
+{
+  "at_utc": "2026-09-18T11:39:00Z",
+  "drop_class": "OWNER-ARTIFACT (non-credentials · promise-set companion · governance-record)",
+  "authority": "Owner 4-hour autonomous window directive 2026-09-18 · companion drop to Memory_Compaction_Spec_v1.docx · banked verbatim in STATE/DECISIONS.md",
+  "url_source": "https://customer-assets-cm19k8pv.emergentagent.net/job_amazing-gates-8/artifacts/4x40fvm4_Security_Assurance_Promise_Set%20%284%29.xlsx",
+  "custody_dir": "custody/owner_drops",
+  "discipline": "SO §4.1 §F sha-pin at intake · v2-parser discipline · shape-only openpyxl inspection · no cell values echoed in bulk to stdout · S-30 presence verified as spec's precondition",
+  "file": {
+    "name": "Security_Assurance_Promise_Set (4).xlsx",
+    "kind": "xlsx_ooxml_zip",
+    "size_bytes": 19435,
+    "sha256": "20d96c579f7bb71fc200fa12c46454ed3641f34cb62006f8f97276ceb247311c"
+  },
+  "structure_verification": {
+    "sheets": ["Security Assurance Set", "Legend"],
+    "primary_sheet": "Security Assurance Set",
+    "primary_sheet_shape": {"max_row": 32, "max_col": 9},
+    "primary_sheet_headers": ["#","Doc","Promise","Standard","Implementation Status","Bound / Ruling","Where It Lives / Notes","System Features","User Requirements — User can..."],
+    "s_ids_present": ["S-1","S-2","S-3","S-4","S-5","S-6","S-7","S-8","S-9","S-10","S-11","S-12","S-13","S-14","S-15","S-16","S-17","S-18","S-19","S-20","S-21","S-22","S-23","S-24","S-25","S-26","S-27","S-28","S-29","S-30"],
+    "s_id_count": 30,
+    "s_id_range": "S-1..S-30 · contiguous",
+    "s_30_present": true,
+    "spec_precondition_met": "Memory_Compaction_Spec_v1 §5 claims 'S-30 (already in the Security Assurance Promise Set)' · verified TRUE against this artefact"
+  },
+  "quarantine_status": "READ-USE. NOT for editing; refresh comes from owner authority only."
+}

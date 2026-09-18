@@ -1,0 +1,51 @@
+{
+  "at_utc": "2026-09-18T11:39:00Z",
+  "drop_class": "OWNER-ARTIFACT (non-credentials · specification · governance-record)",
+  "authority": "Owner 4-hour autonomous window directive 2026-09-18 · INGEST memory_compaction_v1 · banked verbatim in STATE/DECISIONS.md 'OWNER RULING · 4-HOUR AUTONOMOUS WINDOW · Item-1 counter-sign + Item-2 correction + INGEST memory_compaction_v1 + RUN ORDER 1-4'",
+  "url_source": "https://customer-assets-cm19k8pv.emergentagent.net/job_amazing-gates-8/artifacts/h0xg87mu_Memory_Compaction_Spec_v1.docx",
+  "custody_dir": "custody/owner_drops",
+  "discipline": "SO §4.1 §F sha-pin at intake · shape-only inspection via python-docx · no raw values echoed to stdout as habit · atomic-rule extraction executed to /app/assessment_workspace/notes/canon_extraction/memory_compaction_v1_requirements.md (banked below)",
+  "file": {
+    "name": "Memory_Compaction_Spec_v1.docx",
+    "kind": "docx_ooxml_zip",
+    "size_bytes": 15638,
+    "sha256": "a0ab271c093405607e472e04ba14d532c4a758ef8a7a9b60ee483a8cbbec3b6a"
+  },
+  "structure_verification": {
+    "total_paragraphs": 38,
+    "total_tables": 4,
+    "heading_1_count": 7,
+    "section_titles": [
+      "1   The Problem, Stated Precisely",
+      "2   Four Lifetimes, Not Two",
+      "3   Requirements",
+      "4   Placement in the Standing Enumerations",
+      "5   New Promise",
+      "6   What This Does Not Claim",
+      "7   Rulings"
+    ]
+  },
+  "spec_claims_flagged_for_verify": {
+    "status": "PROPOSED · owner ratification pending",
+    "authority_layer": "(a) per R-18 effect 1",
+    "requirements_count_claimed": 11,
+    "requirement_ids_claimed": ["MEM-1","MEM-2","MEM-3","MEM-4","MEM-5","MEM-6","MEM-7","MEM-8","MEM-9","MEM-10","MEM-11"],
+    "promise_claimed": "S-30 (already in Security Assurance Promise Set — verified this-turn against the (4).xlsx drop · S-30 present at row 32 col#1)",
+    "rulings_claimed": ["R-19","R-20","R-21"]
+  },
+  "hard_bans_from_spec_ingestion": [
+    "no learned component decides retention",
+    "no fact-class text is paraphrased — pointer by hash, or dropped",
+    "no compaction without a ledger row written first",
+    "no re-summarisation on read",
+    "no compaction of the Ledger, receipts, provenance documents, or the reasoning audit log",
+    "if a design converges on 'summarise with a model, delete the original' — stop and report"
+  ],
+  "sequencing_from_spec": "gates nothing on the R-18 effect-15 path; gates nothing until C.13 partial status closed (key scoping + provenance separation enforced before compaction lineage keyed correctly) · wave placement is PROPOSED not opened under standing authority",
+  "ruling_provenance_from_spec": {
+    "R-19": "triggers · build against DEFAULT-class defaults tagged pending ratification",
+    "R-20": "retention rule set v1 · DEFAULT-class defaults tagged pending ratification",
+    "R-21": "user-memory class + consent model · owner input outstanding · implement behind tenant-wide flag off by default · no consent model assumed · no principal data written until ruled"
+  },
+  "quarantine_status": "READ-USE for ingestion. NOT for editing; refresh comes from owner authority only."
+}

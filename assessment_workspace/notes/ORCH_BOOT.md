@@ -33,9 +33,9 @@ STATE files, and on any boot ritual that detects drift.
 
 ```yaml
 schema_version: 1
-generated_at_utc: 2026-09-18T11:25:00Z
-generator: main-agent Autopilot (POST-RECONCILE + 491-ROW-REGISTRY-LANDED · Commit-C fixup this-turn · R-6 boundary regen at Commit-C fixup)
-regeneration_reason: r6-boundary-regen-at-post-reconcile-plus-491-registry-owner-ruling-close-commit-c-fixup-state_repo.head-advanced-from-39ff52d5-to-b9f8e238-ratchet-restored-4826
+generated_at_utc: 2026-09-18T12:20:00Z
+generator: main-agent Autopilot (4-HOUR AUTONOMOUS WINDOW · Commit-C fixup this-turn · R-6 boundary regen at Commit-C fixup)
+regeneration_reason: r6-boundary-regen-at-4-hour-autonomous-window-close-commit-c-fixup-state_repo.head-advanced-from-b9f8e238-to-78c818fa-code_repo.head-unchanged-4132e72-ratchet-unchanged-4826
 
 ratchet:
   passed_floor: 4826
@@ -47,15 +47,15 @@ heads_last_sealed:
   state_repo:
     workdir: /app/assessment_workspace
     branch: master
-    head: b9f8e2385e7c50cab12c2571d22f8364ded88bfa
-    sealed_at_utc: 2026-09-18T11:25:00Z
-    seal_kind: "POST-RECONCILE + 491-ROW-REGISTRY-LANDED · state Commit-B `b9f8e238` · TWO owner rulings 2026-09-18 banked verbatim in DECISIONS: (1) GPU-telemetry-staleness Option A+ii+bridge+2-transparency-directions and (2) FINAL DISPOSITION issuing 491-row Master Requirements Registry as authoritative canon_ref target · A executed: mtafiti_* pipeline landed fresh at_utc on 5 telemetry files · full BASELINE_GUARD=1 sweep RESTORED to 4826/1/1/438 · pre-seal full sweep run BEFORE Commit-B per new pre-seal standard · (ii) rule-change ceremony proposal filed · 491-row registry landed at custody/ + owner-drop manifest under phase0/credential_drop_manifests/ · G5 refreshed: canon_ref target = 491-row registry · 46-additions bridge RETIRED · document-qualified rule for 21 A/B/C positional-series IDs · Commit-C fixup this-turn banks this SHA in DECISIONS+NEXT + advances ORCH_BOOT state_repo.head + byte-identical audit copy · next wave: M11-W1 opens under standing authority"
+    head: 78c818fae24bae5c0f5d522874b0f131978c1586
+    sealed_at_utc: 2026-09-18T12:15:00Z
+    seal_kind: "4-HOUR AUTONOMOUS WINDOW · state Commit-B `78c818fa` · owner directive 2026-09-18T~11:35Z banked verbatim (Item-1 counter-sign + Item-2 tool-name correction + INGEST memory_compaction_v1 + RUN ORDER 1-4) · run-order results: Item-1 M11-W1 FORK BANKED (rule-vs-rule tension with test_no_unauthorized_deletion_path invariant · artifacts preserved to notes/M11_W1_FORK_ARTIFACTS_20260918/ · 5 files · code-tree restored to 4826) · Item-2 G5 slices 1-3 landed (260 new mappings · running total 280 of 1096 · 25.5% mapped · 816 remaining) · Item-3 memory_compaction_v1 ingestion steps 1-3 delivered (53 atomic rules + SER v1.1 C.13 delta draft + 7 property tests RED · state-only · no build wave opened per ingest directive) · Item-4 Part 6 absorption drafts delivered (6 CP proposals with canon anchors + interactions + sequencing) · staleness re-scope proposal alignment verified matching counter-signed scope exactly (age gate only while campaign open · steady state = presence+integrity+LKG · no test retired) · countdown started at ordinary 48h tier · custody landings for 2 owner artifacts (Memory_Compaction_Spec_v1.docx sha256 a0ab271c · Security_Assurance_Promise_Set (4).xlsx sha256 20d96c57) + 2 owner-drop manifests · S-30 presence verified in promise set · pre-seal full BASELINE_GUARD=1 sweep run before Commit-B per new pre-seal standard: 4826 passed / 1 skipped / 1 xfailed / 438 warnings byte-identical · code_repo unchanged (track-a HEAD 4132e72) · Commit-C fixup this-turn banks this SHA in DECISIONS+NEXT + advances ORCH_BOOT state_repo.head from b9f8e238 to 78c818fa + byte-identical audit copy · next: HOLD at next seal boundary awaiting standing-authority resume on M11-W1 fork ruling / memory_compaction_v1 wave placement / Part 6 absorption CP ratification / staleness re-scope apply"
   code_repo:
     workdir: /app/assessment_workspace/repos/Extraction-Akki
     branch: programme/track-a
     head: 4132e725774fb591d1d3c9f87428677ca29f14f2
     sealed_at_utc: 2026-09-18T02:16:00Z
-    seal_kind: "CP-M11-GATE-RELEASE · Commit-A · contracts/watch_action_class.schema.json + contracts/watch_verdict.schema.json + 3 new invariant test files (test_cp_m11_gate_release_watch_schema.py 6 tests + test_cp_m11_gate_release_watch_m9_callers_vs_schema_xfail.py 1 xfail-strict c2 + test_cp_m11_gate_release_d6_canon_ref.py 6 tests) + ratchet 4814 -> 4826 (+12) · double-green byte-match 4826 passed / 1 skipped / 1 xfailed / 438 warnings · CHUNK 1 close touches no code (ratchet unchanged 4826)"
+    seal_kind: "CP-M11-GATE-RELEASE · Commit-A · contracts/watch_action_class.schema.json + contracts/watch_verdict.schema.json + 3 new invariant test files (test_cp_m11_gate_release_watch_schema.py 6 tests + test_cp_m11_gate_release_watch_m9_callers_vs_schema_xfail.py 1 xfail-strict c2 + test_cp_m11_gate_release_d6_canon_ref.py 6 tests) + ratchet 4814 -> 4826 (+12) · double-green byte-match 4826 passed / 1 skipped / 1 xfailed / 438 warnings · UNCHANGED at 4-hour window close (Item-1 M11-W1 code work FORKED before landing)"
 
 boot_sequence:
   - Read STATE/STANDING_ORDERS.md end-to-end.

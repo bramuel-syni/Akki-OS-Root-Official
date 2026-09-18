@@ -12308,4 +12308,145 @@ Per prior owner ruling this-turn: at most ONE further reconcile permitted if the
 
 **Commit-B SHA banked at Commit-C fixup this-turn (POST-RECONCILE + 491-ROW-REGISTRY-LANDED):** `b9f8e2385e7c50cab12c2571d22f8364ded88bfa` (short `b9f8e238`) — 2 owner rulings + reconcile + registry + G5 refresh + (ii) proposal + pre-seal-standard fold state-master seal.
 
+
+---
+
+## OWNER RULING · 4-HOUR AUTONOMOUS WINDOW · Item-1 counter-sign + Item-2 correction + INGEST memory_compaction_v1 + RUN ORDER 1-4 · 2026-09-18T~11:35Z
+
+### Owner ruling (VERBATIM, 2026-09-18T~11:35Z)
+
+> Close acknowledged — and the new pre-seal standard applied on its first seal, which is the point of a standard. Registry landed correctly: 491 rows, the document-qualified rule applied to the 21 repeating positional IDs, bare IDs for the other 339. G5 retarget is right. M11-W1 opens under standing authority; nothing below touches it.
+>
+> Item 1 — counter-signed, on scope. Counter-signature is given against the ruling's stated scope, not the proposal text sight-unseen: the age gate applies only while a campaign is declared open; in steady state the five tests assert presence, integrity hash, and last-known-good on record; no test is retired. If the filed proposal's normative text matches that, proceed to countdown at the ordinary tier — 48 hours per R-18 effect 12 — which lands before the 2026-09-21T09:20Z bridge horizon, so no bridging reconcile should be needed. Apply on countdown expiry. If the proposal's text deviates from that scope in any clause, that's a stop-and-report before apply, not an amendment at the counter-sign step.
+>
+> Item 2 — telemetry refresh is sufficient; the ruling's tool name was wrong, and the transparency note was the correct response to it. The ruling's intent was "refresh the telemetry the tests read," which the mtafiti pipeline did, meeting the criterion exactly. Bank the correction against the ruling. The on-host GPU journal is not needed for the ratchet — pull it once, as part of the campaign close-out under the (ii) ceremony, so the campaign record is complete at the moment the tests are re-scoped. Not an emergency action.
+>
+> INGEST — memory_compaction_v1 (Memory Compaction & Preservation)
+> File: Memory_Compaction_Spec_v1.docx · status PROPOSED, owner ratification pending · authority layer (a) per R-18 effect 1
+> What it is. A specification extending SER C.13 from two context lifetimes to four: run-scoped and estate unchanged, plus a compacted lineage between them and a user-memory key class. Eleven requirements MEM-1 to MEM-11, one promise S-30 (already in the Security Assurance Promise Set), three rulings R-19 to R-21. Every requirement carries the canon clause it derives from; treat those as its canon anchors.
+> Ingest, in this order.
+> Extract atomic rules with §-citations into the canon checklists, as for Canons 7 and 8. MEM-1 to MEM-11 join the register at its next refresh; until then canon_ref resolves to memory_compaction_v1 · MEM-n.
+> Draft the SER v1.1 delta for C.13: the four-lifetime table (spec §2) replaces the two-lifetime data model; MEM-1 to MEM-11 land as C.13.5 invariants and C.13.6 boundary behaviour; the placement entries in spec §4 go to A.4, B.8 and the failure-posture rows. TCB additions enter only through tcb_enumeration_v1's method: the retention rule engine (MEM-3) and reload verifier (MEM-7) are IN; the drafting component is OUT.
+> Author the property tests before any implementation, tests-first RED per §3.3: fact text_hash unchanged through compaction; every provenance reference preserved; loss-statement counts equal actual drops by class; reload byte-identical for the same (artefact, key); reload refuses on hash mismatch; erasure query finds every artefact whose provenance cites a given unit; no compaction artefact readable without its ledger row.
+> Hard bans, grep-negative from this ingestion. No learned component decides retention. No fact-class text is paraphrased — pointer by hash, or dropped. No compaction without a ledger row written first. No re-summarisation on read. No compaction of the Ledger, receipts, provenance documents, or the reasoning audit log. The obvious implementation — summarise with a model, delete the original — is what this spec exists to prevent; if a design converges on it, stop and report.
+> Sequencing. Gates nothing on the R-18 effect-15 path. Gates nothing until C.13's own partial status is closed — key scoping and provenance separation must be enforced before a compaction lineage can be keyed correctly. Propose wave placement in your report; do not open a build wave for it under standing authority.
+> Rulings. R-19 (triggers) and R-20 (retention rule set v1): build against the recommended defaults as DEFAULT-class, tagged pending ratification. R-21 (user-memory class, consent model): owner input outstanding — implement the class behind a tenant-wide flag, off by default, no consent model assumed, no principal data written until ruled.
+> Report. Atomic-rule count and §-citation coverage; the SER v1.1 C.13 delta; test IDs authored; proposed wave placement; any conflict with existing C.13 invariants surfaced as a stop-and-report, not resolved silently.
+>
+> RUN ORDER — autonomous window, 4 hours from receipt
+> Under R-18 standing authority (Item 3). Owner unreachable for the window; nothing waits.
+> Scope, in priority order — work top-down, take the next item when one blocks:
+> 1. M11-W1 to close — akki.data repository primitive, sole Motor importer, tenant_id auto-injection, AKKI-DATA-001 refusal. Tests-first RED, then green, then §3.3 seal with the full pre-seal sweep.
+> 2. G5 mapping backlog — continue the 1,076 against the 491-row register, document-qualified canon_ref for the A/B/C series. Seal in slices; each slice reports its count.
+> 3. memory_compaction_v1 ingestion, steps 1–3 only — atomic-rule extraction, the SER v1.1 C.13 delta as a draft, the property tests authored RED. No build wave.
+> 4. SER v1.1 deltas for the Part 6 absorption list, as drafts with canon anchors — notes-only, nothing applied.
+> Already in motion, leave running: the staleness re-scope countdown (48-hour ordinary tier, counter-signed). If it expires inside the window, apply per the ceremony and re-run the sweep. If it doesn't, don't touch it.
+> Bounds — unchanged, no exceptions for the window: SO §3.3, §3.8, §3.10 as amended; §4 zero push; §4.1 §E; T-c sequencing (α) — new M11 callers target the new Watch schema, sealed M9 callers wait for M12b-W1; the SEC-2026-09-12-01 HF hold; no silent rebaselining; terminal pytest only; no testing_agent.
+> Stop conditions, with the owner away: on any R-18 Item 5 trigger — RED ratchet, failed invariant, canon conflict, TCB or Fixed-decision change, hard-invariant exception, new rule-versus-rule tension — fail closed on that item, bank the fork with options and a recommendation in STATE/DECISIONS.md, and continue on the next item in scope. Do not wait. Do not resolve it yourself. Nothing in this window requires an owner ruling to proceed; anything that turns out to is a fork, not a hold.
+> Not in scope, regardless of time remaining: M12b-W1, any wave touching HF, the memory-layer build, frontends, and any ceremony apply step beyond the one already counter-signed.
+> At window end — one report: ratchet number pre- and post-, byte-match confirmed; what landed (seals by SHA); G5 slice count; forks banked, if any, each with its recommendation; and the single next item in flight. Then hold at the next seal boundary for standing authority to resume on the next order.
+> Start now.
+
+### Post-directive orchestrator notes (attached by orchestrator, banked verbatim):
+
+> - Before countdown proceeds: verify the filed proposal's normative text matches the counter-signed scope exactly (age gate only while campaign open; steady state = presence + integrity hash + last-known-good; no test retired). Any deviation = stop-and-report before apply.
+> - Bank the tool-name correction (campaign_infra.reconcile → mtafiti pipeline) against the prior ruling in DECISIONS. Schedule the one-time on-host GPU journal pull inside the (ii) close-out ceremony.
+> - The 4-hour window starts when you receive this. Work items 1→4 top-down, fail closed on forks, continue on next item. One consolidated report at window end, then hold at the next seal boundary.
+
+### Binding effects extracted (12 · numbered):
+
+1. **Item 1 counter-signed on-scope.** Countdown for the (ii) rule-change ceremony starts NOW at ordinary R-18-effect-12 tier (48h). Countdown horizon: `2026-09-18T~11:35Z + 48h ≈ 2026-09-20T~11:35Z` — lands before the bridge horizon `2026-09-21T09:20Z`, so no bridging reconcile expected.
+2. **Proposal alignment MUST be verified BEFORE apply.** Any deviation of `notes/proposals/PROPOSAL_mtafiti_staleness_rescope_20260918.md` normative text from counter-signed scope = stop-and-report; not amendment.
+3. **Item 2 tool-name correction banked.** Prior ruling named `campaign_infra.reconcile` — executed pipeline was `mtafiti_*` — ruling's INTENT ("refresh telemetry tests read") was met exactly. Transparency note (banked in preceding DECISIONS entry point 3) was the correct response. Correction: PRIOR RULING'S TOOL NAME WAS WRONG; the executed tool met the intent.
+4. **On-host GPU journal one-time pull scheduled for (ii) ceremony apply step.** NOT emergency; NOT for the ratchet. Included so the campaign record is complete at re-scope moment. If ceremony applies inside window → include in apply step. If ceremony countdown does not expire inside window → waits with ceremony.
+5. **memory_compaction_v1 spec INGESTED as PROPOSED (authority layer (a) per R-18 effect 1).** Ingestion has 3 executable steps this-window (extract · SER v1.1 delta draft · property tests RED). NO BUILD WAVE opened under standing authority.
+6. **canon_ref for MEM-1..MEM-11 (transitional):** `"memory_compaction_v1 · MEM-<n>"` until the next Master Requirements Registry refresh (owner-scheduled).
+7. **Hard bans from ingestion (grep-negative surface):** (a) no learned retention decision; (b) no fact-class paraphrase — pointer-by-hash or drop; (c) no compaction without ledger row first; (d) no re-summarise on read; (e) no compaction of Ledger/receipts/provenance/reasoning audit log; (f) design converging on "summarise with model, delete original" = stop-and-report.
+8. **Sequencing.** memory_compaction_v1 gates NOTHING on R-18 effect-15 path. Gates NOTHING until C.13 partial status closed (key scoping + provenance separation enforced). Wave placement PROPOSED, not opened.
+9. **R-19 + R-20 = DEFAULT-class · pending ratification tag.** R-21 = user-memory class behind tenant-wide flag OFF by default; no consent model assumed; no principal data written until ruled.
+10. **RUN ORDER (top-down, take next when one blocks · fail-closed on Item-5 triggers · continue to next item · do not hold on any fork):** M11-W1 close → G5 mapping backlog slices → memory_compaction_v1 steps 1-3 → SER v1.1 Part 6 absorption drafts (notes-only).
+11. **OUT OF SCOPE for this window (any time remaining):** M12b-W1 · any HF-touching wave · memory-layer build · frontends · any ceremony apply step beyond the counter-signed one.
+12. **Report at window end:** ratchet pre/post + byte-match confirmed; seals by SHA; G5 slice count; forks banked (each with recommendation); single next item in flight. Then hold at next seal boundary.
+
+### Proposal alignment verification (this-turn, per orchestrator note 1):
+
+Read `notes/proposals/PROPOSAL_mtafiti_staleness_rescope_20260918.md` in full against counter-signed scope. Findings:
+
+| Scope clause (counter-signed) | Proposal location | Match? |
+|---|---|---|
+| "age gate applies only while a campaign is declared open" | §3.1 (ambient predicate `_campaign_declared_open()`) + §3.2 (age gate under `if _campaign_declared_open():`) | ✅ EXACT |
+| "in steady state the five tests assert presence, integrity hash, and last-known-good on record" | §3.2 (three assertions ALWAYS enforced: `"at_utc" in d` + integrity hash equality + `_last_known_good_recorded(d)`) | ✅ EXACT |
+| "no test is retired" | §6 "Not a retirement" (explicit) + §3.4 "Existing 5 tests remain by name; assertion body changes" + "No test is retired; no test is added; ratchet floor stays at 4826" | ✅ EXACT |
+
+**Verdict: PROPOSAL NORMATIVE TEXT MATCHES COUNTER-SIGNED SCOPE.** Countdown may proceed at 48h ordinary tier. NO stop-and-report required. Apply step schedule: at `2026-09-20T~11:35Z` (if window still active at that instant, apply per §3.3 3-commit seal with pre-seal sweep AND one-time GPU journal pull; else waits for next standing-authority window).
+
+### Custody landings this-turn (per SO §4.1 §F):
+
+| Artifact | Path | sha256 (short) | Manifest |
+|---|---|---|---|
+| Memory_Compaction_Spec_v1.docx | `custody/owner_drops/Memory_Compaction_Spec_v1.docx` | `a0ab271c…` | `phase0/credential_drop_manifests/20260918T1139Z_memory_compaction_spec_v1_drop_manifest.json` |
+| Security_Assurance_Promise_Set (4).xlsx | `custody/owner_drops/Security_Assurance_Promise_Set (4).xlsx` | `20d96c57…` | `phase0/credential_drop_manifests/20260918T1139Z_security_assurance_promise_set_v4_drop_manifest.json` |
+
+**S-30 presence verified:** distinct S-IDs S-1..S-30 (30 total, contiguous) present in promise-set — spec §5 precondition met.
+
+### Standing bounds (unchanged for the window)
+
+- SO §3.3 / §3.8 / §3.10 as amended · §4 zero push · §4.1 §E · T-c sequencing α · SEC-2026-09-12-01 HF hold · no silent rebaselining · terminal pytest only · `testing_agent` BANNED · new pre-seal-standard (full BASELINE_GUARD=1 sweep before Commit-B).
+- **Ratchet at ruling receipt:** 4826 · byte-identical baseline_failures.json unchanged.
+
+### SHAs banked at Commit-C fixup (window-end seal)
+
+- Commit-A (code · `programme/track-a`) — TBD by execution: only if Item-1 (M11-W1 code) or Item-3 tests (RED authored on code repo) land in this window.
+- Commit-B (state · `master`) — this-turn — owner-text-verbatim + counter-sign verification + tool-name correction + custody landings + AUTONOMOUS_RUN_PLAN & NEXT updates. SHA banked at Commit-C fixup below at window end.
+- Commit-C (state · `master`) — window-end — appends Commit-B SHA(s) to DECISIONS + NEXT + ORCH_BOOT.md `heads_last_sealed.state_repo.head` + byte-identical audit copy.
+
+
+---
+
+## FORK · M11-W1 blocked by rule-vs-rule tension · test_no_unauthorized_deletion_path invariant · 2026-09-18T~11:52Z
+
+### Fork banked per owner Item-5 "fail closed on that item, bank the fork with options and a recommendation in STATE/DECISIONS.md, and continue on the next item in scope. Do not wait. Do not resolve it yourself."
+
+**Full fork document:** `notes/M11_W1_FORK_20260918.md` (banked · 8-section)
+
+**Summary:**
+- Authored 17 M11-W1 tests + Repository primitive per M11 charter §5 Branch C plan.
+- Right-reason RED banked at `phase0/drill_receipts/20260918T114743Z_cp_m11w1_RED.log` (14 fail · ModuleNotFoundError · 3 pre-condition-pass).
+- Targeted GREEN1 at `phase0/drill_receipts/20260918T*_cp_m11w1_TARGETED_GREEN1.log`: 17 passed after primitive lands.
+- `BASELINE_GUARD=0` full sweep at `phase0/drill_receipts/20260918T*_cp_m11w1_DELTA_GUARD0.log`: **4842 passed / 1 failed / 1 skipped / 1 xfailed / 438 warnings**.
+- The 1 failing test is `test_no_unauthorized_deletion_path::test_no_unauthorized_deletion_path_in_production_tree` — Stage A §5.1 SINGLE-SOURCE-OF-DELETION invariant fires on Repository's `delete_one`/`delete_many` methods because Repository is not in the invariant's whitelist (`[services/retention/authorized_deletion.py, services/memory/working_set.py]`).
+
+**Two rules that collide:**
+1. **R-A** (existing sealed): Stage A §5.1 SINGLE-SOURCE-OF-DELETION invariant (whitelist-positive · currently 2 entries).
+2. **R-B** (new ratified): R-18 Tension (a) Option C · Repository is SOLE Motor importer with delete_one/delete_many methods (v1.0 B.2 + M11 charter §5 test IDs).
+
+Both rules are canon-anchored. Both are owner-ratified. They collide at implementation.
+
+**Fail-closed action taken this-turn:**
+1. Preserved artifacts in `notes/M11_W1_FORK_ARTIFACTS_20260918/` (5 files: 2 code + 3 test).
+2. Removed artifacts from code-repo working tree (track-a). Track-a HEAD unchanged at `4132e72`.
+3. Verified `test_no_unauthorized_deletion_path` returns to 3 passed 0 failed. Ratchet 4826 restored.
+4. No production code committed. No push. No testing_agent.
+5. Continuing to Item 2 (G5 mapping backlog) per owner run-order "take the next item when one blocks."
+
+**Options + agent recommendation (full detail in `notes/M11_W1_FORK_20260918.md §5-§6`):**
+- **Option A · Extend the whitelist** (agent-recommended · precedent-anchored to CP-M13W1 R-A-2 extension + Stage B `working_set.py` widening · zero refactor · zero ratchet impact · class-distinctness argument: Repository = leaf Motor wrapper; authorized_deletion.py = governance retention on held classes).
+- Option B · Route Repository deletes through authorized_deletion (architectural inversion; not recommended).
+- Option C · Strip delete methods from Repository (contradicts B.2 + charter §5; not recommended).
+- Option D · Retire Stage A §5.1 SINGLE-SOURCE via Canon-3-§24 ceremony (over-heavy; not recommended).
+
+**Ratchet at fork-close:** 4826 (unchanged · pre-fork state restored) · Track-a `4132e72` (unchanged).
+
+
+---
+
+## 4-HOUR AUTONOMOUS WINDOW · Commit-B SHA banking (Commit-C fixup) · 2026-09-18T~12:20Z
+
+**Commit-B SHA banked at Commit-C fixup this-turn (4-HOUR AUTONOMOUS WINDOW):** `78c818fae24bae5c0f5d522874b0f131978c1586` (short `78c818fa`) — state-only Commit-B on master banking full 4-hour-window run-order (Items 1-4) verbatim owner text + fork + G5 slices 1-3 + memory_compaction_v1 ingestion Steps 1-3 + Part 6 absorption drafts + custody landings + manifests + pre-seal full BASELINE_GUARD=1 sweep receipt.
+
+**Commit-A code track-a:** N/A this-window · no code touched · last-relevant `4132e72` (unchanged).
+
+**§3.3 state-only 2-commit seal complete:** Commit-A N/A · Commit-B `78c818fa` · Commit-C fixup this-turn (this line + advancing ORCH_BOOT.state_repo.head to `78c818fa` + byte-identical audit copy regen).
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
