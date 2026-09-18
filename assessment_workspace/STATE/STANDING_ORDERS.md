@@ -21,6 +21,22 @@ Boot sequence (in order, no shortcuts):
 
 ## 2. ENGAGEMENT DISCIPLINE
 
+### 2.1 ORDER OF AUTHORITY (R-18 · owner ruling 2026-09-18 · binding on M11, M12 and every subsequent wave)
+
+**Order of authority, fixed** (higher amends lower; lower NEVER amends higher; every conflict resolves upward):
+
+1. **(a) Canon** — Ratified canon rules carrying IDs: Documents 0–20 and amendments through `watch_learning_v1`. In build artefacts the word "Canon" means **(a) only**.
+2. **(b) Standing Orders** — this file. Derives from canon; never overrides it.
+3. **(c) System Engineering Reference (SER)** — the engineering derivation of canon, not a replacement for it. Where SER and canon conflict, canon prevails and the SER is corrected. In build artefacts and PR titles the SER is cited as `SER §x`, **never as "Canon"**.
+4. **(d) Contract schemas** — `contracts/*.schema.json` and adjacent contract-versioned artefacts. Bind code shape and vocabularies; derived from canon and SER.
+5. **(e) Code** — the tree at `backend/**`, `services/**`, `tools/**`, `tests/**`. Bottom of the ladder; never amends anything above it.
+
+**Traceability enforcement**: every SER Part B and Part C section carries a "Canon anchors" line naming the rule IDs it derives from. Requirement rows in D.6 `requirements.yaml` gain `canon_ref` (existing registry ID, or `none-new-needs-ratification`); a requirement with neither `canon_ref` nor `test_id` fails the documentation check. D.6's "this document supersedes that count" line is struck: the SER **extends and cross-references** the register, it does not supersede it.
+
+**Rationale**. R-18 restores the single line of authority to canon and eliminates the risk that a lower-layer derivation (SER, schema, or code) silently amends a higher-layer rule. Every ruling below this line in the SO derives from canon; every SER section from now on must show its canon anchor line-by-line.
+
+---
+
 **Mission-framed reporting (owner ruling 2026-09-08T~05:15Z, verbatim):**
 
 > "The analysis is never the subject. The subject should be the mission at all times - what are we building, what are the verified gaps surfaced and what are the missing requirements - output is lets generate xxx to close the gap, build and ensuring its works."
@@ -288,6 +304,36 @@ A cross-wave modification is DRIFT only when it (a) has no CP citation / ratchet
 Concrete this-shift precedent (CP-M7-W1-POST-4 · 2026-09-16T~06:30Z): `services/reliable_time_source/clock.py` was added at M2 SW5 (`f4fc201f` · 2026-09-13T19:35:41Z · `AU_3B_DEFENSIBLE_DRIFT_BUDGET_MS=100ms`) → modified at M2 END-GATE (`95d688cd` · 19:54:49Z · loosened 100ms → 24h for M2 tests · incidental note in commit message) → LATER MODIFIED at M3 SW1 (`eaa0e04` · 2026-09-14T05:24:59Z · Flag-2 tight-budget guard: `TIGHT_DRIFT_BUDGET_MAX_MS=5000` + `LooseAnchorRefused` + `assert_defensible_for_governed_write()`). The M3 SW1 modification is out of M2 wave-window scope; M2 POST-4-VERIFICATION surfaces it as a cross-wave note and does not fire drift. M3's future POST-5-VERIFICATION will enforce the M3-scope shape of the extension.
 
 **Wave-honest bootstrap.** This rule was ratified after the W0 + W1 verifications this shift landed with the narrower canonical-close-only scope. Those closes stay clean-as-closed (Path α zero-delta each); the W1b gap is being closed forward via **CP-M7-W1-POST-3-VERIFICATION** (this-shift-next). Future verifications land with the wider window-enumeration scope from the start.
+
+---
+
+### 4.1 §F CREDENTIAL-DROP SHA-PIN AT INTAKE OR REFUSE (R-18 Part 7(c) · owner ruling 2026-09-18 · binding)
+
+**Rule.** Every credential drop entering `/app/backend/estate_keys/**` or `/app/assessment_workspace/custody/**` carries a sha256 pin recorded at the moment of ingestion into a persistent manifest at `phase0/credential_drop_manifests/YYYYMMDDTHHMMZ_drop_manifest.json`. A drop that enters custody without a sha pin recorded is **REFUSED at intake**: the file is quarantined at 0600 outside `estate_keys/` (e.g. under `/app/assessment_workspace/custody/quarantine/`), the incident is surfaced as an owner-desk item in the next report, and no downstream wave may consume the file.
+
+**Rationale (R-18 Part 7(c)).** OWNER-DROP-02 established that the RMS xlsx C9 had no prior sha pin at ingestion; without one, a "rotated" copy is indistinguishable from a stale replay. R-18 accepts the ingested sha `d778eb1e…` as the baseline for that specific historical drop, and forward requires the sha-pin-at-intake discipline for every subsequent drop.
+
+**Enforcement.** (i) `tools/credential_drop_ingest.py` (or its future analog) must compute and write the sha256 as part of ingestion; (ii) new intake receipts land under `phase0/credential_drop_manifests/` with the file-set + per-file sha256 + `mtime_utc` + `mode_octal`; (iii) any custody-store file whose sha256 is not in a manifest at read-time is treated as untrusted until the owner ratifies its pin.
+
+**Interaction with §4.1 §E.** This clause is additive to §4.1 §E: sha-pin discipline governs BYTES-level identity of the drop; §4.1 §E governs RAW-VALUE read discipline. Neither replaces the other. Together they close the "rotated-file byte-identical to original" evidence path (OWNER-DROP-03).
+
+---
+
+### 4.3 HF TOKEN HASH-DELTA GATE (R-18 Part 7(e) · SEC-2026-09-12-01 · owner ruling 2026-09-18 · binding)
+
+**Rule.** Any wave, CP, or code path that touches HuggingFace **HOLDS** until the HF token's rotation is proven by a **hash delta** between the last-recorded custody sha256 and the fresh drop's sha256. Rotation is confirmed by hash delta **ALONE — never by opening the value**.
+
+**Fail-closed default.** A leaked HF token value is assumed **live until proven otherwise**. `hf_token_rotated_20260914.csv` byte-identical to `hf_token.csv` stands as evidence that the 2026-09-14 filename-marker rotation never reached the custody store; SEC-2026-09-12-01 stays OPEN. Any HF-touching wave must not open under this state.
+
+**Three-step owner action** (the ONLY resolution path under §4.1 §E):
+
+1. **Revoke** the old token in the HF console.
+2. **Generate** a new token.
+3. **Re-drop** the new token to `estate_keys/data_sources/hf_token_rotated_<yyyymmdd>.csv` at 0600, with a sha pin recorded via §4.1 §F.
+
+**Builder verification** upon re-drop: compare the new file's sha256 to the last-recorded sha256 for `hf_token*.csv`. If **different**, SEC-2026-09-12-01 closes and OWNER-DROP-03 closes with it. If **byte-identical to the last recorded**, both remain OPEN and the HF-touching wave stays HELD. The builder MUST NOT open the file content — the delta test is a pure sha comparison.
+
+**Scope.** Covers every wave that calls the HF API (model pull, dataset pull, inference), every service that reads a HF token from the environment, every CP whose grounding brief cites HF, and every wave-close commit whose diff touches `hf_token*` or `HF_TOKEN`. Does not cover unrelated waves that never touch HF; those proceed under their own rulings.
 
 ---
 

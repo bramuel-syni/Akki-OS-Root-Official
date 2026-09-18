@@ -33,9 +33,9 @@ STATE files, and on any boot ritual that detects drift.
 
 ```yaml
 schema_version: 1
-generated_at_utc: 2026-09-17T15:48:00Z
-generator: main-agent Autopilot (Owner-Ruling-2026-09-17T~15:45Z · state-only 2-commit · R-6 boundary regen at Commit-C fixup)
-regeneration_reason: r6-boundary-regen-at-owner-ruling-2026-09-17T15-45Z-commit-c-fixup-banking-master-commit-b-sha
+generated_at_utc: 2026-09-18T08:20:00Z
+generator: main-agent Autopilot (R-18 Canon Ruling · state-only 2-commit · R-6 boundary regen at Commit-C fixup)
+regeneration_reason: r6-boundary-regen-at-canon-ruling-r-18-commit-c-fixup-banking-master-commit-b-sha
 
 ratchet:
   passed_floor: 4814
@@ -47,9 +47,9 @@ heads_last_sealed:
   state_repo:
     workdir: /app/assessment_workspace
     branch: master
-    head: 31908fedb5e7afb5a1b46674dff3bdc821e67874
-    sealed_at_utc: 2026-09-17T15:47:00Z
-    seal_kind: "OWNER RULING 2026-09-17T~15:45Z · state Commit-B · Tension (a)=Option C + Tension (b)=Option α + SO §3.8/§3.10 verbatim + RMS ESTATE BRIEF + Watch-vocabulary finding (Commit-C fixup banks this SHA)"
+    head: e9f1c8c095516001da90d1f083f1a1087895df4d
+    sealed_at_utc: 2026-09-18T08:18:00Z
+    seal_kind: "CANON RULING R-18 · state Commit-B · single-line-of-authority + SO §2.1/§4.1§F/§4.3 + SER errata v1.0.1 + D-16..D-19 + Part 5 defaults + desk-item dispositions (Commit-C fixup banks this SHA)"
   code_repo:
     workdir: /app/assessment_workspace/repos/Extraction-Akki
     branch: programme/track-a

@@ -11685,5 +11685,154 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 8. **HOLDING at M11 gate.** No code created (no `services/data/*`, no `services/enforce/*`, no RED tests for M11). `notes/M11_CHARTER_20260917.md` remains DRAFT / uncommitted. Owner must relay explicit "go" before M11-W1 opens. M12 also HELD (per owner header "HOLD the M11/M12 build until I relay go").
 
 
+---
+
+## CANON RULING R-18 · 2026-09-18 · Source: owner ruling (banked ahead of build; HOLD retained until Part 8 gate-release lands)
+
+### R-18 · verbatim (bank exactly)
+
+> **Canon Ruling R-18 — Single Line of Authority, and the Path to M11/M12. Issued 18 September 2026 · binding on M11, M12 and every subsequent wave. The System Engineering Reference is the engineering derivation of canon, not a replacement for it. Where the two conflict, canon prevails and the SER is corrected — never the rule. Fifteen binding effects.**
+>
+> **PART 1 — AUTHORITY.** Order of authority, fixed: (a) Ratified canon rules carrying IDs — Documents 0–20 and amendments through watch_learning_v1; (b) Standing Orders; (c) the SER; (d) contract schemas; (e) code. A lower layer never amends a higher one; every conflict resolves upward. In build artefacts "Canon" means (a) only; the SER is cited as SER §x, not as Canon. Traceability enforced: every SER Part B and Part C section carries a "Canon anchors" line naming the rule IDs it derives from. D.6's generated requirements.yaml gains canon_ref — an existing registry ID, or none-new-needs-ratification. A requirement with neither fails the documentation check, exactly as one without a test id already does. D.6's "this document supersedes that count" is struck: the SER extends and cross-references the register.
+>
+> **PART 2 — OPEN TENSIONS.** T-c: Option (ii), scope extended. destroy is not merely undefined — A5.3 excludes it by name: destroy does not exist in the Watch. The rename lands as one change with the verdict and registry schema: certainty:0–100 and min_certainty are removed; the verdict carries a certificate — {requirement_id, data_points[], observation_refs[]} per A5.19; severance keys to A5.2's closed signal registry; the schema has no field for confidence, score, strength or probability, enforced by a signature-as-guard test on CP-S2's precedent. Execute at M12b-W1, after this ruling. T-d: Option (b). §4.1 §E stands with no exception. The three triples are re-dropped by hand as a fixed-column CSV; post-drop verification echoes DB name and host only.
+>
+> **PART 3 — SER CORRECTIONS REQUIRED BEFORE THE M12b-W1 SCHEMA FREEZE.** C.3.3, C.3.5 — per effect 3. I-2 now reads: the action taken is exactly the registry entry for (category, certificate satisfied). C.11.6, C.11.5: sever freezes the agent session and revokes its credentials (AC-13); it does not delete the runtime. I-4: the runtime checks ladder conditions and proposes advancement; a named role independent of the deploying operator ratifies it (AC-2(b)). No rung advances on the runtime's check alone. A.4: The TCB membership test is BA-1.1 verbatim — deterministic, and its failure would falsify a stated guarantee. The member table is reconciled against tcb_enumeration_v1; the SER's additions (Solva frame, Northena run loop) enter only through that document's own method.
+>
+> **PART 4 — DECISION-REGISTER ENTRIES, ADD AS FIXED.** D-16 Cascade: local model drafts, deterministic check decides, frontier only on rejects (Doc 11 A5.4); C.19.6's model policy is reversed. D-17 Frontier accounts: gateway-only with customer-held provider accounts by default (Doc 14 C5.2); platform provider accounts only under a reseller agreement reviewed by counsel; D-10 amended accordingly. D-18 Tenancy: R-5's "dedicated per tenant" is satisfied by a per-tenant data plane — connected or hosted tier — holding all tenant source content, with compute isolation by MIG or a per-tenant node pool and no cross-tenant queueing. The shared control plane may hold metadata, identity, scheduling and metering only: never tenant source content, and never a decision field of a ledger row, which belong to the three governors alone (A.3). trust_domains_v1 amended to state this. The appliance is the connected-tier packaging for premises deployments, not the sole model; the Pull Seam paper's appliance section is held from further circulation until revised. D-19 Ledger-unavailable containment: amendment to failure_posture_v1, Watch actions only — contain and sever execute with a queued ledger intent when the writer is unavailable; the record is written at recovery, and the run stays not-complete until acknowledged (B.4). Extractions unchanged — DAP-29: unrecorded is not permitted.
+>
+> **PART 5 — VALUES RATIFIED, DEFAULT-class, revisable by ceremony on evidence.** Sever within 5 s; owner notified within 60 s; countersign expiry 7 days after countdown end; nightly independent chain verification per tenant; Rules Service countdowns 48 hours ordinary tier, 7 days Watch-and-Slow tiers.
+>
+> **PART 6 — SER v1.1 ABSORPTION — does not gate M11/M12; gates W-DAP-STACK's 2D close and any containment build.** Absorb into the SER, cited by ID: DAP-31, DAP-35, DAP-36, DAP-37, DAP-38; A20.15 and SFP-8; A5.19–A5.22, RBM-23, A20.16, AC-13–AC-18; A5.16 and A5.17; DAP restored to six crossings with DAP-14 per-request approval and DAP-15 expiry-on-silence; the release budget as a TCB member.
+>
+> **PART 7 — DESK ITEMS.** (a) TCB.yaml review_policy: ratified as drafted — two reviewers plus the security group. (b) OWNER-DROP-01: closed, resolved. (c) OWNER-DROP-02: the ingested sha d778eb1e… is accepted as the baseline; no prior sha exists because none was taken. Forward rule: every custody-store drop carries a sha pin recorded at ingestion; a drop without one is refused at intake. (d) OWNER-DROP-03: reopened and re-classed — a "rotated" file byte-identical to the original is evidence the rotation never reached the custody store; linked to (e), closes only with it. (e) SEC-2026-09-12-01: the leaked value is assumed live until proven otherwise — fail-closed. Resolution is a three-step owner action, the only path under §4.1 §E: revoke the old token in the HF console; generate a new one; re-drop it with a sha pin. The builder confirms closure by hash delta alone — never by opening the value. Until the delta is on record, any wave that touches HF holds. (f) JUMP and Razuna rotations: the deferral stands.
+>
+> **PART 8 — GATE RELEASE.** The M11/M12 hold lifts when effects 2, 3, 5, 6 and 7 are landed — SER errata v1.0.1, the contract schema, AST and P-15 green, the canon_ref check active — and D-16 through D-19 are banked. Nothing else gates. The errata is the next checkpoint; report it before proceeding.
+
+### 15-effect enumeration (Part 8 gate-release map)
+
+Effects enumerated as they appear in the ruling text, numbered 1..15. Part 8 references effect numbers "2, 3, 5, 6 and 7"; the correspondence to my numbering is given per row.
+
+| # | Binding effect (as read from ruling) | Part | Concrete deliverable | Gate-release-set? |
+|---|---|---|---|---|
+| E1 | Order of authority fixed: (a) canon > (b) SO > (c) SER > (d) contract schemas > (e) code. Lower layer never amends higher. Every conflict resolves upward. | 1 | SO §2.1 (added this-turn). | No (rule of law only). |
+| E2 | In build artefacts "Canon" means (a) only. SER cited as SER §x, not as Canon. | 1 | SO §2.1 (added this-turn) + SER errata v1.0.1 §A. | **YES (Part 8 "SER errata v1.0.1")**. |
+| E3 | Traceability: every SER Part B and Part C section carries a "Canon anchors" line naming the rule IDs it derives from. | 1 | SER errata v1.0.1 §B (retro-tag) + forward rule for future SER sections. | **YES (Part 8 "SER errata v1.0.1")**. |
+| E4 | D.6's generated `requirements.yaml` gains `canon_ref` (existing registry ID, or `none-new-needs-ratification`). A requirement with neither `canon_ref` nor `test_id` fails the documentation check. | 1 | (i) SER errata v1.0.1 §C (D.6 rewrite), (ii) codegen bump for the `requirements.yaml` schema, (iii) documentation-check test that fires RED when `canon_ref` and `test_id` are both absent. | **YES (Part 8 "canon_ref check active")**. |
+| E5 | D.6's "this document supersedes that count" line is struck. SER extends and cross-references the register. | 1 | SER errata v1.0.1 §C (strike + rewrite). | **YES (Part 8 "SER errata v1.0.1")**. |
+| E6 | T-c = Option (ii) extended: rename lands as one change with verdict+registry schema; `certainty:0–100` and `min_certainty` removed; verdict carries certificate `{requirement_id, data_points[], observation_refs[]}` per A5.19; severance keys to A5.2 closed signal registry; schema has NO field for confidence/score/strength/probability, enforced by signature-as-guard test on CP-S2's precedent. Execute at M12b-W1, after this ruling. | 2 | (i) `contracts/watch_action_class.schema.json` + verdict schema, (ii) additive `watch_action_class_v2` + severance keyed to A5.2, (iii) signature-as-guard test on the schema forbidding confidence/score/strength/probability fields, (iv) P-15 registry-name equality test flipped RED→GREEN against canon. | **YES (Part 8 "the contract schema, AST and P-15 green")**. Part 2 sequencing "Execute at M12b-W1" flagged as potential conflict — see §Sequencing flag below. |
+| E7 | T-d = Option (b): §4.1 §E stands with no exception. The 3 triples are re-dropped by hand as a fixed-column CSV. Post-drop verification echoes DB name + host only. | 2 | Owner delivers the fixed-column CSV to `estate_keys/data_sources/` at 0600. Builder verifies with a script that echoes DB name + host only. | **YES (Part 8 references effect 7 as gate-release)**. Sequencing: unblocks Stage-1 §2 of the estate acquisition plan; NOT a §3.3 code seal. |
+| E8 | C.3.3, C.3.5 rewrite: I-2 now reads "the action taken is exactly the registry entry for (category, certificate satisfied)". | 3 | SER errata v1.0.1 §D · C.3.3/C.3.5 rewrite. | Bundled under Part 8 "SER errata v1.0.1". |
+| E9 | C.11.5, C.11.6 rewrite: sever freezes the agent session and revokes its credentials (AC-13); it does NOT delete the runtime. | 3 | SER errata v1.0.1 §E · C.11.5/C.11.6 rewrite. | Bundled under Part 8 "SER errata v1.0.1". |
+| E10 | I-4 rewrite: runtime checks ladder conditions and proposes advancement; a named role independent of the deploying operator ratifies it (AC-2(b)). No rung advances on runtime check alone. | 3 | SER errata v1.0.1 §F · I-4 rewrite. | Bundled under Part 8 "SER errata v1.0.1". |
+| E11 | A.4 rewrite: TCB membership test is BA-1.1 verbatim — deterministic; its failure would falsify a stated guarantee. Member table reconciled against `tcb_enumeration_v1`. SER additions (Solva frame, Northena run loop) enter only via that document's method. | 3 | SER errata v1.0.1 §G · A.4 rewrite + TCB.yaml row-list reconciled against `tcb_enumeration_v1` at next TCB-boundary CP. | Bundled under Part 8 "SER errata v1.0.1". |
+| E12 | D-16 Cascade: local model drafts, deterministic check decides, frontier only on rejects (Doc 11 A5.4). C.19.6 model policy REVERSED. | 4 | D-16 banked here in DECISIONS.md as FIXED (this entry). Reverses C.19.6 in future SER cycles. | **YES (Part 8 "D-16 through D-19 banked")**. |
+| E13 | D-17 Frontier accounts: gateway-only with customer-held provider accounts by default (Doc 14 C5.2). Platform provider accounts only under counsel-reviewed reseller agreement. D-10 amended accordingly. | 4 | D-17 banked here as FIXED. D-10 amendment recorded here. | **YES (Part 8 "D-16 through D-19 banked")**. |
+| E14 | D-18 Tenancy: R-5 satisfied by per-tenant data plane (connected or hosted). Compute isolation via MIG or per-tenant node pool. No cross-tenant queueing. Shared control plane holds metadata/identity/scheduling/metering only — never tenant source content, never a decision field of a ledger row (A.3). `trust_domains_v1` amended. Appliance is connected-tier packaging for premises, not sole model. Pull Seam paper's appliance section held from further circulation until revised. | 4 | D-18 banked here as FIXED. `trust_domains_v1` amendment recorded. Pull Seam appliance section hold recorded. | **YES (Part 8 "D-16 through D-19 banked")**. |
+| E15 | D-19 Ledger-unavailable containment: amendment to `failure_posture_v1`. Watch actions ONLY (contain, sever) execute with queued ledger intent when writer unavailable; record written at recovery; run stays not-complete until acknowledged (B.4). Extractions unchanged — DAP-29: unrecorded not permitted. | 4 | D-19 banked here as FIXED. `failure_posture_v1` amendment recorded. | **YES (Part 8 "D-16 through D-19 banked")**. |
+
+### Part 8 gate-release deliverable table (concrete)
+
+| Deliverable | Backing effect(s) | State this-turn |
+|---|---|---|
+| SER errata v1.0.1 landed as a self-contained document | E2, E3, E5, E8, E9, E10, E11 | **LANDING THIS-TURN** as `notes/SER_ERRATA_v1_0_1_20260918.md` + byte-identical audit copy at `/app/frontend/public/audit/SER_ERRATA_v1_0_1_20260918.md`. |
+| Watch contract schema (`contracts/watch_action_class.schema.json` + verdict certificate schema per A5.19 + severance keyed to A5.2 + no confidence/score/strength/probability field) | E6 | **NOT LANDED THIS-TURN** — HELD per Part 8 "report [the errata] before proceeding" + Part 2 "Execute at M12b-W1, after this ruling". Sequencing flag surfaced below. |
+| AST rule + P-15 green (signature-as-guard test forbidding confidence/score/strength/probability + registry-name equality vs canon) | E6 | **NOT LANDED THIS-TURN** — bundled with contract schema landing. |
+| `canon_ref` check active in D.6 documentation gate | E4 | **NOT LANDED THIS-TURN** — bundled with SER errata absorption + codegen work. Errata v1.0.1 authors the rule + specifies the check; the code-side landing is a downstream CP (state-only errata cannot flip codegen). |
+| D-16..D-19 banked in DECISIONS.md as FIXED | E12, E13, E14, E15 | **LANDED THIS-TURN** — see §D-16..D-19 below. |
+| T-d fixed-column CSV re-drop + post-drop DB+host-only verification | E7 | **AWAITING OWNER** — no builder action authorised until owner drops the CSV. |
+
+### Part 2 vs Part 8 sequencing flag (owner clarification requested)
+
+**Read as stated:**
+
+- Part 2 says of T-c: *"Execute at M12b-W1, after this ruling."*
+- Part 8 says of gate-release: *"The M11/M12 hold lifts when effects 2, 3, 5, 6 and 7 are landed — SER errata v1.0.1, the contract schema, AST and P-15 green, the canon_ref check active — and D-16 through D-19 are banked."*
+
+**Apparent conflict:** M12b-W1 is a post-M12 wave. If T-c executes *at* M12b-W1, the contract schema + AST + P-15 green land AFTER M12 opens. Yet Part 8 lists them as PRE-requisites for M11/M12 gate-release. Two candidate readings — I decline to guess:
+
+- **Reading (α):** "Execute at M12b-W1" refers to the caller-flipping rename PR against `programme/track-a` (the code-side rename of Watch dispatch call-sites), while the contract schema + AST + P-15 green land earlier as a state/schema-only CP that GATES M11/M12. Under this reading there is no conflict: the schema+AST+P-15 land now (pre-M11), and M12b-W1 later flips callers to the new schema.
+- **Reading (β):** "Execute at M12b-W1" means everything (schema + AST + P-15 + caller flip) lands at M12b-W1, in which case Part 8 must intend that M11/M12 gate-release ALSO happens at/after M12b-W1 — i.e. Part 8's "M11/M12 hold lifts" is conditional on a future M12b-W1 execution, so M11 and M12 stay held until M12b-W1 completes, and the linear "M11 → M12 → M12b" ordering is reversed. Under this reading M12b-W1 executes BEFORE M11-W1 opens.
+
+**Question surfaced to owner (no agent guess made):** Which reading holds — (α) split-landing with schema early, callers at M12b-W1; or (β) full T-c execution at M12b-W1 which itself becomes the M11 pre-requisite (reversing wave order)?
+
+Until resolved, the errata v1.0.1 lands this-turn (Part 8 "report it before proceeding") and everything downstream HOLDS.
+
+### Applied to STANDING_ORDERS this-turn
+
+1. **§2.1 ORDER OF AUTHORITY** — added verbatim from Part 1 (canon > SO > SER > contract schemas > code; lower never amends higher; in build artefacts "Canon" = (a) only; SER cited as SER §x, not Canon; Documents 0–20 + amendments through watch_learning_v1 are the canon corpus).
+2. **§4.1 §F CREDENTIAL-DROP SHA-PIN AT INTAKE OR REFUSE** — added per Part 7(c). Every custody-store drop carries a sha256 pin recorded at ingestion in `phase0/credential_drop_manifests/*.json`; a drop without one is refused at intake, held quarantined at 0600 outside `estate_keys/`, and surfaced as an owner-desk item.
+3. **§4.3 HF TOKEN HASH-DELTA GATE** — added per Part 7(e). Any wave that touches HuggingFace HOLDS until the HF token's rotation is proven by hash delta between the last-recorded custody sha256 and the fresh drop's sha256. Rotation is confirmed by hash-delta ALONE — never by opening the value. `hf_token_rotated_20260914.csv` = `hf_token.csv` byte-identical stands as evidence rotation did not reach custody; the HF-touching wave HOLDS until (i) owner revokes the old token in the HF console, (ii) generates a new one, (iii) re-drops with a sha pin that DIFFERS from the last-recorded sha256.
+
+### D-16 · CASCADE · FIXED (per R-18 Part 4)
+
+Local model drafts. Deterministic check decides. Frontier model called ONLY on rejects. Anchors: Doc 11 A5.4. **Reverses C.19.6 model policy** — where C.19.6 previously placed frontier on the primary draft path, R-18 places local on the primary draft path and reserves frontier for reject-path only.
+
+### D-17 · FRONTIER ACCOUNTS · FIXED (per R-18 Part 4)
+
+Frontier model access is **gateway-only with customer-held provider accounts by default**. Anchor: Doc 14 C5.2. Platform-provider accounts (i.e. Akki-held keys in front of a customer workload) are used ONLY under a reseller agreement reviewed by counsel. **D-10 AMENDED**: any prior D-10 language authorising platform-provider-account default use for frontier calls is superseded by D-17; existing SER absorption of D-10 must be re-derived from D-17 going forward.
+
+### D-18 · TENANCY · FIXED (per R-18 Part 4)
+
+R-5's "dedicated per tenant" is satisfied by a **per-tenant data plane** — connected or hosted tier — holding ALL tenant source content, with compute isolation via **MIG or per-tenant node pool**, and NO cross-tenant queueing. The shared control plane may hold ONLY:
+
+- metadata,
+- identity,
+- scheduling,
+- metering.
+
+The shared control plane MAY NEVER hold:
+
+- tenant source content, or
+- a decision field of a ledger row (A.3 reserves ledger decision fields to the three governors alone).
+
+`trust_domains_v1` AMENDED to state this verbatim (next canon-cycle absorption; the amendment text is R-18 Part 4 D-18). The **appliance** is the connected-tier packaging for premises deployments, **not the sole model**. The Pull Seam paper's appliance section is **held from further circulation until revised**.
+
+### D-19 · LEDGER-UNAVAILABLE CONTAINMENT · FIXED (per R-18 Part 4)
+
+Amendment to `failure_posture_v1`. **Watch actions ONLY** — `contain` and `sever` — execute with a queued ledger intent when the ledger writer is unavailable; the record is written at recovery; the run stays `not-complete` until acknowledged (B.4). **Extractions UNCHANGED**: DAP-29 requires that extractions never proceed unrecorded — no ledger-unavailable exception applies to extraction surfaces.
+
+### Part 5 DEFAULT-class values — ratified this-turn (revisable by ceremony on evidence)
+
+- Sever executes within **5 s** of the certificate-satisfied verdict.
+- Owner notified within **60 s** of any sever event.
+- Countersign expiry: **7 days** after countdown end.
+- **Nightly** independent chain verification per tenant.
+- Rules Service countdown windows: **48 hours** for ordinary tier, **7 days** for Watch-and-Slow tiers.
+
+### Part 6 SER v1.1 absorption list — banked as DEFERRED (does not gate M11/M12; gates W-DAP-STACK 2D and any containment build)
+
+Absorb into the SER (v1.1 cycle, cited by ID; NOT landed this-turn):
+
+- **Discipline & privacy plane:** DAP-31, DAP-35, DAP-36, DAP-37, DAP-38.
+- **A20.15 and SFP-8** — safety-function-policy bindings.
+- **A5.19–A5.22, RBM-23, A20.16, AC-13–AC-18** — Watch/verdict/severance surface.
+- **A5.16 and A5.17** — signal registry.
+- **DAP restored to six crossings** with DAP-14 per-request approval and DAP-15 expiry-on-silence.
+- **Release budget as a TCB member**.
+
+### Part 7 desk-item dispositions — banked this-turn
+
+- **7(a) TCB.yaml `review_policy`**: RATIFIED as drafted — **two reviewers plus the security group**. The M13-W1 seal note field `review_policy: PENDING_OWNER_RATIFICATION` is superseded; `review_policy: TWO_REVIEWERS_PLUS_SECURITY_GROUP` is the canonical value going forward. TCB.yaml file update is a code-side CP under M11 or later; state-side ratification is banked here.
+- **7(b) OWNER-DROP-01**: **CLOSED** — resolved by `huawei_credentials_2_20260916.csv` landing on 2026-09-16T19:21Z (11 min after `CREDENTIAL_DROP_BIND_DELTA_20260916` was authored).
+- **7(c) OWNER-DROP-02**: RESOLVED — the ingested sha256 `d778eb1e…` for `estate_keys/data_sources/RMS_Connection_Creds.xlsx` is **accepted as the baseline**; no prior sha exists because none was taken. **Forward rule installed** as SO §4.1 §F (see above): every custody-store drop carries a sha pin at ingestion; a drop without one is REFUSED at intake.
+- **7(d) OWNER-DROP-03**: **REOPENED and RE-CLASSED**. `hf_token_rotated_20260914.csv` byte-identical to `hf_token.csv` is evidence the rotation never reached the custody store. **LINKED to SEC-2026-09-12-01**. Closes ONLY when SEC-2026-09-12-01 closes.
+- **7(e) SEC-2026-09-12-01**: leaked HF token is **assumed live until proven otherwise — FAIL-CLOSED**. Resolution (the only path under §4.1 §E) is a three-step owner action: (i) revoke the old token in the HF console; (ii) generate a new one; (iii) re-drop it with a sha pin. Builder confirms closure **by hash delta ALONE — never by opening the value**. Standing rule installed as SO §4.3 (see above): any wave touching HF HOLDS until the HF token hash-delta is on record.
+- **7(f) JUMP root-pw and Razuna/Newsvault rotations**: the deferral **STANDS**. SEC-halt on 5 of 6 probe classes persists. No agent action.
+
+### Part 8 gate release — HELD
+
+Landing this-turn: **SER errata v1.0.1 (state-only)** — this is the "next checkpoint" per Part 8 final sentence. Everything else in the Part-8 gate-release deliverable table stays HELD until owner clarifies the Part 2 vs Part 8 sequencing question above AND acknowledges the errata.
+
+### §3.3 2-COMMIT SHAPE this-turn (state-only)
+
+- Commit-A track-a: **N/A** (state-only close · no code touched · ratchet unchanged 4814 · track-a HEAD unchanged `71faac1`).
+- Commit-B this-turn (master `e9f1c8c0` · this DECISIONS entry + SO §2.1 + SO §4.1 §F + SO §4.3 + NEXT.md pin advance + SER errata v1.0.1 landed to `notes/` + audit copy landed to `/app/frontend/public/audit/`).
+- Commit-C this-turn (master fixup · self-references Commit-B SHA `e9f1c8c0` into this DECISIONS footer + NEXT.md pin footer + ORCH_BOOT.md `heads_last_sealed.state_repo.head` + byte-identical audit copy of ORCH_BOOT.md).
+- **R-6 boundary regeneration triggered** by (b) "owner ruling mutating STATE files".
+- Ratchet unchanged (4814); `baseline_failures.json` sha256 unchanged; `code_repo.head` unchanged (`71faac1`).
+- SHAs banked at Commit-C fixup below.
+
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
