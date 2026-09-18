@@ -33,29 +33,29 @@ STATE files, and on any boot ritual that detects drift.
 
 ```yaml
 schema_version: 1
-generated_at_utc: 2026-09-18T15:15:00Z
-generator: main-agent Autopilot (EXTENDED AUTOPILOT · CP-M10-CLOSE Commit-C fixup this-turn · R-6 boundary regen at Commit-C fixup · MILESTONE 2 M10 COMPLETE · state_repo.head advanced from 90b7649b to a5bf3135 · code_repo.head advanced from 55073476 to db8c157)
-regeneration_reason: r6-boundary-regen-at-cp-m10-close-commit-c-fixup-state_repo.head-advanced-from-90b7649b-to-a5bf3135-code_repo.head-advanced-from-55073476-to-db8c157-ratchet-4967-to-4993
+generated_at_utc: 2026-09-18T17:00:00Z
+generator: main-agent Autopilot (CP-M12-W1b-SEC1-INTEGRITY Commit-C fixup this-turn · R-6 boundary regen · state_repo.head advanced 9a888ea2 → c3416bc5 · code_repo.head advanced cff65be3 → 0ccedd35 · ratchet 5000 → 5013)
+regeneration_reason: r6-boundary-regen-at-cp-m12-w1b-sec1-integrity-commit-c-fixup-state_repo.head-advanced-from-9a888ea2-to-c3416bc5-code_repo.head-advanced-from-cff65be3-to-0ccedd35-ratchet-5000-to-5013
 
 ratchet:
-  passed_floor: 4993
-  counts_at_baseline_passed: 4993
+  passed_floor: 5013
+  counts_at_baseline_passed: 5013
   baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
-  baseline_failures_sha256: fd707bea65d1c3161264b6a7ecc0224b344fb123c8641e1a290aee0d7ab1ff45
+  baseline_failures_sha256: d2eed175bde1be9bfdbdc66c3598aebab5853d618d5e3113a8dd425edabf8606
 
 heads_last_sealed:
   state_repo:
     workdir: /app/assessment_workspace
     branch: master
-    head: a5bf3135675f506434e72c2db9663b9327e6e6a0
-    sealed_at_utc: 2026-09-18T15:10:00Z
-    seal_kind: "CP-M10-CLOSE · state Commit-B `a5bf3135` · banks Commit-A `db8c157` for MILESTONE 2 · M10 in full · The Ledger · consolidated hash-chained single-writer + independent verifier close · ratchet 4967 → 4993 (+26 empirically measured · line-by-line reconciled: +24 M10 targeted + 1 companion frozen + 1 auto-parametrized wizard shape-stability) · B-M10-Q1 conformance CITED not re-run (banked ex-ante at DECISIONS.md § B-M10-Q1 conformance confirmation) · B-M10-Q2 verifier mechanical shape landed (operational wire deferred M10-W2) · SO §3.8 additive-only held · owner EXTENDED AUTOPILOT modified stop discipline (non-consequential wave batching) · Commit-C fixup this-turn advances state_repo.head 90b7649b → a5bf3135 + byte-identical audit copy · next: G5 slice 5 resume per owner directive verbatim 'resume G5 slice 5 and continue the run order'"
+    head: c3416bc5ddfd503c30a9da0e0b70f5f250c35e8e
+    sealed_at_utc: 2026-09-18T16:58:00Z
+    seal_kind: "CP-M12-W1b-SEC1-INTEGRITY · state Commit-B `c3416bc5` · banks Commit-A `0ccedd35` for M12-W1b SEC-1 crossing-policy integrity gate (Canon SEC-1 · FP-1 · FP-2 closed gate on unverifiable policy) · ratchet 5000 → 5013 (+13 empirically measured · zero unexplained delta) · ORCH_BOOT duplicate-ratchet-block housekeeping fixed · Commit-C fixup this-turn advances state_repo.head 9a888ea2 → c3416bc5 + byte-identical audit copy · next: M12-W1c runtime wire-in OR other substantive M12 items (DAP-7 custody · closed outbound · D-17 · D-16 · TCB golden-input)"
   code_repo:
     workdir: /app/assessment_workspace/repos/Extraction-Akki
     branch: programme/track-a
-    head: db8c15765198bd1487bf7865d5ef7d029fe35a62
-    sealed_at_utc: 2026-09-18T15:08:00Z
-    seal_kind: "CP-M10-CLOSE · Commit-A `db8c157` · MILESTONE 2 · M10 in full · The Ledger · consolidated hash-chained single-writer + independent verifier close · files: contracts/ledger_v1.py (17-field row schema · @dataclass(frozen=True) LedgerRow runtime + additive pydantic LedgerRow_v1 mirror for parity-domain schema-freeze · au_3b_defensible coupling · canonical_row_bytes deterministic JSON) + services/ledger_emitter/emit_intent.py (LedgerIntent + emit_intent refuses empty tenant_id/run_id) + services/ledger_writer/main.py (append_intent + hash chain seq monotonic per tenant + LEDGER-WRITER-001 OutOfOrderSeqRefused + LEDGER-WRITER-002 InsertOnlyViolation) + services/ledger_verifier/verify.py (VerifierReceipt + verify_chain detects hash/seq break via break_at_seq) + tests/invariants/test_m10_ledger.py (24 targeted) + tests/invariants/test_ledger_v1_contract_frozen.py (companion 1) + tests/invariants/ledger_v1.contract_snapshot.json (generated · 146 lines JSON schema) + tests/invariants/test_frozen_contract_snapshot_parity.py (CONTRACT_TO_SNAPSHOT += ledger_v1.py) + baseline_failures.json (counts_at_baseline.passed + passed_floor 4967 → 4993 + ratchet_history #223) · pre-Commit-A BASELINE_GUARD=1 full sweep byte-match at 4993 passed / 1 skipped / 1 xfailed / 438 warnings (receipt 20260918T150500Z_cp_m10_close_pre_commitA_GUARD1_FULL_SWEEP.log) · B-M10-Q1 conformance CITED (banked ex-ante) · SO §3.8 additive-only held (zero sealed-file edits) · SO §3.10 α (LedgerRow.event_type / resource_type / decision OPEN str) · consolidated seal per owner EXTENDED AUTOPILOT modified stop discipline · Commit-B state + Commit-C fixup this-turn"
+    head: 0ccedd358d4f2014bf92f6bde6fd545538be93aa
+    sealed_at_utc: 2026-09-18T16:56:00Z
+    seal_kind: "CP-M12-W1b-SEC1-INTEGRITY · Commit-A `0ccedd35` · SEC-1 crossing-policy integrity gate · services/chokepoint/policy_integrity.py NEW (PolicyIntegrityRefused + verify_policy_integrity + load_policy_with_integrity · FP-1 fail-closed + FP-2 source-retained-on-abort) + 3 .sha256 companion files for existing v0 policies (llm_endpoint_allowlist 1bd5e0bb · masking_tier_allowlist 93adcb50 · residency_allowlist 6412c5b0) + tests/invariants/test_m12_w1b_sec1_policy_integrity.py 13 tests (1 contract + 3 companion-present + 3 hash-match + 4 refuse + 2 positive) · pre-Commit-A BASELINE_GUARD=1 sweep byte-match at 5013 passed / 1 skipped / 1 xfailed / 438 warnings · SO §3.8 additive-only held (zero sealed-file edits · all new files) · scope BUILD-TIME gate only · runtime wire-in deferred to M12-W1c backlog · consequential-fork check both M12 stop conditions NOT triggered"
 
 boot_sequence:
   - Read STATE/STANDING_ORDERS.md end-to-end.

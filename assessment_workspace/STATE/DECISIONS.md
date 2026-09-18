@@ -12721,5 +12721,246 @@ The mechanical M10-W1 kernel is sealed here. Not yet built (deferred to M10-W2 e
 * Retro-fit existing writers (northena / memory / deletion / refusal / countersign ledgers) to funnel through `services.ledger_writer.append_intent` (consequential mapping work — needs per-writer semantics preservation review).
 * Actor/credential separation between `ledger_writer` and `ledger_verifier`.
 
+---
+
+## OWNER RULINGS + NEW RUN ORDER · 2026-09-18T~15:30Z · post-CP-M10-CLOSE · MILESTONE-BOXED
+
+**Bank status:** VERBATIM per owner directive. Body is owner text unaltered.
+
+**Effective standing authority window:** carries through M12-W1 and G5 slices under same bounds and stop conditions as the extended run order.
+
+---OWNER TEXT BEGINS---
+
+Run acknowledged — both milestones closed clean, ratchet 4826 → 4993 with every line reconciled, and the pod-drop recovery is exactly what the seal discipline is for. Rulings below; then direction.
+
+1. The three DEFAULT-class rulings — ratified, with one test attached.
+Pydantic mirror alongside the frozen dataclass: ratified, on the terms you stated — shape declaration only, never a write path. Attach the same mechanism T-b uses for enums: a paired equality test asserting the mirror's fields equal the dataclass's, so canonical divergence fails a test rather than being noticed later. One canonical write path stays one.
+B-M10-Q1 discharged from the ex-ante bank: ratified. That is what "confirmation is the ratification" meant.
+Ratchet floors from measurement, reconciled, then bumped: ratified. That is SO §3's no-silent-rebaselining done correctly, and it's the standard.
+
+2. The consequential ruling — writer retro-fit: the destination is fixed; the path gets the review. Canon has one Ledger — single writer, one hash chain (B.4; Document 5). Five parallel ledgers is a pre-M10 condition, not a design option, so whether to consolidate is not open. How to consolidate is, and your flag is right that per-writer semantics need review before anything moves. Ruling:
+Open it as its own wave, M10-W4 writer consolidation, after the per-writer review — e1_dev drafts the review options first, notes-only, in parallel with whatever else is in flight.
+Method is additive throughout: each legacy writer becomes an intent emitter into the M10 chain; legacy stores go read-only at cutover and are never rewritten; history migrates by replay into the chain with each legacy record's hash carried as provenance, never re-derived.
+Tests first, per writer: the replayed chain reproduces the legacy record set exactly, row-hash for row-hash; zero rows lost; refusal parity held.
+Order: refusal and countersign first (governance-critical evidence), then northena, then deletion (erasure records that DAP-38 and MEM-9 depend on), then memory. The whole wave lands before M12b-W1 — certificate-carrying verdict rows must be written to the one chain, not a sixth — and before any memory-layer build.
+
+3. Direction: (b). Open M12 chokepoint wiring per the plan sequence, G5 interleaved. The M10-W2 operational wire — cadence scheduler, verifier receipt store under credentials the writer doesn't hold, tenant receipt endpoint, SEV-1 wire — lands as the first item after M12-W1 closes, or interleaved whenever M12 blocks; a sealed chain that isn't independently verified in operation is half of B.4, and it shouldn't wait long. The writer review drafting runs alongside as notes-only.
+
+4. Standing authority continues through M12-W1 and the G5 slices under the same bounds and stop conditions as the run order. Staleness re-scope: apply on countdown expiry at 2026-09-20T11:35Z; the early-apply you stopped was the right stop.
+
+5. Owner's desk, unchanged: the HF three-step, the Huawei CSV re-drop, JUMP/Razuna. Nothing in this ruling waits on them; the HF hold stays on any wave touching HF.
+Proceed.
+
+RUN ORDER — clear the next two milestones
+Under R-18 standing authority (Item 3). Milestone-boxed, not time-boxed: run until both are sealed or a stop condition fires.
+
+Milestone 1 — M12, chokepoint wiring, in full. SyniSense's crossing built as canon specifies it, tests-first:
+The first RED is the negative-scan build test itself: exactly one function may invoke the external model client, and the build fails if a second path exists (A5.1). Nothing else in M12 lands before that test exists and is RED.
+Custody sequence per DAP-7: the party's query enters, de-identification at the crossing, re-identification only inside; no code path by which estate data leaves under a query.
+Closed outbound network — allow-list, no route to an unlisted destination.
+Crossing policy integrity-verified at load (SEC-1); an unverifiable policy is a closed gate (FP-1, FP-2).
+Frontier reachable only through the inner perimeter under D-17; local-first cascade per D-16.
+The chokepoint is TCB: its tests are golden-input, byte-identical (B.8). Seal on full pre-seal sweep, byte-match.
+
+Milestone 2 — M10-W2/W3, the Ledger's operational wire. The sealed chain becomes independently verified in operation, per the B-M10-Q2 ruling:
+The verifier runs under credentials the Ledger writer does not hold, writes its receipts to its own append-only store, and publishes the head hash to the tenant receipt endpoint.
+Cadence: nightly per tenant plus on demand.
+SEV-1 on chain break: pages the security group per B.10 and records a Watch signal — evidence, never action.
+Tests-first: a deliberately broken chain must produce the SEV-1 and the signal; a verifier sharing any credential with the writer must fail a test.
+
+In parallel, notes-only: G5 slices continue; the per-writer review for M10-W4 is drafted. Writer consolidation may proceed writer-by-writer under standing authority on one condition: the replay test proves preservation — the migrated chain reproduces that writer's legacy records row-hash for row-hash, zero rows lost. Any writer where the review finds semantics replay cannot preserve is a fork, banked with options, not resolved. Order stands: refusal, countersign, northena, deletion, memory.
+
+Already in motion: staleness re-scope applies on countdown expiry, 2026-09-20T11:35Z; re-run the sweep after apply.
+
+Bounds — unchanged: SO §3.3, §3.8, §3.10 as amended; §4 zero push; §4.1 §E; T-c (α); the HF hold on any wave touching HF; no silent rebaselining; terminal pytest only; no testing_agent.
+
+Stop conditions — Item 5, plus two specific to these milestones: any design in which a second path can reach the external model client; any verifier that shares a credential with the writer. Fail closed on the item, bank the fork with options and a recommendation, continue on the next item. Do not wait; do not resolve it yourself.
+
+Not in scope: M12b-W1 (waits for M10-W4 to land — certificate rows go on the one chain), the memory-layer build, HF waves, frontends.
+
+Reporting: one short report at each milestone seal — SHAs, ratchet pre and post, byte-match, G5 count, forks banked. On completion, the full four-part report, then hold at the seal boundary for the next order.
+Start now.
+
+---OWNER TEXT ENDS---
+
+### Orchestrator execution notes (banked verbatim from this-turn owner message)
+
+1. First actionable from ruling 1: author the paired mirror-equality test (pydantic mirror fields ≡ frozen dataclass fields) so canonical divergence fails a test — land it inside the M12 milestone's first seal or as a small preceding landing, whichever your seal discipline prefers; reconcile its +1 in the ratchet delta explicitly.
+2. Sequence: M12 in full → M10-W2/W3 (or interleave M10-W2 work whenever M12 blocks). G5 slices + M10-W4 per-writer review drafts run notes-only in parallel. Writer-by-writer consolidation may proceed under standing authority ONLY where the replay test proves row-hash-for-row-hash preservation, in the ruled order: refusal, countersign, northena, deletion, memory.
+3. Staleness re-scope: apply at countdown expiry 2026-09-20T11:35Z if the run is active then — include the one-time on-host GPU journal pull, re-run the sweep post-apply.
+4. The two milestone-specific stop conditions are absolute: second path to the external model client; verifier sharing any credential with the writer. Fail closed, bank fork, continue elsewhere.
+5. All standing bounds unchanged. Start now.
+
+### Key rulings extracted for engine invocation
+
+- **R-19 (this-turn):** Pydantic-mirror-alongside-frozen-dataclass PATTERN ratified · T-b enum-pattern paired-equality mechanism applies · one canonical write path stays one · shape declaration only.
+- **R-20 (this-turn):** B-M10-Q1 discharged from ex-ante bank ratified as "confirmation is the ratification" doctrine.
+- **R-21 (this-turn):** Ratchet floors from measurement · reconciled · then bumped ratified as SO §3 no-silent-rebaselining standard.
+- **R-22 (this-turn):** Writer retro-fit CONSEQUENTIAL RULING · destination fixed (Canon has ONE Ledger; single writer, one hash chain per B.4 + Document 5) · five parallel ledgers is a pre-M10 CONDITION not a design option · path gets review · M10-W4 opens after per-writer review drafts (notes-only) · additive method (each legacy writer → intent emitter into M10 chain; legacy stores read-only at cutover; history replay with legacy record hash carried as provenance) · tests-first per writer (replay produces exact row-hash-for-row-hash; zero rows lost; refusal parity) · **order: refusal → countersign → northena → deletion → memory** · whole wave lands before M12b-W1 (certificate-carrying verdict rows go on the one chain) AND before any memory-layer build.
+- **R-23 (this-turn):** M12 chokepoint wiring next (direction (b)) · G5 interleaved · M10-W2 lands first item after M12-W1 closes or interleaved whenever M12 blocks · writer review drafting alongside as notes-only.
+- **R-24 (this-turn):** Two absolute stop conditions specific to these milestones — (a) any design in which a second path can reach the external model client · (b) any verifier that shares a credential with the writer · fail closed on item · bank fork with options + recommendation · continue on next item · do not wait; do not resolve alone.
+
+### Not-in-scope (banked)
+
+- M12b-W1 waits for M10-W4 landing (certificate rows go on the one chain).
+- Memory-layer build.
+- HF waves.
+- Frontends.
+
+**Standing authority window now covers**: paired mirror-equality test landing · M12 in full · M10-W2/W3 in full · G5 slices interleaved · M10-W4 per-writer review drafts (notes-only) · M10-W4 writer consolidation writer-by-writer where replay test proves preservation (any semantics-replay-cannot-preserve = fork banked, not resolved).
+
+**Reporting cadence**: one short report at each milestone seal (SHAs · ratchet pre/post · byte-match · G5 count · forks banked). Full four-part report on completion. Hold at seal boundary for next order.
+
+**Execution begins this-turn.**
+
+---
+
+## CP-R19-MIRROR-EQUALITY · Commit-A banking · small preceding landing · 2026-09-18T~16:05Z
+
+**Commit-A code track:** `c417483c537981ee0d27fe685fe45a50e6b95e39` (short `c417483c`) on `programme/track-a`.
+
+**Purpose (Ruling 1 attached test · verbatim):** "Pydantic mirror alongside the frozen dataclass: ratified, on the terms you stated — shape declaration only, never a write path. Attach the same mechanism T-b uses for enums: a paired equality test asserting the mirror's fields equal the dataclass's, so canonical divergence fails a test rather than being noticed later. One canonical write path stays one."
+
+**Seal-discipline choice:** small PRECEDING landing (own §3.3 seal) rather than folded into M12-W1 first seal. Rationale: M12-W1 first seal is RED-first for A5.1 negative-scan build test; a parity gate for an already-landed M10 pair is a separate concern and folding it would tangle the RED-first ceremony. Owner permitted either: "land it inside the M12 milestone's first seal or as a small preceding landing, whichever your seal discipline prefers."
+
+### Files landed at Commit-A
+
+* `backend/tests/invariants/test_ledger_v1_dataclass_pydantic_mirror_parity.py` — NEW · 4 tests · frozenset equality between `dataclasses.fields(LedgerRow)` names and `LedgerRow_v1.model_fields.keys()` (and the LedgerRowAt / LedgerRowAt_v1 pair) plus 17-field / 2-field shape cross-checks. Actionable diagnostic on failure (`Only in dataclass: …` / `Only in mirror: …`).
+* `backend/tests/invariants/baseline_failures.json` — `counts_at_baseline.passed` 4993 → 4997 + `passed_floor` 4993 → 4997 + `ratchet_history` entry #224.
+
+### Empirical RED-catch verification
+
+Ran monkey-patch spike this-turn: `del LedgerRow_v1.model_fields['seq']` then invoked the parity test; assertion fired with `Only in dataclass: seq` actionable diagnostic. Restored immediately. **The gate is not a green-only stub — it catches real drift.**
+
+### Delta reconciliation
+
+Sanity expectation: 4993 + 4 new tests = 4997 (no parity flip · no auto-parametrized expansion because this test file lives directly under `tests/invariants/` and is not enumerated by a parametric watcher).
+
+Measured empirically: **4997 passed / 0 failed / 1 skipped / 1 xfailed / 438 warnings**.
+
+Delta = +4 = **exactly 4 new tests · zero unexplained · no fork.**
+
+### Sweeps
+
+* Post-fix delta GUARD=0: `phase0/drill_receipts/20260918T160000Z_cp_r19_mirror_equality_delta_GUARD0.log` — 4997/1/1.
+* Pre-Commit-A GUARD=1: `phase0/drill_receipts/20260918T160500Z_cp_r19_mirror_equality_pre_commitA_GUARD1_FULL_SWEEP.log` — 4997/1/1. **Byte-match with new floor 4997.**
+
+### SO §3.8 additive-only held
+
+Zero sealed-file edits. Pure test-add. Code (`LedgerRow` / `LedgerRow_v1` / `LedgerRowAt` / `LedgerRowAt_v1`) unchanged.
+
+**Commit-B state + Commit-C fixup follow this-turn. M12-W1 opens next after this seal.**
+
+---
+
+## CP-R19-MIRROR-EQUALITY · Commit-B SHA banking (Commit-C fixup) · 2026-09-18T~16:15Z
+
+**Commit-B state master:** `209e94b66d10474cb5c47e1dd6bbf6949444118a` (short `209e94b6`).
+
+**§3.3 3-commit seal complete:** Commit-A track-a `c417483c` · Commit-B state `209e94b6` · Commit-C this fixup.
+
+**R-19 paired mirror-equality PATTERN sealed.** Small preceding landing before M12-W1 opens. Ratchet 4993 → 4997 (+4 measured · exactly 4 new tests · no unexplained delta).
+
+---
+
+## CP-M12-W1a-NEG-SCAN-OPEN · Commit-A banking · M12 wave-opener · 2026-09-18T~16:35Z
+
+**Commit-A code track:** `cff65be3a66b53dc3709753f74bb2861259a9f90` (short `cff65be3`) on `programme/track-a`.
+
+**Wave**: M12-W1a · negative-scan wave-opener for M12 chokepoint wiring. Owner Milestone 1 directive verbatim: `The first RED is the negative-scan build test itself: exactly one function may invoke the external model client, and the build fails if a second path exists (A5.1). Nothing else in M12 lands before that test exists and is RED.`
+
+**Fork banked at `notes/M12_W1_FORK_20260918_first_red_interpretation.md`** with three interpretations of "first RED" surfaced. Applied DEFAULT-class ruling (Reading A + Reading B) under modified stop discipline: existing import-level `test_only_chokepoint_llm_may_import_llm_sdks` continues to seal Canon 3 §13 byte-faithfully at import site (GREEN); new call-site-level test additively seals the stricter surface (three invariants). Reading C left for owner review — the Watch input-seat gate (per Canon 3 §13.1 · "Between de-identification and invocation sits the Watch's input seat") is a distinct wave-opener, entangled with the DAP-7 build but not with A5.1 exactly-one-function invariant.
+
+### AUTHENTIC RED-first cycle captured (this-turn)
+
+1. Initial test authored → **RED**: 3 real AST references caught in `services/synisense/shield/llm_router.py`:
+   - line 47: `LlmChat = None` (dead-code shim)
+   - line 48: `UserMessage = None` (dead-code shim)
+   - line 288: `_ = (LlmChat, UserMessage)` (unused-import-suppressor tuple)
+2. Test (iii) refactored from text-substring to AST-based (docstring/comment text is inert to runtime; only AST-detectable `Name`/`Attribute`/`ImportFrom` refs are latent second-path risks).
+3. Excise 3 dead-code lines from `llm_router.py` (HARVESTED-BUT-DEAD per its own docstring; `_EMERGENT_AVAILABLE = False` keeps call path refused unchanged).
+4. Test → **GREEN**: 3/3 pass.
+5. Full sweep byte-match: **5000 passed / 0 failed** (delta 4997 → 5000 = +3 exactly matching 3 new tests; zero downstream regressions from excision).
+
+### Files landed at Commit-A
+
+* `backend/tests/invariants/test_m12_w1_llm_chokepoint_callsite_level_negative_scan.py` — NEW (3 tests: exactly-one-instantiation · exactly-one-dispatch · no-AST-reference-outside-chokepoint).
+* `backend/services/synisense/shield/llm_router.py` — surgical excision of 3 dead-code lines; file remains HARVESTED-BUT-DEAD; `_EMERGENT_AVAILABLE=False` refuse path unchanged.
+* `backend/tests/invariants/baseline_failures.json` — `counts_at_baseline.passed` 4997 → 5000 + `passed_floor` 4997 → 5000 + ratchet_history entry #225.
+
+### SO §3.8 discipline
+
+Dead-code excision aligned with a landing negative-scan gate is housekeeping under SO §7 R-4 · not refactor of live/sealed code · `llm_router.py` was not sealed against edits (was edited in W5 CP2 2026-08-25) · zero functional change (call path was already refused via `_EMERGENT_AVAILABLE=False`).
+
+### Sweeps
+
+* Post-fix delta GUARD=0: `phase0/drill_receipts/20260918T163000Z_cp_m12_w1a_negscan_delta_GUARD0.log` — 5000/1/1.
+* Pre-Commit-A GUARD=1: `phase0/drill_receipts/20260918T163500Z_cp_m12_w1a_neg_scan_open_pre_commitA_GUARD1_FULL_SWEEP.log` — 5000/1/1. **Byte-match with new floor 5000.**
+
+### Consequential-fork check for M12 stop conditions
+
+Owner stop condition #1: `any design in which a second path can reach the external model client`. This landing REDUCES that surface (excises 3 dead-code shims). No new second paths introduced. **Fail-closed protocol not triggered.**
+
+**Commit-B state + Commit-C fixup follow this-turn. Substantive M12 items (DAP-7 custody · closed outbound · SEC-1 · D-17 · D-16 · TCB golden-input) open next as their own RED-first cycles.**
+
+---
+
+## CP-M12-W1a-NEG-SCAN-OPEN · Commit-B SHA banking (Commit-C fixup) · 2026-09-18T~16:40Z
+
+**Commit-B state master:** `9a888ea20bfd55b8a74d87f5d9335d3f9becb537` (short `9a888ea2`).
+
+**§3.3 3-commit seal complete:** Commit-A track-a `cff65be3` · Commit-B state `9a888ea2` · Commit-C this fixup.
+
+**M12 wave-opener sealed.** Call-site-level negative-scan for LLM chokepoint sealed (Canon 3 §13/§18 A5.1). Ratchet 4997 → 5000 (+3 measured · AUTHENTIC RED-first cycle captured). Fork banked at `notes/M12_W1_FORK_20260918_first_red_interpretation.md` with three interpretations of "first RED" — DEFAULT-class Reading A + B applied; Reading C (Watch input-seat gate) left for owner review as distinct wave-opener.
+
+---
+
+## CP-M12-W1b-SEC1-INTEGRITY · Commit-A banking · 2026-09-18T~16:55Z
+
+**Commit-A code track:** `0ccedd358d4f2014bf92f6bde6fd545538be93aa` (short `0ccedd35`).
+
+**Wave**: M12-W1b · SEC-1 crossing-policy integrity gate. Owner directive: `Crossing policy integrity-verified at load (SEC-1); an unverifiable policy is a closed gate (FP-1, FP-2).`
+
+**Delta:** 5000 → 5013 = **+13 exactly matching 13 new tests** (1 module-contract + 3 parametrized companion-present + 3 parametrized hash-match + 4 refuse-tests + 2 positive load-tests). Zero unexplained.
+
+### Files landed at Commit-A
+
+* `backend/services/chokepoint/policy_integrity.py` — NEW · `PolicyIntegrityRefused(RuntimeError)` closed-gate exception + `verify_policy_integrity(policy_path)` pure check + `load_policy_with_integrity(policy_path)` verify-then-parse. Raises on: policy-missing · companion-.sha256-missing · malformed-sha256 · content-drift. FP-1 fail-closed + FP-2 source-retained-on-abort.
+* `backend/services/chokepoint/llm_endpoint_allowlist.v0.json.sha256` — NEW · `1bd5e0bb…`.
+* `backend/services/chokepoint/masking_tier_allowlist.v0.json.sha256` — NEW · `93adcb50…`.
+* `backend/services/chokepoint/residency_allowlist.v0.json.sha256` — NEW · `6412c5b0…`.
+* `backend/tests/invariants/test_m12_w1b_sec1_policy_integrity.py` — 13 tests.
+
+### Scope note (M12-W1c backlog carried forward)
+
+**Build-time gate only this-turn.** Runtime wire-in (calling `load_policy_with_integrity` from `_load_allowlist()` in `llm_endpoint_allowlist.py` + `masking_tier.py` + `residency.py` at import time) is deferred to **M12-W1c** as its own RED-first cycle — runtime change touches 3 modules with 2+ existing test files referencing them; needs its own test-first cycle to avoid regression. The build-time gate closes the drift-detection surface: any future edit to a policy JSON without updating its companion `.sha256` fires `test_every_crossing_policy_companion_hash_matches_content` on the next sweep.
+
+### ORCH_BOOT housekeeping fix
+
+The CP-R19-MIRROR-EQUALITY Commit-C fixup had left a duplicate `ratchet:` YAML block (only the header was updated; the duplicate at the lower position happened to carry the same 5000 value so didn't fire `test_orch_boot`). When M12-W1b advanced the top ratchet to 5013, the duplicate broke YAML idempotence. **Fix**: removed the duplicate; single `ratchet:` block on disk now.
+
+### Sweeps
+
+* Post-fix GUARD=0: `phase0/drill_receipts/20260918T164800Z_cp_m12_w1b_sec1_integrity_delta_GUARD0.log` — 5013/1/1.
+* Pre-Commit-A GUARD=1: `phase0/drill_receipts/20260918T165500Z_cp_m12_w1b_sec1_integrity_pre_commitA_GUARD1_FULL_SWEEP.log` — 5013/1/1. **Byte-match with new floor 5013.**
+
+### Consequential-fork check for M12 stop conditions
+
+- Stop #1 (any design in which a second path can reach external model client): NOT triggered · policy_integrity is a build-time verifier, not a client caller.
+- Stop #2 (any verifier sharing credential with writer): NOT triggered · no credential change.
+
+**Commit-B state + Commit-C fixup follow this-turn.**
+
+---
+
+## CP-M12-W1b-SEC1-INTEGRITY · Commit-B SHA banking (Commit-C fixup) · 2026-09-18T~17:00Z
+
+**Commit-B state master:** `c3416bc5ddfd503c30a9da0e0b70f5f250c35e8e` (short `c3416bc5`).
+
+**§3.3 3-commit seal complete:** Commit-A track-a `0ccedd35` · Commit-B state `c3416bc5` · Commit-C this fixup.
+
+**SEC-1 gate sealed at build-time.** Runtime wire-in on M12-W1c backlog.
+
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 

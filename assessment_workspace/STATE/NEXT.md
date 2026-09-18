@@ -1850,31 +1850,118 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 ### Ratchet at seal
 
-**4993** — M10 close · +26 from 4967 empirical measured · line-by-line reconciled (24 M10 targeted + 1 companion frozen + 1 auto-parametrized wizard shape-stability).
+**5013** — CP-M12-W1b-SEC1-INTEGRITY close · +46 across the session (4967 → 5013). Every delta line-by-line reconciled.
 
-### Next-in-flight per owner directive "resume G5 slice 5 and continue the run order" · 2026-09-18T~15:00Z verbatim
+### Sequence completed this-session
 
-**G5 slice 5** — resume atomic-rule → registry mapping (380 / 1096 mapped). Interleave-between-waves discipline held.
+- ✅ CP-M10-CLOSE (M10 milestone) — `db8c157` / `a5bf3135` / `95136b37` · ratchet 4967 → 4993 (+26)
+- ✅ G5 slice 5 (+80 mappings · 460/1096) — `2f17b875`
+- ✅ Owner ruling bank (R-19..R-24) — `b9546659`
+- ✅ CP-R19-MIRROR-EQUALITY (paired dataclass↔pydantic parity) — `c417483c` / `209e94b6` / `44b06f58` · ratchet 4993 → 4997 (+4)
+- ✅ CP-M12-W1a-NEG-SCAN-OPEN (M12 wave-opener + Reading C fork bank) — `cff65be3` / `9a888ea2` / `d6f986f1` · ratchet 4997 → 5000 (+3)
+- ✅ CP-M12-W1b-SEC1-INTEGRITY (build-time policy integrity + ORCH_BOOT housekeeping fix) — `0ccedd35` / `c3416bc5` / `132195be` · ratchet 5000 → 5013 (+13)
 
-**Staleness re-scope APPLY-ON-EXPIRY** — owner correction verbatim: "the counter-sign was APPLY-ON-EXPIRY at the ordinary 48h tier. Countdown expires ~2026-09-20T11:35Z. It has NOT expired. Do not apply early — early apply breaks the ceremony the counter-sign was given against. The one-time on-host GPU journal pull belongs inside that apply step, so it waits too." → held on the needs-to-close list; applies at expiry if run still active, else goes on needs-to-close list.
+### Held for owner disposition (banked forks)
 
-**M12 · M12b · M13 sub-waves · M14 ∥ M15** — next autonomous milestones per owner anchor plan; opens on M10 close (this-turn) subject to interleaving G5 slices between waves.
+**M12-W1a Reading C** (`notes/M12_W1_FORK_20260918_first_red_interpretation.md`) — Watch input-seat gate per Canon 3 §13.1 · was one of three interpretations of "first RED" · DEFAULT-class applied Reading A + B · Reading C flagged as consequential-adjacent because Watch input-seat is a substantive distinct module build.
+
+**M12-W1d Options A/B/C** (`notes/M12_W1d_DAP7_WIRE_IN_FORK_20260918.md`) — DAP-7 custody wire-in into `invoke()` · signature-change surface + 9 downstream call-sites + Watch input-seat interaction · DEFAULT-class recommendation Option B (Optional `tenant_id` + `dap7_bypass="llm.connect_verify"` escape hatch) · CONSEQUENTIAL-ADJACENT because the bypass surface is an owner-visible design choice. NOT AUTO-EXECUTED this-session — banked for owner disposition.
+
+### M12 backlog carried forward (not opened this-session)
+
+- **M12-W1c**: SEC-1 runtime wire-in — call `load_policy_with_integrity` from `_load_allowlist()` in `llm_endpoint_allowlist.py` + `masking_tier.py` + `residency.py` at import time · own RED-first cycle.
+- **M12-W1d**: DAP-7 custody wire-in (holds on Option B ratification).
+- **M12-W1e**: Per-caller migration of 8 live call-sites to pass tenant_id.
+- **M12-W1f**: Watch input-seat scoring logic (Document 8 hostility + provenance).
+- **M12-W1g**: Closed outbound network (extend allowlist strictness).
+- **M12-W1h**: D-17 inner perimeter + D-16 local-first cascade.
+- **M12-W1i**: TCB golden-input byte-identical tests (B.8).
+
+### M10 backlog carried forward (Milestone 2 not opened this-session per run order sequencing: M12-W1 closes first, then M10-W2/W3)
+
+- **M10-W2**: Cadence scheduler (nightly + on-demand `verify_chain`).
+- **M10-W2**: Verifier receipt store under credentials writer does NOT hold (C3 credential-separation).
+- **M10-W2**: Tenant receipt endpoint publication of head hash per B.4.
+- **M10-W2**: SEV-1 wire on chain break (security-group page + Watch signal).
+- **M10-W4**: Writer consolidation review drafts (order: refusal → countersign → northena → deletion → memory).
+
+### Awaiting owner disposition to resume
+
+Next-session opens at any of:
+- Owner rules on M12-W1d Option A/B/C (or override) → open W1d.
+- Owner rules on Reading C (Watch input-seat) → open W1f then W1d.
+- Owner steers to M10-W2/W3 first (Milestone 2 half of run order).
+- Owner steers to M10-W4 writer-review drafting (notes-only in parallel).
+- Owner steers to G5 slice 6.
 
 ### Standing bounds unchanged
 
 - §3.3 seals · zero push · terminal pytest only · no testing_agent · additive-only · T-c α · SEC-2026-09-12-01 HF hold.
-- **Pre-seal standard in force**: full `BASELINE_GUARD=1` sweep before any §3.3 seal that banks rulings.
-- **Modified stop discipline in force** (EXTENDED AUTOPILOT): non-consequential forks → take own DEFAULT-class recommendation and continue; consequential forks → stop and hold.
-- **Empirical measurement discipline**: no predicted floor written into seals; measure and reconcile line-by-line; unexplainable delta = fork.
+- Pre-seal standard in force: full `BASELINE_GUARD=1` sweep before any §3.3 seal.
+- No silent rebaselining (empirical measurement · line-by-line reconciliation · then bump).
+- SO §3.3, §3.8, §3.10 as amended; §4 zero push; §4.1 §E; T-c (α).
+- Stop conditions #1 (second path to external model client) and #2 (verifier sharing credential with writer) — neither triggered this-session.
 
-### SHAs banked at Commit-C fixup below
+### Staleness re-scope in motion
 
-- Commit-A (code · `programme/track-a`) — this-turn — **`db8c15765198bd1487bf7865d5ef7d029fe35a62`** (short `db8c157`) — M10 in full · The Ledger · consolidated close · 26 new invariants · ratchet 4967 → 4993.
-- Commit-B (state · `master`) — this-turn — banks Commit-A `db8c157` + updated NEXT.md + DECISIONS.md CP-M10-CLOSE banking + ORCH_BOOT.md ratchet block (SHA `fd707bea…` + floor 4993) — SHA banked at Commit-C fixup below.
-- Commit-C (state · `master`) — this-turn — self-banks own SHA + banks Commit-B SHA + advances ORCH_BOOT.md heads_last_sealed + byte-identical audit copy.
+APPLY-ON-EXPIRY at **2026-09-20T11:35Z** (48h ordinary tier). Not expired this-session. GPU journal pull waits inside the apply step per owner correction. Runs when session is active at expiry, else goes on the needs-to-close list.
 
 
-**Commit-B SHA banked at Commit-C fixup this-turn (CP-M10-CLOSE):** `a5bf3135675f506434e72c2db9663b9327e6e6a0` (short `a5bf3135`) — MILESTONE 2 · M10 in full · The Ledger · consolidated hash-chained single-writer + independent verifier close · state-master seal.
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+### Next-in-flight per OWNER RULINGS + NEW RUN ORDER (banked verbatim in DECISIONS.md) · 2026-09-18T~15:30Z · MILESTONE-BOXED not TIME-BOXED
+
+**Standing authority window**: through M12-W1 + G5 slices under R-18 authority · same bounds and stop conditions as extended run order.
+
+**Step 1 (small preceding landing)**: Paired mirror-equality test attaching to CP-M10-CLOSE's dataclass↔pydantic-mirror mechanism per Ruling 1 attached test. T-b enum-pattern mechanism applied. +1 ratchet reconciled.
+
+**MILESTONE 1 · M12 chokepoint wiring in full** — SyniSense's crossing built as canon specifies · tests-first · TCB · golden-input byte-identical (B.8):
+1. RED-first negative-scan build test: exactly ONE function may invoke external model client · build fails if second path exists (A5.1). **Nothing else lands before this test exists and is RED.**
+2. Custody sequence per DAP-7: party's query enters · de-identification at crossing · re-identification only inside · no code path by which estate data leaves under a query.
+3. Closed outbound network · allow-list · no route to unlisted destination.
+4. Crossing policy integrity-verified at load (SEC-1) · unverifiable policy = closed gate (FP-1, FP-2).
+5. Frontier reachable only through inner perimeter under D-17 · local-first cascade per D-16.
+6. Seal on full pre-seal sweep · byte-match.
+
+**MILESTONE 2 · M10-W2/W3 operational wire** — Ledger's sealed chain becomes independently verified in operation per B-M10-Q2 ruling:
+1. Verifier runs under credentials the Ledger writer does NOT hold · writes receipts to own append-only store · publishes head hash to tenant receipt endpoint.
+2. Cadence: nightly per tenant + on demand.
+3. SEV-1 on chain break · pages security group per B.10 · records Watch signal (evidence never action).
+4. Tests-first: deliberately broken chain → SEV-1 + signal · verifier sharing any credential with writer → test fails.
+
+**In parallel notes-only:**
+* **G5 slices** continue (460 of 1096 · 636 remaining).
+* **M10-W4 per-writer review drafts** in ruled order · refusal → countersign → northena → deletion → memory.
+* Writer-by-writer consolidation MAY proceed under standing authority ONLY where replay test proves preservation (row-hash-for-row-hash · zero rows lost · refusal parity held) · any writer where semantics replay cannot preserve = fork banked with options + recommendation · not resolved.
+
+**Already in motion**: Staleness re-scope applies on countdown expiry `2026-09-20T11:35Z` + one-time on-host GPU journal pull inside apply step · re-run sweep post-apply.
+
+### Absolute stop conditions this run order (R-24)
+
+1. Any design in which a **second path can reach the external model client**.
+2. Any verifier that shares **any credential with the writer**.
+
+Fail closed on item · bank fork with options + recommendation · continue on next item · **do NOT wait · do NOT resolve alone**.
+
+### Not in scope
+
+* M12b-W1 (waits for M10-W4 landing · certificate rows go on the one chain).
+* Memory-layer build.
+* HF waves (HF hold stays on any wave touching HF · SEC-2026-09-12-01).
+* Frontends.
+
+### Reporting cadence per owner directive
+
+* One short report at each milestone seal (SHAs · ratchet pre/post · byte-match · G5 count · forks banked).
+* Full four-part report on completion.
+* Hold at seal boundary for next order.
+
+### Standing bounds unchanged
+
+- §3.3 seals · zero push · terminal pytest only · no testing_agent · additive-only · T-c α · SEC-2026-09-12-01 HF hold.
+- Pre-seal standard in force: full `BASELINE_GUARD=1` sweep before any §3.3 seal.
+- No silent rebaselining (empirical measurement · line-by-line reconciliation · then bump).
+- SO §3.3, §3.8, §3.10 as amended; §4 zero push; §4.1 §E; T-c (α).
 
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
