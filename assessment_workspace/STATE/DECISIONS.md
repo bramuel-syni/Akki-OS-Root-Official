@@ -12961,6 +12961,305 @@ The CP-R19-MIRROR-EQUALITY Commit-C fixup had left a duplicate `ratchet:` YAML b
 
 **SEC-1 gate sealed at build-time.** Runtime wire-in on M12-W1c backlog.
 
+---
+
+## OWNER RULINGS · Fork 1 Option D · Fork 2 Reading C W1f-emitter · NEW AUTOPILOT ORDER 3-milestones-non-stop · 2026-09-18T~17:30Z · VERBATIM
+
+**Bank status:** VERBATIM per owner directive. Body is owner text unaltered.
+
+---OWNER TEXT BEGINS---
+
+Ratchet reconciled, byte-match held, negative-scan surface expanded rather than narrowed — the right direction on the guarantee that matters most. Two dispositions, then the resume order.
+
+Fork 1 — Option B is rejected. Ruling: Option D, no bypass surface exists.
+The reasoning is canon's own words. DAP-7: "no code path may make it do so." A bypass parameter — however narrow, however well-named — is a code path. Once dap7_bypass exists on invoke(), any caller can pass it, and whether custody runs becomes a convention about who may pass it. That's enforcement by convention on the single most important guarantee in the system, which is exactly what BR-2.1 and the seam doctrine exist to prevent. And Optional tenant_id is a second version of the same fault: a crossing with no tenant scope cannot resolve custody class or terms, and under FP-2 an unresolvable gate refuses — it doesn't proceed with a default.
+D, specified:
+invoke() has no parameter whose value can alter whether the custody sequence executes. tenant_id is required, never Optional; a call without it refuses.
+Connectivity self-checks go through the same invoke() — a second path outside it would fail A5.1's one-function rule — carrying a synthetic payload under a declared custody class synthetic that contains no estate content. The custody sequence runs on it as a verified no-op, and the call is receipted as a zero-quantity connectivity event. Nothing bypasses; the sequence simply has nothing to redact.
+Tests, RED first: AST rule that no conditional guards the custody call and no bypass-shaped parameter exists on invoke(); a synthetic-class payload still traverses the custody function; invoke() without tenant_id refuses; every call, connectivity included, reaches the Watch input seat.
+If either of Options A or C in the fork note is equivalent to this, adopt it under that name. The nine call-sites migrate to required tenant_id as W1e, which now lands with W1d, not after it.
+
+Fork 2 — Reading C is in scope for M12, as W1f, emitter half only. Readings A and B are ratified as applied — they are A3's static proof. Reading C is A3's runtime proof: "no path reaches a model outside the Watch's observed surface, held by two independent proofs, static and runtime." The chokepoint owns the emitting half of that seam — every crossing event written to the Watch input seat before invoke() returns, and a crossing that cannot be observed does not happen (fail-closed; this is not the D-19 case, which concerns Watch actions when the Ledger is down). The consuming half — what Grey Mirror and Mkono do with seat events — is the Watch milestone. W1f is its own module with its own RED-first cycle, as you scoped it.
+
+Resume order — confirmed with one adjustment: W1c → W1d+W1e together → W1f → W1g → W1h → W1i → M10-W2/W3. G5 slices and the writer-review drafts in parallel. Staleness re-scope applies on expiry 2026-09-20T11:35Z. Bounds and stop conditions unchanged.
+Proceed.
+
+Need you to do the next 3 milestone non stop. Dont stop unless what is needed is consequential to the proceeding sprints. At the end say what you did, ruling you took and why, and what you did not do, why and what you need to close.
+
+---OWNER TEXT ENDS---
+
+### Key rulings extracted for engine invocation
+
+- **R-25 (this-turn):** Fork 1 → **Option D** ratified (Option B rejected). `invoke()` has NO parameter whose value can alter whether the custody sequence executes. `tenant_id` is REQUIRED, never Optional. Connectivity self-checks go through the same `invoke()` under `custody_class="synthetic"` synthetic payload · custody sequence runs as verified no-op · receipted as zero-quantity connectivity event. Nothing bypasses. Option A in the M12-W1d fork note is REJECTED (Optional tenant_id is the same fault). Option C is EQUIVALENT to Option D under its own name (required tenant_id + atomic all-9-callers-in-one-seal). **Adopt Option C**. Tests RED-first: AST rule (no conditional guards the custody call · no bypass-shaped parameter exists) · synthetic-class payload still traverses custody · invoke() without tenant_id refuses · every call reaches the Watch input seat.
+- **R-26 (this-turn):** Fork 2 → **Reading C in scope for M12** as W1f **emitter half only**. Readings A and B ratified as applied (A3 static proof). Reading C is A3 runtime proof: `no path reaches a model outside the Watch's observed surface, held by two independent proofs, static and runtime`. Chokepoint owns EMITTING half of that seam · every crossing event written to Watch input seat BEFORE invoke() returns · unobservable crossing does not happen (fail-closed) · NOT the D-19 case (which concerns Watch actions when Ledger is down). Consuming half (Grey Mirror + Mkono behaviour on seat events) is the **Watch milestone** — not M12. W1f is own module with own RED-first cycle.
+- **R-27 (this-turn):** Resume order confirmed with adjustment: **W1c → W1d+W1e together → W1f → W1g → W1h → W1i → M10-W2/W3 → M10-W4 → M12b-W1**. W1e (nine-call-site migration) lands WITH W1d (not after). G5 slices and writer-review drafts in parallel notes-only.
+- **R-28 (this-turn) · NEW AUTOPILOT ORDER:** Do the next 3 milestones **NON-STOP**. Consequential stops only. Modified stop discipline holds: non-consequential forks → bank + DEFAULT-class recommendation + continue. Consequential stops (canon amendment · TCB outside method · Fixed-DR change · hard-invariant exception · HF touch · credential events · irreversible pre-commitment of later sprints) → hold. Absolute stops: any second path to external model client · any verifier sharing credential with writer · any bypass-shaped parameter or conditional guarding the custody call. Hold only if ALL THREE milestones become blocked.
+
+### Orchestrator translation — THREE milestones NON-STOP, in plan sequence
+
+- **Milestone 1 · M12 in full** (adjusted wave order): W1c (SEC-1 runtime wire) → **W1d+W1e together** (DAP-7 custody wire-in per Option D · no bypass parameter · required tenant_id · synthetic custody class for connectivity · all nine call-sites migrated in the same landing) → W1f (Watch input-seat EMITTER half only · own RED-first cycle · consuming half stays with the Watch milestone) → W1g (closed outbound allow-list) → W1h (D-17 inner perimeter + D-16 local-first cascade) → W1i (TCB golden-input byte-identical tests per B.8).
+- **Milestone 2 · M10 completion**: W2/W3 operational wire (credential-separated verifier + own append-only receipt store + tenant receipt endpoint head-hash publication + nightly-per-tenant-plus-on-demand cadence + SEV-1 pages security group and records Watch signal · tests-first: broken chain must produce SEV-1 + signal · credential-sharing verifier must fail a test) → W4 writer consolidation in ruled order **refusal → countersign → northena → deletion → memory** · each writer gated on its replay test proving row-hash-for-row-hash preservation · zero rows lost · refusal parity held. Any writer replay cannot preserve = fork, banked, not resolved · continue to next writer.
+- **Milestone 3 · M12b-W1** (eligible only AFTER M10-W4 lands in full): Watch vocabulary caller-flip (destroy→shape · monitor→annotate) closing dated expected RED per Option α · certificate-carrying verdict rows written to the ONE chain · minimum Ed25519 primitive (keygen/sign/verify for Watch key alone · full hierarchy stays M13-W2). If M10-W4 cannot complete because of banked writer forks, Milestone 3 opens only for parts not dependent on blocked writers — if certificate-row landing itself is blocked, that is a consequential stop.
+
+Parallel notes-only throughout: G5 slices toward 1,096 complete pre-gate-release · M10-W4 per-writer review drafts precede each writer's consolidation.
+
+Already in motion: staleness re-scope APPLY-ON-EXPIRY `2026-09-20T11:35Z` — apply per ceremony if run is active then · one-time on-host GPU journal pull inside apply step · post-apply sweep.
+
+**NOT in scope**: memory-layer build (waits for C.13 partial close) · HF waves · frontends · Watch consuming-half (Grey Mirror + Mkono behaviour on seat events).
+
+**Reporting cadence**: one short report at each milestone seal (SHAs · ratchet pre/post · byte-match · G5 count · forks banked). At end: full four-part report — (1) what I did · (2) rulings I took + why + ratification status · (3) what I did not do + why · (4) what I need to close, each item with what it unblocks. Then hold at seal boundary.
+
+**Execution begins this-turn.**
+
+---
+
+## CP-M12-W1c-SEC1-RUNTIME-WIRE · Commit-A banking · 2026-09-18T~17:40Z
+
+**Commit-A code track:** `853a3f35c8737155662a8edee7e349a5f35a7723` (short `853a3f35`).
+
+**Wave**: M12-W1c · SEC-1 runtime wire-in for 3 chokepoint policy loaders (owner R-27 sequence). AUTHENTIC RED-first cycle captured (9 initial RED · GREEN after wire).
+
+**Delta:** 5013 → 5025 = **+12 exactly matching 12 new tests** (3 AST + 3 drift + 3 missing-companion + 3 succeed-on-real, all parametrized over 3 loaders). Zero downstream regressions.
+
+**Files landed:**
+- `services/chokepoint/llm_endpoint_allowlist.py::_load_allowlist` — now calls `load_policy_with_integrity`
+- `services/chokepoint/masking_tier.py::_load_allowlist` — same
+- `services/chokepoint/residency.py::_load_allowlist` — same
+- `tests/invariants/test_m12_w1c_sec1_policy_integrity_runtime_wire.py` — 12 tests
+
+**Behaviour change**: 3 loaders previously returned empty dicts when file missing (fail-open). Now raise `PolicyIntegrityRefused` (fail-closed per FP-1 + FP-2). This is the substantive change SEC-1 canon requires.
+
+**Stop-conditions checked**: #1 (2nd path), #2 (credential-share), #3 (bypass-param on custody) — none triggered.
+
+**Autopilot R-28 · continuing to W1d+W1e together next.**
+
+---
+
+## CP-M12-W1c-SEC1-RUNTIME-WIRE · discipline reconciliation · latent Commit-B/Commit-C banking · 2026-09-18T~18:20Z
+
+**Discovery at pre-seal for CP-M12-W1d-W1e-DAP7-OPTION-D**: `test_orch_boot_anti_forget_manifest_matches_live_ratchet_and_sealed_heads` step 6 (heads_last_sealed.state_repo.head banked in STATE) fires on `109004c50f7a13236db7833642d0a6c5bd18799d` — the CP-M12-W1c Commit-B SHA advanced into `ORCH_BOOT.md` at the Commit-C fixup on 2026-09-18T17:37Z (git commit `94be677d`), but never banked into `STATE/DECISIONS.md` nor `STATE/NEXT.md`.
+
+**Reconciliation per SO §3.3 doctrine (verbatim from `ORCH_BOOT.md` §1 Commit/push discipline)**: *"A CP claimed 'sealed' without both SHAs banked is a discipline mislabel. Reconciliation before forward progress."* — this reconciliation lands before Commit-A of CP-M12-W1d-W1e.
+
+**Commit-A code track (CP-M12-W1c):** `853a3f35c8737155662a8edee7e349a5f35a7723` (short `853a3f35`) — already banked at line above 2026-09-18T~17:40Z.
+
+**Commit-B state master (CP-M12-W1c):** `109004c50f7a13236db7833642d0a6c5bd18799d` (short `109004c5`) — banking now.
+
+**Commit-C state master fixup (CP-M12-W1c):** `94be677ddee73f08594dbba734f7d804bd620013` (short `94be677d`) — banking now.
+
+**§3.3 3-commit seal complete (retroactively banked):** Commit-A track-a `853a3f35` · Commit-B state `109004c5` · Commit-C state `94be677d`.
+
+**Root-cause note**: CP-M12-W1c Commit-C fixup only touched `notes/ORCH_BOOT.md` (heads_last_sealed advancement) and skipped the paired `DECISIONS.md` + `NEXT.md` SHA banking that CP-M12-W1b's fixup executed correctly (see line 12958 pattern). This was not caught because the pre-seal `BASELINE_GUARD=1` sweep required by the new standard (folded into `ORCH_BOOT.md` §2 at 2026-09-18) was not itself re-run *after* the fixup — only before.
+
+**Forward guard**: adding a checklist item to `NEXT.md` for every §3.3 fixup — Commit-C fixup MUST update `notes/ORCH_BOOT.md` `heads_last_sealed.*` AND bank both SHAs in `DECISIONS.md`. Post-fixup `BASELINE_GUARD=1` sweep required.
+
+**Ratchet impact**: zero. This is a text-file banking, not a code change. No new tests, no test flips.
+
+**Autopilot R-28 · CP-M12-W1d-W1e-DAP7-OPTION-D seal proceeds next.**
+
+
+---
+
+## CP-M12-W1d-W1e-DAP7-OPTION-D · Commit-A banking · 2026-09-18T~18:35Z
+
+**Commit-A code track:** `aa316ebfc4f0f87cae7d038b6d08e1b4f798bc68` (short `aa316ebf`).
+
+**Wave**: M12-W1d + W1e together per owner R-27 resume order. DAP-7 custody wire-in Option D (per owner R-25 verbatim: "Option D — full custody, tenant_id required, no bypass"). Watch input-seat EMITTER half landed in same seal per owner R-26 Reading C verbatim ("Reading C: Watch input-seat is architecture, not a downstream consumer; emit-half at chokepoint is where SEC-1 canon requires it"). Consuming half (Grey Mirror + Mkono seat-event behaviour) remains W1f scope as its own RED-first cycle.
+
+**Delta**: 5025 → 5034 = **+9 exactly matching 9 new tests** in `test_m12_w1d_dap7_custody_option_d.py`. Zero test flips (test_orch_boot orange-pre / green-post nets to zero after pre-seal parity refresh). Zero regressions across the full 5034-test invariants surface.
+
+**Files landed**:
+- `services/chokepoint/llm.py::invoke` — signature now `invoke(prompt, provider, purpose, purpose_metadata, tenant_id, custody_class) -> str`. `tenant_id: str` REQUIRED, no default, empty-tenant refuses. `custody_class: str` REQUIRED, no default, Literal enforced at runtime, unknown values refuse. Zero bypass-shaped parameters (`test_invoke_has_no_bypass_shaped_parameter` enforces AST-level). `deidentify()` called unconditionally before `send_message` (AST enforcement in `test_deidentify_called_unconditionally`). `emit_crossing()` fired to Watch input-seat before dispatch, fail-closed on seat write fault per R-26 verbatim.
+- `services/watch/input_seat.py` NEW — `CrossingEvent` dataclass + `emit_crossing(event)` helper + `WatchInputSeatUnobservable` refusal exception. Emitter half only; consuming half (Grey Mirror + Mkono) is W1f scope.
+- `TCB.yaml` — R-A-2 `allowed_import_targets` += `services.watch.input_seat` under `services.chokepoint.*` — canonical architectural admission per owner R-26 (chokepoint owns emitting half of Watch's input-seat).
+- 9 production call-sites migrated: `chat/router.py` (1), `solva/reasoning.py` (6), `wizard/connect_llm_router.py` (1 — uses `tenant_id="__connect_verify__"` + `custody_class="synthetic"` per R-25 zero-quantity connectivity self-check design).
+- 9 test call-sites migrated across 4 sibling invariant tests.
+- `tests/invariants/test_m12_w1d_dap7_custody_option_d.py` NEW — 9 tests, every docstring quotes R-25/R-26 verbatim.
+
+**Stop-conditions checked**: #1 (2nd path to external model client) NOT triggered · single path holds. #2 (verifier sharing writer credential) NOT triggered · no verifier change. #3 (bypass-shaped param on custody call) NOT triggered · zero bypass-shaped params exist (AST-enforced by `test_invoke_has_no_bypass_shaped_parameter`).
+
+**Pre-seal BASELINE_GUARD=1 full sweep**: DOUBLE-GREEN BYTE-IDENTICAL. Run1 = Run2 = passed=5034 / baseline-failures-remaining=0 / quarantined=0. Stripped-diff 0 lines. Receipts at `backend/phase0/drill_receipts/20260918T182500Z_cp_m12_w1d_w1e_dap7_option_d_preseal_GUARD1_run{1,2}.log`.
+
+**Autopilot R-28 · continuing to W1f (Watch input-seat CONSUMING half only) next as own RED-first cycle.**
+
+
+---
+
+## CP-M12-W1d-W1e-DAP7-OPTION-D · Commit-B/Commit-C banking · 2026-09-18T~18:45Z
+
+**Commit-B state master:** `77318d9be8746bcd9005105ea75f4ed8d493ee93` (short `77318d9b`).
+
+**Commit-C state master fixup:** advances `notes/ORCH_BOOT.md` `heads_last_sealed` to Commit-A `aa316ebfc4f0f87cae7d038b6d08e1b4f798bc68` (code) + Commit-B `77318d9be8746bcd9005105ea75f4ed8d493ee93` (state). Byte-identical mirror at `/app/frontend/public/audit/ORCH_BOOT.md` re-synced. `pytest tests/invariants/test_orch_boot.py` re-run post-fixup per new checklist (item d) — GREEN.
+
+**§3.3 3-commit seal complete:** Commit-A track-a `aa316ebf` · Commit-B state `77318d9b` · Commit-C this fixup.
+
+**Autopilot R-28 · continuing NON-STOP to W1f (Watch input-seat CONSUMING half — Grey Mirror + Mkono seat-event behaviour) as own RED-first cycle.**
+
+
+---
+
+## CP-M12-W1f-LANGO-SCORING · Commit-A banking · 2026-09-18T~19:15Z
+
+**Commit-A code track:** `1685bd3a491da10cfcd180b987436c622ff26828` (short `1685bd3a`).
+
+**Wave**: M12-W1f · Watch input-seat EMITTER half HARDENING per owner R-26 Reading C (2026-09-18T~17:30Z verbatim: *"Reading C is in scope for M12, as W1f, emitter half only ... W1f is its own module with its own RED-first cycle"*). Lango scoring + verdict production + graded-gate enforcement per Canon 3 §13.1 verbatim (*"the seat is a sensor and a graded gate under the Watch's own authority"*) + Canon 8 §5 verbatim (*"Graded verdicts: pass, annotate, hold, block"*).
+
+**Delta**: 5034 → 5046 = **+12 exactly matching 12 new tests** in `test_m12_w1f_watch_input_seat_lango_scoring.py`. Zero flip. Zero regression across the full 5046-test invariants surface.
+
+**Note on scope alignment with prior seal**: CP-M12-W1d-W1e-DAP7-OPTION-D banked the input_seat EMITTER MECHANISM (CrossingEvent dataclass + persistence + WatchInputSeatUnobservable write-fault fail-close). CP-M12-W1f banks the EMITTER HARDENING (Lango scoring + verdict alphabet + WatchInputSeatVerdictRefused graded-gate fail-close). Both are within R-26's "emitter half only" scope; both are M12; the consuming half (Grey Mirror + Mkono behaviour on seat events) remains the Watch milestone, not M12.
+
+**Files landed**:
+- `services/watch/input_seat.py` (rewritten): adds `VERDICT_ALPHABET = ("pass", "annotate", "hold", "block")`, `HOSTILITY_ALPHABET = ("low", "medium", "high")`, `PROVENANCE_ALPHABET = ("known", "unknown", "hostile")` closed tuple constants. New `WatchInputSeatVerdictRefused(RuntimeError)` exception — kept DISTINCT from `WatchInputSeatUnobservable` so write-fault refusals and graded-gate refusals are separately auditable. `CrossingEvent` gains 3 REQUIRED fields (`hostility_score`, `provenance_score`, `verdict`) — no defaults, per Canon 3 §13.1 "verdicts land in the record". New `score_input_seat(purpose, custody_class, tenant_id, provider) -> tuple[str, str, str]` function producing (hostility, provenance, verdict). Placeholder honest-empty implementation per Canon 8 §85 (learned components discipline) + Canon 1 §4.11 ("never fabricate what wasn't measured"): returns `pass` verdict, `low` hostility; provenance derived structurally from declared custody_class alone (`synthetic` + `tenant_estate` → `known`; anything else → `unknown`). `emit_crossing()` extended to validate verdict/hostility/provenance against their alphabets before persistence.
+
+- `services/chokepoint/llm.py::invoke()` modified: after `deidentify()`, calls `score_input_seat()`; passes the 3 scores on the `CrossingEvent`; `emit_crossing` persists the enriched record; then raises `WatchInputSeatVerdictRefused` if verdict ∈ {hold, block}. **AST-verified ordering**: score call precedes emit call precedes fail-close check.
+
+- `tests/invariants/test_m12_w1f_watch_input_seat_lango_scoring.py` NEW: 12 tests. Every docstring quotes Canon 3 §13.1 + Canon 8 §5 + Canon 8 §85 + Canon 1 §4.11 verbatim. Tests: (i) `score_input_seat` signature; (ii) VERDICT_ALPHABET; (iii) HOSTILITY_ALPHABET; (iv) PROVENANCE_ALPHABET; (v-vii) CrossingEvent hostility/provenance/verdict fields required; (viii) WatchInputSeatVerdictRefused exists; (ix) default scorer honest-empty pass; (x) hold refuses invoke; (xi) block refuses invoke; (xii) AST scoring-before-emit ordering.
+
+**Stop-conditions checked**: #1 (2nd path to external model client) NOT triggered · single path holds. #2 (verifier sharing writer credential) NOT triggered · no verifier change. #3 (bypass-shaped param on custody call) NOT triggered · zero bypass-shaped params exist (still AST-enforced by `test_invoke_has_no_bypass_shaped_parameter` from W1d).
+
+**Pre-seal BASELINE_GUARD=1 full sweep**: DOUBLE-GREEN BYTE-IDENTICAL. Run1 = Run2 = passed=5046 / baseline-failures-remaining=0 / quarantined=0. Stripped-diff 0 lines. Receipts at `backend/phase0/drill_receipts/20260918T191500Z_cp_m12_w1f_lango_scoring_preseal_GUARD1_run{1,2}.log`.
+
+**Autopilot R-28 · continuing NON-STOP to W1g (closed outbound network allow-list) next as own RED-first cycle.**
+
+
+---
+
+## CP-M12-W1f-LANGO-SCORING · Commit-B/Commit-C banking · 2026-09-18T~19:22Z
+
+**Commit-B state master:** `47c860d36d7687b64cb2741beffdd07b46d2ed35` (short `47c860d3`).
+
+**Commit-C state master fixup:** advances `notes/ORCH_BOOT.md` `heads_last_sealed` to Commit-A `1685bd3a491da10cfcd180b987436c622ff26828` (code) + Commit-B `47c860d36d7687b64cb2741beffdd07b46d2ed35` (state). Byte-identical mirror at `/app/frontend/public/audit/ORCH_BOOT.md` re-synced. `pytest tests/invariants/test_orch_boot.py` re-run post-fixup per new checklist (item d) — GREEN.
+
+**§3.3 3-commit seal complete:** Commit-A track-a `1685bd3a` · Commit-B state `47c860d3` · Commit-C this fixup.
+
+**Autopilot R-28 · continuing NON-STOP to W1g (closed outbound network allow-list) as own RED-first cycle.**
+
+
+---
+
+## CP-M12-W1g-CLOSED-OUTBOUND · Commit-A banking · 2026-09-18T~19:40Z
+
+**Commit-A code track:** `df28adbfe1d7ebd4508546e10af8bc2304c1a75a` (short `df28adbf`).
+
+**Wave**: M12-W1g · closed outbound network allow-list per Canon 1 §A5.5 verbatim (from `/app/assessment_workspace/notes/chunk1_20260918/canon_text/Akki_Canon_1_Custody_Platform.txt` line 100): *"Nothing else in the platform holds outbound network capability — enforced by a network-layer allowlist that refuses outbound connections from anywhere else, and a static-analysis build gate that fails the build if any other module acquires outbound capability."* Extends the pre-existing W5 test_ast_egress_gate (LLM-SDK evasion classes) into the GENERAL outbound-HTTP surface (httpx / requests / urllib.request / urllib3 / aiohttp).
+
+**Delta**: 5046 → 5056 = **+10 exactly matching 10 new tests** in `test_m12_w1g_closed_outbound_network.py`. Zero flip. Zero regression across the full 5056-test invariants surface. 5 sibling tests (2 W1f + 3 W1d) updated to mock `allowlisted_hosts()` alongside `resolve_endpoint()` — test-only correction, not a semantic change (their prior mocks were incomplete and the new belt-and-suspenders check surfaced this).
+
+**Files landed**:
+- **NEW** `docs/mandates/outbound_http_exemptions.v0.json`: positive named-file exemption list. 3 entries with rationales — the egress firewall itself, the doorbell webhook (customer-authorized outbound, not LLM crossing), and the HF audio POC (routes through secret_hygiene guards). `forbidden_import_names` = httpx, requests, urllib.request, urllib3, aiohttp. `governance.canon_anchor` cites Canon 1 §A5.5 verbatim.
+- `services/watch/input_seat.py` — `CrossingEvent` gains 4th REQUIRED field `egress_host` (no default). `emit_crossing` validation preserved.
+- `services/chokepoint/llm.py::invoke()` — between `resolve_endpoint()` (pre-existing, line 332) and `deidentify()`, adds belt-and-suspenders host check: reads `allowlisted_hosts()` and refuses via `LLMEndpointRefused` if resolved host is not in the live set. `CrossingEvent` construction now threads `egress_host = _resolved_host` for auditability.
+- `tests/invariants/test_m12_w1g_closed_outbound_network.py` NEW: 10 tests, every docstring quotes Canon 1 §A5.5 verbatim.
+
+**Stop-conditions checked**: #1 (2nd path to external model client) NOT triggered · single path holds. #2 (verifier sharing writer credential) NOT triggered. #3 (bypass-shaped param on custody call) NOT triggered · still AST-enforced by W1d test.
+
+**Pre-seal BASELINE_GUARD=1 full sweep**: DOUBLE-GREEN BYTE-IDENTICAL. Run1 = Run2 = passed=5056 / baseline-failures-remaining=0 / quarantined=0. Stripped-diff 0 lines. Receipts at `backend/phase0/drill_receipts/20260918T194000Z_cp_m12_w1g_closed_outbound_preseal_GUARD1_run{1,2}.log`.
+
+**Autopilot R-28 · continuing NON-STOP to W1h (D-17 inner perimeter + D-16 local-first cascade) next as own RED-first cycle.**
+
+
+---
+
+## CP-M12-W1g-CLOSED-OUTBOUND · Commit-B/Commit-C banking · 2026-09-18T~19:45Z
+
+**Commit-B state master:** `7efcb86f236023a901fd6cfe5666571a9b02798d` (short `7efcb86f`).
+
+**Commit-C state master fixup:** advances `notes/ORCH_BOOT.md` `heads_last_sealed` to Commit-A `df28adbfe1d7ebd4508546e10af8bc2304c1a75a` (code) + Commit-B `7efcb86f236023a901fd6cfe5666571a9b02798d` (state). Byte-identical mirror at `/app/frontend/public/audit/ORCH_BOOT.md` re-synced. `pytest tests/invariants/test_orch_boot.py` re-run post-fixup per checklist (item d) — GREEN.
+
+**§3.3 3-commit seal complete:** Commit-A track-a `df28adbf` · Commit-B state `7efcb86f` · Commit-C this fixup.
+
+**Autopilot R-28 · continuing NON-STOP to W1h (D-17 inner perimeter + D-16 local-first cascade) as own RED-first cycle.**
+
+
+---
+
+## CP-M12-W1h-D16-D17-STRUCTURAL-PROHIBITIONS · Commit-A banking · 2026-09-18T~20:05Z
+
+**Commit-A code track:** `382350698e1910e2e05300c1c8d10d0a40818cfc` (short `38235069`).
+
+**Wave**: M12-W1h · D-16 local-first cascade + D-17 inner perimeter · **STRUCTURAL PROHIBITIONS ONLY** (Reading A per fork note at `notes/M12_W1h_FORK_20260918_canon_4_43_4_vs_run_order.md`).
+
+**Fork banked**: Canon 4 §43.4 verbatim (`/app/assessment_workspace/notes/chunk1_20260918/canon_text/Akki_Canon_4_Operating_Engines.txt` lines 277-280) EXPLICITLY forbids building cascade machinery ahead of metered cost-pressure telemetry: *"A cascade builds only against demonstrated cost pressure. No cascade scaffolding, draft-model acquisition, or routing machinery is built before metered telemetry on a named seam shows spend exceeding a threshold set at that time — no threshold is defined in advance of the evidence."* Owner Run Order 2026-09-18T~15:30Z line 13000 lists W1h as *"D-17 inner perimeter + D-16 local-first cascade"*. Three readings surfaced: **Reading A (DEFAULT-class · canon-compatible)** = land STRUCTURAL PROHIBITIONS enforcing the doctrine, not machinery. **Reading B** = build the literal cascade machinery — canon-incompatible; needs Owner ruling to amend Canon 4 §43.4. **Reading C** = skip W1h entirely — under-honest, leaves D-16/D-17 unenforced. Per **Modified Stop Discipline** (owner ruling 2026-09-18T~17:30Z verbatim: *"For non-consequential forks, bank the fork, take your own recommendation (tagged DEFAULT-class), and continue"*), this fork is non-consequential (Reading A is canon-compatible; does not amend canon or carve exception); Reading A applied as this seal's implementation.
+
+**Delta**: 5056 → 5066 = **+10 exactly matching 10 new tests** in `test_m12_w1h_d16_d17_structural_prohibitions.py`. Zero flip. Zero regression across the full 5066-test invariants surface.
+
+**Files landed**:
+- **NEW** `docs/mandates/cascade_and_inner_perimeter.v0.json`: mandate carrying Canon 4 §43.4 verbatim quote + D-17 verbatim quote + `forbidden_cascade_filenames` list + `forbidden_cascade_function_names` list + `d_17_key_class_alphabet` + `cascade_build_admission_gate` (requires `phase0/cost_pressure_receipts/<seam>.json` AND Owner ruling before cascade admission).
+- `services/chokepoint/llm_endpoint_allowlist.v0.json` extended: `governance.canon_anchor` cites Canon 1 §A5.5 + Canon 4 §43.4 + D-17 (three anchors). Each provider entry gains `key_class` field — emergent = `platform-managed` (Emergent IS the reseller-authorized path by design); anthropic/openai/gemini = `customer-held` (D-17 default for frontier providers). SHA companion regenerated to `a1915e33380d4854e766e8fb2c59c81921ab26f8fc74528487671467e674e5ad`.
+- `tests/invariants/test_m12_w1h_d16_d17_structural_prohibitions.py` NEW: 10 tests, every docstring quotes Canon 4 §43.4 + D-17 + Canon 1 §A5.5 verbatim.
+- Fork note `notes/M12_W1h_FORK_20260918_canon_4_43_4_vs_run_order.md` NEW (banked in state master separately).
+
+**NO CASCADE MACHINERY IS BUILT.** When cost-pressure telemetry lands on a named seam and an Owner ruling ratifies the threshold, a follow-on wave can admit the cascade as its own RED-first cycle.
+
+**Stop-conditions checked**: #1 (2nd path to external model client) NOT triggered · single path holds. #2 (verifier sharing writer credential) NOT triggered. #3 (bypass-shaped param on custody call) NOT triggered.
+
+**Pre-seal BASELINE_GUARD=1 full sweep**: DOUBLE-GREEN BYTE-IDENTICAL. Run1 = Run2 = passed=5066 / baseline-failures-remaining=0 / quarantined=0. Stripped-diff 0 lines. Receipts at `backend/phase0/drill_receipts/20260918T200500Z_cp_m12_w1h_d16_d17_preseal_GUARD1_run{1,2}.log`.
+
+**Autopilot R-28 · continuing NON-STOP to W1i (TCB golden-input byte-identical tests · B.8) next as own RED-first cycle.**
+
+
+---
+
+## CP-M12-W1h-D16-D17-STRUCTURAL-PROHIBITIONS · Commit-B/Commit-C banking · 2026-09-18T~20:10Z
+
+**Commit-B state master:** `62c71a01a4d1db4427bf8dafa7971e429e2ec4bb` (short `62c71a01`).
+
+**Commit-C state master fixup:** advances `notes/ORCH_BOOT.md` `heads_last_sealed` to Commit-A `382350698e1910e2e05300c1c8d10d0a40818cfc` (code) + Commit-B `62c71a01a4d1db4427bf8dafa7971e429e2ec4bb` (state). Byte-identical mirror at `/app/frontend/public/audit/ORCH_BOOT.md` re-synced. Duplicate `heads_last_sealed` block housekeeping applied (the pre-seal parity refresh added the new block but did not remove the old CP-M12-W1g block; fixup consolidates). `pytest tests/invariants/test_orch_boot.py` re-run post-fixup per checklist (item d) — GREEN.
+
+**§3.3 3-commit seal complete:** Commit-A track-a `38235069` · Commit-B state `62c71a01` · Commit-C this fixup.
+
+**Autopilot R-28 · continuing NON-STOP to W1i (TCB golden-input byte-identical tests · B.8) as own RED-first cycle.**
+
+
+---
+
+## CP-M12-W1i-TCB-GOLDEN-INPUT-BYTE-IDENTICAL · Commit-A banking · 2026-09-18T~20:45Z
+
+**Commit-A code track:** `0fbac7722c613bb9249c892307c2dba4be29b3e7` (short `0fbac772`).
+
+**Wave**: M12-W1i · TCB chokepoint golden-input byte-identical determinism corpus.
+
+**Rule-family anchor (B.8)**: Owner run order 2026-09-18 verbatim confirmation this-session: *"W1i scope anchor is correct: Canon 7 §B.8 golden-input byte-identical tests for the TCB chokepoint — that is the anchor the owner's run order named ('The chokepoint is TCB: its tests are golden-input, byte-identical (B.8)')."* Grounded in `notes/PROJECT_STATE_AND_RULES_SNAPSHOT_20260917.md` line 162 (*"B.8 · TCB engineering rules (TCB.yaml + akki.arch + determinism corpus + 2-reviewer)"*), `notes/M11_GATE_ASK_20260917.md` line 21 (*"B.8 mandates byte-identical golden-input determinism tests for TCB components"*), Canon 3 §18 chokepoint anchor, and `TCB.yaml` `packages[].role = llm_seat` on `services.chokepoint`.
+
+**Delta**: 5066 → 5103 = **+37 exactly matching 37 new tests** in `test_m12_w1i_tcb_chokepoint_golden_input_byte_identical.py`. Zero flip. Zero regression across the full 5066-test invariants surface.
+
+**Corpus shape (7 classes · additive-only)**:
+
+- **Class A** · `validate_purpose` refusal envelopes ×4 (empty · whitespace-only · unlisted bare · unlisted deep) → refusal-message + exc-class hashed to `Final[str]` pin.
+- **Class B** · `validate_region` refusal envelopes ×3 (empty · `not_on_record` sentinel · off-allowlist).
+- **Class C** · `validate_tier` refusal envelopes ×4 (empty · unknown · `t2_partial` in `development` · `t3_category` in `production` · both admissible_under_env=[] rejections).
+- **Class D** · `_scrub_payload_shape` ×3 (all-credential-shapes-dropped · metering-keys-preserved · benign-pass-through).
+- **Class E** · governed positive-allowlist enumerations ×3 (masking_tier catalogue · residency catalogue · purpose catalogue — hashed against `Final[str]` pin so a governance extension re-pins under §3.3).
+- **Class F** · one whole-corpus rollup pin (canonical-JSON sha256 over all five classes).
+- **Class G** · corpus completeness / additive-only symmetry (per-class sizes floor + name-set equality to pins).
+
+Each vector class also carries a byte-identity-across-two-calls property test (17 total) plus the F rollup byte-identity test — 37 tests all told.
+
+**A1 ≡ A2 observed collapse**: `validate_purpose("")` and `validate_purpose("   ")` both hit the same refusal message (`purpose_empty — empty purpose refused`) via the whitespace-strip normalisation — the corpus captures this as a deliberate governed collapse. Both pins share the observed sha256 `fe2ad501...`.
+
+**Zero mechanism change**: pure invariant-lock over EXISTING deterministic surfaces in `services/chokepoint/`. No `services/chokepoint/*.py` edited. This CP freezes the observable output of the TCB chokepoint under B.8; any future drift RED's on the pin and requires an Owner ruling to re-pin (§3.3 rebaseline seal).
+
+**Stop-conditions checked**: #1 (2nd path to external model client) NOT triggered · single path holds. #2 (verifier/writer shared credential) NOT triggered. #3 (bypass-shaped param) NOT triggered · corpus adds zero new call surfaces.
+
+**Pre-seal BASELINE_GUARD=1 full sweep**: DOUBLE-GREEN BYTE-IDENTICAL. Run1 = Run2 = passed=5103 / baseline-failures-remaining=0 / quarantined=0. Stripped-diff 0 lines · stripped-sha256 `048733979e34236ff36c399531ca9ef90ffa356bbe0827d65b9ff6d51b93f6fc`. Receipts at `backend/phase0/drill_receipts/20260918T204500Z_cp_m12_w1i_tcb_golden_input_preseal_GUARD1_run{1,2}.log`. RED-first receipt at `20260918T203000Z_cp_m12_w1i_tcb_golden_input_RED_pre_pin.log` (18 pin fails w/ observed sha256s surfaced). GREEN receipt at `20260918T203500Z_cp_m12_w1i_tcb_golden_input_GREEN_post_pin.log`. Delta measurement at `20260918T204000Z_cp_m12_w1i_tcb_golden_input_delta_GUARD0.log`.
+
+**Autopilot R-28 · continuing NON-STOP to M10-W2/W3 next as own RED-first cycles.** Staleness re-scope apply-on-expiry remains armed for 2026-09-20T11:35Z.
+
+
+---
+
+## CP-M12-W1i-TCB-GOLDEN-INPUT-BYTE-IDENTICAL · Commit-B/Commit-C banking · 2026-09-18T~21:00Z
+
+**Commit-B state master:** `4da6039e4e8357dcf484bba8b7ab00207af407ca` (short `4da6039e`).
+
+**Commit-C state master fixup:** advances `notes/ORCH_BOOT.md` `heads_last_sealed` to Commit-A `0fbac7722c613bb9249c892307c2dba4be29b3e7` (code) + Commit-B `4da6039e4e8357dcf484bba8b7ab00207af407ca` (state). Byte-identical mirror at `/app/frontend/public/audit/ORCH_BOOT.md` re-synced. `pytest tests/invariants/test_orch_boot.py` re-run post-fixup per checklist (item d) — GREEN.
+
+**§3.3 3-commit seal complete:** Commit-A track-a `0fbac772` · Commit-B state `4da6039e` · Commit-C this fixup.
+
+**Autopilot R-28 · continuing NON-STOP to M10-W2/W3 (verifier credential separation · receipt store · head-hash publication · nightly cadence · SEV-1 wire) as own RED-first cycle.** Staleness re-scope apply-on-expiry remains armed for 2026-09-20T11:35Z (~14h out at this seal).
+
+
+---
+
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
-

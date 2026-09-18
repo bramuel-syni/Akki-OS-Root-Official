@@ -33,29 +33,29 @@ STATE files, and on any boot ritual that detects drift.
 
 ```yaml
 schema_version: 1
-generated_at_utc: 2026-09-18T17:00:00Z
-generator: main-agent Autopilot (CP-M12-W1b-SEC1-INTEGRITY Commit-C fixup this-turn · R-6 boundary regen · state_repo.head advanced 9a888ea2 → c3416bc5 · code_repo.head advanced cff65be3 → 0ccedd35 · ratchet 5000 → 5013)
-regeneration_reason: r6-boundary-regen-at-cp-m12-w1b-sec1-integrity-commit-c-fixup-state_repo.head-advanced-from-9a888ea2-to-c3416bc5-code_repo.head-advanced-from-cff65be3-to-0ccedd35-ratchet-5000-to-5013
+generated_at_utc: 2026-09-18T21:00:00Z
+generator: main-agent Autopilot (CP-M12-W1i-TCB-GOLDEN-INPUT-BYTE-IDENTICAL Commit-C fixup this-turn · R-6 boundary regen · state_repo.head advanced 62c71a01 → 4da6039e · code_repo.head advanced 38235069 → 0fbac772 · ratchet 5066 → 5103 · TCB chokepoint golden-input byte-identical determinism corpus per B.8)
+regeneration_reason: r6-boundary-regen-at-cp-m12-w1i-tcb-golden-input-byte-identical-commit-c-fixup-state_repo.head-advanced-from-62c71a01-to-4da6039e-code_repo.head-advanced-from-38235069-to-0fbac772-ratchet-5066-to-5103
 
 ratchet:
-  passed_floor: 5013
-  counts_at_baseline_passed: 5013
+  passed_floor: 5103
+  counts_at_baseline_passed: 5103
   baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
-  baseline_failures_sha256: d2eed175bde1be9bfdbdc66c3598aebab5853d618d5e3113a8dd425edabf8606
+  baseline_failures_sha256: 1fa6489e51a0fd8e0d6a2c49036e9fd021895d52bf113d7385a40574a8d38f2f
 
 heads_last_sealed:
   state_repo:
     workdir: /app/assessment_workspace
     branch: master
-    head: c3416bc5ddfd503c30a9da0e0b70f5f250c35e8e
-    sealed_at_utc: 2026-09-18T16:58:00Z
-    seal_kind: "CP-M12-W1b-SEC1-INTEGRITY · state Commit-B `c3416bc5` · banks Commit-A `0ccedd35` for M12-W1b SEC-1 crossing-policy integrity gate (Canon SEC-1 · FP-1 · FP-2 closed gate on unverifiable policy) · ratchet 5000 → 5013 (+13 empirically measured · zero unexplained delta) · ORCH_BOOT duplicate-ratchet-block housekeeping fixed · Commit-C fixup this-turn advances state_repo.head 9a888ea2 → c3416bc5 + byte-identical audit copy · next: M12-W1c runtime wire-in OR other substantive M12 items (DAP-7 custody · closed outbound · D-17 · D-16 · TCB golden-input)"
+    head: 4da6039e4e8357dcf484bba8b7ab00207af407ca
+    sealed_at_utc: 2026-09-18T20:55:00Z
+    seal_kind: "CP-M12-W1i-TCB-GOLDEN-INPUT-BYTE-IDENTICAL · state Commit-B `4da6039e` · banks Commit-A `0fbac772` for M12-W1i (TCB chokepoint golden-input byte-identical determinism corpus per B.8 · Canon 7 §B.8 verbatim owner-quote anchor · 37 tests across 7 classes · zero mechanism change · pure invariant-lock over EXISTING deterministic surfaces) · ratchet 5066 → 5103 (+37 AUTHENTIC RED-first · double-green byte-identical) · autopilot R-28 continues NON-STOP to M10-W2/W3 next"
   code_repo:
     workdir: /app/assessment_workspace/repos/Extraction-Akki
     branch: programme/track-a
-    head: 0ccedd358d4f2014bf92f6bde6fd545538be93aa
-    sealed_at_utc: 2026-09-18T16:56:00Z
-    seal_kind: "CP-M12-W1b-SEC1-INTEGRITY · Commit-A `0ccedd35` · SEC-1 crossing-policy integrity gate · services/chokepoint/policy_integrity.py NEW (PolicyIntegrityRefused + verify_policy_integrity + load_policy_with_integrity · FP-1 fail-closed + FP-2 source-retained-on-abort) + 3 .sha256 companion files for existing v0 policies (llm_endpoint_allowlist 1bd5e0bb · masking_tier_allowlist 93adcb50 · residency_allowlist 6412c5b0) + tests/invariants/test_m12_w1b_sec1_policy_integrity.py 13 tests (1 contract + 3 companion-present + 3 hash-match + 4 refuse + 2 positive) · pre-Commit-A BASELINE_GUARD=1 sweep byte-match at 5013 passed / 1 skipped / 1 xfailed / 438 warnings · SO §3.8 additive-only held (zero sealed-file edits · all new files) · scope BUILD-TIME gate only · runtime wire-in deferred to M12-W1c backlog · consequential-fork check both M12 stop conditions NOT triggered"
+    head: 0fbac7722c613bb9249c892307c2dba4be29b3e7
+    sealed_at_utc: 2026-09-18T20:50:00Z
+    seal_kind: "CP-M12-W1i-TCB-GOLDEN-INPUT-BYTE-IDENTICAL · Commit-A `0fbac772` · NEW tests/invariants/test_m12_w1i_tcb_chokepoint_golden_input_byte_identical.py (37 tests · 7 classes · owner run order 2026-09-18 verbatim in module docstring: 'The chokepoint is TCB: its tests are golden-input, byte-identical (B.8)') · autopilot R-28"
 
 boot_sequence:
   - Read STATE/STANDING_ORDERS.md end-to-end.

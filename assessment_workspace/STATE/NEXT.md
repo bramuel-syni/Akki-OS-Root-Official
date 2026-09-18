@@ -1860,6 +1860,12 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 - ✅ CP-R19-MIRROR-EQUALITY (paired dataclass↔pydantic parity) — `c417483c` / `209e94b6` / `44b06f58` · ratchet 4993 → 4997 (+4)
 - ✅ CP-M12-W1a-NEG-SCAN-OPEN (M12 wave-opener + Reading C fork bank) — `cff65be3` / `9a888ea2` / `d6f986f1` · ratchet 4997 → 5000 (+3)
 - ✅ CP-M12-W1b-SEC1-INTEGRITY (build-time policy integrity + ORCH_BOOT housekeeping fix) — `0ccedd35` / `c3416bc5` / `132195be` · ratchet 5000 → 5013 (+13)
+- ✅ CP-M12-W1c-SEC1-RUNTIME-WIRE (SEC-1 runtime wire-in for 3 chokepoint policy loaders) — `853a3f35` / `109004c5` / `94be677d` · ratchet 5013 → 5025 (+12) · discipline-reconciliation banked 2026-09-18T~18:20Z
+- ✅ CP-M12-W1d-W1e-DAP7-OPTION-D (DAP-7 custody wire-in Option D + Watch input-seat EMITTER half per R-26 Reading C) — `aa316ebf` / `77318d9b` / Commit-C banked inline · ratchet 5025 → 5034 (+9)
+- ✅ CP-M12-W1f-LANGO-SCORING (Watch input-seat EMITTER half hardening · Lango scoring + graded-gate enforcement) — `1685bd3a` / `47c860d3` / Commit-C banked inline · ratchet 5034 → 5046 (+12)
+- ✅ CP-M12-W1g-CLOSED-OUTBOUND (closed outbound network allow-list per Canon 1 §A5.5 · positive named-file exemption mandate + belt-and-suspenders host check + egress_host on CrossingEvent) — `df28adbf` / `7efcb86f` / Commit-C banked inline · ratchet 5046 → 5056 (+10)
+- ✅ CP-M12-W1h-D16-D17-STRUCTURAL-PROHIBITIONS (D-16 local-first cascade + D-17 inner perimeter · STRUCTURAL PROHIBITIONS ONLY per Canon 4 §43.4 · Reading A DEFAULT-class · fork banked · NO cascade machinery built) — `38235069` / `62c71a01` / Commit-C banked inline · ratchet 5056 → 5066 (+10)
+- ✅ CP-M12-W1i-TCB-GOLDEN-INPUT-BYTE-IDENTICAL (TCB chokepoint golden-input byte-identical determinism corpus per B.8 · 37 tests across 7 classes · zero mechanism change · pure invariant-lock over EXISTING deterministic surfaces) — `0fbac772` / `4da6039e` / Commit-C banked inline · ratchet 5066 → 5103 (+37)
 
 ### Held for owner disposition (banked forks)
 
@@ -1898,6 +1904,7 @@ Next-session opens at any of:
 
 - §3.3 seals · zero push · terminal pytest only · no testing_agent · additive-only · T-c α · SEC-2026-09-12-01 HF hold.
 - Pre-seal standard in force: full `BASELINE_GUARD=1` sweep before any §3.3 seal.
+- **NEW · Commit-C fixup checklist** (added 2026-09-18T~18:20Z after CP-M12-W1c latent-miss reconciliation): every §3.3 Commit-C fixup MUST (a) advance `notes/ORCH_BOOT.md` `heads_last_sealed.*` fields AND (b) bank both Commit-A + Commit-B SHAs into `DECISIONS.md` AND (c) update `NEXT.md` sequence-completed section AND (d) re-run `pytest tests/invariants/test_orch_boot.py` to confirm parity holds AFTER the fixup. Skipping (b)-(d) is the discipline mislabel class SO §3.3 names.
 - No silent rebaselining (empirical measurement · line-by-line reconciliation · then bump).
 - SO §3.3, §3.8, §3.10 as amended; §4 zero push; §4.1 §E; T-c (α).
 - Stop conditions #1 (second path to external model client) and #2 (verifier sharing credential with writer) — neither triggered this-session.
