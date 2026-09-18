@@ -1,0 +1,19 @@
+{
+  "kind": "commissioning_record",
+  "at": "2026-09-18T13:58:37.995395+00:00",
+  "host_name": "aisca-gpu-01",
+  "vm_host": "203.0.113.42",
+  "deploy_date": "2026-08-14",
+  "hardening_section": {
+    "status": "failed",
+    "failed_step": "remote_harden",
+    "external_probe_ok": false,
+    "receipt_path": "/tmp/pytest-of-root/pytest-1/test_hardening_failure_renders0/hardening_receipt_failed.json"
+  },
+  "acceptance_section": {
+    "status": null,
+    "exit_code": null,
+    "checks": []
+  },
+  "ruling_reference": "DECISIONS.md \u00b7 WS-BUILD-CONNECT-GPU \u00b7 2026-08-14"
+}

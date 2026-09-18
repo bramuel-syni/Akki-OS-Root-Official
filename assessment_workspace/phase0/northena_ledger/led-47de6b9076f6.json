@@ -1,0 +1,38 @@
+{
+  "artifact_ref": {
+    "artifact_id": "g6-absorb-test",
+    "artifact_type": "portfolio_mandate",
+    "version": "v0"
+  },
+  "at": "2026-09-18T14:19:21.309552Z",
+  "decision": "fresh",
+  "lawful_basis_ref": "dpa-test",
+  "reason": "outer_gate_transform_applied:hmac-sha256-v1",
+  "row_id": "led-47de6b9076f6",
+  "run_id": "run-abs-1",
+  "stage": "gate",
+  "stamp_audit": {
+    "outer_gate_receipt": {
+      "applied_at": "2026-09-18T14:19:21.309494+00:00",
+      "applied_transformations": [
+        "pseudonymise:unit_id"
+      ],
+      "artifact_ref": {
+        "artifact_id": "g6-absorb-test",
+        "artifact_type": "portfolio_mandate",
+        "version": "v0"
+      },
+      "differential_privacy_epsilon": null,
+      "input_identifier_categories": [
+        "unit_id"
+      ],
+      "k_anonymity_bucket_size": null,
+      "key_fingerprint": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "mint_window_id": "mint-abs-1",
+      "run_id": "run-abs-1",
+      "trace_id": "trace-abs-1",
+      "transform_version": "hmac-sha256-v1"
+    }
+  },
+  "trace_id": "trace-abs-1"
+}
