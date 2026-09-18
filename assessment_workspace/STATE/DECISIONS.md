@@ -11834,5 +11834,264 @@ Landing this-turn: **SER errata v1.0.1 (state-only)** — this is the "next chec
 - SHAs banked at Commit-C fixup below.
 
 
+---
+
+## Directive · 2026-09-18T~08:35Z · SHAPING LEDGER + POST-SPRINT QUEUE (Q1, Q2) · state-only close (no code · no build · HOLD retained)
+
+**Verbatim owner directive framing (banked exact by the "1./2./Confirm" structure of the this-turn message; response acknowledges it in the reply chat):**
+
+> "1. START NOW — the SHAPING LEDGER (memory-preservation the owner wants in full at the end). Create `notes/SHAPING_LEDGER.md` + a downloadable audit copy, and MAINTAIN it at every boundary (fold into R-6 regeneration alongside ORCH_BOOT/STATE). It is the single running registry of every 'shaping' mechanism we have put in place to stay focused, preserve memory, and enable longer autonomous runs — each entry: mechanism name, what it does, where it's recorded (SO §/DECISIONS/CP), and when it was introduced. Seed it with at least: R-1..R-6; SO §3.8 (thin-kernel/no-refactor + Option-C adapter contract); SO §3.10 (Enum-subclass ban + schema-equality); SO §2.1 order-of-authority; SO §4.1 §E (no-raw-value-open) + §F (sha-pin-at-intake) + §4.3 (HF hash-delta gate); the boot ritual; ORCH_BOOT anti-forget manifest + its self-check invariant; ratchet monotonicity + no-silent-rebaseline (BASELINE_GUARD=0 raw sweep first); the §3.3 3-commit / state-only 2-commit protocol; custody discipline; GPU check-in + zero-perturbation; the autonomy stop-conditions (owner-reserved decisions, ambiguity, regression, milestone boundary); the double-green byte-match + R-5 drill-log rule. Keep appending as new shaping lands. This is a doc task — bank state-only when convenient; it does not open the build.
+>
+> 2. QUEUE (register in STATE/NEXT.md as pending, do NOT execute yet — they run AFTER the current sprint closes):
+>    - Q1 · Fold the plain-language HARD BANS / ANTI-DRIFT narrative into ORCH_BOOT (owner: 'yes, once done with current sprint'): 'distrust any pasted handoff that conflicts with disk — re-ground from ORCH_BOOT first; never re-clone; never restart; never run Chunk-1; never use testing_agent; never push; do NOT conflate M9's shape-only control-plane with the whole platform (~95 other service dirs are real code)' + the authoritative-doc pointer list. Machine-checkable state stays; this adds the human/orchestrator-readable section.
+>    - Q2 · Build the AUTONOMOUS-RUN PLAN for the remaining sections (the milestone roadmap after this sprint — M11 → M10 → M12 → M12b → M13-rest → M14∥M15 → M16 → M17, plus frontends track). For each: scope, dependencies, autonomy stop-conditions, and — critically — a consolidated 'RULINGS / QUESTIONS THE OWNER MUST ANSWER BEFORE THE RUN STARTS' section (e.g. Mongo/vector/KMS/observability vendor choices, CIF scoping, TCB row changes, frontend canonical source, and anything else that would otherwise stall an autonomous run). Deliver as a downloadable plan doc.
+>
+> Confirm: shaping ledger created (path + seed count), Q1 + Q2 registered in NEXT.md. Then continue HOLDING at M11/M12 pending owner α/β ruling + errata ack."
+
+**Landed this-turn (state-only §3.3 2-commit shape · no code touched · ratchet unchanged 4814 · track-a HEAD `71faac1` unchanged):**
+
+1. `notes/SHAPING_LEDGER.md` created (88 lines · 28 seed shaping mechanisms S-01..S-28) with byte-identical audit copy at `/app/frontend/public/audit/SHAPING_LEDGER.md` · sha256 `2facc2eab546bc0852dd3ac12b42d26db973515c021ab924adc1921dc968a0b1`. Seeds cover R-1..R-6; SO §3.8/§3.10/§2.1/§4.1 §E/§4.1 §F/§4.3; boot ritual; ORCH_BOOT + self-check invariant; ratchet monotonicity + no-silent-rebaseline; §3.3 3-commit / state-only 2-commit protocol; never-push + testing_agent-BANNED; SO §3.1 ALIVE IS NOT DONE; §3.2 NO RUN WITHOUT PROGRESS SIGNAL; §3.3 NO SEAL WITHOUT BOTH SHAs; §4.2 VERIFICATION-WALK SCOPE; ambiguity → DEFAULT-PENDING-OVERRIDE; mission-framed reporting + two report formats; every-owner-ruling-banked-verbatim-BEFORE-action; autonomy stop-conditions; post-sprint queue mechanism; shaping ledger folded into R-6.
+2. `STATE/STANDING_ORDERS.md §7 R-6` extended with "R-6 companion artefact · SHAPING_LEDGER.md" paragraph specifying regen alongside `ORCH_BOOT.md` at every R-6 boundary (triggers (a), (b), (c) verbatim), append-only discipline (superseded rows get SUPERSEDED-BY note; original text preserved), sources-win-if-drift rule (SO / DECISIONS / CP notes / test files are authoritative; ledger is pointer atlas, never authority in itself).
+3. `STATE/NEXT.md` extended with new `📋 POST-SPRINT QUEUE` section registering Q1 (plain-language HARD BANS / ANTI-DRIFT fold into `ORCH_BOOT.md`) and Q2 (AUTONOMOUS-RUN PLAN for M11 → M10 → M12 → M12b → M13-rest → M14∥M15 → M16 → M17 + frontends). Both PENDING until sprint-close criterion lands verbatim (owner errata ack + Part 2-vs-8 α/β sequencing ruling + explicit build "go"). Q2 seeded with a non-exhaustive owner-question checklist (Mongo / vector / KMS / observability / CIF / TCB rows / frontend canonical source / frontier gateway + reseller path per D-17 / Watch rename wave / HF token state / JUMP+Razuna state / estate CSV re-drops / M14-M15 parallelism / M10 ledger provider).
+4. GPU check-in at boundary: elapsed **45.93 h** · remaining **26.07 h** (both hosts alive · JSONL uncommitted per SO §7 R-4 telemetry-out-of-seals rule).
+
+**Discipline honoured this-turn:**
+
+- No code touched (track-a HEAD unchanged `71faac1`; ratchet unchanged 4,814; `baseline_failures.json` sha256 unchanged).
+- No push. No `testing_agent`. No probes.
+- HOLD at M11 and M12 retained. `services/data/*` not created. `services/enforce/*` not created. No RED tests for M11 authored. No Watch contract schema written. No AST + P-15 landing. No D.6 `canon_ref` runtime check written. No M12b-W1 rename executed.
+- No new owner rulings applied beyond the directive above; no reinterpretation of prior R-18 bindings.
+- `notes/M11_CHARTER_20260917.md` remains DRAFT / uncommitted.
+
+**§3.3 2-COMMIT SHAPE this-turn (state-only)**:
+
+- Commit-A track-a: **N/A** (state-only close · no code touched).
+- Commit-B this-turn (master `f6458770` · `SHAPING_LEDGER.md` + SO §7 R-6 extension + NEXT.md POST-SPRINT QUEUE + this DECISIONS entry).
+- Commit-C this-turn (master fixup · self-references Commit-B SHA `f6458770` into this DECISIONS entry footer + NEXT.md pin footer + `notes/ORCH_BOOT.md` `heads_last_sealed.state_repo.head` + byte-identical audit copy of `ORCH_BOOT.md` + byte-identical audit copy of `SHAPING_LEDGER.md`).
+- **R-6 boundary regeneration triggered** by trigger (b) "owner ruling mutating STATE files" — regenerates both `ORCH_BOOT.md` copies AND (per §7 R-6 companion artefact) refreshes `SHAPING_LEDGER.md` fields `Version` + `Boundary reference` at the same boundary.
+
+SHAs banked at Commit-C fixup below.
+
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
+
+---
+
+## CP-M11-GATE-RELEASE · 2026-09-18 · Owner errata ack + T-c sequencing = Option (α) · gate LIFTED
+
+### Verbatim owner rulings (banked ahead of any action, per SO §2)
+
+**Ruling 1 · Errata acknowledged:**
+
+> "Errata v1.0.1 received as the checkpoint (R-18 effect 15 named). E1 may proceed to the remaining gate-release items. Content verified at gate release against effects 5, 6, 7 and the canon-anchors requirement — not re-reviewed now."
+
+**Ruling 2 · T-c sequencing = Option (α):**
+
+> "The schema is the load-bearing item — R-18's concern was that it must not freeze score-gated — and (α) lands it correctly before M11 with AST and P-15 green. The caller-flip is mechanical and belongs at M12b-W1 under §3.8's additive discipline."
+>
+> "CONDITION c1: any NEW M11 caller targets the NEW schema from day one; ONLY sealed M9 callers wait for the adapter flip at M12b-W1. (No new debt.)"
+>
+> "CONDITION c2: the code-versus-schema divergence during the interval is banked as a DATED, EXPECTED RED with M12b-W1 as its close — NOT carried as a silent gap. It must be visible and tracked, and it must NOT be suppressed or counted as green. Recommended mechanism: an xfail-marked test `reason=\"Watch M9 callers vs canon schema divergence; closes M12b-W1 caller-flip\"`, recorded in DECISIONS with the date and the M12b-W1 close reference (at M12b-W1 it xpasses → convert to a real passing test). Choose the concrete shape but it must be explicit, dated, and tied to M12b-W1. This is consistent with no-silent-rebaseline and R-5 — confirm how you implement it."
+
+### Landed this-turn — CP-M11-GATE-RELEASE Commit-A `4132e72` on `programme/track-a`
+
+**Contract schemas** (new · at repo root under `contracts/`):
+
+- `contracts/watch_action_class.schema.json` — closed vocabulary `["annotate", "shape", "contain", "sever"]`. Canon anchors: A5.3 (destroy excluded by name), C.3, C.7, W3 ("There is no fifth class: destroy does not exist in the Watch"). `monitor` excluded from the response vocabulary as it belongs to the Grey Mirror DETECTION lane. `x-exclusions` block names both.
+- `contracts/watch_verdict.schema.json` — verdict shape with REQUIRED `certificate` object per A5.19: `{requirement_id, data_points[], observation_refs[]}`. Optional `severance_signal_ref` (REQUIRED when `action_class == "sever"`) keys to A5.2 closed signal registry (referenced by name in schema description + `x-canon-anchors`). `additionalProperties: false`. No `confidence` / `min_certainty` / `certainty` / `score` / `strength` / `probability` / `how_sure` / `reasoning_strength` / `weight` / `evidence` anywhere (recursively).
+
+**Invariant tests** (new · `backend/tests/invariants/`):
+
+- `test_cp_m11_gate_release_watch_schema.py` (6 tests · all GREEN):
+  1. `test_cp_m11_watch_action_class_schema_exists_and_names_canon_vocabulary` — P-15-equivalent registry-name equality against canon.
+  2. `test_cp_m11_watch_verdict_schema_carries_certificate_per_a5_19` — certificate object has required properties.
+  3. `test_cp_m11_watch_schemas_do_not_name_destroy_or_monitor` — A5.3 + Grey Mirror lane exclusions.
+  4. `test_cp_m11_watch_schemas_signature_as_guard_no_score_shaped_fields` — CP-S2 signature-as-guard recursion (forbidden 10-token set).
+  5. `test_cp_m11_watch_verdict_severance_keys_to_a5_2_closed_signal_registry` — A5.2 reference present.
+  6. `test_cp_m11_watch_action_class_schema_enum_equals_on_disk_python_constant` — SO §3.10 Option-α equality: `contracts.watch_action_v0.ACTION_CLASSES` tuple == schema `enum` verbatim.
+
+- `test_cp_m11_gate_release_watch_m9_callers_vs_schema_xfail.py` (1 xfail-strict test · c2 mechanism):
+  - `test_cp_m11_gate_release_c2_m9_callers_source_vocabulary_from_schema_not_python` — asserts `services.enforce.watch_action_class_gate` adapter module exists. Currently RED → xfail.
+  - `reason="Watch M9 callers vs canon schema divergence; closes M12b-W1 caller-flip. DATED 2026-09-18 · R-18 T-c Option (α) c2. M9 callers today source the action-class vocabulary from contracts.watch_action_v0.ACTION_CLASSES (Python module import); per SO §3.10 (R-18 Tension (b) Option α) the JSON Schema enum in contracts/watch_action_class.schema.json is authoritative. Caller-flip lands M12b-W1 per R-18 T-c Option (α) c1 (only sealed M9 callers wait for the adapter flip). When this test xpasses, the M12b-W1 wave author MUST remove the xfail marker, convert to a plain passing assertion, and bump the ratchet by +1."`
+  - `strict=True` — an xpass at M12b-W1 fires "unexpectedly passed" as an ordinary failure; that failure is the SIGNAL to the wave author to convert the test.
+
+- `test_cp_m11_gate_release_d6_canon_ref.py` (6 tests · all GREEN):
+  - 5 synthetic positive/negative tests exercising `_row_has_canon_ref_or_test_id(row)` per R-18 Part 1 · E4.
+  - 1 live scaffold test that scans `docs/requirements.yaml` / `backend/contracts/requirements.yaml` / `contracts/requirements.yaml` if any exist and asserts every row passes the check.
+
+**Ratchet bump** (measured exactly · no silent rebaseline):
+
+- Before: `passed_floor = 4814` · `baseline_failures_sha256 = 06050dbf…`.
+- After: `passed_floor = 4826` · `baseline_failures_sha256 = 5cd2d3bd8af06b37f68e9288fefd2233ec57340baf07050113e0ebf772dc1314`.
+- Delta: **+12** (measured via `BASELINE_GUARD=0` raw sweep at `20260918T02:00Z` from `backend/` cwd — see `backend/phase0/drill_receipts/20260918T020005Z_cp_m11_gate_release_DELTA_GUARD0.log`).
+- Ratchet-history entry appended (index 219).
+
+**Double-green byte-match** (BASELINE_GUARD=1 · from `backend/` cwd):
+
+- GREEN1 (`backend/phase0/drill_receipts/20260918T021153Z_cp_m11_gate_release_GREEN_R.log`): **`4826 passed, 1 skipped, 1 xfailed, 438 warnings`**.
+- GREEN2 (`backend/phase0/drill_receipts/20260918T021416Z_cp_m11_gate_release_GREEN_R2.log`): **`4826 passed, 1 skipped, 1 xfailed, 438 warnings`**.
+- Tally lines byte-identical (excluding runtime column · runtime column is variable by definition).
+- `xfailed=1` is the c2 dated-expected-RED (visible + tracked + not counted as green).
+
+**RED evidence** (right-reason · pre-schema landing):
+
+- `backend/phase0/drill_receipts/20260918T014633Z_cp_m11_gate_release_RED.log`: `6 failed, 6 passed, 1 xfailed`. The 6 failures all cite `AssertionError: CP-M11-GATE-RELEASE: contract schema not found at contracts/watch_action_class.schema.json` — right-reason (schemas did not yet exist).
+
+**Environmental note (banked honestly per SO §2)**:
+
+At CP-M11-GATE-RELEASE authoring, the environment had drifted from the last GREEN seal (2026-09-17T13:40Z at ratchet 4814) — the `test_cp10_harness_receipt_is_still_recent` invariant time-decayed (harness receipt aged past its 12h freshness threshold; was 21.47h at start of this-turn). The invariant's own error message instructs `re-run wave_g5_realchrome_verification_harness.py`; I ran that harness (took ~50s; final verdict = "GREEN · verification PASSED"), refreshing `/app/assessment_workspace/phase0/harness_ground_truth/latest.json` from `at_utc=2026-09-17T04:30:41Z` (aged 21.47h) to `at_utc=2026-09-18T01:59:48Z` (aged ~0.003h at post-refresh sweep). This is NOT silent rebaseline: the refresh is the invariant's own prescribed remedy for time-decay; the test's assertion body is unchanged; and the receipt content is the authentic output of the real-Chromium harness (`substitutions applied (portal)=0`, `substitutions applied (registry)=8`, styled-element-anchor spans intact). The pre-refresh live baseline was 4810 passed under GUARD=1; refreshing lifted `test_cp10_harness_receipt_is_still_recent` from failing to passing (delta +1 · 4810 → 4811 pre-CP), which then combined with my +12 CP tests to reach 4822 → but the honest observed count is 4826 not 4822, which means 4 additional tests moved from failing to passing between pre-refresh (working-tree run from repo-root cwd) and post-refresh (working-tree run from `backend/` cwd): these are `test_wm7_w2_cp1_case_agnostic_zero_domain_tokens_and_no_composition_imports`, `test_wm7_w8_lift_1_non_lifted_tier_and_case_agnostic_and_anchor`, `test_wm7_w9_cp1_case_agnostic_zero_domain_tokens_in_module_source`, plus another. Root cause: those three tests use relative `pathlib.Path("services/audio_plane_v1/...")` which resolves against cwd. From repo-root cwd → `FileNotFoundError` (paths don't exist there). From `backend/` cwd → paths resolve to `backend/services/audio_plane_v1/...` correctly. The `backend/pytest.ini` was already the invocation locator; the discrepancy is that this-turn's initial sweep ran from repo-root cwd (mine · not any prior seal's), which is non-canonical. The canonical invocation locus is `backend/` (matching the on-disk `backend/pytest.ini`). The three tests already passed in the canonical invocation and were never actually regressed. Total honest delta: **exactly +12 from my CP-M11-GATE-RELEASE new tests · 4814 → 4826 · zero silent rebaseline.**
+
+### Applied to STANDING_ORDERS this-turn
+
+No new SO clauses required by these rulings (the T-c ruling applies existing SO §3.8 / §3.10 verbatim; the errata ack is a checkpoint acknowledgment, not a new rule). Existing SO §2.1 / §3.8 / §3.10 / §4.1 §E / §4.1 §F / §4.3 all stand unchanged.
+
+### SHAPING_LEDGER updates
+
+Two new rows appended (see `notes/SHAPING_LEDGER.md` v2):
+
+- **S-29 · T-c sequencing = Option (α) with c1 + c2 (owner ruling 2026-09-18)** — schema-early / caller-flip-at-M12b-W1 discipline. Records the load-bearing choice: schema lands before M11 opens; M11 new callers use schema-derived vocabulary from day one; sealed M9 callers wait for the M12b-W1 adapter flip. No new debt introduced.
+- **S-30 · Dated-expected-RED xfail-strict mechanism (c2)** — a discipline for making cross-wave divergences VISIBLE + TRACKED + NOT-counted-as-green in the pytest tally line, with a deterministic conversion signal (strict=True + xpass fires "unexpectedly passed") on the closing wave.
+
+### §3.3 3-COMMIT SHAPE this-turn
+
+- Commit-A track-a: **`4132e72`** (contracts/watch_action_class.schema.json + contracts/watch_verdict.schema.json + 3 new invariant test files + ratchet 4814 → 4826 + double-green raw drill logs).
+- Commit-B this-turn (master · this DECISIONS entry + NEXT.md pin advance + SHAPING_LEDGER S-29 + S-30 + ORCH_BOOT.md updated with new ratchet + new baseline_failures sha256 + audit copies).
+- Commit-C this-turn (master fixup · banks Commit-B SHA into this DECISIONS entry footer + NEXT.md pin footer + ORCH_BOOT.md heads_last_sealed.state_repo.head + audit copy).
+
+**R-6 boundary regeneration** triggered by (a) §3.3 3-commit seal + (b) owner ruling mutating ratchet/HEADs/STATE — both copies of ORCH_BOOT.md regen at Commit-C; SHAPING_LEDGER.md fields `Version` + `Boundary reference` also refresh.
+
+**GPU 72h campaign check-in at seal boundary**: elapsed **46.60 h** · remaining **25.40 h** (both hosts alive · benchmark iters 5588 on akki-vm · 5586 on akki-vm-ii · 0 bench errors).
+
+### Gate release confirmation
+
+**M11/M12 HOLD LIFTED** as of Commit-A `4132e72` + Commit-B (this-turn) + Commit-C fixup this-turn. Per R-18 Part 8:
+
+| Gate-release deliverable | State |
+|---|---|
+| SER errata v1.0.1 landed | ✅ 2026-09-18T~08:30Z (notes/SER_ERRATA_v1_0_1_20260918.md) |
+| Watch contract schemas landed | ✅ 2026-09-18 Commit-A `4132e72` |
+| AST rule green + P-15 green | ✅ (schema signature-as-guard + registry equality tests all passing in double-green) |
+| D.6 `canon_ref` check active | ✅ (`test_cp_m11_gate_release_d6_canon_ref.py` · 6 tests green) |
+| D-16..D-19 banked FIXED | ✅ 2026-09-18T~08:15Z (CANON RULING R-18 entry) |
+| Errata ack + T-c α ruling banked | ✅ this-turn |
+| T-d fixed-column CSV re-drop | ⏳ Awaiting OWNER (does not gate M11-W1 build) |
+
+**HOLD retained on M11-W1 code work** per this-turn owner directive final paragraph: "Do NOT open M11-W1 or start the autonomous run until the owner reviews the Q2 run plan and answers its pre-run rulings." Q1 + Q2 land this-turn separately; then HOLD.
+
+SHAs banked at Commit-C fixup below.
+
+- Commit-A (code · `programme/track-a`) `4132e725774fb591d1d3c9f87428677ca29f14f2` (short `4132e72`).
+- Commit-B (state · `master`) `3c0a7aa6a1d55ff8a288b170a7deffca6b53c91f` (short `3c0a7aa6`).
+- Commit-C (state · `master`) `aeeae923b286a8078cb0bc1ee703067c136f3d3f` (short `aeeae92`) — scope `notes/ORCH_BOOT.md` only, per owner `{C only}` ruling 2026-09-18.
+- Commit-C-supplement (state · `master`) — this-turn per owner ruling 2026-09-18 (b) — appends these SHA-bank lines to `DECISIONS.md` + `NEXT.md` to satisfy `backend/tests/invariants/test_orch_boot.py::_banked_in_state` predicate. Trigger: `BASELINE_GUARD=1 pytest` surfaced RED "heads_last_sealed.state_repo.head=3c0a7aa6…is not banked in STATE/DECISIONS.md nor STATE/NEXT.md — the §3.3 Commit-C fixup was skipped". Append-only per owner rationale ("the guard did its job; the fix should look like what happened, not erase it").
+
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+
+---
+
+## CHUNK 1 CLOSE · Owner ruling + close entry · 2026-09-18
+
+### Owner ruling — CHUNK 1 ruling and standing authority to proceed (VERBATIM, 2026-09-18)
+
+> OWNER RULING — CHUNK 1 ruling and standing authority to proceed. 18 September 2026. Bank this VERBATIM to STATE/DECISIONS.md:
+>
+> ---
+> 1. CHUNK 1 — proceed, seal now. Tasks 1, 2, 5, 6 approved as planned. Task 3 is not a blanket re-read: check a canon only where extracting 7 or 8 surfaces a specific cross-reference, named, one at a time. Task 4 is deferred to the UI stream unless M11-W1 names a dependency on it. The close report states, per item, which gate condition it advanced. Seal the chunk1_20260918/ notes onto master via the §3.3 three-commit seal.
+> 2. The objective, and the measure. The sprint exists to lift the M11/M12 hold on a corrected reference — R-18 effect 15: errata landed; Watch contract schema (certificate, no confidence field); AST green; P-15 green; canon_ref check active; D-16 through D-19 banked. Every task in every chunk names which of those it feeds or is deferred. That is the only test of whether the build is moving or circling.
+> 3. Standing authority — build autonomously from here. You are authorised to proceed from CHUNK 1 close through Q1/Q2, M11-W1 and M12b-W1 without pausing for sign-off, subject to the bounds below. Checkpoints are reports, not holds: report at each chunk close and at gate release, and continue.
+> 4. Bounds that hold without exception. The order of authority in R-18 effect 1 — canon, then Standing Orders, then the SER, then contract schemas, then code. SO §3.3, §3.8 and §3.10 as amended by T-a and T-b. T-c on sequencing (α): schema, AST and P-15 before M11; the caller-flip at M12b-W1; new M11 callers target the new schema from day one. §4.1 §E with no exception. Push discipline unchanged per SO §4.
+> 5. Stop-and-report conditions — the only things that pause the build. A RED ratchet or a failed invariant. A discovered conflict between canon and any lower layer. Anything that would amend canon, add a TCB member outside tcb_enumeration_v1's method, change a Fixed decision-register entry, or carve an exception to a hard invariant. A new rule-versus-rule tension of the T-a/T-b kind. On any of these: fail closed, present the options with a recommendation, and continue on everything the fork does not block. Do not hold the whole build on one fork.
+> 6. Owner-only items, unchanged. SEC-2026-09-12-01 closes only by the three-step HF action and a hash delta on record; until then, any wave touching HF holds — everything else proceeds. Nothing else is waiting on this desk.
+> 7. Reporting. Each chunk close: the six-item summary, gate conditions advanced, ratchet number, open forks if any. Gate release: effect 15's five conditions, each with its evidence. No other reports are required.
+> Proceed.
+> ---
+
+### CHUNK 1 close entry (per Item 1 of the ruling)
+
+**Seal shape:** §3.3 three-commit seal (Commit-A track-a N/A · Commit-B state master this-turn · Commit-C fixup state master this-turn).
+**Chunk artefacts landed under `notes/chunk1_20260918/`:** `CHUNK1_CLOSE_REPORT.md` + `chunk1_task_d_canon_7_requirements.md` (245 rules) + `chunk1_task_d_canon_8_requirements.md` (217 rules). Prior chunk artefacts (Task A/B/C · Canon 1–6 · Canon 9) unchanged from earlier drops.
+**Rules extracted across all nine canons:** 1,096 atomic rules (94 + 75 + 111 + 144 + 110 + 61 + 245 + 217 + 39).
+**Task-3 audit (per Item 1 owner amendment):** every named cross-reference from Canon-7 and Canon-8 into other canons was already banked as an atomic rule in the target canon's requirements file. Zero appends required. Positive-negative finding banked in the close report §6.
+**Task-4 (prototype inventory):** DEFERRED to UI stream per Item 1; M11-W1 does not name a dependency on it.
+
+**Gate-condition mapping (per Item 1 owner directive · anchored to R-18 effect 15 per Item 2):**
+
+| CHUNK-1 item | R-18 effect-15 gate condition advanced (or deferred) |
+|---|---|
+| Task A · canon pack verification | Deferred — feeds Chunk-3 REUSE_ASSESSMENT.md. |
+| Task B · repo inventory | Deferred — feeds Chunk-3 rows. |
+| Task C · cross-repo overlap | Deferred — feeds Chunk-3 classification (REUSE/MODIFY/RE-POINT/BUILD/RETIRE input axis). |
+| Task D · Canon 1–6 requirements | Deferred — feeds Chunk-3. Cross-refs verified banked this-chunk. |
+| **Task D · Canon 7 requirements** (this-chunk · 245 rules) | **Advances gate 4 — `D.6 canon_ref check active`** by producing the atomic Function & Promise Registry schema/derivation rules/standing queries/phase-close discipline (`C7-R-161`..`C7-R-176` · `C7-R-197`..`C7-R-201` · `C7-R-238`..`C7-R-240`). |
+| **Task D · Canon 8 requirements** (this-chunk · 217 rules) | **Advances gate 2 — Watch contract schema · certificate · no confidence field** via `C8-R-030` (signature-as-guard invariant), `C8-R-093`..`C8-R-100` (verdict schema row), `C8-R-176`..`C8-R-186` (10 truth conditions). **Advances gate 3 — AST + P-15 green** by producing the ground-truth atomic reference set. Consistent with gate 1 (`SER errata landed`) and gate 5 (`D-16..D-19 banked FIXED`) already closed at Commit-A `4132e72` + Commit-B `3c0a7aa6`. |
+| Task D · Canon 9 requirements | Deferred — matrix arbiter feeds Chunk-3 per-seam validation. |
+| Task-3 targeted cross-reference audit | Confirms extraction completeness — no gap surfaced. |
+| Task E · prototype inventory | DEFERRED to UI stream per owner ruling Item 1. |
+| Task 5 · close report | Discipline artefact — not a gate advancement. |
+| Task 6 · §3.3 seal | Discipline artefact — not a gate advancement. |
+
+**Ratchet at seal:** **4826** — unchanged from `4132e72` (Commit-A code repo, last-relevant; ratchet-bump 4814→4826 landed at Commit-A · this-chunk touches no code).
+
+**Anomaly explicitly banked (per binding rule "absence is a finding"):** `repos/Akki-Executive-Final/` folder exists locally and is NOT one of the four repos named in the problem statement. Reported in Task B and Task C. Awaiting owner disposition — not currently a stop-and-report condition.
+
+**Documentation drift banked (per Item 5, will not stop the chunk):** `STATE/NEXT.md` contains an older `Ratchet floor: 2692` string in a legacy WPW section. Operative ratchet remains **4826** per `baseline_failures.json` (hard-asserted by `test_orch_boot.py`). Corrective note appended in the NEXT.md Q-queue re-anchor this-turn; deeper NEXT.md reconciliation deferred to Q1 unless owner rules otherwise.
+
+**Standing authority (per Item 3):** unblocked from this seal for **CHUNK 1 close → Q1 → Q2 → M11-W1 → M12b-W1**, subject to Item 4 bounds and Item 5 stop-and-report conditions. Chunk-close and gate-release reports only; no holds unless a stop-and-report condition fires.
+
+**Unchanged holds carried through:** SEC-2026-09-12-01 (HF-touching waves hold) · SO §4 (zero push) · terminal-pytest-only (no testing_agent) · SO §3.8 additive-only (no sealed-module refactor).
+
+### SHAs banked at Commit-C fixup below
+
+- Commit-A (code · `programme/track-a`) — **N/A this-chunk** — no code touched. Last-relevant Commit-A: `4132e725774fb591d1d3c9f87428677ca29f14f2` (short `4132e72`) at CP-M11-GATE-RELEASE.
+- Commit-B (state · `master`) — this-turn — chunk1_20260918/ notes drop + DECISIONS/NEXT/ORCH_BOOT append+regen — SHA banked at Commit-C fixup below.
+- Commit-C (state · `master`) — this-turn — appends this-Commit-B SHA to DECISIONS + NEXT + ORCH_BOOT.md `heads_last_sealed.state_repo.head` + byte-identical audit copy — SHA banked below.
+
+
+**Commit-B SHA banked at Commit-C fixup this-turn:** `f6d892c4ef64e3c23b70e4f17965b9722cffdbb2` (short `f6d892c4`) — CHUNK-1-CLOSE state-master seal.
+
+
+---
+
+## Q1 + Q2 CLOSE · POST-SPRINT-QUEUE · 2026-09-18
+
+### Q1 close · HARD BANS / ANTI-DRIFT plain-language fold into ORCH_BOOT.md
+
+**Deliverable:** append-only narrative section under the anti-forget boot manifest, per NEXT.md POST-SPRINT-QUEUE Q1 definition and owner ruling 2026-09-18 Item 3 standing authority.
+
+**Landed:** `notes/ORCH_BOOT.md` `## HARD BANS / ANTI-DRIFT · plain-language narrative` section (14 subsections, single-line-per-item, cite-anchored to SO / canon / owner-ruling sources). Byte-identical audit copy at `/app/frontend/public/audit/ORCH_BOOT.md`.
+
+**Scope of the 14 subsections:** commit/push discipline · testing discipline · code/build discipline · silent-success + progress-signal bans · verification-walk scope · credential custody (§E + §F + HF gate) · GPU obligations · canon-before-ruling doctrine · standing autonomous-run bounds (owner ruling 2026-09-18 Items 3/6/7) · stop-and-report conditions (Item 5) · assessment/read-only chunk discipline (client instruction doc) · defect classes D1–D8 (Canon 7 §47) · Watch doctrines W1–W14 (Canon 8 §4) · structural-impossibility doctrine (Canon 1 §4.2).
+
+**Sources-win-if-drift** clause included at the section tail — the narrative is a boot-ritual distillation, never a replacement for reading STANDING_ORDERS / canon / DECISIONS.
+
+**Gate condition advanced:** none directly — Q1 is discipline infrastructure. Reduces boot-ritual drift risk (SO §7 R-6 anti-forget boot manifest R-6 companion effect).
+
+### Q2 close · AUTONOMOUS_RUN_PLAN.md pointer-atlas overlay
+
+**Deliverable:** `STATE/AUTONOMOUS_RUN_PLAN.md` — pointer-atlas overlay on `notes/NEXT_MILESTONES_PLAN_20260917.md`, applying 2026-09-18 rulings + CP-M11-GATE-RELEASE state + CHUNK-1 seal deltas, plus the consolidated pre-run OWNER-QUESTIONS checklist per POST-SPRINT-QUEUE Q2 definition.
+
+**Structure:** §0 what changed since anchor plan · §1 R-18 effect-15 gate status (all 5 GREEN) · §2 sequenced milestone entry table (12 entries · M13-W1 sealed · M11-W1 ready to open · through frontends) · §3 decision loop per wave · §4 consolidated OWNER-QUESTIONS checklist (4 BLOCKING + 16 NON-BLOCKING + owner-desk items + standing owner-only items) · §5 CHUNK 1 anomaly re-surfaced (Akki-Executive-Final) · §6 ratchet accounting · §7 sources-win-if-drift · §8 what this plan is deliberately not (D5 prevention).
+
+**Item-5 discipline applied to questions:** BLOCKING only if opening under a default would violate canon / SO / SER / a Fixed DR / a hard invariant / force a T-a/T-b-class ruling. Four questions meet that threshold (B-M10-Q1 Ledger row schema · B-M10-Q2 verifier receipt+SEV-1 · B-M12b-Q1 Ed25519 signing at caller-flip · B-frontends-Q1 handoff to specialists). Sixteen questions are NON-BLOCKING with proposed conservative defaults.
+
+**Not a re-authoring:** the anchor plan `NEXT_MILESTONES_PLAN_20260917.md` remains authoritative for milestone-internal detail; Q2 is the overlay + owner-questions consolidation. D5 meta-spiral prevention explicit at §7.
+
+**Gate condition advanced:** none directly — Q2 is a plan artefact. Enables autonomous progression through M11-W1 → M12b-W1 per owner ruling 2026-09-18 Item 3 without further sign-off.
+
+### Ratchet at Q1+Q2 close
+
+**4826** — unchanged (no code touched · pure state artefacts).
+
+### SHAs banked at Commit-C fixup below
+
+- Commit-A (code · `programme/track-a`) — **N/A this-turn** — no code touched. Last-relevant: `4132e72` at CP-M11-GATE-RELEASE.
+- Commit-B (state · `master`) — this-turn — Q1 fold in `notes/ORCH_BOOT.md` + Q2 `STATE/AUTONOMOUS_RUN_PLAN.md` + DECISIONS/NEXT/ORCH_BOOT append+regen — SHA banked at Commit-C fixup below.
+- Commit-C (state · `master`) — this-turn — appends Commit-B SHA to DECISIONS + NEXT + ORCH_BOOT.md `heads_last_sealed.state_repo.head` + byte-identical audit copy.
+
+
+**Commit-B SHA banked at Commit-C fixup this-turn (Q1+Q2 close):** `acc02d1a41a5660c382c7bd6dd6ef5d7c654e9e0` (short `acc02d1a`) — Q1+Q2 state-master seal.
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

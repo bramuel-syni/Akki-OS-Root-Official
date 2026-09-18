@@ -1,0 +1,400 @@
+AKKI CANON  ·  DOCUMENT 4 OF 9
+Akki Operating Engines
+Mtafiti, Targeta, and Solva: measurement, targeting, reasoning, the two services and two seams, the model ladder, training, quality, and economics
+PART I
+The Chain
+1  Scope
+This document specifies the platform’s remaining three engines: Mtafiti, which measures the estate; Targeta, which decides where to mine and in what order; and Solva, which reasons and bounds what may be asserted. It continues into the machinery those three engines serve — the extraction stack, the transform layer, the model ladder, training, and the quality instruments that hold every output format to a standard — and closes with the economics of a run.
+Production is accountable for one thing: that estate material becomes governed intelligence at a stated standard, repeatably, with every unit traceable to its source. Failure looks like output that exists but does not meet the promised standard, cannot be reproduced, or cannot be traced back to what produced it.
+2  The Standard the Chain Holds
+Three properties survive the whole chain, end to end, and every mechanism that follows exists to keep one of them true.
+Learning never decides. Learned components appear at exactly three points — Mtafiti’s inference overlay, Targeta’s yield layer, Solva’s reasoning faculty. At each, the thing it could corrupt is placed structurally out of its reach: the verdict is a governed lookup, the eligible set is a permutation-checked type, the assertion class is a function with no confidence parameter.
+Nothing is admitted at a guessed class. A unit that cannot meet the standard is recorded as unqualified rather than admitted optimistically. Unqualified units never enter evidence partitions.
+Every output states the strongest provenance its form permits, and no more. Per-claim where the form preserves it, floor-over-load-bearing where it composes, ingredient manifest where training destroys it. No form is mis-promised.
+PART II
+Mtafiti — Discovery and Measurement
+3  What Mtafiti Is
+Mtafiti censuses the estate exhaustively and writes the Registry: what exists, at what sensitivity, and how defensibly each source can be relied upon. It discovers and measures; it does not extract, target, or govern. It runs at estate standup and is kept current afterward by a freshness mechanism.
+It is objective-blind: it measures the estate as it is, without reference to any particular objective, so targeting and convergence both read one measure that serves every objective equally. A measure computed per objective would have to be recomputed per objective — and two objectives could then disagree about the same source, which is not a disagreement the platform can afford to have unresolved.
+3.1  What it measures, and what it will not
+It measures how defensibly a source can be relied upon — set by claim genre, source standing, corroboration, recency, and contested status. It does not judge whether a claim is true. Truth on a contested claim is not a machine judgement; the measure targets and floors, it never certifies, and it must fail toward caution — it must never make a claim look more defensible than it can actually be defended.
+4  The Census
+The census walks the estate exhaustively and objective-blind, producing one candidate source record per discovered source. It enumerates and classifies; measurement follows separately. Each candidate carries the source reference, its region, the feed identity that keys the declaration baseline, and a deterministically classified sensitivity. One census serves every objective; no objective is consulted during the walk.
+4.1  What the census produces at estate level
+Per source and per stratum: volume, media types, languages, era distribution, quality strata, the share already verified, the share carrying personal data, the share licensed for external use — and, explicitly, what has not been measured.
+Unmeasured is a first-class value. A dimension not measured is recorded as unmeasured, never as zero, absent, or clean. A blank that reads as clean makes the whole instrument dishonest.
+Every figure carries its method. Any measurement a surface displays resolves to the census run that produced it, its date, the population measured, and whether the measurement was full or sampled — a sampled measurement is never presented as a full-population one.
+The sensitivity classification assigned here is the resource attribute Document 3 §22.1’s entitlement rules match a requester’s attributes against. No second classification exists for that purpose; entitlement reads this one.
+5  The Two-Layer Measure
+The defensibility measure is produced in two layers, so it scales across a very large estate without labelling every item by hand.
+5.1  The declaration baseline
+A per-feed declaration, applied to every source under that feed — deterministic, low-cardinality, and always available. It is the certain floor the whole measure rests on, and it is never assigned per item: per-item declaration at estate scale is exactly the human bottleneck the two-layer design exists to avoid, and a per-item declaration that drifts over time is worse than a stable feed-level one. An undeclared feed resolves to unknown, which is the conservative value — absence of a declaration never resolves upward.
+5.2  The inference overlay
+The overlay detects defensibility signals in content itself — whether a report attributes and cites, whether its genre form is event-anchored or monologic, whether a claim corroborates across independent estate units — and emits detections with confidences attached. It emits detections and nothing else: an attachment-markedness value, a detected genre-form label, a corroboration value, and the confidence on each. A genre-form label is a detection, not a verdict.
+The inference module never imports the verdict module and never assigns a defensibility class. This is enforced by import assertion rather than by review, because a boundary maintained by review is a boundary that eventually moves.
+6  Detect Versus Decide
+Learning detects; the governed matrix decides; the declaration baseline floors; the admission gate admits.
+This is the single rule that keeps learning from laundering authority into the measure — the learned component produces detections, never verdicts.
+6.1  Compose
+The measure composes the deterministic baseline with the admitted detections into a score vector: source standing from the declaration, attachment and corroboration from the overlay where it is admitted and zero where it is not, recency validity computed deterministically, and contested status computed deterministically. When the overlay is not admitted, the composition uses the baseline alone — and the Registry records which regime produced a given measure, so a reader can always tell.
+6.2  Decide
+The verdict is a deterministic lookup in the Qualification Matrix over claim genre and context. It returns the defensibility class — fact, utterance, or non-factual — and the reference of the matrix rule that produced it.
+The rule reference is what makes the verdict auditable. Every class traces to a governed rule, and the detections it consumed are recorded alongside it. If the learned layer assigned the verdict, defensibility would rest on a model weight — unexplainable and un-auditable, which is precisely the laundering this design exists to prevent.
+The matrix is read through an opaque handle and contains no model. It is governed, versioned, and inspectable, which is what allows a verdict issued a year ago to be re-derived and explained today, exactly as it was reached.
+7  The Admission Gate on the Overlay
+The overlay influences the measure only once its detection accuracy has been proven on real material. Until it passes, the measure runs on the declaration baseline alone. The gated design means the overlay’s failure is not the system’s failure — the baseline and the governed verdict never depend on it, so an overlay that never passes simply leaves a correct, if coarser, measure in place.
+8  The Registry and Freshness
+One record per source, carrying existence, sensitivity, the defensibility measure, and a freshness stamp. This is the interface targeting and convergence both read.
+Freshness is maintained by a logged date and a structural-delta check, driving scoped re-discovery of only the affected region and re-running the measure for that region alone. A retraction changes contested status, so a region’s measure changes exactly when the estate’s own record of a claim changes — which is why freshness is a mechanism rather than a fixed schedule.
+A stale or un-censused region returns unknown to a feasibility query, never a fabricated distribution. No objective freezes against an estate the system has not measured.
+9  Calibration
+The inferred measure is a targeting and flooring prior, not a truth verdict. It is strong enough to prioritise extraction and floor composition, and it is not strong enough to certify truth — and it is never asked to. It fails gracefully: a mis-scored source means mining in slightly the wrong order, never a claim asserted above its class, because the assertion boundary still enforces the genre ceiling on what any unit may assert, and the declaration baseline still floors it regardless.
+10  Mtafiti’s Invariants
+The census is exhaustive and objective-blind; one measure serves every objective.
+The declaration baseline is deterministic, feed-level, and always available. An undeclared feed resolves to the conservative value.
+The inference overlay emits detections only. It never imports the verdict logic and never assigns a class.
+The verdict is a deterministic matrix lookup carrying its rule reference. It contains no model.
+The overlay influences the measure only after its admission gate passes; the baseline stands alone until then, and the Registry records which regime applied.
+The measure never overstates standing and fails toward caution.
+An unmeasured dimension is recorded as unmeasured, never as zero or clean.
+A stale or un-censused region returns unknown rather than a fabricated distribution.
+PART III
+Targeta — Targeting
+11  What Targeta Is
+Targeta reads the measured Registry and decides where to mine and in what order, so an objective is served as fully as possible within its budget. It does not extract and it does not govern: it turns "what exists, and how defensible it is" into "what to mine first." It is the one component in the platform permitted to learn, and the greater part of its specification exists to bound that learning so it can improve targeting while never narrowing what the objective may reach.
+11.1  The anchor, held in two halves
+Do the job better: reach objective-satisfying, floor-meeting intelligence in fewer mined units. Never narrow what the objective may reach: the defensibility floor is inviolable, and the estate coverage the objective is entitled to is never silently reduced for efficiency’s sake.
+The part that makes Targeta better — learning what pays off — is structurally prevented from touching the part that must not narrow: what is eligible, and the floor.
+12  The Two Layers
+The distinction the whole design rests on. Objective-conditioned yield — which sources satisfy this kind of objective — is competence, and it is permitted. Unconditioned source-preference — which sources are good in general — is bias, and it is denied. The yield layer is granted the first and structurally refused the second.
+13  The Eligibility Core
+The core reads the Registry and the governing artifact, applies the floor as a hard filter, and ranks the eligible set by a fixed, inspectable function. It contains no model and no learned weight.
+A source below the floor is excluded, full stop. Not down-weighted, not ranked last — excluded, before any ordering happens. The floor is a filter rather than a factor, because a factor can be outweighed.
+The ranking is deterministic and reproducible: given a Registry state, a governing artifact, and a yield-layer version, the same plan is produced every time. Reproducibility is what makes auditing a past plan meaningful at all.
+14  The Guard, Held as a Type
+The separation between the core and the yield layer is a structural property of the interface, not a rule the yield layer is trusted to follow. It is held by two distinct types, and three properties define the guard.
+Input is the floor-passing eligible set, and nothing else. The yield layer does not receive the floor value, the raw defensibility measure, or the eligibility logic. It cannot re-derive what it was never given.
+Output is a permutation of that exact set. Same members, reordered — none added, none removed. The output type is an ordering of references, carrying nothing else.
+A non-permutation output is a type error. A result that drops or adds any member is malformed and rejected by the interface — not caught and corrected, it raises.
+
+The yield layer is never called directly. It is called only through the boundary function, which constructs the stripped input, invokes the yield function, and validates the permutation property before anything is reordered.
+15  The Admission Gate
+The yield layer is learned, so it is admitted to influence ordering only after passing a gate with two arms, the second a veto.
+Improving efficiency by starving a class fails the gate regardless of the efficiency number. The veto exists because the most effective way for a learned ranker to reduce mined units is to stop visiting classes that pay off rarely — which is exactly the silent narrowing the anchor forbids.
+On failure of either arm, Targeta runs on the deterministic core alone. The core is never blocked by the yield layer’s failure, so a failed gate degrades ordering quality and nothing else.
+16  The Mining Plan
+The plan is a frozen contract, and it carries what an auditor needs to reconstruct why mining happened in the order it did. Retaining the core’s baseline ranking alongside the final order is what makes the yield layer’s influence auditable after the fact — without it, a reviewer sees only the final order and cannot tell what learning changed.
+17  The Two Modes
+Portfolio mode reads the whole Registry against the Portfolio Mandate and ranks the estate to select the priority strata to seed. The core applies the mandate’s class-default floor; the yield layer, if admitted, reorders within eligible strata.
+Per-run mode reads the Registry against one Objective Request. The core applies the objective’s floor as a hard filter and weights by relevance; the yield layer reorders the eligible sources by objective-conditioned yield. Both modes honour the floor absolutely and produce a plan reproducible for a given Registry state, governing artifact, and yield-layer version.
+18  Targeta’s Invariants
+The core is deterministic and contains no model. It never imports the yield layer.
+The yield layer imports only the boundary types — never the floor, the raw measure, or the eligibility logic.
+The yield layer’s output is a permutation of its input. A non-permutation raises.
+The defensibility floor is a hard filter applied by the core. Nothing below it is eligible, and nothing re-admits it.
+Improving efficiency by starving a class is a veto-class failure regardless of the measured gain.
+A failed admission gate degrades to the deterministic core. It never blocks the run.
+PART IV
+Solva — Depth
+19  What Solva Is
+Solva judges whether reasoning is sound, whether preservation is sufficient, and whether an output asserts within its defensibility. It is the one engine that genuinely reasons — the direction governor is deterministic, targeting’s learning is walled from eligibility, discovery’s inference only detects. Solva is where actual judgement lives in the platform, and it never extracts and never reaches into the operator primitives that do: it issues operations, interprets results, and governs depth.
+Because Solva reasons, it is the component that could do the most damage. The system launders a claim precisely when its strongest reasoning pushes against a defensibility ceiling — which is why Solva is built as two faculties joined by a one-way seam.
+20  The Two Faculties
+The seam is one-way. The reasoning faculty informs the composition freely, but its strength — how confident, how well-evidenced it judges its own conclusion — is never an input to the assertion boundary. A conclusion built from utterance-class units is asserted as "X was stated," however overwhelming Solva finds the evidence behind it. Reasoning shapes the composition; it can never raise the ceiling on what that composition may claim.
+The seam is a dependency rule, not a convention. The assertion module does not import the reasoning faculty’s confidence; the reasoning module does not import the class computation. Both directions are enforced by import assertion.
+21  The Reasoning Stages
+Reasoning proceeds through several genuine stages of judgement, each one a real act no governed artifact could substitute for — a matrix cannot tell you whether an inference is sound. Tension is where contested material is surfaced rather than resolved by averaging: a claim and its retraction, a fact and its correction, are held in view together, because averaging them would produce a conclusion no evidence actually supports and no reader could trace. Reflection’s output includes the load-bearing set — the units the conclusion actually rests on — and that set is the only thing the assertion boundary ever consumes from the reasoning faculty: the units, never the confidence behind them.
+21.1  The intent audit
+Reasoning begins from a declared frame, and the declaration is treated as a declaration, never as a truth. Solva's opening audit records the situation class the asker declared, and — across the layers that follow — reconciles it against the situation class the asker's own conduct demonstrates: a declared search for clarity whose every answer rejects all candidates but one it arrived with is demonstrating confirmation, not inquiry. Declared and demonstrated intent are both fields of the audit record; divergence between them is tracked as the session unfolds, not judged once at entry.
+The synthesis never exceeds the audited intent. Sustained declared-versus-demonstrated divergence is a second trigger on the synthesis gate, beside thin evidence: the surface may reframe honestly in-session, and a synthesis produced under unresolved divergence says so in its trace. Where the asker's declaration at admission — Document 3 §6.1 — and their demonstrated conduct part ways, the divergence is an emission the Watch reads under Document 8; Solva itself acts on it only as reasoning discipline, never as enforcement.
+22  Load-Bearing
+Identifying which units are load-bearing is itself a genuine reasoning judgement, and it belongs entirely to the reasoning faculty. It is not the class computation; it is the input to it, and that separation is what keeps the assertion boundary purely mechanical.
+The function returns unit references only. It carries no class decision. A load-bearing function that returned a class would have collapsed the two faculties into one — Solva chooses the units; it does not choose what those units imply.
+23  The Assertion Boundary
+Three mechanical rules define it, and none is a judgement Solva could ever be reasoned out of.
+A conclusion inherits the floor of its load-bearing units’ classes. If any load-bearing unit is utterance-class, the conclusion is utterance-class — the weakest load-bearing unit sets the ceiling for the whole.
+An utterance-class conclusion is asserted as "was stated," never as fact. The phrasing is a function of the class, not of how confident Solva happens to be.
+Reasoning strength is not an input to the class. The computation reads the units’ governed classes alone.
+23.1  Why this is the guard
+The class computation takes the load-bearing units and nothing else — no confidence, no reasoning strength, no evidence weight. The laundering case is not policed at runtime; it is unrepresentable. "The evidence is overwhelming, assert the utterance as fact" cannot be expressed, because the function computing the class has no parameter through which reasoning strength could ever enter. The signature is the guard, and a signature assertion in the test suite is what keeps it one.
+Construction order follows from this directly: the assertion boundary is built first, with its parameterless signature, before the reasoning faculty is bound to it. Building the reasoner first and adding the boundary afterward would make the boundary a filter some path could eventually route around.
+24  Enforcement
+At extraction time, Solva enforces the objective’s defensibility floor and the governed class, both read through handles that are read-only — Solva reads them; it never sets or relaxes them.
+A conclusion whose computed class falls below the objective’s floor is refused with a structured reason, stating what was asked, the supported class, and what would raise it. It is refused visibly, never silently downgraded and served.
+The refusal is actionable, and it offers exactly the three things a person can actually do about it: accept the result as a recorded statement, narrow the objective, or lower the standard. Offering anything else would be offering something the system cannot actually deliver.
+25  The Two Bars
+Solva reasons against two bars, set by where it operates, and both are governed by the identical two-faculty structure — only the target differs. At convergence Solva emits the defensibility stamp per unit; the verdict itself is the governed matrix lookup, which is discovery’s domain, and Solva applies it while judging preservation depth. Refusal reasons are recorded in the stamp-audit side-channel, which the Ledger absorbs — keeping the unit and its audit trail in separate envelopes even here.
+26  The Trace
+Every extraction-time judgement produces a trace: the reasoning path across its stages, the units found load-bearing, the class computed at the boundary, and the conclusion itself. The trace is what makes genuine reasoning auditable — a reader can see why a conclusion was reached and why it was asserted at the class it was. It carries a trace identifier joining it to the unit-level intelligence and to the trace lenses, the same identifier the Ledger row itself carries.
+The trace is not instrumentation added later. It is the auditability that justifies letting a component reason at all, and it exists from the first commit.
+27  Solva’s Invariants
+Solva reasons; it never extracts and never reaches into the operator primitives.
+Solva is two faculties with a one-way seam: a free reasoning faculty and a bound assertion boundary.
+The conclusion’s class is the floor over its load-bearing units’ classes. Reasoning strength is not an input and cannot raise it.
+An utterance-class conclusion is asserted as "was stated," never as fact, however strong the evidence.
+Solva identifies which units are load-bearing; it does not choose the class those units imply.
+The floor and the class verdict are read-only. Solva refuses below the floor and never relaxes it.
+A conclusion below the floor is refused with a structured reason, never silently downgraded and served.
+Every extraction-time judgement produces a trace carrying its path, its load-bearing units, and its computed class.
+Solva governs depth only. Direction is Northena; boundary is SyniSense. The axes never collapse.
+PART V
+The Extraction Stack
+28  When This Stack Runs
+This stack executes only where Northena’s Gate has already routed a sub-objective to fresh extraction. A warm-served answer reads directly from qualified intelligence already produced and never re-enters this stack at all.
+The distinction matters because it determines what actually runs on a given query. Most questions, against an estate that has been mined for any length of time, resolve warm — served synchronously from material this stack already built on an earlier pass. Extraction firing on every query would mean the platform never accumulated anything; it is the exception path, taken precisely where the Registry shows no qualified intelligence yet answers the question, not the default path every ask travels.
+What follows in this Part, and the transform layer in Part VI, describes what happens once fresh extraction has been triggered — the pipeline is the same whichever data dimensionality the material belongs to: audio, documents, structured records, images, or any other modality the estate holds. The layers, the unit contract, and qualification below apply identically across all of them.
+29  The Layers
+Extraction is three layers with a single direction of flow. Each layer’s boundary is a contract, so a worker inside any layer can be replaced without the layers above it ever knowing.
+30  The Unit
+The normalised unit is a frozen contract with flat field names, and it admits structured sources exactly as it admits perceived ones — a structured record becomes a unit without perception, carrying a text modality and a free locator. No second intake contract exists anywhere in the platform.
+Every unit carries five rings: content, provenance, relational edges, context, and defensibility. And every unit carries a re-extraction handle — without it, provenance is a label; with it, a unit can be regenerated from its source and compared against what is currently held.
+31  Qualification
+A unit that cannot meet the evidence standard is recorded as unqualified rather than admitted at a guessed class. Unqualified units never enter evidence partitions.
+This is the mechanism by which degraded material fails to reach consumption — not a filter applied at read time, which some path could eventually skip, but a partition the material never enters in the first place. Garbage in produces refusal out, not a confident wrong number, and the property is architectural: it follows from qualification and the assertion boundary together, and it does not depend on anyone noticing that a source was degraded.
+32  Batching, Holds, and Ceilings
+Work runs in batches, and a batch that trips a rail holds at the seam. The hold is visible on the run where the requester is already looking, with the rail that fired and the evidence behind it. Resolution is a single-reviewer act in governance, and the run reflects it the moment it lands. A held batch is never silently dropped and never silently passed.
+The budget ceiling is a hard stop, not a warning. A run halts at the ceiling and nothing past it is billed — this is what makes an open-ended extraction commissionable at all: exposure is bounded at commit, by a number the requester set.
+Long work survives interruption. Jobs checkpoint, and re-dispatch is idempotent — the same job submitted twice produces neither two sets of units nor two charges. Completion is judged from durable artefacts rather than from a status message, because a message can be lost while the work it describes has already completed.
+33  Perception
+33.1  The job contract
+Perception work crosses as a frozen job and returns as a frozen result. The job carries what to read, at what standard, under which model registry entry. The result carries what was read, the confidence distribution, the execution mode it ran under, and the grounding markers.
+Grounding markers resolve to a position in the source — a timestamp span in audio, a page and region in a document — which is what makes the re-extraction handle real for non-text material: a unit derived from a transcript points to the second of audio it actually came from, not merely to the file it lives in.
+33.2  The model registry
+Every model that runs is registered with its hash and its licence. A model is a versioned dependency with a rights posture, not a configuration value, and a model whose licence has not been verified does not run.
+Registry entries are additive: a new model is a new entry, and the entry a given result was produced under is recorded with the result — so a result produced last quarter remains fully interpretable after the registry has grown far past it.
+33.3  The execution seam
+Execution mode is explicit and attributable per job. The same pipeline runs on general-purpose or accelerated hardware behind one seam, and each result records which — a mixed fleet is therefore attributable rather than ambiguous, and two results that differ can be compared knowing exactly what produced each. The result contract is unchanged by execution mode: hardware is an implementation fact, and if it changed the shape of what perception returns, every consumer downstream would have to know about hardware, which is precisely what the seam exists to prevent.
+Perception calls route through the boundary governor. Speech and vision providers are consumed through SyniSense’s perception router, so material crossing a model boundary is receipted whatever its modality happens to be.
+PART VI
+The Transform Layer
+34  Mine, Then Transform
+Two stages. Mine is extraction to qualified intelligence, sized by reach. Transform is qualified intelligence into the declared output, entirely inside the system.
+The transform’s input is stored qualified intelligence, never the live tail of a mining run. Transforming from a running tail would produce an output whose composition depends on exactly when it was taken — which is not a property any deliverable should have.
+34.1  The Two Services
+Named explicitly, because every engine above composes into exactly two of them, and the composition is what makes the platform one system rather than six specifications read side by side.
+Service
+What it does, and does not
+Build the asset
+Mtafiti’s census and measurement, then the extraction stack — Parts II and V above. It runs objective-blind, ends at the qualified unit, and stops there. It does not target, does not reason, and does not serve an answer to anyone.
+Serve the objective
+Targeta’s targeting, Solva’s reasoning, and SyniSense’s boundary, composing an answer against a frozen objective — Parts III, IV, and Document 3 Part III. It reads what the first service built; it does not re-run census, and it does not re-extract material the first service has not yet produced.
+Neither service is a peer standing beside the other. The second depends entirely on what the first has already built; the first has no dependency on the second at all. A design that treats them symmetrically has misread the relationship.
+34.2  The First Seam — The Unit
+The normalised unit specified in §29 above — the five-ring contract — is the frozen interface between the two services, and it is the one artefact both sides depend on absolutely. The asset-building service writes it and advances no further. The objective-serving service reads it and never writes it.
+A warm check runs first, always. Where the frozen objective is servable from units the first service has already produced, the second service serves warm and the first service is never invoked. Where it is not — the required material has not yet been converged — the second service calls the first service’s own machinery to produce it. It does not re-implement census or extraction of its own; there is exactly one path by which a unit comes to exist, and every consumer of an un-converged slice takes that same path rather than a shortcut.
+This is what keeps the boundary from drifting. If a second, faster extraction path existed for the case where the first service was merely slow, the platform would have two ways to build a unit, and Doctrine 5 — single owner per value — would already be violated before anyone noticed.
+34.3  The Second Seam — The Governed Boundary
+Between composing an answer and delivering it sits the identical boundary specified in full in Document 3 Part III and Document 7 Part II: SyniSense’s chokepoint on any external model call, and the answering service’s admission and grounding on the way out. Nothing here is new; naming it as the second seam is what makes explicit that every answer this system produces crosses exactly two contracts on its way from raw material to a reader — the unit, and the boundary — and no third path exists around either one.
+35  The Provenance Bound
+The transform produces the shaped output only where the declared standard survives it. Each form carries a provenance-preservation rule that the shaping wizard can evaluate before anything runs.
+A form or grain whose rule cannot satisfy the declared standard is refused during shaping, with a path forward — never discovered at execution. Discovering it at execution would mean an objective was committed, priced, and run before anyone knew it could not deliver what it promised.
+Surfaces render outputs; they never re-shape them. A different form or grain is a new objective — this is what prevents analytics drift through export, where a figure quietly changes shape somewhere downstream of the record that produced it.
+36  The Five Forms
+Form
+What it preserves
+Qualified data
+Per-claim provenance — the strongest form, offered wherever the output preserves it.
+Composed conclusion
+Floor-over-load-bearing — Solva’s assertion boundary applied, the class stated plainly.
+Knowledge artifact
+A structured composite — briefs, claim graphs, occurrence indexes — completeness-sampled against what the corpus supports.
+Callable skill
+A packaged capability an application invokes — provenance carried as an ingredient manifest rather than per-claim, because the calling pattern destroys per-claim resolution.
+Model
+Training destroys per-claim provenance entirely — what remains is the training-data unit set, complete and recorded, which is what Model Output Acceptance requires in place of it.
+
+No form is mis-promised. The one shape that cannot carry provenance at all is not offered as an output form.
+37  Acceptance
+Acceptance is automatic and non-negotiable. A trained model must beat its base on the target stratum, damage nothing else beyond a bound, evaluate on held-out uncurated material, carry complete lineage with inherited rights, calibrate, and ship with an evaluation card — all six, or it does not enter the registry. No person sits in that path.
+What the analyst watches is not what an extraction run shows: staged progress with the current stage live, the candidate’s error against its base as checkpoints land, and each acceptance check moving from pending to measuring to settled with its real number attached. A training batch that trips a rail holds exactly like any other work, visible inline rather than hidden behind a spinner.
+Lineage is visible, including what failed. A rejected version stays on the shelf permanently with its reason. Resubmission creates the next version in the same lineage and re-runs every check — surfacing failure is what makes an accepted version’s numbers mean anything at all.
+Base weights do not change. Adaptation is bounded and versioned per instance, which lets capability replicate across instances without forking a core that would then need maintaining in parallel forever after.
+38  Blinded Comparison
+Where two candidates are compared to decide which is adopted, the comparison is scored blind: arm identity concealed at scoring, outputs presented in randomised order and normalised to remove arm-identifying form artefacts, identity unsealed only after scores are already fixed, and a leakage check run before unsealing.
+Concealing the label alone is insufficient. Identity leaks through form, ordering, and length as readily as through a name — a protocol that hides the name and leaves the fingerprint satisfies its own wording while defeating its own purpose.
+The leakage check is one probe: can the arm be identified above chance from the blinded outputs alone? Evaluation discipline binds the rest — the measurement contract is fixed before the run, evaluation executes the real serving path rather than a shortcut, selection and test manifests are disjoint and verified by hash, and report fields are explicitly nullable so an uncomputed metric can never be misread as an empty one.
+PART VII
+Economics
+39  Cost, Price, and Capacity
+Cost is measured; price is shaped, and the two are never confused with one another. Throughput, unit yield, and cost per qualified unit come from instrumented runs on real material — no invented figure ships as though it were a real one.
+Price is configuration, not code: versioned price models, swapped at the control surface, with every quote stamping the model version that produced it. A learning-phase quote is structurally non-precedent — an exploratory model version, explicitly time-boxed, that cannot be pointed to later as a commitment.
+Delivery time is the capacity signal a requester sees; hardware numbers are never surfaced to them. Two cost classes exist — served from qualified intelligence already held is fast; requiring fresh extraction is queued, slower, and priced accordingly higher.
+Quote instrumentation exists to understand pricing dynamics, not to score any individual quote: per quote, the shape, the model version, the outcome, the dimension a negotiation stalled on if it did, and the first lever the buyer actually pulled. Fleet allocation is itself configuration — a versioned policy apportions capacity across mining, transforms, and the live path, set at the control surface and managed live by the operator.
+Every extension re-quotes. Extending a running objective generates a new quote for the addition rather than folding silently into the existing commitment — a record showing one commitment covering two different scopes cannot be reconciled afterward.
+PART VIII
+The Model Ladder and Training
+40  The Model Ladder
+Four rungs, ordered by cost. The selection rule is the lowest rung that meets the promise, and the registry’s ladder-rung field makes every placement inspectable.
+Rung
+What belongs here
+Cost behaviour
+1 · Deterministic code
+Byte checks, regex, structural walks, contract locks, counting, routing.
+Near-zero marginal cost; fully auditable; never drifts.
+2 · Classical NLP
+Tokenisation, entity recognition, sentence segmentation, language identification, rule-based tagging.
+CPU-cheap, deterministic-enough, offline-capable.
+3 · Small owned models
+Estate-fine-tuned perception and domain models — speech, diarisation, classifiers — registry-pinned.
+Owned, near-free inference in-perimeter. The flywheel migrates work down to this rung continuously.
+4 · Frontier LLM
+Open synthesis only: fluent composition, brief narrative — always behind SyniSense, always with a lower-rung fallback.
+Highest unit cost. Every use answers "why not rung 3?" before it is approved.
+
+The expensive rung is architecturally optional everywhere it appears — grounding checks are byte-mechanical, explicitly rejecting semantic scoring, and every frontier-LLM consumer carries a mechanical fallback arm beneath it.
+41  The Deflation Law
+The transformation layer is the cost answer to itself. Every training cycle on the estate produces owned models that migrate rung-four and rung-two work down to rung three, and rung-three findings that harden into rung-one checks.
+The flywheel that improves quality is the same flywheel that deflates unit cost — by design, not by hope.
+42  The Sequencing Harness
+A harness executes registered functions against fixture traffic in candidate orderings and measures real cost, never a simulated approximation. The governing principle: this system is predominantly deterministic, and a deterministic gate is not simulated, it is run.
+Orderings are optimised over the registry’s own cost and dependency fields — cheap gates before expensive ones, deterministic rungs before model rungs, independent functions in parallel, fail-fast paths surfaced early. Rung-three and rung-four behaviour is measured statistically, across repeated runs and route-level comparisons, and is never claimed as exact. Its output is the measured best path of integration and sequencing per journey, replacing sequencing judgement with sequencing measurement, and back-filling every unknown cost field in the registry as it goes.
+43  Training as a Governed Discipline
+A model the platform trains is accepted through the Model Output Acceptance Criteria, and every technique used to reach an acceptable model is itself governed — not left to whichever configuration happened to be tried.
+A technique enters the platform only where proven use cases match the platform’s targeted results, and every adoption decision is made on measured evidence from the platform’s own material — published optimiser results at large-scale pretraining do not transfer automatically to adapter fine-tuning on an enterprise estate.
+43.1  The training-recipe seat
+All training configuration — optimiser and its parameters, learning-rate schedule, batch and epoch parameters, adapter rank and target modules — lives in a versioned, ledgered configuration object with the same discipline as any other governed sidecar. The seat ships empty: no default recipe exists until the first real training run fills it.
+Every trained model’s registry entry cites the recipe version that trained it, extending the lineage criterion of acceptance by this field. Recipe revisions carry no approval ceremony — they are DEFAULT-class — but every revision must attach the measured comparison that justifies it and write a ledger row; a revision with no attached evidence is a defect, not a shortcut.
+The foundation methods are fixed as FACT: LoRA and PEFT adapters on registered open base models; training material drawn exclusively from de-duplicated, cleaned, qualified units; acceptance exclusively through the six MOAC criteria on uncurated held-out sets.
+43.2  Optimizer selection
+An optimiser is a recipe component with material effect on both compute cost and model quality, and a candidate is adopted only by measured comparison on the platform’s own workload. The protocol executes at the first adapter training on real material: one two-arm comparison, baseline against candidate, identical training data, identical base model, identical evaluation sets, identical compute budget, run on the smallest stratum that yields a valid acceptance evaluation.
+Measured for both arms
+Requirement
+Target-stratum improvement, non-target regression
+Both reported, matching the acceptance criteria’s own metrics.
+Wall-clock and GPU-hours to convergence
+Reported.
+Calibration quality
+Reported as an input to the acceptance criteria’s calibration check.
+
+Quality parity on improvement and non-regression is mandatory for a candidate to remain eligible at all. Compute-to-convergence is reported, not gating. No adoption threshold exists in advance of the evidence — the decision is made on the measured results, and the verdict samples are uncurated exactly as any other verdict is.
+On adoption, the winning arm becomes the new recipe with its comparison attached. On rejection, the candidate is recorded as tested, with its numbers, permanently. Either way the result stands as record, and the identical protocol governs every future optimiser or recipe-component candidate afterward.
+43.3  Ensemble critics
+Detection quality in the Critic Seam may require more than one reviewing instance. Ensembles are legitimate for detection and prohibited for decision: multiple reviewers may surface findings; no collection of models may hold decision authority anywhere on the platform. This boundary is permanent, and it follows directly from the platform’s own design — one walled learner, one reasoning faculty, one rule that detection never decides.
+Deployment order. An ensemble may deploy only where rubric and context repair have already been tried and a repaired single critic still misses on a subsequent audit.
+Independence is mandatory. Members must differ genuinely — a different base model, or a materially different context shape. Correlated reviewers share failure modes and add cost without adding detection.
+All output is findings, never a vote. Disagreement between critics is itself a finding class, routed to the same ruling process as any other finding.
+Bounded at three members without explicit escalation, with cost-per-review telemetry emitted per member, and the ensemble retires if its gain over a single repaired critic falls under ten points after one full calibration cycle.
+43.4  Local-cascade offload
+Where a metered frontier model carries workload a cheaper local model could filter, a cascade — local model drafts, the frontier model handles only what the local model cannot — reduces spend. Cascades carry a documented failure mode: when too many items escalate, each escalated item pays twice, and the cascade becomes net-negative.
+A cascade builds only against demonstrated cost pressure. No cascade scaffolding, draft-model acquisition, or routing machinery is built before metered telemetry on a named seam shows spend exceeding a threshold set at that time — no threshold is defined in advance of the evidence.
+Its shape, once triggered: a local model drafts, a deterministic acceptance check decides, and the frontier model is invoked only on rejects — the acceptance check is rung-one machinery, not a second model’s judgement. The cascade emits its double-pay rate from its first run and retires if escalation makes it net-negative against the pre-cascade baseline.
+PART IX
+Quality Across Every Output
+44  The Quality Matrix
+Quality instruments existed, before this framework, for one input format and one endpoint verdict, leaving every intermediate transformation and every other format under-instrumented — and leaving the platform’s flagship output, models an organisation owns, with no acceptance bar of its own at all. The matrix closes that gap across every output class the platform produces.
+The matrix is keyed by output class — never by media type, customer, or instance. Every class carries the same four dimensions, instrumented the same way: a stratified human-verified sample drawn from census composition, uncurated, thresholds evidence-classed, drift-watched continuously.
+*The Watch's detection classes carry rows in this same matrix — correctness as detection rate per signal class, loss as missed-detection rate, precision as false-positive cost against the friction budget, attribution as verdict replay fidelity — instrumented under this framework's own disciplines: uncurated verdict samples drawn from real traffic composition, thresholds evidence-classed in Document 8, drift watched by the same machinery. One matrix, every output class, including the classes that watch the others.*
+Dimension
+Definition
+Correctness
+Is the output right — measured per class in its native unit: word-error rate for speech transcripts, field accuracy for mapping, F1 for tags, delta-versus-base for models.
+Loss
+What the transformation silently dropped — the unrecoverable defect class. Bounded tightest of the four, because loss cannot be repaired downstream once it has occurred.
+Precision
+What it wrongly included or over-applied — false merges, over-redaction, spurious tags.
+Attribution fidelity
+Is the who, where, and when preserved through the transformation — speaker naming, page or region provenance, source-row lineage.
+
+The census activates matrix rows. A class with no material in the estate stays dormant — registered, instrumented on paper, zero build. A class the census actually observes activates: its checkpoints join the estate’s first-measurement sample and its thresholds bind before that class enters production mining.
+45  Class Specifications
+Speech carries full depth as the ruled standard every other class is upgraded toward, never diluted to match a newer class: word-error rate at or below 15% on clean material, 25% on degraded telephone and archival audio, 30% on code-switched speech, with diarisation error at or below 20% on multi-speaker material — all NORM-class, anchored in the platform’s own operating values. Voice-activity false-negative loss stays at or below 1% DEFAULT on a stratified sample deliberately weighted toward quiet speakers, vernacular, and degraded material. Language-identification routing holds at or above 98% DEFAULT, with misroutes tagged so downstream anomalies trace back to their actual cause. De-identification recall on a seeded personal-data sample holds at or above 99% NORM — and a miss here is a governance event, never merely a quality score.
+Documents, images, and video carry row definitions and instruments only until a census activates them — their thresholds are set at activation, from that class’s own literature, never invented in advance of any material to measure. Structured-mapping outputs are measured per connector at onboarding, a human-verified sample proving the mapping before the census publishes at all. Analytic outputs — entity extraction, classification, tagging, summarisation — carry absolute per-class baselines, with summarisation additionally checked for faithfulness: no claim in a summary may be absent from its sources. Derived artefacts — briefs, claim graphs, datasets, occurrence indexes — add completeness sampling on top of the standing grounding gates: does the artefact contain what the corpus actually supports, measured as a miss rate rather than assumed as zero.
+Every sample validating a threshold is uncurated, drawn from measured census composition. Engineering the inputs — model choice, fine-tuning, corpus curation — is legitimate craft. Touching the verdict sample is not, regardless of the intention behind it.
+46  Model Output Acceptance
+A model the platform trains — adapter or fine-tune — is accepted into the registry, deployed into extraction, or delivered to a customer only when all six criteria hold. None is a review meeting; all six are artefacts the training run itself already produces, checked as a set of cells over files that already exist. A training run that cannot produce them was not a governed training run.
+Criterion
+Requirement
+M-a · Improvement
+Beats its base model on the target stratum by at least 5% relative.
+M-b · No collateral regression
+No degradation beyond 1 percentage point absolute on any non-target stratum — a gain in one language never comes by breaking another.
+M-c · Uncurated evaluation
+Held-out, census-stratified sets. The same discipline that binds every other verdict in the platform binds this one.
+M-d · Complete lineage
+The training-data unit set is recorded; licence-class inheritance is binding, so a model trained on internal-only data carries internal-only egress restrictions; base checksum and adapter version are pinned in the model registry.
+M-e · Calibration
+Confidence calibration is measured and versioned before the model’s scores feed any downstream gate.
+M-f · The evaluation card
+A customer-deliverable model ships with its measured numbers, whatever they are — the platform’s honesty discipline applied to its own flagship product.
+47  Three-Stage Coverage
+Stage
+The quality question
+Extraction
+Did we read the raw material right, and lose nothing recoverable?
+Transformation
+Is what we produced correct, complete, and attributed — and are the models we trained acceptable?
+Production
+Do deliverables carry only what the corpus supports, with rights and floors intact?
+
+The matrix explains failures per stage and gates per-class claims. The uncurated composite verdict remains the single endpoint measure. Neither substitutes for the other — an endpoint-only measurement means a failed unit starts a manual investigation with no way to say which of several upstream transformations broke it; the matrix is what turns that investigation into a reading off a dashboard.
+48  Behavioural Rules
+Depth builds on activation. A dormant class carries its row definition and instrument only; full depth builds when a census actually activates it. Speculative depth for a format no estate holds is waste, not diligence.
+A new output class carries its matrix row from the moment it is proposed, not added afterward as a retrofit.
+Measurement reuses existing events. Matrix checkpoints ride the estate’s standing measurement samples as added columns; a new measurement era is never proposed to serve this framework alone.
+Speech is never diluted; every other class is upgraded toward it. Parity across formats is achieved by raising the newer classes, never by lowering the standing one.
+No instance is a development metric. The specification is class-keyed; any one organisation’s estate merely instantiates its rows. An instance-derived assumption entering the platform’s own canon is a reportable defect.
+Verdicts are uncurated, always. Every validating sample draws from measured composition; engineering the inputs is legitimate, touching the verdict sample is not.
+49  Production Quality Machinery
+The same three-tier discipline the Critic Seam applies to worker output applies here to what the pipeline itself produces — one design, two domains, one calibration mechanism shared between them.
+Tier
+What it does
+One — deterministic, always-on
+Schema completeness at write, referential integrity on every locator, verbatim grounding, and statistical tripwires per batch — empty-output rates, distribution shifts against the census baseline, confidence-profile anomalies. Runs wherever the pipeline runs, at effectively zero cost.
+Two — the production critic
+A sampled, asynchronous critic reviews a share of outputs per active class continuously — transcript spot-agreement, tag and summary faithfulness against sources, mapping spot-checks, de-identification residue scanning. Findings carry a routing lead — which stratum, which model, which lever — and never block; the pipeline is never slowed to produce them.
+Three — human calibration
+The matrix’s own stratified human samples double as the critic’s calibration: catch rate and false-alarm rate per output class, versioned and staleness-marked. A stale critic’s findings render explicitly uncalibrated rather than being trusted by default.
+
+Quality of protection escalates as governance; quality of product routes as findings. A de-identification recall breach, caught at any tier, quarantines the affected batch fail-closed — a custody failure, not a utility shortfall. Every other finding — word-error rate, tagging F1, mapping fidelity — never blocks; detect-never-decide holds everywhere else exactly as it holds across the rest of the platform.
+One calibration mechanism serves four consumers: fact-confidence calibration, the build-time critic’s ledger, the production critic’s per-class ledger, and the Watch's detector ledgers — catch rate and false-alarm rate per signal class, per Document 8 — are the same versioned, staleness-marked form used four times. A second, parallel calibration mechanism anywhere in the platform is a defect on sight.
+50  De-Risking Is Per Format, Not Per Instance
+No instance is a development metric. This specification is class-keyed; any one organisation’s estate instantiates its rows, and it never sets them.
+Weak-surface de-risking exists identically, in shape, for every format class the platform reads — speech, documents, structured records, images, video, and whatever else an estate holds. What differs between them is only which rows have been populated, and a row populates when a census actually activates the class, never in advance of one. An organisation whose first estate happens to be a broadcast archive gets speech de-risked to full depth on day one and every other class registered but dormant. An organisation whose first estate is a document repository gets the reverse. Neither instance is permitted to set what the other classes’ weak surfaces are; that would promote one estate’s composition into a platform assumption, which is a defect this doctrine exists specifically to prevent.
+50.1  Speech — the instantiated example
+Speech carries full de-risking depth today because it is the format class the platform’s first estates have actually presented. The table below is real, measured against real starting points, and it stands as written. It is not, and must not be read as, the shape every future estate will need — it is what happens when the lever below is pulled for this one class.
+Extraction quality on a specific estate is unmeasured until it is measured — but its weak surfaces are enumerable in advance, each has existing open work to start from, and each maps to a lever the platform already has. The gap is speccable, not left to chance.
+Engineer the inputs relentlessly; never touch the test. Model choice, fine-tuning, augmentation, and corpus curation are all legitimate curation of success. The validation verdict is drawn from measured estate composition, post-census, uncurated — a rehearsed checkpoint is preparation; a curated verdict is worthless the moment real material meets it.
+Weak surface
+Starting point
+Platform lever
+Pre-verdict checkpoint
+Swahili & Kenyan languages
+Meta MMS, multilingual Whisper, Mozilla Common Voice Swahili, FLEURS, KenCorpus.
+Registry-pinned base models per language; language-routed selection at job level.
+Per-language word-error rate on a small real sample — measured in week one.
+Code-switching (Sheng, Swahili–English)
+Code-switch fine-tuning recipes; East African community corpora.
+Census-curated code-switch corpus, fine-tuned in-perimeter; the improved model re-enters via a registry bump.
+Code-switched-segment word-error rate against a monolingual baseline, same speakers.
+Accented English
+Pan-African accented-English corpora and adaptation literature.
+Fine-tune or adapter on an accented checkpoint, provenance pinned either way.
+Accent-stratified word-error rate on real archive segments.
+Degraded, telephone, or archival audio
+Standard augmentation and domain-adaptation recipes for narrowband, noisy audio.
+Augmentation in the training loop; era- and quality-stratified census slices target the hard bands directly.
+Word-error rate by decade and quality band — the census supplies the strata at no extra cost.
+Speaker overlap and call-in diarisation
+Open diarisation stacks and overlap-aware recipes.
+Diarisation model swap via the registry; the voice-activity detector and diariser upgrade independently.
+Diarisation error rate on a multi-speaker call-in sample.
+50.2  Other Dimensionalities — Registered, Dormant, Identical in Shape
+Every other format class is registered now, in the identical four-column shape — weak surface, existing starting point, platform lever, pre-verdict checkpoint — with its cells populated at the moment a census actually activates the class, never before. Inventing a threshold for a class no estate has yet presented would be exactly the fabrication the platform’s own measurement doctrine forbids; the honest state of an unactivated row is empty, not guessed.
+Dimensionality
+What activates it, and what the row will hold
+Documents and OCR
+Print, degraded scan, handwriting, and mixed-language strata. Correctness as character and field accuracy, loss as page or region drop rate, attribution as page or region locator fidelity. Instrument is a stratified human-verified sample at activation; thresholds are set from that class’s own literature at that time, not before.
+Structured and tabular records
+Per-connector mapping accuracy, proven on a human-verified sample before a census carrying that connector publishes at all. Loss as row or field drop; attribution as primary-key and source-table lineage.
+Images and video
+Frame-level description and classification accuracy on sampled frames; loss as segment drop; attribution as timestamp and frame lineage. Same instrument shape as documents, values set at activation.
+Retrieval and index surfaces
+Recall at a fixed depth on a sampled query set, per language. Registered now; built and valued only once the surface it measures actually dispatches.
+
+A dormant row carries no product claim. Until a census activates a class, collateral describing it states the method the platform will apply, never a number — the same discipline that governs speech before its own validation completed, applied here before any measurement has been taken at all.
+Domain-transfer measurement, first. Run the current registry’s models on a small genuine sample spanning every surface above. Output: baseline error rates per surface. Days of work, and it removes the largest unknown first.
+Targeted adaptation. Where a surface misses its working threshold, apply its lever — swap the base model, fine-tune, augment — and re-measure the identical checkpoint. Additive registry versioning records every attempt with pinned provenance.
+Composition-scale validation. The human-baseline benchmark runs on a slice drawn from the censused estate’s real composition. Whatever it says is published internally and stands as the claimable number, whatever that number turns out to be.
+Throughput and cost, last. Only once quality is known: hours per compute-hour and cost per qualified unit on production hardware. Planning-grade economics become quoted economics only at this point, never before.
+
+Until validation completes, any collateral states the method, never a number. After it completes, the measured figure is the only accuracy claim in circulation — whatever it turns out to be.

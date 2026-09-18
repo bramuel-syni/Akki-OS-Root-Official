@@ -57,6 +57,56 @@ Failure to follow this sequence = paraphrase-not-spec failure class the owner ex
 
 Update this section at every CP/R-step close.
 
+### 📋 POST-SPRINT QUEUE — registered 2026-09-18 · pending owner-directed execution AFTER current sprint closes
+
+**Sprint-close criterion for queue release:** owner (i) acknowledges the SER errata v1.0.1, AND (ii) rules the Part 2-vs-Part 8 T-c sequencing question (α · split-landing schema-early / caller-flip-at-M12b-W1, OR β · full T-c at M12b-W1 which itself precedes M11-W1), AND (iii) issues explicit "go" on the M11/M12 build. Until all three land, the queue stays PENDING and no queue item begins.
+
+- **Q1 · Fold plain-language HARD BANS / ANTI-DRIFT narrative into `ORCH_BOOT.md`** (owner directive 2026-09-18: "yes, once done with current sprint")
+  - **Scope**: add a human/orchestrator-readable section to `ORCH_BOOT.md` (state + audit copy · byte-identical) carrying the plain-language rules: (a) distrust any pasted handoff that conflicts with disk — re-ground from `ORCH_BOOT.md` first; (b) never re-clone; (c) never restart; (d) never run Chunk-1; (e) never use `testing_agent`; (f) never push; (g) do NOT conflate M9's shape-only control-plane with the whole platform (~95 other service dirs are real code, not the M9 subset); (h) authoritative-doc pointer list (`STATE/STANDING_ORDERS.md`, `STATE/DECISIONS.md`, `STATE/NEXT.md`, `notes/ORCH_BOOT.md`, `notes/SHAPING_LEDGER.md`, `notes/SER_ERRATA_v1_0_1_20260918.md`, current wave grounding brief).
+  - **Discipline**: machine-checkable ratchet block stays as-is; this addition is a NEW section (append-only), not a rewrite of the current YAML block. Preserves `test_orch_boot.py` invariant behaviour (both copies remain byte-identical; ratchet field unchanged).
+  - **Dependencies**: current sprint close (see criterion above).
+  - **Autonomy stop-conditions**: (i) any wording change that would touch the machine-checkable YAML — HOLD, surface as decision-point; (ii) any addition that would break the byte-identical audit-copy invariant — HOLD.
+  - **Owner-questions before Q1 opens**: none required beyond the sprint-close criterion. The plain-language content is already spec'd verbatim in the owner directive text above.
+
+- **Q2 · Build AUTONOMOUS-RUN PLAN for remaining milestones** (owner directive 2026-09-18)
+  - **Scope**: a downloadable plan document (`/app/frontend/public/audit/AUTONOMOUS_RUN_PLAN_<yyyymmdd>.md` + mirror in `notes/`) covering the full remaining programme after this sprint. Named sequence: **M11 → M10 → M12 → M12b → M13-rest → M14∥M15 → M16 → M17 + frontends track**.
+  - **Per-milestone content**: (a) scope (exact deliverables); (b) dependencies (prior-milestone waves + external inputs); (c) autonomy stop-conditions (what stops autopilot in-wave · what forces owner surface); (d) wave breakdown (W1..Wn with test-first RED + double-GREEN plan); (e) ratchet-delta estimate.
+  - **Consolidated "RULINGS / QUESTIONS THE OWNER MUST ANSWER BEFORE THE RUN STARTS" section**: itemises every choice that would stall an autonomous run. Non-exhaustive seed list (to be expanded by the plan itself):
+    - **Mongo vendor + cluster model**: Atlas / self-hosted / MongoDB-per-tenant-container. Per-tenant replica set count. Retention TTL owner.
+    - **Vector-store vendor**: pgvector-on-Postgres / Qdrant / Weaviate / Milvus / other. Per-tenant isolation shape.
+    - **KMS**: cloud KMS (which cloud) / HashiCorp Vault / in-cluster sealed-secrets / other.
+    - **Observability**: Loki+Promtail / Datadog / Grafana Cloud / self-hosted / owner-managed.
+    - **CIF scoping**: which surfaces are in-CIF vs out-CIF for M12b hardening.
+    - **TCB row-list changes**: any additions or removals since M13-W1 seal (currently 10 present + 3 PENDING future rows).
+    - **Frontend canonical source**: which of the four repos (`RMS-IQ-Core-2`, `Akki-OS-V1`, `Extraction-Akki`, `Akki-Executive-Core`) is authoritative for the frontend track. Are we merging, forking, or greenfielding.
+    - **Frontier LLM gateway vendor + reseller-agreement path** (per D-17): concrete gateway choice · concrete customer-provider-account default path.
+    - **Watch action-class rename execution wave**: confirm M12b-W1 landing per R-18 Part 2 T-c OR alternate.
+    - **HF token rotation state**: SEC-2026-09-12-01 status at plan-run boundary; per §4.3 any HF-touching wave holds until hash-delta on record.
+    - **JUMP + Razuna rotation state**: any change from the current defer.
+    - **Estate CSV re-drops (T-d)**: whether the 3 fixed-column CSV re-drops for the 3 Huawei Creds triples have landed at plan-run boundary; without them the estate connection stays partial.
+    - **M14 / M15 parallelism**: are M14 and M15 truly parallel-executable or serial. Owner ruling on which sub-teams (if any) run each.
+    - **Ledger provider (M10)**: hash-chained single-writer implementation choice (in-tree / library / external service).
+    - **Any additional owner-desk items surfaced between now and plan open**.
+  - **Deliverable format**: downloadable plan doc with per-milestone tables + a top-of-doc "OWNER-QUESTIONS-BEFORE-RUN" checklist that the owner ratifies before autopilot opens.
+  - **Dependencies**: current sprint close + Q1 landing first (so the ORCH_BOOT hard-bans are in force before the long run begins).
+  - **Autonomy stop-conditions**: (i) any unratified owner-question in the checklist — HOLD; (ii) any milestone with a canon-anchor gap requiring new-rule-ratification — HOLD, surface as decision-point.
+  - **Owner-questions before Q2 opens**: none — Q2 itself surfaces the full owner-question list as its central deliverable.
+
+**Queue discipline**:
+
+- Neither Q1 nor Q2 opens until the sprint-close criterion above lands verbatim in the next owner turn.
+- Queue items land as their own §3.3 seal-chains (Q1 = state-only 2-commit if ORCH_BOOT-only edit; Q2 = state-only 2-commit for the plan doc).
+- If a new owner directive lands mid-sprint that adds to the queue, append it here as Q3, Q4, … same shape.
+- Each queue-item close appends a new row to `notes/SHAPING_LEDGER.md` if it introduces a new shaping mechanism.
+
+---
+
+- **CURRENT AS OF 2026-09-18T~present · CP-M11-GATE-RELEASE Commit-C-supplement THIS-TURN · state · banks Commit-B SHA `3c0a7aa6a1d55ff8a288b170a7deffca6b53c91f` (short `3c0a7aa6`) into `STATE/DECISIONS.md` + `STATE/NEXT.md` · completes §3.3 fixup shape enforced by `backend/tests/invariants/test_orch_boot.py` · TRACK-A HEAD `4132e72` (unchanged) · MASTER HEAD advancing to Commit-C-supplement · RATCHET 4826 (unchanged).** Prior state: Commit-C `aeeae923b286a8078cb0bc1ee703067c136f3d3f` landed with `{C only}` scope (only `notes/ORCH_BOOT.md`), which was too narrow — `test_orch_boot.py::_banked_in_state` correctly surfaced that `DECISIONS.md` + `NEXT.md` still carried the OLD Commit-B `f6458770…` and did not carry `3c0a7aa6…`. Drift-and-burn priority guard fired appropriately. Owner ruling (b) 2026-09-18: land append-only supplement rather than amend/rewrite Commit-C (rationale: "the record is append-only everywhere else in this system and shouldn't be an exception here"). **Supplement scope: `STATE/DECISIONS.md` + `STATE/NEXT.md` only.** Nothing else from the dirty tree. Full 40-hex + short forms banked to satisfy predicate (form ∈ {full-40, 8-hex, 7-hex}). **After GREEN**: CHUNK 1 opens under already-ruled defaults (1a file-level overlap summary · 2c atomic rule + rationale · 3a nav/screens/high-level components · 4a strict title match); ingest + ground truth only; production code = task failure. **Standing constraints unchanged**: local commits only · zero push · terminal pytest only · credential discipline · no refactoring · `testing_agent` BANNED.
+
+- **CURRENT AS OF 2026-09-18T~02:20Z · CP-M11-GATE-RELEASE Commit-A LANDED · Owner errata ack + T-c=α + c1/c2 banked · M11/M12 HOLD LIFTED (build-side; Q2 pre-run rulings still gate M11-W1 open) · state-only §3.3 3-COMMIT SHAPE (Commit-A track-a `4132e72` · Commit-B master pending · Commit-C fixup pending) · TRACK-A HEAD `4132e72` · MASTER HEAD advancing · RATCHET 4826 (prev 4814 · +12 exact measured delta) · double-green byte-match `4826 passed, 1 skipped, 1 xfailed, 438 warnings` (GREEN_R + GREEN_R2 from `backend/` cwd) · xfailed=1 is c2 dated-expected-RED (closes M12b-W1).** **LANDED THIS-TURN**: (1) `contracts/watch_action_class.schema.json` (canon `["annotate","shape","contain","sever"]` · destroy excluded per A5.3 · monitor excluded as Grey Mirror lane · `x-canon-anchors`: A5.3/C.3/C.7/W3). (2) `contracts/watch_verdict.schema.json` (certificate `{requirement_id, data_points[], observation_refs[]}` per A5.19 · severance_signal_ref keys to A5.2 · additionalProperties=false · signature-as-guard forbids confidence/score/strength/probability/certainty/min_certainty/how_sure/reasoning_strength/weight/evidence recursively). (3) `backend/tests/invariants/test_cp_m11_gate_release_watch_schema.py` (6 tests all GREEN incl. §3.10 Option-α Python-tuple-equals-schema-enum equality). (4) `backend/tests/invariants/test_cp_m11_gate_release_watch_m9_callers_vs_schema_xfail.py` (1 xfail-strict test · c2 mechanism · reason names DATE 2026-09-18 + closes M12b-W1 caller-flip). (5) `backend/tests/invariants/test_cp_m11_gate_release_d6_canon_ref.py` (6 tests all GREEN · positive/negative synthetic + live registry scaffold). (6) Ratchet bump 4814 → 4826 · new baseline_failures sha256 `5cd2d3bd…` · ratchet_history entry 219. (7) SHAPING_LEDGER v2 with S-29 (T-c α with c1+c2) + S-30 (dated-expected-RED xfail-strict mechanism) appended. (8) Environmental honesty note in DECISIONS about `test_cp10_harness_receipt_is_still_recent` mtime-freshness refresh via `wave_g5_realchrome_verification_harness.py` (invariant's own prescribed remedy · not silent rebaseline) + cwd correction (canonical invocation is `backend/` cwd). **GPU check-in at seal boundary**: elapsed 46.60h · remaining 25.40h. **HOUSEKEEPING**: telemetry/commissioning/notebook/mtafiti/PINS.md pointer LEFT UNCOMMITTED per SO §7 R-4 / R-5. **HOLD retained on M11-W1 code work** per this-turn owner directive final paragraph — Q1 (ORCH_BOOT hard-bans fold) + Q2 (autonomous-run plan · consolidated OWNER-QUESTIONS checklist) land in separate follow-on state-only 2-commits this-shift, then HOLD for owner review + pre-run rulings before M11-W1 opens. **Next this-turn: complete CP-M11-GATE-RELEASE Commit-B + Commit-C fixup; land Q1 (state-only 2-commit); land Q2 (state-only 2-commit); report; HOLD.**
+
+ **HOLDING at M11 AND M12 gates** per R-18 Part 8 pending owner (i) errata ack + (ii) Part 2-vs-8 T-c α/β sequencing ruling + (iii) explicit build "go".** **BANKED THIS-TURN**: (1) `notes/SHAPING_LEDGER.md` + byte-identical audit copy `/app/frontend/public/audit/SHAPING_LEDGER.md` created (sha256 `2facc2ea…` · 88 lines · 28 seed shaping mechanisms S-01..S-28: R-1..R-6 · SO §3.8/§3.10/§2.1/§4.1 §E/§4.1 §F/§4.3 · boot ritual · ORCH_BOOT + self-check invariant · ratchet monotonicity + no-silent-rebaseline · §3.3 3-commit/state-only 2-commit protocol · never-push · testing_agent BANNED · SO §3.1 ALIVE IS NOT DONE · §3.2 NO RUN WITHOUT PROGRESS SIGNAL · §3.3 NO SEAL WITHOUT BOTH SHAs · §4.2 VERIFICATION-WALK SCOPE · Ambiguity → DEFAULT-PENDING-OVERRIDE · Mission-framed reporting + two report formats · Every owner ruling banked verbatim BEFORE action · Autonomy stop-conditions · Post-sprint queue mechanism · Shaping Ledger folded into R-6). (2) `STATE/STANDING_ORDERS.md §7 R-6` updated with "R-6 companion artefact · SHAPING_LEDGER.md" paragraph specifying the ledger regenerates alongside ORCH_BOOT.md at every R-6 boundary (triggers a/b/c), append-only discipline, sources-win-if-drift rule. (3) `STATE/NEXT.md · §POST-SPRINT QUEUE` created above with Q1 (plain-language HARD BANS / ANTI-DRIFT fold into ORCH_BOOT) + Q2 (AUTONOMOUS-RUN PLAN for remaining milestones · seed owner-question checklist) · both PENDING until sprint-close criterion lands. **GPU check-in at seal boundary**: this-turn (post-R-18 seal elapsed 45.77h → this-turn boundary). **HOUSEKEEPING**: unchanged rule — telemetry / commissioning / notebook / mtafiti / PINS.md pointer LEFT UNCOMMITTED. **HOLD** persists on all M11+M12 build. No `services/data/*`, no `services/enforce/*`, no RED tests for M11, no Watch schema, no AST + P-15, no D.6 canon_ref runtime check, no M12b-W1 rename this-turn. **Next: complete this Commit-B + Commit-C fixup this-turn; then HOLD.**
+
 - **CURRENT AS OF 2026-09-18T~08:15Z · CANON RULING R-18 BANKED · SER ERRATA v1.0.1 LANDED · state-only §3.3 2-COMMIT SHAPE COMPLETE (Commit-A track-a N/A · Commit-B master `e9f1c8c0` · Commit-C master this-line-fixup) · TRACK-A HEAD `71faac1` (unchanged, no code touched) · MASTER HEAD advancing to Commit-C · RATCHET 4814 (unchanged). **HOLDING at M11 AND M12 gates** per R-18 Part 8 (release when SER errata v1.0.1 + contract schema + AST + P-15 green + canon_ref check active + D-16..D-19 banked; errata is the "next checkpoint · report before proceeding"; sequencing flag surfaced between Part 2 "Execute at M12b-W1" and Part 8 "M11/M12 hold lifts when [schema etc]").** **BANKED THIS-TURN**: (1) R-18 verbatim + 15-effect enumeration + Part 8 gate-release mapping in `STATE/DECISIONS.md · CANON RULING R-18`. (2) `STATE/STANDING_ORDERS.md` §2.1 ORDER OF AUTHORITY added (canon > SO > SER > schemas > code; "Canon" in build artefacts = (a) only; SER cited as SER §x); §4.1 §F CREDENTIAL-DROP SHA-PIN AT INTAKE OR REFUSE added; §4.3 HF TOKEN HASH-DELTA GATE added (SEC-2026-09-12-01 fail-closed; any wave touching HF holds until hash-delta on record). (3) SER ERRATA v1.0.1 landed at `notes/SER_ERRATA_v1_0_1_20260918.md` + byte-identical audit copy at `/app/frontend/public/audit/SER_ERRATA_v1_0_1_20260918.md` (sha256 `48620b42…`) — self-contained corrections for SER §A terminology · §B Canon anchors rule · §C D.6 canon_ref + strike supersede · §D C.3.3/C.3.5 I-2 rewrite · §E C.11.5/C.11.6 sever · §F I-4 ladder independent-role ratification · §G A.4 TCB BA-1.1-verbatim + tcb_enumeration_v1 reconciliation · §H Part 6 v1.1 absorption list · §I landing method + downstream held items. (4) T-c = Option (ii) EXTENDED (Watch schema + certificate {requirement_id, data_points[], observation_refs[]} per A5.19 + severance keyed to A5.2 + NO confidence/score/strength/probability field + signature-as-guard test on CP-S2 precedent · execute at M12b-W1 — HELD PENDING PART 2-vs-8 SEQUENCING CLARIFICATION). (5) T-d = Option (b) — §4.1 §E stands NO EXCEPTION · owner delivers 3 fixed-column CSV re-drops · post-drop verification echoes DB name + host only. NO creds resolver written. (6) D-16 CASCADE (local drafts, deterministic check decides, frontier on rejects; reverses C.19.6) · D-17 FRONTIER ACCOUNTS (gateway-only + customer-held provider accounts; D-10 amended) · D-18 TENANCY (per-tenant data plane + MIG or per-tenant node pool; shared control plane holds metadata/identity/scheduling/metering only, never source content, never ledger decision field per A.3; trust_domains_v1 amended; appliance = connected-tier packaging for premises not sole model; Pull Seam appliance section held) · D-19 LEDGER-UNAVAILABLE CONTAINMENT (Watch contain+sever only queue ledger intent on writer unavailable; run not-complete until acknowledged per B.4; DAP-29 unrecorded not permitted for extractions) — all four FIXED. (7) Part 5 DEFAULT-class values ratified (sever 5s · owner notify 60s · countersign expiry 7 days · nightly chain verification per tenant · Rules Service countdown 48h ordinary / 7 days Watch-and-Slow). (8) Desk items: OWNER-DROP-01 CLOSED (huawei_credentials_2_20260916.csv landed 2026-09-16T19:21Z) · OWNER-DROP-02 baseline sha `d778eb1e…` ACCEPTED + forward SHA-PIN-AT-INTAKE rule installed as SO §4.1 §F · OWNER-DROP-03 REOPENED + LINKED to SEC-2026-09-12-01 · SEC-2026-09-12-01 FAIL-CLOSED with three-step owner action (revoke → generate → re-drop-with-sha-pin) + SO §4.3 installed · TCB.yaml `review_policy` RATIFIED = two reviewers + security group · JUMP + Razuna rotation defers STAND. **GPU check-in at seal boundary**: pending in this Commit-B/C sequence. **HOUSEKEEPING**: unchanged rule — telemetry / commissioning / notebook / mtafiti / PINS.md pointer LEFT UNCOMMITTED. **HOLD** on all M11 and M12 build until owner (i) acknowledges the SER errata AND (ii) clarifies the Part 2-vs-Part 8 T-c sequencing question. No `services/data/*`, no `services/enforce/*`, no RED tests for M11, no Watch schema, no AST + P-15, no D.6 canon_ref runtime check, no M12b-W1 rename this-turn. **Next: complete R-18 Commit-B + Commit-C fixup this-turn; then HOLD.** **BANKED THIS-TURN**: (1) Tension (a) RESOLVED = Option C · thin-adapter layer at `services/enforce/<entity>_gate.py` · SO §3.8 added verbatim with 7-point contract + AST sole-importer both-directions + fail-CLOSED + ledger-intent parity + M12 exit evidence (P-07 refusal parity + AKKI-DATA-001 tenant-mismatch); Branches A/B of `notes/M11_CHARTER_20260917.md §3` permanently dead. (2) Tension (b) RESOLVED = Option α · SO §3.10 added verbatim with 6-point contract + `enum.Enum`-subclass ban only + Final tuple constants permitted iff paired schema-enum-equality test + JSON-Schema authoritative + retro-conformance grandfathered + M12b-W1 equality-test landing. (3) WATCH VOCABULARY DIVERGENCE FINDING banked · agent recommendation = Option (ii) rename-to-spec under §3.8 additive `_v2` pattern + `allowed_import_targets` + M12b-W1 landing (execution DEFERRED per owner "do NOT execute the rename yet"). **RMS ESTATE CONNECTION BRIEF landed** at `/app/frontend/public/audit/RMS_ESTATE_CONNECTION_BRIEF_20260917.md` + mirrored at `notes/RMS_ESTATE_CONNECTION_BRIEF_20260917.md` · one incident disclosed + remediated same-turn (`Sheet1` header-cell stdout echo of Razuna/Newsvault credential · owner rotation requested) · 10 owner-desk items surfaced · sequenced credential-acquisition plan (P.0..P.2 preconditions + Stage 1..3 walk). **HOUSEKEEPING**: unchanged — untracked `phase0/commissioning_records/*`, `downloads/`, PINS.md pointer, telemetry jsonl LEFT UNCOMMITTED per prior owner ruling. **HOLD** on all M11 and M12 build until explicit owner "go". No `services/data/*`, no `services/enforce/*`, no RED tests for M11, no M12 rename this-turn. **Next: banking-only 2-commit close this-turn; then HOLD.**
 
 - **HISTORICAL AS OF 2026-09-17T~13:30Z · CP-Anti-Forget-1 SEALED · Commit-C fixup landed · R-6 anti-forget boot manifest self-check live in ratchet · §3.3 3-COMMIT SHAPE complete (Commit-A track-a `fd4432a` · Commit-B master `4248ae76` · Commit-C master `5ebb875f`) · TRACK-A HEAD `fd4432a` · MASTER HEAD advanced to Commit-C fixup · RATCHET 4810.** **CP-Anti-Forget-1 CONTENT**: `backend/tests/invariants/test_orch_boot.py` (168 LOC · always-on hard-dynamic ratchet-floor + baseline-sha256 guard · HEAD-fields 40-hex + banked-in-STATE + last-sealed-not-live-rev-parse per owner refinement); `notes/ORCH_BOOT.md` state (canonical boot manifest with YAML block: ratchet + heads_last_sealed + boot_sequence + regeneration_triggers_r6 + authoritative_downloadable_copy_path); `/app/frontend/public/audit/ORCH_BOOT.md` byte-identical audit copy; `STATE/STANDING_ORDERS.md §7 R-6` new standing rule; `phase0/output_verified_seals/cp_anti_forget_1_r6_boot_manifest.seal.txt` seal file; `STATE/DECISIONS.md` new ruling entry (owner 2026-09-17T~20:45Z verbatim). Double-green byte-match `4810 passed, 1 skipped, 438 warnings` across GREEN1 (20260917T131704Z) + GREEN2 (20260917T131923Z). RED (20260917T130654Z file-missing right-reason) + DELTA_GUARD0_v2 (20260917T131332Z · +1 delta exact) on disk. R-5 compliant per-CP raw drill receipts. Roadmap resequenced (M13-W1 → M11 → M10 → M12 → M12b) already in `notes/NEXT_MILESTONES_PLAN_20260917.md`. D.5 regenerated + §2.9 anti-forget row added in `notes/PROJECT_STATE_AND_RULES_SNAPSHOT_20260917.md`. Two rule-tensions surfaced for owner ruling BEFORE M11 opens (thin-kernel vs B.2 repository layer · zero closed enums vs B.8 determinism) at snapshot §5.1 and §5.2 + persisted at `notes/M11_GATE_ASK_20260917.md`. Standing lines held (no push · no testing_agent · no refactor · no biometric material · preventive-charter · zero closed enums · zero data-plane imports · zero domain tokens · testing_agent BANNED · terminal pytest only). **Next: (a) complete Commit-B on master this-turn (state content) + Commit-C fixup on master (banks Commit-B SHA); (b) autopilot into M13-W1 (TCB.yaml + `akki.arch` global import assertions CI · MANDATORY FIRST per owner directive) under full DoD (RED → double-GREEN · D.3 suite · GPU check-in · regenerate boot files · seal); (c) HOLD at the M11 gate pending owner ruling on tensions (a) + (b).**
@@ -1584,5 +1634,100 @@ Ratchet floor unchanged: **2680**. Uncommitted local work: keypair-hardening tes
 **Ratchet floor:** **2692** · double-green byte-identical last close · manifest updated in `backend/tests/invariants/baseline_failures.json`.
 
 ---
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+---
+
+## PIN ADVANCE · CHUNK 1 SEALED · Standing authority granted · 2026-09-18
+
+### Current pin — CHUNK 1 sealed; standing autonomous authority in force
+
+**CHUNK 1** sealed on master at Commit-B (this-turn) + Commit-C fixup (this-turn) — §3.3 three-commit seal complete. **Owner ruling 2026-09-18 grants standing authority (Item 3)** to proceed autonomously from this seal onward through **Q1 → Q2 → M11-W1 → M12b-W1**, subject to Item 4 bounds and Item 5 stop-and-report conditions.
+
+**Operative ratchet:** **4826** (unchanged this-chunk — no code touched).
+
+**Reporting cadence per owner ruling Item 7:**
+- Chunk close: six-item summary + gate conditions advanced + ratchet + open forks.
+- Gate release: R-18 effect-15 five conditions each with evidence.
+- No other reports required.
+
+### CHUNK 1 close entry (details in `STATE/DECISIONS.md` § "CHUNK 1 CLOSE")
+
+- Artefacts landed: `notes/chunk1_20260918/CHUNK1_CLOSE_REPORT.md` + `chunk1_task_d_canon_7_requirements.md` (245 rules) + `chunk1_task_d_canon_8_requirements.md` (217 rules).
+- Total rules banked across nine canons: **1,096**.
+- Gate 4 (`D.6 canon_ref check active`): advanced by Canon-7 extraction.
+- Gates 2, 3 (`Watch contract schema` + `AST/P-15 green`): advanced by Canon-8 extraction.
+- Task-4 (prototype inventory): DEFERRED to UI stream per Item 1.
+
+### Standing autonomous plan (per Item 3 · reportable at each chunk close)
+
+- **Q1** — HARD BANS / ANTI-DRIFT plain-language fold into `notes/ORCH_BOOT.md`. Deliverable: append-only narrative subsection under the anti-forget boot manifest.
+- **Q2** — AUTONOMOUS-RUN PLAN M11 → M10 → M12 → M12b → M13-rest → M14 ∥ M15 → M16 → M17 + frontends. Deliverable: `STATE/AUTONOMOUS_RUN_PLAN.md` with a consolidated pre-run OWNER-QUESTIONS checklist (framed only where a question is genuinely blocking, per Item 5 discipline).
+- **M11-W1** — Land the `akki.data` repository primitive. Chartered in `notes/M11_CHARTER_20260917.md`. Track-a Commit-A + state Commit-B/C per §3.3.
+- **M12b-W1** — Caller-flip: existing M12 callers migrate to the new Watch contract schema (T-c α: schema first · then AST/P-15 · then M11 · then flip at M12b-W1 per Item 4).
+- **M10** — The Ledger. Sequenced after M11-W1 per prior charter.
+- **M12 (rest)**, **M13-rest**, **M14 ∥ M15**, **M16**, **M17**, **frontends** — as listed in the M11 charter's downstream roadmap; each will produce a chunk-close report at its own boundary.
+
+### Deferred / blocked / owner-only items (unchanged; documented for continuity)
+
+- **SEC-2026-09-12-01** (HF-touching waves): remains owner-only per Item 6. Any wave touching HF holds until three-step HF action + hash delta on record. All non-HF work proceeds.
+- **T-d fixed-column CSV re-drop** (three Huawei triples): awaiting owner drop. Does not block M11-W1 build. Existing NEXT.md entries remain.
+- **A-vs-C** audio-vs-text choice (owner ruled B tonight = text · satisfied).
+- **R1 / R2 / R3** (WPW rulings): remain blocked-decision; do not gate M11-W1.
+- **W-Shield-Train-b** masking-tier admission ruling: unchanged.
+- **W-Audio-P2-a** audio archive endpoint + credentials + manifest source: unchanged.
+
+### Documentation drift banked at CHUNK 1 close
+
+- **Stale "Ratchet floor: 2692" line** in the WPW section of this file is superseded by the operative ratchet **4826** banked in `backend/tests/invariants/baseline_failures.json` (hard-asserted by `test_orch_boot.py`). Full NEXT.md reconciliation deferred to Q1 unless owner rules otherwise. This note itself banks the drift; the test invariant will continue to hold against the operative 4826.
+
+### Anomaly banked at CHUNK 1 close
+
+- `repos/Akki-Executive-Final/` folder exists locally and is **not one of the four repos** named in the problem statement. Reported in Task B and Task C; awaiting owner disposition. Not currently a stop-and-report condition.
+
+### SHAs banked at Commit-C fixup below
+
+- Commit-A (code · `programme/track-a`) — **N/A this-chunk** — no code touched.
+- Commit-B (state · `master`) — this-turn — SHA banked at Commit-C fixup below.
+- Commit-C (state · `master`) — this-turn — self-banks its own SHA + banks Commit-B SHA into DECISIONS + NEXT + ORCH_BOOT.
+
+
+**Commit-B SHA banked at Commit-C fixup this-turn:** `f6d892c4ef64e3c23b70e4f17965b9722cffdbb2` (short `f6d892c4`) — CHUNK-1-CLOSE state-master seal.
+
+
+---
+
+## Q1 + Q2 SEALED · 2026-09-18
+
+**Q1** — HARD BANS / ANTI-DRIFT plain-language narrative folded into `notes/ORCH_BOOT.md` (14 subsections · cite-anchored · byte-identical audit copy synced). Details in `STATE/DECISIONS.md` §"Q1 + Q2 CLOSE".
+
+**Q2** — `STATE/AUTONOMOUS_RUN_PLAN.md` landed as pointer-atlas overlay on `notes/NEXT_MILESTONES_PLAN_20260917.md`. Consolidated OWNER-QUESTIONS checklist: 4 BLOCKING · 16 NON-BLOCKING · owner-desk items + standing owner-only items unchanged. Details in `STATE/DECISIONS.md` §"Q1 + Q2 CLOSE".
+
+**Ratchet:** unchanged **4826** (no code touched).
+
+### Next-in-flight per owner ruling 2026-09-18 Item 3 standing autonomous authority
+
+**Next wave to open:** **M11-W1** (`akki.data` repository primitive · sole Motor importer · auto-injected tenant filter · cross-tenant refusal AKKI-DATA-001).
+
+**Pre-conditions status at Q2 close (per anchor plan §3 · M11 CHARTER §1):**
+- P1 M13-W1 sealed ✅
+- P2 Ratchet green ✅ (4826)
+- P3 Tension-a ruling (Option C thin adapter) ✅
+- P4 Tension-b ruling (Option α technical reading) ✅
+- P5 SO §3.8 + §3.10 amended per rulings ✅
+- P6 Mongo — interim local container acceptable per Q2 §4.2 N-M11-Q1 conservative default ✅
+- P7 GPU 72h healthy ✅
+
+**M11-W1 is ready to open on the next turn.** Grounding brief authoring under `notes/W_M11_W1_grounding_brief.md`.
+
+### SHAs banked at Commit-C fixup below
+
+- Commit-A (code · `programme/track-a`) — **N/A this-turn** — no code touched.
+- Commit-B (state · `master`) — this-turn — SHA banked at Commit-C fixup below.
+- Commit-C (state · `master`) — this-turn — self-banks its own SHA + banks Commit-B SHA into DECISIONS + NEXT + ORCH_BOOT.
+
+
+**Commit-B SHA banked at Commit-C fixup this-turn (Q1+Q2 close):** `acc02d1a41a5660c382c7bd6dd6ef5d7c654e9e0` (short `acc02d1a`) — Q1+Q2 state-master seal.
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

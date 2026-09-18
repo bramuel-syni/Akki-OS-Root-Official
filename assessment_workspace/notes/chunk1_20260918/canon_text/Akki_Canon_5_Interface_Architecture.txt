@@ -1,0 +1,547 @@
+AKKI CANON  ·  DOCUMENT 5 OF 9
+Akki Interface Architecture
+The design law, the visual system, the four consoles, the reference application, and the environment built on them
+PART I
+The Design Law
+1  What the Experience Must Deliver
+The platform produces governed intelligence — claims that are honest about how defensibly they may be asserted. The experience must make that intelligence usable by people who are not analysts, and it must make the governance felt as trust rather than operated as machinery.
+No surface mirrors the system’s internals. An interface that renders the build — engines, gates, phases — instead of the product is a defect, regardless of how faithfully it renders them.
+The register throughout is professional rather than consumer. The people this platform is built for live daily in warehouse-management tools, business-intelligence dashboards, and audit software — not in social apps. Surfaces are simple: one primary action per screen, one to three steps to complete anything. But they are seasoned, not simplified: dense information on a calm layout, every number carrying its provenance, no marketing chrome anywhere inside the product. Progressive disclosure is the house standard — the surface shows what a person needs at the moment they need it, and lets them go deeper on their own terms.
+2  The Eight Global Rules
+These bind every surface the platform renders, and every application built on it. A screen, however useful, that violates one of them is not a candidate for an exception — it is wrong.
+2.1  No build state on any surface
+No phase badges, gate names, fixture names, or engine names appear as navigation. The navigation of a surface is its user’s job, never the system’s internals.
+A person managing an estate should never see the word "Mtafiti," a name for an internal governor, on any screen they use to do that job. The internal architecture this canon specifies in Documents 3 and 4 is real and load-bearing — it is simply never the vocabulary a user meets.
+2.2  Class with claim
+Wherever a claim appears, its defensibility class appears adjacent to it, in plain language, in the headline position — never a buried score. There is no render path in which a claim is separable from its class.
+2.3  Refusal rendering
+A governed refusal occupies the answer position with warning treatment. It names the gap, shows what was asked against the class the material actually supports, and offers only actions the reader can actually take. It is never rendered as an error.
+2.4  Four response classes, never conflated
+Every response a person or an application receives resolves to exactly one of four classes, and no two of them share a component, a colour, or a layout treatment.
+Class
+What it means
+Answered
+The material supports the claim at its requested class. The answer, its class, and its evidence render together.
+Held — not yet extracted
+The estate has not yet produced qualified intelligence for this ask. The gap is named and filing it as work is offered.
+Refused — evidence cannot support
+The material exists but cannot meet the requested class. The refusal names the gap and offers the three actions a reader can actually take.
+Fault — something broke
+The request was not evaluated. This shares no component with the other three, because what it means to the reader is entirely different: nothing was decided about them.
+Refused names one family of outcomes, not one reason. Evidence-floor refusal is the most common instance and the one shown above; entitlement refusal, specified in Document 7 §5.2, is another, carrying its own wording and its own action set — never the evidence-floor actions. Every refused response still renders through the identical card; only the words inside it differ by reason.
+2.5  Agent-assumed marking
+Any value an agent supplied — rather than the person — carries an amber agent-assumed chip, visible through to commit. The seam between what the user actually said and what the agent inferred stays visible all the way to the moment of commitment.
+2.6  One trace thread
+Every intelligence element links to its trust receipt by trace identity. The public receipt is read-only, and it is the same record the compliance audit itself reaches — never a summary generated separately for display.
+2.7  Plain language
+No configuration syntax, enumeration values, or serialised data appears on any surface, with exactly one exception: the Integration Console’s contract views, where the contract itself is the product being shown.
+2.8  Visual family
+A calm header carrying the product and the person’s role; quiet defaults; at most one attention card per exceeded threshold; bordered row lists; minimal chrome throughout.
+Calm by default. The system brings the user what needs them — it does not present a dashboard of everything and ask them to find what matters.
+3  The Application Boundary
+An application is anything with an end-user in it, internal or external, and the boundary that decides this is mechanical rather than organisational.
+If a person who is not running the platform touches a surface, that surface is an application, and it enters through the Integration Console like any external party. Internal privilege is a key class, never a back door, and it is enforced server-side on every call.
+The platform’s own conversational surface — specified in full in Part VIII — is a reference application, not a platform surface. It consumes the platform through an Integration-Console-issued key and demonstrates the contract every future application follows. It is one implementation of asking, never the definition of it.
+Commerce is an application layer in its entirety. Buying is a commercial act performed in a separate sales product; no buyer ever touches a console or the extraction machinery directly. A buyer is an end-user of that commercial product, which itself holds a scoped external key and passes the same governed boundary as any third party. There is no privileged path anywhere in this design.
+4  The Three Motions
+Surfaces follow human motions, not platform modules. Three distinct motions exist, performed by different people at different moments, and they are never collapsed into one surface.
+Motion
+Performed by
+Character
+Verification
+The compliance owner, continuously.
+Checking that governance holds — reading the record, proving a run, watching for what has drifted.
+Exploration
+Business users, continuously.
+Finding out what the estate would support before committing budget to extracting it.
+Consumption
+Anyone with a question.
+Asking, and receiving an answer that carries its own defensibility.
+
+Every screen belongs to exactly one motion. A screen built to serve two masters serves neither — it is the reason a design ends up with a verification page that half-explores, or an exploration page a compliance owner cannot actually trust.
+Day-zero success is both the estate manager’s and the compliance owner’s home dashboards live and populated at the close of onboarding, simultaneously. The test objectives run at commissioning exist to verify the instance’s own parameters, not to produce value — day-zero mining is verification, never a demonstration staged for its own sake.
+PART II
+The Visual System
+5  The Palette
+Values are fixed. Every colour on every surface is one of these; there are no ad-hoc values and no per-surface variants.
+Token
+Value
+Name
+Use
+--paper
+#faf9f2
+Paper
+Application background. The dominant surface everywhere.
+--surface
+#f2f0e9
+Surface
+Cards, panels, table banding.
+--surface-2
+#ece9e1
+Surface 2
+Nested panels, input wells.
+--line
+#ddd9ce
+Line
+Borders, dividers, table rules.
+--ink
+#1a211d
+Ink
+Body text.
+--ink-2
+#3e4642
+Ink 2
+Secondary text, labels.
+--ink-3
+#6b7370
+Ink 3
+Tertiary text, timestamps, disabled states, unmeasured values.
+--blue
+#1e3a5f
+Blue
+Headings, primary actions, platform identity.
+--blue-deep
+#131f30
+Blue deep
+Dark surfaces.
+--oxblood
+#7e3038
+Oxblood
+Refusals, absolute states, destructive actions.
+--oxblood-2
+#8c3a34
+Oxblood 2
+Refusal surface backgrounds.
+--brass
+#8a6a38
+Brass
+Held states, criteria crossings, attention without alarm.
+--sage
+#2e6b4f
+Sage
+Measured-and-sound states, acceptance passed.
+
+Oxblood is reserved for refusal and destruction. It never marks emphasis, branding, or a call to action. A person who sees oxblood must be able to conclude, without reading, that something was refused or is irreversible.
+6  State Colour
+State
+Token
+Rendering
+Answered
+--sage
+Text and a 2px left rule. Never a filled background.
+Held — not yet extracted
+--brass
+Filled --surface with a 3px left rule in brass.
+Refused — evidence cannot support
+--oxblood
+Filled --surface-2 with a 3px left rule in oxblood, plus the three actions the reader can take.
+Fault — something broke
+--ink-2
+Neutral. A dashed 1px border, a retry affordance, and no colour from the refusal family.
+Not yet measured
+--ink-3
+Hatched fill at 6% opacity. Present in every estate view, at full visual weight.
+
+The fault rendering shares no colour, border treatment, or component with the refused rendering. A person must be able to tell at a glance whether the system said no or the system broke — the two mean entirely different things about what happened to their request.
+7  Typography
+display   Georgia, serif                  — headings, artifact titles
+body      system-ui, -apple-system, sans  — all interface text
+mono      ui-monospace, Menlo, monospace  — identifiers, digests, receipts, contract views
+
+Role
+Size
+Weight
+Use
+h1
+24px
+700
+Surface title. One per surface.
+h2
+18px
+600
+Section within a surface.
+body
+13px
+400
+Default interface text.
+body-lg
+14px
+400
+Prose, refusals, plain-language rule statements.
+label
+11px
+600
+Field labels, column headers.
+micro
+10px
+500
+Timestamps, counts, measurement class marks.
+mono
+12px
+400
+Identifiers, hashes, receipts, contract fields.
+
+An identifier, digest, or any value a person may need to copy or compare renders in mono. A trace identity in a proportional face cannot be compared by eye and invites a transcription error.
+8  Layout
+reading measure    720px    prose, refusals, rule statements
+content width      1280px   dense console surfaces, tables
+panel width        380px    evidence panels, detail drawers
+
+Layout
+Structure
+Used by
+Register
+1fr 300px
+A list with a detail panel — sources, applications, rules.
+Ledger
+Full width, tabular
+Dense records — the respect record, the violation record, usage.
+Wizard
+720px, centred
+One decision at a time — commissioning, ceremony, registration.
+Board
+Repeat(3, 1fr)
+Equal-weight cards — opportunity briefs, held items.
+
+Prose never exceeds 720px regardless of viewport. A refusal or a plain-language rule statement rendered at full content width is harder to read, and is treated as a layout defect, not a matter of taste.
+9  Components
+9.1  Figure
+The only permitted way to render a number that describes the estate, an artefact, or a measurement.
+measured    1,284
+estimated   ≈ 1,300 (est.)
+unmeasured  — not measured
+
+A number describing the estate, an artefact, or a measurement never renders as bare text. Its measurement class is part of the figure, not a footnote beside it.
+9.2  The refusal card
+┌─ 3px left rule, oxblood ─────────────────────────────┐
+│  Not to the standard you asked for.                  │
+│                                                       │
+│  Accept as recorded statement · Narrow the objective │
+│  · Lower the standard                                 │
+│                                                       │
+│  A refusal is the system keeping its promise.        │
+└─────────────────────────────────────────────────┘
+
+The title, the three actions, and the footer are binding copy, reproduced verbatim wherever this card renders. They are never paraphrased, shortened, or restyled for a particular surface.
+9.3  The agent-assumed chip
+Agent assumed — confirm or change
+
+Amber, 11px label weight, attached to any field an agent filled rather than the person. It survives to the commit review unchanged — a value that was agent-assumed at draft time is never quietly reclassified as user-supplied by the act of confirming the screen it appears on.
+9.4  The four designed states
+Four conditions recur throughout the product, and each has a deliberate treatment rather than an empty space where content would otherwise be.
+State
+Treatment
+Not yet measured
+Hatched fill, --ink-3. Present at true visual weight — never smaller, never omitted from a filtered view.
+Coverage gap
+Named specifically: what was asked, what is missing, an offer to file it as work.
+Refused
+The refusal card, above.
+Dormant capability
+Visible and named, with what would activate it — never hidden as though the capability did not exist.
+PART III
+The Surface Taxonomy
+10  Four Consoles, Capability-Defined
+The platform has exactly five consoles, defined by what can be done on them rather than by a named person. A single person may work several consoles in a day; a console is a set of capabilities, not a job title, and no capability is deleted by this taxonomy — anything that once sat under a named role is rehomed to the console where it actually belongs.
+Console
+What it is for
+Extraction
+Commissioning and watching the work that turns raw estate material into governed intelligence.
+Compliance
+Proving that governance holds, and controlling the rules it holds by.
+Integration
+Provisioning and administering every application that consumes the platform.
+Administration
+Instance founding, roles, operational economics, and the second signature governance requires.
+Watch
+Standing surveillance of the estate's security — the state of the watch, its record, what is under suspicion, and the decisions reserved for people. The one console owned by the Watch authority, specified in Part VII‑A below and in Document 8.
+11  The Shell
+One sidebar across the whole product, with role-based landings — each console opens to the screen its primary user needs first, not to a generic dashboard.
+No figure appears anywhere in the product without a path to where it came from. This single rule shapes more of the interface than any aesthetic decision does: it forces every tile, table cell, and chart to carry a receipt link, and it makes the proof walk the product’s most-used interaction rather than an audit feature reached only in an emergency.
+Every screen carries a breadcrumb, a chip stating which census the visible data reflects, and contextual access to the reference application.
+12  The Two Day-Zero Dashboards
+12.1  The Registry Dashboard — the warehouse floor
+Inventory management for the data estate, because that is what the platform fundamentally is. The estate manager’s home screen.
+Topline highlights about the holding, each with a descriptive note and a link to how it was measured.
+A distribution view beside an insight card stating plainly what the composition supports.
+The estate table: source, data type, volume, languages, rights, condition, last measured, share extracted. Any row opens to its own profile.
+Intelligence on the inventory: standing opportunity briefs, coverage-to-objective bars for live objectives, and extraction activity showing what is mining now and what is queued.
+12.2  The Trust Center — the warehouse of rules
+The identical inventory idea, applied to governance. The compliance owner’s home screen, specified fully in Part V; introduced here because the two dashboards together are what "day zero" means — both live and populated at the close of onboarding, simultaneously.
+PART IV
+The Extraction Console
+13  Home
+Header. Product and role, with a Commission objective action.
+Status line. Binding pattern: "Running normally. One item needs you."
+Attention. At most one attention card per exceeded threshold — what happened, the number against the threshold, and one Review action.
+Running list. Rows of objective name, entry type and stage, and budget consumed. Mining-stage visibility renders inside running status, never as a separate progress screen.
+Capacity strip. Fleet apportionment and current consumption at a glance.
+
+No dashboards or charts render by default. Exceptions appear only on threshold crossings; everything else stays quiet until it needs the reader’s attention.
+14  Commission — The Shaping Wizard
+Layout: a chat pane on one side, an objective draft rail on the other.
+Chat. The operator states intent; the agent asks for mandatory fields and never proposes on them. An estate-check chip renders inline before any feasibility-dependent question is asked.
+Draft rail. Three dimensions — entry, reach, output — plus the envelope, each field in one of three visual states: filled with a check, open and muted, or agent-assumed with the amber chip. The envelope line lists done-condition, budget, and lawful basis until each is supplied.
+Sample action. Run a sample becomes available once reach is drafted.
+
+Mandatory fields — reach, the four output fields, done-condition, budget, lawful basis — are asked, never pre-filled. Preference fields may carry agent recommendations, but the mandatory set never does. Every turn is grounded in a real estate read; no fabricated availability, ever, under any circumstance.
+15  Freeze — Commit Review
+You supplied. Rows of operator-stated values.
+Agent assumed. Rows headed "Agent assumed — confirm or change," each carrying the amber chip and a change link.
+Feasibility verdict. A success-treatment card. Binding pattern: "Floor feasible — {n}% of in-scope estate meets your standard."
+Grounding marker. States whether the objective was sample-grounded or estimate-grounded.
+Grounded by sample {sample_ref}   ·   No sample run — estimates only.
+Envelope line. Lawful-basis reference, budget, commissioner, and the scope ceiling respected.
+Action. Freeze objective.
+Frozen is immutable — a changed intent is a new objective.
+16  Sampling
+A sample is a first-class narrow-reach objective whose results ground the full commit. It exists because full extraction carries a real resource commitment, and because feasibility honestly returns unknown on un-censused reach — a sample converts unknown into evidence.
+Trigger. The Run a sample action on the wizard, once reach is drafted. The operator bounds the sample.
+Result card. Renders in the same position the feasibility verdict occupies: volume found, class distribution observed, per-hour cost observed. Recorded into the commit envelope beside the availability snapshot.
+
+Sample cost draws the objective’s budget and is shown doing so. A sample result is evidence, not a promise — it grounds an estimate; it does not guarantee the full run’s eventual yield.
+17  Registry Administration
+View census state by estate region; trigger or schedule census passes; un-censused regions are marked honestly as unknown, never as empty.
+18  Quality Observation
+Mining-stage visibility inside running status; per-objective yield and class distribution as extraction proceeds; threshold-crossing attention cards under the Home rules stated above.
+19  Opportunity Briefs
+The recommendation surface: a consumer of the registry census that proposes what the estate could be used for, grounded in census facts and real-world precedent. Advisory output — never a governed claim.
+19.1  The home card
+One quiet card: "What this estate can do." One line — estate analysis current as of a date, a count of briefs, a count new since the last census — and one action: Explore. Threshold-attention rules do not apply; this card never demands attention on its own.
+19.2  The briefs view
+A bordered row list. Each row carries a plain-language title, a grounding line of census facts, a precedent chip naming a real-world reference, and an amber advisory marker.
+Advisory — not a governed claim. Verbatim on every row and every brief.
+19.3  The brief itself
+Three sections. What exists — the census slice or slices, rendered from registry reads. What it could become — two or three product shapes, each with a named real-world precedent and one line on how it monetised. What is missing — honest gaps: rights, consent basis, licensing preconditions.
+One action: Shape as objective, which pre-fills the commission wizard with the brief’s reach. The brief’s only exit is into the governed pipeline — it cannot publish, export, or transact on its own.
+19.4  Rules
+Every number in a grounding line is a live registry read, rendered verbatim. The generation layer may select which facts to show; it may never produce a fact of its own.
+No render path drops the advisory marker. Briefs sit outside the trust-receipt and trace system entirely — generation runs behind the boundary governor, and briefs regenerate on census change, stamped with their generation date and the census reference. A superseded brief is marked stale, never deleted.
+PART V
+The Compliance Console
+20  Home
+Lookup. A single field: look up any run, claim, or acquisition by trace.
+Attention. Problems stated honestly. Binding pattern: "One retention window has passed — a 2019 call-in set is fourteen days beyond its agreed hold. It has not been auto-deleted; that rule isn’t set."
+Cards. Three, always: runs with lawful basis; refusals this month with a link to see what was refused; retention windows past due.
+
+Adversarial to comfort. Overruns, unset rules, and refusals are surfaced as problems and as evidence the governance actually bites — never hidden behind an all-green summary.
+This is the same record every user’s audit view reaches — read-only, nothing reconstructed for display.
+21  Prove One Run
+Banner. The lawfulness banner: lawful-basis reference, commissioner, and the statement that the objective was frozen and immutable.
+Record rows. Five, each resolving to the record beneath it.
+
+Read-only. This is the record itself, not a summary of it. Export for a regulator on request.
+22  Retention and Rights
+Banner, while unset. The honest statement, rendered before anything else on the screen.
+No deletion rule is set. The system holds everything indefinitely and append-only until you set a retention window. This is a decision only you can make — the system won’t guess a duration.
+Holdings rows. Within window; past due, each with a Decide action; and delivered acquisitions — irreversibly transformed, licensed, receipts on file.
+Held classes render separately addressable. Ledger rows, wizard transcripts, and delivered artefacts each carry their own row, so the compliance owner can scope one window across all of them, or split per class as their actual policy requires.
+Setting a retention window here becomes a governed rule — versioned, dated, and recorded like every other control change.
+23  The Compliance Rulebook
+The Compliance Console owns writes to the compliance rule classes specifically: retention windows, disclosure thresholds — group size, distinct-value count, privacy budget — the lawful-basis registry, the source-standing table, and entitlement rules governing who internally may see what.
+Rendering reuses the established plain-language rule pattern throughout: the rule as a sentence, its current behaviour, what changes, and the record of the change with its date. It is re-used, not redesigned — a second rule-editing grammar would be a second thing to learn and a second thing to get wrong. An entitlement rule is written, changed, and proven exactly this way; it is not a special case.
+PART VI
+The Integration Console
+24  Register an Application
+Fields. Application name; class choice — internal or external; path choice with one-line grants stated plainly.
+Key grants panel. A plain-terms statement of what the key permits — its class, its path, its floor, its scope — and the statement that all of it is enforced server-side on every call.
+Async fields. An optional webhook URL, carrying the note that it receives event and status only and never content; and a sandbox toggle, which is a key mode served from fixture estate.
+Action. Issue key. Grant issuance and revocation each emit a ledger row.
+25  First Call — The Contract
+Request block. The objective endpoint with its ask, standard, and scope.
+Response panels, side by side. Answered — outcome, trace identity, claim, defensibility inline, provenance. Refused — the identical envelope shape, distinguished only by the body discriminator, carrying what was asked, the supported class, and what would raise it.
+Async variant, noted beneath. A fresh-extraction ask returns an accepted acknowledgement with an objective identity and a delivery estimate; status transitions appear in Administer.
+
+The panel’s sample payload is clearly marked as illustration and is fixture-schema-gated — the sample parses through the platform’s own frozen contracts. An unmarked sample is a hidden mock, and it is prohibited.
+There is no response shape in which the claim is separable from its class. Infrastructure faults return a server error and are never rendered as refusals.
+26  Administer
+Attention. At most one card. Pattern: application name, refusal rate, plain-language cause, and a Review action.
+Applications list. Rows carrying name and class badge, path and key, calls and refusal rate. Extract-path rows additionally show acquisitions and rights state; long-running objectives show their lifecycle state.
+
+Refusal health reads as a signal rather than an error log. A rising refusal rate against one key says something real about that integration’s objective — its scope may be too wide, or its floor too high for what the estate holds.
+Key scope is enforced server-side on every call.
+27  Dual-Actor Scoping
+Two roles, one console, identical screens, different scope. Enforcement is server-side, never view-layer filtering alone.
+External-scope denials are access-control class, carrying a reason and detail. They never carry an outcome key and never render through the refusal card — a denial and a refusal are different things and must never look the same.
+The distinction that must never be conflated: an external engineer is an integrating partner’s own engineer, wiring a partner system to the governed boundary — a platform-operator action performed by an outside party, legitimately seeing a scoped console view. A buyer shaping a purchase is purely an end-user of the commercial application, and sees no console at all.
+28  The Governed Boundary
+The Integration Console provisions access to the platform’s outputs; it does not itself sell, price, or transact. What it exposes is the single contract every application calls to reach that output — application registration, key issuance and scope, the bounds of which estate slices a key may reach, and usage and refusal-health monitoring.
+The boundary enforces, for every caller, with no exception for first-party applications: the inner gate on a live query or the full outer gate on a governed extract, server-side key scope on every call, and the four response classes. An application that appears to bypass any of these is a defect, never a tier of service.
+No price, quote, offer, catalogue, order, or buyer-account concept exists on this console or in this boundary. Those are commercial-application concerns entirely. The platform charges nothing and knows no buyer; it governs access to output and records every egress.
+The Administration Console owns internal cost and capacity economics — fleet apportionment, cost-per-unit telemetry — because running the machine requires them. It owns no commercial price. The relationship between platform cost and any market price is a commercial concern, and commercial price never appears on a platform surface.
+PART VII
+The Administration Console
+29  Home
+Pending banner. Plain language, two backing classes: governance seams awaiting values, and items awaiting counter-signature. Pattern: "Two rules are waiting on your decision before they can take effect." with a Review action. Never a placeholder count.
+Prompt. "What do you want to do?"
+Actions. Six buttons, binding labels: Assign a role · Change a rule · Manage keys and access · Update the taxonomy · Set pricing · Apportion capacity.
+Footer. "See everything I’ve changed — every action is recorded."
+
+Buttons and sentences only. No dashboards, no version strings, no configuration syntax anywhere on this surface.
+30  Change a Rule
+The rule. One sentence stating what it does in everyday language; a short paragraph of current behaviour and what turning it on or off means; plain options with natural labels.
+What changes. An information box of one or two natural-language sentences, including — where true — that nothing running now changes, and that it can be switched back.
+Commit. A natural-language button.
+
+Commit paths honour the versioning discipline: a committable rule writes a new versioned record server-side, recorded and reversible. A rule not yet committable through the surface states so honestly, in plain language — the surface is never a bypass around what the underlying system can actually do.
+Recorded as your change, with today’s date.
+31  What I’ve Changed
+Confirmation. A plain line for the latest change: what is now in effect, and from when.
+Rows. Recent actions — a plain description of the change from one state to another, in words, who made it, and when. Counter-signed changes show both identities.
+
+The full difference exists in the record and opens on demand behind a collapsed link. It is never the primary display — a person scans plain descriptions and drills in only where they need to.
+Every row carries its full diff. This trail is itself append-only and readable by the compliance surface.
+32  Scope Split
+This console owns the operational rule classes: pricing models and tier locks, fleet apportionment, and the classification taxonomy. Compliance rule classes render here read-only, carrying the marker "owned by Compliance." Two consoles, one rulebook, no ambiguity anywhere about who writes what.
+33  Roles and Rights
+Define roles and per-console rights. Changes are plain-language, consequence-visible, and ledgered — the change-a-rule pattern applied identically to role grants.
+34  Counter-Sign Duties
+The pending banner surfaces items awaiting this console’s counter-signature, with what changes, who initiated, and the consequence class.
+Symmetry. An Administration-side operational change that loosens protection requires Compliance counter-signature; a Compliance-initiated loosening requires Administration counter-signature. The check binds in both directions — there is no hierarchy between the two consoles, and neither can loosen protection alone.
+Signed by {initiator} · counter-signed by {checker} · recorded with both identities.
+An honesty note carried into the record: while one person holds both roles — as happens in a small deployment — dual control is ceremony rather than substance. The seam is built now regardless, because it is cheap now and expensive to retrofit once an organisation has grown past needing it.
+PART VII‑A
+The Watch Console
+34‑A  What It Is
+The Watch Console is the security authority's one surface: where the watch officer — and the compliance owner, read-only — sees the state of the watch, reads its record, manages what is under suspicion, and takes the few decisions the Watch reserves for people. It is a peer to the Trust Center, never a tab inside it: the two authorities' consoles share the record and share nothing else, and access to each runs under its own authority's identity per the matrix in Document 9.
+Every rule in Part I binds here without exception — and one binds hardest: no build state on any surface. The Watch's internal register — its engine and arm names — never appears on this console. The screen speaks the organisation's language: the watch, the record, under watch, decisions.
+34‑B  The Four Panels
+Panel
+What it carries
+State
+The promise as two live figures — detection latency and response latency against their bounds — then the population by class and trust standing, the two spend gauges (autonomous-action budget and friction budget), the health of the watch itself with its last drill result, and anything currently held. This band is built never to render all-clear; on a real estate, all-clear is a rendering defect.
+Record
+The verdict stream in three lanes, sorted by what followed: noted with no action taken — the restraint record; noted and acted — each action carrying the policy row that fired and its live expiry countdown, with actions released clean kept visible as the honest false-positive record; and held — the certainty events. Drills appear in these same lanes as rows marked for what they are, filterable, never a separate book. Any row expands into its full evidence walk: signal, verdict with replay, policy row, action, outcome, witness — every hop a receipt reference, and a row that cannot complete its walk renders broken rather than dressed.
+Under watch
+Where suspicion is managed. The accumulation view — actors whose noted events are individually dismissible and collectively a shape — with each curve's signal mix and time at elevation. From here a person promotes a suspect into misdirection, observes live misdirection sessions as occupancy and findings — never the environment's construction — reviews the marked, and files a re-declaration request where the innocent explanation is honest change. De-marking is dual-control and routes to Decisions.
+Decisions
+Exactly what the Watch reserves for people, ranked by blast radius, each arriving with its walk pre-opened: containment-to-severance promotions, expiry extensions, de-mark requests with both signatures visible, the two authorities' disagreements shown side by side, and the ceremony watch — every rule change in countdown that touches the Watch, cancellable from here. An item aging past its class bound escalates itself; a class that repeatedly reaches this panel is a policy defect to redefine, never a queue to work faster.
+
+34‑C  What This Console Never Renders
+A watch console is itself a target: whoever reads it learns the detection landscape. So the constitution applies to the screen. No thresholds, trip points, or jitter bands render anywhere, ever. No canary or mark placement detail renders — the record shows that a tripwire was touched, never where the others sit. No behavioural profile renders — trust standing and its movement, yes; the shape of a person's habits, never, to this or any surface. No misdirection construction renders. And the console is watched: every session on it is receipted, its viewers enveloped like any actor, its anomalies lanes in its own record.
+Read-only for assurance, adversarial to comfort — the Trust Center's own posture, inherited whole. The watch officer's work is deciding what surfaced items mean; the surfacing is the machine's. A Watch Console that only shows green is marketing, not security.
+PART VIII
+The Consequence-Class Checker
+35  The Mechanism
+Consequential rule changes get a second pair of eyes, and the check is attached to consequence, not to role — this is what preserves compliance independence, and what makes the check bind symmetrically rather than running downhill from whichever console happens to be senior.
+Every rule class carries a consequence attribute with one of two values. Compliance-initiated loosening is counter-signed by Administration; Administration-initiated loosening is counter-signed by Compliance. The direction of the signature follows the direction of the loosening, never the org chart.
+Pending items render on both consoles’ banners simultaneously, and the counter-signing console sees the full plain-language consequence statement before it signs — never a bare approval button with the substance hidden behind it.
+While one person holds both constitutional roles — as happens in a small deployment — dual control is ceremony rather than substance in practice. The seam is built regardless, and built now, because it is cheap now and expensive to retrofit once an organisation has grown past needing the honesty of saying so.
+PART IX
+The Reference Application
+36  What It Is
+The reference application is not a platform surface. It is an application, specified fully because it demonstrates the platform’s own contract for every future application to follow. It consumes the platform through an Integration-Console-issued key, on identical terms to any third party — including a third party built by Syni itself. Nothing about it is privileged.
+37  Ask
+What do you need to know?
+One plain question, centred, and an answer the reader can act on and defend. The output is preset: a composed conclusion, for a person, synthesized whole, at their floor. There is no output picker anywhere on this surface, because choosing an output form is a commissioning act, and this surface is not for commissioning — that capacity lives in the Extraction Console, reached deliberately, not stumbled into from a chat box.
+Class is present wherever a claim is, in plain language, as the headline — never as a buried score a reader has to go looking for.
+37.1  The three lenses
+Progressive disclosure over one object, not three different objects. An executive stops at the first lens. An analyst works in the second when a number looks surprising. An auditor lives in the third.
+Lens
+What it shows
+Answer
+The finding itself, with per-claim marking and the honesty strip — what this can and cannot say.
+Reasoning
+The evidence strip: which units the answer rests on, and how they were composed.
+Raw trail
+The full trace — the same record the compliance audit reaches, resolvable by anyone holding the trace identity.
+
+All three lenses read one object. This is what makes the executive’s summary and the auditor’s trail structurally incapable of disagreeing with each other — they are never two different renderings assembled by two different processes.
+37.2  Refusal classes render distinctly
+Not-extracted-yet, evidence-cannot-support, and something-broke are three visually distinct states, and the third shares nothing with the first two — not components, not colour, not layout. A reader must be able to tell, without reading a word, whether the platform declined or the platform failed.
+37.3  Export
+Export is a rendering of the same artefact with its class markings intact. It is not a second product and not a re-shaping.
+A different form or grain is a new objective. This is the rule that prevents analytics drift through export — a figure that quietly changes shape somewhere downstream of the record that produced it is exactly the failure this rule exists to close off.
+37.4  The machine form
+Integrating applications receive the identical object as a structured envelope, including all three refusal shapes as first-class response types — not error codes an application has to interpret, but named shapes it is expected to render.
+An application must handle a decline at build time. This is what prevents the most common downstream corruption of a governed system: a wrapper that swallows a refusal and substitutes a plausible generated answer of its own in its place.
+38  Commercial Applications
+The commercial product is specified separately from this canon and does not appear on any platform surface. What binds here regardless: any commercial application reaches platform output only through the governed boundary, with a scoped external key, passing the full outer gate including the disclosure-budget debit — identical to any third-party caller in every respect.
+A sample shown to a prospective buyer is an egress. It passes the full outer gate and debits the cumulative-disclosure budget, or it is exactly the assembly attack the disclosure ledger exists to catch: buy nothing, sample repeatedly, reconstruct the dataset for free. There is no disclosure-free sample path, under any commercial pressure.
+PART X
+The Environment
+39  What This Part Is
+Everything specified in Parts IV through IX above is the platform: the four consoles and the reference application, real, and specified to the letter every builder needs. What follows is different in kind, and the difference is stated plainly rather than left for a reader to discover.
+The environment is application layer, not platform layer. It carries the organisation’s own name, and every surface inside it — including the ones built by Syni — reaches the platform through the identical Integration-Console boundary any third party uses. No platform decision optimises this layer’s experience directly; the platform optimises the guarantees it issues to it.
+This part organises the applications an organisation actually opens day to day into five pillars over one control band. The organisation of these pillars, and every surface named in them beyond what is explicitly marked sourced below, is original design — built on the real console and boundary mechanics specified above, but invented at the level of which applications exist and how they group. A builder must not mistake the confidence of this document’s prose for the confidence of a specification transcribed from a ratified source; where that distinction matters, it is marked, item by item, in Section 42.
+40  The Five Pillars and the Control Band
+Pillar
+Applications
+Lead
+ThinkLab, Monitor, Pulse, News — executive surfaces for structured thinking, watching the organisation’s own operations, the internal feed, and external information.
+Work
+Chat, Analyze, Documents — the daily surfaces for knowledge work on the organisation’s own material.
+Build
+Extract, Train, Studio — where data becomes qualified facts, trained models, and purpose-built agents.
+3rd Party
+Applications the organisation builds itself, and vendor tools it integrates.
+Learn
+Programmes that build the organisation’s capability to use and govern what it has deployed.
+
+Beneath the pillars, spanning all five without exception, sits the Control band: Connect, Estate Map, Rulebook, Access, Watch. It spans rather than sitting beside them because it governs every pillar including the third-party one — a vendor application integrated through 3rd Party is subject to the identical Rulebook, the identical Access surface, and the identical Watch as anything Syni built.
+41  The Control Band, Mapped to the Real Consoles
+The Control band is not a fifth invention beside four others — it is the customer-facing presentation of the four real consoles specified in Parts IV through VII, wearing the organisation’s own vocabulary rather than the platform’s.
+Control surface
+Sourced from
+Notes
+Estate Map
+The Extraction Console’s Registry Dashboard and Registry Administration.
+Sourced. The screen, its fields, and its binding copy are as specified in Part IV.
+Rulebook
+The Compliance Console’s rulebook, plus the operational rule classes owned by the Administration Console.
+Sourced. Both consoles already render through the identical plain-language rule pattern; a unified surface showing both, each row marked with its owning console, is a direct application of that pattern rather than a new one.
+Connect
+The Integration Console’s registration and administration screens.
+Sourced for application registration. Model and compute connection management is new — marked in Section 42.
+Access
+The Administration Console’s roles, rights, and key management, plus counter-sign duties.
+Sourced.
+Watch
+Document 8 and Part VII‑A below.
+Designed under the Watch authority. Rendered in the organisation's own vocabulary; the Watch's internal engine names never appear on it, identically to every other surface under §2.1.
+42  What Is Sourced, and What Is Designed
+Every application named in Section 40 is marked here without exception. A builder implementing this canon should treat a sourced item as a specification and a designed item as a brief — the second needs product judgement the first does not.
+Application
+Status
+Basis
+Extract
+Sourced
+The Extraction Console’s shaping wizard, Parts IV §14–16, specified to the field.
+Chat
+Sourced
+The reference application, Part IX, specified to the lens.
+3rd Party (both surfaces)
+Sourced
+The Integration Console, Part VI, specified to the screen.
+Train
+Designed
+Built on the real training and acceptance mechanics of Document 4 Part VIII, but the surface itself — its screens, its layout — has no source specification and is original design.
+Studio
+Designed
+No precedent in any source document. A governed agent-builder is implied by the inheritance doctrine of Document 1 but was never itself specified; this is new design, built to honour that doctrine rather than transcribed from it.
+Analyze
+Designed
+No source specification. Built to the design law of Part I and the visual system of Part II; its actual screens and states are original.
+Documents
+Designed
+No source specification, as above.
+ThinkLab
+Designed
+No source specification, as above.
+Monitor
+Designed
+No source specification, as above.
+Pulse
+Designed
+No source specification, as above.
+News
+Designed
+No source specification, as above. The one binding rule that does carry from elsewhere: News is the single Lead surface whose content originates outside the perimeter, and every item it shows is labelled as external at the item, always — the provenance discipline of Document 3’s boundary governor, applied here.
+Learn
+Designed
+No source specification. What populates it is a product decision, not an interface one, and is explicitly out of scope for this document.
+
+A designed surface is still bound by every rule in Part I. The eight global rules, the four response classes, the visual system — none of it relaxes because a surface is new rather than sourced. What is absent for a designed surface is only the field-level and screen-level specification a sourced surface carries; the design law is never optional.
+43  Why the Split Is Drawn Here, and Not Elsewhere
+The platform, the reference application, and the Extraction and Integration Consoles carry real, ratified specification because they are what the source canon actually documents. The remaining pillar applications do not exist in any source document — not because they were considered and rejected, but because the source canon specifies a platform and one demonstrating application, and everything else an organisation might build on that platform is, by the inheritance doctrine itself, exactly the kind of thing the platform is supposed to make buildable rather than the kind of thing it prescribes.
+This document therefore does two different jobs at once, and keeps them visibly separate: it transcribes what is ratified, and it proposes what the ratified platform makes possible. A future ratification of any designed surface above supersedes this document’s proposal for it, at the item, without disturbing anything else here.

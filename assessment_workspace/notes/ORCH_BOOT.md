@@ -33,29 +33,29 @@ STATE files, and on any boot ritual that detects drift.
 
 ```yaml
 schema_version: 1
-generated_at_utc: 2026-09-18T08:20:00Z
-generator: main-agent Autopilot (R-18 Canon Ruling · state-only 2-commit · R-6 boundary regen at Commit-C fixup)
-regeneration_reason: r6-boundary-regen-at-canon-ruling-r-18-commit-c-fixup-banking-master-commit-b-sha
+generated_at_utc: 2026-09-18T06:00:00Z
+generator: main-agent Autopilot (Q1+Q2 CLOSE · Commit-C fixup this-turn · R-6 boundary regen at Commit-C fixup)
+regeneration_reason: r6-boundary-regen-at-q1-q2-close-commit-c-fixup-state_repo.head-advanced-from-f6d892c4-to-acc02d1a-ratchet-unchanged-4826
 
 ratchet:
-  passed_floor: 4814
-  counts_at_baseline_passed: 4814
+  passed_floor: 4826
+  counts_at_baseline_passed: 4826
   baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
-  baseline_failures_sha256: 06050dbf1298037c993a59add0235b75e13cf5b90e4b694a46a9d54a15275237
+  baseline_failures_sha256: 5cd2d3bd8af06b37f68e9288fefd2233ec57340baf07050113e0ebf772dc1314
 
 heads_last_sealed:
   state_repo:
     workdir: /app/assessment_workspace
     branch: master
-    head: e9f1c8c095516001da90d1f083f1a1087895df4d
-    sealed_at_utc: 2026-09-18T08:18:00Z
-    seal_kind: "CANON RULING R-18 · state Commit-B · single-line-of-authority + SO §2.1/§4.1§F/§4.3 + SER errata v1.0.1 + D-16..D-19 + Part 5 defaults + desk-item dispositions (Commit-C fixup banks this SHA)"
+    head: acc02d1a41a5660c382c7bd6dd6ef5d7c654e9e0
+    sealed_at_utc: 2026-09-18T06:00:00Z
+    seal_kind: "Q1+Q2-CLOSE · state Commit-B `acc02d1a` · Q1 (HARD BANS / ANTI-DRIFT plain-language fold · 14 subsections cite-anchored) additively landed in ORCH_BOOT.md · Q2 (STATE/AUTONOMOUS_RUN_PLAN.md · pointer-atlas overlay + consolidated OWNER-QUESTIONS checklist 4 BLOCKING + 16 NON-BLOCKING per Item-5 discipline) landed · ratchet unchanged 4826 · Commit-C fixup this-turn banks this SHA in DECISIONS+NEXT + advances ORCH_BOOT state_repo.head + byte-identical audit copy · next wave to open: M11-W1 (all P1-P7 satisfied)"
   code_repo:
     workdir: /app/assessment_workspace/repos/Extraction-Akki
     branch: programme/track-a
-    head: 71faac1cd9c5bd6fe1db1ec6ca340485a34c251a
-    sealed_at_utc: 2026-09-17T13:42:00Z
-    seal_kind: "CP-M13W1 · Commit-A · TCB.yaml + tools/akki_arch/* + test_akki_arch_import_assertions.py + ratchet 4810 -> 4814 (+4)"
+    head: 4132e725774fb591d1d3c9f87428677ca29f14f2
+    sealed_at_utc: 2026-09-18T02:16:00Z
+    seal_kind: "CP-M11-GATE-RELEASE · Commit-A · contracts/watch_action_class.schema.json + contracts/watch_verdict.schema.json + 3 new invariant test files (test_cp_m11_gate_release_watch_schema.py 6 tests + test_cp_m11_gate_release_watch_m9_callers_vs_schema_xfail.py 1 xfail-strict c2 + test_cp_m11_gate_release_d6_canon_ref.py 6 tests) + ratchet 4814 -> 4826 (+12) · double-green byte-match 4826 passed / 1 skipped / 1 xfailed / 438 warnings · CHUNK 1 close touches no code (ratchet unchanged 4826)"
 
 boot_sequence:
   - Read STATE/STANDING_ORDERS.md end-to-end.
@@ -71,6 +71,109 @@ regeneration_triggers_r6:
 
 authoritative_downloadable_copy_path: /app/frontend/public/audit/ORCH_BOOT.md
 ```
+
+---
+
+## HARD BANS / ANTI-DRIFT · plain-language narrative (Q1 · owner ruling 2026-09-18 · additive to R-6 boundary regen)
+
+**Purpose.** A fresh or compacted session reads STANDING_ORDERS.md end-to-end per boot step 1, but this section carries the single-line high-frequency reminders so no critical ban is ever silently forgotten between reads. Sources always win if the summary diverges — every line here cites its authoritative source. If a line here contradicts its source, the source is right; correct this file at the next R-6 boundary.
+
+### 1 · Commit / push discipline
+
+- **Never push. Ever.** Local commits are the record. — *SO §4 · Owner Clarification 1 2026-08-14 · reaffirmed R-18 owner ruling 2026-09-18 Item 4.*
+- **§3.3 3-commit seal or it is not sealed.** Commit-A code (`programme/track-a`) · Commit-B state (`master`) · Commit-C fixup (`master`) banks Commit-B SHA into DECISIONS + NEXT + `ORCH_BOOT.md` `heads_last_sealed.state_repo.head`. — *SO §3.3 + SO §7 R-1..R-6.*
+- **A CP claimed "sealed" without both SHAs banked is a discipline mislabel.** Reconciliation before forward progress. — *SO §3.3 · Owner ruling 2026-09-15 Discovery-1 ratification.*
+- **`pending-C-fixup` count in seal files must be 0.** — *SO §7 R-2.*
+- **Every boot ritual runs the master-parity check** (R-1) and the ratchet-history/git-log cross-check (R-3). — *SO §7 R-1, R-3.*
+
+### 2 · Testing discipline
+
+- **Terminal pytest only. `testing_agent` is BANNED.** Curl / `python3 -c` are allowed for spot checks. — *SO §3.*
+- **Tests-first mechanical RED before any code lands.** RED receipt banked under `phase0/drill_receipts/`. — *SO §3.*
+- **Double-green byte-match to close every CP.** Both `BASELINE_GUARD=1` receipts identical, banked. — *SO §3 + SO §7 R-5 (per-CP raw logs mandatory).*
+- **Ratchet floor monotonic-up.** `baseline_failures.json` `passed_floor` + `ratchet_history` append at every close. Silent rebaselining is banned. — *SO §3.*
+
+### 3 · Code / build discipline
+
+- **No refactor. Thin-kernel additive-only.** Sealed modules are not edited; new work extends via thin adapter layer. — *SO §3.8 · Owner ruling 2026-09-17 Tension (a) = Option C.*
+- **Zero closed enum type — schema authoritative, Python tuple mirrors.** — *SO §3.10 · Owner ruling 2026-09-17 Tension (b) = Option α.*
+- **Order of authority (top→bottom):** canon → Standing Orders → SER → contract schemas → code. — *SO §2.1 · R-18 owner ruling 2026-09-18 effect 1.*
+- **T-c sequencing (α):** schema + AST + P-15 land BEFORE M11-W1; caller-flip at M12b-W1; new M11 callers target the new Watch schema from day one. — *Owner ruling 2026-09-18 Item 4.*
+
+### 4 · Silent-success + progress-signal bans
+
+- **ALIVE IS NOT DONE.** Heartbeat / PID / directory / filename presence is NEVER completion evidence. Every seal read routes through `services.output_verified_seal.is_real_seal`. Every seal write emits `Kind:` as first-class body field. — *SO §3.1.*
+- **NO RUN WITHOUT A PROGRESS SIGNAL.** Every commissioned run binds `run_id` to `runtime_supervisor` progress-ring. HALT verdicts are DATA, not process-kills. — *SO §3.2.*
+
+### 5 · Verification-walk scope
+
+- **Wave-window commit enumeration on every verification walk.** `git log --format=... <open>..<close_or_next>` — never the canonically-named wave-close commit alone. — *SO §4.2 · Owner ruling 2026-09-16.*
+- **Cross-wave modifications** carrying their own CP citation + ratchet delta + owner directive + append-only-extension discipline are NOT drift for the origin wave's walk. — *SO §4.2 Clause 6.*
+
+### 6 · Credential custody
+
+- **PII / credentials: never committed, never returned, never logged, never in test docstrings.** Redacted everywhere. — *SO §4.*
+- **§E · Custody-file reads only via shape-only helper OR env-injection.** Direct `cat`/`head`/`tail`/`csv.reader+print`/`openpyxl+print`/`set -x` on a custody path = SEC violation. — *SO §4.1 §E · Owner ruling 2026-09-15T~22:30Z.*
+- **§F · Sha-pin every credential drop at intake or refuse.** Manifests at `phase0/credential_drop_manifests/YYYYMMDDTHHMMZ_drop_manifest.json`. Sha-less drops are quarantined at 0600 outside `estate_keys/`. — *SO §4.1 §F · R-18 Part 7(c) · Owner ruling 2026-09-18.*
+- **HF token hash-delta gate.** SEC-2026-09-12-01: any HF-touching wave HOLDS until rotation is proven by sha delta ALONE (never by opening the value). Three-step owner action = revoke → generate → re-drop with §F sha-pin. — *SO §4.3 · Owner ruling 2026-09-18.*
+
+### 7 · GPU obligations
+
+- **Full-consumption guarantee.** All 4 GPUs run high-utilization while a campaign window is open. Idle lanes are interrupt-priority. — *SO §5.*
+- **Never kill a training run mid-flight.** Ownership passes through the run's `ACTIVITY_SUMMARY.md` seal, never via SIGKILL. — *SO §5.*
+- **Idle-lane restoration** uses banked machinery in `tools/queue_followon_launcher.py` + `tools/on_host_queue_dispatcher.py` — no improvisation. — *SO §5.*
+
+### 8 · Canon-before-ruling doctrine
+
+- **No decision proceeds from memory or summary where the governing document exists.** Read the document, don't recall it. Binding on both ruling authority and builder — no exception for either. — *Canon 1 §4.11 · Canon 7 §48 · SO §3.*
+
+### 9 · Standing autonomous-run bounds (from owner ruling 2026-09-18)
+
+- **Item 2 · The measure.** Every task in every chunk names which of R-18 effect-15's gate conditions (errata landed · Watch contract schema · AST + P-15 green · `canon_ref` check active · D-16..D-19 banked) it feeds or is deferred. That is the only test of movement vs circling.
+- **Item 3 · Standing authority.** Autonomous from CHUNK 1 close through Q1 → Q2 → M11-W1 → M12b-W1, subject to Items 4–5. Checkpoints = reports, not holds.
+- **Item 6 · SEC-2026-09-12-01** stays owner-only. HF-touching waves HOLD; everything else proceeds.
+- **Item 7 · Reporting.** Chunk-close: six-item summary + gate conditions advanced + ratchet + open forks. Gate-release: R-18 effect-15's conditions each with evidence. No other reports.
+
+### 10 · Stop-and-report conditions (from owner ruling 2026-09-18 Item 5)
+
+Fail closed on the affected fork, present options with a recommendation, continue on everything else. Do not hold the whole build on one fork. Triggers:
+
+1. **RED ratchet or failed invariant.**
+2. **Canon vs lower-layer conflict discovered.**
+3. **Any proposal to amend canon, add a TCB member outside `tcb_enumeration_v1`'s method, change a Fixed decision-register entry, or carve an exception to a hard invariant.**
+4. **A new rule-vs-rule tension of the T-a/T-b kind.**
+
+### 11 · Assessment / read-only chunk discipline (from client instruction doc · Chunk-1 scope)
+
+- **No production/application code during ingest+ground-truth chunks.** Only markdown notes under the chunk's `notes/chunk*_YYYYMMDD/` folder + throwaway analysis scripts under `/app/assessment_workspace/tools/`.
+- **Every factual claim must come from files opened this session.** Never from a README, a filename, or prior knowledge.
+- **Never merge two repos' same-named services in-head.** They are different until diffed.
+- **Absence is a finding.** Report it explicitly, never leave a blank.
+- **BUILD_JOURNAL / close reports are claims to verify later, not findings.**
+- **Do not propose sequencing, phases, or build order.** — *D7 (Canon 7 §47) · client's binding rule.*
+
+### 12 · Defect classes (from Canon 7 §47) — reportable on sight by anyone
+
+- **D1** · orphan gate (function with no honest promise or service trace).
+- **D2** · NL-only enforcement (rule with no machine-checked twin).
+- **D3** · curated verdict (validation material selected by favourability).
+- **D4** · rung inflation (model-ladder placement above cheapest-sufficient with no written justification).
+- **D5** · meta-spiral (second governance layer above one that exists; artefact stopped paying rent).
+- **D6** · service conflation (function optimised for end-user persona rather than service sentence).
+- **D7** · invented schedule/scope (sequencing without explicit instruction).
+- **D8** · dual-identity execution (task or code path spanning >1 authority's identity/scope within a single execution).
+
+### 13 · Watch doctrines (from Canon 8 §4) — 14 hard bans on the security authority
+
+W1 eyes-never-act/hand-never-judges · W2 certainty-never-exceeds-evidence (signature-as-guard) · W3 every-autonomous-act-reversible-bounded-witnessed (destroy does not exist) · W4 deployed-in-force-never-in-shadow · W5 one-record-two-readings · W6 suspicion-refined-not-accumulated · W7 conformance-grants-trust/non-conformance-never-convicts · W8 the-floor-never-learns · W9 no-actor-enters-undeclared · W10 watcher-watched-from-outside · W11 one-task-one-identity · W12 peer-not-subordinate · W13 profile-is-armory-not-inventory · W14 self-proving-or-not-in-force.
+
+### 14 · Structural-impossibility doctrine (from Canon 1 §4.2)
+
+**Unrepresentable, not policed.** Where a state must never occur, the system is built so the state cannot be expressed (function signature, type, schema). Reviewed prohibitions are eventually violated; structural impossibility beats vigilance.
+
+### Sources-win-if-drift note
+
+If any line above disagrees with its cited source, the source is authoritative. This section is a distillation for boot-ritual convenience — never a replacement for reading `STANDING_ORDERS.md`, the referenced canon sections, or the DECISIONS entry for the specific owner ruling. Corrections land at the next R-6 boundary regen; this section is not edited in place — a superseded line is annotated with SUPERSEDED-BY at regen time, and the successor is added.
 
 ---
 

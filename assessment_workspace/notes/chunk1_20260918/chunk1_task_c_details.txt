@@ -1,0 +1,446 @@
+=== MULTI-REPO SERVICES · detailed table ===
+
+### analysis_lifecycle.py   [2 repos]
+  Akki-Executive-Core     fc=   1  loc=   443  last=2026-07-04
+  Akki-Executive-Final    fc=   1  loc=   153  last=2026-06-04
+  DIFF: diverged · common-files=1 (sha-identical-across-repos: False)
+
+### artifact_store   [3 repos]
+  RMS-IQ-Core-2           fc=   4  loc=   577  last=2026-07-14
+  Akki-OS-V1              fc=   4  loc=   577  last=2026-07-14
+  Extraction-Akki         fc=   4  loc=   577  last=2026-07-14
+  DIFF: identical (all repos byte-equal file-set)
+
+### auth   [3 repos]
+  RMS-IQ-Core-2           fc=  16  loc=  1736  last=2026-08-01
+  Akki-OS-V1              fc=  15  loc=  1491  last=2026-07-08
+  Extraction-Akki         fc=  16  loc=  1736  last=2026-08-01
+  DIFF: diverged · common-files=15 (sha-identical-across-repos: False)
+
+### backfill_shield_v1.py   [2 repos]
+  Akki-Executive-Core     fc=   1  loc=   490  last=2026-06-23
+  Akki-Executive-Final    fc=   1  loc=   490  last=2026-05-24
+  DIFF: diverged · common-files=1 (sha-identical-across-repos: False)
+
+### census_dimensions   [3 repos]
+  RMS-IQ-Core-2           fc=   5  loc=   383  last=2026-07-10
+  Akki-OS-V1              fc=   5  loc=   383  last=2026-07-10
+  Extraction-Akki         fc=   5  loc=   383  last=2026-07-10
+  DIFF: identical (all repos byte-equal file-set)
+
+### chat   [3 repos]
+  Extraction-Akki         fc=   2  loc=    99  last=2026-08-26
+  Akki-Executive-Core     fc=   2  loc=   308  last=2026-06-23
+  Akki-Executive-Final    fc=   2  loc=   308  last=2026-05-15
+  DIFF: diverged · common-files=1 (sha-identical-across-repos: False)
+
+### checker   [3 repos]
+  RMS-IQ-Core-2           fc=   6  loc=   751  last=2026-07-07
+  Akki-OS-V1              fc=   6  loc=   751  last=2026-07-07
+  Extraction-Akki         fc=   6  loc=   751  last=2026-07-07
+  DIFF: identical (all repos byte-equal file-set)
+
+### clamav_service.py   [2 repos]
+  Akki-Executive-Core     fc=   1  loc=   298  last=2026-07-06
+  Akki-Executive-Final    fc=   1  loc=   282  last=2026-05-21
+  DIFF: diverged · common-files=1 (sha-identical-across-repos: False)
+
+### cohort   [2 repos]
+  Akki-Executive-Core     fc=   8  loc=  1325  last=2026-05-27
+  Akki-Executive-Final    fc=   8  loc=  1325  last=2026-05-27
+  DIFF: identical (all repos byte-equal file-set)
+
+### cohort_email.py   [2 repos]
+  Akki-Executive-Core     fc=   1  loc=   351  last=2026-05-31
+  Akki-Executive-Final    fc=   1  loc=   351  last=2026-05-31
+  DIFF: identical (all repos byte-equal file-set)
+
+### cohort_email_html.py   [2 repos]
+  Akki-Executive-Core     fc=   1  loc=   161  last=2026-05-31
+  Akki-Executive-Final    fc=   1  loc=   161  last=2026-05-31
+  DIFF: identical (all repos byte-equal file-set)
+
+### compliance   [3 repos]
+  RMS-IQ-Core-2           fc=  24  loc=  1948  last=2026-08-01
+  Akki-OS-V1              fc=  23  loc=  1846  last=2026-07-14
+  Extraction-Akki         fc=  24  loc=  1948  last=2026-08-01
+  DIFF: diverged · common-files=23 (sha-identical-across-repos: False)
+
+### connect   [2 repos]
+  RMS-IQ-Core-2           fc=   4  loc=   530  last=2026-08-01
+  Extraction-Akki         fc=  11  loc=  2022  last=2026-08-28
+  DIFF: diverged · Extraction-Akki⊇RMS-IQ-Core-2 · common-files=4 (sha-identical-across-repos: True)
+
+### continue_chat.py   [2 repos]
+  Akki-Executive-Core     fc=   1  loc=   110  last=2026-05-10
+  Akki-Executive-Final    fc=   1  loc=   110  last=2026-05-10
+  DIFF: identical (all repos byte-equal file-set)
+
+### critic_pass   [2 repos]
+  Akki-OS-V1              fc=   7  loc=   950  last=2026-07-25
+  Extraction-Akki         fc=   8  loc=  1035  last=2026-08-26
+  DIFF: diverged · Extraction-Akki⊇Akki-OS-V1 · common-files=7 (sha-identical-across-repos: True)
+
+### crypto   [2 repos]
+  Akki-Executive-Core     fc=   2  loc=   122  last=2026-05-27
+  Akki-Executive-Final    fc=   2  loc=   122  last=2026-05-27
+  DIFF: identical (all repos byte-equal file-set)
+
+### csrf.py   [2 repos]
+  Akki-Executive-Core     fc=   1  loc=   205  last=2026-06-26
+  Akki-Executive-Final    fc=   1  loc=   185  last=2026-05-31
+  DIFF: diverged · common-files=1 (sha-identical-across-repos: False)
+
+### cycle_lifecycle.py   [2 repos]
+  Akki-Executive-Core     fc=   1  loc=   140  last=2026-05-11
+  Akki-Executive-Final    fc=   1  loc=   140  last=2026-05-11
+  DIFF: identical (all repos byte-equal file-set)
+
+### cycle_permissions.py   [2 repos]
+  Akki-Executive-Core     fc=   1  loc=   132  last=2026-05-11
+  Akki-Executive-Final    fc=   1  loc=   132  last=2026-05-11
+  DIFF: identical (all repos byte-equal file-set)
+
+### cycle_synthesis.py   [2 repos]
+  Akki-Executive-Core     fc=   1  loc=   379  last=2026-05-10
+  Akki-Executive-Final    fc=   1  loc=   379  last=2026-05-10
+  DIFF: identical (all repos byte-equal file-set)
+
+### data_source   [3 repos]
+  RMS-IQ-Core-2           fc=  16  loc= 35611  last=2026-07-14
+  Akki-OS-V1              fc=  16  loc= 35611  last=2026-07-14
+  Extraction-Akki         fc=  16  loc= 35611  last=2026-07-14
+  DIFF: identical (all repos byte-equal file-set)
+
+### documents   [2 repos]
+  Akki-Executive-Core     fc=   4  loc=   935  last=2026-06-23
+  Akki-Executive-Final    fc=   4  loc=   937  last=2026-06-04
+  DIFF: diverged · common-files=4 (sha-identical-across-repos: False)
+
+### economics   [3 repos]
+  RMS-IQ-Core-2           fc=1399  loc= 12033  last=2026-08-01
+  Akki-OS-V1              fc=1118  loc=  9776  last=2026-07-25
+  Extraction-Akki         fc=1409  loc= 12113  last=2026-08-01
+  DIFF: diverged · Extraction-Akki⊇RMS-IQ-Core-2 · common-files=1118 (sha-identical-across-repos: False)
+
+### first_login_password_set.py   [2 repos]
+  Akki-Executive-Core     fc=   1  loc=   128  last=2026-06-02
+  Akki-Executive-Final    fc=   1  loc=   128  last=2026-06-02
+  DIFF: identical (all repos byte-equal file-set)
+
+### g1_defensibility   [3 repos]
+  RMS-IQ-Core-2           fc=  10  loc=   616  last=2026-07-14
+  Akki-OS-V1              fc=  10  loc=   616  last=2026-07-14
+  Extraction-Akki         fc=  10  loc=   616  last=2026-07-14
+  DIFF: identical (all repos byte-equal file-set)
+
+### health   [3 repos]
+  RMS-IQ-Core-2           fc=   2  loc=    72  last=2026-07-31
+  Akki-OS-V1              fc=   2  loc=    62  last=2026-07-25
+  Extraction-Akki         fc=   2  loc=    91  last=2026-08-27
+  DIFF: diverged · common-files=2 (sha-identical-across-repos: False)
+
+### ideas_engine   [2 repos]
+  Akki-Executive-Core     fc=   8  loc=   979  last=2026-06-23
+  Akki-Executive-Final    fc=   8  loc=   979  last=2026-06-01
+  DIFF: diverged · common-files=8 (sha-identical-across-repos: False)
+
+### inbox_routing   [2 repos]
+  Akki-Executive-Core     fc=  11  loc=  2356  last=2026-06-23
+  Akki-Executive-Final    fc=  11  loc=  2345  last=2026-06-01
+  DIFF: diverged · common-files=11 (sha-identical-across-repos: False)
+
+### job_queue.py   [2 repos]
+  Akki-Executive-Core     fc=   1  loc=   140  last=2026-05-13
+  Akki-Executive-Final    fc=   1  loc=   140  last=2026-05-13
+  DIFF: identical (all repos byte-equal file-set)
+
+### layer_a   [3 repos]
+  RMS-IQ-Core-2           fc=   9  loc=   457  last=2026-07-14
+  Akki-OS-V1              fc=   9  loc=   457  last=2026-07-14
+  Extraction-Akki         fc=   9  loc=   457  last=2026-07-14
+  DIFF: identical (all repos byte-equal file-set)
+
+### layer_b   [3 repos]
+  RMS-IQ-Core-2           fc=  10  loc=   505  last=2026-07-14
+  Akki-OS-V1              fc=  10  loc=   505  last=2026-07-14
+  Extraction-Akki         fc=  10  loc=   505  last=2026-07-14
+  DIFF: identical (all repos byte-equal file-set)
+
+### layer_c   [3 repos]
+  RMS-IQ-Core-2           fc=   3  loc=   227  last=2026-07-02
+  Akki-OS-V1              fc=   3  loc=   227  last=2026-07-02
+  Extraction-Akki         fc=   3  loc=   227  last=2026-07-02
+  DIFF: identical (all repos byte-equal file-set)
+
+### llm_streaming.py   [2 repos]
+  Akki-Executive-Core     fc=   1  loc=    19  last=2026-05-15
+  Akki-Executive-Final    fc=   1  loc=    19  last=2026-05-15
+  DIFF: identical (all repos byte-equal file-set)
+
+### master_admin   [3 repos]
+  RMS-IQ-Core-2           fc=   2  loc=   115  last=2026-07-14
+  Akki-OS-V1              fc=   2  loc=   115  last=2026-07-14
+  Extraction-Akki         fc=   2  loc=   115  last=2026-07-14
+  DIFF: identical (all repos byte-equal file-set)
+
+### memory   [2 repos]
+  RMS-IQ-Core-2           fc=  12  loc=  1448  last=2026-07-31
+  Extraction-Akki         fc=  12  loc=  1448  last=2026-07-31
+  DIFF: identical (all repos byte-equal file-set)
+
+### metadata_signatures.py   [2 repos]
+  Akki-Executive-Core     fc=   1  loc=   314  last=2026-05-10
+  Akki-Executive-Final    fc=   1  loc=   314  last=2026-05-10
+  DIFF: identical (all repos byte-equal file-set)
+
+### mtafiti   [3 repos]
+  RMS-IQ-Core-2           fc=  12  loc=   946  last=2026-07-10
+  Akki-OS-V1              fc=  12  loc=   946  last=2026-07-10
+  Extraction-Akki         fc=  30  loc=  2875  last=2026-09-13
+  DIFF: diverged · Extraction-Akki⊇Akki-OS-V1; Extraction-Akki⊇RMS-IQ-Core-2 · common-files=12 (sha-identical-across-repos: True)
+
+### multi_instance   [3 repos]
+  RMS-IQ-Core-2           fc=   3  loc=   190  last=2026-07-16
+  Akki-OS-V1              fc=   3  loc=   190  last=2026-07-16
+  Extraction-Akki         fc=   3  loc=   190  last=2026-07-16
+  DIFF: identical (all repos byte-equal file-set)
+
+### news_aggregator.py   [2 repos]
+  Akki-Executive-Core     fc=   1  loc=   553  last=2026-06-26
+  Akki-Executive-Final    fc=   1  loc=   519  last=2026-05-27
+  DIFF: diverged · common-files=1 (sha-identical-across-repos: False)
+
+### northena   [3 repos]
+  RMS-IQ-Core-2           fc=   7  loc=   773  last=2026-07-14
+  Akki-OS-V1              fc=   7  loc=   773  last=2026-07-14
+  Extraction-Akki         fc=   8  loc=  1223  last=2026-08-27
+  DIFF: diverged · common-files=6 (sha-identical-across-repos: False)
+
+### open_questions   [2 repos]
+  Akki-Executive-Core     fc=   2  loc=   112  last=2026-05-27
+  Akki-Executive-Final    fc=   2  loc=   112  last=2026-05-27
+  DIFF: identical (all repos byte-equal file-set)
+
+### opportunity_briefs   [3 repos]
+  RMS-IQ-Core-2           fc=   9  loc=   637  last=2026-07-11
+  Akki-OS-V1              fc=   9  loc=   637  last=2026-07-11
+  Extraction-Akki         fc=  10  loc=   732  last=2026-08-26
+  DIFF: diverged · Extraction-Akki⊇Akki-OS-V1; Extraction-Akki⊇RMS-IQ-Core-2 · common-files=9 (sha-identical-across-repos: True)
+
+### outer_gate   [3 repos]
+  RMS-IQ-Core-2           fc=   4  loc=   285  last=2026-07-14
+  Akki-OS-V1              fc=   4  loc=   285  last=2026-07-14
+  Extraction-Akki         fc=   4  loc=   285  last=2026-07-14
+  DIFF: identical (all repos byte-equal file-set)
+
+### perception   [3 repos]
+  RMS-IQ-Core-2           fc=  30  loc=  2228  last=2026-07-23
+  Akki-OS-V1              fc=  30  loc=  2228  last=2026-07-23
+  Extraction-Akki         fc=  35  loc=  2696  last=2026-09-15
+  DIFF: diverged · Extraction-Akki⊇Akki-OS-V1; Extraction-Akki⊇RMS-IQ-Core-2 · common-files=30 (sha-identical-across-repos: True)
+
+### platform_kb.py   [2 repos]
+  Akki-Executive-Core     fc=   1  loc=   107  last=2026-05-10
+  Akki-Executive-Final    fc=   1  loc=   107  last=2026-05-10
+  DIFF: identical (all repos byte-equal file-set)
+
+### privacy_wall.py   [2 repos]
+  Akki-Executive-Core     fc=   1  loc=   694  last=2026-05-11
+  Akki-Executive-Final    fc=   1  loc=   694  last=2026-05-11
+  DIFF: identical (all repos byte-equal file-set)
+
+### rate_limit.py   [2 repos]
+  Akki-Executive-Core     fc=   1  loc=   128  last=2026-05-30
+  Akki-Executive-Final    fc=   1  loc=   128  last=2026-05-30
+  DIFF: identical (all repos byte-equal file-set)
+
+### rbac.py   [2 repos]
+  Akki-Executive-Core     fc=   1  loc=   271  last=2026-05-05
+  Akki-Executive-Final    fc=   1  loc=   271  last=2026-05-05
+  DIFF: identical (all repos byte-equal file-set)
+
+### registry   [3 repos]
+  RMS-IQ-Core-2           fc=   5  loc=  2134  last=2026-08-01
+  Akki-OS-V1              fc=   4  loc=  1855  last=2026-07-25
+  Extraction-Akki         fc=   5  loc=  2153  last=2026-08-27
+  DIFF: diverged · common-files=4 (sha-identical-across-repos: False)
+
+### retention   [3 repos]
+  RMS-IQ-Core-2           fc=   2  loc=   173  last=2026-07-07
+  Akki-OS-V1              fc=   2  loc=   173  last=2026-07-07
+  Extraction-Akki         fc=   5  loc=   619  last=2026-08-25
+  DIFF: diverged · Extraction-Akki⊇Akki-OS-V1; Extraction-Akki⊇RMS-IQ-Core-2 · common-files=2 (sha-identical-across-repos: True)
+
+### sandbox_generation.py   [2 repos]
+  Akki-Executive-Core     fc=   1  loc=   508  last=2026-06-23
+  Akki-Executive-Final    fc=   1  loc=   508  last=2026-05-27
+  DIFF: diverged · common-files=1 (sha-identical-across-repos: False)
+
+### security_headers.py   [2 repos]
+  Akki-Executive-Core     fc=   1  loc=    96  last=2026-05-30
+  Akki-Executive-Final    fc=   1  loc=    96  last=2026-05-30
+  DIFF: identical (all repos byte-equal file-set)
+
+### sentry_setup.py   [2 repos]
+  Akki-Executive-Core     fc=   1  loc=    86  last=2026-05-30
+  Akki-Executive-Final    fc=   1  loc=    86  last=2026-05-30
+  DIFF: identical (all repos byte-equal file-set)
+
+### service_1   [3 repos]
+  RMS-IQ-Core-2           fc=  25  loc=  4047  last=2026-07-14
+  Akki-OS-V1              fc=  26  loc=  4274  last=2026-07-25
+  Extraction-Akki         fc=  29  loc=  4281  last=2026-08-27
+  DIFF: diverged · Akki-OS-V1⊇RMS-IQ-Core-2 · common-files=25 (sha-identical-across-repos: False)
+
+### session_timeout.py   [2 repos]
+  Akki-Executive-Core     fc=   1  loc=   216  last=2026-05-31
+  Akki-Executive-Final    fc=   1  loc=   216  last=2026-05-31
+  DIFF: identical (all repos byte-equal file-set)
+
+### signal_dedup.py   [2 repos]
+  Akki-Executive-Core     fc=   1  loc=   102  last=2026-06-23
+  Akki-Executive-Final    fc=   1  loc=    95  last=2026-05-10
+  DIFF: diverged · common-files=1 (sha-identical-across-repos: False)
+
+### solva   [2 repos]
+  Extraction-Akki         fc=   2  loc=   700  last=2026-08-25
+  Akki-Executive-Final    fc=  24  loc=  4315  last=2026-05-26
+  DIFF: diverged · common-files=2 (sha-identical-across-repos: False)
+
+### solva_depth   [3 repos]
+  RMS-IQ-Core-2           fc=  15  loc=   692  last=2026-07-02
+  Akki-OS-V1              fc=  15  loc=   692  last=2026-07-02
+  Extraction-Akki         fc=  15  loc=   692  last=2026-07-02
+  DIFF: identical (all repos byte-equal file-set)
+
+### solva_session_status.py   [2 repos]
+  Akki-Executive-Core     fc=   1  loc=   157  last=2026-05-20
+  Akki-Executive-Final    fc=   1  loc=   157  last=2026-05-20
+  DIFF: identical (all repos byte-equal file-set)
+
+### solva_v2   [3 repos]
+  Extraction-Akki         fc=  10  loc=   297  last=2026-09-13
+  Akki-Executive-Core     fc=  30  loc= 10509  last=2026-06-26
+  Akki-Executive-Final    fc=  29  loc=  9771  last=2026-06-04
+  DIFF: diverged · common-files=5 (sha-identical-across-repos: False)
+
+### storage_service.py   [2 repos]
+  Akki-Executive-Core     fc=   1  loc=   456  last=2026-07-04
+  Akki-Executive-Final    fc=   1  loc=   256  last=2026-05-02
+  DIFF: diverged · common-files=1 (sha-identical-across-repos: False)
+
+### streaming   [2 repos]
+  Akki-Executive-Core     fc=   3  loc=   383  last=2026-05-27
+  Akki-Executive-Final    fc=   3  loc=   383  last=2026-05-27
+  DIFF: identical (all repos byte-equal file-set)
+
+### streaming_phases.py   [2 repos]
+  Akki-Executive-Core     fc=   1  loc=    74  last=2026-05-12
+  Akki-Executive-Final    fc=   1  loc=    74  last=2026-05-12
+  DIFF: identical (all repos byte-equal file-set)
+
+### stripe_webhook.py   [2 repos]
+  Akki-Executive-Core     fc=   1  loc=    91  last=2026-05-25
+  Akki-Executive-Final    fc=   1  loc=    91  last=2026-05-25
+  DIFF: identical (all repos byte-equal file-set)
+
+### synisense   [5 repos]
+  RMS-IQ-Core-2           fc=  21  loc=  2928  last=2026-07-30
+  Akki-OS-V1              fc=  16  loc=  2362  last=2026-07-14
+  Extraction-Akki         fc=  21  loc=  2919  last=2026-08-25
+  Akki-Executive-Core     fc=  34  loc=  6304  last=2026-07-04
+  Akki-Executive-Final    fc=  33  loc=  5915  last=2026-05-27
+  DIFF: diverged · common-files=10 (sha-identical-across-repos: False)
+
+### system_state.py   [3 repos]
+  RMS-IQ-Core-2           fc=   1  loc=   151  last=2026-07-14
+  Akki-OS-V1              fc=   1  loc=   151  last=2026-07-14
+  Extraction-Akki         fc=   1  loc=   151  last=2026-07-14
+  DIFF: identical (all repos byte-equal file-set)
+
+### targeta   [3 repos]
+  RMS-IQ-Core-2           fc=   6  loc=   425  last=2026-07-14
+  Akki-OS-V1              fc=   7  loc=   557  last=2026-07-25
+  Extraction-Akki         fc=   6  loc=   425  last=2026-07-14
+  DIFF: diverged · Akki-OS-V1⊇Extraction-Akki; Akki-OS-V1⊇RMS-IQ-Core-2 · common-files=6 (sha-identical-across-repos: True)
+
+### tasks   [2 repos]
+  Akki-Executive-Core     fc=   5  loc=  1590  last=2026-06-25
+  Akki-Executive-Final    fc=   4  loc=  1170  last=2026-05-26
+  DIFF: diverged · common-files=4 (sha-identical-across-repos: False)
+
+### tasks_initiatives   [2 repos]
+  Akki-Executive-Core     fc=   3  loc=   550  last=2026-05-28
+  Akki-Executive-Final    fc=   3  loc=   550  last=2026-05-28
+  DIFF: identical (all repos byte-equal file-set)
+
+### team   [2 repos]
+  RMS-IQ-Core-2           fc=   2  loc=   202  last=2026-08-01
+  Extraction-Akki         fc=   2  loc=   202  last=2026-08-01
+  DIFF: identical (all repos byte-equal file-set)
+
+### transform_forms   [3 repos]
+  RMS-IQ-Core-2           fc=   6  loc=   436  last=2026-07-10
+  Akki-OS-V1              fc=   6  loc=   436  last=2026-07-10
+  Extraction-Akki         fc=   6  loc=   436  last=2026-07-10
+  DIFF: identical (all repos byte-equal file-set)
+
+### two_pass.py   [2 repos]
+  Akki-Executive-Core     fc=   1  loc=  1061  last=2026-05-10
+  Akki-Executive-Final    fc=   1  loc=  1061  last=2026-05-10
+  DIFF: identical (all repos byte-equal file-set)
+
+### universal_search.py   [2 repos]
+  Akki-Executive-Core     fc=   1  loc=   574  last=2026-06-23
+  Akki-Executive-Final    fc=   1  loc=   570  last=2026-05-11
+  DIFF: diverged · common-files=1 (sha-identical-across-repos: False)
+
+### use_data   [2 repos]
+  RMS-IQ-Core-2           fc=   4  loc=   757  last=2026-07-31
+  Extraction-Akki         fc=   4  loc=   757  last=2026-07-31
+  DIFF: identical (all repos byte-equal file-set)
+
+### v1_harness   [3 repos]
+  RMS-IQ-Core-2           fc=   3  loc=   223  last=2026-07-14
+  Akki-OS-V1              fc=   3  loc=   223  last=2026-07-14
+  Extraction-Akki         fc=   3  loc=   223  last=2026-07-14
+  DIFF: identical (all repos byte-equal file-set)
+
+### v2_gate   [3 repos]
+  RMS-IQ-Core-2           fc=   3  loc=   141  last=2026-07-14
+  Akki-OS-V1              fc=   3  loc=   141  last=2026-07-14
+  Extraction-Akki         fc=   3  loc=   141  last=2026-07-14
+  DIFF: identical (all repos byte-equal file-set)
+
+### v3_harness   [3 repos]
+  RMS-IQ-Core-2           fc=   2  loc=   138  last=2026-07-02
+  Akki-OS-V1              fc=   2  loc=   138  last=2026-07-02
+  Extraction-Akki         fc=   2  loc=   138  last=2026-07-02
+  DIFF: identical (all repos byte-equal file-set)
+
+### wizard   [3 repos]
+  RMS-IQ-Core-2           fc=   9  loc=   999  last=2026-07-31
+  Akki-OS-V1              fc=   8  loc=   854  last=2026-07-06
+  Extraction-Akki         fc=  10  loc=  1258  last=2026-08-25
+  DIFF: diverged · Extraction-Akki⊇Akki-OS-V1; Extraction-Akki⊇RMS-IQ-Core-2; RMS-IQ-Core-2⊇Akki-OS-V1 · common-files=8 (sha-identical-across-repos: True)
+
+### work_studio   [2 repos]
+  Akki-Executive-Core     fc=   2  loc=   307  last=2026-06-23
+  Akki-Executive-Final    fc=   2  loc=   296  last=2026-06-05
+  DIFF: diverged · common-files=2 (sha-identical-across-repos: False)
+
+### work_studio_export.py   [2 repos]
+  Akki-Executive-Core     fc=   1  loc=  1029  last=2026-06-25
+  Akki-Executive-Final    fc=   1  loc=   885  last=2026-06-04
+  DIFF: diverged · common-files=1 (sha-identical-across-repos: False)
+
+### work_studio_overlay.py   [2 repos]
+  Akki-Executive-Core     fc=   1  loc=   355  last=2026-06-23
+  Akki-Executive-Final    fc=   1  loc=   355  last=2026-06-05
+  DIFF: diverged · common-files=1 (sha-identical-across-repos: False)
+
+### workbook_analyzer   [2 repos]
+  Akki-Executive-Core     fc=  10  loc=  2116  last=2026-06-26
+  Akki-Executive-Final    fc=  10  loc=  1947  last=2026-06-04
+  DIFF: diverged · common-files=10 (sha-identical-across-repos: False)
