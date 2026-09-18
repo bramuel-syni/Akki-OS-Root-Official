@@ -12094,4 +12094,98 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 **Commit-B SHA banked at Commit-C fixup this-turn (Q1+Q2 close):** `acc02d1a41a5660c382c7bd6dd6ef5d7c654e9e0` (short `acc02d1a`) — Q1+Q2 state-master seal.
 
+
+---
+
+## OWNER RULING · Dispositions on all 4 blocking questions + 2 housekeeping directives + G5 artefact requirement · 2026-09-18
+
+### Owner ruling (VERBATIM, 2026-09-18 · post-Q1+Q2 close)
+
+> OWNER RULING — dispositions on all four blocking questions + two housekeeping directives + one new G5 artefact requirement. Bank VERBATIM to STATE/DECISIONS.md:
+>
+> ---
+> Acknowledged — clean close. Both seals, double-green at 4826, all five gate conditions GREEN with evidence. M11-W1 proceeds. On the four: (b) — ruled from the one-liners for three; conditions-now for the first, where a field-level freeze under T-b's regime deserves a conformance check rather than a blind ratification.
+>
+> B-M10-Q1 — Ledger row schema v1: ratified on conditions, not on count. B.4 as I read it lists seventeen fields, not sixteen — seq, prev_hash, hash, schema_version, tenant_id, run_id, task_id, actor_id, actor_type, event_type, resource_type, resource_id, decision, reason_code, payload_ref, at, break_glass_session_id — reconcile which before freezing. Ratify v1 provided the row carries, directly or in a hash-bound payload behind payload_ref: the DAP-21 metered-event fields (operation type, what was accessed, quantity in the operation's natural unit, terms identifier in force, party principal); the A5.19 certificate on every Watch action row; the R-C1 and R-C2 markers (controlled_determination_basis, au_3b_defensible) with a defined home; and at stamped from the reliable time source once it exists, au_3b_defensible=False until then. Refused operations produce rows on identical terms. Confirm conformance against that list; that confirmation is the ratification.
+>
+> B-M10-Q2 — verifier: ruled. Cadence is already ratified — nightly per tenant plus on demand (R-18 effect 12). Location: the verifier writes its receipts to its own append-only store under credentials the Ledger writer does not hold — the C3 principle, the verifier cannot share anything with the thing it verifies — and publishes the head hash to the tenant's receipt endpoint per B.4. SEV-1 wiring: a chain break pages the security group per B.10 and is additionally recorded as a Watch signal, never as an action — it's evidence, and it belongs in the certificate ground.
+>
+> B-M12b-Q1 — Ed25519: yes, pull the primitive forward. C.3.5 I-1 says Mkono acts only on a verdict whose signature verifies; a certificate-carrying verdict that isn't signed satisfies nothing. So signing is a precondition of the schema, not a later nicety. Pull forward the minimum — Ed25519 keygen, sign and verify for the Watch key alone — to M12b-W1. The full key hierarchy stays at M13-W2. Ed25519 is the right choice: deterministic signatures, standard, consistent with B.5.
+>
+> B-frontends-Q1 — handoff: yes, gated on frozen contracts. Frontends open when the contracts they consume are frozen under T-b — at minimum the answering-service seam contract (C.17, currently partial) and DAP's entitlement and receipt contracts. Specialist agents inherit the same Standing Orders and R-18's order of authority, start from the DAP UI Handoff Brief, and build to its §5 constraints — approval blocks rather than warns, silence never approves, the chat proposes and never decides. Nothing on the governance path waits for them.
+>
+> Two housekeeping directives. The anomaly repo (Akki-Executive-Final): quarantine read-only, out of scope, not a source for anything until ruled otherwise. The stale ratchet-floor line: fix as hygiene in the next seal.
+>
+> One thing your report surfaces that needs a home before gate release. 1,096 atomic rules across nine canons is your extraction; the register holds 444 rows under the canon ID schemes. canon_ref must resolve to a registry ID, per R-18 effect 2 — so the atomic rules need a mapping to those IDs where one exists, and none — new, needs ratification where it doesn't. Without that mapping the check passes against §-citations and never touches the register — the traceability it was written to enforce. Bank the mapping as a G5 artefact.
+>
+> Proceed.
+> ---
+
+### B-M10-Q1 conformance confirmation (per owner directive "that confirmation IS the ratification")
+
+**Field enumeration reconciled:** owner's list carries **17 fields**, not 16. The prior anchor-plan phrase "16 fields per B.4" (see `notes/NEXT_MILESTONES_PLAN_20260917.md §4.4`) is superseded to **17 fields per B.4 · per owner ruling 2026-09-18 verbatim**:
+
+1. `seq`
+2. `prev_hash`
+3. `hash`
+4. `schema_version`
+5. `tenant_id`
+6. `run_id`
+7. `task_id`
+8. `actor_id`
+9. `actor_type`
+10. `event_type`
+11. `resource_type`
+12. `resource_id`
+13. `decision`
+14. `reason_code`
+15. `payload_ref`
+16. `at`
+17. `break_glass_session_id`
+
+**Conformance confirmation against owner's enumerated list of required carried content:**
+
+| Owner-required content | Carrier (17-field surface OR hash-bound payload behind `payload_ref`) | Confirmation |
+|---|---|---|
+| DAP-21 metered-event fields (operation type · what accessed · quantity in natural unit · terms identifier in force · party principal) | `event_type` (operation type) + `resource_type`/`resource_id` (what accessed) + **payload_ref** hash-bound sub-fields for `quantity_natural_unit`, `terms_identifier`, `party_principal` | **CONFIRMED** — sub-fields ride behind `payload_ref` (M10-W1 codegen bank a canonical projection for the hash chain to bind them). |
+| A5.19 certificate on every Watch action row | `event_type` in `watch.*` namespace + **payload_ref** hash-bound `a5_19_certificate` sub-field | **CONFIRMED** — every row with `event_type = "watch.<action>"` carries an `a5_19_certificate` field behind `payload_ref`. |
+| R-C1 marker `controlled_determination_basis` | `payload_ref`-bound sub-field `controlled_determination_basis` (typed enum from Rules Service registry class per Canon 3 §22 · Canon 8 §7 C8-R-102) | **CONFIRMED** with defined home. |
+| R-C2 marker `au_3b_defensible` (boolean) | `payload_ref`-bound sub-field `au_3b_defensible: bool` — **defaults to `False` until reliable time source exists** (per owner ruling) | **CONFIRMED** with defined home + default. |
+| `at` stamped from reliable time source once it exists | `at` field (17-field surface). **Until reliable time source lands**, `at` is stamped from local monotonic clock AND `au_3b_defensible=False` invariant holds. | **CONFIRMED** — coupled invariant `at.source == "reliable" ⟺ au_3b_defensible=True` becomes an M10-W1 RED test. |
+| Refused operations produce rows on identical terms | Ledger writer accepts refusal-outcome rows: `decision ∈ {allow, refuse, break_glass, error}` — refused rows go through the identical 17-field surface + identical hash chain | **CONFIRMED** — decision enum is closed and includes `refuse`; refused-row test is an M10-W1 RED test. |
+
+**Ratification status:** RATIFIED as v1 with the conformance above. M10-W1 opens under this frozen 17-field surface + owner-listed payload contents.
+
+### G5 artefact requirement (owner directive · pre-gate-release · does NOT block M11-W1)
+
+**Deliverable:** atomic-rules → canon-registry-ID mapping. `1,096` extracted atomic rules (this-turn CHUNK 1 output) ↔ `~444` register rows (per owner's stated count) — reconcile the ID mapping.
+
+**Landing path:** `notes/G5_atomic_rules_to_registry_mapping.md` (this-turn scaffold + method + first-sample rows landed) → subsequent seals extend the mapping to full coverage before R-18 effect-15 gate release.
+
+**Rule (per R-18 effect 2 + SER errata §C.1):** every atomic rule maps to either (a) an existing registry ID from the canon corpus (e.g. `A5.19`, `DAP-14`, `Doc03-045`), or (b) `none-new-needs-ratification` (a ratification desk-item). A rule with neither is a documentation-check RED per D.6 (`test_cp_m11_gate_release_d6_canon_ref.py`).
+
+**Count reconciliation note (banked as a finding, not a stopper):** the two on-disk registers `notes/requirements_register_17docs.md` (515 rows across Docs 01-16) + `notes/requirements_register_20docs.md` addendum (36 rows across Docs 17-19A/B) sum to **551 rows total**. Owner cited **444 rows**. Delta of ~107 rows: potential explanations include (i) owner counting CANON+RULED only (excluding PROPOSED+OPEN), (ii) a distinct register view I have not located, (iii) the addendum row-count of 36 not being counted by owner. Banked in the G5 artefact §2 for reconciliation before full mapping lands.
+
+### Housekeeping directives (per owner Item)
+
+- **Quarantine `repos/Akki-Executive-Final/`** as read-only, out of scope, not a source for anything until owner-ruled otherwise. Banked note landing this-turn at `notes/QUARANTINE_akki_executive_final_20260918.md`. Neither this note nor future work reads this repo as source material.
+- **Stale "Ratchet floor: 2692" line in `STATE/NEXT.md`**: fixed this-turn as hygiene inside this seal (not a standalone seal).
+
+### M12b-W1 wave scope update
+
+Per owner B-M12b-Q1 ruling: M12b-W1 scope **INCLUDES** the minimum Ed25519 primitive — keygen, sign, and verify for the **Watch key alone**. Full key hierarchy stays at M13-W2. Rationale: C.3.5 I-1 requires Mkono act only on a verdict whose signature verifies; caller-flip at M12b-W1 (per T-c α) needs live signing, not a stub.
+
+### Ratchet at seal
+
+**4826** — unchanged (state-only landings this-turn).
+
+### SHAs banked at Commit-C fixup below
+
+- Commit-A (code · `programme/track-a`) — **N/A this-turn** — no code touched. Last-relevant: `4132e72` at CP-M11-GATE-RELEASE.
+- Commit-B (state · `master`) — this-turn — ruling banked + AUTONOMOUS_RUN_PLAN updated + housekeeping + G5 scaffold — SHA banked at Commit-C fixup below.
+- Commit-C (state · `master`) — this-turn — appends Commit-B SHA to DECISIONS + NEXT + ORCH_BOOT.md `heads_last_sealed.state_repo.head` + byte-identical audit copy.
+
+
+**Commit-B SHA banked at Commit-C fixup this-turn (OWNER-RULING-CLOSE):** `39ff52d58722e824e5b09bb814d3690458283029` (short `39ff52d5`) — owner ruling 2026-09-18 dispositions + housekeeping + G5 scaffold state-master seal.
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

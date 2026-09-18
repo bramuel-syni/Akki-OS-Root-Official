@@ -33,9 +33,9 @@ STATE files, and on any boot ritual that detects drift.
 
 ```yaml
 schema_version: 1
-generated_at_utc: 2026-09-18T06:00:00Z
-generator: main-agent Autopilot (Q1+Q2 CLOSE · Commit-C fixup this-turn · R-6 boundary regen at Commit-C fixup)
-regeneration_reason: r6-boundary-regen-at-q1-q2-close-commit-c-fixup-state_repo.head-advanced-from-f6d892c4-to-acc02d1a-ratchet-unchanged-4826
+generated_at_utc: 2026-09-18T06:35:00Z
+generator: main-agent Autopilot (OWNER-RULING-CLOSE · Commit-C fixup this-turn · R-6 boundary regen at Commit-C fixup)
+regeneration_reason: r6-boundary-regen-at-owner-ruling-close-commit-c-fixup-state_repo.head-advanced-from-acc02d1a-to-39ff52d5-ratchet-unchanged-4826
 
 ratchet:
   passed_floor: 4826
@@ -47,9 +47,9 @@ heads_last_sealed:
   state_repo:
     workdir: /app/assessment_workspace
     branch: master
-    head: acc02d1a41a5660c382c7bd6dd6ef5d7c654e9e0
-    sealed_at_utc: 2026-09-18T06:00:00Z
-    seal_kind: "Q1+Q2-CLOSE · state Commit-B `acc02d1a` · Q1 (HARD BANS / ANTI-DRIFT plain-language fold · 14 subsections cite-anchored) additively landed in ORCH_BOOT.md · Q2 (STATE/AUTONOMOUS_RUN_PLAN.md · pointer-atlas overlay + consolidated OWNER-QUESTIONS checklist 4 BLOCKING + 16 NON-BLOCKING per Item-5 discipline) landed · ratchet unchanged 4826 · Commit-C fixup this-turn banks this SHA in DECISIONS+NEXT + advances ORCH_BOOT state_repo.head + byte-identical audit copy · next wave to open: M11-W1 (all P1-P7 satisfied)"
+    head: 39ff52d58722e824e5b09bb814d3690458283029
+    sealed_at_utc: 2026-09-18T06:35:00Z
+    seal_kind: "OWNER-RULING-CLOSE · state Commit-B `39ff52d5` · owner ruling 2026-09-18 dispositions on 4 blocking Qs (B-M10-Q1 ratified on conditions · 17 fields per B.4 · B-M10-Q2 verifier ruled · B-M12b-Q1 Ed25519 minimum pulled forward · B-frontends-Q1 ruled gated-on-frozen-contracts) + 2 housekeeping directives (Akki-Executive-Final quarantined · stale ratchet-floor 2692 line fixed in place) + G5 pre-gate-release artefact scaffolded (1,096 atomic rules → 444/551 register-ID mapping · first-sample 20 rows) · ratchet unchanged 4826 · Commit-C fixup this-turn banks this SHA in DECISIONS+NEXT + advances ORCH_BOOT state_repo.head + byte-identical audit copy · next wave: M11-W1 open under standing authority"
   code_repo:
     workdir: /app/assessment_workspace/repos/Extraction-Akki
     branch: programme/track-a

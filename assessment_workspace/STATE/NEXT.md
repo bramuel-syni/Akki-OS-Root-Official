@@ -1631,7 +1631,7 @@ Ratchet floor unchanged: **2680**. Uncommitted local work: keypair-hardening tes
 - Add `sms_log.sms_sent` (longtext) as secondary corpus.
 - Pre-filter for unique Q×A pattern (1 example per unique combination) to escape memorisation regime.
 
-**Ratchet floor:** **2692** · double-green byte-identical last close · manifest updated in `backend/tests/invariants/baseline_failures.json`.
+**Ratchet floor:** **4826** · double-green byte-identical last close · manifest in `repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json` (hard-asserted by `test_orch_boot.py`). *[Hygiene fix 2026-09-18 per owner ruling · superseded the stale "2692" line in place inside this seal, not standalone.]*
 
 ---
 
@@ -1729,5 +1729,50 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 
 **Commit-B SHA banked at Commit-C fixup this-turn (Q1+Q2 close):** `acc02d1a41a5660c382c7bd6dd6ef5d7c654e9e0` (short `acc02d1a`) — Q1+Q2 state-master seal.
+
+
+---
+
+## OWNER RULING CLOSE · 2026-09-18 · 4 blocking questions RULED · G5 scaffold landed · housekeeping done
+
+**All four B-questions RULED** (2026-09-18 owner ruling · post-Q1+Q2 close · full text banked verbatim in `STATE/DECISIONS.md`):
+
+- **B-M10-Q1** · Ledger row schema RATIFIED ON CONDITIONS · **17 fields per B.4 (not 16)** · owner-required carried content confirmed against the enumerated list — conformance confirmation IS the ratification.
+- **B-M10-Q2** · Verifier RULED · nightly-per-tenant + on-demand cadence · verifier writes to own append-only store under credentials Ledger writer does NOT hold (C3 principle) · SEV-1 pages security group per B.10 + records Watch signal (evidence, never action).
+- **B-M12b-Q1** · Ed25519 minimum RULED to pull forward · keygen + sign + verify for Watch key alone lands at M12b-W1 · full hierarchy stays at M13-W2.
+- **B-frontends-Q1** · Frontends handoff RULED · gated on frozen C.17 + DAP entitlement + DAP receipt contracts · specialists inherit SO + R-18 order of authority · start from DAP UI Handoff Brief §5 constraints.
+
+**Housekeeping done this-turn:**
+
+- **Quarantine** `repos/Akki-Executive-Final/` read-only, out of scope, not a source for anything until owner rules otherwise. Banked note at `notes/QUARANTINE_akki_executive_final_20260918.md`.
+- **Stale ratchet-floor line fixed in place** inside this seal (was `**2692**` in the WPW section; operative ratchet 4826 restored inline · not a standalone seal · per owner directive "fix as hygiene in the next seal").
+
+**G5 pre-gate-release artefact scaffolded** (per owner directive · does NOT block M11-W1):
+
+- `notes/G5_atomic_rules_to_registry_mapping.md` — scaffold + method + first-sample 20 mappings landed. Extends to full 1,096-row coverage in subsequent seals interleaved with M11 waves. Count reconciliation banked: owner cited 444; on-disk register total 551 (515 + 36 addendum) → delta 107 flagged with candidate explanations. Working assumption: map every atomic rule regardless of total-count interpretation.
+
+**Autonomous run plan updated** (`STATE/AUTONOMOUS_RUN_PLAN.md`):
+
+- §2 row 6 (M12b): scope now explicitly includes minimum Ed25519 Watch-key primitive per B-M12b-Q1 ruling.
+- §4.1: all 4 BLOCKING questions marked RULED with dispositions inline.
+- §5: quarantine ruling banked.
+- §5A: G5 mapping work item scheduled pre-gate-release (does not block M11-W1).
+
+**Ratchet:** unchanged **4826** (state-only landings).
+
+### Next-in-flight (per owner directive "Proceed" + standing autonomous authority)
+
+**M11-W1** opens on the next turn under standing authority — grounding brief at `notes/W_M11_W1_grounding_brief.md` (to be authored) → tests-first mechanical RED drill → `services/data/repository.py` (sole Motor importer) + thin-adapter layer per Tension-a Option C → double-green byte-match → §3.3 3-commit seal on `programme/track-a` + master.
+
+**All standing bounds unchanged**: §3.3 seals · zero push · terminal pytest double-green · no testing_agent · credential discipline · additive-only · T-c α sequencing (schema+AST+P-15 done · caller-flip at M12b-W1) · SEC-2026-09-12-01 HF hold.
+
+### SHAs banked at Commit-C fixup below
+
+- Commit-A (code · `programme/track-a`) — **N/A this-turn** — no code touched.
+- Commit-B (state · `master`) — this-turn — ruling banked + plan updated + housekeeping + G5 scaffold + quarantine note — SHA banked at Commit-C fixup below.
+- Commit-C (state · `master`) — this-turn — self-banks own SHA + banks Commit-B SHA into DECISIONS + NEXT + ORCH_BOOT.
+
+
+**Commit-B SHA banked at Commit-C fixup this-turn (OWNER-RULING-CLOSE):** `39ff52d58722e824e5b09bb814d3690458283029` (short `39ff52d5`) — owner ruling 2026-09-18 dispositions + housekeeping + G5 scaffold state-master seal.
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
