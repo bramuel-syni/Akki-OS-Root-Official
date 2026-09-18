@@ -1,5 +1,5 @@
 {
-  "at_utc": "2026-09-15T08:15:54Z",
+  "at_utc": "2026-09-18T11:00:47Z",
   "label": "cp4_composition_census",
   "hosts": [
     "159.138.162.146",
@@ -7,7 +7,7 @@
   ],
   "per_host": {
     "159.138.162.146": {
-      "at_utc": "2026-09-15T08:15:40Z",
+      "at_utc": "2026-09-18T11:00:32Z",
       "label": "weego",
       "host": "159.138.162.146",
       "port": 3306,
@@ -59,7 +59,7 @@
         {
           "sql": "SELECT TABLE_NAME, COLUMN_NAME, DATA_TYPE, IS_NULLABLE, COLUMN_KEY FROM information_schema.columns WHERE TABLE_SCHEMA = 'weego' ORDER BY TABLE_NAME, ORDINAL_POSITION",
           "lead_verb": "SELECT",
-          "row_count": 5059,
+          "row_count": 5068,
           "ok": true
         },
         {
@@ -122,7 +122,7 @@
             "time": 4,
             "date": 2
           },
-          "total_rows": 117873
+          "total_rows": 118170
         },
         "sql_demo": {
           "tables": [
@@ -568,13 +568,13 @@
           ],
           "table_count": 413,
           "column_type_histogram": {
-            "int": 1835,
+            "int": 1840,
             "timestamp": 698,
             "varchar": 1445,
             "text": 176,
-            "tinyint": 493,
+            "tinyint": 496,
             "date": 31,
-            "longtext": 64,
+            "longtext": 65,
             "enum": 9,
             "bigint": 159,
             "decimal": 77,
@@ -584,7 +584,7 @@
             "time": 4,
             "char": 3
           },
-          "total_rows": 2663037
+          "total_rows": 2809931
         }
       },
       "per_table": {
@@ -2374,7 +2374,7 @@
           ]
         },
         "analytics.youtube_channel_views": {
-          "row_count": 62392,
+          "row_count": 62689,
           "data_length_bytes": 3686400,
           "column_count": 5,
           "columns": [
@@ -6705,8 +6705,8 @@
           ]
         },
         "weego.booking_coordinates": {
-          "row_count": 830,
-          "data_length_bytes": 60293120,
+          "row_count": 1085,
+          "data_length_bytes": 69730304,
           "column_count": 4,
           "columns": [
             {
@@ -6915,7 +6915,7 @@
           ]
         },
         "weego.booking_details": {
-          "row_count": 8378,
+          "row_count": 8458,
           "data_length_bytes": 4685824,
           "column_count": 36,
           "columns": [
@@ -7245,7 +7245,7 @@
           ]
         },
         "weego.booking_ratings": {
-          "row_count": 1785,
+          "row_count": 1816,
           "data_length_bytes": 98304,
           "column_count": 12,
           "columns": [
@@ -7371,7 +7371,7 @@
           ]
         },
         "weego.booking_request_drivers": {
-          "row_count": 33355,
+          "row_count": 33675,
           "data_length_bytes": 3686400,
           "column_count": 13,
           "columns": [
@@ -7518,7 +7518,7 @@
           ]
         },
         "weego.booking_transactions": {
-          "row_count": 1875,
+          "row_count": 1904,
           "data_length_bytes": 344064,
           "column_count": 39,
           "columns": [
@@ -7916,7 +7916,7 @@
           ]
         },
         "weego.bookings": {
-          "row_count": 14334,
+          "row_count": 14503,
           "data_length_bytes": 50954240,
           "column_count": 114,
           "columns": [
@@ -13772,7 +13772,7 @@
         "weego.carpooling_offer_ride_checkouts": {
           "row_count": 0,
           "data_length_bytes": 16384,
-          "column_count": 24,
+          "column_count": 27,
           "columns": [
             {
               "column_name": "id",
@@ -13795,7 +13795,7 @@
             {
               "column_name": "user_id",
               "data_type": "int",
-              "is_nullable": false,
+              "is_nullable": true,
               "column_key": "MUL"
             },
             {
@@ -13803,6 +13803,24 @@
               "data_type": "int",
               "is_nullable": true,
               "column_key": "MUL"
+            },
+            {
+              "column_name": "driver_id",
+              "data_type": "int",
+              "is_nullable": true,
+              "column_key": "MUL"
+            },
+            {
+              "column_name": "driver_vehicle_id",
+              "data_type": "int",
+              "is_nullable": true,
+              "column_key": "MUL"
+            },
+            {
+              "column_name": "offered_by",
+              "data_type": "tinyint",
+              "is_nullable": false,
+              "column_key": ""
             },
             {
               "column_name": "country_area_id",
@@ -13963,6 +13981,26 @@
             {
               "role": "role.fk_candidate",
               "column": "user_vehicle_id",
+              "confidence": 0.6
+            },
+            {
+              "role": "role.pk_candidate",
+              "column": "driver_id",
+              "confidence": 0.7
+            },
+            {
+              "role": "role.fk_candidate",
+              "column": "driver_id",
+              "confidence": 0.6
+            },
+            {
+              "role": "role.pk_candidate",
+              "column": "driver_vehicle_id",
+              "confidence": 0.7
+            },
+            {
+              "role": "role.fk_candidate",
+              "column": "driver_vehicle_id",
               "confidence": 0.6
             },
             {
@@ -14655,7 +14693,7 @@
           ]
         },
         "weego.carpooling_ride_details": {
-          "row_count": 0,
+          "row_count": 3,
           "data_length_bytes": 16384,
           "column_count": 24,
           "columns": [
@@ -14878,7 +14916,7 @@
           ]
         },
         "weego.carpooling_ride_user_details": {
-          "row_count": 0,
+          "row_count": 3,
           "data_length_bytes": 16384,
           "column_count": 47,
           "columns": [
@@ -15369,9 +15407,9 @@
           ]
         },
         "weego.carpooling_rides": {
-          "row_count": 0,
+          "row_count": 3,
           "data_length_bytes": 16384,
-          "column_count": 40,
+          "column_count": 45,
           "columns": [
             {
               "column_name": "id",
@@ -15400,7 +15438,7 @@
             {
               "column_name": "user_id",
               "data_type": "int",
-              "is_nullable": false,
+              "is_nullable": true,
               "column_key": "MUL"
             },
             {
@@ -15408,6 +15446,24 @@
               "data_type": "int",
               "is_nullable": true,
               "column_key": "MUL"
+            },
+            {
+              "column_name": "driver_id",
+              "data_type": "int",
+              "is_nullable": true,
+              "column_key": "MUL"
+            },
+            {
+              "column_name": "driver_vehicle_id",
+              "data_type": "int",
+              "is_nullable": true,
+              "column_key": "MUL"
+            },
+            {
+              "column_name": "offered_by",
+              "data_type": "tinyint",
+              "is_nullable": false,
+              "column_key": ""
             },
             {
               "column_name": "country_area_id",
@@ -15449,6 +15505,12 @@
               "column_name": "end_location",
               "data_type": "text",
               "is_nullable": false,
+              "column_key": ""
+            },
+            {
+              "column_name": "route_polyline",
+              "data_type": "longtext",
+              "is_nullable": true,
               "column_key": ""
             },
             {
@@ -15578,6 +15640,12 @@
               "column_key": ""
             },
             {
+              "column_name": "reminder_sent",
+              "data_type": "tinyint",
+              "is_nullable": false,
+              "column_key": ""
+            },
+            {
               "column_name": "cancel_reason_id",
               "data_type": "int",
               "is_nullable": true,
@@ -15668,6 +15736,26 @@
             {
               "role": "role.fk_candidate",
               "column": "user_vehicle_id",
+              "confidence": 0.6
+            },
+            {
+              "role": "role.pk_candidate",
+              "column": "driver_id",
+              "confidence": 0.7
+            },
+            {
+              "role": "role.fk_candidate",
+              "column": "driver_id",
+              "confidence": 0.6
+            },
+            {
+              "role": "role.pk_candidate",
+              "column": "driver_vehicle_id",
+              "confidence": 0.7
+            },
+            {
+              "role": "role.fk_candidate",
+              "column": "driver_vehicle_id",
               "confidence": 0.6
             },
             {
@@ -16235,7 +16323,7 @@
           ]
         },
         "weego.chats": {
-          "row_count": 1131,
+          "row_count": 1142,
           "data_length_bytes": 475136,
           "column_count": 9,
           "columns": [
@@ -23672,7 +23760,7 @@
           ]
         },
         "weego.driver_cashouts": {
-          "row_count": 321,
+          "row_count": 322,
           "data_length_bytes": 65536,
           "column_count": 16,
           "columns": [
@@ -24118,7 +24206,7 @@
           ]
         },
         "weego.driver_destinations": {
-          "row_count": 3,
+          "row_count": 4,
           "data_length_bytes": 16384,
           "column_count": 13,
           "columns": [
@@ -24245,7 +24333,7 @@
           ]
         },
         "weego.driver_documents": {
-          "row_count": 26435,
+          "row_count": 26801,
           "data_length_bytes": 2637824,
           "column_count": 15,
           "columns": [
@@ -24440,7 +24528,7 @@
           ]
         },
         "weego.driver_driver_vehicle": {
-          "row_count": 13050,
+          "row_count": 13304,
           "data_length_bytes": 1163264,
           "column_count": 3,
           "columns": [
@@ -24624,7 +24712,7 @@
           ]
         },
         "weego.driver_launch_events": {
-          "row_count": 43235,
+          "row_count": 52655,
           "data_length_bytes": 2637824,
           "column_count": 4,
           "columns": [
@@ -24682,7 +24770,7 @@
           ]
         },
         "weego.driver_launches": {
-          "row_count": 11471,
+          "row_count": 13972,
           "data_length_bytes": 1589248,
           "column_count": 8,
           "columns": [
@@ -24779,8 +24867,8 @@
           ]
         },
         "weego.driver_online": {
-          "row_count": 9972,
-          "data_length_bytes": 1589248,
+          "row_count": 11337,
+          "data_length_bytes": 1572864,
           "column_count": 4,
           "columns": [
             {
@@ -24852,7 +24940,7 @@
           ]
         },
         "weego.driver_online_times": {
-          "row_count": 6008,
+          "row_count": 7911,
           "data_length_bytes": 1556480,
           "column_count": 12,
           "columns": [
@@ -25266,7 +25354,7 @@
           ]
         },
         "weego.driver_ride_configs": {
-          "row_count": 5704,
+          "row_count": 5766,
           "data_length_bytes": 327680,
           "column_count": 13,
           "columns": [
@@ -25388,7 +25476,7 @@
           ]
         },
         "weego.driver_segment": {
-          "row_count": 10658,
+          "row_count": 10786,
           "data_length_bytes": 409600,
           "column_count": 2,
           "columns": [
@@ -25731,7 +25819,7 @@
           ]
         },
         "weego.driver_service_type": {
-          "row_count": 10887,
+          "row_count": 11015,
           "data_length_bytes": 458752,
           "column_count": 6,
           "columns": [
@@ -26173,7 +26261,7 @@
           ]
         },
         "weego.driver_vehicle_documents": {
-          "row_count": 47268,
+          "row_count": 47982,
           "data_length_bytes": 5783552,
           "column_count": 14,
           "columns": [
@@ -26311,7 +26399,7 @@
           ]
         },
         "weego.driver_vehicle_service_type": {
-          "row_count": 12073,
+          "row_count": 12201,
           "data_length_bytes": 540672,
           "column_count": 3,
           "columns": [
@@ -26368,8 +26456,8 @@
           ]
         },
         "weego.driver_vehicle_type_switch_logs": {
-          "row_count": 187,
-          "data_length_bytes": 16384,
+          "row_count": 354,
+          "data_length_bytes": 49152,
           "column_count": 10,
           "columns": [
             {
@@ -26502,7 +26590,7 @@
           ]
         },
         "weego.driver_vehicles": {
-          "row_count": 12206,
+          "row_count": 12059,
           "data_length_bytes": 3686400,
           "column_count": 26,
           "columns": [
@@ -26757,7 +26845,7 @@
           ]
         },
         "weego.driver_wallet_transactions": {
-          "row_count": 4914,
+          "row_count": 4963,
           "data_length_bytes": 1589248,
           "column_count": 18,
           "columns": [
@@ -26974,8 +27062,8 @@
           ]
         },
         "weego.drivers": {
-          "row_count": 28498,
-          "data_length_bytes": 17350656,
+          "row_count": 29821,
+          "data_length_bytes": 18399232,
           "column_count": 111,
           "columns": [
             {
@@ -28914,8 +29002,8 @@
           ]
         },
         "weego.failed_booking_attempts": {
-          "row_count": 1172,
-          "data_length_bytes": 540672,
+          "row_count": 1567,
+          "data_length_bytes": 1589248,
           "column_count": 15,
           "columns": [
             {
@@ -29093,8 +29181,8 @@
           ]
         },
         "weego.failed_jobs": {
-          "row_count": 118,
-          "data_length_bytes": 2637824,
+          "row_count": 47,
+          "data_length_bytes": 1589248,
           "column_count": 6,
           "columns": [
             {
@@ -38718,7 +38806,7 @@
           ]
         },
         "weego.migrations": {
-          "row_count": 488,
+          "row_count": 491,
           "data_length_bytes": 81920,
           "column_count": 3,
           "columns": [
@@ -39131,8 +39219,8 @@
           ]
         },
         "weego.notification_logs": {
-          "row_count": 1818253,
-          "data_length_bytes": 187416576,
+          "row_count": 1933720,
+          "data_length_bytes": 208404480,
           "column_count": 10,
           "columns": [
             {
@@ -39245,7 +39333,7 @@
           ]
         },
         "weego.oauth_access_tokens": {
-          "row_count": 107455,
+          "row_count": 108847,
           "data_length_bytes": 23232512,
           "column_count": 9,
           "columns": [
@@ -39581,7 +39669,7 @@
           ]
         },
         "weego.oauth_refresh_tokens": {
-          "row_count": 92969,
+          "row_count": 94252,
           "data_length_bytes": 29966336,
           "column_count": 4,
           "columns": [
@@ -45468,7 +45556,7 @@
           ]
         },
         "weego.promotion_notifications": {
-          "row_count": 84,
+          "row_count": 87,
           "data_length_bytes": 49152,
           "column_count": 14,
           "columns": [
@@ -46227,7 +46315,7 @@
           ]
         },
         "weego.referral_discounts": {
-          "row_count": 18,
+          "row_count": 24,
           "data_length_bytes": 16384,
           "column_count": 19,
           "columns": [
@@ -46415,7 +46503,7 @@
           ]
         },
         "weego.referral_driver_discounts": {
-          "row_count": 15,
+          "row_count": 18,
           "data_length_bytes": 16384,
           "column_count": 11,
           "columns": [
@@ -46926,7 +47014,7 @@
           ]
         },
         "weego.refresh_tokens": {
-          "row_count": 43559,
+          "row_count": 44446,
           "data_length_bytes": 7880704,
           "column_count": 7,
           "columns": [
@@ -47787,8 +47875,8 @@
           ]
         },
         "weego.ride_match_events": {
-          "row_count": 31189,
-          "data_length_bytes": 12075008,
+          "row_count": 36027,
+          "data_length_bytes": 14172160,
           "column_count": 8,
           "columns": [
             {
@@ -51265,7 +51353,7 @@
           "role_signals": []
         },
         "weego.testing_parameter_activity_logs": {
-          "row_count": 32,
+          "row_count": 59,
           "data_length_bytes": 16384,
           "column_count": 9,
           "columns": [
@@ -51353,7 +51441,7 @@
           ]
         },
         "weego.testing_parameters": {
-          "row_count": 11,
+          "row_count": 15,
           "data_length_bytes": 16384,
           "column_count": 8,
           "columns": [
@@ -51583,7 +51671,7 @@
           ]
         },
         "weego.transactions": {
-          "row_count": 1725,
+          "row_count": 1746,
           "data_length_bytes": 294912,
           "column_count": 28,
           "columns": [
@@ -52758,7 +52846,7 @@
           ]
         },
         "weego.user_devices": {
-          "row_count": 35870,
+          "row_count": 32823,
           "data_length_bytes": 8912896,
           "column_count": 14,
           "columns": [
@@ -53202,7 +53290,7 @@
           ]
         },
         "weego.user_launch_events": {
-          "row_count": 24771,
+          "row_count": 28740,
           "data_length_bytes": 1589248,
           "column_count": 4,
           "columns": [
@@ -53260,7 +53348,7 @@
           ]
         },
         "weego.user_launches": {
-          "row_count": 11750,
+          "row_count": 12097,
           "data_length_bytes": 1572864,
           "column_count": 11,
           "columns": [
@@ -53529,7 +53617,7 @@
           ]
         },
         "weego.user_locations": {
-          "row_count": 14544,
+          "row_count": 15936,
           "data_length_bytes": 1589248,
           "column_count": 8,
           "columns": [
@@ -54325,7 +54413,7 @@
           ]
         },
         "weego.user_wallet_transactions": {
-          "row_count": 1637,
+          "row_count": 1638,
           "data_length_bytes": 294912,
           "column_count": 23,
           "columns": [
@@ -54602,9 +54690,9 @@
           ]
         },
         "weego.users": {
-          "row_count": 41250,
+          "row_count": 41920,
           "data_length_bytes": 11026432,
-          "column_count": 77,
+          "column_count": 78,
           "columns": [
             {
               "column_name": "id",
@@ -54819,6 +54907,12 @@
             {
               "column_name": "UserStatus",
               "data_type": "varchar",
+              "is_nullable": false,
+              "column_key": ""
+            },
+            {
+              "column_name": "login_logout",
+              "data_type": "int",
               "is_nullable": false,
               "column_key": ""
             },
@@ -56268,7 +56362,7 @@
           ]
         },
         "weego.viupay_payment_instruments": {
-          "row_count": 680,
+          "row_count": 717,
           "data_length_bytes": 81920,
           "column_count": 9,
           "columns": [
@@ -57604,11 +57698,11 @@
         }
       },
       "column_role_signals_summary": {
-        "total": 4314,
+        "total": 4322,
         "by_role": {
-          "role.pk_candidate": 1537,
+          "role.pk_candidate": 1541,
           "role.timestamp": 846,
-          "role.fk_candidate": 1159,
+          "role.fk_candidate": 1163,
           "role.address": 118,
           "role.email": 36,
           "role.token": 46,
@@ -57627,15 +57721,15 @@
       "totals": {
         "schemas": 4,
         "tables": 443,
-        "columns": 5243,
-        "rows": 2780916
+        "columns": 5252,
+        "rows": 2928107
       },
       "errors": [],
-      "census_sha256": "0bff3d5ac7145bf199c22cad46c3ee62159df8ec63cdb4c23dfb91dbe9e55aba",
+      "census_sha256": "be66d09c1958ab0afeeb5541a99626bf354ff59e2b3dca7f7b3091b2f9bb760d",
       "credential_reuse_note": "reused bramuel credential from CSV host '203.123.86.10'"
     },
     "110.238.76.159": {
-      "at_utc": "2026-09-15T08:15:45Z",
+      "at_utc": "2026-09-18T11:00:37Z",
       "label": "ussd",
       "host": "110.238.76.159",
       "port": 3306,
@@ -191277,7 +191371,7 @@
         "rows": 179289626
       },
       "errors": [],
-      "census_sha256": "4e45f71abc9db02a5e0748558ba6ed83060fa0c71397c4554f4ccea31fe02712"
+      "census_sha256": "c81b53321fba18c5e886f2c2406347035df7214a7421c18c9bd3d984f7253417"
     }
   }
 }

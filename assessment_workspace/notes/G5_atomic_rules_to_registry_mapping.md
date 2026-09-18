@@ -27,7 +27,64 @@
 | 9 · The Mkondo Charter | `notes/chunk1_20260918/chunk1_task_d_canon_9_requirements.md` | 39 | `C9-R-001` .. `C9-R-039` |
 | **TOTAL** | | **1,096** | |
 
-### §1.2 · Canon-registry outputs (target IDs)
+### §1.2 · Canon-registry outputs (target IDs) — AUTHORITATIVE 491-ROW REGISTRY (owner ruling 2026-09-18 final)
+
+**Owner ruling 2026-09-18 (final · supersedes the earlier 46-additions bridge):** the refreshed **491-row Master Requirements Registry** has been issued as the authoritative canon_ref target under R-18 effect 2. The file lands in the workspace at:
+
+- **Path:** `custody/owner_drops/Master_Requirements_Registry_20260918.xlsx`
+- **sha256:** `dfd4f8b35af5b73c948eb1b34ec19bf0a1932bb68a77322d9af31a3bf27b928c`
+- **Owner-drop manifest:** `phase0/credential_drop_manifests/20260918T1111Z_master_req_registry_owner_drop_manifest.json`
+- **Structural verification (openpyxl shape-only inspection · no cell values echoed):**
+  - Sheet `System Rules Registry` = 491 data rows + 1 header row = 492 total rows.
+  - Header columns: `Rule ID · Statement · Objective · Promise / Source Document · Doc · Status · Enforcement Class · Domain · Source (file:line) · Relationship · Builder Status`.
+  - Unique `Rule ID` values: 360.
+  - Duplicate `Rule ID` values (positional series): 21.
+
+**Owner's 47 additions vs prior 444 shipped register (owner ruling verbatim · file is ground truth):**
+
+SEC-1..7 (7) · DET-1..2 (2) · FP-1..4 (4) · TD-1..3 (3) · HR-1..7 (7) · BC-1..4 (4) · **DAP-37..38 (2)** · A20.15 (1) · SFP-8 (1) · AC-13..18 (6) · A5.19..22 (4) · RBM-23 (1) · A20.16 (1) · **S-26..29 (4)** = **47** additions.
+
+**The 46-additions bridge is RETIRED.** The refresh has landed. Use the 491-row registry directly.
+
+**Sheet other than `System Rules Registry`:** `Build Status` (56 rows) · `Objectives` (17 rows) · `Legend` (15 rows) — supporting context, not canon_ref targets.
+
+**On-disk `notes/requirements_register_{17,20}docs.md`** are retained for reproducibility but are NOT the authoritative canon_ref target set (per owner ruling: they count "a finer atomic split plus container IDs; the two were never the same object").
+
+### §1.3 · Document-qualified canon_ref rule for the 21 positional-series IDs
+
+**Owner ruling verbatim (2026-09-18 final):**
+
+> "21 IDs in the register repeat by design — ROC-3's document-scoped positional IDs; A5.7 is Document 1's trust receipt and Document 3's non-conformance ceiling. For the A, B and C series, canon_ref is ID plus document (Doc 3 · A5.7), never the bare ID, or the mapping resolves to two rules and silently picks one. The other 339 IDs are unique and map directly."
+
+**The 21 positional-series IDs** (extracted from registry via `Counter(rows[Rule ID]).most_common()`):
+
+| ID | Documents where it appears | Example canon_ref values |
+|---|---:|---|
+| `A5.1` | 15 | `Doc 1 · A5.1`, `Doc 2 · A5.1`, `Doc 3 · A5.1`, ... |
+| `A5.2` | 15 | `Doc 1 · A5.2`, `Doc 2 · A5.2`, `Doc 3 · A5.2`, ... |
+| `A5.3` | 15 | `Doc 1 · A5.3`, `Doc 2 · A5.3`, `Doc 3 · A5.3`, ... |
+| `A5.4` | 13 | `Doc 1 · A5.4`, `Doc 2 · A5.4`, `Doc 3 · A5.4`, ... |
+| `A5.5` | 10 | `Doc 1 · A5.5`, `Doc 2 · A5.5`, ... |
+| `A5.6` | 4 | `Doc 1 · A5.6`, ... |
+| `A5.7` | 2 | `Doc 1 · A5.7` (trust receipt), `Doc 3 · A5.7` (non-conformance ceiling) |
+| `A5.8` | 2 | `Doc 1 · A5.8`, `Doc N · A5.8` |
+| `A5.9` | 2 | `Doc 1 · A5.9`, `Doc N · A5.9` |
+| `B5.1` | 11 | `Doc M · B5.1`, ... |
+| `B5.2` | 11 | `Doc M · B5.2`, ... |
+| `B5.3` | 11 | `Doc M · B5.3`, ... |
+| `B5.4` | 9 | `Doc M · B5.4`, ... |
+| `B5.5` | 8 | `Doc M · B5.5`, ... |
+| `B5.6` | 4 | `Doc M · B5.6`, ... |
+| (6 more from B/C series) | | |
+
+**Rule for G5 §4 mappings:**
+
+- **Positional-series (A/B/C prefixes with numeric family like `A5.<n>`, `B5.<n>`, `C.<n>`)**: `canon_ref = "Doc N · ID"` (e.g. `"Doc 3 · A5.7"`). NEVER bare ID.
+- **Unique-series (SEC, DET, FP, TD, HR, BC, DAP, AC, RBM, A20, SFP, S, BR, WPW, DR, G, ROC, QA, EP, I, RI, SE, and 339 others)**: `canon_ref = bare ID` (e.g. `"SEC-3"`, `"DAP-37"`, `"S-27"`).
+
+### §1.2-legacy · Original on-disk register enumeration (retained for reproducibility · NOT authoritative)
+
+Prior to owner ruling 2026-09-18 final, this section listed the on-disk `notes/requirements_register_{17,20}docs.md` as candidate target set. Owner ruled these are not the authoritative canon_ref target set. The legacy enumeration is retained here for reproducibility:
 
 | Register file | Docs covered | Row-count total (on-disk) | ID scheme |
 |---|---|---:|---|
@@ -50,11 +107,24 @@ This mapping (G5) produces the `canon_ref` values that satisfy the check. Each o
 
 ---
 
-## §2 · Count reconciliation (owner 444 · on-disk 551 · delta 107)
+## §2 · Count reconciliation — RESOLVED per owner ruling 2026-09-18
 
-**Finding banked, NOT a stopper.** Owner cited **444 rows** in the register; on-disk registers total **551 rows** (515 + 36). Delta of **107 rows**.
+**Owner ruling verbatim (transparency item 2):**
 
-**Candidate explanations to reconcile before full §4 mapping extends:**
+> "444 versus 551, resolved. The shipped Master Requirements Registry has 444 rows — verified against the file just now, not recalled. So 551 is your register, not mine, and the two are counting different things. The delta is explained: since the registry was last built, five documents added requirements that were flagged 'at next refresh' and never entered — SEC-1–7, DET-1–2, FP-1–4, TD-1–3, HR-1–7, BC-1–4, S-10/S-11 homed, the serving-integrity set (A20.15, SFP-8, AC-13/14, S-27), and the watch-learning set (A5.19–22, RBM-23, A20.16, AC-15–18, S-28/29) — 46 requirements. The rest of your 107 is most likely LIM and V/L container IDs (non-requirements, 14) plus whatever your extraction split finer than mine. Your working assumption is correct: map every atomic rule regardless. Direction: the canon_ref target is the refreshed registry, not the 444 — I'll issue the refresh with the 46 added and the container IDs excluded, so the mapping resolves against a register that actually contains what canon now says. Until it lands, mappings to the 46 resolve to their source-document IDs, which are stable."
+
+**Resolution summary:**
+
+- **444** = shipped Master Requirements Registry (owner-verified against the file, not recalled).
+- **551** = the on-disk register under `notes/requirements_register_{17,20}docs.md` (different artefact from owner's shipped registry).
+- **Delta 107 = 46 new requirements (in canon since last refresh, not yet entered) + 14 LIM/V/L containers (non-requirements) + ~47 attributable to finer extraction splitting** by the on-disk register.
+- **canon_ref target:** owner's forthcoming refreshed registry (**444 + 46 additions ≈ 490 rows · 14 containers excluded**).
+- **Bridge**: mappings to the 46 additions resolve to their stable source-document IDs (SEC-1..7 · DET-1..2 · FP-1..4 · TD-1..3 · HR-1..7 · BC-1..4 · S-10 · S-11 · A20.15 · SFP-8 · AC-13 · AC-14 · S-27 · A5.19..22 · RBM-23 · A20.16 · AC-15..18 · S-28 · S-29).
+- **Working assumption confirmed by owner:** "map every atomic rule regardless."
+
+### §2-legacy · Original candidate-explanation enumeration (retained for reproducibility)
+
+Prior to owner ruling 2026-09-18, this section listed four candidate explanations for the 444/551 delta. All are now superseded by the owner ruling above. The candidate explanations are retained here for reproducibility:
 
 1. **Status filtering hypothesis.** The 17-doc register uses status classes `CANON · RULED · PROPOSED · OPEN` (per `notes/requirements_register_17docs.md` §"Status classification"). If owner is counting only `CANON`-status rows (excluding `RULED`+`PROPOSED`+`OPEN`), the total drops. The 17-doc register's Doc-15 alone has 87 rows across all statuses; a CANON-only count would be materially smaller. **Verification:** aggregate CANON-count across the 17+20 register on-disk. Deferred to first mapping-extension seal.
 2. **Alternate register view not on disk.** A separate consolidated register (e.g. an internal Airtable, spreadsheet, or `phase0/` artefact) may hold the authoritative 444 count. **Verification:** grep for any file with `TOTAL` near a `444` string in `notes/` and `phase0/`. First-pass grep produced nothing conclusive; noted for owner clarification if needed.
@@ -75,21 +145,26 @@ This mapping (G5) produces the `canon_ref` values that satisfy the check. Each o
 - rule_id: <C{N}-R-###>          # from §1.1 · unique across all nine canons
   canon_section: "Canon N §X.Y"  # verbatim from the atomic rule's section anchor
   rule_summary: "<short kebab tag>"  # optional readability aid; the atomic rule file is authoritative
-  canon_ref: <registry_id | "none-new-needs-ratification">
-  registry_source: <"DocNN" | "A5" | "AC" | "BA" | "SFP" | "DAP" | "RBM" | "CP-S" | "R" | "amendment" | "">
+  canon_ref: <registry_ref | "none-new-needs-ratification">
+    # registry_ref is one of:
+    #   - "Doc N · ID"  for the 21 positional-series IDs (A/B/C prefix families)
+    #   - "<bare_id>"   for the 339 unique IDs (SEC, DET, FP, TD, HR, BC, DAP, AC, RBM, A20, SFP, S, BR, WPW, DR, G, ROC, QA, EP, I, RI, SE, ...)
+  registry_source: <"A" | "B" | "C" | "SEC" | "DET" | "FP" | "TD" | "HR" | "BC" | "DAP" | "AC" | "RBM" | "A20" | "SFP" | "S" | ...>
   mapping_confidence: <"high" | "medium" | "low">   # per §3.3 rubric below
   mapping_notes: "<one-line rationale or ratification-desk-item>"
 ```
+
+**canon_ref format is enforced by prefix**: `Rule ID` starting with `A`, `B`, or `C` followed by a numeric family (e.g. `A5.7`, `B5.3`) is a positional-series ID and MUST be document-qualified. All other prefixes take bare-ID form.
 
 ### §3.2 · Registry-ID resolution order
 
 For each atomic rule, resolve `canon_ref` in this order:
 
-1. **Direct `DocNN-###` match.** Grep `notes/requirements_register_*.md` for the atomic rule's canon-section anchor and the rule's testable content; return the matching `DocNN-###` row ID.
-2. **Cross-scheme match.** If the atomic rule aligns to an `A5.<n>`/`AC-<n>`/`BA-<n>.<m>`/`SFP-<n>`/`DAP-<n>`/`RBM-<n>`/`CP-S<n>` row referenced in the register or SER errata, return that ID.
-3. **`R-<n>` canon ruling match.** If the atomic rule was landed by a canon ruling (e.g. R-18 for the recent T-c α + Watch schema landings), return the ruling ID.
-4. **Amendment match.** If the atomic rule derives from a named amendment (e.g. `watch_learning_v1`), return that ID.
-5. **None found.** Return the literal `none-new-needs-ratification` and add the rule to §5 backlog for owner ratification.
+1. **Authoritative 491-row registry lookup.** Grep `custody/owner_drops/Master_Requirements_Registry_20260918.xlsx` (via openpyxl shape-only read) for the atomic rule's canon-section anchor + testable content. Return:
+   - If the matched row's `Rule ID` starts with `A/B/C` positional family: `canon_ref = "Doc <N> · <Rule ID>"` using the row's `Doc` column value.
+   - Otherwise: `canon_ref = <Rule ID>` (bare).
+2. **Cross-scheme fallback (`R-<n>` canon ruling).** If the atomic rule was landed by a canon ruling (e.g. R-18 for the T-c α + Watch schema landings), return the ruling ID as a supplementary `canon_ref` alongside any registry match.
+3. **None found.** Return the literal `none-new-needs-ratification` and add the rule to §5 backlog for owner ratification.
 
 ### §3.3 · Mapping confidence rubric
 

@@ -33,9 +33,9 @@ STATE files, and on any boot ritual that detects drift.
 
 ```yaml
 schema_version: 1
-generated_at_utc: 2026-09-18T06:35:00Z
-generator: main-agent Autopilot (OWNER-RULING-CLOSE · Commit-C fixup this-turn · R-6 boundary regen at Commit-C fixup)
-regeneration_reason: r6-boundary-regen-at-owner-ruling-close-commit-c-fixup-state_repo.head-advanced-from-acc02d1a-to-39ff52d5-ratchet-unchanged-4826
+generated_at_utc: 2026-09-18T11:25:00Z
+generator: main-agent Autopilot (POST-RECONCILE + 491-ROW-REGISTRY-LANDED · Commit-C fixup this-turn · R-6 boundary regen at Commit-C fixup)
+regeneration_reason: r6-boundary-regen-at-post-reconcile-plus-491-registry-owner-ruling-close-commit-c-fixup-state_repo.head-advanced-from-39ff52d5-to-b9f8e238-ratchet-restored-4826
 
 ratchet:
   passed_floor: 4826
@@ -47,9 +47,9 @@ heads_last_sealed:
   state_repo:
     workdir: /app/assessment_workspace
     branch: master
-    head: 39ff52d58722e824e5b09bb814d3690458283029
-    sealed_at_utc: 2026-09-18T06:35:00Z
-    seal_kind: "OWNER-RULING-CLOSE · state Commit-B `39ff52d5` · owner ruling 2026-09-18 dispositions on 4 blocking Qs (B-M10-Q1 ratified on conditions · 17 fields per B.4 · B-M10-Q2 verifier ruled · B-M12b-Q1 Ed25519 minimum pulled forward · B-frontends-Q1 ruled gated-on-frozen-contracts) + 2 housekeeping directives (Akki-Executive-Final quarantined · stale ratchet-floor 2692 line fixed in place) + G5 pre-gate-release artefact scaffolded (1,096 atomic rules → 444/551 register-ID mapping · first-sample 20 rows) · ratchet unchanged 4826 · Commit-C fixup this-turn banks this SHA in DECISIONS+NEXT + advances ORCH_BOOT state_repo.head + byte-identical audit copy · next wave: M11-W1 open under standing authority"
+    head: b9f8e2385e7c50cab12c2571d22f8364ded88bfa
+    sealed_at_utc: 2026-09-18T11:25:00Z
+    seal_kind: "POST-RECONCILE + 491-ROW-REGISTRY-LANDED · state Commit-B `b9f8e238` · TWO owner rulings 2026-09-18 banked verbatim in DECISIONS: (1) GPU-telemetry-staleness Option A+ii+bridge+2-transparency-directions and (2) FINAL DISPOSITION issuing 491-row Master Requirements Registry as authoritative canon_ref target · A executed: mtafiti_* pipeline landed fresh at_utc on 5 telemetry files · full BASELINE_GUARD=1 sweep RESTORED to 4826/1/1/438 · pre-seal full sweep run BEFORE Commit-B per new pre-seal standard · (ii) rule-change ceremony proposal filed · 491-row registry landed at custody/ + owner-drop manifest under phase0/credential_drop_manifests/ · G5 refreshed: canon_ref target = 491-row registry · 46-additions bridge RETIRED · document-qualified rule for 21 A/B/C positional-series IDs · Commit-C fixup this-turn banks this SHA in DECISIONS+NEXT + advances ORCH_BOOT state_repo.head + byte-identical audit copy · next wave: M11-W1 opens under standing authority"
   code_repo:
     workdir: /app/assessment_workspace/repos/Extraction-Akki
     branch: programme/track-a
@@ -91,6 +91,7 @@ authoritative_downloadable_copy_path: /app/frontend/public/audit/ORCH_BOOT.md
 - **Terminal pytest only. `testing_agent` is BANNED.** Curl / `python3 -c` are allowed for spot checks. — *SO §3.*
 - **Tests-first mechanical RED before any code lands.** RED receipt banked under `phase0/drill_receipts/`. — *SO §3.*
 - **Double-green byte-match to close every CP.** Both `BASELINE_GUARD=1` receipts identical, banked. — *SO §3 + SO §7 R-5 (per-CP raw logs mandatory).*
+- **Full `BASELINE_GUARD=1` sweep BEFORE any §3.3 seal that banks rulings.** Targeted invariants supplement, never substitute. — *Owner ruling 2026-09-18 transparency item 1 · pre-seal standard added at ORCH_BOOT R-6 regen for owner-ruling seals + all subsequent seals.*
 - **Ratchet floor monotonic-up.** `baseline_failures.json` `passed_floor` + `ratchet_history` append at every close. Silent rebaselining is banned. — *SO §3.*
 
 ### 3 · Code / build discipline

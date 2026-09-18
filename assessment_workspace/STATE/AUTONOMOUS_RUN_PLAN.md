@@ -153,20 +153,24 @@ Per anchor plan §Δ6 verbatim, these surface at every milestone-boundary report
 
 ---
 
-## 5A · G5 · Atomic-rules → canon-registry-ID mapping (pre-gate-release · owner ruling 2026-09-18)
+## 5A · G5 · Atomic-rules → canon-registry-ID mapping (pre-gate-release · authoritative 491-row registry per owner ruling 2026-09-18 final)
 
-**Owner directive:** "1,096 atomic rules across nine canons is your extraction; the register holds 444 rows under the canon ID schemes. canon_ref must resolve to a registry ID, per R-18 effect 2 — so the atomic rules need a mapping to those IDs where one exists, and none — new, needs ratification where it doesn't. Without that mapping the check passes against §-citations and never touches the register — the traceability it was written to enforce. Bank the mapping as a G5 artefact."
+**Owner directive (final, 2026-09-18):** the refreshed **491-row Master Requirements Registry** has been issued as the authoritative canon_ref target under R-18 effect 2. The 46-additions bridge from the earlier ruling is RETIRED. Every atomic rule maps against the 491-row registry directly.
+
+**Authoritative source file:** `custody/owner_drops/Master_Requirements_Registry_20260918.xlsx` (sha256 `dfd4f8b3…`, 491 data rows on `System Rules Registry` sheet, owner-drop manifest at `phase0/credential_drop_manifests/20260918T1111Z_master_req_registry_owner_drop_manifest.json`).
+
+**Document-qualified rule (owner ruling verbatim):** for the 21 positional-series IDs (A/B/C prefixes with numeric family), `canon_ref = "Doc N · ID"` — never the bare ID. For the 339 unique IDs, `canon_ref = bare ID`.
 
 **Deliverable file:** `notes/G5_atomic_rules_to_registry_mapping.md`.
 
 **Landing sequence:**
-1. **This-turn (scaffold):** file created with §1 sources + §2 count reconciliation (owner-stated 444 vs on-disk register total 551 · delta 107 flagged as reconciliation item) + §3 mapping schema + §4 first-sample rows for a demonstration slice (e.g. 20-30 of the 1,096 rules mapped) + §5 open-work backlog for the remaining rules.
-2. **Subsequent seals before gate release:** extend §4 to cover every one of the 1,096 rules; each rule maps to either an existing registry ID (e.g. `Doc03-045`, `A5.19`, `DAP-14`) or the literal `none-new-needs-ratification`.
-3. **Gate release:** the mapping is complete and every rule resolves. R-18 effect 15 gate release requires this per owner directive.
+1. **This-turn (§1 sources + §2 count-resolution + §3 schema + §4 sample 20 mappings):** landed with 491-row registry as canon_ref target + document-qualified rule for A/B/C series + retirement of 46-additions bridge.
+2. **Subsequent seals before gate release:** extend §4 to cover all 1,096 atomic rules; each rule maps to either a registry row (Doc-qualified for A/B/C, bare for others) or `none-new-needs-ratification`.
+3. **Gate release:** the mapping is complete against the 491-row registry and every rule resolves.
 
-**Blocking status:** the G5 artefact is a **pre-gate-release** deliverable. It does **NOT block M11-W1** (per owner directive: "Schedule this within your autonomous plan before gate release; it does not block M11-W1"). Extension of §4 lands in seals interleaved with M11 waves.
+**Blocking status:** does NOT block M11-W1 (owner directive earlier ruling).
 
-**Reconciliation note (owner said 444; on-disk registers total 551):** the two registers under `notes/` are `requirements_register_17docs.md` (Docs 01-16 · 515 rows across totals 24+20+82+41+20+16+19+17+21+18+15+12+23+28+87+72) + `requirements_register_20docs.md` addendum (Doc 17: 17 · Doc 18: 8 · Doc 19A: 6 · Doc 19B: 5 = 36 additional rows). Owner cited 444. **Delta of 107 is flagged in the G5 artefact §2 as a resolution item** — potential explanations: (i) owner counting only rows with status = `CANON` (excluding `RULED`/`PROPOSED`/`OPEN`); (ii) a distinct register view not on disk under `notes/`; (iii) the 20-doc addendum not counted by owner. Reconciliation-count landing at G5 §2 (this-turn scaffold), full disposition at first mapping-extension seal.
+**Count reconciliation:** RESOLVED per owner ruling 2026-09-18 final. See `notes/G5_atomic_rules_to_registry_mapping.md §2` and this file's cross-references.
 
 ---
 

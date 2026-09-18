@@ -1,0 +1,73 @@
+{
+  "at_utc": "2026-09-18T11:11:43.715581Z",
+  "drop_class": "OWNER-ARTIFACT (non-credentials \u00b7 governance-record \u00b7 source-of-truth for R-18 effect 2 canon_ref target)",
+  "authority": "Owner ruling 2026-09-18 (final disposition \u00b7 GPU-telemetry-staleness fork + refreshed Master Requirements Registry) \u00b7 banked verbatim in STATE/DECISIONS.md",
+  "url_source": "https://customer-assets-cm19k8pv.emergentagent.net/job_amazing-gates-8/artifacts/lltodpze_Master_Requirements_Registry%20%282%29.xlsx",
+  "custody_dir": "custody/owner_drops",
+  "discipline": "SO \u00a74.1 \u00a7F sha-pin at intake \u00b7 file is not credentials but owner drops sha-pinned by convention \u00b7 shape-only inspection via openpyxl (read_only=True) \u00b7 no cell values echoed in bulk to stdout \u00b7 v2-parser discipline",
+  "file": {
+    "name": "Master_Requirements_Registry_20260918.xlsx",
+    "kind": "xlsx_binary_zip",
+    "size_bytes": 67740,
+    "sha256": "dfd4f8b35af5b73c948eb1b34ec19bf0a1932bb68a77322d9af31a3bf27b928c",
+    "mtime_iso": "2026-09-18T11:10:33.511074+00:00",
+    "mode_octal": "0o644"
+  },
+  "structure_verification": {
+    "workbook_sheets": [
+      "Build Status",
+      "System Rules Registry",
+      "Objectives",
+      "Legend"
+    ],
+    "system_rules_registry_row_count_incl_header": 492,
+    "system_rules_registry_data_row_count": 491,
+    "owner_stated_count": 491,
+    "count_verified": true,
+    "header_columns": [
+      "Rule ID",
+      "Statement",
+      "Objective",
+      "Promise / Source Document",
+      "Doc",
+      "Status",
+      "Enforcement Class",
+      "Domain",
+      "Source (file:line)",
+      "Relationship",
+      "Builder Status"
+    ],
+    "unique_rule_ids": 360,
+    "duplicate_rule_ids": 21,
+    "duplicate_rule_id_rationale": "A5.<n> and B5.<n> positional-series IDs repeat across documents by design; A5.1 appears in 15 documents, A5.2 in 15, A5.3 in 15, A5.4 in 13, A5.5 in 10, etc. canon_ref for these MUST be document-qualified ('Doc N \u00b7 ID') per owner ruling 2026-09-18.",
+    "id_prefix_histogram_top_10": {
+      "A": 69,
+      "BR": 41,
+      "DAP": 38,
+      "S": 29,
+      "RBM": 23,
+      "B": 18,
+      "WPW": 18,
+      "AC": 18,
+      "DR": 14,
+      "G": 13
+    }
+  },
+  "canon_ref_rule_from_owner": {
+    "document_qualified_series": [
+      "A",
+      "B",
+      "C"
+    ],
+    "document_qualified_format": "Doc N \u00b7 ID  (e.g. 'Doc 3 \u00b7 A5.7')",
+    "unique_series_format": "bare ID  (e.g. 'SEC-3', 'DAP-37', 'S-27')",
+    "unique_count": 339,
+    "positional_count": 21,
+    "rationale": "21 A/B/C-series IDs repeat by design \u2014 owner ruling verbatim: 'For the A, B and C series, canon_ref is ID plus document (Doc 3 \u00b7 A5.7), never the bare ID, or the mapping resolves to two rules and silently picks one. The other 339 IDs are unique and map directly.'"
+  },
+  "supersedes": {
+    "prior_target": "444-row shipped Master Requirements Registry (owner ruling 2026-09-18 first mention \u00b7 not on-disk in this workspace)",
+    "prior_bridge": "the 46-additions bridge (source-document IDs for SEC/DET/FP/TD/HR/BC/S/A20/SFP/AC/A5/RBM ranges) enumerated in earlier owner ruling \u00b7 now retired \u00b7 this artifact IS the authoritative canon_ref target"
+  },
+  "quarantine_status": "READ-USE (as canon_ref target per R-18 effect 2). NOT for editing; refresh comes from owner authority only."
+}

@@ -1775,4 +1775,86 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 **Commit-B SHA banked at Commit-C fixup this-turn (OWNER-RULING-CLOSE):** `39ff52d58722e824e5b09bb814d3690458283029` (short `39ff52d5`) — owner ruling 2026-09-18 dispositions + housekeeping + G5 scaffold state-master seal.
 
+
+---
+
+## OWNER-RULING · GPU-telemetry-staleness fork RESOLVED · reconcile succeeded · 4826 GREEN restored · 2026-09-18
+
+### Fork resolution
+
+**Owner ruled (verbatim in `STATE/DECISIONS.md`):** Option A + (ii) + bridge clause + 2 transparency directions.
+
+**A executed:** `mtafiti_*` reconcile pipeline ran cleanly on the pod (SO §5 idle-lane restoration · SO §4.1 §E credential envelope preserved · never echoed raw values). Fresh `at_utc` written to all five telemetry files. Pipeline order: census → probe → quality → cp6-bundle → wave-close. All 5 tools returned exit-code 0.
+
+**Sweep result:** `BASELINE_GUARD=1` full-invariant sweep post-reconcile: **4826 passed / 1 skipped / 1 xfailed / 438 warnings** — byte-identical to prior session sweeps. Ratchet floor RESTORED.
+
+**(ii) ceremony filed:** `notes/proposals/PROPOSAL_mtafiti_staleness_rescope_20260918.md` — Canon 3 §24 rule-change ceremony proposing to re-scope the 5 `test_*_is_recent` staleness invariants: age gate applies only while a campaign is declared open; steady-state invariant becomes presence + integrity hash + last-known-good on record. Proposal is filed, awaiting owner counter-sign.
+
+**Bridge clause banked:** at most ONE further reconcile permitted if the ceremony has not landed by `t0 + 72h ≈ 2026-09-21T09:20Z`. Second reconcile is itself a report.
+
+**Transparency directions banked:**
+
+1. **New pre-seal standard folded into `notes/ORCH_BOOT.md` §2 (Testing discipline)**: "**Full `BASELINE_GUARD=1` sweep BEFORE any §3.3 seal that banks rulings.** Targeted invariants supplement, never substitute." Cite: owner ruling 2026-09-18 transparency item 1.
+2. **G5 target refreshed** (`notes/G5_atomic_rules_to_registry_mapping.md §1.2 + §2`): canon_ref target is owner's forthcoming refreshed registry (**444 + 46 additions ≈ 490 rows · 14 containers excluded**). Bridge: mappings to the 46 additions resolve to their stable source-document IDs (SEC/DET/FP/TD/HR/BC/S/A20/SFP/AC/RBM/A5 ranges enumerated).
+
+### Ratchet at seal
+
+**4826** — RESTORED post-reconcile · manifest unchanged.
+
+### Next-in-flight per owner ruling "M11-W1 opens" · standing autonomous authority
+
+**M11-W1** — unblocked. Opens on the next turn: `services/data/repository.py` (sole Motor importer) + thin-adapter layer per Tension-a Option C + auto-injected `{tenant_id}` filter + cross-tenant refusal `AKKI-DATA-001`.
+
+**All P1-P7 satisfied** (per `STATE/AUTONOMOUS_RUN_PLAN.md §2 row 2`). Grounding brief authoring under `notes/W_M11_W1_grounding_brief.md` (next turn).
+
+### Standing bounds unchanged
+
+- §3.3 seals · zero push · terminal pytest only · no testing_agent · additive-only · T-c α sequencing (schema/AST/P-15 done · caller-flip at M12b-W1 with Ed25519 minimum) · SEC-2026-09-12-01 HF hold.
+- **NEW pre-seal standard** (this seal onward): full `BASELINE_GUARD=1` sweep before any §3.3 seal that banks rulings.
+
+### SHAs banked at Commit-C fixup below
+
+- Commit-A (code · `programme/track-a`) — **N/A this-turn** — no code touched (mtafiti tools invoked, not modified; only reconcile receipts + state artefacts touched).
+- Commit-B (state · `master`) — this-turn — SHA banked at Commit-C fixup below.
+- Commit-C (state · `master`) — this-turn — self-banks own SHA + banks Commit-B SHA into DECISIONS + NEXT + ORCH_BOOT.
+
+
+---
+
+## OWNER RULING FINAL · 491-row Registry LANDED · GPU fork closed · pre-seal standard in force · 2026-09-18
+
+### Final disposition executed this-turn
+
+- **Reconcile confirmed** (per owner ruling A): `mtafiti_*` pipeline ran successfully · fresh `at_utc` on all 5 telemetry files · full `BASELINE_GUARD=1` sweep RESTORED to **4826 / 1 / 1 / 438**.
+- **(ii) ceremony proposal filed**: `notes/proposals/PROPOSAL_mtafiti_staleness_rescope_20260918.md` · Canon 3 §24 propose step complete · awaiting owner counter-sign · bridge horizon `t0 + 72h ≈ 2026-09-21T09:20Z`.
+- **491-row Master Requirements Registry LANDED**: `custody/owner_drops/Master_Requirements_Registry_20260918.xlsx` sha256 `dfd4f8b3…`. Owner-drop manifest at `phase0/credential_drop_manifests/20260918T1111Z_master_req_registry_owner_drop_manifest.json`.
+- **G5 refreshed**: canon_ref target = 491-row registry. 46-additions bridge RETIRED. Document-qualified rule applied for the 21 A/B/C positional-series IDs (`canon_ref = "Doc N · ID"`); 339 unique IDs use bare ID.
+- **New pre-seal standard folded** into `notes/ORCH_BOOT.md` §2 Testing discipline: full `BASELINE_GUARD=1` sweep BEFORE any §3.3 seal that banks rulings.
+- **Reconcile phrasing transparency note banked** in DECISIONS: what ran was pod-side `mtafiti_*` (which writes the RED-triggering telemetry files); owner's phrasing named `campaign_infra.reconcile` (a different pod-side tool that pulls on-host journal). Success criterion "sweep returns to 4826/1/1/438" was met by the executed pipeline exactly.
+
+### Ratchet at seal
+
+**4826** — RESTORED post-reconcile. Manifest unchanged.
+
+### Next-in-flight per owner directive "M11-W1 opens" · standing autonomous authority
+
+**M11-W1** — unblocked. Opens on the next turn: `services/data/repository.py` (sole Motor importer) + thin-adapter layer per Tension-a Option C + auto-injected `{tenant_id}` filter + cross-tenant refusal `AKKI-DATA-001`.
+
+Grounding brief authoring under `notes/W_M11_W1_grounding_brief.md` (next turn).
+
+### Standing bounds unchanged
+
+- §3.3 seals · zero push · terminal pytest only · no testing_agent · additive-only · T-c α · SEC-2026-09-12-01 HF hold.
+- **NEW pre-seal standard in force**: full `BASELINE_GUARD=1` sweep before any §3.3 seal that banks rulings.
+- **Bridge clause active**: at most ONE further reconcile if (ii) ceremony hasn't landed by `t0 + 72h ≈ 2026-09-21T09:20Z`.
+
+### SHAs banked at Commit-C fixup below
+
+- Commit-A (code · `programme/track-a`) — **N/A this-turn** — no code touched.
+- Commit-B (state · `master`) — this-turn — 2 owner rulings + reconcile receipts + G5 refresh + 491-row registry + owner-drop manifest + (ii) proposal + pre-seal-standard fold + plan updates — SHA banked at Commit-C fixup below.
+- Commit-C (state · `master`) — this-turn — self-banks own SHA + banks Commit-B SHA into DECISIONS + NEXT + ORCH_BOOT.
+
+
+**Commit-B SHA banked at Commit-C fixup this-turn (POST-RECONCILE + 491-ROW-REGISTRY-LANDED):** `b9f8e2385e7c50cab12c2571d22f8364ded88bfa` (short `b9f8e238`) — 2 owner rulings + reconcile + registry + G5 refresh + (ii) proposal + pre-seal-standard fold state-master seal.
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

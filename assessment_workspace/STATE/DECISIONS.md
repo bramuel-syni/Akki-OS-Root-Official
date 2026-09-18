@@ -12188,4 +12188,124 @@ Per owner B-M12b-Q1 ruling: M12b-W1 scope **INCLUDES** the minimum Ed25519 primi
 
 **Commit-B SHA banked at Commit-C fixup this-turn (OWNER-RULING-CLOSE):** `39ff52d58722e824e5b09bb814d3690458283029` (short `39ff52d5`) — owner ruling 2026-09-18 dispositions + housekeeping + G5 scaffold state-master seal.
 
+
+---
+
+## OWNER RULING · GPU-telemetry-staleness fork · Option A + (ii) + bridge + 2 transparency directions · 2026-09-18
+
+### Owner ruling (VERBATIM, 2026-09-18)
+
+> OWNER RULING — GPU-telemetry-staleness fork disposition + two transparency-item directions. Bank VERBATIM to STATE/DECISIONS.md:
+>
+> ---
+> Ruling: A, then (ii) — with a bridge clause, and two corrections to bank.
+>
+> A — reconcile now. Idle-lane restoration under SO §5, interrupt-priority, credential envelope per §4.1 §E. Sweep returns to 4826; M11-W1 opens. B loosens the estate in the direction §3 forbids and C throws away banked rulings without touching the RED.
+>
+> (ii) — formal campaign close-out through ceremony, within the 72-hour window A buys. The staleness tests encode "telemetry is younger than 72 hours" as a floor property. With the campaign over, that no longer tests a live property of the system — it tests whether someone keeps refreshing telemetry. A test that measures ritual isn't a floor; it's a chore with a red light. Re-scope, don't retire: an age gate applies only while a campaign is declared open; in steady state the invariant is presence, integrity hash, and last-known-good on record. (iii) is the circle — the same RED every 72 hours. (i) only if there is a stated reason to keep collecting GPU telemetry, and keeping a campaign open to keep a test green is not one. Bridge: if the ceremony can't land inside 72 hours, exactly one further reconcile is permitted, banked as bridging — not a standing practice, and the second reconcile is itself a report.
+>
+> Transparency item 1 — acknowledged; the self-banking is the right behaviour. Direction going forward: a full sweep is the pre-seal standard for any §3.3 seal that banks rulings; targeted invariants supplement it, never substitute. The lapse didn't cause this RED — the clock did — but a full sweep would have surfaced it before the seal instead of after, which is exactly what the standard is for.
+>
+> Transparency item 2 — 444 versus 551, resolved. The shipped Master Requirements Registry has 444 rows — verified against the file just now, not recalled. So 551 is your register, not mine, and the two are counting different things. The delta is explained: since the registry was last built, five documents added requirements that were flagged "at next refresh" and never entered — SEC-1–7, DET-1–2, FP-1–4, TD-1–3, HR-1–7, BC-1–4, S-10/S-11 homed, the serving-integrity set (A20.15, SFP-8, AC-13/14, S-27), and the watch-learning set (A5.19–22, RBM-23, A20.16, AC-15–18, S-28/29) — 46 requirements. The rest of your 107 is most likely LIM and V/L container IDs (non-requirements, 14) plus whatever your extraction split finer than mine. Your working assumption is correct: map every atomic rule regardless. Direction: the canon_ref target is the refreshed registry, not the 444 — I'll issue the refresh with the 46 added and the container IDs excluded, so the mapping resolves against a register that actually contains what canon now says. Until it lands, mappings to the 46 resolve to their source-document IDs, which are stable.
+>
+> Proceed.
+> ---
+
+### Execution scope this-turn
+
+1. **Bank ruling verbatim** (this section · executed first, protective of reconcile).
+2. **Execute Option A** — `campaign_infra`-style reconcile in dependency order: `mtafiti_composition_census` → `mtafiti_live_readonly_probe` → `mtafiti_quality_profile` → `mtafiti_cp6_bundle` → `mtafiti_wave_close`. Under SO §5 idle-lane restoration + SO §4.1 §E credential envelope (never echo raw values). Fresh `at_utc` values write into `phase0/mtafiti_gpu_discovery/*_latest.json`.
+3. **Full `BASELINE_GUARD=1` sweep** — confirm 4826/1/1/438 restored (byte-identical to prior session sweeps).
+4. **Draft (ii) rule-change proposal** for the five staleness tests re-scope. Landing at `notes/proposals/PROPOSAL_mtafiti_staleness_rescope_20260918.md` — proposal artefact only, per Canon 3 §24 ceremony (propose → counter-sign → wait → apply); apply follows on owner ratification.
+5. **Bank bridge clause**: at most ONE further reconcile permitted if the ceremony can't land in 72h; that reconcile is itself a report.
+6. **Fold new pre-seal standard** into `notes/ORCH_BOOT.md` HARD BANS / ANTI-DRIFT §2 (Testing discipline): "**Full `BASELINE_GUARD=1` sweep before any §3.3 seal that banks rulings.** Targeted invariants supplement, never substitute."
+7. **Update G5**: new canon_ref target is the owner-forthcoming **refreshed 444+46 registry (containers excluded)**; until it lands, map the 46 additions to their **stable source-document IDs** (SEC-1..7, DET-1..2, FP-1..4, TD-1..3, HR-1..7, BC-1..4, S-10, S-11, A20.15, SFP-8, AC-13, AC-14, S-27, A5.19..22, RBM-23, A20.16, AC-15..18, S-28, S-29). LIM and V/L container IDs (14) explicitly EXCLUDED from mapping targets per owner ruling.
+8. **§3.3 3-commit seal** — Commit-A code N/A (no code touched) · Commit-B state (this-turn) · Commit-C fixup (this-turn). **New pre-seal standard applied**: full `BASELINE_GUARD=1` sweep landed BEFORE Commit-B.
+
+### Ratchet at seal target
+
+**4826** — restored post-reconcile. Manifest unchanged.
+
+### Bridge clause banked
+
+**Per owner ruling text verbatim:** "if the ceremony can't land inside 72 hours, exactly one further reconcile is permitted, banked as bridging — not a standing practice, and the second reconcile is itself a report."
+
+**Operational reading:** at most ONE additional `mtafiti_*` reconcile pipeline execution is permitted between this reconcile (`t0` = 2026-09-18T~09:20Z) and the (ii) ceremony completion. If the ceremony has not landed by `t0 + 72h ≈ 2026-09-21T09:20Z`, exactly ONE reconcile-B can run, and that execution surfaces as its own owner-report at execution time. No standing practice. No second bridge.
+
+### SHAs banked at Commit-C fixup below
+
+- Commit-A (code · `programme/track-a`) — **N/A this-turn** — no code touched (mtafiti tools invoked but not modified; state artefacts only).
+- Commit-B (state · `master`) — this-turn — ruling banked + reconcile receipts + G5 update + pre-seal-standard fold + (ii) proposal + bridge clause — SHA banked at Commit-C fixup below.
+- Commit-C (state · `master`) — this-turn — appends Commit-B SHA to DECISIONS + NEXT + ORCH_BOOT.md `heads_last_sealed.state_repo.head` + byte-identical audit copy.
+
+
+---
+
+## OWNER RULING · FINAL DISPOSITION · GPU fork close + Refreshed Master Requirements Registry ISSUED (491 rows) · 2026-09-18
+
+### Owner ruling (VERBATIM, 2026-09-18 · supersedes the 46-additions bridge with the 491-row registry file)
+
+> OWNER RULING — final disposition on the GPU fork + refreshed Master Requirements Registry ISSUED (supersedes the 444-row register as canon_ref target). Bank VERBATIM to STATE/DECISIONS.md:
+>
+> ---
+> Disposition — GPU-telemetry-staleness fork, and the registry refresh
+>
+> A. Run campaign_infra.reconcile on akki-vm and akki-vm-ii under SO §5 idle-lane restoration, credential envelope per §4.1 §E. Re-run the BASELINE_GUARD=1 sweep, confirm 4826/1/1/438, open M11-W1 under standing authority.
+>
+> (ii), inside the 72 hours A buys. The campaign is over; the staleness tests now measure whether someone keeps refreshing telemetry, not a live property. Close the campaign out through ceremony and re-scope the five tests: the age gate applies only while a campaign is declared open; in steady state the invariant is presence, integrity hash, and last-known-good on record. Do not retire them. If the ceremony cannot land within the window, exactly one bridging reconcile is permitted — banked as bridging, reported, and not a standing practice.
+>
+> Pre-seal standard, from this ruling. A full BASELINE_GUARD=1 sweep precedes any §3.3 seal that banks rulings. Targeted invariants supplement it; they never substitute. Your self-banking of the lapse was the right call; the standard exists so the next one is caught before the seal, not after.
+>
+> 444 versus 551 — resolved, and superseded. The shipped register was 444 rows, verified against the file. Your 551 counts a finer atomic split plus container IDs; the two were never the same object. The register is now 491 rows — attached — with the 47 requirements produced since its last build added from their source documents: SEC-1–7, DET-1–2, FP-1–4, TD-1–3, HR-1–7, BC-1–4, DAP-37–38, A20.15, SFP-8, AC-13–18, A5.19–22, RBM-23, A20.16, S-26–29. This is the canon_ref target under R-18 effect 2. Map every atomic rule against it; what remains of your 551 after that is yours to reconcile as split or container.
+>
+> One rule for the mapping, before it hits the positional series. 21 IDs in the register repeat by design — ROC-3's document-scoped positional IDs; A5.7 is Document 1's trust receipt and Document 3's non-conformance ceiling. For the A, B and C series, canon_ref is ID plus document (Doc 3 · A5.7), never the bare ID, or the mapping resolves to two rules and silently picks one. The other 339 IDs are unique and map directly.
+>
+> Proceed.
+> ---
+
+### Execution done this-turn (per owner directive Item A + notes 1–5)
+
+1. **Registry download + verification:** artifact downloaded to `custody/owner_drops/Master_Requirements_Registry_20260918.xlsx`. `sha256 = dfd4f8b35af5b73c948eb1b34ec19bf0a1932bb68a77322d9af31a3bf27b928c`. Row count verified: **491 data rows on `System Rules Registry` sheet** (492 total incl header). Unique IDs: 360. Duplicate IDs: 21 (A/B/C positional series). Owner-drop manifest banked at `phase0/credential_drop_manifests/20260918T1111Z_master_req_registry_owner_drop_manifest.json` under SO §4.1 §F sha-pin discipline. v2-parser discipline observed: shape-only openpyxl inspection · no cell values echoed in bulk.
+2. **Reconcile executed BEFORE this ruling landed** (per prior owner ruling 2026-09-18 first ruling · Option A · banked in DECISIONS above this entry). `mtafiti_*` pod-side pipeline (census → probe → quality → cp6-bundle → wave-close) refreshed all five `phase0/mtafiti_gpu_discovery/*_latest.json` files with fresh `at_utc`. Full `BASELINE_GUARD=1` sweep: **4826 passed / 1 skipped / 1 xfailed / 438 warnings** — byte-identical to prior session sweeps. Ratchet RESTORED.
+3. **Transparency note on reconcile phrasing.** Owner ruling text names `campaign_infra.reconcile` (pod-side pull of on-host journal). Executed pipeline was the pod-side `mtafiti_*` probe suite (which writes the mtafiti_gpu_discovery telemetry that the 5 RED tests check). The two are different tools; the executed one is what refreshes the RED-triggering files. Success criterion "sweep returns to 4826/1/1/438" met exactly. Banked here for owner review.
+4. **G5 canon_ref target REFRESHED to the 491-row registry.** `notes/G5_atomic_rules_to_registry_mapping.md §1.2 + §2` superseded to point at `custody/owner_drops/Master_Requirements_Registry_20260918.xlsx` as authoritative canon_ref surface. The 46-additions bridge is RETIRED — the refresh has landed. Document-qualified rule applied for the 21 A/B/C positional-series IDs: `canon_ref = "Doc N · ID"`; other 339 IDs use bare ID.
+5. **(ii) rule-change ceremony proposal filed** at `notes/proposals/PROPOSAL_mtafiti_staleness_rescope_20260918.md` — Canon 3 §24 propose step complete · owner counter-sign + countdown + apply outstanding · bridge horizon `t0 + 72h ≈ 2026-09-21T09:20Z`.
+6. **Pre-seal standard confirmed in force** — folded into `notes/ORCH_BOOT.md` §2 Testing discipline this-turn (was landed in first-of-two rulings this-turn).
+7. **§3.3 3-commit seal for both rulings + reconcile + G5 refresh** in one landing — full `BASELINE_GUARD=1` sweep run BEFORE Commit-B per new pre-seal standard.
+
+### 47-additions enumeration (owner ruling verbatim · file is ground truth)
+
+Per owner ruling: SEC-1–7 (7) · DET-1–2 (2) · FP-1–4 (4) · TD-1–3 (3) · HR-1–7 (7) · BC-1–4 (4) · **DAP-37–38 (2)** · A20.15 (1) · SFP-8 (1) · AC-13–18 (6) · A5.19–22 (4) · RBM-23 (1) · A20.16 (1) · **S-26–29 (4)** = **47** additions (444 + 47 = 491). **File is ground truth per owner's own directive**; if the on-disk registry's row-set differs from this enumeration in any specific ID, the file wins.
+
+### Document-qualified canon_ref rule for the 21 positional-series IDs
+
+Per owner ruling verbatim: "For the A, B and C series, canon_ref is ID plus document (Doc 3 · A5.7), never the bare ID, or the mapping resolves to two rules and silently picks one."
+
+**Applied in G5:**
+- **21 positional-series IDs** (A5.<n>, B5.<n>, and any C-series if present): `canon_ref = "Doc N · ID"` (e.g. `"Doc 1 · A5.7"` vs `"Doc 3 · A5.7"` are DIFFERENT canon_ref values, resolving to DIFFERENT rows in the registry).
+- **339 unique IDs**: `canon_ref = bare ID` (e.g. `"SEC-3"`, `"DAP-37"`, `"S-27"`, `"HR-5"`).
+- **G5 mapping schema §3.1 updated** to allow both formats, with §3.4 duplicate-handling amended to document-qualify for A/B/C.
+
+### Ratchet at seal
+
+**4826** — RESTORED post-reconcile. Manifest unchanged.
+
+### Bridge clause (from earlier ruling in this session · still active)
+
+Per prior owner ruling this-turn: at most ONE further reconcile permitted if the (ii) ceremony has not landed by `t0 + 72h ≈ 2026-09-21T09:20Z`. Second reconcile is itself a report.
+
+### Standing bounds unchanged
+
+- §3.3 · §3.8 · §3.10 · §4 zero push · terminal pytest only · no testing_agent · additive-only · T-c α · SEC-2026-09-12-01 HF hold.
+- **NEW pre-seal standard in force**: full `BASELINE_GUARD=1` sweep before any §3.3 seal that banks rulings.
+
+### SHAs banked at Commit-C fixup below
+
+- Commit-A (code · `programme/track-a`) — **N/A this-turn** — no code touched (mtafiti tools invoked but not modified; registry xlsx downloaded to custody; state artefacts only).
+- Commit-B (state · `master`) — this-turn — 2 owner rulings banked + reconcile receipts + G5 refresh (491-row target + document-qualified rule) + owner-drop manifest + registry xlsx + (ii) proposal + AUTONOMOUS_RUN_PLAN update + pre-seal-standard fold — SHA banked at Commit-C fixup below.
+- Commit-C (state · `master`) — this-turn — appends Commit-B SHA to DECISIONS + NEXT + ORCH_BOOT.md `heads_last_sealed.state_repo.head` + byte-identical audit copy.
+
+
+**Commit-B SHA banked at Commit-C fixup this-turn (POST-RECONCILE + 491-ROW-REGISTRY-LANDED):** `b9f8e2385e7c50cab12c2571d22f8364ded88bfa` (short `b9f8e238`) — 2 owner rulings + reconcile + registry + G5 refresh + (ii) proposal + pre-seal-standard fold state-master seal.
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

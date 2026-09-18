@@ -1,5 +1,5 @@
 {
-  "at_utc": "2026-09-15T08:16:25Z",
+  "at_utc": "2026-09-18T11:01:38Z",
   "label": "cp7_wave_close_bundle",
   "wave": "W-MTAFITI-GPU-DISCOVERY",
   "hosts": [
@@ -173,15 +173,15 @@
       "composition_totals": {
         "schemas": 4,
         "tables": 443,
-        "columns": 5243,
-        "rows": 2780916
+        "columns": 5252,
+        "rows": 2928107
       },
       "column_role_signals_summary": {
-        "total": 4314,
+        "total": 4322,
         "by_role": {
-          "role.pk_candidate": 1537,
+          "role.pk_candidate": 1541,
           "role.timestamp": 846,
-          "role.fk_candidate": 1159,
+          "role.fk_candidate": 1163,
           "role.address": 118,
           "role.email": 36,
           "role.token": 46,
@@ -216,7 +216,7 @@
         "rows_redacted": 11
       },
       "fk_candidate_signals": {
-        "total": 946,
+        "total": 950,
         "sample": [
           {
             "signal_name": "signal.fk_candidate",
@@ -325,12 +325,12 @@
   "totals": {
     "schemas": 21,
     "tables": 1637,
-    "columns": 18316,
-    "rows_estimated": 182070542,
-    "column_role_signals": 12848,
+    "columns": 18325,
+    "rows_estimated": 182217733,
+    "column_role_signals": 12856,
     "pii_signals_live": 22,
     "pii_signals_stratified": 93,
-    "fk_candidate_signals": 2133,
+    "fk_candidate_signals": 2137,
     "tables_profiled_quality": 56,
     "columns_profiled_quality": 370,
     "tables_sampled_stratified": 38,
@@ -346,22 +346,22 @@
   },
   "receipt_chain_sha256": {
     "live_probe": {
-      "110.238.76.159": "1f1433dbee32bb6bac69612fd1275389076b5053a102ffea1172368a2279119d",
-      "159.138.162.146": "e5a4d73d31dec018d2b62eeb8d0c64ba0b471644a9d128dae5419c36bde634a5"
+      "110.238.76.159": "3e76a7cad940395150c017322cee64994c561dd28a30a892d10faa7e2a5f24cc",
+      "159.138.162.146": "32d08fb57b66bd0f1afbccecf1aee349d6cf9dc2f7a34e848f2a71136129c0fc"
     },
     "composition": {
-      "110.238.76.159": "4e45f71abc9db02a5e0748558ba6ed83060fa0c71397c4554f4ccea31fe02712",
-      "159.138.162.146": "0bff3d5ac7145bf199c22cad46c3ee62159df8ec63cdb4c23dfb91dbe9e55aba"
+      "110.238.76.159": "c81b53321fba18c5e886f2c2406347035df7214a7421c18c9bd3d984f7253417",
+      "159.138.162.146": "be66d09c1958ab0afeeb5541a99626bf354ff59e2b3dca7f7b3091b2f9bb760d"
     },
     "quality": {
-      "110.238.76.159": "fc8fab9634cb56635b6a2394b80c94582356b127d1069573eb793b6bd7b8b3f8",
-      "159.138.162.146": "91ac5c0eab2a767403966c56b7b02b7d596433cddcf5783516cc7da6d8a921fd"
+      "110.238.76.159": "cc574118c6298eb53152258efcec979654344bd39ba38dc0c5f483fe8b1e23b6",
+      "159.138.162.146": "a4d9b4d01f7e23dbc1082f4d13fa1b312d9a2c4a92ac25859a6a96d28d5b1dbf"
     },
     "stratified": {
-      "110.238.76.159": "464101650ab620598c7e4772a1d3de4ff252bee1c1bf412f627825264273fd09",
-      "159.138.162.146": "69d9d0238f8f63eb75e06ee6bff6db586c2e0a664ede31c7e3a760bdb7647fce"
+      "110.238.76.159": "c7d0b7b01360826afa338985c4f44f42283fe405998a8e4cf9a74479e0251f7b",
+      "159.138.162.146": "5dbad9b92670400d80634814c759ccdbb4bb854f5dba35d3f42822cb80bae803"
     },
-    "cost_receipt": "10b3b6670eda332b6593a2dd772ecc16164ac55b36a6ce7e0a6a2a4529461062"
+    "cost_receipt": "a62613248d52aca34d3db1d03eb7ba98e4436357fa1b613343f10ca0baef1237"
   },
-  "wave_close_sha256": "e72aa97bcfe5360a9ad05996608013a2319a56f6298dc0a2cf4b982399e715a8"
+  "wave_close_sha256": "8dd6f95bd466e4fd3a4e8d769467f90e89320eeb2c792c4820e2ddf673166f60"
 }

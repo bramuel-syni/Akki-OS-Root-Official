@@ -1,5 +1,5 @@
 {
-  "at_utc": "2026-09-15T08:16:13Z",
+  "at_utc": "2026-09-18T11:01:25Z",
   "label": "cp5_quality_profile",
   "hosts": [
     "159.138.162.146",
@@ -7,7 +7,7 @@
   ],
   "per_host": {
     "159.138.162.146": {
-      "at_utc": "2026-09-15T08:15:56Z",
+      "at_utc": "2026-09-18T11:01:09Z",
       "label": "weego",
       "host": "159.138.162.146",
       "port": 3306,
@@ -364,11 +364,11 @@
         "sample_rows_pulled": 89
       },
       "errors": [],
-      "profile_sha256": "91ac5c0eab2a767403966c56b7b02b7d596433cddcf5783516cc7da6d8a921fd",
+      "profile_sha256": "a4d9b4d01f7e23dbc1082f4d13fa1b312d9a2c4a92ac25859a6a96d28d5b1dbf",
       "credential_reuse_note": "reused bramuel credential from '203.123.86.10'"
     },
     "110.238.76.159": {
-      "at_utc": "2026-09-15T08:16:00Z",
+      "at_utc": "2026-09-18T11:01:13Z",
       "label": "ussd",
       "host": "110.238.76.159",
       "port": 3306,
@@ -3568,7 +3568,7 @@
         "sample_rows_pulled": 2458
       },
       "errors": [],
-      "profile_sha256": "fc8fab9634cb56635b6a2394b80c94582356b127d1069573eb793b6bd7b8b3f8"
+      "profile_sha256": "cc574118c6298eb53152258efcec979654344bd39ba38dc0c5f483fe8b1e23b6"
     }
   }
 }
