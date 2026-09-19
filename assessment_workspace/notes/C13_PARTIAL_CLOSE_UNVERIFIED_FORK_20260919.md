@@ -2,7 +2,9 @@
 
 **Banked:** 2026-09-19T~12:47:00Z · post-CP-M16-W5-SEAL-INTEGRATION Commit-C fixup (M16 milestone CLOSED · state `939124be` · code `462f6972` · ratchet 5414) · **pre-memory-layer open (deferred until memory-layer boundary per §6 Item-5 fork discipline)**.
 
-**Fork class:** DEFAULT-class · deferred-decision · options-with-recommendation per SO §6 Item-5 · **DOES NOT BLOCK M17** (fork gate is on memory layer only, per DECISIONS.md:13655 sequence).
+**Fork status: CLOSED-ON-C13-CLOSURE-SEAL 2026-09-19T~18:18Z** at CP-C13-CLOSURE-KEY-SCOPING-PROVENANCE-TTL Commit-A `89aed4ecc592f65bb3e90b9e0b279846bce9e6a0` on programme/track-a. Owner ruling 2026-09-19T~17:54Z item (b) verbatim ratified Option (ii) recommendation ("A tightly-scoped C.13 closure wave before the memory layer") and the closure wave sealed with 10 new invariants (5452→5462 ratchet · sha256-pinned schemas · Canon 3 §9.3 + Canon 8 §W11 + Canon 4 §22 + OWNER-DROP-02 anchors). Memory layer opens on this seal.
+
+**Fork class (historical · pre-closure):** DEFAULT-class · deferred-decision · options-with-recommendation per SO §6 Item-5 · **DID NOT BLOCK M17** (fork gate was on memory layer only, per DECISIONS.md:13655 sequence).
 
 **Fork trigger:** at the M16-close boundary the memory-layer sequencing precondition (C.13 partial status closed · key scoping + provenance separation enforced) has **no on-disk evidence of closure**. Per SO §6 Item-5 fork discipline: bank the fork now with options + recommendation; do not resolve alone; take own recommendation at memory-layer open if unchanged; continue on everything else immediately (M17 opens).
 

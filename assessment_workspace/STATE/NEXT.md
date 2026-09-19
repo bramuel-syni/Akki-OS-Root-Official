@@ -2448,4 +2448,189 @@ Additive-only per SO §3.8 · sealed W1..W4 M17 modules + sealed M14/M11/M12b-W1
 Staleness re-scope APPLY-ON-EXPIRY still armed for 2026-09-20T~11:35Z (T-~19.9h at Commit-C time · not yet fired · fires as its own small seal per owner order 2026-09-19T~05:15Z · takes priority immediately after this Commit-C if it fires during or right after this seal ceremony).
 
 
+
+
+### §6 INTERLUDE MARKER · R-56 · 2026-09-19T~18:04Z · CP-EFCS-FRONTENDS-CONTRACT-SURVEY notes-only sub-wave landed
+
+✅ **LANDED (state master · notes-only sub-wave single-commit form per prior owner-ruling-bank precedent):** CP-EFCS-FRONTENDS-CONTRACT-SURVEY per owner ruling 2026-09-19T~17:54Z item (e) verbatim ("survey now, then closure waves"). Files landed: notes/EFCS_FRONTENDS_CONTRACT_SURVEY_20260919.md NEW (10 sections · covers C.17 seam + DAP entitlement + DAP receipt + 10 absence findings + ordered sequence for gate release) + STATE/DECISIONS.md survey-close banking section + this R-56 marker + notes/ORCH_BOOT.md R-6 regen. Ratchet 5452 unchanged (notes-only). No auto-parametrized wizard triggered (no new contract at this-wave). Additive-only per SO §3.8. Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered.
+
+**Key findings:** C.17 seam PARTIAL · DAP entitlement UNKNOWN · DAP receipt UNKNOWN/possibly ABSENT · B-frontends-Q1 gate CLOSED at survey close. 10 absence findings banked per client binding rule.
+
+**Sequence for gate release (7-step chain in survey §4):** (f) M17-W6 adapter+type-tag → (b) C.13 closure → (c) cleanup → memory layer → CCS1 C.17 bundle → CCS2 DAP entitlement → CCS3 DAP receipt → frontends card + STOP AND REPORT before frontend build waves.
+
+**Autopilot next per §6.7:** open (b) CP-C13-CLOSURE-KEY-SCOPING-PROVENANCE-TTL RED authoring (per owner ruling this-turn item (b) · parallel to (e) survey · now completed).
+
+Staleness re-scope APPLY-ON-EXPIRY still armed for 2026-09-20T~11:35Z (T-~17.5h at survey close · not yet fired).
+
+
+
+### §6 INTERLUDE MARKER · R-57 · 2026-09-19T~18:18Z · CP-C13-CLOSURE-KEY-SCOPING-PROVENANCE-TTL Commit-A landed · C.13 closure wave sealed · memory-layer sequencing gate CLOSED
+
+✅ **SEALED (Commit-C fixup at 2026-09-19T~18:25Z · state Commit-C banks Commit-B `7e2a0bf44411f11d8c1cfbfabcccd13757f1078d` · heads advanced code=`89aed4ec` / state=`7e2a0bf4` · post-fixup narrow sweep GREEN · C.13 CLOSURE WAVE FULLY SEALED · memory-layer sequencing gate CLOSED per STATE/DECISIONS.md:12332 verbatim):** CP-C13-CLOSURE-KEY-SCOPING-PROVENANCE-TTL · Commit-A `89aed4ecc592f65bb3e90b9e0b279846bce9e6a0` on programme/track-a (2026-09-19T~18:18Z UTC · C.13 closure wave · owner ruling 2026-09-19T~17:54Z item (b) verbatim ratified Option (ii) · server-derived keys from (tenant, run, objective) + cross-key reads refused + provenance separated from content and immutable + TTL enforcement). Commit-B (state master · `7e2a0bf44411f11d8c1cfbfabcccd13757f1078d`) landed: STATE/DECISIONS.md Commit-A banking section + this R-57 marker + notes/ORCH_BOOT.md R-6 boundary regen (post-Commit-A: ratchet.passed_floor 5452→5462 · baseline_failures_sha256 `e51fc7bf…`→`5ef42fc03e34904692ab95ed46809c1c1321d8931c1e7ee521576786f396ba1f` · heads_last_sealed.code_repo.head advanced to Commit-A `89aed4ecc592f65bb3e90b9e0b279846bce9e6a0` · state_repo.head remained `3008f4d1` pending Commit-C fixup) + notes/C13_PARTIAL_CLOSE_UNVERIFIED_FORK_20260919.md status flipped OPEN → CLOSED-ON-C13-CLOSURE-SEAL + /app/frontend/public/audit/ORCH_BOOT.md byte-identical audit copy re-synced. Commit-C fixup (state master · this-commit) landed: notes/ORCH_BOOT.md R-6 boundary regen post-Commit-B (advances heads_last_sealed.state_repo.head to Commit-B `7e2a0bf4` + generator/regeneration_reason/sealed_at_utc/seal_kind updated + /app/frontend/public/audit/ORCH_BOOT.md byte-identical audit copy re-synced both sha256 `1ec86ea913dedf1e43b795f749187811796ef8abc2e8f27d75abf3e4f1dcca01`) + STATE/DECISIONS.md gains Commit-C fixup banking section (this-CP) + this NEXT.md marker flip ⏳→✅.
+
+Ratchet 5452 → 5462 (+10 exactly reconciled line-by-line: 8 new C.13 closure invariants + 2 wizard auto-parametrizations). Zero flip. Zero regression. Zero refactor. Additive-only per SO §3.8. Pre-Commit-A double-green byte-identical BASELINE_GUARD=1 stripped-sha256 `24d54d4002c7762fe9f7154ad192157fcc9f1a04176408e4418cd086b6f718df` IDENTICAL both runs 5462 passed / 1 skipped / 438 warnings ~185s each against final baseline_failures.json sha256 `5ef42fc03e34904692ab95ed46809c1c1321d8931c1e7ee521576786f396ba1f`. AUTHENTIC RED-first cycle: RED at drill_receipts/20260919T180545Z_cp_c13_closure_RED_pre_module.log (8/8 fail right-reason ModuleNotFoundError/FileNotFoundError) → GREEN at drill_receipts/20260919T180716Z_cp_c13_closure_GREEN_post_module.log (8/8 pass · 0.80s).
+
+Additive-only per SO §3.8 · sealed W-M2-SW7 doc0_attributes/tcb.py + sealed W-7bB wizard + sealed M14/M11/M16/M17-W1..W5 modules all NOT edited. Card citations owner ruling 2026-09-19T~17:54Z item (b) verbatim + STATE/DECISIONS.md:12332 memory-layer sequencing gate. Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered.
+
+**C.13 memory-layer sequencing gate CLOSED** per STATE/DECISIONS.md:12332 verbatim. Memory layer opens on this seal.
+
+**Next per §6.7:** Commit-B (this-commit) → Commit-C fixup → (c) CP-CLEANUP-STATE-DISCIPLINE OR (f) CP-M17-W6-HANDOFF-ID-ADAPTER-AND-TYPE-TAG per owner sequencing (slotted between C.13 seal and memory layer) → memory layer opens per owner ruling item 3.
+
+**Standing bounds unchanged:** zero push · terminal pytest only · no testing_agent · additive-only §3.8 · full BASELINE_GUARD=1 pre-Commit-A double-green byte-identical · §3.3 3-Commit Seal on dual branches · ratchet monotonic (floor 5462 · never rebaselined silently).
+
+Staleness re-scope APPLY-ON-EXPIRY still armed for 2026-09-20T~11:35Z (T-~17.3h at Commit-A · not yet fired).
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+
+
+### §6 INTERLUDE MARKER · R-58 · 2026-09-19T~18:35Z · CP-CLEANUP-STATE-DISCIPLINE Commit-A landed · CLEANUP SUB-WAVE · code hygiene
+
+✅ **SEALED (Commit-C fixup at 2026-09-19T~18:40Z · state Commit-C banks Commit-B `a2628004ed273b7f7562194f3c0716513cc565e4` · heads advanced code=`996139b7` / state=`a2628004` · post-fixup narrow sweep GREEN · CLEANUP SUB-WAVE FULLY SEALED · pipeline (c) COMPLETE · next (f) opens):** CP-CLEANUP-STATE-DISCIPLINE · Commit-A `996139b75bff6df67c93bceb65951cf44aba71a8` on programme/track-a (2026-09-19T~18:35Z UTC · cleanup sub-wave per owner ruling 2026-09-19T~17:54Z item (c) verbatim scope `bank PINS.md re-pin + commissioning records + seal chunk1 notes; gitignore .pyc/downloads/notebook/telemetry outputs` · code-side scope of this Commit-A). Commit-B (state master · `a2628004ed273b7f7562194f3c0716513cc565e4`) landed **state-side scope**: .gitignore additions (+18 patterns) + git rm --cached of 31,253 tracked runtime files under newly-gitignored paths + STATE/PINS.md commissioning-pointer re-pin bank (`20260916T185434Z` → `20260919T181348Z`) + notes/GOVERNED_CENSUS_HARVEST_PLATFORM_ROADMAP.md drift bank + notes/chunk1_20260918/* seal (13 files) + 7 orphan notes bank + 37 orphan drill_receipts bank + STATE/DECISIONS.md Commit-A banking section + this R-58 marker + notes/ORCH_BOOT.md R-6 boundary regen (advances code_head to Commit-A `996139b7` · state_head remained `7e2a0bf4` pending Commit-C fixup) + /app/frontend/public/audit/ORCH_BOOT.md byte-identical audit copy re-sync. Commit-C fixup (state master · this-commit) landed: notes/ORCH_BOOT.md R-6 boundary regen post-Commit-B (advances heads_last_sealed.state_repo.head to Commit-B `a2628004` + generator/regeneration_reason/sealed_at_utc/seal_kind updated + /app/frontend/public/audit/ORCH_BOOT.md byte-identical audit copy re-synced both sha256 `504078c7961cee5bd3df719aaefb0a38addced632dfbfa09f0884f7d2b19301c` · 19619 bytes) + STATE/DECISIONS.md gains Commit-C fixup banking section (this-CP) + this NEXT.md marker flip ⏳→✅.
+
+Ratchet **5462 UNCHANGED at Commit-A** (no test file added · no test file removed · no test outcome affected · baseline_failures.json NOT touched · pure hygiene per owner directive verbatim scope). Pre-commit narrow sweep 28/28 GREEN at `backend/phase0/drill_receipts/20260919T183214Z_cp_cleanup_state_discipline_code_hygiene_precommit_narrow_sweep_GREEN.log` proving test_orch_boot (1/1) + test_c13_closure_key_scoping_provenance_ttl (8/8) + test_baseline_no_new_breakage (12/12) + test_m17_w5_seal_integration (7/7) all preserved through cleanup. Additive-only per SO §3.8. NO sealed module edited · NO test file edited · NO contract file edited · NO invariant file edited.
+
+**Analysis-tools untracked (per client rule §11 · throwaway scope):** 20 tools/*.py + tools/*.sh scripts remain uncommitted (huawei_*.py · m7_util_*.sh + .py · d12_poc_*.py · chunk1_task_c_overlap.py · bump_baseline_m12b_w1.py · rms_creds_structure_probe.py). Per client's binding rule section §11 verbatim `throwaway analysis scripts under /app/assessment_workspace/tools/` allowed without banking; owner directive (c) scope did not name tools/*.py. Leaving uncommitted.
+
+**Stop-conditions #1/#2/#3 NOT triggered at Commit-B · §6.4 pre-ruling NOT triggered.**
+
+**Next per §6.7 (per owner PROCEED verbatim 2026-09-19T~18:14Z):** Commit-B (this-commit) → Commit-C fixup → (f) CP-M17-W6-HANDOFF-ID-ADAPTER-AND-TYPE-TAG (Handoff-ID adapter + ID-domain type-tagging · ho_ slot rejects non-ho_ prefixes · RED-first · flips M17 milestone_status CLOSED-WITH-FORK-BANKED → CLOSED at seal) → memory layer opens (memory_compaction_v1 + R-19/R-20 defaults + user-memory flag OFF + 7 property tests + hard bans grep-negative) → contract closure waves in dependency order (CCS1 C.17 seam → CCS2 DAP entitlement → CCS3 DAP receipt · frozen from dap_backend_spec_v1) → HALT before frontends and report gate status to owner for specialist dispatch.
+
+**Standing bounds unchanged:** zero push · terminal pytest only · no testing_agent · additive-only §3.8 · §3.3 3-Commit Seal on dual branches · ratchet monotonic (floor 5462 · unchanged this Commit-A + Commit-B). Staleness re-scope APPLY-ON-EXPIRY still armed for 2026-09-20T~11:35Z (T-~17.0h at Commit-A · not yet fired).
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+
+
+### §6 INTERLUDE MARKER · R-59 · 2026-09-19T~19:05Z · CP-M17-W6-HANDOFF-ID-ADAPTER-AND-TYPE-TAG Commit-A landed · M17-W5 STRUCTURAL FORK CLOSED · MILESTONE 8 (M17) status CLOSED-WITH-FORK-BANKED → CLOSED
+
+✅ **SEALED (Commit-C fixup at 2026-09-19T~19:10Z · state Commit-C banks Commit-B `7767e6c24ef45dda8dbb3a736af9fef9a7a73495` · heads advanced code=`f57f6c68` / state=`7767e6c2` · post-fixup narrow sweep GREEN · M17-W5 STRUCTURAL FORK FULLY CLOSED · MILESTONE 8 (M17) FULLY CLOSED · pipeline (f) COMPLETE · memory layer opens next):** CP-M17-W6-HANDOFF-ID-ADAPTER-AND-TYPE-TAG · Commit-A `f57f6c68e765096bd8bc69f8fbfdf96679e5280a` on programme/track-a (2026-09-19T~19:05Z UTC · Owner Desk Batch item (f) verbatim ratified · Handoff-ID adapter + ID-domain type-tagging · Option (i) additive-adapter extension per M17_W5_HANDOFF_ID_MISMATCH_FORK doc verbatim). Commit-B (state master · `7767e6c24ef45dda8dbb3a736af9fef9a7a73495`) landed: STATE/OBJECTIVES/M17.md milestone_status CLOSED-WITH-FORK-BANKED → CLOSED + seal chain extension (W1..W5 + W6 fork-closure) + aggregate ratchet 5414→5469 (+55 across M17 · W6 delta +7) + notes/M17_W5_HANDOFF_ID_MISMATCH_FORK_20260919.md status flip OPEN-OPTION-(ii)-APPLIED → CLOSED-BY-M17-W6-OPTION-(i)-LANDED + STATE/DECISIONS.md Commit-A banking section + this R-59 marker + notes/ORCH_BOOT.md R-6 boundary regen (advances code_head to Commit-A `f57f6c68` · state_head remained `a2628004` pending Commit-C fixup) + /app/frontend/public/audit/ORCH_BOOT.md byte-identical audit copy re-sync. Commit-C fixup (state master · this-commit) landed: notes/ORCH_BOOT.md R-6 boundary regen post-Commit-B (advances heads_last_sealed.state_repo.head to Commit-B `7767e6c2` + generator/regeneration_reason/sealed_at_utc/seal_kind updated + /app/frontend/public/audit/ORCH_BOOT.md byte-identical audit copy re-synced both sha256 `d16ba0fa4d81c1d486014c4a8f5752be628c00eef296308e2f6ec74934e2decb` · 22432 bytes) + STATE/DECISIONS.md gains Commit-C fixup banking section (this-CP) + this NEXT.md marker flip ⏳→✅.
+
+Ratchet 5462 → 5469 (+7 exactly reconciled line-by-line: 7 new M17-W6 invariants in `test_m17_w6_handoff_binding_adapter_and_type_tag.py`). Zero flip. Zero regression. Zero refactor. Additive-only per SO §3.8. No auto-parametrized wizard triggered (services/personal_client/handoff_binding.py is not a contracts/*.py file). Pre-Commit-A double-green byte-identical BASELINE_GUARD=1 stripped-sha256 `00a516263feb56c9495080b671efe06a9693c4eda4684191fc2bdf7cbebe9843` IDENTICAL both runs 5469 passed / 1 skipped / 438 warnings ~168s each against final baseline_failures.json sha256 `cb15b9803afb33e738e87ba7de9531bd1ef49e3828215adf551ba00905ea2360`. AUTHENTIC RED-first cycle: RED at `phase0/drill_receipts/20260919T184633Z_cp_m17_w6_handoff_binding_RED_pre_module.log` (7/7 fail ModuleNotFoundError/FileNotFoundError right-reason) · GREEN at `phase0/drill_receipts/20260919T184858Z_cp_m17_w6_handoff_binding_GREEN_post_module.log` (7/7 pass · 0.77s).
+
+Transparency banking (§6): 2 prior GUARD1 run1 attempts (20260919T185050Z + 20260919T185142Z) failed on collection because REACT_APP_BACKEND_URL env var absent when running without `tests/invariants/` path filter (invocation error · full-tree collection pulls in live-preview HTTP tests that require env var + live backend at collection time via `os.environ["REACT_APP_BACKEND_URL"]` module-level key access · reconciled by adopting `tests/invariants/` path filter matching prior CP-C13-CLOSURE sweep pattern verified by receipt inspection). Not a ratchet break · not a Stop-condition trigger.
+
+Additive-only per SO §3.8 · sealed M17-W3 services/personal_client/session.py NOT edited (thin-adapter discipline · sealed emit_ask retains latent regex bug as documented in fork doc · adapter is new authoritative runtime path per fork Option (i) verbatim) · sealed M14-W3 services/answering_service/collections/asks.py NOT edited (consumed via identity import) · sealed M17-W1/W2/W4/W5/M14/M11/M16/W-M2-SW7/W-7bB modules all NOT edited. Card citations owner ruling 2026-09-19T~17:54Z Owner Desk Batch item (f) verbatim ratifying scope + M17_W5_HANDOFF_ID_MISMATCH_FORK Option (i) verbatim.
+
+**Stop-conditions #1/#2/#3 NOT triggered at Commit-A · §6.4 pre-ruling NOT triggered.**
+
+**M17 milestone_status CLOSED-WITH-FORK-BANKED → CLOSED at this Commit-B** via M17.md milestone_status field update. Complete seal chain: W1 `16ca02c4` (+9) + W2 `a84e5986` (+7) + W3 `adf828f6` (+8) + W4 `66065588` (+7) + W5 `e3767b93` (+7) + **W6 `f57f6c68` (+7 · fork closure)** · aggregate ratchet 5414 → 5469 (+55 across M17) · milestone snapshot pin `ba1957dfbb38ba037ec6a57c52760f053e829451ccf6ee9c12b48ef4498b8d05` (unchanged at W6 · shape-freeze snapshot invariant preserved).
+
+**Next per §6.7 (per owner-sequenced pipeline verbatim from owner PROCEED 2026-09-19T~18:14Z):** Commit-B (this-commit) → Commit-C fixup → **memory layer opens** (memory_compaction_v1 + R-19/R-20 defaults + user-memory class behind tenant flag OFF + 7 ingestion-authored property tests drive the build + hard bans grep-negative) → **contract closure waves** in dependency order (CCS1 C.17 seam bundle-freeze → CCS2 DAP entitlement freeze → CCS3 DAP receipt freeze · frozen from dap_backend_spec_v1) → **HALT before frontends** and report gate status to owner for specialist dispatch (web/Expo delegated per banked ruling).
+
+**Standing bounds unchanged:** zero push · terminal pytest only · no testing_agent · additive-only §3.8 · full BASELINE_GUARD=1 pre-Commit-A double-green byte-identical · §3.3 3-Commit Seal on dual branches · ratchet monotonic (floor 5469 · never rebaselined silently).
+
+Staleness re-scope APPLY-ON-EXPIRY still armed for 2026-09-20T~11:35Z (T-~16.5h at Commit-A · not yet fired).
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+---
+
+## R-60 · state-only supplemental repair · 2026-09-19T~19:26Z
+
+**⏳ IN-FLIGHT (pre-commit):** CP-M17-W6-CARD-REPIN-REPAIR — state-only supplemental commit on master pending. Repairs omitted `card_sha256` re-pin for `STATE/OBJECTIVES/M17.md` at the CP-M17-W6 Commit-B `7767e6c2` (milestone_status flip CLOSED-WITH-FORK-BANKED → CLOSED). Pinned pre-repair: `81ef46d46eb1b7e927294306abef8e6433464d3801974a4e7e7ab4f98fadd50b` (stale) · Recomputed pin: `5bd05cabc4fe98dd8f0d2c8b582b06a0cbbd151d6033b2de391ae6fbf815d9b5` (matches current body). Ratification authority = owner desk-batch ruling (f) 2026-09-19 (body change ratified) + Commit-C-supplement repair precedent 2026-09-18 (state-only supplemental form authorized). Owner Option A ruling banked this-turn. Convention: single state-only supplemental commit on master following `addfc58b` SO6-RESUME-R29-BOOT precedent — NOT a §3.3 seal (no Commit-A · no Commit-C fixup · no ORCH_BOOT R-6 regen · state_repo.head remains at last §3.3 Commit-B `7767e6c2` which is still validly banked). Pre-commit BASELINE_GUARD=1 double-green byte-identical stripped-sha256 `f07e12ca7c5bfee763ec511b17e8489bcec247f60951db13470793e8839b5fdc` (both runs 5469 passed / 1 skipped / 438 warnings) — ratchet floor 5469 preserved. Process-hardening line banked in DECISIONS entry: "card_sha256 re-pin is part of any Commit-B that edits a card body — omission is a seal defect."
+
+**Uncommitted items list (owner directive: leave, list, pick up at next appropriate seal):**
+- STATE/PINS.md working-tree modification (state repo).
+- docs/registry/queries/q4_mechanical.md working-tree modification (track-a code repo).
+- 20 ephemeral tools/*.py untracked (state repo) — pattern NOT sanctioned under cleanup ruling; leave untracked, do NOT extend .gitignore in this repair per owner directive.
+- 4 new drill receipts + 1 pre-existing from CP-M17-W6 Commit-C fixup post-fixup narrow sweep — normal R-29-BOOT pickup at next Commit-A on programme/track-a.
+
+**Next after this repair commit:** memory layer opens per banked MEMORY GO order (memory_compaction_v1 + R-19/R-20 defaults + user-memory class behind tenant flag OFF + 7 ingestion-authored property tests + hard bans grep-negative).
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+---
+
+## R-61 · CP-MEMORY-COMPACTION-V1-BUILD-WAVE Commit-A landed · 2026-09-19T~19:57Z
+
+✅ **SEALED (Commit-C fixup at 2026-09-19T~20:02Z · state Commit-C banks Commit-B `90b61e40b27b83c9173f7455bbb47c56b62aefcc` · heads advanced code=`b1d11836` / state=`90b61e40` · post-fixup narrow sweep GREEN pending · MEMORY LAYER FIRST BUILD WAVE FULLY SEALED · pipeline `memory layer opens next` COMPLETE · follow-on compaction waves W2/W3/W4 open next):** CP-MEMORY-COMPACTION-V1-BUILD-WAVE · Commit-A `b1d1183674856c99e85d64b4fbd22a1508ffc4c9` on programme/track-a (2026-09-19T~19:57Z UTC · owner MEMORY GO ruling banked in-session verbatim ratifying scope). Commit-B (state master · `90b61e40b27b83c9173f7455bbb47c56b62aefcc`) landed: STATE/DECISIONS.md Commit-A banking section + STATE/NEXT.md R-61 marker ⏳ IN-FLIGHT + notes/ORCH_BOOT.md R-6 boundary regen advancing code_head to Commit-A + audit copy re-sync (both copies byte-identical). Commit-C fixup (state master · this-commit) landed: notes/ORCH_BOOT.md R-6 boundary regen post-Commit-B (advances heads_last_sealed.state_repo.head to Commit-B `90b61e40b27b83c9173f7455bbb47c56b62aefcc` + generator/regeneration_reason/sealed_at_utc/seal_kind updated + duplicate code_repo entry cleanup) + STATE/DECISIONS.md gains Commit-C fixup banking section + this NEXT.md marker flip ⏳→✅ + audit copy re-sync byte-identical.
+
+**Pre-Commit-A double-green byte-identical BASELINE_GUARD=1 stripped-sha256 `03aace2fc2bee5be18a77857d95a1feef46d38ba56e5855d15a223d4ef357acc`** IDENTICAL both runs 5476 passed / 1 skipped / 438 warnings ~175s each · against final baseline_failures.json sha256 `0e73b6d8c1512811ae512cfad124bf545efc48efed268d5e6c07f584c90a9cce`. AUTHENTIC RED-first: RED at `20260919T193933Z_cp_memory_compaction_v1_RED_pre_module.log` (ModuleNotFoundError right-reason) · GREEN at `20260919T194313Z_cp_memory_compaction_v1_GREEN_post_module.log` (7/7 pass · 0.77s). Transparency banking: 1 prior GUARD1 attempt (20260919T194453Z) failed test_orch_boot 1 fail because ORCH_BOOT ratchet still pinned pre-regen · reconciled by pre-Commit-A ORCH_BOOT ratchet-only r6-regen · not a ratchet break not a Stop-condition.
+
+**Post-Commit-A ORCH_BOOT R-6 boundary regen at Commit-B:** advances code_repo.head `f57f6c68` → `b1d11836` · state_repo.head stays at `7767e6c2` pending Commit-C fixup · both copies sha256 `20485253650da66b29203137b9bd8c222228fae53c023f1c884767fbdcecf845` at Commit-B time.
+
+**Autopilot next after this seal:** follow-on compaction waves (W2 hard-bans grep-negative · W3 TCB registration via tcb_enumeration_v1 · W4 M10-W4e ledger integration "compaction rows on the ONE chain") → CCS1 C.17 seam → CCS2 DAP entitlement → CCS3 DAP receipt → HALT before frontends. Staleness clock T-~15h remains armed.
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+---
+
+## R-62 · CP-MEMORY-COMPACTION-V1-W2-HARD-BANS-GREP-NEGATIVE Commit-A landed · 2026-09-19T~20:22Z
+
+✅ **SEALED (Commit-C fixup at 2026-09-19T~20:25Z · state Commit-C banks Commit-B `36357003b01cb963d2cf01c0a30f63797c0688b2` · heads advanced code=`67b5e070` / state=`36357003` · MEM-R-053 CROWN BAN NOT triggered · W3 opens next):** CP-MEMORY-COMPACTION-V1-W2-HARD-BANS-GREP-NEGATIVE · memory-layer follow-on wave W2 · owner OPTION 1 ratification 2026-09-19T~20:20Z verbatim. Commit-A `67b5e070e017ecbbd8645df87d42966721fa082d` on programme/track-a. Commit-B (state master · `36357003b01cb963d2cf01c0a30f63797c0688b2`) landed: STATE/DECISIONS.md Commit-A banking section + STATE/NEXT.md R-62 marker ⏳ + notes/ORCH_BOOT.md R-6 boundary regen advancing code_head to Commit-A + audit copy re-sync byte-identical. Commit-C fixup (this-commit) landed: notes/ORCH_BOOT.md R-6 regen advancing state_head to Commit-B + STATE/DECISIONS.md Commit-C fixup banking section + this marker flip ⏳→✅ + audit copy re-sync.
+
+**Pre-authoring GREEN sweep** `20260919T201450Z` — 6/6 pass · 1.46s · **MEM-R-053 CROWN BAN NOT triggered**. Structural cleanliness proof of W1 compaction_v1 sub-package.
+
+**Pre-Commit-A double-green byte-identical BASELINE_GUARD=1 stripped-sha256 `edb0d556398107f1683a000b92552f9f09361adb1d01be31fd79fdb8cd75af55`** IDENTICAL both runs 5482/1/438 ~174s each · against final baseline_failures.json sha256 `5d190ac9fa9bae2406af2ae32afca853b15a032c277f5b78bd9da783d70b1157`.
+
+**Autopilot next after this seal:** W3 (TCB registration via tcb_enumeration_v1 · MEM-3 engine IN + MEM-7 reload verifier IN + drafting OUT) → W4 (M10-W4e ledger integration · InMemoryCompactionStorage becomes test-fixture-only) → CCS1 C.17 seam → CCS2 DAP entitlement → CCS3 DAP receipt → HALT before frontends. Staleness clock T-~15h remains armed.
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+
+---
+
+## R-63 · CP-MEMORY-COMPACTION-V1-W3-TCB-REGISTRATION Commit-A landed · 2026-09-19T~20:50Z
+
+✅ **SEALED (Commit-C fixup at 2026-09-19T~20:55Z · state Commit-C banks Commit-B `9092674d07931f3b7ab04188ce71f40a19c1cf90` · heads advanced code=`ebebc46f` / state=`9092674d` · W3 TCB registration FULLY SEALED · W4 M10-W4e ledger integration opens next):** CP-MEMORY-COMPACTION-V1-W3-TCB-REGISTRATION · memory-layer follow-on wave W3 · owner OPTION 1 ratification 2026-09-19T~20:20Z verbatim + owner CLARIFICATION 2026-09-19T~20:35Z verbatim. Commit-A `ebebc46f75494dbaa16efacd7b077c47afcb69f1` on programme/track-a (2026-09-19T~20:50Z UTC). Commit-B (state master · `9092674d07931f3b7ab04188ce71f40a19c1cf90`) landed: STATE/DECISIONS.md Commit-A banking section + STATE/NEXT.md R-63 marker ⏳ IN-FLIGHT + notes/ORCH_BOOT.md R-6 boundary regen advancing code_head to Commit-A + audit copy re-sync byte-identical. Commit-C fixup (state master · this-commit) landed: STATE/DECISIONS.md gains Commit-C fixup banking section + this NEXT.md marker flip ⏳→✅ + notes/ORCH_BOOT.md R-6 boundary regen advancing state_head to Commit-B + audit copy re-sync byte-identical.
+
+**W3 scope (owner OPTION 1 verbatim):** "W3 (TCB registration): strictly via `tcb_enumeration_v1`'s method — MEM-3 retention engine IN, MEM-7 reload verifier IN, drafting component OUT. Additive edit to the enumeration per its own amendment rules; cite the ingest directive in the seal."
+
+**Owner CLARIFICATION 2026-09-19T~20:35Z verbatim:** "MEM-3 retention rule engine IN, MEM-7 reload verifier IN, drafting component OUT — these are the owner's INGEST directive classifications verbatim. tcb.py is a sealed W-M2-SW7 module — verify the enumeration's own amendment method permits additive entries without editing sealed logic (M16 precedent: R-3 2026-09-09 enumeration banking handled cif entries — check how that landed and follow the same shape). If the method requires a ceremony you cannot self-execute, bank the fork and proceed to W4."
+
+**Amendment method verification (per owner CLARIFICATION):** `backend/services/doc0_attributes/tcb.py` module docstring line 24 verbatim: "Seeded from tcb_enumeration_v1 + R-3 ratification. Additive: any future ratification appends a new entry." This IS the amendment method the owner OPTION 1 names — no ceremony required beyond tuple append; matches M16 R-3 2026-09-09 precedent shape (Mkono IN + Grey Mirror OUT landed as pure tuple appends visible in tcb.py lines 27-36 of pre-W3 file). No fork banked; W3 proceeded to seal.
+
+**Files landed at Commit-A (+3 tests · additive to sealed module tuple only):**
+- NEW `backend/tests/invariants/test_memory_compaction_v1_w3_tcb_registration.py` (112 lines · 3 tests: `test_w3_mem_retention_engine_registered_in_tcb` MEM-3 IN + `test_w3_mem_reload_verifier_registered_in_tcb` MEM-7 IN + `test_w3_mem_drafting_component_classified_out_tcb` MEM-2 OUT · each test validates `is_in_tcb()` semantics + entry uniqueness + reason-cites-canon-anchor).
+- ADDITIVE EDIT `backend/services/doc0_attributes/tcb.py::_TCB_ENTRIES` appending 3 `TCBEntry` tuple entries: `mem.retention_engine` (IN · MEM-3), `mem.reload_verifier` (IN · MEM-7), `mem.drafting_component` (OUT · MEM-2). Component IDs match dotted-notation convention of existing entries (`ledger.writer` · `syn.chokepoint` · `cif.acceptance_point` · `cif.detection`).
+- BUMP `backend/tests/invariants/baseline_failures.json` — ratchet 5482 → 5485 (+3 exactly reconciled · zero auto-parametrized wizard triggered · not a contracts/*.py file) · new `ratchet_history` entry at index 271 · new sha256 `b3705ed9bc782ce8e6baa4fa794dada7bb8d1e103dfbf92d0d6649182cd26b84`.
+
+**Pre-authoring RED sweep** at `phase0/drill_receipts/20260919T203612Z_cp_memory_compaction_v1_w3_tcb_registration_RED_pre.log` — 3/3 fail right-reason (MEM-3 `is_in_tcb('mem.retention_engine')` returns False + MEM-7 same shape + MEM-2 entry appears 0 times). **Post-authoring GREEN** at `phase0/drill_receipts/20260919T203633Z_cp_memory_compaction_v1_w3_tcb_registration_GREEN_post.log` — 3/3 pass in 0.75s.
+
+**Pre-Commit-A double-green byte-identical BASELINE_GUARD=1:**
+- run1 at `phase0/drill_receipts/20260919T204630Z_cp_memory_compaction_v1_w3_preseal_GUARD1_run1.log` · 5485 passed / 1 skipped / 438 warnings in 175.35s · raw 58452 B · stripped 58445 B.
+- run2 at `phase0/drill_receipts/20260919T204933Z_cp_memory_compaction_v1_w3_preseal_GUARD1_run2.log` · 5485 passed / 1 skipped / 438 warnings in 175.52s · raw 58452 B · stripped 58445 B.
+- **stripped-sha256 `5b4ec526cd517afd1bacf829edbc5f81a88c485839a0b3896e0179bcf333dc52` IDENTICAL** across both runs against FINAL baseline_failures.json sha256 `b3705ed9bc782ce8e6baa4fa794dada7bb8d1e103dfbf92d0d6649182cd26b84`.
+
+**Transparency banking (§6):** Earlier pair drill_receipts/20260919T203803Z_run1 + 20260919T204107Z_run2 was against an intermediate `baseline_failures.json` content (Python `json.dump(..., ensure_ascii=False)` mistake produced sha256 `a7fc2320`) that was fully reverted (`git checkout`) and re-authored with `ensure_ascii=True` to preserve source Unicode-escape encoding. Test outcomes identical (pytest logic reads count/structure fields, not encoded bytes); stripped-sha256 identical across all 4 runs (pytest stdout does not carry baseline JSON encoding artifacts). Not a ratchet break · not a Stop-condition trigger.
+
+**Additive-only per SO §3.8 · sealed modules NOT edited:**
+- `services/doc0_attributes/tcb.py::TCBEntry` pydantic model NOT edited.
+- `services/doc0_attributes/tcb.py::get_tcb_current()` NOT edited.
+- `services/doc0_attributes/tcb.py::is_in_tcb()` NOT edited.
+- `services/doc0_attributes/tcb.py::TCB_VERSION` NOT edited.
+- Module docstring NOT edited.
+- Only mutation: tuple append into `_TCB_ENTRIES` per docstring line 24 amendment method.
+- `services/memory/compaction_v1/*` (from W1) NOT edited.
+- `services/memory/*` M10-W4e sealed modules NOT edited.
+- Sealed M14 + M11 + M16 + M17-W1..W6 + W-M2-SW7 + W-7bB + c13_scope modules NOT edited.
+
+**Canon anchors verbatim (Commit-A scope):**
+- MEM-2 [Doc 4 A2 A5.5 C.19 I-2] · drafting component learned surface · OUT of TCB.
+- MEM-3 [Attribute 10 A5.5 Doc 5 objective freeze] · retention rule engine deterministic · IN the TCB.
+- MEM-7 [SFP-8 FP-2] · reload hash-verify · IN the TCB.
+- Spec §4 Table 3 (TCB additions IN/OUT verbatim): "the retention rule engine (MEM-3)" + "the reload verifier (MEM-7)" + "the drafting component (learned) · MEM-2" + "Same wall-not-the-run split as Targeta and the Watch."
+- `tcb.py` docstring line 24 amendment method verbatim.
+- Doc-0 Attribute 1 TCB definition.
+- Canon 8 §W11 structural role separation (drafting learned + retention deterministic split matches Targeta/Watch wall-not-the-run).
+- SO §3.8 thin-kernel additive-only.
+- SO §6.4 NOTHING-BEYOND (scope frozen at 3 entries · MEM-3 IN + MEM-7 IN + MEM-2 OUT · no scope beyond).
+- M16 R-3 2026-09-09 precedent shape (Mkono IN + Grey Mirror OUT · pure-tuple-append per Ratification_Record_v1 R-3).
+- owner MEMORY GO ruling banked verbatim.
+- owner OPTION 1 ratification 2026-09-19T~20:20Z verbatim.
+- owner CLARIFICATION 2026-09-19T~20:35Z verbatim.
+
+**Stop-conditions #1/#2/#3 NOT triggered at Commit-A · §6.4 pre-ruling NOT triggered · MEM-R-053 CROWN BAN NOT triggered.** Ratchet 5482 → 5485 monotonic-up. Zero flip. Zero regression. Zero refactor.
+
+**Autopilot next per owner OPTION 1 ratification:**
+1. **Commit-B (this-turn)** → **Commit-C fixup** (state-only · advances state_repo.head to this-Commit-B SHA).
+2. **W4 (M10-W4e ledger integration)** — thin adapter from compaction storage to sealed `services.memory.ledger` per MEMORY GO "compaction rows on the ONE chain" · preserve ordering invariant (ledger row lands BEFORE compaction artifact becomes readable) · InMemoryCompactionStorage becomes test-fixture-only (AST-banned from production imports).
+3. **CCS1 → CCS2 → CCS3** — contract closure waves frozen from `dap_backend_spec_v1` under T-b.
+4. **HALT before frontends** — report gate status to owner with survey findings' closure status + frozen contract pins + UI Handoff Brief location.
+
+**Time-gated task armed:** Staleness re-scope APPLY-ON-EXPIRY at 2026-09-20T~11:35Z (T-~14.8h at this Commit-A · fires as own small seal per owner order · takes priority as small seal when clock hits · owner reaffirmed 2026-09-19T~20:20Z "it will likely fire during CCS work; it takes priority").
+
+**Standing bounds unchanged:** zero push · terminal pytest only · no testing_agent · additive-only §3.8 · full BASELINE_GUARD=1 pre-Commit-A double-green byte-identical · §3.3 3-Commit Seal on dual branches · ratchet monotonic (floor 5485 · never rebaselined silently).
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

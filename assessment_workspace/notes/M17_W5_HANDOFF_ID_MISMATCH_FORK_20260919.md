@@ -1,6 +1,8 @@
 # M17-W5 · handoff_id/session_id regex mismatch · discovered fork · 2026-09-19
 
-**Class:** structural (latent runtime bug in sealed M17-W3 module).
+**Status:** ✅ **CLOSED-BY-M17-W6-OPTION-(i)-LANDED** at 2026-09-19T~19:05Z UTC (CP-M17-W6-HANDOFF-ID-ADAPTER-AND-TYPE-TAG Commit-A `f57f6c68e765096bd8bc69f8fbfdf96679e5280a` on programme/track-a · Owner Desk Batch item (f) verbatim ratifying Option (i) additive-adapter extension · new module `backend/services/personal_client/handoff_binding.py` with `HandoffId` type-tag class + `derive_handoff_id` + `emit_ask_with_handoff` · sealed M17-W3 `services/personal_client/session.py` NOT edited per thin-adapter discipline · ratchet 5462 → 5469 · adapter is now the authoritative runtime path). Original fork banked at M17-W5 seal integration authoring (previously status OPEN-OPTION-(ii)-APPLIED at M17-W5 Commit-B `8910ba9b53862b153a76cb11ddb5f5dc40ebd2bb`).
+
+**Class:** structural (latent runtime bug in sealed M17-W3 module · adapter now inverts the mismatch inside a new sanctioned seam-routing surface).
 
 **Discovered at:** M17-W5 seal integration authoring (2026-09-19T~15:17Z UTC).
 

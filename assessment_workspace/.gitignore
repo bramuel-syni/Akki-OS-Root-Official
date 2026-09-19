@@ -7,4 +7,30 @@ tools/drift_map.json
 tools/drift_xref.json
 tools/drift_edits.log
 tools/__pycache__/
+tools/scratch/
+tools/_scratch/
+tools/.cp*_path
 custody/
+
+# CP-CLEANUP-STATE-DISCIPLINE 2026-09-19T~18:30Z · owner ruling 2026-09-19T~17:54Z item (c) verbatim
+# gitignore .pyc/downloads/notebook/telemetry outputs
+# Rationale: these directories accumulate unbounded runtime output (~80k+ files) that
+# has no value at git-track granularity; hygiene bank supersedes prior tracking pattern.
+# Previously-tracked files under these paths remain in git history and are removed
+# from tracking via git rm --cached at this CP; disk copies preserved for continuity.
+downloads/
+phase0/wpw_notebook/
+phase0/gpu_utilization_72h/
+phase0/northena_ledger/
+phase0/crossing_receipts/
+phase0/shield_train_receipts/
+phase0/reflection_records/
+phase0/model_admission_records/
+phase0/commissioning_records/
+phase0/commit_records/
+phase0/gpu_receipts/
+phase0/eyeball_proxies/
+phase0/mtafiti_gpu_discovery/
+phase0/harness_ground_truth/
+phase0/estate_reconciliation/
+phase0/m7_w1_post_2_verification/
