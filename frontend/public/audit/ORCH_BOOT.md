@@ -33,29 +33,29 @@ STATE files, and on any boot ritual that detects drift.
 
 ```yaml
 schema_version: 1
-generated_at_utc: 2026-09-19T12:33:00Z
-generator: main-agent Autopilot (CP-M16-W5-SEAL-INTEGRATION post-Commit-C fixup R-6 boundary regen · state_repo.head advanced to Commit-B 939124be757beebc687a4661d0a82a1817ad1f16 (from c0a35335 M16-W4 last-sealed) · code_repo.head remains 462f6972a2090d6e6faf0293a1958e84996549fc (M16-W5 Commit-A) · ratchet 5414 · baseline_failures_sha256 4607c0d8… · M16-W5 SUB-WAVE FULLY SEALED · MILESTONE 7 (M16 · CIF · Conditioned Ideation Faculty) FULLY CLOSED · Commit-C banks Commit-B · marker R-50 flipped ⏳→✅ · owner Option-1 override banked this session 2026-09-19T11:29Z with explicit DET-1 line closure 2026-09-19T~12:19Z)
-regeneration_reason: r6-boundary-regen-post-commit-c-fixup-at-cp-m16-w5-seal-integration-state-head-advance-to-939124be-milestone-7-closed
+generated_at_utc: 2026-09-19T15:42:00Z
+generator: main-agent Autopilot (CP-M17-W5-SEAL-INTEGRATION Commit-C fixup · state master · MILESTONE 8 FIFTH SUB-WAVE FULLY SEALED · MILESTONE 8 (M17 · Tenant Apps + Personal Client · C.23) FULLY CLOSED with one structural fork banked · banks Commit-B `8910ba9b53862b153a76cb11ddb5f5dc40ebd2bb` · state_repo.head advanced `40454bf8` → `8910ba9b` · code_repo.head remains `e3767b93f3fe14208f5ee9972fcab7081a818f35` on programme/track-a · ratchet 5452 unchanged at Commit-C · baseline_failures_sha256 `e51fc7bf70cae4510f4e28cc42756543f6d57146e9d1801dc81265e1ee665077` unchanged · owner Option-1 override banked this session 2026-09-19T11:29Z + owner PROCEED re-affirmed 2026-09-19T~14:35Z · Owner Desk Batch Digest published in this Commit-C fixup per M16 close discipline)
+regeneration_reason: r6-boundary-regen-post-commit-c-fixup-at-cp-m17-w5-seal-integration-milestone-8-fifth-sub-wave-fully-sealed-milestone-close-with-fork-banked-and-owner-desk-batch-digest-published
 
 ratchet:
-  passed_floor: 5414
-  counts_at_baseline_passed: 5414
+  passed_floor: 5452
+  counts_at_baseline_passed: 5452
   baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
-  baseline_failures_sha256: 4607c0d8cdaea713c5ba07f5c8e65640ce0bec0ea0bda1e4ddc7d834538d0d03
+  baseline_failures_sha256: e51fc7bf70cae4510f4e28cc42756543f6d57146e9d1801dc81265e1ee665077
 
 heads_last_sealed:
   state_repo:
     workdir: /app/assessment_workspace
     branch: master
-    head: 939124be757beebc687a4661d0a82a1817ad1f16
-    sealed_at_utc: 2026-09-19T12:32:00Z
-    seal_kind: "CP-M16-W5-SEAL-INTEGRATION · state Commit-B `939124be` · banks Commit-A `462f6972` · MILESTONE 7 CLOSING SUB-WAVE · **MILESTONE 7 (M16 · CIF · Conditioned Ideation Faculty · Doc-9) FULLY CLOSED at this Commit-B** · CIF DET-1 own halt + full milestone integration binding W1..W4 + milestone snapshot pin cba422542da000a66ce9cae38b5716f253d3876d2f9c300f5099e372a2973616 per SO §6.4 pre-ruling + owner DET-1 line closure 2026-09-19T~12:19Z · +7 tests at W5 (5407→5414 · +28 across M16) · milestone_status DRAFTED → CLOSED · card_sha256 re-pinned b85d0e67 → 2bec7d374fd73d77940e017266ee06a4e2c5c9817b3e76a66c54e3b4e1302f5a reflecting W5 EXIT filled + milestone_status CLOSED · owner Option-1 override banked this session 2026-09-19T11:29Z"
+    head: 8910ba9b53862b153a76cb11ddb5f5dc40ebd2bb
+    sealed_at_utc: 2026-09-19T15:34:00Z
+    seal_kind: "CP-M17-W5-SEAL-INTEGRATION · state Commit-B `8910ba9b53862b153a76cb11ddb5f5dc40ebd2bb` · banks Commit-A `e3767b93f3fe14208f5ee9972fcab7081a818f35` · MILESTONE 8 FIFTH SUB-WAVE · MILESTONE 8 (M17 · Tenant Apps + Personal Client · C.23) FULLY CLOSED with one structural fork banked · lands STATE/OBJECTIVES/M17.md W5 EXIT fill + milestone_status DRAFTED → CLOSED-WITH-FORK-BANKED + card_sha256 re-pin `18f8b942…` → `81ef46d46eb1b7e927294306abef8e6433464d3801974a4e7e7ab4f98fadd50b` + STATE/DECISIONS.md Commit-A banking section + STATE/NEXT.md §6 INTERLUDE MARKER R-55 + notes/M17_W5_HANDOFF_ID_MISMATCH_FORK_20260919.md fork-banking doc + notes/ORCH_BOOT.md R-6 boundary regen advancing code_head to Commit-A + audit copy re-sync · additive-only per SO §3.8 · ratchet 5452 unchanged at Commit-B (state files + fork-note only)"
   code_repo:
     workdir: /app/assessment_workspace/repos/Extraction-Akki
     branch: programme/track-a
-    head: 462f6972a2090d6e6faf0293a1958e84996549fc
-    sealed_at_utc: 2026-09-19T12:30:00Z
-    seal_kind: "CP-M16-W5-SEAL-INTEGRATION · Commit-A `462f6972` · MILESTONE 7 CLOSING SUB-WAVE · MILESTONE 7 (M16 · CIF Conditioned Ideation Faculty) FULLY CLOSED at this Commit-A · CIF DET-1 own halt (Doc-3) + full milestone integration binding W1..W4 + milestone snapshot pin over CIFProposal_v0.model_json_schema() (sha256 cba422542da000a66ce9cae38b5716f253d3876d2f9c300f5099e372a2973616) per SO §6.4 pre-ruling + owner DET-1 line closure 2026-09-19T~12:19Z · new services/cif/halt.py (117 lines · is_halted + halt + get_halt_journal + _reset_halt_for_tests · imports only typing.Tuple · zero import of services.targeta at any scope AST-enforced) + new invariant test file test_m16_w5_seal_integration.py (7 tests: halt surface + DET-1 AST ban + append-only immutable snapshot + reason type/emptiness guards + milestone integration binding W1..W4 [both L-5 capability and L-4 research_loop_item legs end-to-end] + halt-independent-of-simulated-Targeta + milestone snapshot pin) + baseline_failures.json ratchet bump 5407→5414 (+7) · additive-only per SO §3.8 · sealed W-M2-SW7 doc0_attributes/tcb.py + M16-W1/W2/W3/W4 modules + W1b·CP4 capability_registry.py all NOT edited · pre-Commit-A double-green byte-identical BASELINE_GUARD=1 stripped-sha256 c6db805566a74c28d7f9cc4b2f905fb140f887a79a5ff50bc22783de5ee943be against final baseline_failures.json sha256 4607c0d8cdaea713c5ba07f5c8e65640ce0bec0ea0bda1e4ddc7d834538d0d03"
+    head: e3767b93f3fe14208f5ee9972fcab7081a818f35
+    sealed_at_utc: 2026-09-19T15:33:00Z
+    seal_kind: "CP-M17-W5-SEAL-INTEGRATION · Commit-A `e3767b93f3fe14208f5ee9972fcab7081a818f35` · MILESTONE 8 FIFTH SUB-WAVE · M17 milestone closing gate · MILESTONE 8 (M17 · Tenant Apps + Personal Client · C.23) FULLY CLOSED with one structural fork banked · integration seal binding W1..W4 end-to-end + milestone snapshot pin over ApplicationContract_v0.model_json_schema sha256 `ba1957dfbb38ba037ec6a57c52760f053e829451ccf6ee9c12b48ef4498b8d05` per SO §6.2 EXIT clause verbatim + all W1..W4 canon anchors preserved + SO §3.10-α + R-21 STATE/DECISIONS.md:12333+12366 + B-frontends-Q1 STATE/DECISIONS.md:12115 + M14-W4 pure-data-in + Canon 8 §W11 + M14-W2/W3 seam + M11 per-tenant DB discipline + SO §3.8 + SO §6.4 + SO §6.7 batch-ratification · new backend/tests/invariants/test_m17_w5_seal_integration.py (498 lines · 7 integration tests + `_FakeRepository` fake + factory helpers) · no new production module at W5 · baseline_failures.json ratchet bump 5445 → 5452 (+7) · AUTHENTIC RED-first cycle: RED v1 with Stop-condition #1 triggered + fork banked at notes/M17_W5_HANDOFF_ID_MISMATCH_FORK_20260919.md + tests 2 + 6 adjusted to AST-scan · RED v2 fork-adjusted · GREEN post-pin · pre-Commit-A double-green BASELINE_GUARD=1 stripped-sha256 `dfed12cd339b47a0f15b7286e677b05c1e280012966b3b388eee6f31f753f4d7` IDENTICAL both runs 5452 passed / 1 skipped / 438 warnings ~171s each against final baseline_failures.json sha256 `e51fc7bf70cae4510f4e28cc42756543f6d57146e9d1801dc81265e1ee665077` · additive-only per SO §3.8 · sealed W1..W4 M17 modules + M14/M11/M12b-W1/M16/W-M2-SW7/W1b-CP4 modules all NOT edited · Stop-condition #1 TRIGGERED at RED v1 · handled per SO §6.7 fork-banking · #2/#3 NOT triggered · §6.4 pre-ruling NOT triggered · milestone_status DRAFTED → CLOSED-WITH-FORK-BANKED at Commit-B · card_sha256 re-pin at Commit-B · Owner Desk Batch Digest published at Commit-C fixup per M16 close discipline · Aggregate ratchet across M17: 5414 → 5452 (+38 · W1 +9 · W2 +7 · W3 +8 · W4 +7 · W5 +7)"
 
 boot_sequence:
   - Read STATE/STANDING_ORDERS.md end-to-end.
