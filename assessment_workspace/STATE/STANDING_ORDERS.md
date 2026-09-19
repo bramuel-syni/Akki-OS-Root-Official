@@ -391,4 +391,90 @@ Ratified in DECISIONS.md §3.3 SEAL-CHAIN INTEGRITY RULINGS 2026-09-17. All six 
 
 ---
 
+## §6. LONG AUTONOMOUS RUN PROTOCOL (owner-ratified 2026-09-19T~00:00Z · verbatim · supersedes per-milestone run orders from banking)
+
+**Naming note:** the numeric `## 6. CURRENT AUTHORITATIVE ARTIFACTS` heading above and this `## §6. LONG AUTONOMOUS RUN PROTOCOL` heading are DISTINCT — the former is section 6 of the file's numeric structure (SO §6 in the old sense); the latter is Owner Standing Order §6 (paragraph-mark §). Cross-references disambiguate by their title. Both remain in force.
+
+Standing Order §6 — Long Autonomous Run Protocol
+Governs the remaining ~55–90 agent-hours. Banks to STATE/STANDING_ORDERS.md; supersedes per-milestone run orders from its banking. Three guardrails, an escalation policy, pre-rulings for the known forks, and the run mechanics.
+
+### §6.1 — Guardrail 1: continuity across compaction. Files are truth; context is a cache.
+
+Compaction will happen and the agent will not reliably know when. So re-anchoring is unconditional, not event-triggered.
+
+No rule lives in memory. A bound, ruling, or objective not present in STANDING_ORDERS.md, DECISIONS.md, NEXT.md, or the milestone's objective card (§6.2) is not a rule and MUST NOT be acted on. "I recall the owner said" is never sufficient; find it in the file or treat it as unruled.
+
+Re-anchor at every seal boundary and every sub-wave open, cheap by design: read ORCH_BOOT.md, NEXT.md, DECISIONS.md, and the current objective card; run the boot invariants (test_orch_boot.py, test_standing_orders_present.py, and the new test_objective_card_pinned.py); write a ≤12-line resume attestation to NEXT.md — current milestone, sub-wave, ratchet floor, open forks, active bounds, next action — and diff it against the last banked attestation. Any mismatch is a stop-and-report before any write.
+
+ORCH_BOOT regen carries the objective cards for every open milestone, hash-pinned, so a compacted context is rebuilt from the same cards the owner ratified. The audit mirror stays byte-identical.
+
+The ratchet is the memory of record for progress. No silent rebaselining — unchanged. A floor that cannot be explained line-by-line from seal notes is a stop.
+
+### §6.2 — Guardrail 2: objective deviation. Every milestone has a card; every seal cites a card line.
+
+Each milestone and each substantive component gets an objective card at STATE/OBJECTIVES/<id>.md, hash-pinned at ratification:
+
+    OBJECTIVE   one sentence — what this milestone makes true
+    MUST DO     numbered lines, each with canon_ref (5–10)
+    MUST NOT    bans, each with canon_ref
+    EXIT        evidence per MUST-DO line: test IDs, seal conditions
+    STOP        milestone-specific stop conditions
+    ANCHORS     the underlying components this builds on (§6.3 rule 1)
+
+Self-check at three points: open — the card exists, is ratified, and every MUST-DO line has an anchor; each sub-wave — its seal message cites the card line(s) it advances (test_seal_cites_card.py fails a seal that cites none); close — every MUST-DO line has exit evidence, and anything built that maps to no line is declared as scope drift — additive-only makes it permissible, undeclared makes it a stop.
+
+Cards for M10-W2/3, M10-W4, and M12b-W1 are the three run orders already issued; e1_dev drafts cards for M13–M17, memory layer, and frontends from canon and the SER, for batch ratification at the next seal boundary.
+
+### §6.3 — Guardrail 3: rulings that need the owner. Four tiers before the desk.
+
+When a fork arises, resolve it at the lowest tier that answers it, in order:
+
+1. **Underlying components first.** Does a canon rule or an existing component already answer it? Then that is the answer — cite it, build to it, no ruling. (Most forks so far were this tier.)
+2. **Production-grade standard second.** Does a conventional, named industry standard answer it — NIST, Common Criteria, Kubernetes, OTel, Terraform conventions, Kenya DPA? Adopt the conventional choice, cite the standard, tag DEFAULT-class · standard, continue.
+3. **DEFAULT-class value third.** Is it a number, cadence, or threshold? Choose the conservative default, tag pending ratification, continue; it batches to the desk at milestone close.
+4. **Owner desk fourth** — only for: a canon amendment; a TCB membership change; a change to a Fixed decision-register entry; an exception to a hard invariant; anything externally visible (claims, pricing, partner-facing terms); a security incident; money or legal. These are forks: banked with options and a recommendation, and the run continues on everything they don't block.
+
+Desk items batch at milestone seals, not per fork. TCB-tier ceremonies are never pre-signed; ordinary-tier re-scopes that tighten (never loosen) may be proposed and countdown-started without waiting, countersign requested in the batch.
+
+### §6.4 — Pre-rulings for the forks the estimate names.
+
+**M16 CIF scope** — ruled now, since it moves the number most. CIF is built as canon already defines it: a learned ideation faculty outside the TCB; every CIF-originated idea passes a deterministic acceptance point before affecting anything (BR-9.2, single-experiment principle); CIF proposes and never ratifies (AC-18); its outputs enter the research loop (A5.22, L-4) and the capability register (A20.16, L-5); it has its own halt independent of the Targeta run it feeds (DET-1 closed as a MUST-DO). Nothing beyond that in M16. If the card needs more, that's a fork.
+
+**M10-W4 replay forks** — pre-ruled. Where a writer's legacy semantics cannot be preserved by replay: the legacy store goes read-only and is referenced by provenance; the chain migrates forward-only from cutover; legacy rows are carried as provenance pointers, never re-derived. Bank it, don't stop for it.
+
+**Frontend fidelity bar** — ruled. Functional parity with the established five-stage pattern and the DAP UI Handoff Brief §5 constraints. Prototype adoption where a screen exists; no literal pixel fidelity. The expensive path is not authorised.
+
+**M13 standards** — tier 2 applies. KMS: envelope encryption, per-tenant keys, 90-day rotation (R-4). OTel and Terraform: conventional. Runbooks per B.10. Cite, build, no ruling.
+
+### §6.5 — Run mechanics: the other ways a long sprint survives.
+
+- Restore points are milestone seals. Unrecoverable state rolls back to the last milestone seal, not the last commit.
+- Time-box per milestone at 2× the estimate. Exceeding it is a stop-and-report — the run is thrashing, and thrashing burns credits without moving the ratchet.
+- Loop detection. The same test RED across three sweeps, or the same fork banked twice, is a stop.
+- A build critic seam. Before every seal: RV-tier deterministic checks (the tests) plus a QA-tier self-review against the objective card. The self-review can raise a finding; it never blocks alone, and it never substitutes for a RED test.
+- Owner interrupts are processed at seal boundaries only, except a message containing STOP, which is immediate.
+- Daily digest replaces per-seal reports: ratchet delta, milestones closed, forks banked, desk items batched, next in flight. Milestone seals still get the one-line report.
+- HF hold, §4.1 §E, zero push, no testing_agent — unchanged and not batchable.
+
+### §6.6 — Acceptance of the estimate.
+
+55–90 agent-hours, central ~70, is accepted as the working plan. This protocol's job is to take the 20–25% overhead and the desk-latency multiplier out of it: tiers 1–3 answer most forks without a round-trip, pre-rulings remove the four named movers, and batching turns the rest into one desk visit per milestone.
+
+### §6.7 — Sequence from here.
+
+M10-W2/W3 → M10-W4 → M12b-W1 (its three gates unchanged) → M13 → M14 → M15 → M16 → M17 → memory layer → frontends, G5 interleaved to completion. Objective cards for M13 onward drafted before their milestone opens and batched for ratification at the preceding seal.
+
+### §6 · Landing metadata (bookkeeping — not owner text)
+
+Banked verbatim at CP-SO6-LONG-AUTONOMOUS-RUN-PROTOCOL 2026-09-19T~00:00Z. Two new invariants landed as part of this SO's mechanism:
+
+- `backend/tests/invariants/test_objective_card_pinned.py` (5 tests · STATE/OBJECTIVES/ structure + hash-pin verification).
+- `backend/tests/invariants/test_seal_cites_card.py` (2 tests · every card's EXIT section lists at least one pytest node id that resolves to a file on disk).
+
+Three cards ratified at banking (pre-ratified by the three run orders already issued): `STATE/OBJECTIVES/M10_W2_W3.md` · `STATE/OBJECTIVES/M10_W4.md` · `STATE/OBJECTIVES/M12b_W1.md`. Cards for M13–M17, memory layer, and frontends drafted at the preceding-milestone seal per §6.7.
+
+Sources-win-if-drift: if any distillation of §6 in the ORCH_BOOT hard-bans section or elsewhere disagrees with this section, this section (owner-verbatim) is authoritative. Corrections land at the next R-6 boundary; this section is not edited in place.
+
+---
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

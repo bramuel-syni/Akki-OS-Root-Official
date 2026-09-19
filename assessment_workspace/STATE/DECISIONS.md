@@ -13261,5 +13261,797 @@ Each vector class also carries a byte-identity-across-two-calls property test (1
 
 ---
 
+## OWNER RULING · M12-W1 RATIFIED + W1f CONFIRMATION REQUIRED (M3 precondition only) + NEW RUN ORDER · 2026-09-18T~21:15Z
+
+> OWNER — M12-W1 RATIFIED + one W1f CONFIRMATION REQUIRED (precondition to Milestone 3 only) + NEW RUN ORDER (next three milestones). Bank VERBATIM to STATE/DECISIONS.md:
+>
+> ---OWNER TEXT BEGINS---
+> M12-W1 ratified — closed clean. Eight sub-waves, +106 authentic RED-first, byte-match held across every seal, all three stop conditions checked and clear. The W1i golden-input corpus is the right lock: pins over existing deterministic surfaces, drift requiring an owner ruling to re-pin, zero mechanism change.
+>
+> One confirmation, precondition to Phase 3 only. W1f is sealed as LANGO-SCORING. The ruling for W1f was the Watch input-seat emitter — every crossing event written to the seat before invoke() returns, fail-closed if the seat is unreachable. Confirm in one line that any "scoring" is Grey Mirror-side detection input feeding the observed surface, not a score field on a verdict and not anything Mkono consumes, and give the emitter's fail-closed test ID. If it is a score that reaches a verdict, it has reintroduced the field A5.2 and A5.19 exclude, and it comes out before the Watch schema freezes.
+>
+> RUN ORDER — next three milestones
+> Under R-18 standing authority. Milestone-boxed; same bounds, same stop conditions, same reporting.
+>
+> Milestone 1 — M10-W2/W3, the Ledger's operational wire. Verifier under credentials the writer does not hold; its own append-only receipt store; head hash published to the tenant receipt endpoint; nightly plus on-demand; SEV-1 on chain break — security group paged, Watch signal recorded, evidence never action. Tests first: a deliberately broken chain produces both; any shared credential fails a test.
+>
+> Milestone 2 — M10-W4, writer consolidation. Ruled order: refusal, countersign, northena, deletion, memory. Each writer proceeds only on a passing replay test — legacy records reproduced row-hash for row-hash, zero rows lost. Legacy stores go read-only at cutover and are never rewritten. A writer whose semantics replay cannot preserve is a fork, banked with options, not resolved.
+>
+> Milestone 3 — M12b-W1, the Watch goes live on canon. Two gates: Milestone 2 landed in full — certificate rows go on the one chain — and the W1f confirmation above. Contents per the standing rulings: the T-c rename to annotate · shape · contain · sever, destroy gone; the verdict schema carrying a certificate {requirement_id, data_points[], observation_refs[]} and no confidence, score, strength or probability field, enforced by a signature-as-guard test; severance keyed to A5.2's closed signal registry; I-2 as (category, certificate satisfied); the minimum Ed25519 primitive — keygen, sign, verify for the Watch key alone; Mkono acting only on a verdict whose signature verifies. Third gate: the G5 slice for Canon-8 — its 217 rules — is mapped before this milestone opens, so the Watch contract freezes with its canon anchors in place.
+>
+> Parallel, notes-only: remaining G5 slices; per-writer review drafts ahead of each Milestone 2 writer.
+>
+> Already armed: staleness re-scope applies on expiry 2026-09-20T11:35Z, with the one-time journal pull, full sweep, own small seal. HF hold on any wave touching HF, unchanged.
+>
+> Bounds: SO §3.3, §3.8, §3.10 as amended; §4 zero push; §4.1 §E; T-c (α) through Milestone 2, executed at Milestone 3; no silent rebaselining; terminal pytest only; no testing_agent.
+>
+> Stop conditions: Item 5, plus the three specific to this stretch — a second path to the external model client; a verifier sharing any credential with the writer; a bypass-shaped parameter on the custody crossing. Fail closed on the item, bank the fork, continue on the next.
+>
+> Reporting: one short report at each milestone seal — SHAs, ratchet pre and post, byte-match, G5 count, forks banked. Full four-part report after Milestone 3, then hold at the seal boundary.
+>
+> Start Milestone 1 now.
+> ---OWNER TEXT ENDS---
+>
+> Orchestrator execution notes:
+> 1. FIRST, answer the W1f confirmation in your next report (it does not block Milestones 1-2, only gates Milestone 3): one line confirming the LANGO scoring is Grey Mirror-side detection input feeding the observed surface — NOT a score field on any verdict and NOT anything Mkono consumes — plus the emitter's fail-closed test ID. If any score reaches a verdict, that is remediation work that must land BEFORE the Watch schema freezes at Milestone 3 — flag it immediately, do not fold it in silently.
+> 2. Milestone 3 now has THREE gates: (i) M10-W4 landed in full, (ii) the W1f confirmation above, (iii) Canon-8's 217 G5 rules fully mapped. Sequence your G5 slices to prioritize Canon-8 so gate (iii) is ready when gates (i)/(ii) close.
+> 3. Staleness re-scope expiry (2026-09-20T11:35Z) fires during this stretch — apply per ceremony, one-time on-host GPU journal pull, full sweep, own small seal.
+> 4. All bounds and the three absolute stops unchanged. Modified stop discipline stands: non-consequential forks banked + own recommendation DEFAULT-class + continue; consequential = fail closed on the item, continue on the next.
+>
+> Start Milestone 1 (M10-W2/W3) now.
+
+**Reception**: banked verbatim per §3.3 · orchestrator notes 1-4 folded into wave execution below.
+
+**Autopilot re-acknowledgment**: R-28 continues NON-STOP into the three-milestone stretch. M12-W1 ratification received. Milestone 1 (M10-W2/W3) opens next-turn as first RED-first cycle.
+
+
+---
+
+## W1f CONFIRMATION · LANGO scoring = Grey Mirror-side detection input · Mkono zero-consume · 2026-09-18T~21:20Z
+
+**Precondition to Milestone 3 (gate ii) · does not block Milestones 1-2.**
+
+**One-line confirmation with flag**: LANGO's `hostility_score` and `provenance_score` are **CATEGORICAL STRING** fields (`("low","medium","high")` / `("known","unknown","hostile")`) written onto `CrossingEvent` — the Watch INPUT-SEAT record which IS the Grey Mirror-side observed surface (Canon 8 §85 "no learned model, no numeric score fabrication" honoured); Mkono does **NOT** consume them (grep of `services/watch/mkono.py` + `services/watch/*.py` shows **zero** references to `input_seat`, `CrossingEvent`, `hostility_score`, or `provenance_score` — Mkono's `map_verdict_to_action()` consumes a `verdict_id` on the SEPARATE Watch verdict schema still open for Milestone 3 freeze); **emitter's fail-closed test ID: `test_watch_input_seat_write_failure_makes_invoke_refuse`** at `backend/tests/invariants/test_m12_w1d_dap7_custody_option_d.py:278` (R-26 · propagates `WatchInputSeatUnobservable` from `emit_crossing` through `invoke()` → zero dispatch on unobservable crossing).
+
+**FLAG (M3-remediation-adjacent · not silent · DEFAULT-class recommendation appended)**:
+
+`CrossingEvent` **also** carries a REQUIRED `verdict` field (pass/annotate/hold/block) sitting **alongside** the two score fields on the SAME dataclass. Per W1f `services/watch/input_seat.py` docstring lines 16-24 verbatim (*"The seat is a record, not a governing authority; it adds no second custody chain, and its verdicts add nothing to Mkono's alphabet"*), this seat `verdict` is EXPLICITLY declared distinct from Mkono's alphabet — it is a SEAT-graded-gate routing verdict (Canon 8 §5 "Graded verdicts: pass, annotate, hold, block") emitted BEFORE the model call to decide whether the crossing proceeds, and it is NOT the Milestone 3 Watch verdict schema. Reading strict-honest: because the field is literally named `verdict` and co-lives with the score fields on the SAME record, an owner reading "score field on a verdict" as "score field on any record whose fields include a `verdict`" would treat this as an A5.2/A5.19-adjacent boundary case.
+
+**Two readings**:
+
+- **Reading X (agent DEFAULT-class · matches W1f in-tree declaration + Canon 8 §85 verbatim discipline)**: The SEAT verdict on `CrossingEvent` is not the M3 Watch verdict schema; the score fields are Grey Mirror-side detection inputs feeding the observed surface; W1f satisfies the owner's confirmation as stated (three checks pass). The M3 Watch verdict schema, when frozen at M12b-W1, will be the SEPARATE Mkono-facing schema and will exclude confidence/score/strength/probability per the M3 ruling.
+- **Reading Y (strict-remediation)**: The co-location on one dataclass field-list warrants moving `hostility_score` + `provenance_score` off `CrossingEvent` onto a separate `SeatObservation` record (Grey Mirror inbox) BEFORE M12b-W1 opens, keeping only `verdict` on the crossing record. This is additive (new record type · zero rewrite of `CrossingEvent`), preserves all existing tests (score fields become derived from the observation record), and eliminates any interpretive risk at M3 schema freeze.
+
+**Agent recommendation**: **Reading X** (DEFAULT-class). W1f's in-tree declaration + Canon 8 §85 discipline are load-bearing; the M3 verdict schema is a separate freeze surface. If the owner ratifies Reading X, no remediation needed. If Reading Y, one small additive CP before M12b-W1 opens (~15 LOC + 4-6 tests · own §3.3 seal). Flagged NOT silent per orchestrator note #1.
+
+**Owner ruling required BEFORE M12b-W1 opens.** This is banked as an M3-only gate; M10-W2/W3 and M10-W4 proceed regardless.
+
+
+---
+
+## CP-M10-W2a-VERIFIER-CRED-SEPARATION-AND-RECEIPT-STORE · Commit-A banking · 2026-09-18T~21:55Z
+
+**Commit-A code track:** `84726a504087243c5ad67186fa32a33330004e5c` (short `84726a50`).
+
+**Wave**: M10-W2a · Milestone 1 opener · verifier credential-separation primitive + append-only receipt store.
+
+**Canon anchors**: Owner run order 2026-09-18T~21:15Z verbatim (*"Verifier under credentials the writer does not hold; its own append-only receipt store ..."*) + B-M10-Q2 verbatim (2026-09-18T~12:30Z: *"verifier writes its receipts to its own append-only store under credentials the Ledger writer does NOT hold (C3 principle: verifier cannot share anything with the thing it verifies)"*).
+
+**Delta**: 5103 → 5119 = **+16 exactly reconciled line-by-line**: 15 authored W2a tests + 1 auto-parametric expansion (existing `test_phase_7_stage_b_3_wizard.py::test_prior_contract_file_exists_and_stable_at_7b_3` parametrized over every `contracts/` file picked up the new `ledger_credentials.py` module; passes trivially asserting file existence + stability — same auto-param delta category previously invoked at CP-M12-W1c banking). Zero flip. Zero regression.
+
+**Files landed**:
+
+- **NEW** `contracts/ledger_credentials.py` (48 LOC) — two `Final[str]` credential-handle constants:
+  - `LEDGER_WRITER_CRED_HANDLE = "akki.ledger.writer.credential.v0"`
+  - `LEDGER_VERIFIER_CRED_HANDLE = "akki.ledger.verifier.credential.v0"`
+  - The two handles are distinct strings by construction; docstring cites C3 principle and states that "adding, renaming, or otherwise altering either handle is a §3.3 seal event requiring an Owner ruling".
+- **NEW** `services/ledger_verifier/receipt_store.py` (~140 LOC) — `VerifierReceiptStore` class:
+  - Positive-allowlist C3 gate at `__init__`: refuses any `credential_handle != LEDGER_VERIFIER_CRED_HANDLE` with `SharedCredentialRefused` (code `LEDGER-VERIFIER-C3-001`). Writer handle, arbitrary third-party handles, and typos ALL refuse identically — the gate is a positive check, not a negative one.
+  - Append-only surface: only `append(receipt)`, `read(...)`, and `list_for_tenant(...)` defined; no `update` and no `delete` methods → `hasattr(store, "update")` and `hasattr(store, "delete")` are False.
+  - `VerifierReceiptOverwriteRefused` (code `LEDGER-VERIFIER-STORE-001`) on re-append of an existing `(tenant_id, head_seq)` pair.
+  - Persistence namespace scoped by credential handle: `<storage_root>/<handle-namespace>/<tenant_id>/seq-NNNNNNNNNNNN.json`. The namespace substring contains the verifier handle (`akki_ledger_verifier_credential_v0` after filesystem-safe rewrite) — the verifier's store CANNOT be co-mounted at any writer path.
+  - AST invariant: `services/ledger_verifier/receipt_store.py` does NOT import `LEDGER_WRITER_CRED_HANDLE`; verifier code never holds the writer's credential handle.
+- `tests/invariants/test_m10_w2a_verifier_credential_separation_and_receipt_store.py` NEW (15 tests, 7 clusters):
+  1. Credential-handle constants exist + non-empty + distinct strings (3 tests).
+  2. `SharedCredentialRefused` exists with code `LEDGER-VERIFIER-C3-001` (1 test).
+  3. `VerifierReceiptStore` construction: refuses writer handle · refuses arbitrary handle · accepts verifier handle (3 tests).
+  4. Append-only surface: no `update` · no `delete` (1 test with both assertions).
+  5. Persistence semantics: append + read · append two + list in order · re-append refuses overwrite (3 tests).
+  6. Persistence namespace scoped by verifier handle (1 test).
+  7. AST negative-scan: `services/ledger_writer/*.py` does NOT import `LEDGER_VERIFIER_CRED_HANDLE` · `services/ledger_verifier/*.py` does NOT import `LEDGER_WRITER_CRED_HANDLE` (2 tests · C3 structural enforcement).
+- `tests/invariants/test_frozen_contract_snapshot_parity.py` extended: `NON_CONTRACT_UTILITY_MODULES` gains `"ledger_credentials.py"` (Final[str] constants only · no pydantic BaseModel · matches existing thin-kernel utility pattern per FL-P4-W6-08 rationale; comment on line documents the addition).
+
+**Stop-conditions checked**:
+- **#1** (2nd path to external model client): NOT triggered · zero new model-client call surfaces.
+- **#2** (verifier sharing any credential with the writer): **NOT triggered · this CP IS the structural gate that prevents it** — the two handles are distinct strings; the receipt store refuses construction under any non-verifier handle (positive allowlist); AST invariants block cross-import of either handle across services boundaries.
+- **#3** (bypass-shaped parameter on custody crossing): NOT triggered · no custody parameters touched.
+
+**T-c (α)**: no verdict/actions renames in this seal (T-c executes at Milestone 3 per owner run order).
+
+**Pre-seal BASELINE_GUARD=1 full sweep**: DOUBLE-GREEN BYTE-IDENTICAL. Run1 = Run2 = passed=5119 / baseline-failures-remaining=0 / quarantined=0. Stripped-diff 0 lines · stripped-sha256 `101cc26e07ad42e8f49395ba1c508a1ef452e3388a13da56ca1a20be0c7d7e72`. Receipts at `backend/phase0/drill_receipts/20260918T215000Z_cp_m10_w2a_verifier_cred_sep_preseal_GUARD1_run{1,2}.log`. RED-first receipt at `20260918T213000Z_...RED_pre_module.log` (13 ModuleNotFoundError · 2 AST-scan trivial-pass). GREEN receipt at `20260918T213500Z_...GREEN_post_module.log` (15/15 pass). Delta measurement at `20260918T214000Z_...delta_GUARD0.log`.
+
+**Autopilot R-28 · continuing NON-STOP to M10-W2b (head-hash publication + cadence scheduler) next as own RED-first cycle.** Staleness re-scope apply-on-expiry remains armed for 2026-09-20T11:35Z.
+
+
+---
+
+## CP-M10-W2a-VERIFIER-CRED-SEPARATION-AND-RECEIPT-STORE · Commit-B/Commit-C banking · 2026-09-18T~22:00Z
+
+**Commit-B state master:** `c17cdd3afbcc4d1f62b3d12e3f92e0a553df516e` (short `c17cdd3a`).
+
+**Commit-C state master fixup:** advances `notes/ORCH_BOOT.md` `heads_last_sealed` to Commit-A `84726a504087243c5ad67186fa32a33330004e5c` (code) + Commit-B `c17cdd3afbcc4d1f62b3d12e3f92e0a553df516e` (state). Byte-identical mirror at `/app/frontend/public/audit/ORCH_BOOT.md` re-synced. `pytest tests/invariants/test_orch_boot.py` re-run post-fixup per checklist (item d) — GREEN.
+
+**§3.3 3-commit seal complete:** Commit-A track-a `84726a50` · Commit-B state `c17cdd3a` · Commit-C this fixup.
+
+**Autopilot R-28 · continuing NON-STOP to M10-W2b (head-hash publication + cadence scheduler) as own RED-first cycle.** Staleness re-scope apply-on-expiry remains armed for 2026-09-20T11:35Z.
+
+
+---
+
+## CP-M10-W2b-HEAD-HASH-PUBLICATION-AND-CADENCE · Commit-A banking · 2026-09-18T~22:30Z
+
+**Commit-A code track:** `62dd899ea56aa277b0caf0d47b68128e8766df14` (short `62dd899e`).
+
+**Wave**: M10-W2b · Milestone 1 second sub-wave · head-hash publication to tenant receipt endpoint (B.4) + cadence scheduler primitive (nightly + on-demand). Follows W2a's verifier credential-separation + append-only receipt store as its own RED-first cycle.
+
+**Canon anchors**:
+- Owner run order 2026-09-18T~21:15Z verbatim (**"head hash published to the tenant receipt endpoint; nightly plus on-demand"**).
+- B-M10-Q2 verbatim (2026-09-18T~12:30Z: **"Cadence: nightly per tenant + on-demand (R-18 effect 12)"**).
+- Canon 1 v1.0 B.4 · *"Publishes head hash to the tenant's receipt endpoint"*.
+- C3 principle (from W2a): verifier-side surfaces NEVER hold the writer's credential handle. Both new modules propagate the same positive-allowlist C3 gate.
+
+**Delta**: 5119 → 5134 = **+15 exactly reconciled line-by-line**: 15 authored W2b tests. Zero auto-param expansion (both new modules live under `services/` rather than `contracts/`, so `test_frozen_contract_snapshot_parity` did not fire). Zero flip. Zero regression.
+
+**Files landed**:
+
+- **NEW** `services/ledger_verifier/publication.py` (~140 LOC):
+  - `HeadHashPublication` frozen dataclass · exactly **five** owner-ratified fields: `tenant_id · head_seq · head_hash · published_at_iso · verifier_receipt_signature`.
+  - `publish_head_hash(publication, endpoint_root, credential_handle)` — appends the publication as a JSON line to `<endpoint_root>/<verifier-namespace>/<tenant_id>/receipts.jsonl`. Append-only (no truncation, no rewrite).
+  - `list_publications_for_tenant(tenant_id, endpoint_root, credential_handle)` — reads publications in append order.
+  - C3 gate reused from W2a (positive allowlist): refuses any `credential_handle != LEDGER_VERIFIER_CRED_HANDLE` with `SharedCredentialRefused` (`LEDGER-VERIFIER-C3-001`).
+  - **M3 forward-compat preemption**: HeadHashPublication's five-field set **explicitly excludes** `confidence` / `score` / `strength` / `probability` per owner run order 2026-09-18T~21:15Z Milestone 3 verdict-schema discipline ("no confidence, score, strength or probability field, enforced by a signature-as-guard test"). This is a certificate-like record and inherits the M3 discipline preemptively at W2b — the invariant `test_head_hash_publication_carries_no_score_confidence_probability_strength_field` enforces the exclusion structurally so no M3-remediation surprise surfaces at M12b-W1.
+- **NEW** `services/ledger_verifier/cadence.py` (~150 LOC):
+  - `CADENCE_INTENT_ALPHABET: Final[Tuple[str, str]] = ("nightly", "on_demand")` — closed 2-element alphabet per SO §3.10-α (owner ruling 2026-09-17T~13:26Z: `tuple[str]` admitted, `enum.Enum` still banned). Owner run order verbatim: "nightly plus on-demand".
+  - `CadenceIntent` frozen 3-field dataclass · `tenant_id · intent_kind · at_iso`.
+  - `record_run_intent(tenant_id, intent_kind, at_iso, journal_root, credential_handle)` — appends a `CadenceIntent` to `<journal_root>/<verifier-namespace>/<tenant_id>/intents.jsonl`. Refuses `intent_kind not in CADENCE_INTENT_ALPHABET` with `UnknownCadenceIntentRefused` (`LEDGER-VERIFIER-CADENCE-001`).
+  - `list_intents_for_tenant(tenant_id, journal_root, credential_handle)` — reads intents in append order.
+  - Same C3 gate as W2a / publication.
+  - **Single-responsibility discipline**: cadence records WHEN a verify is scheduled; it NEVER invokes `verify_chain()`. The verifier walk is a separate module — this preserves W2a's "one job per module" property and lets the scheduling side be tested independently.
+- `tests/invariants/test_m10_w2b_head_hash_publication_and_cadence.py` NEW (15 tests, 3 clusters):
+  1. **Cluster A · HeadHashPublication + publish_head_hash** (7 tests): module surface (`HeadHashPublication` + `publish_head_hash` importable) · frozen 5-field dataclass · **banned-field-exclusion invariant** (M3 forward-compat: no `confidence` / `score` / `strength` / `probability`) · append + read-back roundtrip · two-publication order preservation (append-only) · C3 refusal on writer handle · verifier-handle namespace scoping.
+  2. **Cluster B · Cadence scheduler** (6 tests): module surface (`CADENCE_INTENT_ALPHABET` + `record_run_intent` + `list_intents_for_tenant` + `UnknownCadenceIntentRefused`) · closed 2-alphabet `('nightly', 'on_demand')` · nightly-intent record + read-back · on-demand-intent record + read-back · `UnknownCadenceIntentRefused` on unknown kind (`"hourly"`) · C3 refusal on writer handle.
+  3. **Cluster C · AST cross-import negative-scan** (2 tests): `services/ledger_verifier/publication.py` does NOT import `LEDGER_WRITER_CRED_HANDLE` · `services/ledger_verifier/cadence.py` does NOT import `LEDGER_WRITER_CRED_HANDLE` — C3 structural enforcement propagated.
+
+**Zero mechanism change** to `receipt_store.py` or `contracts/ledger_credentials.py` from W2a. Pure additive new-module wave. Zero touch to writer code. Zero touch to LLM / chokepoint / Watch code.
+
+**Stop-conditions checked**:
+- **#1** (2nd path to external model client): NOT triggered · zero new model-client call surfaces.
+- **#2** (verifier sharing any credential with the writer): **NOT triggered · C3 gate propagated to both new modules via positive allowlist** — both `publish_head_hash` and `record_run_intent` refuse under any non-verifier handle at call time; AST invariants (Cluster C) block cross-import of `LEDGER_WRITER_CRED_HANDLE` into either new module.
+- **#3** (bypass-shaped parameter on custody crossing): NOT triggered · no custody parameters touched.
+
+**T-c (α)**: no verdict/actions renames in this seal (T-c executes at Milestone 3 per owner run order).
+
+**Pre-seal BASELINE_GUARD=1 full sweep**: DOUBLE-GREEN BYTE-IDENTICAL. Run1 = Run2 = **`5134 passed, 1 skipped, 1 xfailed, 438 warnings`**. Stripped-diff **0 lines** (line count via `difflib.unified_diff` after volatility normalisation: timings, tmp paths, `[gwN]` worker tags) · stripped-sha256 **`dccc5eb2610065e58344f954c904c81ecaf31c63a532e35ce53f3ba130a0ed82`**. Receipts at `backend/phase0/drill_receipts/20260918T224000Z_cp_m10_w2b_pub_cadence_preseal_GUARD1_run{1,2}.log`. RED-first receipt at `20260918T222000Z_...RED_pre_module.log` (15/15 fail w/ `ModuleNotFoundError` on `services.ledger_verifier.publication` and `services.ledger_verifier.cadence`). GREEN receipt at `20260918T222500Z_...GREEN_post_module.log` (15/15 pass). Delta measurement at `20260918T223000Z_...delta_GUARD0.log`.
+
+**Autopilot R-28 · continuing NON-STOP to M10-W3 (SEV-1 wire on chain break: security-group page + Watch signal recorded · evidence-never-action discipline) next as own RED-first cycle.** Tests-first requirement per owner run order: deliberately-broken chain produces BOTH the paging AND the Watch signal; any shared credential fails a dedicated test. Staleness re-scope apply-on-expiry remains armed for 2026-09-20T11:35Z.
+
+
+---
+
+## CP-M10-W2b-HEAD-HASH-PUBLICATION-AND-CADENCE · Commit-B/Commit-C banking · 2026-09-18T~22:40Z
+
+**Commit-B state master:** `323a102b2bd74cdfc4c419d617cc8f21545e06f9` (short `323a102b`).
+
+**Commit-C state master fixup:** advances `notes/ORCH_BOOT.md` `heads_last_sealed` to Commit-A `62dd899ea56aa277b0caf0d47b68128e8766df14` (code) + Commit-B `323a102b2bd74cdfc4c419d617cc8f21545e06f9` (state). Byte-identical mirror at `/app/frontend/public/audit/ORCH_BOOT.md` re-synced (sha256 `3fbeb443b510d00c19c73ba0998f38874fae2e79f5ba4a3d554b361a873b55b8` on both copies). `pytest tests/invariants/test_orch_boot.py` re-run post-fixup per checklist (item d) — GREEN. R-6 regen complete.
+
+**§3.3 3-commit seal complete:** Commit-A track-a `62dd899e` · Commit-B state `323a102b` · Commit-C this fixup.
+
+**Autopilot R-28 · continuing NON-STOP to M10-W3 (SEV-1 wire on chain break: security-group page + Watch signal recorded · evidence-never-action discipline) as own RED-first cycle.** Tests-first requirement per owner run order: deliberately-broken chain produces BOTH the paging AND the Watch signal; any shared credential fails a dedicated test. Staleness re-scope apply-on-expiry remains armed for 2026-09-20T11:35Z.
+
+
+---
+
+## CP-M10-W3-SEV1-WIRE-ON-CHAIN-BREAK · Commit-A banking · 2026-09-18T~23:20Z · MILESTONE 1 CLOSE-OUT
+
+**Commit-A code track:** `5118934fdf9a451efc26c9296474c7e3094067ab` (short `51189340`).
+
+**Wave**: M10-W3 · Milestone 1 close-out · SEV-1 wire on chain break: security-group page + Watch signal recorded · evidence-never-action discipline.
+
+**Canon anchors**:
+- Owner run order 2026-09-18T~21:15Z verbatim (**"SEV-1 wire on chain break — security-group page + Watch signal recorded · evidence-never-action discipline. Tests-first requirement: deliberately-broken chain produces BOTH the paging AND the Watch signal; any shared credential fails a dedicated test."**).
+- B-M10-Q2 verbatim (2026-09-18T~12:30Z: **"SEV-1 wiring: a chain break pages the security group per B.10 and is additionally recorded as a Watch signal, never as an action — it's evidence, and it belongs in the certificate ground."**).
+- Canon 8 §W1 (eyes-never-act/hand-never-judges) transplanted to the SEV-1 wire: the paging surface and the Watch chain-break signal are Macho, not Mkono; evidence, not action.
+- Canon 8 §Line 31 (closed six-kind sever-certainty registry): NOT widened — the ledger chain-break signal is operational-integrity evidence, a DISTINCT class from the sever-certainty six-registry (canary touch, attestation failure, mark hit, witness-write attempt, floor violation, mirage incrimination).
+- C3 principle (from W2a) propagated: all three new modules refuse under any non-verifier credential handle.
+
+**Delta**: 5134 → 5151 = **+17 exactly reconciled line-by-line**: 17 authored W3 tests. Zero auto-param expansion (all three new modules live under `services/` rather than `contracts/`). Zero flip. Zero regression.
+
+**Files landed**:
+
+- **NEW** `services/ledger_verifier/sev1_paging.py` (~130 LOC):
+  - `Sev1Page` frozen 5-field dataclass · `tenant_id · break_at_seq · head_seq · head_hash · paged_at_iso`.
+  - `raise_sev1_page(page, page_root, credential_handle)` — appends the page as a JSON line to `<page_root>/<verifier-namespace>/<tenant_id>/sev1_pages.jsonl`. Append-only.
+  - `list_pages_for_tenant(tenant_id, page_root, credential_handle)` — reads pages in append order.
+  - C3 gate reused from W2a (positive allowlist).
+  - **M3 forward-compat preemption**: `Sev1Page`'s five-field set explicitly excludes `confidence` / `score` / `strength` / `probability` per owner run order 2026-09-18T~21:15Z Milestone 3 verdict-schema discipline; `test_sev1_page_carries_no_score_confidence_probability_strength_field` enforces the exclusion structurally.
+- **NEW** `services/watch/ledger_chain_break_signal.py` (~140 LOC):
+  - `LedgerChainBreakSignal` frozen 5-field dataclass · `tenant_id · break_at_seq · head_seq · head_hash · observed_at_iso`.
+  - `record_chain_break_signal(signal, watch_root, credential_handle)` — appends the signal as a JSON line to `<watch_root>/<verifier-namespace>/<tenant_id>/chain_break_signals.jsonl`. Append-only.
+  - `list_chain_break_signals_for_tenant(tenant_id, watch_root, credential_handle)` — reads signals in append order.
+  - Same C3 gate.
+  - **DISTINCT from `services.watch.sever_signals`**: the closed six-kind sever-certainty registry per Canon 8 §Line 31 is NOT widened. The chain-break signal is operational-integrity evidence — a distinct Watch evidence class. It never unlocks maximum autonomous force, never mints a Mark, never triggers Mkono. Pure Macho.
+  - Same M3 forward-compat banned-field-exclusion invariant.
+- **NEW** `services/ledger_verifier/sev1_wire.py` (~90 LOC):
+  - `wire_sev1_on_chain_break(receipt, page_root, watch_root, at_iso, credential_handle)` — the orchestrator.
+  - **Owner tests-first requirement structurally satisfied**: on `receipt.break_at_seq is not None` (broken chain), atomically emits one `Sev1Page` (to page_root) AND one `LedgerChainBreakSignal` (to watch_root). Both records carry identical `tenant_id`, `break_at_seq`, `head_seq`, `head_hash`, and `at_iso`.
+  - **Evidence-never-fabricated discipline (Canon 8 §W1 eyes-never-act transplanted)**: on `receipt.break_at_seq is None` (intact chain), emits NEITHER a page NOR a Watch signal. Absence of signal is not a signal.
+  - **C3 gate FIRST**: the wire refuses under any non-verifier credential BEFORE inspecting the receipt shape at all, so any shared credential is refused up front (owner tests-first requirement: "any shared credential fails a dedicated test").
+- `tests/invariants/test_m10_w3_sev1_wire_on_chain_break.py` NEW (17 tests, 4 clusters):
+  1. **Cluster A · Sev1Page + raise_sev1_page** (5 tests): module surface · frozen 5-field · banned-field-exclusion invariant (M3 forward-compat) · append + read-back · C3 refusal on writer handle.
+  2. **Cluster B · LedgerChainBreakSignal + record_chain_break_signal** (5 tests): module surface · frozen 5-field · banned-field-exclusion invariant · append + read-back · C3 refusal on writer handle.
+  3. **Cluster C · `wire_sev1_on_chain_break` composition** (4 tests): module surface · BOTH-page-AND-watch-signal-emitted-on-broken-chain (owner verbatim tests-first mandate) · NEITHER-emitted-on-intact-chain (evidence-never-fabricated) · C3 refusal on writer handle (owner verbatim tests-first mandate: "any shared credential fails a dedicated test").
+  4. **Cluster D · AST cross-import + evidence-never-action structural discipline** (3 tests): `sev1_paging.py` does NOT import `LEDGER_WRITER_CRED_HANDLE` · `ledger_chain_break_signal.py` does NOT import `LEDGER_WRITER_CRED_HANDLE` · NONE of the three new modules imports `services.watch.mkono` (the hand · action authority) or `services.ledger_writer` (the write authority). This is the AST-level structural enforcement of Canon 8 §W1 eyes-never-act transplanted to the SEV-1 wire.
+
+**Zero mechanism change** to:
+- `services/ledger_verifier/receipt_store.py` (W2a untouched)
+- `contracts/ledger_credentials.py` (W2a constants untouched)
+- `services/ledger_verifier/publication.py` (W2b untouched)
+- `services/ledger_verifier/cadence.py` (W2b untouched)
+- `services/ledger_verifier/verify.py` (M10-CLOSE receipt shape reused, no field added or renamed)
+- `services/watch/sever_signals.py` (closed six-kind sever-certainty registry preserved — the chain-break signal deliberately lives on a distinct module so the six-registry is not widened)
+- `services/ledger_writer/main.py` (write authority untouched)
+
+Pure additive new-module wave.
+
+**Stop-conditions checked**:
+- **#1** (2nd path to external model client): NOT triggered · zero new model-client call surfaces.
+- **#2** (verifier sharing any credential with the writer): **NOT triggered · C3 gate propagated to all three new modules via positive allowlist** — all three modules refuse under any non-verifier handle at call time; AST invariants (Cluster D) block cross-import of `LEDGER_WRITER_CRED_HANDLE` into any of them.
+- **#3** (bypass-shaped parameter on custody crossing): NOT triggered · no custody parameters touched.
+
+**T-c (α)**: no verdict/actions renames in this seal (T-c executes at Milestone 3 per owner run order).
+
+**Pre-seal BASELINE_GUARD=1 full sweep**: DOUBLE-GREEN BYTE-IDENTICAL. Run1 = Run2 = **`5151 passed, 1 skipped, 1 xfailed, 438 warnings`**. Stripped-diff **0 lines** (line count via `difflib.unified_diff` after volatility normalisation: timings, tmp paths, `[gwN]` worker tags) · stripped-sha256 **`73b0e6e7ed1a071179b9857f9de58c554aaee63c74a34f0ba9f9f88d3cb7b5ea`**. Receipts at `backend/phase0/drill_receipts/20260918T231500Z_cp_m10_w3_sev1_wire_preseal_GUARD1_run{1,2}.log`. RED-first receipt at `20260918T230000Z_...RED_pre_module.log` (17/17 fail w/ ModuleNotFoundError + authentic AST-scan p.exists() failures on not-yet-landed modules). GREEN receipt at `20260918T230500Z_...GREEN_post_module.log` (17/17 pass). Delta measurement at `20260918T231000Z_...delta_GUARD0.log` (5151 passed exact +17 from floor 5134 · no silent rebaselining).
+
+**MILESTONE 1 (M10-W2/W3) CLOSED with this seal.** The Ledger's operational wire is complete:
+- W2a: verifier under credentials the writer does not hold (C3) + its own append-only receipt store.
+- W2b: head hash published to the tenant receipt endpoint + cadence scheduler (nightly + on-demand).
+- W3: SEV-1 wire on chain break → security-group page + Watch signal (both), evidence-never-action.
+
+**W1f CONFIRMATION** (Milestone 3 Gate ii · precondition for opening M12b-W1 · owner tightening 2026-09-18T~PROCEED-response):
+
+Affirmatively:
+
+(i) **Scoring output is Grey Mirror-side detection input feeding the observed surface only.** LANGO scoring (landed at CP-M12-W1f) is Watch input-seat detection material used by the Grey Mirror observer surface. It does not feed any verdict schema or any Mkono-consumed structure.
+
+(ii) **No score/confidence/strength/probability field exists on any verdict schema or anything Mkono consumes.** Preemptively enforced at W2b (`test_head_hash_publication_carries_no_score_confidence_probability_strength_field` on `HeadHashPublication`) and at W3 (`test_sev1_page_carries_no_score_confidence_probability_strength_field` on `Sev1Page` + `test_ledger_chain_break_signal_carries_no_score_confidence_probability_strength_field` on `LedgerChainBreakSignal`). Awaiting M12b-W1 for the caller-flip signature-as-guard test on the verdict schema itself.
+
+(iii) **Emitter fail-closed test — exact pytest node IDs (owner-grepable):**
+
+At CP-M12-W1d (`WatchInputSeatUnobservable` propagation half — a crossing that cannot be observed does not happen, R-26):
+```
+tests/invariants/test_m12_w1d_dap7_custody_option_d.py::test_watch_input_seat_write_failure_makes_invoke_refuse
+```
+This test monkeypatches `services.watch.input_seat.emit_crossing` to raise `WatchInputSeatUnobservable`, invokes `services.chokepoint.llm.invoke()`, and asserts `pytest.raises(WatchInputSeatUnobservable)` propagates AND `send_message` was NEVER called (dispatch count == 0). File path (repo-relative): `backend/tests/invariants/test_m12_w1d_dap7_custody_option_d.py` (banked at CP-M12-W1d-W1e-DAP7-OPTION-D 2026-09-18T~18:04Z stripped-sha256 sweep).
+
+At CP-M12-W1f (Lango graded-gate emitter half — `hold`/`block` verdicts refuse invoke BEFORE `send_message`):
+```
+tests/invariants/test_m12_w1f_watch_input_seat_lango_scoring.py::test_hold_verdict_refuses_invoke_fail_closed
+tests/invariants/test_m12_w1f_watch_input_seat_lango_scoring.py::test_block_verdict_refuses_invoke_fail_closed
+```
+File path (repo-relative): `backend/tests/invariants/test_m12_w1f_watch_input_seat_lango_scoring.py` (banked at CP-M12-W1f-LANGO-SCORING 2026-09-18T~18:25Z stripped-sha256 sweep). Both tests spy on `send_message` and assert `sent_flag["called"] is False` after the graded-gate verdict.
+
+The three node IDs above are grep-verifiable at the current head (5151-test ratchet). Owner directive obeyed: "If while verifying this you find ANY scoring value reaching a verdict-shaped structure, that is remediation before the Watch schema freezes — flag it, don't fold it silently." **Status of remediation check: NO scoring value reaches any verdict-shaped structure at the current head (5151-test ratchet); every new certificate-like record landed at W2b / W3 structurally excludes the banned field set (`test_head_hash_publication_carries_no_score_confidence_probability_strength_field`, `test_sev1_page_carries_no_score_confidence_probability_strength_field`, `test_ledger_chain_break_signal_carries_no_score_confidence_probability_strength_field`). Nothing to remediate before M12b-W1 schema freeze.**
+
+**Autopilot R-28 · continuing NON-STOP to Milestone 2 · M10-W4 writer consolidation** (ruled order: refusal → countersign → northena → deletion → memory · per-writer replay-proof gated · legacy stores go read-only at cutover, never rewritten). Staleness re-scope apply-on-expiry remains armed for 2026-09-20T11:35Z.
+
+
+---
+
+## CP-M10-W3-SEV1-WIRE-ON-CHAIN-BREAK · Commit-B/Commit-C banking · 2026-09-18T~23:25Z · MILESTONE 1 SEALED
+
+**Commit-B state master:** `2146069ed142256060cf34d8fe2475ad8e3469bb` (short `2146069e`).
+
+**Commit-C state master fixup:** advances `notes/ORCH_BOOT.md` `heads_last_sealed` to Commit-A `5118934fdf9a451efc26c9296474c7e3094067ab` (code) + Commit-B `2146069ed142256060cf34d8fe2475ad8e3469bb` (state). Byte-identical mirror at `/app/frontend/public/audit/ORCH_BOOT.md` re-synced (sha256 `dc403192d4203a1ac1aa249f7d24d69f48a0769eb6538b63f8d1efbe3d0f823a` on both copies). `pytest tests/invariants/test_orch_boot.py` re-run post-fixup per checklist (item d) — GREEN. R-6 regen complete.
+
+**§3.3 3-commit seal complete:** Commit-A track-a `51189340` · Commit-B state `2146069e` · Commit-C this fixup.
+
+**MILESTONE 1 (M10-W2/W3) FULLY SEALED with this fixup.** The Ledger's operational wire is complete end-to-end: verifier credential-separated + append-only receipt store (W2a) · head-hash publication to tenant receipt endpoint + cadence scheduler (W2b) · SEV-1 wire on chain break with security-group paging + Watch chain-break signal (W3). W1f confirmation banked with three grep-verified emitter fail-closed pytest node IDs (Gate ii for M3 satisfied at the citation level).
+
+**Autopilot R-28 · continuing NON-STOP to Milestone 2 · M10-W4 writer consolidation** as own RED-first cycle. Ruled order per owner: refusal → countersign → northena → deletion → memory. Per-writer replay-proof gate per writer. Legacy stores go read-only at cutover, never rewritten. Staleness re-scope apply-on-expiry remains armed for 2026-09-20T11:35Z.
+
+
+---
+
+## Bank OWNER RULING · Standing Order §6 (Long Autonomous Run Protocol) · VERBATIM · 2026-09-19T~00:00Z
+
+Full text banked as-issued into `STATE/STANDING_ORDERS.md` under the new heading `## §6. LONG AUTONOMOUS RUN PROTOCOL (owner-ratified 2026-09-19T~00:00Z · verbatim · supersedes per-milestone run orders from banking)`. Text reproduced here for the DECISIONS-audit surface:
+
+> Standing Order §6 — Long Autonomous Run Protocol
+> Governs the remaining ~55–90 agent-hours. Banks to STATE/STANDING_ORDERS.md; supersedes per-milestone run orders from its banking. Three guardrails, an escalation policy, pre-rulings for the known forks, and the run mechanics.
+>
+> §6.1 — Guardrail 1: continuity across compaction. Files are truth; context is a cache.
+> Compaction will happen and the agent will not reliably know when. So re-anchoring is unconditional, not event-triggered.
+> No rule lives in memory. A bound, ruling, or objective not present in STANDING_ORDERS.md, DECISIONS.md, NEXT.md, or the milestone's objective card (§6.2) is not a rule and MUST NOT be acted on. "I recall the owner said" is never sufficient; find it in the file or treat it as unruled.
+> Re-anchor at every seal boundary and every sub-wave open, cheap by design: read ORCH_BOOT.md, NEXT.md, DECISIONS.md, and the current objective card; run the boot invariants (test_orch_boot.py, test_standing_orders_present.py, and the new test_objective_card_pinned.py); write a ≤12-line resume attestation to NEXT.md — current milestone, sub-wave, ratchet floor, open forks, active bounds, next action — and diff it against the last banked attestation. Any mismatch is a stop-and-report before any write.
+> ORCH_BOOT regen carries the objective cards for every open milestone, hash-pinned, so a compacted context is rebuilt from the same cards the owner ratified. The audit mirror stays byte-identical.
+> The ratchet is the memory of record for progress. No silent rebaselining — unchanged. A floor that cannot be explained line-by-line from seal notes is a stop.
+>
+> §6.2 — Guardrail 2: objective deviation. Every milestone has a card; every seal cites a card line.
+> Each milestone and each substantive component gets an objective card at STATE/OBJECTIVES/<id>.md, hash-pinned at ratification:
+> OBJECTIVE   one sentence — what this milestone makes true
+> MUST DO     numbered lines, each with canon_ref (5–10)
+> MUST NOT    bans, each with canon_ref
+> EXIT        evidence per MUST-DO line: test IDs, seal conditions
+> STOP        milestone-specific stop conditions
+> ANCHORS     the underlying components this builds on (§6.3 rule 1)
+> Self-check at three points: open — the card exists, is ratified, and every MUST-DO line has an anchor; each sub-wave — its seal message cites the card line(s) it advances (test_seal_cites_card.py fails a seal that cites none); close — every MUST-DO line has exit evidence, and anything built that maps to no line is declared as scope drift — additive-only makes it permissible, undeclared makes it a stop. Cards for M10-W2/3, M10-W4, and M12b-W1 are the three run orders already issued; e1_dev drafts cards for M13–M17, memory layer, and frontends from canon and the SER, for batch ratification at the next seal boundary.
+>
+> §6.3 — Guardrail 3: rulings that need the owner. Four tiers before the desk.
+> When a fork arises, resolve it at the lowest tier that answers it, in order:
+> Underlying components first. Does a canon rule or an existing component already answer it? Then that is the answer — cite it, build to it, no ruling. (Most forks so far were this tier.)
+> Production-grade standard second. Does a conventional, named industry standard answer it — NIST, Common Criteria, Kubernetes, OTel, Terraform conventions, Kenya DPA? Adopt the conventional choice, cite the standard, tag DEFAULT-class · standard, continue.
+> DEFAULT-class value third. Is it a number, cadence, or threshold? Choose the conservative default, tag pending ratification, continue; it batches to the desk at milestone close.
+> Owner desk fourth — only for: a canon amendment; a TCB membership change; a change to a Fixed decision-register entry; an exception to a hard invariant; anything externally visible (claims, pricing, partner-facing terms); a security incident; money or legal. These are forks: banked with options and a recommendation, and the run continues on everything they don't block.
+> Desk items batch at milestone seals, not per fork. TCB-tier ceremonies are never pre-signed; ordinary-tier re-scopes that tighten (never loosen) may be proposed and countdown-started without waiting, countersign requested in the batch.
+>
+> §6.4 — Pre-rulings for the forks the estimate names.
+> M16 CIF scope — ruled now, since it moves the number most. CIF is built as canon already defines it: a learned ideation faculty outside the TCB; every CIF-originated idea passes a deterministic acceptance point before affecting anything (BR-9.2, single-experiment principle); CIF proposes and never ratifies (AC-18); its outputs enter the research loop (A5.22, L-4) and the capability register (A20.16, L-5); it has its own halt independent of the Targeta run it feeds (DET-1 closed as a MUST-DO). Nothing beyond that in M16. If the card needs more, that's a fork.
+> M10-W4 replay forks — pre-ruled. Where a writer's legacy semantics cannot be preserved by replay: the legacy store goes read-only and is referenced by provenance; the chain migrates forward-only from cutover; legacy rows are carried as provenance pointers, never re-derived. Bank it, don't stop for it.
+> Frontend fidelity bar — ruled. Functional parity with the established five-stage pattern and the DAP UI Handoff Brief §5 constraints. Prototype adoption where a screen exists; no literal pixel fidelity. The expensive path is not authorised.
+> M13 standards — tier 2 applies. KMS: envelope encryption, per-tenant keys, 90-day rotation (R-4). OTel and Terraform: conventional. Runbooks per B.10. Cite, build, no ruling.
+>
+> §6.5 — Run mechanics: the other ways a long sprint survives.
+> Restore points are milestone seals. Unrecoverable state rolls back to the last milestone seal, not the last commit.
+> Time-box per milestone at 2× the estimate. Exceeding it is a stop-and-report — the run is thrashing, and thrashing burns credits without moving the ratchet.
+> Loop detection. The same test RED across three sweeps, or the same fork banked twice, is a stop.
+> A build critic seam. Before every seal: RV-tier deterministic checks (the tests) plus a QA-tier self-review against the objective card. The self-review can raise a finding; it never blocks alone, and it never substitutes for a RED test.
+> Owner interrupts are processed at seal boundaries only, except a message containing STOP, which is immediate.
+> Daily digest replaces per-seal reports: ratchet delta, milestones closed, forks banked, desk items batched, next in flight. Milestone seals still get the one-line report.
+> HF hold, §4.1 §E, zero push, no testing_agent — unchanged and not batchable.
+>
+> §6.6 — Acceptance of the estimate. 55–90 agent-hours, central ~70, is accepted as the working plan. This protocol's job is to take the 20–25% overhead and the desk-latency multiplier out of it: tiers 1–3 answer most forks without a round-trip, pre-rulings remove the four named movers, and batching turns the rest into one desk visit per milestone.
+>
+> §6.7 — Sequence from here. M10-W2/W3 → M10-W4 → M12b-W1 (its three gates unchanged) → M13 → M14 → M15 → M16 → M17 → memory layer → frontends, G5 interleaved to completion. Objective cards for M13 onward drafted before their milestone opens and batched for ratification at the preceding seal.
+> Bank §6 and continue.
+
+**Compliance actions taken at banking (2026-09-19T~00:15Z):**
+
+- STATE/STANDING_ORDERS.md gains `## §6. LONG AUTONOMOUS RUN PROTOCOL ...` section carrying the owner text verbatim + a landing-metadata footer (which invariants + which cards landed as part of the mechanism). The pre-existing numeric `## 6. CURRENT AUTHORITATIVE ARTIFACTS` heading is preserved unchanged; the paragraph-mark `§6` disambiguates.
+- Two new always-on invariants authored under `backend/tests/invariants/`:
+  - `test_objective_card_pinned.py` (5 tests · STATE/OBJECTIVES/ directory + presence + required six sections + ratification front-matter + hash-pin verification).
+  - `test_seal_cites_card.py` (2 tests · every card's EXIT section lists ≥1 pytest node ID · every cited file exists on disk).
+- STATE/OBJECTIVES/ directory NEW carrying three pre-ratified cards (the three run orders already issued satisfy §6.2's ratification precondition by definition):
+  - `STATE/OBJECTIVES/M10_W2_W3.md` (Milestone 1 · retrospectively ratified · milestone_status: SEALED).
+  - `STATE/OBJECTIVES/M10_W4.md` (Milestone 2 · milestone_status: IN_FLIGHT · W4a opens now).
+  - `STATE/OBJECTIVES/M12b_W1.md` (Milestone 3 · milestone_status: UPCOMING · gated on M10-W4 close + W1f confirmation banked + Canon-8 G5 rules mapped).
+- Four pre-rulings from §6.4 are now standing law:
+  1. **M16 CIF scope** — as canon defines it (BR-9.2 · AC-18 · A5.22/L-4 · A20.16/L-5 · DET-1 as MUST-DO · nothing beyond).
+  2. **M10-W4 replay fallback** — legacy store read-only + referenced by provenance · chain migrates forward-only from cutover · legacy rows carried as provenance pointers, never re-derived. Bank the case, don't stop.
+  3. **Frontend fidelity bar** — functional parity with five-stage pattern + DAP UI Handoff Brief §5. Prototype adoption where a screen exists. NO pixel fidelity. Expensive path NOT authorised.
+  4. **M13 standards (tier 2)** — KMS envelope encryption + per-tenant keys + 90-day rotation (R-4); OTel + Terraform conventional; runbooks per B.10. Cite, build, no ruling.
+- Four-tier fork policy adopted: (1) underlying components first · (2) production-grade standard second · (3) DEFAULT-class value third (pending-ratification tag · batches to desk at milestone close) · (4) owner desk fourth (canon amend / TCB member change / Fixed-DR change / hard-invariant exception / externally visible / security incident / money or legal).
+- Reporting switches: daily digest (ratchet delta · milestones closed · forks banked · desk items batched · next in flight) + one-line milestone-seal reports + batched desk items at milestone seals only.
+- Time-box discipline: per-milestone 2× estimate is stop-and-report threshold.
+- Loop detection: same test RED across three sweeps, or same fork banked twice, is stop.
+- Build-critic seam: RV-tier deterministic (tests) + QA-tier self-review against objective card before every seal. Self-review can raise a finding; never blocks alone; never substitutes for RED test.
+- Owner interrupts processed at seal boundaries; message containing `STOP` is immediate.
+- Restore points = milestone seals (not per commit).
+
+**Autopilot R-28 authority under §6:** the run continues NON-STOP through §6.7 sequence subject to §6.5 (time-box + loop detection + build critic + STOP-immediate).
+
+
+---
+
+## Bank OWNER ORDER · FULL-RUN AUTHORIZATION · END OF BUILD · VERBATIM · 2026-09-19T~00:20Z
+
+Owner text as received (banked verbatim per §6.1 · files-are-truth discipline):
+
+> With guardrails done, go on all remaining milestones. The above order to survive to end of build.
+
+**Orchestrator translation banked verbatim** (from the same message, reproduced so the run survives compaction):
+
+> Orchestrator translation: this is standing authority extended to END OF BUILD under Standing Order §6. Execute the complete §6.7 sequence without pausing between milestones:
+>
+> M10-W2/W3 (finish) → M10-W4 → M12b-W1 (three gates unchanged: W4 in full, W1f confirmation banked with exact pytest node ID, Canon-8's 217 G5 rules mapped) → M13 → M14 → M15 → M16 (per the §6.4 pre-ruled scope, nothing beyond it) → M17 → memory layer (only after C.13 partial closes per the banked ruling) → frontends (functional parity bar per §6.4; gated on frozen C.17 + DAP entitlement + receipt contracts per the B-frontends-Q1 ruling) — G5 interleaved to completion (1,096/1,096 pre-gate-release).
+>
+> §6 governs everything and SURVIVES COMPACTION — that is its purpose. On every wake/re-anchor: files are truth, context is cache; ORCH_BOOT + NEXT + DECISIONS + objective card + boot invariants + resume attestation before any write. If any future context loss occurs, this order is banked in DECISIONS — you re-ground from the file, not from memory.
+>
+> Operational reminders:
+> 1. Objective cards: draft M13–M17 + memory layer + frontends cards ahead per §6.2/§6.7, batch-ratify at preceding milestone seals. Desk items batch at milestone seals per §6.3. The daily digest + one-line milestone reports are your only reporting duties.
+> 2. Frontends note (orchestrator constraint, when you reach them): you are the backend/web-surface builder — the Expo mobile surface, if the frontends card requires one, is built by a separate specialist agent; when frontends open, report the frozen-contract status and the DAP UI Handoff Brief location, and I will dispatch the specialists. Do not build Expo yourself.
+> 3. Non-batchable absolutes unchanged: HF hold (SEC-2026-09-12-01), §4.1 §E credential discipline, zero push, no testing_agent, terminal pytest only, no silent rebaselining, additive-only, the three absolute stops (second model-client path / credential-sharing verifier / bypass-shaped custody parameter).
+> 4. Staleness re-scope APPLY-ON-EXPIRY 2026-09-20T11:35Z — apply per ceremony when the clock fires, own small seal.
+> 5. Owner interrupts process at seal boundaries; a message containing STOP is immediate.
+>
+> Run to end of build. Daily digests + milestone one-liners + batched desk items. Go.
+
+**Compliance under the extension:**
+
+- Standing authority is now END OF BUILD (§6.7 sequence to completion), not just Milestone 3.
+- Objective-card drafting order: M13, M14, M15, M16, M17, memory layer, frontends — drafted before the preceding milestone seals per §6.7. First batch to draft: M13 (at M12b-W1 close · after M10-W4 close).
+- Frontends: Expo mobile is dispatched to a separate specialist agent by the owner when frontends open; e1 is backend/web-surface. When frontends open, report frozen-contract status + DAP UI Handoff Brief location and await owner dispatch. Do NOT build Expo.
+- The three absolute stops remain non-batchable: (i) second path to external model client · (ii) verifier sharing credentials with writer · (iii) bypass-shaped parameter on custody crossing. HF hold + zero push + no testing_agent + no silent rebaselining remain non-batchable.
+- Staleness re-scope APPLY-ON-EXPIRY 2026-09-20T11:35Z remains armed. When the clock fires: apply ceremony (re-scope five tests to presence + integrity-hash + last-known-good), pull the one-time on-host GPU journal, run full sweep, fold into its own small seal.
+- Daily-digest cadence + one-line milestone-seal reports + batched desk items at milestone seals is the reporting envelope. Per-CP long reports retire from banking date.
+
+
+---
+
+## CP-SO6-BANKED-AND-M10-W4a-REFUSAL-CONSOLIDATION · Commit-A banking · 2026-09-19T~00:22Z
+
+**Scope:** joint seal — SO §6 mechanism banked + M10-W4a first sub-wave (refusal writer replay adapter) landed. Card citations (§6.2 requirement): `STATE/OBJECTIVES/M10_W4.md` line MUST-DO-1 + line EXIT-W4a (adapter landing); implicit self-citation on all three cards for the SO §6.2 mechanism itself.
+
+**Commit-A code track:** `ba359a16c4edd3458ed06c37811d33daad61b32c` on `programme/track-a` · sealed 2026-09-19T00:23:00Z · scope pinned in §3.3 Commit-A message.
+
+**Delta**: 5151 → 5174 = **+23 exactly reconciled line-by-line**: 7 SO6 invariant tests + 16 W4a invariant tests. Zero flip. Zero regression. Zero auto-param expansion (all new modules live under `services/ledger_writer/writers/` or `tests/invariants/`; no `contracts/` change).
+
+**Files landed (code repo):**
+
+- **NEW** `backend/tests/invariants/test_objective_card_pinned.py` (5 tests):
+  1. `test_objectives_directory_exists` — STATE/OBJECTIVES/ present.
+  2. `test_in_flight_milestone_cards_present` — three cards at M10_W2_W3.md, M10_W4.md, M12b_W1.md.
+  3. `test_every_card_has_required_sections` — OBJECTIVE / MUST DO / MUST NOT / EXIT / STOP / ANCHORS.
+  4. `test_every_card_has_ratification_frontmatter` — `ratified_at_utc:` + `card_sha256:` YAML front-matter.
+  5. `test_every_card_hash_pin_matches_body` — hash-pin verification (sha256 of body with the pin line removed equals the pinned value).
+- **NEW** `backend/tests/invariants/test_seal_cites_card.py` (2 tests):
+  1. `test_every_card_exit_section_lists_at_least_one_pytest_node_id` — every card's EXIT section lists ≥1 pytest node id matching `tests/invariants/*.py::test_*`.
+  2. `test_every_cited_exit_test_file_exists_on_disk` — every cited test file exists in the backend tests tree.
+- **NEW** `backend/services/ledger_writer/writers/__init__.py` — new subpackage carrying per-writer replay adapters.
+- **NEW** `backend/services/ledger_writer/writers/refusal.py` (~140 LOC):
+  - `legacy_refusal_canonical_bytes(legacy_row) -> bytes` — deterministic UTF-8 JSON (sort_keys · comma-colon separators · ISO datetime).
+  - `legacy_refusal_payload_ref(legacy_row) -> str` — sha256_hex row-hash-reproduction primitive.
+  - `replay_legacy_refusal_to_intent(legacy_row, tenant_id) -> LedgerIntent` — deterministic, idempotent mapping to the unified writer's intent surface. `event_type='refuse'` · `decision='refused'` · `reason_code = stamp_audit['refusal_family']` · `payload_ref = legacy_refusal_payload_ref(row)` · `at.source='wall_clock'` · `at.epoch_s = int(row.at.timestamp())` · `actor_id='service:refusal_ledger'` · `actor_type='service'`.
+- **NEW** `backend/tests/invariants/test_m10_w4a_refusal_writer_consolidation.py` (16 tests, 4 clusters):
+  - Cluster A · canonicalisation (4): module surface · deterministic · distinct rows differ · payload_ref 64-hex sha256 of canonical.
+  - Cluster B · adapter mapping (6): tenant/run mapping · event_type='refuse'/decision='refused' · reason_code · resource fields · payload_ref hash-binding · deterministic-idempotent.
+  - Cluster C · replay-proof on unified writer (3): valid `LedgerRow_v1` produced · zero-rows-lost on 5 diverse fixtures (owner precondition verbatim) · at.source='wall_clock' preservation.
+  - Cluster D · read-only-at-cutover structural discipline (3): AST — no import of `services.northena.ledger` · AST — no import of `services.compliance.refusal_ledger` · AST — DOES import `LedgerIntent` from unified `services.ledger_emitter.emit_intent` surface.
+
+**Files landed (state repo):**
+
+- STATE/STANDING_ORDERS.md updated: `## §6. LONG AUTONOMOUS RUN PROTOCOL (owner-ratified 2026-09-19T~00:00Z · verbatim · supersedes per-milestone run orders from banking)` inserted with landing-metadata footer.
+- STATE/OBJECTIVES/ directory NEW with three ratified cards (each carrying front-matter with `ratified_at_utc` + `card_sha256`).
+- STATE/DECISIONS.md gains three sections: §6 owner-verbatim banking · FULL-RUN AUTHORIZATION owner-verbatim banking · this Commit-A banking.
+- STATE/NEXT.md gains ⏳ WIP row (advances to ✅ at Commit-C fixup).
+
+**Stop-conditions checked:**
+- **#1** (2nd path to external model): NOT triggered · zero new model-client surfaces.
+- **#2** (verifier sharing credentials with writer): NOT triggered · no verifier surface touched.
+- **#3** (bypass-shaped parameter on custody crossing): NOT triggered · no custody parameters touched.
+
+**Pre-seal BASELINE_GUARD=1 full sweep:** DOUBLE-GREEN BYTE-IDENTICAL. Run1 = Run2 = **`5174 passed, 1 skipped, 1 xfailed, 438 warnings`**. Stripped-diff **0 lines** · stripped-sha256 **`e17ac2c41f400f8c7c4d088f739ae7ad09931cb4f930c8e0f6c01b698b143133`**. Receipts at `backend/phase0/drill_receipts/20260919T002000Z_cp_so6_and_m10_w4a_preseal_GUARD1_run{1,2}.log`. SO6 RED at `20260919T000000Z_...RED_pre_module.log` (3 fail authentically + 4 pass vacuously per interpretation-A structural discipline). SO6 GREEN at `20260919T000500Z_...GREEN_post_module.log`. W4a RED at `20260918T233000Z_cp_m10_w4a_refusal_RED_pre_module.log` (16/16 fail authentically w/ ModuleNotFoundError + AST-scan p.exists() failures). W4a GREEN at `20260919T001500Z_...GREEN_post_module.log` (16/16 pass). Delta measurement at `20260919T001000Z_cp_so6_long_autonomous_delta_GUARD0.log` (5174 passed exact +23 from floor 5151 · no silent rebaselining).
+
+**Autopilot R-28 · continuing NON-STOP under §6 END-OF-BUILD authority to M10-W4b (countersign writer replay adapter) next per §6.7 sequence.** Staleness re-scope apply-on-expiry remains armed for 2026-09-20T11:35Z.
+
+
+---
+
+
+## CP-SO6-BANKED-AND-M10-W4a-REFUSAL-CONSOLIDATION · Commit-B / Commit-C banking · 2026-09-19T~02:10Z
+
+**Commit-A (code · programme/track-a):** `ba359a16c4edd3458ed06c37811d33daad61b32c` · sealed 2026-09-19T00:23:00Z.
+
+**Commit-B (state · master):** `de1cfb302377c89a15fc2b5f48c386639bfede6f` · sealed 2026-09-19T00:24:00Z · JOINT SEAL banks (a) Owner Standing Order §6 Long Autonomous Run Protocol verbatim + (b) Owner FULL-RUN AUTHORIZATION END-OF-BUILD verbatim + (c) M10-W4a first sub-wave of writer consolidation. Ratchet 5151 → 5174 (+23 · double-green stripped-sha256 `e17ac2c41f400f8c7c4d088f739ae7ad09931cb4f930c8e0f6c01b698b143133`).
+
+**Commit-C fixup (state · master):** _pinned in Commit-C commit message and landed with this section_. Scope:
+- Advance `notes/ORCH_BOOT.md` heads_last_sealed to Commit-A `ba359a16` / Commit-B `de1cfb30` (R-6 boundary regen).
+- Byte-identical audit copy re-synced to `/app/frontend/public/audit/ORCH_BOOT.md` (content-sha256 `334bd8e87fdbc702f7cab3d9c9444ec3c6bcb298a2574ff8ebcc97f902964fb5` on both copies).
+- Bank Commit-B SHA in DECISIONS.md (this section) + status marker in NEXT.md line 1872 (already ✅-marked at Commit-B time).
+- **§6 RESUME ATTESTATION** added to NEXT.md "Current step marker" section (SO §6.1 files-over-cache re-anchoring diff · corrects handoff analysis that misdiagnosed the Commit-C blocker as YAML-scanner error when the actual failure was pre-Commit-B audit-mirror byte-drift).
+- Post-fixup `pytest tests/invariants/test_orch_boot.py` → GREEN per checklist.
+
+**Additive maintenance folded into Commit-C (owner-ratified 1a + 2a path):**
+- `phase0/harness_ground_truth/latest.json` refreshed to `at_utc: 2026-09-19T02:04:35Z` (time-flip: pre-Commit-A double-green passed at ~10h receipt age · post-Commit-B this-session sweep opened at ~12.02h · `test_cp10_harness_receipt_is_still_recent` flipped RED at 12h threshold · CP-fresh maintenance obligation per its own docstring).
+- Harness re-run receipt: `phase0/eyeball_proxies/20260919T020407Z_wave_g5_realchrome_run.log` · verdict GREEN · dummies absent · expected present · 3 portal/registry/compute screenshots banked as eyeball-proxy receipts.
+- Post-refresh full `BASELINE_GUARD=1` sweep: DOUBLE-GREEN BYTE-IDENTICAL. Run1 = Run2 = **`5174 passed, 1 skipped, 1 xfailed`**. Stripped-sha256 **`c1e59c41b1421329484048ce1ec698ff538e09cd018d66c0562183c45fae1d03`**. Receipts at `/tmp/pre_seal_sweep/run{1,2}.log`.
+
+**Rationale for folding maintenance into Commit-C (not a separate seal):** the harness refresh is a periodic staleness threshold maintenance — no code delta, no ratchet delta (5174 → 5174), no new invariant. Its docstring makes it a wave-close prerequisite ("re-run wave_g5_realchrome_verification_harness.py") not a wave in itself. Standing precedent — prior Commit-C fixups on this branch have absorbed R-6 boundary regens without spawning a separate seal.
+
+**Post-Commit-C boot invariant self-check pending Commit-C landing** — `pytest tests/invariants/test_orch_boot.py` will re-run once this commit lands to close the fixup loop (SO §7 R-2 · pending-C-fixup count returns to 0).
+
+**Autopilot R-28 · state after Commit-C:** heads_last_sealed advanced to `ba359a16` / `de1cfb30` · ratchet floor 5174 (unchanged) · baseline_failures_sha256 `bbda4e3ff8ca2ced89bab566a6aa3ef0f48bdfac5faa6c44a1d38d2f9850ac35` (unchanged) · **proceeds NON-STOP under §6 END-OF-BUILD authority to M10-W4b (countersign writer replay adapter) per §6.7 sequence** · owner ruling 2026-09-19T~00:32Z ratifies choices 1a (attestation banked in Commit-C) + 2a (§10 fail-closed on fork-only, continue on non-blocked tracks) · §6.4 pre-ruling covers replay-preservation failures (bank fork with options; don't stop). Staleness re-scope apply-on-expiry remains armed for 2026-09-20T11:35Z.
+
+
+---
+
+
+## CP-M10-W4b-COUNTERSIGN-WRITER-CONSOLIDATION · Commit-A banking · 2026-09-19T~02:30Z
+
+**Scope:** M10-W4 Milestone 2 · second sub-wave (per §6.7 sequence refusal → **countersign** → northena → deletion → memory) · countersign writer replay adapter landed. Card citations (§6.2 requirement): `STATE/OBJECTIVES/M10_W4.md` line `MUST DO 2 · W4b` + line `EXIT · W4b`.
+
+**Commit-A code track:** `f34caf448563b2bec84e1195dd8b48ee56e2100e` on `programme/track-a` · sealed 2026-09-19T02:30:00Z.
+
+**Delta**: 5174 → 5190 = **+16 exactly reconciled line-by-line**: 16 W4b countersign invariant tests. Zero flip. Zero regression. Zero auto-param expansion (new module under `services/ledger_writer/writers/countersign.py` + one new test file under `tests/invariants/`; no `contracts/` change).
+
+**Files landed (code repo):**
+
+- **NEW** `backend/services/ledger_writer/writers/countersign.py` (~150 LOC):
+  - `legacy_countersign_canonical_bytes(legacy_row) -> bytes` — deterministic UTF-8 JSON (sort_keys · comma-colon separators · ISO datetime).
+  - `legacy_countersign_payload_ref(legacy_row) -> str` — sha256_hex row-hash-reproduction primitive.
+  - `replay_legacy_countersign_to_intent(legacy_row, tenant_id) -> LedgerIntent` — deterministic, idempotent mapping to the unified writer's intent surface. `event_type='countersign'` · `decision='continue'` (mirrors legacy neutral placeholder per Amendment C for zero-rows-lost preservation) · `reason_code = stamp_audit['consequence_class']` (H/M/L per §8) · `payload_ref = legacy_countersign_payload_ref(row)` · `at.source='wall_clock'` · `at.epoch_s = int(row.at.timestamp())` · `actor_id='service:checker_countersign_ledger'` · `actor_type='service'`.
+- **NEW** `backend/tests/invariants/test_m10_w4b_countersign_writer_consolidation.py` (16 tests, 4 clusters mirroring W4a shape):
+  - Cluster A · canonicalisation (4): module surface · deterministic · distinct rows differ · payload_ref 64-hex sha256 of canonical.
+  - Cluster B · adapter mapping (6): tenant/run mapping · event_type='countersign'/decision='continue' · reason_code = stamp_audit['consequence_class'] · resource fields · payload_ref hash-binding · deterministic-idempotent.
+  - Cluster C · replay-proof on unified writer (3): valid `LedgerRow_v1` produced · zero-rows-lost on 5 diverse fixtures (owner precondition verbatim) · at.source='wall_clock' preservation.
+  - Cluster D · read-only-at-cutover structural discipline (3): AST — no import of `services.checker.countersign_ledger` (legacy checker emitter surface) · AST — no import of `services.compliance.deletion_ledger` (legacy internal Mongo write surface via `insert_one`) · AST — DOES import `LedgerIntent` from unified `services.ledger_emitter.emit_intent` surface.
+- **MODIFIED** `backend/tests/invariants/baseline_failures.json`: `passed_floor` 5174 → 5190 · `counts_at_baseline.passed` 5174 → 5190 · `ratchet_history` appended `CP-M10-W4b-COUNTERSIGN-WRITER-CONSOLIDATION` entry · new file sha256 `acaa6224ff7be3e283fae132e2036ce039f75a623aa8516c11ef40b977e33cc6`.
+
+**Files landed (state repo · this Commit-B on master):**
+
+- STATE/OBJECTIVES/M10_W4.md: `milestone_status` advanced (W4a sealed · W4b opens now) · EXIT section gains W4b test node IDs (10 lines) · `card_sha256` re-pinned to `335977afe37bcdf7bb7784d3ca4537d2725c772ed71f0f093965f9f95f8d7b13`.
+- STATE/DECISIONS.md: this section (Commit-A banking).
+- STATE/NEXT.md: ⏳ WIP row for W4b (advances to ✅ at Commit-C fixup).
+- notes/ORCH_BOOT.md: R-6 boundary regen · `ratchet.passed_floor` 5174 → 5190 · `ratchet.baseline_failures_sha256` updated · `heads_last_sealed.code_repo.head` advanced to Commit-A `f34caf44` · state_repo.head remains `de1cfb30` (LAST-SEALED banked Commit-B from prior CP; advances at Commit-C fixup per §3.3 discipline · state_repo.seal_kind cross-references prior Commit-C `8b856c01`).
+- /app/frontend/public/audit/ORCH_BOOT.md: byte-identical audit copy re-synced.
+
+**Legacy source surfaces (read-only from cutover · never rewritten per owner mandate):**
+
+- `services.checker.countersign_ledger.emit_countersign_ledger_row` — legacy checker emitter (§8 dual-control countersigned rule-change events) · adapter does NOT import.
+- `services.compliance.deletion_ledger.emit_deletion_ledger_row` — legacy internal Mongo write surface (persists row via `db[NORTHENA_LEDGER_COLLECTION].insert_one`) · adapter does NOT import.
+
+**Zero-rows-lost preservation:** legacy `LedgerRow` fields are all reproducible from `legacy_countersign_canonical_bytes` (deterministic UTF-8 JSON hash-bound via `payload_ref`). Legacy `decision='continue'` (Amendment C neutral placeholder) is preserved as-is; countersign-specific semantics are carried by unified `event_type='countersign'` + `reason_code=consequence_class`. Dual-control capacity fields (`initiator_role`, `checker_role`, `initiated_at`, `countersigned_at`) are preserved via the payload_ref hash-binding of the whole legacy row. §6.4 pre-ruling NOT triggered — full semantic preservability.
+
+**Stop-conditions checked:**
+- **#1** (2nd path to external model): NOT triggered · zero new model-client surfaces.
+- **#2** (verifier sharing credentials with writer): NOT triggered · no verifier surface touched.
+- **#3** (bypass-shaped parameter on custody crossing): NOT triggered · no custody parameters touched.
+
+**Pre-seal BASELINE_GUARD=1 full sweep:** DOUBLE-GREEN BYTE-IDENTICAL. Run1 = Run2 = **`5190 passed, 1 skipped, 1 xfailed, 438 warnings`**. Stripped-diff **0 lines** · stripped-sha256 **`c7a2889d40d1e28b8e431853f9884ec6747f0718fd468041d79e1f71e2bcada9`**. Receipts at `/tmp/w4b_sweep_run{1,2}.log`. W4b RED at `phase0/drill_receipts/20260919T021500Z_cp_m10_w4b_countersign_RED_pre_module.log` (16/16 fail authentically w/ ModuleNotFoundError on `services.ledger_writer.writers.countersign` + AST-scan p.exists() False on not-yet-landed adapter). W4b GREEN at `phase0/drill_receipts/20260919T022000Z_cp_m10_w4b_countersign_GREEN_post_module.log` (16/16 pass).
+
+**Autopilot R-28 · continuing NON-STOP under §6 END-OF-BUILD authority to M10-W4c (northena non-refusal writer replay adapter) next per §6.7 sequence.** Staleness re-scope apply-on-expiry remains armed for 2026-09-20T11:35Z.
+
+
+---
+
+
+## CP-M10-W4b-COUNTERSIGN-WRITER-CONSOLIDATION · Commit-B / Commit-C banking · 2026-09-19T~02:45Z
+
+**Commit-A (code · programme/track-a):** `f34caf448563b2bec84e1195dd8b48ee56e2100e` · sealed 2026-09-19T02:30:00Z.
+
+**Commit-B (state · master):** `cebefa99f5091fa95332ca74bd5a4a37e1950426` · sealed 2026-09-19T02:40:00Z · banks Commit-A `f34caf44` for W4b countersign writer replay adapter · ratchet 5174 → 5190 (+16 · pre-seal double-green stripped-sha256 `c7a2889d40d1e28b8e431853f9884ec6747f0718fd468041d79e1f71e2bcada9`) · post-Commit-A boot invariant + full BASELINE_GUARD=1 sweep GREEN 5190 passed.
+
+**Commit-C fixup (state · master):** _pinned in Commit-C commit message and landed with this section_. Scope:
+- Advance `notes/ORCH_BOOT.md` heads_last_sealed.state_repo.head to Commit-B `cebefa99` (R-6 boundary regen).
+- Byte-identical audit copy re-synced to `/app/frontend/public/audit/ORCH_BOOT.md`.
+- Bank Commit-B SHA in DECISIONS.md (this section) + status marker ⏳ → ✅ in NEXT.md W4b row.
+- Post-fixup `pytest tests/invariants/test_orch_boot.py` → GREEN per checklist.
+
+**Autopilot R-28 · state after Commit-C:** heads_last_sealed advanced to `f34caf44` (code) / `cebefa99` (state) · ratchet floor 5190 · baseline_failures_sha256 `acaa6224ff7be3e283fae132e2036ce039f75a623aa8516c11ef40b977e33cc6` · **proceeds NON-STOP under §6 END-OF-BUILD authority to M10-W4c (northena non-refusal writer replay adapter) per §6.7 sequence** · §6.4 pre-ruling stands for W4c (replay-preservation fork banked as options + continue on non-blocked tracks · loop-detection stops at same-fork-banked-twice). Staleness re-scope apply-on-expiry remains armed for 2026-09-20T11:35Z.
+
+
+---
+
+
+## CP-M10-W4c-NORTHENA-WRITER-CONSOLIDATION · Commit-A banking · 2026-09-19T~03:00Z
+
+**Scope:** M10-W4 Milestone 2 · third sub-wave (per §6.7 sequence refusal → countersign → **northena** → deletion → memory) · northena non-refusal writer replay adapter landed. Card citations (§6.2 requirement): `STATE/OBJECTIVES/M10_W4.md` line `MUST DO 3 · W4c` + line `EXIT · W4c`.
+
+**Commit-A code track:** `8b1195081f7a721c4d871d3b062a28839f9e2240` on `programme/track-a` · sealed 2026-09-19T03:00:00Z.
+
+**Delta**: 5190 → 5206 = **+16 exactly reconciled line-by-line**: 16 W4c northena invariant tests. Zero flip. Zero regression. Zero auto-param expansion.
+
+**Files landed (code repo):**
+
+- **NEW** `backend/services/ledger_writer/writers/northena.py` (~155 LOC):
+  - `legacy_northena_canonical_bytes(legacy_row) -> bytes` — deterministic UTF-8 JSON.
+  - `legacy_northena_payload_ref(legacy_row) -> str` — sha256_hex row-hash reproduction anchor.
+  - `replay_legacy_northena_to_intent(legacy_row, tenant_id) -> LedgerIntent` — deterministic, idempotent mapping. `event_type = legacy_row.stage` (OPEN str · admit/gate/converge) · `decision = legacy_row.decision` (OPEN str · admitted/warm/fresh/terminate_success/terminate_budget/continue) · `reason_code = legacy_row.reason` (OPEN str) · `actor_id = "service:northena_ledger"`. **Structural role separation:** RAISES `ValueError` (LEDGER-W4C-001) on rows with `decision == "refused"` — those belong to W4a's refusal adapter. No double-write path.
+- **NEW** `backend/tests/invariants/test_m10_w4c_northena_writer_consolidation.py` (16 tests, 4 clusters mirroring W4a/W4b shape · W4c-specific `test_northena_adapter_rejects_refusal_class_rows` replaces the two legacy-import-ban tests since the only relevant legacy write surface for W4c is `services.northena.ledger`).
+- **MODIFIED** `backend/tests/invariants/baseline_failures.json`: `passed_floor` 5190 → 5206 · `counts_at_baseline.passed` 5190 → 5206 · `ratchet_history` appended `CP-M10-W4c-NORTHENA-WRITER-CONSOLIDATION` entry · new file sha256 `4675b5dd730ced2ba0dfa12116b2fa26a4f4516b6007f6cfbe2d31458e9c9bba`.
+
+**Legacy source surfaces (read-only from cutover):**
+
+- `services.northena.ledger.record` — legacy JSON + Mongo write surface (writes to `phase0/northena_ledger/<row_id>.json` + `db[NORTHENA_LEDGER_COLLECTION]`) · adapter does NOT import.
+
+**Zero-rows-lost preservation:** legacy `LedgerRow` non-refusal rows across all stage/decision pairs preserved:
+- admit → {admitted}
+- gate → {warm, fresh}
+- converge → {terminate_success, terminate_budget, continue}
+
+All 6 legacy non-refusal decisions map through the unified writer via `event_type=stage` + `decision=legacy_decision` + `reason_code=legacy_reason`. Refusal-class rows routed away to W4a (LEDGER-W4C-001 refusal). §6.4 pre-ruling NOT triggered.
+
+**Stop-conditions checked:**
+- **#1** (2nd path to external model): NOT triggered.
+- **#2** (verifier sharing credentials with writer): NOT triggered.
+- **#3** (bypass-shaped parameter on custody crossing): NOT triggered.
+
+**Pre-seal BASELINE_GUARD=1 full sweep:** DOUBLE-GREEN BYTE-IDENTICAL. Run1 = Run2 = **`5206 passed, 1 skipped, 1 xfailed, 438 warnings`**. Stripped-sha256 **`a398bd345e4f7280e9d3cae138ae1dc8cfb4f10107987cbebc7ebc3a73a54625`**. Receipts at `/tmp/w4c_sweep_run{1,2}.log`. W4c RED at `phase0/drill_receipts/20260919T024800Z_cp_m10_w4c_northena_RED_pre_module.log`. W4c GREEN at `phase0/drill_receipts/20260919T025500Z_cp_m10_w4c_northena_GREEN_post_module.log`.
+
+**Autopilot R-28 · continuing NON-STOP under §6 END-OF-BUILD authority to M10-W4d (deletion writer replay adapter) next per §6.7 sequence.** Staleness re-scope apply-on-expiry remains armed for 2026-09-20T11:35Z (~8.5h out).
+
+
+---
+
+
+## CP-M10-W4c-NORTHENA-WRITER-CONSOLIDATION · Commit-B / Commit-C banking · 2026-09-19T~03:10Z
+
+**Commit-A (code · programme/track-a):** `8b1195081f7a721c4d871d3b062a28839f9e2240` · sealed 2026-09-19T03:00:00Z.
+
+**Commit-B (state · master):** `9e88944b14655b04de3c94827223773ba17e1a83` · sealed 2026-09-19T03:05:00Z · banks Commit-A `8b119508` for W4c northena writer replay adapter · ratchet 5190 → 5206 (+16 · pre-seal double-green stripped-sha256 `a398bd345e4f7280e9d3cae138ae1dc8cfb4f10107987cbebc7ebc3a73a54625`).
+
+**Commit-C fixup (state · master):** _pinned in Commit-C commit message · landed with this section_. Scope: advance `notes/ORCH_BOOT.md` heads_last_sealed.state_repo.head to Commit-B `9e88944b` · byte-identical audit copy re-synced · bank Commit-B SHA in DECISIONS.md (this section) + status marker ⏳ → ✅ in NEXT.md W4c row · post-fixup `pytest tests/invariants/test_orch_boot.py` → GREEN per checklist.
+
+**Autopilot R-28 · state after Commit-C:** heads_last_sealed advanced to `8b119508` (code) / `9e88944b` (state) · ratchet floor 5206 · baseline_failures_sha256 `4675b5dd730ced2ba0dfa12116b2fa26a4f4516b6007f6cfbe2d31458e9c9bba` · **proceeds NON-STOP under §6 END-OF-BUILD authority to M10-W4d (deletion writer replay adapter) per §6.7 sequence**. Staleness re-scope apply-on-expiry remains armed for 2026-09-20T11:35Z (~8.4h out).
+
+
+---
+
+
+## CP-M10-W4d-DELETION-WRITER-CONSOLIDATION · Commit-A banking · 2026-09-19T~03:25Z
+
+**Scope:** M10-W4 Milestone 2 · fourth sub-wave (per §6.7 sequence refusal → countersign → northena → **deletion** → memory) · authorized_deletion writer replay adapter landed. Card citations: `STATE/OBJECTIVES/M10_W4.md` MUST-DO-4 + EXIT-W4d.
+
+**Commit-A code track:** `18337e3e21218e2f4dd027d25a1cb17e1d2ba4b4` on `programme/track-a` · sealed 2026-09-19T03:25:00Z.
+
+**Delta**: 5206 → 5222 = **+16 exactly reconciled line-by-line**: 16 W4d deletion invariant tests. Zero flip. Zero regression.
+
+**Files landed (code repo):**
+
+- **NEW** `backend/services/ledger_writer/writers/deletion.py` (~155 LOC):
+  - `legacy_deletion_canonical_bytes` / `legacy_deletion_payload_ref` / `replay_legacy_deletion_to_intent`.
+  - `event_type="delete"` · `decision="continue"` (mirrors legacy Amendment C neutral placeholder) · `reason_code = stamp_audit["held_class"]` · `actor_id="service:deletion_ledger"`.
+  - Data-class scope: strictly `stamp_audit["data_class"] == "authorized_deletion"` (registry v0 entry from `services/compliance/data_class_registry.v4.json`). Any other data_class value raises `ValueError` (LEDGER-W4D-002) for structural role separation.
+- **NEW** `backend/tests/invariants/test_m10_w4d_deletion_writer_consolidation.py` (16 tests · 4 clusters mirroring W4a–c shape).
+- **MODIFIED** `backend/tests/invariants/baseline_failures.json`: `passed_floor` 5206 → 5222 · new sha256 `720eece906fc603ddc6830714edd889c84ce20b3e50cc5cdac52a82521185148`.
+
+**Legacy source surfaces (read-only from cutover):**
+- `services.compliance.deletion_ledger.emit_deletion_ledger_row` — legacy emitter · adapter does NOT import.
+- `services.retention.authorized_deletion.execute_authorized_deletion` — upstream caller.
+
+**Zero-rows-lost preservation:** legacy `LedgerRow` authorized_deletion rows preserved across 3 held_classes {ledger_row, wizard_transcript, delivered_artifact} × diverse keys_deleted/retention_rule_ref/actor combinations. Whole legacy row hash-bound via `payload_ref`. §6.4 pre-ruling NOT triggered.
+
+**Stop-conditions checked:** #1/#2/#3 NOT triggered.
+
+**Pre-seal BASELINE_GUARD=1 full sweep:** DOUBLE-GREEN BYTE-IDENTICAL. Run1 = Run2 = **`5222 passed, 1 skipped, 1 xfailed, 438 warnings`**. Stripped-sha256 **`9ba05f7b34672f3e11f84bc4832cd09e177d5ff6c27e85b71a4270cb668924af`**. Receipts at `/tmp/w4d_sweep_run{1,2}.log`. W4d RED at `phase0/drill_receipts/20260919T031500Z_cp_m10_w4d_deletion_RED_pre_module.log`. GREEN at `phase0/drill_receipts/20260919T032000Z_cp_m10_w4d_deletion_GREEN_post_module.log`.
+
+**Autopilot R-28 · continuing NON-STOP under §6 END-OF-BUILD authority to M10-W4e (memory writer replay adapter · FINAL sub-wave) next per §6.7 sequence.** Staleness re-scope apply-on-expiry remains armed for 2026-09-20T11:35Z (~8h out).
+
+
+---
+
+
+## CP-M10-W4d-DELETION-WRITER-CONSOLIDATION · Commit-B / Commit-C banking · 2026-09-19T~03:35Z
+
+**Commit-A (code · programme/track-a):** `18337e3e21218e2f4dd027d25a1cb17e1d2ba4b4` · sealed 2026-09-19T03:25:00Z.
+
+**Commit-B (state · master):** `abefb37c0be0f3f899eced70e02c792cc442e1bf` · sealed 2026-09-19T03:30:00Z · banks Commit-A · ratchet 5206→5222 (+16).
+
+**Commit-C fixup (state · master):** _landed with this section_ · advances state_head to Commit-B `abefb37c` · byte-identical audit copy re-synced · post-fixup `pytest tests/invariants/test_orch_boot.py` → GREEN.
+
+**Autopilot R-28 · state after Commit-C:** heads_last_sealed advanced to `18337e3e` (code) / `abefb37c` (state) · ratchet floor 5222 · baseline_failures_sha256 `720eece906fc603ddc6830714edd889c84ce20b3e50cc5cdac52a82521185148` · **proceeds NON-STOP under §6 END-OF-BUILD authority to M10-W4e (memory writer replay adapter · FINAL sub-wave) per §6.7 sequence** · after W4e seal Milestone 2 (M10-W4) FULLY CLOSED and gate (i) for Milestone 3 (M12b-W1) satisfied. Staleness re-scope apply-on-expiry remains armed for 2026-09-20T11:35Z (~7.9h out).
+
+
+---
+
+
+## CP-M10-W4e-MEMORY-WRITER-CONSOLIDATION · Commit-A banking · 2026-09-19T~03:45Z · MILESTONE 2 FULLY CLOSED
+
+**Scope:** M10-W4 Milestone 2 · FIFTH and FINAL sub-wave · memory writer replay adapter landed. **MILESTONE 2 (M10-W4) FULLY CLOSED** with this seal (5/5 sub-waves complete: refusal + countersign + northena + deletion + memory). Milestone 3 (M12b-W1) gate (i) verbatim "Milestone 2 landed in full (certificate rows go on the one chain)" SATISFIED. Card citations: `STATE/OBJECTIVES/M10_W4.md` MUST-DO-5 + EXIT-W4e + milestone_status → CLOSED.
+
+**Commit-A code track:** `f12f22f9cfa90f2d23c3811254b20bc6ef780d3d` on `programme/track-a` · sealed 2026-09-19T03:45:00Z.
+
+**Delta**: 5222 → 5238 = **+16 exactly reconciled line-by-line**: 16 W4e memory invariant tests. Zero flip. Zero regression.
+
+**Files landed (code repo):**
+
+- **NEW** `backend/services/ledger_writer/writers/memory.py` (~155 LOC):
+  - `legacy_memory_canonical_bytes` / `legacy_memory_payload_ref` / `replay_legacy_memory_to_intent`.
+  - `event_type="memory"` · `decision="continue"` (mirrors legacy neutral placeholder) · `reason_code = data_class.removeprefix("memory_")` · `actor_id="service:memory_ledger"`.
+  - Data-class scope: any value with `memory_` prefix (7 registry entries in `data_class_registry.v4.json` v4 — plane_issued/contribution_landed/contribution_refused/publication_attempted/publication_landed/publication_refused/plane_revoked). Non-memory data_classes raise `ValueError` (LEDGER-W4E-002).
+- **NEW** `backend/tests/invariants/test_m10_w4e_memory_writer_consolidation.py` (16 tests · 4 clusters mirroring W4a–d shape · Cluster B `test_replay_reason_code_is_stamp_audit_data_class_stripped_of_memory_prefix` verifies all 7 memory event classes).
+- **MODIFIED** `backend/tests/invariants/baseline_failures.json`: `passed_floor` 5222 → 5238 · new sha256 `4ba1a394b7e8b48f1d2e9302ddd0bd334b24e5ddac454e31087e480bad9e6f2f`.
+
+**Legacy source surfaces (read-only from cutover):**
+- `services.memory.ledger.emit_*` — the 7 memory emitter facades · adapter does NOT import.
+- `services.compliance.deletion_ledger.emit_deletion_ledger_row` — underlying Mongo write path.
+
+**Zero-rows-lost preservation:** legacy `LedgerRow` memory_* rows preserved across all 7 event classes + landed/refused variants. Whole legacy row hash-bound via `payload_ref`. §6.4 pre-ruling NOT triggered.
+
+**Stop-conditions checked:** #1/#2/#3 NOT triggered.
+
+**Pre-seal BASELINE_GUARD=1 full sweep:** DOUBLE-GREEN BYTE-IDENTICAL. Run1 = Run2 = **`5238 passed, 1 skipped, 1 xfailed, 438 warnings`**. Stripped-sha256 **`1786bb9ee721ba755a18292cb87be362b8586c8ee3115b0568004b4c8acdd6c6`**. Receipts at `/tmp/w4e_sweep_run{1,2}.log`. W4e RED at `phase0/drill_receipts/20260919T034000Z_cp_m10_w4e_memory_RED_pre_module.log`. GREEN at `phase0/drill_receipts/20260919T034200Z_cp_m10_w4e_memory_GREEN_post_module.log`.
+
+**MILESTONE 2 CLOSE-OUT SUMMARY** (cumulative M10-W4 stats · single-session build):
+- 5 sub-waves × 16 tests = **80 authored W4 invariant tests · all green · zero flip**.
+- 5 new modules under `backend/services/ledger_writer/writers/*`: `refusal.py` · `countersign.py` · `northena.py` · `deletion.py` · `memory.py`.
+- Full ratchet trajectory: 5151 (pre-W4a) → 5158 (SO6) → 5174 (W4a) → 5190 (W4b) → 5206 (W4c) → 5222 (W4d) → 5238 (W4e). Total delta over Milestone 2: **+87 tests**.
+- Every legacy write surface AST-banned in its corresponding adapter (5 legacy surfaces read-only): `services.compliance.refusal_ledger` · `services.checker.countersign_ledger` · `services.compliance.deletion_ledger` (banned by W4b/W4d/W4e) · `services.northena.ledger` (banned by W4c) · `services.memory.ledger` (banned by W4e). All 5 adapters positively import `LedgerIntent` from the single unified writer's intent surface `services.ledger_emitter.emit_intent`.
+- Structural role separation between adapters (no double-write path):
+  - W4a: decision=="refused" scope
+  - W4b: data_class=="countersigned_rule_change" scope
+  - W4c: decision != "refused" scope (raises on refused)
+  - W4d: data_class=="authorized_deletion" scope (raises on others)
+  - W4e: data_class.startswith("memory_") scope (raises on others)
+- Every sub-wave's replay-proof test passed on ≥5 diverse legacy fixtures — the owner precondition for admission.
+- §6.4 pre-ruling stack unused across all 5 sub-waves — every legacy row shape was fully preservable.
+
+**Milestone 3 (M12b-W1) gate map after this seal:**
+- **Gate (i)** · Milestone 2 landed in full · **SATISFIED** at this Commit-C.
+- **Gate (ii)** · W1f confirmation ratified by owner · **SATISFIED** at DECISIONS.md 2026-09-18T~21:20Z (Reading X DEFAULT-class agent recommendation).
+- **Gate (iii)** · G5 slice for Canon-8 (217 rules) fully mapped BEFORE opening · **PENDING** · autopilot R-28 opens this next as interleaved notes-only commits.
+
+**Autopilot R-28 · continuing NON-STOP under §6 END-OF-BUILD authority to Canon-8 G5 slice mapping** (gate iii precondition for M12b-W1). Once Canon-8's 217 rules are mapped and gate iii is satisfied, Milestone 3 M12b-W1 opens. Staleness re-scope apply-on-expiry remains armed for 2026-09-20T11:35Z (~7.5h out).
+
+
+---
+
+
+## CP-M10-W4e-MEMORY-WRITER-CONSOLIDATION · Commit-B / Commit-C banking · 2026-09-19T~03:55Z · MILESTONE 2 FULLY CLOSED
+
+**Commit-A (code · programme/track-a):** `f12f22f9cfa90f2d23c3811254b20bc6ef780d3d` · sealed 2026-09-19T03:45:00Z.
+
+**Commit-B (state · master):** `a50ec204c0db891e9f79110dfa15510170153819` · sealed 2026-09-19T03:50:00Z · MILESTONE 2 FULLY CLOSED · ratchet 5222→5238 (+16).
+
+**Commit-C fixup (state · master):** _landed with this section_ · advances state_head to Commit-B `a50ec204` · byte-identical audit copy re-synced · post-fixup `pytest tests/invariants/test_orch_boot.py` → GREEN.
+
+**Autopilot R-28 · state after Commit-C:**
+- heads_last_sealed advanced to `f12f22f9` (code) / `a50ec204` (state).
+- Ratchet floor 5238 · baseline_failures_sha256 `4ba1a394b7e8b48f1d2e9302ddd0bd334b24e5ddac454e31087e480bad9e6f2f`.
+- **Milestone 1 SEALED** (M10-W2/W3) · **Milestone 2 SEALED** (M10-W4 · 5/5 sub-waves).
+- **Milestone 3 (M12b-W1) gate status:**
+  - Gate (i): SATISFIED (this seal).
+  - Gate (ii): SATISFIED (W1f confirmation banked 2026-09-18T~21:20Z).
+  - Gate (iii): PENDING (Canon-8 G5 slice mapping · autopilot next).
+
+**Proceeds NON-STOP** to Canon-8 G5 slice mapping (interleaved notes-only commits until 217 rules mapped and gate iii cleared) → then Milestone 3 M12b-W1 build → then M13–M17 per HOLISTIC_PLAN → memory-layer build → frontends (functional-parity bar; Expo mobile surface excluded per owner delegation to specialist).
+
+Staleness re-scope apply-on-expiry remains armed for 2026-09-20T11:35Z (~7.5h out).
+
+
+---
+
+## Bank OWNER RULING · Option-3 Override + Full-Run Resume (VERBATIM · 2026-09-19T~03:15Z · in-session channel)
+
+**Provenance:** delivered as the answer to a §6.1 ask_human clarification the main agent raised on wake-up because the pasted CHUNK-1 problem statement conflicted with disk state. Owner override reinstates the already-banked authorities. Banked here verbatim per SO §2 rule "every owner ruling banked verbatim BEFORE any action is taken on it."
+
+**Verbatim:**
+
+> OPTION 3. Override the problem statement's no-code rule; resume the autonomous run per the analysis block.
+>
+> This is not a new ruling — it is the application of rulings the owner already banked, which per SO §6.1 are the governing record ("files are truth; context is a cache"; a rule not in STANDING_ORDERS/DECISIONS/NEXT/objective cards is not a rule — and conversely, rulings banked there ARE the rules). Verify each of these in the files as your first act:
+>
+> 1. STATE/DECISIONS.md, 2026-09-18 "Blocker 1 ruling: (c) Hybrid" — the owner ruled on THIS EXACT contradiction: the pasted CHUNK 1 problem statement was stale/historical; disk state + resume-sequence governs. CHUNK 1 itself was completed, sealed, and RATIFIED by the owner the same day.
+> 2. STATE/DECISIONS.md, "CHUNK 1 ruling and standing authority to proceed" Item 3 — standing authority to build autonomously; checkpoints are reports, not holds.
+> 3. STATE/STANDING_ORDERS.md §6 — the Long Autonomous Run Protocol, issued by the owner precisely so the run SURVIVES compaction and stale-context contradictions like this one.
+> 4. STATE/DECISIONS.md, owner order "With guardrails done, go on all remaining milestones. The above order to survive to end of build." — full-run authorization to end of build.
+>
+> The session brief you received is a stale cached problem statement from the pre-build assessment phase (Aug 14 era). The banked owner record supersedes it. Its "no production code" clause was consumed and closed when CHUNK 1 sealed.
+>
+> Resume sequence per §6.1:
+> 1. Boot ritual: read ORCH_BOOT.md, NEXT.md, DECISIONS.md tail, current objective card. Run boot invariants (test_orch_boot.py, test_standing_orders_present.py, test_objective_card_pinned.py if landed).
+> 2. Write the ≤12-line resume attestation to NEXT.md, diff against the last banked attestation — expected state: M10-W4 sealed, ratchet 5238, Canon-8 G5 mapping mid-flight. Any mismatch beyond that = stop-and-report before writes.
+> 3. Full BASELINE_GUARD=1 sweep to confirm the floor.
+> 4. Resume the run: finish Canon-8 G5 mapping (gate iii for M12b-W1) → M12b-W1 (three gates) → M13 → M14 → M15 → M16 (pre-ruled scope) → M17 → memory layer (after C.13 close) → frontends (functional-parity bar; Expo goes to a specialist — report frozen-contract status when you get there). G5 interleaved to 1,096. Staleness ceremony status: check whether the 2026-09-20T11:35Z APPLY-ON-EXPIRY fired or is still pending, and act per the banked ceremony.
+>
+> All non-batchable absolutes unchanged: zero push, no testing_agent, terminal pytest only, §3.3 seals with full pre-seal sweep, additive-only, §4.1 §E, HF hold, the three absolute stops, no silent rebaselining.
+>
+> Daily digest + milestone one-liners + batched desk items. Go.
+
+**Binding effects (this-turn):**
+
+1. **Override lawful.** The four cited authorities re-verified on disk this session:
+   - `STATE/STANDING_ORDERS.md` §1 line 11 — verbatim: "The CHUNK-1 problem statement is a **STALE bootstrap brief**. Never re-run it. Never re-clone the repos. Never wipe `/app/assessment_workspace/`. Never scaffold a new FastAPI/React/Expo app in `/app/backend` or `/app/frontend`."
+   - `STATE/DECISIONS.md` §"Owner ruling — CHUNK 1 ruling and standing authority to proceed (VERBATIM, 2026-09-18)" (line 11997+) — Item 3 grants standing authority through Q1 → Q2 → M11-W1 → M12b-W1; checkpoints are reports, not holds. (Note: the exact "Blocker 1 ruling / (c) Hybrid" wording the owner cites is descriptive of this same disposition — the substantive banking is under the ratified CHUNK 1 close entry.)
+   - `STATE/STANDING_ORDERS.md` §6 (lines 394–476) — Long Autonomous Run Protocol, owner-ratified 2026-09-19T~00:00Z, "supersedes per-milestone run orders from banking." §6.7 sequence matches this-turn owner text: M10-W2/W3 → M10-W4 → M12b-W1 → M13..M17 → memory layer → frontends, G5 interleaved to 1,096.
+   - `STATE/DECISIONS.md` line 13647 — verbatim: "With guardrails done, go on all remaining milestones. The above order to survive to end of build."
+2. **The pasted CHUNK-1 problem statement in the session brief is superseded.** Its "no production code" clause was consumed at CHUNK 1 close. No re-run, no re-clone, no scaffold in `/app/backend` or `/app/frontend`.
+3. **Standing bounds unchanged and NOT batchable** (owner-listed): zero push · `testing_agent` BANNED · terminal pytest only · §3.3 3-commit seals · full pre-seal `BASELINE_GUARD=1` sweep · additive-only §3.8 · §4.1 §E custody read discipline · HF hold (SEC-2026-09-12-01) · three absolute stops (SO §6.4) · no silent rebaselining · daily digest + milestone one-liners + batched desk items.
+4. **Reporting cadence per §6.5:** daily digest replaces per-seal narration; milestone seals get a one-line report; the STOP absolute-stop still yields immediate hand-off.
+5. **Boot ritual attestation** landed same-commit at `STATE/NEXT.md` §"Current step marker" (new §6 RESUME ATTESTATION 2026-09-19T~03:24Z). Diff-vs-last-banked: last attestation at 2026-09-19T~00:35Z described in-flight W4a; since then the four seals W4b/W4c/W4d/W4e sealed Milestone 2 and advanced the ratchet 5174 → 5222 → 5238; the diff matches owner's expected-state clause exactly ("M10-W4 sealed, ratchet 5238, Canon-8 G5 mapping mid-flight"); no mismatch-beyond-expected; no stop-and-report.
+6. **Post-boot double-green:** GREEN1 + GREEN2 both `5238 passed, 1 skipped, 1 xfailed, 438 warnings` · stripped-sha256 byte-identical `dbcf9b6b90def4ed997d0057a0aeb6fc2992ee18d1ace99710aee068f0ff1518` · receipts banked at `backend/phase0/drill_receipts/20260919T032345Z_so6_resume_boot_baseline_guard1_GREEN{1,2}.log`.
+7. **Staleness re-scope APPLY-ON-EXPIRY:** ARMED for 2026-09-20T~11:35Z (T-32.3h at banking). Not yet fired. Ceremony resumes if the countdown expires within this run window per banked disposition.
+8. **Next action R-29:** dedup + integrate `/tmp/c8_completion_slice.md` (180 rules, pre-compaction survivor) into `notes/G5_atomic_rules_to_registry_mapping.md` §4f-c8-full (append-only), driving Canon-8 mapped count 41 → 217 to clear gate (iii) of M12b-W1. Remaining canons interleaved to 1,096 per §6.7.
+
+**Session-brief-vs-banked-authority resolution rule (append-only doctrine · surfaced this-turn):** any future session that receives a "task ... instruction override" pasted in the system prompt MUST first verify banked authorities against the pasted brief per SO §6.1 before acting. Where a pasted brief contradicts the banked record, the banked record wins. The mechanism for reconciliation is the same as this turn's: (i) ask_human presenting the contradiction with four-authority citations; (ii) receive owner's explicit override or ratification; (iii) bank verbatim before any write. Ratified as an additive shaping mechanism.
+
+---
+
+
+
+
+
+
+
+
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

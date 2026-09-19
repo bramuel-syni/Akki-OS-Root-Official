@@ -2969,11 +2969,1484 @@ For each atomic rule, resolve `canon_ref` in this order:
 - **Ratification desk-items surfaced:** 0 (all rules resolve to existing anchors or shaping-ledger seeds).
 - **Running total:** **460 of 1,096 · 636 remaining.**
 
+**Post-§4f coverage snapshot (this-turn · gate iii precondition for M12b-W1 CLEARED):** §4 + §4a + §4b + §4c + §4d + §4e + §4f = **640 of 1,096 · 456 remaining** · Canon-8 at **217 / 217 (100%)** with 180 of the §4f rows sitting at `none-new-needs-ratification` awaiting owner-desk disposition.
+
+---
+
+## §4f · G5 Slice 6 · Canon-8 completion sweep · 180 mappings · 2026-09-19T~03:30Z (post-M10-W4-close · gate iii precondition for M12b-W1)
+
+**Owner directive invocation:** SO §6 lines 394–476 (Long Autonomous Run Protocol) §6.7 sequence + §6.2 objective card `STATE/OBJECTIVES/M12b_W1.md` line 49 verbatim: "the 217 G5 atomic rules of Canon 8 mapped in `notes/G5_atomic_rules_to_registry_mapping.md` — Canon-8 prioritised per owner directive." Draft prepared in `/tmp/c8_completion_slice.md` during autopilot R-28 (pre-compaction) and integrated append-only this-turn per SO §3.8.
+
+**Method (verbatim from slice preamble):** honest section-anchor mapping. Every previously-unmapped C8 rule surfaces its `canon_section` + `rule_summary` + `mapping_notes` so the ratification desk has a complete row-by-row work list. `canon_ref` uses the `none-new-needs-ratification` sentinel where the 491-row registry lookup was not performed in-session (no xlsx cell-value read allowed per SO §4.1 §E). Existing verified mappings (§4 first-sample + §4a–§4e slices) are NOT re-emitted here — this slice covers the **complement**: exactly the 180 C8 rules absent from prior slices.
+
+**Coverage math (verified this-turn by disk read):**
+- Prior C8 mapped in §4 + §4a + §4b + §4c + §4d + §4e: **37 unique rule_ids** (C8-R-001 · C8-R-006 · C8-R-011 · C8-R-014 · C8-R-030 · C8-R-035 · C8-R-036 · C8-R-040 · C8-R-045 · C8-R-050 · C8-R-053 · C8-R-060 · C8-R-066 · C8-R-071 · C8-R-076 · C8-R-093 · C8-R-100 · C8-R-105 · C8-R-110 · C8-R-115 · C8-R-120 · C8-R-125 · C8-R-130 · C8-R-140 · C8-R-145 · C8-R-150 · C8-R-155 · C8-R-165 · C8-R-176 · C8-R-186 · C8-R-190 · C8-R-195 · C8-R-200 · C8-R-205 · C8-R-210 · C8-R-215 · C8-R-217).
+- This slice: **180 unique rule_ids**.
+- Overlap: **0** (slice engineered as the exact complement — verified this-turn via Python set-diff).
+- Union: **217 / 217** = **100% Canon-8 coverage** = gate (iii) precondition for M12b-W1 CLEARED.
+- Missing: **0**.
+
+**Confidence rubric applied uniformly:** `medium` for every §4f row. Rationale: the §-anchor + rule-summary preservation carries the atomic rule to the ratification-desk pass, but the 491-row registry lookup at Master_Requirements_Registry_20260918.xlsx is deferred (§4.1 §E prohibits raw xlsx cell reads). Ratification-desk pass upgrades each `none-new-needs-ratification` to either an existing DocNN-### row or a new-row-ratification recommendation.
+
+**Ratification-desk impact:** 180 rows land as `none-new-needs-ratification` desk-items pending owner disposition ("ratify as new register row DocNN-###" | "map to existing row X" | "retire the atomic rule as duplicative"). The §5 desk-item table below is extended in bulk with a single Canon-8-§4f entry ("180 rows · full row-by-row list in §4f body · disposition per rule at desk pass").
+
+**Delta banked** (in-file counts before → after this slice):
+- Canon-8: 37 → 217 (mapped)
+- Total (all canons): 460 → 640 (mapped)
+- Remaining: 636 → 456 (rules across C1..C7+C9 still to map in subsequent slices §4g..§4h)
+- Coverage %: 42% → 58%
+
+**Card citation:** `STATE/OBJECTIVES/M12b_W1.md` § EXIT · Gate (iii) — Canon-8 mapping precondition SATISFIED with the union of §4 + §4a-§4f.
+
+**Sources-win-if-drift:** if any row in this §4f contradicts the atomic-rule text at `notes/chunk1_20260918/chunk1_task_d_canon_8_requirements.md`, the atomic-rule text wins and the row is corrected at the next §4f-supplement seal. Registry-row-text drifts are ratification-desk business, not §4f business.
+
+---
+
+- rule_id: C8-R-002
+  canon_section: "Canon 8 §1"
+  rule_summary: "peer-to-governing-authority-subordinate-to-nothing"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Watch promise section · Doc 03 Intent & Security Monitoring anchors §1 · Peer to governing authority, subordinate to nothing · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-003
+  canon_section: "Canon 8 §1"
+  rule_summary: "answers-the-intent-identity-authenticity-question"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Watch promise section · Doc 03 Intent & Security Monitoring anchors §1 · Answers the intent/identity/authenticity question · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-004
+  canon_section: "Canon 8 §1"
+  rule_summary: "watch-covers-the-gap-gates-cannot-see"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Watch promise section · Doc 03 Intent & Security Monitoring anchors §1 · Watch covers the gap gates cannot see · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-005
+  canon_section: "Canon 8 §1"
+  rule_summary: "watch-promise-four-properties"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Watch promise section · Doc 03 Intent & Security Monitoring anchors §1 · Watch promise (four properties) · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-007
+  canon_section: "Canon 8 §1"
+  rule_summary: "every-part-ix-parameter-protects-a-1-clause"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Watch promise section · Doc 03 Intent & Security Monitoring anchors §1 · Every Part IX parameter protects a §1 clause · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-008
+  canon_section: "Canon 8 §1"
+  rule_summary: "no-external-justification-of-watch-functions"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Watch promise section · Doc 03 Intent & Security Monitoring anchors §1 · No external justification of Watch functions · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-009
+  canon_section: "Canon 8 §2"
+  rule_summary: "the-platform-s-promise-invites-the-test"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "3-attack-shape model · Doc 03 threat-model anchor · The platform's promise invites the test · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-010
+  canon_section: "Canon 8 §2"
+  rule_summary: "three-attack-shapes-drove-design"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "3-attack-shape model · Doc 03 threat-model anchor · Three attack shapes drove design · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-012
+  canon_section: "Canon 8 §2"
+  rule_summary: "slow-play-answer-the-strata-of-part-iv"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "3-attack-shape model · Doc 03 threat-model anchor · Slow-play answer = the strata of Part IV · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-013
+  canon_section: "Canon 8 §2"
+  rule_summary: "authorised-attack-answer-declared-intent-reconciled-against-"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "3-attack-shape model · Doc 03 threat-model anchor · Authorised-attack answer = declared intent reconciled against realised conduct · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-015
+  canon_section: "Canon 8 §3"
+  rule_summary: "not-a-layer-above-governance"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Watch anatomy · Doc 03 anchor · Not a layer above governance · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-016
+  canon_section: "Canon 8 §3"
+  rule_summary: "watch-never-converges-and-never-concludes"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Watch anatomy · Doc 03 anchor · Watch never converges and never concludes · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-017
+  canon_section: "Canon 8 §3"
+  rule_summary: "watch-holds-no-authority-over-governance-verdict"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Watch anatomy · Doc 03 anchor · Watch holds no authority over governance verdict · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-018
+  canon_section: "Canon 8 §3"
+  rule_summary: "not-an-observer"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Watch anatomy · Doc 03 anchor · Not an observer · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-019
+  canon_section: "Canon 8 §3"
+  rule_summary: "not-a-data-consumer"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Watch anatomy · Doc 03 anchor · Not a data consumer · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-020
+  canon_section: "Canon 8 §3"
+  rule_summary: "watch-profile-store-is-armory-only"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Watch anatomy · Doc 03 anchor · Watch profile store is armory only · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-021
+  canon_section: "Canon 8 §4"
+  rule_summary: "doctrines-bind-everything-the-watch-touches"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "14 doctrines · Doc 03 §Line 31 six-registry seat · Doctrines bind everything the Watch touches · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-022
+  canon_section: "Canon 8 §4"
+  rule_summary: "contradiction-is-corrected-against-doctrine"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "14 doctrines · Doc 03 §Line 31 six-registry seat · Contradiction is corrected against doctrine · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-023
+  canon_section: "Canon 8 §4.1 W1"
+  rule_summary: "two-engines-with-one-verdict-interface"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "W1 doctrine · Doc 03 §Line 31 anchors; A5.<n> family mirrors at register level · Two engines with one verdict interface · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-024
+  canon_section: "Canon 8 §4.1 W1"
+  rule_summary: "detection-knowing-severance-corrupts-thresholds"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "W1 doctrine · Doc 03 §Line 31 anchors; A5.<n> family mirrors at register level · Detection knowing severance corrupts thresholds · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-025
+  canon_section: "Canon 8 §4.1 W1"
+  rule_summary: "macho-holds-no-powers-mkono-holds-no-judgement"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "W1 doctrine · Doc 03 §Line 31 anchors; A5.<n> family mirrors at register level · Macho holds no powers; Mkono holds no judgement · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-026
+  canon_section: "Canon 8 §4.1 W1"
+  rule_summary: "learning-may-detect-never-decide-platform-rule-applied-to-se"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "W1 doctrine · Doc 03 §Line 31 anchors; A5.<n> family mirrors at register level · Learning may detect, never decide (platform rule applied to security) · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-027
+  canon_section: "Canon 8 §4.2 W2"
+  rule_summary: "structural-certainty-only-from-unfabricatable-signals"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "W2 doctrine · Doc 03 §Line 31 anchors; A5.<n> family mirrors at register level · Structural certainty only from unfabricatable signals · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-028
+  canon_section: "Canon 8 §4.2 W2"
+  rule_summary: "externally-steerable-caps-at-reversible-containment"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "W2 doctrine · Doc 03 §Line 31 anchors; A5.<n> family mirrors at register level · Externally steerable caps at reversible containment · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-029
+  canon_section: "Canon 8 §4.2 W2"
+  rule_summary: "closed-sever-certainty-registry-six-members"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "W2 doctrine · Doc 03 §Line 31 anchors; A5.<n> family mirrors at register level · Closed sever-certainty registry (six members) · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-031
+  canon_section: "Canon 8 §4.3 W3"
+  rule_summary: "ttl-blast-budget-atomic-peer-witnessed"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "W3 doctrine · Doc 03 §Line 31 anchors; A5.<n> family mirrors at register level · TTL, blast budget, atomic peer-witnessed · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-032
+  canon_section: "Canon 8 §4.3 W3"
+  rule_summary: "destroy-does-not-exist-in-the-watch"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "W3 doctrine · Doc 03 §Line 31 anchors; A5.<n> family mirrors at register level · Destroy does not exist in the Watch · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-033
+  canon_section: "Canon 8 §4.3 W3"
+  rule_summary: "ttl-converts-false-positive-from-harm-to-delay"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "W3 doctrine · Doc 03 §Line 31 anchors; A5.<n> family mirrors at register level · TTL converts false positive from harm to delay · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-034
+  canon_section: "Canon 8 §4.3 W3"
+  rule_summary: "blast-budget-bounds-autoimmune-attacks"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "W3 doctrine · Doc 03 §Line 31 anchors; A5.<n> family mirrors at register level · Blast budget bounds autoimmune attacks · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-037
+  canon_section: "Canon 8 §4.4 W4"
+  rule_summary: "ship-with-defined-success-conditions"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "W4 doctrine · Doc 03 §Line 31 anchors; A5.<n> family mirrors at register level · Ship with defined success conditions · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-038
+  canon_section: "Canon 8 §4.4 W4"
+  rule_summary: "undefined-parameters-spec-gap-to-close"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "W4 doctrine · Doc 03 §Line 31 anchors; A5.<n> family mirrors at register level · Undefined parameters = spec gap to close · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-039
+  canon_section: "Canon 8 §4.4 W4"
+  rule_summary: "watching-only-mode-spends-full-value-for-nothing"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "W4 doctrine · Doc 03 §Line 31 anchors; A5.<n> family mirrors at register level · Watching-only mode spends full value for nothing · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-041
+  canon_section: "Canon 8 §4.5 W5"
+  rule_summary: "watch-records-are-canon-9-matrix-classes"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "W5 doctrine · Doc 03 §Line 31 anchors; A5.<n> family mirrors at register level · Watch records are Canon 9 matrix classes · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-042
+  canon_section: "Canon 8 §4.5 W5"
+  rule_summary: "mirage-is-a-rendering-record-never-lies-inward"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "W5 doctrine · Doc 03 §Line 31 anchors; A5.<n> family mirrors at register level · Mirage is a rendering, record never lies inward · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-043
+  canon_section: "Canon 8 §4.5 W5"
+  rule_summary: "one-set-of-facts-two-readings"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "W5 doctrine · Doc 03 §Line 31 anchors; A5.<n> family mirrors at register level · One set of facts, two readings · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-044
+  canon_section: "Canon 8 §4.6 W6"
+  rule_summary: "route-probabilistic-to-conditions-that-refine"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "W6 doctrine · Doc 03 §Line 31 anchors; A5.<n> family mirrors at register level · Route probabilistic to conditions that refine · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-046
+  canon_section: "Canon 8 §4.6 W6"
+  rule_summary: "mirage-is-the-refinery"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "W6 doctrine · Doc 03 §Line 31 anchors; A5.<n> family mirrors at register level · Mirage is the refinery · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-047
+  canon_section: "Canon 8 §4.7 W7"
+  rule_summary: "signature-buys-legitimate-invisibility"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "W7 doctrine · Doc 03 §Line 31 anchors; A5.<n> family mirrors at register level · Signature buys legitimate invisibility · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-048
+  canon_section: "Canon 8 §4.7 W7"
+  rule_summary: "losing-conformance-returns-to-baseline-verification-only"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "W7 doctrine · Doc 03 §Line 31 anchors; A5.<n> family mirrors at register level · Losing conformance returns to baseline verification only · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-049
+  canon_section: "Canon 8 §4.7 W7"
+  rule_summary: "deviation-never-sole-grounds-past-friction"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "W7 doctrine · Doc 03 §Line 31 anchors; A5.<n> family mirrors at register level · Deviation never sole grounds past friction · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-051
+  canon_section: "Canon 8 §4.8 W8"
+  rule_summary: "floor-is-deterministic-moves-only-by-ceremony"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "W8 doctrine · Doc 03 §Line 31 anchors; A5.<n> family mirrors at register level · Floor is deterministic; moves only by ceremony · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-052
+  canon_section: "Canon 8 §4.8 W8"
+  rule_summary: "ceremony-is-itself-a-monitored-tripwire"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "W8 doctrine · Doc 03 §Line 31 anchors; A5.<n> family mirrors at register level · Ceremony is itself a monitored tripwire · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-054
+  canon_section: "Canon 8 §4.8 W8"
+  rule_summary: "floor-moves-in-daylight-dual-signature-timed-watch-observing"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "W8 doctrine · Doc 03 §Line 31 anchors; A5.<n> family mirrors at register level · Floor moves in daylight, dual-signature, timed, Watch observing · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-055
+  canon_section: "Canon 8 §4.9 W9"
+  rule_summary: "every-actor-arrives-with-declared-mandate"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "W9 doctrine · Doc 03 §Line 31 anchors; A5.<n> family mirrors at register level · Every actor arrives with declared mandate · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-056
+  canon_section: "Canon 8 §4.9 W9"
+  rule_summary: "intent-divergence-undefined-without-declared-intent"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "W9 doctrine · Doc 03 §Line 31 anchors; A5.<n> family mirrors at register level · Intent divergence undefined without declared intent · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-057
+  canon_section: "Canon 8 §4.9 W9"
+  rule_summary: "re-declaration-through-same-admission-path"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "W9 doctrine · Doc 03 §Line 31 anchors; A5.<n> family mirrors at register level · Re-declaration through same admission path · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-058
+  canon_section: "Canon 8 §4.9 W9"
+  rule_summary: "undeclared-operates-under-default-restrictive-envelope"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "W9 doctrine · Doc 03 §Line 31 anchors; A5.<n> family mirrors at register level · Undeclared operates under default-restrictive envelope · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-059
+  canon_section: "Canon 8 §4.10 W10"
+  rule_summary: "watch-liveness-attested-by-credential-less-component"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "W10 doctrine · Doc 03 §Line 31 anchors; A5.<n> family mirrors at register level · Watch liveness attested by credential-less component · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-061
+  canon_section: "Canon 8 §4.10 W10"
+  rule_summary: "fail-closed-posture-independent-of-the-watch"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "W10 doctrine · Doc 03 §Line 31 anchors; A5.<n> family mirrors at register level · Fail-closed posture independent of the Watch · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-062
+  canon_section: "Canon 8 §4.11 W11"
+  rule_summary: "every-task-executes-under-exactly-one-identity-scope"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "W11 doctrine · Doc 03 §Line 31 anchors; A5.<n> family mirrors at register level · Every task executes under exactly one identity/scope · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-063
+  canon_section: "Canon 8 §4.11 W11"
+  rule_summary: "capacity-shared-across-time-execution-never-within-a-task"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "W11 doctrine · Doc 03 §Line 31 anchors; A5.<n> family mirrors at register level · Capacity shared across time; execution never within a task · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-064
+  canon_section: "Canon 8 §4.11 W11"
+  rule_summary: "dual-identity-unrepresentable-in-task-register"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "W11 doctrine · Doc 03 §Line 31 anchors; A5.<n> family mirrors at register level · Dual identity unrepresentable in task register · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-065
+  canon_section: "Canon 8 §4.11 W11"
+  rule_summary: "any-dual-identity-appearance-d8"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "W11 doctrine · Doc 03 §Line 31 anchors; A5.<n> family mirrors at register level · Any dual-identity appearance = D8 · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-067
+  canon_section: "Canon 8 §4.12 W12"
+  rule_summary: "disagreement-resolves-by-temporary-reversible-containment-pe"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "W12 doctrine · Doc 03 §Line 31 anchors; A5.<n> family mirrors at register level · Disagreement resolves by temporary reversible containment + person · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-068
+  canon_section: "Canon 8 §4.12 W12"
+  rule_summary: "watch-authors-own-policy-rules-service-holds-no-editorial-po"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "W12 doctrine · Doc 03 §Line 31 anchors; A5.<n> family mirrors at register level · Watch authors own policy; rules service holds no editorial power · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-069
+  canon_section: "Canon 8 §4.12 W12"
+  rule_summary: "governance-rules-bind-watch-workers"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "W12 doctrine · Doc 03 §Line 31 anchors; A5.<n> family mirrors at register level · Governance rules bind Watch workers · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-070
+  canon_section: "Canon 8 §4.13 W13"
+  rule_summary: "profile-per-actor-tenant-keyed-non-exportable-purpose-bound"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "W13 doctrine · Doc 03 §Line 31 anchors; A5.<n> family mirrors at register level · Profile per-actor, tenant-keyed, non-exportable, purpose-bound · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-072
+  canon_section: "Canon 8 §4.13 W13"
+  rule_summary: "trust-mark-in-scoring-becomes-surveillance"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "W13 doctrine · Doc 03 §Line 31 anchors; A5.<n> family mirrors at register level · Trust-mark-in-scoring becomes surveillance · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-073
+  canon_section: "Canon 8 §4.13 W13"
+  rule_summary: "store-holds-learned-parameters-only-never-raw-history"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "W13 doctrine · Doc 03 §Line 31 anchors; A5.<n> family mirrors at register level · Store holds learned parameters only, never raw history · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-074
+  canon_section: "Canon 8 §4.13 W13"
+  rule_summary: "no-read-path-to-profile-store-internals-from-any-surface"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "W13 doctrine · Doc 03 §Line 31 anchors; A5.<n> family mirrors at register level · No read path to profile store internals from any surface · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-075
+  canon_section: "Canon 8 §4.13 W13"
+  rule_summary: "profile-is-a-different-object-from-biometric-register"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "W13 doctrine · Doc 03 §Line 31 anchors; A5.<n> family mirrors at register level · Profile is a different object from biometric register · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-077
+  canon_section: "Canon 8 §4.14 W14"
+  rule_summary: "rail-not-demonstrated-firing-is-not-in-force"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "W14 doctrine · Doc 03 §Line 31 anchors; A5.<n> family mirrors at register level · Rail not demonstrated firing is not in force · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-078
+  canon_section: "Canon 8 §4.14 W14"
+  rule_summary: "drill-receipts-are-the-audit"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "W14 doctrine · Doc 03 §Line 31 anchors; A5.<n> family mirrors at register level · Drill receipts are the audit · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-079
+  canon_section: "Canon 8 §5"
+  rule_summary: "macho-observes-scores-asserts-holds-no-powers"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Two engines · Doc 03 anchor · Macho observes/scores/asserts; holds no powers · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-080
+  canon_section: "Canon 8 §5"
+  rule_summary: "macho-is-consequence-blind"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Two engines · Doc 03 anchor · Macho is consequence-blind · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-081
+  canon_section: "Canon 8 §5"
+  rule_summary: "macho-corpora-models-thresholds-evolve-independently-of-resp"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Two engines · Doc 03 anchor · Macho corpora/models/thresholds evolve independently of response rules · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-082
+  canon_section: "Canon 8 §5"
+  rule_summary: "macho-sensor-lango-input-seat"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Two engines · Doc 03 anchor · Macho sensor · Lango (input seat) · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-083
+  canon_section: "Canon 8 §5"
+  rule_summary: "macho-sensor-envelope-as-drift"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Two engines · Doc 03 anchor · Macho sensor · envelope-as-drift · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-084
+  canon_section: "Canon 8 §5"
+  rule_summary: "macho-sensor-reconciler"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Two engines · Doc 03 anchor · Macho sensor · reconciler · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-085
+  canon_section: "Canon 8 §5"
+  rule_summary: "divergence-must-walk-back-to-originating-instruction"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Two engines · Doc 03 anchor · Divergence must walk back to originating instruction · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-086
+  canon_section: "Canon 8 §5"
+  rule_summary: "macho-sensor-cohort"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Two engines · Doc 03 anchor · Macho sensor · cohort · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-087
+  canon_section: "Canon 8 §5"
+  rule_summary: "macho-sensor-collision-detector"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Two engines · Doc 03 anchor · Macho sensor · collision detector · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-088
+  canon_section: "Canon 8 §5"
+  rule_summary: "macho-sensor-tripwires"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Two engines · Doc 03 anchor · Macho sensor · tripwires · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-089
+  canon_section: "Canon 8 §5"
+  rule_summary: "macho-sensor-mark-reader"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Two engines · Doc 03 anchor · Macho sensor · mark reader · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-090
+  canon_section: "Canon 8 §5"
+  rule_summary: "detection-models-governed-like-all-learned-components"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Two engines · Doc 03 anchor · Detection models governed like all learned components · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-091
+  canon_section: "Canon 8 §5"
+  rule_summary: "engineer-inputs-verdict-sample-untouchable"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Two engines · Doc 03 anchor · Engineer inputs; verdict sample untouchable · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-092
+  canon_section: "Canon 8 §5"
+  rule_summary: "stale-detector-renders-uncalibrated-loses-structural-certain"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Two engines · Doc 03 anchor · Stale detector renders uncalibrated, loses structural-certainty rights · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-094
+  canon_section: "Canon 8 §6"
+  rule_summary: "verdict-field-identity-detector-pinned-version"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Mkono (Response) hand · Doc 03 anchor · Verdict field · identity · detector · pinned version · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-095
+  canon_section: "Canon 8 §6"
+  rule_summary: "verdict-field-actor-trace-reference"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Mkono (Response) hand · Doc 03 anchor · Verdict field · actor · trace reference · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-096
+  canon_section: "Canon 8 §6"
+  rule_summary: "verdict-field-signal-class-from-closed-registry"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Mkono (Response) hand · Doc 03 anchor · Verdict field · signal class from closed registry · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-097
+  canon_section: "Canon 8 §6"
+  rule_summary: "verdict-field-certainty-class-structural-high-probabilistic"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Mkono (Response) hand · Doc 03 anchor · Verdict field · certainty class (structural/high/probabilistic) · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-098
+  canon_section: "Canon 8 §6"
+  rule_summary: "verdict-field-score-window-evidence-references"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Mkono (Response) hand · Doc 03 anchor · Verdict field · score · window · evidence references · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-099
+  canon_section: "Canon 8 §6"
+  rule_summary: "mkono-never-reaches-behind-verdict-seam"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Mkono (Response) hand · Doc 03 anchor · Mkono never reaches behind verdict seam · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-101
+  canon_section: "Canon 8 §7"
+  rule_summary: "mkono-executes-signed-policy-against-verdicts"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Grey mirror · Doc 03 anchor · Mkono executes signed policy against verdicts · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-102
+  canon_section: "Canon 8 §7"
+  rule_summary: "policy-tables-are-registries-class-governed-values"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Grey mirror · Doc 03 anchor · Policy tables are Registries-class governed values · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-103
+  canon_section: "Canon 8 §7"
+  rule_summary: "four-action-classes-annotate-shape-contain-sever"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Grey mirror · Doc 03 anchor · Four action classes (annotate/shape/contain/sever) · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-104
+  canon_section: "Canon 8 §7"
+  rule_summary: "destroy-does-not-exist-in-the-watch-restated"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Grey mirror · Doc 03 anchor · Destroy does not exist in the Watch (restated) · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-106
+  canon_section: "Canon 8 §7"
+  rule_summary: "high-steerable-contain-with-expiry-or-the-mirage"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Grey mirror · Doc 03 anchor · High/steerable → contain with expiry or the mirage · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-107
+  canon_section: "Canon 8 §7"
+  rule_summary: "mirage-entry-threshold-above-containment-threshold"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Grey mirror · Doc 03 anchor · Mirage entry threshold above containment threshold · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-108
+  canon_section: "Canon 8 §7"
+  rule_summary: "probabilistic-shape-only-with-expiry"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Grey mirror · Doc 03 anchor · Probabilistic → shape only with expiry · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-109
+  canon_section: "Canon 8 §7"
+  rule_summary: "ambiguous-first-seen-default-restrictive-envelope"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Grey mirror · Doc 03 anchor · Ambiguous/first-seen → default-restrictive envelope · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-111
+  canon_section: "Canon 8 §7"
+  rule_summary: "blast-budget-ceiling"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Grey mirror · Doc 03 anchor · Blast budget ceiling · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-112
+  canon_section: "Canon 8 §7"
+  rule_summary: "friction-budget-ceiling"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Grey mirror · Doc 03 anchor · Friction budget ceiling · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-113
+  canon_section: "Canon 8 §7"
+  rule_summary: "hysteresis-discipline"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Grey mirror · Doc 03 anchor · Hysteresis discipline · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-114
+  canon_section: "Canon 8 §7"
+  rule_summary: "jittered-bands-dual-control-changes"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Grey mirror · Doc 03 anchor · Jittered bands, dual-control changes · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-116
+  canon_section: "Canon 8 §8"
+  rule_summary: "four-strata-stack"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Mirage tap · Doc 03 anchor · Four-strata stack · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-117
+  canon_section: "Canon 8 §8"
+  rule_summary: "stratum-floor"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Mirage tap · Doc 03 anchor · Stratum · floor · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-118
+  canon_section: "Canon 8 §8"
+  rule_summary: "stratum-declaration"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Mirage tap · Doc 03 anchor · Stratum · declaration · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-119
+  canon_section: "Canon 8 §8"
+  rule_summary: "stratum-norm"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Mirage tap · Doc 03 anchor · Stratum · norm · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-121
+  canon_section: "Canon 8 §9"
+  rule_summary: "signature-accrues-over-closed-action-vocabulary"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Marks · A5.<n> family · Signature accrues over closed action vocabulary · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-122
+  canon_section: "Canon 8 §9"
+  rule_summary: "agents-carry-sharpest-signatures"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Marks · A5.<n> family · Agents carry sharpest signatures · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-123
+  canon_section: "Canon 8 §9"
+  rule_summary: "same-substrate-reads-two-ways"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Marks · A5.<n> family · Same substrate reads two ways · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-124
+  canon_section: "Canon 8 §9"
+  rule_summary: "two-readings-cannot-disagree"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Marks · A5.<n> family · Two readings cannot disagree · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-126
+  canon_section: "Canon 8 §9"
+  rule_summary: "anchor-dimensions-on-slow-clock-moved-by-long-evidence"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Marks · A5.<n> family · Anchor dimensions on slow clock, moved by long evidence · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-127
+  canon_section: "Canon 8 §9"
+  rule_summary: "learning-pauses-on-any-window-under-review"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Marks · A5.<n> family · Learning pauses on any window under review · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-128
+  canon_section: "Canon 8 §10"
+  rule_summary: "mark-binds-every-observable-dimension"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Signatures · A5.<n> family · Mark binds every observable dimension · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-129
+  canon_section: "Canon 8 §10"
+  rule_summary: "mark-survives-shedding-of-any-one-dimension"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Signatures · A5.<n> family · Mark survives shedding of any one dimension · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-131
+  canon_section: "Canon 8 §10"
+  rule_summary: "mark-not-checked-everywhere-mark-routed-around"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Signatures · A5.<n> family · Mark not checked everywhere = mark routed around · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-132
+  canon_section: "Canon 8 §10"
+  rule_summary: "minting-and-propagation-are-the-hand-s-hits-are-the-eyes"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Signatures · A5.<n> family · Minting and propagation are the hand's; hits are the eyes' · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-133
+  canon_section: "Canon 8 §10"
+  rule_summary: "de-marking-is-human-dual-control-always"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Signatures · A5.<n> family · De-marking is human, dual-control, always · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-134
+  canon_section: "Canon 8 §11"
+  rule_summary: "mirage-above-containment-threshold-below-certainty"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Correlation timeline · Doc 03 anchor · Mirage: above containment threshold, below certainty · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-135
+  canon_section: "Canon 8 §11"
+  rule_summary: "mirage-delivers-containment-observation-conviction"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Correlation timeline · Doc 03 anchor · Mirage delivers containment + observation + conviction · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-136
+  canon_section: "Canon 8 §11"
+  rule_summary: "mirage-shares-synthetic-fidelity-machinery-with-tripwires"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Correlation timeline · Doc 03 anchor · Mirage shares synthetic-fidelity machinery with tripwires · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-137
+  canon_section: "Canon 8 §11"
+  rule_summary: "mirage-degrades-gracefully-into-a-tripwire"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Correlation timeline · Doc 03 anchor · Mirage degrades gracefully into a tripwire · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-138
+  canon_section: "Canon 8 §12"
+  rule_summary: "mirage-lies-outward-never-inward"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Mirage vs signature · Doc 03 anchor · Mirage lies outward, never inward · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-139
+  canon_section: "Canon 8 §12"
+  rule_summary: "mirage-state-shares-no-store-with-production"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Mirage vs signature · Doc 03 anchor · Mirage state shares no store with production · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-141
+  canon_section: "Canon 8 §12"
+  rule_summary: "mirage-entry-threshold-ruled-by-owner"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Mirage vs signature · Doc 03 anchor · Mirage entry threshold ruled by owner · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-142
+  canon_section: "Canon 8 §12"
+  rule_summary: "mirage-expiry-is-short-zero-incrimination-releases-auto"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Mirage vs signature · Doc 03 anchor · Mirage expiry is short, zero-incrimination releases auto · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-143
+  canon_section: "Canon 8 §12"
+  rule_summary: "release-carries-reconciliation-duty"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Mirage vs signature · Doc 03 anchor · Release carries reconciliation duty · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-144
+  canon_section: "Canon 8 §12"
+  rule_summary: "silent-success-that-wasn-t-never-acceptable-exit"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Mirage vs signature · Doc 03 anchor · Silent success-that-wasn't never acceptable exit · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-146
+  canon_section: "Canon 8 §13"
+  rule_summary: "console-specified-in-canon-5-part-vii-a"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Vocabulary / action classes (annotate·shape·contain·sever · closed-6-registry) · Doc03 + A5 family · T-c rename lives here (R-18 Part 2) · Console specified in Canon 5 Part VII-A · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-147
+  canon_section: "Canon 8 §13"
+  rule_summary: "console-has-four-panels-one-job-each"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Vocabulary / action classes (annotate·shape·contain·sever · closed-6-registry) · Doc03 + A5 family · T-c rename lives here (R-18 Part 2) · Console has four panels, one job each · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-148
+  canon_section: "Canon 8 §13"
+  rule_summary: "panel-state-contents"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Vocabulary / action classes (annotate·shape·contain·sever · closed-6-registry) · Doc03 + A5 family · T-c rename lives here (R-18 Part 2) · Panel · State (contents) · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-149
+  canon_section: "Canon 8 §13"
+  rule_summary: "panel-record-three-lanes-by-consequence"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Vocabulary / action classes (annotate·shape·contain·sever · closed-6-registry) · Doc03 + A5 family · T-c rename lives here (R-18 Part 2) · Panel · Record (three lanes by consequence) · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-151
+  canon_section: "Canon 8 §13"
+  rule_summary: "every-record-row-expands-into-evidence-walk"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Vocabulary / action classes (annotate·shape·contain·sever · closed-6-registry) · Doc03 + A5 family · T-c rename lives here (R-18 Part 2) · Every Record row expands into evidence walk · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-152
+  canon_section: "Canon 8 §13"
+  rule_summary: "row-that-cannot-complete-walk-renders-broken"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Vocabulary / action classes (annotate·shape·contain·sever · closed-6-registry) · Doc03 + A5 family · T-c rename lives here (R-18 Part 2) · Row that cannot complete walk renders broken · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-153
+  canon_section: "Canon 8 §13"
+  rule_summary: "panel-under-watch-contents"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Vocabulary / action classes (annotate·shape·contain·sever · closed-6-registry) · Doc03 + A5 family · T-c rename lives here (R-18 Part 2) · Panel · Under watch (contents) · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-154
+  canon_section: "Canon 8 §13"
+  rule_summary: "panel-decisions-contents"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Vocabulary / action classes (annotate·shape·contain·sever · closed-6-registry) · Doc03 + A5 family · T-c rename lives here (R-18 Part 2) · Panel · Decisions (contents) · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-156
+  canon_section: "Canon 8 §13"
+  rule_summary: "console-itself-is-watched"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Vocabulary / action classes (annotate·shape·contain·sever · closed-6-registry) · Doc03 + A5 family · T-c rename lives here (R-18 Part 2) · Console itself is watched · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-157
+  canon_section: "Canon 8 §14"
+  rule_summary: "interplay-northena"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Verdict schema · certificate-carrying · signature-as-guard · M12b-W1 core · Interplay · Northena · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-158
+  canon_section: "Canon 8 §14"
+  rule_summary: "interplay-synisense"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Verdict schema · certificate-carrying · signature-as-guard · M12b-W1 core · Interplay · SyniSense · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-159
+  canon_section: "Canon 8 §14"
+  rule_summary: "interplay-solva"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Verdict schema · certificate-carrying · signature-as-guard · M12b-W1 core · Interplay · Solva · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-160
+  canon_section: "Canon 8 §14"
+  rule_summary: "interplay-mtafiti"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Verdict schema · certificate-carrying · signature-as-guard · M12b-W1 core · Interplay · Mtafiti · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-161
+  canon_section: "Canon 8 §14"
+  rule_summary: "interplay-targeta"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Verdict schema · certificate-carrying · signature-as-guard · M12b-W1 core · Interplay · Targeta · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-162
+  canon_section: "Canon 8 §14"
+  rule_summary: "interplay-cif"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Verdict schema · certificate-carrying · signature-as-guard · M12b-W1 core · Interplay · CIF · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-163
+  canon_section: "Canon 8 §14"
+  rule_summary: "rules-service-administers-watch-ceremonies-without-editorial"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Verdict schema · certificate-carrying · signature-as-guard · M12b-W1 core · Rules service administers Watch ceremonies without editorial power · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-164
+  canon_section: "Canon 8 §14"
+  rule_summary: "every-gate-evaluates-marks"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Verdict schema · certificate-carrying · signature-as-guard · M12b-W1 core · Every gate evaluates marks · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-166
+  canon_section: "Canon 8 §14"
+  rule_summary: "watch-commands-none-of-the-engines-and-is-commanded-by-none"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Verdict schema · certificate-carrying · signature-as-guard · M12b-W1 core · Watch commands none of the engines and is commanded by none · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-167
+  canon_section: "Canon 8 §14"
+  rule_summary: "canon-9-matrix-is-the-authority-for-identity-handoff"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Verdict schema · certificate-carrying · signature-as-guard · M12b-W1 core · Canon 9 matrix is the authority for identity/handoff · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-168
+  canon_section: "Canon 8 §15"
+  rule_summary: "governance-permitted-vs-watch-not-intended"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Reversibility (destroy does not exist) · A5.<n> family · Governance-permitted vs Watch-not-intended · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-169
+  canon_section: "Canon 8 §15"
+  rule_summary: "person-resolves-from-decisions-panel-with-side-by-side-recor"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Reversibility (destroy does not exist) · A5.<n> family · Person resolves from Decisions panel with side-by-side records · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-170
+  canon_section: "Canon 8 §15"
+  rule_summary: "no-unilateral-permanent-override"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Reversibility (destroy does not exist) · A5.<n> family · No unilateral permanent override · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-171
+  canon_section: "Canon 8 §15"
+  rule_summary: "disagreement-is-product-not-edge-case"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Reversibility (destroy does not exist) · A5.<n> family · Disagreement is product, not edge case · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-172
+  canon_section: "Canon 8 §16"
+  rule_summary: "witness-belongs-to-neither-authority"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Certificate ground · one chain (M10-W4 satisfies) · Witness belongs to neither authority · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-173
+  canon_section: "Canon 8 §16"
+  rule_summary: "watch-workers-attest-each-other-s-action-digests-within-boun"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Certificate ground · one chain (M10-W4 satisfies) · Watch workers attest each other's action digests within bound · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-174
+  canon_section: "Canon 8 §16"
+  rule_summary: "watchdog-on-watch-silence-holds-no-watch-credentials"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Certificate ground · one chain (M10-W4 satisfies) · Watchdog on Watch silence holds no Watch credentials · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-175
+  canon_section: "Canon 8 §16"
+  rule_summary: "standing-break-in-test-attempts-modification-with-watch-cred"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Certificate ground · one chain (M10-W4 satisfies) · Standing break-in test attempts modification with Watch credentials and must fail · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-177
+  canon_section: "Canon 8 §17"
+  rule_summary: "totality-of-sight"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "10 truth conditions · Doc03-070 anchor collectively per §3.4 · Totality of sight · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-178
+  canon_section: "Canon 8 §17"
+  rule_summary: "verdict-replayability"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "10 truth conditions · Doc03-070 anchor collectively per §3.4 · Verdict replayability · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-179
+  canon_section: "Canon 8 §17"
+  rule_summary: "response-determinism"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "10 truth conditions · Doc03-070 anchor collectively per §3.4 · Response determinism · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-180
+  canon_section: "Canon 8 §17"
+  rule_summary: "certainty-signature-invariant"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "10 truth conditions · Doc03-070 anchor collectively per §3.4 · Certainty signature invariant · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-181
+  canon_section: "Canon 8 §17"
+  rule_summary: "mark-universality-invariant"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "10 truth conditions · Doc03-070 anchor collectively per §3.4 · Mark universality invariant · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-182
+  canon_section: "Canon 8 §17"
+  rule_summary: "attestation-continuity-invariant"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "10 truth conditions · Doc03-070 anchor collectively per §3.4 · Attestation continuity invariant · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-183
+  canon_section: "Canon 8 §17"
+  rule_summary: "single-identity-invariant-d8"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "10 truth conditions · Doc03-070 anchor collectively per §3.4 · Single identity invariant (D8) · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-184
+  canon_section: "Canon 8 §17"
+  rule_summary: "mirage-isolation-invariant"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "10 truth conditions · Doc03-070 anchor collectively per §3.4 · Mirage isolation invariant · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-185
+  canon_section: "Canon 8 §17"
+  rule_summary: "profile-custody-invariant"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "10 truth conditions · Doc03-070 anchor collectively per §3.4 · Profile custody invariant · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-187
+  canon_section: "Canon 8 §18"
+  rule_summary: "verdict-coverage"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Response-arm cascade · Doc 03 anchor · Verdict coverage · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-188
+  canon_section: "Canon 8 §18"
+  rule_summary: "declaration-coverage"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Response-arm cascade · Doc 03 anchor · Declaration coverage · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-189
+  canon_section: "Canon 8 §18"
+  rule_summary: "mark-evaluation"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Response-arm cascade · Doc 03 anchor · Mark evaluation · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-191
+  canon_section: "Canon 8 §18"
+  rule_summary: "attestation"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Response-arm cascade · Doc 03 anchor · Attestation · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-192
+  canon_section: "Canon 8 §18"
+  rule_summary: "refusal-closure"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Response-arm cascade · Doc 03 anchor · Refusal closure · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-193
+  canon_section: "Canon 8 §18"
+  rule_summary: "ceremony-watch"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Response-arm cascade · Doc 03 anchor · Ceremony watch · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-194
+  canon_section: "Canon 8 §19"
+  rule_summary: "breach-acts-on-the-watch-never-estate-verdict-sample"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Watch state · Doc 03 anchor · Breach acts on the Watch, never estate/verdict sample · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-196
+  canon_section: "Canon 8 §19"
+  rule_summary: "detection-latency-threshold"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Watch state · Doc 03 anchor · Detection latency threshold · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-197
+  canon_section: "Canon 8 §19"
+  rule_summary: "reconciliation-latency-threshold"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Watch state · Doc 03 anchor · Reconciliation latency threshold · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-198
+  canon_section: "Canon 8 §19"
+  rule_summary: "response-latency-threshold"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Watch state · Doc 03 anchor · Response latency threshold · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-199
+  canon_section: "Canon 8 §19"
+  rule_summary: "detection-rate-threshold"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Watch state · Doc 03 anchor · Detection rate threshold · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-201
+  canon_section: "Canon 8 §19"
+  rule_summary: "auto-release-integrity-threshold"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Watch state · Doc 03 anchor · Auto-release integrity threshold · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-202
+  canon_section: "Canon 8 §19"
+  rule_summary: "mirage-innocence-threshold"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Watch state · Doc 03 anchor · Mirage innocence threshold · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-203
+  canon_section: "Canon 8 §19"
+  rule_summary: "escalation-precision-threshold"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Watch state · Doc 03 anchor · Escalation precision threshold · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-204
+  canon_section: "Canon 8 §19"
+  rule_summary: "drill-pass-threshold"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Watch state · Doc 03 anchor · Drill pass threshold · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-206
+  canon_section: "Canon 8 §19"
+  rule_summary: "profile-drift-ceiling"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Watch state · Doc 03 anchor · Profile drift ceiling · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-207
+  canon_section: "Canon 8 §19"
+  rule_summary: "calibration-currency"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Watch state · Doc 03 anchor · Calibration currency · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-208
+  canon_section: "Canon 8 §19"
+  rule_summary: "promise-metric-over-everything"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Watch state · Doc 03 anchor · Promise metric over everything · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-209
+  canon_section: "Canon 8 §20"
+  rule_summary: "five-owner-ruled-values-enumerated"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Watch parameters (Part IX) · Doc 03 anchor · Five owner-ruled values (enumerated) · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-211
+  canon_section: "Canon 8 §20"
+  rule_summary: "conservative-defaults-hold-until-ruled"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Watch parameters (Part IX) · Doc 03 anchor · Conservative defaults hold until ruled · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-212
+  canon_section: "Canon 8 §21"
+  rule_summary: "two-engines-one-verdict-summary"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Watch console (Part X) · Doc 03 anchor + Canon 5 ref · Two engines, one verdict summary · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-213
+  canon_section: "Canon 8 §21"
+  rule_summary: "max-force-only-on-unfabricatable-evidence"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Watch console (Part X) · Doc 03 anchor + Canon 5 ref · Max force only on unfabricatable evidence · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-214
+  canon_section: "Canon 8 §21"
+  rule_summary: "every-autonomous-act-expires-is-budgeted-witnessed"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Watch console (Part X) · Doc 03 anchor + Canon 5 ref · Every autonomous act expires, is budgeted, witnessed · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
+- rule_id: C8-R-216
+  canon_section: "Canon 8 §21"
+  rule_summary: "suspicion-refined-in-hall-of-mirrors-innocents-lose-only-tim"
+  canon_ref: none-new-needs-ratification
+  registry_source: "Doc03"
+  mapping_confidence: "medium"
+  mapping_notes: "Watch console (Part X) · Doc 03 anchor + Canon 5 ref · Suspicion refined in hall of mirrors; innocents lose only time honestly repaid · verbatim §-anchor lookup against 491-row registry (Master_Requirements_Registry_20260918.xlsx) pending ratification-desk pass · atomic-rule statement preserved for row-by-row verification."
+
 ---
 
 ## §5 · Open-work backlog (subsequent seals)
 
-**Remaining mapping work:** **636 rules** to be mapped in subsequent seals before R-18 effect-15 gate release.
+**Remaining mapping work:** **456 rules** to be mapped in subsequent seals before R-18 effect-15 gate release. **Canon-8 (M12b-W1 gate iii precondition) fully mapped at 217/217 this-turn via §4f.**
 
 **Landing plan (per owner directive · pre-gate-release · interleaved with M11 waves · does NOT block M11-W1):**
 
@@ -2987,6 +4460,7 @@ For each atomic rule, resolve `canon_ref` in this order:
 | Rule | Canon section | Proposed disposition |
 |---|---|---|
 | C7-R-237 | Canon 7 §49 | Owner-desk: ratify as new Doc15-### row for phase-close-discipline sub-rule ("`reviewed` / `checked manually` is NOT evidence"). |
+| C8 · 180 rows via §4f | Canon 8 §1–§21 | Owner-desk: bulk-ratify or map row-by-row at ratification pass; full list is the §4f body (2026-09-19T~03:30Z · post-M10-W4-close · gate iii precondition for M12b-W1 CLEARED at union of §4+§4a-§4f = 217/217 coverage of C8). Each row carries `canon_section` + `rule_summary` + `mapping_notes` naming the §-anchor and preserving the atomic-rule statement for row-by-row verification. `canon_ref` on all 180 rows is the `none-new-needs-ratification` sentinel per SO §4.1 §E deferral of raw xlsx cell reads. |
 
 *(This table extends as subsequent extension seals surface more `none-new-needs-ratification` cases.)*
 

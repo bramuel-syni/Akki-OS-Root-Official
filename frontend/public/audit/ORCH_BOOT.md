@@ -33,29 +33,29 @@ STATE files, and on any boot ritual that detects drift.
 
 ```yaml
 schema_version: 1
-generated_at_utc: 2026-09-18T21:00:00Z
-generator: main-agent Autopilot (CP-M12-W1i-TCB-GOLDEN-INPUT-BYTE-IDENTICAL Commit-C fixup this-turn · R-6 boundary regen · state_repo.head advanced 62c71a01 → 4da6039e · code_repo.head advanced 38235069 → 0fbac772 · ratchet 5066 → 5103 · TCB chokepoint golden-input byte-identical determinism corpus per B.8)
-regeneration_reason: r6-boundary-regen-at-cp-m12-w1i-tcb-golden-input-byte-identical-commit-c-fixup-state_repo.head-advanced-from-62c71a01-to-4da6039e-code_repo.head-advanced-from-38235069-to-0fbac772-ratchet-5066-to-5103
+generated_at_utc: 2026-09-19T03:55:00Z
+generator: main-agent Autopilot (CP-M10-W4e-MEMORY-WRITER-CONSOLIDATION Commit-C fixup · R-6 boundary regen · heads_last_sealed.state_repo.head advanced to Commit-B a50ec204 · code head remains Commit-A f12f22f9 · ratchet 5238 unchanged · baseline_failures_sha256 unchanged · MILESTONE 2 FULLY CLOSED · 5/5 sub-waves)
+regeneration_reason: r6-boundary-regen-post-commit-b-at-cp-m10-w4e-state-head-advanced-to-commit-b-a50ec204-milestone-2-fully-closed
 
 ratchet:
-  passed_floor: 5103
-  counts_at_baseline_passed: 5103
+  passed_floor: 5238
+  counts_at_baseline_passed: 5238
   baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
-  baseline_failures_sha256: 1fa6489e51a0fd8e0d6a2c49036e9fd021895d52bf113d7385a40574a8d38f2f
+  baseline_failures_sha256: 4ba1a394b7e8b48f1d2e9302ddd0bd334b24e5ddac454e31087e480bad9e6f2f
 
 heads_last_sealed:
   state_repo:
     workdir: /app/assessment_workspace
     branch: master
-    head: 4da6039e4e8357dcf484bba8b7ab00207af407ca
-    sealed_at_utc: 2026-09-18T20:55:00Z
-    seal_kind: "CP-M12-W1i-TCB-GOLDEN-INPUT-BYTE-IDENTICAL · state Commit-B `4da6039e` · banks Commit-A `0fbac772` for M12-W1i (TCB chokepoint golden-input byte-identical determinism corpus per B.8 · Canon 7 §B.8 verbatim owner-quote anchor · 37 tests across 7 classes · zero mechanism change · pure invariant-lock over EXISTING deterministic surfaces) · ratchet 5066 → 5103 (+37 AUTHENTIC RED-first · double-green byte-identical) · autopilot R-28 continues NON-STOP to M10-W2/W3 next"
+    head: a50ec204c0db891e9f79110dfa15510170153819
+    sealed_at_utc: 2026-09-19T03:50:00Z
+    seal_kind: "CP-M10-W4e-MEMORY-WRITER-CONSOLIDATION · state Commit-B `a50ec204` · banks Commit-A `f12f22f9` · MILESTONE 2 (M10-W4) FULLY CLOSED (5/5 sub-waves complete: refusal + countersign + northena + deletion + memory) · Milestone 3 gate (i) SATISFIED (certificate rows go on the one chain) · ratchet 5222→5238 (+16 W4e memory) · card citations M10_W4.md MUST-DO-5 + EXIT-W4e + milestone_status → CLOSED · autopilot R-28 next Canon-8 G5 slice mapping (gate iii precondition for M12b-W1)"
   code_repo:
     workdir: /app/assessment_workspace/repos/Extraction-Akki
     branch: programme/track-a
-    head: 0fbac7722c613bb9249c892307c2dba4be29b3e7
-    sealed_at_utc: 2026-09-18T20:50:00Z
-    seal_kind: "CP-M12-W1i-TCB-GOLDEN-INPUT-BYTE-IDENTICAL · Commit-A `0fbac772` · NEW tests/invariants/test_m12_w1i_tcb_chokepoint_golden_input_byte_identical.py (37 tests · 7 classes · owner run order 2026-09-18 verbatim in module docstring: 'The chokepoint is TCB: its tests are golden-input, byte-identical (B.8)') · autopilot R-28"
+    head: f12f22f9cfa90f2d23c3811254b20bc6ef780d3d
+    sealed_at_utc: 2026-09-19T03:45:00Z
+    seal_kind: "CP-M10-W4e-MEMORY-WRITER-CONSOLIDATION · Commit-A `f12f22f9` · Milestone 2 FIFTH and FINAL sub-wave · MILESTONE 2 FULLY CLOSED · Milestone 3 gate (i) certificate-rows-on-one-chain SATISFIED · NEW backend/services/ledger_writer/writers/memory.py (event_type='memory' · decision='continue' · reason_code=stamp_audit['data_class'].removeprefix('memory_') · actor_id='service:memory_ledger' · data_class scope 'memory_*' 7 registry entries · RAISES ValueError LEDGER-W4E-002 on non-memory data_class · does NOT import services.memory.ledger or services.compliance.deletion_ledger) + NEW backend/tests/invariants/test_m10_w4e_memory_writer_consolidation.py (16 tests · 4 clusters) + baseline_failures.json passed_floor 5222→5238 (+16 · sha256 4ba1a394…) · pre-seal double-green stripped-sha256 1786bb9ee721ba755a18292cb87be362b8586c8ee3115b0568004b4c8acdd6c6 · autopilot R-28"
 
 boot_sequence:
   - Read STATE/STANDING_ORDERS.md end-to-end.

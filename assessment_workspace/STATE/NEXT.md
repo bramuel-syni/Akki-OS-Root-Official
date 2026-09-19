@@ -57,6 +57,113 @@ Failure to follow this sequence = paraphrase-not-spec failure class the owner ex
 
 Update this section at every CP/R-step close.
 
+**§6 INTERLUDE MARKER · 2026-09-19T~03:32Z · autopilot R-30 wake-up · post-CANON-8-G5-GATE-III-CLEARED**
+
+Gate (iii) precondition for M12b-W1 CLEARED at Canon-8 217/217 mapping coverage. Banked this-turn on state master:
+- `addfc58b` — SO6-RESUME-R29-BOOT (Owner Option-3 override VERBATIM + §6 RESUME ATTESTATION 2026-09-19T~03:24Z + full-sweep proof floor 5238).
+- `1e048bf5` — G5-§4f-CANON-8-COMPLETION-SWEEP (180 Canon-8 rows appended · overlap = 0 · union = 217/217 · 180 rows land as `none-new-needs-ratification` desk-items pending ratification-desk pass).
+
+**Gate status for M12b-W1 (per `STATE/OBJECTIVES/M12b_W1.md` § EXIT):**
+- Gate (i) · Milestone 2 landed in full (certificate rows on the one chain) — **SATISFIED** at CP-M10-W4e-MEMORY-WRITER-CONSOLIDATION Commit-A `f12f22f9` (2026-09-19T~03:09Z).
+- Gate (ii) · W1f confirmation banked — **SATISFIED** at DECISIONS 2026-09-18T~21:20Z (banned-field-exclusion precursors at W2b + W3).
+- Gate (iii) · Canon-8 G5 rules mapped in `notes/G5_atomic_rules_to_registry_mapping.md` — **SATISFIED** this-turn (state commit `1e048bf5` · 217/217 unique C8 rule_ids verified via Python set-diff).
+
+**M12b-W1 opens as R-30.** Card MUST-DO 1-5 open the tests-first RED cycle: (1) Watch vocabulary caller-flip AST — every M9 caller uses Watch-owned tokens; (2) certificate-carrying verdict rows — A5.19-conformant certificate ref with hash-bound payload_ref; (3) minimum Ed25519 primitive — deterministic sign+verify roundtrip under Watch trust boundary only; (4) signature-as-guard test — Verdict schema structurally excludes `confidence` / `score` / `strength` / `probability` / etc.; (5) M11-GATE-RELEASE c2 xfail retirement — dated xfail closes with caller-flip landing. All five under §3.8 additive-only + §3.10 tuple[str] discipline. Estimated ratchet delta: +30 to +60 tests. Owner-desk item B-M12b-Q1 is OPEN (Ed25519 signing scope) — resolved at CP-open per owner ruling.
+
+**Objective card hash-pin unchanged** (`0bc8b267…`) — per SO §6.2 the milestone_status: line stays on-card as ratified; gate-satisfaction is recorded in DECISIONS + NEXT + seal notes, not in-card, so `test_objective_card_pinned.py` stays green.
+
+**Immediate next action R-30 (compaction-safe resume point):**
+1. Open the four M12b-W1 RED test files under `repos/Extraction-Akki/backend/tests/invariants/`:
+   - `test_m12b_w1_watch_vocabulary_caller_flip_ast.py`
+   - `test_m12b_w1_certificate_carrying_verdict_rows.py`
+   - `test_m12b_w1_ed25519_primitive_determinism.py`
+   - `test_m12b_w1_signature_as_guard_schema_field_exclusion.py`
+   - `test_m12b_w1_m11_gate_release_c2_xfail_retirement.py`
+2. Author each RED and run pytest to confirm right-reason failures. Bank RED receipt.
+3. Author GREEN implementations under `services/watch/` (additive-only §3.8): certificate carrier, Ed25519 primitive, verdict schema field-exclusion invariant, caller-flip surface.
+4. Double-green byte-identical sweep. Bump ratchet 5238 → 5238 + Δ.
+5. §3.3 3-commit seal (Commit-A track-a + Commit-B master + Commit-C fixup banks Commit-B SHA into DECISIONS + NEXT + ORCH_BOOT.state_repo.head via R-6 boundary regen).
+
+**Standing bounds re-affirmed** (from owner text 2026-09-19T~03:15Z verbatim): zero push · `testing_agent` BANNED · terminal pytest only · additive-only §3.8 · closed-tuple mirror §3.10 · §4.1 §E · HF hold · full pre-seal BASELINE_GUARD=1 double-green byte-identical · daily digest at wall-clock day-boundary + milestone one-liners + batched desk items · STOP is immediate.
+
+**Staleness re-scope APPLY-ON-EXPIRY** still ARMED for 2026-09-20T~11:35Z (T-32.1h at this attestation). Not yet fired.
+
+**No forks banked this-turn** (R-29 executed cleanly · slice was pre-drafted as exact complement · no divergent options surfaced).
+
+
+
+Boot ritual completed per SO §6.1 files-are-truth. Owner Option-3 override (in-session channel · this-turn) banked verbatim in `STATE/DECISIONS.md` §"Bank OWNER RULING · Option-3 Override + Full-Run Resume (VERBATIM · 2026-09-19T~03:15Z)" per SO §2 "banked BEFORE any action." Four cited authorities re-verified against files: (1) SO §1 line 11 (CHUNK-1 stale bootstrap brief) · (2) DECISIONS.md line 11997+ (CHUNK 1 close + standing authority Item 3) · (3) SO §6 lines 394–476 (Long Autonomous Run Protocol) · (4) DECISIONS.md line 13647 ("go on all remaining milestones · survive to end of build"). Override lawful. Session brief superseded.
+
+Read this-turn per §6.1: STATE/STANDING_ORDERS.md end-to-end · STATE/DECISIONS.md last 300+ lines · STATE/NEXT.md top-to-bottom · notes/ORCH_BOOT.md in full · STATE/OBJECTIVES/M12b_W1.md (current card per §6.2 · gate iii is the current work face). Boot invariants GREEN: `test_orch_boot.py` (5 tests) + `test_standing_orders_present.py` (3 tests) + `test_objective_card_pinned.py` (5 tests) = **13/13 passed in 0.78s**.
+
+Full BASELINE_GUARD=1 sweep (§6.1 floor confirmation): GREEN1 `5238 passed, 1 skipped, 1 xfailed, 438 warnings` in 161.19s · GREEN2 `5238 passed, 1 skipped, 1 xfailed, 438 warnings` in 162.00s · stripped-sha256 byte-identical `dbcf9b6b90def4ed997d0057a0aeb6fc2992ee18d1ace99710aee068f0ff1518`. Floor **5238** confirmed = ORCH_BOOT.ratchet.passed_floor + baseline_failures.counts_at_baseline.passed. baseline_failures_sha256 `4ba1a394b7e8b48f1d2e9302ddd0bd334b24e5ddac454e31087e480bad9e6f2f`. Receipts banked at `backend/phase0/drill_receipts/20260919T032345Z_so6_resume_boot_baseline_guard1_GREEN{1,2}.log`.
+
+**Disk-vs-cache attestation diff (§6.1 anti-drift · mandatory pre-write step).** Last banked attestation in this file (2026-09-19T~00:35Z, autopilot R-28 wake-up) described in-flight seal at CP-SO6-BANKED-AND-M10-W4a-REFUSAL-CONSOLIDATION. Since then FOUR §3.3 3-commit seals have landed on-disk (verified from DECISIONS.md tail + ratchet_history + ORCH_BOOT.seal_kind + git log):
+- CP-M10-W4b-COUNTERSIGN-WRITER-CONSOLIDATION (ratchet 5174 → 5187, +13)
+- CP-M10-W4c-NORTHENA-WRITER-CONSOLIDATION (ratchet 5187 → 5205, +18)
+- CP-M10-W4d-DELETION-WRITER-CONSOLIDATION (ratchet 5205 → 5222, +17)
+- CP-M10-W4e-MEMORY-WRITER-CONSOLIDATION (ratchet 5222 → 5238, +16 · **MILESTONE 2 FULLY CLOSED** · Milestone 3 gate (i) SATISFIED)
+
+Track-a HEAD advanced to Commit-A `f12f22f9` (matches ORCH_BOOT.code_repo.head). Master last-sealed Commit-B `a50ec204` banked in ORCH_BOOT.state_repo.head; master live HEAD `46430675` is the CP-M10-W4e Commit-C fixup that banks the Commit-B SHA (R-6 discipline: heads_last_sealed carries the SEALED Commit-B, not the post-seal fixup). This matches owner's stated expected-state clause exactly ("M10-W4 sealed, ratchet 5238, Canon-8 G5 mapping mid-flight"). **No mismatch beyond expected → no stop-and-report** per Option-3 override.
+
+**Current milestone / sub-wave (§6.1 attestation requirements):**
+- **Milestone:** M12b-W1 (Milestone 3 · Watch caller-flip + verdict-schema freeze + Ed25519 minimum · card at `STATE/OBJECTIVES/M12b_W1.md`).
+- **Sub-wave:** gate (iii) precondition · Canon-8 G5 slice mapping mid-flight in `notes/G5_atomic_rules_to_registry_mapping.md` (3012 lines · 344 `rule_id:` entries banked · target 1096 total across nine canons).
+- **Ratchet floor:** 5238 (unchanged from CP-M10-W4e-Commit-A seal 2026-09-19T~03:45Z).
+- **Open forks:** none active. §6.4 pre-rulings cover the four named movers (M10-W4 replay forks · M16 CIF scope · frontend fidelity bar · M13 standards).
+- **Active bounds (non-batchable per owner text):** zero push · `testing_agent` BANNED · terminal pytest only · additive-only §3.8 · closed-tuple mirror §3.10 · §4.1 §E custody read discipline · HF hold (SEC-2026-09-12-01) · §3.3 3-commit seal at every CP with full pre-seal `BASELINE_GUARD=1` double-green byte-identical sweep · R-6 boundary regen of `notes/ORCH_BOOT.md` + audit mirror at every seal · daily-digest reporting cadence per §6.5.
+
+**G5 mapping progress measured this-turn (per-canon `rule_id:` count in file):**
+| Canon | Total rules | Mapped this-turn | Coverage |
+|---|---:|---:|---|
+| 1 · The Custody Platform | 94 | 21 | 22% |
+| 2 · Conditioned Ideation Faculty | 75 | 12 | 16% |
+| 3 · Governance Engines | 111 | 42 | 38% |
+| 4 · Operating Engines | 144 | 34 | 24% |
+| 5 · Interface Architecture | 110 | 18 | 16% |
+| 6 · User Journeys | 61 | 11 | 18% |
+| 7 · Integration Service and Quality Rulebook | 245 | 109 | 44% |
+| **8 · The Watch (gate iii · owner-prioritised)** | **217** | **41** | **19%** |
+| 9 · The Mkondo Charter | 39 | 10 | 26% |
+| **TOTAL** | **1096** | **297** | **27%** |
+
+Pre-compaction mid-flight artefact: `/tmp/c8_completion_slice.md` (1450 lines · 180 `rule_id:` entries for Canon 8 · YAML block form · header "Canon 8 · §4f-c8-full · completion sweep · 180 of 217 rules · 2026-09-19T~04:00Z"). Survived compaction on `/tmp`. Needs dedup against the 41 in-file entries + integrate into `notes/G5_atomic_rules_to_registry_mapping.md` §4f-c8-full as append-only. Expected post-integrate Canon-8 coverage: 217/217 → gate (iii) satisfied.
+
+**Staleness re-scope APPLY-ON-EXPIRY:** ARMED for 2026-09-20T~11:35Z. Current clock 2026-09-19T~03:24Z → T-32.3h. Not yet fired. Will execute per banked ceremony (owner ruling 2026-09-18 verbatim in DECISIONS.md ~line 12472: "at countdown expiry (~2026-09-20T11:35Z), apply per ceremony under standing authority, include the one-time on-host GPU journal pull in the close-out, re-run the sweep post-apply") if run passes horizon.
+
+**Next action R-29 (immediate this-turn):** dedup + integrate `/tmp/c8_completion_slice.md` into `notes/G5_atomic_rules_to_registry_mapping.md` §4f-c8-full (append-only per SO §3.8), driving Canon-8 mapped-count 41 → 217. Then walk remaining canons (C1..C7 + C9 = 799 unmapped rules) interleaved to 1096 per SO §6.7. Once gate (iii) clears, open M12b-W1 tests-first per objective card MUST-DO 1-5 + EXIT gates → §3.3 3-commit seal on close → advance to M13 etc. per §6.7.
+
+**Reporting cadence (§6.5):** daily digest at wall-clock day-boundary + milestone one-liners at each seal + owner-desk items batched at milestone close. No per-CP narration to owner. Immediate hand-off if owner sends STOP.
+
+**Time-box (§6.5):** M12b-W1 time-box = 2× §6.6 estimate. Loop-detection: same test RED across three sweeps or same fork banked twice = stop.
+
+
+
+Boot re-anchoring completed per SO §6.1 (files-over-cache):
+
+- Read `STATE/STANDING_ORDERS.md` end-to-end (SO §6.1 mandate).
+- Read `STATE/DECISIONS.md` last 300 lines.
+- Read `STATE/NEXT.md` top-to-bottom.
+- Read `notes/ORCH_BOOT.md` in full.
+- Read `STATE/OBJECTIVES/M10_W4.md` (current-wave objective card per SO §6.2).
+
+**Disk-vs-handoff attestation-diff (SO §6.1 anti-drift):**
+
+The handoff analysis claimed `notes/ORCH_BOOT.md` had a "YAML scanner error / malformed indentation at line ~45 (`heads_last_sealed:`)". Direct disk read contradicts that claim — the YAML parses cleanly (`yaml.safe_load` succeeds; both `ratchet` and `heads_last_sealed` blocks are well-formed). The ACTUAL failing invariant is `test_orch_boot.py` assertion #2 (byte-identity between the two mirror copies): the audit copy at `/app/frontend/public/audit/ORCH_BOOT.md` is a pre-Commit-B stale mirror while the notes copy is the post-Commit-B version. sha256 delta: notes=`334bd8e8…` vs audit=`0b6574e0…`. Source-of-truth is the notes copy (post-Commit-B R-6 regen). Fix: `cp` notes → audit byte-identical; do NOT rewrite either copy.
+
+**Owner-ratified path forward (choice 1a + 2a, 2026-09-19T~00:32Z):**
+
+1. Bank this attestation (Commit-C companion).
+2. Sync audit copy byte-identical to notes copy.
+3. `python -m pytest tests/invariants/test_orch_boot.py` → GREEN.
+4. Full `BASELINE_GUARD=1` sweep (twice, byte-identical stripped-sha256) → confirm ratchet floor 5174 holds.
+5. Execute Commit-C fixup on `master` (banks Commit-B `de1cfb30` + Commit-A `ba359a16` into DECISIONS.md + this NEXT.md status marker + ORCH_BOOT.md).
+6. Advance to M10-W4b (countersign writer replay adapter) per §6.7 sequence.
+
+**§6.4 pre-ruling applicable:** replay-preservation failure on any Milestone-2 writer is BANKED as fork-with-options and does NOT halt the run (legacy store goes read-only + provenance pointer preserved + forward-only cutover). Only a genuine canon-vs-canon tension escalates to a banked desk fork (§6.5). Same-fork-banked-twice = loop-detection stop (§6 loop clause).
+
+**In-flight seal:** CP-SO6-BANKED-AND-M10-W4a-REFUSAL-CONSOLIDATION Commit-A `ba359a16` (programme/track-a) + Commit-B `de1cfb30` (master) landed; Commit-C fixup pending post-mirror-sync + double-green + this attestation.
+
 ### 📋 POST-SPRINT QUEUE — registered 2026-09-18 · pending owner-directed execution AFTER current sprint closes
 
 **Sprint-close criterion for queue release:** owner (i) acknowledges the SER errata v1.0.1, AND (ii) rules the Part 2-vs-Part 8 T-c sequencing question (α · split-landing schema-early / caller-flip-at-M12b-W1, OR β · full T-c at M12b-W1 which itself precedes M11-W1), AND (iii) issues explicit "go" on the M11/M12 build. Until all three land, the queue stays PENDING and no queue item begins.
@@ -1866,6 +1973,14 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 - ✅ CP-M12-W1g-CLOSED-OUTBOUND (closed outbound network allow-list per Canon 1 §A5.5 · positive named-file exemption mandate + belt-and-suspenders host check + egress_host on CrossingEvent) — `df28adbf` / `7efcb86f` / Commit-C banked inline · ratchet 5046 → 5056 (+10)
 - ✅ CP-M12-W1h-D16-D17-STRUCTURAL-PROHIBITIONS (D-16 local-first cascade + D-17 inner perimeter · STRUCTURAL PROHIBITIONS ONLY per Canon 4 §43.4 · Reading A DEFAULT-class · fork banked · NO cascade machinery built) — `38235069` / `62c71a01` / Commit-C banked inline · ratchet 5056 → 5066 (+10)
 - ✅ CP-M12-W1i-TCB-GOLDEN-INPUT-BYTE-IDENTICAL (TCB chokepoint golden-input byte-identical determinism corpus per B.8 · 37 tests across 7 classes · zero mechanism change · pure invariant-lock over EXISTING deterministic surfaces) — `0fbac772` / `4da6039e` / Commit-C banked inline · ratchet 5066 → 5103 (+37)
+- ✅ CP-M10-W2a-VERIFIER-CRED-SEPARATION-AND-RECEIPT-STORE (Milestone 1 opener · verifier credential-separation primitive + append-only receipt store per B-M10-Q2 · 15 tests + 1 auto-param expansion) — `84726a50` / `c17cdd3a` / Commit-C banked inline · ratchet 5103 → 5119 (+16)
+- ✅ CP-M10-W2b-HEAD-HASH-PUBLICATION-AND-CADENCE (Milestone 1 second sub-wave · head-hash publication to tenant receipt endpoint per B.4 + cadence scheduler primitive nightly + on-demand per B-M10-Q2 · 15 tests across 3 clusters · M3 forward-compat banned-field-exclusion invariant on HeadHashPublication) — `62dd899e` / `323a102b` / Commit-C banked inline · ratchet 5119 → 5134 (+15)
+- ✅ CP-M10-W3-SEV1-WIRE-ON-CHAIN-BREAK (**MILESTONE 1 CLOSE-OUT** · SEV-1 wire on chain break · security-group page + Watch signal recorded · evidence-never-action discipline · 17 tests across 4 clusters · owner tests-first verbatim satisfied: broken chain produces BOTH · intact chain produces NEITHER · any shared credential refuses via C3 gate · M3 forward-compat banned-field-exclusion on both new certificate-like records · AST-level evidence-never-action bans services.watch.mkono + services.ledger_writer imports from all three new modules · closed-6-registry sever_signals preserved · W1f confirmation banked in DECISIONS w/ 3 grep-verified pytest node IDs) — `51189340` / `2146069e` / Commit-C banked inline · ratchet 5134 → 5151 (+17)
+- ✅ CP-SO6-BANKED-AND-M10-W4a-REFUSAL-CONSOLIDATION (**JOINT SEAL** · Owner Standing Order §6 Long Autonomous Run Protocol banked verbatim + Owner FULL-RUN AUTHORIZATION END-OF-BUILD banked verbatim + M10-W4a first sub-wave landed · four §6.4 pre-rulings adopted · four-tier fork policy adopted · STATE/OBJECTIVES/ NEW with 3 pre-ratified cards · 2 new invariant files with 7 SO6 tests + 1 new W4a invariant file with 16 tests · zero-rows-lost + read-only-at-cutover replay-proof · card citations M10_W4.md MUST-DO-1 + EXIT-W4a + implicit SO6 self-citation) — `ba359a16` / `de1cfb30` / Commit-C banked inline · ratchet 5151 → 5174 (+23)
+- ✅ CP-M10-W4b-COUNTERSIGN-WRITER-CONSOLIDATION (Milestone 2 second sub-wave · countersign writer replay adapter · legacy dual-control countersigned rule-change row shape folded into unified writer · event_type='countersign' · decision='continue' mirroring legacy Amendment C neutral placeholder for zero-rows-lost · reason_code=stamp_audit['consequence_class'] H/M/L per §8 · 16 tests across 4 clusters mirror W4a shape · AST bans on services.checker.countersign_ledger + services.compliance.deletion_ledger · card citations M10_W4.md MUST-DO-2 + EXIT-W4b) — `f34caf44` / `cebefa99` / Commit-C banked inline · ratchet 5174 → 5190 (+16)
+- ✅ CP-M10-W4c-NORTHENA-WRITER-CONSOLIDATION (Milestone 2 third sub-wave · northena non-refusal writer replay adapter · legacy Northena admit/gate/converge row shape via services.northena.ledger.record folded into unified writer · event_type=legacy.stage · decision=legacy.decision · reason_code=legacy.reason · all 6 non-refusal decisions preserved · 16 tests across 4 clusters mirror W4a/W4b shape with W4c-specific structural-role-separation ValueError on refusal-class rows · AST ban on services.northena.ledger · card citations M10_W4.md MUST-DO-3 + EXIT-W4c) — `8b119508` / `9e88944b` / Commit-C banked inline · ratchet 5190 → 5206 (+16)
+- ✅ CP-M10-W4d-DELETION-WRITER-CONSOLIDATION (Milestone 2 fourth sub-wave · authorized_deletion writer replay adapter · event_type='delete' + decision='continue' + reason_code=stamp_audit['held_class'] + actor_id='service:deletion_ledger' · data_class scope strictly 'authorized_deletion' · RAISES ValueError LEDGER-W4D-002 on other data_classes for structural role separation · 16 tests across 4 clusters mirror W4a-c shape · AST ban on services.compliance.deletion_ledger · card citations M10_W4.md MUST-DO-4 + EXIT-W4d) — `18337e3e` / `abefb37c` / Commit-C banked inline · ratchet 5206 → 5222 (+16)
+- ✅ CP-M10-W4e-MEMORY-WRITER-CONSOLIDATION (Milestone 2 FIFTH and FINAL sub-wave · **MILESTONE 2 FULLY CLOSED** · memory writer replay adapter · event_type='memory' + decision='continue' + reason_code=stamp_audit['data_class'].removeprefix('memory_') carrying specific memory event class + actor_id='service:memory_ledger' · data_class scope any 'memory_' prefix (7 registry entries) · RAISES ValueError LEDGER-W4E-002 on non-memory data_class for structural role separation · 16 tests across 4 clusters · AST bans on services.memory.ledger + services.compliance.deletion_ledger · card citations M10_W4.md MUST-DO-5 + EXIT-W4e · Milestone 3 gate (i) SATISFIED · gate (ii) SATISFIED · gate (iii) Canon-8 G5 mapping PENDING) — `f12f22f9` / `a50ec204` / Commit-C banked inline · ratchet 5222 → 5238 (+16)
 
 ### Held for owner disposition (banked forks)
 
@@ -1882,6 +1997,34 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 - **M12-W1g**: Closed outbound network (extend allowlist strictness).
 - **M12-W1h**: D-17 inner perimeter + D-16 local-first cascade.
 - **M12-W1i**: TCB golden-input byte-identical tests (B.8).
+
+### M10/M12b backlog · NEW OWNER RUN ORDER 2026-09-18T~21:15Z (banked verbatim in DECISIONS.md) · three-milestone stretch under R-18 · MILESTONE 1 (M10-W2/W3) OPENS NOW
+
+**Milestone 1 · M10-W2/W3 · the Ledger's operational wire** (opens now-turn as own RED-first cycle):
+- **M10-W2**: Verifier under credentials the writer does NOT hold (C3 credential-separation) · **stop-condition #2 sensitive**.
+- **M10-W2**: Verifier's own append-only receipt store.
+- **M10-W2**: Head hash published to tenant receipt endpoint per B.4.
+- **M10-W2**: Cadence scheduler — nightly + on-demand.
+- **M10-W3**: SEV-1 wire on chain break — security-group page + Watch signal recorded · evidence-never-action discipline.
+- Tests-first requirement: deliberately-broken chain produces BOTH the paging AND the Watch signal; any shared credential fails a dedicated test.
+
+**Milestone 2 · M10-W4 · writer consolidation** (opens after M10-W2/W3 sealed):
+- Ruled order: refusal → countersign → northena → deletion → memory.
+- Per-writer replay test PASSING is precondition to landing that writer (legacy row-hash reproduction · zero rows lost).
+- Legacy stores go read-only at cutover · never rewritten.
+- Non-preservable writer → fork banked with options, not resolved.
+
+**Milestone 3 · M12b-W1 · Watch goes live on canon** (opens on THREE gates all clear):
+- **Gate (i)**: Milestone 2 landed in full (certificate rows go on the one chain).
+- **Gate (ii)**: W1f confirmation ratified by owner (see DECISIONS.md 2026-09-18T~21:20Z · Reading X = DEFAULT-class agent recommendation · Reading Y = strict-remediation on `CrossingEvent` verdict/score co-location).
+- **Gate (iii)**: G5 slice for Canon-8 (217 rules) fully mapped BEFORE opening (new orchestrator gate per note #2).
+- Contents: T-c rename (annotate · shape · contain · sever · destroy REMOVED); verdict schema carries `{requirement_id, data_points[], observation_refs[]}` + signature-as-guard test (no confidence/score/strength/probability field); severance keyed to A5.2's closed signal registry; I-2 as (category, certificate satisfied); minimum Ed25519 primitive (keygen · sign · verify · Watch key only); Mkono acts only on signature-verified verdicts.
+
+**G5 slice prioritization (per orchestrator note #2)**: Canon-8's 217 rules mapped FIRST (gate iii precondition to M3). Remaining G5 slices interleaved after Canon-8 as notes-only commits.
+
+**Per-writer review drafts (parallel, notes-only)**: ahead of each Milestone 2 writer landing.
+
+**Staleness re-scope apply-on-expiry**: fires at 2026-09-20T11:35Z (~14h out at this seal). Applies during the M10 stretch per ceremony — one-time on-host GPU journal pull inside apply step · full sweep post-apply · own small seal.
 
 ### M10 backlog carried forward (Milestone 2 not opened this-session per run order sequencing: M12-W1 closes first, then M10-W2/W3)
 
