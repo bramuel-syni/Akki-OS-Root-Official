@@ -33,29 +33,29 @@ STATE files, and on any boot ritual that detects drift.
 
 ```yaml
 schema_version: 1
-generated_at_utc: 2026-09-19T03:55:00Z
-generator: main-agent Autopilot (CP-M10-W4e-MEMORY-WRITER-CONSOLIDATION Commit-C fixup · R-6 boundary regen · heads_last_sealed.state_repo.head advanced to Commit-B a50ec204 · code head remains Commit-A f12f22f9 · ratchet 5238 unchanged · baseline_failures_sha256 unchanged · MILESTONE 2 FULLY CLOSED · 5/5 sub-waves)
-regeneration_reason: r6-boundary-regen-post-commit-b-at-cp-m10-w4e-state-head-advanced-to-commit-b-a50ec204-milestone-2-fully-closed
+generated_at_utc: 2026-09-19T08:56:00Z
+generator: main-agent Autopilot (CP-M14-W5-SEAL-INTEGRATION Commit-C fixup R-6 boundary regen · heads_last_sealed.state_repo.head advanced to Commit-B 9e673215 · code_repo.head remains Commit-A 1b019041 · ratchet 5344 · baseline_failures_sha256 03714f66… · MILESTONE 5 FIFTH SUB-WAVE FULLY SEALED · M14 MILESTONE FULLY CLOSED · milestone_status CLOSED · card_sha256 eb3ff591… · post-Commit-C fixup regen)
+regeneration_reason: r6-boundary-regen-commit-c-fixup-at-cp-m14-w5-seal-integration-m14-milestone-fully-closed-state-head-advance-to-9e673215
 
 ratchet:
-  passed_floor: 5238
-  counts_at_baseline_passed: 5238
+  passed_floor: 5344
+  counts_at_baseline_passed: 5344
   baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
-  baseline_failures_sha256: 4ba1a394b7e8b48f1d2e9302ddd0bd334b24e5ddac454e31087e480bad9e6f2f
+  baseline_failures_sha256: 03714f66519f17042f645ae66b9191412f656a8753f61f0c27272aaf1b13e846
 
 heads_last_sealed:
   state_repo:
     workdir: /app/assessment_workspace
     branch: master
-    head: a50ec204c0db891e9f79110dfa15510170153819
-    sealed_at_utc: 2026-09-19T03:50:00Z
-    seal_kind: "CP-M10-W4e-MEMORY-WRITER-CONSOLIDATION · state Commit-B `a50ec204` · banks Commit-A `f12f22f9` · MILESTONE 2 (M10-W4) FULLY CLOSED (5/5 sub-waves complete: refusal + countersign + northena + deletion + memory) · Milestone 3 gate (i) SATISFIED (certificate rows go on the one chain) · ratchet 5222→5238 (+16 W4e memory) · card citations M10_W4.md MUST-DO-5 + EXIT-W4e + milestone_status → CLOSED · autopilot R-28 next Canon-8 G5 slice mapping (gate iii precondition for M12b-W1)"
+    head: 9e6732150a8078b2cf4f9ea66ff975756eabd023
+    sealed_at_utc: 2026-09-19T08:54:00Z
+    seal_kind: "CP-M14-W5-SEAL-INTEGRATION · state Commit-B `9e673215` · banks Commit-A `1b019041` · MILESTONE 5 FIFTH SUB-WAVE SEALED · M14 MILESTONE FULLY CLOSED · milestone_status DRAFTED → CLOSED · ratchet 5338→5344 · total M14 ratchet 5311→5344 (+33) · card_sha256 re-pinned eb3ff591… reflecting CLOSED state"
   code_repo:
     workdir: /app/assessment_workspace/repos/Extraction-Akki
     branch: programme/track-a
-    head: f12f22f9cfa90f2d23c3811254b20bc6ef780d3d
-    sealed_at_utc: 2026-09-19T03:45:00Z
-    seal_kind: "CP-M10-W4e-MEMORY-WRITER-CONSOLIDATION · Commit-A `f12f22f9` · Milestone 2 FIFTH and FINAL sub-wave · MILESTONE 2 FULLY CLOSED · Milestone 3 gate (i) certificate-rows-on-one-chain SATISFIED · NEW backend/services/ledger_writer/writers/memory.py (event_type='memory' · decision='continue' · reason_code=stamp_audit['data_class'].removeprefix('memory_') · actor_id='service:memory_ledger' · data_class scope 'memory_*' 7 registry entries · RAISES ValueError LEDGER-W4E-002 on non-memory data_class · does NOT import services.memory.ledger or services.compliance.deletion_ledger) + NEW backend/tests/invariants/test_m10_w4e_memory_writer_consolidation.py (16 tests · 4 clusters) + baseline_failures.json passed_floor 5222→5238 (+16 · sha256 4ba1a394…) · pre-seal double-green stripped-sha256 1786bb9ee721ba755a18292cb87be362b8586c8ee3115b0568004b4c8acdd6c6 · autopilot R-28"
+    head: 1b019041d55a1ce2a22c54e08df66d9f5064cec7
+    sealed_at_utc: 2026-09-19T08:50:00Z
+    seal_kind: "CP-M14-W5-SEAL-INTEGRATION · Commit-A `1b019041` · Milestone 5 FIFTH SUB-WAVE (M14 MILESTONE CLOSING GATE) · Integration seal binding W1..W4 sub-wave surfaces end-to-end per SO §6.2 EXIT clause · NEW tests/invariants/test_m14_w5_seal_integration.py (6 tests including milestone happy-path handoff→admit→ask→confirm→sign→deliver→verify + cross-tenant refusal + dual-hatted refusal + single-writer ledger count + canonical bytes snapshot pin 40af13fe…) · baseline_failures.json 5338→5344 · pre-Commit-A double-green 6892491a… · autopilot R-33"
 
 boot_sequence:
   - Read STATE/STANDING_ORDERS.md end-to-end.

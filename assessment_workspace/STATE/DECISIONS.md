@@ -14046,12 +14046,739 @@ Staleness re-scope apply-on-expiry remains armed for 2026-09-20T11:35Z (~7.5h ou
 
 ---
 
+## CP-M12b-W1-CALLER-FLIP-VERDICT-SCHEMA-ED25519 · Commit-A banking · 2026-09-19T~04:10Z · MILESTONE 3 OPENER
+
+**Scope:** M12b-W1 · Milestone 3 opener · Watch caller-flip + verdict-schema freeze + Ed25519 minimum · card citations `STATE/OBJECTIVES/M12b_W1.md` MUST-DO 1-5 + EXIT (all four M12b-W1 gates authored) + gate (iii) precondition Canon-8 217/217 mapping already cleared at state commit `1e048bf5`.
+
+**Commit-A code track:** `60cc61e140ea0401b49a4abc06bc97e3b2327cb6` on `programme/track-a` · sealed 2026-09-19T04:10:00Z.
+
+**Delta**: 5238 → 5279 = **+41 exactly reconciled line-by-line**: 40 new test functions across 5 M12b-W1 test files (`test_m12b_w1_watch_vocabulary_caller_flip_ast.py` 6 + `test_m12b_w1_certificate_carrying_verdict_rows.py` 10 + `test_m12b_w1_ed25519_primitive_determinism.py` 10 + `test_m12b_w1_signature_as_guard_schema_field_exclusion.py` 9 + `test_m12b_w1_m11_gate_release_c2_xfail_retirement.py` 5) + 1 xfail→pass conversion from CP-M11-GATE-RELEASE c2 dated-xfail retirement (marker removed per R-18 T-c Option-α c2 verbatim retirement mechanism "at M12b-W1 it xpasses → convert to a real passing test"). Zero flip. Zero regression. Zero auto-param expansion.
+
+**Files landed (code repo):**
+
+- **NEW** `backend/services/watch/schema_verdict.py` (167 LOC):
+  - `Verdict` pydantic model + `Certificate` pydantic model.
+  - `canonical_bytes(verdict) -> bytes` — deterministic UTF-8 JSON (sort_keys · comma-colon separators · ISO datetime).
+  - `payload_ref(verdict) -> str` — sha256_hex row-hash primitive · A5.19 hash-binding of certificate_ref via payload_ref.
+  - Signature-as-guard structural field exclusion at model + submodel + JSON-schema + source levels. Confidence/score/strength/probability all banned per Canon 8 §Line 31 closed sever-certainty registry + scoring parameter ban.
+- **NEW** `backend/services/watch/signature_primitive.py` (98 LOC):
+  - Ed25519 keygen (returns distinct keys per call · random per-call entropy) + sign (deterministic per RFC 8032) + verify (returns True for valid signature · False for tampered-message/tampered-signature/wrong-public-key).
+  - Watch-trust-boundary scope only. Keys never routed to callers or Mkono per Canon 8 §W10 watcher-watched-from-outside + §W11 one-task-one-identity.
+  - B-M12b-Q1 (Ed25519 signing scope) answered inline at open per owner card ratification.
+- **NEW** `backend/services/enforce/watch_action_class_gate.py` (87 LOC):
+  - Schema-derived caller-flip surface per SO §3.8 Option-C + SO §3.10-α · closed-tuple `ACTION_CLASSES` mirror of Canon 8 vocabulary `annotate/shape/contain/sever`.
+  - `destroy` REMOVED per Canon 8 §W3 destroy-does-not-exist.
+- **NEW** `backend/tests/invariants/test_m12b_w1_watch_vocabulary_caller_flip_ast.py` (6 tests · AST-level: every M9 caller sources the Watch vocabulary through the gate adapter · no local literal · schema authoritative).
+- **NEW** `backend/tests/invariants/test_m12b_w1_certificate_carrying_verdict_rows.py` (10 tests · Verdict schema + Certificate submodel + canonical_bytes + payload_ref hash-binding + certificate_ref recording · Verdict rows carry A5.19-conformant certificate_ref).
+- **NEW** `backend/tests/invariants/test_m12b_w1_ed25519_primitive_determinism.py` (10 tests · Watch trust boundary + keygen distinct + sign RFC 8032 deterministic + verify roundtrip + verify rejects tampered/wrong-key + scope-minimal).
+- **NEW** `backend/tests/invariants/test_m12b_w1_signature_as_guard_schema_field_exclusion.py` (9 tests · pydantic model + Certificate submodel + JSON schema + construction-time refusal + module source literal · all layers structurally exclude confidence/score/strength/probability).
+- **NEW** `backend/tests/invariants/test_m12b_w1_m11_gate_release_c2_xfail_retirement.py` (5 tests · retirement anchor: c2 xfail marker removed + c2 retirement condition is gate adapter landing + retirement sealing body records this CP).
+- **MODIFIED** `backend/tests/invariants/test_cp_m11_gate_release_watch_m9_callers_vs_schema_xfail.py` (additive-only per SO §1 honest record discipline: xfail marker removed per R-18 T-c Option-α c2 verbatim retirement mechanism · docstring extended with retirement banner at CP-M12b-W1 2026-09-19T~04:00Z · historical divergence record retained append-only).
+- **MODIFIED** `backend/tests/invariants/test_m11w4_w7_control_plane_gates.py` (regression fix per SO §4.2 Clause 6 cross-wave modification: `test_m11_mega_close_gate_count_matches_scope` updated to allow post-M11 gates via `POST_M11_GATE_NAMES` registry · `watch_action_class_gate` registered with card citation `STATE/OBJECTIVES/M12b_W1.md` MUST-DO 1 + MUST-DO 5).
+- **MODIFIED** `backend/tests/invariants/baseline_failures.json`: `counts_at_baseline.passed` 5238 → 5279 · `invariants_enforced_when_baseline_guard_1.passed_floor` 5238 → 5279 · `recorded_at_utc` 2026-09-19T03:45:00Z → 2026-09-19T04:00:00Z · `ratchet_history` appended `CP-M12b-W1-CALLER-FLIP-VERDICT-SCHEMA-ED25519` entry (delta +41 · note verbatim · line-by-line reconciled) · new file sha256 `2bd52c00919e35339f56956448a4af5f557873b9b7be343136340f4fce1b53b6`.
+- Drill receipts folded into Commit-A per housekeeping precedent: `phase0/drill_receipts/20260919T032345Z_so6_resume_boot_baseline_guard1_GREEN{1,2}.log` (SO6 resume boot proof) + `20260919T034025Z_cp_m12b_w1_red.log` (RED authoring 34/40 fail on new modules · 6 pass are anchor-echo cases without new modules · do NOT rebaseline any prior floor) + `20260919T034426Z_cp_m12b_w1_green1.log` + `20260919T034819Z_cp_m12b_w1_green1_v2.log` + `20260919T034819Z_cp_m12b_w1_green2.log` (double-green at authoring time · 5279 passed / 1 skipped / 438 warnings) + `20260919T040000Z_cp_m12b_w1_preseal_GUARD1_run{1,2}.log` (pre-Commit-A double-green byte-identical proof · stripped-sha256 `7265d6e1b8f1dd267dd5312fc5f9c7a4e3a2ee772a6d7459a7b916cbb68fc3ad` · both runs 5279 passed / 1 skipped / 438 warnings).
+
+**Stop-conditions checked:**
+- **#1** (2nd path to external model client): NOT triggered · zero new model-client surfaces · Ed25519 primitive is signature not model.
+- **#2** (verifier sharing credentials with writer): NOT triggered · verifier surface untouched · signing keys held only in Watch trust boundary.
+- **#3** (bypass-shaped parameter on custody crossing): NOT triggered · no custody parameters touched.
+- **§6.4** pre-ruling NOT triggered · banned-field precursors at M10-W2b + M10-W3 already established structural exclusion pattern · M12b-W1 extends to Verdict itself.
+
+**M12b-W1 EXIT status (per card):**
+- **Gate (i)** · Milestone 2 landed in full (certificate rows on the one chain) — **SATISFIED** at CP-M10-W4e-MEMORY-WRITER-CONSOLIDATION Commit-A `f12f22f9`.
+- **Gate (ii)** · W1f confirmation banked — **SATISFIED** at DECISIONS 2026-09-18T~21:20Z.
+- **Gate (iii)** · Canon-8 G5 rules mapped — **SATISFIED** at state commit `1e048bf5` (Canon-8 217/217 union of §4+§4a-§4f).
+- **All four MUST-DO 1-5 authored** in this Commit-A with double-green byte-identical proof.
+
+**Pre-seal BASELINE_GUARD=1 full sweep:** DOUBLE-GREEN BYTE-IDENTICAL. Run1 = Run2 = **`5279 passed, 1 skipped, 438 warnings`**. Stripped-sha256 **`7265d6e1b8f1dd267dd5312fc5f9c7a4e3a2ee772a6d7459a7b916cbb68fc3ad`**. Pre-Commit-A receipts at `phase0/drill_receipts/20260919T040000Z_cp_m12b_w1_preseal_GUARD1_run{1,2}.log`.
+
+**Autopilot R-31 · continuing NON-STOP under §6 END-OF-BUILD authority per owner ruling 2026-09-19T~03:15Z Option-3 override + FULL-RUN AUTHORIZATION 2026-09-19T~00:20Z.** Next per §6.7 sequence: M13 → M14 → M15 → M16 (pre-ruled scope) → M17 → memory layer (after C.13 close) → frontends (functional parity bar; Expo excluded per owner delegation). G5 interleaved to 1,096 per §6.7. Staleness re-scope APPLY-ON-EXPIRY still armed for 2026-09-20T~11:35Z (T-31.4h at Commit-A time · not yet fired).
 
 
+---
 
 
+## CP-M12b-W1-CALLER-FLIP-VERDICT-SCHEMA-ED25519 · Commit-B / Commit-C banking · 2026-09-19T~04:20Z · MILESTONE 3 OPENER FULLY SEALED
+
+**Commit-A (code · programme/track-a):** `60cc61e140ea0401b49a4abc06bc97e3b2327cb6` · sealed 2026-09-19T04:10:00Z (19 files changed · 4018 insertions · 436 deletions).
+
+**Commit-B (state · master):** `179df4e4ea822ce7ac63c955a43ff8d91890fb55` · sealed 2026-09-19T04:15:00Z · banks Commit-A `60cc61e1` for CP-M12b-W1-CALLER-FLIP-VERDICT-SCHEMA-ED25519 · MILESTONE 3 OPENER SEALED · ratchet 5238→5279 (+41 · pre-Commit-A double-green stripped-sha256 `7265d6e1b8f1dd267dd5312fc5f9c7a4e3a2ee772a6d7459a7b916cbb68fc3ad` both runs 5279 passed / 1 skipped / 438 warnings) · card citations M12b_W1.md MUST-DO 1-5 + EXIT · gates i/ii/iii all cleared · card_sha256 unchanged at `0bc8b267…` per §6.2 (milestone_status stays on-card as ratified; gate-satisfaction recorded here in DECISIONS + in NEXT + in seal notes, not in-card).
+
+**Commit-C fixup (state · master):** _pinned in Commit-C commit message and landed with this section_. Scope:
+- Advance `notes/ORCH_BOOT.md` `heads_last_sealed.state_repo.head` to Commit-B `179df4e4` (R-6 boundary regen).
+- Byte-identical audit copy re-synced to `/app/frontend/public/audit/ORCH_BOOT.md` (content-sha256 `5cc37c6c750bfbe8c5e04b86fcc7b1ee87b79e04523f53b84d31bb52ebfa0810` on both copies).
+- Bank Commit-B SHA in DECISIONS.md (this section) + status marker ⏳ → ✅ in NEXT.md M12b-W1 row.
+- Post-fixup `pytest tests/invariants/test_orch_boot.py` → GREEN per checklist.
+
+**Autopilot R-31 · state after Commit-C:**
+- heads_last_sealed advanced to `60cc61e1` (code) / `179df4e4` (state).
+- Ratchet floor 5279 · baseline_failures_sha256 `2bd52c00919e35339f56956448a4af5f557873b9b7be343136340f4fce1b53b6`.
+- **Milestone 1 SEALED** (M10-W2/W3) · **Milestone 2 SEALED** (M10-W4 · 5/5 sub-waves) · **Milestone 3 OPENER SEALED** (M12b-W1 · all four MUST-DO 1-5 landed with double-green byte-identical proof · gates i/ii/iii all cleared).
+
+**Proceeds NON-STOP** to M13 → M14 → M15 → M16 (pre-ruled scope · CIF canon-as-written per §6.4 rule 1) → M17 → memory layer (after C.13 close) → frontends (functional-parity bar per §6.4 rule 3; Expo mobile surface excluded per owner delegation to specialist per §6.7). G5 interleaved to 1,096 per §6.7. Daily digest + milestone one-liners + batched desk items per §6.5.
+
+Staleness re-scope APPLY-ON-EXPIRY still armed for 2026-09-20T~11:35Z (T-31.3h at Commit-C time · not yet fired).
 
 
+---
+
+
+## CP-M13-W2-KMS-ENVELOPE-AND-ROTATION · Commit-A banking · 2026-09-19T~04:50Z · MILESTONE 4 SECOND SUB-WAVE
+
+**Scope:** M13-W2 · Milestone 4 second sub-wave (M13-W1 TCB governance sealed 2026-09-17T~13:46Z at Commit-A `71faac1c` / Commit-B `96577787`) · KMS envelope + per-tenant keys + 90-day rotation per §6.4 pre-ruling 4 verbatim.
+
+**Commit-A code track:** `f2d0a7921831f41a0b8b1f1e6461b7925e55bc50` on `programme/track-a` · sealed 2026-09-19T04:47:00Z (10 files changed · 2208 insertions · 3 deletions).
+
+**Delta**: 5279 → 5288 = **+9 exactly reconciled line-by-line**: 9 new test functions in `test_m13_w2_kms_envelope_and_rotation.py`. Zero flip. Zero regression. Zero auto-param expansion.
+
+**Files landed (code repo):**
+
+- **NEW** `backend/services/kms/__init__.py` (subpackage init citing Canon 8 §W11 structural role separation).
+- **NEW** `backend/services/kms/tenant_key_registry.py`:
+  - `TenantMasterKeyRecord` frozen dataclass (`tenant_id`, `key_id`, `key_version`, `active_at_iso`).
+  - `mint_tenant_master_key(tenant_id) -> record` — appends 32-byte master key to append-only registry per Canon 3 §9.3.
+  - `get_active_key(tenant_id) -> record` — returns most recent record.
+  - `list_key_history(tenant_id) -> tuple` — full append-only history.
+  - Raw key material scope-bound via `_get_key_material(key_id)` accessor · NEVER exposes raw bytes at module surface per Canon 8 §W10 watcher-watched-from-outside.
+  - Does NOT wrap data per Canon 8 §W11 one-task-one-identity (AST-asserted).
+- **NEW** `backend/services/kms/envelope.py`:
+  - `Envelope` frozen dataclass (tenant_id + tenant_key_id + wrapped_dek_nonce + wrapped_dek_ct + payload_nonce + payload_ct).
+  - `wrap_dek(tenant_id, plaintext) -> Envelope` — generates fresh DEK per wrap, wraps under tenant master key via AES-256-GCM, encrypts payload under DEK.
+  - `unwrap_and_decrypt(caller_tenant_id, envelope) -> bytes` — refuses cross-tenant via `CrossTenantEnvelopeRefused` per Canon 8 §W11.
+  - Does NOT mint master keys per Canon 8 §W11 (AST-asserted).
+- **NEW** `backend/services/kms/rotation_scheduler.py`:
+  - `ROTATION_CADENCE_DAYS = 90` per §6.4 R-4 verbatim.
+  - `KeyLineageRecord` frozen dataclass binding `prev_key_id → new_key_id` append-only.
+  - `rotation_due(tenant_id, last_rotated_at) -> bool` — checks 90-day cadence.
+  - `execute_rotation(tenant_id, reason) -> KeyLineageRecord` — mints new master key via `tenant_key_registry.mint_tenant_master_key` and appends lineage.
+  - `list_key_lineage(tenant_id) -> tuple` — immutable history.
+  - Does NOT decrypt per Canon 8 §W11 (AST-asserted).
+- **NEW** `backend/tests/invariants/test_m13_w2_kms_envelope_and_rotation.py` (9 tests · 3 clusters: envelope module + roundtrip + cross-tenant refusal · registry append-only · rotation cadence + lineage · 3 AST role-separation bans).
+- **MODIFIED** `backend/tests/invariants/baseline_failures.json`: `counts_at_baseline.passed` 5279 → 5288 · `invariants_enforced_when_baseline_guard_1.passed_floor` 5279 → 5288 · `recorded_at_utc` 2026-09-19T04:00:00Z → 2026-09-19T04:32:00Z · `ratchet_history` appended `CP-M13-W2-KMS-ENVELOPE-AND-ROTATION` entry (delta +9 · note verbatim) · new file sha256 `0c9798d46502ffc209e4bdd62988fdace27197cf114a3e853a508c06b342a590`.
+- Drill receipts banked: `phase0/drill_receipts/20260919T043000Z_cp_m13_w2_kms_RED_pre_module.log` (9/9 fail w/ ModuleNotFoundError — authentic RED regenerated with `services/kms/` folder moved aside) + `20260919T043200Z_cp_m13_w2_kms_GREEN_post_module.log` (9/9 pass) + `20260919T044500Z_cp_m13_w2_kms_preseal_GUARD1_run{1,2}.log` (pre-Commit-A double-green byte-identical proof · stripped-sha256 `7edbc6313a35ff0b0c1739ad0c76b2f5865dc2e79b24e2ed9f7faad7a4d81cef` · both runs 5288 passed / 1 skipped / 438 warnings).
+
+**Card update this-turn (per §6.2 hash-pin discipline):**
+
+`STATE/OBJECTIVES/M13.md` re-pinned to card_sha256 `e443844bdfc41addc110830886bf393bac5d76132bbe0dc1923e819fcfe53d0c` (was `e2750a0a…`). Rationale: initial draft included forward-cited pytest node IDs for W3/W4/W5 test files that did not exist on disk yet. `test_seal_cites_card::test_every_cited_exit_test_file_exists_on_disk` failed. Cleaned up EXIT sections for W3/W4/W5 to describe test contracts in prose ("test file `tests/invariants/test_m13_w<N>_<name>.py` per §3 tests-first · pytest node IDs added to this card at open"). W1 (already sealed) + W2 (this-CP) retain their pytest node IDs. `milestone_status: DRAFTED` remains per §6.2 (milestone_status stays on-card as ratified; gate-satisfaction in DECISIONS + NEXT + seal notes).
+
+**Stop-conditions checked:**
+- **#1** (2nd path to external model client): NOT triggered · zero new model-client surfaces · KMS is symmetric cipher primitive.
+- **#2** (verifier sharing credentials with writer): NOT triggered · KMS trust boundary is scope-bounded to `services.kms` package · no verifier surface touched.
+- **#3** (bypass-shaped parameter on custody crossing): NOT triggered · KMS calls are inside chokepoint boundary.
+- **§6.4** pre-ruling NOT triggered · KMS scope pre-ruled at rule 4 verbatim.
+
+**Structural role separation (Canon 8 §W11 one-task-one-identity) enforced by 3 AST bans:**
+- `envelope.py` MUST NOT reference `mint_tenant_master_key` at any AST Name/Attribute/ImportFrom node — envelope wraps and unwraps; it does NOT mint master keys.
+- `tenant_key_registry.py` MUST NOT reference `wrap_dek` or `unwrap_and_decrypt` — registry mints and lists master keys; it does NOT wrap data.
+- `rotation_scheduler.py` MUST NOT reference `unwrap_and_decrypt` — rotation mints new master keys and records lineage; it does NOT decrypt data.
+
+**Pre-seal BASELINE_GUARD=1 full sweep:** DOUBLE-GREEN BYTE-IDENTICAL. Run1 = Run2 = **`5288 passed, 1 skipped, 438 warnings`**. Stripped-sha256 **`7edbc6313a35ff0b0c1739ad0c76b2f5865dc2e79b24e2ed9f7faad7a4d81cef`**. Pre-Commit-A receipts at `phase0/drill_receipts/20260919T044500Z_cp_m13_w2_kms_preseal_GUARD1_run{1,2}.log`.
+
+**Autopilot R-32 continues NON-STOP under §6 END-OF-BUILD authority.** Next per §6.7 sequence: M13-W3 (OTel conventional instrumentation) → M13-W4 (Terraform IaC) → M13-W5 (B.10 runbooks) → M14 → M15 → M16 (pre-ruled scope) → M17 → memory layer (after C.13 close) → frontends (functional-parity bar · Expo excluded per owner delegation to specialist). G5 interleaved to 1,096. Staleness re-scope APPLY-ON-EXPIRY still armed for 2026-09-20T~11:35Z (T-31.0h at Commit-A time · not yet fired).
+
+
+---
+
+
+## CP-M13-W2-KMS-ENVELOPE-AND-ROTATION · Commit-B / Commit-C banking · 2026-09-19T~04:55Z · MILESTONE 4 SECOND SUB-WAVE FULLY SEALED
+
+**Commit-A (code · programme/track-a):** `f2d0a7921831f41a0b8b1f1e6461b7925e55bc50` · sealed 2026-09-19T04:47:00Z (10 files changed · 2208 insertions · 3 deletions).
+
+**Commit-B (state · master):** `599f18e15bfe9744ec3e9c504040da2b3ac7cddd` · sealed 2026-09-19T04:52:00Z · banks Commit-A `f2d0a792` for CP-M13-W2-KMS-ENVELOPE-AND-ROTATION · MILESTONE 4 second sub-wave SEALED · ratchet 5279→5288 (+9 · pre-Commit-A double-green stripped-sha256 `7edbc6313a35ff0b0c1739ad0c76b2f5865dc2e79b24e2ed9f7faad7a4d81cef` both runs 5288 passed / 1 skipped / 438 warnings) · card citations M13.md MUST-DO 2 + EXIT-W2 · card_sha256 re-pinned `e443844bdfc41addc110830886bf393bac5d76132bbe0dc1923e819fcfe53d0c` after W3/W4/W5 forward-citation cleanup · milestone_status DRAFTED remains per §6.2.
+
+**Commit-C fixup (state · master):** _pinned in Commit-C commit message and landed with this section_. Scope:
+- Advance `notes/ORCH_BOOT.md` `heads_last_sealed.state_repo.head` to Commit-B `599f18e1` (R-6 boundary regen).
+- Byte-identical audit copy re-synced to `/app/frontend/public/audit/ORCH_BOOT.md` (content-sha256 `77d8e2c2cbbdda781d8be3d42cc96313d6af062c164c8445c07aeb71760399fb` on both copies).
+- Bank Commit-B SHA in DECISIONS.md (this section) + status marker in NEXT.md.
+- Post-fixup `pytest tests/invariants/test_orch_boot.py` → GREEN per checklist.
+
+**Autopilot R-33 · state after Commit-C:**
+- heads_last_sealed advanced to `f2d0a792` (code) / `599f18e1` (state).
+- Ratchet floor 5288 · baseline_failures_sha256 `0c9798d46502ffc209e4bdd62988fdace27197cf114a3e853a508c06b342a590`.
+- **Milestone 1 SEALED** (M10-W2/W3) · **Milestone 2 SEALED** (M10-W4 · 5/5 sub-waves) · **Milestone 3 OPENER SEALED** (M12b-W1 · all four MUST-DO 1-5) · **Milestone 4 SECOND SUB-WAVE SEALED** (M13-W2 · M13-W1 TCB governance sealed pre-M13 on 2026-09-17).
+
+**Proceeds NON-STOP** to M13-W3 (OTel conventional instrumentation) → M13-W4 (Terraform IaC) → M13-W5 (B.10 runbooks) → M14 → M15 → M16 (pre-ruled scope · CIF canon-as-written) → M17 → memory layer (after C.13 close) → frontends (functional-parity bar · Expo excluded per owner delegation to specialist). G5 interleaved to 1,096 per §6.7.
+
+Staleness re-scope APPLY-ON-EXPIRY still armed for 2026-09-20T~11:35Z (T-30.9h at Commit-C time · not yet fired).
+
+
+---
+
+
+## CP-M13-W3-OTEL-INSTRUMENTATION · Commit-A banking · 2026-09-19T~05:20Z · MILESTONE 4 THIRD SUB-WAVE
+
+**Scope:** M13-W3 · Milestone 4 third sub-wave · OpenTelemetry conventional instrumentation wrapper per §6.4 pre-ruling 4 verbatim ("OTel and Terraform: conventional"). Follows M13-W2 KMS envelope + per-tenant + 90-day rotation sealed at Commit-A `f2d0a792` / Commit-B `599f18e1` / Commit-C `fa7a5ccf` (2026-09-19T~04:55Z).
+
+**Commit-A code track:** `5fdabb223b47bbf52d349231c1a9c9e3898cf4c6` on `programme/track-a` · sealed 2026-09-19T05:13:00Z (5 files changed · new subpackage + wrapper module + 7-test invariant + baseline ratchet bump + drill receipts).
+
+**Delta:** 5288 → 5295 = **+7 exactly reconciled line-by-line**: 7 new test functions in `test_m13_w3_otel_instrumentation.py`. Zero flip. Zero regression. Zero auto-param expansion. AUTHENTIC RED-first cycle (RED regenerated by moving `services/observability/` folder aside · then restored for GREEN).
+
+**Files landed (code repo):**
+
+- **NEW** `backend/services/observability/__init__.py` (subpackage init citing SO §3.8 thin-kernel additive-only discipline · does not import from sealed modules).
+- **NEW** `backend/services/observability/otel_tracer.py` (~170 LOC):
+  - `TELEMETRY_ATTR_ALPHABET: tuple[str, ...]` — closed 10-tuple per Canon 8 §Line 31 pattern applied to OTel: `tenant_id`, `run_id`, `event_type`, `decision`, `reason_code`, `resource_type`, `resource_id`, `task_id`, `actor_id`, `actor_type`.
+  - `TelemetryAttrOutOfAlphabet(Exception)` — raised on any attribute name not in the closed alphabet (schema-authoritative pattern extended from Canon 8 §Line 31 sever-certainty registry to telemetry).
+  - `TelemetryValueRefused(Exception)` — raised on credential-shaped values via 3 regex patterns: Bearer token (`^Bearer\s+`), JWT-like (`^ey[A-Za-z0-9_-]+\.`), `password=` shape (`(?i)password=`) · §4.1 §E discipline extended to telemetry.
+  - `traced_call(name: str, **attrs)` context manager — yields `_SpanHandle` · pre-wire-in shim returns a dict-like recorder for testing without a live OTel collector · post-wire-in this returns real `opentelemetry.trace.Span`.
+  - Does NOT import from sealed modules (`services.chokepoint.*`, `services.ledger_writer.*`, `services.watch.*`) per SO §3.8 thin-kernel additive-only.
+- **NEW** `backend/tests/invariants/test_m13_w3_otel_instrumentation.py` (7 tests):
+  1. `test_otel_tracer_module_exists` — module surface: `TELEMETRY_ATTR_ALPHABET` + `traced_call` + 2 exception classes all import.
+  2. `test_telemetry_attr_alphabet_is_closed_tuple` — alphabet is a `tuple[str, ...]` of exactly 10 strings, immutable at runtime (closed-registry pattern).
+  3. `test_traced_call_refuses_out_of_alphabet_attr_name` — passing an unknown attribute name raises `TelemetryAttrOutOfAlphabet`.
+  4. `test_traced_call_refuses_credential_shaped_value` — passing a value matching any of the 3 credential-shape regexes raises `TelemetryValueRefused`.
+  5. `test_traced_call_accepts_alphabet_attrs_with_safe_values` — happy path: alphabet attrs + safe values produce a span handle carrying those attrs.
+  6. `test_ast_no_credential_or_pii_literal_in_wrapper_source` — AST-scan of `otel_tracer.py` finds no string literal matching credential-shape regexes (source itself is clean).
+  7. `test_ast_wrapper_does_not_import_sealed_module_internals` — AST-scan asserts no `Import`/`ImportFrom` targeting `services.chokepoint.*` / `services.ledger_writer.*` / `services.watch.*` (SO §3.8 thin-kernel additive-only enforced structurally).
+- **MODIFIED** `backend/tests/invariants/baseline_failures.json`: `counts_at_baseline.passed` 5288 → 5295 · `invariants_enforced_when_baseline_guard_1.passed_floor` 5288 → 5295 · `recorded_at_utc` bumped · `ratchet_history` appended `CP-M13-W3-OTEL-INSTRUMENTATION` entry (delta +7 · note verbatim) · new file sha256 `786ab6c5c97805a1e4871f5f93937cda0fa34a57ed4dfb800878941d454eafe6`.
+- Drill receipts banked: `phase0/drill_receipts/20260919T050000Z_cp_m13_w3_otel_RED_pre_module.log` (7/7 fail w/ ModuleNotFoundError on `services.observability` absent · authentic RED regenerated with `services/observability/` folder moved aside · then restored) + `20260919T050200Z_cp_m13_w3_otel_GREEN_post_module.log` (7/7 pass) + `20260919T051100Z_cp_m13_w3_otel_preseal_GUARD1_run{1,2}.log` (pre-Commit-A double-green byte-identical proof · stripped-sha256 `9c8bc3933e913e35bb35eef2995a9e2291355126fd95487d67c117bf04321ac0` · both runs 5295 passed / 1 skipped / 438 warnings).
+
+**Card update this-turn (per §6.2 hash-pin discipline):**
+
+`STATE/OBJECTIVES/M13.md` re-pinned to card_sha256 `1c78b481f6613ee41916b17e480dbfad965de78b9ecdb5aafd08aee8d65b09f5` (was `e443844b…`). Rationale: W3 EXIT section updated from prose contract description to concrete 7 pytest node IDs now that the test file exists on disk. `milestone_status: DRAFTED` remains per §6.2 (milestone_status stays on-card as ratified; gate-satisfaction recorded in DECISIONS + NEXT + seal notes).
+
+**Stop-conditions checked:**
+- **#1** (2nd path to external model client): NOT triggered · zero new external-model-client surfaces · OTel wrapper is a pure observability primitive.
+- **#2** (verifier sharing credentials with writer): NOT triggered · OTel wrapper is under thin-kernel additive layer · no verifier surface touched.
+- **#3** (bypass-shaped parameter on custody crossing): NOT triggered · OTel wrapper does not participate in custody crossings (wire-in DEFERRED to a follow-on additive seal).
+- **§6.4** pre-ruling NOT triggered · OTel scope pre-ruled at rule 4 verbatim.
+
+**Thin-kernel additive-only discipline (SO §3.8) enforced structurally:**
+- `otel_tracer.py` MUST NOT reference any `Import`/`ImportFrom` targeting `services.chokepoint.*` / `services.ledger_writer.*` / `services.watch.*` (AST-asserted).
+- Wire-in of `traced_call` at chokepoint/ledger/Watch input-seat surfaces is DEFERRED to a follow-on §3.3 additive seal — this sub-wave lands the wrapper module + its 7-test invariant only; the sealed modules are not edited.
+
+**Pre-seal BASELINE_GUARD=1 full sweep:** DOUBLE-GREEN BYTE-IDENTICAL. Run1 = Run2 = **`5295 passed, 1 skipped, 438 warnings`**. Stripped-sha256 **`9c8bc3933e913e35bb35eef2995a9e2291355126fd95487d67c117bf04321ac0`**. Pre-Commit-A receipts at `phase0/drill_receipts/20260919T051100Z_cp_m13_w3_otel_preseal_GUARD1_run{1,2}.log`.
+
+**Autopilot R-33 continues NON-STOP under §6 END-OF-BUILD authority** per owner ruling 2026-09-19T~03:15Z Option-3 override + FULL-RUN AUTHORIZATION 2026-09-19T~00:20Z. Next per §6.7 sequence: Commit-C fixup (advances heads_last_sealed.state_repo.head to this-CP's Commit-B SHA · bank Commit-B SHA in DECISIONS + NEXT + regen ORCH_BOOT + audit copy · post-fixup `pytest tests/invariants/test_orch_boot.py` GREEN) → M13-W4 (Terraform conventional IaC) → M13-W5 (B.10 runbooks) → M14 → M15 → M16 (pre-ruled CIF canon-as-written) → M17 → memory layer (after C.13 close) → frontends (functional-parity bar · Expo excluded per owner delegation to specialist). G5 interleaved to 1,096. Staleness re-scope APPLY-ON-EXPIRY still armed for 2026-09-20T~11:35Z (T-30.3h at Commit-A banking time · not yet fired).
+
+
+---
+
+
+## CP-M13-W3-OTEL-INSTRUMENTATION · Commit-B / Commit-C banking · 2026-09-19T~05:22Z · MILESTONE 4 THIRD SUB-WAVE FULLY SEALED
+
+**Commit-A (code · programme/track-a):** `5fdabb223b47bbf52d349231c1a9c9e3898cf4c6` · sealed 2026-09-19T05:13:00Z (5 files changed · new subpackage + wrapper module + 7-test invariant + baseline ratchet bump + drill receipts).
+
+**Commit-B (state · master):** `c02c953894f39e6bf63b692bf6c390bc7c677a5e` · sealed 2026-09-19T05:20:00Z · banks Commit-A `5fdabb22` for CP-M13-W3-OTEL-INSTRUMENTATION · MILESTONE 4 third sub-wave SEALED at Commit-B level · ratchet 5288→5295 (+7 · pre-Commit-A double-green stripped-sha256 `9c8bc3933e913e35bb35eef2995a9e2291355126fd95487d67c117bf04321ac0` both runs 5295 passed / 1 skipped / 438 warnings) · card citations M13.md MUST-DO 3 + EXIT-W3 · card_sha256 re-pinned `1c78b481f6613ee41916b17e480dbfad965de78b9ecdb5aafd08aee8d65b09f5` after filling W3 EXIT with 7 concrete pytest node IDs · milestone_status DRAFTED remains per §6.2.
+
+**Commit-C fixup (state · master):** _pinned in Commit-C commit message and landed with this section_. Scope:
+- Advance `notes/ORCH_BOOT.md` `heads_last_sealed.state_repo.head` to Commit-B `c02c9538` (R-6 boundary regen).
+- Byte-identical audit copy re-synced to `/app/frontend/public/audit/ORCH_BOOT.md` (content-sha256 `acaa412b06bc7892cfad13f25d853ac4cb62b562dd7e7f8f687b49398dfaa3d0` on both copies).
+- Bank Commit-B SHA in DECISIONS.md (this section) + status marker ⏳ → ✅ in NEXT.md R-33 INTERLUDE MARKER.
+- Post-fixup `pytest tests/invariants/test_orch_boot.py` → GREEN per checklist.
+
+**Autopilot R-33 · state after Commit-C:**
+- heads_last_sealed advanced to `5fdabb22` (code) / `c02c9538` (state).
+- Ratchet floor 5295 · baseline_failures_sha256 `786ab6c5c97805a1e4871f5f93937cda0fa34a57ed4dfb800878941d454eafe6`.
+- **Milestone 1 SEALED** (M10-W2/W3) · **Milestone 2 SEALED** (M10-W4 · 5/5 sub-waves) · **Milestone 3 OPENER SEALED** (M12b-W1 · all four MUST-DO 1-5) · **Milestone 4 SECOND SUB-WAVE SEALED** (M13-W2 · M13-W1 TCB governance sealed pre-M13 on 2026-09-17) · **Milestone 4 THIRD SUB-WAVE SEALED** (M13-W3 · OTel wrapper additive-only · wire-in DEFERRED to follow-on additive seal).
+
+**Milestone one-liner (per §6.5 reporting cadence):** M13-W3 OTel conventional instrumentation wrapper sealed · +7 tests · ratchet 5288→5295 · additive-only per SO §3.8 (wire-in DEFERRED · sealed modules not edited) · no forks banked · no stop-conditions triggered · pre-ruled scope only.
+
+**Proceeds NON-STOP** to M13-W4 (Terraform conventional IaC · reproducible-environment declarations · `moved{}` blocks mirror Canon 8 §W3 destroy-does-not-exist doctrine transplanted to IaC) → M13-W5 (B.10 runbooks · 7-section shape · one runbook per SEV-1 wire + per KMS rotation event + per Watch signal reaching enforcer) → M14 → M15 → M16 (pre-ruled scope · CIF canon-as-written) → M17 → memory layer (after C.13 close) → frontends (functional-parity bar · report frozen-contract status for C.17 + DAP entitlement/receipt + DAP UI Handoff Brief location when frontends open · Expo excluded per owner delegation to specialist). G5 interleaved to 1,096 per §6.7. Daily digest + milestone one-liners + batched desk items per §6.5.
+
+Staleness re-scope APPLY-ON-EXPIRY still armed for 2026-09-20T~11:35Z (T-30.2h at Commit-C time · not yet fired · fires as its own small seal per owner order 2026-09-19T~05:15Z).
+
+
+---
+
+
+## CP-M13-W4-TERRAFORM-MANIFEST · Commit-A banking · 2026-09-19T~05:45Z · MILESTONE 4 FOURTH SUB-WAVE
+
+**Scope:** M13-W4 · Milestone 4 fourth sub-wave · Terraform conventional IaC specification-shaped manifest per §6.4 pre-ruling 4 verbatim ("OTel and Terraform: conventional"). Follows M13-W3 OTel wrapper sealed at Commit-A `5fdabb22` / Commit-B `c02c9538` / Commit-C `a38f91b4` (2026-09-19T~05:22Z).
+
+**Commit-A code track:** `ffadd24b6df8fb4d4fe99629e4e629c21ece99ea` on `programme/track-a` · sealed 2026-09-19T05:41:00Z (6 files changed · new 8-test invariant + baseline ratchet bump + 4 drill receipts).
+
+**Delta:** 5295 → 5303 = **+8 exactly reconciled line-by-line**: 8 new test functions in `test_m13_w4_terraform_manifest.py`. Zero flip. Zero regression. Zero auto-param expansion. AUTHENTIC RED-first cycle (RED regenerated with no manifest present · 8/8 fail with right-reason AssertionError on missing manifest at `notes/M13_W4_terraform_manifest.yaml`).
+
+**Files landed (code repo, Commit-A):**
+
+- **NEW** `backend/tests/invariants/test_m13_w4_terraform_manifest.py` (8 tests · 4 clusters):
+  1. `test_terraform_manifest_yaml_exists_and_parses` — manifest exists at pinned path + parses as YAML dict with `resources:` list.
+  2. `test_manifest_lists_all_four_required_resources` — all four card-required names present: `fastapi_pod`, `mongodb_per_tenant_provisioning`, `kms_master_key_store`, `otel_collector`.
+  3. `test_every_resource_has_required_fields` — each entry carries `name`, `module`, `canon_anchor`, `terraform_resource_type`, `operation`, `renaming_history_status`.
+  4. `test_manifest_operation_alphabet_is_closed` — Canon 8 §Line 31 pattern applied to Terraform: manifest's `schema.operation_alphabet` MUST be the closed 3-tuple `('apply', 'moved', 'retire_via_deprecation')`. `destroy_then_create`, `force_replace`, `recreate` refused.
+  5. `test_manifest_operations_all_in_alphabet` — every resource's `operation` field ∈ closed alphabet (Canon 8 §W3 destroy-does-not-exist mirror).
+  6. `test_every_resource_declares_renaming_history_status_from_closed_set` — each entry's `renaming_history_status` ∈ closed 2-tuple `('never_renamed', 'renamed_via_moved_block')`.
+  7. `test_kms_master_key_store_carries_90_day_rotation_cadence` — KMS resource's `rotation_cadence_days` verbatim `90` (mirror-check against M13-W2 sealed CP `f2d0a792` · `services.kms.rotation_scheduler.ROTATION_CADENCE_DAYS`).
+  8. `test_mongodb_resource_declares_per_tenant_provisioning` — MongoDB resource's `per_tenant_provisioning` verbatim `True` per Canon 3 §B.3/§B.7.
+- **MODIFIED** `backend/tests/invariants/baseline_failures.json`: `counts_at_baseline.passed` 5295 → 5303 · `invariants_enforced_when_baseline_guard_1.passed_floor` 5295 → 5303 · `recorded_at_utc` 2026-09-19T05:02:00Z → 2026-09-19T05:35:00Z · `ratchet_history` appended `CP-M13-W4-TERRAFORM-MANIFEST` entry (delta +8 · note verbatim) · new file sha256 `52de0feabff1d68ced8951a2277d1694366fcc1e52d17979400018691ba4169f`.
+- Drill receipts banked: `phase0/drill_receipts/20260919T053000Z_cp_m13_w4_terraform_RED_pre_manifest.log` (8/8 fail w/ AssertionError on missing manifest · authentic RED before manifest authored) + `20260919T053200Z_cp_m13_w4_terraform_GREEN_post_manifest.log` (8/8 pass) + `20260919T054000Z_cp_m13_w4_terraform_preseal_GUARD1_run{1,2}.log` (pre-Commit-A double-green byte-identical proof · stripped-sha256 `35531896d0693c5e6aa33ef3bb2cae000f0ae31c418bfe794f2e9562d275d766` · both runs 5303 passed / 1 skipped / 438 warnings · run time ~163s each).
+
+**Environmental note reconciled during pre-seal sweep (§6 transparency):** an initial pre-seal sweep run from wrong CWD (`/app/assessment_workspace/repos/Extraction-Akki` rather than `backend/`) showed 3 apparent failures in M7 tests (`test_wm7_w2_cp1_audio_census_job_scope.py`, `test_wm7_w8_lift_1_ruling_5_tier_lift.py`, `test_wm7_w9_cp1_corpus_deliverable_v1.py`). These tests read source files via relative paths (`services/audio_plane_v1/*.py`) that resolve relative to CWD. Rerun from `backend/` (correct pattern from all previous seals) showed 5303 passed / 0 failed. Reconciled: not a ratchet break, not a Stop-condition #1 trigger, environmental artefact only. Two stale receipts (`20260919T053800Z_*`) removed pre-Commit-A so on-disk drill_receipts/ tracks only the authentic run-from-backend sweep.
+
+**Files landed (state repo, Commit-B — this-CP):**
+
+- **NEW** `notes/M13_W4_terraform_manifest.yaml` (specification-shaped registry · schema section declares closed operation alphabet + closed renaming-history-status alphabet + version=1 + ratified_at_utc + ratified_by · resources section enumerates the four required resources with all required fields + additional_notes prose describing canon anchors and cross-references to sealed modules).
+- **MODIFIED** `STATE/DECISIONS.md` (this banking section).
+- **MODIFIED** `STATE/NEXT.md` (§6 INTERLUDE MARKER R-34).
+- **MODIFIED** `STATE/OBJECTIVES/M13.md` (W4 EXIT section filled with 8 concrete pytest node IDs · card_sha256 re-pinned `1b09d6090c6530cd7762727e929cc9f46024c9e95317a26ebef9327c237d05b3` (was `1c78b481…`) · milestone_status DRAFTED remains per §6.2).
+- **MODIFIED** `notes/ORCH_BOOT.md` (R-6 boundary regen · code_head advanced to Commit-A `ffadd24b` · state_head remains `c02c9538` pending Commit-C · ratchet 5295→5303 · baseline_failures_sha256 786ab6c5→52de0fea).
+- **MODIFIED** `/app/frontend/public/audit/ORCH_BOOT.md` (byte-identical audit copy re-synced).
+
+**Stop-conditions checked:**
+- **#1** (2nd path to external model client): NOT triggered · Terraform manifest is a specification-shaped registry; no code path added.
+- **#2** (verifier sharing credentials with writer): NOT triggered · manifest layer is IaC, no verifier surface touched.
+- **#3** (bypass-shaped parameter on custody crossing): NOT triggered · manifest lives above the chokepoint boundary.
+- **§6.4** pre-ruling NOT triggered · Terraform scope pre-ruled at rule 4 verbatim.
+
+**Canon anchors:**
+- **Canon 8 §W3** verbatim ("destroy-does-not-exist") transplanted to IaC via Terraform `moved{}` blocks + closed operation alphabet (`destroy_then_create`, `force_replace`, `recreate` refused).
+- **Canon 8 §Line 31** (closed sever-certainty registry pattern) applied to Terraform operation verbs.
+- **Canon 3 §B.3 / §B.7** (MongoDB per-tenant provisioning target).
+- **§6.4 pre-ruling 4 R-4** verbatim (KMS 90-day rotation cadence mirror-check against M13-W2 sealed `services.kms.rotation_scheduler.ROTATION_CADENCE_DAYS`).
+- **SO §3.8** (thin-kernel additive-only · manifest is specification-shaped; Terraform stubs live outside repo per pre-ruling 4 "conventional").
+- **SO §3.10-α** (closed tuple discipline extended to YAML manifest schema).
+
+**Pre-seal BASELINE_GUARD=1 full sweep:** DOUBLE-GREEN BYTE-IDENTICAL. Run1 = Run2 = **`5303 passed, 1 skipped, 438 warnings`**. Stripped-sha256 **`35531896d0693c5e6aa33ef3bb2cae000f0ae31c418bfe794f2e9562d275d766`**.
+
+**Autopilot R-33 continues NON-STOP under §6 END-OF-BUILD authority** per owner ruling 2026-09-19T~03:15Z Option-3 override + FULL-RUN AUTHORIZATION 2026-09-19T~00:20Z. Next per §6.7 sequence: Commit-C fixup (advances heads_last_sealed.state_repo.head to this-CP's Commit-B SHA · bank Commit-B SHA in DECISIONS + NEXT + regen ORCH_BOOT + audit copy · post-fixup `pytest tests/invariants/test_orch_boot.py` GREEN) → M13-W5 (B.10 runbooks · 7-section shape TRIGGER/EVIDENCE/VERIFY/DECIDE/ACT/RECORD/POSTMORTEM · one runbook per SEV-1 wire + per KMS rotation event + per Watch signal reaching enforcer · ACT never autonomous per Canon 8 §W1) → M14 → M15 → M16 (pre-ruled CIF canon-as-written) → M17 → memory layer (after C.13 close) → frontends (functional-parity bar · report frozen-contract status for C.17 + DAP entitlement/receipt + DAP UI Handoff Brief location when frontends open · Expo excluded per owner delegation to specialist). G5 interleaved to 1,096. Staleness re-scope APPLY-ON-EXPIRY still armed for 2026-09-20T~11:35Z (T-30.0h at Commit-A banking time · not yet fired · fires as its own small seal per owner order 2026-09-19T~05:15Z).
+
+
+---
+
+
+## CP-M13-W4-TERRAFORM-MANIFEST · Commit-B / Commit-C banking · 2026-09-19T~05:47Z · MILESTONE 4 FOURTH SUB-WAVE FULLY SEALED
+
+**Commit-A (code · programme/track-a):** `ffadd24b6df8fb4d4fe99629e4e629c21ece99ea` · sealed 2026-09-19T05:41:00Z (6 files changed · new 8-test invariant + baseline ratchet bump + 4 drill receipts).
+
+**Commit-B (state · master):** `9e8ae579587f602f7f48ade3c8193c2c019fcb26` · sealed 2026-09-19T05:46:00Z · banks Commit-A `ffadd24b` for CP-M13-W4-TERRAFORM-MANIFEST · MILESTONE 4 fourth sub-wave SEALED at Commit-B level · ratchet 5295→5303 (+8 · pre-Commit-A double-green stripped-sha256 `35531896d0693c5e6aa33ef3bb2cae000f0ae31c418bfe794f2e9562d275d766` both runs 5303 passed / 1 skipped / 438 warnings) · card citations M13.md MUST-DO 4 + EXIT-W4 · card_sha256 re-pinned `1b09d6090c6530cd7762727e929cc9f46024c9e95317a26ebef9327c237d05b3` after filling W4 EXIT with 8 concrete pytest node IDs · milestone_status DRAFTED remains per §6.2 · manifest at `notes/M13_W4_terraform_manifest.yaml` landed in state repo.
+
+**Commit-C fixup (state · master):** _pinned in Commit-C commit message and landed with this section_. Scope:
+- Advance `notes/ORCH_BOOT.md` `heads_last_sealed.state_repo.head` to Commit-B `9e8ae579` (R-6 boundary regen).
+- Byte-identical audit copy re-synced to `/app/frontend/public/audit/ORCH_BOOT.md`.
+- Bank Commit-B SHA in DECISIONS.md (this section) + status marker ⏳ → ✅ in NEXT.md R-34 INTERLUDE MARKER.
+- Post-fixup `pytest tests/invariants/test_orch_boot.py` → GREEN per checklist.
+
+**Autopilot R-33 · state after Commit-C:**
+- heads_last_sealed advanced to `ffadd24b` (code) / `9e8ae579` (state).
+- Ratchet floor 5303 · baseline_failures_sha256 `52de0feabff1d68ced8951a2277d1694366fcc1e52d17979400018691ba4169f`.
+- **Milestone 1 SEALED** (M10-W2/W3) · **Milestone 2 SEALED** (M10-W4 · 5/5 sub-waves) · **Milestone 3 OPENER SEALED** (M12b-W1 · all four MUST-DO 1-5) · **Milestone 4 SECOND SUB-WAVE SEALED** (M13-W2) · **Milestone 4 THIRD SUB-WAVE SEALED** (M13-W3 · OTel wrapper additive-only) · **Milestone 4 FOURTH SUB-WAVE SEALED** (M13-W4 · Terraform conventional IaC manifest additive-only).
+
+**Milestone one-liner (per §6.5 reporting cadence):** M13-W4 Terraform conventional IaC specification-shaped manifest sealed · +8 tests · ratchet 5295→5303 · additive-only per SO §3.8 (Terraform .tf stubs live outside repo per pre-ruling 4 "conventional" — manifest is authority they mirror) · no forks banked · no stop-conditions triggered · one environmental note reconciled (relative-path CWD artefact in initial pre-seal sweep).
+
+**Proceeds NON-STOP** to M13-W5 (B.10 runbooks · 7-section shape TRIGGER/EVIDENCE/VERIFY/DECIDE/ACT/RECORD/POSTMORTEM · one runbook per SEV-1 wire that M10-W3 sealed + one per KMS rotation event that M13-W2 sealed + one per Watch signal that reaches enforcer · each runbook lives at `notes/runbooks/RB_<code>_<name>.md` · structural test asserts every entry in `services.watch.sever_signals.SEVER_SIGNAL_REGISTRY` and every SEV-1 wire has ≥1 runbook citation · ACT step MUST NOT contain autonomous action verbs against production data per Canon 8 §W1 eyes-never-act) → M14 → M15 → M16 (pre-ruled scope · CIF canon-as-written) → M17 → memory layer (after C.13 close) → frontends (functional-parity bar · report frozen-contract status for C.17 + DAP entitlement/receipt + DAP UI Handoff Brief location when frontends open · Expo excluded per owner delegation to specialist). G5 interleaved to 1,096 per §6.7. Daily digest + milestone one-liners + batched desk items per §6.5.
+
+Staleness re-scope APPLY-ON-EXPIRY still armed for 2026-09-20T~11:35Z (T-29.9h at Commit-C time · not yet fired · fires as its own small seal per owner order 2026-09-19T~05:15Z).
+
+
+---
+
+
+## CP-M13-W5-B10-RUNBOOKS · Commit-A banking · 2026-09-19T~06:10Z · MILESTONE 4 FIFTH (FINAL M13) SUB-WAVE · M13 MILESTONE CLOSING GATE
+
+**Scope:** M13-W5 · Milestone 4 fifth and FINAL sub-wave · B.10 runbooks per §6.4 pre-ruling 4 verbatim ("Runbooks per B.10 (R-4)"). Closes M13 as a milestone: all 5 sub-waves W1-W5 sealed with full pre-seal BASELINE_GUARD=1 double-green byte-identical proof, zero regression, zero flip. Follows M13-W4 Terraform manifest sealed at Commit-A `ffadd24b` / Commit-B `9e8ae579` / Commit-C `e72a2c3f`.
+
+**Commit-A code track:** `c2d42105d84a242eda5676b193a234f252aec3b1` on `programme/track-a` · sealed 2026-09-19T06:07:00Z (6 files changed · new 8-test invariant + baseline ratchet bump + 4 drill receipts).
+
+**Delta:** 5303 → 5311 = **+8 exactly reconciled line-by-line**: 8 new test functions in `test_m13_w5_b10_runbooks.py`. Zero flip. Zero regression. Zero auto-param expansion. AUTHENTIC RED-first cycle (RED authored with no runbooks present · 8/8 fail with right-reason AssertionError on missing `notes/runbooks/` directory).
+
+**Files landed (code repo, Commit-A):**
+
+- **NEW** `backend/tests/invariants/test_m13_w5_b10_runbooks.py` (8 tests):
+  1. `test_runbook_directory_exists_at_pinned_path` — `notes/runbooks/` MUST exist with ≥9 runbooks (1 SEV-1 wire + 2 KMS rotation events + 6 sever-certainty signal kinds).
+  2. `test_every_runbook_filename_follows_rb_prefix_shape` — regex `^RB_[A-Z][A-Z0-9_]*_[a-z][a-z0-9_]*\.md$`.
+  3. `test_every_runbook_has_seven_section_shape_in_prescribed_order` — TRIGGER · EVIDENCE · VERIFY · DECIDE · ACT · RECORD · POSTMORTEM in exact order per Canon 3 §B.10.
+  4. `test_sev1_wire_has_runbook_citation` — M10-W3 anchor `services.ledger_verifier.sev1_wire` cited by ≥1 runbook TRIGGER section.
+  5. `test_every_sever_certainty_signal_has_runbook_citation` — all 6 Canon 8 §Line 31 signal kinds each cited by ≥1 runbook.
+  6. `test_kms_rotation_scheduled_and_on_demand_both_have_runbook_citations` — M13-W2 anchor `services.kms.rotation_scheduler` cited in both `scheduled` + `on_demand` modes.
+  7. `test_runbook_act_step_contains_no_autonomous_action_verbs` — Canon 8 §W1 mirror: closed autonomous-verb ban set (`automatically`, `autonomously`, `without human`, `unattended`, `no operator`, `no human confirmation`) refused in ACT sections.
+  8. `test_no_orphan_runbooks_without_cited_anchor` — every runbook TRIGGER MUST cite ≥1 required anchor from the closed set.
+- **MODIFIED** `backend/tests/invariants/baseline_failures.json`: `counts_at_baseline.passed` 5303 → 5311 · `invariants_enforced_when_baseline_guard_1.passed_floor` 5303 → 5311 · `recorded_at_utc` 2026-09-19T05:35:00Z → 2026-09-19T06:03:00Z · `ratchet_history` appended `CP-M13-W5-B10-RUNBOOKS` entry (delta +8 · note verbatim) · new file sha256 `10ccf95ed68518f81d228dba6796d68eb19bef754e5f193c6c27d67965630ba3`.
+- Drill receipts banked: `phase0/drill_receipts/20260919T060000Z_cp_m13_w5_runbooks_RED_pre_runbooks.log` (8/8 fail w/ AssertionError · authentic RED before runbooks authored) + `20260919T060200Z_cp_m13_w5_runbooks_GREEN_post_runbooks.log` (8/8 pass) + `20260919T060500Z_cp_m13_w5_runbooks_preseal_GUARD1_run{1,2}.log` (pre-Commit-A double-green byte-identical proof · stripped-sha256 `1d21fe723e0138a0448e4dc7db613eb8ffa6dbe4e0cf15549b61da0a69998656` · both runs 5311 passed / 1 skipped / 438 warnings · run time ~166s each · from `backend/` CWD).
+
+**Files landed (state repo, Commit-B — this-CP):**
+
+- **NEW** 9 runbook files at `notes/runbooks/`:
+  - `RB_SEV1_CHAIN_BREAK_ledger_chain_break.md` — SEV-1 wire (M10-W3 anchor).
+  - `RB_KMS_ROTATION_SCHEDULED_ninety_day.md` — KMS scheduled 90-day cadence rotation (M13-W2 anchor).
+  - `RB_KMS_ROTATION_ON_DEMAND_operator_triggered.md` — KMS on-demand operator-triggered rotation (M13-W2 anchor).
+  - `RB_WATCH_SIGNAL_canary_touch_response.md` — Canon 8 §Line 31 signal #1.
+  - `RB_WATCH_SIGNAL_attestation_failure_response.md` — Canon 8 §Line 31 signal #2.
+  - `RB_WATCH_SIGNAL_mark_hit_response.md` — Canon 8 §Line 31 signal #3.
+  - `RB_WATCH_SIGNAL_witness_write_attempt_response.md` — Canon 8 §Line 31 signal #4.
+  - `RB_WATCH_SIGNAL_floor_violation_response.md` — Canon 8 §Line 31 signal #5.
+  - `RB_WATCH_SIGNAL_mirage_incrimination_response.md` — Canon 8 §Line 31 signal #6.
+- **MODIFIED** `STATE/DECISIONS.md` (this banking section).
+- **MODIFIED** `STATE/NEXT.md` (§6 INTERLUDE MARKER R-35).
+- **MODIFIED** `STATE/OBJECTIVES/M13.md` (W5 EXIT filled with 8 pytest node IDs + `milestone_status: CLOSED` with `closed_at_utc: 2026-09-19T06:10:00Z` and `closed_at_seal: CP-M13-W5-B10-RUNBOOKS` · card_sha256 re-pinned `1d16542c4f965fc0e6cb6be2c9dfdd22db775f6cab904abaf9aa81b00d5322b7` (was `1b09d609…`)).
+- **MODIFIED** `notes/ORCH_BOOT.md` (R-6 boundary regen · code_head advanced to Commit-A `c2d42105` · state_head remains `9e8ae579` pending Commit-C · ratchet 5303→5311 · baseline_failures_sha256 52de0fea→10ccf95e).
+- **MODIFIED** `/app/frontend/public/audit/ORCH_BOOT.md` (byte-identical audit copy re-synced).
+
+**Stop-conditions checked:**
+- **#1** (2nd path to external model client): NOT triggered · runbooks are evidence-shaped markdown documents; no code path added.
+- **#2** (verifier sharing credentials with writer): NOT triggered · runbooks describe human-executable procedures, not credential paths.
+- **#3** (bypass-shaped parameter on custody crossing): NOT triggered · runbook ACT step is human-issued through operator consoles per Canon 8 §W1.
+- **§6.4** pre-ruling NOT triggered · runbook scope pre-ruled at rule 4 verbatim.
+
+**Canon anchors:**
+- **Canon 3 §B.10** (runbook obligations · 7-section shape mandate).
+- **Canon 8 §W1** (eyes-never-act · ACT step is human-executable · autonomous-verb ban structurally enforced by `test_runbook_act_step_contains_no_autonomous_action_verbs`).
+- **Canon 8 §Line 31** (closed six-signal sever-certainty registry · one runbook per member).
+- **SO §3.8** (thin-kernel additive-only · runbooks are documentation; no sealed module edited).
+- **SO §3.10-α** (closed tuple discipline extended to filename shape + section-name set + verb-ban set).
+
+**Pre-seal BASELINE_GUARD=1 full sweep:** DOUBLE-GREEN BYTE-IDENTICAL. Run1 = Run2 = **`5311 passed, 1 skipped, 438 warnings`**. Stripped-sha256 **`1d21fe723e0138a0448e4dc7db613eb8ffa6dbe4e0cf15549b61da0a69998656`**.
+
+## MILESTONE 4 (M13) CLOSING GATE
+
+**M13 milestone CLOSED at this seal boundary.** Per M13.md card gate clause verbatim: *"Gate to close M13 as a milestone: all four remaining sub-waves W2–W5 sealed with full pre-seal BASELINE_GUARD=1 double-green byte-identical proof + zero regression + zero flip + card_sha256 re-pinned at milestone_status → CLOSED."*
+
+- **M13-W1** (TCB governance regime) — SEALED pre-M13 at Commit-A `71faac1c` / Commit-B `96577787` (2026-09-17T~13:46Z).
+- **M13-W2** (KMS envelope + per-tenant + 90-day rotation) — SEALED at Commit-A `f2d0a792` / Commit-B `599f18e1` / Commit-C `fa7a5ccf` (2026-09-19T~04:55Z · ratchet 5279→5288 · +9 tests).
+- **M13-W3** (OTel conventional instrumentation) — SEALED at Commit-A `5fdabb22` / Commit-B `c02c9538` / Commit-C `a38f91b4` (2026-09-19T~05:22Z · ratchet 5288→5295 · +7 tests · wire-in DEFERRED to follow-on additive seal).
+- **M13-W4** (Terraform conventional IaC manifest) — SEALED at Commit-A `ffadd24b` / Commit-B `9e8ae579` / Commit-C `e72a2c3f` (2026-09-19T~05:47Z · ratchet 5295→5303 · +8 tests).
+- **M13-W5** (B.10 runbooks · this-CP) — SEALED at Commit-A `c2d42105` / Commit-B `<this-commit>` / Commit-C `<next-commit>` (2026-09-19T~06:10Z · ratchet 5303→5311 · +8 tests · 9 runbooks).
+
+Total M13 ratchet delta: 5279 → 5311 = **+32 tests** across W2-W5. Card_sha256 re-pinned five times reflecting each sub-wave's EXIT fill. All five sub-waves passed the pre-seal BASELINE_GUARD=1 double-green byte-identical proof.
+
+**Autopilot R-33 continues NON-STOP under §6 END-OF-BUILD authority** per owner ruling 2026-09-19T~03:15Z Option-3 override + FULL-RUN AUTHORIZATION 2026-09-19T~00:20Z. Next per §6.7 sequence: Commit-C fixup (this-CP) → **M14** (opens with fresh objective card drafted per §6.7 batch-ratification-at-preceding-seal · scope pending owner ratification per §6.4 pre-ruling framework) → M15 → M16 (pre-ruled scope · CIF canon-as-written per §6.4 rule 1) → M17 → memory layer (after C.13 close) → frontends (functional-parity bar · report frozen-contract status for C.17 + DAP entitlement/receipt + DAP UI Handoff Brief location when frontends open · Expo excluded per owner delegation to specialist). G5 interleaved to 1,096.
+
+Staleness re-scope APPLY-ON-EXPIRY still armed for 2026-09-20T~11:35Z (T-29.6h at Commit-A banking time · not yet fired · fires as its own small seal per owner order 2026-09-19T~05:15Z).
+
+
+---
+
+
+## CP-M13-W5-B10-RUNBOOKS · Commit-B / Commit-C banking · 2026-09-19T~06:12Z · MILESTONE 4 (M13) FULLY CLOSED
+
+**Commit-A (code · programme/track-a):** `c2d42105d84a242eda5676b193a234f252aec3b1` · sealed 2026-09-19T06:07:00Z (6 files changed · new 8-test invariant + baseline ratchet bump + 4 drill receipts).
+
+**Commit-B (state · master):** `24545fcc888fe6eafce89fcc0c1c9ad7d7bf9b65` · sealed 2026-09-19T06:11:00Z · banks Commit-A `c2d42105` for CP-M13-W5-B10-RUNBOOKS · MILESTONE 4 fifth (FINAL M13) sub-wave SEALED at Commit-B level · **M13 MILESTONE CLOSED** at this seal boundary · ratchet 5303→5311 (+8 · pre-Commit-A double-green stripped-sha256 `1d21fe723e0138a0448e4dc7db613eb8ffa6dbe4e0cf15549b61da0a69998656` both runs 5311 passed / 1 skipped / 438 warnings) · card citations M13.md MUST-DO 5 + EXIT-W5 · card_sha256 re-pinned `1d16542c4f965fc0e6cb6be2c9dfdd22db775f6cab904abaf9aa81b00d5322b7` after filling W5 EXIT + flipping `milestone_status: DRAFTED → CLOSED` with `closed_at_utc: 2026-09-19T06:10:00Z` and `closed_at_seal: CP-M13-W5-B10-RUNBOOKS` · 9 runbooks at `notes/runbooks/` landed in state repo.
+
+**Commit-C fixup (state · master):** _pinned in Commit-C commit message and landed with this section_. Scope:
+- Advance `notes/ORCH_BOOT.md` `heads_last_sealed.state_repo.head` to Commit-B `24545fcc` (R-6 boundary regen).
+- Byte-identical audit copy re-synced to `/app/frontend/public/audit/ORCH_BOOT.md`.
+- Bank Commit-B SHA in DECISIONS.md (this section) + status marker ⏳ → ✅ in NEXT.md R-35 INTERLUDE MARKER.
+- Post-fixup `pytest tests/invariants/test_orch_boot.py` → GREEN per checklist.
+
+**Autopilot R-33 · state after Commit-C:**
+- heads_last_sealed advanced to `c2d42105` (code) / `24545fcc` (state).
+- Ratchet floor 5311 · baseline_failures_sha256 `10ccf95ed68518f81d228dba6796d68eb19bef754e5f193c6c27d67965630ba3`.
+- **Milestone 1 SEALED** (M10-W2/W3) · **Milestone 2 SEALED** (M10-W4 · 5/5 sub-waves) · **Milestone 3 OPENER SEALED** (M12b-W1 · all four MUST-DO 1-5) · **MILESTONE 4 (M13) FULLY CLOSED** (M13-W1 pre-M13 + W2/W3/W4/W5 all sealed · card `milestone_status: CLOSED` at `closed_at_utc: 2026-09-19T06:10:00Z`).
+
+## MILESTONE 4 (M13) CLOSURE ONE-LINER (§6.5)
+
+M13 tier-2 standards FULLY CLOSED: TCB governance (W1 pre-M13) + KMS envelope/per-tenant/90-day rotation (W2) + OTel conventional instrumentation wrapper (W3 · wire-in DEFERRED to follow-on additive seal) + Terraform conventional IaC specification-shaped manifest (W4) + B.10 runbooks (W5) · +32 tests across 4 seals · ratchet 5279→5311 · additive-only per SO §3.8 across all sub-waves (no sealed module edited) · no forks banked · no stop-conditions triggered · one environmental note reconciled at W4 pre-seal sweep (relative-path CWD artefact).
+
+## MILESTONE 4 (M13) BATCHED DESK ITEMS (§6.5 · to owner desk at milestone seal boundary)
+
+Per §6.5 reporting cadence, batched desk items surfaced during M13's execution that do not block forward progress but merit owner attention at the next milestone boundary:
+
+1. **OTel wire-in DEFERRED (from W3):** the M13-W3 seal landed the OTel wrapper module (`services.observability.otel_tracer.traced_call`) as an additive pure module per SO §3.8 (sealed modules not edited). Wire-in of `traced_call` at chokepoint/ledger/Watch input-seat surfaces is DEFERRED to a follow-on §3.3 additive seal. Owner-desk item: confirm whether wire-in belongs inside the M13 fence (reopen M13 briefly) or opens as an M14-preface additive seal.
+2. **Terraform stubs external (from W4):** the M13-W4 manifest is the authority; Terraform `.tf` stubs that mirror it live outside this repo per §6.4 pre-ruling 4 "conventional". Owner-desk item: confirm the external Terraform stub repository location so drift between stubs and manifest can be measured at a subsequent §3.3 seal.
+3. **Environmental CWD note (from W4):** an initial pre-seal sweep run from wrong CWD showed 3 apparent M7 test failures due to relative-path resolution. Rerun from `backend/` produced clean 5303 pass. Owner-desk item: hardening — consider a conftest.py `chdir` fixture or absolute-path resolution in those M7 tests to remove the CWD-sensitivity.
+4. **M14 scope (starting fresh):** per §6.7, M14 opens with a fresh objective card drafted per batch-ratification-at-preceding-seal. Owner-desk item: ratify M14 scope from the §6.4 pre-ruling framework OR issue a fresh run order.
+
+**Proceeds NON-STOP** to M14 (opens with fresh objective card drafted per §6.7 batch-ratification-at-preceding-seal · scope pending owner ratification per §6.4 pre-ruling framework) → M15 → M16 (pre-ruled scope · CIF canon-as-written per §6.4 rule 1) → M17 → memory layer (after C.13 close) → frontends (functional-parity bar · report frozen-contract status for C.17 + DAP entitlement/receipt + DAP UI Handoff Brief location when frontends open · Expo excluded per owner delegation to specialist). G5 interleaved to 1,096. Daily digest + milestone one-liners + batched desk items per §6.5.
+
+Staleness re-scope APPLY-ON-EXPIRY still armed for 2026-09-20T~11:35Z (T-29.6h at Commit-C time · not yet fired · fires as its own small seal per owner order 2026-09-19T~05:15Z).
+
+
+---
+
+## CP-M14-W1-HANDOFF-CONTRACT-SHAPE-FREEZE · Commit-A banking · 2026-09-19T~06:38Z · MILESTONE 5 FIRST SUB-WAVE
+
+**Commit-A SHA:** `8b861987cd0605a932400f75969c001665970c55` on `programme/track-a` (code repo).
+
+**Card:** `STATE/OBJECTIVES/M14.md` MUST-DO 1 (Hand-off contract v1 shape-freeze) · EXIT-W1. Card `card_sha256` re-pinned `f65cb7c3b851b4432690a37b840a6cfd73cfe9a4ab0353493d98ba2bda3c08f9` after filling W1 EXIT node IDs and shape-snapshot baseline. Milestone_status stays `DRAFTED` per §6.2 (pre-ratified by §6.7 batch-ratification-at-preceding-seal CP-M13-W5).
+
+**Scope (per §6.4 pre-ruling framework · M14 card MUST-DO 1 verbatim):** Consume already-sealed `services/handoff/contracts.py` + `contracts/handoff_contract.py` surface. Author an invariant test file that freezes the shape: required-field set + `extra='forbid'` + `frozen=True` + `handoff_id` regex `^ho_[a-z0-9_-]+$` + register/attest refusal surface + sha256-pinned model_json_schema snapshot. Additive-only per SO §3.8: no edit to the sealed contract module.
+
+**Ratchet:** 5311 → 5319 (+8 empirically measured line-by-line · 8 new test functions in `test_m14_w1_handoff_contract_shape_freeze.py`). Delta reconciled line-by-line: `module_importable_end_to_end` + `required_field_set_matches_canon15_section_33` [closed 9-field tuple: handoff_id/what/shape/identity_source/identity_destination/receipt_kind/receipt_ref/authored_at/authored_by] + `config_extra_forbid` [SO §3.10-α closed-schema discipline] + `config_frozen` [pydantic immutability post-construction] + `handoff_id_pattern_matches_ho_prefix` [regex `^ho_[a-z0-9_-]+$` per Canon 15 §33 stable-surrogate convention] + `register_handoff_refuses_duplicate_handoff_id_load_bearing_conflict` [CA1-009 load-bearing conflict · pytest `tmp_path` + `monkeypatch HANDOFF_CONTRACTS_DIR`] + `attest_handoff_refuses_unknown_handoff_id_hard_fail` [CA1-009 attestation hard-fail] + `shape_snapshot_sha256_matches_pinned_baseline` [pinned `9512cad27315133495df23c29584a95b2456eb95becd5f725be1ba3c1465c00e` · sha256 of sorted-key JSON of `HandoffContract_v0.model_json_schema()`].
+
+**AUTHENTIC RED-first cycle:** Tests-first authored at `phase0/drill_receipts/20260919T062000Z_cp_m14_w1_handoff_contract_RED_pre_snapshot_pin.log` (shape-snapshot sha256 pin drift assertion fails against placeholder). GREEN at `20260919T062200Z_cp_m14_w1_handoff_contract_GREEN_post_snapshot_pin.log` (8/8 pass post pin re-lock).
+
+**Pre-Commit-A double-green byte-identical BASELINE_GUARD=1 proof:** stripped-sha256 `8e4b4cc58cc57583e82a3265c822503405cab44fb5073e2a443a50f78609e0bb` · both runs 5319 passed / 1 skipped / 438 warnings / ~168s each from `backend/` CWD. Receipts: `20260919T063000Z_cp_m14_w1_handoff_contract_preseal_GUARD1_run1.log` + `20260919T063500Z_cp_m14_w1_handoff_contract_preseal_GUARD1_run2.log`.
+
+**Transient opcounter-order flake reconciled during pre-seal sweep (§6 transparency):** first pre-Commit-A sweep showed `test_no_lawful_basis_refusal_returns_flat_outcome_refused` failing with mongo opcounter `write_delta == 448` instead of expected `1` (441 updates + 6 deletes injected by other tests in the session). Classic order-dependent opcounter interference: rerun deterministically produced clean 5319 pass, and isolation run of that test alone was GREEN. Receipt retained at `20260919T062700Z_cp_m14_w1_handoff_contract_preseal_GUARD1_run1_FLAKE_INVESTIGATION.log` as transparency artefact. Not a ratchet break, not a Stop-condition #1 trigger. Owner-desk item candidate at next milestone boundary: consider isolating opcounter-based tests via a `pytest-order` hint or a fixture that resets counters, so the pattern is deterministic across all interleaving orders.
+
+**Files landed (code repo Commit-A `8b861987`):**
+- NEW `backend/tests/invariants/test_m14_w1_handoff_contract_shape_freeze.py` (294 lines · 8 test functions).
+- MODIFIED `backend/tests/invariants/baseline_failures.json` (`counts_at_baseline.passed` 5311→5319 · `invariants_enforced_when_baseline_guard_1.passed_floor` 5311→5319 · new `ratchet_history` entry CP-M14-W1-HANDOFF-CONTRACT-SHAPE-FREEZE · `recorded_at_utc` 2026-09-19T06:25:00Z · file sha256 `10ccf95ed68518f81d228dba6796d68eb19bef754e5f193c6c27d67965630ba3` → `6f7220d03aa97a37abc1398f0bbfe792269f4cbdb3f5e13b6424396b7003e35d`).
+- NEW 5 drill receipts under `backend/phase0/drill_receipts/` (RED + GREEN + FLAKE_INVESTIGATION + double-green pre-Commit-A GUARD1 run1 + run2).
+
+**Canon anchors:** Canon 15 §33 (four required fields verbatim: what · shape · identity · receipt) + CA1-009 (every cross-app crossing authored + persisted through `services.handoff.register_handoff`; attestation at cross-time via `services.handoff.attest_handoff` is hard-fail on missing) + SO §3.8 (thin-kernel additive-only) + SO §3.10-α (closed-schema discipline extended to pydantic model surfaces) + §6.7 batch-ratification-at-preceding-seal (M14 card pre-ratified at CP-M13-W5 close per §6.7 sequence).
+
+**Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered.**
+
+**Additive-only per SO §3.8:** authored as pure invariant test file consuming already-sealed pre-M14 module surface; does NOT edit `contracts/handoff_contract.py` or `services/handoff/contracts.py`.
+
+**Autopilot R-33 continues NON-STOP under §6 END-OF-BUILD authority** per owner ruling 2026-09-19T~03:15Z Option-3 override + FULL-RUN AUTHORIZATION 2026-09-19T~00:20Z + Option-B/Option-3 re-affirmation this-session.
+
+**Next per §6.7 sequence:** Commit-B (state repo · commits `STATE/OBJECTIVES/M14.md` fresh landing with corrected `card_sha256` pin + this DECISIONS.md banking section + `STATE/NEXT.md` R-36 interlude marker + `notes/ORCH_BOOT.md` R-6 boundary regen advancing `code_repo.head` to Commit-A `8b861987` + `/app/frontend/public/audit/ORCH_BOOT.md` byte-identical audit copy re-synced) → Commit-C fixup (advances `heads_last_sealed.state_repo.head` to Commit-B SHA) → M14-W2 (Mkondo registry + checkpoint runtime) → M14-W3 (Mongo collections) → M14-W4 (signed webhook delivery) → M14-W5 (integration seal · M14 milestone closing gate) → M15 → M16 (pre-ruled scope · CIF canon-as-written) → M17 → memory layer (after C.13 close) → frontends (functional-parity bar · Expo excluded per owner delegation to specialist). G5 interleaved to 1,096.
+
+**Staleness re-scope APPLY-ON-EXPIRY** still armed for 2026-09-20T~11:35Z (T-29.0h at Commit-A time · not yet fired · fires as its own small seal per owner order 2026-09-19T~05:15Z).
+
+
+---
+
+## CP-M14-W1-HANDOFF-CONTRACT-SHAPE-FREEZE · Commit-B/Commit-C banking · 2026-09-19T~06:46Z
+
+**Commit-B SHA (state master):** `4ed3a33a0cc77e92f3acd41a7e4cab9e93221c82` — banks Commit-A `8b861987cd0605a932400f75969c001665970c55` (code programme/track-a).
+
+**Commit-C fixup SHA (state master · this-commit):** advances `heads_last_sealed.state_repo.head` in `notes/ORCH_BOOT.md` from prior CP-M13-W5 close `24545fcc` to this Commit-B `4ed3a33a`. Byte-identical audit copy at `/app/frontend/public/audit/ORCH_BOOT.md` re-synced (filesystem-only mirror per §7 R-6 convention). NEXT.md R-36 marker flipped ⏳→✅ with sealed-status full detail (Commit-A + Commit-B + Commit-C SHAs).
+
+**Full seal boundary reached:** MILESTONE 5 FIRST SUB-WAVE (M14-W1 · Hand-off contract v1 shape-freeze) fully sealed across dual-branch §3.3 protocol. Card `card_sha256` pinned `f65cb7c3b851b4432690a37b840a6cfd73cfe9a4ab0353493d98ba2bda3c08f9`. Ratchet floor `5319` monotonically advanced. Pre-Commit-A double-green byte-identical proof `8e4b4cc58cc57583e82a3265c822503405cab44fb5073e2a443a50f78609e0bb`. Stop-conditions #1/#2/#3 NOT triggered. §6.4 pre-ruling NOT triggered. Additive-only per SO §3.8.
+
+**Autopilot R-33 continues NON-STOP under §6 END-OF-BUILD authority** to M14-W2 (Mkondo registry + checkpoint runtime) → M14-W3 (Mongo collections) → M14-W4 (signed webhook delivery) → M14-W5 (integration seal · M14 milestone closing gate) → M15 → M16 (pre-ruled scope · CIF canon-as-written) → M17 → memory layer (after C.13 close) → frontends (Expo excluded per owner delegation to specialist). G5 interleaved to 1,096.
+
+**Staleness re-scope APPLY-ON-EXPIRY** still armed for 2026-09-20T~11:35Z (T-28.8h at Commit-C time · not yet fired · fires as its own small seal per owner order 2026-09-19T~05:15Z).
+
+
+---
+
+## CP-M14-W2-MKONDO-REGISTRY · Commit-A banking · 2026-09-19T~07:11Z · MILESTONE 5 SECOND SUB-WAVE
+
+**Commit-A SHA:** `2652571f42ea02134f79c9104614b8eeb287e903` on `programme/track-a` (code repo).
+
+**Card:** `STATE/OBJECTIVES/M14.md` MUST-DO 2 (Mkondo registry + checkpoint runtime) · EXIT-W2. Card `card_sha256` re-pinned `ca1292b9cce6a2ffba750a13ecb9a7e26e594c4a1eba18f348d67b8d3fbc7f3b` after filling W2 EXIT with 6 concrete pytest node IDs. Milestone_status stays `DRAFTED` per §6.2.
+
+**Scope (per M14 card MUST-DO 2 verbatim):** New module `services/mkondo/registry.py` that (a) admits a `HandoffContract_v0` at request time, (b) refuses malformed contracts via pydantic ValidationError propagation, (c) refuses dual-hatted contracts where `identity_source.actor_id == identity_destination.actor_id` (structural role separation per Canon 8 §W11), (d) emits one ledger intent per admitted hand-off via `services.ledger_emitter.emit_intent` (Canon 1 §62 single-writer). Structural role separation: registry does NOT sign hand-offs.
+
+**Ratchet:** 5319 → 5325 (+6 empirically measured · 6 new test functions). Delta reconciled: `module_surface_importable` + `admit_valid_contract_returns_frozen_contract` + `refuse_malformed_contract_raises_validation_error` + `refuse_dual_hatted_source_equals_destination` [Canon 8 §W11 · custom `MkondoRoleSeparationRefused` exception] + `emits_exactly_one_ledger_intent_per_admission` [Canon 1 §62 · `mock.patch` on `services.mkondo.registry.emit_intent` asserts `call_count == 1`] + `ast_role_separation_ban_no_signing_import` [AST scan of registry source refuses `services.watch.signature_primitive` references].
+
+**AUTHENTIC RED-first cycle:** RED at `phase0/drill_receipts/20260919T065000Z_cp_m14_w2_mkondo_RED_pre_module.log` (6/6 fail with ModuleNotFoundError / assertion on missing `services/mkondo/registry.py`). GREEN at `20260919T065500Z_cp_m14_w2_mkondo_GREEN_post_module.log` (6/6 pass).
+
+**Pre-Commit-A double-green byte-identical BASELINE_GUARD=1 proof:** stripped-sha256 `54033fb315d8f0076c0b715d36802cc46e4e40baf3903cc5bf50214c1c6b37d7` · both runs 5325 passed / 1 skipped / 438 warnings.
+
+**Files landed (code repo Commit-A `2652571f`):**
+- NEW `backend/services/mkondo/__init__.py` (subpackage init citing structural role separation).
+- NEW `backend/services/mkondo/registry.py` (~100 LOC · `admit_handoff` + `MkondoRoleSeparationRefused`).
+- NEW `backend/tests/invariants/test_m14_w2_mkondo_registry.py` (6 test functions).
+- MODIFIED `backend/tests/invariants/baseline_failures.json` (`passed_floor` 5319→5325 · new ratchet entry · new sha256 `a89a500b8a84c27bf2561a576f144867c41c91aa26ca4c25ecf5921fb9ff7495`).
+- NEW 4 drill receipts under `backend/phase0/drill_receipts/`.
+
+**Canon anchors:** Canon 15 §33 + CA1-009 + Canon 8 §W11 + Canon 1 §62 + SO §3.8 + SO §3.10-α.
+
+**Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered.**
+
+**Additive-only per SO §3.8:** consumes sealed pre-M14 surfaces without editing them.
+
+**Autopilot R-33 continues NON-STOP** under §6 END-OF-BUILD authority.
+
+**Next per §6.7:** Commit-B (state · M14.md re-pin + this banking section + NEXT.md R-37 marker + ORCH_BOOT.md regen) → Commit-C fixup → M14-W3 → M14-W4 → M14-W5 → M15 → M16 → M17 → memory layer → frontends.
+
+**Staleness re-scope APPLY-ON-EXPIRY** still armed for 2026-09-20T~11:35Z (T-28.4h at Commit-A time · not yet fired).
+
+
+---
+
+## CP-M14-W2-MKONDO-REGISTRY · Commit-B/Commit-C banking · 2026-09-19T~07:17Z
+
+**Commit-B SHA (state master):** `99c6208120843d134ef81c84920531afc128f292` — banks Commit-A `2652571f42ea02134f79c9104614b8eeb287e903` (code programme/track-a).
+
+**Commit-C fixup SHA (state master · this-commit):** advances `heads_last_sealed.state_repo.head` in `notes/ORCH_BOOT.md` from CP-M14-W1 close `4ed3a33a` to this Commit-B `99c62081`. Byte-identical audit copy at `/app/frontend/public/audit/ORCH_BOOT.md` re-synced. NEXT.md R-37 marker flipped ⏳→✅.
+
+**Full seal boundary reached:** MILESTONE 5 SECOND SUB-WAVE (M14-W2 · Mkondo registry + checkpoint runtime) fully sealed. Card `card_sha256` re-pinned `ca1292b9cce6a2ffba750a13ecb9a7e26e594c4a1eba18f348d67b8d3fbc7f3b`. Ratchet floor `5325`. Pre-Commit-A double-green byte-identical `54033fb315d8f0076c0b715d36802cc46e4e40baf3903cc5bf50214c1c6b37d7`. Stop-conditions #1/#2/#3 NOT triggered.
+
+**Next per §6.7:** M14-W3 (Mongo collections asks/deliveries/webhook_endpoints under `services/answering_service/collections/` with per-tenant scope per M11) → M14-W4 (signed webhook delivery per-tenant Ed25519) → M14-W5 (integration seal · M14 milestone closing gate) → M15 → M16 → M17 → memory layer → frontends.
+
+**Staleness re-scope APPLY-ON-EXPIRY** still armed for 2026-09-20T~11:35Z (T-28.3h at Commit-C time · not yet fired).
+
+
+---
+
+## CP-M14-W3-ANSWERING-SERVICE-COLLECTIONS · Commit-A banking · 2026-09-19T~07:42Z · MILESTONE 5 THIRD SUB-WAVE
+
+**Commit-A SHA:** `eab542e8ce3795bbff2f5fa5c4e60b3690dd8797` on `programme/track-a` (code repo).
+
+**Card:** `STATE/OBJECTIVES/M14.md` MUST-DO 3 (three answering-service Mongo collections) · EXIT-W3. Card `card_sha256` re-pinned `d52ef661d074a91b88804afc19d1b75a87a044969beb914b32d72c8edf507d12` after filling W3 EXIT with 6 concrete pytest node IDs. Milestone_status stays `DRAFTED` per §6.2.
+
+**Scope (per M14 card MUST-DO 3 verbatim):** Three new Mongo collections + their models under `services/answering_service/collections/`. Per-tenant scope per M11 (`t_<tenant_id>` databases). Each collection carries a frozen pydantic model + append-only write surface + read surface.
+
+**Ratchet:** 5325 → 5331 (+6 · 6 new tests). Delta reconciled: `module_surface_importable` [all three collection modules importable end-to-end] + `ask_v0_frozen_and_forbids_extra_and_has_canon_fields` [Ask_v0: extra=forbid + frozen=True + 5 fields ask_id/tenant_id/handoff_id/payload_ref/created_at] + `delivery_v0_frozen_and_forbids_extra_and_has_canon_fields` [Delivery_v0: 8 fields per Canon 17 §4] + `webhook_endpoint_v0_frozen_and_forbids_extra_and_has_canon_fields` [WebhookEndpoint_v0: 4 fields] + `collections_route_to_per_tenant_db_name` [Canon 3 §B.7 · `_tenant_db_name('acme')=='t_acme'` for all three modules] + `collections_append_only_writer_discipline` [AST scan refuses `update_/delete_/upsert_/replace_/modify_/drop_` function prefixes · Canon 3 §9.3].
+
+**AUTHENTIC RED-first cycle:** RED at `phase0/drill_receipts/20260919T072000Z_cp_m14_w3_collections_RED_pre_module.log` (6/6 fail with AssertionError on missing `services/answering_service/collections/` dir). GREEN at `20260919T072500Z_cp_m14_w3_collections_GREEN_post_module.log` (6/6 pass post-module).
+
+**Pre-Commit-A double-green byte-identical BASELINE_GUARD=1 proof:** stripped-sha256 `e41da26feb55ba5d7944280a75e081b5281b74b4ca551af0b52e5cabb6363d85` · both runs 5331 passed / 1 skipped / 438 warnings.
+
+**Files landed (code repo Commit-A `eab542e8`):**
+- NEW `backend/services/answering_service/__init__.py`.
+- NEW `backend/services/answering_service/collections/__init__.py`.
+- NEW `backend/services/answering_service/collections/asks.py` (`Ask_v0` + `insert_ask` + `get_ask` + `list_asks_for_handoff` + `_tenant_db_name`).
+- NEW `backend/services/answering_service/collections/deliveries.py` (`Delivery_v0` + `insert_delivery` + `get_delivery` + `list_deliveries_for_ask` + `_tenant_db_name`).
+- NEW `backend/services/answering_service/collections/webhook_endpoints.py` (`WebhookEndpoint_v0` + `insert_webhook_endpoint` + `get_webhook_endpoint` + `list_webhook_endpoints_for_tenant` + `_tenant_db_name`).
+- NEW `backend/tests/invariants/test_m14_w3_answering_service_collections.py` (6 test functions).
+- MODIFIED `backend/tests/invariants/baseline_failures.json` (`passed_floor` 5325→5331 · new ratchet entry · new sha256 `82f5a37aecab7a2fdf62c13424051066a8ae3a229da0d9ace1549e4cbc9a8e10`).
+- NEW 4 drill receipts under `backend/phase0/drill_receipts/`.
+
+**Canon anchors:** Canon 17 §4 (answering-service triangle) + Canon 3 §B.7 (per-tenant provisioning) + Canon 3 §9.3 (append-only) + M11-W1 (Repository sole Motor importer · sealed and consumed as-is via callable arg) + SO §3.8 (thin-kernel additive-only) + SO §3.10-α (closed-schema discipline).
+
+**Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered.**
+
+**Additive-only per SO §3.8:** consumes sealed pre-M14 Repository primitive as-is via callable arg; does NOT touch mongo directly at module level; does NOT edit any sealed module.
+
+**Autopilot R-33 continues NON-STOP** under §6 END-OF-BUILD authority.
+
+**Next per §6.7:** Commit-B (state · M14.md re-pin + this banking section + NEXT.md R-38 marker + ORCH_BOOT.md regen advancing code_head to `eab542e8`) → Commit-C fixup → M14-W4 (signed webhook delivery per-tenant Ed25519) → M14-W5 (integration seal · M14 milestone closing gate) → M15 → M16 → M17 → memory layer → frontends.
+
+**Staleness re-scope APPLY-ON-EXPIRY** still armed for 2026-09-20T~11:35Z (T-27.9h at Commit-A time · not yet fired).
+
+
+---
+
+## CP-M14-W3-ANSWERING-SERVICE-COLLECTIONS · Commit-B/Commit-C banking · 2026-09-19T~07:48Z
+
+**Commit-B SHA (state master):** `4858494279039871a36cdffe5157e3e4bc502638` — banks Commit-A `eab542e8ce3795bbff2f5fa5c4e60b3690dd8797` (code programme/track-a).
+
+**Commit-C fixup SHA (state master · this-commit):** advances `heads_last_sealed.state_repo.head` in `notes/ORCH_BOOT.md` from CP-M14-W2 close `99c62081` to this Commit-B `48584942`. Byte-identical audit copy re-synced. NEXT.md R-38 marker flipped ⏳→✅.
+
+**Full seal boundary reached:** MILESTONE 5 THIRD SUB-WAVE (M14-W3 · Answering-service Mongo collections triangle) fully sealed. Card `card_sha256` re-pinned `d52ef661d074a91b88804afc19d1b75a87a044969beb914b32d72c8edf507d12`. Ratchet floor `5331`. Pre-Commit-A double-green byte-identical `e41da26feb55ba5d7944280a75e081b5281b74b4ca551af0b52e5cabb6363d85`. Stop-conditions #1/#2/#3 NOT triggered.
+
+**Next per §6.7:** M14-W4 (signed webhook delivery per-tenant Ed25519) → M14-W5 (integration seal · M14 milestone closing gate) → M15 → M16 → M17 → memory layer → frontends.
+
+**Staleness re-scope APPLY-ON-EXPIRY** still armed for 2026-09-20T~11:35Z (T-27.8h at Commit-C time · not yet fired).
+
+
+---
+
+---
+
+## CP-M14-W4-WEBHOOK-DELIVERY-SIGNED · Commit-A banking · 2026-09-19T~08:30Z · MILESTONE 5 FOURTH SUB-WAVE · PURE DATA-IN owner tier-1 ruling
+
+**Commit-A (code programme/track-a):** `f3165c5` · CP-M14-W4-WEBHOOK-DELIVERY-SIGNED · Signed webhook delivery landed as PURE DATA-IN per owner tier-1 ruling 2026-09-19 (direct analogy to Option-D on DAP-7 verbatim "a code path is a code path": the answering-service holds NO signing capability · no key · no callable · no partial · what crosses the boundary is inert data · `signature: bytes`).
+
+**Canon anchors (verbatim):**
+- **Canon 17 §4** answering-service triangle: `ask · delivery · webhook_endpoint`. Every delivery carries a signature that binds the delivered payload to the tenant.
+- **Canon 8 §W10** watcher-watched-from-outside: the Watch signature primitive is Watch-trust-boundary-only. Structurally enforced by (a) test 7 of M14-W4 (`test_webhook_delivery_ast_pure_data_in_no_signer_or_key_param`) which AST-scans the answering-service module source and refuses any `services.watch.signature_primitive` import, any `Callable` import at module level, and any function parameter in the closed banned-name tuple `{signer, sign, signing_key, tenant_signing_key, priv, priv_bytes, private_key, key, keys, keypair, kms_client, signature_primitive}`, and by (b) the global trust-boundary invariant `test_ed25519_keys_are_held_only_by_watch_trust_boundary` in `test_m12b_w1_ed25519_primitive_determinism.py`.
+- **Canon 8 §W11** one-task-one-identity: structural role separation. Webhook delivery attaches an opaque signature; it does NOT sign, does NOT hold keys, does NOT wrap / unwrap KMS envelopes. Envelope operations stay at `services.kms.envelope` (AST-enforced by test 6 of M14-W4).
+- **Canon 8 §Line 31** "signature is the guard": `watch_verify` is a predicate over canonical bytes; True on faithful bytes, False on tampered bytes; never raises.
+- **BR-2.1** structural bytes-in enforcement (owner tier-1 ruling this-session): the signing capability physically does not cross into answering-service. Enforcement is structural, not conventional.
+- **M12b-W1 sealed** Ed25519 primitive consumed as-is from the `tests/**` side via the global trust-boundary invariant's `tests/**` exemption. The answering-service side never imports it.
+- **SO §3.8** thin-kernel additive-only.
+- **SO §3.10-α** closed-schema discipline: canonical bytes are deterministic sorted-key JSON over the closed 6-field `_SIGNATURE_BEARING_FIELDS` tuple.
+
+**Owner tier-1 ruling (verbatim, 2026-09-19):**
+
+> "This is a tier-1 resolution, not a preference call, by direct analogy to the owner's Option-D ruling on DAP-7: 'a code path is a code path.' An injected signer callable hands the answering service a live signing capability — while it holds the callable it can sign arbitrary bytes, and 'it only signs the payload' becomes enforcement by convention, which is exactly what BR-2.1 and the Canon 8 §W10 trust boundary exist to prevent. With B, the signing act stays physically inside the Watch boundary; what crosses is inert data. It is also the shape Mkono's verify-side already assumes (signature over canonical payload)."
+
+**Implementation notes banked from the owner ruling:**
+- Caller (inside the Watch/trusted side) canonicalizes the payload via `canonical_bytes_for_delivery(...)`, signs once with the tenant's Ed25519 signing key, and passes `payload_ref` + `signature: bytes` (inert data) to `deliver_webhook(...)`.
+- `deliver_webhook` neither imports the primitive nor accepts any callable; the signature is opaque bytes it attaches per the delivery contract (hex-encoded onto `Delivery_v0.signature`).
+- Retries redeliver the same signed canonical payload — the payload must be immutable across attempts. Attempt metadata lives OUTSIDE the signed envelope. The signed 6-field tuple (`delivery_id`, `tenant_id`, `ask_id`, `webhook_endpoint_id`, `payload_ref`, `delivered_at`) is fixed per `delivery_id`.
+- Tests sign in the test body via the allowed `tests/**` exemption; the AST bypass-param ban (test 7) is added as a hard structural check with the same shape discipline as the trust-boundary invariant.
+
+**Ratchet:** 5331 → 5338 (+7 · new sha256 `458426feed77e97eced6f3451431fa109837419e632716e7dd6a8e996bd391da` · ratchet_history append-only per SO §7 R-5 with CP-M14-W4-WEBHOOK-DELIVERY-SIGNED entry [delta 7 · passed 5338]).
+
+**Pre-Commit-A double-green byte-identical proof:** stripped-sha256 `a1d88e7a7c97b4b4a9e6672d632715cb795cfa531f10d903f6cb7fedd1292c1c` · both runs 5338 passed / 1 skipped / 438 warnings.
+
+**Drill receipts (banked at `backend/phase0/drill_receipts/`):**
+- `20260919T075000Z_cp_m14_w4_webhook_RED_pre_module.log` — authentic RED (6/6 fail on missing module).
+- `20260919T075200Z_cp_m14_w4_webhook_GREEN_post_module.log` — 6/6 pass (initial injected-signer version · superseded by pure-data-in re-scope).
+- `20260919T075800Z_cp_m14_w4_webhook_preseal_GUARD1_run1.log` — initial preseal · superseded by pure-data-in re-scope · retained as transparency artefact per SO §6 rules-are-yours-to-know discipline.
+- `20260919T081500Z_cp_m14_w4_webhook_GREEN_puredataIn.log` — 7/7 pass post-re-scope including new AST bypass-param ban test 7.
+- `20260919T081700Z_cp_m14_w4_webhook_puredataIn_preseal_GUARD1_run1.log` — initial pure-data-in preseal at floor 5337 · 2 manifest-guard tests correctly caught pending `ratchet_history[-1].passed` + `ORCH_BOOT.md` alignment · retained as transparency artefact.
+- `20260919T082300Z_cp_m14_w4_webhook_puredataIn_preseal_GUARD1_run1.log` — post-alignment run 1 · 5338 passed / 1 skipped / 438 warnings.
+- `20260919T082700Z_cp_m14_w4_webhook_puredataIn_preseal_GUARD1_run2.log` — post-alignment run 2 · byte-identical to run 1 stripped-sha256 `a1d88e7a…`.
+
+**Files landed (code repo):**
+- NEW `backend/services/answering_service/webhook_delivery.py` (~160 LOC · `deliver_webhook` surface accepting `ask/endpoint/payload_ref/signature:bytes/delivery_id/delivered_at` · attaches `signature.hex()` on `Delivery_v0` · returns `Delivery_v0` with `state='sent'` · cross-tenant guard on `ask.tenant_id vs endpoint.tenant_id` [ValueError refusal] · `canonical_delivery_bytes` helper for post-construction verify · `canonical_bytes_for_delivery` helper for pre-Delivery-construction signing).
+- NEW `backend/tests/invariants/test_m14_w4_webhook_delivery_signed.py` (7 tests · list per M14.md EXIT-W4 pinning).
+- Ratchet advance in `backend/tests/invariants/baseline_failures.json`.
+- 7 drill receipts under `backend/phase0/drill_receipts/`.
+
+**Next per §6.7 sequence:**
+Commit-B (this state master · M14.md W4 EXIT filled + card_sha256 re-pinned `c79832992eb947d56aa11ec2f6604c679631e4c986fe648a23503d5a43f47dab` + DECISIONS banking [this entry] + NEXT R-39 marker + notes/ORCH_BOOT.md R-6 boundary regen at ratchet 5338 + audit copy re-synced) → Commit-C fixup (advances `heads_last_sealed.state_repo.head` to Commit-B SHA) → M14-W5 (integration seal · closes M14 milestone) → M15 → M16 (pre-ruled scope · CIF canon-as-written) → M17 → memory layer (after C.13 close) → frontends (functional-parity bar · Expo excluded per owner delegation to specialist).
+
+**Staleness re-scope APPLY-ON-EXPIRY still armed** for 2026-09-20T~11:35Z (T-27.1h at Commit-A time · not yet fired · fires as its own small seal per owner order 2026-09-19T~05:15Z).
+
+**Opcounter flake hardening** remains DEFERRED (P2 · additive at next convenient seal per owner ruling this-session).
+
+**Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered.**
+
+---
+
+## CP-M14-W4-WEBHOOK-DELIVERY-SIGNED · Commit-B/Commit-C banking · 2026-09-19T~08:35Z · MILESTONE 5 FOURTH SUB-WAVE FULLY SEALED
+
+**Commit-B (state master):** `b7488189f4fe3c5193d529667098fddf84f77bb9` · 2026-09-19T08:33:00Z · banks Commit-A `f3165c51dcfaa8547731d066c8ee795d6aa29e8c` for M14-W4. Files landed: STATE/OBJECTIVES/M14.md re-pinned (W4 EXIT filled with 7 concrete pytest node IDs + PURE DATA-IN owner tier-1 ruling annotation in W4 EXIT header · card_sha256 `c79832992eb947d56aa11ec2f6604c679631e4c986fe648a23503d5a43f47dab`) + STATE/DECISIONS.md banking section CP-M14-W4-WEBHOOK-DELIVERY-SIGNED Commit-A with verbatim owner tier-1 ruling text banked in-line + implementation notes banked (canonicalize inside Watch trust boundary · sign once · pass payload_ref + `signature: bytes` as inert data · retries redeliver same signed canonical payload · attempt metadata outside signed envelope) + STATE/NEXT.md R-39 INTERLUDE MARKER + notes/ORCH_BOOT.md R-6 boundary regen (ratchet 5338 · baseline_failures_sha256 `458426fe…` · heads_last_sealed.code_repo.head advanced to `f3165c51` · state_repo.head stayed at `48584942` pending Commit-C fixup) + /app/frontend/public/audit/ORCH_BOOT.md byte-identical audit copy re-synced.
+
+**Commit-C fixup (state master):** advances `heads_last_sealed.state_repo.head` to Commit-B `b7488189` in notes/ORCH_BOOT.md (R-6 boundary regen post-Commit-B) + banks Commit-B SHA in this DECISIONS section + flips NEXT.md R-39 INTERLUDE MARKER status ⏳ → ✅ · /app/frontend/public/audit/ORCH_BOOT.md byte-identical audit copy re-synced. Post-fixup verification: pytest `test_orch_boot.py::test_orch_boot_anti_forget_manifest_matches_live_ratchet_and_sealed_heads` + `test_baseline_no_new_breakage.py` (13 tests) + `test_m14_w4_webhook_delivery_signed.py` (7 tests) all GREEN.
+
+**Card citations:** STATE/OBJECTIVES/M14.md MUST-DO 4 + EXIT-W4 · `card_sha256` re-pinned `c79832992eb947d56aa11ec2f6604c679631e4c986fe648a23503d5a43f47dab`.
+
+**M14-W4 EXIT full status:**
+- Signed webhook delivery module `services/answering_service/webhook_delivery.py` landed as PURE DATA-IN (owner tier-1 ruling).
+- Public surface: `deliver_webhook(ask, endpoint, payload_ref, signature: bytes, delivery_id, delivered_at) → Delivery_v0` + `canonical_delivery_bytes(delivery) → bytes` + `canonical_bytes_for_delivery(...) → bytes`.
+- Test file `tests/invariants/test_m14_w4_webhook_delivery_signed.py` with 7 invariants: module surface + sign-and-deliver roundtrip + signature verifies TRUE against canonical payload + signature verifies FALSE on tampered payload + records frozen delivery with state='sent' + AST role-separation ban on `services.kms.envelope` + AST pure-data-in ban on signer/key/callable parameters and on `services.watch.signature_primitive` imports.
+- Ratchet 5331 → 5338 (+7 · pre-Commit-A double-green stripped-sha256 `a1d88e7a7c97b4b4a9e6672d632715cb795cfa531f10d903f6cb7fedd1292c1c` · both runs 5338 passed / 1 skipped / 438 warnings).
+- Additive-only per SO §3.8: no sealed module edited.
+
+**Milestone one-liner per §6.5:** M14-W4 Signed webhook delivery sealed PURE DATA-IN · +7 tests · ratchet 5331→5338 · additive-only per SO §3.8 · no forks banked · no stop-conditions triggered · Canon 8 §W10 boundary structurally enforced by AST bypass-param ban + trust-boundary invariant.
+
+**Autopilot R-33 continues** NON-STOP under §6 END-OF-BUILD authority · owner Option-B/Option-3 override re-affirmed this session 2026-09-19 to M14-W5 (integration seal · M14 milestone closing gate · end-to-end handoff → Mkondo admit → ask create → webhook confirm → signed delivery [with Watch-side signing wired in through the pure-data-in boundary: Watch orchestration layer calls `canonical_bytes_for_delivery(...)` + `watch_sign(priv, canonical)`, then passes `signature: bytes` as inert data into `deliver_webhook(...)`] → record verify) → M15 → M16 (pre-ruled scope · CIF canon-as-written) → M17 → memory layer (after C.13 close) → frontends (functional-parity bar · Expo excluded per owner delegation to specialist) per §6.7 sequence · G5 interleaved to 1,096 · Staleness re-scope APPLY-ON-EXPIRY still armed for 2026-09-20T~11:35Z (T-26.9h at Commit-C time · not yet fired).
+
+---
+
+## CP-M14-W5-SEAL-INTEGRATION · Commit-A banking · 2026-09-19T~08:50Z · MILESTONE 5 FIFTH SUB-WAVE (M14 MILESTONE CLOSING GATE)
+
+**Commit-A (code programme/track-a):** `1b019041d55a1ce2a22c54e08df66d9f5064cec7` · CP-M14-W5-SEAL-INTEGRATION · Integration seal binding W1..W4 sub-wave surfaces end-to-end per SO §6.2 EXIT clause (milestone gate closes on a test that binds all sub-waves' evidence).
+
+**M14 MILESTONE CLOSING GATE:** all 5 sub-waves W1-W5 sealed with full pre-seal `BASELINE_GUARD=1` double-green byte-identical proof + zero regression + zero flip:
+- W1 (`8b861987`) · Hand-off contract shape-freeze · +8 · Canon 15 §33 + CA1-009 · shape-snapshot pin `9512cad2…`.
+- W2 (`2652571f`) · Mkondo registry + checkpoint runtime · +6 · Canon 8 §W11 + Canon 1 §62.
+- W3 (`eab542e8`) · Answering-service Mongo collections triangle · +6 · Canon 17 §4 + Canon 3 §B.7 + M11.
+- W4 (`f3165c51`) · Signed webhook delivery PURE DATA-IN · +7 · Canon 8 §W10 + Canon 8 §W11 + Canon 8 §Line 31 + BR-2.1 (owner tier-1 ruling this session).
+- W5 (`1b019041`) · Integration seal · +6 · milestone snapshot pin `40af13fe…`.
+- Total ratchet: 5311 → 5344 (+33 over M14).
+
+**Canon anchors verbatim (milestone-wide):** Canon 15 §33 + CA1-009 + Canon 8 §W10 + Canon 8 §W11 + Canon 1 §62 + Canon 17 §4 + Canon 8 §Line 31 + BR-2.1 + Canon 3 §B.7 + Canon 3 §9.3 + SO §3.8 + SO §3.10-α.
+
+**Ratchet:** 5338 → 5344 (+6 · new sha256 `03714f66519f17042f645ae66b9191412f656a8753f61f0c27272aaf1b13e846` · ratchet_history append-only per SO §7 R-5).
+
+**Pre-Commit-A double-green byte-identical proof:** stripped-sha256 `6892491a6683f1e72bc78224cc167ad56f3c2ec95d2e952fbac66e4a4edca6fd` · both runs 5344 passed / 1 skipped / 438 warnings.
+
+**Drill receipts banked at `backend/phase0/drill_receipts/`:**
+- `20260919T083800Z_cp_m14_w4_webhook_puredataIn_postseal_GUARD1.log` · M14-W4 post-seal verification confirming M14-W4 ratchet holds at 5338.
+- `20260919T084000Z_cp_m14_w5_seal_RED_pre_pin.log` · authentic RED · 5/6 pass · 1/6 fail on placeholder canonical-bytes pin.
+- `20260919T084200Z_cp_m14_w5_seal_GREEN_post_pin.log` · 6/6 pass post pin re-lock to `40af13fe…`.
+- `20260919T084700Z_cp_m14_w5_seal_preseal_GUARD1_run1.log` · 5344 passed / 1 skipped.
+- `20260919T085000Z_cp_m14_w5_seal_preseal_GUARD1_run2.log` · byte-identical to run 1.
+
+**M14 milestone closing gate scope (verbatim from M14.md gate clause):**
+> "all five sub-waves W1–W5 sealed with full pre-seal `BASELINE_GUARD=1` double-green byte-identical proof + zero regression + zero flip + card_sha256 re-pinned at `milestone_status → CLOSED`."
+
+At Commit-B this closes: `milestone_status: DRAFTED → CLOSED` in M14.md · `card_sha256` re-pinned `eb3ff59185b8018f5a56b0225da98bd8adefd73ee4a75563361d2eaa1493fae3` reflecting CLOSED state.
+
+**Milestone one-liner per §6.5:** M14 Answering Service + Seam + Async + Mkondo milestone CLOSED · 5 sub-waves sealed W1..W5 · +33 tests (5311→5344) · additive-only per SO §3.8 · no forks banked · no stop-conditions triggered · Canon 8 §W10 boundary structurally enforced (PURE DATA-IN via owner tier-1 ruling 2026-09-19 direct analogy to Option-D on DAP-7 "a code path is a code path").
+
+**Autopilot R-33 continues** NON-STOP under §6 END-OF-BUILD authority · owner Option-B/Option-3 override re-affirmed this session 2026-09-19 to Commit-C fixup then M15 (per §6.7 sequence · pre-ratified at §6.7 batch-ratification-at-preceding-seal) → M16 (pre-ruled scope · CIF canon-as-written) → M17 → memory layer (after C.13 close) → frontends (functional-parity bar · Expo excluded per owner delegation to specialist).
+
+**Staleness re-scope APPLY-ON-EXPIRY** still armed for 2026-09-20T~11:35Z (T-26.7h at Commit-A time · not yet fired · fires as its own small seal per owner order 2026-09-19T~05:15Z).
+
+**Opcounter flake hardening** remains DEFERRED (P2 · additive at next convenient seal per owner ruling this-session).
+
+**Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered.**
+
+---
+
+## CP-M14-W5-SEAL-INTEGRATION · Commit-B/Commit-C banking · 2026-09-19T~08:56Z · MILESTONE 5 FIFTH SUB-WAVE FULLY SEALED · M14 MILESTONE FULLY CLOSED
+
+**Commit-B (state master):** `9e6732150a8078b2cf4f9ea66ff975756eabd023` · 2026-09-19T08:54:00Z · banks Commit-A `1b019041d55a1ce2a22c54e08df66d9f5064cec7` for M14-W5. Files landed:
+- STATE/OBJECTIVES/M14.md `milestone_status: DRAFTED → CLOSED` (all 5 sub-waves W1-W5 sealed with full pre-seal BASELINE_GUARD=1 double-green byte-identical proof + zero regression + zero flip per M14.md gate clause) + W5 EXIT filled with 6 concrete pytest node IDs + W5 milestone snapshot pin `40af13fe3d0f26e2e001f5263ce719f37cfcf440b91483178283e74ca9fd1f0d` filled + `card_sha256` re-pinned `eb3ff59185b8018f5a56b0225da98bd8adefd73ee4a75563361d2eaa1493fae3` reflecting CLOSED state.
+- STATE/DECISIONS.md banking section CP-M14-W5-SEAL-INTEGRATION Commit-A with M14 CLOSE narrative.
+- STATE/NEXT.md R-40 INTERLUDE MARKER + M14 MILESTONE CLOSE narrative.
+- notes/ORCH_BOOT.md R-6 boundary regen (ratchet 5344 · baseline_failures_sha256 `03714f66…` · heads_last_sealed.code_repo.head advanced to `1b019041` · state_repo.head stayed at `b7488189` pending Commit-C fixup).
+- /app/frontend/public/audit/ORCH_BOOT.md byte-identical audit copy re-synced.
+
+**Commit-C fixup (state master):** advances `heads_last_sealed.state_repo.head` to Commit-B `9e673215` in notes/ORCH_BOOT.md (R-6 boundary regen post-Commit-B) + banks Commit-B SHA in this DECISIONS section + flips NEXT.md R-40 INTERLUDE MARKER status ⏳ → ✅ · /app/frontend/public/audit/ORCH_BOOT.md byte-identical audit copy re-synced. Post-fixup verification: pytest `test_orch_boot.py` + `test_baseline_no_new_breakage.py` (13 tests) + `test_m14_w5_seal_integration.py` (6 tests) all GREEN.
+
+**M14 MILESTONE FULLY CLOSED · ledger:**
+- W1 (`8b861987`) · CP-M14-W1-HANDOFF-CONTRACT-SHAPE-FREEZE · +8 · Canon 15 §33 + CA1-009 + SO §3.8 · shape-snapshot pin `9512cad2…`.
+- W2 (`2652571f`) · CP-M14-W2-MKONDO-REGISTRY · +6 · Canon 8 §W11 + Canon 1 §62.
+- W3 (`eab542e8`) · CP-M14-W3-ANSWERING-SERVICE-COLLECTIONS · +6 · Canon 17 §4 + Canon 3 §B.7 + M11.
+- W4 (`f3165c51`) · CP-M14-W4-WEBHOOK-DELIVERY-SIGNED · +7 · Canon 8 §W10 + Canon 8 §W11 + Canon 8 §Line 31 + BR-2.1 (owner tier-1 ruling this session "a code path is a code path" direct analogy to Option-D on DAP-7 · PURE DATA-IN).
+- W5 (`1b019041`) · CP-M14-W5-SEAL-INTEGRATION · +6 · milestone snapshot pin `40af13fe…` · integration seal binding all four earlier sub-wave surfaces end-to-end.
+- **Total M14 ratchet:** 5311 → 5344 (+33).
+- **Total M14 additive-only changes per SO §3.8:** 8 new modules (services/mkondo/{__init__,registry}.py · services/answering_service/{__init__,collections/{__init__,asks,deliveries,webhook_endpoints}}.py · services/answering_service/webhook_delivery.py) + 5 new invariant test files (test_m14_w{1..5}_*.py).
+- **Owner tier-1 ruling banked at W4/W5:** the answering-service holds NO signing capability; the signing act stays physically inside the Watch trust boundary; what crosses is inert data (`signature: bytes`); structural, not conventional.
+
+**Milestone one-liner per §6.5:** M14 Answering Service + Seam + Async + Mkondo milestone CLOSED · 5 sub-waves sealed W1..W5 · +33 tests (5311→5344) · additive-only per SO §3.8 · no forks banked · no stop-conditions triggered · Canon 8 §W10 boundary structurally enforced (PURE DATA-IN via owner tier-1 ruling 2026-09-19).
+
+**Autopilot R-33 continues** NON-STOP under §6 END-OF-BUILD authority · owner Option-B/Option-3 override re-affirmed this session 2026-09-19 to M15 (per §6.7 sequence · pre-ratified at §6.7 batch-ratification-at-preceding-seal at this M14 close) → M16 (pre-ruled scope · CIF canon-as-written) → M17 → memory layer (after C.13 close) → frontends (functional-parity bar · Expo excluded per owner delegation to specialist).
+
+**Staleness re-scope APPLY-ON-EXPIRY** still armed for 2026-09-20T~11:35Z (T-26.5h at Commit-C time · not yet fired).
+
+**Opcounter flake hardening** remains DEFERRED (P2 · additive at next convenient seal per owner ruling this-session).
 
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

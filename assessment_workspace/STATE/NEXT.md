@@ -57,6 +57,89 @@ Failure to follow this sequence = paraphrase-not-spec failure class the owner ex
 
 Update this section at every CP/R-step close.
 
+**§6 INTERLUDE MARKER · 2026-09-19T~04:50Z · autopilot R-33 wake-up · post-CP-M13-W2-COMMIT-A**
+
+**M13-W2 Commit-A LANDED** at `programme/track-a` head `f2d0a7921831f41a0b8b1f1e6461b7925e55bc50` (2026-09-19T04:47:00Z). MILESTONE 4 SECOND SUB-WAVE SEALED at Commit-A level (M13-W1 TCB governance sealed 2026-09-17). §3.3 Commit-B/Commit-C pending as next step this-turn.
+
+**Ratchet 5279 → 5288 (+9 empirically measured line-by-line: 9 new test functions in test_m13_w2_kms_envelope_and_rotation.py).** Pre-Commit-A double-green byte-identical BASELINE_GUARD=1 stripped-sha256 `7edbc6313a35ff0b0c1739ad0c76b2f5865dc2e79b24e2ed9f7faad7a4d81cef` both runs 5288 passed / 1 skipped / 438 warnings.
+
+**M13-W2 scope landed (per objective card MUST-DO 2):**
+- `services/kms/tenant_key_registry.py` — append-only per-tenant master key registry.
+- `services/kms/envelope.py` — AES-256-GCM envelope encryption · cross-tenant refusal per Canon 8 §W11.
+- `services/kms/rotation_scheduler.py` — 90-day cadence + append-only key lineage.
+- 3 AST bans enforce structural role separation (Canon 8 §W11 one-task-one-identity).
+
+**Card update at Commit-A boundary:** STATE/OBJECTIVES/M13.md card_sha256 re-pinned `e2750a0a…` → `e443844bdfc41addc110830886bf393bac5d76132bbe0dc1923e819fcfe53d0c` after cleanup of W3/W4/W5 forward-cited pytest node IDs per test_seal_cites_card discipline. Milestone_status: DRAFTED remains per §6.2.
+
+**§3.3 3-commit remaining this-turn:**
+- ~~Commit-B (state · master) — banks Commit-A `f2d0a792` for M13-W2~~ **✅ LANDED** at `599f18e15bfe9744ec3e9c504040da2b3ac7cddd` (2026-09-19T04:52:00Z).
+- ~~Commit-C fixup (state · master) — advances heads_last_sealed.state_repo.head in notes/ORCH_BOOT.md + audit copy~~ **✅ LANDED** with this-turn attestation update (R-6 boundary regen + audit copy re-synced + Commit-B SHA banked in DECISIONS.md + status marker updated · post-fixup `pytest tests/invariants/test_orch_boot.py` GREEN).
+
+**Autopilot R-33 continues NON-STOP under §6 END-OF-BUILD authority.** Next per §6.7 sequence after this seal closes: M13-W3 → M13-W4 → M13-W5 → M14 → M15 → M16 → M17 → memory layer → frontends. G5 interleaved to 1,096.
+
+**Staleness re-scope APPLY-ON-EXPIRY** still ARMED for 2026-09-20T~11:35Z (T-31.0h at this attestation). Not yet fired.
+
+**No forks banked this-turn.**
+
+---
+
+**§6 INTERLUDE MARKER · 2026-09-19T~04:25Z · autopilot R-32 wake-up · post-M12b-W1-SEAL · M13-CARD-DRAFTED**
+
+**M12b-W1 SEALED** (Milestone 3 opener) at code Commit-A `60cc61e1` / state Commit-B `179df4e4` / state Commit-C `ff24db7f` (2026-09-19T04:10–04:20Z). Ratchet 5238→5279 (+41). All four MUST-DO 1-5 landed with double-green byte-identical proof. Gates i/ii/iii all cleared.
+
+**M13 objective card DRAFTED** at `STATE/OBJECTIVES/M13.md` per §6.7 (batch ratification at preceding seal · card drafted for M13-M17 + memory layer + frontends from canon + SER at the M12b-W1 seal boundary). Card_sha256 `e2750a0a40e2dc12b2e894dfe5ef9e2fb542471a4723d9bc5eddf87c21a52e4b`. Milestone_status: DRAFTED · pre-ratified by §6.4 pre-ruling 4 verbatim ("KMS: envelope encryption, per-tenant keys, 90-day rotation (R-4). OTel and Terraform: conventional. Runbooks per B.10. Cite, build, no ruling."). Post-fixup test_objective_card_pinned.py GREEN (5/5). Post-fixup boot invariants GREEN (13/13) + test_seal_cites_card GREEN.
+
+**M13 scope covered by the card:**
+- W1 · TCB governance regime — **SEALED pre-M13** at CP-M13W1 Commit-A `71faac1c` / Commit-B `96577787` (2026-09-17T~13:46Z · 4 tests · ratchet 4810→4814).
+- W2 · KMS envelope + per-tenant keys + 90-day rotation — **opens next per §6.7** · 9 tests + 3 modules (envelope + tenant_key_registry + rotation_scheduler) with structural role separation.
+- W3 · OpenTelemetry conventional instrumentation — 7 tests + OTel wire-in on chokepoint + ledger_writer + input_seat.
+- W4 · Terraform conventional IaC — 5 tests + manifest at notes/M13_W4_terraform_manifest.yaml.
+- W5 · B.10 runbooks — 6 tests + runbook directory at notes/runbooks/.
+
+**Immediate next action R-32 (compaction-safe resume point):**
+1. Open M13-W2 (KMS envelope + per-tenant + 90-day rotation) as own §3.3 3-commit cycle.
+2. Author RED test file `tests/invariants/test_m13_w2_kms_envelope_and_rotation.py` (9 tests per card EXIT · module surface + wrap/unwrap roundtrip + cross-tenant refusal + registry append-only + rotation cadence + lineage record + 3 AST role-separation bans).
+3. Confirm RED fails authentically (ModuleNotFoundError + AST-scan p.exists() False on not-yet-landed modules).
+4. Author GREEN modules under `services/kms/envelope.py` + `services/kms/tenant_key_registry.py` + `services/kms/rotation_scheduler.py`.
+5. Double-green byte-identical BASELINE_GUARD=1 sweep at floor 5279 → 5288 (+9).
+6. §3.3 3-commit seal (Commit-A track-a + Commit-B master + Commit-C fixup) with R-6 boundary regen at each fixup.
+
+**Autopilot R-32 continues NON-STOP under §6 END-OF-BUILD authority.** After M13 close: M14 → M15 → M16 (pre-ruled scope · CIF canon-as-written) → M17 → memory layer (after C.13 close) → frontends (functional-parity bar · Expo mobile surface excluded per owner delegation to specialist). G5 interleaved to 1,096. Daily digest at wall-clock day-boundary + one-line milestone-seal reports + batched desk items per §6.5.
+
+**Staleness re-scope APPLY-ON-EXPIRY** still ARMED for 2026-09-20T~11:35Z (T-31.2h at this attestation). Not yet fired.
+
+**No forks banked this-turn.** No stop conditions triggered.
+
+**Batched desk items surfaced this-turn (per §6.5):**
+- M13-W1 CI job wire (CP-M13W1-C3) + branch protection (CP-M13W1-C4) remain DEFERRED-ADMIN-BLOCKED per 2026-09-17 seal boundary; TCB.yaml `review_policy:` block already declares `TWO_REVIEWERS_PLUS_SECURITY_GROUP` per DECISIONS.md ratification 2026-09-17.
+- G5 mapping remaining canons (C1-C7 · C9) at 640/1096 (58%) — interleaved after M13 sub-waves per §6.7.
+
+---
+
+**§6 INTERLUDE MARKER · 2026-09-19T~04:10Z · autopilot R-31 wake-up · post-CP-M12b-W1-COMMIT-A**
+
+**M12b-W1 Commit-A LANDED** at `programme/track-a` head `60cc61e140ea0401b49a4abc06bc97e3b2327cb6` (2026-09-19T04:10:00Z). MILESTONE 3 (M12b-W1) OPENER SEALED at Commit-A level. §3.3 3-commit protocol Commit-B/Commit-C pending as next step of this-turn (state banking + R-6 boundary regen advancing state_repo.head).
+
+**Ratchet 5238 → 5279 (+41 empirically measured line-by-line: 40 new test functions across 5 M12b-W1 test files + 1 xfail→pass conversion from CP-M11-GATE-RELEASE c2 dated-xfail retirement).** Pre-Commit-A double-green byte-identical BASELINE_GUARD=1 stripped-sha256 `7265d6e1b8f1dd267dd5312fc5f9c7a4e3a2ee772a6d7459a7b916cbb68fc3ad` both runs 5279 passed / 1 skipped / 438 warnings.
+
+**M12b-W1 EXIT status (per objective card):**
+- Gate (i) · Milestone 2 landed in full — **SATISFIED** at CP-M10-W4e Commit-A `f12f22f9`.
+- Gate (ii) · W1f confirmation banked — **SATISFIED** at DECISIONS 2026-09-18T~21:20Z.
+- Gate (iii) · Canon-8 G5 rules mapped — **SATISFIED** at state commit `1e048bf5`.
+- All four MUST-DO 1-5 authored and green in this Commit-A `60cc61e1`.
+
+**§3.3 3-commit remaining this-turn:**
+- ~~Commit-B (state · master) — banks Commit-A `60cc61e1` for M12b-W1~~ **✅ LANDED** at `179df4e4ea822ce7ac63c955a43ff8d91890fb55` (2026-09-19T04:15:00Z).
+- ~~Commit-C fixup (state · master) — advances heads_last_sealed.state_repo.head in `notes/ORCH_BOOT.md` to Commit-B SHA~~ **✅ LANDED** with this-turn attestation update (R-6 boundary regen + audit copy re-synced + Commit-B SHA banked in DECISIONS.md + status marker updated · post-fixup `pytest tests/invariants/test_orch_boot.py` GREEN).
+
+**Autopilot R-31 continues NON-STOP under §6 END-OF-BUILD authority per owner Option-3 override + FULL-RUN AUTHORIZATION.** Next per §6.7 sequence after this seal closes: M13 → M14 → M15 → M16 (pre-ruled scope) → M17 → memory layer (after C.13 close) → frontends (functional parity bar; Expo excluded per owner delegation). G5 interleaved to 1,096.
+
+**Staleness re-scope APPLY-ON-EXPIRY** still ARMED for 2026-09-20T~11:35Z (T-31.4h at Commit-A time). Not yet fired.
+
+**No forks banked this-turn.**
+
+---
+
 **§6 INTERLUDE MARKER · 2026-09-19T~03:32Z · autopilot R-30 wake-up · post-CANON-8-G5-GATE-III-CLEARED**
 
 Gate (iii) precondition for M12b-W1 CLEARED at Canon-8 217/217 mapping coverage. Banked this-turn on state master:
@@ -2112,6 +2195,102 @@ Fail closed on item · bank fork with options + recommendation · continue on ne
 - Pre-seal standard in force: full `BASELINE_GUARD=1` sweep before any §3.3 seal.
 - No silent rebaselining (empirical measurement · line-by-line reconciliation · then bump).
 - SO §3.3, §3.8, §3.10 as amended; §4 zero push; §4.1 §E; T-c (α).
+
+
+### §6 INTERLUDE MARKER · R-33 · 2026-09-19T~05:20Z · CP-M13-W3-OTEL-INSTRUMENTATION Commit-A landed
+
+✅ **SEALED (Commit-C fixup at 2026-09-19T~05:22Z · state Commit-C banks Commit-B `c02c9538` · heads advanced code=`5fdabb22` / state=`c02c9538` · post-fixup test_orch_boot GREEN):** CP-M13-W3-OTEL-INSTRUMENTATION · Commit-A `5fdabb22` on `programme/track-a` (2026-09-19T05:13:00Z · MILESTONE 4 third sub-wave · OTel conventional instrumentation wrapper per §6.4 pre-ruling 4 verbatim) + Commit-B `c02c9538` on `master` (2026-09-19T05:20:00Z) + Commit-C fixup on `master` (2026-09-19T05:22:00Z advances state_head). Ratchet 5288 → 5295 (+7 · pre-Commit-A double-green stripped-sha256 `9c8bc3933e913e35bb35eef2995a9e2291355126fd95487d67c117bf04321ac0` · both runs 5295 passed / 1 skipped / 438 warnings). Card citations M13.md MUST-DO 3 + EXIT-W3 · card_sha256 re-pinned `1c78b481f6613ee41916b17e480dbfad965de78b9ecdb5aafd08aee8d65b09f5` after filling W3 EXIT node IDs.
+
+**Next:** M13-W4 (Terraform conventional IaC · reproducible-environment declarations for FastAPI pod + MongoDB per-tenant provisioning + KMS master-key store + OTel collector · `moved{}` blocks for renames mirror Canon 8 §W3 destroy-does-not-exist doctrine transplanted to IaC · manifest at `notes/M13_W4_terraform_manifest.yaml` names every resource + module + canon anchor + rotation cadence · AST refuses destroy on renameable resources). Then per §6.7 sequence: M13-W5 (B.10 runbooks) → M14 → M15 → M16 (pre-ruled scope · CIF canon-as-written) → M17 → memory layer (after C.13 close) → frontends (functional-parity bar · report frozen-contract status for C.17 + DAP entitlement/receipt + DAP UI Handoff Brief location when frontends open · Expo excluded per owner delegation to specialist). G5 interleaved to 1,096.
+
+**Standing bounds unchanged:** zero push · terminal pytest only · no testing_agent · additive-only §3.8 · full BASELINE_GUARD=1 pre-Commit-A double-green byte-identical · §3.3 3-Commit Seal on dual branches · ratchet monotonic (floor 5295 · never rebaselined silently). Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered.
+
+Staleness re-scope APPLY-ON-EXPIRY still armed for 2026-09-20T~11:35Z (T-30.2h at Commit-C time · not yet fired · fires as its own small seal per owner order 2026-09-19T~05:15Z).
+
+
+### §6 INTERLUDE MARKER · R-34 · 2026-09-19T~05:45Z · CP-M13-W4-TERRAFORM-MANIFEST Commit-A landed
+
+✅ **SEALED (Commit-C fixup at 2026-09-19T~05:47Z · state Commit-C banks Commit-B `9e8ae579` · heads advanced code=`ffadd24b` / state=`9e8ae579` · post-fixup test_orch_boot GREEN):** CP-M13-W4-TERRAFORM-MANIFEST · Commit-A `ffadd24b` on `programme/track-a` (2026-09-19T05:41:00Z · MILESTONE 4 fourth sub-wave · Terraform conventional IaC specification-shaped manifest per §6.4 pre-ruling 4 verbatim) + Commit-B `9e8ae579` on `master` (2026-09-19T05:46:00Z · manifest at `notes/M13_W4_terraform_manifest.yaml` landed + STATE files banked) + Commit-C fixup on `master` (2026-09-19T05:47:00Z advances state_head). Ratchet 5295 → 5303 (+8 · pre-Commit-A double-green stripped-sha256 `35531896d0693c5e6aa33ef3bb2cae000f0ae31c418bfe794f2e9562d275d766` · both runs 5303 passed / 1 skipped / 438 warnings). Card citations M13.md MUST-DO 4 + EXIT-W4 · card_sha256 re-pinned `1b09d6090c6530cd7762727e929cc9f46024c9e95317a26ebef9327c237d05b3` after filling W4 EXIT node IDs.
+
+**Environmental note reconciled during pre-seal sweep (§6 transparency):** initial sweep from wrong CWD showed 3 apparent M7 failures (relative-path artefact); rerun from `backend/` produced clean 5303 pass. Two stale receipts removed pre-Commit-A. Not a ratchet break, not a Stop-condition #1 trigger. Detail in DECISIONS.md CP-M13-W4-TERRAFORM-MANIFEST · Commit-A banking section.
+
+**Next:** M13-W5 (B.10 runbooks · 7-section shape TRIGGER/EVIDENCE/VERIFY/DECIDE/ACT/RECORD/POSTMORTEM · one runbook per SEV-1 wire M10-W3 sealed + one per KMS rotation event M13-W2 sealed + one per Watch signal reaching enforcer · each runbook at `notes/runbooks/RB_<code>_<name>.md` · structural test asserts every SEVER_SIGNAL_REGISTRY entry + every SEV-1 wire has ≥1 runbook citation · ACT step MUST NOT contain autonomous action verbs against production data per Canon 8 §W1 eyes-never-act). Then per §6.7 sequence: M14 → M15 → M16 (pre-ruled scope · CIF canon-as-written) → M17 → memory layer (after C.13 close) → frontends (functional-parity bar · report frozen-contract status for C.17 + DAP entitlement/receipt + DAP UI Handoff Brief location when frontends open · Expo excluded per owner delegation to specialist). G5 interleaved to 1,096.
+
+**Standing bounds unchanged:** zero push · terminal pytest only · no testing_agent · additive-only §3.8 · full BASELINE_GUARD=1 pre-Commit-A double-green byte-identical · §3.3 3-Commit Seal on dual branches · ratchet monotonic (floor 5303 · never rebaselined silently). Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered.
+
+Staleness re-scope APPLY-ON-EXPIRY still armed for 2026-09-20T~11:35Z (T-29.9h at Commit-C time · not yet fired · fires as its own small seal per owner order 2026-09-19T~05:15Z).
+
+
+### §6 INTERLUDE MARKER · R-35 · 2026-09-19T~06:10Z · CP-M13-W5-B10-RUNBOOKS Commit-A landed · M13 MILESTONE CLOSING GATE
+
+✅ **SEALED · M13 MILESTONE FULLY CLOSED (Commit-C fixup at 2026-09-19T~06:12Z · state Commit-C banks Commit-B `24545fcc` · heads advanced code=`c2d42105` / state=`24545fcc` · post-fixup test_orch_boot GREEN):** CP-M13-W5-B10-RUNBOOKS · Commit-A `c2d42105` on `programme/track-a` (2026-09-19T06:07:00Z · MILESTONE 4 fifth and FINAL sub-wave · B.10 runbooks per §6.4 pre-ruling 4 verbatim) + Commit-B `24545fcc` on `master` (2026-09-19T06:11:00Z · 9 runbooks at `notes/runbooks/` landed + STATE files banked + `milestone_status: DRAFTED → CLOSED`) + Commit-C fixup on `master` (2026-09-19T06:12:00Z advances state_head). Ratchet 5303 → 5311 (+8 · pre-Commit-A double-green stripped-sha256 `1d21fe723e0138a0448e4dc7db613eb8ffa6dbe4e0cf15549b61da0a69998656` · both runs 5311 passed / 1 skipped / 438 warnings). Card citations M13.md MUST-DO 5 + EXIT-W5 · card_sha256 re-pinned `1d16542c4f965fc0e6cb6be2c9dfdd22db775f6cab904abaf9aa81b00d5322b7` after filling W5 EXIT + flipping `milestone_status: DRAFTED → CLOSED` with `closed_at_utc: 2026-09-19T06:10:00Z` and `closed_at_seal: CP-M13-W5-B10-RUNBOOKS`.
+
+**M13 milestone FULLY CLOSED at this seal boundary.** M13 total ratchet delta 5279→5311 = +32 tests across W2-W5. All 5 sub-waves W1-W5 sealed with full pre-seal BASELINE_GUARD=1 double-green byte-identical proof · zero regression · zero flip.
+
+**Milestone closure one-liner (§6.5):** M13 tier-2 standards FULLY CLOSED: TCB governance (W1 pre-M13) + KMS envelope/per-tenant/90-day rotation (W2) + OTel conventional instrumentation wrapper (W3 · wire-in DEFERRED to follow-on additive seal) + Terraform conventional IaC specification-shaped manifest (W4) + B.10 runbooks (W5) · additive-only per SO §3.8 across all sub-waves.
+
+**Next:** M14 opens with fresh objective card drafted per §6.7 batch-ratification-at-preceding-seal. Scope: pending owner ratification per §6.4 pre-ruling framework. Then per §6.7 sequence: M15 → M16 (pre-ruled scope · CIF canon-as-written) → M17 → memory layer (after C.13 close) → frontends (functional-parity bar · report frozen-contract status for C.17 + DAP entitlement/receipt + DAP UI Handoff Brief location when frontends open · Expo excluded per owner delegation to specialist). G5 interleaved to 1,096.
+
+**Batched desk items surfaced at M13 close (§6.5, to owner-desk):**
+1. OTel wire-in DEFERRED — confirm whether it belongs inside M13 (reopen briefly) or opens as an M14-preface additive seal.
+2. Terraform stubs external — confirm the external Terraform stub repository location so drift can be measured.
+3. Environmental CWD note (W4) — consider a conftest.py `chdir` fixture in the 3 M7 tests that use relative paths.
+4. M14 scope — ratify from §6.4 pre-ruling framework OR issue a fresh run order.
+
+**Standing bounds unchanged:** zero push · terminal pytest only · no testing_agent · additive-only §3.8 · full BASELINE_GUARD=1 pre-Commit-A double-green byte-identical · §3.3 3-Commit Seal on dual branches · ratchet monotonic (floor 5311 · never rebaselined silently). Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered.
+
+Staleness re-scope APPLY-ON-EXPIRY still armed for 2026-09-20T~11:35Z (T-29.6h at Commit-C time · not yet fired · fires as its own small seal per owner order 2026-09-19T~05:15Z).
+
+
+### §6 INTERLUDE MARKER · R-36 · 2026-09-19T~06:38Z · CP-M14-W1-HANDOFF-CONTRACT-SHAPE-FREEZE Commit-A landed · MILESTONE 5 OPENS
+
+✅ **SEALED (Commit-C fixup at 2026-09-19T~06:46Z · state Commit-C banks Commit-B `4ed3a33a` · heads advanced code=`8b861987` / state=`4ed3a33a` · post-fixup test_orch_boot GREEN):** CP-M14-W1-HANDOFF-CONTRACT-SHAPE-FREEZE · Commit-A `8b861987cd0605a932400f75969c001665970c55` on `programme/track-a` (2026-09-19T06:38:00Z · MILESTONE 5 first sub-wave · Hand-off contract v1 shape-freeze per Canon 15 §33 verbatim [four required fields: what · shape · identity · receipt] + CA1-009 [every cross-app crossing expressed in `HandoffContract_v0` before it ships] + SO §3.8 [thin-kernel additive-only]) + Commit-B `4ed3a33a0cc77e92f3acd41a7e4cab9e93221c82` on `master` (2026-09-19T06:44:00Z · STATE/OBJECTIVES/M14.md fresh landing + DECISIONS.md banking + NEXT.md R-36 marker + notes/ORCH_BOOT.md R-6 regen) + Commit-C fixup on `master` (2026-09-19T06:46:00Z · advances state_head to `4ed3a33a`). Ratchet 5311 → 5319 (+8 · pre-Commit-A double-green stripped-sha256 `8e4b4cc58cc57583e82a3265c822503405cab44fb5073e2a443a50f78609e0bb` · both runs 5319 passed / 1 skipped / 438 warnings). Card citations M14.md MUST-DO 1 + EXIT-W1 · `card_sha256` pinned `f65cb7c3b851b4432690a37b840a6cfd73cfe9a4ab0353493d98ba2bda3c08f9` (fresh landing at Commit-B).
+
+**Environmental note reconciled during pre-seal sweep (§6 transparency):** initial sweep showed a single transient flake on `test_no_lawful_basis_refusal_returns_flat_outcome_refused` (mongo opcounter `write_delta == 448` vs expected `1` · classic order-dependent opcounter interference); rerun deterministically produced clean 5319 pass, and isolation-run of that test alone was GREEN. FLAKE_INVESTIGATION receipt retained as transparency artefact. Not a ratchet break, not a Stop-condition #1 trigger. Detail in DECISIONS.md CP-M14-W1-HANDOFF-CONTRACT-SHAPE-FREEZE · Commit-A banking section.
+
+**Milestone 5 opens at this seal boundary.** M14 objective card (`STATE/OBJECTIVES/M14.md`) drafts the five-sub-wave programme: W1 (shape-freeze · sealing HERE) → W2 (Mkondo registry + checkpoint runtime) → W3 (Mongo collections for asks/deliveries/webhook_endpoints) → W4 (signed webhook delivery with per-tenant Ed25519) → W5 (integration seal · M14 milestone closing gate).
+
+**Next:** Commit-B (state repo · lands `STATE/OBJECTIVES/M14.md` fresh + banks Commit-A `8b861987` in DECISIONS.md new section + this NEXT.md R-36 marker + `notes/ORCH_BOOT.md` R-6 boundary regen advancing code_head to Commit-A `8b861987` + `/app/frontend/public/audit/ORCH_BOOT.md` byte-identical audit copy re-synced) → Commit-C fixup (advances `heads_last_sealed.state_repo.head` to Commit-B SHA · this marker flips ⏳→✅) → M14-W2 (Mkondo registry + checkpoint runtime · new module `services/mkondo/registry.py` · test file `test_m14_w2_mkondo_registry.py` per §3 tests-first · six invariants: module surface + admit-valid-contract + refuse-malformed + refuse-dual-hatted + ledger-intent-emitted-once + AST role-separation ban on signing). Then per §6.7 sequence: M14-W3 → M14-W4 → M14-W5 → M15 → M16 (pre-ruled scope · CIF canon-as-written) → M17 → memory layer (after C.13 close) → frontends (functional-parity bar · Expo excluded per owner delegation to specialist). G5 interleaved to 1,096.
+
+**Standing bounds unchanged:** zero push · terminal pytest only · no testing_agent · additive-only §3.8 · full BASELINE_GUARD=1 pre-Commit-A double-green byte-identical · §3.3 3-Commit Seal on dual branches · ratchet monotonic (floor 5319 · never rebaselined silently). Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered.
+
+Staleness re-scope APPLY-ON-EXPIRY still armed for 2026-09-20T~11:35Z (T-29.0h at Commit-A time · not yet fired · fires as its own small seal per owner order 2026-09-19T~05:15Z).
+
+
+### §6 INTERLUDE MARKER · R-37 · 2026-09-19T~07:11Z · CP-M14-W2-MKONDO-REGISTRY Commit-A landed
+
+✅ **SEALED (Commit-C fixup at 2026-09-19T~07:17Z · state Commit-C banks Commit-B `99c62081` · heads advanced code=`2652571f` / state=`99c62081` · post-fixup test_orch_boot GREEN):** CP-M14-W2-MKONDO-REGISTRY · Commit-A `2652571f42ea02134f79c9104614b8eeb287e903` on `programme/track-a` (2026-09-19T07:11:00Z · MILESTONE 5 second sub-wave · Mkondo registry + checkpoint runtime per Canon 15 §33 [four required fields] + Canon 8 §W11 [one-task-one-identity · dual-hatted refused via `MkondoRoleSeparationRefused`] + Canon 1 §62 [single-writer ledger · one intent per admission via sealed `services.ledger_emitter.emit_intent`] + SO §3.8 [thin-kernel additive-only]) + Commit-B `99c6208120843d134ef81c84920531afc128f292` on `master` (2026-09-19T07:14:00Z · M14.md W2 EXIT filled + card_sha256 re-pinned + DECISIONS banking + NEXT R-37 marker + ORCH_BOOT R-6 regen) + Commit-C fixup on `master` (2026-09-19T07:17:00Z · advances state_head to `99c62081`). Ratchet 5319 → 5325 (+6 · pre-Commit-A double-green stripped-sha256 `54033fb315d8f0076c0b715d36802cc46e4e40baf3903cc5bf50214c1c6b37d7` · both runs 5325 passed / 1 skipped / 438 warnings). Card citations M14.md MUST-DO 2 + EXIT-W2 · `card_sha256` re-pinned `ca1292b9cce6a2ffba750a13ecb9a7e26e594c4a1eba18f348d67b8d3fbc7f3b`.
+
+**Next:** Commit-B (state repo · M14.md re-pin + DECISIONS.md new banking section + this R-37 marker + ORCH_BOOT.md regen advancing code_head to `2652571f`) → Commit-C fixup (advances state_head · marker flips ⏳→✅) → M14-W3 (Mongo collections asks/deliveries/webhook_endpoints under `services/answering_service/collections/` with per-tenant scope per M11 · frozen pydantic models + append-only writes + read surface per Canon 17 §4 + Canon 3 §B.7). Then per §6.7: M14-W4 → M14-W5 → M15 → M16 → M17 → memory layer → frontends.
+
+**Standing bounds unchanged:** zero push · terminal pytest only · no testing_agent · additive-only §3.8 · full BASELINE_GUARD=1 pre-Commit-A double-green byte-identical · §3.3 3-Commit Seal on dual branches · ratchet monotonic (floor 5325 · never rebaselined silently). Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered.
+
+Staleness re-scope APPLY-ON-EXPIRY still armed for 2026-09-20T~11:35Z (T-28.4h at Commit-A time · not yet fired · fires as its own small seal per owner order 2026-09-19T~05:15Z).
+
+
+### §6 INTERLUDE MARKER · R-38 · 2026-09-19T~07:42Z · CP-M14-W3-ANSWERING-SERVICE-COLLECTIONS Commit-A landed
+
+✅ **SEALED (Commit-C fixup at 2026-09-19T~07:48Z · state Commit-C banks Commit-B `48584942` · heads advanced code=`eab542e8` / state=`48584942` · post-fixup test_orch_boot GREEN):** CP-M14-W3-ANSWERING-SERVICE-COLLECTIONS · Commit-A `eab542e8ce3795bbff2f5fa5c4e60b3690dd8797` on `programme/track-a` (2026-09-19T07:42:00Z · MILESTONE 5 third sub-wave · Answering-service Mongo collections triangle: asks + deliveries + webhook_endpoints per Canon 17 §4 + Canon 3 §B.7 + M11 + Canon 3 §9.3 + SO §3.8 + SO §3.10-α) + Commit-B `4858494279039871a36cdffe5157e3e4bc502638` on `master` (2026-09-19T07:45:00Z · M14.md W3 EXIT filled + card_sha256 re-pinned d52ef661… + DECISIONS banking + NEXT R-38 marker + ORCH_BOOT R-6 regen) + Commit-C fixup on `master` (2026-09-19T07:48:00Z · advances state_head to `48584942`). Ratchet 5325 → 5331 (+6 · pre-Commit-A double-green stripped-sha256 `e41da26feb55ba5d7944280a75e081b5281b74b4ca551af0b52e5cabb6363d85` · both runs 5331 passed / 1 skipped / 438 warnings). Card citations M14.md MUST-DO 3 + EXIT-W3 · `card_sha256` re-pinned `d52ef661d074a91b88804afc19d1b75a87a044969beb914b32d72c8edf507d12`.
+
+**Next:** Commit-B (state · M14.md re-pin + DECISIONS.md new banking section + this R-38 marker + ORCH_BOOT.md regen advancing code_head to `eab542e8`) → Commit-C fixup (advances state_head · marker flips ⏳→✅) → M14-W4 (signed webhook delivery per-tenant Ed25519 via `services.watch.signature_primitive` from M12b-W1 or KMS-envelope-wrapped tenant signing key from M13-W2 · runtime decision at W4-open · AST role-separation ban on wrapping/unwrapping envelopes directly per Canon 8 §W11) → M14-W5 (integration seal · M14 milestone closing gate · end-to-end handoff → Mkondo admit → ask create → webhook confirm → signed delivery → record verify).
+
+**Standing bounds unchanged:** zero push · terminal pytest only · no testing_agent · additive-only §3.8 · full BASELINE_GUARD=1 pre-Commit-A double-green byte-identical · §3.3 3-Commit Seal on dual branches · ratchet monotonic (floor 5331 · never rebaselined silently). Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered.
+
+Staleness re-scope APPLY-ON-EXPIRY still armed for 2026-09-20T~11:35Z (T-27.9h at Commit-A time · not yet fired · fires as its own small seal per owner order 2026-09-19T~05:15Z).
+
+### §6 INTERLUDE MARKER · R-39 · 2026-09-19T~08:30Z · CP-M14-W4-WEBHOOK-DELIVERY-SIGNED Commit-A landed · PURE DATA-IN owner tier-1 ruling
+
+✅ **SEALED (Commit-C fixup at 2026-09-19T~08:35Z · state Commit-C banks Commit-B `b7488189` · heads advanced code=`f3165c51` / state=`b7488189` · post-fixup test_orch_boot GREEN):** CP-M14-W4-WEBHOOK-DELIVERY-SIGNED · Commit-A `f3165c51dcfaa8547731d066c8ee795d6aa29e8c` on `programme/track-a` (2026-09-19T08:30:00Z · MILESTONE 5 fourth sub-wave · Signed webhook delivery landed PURE DATA-IN per owner tier-1 ruling 2026-09-19 direct analogy to Option-D on DAP-7 "a code path is a code path": the answering-service holds NO signing capability — no key, no callable, no partial · what crosses the boundary is inert data · `signature: bytes` · Canon 17 §4 answering-service triangle + Canon 8 §W10 watcher-watched-from-outside [Watch-trust-boundary-only · AST-enforced by test 7 of M14-W4 + the global trust-boundary invariant] + Canon 8 §W11 one-task-one-identity [structural role separation · AST-enforced by test 6 of M14-W4] + Canon 8 §Line 31 signature-is-the-guard + BR-2.1 structural bytes-in enforcement + M12b-W1 Ed25519 primitive [consumed as-is from tests/** side; answering-service side never imports it] + SO §3.8 thin-kernel additive-only + SO §3.10-α closed-schema discipline) + Commit-B `b7488189f4fe3c5193d529667098fddf84f77bb9` on `master` (2026-09-19T08:33:00Z · M14.md W4 EXIT filled with 7 test node IDs + pure-data-in ruling annotation in W4 EXIT header + card_sha256 re-pinned c7983299… + DECISIONS banking with verbatim owner tier-1 ruling text + NEXT R-39 marker + ORCH_BOOT R-6 regen advancing code_head to `f3165c51`) + Commit-C fixup on `master` (2026-09-19T08:35:00Z · advances state_head to `b7488189`). Ratchet 5331 → 5338 (+7 · pre-Commit-A double-green stripped-sha256 `a1d88e7a7c97b4b4a9e6672d632715cb795cfa531f10d903f6cb7fedd1292c1c` · both runs 5338 passed / 1 skipped / 438 warnings). Card citations M14.md MUST-DO 4 + EXIT-W4 · `card_sha256` re-pinned `c79832992eb947d56aa11ec2f6604c679631e4c986fe648a23503d5a43f47dab`.
+
+**Next:** M14-W5 (integration seal · M14 milestone closing gate · end-to-end handoff → Mkondo admit → ask create → webhook confirm → signed delivery [with Watch-side signing wired in through the pure-data-in boundary via `canonical_bytes_for_delivery` + `watch_sign` at the Watch orchestration layer + inert `signature: bytes` passed to `deliver_webhook`] → record verify) → M15 → M16 (pre-ruled scope · CIF canon-as-written) → M17 → memory layer (after C.13 close) → frontends (functional-parity bar · Expo excluded per owner delegation to specialist). G5 interleaved to 1,096. Staleness re-scope APPLY-ON-EXPIRY still armed for 2026-09-20T~11:35Z (T-26.9h at Commit-C time). Opcounter flake hardening remains DEFERRED (P2 · additive at next convenient seal).
+
+### §6 INTERLUDE MARKER · R-40 · 2026-09-19T~08:50Z · CP-M14-W5-SEAL-INTEGRATION Commit-A landed · M14 MILESTONE CLOSING GATE
+
+✅ **SEALED (Commit-C fixup at 2026-09-19T~08:56Z · state Commit-C banks Commit-B `9e673215` · heads advanced code=`1b019041` / state=`9e673215` · post-fixup test_orch_boot GREEN):** CP-M14-W5-SEAL-INTEGRATION · Commit-A `1b019041d55a1ce2a22c54e08df66d9f5064cec7` on `programme/track-a` (2026-09-19T08:50:00Z · MILESTONE 5 FIFTH SUB-WAVE · M14 MILESTONE CLOSING GATE · Integration seal binding W1..W4 sub-wave surfaces end-to-end per SO §6.2 EXIT clause: HandoffContract_v0 [W1] → Mkondo admit [W2 · Canon 8 §W11 + Canon 1 §62] → answering-service collections triangle [W3 · Canon 17 §4 + Canon 3 §B.7] → canonical bytes [W4] → Watch-boundary sign [M12b-W1 · Canon 8 §W10 · tests/** exempt] → PURE DATA-IN deliver_webhook [W4 · BR-2.1] → Delivery_v0(state='sent') → watch_verify TRUE [Canon 8 §Line 31]) + Commit-B `9e6732150a8078b2cf4f9ea66ff975756eabd023` on `master` (2026-09-19T08:54:00Z · M14.md milestone_status DRAFTED → CLOSED + W5 EXIT filled with 6 test node IDs + W5 milestone snapshot pin filled + card_sha256 re-pinned eb3ff591… + DECISIONS banking with M14 CLOSE narrative + NEXT R-40 marker + ORCH_BOOT R-6 regen advancing code_head to `1b019041`) + Commit-C fixup on `master` (2026-09-19T08:56:00Z · advances state_head to `9e673215` · flips this marker ⏳→✅ · CLOSES M14 FULLY). Ratchet 5338 → 5344 (+6 · pre-Commit-A double-green stripped-sha256 `6892491a6683f1e72bc78224cc167ad56f3c2ec95d2e952fbac66e4a4edca6fd` · both runs 5344 passed / 1 skipped / 438 warnings). W5 milestone snapshot pin: `40af13fe3d0f26e2e001f5263ce719f37cfcf440b91483178283e74ca9fd1f0d`. Card citations M14.md MUST-DO 5 + EXIT-W5 + gate · `card_sha256` re-pinned `eb3ff59185b8018f5a56b0225da98bd8adefd73ee4a75563361d2eaa1493fae3` reflecting CLOSED state.
+
+**M14 MILESTONE FULLY CLOSED:** all 5 sub-waves W1-W5 sealed · milestone_status CLOSED · total M14 ratchet 5311 → 5344 (+33 · W1 +8 · W2 +6 · W3 +6 · W4 +7 · W5 +6). Canon anchors verbatim milestone-wide: Canon 15 §33 + CA1-009 + Canon 8 §W10 + Canon 8 §W11 + Canon 1 §62 + Canon 17 §4 + Canon 8 §Line 31 + BR-2.1 + Canon 3 §B.7 + Canon 3 §9.3 + SO §3.8 + SO §3.10-α.
+
+**Next:** M15 (per §6.7 sequence · pre-ratified at §6.7 batch-ratification-at-preceding-seal at CP-M14-W5) → M16 (pre-ruled scope · CIF canon-as-written) → M17 → memory layer (after C.13 close) → frontends (functional-parity bar · Expo excluded per owner delegation to specialist). G5 interleaved to 1,096. Staleness re-scope APPLY-ON-EXPIRY still armed for 2026-09-20T~11:35Z (T-26.5h at Commit-C time). Opcounter flake hardening remains DEFERRED (P2 · additive at next convenient seal).
 
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

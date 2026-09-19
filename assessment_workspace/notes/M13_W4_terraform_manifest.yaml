@@ -1,0 +1,138 @@
+# M13-W4 · Terraform conventional IaC · specification-shaped manifest
+#
+# Owner Standing Order §6.4 pre-ruling 4 verbatim (banked in
+# STATE/STANDING_ORDERS.md): "M13 standards tier-2: envelope-KMS/per-tenant/90d
+# rotation + OTel and Terraform: conventional + Runbooks per B.10 (R-4)."
+#
+# Card citation: STATE/OBJECTIVES/M13.md MUST-DO 4 · EXIT-W4.
+#
+# Canon anchors:
+# - Canon 8 §W3 verbatim: "destroy-does-not-exist" transplanted to IaC via
+#   Terraform `moved{}` blocks. Renamed resources preserve identity; they are
+#   never destroy-then-created where a `moved{}` block would suffice.
+# - Canon 8 §Line 31 (closed sever-certainty registry pattern) applied to
+#   Terraform operation verbs: the closed 3-tuple `(apply, moved,
+#   retire_via_deprecation)` is authoritative. `destroy_then_create`,
+#   `force_replace`, `recreate` are refused at the manifest layer so downstream
+#   Terraform stubs cannot silently widen the alphabet.
+# - Canon 3 §B.3 / §B.7: per-tenant provisioning target for MongoDB.
+# - §6.4 pre-ruling 4 R-4 verbatim: KMS envelope + per-tenant + 90-day rotation
+#   (mirror-check against M13-W2 sealed CP `f2d0a792`).
+#
+# This manifest is the specification. Terraform stubs (`.tf` files) that
+# implement it live outside this repo per §6.4 pre-ruling 4 ("conventional")
+# — this file is the authority they must mirror. Drift between this file and a
+# stub is a §3.3-seal violation caught by the boot check +
+# test_m13_w4_terraform_manifest invariants.
+
+schema:
+  version: 1
+  operation_alphabet:
+    - apply
+    - moved
+    - retire_via_deprecation
+  renaming_history_status_alphabet:
+    - never_renamed
+    - renamed_via_moved_block
+  ratified_at_utc: 2026-09-19T05:35:00Z
+  ratified_by: main-agent Autopilot under §6 END-OF-BUILD authority · §6.4 pre-ruling 4 verbatim
+  hash_pin_source_of_truth: >-
+    The Terraform stubs that mirror this manifest live outside this repo;
+    this manifest is the authority. Drift between stubs and manifest is a
+    §3.3-seal violation.
+
+resources:
+
+  - name: fastapi_pod
+    module: pods.fastapi
+    canon_anchor: >-
+      Canon 3 §B.3 (single-writer chokepoint pod) + Canon 8 §W10
+      (watcher-watched-from-outside · FastAPI pod is the outer perimeter).
+    terraform_resource_type: kubernetes_pod
+    operation: apply
+    renaming_history_status: never_renamed
+    rotation_cadence_days: null
+    per_tenant_provisioning: null
+    rotation_cadence_notes: >-
+      Not applicable · FastAPI pod is stateless; rotation cadence attaches to
+      KMS master-key store not to the compute layer.
+    additional_notes: >-
+      Reproducible-environment declaration for the sole external-model surface
+      per Canon 3 §B.3. `services.chokepoint.llm.invoke` runs inside this pod.
+      OTel spans emitted by `services.observability.otel_tracer.traced_call`
+      (M13-W3 wrapper module) flow to `otel_collector` resource below.
+
+  - name: mongodb_per_tenant_provisioning
+    module: databases.mongodb.per_tenant
+    canon_anchor: >-
+      Canon 3 §B.3 (per-tenant provisioning target) + Canon 3 §B.7
+      (tenant-scoped ledger append) + Canon 8 §W11
+      (one-task-one-identity · each tenant DB owns its own credentials).
+    terraform_resource_type: mongodb_cluster_per_tenant
+    operation: apply
+    renaming_history_status: never_renamed
+    rotation_cadence_days: null
+    per_tenant_provisioning: true
+    rotation_cadence_notes: >-
+      Not applicable · MongoDB credentials rotation attaches to the
+      per-tenant KMS master key not to the DB cluster resource; DB
+      credentials are envelope-wrapped under the tenant master key sealed at
+      M13-W2 Commit-A `f2d0a792`.
+    additional_notes: >-
+      Per-tenant provisioning is declared verbatim `true` per Canon 3 §B.3 /
+      §B.7. The IaC layer is the ground truth for whether the platform
+      provisions tenant-isolated MongoDB instances (this manifest says yes) or
+      a shared cluster with tenant-namespaced collections (refused).
+
+  - name: kms_master_key_store
+    module: kms.tenant_key_registry.storage
+    canon_anchor: >-
+      Canon 8 §W10 (watcher-watched-from-outside · KMS key material scope-
+      bounded) + Canon 8 §W11 (one-task-one-identity · each KMS role) + §6.4
+      pre-ruling 4 R-4 verbatim ("KMS: envelope encryption, per-tenant keys,
+      90-day rotation").
+    terraform_resource_type: kms_key_store
+    operation: apply
+    renaming_history_status: never_renamed
+    rotation_cadence_days: 90
+    per_tenant_provisioning: true
+    rotation_cadence_notes: >-
+      90-day cadence mirrors M13-W2 Commit-A `f2d0a792` verbatim: 
+      `services.kms.rotation_scheduler.ROTATION_CADENCE_DAYS = 90`. 
+      Drift between this manifest and the sealed KMS module is caught by
+      test_kms_master_key_store_carries_90_day_rotation_cadence.
+    additional_notes: >-
+      Backing store for per-tenant master keys minted by
+      `services.kms.tenant_key_registry.mint_tenant_master_key`. Envelope
+      wrap/unwrap operations at `services.kms.envelope` never touch this
+      resource directly per Canon 8 §W11 one-task-one-identity: the store
+      lives here (IaC layer); the wrap/unwrap primitives run in the FastAPI
+      pod resource above.
+
+  - name: otel_collector
+    module: observability.otel_collector
+    canon_anchor: >-
+      §6.4 pre-ruling 4 verbatim ("OTel and Terraform: conventional") + Canon
+      8 §Line 31 (closed sever-certainty registry pattern applied to telemetry
+      alphabet) + §4.1 §E (credential material never in telemetry).
+    terraform_resource_type: opentelemetry_collector
+    operation: apply
+    renaming_history_status: never_renamed
+    rotation_cadence_days: null
+    per_tenant_provisioning: null
+    rotation_cadence_notes: >-
+      Not applicable · OTel collector is a receiver for span/metric/log
+      pipelines; secrets are the collector's OTLP endpoint credentials, which
+      live in the KMS master-key store resource above (rotated on the 90-day
+      cadence with all tenant credentials).
+    additional_notes: >-
+      Receives spans emitted by `services.observability.otel_tracer.traced_call`
+      (M13-W3 wrapper module sealed at Commit-A `5fdabb22`). Wire-in to sealed
+      module surfaces (chokepoint · ledger_writer · watch input-seat) is
+      DEFERRED per M13-W3 additive-only discipline (SO §3.8); the collector
+      resource is provisioned in this manifest and stays idle until the
+      follow-on additive seal lands the wire-in.
+
+# End of manifest. Any resource added below MUST carry the full field set
+# declared by `test_every_resource_has_required_fields`. Any operation
+# outside the closed alphabet MUST be refused before it lands here.
