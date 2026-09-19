@@ -33,29 +33,29 @@ STATE files, and on any boot ritual that detects drift.
 
 ```yaml
 schema_version: 1
-generated_at_utc: 2026-09-19T12:14:00Z
-generator: main-agent Autopilot (CP-M16-W4-CIF-OUTPUT-ROUTING post-Commit-C fixup R-6 boundary regen · state_repo.head advanced to Commit-B c0a35335b90d28b930499896488c24b913b5e625 (from c4c4c1ed M16-W3 last-sealed) · code_repo.head remains 3577cf2427026511022fc5dd9e1edb0c3fc7bd66 (M16-W4 Commit-A) · ratchet 5407 · baseline_failures_sha256 713ea14a… · M16-W4 SUB-WAVE FULLY SEALED · Commit-C banks Commit-B · marker R-49 flipped ⏳→✅ · owner Option-1 override banked this session 2026-09-19T11:29Z)
-regeneration_reason: r6-boundary-regen-post-commit-c-fixup-at-cp-m16-w4-cif-output-routing-state-head-advance-to-c0a35335
+generated_at_utc: 2026-09-19T12:33:00Z
+generator: main-agent Autopilot (CP-M16-W5-SEAL-INTEGRATION post-Commit-C fixup R-6 boundary regen · state_repo.head advanced to Commit-B 939124be757beebc687a4661d0a82a1817ad1f16 (from c0a35335 M16-W4 last-sealed) · code_repo.head remains 462f6972a2090d6e6faf0293a1958e84996549fc (M16-W5 Commit-A) · ratchet 5414 · baseline_failures_sha256 4607c0d8… · M16-W5 SUB-WAVE FULLY SEALED · MILESTONE 7 (M16 · CIF · Conditioned Ideation Faculty) FULLY CLOSED · Commit-C banks Commit-B · marker R-50 flipped ⏳→✅ · owner Option-1 override banked this session 2026-09-19T11:29Z with explicit DET-1 line closure 2026-09-19T~12:19Z)
+regeneration_reason: r6-boundary-regen-post-commit-c-fixup-at-cp-m16-w5-seal-integration-state-head-advance-to-939124be-milestone-7-closed
 
 ratchet:
-  passed_floor: 5407
-  counts_at_baseline_passed: 5407
+  passed_floor: 5414
+  counts_at_baseline_passed: 5414
   baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
-  baseline_failures_sha256: 713ea14abfe729ee86a18034d942542f266e4fe1028f24469c02916393de74d8
+  baseline_failures_sha256: 4607c0d8cdaea713c5ba07f5c8e65640ce0bec0ea0bda1e4ddc7d834538d0d03
 
 heads_last_sealed:
   state_repo:
     workdir: /app/assessment_workspace
     branch: master
-    head: c0a35335b90d28b930499896488c24b913b5e625
-    sealed_at_utc: 2026-09-19T12:13:00Z
-    seal_kind: "CP-M16-W4-CIF-OUTPUT-ROUTING · state Commit-B `c0a35335` · banks Commit-A `3577cf24` · MILESTONE 7 FOURTH SUB-WAVE · CIF output routing to L-4 research loop (A5.22) + L-5 capability register (A20.16) per SO §6.4 pre-ruling verbatim · +7 tests (5400→5407) · milestone_status DRAFTED (W5 pending · milestone closes at W5) · card_sha256 re-pinned 92c36b3b → b85d0e67f4ae813cbeef49513cfb0fcfcca8b5f9fea7e48af1f54403eaee61f6 reflecting W4 EXIT filled with 7 pytest node IDs + Commit-A SHA + AC-18 mechanical routing placement + public surface signature + RoutingRefused sentinel documentation · owner Option-1 override banked this session 2026-09-19T11:29Z"
+    head: 939124be757beebc687a4661d0a82a1817ad1f16
+    sealed_at_utc: 2026-09-19T12:32:00Z
+    seal_kind: "CP-M16-W5-SEAL-INTEGRATION · state Commit-B `939124be` · banks Commit-A `462f6972` · MILESTONE 7 CLOSING SUB-WAVE · **MILESTONE 7 (M16 · CIF · Conditioned Ideation Faculty · Doc-9) FULLY CLOSED at this Commit-B** · CIF DET-1 own halt + full milestone integration binding W1..W4 + milestone snapshot pin cba422542da000a66ce9cae38b5716f253d3876d2f9c300f5099e372a2973616 per SO §6.4 pre-ruling + owner DET-1 line closure 2026-09-19T~12:19Z · +7 tests at W5 (5407→5414 · +28 across M16) · milestone_status DRAFTED → CLOSED · card_sha256 re-pinned b85d0e67 → 2bec7d374fd73d77940e017266ee06a4e2c5c9817b3e76a66c54e3b4e1302f5a reflecting W5 EXIT filled + milestone_status CLOSED · owner Option-1 override banked this session 2026-09-19T11:29Z"
   code_repo:
     workdir: /app/assessment_workspace/repos/Extraction-Akki
     branch: programme/track-a
-    head: 3577cf2427026511022fc5dd9e1edb0c3fc7bd66
-    sealed_at_utc: 2026-09-19T12:11:00Z
-    seal_kind: "CP-M16-W4-CIF-OUTPUT-ROUTING · Commit-A `3577cf24` · MILESTONE 7 FOURTH SUB-WAVE · CIF output routing to L-4 research loop (A5.22) + L-5 capability register (A20.16) per SO §6.4 pre-ruling verbatim · new services/cif/output_routing.py (215 lines · single route_accepted_proposal(proposal: CIFProposal_v0, is_accepted_result: bool) -> str returning 'capability_registered' [L-5 via sealed register_capability three-arg unpacking opaque JSON payload per DAP-7 Option-D] or 'research_loop_appended' [L-4 via _RESEARCH_LOOP_SINK append-only per Canon 3 §9.3 · read via get_research_loop_items fresh tuple snapshot · _reset_research_loop_sink_for_tests test-scope reset] · RoutingRefused exception fail-closed sentinel · zero import of M16-W2/W3 surfaces · Canon 8 §W11 structural role separation AST-enforced) + new invariant test file test_m16_w4_cif_output_routing.py (7 tests: surface + AST no learned/randomness + AST no decision-surface beyond routing [route_ REQUIRED so NOT banned] + refuses on is_accepted_result != True [False + None + 1 + 'yes'] + L-5 capability registers via sealed register_capability + L-4 research_loop appends to sink + fail-closed on non-CIFProposal_v0/dict/None) + baseline_failures.json ratchet bump 5400→5407 (+7) · additive-only per SO §3.8 · sealed W-M2-SW7 doc0_attributes/tcb.py NOT edited · sealed M16-W1/W2/W3 modules NOT edited · sealed W1b·CP4 capability_registry.py NOT edited · pre-Commit-A double-green byte-identical BASELINE_GUARD=1 stripped-sha256 27595c47f5010e190e00372f4c91cd0fa7501a372e13c578aa38231e2aa1cb8a against final baseline_failures.json sha256 713ea14a…"
+    head: 462f6972a2090d6e6faf0293a1958e84996549fc
+    sealed_at_utc: 2026-09-19T12:30:00Z
+    seal_kind: "CP-M16-W5-SEAL-INTEGRATION · Commit-A `462f6972` · MILESTONE 7 CLOSING SUB-WAVE · MILESTONE 7 (M16 · CIF Conditioned Ideation Faculty) FULLY CLOSED at this Commit-A · CIF DET-1 own halt (Doc-3) + full milestone integration binding W1..W4 + milestone snapshot pin over CIFProposal_v0.model_json_schema() (sha256 cba422542da000a66ce9cae38b5716f253d3876d2f9c300f5099e372a2973616) per SO §6.4 pre-ruling + owner DET-1 line closure 2026-09-19T~12:19Z · new services/cif/halt.py (117 lines · is_halted + halt + get_halt_journal + _reset_halt_for_tests · imports only typing.Tuple · zero import of services.targeta at any scope AST-enforced) + new invariant test file test_m16_w5_seal_integration.py (7 tests: halt surface + DET-1 AST ban + append-only immutable snapshot + reason type/emptiness guards + milestone integration binding W1..W4 [both L-5 capability and L-4 research_loop_item legs end-to-end] + halt-independent-of-simulated-Targeta + milestone snapshot pin) + baseline_failures.json ratchet bump 5407→5414 (+7) · additive-only per SO §3.8 · sealed W-M2-SW7 doc0_attributes/tcb.py + M16-W1/W2/W3/W4 modules + W1b·CP4 capability_registry.py all NOT edited · pre-Commit-A double-green byte-identical BASELINE_GUARD=1 stripped-sha256 c6db805566a74c28d7f9cc4b2f905fb140f887a79a5ff50bc22783de5ee943be against final baseline_failures.json sha256 4607c0d8cdaea713c5ba07f5c8e65640ce0bec0ea0bda1e4ddc7d834538d0d03"
 
 boot_sequence:
   - Read STATE/STANDING_ORDERS.md end-to-end.
