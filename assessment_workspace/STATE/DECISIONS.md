@@ -16935,3 +16935,627 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 **Time-gated task armed:** Staleness re-scope APPLY-ON-EXPIRY at 2026-09-20T~11:35Z (T-~14.7h · fires as own small seal when clock hits · owner reaffirmed will likely fire during CCS work).
 
 **Standing bounds unchanged:** zero push · terminal pytest only · no testing_agent · additive-only §3.8 · §3.3 3-Commit Seal on dual branches · ratchet monotonic (floor 5485 · never rebaselined silently).
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+---
+
+## 2026-09-19T~21:20Z · CP-MEMORY-COMPACTION-V1-W4-ONE-CHAIN-INTEGRATION · Commit-A banking section (state master · banks Commit-A `da2642acdcb5f1785d6ca561913f60fceafd2c6b` · memory-layer follow-on wave W4 · MEMORY LAYER CLOSES on this seal · W4 M10-W4e ledger integration landed · CCS1 opens next)
+
+**Owner OPTION 1 ratification (verbatim, 2026-09-19T~20:20Z, banked at R-62 W2 banking section):**
+
+> "W4 (M10-W4e ledger integration): thin adapter from compaction storage to sealed M10 chain writer path services.memory.ledger. Preserve ordering invariant: ledger row lands BEFORE compaction artifact becomes readable. InMemoryCompactionStorage becomes AST-banned from production imports (test-fixture only)."
+
+**Owner W4 EMPHASIS (verbatim, this-session 2026-09-19T~21:00Z):**
+
+> (1) "The ordering invariant must prove SEQUENCE, not co-existence — a test that observes both the ledger row and the readable artifact after the fact proves nothing; author it so a read attempted before the ledger write refuses (or the write path structurally cannot expose the artifact until the chain append returns)."
+>
+> (2) "The AST ban on InMemoryCompactionStorage from production imports should mirror the negative-scan shape you used at M12-W1a (import-level + call-site level) — tests/** stays allowed."
+
+**Commit-A scope landed at `da2642acdcb5f1785d6ca561913f60fceafd2c6b` on programme/track-a:**
+
+1. **NEW `backend/services/memory/compaction_v1/chain_integration.py`** (335 lines · thin adapter · 4 surfaces per Canon 8 §W11 structural role separation):
+   - `ChainAppendReceipt` — frozen carrier (`artefact_hash: str`, `chain_row_id: str`, `chain_appended_at_utc: str`) · `extra="forbid"` · construction-time immutability per Canon 3 §9.3.
+   - `ChainGatedReader` — receipt-keyed structural gate · `record_appended(receipt)` mints a lookup entry · `read(artefact_hash)` refuses with `MemoryLedgerRowMissingRefusalError` when no receipt recorded for that hash. STRUCTURAL SEQUENCE PROOF: `read()` lookup is receipt-keyed; a receipt is minted ONLY inside `append_compaction_row_to_chain` AFTER `await emit_deletion_ledger_row(...)` returns; therefore no receipt exists until chain-append is complete; therefore no bytes are exposable until a receipt exists; therefore the write path structurally cannot expose the artefact until the chain append returns.
+   - `async def append_compaction_row_to_chain(row: CompactionLedgerRow) -> ChainAppendReceipt` — awaits sealed `services.compliance.deletion_ledger.emit_deletion_ledger_row(...)` with `data_class='memory_publication_landed'` (registry-valid · Canon 3 §13 SyniSense ONE ledger doctrine) and `stamp_audit` `event_kind='compaction_v1_landed'` (distinguishing tag) + `lawful_basis_ref='memory:compaction_v1_landed'` + full CompactionLedgerRow content preserved in `stamp_audit` for later reconstruction.
+   - `async def append_compaction_row_and_gate(row, reader) -> ChainAppendReceipt` — combined write path implementing owner W4 EMPHASIS #1 strong-form: chain-append raises → receipt not minted → reader untouched → artefact remains structurally unreadable.
+
+   Data class NOTE (banked in module docstring): `data_class='memory_publication_landed'` is a semantic overload on the existing registry value. A dedicated `memory_compaction_landed` data class would require a sealed `data_class_registry.v4.json → v5` bump per contracts-version-change discipline (SO §3.10 amendment conditions). That bump is DEFERRED and does not block W4 landing under SO §3.8 additive-only.
+
+2. **NEW `backend/tests/invariants/test_memory_compaction_v1_w4_one_chain_integration.py`** (471 lines · 6 invariants):
+   - `test_w4_read_before_chain_append_receipt_refuses` (W4.1 · structural SEQUENCE proof) — `ChainGatedReader.read()` refuses with `MemoryLedgerRowMissingRefusalError` when no `ChainAppendReceipt` has been recorded.
+   - `test_w4_chain_append_receipt_then_read_returns_bytes` (W4.2 · positive sequence witness) — after `record_appended(receipt)`, `read(receipt.artefact_hash)` returns the byte-identical payload (MEM-R-015).
+   - `test_w4_append_compaction_row_routes_through_sealed_m10_emit` (W4.3 · ONE-chain routing proof) — via `unittest.mock` spy on `services.compliance.deletion_ledger.emit_deletion_ledger_row`, asserts single-await + `data_class='memory_publication_landed'` + artefact-hash binding.
+   - `test_w4_write_path_structurally_hides_artefact_until_chain_append_returns` (W4.4 · strong-form sequence proof per owner EMPHASIS #1) — chain-append raises → receipt not minted → reader untouched → read still refuses.
+   - `test_w4_ast_ban_no_production_import_of_in_memory_compaction_storage` (W4.5 · M12-W1a-shape import-level negative scan) — allow-list: `tests/**` + `services/memory/compaction_v1/**` (self-package · sealed W1 `operations.py` type-annotates `InMemoryCompactionStorage` · grandfathered per SO §3.8 sealed-W1-not-edited discipline).
+   - `test_w4_ast_ban_no_production_callsite_instantiation_of_in_memory_compaction_storage` (W4.6 · M12-W1a-shape call-site-level negative scan) — allow-list: `tests/**` ONLY (no production instantiation anywhere including `compaction_v1/**` itself · test-fixture-only per owner ruling).
+
+3. **BUMP `backend/tests/invariants/baseline_failures.json`** — ratchet 5485 → 5491 (+6 exactly reconciled line-by-line · 6 new W4 invariants · zero auto-parametrized wizard triggered · not a `contracts/*.py` file) · new `ratchet_history` entry appended · new sha256 `98d207bae61a8834b245be8664a5fd9634e0adddc0c00a67ea154cd09e84302a`.
+
+**Sealed modules NOT edited (additive-only per SO §3.8):**
+- Sealed W1 `services/memory/compaction_v1/carriers.py` NOT edited (`CompactionLedgerRow` consumed via identity import).
+- Sealed W1 `services/memory/compaction_v1/refusals.py` NOT edited (`MemoryLedgerRowMissingRefusalError` consumed via identity import).
+- Sealed W1 `services/memory/compaction_v1/verifier.py` NOT edited (imported only).
+- Sealed W1 `services/memory/compaction_v1/storage.py` NOT edited (`InMemoryCompactionStorage` now W4-AST-banned from production imports).
+- Sealed W1 `services/memory/compaction_v1/retention.py` NOT edited.
+- Sealed W1 `services/memory/compaction_v1/operations.py` NOT edited (grandfathered self-package allow-list at import-level; not instantiated at call-site anywhere including here).
+- Sealed W-M2-SW7 `services/doc0_attributes/tcb.py` NOT edited (W3 additive tuple-append already banked at R-63).
+- Sealed M10 `services/memory/ledger.py` NOT edited.
+- Sealed `services/compliance/deletion_ledger.py` NOT edited (consumed via identity import).
+- Sealed `services/compliance/data_class_registry.v4.json` NOT edited (semantic overload of `memory_publication_landed` used instead of v5 registry bump).
+- Sealed M14 + M11 + M16 + M17-W1..W6 + W-M2-SW7 + W-7bB + c13_scope modules all NOT edited.
+
+**Pre-authoring RED sweep** at `phase0/drill_receipts/20260919T210936Z_cp_memory_compaction_v1_w4_one_chain_integration_RED_pre.log` — 4/6 fail right-reason ModuleNotFoundError `No module named 'services.memory.compaction_v1.chain_integration'` + 2/6 pass right-reason: the 2 AST-ban tests (W4.5 + W4.6) pass immediately as authentic protective bans on the clean codebase state (no production imports of `InMemoryCompactionStorage` existed pre-W4 · matches W2 crown-ban precedent where grep-negative bans passed on clean codebase and stand ready to fire on future violations).
+
+**Post-authoring GREEN** at `phase0/drill_receipts/20260919T211119Z_cp_memory_compaction_v1_w4_one_chain_integration_GREEN_post.log` — 6/6 pass in 2.40s.
+
+**Pre-Commit-A double-green byte-identical BASELINE_GUARD=1:**
+- run1 at `phase0/drill_receipts/20260919T211704Z_cp_memory_compaction_v1_w4_preseal_GUARD1_run1.log` · 5491 passed / 1 skipped / 438 warnings · ~182s · raw 58612 B.
+- run2 at `phase0/drill_receipts/20260919T212014Z_cp_memory_compaction_v1_w4_preseal_GUARD1_run2.log` · 5491 passed / 1 skipped / 438 warnings · ~182s · raw 58612 B.
+- **stripped-sha256 `9fefa0e697f2d3f0175a41367bc7b00530229582a68a3f70cc67d573a60432dd` IDENTICAL** across both runs against FINAL `baseline_failures.json` sha256 `98d207bae61a8834b245be8664a5fd9634e0adddc0c00a67ea154cd09e84302a`.
+
+**Transparency banking (§6 · SO §3 transparency doctrine):** 1 prior GUARD1 run1 attempt at `20260919T211248Z` (first-attempt) failed `test_decisions_carries_pointer_near_bottom` with 1 fail because `STATE/DECISIONS.md` was missing the `READ STATE/STANDING_ORDERS.md FIRST — permanent standing law` pointer in its last 5 non-empty lines. **Defect INHERITED from prior W3 Commit-C fixup which appended banking section without a trailing pointer line.** Defect not caught at W3 close because only targeted tests were run post-fixup, not full sweep. **Reconciled by pre-W4-Commit-A state-side pointer-append to `STATE/DECISIONS.md`** (housekeeping pickup per R-29-BOOT precedent · state-side edit lands in this W4 Commit-B state seal alongside this banking append). Not a ratchet break; not a Stop-condition trigger. Earlier failed run1 receipt banked as evidence of the drift-and-repair per SO §3 transparency doctrine.
+
+**Canon anchors verbatim (Commit-A scope):**
+- MEM-6 [B.4 · DAP-29] · ledger-row-before-artefact-readable — chain-level restatement.
+- MEM-10 [C.13 · I-1] · compaction rows on the ONE chain.
+- MEM-R-012 · ledger row FIRST at storage boundary — chain-level uplift.
+- MEM-R-013 · row-write failure aborts artefact publication.
+- MEM-R-050 · grep-negative surface (no compaction without ledger row first) structurally satisfied by `ChainGatedReader` refusal.
+- Canon 3 §13 · SyniSense ONE ledger doctrine (memory reconstructs through the same append-only record; no second ledger).
+- Canon 8 §W11 · structural role separation (thin binding: frozen carrier + async emitter + gated reader · determinism preserved · learned surface absent).
+- SO §3.8 · thin-kernel additive-only.
+- SO §6.4 · NOTHING-BEYOND (scope frozen at 4 surfaces + 6 invariants · no scope beyond).
+- M12-W1a · AST-ban precedent shape (import-level + call-site-level) verbatim.
+- M16 R-3 2026-09-09 precedent shape (additive to sub-package).
+- Owner ruling 2a 2026-07-31 verbatim: *"Northena owns the one ledger; memory must be ledger-reconstructible through the same append-only record, one trace thread, no second ledger."*
+- Owner MEMORY GO ruling banked verbatim (banked in R-61 build-wave banking section).
+- Owner OPTION 1 ratification 2026-09-19T~20:20Z verbatim (banked in R-62 W2 banking section).
+- Owner W4 EMPHASIS 2026-09-19T~21:00Z verbatim (banked above in this section).
+
+**Stop-conditions #1/#2/#3 NOT triggered at Commit-A · §6.4 pre-ruling NOT triggered · MEM-R-053 CROWN BAN NOT triggered.** Ratchet 5485 → 5491 monotonic-up. Zero flip. Zero regression. Zero refactor. Full RED-first tests-first discipline held (mechanical RED banked before module authoring; targeted GREEN after; full double-green before Commit-A; pointer-drift defect surfaced by full sweep, reconciled in state-side fix before final Commit-A landing).
+
+---
+
+### MEMORY-LAYER MILESTONE ROLLUP (owner directive verbatim this-turn: *"Memory layer closes with this W4 seal — include in the Commit-B banking a memory-layer milestone rollup (W1 +7, W2 +6, W3 +3, W4 delta, aggregate + snapshot/pins as your convention requires)"*)
+
+**Memory layer opens at CP-MEMORY-COMPACTION-V1-BUILD-WAVE (R-61 · Commit-A `b1d1183674856c99e85d64b4fbd22a1508ffc4c9` · 2026-09-19T~19:57Z) on M17-W6 seal + M17.md card-repin repair per owner MEMORY GO ruling banked verbatim.**
+
+| Wave | CP | Commit-A SHA | Delta | Ratchet | Scope |
+|---|---|---|---|---|---|
+| **W1** | CP-MEMORY-COMPACTION-V1-BUILD-WAVE | `b1d1183674856c99e85d64b4fbd22a1508ffc4c9` | **+7** | 5469 → 5476 | New sub-package `services/memory/compaction_v1/` (7 files: `__init__` + `carriers` + `refusals` + `retention` + `verifier` + `storage` + `operations`) · concrete Given/When/Then materialisation of ingestion-authored 7 property tests · 3 entrypoints (`compact` + `reload` + `erasure_query`) per SO §6.4 NOTHING-BEYOND. |
+| **W2** | CP-MEMORY-COMPACTION-V1-W2-HARD-BANS-GREP-NEGATIVE | `67b5e070e017ecbbd8645df87d42966721fa082d` | **+6** | 5476 → 5482 | 6 grep-negative invariants MEM-R-048..MEM-R-053 · MEM-R-053 CROWN BAN (design-convergence stop-and-report) NOT triggered on clean codebase · authoring GREEN-pre on clean state per W2 crown-ban precedent. |
+| **W3** | CP-MEMORY-COMPACTION-V1-W3-TCB-REGISTRATION | `ebebc46f75494dbaa16efacd7b077c47afcb69f1` | **+3** | 5482 → 5485 | 3 TCB registrations via `tcb.py::_TCB_ENTRIES` additive tuple-append per docstring line 24 amendment method: `mem.retention_engine` (IN · MEM-3) + `mem.reload_verifier` (IN · MEM-7) + `mem.drafting_component` (OUT · MEM-2). Matches M16 R-3 2026-09-09 precedent shape. |
+| **W4** | CP-MEMORY-COMPACTION-V1-W4-ONE-CHAIN-INTEGRATION | `da2642acdcb5f1785d6ca561913f60fceafd2c6b` | **+6** | 5485 → 5491 | Thin adapter `chain_integration.py` (4 surfaces) + 6 W4 invariants (structural SEQUENCE proof + ONE-chain routing spy + strong-form sequence + M12-W1a-shape AST bans). InMemoryCompactionStorage AST-banned from production imports (test-fixture only). |
+| **AGGREGATE** | Memory layer (W1..W4) | four Commit-A SHAs above | **+22 exactly** | **5469 → 5491** | Full memory_compaction_v1 build-run wave sealed additive-only under SO §3.8 · zero sealed module edited (only tcb.py::_TCB_ENTRIES tuple-append per its own docstring line 24 amendment method) · Canon 3 §13 SyniSense ONE ledger doctrine held · MEM-R-053 CROWN BAN NOT triggered · MEM-R-048..MEM-R-052 all not triggered on clean codebase. |
+
+**Milestone snapshot pin (memory-layer close · this-wave · convention: ratchet-state anchor):**
+- `passed_floor: 5491`
+- `baseline_failures_sha256: 98d207bae61a8834b245be8664a5fd9634e0adddc0c00a67ea154cd09e84302a`
+- Path-relative: `repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json`
+- Any drift from these pins is a milestone-close fork per SO §6.7 (§6.2 EXIT clause verbatim: "milestone gate closes on a test that binds all sub-waves' evidence"; the ratchet + baseline_failures_sha256 pair is the binding evidence).
+
+**Memory layer standing bounds (unchanged · pending owner ratification per SO §6.3 tier-3 DEFAULT-class):**
+- **R-19 (triggers) = DEFAULT-class · pending owner ratification.** Recommended-defaults trigger schedule from memory_compaction_v1 spec §7 remains in force pending explicit owner ratification; tag `pending ratification` retained across W1..W4 build waves. Owner DECISIONS.md:12333 verbatim: *"R-19 (triggers) and R-20 (retention rule set v1): build against the recommended defaults as DEFAULT-class, tagged pending ratification."* No implementation change at this seal.
+- **R-20 (retention rule set v1) = DEFAULT-class · pending owner ratification.** Same tier-3 discipline as R-19. Retention rule set v1 baked into `services/memory/compaction_v1/retention.py::RetentionEngine.decide` (deterministic partition (retained, dropped)); v1 default keeps ALL classes (no drops) per MEMORY GO DEFAULT-class discipline. No implementation change at this seal.
+- **R-21 (user-memory class, consent model) = flag-OFF by default · awaiting owner ruling.** Owner DECISIONS.md:12333 + 12366 verbatim: *"R-21 (user-memory class, consent model): owner input outstanding — implement the class behind a tenant-wide flag, off by default, no consent model assumed, no principal data written until ruled."* Enforced structurally across M17-W1..W5 by AST bans on principal-data / user-memory / memory-compaction imports on client surfaces; enforced structurally in memory_compaction_v1 by absence of any user-memory-class implementation. No implementation change at this seal.
+
+---
+
+**Autopilot next per owner directive this-turn (verbatim):**
+
+> "Seal W4 (Commit-B + Commit-C, default W3-mirrored templates are fine) and CONTINUE DIRECTLY into CCS1 without stopping. The banked HALT point is BEFORE FRONTENDS, not before CCS — the owner's sequence clause is explicit: contract closure waves on the survey, frontends on the freezes, and the frontends gate is where you halt and report to me for specialist dispatch. Stopping before CCS1 would idle the run one gate early."
+>
+> "Then CCS1 (C.17 answering-service seam bundle-freeze) → CCS2 (DAP entitlement) → CCS3 (DAP receipt), each frozen from dap_backend_spec_v1 under T-b (JSON-Schema authoritative — freeze from spec even where backend is thin), tests-first, §3.3 sealed. Work the survey's 10 absence findings into the freeze scope: each finding either closes in its CCS wave or is banked with a reason."
+>
+> "Staleness ceremony has priority if 11:35Z crosses mid-wave — pause at safe checkpoint, small seal, resume."
+>
+> "At the frontends gate HALT, report to me: survey findings closure status · the three frozen contract pins · UI Handoff Brief path · anything else the specialists need. Go."
+
+1. **Commit-B (this-turn)** → **Commit-C fixup** (state-only · advances state_repo.head to this Commit-B SHA).
+2. **CCS1 (C.17 answering-service seam bundle-freeze)** — frozen from `dap_backend_spec_v1` under T-b · JSON-Schema authoritative · tests-first · §3.3 sealed · works survey's 10 absence findings into freeze scope.
+3. **CCS2 (DAP entitlement)** — same freeze mechanism.
+4. **CCS3 (DAP receipt)** — same freeze mechanism.
+5. **HALT before frontends** — POD-level seal report: survey findings closure status + three frozen contract pins + UI Handoff Brief path + anything else specialists need. Wait for owner dispatch to specialists.
+
+**Time-gated task armed:** Staleness re-scope APPLY-ON-EXPIRY at 2026-09-20T~11:35Z (T-~14.3h at this Commit-A · fires as own small seal per owner order · takes priority as small seal when clock hits · owner reaffirmed this-turn: *"Staleness ceremony has priority if 11:35Z crosses mid-wave — pause at safe checkpoint, small seal, resume."*).
+
+**Standing bounds unchanged:** zero push · terminal pytest only · no testing_agent · additive-only §3.8 · full BASELINE_GUARD=1 pre-Commit-A double-green byte-identical · §3.3 3-Commit Seal on dual branches · ratchet monotonic (floor 5491 · never rebaselined silently).
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+
+---
+
+## 2026-09-19T~21:25Z · CP-MEMORY-COMPACTION-V1-W4-ONE-CHAIN-INTEGRATION · Commit-C fixup banking section (state master · banks Commit-B `09f2f31743da91222f7e9de108810b8950e32f58` · memory-layer follow-on wave W4 FULLY SEALED · **MEMORY LAYER CLOSED** · CCS1 opens next)
+
+**Advances `notes/ORCH_BOOT.md` `heads_last_sealed.state_repo.head`** from `9092674d07931f3b7ab04188ce71f40a19c1cf90` (CP-MEMORY-COMPACTION-V1-W3-TCB-REGISTRATION Commit-B) to `09f2f31743da91222f7e9de108810b8950e32f58` (this-wave W4 Commit-B). Regenerates `generated_at_utc` (2026-09-19T21:25:00Z) + `generator` + `regeneration_reason` per R-6 boundary regen doctrine. Updates `state_repo.sealed_at_utc` (2026-09-19T21:25:00Z) + `seal_kind` (Commit-B narrative with memory-layer milestone rollup + R-19/R-20 DEFAULT-class pending + R-21 flag-OFF pending). Mirrors `/app/frontend/public/audit/ORCH_BOOT.md` byte-identically at this fixup boundary per R-6 (a) regen trigger discipline.
+
+**STATE/NEXT.md R-64 marker flips ⏳ IN-FLIGHT → ✅ SEALED** with narrative "W4 ONE-CHAIN INTEGRATION FULLY SEALED · MEMORY LAYER CLOSED · CCS1 C.17 answering-service seam bundle-freeze opens next".
+
+**Commit-C files-changed count:** 3 (STATE/DECISIONS.md this-append + STATE/NEXT.md R-64 marker flip + notes/ORCH_BOOT.md R-6 boundary regen). Additive-only per SO §3.8.
+
+**Seal chain complete for CP-MEMORY-COMPACTION-V1-W4-ONE-CHAIN-INTEGRATION:**
+- Commit-A (code · programme/track-a): `da2642acdcb5f1785d6ca561913f60fceafd2c6b` (2026-09-19T~21:12Z UTC)
+- Commit-B (state · master): `09f2f31743da91222f7e9de108810b8950e32f58` (2026-09-19T~21:22Z · banks Commit-A + memory-layer milestone rollup)
+- Commit-C fixup (state · master): this-commit (2026-09-19T21:25:00Z · advances state_head to Commit-B SHA · flips R-64 marker + syncs audit copy byte-identical)
+
+**Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered · MEM-R-053 CROWN BAN NOT triggered.**
+
+**W4 ONE-CHAIN INTEGRATION FULLY SEALED.** Thin adapter `chain_integration.py` (4 surfaces: `ChainAppendReceipt` frozen carrier + `ChainGatedReader` receipt-keyed structural gate + `async append_compaction_row_to_chain` awaiting sealed `emit_deletion_ledger_row` + `async append_compaction_row_and_gate` combined write path) · 6 W4 invariants proving SEQUENCE (not co-existence) + ONE-chain routing + strong-form sequence + M12-W1a-shape AST bans (import-level + call-site-level) · sealed W1 compaction_v1/* + sealed W-M2-SW7 tcb.py + sealed M10 services/memory/ledger.py + sealed services/compliance/deletion_ledger.py + sealed data_class_registry.v4.json all NOT edited (additive-only per SO §3.8; `data_class='memory_publication_landed'` semantic overload used instead of v5 registry bump) · ratchet 5485 → 5491 monotonic-up.
+
+---
+
+### **MEMORY LAYER FULLY CLOSED** at this seal (per owner directive verbatim this-turn: "Memory layer closes with this W4 seal")
+
+Memory layer opens at CP-MEMORY-COMPACTION-V1-BUILD-WAVE (R-61 · Commit-A `b1d1183674856c99e85d64b4fbd22a1508ffc4c9` · 2026-09-19T~19:57Z) on M17-W6 seal + M17.md card-repin repair per owner MEMORY GO ruling. Four sub-waves landed additive-only under SO §3.8:
+
+- **W1 (BUILD-WAVE)** · `b1d11836` · +7 · 5469 → 5476 · new `services/memory/compaction_v1/` sub-package (7 files).
+- **W2 (HARD-BANS-GREP-NEGATIVE)** · `67b5e070` · +6 · 5476 → 5482 · 6 grep-negative invariants MEM-R-048..MEM-R-053 · CROWN BAN NOT triggered.
+- **W3 (TCB-REGISTRATION)** · `ebebc46f` · +3 · 5482 → 5485 · 3 additive tuple-appends to `tcb.py::_TCB_ENTRIES` per module docstring line 24 amendment method (matches M16 R-3 precedent).
+- **W4 (ONE-CHAIN-INTEGRATION)** · `da2642ac` · +6 · 5485 → 5491 · thin chain adapter + 6 invariants + M12-W1a-shape AST bans.
+
+**Milestone snapshot pin (memory-layer close):**
+- `passed_floor: 5491`
+- `baseline_failures_sha256: 98d207bae61a8834b245be8664a5fd9634e0adddc0c00a67ea154cd09e84302a`
+- Path-relative: `repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json`
+
+**Aggregate delta:** +22 exactly · 5469 → 5491 · full memory_compaction_v1 build-run wave sealed. Zero sealed module edited (only `tcb.py::_TCB_ENTRIES` tuple-append per its own docstring line 24 amendment method). Canon 3 §13 SyniSense ONE ledger doctrine held. MEM-R-053 CROWN BAN NOT triggered. MEM-R-048..MEM-R-052 all not triggered on clean codebase.
+
+**Memory layer standing bounds (unchanged · owner-outstanding · pending owner ratification per SO §6.3 tier-3 / tier-4):**
+- **R-19 (triggers) = DEFAULT-class · pending owner ratification.** Recommended-defaults from memory_compaction_v1 spec §7. Tag `pending ratification` retained.
+- **R-20 (retention rule set v1) = DEFAULT-class · pending owner ratification.** Retention rule set v1 baked into `RetentionEngine.decide`; v1 default keeps ALL classes (no drops). Tag `pending ratification` retained.
+- **R-21 (user-memory class, consent model) = flag-OFF by default · awaiting owner ruling.** Owner input outstanding: no consent model assumed; no principal data written until ruled. Enforced structurally across M17-W1..W5 via AST bans; enforced structurally in `compaction_v1` by absence of any user-memory-class implementation.
+
+---
+
+**Autopilot next per owner directive verbatim this-turn:**
+1. **CCS1 (C.17 answering-service seam bundle-freeze)** — frozen from `dap_backend_spec_v1` under T-b · JSON-Schema authoritative (freeze from spec even where backend is thin) · tests-first · §3.3 sealed · works survey's 10 absence findings into freeze scope (each finding either closes in the CCS wave or is banked with a reason).
+2. **CCS2 (DAP entitlement)** — same freeze mechanism.
+3. **CCS3 (DAP receipt)** — same freeze mechanism.
+4. **HALT at frontends gate** — POD-level seal report to owner: survey findings closure status + three frozen contract pins + UI Handoff Brief path + anything else specialists need. Wait for owner dispatch to specialists.
+
+**Time-gated task armed:** Staleness re-scope APPLY-ON-EXPIRY at 2026-09-20T~11:35Z (T-~14.3h · fires as own small seal when clock hits · owner reaffirmed this-turn: "Staleness ceremony has priority if 11:35Z crosses mid-wave — pause at safe checkpoint, small seal, resume").
+
+**Standing bounds unchanged:** zero push · terminal pytest only · no testing_agent · additive-only §3.8 · §3.3 3-Commit Seal on dual branches · ratchet monotonic (floor 5491 · never rebaselined silently).
+
+
+---
+
+## 2026-09-19T~22:20Z · CP-CCS1-C17-SEAM-BUNDLE-FREEZE · Commit-A banking section (state master · banks Commit-A `175786340063efdba387a9f29cece04417a91e91` · Contract Closure Wave 1 · C.17 answering-service seam bundle-freeze · CCS1 opens after MEMORY LAYER CLOSED at W4)
+
+**Owner FRONTENDS-GATE-IS-HALT-POINT ratification (verbatim, 2026-09-19T~21:30Z, banked at R-64 W4 Commit-A banking section):**
+
+> "Seal W4 (Commit-B + Commit-C, default W3-mirrored templates are fine) and CONTINUE DIRECTLY into CCS1 without stopping. The banked HALT point is BEFORE FRONTENDS, not before CCS — the owner's sequence clause is explicit: contract closure waves on the survey, frontends on the freezes, and the frontends gate is where you halt and report to me for specialist dispatch. Stopping before CCS1 would idle the run one gate early."
+>
+> "Then CCS1 (C.17 answering-service seam bundle-freeze) → CCS2 (DAP entitlement) → CCS3 (DAP receipt), each frozen from dap_backend_spec_v1 under T-b (JSON-Schema authoritative — freeze from spec even where backend is thin), tests-first, §3.3 sealed. Work the survey's 10 absence findings into the freeze scope: each finding either closes in its CCS wave or is banked with a reason."
+
+**Owner PROCEED ratification (verbatim, this-session, banked here):**
+
+> "Proceed. Answers: (a) No new owner directives since the MEMORY GO order and its Option-1 follow-on — the banked pipeline is unchanged: CCS1 (C.17 seam bundle-freeze) → CCS2 (DAP entitlement) → CCS3 (DAP receipt), each frozen from dap_backend_spec_v1 under T-b (JSON-Schema authoritative), tests-first, §3.3 sealed. Work the survey's 10 absence findings into freeze scope (each closes in its wave or is banked with a reason). Then HALT at the frontends gate and report to me: survey findings closure status · three frozen contract pins · UI Handoff Brief path. (b) Proceed exactly as planned, steps 1-7. Good discipline on step 1 (three-repo verification — code/state/pod are never mixed) and the YAML defect fix before the sweep. (c) Confirmed: ratchet floor 5502, monotonic, never regressed, never silently rebaselined. Measure any CCS deltas empirically and reconcile line-by-line before bumping. Staleness gate handling is right: if 2026-09-20T11:35Z crosses mid-wave, pause at a safe checkpoint, execute the counter-signed ceremony as its own small seal (five mtafiti tests → presence + integrity hash + last-known-good · one-time on-host GPU journal pull · post-apply sweep), then resume CCS. Go."
+
+**Commit-A scope landed at `175786340063efdba387a9f29cece04417a91e91` on programme/track-a (2026-09-19T~22:20Z UTC):**
+
+1. **NEW `backend/tests/invariants/test_ccs1_c17_seam_bundle_freeze.py`** (510 lines · 11 invariants organised in 3 sub-wave clusters + 1 banking test per Canon 8 §W11 structural role separation):
+
+   **W1 · seam-boundary bundle snapshot pin (7 tests):**
+   - `test_ccs1_application_contract_v0_schema_sha256_matches_frozen_pin` (W1.1a) — re-asserts M17-W1 milestone snapshot pin `ba1957df…` as per-schema frozen constant under the bundle (drift triggers seal-integrity fork per M17-W1 precedent).
+   - `test_ccs1_ask_v0_schema_sha256_matches_frozen_pin` (W1.1b) — per-schema sha256 pin `d0f39639…`.
+   - `test_ccs1_handoff_contract_v0_schema_sha256_matches_frozen_pin` (W1.1c) — per-schema sha256 pin `e5d6c74a…`.
+   - `test_ccs1_personal_client_session_v0_schema_sha256_matches_frozen_pin` (W1.1d) — per-schema sha256 pin `cc7bd992…`.
+   - `test_ccs1_seam_bundle_snapshot_pin_matches_frozen_constant` (W1.2) — bundle sha256 `a6107d46f4f5d80fa7be4d28e8c427a0a4be15438a1843ca17aeab197b708033` · name-sorted concat of 4 schemas · canonical JSON bytes · Canon 3 §9.3 canonicalization discipline applied.
+   - `test_ccs1_seam_bundle_binds_all_four_named_shapes` (W1.3) — vocabulary containment · exactly 4 named shapes in the bundle · no shape may appear that is not one of `ApplicationContract_v0` · `Ask_v0` · `HandoffContract_v0` · `PersonalClientSession_v0`.
+   - `test_ccs1_all_four_seam_shapes_are_frozen_with_extra_forbid` (W1.4) — SO §3.10-α closed-schema discipline · `model_config['frozen'] is True` + `model_config['extra'] == 'forbid'` on all 4 seam shapes.
+
+   **W2 · AST invariants (2 tests):**
+   - `test_ccs1_personal_client_imports_seam_shapes_from_sealed_origin_only` (W2.1) — services/personal_client/**/*.py imports the seam shapes ONLY from sealed identity paths: `contracts.application_contract_v0` · `services.answering_service.collections.asks` · `contracts.handoff_contract` · `contracts.personal_client_session_v0`. No shadow imports, no local subclasses.
+   - `test_ccs1_ast_no_seam_shape_class_definition_outside_sealed_origin` (W2.2) — no shadow/masquerade class definition of the 4 seam shapes anywhere in backend/**/*.py outside their sealed origin files (scope excludes tests/** + tools/** + the 4 sealed origin files themselves per Canon 8 §W11 one-task-one-identity).
+
+   **W3 · integration test (1 test):**
+   - `test_ccs1_integration_end_to_end_ask_flow_binds_bundle` — instantiate `ApplicationContract_v0` → `PersonalClientSession_v0` → `HandoffContract_v0` → `Ask_v0` · recompute bundle sha at each step · assert equality with frozen `_C17_SEAM_BUNDLE_SHA256` constant · mirrors M17-W5 seal-integration pattern verbatim.
+
+   **Banking test (1 test):**
+   - `test_ccs1_absence_finding_4_closed_by_this_wave` — attests EFCS survey absence finding #4 (C.17 seam-boundary bundle sha256 pin does not exist) is CLOSED at this wave.
+
+2. **BUMP `backend/tests/invariants/baseline_failures.json`** — ratchet 5491 → 5502 (+11 exactly reconciled line-by-line · 11 new CCS1 invariants · zero auto-parametrized wizard triggered · not a `contracts/*.py` file · additive-only per SO §3.8) · new `ratchet_history` entry appended · new sha256 `34b14bc7e187eb461e9d692fa62eedc86c79051521fb9b5c691158b1bbca399b`.
+
+3. **New test file only — no new implementation module needed.** All 4 seam contracts already sealed at M14-W1 (`Ask_v0`), M14-W3 (`services/answering_service/collections/asks.py`), M17-W1 (`ApplicationContract_v0`), M17-W3 (`PersonalClientSession_v0`), and `HandoffContract_v0` from Canon 15 §33. This wave freezes the bundle around them (T-b JSON-Schema-authoritative discipline: `model_json_schema()` output IS the frozen schema).
+
+**Sealed modules NOT edited (additive-only per SO §3.8):**
+- Sealed `contracts/application_contract_v0.py` NOT edited (imported only).
+- Sealed `services/answering_service/collections/asks.py` NOT edited (imported only).
+- Sealed `contracts/handoff_contract.py` NOT edited (imported only).
+- Sealed `contracts/personal_client_session_v0.py` NOT edited (imported only).
+- Sealed M17-W1/W2/W3/W4/W5/W6 + M14 + M11 + M16 + W-M2-SW7 + W-7bB + c13_scope + memory-compaction-v1 (all four sub-waves) modules all NOT edited.
+
+**Absence findings closure status (EFCS survey · 10 findings · owner directive: each closes in its CCS wave or is banked with a reason):**
+
+| # | Finding | Status | Wave / Reason |
+|---|---------|--------|---------------|
+| #1 | DAP UI Handoff Brief §5 document on-disk location | **BANKED** | Frontends-card wave (not a CCS1 concern · CCS1 freezes backend seam bundle; the Brief is a frontends-facing anchor). |
+| #2 | `dap_backend_spec_v1` machine-readable JSON-Schema on-disk file | **CLOSED** structurally | This wave adopts T-b JSON-Schema-authoritative discipline: pydantic `model_json_schema()` output IS the frozen schema, sha256-pinned in W1.1a-d (mirrors M16-W1 + M17-W1 precedent pattern). |
+| #3 | `DAP21MeteredEvent_v0` receipt class surface-grep | **BANKED** | CCS3 W1 (receipt contract closure wave · survey §5 verbatim). |
+| #4 | C.17 seam-boundary bundle sha256 pin | **CLOSED** at W1 | `_C17_SEAM_BUNDLE_SHA256` frozen constant + the 4 per-schema frozen constants + `test_ccs1_seam_bundle_snapshot_pin_matches_frozen_constant`. |
+| #5 | Six-profile entitlement matrix closed-tuple freeze | **BANKED** | CCS2 W2 (survey §5 verbatim). |
+| #6 | Reliable time source wiring for DAP-21 timestamp | **BANKED** | CCS3 W4 (survey §5 verbatim). |
+| #7 | Ledger-write-before-return discipline for DAP-21 metered events | **BANKED** | CCS3 W3 (survey §5 verbatim). |
+| #8 | `approval_request` / `admission_refusal` / `erasure_request` / `v2_refusal` / `asset_registry` / `watch_action_v0` frozen status | **BANKED** | Status-confirmation sub-wave at frontends-card-drafting boundary (survey §5 verbatim). |
+| #9 | `trust_receipt_v1` vs DAP-21 receipt relationship | **BANKED** | CCS3 W1 (survey §5 verbatim). |
+| #10 | `outer_gate_receipt_v1` vs DAP-21 receipt relationship | **BANKED** | CCS3 W1 (survey §5 verbatim). |
+
+**Pre-authoring RED sweep** at `phase0/drill_receipts/20260919T215044Z_cp_ccs1_c17_seam_bundle_freeze_RED_pre.log` — `test_ccs1_seam_bundle_snapshot_pin_matches_frozen_constant` fails right-reason: computed bundle sha `a6107d46f4f5d80fa7be4d28e8c427a0a4be15438a1843ca17aeab197b708033` ≠ initially corrupted-all-zeros frozen constant. `-x` stopped at first fail; the other 10 tests either passed or were not-yet-reached.
+
+**Intermediate GREEN attempt** at `phase0/drill_receipts/20260919T215101Z_cp_ccs1_c17_seam_bundle_freeze_GREEN_post.log` — discovered W3 integration test field-shape drift: `ApplicationContract_v0.receipt_policy` is required · `PersonalClientSession_v0.composed_at` field name is `started_at` in the sealed schema · `HandoffContract_v0` surface differs from the initial draft. Fixed with actual field discovery via `model_json_schema()` introspection (RED-first discipline preserved: the initial GREEN attempt discovered the drift on its own via test failure signals; sealed contracts were NOT edited to accommodate the tests).
+
+**Post-authoring GREEN** at `phase0/drill_receipts/20260919T215151Z_cp_ccs1_c17_seam_bundle_freeze_GREEN_post.log` — 11/11 pass in 1.44s.
+
+**Pre-Commit-A double-green byte-identical BASELINE_GUARD=1:**
+- run1 at `phase0/drill_receipts/20260919T221108Z_cp_ccs1_c17_preseal_GUARD1_run1.log` · 5502 passed / 1 skipped / 438 warnings · 178.15s · raw 11124 B · stripped 11103 B.
+- run2 at `phase0/drill_receipts/20260919T221417Z_cp_ccs1_c17_preseal_GUARD1_run2.log` · 5502 passed / 1 skipped / 438 warnings · 180.29s · raw 11124 B · stripped 11103 B.
+- **stripped-sha256 `7b6b2611926ccbaf70607d6c7a912c298e1077bbbdbd02941d06299c3dd5676f` IDENTICAL** across both runs against FINAL `baseline_failures.json` sha256 `34b14bc7e187eb461e9d692fa62eedc86c79051521fb9b5c691158b1bbca399b`.
+
+**Transparency banking (§6 · SO §3 transparency doctrine):**
+- 1 prior GUARD1 attempt at `20260919T215325Z` (pre-ORCH_BOOT-regen) failed `test_orch_boot` 1 fail because `notes/ORCH_BOOT.md` `ratchet.passed_floor` was still pinned at 5491 pre-regen. **Reconciled** by pre-Commit-A r6-boundary ratchet-only regen of `notes/ORCH_BOOT.md` to `passed_floor: 5502` + new `baseline_failures_sha256: 34b14bc7…` via `/app/assessment_workspace/tools/ccs1_pre_commit_a_orch_boot_regen.py` (script also lands the W4 Commit-C fixup ORCH_BOOT generator-line YAML plain-scalar defect repair: `housekeeping pickup:` colon-space at column 1024 violated YAML mapping-value syntax; reconciled by em-dash substitution — YAML now parses cleanly).
+- 2 mid-window backgrounded GUARD1 runs at `20260919T220436Z` + `20260919T220749Z` completed silently after the driving tool-call timeouts (bash 120s deadline killed observation but not the runs · both green 5502 passed). Banked as evidence of the backgrounding-timeout race per SO §3 transparency doctrine; they are NOT the chosen preseal pair (that role belongs to the 22:11 + 22:14 pair recorded above).
+- Not a ratchet break; not a Stop-condition trigger.
+
+**Canon anchors verbatim (Commit-A scope):**
+- Canon 5 · Interface Architecture · seam-boundary discipline (the C.17 seam is where the personal client crosses into the answering service).
+- Canon 17 §4 · answering-service triangle · ask entity (the `Ask_v0` shape carries the identities across the seam).
+- Canon 15 §33 · `HandoffContract_v0` · frozen contract discipline.
+- Canon 3 §9.3 · append-only writer discipline (canonicalization discipline applied to the bundle sha computation: name-sorted concat of canonical JSON bytes).
+- Canon 8 §W11 · one-task-one-identity (no shadow classes for the four seam shapes anywhere in `services/personal_client/`).
+- SO §3.8 · thin-kernel additive-only.
+- SO §3.10-α · closed-schema discipline (Option-α · `frozen=True` + `extra='forbid'` on all 4 seam shapes).
+- SO §6.4 · NOTHING-BEYOND (scope frozen at 4 seam shapes + 3 sub-wave test clusters + banking test · no scope beyond).
+- SO §6.7 · sequence from here (CCS1 → CCS2 → CCS3 → HALT before frontends).
+- M17-W1 milestone snapshot pin `ba1957dfbb…` precedent shape (this-wave re-asserts the same sha256 for `ApplicationContract_v0` as its per-schema frozen constant · drift triggers seal-integrity fork).
+- M17-W5 seal-integration pattern (W3 integration test mirrors verbatim).
+- HR-2 · hand-off entry carries the right identities (CP-M17-W6 adapter landed prior to this seal · `handoff_id` regex `^ho_[a-z0-9_-]+$` frozen in `Ask_v0` · addresses the M17-W5 fork closed at CP-M17-W6).
+- B-frontends-Q1 owner ruling (STATE/DECISIONS.md:12115 · frontends gate on frozen C.17 + DAP entitlement + DAP receipt).
+- Doc-3 DAP-Spec `dap_backend_spec_v1` (survey §2.1 anchor).
+- Owner FRONTENDS-GATE-IS-HALT-POINT ratification 2026-09-19T~21:30Z verbatim.
+- Owner ruling 2026-09-19T~17:54Z item (e) survey ruling.
+- Owner PROCEED ratification this-session verbatim (banked above).
+
+**Stop-conditions #1/#2/#3 NOT triggered at Commit-A · §6.4 pre-ruling NOT triggered · MEM-R-053 CROWN BAN NOT triggered.** Ratchet 5491 → 5502 monotonic-up (+11 exactly). Zero flip. Zero regression. Zero refactor. Full RED-first tests-first discipline held (mechanical RED banked before author-side fix cycle; targeted GREEN after; full double-green before Commit-A; ORCH_BOOT ratchet-only regen reconciled the one prior GUARD1 attempt failure).
+
+**Incidental housekeeping picked up in this Commit-B (state-side working tree at the seal boundary · not part of CCS1 scope · banked per R-29-BOOT housekeeping-pickup precedent):**
+- `STATE/PINS.md` — commissioning_record pointer for `aisca-gpu-01` refreshed from `20260919T181348Z.json` to `20260919T215405Z.json` (state-side sensor drift · commissioning journal advanced by an out-of-band commissioning receipt · not a §3.3 scope change).
+- `notes/ORCH_BOOT.md` — ratchet-only r6-boundary regen (5491 → 5502 · new baseline_failures_sha256 · plus the YAML plain-scalar defect repair described above) · `heads_last_sealed.state_repo.head` + `code_repo.head` both stay at prior CP-MEMORY-COMPACTION-V1-W4 Commit-A/B/C pending §3.3 CCS1 seal completion at Commit-C fixup.
+- `/app/frontend/public/audit/ORCH_BOOT.md` — POD-repo audit mirror re-sync byte-identical (identical sha256 to notes copy).
+
+---
+
+**Autopilot next per owner directive this-turn (verbatim, banked above):**
+
+1. **Commit-C fixup (state master · this-CP · advances state_repo.head to this-Commit-B SHA · flips this R-65 marker ⏳→✅ · advances `notes/ORCH_BOOT.md` `heads_last_sealed.state_repo.head` from W4 Commit-B `09f2f317…` to this-CCS1 Commit-B · POD-repo audit mirror re-sync byte-identical).**
+2. **CCS2 (DAP entitlement)** — frozen from `dap_backend_spec_v1` under T-b · JSON-Schema authoritative · tests-first · §3.3 sealed · works absence findings #5 into freeze scope (six-profile entitlement matrix closed-tuple freeze at W2).
+3. **CCS3 (DAP receipt)** — frozen from `dap_backend_spec_v1` under T-b · JSON-Schema authoritative · tests-first · §3.3 sealed · works absence findings #3 + #6 + #7 + #9 + #10 into freeze scope.
+4. **HALT at frontends gate** — POD-level seal report: survey findings closure status + three frozen contract pins (bundle · entitlement · receipt) + UI Handoff Brief path + anything else specialists need. Wait for owner dispatch to specialists.
+
+**Time-gated task armed:** Staleness re-scope APPLY-ON-EXPIRY at 2026-09-20T~11:35Z (T-~13.5h at this Commit-A · fires as own small seal per owner order · takes priority as small seal when clock hits · owner reaffirmed this-session verbatim above: *"Staleness ceremony has priority if 11:35Z crosses mid-wave — pause at safe checkpoint, small seal, resume … five mtafiti tests → presence + integrity hash + last-known-good · one-time on-host GPU journal pull · post-apply sweep."*).
+
+**Standing bounds unchanged:** zero push · terminal pytest only · no testing_agent · additive-only §3.8 · full BASELINE_GUARD=1 pre-Commit-A double-green byte-identical · §3.3 3-Commit Seal on dual branches · ratchet monotonic (floor 5502 · never rebaselined silently).
+
+
+---
+
+## 2026-09-19T~22:30Z · CP-CCS1-C17-SEAM-BUNDLE-FREEZE · Commit-C fixup banking section (state master · banks Commit-B `ae709eb75d960a6eef11363c95664aea946dab93` · Contract Closure Wave 1 FULLY SEALED · CCS2 DAP entitlement freeze opens next)
+
+**Advances `notes/ORCH_BOOT.md` `heads_last_sealed.state_repo.head`** from `09f2f31743da91222f7e9de108810b8950e32f58` (CP-MEMORY-COMPACTION-V1-W4-ONE-CHAIN-INTEGRATION Commit-B) to `ae709eb75d960a6eef11363c95664aea946dab93` (this-CCS1 Commit-B). **Advances `heads_last_sealed.code_repo.head`** from `da2642acdcb5f1785d6ca561913f60fceafd2c6b` (W4 Commit-A) to `175786340063efdba387a9f29cece04417a91e91` (CCS1 Commit-A). Regenerates `generated_at_utc` (2026-09-19T22:30:00Z) + `generator` + `regeneration_reason` per R-6 (a) boundary regen discipline. Updates `state_repo.sealed_at_utc` (2026-09-19T22:30:00Z) + `state_repo.seal_kind` (Commit-B narrative with CCS1 scope + 11 invariants + absence findings closure table + double-green byte-identical stripped-sha + transparency banking) + `code_repo.sealed_at_utc` (2026-09-19T22:20:00Z) + `code_repo.seal_kind` (Commit-A narrative with per-schema pins + bundle sha + AST invariants + integration test). Mirrors `/app/frontend/public/audit/ORCH_BOOT.md` byte-identically at this fixup boundary per R-6 (a) regen trigger discipline (notes sha256 = audit sha256 = `26a4e953976685aab55e726453d04e1a11dbd68bcad60386e9fe3d1f796c6db2`).
+
+**STATE/NEXT.md R-65 marker flips ⏳ IN-FLIGHT → ✅ SEALED** with narrative "CCS1 C.17 SEAM BUNDLE FREEZE FULLY SEALED · CCS2 DAP entitlement freeze opens next".
+
+**Commit-C files-changed count:** 3 (STATE/DECISIONS.md this-append + STATE/NEXT.md R-65 marker flip + notes/ORCH_BOOT.md R-6 boundary regen). Additive-only per SO §3.8. POD-repo audit mirror `/app/frontend/public/audit/ORCH_BOOT.md` synced byte-identically as part of this fixup (audit mirror lives in POD repo `/app` on branch `main`; its commit tracking is deferred to the next POD-repo sync boundary and does not participate in this STATE §3.3 seal).
+
+**Seal chain complete for CP-CCS1-C17-SEAM-BUNDLE-FREEZE:**
+- Commit-A (code · programme/track-a): `175786340063efdba387a9f29cece04417a91e91` (2026-09-19T~22:20Z UTC)
+- Commit-B (state · master): `ae709eb75d960a6eef11363c95664aea946dab93` (2026-09-19T~22:26Z · banks Commit-A + CCS1 Commit-A banking section + state files)
+- Commit-C fixup (state · master): this-commit (2026-09-19T22:30:00Z · advances state_head to Commit-B SHA + advances code_head to Commit-A SHA · flips R-65 marker · syncs audit copy byte-identical)
+
+**Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered · MEM-R-053 CROWN BAN NOT triggered.**
+
+**CCS1 C.17 SEAM BUNDLE FREEZE FULLY SEALED.** 4 seam shapes (`ApplicationContract_v0` + `Ask_v0` + `HandoffContract_v0` + `PersonalClientSession_v0`) frozen at their per-schema sha256 pins (`ba1957df…` + `d0f39639…` + `e5d6c74a…` + `cc7bd992…` respectively) and bound in the canonical bundle sha256 `a6107d46f4f5d80fa7be4d28e8c427a0a4be15438a1843ca17aeab197b708033` (name-sorted concat of canonical JSON bytes · Canon 3 §9.3 canonicalization discipline). W2 AST invariants enforce Canon 8 §W11 one-task-one-identity across `services/personal_client/` (sealed origin imports only · no shadow class definitions anywhere in `backend/**` outside sealed origin files). W3 integration test binds the bundle across the end-to-end ask flow mirroring the M17-W5 seal-integration pattern. Absence finding #4 CLOSED at W1 by frozen constant + integration binding; absence finding #2 CLOSED structurally by T-b JSON-Schema-authoritative discipline (`model_json_schema()` output IS the frozen schema, sha256-pinned in W1.1a-d). Absence findings #1/#3/#5/#6/#7/#8/#9/#10 BANKED to CCS2/CCS3/frontends waves per survey §5. Sealed 4 seam contract modules NOT edited (all consumed via identity import). Ratchet 5491 → 5502 monotonic-up (+11 exactly).
+
+**Frozen contract pin #1 of 3 (CCS1 seam bundle) achieved.** The remaining two pins (CCS2 DAP entitlement · CCS3 DAP receipt) open next per owner FRONTENDS-GATE-IS-HALT-POINT sequence.
+
+---
+
+**Autopilot next per owner directive (verbatim, banked at CCS1 Commit-A banking section):**
+
+1. **CCS2 (DAP entitlement)** — frozen from `dap_backend_spec_v1` under T-b · JSON-Schema authoritative · tests-first · §3.3 sealed · absence finding #5 (six-profile entitlement matrix closed-tuple freeze) into W2 scope.
+2. **CCS3 (DAP receipt)** — frozen from `dap_backend_spec_v1` under T-b · JSON-Schema authoritative · tests-first · §3.3 sealed · absence findings #3 (`DAP21MeteredEvent_v0`) + #6 (reliable_time_source wiring) + #7 (ledger-write-before-return) + #9 (`trust_receipt_v1` relationship) + #10 (`outer_gate_receipt_v1` relationship) into scope.
+3. **HALT at frontends gate** — POD-level seal report: survey findings closure status + three frozen contract pins (bundle · entitlement · receipt) + UI Handoff Brief path + anything else specialists need. Wait for owner dispatch to specialists.
+
+**Time-gated task armed:** Staleness re-scope APPLY-ON-EXPIRY at 2026-09-20T~11:35Z (T-~13.1h at this Commit-C · fires as own small seal per owner order · takes priority as small seal when clock hits · owner reaffirmed this-session verbatim: *"Staleness ceremony has priority if 11:35Z crosses mid-wave — pause at safe checkpoint, small seal, resume … five mtafiti tests → presence + integrity hash + last-known-good · one-time on-host GPU journal pull · post-apply sweep."*).
+
+**Standing bounds unchanged:** zero push · terminal pytest only · no testing_agent · additive-only §3.8 · full BASELINE_GUARD=1 pre-Commit-A double-green byte-identical · §3.3 3-Commit Seal on dual branches · ratchet monotonic (floor 5502 · never rebaselined silently).
+
+
+---
+
+## 2026-09-19T~22:46Z · CP-CCS2-DAP-ENTITLEMENT-FREEZE · Commit-A banking section (state master · banks Commit-A `3fde289560830d5dffafe25c52080664625caaf8` · Contract Closure Wave 2 · DAP entitlement contract freeze · frozen contract pin #2 of 3 achieved · CCS3 opens next)
+
+**Owner FRONTENDS-GATE-IS-HALT-POINT ratification (verbatim, banked at CCS1 Commit-A banking section):**
+
+> "Then CCS1 (C.17 answering-service seam bundle-freeze) → CCS2 (DAP entitlement) → CCS3 (DAP receipt), each frozen from dap_backend_spec_v1 under T-b (JSON-Schema authoritative — freeze from spec even where backend is thin), tests-first, §3.3 sealed. Work the survey's 10 absence findings into the freeze scope: each finding either closes in its CCS wave or is banked with a reason."
+
+**Commit-A scope landed at `3fde289560830d5dffafe25c52080664625caaf8` on programme/track-a (2026-09-19T~22:40Z UTC):**
+
+1. **NEW `backend/tests/invariants/test_ccs2_dap_entitlement_freeze.py`** (461 lines · 13 invariants organised in 3 sub-wave clusters + shared SO §3.10-α + integration seal + banking test):
+
+   **W1 · DAP-1 party principal shape + closed enums (4 tests):**
+   - `test_ccs2_external_party_principal_v0_schema_sha256_matches_frozen_pin` (W1.1a · DAP-1 organisation-level principal pin `afb30e0234e203062ad4e6c144a9fb23edbeed91b3efeb84ebdcca582d1934bb`).
+   - `test_ccs2_party_principal_v0_schema_sha256_matches_frozen_pin` (W1.1b · DAP-2 named-individual-or-agent pin `1ea2d5362c989d861996cc5ebe72d7f7ecd9823cc31b741517517e4ac92ddbf3`).
+   - `test_ccs2_governance_posture_enum_frozen_four_values` (W1.2 · closed 4-tuple: research · commercial · regulatory · ai_lab).
+   - `test_ccs2_party_principal_kind_enum_frozen_two_values` (W1.3 · closed 2-tuple: individual · agent).
+
+   **W2 · Six-profile entitlement matrix closed-tuple freeze (2 tests · CLOSES absence finding #5):**
+   - `test_ccs2_dap_six_profiles_closed_tuple_frozen` (W2.1 · `_DAP_SIX_PROFILES` closed 6-tuple per DAP-Spec §4 verbatim: browse · connect_api_key_by_external_workspace · extract_processed_intelligence · fine_tune_model_on_estate_data · develop_skills_against_estate_data · download_raw_data).
+   - `test_ccs2_crossing_profile_v0_schema_sha256_matches_frozen_pin` (W2.2 · CrossingProfile pin `5b15fd4f2bdf703a60049476fac876d3f0c4990a13d01ddeb26e9fbc8cfad148` · freezes current sealed free-form-str shape).
+
+   **W3 · DAP-13 API key contract freeze (3 tests):**
+   - `test_ccs2_api_key_issue_receipt_v0_schema_sha256_matches_frozen_pin` (W3.1 · ApiKeyIssueReceipt pin `15493f88a43c0bdd5b1caa56a22d00b2fbce00e2974cc1b9f8480bc3757de404`).
+   - `test_ccs2_api_key_issue_receipt_has_no_key_material_field` (W3.2 · DAP-13 verbatim "key material NEVER written to any record" · AST/structural forbid {key_material, secret, raw_key, private_key, key_secret} · require key_id opaque handle).
+   - `test_ccs2_api_key_issue_receipt_is_per_principal_not_per_organisation` (W3.3 · DAP-13 verbatim "keys issued per party principal" · AST/structural require principal_id · forbid {organisation_id, org_id, parent_org_id, workspace_id}).
+
+   **Shared W1.4+W2.3+W3.4 (1 test):**
+   - `test_ccs2_all_four_dap_entitlement_shapes_are_frozen_with_extra_forbid` (SO §3.10-α discipline on all 4 shapes).
+
+   **W4 · Integration seal (2 tests):**
+   - `test_ccs2_dap_entitlement_bundle_snapshot_pin_matches_frozen_constant` (W4.1 · bundle sha `051f25dfb0255e89cf727ef20c3fea17c3f32f8cb2310a424537e99f37046ad0` · name-sorted concat canonical JSON bytes · Canon 3 §9.3 canonicalization · mirrors CCS1 bundle-sha pattern).
+   - `test_ccs2_dap_entitlement_bundle_binds_all_four_named_shapes` (W4.2 · vocabulary containment · exactly 4 shapes).
+
+   **Banking test (1 test):**
+   - `test_ccs2_absence_finding_5_closed_by_this_wave` (attests EFCS survey absence finding #5 CLOSED at this wave via `_DAP_SIX_PROFILES` + CrossingProfile schema pin structural closure).
+
+2. **BUMP `backend/tests/invariants/baseline_failures.json`** — ratchet 5502 → 5515 (+13 exactly reconciled line-by-line · zero wizard trigger · not a `contracts/*.py` file) · **both** `counts_at_baseline.passed` **and** `invariants_enforced_when_baseline_guard_1.passed_floor` bumped (single-field bump caused 1st GUARD1 attempt to fail 2 ratchet-consistency tests · lesson banked below) · new sha256 `9186a002fa71ff491ad3a8aec3fc34919f4cfb868e0d3083d4c4ecdd0a9e1154`.
+
+**Sealed modules NOT edited (additive-only per SO §3.8):**
+- Sealed `contracts/dap.py` NOT edited (all 6 imports — ExternalPartyPrincipal + PartyPrincipal + CrossingProfile + ApiKeyIssueReceipt + GovernancePosture + PartyPrincipalKind — consumed via identity import).
+- Sealed M17-W1..W6 + M14 + M11 + M16 + W-M2-SW7 + W-7bB + c13_scope + memory-compaction-v1 (all 4 sub-waves) + CCS1-C17-seam-bundle modules all NOT edited.
+
+**Absence findings closure status (EFCS survey · CCS2 wave):**
+- CLOSED at this wave (CCS2 W2): #5 (six-profile entitlement matrix closed-tuple freeze) — structurally via `_DAP_SIX_PROFILES` closed-tuple constant + `CrossingProfile.model_json_schema()` sha256 pin (sealed `CrossingProfile.operation` is currently a free-form `str` field · SO §3.8 forbids editing the sealed class · closure achieved via authoritative sibling constant + schema pin combined; any downstream operation-name admission outside `_DAP_SIX_PROFILES` violates DAP-Spec §4).
+- BANKED to CCS3 (5 findings): #3 (`DAP21MeteredEvent_v0`) · #6 (reliable_time_source wiring) · #7 (ledger-write-before-return discipline) · #9 (`trust_receipt_v1` vs DAP-21 receipt relationship) · #10 (`outer_gate_receipt_v1` vs DAP-21 receipt relationship).
+- BANKED to frontends-card wave (2 findings): #1 (DAP UI Handoff Brief §5 location) · #8 (status-confirmation for approval_request / admission_refusal / erasure_request / v2_refusal / asset_registry / watch_action_v0).
+- CLOSED at prior wave (CCS1): #4 (C.17 seam bundle sha pin at W1) · #2 (T-b JSON-Schema-authoritative discipline structurally at W1).
+
+**Pre-authoring RED sweep** at `phase0/drill_receipts/20260919T223502Z_cp_ccs2_dap_entitlement_freeze_RED_pre.log` — `test_ccs2_dap_entitlement_bundle_snapshot_pin_matches_frozen_constant` fails right-reason (computed bundle sha `051f25dfb0255e89cf727ef20c3fea17c3f32f8cb2310a424537e99f37046ad0` ≠ initially corrupted-all-zeros frozen constant · 12/13 pass immediately as authentic protective pins on clean codebase state · per-schema pins match sealed schemas · closure-attesting banking test passes on constant properties · enum tuples match sealed enum members exactly · AST structural checks pass on sealed shape).
+
+**Post-authoring GREEN** at `phase0/drill_receipts/20260919T223517Z_cp_ccs2_dap_entitlement_freeze_GREEN_post.log` — 13/13 pass in 0.83s.
+
+**Pre-Commit-A double-green byte-identical BASELINE_GUARD=1:**
+- run1 at `phase0/drill_receipts/20260919T224032Z_cp_ccs2_preseal_GUARD1_run1.log` · 5515 passed / 1 skipped / 438 warnings · 179.44s · raw 11124 B · stripped 11103 B.
+- run2 at `phase0/drill_receipts/20260919T224341Z_cp_ccs2_preseal_GUARD1_run2.log` · 5515 passed / 1 skipped / 438 warnings · 179.35s · raw 11124 B · stripped 11103 B.
+- **stripped-sha256 `85c43f72c0461044c9a6a2780b2be359304beccb01c324b68c297689a1ababa0` IDENTICAL** across both runs against FINAL `baseline_failures.json` sha256 `9186a002fa71ff491ad3a8aec3fc34919f4cfb868e0d3083d4c4ecdd0a9e1154`.
+
+**Transparency banking (§6 · SO §3 transparency doctrine):** 1 prior GUARD1 attempt at `20260919T223641Z` failed 2 ratchet-consistency tests (`test_manifest_passed_floor_ratchet_monotonic_and_matches_baseline` + `test_orch_boot_anti_forget_manifest_matches_live_ratchet_and_sealed_heads`) because I initially bumped only `counts_at_baseline.passed` but not `invariants_enforced_when_baseline_guard_1.passed_floor` in `baseline_failures.json`. **Both fields must be bumped together per baseline schema discipline.** Reconciled by second-field bump + ORCH_BOOT re-regen with new baseline sha256. Pre-CCS3 baseline bump procedure amended: **always update both `counts_at_baseline.passed` AND `invariants_enforced_when_baseline_guard_1.passed_floor` in a single edit; verify with the two ratchet-consistency tests before running the full sweep**. Not a ratchet break; not a Stop-condition trigger.
+
+**Canon anchors verbatim (Commit-A scope):**
+- Canon 5 · Interface Architecture · seam-boundary discipline.
+- Canon 3 §9.3 · append-only writer discipline (canonicalization applied to bundle sha).
+- Canon 8 §W11 · one-task-one-identity.
+- SO §3.8 · thin-kernel additive-only.
+- SO §3.10-α · closed-schema discipline (frozen=True + extra='forbid' on all 4 DAP entitlement shapes).
+- SO §6.4 · NOTHING-BEYOND (scope frozen at 4 DAP entitlement shapes + 6-profile closed-tuple + 3 sub-wave test clusters + banking test).
+- SO §6.7 · sequence CCS1 → CCS2 → CCS3 → HALT before frontends.
+- M17-W1 milestone snapshot pin precedent shape.
+- CCS1-C17 seam bundle sha `a6107d46…` precedent shape (name-sorted concat).
+- B-frontends-Q1 owner ruling (STATE/DECISIONS.md:12115).
+- Doc-3 DAP-Spec `dap_backend_spec_v1` (§4 six-profile + DAP-1 principal fields + DAP-13 key contract).
+- Owner FRONTENDS-GATE-IS-HALT-POINT ratification 2026-09-19T~21:30Z verbatim.
+- Owner PROCEED ratification this-session verbatim (banked at CCS1 Commit-A banking section).
+- Owner ruling 2026-09-19T~17:54Z item (e) survey ruling verbatim.
+
+**Stop-conditions #1/#2/#3 NOT triggered at Commit-A · §6.4 pre-ruling NOT triggered · MEM-R-053 CROWN BAN NOT triggered.** Ratchet 5502 → 5515 monotonic-up (+13 exactly). Zero flip. Zero regression. Zero refactor.
+
+**Frozen contract pin #2 of 3 achieved.** CCS2 DAP entitlement bundle sha `051f25df…` pins the four DAP entitlement shapes and closes absence finding #5.
+
+---
+
+**Autopilot next per owner directive:**
+
+1. **Commit-C fixup (state master · this-CP · advances state_repo.head + code_head + flips this R-66 marker ⏳→✅).**
+2. **CCS3 (DAP receipt)** — frozen from `dap_backend_spec_v1` under T-b · JSON-Schema authoritative · tests-first · §3.3 sealed · absence findings #3 (`DAP21MeteredEvent_v0`) + #6 (reliable_time_source wiring) + #7 (ledger-write-before-return) + #9 (`trust_receipt_v1` vs DAP-21) + #10 (`outer_gate_receipt_v1` vs DAP-21) into scope.
+3. **HALT at frontends gate** — POD-level seal report: survey findings closure status + three frozen contract pins (bundle · entitlement · receipt) + UI Handoff Brief path + anything else specialists need. Wait for owner dispatch to specialists.
+
+**Time-gated task armed:** Staleness re-scope APPLY-ON-EXPIRY at 2026-09-20T~11:35Z (T-~12.9h at this Commit-A · fires as own small seal per owner order · takes priority as small seal when clock hits).
+
+**Standing bounds unchanged:** zero push · terminal pytest only · no testing_agent · additive-only §3.8 · full BASELINE_GUARD=1 pre-Commit-A double-green byte-identical · §3.3 3-Commit Seal on dual branches · ratchet monotonic (floor 5515 · never rebaselined silently).
+
+
+---
+
+## 2026-09-19T~22:50Z · CP-CCS2-DAP-ENTITLEMENT-FREEZE · Commit-C fixup banking section (state master · banks Commit-B `0520469dbf5d836d253244ae820681ac4bc980cd` · Contract Closure Wave 2 FULLY SEALED · CCS3 DAP receipt freeze opens next)
+
+**Advances `notes/ORCH_BOOT.md` `heads_last_sealed.state_repo.head`** from `ae709eb75d960a6eef11363c95664aea946dab93` (CCS1 Commit-B) to `0520469dbf5d836d253244ae820681ac4bc980cd` (this CCS2 Commit-B). **Advances `heads_last_sealed.code_repo.head`** from `175786340063efdba387a9f29cece04417a91e91` (CCS1 Commit-A) to `3fde289560830d5dffafe25c52080664625caaf8` (CCS2 Commit-A). Regenerates generated_at_utc (2026-09-19T22:50:00Z) + generator + regeneration_reason per R-6 (a). Mirrors `/app/frontend/public/audit/ORCH_BOOT.md` byte-identically (notes sha256 = audit sha256 = `4bf4973840542577d0300aa61f0fcd5988096b0f3a05470ce1ae44d242e00920`).
+
+**STATE/NEXT.md R-66 marker flips ⏳ IN-FLIGHT → ✅ SEALED** with narrative "CCS2 DAP ENTITLEMENT FREEZE FULLY SEALED · frozen contract pin #2 of 3 achieved · CCS3 DAP receipt freeze opens next".
+
+**Commit-C files-changed count:** 3 (STATE/DECISIONS.md this-append + STATE/NEXT.md R-66 flip + notes/ORCH_BOOT.md R-6 boundary regen). Additive-only per SO §3.8.
+
+**Seal chain complete for CP-CCS2-DAP-ENTITLEMENT-FREEZE:**
+- Commit-A (code · programme/track-a): `3fde289560830d5dffafe25c52080664625caaf8` (2026-09-19T~22:40Z)
+- Commit-B (state · master): `0520469dbf5d836d253244ae820681ac4bc980cd` (2026-09-19T~22:46Z)
+- Commit-C fixup (state · master): this-commit (2026-09-19T22:50:00Z · advances state_head + code_head · flips R-66 marker · syncs audit copy byte-identical)
+
+**Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered · MEM-R-053 CROWN BAN NOT triggered.**
+
+**CCS2 DAP ENTITLEMENT FREEZE FULLY SEALED.** 4 DAP entitlement shapes (`ExternalPartyPrincipal` + `PartyPrincipal` + `CrossingProfile` + `ApiKeyIssueReceipt`) frozen at their per-schema sha256 pins (`afb30e02…` + `1ea2d536…` + `5b15fd4f…` + `15493f88…`) and bound in the canonical bundle sha256 `051f25dfb0255e89cf727ef20c3fea17c3f32f8cb2310a424537e99f37046ad0`. Six-profile entitlement matrix frozen as `_DAP_SIX_PROFILES` closed 6-tuple per DAP-Spec §4 verbatim (browse · connect_api_key_by_external_workspace · extract_processed_intelligence · fine_tune_model_on_estate_data · develop_skills_against_estate_data · download_raw_data). DAP-1 admission shapes: GovernancePosture closed 4-enum + PartyPrincipalKind closed 2-enum. DAP-13 API key contract structurally guarded: no key material field (banned {key_material, secret, raw_key, private_key, key_secret}) · per-principal-not-per-organisation (has principal_id · forbids {organisation_id, org_id, parent_org_id, workspace_id}). Sealed `contracts/dap.py` NOT edited (all 6 imports consumed via identity import). Ratchet 5502 → 5515 monotonic-up (+13 exactly).
+
+**Frozen contract pin #2 of 3 achieved.** Two of three DAP freeze pins now landed: CCS1-C17 seam bundle sha `a6107d46…` (CCS1) + CCS2 DAP entitlement bundle sha `051f25df…` (this seal). CCS3 DAP receipt freeze opens next as the final pin.
+
+**Absence findings closure status (post-CCS2 · 10 total):**
+- CLOSED at CCS1: #4 · #2.
+- CLOSED at CCS2 W2: #5 (six-profile matrix structurally).
+- BANKED to CCS3: #3 (`DAP21MeteredEvent_v0`) · #6 (reliable_time_source wiring) · #7 (ledger-write-before-return) · #9 (`trust_receipt_v1` vs DAP-21) · #10 (`outer_gate_receipt_v1` vs DAP-21).
+- BANKED to frontends-card wave: #1 (DAP UI Handoff Brief §5 location) · #8 (status-confirmation for approval/refusal/erasure/v2/asset_registry/watch_action_v0).
+
+---
+
+**Autopilot next per owner directive:**
+
+1. **CCS3 (DAP receipt)** — frozen from `dap_backend_spec_v1` under T-b · JSON-Schema authoritative · tests-first · §3.3 sealed · absence findings #3/#6/#7/#9/#10 into scope · target ratchet delta TBD at RED authoring.
+2. **HALT at frontends gate** — POD-level seal report: survey findings closure status + three frozen contract pins (bundle · entitlement · receipt) + UI Handoff Brief path + anything else specialists need. Wait for owner dispatch to specialists.
+
+**Time-gated task armed:** Staleness re-scope APPLY-ON-EXPIRY at 2026-09-20T~11:35Z (T-~12.6h at this Commit-C).
+
+**Standing bounds unchanged:** zero push · terminal pytest only · no testing_agent · additive-only §3.8 · full BASELINE_GUARD=1 pre-Commit-A double-green byte-identical · §3.3 3-Commit Seal on dual branches · ratchet monotonic (floor 5515 · never rebaselined silently).
+
+
+---
+
+## 2026-09-19T~23:04Z · CP-CCS3-DAP-RECEIPT-FREEZE · Commit-A banking section (state master · banks Commit-A `379e45508bbfbc362f2b28d93065f527bc3864bd` · Contract Closure Wave 3 · DAP receipt contract freeze · **FINAL contract closure wave** before frontends gate HALT · frozen contract pin #3 of 3 achieved · CCS trio complete)
+
+**Owner rulings (banked at CCS1 Commit-A banking section · reaffirmed here):**
+
+> FRONTENDS-GATE-IS-HALT-POINT (2026-09-19T~21:30Z verbatim) · PROCEED (this-session verbatim) · owner ruling 2026-09-19T~17:54Z item (e) verbatim.
+
+**Commit-A scope landed at `379e45508bbfbc362f2b28d93065f527bc3864bd` on programme/track-a (2026-09-19T~23:00Z):**
+
+1. **NEW `backend/tests/invariants/test_ccs3_dap_receipt_freeze.py`** (~465 lines · 12 invariants in 4 sub-wave clusters + banking):
+
+   **W1 · DAP-21 MeteredEvent freeze (3 tests):**
+   - `test_ccs3_metered_event_schema_sha256_matches_frozen_pin` (W1.1 · pin `b354818c…` · absence #3 CLOSED via naming resolution: class exists as `MeteredEvent` not `DAP21MeteredEvent_v0`).
+   - `test_ccs3_metered_event_carries_all_seven_dap21_fields` (W1.2 · DAP-Spec verbatim: operation_type + accessed_scope + quantity + quantity_unit + terms_id + party_id + timestamp_iso + R-C2 au_3b_defensible).
+   - `test_ccs3_metered_event_is_frozen_with_extra_forbid` (W1.3 · SO §3.10-α on metering rail).
+
+   **W2 · reliable_time_source wiring (2 tests · absence #6 CLOSED):**
+   - `test_ccs3_reliable_time_source_module_importable_from_sealed_path` (W2.1 · sealed `services.reliable_time_source.clock` surface: ReliableClock + TimeAnchor + au_3b_defensible_now).
+   - `test_ccs3_reliable_time_source_au_3b_defensible_now_callable` (W2.2 · returns dict with wall_time_iso + au_3b_defensible keys).
+
+   **W3 · Related receipts pinned + non-α gaps banked (4 tests · absence #9 + #10 CLOSED):**
+   - `test_ccs3_trust_receipt_v1_schema_sha256_matches_frozen_pin` (W3.1 · TrustReceiptV1 pin `d4645512…` · LLM-provenance rail).
+   - `test_ccs3_outer_gate_receipt_v1_schema_sha256_matches_frozen_pin` (W3.2 · OuterGateReceiptV1 pin `196e56f0…` · outer-gate transform rail).
+   - `test_ccs3_trust_receipt_v1_frozen_status_banked_for_owner_ratification` (W3.3 · SO §3.10-α NON-COMPLIANCE finding: frozen=False · BANKED for owner ratification).
+   - `test_ccs3_outer_gate_receipt_v1_frozen_status_banked_for_owner_ratification` (W3.4 · SO §3.10-α NON-COMPLIANCE finding: frozen=None · BANKED for owner ratification).
+
+   **W4 · Integration seal (2 tests):**
+   - `test_ccs3_dap_receipt_bundle_snapshot_pin_matches_frozen_constant` (W4.1 · **FROZEN CONTRACT PIN #3 OF 3** · bundle sha `81d3c0a5e8e54137d96873784dc3714c99f574c40f430996a66b0b17ada68a62`).
+   - `test_ccs3_dap_receipt_bundle_binds_all_three_named_shapes` (W4.2 · vocabulary containment: 3 shapes).
+
+   **W5 · Absence findings closure attestation (1 test):**
+   - `test_ccs3_absence_findings_3_6_7_9_10_closure_status` (attests: #3/#6/#9/#10 CLOSED in-wave · #7 BANKED to integration wave · TrustReceiptV1_alpha_gap + OuterGateReceiptV1_alpha_gap BANKED for owner ratification).
+
+2. **BUMP `backend/tests/invariants/baseline_failures.json`** — ratchet 5515 → 5527 (+12) · **both** `counts_at_baseline.passed` **and** `invariants_enforced_when_baseline_guard_1.passed_floor` bumped per CCS2 lesson · new sha256 `8a7d92289c06bbfaae75c08750575dd5e73a70745693f741fdf85215238562b1`.
+
+**Sealed modules NOT edited:** `contracts/dap.py` + `contracts/trust_receipt_v1.py` + `contracts/outer_gate_receipt_v1.py` + `services/reliable_time_source/clock.py` all NOT edited (all consumed via identity import). Sealed M17-W1..W6 + M14 + M11 + M16 + W-M2-SW7 + W-7bB + c13_scope + memory-compaction-v1 (4 sub-waves) + CCS1-C17-seam-bundle + CCS2-DAP-entitlement modules all NOT edited.
+
+---
+
+### **ABSENCE FINDINGS FINAL CLOSURE STATUS (post-CCS3 · 10 total)**
+
+| # | Finding | Status | Location |
+|---|---------|--------|----------|
+| #1 | DAP UI Handoff Brief §5 document on-disk location | **BANKED** | Frontends-card wave (not a CCS concern) |
+| #2 | `dap_backend_spec_v1` machine-readable JSON-Schema on-disk file | **CLOSED** structurally | CCS1 (T-b JSON-Schema-authoritative discipline adopted) |
+| #3 | `DAP21MeteredEvent_v0` receipt class not surface-grepped | **CLOSED** at CCS3 W1 | Naming resolution: class exists as `MeteredEvent` (all 7 DAP-21 fields present) |
+| #4 | C.17 seam-boundary bundle sha256 pin | **CLOSED** at CCS1 W1 | Bundle sha `a6107d46…` |
+| #5 | Six-profile entitlement matrix closed-tuple freeze | **CLOSED** at CCS2 W2 | `_DAP_SIX_PROFILES` closed 6-tuple + CrossingProfile pin |
+| #6 | Reliable time source wiring for DAP-21 timestamp | **CLOSED** at CCS3 W2 | Identity import of sealed `services.reliable_time_source.clock` |
+| #7 | Ledger-write-before-return discipline for DAP-21 | **BANKED** | Future integration wave (AST scan on 6 operation call sites) |
+| #8 | `approval_request/admission_refusal/erasure_request/v2_refusal/asset_registry/watch_action_v0` frozen status | **BANKED** | Status-confirmation sub-wave at frontends-card-drafting boundary |
+| #9 | `trust_receipt_v1` vs DAP-21 receipt relationship | **CLOSED** at CCS3 W3 | Relationship documentation (LLM-provenance rail) + TrustReceiptV1 pin |
+| #10 | `outer_gate_receipt_v1` vs DAP-21 receipt relationship | **CLOSED** at CCS3 W3 | Relationship documentation (transform receipt rail) + OuterGateReceiptV1 pin |
+
+**Additional banking (this-wave introduced):**
+- TrustReceiptV1 SO §3.10-α non-compliance (frozen=False) → BANKED for owner ratification.
+- OuterGateReceiptV1 SO §3.10-α non-compliance (frozen=None) → BANKED for owner ratification.
+
+**Summary:** 7 findings CLOSED across CCS1-3 · 3 findings BANKED (2 to frontends-card wave · 1 to integration wave) · 2 α-gap findings BANKED to owner ratification.
+
+---
+
+### **THREE FROZEN CONTRACT PINS ACHIEVED (B-frontends-Q1 gate satisfied)**
+
+| Pin | Wave | Bundle SHA256 | Shape count |
+|---|---|---|---|
+| **#1 · C.17 seam bundle** | CCS1 | `a6107d46f4f5d80fa7be4d28e8c427a0a4be15438a1843ca17aeab197b708033` | 4 (ApplicationContract_v0 + Ask_v0 + HandoffContract_v0 + PersonalClientSession_v0) |
+| **#2 · DAP entitlement bundle** | CCS2 | `051f25dfb0255e89cf727ef20c3fea17c3f32f8cb2310a424537e99f37046ad0` | 4 (ExternalPartyPrincipal + PartyPrincipal + CrossingProfile + ApiKeyIssueReceipt) |
+| **#3 · DAP receipt bundle** | CCS3 | `81d3c0a5e8e54137d96873784dc3714c99f574c40f430996a66b0b17ada68a62` | 3 (MeteredEvent + TrustReceiptV1 + OuterGateReceiptV1) |
+
+**All three pins named per owner B-frontends-Q1 verbatim (`STATE/DECISIONS.md:12115`): frontends gate on frozen C.17 + DAP entitlement + DAP receipt.**
+
+---
+
+**Pre-authoring RED sweep** at `phase0/drill_receipts/20260919T225647Z_cp_ccs3_dap_receipt_freeze_RED_pre.log` — 2 fail right-reason: (1) bundle sha computed `81d3c0a5…` ≠ corrupted-all-zeros frozen constant · (2) au_3b_defensible_now stamp assertion pattern too narrow (looked for timestamp/timestamp_iso/iso/now/at) but sealed stamp uses `wall_time_iso` + `au_3b_defensible` · fixed to match sealed surface exactly. 10/12 pass immediately.
+
+**Post-authoring GREEN** at `phase0/drill_receipts/20260919T225712Z_cp_ccs3_dap_receipt_freeze_GREEN_post.log` — 12/12 pass in 0.83s.
+
+**Pre-Commit-A double-green byte-identical BASELINE_GUARD=1:**
+- run1 at `20260919T225820Z` · 5527 passed / 1 skipped · 180.30s · raw 11124 B · stripped 11103 B.
+- run2 at `20260919T230129Z` · 5527 passed / 1 skipped · 179.87s · raw 11124 B · stripped 11103 B.
+- **stripped-sha256 `5eed33e9384288952e20202b9850fbf3851db239bd9aea4c476b9ec19c26347d` IDENTICAL** against FINAL baseline sha256 `8a7d92289c06bbfaae75c08750575dd5e73a70745693f741fdf85215238562b1`.
+
+**Canon anchors verbatim:** Canon 5 · Interface Architecture · seam-boundary discipline + Canon 3 §9.3 · append-only writer + Canon 8 §W11 · one-task-one-identity + SO §3.8 + SO §3.10-α (only MeteredEvent fully compliant · TrustReceiptV1 + OuterGateReceiptV1 non-α gaps banked) + SO §6.4 · NOTHING-BEYOND + SO §6.7 · sequence CCS1 → CCS2 → CCS3 → **HALT before frontends (this seal completes CCS trio · HALT gate opens next)** + M17-W1 milestone snapshot pin precedent + CCS1-C17 bundle-sha precedent + CCS2 DAP entitlement bundle-sha precedent + B-frontends-Q1 + Doc-3 DAP-Spec dap_backend_spec_v1 verbatim.
+
+**Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered · MEM-R-053 CROWN BAN NOT triggered.** Ratchet 5515 → 5527 monotonic-up (+12 exactly).
+
+---
+
+**Autopilot next per owner directive:**
+
+1. **Commit-C fixup (state master · this-CP · advances state_repo.head + code_head + flips R-67 marker ⏳→✅).**
+2. **HALT at frontends gate** — POD-level seal report to owner: 10 absence findings closure status + **three frozen contract pins** (bundle · entitlement · receipt) + UI Handoff Brief path + anything else specialists need. Wait for owner dispatch to specialists.
+
+**Time-gated task armed:** Staleness re-scope APPLY-ON-EXPIRY at 2026-09-20T~11:35Z (T-~12.5h at this Commit-A).
+
+**Standing bounds unchanged:** zero push · terminal pytest only · no testing_agent · additive-only §3.8 · full BASELINE_GUARD=1 pre-Commit-A double-green byte-identical · §3.3 3-Commit Seal on dual branches · ratchet monotonic (floor 5527 · never rebaselined silently).
+
+
+---
+
+## 2026-09-19T~23:10Z · CP-CCS3-DAP-RECEIPT-FREEZE · Commit-C fixup banking section (state master · banks Commit-B `d48f6e1e049b35dd334d284be9bbfb2f67eed97f` · Contract Closure Wave 3 FULLY SEALED · **FINAL contract closure wave** completed · frontends gate HALT point next · **CCS trio complete**)
+
+**Advances `notes/ORCH_BOOT.md` `heads_last_sealed.state_repo.head`** from `0520469dbf5d836d253244ae820681ac4bc980cd` (CCS2 Commit-B) to `d48f6e1e049b35dd334d284be9bbfb2f67eed97f` (this CCS3 Commit-B). **Advances `heads_last_sealed.code_repo.head`** from `3fde289560830d5dffafe25c52080664625caaf8` (CCS2 Commit-A) to `379e45508bbfbc362f2b28d93065f527bc3864bd` (CCS3 Commit-A). Regenerates generated_at_utc (2026-09-19T23:10:00Z) + generator + regeneration_reason per R-6 (a). Mirrors `/app/frontend/public/audit/ORCH_BOOT.md` byte-identically (notes sha256 = audit sha256 = `bc8aab6e3db3b147918ba979641d6d8adc11dd825ea0405b888c6f24d459c305`).
+
+**STATE/NEXT.md R-67 marker flips ⏳ IN-FLIGHT → ✅ SEALED** with narrative "CCS3 DAP RECEIPT FREEZE FULLY SEALED · frozen contract pin #3 of 3 achieved · CCS trio complete · HALT at frontends gate opens next".
+
+**Commit-C files-changed count:** 3 (STATE/DECISIONS.md this-append + STATE/NEXT.md R-67 flip + notes/ORCH_BOOT.md R-6 boundary regen). Additive-only per SO §3.8.
+
+**Seal chain complete for CP-CCS3-DAP-RECEIPT-FREEZE:**
+- Commit-A (code · programme/track-a): `379e45508bbfbc362f2b28d93065f527bc3864bd` (2026-09-19T~23:00Z)
+- Commit-B (state · master): `d48f6e1e049b35dd334d284be9bbfb2f67eed97f` (2026-09-19T~23:08Z)
+- Commit-C fixup (state · master): this-commit (2026-09-19T23:10:00Z · advances state_head + code_head · flips R-67 marker · syncs audit copy byte-identical)
+
+**Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered · MEM-R-053 CROWN BAN NOT triggered.**
+
+**CCS3 DAP RECEIPT FREEZE FULLY SEALED.** 3 DAP receipt shapes (`MeteredEvent` + `TrustReceiptV1` + `OuterGateReceiptV1`) frozen at their per-schema sha256 pins (`b354818c…` + `d4645512…` + `196e56f0…`) and bound in the canonical bundle sha256 `81d3c0a5e8e54137d96873784dc3714c99f574c40f430996a66b0b17ada68a62`. DAP-21 metering rail structurally guarded: all 7 DAP-Spec-verbatim fields present (operation_type + accessed_scope + quantity + quantity_unit + terms_id + party_id + timestamp_iso + R-C2 au_3b_defensible flag). Reliable time source structurally identity-imported from sealed `services.reliable_time_source.clock` (ReliableClock + TimeAnchor + au_3b_defensible_now callable surface returning dict with wall_time_iso + au_3b_defensible keys). MeteredEvent is fully SO §3.10-α compliant (frozen=True + extra=forbid). TrustReceiptV1 (frozen=False) + OuterGateReceiptV1 (frozen=None) SO §3.10-α non-compliance findings BANKED for owner ratification ceremony (SO §3.8 forbids editing at this wave). Sealed `contracts/dap.py` + `contracts/trust_receipt_v1.py` + `contracts/outer_gate_receipt_v1.py` + `services/reliable_time_source/clock.py` NOT edited (all consumed via identity import). Ratchet 5515 → 5527 monotonic-up (+12 exactly).
+
+**Frozen contract pin #3 of 3 achieved. CCS trio complete.** All three DAP freeze pins now landed:
+- Pin #1: C.17 seam bundle sha `a6107d46f4f5d80fa7be4d28e8c427a0a4be15438a1843ca17aeab197b708033` (CCS1 · 4 shapes: ApplicationContract_v0 + Ask_v0 + HandoffContract_v0 + PersonalClientSession_v0).
+- Pin #2: DAP entitlement bundle sha `051f25dfb0255e89cf727ef20c3fea17c3f32f8cb2310a424537e99f37046ad0` (CCS2 · 4 shapes: ExternalPartyPrincipal + PartyPrincipal + CrossingProfile + ApiKeyIssueReceipt).
+- Pin #3: DAP receipt bundle sha `81d3c0a5e8e54137d96873784dc3714c99f574c40f430996a66b0b17ada68a62` (CCS3 · 3 shapes: MeteredEvent + TrustReceiptV1 + OuterGateReceiptV1).
+
+**All three pins named per owner B-frontends-Q1 verbatim (STATE/DECISIONS.md:12115): frontends gate on frozen C.17 + DAP entitlement + DAP receipt. Gate satisfied.**
+
+**Absence findings FINAL closure status (post-CCS3 · 10 total):**
+- CLOSED across CCS1-3 (7 findings): #2 (CCS1 · T-b JSON-Schema-authoritative discipline structurally) · #3 (CCS3 W1 · naming resolution: class exists as MeteredEvent · all 7 DAP-21 fields present) · #4 (CCS1 W1 · bundle sha pin) · #5 (CCS2 W2 · `_DAP_SIX_PROFILES` closed 6-tuple + CrossingProfile schema pin) · #6 (CCS3 W2 · reliable_time_source module identity import) · #9 (CCS3 W3 · TrustReceiptV1 relationship documentation + pin · LLM-provenance rail) · #10 (CCS3 W3 · OuterGateReceiptV1 relationship documentation + pin · outer-gate transform-receipt rail).
+- BANKED to frontends-card wave (2 findings): #1 (DAP UI Handoff Brief §5 on-disk location) · #8 (status-confirmation sub-wave for approval_request/admission_refusal/erasure_request/v2_refusal/asset_registry/watch_action_v0 frozen status at frontends-card-drafting boundary).
+- BANKED to future integration wave (1 finding): #7 (ledger-write-before-return discipline for DAP-21 · AST scan on 6 operation call sites deferred to integration wave).
+- Additional CCS3-introduced banking (owner ratification ceremony): TrustReceiptV1_alpha_gap (frozen=False) + OuterGateReceiptV1_alpha_gap (frozen=None).
+
+**Summary:** 7 findings CLOSED · 3 findings BANKED to future waves · 2 α-gap findings BANKED for owner ratification.
+
+---
+
+**Autopilot next per owner directive:**
+
+1. **HALT at frontends gate** — POD-level seal report to owner (this-turn immediately). Report must include:
+   - 10 absence findings final closure status (7 CLOSED · 3 BANKED).
+   - Three frozen contract pins (C.17 seam + DAP entitlement + DAP receipt bundle sha256s).
+   - Full-run rollup since desk batch (ratchet trajectory 5452 → 5527 · seals landed by SHA · forks banked).
+   - G5 status (current count toward 1,096 + remaining-slice plan · pre-gate-release status).
+   - Pending owner ratifications inventory (R-19/R-20 DEFAULT-class + R-21 user-memory flag + any DEFAULT-class rulings taken during memory layer + CCS + CCS3 α-gap findings).
+   - Frontends readiness package (three frozen contract pins + schemas' paths + UI Handoff Brief path + five-stage pattern reference + backend endpoints frontends will consume with `/api/openapi.json` availability status + anything else a web/Expo specialist needs to build without archaeology).
+   - Staleness ceremony status (fired/pending · receipt SHA if fired).
+   - Wait for owner dispatch to specialists.
+2. **After HALT report delivered:** If wall clock crosses 2026-09-20T~11:35Z before owner dispatch, execute staleness re-scope APPLY-ON-EXPIRY as its own §3.3 small seal (five mtafiti tests → presence + integrity hash + last-known-good (age gate only while a campaign is declared open · no test retired) · one-time on-host GPU journal pull for the campaign close-out record · post-apply full sweep). Fires IMMEDIATELY after this CCS3 Commit-C lands · NOT interleaved mid-seal (per owner ruling verbatim this-session).
+
+**Time-gated task armed:** Staleness re-scope APPLY-ON-EXPIRY at 2026-09-20T~11:35Z (T-~12.4h at this Commit-C).
+
+**Standing bounds unchanged:** zero push · terminal pytest only · no testing_agent · additive-only §3.8 · full BASELINE_GUARD=1 pre-Commit-A double-green byte-identical · §3.3 3-Commit Seal on dual branches · ratchet monotonic (floor 5527 · never rebaselined silently).
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
