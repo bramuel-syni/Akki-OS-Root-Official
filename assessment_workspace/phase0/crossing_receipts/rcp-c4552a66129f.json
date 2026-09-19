@@ -1,0 +1,15 @@
+{
+  "actor": "operator@estate",
+  "at_iso": "2026-09-19T09:17:45.053455Z",
+  "endpoint_host": "rds-data.eu-west-1.amazonaws.com",
+  "kind": "rds_data_api",
+  "masking_tier": "structure_only",
+  "payload_shape": {
+    "row_count": 0,
+    "statement_shape": "SELECT information_schema"
+  },
+  "receipt_id": "rcp-c4552a66129f",
+  "residency_region": "eu-west-1",
+  "tenant_id": "estate",
+  "verb": "ExecuteStatement"
+}

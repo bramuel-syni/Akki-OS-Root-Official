@@ -1,0 +1,19 @@
+{
+  "artifact_ref": {
+    "artifact_id": "seam3-test-artifact",
+    "artifact_type": "objective_request",
+    "version": "v2"
+  },
+  "at": "2026-09-19T11:43:36.420772Z",
+  "decision": "refused",
+  "lawful_basis_ref": "lb-ref-seam3",
+  "reason": "no_defensibility_floor",
+  "row_id": "led-38b42cb6f483",
+  "run_id": "run-36784880e089",
+  "stage": "admit",
+  "stamp_audit": {
+    "refusal_family": "composition_below_floor",
+    "source": "seam3_test.i1_no_defensibility_floor"
+  },
+  "trace_id": "trace-3dea5fa4b0e1"
+}

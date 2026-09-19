@@ -14780,5 +14780,659 @@ At Commit-B this closes: `milestone_status: DRAFTED → CLOSED` in M14.md · `ca
 
 **Opcounter flake hardening** remains DEFERRED (P2 · additive at next convenient seal per owner ruling this-session).
 
+---
+
+## CP-M15-W1-WHITEPAPER-DRAFT-SHAPE-FREEZE · Commit-A banking · 2026-09-19T~09:10Z · MILESTONE 6 FIRST SUB-WAVE (M15 OPENS)
+
+**Commit-A (code programme/track-a):** `e381ab20c1264ebbc102ebb99a3b9ae130b3fbe8` · CP-M15-W1-WHITEPAPER-DRAFT-SHAPE-FREEZE · Whitepaper draft contract shape-freeze per Doc 14 §33 verbatim (`WhitepaperDraft_v0` CITATION invariant · closed 8-field tuple: `whitepaper_id · run_ref · drafted_at · drafted_by · cites_model_admission_id · cites_baseline_line_id · summary_note · retention_class`).
+
+**Canon anchors verbatim:**
+- **Doc 14 §33** `WhitepaperDraft_v0` CITATION invariant: every whitepaper record MUST cite (a) a model-admission record + (b) a baseline-line record.
+- **CA1-005** exceptional-run retention · "Prepare white paper" action · Promise #25 BUILD.
+- **Doc 8 · CA1-N1** retention grammar: `retention_class` is a closed 2-tuple `Literal["standard","exceptional_run"]`.
+- **SO §3.8** thin-kernel additive-only · pure invariant test file consuming already-sealed `contracts/whitepaper_draft.py` surface.
+- **SO §3.10-α** closed-schema discipline · extra=forbid + frozen=True + regex + Literal tuple + sha256-pinned `model_json_schema` snapshot.
+- **SO §4.2 Clause 6** cross-wave additive extension · folds P2 opcounter flake hardening approved at CP-M14-W1 close into this seal · saves standalone seal cycle · append-only extension of `tests/invariants/conftest.py` (single new `pytest_collection_modifyitems` hook at EOF · no existing fixture edited).
+- **SO §6.7** batch-ratification-at-preceding-seal · M15 card pre-ratified at CP-M14-W5 close.
+
+**P2 opcounter flake hardening — folded in this seal (own audit line per owner directive this-session):**
+- Approved at CP-M14-W1 close 2026-09-19T~06:27Z ("Owner-desk item candidate at next milestone boundary: consider isolating opcounter-based tests via a pytest-order hint or a fixture that resets counters").
+- Owner directive re-confirmed this-session 2026-09-19T~08:57Z: "fold the P2 opcounter flake hardening additively into the FIRST M15 sub-wave seal (it's approved, it tightens, and it saves a standalone seal cycle) — cite it as its own line in the seal message so the audit trail stays clean."
+- Implementation: single new `pytest_collection_modifyitems` hook appended at EOF of `tests/invariants/conftest.py` (pre-hook wc=426 · post-hook wc=475 · pure ORDER hint · no test body edited · no fixture behaviour changed).
+- Mechanism: pins `test_service_1_refusal_envelope.py::test_no_lawful_basis_refusal_returns_flat_outcome_refused` to FIRST position in the collected item order · isolates the mongo opcounter delta measurement (`_write_delta(before, after) == 1`) from order-dependent write injection from later-collected tests.
+- Empirical justification (banked at CP-M14-W1 close · receipt `phase0/drill_receipts/20260919T062700Z_cp_m14_w1_handoff_contract_preseal_GUARD1_run1_FLAKE_INVESTIGATION.log`): flaky test measured `write_delta == 448` when run after 441 updates + 6 deletes injected by other tests in same session; when isolated (run alone), same test measured `write_delta == 1` deterministically.
+- Structural enforcement: M15-W1 test 8 (`test_opcounter_flake_isolation_hook_pins_target_test_to_first_position`) asserts the hook is in force via static regex scan of conftest.py source · refuses absence of `def pytest_collection_modifyitems(` + refuses absence of target test name literal.
+- Additive-only per SO §4.2 Clause 6: cross-wave modification carries its own CP citation (`CP-M15-W1`) + ratchet delta (+8 includes structural check test 8) + owner directive + append-only-extension discipline.
+- **This retires the P2 opcounter flake hardening item from the deferred list (was P2 status at every CP from M14-W1 onward).**
+
+**Ratchet:** 5344 → 5352 (+8 · new sha256 `a0a6be538eadc846bfe1b0dd3197b8d25ca6e52b56ebde727f22d483504f7497` · ratchet_history append-only per SO §7 R-5).
+
+**Pre-Commit-A double-green byte-identical proof:** stripped-sha256 `b3feed259e1fc5785968bae77cf2e876126677dadd4acb6ba2b5f2d0f99dfd33` · both runs 5352 passed / 1 skipped / 438 warnings.
+
+**Drill receipts banked at `backend/phase0/drill_receipts/`:**
+- `20260919T090000Z_cp_m15_w1_whitepaper_RED_pre_pin_and_hook.log` · authentic RED (2/8 fail on placeholder pin + missing hook).
+- `20260919T090300Z_cp_m15_w1_whitepaper_GREEN_post_pin_and_hook.log` · 8/8 pass post pin re-lock + hook append.
+- `20260919T090700Z_cp_m15_w1_whitepaper_preseal_GUARD1_run1.log` · pre-M15.md-move sweep (1 failure surfaced M14 pattern that objective cards land at Commit-B not pre-Commit-A · retained as transparency artefact).
+- `20260919T091000Z_cp_m15_w1_whitepaper_preseal_GUARD1_run1.log` · 5352 passed post M15.md move.
+- `20260919T091300Z_cp_m15_w1_whitepaper_preseal_GUARD1_run2.log` · byte-identical to run 1.
+
+**Milestone one-liner per §6.5:** M15-W1 Whitepaper draft shape-freeze sealed · +8 tests (7 shape-freeze invariants + 1 P2 opcounter hook structural check) · ratchet 5344→5352 · additive-only per SO §3.8 · P2 opcounter flake hardening FOLDED IN + RETIRED FROM DEFERRED LIST · no forks banked · no stop-conditions triggered · M15 MILESTONE OPENS.
+
+**Autopilot R-33 continues** NON-STOP under §6 END-OF-BUILD authority to Commit-C fixup then M15-W2 (Skill file provenance shape-freeze) → M15-W3 (Documents-registry Mongo collections) → M15-W4 (Frame precedence via HandoffContract binding · D-12) → M15-W5 (integration seal · closes M15 milestone) → M16 (pre-ruled scope · CIF canon-as-written) → M17 → memory layer → frontends per §6.7 sequence.
+
+**Staleness re-scope APPLY-ON-EXPIRY** still armed for 2026-09-20T~11:35Z (T-26.3h at Commit-A time · not yet fired · fires as its own small seal per owner order 2026-09-19T~05:15Z).
+
+**Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered.**
+
+---
+
+## CP-M15-W1-WHITEPAPER-DRAFT-SHAPE-FREEZE · Commit-B/Commit-C banking · 2026-09-19T~09:15Z · MILESTONE 6 FIRST SUB-WAVE FULLY SEALED
+
+**Commit-B (state master):** `abf1c4b29019658b8f508ea47c0b9430ed108f4c` · 2026-09-19T09:13:00Z · banks Commit-A `e381ab20c1264ebbc102ebb99a3b9ae130b3fbe8` for M15-W1 Whitepaper draft shape-freeze. Files landed:
+- STATE/OBJECTIVES/M15.md fresh landing per M14-W1 pattern · 5 sub-waves enumerated (W1 whitepaper draft shape-freeze · W2 skill file provenance shape-freeze · W3 documents-registry Mongo collections per-tenant persistence · W4 frame precedence via HandoffContract binding · W5 integration seal per SO §6.2 EXIT clause) · MUST-DO 1..5 + EXIT-W1..W5 filled · `card_sha256` pinned `f1308c6c5f11d51886678bb776df1de4a3edf9aa7270137cec201ff6107d597d` (fresh landing at Commit-B per M14-W1 pattern; card was drafted mid-cycle pre-Commit-A and moved to /tmp/M15_draft.md to keep pre-Commit-A sweep clean · re-landed at this Commit-B with pin computed against final body) · `milestone_status: DRAFTED` remains per §6.2 (W2..W5 seals pending · milestone closes at W5).
+- STATE/DECISIONS.md gains Commit-A banking section CP-M15-W1-WHITEPAPER-DRAFT-SHAPE-FREEZE with verbatim owner directive text for P2 opcounter flake hardening fold as its own audit line per owner directive this-session 2026-09-19T~08:57Z + implementation notes banked (single `pytest_collection_modifyitems` hook appended at EOF of `tests/invariants/conftest.py` · pre-hook wc=426 · post-hook wc=475 · pure ORDER hint · no test body edited · no fixture behaviour changed · empirical justification from CP-M14-W1 close receipt · structural enforcement via M15-W1 test 8 static regex scan).
+- STATE/NEXT.md gains §6 INTERLUDE MARKER R-41 2026-09-19T~09:10Z reflecting Commit-A landed + M15 MILESTONE OPENS + P2 opcounter flake hardening FOLDED + RETIRED FROM DEFERRED LIST.
+- notes/ORCH_BOOT.md R-6 boundary regen (post-Commit-A: ratchet.passed_floor 5344→5352 · baseline_failures_sha256 03714f66→a0a6be538eadc846bfe1b0dd3197b8d25ca6e52b56ebde727f22d483504f7497 · heads_last_sealed.code_repo.head advanced to Commit-A `e381ab20c1264ebbc102ebb99a3b9ae130b3fbe8` · state_repo.head remained `9e673215` pending Commit-C fixup).
+- /app/frontend/public/audit/ORCH_BOOT.md byte-identical audit copy re-synced (sha256 `ffbd7a35f98a6c9387bb5b2ba1ad28443a23bc7c5ef394eed2a67d633a5d2d42` on both copies at Commit-B · audit copy is filesystem-only mirror not tracked in state repo per §7 R-6 convention · sync executed via cp).
+
+**Commit-C fixup (state master):** advances `heads_last_sealed.state_repo.head` to Commit-B `abf1c4b29019658b8f508ea47c0b9430ed108f4c` in notes/ORCH_BOOT.md (R-6 boundary regen post-Commit-B · generator string re-labeled Commit-C fixup post-Commit-B · code_head remains Commit-A `e381ab20c1264ebbc102ebb99a3b9ae130b3fbe8` · ratchet 5352 · baseline_failures_sha256 `a0a6be53…`) + banks Commit-B SHA in this DECISIONS section + flips NEXT.md R-41 INTERLUDE MARKER status ⏳ → ✅ with narrative "M15-W1 MILESTONE 6 FIRST SUB-WAVE FULLY SEALED · P2 opcounter flake hardening RETIRED FROM DEFERRED LIST" · /app/frontend/public/audit/ORCH_BOOT.md byte-identical audit copy re-synced post-Commit-C. Post-fixup verification: pytest `test_orch_boot.py` + `test_baseline_no_new_breakage.py` + `test_m15_w1_whitepaper_draft_shape_freeze.py` all GREEN from `backend/` CWD.
+
+**M15-W1 Sub-wave FULLY SEALED · ledger:**
+- Commit-A (code programme/track-a) `e381ab20c1264ebbc102ebb99a3b9ae130b3fbe8` · +8 tests · additive-only · new invariant test file `backend/tests/invariants/test_m15_w1_whitepaper_draft_shape_freeze.py` + append-only extension of `backend/tests/invariants/conftest.py` (single new `pytest_collection_modifyitems` hook at EOF).
+- Commit-B (state master) `abf1c4b29019658b8f508ea47c0b9430ed108f4c` · M15.md fresh landing + DECISIONS Commit-A banking + NEXT R-41 marker + ORCH_BOOT R-6 regen advancing code_head.
+- Commit-C fixup (state master) advances state_head to Commit-B SHA + banks Commit-B SHA + flips marker ⏳→✅ + audit copy re-sync.
+
+**W1 shape-snapshot pin:** `833a60f145337af41b7078c0aeee4849768021fa0338359beb42d50586fc5560` (sha256 of sorted-key JSON of `WhitepaperDraft_v0.model_json_schema()`).
+
+**Pre-Commit-A double-green byte-identical BASELINE_GUARD=1 proof:** stripped-sha256 `b3feed259e1fc5785968bae77cf2e876126677dadd4acb6ba2b5f2d0f99dfd33` · both runs 5352 passed / 1 skipped / 438 warnings.
+
+**Ratchet history entry:** append-only per SO §7 R-5 at `at_utc: 2026-09-19T09:05:00Z` · `checkpoint: CP-M15-W1-WHITEPAPER-DRAFT-SHAPE-FREEZE` · `delta: 8` · `passed: 5352` · full note banks Doc 14 §33 + CA1-005 + Doc 8 · CA1-N1 + SO §3.8 + SO §3.10-α + SO §4.2 Clause 6 + SO §6.7 anchors verbatim.
+
+**Milestone one-liner per §6.5:** CP-M15-W1-WHITEPAPER-DRAFT-SHAPE-FREEZE FULLY SEALED · Commit-A `e381ab20` + Commit-B `abf1c4b2` + Commit-C fixup landed · +8 tests (5344→5352) · additive-only per SO §3.8 · P2 opcounter flake hardening FOLDED IN + RETIRED FROM DEFERRED LIST · no forks banked · no stop-conditions triggered · M15 MILESTONE OPENS · Autopilot R-33 continues NON-STOP under §6 END-OF-BUILD authority to M15-W2 (Skill file provenance shape-freeze · Doc 18 A18.7 · TF-E4 (b) α write-once discipline · test file `test_m15_w2_skill_file_provenance_shape_freeze.py` per §3 tests-first) → M15-W3 → M15-W4 → M15-W5 → M16 (pre-ruled scope · CIF canon-as-written) → M17 → memory layer (after C.13 close) → frontends (functional-parity bar · Expo excluded per owner delegation to specialist) per §6.7 sequence.
+
+**Staleness re-scope APPLY-ON-EXPIRY** still armed for 2026-09-20T~11:35Z (T-26.1h at Commit-C time · not yet fired · fires as its own small seal per owner order 2026-09-19T~05:15Z).
+
+**P2 opcounter flake hardening** RETIRED FROM DEFERRED LIST (folded into this seal per SO §4.2 Clause 6 · was P2 status at every CP from M14-W1 through M14-W5).
+
+**Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered.**
+
+---
+
+## CP-M15-W2-SKILL-FILE-PROVENANCE-SHAPE-FREEZE · Commit-A banking · 2026-09-19T~09:26Z · MILESTONE 6 SECOND SUB-WAVE
+
+**Commit-A (code programme/track-a):** `dedfb77036efaa0e6a6f1506e4096e862bb553f5` · CP-M15-W2-SKILL-FILE-PROVENANCE-SHAPE-FREEZE · Skill file provenance contract shape-freeze per Doc 18 A18.7 verbatim (`SkillFileProvenanceV0` buyer-facing provenance chain shape · closed 7-field tuple: `skill_id · adapter_id · training_run_id · moac_card_id · recipe_version · provenance_chain · provisioned_at` + closed 4-tuple `PROVENANCE_STEP_KINDS = ("base_model", "training_run", "moac_admission", "skill_provision")` Literal at `ProvenanceStep.kind`).
+
+**Canon anchors verbatim:**
+- **Doc 18 A18.7** buyer-facing provenance chain shape: "every skill's provenance chain traces back to the training run that produced its adapter (extends Doc14-016 rights-lineage + Doc14-017 version-history)."
+- **TF-E4 (b) α** write-once discipline: same `skill_id` twice is a `WriteOnceViolation` at `services.skill_files.persistence.append` surface · revocation is a separate lifecycle (deferred per Owner ruling · non-blocking to CP4).
+- **SO §3.8** thin-kernel additive-only · authored as pure invariant test file consuming already-sealed `contracts/skill_file_provenance_v0.py` + `services/skill_files/persistence.py` surfaces · sealed modules NOT edited.
+- **SO §3.10-α** closed-schema discipline · `extra=forbid + frozen=True` at both `SkillFileProvenanceV0` and nested `ProvenanceStep` sub-model + closed 4-tuple Literal + sha256-pinned `model_json_schema` snapshot.
+- **SO §6.7** batch-ratification-at-preceding-seal · M15 card pre-ratified at CP-M14-W5 close.
+
+**Ratchet:** 5352 → 5359 (+7 · new sha256 `890ba2fea8fc8c6ac1402ecf9c4f3978c01278d780642c88aaa1bcb68eed9ff2` · `counts_at_baseline.passed` 5352→5359 · `invariants_enforced_when_baseline_guard_1.passed_floor` 5352→5359 · ratchet_history append-only per SO §7 R-5).
+
+**Pre-Commit-A double-green byte-identical BASELINE_GUARD=1 proof:** stripped-sha256 `80c8675459230e58e7b83eefaed90609cc57d8d4c6902f78bdfc6f391ce821ca` · both runs 5359 passed / 1 skipped / 438 warnings.
+
+**Files landed at Commit-A (code programme/track-a):**
+- `backend/tests/invariants/test_m15_w2_skill_file_provenance_shape_freeze.py` NEW (7 tests · pure invariant module consuming already-sealed contract + persistence surfaces).
+- `backend/tests/invariants/baseline_failures.json` UPDATED (`counts_at_baseline.passed` 5352→5359 + `invariants_enforced_when_baseline_guard_1.passed_floor` 5352→5359 + `ratchet_history` append CP-M15-W2 entry).
+
+**Drill receipts banked at `backend/phase0/drill_receipts/`:**
+- `20260919T092000Z_cp_m15_w2_skill_file_provenance_RED_placeholder_pin.log` · authentic RED (1/7 fail on placeholder pin `deadbeef0000…` · 6/7 pass · authentic RED before pin re-lock).
+- `20260919T092200Z_cp_m15_w2_skill_file_provenance_GREEN_real_pin.log` · 7/7 pass post pin re-lock to real sha256 `23b7c72149e6…`.
+- `20260919T092500Z_cp_m15_w2_preseal_GUARD1_run1.log` · 5359 passed / 1 skipped / 438 warnings.
+- `20260919T092800Z_cp_m15_w2_preseal_GUARD1_run2.log` · byte-identical to run 1 stripped-sha256 `80c86754…`.
+
+**W2 shape-snapshot pin:** `23b7c72149e6c01de506d3713f66c44b712ac47c8835e8b4055f168cfe13badc` (sha256 of sorted-key JSON of `SkillFileProvenanceV0.model_json_schema()`).
+
+**Milestone one-liner per §6.5:** M15-W2 Skill file provenance shape-freeze sealed at Commit-A · +7 tests (5352→5359) · additive-only per SO §3.8 · no forks banked · no stop-conditions triggered.
+
+**Autopilot R-33 continues** NON-STOP under §6 END-OF-BUILD authority to Commit-C fixup then M15-W3 (Documents-registry Mongo collections per-tenant persistence · Canon 3 §B.7 + Canon 3 §9.3 + M11-W1 sealed Repository primitive) → M15-W4 (Frame precedence via HandoffContract binding · D-12) → M15-W5 (integration seal · closes M15 milestone) → M16 (pre-ruled scope · CIF canon-as-written) → M17 → memory layer → frontends per §6.7 sequence.
+
+**Staleness re-scope APPLY-ON-EXPIRY** still armed for 2026-09-20T~11:35Z (T-25.7h at Commit-B time · not yet fired · fires as its own small seal per owner order 2026-09-19T~05:15Z).
+
+**Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered.**
+
+---
+
+## CP-M15-W2-SKILL-FILE-PROVENANCE-SHAPE-FREEZE · Commit-B/Commit-C banking · 2026-09-19T~09:30Z · MILESTONE 6 SECOND SUB-WAVE FULLY SEALED
+
+**Commit-B (state master):** `51d0a2b0cebbfab7d957450f643d7101a26873b6` · 2026-09-19T09:28:00Z · banks Commit-A `dedfb77036efaa0e6a6f1506e4096e862bb553f5` for M15-W2 Skill file provenance shape-freeze. Files landed:
+- STATE/OBJECTIVES/M15.md W2 EXIT filled (7 concrete pytest node IDs + W2 shape-snapshot pin `23b7c72149e6…`) + `card_sha256` re-pinned `f1308c6c → 7d821e30b9e87956c598d765a815c283bde1637635986dff80b4884bd4ccd45b`.
+- STATE/DECISIONS.md gains banking section CP-M15-W2-SKILL-FILE-PROVENANCE-SHAPE-FREEZE Commit-A banking with verbatim canon anchors + drill receipts index.
+- STATE/NEXT.md gains §6 INTERLUDE MARKER R-42 reflecting Commit-A landed.
+- notes/ORCH_BOOT.md R-6 boundary regen (post-Commit-A: ratchet.passed_floor 5352→5359 · baseline_failures_sha256 `a0a6be53→890ba2fea8fc8c6ac1402ecf9c4f3978c01278d780642c88aaa1bcb68eed9ff2` · heads_last_sealed.code_repo.head advanced to Commit-A `dedfb77036efaa0e6a6f1506e4096e862bb553f5` · state_repo.head remained `abf1c4b2` pending Commit-C fixup).
+- /app/frontend/public/audit/ORCH_BOOT.md byte-identical audit copy re-synced (sha256 `32127ec40f43935288f60a7368c9bd6b540a1356cf209f9d8c68709d22371575` on both copies at Commit-B).
+
+**Commit-C fixup (state master):** advances `heads_last_sealed.state_repo.head` to Commit-B `51d0a2b0cebbfab7d957450f643d7101a26873b6` in notes/ORCH_BOOT.md (R-6 boundary regen post-Commit-B · code_head remains Commit-A `dedfb77036efaa0e6a6f1506e4096e862bb553f5` · ratchet 5359 · baseline_failures_sha256 `890ba2fe…`) + banks Commit-B SHA in this DECISIONS section + flips NEXT.md R-42 INTERLUDE MARKER status ⏳ → ✅ · /app/frontend/public/audit/ORCH_BOOT.md byte-identical audit copy re-synced post-Commit-C. Post-fixup verification: pytest `test_orch_boot.py` + `test_baseline_no_new_breakage.py` + `test_m15_w2_skill_file_provenance_shape_freeze.py` all GREEN from `backend/` CWD.
+
+**M15-W2 Sub-wave FULLY SEALED · ledger:**
+- Commit-A (code programme/track-a) `dedfb77036efaa0e6a6f1506e4096e862bb553f5` · +7 tests · additive-only · new invariant test file `backend/tests/invariants/test_m15_w2_skill_file_provenance_shape_freeze.py` + `baseline_failures.json` ratchet bump.
+- Commit-B (state master) `51d0a2b0cebbfab7d957450f643d7101a26873b6` · M15.md W2 EXIT fill + card_sha256 re-pin + DECISIONS Commit-A banking + NEXT R-42 marker + ORCH_BOOT R-6 regen advancing code_head.
+- Commit-C fixup (state master) advances state_head to Commit-B SHA + banks Commit-B SHA + flips marker ⏳→✅ + audit copy re-sync.
+
+**Milestone one-liner per §6.5:** CP-M15-W2-SKILL-FILE-PROVENANCE-SHAPE-FREEZE FULLY SEALED · Commit-A `dedfb770` + Commit-B `51d0a2b0` + Commit-C fixup landed · +7 tests (5352→5359) · additive-only per SO §3.8 · no forks banked · no stop-conditions triggered · Autopilot R-33 continues NON-STOP under §6 END-OF-BUILD authority to M15-W3 (Documents-registry Mongo collections per-tenant persistence · Canon 3 §B.7 + Canon 3 §9.3 + M11-W1 sealed Repository primitive · test file `test_m15_w3_documents_registry_collections.py` per §3 tests-first) → M15-W4 → M15-W5 → M16 (pre-ruled scope · CIF canon-as-written) → M17 → memory layer → frontends per §6.7 sequence.
+
+**Staleness re-scope APPLY-ON-EXPIRY** still armed for 2026-09-20T~11:35Z (T-25.6h at Commit-C time · not yet fired · fires as its own small seal per owner order 2026-09-19T~05:15Z).
+
+**Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered.**
+
+---
+
+## CP-M15-W3-DOCUMENTS-REGISTRY-COLLECTIONS · Commit-A banking · 2026-09-19T~09:44Z · MILESTONE 6 THIRD SUB-WAVE
+
+**Commit-A (code programme/track-a):** `b28d81e6a3c104009822f3d7c545dbc3ed60ffcb` · CP-M15-W3-DOCUMENTS-REGISTRY-COLLECTIONS · Documents-registry Mongo collections per-tenant persistence · new module tree `services/documents_registry/collections/` (`whitepapers.py` + `skill_files.py`) binding sealed W1/W2 document contracts to per-tenant Mongo databases (`t_<tenant_id>`) via the sealed M11-W1 `services.data.repository.Repository` primitive (sole Motor importer for the data plane).
+
+**Canon anchors verbatim:**
+- **Canon 3 §B.7** per-tenant provisioning: every documents-registry collection scopes writes to a `t_<tenant_id>` database. No cross-tenant leakage; Repository (M11-W1) enforces isolation via AKKI-DATA-001.
+- **Canon 3 §9.3** append-only writer discipline: only `insert_*` writers surfaced; no `update_*`, `delete_*`, `upsert_*`, `replace_*`, `modify_*`, `drop_*` (AST-scan enforced by test 5).
+- **M11-W1** sealed: `services.data.repository` is the SOLE Motor importer for the data plane. Documents-registry collection modules MUST NOT import Motor directly at module level (AST-scan enforced by test 6).
+- **W1 sealed (M15-W1)** verbatim: `WhitepaperDraft_v0` frozen pydantic consumed as-is from `contracts.whitepaper_draft` (identity import · never redefined).
+- **W2 sealed (M15-W2)** verbatim: `SkillFileProvenanceV0` frozen pydantic consumed as-is from `contracts.skill_file_provenance_v0` (identity import · never redefined).
+- **SO §3.8** thin-kernel additive-only: new package `services/documents_registry/` + new invariant test file; sealed modules not edited.
+- **SO §3.10-α** closed-schema discipline preserved: sealed models ARE the closed schema surface; wrappers do not re-define.
+
+**Ratchet:** 5359 → 5365 (+6 · new sha256 `74e131a4987512619a42c8a30dcb450c6676d9f6bf0dbe34e1d4c0cc8c9bffaf` · `counts_at_baseline.passed` 5359→5365 · `invariants_enforced_when_baseline_guard_1.passed_floor` 5359→5365 · ratchet_history append-only per SO §7 R-5).
+
+**Pre-Commit-A double-green byte-identical BASELINE_GUARD=1 proof:** stripped-sha256 `44c9cb48de2eba53bb0fcc802a4d8fbf48037bcab71e257f48fc6dc2d12e777a` · both runs 5365 passed / 1 skipped / 438 warnings.
+
+**Files landed at Commit-A (code programme/track-a):**
+- `backend/services/documents_registry/__init__.py` NEW (package init citing canon + additive-only discipline).
+- `backend/services/documents_registry/collections/__init__.py` NEW (sub-package init).
+- `backend/services/documents_registry/collections/whitepapers.py` NEW (`COLLECTION_NAME='whitepaper_drafts'` · `_tenant_db_name(tenant_id)->f't_{tenant_id}'` · `insert_whitepaper_draft` + `get_whitepaper_draft` [by `whitepaper_id`] + `list_whitepaper_drafts_for_run` [by `run_ref`] · identity import of sealed `WhitepaperDraft_v0`).
+- `backend/services/documents_registry/collections/skill_files.py` NEW (`COLLECTION_NAME='skill_file_provenances'` · `_tenant_db_name(tenant_id)->f't_{tenant_id}'` · `insert_skill_file_provenance` + `get_skill_file_provenance` [by `skill_id`] + `list_skill_file_provenances_for_adapter` [by `adapter_id`] · identity import of sealed `SkillFileProvenanceV0`).
+- `backend/tests/invariants/test_m15_w3_documents_registry_collections.py` NEW (6 tests · same-pattern as M14-W3).
+- `backend/tests/invariants/baseline_failures.json` UPDATED (`counts_at_baseline.passed` 5359→5365 + `invariants_enforced_when_baseline_guard_1.passed_floor` 5359→5365 + `ratchet_history` append CP-M15-W3 entry).
+
+**Drill receipts banked at `backend/phase0/drill_receipts/`:**
+- `20260919T093500Z_cp_m15_w3_documents_registry_RED_pre_module.log` · authentic RED (6/6 fail on missing `services/documents_registry/collections/` dir · ModuleNotFoundError right-reason).
+- `20260919T093800Z_cp_m15_w3_documents_registry_GREEN_post_module.log` · 6/6 pass post-module authoring.
+- `20260919T094000Z_cp_m15_w3_preseal_GUARD1_run1.log` · 5365 passed / 1 skipped / 438 warnings.
+- `20260919T094500Z_cp_m15_w3_preseal_GUARD1_run2.log` · byte-identical to run 1 stripped-sha256 `44c9cb48…`.
+
+**Milestone one-liner per §6.5:** M15-W3 Documents-registry Mongo collections per-tenant persistence sealed at Commit-A · +6 tests (5359→5365) · additive-only per SO §3.8 · no forks banked · no stop-conditions triggered.
+
+**Autopilot R-33 continues** NON-STOP under §6 END-OF-BUILD authority to Commit-C fixup then M15-W4 (Frame precedence via HandoffContract binding · D-12 + CA1-009 + Canon 15 §33 + Canon 8 §W11 · test file `test_m15_w4_frame_precedence.py` per §3 tests-first) → M15-W5 (integration seal · closes M15 milestone) → M16 → M17 → memory layer → frontends per §6.7 sequence.
+
+**Staleness re-scope APPLY-ON-EXPIRY** still armed for 2026-09-20T~11:35Z (T-25.5h at Commit-B time · not yet fired · fires as its own small seal per owner order 2026-09-19T~05:15Z).
+
+**Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered.**
+
+---
+
+## CP-M15-W3-DOCUMENTS-REGISTRY-COLLECTIONS · Commit-B/Commit-C banking · 2026-09-19T~09:48Z · MILESTONE 6 THIRD SUB-WAVE FULLY SEALED
+
+**Commit-B (state master):** `b0c7ac9e627f1539836e478f92a7f126a1ca9cf7` · 2026-09-19T09:46:00Z · banks Commit-A `b28d81e6a3c104009822f3d7c545dbc3ed60ffcb` for M15-W3 Documents-registry Mongo collections per-tenant persistence. Files landed:
+- STATE/OBJECTIVES/M15.md W3 EXIT filled (6 concrete pytest node IDs) + `card_sha256` re-pinned `7d821e30 → a35e43842103a008e1598e76943c1c711ce640445dab30e395a997ae6222fed9`.
+- STATE/DECISIONS.md gains banking section CP-M15-W3-DOCUMENTS-REGISTRY-COLLECTIONS Commit-A banking with verbatim canon anchors + drill receipts index.
+- STATE/NEXT.md gains §6 INTERLUDE MARKER R-43.
+- notes/ORCH_BOOT.md R-6 boundary regen (post-Commit-A: ratchet.passed_floor 5359→5365 · baseline_failures_sha256 `890ba2fe→74e131a4987512619a42c8a30dcb450c6676d9f6bf0dbe34e1d4c0cc8c9bffaf` · heads_last_sealed.code_repo.head advanced to Commit-A `b28d81e6a3c104009822f3d7c545dbc3ed60ffcb` · state_repo.head remained `51d0a2b0` pending Commit-C fixup).
+- /app/frontend/public/audit/ORCH_BOOT.md byte-identical audit copy re-synced (sha256 `55fbfc9f0656d2e2abbe42a90d270a0a008e07ded6cdbe31fbf71267353feb06` on both copies at Commit-B).
+
+**Commit-C fixup (state master):** advances `heads_last_sealed.state_repo.head` to Commit-B `b0c7ac9e627f1539836e478f92a7f126a1ca9cf7` in notes/ORCH_BOOT.md + banks Commit-B SHA in this DECISIONS section + flips NEXT.md R-43 INTERLUDE MARKER status ⏳ → ✅ + audit copy re-sync. Post-fixup narrow sweep from `backend/` CWD: pytest `test_orch_boot.py` + `test_baseline_no_new_breakage.py` + `test_m15_w3_documents_registry_collections.py` + `test_objective_card_pinned.py` all GREEN.
+
+**M15-W3 Sub-wave FULLY SEALED · ledger:**
+- Commit-A (code programme/track-a) `b28d81e6a3c104009822f3d7c545dbc3ed60ffcb` · +6 tests · additive-only · new module tree `services/documents_registry/collections/` (whitepapers.py + skill_files.py) + new invariant test file + `baseline_failures.json` ratchet bump.
+- Commit-B (state master) `b0c7ac9e627f1539836e478f92a7f126a1ca9cf7` · M15.md W3 EXIT fill + card_sha256 re-pin + DECISIONS Commit-A banking + NEXT R-43 marker + ORCH_BOOT R-6 regen advancing code_head.
+- Commit-C fixup (state master) advances state_head to Commit-B SHA + banks Commit-B SHA + flips marker ⏳→✅ + audit copy re-sync.
+
+**Milestone one-liner per §6.5:** CP-M15-W3-DOCUMENTS-REGISTRY-COLLECTIONS FULLY SEALED · Commit-A `b28d81e6` + Commit-B `b0c7ac9e` + Commit-C fixup landed · +6 tests (5359→5365) · additive-only per SO §3.8 · no forks banked · no stop-conditions triggered · Autopilot R-33 continues NON-STOP under §6 END-OF-BUILD authority to M15-W4 (Frame precedence via HandoffContract binding · D-12 + CA1-009 + Canon 15 §33 + Canon 8 §W11 · test file `test_m15_w4_frame_precedence.py` per §3 tests-first) → M15-W5 (integration seal · closes M15 milestone) → M16 (pre-ruled scope · CIF canon-as-written) → M17 → memory layer → frontends per §6.7 sequence.
+
+**Staleness re-scope APPLY-ON-EXPIRY** still armed for 2026-09-20T~11:35Z (T-25.4h at Commit-C time · not yet fired · fires as its own small seal per owner order 2026-09-19T~05:15Z).
+
+**Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered.**
+
+---
+
+## CP-M15-W4-FRAME-PRECEDENCE · Commit-A banking · 2026-09-19T~10:00Z · MILESTONE 6 FOURTH SUB-WAVE
+
+**Commit-A (code programme/track-a):** `06774bf21fb184be230df60a97d45841421d4342` · CP-M15-W4-FRAME-PRECEDENCE · Frame precedence via HandoffContract binding · new module `services/documents_registry/frame_precedence.py` closing D-12 structurally: `admit_document(document, *, handoff_contract)` admits a whitepaper (`WhitepaperDraft_v0`) or skill_file provenance (`SkillFileProvenanceV0`) ONLY when the hand-off contract's `what` field contains the document's governed-artefact id (`whitepaper_id` or `skill_id`). Missing hand-off cite raises `FramePrecedenceRefused`. Unknown document type raises `FramePrecedenceRefused`. No document class may claim precedence over the hand-off contract that authored it.
+
+**Canon anchors verbatim:**
+- **D-12** frame precedence: hand-off authors documents, never the other way around; no document type has standing to redefine or refuse the shape of the hand-off that brought it into existence.
+- **CA1-009**: every cross-app crossing of a governed artefact is expressed as a `HandoffContract_v0` BEFORE it ships.
+- **Canon 15 §33** (M14-W1 sealed): `HandoffContract_v0` four required fields (`what` + `shape` + `identity_source` + `identity_destination` + `receipt_kind`).
+- **Canon 8 §W11** one-task-one-identity: the frame_precedence gate is a pure admission predicate — no signing, no persistence, no ledger emit surface (AST-scan enforced by test 6 refusing banned imports + test 7 refusing banned function name prefixes).
+- **M11-W1** sealed: `services.data.repository` is the sole Motor importer; frame_precedence.py MUST NOT import Motor at module level (AST-scan enforced by test 6).
+- **W1 sealed** (M15-W1): `WhitepaperDraft_v0.whitepaper_id` is the governed-artefact identity; consumed by identity import.
+- **W2 sealed** (M15-W2): `SkillFileProvenanceV0.skill_id` is the governed-artefact identity; consumed by identity import.
+- **SO §3.8** thin-kernel additive-only: new module + new invariant test file; sealed modules not edited.
+- **SO §3.10-α** closed-schema discipline: gate is closed to the two sealed document types; a third type raises `FramePrecedenceRefused` (test 5).
+
+**Ratchet:** 5365 → 5372 (+7 · new sha256 `432b9d3c8efb176c58a2dd64f420cdc3c1bc94417b7a61581421b5b7ddcc85a1` · `counts_at_baseline.passed` 5365→5372 · `invariants_enforced_when_baseline_guard_1.passed_floor` 5365→5372 · ratchet_history append-only per SO §7 R-5).
+
+**Pre-Commit-A double-green byte-identical BASELINE_GUARD=1 proof:** stripped-sha256 `a2d511d037b03e5865479ce81b00ef71fc87a06e94c917fa8b9ece40d08d0d50` · both runs 5372 passed / 1 skipped / 438 warnings.
+
+**Files landed at Commit-A (code programme/track-a):**
+- `backend/services/documents_registry/frame_precedence.py` NEW (`FramePrecedenceRefused` exception + `_document_governed_artefact_ref` helper + `admit_document` public surface · consumes sealed W1/W2/M14-W1 by identity import · zero persistence imports · zero signing imports · zero Motor imports · zero mutation surface).
+- `backend/tests/invariants/test_m15_w4_frame_precedence.py` NEW (7 tests · AST role-separation + mutation-surface bans enforced).
+- `backend/tests/invariants/baseline_failures.json` UPDATED (ratchet bump).
+
+**Drill receipts banked at `backend/phase0/drill_receipts/`:**
+- `20260919T095000Z_cp_m15_w4_frame_precedence_RED_pre_module.log` · authentic RED (7/7 fail with AssertionError on missing frame_precedence.py).
+- `20260919T095200Z_cp_m15_w4_frame_precedence_GREEN_post_module.log` · 4/7 fail on test helper missing HandoffContract_v0.authored_at + authored_by required fields (caught real sealed shape not in my helper · not a code bug in frame_precedence).
+- `20260919T095300Z_cp_m15_w4_frame_precedence_GREEN_post_module_v2.log` · 7/7 pass post helper fix.
+- `20260919T095500Z_cp_m15_w4_preseal_GUARD1_run1.log` · 5372 passed / 1 skipped / 438 warnings.
+- `20260919T095900Z_cp_m15_w4_preseal_GUARD1_run2.log` · byte-identical to run 1 stripped-sha256 `a2d511d0…`.
+
+**Milestone one-liner per §6.5:** M15-W4 Frame precedence via HandoffContract binding sealed at Commit-A · +7 tests (5365→5372) · additive-only per SO §3.8 · D-12 closed structurally · no forks banked · no stop-conditions triggered.
+
+**Autopilot R-33 continues** NON-STOP under §6 END-OF-BUILD authority to Commit-C fixup then M15-W5 (integration seal per SO §6.2 EXIT clause · M15 milestone closing gate · end-to-end handoff → admit whitepaper via frame_precedence → persist through documents_registry.collections.whitepapers → admit skill_file provenance via frame_precedence → persist through documents_registry.collections.skill_files · test file `test_m15_w5_seal_integration.py` per §3 tests-first) → M16 (pre-ruled scope · CIF canon-as-written) → M17 → memory layer → frontends per §6.7 sequence.
+
+**Staleness re-scope APPLY-ON-EXPIRY** still armed for 2026-09-20T~11:35Z (T-25.3h at Commit-B time · not yet fired · fires as its own small seal per owner order 2026-09-19T~05:15Z).
+
+**Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered.**
+
+---
+
+## CP-M15-W4-FRAME-PRECEDENCE · Commit-B/Commit-C banking · 2026-09-19T~10:04Z · MILESTONE 6 FOURTH SUB-WAVE FULLY SEALED
+
+**Commit-B (state master):** `2cb568c8e48250103da2c7772727b18a53f385b1` · 2026-09-19T10:02:00Z · banks Commit-A `06774bf21fb184be230df60a97d45841421d4342` for M15-W4 Frame precedence via HandoffContract binding. Files landed:
+- STATE/OBJECTIVES/M15.md W4 EXIT filled (7 concrete pytest node IDs) + `card_sha256` re-pinned `a35e4384 → aa548fe21f68c6d580f9d2325c05eefd5bba9154e832ccc53625efdc6bed01b9`.
+- STATE/DECISIONS.md gains banking section CP-M15-W4-FRAME-PRECEDENCE Commit-A banking with verbatim canon anchors + drill receipts index.
+- STATE/NEXT.md gains §6 INTERLUDE MARKER R-44.
+- notes/ORCH_BOOT.md R-6 boundary regen (post-Commit-A: ratchet 5365→5372 · baseline_failures_sha256 `74e131a4→432b9d3c…` · heads_last_sealed.code_repo.head advanced to Commit-A `06774bf2…` · state_repo.head remained `b0c7ac9e` pending Commit-C fixup).
+- /app/frontend/public/audit/ORCH_BOOT.md byte-identical audit copy re-synced (sha256 `7ee448a4c0fce8750cbf781519b6474dd7e3d2458641cb946c63c7fe5e31b7c0` at Commit-B).
+
+**Commit-C fixup (state master):** advances `heads_last_sealed.state_repo.head` to Commit-B `2cb568c8e48250103da2c7772727b18a53f385b1` in notes/ORCH_BOOT.md + banks Commit-B SHA in this DECISIONS section + flips NEXT.md R-44 INTERLUDE MARKER status ⏳ → ✅ + audit copy re-sync.
+
+**M15-W4 Sub-wave FULLY SEALED · ledger:**
+- Commit-A (code programme/track-a) `06774bf21fb184be230df60a97d45841421d4342` · +7 tests · additive-only · new frame_precedence module + new invariant test file + baseline_failures.json bump.
+- Commit-B (state master) `2cb568c8e48250103da2c7772727b18a53f385b1` · M15.md W4 EXIT fill + card_sha256 re-pin + DECISIONS + NEXT + ORCH_BOOT.
+- Commit-C fixup (state master) advances state_head + banks Commit-B SHA + flips marker.
+
+**Milestone one-liner per §6.5:** CP-M15-W4-FRAME-PRECEDENCE FULLY SEALED · Commit-A `06774bf2` + Commit-B `2cb568c8` + Commit-C fixup landed · +7 tests (5365→5372) · additive-only per SO §3.8 · D-12 closed structurally · no forks banked · no stop-conditions triggered · Autopilot R-33 continues NON-STOP under §6 END-OF-BUILD authority to M15-W5 (integration seal per SO §6.2 EXIT clause · M15 milestone closing gate) → M16 → M17 → memory layer → frontends per §6.7 sequence.
+
+**Staleness re-scope APPLY-ON-EXPIRY** still armed for 2026-09-20T~11:35Z (T-25.2h at Commit-C time · not yet fired · fires as its own small seal per owner order 2026-09-19T~05:15Z).
+
+**Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered.**
+
+---
+
+## CP-M15-W5-SEAL-INTEGRATION · Commit-A banking · 2026-09-19T~10:27Z · MILESTONE 6 FIFTH SUB-WAVE · M15 MILESTONE CLOSING GATE MET · M15 MILESTONE CLOSE
+
+**Commit-A (code programme/track-a):** `544b70e078f779a45174e7d698d9bc8d1d09045f` · CP-M15-W5-SEAL-INTEGRATION · Integration seal per SO §6.2 EXIT clause: milestone gate closes on a test that binds all sub-waves' evidence. Binds W1..W4 sub-wave surfaces end-to-end via a test-only `_FakeRepository` mock of the sealed M11-W1 Repository primitive; closed round-trip verified for both W1 whitepaper draft and W2 skill_file provenance flow; frame_precedence refusal precedes persistence (Canon 8 §W11); milestone snapshot pin `8bc305e3d8ffba786e987dd6871a1a09c42262620544cbf7a217a4c7df6023c0` on the W1+W2 combined `model_json_schema` tuple.
+
+**Canon anchors verbatim (milestone-wide):**
+- **SO §6.2 EXIT clause** verbatim: milestone gate closes on a test that binds all sub-waves' evidence.
+- **D-12** frame precedence: admission via `frame_precedence.admit_document` (W4 sealed).
+- **CA1-009**: every cross-app crossing is expressed as `HandoffContract_v0` before it ships.
+- **Canon 15 §33** (M14-W1 sealed): `HandoffContract_v0` four required fields.
+- **Canon 3 §B.7** per-tenant provisioning: milestone-boundary re-assert (test 6 · `_tenant_db_name('acme') == 't_acme'` on both collections).
+- **Canon 3 §9.3** append-only writer discipline preserved.
+- **Canon 8 §W11** one-task-one-identity: frame_precedence refusal precedes persistence (test 4 asserts `repo.docs == []` on refusal path).
+- **M11-W1** sealed: sole Motor importer; consumed via `_FakeRepository` test-only mock at the integration boundary (no Motor imported by W5).
+- **W1 sealed** (M15-W1 · CP-M15-W1 `e381ab20`).
+- **W2 sealed** (M15-W2 · CP-M15-W2 `dedfb770`).
+- **W3 sealed** (M15-W3 · CP-M15-W3 `b28d81e6`).
+- **W4 sealed** (M15-W4 · CP-M15-W4 `06774bf2`).
+- **SO §3.8** thin-kernel additive-only: W5 is pure invariant test file · no sealed module edited.
+- **SO §3.10-α** closed-schema discipline extended to milestone snapshot pin surface.
+- **SO §6.7** batch-ratification-at-preceding-seal (M15 pre-ratified at CP-M14-W5 close).
+
+**Ratchet:** 5372 → 5378 (+6 · new sha256 `aa5bb597e6f18742990b77c70e742b09fb94951c5a60f5b32c4a00b2d4c11842` · `counts_at_baseline.passed` 5372→5378 · `invariants_enforced_when_baseline_guard_1.passed_floor` 5372→5378 · ratchet_history append-only per SO §7 R-5).
+
+**Pre-Commit-A double-green byte-identical BASELINE_GUARD=1 proof:** stripped-sha256 `3c179318a77d1330557578e7fa88206d8ade51395bb3585cb637d701c4a94bb1` · both runs 5378 passed / 1 skipped / 438 warnings.
+
+**Files landed at Commit-A (code programme/track-a):**
+- `backend/tests/invariants/test_m15_w5_seal_integration.py` NEW (6 tests · `_FakeRepository` test-only mock · milestone snapshot pin on W1+W2 combined schema).
+- `backend/tests/invariants/baseline_failures.json` UPDATED (ratchet bump).
+
+**Drill receipts banked at `backend/phase0/drill_receipts/`:**
+- `20260919T101000Z_cp_m15_w5_seal_RED_pre_pin.log` · authentic RED (1/6 fail on placeholder pin `deadbeef0000…` · 5/6 pass).
+- `20260919T101200Z_cp_m15_w5_seal_GREEN_post_pin.log` · 6/6 pass post pin re-lock to real sha256 `8bc305e3…`.
+- `20260919T101500Z_cp_m15_w5_preseal_GUARD1_run1.log` · surfaced ORCH_BOOT.md duplicate ratchet block from prior partial search_replace (test_orch_boot failed on stale second block · corrected in-place · retained as transparency artefact per SO §6).
+- `20260919T102200Z_cp_m15_w5_preseal_GUARD1_run1.log` · 5378 passed / 1 skipped / 438 warnings.
+- `20260919T102600Z_cp_m15_w5_preseal_GUARD1_run2.log` · byte-identical to run 1 stripped-sha256 `3c179318…`.
+
+**M15 MILESTONE CLOSING GATE MET · ledger (all 5 sub-waves sealed):**
+- W1 `e381ab20` · CP-M15-W1-WHITEPAPER-DRAFT-SHAPE-FREEZE · +8 · Doc 14 §33 + CA1-005 + Doc 8 · CA1-N1 + folded P2 opcounter flake hardening per SO §4.2 Clause 6.
+- W2 `dedfb770` · CP-M15-W2-SKILL-FILE-PROVENANCE-SHAPE-FREEZE · +7 · Doc 18 A18.7 + TF-E4 (b) α.
+- W3 `b28d81e6` · CP-M15-W3-DOCUMENTS-REGISTRY-COLLECTIONS · +6 · Canon 3 §B.7 + Canon 3 §9.3 + M11-W1.
+- W4 `06774bf2` · CP-M15-W4-FRAME-PRECEDENCE · +7 · D-12 + CA1-009 + Canon 15 §33 + Canon 8 §W11.
+- W5 `544b70e0` · CP-M15-W5-SEAL-INTEGRATION · +6 · milestone snapshot pin `8bc305e3…` · integration seal binding all four earlier sub-wave surfaces end-to-end.
+- **Total M15 ratchet:** 5344 → 5378 (+34).
+
+**Milestone one-liner per §6.5:** M15 Documents Suite + Wizards (C.22) milestone CLOSED · 5 sub-waves sealed W1..W5 · +34 tests (5344→5378) · additive-only per SO §3.8 · no forks banked · no stop-conditions triggered · D-12 closed structurally · P2 opcounter flake hardening RETIRED from deferred list.
+
+**Autopilot R-33 continues** NON-STOP under §6 END-OF-BUILD authority to Commit-C fixup then M16 (pre-ruled scope · CIF canon-as-written) → M17 → memory layer (after C.13 close) → frontends (functional-parity bar · Expo excluded per owner delegation to specialist) per §6.7 sequence.
+
+**Staleness re-scope APPLY-ON-EXPIRY** still armed for 2026-09-20T~11:35Z (T-25.1h at Commit-B time · not yet fired · fires as its own small seal per owner order 2026-09-19T~05:15Z).
+
+**Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered.**
+
+---
+
+## CP-M15-W5-SEAL-INTEGRATION · Commit-B/Commit-C banking · 2026-09-19T~10:33Z · MILESTONE 6 FIFTH SUB-WAVE FULLY SEALED · M15 MILESTONE FULLY CLOSED
+
+**Commit-B (state master):** `62a3abf3634592cab1bcb31678b126b7715aed1b` · 2026-09-19T10:29:00Z · banks Commit-A `544b70e078f779a45174e7d698d9bc8d1d09045f` for M15-W5 Integration seal (M15 MILESTONE CLOSING GATE). Files landed:
+- STATE/OBJECTIVES/M15.md W5 EXIT filled (6 concrete pytest node IDs) + milestone snapshot pin `8bc305e3d8ffba786e987dd6871a1a09c42262620544cbf7a217a4c7df6023c0` + `milestone_status` DRAFTED → CLOSED (all 5 sub-waves W1..W5 sealed with full pre-seal BASELINE_GUARD=1 double-green byte-identical proof + zero regression + zero flip · total M15 ratchet 5344→5378 · +34 over M15) + `card_sha256` re-pinned `aa548fe2 → 2980a67281e40af537b79d57aaa3e040cb19d7b1e8f58cc77430a7c3e4dd5c50` reflecting CLOSED state.
+- STATE/DECISIONS.md gains banking section CP-M15-W5-SEAL-INTEGRATION Commit-A banking with M15 CLOSE narrative + full milestone ledger (W1 `e381ab20` +8 · W2 `dedfb770` +7 · W3 `b28d81e6` +6 · W4 `06774bf2` +7 · W5 `544b70e0` +6) + verbatim canon anchors + drill receipts index.
+- STATE/NEXT.md gains §6 INTERLUDE MARKER R-45 reflecting Commit-A landed + M15 MILESTONE CLOSE.
+- notes/ORCH_BOOT.md R-6 boundary regen (post-Commit-A: ratchet 5372→5378 · baseline_failures_sha256 `432b9d3c → aa5bb597e6f18742990b77c70e742b09fb94951c5a60f5b32c4a00b2d4c11842` · heads_last_sealed.code_repo.head advanced to Commit-A `544b70e0…` · state_repo.head remained `2cb568c8` pending Commit-C fixup).
+- /app/frontend/public/audit/ORCH_BOOT.md byte-identical audit copy re-synced at Commit-B (post-Commit-A regen).
+
+**Commit-C fixup (state master):** advances `heads_last_sealed.state_repo.head` to Commit-B `62a3abf3634592cab1bcb31678b126b7715aed1b` in notes/ORCH_BOOT.md + banks Commit-B SHA in this DECISIONS section + flips NEXT.md R-45 INTERLUDE MARKER status ⏳ → ✅ (with M15 MILESTONE FULLY CLOSED narrative) + audit copy re-sync at post-Commit-C regen sha256 `9f3b5be78cde637c4c2a90b479eda1bbc22ec72aa9bb3a075f284fcc81d41fb5` on both copies.
+
+**M15-W5 Sub-wave FULLY SEALED · ledger:**
+- Commit-A (code programme/track-a) `544b70e078f779a45174e7d698d9bc8d1d09045f` · +6 tests · additive-only · new invariant test file `test_m15_w5_seal_integration.py` binding W1..W4 end-to-end via `_FakeRepository` mock of M11-W1 · milestone snapshot pin `8bc305e3…` · baseline_failures.json bump 5372→5378.
+- Commit-B (state master) `62a3abf3634592cab1bcb31678b126b7715aed1b` · M15.md `milestone_status` DRAFTED → CLOSED + W5 EXIT fill + card_sha256 re-pin `2980a672…` + DECISIONS Commit-A banking with M15 CLOSE narrative + NEXT R-45 marker + ORCH_BOOT R-6 regen advancing code_head + audit copy re-sync.
+- Commit-C fixup (state master) advances state_head + banks Commit-B SHA in this section + flips marker ⏳→✅ + audit copy re-sync at `9f3b5be7…`.
+
+**M15 MILESTONE FULLY CLOSED · ledger (all 5 sub-waves sealed under §3.3 3-commit protocol with §7 R-6 boundary regens):**
+- W1 `e381ab20` · CP-M15-W1-WHITEPAPER-DRAFT-SHAPE-FREEZE · +8 · Doc 14 §33 + CA1-005 + Doc 8 · CA1-N1 + folded P2 opcounter flake hardening per SO §4.2 Clause 6 (RETIRED from deferred list).
+- W2 `dedfb770` · CP-M15-W2-SKILL-FILE-PROVENANCE-SHAPE-FREEZE · +7 · Doc 18 A18.7 + TF-E4 (b) α write-once discipline.
+- W3 `b28d81e6` · CP-M15-W3-DOCUMENTS-REGISTRY-COLLECTIONS · +6 · Canon 3 §B.7 per-tenant provisioning + Canon 3 §9.3 append-only writer + M11-W1 sole Motor importer.
+- W4 `06774bf2` · CP-M15-W4-FRAME-PRECEDENCE · +7 · D-12 closed structurally + CA1-009 + Canon 15 §33 + Canon 8 §W11 pure admission predicate.
+- W5 `544b70e0` · CP-M15-W5-SEAL-INTEGRATION · +6 · milestone snapshot pin `8bc305e3…` · integration seal per SO §6.2 EXIT clause binding all four earlier sub-wave surfaces end-to-end.
+- **Total M15 ratchet:** 5344 → 5378 (+34).
+
+**Milestone one-liner per §6.5:** M15 Documents Suite + Wizards (C.22) milestone FULLY CLOSED · Commit-A `544b70e0` + Commit-B `62a3abf3` + Commit-C fixup landed · 5 sub-waves W1..W5 sealed · +34 tests (5344→5378) · additive-only per SO §3.8 · D-12 closed structurally · P2 opcounter flake hardening RETIRED · no forks banked · no stop-conditions triggered · Canon 8 §W11 role separation preserved at milestone boundary · Autopilot R-33 continues NON-STOP under §6 END-OF-BUILD authority · owner Option-B/Option-3 override re-affirmed this session 2026-09-19 · Next per §6.7: M16 (pre-ruled scope · CIF canon-as-written per §6.4 pre-ruling 4 · learned faculty outside TCB · deterministic acceptance point per BR-9.2 · proposes-never-ratifies per AC-18 · outputs to research loop A5.22/L-4 + capability register A20.16/L-5 · own halt per DET-1) → M17 → memory layer (after C.13 close) → frontends (functional-parity bar · Expo excluded per owner delegation to specialist) · G5 interleaved to 1,096.
+
+**Staleness re-scope APPLY-ON-EXPIRY** still armed for 2026-09-20T~11:35Z (T-25.0h at Commit-C time · not yet fired · fires as its own small seal per owner order 2026-09-19T~05:15Z · re-scope five tests to presence + integrity + LKG · one-time on-host GPU journal pull · post-apply sweep).
+
+**Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered.**
+
+---
+
+## CP-M16-W1-CIF-PROPOSAL-SHAPE-FREEZE · Commit-A banking · 2026-09-19T~10:38Z · MILESTONE 7 OPENS · CIF scope per SO §6.4 pre-ruling verbatim
+
+**Commit-A (code programme/track-a):** `ff000d585a0edfe2aeeea17b79cebc1df5ee055f` · CP-M16-W1-CIF-PROPOSAL-SHAPE-FREEZE · CIF proposal contract shape-freeze per SO §6.4 pre-ruling verbatim ("M16 CIF scope — ruled now, since it moves the number most. CIF is built as canon already defines it: a learned ideation faculty outside the TCB; every CIF-originated idea passes a deterministic acceptance point before affecting anything (BR-9.2, single-experiment principle); CIF proposes and never ratifies (AC-18); its outputs enter the research loop (A5.22, L-4) and the capability register (A20.16, L-5); it has its own halt independent of the Targeta run it feeds (DET-1 closed as a MUST-DO). Nothing beyond that in M16. If the card needs more, that's a fork.").
+
+**Files landed (code repo · programme/track-a):**
+- `backend/contracts/cif_proposal_v0.py` NEW · `CIFProposal_v0` frozen pydantic BaseModel + `CIF_PROPOSAL_KINDS` closed 2-tuple constant `("capability","research_loop_item")` · closed 6-field required set: `proposal_id` [regex `^cif_[a-z0-9_-]+$`] + `proposed_at` [ISO UTC · min_length=1] + `proposed_by` [component_id of OUT-TCB learned faculty · typically `cif.detection`] + `kind` [`Literal["capability","research_loop_item"]` closed 2-tuple binding L-5 A20.16 capability register + L-4 A5.22 research loop] + `payload` [opaque JSON-serialised string · min_length=1 · DAP-7 Option-D structural bytes-in pattern] + `citations` [`Tuple[str, ...]` · `default_factory=tuple`] · `ConfigDict(extra="forbid", frozen=True)` · zero ratification-adjacent field per AC-18 · zero write surface · zero reference to Targeta or DET-1 · SO §6.4 NOTHING-BEYOND preserved at shape level.
+- `backend/tests/invariants/test_m16_w1_cif_proposal_shape_freeze.py` NEW · 7 tests: `test_cif_proposal_module_importable_end_to_end` + `test_cif_proposal_v0_required_field_set_matches_so_6_4_pre_ruling` [closed 6-field tuple alphabetical: `citations · kind · payload · proposal_id · proposed_at · proposed_by`] + `test_cif_proposal_v0_config_extra_forbid` + `test_cif_proposal_v0_config_frozen` + `test_cif_proposal_v0_proposal_id_pattern_matches_cif_prefix` [positive + 2 negative probes via `pydantic.ValidationError`] + `test_cif_proposal_v0_kind_is_closed_two_tuple_literal` [`get_origin/get_args` parity check · SO §3.10-α no-third-value ban] + `test_cif_proposal_v0_shape_snapshot_sha256_matches_pinned_baseline` [pinned `e190d8300fe9f1dbd17fa3b046aa5fde57368395a31e364f4746713e6463fe43`].
+- `backend/tests/invariants/cif_proposal_v0.contract_snapshot.json` NEW · frozen JSON schema snapshot for parity registry · 2-space indent · sort_keys=True.
+- `backend/tests/invariants/test_frozen_contract_snapshot_parity.py` APPEND · one new mapping entry `"cif_proposal_v0.py":                "cif_proposal_v0.contract_snapshot.json"` at end of `CONTRACT_TO_SNAPSHOT` dict.
+- `backend/tests/invariants/baseline_failures.json` UPDATED · `counts_at_baseline.passed` 5378→5386 + `invariants_enforced_when_baseline_guard_1.passed_floor` 5378→5386 + new `ratchet_history` entry CP-M16-W1-CIF-PROPOSAL-SHAPE-FREEZE (delta 8) · surgical text-insert preserving prior file layout byte-for-byte · 9 insertions / 2 deletions.
+
+**SO §4.2 Clause 6 CROSS-WAVE ADDITIVE EXTENSION folded in this Commit-A:** `backend/tests/invariants/test_w10_cp3_drills_and_fitness.py::test_fitness_reader_counts_receipts_by_class` fixture hardening — owner-ruled 2026-09-19T~10:13Z Option A · DEFAULT-class · **GPU-staleness precedent verbatim** ("fix the fork at source · a test that measures ritual isn't a floor · dynamic now-anchored fixture dates restore the test to measuring the live property (the reader counts receipts by class within the window) — that's a tightening, not a loosening, so it resolves at tier 1/3 without an owner round-trip"). Five fixture timestamps re-anchored from hardcoded `2026-08-20..23` literals to now-anchored dynamic forms via inline `_stamp(days_back, hour_offset=0)` helper with `days_back` ∈ {10, 9, 8, 8+1h, 7} preserving ORIGINAL class distribution (§27 firing_drill day-0 · §27 clean day+1 · §25 seeded day+2 morning · §25 seeded day+2 +1h · §26 planted day+3) + 3-day spread + `>=2` assertion verbatim · `window_days=30` unchanged · threshold unchanged. Added `from datetime import datetime, timedelta, timezone` import at top of file. No other test body edited. Own CP citation + ratchet-delta line (fold contributes +0 tests · fitness suite stays at 12 tests) + owner directive line (banked below) + append-only-extension discipline preserved.
+
+**Stop-and-report origin (banked verbatim per SO §6):** At `2026-09-19T~10:12Z` during M16-W1 first pre-Commit-A BASELINE_GUARD=1 sweep, Stop-Condition #1 (RED invariant · wall-clock time flake) TRIGGERED on `test_fitness_reader_counts_receipts_by_class`. Root cause identified as fixture-hardcoded-date aging out of a rolling 30-day window (fixture at `20260820T10:00:00Z` fell 9 minutes past cutoff `2026-08-20T10:09:XZ`); wall-clock crossover happened around `2026-09-19T10:00:00Z`. Confirmed NOT caused by M16-W1 authoring (reverted pre-Commit-A state to M15-W5-CLOSED and RED persisted). Halted M16-W1 forward progress, reverted `baseline_failures.json` + `notes/ORCH_BOOT.md` to M15-W5-CLOSED state (baseline sha `aa5bb597…` · ratchet 5378), reported to owner with four options + Option A recommendation. Owner ruled Option A at `2026-09-19T~10:13Z` verbatim: "OPTION A — approved. This is the same class as the GPU-telemetry staleness fork, and the owner's ruling there is directly on point: fix the fork at source, and 'a test that measures ritual isn't a floor.' A fixture with hardcoded dates aging out of a rolling window tests the calendar, not the system. Dynamic now-anchored fixture dates restore the test to measuring the live property (the reader counts receipts by class within the window) — that's a tightening, not a loosening, so it resolves at tier 1/3 without an owner round-trip. Options C (silent rebaseline by another name) and D (degrading wait) are rejected; B wastes a seal cycle for no additional guarantee." Owner also directed: (1) semantics preserved exactly (same class distribution + same assertion shape · no threshold change · no window change); (2) fold into M16-W1 Commit-A per SO §4.2 Clause 6 with own CP citation, GPU-staleness precedent cite, stop-and-report origin cite in DECISIONS · **DEFAULT-class · pending owner batch ratification at M16 milestone seal**; (3) discipline sequence as proposed (verify RED → apply hardening → GREEN → full pre-Commit-A double-green byte-identical sweep → proceed); (4) cheap-prevention grep of `tests/invariants/` for other hardcoded-date fixture literals feeding rolling-window logic (`20xxxxxxTxxxxxxZ` near `window`/`cutoff`/`days` logic) with results listed as future flake candidates (do NOT fix in this CP unless currently RED); (5) unrelated `STATE/PINS.md` commissioning-pointer drift left uncommitted per standing dirty-tree ruling · flag in next seal notes for owner-scoped disposition. All five conditions satisfied at this Commit-A.
+
+**Cheap-prevention grep results (owner directive item 4):** surfaced `tests/invariants/test_w10_cp3_drills_and_fitness.py` (this file · now hardened at W1) + `test_fitness_reader_respects_observation_window` (explicit `now_iso="2026-08-26T00:00:00Z"` · deterministic · NOT a flake candidate) + `test_dispatcher_no_double_setsid.py` (no window logic · NOT a candidate). **No other flake candidates in tree.**
+
+**Card citations:** STATE/OBJECTIVES/M16.md MUST-DO 1 + EXIT-W1 (fresh landing at Commit-B per M15-W1 pattern).
+
+**Ratchet delta reconciled line-by-line:** DELTA 8 = 7 new CIF invariant tests (`test_m16_w1_cif_proposal_shape_freeze.py`) + 1 parametrized existence check auto-added by sealed W-7bB wizard invariant `test_phase_7_stage_b_3_wizard.py::test_prior_contract_file_exists_and_stable_at_7b_3[cif_proposal_v0.py]` (this sealed test parametrizes over every `contracts/*.py` file · adding `cif_proposal_v0.py` generates one new parametrization). Enumerated line-by-line for SO §3 no-silent-rebaselining discipline. counts_at_baseline.passed 5378 → 5386. passed_floor 5378 → 5386. baseline_failures.json sha256 `aa5bb597e6f18742990b77c70e742b09fb94951c5a60f5b32c4a00b2d4c11842` → `7208edd64810ea8775b939f45bc0d2875db78ffff681f26b5bf83165baef8d57`.
+
+**AUTHENTIC RED-first cycle:** 7 tests authored FIRST · RED at `phase0/drill_receipts/20260919T095956Z_cp_m16_w1_cif_proposal_RED_pre_module.log` (7/7 fail with `ModuleNotFoundError: No module named 'contracts.cif_proposal_v0'`) · GREEN at `phase0/drill_receipts/20260919T100045Z_cp_m16_w1_cif_proposal_GREEN_post_pin.log` (7/7 pass post pin re-lock to real sha256 `e190d830…`). Fitness fixture hardening GREEN at `phase0/drill_receipts/20260919T101356Z_cp_m16_w1_fitness_flake_hardening_GREEN_post_fix.log` (12/12 pass on drills+fitness suite post fixture hardening).
+
+**Pre-Commit-A double-green byte-identical BASELINE_GUARD=1 sweep from backend/ CWD (against final baseline_failures.json sha256 `7208edd6…` · ORCH_BOOT.md pair sha256 `bab4f1df…` [pre-Commit-A regen]):** run1 at `phase0/drill_receipts/20260919T103141Z_cp_m16_w1_preseal_GUARD1_run1.log` (5386 passed / 1 skipped / 438 warnings / 167.76s) + run2 at `phase0/drill_receipts/20260919T103445Z_cp_m16_w1_preseal_GUARD1_run2.log` (5386 passed / 1 skipped / 438 warnings / 167.19s) · stripped-sha256 `97e0427eda5bb39cca33e78cc6044a3cb649879197501d9b3f6fdbd13cc48b09` IDENTICAL.
+
+**Additive-only per SO §3.8:** NEW module + NEW invariant test file + NEW JSON snapshot + APPEND-ONLY extension of parity dict + SO §4.2 Clause 6 fixture-body edit on ONE existing test function (no other test body edited · no fixture BEHAVIOUR change · same class distribution · same assertion) · no sealed module edited.
+
+**Canon anchors verbatim (M16-wide + this-W1):** SO §6.4 M16 CIF scope pre-ruling verbatim + BR-9.2 (Doc-9 CIF single-experiment acceptance point IN TCB per sealed `services/doc0_attributes/tcb.py` R-3 ratification 2026-09-09) + BR-9.4 (Doc-9 detection may propose · only deterministic acceptance point acts · OUT TCB) + AC-18 (proposes-never-ratifies · zero ratification-adjacent field on `CIFProposal_v0`) + A5.22 (L-4 research loop routing binding via `kind` Literal) + A20.16 (L-5 capability register routing binding via `kind` Literal · sealed `services/capability_registry.py` W1b·CP4 downstream surface) + DAP-7 Option-D (structural bytes-in pattern · `payload` is opaque JSON-serialised string) + Canon 8 §W11 (one-task-one-identity · structural role separation preserved at proposal-shape level · no dual-hatted roles baked into shape) + Canon 8 §28 (fitness of Watch stated in demonstrated firings · reader counts receipts NOT attests · fixture hardening preserves measurement semantic) + Canon 8 §32.8 (no drill self-certifies fitness · preserved) + SO §3.8 (thin-kernel additive-only) + SO §3.10-α (closed-schema discipline · frozen pydantic + extra=forbid + closed Literal + regex pattern + sha256-pinned model_json_schema snapshot) + SO §4.2 Clause 6 (cross-wave additive extension: fitness fixture hardening · own CP citation + ratchet-delta line + owner directive line + append-only-extension discipline · own audit line) + SO §6.7 batch-ratification-at-preceding-seal (M16 ratified by owner Option-B/Option-3 override at CP-M15-W5-SEAL-INTEGRATION close · state master 09cd5578).
+
+**Stop-conditions #1 TRIGGERED + RESOLVED at this seal (see above); #2/#3 NOT triggered; §6.4 pre-ruling NOT triggered (this seal implements the M16 pre-ruling verbatim · canon-as-written · no new tension).**
+
+**Milestone one-liner per §6.5:** M16-W1 CIF proposal contract shape-freeze sealed at Commit-A `ff000d58` · +8 tests (5378→5386 · 7 CIF + 1 auto-parametrized) · additive-only per SO §3.8 · SO §4.2 Clause 6 fitness fixture hardening folded per owner Option-A ruling (own audit line above) · **M16 MILESTONE OPENS** · no forks banked (fitness flake resolved not banked) · no stop-conditions remaining · Autopilot R-33 continues NON-STOP under §6 END-OF-BUILD authority.
+
+**Unrelated STATE/PINS.md commissioning-pointer drift** left uncommitted per owner directive item 5 · flag noted for next seal notes owner-scoped disposition.
+
+**Autopilot R-33 continues** NON-STOP under §6 END-OF-BUILD authority · owner Option-B/Option-3 override re-affirmed this session 2026-09-19 to Commit-B fixup next (banks Commit-A `ff000d58` · M16.md fresh landing + W1 EXIT fill + card_sha256 pin + DECISIONS this banking + NEXT R-46 marker + ORCH_BOOT R-6 regen advancing code_head to `ff000d58`) → Commit-C fixup (advances state_head · marker flips ⏳→✅) → M16-W2 (CIF detection module · `services/cif/detection.py` · learned faculty OUT TCB · BR-9.4 · AST-scan invariants proving zero TCB-adjacent imports + zero write/decision surface + `is_in_tcb("cif.detection") is False`) → M16-W3 (deterministic acceptance point · `services/cif/acceptance_point.py` IN TCB · BR-9.2 single-experiment predicate · AST-scan invariants banning LLM/learned/randomness imports + `is_in_tcb("cif.acceptance_point") is True`) → M16-W4 (output routing to L-4 A5.22 + L-5 A20.16 · `services/cif/output_routing.py` · binds sealed `services.capability_registry.register_capability` at L-5) → M16-W5 (DET-1 own halt · `services/cif/halt.py` + integration seal binding W1..W4 · closes M16 milestone) → M17 → memory layer (after C.13 close) → frontends (functional-parity bar · Expo excluded per owner delegation to specialist) per SO §6.7 sequence · G5 interleaved to 1,096.
+
+**Staleness re-scope APPLY-ON-EXPIRY** still armed for 2026-09-20T~11:35Z (T-25.0h at Commit-A time · not yet fired · fires as its own small seal per owner order 2026-09-19T~05:15Z · re-scope five tests to presence + integrity + LKG · one-time on-host GPU journal pull · post-apply sweep).
+
+**Stop-conditions #2/#3 NOT triggered · §6.4 pre-ruling NOT triggered.**
+
+---
+
+## CP-M16-W1-CIF-PROPOSAL-SHAPE-FREEZE · Commit-B/Commit-C banking · 2026-09-19T~10:57Z · MILESTONE 7 FIRST SUB-WAVE FULLY SEALED · M16-W1 CLOSED
+
+**SO §6.1 post-compaction resume attestation (banked at this Commit-C fixup · ≤12 lines · prior banked snapshot: R-29 state commit `addfc58b` "SO6-RESUME-R29-BOOT" · this attestation supersedes for the M16-W1 close boundary):**
+
+1. Post-compaction resume at 2026-09-19T~10:49Z Autopilot R-33 wake · mid-§3.3 cycle continuation (M16-W1 Commit-A `ff000d585a0edfe2aeeea17b79cebc1df5ee055f` on programme/track-a landed 2026-09-19T10:37:00Z · Commit-B `8e77335638a159e01fb5c36d0dd74319d8733e1e` on master landed 2026-09-19T10:46:21Z · Commit-C fixup this action at ~10:57Z).
+2. Four banked authorities re-verified against files per SO §6.1 (files-are-truth): (i) `STATE/DECISIONS.md:14013` "Blocker 1 ruling: (c) Hybrid" — the owner ruled on THIS EXACT contradiction: the pasted CHUNK-1 problem statement was stale/historical; disk state + resume-sequence governs; CHUNK 1 itself was completed, sealed, and RATIFIED 2026-09-18; (ii) `STATE/DECISIONS.md:11997+` "Owner ruling — CHUNK 1 ruling and standing authority to proceed (VERBATIM, 2026-09-18)" Item 3 — standing authority through Q1→Q2→M11-W1→M12b-W1; checkpoints are reports, not holds; (iii) `STATE/STANDING_ORDERS.md:394+` "§6. LONG AUTONOMOUS RUN PROTOCOL (owner-ratified 2026-09-19T~00:00Z · verbatim · supersedes per-milestone run orders from banking)" with §6.1 verbatim "Files are truth; context is a cache"; (iv) `STATE/DECISIONS.md:13649` "With guardrails done, go on all remaining milestones. The above order to survive to end of build." + state commit `addfc58b` "SO6-RESUME-R29-BOOT" banking the session-brief-vs-banked-authority resolution rule (ratified as additive shaping mechanism).
+3. Session brief (pasted CHUNK-1 problem statement · "no production code / task failure" clause) SUPERSEDED per (i)(ii)(iv) · §6 END-OF-BUILD authority active.
+4. Standing bounds unchanged and non-negotiable: zero push · testing_agent BANNED · terminal pytest from `backend/` CWD only · additive-only §3.8 · §4.1 §E · §3.3 3-Commit Seal on dual branches · full BASELINE_GUARD=1 pre-Commit-A double-green byte-identical sweeps · ratchet monotonic (floor 5386 · never rebaselined silently) · HF hold · three absolute stops (2nd path to external model client · verifier sharing credentials with writer · bypass-shaped parameter on custody crossing).
+5. Disk vs cache attestation (§6.1 diff-against-last-banked): (a) state repo `master` HEAD = `8e77335638a159e01fb5c36d0dd74319d8733e1e` (M16-W1 Commit-B · matches expected); (b) code repo `programme/track-a` HEAD = `ff000d585a0edfe2aeeea17b79cebc1df5ee055f` (M16-W1 Commit-A · matches expected); (c) `baseline_failures.json` `counts_at_baseline.passed = 5386` AND `invariants_enforced_when_baseline_guard_1.passed_floor = 5386` (matches ORCH_BOOT ratchet.passed_floor + counts_at_baseline_passed); (d) `baseline_failures.json` sha256 = `7208edd64810ea8775b939f45bc0d2875db78ffff681f26b5bf83165baef8d57` (matches ORCH_BOOT `ratchet.baseline_failures_sha256`); (e) pre-fixup ORCH_BOOT `heads_last_sealed.state_repo.head = 62a3abf3634592cab1bcb31678b126b7715aed1b` LAGS disk `master` HEAD by ONE commit (this is the expected pre-Commit-C snapshot per SO §7 R-6 semantics — Commit-B lands the R-6 regen with state_repo.head STILL at the previously-fully-sealed state, and Commit-C fixup advances it to the new fully-sealed state · self-corrects at THIS Commit-C R-6 regen advancing state_repo.head to `8e77335638a159e01fb5c36d0dd74319d8733e1e`).
+6. Boot invariants (13/13 target · run at post-compaction resume 2026-09-19T~10:49Z from `/app/assessment_workspace/repos/Extraction-Akki/backend/` CWD via `python3 -m pytest tests/invariants/test_orch_boot.py tests/invariants/test_standing_orders_present.py tests/invariants/test_objective_card_pinned.py`): 12 pass · 1 RED on `tests/invariants/test_objective_card_pinned.py::test_every_card_hash_pin_matches_body` for `STATE/OBJECTIVES/M16.md` — pinned `962dba949b10144574d8a74023ee96fca3e458994f1e684c454568cc3bf77c70` (placeholder-body-hash convention documented in M16.md fresh-landing narrative) vs computed `4756a2aa2fc757f2eeb50e9c788593f53aa2ec6fd1ceea4f323e504141918db8` (post-Commit-B filled-body hash). **RE-PINNED at THIS Commit-C fixup** per M15-W1 fresh-landing precedent (M15-W1 pinned `f1308c6c…` at Commit-B fresh landing; re-pinned at Commit-C after body fills) · not a new bug · post-fixup narrow sweep GREEN attestation banked below.
+7. Staleness re-scope APPLY-ON-EXPIRY horizon 2026-09-20T~11:35Z armed · T-24h38m at Commit-C time · not yet fired · fires as its own small seal per owner order 2026-09-19T~05:15Z (re-scope five tests to presence + integrity + LKG · one-time on-host GPU journal pull · post-apply sweep).
+8. Standing dirty-tree ruling in force · unrelated `STATE/PINS.md` commissioning-pointer drift + phase0/ tree modifications + chunk1 notes untracked · left uncommitted per owner directive item 5 · flag remains for owner-scoped disposition at next seal (unchanged since Commit-B).
+9. Next after this Commit-C fixup: M16-W2 (CIF detection module OUT TCB · `services/cif/detection.py` · BR-9.4 · AST-scan invariants proving zero TCB-adjacent imports [`services.watch`, `services.ledger_emitter`, `services.data.repository`, `motor`, `services.cif.acceptance_point`] + zero write/decision surface function names + `is_in_tcb("cif.detection") is False`) via RED-first tests-first per §3.
+10. Attestation type: state-only content banked INSIDE the standard §3.3 Commit-C fixup (not a separate `SO6-RESUME-R##-BOOT` state-only commit like `addfc58b` · precedent-choice: mid-§3.3-cycle compaction wakes fold the SO §6.1 attestation into the closing Commit-C fixup to keep the state repo history clean · owner's SO §6.1 requirement of "diff against last banked" is satisfied by (5) above · no ratchet delta at Commit-C).
+
+**Commit-B (state master):** `8e77335638a159e01fb5c36d0dd74319d8733e1e` · 2026-09-19T10:46:21Z · banks Commit-A `ff000d585a0edfe2aeeea17b79cebc1df5ee055f` for M16-W1 CIF proposal contract shape-freeze (M16 MILESTONE OPENS · MILESTONE 7 FIRST SUB-WAVE). Files landed at Commit-B:
+- `STATE/OBJECTIVES/M16.md` NEW (fresh landing per M15-W1 pattern · 5 sub-waves W1..W5 enumerated per SO §6.4 pre-ruling verbatim · MUST-DO/MUST-NOT/EXIT/STOP/ANCHORS fully populated · W1 EXIT filled with 8 pytest node IDs + W1 shape-snapshot pin `e190d830…` + folded fitness-fixture-hardening audit line · W2..W5 EXIT `<pending>` placeholders per §6.5 batch-EXIT-fill-at-sub-wave-close · `card_sha256` pinned `962dba94…` per placeholder-body-hash convention · `milestone_status: DRAFTED · 5 sub-waves enumerated · milestone closes at W5`).
+- `STATE/DECISIONS.md` gains banking section `CP-M16-W1-CIF-PROPOSAL-SHAPE-FREEZE · Commit-A banking · 2026-09-19T~10:38Z` with (a) stop-and-report origin for fitness-fixture-wall-clock flake at 2026-09-19T~10:12Z + owner Option-A ruling verbatim + five owner-directed conditions all satisfied at Commit-A · (b) SO §4.2 Clause 6 cross-wave additive extension fold audit line · (c) cheap-prevention grep results (no other flake candidates in tree) · (d) verbatim canon anchors (SO §6.4 M16 CIF scope pre-ruling verbatim + BR-9.2 + BR-9.4 + AC-18 + A5.22 + A20.16 + DAP-7 Option-D + Canon 8 §W11/§28/§32.8 + SO §3.8 + SO §3.10-α + SO §4.2 Clause 6 + SO §6.7) · (e) drill receipts index · (f) M16-W1 milestone one-liner per §6.5.
+- `STATE/NEXT.md` gains `§6 INTERLUDE MARKER · R-46 · 2026-09-19T~10:38Z · CP-M16-W1-CIF-PROPOSAL-SHAPE-FREEZE Commit-A landed · M16 MILESTONE OPENS` with ⏳ Pending Commit-C fixup narrative.
+- `notes/ORCH_BOOT.md` R-6 boundary regen (post-Commit-A: `ratchet.passed_floor` 5378→5386 · `ratchet.baseline_failures_sha256` `aa5bb597 → 7208edd6…` · `heads_last_sealed.code_repo.head` advanced to Commit-A `ff000d58` · `heads_last_sealed.state_repo.head` remained `62a3abf3` pending Commit-C fixup per SO §7 R-6 convention).
+- `/app/frontend/public/audit/ORCH_BOOT.md` byte-identical audit copy re-synced at Commit-B (post-Commit-A regen · `cp` invocation preserving byte-for-byte fidelity per §7 R-6 audit-copy discipline).
+
+**Commit-C fixup (state master):** advances `heads_last_sealed.state_repo.head` in `notes/ORCH_BOOT.md` from pre-Commit-C snapshot `62a3abf3634592cab1bcb31678b126b7715aed1b` (M15-W5 Commit-B · last-fully-sealed state) to Commit-B `8e77335638a159e01fb5c36d0dd74319d8733e1e` (M16-W1 Commit-B · now-fully-sealed state) + re-pins `STATE/OBJECTIVES/M16.md` `card_sha256` from placeholder-body-hash `962dba949b10144574d8a74023ee96fca3e458994f1e684c454568cc3bf77c70` to filled-body-hash `4756a2aa2fc757f2eeb50e9c788593f53aa2ec6fd1ceea4f323e504141918db8` (M15-W1 fresh-landing precedent · closes boot-invariant test_every_card_hash_pin_matches_body RED noted in resume attestation item 6) + banks Commit-B SHA in this DECISIONS section (with the SO §6.1 post-compaction resume attestation preamble above) + flips `STATE/NEXT.md` R-46 INTERLUDE MARKER status ⏳ → ✅ (with M16-W1 FULLY SEALED narrative + resume attestation cross-reference + Next: M16-W2) + `/app/frontend/public/audit/ORCH_BOOT.md` byte-identical audit copy re-sync at post-Commit-C regen.
+
+**M16-W1 Sub-wave FULLY SEALED · ledger:**
+- Commit-A (code programme/track-a) `ff000d585a0edfe2aeeea17b79cebc1df5ee055f` · +8 tests (5378→5386) · additive-only per SO §3.8 · new `contracts/cif_proposal_v0.py` (`CIFProposal_v0` frozen pydantic · closed 6-field tuple · `CIF_PROPOSAL_KINDS` closed 2-tuple constant) + new invariant test file `test_m16_w1_cif_proposal_shape_freeze.py` (7 tests) + new frozen JSON snapshot `cif_proposal_v0.contract_snapshot.json` + APPEND-ONLY extension of `test_frozen_contract_snapshot_parity.py` `CONTRACT_TO_SNAPSHOT` dict (+1 auto-parametrized existence check via sealed W-7bB wizard invariant) + SO §4.2 Clause 6 fitness fixture hardening fold on `test_w10_cp3_drills_and_fitness.py::test_fitness_reader_counts_receipts_by_class` (owner-ruled Option A · DEFAULT-class · GPU-staleness precedent · pending owner batch ratification at M16 milestone seal · fitness suite stays at 12 tests · +0 net tests from this fold) · W1 shape-snapshot pin `e190d8300fe9f1dbd17fa3b046aa5fde57368395a31e364f4746713e6463fe43` · baseline_failures.json bump 5378→5386 with new `ratchet_history` entry (surgical text-insert · 9 insertions / 2 deletions · prior file layout preserved byte-for-byte) · pre-Commit-A double-green byte-identical BASELINE_GUARD=1 stripped-sha256 `97e0427eda5bb39cca33e78cc6044a3cb649879197501d9b3f6fdbd13cc48b09`.
+- Commit-B (state master) `8e77335638a159e01fb5c36d0dd74319d8733e1e` · M16.md fresh landing (5 sub-waves W1..W5 enumerated · W1 EXIT filled) + card_sha256 placeholder-body pin `962dba94…` + DECISIONS Commit-A banking section landing + NEXT R-46 marker landing + ORCH_BOOT R-6 regen advancing code_head + audit copy re-sync.
+- Commit-C fixup (state master · this seal) · advances state_head to Commit-B SHA + re-pins M16.md card_sha256 to filled-body hash `4756a2aa…` + banks Commit-B SHA in this section (with SO §6.1 resume attestation preamble) + flips marker ⏳→✅ + audit copy re-sync.
+
+**Post-fixup narrow sweep (§7 R-3):** to be run from `/app/assessment_workspace/repos/Extraction-Akki/backend/` CWD immediately after Commit-C lands, covering `tests/invariants/test_orch_boot.py` + `tests/invariants/test_objective_card_pinned.py` + `tests/invariants/test_standing_orders_present.py` + `tests/invariants/test_baseline_no_new_breakage.py` · result banked in NEXT.md R-46 flip attestation `post-fixup narrow sweep GREEN` flag.
+
+**Additive-only per SO §3.8 at this Commit-C fixup:** state files only (`STATE/OBJECTIVES/M16.md` re-pin + `STATE/DECISIONS.md` append + `STATE/NEXT.md` marker flip + `notes/ORCH_BOOT.md` R-6 regen + audit copy re-sync). No sealed module edited. No code branch touch. No test file edited.
+
+**Canon anchors verbatim (M16-W1-wide + this-fixup):** SO §6.4 M16 CIF scope pre-ruling verbatim + SO §3.3 3-Commit Seal Protocol (Commit-C advances state_head only per §7 R-1..R-6) + SO §7 R-6 boundary regen convention (audit copy re-sync via `cp` filesystem-only mirror not tracked in state repo) + SO §6.1 post-compaction resume attestation discipline (files are truth · four-authority ground-truth verification before writes · disk vs cache reconciliation with cause-of-drift explanation) + SO §6.7 batch-ratification-at-preceding-seal + SO §3.8 additive-only.
+
+**Stop-conditions #1/#2/#3 NOT triggered at this Commit-C fixup · §6.4 pre-ruling NOT triggered.**
+
+**Milestone one-liner per §6.5:** M16-W1 CIF proposal contract shape-freeze FULLY SEALED · Commit-A `ff000d58` + Commit-B `8e77335638a159e01fb5c36d0dd74319d8733e1e` + Commit-C fixup landed · +8 tests (5378→5386) · additive-only per SO §3.8 · SO §4.2 Clause 6 fitness fixture hardening folded per owner Option-A ruling (own audit line at Commit-A banking) · **M16-W1 CLOSED** · SO §6.1 post-compaction resume attestation banked at this fixup (four-authority ground-truth verification passed · disk vs cache reconciled · boot invariant M16.md card_sha256 drift re-pinned) · no forks banked (fitness flake resolved not banked) · no stop-conditions triggered · Autopilot R-33 continues NON-STOP under §6 END-OF-BUILD authority · owner Option-B/Option-3 override re-affirmed this session 2026-09-19 · Next per §6.7: M16-W2 (CIF detection module OUT TCB · `services/cif/detection.py` · BR-9.4 · AST-scan invariants) → M16-W3 (deterministic acceptance point IN TCB · BR-9.2) → M16-W4 (output routing L-4 A5.22 + L-5 A20.16) → M16-W5 (DET-1 own halt + integration seal · closes M16 milestone) → M17 → memory layer (after C.13 close) → frontends (functional-parity bar · Expo excluded per owner delegation to specialist) · G5 interleaved to 1,096.
+
+**Staleness re-scope APPLY-ON-EXPIRY** still armed for 2026-09-20T~11:35Z (T-24h38m at Commit-C time · not yet fired · fires as its own small seal per owner order 2026-09-19T~05:15Z · re-scope five tests to presence + integrity + LKG · one-time on-host GPU journal pull · post-apply sweep).
+
+**Unrelated STATE/PINS.md commissioning-pointer drift + phase0/ tree modifications + chunk1 notes** left uncommitted per owner directive item 5 · flag noted for owner-scoped disposition at next seal (unchanged since Commit-B).
+
+**Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered.**
+
+
+
+
+---
+
+## CP-M16-W2-CIF-DETECTION · Commit-A banking · 2026-09-19T~11:16Z · MILESTONE 7 SECOND SUB-WAVE
+
+**Commit-A (code programme/track-a):** `97347bb1762657f4560b8f07e4f927856440b05a` · 2026-09-19T~11:15Z · CP-M16-W2-CIF-DETECTION · CIF detection module OUT TCB per SO §6.4 pre-ruling verbatim ("a learned ideation faculty outside the TCB; every CIF-originated idea passes a deterministic acceptance point before affecting anything (BR-9.2, single-experiment principle); CIF proposes and never ratifies (AC-18); its outputs enter the research loop (A5.22, L-4) and the capability register (A20.16, L-5); it has its own halt independent of the Targeta run it feeds (DET-1). Nothing beyond that in M16.").
+
+**Files landed (code repo · programme/track-a):**
+- `backend/services/cif/__init__.py` NEW · CIF package docstring only · 33 lines · no code · lays wave-by-wave sub-module plan (W1 sealed contracts/cif_proposal_v0.py + W2 this-wave services/cif/detection.py + W3 services/cif/acceptance_point.py + W4 services/cif/output_routing.py + W5 services/cif/halt.py).
+- `backend/services/cif/detection.py` NEW · learned faculty · 114 lines · public surface `author_proposal(*, proposal_id, proposed_at, kind, payload, citations=(), proposed_by="cif.detection") -> CIFProposal_v0` · returns identity instance of sealed M16-W1 `contracts.cif_proposal_v0.CIFProposal_v0` (not shadow · not subclass · SO §3.10-α closed-schema discipline) · zero decision surface · zero write surface · imports only `typing.Tuple` + `contracts.cif_proposal_v0.CIFProposal_v0` · AC-18 proposes-never-ratifies preserved at surface + shape level.
+- `backend/tests/invariants/test_m16_w2_cif_detection.py` NEW · 7 tests · 263 lines. Tests: (1) `test_cif_detection_module_surface_importable_end_to_end` · (2) `test_cif_detection_author_proposal_yields_capability_kind_proposal` [`kind="capability"` happy path · isinstance check] · (3) `test_cif_detection_author_proposal_yields_research_loop_item_kind_proposal` [`kind="research_loop_item"` happy path · A5.22 L-4 routing binding at contract shape level] · (4) `test_cif_detection_ast_no_tcb_adjacent_imports` [AST scan top-level imports refuses banned prefixes: `services.watch` · `services.ledger_emitter` · `services.data.repository` · `motor` · `services.cif.acceptance_point`] · (5) `test_cif_detection_ast_no_write_or_decision_surface` [AST scan function defs refuses banned name prefixes: `insert_/update_/delete_/upsert_/replace_/modify_/drop_/persist_/emit_/ratify_/admit_/accept_/decide_/sign_`] · (6) `test_cif_detection_is_not_in_tcb_per_sealed_doc0_attributes` [`is_in_tcb("cif.detection") is False` per sealed `services/doc0_attributes/tcb.py` R-3 ratification 2026-09-09] · (7) `test_cif_detection_output_is_identity_instance_of_sealed_w1_model` [`type(proposal) is CIFProposal_v0` sealed W1 class identity check · SO §3.10-α].
+- `backend/tests/invariants/baseline_failures.json` UPDATED · surgical text-insert · `counts_at_baseline.passed` 5386→5393 + `invariants_enforced_when_baseline_guard_1.passed_floor` 5386→5393 + new `ratchet_history` entry CP-M16-W2-CIF-DETECTION (delta 7 · passed 5393 · prev_passed 5386) + `recorded_at_utc` bumped 2026-09-19T09:05:00Z → 2026-09-19T11:07:00Z · prior file layout byte-preserved for the 257 historical entries · sha256 `7208edd6 → 52fe6d0c62f282b81c95b34efc195dd4bc72ac9a56c62edcb9b846a7d801929a`.
+- Housekeeping pickup (per addfc58b R-29-BOOT precedent): `backend/phase0/drill_receipts/20260919T105700Z_cp_m16_w1_commit_c_fixup_postfixup_narrow_sweep_GREEN.log` (from M16-W1 Commit-C fixup state-only commit · left in code working tree at that state-only seal · picked up at this Commit-A).
+
+**Ratchet delta reconciled line-by-line:** DELTA 7 = 7 new test functions in `test_m16_w2_cif_detection.py`. No auto-parametrized existence check triggered (sealed W-7bB wizard `test_phase_7_stage_b_3_wizard.py::test_prior_contract_file_exists_and_stable_at_7b_3` parametrizes over `contracts/*.py` only; M16-W2 adds `services/cif/detection.py` which is not a `contracts/*.py` file · no wizard parametrizes on `services/*.py` per exhaustive grep). Zero flip · zero regression. `counts_at_baseline.passed` 5386 → 5393. `passed_floor` 5386 → 5393. `baseline_failures.json` sha256 `7208edd64810ea8775b939f45bc0d2875db78ffff681f26b5bf83165baef8d57` → `52fe6d0c62f282b81c95b34efc195dd4bc72ac9a56c62edcb9b846a7d801929a`.
+
+**AUTHENTIC RED-first cycle:** 7 tests authored FIRST · RED at `phase0/drill_receipts/20260919T110300Z_cp_m16_w2_cif_detection_RED_pre_module.log` (6/7 fail with `ModuleNotFoundError: No module named 'services.cif'` + AssertionError on `_DETECTION_PATH.is_file()==False` · 1/7 pre-existing pass on sealed `is_in_tcb('cif.detection') is False` check because that answer is authoritative from sealed R-3 ratification 2026-09-09 · not new work). GREEN at `phase0/drill_receipts/20260919T110600Z_cp_m16_w2_cif_detection_GREEN_post_module.log` (7/7 pass post module authoring · 0.68s).
+
+**Pre-Commit-A double-green byte-identical BASELINE_GUARD=1 sweep from `backend/` CWD** (against final baseline_failures.json sha256 `52fe6d0c…` · pre-Commit-A ORCH_BOOT.md regen at `871b4d2fcfeb665e697427b07afdbd3e25241c022ba8d2c5f74e428858054cc3` [both notes/ORCH_BOOT.md and audit copy]): run1 at `phase0/drill_receipts/20260919T111100Z_cp_m16_w2_preseal_GUARD1_run1.log` (5393 passed / 1 skipped / 438 warnings / 168.44s / 56929 raw bytes) + run2 at `phase0/drill_receipts/20260919T111400Z_cp_m16_w2_preseal_GUARD1_run2.log` (5393 passed / 1 skipped / 438 warnings / 169.92s / 56929 raw bytes) · stripped-sha256 `a268f95937f33f236932fd67394c4fff8c3b5f3b59a7a84d2c4ffdee98c44da8` IDENTICAL (both stripped to 56543 bytes via strip-timing/session lines).
+
+**Additive-only per SO §3.8:** NEW `backend/services/cif/__init__.py` (package docstring only) + NEW `backend/services/cif/detection.py` (author_proposal function) + NEW `backend/tests/invariants/test_m16_w2_cif_detection.py` (7 tests) + `backend/tests/invariants/baseline_failures.json` surgical text-insert. Sealed M16-W1 `contracts/cif_proposal_v0.py` NOT edited (consumed by identity import only per SO §3.10-α). Sealed W-M2-SW7 `services/doc0_attributes/tcb.py` NOT edited (R-3 ratification 2026-09-09 authoritative · consumed structurally by test 6).
+
+**Canon anchors verbatim:** BR-9.4 (Doc-9 detection may propose · learned faculty OUTSIDE TCB) + AC-18 (proposes-never-ratifies · zero ratification-adjacent field on outputs enforced at shape level in sealed CIFProposal_v0 + AST-scan on function names in detection.py enforced at surface level) + Canon 8 §W11 (one-task-one-identity · structural role separation · zero TCB-adjacent imports enforced by AST scan) + sealed `services/doc0_attributes/tcb.py` R-3 ratification 2026-09-09 (component_id `cif.detection` classified OUT TCB · consumed structurally by test 6) + M16-W1 sealed `contracts/cif_proposal_v0.CIFProposal_v0` (closed 6-field tuple · frozen · extra=forbid · kind Literal closed 2-tuple · consumed by identity import per SO §3.10-α closed-schema discipline · not shadow · not subclass · type identity check via `type(proposal) is CIFProposal_v0`) + SO §3.8 (thin-kernel additive-only · new module tree in `services/cif/` · sealed modules not edited) + SO §3.10-α (closed-schema discipline preserved) + SO §6.7 batch-ratification-at-preceding-seal (M16 ratified by owner Option-B/Option-3 override at CP-M15-W5-SEAL-INTEGRATION close · state master `09cd5578`).
+
+**Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered (this seal implements the M16 pre-ruling verbatim · canon-as-written · no new tension).**
+
+**Milestone one-liner per §6.5:** M16-W2 CIF detection module OUT TCB sealed at Commit-A `97347bb1` · +7 tests (5386→5393) · additive-only per SO §3.8 · no forks banked · no stop-conditions triggered.
+
+**Autopilot R-33 continues** NON-STOP under §6 END-OF-BUILD authority · owner Option-B/Option-3 override re-affirmed this session 2026-09-19 to Commit-B fixup next (banks Commit-A `97347bb1` · M16.md W2 EXIT fill + card_sha256 re-pin `4756a2aa → 6507d0d8` + DECISIONS this banking + NEXT R-47 marker + ORCH_BOOT R-6 regen advancing code_head to `97347bb1`) → Commit-C fixup (advances state_head · marker flips ⏳→✅) → M16-W3 (deterministic acceptance point IN TCB · `services/cif/acceptance_point.py` · BR-9.2 single-experiment predicate · AST scans banning LLM/learned/randomness imports + `is_in_tcb("cif.acceptance_point") is True` structural assertion · test file `test_m16_w3_cif_acceptance_point.py` per §3 tests-first) → M16-W4 (output routing L-4 A5.22 + L-5 A20.16 · `services/cif/output_routing.py` · binds sealed `services.capability_registry.register_capability` at L-5) → M16-W5 (DET-1 own halt + integration seal binding W1..W4 · closes M16 milestone) → M17 → memory layer (after C.13 close) → frontends per SO §6.7 sequence · G5 interleaved to 1,096.
+
+**Staleness re-scope APPLY-ON-EXPIRY** still armed for 2026-09-20T~11:35Z (T-24.3h at Commit-A time · not yet fired · fires as its own small seal per owner order 2026-09-19T~05:15Z · re-scope five tests to presence + integrity + LKG · one-time on-host GPU journal pull · post-apply sweep).
+
+**Stop-conditions #2/#3 NOT triggered · §6.4 pre-ruling NOT triggered.**
+
+
+---
+
+## CP-M16-W2-CIF-DETECTION · Commit-B/Commit-C banking · 2026-09-19T~11:18Z · MILESTONE 7 SECOND SUB-WAVE FULLY SEALED
+
+**Commit-B (state master):** `832fcb2ea416662025049c83f5f18d12afaa25ce` · 2026-09-19T~11:16Z · banks Commit-A `97347bb1762657f4560b8f07e4f927856440b05a` for M16-W2 CIF detection module OUT TCB. Files landed at Commit-B:
+- STATE/OBJECTIVES/M16.md W2 EXIT filled with 7 concrete pytest node IDs (per test list in Commit-A banking above · `test_cif_detection_module_surface_importable_end_to_end` through `test_cif_detection_output_is_identity_instance_of_sealed_w1_model`) + Commit-A SHA `97347bb1` + BR-9.4 structural placement summary (three AST-scan invariants + `is_in_tcb` check + public surface signature) · `card_sha256` re-pinned `4756a2aa → 6507d0d81e5e9cf1f79a4110cc07b7f3254525583a50a243d8f1440cbb199c79` reflecting W2 EXIT fill.
+- STATE/DECISIONS.md gains banking section CP-M16-W2-CIF-DETECTION Commit-A banking (see preceding section).
+- STATE/NEXT.md gains `§6 INTERLUDE MARKER · R-47 · 2026-09-19T~11:16Z · CP-M16-W2-CIF-DETECTION Commit-A landed` with ⏳ Pending Commit-C fixup narrative.
+- notes/ORCH_BOOT.md R-6 boundary regen (post-Commit-A: `heads_last_sealed.code_repo.head` advanced to Commit-A `97347bb1762657f4560b8f07e4f927856440b05a` · `sealed_at_utc` 2026-09-19T11:15:00Z · `seal_kind` updated to M16-W2 CIF detection narrative · `heads_last_sealed.state_repo.head` remained `8e77335638a159e01fb5c36d0dd74319d8733e1e` pending Commit-C fixup per SO §7 R-6 convention · `ratchet` fields unchanged from pre-Commit-A regen at 11:10Z · `baseline_failures_sha256` unchanged at `52fe6d0c62f282b81c95b34efc195dd4bc72ac9a56c62edcb9b846a7d801929a`).
+- /app/frontend/public/audit/ORCH_BOOT.md byte-identical audit copy re-synced at Commit-B (post-Commit-A regen · `cp` invocation preserving byte-for-byte fidelity per §7 R-6 audit-copy discipline).
+
+**Commit-C fixup (state master):** advances `heads_last_sealed.state_repo.head` in `notes/ORCH_BOOT.md` from pre-Commit-C snapshot `8e77335638a159e01fb5c36d0dd74319d8733e1e` (M16-W1 Commit-B · last-fully-sealed state) to Commit-B `832fcb2ea416662025049c83f5f18d12afaa25ce` (M16-W2 Commit-B · now-fully-sealed state) + banks Commit-B SHA in this DECISIONS section + flips `STATE/NEXT.md` R-47 INTERLUDE MARKER status ⏳ → ✅ (with M16-W2 FULLY SEALED narrative + Next: M16-W3) + `/app/frontend/public/audit/ORCH_BOOT.md` byte-identical audit copy re-sync at post-Commit-C regen.
+
+**M16-W2 Sub-wave FULLY SEALED · ledger:**
+- Commit-A (code programme/track-a) `97347bb1762657f4560b8f07e4f927856440b05a` · +7 tests (5386→5393) · additive-only per SO §3.8 · new `services/cif/__init__.py` + new `services/cif/detection.py` (author_proposal function returning sealed CIFProposal_v0 instance · zero decision surface · zero write surface) + new invariant test file `test_m16_w2_cif_detection.py` (7 tests) + baseline_failures.json ratchet bump 5386→5393 with new ratchet_history entry · pre-Commit-A double-green byte-identical BASELINE_GUARD=1 stripped-sha256 `a268f95937f33f236932fd67394c4fff8c3b5f3b59a7a84d2c4ffdee98c44da8` (both runs 5393 passed / 1 skipped / 438 warnings against final baseline sha256 `52fe6d0c…`).
+- Commit-B (state master) `832fcb2ea416662025049c83f5f18d12afaa25ce` · M16.md W2 EXIT fill + card_sha256 re-pin `6507d0d8…` + DECISIONS Commit-A banking + NEXT R-47 marker + ORCH_BOOT R-6 regen advancing code_head + audit copy re-sync.
+- Commit-C fixup (state master · this seal) · advances state_head to Commit-B SHA + banks Commit-B SHA in this section + flips marker ⏳→✅ + audit copy re-sync.
+
+**Post-fixup narrow sweep (§7 R-3):** to be run from `/app/assessment_workspace/repos/Extraction-Akki/backend/` CWD immediately after Commit-C lands, covering `tests/invariants/test_orch_boot.py` + `tests/invariants/test_objective_card_pinned.py` + `tests/invariants/test_standing_orders_present.py` + `tests/invariants/test_baseline_no_new_breakage.py` + `tests/invariants/test_m16_w2_cif_detection.py` · result banked in NEXT.md R-47 flip attestation `post-fixup narrow sweep GREEN` flag.
+
+**Additive-only per SO §3.8 at this Commit-C fixup:** state files only (`notes/ORCH_BOOT.md` R-6 regen advancing state_head + `STATE/NEXT.md` marker flip + `STATE/DECISIONS.md` this banking append). No sealed module edited. No code branch touch. No test file edited. `STATE/OBJECTIVES/M16.md` NOT edited at Commit-C (card_sha256 was correctly pinned at Commit-B against filled body · no drift · fresh-landing-precedent card_sha256-drift pattern applies only to fresh milestone landings not to sub-wave EXIT fills).
+
+**Canon anchors verbatim:** SO §3.3 3-Commit Seal Protocol (Commit-C advances state_head only per §7 R-1..R-6) + SO §7 R-6 boundary regen convention (audit copy re-sync via `cp` filesystem-only mirror not tracked in state repo) + SO §3.8 additive-only + all M16-W2 canon anchors preserved from Commit-A banking section (BR-9.4 + AC-18 + Canon 8 §W11 + sealed doc0_attributes/tcb.py R-3 2026-09-09 + M16-W1 sealed CIFProposal_v0 + SO §3.10-α + SO §6.7).
+
+**Stop-conditions #1/#2/#3 NOT triggered at this Commit-C fixup · §6.4 pre-ruling NOT triggered.**
+
+**Milestone one-liner per §6.5:** M16-W2 CIF detection module OUT TCB FULLY SEALED · Commit-A `97347bb1` + Commit-B `832fcb2ea416662025049c83f5f18d12afaa25ce` + Commit-C fixup landed · +7 tests (5386→5393) · additive-only per SO §3.8 · **M16-W2 CLOSED** · no forks banked · no stop-conditions triggered · Autopilot R-33 continues NON-STOP under §6 END-OF-BUILD authority · owner Option-B/Option-3 override re-affirmed this session 2026-09-19 · Next per §6.7: M16-W3 (deterministic acceptance point IN TCB · `services/cif/acceptance_point.py` · BR-9.2 single-experiment predicate · AST-scan invariants banning LLM/learned/randomness imports [banned: `services.solva_v2` · `services.mtafiti` · `services.perception` · any `*.llm_*` · any `openai` · any `anthropic` · `services.cif.detection` · `random` · `secrets`] + `is_in_tcb("cif.acceptance_point") is True` structural assertion + deterministic-fixed-input-fixed-output verified structurally · surface: `is_accepted(proposal: CIFProposal_v0) -> bool` fail-closed default False on any error) → M16-W4 (output routing L-4 A5.22 + L-5 A20.16 · `services/cif/output_routing.py`) → M16-W5 (DET-1 own halt + integration seal binding W1..W4 · closes M16 milestone) → M17 → memory layer (after C.13 close) → frontends per SO §6.7 sequence · G5 interleaved to 1,096.
+
+**Staleness re-scope APPLY-ON-EXPIRY** still armed for 2026-09-20T~11:35Z (T-24.3h at Commit-C time · not yet fired · fires as its own small seal per owner order 2026-09-19T~05:15Z · re-scope five tests to presence + integrity + LKG · one-time on-host GPU journal pull · post-apply sweep).
+
+**Unrelated STATE/PINS.md commissioning-pointer drift + phase0/ tree modifications + chunk1 notes** left uncommitted per owner directive item 5 · flag noted for owner-scoped disposition at next seal (unchanged since Commit-B).
+
+**Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered.**
+
+
+### CP-M16-W3-CIF-ACCEPTANCE-POINT · Commit-A banking (2026-09-19T~11:47Z)
+
+**Owner Option-1 override banking preamble (this session resume · SO §6.1 files-are-truth):** at session start 2026-09-19T~11:29Z the pasted CHUNK-1 problem statement in the system prompt contradicted the on-disk M16-W2-sealed state; the main agent asked the owner via ask_human presenting the four-authority reconciliation per the R-29 append-only doctrine at DECISIONS.md:14045. Owner responded "OPTION 1 — resume the autonomous build under Standing Order §6" with explicit citation of the four banked authorities: (i) DECISIONS.md:14013 "Blocker 1 ruling: (c) Hybrid"; (ii) DECISIONS.md:11997+ "CHUNK 1 ruling and standing authority to proceed (VERBATIM, 2026-09-18)" Item 3 standing authority; (iii) DECISIONS.md:13649 "With guardrails done, go on all remaining milestones. The above order to survive to end of build."; (iv) DECISIONS.md:14045 R-29 session-brief-vs-banked-authority resolution rule. All four re-verified against files this session before any writes per SO §6.1. Session brief SUPERSEDED. §6 END-OF-BUILD authority re-affirmed. Owner also directed pre-Commit-A boot-ritual re-verification (git rev-parse both HEADs · live ratchet + baseline_failures.json sha256 · boot invariants GREEN) — executed and passed 13/13 clean pre-work.
+
+**Commit-A (code programme/track-a):** `e0b57403779c3fe9964471114df266eb8c44a436` landed 2026-09-19T~11:47Z. MILESTONE 7 THIRD SUB-WAVE. CIF deterministic acceptance point IN TCB per SO §6.4 pre-ruling verbatim (BR-9.2 single-experiment predicate · rung-1 deterministic machinery per Canon 4 §22 · the ONLY surface that acts on a CIF proposal downstream per AC-18 proposes-never-ratifies).
+
+**Files landed at Commit-A:**
+- NEW `backend/services/cif/acceptance_point.py` (108 lines · single public surface `is_accepted(proposal: CIFProposal_v0) -> bool` returning True iff `type(proposal) is CIFProposal_v0` per SO §3.10-α closed-schema identity check AND `len(proposal.citations) >= 1` per AC-18 evidence-backed acceptance gate · fail-closed default False on any deviation · never raises · imports only `contracts.cif_proposal_v0.CIFProposal_v0` · zero LLM/learned/randomness surfaces at import boundary).
+- NEW `backend/tests/invariants/test_m16_w3_cif_acceptance_point.py` (304 lines · 7 tests: `test_cif_acceptance_point_module_surface_importable_end_to_end` + `test_cif_acceptance_point_is_in_tcb_per_sealed_doc0_attributes` (citing sealed `tcb_enumeration_v1` R-3 ratification 2026-09-09 authority per owner directive verbatim) + `test_cif_acceptance_point_ast_no_learned_or_randomness_imports` (banned prefixes across `ast.Import` and `ast.ImportFrom`: `services.solva_v2`, `services.mtafiti`, `services.perception`, `openai`, `anthropic`, `services.cif.detection`, `random`, `secrets` + case-insensitive `llm` substring) + `test_cif_acceptance_point_ast_no_write_or_route_surface` (banned prefixes across `ast.walk` FunctionDef/AsyncFunctionDef: `insert_`, `update_`, `delete_`, `upsert_`, `replace_`, `modify_`, `drop_`, `persist_`, `emit_`, `ratify_`, `admit_`, `sign_`, `route_`, `author_`, `decide_`) + `test_cif_acceptance_point_is_accepted_returns_bool_for_valid_proposal` + `test_cif_acceptance_point_is_accepted_is_deterministic_across_repeated_calls` (16 repeated calls yield single verdict) + `test_cif_acceptance_point_is_accepted_fail_closed_on_non_cifproposal_input` (masquerade class + dict payload + None all return False)).
+- `backend/tests/invariants/baseline_failures.json` surgical text-insert: `counts_at_baseline.passed` 5393→5400 + `invariants_enforced_when_baseline_guard_1.passed_floor` 5393→5400 + `ratchet_history` append-only per SO §7 R-5 with single new CP-M16-W3-CIF-ACCEPTANCE-POINT entry preserving prior file layout byte-for-byte + `recorded_at_utc` bumped to 2026-09-19T11:33:36Z · new sha256 `86a69d3bb1657bdbba7e07244edebc276d0aee430a013def15571d946a51e4a0` (from `52fe6d0c62f282b81c95b34efc195dd4bc72ac9a56c62edcb9b846a7d801929a`).
+- Housekeeping pickup: 43 drill receipts from M15-W1..W5 + M16-W1..W3 chain (RED/GREEN/GUARD1 pairs + narrow sweeps + .done markers · previously left in code working tree by prior seals' state-only commits per R-29-BOOT precedent).
+
+**Delta 7 reconciled line-by-line:** 7 new test functions in `test_m16_w3_cif_acceptance_point.py`. No auto-parametrized wizard triggered (sealed W-7bB wizard `test_phase_7_stage_b_3_wizard.py::test_prior_contract_file_exists_and_stable_at_7b_3` parametrizes over `contracts/*.py` only; M16-W3 adds `services/cif/acceptance_point.py` which is not a `contracts/*.py` file · exhaustive grep confirmed). Zero flip · zero regression.
+
+**AUTHENTIC RED-first cycle:**
+- 7 tests authored FIRST at 2026-09-19T~11:26Z.
+- RED at `phase0/drill_receipts/20260919T113210Z_cp_m16_w3_cif_acceptance_point_RED_pre_module.log` (6/7 fail with right-reason `ModuleNotFoundError: No module named 'services.cif.acceptance_point'` on tests 1,3,4,5,6,7 · 1/7 pre-existing pass on `test_cif_acceptance_point_is_in_tcb_per_sealed_doc0_attributes` because that answer is authoritative from sealed R-3 ratification 2026-09-09 `_TCB_ENTRIES` seed line: `TCBEntry(component_id="cif.acceptance_point", classification="IN", reason="BR-9.2 CIF single-experiment acceptance point (Doc-9).")` · not new work · same not-new-work pattern as M16-W2 test 6 banked precedent).
+- GREEN at `phase0/drill_receipts/20260919T113336Z_cp_m16_w3_cif_acceptance_point_GREEN_post_module.log` (7/7 pass · 0.68s).
+
+**Pre-Commit-A double-green byte-identical BASELINE_GUARD=1 sweep from `backend/` CWD:**
+- run 1 at `phase0/drill_receipts/20260919T114203Z_cp_m16_w3_preseal_GUARD1_run1.log` (5400 passed / 1 skipped / 438 warnings / 170.84s).
+- run 2 at `phase0/drill_receipts/20260919T114503Z_cp_m16_w3_preseal_GUARD1_run2.log` (5400 passed / 1 skipped / 438 warnings / 170.32s).
+- Stripped-sha256 `9afe6e969ce2ea51078a8611e0cd98780962d2252910e106bb462617f786d18f` IDENTICAL against final `baseline_failures.json` sha256 `86a69d3bb1657bdbba7e07244edebc276d0aee430a013def15571d946a51e4a0`.
+- Both raw receipts 57012 bytes / stripped 56994 bytes.
+
+**Environmental note reconciled during pre-seal sweep (§6 transparency):** initial sweep attempt at `phase0/drill_receipts/20260919T113634Z_cp_m16_w3_preseal_GUARD1_run1.log` failed on `test_orch_boot::test_orch_boot_anti_forget_manifest_matches_live_ratchet_and_sealed_heads` because ORCH_BOOT.md had not yet been pre-regenerated with the new ratchet 5400 / new baseline sha256 `86a69d3b…` (legitimate ordering discipline — drift-and-burn priority guard fires when `baseline_failures.json` is bumped before ORCH_BOOT R-6 regen catches up). Reconciled by regenerating `notes/ORCH_BOOT.md` ratchet block (passed_floor 5393→5400 · counts_at_baseline_passed 5393→5400 · baseline_failures_sha256 `52fe6d0c…`→`86a69d3b…` · generated_at_utc 2026-09-19T11:37:00Z · generator + regeneration_reason updated · heads_last_sealed KEPT at M16-W2 last-sealed state 832fcb2e + code 97347bb1 pending this Commit-A) + syncing `/app/frontend/public/audit/ORCH_BOOT.md` byte-identically (both copies sha256 `1bac4fe50e992eb635c8f37bd5a0e98d90d3b5c2104df87d9d2734a4c84b88f7` at pre-Commit-A snapshot). Targeted `test_orch_boot` GREEN post-regen. True pre-Commit-A double-green then followed above (run 1 at 20260919T11:42:03Z · run 2 at 20260919T11:45:03Z). Not a ratchet break · not a Stop-condition trigger · transparency-only banking per §6.
+
+**Additive-only per SO §3.8:** NEW `backend/services/cif/acceptance_point.py` (108 lines · single `is_accepted` function only · no helpers · zero unused imports · zero write/route surface) + NEW `backend/tests/invariants/test_m16_w3_cif_acceptance_point.py` (304 lines · 7 tests) + `baseline_failures.json` surgical text-insert. Sealed W-M2-SW7 `doc0_attributes/tcb.py` NOT edited (R-3 ratification 2026-09-09 already banks `cif.acceptance_point` IN via `tcb_enumeration_v1` canon drop method · consumed structurally by test 2 · no new TCB addition · Stop-Condition #3 respected structurally · owner Stop-Condition #3 method-is-authoritative preserved). Sealed M16-W1 `contracts/cif_proposal_v0.py` NOT edited (consumed by identity import only). Sealed M16-W2 `services/cif/__init__.py` NOT edited (existing package · adds only new file alongside `detection.py`). Sealed M16-W2 `services/cif/detection.py` NOT edited.
+
+**Canon anchors verbatim:** BR-9.2 (Doc-9 CIF single-experiment acceptance point IN TCB · sealed `services/doc0_attributes/tcb.py` R-3 ratification 2026-09-09 `tcb_enumeration_v1` canon drop method · cited in seal per owner directive 2026-09-19T~11:29Z verbatim) + AC-18 (proposes-never-ratifies · the only surface that acts · evidence-backed via ≥1 citation gate at the acceptance boundary · non-CIFProposal_v0 refused via `type() is` identity check) + Canon 4 §22 (deterministic acceptance check is rung-1 machinery · NOT a second model's judgement · no LLM client · no learned faculty · no randomness source at import) + Canon 8 §W11 (one-task-one-identity · structural role separation · no author surface · no route surface in this module · AST-enforced by test 4 · AST-enforced by test 3) + sealed `services/doc0_attributes/tcb.py` R-3 2026-09-09 (`is_in_tcb('cif.acceptance_point') is True` · authoritative from prior sealed enumeration · not new TCB addition · no sealed-module edit · Stop-Condition #3 respected structurally) + M16-W1 sealed `CIFProposal_v0` (consumed by identity import · SO §3.10-α closed-schema discipline preserved via `type() is` check · not `isinstance` · not shadow · not subclass) + SO §3.8 (thin-kernel additive-only · new file in existing `services/cif/` package established at M16-W2) + SO §3.10-α (closed-schema discipline) + SO §6.7 batch-ratification-at-preceding-seal (M16 ratified by owner Option-B/Option-3 override at CP-M15-W5-SEAL-INTEGRATION close · state 09cd5578 · re-affirmed as owner Option-1 this session 2026-09-19T11:29Z per four banked-authorities file-verification against pasted CHUNK-1 session brief per SO §6.1 files-are-truth).
+
+**Card citations:** `STATE/OBJECTIVES/M16.md` MUST-DO 3 + EXIT-W3 · `card_sha256` re-pinned `6507d0d81e5e9cf1f79a4110cc07b7f3254525583a50a243d8f1440cbb199c79` → `92c36b3b30b7d51c3101f5e5949c28895e3c057031fc62649f01543d6272d330` after filling W3 EXIT with 7 concrete pytest node IDs + Commit-A SHA `e0b57403` + structural placement summary (BR-9.2 IN TCB · AST invariants + `is_in_tcb('cif.acceptance_point') is True` + `type() is` identity check + AC-18 evidence gate `len(citations) >= 1` + determinism verified via 16 reps + fail-closed on masquerade/dict/None).
+
+**Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered.**
+
+**Commit-B (state master · this seal):** Files landed: `STATE/OBJECTIVES/M16.md` W3 EXIT filled + `card_sha256` re-pinned `92c36b3b…` + `STATE/DECISIONS.md` this banking section + `STATE/NEXT.md` R-48 INTERLUDE MARKER 2026-09-19T~11:47Z reflecting Commit-A landed + `notes/ORCH_BOOT.md` R-6 boundary regen (post-Commit-A: `heads_last_sealed.code_repo.head` advanced to Commit-A `e0b57403779c3fe9964471114df266eb8c44a436` · `state_repo.head` remains `832fcb2ea416662025049c83f5f18d12afaa25ce` pending Commit-C fixup · `sealed_at_utc` updated to 2026-09-19T11:47:00Z · `seal_kind` updated to M16-W3 CIF acceptance point narrative · `generated_at_utc` 2026-09-19T11:49:00Z · `regeneration_reason` `r6-boundary-regen-post-commit-a-at-cp-m16-w3-cif-acceptance-point-code-head-advance-to-e0b57403`) + `/app/frontend/public/audit/ORCH_BOOT.md` byte-identical audit copy re-synced (sha256 `fcdd88daad7cd333edf50edaa57cd414a16fde9db985cb4894104e0eda53c2d9` on both copies at Commit-B snapshot). Additive-only per SO §3.8: state files only · no sealed module edited · no code branch touch at Commit-B.
+
+**Milestone one-liner per §6.5:** M16-W3 CIF deterministic acceptance point IN TCB sealed at Commit-A · +7 tests (5393→5400) · additive-only per SO §3.8 · no forks banked · no stop-conditions triggered · Autopilot R-33 continues NON-STOP under §6 END-OF-BUILD authority · owner Option-1 override re-affirmed this session 2026-09-19T11:29Z · Next per §6.7: Commit-C fixup (advances `heads_last_sealed.state_repo.head` to Commit-B SHA · marker R-48 flips ⏳→✅) → M16-W4 (output routing L-4 A5.22 + L-5 A20.16 · `services/cif/output_routing.py`) → M16-W5 (DET-1 own halt · `services/cif/halt.py` + integration seal binding W1..W4 · closes M16 milestone) → M17 → memory layer (after C.13 close) → frontends per SO §6.7 sequence · G5 interleaved to 1,096.
+
+**Staleness re-scope APPLY-ON-EXPIRY** still armed for 2026-09-20T~11:35Z (T-23.8h at Commit-A time · not yet fired · fires as its own small seal per owner order 2026-09-19T~05:15Z · re-scope five tests to presence + integrity + LKG · one-time on-host GPU journal pull · post-apply sweep).
+
+**Unrelated STATE/PINS.md commissioning-pointer drift + phase0/ tree modifications + chunk1 notes** left uncommitted per owner directive item 5 · flag remains for owner-scoped disposition at next seal (unchanged since Commit-B of M16-W2). Standing dirty-tree ruling in force. Tracked-.pyc drift on `backend/services/reliable_time_source/__pycache__/clock.cpython-311.pyc` in code repo also left uncommitted per owner directive item 5.
+
+
+### CP-M16-W3-CIF-ACCEPTANCE-POINT · Commit-B / Commit-C banking (2026-09-19T~11:51Z)
+
+**Commit-B (state master):** `c4c4c1eded376d489d02e3f47efa75dce73b3139` landed 2026-09-19T~11:50Z. Files landed: STATE/OBJECTIVES/M16.md W3 EXIT filled + card_sha256 re-pinned `92c36b3b30b7d51c3101f5e5949c28895e3c057031fc62649f01543d6272d330` (from `6507d0d81e5e9cf1f79a4110cc07b7f3254525583a50a243d8f1440cbb199c79`) reflecting W3 EXIT filled with 7 pytest node IDs + Commit-A SHA `e0b57403` + BR-9.2 structural placement summary + AST invariant enumeration + type identity check + AC-18 evidence gate + determinism verification + fail-closed clause + public surface signature. STATE/DECISIONS.md gains new banking section CP-M16-W3-CIF-ACCEPTANCE-POINT · Commit-A banking (2026-09-19T~11:47Z) with owner Option-1 override banking preamble filed as own section (four-authority re-verification per SO §6.1 files-are-truth · session brief SUPERSEDED · §6 END-OF-BUILD authority re-affirmed) + full ratchet delta accounting + drill receipts index + AUTHENTIC RED-first cycle evidence + pre-Commit-A double-green byte-identical BASELINE_GUARD=1 sweep evidence + environmental note transparency section + Additive-only per SO §3.8 audit line + verbatim canon anchors. STATE/NEXT.md gains §6 INTERLUDE MARKER R-48 2026-09-19T~11:47Z (⏳ pending Commit-C at Commit-B time · flipped ✅ at Commit-C). notes/ORCH_BOOT.md R-6 boundary regen (post-Commit-A: ratchet.passed_floor 5393→5400 · baseline_failures_sha256 `52fe6d0c…`→`86a69d3b…` · heads_last_sealed.code_repo.head advanced to Commit-A `e0b57403779c3fe9964471114df266eb8c44a436` · state_repo.head remains `832fcb2ea416662025049c83f5f18d12afaa25ce` pending Commit-C fixup · sealed_at_utc updated to 2026-09-19T11:47:00Z · seal_kind updated to M16-W3 CIF acceptance point narrative). /app/frontend/public/audit/ORCH_BOOT.md byte-identical audit copy re-synced (both copies sha256 `fcdd88daad7cd333edf50edaa57cd414a16fde9db985cb4894104e0eda53c2d9` at Commit-B snapshot).
+
+**Commit-C fixup (state master):** advances `heads_last_sealed.state_repo.head` in `notes/ORCH_BOOT.md` from pre-Commit-C snapshot `832fcb2ea416662025049c83f5f18d12afaa25ce` (M16-W2 Commit-B · last-fully-sealed state) to Commit-B `c4c4c1eded376d489d02e3f47efa75dce73b3139` (M16-W3 Commit-B · now-fully-sealed state) + banks Commit-B SHA in this DECISIONS section + flips STATE/NEXT.md R-48 INTERLUDE MARKER status ⏳ → ✅ (with M16-W3 FULLY SEALED narrative + Next: M16-W4) + /app/frontend/public/audit/ORCH_BOOT.md byte-identical audit copy re-sync at post-Commit-C regen.
+
+**M16-W3 Sub-wave FULLY SEALED · ledger:**
+- Commit-A (code programme/track-a) `e0b57403779c3fe9964471114df266eb8c44a436` · +7 tests (5393→5400) · additive-only per SO §3.8 · new `services/cif/acceptance_point.py` (108 lines · single is_accepted predicate) + new invariant test file `test_m16_w3_cif_acceptance_point.py` (304 lines · 7 tests) + `baseline_failures.json` ratchet bump 5393→5400 with new ratchet_history entry · pre-Commit-A double-green byte-identical BASELINE_GUARD=1 stripped-sha256 `9afe6e969ce2ea51078a8611e0cd98780962d2252910e106bb462617f786d18f` (both runs 5400 passed / 1 skipped / 438 warnings against final baseline sha256 `86a69d3b…`) + 43 housekeeping drill-receipt pickups per R-29-BOOT precedent.
+- Commit-B (state master) `c4c4c1eded376d489d02e3f47efa75dce73b3139` · M16.md W3 EXIT fill + card_sha256 re-pin `92c36b3b…` + DECISIONS Commit-A banking with owner Option-1 override preamble + NEXT R-48 marker + ORCH_BOOT R-6 regen advancing code_head + audit copy re-sync.
+- Commit-C fixup (state master · this seal) · advances state_head to Commit-B SHA + banks Commit-B SHA in this section + flips marker ⏳→✅ + audit copy re-sync.
+
+**Post-fixup narrow sweep (§7 R-3):** to be run from `/app/assessment_workspace/repos/Extraction-Akki/backend/` CWD immediately after Commit-C lands, covering `tests/invariants/test_orch_boot.py` + `tests/invariants/test_objective_card_pinned.py` + `tests/invariants/test_standing_orders_present.py` + `tests/invariants/test_baseline_no_new_breakage.py` + `tests/invariants/test_m16_w3_cif_acceptance_point.py` · result banked in NEXT.md R-48 flip attestation `post-fixup narrow sweep GREEN` flag.
+
+**Additive-only per SO §3.8 at this Commit-C fixup:** state files only (`notes/ORCH_BOOT.md` R-6 regen advancing state_head + `STATE/NEXT.md` marker flip + `STATE/DECISIONS.md` this banking append). No sealed module edited. No code branch touch. No test file edited. `STATE/OBJECTIVES/M16.md` NOT edited at Commit-C (card_sha256 was correctly pinned at Commit-B against filled body · no drift · fresh-landing-precedent card_sha256-drift pattern applies only to fresh milestone landings not to sub-wave EXIT fills · M15-W2..M16-W2 precedent verified).
+
+**Canon anchors verbatim:** SO §3.3 3-Commit Seal Protocol (Commit-C advances state_head only per §7 R-1..R-6) + SO §7 R-6 boundary regen convention (audit copy re-sync via `cp` filesystem-only mirror not tracked in state repo) + SO §3.8 additive-only + all M16-W3 canon anchors preserved from Commit-A banking section (BR-9.2 + AC-18 + Canon 4 §22 + Canon 8 §W11 + sealed doc0_attributes/tcb.py R-3 2026-09-09 tcb_enumeration_v1 canon drop method + M16-W1 sealed CIFProposal_v0 + SO §3.10-α + SO §6.7) + SO §6.1 files-are-truth (four banked-authorities file-verification against pasted CHUNK-1 session brief this session before writes).
+
+**Stop-conditions #1/#2/#3 NOT triggered at this Commit-C fixup · §6.4 pre-ruling NOT triggered.**
+
+**Milestone one-liner per §6.5:** M16-W3 CIF deterministic acceptance point IN TCB FULLY SEALED · Commit-A `e0b57403` + Commit-B `c4c4c1eded376d489d02e3f47efa75dce73b3139` + Commit-C fixup landed · +7 tests (5393→5400) · additive-only per SO §3.8 · **M16-W3 CLOSED** · no forks banked · no stop-conditions triggered · Autopilot R-33 continues NON-STOP under §6 END-OF-BUILD authority · owner Option-1 override re-affirmed this session 2026-09-19T11:29Z · Next per §6.7: M16-W4 (output routing L-4 A5.22 + L-5 A20.16 · `services/cif/output_routing.py` binding accepted proposals to sealed `services.capability_registry.register_capability` when `kind == 'capability'` or minimal L-4 research-loop sink when `kind == 'research_loop_item'` · refuses to route un-accepted proposals structurally · test file `test_m16_w4_cif_output_routing.py` per §3 tests-first) → M16-W5 (DET-1 own halt · `services/cif/halt.py` + integration seal binding W1..W4 · closes M16 milestone) → M17 → memory layer (after C.13 close) → frontends per SO §6.7 sequence · G5 interleaved to 1,096.
+
+**Staleness re-scope APPLY-ON-EXPIRY** still armed for 2026-09-20T~11:35Z (T-23.7h at Commit-C time · not yet fired · fires as its own small seal per owner order 2026-09-19T~05:15Z · re-scope five tests to presence + integrity + LKG · one-time on-host GPU journal pull · post-apply sweep).
+
+**Unrelated STATE/PINS.md commissioning-pointer drift + phase0/ tree modifications + chunk1 notes** left uncommitted per owner directive item 5 · flag remains for owner-scoped disposition at next seal (unchanged since Commit-B).
+
+**Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered.**
+
+
+### CP-M16-W4-CIF-OUTPUT-ROUTING · Commit-A banking (2026-09-19T~12:11Z)
+
+**Commit-A (code programme/track-a):** `3577cf2427026511022fc5dd9e1edb0c3fc7bd66` landed 2026-09-19T~12:11Z. MILESTONE 7 FOURTH SUB-WAVE. CIF output routing to L-4 research loop (A5.22) + L-5 capability register (A20.16) per SO §6.4 pre-ruling verbatim + AC-18 mechanical-consequence-of-W3-verdict discipline (fail-closed on `is_accepted_result != True` boolean identity · no mutable acceptance-passport state in module · structural check by pytest-only assertion mechanism per card MUST-DO 4).
+
+**Files landed at Commit-A:**
+- NEW `backend/services/cif/output_routing.py` (215 lines · single public surface `route_accepted_proposal(proposal: CIFProposal_v0, is_accepted_result: bool) -> str` returning `'capability_registered'` (L-5 path via sealed `services.capability_registry.register_capability(category, name, import_path)` three-arg unpacking opaque JSON payload per DAP-7 Option-D) or `'research_loop_appended'` (L-4 path via module-level `_RESEARCH_LOOP_SINK` append-only list per Canon 3 §9.3 · single-writer discipline · read via `get_research_loop_items` returning fresh tuple immutable snapshot · test-scope reset `_reset_research_loop_sink_for_tests` mirrors sealed L-5 `_reset_capabilities_for_tests` precedent) · `RoutingRefused` exception class for fail-closed sentinel · imports only `json` + `typing.Tuple` + `contracts.cif_proposal_v0.CIFProposal_v0` + `services.capability_registry.register_capability` · zero import of `services.cif.detection` (M16-W2) or `services.cif.acceptance_point` (M16-W3) · Canon 8 §W11 structural role separation preserved AST-enforced).
+- NEW `backend/tests/invariants/test_m16_w4_cif_output_routing.py` (316 lines · 7 tests: module_surface_importable_end_to_end + AST no learned/randomness imports [banned prefixes: `services.solva_v2`, `services.mtafiti`, `services.perception`, `openai`, `anthropic`, `services.cif.detection`, `services.cif.acceptance_point`, `random`, `secrets` + case-insensitive `llm` substring] + AST no decision-surface beyond routing [banned prefixes: `is_accepted`, `decide_`, `ratify_`, `admit_`, `accept_`, `author_`, `propose_`, `judge_` — with `route_` EXPLICITLY REQUIRED by card so NOT banned] + refuses_when_is_accepted_result_is_not_true [False + None + truthy-1 + truthy-'yes' all `RoutingRefused`] + capability_kind_registers_via_sealed_l5 [routing appears in `list_categories` + `list_capabilities_in` via sealed `register_capability` using `_reset_capabilities_for_tests` isolation] + research_loop_kind_appends_to_l4_sink [append-only identity-preserving via `get_research_loop_items` using `_reset_research_loop_sink_for_tests` isolation] + fail_closed_on_non_cifproposal_input [masquerade class + dict + None all `RoutingRefused`]).
+- `backend/tests/invariants/baseline_failures.json` surgical text-insert: `counts_at_baseline.passed` 5400→5407 + `invariants_enforced_when_baseline_guard_1.passed_floor` 5400→5407 + `ratchet_history` append-only per SO §7 R-5 with single new CP-M16-W4-CIF-OUTPUT-ROUTING entry preserving prior file layout byte-for-byte + `recorded_at_utc` bumped to 2026-09-19T12:03:11Z · new sha256 `713ea14abfe729ee86a18034d942542f266e4fe1028f24469c02916393de74d8` (from `86a69d3bb1657bdbba7e07244edebc276d0aee430a013def15571d946a51e4a0`).
+- Housekeeping pickup: 4 drill receipts (RED · GREEN · GUARD1 run1 · GUARD1 run2 · this-seal cycle only).
+
+**Delta 7 reconciled line-by-line:** 7 new test functions in `test_m16_w4_cif_output_routing.py`. No auto-parametrized wizard triggered (sealed W-7bB wizard `test_prior_contract_file_exists_and_stable_at_7b_3` parametrizes over `contracts/*.py` only; M16-W4 adds `services/cif/output_routing.py` which is not a `contracts/*.py` file · exhaustive grep confirmed at prior M16-W2/W3 seals). Zero flip · zero regression.
+
+**AUTHENTIC RED-first cycle:**
+- 7 tests authored FIRST at 2026-09-19T~12:01Z.
+- RED at `phase0/drill_receipts/20260919T120157Z_cp_m16_w4_cif_output_routing_RED_pre_module.log` (7/7 fail with right-reason `ModuleNotFoundError: No module named 'services.cif.output_routing'` · authentic RED before module authoring).
+- GREEN at `phase0/drill_receipts/20260919T120311Z_cp_m16_w4_cif_output_routing_GREEN_post_module.log` (7/7 pass · 0.68s).
+
+**Pre-Commit-A double-green byte-identical BASELINE_GUARD=1 sweep from `backend/` CWD:**
+- run 1 at `phase0/drill_receipts/20260919T120517Z_cp_m16_w4_preseal_GUARD1_run1.log` (5407 passed / 1 skipped / 438 warnings / 169.94s).
+- run 2 at `phase0/drill_receipts/20260919T120817Z_cp_m16_w4_preseal_GUARD1_run2.log` (5407 passed / 1 skipped / 438 warnings / 168.54s).
+- Stripped-sha256 `27595c47f5010e190e00372f4c91cd0fa7501a372e13c578aa38231e2aa1cb8a` IDENTICAL against final `baseline_failures.json` sha256 `713ea14abfe729ee86a18034d942542f266e4fe1028f24469c02916393de74d8`.
+- Both raw receipts 57092 bytes.
+
+**Additive-only per SO §3.8:** NEW `backend/services/cif/output_routing.py` (215 lines · single `route_accepted_proposal` function + `get_research_loop_items` read surface + `_reset_research_loop_sink_for_tests` test-scope reset + `RoutingRefused` exception class · zero unused imports · zero decision surface beyond mechanical routing) + NEW `backend/tests/invariants/test_m16_w4_cif_output_routing.py` (316 lines · 7 tests) + `baseline_failures.json` surgical text-insert. Sealed W-M2-SW7 `doc0_attributes/tcb.py` NOT edited. Sealed M16-W1 `contracts/cif_proposal_v0.py` NOT edited. Sealed M16-W2 `services/cif/__init__.py` + `services/cif/detection.py` NOT edited. Sealed M16-W3 `services/cif/acceptance_point.py` NOT edited (consumed at call boundary only · zero import from routing module per Canon 8 §W11 structural role separation). Sealed W1b·CP4 `services/capability_registry.py` NOT edited (consumed via three-arg `register_capability` signature).
+
+**Canon anchors verbatim:** A5.22 (Doc-1 L-4 research loop routing binding · minimal in-module append-only sink per SO §6.4 NOTHING-BEYOND · full ledger integration deferred) + A20.16 (Doc-1 L-5 capability register routing binding · sealed `services/capability_registry.py` W1b·CP4 consumed via three-arg `register_capability(category, name, import_path)` signature · `module:ClassName` `import_path` shape) + AC-18 (proposes-never-ratifies · routing is mechanical consequence of W3 verdict · fail-closed on `is_accepted_result != True` boolean identity check · no mutable acceptance-passport state · structural check at test file level per card MUST-DO 4 verbatim) + Canon 3 §9.3 (append-only writer discipline for L-4 · single-writer path is `route_accepted_proposal` on `research_loop_item` kind · read via immutable-tuple snapshot) + Canon 1 §62 (single-writer ledger discipline · L-4 sink minimal in-memory per SO §6.4 NOTHING-BEYOND · full ledger integration deferred) + Canon 8 §W11 (one-task-one-identity · structural role separation · zero import of M16-W2 or M16-W3 surfaces AST-enforced by test 2) + M16-W1 sealed `CIFProposal_v0` consumed by identity import (SO §3.10-α closed-schema discipline preserved via `type() is` check · not `isinstance` · not shadow · not subclass) + DAP-7 Option-D (payload is opaque JSON-serialised string · unpacked at routing boundary into sealed L-5 three-arg signature) + SO §3.8 (thin-kernel additive-only · new file in existing `services/cif/` package established at M16-W2) + SO §3.10-α (closed-schema discipline) + SO §6.7 batch-ratification-at-preceding-seal (M16 ratified by owner Option-B/Option-3 override at CP-M15-W5-SEAL-INTEGRATION close · state 09cd5578 · re-affirmed as owner Option-1 this session 2026-09-19T11:29Z).
+
+**Card citations:** `STATE/OBJECTIVES/M16.md` MUST-DO 4 + EXIT-W4 · `card_sha256` re-pinned `92c36b3b30b7d51c3101f5e5949c28895e3c057031fc62649f01543d6272d330` → `b85d0e67f4ae813cbeef49513cfb0fcfcca8b5f9fea7e48af1f54403eaee61f6` after filling W4 EXIT with 7 concrete pytest node IDs + Commit-A SHA `3577cf24` + AC-18 mechanical routing structural placement summary + AST invariant enumeration + surface signature + `RoutingRefused` fail-closed sentinel documentation.
+
+**Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered.**
+
+**Commit-B (state master · this seal):** Files landed: `STATE/OBJECTIVES/M16.md` W4 EXIT filled + `card_sha256` re-pinned `b85d0e67…` + `STATE/DECISIONS.md` this banking section + `STATE/NEXT.md` R-49 INTERLUDE MARKER 2026-09-19T~12:11Z reflecting Commit-A landed + `notes/ORCH_BOOT.md` R-6 boundary regen (post-Commit-A: `heads_last_sealed.code_repo.head` advanced to Commit-A `3577cf2427026511022fc5dd9e1edb0c3fc7bd66` · `state_repo.head` remains `c4c4c1eded376d489d02e3f47efa75dce73b3139` pending Commit-C fixup · `sealed_at_utc` updated to 2026-09-19T12:11:00Z · `seal_kind` updated to M16-W4 CIF output routing narrative · `generated_at_utc` 2026-09-19T12:12:00Z · `regeneration_reason` `r6-boundary-regen-post-commit-a-at-cp-m16-w4-cif-output-routing-code-head-advance-to-3577cf24`) + `/app/frontend/public/audit/ORCH_BOOT.md` byte-identical audit copy re-synced at Commit-B snapshot. Additive-only per SO §3.8: state files only · no sealed module edited · no code branch touch at Commit-B.
+
+**Milestone one-liner per §6.5:** M16-W4 CIF output routing to L-4/L-5 sealed at Commit-A · +7 tests (5400→5407) · additive-only per SO §3.8 · no forks banked · no stop-conditions triggered · Autopilot R-33 continues NON-STOP under §6 END-OF-BUILD authority · owner Option-1 override active 2026-09-19T11:29Z this session · Next per §6.7: Commit-C fixup (advances `heads_last_sealed.state_repo.head` to Commit-B SHA · marker R-49 flips ⏳→✅) → M16-W5 (DET-1 own halt · `services/cif/halt.py` + integration seal binding W1..W4 · closes M16 milestone) → M17 → memory layer (after C.13 close) → frontends per SO §6.7 sequence · G5 interleaved to 1,096.
+
+**Staleness re-scope APPLY-ON-EXPIRY** still armed for 2026-09-20T~11:35Z (T-23.4h at Commit-A time · not yet fired · fires as its own small seal per owner order 2026-09-19T~05:15Z).
+
+**Unrelated STATE/PINS.md commissioning-pointer drift + phase0/ tree modifications + chunk1 notes** left uncommitted per owner directive item 5 · flag remains for owner-scoped disposition at next seal (unchanged since prior M16-W3 Commit-B). Tracked-.pyc drift on `backend/services/reliable_time_source/__pycache__/clock.cpython-311.pyc` in code repo also left uncommitted per owner directive item 5.
+
+
+### CP-M16-W4-CIF-OUTPUT-ROUTING · Commit-B / Commit-C banking (2026-09-19T~12:14Z)
+
+**Commit-B (state master):** `c0a35335b90d28b930499896488c24b913b5e625` landed 2026-09-19T~12:13Z. Files landed: STATE/OBJECTIVES/M16.md W4 EXIT filled + card_sha256 re-pinned `b85d0e67f4ae813cbeef49513cfb0fcfcca8b5f9fea7e48af1f54403eaee61f6` (from `92c36b3b30b7d51c3101f5e5949c28895e3c057031fc62649f01543d6272d330`). STATE/DECISIONS.md gains new banking section CP-M16-W4-CIF-OUTPUT-ROUTING · Commit-A banking (2026-09-19T~12:11Z). STATE/NEXT.md gains §6 INTERLUDE MARKER R-49 2026-09-19T~12:11Z (⏳ pending Commit-C at Commit-B time · flipped ✅ at Commit-C). notes/ORCH_BOOT.md R-6 boundary regen (post-Commit-A: ratchet.passed_floor 5400→5407 · baseline_failures_sha256 `86a69d3b…`→`713ea14a…` · heads_last_sealed.code_repo.head advanced to Commit-A `3577cf2427026511022fc5dd9e1edb0c3fc7bd66` · state_repo.head remains `c4c4c1eded376d489d02e3f47efa75dce73b3139` pending Commit-C fixup · sealed_at_utc updated to 2026-09-19T12:11:00Z · seal_kind updated to M16-W4 CIF output routing narrative). /app/frontend/public/audit/ORCH_BOOT.md byte-identical audit copy re-synced at Commit-B snapshot.
+
+**Commit-C fixup (state master):** advances `heads_last_sealed.state_repo.head` in `notes/ORCH_BOOT.md` from pre-Commit-C snapshot `c4c4c1eded376d489d02e3f47efa75dce73b3139` (M16-W3 Commit-B · last-fully-sealed state) to Commit-B `c0a35335b90d28b930499896488c24b913b5e625` (M16-W4 Commit-B · now-fully-sealed state) + banks Commit-B SHA in this DECISIONS section + flips STATE/NEXT.md R-49 INTERLUDE MARKER status ⏳ → ✅ (with M16-W4 FULLY SEALED narrative + Next: M16-W5) + /app/frontend/public/audit/ORCH_BOOT.md byte-identical audit copy re-sync at post-Commit-C regen.
+
+**M16-W4 Sub-wave FULLY SEALED · ledger:**
+- Commit-A (code programme/track-a) `3577cf2427026511022fc5dd9e1edb0c3fc7bd66` · +7 tests (5400→5407) · additive-only per SO §3.8 · new `services/cif/output_routing.py` (215 lines · route_accepted_proposal + get_research_loop_items + _reset_research_loop_sink_for_tests + RoutingRefused) + new invariant test file `test_m16_w4_cif_output_routing.py` (316 lines · 7 tests) + `baseline_failures.json` ratchet bump 5400→5407 with new ratchet_history entry · pre-Commit-A double-green byte-identical BASELINE_GUARD=1 stripped-sha256 `27595c47f5010e190e00372f4c91cd0fa7501a372e13c578aa38231e2aa1cb8a` (both runs 5407 passed against final baseline sha256 `713ea14a…`) + 4 housekeeping drill-receipt pickups.
+- Commit-B (state master) `c0a35335b90d28b930499896488c24b913b5e625` · M16.md W4 EXIT fill + card_sha256 re-pin `b85d0e67…` + DECISIONS Commit-A banking + NEXT R-49 marker + ORCH_BOOT R-6 regen advancing code_head + audit copy re-sync.
+- Commit-C fixup (state master · this seal) · advances state_head to Commit-B SHA + banks Commit-B SHA in this section + flips marker ⏳→✅ + audit copy re-sync.
+
+**Post-fixup narrow sweep (§7 R-3):** to be run from `/app/assessment_workspace/repos/Extraction-Akki/backend/` CWD immediately after Commit-C lands, covering `tests/invariants/test_orch_boot.py` + `tests/invariants/test_objective_card_pinned.py` + `tests/invariants/test_standing_orders_present.py` + `tests/invariants/test_baseline_no_new_breakage.py` + `tests/invariants/test_m16_w4_cif_output_routing.py` · result banked in NEXT.md R-49 flip attestation.
+
+**Additive-only per SO §3.8 at this Commit-C fixup:** state files only (`notes/ORCH_BOOT.md` R-6 regen advancing state_head + `STATE/NEXT.md` marker flip + `STATE/DECISIONS.md` this banking append). No sealed module edited. No code branch touch. No test file edited. `STATE/OBJECTIVES/M16.md` NOT edited at Commit-C.
+
+**Canon anchors verbatim:** SO §3.3 3-Commit Seal Protocol (Commit-C advances state_head only per §7 R-1..R-6) + SO §7 R-6 boundary regen convention (audit copy re-sync via `cp` filesystem-only mirror not tracked in state repo) + SO §3.8 additive-only + all M16-W4 canon anchors preserved from Commit-A banking section (A5.22 + A20.16 + AC-18 + Canon 3 §9.3 + Canon 1 §62 + Canon 8 §W11 + M16-W1 sealed CIFProposal_v0 + DAP-7 Option-D + SO §3.10-α + SO §6.7) + SO §6.1 files-are-truth (this session four banked-authorities file-verification against pasted CHUNK-1 session brief before writes).
+
+**Stop-conditions #1/#2/#3 NOT triggered at this Commit-C fixup · §6.4 pre-ruling NOT triggered.**
+
+**Milestone one-liner per §6.5:** M16-W4 CIF output routing to L-4/L-5 FULLY SEALED · Commit-A `3577cf24` + Commit-B `c0a35335b90d28b930499896488c24b913b5e625` + Commit-C fixup landed · +7 tests (5400→5407) · additive-only per SO §3.8 · **M16-W4 CLOSED** · no forks banked · no stop-conditions triggered · Autopilot R-33 continues NON-STOP under §6 END-OF-BUILD authority · owner Option-1 override active 2026-09-19T11:29Z this session · Next per §6.7: M16-W5 (DET-1 own halt · `services/cif/halt.py` + integration seal binding W1..W4 · **closes M16 milestone**) → M17 → memory layer (after C.13 close) → frontends per SO §6.7 sequence · G5 interleaved to 1,096.
+
+**Staleness re-scope APPLY-ON-EXPIRY** still armed for 2026-09-20T~11:35Z (T-23.3h at Commit-C time · not yet fired · fires as its own small seal per owner order 2026-09-19T~05:15Z).
+
+**Unrelated STATE/PINS.md commissioning-pointer drift + phase0/ tree modifications + chunk1 notes** left uncommitted per owner directive item 5 · flag remains for owner-scoped disposition at next seal (unchanged since Commit-B). Tracked-.pyc drift on `backend/services/reliable_time_source/__pycache__/clock.cpython-311.pyc` in code repo also left uncommitted per owner directive item 5.
+
+**Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered.**
+
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

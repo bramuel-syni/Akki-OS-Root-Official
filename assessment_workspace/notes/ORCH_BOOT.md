@@ -33,29 +33,29 @@ STATE files, and on any boot ritual that detects drift.
 
 ```yaml
 schema_version: 1
-generated_at_utc: 2026-09-19T08:56:00Z
-generator: main-agent Autopilot (CP-M14-W5-SEAL-INTEGRATION Commit-C fixup R-6 boundary regen · heads_last_sealed.state_repo.head advanced to Commit-B 9e673215 · code_repo.head remains Commit-A 1b019041 · ratchet 5344 · baseline_failures_sha256 03714f66… · MILESTONE 5 FIFTH SUB-WAVE FULLY SEALED · M14 MILESTONE FULLY CLOSED · milestone_status CLOSED · card_sha256 eb3ff591… · post-Commit-C fixup regen)
-regeneration_reason: r6-boundary-regen-commit-c-fixup-at-cp-m14-w5-seal-integration-m14-milestone-fully-closed-state-head-advance-to-9e673215
+generated_at_utc: 2026-09-19T12:14:00Z
+generator: main-agent Autopilot (CP-M16-W4-CIF-OUTPUT-ROUTING post-Commit-C fixup R-6 boundary regen · state_repo.head advanced to Commit-B c0a35335b90d28b930499896488c24b913b5e625 (from c4c4c1ed M16-W3 last-sealed) · code_repo.head remains 3577cf2427026511022fc5dd9e1edb0c3fc7bd66 (M16-W4 Commit-A) · ratchet 5407 · baseline_failures_sha256 713ea14a… · M16-W4 SUB-WAVE FULLY SEALED · Commit-C banks Commit-B · marker R-49 flipped ⏳→✅ · owner Option-1 override banked this session 2026-09-19T11:29Z)
+regeneration_reason: r6-boundary-regen-post-commit-c-fixup-at-cp-m16-w4-cif-output-routing-state-head-advance-to-c0a35335
 
 ratchet:
-  passed_floor: 5344
-  counts_at_baseline_passed: 5344
+  passed_floor: 5407
+  counts_at_baseline_passed: 5407
   baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
-  baseline_failures_sha256: 03714f66519f17042f645ae66b9191412f656a8753f61f0c27272aaf1b13e846
+  baseline_failures_sha256: 713ea14abfe729ee86a18034d942542f266e4fe1028f24469c02916393de74d8
 
 heads_last_sealed:
   state_repo:
     workdir: /app/assessment_workspace
     branch: master
-    head: 9e6732150a8078b2cf4f9ea66ff975756eabd023
-    sealed_at_utc: 2026-09-19T08:54:00Z
-    seal_kind: "CP-M14-W5-SEAL-INTEGRATION · state Commit-B `9e673215` · banks Commit-A `1b019041` · MILESTONE 5 FIFTH SUB-WAVE SEALED · M14 MILESTONE FULLY CLOSED · milestone_status DRAFTED → CLOSED · ratchet 5338→5344 · total M14 ratchet 5311→5344 (+33) · card_sha256 re-pinned eb3ff591… reflecting CLOSED state"
+    head: c0a35335b90d28b930499896488c24b913b5e625
+    sealed_at_utc: 2026-09-19T12:13:00Z
+    seal_kind: "CP-M16-W4-CIF-OUTPUT-ROUTING · state Commit-B `c0a35335` · banks Commit-A `3577cf24` · MILESTONE 7 FOURTH SUB-WAVE · CIF output routing to L-4 research loop (A5.22) + L-5 capability register (A20.16) per SO §6.4 pre-ruling verbatim · +7 tests (5400→5407) · milestone_status DRAFTED (W5 pending · milestone closes at W5) · card_sha256 re-pinned 92c36b3b → b85d0e67f4ae813cbeef49513cfb0fcfcca8b5f9fea7e48af1f54403eaee61f6 reflecting W4 EXIT filled with 7 pytest node IDs + Commit-A SHA + AC-18 mechanical routing placement + public surface signature + RoutingRefused sentinel documentation · owner Option-1 override banked this session 2026-09-19T11:29Z"
   code_repo:
     workdir: /app/assessment_workspace/repos/Extraction-Akki
     branch: programme/track-a
-    head: 1b019041d55a1ce2a22c54e08df66d9f5064cec7
-    sealed_at_utc: 2026-09-19T08:50:00Z
-    seal_kind: "CP-M14-W5-SEAL-INTEGRATION · Commit-A `1b019041` · Milestone 5 FIFTH SUB-WAVE (M14 MILESTONE CLOSING GATE) · Integration seal binding W1..W4 sub-wave surfaces end-to-end per SO §6.2 EXIT clause · NEW tests/invariants/test_m14_w5_seal_integration.py (6 tests including milestone happy-path handoff→admit→ask→confirm→sign→deliver→verify + cross-tenant refusal + dual-hatted refusal + single-writer ledger count + canonical bytes snapshot pin 40af13fe…) · baseline_failures.json 5338→5344 · pre-Commit-A double-green 6892491a… · autopilot R-33"
+    head: 3577cf2427026511022fc5dd9e1edb0c3fc7bd66
+    sealed_at_utc: 2026-09-19T12:11:00Z
+    seal_kind: "CP-M16-W4-CIF-OUTPUT-ROUTING · Commit-A `3577cf24` · MILESTONE 7 FOURTH SUB-WAVE · CIF output routing to L-4 research loop (A5.22) + L-5 capability register (A20.16) per SO §6.4 pre-ruling verbatim · new services/cif/output_routing.py (215 lines · single route_accepted_proposal(proposal: CIFProposal_v0, is_accepted_result: bool) -> str returning 'capability_registered' [L-5 via sealed register_capability three-arg unpacking opaque JSON payload per DAP-7 Option-D] or 'research_loop_appended' [L-4 via _RESEARCH_LOOP_SINK append-only per Canon 3 §9.3 · read via get_research_loop_items fresh tuple snapshot · _reset_research_loop_sink_for_tests test-scope reset] · RoutingRefused exception fail-closed sentinel · zero import of M16-W2/W3 surfaces · Canon 8 §W11 structural role separation AST-enforced) + new invariant test file test_m16_w4_cif_output_routing.py (7 tests: surface + AST no learned/randomness + AST no decision-surface beyond routing [route_ REQUIRED so NOT banned] + refuses on is_accepted_result != True [False + None + 1 + 'yes'] + L-5 capability registers via sealed register_capability + L-4 research_loop appends to sink + fail-closed on non-CIFProposal_v0/dict/None) + baseline_failures.json ratchet bump 5400→5407 (+7) · additive-only per SO §3.8 · sealed W-M2-SW7 doc0_attributes/tcb.py NOT edited · sealed M16-W1/W2/W3 modules NOT edited · sealed W1b·CP4 capability_registry.py NOT edited · pre-Commit-A double-green byte-identical BASELINE_GUARD=1 stripped-sha256 27595c47f5010e190e00372f4c91cd0fa7501a372e13c578aa38231e2aa1cb8a against final baseline_failures.json sha256 713ea14a…"
 
 boot_sequence:
   - Read STATE/STANDING_ORDERS.md end-to-end.

@@ -1,0 +1,19 @@
+{
+  "artifact_ref": {
+    "artifact_id": "test",
+    "artifact_type": "portfolio_mandate",
+    "version": "v0"
+  },
+  "at": "2026-09-19T08:50:38.302476Z",
+  "decision": "refused",
+  "lawful_basis_ref": "test-basis",
+  "reason": "no_defensibility_floor",
+  "row_id": "led-6621d77dcb64",
+  "run_id": "run-0c593c47f532",
+  "stage": "admit",
+  "stamp_audit": {
+    "refusal_family": "composition_below_floor",
+    "source": "service_1.service.run.sync"
+  },
+  "trace_id": "trace-5e0f9ba06a14"
+}
