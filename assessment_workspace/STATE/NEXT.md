@@ -3903,3 +3903,241 @@ zero push · terminal pytest only · no testing_agent · additive-only §3.8 · 
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
+---
+
+## CP-ENT-43-BYTE-VERIFY-CLOSURE · 2026-09-20T~17:10Z · notes-only banking
+
+State-only banking · byte-verify half of FE coordination seal CLOSED per owner autopilot-proposal point-1 approval. Mirror re-sync half stays PENDING owner mirror-direction ruling.
+
+- **Specialist commit `6708a27f2c216f9ec92d984db1f51a759f045ac3`** on `/app/` main · `feat(strings): register ENT-43 §14 model picker badge strings` · 1 file `frontend/src/strings/entitlementStrings.js` +21 insertions · literal U+00B7 middle-dot (UTF-8 `c2 b7`) extracted byte-exact from spec docx via `python-docx`.
+- **7-fixed-string byte-verify against spec docx §7/§8/§10/§14 · 7/7 PRESENT VERBATIM** (`ENT_23_COST_NOT_MEASURED` + `ENT_26_FRONTIER_EXHAUSTION` + `ENT_34_FRONTIER_UNAVAILABLE` + `ENT_43_BADGE_INCLUDED_LOCAL` + `ENT_43_BADGE_CREDITS_FRONTIER` + `ENT_43_BADGE_YOUR_KEY` + `ENT_43_BADGE_AUTO`). Byte-exact hex table at DECISIONS.md this-CP.
+- **Factual record note (owner):** V8 shell semantics preserved in live runtime via `/app/frontend/src/pages/os/OSPrototype.jsx` (specialist migration at `/app` commit `dc48d5313`) · pod_shell↔/app/frontend divergence is App.js structure only, NOT capability loss.
+- **ENT-43 OPEN CROSS-CHECK ITEM** · byte-verify half CLOSED · mirror-drift half PENDING owner ruling.
+
+Zero code change. Zero test change. Zero baseline change. Ratchet unchanged at 5627.
+
+### Autopilot next
+
+1. **R-84 CP-FORK-CON-INGEST-1-2-CLOSURE** — TC-INA-06 (In Approval elapsed-time derived surface) + TC-EXP-02 (Expired constant-window surface) + Q6-boundary invariant · FORK-2 state-only close with Q-unlock citation.
+2. **R-85 CP-PARTY-HALTED-ADDITIVE-SUB-WAVE HELD** until R-84 lands (HUNT reconciliation procedure per owner directive).
+3. **FE coordination seal proper** executes at the next clean boundary after owner mirror-direction ruling arrives.
+
+### Standing bounds unchanged
+
+zero push · terminal pytest only · no testing_agent · additive-only §3.8 · three-repo discipline · ratchet monotonic-up (floor **5627** · unchanged).
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+---
+
+## R-84 · 2026-09-20T~17:35Z · CP-FORK-CON-INGEST-1-2-CLOSURE · WAVE IN-FLIGHT
+
+⏳ **IN-FLIGHT** — CP-FORK-CON-INGEST-1-2-CLOSURE §3.3 3-Commit Seal chain opens: Commit-A `6af89e3` on `programme/track-a` (code · 1 new surface module + 1 new test module + baseline ratchet bump · +4 tests) sealed 2026-09-20T~17:35Z · Commit-B this-commit on `master` (state banking with FORK-2 state-only close inline) · Commit-C fixup next-turn.
+
+**Owner directives banked verbatim (FORK-1 RESOLVED · FORK-2 CONFIRMED · both closed at this-CP).**
+
+**Delta:** +4 measured (5627 → 5631 monotonic-up). New baseline sha `bf0fe84a371c15a709ba9bca998ed09b4a787e5d0d5c20b58d65406fd9495c06`.
+
+### 4 property tests GREEN
+
+- `test_tc_ina_06_waited_days_in_approval_derives_from_submission_date_only` (TC-INA-06 build)
+- `test_tc_exp_02_expired_window_days_is_the_review_window_constant` (TC-EXP-02 build)
+- `test_q6_boundary_invariant_owner_verbatim_truth_table` (Q6 boundary AND-gate)
+- `test_q6_boundary_grep_negative_no_owner_decision_speed_surface_in_module` (12 banned tokens · Sign-off "Waited N days" OMITTED discipline enforced at naming layer)
+
+4/4 pass in 0.68s at `phase0/drill_receipts/20260920T1727Z_cp_fork_con_ingest_1_2_closure_GREEN_post.log`.
+
+### AUTHENTIC RED-first cycle
+
+RED at `20260920T1725Z_..._RED_pre_q6.log` — controlled Q6 violation via `signoff_duration` stub at line 212 of `waited_days_surface.py` · fail right-reason `hits: ['line 212: signoff_duration']` · violation removed. GREEN at `20260920T1727Z_..._GREEN_post.log`.
+
+### Pre-Commit-A double-green byte-identical BASELINE_GUARD=1
+
+Run 1 180.19s + Run 2 181.31s · both 5631 pass / 3 baseline-fails / 1 skip / 438 warnings. Stripped-sha256 `91ed3653f46dcecec54c88354ed9ae6becfe47f11060d9fc09aec468bdd04098` IDENTICAL. Owner run-2 drift precision constraint continues to be satisfied.
+
+### FORK-CON-INGEST-2 STATE-ONLY CLOSE (inline at this-CP)
+
+Owner verbatim: "already sealed in Q-unlock — no new work, just close the fork with the citation". **Citation:** CP-Q-UNLOCK-SUB-WAVE seal chain `c0f5e6d5/6fc1a99b/d5b0522f`:
+- **Q1 (Retry ships nowhere)** — sealed at `services/dap_lifecycle/fail_closed.py::q1_retry_after_check_block_marker()`. Journey-doc claim "No Retry exists until retry semantics are decided" is factually SUPERSEDED (both say "no retry" · claim just stale-worded).
+- **Q7 (Interrupted state)** — sealed at `services/dap_lifecycle/fail_closed.py::q7_non_gate_execution_fault_marker()` + `services/dap_lifecycle/interrupted_service.py::handle_platform_fault()` + `surface_visibility_for_interrupted()`. Journey-doc claim "no Interrupted state" is STALE — Interrupted IS the state name for non-gate execution faults.
+
+**FORK-CON-INGEST-2 CLOSED at this-commit.** Removed from OPEN-FORK queue.
+
+### FORK-CON-INGEST-3 STATUS
+
+Approved for R-85 pickup with HUNT reconciliation procedure. Contract-surface-ready flag at R-85 seal will trigger FE-specialist dispatch.
+
+### STILL HELD
+
+- R-32 generated-surfaces + Content Registry wave open.
+- G5 against 595-row v4 ratification.
+
+### FE COORDINATION QUEUE
+
+Byte-verify half CLOSED at `d0a2ea9b`. Mirror-drift half PENDING owner ruling.
+
+### Autopilot next
+
+1. **Commit-C fixup this-turn** — heads advance + POD audit mirror + R-84 marker flip ✅ SEALED.
+2. **R-85 CP-PARTY-HALTED-ADDITIVE-SUB-WAVE** — HUNT reconciliation first, then net-new block_kind + blocked_by field · FE-specialist dispatch trigger.
+3. **FE coordination seal proper** when owner mirror-direction ruling arrives.
+4. **Downstream P2** (still held): Content Registry wave (R-32) · G5 against v4.
+
+### Standing bounds unchanged
+
+zero push · terminal pytest only · no testing_agent · additive-only §3.8 · three-repo discipline · ratchet monotonic-up (floor **5631** · never rebaselined silently · +4 this-wave).
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+
+---
+
+## R-84 SEALED · 2026-09-20T~17:45Z · CP-FORK-CON-INGEST-1-2-CLOSURE FULLY SEALED
+
+✅ **SEALED** — CP-FORK-CON-INGEST-1-2-CLOSURE §3.3 3-Commit Seal chain complete. Commit-A `6af89e339adc1f8358fa3d63721ab9a4c6cff4a8` (code · `programme/track-a`) · Commit-B `58e2ffa36629e773c6594fc70a96fb053b6f2a61` (state · `master` · FORK-2 state-only close inline) · Commit-C fixup this-commit on `master` (SEALED append + marker flip + heads advance + POD audit mirror sync).
+
+**Delta:** +4 measured monotonic-up (5627 → 5631 · both fields bumped per CCS2 lesson). New baseline sha `bf0fe84a371c15a709ba9bca998ed09b4a787e5d0d5c20b58d65406fd9495c06`.
+
+### R-84 outcomes
+
+- **FORK-CON-INGEST-1** BUILT + RESOLVED: TC-INA-06 (In Approval elapsed-time derived from submission date only) + TC-EXP-02 (Expired constant equal to review window) + Q6 boundary invariant registered verbatim owner AND-gate ("gated only if a decision exists AND the figure measures the owner's speed in making it") + Q6 grep-negative 12 banned owner-decision-speed identifier tokens AST-scanned.
+- **FORK-CON-INGEST-2** CLOSED state-only inline with CP-Q-UNLOCK-SUB-WAVE seal `c0f5e6d5/6fc1a99b/d5b0522f` citation (Q1 Retry-ships-nowhere + Q7 Interrupted-state · journey-doc claims STALE-but-factually-same-outcome).
+- **4 property tests GREEN** in 0.68s.
+- **Pre-Commit-A BASELINE_GUARD=1 double-green byte-identical** stripped-sha256 `91ed3653f46dcecec54c88354ed9ae6becfe47f11060d9fc09aec468bdd04098` IDENTICAL run1+run2 · both 5631 pass / 3 baseline-fails (documented mirror-drift only · zero NEW) / 1 skip · owner run-2 drift precision constraint continues to be satisfied.
+
+### R-85 pickup (queued)
+
+**CP-PARTY-HALTED-ADDITIVE-SUB-WAVE** — HUNT reconciliation FIRST per owner (three-vs-four BlockedKind members · superseding-rename NOT an available reading; if `suspended` absent or mapping unclear → bank FORK-BLK-KINDS + STOP-on-that-half + proceed party_halted-additive build as ruled). RED-first drill → 3-Commit Seal (net-new `party_halted` block_kind + `blocked_by` field + TC-BLK-24 backend-only-billed). Flag contract-surface-ready for FE-specialist dispatch.
+
+### STILL HELD
+
+- R-32 generated-surfaces + Content Registry wave open.
+- G5 against 595-row v4 ratification.
+
+### FE COORDINATION QUEUE
+
+Byte-verify half CLOSED at `d0a2ea9b`. Mirror-drift half PENDING owner ruling (App.js divergence HANDS-OFF until owner ruling lands).
+
+### Autopilot next
+
+1. ~~CP-FORK-CON-INGEST-1-2-CLOSURE (R-84)~~ **SEALED** this-commit.
+2. **R-85 CP-PARTY-HALTED-ADDITIVE-SUB-WAVE** — HUNT reconciliation FIRST · then RED-first + 3-Commit Seal · contract-surface-ready flag.
+3. **FE coordination seal proper** when owner mirror-direction ruling arrives.
+4. **Downstream P2** (still held): Content Registry wave (R-32) · G5 against 595-row v4.
+
+### Standing bounds unchanged
+
+zero push · terminal pytest only · no testing_agent · additive-only §3.8 · three-repo discipline · ratchet monotonic-up (floor **5631** · never rebaselined silently · +4 this-wave).
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+---
+
+## R-85 · 2026-09-20T~18:10Z · CP-PARTY-HALTED-ADDITIVE-SUB-WAVE · WAVE IN-FLIGHT
+
+⏳ **IN-FLIGHT** — CP-PARTY-HALTED-ADDITIVE-SUB-WAVE §3.3 3-Commit Seal chain opens: Commit-A `11afc4f` on `programme/track-a` (code · 2 new surface modules + 1 new test module + baseline ratchet bump · +9 tests · 799 insertions) sealed 2026-09-20T~18:10Z · Commit-B this-commit on `master` (state banking with FORK-BLK-KINDS + FORK-BLK-EXACTLY-3-SEALED-TEST both banked with options-and-recommendation per SO §11) · Commit-C fixup next-turn.
+
+**Owner directives banked verbatim (FORK-CON-INGEST-3 net-new ADDITIVE party_halted authorized at R-83 SEALED · this-session directive HUNT-reconciliation-first + proceed-party_halted-additive-as-ruled).**
+
+**Delta:** +9 measured (5631 → 5640 monotonic-up). New baseline sha `284a18c3cbd3bb74dd8a436342301f760d47b6e5a2df4c0ba8681e21825b7438`.
+
+### HUNT reconciliation FIRST — receipt banked
+
+`phase0/spec_hunt_receipts/20260920T1750Z_r85_blocked_kinds_hunt.md`. **F1** sealed `BlockedKind` enum has 3 members · **F2** journey v2 says 5 kinds (L30/L207/L239-L240/L404) · **F3** `suspended` present-at-lifecycle-module-tree-layer via escrow.py + suspension_notices.py + Q5 marker but absent-at-BlockedKind-enum-layer · **F4** `party_halted` genuinely absent everywhere.
+
+### FORK-BLK-KINDS · OPEN (mapping question · stop-on-that-half)
+
+Reading A (Q5-module-tree-satisfies · this-desk recommendation) · Reading B (BlockedKind.suspended-lands-first-in-separate-wave) · Reading C (both-additions-this-wave-as-exception) · Reading D (owner-alternative). Options presented. This-desk hands-off pending owner ruling.
+
+### FORK-BLK-EXACTLY-3-SEALED-TEST · BANKED (structural block resolved at this-wave via §3.10-α)
+
+Sealed `test_blocked_kinds_are_exactly_three_verbatim` at `test_dap_lifecycle_wave.py:390` locks enum to 3. Resolved without owner block via SO §3.10-α Final[str] closed-vocab landing pattern (sealed enum untouched · sealed test continues verbatim GREEN). Reading α (SUPERSEDED-BY annotation) · Reading β (retire at future wave) · Reading γ (leave stale for audit trail · this-desk recommendation) presented for owner ruling on the cosmetic docstring question.
+
+### 9 property tests GREEN
+
+TC-BLK-24 + Final[str] byte-verbatim + origin-Executing-only + no-reason-field + blocked_by-shown-by-name + approval_stamp-survives + block_ref-kept + no-DAP-21-receipt + grep-negative-no-party-facing-figure. 9/9 pass in 0.70s at `phase0/drill_receipts/20260920T1756Z_..._GREEN_post.log`.
+
+### AUTHENTIC RED-first cycle
+
+RED at `20260920T1755Z_..._RED_pre_grep_negative.log` — controlled violation via `_TEMP_r85_drill_party_visible_amount_probe` in `party_halt_billing.py` · fail right-reason with 3 hits · violation removed. GREEN at `20260920T1756Z_..._GREEN_post.log`.
+
+### Pre-Commit-A double-green byte-identical BASELINE_GUARD=1
+
+Run 1 179.51s + Run 2 179.42s · both 5640 pass / 3 baseline-fails / 1 skip / 438 warnings. Stripped-sha256 `87ae030e2aac411b0f882c71af001b2245f4f512f731fc74a76c20299422f688` IDENTICAL. Owner run-2 drift precision constraint continues to be satisfied.
+
+### CONTRACT-SURFACE-READY FLAG RAISED
+
+Triggers FE-specialist dispatch for extraction-journey conformance pass on `party_halted` drawer surfaces per journey v2 §11 L387/L392-L399 + §5 L136 red-badge + §3 L366 Stop confirm. Backend surface functions available at `services.dap_lifecycle.party_halted_kind.surface_party_halted_gate_fault` + `services.dap_lifecycle.party_halt_billing.render_stop_confirm_body`.
+
+### STILL HELD
+
+- R-32 generated-surfaces + Content Registry wave open.
+- G5 against 595-row v4 ratification.
+- FORK-BLK-KINDS + FORK-BLK-EXACTLY-3-SEALED-TEST pending owner ruling.
+
+### FE COORDINATION QUEUE
+
+Byte-verify half CLOSED at `d0a2ea9b`. Mirror-drift half PENDING owner ruling. Contract-surface-ready flag raised this-seal for extraction-journey `party_halted` conformance pass (separate from mirror-drift concern).
+
+### Autopilot next
+
+1. **Commit-C fixup this-turn** — heads advance + POD audit mirror + R-85 marker flip ✅ SEALED.
+2. **FE-specialist dispatch triggered** via contract-surface-ready flag.
+3. **FE coordination seal proper** when owner mirror-direction ruling arrives.
+4. **Downstream P2** (still held): Content Registry wave (R-32) · G5 against v4.
+5. **FORK-BLK-KINDS + FORK-BLK-EXACTLY-3-SEALED-TEST** await owner ruling.
+
+### Standing bounds unchanged
+
+zero push · terminal pytest only · no testing_agent · additive-only §3.8 · three-repo discipline · ratchet monotonic-up (floor **5640** · never rebaselined silently · +9 this-wave).
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+---
+
+## R-85 SEALED · 2026-09-20T~18:20Z · CP-PARTY-HALTED-ADDITIVE-SUB-WAVE FULLY SEALED
+
+✅ **SEALED** — CP-PARTY-HALTED-ADDITIVE-SUB-WAVE §3.3 3-Commit Seal chain complete. Commit-A `11afc4fff63bfeaefe467f8271a3e84a40280054` (code · `programme/track-a`) · Commit-B `0cd4c9b8e6366100335bd7de20ea7a13ebd28c89` (state · `master`) · Commit-C fixup this-commit on `master` (SEALED append + marker flip + heads advance + POD audit mirror sync).
+
+**Delta:** +9 measured monotonic-up (5631 → 5640 · both fields bumped per CCS2 lesson). New baseline sha `284a18c3cbd3bb74dd8a436342301f760d47b6e5a2df4c0ba8681e21825b7438`.
+
+### R-85 outcomes
+
+- **FORK-CON-INGEST-3** BUILT + RESOLVED via SO §3.10-α Final[str] closed-vocab landing pattern. `PARTY_HALTED_BLOCK_KIND: Final[str] = "party_halted"` lands on new module (sealed `BlockedKind(enum.Enum)` 3-member preserved · sealed test at `test_dap_lifecycle_wave.py:390` continues verbatim GREEN · sealed snapshot byte-identical).
+- **9 property tests GREEN** in 0.70s covering journey v2 L240/L241/L260/L366/L387/L393-L399/L402/L404 anchors.
+- **AUTHENTIC RED-first cycle**: RED at `20260920T1755Z` (controlled `_TEMP_r85_drill_party_visible_amount_probe` violation in `party_halt_billing.py` · fail right-reason 3 hits · removed) → GREEN at `20260920T1756Z`.
+- **Pre-Commit-A BASELINE_GUARD=1 double-green byte-identical** stripped-sha256 `87ae030e2aac411b0f882c71af001b2245f4f512f731fc74a76c20299422f688` IDENTICAL run1+run2 · both 5640 pass / 3 baseline-fails (documented mirror-drift only · zero NEW) / 1 skip · owner run-2 drift precision constraint continues to be satisfied.
+- **CONTRACT-SURFACE-READY FLAG RAISED** at this seal to trigger FE-specialist dispatch.
+
+### HUNT reconciliation banked (options preserved for owner ruling)
+
+- **FORK-BLK-KINDS OPEN** — `suspended` mapping question (Reading A/B/C/D · this-desk recommendation Reading A · Q5-module-tree-satisfies).
+- **FORK-BLK-EXACTLY-3-SEALED-TEST BANKED** — sealed test docstring is factually stale but assertion still holds (Reading α/β/γ · this-desk recommendation Reading γ · leave-stale-for-audit-trail).
+
+Both stop-on-that-half-only; this-desk hands-off pending owner ruling.
+
+### STILL HELD
+
+- R-32 generated-surfaces + Content Registry wave open.
+- G5 against 595-row v4 ratification.
+- FORK-BLK-KINDS + FORK-BLK-EXACTLY-3-SEALED-TEST.
+
+### FE COORDINATION QUEUE
+
+- Byte-verify half CLOSED at `d0a2ea9b`.
+- Mirror-drift half PENDING owner mirror-direction ruling.
+- **Contract-surface-ready flag RAISED** at R-85 seal — separate from mirror-drift concern; triggers FE-specialist dispatch for extraction-journey `party_halted` drawer surfaces conformance pass (journey v2 §11 L387/L392-L399 + §5 L136 + §3 L366).
+
+### Autopilot next
+
+1. ~~CP-PARTY-HALTED-ADDITIVE-SUB-WAVE (R-85)~~ **SEALED** this-commit.
+2. **FE-specialist dispatch triggered** via contract-surface-ready flag.
+3. **FE coordination seal proper** when owner mirror-direction ruling arrives.
+4. **Downstream P2** (still held): Content Registry wave (R-32) · G5 against v4.
+5. **FORK-BLK-KINDS + FORK-BLK-EXACTLY-3-SEALED-TEST** await owner ruling.
+
+### Standing bounds unchanged
+
+zero push · terminal pytest only · no testing_agent · additive-only §3.8 · three-repo discipline · ratchet monotonic-up (floor **5640** · never rebaselined silently · +9 this-wave).
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
