@@ -9,12 +9,17 @@ const STATUS_META = {
   "Blocked": { color: "var(--oxblood, #b8395b)", bg: "rgba(184,57,91,.12)" },
   "Expired": { color: "var(--ink3, #5b6270)", bg: "var(--surface2, #ede8da)" },
   "Interrupted (platform fault)": { color: "var(--oxblood, #b8395b)", bg: "rgba(184,57,91,.08)" },
-  // Five blocked kinds per journey v2 §5
+  // Three Blocked kinds per Ruling 2 (2026-09-20T~19:00Z): request / check / estate.
+  // Interrupted (platform fault) is its own rail state (above), NOT a Blocked kind.
+  // party_halted is its own rail state (below), NOT a Blocked kind — carries its
+  // existing drawer copy from services/dap_lifecycle/party_halted_kind.py.
+  // suspended is a principal state (DAP-27, PRIN-1), a different axis, and NEVER
+  // renders in the Blocked reason grammar — surfaces only via suspension notices.
   "Blocked \u00b7 request": { color: "var(--oxblood, #b8395b)", bg: "rgba(184,57,91,.12)" },
   "Blocked \u00b7 check": { color: "var(--oxblood, #b8395b)", bg: "rgba(184,57,91,.10)" },
   "Blocked \u00b7 estate": { color: "var(--oxblood, #b8395b)", bg: "rgba(184,57,91,.08)" },
-  "Blocked \u00b7 suspended": { color: "var(--oxblood, #b8395b)", bg: "rgba(184,57,91,.08)" },
-  "Blocked \u00b7 party_halted": { color: "var(--oxblood, #b8395b)", bg: "rgba(184,57,91,.10)" },
+  // party_halted rail state · own drawer · not a Blocked variant.
+  "party_halted": { color: "var(--oxblood, #b8395b)", bg: "rgba(184,57,91,.10)" },
 };
 
 export default function StatusBadge({ status }) {

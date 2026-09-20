@@ -16,12 +16,12 @@
 export const STOP_CONFIRM =
   "Stop this request? What's run so far will still be billed; nothing further will execute.";
 
-// ── §11 Blocked, kind party_halted  ·  kind line ───────────────────────
+// ── §11 party_halted (own rail state) — kind line ──────────────────────
 // "You stopped this while it was running."
 export const PARTY_HALTED_KIND_LINE =
   "You stopped this while it was running.";
 
-// ── §11 Blocked, kind party_halted  ·  what-next ───────────────────────
+// ── §11 party_halted (own rail state) — what-next ──────────────────────
 // "To try again, submit a new request."
 export const PARTY_HALTED_WHAT_NEXT =
   "To try again, submit a new request.";
@@ -55,9 +55,14 @@ export const EXPIRED_MEANING_TPL = (dataOwner) =>
 export const EXPIRED_WHAT_NEXT_TPL = (dataOwner) =>
   `To try again, submit it as a new request. It will go back to ${dataOwner} for sign-off, with a new 14-day window.`;
 
-// ── §11 Blocked, kind-line strings for all five kinds ───────────────────
-// (request, check, estate already existed in RequestLifecycle.jsx as
-//  inline literals; centralized here for the same reason.)
+// ── §11 Blocked, kind-line strings for the three kinds ─────────────────
+// Ruling 2 (2026-09-20T~19:00Z): three Blocked kinds — request / check / estate.
+// suspended is a principal state (DAP-27, PRIN-1), a different axis — its
+// party-visible strings live in the suspension-notices surface, not here.
+// party_halted is its own rail state (Q5 module tree); its drawer strings
+// (PARTY_HALTED_KIND_LINE + PARTY_HALTED_WHAT_NEXT above) are retained per
+// Ruling 2(d) "party_halted as its own rail state keeping its existing
+// drawer copy".
 
 // kind: request  §11 line 389
 export const BLOCK_KIND_REQUEST =
@@ -75,18 +80,6 @@ export const BLOCK_KIND_ESTATE =
 export const BLOCK_ESTATE_REASON =
   "The platform refused this release. No detail is available.";
 
-// kind: suspended, from Executing  §11 line 392
-export const BLOCK_KIND_SUSPENDED_EXECUTING_TPL = (dataOwner) =>
-  `${dataOwner} suspended your access while this was running.`;
-
-// kind: suspended, from In Approval  §11 line 392
-export const BLOCK_KIND_SUSPENDED_IN_APPROVAL_TPL = (dataOwner) =>
-  `${dataOwner} suspended your access before a decision was made.`;
-
-// kind: suspended, from Ready  §11 line 392
-export const BLOCK_KIND_SUSPENDED_READY_TPL = (dataOwner) =>
-  `${dataOwner} suspended your access before you retrieved this.`;
-
 // kind: party_halted  §11 line 393 (same as PARTY_HALTED_KIND_LINE above)
 
 // ── §11 Blocked  ·  what-next by kind ───────────────────────────────────
@@ -101,9 +94,5 @@ export const BLOCK_WHATNEXT_CHECK =
 // kind: estate  §11 line 397
 export const BLOCK_WHATNEXT_ESTATE_TPL = (dataOwner) =>
   `Contact ${dataOwner} before submitting again.`;
-
-// kind: suspended  §11 line 397
-export const BLOCK_WHATNEXT_SUSPENDED_TPL = (dataOwner) =>
-  `A new request will be blocked while your access is withdrawn. Contact ${dataOwner} before submitting again.`;
 
 // kind: party_halted  §11 line 397 (same as PARTY_HALTED_WHAT_NEXT above)

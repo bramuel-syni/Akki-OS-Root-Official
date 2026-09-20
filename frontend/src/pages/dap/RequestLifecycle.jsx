@@ -14,17 +14,19 @@ import {
   BLOCK_KIND_CHECK,
   BLOCK_KIND_ESTATE,
   BLOCK_ESTATE_REASON,
-  BLOCK_KIND_SUSPENDED_EXECUTING_TPL,
   BLOCK_WHATNEXT_REQUEST,
   BLOCK_WHATNEXT_CHECK,
   BLOCK_WHATNEXT_ESTATE_TPL,
-  BLOCK_WHATNEXT_SUSPENDED_TPL,
 } from "@/strings/lifecycleStrings";
 
 /**
  * Request Lifecycle — Journey v2 conformance pass.
  *
- * FIVE Blocked kinds: request, check, estate, suspended, party_halted (§5, §11).
+ * THREE Blocked kinds: request, check, estate (§5, §11) — plus Interrupted
+ * (own rail state, platform fault) and party_halted (own rail state, party
+ * stopped executing request per Q5 module tree). suspended is a principal
+ * state (DAP-27, PRIN-1), a different axis, and surfaces only via suspension
+ * notices — never in Blocked reason grammar.
  * Stop action on Executing (TC-BLK-24).
  * In Approval waiting line (TC-INA-06).
  * Expired drawer (TC-EXP-02).
@@ -58,18 +60,6 @@ const BLOCK_KIND_META = {
     fixedReason: BLOCK_ESTATE_REASON,
     showCopy: false,
     showProgress: false, // DAP-35: no progress indicator for estate
-  },
-  suspended: {
-    // kind line depends on blocked_from_status — computed at render time
-    kindLine: null,
-    showCopy: false,
-    showProgress: "conditional", // depends on blocked_from_status
-  },
-  party_halted: {
-    kindLine: PARTY_HALTED_KIND_LINE,
-    whatNext: PARTY_HALTED_WHAT_NEXT,
-    showCopy: true,
-    showProgress: true,
   },
 };
 
@@ -158,41 +148,34 @@ const SAMPLE_REQUESTS = [
     blockRef: "PRC-2026-0102-B1",
     dataOwner: "Digicow",
   },
-  // ── party_halted sample (journey v2 §11) ──
+  // ── party_halted sample (own rail state per Ruling 2 · journey v2 §11) ──
   {
     id: "ftn-2026-0122", objective: "Train on the cleared complaint files to identify repeat callers.",
-    status: "Blocked", mode: "finetune", agreement: "Agreement MER-007",
+    status: "party_halted", mode: "finetune", agreement: "Agreement MER-007",
     submitted: "submitted 8 Sep 2026", submittedBy: "R. Adeyemi", scope: "Audio",
-    blockedAt: "15 Sep 2026, 11:04", blockKind: "party_halted",
+    blockedAt: "15 Sep 2026, 11:04",
     blockedBy: "R. Adeyemi",
     pctAtStop: 63,
     blockRef: "FTN-2026-0122-B1",
     dataOwner: "Digicow",
     signoffRequired: true, approvedByRole: "records authority", approvedDate: "12 Sep 2026",
   },
-  // ── suspended sample (journey v2 §11) ──
-  {
-    id: "prc-2026-0108", objective: "Find out which branch had the highest complaint volume in Q2.",
-    status: "Blocked", mode: "processed", agreement: "Agreement MER-002",
-    submitted: "submitted 10 Sep 2026", submittedBy: "T. Mwangi", scope: "Audio",
-    blockedAt: "16 Sep 2026, 09:15", blockKind: "suspended",
-    blockedFromStatus: "executing",
-    dataOwner: "Digicow",
-  },
 ];
 
 const ALL_STATES = [
   "In Approval", "Executing", "Ready", "Retrieved", "Refused",
   "Blocked", "Expired", "Interrupted (platform fault)",
-  // Five blocked kinds shown in legend per §5
+  // Three Blocked kinds per Ruling 2: request / check / estate.
   "Blocked \u00b7 request", "Blocked \u00b7 check", "Blocked \u00b7 estate",
-  "Blocked \u00b7 suspended", "Blocked \u00b7 party_halted",
+  // party_halted is its own rail state, not a Blocked variant.
+  "party_halted",
 ];
 
 const RAIL_ROW = [
   ["Total", "Total"], ["In Approval", "In Approval"], ["Executing", "Executing"],
   ["Ready", "Ready"], ["Retrieved", "Retrieved"], ["Refused", "Refused"],
   ["Blocked", "Blocked"], ["Expired", "Expired"], ["Interrupted (platform fault)", "Interrupted"],
+  ["party_halted", "Stopped"],
 ];
 
 /** Compute elapsed calendar days between two ISO date strings. */
@@ -210,22 +193,12 @@ function RequestCard({ req }) {
   // Compute In Approval waiting days from submission date
   const waitDays = req.submittedAtISO ? daysBetween(req.submittedAtISO, null) : null;
 
-  // Resolve suspended kind line dynamically based on blocked_from_status
-  const resolvedKindLine = (() => {
-    if (!blockMeta) return null;
-    if (req.blockKind === "suspended") {
-      const owner = req.dataOwner || "the data owner";
-      if (req.blockedFromStatus === "in_approval") return BLOCK_KIND_SUSPENDED_EXECUTING_TPL(owner).replace("while this was running", "before a decision was made");
-      if (req.blockedFromStatus === "ready") return `${owner} suspended your access before you retrieved this.`;
-      return BLOCK_KIND_SUSPENDED_EXECUTING_TPL(owner); // default: from executing
-    }
-    return blockMeta.kindLine;
-  })();
+  // Resolve kind line for Blocked kinds (request/check/estate only)
+  const resolvedKindLine = blockMeta ? blockMeta.kindLine : null;
 
-  // Resolve what-next dynamically
+  // Resolve what-next for Blocked kinds
   const resolvedWhatNext = (() => {
     if (!blockMeta) return null;
-    if (req.blockKind === "suspended") return BLOCK_WHATNEXT_SUSPENDED_TPL(req.dataOwner || "the data owner");
     if (req.blockKind === "estate") return BLOCK_WHATNEXT_ESTATE_TPL(req.dataOwner || "the data owner");
     return blockMeta.whatNext || null;
   })();
@@ -242,7 +215,8 @@ function RequestCard({ req }) {
             <div className="flex items-center gap-2 mb-1">
               <span className="text-xs font-mono" style={{ color: "var(--ink3)" }}>{req.id}</span>
               <StatusBadge status={req.status} />
-              {req.blockKind && (
+              {/* Blocked sub-kind badge for the three Blocked kinds only */}
+              {req.status === "Blocked" && req.blockKind && (
                 <StatusBadge status={`Blocked \u00b7 ${req.blockKind}`} />
               )}
             </div>
@@ -396,14 +370,14 @@ function RequestCard({ req }) {
             </div>
           )}
 
-          {/* ── Blocked drawer — all five kinds ── */}
+          {/* ── Blocked drawer — three kinds: request / check / estate ── */}
           {req.status === "Blocked" && blockMeta && (
             <div
               data-testid={`drawer-blocked-${req.blockKind}-${req.id}`}
               className="border-l-4 p-3 rounded"
               style={{ borderColor: "var(--oxblood)", background: "rgba(184,57,91,.04)" }}
             >
-              {/* Frozen progress for request/check/party_halted (not estate, conditional for suspended) */}
+              {/* Frozen progress for request/check (not estate) */}
               {blockMeta.showProgress === true && req.pctAtStop != null && (
                 <div className="mb-2">
                   <div className="h-1.5 rounded-full overflow-hidden" style={{ background: "var(--line)" }}>
@@ -424,19 +398,12 @@ function RequestCard({ req }) {
                 {resolvedKindLine}
               </p>
 
-              {/* Reason (only for request and check; estate uses fixed copy; none for suspended/party_halted) */}
+              {/* Reason: request/check render req.blockReason verbatim; estate renders fixed copy */}
               {req.blockKind === "estate" && (
                 <p className="text-sm" style={{ color: "var(--ink2)" }}>{BLOCK_ESTATE_REASON}</p>
               )}
               {(req.blockKind === "request" || req.blockKind === "check") && req.blockReason && (
                 <p className="text-sm" style={{ color: "var(--ink2)" }}>{req.blockReason}</p>
-              )}
-
-              {/* Who stopped it — party_halted only */}
-              {req.blockKind === "party_halted" && req.blockedBy && (
-                <p className="text-xs mt-1" style={{ color: "var(--ink3)" }}>
-                  Stopped by {req.blockedBy}
-                </p>
               )}
 
               {/* Reference (every kind except estate) */}
@@ -457,7 +424,7 @@ function RequestCard({ req }) {
                 </p>
               )}
 
-              {/* Copy into a new request (request/check/party_halted only — not estate, not suspended) */}
+              {/* Copy into a new request (request/check only — not estate) */}
               {blockMeta.showCopy && (
                 <button
                   data-testid={`copy-new-request-${req.id}`}
@@ -467,6 +434,69 @@ function RequestCard({ req }) {
                   Copy into a new request
                 </button>
               )}
+            </div>
+          )}
+
+          {/* ── party_halted drawer — own rail state, NOT a Blocked variant ── */}
+          {req.status === "party_halted" && (
+            <div
+              data-testid={`drawer-party-halted-${req.id}`}
+              className="border-l-4 p-3 rounded"
+              style={{ borderColor: "var(--oxblood)", background: "rgba(184,57,91,.04)" }}
+            >
+              {/* Frozen progress */}
+              {req.pctAtStop != null && (
+                <div className="mb-2">
+                  <div className="h-1.5 rounded-full overflow-hidden" style={{ background: "var(--line)" }}>
+                    <div className="h-full rounded-full" style={{ width: `${req.pctAtStop}%`, background: "var(--oxblood)" }} />
+                  </div>
+                  <p className="text-[10px] mt-0.5" style={{ color: "var(--oxblood)" }}>
+                    Stopped at {req.pctAtStop}% &middot; {req.blockedAt}
+                  </p>
+                </div>
+              )}
+
+              {/* Kind line */}
+              <p
+                data-testid={`party-halted-kind-line-${req.id}`}
+                className="text-xs font-medium mb-1"
+                style={{ color: "var(--oxblood)" }}
+              >
+                {PARTY_HALTED_KIND_LINE}
+              </p>
+
+              {/* No reason field for party_halted */}
+
+              {/* Who stopped it — shown by name */}
+              {req.blockedBy && (
+                <p className="text-xs mt-1" style={{ color: "var(--ink3)" }}>
+                  Stopped by {req.blockedBy}
+                </p>
+              )}
+
+              {/* Reference */}
+              {req.blockRef && (
+                <p className="text-xs font-mono mt-1" style={{ color: "var(--ink3)" }}>
+                  Reference {req.blockRef}
+                </p>
+              )}
+
+              {/* What-next */}
+              <p
+                data-testid={`party-halted-whatnext-${req.id}`}
+                className="text-xs mt-2"
+                style={{ color: "var(--ink3)" }}
+              >
+                {PARTY_HALTED_WHAT_NEXT}
+              </p>
+
+              <button
+                data-testid={`copy-new-request-${req.id}`}
+                className="mt-2 text-xs px-3 py-1.5 rounded border transition-colors hover:bg-white"
+                style={{ borderColor: "var(--hair)", color: "var(--ink)" }}
+              >
+                Copy into a new request
+              </button>
             </div>
           )}
 
@@ -573,7 +603,7 @@ export default function RequestLifecycle() {
 
       {/* Rail counts */}
       <div data-testid="request-rail" className="rounded-lg border mb-6" style={{ borderColor: "var(--line)", background: "white" }}>
-        <div className="grid grid-cols-9 text-center">
+        <div className="grid grid-cols-10 text-center">
           {RAIL_ROW.map(([key, label]) => (
             <button
               key={key}
