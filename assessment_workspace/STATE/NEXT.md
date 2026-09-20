@@ -4453,3 +4453,122 @@ Full seal report at STATE/DECISIONS.md this-append. R-87 SEALED at this-commit.
 zero push · terminal `pytest` only · no `testing_agent` · additive-only §3.8 · three-repo discipline · ratchet monotonic-up (**5651**).
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+---
+
+## R-87 FE FIX-PASS CLOSURE · state master · notes-only banking · 2026-09-20T~21:15Z · post-specialist-commit `b33d19a8d` · R-87 FE half CLOSED · Not a §3.3 3-Commit Seal (precedent `14173772`)
+
+Full closure receipt at `phase0/spec_hunt_receipts/20260920T2115Z_r87_fe_fix_pass_closure.md`. R-87 FE HALF CLOSED at this-commit.
+
+### Independent verify against R-87 acceptance list
+
+**10/10 PASS** — all 4 core greps + STATUS_META 12-key enumeration + lifecycleStrings.js export delta (−4 +0) + `req.blockKind === "suspended"` zero-hits + party_halted own-drawer testids present (JSX template-literal form at lines 443/461/486) + request/check/estate rails unchanged + no reason field for party_halted. Full evidence table in the phase0 receipt.
+
+### Files (3 tracked)
+
+1. `STATE/DECISIONS.md` this-append.
+2. `STATE/NEXT.md` this-append.
+3. `phase0/spec_hunt_receipts/20260920T2115Z_r87_fe_fix_pass_closure.md` NEW.
+
+### Sprint queue post-this-banking
+
+1. R-86 CP-APP-JS-UNIFY-SCHEDULE-AND-DRIFT-ANNOTATE ✅ SEALED at `e40047f4`.
+2. R-87 CP-BLOCKED-VOCABULARY-CORRECTION ✅ SEALED at `9823a520` + **FE half CLOSED at this-banking.**
+3. R-88+ CP-CONTENT-REGISTRY-WAVE (Ruling 4 · CON-1..31) — **opens next-turn.**
+4. G5-v5 SFP-1..7 first slice.
+5. R-91 CP-APP-JS-UNIFY closure wave.
+
+### Autopilot next
+
+**R-88+ CP-CONTENT-REGISTRY-WAVE opens this-turn** — uninterrupted per owner directive.
+
+### Standing bounds unchanged
+
+zero push · terminal `pytest` only · no `testing_agent` · additive-only §3.8 · three-repo discipline · ratchet monotonic-up (**5651**).
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+---
+
+## CP-CONTENT-REGISTRY-WAVE · HUNT-first banking · WAVE R-88+ OPENED · ⏳ HUNT-BANKED · state master · 2026-09-20T~21:20Z · Ruling 4 execution begins · Not a §3.3 3-Commit Seal (precedent `0e7a07b0` + `1250c39a`)
+
+Full HUNT receipt at `phase0/spec_hunt_receipts/20260920T2120Z_r88_con_1_31_hunt_receipt.md`. R-88 first-slice Commit-A opens next-turn.
+
+### HUNT summary
+
+- All 31 CON rows verified at SRR rows 566-596 (sha256 `00072c58…` v5 ratified authority).
+- Section mapping extracted: §2 CON-1..7 · §3 CON-8..11 · §4 CON-12..14 · §5 CON-15..21 · §6 CON-22..24 · §7 CON-25..28 · §8 CON-29..31.
+- Classification derived from statement text (Enforcement Class column empty · Ruling-3 erratum "class column is a HINT · rule text governs").
+- Generated-class rules (R-32 binding applies): CON-5 · CON-6 · CON-7 · CON-22 · CON-23 · CON-24 · CON-26 (Generated portion) · CON-27 · CON-28.
+- R-32 surface list = `("chat_answer", "recommendation_body", "notification_body")` — three · nothing else.
+- 7-category grep-neg bans mapped to CON-anchors: #1→CON-1, #2→CON-6, #3→CON-18, #4→CON-24, #5→CON-25, #6→CON-23+CON-26, #7→CON-24.
+- `backend/services/content_registry/` module tree does NOT yet exist · opens net-new per SO §3.8 additive-only.
+
+### Wave slice plan
+
+- **R-88 first slice · CON-1..CON-11 · +11 · ratchet 5651 → 5662** (definitional heart of the registry).
+- R-89 second slice · CON-12..CON-21 · +10 · ratchet 5662 → 5672.
+- R-90 third slice · CON-22..CON-31 + remaining grep-negative bans · +16 · ratchet 5672 → 5688.
+
+### Files (4 tracked)
+
+1. `STATE/DECISIONS.md` this-append.
+2. `STATE/NEXT.md` this-append.
+3. `phase0/spec_hunt_receipts/20260920T2120Z_r88_con_1_31_hunt_receipt.md` NEW.
+4. `phase0/spec_hunt_receipts/20260920T2120Z_r88_con_1_31_hunt_data.json` NEW.
+
+### Autopilot next
+
+**R-88 first slice Commit-A opens next-turn** — services/content_registry/content_registry_vocabulary.py + tests/invariants/test_content_registry_v1_section_2_and_3.py + RED-first drill → GREEN drill → BASELINE_GUARD=1 double-sweep → 3-Commit Seal. Owner steer via one-line reply if the slice plan needs adjustment.
+
+### Standing bounds unchanged
+
+zero push · terminal `pytest` only · no `testing_agent` · additive-only §3.8 · three-repo discipline · ratchet monotonic-up (**5651** at this HUNT).
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+---
+
+## OWNER DISPOSITION · HF-HOLD + R-24 + R-25 · state master · notes-only banking · 2026-09-20T~21:24Z · three owner-side procedures registered · nothing opens a wave · R-88 continues
+
+Full banking at STATE/DECISIONS.md this-append. Three procedural artifacts on record so future drops validate first-time.
+
+### 1 · HF-HOLD (SEC-2026-09-12-01)
+
+- Custody slot **CREATED** empty: `custody/owner_drops/hf_token_rotation_SEC-2026-09-12-01/`.
+- Hash-delta closure receipt template **AUTHORED**: `STATE/PROCEDURES/HF_HOLD_CLOSURE_RECEIPT_TEMPLATE.md`.
+- E1 closure procedure: sha256 delta ONLY · MUST NOT open the file · closure PASSES iff `NEW_SHA256 != OLD_SHA256_A` (byte-identical pair on record).
+- HF-touching waves stay HELD; R-88 does NOT touch HF.
+
+### 2 · R-24 · reseller agreements drop schema
+
+- Schema **REGISTERED**: `STATE/PROCEDURES/R24_RESELLER_AGREEMENTS_DROP_SCHEMA.md`.
+- 9 mandatory fields: provider · agreement-reference · agreement-date · scope.models · scope.regions · scope.multi-tenant-resale-permitted · counsel.signoff-identity · counsel.signoff-date · document-sha256.
+- No wave opens on partial validation. Counsel brief is owner's scope.
+
+### 3 · R-25 · seat pricing structure
+
+- Fixed structure **REGISTERED**: `STATE/PROCEDURES/R25_SEAT_PRICING_STRUCTURE.md`.
+- 5 load-bearing dials (per ENT-47): seat price per period by dial combination · credits per seat per period · credit price · volume/term discounts · R-31 agent-seat decision.
+- R-26..R-30 defaults continue as tagged placeholders.
+- Future owner-requestable pricing worksheet contract noted: pure calculator · zero recommendation. NOT built unrequested.
+
+### Files (5 tracked)
+
+1. `STATE/PROCEDURES/HF_HOLD_CLOSURE_RECEIPT_TEMPLATE.md` NEW.
+2. `STATE/PROCEDURES/R24_RESELLER_AGREEMENTS_DROP_SCHEMA.md` NEW.
+3. `STATE/PROCEDURES/R25_SEAT_PRICING_STRUCTURE.md` NEW.
+4. `STATE/DECISIONS.md` this-append.
+5. `STATE/NEXT.md` this-append.
+
+Plus untracked filesystem addition (empty custody dir · git doesn't track empty dirs · will surface when owner drops the file).
+
+### Autopilot next
+
+**R-88 first slice Commit-A opens next-turn** per owner "R-88 continues uninterrupted" directive.
+
+### Standing bounds unchanged
+
+zero push · terminal `pytest` only · no `testing_agent` · additive-only §3.8 · three-repo discipline · ratchet monotonic-up (**5651**).
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

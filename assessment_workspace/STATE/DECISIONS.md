@@ -21123,3 +21123,299 @@ zero push · terminal `pytest` only · no `testing_agent` · additive-only §3.8
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
+
+## 2026-09-20T~21:15Z · R-87 FE FIX-PASS CLOSURE · state master · notes-only banking · post-specialist-commit `b33d19a8d67f4b22ce93e55bafb1b73c2eff4ba0` (local /app/ main · zero push · zero remote) · R-87 FE half CLOSED
+
+**Precedent shape:** notes-only state-master banking (same class as CP-LIFECYCLE-STRINGS-BYTE-VERIFY-CLOSURE at `14173772` · 3-file twin banking DECISIONS+NEXT+phase0 receipt · **NOT a §3.3 3-Commit Seal**). Ratchet unchanged at **5651**. Zero code change · zero test change · zero baseline change at this-desk.
+
+### Owner coordination note (verbatim · this-session · non-interrupting)
+
+> "Non-interrupting coordination note — R-88 continues, do not stop. The R-87 FE fix pass LANDED: specialist local commit `b33d19a8d` on /app/ main, exactly the 3 spec files, all 10 acceptance checks reported PASS (STATUS_META 12 keys, zero suspended-in-Blocked hits, zero wrong-count phrases, party_halted own-drawer with `drawer-party-halted-*` testids, build clean, zero push). At your next clean seal boundary: independent verify per your R-87 acceptance list (the 4 greps + STATUS_META key enumeration + export set diff), bank the closure state-only per precedent shape, and close the R-87 FE half. If any check fails independently, report exact expected vs actual and I dispatch a one-line fix. Otherwise continue R-88 uninterrupted."
+
+### Specialist commit summary
+
+- **Commit:** `b33d19a8d67f4b22ce93e55bafb1b73c2eff4ba0` on `main` at `/app/` (specialist fork · this-desk was not the author).
+- **Files touched (3 · exact scope match to R-87 FE-FIX-READY spec):**
+  - `frontend/src/components/dap/StatusBadge.jsx` (post-fix sha256 `909a5dbdef4cf3e93541fe8feac2070de0ecbe2dbec5b81a206b4dfc3948cf26`).
+  - `frontend/src/pages/dap/RequestLifecycle.jsx` (post-fix sha256 `f957ef255af3d4d2d6ff4fe125b7e64b27fadebec216c8cde78035d6ff0c75a9`).
+  - `frontend/src/strings/lifecycleStrings.js` (post-fix sha256 `2017ca160ef232693f78172ca05cd2f0f390df69d62347f09683a7d8b7ebf7d7`).
+- **Diffstat:** `3 files changed, 103 insertions(+), 79 deletions(-)`.
+- **Out-of-scope files touched:** none. Verified.
+- **Zero push:** confirmed (`git remote -v` at `/app/` reports nothing).
+
+### Independent verify · all 10 acceptance criteria (this-desk)
+
+Full receipt at `phase0/spec_hunt_receipts/20260920T2115Z_r87_fe_fix_pass_closure.md`. Summary:
+
+| # | Check | Result |
+|---|---|---|
+| 1 | `Blocked · suspended` grep in /app/frontend/src → zero hits | **PASS** |
+| 2 | `Blocked · party_halted` grep → zero hits | **PASS** |
+| 3 | 5-kind wrong-phrase grep (`five Blocked kinds`/`5 Blocked kinds`/`Blocked has five kinds`/`five kinds of Blocked`) → zero hits | **PASS** |
+| 4 | `BLOCK_KIND_SUSPENDED\|BLOCK_WHATNEXT_SUSPENDED` grep → zero hits | **PASS** |
+| 5 | StatusBadge.jsx STATUS_META = 12 keys byte-exact match to TARGET | **PASS** (order + content) |
+| 6 | lifecycleStrings.js export delta = −4 (`BLOCK_KIND_SUSPENDED_EXECUTING_TPL` + `BLOCK_KIND_SUSPENDED_IN_APPROVAL_TPL` + `BLOCK_KIND_SUSPENDED_READY_TPL` + `BLOCK_WHATNEXT_SUSPENDED_TPL`) · +0 added | **PASS** |
+| 7 | `req.blockKind === "suspended"` in RequestLifecycle.jsx → zero | **PASS** |
+| 8 | party_halted own-drawer testids `drawer-party-halted-*` + `party-halted-kind-line-*` + `party-halted-whatnext-*` present (JSX template-literal form at lines 443/461/486) | **PASS** |
+| 9 | request/check/estate rails continue rendering (BLOCK_KIND_REQUEST/CHECK/ESTATE + BLOCK_WHATNEXT_REQUEST/CHECK/ESTATE_TPL retained in imports + KIND_META) | **PASS** |
+| 10 | party_halted routed by `req.status` not `blockKind` (line 441) + no reason field (line 468 comment) + rail column `["party_halted", "Stopped"]` (line 178) | **PASS** |
+
+**Aggregate:** **10/10 PASS** independently verified. Specialist self-report corroborated byte-exact.
+
+### Files (3 tracked)
+
+1. `STATE/DECISIONS.md` this-append.
+2. `STATE/NEXT.md` this-append.
+3. `phase0/spec_hunt_receipts/20260920T2115Z_r87_fe_fix_pass_closure.md` NEW.
+
+### Disposition
+
+- **R-87 FE half:** **CLOSED at this banking.** Zero deviation from spec observed. Zero out-of-scope files. Zero push.
+- **R-87 wave overall:** ✅ SEALED at code `200c2c63` / state `b4526572` / fixup `9823a520` + **FE half CLOSED at this-commit.**
+- **Ratchet:** unchanged **5651**.
+- **Not a §3.3 3-Commit Seal** — notes-only state-master banking pattern (precedent `14173772`).
+
+### Sprint queue post-this-banking
+
+1. R-86 CP-APP-JS-UNIFY-SCHEDULE-AND-DRIFT-ANNOTATE ✅ SEALED at `e40047f4`.
+2. R-87 CP-BLOCKED-VOCABULARY-CORRECTION ✅ SEALED at `9823a520` + **FE half CLOSED at this-banking.**
+3. R-88+ CP-CONTENT-REGISTRY-WAVE (Ruling 4 · CON-1..31) — **opens next-turn.**
+4. G5-v5 SFP-1..7 first slice — unblocked · slotted behind R-88+.
+5. R-91 CP-APP-JS-UNIFY — closure wave for the 3 pod_shell mirror-drift baseline entries.
+
+### Autopilot next
+
+**R-88+ CP-CONTENT-REGISTRY-WAVE opens this-turn** — uninterrupted per owner directive.
+
+### Standing bounds unchanged
+
+zero push · zero remote configured (both /app/ specialist fork and /app/assessment_workspace state fork) · terminal `pytest` only · no `testing_agent` · additive-only §3.8 · three-repo discipline · ratchet monotonic-up floor **5651** · Stop-conditions #1/#2/#3 NOT triggered · SO §6.4 pre-ruling NOT triggered · MEM-R-053 CROWN BAN NOT triggered.
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+
+## 2026-09-20T~21:20Z · CP-CONTENT-REGISTRY-WAVE · HUNT-first banking · state master · notes-only banking · WAVE R-88+ OPENED · atomic-rule extraction + section mapping + slice plan · Ruling 4 execution begins
+
+**Precedent shape:** spec-HUNT-and-plan banking (single-commit notes-only state-master · precedent `0e7a07b0` CP-REGISTRY-V5-INGEST-AND-VERIFY custody drop + verification banking · precedent `1250c39a` CP-REGISTRY-V5-RATIFICATION notes-only banking · precedent `14173772` for post-specialist notes-only closure). **NOT a §3.3 3-Commit Seal.** Ratchet unchanged at **5651**. Zero code change · zero test change · zero baseline change at this-HUNT-banking.
+
+### Ruling 4 owner verbatim (banked authority · anchoring this wave)
+
+> "R-88+ CP-CONTENT-REGISTRY-WAVE (Ruling 4 · CON-1..31 · 7-category grep-negative bans + R-32 surface-list binding on Generated-class)."
+
+Owner ratified 7-category grep-negative ban set verbatim (re-affirmed in R-88 opening non-interrupting coordination note this-session): *"no improvised copy · no numbers from generated prose · no engagement signals in ranking · no softening of unsupported claims · templated text never stored · no generated text stored · no unsupported claims"*.
+
+Owner ratified R-32 surface list verbatim: *"chat answers · recommendation bodies · notification bodies — nothing else"* (matches CON-22 SRR statement byte-verbatim).
+
+### HUNT findings summary
+
+- **All 31 CON rows present** in Master Requirements Registry v5 System Rules Registry sheet at rows 566-596 (sha256 `00072c5829d3d89399cc5ca64661b405ac8a3cd0b43d0081f0d5f0bce109619d` · ratified authority per Ruling 5).
+- **Enforcement Class column** is empty for all 31 rows. Per Ruling 3 erratum discipline ("class column is a HINT · rule text governs" · Ruling-3 reaffirmed at R-86 Commit-C `e40047f4`), classification derives from statement text. NOT a blocker.
+- **Section mapping** extracted from `custody/owner_drops/20260920T1600Z/Content_Registry_Spec_v1.docx` (SRR is authority; docx is cited for §-numbering only):
+  - §2 The Three Classes: CON-1..CON-7 (7 rules)
+  - §3 The Registry: CON-8..CON-11 (4 rules)
+  - §4 The Resolver: CON-12..CON-14 (3 rules)
+  - §5 Salience — Best Hook First: CON-15..CON-21 (7 rules)
+  - §6 Generated Content — Chat/Rec/Notification: CON-22..CON-24 (3 rules)
+  - §7 Logging, Storage, Retention: CON-25..CON-28 (4 rules)
+  - §8 Triggers and Cadence: CON-29..CON-31 (3 rules)
+- **Classification derived from rule text:**
+  - Fixed class: CON-2 · CON-26 (Fixed portion).
+  - Templated class: CON-3 · CON-4 · CON-25 · CON-29 · CON-30 · CON-31.
+  - **Generated class (R-32 surface-list binding applies): CON-5 · CON-6 · CON-7 · CON-22 · CON-23 · CON-24 · CON-26 (Generated portion) · CON-27 · CON-28.**
+  - Slot / Salience: CON-9 · CON-15 · CON-16 · CON-17 · CON-18 · CON-19 · CON-20 · CON-21.
+  - Registry-shape: CON-1 · CON-8 · CON-10 · CON-11.
+  - Resolver: CON-12 · CON-13 · CON-14.
+- **7-category grep-negative bans mapped to CON-anchors** (see receipt for full table): #1→CON-1, #2→CON-6, #3→CON-18, #4→CON-24, #5→CON-25, #6→CON-23+CON-26, #7→CON-24.
+- **R-32 surface list** = `("chat_answer", "recommendation_body", "notification_body")` — three surfaces · **nothing else** (owner ratified verbatim + CON-22 verbatim byte-match).
+- **No existing `backend/services/content_registry/` module tree.** Wave opens with net-new module tree per SO §3.8 additive-only (precedent R-70 CP-DAP-LIFECYCLE-BACKEND-WAVE + R-85 CP-PARTY-HALTED-ADDITIVE-SUB-WAVE).
+
+### Wave-slice plan (per owner "R-88+" nomenclature banked at R-87 seal · notation admits multi-sequence wave)
+
+Owner "R-88+" notation admits multi-sequence sub-waves. Given the scope (31 CON invariants + 7 grep-neg ban tests = +37..+39 delta = ~6× the historical wave size · SO §6.4 NOTHING-BEYOND favors bounded scope):
+
+- **R-88 first slice · CON-1..CON-11 · Section 2 + Section 3 (definitional heart of the registry):**
+  - New module: `backend/services/content_registry/content_registry_vocabulary.py` (Final constants: CONTENT_CLASSES · CON_RULE_COUNT · REGISTRY_ENTRY_MANDATORY_FIELDS · SLOT_ENTRY_MANDATORY_FIELDS · CEREMONY_ONLY_WRITES · OBJECTIVE_MANDATORY · IMPROVISED_COPY_REFUSED · GENERATED_CLASS_CEILING · R32_GENERATED_SURFACE_WHITELIST · WRONG_NUMBER_SOURCE_PATTERNS scanner).
+  - New test module: `backend/tests/invariants/test_content_registry_v1_section_2_and_3.py` — 11 property tests (SO §2.5 verbatim-docstring per SRR statement).
+  - Additive baseline_failures.json ratchet bump: **5651 → 5662 (+11)**.
+- **R-89 second slice · CON-12..CON-21 · Section 4 (Resolver) + Section 5 (Salience) · +10 tests · ratchet 5662 → 5672.**
+- **R-90 third slice · CON-22..CON-31 · Section 6 + Section 7 + Section 8 + remaining grep-negative bans · +16 tests · ratchet 5672 → 5688.**
+
+**Total across R-88..R-90 waves:** +37 invariants (31 CON property tests + 6 additional grep-neg-ban tests distributed across slices). If owner wants +2 more (one test per ban standalone), R-90 adjusts. Slicing rationale: SO §6.4 NOTHING-BEYOND · historical wave-size range 4-9 delta · BASELINE_GUARD=1 sweep footprint per slice remains ~180s × 2 rather than ~360s × 2 for monolithic.
+
+### R-88 first slice · Commit-A code plan (proceeds next-turn unless owner steer diverges)
+
+- Author `backend/services/content_registry/__init__.py` (empty · package marker).
+- Author `backend/services/content_registry/content_registry_vocabulary.py` (~200 lines · SO §2.5 verbatim-docstring · Final constants + WRONG_NUMBER_SOURCE_PATTERNS grep-negative substrate for CON-6).
+- Author `backend/tests/invariants/test_content_registry_v1_section_2_and_3.py` (~460 lines · 11 property tests: 1 per CON-1..CON-11).
+- Author RED-first drill (controlled violation removal pattern · precedent R-85/R-86).
+- Post-module GREEN drill.
+- Pre-Commit-A ORCH_BOOT.md ratchet-only regen (M16-W3 corrected order).
+- BASELINE_GUARD=1 double-sweep byte-identical.
+- Commit-A code programme/track-a → Commit-B state master → Commit-C fixup.
+
+### Files at this HUNT banking (4 tracked · single-commit notes-only)
+
+1. `STATE/DECISIONS.md` this-append (this block).
+2. `STATE/NEXT.md` this-append (R-88 marker OPEN · slice queue).
+3. `phase0/spec_hunt_receipts/20260920T2120Z_r88_con_1_31_hunt_receipt.md` NEW (comprehensive HUNT receipt · full 31-rule table + section mapping + classification + slice plan + ban-mapping table).
+4. `phase0/spec_hunt_receipts/20260920T2120Z_r88_con_1_31_hunt_data.json` NEW (openpyxl-extracted verbatim SRR data · rule_id + statement + objective + source + class + domain + file_line + build_status per row).
+
+### Canon anchors verbatim
+
+- Owner Ruling 4 (2026-09-20T~19:00Z · STATE/DECISIONS.md line 20421 OWNER RULINGS anchor + reaffirmed at `1250c39a` + R-86 seal `e40047f4` + R-87 seal `9823a520`).
+- Owner R-88+ opening non-interrupting coordination note this-session (2026-09-20T~21:14Z verbatim · re-affirming 7-category grep-neg bans + R-32 surface list scope).
+- **Master Requirements Registry v5** ratified at `1250c39a` (sha256 `00072c58…` · 602 rows · System Rules Registry sheet authority per Ruling 5).
+- **Content Registry Spec v1** custody drop at `custody/owner_drops/20260920T1600Z/Content_Registry_Spec_v1.docx` (docx cited for section numbering only · SRR is authority).
+- CP-REGISTRY-V5-INGEST-AND-VERIFY `0e7a07b0` (HUNT precedent shape).
+- CP-REGISTRY-V5-RATIFICATION-AND-COUNT-ERRATUM `1250c39a` (v5 authority + Ruling-3-erratum precedent · "class column is a HINT · rule text governs").
+- CP-BLOCKED-VOCABULARY-CORRECTION `200c2c63/b4526572/9823a520` (R-87 · immediately-precedes · establishes vocabulary-registration-via-Final-constants pattern this wave inherits).
+- SO §2.5 verbatim-docstring · §3 tests-first · §3.3 3-Commit Seal · §3.8 additive-only · §3.10-α Final[str] closed-vocab · §6.2 objective-card · §6.4 NOTHING-BEYOND · §6.7 seal-report-boundary + M16-W3 corrected order + CCS2 lesson.
+
+### Stop-conditions / pre-rulings
+
+- Stop-conditions #1/#2/#3 NOT triggered.
+- SO §6.4 pre-ruling NOT triggered (HUNT-first is precedent-aligned prep).
+- MEM-R-053 CROWN BAN NOT triggered.
+
+### Sprint queue post-this-HUNT-banking
+
+1. R-86 CP-APP-JS-UNIFY-SCHEDULE-AND-DRIFT-ANNOTATE ✅ SEALED at `e40047f4`.
+2. R-87 CP-BLOCKED-VOCABULARY-CORRECTION ✅ SEALED at `9823a520` + FE half CLOSED at `b9b9bafd`.
+3. **R-88 CP-CONTENT-REGISTRY-WAVE FIRST SLICE (CON-1..CON-11)** ⏳ **HUNT-banked at this-commit · Commit-A next-turn.**
+4. R-89 CP-CONTENT-REGISTRY-WAVE SECOND SLICE (CON-12..CON-21) — queued.
+5. R-90 CP-CONTENT-REGISTRY-WAVE THIRD SLICE (CON-22..CON-31 + remaining grep-neg-bans) — queued.
+6. G5-v5 SFP-1..7 first slice — unblocked · slotted behind R-90.
+7. R-91 CP-APP-JS-UNIFY — closure wave for the 3 pod_shell mirror-drift baseline entries.
+
+### Autopilot next
+
+**R-88 first slice Commit-A opens next-turn** per owner "continue R-88 uninterrupted" directive — unless owner steer diverges on the slice plan. Full HUNT extract at `phase0/spec_hunt_receipts/20260920T2120Z_r88_con_1_31_hunt_receipt.md` (owner may verbatim-copy the slice plan for one-line steer).
+
+### Standing bounds unchanged
+
+zero push · zero remote configured · terminal `pytest` only · no `testing_agent` · additive-only §3.8 · three-repo discipline · ratchet monotonic-up floor **5651** at this HUNT · Stop-conditions #1/#2/#3 NOT triggered · SO §6.4 pre-ruling NOT triggered · MEM-R-053 CROWN BAN NOT triggered.
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+
+## 2026-09-20T~21:24Z · OWNER DISPOSITION · HF-HOLD + R-24 + R-25 procedural banking · state master · notes-only banking · three owner-side procedures registered so future drops validate first-time · nothing opens a wave · R-88 continues uninterrupted
+
+**Precedent shape:** notes-only state-master banking (precedent `1250c39a` CP-REGISTRY-V5-RATIFICATION + `14173772` CP-LIFECYCLE-STRINGS-BYTE-VERIFY-CLOSURE + `6a1f67cd` Ruling-3 erratum single-file banking). **NOT a §3.3 3-Commit Seal.** Ratchet unchanged at **5651**. Zero code change · zero test change · zero baseline change.
+
+### Owner disposition verbatim (this-session non-interrupting note · 2026-09-20T~21:24Z)
+
+> "Non-interrupting — bank at next clean boundary, R-88 continues. OWNER DISPOSITION on the three owner-side holds; nothing here opens a wave, but three procedures must be on record so the future drops validate first time:
+>
+> 1. HF-HOLD (SEC-2026-09-12-01) — owner acting FIRST, today: revoke old token in HF console → generate new → drop with sha pin. YOUR closure procedure, owner verbatim: 'E1 confirms closure by hash delta alone — the new file's hash differs from the byte-identical pair on record — never by opening the value.' Until that delta is banked, the platform is treated as operating on a leaked credential and any HF-touching wave holds. Prepare the custody slot + hash-delta verification receipt shape now so closure is mechanical when the drop lands.
+>
+> 2. R-24 reseller agreements — register the WELL-FORMED DROP SCHEMA so the eventual drop validates first time. Required fields, all mandatory, owner verbatim substance: provider · agreement reference and date · scope (models, regions, express permission for multi-tenant resale) · counsel's sign-off identity and date · sha256 of the executed document. 'Nothing flips to listed without every field.' Marketplace reseller programmes (Azure OpenAI, AWS Bedrock, Google Vertex) noted as the intended route under D-17. Counsel brief is on the owner's desk to commission — not your scope.
+>
+> 3. R-25 seat pricing — structure fixed by ENT-47: seat price per period by dial combination · credits per seat per period · credit price · volume/term discounts · R-31 agent-seat decision. Defaults R-26..R-30 continue as tagged placeholders; swap-in is a ruling, not a rebuild. The owner may later request a pricing WORKSHEET (inputs: local cost per token, provider rates per frontier row, target margin, expected mix; output: clearing seat price per dial combination) — 'it calculates; it does not recommend.' Note it as a future owner-requestable artifact; do not build it unrequested.
+>
+> Sequence banked: HF today · counsel brief this week · pricing when the owner's numbers exist. None of the three blocks the sprint. Continue R-88."
+
+### 1 · HF-HOLD (SEC-2026-09-12-01) · custody slot + hash-delta receipt shape PREPARED
+
+- **Custody slot created (empty · ready to receive drop):** `custody/owner_drops/hf_token_rotation_SEC-2026-09-12-01/`.
+- **Hash-delta verification receipt TEMPLATE authored:** `STATE/PROCEDURES/HF_HOLD_CLOSURE_RECEIPT_TEMPLATE.md` (fill-in shape · zero-freedom closure logic · E1 MUST NOT open the file · sha256 delta ONLY).
+- **Authoritative reference:** `STANDING_ORDERS.md §4.3 HF TOKEN HASH-DELTA GATE` (R-18 Part 7(e) · owner ruling 2026-09-18 · binding). Today's disposition reaffirms and prepares mechanical closure.
+- **Closure procedure verbatim (owner today):** *"E1 confirms closure by hash delta alone — the new file's hash differs from the byte-identical pair on record — never by opening the value."*
+- **E1 gate:** HF-touching waves stay HELD until closure passes (`NEW_SHA256 != OLD_SHA256_A`). R-88 does NOT touch HF · not blocked by this hold.
+- **Owner sequencing:** HF revocation → regeneration → custody drop happens TODAY · owner-driven · E1 receives the drop and executes the mechanical closure per template.
+
+### 2 · R-24 · reseller agreements · well-formed drop schema REGISTERED
+
+- **Schema authored:** `STATE/PROCEDURES/R24_RESELLER_AGREEMENTS_DROP_SCHEMA.md` (9 mandatory fields + validation rules + drop-ingest procedure + sample manifest.json template).
+- **9 mandatory fields (all required · "nothing flips to listed without every field"):**
+  1. `provider` (enum: `azure_openai` | `aws_bedrock` | `google_vertex` · per D-17 route)
+  2. `agreement-reference`
+  3. `agreement-date` (ISO 8601 date)
+  4. `scope.models` (non-empty tuple[str])
+  5. `scope.regions` (non-empty tuple[str])
+  6. `scope.multi-tenant-resale-permitted` (explicit boolean · FP-2 fail-closed default = false on ambiguity)
+  7. `counsel.signoff-identity`
+  8. `counsel.signoff-date` (ISO 8601 · MUST be ≥ `agreement-date`)
+  9. `document-sha256` (64 lowercase hex · MUST match actual sha256 of executed document in custody)
+- **Enumerated provider set anchored to D-17 marketplace-reseller-programme route:** Azure OpenAI · AWS Bedrock · Google Vertex.
+- **E1 gate:** No wave opens on partial validation. Reseller stays UNLISTED until every mandatory field passes.
+- **Counsel brief is owner's scope** — E1 does NOT commission counsel or evaluate reseller-programme substance.
+- **Authority chain:** R-24 owner-held banking at CP-ENTITLEMENT-BUILD-WAVE seal chain `c4bf7094/eff17295/7d1e66a9` + D-17 route.
+
+### 3 · R-25 · seat pricing structure · FIXED by ENT-47 · REGISTERED
+
+- **Structure note authored:** `STATE/PROCEDURES/R25_SEAT_PRICING_STRUCTURE.md`.
+- **5 load-bearing dials (fixed composition):**
+  1. Seat price per period by dial combination (lookup: `dial_combination → seat_price_per_period`).
+  2. Credits per seat per period (lookup: `dial_combination → credits_per_seat_per_period`).
+  3. Credit price (per-credit price for credits purchased beyond period allocation).
+  4. Volume/term discounts (ratified schedule · ad-hoc discounts are ruling not rebuild).
+  5. R-31 agent-seat decision (owner-held · placeholder `agent_seat_treatment = "R-31-owner-held-pending"`).
+- **R-26..R-30 defaults** continue as tagged placeholders per owner disposition: *"swap-in is a ruling, not a rebuild"*.
+- **Future owner-requestable pricing worksheet noted (NOT built unrequested):**
+  - Contract inputs: `local_cost_per_token` + `provider_rates_per_frontier_row` + `target_margin` + `expected_mix`.
+  - Contract output: `clearing_seat_price_per_dial_combination` lookup table.
+  - Load-bearing clause: *"it calculates; it does not recommend."*
+- **E1 gate:** E1 does NOT propose seat prices · does NOT do market-benchmarking · builds worksheet ONLY on explicit owner request per the registered contract.
+- **Authority chain:** R-25 + ENT-47 + R-26..R-30 (owner-tagged placeholders) + R-31 (agent-seat decision · unopened).
+
+### Owner sequencing banked
+
+*"HF today · counsel brief this week · pricing when the owner's numbers exist. None of the three blocks the sprint. Continue R-88."*
+
+- HF: today (owner-driven action FIRST · E1 receives drop and executes mechanical closure).
+- R-24: counsel brief this week (owner commissions; E1 validates drop against schema when it lands).
+- R-25: pricing worksheet when owner's numbers exist (future owner-requestable; E1 does not build unrequested).
+
+**None of the three blocks R-88.** R-88 CP-CONTENT-REGISTRY-WAVE HUNT is banked at prior commit `80e42629` (this-session) and Commit-A opens next-turn per owner directive.
+
+### Files at this disposition banking (5 tracked)
+
+1. `STATE/PROCEDURES/HF_HOLD_CLOSURE_RECEIPT_TEMPLATE.md` NEW (HF-HOLD closure procedure · fill-in template).
+2. `STATE/PROCEDURES/R24_RESELLER_AGREEMENTS_DROP_SCHEMA.md` NEW (well-formed drop schema · 9 mandatory fields + validation + ingest procedure).
+3. `STATE/PROCEDURES/R25_SEAT_PRICING_STRUCTURE.md` NEW (ENT-47 fixed structure + future worksheet contract).
+4. `STATE/DECISIONS.md` this-append.
+5. `STATE/NEXT.md` this-append.
+
+Plus untracked filesystem addition (empty directory · custody slot ready): `custody/owner_drops/hf_token_rotation_SEC-2026-09-12-01/`. Git does not track empty dirs · it will surface when the owner drops the token file.
+
+### Canon anchors verbatim
+
+- Owner non-interrupting disposition this-session verbatim above (2026-09-20T~21:24Z).
+- SEC-2026-09-12-01 HF-HOLD + STANDING_ORDERS.md §4.3 HF TOKEN HASH-DELTA GATE (R-18 Part 7(e) · owner ruling 2026-09-18).
+- R-24 owner-held banking at CP-ENTITLEMENT-BUILD-WAVE `c4bf7094/eff17295/7d1e66a9`.
+- D-17 marketplace-reseller-programme route (owner-noted intended route).
+- R-25 seat pricing structure + ENT-47 rule + R-26..R-30 defaults + R-31 agent-seat decision.
+- SO §2.5 verbatim-quotation + §3.8 additive-only + §4.1 §E credential discipline + §4.1 §F sha-pinning + §6.4 NOTHING-BEYOND.
+- FP-2 fail-closed default (multi-tenant-resale ambiguity → false).
+
+### Stop-conditions / pre-rulings
+
+- Stop-conditions #1/#2/#3 NOT triggered.
+- SO §6.4 pre-ruling NOT triggered (this is procedural banking of owner dispositions · zero improvisation · zero scope-inflation).
+- MEM-R-053 CROWN BAN NOT triggered.
+
+### Sprint queue post-this-banking
+
+1. R-86 CP-APP-JS-UNIFY-SCHEDULE-AND-DRIFT-ANNOTATE ✅ SEALED at `e40047f4`.
+2. R-87 CP-BLOCKED-VOCABULARY-CORRECTION ✅ SEALED at `9823a520` + FE half CLOSED at `b9b9bafd`.
+3. **R-88 first slice CP-CONTENT-REGISTRY-WAVE (CON-1..CON-11)** ⏳ HUNT-banked at `80e42629` · **Commit-A opens next-turn.**
+4. R-89 second slice (CON-12..CON-21) — queued.
+5. R-90 third slice (CON-22..CON-31 + remaining grep-neg-bans) — queued.
+6. G5-v5 SFP-1..7 first slice — unblocked · slotted behind R-90.
+7. R-91 CP-APP-JS-UNIFY — closure wave.
+
+**Owner-side sequence (parallel to sprint · does not block):**
+- HF-HOLD closure: owner-driven TODAY; E1 mechanical closure when drop lands.
+- R-24 counsel brief: owner-driven this week; E1 mechanical drop-validation when it lands.
+- R-25 pricing worksheet: future owner-requestable; E1 builds only on explicit request.
+
+### Autopilot next
+
+**R-88 first slice Commit-A opens next-turn** per owner "R-88 continues uninterrupted" directive. Nothing at this banking opens a wave; three procedural artifacts are on record so future drops validate first-time.
+
+### Standing bounds unchanged
+
+zero push · zero remote configured · terminal `pytest` only · no `testing_agent` · additive-only §3.8 · three-repo discipline · ratchet monotonic-up floor **5651** at this banking · Stop-conditions #1/#2/#3 NOT triggered · SO §6.4 pre-ruling NOT triggered · MEM-R-053 CROWN BAN NOT triggered · HF-HOLD SEC-2026-09-12-01 remains OPEN pending owner drop + E1 hash-delta closure · R-24 remains UNLISTED pending well-formed drop · R-25 structure fixed by ENT-47 · defaults R-26..R-30 tagged placeholders.
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
