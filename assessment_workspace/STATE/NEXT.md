@@ -3464,3 +3464,39 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 zero push · terminal pytest only · no testing_agent · additive-only §3.8 · §4.1 §E · §4.1 §F sha-pinning discipline · three-repo discipline · ratchet monotonic (floor **5580** · never rebaselined silently). Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered · MEM-R-053 CROWN BAN NOT triggered.
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+
+---
+
+## R-78 · 2026-09-20T~13:00Z · OWNER RULINGS + CONDITIONAL-AUTONOMY ACTIVATION + ENTITLEMENT INGEST · R-79 SPRINT LIVE
+
+Full owner text banked verbatim at STATE/DECISIONS.md R-78. Activation banked at STATE/DECISIONS.md R-79 (both conditions ON RECORD · sprint LIVE).
+
+### Sprint scope (owner-ratified verbatim · adjustable by this-desk cards)
+
+- Lifecycle Q-unlock sub-wave (Q1/Q2/Q4/Q5/Q7 + Expired→"Submit again as a new request" + suspension notices)
+- Entitlement service ingest + card + RED property tests + build (local/Your-Keys pending R-24)
+- Memory-layer completion residual
+- DAP portal frontend in full + OS-prototype frontends card (specialists work in /app/frontend · this-desk write-scope restricted to /app/frontend/public/audit/)
+- G5 to completion against 564-row Master Requirements Registry v3 (636 atomic rules remaining)
+
+### Immediate next-actions
+
+- **Next-turn**: open lifecycle Q-unlock sub-wave (RED-first invariants → additive-only GREEN → 3-Commit Seal). New state added: `Interrupted` (non-terminal). New action added to Expired: `submit_again_as_new_request` (never a reopen). Q1 Retry state-machine surface: keeps request-id · adds attempt counter · bounded DEFAULT 3 · exhaustion → Blocked·check.
+- **Then**: entitlement ingest wave — atomic-rule extraction + objective card §6.2 + RED property tests for ENT-13/16/17/18/19/22/26/32/34/35/49 + grep-negative hard bans + fixed strings ENT-23/26/34 registered as substitution rules.
+- **Then**: entitlement build (local + Your-Keys paths).
+- **Then**: memory-layer completion residual.
+- **Then**: G5 slice-extensions against v3 registry (636 rules remaining).
+- **In parallel**: frontend specialist support (contract questions come to this-desk via owner).
+
+### Report-to-owner outstanding line (banked here)
+
+Owner asked: "One line I'd like in the next report, since two frontend tracks are a large commitment against the record: status of the surface-language trace."
+
+Standard-answer verbatim (this-desk, banked at R-78 execution note 2 verbatim): **"Resolved: confirmed provenance fault (null trace), zero downstream artefacts depended on it, sweep complete, banked at e099ced1."**
+
+### Standing bounds unchanged
+
+zero push · terminal pytest only · no testing_agent · additive-only §3.8 · §4.1 §E · §4.1 §F sha-pinning discipline · three-repo discipline · ratchet monotonic (floor **5580** · never rebaselined silently). Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered · MEM-R-053 CROWN BAN NOT triggered.
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

@@ -18971,3 +18971,207 @@ Runs after this fixup landing (should pass · both `state_repo.head b4850fd8f062
 zero push · terminal pytest only · no testing_agent · additive-only §3.8 · §4.1 §E · §4.1 §F sha-pinning discipline · three-repo discipline · ratchet monotonic (floor **5580** · never rebaselined silently). Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered · MEM-R-053 CROWN BAN NOT triggered.
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+
+---
+
+## R-78 · 2026-09-20T~13:00Z · OWNER RULINGS + CONDITIONAL-AUTONOMY STANDING ORDER + ENTITLEMENT SERVICE INGEST · verbatim owner text banked
+
+### Owner text VERBATIM (this-session · post-CP-DAP-LIFECYCLE-BACKEND-WAVE seal)
+
+```
+Wave acknowledged — the lifecycle spine is the biggest single gap the FE brief named, and it's closed on canon. One value you set fills a gap the spec genuinely had: the 14-day expiry with working-day roll-forward. Ratified, DEFAULT-class, and it closes the "no duration stated" finding from earlier. Pair it with the requester's recourse the spec was also silent on: Expired offers Submit again as a new request, never a reopen.
+Q1–Q7 — approved as recommended, each with the condition that keeps it on canon:
+Q1 retry-for-check-only, reusing the surviving approval — approve. Conditions: the frozen objective is hash-identical, the same units, the approval unexpired; the retry re-runs every gate from the failed stage forward, not the failed check alone; the request keeps its id with an attempt counter; each attempt is receipted; attempts are bounded (DEFAULT 3) — an unbounded retry is a probe.
+Q2 standing approval satisfies DAP-16 if it names the egress — approve, tightened. DAP-17 already requires named units; for raw download the standing approval must name the units and the operation. A standing approval naming units for Connect does not cover Download. Redaction runs per release regardless — approval never waives the gate.
+Q4 spend folds into In Approval with a reason line — approve. DAP-14's approval already carries "the terms that would apply"; spend is one of them. One approval state, not two.
+Q5 escrow — approve, one clause. Output held in escrow on suspension; Ready on lift; on termination, destruction is a receipted Ledger event that retains the artefact hash. The artefact goes; the record stays whole.
+Q7 "Interrupted (platform fault)" — approve as a new non-terminal state. Right call not to overload check: check is a gate outcome with resubmit semantics, and a pod drop is neither. Auto-retry is permitted because it's not a gate bypass — every gate re-runs on retry, output is never partial, attempts are bounded (DEFAULT 3, receipted), and exhaustion resolves to Blocked · check. The interruption is visible on the surface throughout.
+Suspension notices to org admin and affected submitters only — approve. Minimal disclosure, consistent with DAP-27.
+OS-prototype frontends card — ratified. Dispatch the web specialist.
+DAP portal dispatch — conditional on one fact not in this report. The hold had two conditions: §2.1 (closed) and the principal model existing. This seal is the lifecycle backend; it doesn't say the principal_model_v1 wave sealed. If it has — dispatch the portal track in full. If it hasn't — dispatch it on the surfaces that don't depend on identity (Available Resources, Data Governance read views, the W-status rows in FE brief §4.4–4.5) and hold the Extract and request-lifecycle screens until PRIN-11/12 propagation lands; a request-lifecycle UI without a principal behind it is the anonymous-caller problem rendered in React.
+One line I'd like in the next report, since two frontend tracks are a large commitment against the record: status of the surface-language trace.
+----------
+Standing order — conditional autonomy, and entitlement service ingestion
+Autonomy, conditional and self-activating. The two conditions from the prior ruling stand unchanged: the principal_model_v1 wave sealed clean — tests-first, byte-match, no unruled forks — and the surface-language trace resolved to a real source banked correctly, or a confirmed fault with the downstream sweep complete. The moment both are on record, the autonomous sprint activates without a further reply from this desk. Bank the activation as its own DECISIONS.md entry citing the two evidence items by SHA. Until both are present, this remains a halted desk cycle.
+Scope of the sprint when it activates: every remaining specification — the entitlement service below, memory-layer completion, the DAP portal in full once the principal model is behind it, both frontend tracks to close, G5 to completion, and anything the objective cards for M13 onward still hold open. Standing Order §6 governs in full: files are truth; re-anchor at every seal boundary; every seal cites a card line; four-tier fork resolution with the desk as tier 4 only; milestone time-box at 2× estimate; loop detection; restore points at milestone seals; daily digest. Bounds and stop conditions exactly as banked — nothing here loosens one.
+INGEST — entitlement_service_v1 (The Entitlement Service)
+Files attached: Entitlement_Service_Spec_v1.docx; Security_Assurance_Promise_Set.xlsx (S-31, S-32 added); Master_Requirements_Registry.xlsx (564 rows — ENT-1–49, MEM-1–11, PRIN-1–13 added). Status PROPOSED · authority layer (a).
+What it is. One licence per organisation principal reaching every listed model its two dials admit; a catalog with one price knob per frontier row; a deterministic resolution step inside the sealed chokepoint; credits derived from the Ledger; unlimited local; bring-your-own keys, models, and compute. Forty-nine requirements, twelve defined terms (§1) each with one meaning, eight rulings. It composes the principal model, the chokepoint, the registry, the cascade, the credential plane, and the Ledger — it introduces no identity system, no metering path, and no bill of its own.
+Ingest, in order.
+Extract atomic rules with §-citations; canon_ref resolves to the register's ENT rows directly, since they are now in it.
+Draft an objective card per §6.2 from §2 (positioning rules), §6 (resolution), §7 (metering), §8 (exhaustion), §15 (catalog operations). Exit evidence is the property tests below.
+Property tests before implementation, RED first: resolution refuses on any missing link (ENT-16); resolution output identical for identical inputs with no learned parameter reachable (ENT-17); negative-scan proves no route to a model outside invoke() (ENT-18); customer-key row selected over reseller-frontier when both exist (ENT-19); allowance recomputed from Ledger events equals the displayed value and no stored counter exists (ENT-22); exhaustion serves locally with the exact fixed string and never without it (ENT-26); a reseller-frontier row cannot reach listed without an agreement record (ENT-32); provider unreachable yields the fixed string or refusal, never a silent retry elsewhere (ENT-34); a stored key is not recoverable by any read path (ENT-35); a catalog write from any component other than the ceremony engine fails (ENT-13); any state store outside licence/row/credential/event fails the AST rule (ENT-49).
+Hard bans, grep-negative from ingestion. No second billing store. No stored allowance counter. No route to a model outside invoke(). No learned component in resolution. No catalog write outside ceremony. No listed reseller-frontier row without an agreement record. No key readable back. No plan that withholds a §12 feature service.
+Sequencing. Depends on the principal model (licence attaches to PRIN-1; keys use PRIN-5–8) — do not open before that wave seals. Local and Your-Keys paths build without waiting on R-24; reseller-frontier rows stay unlisted until R-24 is on record. The fixed strings in ENT-23, ENT-26, ENT-34 are binding copy on both frontend tracks — add them to the substitution-rule set so a reworded string is RED.
+Rulings. R-24 (reseller agreements) — owner and counsel; gates reseller-frontier listing only. R-25 (seat price by dial, discounts) — commercial, owner. R-26 through R-30 — build at the recommended defaults, DEFAULT-class, tagged pending. R-31 (agents as seats) — recommended default applies: seats, separate count available at organisation size.
+Report at the next seal: card pinned, test IDs authored, atomic-rule count, fixed strings registered as substitution rules, and — the line still outstanding — the surface-language trace status.
+Proceed.
+```
+
+### Orchestrator execution notes (banked verbatim from this-session directive)
+
+```
+1. ACTIVATION CHECK FIRST: both conditions ARE on record — principal_model_v1 sealed clean at CP-PRINCIPAL-MODEL-WAVE (A 4b3b5e09 / B 94759183 / C afe46cf8, ratchet 5546, 13 PRIN invariants, zero unruled forks) and the surface-language trace resolved as a CONFIRMED PROVENANCE FAULT with the downstream sweep COMPLETE AND CLEAN (CP-SURFACE-LANGUAGE-TRACE-REPORT, state commit e099ced1). Verify both by SHA in the files, then BANK THE ACTIVATION as its own DECISIONS.md entry citing both. The autonomous sprint is live from that entry.
+2. The owner's outstanding report line — surface-language trace status — answer it in your next report verbatim: "Resolved: confirmed provenance fault (null trace), zero downstream artefacts depended on it, sweep complete, banked at e099ced1."
+3. Q1/Q5/Q7 conditions are now BUILD SCOPE: unlock the held lifecycle features in an additive sub-wave (Q1 Retry with hash-identical objective + full gate re-run from failed stage + attempt counter + receipts + bounded DEFAULT 3; Q4 spend reason-line in In Approval; Q5 escrow with hash-retaining destruction event; Q7 Interrupted state with bounded auto-retry resolving to Blocked·check on exhaustion; Q2 standing-approval branch reachable with units+operation naming for Download; Q6 — NOT ruled, the "Waited N days" line stays OMITTED; suspension notices to org admin + affected submitters only). Q3 partial release also NOT ruled — stays all-or-nothing, TC-RET-16 stays held.
+4. Entitlement wave: sequencing gate is SATISFIED (principal model sealed) — proceed per the ingest order. Local + Your-Keys paths build now; reseller-frontier stays UNLISTED pending R-24; R-25 pending (commercial); R-26..R-31 at recommended defaults DEFAULT-class. Register the ENT-23/26/34 fixed strings as substitution rules (reworded = RED).
+5. FRONTEND DISPATCH PREREQUISITE (P0, do this early): both frontend tracks are ratified for dispatch (OS-prototype card + DAP portal IN FULL since the principal model is sealed). I dispatch the web specialist — but it builds against a REACHABLE backend. Verify/wire the Extraction-Akki backend to be served on this pod so the preview URL serves /api/openapi.json (supervisor config — operational wiring, not refactoring; backend binds 0.0.0.0:8001, all routes /api-prefixed). Report to me: (a) confirmation /api/openapi.json responds on the preview URL, (b) the on-disk paths of the Front End Integration Brief, RMS AI Prototype v2 html, RMS DAP LATEST html, and the three frozen contract bundle pins, (c) any auth the specialist needs. Also write /app/memory/test_credentials.md if any auth gates the API. The specialists will work in /app/frontend — from their dispatch onward, do NOT write to /app/frontend except your audit-mirror path /app/frontend/public/audit/.
+6. Sprint order suggestion (§6 governs, adjust as your cards dictate): lifecycle Q-unlock sub-wave → entitlement ingest + card + RED property tests → entitlement build (local/Your-Keys) → memory-layer completion items → G5 to completion against the 564-row registry → frontends support (contract questions from specialists come to you via me). Daily digest cadence.
+
+All bounds unchanged: zero push · no testing_agent · terminal pytest only · additive-only §3.8 · §4.1 §E/§F · three absolute stops · ratchet 5580 floor monotonic. Go.
+```
+
+### Ratifications extracted from owner text (unambiguous · this-session)
+
+**Lifecycle wave · ratifications banked:**
+
+- **DAP-15 14-day expiry + working-day roll-forward**: RATIFIED · DEFAULT-class · closes the "no duration stated" finding from earlier. Pair it with the requester's recourse the spec was also silent on: **Expired offers "Submit again as a new request", never a reopen** (new build item this-owner-ruling).
+- **DAP-LIFECYCLE-Q1 Retry**: APPROVED with conditions — frozen objective hash-identical · same units · approval unexpired · retry re-runs every gate from the failed stage forward (NOT just the failed check) · request keeps its id with an attempt counter · each attempt is receipted · attempts bounded DEFAULT 3.
+- **DAP-LIFECYCLE-Q2 Standing approval**: APPROVED tightened — DAP-16 satisfied ONLY if egress is named · DAP-17 requires named units · standing approval for raw download MUST name units AND operation · a standing approval naming units for Connect does NOT cover Download · **redaction runs per release regardless — approval never waives the gate**.
+- **DAP-LIFECYCLE-Q3 partial release**: NOT RULED · stays HARD HOLD · all-or-nothing default · TC-RET-16 stays held.
+- **DAP-LIFECYCLE-Q4 spend-ceiling breach**: APPROVED · folds into In Approval with a reason line (NOT a separate state) · DAP-14's approval already carries "the terms that would apply"; spend is one of them · one approval state, not two.
+- **DAP-LIFECYCLE-Q5 escrow**: APPROVED with clause — output held in escrow on suspension · Ready on lift · on termination, destruction is a **receipted Ledger event that retains the artefact hash** · the artefact goes; the record stays whole.
+- **DAP-LIFECYCLE-Q6 owner turnaround line**: NOT RULED · stays HARD HOLD · "Waited N days" line stays OMITTED.
+- **DAP-LIFECYCLE-Q7 non-gate execution fault**: APPROVED as **"Interrupted (platform fault)"** — a new non-terminal state · check overload rejected as correct (check is a gate outcome with resubmit semantics; a pod drop is neither) · auto-retry PERMITTED because it's not a gate bypass — every gate re-runs on retry · output never partial · attempts bounded DEFAULT 3, receipted · **exhaustion resolves to Blocked · check** · the interruption is visible on the surface throughout.
+- **DAP-LIFECYCLE-Q8 destination removal**: RATIFIED (was DEFAULT-class YES-reading; owner language "recommended" carries; historical receipts untouched · DAP-26 analogy holds).
+- **Suspension notices**: APPROVED · to org admin and affected submitters only · minimal disclosure, consistent with DAP-27.
+
+**Frontend tracks · dispatch decisions:**
+
+- **OS-prototype frontends card**: RATIFIED · dispatch the web specialist.
+- **DAP portal dispatch**: CONDITIONAL and now-UNCONDITIONALLY-CLEARED — the two prior hold conditions (§2.1 closed + principal model existing) are now BOTH satisfied at record (CP-PRINCIPAL-MODEL-WAVE seal + CP-SURFACE-LANGUAGE-TRACE-REPORT). **Dispatch the portal track in full.**
+
+### Conditional-autonomy standing order · verbatim frame
+
+Owner verbatim: "The two conditions from the prior ruling stand unchanged: the principal_model_v1 wave sealed clean — tests-first, byte-match, no unruled forks — and the surface-language trace resolved to a real source banked correctly, or a confirmed fault with the downstream sweep complete. The moment both are on record, the autonomous sprint activates without a further reply from this desk."
+
+Scope owner verbatim: "every remaining specification — the entitlement service below, memory-layer completion, the DAP portal in full once the principal model is behind it, both frontend tracks to close, G5 to completion, and anything the objective cards for M13 onward still hold open. Standing Order §6 governs in full: files are truth; re-anchor at every seal boundary; every seal cites a card line; four-tier fork resolution with the desk as tier 4 only; milestone time-box at 2× estimate; loop detection; restore points at milestone seals; daily digest. Bounds and stop conditions exactly as banked — nothing here loosens one."
+
+### Entitlement service · summary of ingest (verbatim + parsed)
+
+- **spec_id**: entitlement_service_v1
+- **artifact**: Entitlement_Service_Spec_v1.docx (sha256 `46c3670eaf157173cb19e505d595b77d4458cc0f4b8f5aa6a055921b08fcfe04` · 20,642 bytes)
+- **custody**: `custody/owner_drops/20260920T1300Z/Entitlement_Service_Spec_v1.docx`
+- **status**: PROPOSED
+- **authority layer**: (a)
+- **counts**: 49 requirements (ENT-1..ENT-49) · 12 defined terms (§1) · 8 rulings (R-24..R-31)
+- **composition surfaces**: principal model + chokepoint + registry + cascade + credential plane + Ledger — introduces no identity system + no metering path + no bill of its own
+- **hard bans (grep-negative from ingestion)**: no second billing store · no stored allowance counter · no route to a model outside invoke() · no learned component in resolution · no catalog write outside ceremony · no listed reseller-frontier row without an agreement record · no key readable back · no plan that withholds a §12 feature service
+- **sequencing gate**: SATISFIED (CP-PRINCIPAL-MODEL-WAVE sealed at `afe46cf8`) · local + Your-Keys paths build NOW · reseller-frontier rows stay UNLISTED pending R-24
+- **rulings frame**: R-24 owner + counsel pending (gates reseller-frontier listing) · R-25 commercial + owner pending (seat price by dial + discounts) · R-26..R-30 build at recommended defaults DEFAULT-class tagged pending · R-31 recommended default (agents as seats, separate count available at organisation size)
+- **fixed strings**: ENT-23 + ENT-26 + ENT-34 binding copy on both frontend tracks · register as substitution rules · reworded = RED
+
+### Registry supersession banked
+
+- **Prior version**: Master_Requirements_Registry v2 (491 rows) banked at drop `custody/owner_drops/20260918T1111Z_master_req_registry_owner_drop_manifest.json`.
+- **New binding version**: Master_Requirements_Registry v3 (**564 data rows** in System Rules Registry sheet · sha256 `79d4456224392ac6e936739ca80e8ba39d782b8d6af9d7bc2245d2a798c94a51` · 78,732 bytes).
+- **Custody**: `custody/owner_drops/20260920T1300Z/Master_Requirements_Registry_v3.xlsx`.
+- **Row count verification**: python openpyxl `ws.max_row=565` including header → **564 data rows** matches owner ratification verbatim.
+- **G5 canon_ref target**: updates to v3 · slice-extension backlog 636 atomic rules continues against v3 corpus · prior 491-row mappings remain valid at their line anchors and re-anchor to v3 line numbers at each G5 slice-extension seal.
+- **Owner ruling verbatim**: "the registry supersedes the 491-row version — verify 564 rows, G5 canon_ref target updates to it"
+
+### Security Assurance Promise Set v5 banked
+
+- **New binding version**: Security_Assurance_Promise_Set v5 (sha256 `ef6faf2b3d50e96fb2e5716526e489461c004f2fc3359b4281c548849a43eaa8` · 20,608 bytes).
+- **Custody**: `custody/owner_drops/20260920T1300Z/Security_Assurance_Promise_Set_v5.xlsx`.
+- **Delta from v4**: S-31 + S-32 added (verified via openpyxl scan · both cells present in 'Security Assurance Set' sheet).
+
+### Frontend dispatch prerequisite · REPORT to owner (this-Commit banking)
+
+- **(a) /api/openapi.json responds on preview URL**: ✅ **CONFIRMED** — `curl -s https://akki-reuse-assess.preview.emergentagent.com/api/openapi.json` returns HTTP 200 · 190,484 bytes · title `"Akki · Extraction-Akki (programme/track-a)"` version `"w10-cp9"`. Backend supervisor process wired: `/etc/supervisor/conf.d/supervisord.conf` `[program:backend]` runs `/root/.venv/bin/uvicorn server:app --host 0.0.0.0 --port 8001 --workers 1 --reload` with `directory=/app/backend`. `/app/backend/server.py` is the SPINE BRIDGE that imports routers from `/app/assessment_workspace/repos/Extraction-Akki/backend/` (per module header comment "Spine bridge: WS-BUILD-CONNECT-GPU production code lives on programme/track-a in Extraction-Akki. /app/backend is the pod-shell that mounts the router. Access is source-IP allowlist per owner stop-order 2026-08-14"). Any new module I add to Extraction-Akki backend (e.g. `services.dap_lifecycle`) is available to the pod-shell subject to router wiring. No supervisor edit needed.
+
+- **(b) On-disk paths of the four design sources + three frozen contract bundle pins**:
+  - **Front End Integration Brief**: `/app/assessment_workspace/custody/owner_drops/20260920T0824Z/Front_End_Integration_Brief.md`
+  - **RMS AI Prototype v2 (binding for non-DAP OS-prototype surfaces)**: `/app/assessment_workspace/canon/prototypes/20260907_v2_standalone/RMS_AI_Prototype_v2_Standalone.html`
+  - **RMS DAP LATEST (binding for DAP portal · SUPERSEDES v2 for portal only)**: `/app/assessment_workspace/custody/owner_drops/20260920T1140Z/RMS_DAP_LATEST.html`
+  - **CCS1 frozen contract bundle pin (seam bundle-sha `a6107d46…`)**: `/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_ccs1_c17_seam_bundle_freeze.py`
+  - **CCS2 frozen contract bundle pin (DAP entitlement bundle-sha `051f25df…`)**: `/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_ccs2_dap_entitlement_freeze.py`
+  - **CCS3 frozen contract bundle pin (DAP receipt bundle-sha `81d3c0a5…`)**: `/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_ccs3_dap_receipt_freeze.py`
+
+- **(c) Auth the specialist needs**: Currently the pod runs `ALLOWLIST_MODE=permissive` (`/app/backend/.env`), which the IP allowlist middleware admits transparently — the specialist's calls to the preview URL will land regardless of source IP. `/api/status` returns HTTP 200 plainly. A JWT auth surface exists via `/api/auth/login` → `/api/auth/refresh` for mutation endpoints (POST/PUT/DELETE); no seeded test account exists in the record. If specialists need to exercise mutations, seed a test account additively via a follow-on sub-wave and update `/app/memory/test_credentials.md` at that seal boundary. Read-only surfaces (Available Resources, Data Governance read views, W-status rows) require zero credentials.
+
+- **(d) Specialists' write scope**: per owner directive verbatim — "The specialists will work in /app/frontend — from their dispatch onward, do NOT write to /app/frontend except your audit-mirror path /app/frontend/public/audit/." Banked as constraint on this-desk future writes.
+
+### Standing bounds unchanged
+
+zero push · terminal pytest only · no testing_agent · additive-only §3.8 · §4.1 §E · §4.1 §F sha-pinning discipline · three-repo discipline · ratchet monotonic (floor **5580** · never rebaselined silently). Three absolute stops enumerated at SO §6. Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered · MEM-R-053 CROWN BAN NOT triggered.
+
+
+---
+
+## R-79 · 2026-09-20T~13:00Z · CP-CONDITIONAL-AUTONOMY-ACTIVATION · autonomous sprint LIVE
+
+### Activation ruling verbatim
+
+Owner verbatim (this-session, banked verbatim in R-78 above): "The two conditions from the prior ruling stand unchanged: the principal_model_v1 wave sealed clean — tests-first, byte-match, no unruled forks — and the surface-language trace resolved to a real source banked correctly, or a confirmed fault with the downstream sweep complete. The moment both are on record, the autonomous sprint activates without a further reply from this desk. Bank the activation as its own DECISIONS.md entry citing the two evidence items by SHA."
+
+### Evidence · both conditions ON RECORD
+
+**Condition 1 · principal_model_v1 sealed clean — tests-first, byte-match, no unruled forks**: ✅ **SATISFIED**
+
+- Commit-A code SHA: `4b3b5e09a71254c3ccb9d4b6abcd19dbdfe13e34` (branch `programme/track-a`)
+- Commit-B state SHA: `947591831da09601a6880a3e42084b78657e9d01` (branch `master`)
+- Commit-C fixup SHA: `afe46cf8` (branch `master`)
+- Ratchet after seal: 5546 (advanced from 5532 · measured delta +14)
+- Invariants landed: 13 (PRIN-1..PRIN-13 · RED-first with verbatim spec docstrings per SO §2.5)
+- Byte-match run1+run2: TRUE (stripped-sha256 `11adcbe6030e42f9e20702f42f91a9312e44f20d1d7a02b2912dd1c91f41efc1` IDENTICAL)
+- Unruled forks: ZERO
+- Contract snapshot: `principal_v1.contract_snapshot.json` registered in `CONTRACT_TO_SNAPSHOT` via docstring-sanctioned two-side edit
+- Sealed writers NOT edited (Ledger upgrade landed as adapter/wrapper `services.request_context.ledger_actor_binding` per owner verbatim)
+
+**Condition 2 · surface-language trace resolved (real source banked correctly OR confirmed fault with downstream sweep complete)**: ✅ **SATISFIED**
+
+- Commit SHA: `e099ced110dcbb6dd93759ea09d7924c5087c1d2` (branch `master`)
+- Verdict: PROVENANCE FAULT CONFIRMED (null trace)
+- Trace scope executed across all 5 owner-ratified locations + Akki-Executive-Final quarantine flag (all 6 SHA-pinned per commit-message body)
+- Downstream-assumption audit: CLEAN
+- Downstream artefacts depending on phantom rule: ZERO
+- Sweep complete: TRUE
+- Reporter doc: `notes/SURFACE_LANGUAGE_TRACE_20260920.md`
+
+### Activation status
+
+**AUTONOMOUS SPRINT LIVE** from this banking entry forward.
+
+### Scope owner-ratified verbatim (banked at R-78)
+
+- The entitlement service (this-session ingest · WAVE R-71 opening)
+- Memory-layer completion (residual after CP-MEMORY-COMPACTION-V1 W1/W2/W3 seals)
+- The DAP portal in full (frontend track · dispatch cleared at this activation since principal model is behind it)
+- Both frontend tracks to close (OS-prototype card + DAP portal)
+- G5 to completion (636 atomic rules remaining · re-target to 564-row Master Requirements Registry v3)
+- Anything the objective cards for M13 onward still hold open
+
+### Governance
+
+Standing Order §6 governs in full (owner verbatim):
+- Files are truth
+- Re-anchor at every seal boundary
+- Every seal cites a card line
+- Four-tier fork resolution with the desk as tier 4 only
+- Milestone time-box at 2× estimate
+- Loop detection
+- Restore points at milestone seals
+- Daily digest cadence
+
+### Sprint order (owner suggestion · this-desk cards adjust as needed)
+
+1. **Lifecycle Q-unlock sub-wave** — Q1 Retry (bounded DEFAULT 3 · full gate re-run from failed stage · attempt counter · receipted attempts · hash-identical objective + same units + approval unexpired) + Q2 Standing-approval branch (units + operation naming for Download · redaction runs per release regardless) + Q4 spend reason-line folded into In Approval + Q5 escrow (Ready-on-lift · destruction=receipted Ledger event retaining artefact hash) + Q7 "Interrupted (platform fault)" new non-terminal state with bounded auto-retry resolving to Blocked·check on exhaustion + **Expired → "Submit again as a new request"** action (never a reopen) + suspension notices to org admin + affected submitters only. Q3 stays HARD HOLD. Q6 stays HARD HOLD.
+2. **Entitlement ingest + card + RED property tests** — atomic-rule extraction from spec §§1-15 → objective card per §6.2 from §§2/6/7/8/15 → RED property tests for the 11 owner-listed exit-evidence invariants (ENT-13, ENT-16, ENT-17, ENT-18, ENT-19, ENT-22, ENT-26, ENT-32, ENT-34, ENT-35, ENT-49) + grep-negative hard bans.
+3. **Entitlement build (local/Your-Keys paths only pending R-24)** — reseller-frontier rows UNLISTED at build time.
+4. **Memory-layer completion items** — residual MEM waves.
+5. **G5 to completion against 564-row Master Requirements Registry v3** — 636 atomic rules remaining · slice-extension wave seals.
+6. **Frontends support** — contract questions from specialists come to this-desk via owner.
+
+### Autopilot next-actions (this-session)
+
+- Continue this Commit-B by landing manifest + custody + this activation entry + registry-supersession banking + frontend-dispatch-report.
+- Next-turn: open lifecycle Q-unlock sub-wave (RED-first invariants for Q1 Retry / Q2 Standing-approval / Q4 spend / Q5 escrow / Q7 Interrupted + Expired-submit-again action + suspension-notices surface).
+- Then entitlement wave ingest + card + RED property tests.
+
+### Standing bounds unchanged
+
+zero push · terminal pytest only · no testing_agent · additive-only §3.8 · §4.1 §E · §4.1 §F sha-pinning discipline · three-repo discipline · ratchet monotonic (floor **5580** · never rebaselined silently). Three absolute stops enumerated at SO §6. Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered · MEM-R-053 CROWN BAN NOT triggered.
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

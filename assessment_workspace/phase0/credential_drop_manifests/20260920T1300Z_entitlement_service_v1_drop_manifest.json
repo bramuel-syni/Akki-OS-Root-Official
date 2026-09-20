@@ -1,0 +1,99 @@
+{
+  "manifest_version": "1.0",
+  "manifest_kind": "owner_drops_manifest",
+  "drop_at_utc": "2026-09-20T~13:00Z",
+  "drop_id": "20260920T1300Z",
+  "banked_by": "e1-autopilot",
+  "banked_reason": "Owner ruling this-session verbatim (post-CP-DAP-LIFECYCLE-BACKEND-WAVE seal): activates conditional-autonomy sprint AND ingests entitlement_service_v1 spec + supersedes Master Requirements Registry (491 rows → 564 rows · G5 canon_ref target updates) + adds S-31 + S-32 to Security Assurance Promise Set.",
+  "canon_anchors": [
+    "SO §4.1 §F sha-pinning discipline (this manifest)",
+    "SO §4.1 §E custody discipline (drop dir + immutable)",
+    "SO §6.2 e1_dev drafts cards from canon + rulings",
+    "SO §6.4 NOTHING-BEYOND (wave scope frozen at atomic-rule extraction + card + RED property tests + build sequencing gate; §7-§8 metering + §15 catalog ops build after seal; frontend fixed strings register as substitution rules)",
+    "SO §6.7 sequence WAVE R-71 opens with entitlement ingest (WAVE R-70 sealed at CP-DAP-LIFECYCLE-BACKEND-WAVE)",
+    "CP-PRINCIPAL-MODEL-WAVE seal `4b3b5e09` / `94759183` / `afe46cf8` (sequencing gate SATISFIED for entitlement licence-attaches-to-PRIN-1)",
+    "CP-SURFACE-LANGUAGE-TRACE-REPORT `e099ced110dcbb6dd93759ea09d7924c5087c1d2` (activation condition 2 SATISFIED)",
+    "CP-DAP-LIFECYCLE-BACKEND-WAVE seal `86348320a74816542f6fa3da1e42ce044448625e` / `b4850fd8f062e785877a74ddd09718be72a5df2c` / `6bdb5183` (Q1/Q2/Q4/Q5/Q7 unlock-conditions now BUILD SCOPE per this owner ruling)"
+  ],
+  "artifacts": [
+    {
+      "filename": "Entitlement_Service_Spec_v1.docx",
+      "sha256": "46c3670eaf157173cb19e505d595b77d4458cc0f4b8f5aa6a055921b08fcfe04",
+      "size_bytes": 20642,
+      "source_url": "https://customer-assets-cm19k8pv.emergentagent.net/job_amazing-gates-8/artifacts/nvco4hs8_Entitlement_Service_Spec_v1.docx",
+      "role": "binding spec (Entitlement Service · entitlement_service_v1 · authority layer (a) · PROPOSED)",
+      "citation_form": "Entitlement Service Spec v1 · §<section-num> · <paragraph-anchor>",
+      "extraction_target": "notes/entitlement_service_v1_atomic_rules.md",
+      "content_summary": "49 requirements (ENT-1..ENT-49) + 12 defined terms (§1) + 8 rulings (R-24..R-31) + hard bans + sequencing rules · composes principal model + chokepoint + registry + cascade + credential plane + Ledger · no new identity system + no new metering path + no new bill",
+      "fixed_strings_for_substitution_rules": [
+        "ENT-23: <TODO extract exact copy from §>",
+        "ENT-26: <TODO extract exact copy from §>",
+        "ENT-34: <TODO extract exact copy from §>"
+      ]
+    },
+    {
+      "filename": "Master_Requirements_Registry_v3.xlsx",
+      "sha256": "79d4456224392ac6e936739ca80e8ba39d782b8d6af9d7bc2245d2a798c94a51",
+      "size_bytes": 78732,
+      "source_url": "https://customer-assets-cm19k8pv.emergentagent.net/job_amazing-gates-8/artifacts/5xiyrnpb_Master_Requirements_Registry%20%283%29.xlsx",
+      "role": "SUPERSEDES 491-row prior version · 564 rows across System Rules Registry sheet · G5 canon_ref target updates to this version",
+      "verification": {
+        "sheet_System_Rules_Registry_max_row": 565,
+        "data_rows_after_header": 564,
+        "matches_owner_ratification_verbatim": true,
+        "additional_sheets": ["Build Status (56 rows)", "Objectives (17 rows)", "Legend (15 rows)"],
+        "expected_families_added": ["ENT-1..ENT-49 (49 rows)", "MEM-1..MEM-11 (11 rows)", "PRIN-1..PRIN-13 (13 rows)"]
+      },
+      "citation_form": "Master Requirements Registry v3 · <family>-<n> · <sheet-row>",
+      "supersession": {
+        "supersedes": "Master_Requirements_Registry_v2 (491 rows) banked at prior drop custody/owner_drops/20260918T1111Z_master_req_registry_owner_drop_manifest.json",
+        "supersedes_scope": "G5 mapping canon_ref target updates to v3 · 564-row corpus is the new reconciliation base · prior 491-row mappings remain valid at their line anchors and re-anchor to v3 line numbers at each G5 slice-extension seal · slice-extension backlog 636 atomic rules continues against v3 corpus",
+        "owner_ruling_verbatim": "the registry supersedes the 491-row version — verify 564 rows, G5 canon_ref target updates to it"
+      }
+    },
+    {
+      "filename": "Security_Assurance_Promise_Set_v5.xlsx",
+      "sha256": "ef6faf2b3d50e96fb2e5716526e489461c004f2fc3359b4281c548849a43eaa8",
+      "size_bytes": 20608,
+      "source_url": "https://customer-assets-cm19k8pv.emergentagent.net/job_amazing-gates-8/artifacts/lqxzy9pl_Security_Assurance_Promise_Set%20%285%29.xlsx",
+      "role": "S-31 + S-32 added · sibling to prior Security Assurance Promise Set v4",
+      "verification": {
+        "S31_present": true,
+        "S32_present": true
+      },
+      "citation_form": "Security Assurance Promise Set v5 · S-<n> · <row-anchor>"
+    }
+  ],
+  "sprint_activation_conditions_check": {
+    "condition_1_principal_model_v1_sealed_clean": {
+      "status": "SATISFIED",
+      "evidence": {
+        "commit_a_sha": "4b3b5e09a71254c3ccb9d4b6abcd19dbdfe13e34",
+        "commit_a_branch": "programme/track-a",
+        "commit_b_sha": "947591831da09601a6880a3e42084b78657e9d01",
+        "commit_b_branch": "master",
+        "commit_c_sha": "afe46cf8",
+        "commit_c_branch": "master",
+        "ratchet_after_seal": 5546,
+        "invariants_landed": 13,
+        "invariants_family": "PRIN-1..PRIN-13",
+        "byte_match_run1_run2": true,
+        "unruled_forks": 0
+      }
+    },
+    "condition_2_surface_language_trace_resolved": {
+      "status": "SATISFIED",
+      "evidence": {
+        "commit_sha": "e099ced110dcbb6dd93759ea09d7924c5087c1d2",
+        "commit_branch": "master",
+        "verdict": "PROVENANCE FAULT CONFIRMED (null trace)",
+        "downstream_assumption_audit": "CLEAN across all 5 owner-ratified trace locations",
+        "downstream_artefacts_dependent_on_phantom": 0,
+        "sweep_complete": true
+      }
+    },
+    "activation_ruling": "The moment both are on record, the autonomous sprint activates without a further reply from this desk (owner verbatim)."
+  },
+  "deliberately_deferred": [],
+  "seal_expected": "CP-ENTITLEMENT-SERVICE-INGEST · WAVE R-71 opening · additive-only per SO §3.8 · state-master-notes-only banking commit (this manifest + atomic-rule extract + card + activation-decision banking) · no code · no test surface · no ratchet change · sub-wave sequence card → RED property tests → build (local/Your-Keys paths only pending R-24)"
+}
