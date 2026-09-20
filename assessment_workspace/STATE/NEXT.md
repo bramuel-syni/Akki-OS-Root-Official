@@ -4239,3 +4239,134 @@ zero push · terminal `pytest` only · no `testing_agent` · additive-only §3.8
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
+
+---
+
+## CP-REGISTRY-V5-RATIFICATION-AND-COUNT-ERRATUM · 2026-09-20T~19:54Z · state master · notes-only banking · **v5 RATIFIED** · G5-v5 unblocked · Ruling-3-erratum-shape count-fix cites `0e7a07b0`
+
+State-only banking commit — no code changes. Full receipt at `phase0/spec_hunt_receipts/20260920T1954Z_registry_v5_ratification_and_count_erratum.md`.
+
+### Ruling summary (owner-verbatim short)
+
+- **v5 `00072c58…` RATIFIED** as G5 canon_ref target · authority chain: v3 retired → v4 never ratified → **v5 RATIFIED**.
+- **QA Verification + QA Legend** registered as **INFORMATIONAL** under workbook sha `00072c5829d3d893…` · owner-verbatim registration line: *"classes derived by the stated rule in QA Legend; verdict columns empty by design; V7 is the floor and is reclassified upward by the auditor only, never downward, never by the builder."*
+- **G5 canon_ref** resolves against `System Rules Registry` sheet only · class column is a HINT for test shape (V1 → golden-input · V2 → scan · V5 → injection) · **rule text governs**.
+- **Count-fix erratum · cites `0e7a07b0`** · Ruling-3-shape · SEVEN classes V1..V7 (not V1..V9) · rows 8–9 of `QA Legend` are sampling tiers Tier A 100% / Tier B ≥30% (NOT classes). Zero un-banked derived working-tree occurrences · all references inherit this erratum citation.
+- **G5-v5 STOP-AND-REPORT hold LIFTED.**
+- **Two reinforcements banked:** (a) R-88+ full CON grep-negative ban set (7 categories) · (b) R-32 ratified surface list (chat answers · recommendation bodies · notification bodies — nothing else) binding on Generated-class CON invariants.
+
+### Sprint queue (owner-ratified · definitive)
+
+1. **R-86 · CP-APP-JS-UNIFY-SCHEDULE-AND-DRIFT-ANNOTATE** (Ruling 1) ⏳ MID-FLIGHT on `programme/track-a`. R-86 seal report will explicitly confirm CP-APP-JS-UNIFY slot = **R-91**.
+2. **R-87 · CP-BLOCKED-VOCABULARY-CORRECTION** (Ruling 2) — queued.
+3. **R-88+ · CP-CONTENT-REGISTRY-WAVE** (Ruling 4 · CON-1..31) — queued · 7-category grep-negative bans + R-32 surface-list binding on Generated-class.
+4. **G5-v5 first slice · SFP-1..7** (canon_ref = SRR sheet only · class-hint discipline · rule text governs) — UNBLOCKED · slotted behind R-88+.
+5. **R-91 · CP-APP-JS-UNIFY** (scheduled-not-open-ended · closes the 3 pod_shell mirror-drift baseline entries · closure card at `STATE/OBJECTIVES/CP_APP_JS_UNIFY.md` to be created in R-86 Commit-A).
+
+### Autopilot next this-turn
+
+1. Commit-B on `master` (this-banking).
+2. Switch to Extraction-Akki `programme/track-a` · resume R-86:
+   - Create `STATE/OBJECTIVES/CP_APP_JS_UNIFY.md` scheduled-slot stub (R-91).
+   - RED-first drill on `test_baseline_drift_annotations_present.py` (5 property tests).
+   - `BASELINE_GUARD=1` double-sweep byte-identical.
+   - 3-Commit Seal.
+3. R-87 → R-88+ → G5-v5 SFP-1..7 → R-91 CP-APP-JS-UNIFY.
+
+### Files (3 tracked)
+
+1. `phase0/spec_hunt_receipts/20260920T1954Z_registry_v5_ratification_and_count_erratum.md` NEW.
+2. `STATE/DECISIONS.md` this-append.
+3. `STATE/NEXT.md` this-append.
+
+Ratchet unchanged **5640**. Zero code change. Zero test change. Zero baseline change. **Not a §3.3 3-Commit Seal** — state-master notes-only banking (same class as Ruling-3 erratum banked at `0e7a07b0`).
+
+### Standing bounds unchanged
+
+zero push · terminal `pytest` only · no `testing_agent` · additive-only §3.8 · three-repo discipline · ratchet monotonic-up (unchanged at **5640**).
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+
+---
+
+## CP-APP-JS-UNIFY-SCHEDULE-AND-DRIFT-ANNOTATE · Commit-B · WAVE R-86 · state master · 2026-09-20T~20:12Z · banks code Commit-A `2eca0e58d1d9773d1b781abe570c3e015e0c98f2` on programme/track-a · Ruling 1 mirror-half closure sealed · CP-APP-JS-UNIFY confirmed at slot R-91
+
+Full seal report at STATE/DECISIONS.md this-append. Not a state-only banking — this IS the Commit-B of the §3.3 3-Commit Seal for WAVE R-86.
+
+### Wave summary
+
+- **Ruling 1 mirror-half closure sealed** — 3 pod_shell mirror-drift baseline entries now carry their reason AND the card line that closes them.
+- **CP-APP-JS-UNIFY confirmed at slot R-91** (owner-accepted scheduling-not-open-ended per `1250c39a`).
+- **FE COORDINATION seal FULLY CLOSED** at this-wave (byte-verify half at `d0a2ea9b` + mirror-drift half at this-commit).
+- **DELTA +5** (5640 → 5645 · monotonic-up · both fields bumped) · new baseline sha `ccb45068…`.
+- **BASELINE_GUARD=1 double-sweep byte-identical** stripped-sha256 `b709ed74…` IDENTICAL across Run 1 + Run 2 · 5645 passed · 3 baseline-fails · 1 skip.
+
+### Sprint queue post-this-Commit-B
+
+1. **R-86** ⏳ **Commit-B landed at this-commit · Commit-C fixup next**.
+2. **R-87 CP-BLOCKED-VOCABULARY-CORRECTION** (Ruling 2) — queued.
+3. **R-88+ CP-CONTENT-REGISTRY-WAVE** (Ruling 4 · CON-1..31 · 7-category grep-negative bans + R-32 surface-list binding on Generated-class) — queued.
+4. **G5-v5 SFP-1..7 first slice** — unblocked · slotted behind R-88+.
+5. **R-91 · CP-APP-JS-UNIFY** — this-card's referenced closure wave.
+
+### Files (5 tracked · additive-only)
+
+1. `STATE/OBJECTIVES/CP_APP_JS_UNIFY.md` NEW (scheduled-slot card · card_sha256 `800d836d…`).
+2. `notes/ORCH_BOOT.md` (ratchet-only regen · new sha256 `635251a5…`).
+3. `tools/r86_pre_commit_a_orch_boot_regen_and_card_pin.py` NEW (deterministic regen tool).
+4. `STATE/PINS.md` (commissioning_record pointer refresh · R-29-BOOT housekeeping-pickup precedent).
+5. `STATE/DECISIONS.md` this-append.
+6. `STATE/NEXT.md` this-append.
+
+(POD audit mirror `/app/frontend/public/audit/ORCH_BOOT.md` byte-identically synced pre-Commit-A · not a tracked STATE-repo path.)
+
+### Autopilot next
+
+1. **Commit-C fixup this-turn** — state master · advances state_head to this-Commit-B SHA + heads_last_sealed regen + R-86 marker flip ✅ SEALED.
+2. Then **R-87 CP-BLOCKED-VOCABULARY-CORRECTION** opens.
+
+### Standing bounds unchanged
+
+zero push · terminal `pytest` only · no `testing_agent` · additive-only §3.8 · three-repo discipline · ratchet monotonic-up (now **5645**).
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+
+---
+
+## CP-APP-JS-UNIFY-SCHEDULE-AND-DRIFT-ANNOTATE · Commit-C fixup · WAVE R-86 · ✅ SEALED · state master · 2026-09-20T~20:18Z · banks state Commit-B `1525ddd0f0a00d85c9c4e114e2f77362175158d6` · R-6 boundary regen advancing heads_last_sealed to R-86 Commit-B + Commit-A
+
+Full seal report at STATE/DECISIONS.md this-append. R-86 SEALED at this-commit.
+
+### R-86 marker: ⏳ IN-FLIGHT → ✅ **SEALED**
+
+- **Commit-A (code · programme/track-a):** `2eca0e58d1d9773d1b781abe570c3e015e0c98f2` · 2026-09-20T~20:07Z.
+- **Commit-B (state · master):** `1525ddd0f0a00d85c9c4e114e2f77362175158d6` · 2026-09-20T~20:12Z.
+- **Commit-C fixup (state · master):** this-commit · 2026-09-20T~20:18Z.
+
+### Sprint queue post-R-86
+
+1. **R-86 CP-APP-JS-UNIFY-SCHEDULE-AND-DRIFT-ANNOTATE** ✅ **SEALED at this-commit.**
+2. **R-87 CP-BLOCKED-VOCABULARY-CORRECTION** (Ruling 2) — **opens next.**
+3. **R-88+ CP-CONTENT-REGISTRY-WAVE** (Ruling 4 · CON-1..31 · 7-category grep-negative bans + R-32 surface-list binding on Generated-class) — queued.
+4. **G5-v5 SFP-1..7 first slice** — unblocked · slotted behind R-88+.
+5. **R-91 · CP-APP-JS-UNIFY** — closure wave (card ratified at Commit-A · scheduled slot).
+
+### Files (3 tracked)
+
+1. `notes/ORCH_BOOT.md` (R-6 boundary regen · new sha256 `bb829ab1…` · byte-identically synced to `/app/frontend/public/audit/ORCH_BOOT.md`).
+2. `tools/r86_commit_c_fixup_orch_boot_regen.py` NEW.
+3. `STATE/DECISIONS.md` this-append.
+4. `STATE/NEXT.md` this-append.
+
+### Autopilot next
+
+**R-87 CP-BLOCKED-VOCABULARY-CORRECTION opens this-turn.**
+
+### Standing bounds unchanged
+
+zero push · terminal `pytest` only · no `testing_agent` · additive-only §3.8 · three-repo discipline · ratchet monotonic-up (**5645**).
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+

@@ -20567,3 +20567,343 @@ zero push · terminal `pytest` only · no `testing_agent` · additive-only §3.8
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
+
+## 2026-09-20T~19:54Z · CP-REGISTRY-V5-RATIFICATION-AND-COUNT-ERRATUM · state master · notes-only banking · owner ruling on v5 net-new sheets (N + guidance + count-correction) · **v5 RATIFIED** · G5-v5 unblocked · sequencing confirmed with R-91 slot · Ruling-3-erratum-shape count-fix cites `0e7a07b0`
+
+**Precedent shape:** state-master notes-only banking · same class as Ruling-3 docstring-erratum banked at prior commit `0e7a07b0` (STATE/DECISIONS.md:20429). Owner verbatim on erratum-discipline: *"`0e7a07b0` is a notes-only state-master banking commit; git history is never rewritten. The count-fix lands as a NEW state-only correction entry (same shape as the Ruling-3 erratum precedent)."*
+
+**Owner ruling arrival:** 2026-09-20T~19:54Z. Full receipt at `phase0/spec_hunt_receipts/20260920T1954Z_registry_v5_ratification_and_count_erratum.md`.
+
+### Owner ruling verbatim (word-for-word · N + guidance + count-correction · v5 ratification)
+
+> OWNER RULING on the v5 net-new sheets: **N + guidance, with one count correction. v5 IS RATIFIED on these terms. G5-v5 OPENS NOW — SFP-1..7 first slice.** Respond in English only.
+>
+> N FOR SCOPE — owner verbatim substance: G5 maps against the System Rules Registry sheet ONLY; canon_ref resolves to those rows and nothing else. The two QA sheets are the audit standards artefact — tooling an independent auditor fills during the audit, not canon. Register both as INFORMATIONAL, sha-pinned under the workbook hash already on record (`00072c5829d3d893…`), with this owner line attached verbatim to the registration: "classes derived by the stated rule in QA Legend; verdict columns empty by design; V7 is the floor and is reclassified upward by the auditor only, never downward, never by the builder."
+>
+> GUIDANCE, BOUNDED — the G5 wave MAY read the class column when choosing test shape (V1 row → golden-input test, V2 row → scan, V5 row → injection) because those are the shapes the rule text already demands and the column just confirms it. It does NOT steer authoring where it is silent: two-thirds of rows sit at V7 because a pattern-match found no mechanism in their text, not because document inspection is the right test for them. Owner verbatim: "A regex does not get to decide what an invariant looks like. Rule text governs; the column is a hint."
+>
+> COUNT CORRECTION — SEVEN classes, not nine. QA Legend has nine rows because rows 8 and 9 are the SAMPLING TIERS — Tier A (100%) and Tier B (sample ≥ 30%) — not classes V8/V9. Tier is an audit-sampling concept; for G5 it means only that the seven SFP rows map in the first slice. FIX THE COUNT wherever you banked "V1..V9" (the `0e7a07b0` banking and any notes derived from it) so the wrong vocabulary does not propagate — erratum or correction per whatever discipline the banked artefact's status requires.
+>
+> Registry authority chain now: v3 retired → v4 never ratified → **v5 `00072c58…` RATIFIED** as G5 canon_ref target.
+>
+> Sequencing confirmed: R-86 (mid-flight) → R-87 vocabulary correction → R-88 Content Registry wave → G5-v5 (SFP-1..7 first slice) → CP-APP-JS-UNIFY at your proposed R-91 slot (owner accepted scheduling-not-open-ended; confirm the slot in the R-86 seal report). Standing bounds unchanged. Proceed.
+
+**Follow-up verdict on erratum-discipline (owner verbatim · verdict-now on `0e7a07b0` shape):**
+
+> `0e7a07b0` is a notes-only state-master banking commit; git history is never rewritten. The count-fix lands as a NEW state-only correction entry (same shape as the Ruling-3 erratum precedent): cite `0e7a07b0`, state the wrong text ("V1..V9 verification classes"), state the correct text ("SEVEN classes V1..V7; QA Legend rows 8-9 are sampling tiers Tier A 100% / Tier B sample ≥30%, not classes"), and correct any DERIVED notes: if a derived file is un-banked working-tree, fix it in place; if it was banked, it inherits the same erratum citation rather than an edit.
+
+**Two owner reinforcements (verbatim · no plan change · banked in-flight):**
+
+> (a) Step 3's grep-negative ban set is the full CON set as banked at ingest (no improvised copy, no numbers from generated prose, no engagement signals in ranking, no softening of unsupported claims, templated text never stored, plus the two you listed); (b) Step 4: R-32's ratified surface list (chat answers, recommendation bodies, notification bodies — nothing else) is binding on any CON invariant that touches Generated-class rendering.
+
+### Registry authority chain (registered · this-ruling)
+
+| Version | sha256 | Status |
+|---|---|---|
+| v3 | `79d44562…` | **RETIRED** (was ratified per R-81 seal · superseded by this-ruling) |
+| v4 | `72160287…` | **NEVER RATIFIED** (prior Ruling 5 verbatim: "supersedes v4, which was never ratified") |
+| **v5** | **`00072c5829d3d89399cc5ca64661b405ac8a3cd0b43d0081f0d5f0bce109619d`** | **RATIFIED as G5 canon_ref target** (this-ruling) |
+
+**G5 canon_ref binding:** resolves against **`System Rules Registry` sheet only** (602 data rows in v5).
+
+### QA Verification + QA Legend — registered as INFORMATIONAL under workbook sha `00072c5829d3d893…`
+
+Registration record — owner verbatim line attached verbatim (per this-ruling): *"classes derived by the stated rule in QA Legend; verdict columns empty by design; V7 is the floor and is reclassified upward by the auditor only, never downward, never by the builder."*
+
+| Sheet | Rows × Cols | Classification | G5 authority |
+|---|---|---|---|
+| `System Rules Registry` | 602 × 11 | **CANONICAL** | rule text governs invariants |
+| `QA Verification` | 602 × 10 | **INFORMATIONAL** (audit-tooling companion · verdict cols empty by design) | class column is a HINT for test shape only |
+| `QA Legend` | 9 × 4 | **INFORMATIONAL** (vocabulary legend for V1..V7 + Tier A / Tier B) | non-authoritative — never steers authoring where rule text is silent |
+
+**Load-bearing rule (owner verbatim):** *"A regex does not get to decide what an invariant looks like. Rule text governs; the column is a hint."*
+
+Bounded read-permission for G5 wave: V1 row → golden-input test · V2 row → scan · V5 row → injection · V7 rows (two-thirds default) authored FROM RULE TEXT (not from column). V7 floor: auditor-only upward reclassification · never downward · never by the builder.
+
+### Count-fix erratum · cites `0e7a07b0` · same shape as Ruling-3 precedent
+
+**Banked file 1 · `STATE/DECISIONS.md` @ `0e7a07b0` · lines 20528, 20530, 20537 · inherits this erratum citation (NOT edited):**
+
+- Stale text @ line 20528: `Primary verification class` **(V1..V9)**.
+- Stale text @ line 20530: `QA Legend` (9 data rows · 4 cols): defines verification classes **V1..V9** (Test evidence · Structural evidence · Record evidence · Governance-record evidence · Failure-injection demonstration · **4 more**).
+- Stale text @ line 20537: V1-classified rules get RED-first tests, V2-classified rules get AST-scan invariants (paraphrase in Reading B option).
+
+**Banked file 2 · `phase0/spec_hunt_receipts/20260920T1945Z_registry_v5_ingest_and_verify.md` @ `0e7a07b0` · lines 71, 78, 90 · inherits this erratum citation (NOT edited):**
+
+- Stale text @ line 71: legend defining the verification classes **V1..V9** (or similar).
+- Stale text @ line 78: ... and **4 more rows (V6-V9)**.
+- Stale text @ line 90: V1-classified rules get RED-first tests, V2-classified rules get AST-scan invariants (Reading B paraphrase).
+
+**Correct text (this-erratum · replaces wrong wording downstream):**
+
+- **SEVEN verification classes (V1..V7)** — not nine. V7 is the FLOOR (owner-verbatim: reclassified upward by auditor only · never downward · never by the builder).
+- **TWO audit-sampling tiers (Tier A 100% / Tier B sample ≥ 30%)** — SEPARATE AXIS from verification classes · NOT V8/V9.
+- `QA Legend` 9 rows: rows 1–7 define classes V1..V7 · rows 8–9 define sampling tiers.
+- `QA Verification` sheet's `Primary verification class` + `Secondary class` columns take values from **V1..V7** (not V1..V9). `Sampling tier` column takes **Tier A / Tier B**.
+- The class column is a HINT (V1 → golden-input · V2 → scan · V5 → injection) — rule text is authority.
+
+**Derived-notes inspection:** grep across `/app/assessment_workspace/**/*.md` for the V1..V9 wording found **only 5 hits in the two banked files above · zero un-banked working-tree occurrences**. No in-place fixes required — all derived-notes references inherit this erratum citation per owner-verdict.
+
+### Two owner reinforcements banked (no plan change · load-bearing on R-88+ and Generated-class CON invariants)
+
+**(a) R-88+ CP-CONTENT-REGISTRY-WAVE grep-negative ban set — full CON set as banked at ingest (7 categories):**
+1. no improvised copy;
+2. no numbers from generated prose;
+3. no engagement signals in ranking;
+4. no softening of unsupported claims;
+5. templated text never stored;
+6. no generated text stored;
+7. no unsupported claims.
+
+R-88+ RED-first property tests + grep-negative hard bans MUST cover ALL SEVEN.
+
+**(b) R-32 ratified surface list · binding on any CON invariant that touches Generated-class rendering:**
+
+Ratified surfaces (per R-32 verbatim ruling of 2026-09-20T~19:00Z): **chat answers · recommendation bodies · notification bodies — nothing else.** Adding a surface later = ordinary-tier ceremony · new surface's card cites CON-7.
+
+Any CON invariant touching Generated-class rendering MUST enforce this closed surface list · no headline, quick-note, budget, status, or governance surface may render generated text.
+
+### Sequencing confirmed (owner-ratified · this-ruling · sprint queue definitive)
+
+1. **R-86 · CP-APP-JS-UNIFY-SCHEDULE-AND-DRIFT-ANNOTATE** (Ruling 1 · MID-FLIGHT on `programme/track-a` in Extraction-Akki · seal report to explicitly confirm CP-APP-JS-UNIFY scheduled slot = R-91).
+2. **R-87 · CP-BLOCKED-VOCABULARY-CORRECTION** (Ruling 2).
+3. **R-88+ · CP-CONTENT-REGISTRY-WAVE** (Ruling 4 · CON-1..31).
+4. **G5-v5 first slice · SFP-1..7** (canon_ref = System Rules Registry sheet only · class-hint discipline per §3 of the receipt · rule text governs).
+5. **R-91 slot · CP-APP-JS-UNIFY** (scheduled-not-open-ended · closes the 3 pod_shell mirror-drift baseline entries).
+
+### G5-v5 STOP-AND-REPORT hold LIFTED
+
+Prior status (banked at `0e7a07b0`): G5-v5 HELD pending net-new-sheets ruling.
+
+**This-ruling status: UNBLOCKED.** Reading N (Narrow) ratified: G5-v5 opens against `System Rules Registry` sheet only (602 rows) · QA Verification + QA Legend registered as INFORMATIONAL per this-banking · SFP-1..7 land in first slice.
+
+### Files (3 tracked)
+
+1. `phase0/spec_hunt_receipts/20260920T1954Z_registry_v5_ratification_and_count_erratum.md` NEW (full receipt).
+2. `STATE/DECISIONS.md` this-append.
+3. `STATE/NEXT.md` this-append.
+
+Ratchet unchanged **5640**. Zero code change. Zero test change. Zero baseline change. Not a §3.3 3-Commit Seal — state-master notes-only banking (same class as Ruling-3 erratum banked at `0e7a07b0`).
+
+### Autopilot next this-turn
+
+1. Land this Commit-B on `master` (state repo).
+2. Switch to `programme/track-a` in Extraction-Akki · resume R-86:
+   - Create `STATE/OBJECTIVES/CP_APP_JS_UNIFY.md` scheduled-slot stub (R-91 slot).
+   - RED-first drill on `test_baseline_drift_annotations_present.py` (5 property tests · CCS2-corrected order).
+   - BASELINE_GUARD=1 double-sweep byte-identical.
+   - 3-Commit Seal (Commit-A code · Commit-B state · Commit-C fixup / ORCH_BOOT / heads-advance).
+3. R-87 → R-88+ → G5-v5 SFP-1..7 → R-91 CP-APP-JS-UNIFY.
+
+### Standing bounds unchanged
+
+zero push · terminal `pytest` only · no `testing_agent` · additive-only §3.8 · three-repo discipline · ratchet monotonic-up (unchanged at **5640**).
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+
+## 2026-09-20T~20:12Z · CP-APP-JS-UNIFY-SCHEDULE-AND-DRIFT-ANNOTATE · Commit-B state master · WAVE R-86 · Ruling 1 mirror-half closure sealed · CP-APP-JS-UNIFY confirmed at slot R-91 · banks code Commit-A `2eca0e58d1d9773d1b781abe570c3e015e0c98f2` on programme/track-a
+
+**Precedent shape:** state-master Commit-B banking of a §3.3 3-Commit Seal wave (same class as CP-PARTY-HALTED-ADDITIVE-SUB-WAVE Commit-B at `0cd4c9b8`). Prior commit this-run: `1250c39a` at 2026-09-20T~19:54Z (CP-REGISTRY-V5-RATIFICATION-AND-COUNT-ERRATUM · state-only notes banking · **this-wave anchor**).
+
+### Wave title
+
+**WAVE R-86 · CP-APP-JS-UNIFY-SCHEDULE-AND-DRIFT-ANNOTATE**
+
+Ruling 1 mirror-half closure. Adds the paired invariant test module + drift-annotation top-level field so every mirror-drift baseline entry carries its reason and the card line that closes it; creates the scheduled-slot card for CP-APP-JS-UNIFY at slot **R-91** per owner-accepted scheduling-not-open-ended clause; leaves the wave itself queued.
+
+### Ruling 1 owner verbatim (anchoring this wave)
+
+> "RULING 1 — App.js mirror: OPTION 3 RATIFIED WITH CONDITIONS. Ruled coexistence, but 'permanent' is STRUCK: (a) each of the three mirror-drift baseline entries must carry its reason AND the card line that closes it; (b) the closure trigger is CP-APP-JS-UNIFY landing as a SCHEDULED wave — add it to the sprint queue with a definite slot (propose the slot in your next seal report), not an open-ended possibility. Owner verbatim: 'Coexistence with a closure date is discipline; without one it's drift with a ruling attached.'"
+
+### CP-APP-JS-UNIFY slot ratified · R-91 (seal-report confirmation)
+
+Per Ruling 1(b): CP-APP-JS-UNIFY scheduled at **slot R-91**. Owner accepted scheduling-not-open-ended at prior banking (`1250c39a`) via verbatim: *"CP-APP-JS-UNIFY at your proposed R-91 slot (owner accepted scheduling-not-open-ended; confirm the slot in the R-86 seal report)."* This seal-report confirms it. Card at `STATE/OBJECTIVES/CP_APP_JS_UNIFY.md` (this-Commit-B tracked · card_sha256 `800d836d08e0cff31a3a06458142331cb19dd8698ebbf26855923c2a891b1d3c`).
+
+### DELTA measured
+
+**+5** (5640 → 5645 · monotonic-up · both `passed_floor` + `counts_at_baseline.passed` bumped together per CCS2 lesson). New `baseline_failures.json` sha256 `ccb45068bf19a1f95f20b6e15bcd7c7993571c714a0d5e316e93a8175f8972ea` (was `284a18c3cbd3bb74dd8a436342301f760d47b6e5a2df4c0ba8681e21825b7438`).
+
+### Scope frozen (SO §6.4 NOTHING-BEYOND)
+
+- 1 new test module: `backend/tests/invariants/test_baseline_drift_annotations_present.py` (5 property tests · ~230 lines).
+- 1 additive top-level field on `baseline_failures.json`: `known_runtime_drift_annotations` (3 entries · 8-field shape each).
+- 1 additive ratchet bump + ratchet_history append.
+- 1 new scheduled-slot card: `STATE/OBJECTIVES/CP_APP_JS_UNIFY.md` (6-section+YAML-frontmatter+hash-pin shape · card_sha256 `800d836d…`).
+- 1 pre-Commit-A ORCH_BOOT.md ratchet-only regen per M16-W3 corrected order (+ byte-identical POD audit-mirror sync at `/app/frontend/public/audit/ORCH_BOOT.md`).
+- 1 new tool: `tools/r86_pre_commit_a_orch_boot_regen_and_card_pin.py` (deterministic idempotent regen).
+- 1 STATE/PINS.md commissioning_record pointer refresh (R-29-BOOT housekeeping-pickup precedent).
+
+**Zero implementation module edit. Zero sealed contract/writer/test file edit. Zero baseline shrink.**
+
+### 5 new property tests (test_baseline_drift_annotations_present.py)
+
+1. `test_every_mirror_drift_baseline_entry_has_an_annotation` — Ruling 1(a): every pod_shell mirror-drift baseline entry has a corresponding annotation.
+2. `test_every_annotation_has_the_required_8_field_shape` — 8-field tuple: `(drift_kind, reason, owner_ruling_ref, owner_ruling_verbatim_short, closure_wave, closure_wave_slot, closure_card_path, closure_card_line)`.
+3. `test_annotation_closure_card_paths_resolve_to_real_files` — `closure_card_path` resolves under STATE repo root (`/app/assessment_workspace`).
+4. `test_annotation_count_equals_mirror_drift_baseline_entry_count` — no under/over-annotation (set-equality invariant).
+5. `test_every_annotation_names_cp_app_js_unify_as_closure_wave` — `closure_wave == "CP-APP-JS-UNIFY"` verbatim (single wave landing retires all three atomically).
+
+### Annotation payloads (baseline_failures.json.known_runtime_drift_annotations · 3 entries)
+
+Each annotation carries the 8-field tuple:
+- **drift_kind:** `pod_shell_mirror_drift`
+- **reason:** specialist FE dispatch chain writes ahead of pod_shell/frontend/ repo mirror; repo tree remains at pre-specialist snapshot until CP-APP-JS-UNIFY lands.
+- **owner_ruling_ref:** `R-86 CP-APP-JS-UNIFY-SCHEDULE-AND-DRIFT-ANNOTATE (Ruling 1 · 2026-09-20T~19:00Z)`.
+- **owner_ruling_verbatim_short:** *"Coexistence with a closure date is discipline; without one it's drift with a ruling attached."*
+- **closure_wave:** `CP-APP-JS-UNIFY`.
+- **closure_wave_slot:** `R-91`.
+- **closure_card_path:** `STATE/OBJECTIVES/CP_APP_JS_UNIFY.md`.
+- **closure_card_line:** *"unify /app/frontend/** ↔ pod_shell/frontend/** byte-identity — this drift entry retires when the wave lands"*.
+
+### AUTHENTIC RED-first cycle receipts
+
+- **RED** at `backend/phase0/drill_receipts/20260920T200147Z_cp_r86_baseline_drift_annotations_RED_pre.log`: 5/5 fail right-reason (3 missing annotations + empty annotations dict + count mismatch 0-vs-3 + 2 vacuous-guard aborts on absent field). Annotations dict absent from baseline_failures.json AND closure card absent from `STATE/OBJECTIVES/` (both preconditions violated intentionally for the drill).
+- **GREEN** at `backend/phase0/drill_receipts/20260920T200233Z_cp_r86_baseline_drift_annotations_GREEN_post.log`: 5/5 pass in 0.69s post-annotations + post-card creation.
+
+### Pre-Commit-A double-green byte-identical BASELINE_GUARD=1 sweep
+
+Both runs at `backend/phase0/drill_receipts/`:
+- Run 1: `20260920T200944Z_cp_r86_baseline_drift_annotations_BASELINE_GUARD1_run1.log` · 180.20s · **5645 passed** · 3 baseline-fails · 1 skip · 438 warnings.
+- Run 2: `20260920T201305Z_cp_r86_baseline_drift_annotations_BASELINE_GUARD1_run2.log` · 183.22s · **5645 passed** · 3 baseline-fails · 1 skip · 438 warnings.
+
+**Stripped-sha256** (via `tools/strip_baseline_guard_log.py`): **`b709ed74305ca67da6743fa737363c48f8990a40b9619ea7efc9a0e8f9d12931`** — **IDENTICAL across Run 1 + Run 2.**
+
+3 baseline-fails = exactly the 3 pod_shell mirror-drift entries (specialist-drift .jsx redacted per Q-unlock reconciliation pattern). Owner run-2 drift precision constraint continues to be satisfied (exactly 3 documented drift entries · zero new drift).
+
+### ORCH_BOOT.md ratchet-only regen (pre-Commit-A · M16-W3 corrected order)
+
+Regenerated by `tools/r86_pre_commit_a_orch_boot_regen_and_card_pin.py` (deterministic · idempotent):
+- `notes/ORCH_BOOT.md` · sha256 `635251a5d2ef5c1c30b41a381111ab17f36699ab6816597960314b7b14854bad`.
+- `/app/frontend/public/audit/ORCH_BOOT.md` · sha256 `635251a5d2ef5c1c30b41a381111ab17f36699ab6816597960314b7b14854bad` — **BYTE-IDENTICAL POD AUDIT MIRROR.**
+
+Ratchet block updated: `passed_floor: 5645` · `counts_at_baseline_passed: 5645` · `baseline_failures_sha256: ccb45068bf19a1f95f20b6e15bcd7c7993571c714a0d5e316e93a8175f8972ea`. `heads_last_sealed` unchanged this Commit-B (heads advance at Commit-C fixup per R-6 boundary regen precedent).
+
+### CP-APP-JS-UNIFY card creation (STATE/OBJECTIVES/CP_APP_JS_UNIFY.md · NEW tracked file)
+
+Scheduled-slot stub · 6-section+YAML-frontmatter+hash-pin shape satisfying `test_objective_card_pinned` (×3) + `test_seal_cites_card` (×2). Card body:
+- **OBJECTIVE** — byte-identity unification of `/app/frontend/**` with `pod_shell/frontend/**` (extended-scope per Wave G Step 1).
+- **MUST DO** — 5 lines with canon_ref citations.
+- **MUST NOT** — 5 bans with canon_ref citations (including "unification direction is `/app/frontend/**` → `pod_shell/frontend/**`, NEVER the other way").
+- **EXIT** — R-86 authored invariants (5 pytest node IDs) + the 3 mirror-drift entries that flip green at wave landing + BASELINE_GUARD=1 double-sweep byte-identical pre-Commit-A gate.
+- **STOP** — 4 stop-conditions.
+- **ANCHORS** — 8 canon/precedent references.
+
+**card_sha256:** `800d836d08e0cff31a3a06458142331cb19dd8698ebbf26855923c2a891b1d3c`.
+
+### FE COORDINATION seal — FULLY CLOSED at this-wave
+
+- **Byte-verify half** — closed at `d0a2ea9b` (CP-ENT-43-BYTE-VERIFY-CLOSURE · 19/19 lifecycle strings + 43/43 entitlement strings byte-verified).
+- **Mirror-drift half** — closed at this-commit (all 3 mirror-drift baseline entries carry annotations + closure card + closure trigger scheduled at R-91).
+
+### Files (5 tracked · additive-only per SO §3.8)
+
+1. `STATE/OBJECTIVES/CP_APP_JS_UNIFY.md` NEW (scheduled-slot card · card_sha256 `800d836d…`).
+2. `notes/ORCH_BOOT.md` (ratchet-only regen · new sha256 `635251a5…`).
+3. `tools/r86_pre_commit_a_orch_boot_regen_and_card_pin.py` NEW (deterministic regen tool).
+4. `STATE/PINS.md` (commissioning_record pointer refresh · R-29-BOOT housekeeping-pickup precedent).
+5. `STATE/DECISIONS.md` this-append.
+6. `STATE/NEXT.md` this-append.
+
+(POD audit mirror `/app/frontend/public/audit/ORCH_BOOT.md` synced byte-identically pre-Commit-A · not a tracked STATE-repo path.)
+
+### Canon anchors verbatim
+
+- Owner Ruling 1 verbatim (2026-09-20T~19:00Z · banked at STATE/DECISIONS.md OWNER RULINGS anchor line 20421 + reaffirmed at `1250c39a` CP-REGISTRY-V5-RATIFICATION-AND-COUNT-ERRATUM).
+- Owner R-91 slot ratification verbatim (2026-09-20T~19:54Z · banked at `1250c39a` verbatim: *"CP-APP-JS-UNIFY at your proposed R-91 slot (owner accepted scheduling-not-open-ended; confirm the slot in the R-86 seal report)"*).
+- Wave G Step 1 pod_shell mirror discipline: `tests/invariants/test_ship_manifest_dod.py` + `tests/invariants/test_wave_g_pod_shell_frontend_mirror.py`.
+- Specialist commit chain: `3fbfb75c` · `f090e8305` · `d0e36a51e` (local `/app/frontend/**` FE conformance writes).
+- Precedent seals: `d0a2ea9b` CP-ENT-43-BYTE-VERIFY-CLOSURE · `9b6b170b` CP-LIFECYCLE-STRINGS-BYTE-VERIFY · `14173772` CP-LIFECYCLE-STRINGS-BYTE-VERIFY-CLOSURE.
+- SO §2.5 verbatim-docstring · §3 tests-first · §3.3 3-Commit Seal · §3.8 additive-only · §6.2 objective-card · §6.4 NOTHING-BEYOND · §6.7 seal-report-boundary.
+- M16-W3 corrected order (pre-Commit-A ORCH_BOOT ratchet regen) + CCS2 lesson (both ratchet fields bumped together).
+- **CP-PARTY-HALTED-ADDITIVE-SUB-WAVE** seal `11afc4f`/`0cd4c9b8`/... (R-85 immediately-precedes).
+
+### Stop-conditions / pre-rulings
+
+- Stop-conditions #1/#2/#3 NOT triggered.
+- SO §6.4 pre-ruling NOT triggered (this seal implements Ruling 1(a) mirror-half closure verbatim + Ruling 1(b) definite-slot binding · owner-ratified · zero improvisation).
+- MEM-R-053 CROWN BAN NOT triggered.
+
+### Sprint queue advance (owner-ratified sequencing at `1250c39a`)
+
+1. **R-86 CP-APP-JS-UNIFY-SCHEDULE-AND-DRIFT-ANNOTATE** ⏳ IN-FLIGHT → **⏳ Commit-B landed at this-commit** (Commit-C fixup next).
+2. **R-87 CP-BLOCKED-VOCABULARY-CORRECTION** (Ruling 2) — queued.
+3. **R-88+ CP-CONTENT-REGISTRY-WAVE** (Ruling 4 · CON-1..31 · 7-category grep-negative bans + R-32 surface-list binding on Generated-class) — queued.
+4. **G5-v5 SFP-1..7 first slice** — unblocked at `1250c39a` · slotted behind R-88+.
+5. **R-91 slot · CP-APP-JS-UNIFY** — this-card's referenced closure wave.
+
+### Autopilot next
+
+1. Commit-C fixup this-turn (state master · advances state_head to this Commit-B SHA · advances heads_last_sealed to `2eca0e58` (code) + this-Commit-B SHA (state) · ORCH_BOOT full regen at R-6 boundary · R-86 marker flips ⏳ IN-FLIGHT → ✅ SEALED at Commit-C).
+2. Then R-87 CP-BLOCKED-VOCABULARY-CORRECTION opens.
+
+### Standing bounds unchanged
+
+zero push · terminal `pytest` only · no `testing_agent` · additive-only §3.8 · three-repo discipline · ratchet monotonic-up (now **5645** · never rebaselined silently).
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+
+## 2026-09-20T~20:18Z · CP-APP-JS-UNIFY-SCHEDULE-AND-DRIFT-ANNOTATE · Commit-C fixup · state master · WAVE R-86 ✅ SEALED · banks state Commit-B `1525ddd0f0a00d85c9c4e114e2f77362175158d6` · R-6 boundary regen advancing heads_last_sealed.state_repo.head to Commit-B SHA + new heads_last_sealed.code_repo entry for R-86 Commit-A `2eca0e58d1d9773d1b781abe570c3e015e0c98f2`
+
+**Precedent shape:** §3.3 3-Commit Seal Commit-C fixup on state master (same class as CP-PARTY-HALTED-ADDITIVE-SUB-WAVE Commit-C fixup that R-6-regen'd ORCH_BOOT.md advancing state_repo.head to R-85 Commit-B). Prior commits this-wave: `2eca0e58` (code Commit-A on programme/track-a · 2026-09-20T~20:07Z) → `1525ddd0` (state Commit-B on master · 2026-09-20T~20:12Z) → this-commit Commit-C.
+
+### R-86 · WAVE SEALED at this-commit
+
+- Ruling 1 mirror-half closure banked and sealed.
+- CP-APP-JS-UNIFY scheduled at slot **R-91** (owner-accepted scheduling-not-open-ended · confirmed in this-wave seal report).
+- FE COORDINATION seal FULLY CLOSED at this-wave (byte-verify half at `d0a2ea9b` + mirror-drift half at Commit-A `2eca0e58`).
+- Ratchet advanced monotonically **5640 → 5645** (+5) · new baseline sha `ccb45068…`.
+- BASELINE_GUARD=1 double-sweep byte-identical: stripped-sha256 `b709ed74…`.
+
+### R-6 boundary regen (this Commit-C fixup)
+
+`notes/ORCH_BOOT.md` regenerated by `tools/r86_commit_c_fixup_orch_boot_regen.py` (deterministic · idempotent):
+- `heads_last_sealed.state_repo.head` advanced: `0cd4c9b8…` (R-85 Commit-B) → **`1525ddd0f0a00d85c9c4e114e2f77362175158d6`** (R-86 Commit-B · this-commit banking).
+- `heads_last_sealed.code_repo` history · NEW entry inserted at top: **`2eca0e58d1d9773d1b781abe570c3e015e0c98f2`** (R-86 Commit-A) · prior entries preserved chronologically.
+- `generated_at_utc`: 2026-09-20T20:18:00Z.
+- `regeneration_reason`: r86-commit-c-fixup-r6-boundary-regen-advancing-state-repo-head-to-1525ddd0.
+
+Both copies byte-identical:
+- `notes/ORCH_BOOT.md` sha256 `bb829ab1034dcb6e4530ebf7a8b54d154812f8207c37e518d9d802ceaefd82ad`.
+- `/app/frontend/public/audit/ORCH_BOOT.md` sha256 `bb829ab1034dcb6e4530ebf7a8b54d154812f8207c37e518d9d802ceaefd82ad`.
+
+Ratchet block unchanged this Commit-C (already at `passed_floor: 5645` + `baseline_failures_sha256: ccb45068…` from pre-Commit-A regen · same values).
+
+### Files (3 tracked)
+
+1. `notes/ORCH_BOOT.md` (R-6 boundary regen · heads advance).
+2. `tools/r86_commit_c_fixup_orch_boot_regen.py` NEW (deterministic idempotent regen tool).
+3. `STATE/DECISIONS.md` this-append.
+4. `STATE/NEXT.md` this-append (R-86 marker flips ⏳ IN-FLIGHT → ✅ SEALED).
+
+(POD audit mirror `/app/frontend/public/audit/ORCH_BOOT.md` synced byte-identically · not a tracked STATE-repo path.)
+
+### R-86 seal-report confirmation of CP-APP-JS-UNIFY slot
+
+**CP-APP-JS-UNIFY scheduled slot = R-91** (owner-accepted at prior `1250c39a` banking verbatim: *"CP-APP-JS-UNIFY at your proposed R-91 slot (owner accepted scheduling-not-open-ended; confirm the slot in the R-86 seal report)."*). Card at `STATE/OBJECTIVES/CP_APP_JS_UNIFY.md` · `card_sha256: 800d836d08e0cff31a3a06458142331cb19dd8698ebbf26855923c2a891b1d3c`.
+
+### Sprint queue post-R-86
+
+1. **R-86 CP-APP-JS-UNIFY-SCHEDULE-AND-DRIFT-ANNOTATE** ✅ **SEALED at this-commit.**
+2. **R-87 CP-BLOCKED-VOCABULARY-CORRECTION** (Ruling 2) — **opens next.**
+3. **R-88+ CP-CONTENT-REGISTRY-WAVE** (Ruling 4 · CON-1..31 · 7-category grep-negative bans + R-32 surface-list binding on Generated-class) — queued.
+4. **G5-v5 SFP-1..7 first slice** — unblocked · slotted behind R-88+.
+5. **R-91 · CP-APP-JS-UNIFY** — closure wave for the 3 pod_shell mirror-drift baseline entries.
+
+### Stop-conditions
+
+- Stop-conditions #1/#2/#3 NOT triggered.
+- SO §6.4 pre-ruling NOT triggered.
+- MEM-R-053 CROWN BAN NOT triggered.
+
+### Autopilot next
+
+**R-87 CP-BLOCKED-VOCABULARY-CORRECTION opens this-turn** — Ruling 2 verbatim: *"suspension 'is a state of the principal (DAP-27, PRIN-1), not a fourth reason a request is blocked — a different axis, different object.' Sealed enum stays at three. party_halted lives as its own state via the Q5 module tree and its vocab constant, and it NEVER renders in the Blocked reason grammar — no estate copy, no kind label. Correct the wording at source everywhere non-sealed: it is 'three Blocked kinds plus Interrupted plus party_halted' — NOT 'five Blocked kinds.' Vocabulary is load-bearing for the substitution rules now — register the corrected count/grammar so the wrong phrasing is RED where feasible."*
+
+### Standing bounds unchanged
+
+zero push · terminal `pytest` only · no `testing_agent` · additive-only §3.8 · three-repo discipline · ratchet monotonic-up (now **5645** · never rebaselined silently).
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
