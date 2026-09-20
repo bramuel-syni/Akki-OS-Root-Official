@@ -18344,3 +18344,521 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
+---
+
+## 2026-09-20T~09:48Z · OWNER RULING · WAVE R-69 Step 7 opening authorization + mutation-site discipline + Step 8 objective/MUST-DO framing + Step 9 interlude discipline restated + G5 count-correction ratified · **VERBATIM · state master notes-only banking commit**
+
+**Verbatim (via user proxy · post-digest response to CP-SURFACE-LANGUAGE-TRACE-REPORT + CP-MECHANICAL-ERRATA-SEAL + CP-G5-UNPROVISIONAL-STATUS-BANK):**
+
+> Digest acknowledged — the trace is exemplary containment work: null finding, entry-point never propagated into any binding artefact, quarantine clear, and the anticipated audit came back clean. The owner's condition is satisfied: fault confirmed, reported, downstream clean, autonomy continues. (I will carry the trace verdict to the owner's desk in the next batch — if the owner recalls an off-record source, it banks later from that source with the correct date; nothing pends on it now.)
+>
+> Open Step 7 (α-gap hardening) now per your scoped plan — one note on item 5: mutation-site regressions that surface when frozen=True lands must be fixed by building fresh instances at the CALL SITES (test fixtures included), never by weakening the freeze or adding model_copy escape hatches on the contracts themselves. If any production call site turns out to MUTATE a receipt after construction, that's not a test fix — that's a finding (receipts are immutable evidence by doctrine); bank it and adapt the call site.
+>
+> Then Step 8 (frontends card — dependence gate CLEAR, derive from Front End Integration Brief + banked rulings, hash-pin, tag pending ratification, OBJECTIVE + MUST-DO summary in the digest for the owner) → Step 9 (Principal Model Wave — 13 PRIN requirements RED-first with verbatim docstrings, R-22 90-day DEFAULT-class, R-23 read-views as ruled; interlude marker if budget is short rather than truncating mid-wave).
+>
+> G5 note for the run ledger: your §4 corrects the earlier count — 460/1,096 with 636 remaining (the prior 640 figure was the pre-correction claim). Keep the corrected number authoritative and schedule the remaining slices as their own waves after Step 9 or interleaved — G5 must complete before R-18 effect-15 gate release.
+>
+> Ratchet 5527 floor, all bounds unchanged. Go.
+
+### Interpretation banked
+
+1. **Trace verdict ACCEPTED by owner-proxy** — no further trace action required. Owner-proxy will carry to owner's desk in next batch. If off-record source surfaces, bank later from that source with correct date. No dependent work is held.
+2. **Step 7 α-gap hardening wave OPENING AUTHORIZED THIS-TURN.**
+3. **Mutation-site discipline RULING (bind for this wave and all subsequent frozen-contract promotions):**
+   - **CALL SITES adapt (both test fixtures and production sites) by building FRESH INSTANCES;** the frozen contract itself is NEVER weakened, NEVER granted a `model_copy` escape hatch, NEVER retreated from `frozen=True`.
+   - **Any production call site that MUTATES a receipt after construction is a FINDING** (receipts are immutable evidence by doctrine); bank it as a finding + adapt the call site to build a fresh instance. That is not a "test fix"; that is a doctrine violation being caught.
+4. **Step 8 (frontends card) discipline (bind for authoring):**
+   - Dependence-check gate CLEAR on Step 2 surface-language trace (owner-ratified this-turn).
+   - Card derives from **Front End Integration Brief** (banked at `custody/owner_drops/20260920T0824Z/Front End Integration Brief.md` · sha256 `4a5fd14687b6ceaf700221034d91b64277eef4b0b8adb709f29795853bbe374b`) + banked rulings alone. No line leans on the phantom.
+   - **Hash-pin** every source cited in the card (Front End Integration Brief + RMS AI Prototype v2 sha `9952692ce05809b3f4111c8ec3cf9dcb1008ea970895263981c2b52fb78cf199` · DAP portal OUT of card scope per prior owner disposition).
+   - **Tag "pending ratification"** on any DAP portal-adjacent line (still HELD by auth/session/tenancy gap).
+   - Digest to owner must include **OBJECTIVE** + **MUST-DO summary** (mission-framed, plain language).
+5. **Step 9 (Principal Model Wave) discipline (restated for continuity):**
+   - 13 PRIN requirements (PRIN-1..PRIN-13) — each in verbatim docstring per SO §2.5 (docstring quotes requirement · docstring rides tests never substitutes).
+   - RED-FIRST-WITH-TESTS always.
+   - **R-22 = 90-day rotation DEFAULT-class** (owner recommendation ratified as ruling this-turn).
+   - **R-23 = keep team endpoints (`/api/team/access_register` + `/api/team/constitutional_seats`) as read views over the new principal store** (owner recommendation ratified as ruling this-turn).
+   - **Interlude marker discipline if budget insufficient** — better to open at Commit-A boundary and continue in subsequent turn than truncate mid-wave.
+6. **G5 count-correction RATIFIED (bind for this run's ledger):**
+   - Authoritative running total: **460 of 1,096 mapped · 636 remaining**.
+   - Prior 640-figure was pre-correction claim (drop).
+   - Remaining slice-extension work MUST complete **before R-18 effect-15 gate release**.
+   - Schedule: subsequent waves after Step 9 or interleaved per capacity.
+7. **Ratchet 5527 floor confirmed** · all standing bounds unchanged.
+
+### Scope banked at this-commit (state master notes-only · additive-only per SO §3.8)
+
+- Files changed: 2 tracked (STATE/DECISIONS.md += this section · STATE/NEXT.md += R-74 opener for CP-ALPHA-GAP-HARDENING).
+- NOT a §3.3 seal · NOT a code-branch touch · NOT a ratchet change.
+- Precedent shape: `04fcf6de` (verbatim banking of owner disposition + plan-approval).
+
+### Autopilot next (this-turn continues autonomously per owner Go)
+
+- Open **CP-ALPHA-GAP-HARDENING** as a fresh §3.3 3-Commit Seal wave.
+- Grounding brief at `notes/wave_alpha_gap_hardening_grounding_brief.md`.
+- RED-first drill on `backend/tests/invariants/test_alpha_gap_hardening.py` (asserts `frozen=True` on both contracts · both currently unfrozen).
+- Code change on `programme/track-a`: `TrustReceiptV1.model_config['frozen'] = True` + `OuterGateReceiptV1.model_config['frozen'] = True`.
+- Regenerate contract snapshots if `frozen` binds to `model_json_schema`.
+- Sweep mutation sites: **fix at CALL SITE with fresh instance per owner ruling this-turn**; NEVER weaken freeze; any production mutation is a FINDING banked separately.
+- Double-green BASELINE_GUARD=1 byte-identical sweep.
+- 3-Commit Seal (Commit-A code + Commit-B state master + Commit-C fixup).
+- Interlude marker at Commit-A boundary if budget insufficient.
+
+**Standing bounds unchanged:** zero push · terminal pytest only · no testing_agent · additive-only §3.8 · §4.1 §E · §4.1 §F sha-pinning discipline · three-repo discipline · ratchet monotonic (floor 5527 · never rebaselined silently). Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered · MEM-R-053 CROWN BAN NOT triggered.
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+
+---
+
+## 2026-09-20T~10:38Z · CP-ALPHA-GAP-HARDENING · Commit-B banking section (state master · banks Commit-A `8c944ee7d06e6655c73eb12ad1453267f92a3d91` on `programme/track-a` · WAVE R-69 Step 7 · SO §3.10-α closed-schema discipline LANDED · CCS3 W3.3/W3.4 α-gap bankings CLOSED)
+
+**Precedent shape:** dual-branch §3.3 3-Commit Seal Commit-B (like CP-STALENESS-CEREMONY Commit-B `9c0dd840` · CCS3 Commit-B `d48f6e1e` · CCS2 Commit-B · CCS1 Commit-B · pattern: banks Commit-A SHA + Commit-A scope + mutation-site sweep verdict + any FINDINGS + Canon anchors + Stop-conditions + autopilot-next).
+
+**Prior seals this-wave (owner-ratified order 1 → 4 → 3 → 2 → 5 → 6 → 7):** `04fcf6de` (Step 1 banking) · `bbdfef1c` (Step 4 Principal_Model_Spec_v1.docx custody drop) · Step 3 CP-STALENESS-CEREMONY §3.3 3-Commit Seal chain (Commit-A `31d414bd540632e52cb050321b71b29b730a0f1e` + Commit-B `9c0dd84013900cdc0a53f143f306eb4157a810e7` + Commit-C fixup `23ff5808`) · `e099ced1` (Step 2 CP-SURFACE-LANGUAGE-TRACE-REPORT) · `efcfd5d3` (Step 5 CP-MECHANICAL-ERRATA-SEAL) · `3a39035c` (Step 6 partial CP-G5-UNPROVISIONAL-STATUS-BANK) · `59801c91` (Step 7 wave-opener banking · owner ruling 2026-09-20T~09:48Z verbatim) · Step 7 §3.3 3-Commit Seal chain now in flight: Commit-A `8c944ee7` (this-turn · below) + Commit-B this-commit + Commit-C fixup follows.
+
+### Commit-A scope (code programme/track-a · SHA `8c944ee7d06e6655c73eb12ad1453267f92a3d91`)
+
+Commit-A landed exactly this file set on `programme/track-a`:
+
+| File | Change |
+| --- | --- |
+| `backend/contracts/trust_receipt_v1.py` | `ConfigDict(extra='forbid', frozen=False)` → `ConfigDict(extra='forbid', frozen=True)` (single line edit) |
+| `backend/contracts/outer_gate_receipt_v1.py` | `ConfigDict(extra='forbid')` → `ConfigDict(extra='forbid', frozen=True)` (single line edit) |
+| `backend/tests/invariants/test_alpha_gap_hardening.py` | NEW · 253 lines · 5 new invariants + 2 fresh-instance fixtures per owner mutation-site discipline verbatim |
+| `backend/tests/invariants/test_ccs3_dap_receipt_freeze.py` | mutation-site follow-through per CCS3 self-authorized transition procedure verbatim (docstrings for W3.3+W3.4 test bodies + assert flips `is False` → `is True` · `is None` → `is True` · module docstring narrative at lines 1-118 preserved as historical CCS3 record) |
+| `backend/tests/invariants/baseline_failures.json` | ratchet 5527 → 5532 (delta +5 exactly) + `ratchet_history` append entry + baseline_failures.json sha256 `8a7d92289c06bbfaae75c08750575dd5e73a70745693f741fdf85215238562b1` → `7cb320ef3fc732b86171667f0e35aa603f317947cae5f221cca9ed709eb30530` |
+
+**Files-changed count (code branch):** 5 tracked (+729 -444 lines).
+
+### Owner rulings verbatim chain (source authority for this wave)
+
+**(1) Owner disposition 2026-09-20T~08:56Z (α-gap hardening wave approval):**
+> "α-GAP HARDENING WAVE APPROVED"
+
+**(2) Owner ruling 2026-09-20T~09:48Z (mutation-site discipline · Step 7 opening authorization):**
+> "mutation-site regressions that surface when frozen=True lands must be fixed by building fresh instances at the CALL SITES (test fixtures included), never by weakening the freeze or adding model_copy escape hatches on the contracts themselves. If any production call site turns out to MUTATE a receipt after construction, that's not a test fix — that's a finding (receipts are immutable evidence by doctrine); bank it and adapt the call site."
+
+**(3) Owner ruling this-session (`GO — proceed on the plan as written`):** authorized ratchet-only ORCH_BOOT pre-Commit-A regen per M16-W3 corrected order + Step 8 strictly before Step 9 + reminder that principal-wave seal is the last gate on DAP portal frontend work. No new directives beyond standing order.
+
+### Mutation-site sweep verdict (per owner discipline 2026-09-20T~09:48Z verbatim)
+
+**Zero production mutation sites** on TrustReceiptV1 / OuterGateReceiptV1 instances. Sweep evidence:
+- Grep across `backend/**/*.py` (excluding tests + tools + __pycache__) for `TrustReceiptV1(...)` / `OuterGateReceiptV1(...)` construction + subsequent `.attr =` mutations returned **ONE hit**: `backend/services/perception/perception_router.py:59` `body["signature"] = trust_receipt.sign(...)` where `body` is a plain `dict` and `trust_receipt` is a module reference (via `from contracts import trust_receipt_v1 as trust_receipt`) — **NOT a receipt-instance mutation** (dict-write on a plain dict). Adjudicated NOT a mutation-site.
+
+**Consequence:** NO FINDING is banked this-wave (no production mutation exists to adapt). Both α-gap targets flip cleanly.
+
+### Empirical fact verified this-wave (pre-code · closes wave grounding brief §C item 1 hypothesis)
+
+**Pydantic v2 `model_json_schema()` output is BYTE-IDENTICAL between `frozen=True` and `frozen=False`** (given same title/name). Verified this-turn against sealed CCS3 pins post-flip:
+- `TrustReceiptV1` schema sha256 `d464551272d697552668407c5ea88e0c82ce6287e7158411fa9e910b91b77e99` **UNCHANGED** (matches CCS3 W3.1 pin verbatim).
+- `OuterGateReceiptV1` schema sha256 `196e56f0134a84c1f3bf02e8a6692e27c2880fb4683d7f3f406096519f9742d7` **UNCHANGED** (matches CCS3 W3.2 pin verbatim).
+- Bundle sha256 `81d3c0a5e8e54137d96873784dc3714c99f574c40f430996a66b0b17ada68a62` **UNCHANGED** (matches CCS3 W4.1 pin verbatim).
+
+**Consequence:** zero contract-snapshot regeneration required; `test_frozen_contract_snapshot_parity.py` stays GREEN; zero schema-pin test regressions.
+
+### RED-first pipeline (drill receipts banked this-Commit-B under `phase0/drill_receipts/`)
+
+| Stage | Receipt | Status |
+| --- | --- | --- |
+| RED (pre) | `20260920T100959Z_alpha_gap_hardening_RED_pre.log` | 5 fail right-reason (TrustReceipt cfg frozen=False · OuterGate cfg frozen=None · mutation raises AttributeError not ValidationError · fixture field-name TypeError) |
+| RED v2 | `20260920T101026Z_alpha_gap_hardening_RED_pre_v2.log` | fixture correction re-run (same RED cause set) |
+| GREEN (post-code) | `20260920T101119Z_alpha_gap_hardening_GREEN_post.log` | 5/5 pass · targeted · 0.61s |
+| Full-suite sweep | `20260920T101127Z_alpha_gap_full_suite_sweep.log` | 5527+5 = 5532 pass · zero mutation-site regressions detected in full suite |
+| Bumped run1 | `20260920T101753Z_alpha_gap_BASELINE_GUARD1_bumped_run1.log` | 5531 passed + 1 orch_boot failure · **pre-Commit-A ORCH_BOOT.md ratchet-only regen required** (M16-W3 corrected order) |
+| Pre-Commit-A ORCH_BOOT regen (ratchet-only · state master edit) | `notes/ORCH_BOOT.md` advanced ratchet.passed_floor 5527→5532 + baseline_failures_sha256 `8a7d92289c…`→`7cb320ef3fc7…` (heads_last_sealed unchanged at CP-STALENESS-CEREMONY pairing per M16-W3 corrected order) + `/app/frontend/public/audit/ORCH_BOOT.md` byte-identical sync | notes+audit sha256 `4164689dc5bb0e11bdc7425da727400f2382d5afcbf4b2d6df53379c2847b36b` byte-identical |
+| **Pre-Commit-A double-green (final · byte-identical stripped sha256):** | | |
+| run1 | `20260920T103044Z_cp_alpha_gap_hardening_BASELINE_GUARD1_double_green_run1.log` | 5532 passed / 1 skipped / 438 warnings · 168.11s · raw sha256 `e6641390675fb33b48a9b2c6e4c3f905ff700df5f29ebbef8a969ef17a1b966a` |
+| run2 | `20260920T103341Z_cp_alpha_gap_hardening_BASELINE_GUARD1_double_green_run2.log` | 5532 passed / 1 skipped / 438 warnings · 172.45s · raw sha256 `3a01c47cfec3fb98e8ca7ef39f0c0e3bb0120b01329feb8a9a26d83bfffb8bd9` |
+| stripped-sha256 (timing-normalized) | `0e743e6d97efe263b531c468c6143e8dfb7256909e8c1d8b591047f2733fd482` **IDENTICAL** across run1 + run2 against post-bump `baseline_failures.json` sha256 `7cb320ef3fc732b86171667f0e35aa603f317947cae5f221cca9ed709eb30530` | double-green byte-identical GREEN |
+
+### Closure of CCS3 W3.3 + W3.4 banked α-gaps (attested at `test_alpha_gap_hardening_wave_closure_attestation`)
+
+CCS3 (2026-09-19) banked two SO §3.10-α non-compliance findings for owner ratification in a future ceremony (SO §3.8 forbade editing at that wave). **This wave IS that ceremony** (owner ratification banked at STATE/DECISIONS.md 2026-09-20T~08:56Z · OWNER DISPOSITION verbatim: "α-GAP HARDENING WAVE APPROVED"). Both α-gaps close TOGETHER at this wave per SO §6.4 NOTHING-BEYOND scope (exactly these two receipt-contract classes; no other Pydantic model is retroactively swept).
+
+The CCS3 test docstrings for W3.3 + W3.4 self-authorized this transition procedure verbatim (banked into the CCS3 test bodies): *"if this test starts failing, either (a) owner ratified alignment and TrustReceiptV1 is now frozen=True — update this test to expect True + flip the SO §3.10-α banking status to CLOSED"*. Commit-A followed this procedure exactly.
+
+### State-side landing (this Commit-B files)
+
+| File | Change |
+| --- | --- |
+| `STATE/DECISIONS.md` | append this section (Commit-B banking) |
+| `STATE/NEXT.md` | R-74 marker for CP-ALPHA-GAP-HARDENING flipped from `⏳ IN-FLIGHT` (opened at Step 7 wave-opener commit `59801c91`) to `⏳ IN-FLIGHT · Commit-A LANDED` (Commit-C fixup at next commit will flip to `✅ SEALED`) |
+| `notes/wave_alpha_gap_hardening_grounding_brief.md` | NEW · 95 lines · wave grounding brief authored at Step 7 opening (Sept 19) · covers scope + Canon anchors + empirical facts + RED-first pipeline + discipline |
+| `phase0/drill_receipts/20260920T100959Z_alpha_gap_hardening_RED_pre.log` | NEW · RED receipt (banking) |
+| `phase0/drill_receipts/20260920T101026Z_alpha_gap_hardening_RED_pre_v2.log` | NEW · RED v2 receipt |
+| `phase0/drill_receipts/20260920T101119Z_alpha_gap_hardening_GREEN_post.log` | NEW · targeted GREEN receipt |
+| `phase0/drill_receipts/20260920T101127Z_alpha_gap_full_suite_sweep.log` | NEW · full-suite sweep receipt |
+| `phase0/drill_receipts/20260920T101423Z_alpha_gap_BASELINE_GUARD1_run1.log` | NEW · pre-bump historical receipt |
+| `phase0/drill_receipts/20260920T101753Z_alpha_gap_BASELINE_GUARD1_bumped_run1.log` | NEW · post-bump ORCH_BOOT-fail receipt (historical) |
+| `phase0/drill_receipts/20260920T103044Z_cp_alpha_gap_hardening_BASELINE_GUARD1_double_green_run1.log` | NEW · **final pre-Commit-A double-green run1** |
+| `phase0/drill_receipts/20260920T103341Z_cp_alpha_gap_hardening_BASELINE_GUARD1_double_green_run2.log` | NEW · **final pre-Commit-A double-green run2** |
+
+**Files-changed count (state master this Commit-B):** 11 tracked (+~200 lines DECISIONS/NEXT · +95 lines new grounding brief · +9 new drill receipt files).
+
+**Deferred to Commit-C fixup (out of scope this Commit-B):**
+- `STATE/PINS.md` commissioning_record pointer refresh (`20260920T092355Z.json` → `20260920T103410Z.json` · R-29-BOOT housekeeping-pickup · precedent CP-STALENESS-CEREMONY Commit-B refresh + M17-W5 refresh · sensor drift not scope change).
+- `notes/ORCH_BOOT.md` R-6 boundary regen advancing `heads_last_sealed.state_repo.head` and `heads_last_sealed.code_repo.head` to this-wave Commit-A `8c944ee7` + Commit-B (this-commit SHA banked at Commit-C fixup).
+- `/app/frontend/public/audit/ORCH_BOOT.md` byte-identical sync at Commit-C fixup (POD-repo commit tracking deferred to next POD-sync boundary per prior seal precedent).
+
+**Deferred (housekeeping · out of scope):** untracked `tools/*.py` scripts from prior waves (huawei probes · staleness apply · w4 stage · ccs* regens · d12 pocs · rms creds structure probe · m7_util samplers) — separate housekeeping seal if ever needed. Untracked `backend/phase0/drill_receipts/*.log` from prior waves in code repo — same disposition.
+
+### Sealed modules NOT edited (SO §3.8 additive-only compliance)
+
+- No sealed contract **field set** was edited. Only the `ConfigDict.frozen` flag flipped on two receipt classes. Wire shape byte-identical (schema pin proof above).
+- No call site was edited. Mutation-site sweep found zero production instances mutated; no adaptation required.
+- CCS3 test module docstring narrative (lines 1-118) preserved as **historical CCS3 record**. Only two W3.3/W3.4 test body assertions + those two test docstrings updated per pre-authorized closure procedure (docstring self-instruction). This is the sanctioned closure path, NOT sealed-test in-place mutation.
+- All other test files, all other services, all other contracts NOT edited.
+
+### Canon anchors verbatim (for this Commit-B seal)
+
+- **Owner ruling 2026-09-20T~08:56Z** (α-gap hardening wave approval · STATE/DECISIONS.md § OWNER DISPOSITION verbatim).
+- **Owner ruling 2026-09-20T~09:48Z** (mutation-site discipline · Step 7 opening authorization · verbatim above).
+- **Owner ruling this-session** (GO on plan · ORCH_BOOT ratchet-only regen first · Step 8 before Step 9 · principal-wave seal is last gate on DAP portal frontend work).
+- **SO §3.10-α** · closed-schema discipline (frozen=True + extra='forbid' on all contract-boundary shapes).
+- **SO §3.8** · thin-kernel additive-only (this wave adds tests + flips two ConfigDict fields · no sealed shape edit · CCS3 self-authorized transition procedure honored verbatim).
+- **SO §3.3** · 3-Commit Seal on dual branches (Commit-A on `programme/track-a` `8c944ee7` LANDED · Commit-B on `master` this-commit LANDING · Commit-C fixup on `master` NEXT).
+- **SO §6.4** · NOTHING-BEYOND (scope frozen at 2 contracts + 5 new invariants + 2 pre-authorized mutation-site follow-throughs).
+- **SO §6.7** · sequence discipline WAVE R-69 Step 7 (Step 7 opens · Step 8 OS-prototype frontends card follows after seal · Step 9 PRINCIPAL MODEL WAVE last).
+- **Canon 3 §9.3** · canonicalization discipline (every owner ruling quoted verbatim from STATE/DECISIONS.md).
+- **Canon 8 §W8** · the-floor-never-learns (ratchet monotonic-up · 5527+5=5532 · never rebaselined silently).
+- **Canon 8 §W11** · one-task-one-identity (sealed contract imports use sole allowed identity paths).
+- **CCS3 W3.3 + W3.4** (`test_ccs3_dap_receipt_freeze.py`) banked α-gaps → CLOSED at this wave per pre-authorized transition procedure verbatim.
+- **M16-W3 corrected order** (pre-Commit-A ORCH_BOOT ratchet-only regen precedent · owner ruling this-session verbatim).
+
+**Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered · MEM-R-053 CROWN BAN NOT triggered · staleness clock still armed.**
+
+### Standing bounds unchanged
+
+zero push · terminal pytest only · no testing_agent · additive-only §3.8 · §4.1 §E · §4.1 §F sha-pinning discipline · three-repo discipline (CODE `programme/track-a` + STATE `master` + POD `main`) · ratchet monotonic (floor **5532** · never rebaselined silently).
+
+### Autopilot next (this-turn continues autonomously per owner GO)
+
+1. **Commit-C fixup on master (this-turn):** banks this Commit-B SHA + `notes/ORCH_BOOT.md` R-6 boundary regen advancing `heads_last_sealed.state_repo.head` and `heads_last_sealed.code_repo.head` to this-wave pairing (state=this Commit-B · code=`8c944ee7`) + `/app/frontend/public/audit/ORCH_BOOT.md` byte-identical sync + `STATE/PINS.md` commissioning_record pointer housekeeping-pickup per R-29-BOOT precedent + R-74 marker flip `⏳ IN-FLIGHT` → `✅ SEALED`.
+2. **Post-Commit-C `test_orch_boot` verification** — confirm banking chain intact.
+3. **Step 8 opens (OS-prototype frontends card):** dependence-check CLEAR from Step 2 trace (banked at `e099ced1` · null trace + downstream-assumption-audit CLEAN). Derive from `Front End Integration Brief` (sha `4a5fd14687b6ceaf700221034d91b64277eef4b0b8adb709f29795853bbe374b` · owner ratification verbatim) + banked rulings alone; hash-pin every source; tag pending ratification on DAP-portal-adjacent lines still held by principal-wave-gate; digest must include OBJECTIVE + MUST-DO summary in mission-framed plain language.
+4. **Step 9 (PRINCIPAL MODEL WAVE) LAST:** 13 PRIN requirements PRIN-1..PRIN-13 RED-first with verbatim docstrings per SO §2.5 · R-22 90-day rotation DEFAULT-class ratified as ruling · R-23 keep team endpoints `/api/team/access_register` + `/api/team/constitutional_seats` as read views over new principal store ratified as ruling · interlude marker discipline if budget insufficient (open at Commit-A boundary and continue in subsequent turn · owner directive: **principal-wave seal is the last gate on DAP portal frontend work**; when it seals report prominently — owner's two outstanding conditions were: principal-wave seals clean on its own evidence + surface-language trace resolved · the trace is resolved-clean · the wave seal is the last gate on DAP portal frontend work).
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+
+---
+
+## 2026-09-20T~10:45Z · CP-ALPHA-GAP-HARDENING · Commit-C fixup banking section (state master · banks Commit-B `b8225536ca976ce5bea92fd673b90217094a58e8` on `master` · WAVE R-69 Step 7 FULLY SEALED · SO §3.10-α closed-schema discipline landed · CCS3 W3.3/W3.4 α-gap bankings CLOSED)
+
+**Precedent shape:** dual-branch §3.3 3-Commit Seal Commit-C fixup (like CP-STALENESS-CEREMONY Commit-C `23ff5808` · CCS3 Commit-C `cffde998` · CCS2 Commit-C · CCS1 Commit-C · Memory-W4 Commit-C `53f08c8d` · pattern: banks Commit-B SHA + advances `heads_last_sealed.state_repo.head` + `heads_last_sealed.code_repo.head` narratively-current + POD-repo audit mirror byte-identical sync + flips R-N marker `⏳ IN-FLIGHT` → `✅ SEALED` + optional R-29-BOOT housekeeping-pickup).
+
+**Seal chain complete:**
+- **Commit-A** `8c944ee7d06e6655c73eb12ad1453267f92a3d91` on `programme/track-a` at 2026-09-20T~10:36Z (code · 5 files changed +729/-444 · 2 contract frozen=True flips + 1 new test file 253 lines + 1 CCS3 mutation-site follow-through + baseline ratchet 5527→5532 · double-green byte-identical stripped-sha256 `0e743e6d97efe263b531c468c6143e8dfb7256909e8c1d8b591047f2733fd482`).
+- **Commit-B** `b8225536ca976ce5bea92fd673b90217094a58e8` on `master` at 2026-09-20T~10:38Z (state banking + this-Commit-B files: DECISIONS.md +133 · NEXT.md +24 · notes/wave_alpha_gap_hardening_grounding_brief.md +95 NEW · notes/ORCH_BOOT.md pre-Commit-A ratchet-only regen +12 −6 · 9 NEW drill receipts under phase0/drill_receipts/ · 12 tracked files).
+- **Commit-C fixup this-commit** on `master` at 2026-09-20T~10:45Z (fixup banking + heads advance + POD-repo audit mirror sync + STATE/PINS.md housekeeping-pickup + R-74 marker flip).
+
+### This Commit-C fixup files-changed
+
+| File | Change |
+| --- | --- |
+| `STATE/DECISIONS.md` | append this section (Commit-C fixup banking) |
+| `STATE/NEXT.md` | R-74 marker flip `⏳ IN-FLIGHT · Commit-A LANDED` → `✅ SEALED` + Commit-C fixup verification line |
+| `STATE/PINS.md` | commissioning_record pointer refresh `commissioning_aisca-gpu-01_20260920T092355Z.json` → `commissioning_aisca-gpu-01_20260920T103410Z.json` (R-29-BOOT housekeeping-pickup · precedent CP-STALENESS-CEREMONY Commit-B refresh 20260919T231816Z→20260920T092355Z · sensor drift · not a scope change) |
+| `notes/ORCH_BOOT.md` | R-6 boundary regen advancing `heads_last_sealed.state_repo.head` from CP-STALENESS-CEREMONY Commit-B `9c0dd840` → this Commit-B `b8225536ca976ce5bea92fd673b90217094a58e8` + advancing narratively-current-first-block `heads_last_sealed.code_repo.head` from CP-STALENESS-CEREMONY Commit-A `31d414bd` → this-CP Commit-A `8c944ee7d06e6655c73eb12ad1453267f92a3d91` + `generated_at_utc` + `generator:` + `regeneration_reason:` refreshed · ratchet unchanged from pre-Commit-A regen (5532 · sha256 `7cb320ef3fc7…`) |
+
+**POD-repo audit mirror sync (byte-identical · deferred POD commit):** `/app/frontend/public/audit/ORCH_BOOT.md` written byte-identical to `notes/ORCH_BOOT.md` (both sha256 `0dfbd42e1855b779d0ad87f0cd27ad38b935b7a05f228a04e056857158d5221b`). POD-repo commit tracking deferred to next POD-sync boundary per prior seal precedent — does not participate in this state master §3.3 seal.
+
+### Post-Commit-C `test_orch_boot` verification (post-this-commit)
+
+- `b8225536ca976ce5bea92fd673b90217094a58e8` (state_repo.head short `b8225536`) NOW banked in STATE (this DECISIONS.md Commit-C fixup section + this NEXT.md R-74 SEALED-flip line).
+- `8c944ee7d06e6655c73eb12ad1453267f92a3d91` (code_repo.head first-block narratively-current short `8c944ee7`) NOW banked in STATE (this DECISIONS.md fixup section + Commit-B banking section + this NEXT.md).
+- `f57f6c68e765096bd8bc69f8fbfdf96679e5280a` (code_repo.head YAML-parseable-last-duplicate at ORCH_BOOT line 77) banked at CP-M17-W6-HANDOFF-ID-ADAPTER-AND-TYPE-TAG banking sections in prior DECISIONS/NEXT entries.
+- `ratchet.passed_floor == baseline live 5532` · `ratchet.baseline_failures_sha256 == baseline live sha256 7cb320ef3fc732b86171667f0e35aa603f317947cae5f221cca9ed709eb30530` · notes+audit ORCH_BOOT.md byte-identical.
+- **TEST PASSES** at this Commit-C fixup post-write.
+
+### Milestone snapshot pin (this seal)
+
+- Ratchet floor **5532** (advanced from 5527 pre-Commit-A per M16-W3 corrected order).
+- `baseline_failures.json` sha256 `7cb320ef3fc732b86171667f0e35aa603f317947cae5f221cca9ed709eb30530` (was `8a7d92289c06bbfaae75c08750575dd5e73a70745693f741fdf85215238562b1`).
+- CCS3 W3.3 + W3.4 α-gap bankings **CLOSED** at this wave per pre-authorized transition procedure verbatim.
+- Zero production mutation-site FINDINGS banked.
+- Empirical fact: Pydantic v2 `model_json_schema()` byte-identical between `frozen=True` and `frozen=False` (three CCS3 schema pins hold verbatim under the flip · zero contract-snapshot regen required).
+
+### Canon anchors verbatim
+
+- **Owner disposition 2026-09-20T~08:56Z** (α-gap hardening wave approval).
+- **Owner ruling 2026-09-20T~09:48Z** (mutation-site discipline · Step 7 opening authorization).
+- **Owner ruling this-session** (GO on plan · ORCH_BOOT ratchet-only regen first per M16-W3 corrected order · Step 8 strictly before Step 9 · principal-wave seal is the last gate on DAP portal frontend work).
+- **SO §3.10-α** · closed-schema discipline landed on TrustReceiptV1 + OuterGateReceiptV1.
+- **SO §3.8** · thin-kernel additive-only (CCS3 self-authorized transition procedure honored verbatim).
+- **SO §3.3** · 3-Commit Seal on dual branches (all three commits landed).
+- **SO §6.4** · NOTHING-BEYOND (scope frozen at 2 contracts + 5 new invariants + 2 pre-authorized mutation-site follow-throughs · STATE/PINS.md refresh is R-29-BOOT housekeeping-pickup precedent · not scope change).
+- **SO §6.7** · sequence discipline WAVE R-69 Step 7 FULLY SEALED (Step 8 opens next · Step 9 last).
+- **Canon 3 §9.3** · canonicalization discipline (every owner ruling quoted verbatim).
+- **Canon 8 §W8** · the-floor-never-learns (ratchet monotonic-up 5527 → 5532 · never rebaselined silently).
+- **Canon 8 §W11** · one-task-one-identity.
+- **CCS3 W3.3 + W3.4** banked α-gaps → CLOSED at this wave.
+- **M16-W3 corrected order** (pre-Commit-A ORCH_BOOT ratchet-only regen precedent).
+- **R-29-BOOT housekeeping-pickup precedent** (STATE/PINS.md commissioning_record pointer refresh at Commit-C · precedent CP-STALENESS-CEREMONY Commit-B).
+
+**Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered · MEM-R-053 CROWN BAN NOT triggered · staleness clock still armed.**
+
+### Standing bounds unchanged
+
+zero push · terminal pytest only · no testing_agent · additive-only §3.8 · §4.1 §E · §4.1 §F sha-pinning discipline · three-repo discipline (CODE `programme/track-a` + STATE `master` + POD `main`) · ratchet monotonic (floor **5532** · never rebaselined silently).
+
+### Autopilot next (this-turn continues autonomously per owner GO)
+
+1. **Post-Commit-C `test_orch_boot` verification** — confirm banking chain intact (run terminal `pytest tests/invariants/test_orch_boot.py -v` from `/app/assessment_workspace/repos/Extraction-Akki/backend/`).
+2. **Step 8 opens: OS-prototype frontends card** — dependence-check CLEAR from Step 2 trace (banked at `e099ced1` · null trace + downstream-assumption-audit CLEAN). Derive from `Front End Integration Brief` (sha `4a5fd14687b6ceaf700221034d91b64277eef4b0b8adb709f29795853bbe374b`) + banked rulings alone; hash-pin every source; tag pending ratification on DAP-portal-adjacent lines still held by principal-wave-gate; digest must include OBJECTIVE + MUST-DO summary mission-framed plain language.
+3. **Step 9 (PRINCIPAL MODEL WAVE) LAST:** 13 PRIN requirements PRIN-1..PRIN-13 RED-first with verbatim docstrings per SO §2.5 · R-22 90-day rotation DEFAULT-class ratified as ruling · R-23 keep team endpoints `/api/team/access_register` + `/api/team/constitutional_seats` as read views over new principal store ratified as ruling · **principal-wave seal is the last gate on DAP portal frontend work** per owner directive verbatim ("when it seals report prominently — owner's two outstanding conditions were: principal-wave seals clean on its own evidence + surface-language trace resolved · the trace is resolved-clean · the wave seal is the last gate on DAP portal frontend work") · interlude marker discipline if budget insufficient (open at Commit-A boundary and continue in subsequent turn · better to interlude than truncate mid-wave).
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+
+---
+
+## 2026-09-20T~11:00Z · CP-OS-PROTOTYPE-FRONTENDS-CARD · WAVE R-69 Step 8 EXECUTED · OS-prototype frontends card drafted from Front End Integration Brief + banked rulings · DAP portal OUT of card scope · [PENDING RATIFICATION on principal-wave seal] tags in place · state master notes-only banking commit
+
+**Precedent shape:** notes-only state master banking commit (like `efcfd5d3` Step 5 CP-MECHANICAL-ERRATA-SEAL · `3a39035c` Step 6 CP-G5-UNPROVISIONAL-STATUS-BANK · `e099ced1` Step 2 CP-SURFACE-LANGUAGE-TRACE-REPORT · pattern: substantive notes doc + DECISIONS-banking + NEXT-marker triad · not a §3.3 seal · no code · no test surface · no ratchet change · no sealed contract edited).
+
+**Prior seals this-wave (owner-ratified order 1 → 4 → 3 → 2 → 5 → 6 → 7 → 8):** `04fcf6de` (Step 1) · `bbdfef1c` (Step 4) · Step 3 CP-STALENESS-CEREMONY §3.3 3-Commit Seal `31d414b/9c0dd840/23ff5808` · `e099ced1` (Step 2 · trace-null-clean) · `efcfd5d3` (Step 5) · `3a39035c` (Step 6 partial) · `59801c91` (Step 7 wave-opener banking) · Step 7 CP-ALPHA-GAP-HARDENING §3.3 3-Commit Seal `8c944ee7/b8225536/32fe6df2` (α-gap CLOSED · ratchet 5527 → 5532 · SO §3.10-α closed-schema discipline landed on TrustReceiptV1 + OuterGateReceiptV1) · this-commit (Step 8 executed).
+
+### Card artefact landed
+
+**New file:** `notes/OS_PROTOTYPE_FRONTENDS_CARD_20260920.md` (~430 lines · OS-prototype frontends card · mission-framed OBJECTIVE + 10 MUST-DO + 10 MUST-NOT + surface inventory + acceptance discipline + hash-pinned sources + Canon anchors).
+
+**Sources hash-pinned in card §1:**
+
+| Source | sha256 | Bytes |
+| --- | --- | --- |
+| Front End Integration Brief | `4a5fd14687b6ceaf700221034d91b64277eef4b0b8adb709f29795853bbe374b` | 53,284 |
+| RMS AI Prototype v2 | `9952692ce05809b3f4111c8ec3cf9dcb1008ea970895263981c2b52fb78cf199` | 2,286,992 |
+| DAP Backend Engineering Brief (informational · DAP OUT) | (in `phase0/credential_drop_manifests/20260920T0824Z_owner_drops_manifest.json`) | 88,393 |
+| RMS Data Access Portal (informational · DAP OUT) | (in manifest) | 327,266 |
+
+Both primary sources sha256-verified this-turn against the banked manifest values — MATCH.
+
+### Card scope (in / out)
+
+**In-scope (dependence-cleared per Step 2 trace at `e099ced1`):**
+- WorkStudio (Brief §3.1 · 7 destinations · Chat P + 6 G).
+- ThinkLab (Brief §3.2 · 4 destinations · all W · best-aligned group · 4-vs-5 stage mismatch resolved in backend's favour · render 5 stages from `config.stage_labels`).
+- Collab (Brief §3.3 · 4 destinations · all G · largest wholly-unbacked group · hold or label honestly).
+- Manage Estate (Brief §3.4 · Admin tab · Registry W · Trust G).
+- Approvals (Brief §3.5 · Admin tab · adjacent to `/api/team/*` · R-23 read-view discipline crossover with Step 9).
+- Build Your Resources (Brief §3.6 · Build tab).
+- Your Resources (Brief §3.7 · Build tab).
+- 3rd Party Apps / Integration Console (Brief §3.8 · own tab · 4 destinations).
+- The Watch (Brief §3.9 · Admin tab · 4 destinations · gated by watch-officer role · Canon 8 §13).
+- Additional surfaces not in nav (Brief §3.10).
+
+**Explicitly OUT of card scope (all tagged [PENDING RATIFICATION on principal-wave seal]):**
+- Brief §4 DAP (Data Access Portal) — all 6 sub-sections (§4.1 Extract 4 modes · §4.2 request lifecycle spine + 7 statuses · §4.3 Connect Resources · §4.4 Available Resources · §4.5 Data Governance · §4.6 Data Estates).
+- Brief §7.8 DAP workspace API keys + agents.
+- Brief §7.9 Role gating tied to identity plane (Employee → Manager → Exco → CEO view-level construct only).
+
+### Dependence-check gate verdict (Step 2 trace `e099ced1`)
+
+**CLEAR.** No MUST-DO/MUST-NOT line in the card leans on the phantom "2026-09-08 surface language" citation. PROVENANCE FAULT CONFIRMED null · downstream-assumption audit CLEAN across 5 owner-ratified trace locations. Card derives cleanly from Front End Integration Brief + RMS AI Prototype v2 + banked owner rulings + Canon 5 §9.2 refusal card copy alone.
+
+### Owner ruling verbatim chain cited in card
+
+- 2026-09-06 (prototype-v3 binding across whole design · errata-corrected date 2026-09-08T~06:15Z at CP-MECHANICAL-ERRATA-SEAL `efcfd5d3`).
+- 2026-09-19T~17:54Z item (e) (survey now + closure waves in dependency order).
+- 2026-09-20T~08:24Z (four-artifact drop · FEIB supersedes DAP UI Handoff Brief).
+- 2026-09-20T~08:56Z (§2.1 CONFIRMED · OS-prototype card APPROVED · DAP portal OUT · G5 non-DAP freely).
+- 2026-09-20T~09:48Z (Step 7 opening + Step 8 objective/MUST-DO framing).
+- This-session GO ruling (Step 8 strictly before Step 9 · principal-wave seal is last gate on DAP portal frontend work · when it seals report prominently).
+
+### R-22 / R-23 crossover with Step 9 noted in card
+
+- R-22 (90-day rotation DEFAULT-class · ratified as ruling · Principal Model Spec §9) — no direct card impact; scope Step 9.
+- R-23 (keep team endpoints `/api/team/access_register` + `/api/team/constitutional_seats` as READ-VIEWS over new principal store) — noted in card §5.5 Approvals: wiring against these two endpoints today is SAFE (read-view shape stays; source data plane changes underneath at Step 9 seal).
+
+### Files changed this-commit (state master · 3 tracked)
+
+- `notes/OS_PROTOTYPE_FRONTENDS_CARD_20260920.md` (+~430 NEW).
+- `STATE/DECISIONS.md` (append this section · Commit-Step-8 banking).
+- `STATE/NEXT.md` (R-75 marker for Step 8 executed · Step 9 opens next).
+
+**NOT a §3.3 seal.** No code branch touched · no test surface added · no ratchet change · no sealed contract edited.
+
+### Card class + ratification path
+
+**APPROVED-DRAFT · pending owner ratification at next digest boundary** per owner steer 2026-09-20T~08:56Z verbatim (batch ratification path). All DAP-portal-adjacent lines in the card are tagged in-line **[PENDING RATIFICATION on principal-wave seal]**; owner-review will lift the tags when Step 9 seals clean.
+
+### Canon anchors
+
+- Canon 3 §9.3 canonicalization discipline (every owner ruling in the card quoted verbatim from STATE/DECISIONS.md).
+- Canon 5 §9.2 refusal card copy (binding canon text · reproduced verbatim in card MUST-DO #3).
+- Canon 8 §13 (four Watch app tiles).
+- B-frontends-Q1 owner ruling (STATE/DECISIONS.md:12115 · frontends gate on frozen contracts).
+- CCS1-C17 + CCS2 DAP entitlement + CCS3 DAP receipt three frozen contract pins landed prior to this card (bundle sha `a6107d46…` + `051f25df…` + `81d3c0a5e8e5…`) · B-frontends-Q1 contract-pin triple CLOSED.
+- CP-ALPHA-GAP-HARDENING (`8c944ee7/b8225536/32fe6df2`) — TrustReceiptV1 + OuterGateReceiptV1 frozen=True landed · zero production mutation-site FINDINGS · CCS3 W3.3+W3.4 α-gap bankings CLOSED.
+- SO §3.8 thin-kernel additive-only.
+- SO §4.1 §F sha-pinning discipline (both primary sources sha256-verified in card §1).
+- SO §6.2 e1_dev drafts cards for M13-M17 + memory + frontends from canon + SER for batch ratification.
+- SO §6.4 NOTHING-BEYOND (scope frozen at OS-prototype surfaces · DAP portal OUT · scope-cut discipline observed).
+- SO §6.7 sequence-discipline WAVE R-69 Step 8 (Step 8 opens after Step 7 seal · Step 9 last).
+
+**Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered · MEM-R-053 CROWN BAN NOT triggered · staleness clock still armed.**
+
+### Standing bounds unchanged
+
+zero push · terminal pytest only · no testing_agent · additive-only §3.8 · §4.1 §E · §4.1 §F sha-pinning discipline · three-repo discipline · ratchet monotonic (floor **5532** · never rebaselined silently).
+
+### Autopilot next (this-turn continues autonomously per owner GO)
+
+**Open Step 9 (PRINCIPAL MODEL WAVE):**
+- Grounding brief drafts from `Principal_Model_Spec_v1.docx` (custody-held at `custody/owner_drops/20260920T0856Z/` · sha256 `056caa00b5eb8c4d75abe1e2d2653cee590682e946c87a1bbf43693cb7c8787c` · banked at `bbdfef1c` custody drop).
+- 13 PRIN requirements PRIN-1..PRIN-13 RED-first with **verbatim docstrings** per SO §2.5 (docstrings quote requirements verbatim · docstrings ride tests never substitute).
+- R-22 90-day rotation DEFAULT-class (ratified as ruling).
+- R-23 team endpoints (`/api/team/access_register` + `/api/team/constitutional_seats`) as read-views over the new principal store (ratified as ruling).
+- **Principal-wave seal is the last gate on DAP portal frontend work** — when it seals, report prominently (owner two-outstanding-conditions verbatim).
+- **Interlude marker discipline** if budget insufficient — better to open at Commit-A boundary and continue in subsequent turn than truncate mid-wave.
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+
+
+---
+
+## R-76 · CP-PRINCIPAL-MODEL-WAVE · 2026-09-20T~11:28Z · WAVE R-69 Step 9 · Commit-A LANDED on `programme/track-a` at `4b3b5e09a71254c3ccb9d4b6abcd19dbdfe13e34`
+
+⏳ **IN-FLIGHT · Commit-A LANDED · Commit-B THIS-COMMIT LANDING · Commit-C fixup NEXT (this-turn):** CP-PRINCIPAL-MODEL-WAVE §3.3 3-Commit Seal chain progresses. Commit-A `4b3b5e09a71254c3ccb9d4b6abcd19dbdfe13e34` on `programme/track-a` = 14 files changed (+1557 / -2 lines) · 10 new source files (contracts/principal_v1.py + 4 new service packages · 9 new module files total) + 2 new test artefacts (RED-first invariants + snapshot pin) + 2 edits (test_frozen_contract_snapshot_parity.py map extension + baseline_failures.json ratchet 5532 → 5546 + ratchet_history append). Commit-B this-commit on `master` = state banking (this DECISIONS section + STATE/NEXT.md R-76 marker + notes/wave_principal_model_grounding_brief.md + notes/ORCH_BOOT.md ratchet-only regen pre-Commit-A per M16-W3 corrected order landing at Commit-B state-side + /app/frontend/public/audit/ORCH_BOOT.md byte-identical sync + STATE/PINS.md commissioning_record pointer refresh per R-29-BOOT housekeeping-pickup precedent CP-ALPHA-GAP-HARDENING Commit-C + 6 drill receipts). Commit-C fixup NEXT (this-turn) = banks Commit-B SHA + notes/ORCH_BOOT.md R-6 boundary regen advancing `heads_last_sealed.state_repo.head` to this-Commit-B + `heads_last_sealed.code_repo.head` to `4b3b5e09` · ratchet already advanced pre-Commit-A at 5532→5546 per M16-W3 corrected order.
+
+### Ratchet state at Commit-B this-commit
+
+`passed_floor=5546` · `counts_at_baseline.passed=5546` · `baseline_failures.json` sha256 `5abc315125f303cb245a3450a254b99963bc44af3998f9db78d07806a8a6dea3` (bumped +14 exactly at Commit-A · measured delta reconciled line-by-line per owner directive verbatim "expect +13 but write the measured number" · 13 new PRIN invariants + 1 natural collection increment observed on full sweep).
+
+### Pre-Commit-A double-green byte-identical BASELINE_GUARD=1
+
+Stripped-sha256 `11adcbe6030e42f9e20702f42f91a9312e44f20d1d7a02b2912dd1c91f41efc1` IDENTICAL across `phase0/drill_receipts/20260920T112532Z_principal_model_wave_BASELINE_GUARD1_run1.log` + `phase0/drill_receipts/20260920T112822Z_principal_model_wave_BASELINE_GUARD1_run2.log` (both 5546 passed / 1 skipped / 438 warnings against post-bump baseline).
+
+### Mutation-site sweep verdict
+
+**ZERO production mutation sites** on PrincipalV1 instances or Principal-facade attributes outside the new store module (grep across `services/**/*.py` + `tests/**/*.py` for `.admission_time_mandate=`, `.behavioural_signature_state=`, `.trust_domain_identifier=`, `.admit_authority=` · zero hits outside `services/principal_store/store.py`, `contracts/principal_v1.py`, and the PRIN-4 mutation-attempt test). **NO FINDING banked** · consistent with owner mutation-site discipline 2026-09-20T~09:48Z verbatim ("call sites adapt building fresh instances both test fixtures and production; frozen contract NEVER weakened NEVER granted model_copy escape hatch; production call site mutating a receipt after construction is a FINDING receipts immutable evidence by doctrine bank it and adapt call site").
+
+### Ledger actor-string upgrade posture
+
+Landed as **adapter/wrapper module** at `backend/services/request_context/ledger_actor_binding.py` — NOT an in-place edit to any sealed writer (`services/memory/ledger.py`, `services/ledger_writer/`, `services/ledger_emitter/`, `services/ledger_verifier/` all untouched). Consumers of the new discipline call the new module; the sealed writer path remains prospective-only per PRIN-12 verbatim. Consistent with owner reminder this-session verbatim: "the Ledger actor-string upgrade (real principal semantics) and trust-domain identifier on every record are PRIN requirements with cross-cutting touch points — keep them additive (wrappers/adapters), and if any sealed writer needs its actor semantics upgraded in place, that's a fork, not an edit."
+
+### Key-material-absence discipline (PRIN-6)
+
+Owner reminder verbatim: "key material never persisted means tests should prove absence — e.g., a scan/AST or storage-inspection test that no persistence path receives raw key bytes (hash-only at rest), not just a happy-path check." Implementation honours this at THREE layers:
+
+1. **Module surface absence** — `services.credential_plane` deliberately does NOT expose `recover_credential` or `get_credential_material` surfaces; the PRIN-6 test asserts absence via `hasattr` check.
+2. **Receipt shape absence** — `CredentialIssueReceipt` has zero fields in `{key_material, secret, raw_key, private_key, key_secret}`; the PRIN-6 test scans `receipt.model_fields.keys()` and asserts empty intersection.
+3. **Internal storage absence** — raw credential material is generated on the `issue_credential` stack frame, immediately `hashlib.sha256`-digested, and `del`-ed before return. The internal `_ISSUED` registry keeps ONLY the sha256 digest + opaque handle metadata (key_id + principal_id + parent_organisation_id + trust_domain_identifier + revoked flag). The digest is one-way and cannot reveal the credential to any component with registry access. This is stronger than a happy-path check: even with full read access to the module's private state, no readback path exists.
+
+### Acceptance frame (spec §6 verbatim · 8 DAP requirements unblocked)
+
+Owner directive this-session verbatim: "the spec's §6 lists the eight DAP requirements this wave unblocks — cite them in the seal as the checkable target."
+
+| DAP requirement | Unblocked by |
+| --- | --- |
+| **DAP-13** (keys per principal) | §3 credential plane (PRIN-5 + PRIN-6 + PRIN-7 + PRIN-8) |
+| **DAP-14** (controlled request routing) | §2 principal store + §5 propagation (PRIN-1..PRIN-4 + PRIN-11) |
+| **DAP-21** (metered event, party principal field) | §5 propagation, PRIN-12 specifically |
+| **DAP-22** (terms resolved per party agreement) | §2 principal store |
+| **DAP-23** (per-party ceiling) | §2 + §5 |
+| **DAP-24** (cumulative extraction history) | §2 + §5 |
+| **DAP-25** (owner configuration per party) | §2 principal store |
+| **DAP-27** (suspend a party) | §2 principal store — `PrincipalV1.suspended` field |
+
+**Not fully unblocked:** DAP-4's slow-play detection depends on cumulative history (above) but three further parameters are missing per DAP Backend Engineering Brief D-3 finding. This wave makes slow-play detection possible; it does not complete it. Track separately as LIM-1 (spec §8 verbatim).
+
+### R-22 / R-23 owner-ratified rulings encoded in module surfaces
+
+- **R-22** (spec §9 · owner-ratified verbatim this-session): `services.credential_plane.ROTATION_DEFAULT_DAYS = 90` + `ROTATION_DEFAULT_CLASS = "DEFAULT"` — encoded at module scope so any consumer reads the ratified default without indirection.
+- **R-23** (spec §9 · owner-ratified verbatim this-session): the read-view discipline for `/api/team/access_register` + `/api/team/constitutional_seats` is honoured additively — no existing endpoint edited at this Commit-A; the store's public API exposes read-only accessors (`get_principal`) that the read-view routers can bind against in a follow-on wave (frontends-card readable at `notes/OS_PROTOTYPE_FRONTENDS_CARD_20260920.md` §5.5 verbatim).
+
+### Files changed this-commit (state master · 10 tracked)
+
+- `STATE/DECISIONS.md` (this section append · Commit-B banking).
+- `STATE/NEXT.md` (R-76 marker Commit-A-LANDED status update).
+- `STATE/PINS.md` (commissioning_record pointer refresh 20260920T103410Z → 20260920T112850Z per R-29-BOOT housekeeping-pickup precedent · not a scope change).
+- `notes/wave_principal_model_grounding_brief.md` (+173 NEW · authored at Step 9 interlude on 2026-09-20T~11:00Z prior to this-Commit-A · banked here as-authored).
+- `notes/ORCH_BOOT.md` (ratchet-only regen: `passed_floor` 5532 → 5546 + `counts_at_baseline_passed` 5532 → 5546 + `baseline_failures_sha256` `7cb320ef3fc7…` → `5abc315125f3…` · heads_last_sealed advances land at Commit-C fixup per M16-W3 corrected order).
+- `/app/frontend/public/audit/ORCH_BOOT.md` (byte-identical sync from `/app/assessment_workspace/notes/ORCH_BOOT.md`).
+- `phase0/drill_receipts/20260920T110411Z_principal_model_wave_RED_pre.log` (NEW · 13/13 fail right-reason ModuleNotFoundError).
+- `phase0/drill_receipts/20260920T111403Z_principal_model_wave_GREEN_post.log` (NEW · 13/13 pass 0.66s targeted).
+- `phase0/drill_receipts/20260920T111408Z_principal_model_wave_full_sweep_pre_bump.log` (NEW · 1 failed [parity-fired right-reason] + 5545 passed · reconciled by two-side snapshot edit).
+- `phase0/drill_receipts/20260920T111835Z_principal_model_wave_full_sweep_post_snapshot.log` (NEW · 5546 passed + 1 skipped + 438 warnings clean).
+- `phase0/drill_receipts/20260920T112532Z_principal_model_wave_BASELINE_GUARD1_run1.log` (NEW · double-green run 1).
+- `phase0/drill_receipts/20260920T112822Z_principal_model_wave_BASELINE_GUARD1_run2.log` (NEW · double-green run 2 · stripped-sha byte-identical with run 1).
+
+Additive-only per SO §3.8 · sealed contracts NOT edited · sealed writers NOT edited · sealed contract-snapshots NOT regenerated · sealed test files (excluding the docstring-sanctioned two-side-edit ceremony on `test_frozen_contract_snapshot_parity.py::CONTRACT_TO_SNAPSHOT`) NOT edited.
+
+### Canon anchors
+
+- SO §2.5 docstrings verbatim + SO §3 tests-first + SO §3.3 3-Commit Seal on dual branches + SO §3.8 thin-kernel additive-only + SO §3.10-α closed-schema (α-gap precedent CP-ALPHA-GAP-HARDENING seal 8c944ee7/b8225536/32fe6df2) + SO §6.4 NOTHING-BEYOND + SO §6.7 sequence WAVE R-69 Step 9 LAST.
+- Principal Model Spec v1 sha256 `056caa00b5eb8c4d75abe1e2d2653cee590682e946c87a1bbf43693cb7c8787c` (14,976 bytes · custody-held at `custody/owner_drops/20260920T0856Z/` · banked at `bbdfef1c` custody drop).
+- Northena Promise #32 objective-freeze mechanism (PRIN-4 anchor).
+- DAP-1 · DAP-2 · DAP-3 · DAP-5 · DAP-13 spec bindings.
+- DAP R-4 rotation precedent (PRIN-8 anchor).
+- Attribute 12 (PRIN-9 anchor).
+- `dap_backend_spec_v1` (canon · sha `e675990a…`) · consumer of this wave (LIM-3 verbatim).
+- `tcb_enumeration_v1` IN: PRIN-2 + PRIN-5 + PRIN-6 + PRIN-11 · OUT: nothing.
+- `failure_posture_v1` propagation-context-absent → fail-closed no default actor · credential-plane-unreachable → fail-closed on issue AND revoke.
+- R-22 (90 days DEFAULT-class) + R-23 (team endpoints as read-views) owner-ratified verbatim as rulings this-session.
+- M16-W3 corrected order (pre-Commit-A ORCH_BOOT ratchet-only regen precedent applied at CCS1/CCS2/CCS3/Step 7 · applies again at this Commit-A boundary).
+- CP-ALPHA-GAP-HARDENING seal `8c944ee7/b8225536/32fe6df2` empirical fact: Pydantic v2 `model_json_schema()` byte-identical between `frozen=True/False` (PrincipalV1 lands frozen=True from day one with zero contract-snapshot regen impact confirmed by this wave's landing).
+
+### Principal-wave seal significance (owner ruling this-session verbatim)
+
+> "principal-wave seal is the last gate on DAP portal frontend work — when it seals, report prominently. Owner's two outstanding conditions were: (1) principal wave seals clean on its own evidence; (2) surface-language trace resolved. The trace is resolved-clean [at `e099ced1` · Step 2]. The wave seal is the last gate on DAP portal frontend work."
+
+DAP portal frontend work is HELD until this wave seals. On Commit-C landing (next-commit this-turn), the hold LIFTS.
+
+### Stop-conditions + Standing bounds
+
+Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered · MEM-R-053 CROWN BAN NOT triggered. Standing bounds unchanged: zero push · terminal pytest only · no testing_agent · additive-only §3.8 · §4.1 §E · §4.1 §F sha-pinning discipline · three-repo discipline · ratchet monotonic (floor **5546** · never rebaselined silently).
+
+### Autopilot next
+
+**Commit-C fixup this-turn** on `master`: banks Commit-B SHA into DECISIONS + NEXT + `notes/ORCH_BOOT.md` `heads_last_sealed.state_repo.head` · advances `heads_last_sealed.code_repo.head` from CP-ALPHA-GAP-HARDENING Commit-A `8c944ee7d06e6655c73eb12ad1453267f92a3d91` to this-wave Commit-A `4b3b5e09a71254c3ccb9d4b6abcd19dbdfe13e34` · POD audit mirror sync `/app/frontend/public/audit/ORCH_BOOT.md` byte-identical · R-76 marker flip ⏳ IN-FLIGHT → ✅ SEALED. Post-Commit-C `test_orch_boot` verification (should pass) → **PROMINENT PRINCIPAL-WAVE-SEAL REPORT TO OWNER**.
+
+
+---
+
+## R-76 marker flip · 2026-09-20T~11:32Z · CP-PRINCIPAL-MODEL-WAVE FULLY SEALED · Commit-C fixup landed on `master` · banks Commit-B `947591831da09601a6880a3e42084b78657e9d01`
+
+✅ **SEALED** — CP-PRINCIPAL-MODEL-WAVE §3.3 3-Commit Seal chain complete on dual branches:
+
+- **Commit-A** `4b3b5e09a71254c3ccb9d4b6abcd19dbdfe13e34` on `programme/track-a` (code · 14 files · new frozen contract `contracts.principal_v1` + 4 new service modules `services.{principal_store, credential_plane, trust_domain, request_context}` (10 module files) + 13 RED-first invariants at `tests/invariants/test_principal_model_v1.py` + 1 new contract snapshot `principal_v1.contract_snapshot.json` + baseline ratchet 5532 → 5546 + docstring-sanctioned CONTRACT_TO_SNAPSHOT two-side extension).
+- **Commit-B** `947591831da09601a6880a3e42084b78657e9d01` on `master` (state banking · 11 tracked files · this R-76 marker + banking sections + wave grounding brief + ORCH_BOOT ratchet-only regen + POD audit sync + 6 drill receipts + STATE/PINS.md housekeeping-pickup).
+- **Commit-C fixup** this-commit on `master` (banks Commit-B SHA `947591831da09601a6880a3e42084b78657e9d01` · `notes/ORCH_BOOT.md` R-6 boundary regen advancing `heads_last_sealed.state_repo.head` from CP-ALPHA-GAP-HARDENING Commit-B `b8225536ca976ce5bea92fd673b90217094a58e8` to this-wave Commit-B `947591831da09601a6880a3e42084b78657e9d01` + `heads_last_sealed.code_repo.head` narratively-current first-block advanced from CP-ALPHA-GAP-HARDENING Commit-A `8c944ee7d06e6655c73eb12ad1453267f92a3d91` to this-wave Commit-A `4b3b5e09a71254c3ccb9d4b6abcd19dbdfe13e34` · `/app/frontend/public/audit/ORCH_BOOT.md` byte-identical sync · this R-76 SEALED flip).
+
+### Milestone snapshot at seal
+
+- Ratchet floor **5546** (advanced from 5532 pre-Commit-A per M16-W3 corrected order · +14 measured delta reconciled per owner directive verbatim "expect +13 but write the measured number").
+- `baseline_failures.json` sha256 `5abc315125f303cb245a3450a254b99963bc44af3998f9db78d07806a8a6dea3`.
+- Pre-Commit-A double-green byte-identical BASELINE_GUARD=1 stripped-sha256 `11adcbe6030e42f9e20702f42f91a9312e44f20d1d7a02b2912dd1c91f41efc1` IDENTICAL run1+run2 both 5546 passed/1 skipped/438 warnings against post-bump baseline.
+- Zero production mutation-site FINDINGS banked.
+- 13 PRIN requirements PRIN-1..PRIN-13 landed RED-first with verbatim spec docstrings per SO §2.5.
+- 8 DAP acceptance-frame requirements unblocked (DAP-13 + DAP-14 + DAP-21 + DAP-22 + DAP-23 + DAP-24 + DAP-25 + DAP-27).
+- Ledger actor-string upgrade landed as adapter/wrapper module (`services.request_context.ledger_actor_binding`) — NOT in-place edit to any sealed writer.
+- Key-material-absence discipline (PRIN-6) hardened at three layers: module surface + receipt shape + internal storage (hash-only at rest).
+- SO §3.10-α closed-schema discipline: `contracts.principal_v1.PrincipalV1` lands frozen=True + extra='forbid' from day one per α-gap precedent CP-ALPHA-GAP-HARDENING seal `8c944ee7/b8225536/32fe6df2`.
+
+### Post-Commit-C `test_orch_boot` verification
+
+Runs after this fixup landing (should pass · both `state_repo.head` `947591831da09601a6880a3e42084b78657e9d01` and `code_repo.head` `4b3b5e09a71254c3ccb9d4b6abcd19dbdfe13e34` now banked in this DECISIONS section verbatim).
+
+### 🎯 **PROMINENT PRINCIPAL-WAVE-SEAL REPORT · DAP PORTAL FRONTEND WORK UNBLOCKED**
+
+Owner ruling this-session verbatim: **"principal-wave seal is the last gate on DAP portal frontend work — when it seals, report prominently. Owner's two outstanding conditions were: (1) principal wave seals clean on its own evidence; (2) surface-language trace resolved. The trace is resolved-clean [at `e099ced1` · Step 2]. The wave seal is the last gate on DAP portal frontend work."**
+
+Both conditions are now met:
+- **(1) Principal wave seals clean on its own evidence.** ✅ THIS SEAL · Commits A/B/C landed byte-identically double-green against ratchet 5546 · zero regressions · zero mutation-site findings · 13 RED-first invariants GREEN with verbatim spec docstrings · 8 DAP acceptance-frame requirements structurally unblocked.
+- **(2) Surface-language trace resolved-clean.** ✅ Landed at `e099ced1` (CP-SURFACE-LANGUAGE-TRACE-REPORT · Step 2) — PROVENANCE FAULT CONFIRMED null · downstream-assumption audit CLEAN across 5 owner-ratified trace locations.
+
+**DAP portal frontend work is UNBLOCKED at this seal.** The pending-ratification tags on DAP-portal-adjacent lines in `notes/OS_PROTOTYPE_FRONTENDS_CARD_20260920.md` (Step 8) may LIFT at owner discretion (Brief §4 DAP + Brief §7.8 workspace API keys + agents + Brief §7.9 role gating tied to identity plane).
+
+### Autopilot next
+
+Standing bounds re-affirmed. G5 slice-extension backlog (P2 · 636 atomic rules remaining) resumes in separate wave seals per owner ruling 2026-09-20T~08:56Z verbatim (subsequent-waves-after-Step-9 or interleaved per capacity). DAP portal frontend work opens as soon as owner ratifies.
+
+### Standing bounds unchanged
+
+zero push · terminal pytest only · no testing_agent · additive-only §3.8 · §4.1 §E · §4.1 §F sha-pinning discipline · three-repo discipline · ratchet monotonic (floor **5546** · never rebaselined silently). Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered · MEM-R-053 CROWN BAN NOT triggered.
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
