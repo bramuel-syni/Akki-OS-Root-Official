@@ -1,0 +1,20 @@
+        Silent flip forbidden until owner rules.
+        """
+>       from services.business_continuity.anchors import (
+            BC_3_PENDING_OVERRIDE, BC_4_PENDING_OVERRIDE,
+        )
+E       ModuleNotFoundError: No module named 'services.business_continuity'
+
+tests/invariants/test_wm3_sw10_bca_s10_s11_bc1_bc2.py:175: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wm3_sw10_bca_s10_s11_bc1_bc2.py::test_sw10_module_fabric
+FAILED tests/invariants/test_wm3_sw10_bca_s10_s11_bc1_bc2.py::test_sw10_s10_verbatim_anchor_pinned
+FAILED tests/invariants/test_wm3_sw10_bca_s10_s11_bc1_bc2.py::test_sw10_s10_rto_matches_ca1_n5_policy
+FAILED tests/invariants/test_wm3_sw10_bca_s10_s11_bc1_bc2.py::test_sw10_bc1_verbatim_anchor_pinned
+FAILED tests/invariants/test_wm3_sw10_bca_s10_s11_bc1_bc2.py::test_sw10_bc1_pins_ca1_n5_witness_independence
+FAILED tests/invariants/test_wm3_sw10_bca_s10_s11_bc1_bc2.py::test_sw10_bc2_verbatim_anchor_pinned
+FAILED tests/invariants/test_wm3_sw10_bca_s10_s11_bc1_bc2.py::test_sw10_bc2_cadence_matches_ca1_n5_policy
+FAILED tests/invariants/test_wm3_sw10_bca_s10_s11_bc1_bc2.py::test_sw10_s11_verbatim_anchor_pinned
+FAILED tests/invariants/test_wm3_sw10_bca_s10_s11_bc1_bc2.py::test_sw10_s11_window_matches_ca1_n2_policy
+FAILED tests/invariants/test_wm3_sw10_bca_s10_s11_bc1_bc2.py::test_sw10_bc3_bc4_open_markers_preserved
+10 failed in 0.66s

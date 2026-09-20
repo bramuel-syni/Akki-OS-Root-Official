@@ -1,0 +1,44 @@
+# RECONSTRUCTED POST-HOC AT HEAD e436028251b0ae18919c163123b565e3000384ed · 2026-09-17
+# NOT captured at Commit-A landing time. Per-CP receipt reconstruction executed
+# during 2026-09-17 §3.3 BACK-COMPAT BATCH scoped path (c) reconstruction.
+# Method: temporarily hide services/platform_control_plane/audit_event.py → run pytest tests/invariants/test_p6_cp1_audit_event.py → capture RED
+# ---
+EEEEEEEEEEE                                                              [100%]
+==================================== ERRORS ====================================
+______ ERROR at setup of test_module_fabric_present_and_all_exports_match ______
+E   ModuleNotFoundError: No module named 'services.platform_control_plane.audit_event'
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+____ ERROR at setup of test_audit_event_shape_frozen_9_carrier_exact_order _____
+E   ModuleNotFoundError: No module named 'services.platform_control_plane.audit_event'
+___________ ERROR at setup of test_fields_constant_matches_dataclass ___________
+E   ModuleNotFoundError: No module named 'services.platform_control_plane.audit_event'
+___________________ ERROR at setup of test_refusal_hierarchy ___________________
+E   ModuleNotFoundError: No module named 'services.platform_control_plane.audit_event'
+_______ ERROR at setup of test_ownership_isolation_at_tenant_id_index_1 ________
+E   ModuleNotFoundError: No module named 'services.platform_control_plane.audit_event'
+_______________ ERROR at setup of test_refuses_deletion_request ________________
+E   ModuleNotFoundError: No module named 'services.platform_control_plane.audit_event'
+___________________ ERROR at setup of test_refuses_mutation ____________________
+E   ModuleNotFoundError: No module named 'services.platform_control_plane.audit_event'
+______________ ERROR at setup of test_refuses_mutation_any_field _______________
+E   ModuleNotFoundError: No module named 'services.platform_control_plane.audit_event'
+____ ERROR at setup of test_deletion_refusal_takes_precedence_over_mutation ____
+E   ModuleNotFoundError: No module named 'services.platform_control_plane.audit_event'
+_____________ ERROR at setup of test_admits_identity_preservation ______________
+E   ModuleNotFoundError: No module named 'services.platform_control_plane.audit_event'
+_ ERROR at setup of test_verbatim_anchor_case_agnostic_zero_data_plane_imports _
+E   ModuleNotFoundError: No module named 'services.platform_control_plane.audit_event'
+=========================== short test summary info ============================
+ERROR tests/invariants/test_p6_cp1_audit_event.py::test_module_fabric_present_and_all_exports_match
+ERROR tests/invariants/test_p6_cp1_audit_event.py::test_audit_event_shape_frozen_9_carrier_exact_order
+ERROR tests/invariants/test_p6_cp1_audit_event.py::test_fields_constant_matches_dataclass
+ERROR tests/invariants/test_p6_cp1_audit_event.py::test_refusal_hierarchy - M...
+ERROR tests/invariants/test_p6_cp1_audit_event.py::test_ownership_isolation_at_tenant_id_index_1
+ERROR tests/invariants/test_p6_cp1_audit_event.py::test_refuses_deletion_request
+ERROR tests/invariants/test_p6_cp1_audit_event.py::test_refuses_mutation - Mo...
+ERROR tests/invariants/test_p6_cp1_audit_event.py::test_refuses_mutation_any_field
+ERROR tests/invariants/test_p6_cp1_audit_event.py::test_deletion_refusal_takes_precedence_over_mutation
+ERROR tests/invariants/test_p6_cp1_audit_event.py::test_admits_identity_preservation
+ERROR tests/invariants/test_p6_cp1_audit_event.py::test_verbatim_anchor_case_agnostic_zero_data_plane_imports
+11 errors in 0.59s

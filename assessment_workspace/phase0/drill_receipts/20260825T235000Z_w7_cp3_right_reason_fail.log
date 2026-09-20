@@ -1,0 +1,95 @@
+/root/.venv/lib/python3.11/site-packages/pytest_asyncio/plugin.py:208: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.3.3, pluggy-1.6.0 -- /root/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: xdist-3.8.0, anyio-4.14.2, asyncio-0.24.0
+asyncio: mode=Mode.AUTO, default_loop_scope=None
+collecting ... collected 13 items
+
+tests/invariants/test_w7_cp3_model_registry.py::test_model_registry_is_top_level_package FAILED [  7%]
+tests/invariants/test_w7_cp3_model_registry.py::test_model_registry_not_shadowed_by_perception FAILED [ 15%]
+tests/invariants/test_w7_cp3_model_registry.py::test_registry_seeded_with_seven_emergent_universal_models FAILED [ 23%]
+tests/invariants/test_w7_cp3_model_registry.py::test_registry_does_not_seed_whisper_tiny FAILED [ 30%]
+tests/invariants/test_w7_cp3_model_registry.py::test_every_seeded_entry_carries_provenance_and_license_fields FAILED [ 38%]
+tests/invariants/test_w7_cp3_model_registry.py::test_no_seeded_entry_carries_credentials_or_secrets FAILED [ 46%]
+tests/invariants/test_w7_cp3_model_registry.py::test_current_registry_version_is_v0_at_seed FAILED [ 53%]
+tests/invariants/test_w7_cp3_model_registry.py::test_attest_model_succeeds_on_seeded_id FAILED [ 61%]
+tests/invariants/test_w7_cp3_model_registry.py::test_attest_model_hard_fails_on_unregistered FAILED [ 69%]
+tests/invariants/test_w7_cp3_model_registry.py::test_attest_model_hard_fails_on_whisper_tiny FAILED [ 76%]
+tests/invariants/test_w7_cp3_model_registry.py::test_register_model_idempotent_by_id FAILED [ 84%]
+tests/invariants/test_w7_cp3_model_registry.py::test_register_model_creates_additive_bump FAILED [ 92%]
+tests/invariants/test_w7_cp3_model_registry.py::test_load_registry_honors_emergent_env_var_absence FAILED [100%]
+
+=================================== FAILURES ===================================
+___________________ test_model_registry_is_top_level_package ___________________
+tests/invariants/test_w7_cp3_model_registry.py:26: in test_model_registry_is_top_level_package
+    from services import model_registry  # noqa: F401 · must import
+E   ImportError: cannot import name 'model_registry' from 'services' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/__init__.py)
+________________ test_model_registry_not_shadowed_by_perception ________________
+tests/invariants/test_w7_cp3_model_registry.py:36: in test_model_registry_not_shadowed_by_perception
+    with pytest.raises(ModuleNotFoundError):
+E   Failed: DID NOT RAISE <class 'ModuleNotFoundError'>
+__________ test_registry_seeded_with_seven_emergent_universal_models ___________
+tests/invariants/test_w7_cp3_model_registry.py:56: in test_registry_seeded_with_seven_emergent_universal_models
+    from services.model_registry.registry import load_registry
+E   ModuleNotFoundError: No module named 'services.model_registry'
+___________________ test_registry_does_not_seed_whisper_tiny ___________________
+tests/invariants/test_w7_cp3_model_registry.py:71: in test_registry_does_not_seed_whisper_tiny
+    from services.model_registry.registry import load_registry
+E   ModuleNotFoundError: No module named 'services.model_registry'
+________ test_every_seeded_entry_carries_provenance_and_license_fields _________
+tests/invariants/test_w7_cp3_model_registry.py:84: in test_every_seeded_entry_carries_provenance_and_license_fields
+    from services.model_registry.registry import load_registry
+E   ModuleNotFoundError: No module named 'services.model_registry'
+_____________ test_no_seeded_entry_carries_credentials_or_secrets ______________
+tests/invariants/test_w7_cp3_model_registry.py:101: in test_no_seeded_entry_carries_credentials_or_secrets
+    from services.model_registry.registry import load_registry
+E   ModuleNotFoundError: No module named 'services.model_registry'
+_________________ test_current_registry_version_is_v0_at_seed __________________
+tests/invariants/test_w7_cp3_model_registry.py:116: in test_current_registry_version_is_v0_at_seed
+    from services.model_registry.registry import current_registry_version
+E   ModuleNotFoundError: No module named 'services.model_registry'
+___________________ test_attest_model_succeeds_on_seeded_id ____________________
+tests/invariants/test_w7_cp3_model_registry.py:124: in test_attest_model_succeeds_on_seeded_id
+    from services.model_registry.registry import attest_model
+E   ModuleNotFoundError: No module named 'services.model_registry'
+_________________ test_attest_model_hard_fails_on_unregistered _________________
+tests/invariants/test_w7_cp3_model_registry.py:134: in test_attest_model_hard_fails_on_unregistered
+    from services.model_registry.registry import attest_model
+E   ModuleNotFoundError: No module named 'services.model_registry'
+_________________ test_attest_model_hard_fails_on_whisper_tiny _________________
+tests/invariants/test_w7_cp3_model_registry.py:143: in test_attest_model_hard_fails_on_whisper_tiny
+    from services.model_registry.registry import attest_model
+E   ModuleNotFoundError: No module named 'services.model_registry'
+_____________________ test_register_model_idempotent_by_id _____________________
+tests/invariants/test_w7_cp3_model_registry.py:151: in test_register_model_idempotent_by_id
+    from services.model_registry import registry as reg_mod
+E   ModuleNotFoundError: No module named 'services.model_registry'
+__________________ test_register_model_creates_additive_bump ___________________
+tests/invariants/test_w7_cp3_model_registry.py:166: in test_register_model_creates_additive_bump
+    from services.model_registry import registry as reg_mod
+E   ModuleNotFoundError: No module named 'services.model_registry'
+______________ test_load_registry_honors_emergent_env_var_absence ______________
+tests/invariants/test_w7_cp3_model_registry.py:192: in test_load_registry_honors_emergent_env_var_absence
+    from services.model_registry.registry import load_registry
+E   ModuleNotFoundError: No module named 'services.model_registry'
+=========================== short test summary info ============================
+FAILED tests/invariants/test_w7_cp3_model_registry.py::test_model_registry_is_top_level_package
+FAILED tests/invariants/test_w7_cp3_model_registry.py::test_model_registry_not_shadowed_by_perception
+FAILED tests/invariants/test_w7_cp3_model_registry.py::test_registry_seeded_with_seven_emergent_universal_models
+FAILED tests/invariants/test_w7_cp3_model_registry.py::test_registry_does_not_seed_whisper_tiny
+FAILED tests/invariants/test_w7_cp3_model_registry.py::test_every_seeded_entry_carries_provenance_and_license_fields
+FAILED tests/invariants/test_w7_cp3_model_registry.py::test_no_seeded_entry_carries_credentials_or_secrets
+FAILED tests/invariants/test_w7_cp3_model_registry.py::test_current_registry_version_is_v0_at_seed
+FAILED tests/invariants/test_w7_cp3_model_registry.py::test_attest_model_succeeds_on_seeded_id
+FAILED tests/invariants/test_w7_cp3_model_registry.py::test_attest_model_hard_fails_on_unregistered
+FAILED tests/invariants/test_w7_cp3_model_registry.py::test_attest_model_hard_fails_on_whisper_tiny
+FAILED tests/invariants/test_w7_cp3_model_registry.py::test_register_model_idempotent_by_id
+FAILED tests/invariants/test_w7_cp3_model_registry.py::test_register_model_creates_additive_bump
+FAILED tests/invariants/test_w7_cp3_model_registry.py::test_load_registry_honors_emergent_env_var_absence
+============================== 13 failed in 0.07s ==============================

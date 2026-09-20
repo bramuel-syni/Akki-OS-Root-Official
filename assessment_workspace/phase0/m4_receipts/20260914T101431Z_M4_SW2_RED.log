@@ -1,0 +1,12 @@
+
+tests/invariants/test_wm4_sw2_never_pre_fill_invariant.py:123: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wm4_sw2_never_pre_fill_invariant.py::test_sw2_module_fabric
+FAILED tests/invariants/test_wm4_sw2_never_pre_fill_invariant.py::test_sw2_canon_5_s14_verbatim_pinned
+FAILED tests/invariants/test_wm4_sw2_never_pre_fill_invariant.py::test_sw2_mandatory_field_slot_empty_by_default
+FAILED tests/invariants/test_wm4_sw2_never_pre_fill_invariant.py::test_sw2_build_ask_turn_produces_agent_ask_only
+FAILED tests/invariants/test_wm4_sw2_never_pre_fill_invariant.py::test_sw2_assert_no_prefill_on_empty_slot_passes
+FAILED tests/invariants/test_wm4_sw2_never_pre_fill_invariant.py::test_sw2_agent_prefill_refused_on_mandatory_slot
+FAILED tests/invariants/test_wm4_sw2_never_pre_fill_invariant.py::test_sw2_user_fill_permitted_on_mandatory_slot
+FAILED tests/invariants/test_wm4_sw2_never_pre_fill_invariant.py::test_sw2_agent_assumed_state_is_optional_field_only
+8 failed in 0.66s

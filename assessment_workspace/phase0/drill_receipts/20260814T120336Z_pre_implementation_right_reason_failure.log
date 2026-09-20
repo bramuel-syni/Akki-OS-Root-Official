@@ -1,0 +1,90 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.15, pytest-9.1.1, pluggy-1.6.0 -- /root/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: anyio-4.14.2, xdist-3.8.0, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 0 items / 7 errors
+
+==================================== ERRORS ====================================
+_ ERROR collecting tests/invariants/test_actor_declaration_v0_contract_frozen.py _
+ImportError while importing test module '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_actor_declaration_v0_contract_frozen.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend/tests/invariants/test_actor_declaration_v0_contract_frozen.py:14: in <module>
+    from contracts.actor_declaration import ActorDeclaration
+E   ModuleNotFoundError: No module named 'contracts.actor_declaration'
+_____ ERROR collecting tests/invariants/test_record_matrix_thin_kernel.py ______
+ImportError while importing test module '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_record_matrix_thin_kernel.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend/tests/invariants/test_record_matrix_thin_kernel.py:14: in <module>
+    from contracts.record_matrix import (
+E   ModuleNotFoundError: No module named 'contracts.record_matrix'
+_____ ERROR collecting tests/invariants/test_task_identity_thin_kernel.py ______
+ImportError while importing test module '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_task_identity_thin_kernel.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend/tests/invariants/test_task_identity_thin_kernel.py:13: in <module>
+    from contracts.task_identity import (
+E   ModuleNotFoundError: No module named 'contracts.task_identity'
+__ ERROR collecting tests/invariants/test_parity_seat_extends_thin_kernel.py ___
+ImportError while importing test module '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_parity_seat_extends_thin_kernel.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend/tests/invariants/test_parity_seat_extends_thin_kernel.py:15: in <module>
+    from contracts.actor_declaration import ActorDeclaration
+E   ModuleNotFoundError: No module named 'contracts.actor_declaration'
+___ ERROR collecting tests/invariants/test_admit_refuses_undeclared_actor.py ___
+ImportError while importing test module '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_admit_refuses_undeclared_actor.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend/tests/invariants/test_admit_refuses_undeclared_actor.py:20: in <module>
+    from contracts.actor_declaration import ActorDeclaration
+E   ModuleNotFoundError: No module named 'contracts.actor_declaration'
+__ ERROR collecting tests/invariants/test_compute_seam_no_unledgered_exec.py ___
+ImportError while importing test module '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_compute_seam_no_unledgered_exec.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend/tests/invariants/test_compute_seam_no_unledgered_exec.py:18: in <module>
+    from contracts.actor_declaration import ActorDeclaration
+E   ModuleNotFoundError: No module named 'contracts.actor_declaration'
+_ ERROR collecting tests/invariants/test_compute_seam_artifact_hash_verified.py _
+ImportError while importing test module '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_compute_seam_artifact_hash_verified.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend/tests/invariants/test_compute_seam_artifact_hash_verified.py:15: in <module>
+    from services.compute_seam.artifact_verify import (
+E   ModuleNotFoundError: No module named 'services.compute_seam'
+=========================== short test summary info ============================
+ERROR backend/tests/invariants/test_actor_declaration_v0_contract_frozen.py
+ERROR backend/tests/invariants/test_record_matrix_thin_kernel.py
+ERROR backend/tests/invariants/test_task_identity_thin_kernel.py
+ERROR backend/tests/invariants/test_parity_seat_extends_thin_kernel.py
+ERROR backend/tests/invariants/test_admit_refuses_undeclared_actor.py
+ERROR backend/tests/invariants/test_compute_seam_no_unledgered_exec.py
+ERROR backend/tests/invariants/test_compute_seam_artifact_hash_verified.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 7 errors during collection !!!!!!!!!!!!!!!!!!!!
+============================== 7 errors in 0.23s ===============================

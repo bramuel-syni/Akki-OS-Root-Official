@@ -1,0 +1,23 @@
+============================= test session starts ==============================
+collecting ... collected 8 items
+
+backend/tests/invariants/test_w_registry_full_build_cp5_cp6_cp7_wires.py::test_cp5_opportunity_briefs_list_reads_real_registry FAILED [ 12%]
+backend/tests/invariants/test_w_registry_full_build_cp5_cp6_cp7_wires.py::test_cp5_opportunity_brief_detail_returns_real_row FAILED [ 25%]
+backend/tests/invariants/test_w_registry_full_build_cp5_cp6_cp7_wires.py::test_cp5_opportunity_briefs_by_source_filters_correctly FAILED [ 37%]
+backend/tests/invariants/test_w_registry_full_build_cp5_cp6_cp7_wires.py::test_cp5_opportunity_briefs_regenerate_reports_pipeline_available FAILED [ 50%]
+backend/tests/invariants/test_w_registry_full_build_cp5_cp6_cp7_wires.py::test_cp6_perception_list_importable_and_returns_shape PASSED [ 62%]
+backend/tests/invariants/test_w_registry_full_build_cp5_cp6_cp7_wires.py::test_cp6_perception_execution_mode_module_importable PASSED [ 75%]
+backend/tests/invariants/test_w_registry_full_build_cp5_cp6_cp7_wires.py::test_cp6_perception_per_source_route_returns_source_scoped_shape PASSED [ 87%]
+backend/tests/invariants/test_w_registry_full_build_cp5_cp6_cp7_wires.py::test_cp7_rules_updates_pending_reads_phase0_rules_ledger PASSED [100%]
+
+=================================== FAILURES ===================================
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_w_registry_full_build_cp5_cp6_cp7_wires.py:75: AssertionError: opportunity_briefs list did not surface test row brief_8ad6b90471544322
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_w_registry_full_build_cp5_cp6_cp7_wires.py:89: assert None is not None
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_w_registry_full_build_cp5_cp6_cp7_wires.py:100: AssertionError: assert 'brief_05c155a7c4a8402e' in []
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_w_registry_full_build_cp5_cp6_cp7_wires.py:111: AssertionError: regenerate must report pipeline_available=True after CP5 wire lands
+=========================== short test summary info ============================
+FAILED backend/tests/invariants/test_w_registry_full_build_cp5_cp6_cp7_wires.py::test_cp5_opportunity_briefs_list_reads_real_registry
+FAILED backend/tests/invariants/test_w_registry_full_build_cp5_cp6_cp7_wires.py::test_cp5_opportunity_brief_detail_returns_real_row
+FAILED backend/tests/invariants/test_w_registry_full_build_cp5_cp6_cp7_wires.py::test_cp5_opportunity_briefs_by_source_filters_correctly
+FAILED backend/tests/invariants/test_w_registry_full_build_cp5_cp6_cp7_wires.py::test_cp5_opportunity_briefs_regenerate_reports_pipeline_available
+========================= 4 failed, 4 passed in 1.98s ==========================

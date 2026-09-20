@@ -1,0 +1,173 @@
+/root/.venv/lib/python3.11/site-packages/pytest_asyncio/plugin.py:208: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.3.3, pluggy-1.6.0 -- /root/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: xdist-3.8.0, asyncio-0.24.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, default_loop_scope=None
+collecting ... collected 26 items
+
+backend/tests/invariants/test_watch_cp_c3_mirage_isolation.py::test_write_mirage_artifact_lands_in_isolated_dir ERROR [  3%]
+backend/tests/invariants/test_watch_cp_c3_mirage_isolation.py::test_write_mirage_artifact_refuses_when_store_dir_overlaps_production ERROR [  7%]
+backend/tests/invariants/test_watch_cp_c3_mirage_isolation.py::test_write_mirage_artifact_refuses_when_store_dir_is_child_of_production ERROR [ 11%]
+backend/tests/invariants/test_watch_cp_c3_mirage_isolation.py::test_mirage_artifact_grammar_refuses_is_synthetic_false ERROR [ 15%]
+backend/tests/invariants/test_watch_cp_c3_mirage_isolation.py::test_mirage_artifact_grammar_refuses_production_store_leak_check_failed ERROR [ 19%]
+backend/tests/invariants/test_watch_cp_c3_mirage_isolation.py::test_write_mirage_artifact_write_once_violation_on_duplicate ERROR [ 23%]
+backend/tests/invariants/test_watch_cp_c3_mirage_isolation.py::test_read_mirage_artifacts_returns_only_from_mirage_store ERROR [ 26%]
+backend/tests/invariants/test_watch_cp_c3_mirage_isolation.py::test_mirage_module_has_no_production_write_functions ERROR [ 30%]
+backend/tests/invariants/test_watch_cp_c3_mark_dye_pack.py::test_mark_v0_binds_all_six_dimensions_of_line_127 ERROR [ 34%]
+backend/tests/invariants/test_watch_cp_c3_mark_dye_pack.py::test_mark_v0_content_hashes_is_a_list_of_strings ERROR [ 38%]
+backend/tests/invariants/test_watch_cp_c3_mark_dye_pack.py::test_mark_v0_content_hashes_min_length_one ERROR [ 42%]
+backend/tests/invariants/test_watch_cp_c3_mark_dye_pack.py::test_mark_v0_extra_fields_refused_and_frozen ERROR [ 46%]
+backend/tests/invariants/test_watch_cp_c3_mark_dye_pack.py::test_mint_mark_binds_all_dimensions_on_conviction ERROR [ 50%]
+backend/tests/invariants/test_watch_cp_c3_mark_dye_pack.py::test_mint_mark_refuses_when_action_not_on_record ERROR [ 53%]
+backend/tests/invariants/test_watch_cp_c3_mark_dye_pack.py::test_mint_mark_refuses_when_action_is_not_sever ERROR [ 57%]
+backend/tests/invariants/test_watch_cp_c3_mark_dye_pack.py::test_mint_mark_write_once_violation_on_duplicate ERROR [ 61%]
+backend/tests/invariants/test_watch_cp_c3_mark_dye_pack.py::test_mark_resurfacing_check_detects_a_matching_hash ERROR [ 65%]
+backend/tests/invariants/test_watch_cp_c3_mark_dye_pack.py::test_mark_resilience_survives_one_dimension_shed ERROR [ 69%]
+backend/tests/invariants/test_watch_cp_c3_http_journey.py::test_http_post_mirage_artifact_returns_201_with_isolation_check ERROR [ 73%]
+backend/tests/invariants/test_watch_cp_c3_http_journey.py::test_http_post_mirage_artifact_duplicate_returns_409 ERROR [ 76%]
+backend/tests/invariants/test_watch_cp_c3_http_journey.py::test_http_post_mirage_artifact_grammar_violation_returns_422 ERROR [ 80%]
+backend/tests/invariants/test_watch_cp_c3_http_journey.py::test_http_post_mark_on_conviction_returns_201_with_all_dimensions ERROR [ 84%]
+backend/tests/invariants/test_watch_cp_c3_http_journey.py::test_http_post_mark_without_conviction_returns_404 ERROR [ 88%]
+backend/tests/invariants/test_watch_cp_c3_http_journey.py::test_http_post_mark_on_non_sever_action_returns_422 ERROR [ 92%]
+backend/tests/invariants/test_watch_cp_c3_http_journey.py::test_http_get_mark_hits_by_content_hash ERROR [ 96%]
+backend/tests/invariants/test_watch_cp_c3_http_journey.py::test_http_get_state_surfaces_mirage_artifacts_and_marks ERROR [100%]
+
+==================================== ERRORS ====================================
+______ ERROR at setup of test_write_mirage_artifact_lands_in_isolated_dir ______
+backend/tests/invariants/test_watch_cp_c3_mirage_isolation.py:39: in _isolated_mirage_dirs
+    import services.watch.mirage_artifacts as _ma
+E   ModuleNotFoundError: No module named 'services.watch.mirage_artifacts'
+_ ERROR at setup of test_write_mirage_artifact_refuses_when_store_dir_overlaps_production _
+backend/tests/invariants/test_watch_cp_c3_mirage_isolation.py:39: in _isolated_mirage_dirs
+    import services.watch.mirage_artifacts as _ma
+E   ModuleNotFoundError: No module named 'services.watch.mirage_artifacts'
+_ ERROR at setup of test_write_mirage_artifact_refuses_when_store_dir_is_child_of_production _
+backend/tests/invariants/test_watch_cp_c3_mirage_isolation.py:39: in _isolated_mirage_dirs
+    import services.watch.mirage_artifacts as _ma
+E   ModuleNotFoundError: No module named 'services.watch.mirage_artifacts'
+__ ERROR at setup of test_mirage_artifact_grammar_refuses_is_synthetic_false ___
+backend/tests/invariants/test_watch_cp_c3_mirage_isolation.py:39: in _isolated_mirage_dirs
+    import services.watch.mirage_artifacts as _ma
+E   ModuleNotFoundError: No module named 'services.watch.mirage_artifacts'
+_ ERROR at setup of test_mirage_artifact_grammar_refuses_production_store_leak_check_failed _
+backend/tests/invariants/test_watch_cp_c3_mirage_isolation.py:39: in _isolated_mirage_dirs
+    import services.watch.mirage_artifacts as _ma
+E   ModuleNotFoundError: No module named 'services.watch.mirage_artifacts'
+_ ERROR at setup of test_write_mirage_artifact_write_once_violation_on_duplicate _
+backend/tests/invariants/test_watch_cp_c3_mirage_isolation.py:39: in _isolated_mirage_dirs
+    import services.watch.mirage_artifacts as _ma
+E   ModuleNotFoundError: No module named 'services.watch.mirage_artifacts'
+_ ERROR at setup of test_read_mirage_artifacts_returns_only_from_mirage_store __
+backend/tests/invariants/test_watch_cp_c3_mirage_isolation.py:39: in _isolated_mirage_dirs
+    import services.watch.mirage_artifacts as _ma
+E   ModuleNotFoundError: No module named 'services.watch.mirage_artifacts'
+____ ERROR at setup of test_mirage_module_has_no_production_write_functions ____
+backend/tests/invariants/test_watch_cp_c3_mirage_isolation.py:39: in _isolated_mirage_dirs
+    import services.watch.mirage_artifacts as _ma
+E   ModuleNotFoundError: No module named 'services.watch.mirage_artifacts'
+_____ ERROR at setup of test_mark_v0_binds_all_six_dimensions_of_line_127 ______
+backend/tests/invariants/test_watch_cp_c3_mark_dye_pack.py:41: in _isolated_marks_dir
+    import services.watch.mark as _m
+E   ModuleNotFoundError: No module named 'services.watch.mark'
+______ ERROR at setup of test_mark_v0_content_hashes_is_a_list_of_strings ______
+backend/tests/invariants/test_watch_cp_c3_mark_dye_pack.py:41: in _isolated_marks_dir
+    import services.watch.mark as _m
+E   ModuleNotFoundError: No module named 'services.watch.mark'
+_________ ERROR at setup of test_mark_v0_content_hashes_min_length_one _________
+backend/tests/invariants/test_watch_cp_c3_mark_dye_pack.py:41: in _isolated_marks_dir
+    import services.watch.mark as _m
+E   ModuleNotFoundError: No module named 'services.watch.mark'
+________ ERROR at setup of test_mark_v0_extra_fields_refused_and_frozen ________
+backend/tests/invariants/test_watch_cp_c3_mark_dye_pack.py:41: in _isolated_marks_dir
+    import services.watch.mark as _m
+E   ModuleNotFoundError: No module named 'services.watch.mark'
+_____ ERROR at setup of test_mint_mark_binds_all_dimensions_on_conviction ______
+backend/tests/invariants/test_watch_cp_c3_mark_dye_pack.py:41: in _isolated_marks_dir
+    import services.watch.mark as _m
+E   ModuleNotFoundError: No module named 'services.watch.mark'
+______ ERROR at setup of test_mint_mark_refuses_when_action_not_on_record ______
+backend/tests/invariants/test_watch_cp_c3_mark_dye_pack.py:41: in _isolated_marks_dir
+    import services.watch.mark as _m
+E   ModuleNotFoundError: No module named 'services.watch.mark'
+______ ERROR at setup of test_mint_mark_refuses_when_action_is_not_sever _______
+backend/tests/invariants/test_watch_cp_c3_mark_dye_pack.py:41: in _isolated_marks_dir
+    import services.watch.mark as _m
+E   ModuleNotFoundError: No module named 'services.watch.mark'
+______ ERROR at setup of test_mint_mark_write_once_violation_on_duplicate ______
+backend/tests/invariants/test_watch_cp_c3_mark_dye_pack.py:41: in _isolated_marks_dir
+    import services.watch.mark as _m
+E   ModuleNotFoundError: No module named 'services.watch.mark'
+____ ERROR at setup of test_mark_resurfacing_check_detects_a_matching_hash _____
+backend/tests/invariants/test_watch_cp_c3_mark_dye_pack.py:41: in _isolated_marks_dir
+    import services.watch.mark as _m
+E   ModuleNotFoundError: No module named 'services.watch.mark'
+______ ERROR at setup of test_mark_resilience_survives_one_dimension_shed ______
+backend/tests/invariants/test_watch_cp_c3_mark_dye_pack.py:41: in _isolated_marks_dir
+    import services.watch.mark as _m
+E   ModuleNotFoundError: No module named 'services.watch.mark'
+_ ERROR at setup of test_http_post_mirage_artifact_returns_201_with_isolation_check _
+backend/tests/invariants/test_watch_cp_c3_http_journey.py:25: in client
+    import services.watch.mirage_artifacts as _ma
+E   ModuleNotFoundError: No module named 'services.watch.mirage_artifacts'
+____ ERROR at setup of test_http_post_mirage_artifact_duplicate_returns_409 ____
+backend/tests/invariants/test_watch_cp_c3_http_journey.py:25: in client
+    import services.watch.mirage_artifacts as _ma
+E   ModuleNotFoundError: No module named 'services.watch.mirage_artifacts'
+_ ERROR at setup of test_http_post_mirage_artifact_grammar_violation_returns_422 _
+backend/tests/invariants/test_watch_cp_c3_http_journey.py:25: in client
+    import services.watch.mirage_artifacts as _ma
+E   ModuleNotFoundError: No module named 'services.watch.mirage_artifacts'
+_ ERROR at setup of test_http_post_mark_on_conviction_returns_201_with_all_dimensions _
+backend/tests/invariants/test_watch_cp_c3_http_journey.py:25: in client
+    import services.watch.mirage_artifacts as _ma
+E   ModuleNotFoundError: No module named 'services.watch.mirage_artifacts'
+_____ ERROR at setup of test_http_post_mark_without_conviction_returns_404 _____
+backend/tests/invariants/test_watch_cp_c3_http_journey.py:25: in client
+    import services.watch.mirage_artifacts as _ma
+E   ModuleNotFoundError: No module named 'services.watch.mirage_artifacts'
+____ ERROR at setup of test_http_post_mark_on_non_sever_action_returns_422 _____
+backend/tests/invariants/test_watch_cp_c3_http_journey.py:25: in client
+    import services.watch.mirage_artifacts as _ma
+E   ModuleNotFoundError: No module named 'services.watch.mirage_artifacts'
+__________ ERROR at setup of test_http_get_mark_hits_by_content_hash ___________
+backend/tests/invariants/test_watch_cp_c3_http_journey.py:25: in client
+    import services.watch.mirage_artifacts as _ma
+E   ModuleNotFoundError: No module named 'services.watch.mirage_artifacts'
+__ ERROR at setup of test_http_get_state_surfaces_mirage_artifacts_and_marks ___
+backend/tests/invariants/test_watch_cp_c3_http_journey.py:25: in client
+    import services.watch.mirage_artifacts as _ma
+E   ModuleNotFoundError: No module named 'services.watch.mirage_artifacts'
+=========================== short test summary info ============================
+ERROR backend/tests/invariants/test_watch_cp_c3_mirage_isolation.py::test_write_mirage_artifact_lands_in_isolated_dir
+ERROR backend/tests/invariants/test_watch_cp_c3_mirage_isolation.py::test_write_mirage_artifact_refuses_when_store_dir_overlaps_production
+ERROR backend/tests/invariants/test_watch_cp_c3_mirage_isolation.py::test_write_mirage_artifact_refuses_when_store_dir_is_child_of_production
+ERROR backend/tests/invariants/test_watch_cp_c3_mirage_isolation.py::test_mirage_artifact_grammar_refuses_is_synthetic_false
+ERROR backend/tests/invariants/test_watch_cp_c3_mirage_isolation.py::test_mirage_artifact_grammar_refuses_production_store_leak_check_failed
+ERROR backend/tests/invariants/test_watch_cp_c3_mirage_isolation.py::test_write_mirage_artifact_write_once_violation_on_duplicate
+ERROR backend/tests/invariants/test_watch_cp_c3_mirage_isolation.py::test_read_mirage_artifacts_returns_only_from_mirage_store
+ERROR backend/tests/invariants/test_watch_cp_c3_mirage_isolation.py::test_mirage_module_has_no_production_write_functions
+ERROR backend/tests/invariants/test_watch_cp_c3_mark_dye_pack.py::test_mark_v0_binds_all_six_dimensions_of_line_127
+ERROR backend/tests/invariants/test_watch_cp_c3_mark_dye_pack.py::test_mark_v0_content_hashes_is_a_list_of_strings
+ERROR backend/tests/invariants/test_watch_cp_c3_mark_dye_pack.py::test_mark_v0_content_hashes_min_length_one
+ERROR backend/tests/invariants/test_watch_cp_c3_mark_dye_pack.py::test_mark_v0_extra_fields_refused_and_frozen
+ERROR backend/tests/invariants/test_watch_cp_c3_mark_dye_pack.py::test_mint_mark_binds_all_dimensions_on_conviction
+ERROR backend/tests/invariants/test_watch_cp_c3_mark_dye_pack.py::test_mint_mark_refuses_when_action_not_on_record
+ERROR backend/tests/invariants/test_watch_cp_c3_mark_dye_pack.py::test_mint_mark_refuses_when_action_is_not_sever
+ERROR backend/tests/invariants/test_watch_cp_c3_mark_dye_pack.py::test_mint_mark_write_once_violation_on_duplicate
+ERROR backend/tests/invariants/test_watch_cp_c3_mark_dye_pack.py::test_mark_resurfacing_check_detects_a_matching_hash
+ERROR backend/tests/invariants/test_watch_cp_c3_mark_dye_pack.py::test_mark_resilience_survives_one_dimension_shed
+ERROR backend/tests/invariants/test_watch_cp_c3_http_journey.py::test_http_post_mirage_artifact_returns_201_with_isolation_check
+ERROR backend/tests/invariants/test_watch_cp_c3_http_journey.py::test_http_post_mirage_artifact_duplicate_returns_409
+ERROR backend/tests/invariants/test_watch_cp_c3_http_journey.py::test_http_post_mirage_artifact_grammar_violation_returns_422
+ERROR backend/tests/invariants/test_watch_cp_c3_http_journey.py::test_http_post_mark_on_conviction_returns_201_with_all_dimensions
+ERROR backend/tests/invariants/test_watch_cp_c3_http_journey.py::test_http_post_mark_without_conviction_returns_404
+ERROR backend/tests/invariants/test_watch_cp_c3_http_journey.py::test_http_post_mark_on_non_sever_action_returns_422
+ERROR backend/tests/invariants/test_watch_cp_c3_http_journey.py::test_http_get_mark_hits_by_content_hash
+ERROR backend/tests/invariants/test_watch_cp_c3_http_journey.py::test_http_get_state_surfaces_mirage_artifacts_and_marks
+============================== 26 errors in 0.46s ==============================

@@ -1,0 +1,188 @@
+EEEEEEE                                                                  [100%]
+==================================== ERRORS ====================================
+______ ERROR at setup of test_module_fabric_present_and_all_exports_match ______
+
+    @pytest.fixture(scope="module")
+    def mod():
+>       return importlib.import_module(MODULE_NAME)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_wm7_w9_upgrade_1_derivative_corpus_deliverable.py:33: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'services.audio_plane_v1.corpus_deliverable_v1_derivative'
+import_ = <function _gcd_import at 0xf8c5aa64bd80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'services.audio_plane_v1.corpus_deliverable_v1_derivative'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+_ ERROR at setup of test_derivative_segment_v1_shape_frozen_6_carrier_exact_order _
+
+    @pytest.fixture(scope="module")
+    def mod():
+>       return importlib.import_module(MODULE_NAME)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_wm7_w9_upgrade_1_derivative_corpus_deliverable.py:33: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'services.audio_plane_v1.corpus_deliverable_v1_derivative'
+import_ = <function _gcd_import at 0xf8c5aa64bd80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'services.audio_plane_v1.corpus_deliverable_v1_derivative'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+_ ERROR at setup of test_derivative_corpus_deliverable_v1_shape_frozen_4_carrier_exact_order _
+
+    @pytest.fixture(scope="module")
+    def mod():
+>       return importlib.import_module(MODULE_NAME)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_wm7_w9_upgrade_1_derivative_corpus_deliverable.py:33: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'services.audio_plane_v1.corpus_deliverable_v1_derivative'
+import_ = <function _gcd_import at 0xf8c5aa64bd80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'services.audio_plane_v1.corpus_deliverable_v1_derivative'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+________________ ERROR at setup of test_refusal_class_hierarchy ________________
+
+    @pytest.fixture(scope="module")
+    def mod():
+>       return importlib.import_module(MODULE_NAME)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_wm7_w9_upgrade_1_derivative_corpus_deliverable.py:33: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'services.audio_plane_v1.corpus_deliverable_v1_derivative'
+import_ = <function _gcd_import at 0xf8c5aa64bd80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'services.audio_plane_v1.corpus_deliverable_v1_derivative'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+___ ERROR at setup of test_assert_derivative_admissible_refuses_missing_refs ___
+
+    @pytest.fixture(scope="module")
+    def mod():
+>       return importlib.import_module(MODULE_NAME)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_wm7_w9_upgrade_1_derivative_corpus_deliverable.py:33: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'services.audio_plane_v1.corpus_deliverable_v1_derivative'
+import_ = <function _gcd_import at 0xf8c5aa64bd80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'services.audio_plane_v1.corpus_deliverable_v1_derivative'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+_ ERROR at setup of test_assert_derivative_admissible_permits_all_refs_present _
+
+    @pytest.fixture(scope="module")
+    def mod():
+>       return importlib.import_module(MODULE_NAME)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_wm7_w9_upgrade_1_derivative_corpus_deliverable.py:33: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'services.audio_plane_v1.corpus_deliverable_v1_derivative'
+import_ = <function _gcd_import at 0xf8c5aa64bd80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'services.audio_plane_v1.corpus_deliverable_v1_derivative'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+_ ERROR at setup of test_verbatim_anchor_case_agnostic_zero_forbidden_imports __
+
+    @pytest.fixture(scope="module")
+    def mod():
+>       return importlib.import_module(MODULE_NAME)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_wm7_w9_upgrade_1_derivative_corpus_deliverable.py:33: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'services.audio_plane_v1.corpus_deliverable_v1_derivative'
+import_ = <function _gcd_import at 0xf8c5aa64bd80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'services.audio_plane_v1.corpus_deliverable_v1_derivative'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+=========================== short test summary info ============================
+ERROR tests/invariants/test_wm7_w9_upgrade_1_derivative_corpus_deliverable.py::test_module_fabric_present_and_all_exports_match
+ERROR tests/invariants/test_wm7_w9_upgrade_1_derivative_corpus_deliverable.py::test_derivative_segment_v1_shape_frozen_6_carrier_exact_order
+ERROR tests/invariants/test_wm7_w9_upgrade_1_derivative_corpus_deliverable.py::test_derivative_corpus_deliverable_v1_shape_frozen_4_carrier_exact_order
+ERROR tests/invariants/test_wm7_w9_upgrade_1_derivative_corpus_deliverable.py::test_refusal_class_hierarchy
+ERROR tests/invariants/test_wm7_w9_upgrade_1_derivative_corpus_deliverable.py::test_assert_derivative_admissible_refuses_missing_refs
+ERROR tests/invariants/test_wm7_w9_upgrade_1_derivative_corpus_deliverable.py::test_assert_derivative_admissible_permits_all_refs_present
+ERROR tests/invariants/test_wm7_w9_upgrade_1_derivative_corpus_deliverable.py::test_verbatim_anchor_case_agnostic_zero_forbidden_imports
+7 errors in 0.67s

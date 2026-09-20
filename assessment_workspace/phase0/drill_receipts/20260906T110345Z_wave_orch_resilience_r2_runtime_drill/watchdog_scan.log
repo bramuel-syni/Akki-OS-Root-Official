@@ -1,0 +1,7 @@
+[watchdog] found 3 orphaned run(s): 1 adoptable, 2 not adoptable.
+[watchdog]   NOT_ADOPTABLE: run_id=burn_20260831T183247Z_dd53d6c7 · reason=no_heartbeat · last_heartbeat=None · polls_stale_491606s_gt_300s
+[watchdog]   NOT_ADOPTABLE: run_id=burn_20260831T183509Z_731f22ad · reason=no_heartbeat · last_heartbeat=None · polls_stale_490005s_gt_300s
+[watchdog]   ADOPTABLE: run_id=burn_20260906T110345Z_b1c2c20f · reason=stale_heartbeat · last_heartbeat=2026-09-06T11:05:54.324581Z · recent_poll_within_89s
+
+[watchdog] Recommended respawn commands (r2 informational-only; operator runs these manually — r3 will auto-execute):
+[watchdog]   $ AKKI_ADOPT_RUN_ID=burn_20260906T110345Z_b1c2c20f python3 /app/assessment_workspace/tools/gpu_burn_orchestrator.py

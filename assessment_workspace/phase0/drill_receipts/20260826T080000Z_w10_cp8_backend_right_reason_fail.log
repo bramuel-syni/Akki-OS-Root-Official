@@ -1,0 +1,277 @@
+/root/.venv/lib/python3.11/site-packages/pytest_asyncio/plugin.py:208: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+============================= test session starts ==============================
+collecting ... collected 7 items
+
+tests/invariants/test_w10_cp8_state_endpoints.py::test_governance_state_honest_empty ERROR [ 14%]
+tests/invariants/test_w10_cp8_state_endpoints.py::test_governance_state_reflects_seeded_reserved_request ERROR [ 28%]
+tests/invariants/test_w10_cp8_state_endpoints.py::test_watch_state_honest_empty ERROR [ 42%]
+tests/invariants/test_w10_cp8_state_endpoints.py::test_watch_state_reflects_seeded_verdict_and_action ERROR [ 57%]
+tests/invariants/test_w10_cp8_state_endpoints.py::test_grey_mirror_state_honest_empty ERROR [ 71%]
+tests/invariants/test_w10_cp8_state_endpoints.py::test_grey_mirror_state_reflects_seeded_mirage ERROR [ 85%]
+tests/invariants/test_w10_cp8_state_endpoints.py::test_endpoints_never_return_raw_credentials_or_secrets ERROR [100%]
+
+==================================== ERRORS ====================================
+_____________ ERROR at setup of test_governance_state_honest_empty _____________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-26/test_governance_state_honest_e0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfc0c38a289d0>
+
+    @pytest.fixture()
+    def app_client(tmp_path, monkeypatch):
+        """Fresh FastAPI app mounting only the three W10 CP8 state routers
+        (avoids the pod-shell import chain that has pre-existing collection
+        errors from the northena.trace_lens class — unrelated to CP8)."""
+        from fastapi import FastAPI
+    
+        # Redirect every disk-store default_dir under tmp_path so each test
+        # starts with an honest-empty state and can populate specifically.
+        for env, sub in [
+            ("APPROVAL_RECORDS_DIR",           "approval_records"),
+            ("RULES_UPDATES_DIR",              "rules_updates"),
+            ("WATCH_VERDICTS_DIR",             "watch_verdicts"),
+            ("WATCH_ACTIONS_DIR",              "watch_actions"),
+            ("CONTAINMENTS_DIR",               "containments"),
+            ("CONTAINMENT_RECONCILIATIONS_DIR", "containment_reconciliations"),
+            ("CONTINUITY_ATTESTATIONS_DIR",    "continuity_attestations"),
+            ("WITNESS_ATTESTATIONS_DIR",       "witness_attestations"),
+            ("TAMPER_ALARMS_DIR",              "tamper_alarms"),
+            ("MIRAGES_DIR",                    "mirages"),
+            ("MIRAGE_TOUCHES_DIR",             "mirage_touches"),
+            ("SEVERANCES_DIR",                 "severances"),
+        ]:
+            d = tmp_path / sub
+            d.mkdir()
+            monkeypatch.setenv(env, str(d))
+    
+>       from services.governance.router import router as gov_router
+E       ModuleNotFoundError: No module named 'services.governance'
+
+tests/invariants/test_w10_cp8_state_endpoints.py:73: ModuleNotFoundError
+___ ERROR at setup of test_governance_state_reflects_seeded_reserved_request ___
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-26/test_governance_state_reflects0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfc0c38a28f50>
+
+    @pytest.fixture()
+    def app_client(tmp_path, monkeypatch):
+        """Fresh FastAPI app mounting only the three W10 CP8 state routers
+        (avoids the pod-shell import chain that has pre-existing collection
+        errors from the northena.trace_lens class — unrelated to CP8)."""
+        from fastapi import FastAPI
+    
+        # Redirect every disk-store default_dir under tmp_path so each test
+        # starts with an honest-empty state and can populate specifically.
+        for env, sub in [
+            ("APPROVAL_RECORDS_DIR",           "approval_records"),
+            ("RULES_UPDATES_DIR",              "rules_updates"),
+            ("WATCH_VERDICTS_DIR",             "watch_verdicts"),
+            ("WATCH_ACTIONS_DIR",              "watch_actions"),
+            ("CONTAINMENTS_DIR",               "containments"),
+            ("CONTAINMENT_RECONCILIATIONS_DIR", "containment_reconciliations"),
+            ("CONTINUITY_ATTESTATIONS_DIR",    "continuity_attestations"),
+            ("WITNESS_ATTESTATIONS_DIR",       "witness_attestations"),
+            ("TAMPER_ALARMS_DIR",              "tamper_alarms"),
+            ("MIRAGES_DIR",                    "mirages"),
+            ("MIRAGE_TOUCHES_DIR",             "mirage_touches"),
+            ("SEVERANCES_DIR",                 "severances"),
+        ]:
+            d = tmp_path / sub
+            d.mkdir()
+            monkeypatch.setenv(env, str(d))
+    
+>       from services.governance.router import router as gov_router
+E       ModuleNotFoundError: No module named 'services.governance'
+
+tests/invariants/test_w10_cp8_state_endpoints.py:73: ModuleNotFoundError
+_______________ ERROR at setup of test_watch_state_honest_empty ________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-26/test_watch_state_honest_empty0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfc0c38a43090>
+
+    @pytest.fixture()
+    def app_client(tmp_path, monkeypatch):
+        """Fresh FastAPI app mounting only the three W10 CP8 state routers
+        (avoids the pod-shell import chain that has pre-existing collection
+        errors from the northena.trace_lens class — unrelated to CP8)."""
+        from fastapi import FastAPI
+    
+        # Redirect every disk-store default_dir under tmp_path so each test
+        # starts with an honest-empty state and can populate specifically.
+        for env, sub in [
+            ("APPROVAL_RECORDS_DIR",           "approval_records"),
+            ("RULES_UPDATES_DIR",              "rules_updates"),
+            ("WATCH_VERDICTS_DIR",             "watch_verdicts"),
+            ("WATCH_ACTIONS_DIR",              "watch_actions"),
+            ("CONTAINMENTS_DIR",               "containments"),
+            ("CONTAINMENT_RECONCILIATIONS_DIR", "containment_reconciliations"),
+            ("CONTINUITY_ATTESTATIONS_DIR",    "continuity_attestations"),
+            ("WITNESS_ATTESTATIONS_DIR",       "witness_attestations"),
+            ("TAMPER_ALARMS_DIR",              "tamper_alarms"),
+            ("MIRAGES_DIR",                    "mirages"),
+            ("MIRAGE_TOUCHES_DIR",             "mirage_touches"),
+            ("SEVERANCES_DIR",                 "severances"),
+        ]:
+            d = tmp_path / sub
+            d.mkdir()
+            monkeypatch.setenv(env, str(d))
+    
+>       from services.governance.router import router as gov_router
+E       ModuleNotFoundError: No module named 'services.governance'
+
+tests/invariants/test_w10_cp8_state_endpoints.py:73: ModuleNotFoundError
+____ ERROR at setup of test_watch_state_reflects_seeded_verdict_and_action _____
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-26/test_watch_state_reflects_seed0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfc0c38a6a5d0>
+
+    @pytest.fixture()
+    def app_client(tmp_path, monkeypatch):
+        """Fresh FastAPI app mounting only the three W10 CP8 state routers
+        (avoids the pod-shell import chain that has pre-existing collection
+        errors from the northena.trace_lens class — unrelated to CP8)."""
+        from fastapi import FastAPI
+    
+        # Redirect every disk-store default_dir under tmp_path so each test
+        # starts with an honest-empty state and can populate specifically.
+        for env, sub in [
+            ("APPROVAL_RECORDS_DIR",           "approval_records"),
+            ("RULES_UPDATES_DIR",              "rules_updates"),
+            ("WATCH_VERDICTS_DIR",             "watch_verdicts"),
+            ("WATCH_ACTIONS_DIR",              "watch_actions"),
+            ("CONTAINMENTS_DIR",               "containments"),
+            ("CONTAINMENT_RECONCILIATIONS_DIR", "containment_reconciliations"),
+            ("CONTINUITY_ATTESTATIONS_DIR",    "continuity_attestations"),
+            ("WITNESS_ATTESTATIONS_DIR",       "witness_attestations"),
+            ("TAMPER_ALARMS_DIR",              "tamper_alarms"),
+            ("MIRAGES_DIR",                    "mirages"),
+            ("MIRAGE_TOUCHES_DIR",             "mirage_touches"),
+            ("SEVERANCES_DIR",                 "severances"),
+        ]:
+            d = tmp_path / sub
+            d.mkdir()
+            monkeypatch.setenv(env, str(d))
+    
+>       from services.governance.router import router as gov_router
+E       ModuleNotFoundError: No module named 'services.governance'
+
+tests/invariants/test_w10_cp8_state_endpoints.py:73: ModuleNotFoundError
+____________ ERROR at setup of test_grey_mirror_state_honest_empty _____________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-26/test_grey_mirror_state_honest_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfc0c38a84410>
+
+    @pytest.fixture()
+    def app_client(tmp_path, monkeypatch):
+        """Fresh FastAPI app mounting only the three W10 CP8 state routers
+        (avoids the pod-shell import chain that has pre-existing collection
+        errors from the northena.trace_lens class — unrelated to CP8)."""
+        from fastapi import FastAPI
+    
+        # Redirect every disk-store default_dir under tmp_path so each test
+        # starts with an honest-empty state and can populate specifically.
+        for env, sub in [
+            ("APPROVAL_RECORDS_DIR",           "approval_records"),
+            ("RULES_UPDATES_DIR",              "rules_updates"),
+            ("WATCH_VERDICTS_DIR",             "watch_verdicts"),
+            ("WATCH_ACTIONS_DIR",              "watch_actions"),
+            ("CONTAINMENTS_DIR",               "containments"),
+            ("CONTAINMENT_RECONCILIATIONS_DIR", "containment_reconciliations"),
+            ("CONTINUITY_ATTESTATIONS_DIR",    "continuity_attestations"),
+            ("WITNESS_ATTESTATIONS_DIR",       "witness_attestations"),
+            ("TAMPER_ALARMS_DIR",              "tamper_alarms"),
+            ("MIRAGES_DIR",                    "mirages"),
+            ("MIRAGE_TOUCHES_DIR",             "mirage_touches"),
+            ("SEVERANCES_DIR",                 "severances"),
+        ]:
+            d = tmp_path / sub
+            d.mkdir()
+            monkeypatch.setenv(env, str(d))
+    
+>       from services.governance.router import router as gov_router
+E       ModuleNotFoundError: No module named 'services.governance'
+
+tests/invariants/test_w10_cp8_state_endpoints.py:73: ModuleNotFoundError
+_______ ERROR at setup of test_grey_mirror_state_reflects_seeded_mirage ________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-26/test_grey_mirror_state_reflect0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfc0c38a43710>
+
+    @pytest.fixture()
+    def app_client(tmp_path, monkeypatch):
+        """Fresh FastAPI app mounting only the three W10 CP8 state routers
+        (avoids the pod-shell import chain that has pre-existing collection
+        errors from the northena.trace_lens class — unrelated to CP8)."""
+        from fastapi import FastAPI
+    
+        # Redirect every disk-store default_dir under tmp_path so each test
+        # starts with an honest-empty state and can populate specifically.
+        for env, sub in [
+            ("APPROVAL_RECORDS_DIR",           "approval_records"),
+            ("RULES_UPDATES_DIR",              "rules_updates"),
+            ("WATCH_VERDICTS_DIR",             "watch_verdicts"),
+            ("WATCH_ACTIONS_DIR",              "watch_actions"),
+            ("CONTAINMENTS_DIR",               "containments"),
+            ("CONTAINMENT_RECONCILIATIONS_DIR", "containment_reconciliations"),
+            ("CONTINUITY_ATTESTATIONS_DIR",    "continuity_attestations"),
+            ("WITNESS_ATTESTATIONS_DIR",       "witness_attestations"),
+            ("TAMPER_ALARMS_DIR",              "tamper_alarms"),
+            ("MIRAGES_DIR",                    "mirages"),
+            ("MIRAGE_TOUCHES_DIR",             "mirage_touches"),
+            ("SEVERANCES_DIR",                 "severances"),
+        ]:
+            d = tmp_path / sub
+            d.mkdir()
+            monkeypatch.setenv(env, str(d))
+    
+>       from services.governance.router import router as gov_router
+E       ModuleNotFoundError: No module named 'services.governance'
+
+tests/invariants/test_w10_cp8_state_endpoints.py:73: ModuleNotFoundError
+___ ERROR at setup of test_endpoints_never_return_raw_credentials_or_secrets ___
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-26/test_endpoints_never_return_ra0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfc0c38a7ffd0>
+
+    @pytest.fixture()
+    def app_client(tmp_path, monkeypatch):
+        """Fresh FastAPI app mounting only the three W10 CP8 state routers
+        (avoids the pod-shell import chain that has pre-existing collection
+        errors from the northena.trace_lens class — unrelated to CP8)."""
+        from fastapi import FastAPI
+    
+        # Redirect every disk-store default_dir under tmp_path so each test
+        # starts with an honest-empty state and can populate specifically.
+        for env, sub in [
+            ("APPROVAL_RECORDS_DIR",           "approval_records"),
+            ("RULES_UPDATES_DIR",              "rules_updates"),
+            ("WATCH_VERDICTS_DIR",             "watch_verdicts"),
+            ("WATCH_ACTIONS_DIR",              "watch_actions"),
+            ("CONTAINMENTS_DIR",               "containments"),
+            ("CONTAINMENT_RECONCILIATIONS_DIR", "containment_reconciliations"),
+            ("CONTINUITY_ATTESTATIONS_DIR",    "continuity_attestations"),
+            ("WITNESS_ATTESTATIONS_DIR",       "witness_attestations"),
+            ("TAMPER_ALARMS_DIR",              "tamper_alarms"),
+            ("MIRAGES_DIR",                    "mirages"),
+            ("MIRAGE_TOUCHES_DIR",             "mirage_touches"),
+            ("SEVERANCES_DIR",                 "severances"),
+        ]:
+            d = tmp_path / sub
+            d.mkdir()
+            monkeypatch.setenv(env, str(d))
+    
+>       from services.governance.router import router as gov_router
+E       ModuleNotFoundError: No module named 'services.governance'
+
+tests/invariants/test_w10_cp8_state_endpoints.py:73: ModuleNotFoundError
+=========================== short test summary info ============================
+ERROR tests/invariants/test_w10_cp8_state_endpoints.py::test_governance_state_honest_empty
+ERROR tests/invariants/test_w10_cp8_state_endpoints.py::test_governance_state_reflects_seeded_reserved_request
+ERROR tests/invariants/test_w10_cp8_state_endpoints.py::test_watch_state_honest_empty
+ERROR tests/invariants/test_w10_cp8_state_endpoints.py::test_watch_state_reflects_seeded_verdict_and_action
+ERROR tests/invariants/test_w10_cp8_state_endpoints.py::test_grey_mirror_state_honest_empty
+ERROR tests/invariants/test_w10_cp8_state_endpoints.py::test_grey_mirror_state_reflects_seeded_mirage
+ERROR tests/invariants/test_w10_cp8_state_endpoints.py::test_endpoints_never_return_raw_credentials_or_secrets
+============================== 7 errors in 0.29s ===============================

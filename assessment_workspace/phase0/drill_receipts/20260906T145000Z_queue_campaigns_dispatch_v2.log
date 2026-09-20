@@ -1,0 +1,39 @@
+============================================================
+W-MULTI-TABLE-EXTRACT · QUEUE CAMPAIGNS
+============================================================
+
+[1/6] Rsync dispatcher to both hosts
+  akki-vm: rsync rc=0
+  akki-vm-ii: rsync rc=0
+
+[2/6] Extract ussd_plus_sms_deduplicated for akki-vm-ii
+  extracting ussd_plus_sms_deduplicated for akki-vm-ii (['ussd_question_response', 'sms_log'])...
+    run_id: shield-train-campaign-b-multi-table-dedup-20260906-20260906T144804Z
+    train_sha256: 1caadddc755f5a020958...
+    train rows: 87
+    held-out rows: 21
+    remote_dir: ~/akki_journal/shield-train-campaign-b-multi-table-dedup-20260906-20260906T144804Z
+
+[3/6] Extract ussd_plus_sms_raw for akki-vm-ii
+  extracting ussd_plus_sms_raw for akki-vm-ii (['ussd_question_response', 'sms_log'])...
+    run_id: shield-train-campaign-b-multi-table-raw-20260906-20260906T144838Z
+    train_sha256: d835105f29fe0ff82de8...
+    train rows: 25203
+    held-out rows: 6300
+    remote_dir: ~/akki_journal/shield-train-campaign-b-multi-table-raw-20260906-20260906T144838Z
+
+[4/6] Build Campaign B queue manifest
+  akki-vm-ii: queue scp rc=1
+
+[5/6] Build Campaign A queue manifest
+  akki-vm: queue scp rc=1
+
+[6/6] Fire dispatchers detached on both hosts
+  akki-vm-ii: dispatcher fire rc=0 stdout='159610\n'
+  akki-vm: dispatcher fire rc=0 stdout='188119\n'
+
+[VERIFY] Wait 5s then probe dispatcher heartbeats
+  akki-vm:
+
+  akki-vm-ii:
+

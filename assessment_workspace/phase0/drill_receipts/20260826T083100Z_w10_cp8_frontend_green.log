@@ -1,0 +1,33 @@
+✔ Governance.jsx exists under components/ (1.349784ms)
+✔ Watch.jsx exists under components/ (0.136949ms)
+✔ GreyMirror.jsx exists under components/ (0.119332ms)
+✔ Governance.jsx carries all required testids (0.216078ms)
+✔ Governance.jsx renders the REFERENCE-NOT-COPY marker + Canon 8 §19 anchor (0.267535ms)
+✔ Governance.jsx names the 5 Canon 8 §19 reserved decision kinds verbatim (0.185977ms)
+✔ Governance.jsx renders honest empty state (drawn, never left blank) (0.246732ms)
+✔ Governance.jsx fetches from /api/governance/state (no fabricated data) (0.188763ms)
+✔ Watch.jsx carries all required testids (0.222431ms)
+✔ Watch.jsx renders the REFERENCE-NOT-COPY marker + Canon 8 anchors (0.398879ms)
+✔ Watch.jsx fetches from /api/watch/state (no fabricated data) (0.209313ms)
+✔ Watch.jsx surfaces the Ruling-1 drill demonstration (W10 CP1) (0.206651ms)
+✔ GreyMirror.jsx carries all required testids (0.187472ms)
+✔ GreyMirror.jsx renders REFERENCE-NOT-COPY + Canon 8 §§15-16 anchors + BUILD-not-LIFT rationale (0.24147ms)
+✔ GreyMirror.jsx names the 2 CONTRACT-TIME touch_kind values (R2) (0.868558ms)
+✔ GreyMirror.jsx fetches from /api/grey_mirror/state (no fabricated data) (0.201783ms)
+✔ App.js wires /governance route to Governance component (0.188932ms)
+✔ App.js wires /watch route to Watch component (0.157592ms)
+✔ App.js wires /grey-mirror route to GreyMirror component (0.153933ms)
+✔ GET /governance serves the SPA shell (200) through allowlist (33.057401ms)
+✔ GET /watch serves the SPA shell (200) through allowlist (3.506883ms)
+✔ GET /grey-mirror serves the SPA shell (200) through allowlist (1.986668ms)
+✔ GET /api/governance/state returns REFERENCE-NOT-COPY-shaped body (3.684699ms)
+✔ GET /api/watch/state returns REFERENCE-NOT-COPY-shaped body (2.806928ms)
+✔ GET /api/grey_mirror/state returns REFERENCE-NOT-COPY-shaped body (2.754661ms)
+ℹ tests 25
+ℹ suites 0
+ℹ pass 25
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 120.713813

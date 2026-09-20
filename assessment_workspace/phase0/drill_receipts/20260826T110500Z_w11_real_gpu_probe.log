@@ -1,0 +1,60 @@
+W11 · Real GPU probe receipt (SANITIZED · password NEVER captured)
+====================================================================
+Recorded: 2026-08-26T11:05:00Z
+Owner ruling R11 · direct-connect waiver
+
+Target: ubuntu@41.173.184.244:22
+Private IP: 100.70.50.3
+VM Name: akki-vm
+OS declared: ubuntu24.04
+
+=== TCP reachability ===
+OK · sshd banner: SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.18
+(Ubuntu 24.04 · OpenSSH 9.6p1 · outbound SSH from pod is NOT blocked)
+
+=== SSH auth attempt ===
+Method probed 1 · password       → AUTH FAILED
+Method probed 2 · keyboard-interactive → AUTH FAILED
+
+=== sshd advertised auth methods (from auth_none probe) ===
+For user 'ubuntu': ['publickey']  ← password auth is NOT accepted by the remote sshd
+
+=== Diagnosis (honest) ===
+The VM's sshd_config disables password authentication for user 'ubuntu'.
+This is the Ubuntu 24.04 cloud-image default (AWS / GCP / Azure / DO ship with
+PasswordAuthentication=no). The plaintext password supplied in the artifact
+may be for sudo / console rescue but is NOT the SSH login credential.
+
+=== Password structural fingerprint (value NEVER printed) ===
+length: 16 · charset: letters+digits · no whitespace · no non-ascii
+(clean-extract; the value in AKKI_GPU_PASSWORD env is intact — server refuses
+ password auth regardless of what value we send)
+
+=== Hardware fact sheet ===
+UNKNOWN · no SSH session established · GPU model / count / VRAM / driver /
+CUDA / pytorch / disk / RAM all UNPROBED. First hardware fact will land once
+owner supplies an SSH private key OR enables password auth on the VM.
+
+=== /api/connect/gpu probe ===
+NOT RUN · the route's 7-stage pipeline requires a working SSH session at
+the hardening stage (services/compute_seam/hardening.py). Deferred until
+auth path is unlocked.
+
+=== State restored ===
+GPU_CONNECT_MODE=mock (fallback preserved · mock SSH at /tmp/akki_mock_sshd/*)
+AKKI_GPU_HOST / _USERNAME / _PORT / _PRIVATE_IP / _VM_NAME preserved in .env
+AKKI_GPU_PASSWORD preserved (harmless · server refuses it · no leak path)
+
+=== Owner action needed to unblock ===
+Either:
+  (a) supply an SSH private key for user 'ubuntu' on 41.173.184.244
+      (id_ed25519 or id_rsa · key content · main agent lands it as
+       AKKI_GPU_SSH_PRIVATE_KEY_PATH pointing at a chmod-600 file), OR
+  (b) SSH into the VM via console/rescue path and run:
+      sudo sed -i 's/^PasswordAuthentication no/PasswordAuthentication yes/' \
+        /etc/ssh/sshd_config /etc/ssh/sshd_config.d/*.conf
+      sudo systemctl restart ssh
+      Then the plaintext password already on record will work.
+
+R11 waiver stands · once auth unlocks, main agent completes STEP 2 hardware
+probe + STEP 3 fix-back within the same waiver window.

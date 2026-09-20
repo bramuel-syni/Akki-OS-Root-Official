@@ -1,0 +1,216 @@
+/root/.venv/lib/python3.11/site-packages/pytest_asyncio/plugin.py:208: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.3.3, pluggy-1.6.0
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: xdist-3.8.0, asyncio-0.24.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, default_loop_scope=None
+collected 17 items
+
+backend/tests/invariants/test_w10_cp2_mirage_machinery.py FFFFFFFFFFFFFF [ 82%]
+FFF                                                                      [100%]
+
+=================================== FAILURES ===================================
+_____________________________ test_mirage_v0_shape _____________________________
+
+    def test_mirage_v0_shape():
+>       from contracts.mirage import Mirage_v0
+E       ModuleNotFoundError: No module named 'contracts.mirage'
+
+backend/tests/invariants/test_w10_cp2_mirage_machinery.py:83: ModuleNotFoundError
+__________________________ test_mirage_class_grammar ___________________________
+
+    def test_mirage_class_grammar():
+>       from contracts.mirage import Mirage_v0
+E       ModuleNotFoundError: No module named 'contracts.mirage'
+
+backend/tests/invariants/test_w10_cp2_mirage_machinery.py:89: ModuleNotFoundError
+_________________________ test_mirage_expiry_required __________________________
+
+    def test_mirage_expiry_required():
+        """Canon 8 §17: state without expiry IS a defect. Applies to mirages
+        equally (they carry an expiry from §15)."""
+>       from contracts.mirage import Mirage_v0
+E       ModuleNotFoundError: No module named 'contracts.mirage'
+
+backend/tests/invariants/test_w10_cp2_mirage_machinery.py:99: ModuleNotFoundError
+___________________ test_mirage_construction_hidden_by_shape ___________________
+
+    def test_mirage_construction_hidden_by_shape():
+        """Canon 8 §32.4 negative surface: NO planting internals in the
+        record shape. The contract MUST NOT allow keys like
+        'target_endpoint', 'planted_bytes', 'construction_recipe',
+        'insertion_seam'."""
+>       from contracts.mirage import Mirage_v0
+E       ModuleNotFoundError: No module named 'contracts.mirage'
+
+backend/tests/invariants/test_w10_cp2_mirage_machinery.py:109: ModuleNotFoundError
+__________________________ test_mirage_touch_v0_shape __________________________
+
+    def test_mirage_touch_v0_shape():
+>       from contracts.mirage import MirageTouch_v0
+E       ModuleNotFoundError: No module named 'contracts.mirage'
+
+backend/tests/invariants/test_w10_cp2_mirage_machinery.py:124: ModuleNotFoundError
+__________________ test_mirage_touch_kind_grammar_r2_ratified __________________
+
+    def test_mirage_touch_kind_grammar_r2_ratified():
+        """R2 (2026-08-26T04:20Z): touch_kind is CONTRACT-TIME frozen
+        Literal["innocent_read", "guilty_use"]. No service-time
+        extensibility."""
+>       from contracts.mirage import MirageTouch_v0
+E       ModuleNotFoundError: No module named 'contracts.mirage'
+
+backend/tests/invariants/test_w10_cp2_mirage_machinery.py:133: ModuleNotFoundError
+___________________________ test_severance_v0_shape ____________________________
+
+    def test_severance_v0_shape():
+>       from contracts.mirage import Severance_v0
+E       ModuleNotFoundError: No module named 'contracts.mirage'
+
+backend/tests/invariants/test_w10_cp2_mirage_machinery.py:142: ModuleNotFoundError
+_______________________ test_plant_mirage_writes_to_disk _______________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-3/test_plant_mirage_writes_to_di0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xffafdffd8690>
+
+    def test_plant_mirage_writes_to_disk(tmp_path, monkeypatch):
+>       from services.watch.mirage import plant_mirage, load_mirages
+E       ModuleNotFoundError: No module named 'services.watch.mirage'
+
+backend/tests/invariants/test_w10_cp2_mirage_machinery.py:150: ModuleNotFoundError
+_____________________ test_plant_mirage_refuses_overwrite ______________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-3/test_plant_mirage_refuses_over0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xffafdf55ad10>
+
+    def test_plant_mirage_refuses_overwrite(tmp_path, monkeypatch):
+        """Canon 8 §43: NEITHER record is amended in place."""
+>       from services.watch.mirage import plant_mirage
+E       ModuleNotFoundError: No module named 'services.watch.mirage'
+
+backend/tests/invariants/test_w10_cp2_mirage_machinery.py:159: ModuleNotFoundError
+___________________ test_record_touch_refuses_without_mirage ___________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-3/test_record_touch_refuses_with0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xffafdf585210>
+
+    def test_record_touch_refuses_without_mirage(tmp_path, monkeypatch):
+        """Touch record cannot exist without the mirage on record
+        (chokepoint discipline: no side doors)."""
+>       from services.watch.mirage import record_touch
+E       ModuleNotFoundError: No module named 'services.watch.mirage'
+
+backend/tests/invariants/test_w10_cp2_mirage_machinery.py:169: ModuleNotFoundError
+_______________________ test_record_touch_writes_to_disk _______________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-3/test_record_touch_writes_to_di0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xffafdf6ff750>
+
+    def test_record_touch_writes_to_disk(tmp_path, monkeypatch):
+>       from services.watch.mirage import plant_mirage, record_touch, load_touches
+E       ModuleNotFoundError: No module named 'services.watch.mirage'
+
+backend/tests/invariants/test_w10_cp2_mirage_machinery.py:177: ModuleNotFoundError
+______________ test_engage_mirage_on_guilty_use_writes_severance _______________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-3/test_engage_mirage_on_guilty_u0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xffafdf5755d0>
+
+    def test_engage_mirage_on_guilty_use_writes_severance(tmp_path, monkeypatch):
+        """Canon 8 §15 guilty-inside-mirage flow: mark minted + severance
+        executed on Mkono's own authority · aftermath, not request."""
+        from services.watch.macho import mint_verdict
+>       from services.watch.mirage import (
+            engage_mirage, plant_mirage, record_touch, load_severances,
+        )
+E       ModuleNotFoundError: No module named 'services.watch.mirage'
+
+backend/tests/invariants/test_w10_cp2_mirage_machinery.py:190: ModuleNotFoundError
+______________ test_engage_mirage_on_innocent_read_does_not_sever ______________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-3/test_engage_mirage_on_innocent0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xffafdf55b490>
+
+    def test_engage_mirage_on_innocent_read_does_not_sever(tmp_path, monkeypatch):
+        """Canon 8 §15 innocent-inside-mirage flow: ordinary work · releases
+        on expiry · period reconciled honestly. No severance."""
+        from services.watch.macho import mint_verdict
+>       from services.watch.mirage import (
+            engage_mirage, plant_mirage, record_touch, load_severances,
+        )
+E       ModuleNotFoundError: No module named 'services.watch.mirage'
+
+backend/tests/invariants/test_w10_cp2_mirage_machinery.py:226: ModuleNotFoundError
+________________ test_engage_mirage_atomic_verdict_action_seam _________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-3/test_engage_mirage_atomic_verd0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xffafdf56a9d0>
+
+    def test_engage_mirage_atomic_verdict_action_seam(tmp_path, monkeypatch):
+        """Canon 8 §6 seam law + §32.5 atomic act-and-attest: engage_mirage
+        writes an action_record atomically with the severance/noted
+        outcome."""
+        from services.watch.macho import mint_verdict
+>       from services.watch.mirage import engage_mirage, plant_mirage, record_touch
+E       ModuleNotFoundError: No module named 'services.watch.mirage'
+
+backend/tests/invariants/test_w10_cp2_mirage_machinery.py:261: ModuleNotFoundError
+___________________ test_engage_mirage_refuses_without_touch ___________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-3/test_engage_mirage_refuses_wit0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xffafdf58fa90>
+
+    def test_engage_mirage_refuses_without_touch(tmp_path, monkeypatch):
+        """Chokepoint discipline: engage requires the touch on record."""
+        from services.watch.macho import mint_verdict
+>       from services.watch.mirage import engage_mirage
+E       ModuleNotFoundError: No module named 'services.watch.mirage'
+
+backend/tests/invariants/test_w10_cp2_mirage_machinery.py:294: ModuleNotFoundError
+__________________ test_engage_mirage_refuses_without_verdict __________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-3/test_engage_mirage_refuses_wit1')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xffafdf59f3d0>
+
+    def test_engage_mirage_refuses_without_verdict(tmp_path, monkeypatch):
+        """Seam law: engage cannot fire without the verdict on record."""
+>       from services.watch.mirage import engage_mirage, plant_mirage, record_touch
+E       ModuleNotFoundError: No module named 'services.watch.mirage'
+
+backend/tests/invariants/test_w10_cp2_mirage_machinery.py:313: ModuleNotFoundError
+______________________ test_engage_mirage_refuses_double _______________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-3/test_engage_mirage_refuses_dou0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xffafdf5c1ad0>
+
+    def test_engage_mirage_refuses_double(tmp_path, monkeypatch):
+        """One engagement per touch (idempotency · §43 correction-by-new-
+        entry-only)."""
+        from services.watch.macho import mint_verdict
+>       from services.watch.mirage import engage_mirage, plant_mirage, record_touch
+E       ModuleNotFoundError: No module named 'services.watch.mirage'
+
+backend/tests/invariants/test_w10_cp2_mirage_machinery.py:330: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED backend/tests/invariants/test_w10_cp2_mirage_machinery.py::test_mirage_v0_shape
+FAILED backend/tests/invariants/test_w10_cp2_mirage_machinery.py::test_mirage_class_grammar
+FAILED backend/tests/invariants/test_w10_cp2_mirage_machinery.py::test_mirage_expiry_required
+FAILED backend/tests/invariants/test_w10_cp2_mirage_machinery.py::test_mirage_construction_hidden_by_shape
+FAILED backend/tests/invariants/test_w10_cp2_mirage_machinery.py::test_mirage_touch_v0_shape
+FAILED backend/tests/invariants/test_w10_cp2_mirage_machinery.py::test_mirage_touch_kind_grammar_r2_ratified
+FAILED backend/tests/invariants/test_w10_cp2_mirage_machinery.py::test_severance_v0_shape
+FAILED backend/tests/invariants/test_w10_cp2_mirage_machinery.py::test_plant_mirage_writes_to_disk
+FAILED backend/tests/invariants/test_w10_cp2_mirage_machinery.py::test_plant_mirage_refuses_overwrite
+FAILED backend/tests/invariants/test_w10_cp2_mirage_machinery.py::test_record_touch_refuses_without_mirage
+FAILED backend/tests/invariants/test_w10_cp2_mirage_machinery.py::test_record_touch_writes_to_disk
+FAILED backend/tests/invariants/test_w10_cp2_mirage_machinery.py::test_engage_mirage_on_guilty_use_writes_severance
+FAILED backend/tests/invariants/test_w10_cp2_mirage_machinery.py::test_engage_mirage_on_innocent_read_does_not_sever
+FAILED backend/tests/invariants/test_w10_cp2_mirage_machinery.py::test_engage_mirage_atomic_verdict_action_seam
+FAILED backend/tests/invariants/test_w10_cp2_mirage_machinery.py::test_engage_mirage_refuses_without_touch
+FAILED backend/tests/invariants/test_w10_cp2_mirage_machinery.py::test_engage_mirage_refuses_without_verdict
+FAILED backend/tests/invariants/test_w10_cp2_mirage_machinery.py::test_engage_mirage_refuses_double
+============================== 17 failed in 0.17s ==============================

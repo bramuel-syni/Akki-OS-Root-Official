@@ -1,0 +1,59 @@
+# RECONSTRUCTED POST-HOC AT HEAD e436028251b0ae18919c163123b565e3000384ed · 2026-09-17
+# NOT captured at Commit-A landing time. Per-CP receipt reconstruction executed
+# during 2026-09-17 §3.3 BACK-COMPAT BATCH scoped path (c) reconstruction.
+# Method: temporarily hide services/platform_control_plane/cross_tenant_access_suite.py → run pytest tests/invariants/test_p6_cp3_cross_tenant_access_suite.py → capture RED
+# ---
+EEEEEEEEEEEEEEEE                                                         [100%]
+==================================== ERRORS ====================================
+______ ERROR at setup of test_module_fabric_present_and_all_exports_match ______
+E   ModuleNotFoundError: No module named 'services.platform_control_plane.cross_tenant_access_suite'
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+______________ ERROR at setup of test_planes_vocabulary_verbatim _______________
+E   ModuleNotFoundError: No module named 'services.platform_control_plane.cross_tenant_access_suite'
+___________________ ERROR at setup of test_refusal_hierarchy ___________________
+E   ModuleNotFoundError: No module named 'services.platform_control_plane.cross_tenant_access_suite'
+____________ ERROR at setup of test_refuses_on_tenant_context_gate _____________
+E   ModuleNotFoundError: No module named 'services.platform_control_plane.cross_tenant_access_suite'
+______________ ERROR at setup of test_refuses_on_task_scope_gate _______________
+E   ModuleNotFoundError: No module named 'services.platform_control_plane.cross_tenant_access_suite'
+_________ ERROR at setup of test_refuses_on_permission_evaluation_gate _________
+E   ModuleNotFoundError: No module named 'services.platform_control_plane.cross_tenant_access_suite'
+__________ ERROR at setup of test_refuses_on_scheduler_admission_gate __________
+E   ModuleNotFoundError: No module named 'services.platform_control_plane.cross_tenant_access_suite'
+_______________ ERROR at setup of test_refuses_on_metering_gate ________________
+E   ModuleNotFoundError: No module named 'services.platform_control_plane.cross_tenant_access_suite'
+___________ ERROR at setup of test_refuses_on_audit_visibility_gate ____________
+E   ModuleNotFoundError: No module named 'services.platform_control_plane.cross_tenant_access_suite'
+_________ ERROR at setup of test_fail_fast_order_tenant_context_first __________
+E   ModuleNotFoundError: No module named 'services.platform_control_plane.cross_tenant_access_suite'
+_____ ERROR at setup of test_fail_fast_order_task_scope_before_permission ______
+E   ModuleNotFoundError: No module named 'services.platform_control_plane.cross_tenant_access_suite'
+______ ERROR at setup of test_fail_fast_order_permission_before_scheduler ______
+E   ModuleNotFoundError: No module named 'services.platform_control_plane.cross_tenant_access_suite'
+_______ ERROR at setup of test_fail_fast_order_scheduler_before_metering _______
+E   ModuleNotFoundError: No module named 'services.platform_control_plane.cross_tenant_access_suite'
+___ ERROR at setup of test_fail_fast_order_metering_before_audit_visibility ____
+E   ModuleNotFoundError: No module named 'services.platform_control_plane.cross_tenant_access_suite'
+______________ ERROR at setup of test_admits_when_all_gates_pass _______________
+E   ModuleNotFoundError: No module named 'services.platform_control_plane.cross_tenant_access_suite'
+_ ERROR at setup of test_verbatim_anchor_case_agnostic_zero_data_plane_imports _
+E   ModuleNotFoundError: No module named 'services.platform_control_plane.cross_tenant_access_suite'
+=========================== short test summary info ============================
+ERROR tests/invariants/test_p6_cp3_cross_tenant_access_suite.py::test_module_fabric_present_and_all_exports_match
+ERROR tests/invariants/test_p6_cp3_cross_tenant_access_suite.py::test_planes_vocabulary_verbatim
+ERROR tests/invariants/test_p6_cp3_cross_tenant_access_suite.py::test_refusal_hierarchy
+ERROR tests/invariants/test_p6_cp3_cross_tenant_access_suite.py::test_refuses_on_tenant_context_gate
+ERROR tests/invariants/test_p6_cp3_cross_tenant_access_suite.py::test_refuses_on_task_scope_gate
+ERROR tests/invariants/test_p6_cp3_cross_tenant_access_suite.py::test_refuses_on_permission_evaluation_gate
+ERROR tests/invariants/test_p6_cp3_cross_tenant_access_suite.py::test_refuses_on_scheduler_admission_gate
+ERROR tests/invariants/test_p6_cp3_cross_tenant_access_suite.py::test_refuses_on_metering_gate
+ERROR tests/invariants/test_p6_cp3_cross_tenant_access_suite.py::test_refuses_on_audit_visibility_gate
+ERROR tests/invariants/test_p6_cp3_cross_tenant_access_suite.py::test_fail_fast_order_tenant_context_first
+ERROR tests/invariants/test_p6_cp3_cross_tenant_access_suite.py::test_fail_fast_order_task_scope_before_permission
+ERROR tests/invariants/test_p6_cp3_cross_tenant_access_suite.py::test_fail_fast_order_permission_before_scheduler
+ERROR tests/invariants/test_p6_cp3_cross_tenant_access_suite.py::test_fail_fast_order_scheduler_before_metering
+ERROR tests/invariants/test_p6_cp3_cross_tenant_access_suite.py::test_fail_fast_order_metering_before_audit_visibility
+ERROR tests/invariants/test_p6_cp3_cross_tenant_access_suite.py::test_admits_when_all_gates_pass
+ERROR tests/invariants/test_p6_cp3_cross_tenant_access_suite.py::test_verbatim_anchor_case_agnostic_zero_data_plane_imports
+16 errors in 0.59s

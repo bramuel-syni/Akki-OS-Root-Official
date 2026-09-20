@@ -1,0 +1,48 @@
+# Green receipt — Registry facts endpoint + Registry.jsx (FL-P2-25)
+# Backend tests-first commit follows: registry_facts_router landed.
+# Frontend tests-first commit follows: Registry.jsx renders real facts.
+
+=== BACKEND · services.registry_facts (15) ===
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-9.1.1, pluggy-1.6.0 -- /root/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: asyncio-1.4.0, xdist-3.8.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 15 items
+
+tests/invariants/test_registry_facts.py::test_module_present_and_exports_assemble PASSED [  6%]
+tests/invariants/test_registry_facts.py::test_router_present_and_exports_facts_endpoint PASSED [ 13%]
+tests/invariants/test_registry_facts.py::test_data_sources_reads_only_final_records PASSED [ 20%]
+tests/invariants/test_registry_facts.py::test_data_source_shape_carries_engine_region_channel_posture PASSED [ 26%]
+tests/invariants/test_registry_facts.py::test_data_source_top_tables_flag_approximations PASSED [ 33%]
+tests/invariants/test_registry_facts.py::test_compute_reads_only_accepted_records PASSED [ 40%]
+tests/invariants/test_registry_facts.py::test_compute_shape_carries_gpus_ram_storage_link PASSED [ 46%]
+tests/invariants/test_registry_facts.py::test_compute_carries_usability_paragraph PASSED [ 53%]
+tests/invariants/test_registry_facts.py::test_models_returns_empty_with_honest_reason PASSED [ 60%]
+tests/invariants/test_registry_facts.py::test_facts_endpoint_returns_200_with_three_keys PASSED [ 66%]
+tests/invariants/test_registry_facts.py::test_response_never_carries_fabricated_or_secret_tokens PASSED [ 73%]
+tests/invariants/test_registry_facts.py::test_facts_module_declares_no_forbidden_libraries PASSED [ 80%]
+tests/invariants/test_registry_facts.py::test_facts_endpoint_never_reads_secret_custody_files PASSED [ 86%]
+tests/invariants/test_registry_facts.py::test_empty_data_sources_returns_empty_list_and_reason PASSED [ 93%]
+tests/invariants/test_registry_facts.py::test_empty_compute_returns_empty_list_when_no_accepted_record PASSED [100%]
+
+============================== 15 passed in 0.24s ==============================
+
+=== BACKEND · cycle cohort regression (rds_data + registry_facts + others) ===
+........................................................................ [ 59%]
+.................................................                        [100%]
+121 passed in 0.71s
+
+=== FRONTEND · rehome+registry (38) ===
+✔ /api/registry/facts live: compute carries GPUs, RAM, storage, link facts (2.761163ms)
+✔ Registry.jsx renders NO banned fabricated demo tokens (0.345544ms)
+ℹ tests 38
+ℹ suites 0
+ℹ pass 38
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 576.783164

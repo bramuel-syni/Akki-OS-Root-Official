@@ -1,0 +1,167 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.4.2, pluggy-1.6.0
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: xdist-3.8.0, asyncio-1.4.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collected 12 items
+
+tests/invariants/test_wave_audio_poc_cp_a5_hf_gap_fill.py FFFFFFFFFFFF   [100%]
+
+=================================== FAILURES ===================================
+____________________ test_cp_a5_hf_transcribe_module_fabric ____________________
+
+    def test_cp_a5_hf_transcribe_module_fabric():
+>       m = importlib.import_module("services.audio_poc.hf_transcribe")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_wave_audio_poc_cp_a5_hf_gap_fill.py:25: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'services.audio_poc.hf_transcribe'
+import_ = <function _gcd_import at 0xfa499758bd80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'services.audio_poc.hf_transcribe'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+______ test_cp_a5_gap_fill_transcript_frozen_dataclass_has_no_text_field _______
+
+    def test_cp_a5_gap_fill_transcript_frozen_dataclass_has_no_text_field():
+        """The dataclass must NOT carry a raw transcript-text field.
+        Only `transcript_text_len` + `transcript_sha256_hex` shape metadata.
+        """
+>       from services.audio_poc.hf_transcribe import GapFillTranscript
+E       ModuleNotFoundError: No module named 'services.audio_poc.hf_transcribe'
+
+tests/invariants/test_wave_audio_poc_cp_a5_hf_gap_fill.py:50: ModuleNotFoundError
+___________________ test_cp_a5_hf_transcribe_error_hierarchy ___________________
+
+    def test_cp_a5_hf_transcribe_error_hierarchy():
+>       from services.audio_poc.hf_transcribe import (
+            HFTranscribeError,
+            HFTranscribeAuthError,
+            HFTranscribeRateLimit,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_poc.hf_transcribe'
+
+tests/invariants/test_wave_audio_poc_cp_a5_hf_gap_fill.py:81: ModuleNotFoundError
+___________ test_cp_a5_default_hf_model_id_is_a_whisper_family_model ___________
+
+    def test_cp_a5_default_hf_model_id_is_a_whisper_family_model():
+>       from services.audio_poc.hf_transcribe import DEFAULT_HF_MODEL_ID
+E       ModuleNotFoundError: No module named 'services.audio_poc.hf_transcribe'
+
+tests/invariants/test_wave_audio_poc_cp_a5_hf_gap_fill.py:93: ModuleNotFoundError
+________________ test_cp_a5_transcribe_gap_refuses_empty_audio _________________
+
+    def test_cp_a5_transcribe_gap_refuses_empty_audio():
+>       from services.audio_poc.hf_transcribe import (
+            transcribe_gap,
+            HFTranscribeError,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_poc.hf_transcribe'
+
+tests/invariants/test_wave_audio_poc_cp_a5_hf_gap_fill.py:103: ModuleNotFoundError
+_____________ test_cp_a5_transcribe_gap_refuses_if_env_var_missing _____________
+
+    def test_cp_a5_transcribe_gap_refuses_if_env_var_missing():
+        """The transcribe function must fail-closed when the env-only HF
+        loader has no token to hand it.  It must NOT fall back to reading
+        the on-disk artefact.
+        """
+>       from services.audio_poc.hf_transcribe import transcribe_gap
+E       ModuleNotFoundError: No module named 'services.audio_poc.hf_transcribe'
+
+tests/invariants/test_wave_audio_poc_cp_a5_hf_gap_fill.py:122: ModuleNotFoundError
+__________ test_cp_a5_emit_gap_fill_receipt_content_has_no_text_field __________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-12/test_cp_a5_emit_gap_fill_recei0')
+
+    def test_cp_a5_emit_gap_fill_receipt_content_has_no_text_field(tmp_path):
+>       from services.audio_poc.gap_fill_writer import emit_gap_fill_receipt
+E       ModuleNotFoundError: No module named 'services.audio_poc.gap_fill_writer'
+
+tests/invariants/test_wave_audio_poc_cp_a5_hf_gap_fill.py:160: ModuleNotFoundError
+__________ test_cp_a5_emit_gap_fill_receipt_content_is_deterministic ___________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-12/test_cp_a5_emit_gap_fill_recei1')
+
+    def test_cp_a5_emit_gap_fill_receipt_content_is_deterministic(tmp_path):
+>       from services.audio_poc.gap_fill_writer import emit_gap_fill_receipt
+E       ModuleNotFoundError: No module named 'services.audio_poc.gap_fill_writer'
+
+tests/invariants/test_wave_audio_poc_cp_a5_hf_gap_fill.py:169: ModuleNotFoundError
+________ test_cp_a5_emit_gap_fill_receipt_path_matches_canonical_layout ________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-12/test_cp_a5_emit_gap_fill_recei2')
+
+    def test_cp_a5_emit_gap_fill_receipt_path_matches_canonical_layout(tmp_path):
+        """Receipt filename ends with the canonical key + `.gap_fill.json`."""
+>       from services.audio_poc.gap_fill_writer import emit_gap_fill_receipt
+E       ModuleNotFoundError: No module named 'services.audio_poc.gap_fill_writer'
+
+tests/invariants/test_wave_audio_poc_cp_a5_hf_gap_fill.py:177: ModuleNotFoundError
+___ test_cp_a5_write_gap_transcript_or_refuse_refuses_when_verdicts_pending ____
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-12/test_cp_a5_write_gap_transcrip0')
+
+    def test_cp_a5_write_gap_transcript_or_refuse_refuses_when_verdicts_pending(tmp_path):
+        """With any verdict PENDING → release_gate refuses → WriteBackRefused."""
+>       from services.audio_poc.gap_fill_writer import (
+            write_gap_transcript_or_refuse,
+            WriteBackRefused,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_poc.gap_fill_writer'
+
+tests/invariants/test_wave_audio_poc_cp_a5_hf_gap_fill.py:186: ModuleNotFoundError
+______ test_cp_a5_write_gap_transcript_or_refuse_admits_when_all_ratified ______
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-12/test_cp_a5_write_gap_transcrip1')
+
+    def test_cp_a5_write_gap_transcript_or_refuse_admits_when_all_ratified(tmp_path):
+        """All 4 verdicts non-PENDING + safe tier → returns admitted marker
+        (no OBS PutObject in this test path; upstream is guarded by
+        `readonly_obs_guard`'s companion writer at wave-scope OS boundary)."""
+>       from services.audio_poc.gap_fill_writer import write_gap_transcript_or_refuse
+E       ModuleNotFoundError: No module named 'services.audio_poc.gap_fill_writer'
+
+tests/invariants/test_wave_audio_poc_cp_a5_hf_gap_fill.py:208: ModuleNotFoundError
+___ test_cp_a5_write_gap_transcript_or_refuse_invokes_transcript_leak_guard ____
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-12/test_cp_a5_write_gap_transcrip2')
+
+    def test_cp_a5_write_gap_transcript_or_refuse_invokes_transcript_leak_guard(tmp_path):
+        """If the transcript_bytes contain the active HF-token value, the
+        hardened guard raises RuntimeError before OBS write is even attempted.
+        This is the belt-and-braces defence against token leaks in transcript
+        content.
+        """
+>       from services.audio_poc.gap_fill_writer import write_gap_transcript_or_refuse
+E       ModuleNotFoundError: No module named 'services.audio_poc.gap_fill_writer'
+
+tests/invariants/test_wave_audio_poc_cp_a5_hf_gap_fill.py:231: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wave_audio_poc_cp_a5_hf_gap_fill.py::test_cp_a5_hf_transcribe_module_fabric
+FAILED tests/invariants/test_wave_audio_poc_cp_a5_hf_gap_fill.py::test_cp_a5_gap_fill_transcript_frozen_dataclass_has_no_text_field
+FAILED tests/invariants/test_wave_audio_poc_cp_a5_hf_gap_fill.py::test_cp_a5_hf_transcribe_error_hierarchy
+FAILED tests/invariants/test_wave_audio_poc_cp_a5_hf_gap_fill.py::test_cp_a5_default_hf_model_id_is_a_whisper_family_model
+FAILED tests/invariants/test_wave_audio_poc_cp_a5_hf_gap_fill.py::test_cp_a5_transcribe_gap_refuses_empty_audio
+FAILED tests/invariants/test_wave_audio_poc_cp_a5_hf_gap_fill.py::test_cp_a5_transcribe_gap_refuses_if_env_var_missing
+FAILED tests/invariants/test_wave_audio_poc_cp_a5_hf_gap_fill.py::test_cp_a5_emit_gap_fill_receipt_content_has_no_text_field
+FAILED tests/invariants/test_wave_audio_poc_cp_a5_hf_gap_fill.py::test_cp_a5_emit_gap_fill_receipt_content_is_deterministic
+FAILED tests/invariants/test_wave_audio_poc_cp_a5_hf_gap_fill.py::test_cp_a5_emit_gap_fill_receipt_path_matches_canonical_layout
+FAILED tests/invariants/test_wave_audio_poc_cp_a5_hf_gap_fill.py::test_cp_a5_write_gap_transcript_or_refuse_refuses_when_verdicts_pending
+FAILED tests/invariants/test_wave_audio_poc_cp_a5_hf_gap_fill.py::test_cp_a5_write_gap_transcript_or_refuse_admits_when_all_ratified
+FAILED tests/invariants/test_wave_audio_poc_cp_a5_hf_gap_fill.py::test_cp_a5_write_gap_transcript_or_refuse_invokes_transcript_leak_guard
+============================== 12 failed in 0.69s ==============================

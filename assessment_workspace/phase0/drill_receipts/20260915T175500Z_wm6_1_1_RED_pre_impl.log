@@ -1,0 +1,20 @@
+        """`identify_language_per_segment` invokes `backend.identify(segment_ref,
+        duration_s)` once per segment (in segment order) and returns a
+        `LanguageIDResult` per segment carrying the backend-attributed tuple
+        (language_tag, confidence) + backend_name."""
+>       from services.audio_plane_v1.language_identifier import (
+            AudioSegment, LanguageIDBackend, LanguageIDResult,
+            identify_language_per_segment,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1'
+
+tests/invariants/test_wm6_1_1_language_identifier.py:134: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wm6_1_1_language_identifier.py::test_wm6_1_1_module_fabric
+FAILED tests/invariants/test_wm6_1_1_language_identifier.py::test_wm6_1_1_audio_segment_frozen_two_carrier_shape
+FAILED tests/invariants/test_wm6_1_1_language_identifier.py::test_wm6_1_1_language_id_result_frozen_four_carrier_shape
+FAILED tests/invariants/test_wm6_1_1_language_identifier.py::test_wm6_1_1_empty_segments_refuses
+FAILED tests/invariants/test_wm6_1_1_language_identifier.py::test_wm6_1_1_non_audio_segment_element_refuses
+FAILED tests/invariants/test_wm6_1_1_language_identifier.py::test_wm6_1_1_unratified_backend_refuses_on_invoke
+FAILED tests/invariants/test_wm6_1_1_language_identifier.py::test_wm6_1_1_orchestration_invokes_backend_per_segment_returns_shape
+============================== 7 failed in 0.66s ===============================

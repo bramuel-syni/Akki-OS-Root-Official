@@ -1,0 +1,256 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.4.2, pluggy-1.6.0 -- /root/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: asyncio-1.4.0, xdist-3.8.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collecting ... collected 11 items
+
+tests/invariants/test_compute_residuals_frontend.py::test_grounding_brief_exists_and_is_nonempty PASSED [  9%]
+tests/invariants/test_compute_residuals_frontend.py::test_probe_artefact_covers_all_17_target_strings PASSED [ 18%]
+tests/invariants/test_compute_residuals_frontend.py::test_all_17_rule_names_declared_in_app_js FAILED [ 27%]
+tests/invariants/test_compute_residuals_frontend.py::test_each_rule_dummy_content_matches_inventory FAILED [ 36%]
+tests/invariants/test_compute_residuals_frontend.py::test_each_rule_anchor_ancestor_text_matches_inventory FAILED [ 45%]
+tests/invariants/test_compute_residuals_frontend.py::test_r1_rules_render_not_measured FAILED [ 54%]
+tests/invariants/test_compute_residuals_frontend.py::test_r2_rules_render_honest_phrasings FAILED [ 63%]
+tests/invariants/test_compute_residuals_frontend.py::test_r1_rules_never_fabricate_prototype_numbers FAILED [ 72%]
+tests/invariants/test_compute_residuals_frontend.py::test_every_rule_uses_styled_element_anchor_kind FAILED [ 81%]
+tests/invariants/test_compute_residuals_frontend.py::test_exactly_17_compute_residuals_rules_declared FAILED [ 90%]
+tests/invariants/test_compute_residuals_frontend.py::test_probe_artefact_enumerated_all_three_chart_states PASSED [100%]
+
+=================================== FAILURES ===================================
+__________________ test_all_17_rule_names_declared_in_app_js ___________________
+
+    def test_all_17_rule_names_declared_in_app_js():
+        """Every rule name in the inventory must appear as a `name: "..."` field
+        in V8_SUBSTITUTIONS in App.js. This gates rule-count parity."""
+        src = _source()
+        missing = []
+        for name in COMPUTE_RESIDUALS_RULES:
+            if not re.search(rf'name:\s*"{re.escape(name)}"', src):
+                missing.append(name)
+>       assert not missing, (
+            f"compute-residuals rules missing from V8_SUBSTITUTIONS: {missing}"
+        )
+E       AssertionError: compute-residuals rules missing from V8_SUBSTITUTIONS: ['compute-residuals-r1-chart-caption-door', 'compute-residuals-r1-chart-caption-week', 'compute-residuals-r1-chart-caption-state', 'compute-residuals-r1-bar-door-train', 'compute-residuals-r1-bar-door-extract', 'compute-residuals-r1-bar-door-export', 'compute-residuals-r1-bar-door-measure', 'compute-residuals-r1-bar-door-prove', 'compute-residuals-r1-bar-week-1', 'compute-residuals-r1-bar-week-2', 'compute-residuals-r1-bar-week-3', 'compute-residuals-r1-bar-week-4', 'compute-residuals-r1-bar-state-committed', 'compute-residuals-r1-bar-state-free', 'compute-residuals-r2-note-capacity', 'compute-residuals-r2-note-committed', 'compute-residuals-r2-note-free']
+E       assert not ['compute-residuals-r1-chart-caption-door', 'compute-residuals-r1-chart-caption-week', 'compute-residuals-r1-chart-caption-state', 'compute-residuals-r1-bar-door-train', 'compute-residuals-r1-bar-door-extract', 'compute-residuals-r1-bar-door-export', ...]
+
+tests/invariants/test_compute_residuals_frontend.py:191: AssertionError
+________________ test_each_rule_dummy_content_matches_inventory ________________
+
+    def test_each_rule_dummy_content_matches_inventory():
+        """The dummyContent string a rule targets MUST equal the verbatim dummy
+        it was authored against. If a code change edits the dummy but not the
+        inventory (or vice versa), this test fires with the specific mismatch."""
+        src = _source()
+        mismatches = []
+        iterated = 0
+        for name, (dummy, _anchor) in COMPUTE_RESIDUALS_RULES.items():
+            # Grab the block starting at `name: "<name>"` up to the next rule
+            # opener (~800 chars is enough for one rule).
+            idx = src.find(f'name: "{name}"')
+            if idx == -1:
+                mismatches.append((name, "<rule not declared in App.js>", dummy))
+                continue
+            iterated += 1
+            block = src[idx : idx + 1200]
+            # Match dummyContent field (may span with unicode escapes).
+            # Rules are allowed to author dummies using either the literal
+            # UTF-8 middot / en-dash OR their \u escapes — both are honest.
+            m = re.search(r'dummyContent:\s*"([^"]*)"', block)
+            if not m:
+                mismatches.append((name, "dummyContent field missing", dummy))
+                continue
+            got = m.group(1)
+            # Normalise \u escapes to their character equivalents for compare.
+            got_normalised = got.encode("utf-8").decode("unicode_escape")
+            if got != dummy and got_normalised != dummy:
+                mismatches.append((name, got, dummy))
+>       assert not mismatches, (
+            f"rule dummyContent mismatches (name, got, expected): {mismatches}"
+        )
+E       AssertionError: rule dummyContent mismatches (name, got, expected): [('compute-residuals-r1-chart-caption-door', '<rule not declared in App.js>', '1,240 hrs committed'), ('compute-residuals-r1-chart-caption-week', '<rule not declared in App.js>', 'of 2,880 hrs available'), ('compute-residuals-r1-chart-caption-state', '<rule not declared in App.js>', '2,880 hrs this month'), ('compute-residuals-r1-bar-door-train', '<rule not declared in App.js>', '645 hrs · 52%'), ('compute-residuals-r1-bar-door-extract', '<rule not declared in App.js>', '298 hrs · 24%'), ('compute-residuals-r1-bar-door-export', '<rule not declared in App.js>', '174 hrs · 14%'), ('compute-residuals-r1-bar-door-measure', '<rule not declared in App.js>', '99 hrs · 8%'), ('compute-residuals-r1-bar-door-prove', '<rule not declared in App.js>', '24 hrs · 2%'), ('compute-residuals-r1-bar-week-1', '<rule not declared in App.js>', '274 hrs · 38%'), ('compute-residuals-r1-bar-week-2', '<rule not declared in App.js>', '339 hrs · 47%'), ('compute-residuals-r1-bar-week-3', '<rule not declared in App.js>', '65 hrs · 9%'), ('compute-residuals-r1-bar-week-4', '<rule not declared in App.js>', '43 hrs · 6%'), ('compute-residuals-r1-bar-state-committed', '<rule not declared in App.js>', '1,240 hrs · 43%'), ('compute-residuals-r1-bar-state-free', '<rule not declared in App.js>', '1,640 hrs · 57%'), ('compute-residuals-r2-note-capacity', '<rule not declared in App.js>', 'wall-clock across 4 GPUs'), ('compute-residuals-r2-note-committed', '<rule not declared in App.js>', '43% of the month'), ('compute-residuals-r2-note-free', '<rule not declared in App.js>', 'quoted against, not reserved')]
+E       assert not [('compute-residuals-r1-chart-caption-door', '<rule not declared in App.js>', '1,240 hrs committed'), ('compute-residuals-r1-chart-caption-week', '<rule not declared in App.js>', 'of 2,880 hrs available'), ('compute-residuals-r1-chart-caption-state', '<rule not declared in App.js>', '2,880 hrs this month'), ('compute-residuals-r1-bar-door-train', '<rule not declared in App.js>', '645 hrs · 52%'), ('compute-residuals-r1-bar-door-extract', '<rule not declared in App.js>', '298 hrs · 24%'), ('compute-residuals-r1-bar-door-export', '<rule not declared in App.js>', '174 hrs · 14%'), ...]
+
+tests/invariants/test_compute_residuals_frontend.py:228: AssertionError
+____________ test_each_rule_anchor_ancestor_text_matches_inventory _____________
+
+    def test_each_rule_anchor_ancestor_text_matches_inventory():
+        """anchorAncestorText pins the rule to a stable rendered-DOM location.
+        This test freezes the anchor text against the verbatim prototype label
+        (chart title for chart captions, row label for per-bar, tile label for
+        notes)."""
+        src = _source()
+        mismatches = []
+        iterated = 0
+        for name, (_dummy, anchor) in COMPUTE_RESIDUALS_RULES.items():
+            idx = src.find(f'name: "{name}"')
+            if idx == -1:
+                mismatches.append((name, "<rule not declared in App.js>", anchor))
+                continue
+            iterated += 1
+            block = src[idx : idx + 1200]
+            m = re.search(r'anchorAncestorText:\s*"([^"]*)"', block)
+            if not m:
+                mismatches.append((name, "anchorAncestorText field missing", anchor))
+                continue
+            got = m.group(1)
+            got_normalised = got.encode("utf-8").decode("unicode_escape")
+            if got != anchor and got_normalised != anchor:
+                mismatches.append((name, got, anchor))
+>       assert not mismatches, (
+            f"rule anchorAncestorText mismatches (name, got, expected): {mismatches}"
+        )
+E       AssertionError: rule anchorAncestorText mismatches (name, got, expected): [('compute-residuals-r1-chart-caption-door', '<rule not declared in App.js>', 'Committed hours by door'), ('compute-residuals-r1-chart-caption-week', '<rule not declared in App.js>', 'Hours run by week'), ('compute-residuals-r1-chart-caption-state', '<rule not declared in App.js>', 'Hours by state'), ('compute-residuals-r1-bar-door-train', '<rule not declared in App.js>', 'Train'), ('compute-residuals-r1-bar-door-extract', '<rule not declared in App.js>', 'Extract'), ('compute-residuals-r1-bar-door-export', '<rule not declared in App.js>', 'Export'), ('compute-residuals-r1-bar-door-measure', '<rule not declared in App.js>', 'Measure'), ('compute-residuals-r1-bar-door-prove', '<rule not declared in App.js>', 'Prove'), ('compute-residuals-r1-bar-week-1', '<rule not declared in App.js>', 'Aug 1–7'), ('compute-residuals-r1-bar-week-2', '<rule not declared in App.js>', 'Aug 8–14'), ('compute-residuals-r1-bar-week-3', '<rule not declared in App.js>', 'Aug 15–21'), ('compute-residuals-r1-bar-week-4', '<rule not declared in App.js>', 'Not yet run'), ('compute-residuals-r1-bar-state-committed', '<rule not declared in App.js>', 'Committed'), ('compute-residuals-r1-bar-state-free', '<rule not declared in App.js>', 'Free to allocate'), ('compute-residuals-r2-note-capacity', '<rule not declared in App.js>', 'Capacity this month'), ('compute-residuals-r2-note-committed', '<rule not declared in App.js>', 'Committed to work'), ('compute-residuals-r2-note-free', '<rule not declared in App.js>', 'Free to allocate')]
+E       assert not [('compute-residuals-r1-chart-caption-door', '<rule not declared in App.js>', 'Committed hours by door'), ('compute-residuals-r1-chart-caption-week', '<rule not declared in App.js>', 'Hours run by week'), ('compute-residuals-r1-chart-caption-state', '<rule not declared in App.js>', 'Hours by state'), ('compute-residuals-r1-bar-door-train', '<rule not declared in App.js>', 'Train'), ('compute-residuals-r1-bar-door-extract', '<rule not declared in App.js>', 'Extract'), ('compute-residuals-r1-bar-door-export', '<rule not declared in App.js>', 'Export'), ...]
+
+tests/invariants/test_compute_residuals_frontend.py:264: AssertionError
+______________________ test_r1_rules_render_not_measured _______________________
+
+    def test_r1_rules_render_not_measured():
+        """r1 chart-captions + per-bar labels all HONEST-EMPTY: compute-estate
+        exposes no hours ledger / no by-door/by-week/by-state breakdown, so
+        every r1 rule renders "not measured" instead of echoing a fabricated
+        prototype number."""
+        src = _source()
+        for name in R1_RULE_NAMES:
+            idx = src.find(f'name: "{name}"')
+>           assert idx != -1, f"r1 rule {name!r} not found (check test 3 first)"
+E           AssertionError: r1 rule 'compute-residuals-r1-chart-caption-door' not found (check test 3 first)
+E           assert -1 != -1
+
+tests/invariants/test_compute_residuals_frontend.py:285: AssertionError
+____________________ test_r2_rules_render_honest_phrasings _____________________
+
+    def test_r2_rules_render_honest_phrasings():
+        """r2 tile-notes each render a specific honest phrasing per the
+        grounding brief §B mapping. r2-note-free preserves the prototype text
+        verbatim (honest product-language, not a numeric measurement)."""
+        src = _source()
+        for name, expected_render in R2_HONEST_PHRASINGS.items():
+            idx = src.find(f'name: "{name}"')
+>           assert idx != -1, f"r2 rule {name!r} not found"
+E           AssertionError: r2 rule 'compute-residuals-r2-note-capacity' not found
+E           assert -1 != -1
+
+tests/invariants/test_compute_residuals_frontend.py:305: AssertionError
+_______________ test_r1_rules_never_fabricate_prototype_numbers ________________
+
+    def test_r1_rules_never_fabricate_prototype_numbers():
+        """A r1 rule that renders "1,240 hrs" or "43%" or any of the prototype
+        numeric strings when the estate can't measure them is a fabrication
+        defect. Freeze this with a per-rule scan of the rule block."""
+        src = _source()
+        # Prototype numeric strings this wave is refusing to fabricate.
+        fabrication_strings = {
+            "1,240 hrs committed",
+            "2,880 hrs",
+            "1,640 hrs",
+            "645 hrs",
+            "298 hrs",
+            "174 hrs",
+            "99 hrs",
+            "24 hrs",
+            "274 hrs",
+            "339 hrs",
+            "65 hrs",
+            "43 hrs",
+            "43%",
+            "52%",
+            "24%",
+            "14%",
+            "8%",
+            "2%",
+            "38%",
+            "47%",
+            "9%",
+            "6%",
+            "57%",
+        }
+        fabrications = []
+        scanned = 0
+        for name in R1_RULE_NAMES:
+            idx = src.find(f'name: "{name}"')
+            if idx == -1:
+                fabrications.append((name, "<rule not declared in App.js>"))
+                continue
+            scanned += 1
+            block = src[idx : idx + 1500]
+            # renderFragments block only — extract the arrow-function body.
+            rf_match = re.search(
+                r'renderFragments:\s*\([^)]*\)\s*=>\s*\{([^}]+(?:\{[^}]*\}[^}]*)*)\}',
+                block,
+            )
+            if not rf_match:
+                fabrications.append((name, "<renderFragments body not found>"))
+                continue
+            rf_body = rf_match.group(1)
+            for fab in fabrication_strings:
+                # The dummy itself appearing in the rule declaration (in the
+                # `dummyContent:` field) is fine — it's the target text. We only
+                # care about the renderFragments body.
+                if fab in rf_body:
+                    fabrications.append((name, fab))
+>       assert not fabrications, (
+            f"r1 rule renderFragments fabricated prototype numbers: {fabrications} "
+            "— HONEST-EMPTY discipline requires 'not measured' or estate-derived facts only"
+        )
+E       AssertionError: r1 rule renderFragments fabricated prototype numbers: [('compute-residuals-r1-chart-caption-door', '<rule not declared in App.js>'), ('compute-residuals-r1-chart-caption-week', '<rule not declared in App.js>'), ('compute-residuals-r1-chart-caption-state', '<rule not declared in App.js>'), ('compute-residuals-r1-bar-door-train', '<rule not declared in App.js>'), ('compute-residuals-r1-bar-door-extract', '<rule not declared in App.js>'), ('compute-residuals-r1-bar-door-export', '<rule not declared in App.js>'), ('compute-residuals-r1-bar-door-measure', '<rule not declared in App.js>'), ('compute-residuals-r1-bar-door-prove', '<rule not declared in App.js>'), ('compute-residuals-r1-bar-week-1', '<rule not declared in App.js>'), ('compute-residuals-r1-bar-week-2', '<rule not declared in App.js>'), ('compute-residuals-r1-bar-week-3', '<rule not declared in App.js>'), ('compute-residuals-r1-bar-week-4', '<rule not declared in App.js>'), ('compute-residuals-r1-bar-state-committed', '<rule not declared in App.js>'), ('compute-residuals-r1-bar-state-free', '<rule not declared in App.js>')] — HONEST-EMPTY discipline requires 'not measured' or estate-derived facts only
+E       assert not [('compute-residuals-r1-chart-caption-door', '<rule not declared in App.js>'), ('compute-residuals-r1-chart-caption-week', '<rule not declared in App.js>'), ('compute-residuals-r1-chart-caption-state', '<rule not declared in App.js>'), ('compute-residuals-r1-bar-door-train', '<rule not declared in App.js>'), ('compute-residuals-r1-bar-door-extract', '<rule not declared in App.js>'), ('compute-residuals-r1-bar-door-export', '<rule not declared in App.js>'), ...]
+
+tests/invariants/test_compute_residuals_frontend.py:372: AssertionError
+_______________ test_every_rule_uses_styled_element_anchor_kind ________________
+
+    def test_every_rule_uses_styled_element_anchor_kind():
+        """Every substitution rule this wave uses `kind: "styled-element-anchor"`,
+        matching the compute-v2 mechanism. This preserves styling by attaching
+        the substitution to an element with its style attributes intact rather
+        than replacing a raw text node."""
+        src = _source()
+        wrong_kind = []
+        scanned = 0
+        for name in COMPUTE_RESIDUALS_RULES:
+            idx = src.find(f'name: "{name}"')
+            if idx == -1:
+                wrong_kind.append((name, "<rule not declared in App.js>"))
+                continue
+            scanned += 1
+            block_start = src.rfind("{", 0, idx)
+            block = src[block_start : idx + 200]
+            if 'kind: "styled-element-anchor"' not in block:
+                wrong_kind.append(name)
+>       assert not wrong_kind, (
+            f"rules missing kind:'styled-element-anchor': {wrong_kind}"
+        )
+E       AssertionError: rules missing kind:'styled-element-anchor': [('compute-residuals-r1-chart-caption-door', '<rule not declared in App.js>'), ('compute-residuals-r1-chart-caption-week', '<rule not declared in App.js>'), ('compute-residuals-r1-chart-caption-state', '<rule not declared in App.js>'), ('compute-residuals-r1-bar-door-train', '<rule not declared in App.js>'), ('compute-residuals-r1-bar-door-extract', '<rule not declared in App.js>'), ('compute-residuals-r1-bar-door-export', '<rule not declared in App.js>'), ('compute-residuals-r1-bar-door-measure', '<rule not declared in App.js>'), ('compute-residuals-r1-bar-door-prove', '<rule not declared in App.js>'), ('compute-residuals-r1-bar-week-1', '<rule not declared in App.js>'), ('compute-residuals-r1-bar-week-2', '<rule not declared in App.js>'), ('compute-residuals-r1-bar-week-3', '<rule not declared in App.js>'), ('compute-residuals-r1-bar-week-4', '<rule not declared in App.js>'), ('compute-residuals-r1-bar-state-committed', '<rule not declared in App.js>'), ('compute-residuals-r1-bar-state-free', '<rule not declared in App.js>'), ('compute-residuals-r2-note-capacity', '<rule not declared in App.js>'), ('compute-residuals-r2-note-committed', '<rule not declared in App.js>'), ('compute-residuals-r2-note-free', '<rule not declared in App.js>')]
+E       assert not [('compute-residuals-r1-chart-caption-door', '<rule not declared in App.js>'), ('compute-residuals-r1-chart-caption-week', '<rule not declared in App.js>'), ('compute-residuals-r1-chart-caption-state', '<rule not declared in App.js>'), ('compute-residuals-r1-bar-door-train', '<rule not declared in App.js>'), ('compute-residuals-r1-bar-door-extract', '<rule not declared in App.js>'), ('compute-residuals-r1-bar-door-export', '<rule not declared in App.js>'), ...]
+
+tests/invariants/test_compute_residuals_frontend.py:404: AssertionError
+_______________ test_exactly_17_compute_residuals_rules_declared _______________
+
+    def test_exactly_17_compute_residuals_rules_declared():
+        """The wave scope is fixed at 14 r1 + 3 r2 = 17 rules. Adding or removing
+        rules requires a wave-honest-limits note in DECISIONS + this counter
+        updated."""
+        src = _source()
+        r1_matches = re.findall(r'name:\s*"compute-residuals-r1-[^"]+"', src)
+        r2_matches = re.findall(r'name:\s*"compute-residuals-r2-[^"]+"', src)
+>       assert len(r1_matches) == 14, (
+            f"expected 14 r1 rules, got {len(r1_matches)}: {r1_matches}"
+        )
+E       AssertionError: expected 14 r1 rules, got 0: []
+E       assert 0 == 14
+E        +  where 0 = len([])
+
+tests/invariants/test_compute_residuals_frontend.py:424: AssertionError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_compute_residuals_frontend.py::test_all_17_rule_names_declared_in_app_js
+FAILED tests/invariants/test_compute_residuals_frontend.py::test_each_rule_dummy_content_matches_inventory
+FAILED tests/invariants/test_compute_residuals_frontend.py::test_each_rule_anchor_ancestor_text_matches_inventory
+FAILED tests/invariants/test_compute_residuals_frontend.py::test_r1_rules_render_not_measured
+FAILED tests/invariants/test_compute_residuals_frontend.py::test_r2_rules_render_honest_phrasings
+FAILED tests/invariants/test_compute_residuals_frontend.py::test_r1_rules_never_fabricate_prototype_numbers
+FAILED tests/invariants/test_compute_residuals_frontend.py::test_every_rule_uses_styled_element_anchor_kind
+FAILED tests/invariants/test_compute_residuals_frontend.py::test_exactly_17_compute_residuals_rules_declared
+========================= 8 failed, 3 passed in 0.79s ==========================

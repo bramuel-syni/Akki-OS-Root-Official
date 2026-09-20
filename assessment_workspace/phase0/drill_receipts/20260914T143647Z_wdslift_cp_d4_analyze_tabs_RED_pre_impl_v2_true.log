@@ -1,0 +1,88 @@
+FFFFFF                                                                   [100%]============================ BASELINE_GUARD receipt ============================
+passed=0 / baseline-failures-remaining=0 / quarantined=0
+  manifest: tests/invariants/baseline_failures.json
+  scope: BASELINE_GUARD=1  ·  invocation: cd backend && BASELINE_GUARD=1 python -m pytest tests/invariants/
+!!!!!!!!!!!!! BASELINE_GUARD · HALT AND REPORT · owner ruling (c) !!!!!!!!!!!!!!
+[V1] 6 NEW failure(s) OUTSIDE manifest:
+    tests/invariants/test_wdslift_cp_d4_analyze_tabs.py::test_cp_d4_analyze_deep_dive_frozen_shape_with_synthesis_hash_only
+    tests/invariants/test_wdslift_cp_d4_analyze_tabs.py::test_cp_d4_analyze_rapid_frozen_shape
+    tests/invariants/test_wdslift_cp_d4_analyze_tabs.py::test_cp_d4_analyze_sources_frozen_shape_unit_refs_only
+    tests/invariants/test_wdslift_cp_d4_analyze_tabs.py::test_cp_d4_analyze_tab_kinds_closed_three_values_export_refused
+    tests/invariants/test_wdslift_cp_d4_analyze_tabs.py::test_cp_d4_analyze_tabs_module_fabric
+    tests/invariants/test_wdslift_cp_d4_analyze_tabs.py::test_cp_d4_tab_kind_mismatch_refuses_at_construction
+[V3] Passed count 0 < ratchet floor 3949
+  No silent rebaselining. Report drift to owner verbatim.
+
+=================================== FAILURES ===================================
+____________________ test_cp_d4_analyze_tabs_module_fabric _____________________
+
+    def test_cp_d4_analyze_tabs_module_fabric():
+>       m = importlib.import_module("services.data_suite_v2.analyze_tabs")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_wdslift_cp_d4_analyze_tabs.py:12: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'services.data_suite_v2.analyze_tabs'
+import_ = <function _gcd_import at 0xf9e11683bd80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'services.data_suite_v2.analyze_tabs'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+_______ test_cp_d4_analyze_tab_kinds_closed_three_values_export_refused ________
+
+    def test_cp_d4_analyze_tab_kinds_closed_three_values_export_refused():
+>       from services.data_suite_v2.analyze_tabs import ANALYZE_TAB_KINDS
+E       ModuleNotFoundError: No module named 'services.data_suite_v2.analyze_tabs'
+
+tests/invariants/test_wdslift_cp_d4_analyze_tabs.py:21: ModuleNotFoundError
+____________________ test_cp_d4_analyze_rapid_frozen_shape _____________________
+
+    def test_cp_d4_analyze_rapid_frozen_shape():
+>       from services.data_suite_v2.analyze_tabs import AnalyzeRapid
+E       ModuleNotFoundError: No module named 'services.data_suite_v2.analyze_tabs'
+
+tests/invariants/test_wdslift_cp_d4_analyze_tabs.py:29: ModuleNotFoundError
+______ test_cp_d4_analyze_deep_dive_frozen_shape_with_synthesis_hash_only ______
+
+    def test_cp_d4_analyze_deep_dive_frozen_shape_with_synthesis_hash_only():
+        """Deep-dive tab carries a `synthesis_sha256_hex` shape, NOT the synthesis text."""
+>       from services.data_suite_v2.analyze_tabs import AnalyzeDeepDive
+E       ModuleNotFoundError: No module named 'services.data_suite_v2.analyze_tabs'
+
+tests/invariants/test_wdslift_cp_d4_analyze_tabs.py:40: ModuleNotFoundError
+____________ test_cp_d4_analyze_sources_frozen_shape_unit_refs_only ____________
+
+    def test_cp_d4_analyze_sources_frozen_shape_unit_refs_only():
+>       from services.data_suite_v2.analyze_tabs import AnalyzeSources
+E       ModuleNotFoundError: No module named 'services.data_suite_v2.analyze_tabs'
+
+tests/invariants/test_wdslift_cp_d4_analyze_tabs.py:50: ModuleNotFoundError
+_____________ test_cp_d4_tab_kind_mismatch_refuses_at_construction _____________
+
+    def test_cp_d4_tab_kind_mismatch_refuses_at_construction():
+>       from services.data_suite_v2.analyze_tabs import (
+            AnalyzeRapid, AnalyzeDeepDive, AnalyzeSources, AnalyzeTabInvalid,
+        )
+E       ModuleNotFoundError: No module named 'services.data_suite_v2.analyze_tabs'
+
+tests/invariants/test_wdslift_cp_d4_analyze_tabs.py:59: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wdslift_cp_d4_analyze_tabs.py::test_cp_d4_analyze_tabs_module_fabric
+FAILED tests/invariants/test_wdslift_cp_d4_analyze_tabs.py::test_cp_d4_analyze_tab_kinds_closed_three_values_export_refused
+FAILED tests/invariants/test_wdslift_cp_d4_analyze_tabs.py::test_cp_d4_analyze_rapid_frozen_shape
+FAILED tests/invariants/test_wdslift_cp_d4_analyze_tabs.py::test_cp_d4_analyze_deep_dive_frozen_shape_with_synthesis_hash_only
+FAILED tests/invariants/test_wdslift_cp_d4_analyze_tabs.py::test_cp_d4_analyze_sources_frozen_shape_unit_refs_only
+FAILED tests/invariants/test_wdslift_cp_d4_analyze_tabs.py::test_cp_d4_tab_kind_mismatch_refuses_at_construction
+6 failed in 0.66s

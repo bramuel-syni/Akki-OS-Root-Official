@@ -1,0 +1,236 @@
+✖ owner IP admitted via OWNER_ALLOWLIST_IPS layer (1.225041ms)
+✔ spine IP still admitted when owner layer present (0.157811ms)
+✔ unknown IP still refused with both layers populated (strict) (0.096112ms)
+✖ owner allowlist accepts multiple entries comma-separated (0.178718ms)
+✖ owner allowlist admit carries layer attribution (0.222998ms)
+✖ spine allowlist admit carries spine layer attribution (0.232585ms)
+✖ permissive mode admits any IP (0.161235ms)
+✖ permissive mode admits without any XFF header (0.150109ms)
+✖ permissive mode admit carries permissive layer attribution (0.168196ms)
+✖ permissive mode normalizes case and whitespace (0.181189ms)
+✔ mode absent defaults to strict (0.103184ms)
+✔ unknown mode value defaults to strict (fail-closed) (0.116963ms)
+✖ strict refuse carries mode=strict (0.302603ms)
+✖ permissive admits even when both allowlists empty (0.186625ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 4
+ℹ fail 10
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 51.584002
+
+✖ failing tests:
+
+test at plugins/ip-allowlist/__tests__/ip_allowlist_owner_access.test.js:30:1
+✖ owner IP admitted via OWNER_ALLOWLIST_IPS layer (1.225041ms)
+  AssertionError [ERR_ASSERTION]: owner IP not admitted: {"allowed":false,"status":403,"body":"This surface answers allowlisted addresses only.","contentType":"text/plain; charset=utf-8"}
+  
+  false !== true
+  
+      at TestContext.<anonymous> (/app/frontend/plugins/ip-allowlist/__tests__/ip_allowlist_owner_access.test.js:33:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at plugins/ip-allowlist/__tests__/ip_allowlist_owner_access.test.js:50:1
+✖ owner allowlist accepts multiple entries comma-separated (0.178718ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at TestContext.<anonymous> (/app/frontend/plugins/ip-allowlist/__tests__/ip_allowlist_owner_access.test.js:56:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at plugins/ip-allowlist/__tests__/ip_allowlist_owner_access.test.js:59:1
+✖ owner allowlist admit carries layer attribution (0.222998ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at TestContext.<anonymous> (/app/frontend/plugins/ip-allowlist/__tests__/ip_allowlist_owner_access.test.js:62:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at plugins/ip-allowlist/__tests__/ip_allowlist_owner_access.test.js:66:1
+✖ spine allowlist admit carries spine layer attribution (0.232585ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + undefined
+  - 'spine'
+  
+      at TestContext.<anonymous> (/app/frontend/plugins/ip-allowlist/__tests__/ip_allowlist_owner_access.test.js:70:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 'spine',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at plugins/ip-allowlist/__tests__/ip_allowlist_owner_access.test.js:76:1
+✖ permissive mode admits any IP (0.161235ms)
+  AssertionError [ERR_ASSERTION]: permissive failed to admit: {"allowed":false,"status":403,"body":"This surface answers allowlisted addresses only.","contentType":"text/plain; charset=utf-8"}
+  
+  false !== true
+  
+      at TestContext.<anonymous> (/app/frontend/plugins/ip-allowlist/__tests__/ip_allowlist_owner_access.test.js:79:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at plugins/ip-allowlist/__tests__/ip_allowlist_owner_access.test.js:82:1
+✖ permissive mode admits without any XFF header (0.150109ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at TestContext.<anonymous> (/app/frontend/plugins/ip-allowlist/__tests__/ip_allowlist_owner_access.test.js:85:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at plugins/ip-allowlist/__tests__/ip_allowlist_owner_access.test.js:88:1
+✖ permissive mode admit carries permissive layer attribution (0.168196ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at TestContext.<anonymous> (/app/frontend/plugins/ip-allowlist/__tests__/ip_allowlist_owner_access.test.js:91:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at plugins/ip-allowlist/__tests__/ip_allowlist_owner_access.test.js:96:1
+✖ permissive mode normalizes case and whitespace (0.181189ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at TestContext.<anonymous> (/app/frontend/plugins/ip-allowlist/__tests__/ip_allowlist_owner_access.test.js:99:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at plugins/ip-allowlist/__tests__/ip_allowlist_owner_access.test.js:118:1
+✖ strict refuse carries mode=strict (0.302603ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + undefined
+  - 'strict'
+  
+      at TestContext.<anonymous> (/app/frontend/plugins/ip-allowlist/__tests__/ip_allowlist_owner_access.test.js:122:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 'strict',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at plugins/ip-allowlist/__tests__/ip_allowlist_owner_access.test.js:128:1
+✖ permissive admits even when both allowlists empty (0.186625ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at TestContext.<anonymous> (/app/frontend/plugins/ip-allowlist/__tests__/ip_allowlist_owner_access.test.js:131:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

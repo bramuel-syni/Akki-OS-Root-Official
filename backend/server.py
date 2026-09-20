@@ -108,6 +108,12 @@ from routers import master_admin as master_admin_router  # noqa: E402
 # surfaces. Register: Doc16-001 REUSABLE→DONE + Doc16-014 wire-through
 # PARTIAL→DONE via the mounted team ceremony.
 from routers import team as team_router  # noqa: E402
+# Auth surface for frontend specialist mutation-endpoint access
+#   (owner directive verbatim 2026-09-20T~13:00Z · Addition B ·
+#    Q-unlock sub-wave fold-in · operational wiring not refactoring ·
+#    demo identity seeder invoked at startup below · four demo accounts
+#    per services.auth.demo_identity_seeder are additive + idempotent).
+from routers import auth as auth_router  # noqa: E402
 from services.ip_allowlist.middleware import IPAllowlistMiddleware  # noqa: E402
 
 # Deliverables directory (read-only snapshot per Chunk-4 v1.1 delivery logistics)
@@ -335,6 +341,13 @@ app.include_router(master_admin_router.router, prefix="/api")
 # in tests/invariants/test_ship_manifest_dod_route_table_drift.py.
 app.include_router(team_router.router)
 
+# Auth router · /api/auth/{register,login,refresh,me} · Addition B fold-in
+# (owner directive verbatim 2026-09-20T~13:00Z: "The web frontend specialist
+# is being dispatched in parallel and will need mutation-endpoint access.
+# Update /app/memory/test_credentials.md with the seeded account, login flow
+# (/api/auth/login → /api/auth/refresh), and any strict-mode fallback header.")
+app.include_router(auth_router.router, prefix="/api")
+
 # W-REGISTRY-FULL-BUILD · owner directive 2026-09-08T~06:15Z STEP 5 · D.1
 # route inventory (22 routes total across 6 sub-routers):
 #   /api/registry/{mix,mix/reading,source/{id}/profile,cir,estate_intelligence,opportunities}
@@ -370,3 +383,25 @@ logger = logging.getLogger(__name__)
 @app.on_event("shutdown")
 async def shutdown_db_client():
     client.close()
+
+
+@app.on_event("startup")
+async def seed_demo_identities_at_startup():
+    """Seed demo identities idempotently at pod-shell startup.
+
+    Owner directive verbatim (2026-09-20T~13:00Z · Addition B fold-in):
+    "The web frontend specialist is being dispatched in parallel and will
+    need mutation-endpoint access. Update /app/memory/test_credentials.md
+    with the seeded account, login flow (/api/auth/login →
+    /api/auth/refresh), and any strict-mode fallback header."
+
+    The seeder is IDEMPOTENT (services.auth.demo_identity_seeder inserts
+    each demo user only if the email is not already present). Failure to
+    seed does NOT block startup — logged and continued.
+    """
+    try:
+        from services.auth.demo_identity_seeder import seed_demo_identities_if_absent
+        await seed_demo_identities_if_absent()
+        logger.info("demo_identity_seeder · seeded 4 demo accounts idempotently")
+    except Exception as e:
+        logger.warning("demo_identity_seeder · seed skipped: %s", e)

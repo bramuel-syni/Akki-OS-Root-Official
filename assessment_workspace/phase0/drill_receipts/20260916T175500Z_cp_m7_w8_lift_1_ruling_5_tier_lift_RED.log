@@ -1,0 +1,65 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.4.2, pluggy-1.6.0
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: xdist-3.8.0, asyncio-1.4.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collected 7 items
+
+tests/invariants/test_wm7_w8_lift_1_ruling_5_tier_lift.py FFFFFFF        [100%]
+============================ BASELINE_GUARD receipt ============================
+passed=0 / baseline-failures-remaining=0 / quarantined=0
+  manifest: tests/invariants/baseline_failures.json
+  scope: BASELINE_GUARD=1  ·  invocation: cd backend && BASELINE_GUARD=1 python -m pytest tests/invariants/
+!!!!!!!!!!!!! BASELINE_GUARD · HALT AND REPORT · owner ruling (c) !!!!!!!!!!!!!!
+[V1] 7 NEW failure(s) OUTSIDE manifest:
+    tests/invariants/test_wm7_w8_lift_1_ruling_5_tier_lift.py::test_wm7_w8_lift_1_module_fabric_present
+    tests/invariants/test_wm7_w8_lift_1_ruling_5_tier_lift.py::test_wm7_w8_lift_1_non_lifted_tier_and_case_agnostic_and_anchor
+    tests/invariants/test_wm7_w8_lift_1_ruling_5_tier_lift.py::test_wm7_w8_lift_1_ruling_5_admission_check_frozen_carrier_shape
+    tests/invariants/test_wm7_w8_lift_1_ruling_5_tier_lift.py::test_wm7_w8_lift_1_valid_triple_admits
+    tests/invariants/test_wm7_w8_lift_1_ruling_5_tier_lift.py::test_wm7_w8_lift_1_wrong_kdpa_refuses
+    tests/invariants/test_wm7_w8_lift_1_ruling_5_tier_lift.py::test_wm7_w8_lift_1_wrong_named_persons_refuses
+    tests/invariants/test_wm7_w8_lift_1_ruling_5_tier_lift.py::test_wm7_w8_lift_1_wrong_transfer_basis_refuses
+[V3] Passed count 0 < ratchet floor 4412
+  No silent rebaselining. Report drift to owner verbatim.
+
+=================================== FAILURES ===================================
+___________________ test_wm7_w8_lift_1_module_fabric_present ___________________
+tests/invariants/test_wm7_w8_lift_1_ruling_5_tier_lift.py:48: in test_wm7_w8_lift_1_module_fabric_present
+    import services.release_gate.ruling_5_tier_lift as mod
+E   ModuleNotFoundError: No module named 'services.release_gate.ruling_5_tier_lift'
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+_______ test_wm7_w8_lift_1_ruling_5_admission_check_frozen_carrier_shape _______
+tests/invariants/test_wm7_w8_lift_1_ruling_5_tier_lift.py:77: in test_wm7_w8_lift_1_ruling_5_admission_check_frozen_carrier_shape
+    from services.release_gate.ruling_5_tier_lift import (
+E   ModuleNotFoundError: No module named 'services.release_gate.ruling_5_tier_lift'
+____________________ test_wm7_w8_lift_1_valid_triple_admits ____________________
+tests/invariants/test_wm7_w8_lift_1_ruling_5_tier_lift.py:108: in test_wm7_w8_lift_1_valid_triple_admits
+    from services.release_gate.ruling_5_tier_lift import (
+E   ModuleNotFoundError: No module named 'services.release_gate.ruling_5_tier_lift'
+____________________ test_wm7_w8_lift_1_wrong_kdpa_refuses _____________________
+tests/invariants/test_wm7_w8_lift_1_ruling_5_tier_lift.py:137: in test_wm7_w8_lift_1_wrong_kdpa_refuses
+    from services.release_gate.ruling_5_tier_lift import (
+E   ModuleNotFoundError: No module named 'services.release_gate.ruling_5_tier_lift'
+________________ test_wm7_w8_lift_1_wrong_named_persons_refuses ________________
+tests/invariants/test_wm7_w8_lift_1_ruling_5_tier_lift.py:161: in test_wm7_w8_lift_1_wrong_named_persons_refuses
+    from services.release_gate.ruling_5_tier_lift import (
+E   ModuleNotFoundError: No module named 'services.release_gate.ruling_5_tier_lift'
+_______________ test_wm7_w8_lift_1_wrong_transfer_basis_refuses ________________
+tests/invariants/test_wm7_w8_lift_1_ruling_5_tier_lift.py:185: in test_wm7_w8_lift_1_wrong_transfer_basis_refuses
+    from services.release_gate.ruling_5_tier_lift import (
+E   ModuleNotFoundError: No module named 'services.release_gate.ruling_5_tier_lift'
+_______ test_wm7_w8_lift_1_non_lifted_tier_and_case_agnostic_and_anchor ________
+tests/invariants/test_wm7_w8_lift_1_ruling_5_tier_lift.py:213: in test_wm7_w8_lift_1_non_lifted_tier_and_case_agnostic_and_anchor
+    from services.release_gate import ruling_5_tier_lift as mod
+E   ImportError: cannot import name 'ruling_5_tier_lift' from 'services.release_gate' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/release_gate/__init__.py)
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wm7_w8_lift_1_ruling_5_tier_lift.py::test_wm7_w8_lift_1_module_fabric_present
+FAILED tests/invariants/test_wm7_w8_lift_1_ruling_5_tier_lift.py::test_wm7_w8_lift_1_ruling_5_admission_check_frozen_carrier_shape
+FAILED tests/invariants/test_wm7_w8_lift_1_ruling_5_tier_lift.py::test_wm7_w8_lift_1_valid_triple_admits
+FAILED tests/invariants/test_wm7_w8_lift_1_ruling_5_tier_lift.py::test_wm7_w8_lift_1_wrong_kdpa_refuses
+FAILED tests/invariants/test_wm7_w8_lift_1_ruling_5_tier_lift.py::test_wm7_w8_lift_1_wrong_named_persons_refuses
+FAILED tests/invariants/test_wm7_w8_lift_1_ruling_5_tier_lift.py::test_wm7_w8_lift_1_wrong_transfer_basis_refuses
+FAILED tests/invariants/test_wm7_w8_lift_1_ruling_5_tier_lift.py::test_wm7_w8_lift_1_non_lifted_tier_and_case_agnostic_and_anchor
+============================== 7 failed in 1.13s ===============================

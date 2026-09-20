@@ -1,0 +1,25 @@
+FFFFFFFFFFFFFFFFFFFFFF                                                   [100%]
+=========================== short test summary info ============================
+FAILED tests/invariants/test_census_engine_contract.py::test_census_engine_module_exists
+FAILED tests/invariants/test_census_engine_contract.py::test_census_engine_carries_run_entry_point
+FAILED tests/invariants/test_census_engine_contract.py::test_census_engine_carries_enumerate_databases_helper
+FAILED tests/invariants/test_census_engine_contract.py::test_engine_sql_module_never_emits_min_or_max
+FAILED tests/invariants/test_census_engine_contract.py::test_engine_result_never_carries_min_or_max_keys
+FAILED tests/invariants/test_census_engine_contract.py::test_engine_flags_single_database_visibility
+FAILED tests/invariants/test_census_engine_contract.py::test_engine_does_not_flag_when_multiple_databases_visible
+FAILED tests/invariants/test_census_engine_contract.py::test_engine_per_column_carries_only_whitelisted_aggregates
+FAILED tests/invariants/test_census_engine_contract.py::test_engine_manifest_never_contains_row_values
+FAILED tests/invariants/test_census_engine_contract.py::test_engine_numbering_starts_at_one
+FAILED tests/invariants/test_census_engine_contract.py::test_engine_writes_manifest_and_per_db_files
+FAILED tests/invariants/test_census_engine_contract.py::test_engine_records_one_audit_entry_per_read
+FAILED tests/invariants/test_census_engine_contract.py::test_engine_registers_chokepoint_crossing_per_run
+FAILED tests/invariants/test_census_wire_shape.py::test_census_router_module_exists
+FAILED tests/invariants/test_census_wire_shape.py::test_census_router_carries_apirouter
+FAILED tests/invariants/test_census_wire_shape.py::test_get_census_latest_honest_empty_shape
+FAILED tests/invariants/test_census_wire_shape.py::test_get_census_records_honest_empty_shape
+FAILED tests/invariants/test_census_wire_shape.py::test_get_census_latest_returns_latest_manifest
+FAILED tests/invariants/test_census_wire_shape.py::test_get_census_records_lists_all_runs_newest_first
+FAILED tests/invariants/test_census_wire_shape.py::test_wire_shape_never_hardcodes_census_number_four
+FAILED tests/invariants/test_census_wire_shape.py::test_post_census_run_returns_shape
+FAILED tests/invariants/test_census_wire_shape.py::test_post_census_run_returns_honest_failure_when_credentials_missing
+22 failed in 0.71s

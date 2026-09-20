@@ -1,0 +1,286 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-9.1.1, pluggy-1.6.0 -- /root/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: asyncio-1.4.0, xdist-3.8.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 1 item
+
+tests/invariants/test_northena_ledger_row_v0.py::test_northena_ledger_row_schema_frozen FAILED [100%]
+
+=================================== FAILURES ===================================
+____________________ test_northena_ledger_row_schema_frozen ____________________
+
+    def test_northena_ledger_row_schema_frozen():
+        expected = json.loads(SNAP.read_text())
+        actual = LedgerRow.model_json_schema()
+>       assert _canonical(actual) == _canonical(expected), (
+            "northena_ledger_row@v0 schema drift. Bump via new snapshot in code review."
+        )
+E       AssertionError: northena_ledger_row@v0 schema drift. Bump via new snapshot in code review.
+E       assert '{\n  "$defs": {\n    "LedgerArtifactRef": {\n      "additionalProperties": false,\n      "description": "\\u00a77.2: { artifact_type, artifact_id, version }.",\n      "properties": {\n        "artifact_id": {\n          "title": "Artifact Id",\n          "type": "string"\n        },\n        "artifact_type": {\n          "enum": [\n            "portfolio_mandate",\n            "objective_request",\n            "thinklab_objective"\n          ],\n          "title": "Artifact Type",\n          "type": "string"\n        },\n        "version": {\n          "title": "Version",\n          "type": "string"\n        }\n      },\n      "required": [\n        "artifact_type",\n        "artifact_id",\n        "version"\n      ],\n      "title": "LedgerArtifactRef",\n      "type": "object"\n    }\n  },\n  "additionalProperties": false,\n  "description": "\\u00a77.2 \\u00b7 the contract-grade Ledger row.",\n  "properties": {\n    "artifact_ref": {\n      "$ref": "#/$defs/LedgerArtifactRef"\n    },\n    "at": {\n      "format": "date-time",\n      "title": "At",\n      "type": "string"\n    },\n    "decision": {\n      "enum": [\n        "admitted",\n        "refused",\n        "warm",\n        "fresh",\n        "terminate_success",\n        "terminate_budget",\n        "continue"\n      ],\n      "title": "Decision",\n      "type": "string"\n    },\n    "lawful_basis_ref": {\n      "title": "Lawful Basis Ref",\n      "type": "string"\n    },\n    "reason": {\n      "description": "Deterministic reason string.",\n      "title": "Reason",\n      "type": "string"\n    },\n    "row_id": {\n      "description": "Stable identity for the ledger row (identity-join key).",\n      "title": "Row Id",\n      "type": "string"\n    },\n    "run_id": {\n      "description": "uuid \\u2014 one run has one closed Ledger.",\n      "title": "Run Id",\n      "type": "string"\n    },\n    "stage": {\n      "enum": [\n        "admit",\n        "gate",\n        "converge"\n      ],\n      "title": "Stage",\n      "type": "string"\n    },\n    "stamp_audit": {\n      "anyOf": [\n        {\n          "additionalProperties": true,\n          "type": "object"\n        },\n        {\n          "type": "null"\n        }\n      ],\n      "default": null,\n      "description": "Permissive side-channel per \\u00a77.3 \\u00b7 absorbs Solva traces, gate receipts, refusal envelopes without mutating the frozen row contract.",\n      "title": "Stamp Audit"\n    },\n    "trace_id": {\n      "description": "Joins ledger to unit-level intelligence.",\n      "title": "Trace Id",\n      "type": "string"\n    }\n  },\n  "required": [\n    "run_id",\n    "trace_id",\n    "stage",\n    "decision",\n    "reason",\n    "artifact_ref",\n    "lawful_basis_ref"\n  ],\n  "title": "LedgerRow",\n  "type": "object"\n}' == '{\n  "$defs": {\n    "LedgerArtifactRef": {\n      "additionalProperties": false,\n      "description": "\\u00a77.2: { artifact_type, artifact_id, version }.",\n      "properties": {\n        "artifact_id": {\n          "title": "Artifact Id",\n          "type": "string"\n        },\n        "artifact_type": {\n          "enum": [\n            "portfolio_mandate",\n            "objective_request"\n          ],\n          "title": "Artifact Type",\n          "type": "string"\n        },\n        "version": {\n          "title": "Version",\n          "type": "string"\n        }\n      },\n      "required": [\n        "artifact_type",\n        "artifact_id",\n        "version"\n      ],\n      "title": "LedgerArtifactRef",\n      "type": "object"\n    }\n  },\n  "additionalProperties": false,\n  "description": "\\u00a77.2 \\u2014 the contract-grade Ledger row. Nine fields.",\n  "properties": {\n    "artifact_ref": {\n      "$ref": "#/$defs/LedgerArtifactRef"\n    },\n    "at": {\n      "format": "date-time",\n      "title": "At",\n      "type": "string"\n    },\n    "decision": {\n      "enum": [\n        "admitted",\n        "refused",\n        "warm",\n        "fresh",\n        "terminate_success",\n        "terminate_budget",\n        "continue"\n      ],\n      "title": "Decision",\n      "type": "string"\n    },\n    "lawful_basis_ref": {\n      "title": "Lawful Basis Ref",\n      "type": "string"\n    },\n    "reason": {\n      "description": "Deterministic reason string.",\n      "title": "Reason",\n      "type": "string"\n    },\n    "run_id": {\n      "description": "uuid \\u2014 one run has one closed Ledger.",\n      "title": "Run Id",\n      "type": "string"\n    },\n    "stage": {\n      "enum": [\n        "admit",\n        "gate",\n        "converge"\n      ],\n      "title": "Stage",\n      "type": "string"\n    },\n    "stamp_audit": {\n      "anyOf": [\n        {\n          "type": "object"\n        },\n        {\n          "type": "null"\n        }\n      ],\n      "default": null,\n      "description": "Absorbed defensibility stamp-audit entry when present (\\u00a77.3): { unit_id, decision, reason, judged_signal_dimensions, floor_violation }.",\n      "title": "Stamp Audit"\n    },\n    "trace_id": {\n      "description": "Joins ledger to unit-level intelligence and trace lenses.",\n      "title": "Trace Id",\n      "type": "string"\n    }\n  },\n  "required": [\n    "run_id",\n    "trace_id",\n    "stage",\n    "decision",\n    "reason",\n    "artifact_ref",\n    "lawful_basis_ref",\n    "at"\n  ],\n  "title": "LedgerRow",\n  "type": "object"\n}'
+E         
+E           {
+E             "$defs": {
+E               "LedgerArtifactRef": {
+E                 "additionalProperties": false,
+E                 "description": "\u00a77.2: { artifact_type, artifact_id, version }.",
+E                 "properties": {
+E                   "artifact_id": {
+E                     "title": "Artifact Id",
+E                     "type": "string"
+E                   },
+E                   "artifact_type": {
+E                     "enum": [
+E                       "portfolio_mandate",
+E         -             "objective_request"
+E         +             "objective_request",
+E         ?                                +
+E         +             "thinklab_objective"
+E                     ],
+E                     "title": "Artifact Type",
+E                     "type": "string"
+E                   },
+E                   "version": {
+E                     "title": "Version",
+E                     "type": "string"
+E                   }
+E                 },
+E                 "required": [
+E                   "artifact_type",
+E                   "artifact_id",
+E                   "version"
+E                 ],
+E                 "title": "LedgerArtifactRef",
+E                 "type": "object"
+E               }
+E             },
+E             "additionalProperties": false,
+E         -   "description": "\u00a77.2 \u2014 the contract-grade Ledger row. Nine fields.",
+E         ?                               - ^^                               -------------
+E         +   "description": "\u00a77.2 \u00b7 the contract-grade Ledger row.",
+E         ?                                ^^^
+E             "properties": {
+E               "artifact_ref": {
+E                 "$ref": "#/$defs/LedgerArtifactRef"
+E               },
+E               "at": {
+E                 "format": "date-time",
+E                 "title": "At",
+E                 "type": "string"
+E               },
+E               "decision": {
+E                 "enum": [
+E                   "admitted",
+E                   "refused",
+E                   "warm",
+E                   "fresh",
+E                   "terminate_success",
+E                   "terminate_budget",
+E                   "continue"
+E                 ],
+E                 "title": "Decision",
+E                 "type": "string"
+E               },
+E               "lawful_basis_ref": {
+E                 "title": "Lawful Basis Ref",
+E                 "type": "string"
+E               },
+E               "reason": {
+E                 "description": "Deterministic reason string.",
+E                 "title": "Reason",
+E                 "type": "string"
+E               },
+E         +     "row_id": {
+E         +       "description": "Stable identity for the ledger row (identity-join key).",
+E         +       "title": "Row Id",
+E         +       "type": "string"
+E         +     },
+E               "run_id": {
+E                 "description": "uuid \u2014 one run has one closed Ledger.",
+E                 "title": "Run Id",
+E                 "type": "string"
+E               },
+E               "stage": {
+E                 "enum": [
+E                   "admit",
+E                   "gate",
+E                   "converge"
+E                 ],
+E                 "title": "Stage",
+E                 "type": "string"
+E               },
+E               "stamp_audit": {
+E                 "anyOf": [
+E                   {
+E         +           "additionalProperties": true,
+E                     "type": "object"
+E                   },
+E                   {
+E                     "type": "null"
+E                   }
+E                 ],
+E                 "default": null,
+E         -       "description": "Absorbed defensibility stamp-audit entry when present (\u00a77.3): { unit_id, decision, reason, judged_signal_dimensions, floor_violation }.",
+E         +       "description": "Permissive side-channel per \u00a77.3 \u00b7 absorbs Solva traces, gate receipts, refusal envelopes without mutating the frozen row contract.",
+E                 "title": "Stamp Audit"
+E               },
+E               "trace_id": {
+E         -       "description": "Joins ledger to unit-level intelligence and trace lenses.",
+E         ?                                                              -----------------
+E         +       "description": "Joins ledger to unit-level intelligence.",
+E                 "title": "Trace Id",
+E                 "type": "string"
+E               }
+E             },
+E             "required": [
+E               "run_id",
+E               "trace_id",
+E               "stage",
+E               "decision",
+E               "reason",
+E               "artifact_ref",
+E         -     "lawful_basis_ref",
+E         ?                       -
+E         +     "lawful_basis_ref"
+E         -     "at"
+E             ],
+E             "title": "LedgerRow",
+E             "type": "object"
+E           }
+
+tests/invariants/test_northena_ledger_row_v0.py:17: AssertionError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_northena_ledger_row_v0.py::test_northena_ledger_row_schema_frozen - AssertionError: northena_ledger_row@v0 schema drift. Bump via new snapshot in code review.
+assert '{\n  "$defs": {\n    "LedgerArtifactRef": {\n      "additionalProperties": false,\n      "description": "\\u00a77.2: { artifact_type, artifact_id, version }.",\n      "properties": {\n        "artifact_id": {\n          "title": "Artifact Id",\n          "type": "string"\n        },\n        "artifact_type": {\n          "enum": [\n            "portfolio_mandate",\n            "objective_request",\n            "thinklab_objective"\n          ],\n          "title": "Artifact Type",\n          "type": "string"\n        },\n        "version": {\n          "title": "Version",\n          "type": "string"\n        }\n      },\n      "required": [\n        "artifact_type",\n        "artifact_id",\n        "version"\n      ],\n      "title": "LedgerArtifactRef",\n      "type": "object"\n    }\n  },\n  "additionalProperties": false,\n  "description": "\\u00a77.2 \\u00b7 the contract-grade Ledger row.",\n  "properties": {\n    "artifact_ref": {\n      "$ref": "#/$defs/LedgerArtifactRef"\n    },\n    "at": {\n      "format": "date-time",\n      "title": "At",\n      "type": "string"\n    },\n    "decision": {\n      "enum": [\n        "admitted",\n        "refused",\n        "warm",\n        "fresh",\n        "terminate_success",\n        "terminate_budget",\n        "continue"\n      ],\n      "title": "Decision",\n      "type": "string"\n    },\n    "lawful_basis_ref": {\n      "title": "Lawful Basis Ref",\n      "type": "string"\n    },\n    "reason": {\n      "description": "Deterministic reason string.",\n      "title": "Reason",\n      "type": "string"\n    },\n    "row_id": {\n      "description": "Stable identity for the ledger row (identity-join key).",\n      "title": "Row Id",\n      "type": "string"\n    },\n    "run_id": {\n      "description": "uuid \\u2014 one run has one closed Ledger.",\n      "title": "Run Id",\n      "type": "string"\n    },\n    "stage": {\n      "enum": [\n        "admit",\n        "gate",\n        "converge"\n      ],\n      "title": "Stage",\n      "type": "string"\n    },\n    "stamp_audit": {\n      "anyOf": [\n        {\n          "additionalProperties": true,\n          "type": "object"\n        },\n        {\n          "type": "null"\n        }\n      ],\n      "default": null,\n      "description": "Permissive side-channel per \\u00a77.3 \\u00b7 absorbs Solva traces, gate receipts, refusal envelopes without mutating the frozen row contract.",\n      "title": "Stamp Audit"\n    },\n    "trace_id": {\n      "description": "Joins ledger to unit-level intelligence.",\n      "title": "Trace Id",\n      "type": "string"\n    }\n  },\n  "required": [\n    "run_id",\n    "trace_id",\n    "stage",\n    "decision",\n    "reason",\n    "artifact_ref",\n    "lawful_basis_ref"\n  ],\n  "title": "LedgerRow",\n  "type": "object"\n}' == '{\n  "$defs": {\n    "LedgerArtifactRef": {\n      "additionalProperties": false,\n      "description": "\\u00a77.2: { artifact_type, artifact_id, version }.",\n      "properties": {\n        "artifact_id": {\n          "title": "Artifact Id",\n          "type": "string"\n        },\n        "artifact_type": {\n          "enum": [\n            "portfolio_mandate",\n            "objective_request"\n          ],\n          "title": "Artifact Type",\n          "type": "string"\n        },\n        "version": {\n          "title": "Version",\n          "type": "string"\n        }\n      },\n      "required": [\n        "artifact_type",\n        "artifact_id",\n        "version"\n      ],\n      "title": "LedgerArtifactRef",\n      "type": "object"\n    }\n  },\n  "additionalProperties": false,\n  "description": "\\u00a77.2 \\u2014 the contract-grade Ledger row. Nine fields.",\n  "properties": {\n    "artifact_ref": {\n      "$ref": "#/$defs/LedgerArtifactRef"\n    },\n    "at": {\n      "format": "date-time",\n      "title": "At",\n      "type": "string"\n    },\n    "decision": {\n      "enum": [\n        "admitted",\n        "refused",\n        "warm",\n        "fresh",\n        "terminate_success",\n        "terminate_budget",\n        "continue"\n      ],\n      "title": "Decision",\n      "type": "string"\n    },\n    "lawful_basis_ref": {\n      "title": "Lawful Basis Ref",\n      "type": "string"\n    },\n    "reason": {\n      "description": "Deterministic reason string.",\n      "title": "Reason",\n      "type": "string"\n    },\n    "run_id": {\n      "description": "uuid \\u2014 one run has one closed Ledger.",\n      "title": "Run Id",\n      "type": "string"\n    },\n    "stage": {\n      "enum": [\n        "admit",\n        "gate",\n        "converge"\n      ],\n      "title": "Stage",\n      "type": "string"\n    },\n    "stamp_audit": {\n      "anyOf": [\n        {\n          "type": "object"\n        },\n        {\n          "type": "null"\n        }\n      ],\n      "default": null,\n      "description": "Absorbed defensibility stamp-audit entry when present (\\u00a77.3): { unit_id, decision, reason, judged_signal_dimensions, floor_violation }.",\n      "title": "Stamp Audit"\n    },\n    "trace_id": {\n      "description": "Joins ledger to unit-level intelligence and trace lenses.",\n      "title": "Trace Id",\n      "type": "string"\n    }\n  },\n  "required": [\n    "run_id",\n    "trace_id",\n    "stage",\n    "decision",\n    "reason",\n    "artifact_ref",\n    "lawful_basis_ref",\n    "at"\n  ],\n  "title": "LedgerRow",\n  "type": "object"\n}'
+  
+    {
+      "$defs": {
+        "LedgerArtifactRef": {
+          "additionalProperties": false,
+          "description": "\u00a77.2: { artifact_type, artifact_id, version }.",
+          "properties": {
+            "artifact_id": {
+              "title": "Artifact Id",
+              "type": "string"
+            },
+            "artifact_type": {
+              "enum": [
+                "portfolio_mandate",
+  -             "objective_request"
+  +             "objective_request",
+  ?                                +
+  +             "thinklab_objective"
+              ],
+              "title": "Artifact Type",
+              "type": "string"
+            },
+            "version": {
+              "title": "Version",
+              "type": "string"
+            }
+          },
+          "required": [
+            "artifact_type",
+            "artifact_id",
+            "version"
+          ],
+          "title": "LedgerArtifactRef",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+  -   "description": "\u00a77.2 \u2014 the contract-grade Ledger row. Nine fields.",
+  ?                               - ^^                               -------------
+  +   "description": "\u00a77.2 \u00b7 the contract-grade Ledger row.",
+  ?                                ^^^
+      "properties": {
+        "artifact_ref": {
+          "$ref": "#/$defs/LedgerArtifactRef"
+        },
+        "at": {
+          "format": "date-time",
+          "title": "At",
+          "type": "string"
+        },
+        "decision": {
+          "enum": [
+            "admitted",
+            "refused",
+            "warm",
+            "fresh",
+            "terminate_success",
+            "terminate_budget",
+            "continue"
+          ],
+          "title": "Decision",
+          "type": "string"
+        },
+        "lawful_basis_ref": {
+          "title": "Lawful Basis Ref",
+          "type": "string"
+        },
+        "reason": {
+          "description": "Deterministic reason string.",
+          "title": "Reason",
+          "type": "string"
+        },
+  +     "row_id": {
+  +       "description": "Stable identity for the ledger row (identity-join key).",
+  +       "title": "Row Id",
+  +       "type": "string"
+  +     },
+        "run_id": {
+          "description": "uuid \u2014 one run has one closed Ledger.",
+          "title": "Run Id",
+          "type": "string"
+        },
+        "stage": {
+          "enum": [
+            "admit",
+            "gate",
+            "converge"
+          ],
+          "title": "Stage",
+          "type": "string"
+        },
+        "stamp_audit": {
+          "anyOf": [
+            {
+  +           "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+  -       "description": "Absorbed defensibility stamp-audit entry when present (\u00a77.3): { unit_id, decision, reason, judged_signal_dimensions, floor_violation }.",
+  +       "description": "Permissive side-channel per \u00a77.3 \u00b7 absorbs Solva traces, gate receipts, refusal envelopes without mutating the frozen row contract.",
+          "title": "Stamp Audit"
+        },
+        "trace_id": {
+  -       "description": "Joins ledger to unit-level intelligence and trace lenses.",
+  ?                                                              -----------------
+  +       "description": "Joins ledger to unit-level intelligence.",
+          "title": "Trace Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "run_id",
+        "trace_id",
+        "stage",
+        "decision",
+        "reason",
+        "artifact_ref",
+  -     "lawful_basis_ref",
+  ?                       -
+  +     "lawful_basis_ref"
+  -     "at"
+      ],
+      "title": "LedgerRow",
+      "type": "object"
+    }
+============================== 1 failed in 0.11s ===============================

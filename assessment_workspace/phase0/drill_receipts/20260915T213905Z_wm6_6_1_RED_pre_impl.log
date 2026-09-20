@@ -1,0 +1,424 @@
+........................................................................ [  1%]
+........................................................................ [  3%]
+........................................................................ [  5%]
+........................................................................ [  6%]
+........................................................................ [  8%]
+........................................................................ [ 10%]
+........................................................................ [ 11%]
+........................................................................ [ 13%]
+........................................................................ [ 15%]
+........................................................................ [ 16%]
+........................................................................ [ 18%]
+........................................................................ [ 20%]
+........................................................................ [ 21%]
+........................................................................ [ 23%]
+........................................................................ [ 25%]
+........................................................................ [ 27%]
+........................................................................ [ 28%]
+........................................................................ [ 30%]
+........................................................................ [ 32%]
+........................................................................ [ 33%]
+........................................................................ [ 35%]
+..........................................................s............. [ 37%]
+........................................................................ [ 38%]
+........................................................................ [ 40%]
+........................................................................ [ 42%]
+........................................................................ [ 43%]
+........................................................................ [ 45%]
+........................................................................ [ 47%]
+........................................................................ [ 49%]
+........................................................................ [ 50%]
+........................................................................ [ 52%]
+........................................................................ [ 54%]
+........................................................................ [ 55%]
+........................................................................ [ 57%]
+........................................................................ [ 59%]
+........................................................................ [ 60%]
+........................................................................ [ 62%]
+........................................................................ [ 64%]
+........................................................................ [ 65%]
+........................................................................ [ 67%]
+........................................................................ [ 69%]
+........................................................................ [ 71%]
+........................................................................ [ 72%]
+........................................................................ [ 74%]
+........................................................................ [ 76%]
+........................................................................ [ 77%]
+........................................................................ [ 79%]
+........................................................................ [ 81%]
+........................................................................ [ 82%]
+........................................................................ [ 84%]
+........................................................................ [ 86%]
+........................................................................ [ 87%]
+........................................................................ [ 89%]
+........................................................................ [ 91%]
+........................................................................ [ 93%]
+........................................................................ [ 94%]
+........................................................................ [ 96%]
+.........FFFFFFFFFFFFFF................................................. [ 98%]
+........................................................................ [ 99%]
+.......                                                                  [100%]============================ BASELINE_GUARD receipt ============================
+passed=4240 / baseline-failures-remaining=0 / quarantined=0
+  manifest: tests/invariants/baseline_failures.json
+  scope: BASELINE_GUARD=1  ·  invocation: cd backend && BASELINE_GUARD=1 python -m pytest tests/invariants/
+!!!!!!!!!!!!! BASELINE_GUARD · HALT AND REPORT · owner ruling (c) !!!!!!!!!!!!!!
+[V1] 14 NEW failure(s) OUTSIDE manifest:
+    tests/invariants/test_wm6_6_1_objective_wizard_compile_refusal.py::test_wm6_6_1_bound_cluster_none_passes_rec1_gate
+    tests/invariants/test_wm6_6_1_objective_wizard_compile_refusal.py::test_wm6_6_1_bound_cluster_well_formed_passes_rec1_gate
+    tests/invariants/test_wm6_6_1_objective_wizard_compile_refusal.py::test_wm6_6_1_compile_passes_silently_on_well_formed_input
+    tests/invariants/test_wm6_6_1_objective_wizard_compile_refusal.py::test_wm6_6_1_frozen_dataclass_discipline
+    tests/invariants/test_wm6_6_1_objective_wizard_compile_refusal.py::test_wm6_6_1_module_fabric
+    tests/invariants/test_wm6_6_1_objective_wizard_compile_refusal.py::test_wm6_6_1_refusal_ordering_test_set_ref_beats_others_p036
+    tests/invariants/test_wm6_6_1_objective_wizard_compile_refusal.py::test_wm6_6_1_refuses_rec1_m6sw6_bound_cluster_human_name_leak[cluster_name]
+    tests/invariants/test_wm6_6_1_objective_wizard_compile_refusal.py::test_wm6_6_1_refuses_rec1_m6sw6_bound_cluster_human_name_leak[display_name]
+    tests/invariants/test_wm6_6_1_objective_wizard_compile_refusal.py::test_wm6_6_1_refuses_rec1_m6sw6_bound_cluster_human_name_leak[human_name]
+    tests/invariants/test_wm6_6_1_objective_wizard_compile_refusal.py::test_wm6_6_1_refuses_rec1_m6sw6_bound_cluster_human_name_leak[label]
+  No silent rebaselining. Report drift to owner verbatim.
+
+=================================== FAILURES ===================================
+__________________________ test_wm6_6_1_module_fabric __________________________
+
+    def test_wm6_6_1_module_fabric():
+        """Module `services.audio_plane_v1.objective_wizard` exports the
+        CP-M6-6-1 public API (8 carriers/functions/errors)."""
+>       m = importlib.import_module(
+            "services.audio_plane_v1.objective_wizard",
+        )
+
+tests/invariants/test_wm6_6_1_objective_wizard_compile_refusal.py:59: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'services.audio_plane_v1.objective_wizard'
+import_ = <function _gcd_import at 0xfde69de9bd80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'services.audio_plane_v1.objective_wizard'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+__________ test_wm6_6_1_compile_passes_silently_on_well_formed_input ___________
+
+    def test_wm6_6_1_compile_passes_silently_on_well_formed_input():
+        """§8.4 P139 verbatim preamble: 'The wizard cannot emit an
+        artifact the downstream contracts would refuse. Rejected at
+        compile, not warned:'.  Well-formed input (test_set_ref present ·
+        per-stratum acceptance · no custody-violating columns · all
+        bound_cluster carriers pass §5.3 clause 2) passes silently."""
+>       from services.audio_plane_v1.objective_wizard import (
+            AcceptanceBar, CollectionSchemaColumnStub, TargetOutcomeStub,
+            compile_objective_artifact,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.objective_wizard'
+
+tests/invariants/test_wm6_6_1_objective_wizard_compile_refusal.py:83: ModuleNotFoundError
+____________ test_wm6_6_1_refuses_v90_outcome_without_test_set_ref _____________
+
+    def test_wm6_6_1_refuses_v90_outcome_without_test_set_ref():
+        """§8.4 P140 verbatim: 'An Outcome without an existing test_set_ref.'
+        An outcome whose test_set_ref is None refuses with
+        `TargetOutcomeMissingTestSetRefError`."""
+>       from services.audio_plane_v1.objective_wizard import (
+            AcceptanceBar, CollectionSchemaColumnStub,
+            TargetOutcomeMissingTestSetRefError, TargetOutcomeStub,
+            compile_objective_artifact,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.objective_wizard'
+
+tests/invariants/test_wm6_6_1_objective_wizard_compile_refusal.py:114: ModuleNotFoundError
+____ test_wm6_6_1_refuses_v91_acceptance_bar_missing_per_stratum_dimension _____
+
+    def test_wm6_6_1_refuses_v91_acceptance_bar_missing_per_stratum_dimension():
+        """§8.4 P141 verbatim: 'An acceptance bar missing the per-stratum
+        dimension.'  An acceptance bar with `has_per_stratum_dimension=False`
+        refuses with `AcceptanceBarMissingPerStratumDimensionError`."""
+>       from services.audio_plane_v1.objective_wizard import (
+            AcceptanceBar, AcceptanceBarMissingPerStratumDimensionError,
+            CollectionSchemaColumnStub, TargetOutcomeStub,
+            compile_objective_artifact,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.objective_wizard'
+
+tests/invariants/test_wm6_6_1_objective_wizard_compile_refusal.py:144: ModuleNotFoundError
+_________ test_wm6_6_1_refuses_v92_collection_schema_custody_violation _________
+
+    def test_wm6_6_1_refuses_v92_collection_schema_custody_violation():
+        """§8.4 P142 verbatim: 'A Collection Schema requiring a column
+        whose capture violates the custody conditions of §6.2.'  A column
+        with `captures_custody_violating_field=True` refuses with
+        `CollectionSchemaCustodyViolationError`."""
+>       from services.audio_plane_v1.objective_wizard import (
+            AcceptanceBar, CollectionSchemaColumnStub,
+            CollectionSchemaCustodyViolationError, TargetOutcomeStub,
+            compile_objective_artifact,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.objective_wizard'
+
+tests/invariants/test_wm6_6_1_objective_wizard_compile_refusal.py:176: ModuleNotFoundError
+__ test_wm6_6_1_refuses_rec1_m6sw6_bound_cluster_human_name_leak[human_name] ___
+
+leak_attr = 'human_name'
+
+    @pytest.mark.parametrize("leak_attr", list(HUMAN_NAME_ATTRIBUTE_NAMES))
+    def test_wm6_6_1_refuses_rec1_m6sw6_bound_cluster_human_name_leak(leak_attr):
+        """Owner ruling 2026-09-15T~21:25Z verbatim (Rec-1-M6SW6): 'wire
+        assert_cluster_carries_no_human_name into sub-wave 6's
+        objective→cluster write path as a mandatory gate, not a
+        downstream check.'  §5.3 P089 clause 2 verbatim: 'A cluster
+        asserts that a distinct variant exists — not what it is called.'
+        A column whose `bound_cluster` carries any of the 5 leak-vocabulary
+        attributes with a non-None value refuses at compile with
+        `CollectionSchemaClusterHumanNameLeakError`.  Parametric over
+        all 5 members of `HUMAN_NAME_ATTRIBUTE_NAMES`."""
+>       from services.audio_plane_v1.objective_wizard import (
+            AcceptanceBar, CollectionSchemaClusterHumanNameLeakError,
+            CollectionSchemaColumnStub, TargetOutcomeStub,
+            compile_objective_artifact,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.objective_wizard'
+
+tests/invariants/test_wm6_6_1_objective_wizard_compile_refusal.py:214: ModuleNotFoundError
+_____ test_wm6_6_1_refuses_rec1_m6sw6_bound_cluster_human_name_leak[label] _____
+
+leak_attr = 'label'
+
+    @pytest.mark.parametrize("leak_attr", list(HUMAN_NAME_ATTRIBUTE_NAMES))
+    def test_wm6_6_1_refuses_rec1_m6sw6_bound_cluster_human_name_leak(leak_attr):
+        """Owner ruling 2026-09-15T~21:25Z verbatim (Rec-1-M6SW6): 'wire
+        assert_cluster_carries_no_human_name into sub-wave 6's
+        objective→cluster write path as a mandatory gate, not a
+        downstream check.'  §5.3 P089 clause 2 verbatim: 'A cluster
+        asserts that a distinct variant exists — not what it is called.'
+        A column whose `bound_cluster` carries any of the 5 leak-vocabulary
+        attributes with a non-None value refuses at compile with
+        `CollectionSchemaClusterHumanNameLeakError`.  Parametric over
+        all 5 members of `HUMAN_NAME_ATTRIBUTE_NAMES`."""
+>       from services.audio_plane_v1.objective_wizard import (
+            AcceptanceBar, CollectionSchemaClusterHumanNameLeakError,
+            CollectionSchemaColumnStub, TargetOutcomeStub,
+            compile_objective_artifact,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.objective_wizard'
+
+tests/invariants/test_wm6_6_1_objective_wizard_compile_refusal.py:214: ModuleNotFoundError
+_ test_wm6_6_1_refuses_rec1_m6sw6_bound_cluster_human_name_leak[display_name] __
+
+leak_attr = 'display_name'
+
+    @pytest.mark.parametrize("leak_attr", list(HUMAN_NAME_ATTRIBUTE_NAMES))
+    def test_wm6_6_1_refuses_rec1_m6sw6_bound_cluster_human_name_leak(leak_attr):
+        """Owner ruling 2026-09-15T~21:25Z verbatim (Rec-1-M6SW6): 'wire
+        assert_cluster_carries_no_human_name into sub-wave 6's
+        objective→cluster write path as a mandatory gate, not a
+        downstream check.'  §5.3 P089 clause 2 verbatim: 'A cluster
+        asserts that a distinct variant exists — not what it is called.'
+        A column whose `bound_cluster` carries any of the 5 leak-vocabulary
+        attributes with a non-None value refuses at compile with
+        `CollectionSchemaClusterHumanNameLeakError`.  Parametric over
+        all 5 members of `HUMAN_NAME_ATTRIBUTE_NAMES`."""
+>       from services.audio_plane_v1.objective_wizard import (
+            AcceptanceBar, CollectionSchemaClusterHumanNameLeakError,
+            CollectionSchemaColumnStub, TargetOutcomeStub,
+            compile_objective_artifact,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.objective_wizard'
+
+tests/invariants/test_wm6_6_1_objective_wizard_compile_refusal.py:214: ModuleNotFoundError
+_ test_wm6_6_1_refuses_rec1_m6sw6_bound_cluster_human_name_leak[speaker_name] __
+
+leak_attr = 'speaker_name'
+
+    @pytest.mark.parametrize("leak_attr", list(HUMAN_NAME_ATTRIBUTE_NAMES))
+    def test_wm6_6_1_refuses_rec1_m6sw6_bound_cluster_human_name_leak(leak_attr):
+        """Owner ruling 2026-09-15T~21:25Z verbatim (Rec-1-M6SW6): 'wire
+        assert_cluster_carries_no_human_name into sub-wave 6's
+        objective→cluster write path as a mandatory gate, not a
+        downstream check.'  §5.3 P089 clause 2 verbatim: 'A cluster
+        asserts that a distinct variant exists — not what it is called.'
+        A column whose `bound_cluster` carries any of the 5 leak-vocabulary
+        attributes with a non-None value refuses at compile with
+        `CollectionSchemaClusterHumanNameLeakError`.  Parametric over
+        all 5 members of `HUMAN_NAME_ATTRIBUTE_NAMES`."""
+>       from services.audio_plane_v1.objective_wizard import (
+            AcceptanceBar, CollectionSchemaClusterHumanNameLeakError,
+            CollectionSchemaColumnStub, TargetOutcomeStub,
+            compile_objective_artifact,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.objective_wizard'
+
+tests/invariants/test_wm6_6_1_objective_wizard_compile_refusal.py:214: ModuleNotFoundError
+_ test_wm6_6_1_refuses_rec1_m6sw6_bound_cluster_human_name_leak[cluster_name] __
+
+leak_attr = 'cluster_name'
+
+    @pytest.mark.parametrize("leak_attr", list(HUMAN_NAME_ATTRIBUTE_NAMES))
+    def test_wm6_6_1_refuses_rec1_m6sw6_bound_cluster_human_name_leak(leak_attr):
+        """Owner ruling 2026-09-15T~21:25Z verbatim (Rec-1-M6SW6): 'wire
+        assert_cluster_carries_no_human_name into sub-wave 6's
+        objective→cluster write path as a mandatory gate, not a
+        downstream check.'  §5.3 P089 clause 2 verbatim: 'A cluster
+        asserts that a distinct variant exists — not what it is called.'
+        A column whose `bound_cluster` carries any of the 5 leak-vocabulary
+        attributes with a non-None value refuses at compile with
+        `CollectionSchemaClusterHumanNameLeakError`.  Parametric over
+        all 5 members of `HUMAN_NAME_ATTRIBUTE_NAMES`."""
+>       from services.audio_plane_v1.objective_wizard import (
+            AcceptanceBar, CollectionSchemaClusterHumanNameLeakError,
+            CollectionSchemaColumnStub, TargetOutcomeStub,
+            compile_objective_artifact,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.objective_wizard'
+
+tests/invariants/test_wm6_6_1_objective_wizard_compile_refusal.py:214: ModuleNotFoundError
+_________ test_wm6_6_1_refusal_ordering_test_set_ref_beats_others_p036 _________
+
+    def test_wm6_6_1_refusal_ordering_test_set_ref_beats_others_p036():
+        """P036 receipt-before-result carrier discipline: when multiple
+        violations are present simultaneously, refusal ordering is
+        test_set_ref → per_stratum_dimension → custody_violation →
+        cluster_human_name_leak.  test_set_ref beats all others when
+        fired in combination."""
+>       from services.audio_plane_v1.objective_wizard import (
+            AcceptanceBar, CollectionSchemaColumnStub,
+            TargetOutcomeMissingTestSetRefError, TargetOutcomeStub,
+            compile_objective_artifact,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.objective_wizard'
+
+tests/invariants/test_wm6_6_1_objective_wizard_compile_refusal.py:256: ModuleNotFoundError
+_______________ test_wm6_6_1_bound_cluster_none_passes_rec1_gate _______________
+
+    def test_wm6_6_1_bound_cluster_none_passes_rec1_gate():
+        """The Rec-1-M6SW6 gate applies only when a column's
+        `bound_cluster` is non-None.  Unbound columns (bound_cluster=None)
+        are legitimate at qualify/graduate stage (§8.3 P135..P136) and
+        MUST pass the gate silently."""
+>       from services.audio_plane_v1.objective_wizard import (
+            AcceptanceBar, CollectionSchemaColumnStub, TargetOutcomeStub,
+            compile_objective_artifact,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.objective_wizard'
+
+tests/invariants/test_wm6_6_1_objective_wizard_compile_refusal.py:299: ModuleNotFoundError
+___________ test_wm6_6_1_bound_cluster_well_formed_passes_rec1_gate ____________
+
+    def test_wm6_6_1_bound_cluster_well_formed_passes_rec1_gate():
+        """A bound_cluster with no leak-vocabulary attribute (or all such
+        attributes valued None) passes the Rec-1-M6SW6 gate silently.
+        Matches the CP-M6-5-3 `assert_cluster_carries_no_human_name`
+        contract: None-valued attributes are the canonical
+        'not what it is called' state."""
+        from services.audio_plane_v1.clustering import CandidateStratum
+>       from services.audio_plane_v1.objective_wizard import (
+            AcceptanceBar, CollectionSchemaColumnStub, TargetOutcomeStub,
+            compile_objective_artifact,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.objective_wizard'
+
+tests/invariants/test_wm6_6_1_objective_wizard_compile_refusal.py:330: ModuleNotFoundError
+___________________ test_wm6_6_1_frozen_dataclass_discipline ___________________
+
+    def test_wm6_6_1_frozen_dataclass_discipline():
+        """All three carrier classes (`TargetOutcomeStub` · `AcceptanceBar`
+        · `CollectionSchemaColumnStub`) are frozen dataclasses that refuse
+        mutation with `dataclasses.FrozenInstanceError`.  Frozen carriers
+        are the sub-wave-5 refusal-family discipline pattern extended
+        forward to sub-wave 6."""
+>       from services.audio_plane_v1.objective_wizard import (
+            AcceptanceBar, CollectionSchemaColumnStub, TargetOutcomeStub,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.objective_wizard'
+
+tests/invariants/test_wm6_6_1_objective_wizard_compile_refusal.py:365: ModuleNotFoundError
+=============================== warnings summary ===============================
+tests/invariants/test_8_ext.py: 13 warnings
+tests/invariants/test_artifact_store.py: 2 warnings
+tests/invariants/test_connect_ui1c_gates.py: 9 warnings
+tests/invariants/test_engineer_key_grant_e2_taxonomy.py: 4 warnings
+tests/invariants/test_engineer_key_grant_ledger.py: 2 warnings
+tests/invariants/test_govern_g_g1_to_g_g8.py: 6 warnings
+tests/invariants/test_govern_ui1b_gates.py: 15 warnings
+tests/invariants/test_master_admin_auth_reconciliation.py: 10 warnings
+tests/invariants/test_master_admin_pending_seams.py: 1 warning
+tests/invariants/test_master_admin_recent_actions.py: 4 warnings
+tests/invariants/test_master_admin_tier_lock_path_a_ledger.py: 3 warnings
+tests/invariants/test_memory_engineer_key_grant_e2e_propagation.py: 7 warnings
+tests/invariants/test_memory_observability_o_g1_to_o_g6.py: 6 warnings
+tests/invariants/test_memory_service_m_g1_to_m_g9.py: 4 warnings
+tests/invariants/test_p2_buildable_now.py: 3 warnings
+tests/invariants/test_phase3_subcycle1_gates.py: 7 warnings
+tests/invariants/test_phase_6_stage_b_economics.py: 1 warning
+tests/invariants/test_phase_8_b_1_auth_and_shims.py: 3 warnings
+tests/invariants/test_phase_8_b_2_operator_and_scope_gate.py: 7 warnings
+tests/invariants/test_phase_8_b_5a_compliance.py: 15 warnings
+tests/invariants/test_phase_8_b_5b.py: 11 warnings
+tests/invariants/test_phase_8_seam_3_sub_stage_1.py: 3 warnings
+tests/invariants/test_phase_8_seam_3_sub_stage_2.py: 13 warnings
+tests/invariants/test_phase_8_seam_3_sub_stage_3.py: 15 warnings
+tests/invariants/test_phase_9_sub_stage_9_1_and_9_3.py: 16 warnings
+tests/invariants/test_pricing_paths_b_honest_501.py: 6 warnings
+tests/invariants/test_registry_prove_ui1d_gates.py: 15 warnings
+tests/invariants/test_team_ui1e_gates.py: 12 warnings
+tests/invariants/test_trace_lens_cross_engine_correlation.py: 3 warnings
+tests/invariants/test_trace_lens_readonly.py: 1 warning
+tests/invariants/test_use_data_commission_verdict.py: 4 warnings
+  /root/.venv/lib/python3.11/site-packages/jwt/api_jwt.py:147: InsecureKeyLengthWarning: The HMAC key is 30 bytes long, which is below the minimum recommended length of 32 bytes for SHA256. See RFC 7518 Section 3.2.
+    return self._jws.encode(
+
+tests/invariants/test_8_ext.py: 13 warnings
+tests/invariants/test_artifact_store.py: 2 warnings
+tests/invariants/test_connect_ui1c_gates.py: 9 warnings
+tests/invariants/test_engineer_key_grant_e2_taxonomy.py: 4 warnings
+tests/invariants/test_engineer_key_grant_ledger.py: 2 warnings
+tests/invariants/test_govern_g_g1_to_g_g8.py: 6 warnings
+tests/invariants/test_govern_ui1b_gates.py: 15 warnings
+tests/invariants/test_master_admin_auth_reconciliation.py: 10 warnings
+tests/invariants/test_master_admin_pending_seams.py: 1 warning
+tests/invariants/test_master_admin_recent_actions.py: 4 warnings
+tests/invariants/test_master_admin_tier_lock_path_a_ledger.py: 3 warnings
+tests/invariants/test_memory_engineer_key_grant_e2e_propagation.py: 6 warnings
+tests/invariants/test_memory_observability_o_g1_to_o_g6.py: 6 warnings
+tests/invariants/test_memory_service_m_g1_to_m_g9.py: 4 warnings
+tests/invariants/test_p2_buildable_now.py: 3 warnings
+tests/invariants/test_phase3_subcycle1_gates.py: 7 warnings
+tests/invariants/test_phase_6_stage_b_economics.py: 1 warning
+tests/invariants/test_phase_8_b_1_auth_and_shims.py: 3 warnings
+tests/invariants/test_phase_8_b_2_operator_and_scope_gate.py: 7 warnings
+tests/invariants/test_phase_8_b_5a_compliance.py: 15 warnings
+tests/invariants/test_phase_8_b_5b.py: 11 warnings
+tests/invariants/test_phase_8_seam_3_sub_stage_1.py: 3 warnings
+tests/invariants/test_phase_8_seam_3_sub_stage_2.py: 13 warnings
+tests/invariants/test_phase_8_seam_3_sub_stage_3.py: 15 warnings
+tests/invariants/test_phase_9_sub_stage_9_1_and_9_3.py: 13 warnings
+tests/invariants/test_pricing_paths_b_honest_501.py: 6 warnings
+tests/invariants/test_registry_prove_ui1d_gates.py: 15 warnings
+tests/invariants/test_team_ui1e_gates.py: 12 warnings
+tests/invariants/test_trace_lens_cross_engine_correlation.py: 3 warnings
+tests/invariants/test_trace_lens_readonly.py: 1 warning
+tests/invariants/test_use_data_commission_verdict.py: 4 warnings
+  /root/.venv/lib/python3.11/site-packages/jwt/api_jwt.py:368: InsecureKeyLengthWarning: The HMAC key is 30 bytes long, which is below the minimum recommended length of 32 bytes for SHA256. See RFC 7518 Section 3.2.
+    decoded = self.decode_complete(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wm6_6_1_objective_wizard_compile_refusal.py::test_wm6_6_1_module_fabric
+FAILED tests/invariants/test_wm6_6_1_objective_wizard_compile_refusal.py::test_wm6_6_1_compile_passes_silently_on_well_formed_input
+FAILED tests/invariants/test_wm6_6_1_objective_wizard_compile_refusal.py::test_wm6_6_1_refuses_v90_outcome_without_test_set_ref
+FAILED tests/invariants/test_wm6_6_1_objective_wizard_compile_refusal.py::test_wm6_6_1_refuses_v91_acceptance_bar_missing_per_stratum_dimension
+FAILED tests/invariants/test_wm6_6_1_objective_wizard_compile_refusal.py::test_wm6_6_1_refuses_v92_collection_schema_custody_violation
+FAILED tests/invariants/test_wm6_6_1_objective_wizard_compile_refusal.py::test_wm6_6_1_refuses_rec1_m6sw6_bound_cluster_human_name_leak[human_name]
+FAILED tests/invariants/test_wm6_6_1_objective_wizard_compile_refusal.py::test_wm6_6_1_refuses_rec1_m6sw6_bound_cluster_human_name_leak[label]
+FAILED tests/invariants/test_wm6_6_1_objective_wizard_compile_refusal.py::test_wm6_6_1_refuses_rec1_m6sw6_bound_cluster_human_name_leak[display_name]
+FAILED tests/invariants/test_wm6_6_1_objective_wizard_compile_refusal.py::test_wm6_6_1_refuses_rec1_m6sw6_bound_cluster_human_name_leak[speaker_name]
+FAILED tests/invariants/test_wm6_6_1_objective_wizard_compile_refusal.py::test_wm6_6_1_refuses_rec1_m6sw6_bound_cluster_human_name_leak[cluster_name]
+FAILED tests/invariants/test_wm6_6_1_objective_wizard_compile_refusal.py::test_wm6_6_1_refusal_ordering_test_set_ref_beats_others_p036
+FAILED tests/invariants/test_wm6_6_1_objective_wizard_compile_refusal.py::test_wm6_6_1_bound_cluster_none_passes_rec1_gate
+FAILED tests/invariants/test_wm6_6_1_objective_wizard_compile_refusal.py::test_wm6_6_1_bound_cluster_well_formed_passes_rec1_gate
+FAILED tests/invariants/test_wm6_6_1_objective_wizard_compile_refusal.py::test_wm6_6_1_frozen_dataclass_discipline
+14 failed, 4240 passed, 1 skipped, 438 warnings in 121.88s (0:02:01)

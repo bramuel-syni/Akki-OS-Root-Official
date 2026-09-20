@@ -1,0 +1,155 @@
+Warning: Permanently added '41.173.184.247' (ED25519) to the list of known hosts.
+==BEGIN STEP1 akki-vm-ii 20260906T101619Z==
+
+== 1a. lsblk -f -b ==
+NAME    FSTYPE  FSVER            LABEL           UUID                                       FSAVAIL FSUSE% MOUNTPOINTS
+sr0     iso9660 Joliet Extension cidata          2026-08-28-13-32-40-00                                    
+vda                                                                                                        
+├─vda1  ext4    1.0              cloudimg-rootfs 6d085073-3c5a-49aa-9133-d0c30d62315b   53221564416    31% /
+├─vda14                                                                                                    
+├─vda15 vfat    FAT32            UEFI            A732-B748                                102995968     6% /boot/efi
+└─vda16 ext4    1.0              BOOT            02ae2efa-0a43-47c2-94dd-0cab2e898ba6     706285568    16% /boot
+vdb     ext4    1.0                              8a5fe887-c7d4-46dd-83d4-ee28abb428bd 6068353036288     0% /mnt/volume_dkgjrkx
+
+== 1b. lsblk -o NAME,SIZE,TYPE,FSTYPE,MOUNTPOINT,MODEL,SERIAL,UUID -b ==
+NAME             SIZE TYPE FSTYPE  MOUNTPOINT          MODEL        SERIAL   UUID
+sr0            374784 rom  iso9660                     QEMU DVD-ROM QM00001  2026-08-28-13-32-40-00
+vda       80530636800 disk                                                   
+├─vda1    79455829504 part ext4    /                                         6d085073-3c5a-49aa-9133-d0c30d62315b
+├─vda14       4194304 part                                                   
+├─vda15     111149056 part vfat    /boot/efi                                 A732-B748
+└─vda16     957350400 part ext4    /boot                                     02ae2efa-0a43-47c2-94dd-0cab2e898ba6
+vdb     6442450944000 disk ext4    /mnt/volume_dkgjrkx              ADD-DISK 8a5fe887-c7d4-46dd-83d4-ee28abb428bd
+
+== 1c. df -hT ==
+Filesystem     Type      Size  Used Avail Use% Mounted on
+tmpfs          tmpfs      47G  1.5M   47G   1% /run
+efivarfs       efivarfs  256K   20K  231K   8% /sys/firmware/efi/efivars
+/dev/vda1      ext4       72G   23G   50G  31% /
+tmpfs          tmpfs     231G     0  231G   0% /dev/shm
+tmpfs          tmpfs     5.0M     0  5.0M   0% /run/lock
+/dev/vda16     ext4      881M  146M  674M  18% /boot
+/dev/vda15     vfat      105M  6.2M   99M   6% /boot/efi
+/dev/vdb       ext4      5.9T   28K  5.6T   1% /mnt/volume_dkgjrkx
+tmpfs          tmpfs      47G   20K   47G   1% /run/user/1000
+
+== 1d. sudo fdisk -l ==
+Disk /dev/vda: 75 GiB, 80530636800 bytes, 157286400 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: gpt
+Disk identifier: 0FC65AED-8AE0-4A5B-9489-B33D25D64586
+
+Device       Start       End   Sectors  Size Type
+/dev/vda1  2099200 157286366 155187167   74G Linux filesystem
+/dev/vda14    2048     10239      8192    4M BIOS boot
+/dev/vda15   10240    227327    217088  106M EFI System
+/dev/vda16  227328   2097152   1869825  913M Linux extended boot
+
+Partition table entries are not in disk order.
+
+
+Disk /dev/vdb: 5.86 TiB, 6442450944000 bytes, 12582912000 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+== 1e. mount (all) ==
+sysfs on /sys type sysfs (rw,nosuid,nodev,noexec,relatime)
+proc on /proc type proc (rw,nosuid,nodev,noexec,relatime)
+udev on /dev type devtmpfs (rw,nosuid,relatime,size=241341328k,nr_inodes=60335332,mode=755,inode64)
+devpts on /dev/pts type devpts (rw,nosuid,noexec,relatime,gid=5,mode=620,ptmxmode=000)
+tmpfs on /run type tmpfs (rw,nosuid,nodev,noexec,relatime,size=48273652k,mode=755,inode64)
+efivarfs on /sys/firmware/efi/efivars type efivarfs (rw,nosuid,nodev,noexec,relatime)
+/dev/vda1 on / type ext4 (rw,relatime,discard,errors=remount-ro,commit=30)
+securityfs on /sys/kernel/security type securityfs (rw,nosuid,nodev,noexec,relatime)
+tmpfs on /dev/shm type tmpfs (rw,nosuid,nodev,inode64)
+tmpfs on /run/lock type tmpfs (rw,nosuid,nodev,noexec,relatime,size=5120k,inode64)
+cgroup2 on /sys/fs/cgroup type cgroup2 (rw,nosuid,nodev,noexec,relatime,nsdelegate,memory_recursiveprot)
+pstore on /sys/fs/pstore type pstore (rw,nosuid,nodev,noexec,relatime)
+bpf on /sys/fs/bpf type bpf (rw,nosuid,nodev,noexec,relatime,mode=700)
+systemd-1 on /proc/sys/fs/binfmt_misc type autofs (rw,relatime,fd=32,pgrp=1,timeout=0,minproto=5,maxproto=5,direct,pipe_ino=19446)
+hugetlbfs on /dev/hugepages type hugetlbfs (rw,nosuid,nodev,relatime,pagesize=2M)
+mqueue on /dev/mqueue type mqueue (rw,nosuid,nodev,noexec,relatime)
+debugfs on /sys/kernel/debug type debugfs (rw,nosuid,nodev,noexec,relatime)
+tracefs on /sys/kernel/tracing type tracefs (rw,nosuid,nodev,noexec,relatime)
+fusectl on /sys/fs/fuse/connections type fusectl (rw,nosuid,nodev,noexec,relatime)
+configfs on /sys/kernel/config type configfs (rw,nosuid,nodev,noexec,relatime)
+/dev/vda16 on /boot type ext4 (rw,relatime)
+/dev/vda15 on /boot/efi type vfat (rw,relatime,fmask=0077,dmask=0077,codepage=437,iocharset=iso8859-1,shortname=mixed,errors=remount-ro)
+binfmt_misc on /proc/sys/fs/binfmt_misc type binfmt_misc (rw,nosuid,nodev,noexec,relatime)
+/dev/vdb on /mnt/volume_dkgjrkx type ext4 (rw,relatime)
+tmpfs on /run/user/1000 type tmpfs (rw,nosuid,nodev,relatime,size=48273648k,nr_inodes=12068412,mode=700,uid=1000,gid=1000,inode64)
+
+== 1f. /etc/fstab ==
+LABEL=cloudimg-rootfs	/	 ext4	discard,commit=30,errors=remount-ro	0 1
+LABEL=BOOT	/boot	ext4	defaults	0 2
+LABEL=UEFI	/boot/efi	vfat	umask=0077	0 1
+/dev/vdb /mnt/volume_dkgjrkx ext4 defaults,nofail 0 2
+
+== 1g. /proc/mounts ==
+sysfs /sys sysfs rw,nosuid,nodev,noexec,relatime 0 0
+proc /proc proc rw,nosuid,nodev,noexec,relatime 0 0
+udev /dev devtmpfs rw,nosuid,relatime,size=241341328k,nr_inodes=60335332,mode=755,inode64 0 0
+devpts /dev/pts devpts rw,nosuid,noexec,relatime,gid=5,mode=620,ptmxmode=000 0 0
+tmpfs /run tmpfs rw,nosuid,nodev,noexec,relatime,size=48273652k,mode=755,inode64 0 0
+efivarfs /sys/firmware/efi/efivars efivarfs rw,nosuid,nodev,noexec,relatime 0 0
+/dev/vda1 / ext4 rw,relatime,discard,errors=remount-ro,commit=30 0 0
+securityfs /sys/kernel/security securityfs rw,nosuid,nodev,noexec,relatime 0 0
+tmpfs /dev/shm tmpfs rw,nosuid,nodev,inode64 0 0
+tmpfs /run/lock tmpfs rw,nosuid,nodev,noexec,relatime,size=5120k,inode64 0 0
+cgroup2 /sys/fs/cgroup cgroup2 rw,nosuid,nodev,noexec,relatime,nsdelegate,memory_recursiveprot 0 0
+pstore /sys/fs/pstore pstore rw,nosuid,nodev,noexec,relatime 0 0
+bpf /sys/fs/bpf bpf rw,nosuid,nodev,noexec,relatime,mode=700 0 0
+systemd-1 /proc/sys/fs/binfmt_misc autofs rw,relatime,fd=32,pgrp=1,timeout=0,minproto=5,maxproto=5,direct,pipe_ino=19446 0 0
+hugetlbfs /dev/hugepages hugetlbfs rw,nosuid,nodev,relatime,pagesize=2M 0 0
+mqueue /dev/mqueue mqueue rw,nosuid,nodev,noexec,relatime 0 0
+debugfs /sys/kernel/debug debugfs rw,nosuid,nodev,noexec,relatime 0 0
+tracefs /sys/kernel/tracing tracefs rw,nosuid,nodev,noexec,relatime 0 0
+fusectl /sys/fs/fuse/connections fusectl rw,nosuid,nodev,noexec,relatime 0 0
+configfs /sys/kernel/config configfs rw,nosuid,nodev,noexec,relatime 0 0
+/dev/vda16 /boot ext4 rw,relatime 0 0
+/dev/vda15 /boot/efi vfat rw,relatime,fmask=0077,dmask=0077,codepage=437,iocharset=iso8859-1,shortname=mixed,errors=remount-ro 0 0
+binfmt_misc /proc/sys/fs/binfmt_misc binfmt_misc rw,nosuid,nodev,noexec,relatime 0 0
+/dev/vdb /mnt/volume_dkgjrkx ext4 rw,relatime 0 0
+tmpfs /run/user/1000 tmpfs rw,nosuid,nodev,relatime,size=48273648k,nr_inodes=12068412,mode=700,uid=1000,gid=1000,inode64 0 0
+
+== 1h. /sys/block enumeration ==
+loop0 size_512b=0 ro=0 removable=0
+loop1 size_512b=0 ro=0 removable=0
+loop2 size_512b=0 ro=0 removable=0
+loop3 size_512b=0 ro=0 removable=0
+loop4 size_512b=0 ro=0 removable=0
+loop5 size_512b=0 ro=0 removable=0
+loop6 size_512b=0 ro=0 removable=0
+loop7 size_512b=0 ro=0 removable=0
+sr0 size_512b=732 ro=0 removable=1
+vda size_512b=157286400 ro=0 removable=0
+vdb size_512b=12582912000 ro=0 removable=0
+
+== 1i. blkid ==
+/dev/sr0: BLOCK_SIZE="2048" UUID="2026-08-28-13-32-40-00" LABEL="cidata" TYPE="iso9660"
+/dev/vda15: LABEL_FATBOOT="UEFI" LABEL="UEFI" UUID="A732-B748" BLOCK_SIZE="512" TYPE="vfat" PARTUUID="c2d8823d-c32e-42b0-aeea-9025bfa72093"
+/dev/vda1: LABEL="cloudimg-rootfs" UUID="6d085073-3c5a-49aa-9133-d0c30d62315b" BLOCK_SIZE="4096" TYPE="ext4" PARTUUID="33145b69-de24-47b8-9114-e691b1972e92"
+/dev/vda16: LABEL="BOOT" UUID="02ae2efa-0a43-47c2-94dd-0cab2e898ba6" BLOCK_SIZE="4096" TYPE="ext4" PARTUUID="251d947f-e890-4fc9-aab5-32d0584ca3f8"
+/dev/vdb: UUID="8a5fe887-c7d4-46dd-83d4-ee28abb428bd" BLOCK_SIZE="4096" TYPE="ext4"
+/dev/vda14: PARTUUID="c0485e87-9979-4be9-8211-edaf8aae81b1"
+
+== 1j. hostnamectl ==
+ Static hostname: akki-vm-ii
+       Icon name: computer-vm
+         Chassis: vm 🖴
+      Machine ID: 507e0628ab9a4b32beb2938b1f7a289d
+         Boot ID: 6ca374669bcc42a49c32d736888ed772
+  Virtualization: microsoft
+Operating System: Ubuntu 24.04.4 LTS
+          Kernel: Linux 6.8.0-106-generic
+    Architecture: x86-64
+ Hardware Vendor: QEMU
+  Hardware Model: Standard PC _Q35 + ICH9, 2009_
+Firmware Version: 2024.02-2ubuntu0.9
+   Firmware Date: Tue 2026-06-02
+    Firmware Age: 3month 5d
+
+==END STEP1 akki-vm-ii 20260906T101620Z==

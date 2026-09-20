@@ -1,0 +1,73 @@
+/root/.venv/lib/python3.11/site-packages/pytest_asyncio/plugin.py:208: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.3.3, pluggy-1.6.0
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: xdist-3.8.0, anyio-4.14.2, asyncio-0.24.0
+asyncio: mode=Mode.AUTO, default_loop_scope=None
+collected 366 items
+
+tests/invariants/test_actor_declaration_v0_contract_frozen.py .          [  0%]
+tests/invariants/test_admission_refusal_v0_contract_frozen.py .          [  0%]
+tests/invariants/test_admit_refuses_undeclared_actor.py ......           [  2%]
+tests/invariants/test_approval_contracts_frozen.py ..                    [  2%]
+tests/invariants/test_backfilled_contract_snapshots.py ...               [  3%]
+tests/invariants/test_baseline_line_v0_contract_frozen.py .              [  3%]
+tests/invariants/test_chokepoint_registers_all_crossings.py ............ [  7%]
+..                                                                       [  7%]
+tests/invariants/test_composed_conclusion_v0_contract_frozen.py ..       [  8%]
+tests/invariants/test_compute_seam_artifact_hash_verified.py ...         [  9%]
+tests/invariants/test_compute_seam_no_unledgered_exec.py ...             [  9%]
+tests/invariants/test_connect_gpu_acceptance_wired.py ..........         [ 12%]
+tests/invariants/test_connect_gpu_pipeline.py ...............            [ 16%]
+tests/invariants/test_connect_gpu_scope_S_or_M.py ..                     [ 17%]
+tests/invariants/test_cost_ledger_w6_cp2.py .............                [ 20%]
+tests/invariants/test_credentials_paste_parser.py ...................... [ 26%]
+                                                                         [ 26%]
+tests/invariants/test_estate_keys_and_connect_estate.py ............     [ 30%]
+tests/invariants/test_feasibility_result_v0_contract_frozen.py .         [ 30%]
+tests/invariants/test_frozen_contract_snapshot_parity.py ...             [ 31%]
+tests/invariants/test_handoff_contract_v0_contract_frozen.py .           [ 31%]
+tests/invariants/test_hardening_orchestrator.py .........                [ 33%]
+tests/invariants/test_invariant_contract_snapshots.py ......             [ 35%]
+tests/invariants/test_ip_allowlist_middleware.py ................        [ 39%]
+tests/invariants/test_llm_chokepoint_sole_importer.py ......             [ 41%]
+tests/invariants/test_llm_crossing_receipt_metering.py ....              [ 42%]
+tests/invariants/test_llm_egress_allowlist_provider_scoped.py .....      [ 43%]
+tests/invariants/test_llm_masking_tier_enforced.py .....                 [ 45%]
+tests/invariants/test_llm_purpose_gate_refuses_unlisted.py .......       [ 47%]
+tests/invariants/test_lowered_standard_w6_cp5.py .........               [ 49%]
+tests/invariants/test_model_acceptance_card_v0_contract_frozen.py .      [ 50%]
+tests/invariants/test_n_series_contracts_frozen.py ..                    [ 50%]
+tests/invariants/test_northena_admit_gate_converge_ledger.py ........... [ 53%]
+.......                                                                  [ 55%]
+tests/invariants/test_northena_ledger_retention.py ..                    [ 56%]
+tests/invariants/test_objective_request_v2_contract_frozen.py .          [ 56%]
+tests/invariants/test_record_matrix_thin_kernel.py ......                [ 57%]
+tests/invariants/test_registry_facts_emergent_universal_listed.py .....  [ 59%]
+tests/invariants/test_retention_enforcement_w6_cp3.py ..........         [ 62%]
+tests/invariants/test_rules_update_lifecycle_frozen.py ...               [ 62%]
+tests/invariants/test_solva_reasoning_stages.py ......                   [ 64%]
+tests/invariants/test_solva_stages_4_6_grey_mirror_groundwork.py ....... [ 66%]
+                                                                         [ 66%]
+tests/invariants/test_targeta_invariants.py ............                 [ 69%]
+tests/invariants/test_task_identity_thin_kernel.py .....                 [ 71%]
+tests/invariants/test_thinklab_reasoning_wire.py ...                     [ 71%]
+tests/invariants/test_w5_cp4_backend_endpoints.py .........              [ 74%]
+tests/invariants/test_w7_cp1_training_rates.py .....                     [ 75%]
+tests/invariants/test_w7_cp3_model_registry.py .............             [ 79%]
+tests/invariants/test_w7_cp4_model_admission_ceremony.py .........       [ 81%]
+tests/invariants/test_w7_cp5_baseline_line_and_recheck.py ........       [ 83%]
+tests/invariants/test_w7_cp7_router_mount.py ...........                 [ 86%]
+tests/invariants/test_w8_cp1_canonical_projection.py ........            [ 89%]
+tests/invariants/test_w8_cp1_pod_shell_boot_and_mount.py ...             [ 89%]
+tests/invariants/test_w8_cp2_ca1_009_handoff.py ......                   [ 91%]
+tests/invariants/test_w8_cp3_approvals_ceremony.py ........              [ 93%]
+tests/invariants/test_w8_cp4_n_series_scaffolding.py ......              [ 95%]
+tests/invariants/test_w8_cp5_trace_surface.py ......                     [ 96%]
+tests/invariants/test_w8_cp6_rules_update_lifecycle.py ...........       [100%]
+
+============================= 366 passed in 5.06s ==============================

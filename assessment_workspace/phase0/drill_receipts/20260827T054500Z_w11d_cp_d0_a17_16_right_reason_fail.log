@@ -1,0 +1,74 @@
+/root/.venv/lib/python3.11/site-packages/pytest_asyncio/plugin.py:208: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.3.3, pluggy-1.6.0 -- /root/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: anyio-4.14.2, xdist-3.8.0, asyncio-0.24.0
+asyncio: mode=Mode.AUTO, default_loop_scope=None
+collecting ... collected 9 items
+
+backend/tests/invariants/test_a17_16_model_form_offer.py::test_admission_refusal_reasons_v4_strikes_form_not_offerable FAILED [ 11%]
+backend/tests/invariants/test_a17_16_model_form_offer.py::test_model_form_offer_envelope_frozen_extra_forbid FAILED [ 22%]
+backend/tests/invariants/test_a17_16_model_form_offer.py::test_model_form_offer_envelope_ingredients_guarantee_verbatim_locked FAILED [ 33%]
+backend/tests/invariants/test_a17_16_model_form_offer.py::test_model_form_offer_envelope_output_form_locked_to_model FAILED [ 44%]
+backend/tests/invariants/test_a17_16_model_form_offer.py::test_model_form_offer_envelope_forbidden_stronger_claims_non_empty FAILED [ 55%]
+backend/tests/invariants/test_a17_16_model_form_offer.py::test_emit_model_form_offer_returns_ingredients_only_envelope FAILED [ 66%]
+backend/tests/invariants/test_a17_16_model_form_offer.py::test_dispatch_routes_output_form_model_to_offer_not_refusal FAILED [ 77%]
+backend/tests/invariants/test_a17_16_model_form_offer.py::test_target_outcome_gate_policy_default_is_gates_release FAILED [ 88%]
+backend/tests/invariants/test_a17_16_model_form_offer.py::test_target_outcome_ships_documented_requires_explicit_setting FAILED [100%]
+
+=================================== FAILURES ===================================
+_________ test_admission_refusal_reasons_v4_strikes_form_not_offerable _________
+backend/tests/invariants/test_a17_16_model_form_offer.py:46: in test_admission_refusal_reasons_v4_strikes_form_not_offerable
+    assert v4_path.is_file(), (
+E   AssertionError: Missing admission_refusal_reasons.v4.json: A17.16 ACCEPT requires a v4 registry that strikes 'form_not_offerable'.
+E   assert False
+E    +  where False = is_file()
+E    +    where is_file = PosixPath('/app/assessment_workspace/repos/Extraction-Akki/backend/services/service_1/admission_refusal_reasons.v4.json').is_file
+______________ test_model_form_offer_envelope_frozen_extra_forbid ______________
+backend/tests/invariants/test_a17_16_model_form_offer.py:75: in test_model_form_offer_envelope_frozen_extra_forbid
+    from contracts.model_form_offer_envelope_v0 import (
+E   ModuleNotFoundError: No module named 'contracts.model_form_offer_envelope_v0'
+_____ test_model_form_offer_envelope_ingredients_guarantee_verbatim_locked _____
+backend/tests/invariants/test_a17_16_model_form_offer.py:100: in test_model_form_offer_envelope_ingredients_guarantee_verbatim_locked
+    from contracts.model_form_offer_envelope_v0 import (
+E   ModuleNotFoundError: No module named 'contracts.model_form_offer_envelope_v0'
+__________ test_model_form_offer_envelope_output_form_locked_to_model __________
+backend/tests/invariants/test_a17_16_model_form_offer.py:125: in test_model_form_offer_envelope_output_form_locked_to_model
+    from contracts.model_form_offer_envelope_v0 import (
+E   ModuleNotFoundError: No module named 'contracts.model_form_offer_envelope_v0'
+______ test_model_form_offer_envelope_forbidden_stronger_claims_non_empty ______
+backend/tests/invariants/test_a17_16_model_form_offer.py:146: in test_model_form_offer_envelope_forbidden_stronger_claims_non_empty
+    from contracts.model_form_offer_envelope_v0 import (
+E   ModuleNotFoundError: No module named 'contracts.model_form_offer_envelope_v0'
+_________ test_emit_model_form_offer_returns_ingredients_only_envelope _________
+backend/tests/invariants/test_a17_16_model_form_offer.py:171: in test_emit_model_form_offer_returns_ingredients_only_envelope
+    from services.service_1.model_form_offer import (
+E   ModuleNotFoundError: No module named 'services.service_1.model_form_offer'
+_________ test_dispatch_routes_output_form_model_to_offer_not_refusal __________
+backend/tests/invariants/test_a17_16_model_form_offer.py:189: in test_dispatch_routes_output_form_model_to_offer_not_refusal
+    from services.service_1.dispatch import dispatch_external_request
+E   ImportError: cannot import name 'dispatch_external_request' from 'services.service_1.dispatch' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/service_1/dispatch.py)
+___________ test_target_outcome_gate_policy_default_is_gates_release ___________
+backend/tests/invariants/test_a17_16_model_form_offer.py:222: in test_target_outcome_gate_policy_default_is_gates_release
+    from contracts.target_outcome_v0 import TargetOutcomeV0
+E   ModuleNotFoundError: No module named 'contracts.target_outcome_v0'
+________ test_target_outcome_ships_documented_requires_explicit_setting ________
+backend/tests/invariants/test_a17_16_model_form_offer.py:242: in test_target_outcome_ships_documented_requires_explicit_setting
+    from contracts.target_outcome_v0 import TargetOutcomeV0
+E   ModuleNotFoundError: No module named 'contracts.target_outcome_v0'
+=========================== short test summary info ============================
+FAILED backend/tests/invariants/test_a17_16_model_form_offer.py::test_admission_refusal_reasons_v4_strikes_form_not_offerable
+FAILED backend/tests/invariants/test_a17_16_model_form_offer.py::test_model_form_offer_envelope_frozen_extra_forbid
+FAILED backend/tests/invariants/test_a17_16_model_form_offer.py::test_model_form_offer_envelope_ingredients_guarantee_verbatim_locked
+FAILED backend/tests/invariants/test_a17_16_model_form_offer.py::test_model_form_offer_envelope_output_form_locked_to_model
+FAILED backend/tests/invariants/test_a17_16_model_form_offer.py::test_model_form_offer_envelope_forbidden_stronger_claims_non_empty
+FAILED backend/tests/invariants/test_a17_16_model_form_offer.py::test_emit_model_form_offer_returns_ingredients_only_envelope
+FAILED backend/tests/invariants/test_a17_16_model_form_offer.py::test_dispatch_routes_output_form_model_to_offer_not_refusal
+FAILED backend/tests/invariants/test_a17_16_model_form_offer.py::test_target_outcome_gate_policy_default_is_gates_release
+FAILED backend/tests/invariants/test_a17_16_model_form_offer.py::test_target_outcome_ships_documented_requires_explicit_setting
+============================== 9 failed in 0.30s ===============================

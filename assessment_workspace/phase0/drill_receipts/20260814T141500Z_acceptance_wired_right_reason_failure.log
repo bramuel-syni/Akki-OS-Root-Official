@@ -1,0 +1,65 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.15, pytest-9.1.1, pluggy-1.6.0 -- /root/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: anyio-4.14.2, xdist-3.8.0, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 10 items
+
+backend/tests/invariants/test_connect_gpu_acceptance_wired.py::test_acceptance_parser_module_present FAILED [ 10%]
+backend/tests/invariants/test_connect_gpu_acceptance_wired.py::test_gpu_submit_exposes_sync_seam_execute_seam FAILED [ 20%]
+backend/tests/invariants/test_connect_gpu_acceptance_wired.py::test_acceptance_stage_invokes_seam_with_admitted_vm_and_task_id FAILED [ 30%]
+backend/tests/invariants/test_connect_gpu_acceptance_wired.py::test_parser_produces_sentences_from_real_held_output FAILED [ 40%]
+backend/tests/invariants/test_connect_gpu_acceptance_wired.py::test_parser_recognizes_green_all_clear_marker FAILED [ 50%]
+backend/tests/invariants/test_connect_gpu_acceptance_wired.py::test_acceptance_non_zero_exit_renders_held_with_evidence FAILED [ 60%]
+backend/tests/invariants/test_connect_gpu_acceptance_wired.py::test_acceptance_zero_exit_renders_green FAILED [ 70%]
+backend/tests/invariants/test_connect_gpu_acceptance_wired.py::test_acceptance_writes_one_ledger_row_per_parsed_check FAILED [ 80%]
+backend/tests/invariants/test_connect_gpu_acceptance_wired.py::test_acceptance_seam_call_never_carries_bootstrap_password FAILED [ 90%]
+backend/tests/invariants/test_connect_gpu_acceptance_wired.py::test_run_acceptance_source_free_of_canned_check_payloads FAILED [100%]
+
+=================================== FAILURES ===================================
+E   ImportError: cannot import name 'acceptance_parser' from 'services.compute_seam' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/compute_seam/__init__.py)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_connect_gpu_acceptance_wired.py:51: ImportError: cannot import name 'acceptance_parser' from 'services.compute_seam' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/compute_seam/__init__.py)
+E   AssertionError: _run_acceptance must delegate through _sync_seam_execute so tests can spy.
+    assert False
+     +  where False = hasattr(<module 'services.connect.gpu_submit' from '/app/assessment_workspace/repos/Extraction-Akki/backend/services/connect/gpu_submit.py'>, '_sync_seam_execute')
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_connect_gpu_acceptance_wired.py:58: AssertionError: _run_acceptance must delegate through _sync_seam_execute so tests can spy.
+E   AttributeError: <module 'services.connect.gpu_submit' from '/app/assessment_workspace/repos/Extraction-Akki/backend/services/connect/gpu_submit.py'> has no attribute '_sync_seam_execute'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_connect_gpu_acceptance_wired.py:95: AttributeError: <module 'services.connect.gpu_submit' from '/app/assessment_workspace/repos/Extraction-Akki/backend/services/connect/gpu_submit.py'> has no attribute '_sync_seam_execute'
+E   ModuleNotFoundError: No module named 'services.compute_seam.acceptance_parser'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_connect_gpu_acceptance_wired.py:124: ModuleNotFoundError: No module named 'services.compute_seam.acceptance_parser'
+E   ModuleNotFoundError: No module named 'services.compute_seam.acceptance_parser'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_connect_gpu_acceptance_wired.py:141: ModuleNotFoundError: No module named 'services.compute_seam.acceptance_parser'
+E   AttributeError: <module 'services.connect.gpu_submit' from '/app/assessment_workspace/repos/Extraction-Akki/backend/services/connect/gpu_submit.py'> has no attribute '_sync_seam_execute'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_connect_gpu_acceptance_wired.py:168: AttributeError: <module 'services.connect.gpu_submit' from '/app/assessment_workspace/repos/Extraction-Akki/backend/services/connect/gpu_submit.py'> has no attribute '_sync_seam_execute'
+E   AttributeError: <module 'services.connect.gpu_submit' from '/app/assessment_workspace/repos/Extraction-Akki/backend/services/connect/gpu_submit.py'> has no attribute '_sync_seam_execute'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_connect_gpu_acceptance_wired.py:196: AttributeError: <module 'services.connect.gpu_submit' from '/app/assessment_workspace/repos/Extraction-Akki/backend/services/connect/gpu_submit.py'> has no attribute '_sync_seam_execute'
+E   AttributeError: <module 'services.connect.gpu_submit' from '/app/assessment_workspace/repos/Extraction-Akki/backend/services/connect/gpu_submit.py'> has no attribute '_sync_seam_execute'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_connect_gpu_acceptance_wired.py:226: AttributeError: <module 'services.connect.gpu_submit' from '/app/assessment_workspace/repos/Extraction-Akki/backend/services/connect/gpu_submit.py'> has no attribute '_sync_seam_execute'
+E   AttributeError: <module 'services.connect.gpu_submit' from '/app/assessment_workspace/repos/Extraction-Akki/backend/services/connect/gpu_submit.py'> has no attribute '_sync_seam_execute'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_connect_gpu_acceptance_wired.py:267: AttributeError: <module 'services.connect.gpu_submit' from '/app/assessment_workspace/repos/Extraction-Akki/backend/services/connect/gpu_submit.py'> has no attribute '_sync_seam_execute'
+E   AssertionError: gpu_submit._run_acceptance still carries canned string 'nvidia-smi output: No devices found' — live-path shortcut regression. Parser + real output must supply these.
+    assert 'nvidia-smi ...evices found' not in 'def _run_ac...        ]}\n'
+      
+      'nvidia-smi output: No devices found' is contained here:
+        def _run_acceptance(*, host: str, user: str, key_path: str) -> dict:
+            """Run phase0/acceptance.sh via the seam. Returns green|held with checks list."""
+            try:
+                from services.compute_seam.seam import execute
+            except Exception:...
+      
+      ...Full output truncated (19 lines hidden), use '-vv' to show
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_connect_gpu_acceptance_wired.py:311: AssertionError: gpu_submit._run_acceptance still carries canned string 'nvidia-smi output: No devices found' — live-path shortcut regression. Parser + real output must supply these.
+=========================== short test summary info ============================
+FAILED backend/tests/invariants/test_connect_gpu_acceptance_wired.py::test_acceptance_parser_module_present
+FAILED backend/tests/invariants/test_connect_gpu_acceptance_wired.py::test_gpu_submit_exposes_sync_seam_execute_seam
+FAILED backend/tests/invariants/test_connect_gpu_acceptance_wired.py::test_acceptance_stage_invokes_seam_with_admitted_vm_and_task_id
+FAILED backend/tests/invariants/test_connect_gpu_acceptance_wired.py::test_parser_produces_sentences_from_real_held_output
+FAILED backend/tests/invariants/test_connect_gpu_acceptance_wired.py::test_parser_recognizes_green_all_clear_marker
+FAILED backend/tests/invariants/test_connect_gpu_acceptance_wired.py::test_acceptance_non_zero_exit_renders_held_with_evidence
+FAILED backend/tests/invariants/test_connect_gpu_acceptance_wired.py::test_acceptance_zero_exit_renders_green
+FAILED backend/tests/invariants/test_connect_gpu_acceptance_wired.py::test_acceptance_writes_one_ledger_row_per_parsed_check
+FAILED backend/tests/invariants/test_connect_gpu_acceptance_wired.py::test_acceptance_seam_call_never_carries_bootstrap_password
+FAILED backend/tests/invariants/test_connect_gpu_acceptance_wired.py::test_run_acceptance_source_free_of_canned_check_payloads
+============================== 10 failed in 0.13s ==============================

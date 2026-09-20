@@ -1,0 +1,16 @@
+[2026-08-18T18:16:32.048164+00:00] verify_key_only_auth
+  -> {'ok': True}
+[2026-08-18T18:16:35.867522+00:00] remote_harden (dropin refresh + sshd reload)
+  -> ok. stdout head:
+=== Phase-0 Hardening · 2026-08-18T18:16:44Z ===
+harden.target_user: ubuntu
+authorized_keys.count: 1
+sshd.dropin: wrote /etc/ssh/sshd_config.d/00-akki-no-password.conf (PasswordAuthentication no + ChallengeResponse no + KbdInteractive no).
+sshd.PasswordAuthentication (main file): already no (idempotent no-op).
+sshd.ChallengeResponseAuthentication: already no (idempotent no-op).
+sshd.reload: ok.
+bo
+[2026-08-18T18:16:45.187845+00:00] external_probe (password auth should be DEAD)
+  -> {'ok': True, 'probe_result': 'password_refused'}
+[receipt] /app/assessment_workspace/phase0/drill_receipts/hardening_20260818T181631Z/hardening_receipt_key_only_20260818T181647Z.json
+[verdict] hardening_status=attested  probe_result=password_refused  data_movement_permitted=True  overall=GREEN

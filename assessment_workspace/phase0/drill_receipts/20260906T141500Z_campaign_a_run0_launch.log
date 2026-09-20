@@ -1,0 +1,25 @@
+=== LAUNCH · campaign-a-baseline-ladder-20260906 · A-0-0p5B-seed01 · host=akki-vm ===
+Traceback (most recent call last):
+  File "/app/assessment_workspace/tools/launch_campaign_run.py", line 154, in <module>
+    r = launch(host_slug=args.host, run_name=args.run_name,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/assessment_workspace/tools/launch_campaign_run.py", line 95, in launch
+    result = _pt.default_trainer_fn(
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/assessment_workspace/repos/Extraction-Akki/backend/services/campaign_infra/production_trainer.py", line 336, in default_trainer_fn
+    launch_r = ssh_seam.run(launch_cmd)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/assessment_workspace/tools/launch_campaign_run.py", line 54, in run
+    r = subprocess.run(
+        ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/subprocess.py", line 550, in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/subprocess.py", line 1209, in communicate
+    stdout, stderr = self._communicate(input, endtime, timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/subprocess.py", line 2116, in _communicate
+    self._check_timeout(endtime, orig_timeout, stdout, stderr)
+  File "/usr/local/lib/python3.11/subprocess.py", line 1253, in _check_timeout
+    raise TimeoutExpired(
+subprocess.TimeoutExpired: Command '['ssh', '-i', '/app/backend/estate_keys/gpu_hosts/id_ed25519_akki_gpu', '-o', 'ConnectTimeout=10', '-o', 'BatchMode=yes', '-o', 'StrictHostKeyChecking=no', '-o', 'UserKnownHostsFile=/root/.ssh/known_hosts', 'ubuntu@41.173.184.244', 'cd ~ && setsid nohup python3 ~/akki_journal/on_host_trainer.py --run-id shield-train-campaign-a-baseline-ladder-20260906-20260906T140930Z --run-dir ~/akki_journal/shield-train-campaign-a-baseline-ladder-20260906-20260906T140930Z --campaign-id campaign-a-baseline-ladder-20260906 --run-name A-0-0p5B-seed01 --corpus ~/akki_journal/shield-train-campaign-a-baseline-ladder-20260906-20260906T140930Z/train_corpus.jsonl --held-out ~/akki_journal/shield-train-campaign-a-baseline-ladder-20260906-20260906T140930Z/held_out_corpus.jsonl --base-model Qwen/Qwen2.5-0.5B --seed 1 --lora-rank 16 --ctx-len 1024 --per-device-batch 8 --grad-accum 4 --lr 0.0002 --num-epochs 3 >> ~/akki_journal/shield-train-campaign-a-baseline-ladder-20260906-20260906T140930Z/trainer_stdout.log 2>&1 & echo $!']' timed out after 120 seconds

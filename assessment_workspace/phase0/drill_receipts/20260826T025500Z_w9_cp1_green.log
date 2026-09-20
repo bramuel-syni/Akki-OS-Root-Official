@@ -1,0 +1,34 @@
+/root/.venv/lib/python3.11/site-packages/pytest_asyncio/plugin.py:208: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.3.3, pluggy-1.6.0 -- /root/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: xdist-3.8.0, anyio-4.14.2, asyncio-0.24.0
+asyncio: mode=Mode.AUTO, default_loop_scope=None
+collecting ... collected 19 items
+
+backend/tests/invariants/test_w9_cp1_watch_seam.py::test_watch_verdict_row_v0_shape PASSED [  5%]
+backend/tests/invariants/test_w9_cp1_watch_seam.py::test_watch_verdict_severity_grammar PASSED [ 10%]
+backend/tests/invariants/test_w9_cp1_watch_seam.py::test_watch_action_record_v0_shape PASSED [ 15%]
+backend/tests/invariants/test_w9_cp1_watch_seam.py::test_watch_action_class_grammar PASSED [ 21%]
+backend/tests/invariants/test_w9_cp1_watch_seam.py::test_macho_writes_verdict_to_disk PASSED [ 26%]
+backend/tests/invariants/test_w9_cp1_watch_seam.py::test_macho_refuses_overwrite PASSED [ 31%]
+backend/tests/invariants/test_w9_cp1_watch_seam.py::test_mkono_refuses_action_without_verdict PASSED [ 36%]
+backend/tests/invariants/test_w9_cp1_watch_seam.py::test_mkono_writes_action_after_verdict PASSED [ 42%]
+backend/tests/invariants/test_w9_cp1_watch_seam.py::test_mkono_refuses_double_action_on_same_verdict PASSED [ 47%]
+backend/tests/invariants/test_w9_cp1_watch_seam.py::test_action_atomically_carries_attestation_reference PASSED [ 52%]
+backend/tests/invariants/test_w9_cp1_watch_seam.py::test_verdict_body_carries_no_behavioural_profile_internals PASSED [ 57%]
+backend/tests/invariants/test_w9_cp1_watch_seam.py::test_action_body_carries_no_mark_placement_details PASSED [ 63%]
+backend/tests/invariants/test_watch_seam_frozen.py::test_watch_verdict_row_v0_frozen PASSED [ 68%]
+backend/tests/invariants/test_watch_seam_frozen.py::test_watch_action_record_v0_frozen PASSED [ 73%]
+backend/tests/invariants/test_frozen_contract_snapshot_parity.py::test_every_frozen_contract_has_snapshot PASSED [ 78%]
+backend/tests/invariants/test_frozen_contract_snapshot_parity.py::test_every_snapshot_maps_to_a_contract PASSED [ 84%]
+backend/tests/invariants/test_frozen_contract_snapshot_parity.py::test_snapshot_mapping_is_bijective PASSED [ 89%]
+backend/tests/invariants/test_composed_conclusion_v0_contract_frozen.py::test_composed_conclusion_v0_contract_frozen PASSED [ 94%]
+backend/tests/invariants/test_composed_conclusion_v0_contract_frozen.py::test_composed_conclusion_snapshot_parity_at_18 PASSED [100%]
+
+============================== 19 passed in 0.15s ==============================

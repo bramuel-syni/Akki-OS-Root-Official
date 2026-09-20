@@ -1,0 +1,21 @@
+Found 2 stranded run(s):
+  - trn/wp_close_resolution_test · status=closed_rejected · whitepaper_ref[:60]='whitepaper_draft_error:9 validation errors for WhitepaperDra'
+  - run-1787744079 · status=closed_adopted · whitepaper_ref[:60]="whitepaper_draft_error:cites_model_admission_id 'moac_run-17"
+
+--- Backfilling trn/wp_close_resolution_test ---
+  · minted baseline line bl_trn_wp_close_resolution_test
+  · admission ceremony outcome: refused (model_id=adapter_trn_wp_close_resolution_test)
+  · drafted whitepaper wp_backfill_trn_wp_close_resolution_test
+  · updated run whitepaper_ref → 'whitepaper:wp_backfill_trn_wp_close_resolution_test'
+
+--- Backfilling run-1787744079 ---
+  · minted baseline line bl_run-1787744079
+  · admission ceremony outcome: refused (model_id=adapter_run-1787744079)
+  · drafted whitepaper wp_backfill_run-1787744079
+  · updated run whitepaper_ref → 'whitepaper:wp_backfill_run-1787744079'
+
+Backfill complete.
+
+=== Post-backfill state ===
+  [OK] trn/wp_close_resolution_test · status=closed_rejected · whitepaper_ref='whitepaper:wp_backfill_trn_wp_close_resolution_test'
+  [OK] run-1787744079 · status=closed_adopted · whitepaper_ref='whitepaper:wp_backfill_run-1787744079'

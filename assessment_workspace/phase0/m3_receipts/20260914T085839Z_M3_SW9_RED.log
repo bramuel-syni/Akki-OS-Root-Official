@@ -1,0 +1,20 @@
+        granularity than restart-from-turn-zero.*
+    
+        A frozen session that has been resumed MUST NOT lose intermediate
+        depth: resuming from depth D returns depth D, never depth 0.
+        """
+>       from services.agent_containment.serving_freeze import (
+            freeze_session, resume_session,
+        )
+E       ModuleNotFoundError: No module named 'services.agent_containment.serving_freeze'
+
+tests/invariants/test_wm3_sw9_ac13_ac14_serving_freeze.py:160: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wm3_sw9_ac13_ac14_serving_freeze.py::test_sw9_module_fabric
+FAILED tests/invariants/test_wm3_sw9_ac13_ac14_serving_freeze.py::test_sw9_ac13_freeze_persists_state_and_halts
+FAILED tests/invariants/test_wm3_sw9_ac13_ac14_serving_freeze.py::test_sw9_ac13_stop_without_destroy
+FAILED tests/invariants/test_wm3_sw9_ac13_ac14_serving_freeze.py::test_sw9_ac14_containment_on_sfp8_conforming_path_is_decision
+FAILED tests/invariants/test_wm3_sw9_ac13_ac14_serving_freeze.py::test_sw9_ac14_containment_on_non_conforming_path_is_finding_only
+FAILED tests/invariants/test_wm3_sw9_ac13_ac14_serving_freeze.py::test_sw9_ac14_assert_helper_refuses_non_conforming
+FAILED tests/invariants/test_wm3_sw9_ac13_ac14_serving_freeze.py::test_sw9_ac13_reversibility_deeper_than_turn_zero
+7 failed in 0.66s

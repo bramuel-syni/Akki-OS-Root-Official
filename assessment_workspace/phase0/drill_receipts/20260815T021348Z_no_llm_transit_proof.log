@@ -1,0 +1,32 @@
+=== HARD-RULE PROOF: no-LLM-transit for pasted credentials (Owner Simplification 2026-08-14) ===
+
+--- (1) Parser module source: forbidden imports/refs check ---
+FORBIDDEN PATTERNS FOUND: NONE (proof)
+Only imports: ['from __future__ import annotations', 'import re', 'from typing import Dict, List, Optional, Tuple']
+
+--- (2) Router module source: forbidden imports/refs check ---
+FORBIDDEN SUBSTRINGS FOUND: NONE (proof)
+Only imports: ['from __future__ import annotations', 'from typing import Optional', 'from fastapi import APIRouter, HTTPException', 'from pydantic import BaseModel, Field', 'from services.credentials_paste import parser as _parser']
+
+--- (3) Live probe: sentinel password absent from response ---
+Response body:
+{
+    "kind": "compute",
+    "fields": {
+        "host_name": "aisca-gpu-01",
+        "username": "ubuntu",
+        "public_ip": "203.0.113.5"
+    },
+    "missing": [],
+    "extras": {},
+    "password_captured": true,
+    "api_key_captured": false
+}
+
+Sentinel occurrences in response body: 0 (must be 0)
+
+--- (4) Backend log scrub check (last 50 lines) ---
+Sentinel occurrences in backend logs: 0 (must be 0)
+
+--- (5) Frontend source LLM-endpoint reference check ---
+(empty above = proof)

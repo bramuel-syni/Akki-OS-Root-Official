@@ -1,0 +1,19 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.4.2, pluggy-1.6.0
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: xdist-3.8.0, anyio-4.14.2, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collected 26 items
+
+tests/invariants/test_wave_g_v8_shell_port.py FFsssssssssssssssssssssFss [100%]
+
+=================================== FAILURES ===================================
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:81: AssertionError: /app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/src/design/AkkiV8Shell.jsx does not exist. Wave G Step 2 requires the v8 shell component to live at this path. See notes/prototype_inventory_v8.md §3 for the top-bar + portal/app spec and §4 for the NAV lattice.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:93: AssertionError: /app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/src/design/akkiv8_design_system.js does not exist. Wave G Step 2 requires the v8 tokens/NAV/TABS/ROLES module to live at this path. See notes/prototype_inventory_v8.md §2 (tokens) and §4 (nav).
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:255: AssertionError: pod_shell/frontend/src/App.js MUST import AkkiV8Shell or AkkiV8ShellLayout from './design/AkkiV8Shell'. Wave G Step 2 requires the shell to be the mount point for every in-app route.
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_akki_v8_shell_jsx_exists
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_akki_v8_design_system_js_exists
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_App_js_imports_akki_v8_shell
+======================== 3 failed, 23 skipped in 0.73s =========================

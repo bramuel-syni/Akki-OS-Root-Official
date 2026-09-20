@@ -1,0 +1,12 @@
+/root/.venv/lib/python3.11/site-packages/pytest_asyncio/plugin.py:208: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+......FF                                                                 [100%]
+=================================== FAILURES ===================================
+/usr/local/lib/python3.11/pathlib.py:1044: FileNotFoundError: [Errno 2] No such file or directory: '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/breach_notification_v0.contract_snapshot.json'
+/usr/local/lib/python3.11/pathlib.py:1044: FileNotFoundError: [Errno 2] No such file or directory: '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/erasure_request_v0.contract_snapshot.json'
+=========================== short test summary info ============================
+FAILED tests/invariants/test_n_series_contracts_frozen.py::test_breach_notification_v0_frozen
+FAILED tests/invariants/test_n_series_contracts_frozen.py::test_erasure_request_v0_frozen
+2 failed, 6 passed in 0.12s

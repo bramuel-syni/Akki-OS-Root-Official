@@ -1,0 +1,43 @@
+/root/.venv/lib/python3.11/site-packages/pytest_asyncio/plugin.py:208: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.3.3, pluggy-1.6.0 -- /root/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: xdist-3.8.0, anyio-4.14.2, asyncio-0.24.0
+asyncio: mode=Mode.AUTO, default_loop_scope=None
+collecting ... collected 5 items
+
+tests/invariants/test_w7_cp1_training_rates.py::test_load_rates_returns_training_key FAILED [ 20%]
+tests/invariants/test_w7_cp1_training_rates.py::test_rate_for_training_run_returns_none_when_absent FAILED [ 40%]
+tests/invariants/test_w7_cp1_training_rates.py::test_rate_for_training_run_reads_owner_supplied_row FAILED [ 60%]
+tests/invariants/test_w7_cp1_training_rates.py::test_honest_gap_sentence_covers_training PASSED [ 80%]
+tests/invariants/test_w7_cp1_training_rates.py::test_training_rate_row_never_carries_credentials FAILED [100%]
+
+=================================== FAILURES ===================================
+_____________________ test_load_rates_returns_training_key _____________________
+tests/invariants/test_w7_cp1_training_rates.py:33: in test_load_rates_returns_training_key
+    assert "training" in payload, (
+E   AssertionError: load_rates() missing 'training' key — W7 CP1 requires the training-run rate lane (Doc 13 §20 adapter-training + Doc 14 §32 baseline curation + MOAC.5 cost-per-op).
+E   assert 'training' in {'gpu_hours': [], 'models': [{'authored_at': '2026-08-25T21:15:00Z', 'currency': 'USD', 'model_id': 'gpt-5-mini', 'notes': "PLACEHOLDER rate showing the discipline live. Actual owner-supplied rate should replace this file. Rate reflects a common gpt-4o-mini-tier pricing pattern; the emergent gateway's real cost per model is owner-supplied fact, not this file.", ...}]}
+_____________ test_rate_for_training_run_returns_none_when_absent ______________
+tests/invariants/test_w7_cp1_training_rates.py:51: in test_rate_for_training_run_returns_none_when_absent
+    r = rates_mod.rate_for_training_run("adapter-mtafiti-2026-08")
+E   AttributeError: module 'services.cost_ledger.rates' has no attribute 'rate_for_training_run'
+_____________ test_rate_for_training_run_reads_owner_supplied_row ______________
+tests/invariants/test_w7_cp1_training_rates.py:77: in test_rate_for_training_run_reads_owner_supplied_row
+    r = rates_mod.rate_for_training_run("adapter-mtafiti-2026-08")
+E   AttributeError: module 'services.cost_ledger.rates' has no attribute 'rate_for_training_run'
+_______________ test_training_rate_row_never_carries_credentials _______________
+tests/invariants/test_w7_cp1_training_rates.py:111: in test_training_rate_row_never_carries_credentials
+    r = rates_mod.rate_for_training_run("adapter-test")
+E   AttributeError: module 'services.cost_ledger.rates' has no attribute 'rate_for_training_run'
+=========================== short test summary info ============================
+FAILED tests/invariants/test_w7_cp1_training_rates.py::test_load_rates_returns_training_key
+FAILED tests/invariants/test_w7_cp1_training_rates.py::test_rate_for_training_run_returns_none_when_absent
+FAILED tests/invariants/test_w7_cp1_training_rates.py::test_rate_for_training_run_reads_owner_supplied_row
+FAILED tests/invariants/test_w7_cp1_training_rates.py::test_training_rate_row_never_carries_credentials
+========================= 4 failed, 1 passed in 0.04s ==========================

@@ -1,0 +1,14 @@
+/root/.venv/lib/python3.11/site-packages/pytest_asyncio/plugin.py:208: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+============================= test session starts ==============================
+collecting ... collected 5 items
+
+tests/invariants/test_w10_cp9_composite_lock.py::test_totals_locked_at_515_and_58 PASSED [ 20%]
+tests/invariants/test_w10_cp9_composite_lock.py::test_weights_locked_per_status_and_wave_plan_section_1 PASSED [ 40%]
+tests/invariants/test_w10_cp9_composite_lock.py::test_authoritative_composite_at_w10_close PASSED [ 60%]
+tests/invariants/test_w10_cp9_composite_lock.py::test_composite_calc_is_convex_blend_at_70_30 PASSED [ 80%]
+tests/invariants/test_w10_cp9_composite_lock.py::test_delta_count_at_w10_close PASSED [100%]
+
+============================== 5 passed in 0.03s ===============================

@@ -1,0 +1,40 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.4.2, pluggy-1.6.0
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: asyncio-1.4.0, anyio-4.14.2, xdist-3.8.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collected 6 items
+
+tests/invariants/test_w_g3_remainder_asset_inventory_generalisation.py F [ 16%]
+FFFFF                                                                    [100%]
+============================ BASELINE_GUARD receipt ============================
+passed=0 / baseline-failures-remaining=0 / quarantined=0
+  manifest: tests/invariants/baseline_failures.json
+  scope: BASELINE_GUARD=1  ·  invocation: cd backend && BASELINE_GUARD=1 python -m pytest tests/invariants/
+!!!!!!!!!!!!! BASELINE_GUARD · HALT AND REPORT · owner ruling (c) !!!!!!!!!!!!!!
+[V1] 6 NEW failure(s) OUTSIDE manifest:
+    tests/invariants/test_w_g3_remainder_asset_inventory_generalisation.py::test_gs_01_module_fabric_present
+    tests/invariants/test_w_g3_remainder_asset_inventory_generalisation.py::test_gs_02_br_4_1_all_five_classes_covered
+    tests/invariants/test_w_g3_remainder_asset_inventory_generalisation.py::test_gs_03_br_4_1_no_asset_hidden
+    tests/invariants/test_w_g3_remainder_asset_inventory_generalisation.py::test_gs_04_ta_3_1_class_enumeration_stable_with_zero_records
+    tests/invariants/test_w_g3_remainder_asset_inventory_generalisation.py::test_gs_05_br_4_1_cross_class_governance_query
+    tests/invariants/test_w_g3_remainder_asset_inventory_generalisation.py::test_gs_06_canon_9_single_writer_preserved
+[V3] Passed count 0 < ratchet floor 3627
+  No silent rebaselining. Report drift to owner verbatim.
+
+=================================== FAILURES ===================================
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError: No module named 'services.mtafiti.asset_inventory'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_w_g3_remainder_asset_inventory_generalisation.py:54: ImportError: cannot import name 'asset_inventory' from 'services.mtafiti' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/mtafiti/__init__.py)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_w_g3_remainder_asset_inventory_generalisation.py:95: ImportError: cannot import name 'asset_inventory' from 'services.mtafiti' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/mtafiti/__init__.py)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_w_g3_remainder_asset_inventory_generalisation.py:139: ImportError: cannot import name 'asset_inventory' from 'services.mtafiti' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/mtafiti/__init__.py)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_w_g3_remainder_asset_inventory_generalisation.py:163: ImportError: cannot import name 'asset_inventory' from 'services.mtafiti' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/mtafiti/__init__.py)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_w_g3_remainder_asset_inventory_generalisation.py:207: ImportError: cannot import name 'asset_inventory' from 'services.mtafiti' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/mtafiti/__init__.py)
+=========================== short test summary info ============================
+FAILED tests/invariants/test_w_g3_remainder_asset_inventory_generalisation.py::test_gs_01_module_fabric_present
+FAILED tests/invariants/test_w_g3_remainder_asset_inventory_generalisation.py::test_gs_02_br_4_1_all_five_classes_covered
+FAILED tests/invariants/test_w_g3_remainder_asset_inventory_generalisation.py::test_gs_03_br_4_1_no_asset_hidden
+FAILED tests/invariants/test_w_g3_remainder_asset_inventory_generalisation.py::test_gs_04_ta_3_1_class_enumeration_stable_with_zero_records
+FAILED tests/invariants/test_w_g3_remainder_asset_inventory_generalisation.py::test_gs_05_br_4_1_cross_class_governance_query
+FAILED tests/invariants/test_w_g3_remainder_asset_inventory_generalisation.py::test_gs_06_canon_9_single_writer_preserved
+============================== 6 failed in 0.65s ===============================

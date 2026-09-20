@@ -1,0 +1,7 @@
+[gpu_burn] RUN_ID = burn_20260906T110345Z_b1c2c20f
+[gpu_burn] BURN_ROOT = /app/assessment_workspace/phase0/gpu_burn/burn_20260906T110345Z_b1c2c20f
+[gpu_burn] duration=600s size=8192 dtype=float16
+[gpu_burn] poll_interval=30s hosts=['akki-vm', 'akki-vm-ii']
+[gpu_burn] RECONCILE: 2 orphaned in-flight run(s) detected:
+[gpu_burn]   RECONCILE-ORPHAN: burn_20260831T183247Z_dd53d6c7 · reason=no_heartbeat · last_heartbeat=None · NOT_ADOPTABLE (polls_stale_491390s_gt_900s)
+[gpu_burn]   RECONCILE-ORPHAN: burn_20260831T183509Z_731f22ad · reason=no_heartbeat · last_heartbeat=None · NOT_ADOPTABLE (polls_stale_489790s_gt_900s)

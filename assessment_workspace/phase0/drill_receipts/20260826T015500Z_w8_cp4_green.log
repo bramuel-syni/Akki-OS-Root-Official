@@ -1,0 +1,12 @@
+/root/.venv/lib/python3.11/site-packages/pytest_asyncio/plugin.py:208: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+........FF...                                                            [100%]
+=================================== FAILURES ===================================
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_frozen_contract_snapshot_parity.py:138: AssertionError: Parity FAIL — contract source(s) on disk not mapped to a canonical .contract_snapshot.json: ['breach_notification.py', 'erasure_request.py']. Add source→snapshot entry to CONTRACT_TO_SNAPSHOT and create the snapshot, or excise the source if it is not a frozen contract.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_frozen_contract_snapshot_parity.py:163: AssertionError: Parity FAIL — canonical snapshot(s) on disk not claimed by any contract source in CONTRACT_TO_SNAPSHOT (or its secondaries): ['breach_notification_v0.contract_snapshot.json', 'erasure_request_v0.contract_snapshot.json']. Either add the claiming source or remove the orphan snapshot.
+=========================== short test summary info ============================
+FAILED tests/invariants/test_frozen_contract_snapshot_parity.py::test_every_frozen_contract_has_snapshot
+FAILED tests/invariants/test_frozen_contract_snapshot_parity.py::test_every_snapshot_maps_to_a_contract
+2 failed, 11 passed in 0.15s

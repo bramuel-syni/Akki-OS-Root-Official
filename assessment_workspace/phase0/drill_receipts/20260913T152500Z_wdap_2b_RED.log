@@ -1,0 +1,25 @@
+    tests/invariants/test_wdap_2b_browse_pull_seam_and_api_keys.py::test_dap_6_browse_is_not_a_crossing
+    tests/invariants/test_wdap_2b_browse_pull_seam_and_api_keys.py::test_dap_6_browse_returns_aggregates_only
+    tests/invariants/test_wdap_2b_browse_pull_seam_and_api_keys.py::test_dap_7_pull_seam_source_never_egresses
+[V3] Passed count 0 < ratchet floor 3570
+  No silent rebaselining. Report drift to owner verbatim.
+
+=================================== FAILURES ===================================
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError: No module named 'services.dap.browse'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wdap_2b_browse_pull_seam_and_api_keys.py:47: ImportError: cannot import name 'browse' from 'services.dap' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/dap/__init__.py)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wdap_2b_browse_pull_seam_and_api_keys.py:67: ImportError: cannot import name 'browse' from 'services.dap' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/dap/__init__.py)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wdap_2b_browse_pull_seam_and_api_keys.py:84: AttributeError: module 'services.dap.admission' has no attribute 'reset_state'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wdap_2b_browse_pull_seam_and_api_keys.py:114: ImportError: cannot import name 'browse' from 'services.dap' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/dap/__init__.py)
+/app/assessment_workspace/repos/Extraction-Akki/backend/services/dap/api_keys.py:20: ImportError: cannot import name 'get_party_principal' from 'services.dap.admission' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/dap/admission.py)
+/app/assessment_workspace/repos/Extraction-Akki/backend/services/dap/api_keys.py:20: ImportError: cannot import name 'get_party_principal' from 'services.dap.admission' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/dap/admission.py)
+/app/assessment_workspace/repos/Extraction-Akki/backend/services/dap/api_keys.py:20: ImportError: cannot import name 'get_party_principal' from 'services.dap.admission' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/dap/admission.py)
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wdap_2b_browse_pull_seam_and_api_keys.py::test_2b_module_fabric_present
+FAILED tests/invariants/test_wdap_2b_browse_pull_seam_and_api_keys.py::test_dap_6_browse_returns_aggregates_only
+FAILED tests/invariants/test_wdap_2b_browse_pull_seam_and_api_keys.py::test_dap_6_browse_is_not_a_crossing
+FAILED tests/invariants/test_wdap_2b_browse_pull_seam_and_api_keys.py::test_dap_5_trust_domain_separation_refuses_cross_domain_resolution
+FAILED tests/invariants/test_wdap_2b_browse_pull_seam_and_api_keys.py::test_dap_7_pull_seam_source_never_egresses
+FAILED tests/invariants/test_wdap_2b_browse_pull_seam_and_api_keys.py::test_dap_13_api_key_receipt_carries_no_key_material
+FAILED tests/invariants/test_wdap_2b_browse_pull_seam_and_api_keys.py::test_dap_13_api_keys_are_per_principal
+FAILED tests/invariants/test_wdap_2b_browse_pull_seam_and_api_keys.py::test_dap_13_api_key_revocation_immediate
+============================== 8 failed in 0.66s ===============================

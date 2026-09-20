@@ -1,0 +1,88 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.4.2, pluggy-1.6.0
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: asyncio-1.4.0, anyio-4.14.2, xdist-3.8.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collected 10 items
+
+tests/invariants/test_wdap_2e_metering_and_cumulative_disclosure.py F.FF [ 40%]
+FFFFFF                                                                   [100%]
+============================ BASELINE_GUARD receipt ============================
+passed=1 / baseline-failures-remaining=0 / quarantined=0
+  manifest: tests/invariants/baseline_failures.json
+  scope: BASELINE_GUARD=1  ·  invocation: cd backend && BASELINE_GUARD=1 python -m pytest tests/invariants/
+!!!!!!!!!!!!! BASELINE_GUARD · HALT AND REPORT · owner ruling (c) !!!!!!!!!!!!!!
+[V1] 9 NEW failure(s) OUTSIDE manifest:
+    tests/invariants/test_wdap_2e_metering_and_cumulative_disclosure.py::test_2e_module_fabric_present
+    tests/invariants/test_wdap_2e_metering_and_cumulative_disclosure.py::test_dap_21_metered_event_written_before_result_return
+    tests/invariants/test_wdap_2e_metering_and_cumulative_disclosure.py::test_dap_21_r_c2_au_3b_defensible_flip_forbidden
+    tests/invariants/test_wdap_2e_metering_and_cumulative_disclosure.py::test_dap_22_receipt_cites_resolved_terms_not_the_level
+    tests/invariants/test_wdap_2e_metering_and_cumulative_disclosure.py::test_dap_22_terms_resolved_most_specific_first
+    tests/invariants/test_wdap_2e_metering_and_cumulative_disclosure.py::test_dap_25_default_availability_is_unavailable
+    tests/invariants/test_wdap_2e_metering_and_cumulative_disclosure.py::test_dap_25_granting_one_combination_does_not_grant_others
+    tests/invariants/test_wdap_2e_metering_and_cumulative_disclosure.py::test_dap_26_per_party_ceiling_and_default_pending_override_marker
+    tests/invariants/test_wdap_2e_metering_and_cumulative_disclosure.py::test_dap_26_terms_change_is_not_retroactive
+[V3] Passed count 1 < ratchet floor 3590
+  No silent rebaselining. Report drift to owner verbatim.
+
+=================================== FAILURES ===================================
+________________________ test_2e_module_fabric_present _________________________
+tests/invariants/test_wdap_2e_metering_and_cumulative_disclosure.py:56: in test_2e_module_fabric_present
+    metering = importlib.import_module("services.dap.metering")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1140: in _find_and_load_unlocked
+    ???
+E   ModuleNotFoundError: No module named 'services.dap.metering'
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+____________ test_dap_21_metered_event_written_before_result_return ____________
+tests/invariants/test_wdap_2e_metering_and_cumulative_disclosure.py:110: in test_dap_21_metered_event_written_before_result_return
+    from services.dap import metering
+E   ImportError: cannot import name 'metering' from 'services.dap' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/dap/__init__.py)
+_______________ test_dap_21_r_c2_au_3b_defensible_flip_forbidden _______________
+tests/invariants/test_wdap_2e_metering_and_cumulative_disclosure.py:157: in test_dap_21_r_c2_au_3b_defensible_flip_forbidden
+    from services.dap import metering
+E   ImportError: cannot import name 'metering' from 'services.dap' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/dap/__init__.py)
+________________ test_dap_22_terms_resolved_most_specific_first ________________
+tests/invariants/test_wdap_2e_metering_and_cumulative_disclosure.py:193: in test_dap_22_terms_resolved_most_specific_first
+    from services.dap import terms
+E   ImportError: cannot import name 'terms' from 'services.dap' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/dap/__init__.py)
+____________ test_dap_22_receipt_cites_resolved_terms_not_the_level ____________
+tests/invariants/test_wdap_2e_metering_and_cumulative_disclosure.py:237: in test_dap_22_receipt_cites_resolved_terms_not_the_level
+    from services.dap import terms, metering
+E   ImportError: cannot import name 'terms' from 'services.dap' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/dap/__init__.py)
+_______________ test_dap_25_default_availability_is_unavailable ________________
+tests/invariants/test_wdap_2e_metering_and_cumulative_disclosure.py:274: in test_dap_25_default_availability_is_unavailable
+    from services.dap import availability
+E   ImportError: cannot import name 'availability' from 'services.dap' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/dap/__init__.py)
+__________ test_dap_25_granting_one_combination_does_not_grant_others __________
+tests/invariants/test_wdap_2e_metering_and_cumulative_disclosure.py:291: in test_dap_25_granting_one_combination_does_not_grant_others
+    from services.dap import availability
+E   ImportError: cannot import name 'availability' from 'services.dap' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/dap/__init__.py)
+_________________ test_dap_26_terms_change_is_not_retroactive __________________
+tests/invariants/test_wdap_2e_metering_and_cumulative_disclosure.py:328: in test_dap_26_terms_change_is_not_retroactive
+    from services.dap import terms, metering
+E   ImportError: cannot import name 'terms' from 'services.dap' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/dap/__init__.py)
+______ test_dap_26_per_party_ceiling_and_default_pending_override_marker _______
+tests/invariants/test_wdap_2e_metering_and_cumulative_disclosure.py:378: in test_dap_26_per_party_ceiling_and_default_pending_override_marker
+    from services.dap import disclosure_budget
+E   ImportError: cannot import name 'disclosure_budget' from 'services.dap' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/dap/__init__.py)
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wdap_2e_metering_and_cumulative_disclosure.py::test_2e_module_fabric_present
+FAILED tests/invariants/test_wdap_2e_metering_and_cumulative_disclosure.py::test_dap_21_metered_event_written_before_result_return
+FAILED tests/invariants/test_wdap_2e_metering_and_cumulative_disclosure.py::test_dap_21_r_c2_au_3b_defensible_flip_forbidden
+FAILED tests/invariants/test_wdap_2e_metering_and_cumulative_disclosure.py::test_dap_22_terms_resolved_most_specific_first
+FAILED tests/invariants/test_wdap_2e_metering_and_cumulative_disclosure.py::test_dap_22_receipt_cites_resolved_terms_not_the_level
+FAILED tests/invariants/test_wdap_2e_metering_and_cumulative_disclosure.py::test_dap_25_default_availability_is_unavailable
+FAILED tests/invariants/test_wdap_2e_metering_and_cumulative_disclosure.py::test_dap_25_granting_one_combination_does_not_grant_others
+FAILED tests/invariants/test_wdap_2e_metering_and_cumulative_disclosure.py::test_dap_26_terms_change_is_not_retroactive
+FAILED tests/invariants/test_wdap_2e_metering_and_cumulative_disclosure.py::test_dap_26_per_party_ceiling_and_default_pending_override_marker
+========================= 9 failed, 1 passed in 0.72s ==========================

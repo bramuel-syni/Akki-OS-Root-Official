@@ -1,0 +1,88 @@
+=== SSH LATENCY (5x) ===
+probe 1: 3840 ms
+probe 2: 3396 ms
+probe 3: 3427 ms
+probe 4: 3429 ms
+probe 5: 3422 ms
+
+=== CAPACITY (single-shot) ===
+--- OS ---
+Ubuntu 24.04.4 LTS · kernel 6.8.0-106-generic · arch x86_64
+
+--- CPU ---
+36
+Model name:                              INTEL(R) XEON(R) PLATINUM 8558
+Thread(s) per core:                      2
+Core(s) per socket:                      18
+Socket(s):                               1
+
+--- RAM ---
+               total        used        free      shared  buff/cache   available
+Mem:           460Gi       4.1Gi       458Gi       5.3Mi       1.1Gi       456Gi
+Swap:             0B          0B          0B
+
+--- GPU ---
+index, name, driver_version, memory.total [MiB], memory.free [MiB], pstate, persistence_mode, compute_cap
+0, NVIDIA H200, 570.211.01, 143771 MiB, 143167 MiB, P0, Enabled, 9.0
+1, NVIDIA H200, 570.211.01, 143771 MiB, 143167 MiB, P0, Enabled, 9.0
+
+--- NVLink ---
+GPU 0: NVIDIA H200 (UUID: GPU-e87acccb-7848-1573-98ae-fcf26b185c0b)
+	 Link 0: 26.562 GB/s
+	 Link 1: 26.562 GB/s
+	 Link 2: 26.562 GB/s
+	 Link 3: 26.562 GB/s
+	 Link 4: 26.562 GB/s
+	 Link 5: 26.562 GB/s
+	 Link 6: 26.562 GB/s
+	 Link 7: 26.562 GB/s
+	 Link 8: 26.562 GB/s
+	 Link 9: 26.562 GB/s
+	 Link 10: 26.562 GB/s
+	 Link 11: 26.562 GB/s
+	 Link 12: 26.562 GB/s
+	 Link 13: 26.562 GB/s
+	 Link 14: 26.562 GB/s
+	 Link 15: 26.562 GB/s
+	 Link 16: 26.562 GB/s
+	 Link 17: 26.562 GB/s
+GPU 1: NVIDIA H200 (UUID: GPU-3f6adf5f-6176-2eb0-0d0c-ec20a305e7a1)
+
+--- CUDA runtime ---
+| NVIDIA-SMI 570.211.01             Driver Version: 570.211.01     CUDA Version: 12.8     |
+nvcc not installed (runtime-only)
+
+--- Storage: lsblk ---
+NAME     SIZE FSTYPE  MOUNTPOINTS
+sr0      366K iso9660 
+vda       75G         
+├─vda1    74G ext4    /
+├─vda14    4M         
+├─vda15  106M vfat    /boot/efi
+└─vda16  913M ext4    /boot
+vdb      5.9T ext4    /mnt/volume_dkgjrkx
+
+--- Storage: df -h all mounts ---
+Filesystem                  Size  Used Avail Use% Mounted on
+/dev/vda1                    72G   14G   59G  19% /
+/dev/vda16                  881M   78M  741M  10% /boot
+/dev/vda15                  105M  6.2M   99M   6% /boot/efi
+dkgjrkx_akki-storage-3388s  2.0G  8.0K  2.0G   1% /mnt/akki-storage-3388s
+/dev/vdb                    5.9T   28K  5.6T   1% /mnt/volume_dkgjrkx
+
+--- Big-volume write test (1 GB dd on /mnt/volume_dkgjrkx) ---
+-rw-rw-r-- 1 ubuntu ubuntu 1073741824 Aug 18 19:52 /mnt/volume_dkgjrkx/akki_measure/1G.bin
+
+--- Network: VM egress IP ---
+41.173.185.50
+--- Network: public reachability ---
+https://pypi.org HTTP 200 · 0.504002s
+https://huggingface.co HTTP 200 · 0.370379s
+
+--- Software ---
+Python 3.12.3
+pip3 absent
+torch: Traceback (most recent call last):
+ffmpeg: absent
+docker: absent
+---

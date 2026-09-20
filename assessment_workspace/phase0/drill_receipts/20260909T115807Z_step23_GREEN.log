@@ -1,0 +1,28 @@
+============================= test session starts ==============================
+collecting ... collected 23 items
+
+backend/tests/invariants/test_agent_containment_spec_v1_ingest.py::test_agent_containment_requirements_file_exists PASSED [  4%]
+backend/tests/invariants/test_agent_containment_spec_v1_ingest.py::test_non_claims_register_exists PASSED [  8%]
+backend/tests/invariants/test_agent_containment_spec_v1_ingest.py::test_all_twelve_ac_headings_present_in_requirements_file PASSED [ 13%]
+backend/tests/invariants/test_agent_containment_spec_v1_ingest.py::test_no_lim_row_appears_in_requirements_file_as_requirement PASSED [ 17%]
+backend/tests/invariants/test_agent_containment_spec_v1_ingest.py::test_all_five_lim_rows_present_in_non_claims_register PASSED [ 21%]
+backend/tests/invariants/test_agent_containment_spec_v1_ingest.py::test_non_claims_register_status_column_is_only_non_claim PASSED [ 26%]
+backend/tests/invariants/test_agent_containment_spec_v1_ingest.py::test_agent_containment_spec_v1_appears_in_spec_id_index PASSED [ 30%]
+backend/tests/invariants/test_default_class_ruled_constants.py::test_rules_service_r1_countdown_system_ordinary_is_48_hours PASSED [ 34%]
+backend/tests/invariants/test_default_class_ruled_constants.py::test_rules_service_r1_countdown_system_tcb_is_7_days PASSED [ 39%]
+backend/tests/invariants/test_default_class_ruled_constants.py::test_dap_r4_api_key_lifetime_is_90_days PASSED [ 43%]
+backend/tests/invariants/test_default_class_ruled_constants.py::test_security_r10_recommendation_window_is_24_hours PASSED [ 47%]
+backend/tests/invariants/test_default_class_ruled_constants.py::test_security_r8_uses_baseline_period_approach PASSED [ 52%]
+backend/tests/invariants/test_default_class_ruled_constants.py::test_security_r9_uses_baseline_period_approach PASSED [ 56%]
+backend/tests/invariants/test_default_class_ruled_constants.py::test_security_r11_uses_baseline_period_approach PASSED [ 60%]
+backend/tests/invariants/test_default_class_ruled_constants.py::test_agent_containment_r3_uses_baseline_period_approach PASSED [ 65%]
+backend/tests/invariants/test_default_class_ruled_constants.py::test_pruning_r12_default_is_re_derivation PASSED [ 69%]
+backend/tests/invariants/test_default_class_ruled_constants.py::test_pruning_r12_recall_requires_owner_signoff PASSED [ 73%]
+backend/tests/invariants/test_default_class_ruled_constants.py::test_rules_service_r4_is_ratified_as_proposed PASSED [ 78%]
+backend/tests/invariants/test_default_class_ruled_constants.py::test_dap_r1_is_ratified_as_proposed PASSED [ 82%]
+backend/tests/invariants/test_default_class_ruled_constants.py::test_agent_containment_r1_four_ceilings_ratified PASSED [ 86%]
+backend/tests/invariants/test_default_class_ruled_constants.py::test_rules_service_r3_witness_is_watch_c3 PASSED [ 91%]
+backend/tests/invariants/test_default_class_ruled_constants.py::test_agent_containment_r2_authority_is_syni_ai PASSED [ 95%]
+backend/tests/invariants/test_default_class_ruled_constants.py::test_agent_containment_r2_stage_is_early_deployments PASSED [100%]
+
+============================== 23 passed in 0.66s ==============================

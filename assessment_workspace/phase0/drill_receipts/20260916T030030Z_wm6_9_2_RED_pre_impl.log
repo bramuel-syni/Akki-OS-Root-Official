@@ -1,0 +1,176 @@
+RED · CP-M6-9-2 · commission_view.py Part-B not authored yet
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.4.2, pluggy-1.6.0
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: anyio-4.14.2, asyncio-1.4.0, xdist-3.8.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collected 10 items
+
+tests/invariants/test_wm6_9_2_commission_view_render.py FFFFFFFFFF       [100%]
+
+=================================== FAILURES ===================================
+______________________ test_wm6_9_2_part_b_module_fabric _______________________
+
+    def test_wm6_9_2_part_b_module_fabric():
+        """Part-B adds 9 new exports; combined module carries 19 exports."""
+        m = importlib.import_module("services.audio_plane_v1.commission_view")
+        part_b_exports = (
+            "CommissionViewProjection",
+            "MilestoneRow",
+            "render_commission_view",
+            "RecordingEvidenceLeaf",
+            "assert_no_internals_projected",
+            "assert_no_new_backend_computation",
+            "RecordingEvidenceKindMismatchError",
+            "InternalsProjectedError",
+            "NewBackendComputationError",
+        )
+        part_a_exports = (
+            "MILESTONE_STATUS_VALUES",
+            "MilestoneStatusEntry",
+            "SpendAgainstQuote",
+            "EvidenceRef",
+            "CommissionViewSnapshot",
+            "construct_commission_view_snapshot",
+            "MilestoneStatusInvalidError",
+            "MilestoneListNotAgreedError",
+            "StatusEntryCountMismatchError",
+            "EvidenceKindInvalidError",
+        )
+        for n in part_b_exports + part_a_exports:
+>           assert hasattr(m, n), (
+                f"services.audio_plane_v1.commission_view.{n} missing"
+            )
+E           AssertionError: services.audio_plane_v1.commission_view.CommissionViewProjection missing
+E           assert False
+E            +  where False = hasattr(<module 'services.audio_plane_v1.commission_view' from '/app/assessment_workspace/repos/Extraction-Akki/backend/services/audio_plane_v1/commission_view.py'>, 'CommissionViewProjection')
+
+tests/invariants/test_wm6_9_2_commission_view_render.py:58: AssertionError
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+___________ test_wm6_9_2_v120_v121_v122_verbatim_in_module_docstring ___________
+
+    def test_wm6_9_2_v120_v121_v122_verbatim_in_module_docstring():
+        """§13.2 V120 + §13.3 V121 + §13.4 V122 verbatim anchors survive
+        Part-B docstring (Part-B does not remove Part-A anchors)."""
+        m = importlib.import_module("services.audio_plane_v1.commission_view")
+        v120 = "The surface is milestones. The artifacts are evidence behind them."
+        v121 = "Modality appears at exactly one leaf: evidence inspection."
+        v122 = "No new machinery is built for display."
+        assert m.__doc__ is not None
+        assert v120 in m.__doc__, "V120 anchor lost from module docstring"
+>       assert v121 in m.__doc__, "V121 anchor missing from module docstring"
+E       AssertionError: V121 anchor missing from module docstring
+E       assert 'Modality appears at exactly one leaf: evidence inspection.' in 'M6 · Audio-Plane v1.0 · CP-M6-9-1 · §13.1 + §13.4 Commission View schema + reads-only discipline.\n\nVerbatim canon a...and in Part-B.\n- No LLM / HTTP / filesystem / network.  Case-agnostic.\n- §3.1 P038 tokens-not-waveforms preserved.\n'
+E        +  where 'M6 · Audio-Plane v1.0 · CP-M6-9-1 · §13.1 + §13.4 Commission View schema + reads-only discipline.\n\nVerbatim canon a...and in Part-B.\n- No LLM / HTTP / filesystem / network.  Case-agnostic.\n- §3.1 P038 tokens-not-waveforms preserved.\n' = <module 'services.audio_plane_v1.commission_view' from '/app/assessment_workspace/repos/Extraction-Akki/backend/services/audio_plane_v1/commission_view.py'>.__doc__
+
+tests/invariants/test_wm6_9_2_commission_view_render.py:72: AssertionError
+_________ test_wm6_9_2_render_commission_view_orders_by_milestone_list _________
+
+    def test_wm6_9_2_render_commission_view_orders_by_milestone_list():
+        """§13.2 V120a milestones-first + §11.3 V114a ordering-load-bearing."""
+>       from services.audio_plane_v1.commission_view import (
+            render_commission_view,
+        )
+E       ImportError: cannot import name 'render_commission_view' from 'services.audio_plane_v1.commission_view' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/audio_plane_v1/commission_view.py)
+
+tests/invariants/test_wm6_9_2_commission_view_render.py:113: ImportError
+________ test_wm6_9_2_render_commission_view_missed_shown_at_head_level ________
+
+    def test_wm6_9_2_render_commission_view_missed_shown_at_head_level():
+        """§13.2 V120d parity: missed shown as plainly as done."""
+>       from services.audio_plane_v1.commission_view import (
+            MilestoneRow,
+            render_commission_view,
+        )
+E       ImportError: cannot import name 'MilestoneRow' from 'services.audio_plane_v1.commission_view' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/audio_plane_v1/commission_view.py)
+
+tests/invariants/test_wm6_9_2_commission_view_render.py:135: ImportError
+________ test_wm6_9_2_render_commission_view_evidence_at_leaf_not_head _________
+
+    def test_wm6_9_2_render_commission_view_evidence_at_leaf_not_head():
+        """§13.2 V120f evidence-behind: MilestoneRow carries no evidence-content
+        field; evidence_leaves is a body-level carrier · never the front page."""
+>       from services.audio_plane_v1.commission_view import (
+            MilestoneRow,
+            render_commission_view,
+        )
+E       ImportError: cannot import name 'MilestoneRow' from 'services.audio_plane_v1.commission_view' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/audio_plane_v1/commission_view.py)
+
+tests/invariants/test_wm6_9_2_commission_view_render.py:157: ImportError
+_______ test_wm6_9_2_recording_evidence_leaf_refuses_non_recording_kind ________
+
+    def test_wm6_9_2_recording_evidence_leaf_refuses_non_recording_kind():
+        """§13.3 V121a modality-at-one-leaf: RecordingEvidenceLeaf accepts only
+        kind=='recording'."""
+>       from services.audio_plane_v1.commission_view import (
+            EvidenceRef,
+            RecordingEvidenceKindMismatchError,
+            RecordingEvidenceLeaf,
+        )
+E       ImportError: cannot import name 'RecordingEvidenceKindMismatchError' from 'services.audio_plane_v1.commission_view' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/audio_plane_v1/commission_view.py)
+
+tests/invariants/test_wm6_9_2_commission_view_render.py:180: ImportError
+_ test_wm6_9_2_recording_evidence_leaf_carries_plays_at_timestamp_no_audio_bytes _
+
+    def test_wm6_9_2_recording_evidence_leaf_carries_plays_at_timestamp_no_audio_bytes():
+        """§13.3 V121b + §3.1 P038: RecordingEvidenceLeaf carries timestamp +
+        provenance ref only · no audio bytes cross the seam."""
+>       from services.audio_plane_v1.commission_view import (
+            EvidenceRef,
+            RecordingEvidenceLeaf,
+        )
+E       ImportError: cannot import name 'RecordingEvidenceLeaf' from 'services.audio_plane_v1.commission_view' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/audio_plane_v1/commission_view.py)
+
+tests/invariants/test_wm6_9_2_commission_view_render.py:198: ImportError
+___ test_wm6_9_2_assert_no_internals_projected_refuses_forbidden_field_names ___
+
+    def test_wm6_9_2_assert_no_internals_projected_refuses_forbidden_field_names():
+        """§13.1 V119c internals-projection refusal fires on forbidden field
+        name."""
+>       from services.audio_plane_v1.commission_view import (
+            InternalsProjectedError,
+            assert_no_internals_projected,
+        )
+E       ImportError: cannot import name 'InternalsProjectedError' from 'services.audio_plane_v1.commission_view' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/audio_plane_v1/commission_view.py)
+
+tests/invariants/test_wm6_9_2_commission_view_render.py:221: ImportError
+_ test_wm6_9_2_assert_no_new_backend_computation_refuses_off_allowlist_carrier _
+
+    def test_wm6_9_2_assert_no_new_backend_computation_refuses_off_allowlist_carrier():
+        """§13.4 V122c reads-only defence: refuses off-allow-list carrier."""
+>       from services.audio_plane_v1.commission_view import (
+            NewBackendComputationError,
+            assert_no_new_backend_computation,
+        )
+E       ImportError: cannot import name 'NewBackendComputationError' from 'services.audio_plane_v1.commission_view' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/audio_plane_v1/commission_view.py)
+
+tests/invariants/test_wm6_9_2_commission_view_render.py:238: ImportError
+__________ test_wm6_9_2_compose_v120b_render_refuses_ungreed_snapshot __________
+
+    def test_wm6_9_2_compose_v120b_render_refuses_ungreed_snapshot():
+        """§13.2 V120b defence-in-depth: even if a caller monkey-patches an
+        unagreed snapshot past the factory, render_commission_view re-checks
+        and refuses via MilestoneListNotAgreedError (family-catch preserved)."""
+>       from services.audio_plane_v1.commission_view import (
+            CommissionViewSnapshot,
+            MilestoneListNotAgreedError,
+            SpendAgainstQuote,
+            render_commission_view,
+        )
+E       ImportError: cannot import name 'render_commission_view' from 'services.audio_plane_v1.commission_view' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/audio_plane_v1/commission_view.py)
+
+tests/invariants/test_wm6_9_2_commission_view_render.py:266: ImportError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wm6_9_2_commission_view_render.py::test_wm6_9_2_part_b_module_fabric
+FAILED tests/invariants/test_wm6_9_2_commission_view_render.py::test_wm6_9_2_v120_v121_v122_verbatim_in_module_docstring
+FAILED tests/invariants/test_wm6_9_2_commission_view_render.py::test_wm6_9_2_render_commission_view_orders_by_milestone_list
+FAILED tests/invariants/test_wm6_9_2_commission_view_render.py::test_wm6_9_2_render_commission_view_missed_shown_at_head_level
+FAILED tests/invariants/test_wm6_9_2_commission_view_render.py::test_wm6_9_2_render_commission_view_evidence_at_leaf_not_head
+FAILED tests/invariants/test_wm6_9_2_commission_view_render.py::test_wm6_9_2_recording_evidence_leaf_refuses_non_recording_kind
+FAILED tests/invariants/test_wm6_9_2_commission_view_render.py::test_wm6_9_2_recording_evidence_leaf_carries_plays_at_timestamp_no_audio_bytes
+FAILED tests/invariants/test_wm6_9_2_commission_view_render.py::test_wm6_9_2_assert_no_internals_projected_refuses_forbidden_field_names
+FAILED tests/invariants/test_wm6_9_2_commission_view_render.py::test_wm6_9_2_assert_no_new_backend_computation_refuses_off_allowlist_carrier
+FAILED tests/invariants/test_wm6_9_2_commission_view_render.py::test_wm6_9_2_compose_v120b_render_refuses_ungreed_snapshot
+============================== 10 failed in 0.77s ==============================

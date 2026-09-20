@@ -1,0 +1,28 @@
+/root/.venv/lib/python3.11/site-packages/pytest_asyncio/plugin.py:208: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.3.3, pluggy-1.6.0 -- /root/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: xdist-3.8.0, anyio-4.14.2, asyncio-0.24.0
+asyncio: mode=Mode.AUTO, default_loop_scope=None
+collecting ... collected 13 items
+
+backend/tests/invariants/test_w9_cp4_continuity_attestation.py::test_continuity_attestation_contract_shape PASSED [  7%]
+backend/tests/invariants/test_w9_cp4_continuity_attestation.py::test_continuity_attestation_outcome_grammar PASSED [ 15%]
+backend/tests/invariants/test_w9_cp4_continuity_attestation.py::test_continuity_attestation_scope_grammar PASSED [ 23%]
+backend/tests/invariants/test_w9_cp4_continuity_attestation.py::test_write_attestation_refuses_while_rto_pending PASSED [ 30%]
+backend/tests/invariants/test_w9_cp4_continuity_attestation.py::test_write_attestation_refuses_while_verification_pending PASSED [ 38%]
+backend/tests/invariants/test_w9_cp4_continuity_attestation.py::test_write_attestation_fires_when_policy_resolved PASSED [ 46%]
+backend/tests/invariants/test_w9_cp4_continuity_attestation.py::test_write_attestation_refuses_overwrite PASSED [ 53%]
+backend/tests/invariants/test_continuity_attestation_frozen.py::test_continuity_attestation_v0_frozen PASSED [ 61%]
+backend/tests/invariants/test_frozen_contract_snapshot_parity.py::test_every_frozen_contract_has_snapshot PASSED [ 69%]
+backend/tests/invariants/test_frozen_contract_snapshot_parity.py::test_every_snapshot_maps_to_a_contract PASSED [ 76%]
+backend/tests/invariants/test_frozen_contract_snapshot_parity.py::test_snapshot_mapping_is_bijective PASSED [ 84%]
+backend/tests/invariants/test_composed_conclusion_v0_contract_frozen.py::test_composed_conclusion_v0_contract_frozen PASSED [ 92%]
+backend/tests/invariants/test_composed_conclusion_v0_contract_frozen.py::test_composed_conclusion_snapshot_parity_at_18 PASSED [100%]
+
+============================== 13 passed in 0.15s ==============================

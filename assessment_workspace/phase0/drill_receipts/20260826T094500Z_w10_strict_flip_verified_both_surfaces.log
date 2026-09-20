@@ -1,0 +1,64 @@
+W10 wave-close · ALLOWLIST_MODE strict-flip verification (BOTH SURFACES) — REPLACES 20260826T092000Z
+=====================================================================================================
+Recorded: 2026-08-26T09:45:00Z
+Trigger: Owner CP9 GO 2026-08-26T08:45Z step 3 · re-verified after ratification-withheld finding 2026-08-26T09:33Z
+Superseded receipt: 20260826T092000Z_w10_strict_flip_verified.log (backend-only probes · defect: SPA surface untested)
+
+State transitions this session:
+  1. 09:20Z · main agent set ALLOWLIST_MODE=strict + restart backend (missed frontend) · SPA still permissive
+  2. 09:33Z · external tester found GET / at 200 with SPA rendered · owner withheld ratification
+  3. 09:36Z · main agent restart frontend · SPA flipped to strict
+  4. 09:40Z · matrix invariant added (this receipt exercises it)
+  5. 09:45Z · full mode matrix green in both directions (strict + permissive + strict)
+
+Current state (verified):
+  ALLOWLIST_MODE=strict (line 20 of /app/backend/.env)
+  OWNER_ALLOWLIST_IPS=41.90.172.155 (line 21 · unchanged from R8)
+  Both supervisor services restarted (backend PID + frontend PID confirmed rotated)
+
+Probe matrix executed (17/17 green):
+
+Backend surface (http://127.0.0.1:8001) · FastAPI middleware
+  /api/governance/state:
+    owner IP 41.90.172.155 → HTTP 200 (admits via owner layer)
+    unknown IP 203.0.113.99 → HTTP 403 + refusal sentence
+    no XFF                  → HTTP 403 + refusal sentence
+  /api/openapi.json:
+    owner IP                → HTTP 200 (OpenAPI spec · 49 paths)
+    unknown IP              → HTTP 403 + refusal sentence
+    no XFF                  → HTTP 403 + refusal sentence
+
+Frontend surface (http://127.0.0.1:3000) · craco Node middleware
+  / (root SPA shell):
+    owner IP                → HTTP 200 (96-line SPA shell)
+    unknown IP              → HTTP 403 + refusal sentence  ← this is the defect that owner caught
+    no XFF                  → HTTP 403 + refusal sentence
+  /governance (SPA route):
+    owner IP                → HTTP 200 (SPA shell · client-side routes to Governance.jsx)
+    unknown IP              → HTTP 403 + refusal sentence
+    no XFF                  → HTTP 403 + refusal sentence
+  /favicon.ico (static asset):
+    owner IP                → HTTP 200
+    unknown IP              → HTTP 403 + refusal sentence
+    no XFF                  → HTTP 403 + refusal sentence
+
+Refusal sentence (both surfaces · byte-identical):
+  "This surface answers allowlisted addresses only."
+
+Mode matrix also verified in permissive direction (temporary flip at 09:42Z):
+  ALLOWLIST_MODE=permissive → all 15 probes admit (owner IP + unknown IP + no XFF)
+  Restored to strict at 09:44Z · both supervisors restarted · re-verified
+
+Regression proof (locks the defect out):
+  /app/frontend/plugins/ip-allowlist/__tests__/w10_wave_close_strict_flip_matrix.test.js
+  17 tests · mode-aware (reads ALLOWLIST_MODE from /app/backend/.env single source of truth)
+  Runs live-HTTP probes against BOTH surfaces at BOTH ports.
+  Any future flip that skips a supervisor restart WILL fire this test.
+
+Corrected flip procedure (locked into checklist):
+  1. Edit /app/backend/.env line 20.
+  2. sudo supervisorctl restart backend frontend  (BOTH · not just backend)
+  3. Run: node --test /app/frontend/plugins/ip-allowlist/__tests__/w10_wave_close_strict_flip_matrix.test.js
+  4. Bank the receipt with BOTH surfaces exercised.
+
+R9 owner ruling stands · verification now correct.

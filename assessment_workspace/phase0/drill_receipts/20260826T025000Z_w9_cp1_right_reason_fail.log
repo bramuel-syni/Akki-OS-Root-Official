@@ -1,0 +1,156 @@
+/root/.venv/lib/python3.11/site-packages/pytest_asyncio/plugin.py:208: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.3.3, pluggy-1.6.0 -- /root/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: xdist-3.8.0, anyio-4.14.2, asyncio-0.24.0
+asyncio: mode=Mode.AUTO, default_loop_scope=None
+collecting ... collected 12 items
+
+backend/tests/invariants/test_w9_cp1_watch_seam.py::test_watch_verdict_row_v0_shape FAILED [  8%]
+backend/tests/invariants/test_w9_cp1_watch_seam.py::test_watch_verdict_severity_grammar FAILED [ 16%]
+backend/tests/invariants/test_w9_cp1_watch_seam.py::test_watch_action_record_v0_shape FAILED [ 25%]
+backend/tests/invariants/test_w9_cp1_watch_seam.py::test_watch_action_class_grammar FAILED [ 33%]
+backend/tests/invariants/test_w9_cp1_watch_seam.py::test_macho_writes_verdict_to_disk FAILED [ 41%]
+backend/tests/invariants/test_w9_cp1_watch_seam.py::test_macho_refuses_overwrite FAILED [ 50%]
+backend/tests/invariants/test_w9_cp1_watch_seam.py::test_mkono_refuses_action_without_verdict FAILED [ 58%]
+backend/tests/invariants/test_w9_cp1_watch_seam.py::test_mkono_writes_action_after_verdict FAILED [ 66%]
+backend/tests/invariants/test_w9_cp1_watch_seam.py::test_mkono_refuses_double_action_on_same_verdict FAILED [ 75%]
+backend/tests/invariants/test_w9_cp1_watch_seam.py::test_action_atomically_carries_attestation_reference FAILED [ 83%]
+backend/tests/invariants/test_w9_cp1_watch_seam.py::test_verdict_body_carries_no_behavioural_profile_internals FAILED [ 91%]
+backend/tests/invariants/test_w9_cp1_watch_seam.py::test_action_body_carries_no_mark_placement_details FAILED [100%]
+
+=================================== FAILURES ===================================
+_______________________ test_watch_verdict_row_v0_shape ________________________
+
+    def test_watch_verdict_row_v0_shape():
+>       from contracts.watch_verdict import WatchVerdictRow_v0
+E       ModuleNotFoundError: No module named 'contracts.watch_verdict'
+
+backend/tests/invariants/test_w9_cp1_watch_seam.py:56: ModuleNotFoundError
+_____________________ test_watch_verdict_severity_grammar ______________________
+
+    def test_watch_verdict_severity_grammar():
+>       from contracts.watch_verdict import WatchVerdictRow_v0
+E       ModuleNotFoundError: No module named 'contracts.watch_verdict'
+
+backend/tests/invariants/test_w9_cp1_watch_seam.py:63: ModuleNotFoundError
+______________________ test_watch_action_record_v0_shape _______________________
+
+    def test_watch_action_record_v0_shape():
+>       from contracts.watch_action import WatchActionRecord_v0
+E       ModuleNotFoundError: No module named 'contracts.watch_action'
+
+backend/tests/invariants/test_w9_cp1_watch_seam.py:71: ModuleNotFoundError
+_______________________ test_watch_action_class_grammar ________________________
+
+    def test_watch_action_class_grammar():
+>       from contracts.watch_action import WatchActionRecord_v0
+E       ModuleNotFoundError: No module named 'contracts.watch_action'
+
+backend/tests/invariants/test_w9_cp1_watch_seam.py:77: ModuleNotFoundError
+______________________ test_macho_writes_verdict_to_disk _______________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-119/test_macho_writes_verdict_to_d0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xf9522d667910>
+
+    def test_macho_writes_verdict_to_disk(tmp_path, monkeypatch):
+>       from services.watch.macho import mint_verdict, load_verdicts
+E       ModuleNotFoundError: No module named 'services.watch'
+
+backend/tests/invariants/test_w9_cp1_watch_seam.py:91: ModuleNotFoundError
+_________________________ test_macho_refuses_overwrite _________________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-119/test_macho_refuses_overwrite0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xf9522d4d95d0>
+
+    def test_macho_refuses_overwrite(tmp_path, monkeypatch):
+        """Canon 8 §43: NEITHER record is amended in place."""
+>       from services.watch.macho import mint_verdict
+E       ModuleNotFoundError: No module named 'services.watch'
+
+backend/tests/invariants/test_w9_cp1_watch_seam.py:100: ModuleNotFoundError
+__________________ test_mkono_refuses_action_without_verdict ___________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-119/test_mkono_refuses_action_with0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xf9522d4ccd10>
+
+    def test_mkono_refuses_action_without_verdict(tmp_path, monkeypatch):
+        """Seam law: NO Mkono action executes without a verdict row (Canon 8 §6)."""
+>       from services.watch.mkono import act_on_verdict
+E       ModuleNotFoundError: No module named 'services.watch'
+
+backend/tests/invariants/test_w9_cp1_watch_seam.py:111: ModuleNotFoundError
+____________________ test_mkono_writes_action_after_verdict ____________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-119/test_mkono_writes_action_after0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xf9522d4ecd10>
+
+    def test_mkono_writes_action_after_verdict(tmp_path, monkeypatch):
+>       from services.watch.macho import mint_verdict
+E       ModuleNotFoundError: No module named 'services.watch'
+
+backend/tests/invariants/test_w9_cp1_watch_seam.py:119: ModuleNotFoundError
+_______________ test_mkono_refuses_double_action_on_same_verdict _______________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-119/test_mkono_refuses_double_acti0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xf9522d4d8b50>
+
+    def test_mkono_refuses_double_action_on_same_verdict(tmp_path, monkeypatch):
+        """Canon 8 §32.5: NO Watch action executes without a receipt landing
+        atomically. One action per verdict; a second attempt is a defect."""
+>       from services.watch.macho import mint_verdict
+E       ModuleNotFoundError: No module named 'services.watch'
+
+backend/tests/invariants/test_w9_cp1_watch_seam.py:132: ModuleNotFoundError
+_____________ test_action_atomically_carries_attestation_reference _____________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-119/test_action_atomically_carries0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xf9522d5ec1d0>
+
+    def test_action_atomically_carries_attestation_reference(tmp_path, monkeypatch):
+        """Canon 8 §32.5 · atomic act-and-attest: the action_record IS the
+        attestation; it carries verdict_id + at_iso + outcome_note. No
+        'attest later' path exists."""
+>       from services.watch.macho import mint_verdict
+E       ModuleNotFoundError: No module named 'services.watch'
+
+backend/tests/invariants/test_w9_cp1_watch_seam.py:146: ModuleNotFoundError
+__________ test_verdict_body_carries_no_behavioural_profile_internals __________
+
+    def test_verdict_body_carries_no_behavioural_profile_internals():
+        """Canon 8 §32.1 + W13: NO surface renders behavioural-profile
+        internals. Verdict rows must not carry a 'profile' key or any
+        threshold-tuning knob."""
+>       from contracts.watch_verdict import WatchVerdictRow_v0
+E       ModuleNotFoundError: No module named 'contracts.watch_verdict'
+
+backend/tests/invariants/test_w9_cp1_watch_seam.py:163: ModuleNotFoundError
+______________ test_action_body_carries_no_mark_placement_details ______________
+
+    def test_action_body_carries_no_mark_placement_details():
+        """Canon 8 §32.3: NO surface renders mark placement. Action records
+        name the class of action and its acted_on_ref; they do NOT expose
+        WHERE within the estate a mark was placed."""
+>       from contracts.watch_action import WatchActionRecord_v0
+E       ModuleNotFoundError: No module named 'contracts.watch_action'
+
+backend/tests/invariants/test_w9_cp1_watch_seam.py:178: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED backend/tests/invariants/test_w9_cp1_watch_seam.py::test_watch_verdict_row_v0_shape
+FAILED backend/tests/invariants/test_w9_cp1_watch_seam.py::test_watch_verdict_severity_grammar
+FAILED backend/tests/invariants/test_w9_cp1_watch_seam.py::test_watch_action_record_v0_shape
+FAILED backend/tests/invariants/test_w9_cp1_watch_seam.py::test_watch_action_class_grammar
+FAILED backend/tests/invariants/test_w9_cp1_watch_seam.py::test_macho_writes_verdict_to_disk
+FAILED backend/tests/invariants/test_w9_cp1_watch_seam.py::test_macho_refuses_overwrite
+FAILED backend/tests/invariants/test_w9_cp1_watch_seam.py::test_mkono_refuses_action_without_verdict
+FAILED backend/tests/invariants/test_w9_cp1_watch_seam.py::test_mkono_writes_action_after_verdict
+FAILED backend/tests/invariants/test_w9_cp1_watch_seam.py::test_mkono_refuses_double_action_on_same_verdict
+FAILED backend/tests/invariants/test_w9_cp1_watch_seam.py::test_action_atomically_carries_attestation_reference
+FAILED backend/tests/invariants/test_w9_cp1_watch_seam.py::test_verdict_body_carries_no_behavioural_profile_internals
+FAILED backend/tests/invariants/test_w9_cp1_watch_seam.py::test_action_body_carries_no_mark_placement_details
+============================== 12 failed in 0.14s ==============================

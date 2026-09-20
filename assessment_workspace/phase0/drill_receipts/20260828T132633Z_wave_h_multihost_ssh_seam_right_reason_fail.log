@@ -1,0 +1,402 @@
+============================= test session starts ==============================
+collecting ... collected 22 items
+
+tests/invariants/test_ssh_seam_multihost_password_auth.py::test_ssh_seam_module_importable PASSED [  4%]
+tests/invariants/test_ssh_seam_multihost_password_auth.py::test_ssh_seam_exports_multihost_symbols FAILED [  9%]
+tests/invariants/test_ssh_seam_multihost_password_auth.py::test_ssh_seam_backward_compat_sshkeymissing_retained PASSED [ 13%]
+tests/invariants/test_ssh_seam_multihost_password_auth.py::test_list_hosts_reads_from_env FAILED [ 18%]
+tests/invariants/test_ssh_seam_multihost_password_auth.py::test_list_hosts_trims_whitespace FAILED [ 22%]
+tests/invariants/test_ssh_seam_multihost_password_auth.py::test_list_hosts_empty_when_env_unset FAILED [ 27%]
+tests/invariants/test_ssh_seam_multihost_password_auth.py::test_get_host_config_valid_slug FAILED [ 31%]
+tests/invariants/test_ssh_seam_multihost_password_auth.py::test_get_host_config_unknown_slug_raises FAILED [ 36%]
+tests/invariants/test_ssh_seam_multihost_password_auth.py::test_hostconfig_repr_never_contains_password FAILED [ 40%]
+tests/invariants/test_ssh_seam_multihost_password_auth.py::test_hostconfig_password_present_flag FAILED [ 45%]
+tests/invariants/test_ssh_seam_multihost_password_auth.py::test_get_host_config_legacy_fallback_akki_vm_ii FAILED [ 50%]
+tests/invariants/test_ssh_seam_multihost_password_auth.py::test_auth_method_precedence[True-True-key] FAILED [ 54%]
+tests/invariants/test_ssh_seam_multihost_password_auth.py::test_auth_method_precedence[True-False-key] FAILED [ 59%]
+tests/invariants/test_ssh_seam_multihost_password_auth.py::test_auth_method_precedence[False-True-password] FAILED [ 63%]
+tests/invariants/test_ssh_seam_multihost_password_auth.py::test_auth_method_precedence[False-False-raise] FAILED [ 68%]
+tests/invariants/test_ssh_seam_multihost_password_auth.py::test_ssh_auth_unconfigured_inherits_from_runtime_error FAILED [ 72%]
+tests/invariants/test_ssh_seam_multihost_password_auth.py::test_execute_remote_command_signature FAILED [ 77%]
+tests/invariants/test_ssh_seam_multihost_password_auth.py::test_remote_exec_result_fields FAILED [ 81%]
+tests/invariants/test_ssh_seam_multihost_password_auth.py::test_execute_lora_train_real_accepts_host_slug_kwarg FAILED [ 86%]
+tests/invariants/test_ssh_seam_multihost_password_auth.py::test_env_report_never_contains_password_values PASSED [ 90%]
+tests/invariants/test_ssh_seam_multihost_password_auth.py::test_env_report_returns_multihost_shape FAILED [ 95%]
+tests/invariants/test_ssh_seam_multihost_password_auth.py::test_execute_lora_train_real_raises_hostnotselected_when_multihost_without_slug FAILED [100%]
+
+=================================== FAILURES ===================================
+___________________ test_ssh_seam_exports_multihost_symbols ____________________
+
+    def test_ssh_seam_exports_multihost_symbols():
+        from services.training_runner import ssh_seam
+        for sym in (
+            "list_hosts",
+            "get_host_config",
+            "connect",
+            "execute_remote_command",
+            "HostConfig",
+            "RemoteExecResult",
+            "SSHAuthUnconfigured",
+            "UnknownHost",
+            "HostNotSelected",
+        ):
+>           assert hasattr(ssh_seam, sym), (
+                f"ssh_seam missing multi-host symbol: {sym!r} "
+                "(BLOCKER 2 (a) authorized 2026-08-28)"
+            )
+E           AssertionError: ssh_seam missing multi-host symbol: 'list_hosts' (BLOCKER 2 (a) authorized 2026-08-28)
+E           assert False
+E            +  where False = hasattr(<module 'services.training_runner.ssh_seam' from '/app/assessment_workspace/repos/Extraction-Akki/backend/services/training_runner/ssh_seam.py'>, 'list_hosts')
+
+tests/invariants/test_ssh_seam_multihost_password_auth.py:50: AssertionError
+________________________ test_list_hosts_reads_from_env ________________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xf9363d768650>
+
+    def test_list_hosts_reads_from_env(monkeypatch):
+        from services.training_runner import ssh_seam
+        monkeypatch.setenv("AKKI_GPU_HOSTS", "akki-vm,akki-vm-ii")
+>       assert ssh_seam.list_hosts() == ["akki-vm", "akki-vm-ii"]
+               ^^^^^^^^^^^^^^^^^^^
+E       AttributeError: module 'services.training_runner.ssh_seam' has no attribute 'list_hosts'
+
+tests/invariants/test_ssh_seam_multihost_password_auth.py:70: AttributeError
+_______________________ test_list_hosts_trims_whitespace _______________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xf9363d581410>
+
+    def test_list_hosts_trims_whitespace(monkeypatch):
+        from services.training_runner import ssh_seam
+        monkeypatch.setenv("AKKI_GPU_HOSTS", "  akki-vm , akki-vm-ii ")
+>       assert ssh_seam.list_hosts() == ["akki-vm", "akki-vm-ii"]
+               ^^^^^^^^^^^^^^^^^^^
+E       AttributeError: module 'services.training_runner.ssh_seam' has no attribute 'list_hosts'
+
+tests/invariants/test_ssh_seam_multihost_password_auth.py:76: AttributeError
+_____________________ test_list_hosts_empty_when_env_unset _____________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xf9363dc89d10>
+
+    def test_list_hosts_empty_when_env_unset(monkeypatch):
+        from services.training_runner import ssh_seam
+        monkeypatch.delenv("AKKI_GPU_HOSTS", raising=False)
+>       assert ssh_seam.list_hosts() == []
+               ^^^^^^^^^^^^^^^^^^^
+E       AttributeError: module 'services.training_runner.ssh_seam' has no attribute 'list_hosts'
+
+tests/invariants/test_ssh_seam_multihost_password_auth.py:82: AttributeError
+_______________________ test_get_host_config_valid_slug ________________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xf9363d47b410>
+
+    def test_get_host_config_valid_slug(monkeypatch):
+        from services.training_runner import ssh_seam
+        monkeypatch.setenv("AKKI_GPU_HOSTS", "akki-vm")
+        monkeypatch.setenv("AKKI_VM_HOST", "1.2.3.4")
+        monkeypatch.setenv("AKKI_VM_PORT", "22")
+        monkeypatch.setenv("AKKI_VM_USERNAME", "ubuntu")
+        monkeypatch.setenv("AKKI_VM_SSH_PASSWORD", "SECRET-VALUE-1234")
+>       cfg = ssh_seam.get_host_config("akki-vm")
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: module 'services.training_runner.ssh_seam' has no attribute 'get_host_config'
+
+tests/invariants/test_ssh_seam_multihost_password_auth.py:97: AttributeError
+___________________ test_get_host_config_unknown_slug_raises ___________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xf9363d48ca50>
+
+    def test_get_host_config_unknown_slug_raises(monkeypatch):
+        from services.training_runner import ssh_seam
+        monkeypatch.setenv("AKKI_GPU_HOSTS", "akki-vm")
+>       with pytest.raises(ssh_seam.UnknownHost):
+                           ^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: module 'services.training_runner.ssh_seam' has no attribute 'UnknownHost'
+
+tests/invariants/test_ssh_seam_multihost_password_auth.py:107: AttributeError
+_________________ test_hostconfig_repr_never_contains_password _________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xf9363d5a92d0>
+
+    def test_hostconfig_repr_never_contains_password(monkeypatch):
+        """HostConfig · __repr__ + __str__ + __dict__ never leak the password value."""
+        from services.training_runner import ssh_seam
+        SECRET = "PWD-DO-NOT-LEAK-abc999"
+        monkeypatch.setenv("AKKI_GPU_HOSTS", "akki-vm-ii")
+        monkeypatch.setenv("AKKI_VM_II_HOST", "1.2.3.4")
+        monkeypatch.setenv("AKKI_VM_II_USERNAME", "ubuntu")
+        monkeypatch.setenv("AKKI_VM_II_SSH_PASSWORD", SECRET)
+>       cfg = ssh_seam.get_host_config("akki-vm-ii")
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: module 'services.training_runner.ssh_seam' has no attribute 'get_host_config'
+
+tests/invariants/test_ssh_seam_multihost_password_auth.py:119: AttributeError
+____________________ test_hostconfig_password_present_flag _____________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xf9363d799e10>
+
+    def test_hostconfig_password_present_flag(monkeypatch):
+        """HostConfig exposes a boolean password_present, never the value."""
+        from services.training_runner import ssh_seam
+        monkeypatch.setenv("AKKI_GPU_HOSTS", "akki-vm")
+        monkeypatch.setenv("AKKI_VM_HOST", "1.2.3.4")
+        monkeypatch.setenv("AKKI_VM_USERNAME", "ubuntu")
+        monkeypatch.setenv("AKKI_VM_SSH_PASSWORD", "S")
+>       cfg = ssh_seam.get_host_config("akki-vm")
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: module 'services.training_runner.ssh_seam' has no attribute 'get_host_config'
+
+tests/invariants/test_ssh_seam_multihost_password_auth.py:134: AttributeError
+_______________ test_get_host_config_legacy_fallback_akki_vm_ii ________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xf9363d47da90>
+
+    def test_get_host_config_legacy_fallback_akki_vm_ii(monkeypatch):
+        """When per-host slug env unset AND legacy AKKI_GPU_* set, akki-vm-ii uses legacy."""
+        from services.training_runner import ssh_seam
+        monkeypatch.setenv("AKKI_GPU_HOSTS", "akki-vm-ii")
+        for k in ("AKKI_VM_II_HOST", "AKKI_VM_II_USERNAME",
+                  "AKKI_VM_II_SSH_PASSWORD", "AKKI_VM_II_PORT",
+                  "AKKI_VM_II_SSH_PRIVATE_KEY_PATH"):
+            monkeypatch.delenv(k, raising=False)
+        monkeypatch.setenv("AKKI_GPU_HOST", "10.0.0.1")
+        monkeypatch.setenv("AKKI_GPU_USERNAME", "legacy-user")
+        monkeypatch.setenv("AKKI_GPU_SSH_PASSWORD", "LEGACY-SECRET")
+        monkeypatch.setenv("AKKI_GPU_PORT", "22")
+>       cfg = ssh_seam.get_host_config("akki-vm-ii")
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: module 'services.training_runner.ssh_seam' has no attribute 'get_host_config'
+
+tests/invariants/test_ssh_seam_multihost_password_auth.py:154: AttributeError
+__________________ test_auth_method_precedence[True-True-key] __________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xf9363d480090>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-19/test_auth_method_precedence_Tr0')
+has_key = True, has_pwd = True, expected = 'key'
+
+    @pytest.mark.parametrize("has_key,has_pwd,expected", [
+        (True, True, "key"),        # key wins
+        (True, False, "key"),       # key only
+        (False, True, "password"),  # BLOCKER-2 (a) authorized path
+        (False, False, "raise"),    # terminal case with dual-option message
+    ])
+    def test_auth_method_precedence(monkeypatch, tmp_path, has_key, has_pwd, expected):
+        from services.training_runner import ssh_seam
+        monkeypatch.setenv("AKKI_GPU_HOSTS", "akki-vm")
+        monkeypatch.setenv("AKKI_VM_HOST", "1.2.3.4")
+        monkeypatch.setenv("AKKI_VM_USERNAME", "ubuntu")
+        if has_key:
+            keyfile = tmp_path / "id_ed25519"
+            keyfile.write_text("dummy-key")
+            monkeypatch.setenv("AKKI_VM_SSH_PRIVATE_KEY_PATH", str(keyfile))
+        else:
+            monkeypatch.delenv("AKKI_VM_SSH_PRIVATE_KEY_PATH", raising=False)
+        if has_pwd:
+            monkeypatch.setenv("AKKI_VM_SSH_PASSWORD", "pass-xyz")
+        else:
+            monkeypatch.delenv("AKKI_VM_SSH_PASSWORD", raising=False)
+    
+>       cfg = ssh_seam.get_host_config("akki-vm")
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: module 'services.training_runner.ssh_seam' has no attribute 'get_host_config'
+
+tests/invariants/test_ssh_seam_multihost_password_auth.py:187: AttributeError
+_________________ test_auth_method_precedence[True-False-key] __________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xf9363d480550>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-19/test_auth_method_precedence_Tr1')
+has_key = True, has_pwd = False, expected = 'key'
+
+    @pytest.mark.parametrize("has_key,has_pwd,expected", [
+        (True, True, "key"),        # key wins
+        (True, False, "key"),       # key only
+        (False, True, "password"),  # BLOCKER-2 (a) authorized path
+        (False, False, "raise"),    # terminal case with dual-option message
+    ])
+    def test_auth_method_precedence(monkeypatch, tmp_path, has_key, has_pwd, expected):
+        from services.training_runner import ssh_seam
+        monkeypatch.setenv("AKKI_GPU_HOSTS", "akki-vm")
+        monkeypatch.setenv("AKKI_VM_HOST", "1.2.3.4")
+        monkeypatch.setenv("AKKI_VM_USERNAME", "ubuntu")
+        if has_key:
+            keyfile = tmp_path / "id_ed25519"
+            keyfile.write_text("dummy-key")
+            monkeypatch.setenv("AKKI_VM_SSH_PRIVATE_KEY_PATH", str(keyfile))
+        else:
+            monkeypatch.delenv("AKKI_VM_SSH_PRIVATE_KEY_PATH", raising=False)
+        if has_pwd:
+            monkeypatch.setenv("AKKI_VM_SSH_PASSWORD", "pass-xyz")
+        else:
+            monkeypatch.delenv("AKKI_VM_SSH_PASSWORD", raising=False)
+    
+>       cfg = ssh_seam.get_host_config("akki-vm")
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: module 'services.training_runner.ssh_seam' has no attribute 'get_host_config'
+
+tests/invariants/test_ssh_seam_multihost_password_auth.py:187: AttributeError
+_______________ test_auth_method_precedence[False-True-password] _______________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xf9363d47ec10>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-19/test_auth_method_precedence_Fa0')
+has_key = False, has_pwd = True, expected = 'password'
+
+    @pytest.mark.parametrize("has_key,has_pwd,expected", [
+        (True, True, "key"),        # key wins
+        (True, False, "key"),       # key only
+        (False, True, "password"),  # BLOCKER-2 (a) authorized path
+        (False, False, "raise"),    # terminal case with dual-option message
+    ])
+    def test_auth_method_precedence(monkeypatch, tmp_path, has_key, has_pwd, expected):
+        from services.training_runner import ssh_seam
+        monkeypatch.setenv("AKKI_GPU_HOSTS", "akki-vm")
+        monkeypatch.setenv("AKKI_VM_HOST", "1.2.3.4")
+        monkeypatch.setenv("AKKI_VM_USERNAME", "ubuntu")
+        if has_key:
+            keyfile = tmp_path / "id_ed25519"
+            keyfile.write_text("dummy-key")
+            monkeypatch.setenv("AKKI_VM_SSH_PRIVATE_KEY_PATH", str(keyfile))
+        else:
+            monkeypatch.delenv("AKKI_VM_SSH_PRIVATE_KEY_PATH", raising=False)
+        if has_pwd:
+            monkeypatch.setenv("AKKI_VM_SSH_PASSWORD", "pass-xyz")
+        else:
+            monkeypatch.delenv("AKKI_VM_SSH_PASSWORD", raising=False)
+    
+>       cfg = ssh_seam.get_host_config("akki-vm")
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: module 'services.training_runner.ssh_seam' has no attribute 'get_host_config'
+
+tests/invariants/test_ssh_seam_multihost_password_auth.py:187: AttributeError
+________________ test_auth_method_precedence[False-False-raise] ________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xf9363d47a750>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-19/test_auth_method_precedence_Fa1')
+has_key = False, has_pwd = False, expected = 'raise'
+
+    @pytest.mark.parametrize("has_key,has_pwd,expected", [
+        (True, True, "key"),        # key wins
+        (True, False, "key"),       # key only
+        (False, True, "password"),  # BLOCKER-2 (a) authorized path
+        (False, False, "raise"),    # terminal case with dual-option message
+    ])
+    def test_auth_method_precedence(monkeypatch, tmp_path, has_key, has_pwd, expected):
+        from services.training_runner import ssh_seam
+        monkeypatch.setenv("AKKI_GPU_HOSTS", "akki-vm")
+        monkeypatch.setenv("AKKI_VM_HOST", "1.2.3.4")
+        monkeypatch.setenv("AKKI_VM_USERNAME", "ubuntu")
+        if has_key:
+            keyfile = tmp_path / "id_ed25519"
+            keyfile.write_text("dummy-key")
+            monkeypatch.setenv("AKKI_VM_SSH_PRIVATE_KEY_PATH", str(keyfile))
+        else:
+            monkeypatch.delenv("AKKI_VM_SSH_PRIVATE_KEY_PATH", raising=False)
+        if has_pwd:
+            monkeypatch.setenv("AKKI_VM_SSH_PASSWORD", "pass-xyz")
+        else:
+            monkeypatch.delenv("AKKI_VM_SSH_PASSWORD", raising=False)
+    
+>       cfg = ssh_seam.get_host_config("akki-vm")
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: module 'services.training_runner.ssh_seam' has no attribute 'get_host_config'
+
+tests/invariants/test_ssh_seam_multihost_password_auth.py:187: AttributeError
+____________ test_ssh_auth_unconfigured_inherits_from_runtime_error ____________
+
+    def test_ssh_auth_unconfigured_inherits_from_runtime_error():
+        """SSHAuthUnconfigured is a RuntimeError so `except RuntimeError:` still works."""
+        from services.training_runner import ssh_seam
+>       assert issubclass(ssh_seam.SSHAuthUnconfigured, RuntimeError)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: module 'services.training_runner.ssh_seam' has no attribute 'SSHAuthUnconfigured'
+
+tests/invariants/test_ssh_seam_multihost_password_auth.py:205: AttributeError
+____________________ test_execute_remote_command_signature _____________________
+
+    def test_execute_remote_command_signature():
+        """Contract: execute_remote_command(host_slug, command, *, purpose, timeout=...) → RemoteExecResult."""
+        from services.training_runner import ssh_seam
+>       sig = inspect.signature(ssh_seam.execute_remote_command)
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: module 'services.training_runner.ssh_seam' has no attribute 'execute_remote_command'
+
+tests/invariants/test_ssh_seam_multihost_password_auth.py:216: AttributeError
+________________________ test_remote_exec_result_fields ________________________
+
+    def test_remote_exec_result_fields():
+        """RemoteExecResult carries: rc, stdout_redacted, stderr_redacted,
+        wallclock_seconds, receipt_id, host_slug, purpose. NEVER a password field.
+        """
+        from services.training_runner import ssh_seam
+        from dataclasses import fields
+>       result_cls = ssh_seam.RemoteExecResult
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: module 'services.training_runner.ssh_seam' has no attribute 'RemoteExecResult'
+
+tests/invariants/test_ssh_seam_multihost_password_auth.py:233: AttributeError
+_____________ test_execute_lora_train_real_accepts_host_slug_kwarg _____________
+
+    def test_execute_lora_train_real_accepts_host_slug_kwarg():
+        """New kwarg host_slug — routes the training run to a named host in inventory."""
+        from services.training_runner import ssh_seam
+        sig = inspect.signature(ssh_seam.execute_lora_train_real)
+>       assert "host_slug" in sig.parameters, (
+            "execute_lora_train_real must accept host_slug kwarg per multi-host directive 4"
+        )
+E       AssertionError: execute_lora_train_real must accept host_slug kwarg per multi-host directive 4
+E       assert 'host_slug' in mappingproxy(OrderedDict([('recipe_version', <Parameter "recipe_version: 'str'">), ('base_model_id', <Parameter "base_model_id: 'str'">), ('material_admit_ref', <Parameter "material_admit_ref: 'str'">)]))
+E        +  where mappingproxy(OrderedDict([('recipe_version', <Parameter "recipe_version: 'str'">), ('base_model_id', <Parameter "base_model_id: 'str'">), ('material_admit_ref', <Parameter "material_admit_ref: 'str'">)])) = <Signature (recipe_version: 'str', base_model_id: 'str', material_admit_ref: 'str') -> 'SeamResult'>.parameters
+
+tests/invariants/test_ssh_seam_multihost_password_auth.py:254: AssertionError
+___________________ test_env_report_returns_multihost_shape ____________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xf9363d474d10>
+
+    def test_env_report_returns_multihost_shape(monkeypatch):
+        """env_report exposes per-host state, not just single-host legacy fields."""
+        from services.training_runner import ssh_seam
+        monkeypatch.setenv("AKKI_GPU_HOSTS", "akki-vm,akki-vm-ii")
+        monkeypatch.setenv("AKKI_VM_HOST", "1.2.3.4")
+        monkeypatch.setenv("AKKI_VM_SSH_PASSWORD", "s1")
+        monkeypatch.setenv("AKKI_VM_II_HOST", "1.2.3.5")
+        monkeypatch.setenv("AKKI_VM_II_SSH_PASSWORD", "s2")
+        report = ssh_seam.env_report()
+        assert isinstance(report, dict)
+>       assert "hosts" in report, "env_report must include 'hosts' key with per-host state"
+E       AssertionError: env_report must include 'hosts' key with per-host state
+E       assert 'hosts' in {'AKKI_GPU_HOST_set': 'no', 'AKKI_GPU_SSH_PRIVATE_KEY_PATH_set': 'no', 'GPU_CONNECT_MODE': 'mock'}
+
+tests/invariants/test_ssh_seam_multihost_password_auth.py:293: AssertionError
+_ test_execute_lora_train_real_raises_hostnotselected_when_multihost_without_slug _
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xf9363d48f210>
+
+    def test_execute_lora_train_real_raises_hostnotselected_when_multihost_without_slug(monkeypatch):
+        """With >1 hosts in inventory AND no host_slug kwarg, execute_lora_train_real
+        must raise HostNotSelected (never guess which host to run on)."""
+        from services.training_runner import ssh_seam
+        monkeypatch.setenv("AKKI_GPU_HOSTS", "akki-vm,akki-vm-ii")
+>       with pytest.raises(ssh_seam.HostNotSelected):
+                           ^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: module 'services.training_runner.ssh_seam' has no attribute 'HostNotSelected'
+
+tests/invariants/test_ssh_seam_multihost_password_auth.py:318: AttributeError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_ssh_seam_multihost_password_auth.py::test_ssh_seam_exports_multihost_symbols
+FAILED tests/invariants/test_ssh_seam_multihost_password_auth.py::test_list_hosts_reads_from_env
+FAILED tests/invariants/test_ssh_seam_multihost_password_auth.py::test_list_hosts_trims_whitespace
+FAILED tests/invariants/test_ssh_seam_multihost_password_auth.py::test_list_hosts_empty_when_env_unset
+FAILED tests/invariants/test_ssh_seam_multihost_password_auth.py::test_get_host_config_valid_slug
+FAILED tests/invariants/test_ssh_seam_multihost_password_auth.py::test_get_host_config_unknown_slug_raises
+FAILED tests/invariants/test_ssh_seam_multihost_password_auth.py::test_hostconfig_repr_never_contains_password
+FAILED tests/invariants/test_ssh_seam_multihost_password_auth.py::test_hostconfig_password_present_flag
+FAILED tests/invariants/test_ssh_seam_multihost_password_auth.py::test_get_host_config_legacy_fallback_akki_vm_ii
+FAILED tests/invariants/test_ssh_seam_multihost_password_auth.py::test_auth_method_precedence[True-True-key]
+FAILED tests/invariants/test_ssh_seam_multihost_password_auth.py::test_auth_method_precedence[True-False-key]
+FAILED tests/invariants/test_ssh_seam_multihost_password_auth.py::test_auth_method_precedence[False-True-password]
+FAILED tests/invariants/test_ssh_seam_multihost_password_auth.py::test_auth_method_precedence[False-False-raise]
+FAILED tests/invariants/test_ssh_seam_multihost_password_auth.py::test_ssh_auth_unconfigured_inherits_from_runtime_error
+FAILED tests/invariants/test_ssh_seam_multihost_password_auth.py::test_execute_remote_command_signature
+FAILED tests/invariants/test_ssh_seam_multihost_password_auth.py::test_remote_exec_result_fields
+FAILED tests/invariants/test_ssh_seam_multihost_password_auth.py::test_execute_lora_train_real_accepts_host_slug_kwarg
+FAILED tests/invariants/test_ssh_seam_multihost_password_auth.py::test_env_report_returns_multihost_shape
+FAILED tests/invariants/test_ssh_seam_multihost_password_auth.py::test_execute_lora_train_real_raises_hostnotselected_when_multihost_without_slug
+========================= 19 failed, 3 passed in 0.77s =========================

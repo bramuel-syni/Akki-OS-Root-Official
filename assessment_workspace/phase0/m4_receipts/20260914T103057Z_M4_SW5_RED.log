@@ -1,0 +1,14 @@
+        )
+E       ModuleNotFoundError: No module named 'services.journey_assistant.handoff_contract'
+
+tests/invariants/test_wm4_sw5_handoff_contract.py:149: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wm4_sw5_handoff_contract.py::test_sw5_module_fabric
+FAILED tests/invariants/test_wm4_sw5_handoff_contract.py::test_sw5_promise_32_verbatim_pinned
+FAILED tests/invariants/test_wm4_sw5_handoff_contract.py::test_sw5_doc0_br6_1_status_verbatim_pinned
+FAILED tests/invariants/test_wm4_sw5_handoff_contract.py::test_sw5_handoff_kind_enum_covers_four_crossings
+FAILED tests/invariants/test_wm4_sw5_handoff_contract.py::test_sw5_register_handoff_appends_to_ledger
+FAILED tests/invariants/test_wm4_sw5_handoff_contract.py::test_sw5_register_handoff_refuses_missing_rights_basis
+FAILED tests/invariants/test_wm4_sw5_handoff_contract.py::test_sw5_generalised_across_crossings
+FAILED tests/invariants/test_wm4_sw5_handoff_contract.py::test_sw5_handoff_contract_frozen
+8 failed in 0.66s

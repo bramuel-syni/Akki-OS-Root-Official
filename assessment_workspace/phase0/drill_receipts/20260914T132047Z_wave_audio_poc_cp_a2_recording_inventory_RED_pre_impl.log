@@ -1,0 +1,166 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.4.2, pluggy-1.6.0 -- /root/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: xdist-3.8.0, asyncio-1.4.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collecting ... collected 13 items
+
+tests/invariants/test_wave_audio_poc_cp_a2_recording_inventory.py::test_cp_a2_recording_inventory_module_fabric FAILED [  7%]
+tests/invariants/test_wave_audio_poc_cp_a2_recording_inventory.py::test_cp_a2_recording_entry_frozen_dataclass_shape FAILED [ 15%]
+tests/invariants/test_wave_audio_poc_cp_a2_recording_inventory.py::test_cp_a2_recording_key_frozen_and_hashable FAILED [ 23%]
+tests/invariants/test_wave_audio_poc_cp_a2_recording_inventory.py::test_cp_a2_extract_canonical_key_from_valid_offairrecs_path FAILED [ 30%]
+tests/invariants/test_wave_audio_poc_cp_a2_recording_inventory.py::test_cp_a2_extract_canonical_key_refuses_non_offairrecs_path FAILED [ 38%]
+tests/invariants/test_wave_audio_poc_cp_a2_recording_inventory.py::test_cp_a2_parse_smbclient_ls_line_valid FAILED [ 46%]
+tests/invariants/test_wave_audio_poc_cp_a2_recording_inventory.py::test_cp_a2_parse_smbclient_ls_line_malformed_returns_none FAILED [ 53%]
+tests/invariants/test_wave_audio_poc_cp_a2_recording_inventory.py::test_cp_a2_canonicalize_inventory_deterministic_ordering FAILED [ 61%]
+tests/invariants/test_wave_audio_poc_cp_a2_recording_inventory.py::test_cp_a2_canonicalize_inventory_byte_identical_on_identical_input FAILED [ 69%]
+tests/invariants/test_wave_audio_poc_cp_a2_recording_inventory.py::test_cp_a2_canonicalize_inventory_deduplicates_on_canonical_key FAILED [ 76%]
+tests/invariants/test_wave_audio_poc_cp_a2_recording_inventory.py::test_cp_a2_canonicalize_inventory_skips_invalid_paths FAILED [ 84%]
+tests/invariants/test_wave_audio_poc_cp_a2_recording_inventory.py::test_cp_a2_inventory_snapshot_sha256_deterministic FAILED [ 92%]
+tests/invariants/test_wave_audio_poc_cp_a2_recording_inventory.py::test_cp_a2_inventory_snapshot_sha256_changes_on_content_change FAILED [100%]
+
+=================================== FAILURES ===================================
+_________________ test_cp_a2_recording_inventory_module_fabric _________________
+
+    def test_cp_a2_recording_inventory_module_fabric():
+>       m = importlib.import_module("services.audio_poc.recording_inventory")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_wave_audio_poc_cp_a2_recording_inventory.py:26: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'services.audio_poc.recording_inventory'
+import_ = <function _gcd_import at 0xf81714b4bd80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'services.audio_poc.recording_inventory'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+______________ test_cp_a2_recording_entry_frozen_dataclass_shape _______________
+
+    def test_cp_a2_recording_entry_frozen_dataclass_shape():
+>       from services.audio_poc.recording_inventory import RecordingEntry
+E       ModuleNotFoundError: No module named 'services.audio_poc.recording_inventory'
+
+tests/invariants/test_wave_audio_poc_cp_a2_recording_inventory.py:42: ModuleNotFoundError
+_________________ test_cp_a2_recording_key_frozen_and_hashable _________________
+
+    def test_cp_a2_recording_key_frozen_and_hashable():
+>       from services.audio_poc.recording_inventory import RecordingKey
+E       ModuleNotFoundError: No module named 'services.audio_poc.recording_inventory'
+
+tests/invariants/test_wave_audio_poc_cp_a2_recording_inventory.py:68: ModuleNotFoundError
+_________ test_cp_a2_extract_canonical_key_from_valid_offairrecs_path __________
+
+    def test_cp_a2_extract_canonical_key_from_valid_offairrecs_path():
+>       from services.audio_poc.recording_inventory import (
+            extract_canonical_key,
+            RecordingKey,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_poc.recording_inventory'
+
+tests/invariants/test_wave_audio_poc_cp_a2_recording_inventory.py:87: ModuleNotFoundError
+_________ test_cp_a2_extract_canonical_key_refuses_non_offairrecs_path _________
+
+    def test_cp_a2_extract_canonical_key_refuses_non_offairrecs_path():
+>       from services.audio_poc.recording_inventory import (
+            extract_canonical_key,
+            RecordingKeyInvalid,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_poc.recording_inventory'
+
+tests/invariants/test_wave_audio_poc_cp_a2_recording_inventory.py:102: ModuleNotFoundError
+___________________ test_cp_a2_parse_smbclient_ls_line_valid ___________________
+
+    def test_cp_a2_parse_smbclient_ls_line_valid():
+>       from services.audio_poc.recording_inventory import parse_smbclient_ls_line
+E       ModuleNotFoundError: No module named 'services.audio_poc.recording_inventory'
+
+tests/invariants/test_wave_audio_poc_cp_a2_recording_inventory.py:121: ModuleNotFoundError
+__________ test_cp_a2_parse_smbclient_ls_line_malformed_returns_none ___________
+
+    def test_cp_a2_parse_smbclient_ls_line_malformed_returns_none():
+>       from services.audio_poc.recording_inventory import parse_smbclient_ls_line
+E       ModuleNotFoundError: No module named 'services.audio_poc.recording_inventory'
+
+tests/invariants/test_wave_audio_poc_cp_a2_recording_inventory.py:137: ModuleNotFoundError
+___________ test_cp_a2_canonicalize_inventory_deterministic_ordering ___________
+
+    def test_cp_a2_canonicalize_inventory_deterministic_ordering():
+>       from services.audio_poc.recording_inventory import (
+            canonicalize_inventory,
+            RecordingEntry,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_poc.recording_inventory'
+
+tests/invariants/test_wave_audio_poc_cp_a2_recording_inventory.py:155: ModuleNotFoundError
+_____ test_cp_a2_canonicalize_inventory_byte_identical_on_identical_input ______
+
+    def test_cp_a2_canonicalize_inventory_byte_identical_on_identical_input():
+>       from services.audio_poc.recording_inventory import canonicalize_inventory
+E       ModuleNotFoundError: No module named 'services.audio_poc.recording_inventory'
+
+tests/invariants/test_wave_audio_poc_cp_a2_recording_inventory.py:176: ModuleNotFoundError
+_______ test_cp_a2_canonicalize_inventory_deduplicates_on_canonical_key ________
+
+    def test_cp_a2_canonicalize_inventory_deduplicates_on_canonical_key():
+        """Same canonical key twice → single entry (first-occurrence wins on ties)."""
+>       from services.audio_poc.recording_inventory import canonicalize_inventory
+E       ModuleNotFoundError: No module named 'services.audio_poc.recording_inventory'
+
+tests/invariants/test_wave_audio_poc_cp_a2_recording_inventory.py:185: ModuleNotFoundError
+____________ test_cp_a2_canonicalize_inventory_skips_invalid_paths _____________
+
+    def test_cp_a2_canonicalize_inventory_skips_invalid_paths():
+        """Paths that fail `extract_canonical_key` are silently skipped, not raised."""
+>       from services.audio_poc.recording_inventory import canonicalize_inventory
+E       ModuleNotFoundError: No module named 'services.audio_poc.recording_inventory'
+
+tests/invariants/test_wave_audio_poc_cp_a2_recording_inventory.py:199: ModuleNotFoundError
+______________ test_cp_a2_inventory_snapshot_sha256_deterministic ______________
+
+    def test_cp_a2_inventory_snapshot_sha256_deterministic():
+>       from services.audio_poc.recording_inventory import (
+            canonicalize_inventory,
+            inventory_snapshot_sha256,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_poc.recording_inventory'
+
+tests/invariants/test_wave_audio_poc_cp_a2_recording_inventory.py:212: ModuleNotFoundError
+________ test_cp_a2_inventory_snapshot_sha256_changes_on_content_change ________
+
+    def test_cp_a2_inventory_snapshot_sha256_changes_on_content_change():
+>       from services.audio_poc.recording_inventory import (
+            canonicalize_inventory,
+            inventory_snapshot_sha256,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_poc.recording_inventory'
+
+tests/invariants/test_wave_audio_poc_cp_a2_recording_inventory.py:231: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wave_audio_poc_cp_a2_recording_inventory.py::test_cp_a2_recording_inventory_module_fabric
+FAILED tests/invariants/test_wave_audio_poc_cp_a2_recording_inventory.py::test_cp_a2_recording_entry_frozen_dataclass_shape
+FAILED tests/invariants/test_wave_audio_poc_cp_a2_recording_inventory.py::test_cp_a2_recording_key_frozen_and_hashable
+FAILED tests/invariants/test_wave_audio_poc_cp_a2_recording_inventory.py::test_cp_a2_extract_canonical_key_from_valid_offairrecs_path
+FAILED tests/invariants/test_wave_audio_poc_cp_a2_recording_inventory.py::test_cp_a2_extract_canonical_key_refuses_non_offairrecs_path
+FAILED tests/invariants/test_wave_audio_poc_cp_a2_recording_inventory.py::test_cp_a2_parse_smbclient_ls_line_valid
+FAILED tests/invariants/test_wave_audio_poc_cp_a2_recording_inventory.py::test_cp_a2_parse_smbclient_ls_line_malformed_returns_none
+FAILED tests/invariants/test_wave_audio_poc_cp_a2_recording_inventory.py::test_cp_a2_canonicalize_inventory_deterministic_ordering
+FAILED tests/invariants/test_wave_audio_poc_cp_a2_recording_inventory.py::test_cp_a2_canonicalize_inventory_byte_identical_on_identical_input
+FAILED tests/invariants/test_wave_audio_poc_cp_a2_recording_inventory.py::test_cp_a2_canonicalize_inventory_deduplicates_on_canonical_key
+FAILED tests/invariants/test_wave_audio_poc_cp_a2_recording_inventory.py::test_cp_a2_canonicalize_inventory_skips_invalid_paths
+FAILED tests/invariants/test_wave_audio_poc_cp_a2_recording_inventory.py::test_cp_a2_inventory_snapshot_sha256_deterministic
+FAILED tests/invariants/test_wave_audio_poc_cp_a2_recording_inventory.py::test_cp_a2_inventory_snapshot_sha256_changes_on_content_change
+============================== 13 failed in 0.71s ==============================

@@ -1,0 +1,37 @@
+# RED DRILL · W-RELEASE-GATE-PILOT-LIFT · CP-RG3 · pre-impl
+# TranscriptArtefact extension: TOKENIZED verdict + DERIVATIVE_ONLY basis + closed-set refusal
+# Expected RED class: AttributeError on TRANSCRIPT_NAMED_PERSONS_VERDICTS_ACCEPTABLE + TranscriptVerdictUnknown (new symbols not yet added to services/audio_poc/release_gate.py)
+# Ratchet floor at capture: 4038 · CD/Visitors probe #4 at 08:59:13Z: BOTH FAIL
+
+FFF.FF                                                                   [100%]
+=================================== FAILURES ===================================
+__________________ test_cp_rg3_acceptable_value_sets_exported __________________
+tests/invariants/test_wrg_cp_rg3_transcript_artefact_tokenized_derivative_only.py:39: in test_cp_rg3_acceptable_value_sets_exported
+    assert hasattr(m, "TRANSCRIPT_NAMED_PERSONS_VERDICTS_ACCEPTABLE")
+E   AssertionError: assert False
+E    +  where False = hasattr(<module 'services.audio_poc.release_gate' from '/app/assessment_workspace/repos/Extraction-Akki/backend/services/audio_poc/release_gate.py'>, 'TRANSCRIPT_NAMED_PERSONS_VERDICTS_ACCEPTABLE')
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+______________ test_cp_rg3_named_persons_verdict_admits_tokenized ______________
+tests/invariants/test_wrg_cp_rg3_transcript_artefact_tokenized_derivative_only.py:53: in test_cp_rg3_named_persons_verdict_admits_tokenized
+    from services.audio_poc.release_gate import (
+E   ImportError: cannot import name 'TRANSCRIPT_NAMED_PERSONS_VERDICTS_ACCEPTABLE' from 'services.audio_poc.release_gate' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/audio_poc/release_gate.py)
+_______ test_cp_rg3_transfer_basis_admits_derivative_only_via_pull_seam ________
+tests/invariants/test_wrg_cp_rg3_transcript_artefact_tokenized_derivative_only.py:67: in test_cp_rg3_transfer_basis_admits_derivative_only_via_pull_seam
+    from services.audio_poc.release_gate import (
+E   ImportError: cannot import name 'TRANSCRIPT_TRANSFER_BASIS_ACCEPTABLE' from 'services.audio_poc.release_gate' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/audio_poc/release_gate.py)
+___________ test_cp_rg3_admit_refuses_unknown_named_persons_verdict ____________
+tests/invariants/test_wrg_cp_rg3_transcript_artefact_tokenized_derivative_only.py:112: in test_cp_rg3_admit_refuses_unknown_named_persons_verdict
+    from services.audio_poc.release_gate import (
+E   ImportError: cannot import name 'TranscriptVerdictUnknown' from 'services.audio_poc.release_gate' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/audio_poc/release_gate.py)
+_______________ test_cp_rg3_admit_refuses_unknown_transfer_basis _______________
+tests/invariants/test_wrg_cp_rg3_transcript_artefact_tokenized_derivative_only.py:138: in test_cp_rg3_admit_refuses_unknown_transfer_basis
+    from services.audio_poc.release_gate import (
+E   ImportError: cannot import name 'TranscriptVerdictUnknown' from 'services.audio_poc.release_gate' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/audio_poc/release_gate.py)
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wrg_cp_rg3_transcript_artefact_tokenized_derivative_only.py::test_cp_rg3_acceptable_value_sets_exported
+FAILED tests/invariants/test_wrg_cp_rg3_transcript_artefact_tokenized_derivative_only.py::test_cp_rg3_named_persons_verdict_admits_tokenized
+FAILED tests/invariants/test_wrg_cp_rg3_transcript_artefact_tokenized_derivative_only.py::test_cp_rg3_transfer_basis_admits_derivative_only_via_pull_seam
+FAILED tests/invariants/test_wrg_cp_rg3_transcript_artefact_tokenized_derivative_only.py::test_cp_rg3_admit_refuses_unknown_named_persons_verdict
+FAILED tests/invariants/test_wrg_cp_rg3_transcript_artefact_tokenized_derivative_only.py::test_cp_rg3_admit_refuses_unknown_transfer_basis
+5 failed, 1 passed in 0.64s

@@ -1,0 +1,147 @@
+✔ App.js does NOT declare the retired /register/connect/gpu route (1.535764ms)
+✔ frontend has NO token-gate importable code path (2.082421ms)
+✔ no OWNER-ACCESS sign-in card and no owner_token localStorage (2.301304ms)
+✔ GET /register/connect/gpu -> 404 (34.589194ms)
+✔ GET / serves SPA shell (allowed IP) (7.614945ms)
+✔ root '/' route renders Registry (0.407197ms)
+✔ AdminSurface retired (no admin-pill or tile-connect testids anywhere) (1.453365ms)
+✔ Registry.jsx three tabs + '+ Connect' + role-switcher testids present (0.286442ms)
+✔ no fabricated Acme demo numbers anywhere (2.07493ms)
+✔ Registry carries at least one honest-empty-state sentence (0.328133ms)
+✖ ConnectWizard.jsx is a SINGLE paste-and-connect panel (no step navigation) (0.71327ms)
+✖ Type chips (auto-detect default) sit on the same paste panel (0.296152ms)
+✖ Confirmation view masks the password with a redaction sentinel (0.32909ms)
+✖ Unparseable paste triggers ask-again grammar naming missing fields (0.320232ms)
+✖ Manual fallback fields sit inline on the same panel (not a separate step) (0.232752ms)
+✖ Provisioning card sits behind ONE aside link (not a step) (0.216975ms)
+✔ Post-submit compute path renders the handshake walk stages (result view only) (0.37406ms)
+✔ Non-compute submission records honest intent via /api/connect/intent (0.214601ms)
+✔ Frontend never sends the paste to any LLM/answering-side/openai endpoint (1.765069ms)
+✔ parse-paste endpoint live: returns password_captured signal and NO password in body (10.766209ms)
+✔ parse-paste endpoint refuses empty paste with 400 (2.999916ms)
+✔ estate-facts endpoint live and returns provisioning-card payload (122.493922ms)
+✔ intent endpoint records non-compute kinds and refuses compute (7.32794ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 17
+ℹ fail 6
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 285.180322
+
+✖ failing tests:
+
+test at pod_shell/frontend/__tests__/rehome.test.js:114:1
+✖ ConnectWizard.jsx is a SINGLE paste-and-connect panel (no step navigation) (0.71327ms)
+  AssertionError [ERR_ASSERTION]: single-panel missing testid connect-panel
+      at TestContext.<anonymous> (/app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/__tests__/rehome.test.js:117:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at pod_shell/frontend/__tests__/rehome.test.js:131:1
+✖ Type chips (auto-detect default) sit on the same paste panel (0.296152ms)
+  AssertionError [ERR_ASSERTION]: chip testid chip-auto-detect missing
+      at TestContext.<anonymous> (/app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/__tests__/rehome.test.js:135:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at pod_shell/frontend/__tests__/rehome.test.js:142:1
+✖ Confirmation view masks the password with a redaction sentinel (0.32909ms)
+  AssertionError [ERR_ASSERTION]: confirmation must render '•••• captured' (never plaintext post-paste)
+      at TestContext.<anonymous> (/app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/__tests__/rehome.test.js:144:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at pod_shell/frontend/__tests__/rehome.test.js:150:1
+✖ Unparseable paste triggers ask-again grammar naming missing fields (0.320232ms)
+  AssertionError [ERR_ASSERTION]: wizard must call /api/connect/parse-paste for deterministic parse
+      at TestContext.<anonymous> (/app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/__tests__/rehome.test.js:154:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at pod_shell/frontend/__tests__/rehome.test.js:160:1
+✖ Manual fallback fields sit inline on the same panel (not a separate step) (0.232752ms)
+  AssertionError [ERR_ASSERTION]: manual fallback testid manual-field-host_name missing
+      at TestContext.<anonymous> (/app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/__tests__/rehome.test.js:164:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at pod_shell/frontend/__tests__/rehome.test.js:168:1
+✖ Provisioning card sits behind ONE aside link (not a step) (0.216975ms)
+  AssertionError [ERR_ASSERTION]: expanding-aside toggle missing (`provisioning-card-toggle`)
+      at TestContext.<anonymous> (/app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/__tests__/rehome.test.js:170:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

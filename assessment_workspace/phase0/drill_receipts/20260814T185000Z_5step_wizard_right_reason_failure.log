@@ -1,0 +1,38 @@
+=== 5-STEP WIZARD + PROVISIONING CARD + NON-COMPUTE INTENT - RIGHT-REASON RECEIPT ===
+Timestamp (UTC): 2026-08-14T18:50:00Z
+Commit boundary: before wizard rebuild lands
+Test file: pod_shell/frontend/__tests__/rehome.test.js (21 assertions)
+Backend tests file: backend/tests/invariants/test_estate_keys_and_connect_estate.py (12 assertions, ALREADY GREEN)
+
+FRONTEND FAILING (6, right-reason):
+  1. ConnectWizard.jsx exists and declares all five step data-testids
+     - reason: current wizard has only 4 state values (what/compute-form/attempting/after-state)
+  2. Step 2 (How) carries per-type 'how' branches (SSH / private-link / on-premise / batch)
+     - reason: current wizard has no per-type How step
+  3. Compute path Step 2 renders the provisioning card
+     - reason: no provisioning card in current wizard; endpoint just came online this cycle
+  4. Step 4 (Name) carries a name input testid + 'nothing connects unnamed' grammar
+     - reason: current wizard has no Step 4 name-in-the-estate's-words affordance
+  5. Compute Step 5 Attempt renders handshake walk stages
+     - reason: current attempt state renders after-state only; no handshake walk
+  6. Non-compute Step 5 records intent honestly with 'Recorded - goes live with its wave' copy
+     - reason: current wizard errors on non-compute chips ("The X path is not yet wired")
+
+FRONTEND PASSING (15, already-invariant):
+  App.js does NOT declare retired route
+  no token-gate importable code
+  no OWNER-ACCESS card / owner_token localStorage
+  GET /register/connect/gpu HTTP 404
+  GET / serves SPA shell
+  root '/' renders Registry
+  AdminSurface retired
+  Registry three tabs + '+ Connect' + role-switcher
+  no fabricated Acme demo numbers
+  Registry honest-empty-state sentence
+  Step 1 (What) chips + free-text + Send + Close
+  Free-text routing acknowledges unreadable answers
+  Step 3 (Credentials) 7 GPU fields + masked password (matches current wizard)
+  estate-facts endpoint live and returns provisioning-card payload (backend already green)
+  intent endpoint records non-compute kinds and refuses compute (backend already green)
+
+Discipline: implementation MUST NOT land before this receipt is banked.

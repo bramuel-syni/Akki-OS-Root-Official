@@ -1,0 +1,57 @@
+# ═══════════════════════════════════════════════════════════════════════
+# RED DRILL RECEIPT · W-RELEASE-GATE-PILOT-LIFT · CP-RG-HYGIENE-01 · pre-impl
+# ═══════════════════════════════════════════════════════════════════════
+# Purpose: pulled-forward-from-M8 custody-cat guard per owner course-correction
+#          2026-09-15T~08:37Z clause 3. Mirrors HF-token guard pattern.
+#          Prevents SEC-2026-09-14-01/02/03/04 + SEC-2026-09-15-06/07 recurrence.
+# Expected RED class: ModuleNotFoundError on services.secret_hygiene.custody_file
+# Ratchet floor at capture: 4032 (post-CP-RG2 seal)
+# CD/Visitors probe #3 at 08:51:52Z: BOTH STILL FAIL (errno 110)
+# ═══════════════════════════════════════════════════════════════════════
+
+FFFFFF                                                                   [100%]
+=================================== FAILURES ===================================
+_____________________ test_cp_rg_hygiene_01_module_fabric ______________________
+tests/invariants/test_wrg_cp_rg_hygiene_01_custody_cat_guard.py:58: in test_cp_rg_hygiene_01_module_fabric
+    m = importlib.import_module("services.secret_hygiene.custody_file")
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1140: in _find_and_load_unlocked
+    ???
+E   ModuleNotFoundError: No module named 'services.secret_hygiene.custody_file'
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+_____________ test_cp_rg_hygiene_01_raises_on_cat_of_custody_file ______________
+tests/invariants/test_wrg_cp_rg_hygiene_01_custody_cat_guard.py:72: in test_cp_rg_hygiene_01_raises_on_cat_of_custody_file
+    from services.secret_hygiene.custody_file import (
+E   ModuleNotFoundError: No module named 'services.secret_hygiene.custody_file'
+___________ test_cp_rg_hygiene_01_raises_on_every_leak_command_class ___________
+tests/invariants/test_wrg_cp_rg_hygiene_01_custody_cat_guard.py:92: in test_cp_rg_hygiene_01_raises_on_every_leak_command_class
+    from services.secret_hygiene.custody_file import (
+E   ModuleNotFoundError: No module named 'services.secret_hygiene.custody_file'
+____________ test_cp_rg_hygiene_01_does_not_raise_on_safe_patterns _____________
+tests/invariants/test_wrg_cp_rg_hygiene_01_custody_cat_guard.py:122: in test_cp_rg_hygiene_01_does_not_raise_on_safe_patterns
+    from services.secret_hygiene.custody_file import assert_no_transcript_cat_on_custody
+E   ModuleNotFoundError: No module named 'services.secret_hygiene.custody_file'
+______ test_cp_rg_hygiene_01_detects_pattern_inside_larger_command_string ______
+tests/invariants/test_wrg_cp_rg_hygiene_01_custody_cat_guard.py:153: in test_cp_rg_hygiene_01_detects_pattern_inside_larger_command_string
+    from services.secret_hygiene.custody_file import (
+E   ModuleNotFoundError: No module named 'services.secret_hygiene.custody_file'
+_____ test_cp_rg_hygiene_01_exception_message_never_contains_file_contents _____
+tests/invariants/test_wrg_cp_rg_hygiene_01_custody_cat_guard.py:176: in test_cp_rg_hygiene_01_exception_message_never_contains_file_contents
+    from services.secret_hygiene.custody_file import (
+E   ModuleNotFoundError: No module named 'services.secret_hygiene.custody_file'
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wrg_cp_rg_hygiene_01_custody_cat_guard.py::test_cp_rg_hygiene_01_module_fabric
+FAILED tests/invariants/test_wrg_cp_rg_hygiene_01_custody_cat_guard.py::test_cp_rg_hygiene_01_raises_on_cat_of_custody_file
+FAILED tests/invariants/test_wrg_cp_rg_hygiene_01_custody_cat_guard.py::test_cp_rg_hygiene_01_raises_on_every_leak_command_class
+FAILED tests/invariants/test_wrg_cp_rg_hygiene_01_custody_cat_guard.py::test_cp_rg_hygiene_01_does_not_raise_on_safe_patterns
+FAILED tests/invariants/test_wrg_cp_rg_hygiene_01_custody_cat_guard.py::test_cp_rg_hygiene_01_detects_pattern_inside_larger_command_string
+FAILED tests/invariants/test_wrg_cp_rg_hygiene_01_custody_cat_guard.py::test_cp_rg_hygiene_01_exception_message_never_contains_file_contents
+6 failed in 0.64s

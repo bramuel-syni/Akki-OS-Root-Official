@@ -1,0 +1,24 @@
+/root/.venv/lib/python3.11/site-packages/pytest_asyncio/plugin.py:208: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.3.3, pluggy-1.6.0 -- /root/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: xdist-3.8.0, anyio-4.14.2, asyncio-0.24.0
+asyncio: mode=Mode.AUTO, default_loop_scope=None
+collecting ... collected 9 items
+
+backend/tests/invariants/test_w8_cp1_pod_shell_boot_and_mount.py::test_every_spine_router_is_imported_in_pod_shell PASSED [ 11%]
+backend/tests/invariants/test_w8_cp1_pod_shell_boot_and_mount.py::test_every_spine_router_is_include_router_in_pod_shell PASSED [ 22%]
+backend/tests/invariants/test_w8_cp1_pod_shell_boot_and_mount.py::test_pod_shell_boots_and_returns_403_on_root PASSED [ 33%]
+backend/tests/invariants/test_w8_cp5_trace_surface.py::test_load_timeline_merges_across_producers PASSED [ 44%]
+backend/tests/invariants/test_w8_cp5_trace_surface.py::test_timeline_is_chronologically_ordered PASSED [ 55%]
+backend/tests/invariants/test_w8_cp5_trace_surface.py::test_timeline_since_filter_applied PASSED [ 66%]
+backend/tests/invariants/test_w8_cp5_trace_surface.py::test_timeline_kind_filter_applied PASSED [ 77%]
+backend/tests/invariants/test_w8_cp5_trace_surface.py::test_timeline_entry_references_source_path PASSED [ 88%]
+backend/tests/invariants/test_w8_cp5_trace_surface.py::test_timeline_handles_missing_producers_honestly PASSED [100%]
+
+============================== 9 passed in 1.45s ===============================

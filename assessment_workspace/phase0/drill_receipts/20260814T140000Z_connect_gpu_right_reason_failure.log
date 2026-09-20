@@ -1,0 +1,75 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.15, pytest-9.1.1, pluggy-1.6.0 -- /root/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: anyio-4.14.2, xdist-3.8.0, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 17 items
+
+backend/tests/invariants/test_connect_gpu_pipeline.py::test_connect_gpu_service_exports_submit_and_stage_names FAILED [  5%]
+backend/tests/invariants/test_connect_gpu_pipeline.py::test_connect_gpu_router_registered_under_api_prefix FAILED [ 11%]
+backend/tests/invariants/test_connect_gpu_pipeline.py::test_submit_requires_all_four_mandatory_fields FAILED [ 17%]
+backend/tests/invariants/test_connect_gpu_pipeline.py::test_submit_accepts_only_the_defined_field_set FAILED [ 23%]
+backend/tests/invariants/test_connect_gpu_pipeline.py::test_submit_ledger_row_omits_password FAILED [ 29%]
+backend/tests/invariants/test_connect_gpu_pipeline.py::test_submit_commissioning_record_omits_password FAILED [ 35%]
+backend/tests/invariants/test_connect_gpu_pipeline.py::test_submit_pins_update_carries_only_non_secret_outputs FAILED [ 41%]
+backend/tests/invariants/test_connect_gpu_pipeline.py::test_submit_returns_no_password_in_response FAILED [ 47%]
+backend/tests/invariants/test_connect_gpu_pipeline.py::test_four_questions_topline_present_on_after_state_green FAILED [ 52%]
+backend/tests/invariants/test_connect_gpu_pipeline.py::test_hardening_failure_renders_failed_ours_retry FAILED [ 58%]
+backend/tests/invariants/test_connect_gpu_pipeline.py::test_acceptance_failure_renders_held_with_evidence_and_vendor FAILED [ 64%]
+backend/tests/invariants/test_connect_gpu_pipeline.py::test_submit_stages_fire_in_owner_ruled_order FAILED [ 70%]
+backend/tests/invariants/test_connect_gpu_pipeline.py::test_submit_unsets_bootstrap_env_before_returning FAILED [ 76%]
+backend/tests/invariants/test_connect_gpu_pipeline.py::test_submit_forbids_password_field_in_response_or_ledger_kind FAILED [ 82%]
+backend/tests/invariants/test_connect_gpu_pipeline.py::test_drill_host_produces_distinguishable_ledger_rows FAILED [ 88%]
+backend/tests/invariants/test_connect_gpu_scope_S_or_M.py::test_connect_gpu_backend_footprint_within_M_ceiling PASSED [ 94%]
+backend/tests/invariants/test_connect_gpu_scope_S_or_M.py::test_no_generic_credentials_manager_names_appear PASSED [100%]
+
+=================================== FAILURES ===================================
+E   ImportError: cannot import name 'gpu_submit' from 'services.connect' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/connect/__init__.py)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_connect_gpu_pipeline.py:39: ImportError: cannot import name 'gpu_submit' from 'services.connect' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/connect/__init__.py)
+E   ImportError: cannot import name 'connect_gpu' from 'routers' (/app/assessment_workspace/repos/Extraction-Akki/backend/routers/__init__.py)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_connect_gpu_pipeline.py:55: ImportError: cannot import name 'connect_gpu' from 'routers' (/app/assessment_workspace/repos/Extraction-Akki/backend/routers/__init__.py)
+E   ImportError: cannot import name 'gpu_submit' from 'services.connect' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/connect/__init__.py)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_connect_gpu_pipeline.py:84: ImportError: cannot import name 'gpu_submit' from 'services.connect' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/connect/__init__.py)
+E   ImportError: cannot import name 'gpu_submit' from 'services.connect' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/connect/__init__.py)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_connect_gpu_pipeline.py:97: ImportError: cannot import name 'gpu_submit' from 'services.connect' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/connect/__init__.py)
+E   ImportError: cannot import name 'gpu_submit' from 'services.connect' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/connect/__init__.py)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_connect_gpu_pipeline.py:111: ImportError: cannot import name 'gpu_submit' from 'services.connect' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/connect/__init__.py)
+E   ImportError: cannot import name 'gpu_submit' from 'services.connect' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/connect/__init__.py)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_connect_gpu_pipeline.py:132: ImportError: cannot import name 'gpu_submit' from 'services.connect' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/connect/__init__.py)
+E   ImportError: cannot import name 'gpu_submit' from 'services.connect' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/connect/__init__.py)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_connect_gpu_pipeline.py:144: ImportError: cannot import name 'gpu_submit' from 'services.connect' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/connect/__init__.py)
+E   ImportError: cannot import name 'gpu_submit' from 'services.connect' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/connect/__init__.py)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_connect_gpu_pipeline.py:168: ImportError: cannot import name 'gpu_submit' from 'services.connect' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/connect/__init__.py)
+E   ImportError: cannot import name 'gpu_submit' from 'services.connect' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/connect/__init__.py)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_connect_gpu_pipeline.py:186: ImportError: cannot import name 'gpu_submit' from 'services.connect' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/connect/__init__.py)
+E   ImportError: cannot import name 'gpu_submit' from 'services.connect' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/connect/__init__.py)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_connect_gpu_pipeline.py:198: ImportError: cannot import name 'gpu_submit' from 'services.connect' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/connect/__init__.py)
+E   ImportError: cannot import name 'gpu_submit' from 'services.connect' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/connect/__init__.py)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_connect_gpu_pipeline.py:211: ImportError: cannot import name 'gpu_submit' from 'services.connect' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/connect/__init__.py)
+E   ImportError: cannot import name 'gpu_submit' from 'services.connect' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/connect/__init__.py)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_connect_gpu_pipeline.py:233: ImportError: cannot import name 'gpu_submit' from 'services.connect' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/connect/__init__.py)
+E   ImportError: cannot import name 'gpu_submit' from 'services.connect' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/connect/__init__.py)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_connect_gpu_pipeline.py:266: ImportError: cannot import name 'gpu_submit' from 'services.connect' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/connect/__init__.py)
+E   ImportError: cannot import name 'gpu_submit' from 'services.connect' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/connect/__init__.py)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_connect_gpu_pipeline.py:274: ImportError: cannot import name 'gpu_submit' from 'services.connect' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/connect/__init__.py)
+E   ImportError: cannot import name 'gpu_submit' from 'services.connect' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/connect/__init__.py)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_connect_gpu_pipeline.py:294: ImportError: cannot import name 'gpu_submit' from 'services.connect' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/connect/__init__.py)
+=========================== short test summary info ============================
+FAILED backend/tests/invariants/test_connect_gpu_pipeline.py::test_connect_gpu_service_exports_submit_and_stage_names
+FAILED backend/tests/invariants/test_connect_gpu_pipeline.py::test_connect_gpu_router_registered_under_api_prefix
+FAILED backend/tests/invariants/test_connect_gpu_pipeline.py::test_submit_requires_all_four_mandatory_fields
+FAILED backend/tests/invariants/test_connect_gpu_pipeline.py::test_submit_accepts_only_the_defined_field_set
+FAILED backend/tests/invariants/test_connect_gpu_pipeline.py::test_submit_ledger_row_omits_password
+FAILED backend/tests/invariants/test_connect_gpu_pipeline.py::test_submit_commissioning_record_omits_password
+FAILED backend/tests/invariants/test_connect_gpu_pipeline.py::test_submit_pins_update_carries_only_non_secret_outputs
+FAILED backend/tests/invariants/test_connect_gpu_pipeline.py::test_submit_returns_no_password_in_response
+FAILED backend/tests/invariants/test_connect_gpu_pipeline.py::test_four_questions_topline_present_on_after_state_green
+FAILED backend/tests/invariants/test_connect_gpu_pipeline.py::test_hardening_failure_renders_failed_ours_retry
+FAILED backend/tests/invariants/test_connect_gpu_pipeline.py::test_acceptance_failure_renders_held_with_evidence_and_vendor
+FAILED backend/tests/invariants/test_connect_gpu_pipeline.py::test_submit_stages_fire_in_owner_ruled_order
+FAILED backend/tests/invariants/test_connect_gpu_pipeline.py::test_submit_unsets_bootstrap_env_before_returning
+FAILED backend/tests/invariants/test_connect_gpu_pipeline.py::test_submit_forbids_password_field_in_response_or_ledger_kind
+FAILED backend/tests/invariants/test_connect_gpu_pipeline.py::test_drill_host_produces_distinguishable_ledger_rows
+========================= 15 failed, 2 passed in 0.09s =========================

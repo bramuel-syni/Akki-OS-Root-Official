@@ -1,0 +1,40 @@
+/root/.venv/lib/python3.11/site-packages/pytest_asyncio/plugin.py:208: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.3.3, pluggy-1.6.0 -- /root/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: xdist-3.8.0, asyncio-0.24.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, default_loop_scope=None
+collecting ... collected 5 items
+
+backend/tests/invariants/test_emit_moac_chokepoint_admission.py::test_emit_moac_fires_model_admission_ceremony_and_writes_record FAILED [ 20%]
+backend/tests/invariants/test_emit_moac_chokepoint_admission.py::test_emit_moac_mock_card_is_admitted_but_not_accepted FAILED [ 40%]
+backend/tests/invariants/test_emit_moac_chokepoint_admission.py::test_close_run_whitepaper_ref_matches_wp_prefix_and_resolves PASSED [ 60%]
+backend/tests/invariants/test_emit_moac_chokepoint_admission.py::test_training_runs_state_carries_zero_whitepaper_draft_errors_after_journey PASSED [ 80%]
+backend/tests/invariants/test_emit_moac_chokepoint_admission.py::test_emit_moac_admission_record_carries_ca1_011_watch_seam FAILED [100%]
+
+=================================== FAILURES ===================================
+_______ test_emit_moac_fires_model_admission_ceremony_and_writes_record ________
+backend/tests/invariants/test_emit_moac_chokepoint_admission.py:163: in test_emit_moac_fires_model_admission_ceremony_and_writes_record
+    assert body["count"] >= 1, (
+E   AssertionError: emit-moac must fire ceremony.run_admission (the registry admission chokepoint) and write a model_admission record. Got: {'count': 0, 'records': []}
+E   assert 0 >= 1
+____________ test_emit_moac_mock_card_is_admitted_but_not_accepted _____________
+backend/tests/invariants/test_emit_moac_chokepoint_admission.py:193: in test_emit_moac_mock_card_is_admitted_but_not_accepted
+    assert "refused" in outcomes, (
+E   AssertionError: Owner directive: mock cards must be 'admitted with … accept_for_service=false' — meaning the ceremony writes a refusal record so citation resolves while acceptance stays impossible. Got outcomes: [].
+E   assert 'refused' in []
+__________ test_emit_moac_admission_record_carries_ca1_011_watch_seam __________
+backend/tests/invariants/test_emit_moac_chokepoint_admission.py:263: in test_emit_moac_admission_record_carries_ca1_011_watch_seam
+    assert records, "no admission records on file after emit-moac."
+E   AssertionError: no admission records on file after emit-moac.
+E   assert []
+=========================== short test summary info ============================
+FAILED backend/tests/invariants/test_emit_moac_chokepoint_admission.py::test_emit_moac_fires_model_admission_ceremony_and_writes_record
+FAILED backend/tests/invariants/test_emit_moac_chokepoint_admission.py::test_emit_moac_mock_card_is_admitted_but_not_accepted
+FAILED backend/tests/invariants/test_emit_moac_chokepoint_admission.py::test_emit_moac_admission_record_carries_ca1_011_watch_seam
+========================= 3 failed, 2 passed in 0.53s ==========================

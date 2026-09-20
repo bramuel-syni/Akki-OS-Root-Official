@@ -1,0 +1,49 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.15, pytest-9.1.1, pluggy-1.6.0 -- /root/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: anyio-4.14.2, xdist-3.8.0, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 9 items
+
+backend/tests/invariants/test_hardening_orchestrator.py::test_hardening_module_exposes_run_and_step_names FAILED [ 11%]
+backend/tests/invariants/test_hardening_orchestrator.py::test_hardening_module_reads_bootstrap_pw_from_env_only FAILED [ 22%]
+backend/tests/invariants/test_hardening_orchestrator.py::test_hardening_writes_receipt_without_bootstrap_password FAILED [ 33%]
+backend/tests/invariants/test_hardening_orchestrator.py::test_hardening_never_places_bootstrap_password_on_argv FAILED [ 44%]
+backend/tests/invariants/test_hardening_orchestrator.py::test_hardening_ledger_rows_omit_bootstrap_password FAILED [ 55%]
+backend/tests/invariants/test_hardening_orchestrator.py::test_hardening_unsets_bootstrap_env_before_returning FAILED [ 66%]
+backend/tests/invariants/test_hardening_orchestrator.py::test_hardening_mid_run_failure_writes_failed_state_and_blocks_data FAILED [ 77%]
+backend/tests/invariants/test_hardening_orchestrator.py::test_hardening_external_probe_result_is_mandatory_evidence FAILED [ 88%]
+backend/tests/invariants/test_hardening_orchestrator.py::test_hardening_refuses_when_bootstrap_env_missing FAILED [100%]
+
+=================================== FAILURES ===================================
+E   ImportError: cannot import name 'hardening' from 'services.compute_seam' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/compute_seam/__init__.py)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_hardening_orchestrator.py:46: ImportError: cannot import name 'hardening' from 'services.compute_seam' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/compute_seam/__init__.py)
+E   ImportError: cannot import name 'hardening' from 'services.compute_seam' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/compute_seam/__init__.py)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_hardening_orchestrator.py:64: ImportError: cannot import name 'hardening' from 'services.compute_seam' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/compute_seam/__init__.py)
+E   ImportError: cannot import name 'hardening' from 'services.compute_seam' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/compute_seam/__init__.py)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_hardening_orchestrator.py:144: ImportError: cannot import name 'hardening' from 'services.compute_seam' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/compute_seam/__init__.py)
+E   ImportError: cannot import name 'hardening' from 'services.compute_seam' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/compute_seam/__init__.py)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_hardening_orchestrator.py:166: ImportError: cannot import name 'hardening' from 'services.compute_seam' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/compute_seam/__init__.py)
+E   ImportError: cannot import name 'hardening' from 'services.compute_seam' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/compute_seam/__init__.py)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_hardening_orchestrator.py:206: ImportError: cannot import name 'hardening' from 'services.compute_seam' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/compute_seam/__init__.py)
+E   ImportError: cannot import name 'hardening' from 'services.compute_seam' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/compute_seam/__init__.py)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_hardening_orchestrator.py:235: ImportError: cannot import name 'hardening' from 'services.compute_seam' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/compute_seam/__init__.py)
+E   ImportError: cannot import name 'hardening' from 'services.compute_seam' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/compute_seam/__init__.py)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_hardening_orchestrator.py:250: ImportError: cannot import name 'hardening' from 'services.compute_seam' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/compute_seam/__init__.py)
+E   ImportError: cannot import name 'hardening' from 'services.compute_seam' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/compute_seam/__init__.py)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_hardening_orchestrator.py:272: ImportError: cannot import name 'hardening' from 'services.compute_seam' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/compute_seam/__init__.py)
+E   ImportError: cannot import name 'hardening' from 'services.compute_seam' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/compute_seam/__init__.py)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_hardening_orchestrator.py:289: ImportError: cannot import name 'hardening' from 'services.compute_seam' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/compute_seam/__init__.py)
+=========================== short test summary info ============================
+FAILED backend/tests/invariants/test_hardening_orchestrator.py::test_hardening_module_exposes_run_and_step_names
+FAILED backend/tests/invariants/test_hardening_orchestrator.py::test_hardening_module_reads_bootstrap_pw_from_env_only
+FAILED backend/tests/invariants/test_hardening_orchestrator.py::test_hardening_writes_receipt_without_bootstrap_password
+FAILED backend/tests/invariants/test_hardening_orchestrator.py::test_hardening_never_places_bootstrap_password_on_argv
+FAILED backend/tests/invariants/test_hardening_orchestrator.py::test_hardening_ledger_rows_omit_bootstrap_password
+FAILED backend/tests/invariants/test_hardening_orchestrator.py::test_hardening_unsets_bootstrap_env_before_returning
+FAILED backend/tests/invariants/test_hardening_orchestrator.py::test_hardening_mid_run_failure_writes_failed_state_and_blocks_data
+FAILED backend/tests/invariants/test_hardening_orchestrator.py::test_hardening_external_probe_result_is_mandatory_evidence
+FAILED backend/tests/invariants/test_hardening_orchestrator.py::test_hardening_refuses_when_bootstrap_env_missing
+============================== 9 failed in 0.12s ===============================

@@ -1,0 +1,75 @@
+============================= test session starts ==============================
+collecting ... collected 24 items
+
+backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_pod_shell_app_imports_without_error PASSED [  4%]
+backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_target_route_inventory_has_exactly_22_rows PASSED [  8%]
+backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_registry_mix_get FAILED [ 12%]
+backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_registry_source_profile_get FAILED [ 16%]
+backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_registry_cir_get FAILED [ 20%]
+backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_registry_mix_reading_get FAILED [ 25%]
+backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_registry_estate_intelligence_get FAILED [ 29%]
+backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_registry_opportunities_get FAILED [ 33%]
+backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_census_history_get FAILED [ 37%]
+backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_census_status_get FAILED [ 41%]
+backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_model_registry_full_record_get FAILED [ 45%]
+backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_model_registry_journal_get FAILED [ 50%]
+backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_model_registry_checks_get FAILED [ 54%]
+backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_model_registry_refusals_get FAILED [ 58%]
+backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_model_registry_traffic_get FAILED [ 62%]
+backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_model_registry_answering_get FAILED [ 66%]
+backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_opportunity_briefs_list_get FAILED [ 70%]
+backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_opportunity_briefs_detail_get FAILED [ 75%]
+backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_opportunity_briefs_regenerate_post FAILED [ 79%]
+backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_opportunity_briefs_by_source_get FAILED [ 83%]
+backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_perception_list_get FAILED [ 87%]
+backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_perception_source_get FAILED [ 91%]
+backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_perception_execution_mode_get FAILED [ 95%]
+backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_rules_updates_pending_get FAILED [100%]
+
+=================================== FAILURES ===================================
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_w_registry_full_build_route_inventory.py:108: AssertionError: missing route: [GET] /api/registry/mix — six-way cut breakdown (owner directive 2026-09-08T~06:15Z STEP 5, D.1 route inventory)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_w_registry_full_build_route_inventory.py:108: AssertionError: missing route: [GET] /api/registry/source/{source_id}/profile — efProfileVM.* fields (owner directive 2026-09-08T~06:15Z STEP 5, D.1 route inventory)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_w_registry_full_build_route_inventory.py:108: AssertionError: missing route: [GET] /api/registry/cir — confidential information register (owner directive 2026-09-08T~06:15Z STEP 5, D.1 route inventory)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_w_registry_full_build_route_inventory.py:108: AssertionError: missing route: [GET] /api/registry/mix/reading — narrative reading of the mix (owner directive 2026-09-08T~06:15Z STEP 5, D.1 route inventory)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_w_registry_full_build_route_inventory.py:108: AssertionError: missing route: [GET] /api/registry/estate_intelligence — standout narrative (owner directive 2026-09-08T~06:15Z STEP 5, D.1 route inventory)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_w_registry_full_build_route_inventory.py:108: AssertionError: missing route: [GET] /api/registry/opportunities — per-source opportunity briefs (owner directive 2026-09-08T~06:15Z STEP 5, D.1 route inventory)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_w_registry_full_build_route_inventory.py:108: AssertionError: missing route: [GET] /api/census/history — census run history (owner directive 2026-09-08T~06:15Z STEP 5, D.1 route inventory)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_w_registry_full_build_route_inventory.py:108: AssertionError: missing route: [GET] /api/census/status — current census state (owner directive 2026-09-08T~06:15Z STEP 5, D.1 route inventory)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_w_registry_full_build_route_inventory.py:108: AssertionError: missing route: [GET] /api/model_registry/full_record — extended per-model record (owner directive 2026-09-08T~06:15Z STEP 5, D.1 route inventory)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_w_registry_full_build_route_inventory.py:108: AssertionError: missing route: [GET] /api/model_registry/{model_id}/journal — per-model journal (owner directive 2026-09-08T~06:15Z STEP 5, D.1 route inventory)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_w_registry_full_build_route_inventory.py:108: AssertionError: missing route: [GET] /api/model_registry/{model_id}/checks — per-model checks (owner directive 2026-09-08T~06:15Z STEP 5, D.1 route inventory)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_w_registry_full_build_route_inventory.py:108: AssertionError: missing route: [GET] /api/model_registry/{model_id}/refusals — per-model refusals (owner directive 2026-09-08T~06:15Z STEP 5, D.1 route inventory)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_w_registry_full_build_route_inventory.py:108: AssertionError: missing route: [GET] /api/model_registry/{model_id}/traffic — per-model traffic (owner directive 2026-09-08T~06:15Z STEP 5, D.1 route inventory)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_w_registry_full_build_route_inventory.py:108: AssertionError: missing route: [GET] /api/model_registry/{model_id}/answering — per-model answering (owner directive 2026-09-08T~06:15Z STEP 5, D.1 route inventory)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_w_registry_full_build_route_inventory.py:108: AssertionError: missing route: [GET] /api/opportunity_briefs — list all briefs (owner directive 2026-09-08T~06:15Z STEP 5, D.1 route inventory)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_w_registry_full_build_route_inventory.py:108: AssertionError: missing route: [GET] /api/opportunity_briefs/{brief_id} — brief detail (owner directive 2026-09-08T~06:15Z STEP 5, D.1 route inventory)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_w_registry_full_build_route_inventory.py:108: AssertionError: missing route: [POST] /api/opportunity_briefs/regenerate — trigger pipeline_runner (owner directive 2026-09-08T~06:15Z STEP 5, D.1 route inventory)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_w_registry_full_build_route_inventory.py:108: AssertionError: missing route: [GET] /api/opportunity_briefs/by_source/{source_id} — per-source briefs (owner directive 2026-09-08T~06:15Z STEP 5, D.1 route inventory)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_w_registry_full_build_route_inventory.py:108: AssertionError: missing route: [GET] /api/perception — perception service list (owner directive 2026-09-08T~06:15Z STEP 5, D.1 route inventory)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_w_registry_full_build_route_inventory.py:108: AssertionError: missing route: [GET] /api/perception/{source_id} — perception on a specific source (owner directive 2026-09-08T~06:15Z STEP 5, D.1 route inventory)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_w_registry_full_build_route_inventory.py:108: AssertionError: missing route: [GET] /api/perception/execution_mode — execution-mode telemetry (owner directive 2026-09-08T~06:15Z STEP 5, D.1 route inventory)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_w_registry_full_build_route_inventory.py:108: AssertionError: missing route: [GET] /api/rules_updates/pending — pending signatures + rule-book adoption (owner directive 2026-09-08T~06:15Z STEP 5, D.1 route inventory)
+=========================== short test summary info ============================
+FAILED backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_registry_mix_get
+FAILED backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_registry_source_profile_get
+FAILED backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_registry_cir_get
+FAILED backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_registry_mix_reading_get
+FAILED backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_registry_estate_intelligence_get
+FAILED backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_registry_opportunities_get
+FAILED backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_census_history_get
+FAILED backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_census_status_get
+FAILED backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_model_registry_full_record_get
+FAILED backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_model_registry_journal_get
+FAILED backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_model_registry_checks_get
+FAILED backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_model_registry_refusals_get
+FAILED backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_model_registry_traffic_get
+FAILED backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_model_registry_answering_get
+FAILED backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_opportunity_briefs_list_get
+FAILED backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_opportunity_briefs_detail_get
+FAILED backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_opportunity_briefs_regenerate_post
+FAILED backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_opportunity_briefs_by_source_get
+FAILED backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_perception_list_get
+FAILED backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_perception_source_get
+FAILED backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_perception_execution_mode_get
+FAILED backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_rules_updates_pending_get
+========================= 22 failed, 2 passed in 1.97s =========================

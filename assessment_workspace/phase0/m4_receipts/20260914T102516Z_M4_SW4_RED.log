@@ -1,0 +1,14 @@
+E       ModuleNotFoundError: No module named 'services.journey_assistant.three_verdicts'
+
+tests/invariants/test_wm4_sw4_three_verdicts.py:128: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wm4_sw4_three_verdicts.py::test_sw4_module_fabric
+FAILED tests/invariants/test_wm4_sw4_three_verdicts.py::test_sw4_canon_6_s12_verbatim_pinned
+FAILED tests/invariants/test_wm4_sw4_three_verdicts.py::test_sw4_journey_verdict_enum_has_exactly_three_values
+FAILED tests/invariants/test_wm4_sw4_three_verdicts.py::test_sw4_answered_resolution
+FAILED tests/invariants/test_wm4_sw4_three_verdicts.py::test_sw4_held_requires_reason
+FAILED tests/invariants/test_wm4_sw4_three_verdicts.py::test_sw4_held_with_reason_ok
+FAILED tests/invariants/test_wm4_sw4_three_verdicts.py::test_sw4_refused_binds_solva_action
+FAILED tests/invariants/test_wm4_sw4_three_verdicts.py::test_sw4_fourth_verdict_forbidden
+FAILED tests/invariants/test_wm4_sw4_three_verdicts.py::test_sw4_no_fourth_from_dict
+9 failed in 0.69s

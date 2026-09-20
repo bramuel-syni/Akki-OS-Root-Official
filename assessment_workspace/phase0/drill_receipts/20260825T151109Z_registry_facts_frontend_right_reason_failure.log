@@ -1,0 +1,168 @@
+# Right-reason failure receipt — Registry frontend invariants (FL-P2-25)
+# Owner Order 2026-08-19 · Registry three-tabs render REAL facts.
+# Also captures the FL-P2-24 downstream: existing data-source test now
+# asserts engine='unknown' on the failure branch (was 'aurora').
+
+✔ App.js does NOT declare the retired /register/connect/gpu route (1.061527ms)
+✔ frontend has NO token-gate importable code path (2.721139ms)
+✔ no OWNER-ACCESS sign-in card and no owner_token localStorage (1.455652ms)
+✔ GET /register/connect/gpu -> 404 (29.045774ms)
+✔ GET / serves SPA shell (allowed IP) (4.808337ms)
+✔ root '/' route renders Registry (0.368624ms)
+✔ AdminSurface retired (no admin-pill or tile-connect testids anywhere) (1.116932ms)
+✔ Registry.jsx three tabs + '+ Connect' + role-switcher testids present (0.250088ms)
+✔ no fabricated Acme demo numbers anywhere (1.086876ms)
+✔ Registry carries at least one honest-empty-state sentence (0.30731ms)
+✔ ConnectWizard.jsx is a SINGLE paste-and-connect panel (no step navigation) (0.363072ms)
+✔ Type chips (auto-detect default) sit on the same paste panel (0.241277ms)
+✔ Confirmation view masks the password with a redaction sentinel (0.259644ms)
+✔ Unparseable paste triggers ask-again grammar naming missing fields (0.25575ms)
+✔ Manual fallback fields sit inline on the same panel (not a separate step) (0.189122ms)
+✔ Provisioning card sits behind ONE aside link (not a step) (0.198821ms)
+✔ Post-submit compute path renders the handshake walk stages (result view only) (0.295061ms)
+✔ LLM / trained-model submission records honest intent via /api/connect/intent (0.202274ms)
+✔ Data-source path is LIVE: submits to /api/connect/data-source (not intent) (0.139192ms)
+✔ Data-source manual fallback fields sit inline on the same panel (0.847902ms)
+✔ Data-source confirmation masks the aws_secret_access_key with a sentinel (0.196232ms)
+✔ Data-source result view renders the four-questions grammar (0.241986ms)
+✔ Data-source endpoint live: refuses synthetic ARNs cleanly and NEVER echoes the aws_secret back (260.06854ms)
+✔ Frontend never sends the paste to any LLM/answering-side/openai endpoint (1.787956ms)
+✔ parse-paste endpoint live: returns password_captured signal and NO password in body (3.200764ms)
+✔ parse-paste endpoint refuses empty paste with 400 (2.836308ms)
+✔ estate-facts endpoint live and returns provisioning-card payload (148.535598ms)
+✔ intent endpoint records non-compute kinds and refuses compute (6.865479ms)
+✖ Registry.jsx fetches from /api/registry/facts (0.687367ms)
+✖ Registry.jsx carries per-band section testids (topline / headliner / visual / table / context) (0.266305ms)
+✖ Registry.jsx renders data-source rows with real testids (0.240045ms)
+✖ Registry.jsx renders compute row + detail testids (0.191725ms)
+✖ Registry.jsx flags approximate figures with '≈' (or 'approx') per provenance rule (0.234739ms)
+✔ Registry.jsx renders LLMs-tab honest empty sentence (0.175027ms)
+✔ /api/registry/facts live: returns real digicow_live + ndume + akki-vm (45.568149ms)
+✖ /api/registry/facts live: data source carries engine, region, table count, posture (44.822128ms)
+✔ /api/registry/facts live: compute carries GPUs, RAM, storage, link facts (4.116651ms)
+✔ Registry.jsx renders NO banned fabricated demo tokens (0.246671ms)
+ℹ tests 38
+ℹ suites 0
+ℹ pass 32
+ℹ fail 6
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 610.930083
+
+✖ failing tests:
+
+test at __tests__/rehome.test.js:353:1
+✖ Registry.jsx fetches from /api/registry/facts (0.687367ms)
+  AssertionError [ERR_ASSERTION]: Registry.jsx must fetch from /api/registry/facts
+      at TestContext.<anonymous> (/app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/__tests__/rehome.test.js:355:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at __tests__/rehome.test.js:359:1
+✖ Registry.jsx carries per-band section testids (topline / headliner / visual / table / context) (0.266305ms)
+  AssertionError [ERR_ASSERTION]: Registry.jsx missing band testid registry-topline
+      at TestContext.<anonymous> (/app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/__tests__/rehome.test.js:363:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at __tests__/rehome.test.js:367:1
+✖ Registry.jsx renders data-source rows with real testids (0.240045ms)
+  AssertionError [ERR_ASSERTION]: Registry.jsx missing data-source testid data-source-row
+      at TestContext.<anonymous> (/app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/__tests__/rehome.test.js:371:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at __tests__/rehome.test.js:375:1
+✖ Registry.jsx renders compute row + detail testids (0.191725ms)
+  AssertionError [ERR_ASSERTION]: Registry.jsx missing compute testid compute-row
+      at TestContext.<anonymous> (/app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/__tests__/rehome.test.js:378:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at __tests__/rehome.test.js:382:1
+✖ Registry.jsx flags approximate figures with '≈' (or 'approx') per provenance rule (0.234739ms)
+  AssertionError [ERR_ASSERTION]: approximation glyph or word must appear (rows are approx from information_schema)
+      at TestContext.<anonymous> (/app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/__tests__/rehome.test.js:384:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at __tests__/rehome.test.js:408:1
+✖ /api/registry/facts live: data source carries engine, region, table count, posture (44.822128ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'mysql'
+  - 'aurora-mysql'
+  
+      at TestContext.<anonymous> (/app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/__tests__/rehome.test.js:415:10)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'mysql',
+    expected: 'aurora-mysql',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -1,0 +1,117 @@
+...FFFFFF                                                                [100%]============================ BASELINE_GUARD receipt ============================
+passed=3 / baseline-failures-remaining=0 / quarantined=0
+  manifest: tests/invariants/baseline_failures.json
+  scope: BASELINE_GUARD=1  ·  invocation: cd backend && BASELINE_GUARD=1 python -m pytest tests/invariants/
+!!!!!!!!!!!!! BASELINE_GUARD · HALT AND REPORT · owner ruling (c) !!!!!!!!!!!!!!
+[V1] 6 NEW failure(s) OUTSIDE manifest:
+    tests/invariants/test_mtafiti_gpu_discovery_quality_profiler.py::test_live_quality_profile_carries_canonical_sha256
+    tests/invariants/test_mtafiti_gpu_discovery_quality_profiler.py::test_live_quality_profile_carries_column_stats
+    tests/invariants/test_mtafiti_gpu_discovery_quality_profiler.py::test_live_quality_profile_every_sql_is_readonly
+    tests/invariants/test_mtafiti_gpu_discovery_quality_profiler.py::test_live_quality_profile_exists_and_covers_both_hosts
+    tests/invariants/test_mtafiti_gpu_discovery_quality_profiler.py::test_live_quality_profile_has_no_raw_pii
+    tests/invariants/test_mtafiti_gpu_discovery_quality_profiler.py::test_live_quality_profile_is_recent
+[V3] Passed count 3 < ratchet floor 3223
+  No silent rebaselining. Report drift to owner verbatim.
+
+=================================== FAILURES ===================================
+____________ test_live_quality_profile_exists_and_covers_both_hosts ____________
+
+    def test_live_quality_profile_exists_and_covers_both_hosts():
+>       p = _load()
+            ^^^^^^^
+
+tests/invariants/test_mtafiti_gpu_discovery_quality_profiler.py:102: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _load() -> dict:
+        if not PROFILE_LATEST.exists():
+>           pytest.fail(f"CP5 quality profile not found at {PROFILE_LATEST}.")
+E           Failed: CP5 quality profile not found at /app/assessment_workspace/phase0/mtafiti_gpu_discovery/quality_profile_latest.json.
+
+tests/invariants/test_mtafiti_gpu_discovery_quality_profiler.py:24: Failed
+_______________ test_live_quality_profile_every_sql_is_readonly ________________
+
+    def test_live_quality_profile_every_sql_is_readonly():
+        from services.mtafiti.executor.readonly_sql_guard import _ALLOWED_LEAD
+>       p = _load()
+            ^^^^^^^
+
+tests/invariants/test_mtafiti_gpu_discovery_quality_profiler.py:111: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _load() -> dict:
+        if not PROFILE_LATEST.exists():
+>           pytest.fail(f"CP5 quality profile not found at {PROFILE_LATEST}.")
+E           Failed: CP5 quality profile not found at /app/assessment_workspace/phase0/mtafiti_gpu_discovery/quality_profile_latest.json.
+
+tests/invariants/test_mtafiti_gpu_discovery_quality_profiler.py:24: Failed
+________________ test_live_quality_profile_carries_column_stats ________________
+
+    def test_live_quality_profile_carries_column_stats():
+>       p = _load()
+            ^^^^^^^
+
+tests/invariants/test_mtafiti_gpu_discovery_quality_profiler.py:121: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _load() -> dict:
+        if not PROFILE_LATEST.exists():
+>           pytest.fail(f"CP5 quality profile not found at {PROFILE_LATEST}.")
+E           Failed: CP5 quality profile not found at /app/assessment_workspace/phase0/mtafiti_gpu_discovery/quality_profile_latest.json.
+
+tests/invariants/test_mtafiti_gpu_discovery_quality_profiler.py:24: Failed
+___________________ test_live_quality_profile_has_no_raw_pii ___________________
+
+    def test_live_quality_profile_has_no_raw_pii():
+        from services.mtafiti.detectors.pii_redaction_guard import assert_no_raw_pii
+        from services.mtafiti.probes.live_readonly_probe import data_view
+>       p = _load()
+            ^^^^^^^
+
+tests/invariants/test_mtafiti_gpu_discovery_quality_profiler.py:135: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _load() -> dict:
+        if not PROFILE_LATEST.exists():
+>           pytest.fail(f"CP5 quality profile not found at {PROFILE_LATEST}.")
+E           Failed: CP5 quality profile not found at /app/assessment_workspace/phase0/mtafiti_gpu_discovery/quality_profile_latest.json.
+
+tests/invariants/test_mtafiti_gpu_discovery_quality_profiler.py:24: Failed
+______________ test_live_quality_profile_carries_canonical_sha256 ______________
+
+    def test_live_quality_profile_carries_canonical_sha256():
+>       p = _load()
+            ^^^^^^^
+
+tests/invariants/test_mtafiti_gpu_discovery_quality_profiler.py:140: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _load() -> dict:
+        if not PROFILE_LATEST.exists():
+>           pytest.fail(f"CP5 quality profile not found at {PROFILE_LATEST}.")
+E           Failed: CP5 quality profile not found at /app/assessment_workspace/phase0/mtafiti_gpu_discovery/quality_profile_latest.json.
+
+tests/invariants/test_mtafiti_gpu_discovery_quality_profiler.py:24: Failed
+_____________________ test_live_quality_profile_is_recent ______________________
+
+    def test_live_quality_profile_is_recent():
+>       p = _load()
+            ^^^^^^^
+
+tests/invariants/test_mtafiti_gpu_discovery_quality_profiler.py:147: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _load() -> dict:
+        if not PROFILE_LATEST.exists():
+>           pytest.fail(f"CP5 quality profile not found at {PROFILE_LATEST}.")
+E           Failed: CP5 quality profile not found at /app/assessment_workspace/phase0/mtafiti_gpu_discovery/quality_profile_latest.json.
+
+tests/invariants/test_mtafiti_gpu_discovery_quality_profiler.py:24: Failed
+=========================== short test summary info ============================
+FAILED tests/invariants/test_mtafiti_gpu_discovery_quality_profiler.py::test_live_quality_profile_exists_and_covers_both_hosts
+FAILED tests/invariants/test_mtafiti_gpu_discovery_quality_profiler.py::test_live_quality_profile_every_sql_is_readonly
+FAILED tests/invariants/test_mtafiti_gpu_discovery_quality_profiler.py::test_live_quality_profile_carries_column_stats
+FAILED tests/invariants/test_mtafiti_gpu_discovery_quality_profiler.py::test_live_quality_profile_has_no_raw_pii
+FAILED tests/invariants/test_mtafiti_gpu_discovery_quality_profiler.py::test_live_quality_profile_carries_canonical_sha256
+FAILED tests/invariants/test_mtafiti_gpu_discovery_quality_profiler.py::test_live_quality_profile_is_recent
+6 failed, 3 passed in 0.66s

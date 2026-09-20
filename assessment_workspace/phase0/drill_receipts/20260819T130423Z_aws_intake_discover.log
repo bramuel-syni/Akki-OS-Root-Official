@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "<stdin>", line 9, in <module>
+  File "/usr/local/lib/python3.11/csv.py", line 110, in __next__
+    self.fieldnames
+  File "/usr/local/lib/python3.11/csv.py", line 97, in fieldnames
+    self._fieldnames = next(self.reader)
+                       ^^^^^^^^^^^^^^^^^
+  File "<frozen codecs>", line 322, in decode
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xe3 in position 14: invalid continuation byte

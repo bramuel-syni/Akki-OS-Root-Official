@@ -1,0 +1,29 @@
+============================= test session starts ==============================
+collecting ... collected 24 items
+
+backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_pod_shell_app_imports_without_error PASSED [  4%]
+backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_target_route_inventory_has_exactly_22_rows PASSED [  8%]
+backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_registry_mix_get PASSED [ 12%]
+backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_registry_source_profile_get PASSED [ 16%]
+backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_registry_cir_get PASSED [ 20%]
+backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_registry_mix_reading_get PASSED [ 25%]
+backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_registry_estate_intelligence_get PASSED [ 29%]
+backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_registry_opportunities_get PASSED [ 33%]
+backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_census_history_get PASSED [ 37%]
+backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_census_status_get PASSED [ 41%]
+backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_model_registry_full_record_get PASSED [ 45%]
+backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_model_registry_journal_get PASSED [ 50%]
+backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_model_registry_checks_get PASSED [ 54%]
+backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_model_registry_refusals_get PASSED [ 58%]
+backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_model_registry_traffic_get PASSED [ 62%]
+backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_model_registry_answering_get PASSED [ 66%]
+backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_opportunity_briefs_list_get PASSED [ 70%]
+backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_opportunity_briefs_detail_get PASSED [ 75%]
+backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_opportunity_briefs_regenerate_post PASSED [ 79%]
+backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_opportunity_briefs_by_source_get PASSED [ 83%]
+backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_perception_list_get PASSED [ 87%]
+backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_perception_source_get PASSED [ 91%]
+backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_perception_execution_mode_get PASSED [ 95%]
+backend/tests/invariants/test_w_registry_full_build_route_inventory.py::test_route_rules_updates_pending_get PASSED [100%]
+
+============================== 24 passed in 1.90s ==============================

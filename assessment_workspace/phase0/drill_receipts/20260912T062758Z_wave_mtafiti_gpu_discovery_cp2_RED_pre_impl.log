@@ -1,0 +1,806 @@
+........................................................................ [  2%]
+........................................................................ [  4%]
+........................................................................ [  6%]
+........................................................................ [  9%]
+........................................................................ [ 11%]
+........................................................................ [ 13%]
+........................................................................ [ 15%]
+........................................................................ [ 18%]
+........................................................................ [ 20%]
+........................................................................ [ 22%]
+........................................................................ [ 24%]
+........................................................................ [ 27%]
+........................................................................ [ 29%]
+............FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF............................ [ 31%]
+........................................................................ [ 33%]
+........................................................................ [ 36%]
+........................................................................ [ 38%]
+........................................................................ [ 40%]
+........................................................................ [ 42%]
+........................................................................ [ 45%]
+.....................................s.................................. [ 47%]
+........................................................................ [ 49%]
+........................................................................ [ 51%]
+........................................................................ [ 54%]
+........................................................................ [ 56%]
+........................................................................ [ 58%]
+........................................................................ [ 60%]
+........................................................................ [ 63%]
+........................................................................ [ 65%]
+........................................................................ [ 67%]
+........................................................................ [ 69%]
+........................................................................ [ 72%]
+........................................................................ [ 74%]
+........................................................................ [ 76%]
+........................................................................ [ 78%]
+........................................................................ [ 81%]
+........................................................................ [ 83%]
+........................................................................ [ 85%]
+........................................................................ [ 87%]
+........................................................................ [ 90%]
+........................................................................ [ 92%]
+........................................................................ [ 94%]
+........................................................................ [ 96%]
+........................................................................ [ 99%]
+...............................                                          [100%]============================ BASELINE_GUARD receipt ============================
+passed=3166 / baseline-failures-remaining=0 / quarantined=0
+  manifest: tests/invariants/baseline_failures.json
+  scope: BASELINE_GUARD=1  ·  invocation: cd backend && BASELINE_GUARD=1 python -m pytest tests/invariants/
+!!!!!!!!!!!!! BASELINE_GUARD · HALT AND REPORT · owner ruling (c) !!!!!!!!!!!!!!
+[V1] 32 NEW failure(s) OUTSIDE manifest:
+    tests/invariants/test_mtafiti_gpu_discovery_pii_detector.py::test_pii_detector_emits_detection_signals_only
+    tests/invariants/test_mtafiti_gpu_discovery_pii_detector.py::test_pii_detector_is_deterministic
+    tests/invariants/test_mtafiti_gpu_discovery_pii_detector.py::test_pii_detector_module_surface
+    tests/invariants/test_mtafiti_gpu_discovery_pii_detector.py::test_pii_detector_no_false_alarms_on_pii_free_rows[row0]
+    tests/invariants/test_mtafiti_gpu_discovery_pii_detector.py::test_pii_detector_no_false_alarms_on_pii_free_rows[row1]
+    tests/invariants/test_mtafiti_gpu_discovery_pii_detector.py::test_pii_detector_no_false_alarms_on_pii_free_rows[row2]
+    tests/invariants/test_mtafiti_gpu_discovery_pii_detector.py::test_pii_detector_no_false_alarms_on_pii_free_rows[row3]
+    tests/invariants/test_mtafiti_gpu_discovery_pii_detector.py::test_pii_detector_recognises_canonical_shapes[row0-expected_kinds0]
+    tests/invariants/test_mtafiti_gpu_discovery_pii_detector.py::test_pii_detector_recognises_canonical_shapes[row1-expected_kinds1]
+    tests/invariants/test_mtafiti_gpu_discovery_pii_detector.py::test_pii_detector_recognises_canonical_shapes[row2-expected_kinds2]
+  No silent rebaselining. Report drift to owner verbatim.
+
+=================================== FAILURES ===================================
+_______________________ test_pii_detector_module_surface _______________________
+
+    def test_pii_detector_module_surface():
+        """Mtafiti-Spec §4 — learned component produces detections."""
+        try:
+>           from services.mtafiti.detectors.pii_detector import detect_pii
+E           ModuleNotFoundError: No module named 'services.mtafiti.detectors'
+
+tests/invariants/test_mtafiti_gpu_discovery_pii_detector.py:45: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+    def test_pii_detector_module_surface():
+        """Mtafiti-Spec §4 — learned component produces detections."""
+        try:
+            from services.mtafiti.detectors.pii_detector import detect_pii
+        except ImportError as e:
+>           pytest.fail(
+                f"CP2 kernel missing: services.mtafiti.detectors.pii_detector — {e}"
+            )
+E           Failed: CP2 kernel missing: services.mtafiti.detectors.pii_detector — No module named 'services.mtafiti.detectors'
+
+tests/invariants/test_mtafiti_gpu_discovery_pii_detector.py:47: Failed
+________________ test_pii_detector_emits_detection_signals_only ________________
+
+    def test_pii_detector_emits_detection_signals_only():
+        """Every emitted item is a CP1 DetectionSignal — no ad-hoc types."""
+        try:
+>           from services.mtafiti.detectors.pii_detector import detect_pii
+E           ModuleNotFoundError: No module named 'services.mtafiti.detectors'
+
+tests/invariants/test_mtafiti_gpu_discovery_pii_detector.py:59: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+    def test_pii_detector_emits_detection_signals_only():
+        """Every emitted item is a CP1 DetectionSignal — no ad-hoc types."""
+        try:
+            from services.mtafiti.detectors.pii_detector import detect_pii
+            from contracts.mtafiti_detection_signal import DetectionSignal
+        except ImportError as e:
+>           pytest.fail(f"CP2 kernel missing: {e}")
+E           Failed: CP2 kernel missing: No module named 'services.mtafiti.detectors'
+
+tests/invariants/test_mtafiti_gpu_discovery_pii_detector.py:62: Failed
+_________________ test_pii_signals_are_evidence_class_detected _________________
+
+    def test_pii_signals_are_evidence_class_detected():
+        """Mtafiti-Spec §4 — learning detects; matrix decides."""
+        try:
+>           from services.mtafiti.detectors.pii_detector import detect_pii
+E           ModuleNotFoundError: No module named 'services.mtafiti.detectors'
+
+tests/invariants/test_mtafiti_gpu_discovery_pii_detector.py:84: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+    def test_pii_signals_are_evidence_class_detected():
+        """Mtafiti-Spec §4 — learning detects; matrix decides."""
+        try:
+            from services.mtafiti.detectors.pii_detector import detect_pii
+            from contracts.mtafiti_detection_signal import EvidenceClass
+        except ImportError as e:
+>           pytest.fail(f"CP2 kernel missing: {e}")
+E           Failed: CP2 kernel missing: No module named 'services.mtafiti.detectors'
+
+tests/invariants/test_mtafiti_gpu_discovery_pii_detector.py:87: Failed
+______________________ test_pii_detector_is_deterministic ______________________
+
+    def test_pii_detector_is_deterministic():
+        """C4-013 — same inputs → same measured output."""
+        try:
+>           from services.mtafiti.detectors.pii_detector import detect_pii
+E           ModuleNotFoundError: No module named 'services.mtafiti.detectors'
+
+tests/invariants/test_mtafiti_gpu_discovery_pii_detector.py:101: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+    def test_pii_detector_is_deterministic():
+        """C4-013 — same inputs → same measured output."""
+        try:
+            from services.mtafiti.detectors.pii_detector import detect_pii
+        except ImportError as e:
+>           pytest.fail(f"CP2 kernel missing: {e}")
+E           Failed: CP2 kernel missing: No module named 'services.mtafiti.detectors'
+
+tests/invariants/test_mtafiti_gpu_discovery_pii_detector.py:103: Failed
+_____ test_pii_detector_recognises_canonical_shapes[row0-expected_kinds0] ______
+
+row = {'col': 'alice@example.com'}, expected_kinds = {'pii.email'}
+
+    @pytest.mark.parametrize(
+        "row, expected_kinds",
+        [
+            ({"col": "alice@example.com"}, {"pii.email"}),
+            ({"col": "+254712345678"}, {"pii.phone"}),
+            ({"col": "10.0.0.42"}, {"pii.ipv4"}),
+            ({"col": "https://weego.example.com/u/42"}, {"pii.url"}),
+            (
+                {"a": "user@site.io", "b": "+18005551212", "c": "203.0.113.7"},
+                {"pii.email", "pii.phone", "pii.ipv4"},
+            ),
+        ],
+    )
+    def test_pii_detector_recognises_canonical_shapes(row, expected_kinds):
+        """Owner-relevant PII shapes present in Weego/USSD estate must be caught."""
+>       from services.mtafiti.detectors.pii_detector import detect_pii
+E       ModuleNotFoundError: No module named 'services.mtafiti.detectors'
+
+tests/invariants/test_mtafiti_gpu_discovery_pii_detector.py:136: ModuleNotFoundError
+_____ test_pii_detector_recognises_canonical_shapes[row1-expected_kinds1] ______
+
+row = {'col': '+254712345678'}, expected_kinds = {'pii.phone'}
+
+    @pytest.mark.parametrize(
+        "row, expected_kinds",
+        [
+            ({"col": "alice@example.com"}, {"pii.email"}),
+            ({"col": "+254712345678"}, {"pii.phone"}),
+            ({"col": "10.0.0.42"}, {"pii.ipv4"}),
+            ({"col": "https://weego.example.com/u/42"}, {"pii.url"}),
+            (
+                {"a": "user@site.io", "b": "+18005551212", "c": "203.0.113.7"},
+                {"pii.email", "pii.phone", "pii.ipv4"},
+            ),
+        ],
+    )
+    def test_pii_detector_recognises_canonical_shapes(row, expected_kinds):
+        """Owner-relevant PII shapes present in Weego/USSD estate must be caught."""
+>       from services.mtafiti.detectors.pii_detector import detect_pii
+E       ModuleNotFoundError: No module named 'services.mtafiti.detectors'
+
+tests/invariants/test_mtafiti_gpu_discovery_pii_detector.py:136: ModuleNotFoundError
+_____ test_pii_detector_recognises_canonical_shapes[row2-expected_kinds2] ______
+
+row = {'col': '10.0.0.42'}, expected_kinds = {'pii.ipv4'}
+
+    @pytest.mark.parametrize(
+        "row, expected_kinds",
+        [
+            ({"col": "alice@example.com"}, {"pii.email"}),
+            ({"col": "+254712345678"}, {"pii.phone"}),
+            ({"col": "10.0.0.42"}, {"pii.ipv4"}),
+            ({"col": "https://weego.example.com/u/42"}, {"pii.url"}),
+            (
+                {"a": "user@site.io", "b": "+18005551212", "c": "203.0.113.7"},
+                {"pii.email", "pii.phone", "pii.ipv4"},
+            ),
+        ],
+    )
+    def test_pii_detector_recognises_canonical_shapes(row, expected_kinds):
+        """Owner-relevant PII shapes present in Weego/USSD estate must be caught."""
+>       from services.mtafiti.detectors.pii_detector import detect_pii
+E       ModuleNotFoundError: No module named 'services.mtafiti.detectors'
+
+tests/invariants/test_mtafiti_gpu_discovery_pii_detector.py:136: ModuleNotFoundError
+_____ test_pii_detector_recognises_canonical_shapes[row3-expected_kinds3] ______
+
+row = {'col': 'https://weego.example.com/u/42'}, expected_kinds = {'pii.url'}
+
+    @pytest.mark.parametrize(
+        "row, expected_kinds",
+        [
+            ({"col": "alice@example.com"}, {"pii.email"}),
+            ({"col": "+254712345678"}, {"pii.phone"}),
+            ({"col": "10.0.0.42"}, {"pii.ipv4"}),
+            ({"col": "https://weego.example.com/u/42"}, {"pii.url"}),
+            (
+                {"a": "user@site.io", "b": "+18005551212", "c": "203.0.113.7"},
+                {"pii.email", "pii.phone", "pii.ipv4"},
+            ),
+        ],
+    )
+    def test_pii_detector_recognises_canonical_shapes(row, expected_kinds):
+        """Owner-relevant PII shapes present in Weego/USSD estate must be caught."""
+>       from services.mtafiti.detectors.pii_detector import detect_pii
+E       ModuleNotFoundError: No module named 'services.mtafiti.detectors'
+
+tests/invariants/test_mtafiti_gpu_discovery_pii_detector.py:136: ModuleNotFoundError
+_____ test_pii_detector_recognises_canonical_shapes[row4-expected_kinds4] ______
+
+row = {'a': 'user@site.io', 'b': '+18005551212', 'c': '203.0.113.7'}
+expected_kinds = {'pii.email', 'pii.ipv4', 'pii.phone'}
+
+    @pytest.mark.parametrize(
+        "row, expected_kinds",
+        [
+            ({"col": "alice@example.com"}, {"pii.email"}),
+            ({"col": "+254712345678"}, {"pii.phone"}),
+            ({"col": "10.0.0.42"}, {"pii.ipv4"}),
+            ({"col": "https://weego.example.com/u/42"}, {"pii.url"}),
+            (
+                {"a": "user@site.io", "b": "+18005551212", "c": "203.0.113.7"},
+                {"pii.email", "pii.phone", "pii.ipv4"},
+            ),
+        ],
+    )
+    def test_pii_detector_recognises_canonical_shapes(row, expected_kinds):
+        """Owner-relevant PII shapes present in Weego/USSD estate must be caught."""
+>       from services.mtafiti.detectors.pii_detector import detect_pii
+E       ModuleNotFoundError: No module named 'services.mtafiti.detectors'
+
+tests/invariants/test_mtafiti_gpu_discovery_pii_detector.py:136: ModuleNotFoundError
+______________ test_pii_signal_names_never_contain_verdict_token _______________
+
+    def test_pii_signal_names_never_contain_verdict_token():
+        """Per-detector re-assertion of the detect-not-decide wall."""
+        try:
+>           from services.mtafiti.detectors.pii_detector import detect_pii
+E           ModuleNotFoundError: No module named 'services.mtafiti.detectors'
+
+tests/invariants/test_mtafiti_gpu_discovery_pii_detector.py:152: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+    def test_pii_signal_names_never_contain_verdict_token():
+        """Per-detector re-assertion of the detect-not-decide wall."""
+        try:
+            from services.mtafiti.detectors.pii_detector import detect_pii
+        except ImportError as e:
+>           pytest.fail(f"CP2 kernel missing: {e}")
+E           Failed: CP2 kernel missing: No module named 'services.mtafiti.detectors'
+
+tests/invariants/test_mtafiti_gpu_discovery_pii_detector.py:154: Failed
+___________ test_pii_detector_no_false_alarms_on_pii_free_rows[row0] ___________
+
+row = {}
+
+    @pytest.mark.parametrize(
+        "row",
+        [
+            {},
+            {"empty": ""},
+            {"only_int": 42, "only_bool": True, "only_none": None},
+            {"note": "no personally identifying information here"},
+        ],
+    )
+    def test_pii_detector_no_false_alarms_on_pii_free_rows(row):
+        """False-alarm class — pure-scalar / empty rows must not fabricate signals."""
+>       from services.mtafiti.detectors.pii_detector import detect_pii
+E       ModuleNotFoundError: No module named 'services.mtafiti.detectors'
+
+tests/invariants/test_mtafiti_gpu_discovery_pii_detector.py:187: ModuleNotFoundError
+___________ test_pii_detector_no_false_alarms_on_pii_free_rows[row1] ___________
+
+row = {'empty': ''}
+
+    @pytest.mark.parametrize(
+        "row",
+        [
+            {},
+            {"empty": ""},
+            {"only_int": 42, "only_bool": True, "only_none": None},
+            {"note": "no personally identifying information here"},
+        ],
+    )
+    def test_pii_detector_no_false_alarms_on_pii_free_rows(row):
+        """False-alarm class — pure-scalar / empty rows must not fabricate signals."""
+>       from services.mtafiti.detectors.pii_detector import detect_pii
+E       ModuleNotFoundError: No module named 'services.mtafiti.detectors'
+
+tests/invariants/test_mtafiti_gpu_discovery_pii_detector.py:187: ModuleNotFoundError
+___________ test_pii_detector_no_false_alarms_on_pii_free_rows[row2] ___________
+
+row = {'only_bool': True, 'only_int': 42, 'only_none': None}
+
+    @pytest.mark.parametrize(
+        "row",
+        [
+            {},
+            {"empty": ""},
+            {"only_int": 42, "only_bool": True, "only_none": None},
+            {"note": "no personally identifying information here"},
+        ],
+    )
+    def test_pii_detector_no_false_alarms_on_pii_free_rows(row):
+        """False-alarm class — pure-scalar / empty rows must not fabricate signals."""
+>       from services.mtafiti.detectors.pii_detector import detect_pii
+E       ModuleNotFoundError: No module named 'services.mtafiti.detectors'
+
+tests/invariants/test_mtafiti_gpu_discovery_pii_detector.py:187: ModuleNotFoundError
+___________ test_pii_detector_no_false_alarms_on_pii_free_rows[row3] ___________
+
+row = {'note': 'no personally identifying information here'}
+
+    @pytest.mark.parametrize(
+        "row",
+        [
+            {},
+            {"empty": ""},
+            {"only_int": 42, "only_bool": True, "only_none": None},
+            {"note": "no personally identifying information here"},
+        ],
+    )
+    def test_pii_detector_no_false_alarms_on_pii_free_rows(row):
+        """False-alarm class — pure-scalar / empty rows must not fabricate signals."""
+>       from services.mtafiti.detectors.pii_detector import detect_pii
+E       ModuleNotFoundError: No module named 'services.mtafiti.detectors'
+
+tests/invariants/test_mtafiti_gpu_discovery_pii_detector.py:187: ModuleNotFoundError
+___________________ test_pii_redaction_guard_module_surface ____________________
+
+    def test_pii_redaction_guard_module_surface():
+        try:
+>           from services.mtafiti.detectors.pii_redaction_guard import (
+                redact_row,
+                assert_no_raw_pii,
+                RawPiiLeakForbidden,
+            )
+E           ModuleNotFoundError: No module named 'services.mtafiti.detectors'
+
+tests/invariants/test_mtafiti_gpu_discovery_pii_redaction_guard.py:43: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+    def test_pii_redaction_guard_module_surface():
+        try:
+            from services.mtafiti.detectors.pii_redaction_guard import (
+                redact_row,
+                assert_no_raw_pii,
+                RawPiiLeakForbidden,
+            )
+        except ImportError as e:
+>           pytest.fail(
+                f"CP2 kernel missing: services.mtafiti.detectors.pii_redaction_guard — {e}"
+            )
+E           Failed: CP2 kernel missing: services.mtafiti.detectors.pii_redaction_guard — No module named 'services.mtafiti.detectors'
+
+tests/invariants/test_mtafiti_gpu_discovery_pii_redaction_guard.py:49: Failed
+_________________________ test_pii_hash_salt_is_pinned _________________________
+
+    def test_pii_hash_salt_is_pinned():
+        """Deterministic hashing needs a stable salt banked in constants."""
+        try:
+>           from services.mtafiti.gpu_discovery_constants import MTAFITI_PII_HASH_SALT
+E           ImportError: cannot import name 'MTAFITI_PII_HASH_SALT' from 'services.mtafiti.gpu_discovery_constants' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/mtafiti/gpu_discovery_constants.py)
+
+tests/invariants/test_mtafiti_gpu_discovery_pii_redaction_guard.py:63: ImportError
+
+During handling of the above exception, another exception occurred:
+
+    def test_pii_hash_salt_is_pinned():
+        """Deterministic hashing needs a stable salt banked in constants."""
+        try:
+            from services.mtafiti.gpu_discovery_constants import MTAFITI_PII_HASH_SALT
+        except ImportError as e:
+>           pytest.fail(
+                f"CP2 kernel missing: services.mtafiti.gpu_discovery_constants.MTAFITI_PII_HASH_SALT — {e}"
+            )
+E           Failed: CP2 kernel missing: services.mtafiti.gpu_discovery_constants.MTAFITI_PII_HASH_SALT — cannot import name 'MTAFITI_PII_HASH_SALT' from 'services.mtafiti.gpu_discovery_constants' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/mtafiti/gpu_discovery_constants.py)
+
+tests/invariants/test_mtafiti_gpu_discovery_pii_redaction_guard.py:65: Failed
+____________ test_redact_row_replaces_pii_with_deterministic_token _____________
+
+    def test_redact_row_replaces_pii_with_deterministic_token():
+        try:
+>           from services.mtafiti.detectors.pii_redaction_guard import redact_row
+E           ModuleNotFoundError: No module named 'services.mtafiti.detectors'
+
+tests/invariants/test_mtafiti_gpu_discovery_pii_redaction_guard.py:79: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+    def test_redact_row_replaces_pii_with_deterministic_token():
+        try:
+            from services.mtafiti.detectors.pii_redaction_guard import redact_row
+        except ImportError as e:
+>           pytest.fail(f"CP2 kernel missing: {e}")
+E           Failed: CP2 kernel missing: No module named 'services.mtafiti.detectors'
+
+tests/invariants/test_mtafiti_gpu_discovery_pii_redaction_guard.py:81: Failed
+_______________________ test_redact_row_is_deterministic _______________________
+
+    def test_redact_row_is_deterministic():
+>       from services.mtafiti.detectors.pii_redaction_guard import redact_row
+E       ModuleNotFoundError: No module named 'services.mtafiti.detectors'
+
+tests/invariants/test_mtafiti_gpu_discovery_pii_redaction_guard.py:106: ModuleNotFoundError
+________________________ test_redact_row_is_idempotent _________________________
+
+    def test_redact_row_is_idempotent():
+>       from services.mtafiti.detectors.pii_redaction_guard import redact_row
+E       ModuleNotFoundError: No module named 'services.mtafiti.detectors'
+
+tests/invariants/test_mtafiti_gpu_discovery_pii_redaction_guard.py:117: ModuleNotFoundError
+______________ test_assert_no_raw_pii_raises_on_raw_pii[payload0] ______________
+
+payload = {'leaked_email': 'eve@evil.com'}
+
+    @pytest.mark.parametrize(
+        "payload",
+        [
+            {"leaked_email": "eve@evil.com"},
+            {"note": "call me at +254701234567"},
+            {"log_line": "connection from 203.0.113.42 rejected"},
+            {"nested": {"deep": {"email": "hidden@stash.io"}}},
+            [{"row_email": "row@x.y"}, {"row_phone": "+18001112222"}],
+            "raw string with email r@s.t inside",
+        ],
+    )
+    def test_assert_no_raw_pii_raises_on_raw_pii(payload):
+>       from services.mtafiti.detectors.pii_redaction_guard import (
+            assert_no_raw_pii,
+            RawPiiLeakForbidden,
+        )
+E       ModuleNotFoundError: No module named 'services.mtafiti.detectors'
+
+tests/invariants/test_mtafiti_gpu_discovery_pii_redaction_guard.py:141: ModuleNotFoundError
+______________ test_assert_no_raw_pii_raises_on_raw_pii[payload1] ______________
+
+payload = {'note': 'call me at +254701234567'}
+
+    @pytest.mark.parametrize(
+        "payload",
+        [
+            {"leaked_email": "eve@evil.com"},
+            {"note": "call me at +254701234567"},
+            {"log_line": "connection from 203.0.113.42 rejected"},
+            {"nested": {"deep": {"email": "hidden@stash.io"}}},
+            [{"row_email": "row@x.y"}, {"row_phone": "+18001112222"}],
+            "raw string with email r@s.t inside",
+        ],
+    )
+    def test_assert_no_raw_pii_raises_on_raw_pii(payload):
+>       from services.mtafiti.detectors.pii_redaction_guard import (
+            assert_no_raw_pii,
+            RawPiiLeakForbidden,
+        )
+E       ModuleNotFoundError: No module named 'services.mtafiti.detectors'
+
+tests/invariants/test_mtafiti_gpu_discovery_pii_redaction_guard.py:141: ModuleNotFoundError
+______________ test_assert_no_raw_pii_raises_on_raw_pii[payload2] ______________
+
+payload = {'log_line': 'connection from 203.0.113.42 rejected'}
+
+    @pytest.mark.parametrize(
+        "payload",
+        [
+            {"leaked_email": "eve@evil.com"},
+            {"note": "call me at +254701234567"},
+            {"log_line": "connection from 203.0.113.42 rejected"},
+            {"nested": {"deep": {"email": "hidden@stash.io"}}},
+            [{"row_email": "row@x.y"}, {"row_phone": "+18001112222"}],
+            "raw string with email r@s.t inside",
+        ],
+    )
+    def test_assert_no_raw_pii_raises_on_raw_pii(payload):
+>       from services.mtafiti.detectors.pii_redaction_guard import (
+            assert_no_raw_pii,
+            RawPiiLeakForbidden,
+        )
+E       ModuleNotFoundError: No module named 'services.mtafiti.detectors'
+
+tests/invariants/test_mtafiti_gpu_discovery_pii_redaction_guard.py:141: ModuleNotFoundError
+______________ test_assert_no_raw_pii_raises_on_raw_pii[payload3] ______________
+
+payload = {'nested': {'deep': {'email': 'hidden@stash.io'}}}
+
+    @pytest.mark.parametrize(
+        "payload",
+        [
+            {"leaked_email": "eve@evil.com"},
+            {"note": "call me at +254701234567"},
+            {"log_line": "connection from 203.0.113.42 rejected"},
+            {"nested": {"deep": {"email": "hidden@stash.io"}}},
+            [{"row_email": "row@x.y"}, {"row_phone": "+18001112222"}],
+            "raw string with email r@s.t inside",
+        ],
+    )
+    def test_assert_no_raw_pii_raises_on_raw_pii(payload):
+>       from services.mtafiti.detectors.pii_redaction_guard import (
+            assert_no_raw_pii,
+            RawPiiLeakForbidden,
+        )
+E       ModuleNotFoundError: No module named 'services.mtafiti.detectors'
+
+tests/invariants/test_mtafiti_gpu_discovery_pii_redaction_guard.py:141: ModuleNotFoundError
+______________ test_assert_no_raw_pii_raises_on_raw_pii[payload4] ______________
+
+payload = [{'row_email': 'row@x.y'}, {'row_phone': '+18001112222'}]
+
+    @pytest.mark.parametrize(
+        "payload",
+        [
+            {"leaked_email": "eve@evil.com"},
+            {"note": "call me at +254701234567"},
+            {"log_line": "connection from 203.0.113.42 rejected"},
+            {"nested": {"deep": {"email": "hidden@stash.io"}}},
+            [{"row_email": "row@x.y"}, {"row_phone": "+18001112222"}],
+            "raw string with email r@s.t inside",
+        ],
+    )
+    def test_assert_no_raw_pii_raises_on_raw_pii(payload):
+>       from services.mtafiti.detectors.pii_redaction_guard import (
+            assert_no_raw_pii,
+            RawPiiLeakForbidden,
+        )
+E       ModuleNotFoundError: No module named 'services.mtafiti.detectors'
+
+tests/invariants/test_mtafiti_gpu_discovery_pii_redaction_guard.py:141: ModuleNotFoundError
+_ test_assert_no_raw_pii_raises_on_raw_pii[raw string with email r@s.t inside] _
+
+payload = 'raw string with email r@s.t inside'
+
+    @pytest.mark.parametrize(
+        "payload",
+        [
+            {"leaked_email": "eve@evil.com"},
+            {"note": "call me at +254701234567"},
+            {"log_line": "connection from 203.0.113.42 rejected"},
+            {"nested": {"deep": {"email": "hidden@stash.io"}}},
+            [{"row_email": "row@x.y"}, {"row_phone": "+18001112222"}],
+            "raw string with email r@s.t inside",
+        ],
+    )
+    def test_assert_no_raw_pii_raises_on_raw_pii(payload):
+>       from services.mtafiti.detectors.pii_redaction_guard import (
+            assert_no_raw_pii,
+            RawPiiLeakForbidden,
+        )
+E       ModuleNotFoundError: No module named 'services.mtafiti.detectors'
+
+tests/invariants/test_mtafiti_gpu_discovery_pii_redaction_guard.py:141: ModuleNotFoundError
+___________ test_assert_no_raw_pii_silent_on_clean_payload[payload0] ___________
+
+payload = {}
+
+    @pytest.mark.parametrize(
+        "payload",
+        [
+            {},
+            {"note": "no personally identifying information here"},
+            {"count": 42, "avg": 3.14},
+            [{"a": 1}, {"b": 2}],
+            "just some prose",
+        ],
+    )
+    def test_assert_no_raw_pii_silent_on_clean_payload(payload):
+>       from services.mtafiti.detectors.pii_redaction_guard import assert_no_raw_pii
+E       ModuleNotFoundError: No module named 'services.mtafiti.detectors'
+
+tests/invariants/test_mtafiti_gpu_discovery_pii_redaction_guard.py:163: ModuleNotFoundError
+___________ test_assert_no_raw_pii_silent_on_clean_payload[payload1] ___________
+
+payload = {'note': 'no personally identifying information here'}
+
+    @pytest.mark.parametrize(
+        "payload",
+        [
+            {},
+            {"note": "no personally identifying information here"},
+            {"count": 42, "avg": 3.14},
+            [{"a": 1}, {"b": 2}],
+            "just some prose",
+        ],
+    )
+    def test_assert_no_raw_pii_silent_on_clean_payload(payload):
+>       from services.mtafiti.detectors.pii_redaction_guard import assert_no_raw_pii
+E       ModuleNotFoundError: No module named 'services.mtafiti.detectors'
+
+tests/invariants/test_mtafiti_gpu_discovery_pii_redaction_guard.py:163: ModuleNotFoundError
+___________ test_assert_no_raw_pii_silent_on_clean_payload[payload2] ___________
+
+payload = {'avg': 3.14, 'count': 42}
+
+    @pytest.mark.parametrize(
+        "payload",
+        [
+            {},
+            {"note": "no personally identifying information here"},
+            {"count": 42, "avg": 3.14},
+            [{"a": 1}, {"b": 2}],
+            "just some prose",
+        ],
+    )
+    def test_assert_no_raw_pii_silent_on_clean_payload(payload):
+>       from services.mtafiti.detectors.pii_redaction_guard import assert_no_raw_pii
+E       ModuleNotFoundError: No module named 'services.mtafiti.detectors'
+
+tests/invariants/test_mtafiti_gpu_discovery_pii_redaction_guard.py:163: ModuleNotFoundError
+___________ test_assert_no_raw_pii_silent_on_clean_payload[payload3] ___________
+
+payload = [{'a': 1}, {'b': 2}]
+
+    @pytest.mark.parametrize(
+        "payload",
+        [
+            {},
+            {"note": "no personally identifying information here"},
+            {"count": 42, "avg": 3.14},
+            [{"a": 1}, {"b": 2}],
+            "just some prose",
+        ],
+    )
+    def test_assert_no_raw_pii_silent_on_clean_payload(payload):
+>       from services.mtafiti.detectors.pii_redaction_guard import assert_no_raw_pii
+E       ModuleNotFoundError: No module named 'services.mtafiti.detectors'
+
+tests/invariants/test_mtafiti_gpu_discovery_pii_redaction_guard.py:163: ModuleNotFoundError
+_______ test_assert_no_raw_pii_silent_on_clean_payload[just some prose] ________
+
+payload = 'just some prose'
+
+    @pytest.mark.parametrize(
+        "payload",
+        [
+            {},
+            {"note": "no personally identifying information here"},
+            {"count": 42, "avg": 3.14},
+            [{"a": 1}, {"b": 2}],
+            "just some prose",
+        ],
+    )
+    def test_assert_no_raw_pii_silent_on_clean_payload(payload):
+>       from services.mtafiti.detectors.pii_redaction_guard import assert_no_raw_pii
+E       ModuleNotFoundError: No module named 'services.mtafiti.detectors'
+
+tests/invariants/test_mtafiti_gpu_discovery_pii_redaction_guard.py:163: ModuleNotFoundError
+__________________ test_redacted_row_passes_assert_no_raw_pii __________________
+
+    def test_redacted_row_passes_assert_no_raw_pii():
+        """Round-trip safety: what redact_row emits must be safe to persist."""
+>       from services.mtafiti.detectors.pii_redaction_guard import (
+            redact_row,
+            assert_no_raw_pii,
+        )
+E       ModuleNotFoundError: No module named 'services.mtafiti.detectors'
+
+tests/invariants/test_mtafiti_gpu_discovery_pii_redaction_guard.py:173: ModuleNotFoundError
+_____________________ test_redaction_hash_uses_pinned_salt _____________________
+
+    def test_redaction_hash_uses_pinned_salt():
+        """Redaction hash must fold in MTAFITI_PII_HASH_SALT — verifies by
+        recomputing the expected token with the constant salt and checking match."""
+>       from services.mtafiti.detectors.pii_redaction_guard import redact_row
+E       ModuleNotFoundError: No module named 'services.mtafiti.detectors'
+
+tests/invariants/test_mtafiti_gpu_discovery_pii_redaction_guard.py:194: ModuleNotFoundError
+=============================== warnings summary ===============================
+tests/invariants/test_8_ext.py: 13 warnings
+tests/invariants/test_artifact_store.py: 2 warnings
+tests/invariants/test_connect_ui1c_gates.py: 9 warnings
+tests/invariants/test_engineer_key_grant_e2_taxonomy.py: 4 warnings
+tests/invariants/test_engineer_key_grant_ledger.py: 2 warnings
+tests/invariants/test_govern_g_g1_to_g_g8.py: 6 warnings
+tests/invariants/test_govern_ui1b_gates.py: 15 warnings
+tests/invariants/test_master_admin_auth_reconciliation.py: 10 warnings
+tests/invariants/test_master_admin_pending_seams.py: 1 warning
+tests/invariants/test_master_admin_recent_actions.py: 4 warnings
+tests/invariants/test_master_admin_tier_lock_path_a_ledger.py: 3 warnings
+tests/invariants/test_memory_engineer_key_grant_e2e_propagation.py: 7 warnings
+tests/invariants/test_memory_observability_o_g1_to_o_g6.py: 6 warnings
+tests/invariants/test_memory_service_m_g1_to_m_g9.py: 4 warnings
+tests/invariants/test_p2_buildable_now.py: 3 warnings
+tests/invariants/test_phase3_subcycle1_gates.py: 7 warnings
+tests/invariants/test_phase_6_stage_b_economics.py: 1 warning
+tests/invariants/test_phase_8_b_1_auth_and_shims.py: 3 warnings
+tests/invariants/test_phase_8_b_2_operator_and_scope_gate.py: 7 warnings
+tests/invariants/test_phase_8_b_5a_compliance.py: 15 warnings
+tests/invariants/test_phase_8_b_5b.py: 11 warnings
+tests/invariants/test_phase_8_seam_3_sub_stage_1.py: 3 warnings
+tests/invariants/test_phase_8_seam_3_sub_stage_2.py: 13 warnings
+tests/invariants/test_phase_8_seam_3_sub_stage_3.py: 15 warnings
+tests/invariants/test_phase_9_sub_stage_9_1_and_9_3.py: 16 warnings
+tests/invariants/test_pricing_paths_b_honest_501.py: 6 warnings
+tests/invariants/test_registry_prove_ui1d_gates.py: 15 warnings
+tests/invariants/test_team_ui1e_gates.py: 12 warnings
+tests/invariants/test_trace_lens_cross_engine_correlation.py: 3 warnings
+tests/invariants/test_trace_lens_readonly.py: 1 warning
+tests/invariants/test_use_data_commission_verdict.py: 4 warnings
+  /root/.venv/lib/python3.11/site-packages/jwt/api_jwt.py:147: InsecureKeyLengthWarning: The HMAC key is 30 bytes long, which is below the minimum recommended length of 32 bytes for SHA256. See RFC 7518 Section 3.2.
+    return self._jws.encode(
+
+tests/invariants/test_8_ext.py: 13 warnings
+tests/invariants/test_artifact_store.py: 2 warnings
+tests/invariants/test_connect_ui1c_gates.py: 9 warnings
+tests/invariants/test_engineer_key_grant_e2_taxonomy.py: 4 warnings
+tests/invariants/test_engineer_key_grant_ledger.py: 2 warnings
+tests/invariants/test_govern_g_g1_to_g_g8.py: 6 warnings
+tests/invariants/test_govern_ui1b_gates.py: 15 warnings
+tests/invariants/test_master_admin_auth_reconciliation.py: 10 warnings
+tests/invariants/test_master_admin_pending_seams.py: 1 warning
+tests/invariants/test_master_admin_recent_actions.py: 4 warnings
+tests/invariants/test_master_admin_tier_lock_path_a_ledger.py: 3 warnings
+tests/invariants/test_memory_engineer_key_grant_e2e_propagation.py: 6 warnings
+tests/invariants/test_memory_observability_o_g1_to_o_g6.py: 6 warnings
+tests/invariants/test_memory_service_m_g1_to_m_g9.py: 4 warnings
+tests/invariants/test_p2_buildable_now.py: 3 warnings
+tests/invariants/test_phase3_subcycle1_gates.py: 7 warnings
+tests/invariants/test_phase_6_stage_b_economics.py: 1 warning
+tests/invariants/test_phase_8_b_1_auth_and_shims.py: 3 warnings
+tests/invariants/test_phase_8_b_2_operator_and_scope_gate.py: 7 warnings
+tests/invariants/test_phase_8_b_5a_compliance.py: 15 warnings
+tests/invariants/test_phase_8_b_5b.py: 11 warnings
+tests/invariants/test_phase_8_seam_3_sub_stage_1.py: 3 warnings
+tests/invariants/test_phase_8_seam_3_sub_stage_2.py: 13 warnings
+tests/invariants/test_phase_8_seam_3_sub_stage_3.py: 15 warnings
+tests/invariants/test_phase_9_sub_stage_9_1_and_9_3.py: 13 warnings
+tests/invariants/test_pricing_paths_b_honest_501.py: 6 warnings
+tests/invariants/test_registry_prove_ui1d_gates.py: 15 warnings
+tests/invariants/test_team_ui1e_gates.py: 12 warnings
+tests/invariants/test_trace_lens_cross_engine_correlation.py: 3 warnings
+tests/invariants/test_trace_lens_readonly.py: 1 warning
+tests/invariants/test_use_data_commission_verdict.py: 4 warnings
+  /root/.venv/lib/python3.11/site-packages/jwt/api_jwt.py:368: InsecureKeyLengthWarning: The HMAC key is 30 bytes long, which is below the minimum recommended length of 32 bytes for SHA256. See RFC 7518 Section 3.2.
+    decoded = self.decode_complete(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/invariants/test_mtafiti_gpu_discovery_pii_detector.py::test_pii_detector_module_surface
+FAILED tests/invariants/test_mtafiti_gpu_discovery_pii_detector.py::test_pii_detector_emits_detection_signals_only
+FAILED tests/invariants/test_mtafiti_gpu_discovery_pii_detector.py::test_pii_signals_are_evidence_class_detected
+FAILED tests/invariants/test_mtafiti_gpu_discovery_pii_detector.py::test_pii_detector_is_deterministic
+FAILED tests/invariants/test_mtafiti_gpu_discovery_pii_detector.py::test_pii_detector_recognises_canonical_shapes[row0-expected_kinds0]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_pii_detector.py::test_pii_detector_recognises_canonical_shapes[row1-expected_kinds1]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_pii_detector.py::test_pii_detector_recognises_canonical_shapes[row2-expected_kinds2]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_pii_detector.py::test_pii_detector_recognises_canonical_shapes[row3-expected_kinds3]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_pii_detector.py::test_pii_detector_recognises_canonical_shapes[row4-expected_kinds4]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_pii_detector.py::test_pii_signal_names_never_contain_verdict_token
+FAILED tests/invariants/test_mtafiti_gpu_discovery_pii_detector.py::test_pii_detector_no_false_alarms_on_pii_free_rows[row0]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_pii_detector.py::test_pii_detector_no_false_alarms_on_pii_free_rows[row1]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_pii_detector.py::test_pii_detector_no_false_alarms_on_pii_free_rows[row2]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_pii_detector.py::test_pii_detector_no_false_alarms_on_pii_free_rows[row3]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_pii_redaction_guard.py::test_pii_redaction_guard_module_surface
+FAILED tests/invariants/test_mtafiti_gpu_discovery_pii_redaction_guard.py::test_pii_hash_salt_is_pinned
+FAILED tests/invariants/test_mtafiti_gpu_discovery_pii_redaction_guard.py::test_redact_row_replaces_pii_with_deterministic_token
+FAILED tests/invariants/test_mtafiti_gpu_discovery_pii_redaction_guard.py::test_redact_row_is_deterministic
+FAILED tests/invariants/test_mtafiti_gpu_discovery_pii_redaction_guard.py::test_redact_row_is_idempotent
+FAILED tests/invariants/test_mtafiti_gpu_discovery_pii_redaction_guard.py::test_assert_no_raw_pii_raises_on_raw_pii[payload0]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_pii_redaction_guard.py::test_assert_no_raw_pii_raises_on_raw_pii[payload1]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_pii_redaction_guard.py::test_assert_no_raw_pii_raises_on_raw_pii[payload2]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_pii_redaction_guard.py::test_assert_no_raw_pii_raises_on_raw_pii[payload3]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_pii_redaction_guard.py::test_assert_no_raw_pii_raises_on_raw_pii[payload4]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_pii_redaction_guard.py::test_assert_no_raw_pii_raises_on_raw_pii[raw string with email r@s.t inside]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_pii_redaction_guard.py::test_assert_no_raw_pii_silent_on_clean_payload[payload0]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_pii_redaction_guard.py::test_assert_no_raw_pii_silent_on_clean_payload[payload1]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_pii_redaction_guard.py::test_assert_no_raw_pii_silent_on_clean_payload[payload2]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_pii_redaction_guard.py::test_assert_no_raw_pii_silent_on_clean_payload[payload3]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_pii_redaction_guard.py::test_assert_no_raw_pii_silent_on_clean_payload[just some prose]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_pii_redaction_guard.py::test_redacted_row_passes_assert_no_raw_pii
+FAILED tests/invariants/test_mtafiti_gpu_discovery_pii_redaction_guard.py::test_redaction_hash_uses_pinned_salt
+32 failed, 3166 passed, 1 skipped, 438 warnings in 101.50s (0:01:41)

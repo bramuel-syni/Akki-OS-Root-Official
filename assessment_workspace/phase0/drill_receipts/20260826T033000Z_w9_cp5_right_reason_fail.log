@@ -1,0 +1,138 @@
+/root/.venv/lib/python3.11/site-packages/pytest_asyncio/plugin.py:208: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.3.3, pluggy-1.6.0
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: xdist-3.8.0, anyio-4.14.2, asyncio-0.24.0
+asyncio: mode=Mode.AUTO, default_loop_scope=None
+collected 11 items
+
+backend/tests/invariants/test_w9_cp5_containment.py FFFFFFFFFFF          [100%]
+
+=================================== FAILURES ===================================
+______________________ test_containment_v0_contract_shape ______________________
+
+    def test_containment_v0_contract_shape():
+>       from contracts.containment import Containment_v0
+E       ModuleNotFoundError: No module named 'contracts.containment'
+
+backend/tests/invariants/test_w9_cp5_containment.py:63: ModuleNotFoundError
+_____________ test_containment_v0_refuses_missing_expiry_by_shape ______________
+
+    def test_containment_v0_refuses_missing_expiry_by_shape():
+        """Canon 8 §17: state without expiry IS a defect. expires_at is
+        required (min_length=1)."""
+>       from contracts.containment import Containment_v0
+E       ModuleNotFoundError: No module named 'contracts.containment'
+
+backend/tests/invariants/test_w9_cp5_containment.py:71: ModuleNotFoundError
+_____________________ test_containment_bound_scope_grammar _____________________
+
+    def test_containment_bound_scope_grammar():
+>       from contracts.containment import Containment_v0
+E       ModuleNotFoundError: No module named 'contracts.containment'
+
+backend/tests/invariants/test_w9_cp5_containment.py:77: ModuleNotFoundError
+______________ test_containment_reconciliation_v0_contract_shape _______________
+
+    def test_containment_reconciliation_v0_contract_shape():
+>       from contracts.containment import ContainmentReconciliation_v0
+E       ModuleNotFoundError: No module named 'contracts.containment'
+
+backend/tests/invariants/test_w9_cp5_containment.py:90: ModuleNotFoundError
+_______________ test_containment_reconciliation_outcome_grammar ________________
+
+    def test_containment_reconciliation_outcome_grammar():
+>       from contracts.containment import ContainmentReconciliation_v0
+E       ModuleNotFoundError: No module named 'contracts.containment'
+
+backend/tests/invariants/test_w9_cp5_containment.py:96: ModuleNotFoundError
+________________ test_start_containment_refuses_without_verdict ________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-132/test_start_containment_refuses0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xff1570d53ad0>
+
+    def test_start_containment_refuses_without_verdict(tmp_path, monkeypatch):
+        """Seam law (Canon 8 §6): containment is a Mkono action; requires
+        a verdict on record."""
+>       from services.watch.containment import start_containment
+E       ModuleNotFoundError: No module named 'services.watch.containment'
+
+backend/tests/invariants/test_w9_cp5_containment.py:108: ModuleNotFoundError
+____________________ test_start_containment_writes_to_disk _____________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-132/test_start_containment_writes_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xff1570e66f90>
+
+    def test_start_containment_writes_to_disk(tmp_path, monkeypatch):
+        from services.watch.macho import mint_verdict
+>       from services.watch.containment import start_containment, load_containments
+E       ModuleNotFoundError: No module named 'services.watch.containment'
+
+backend/tests/invariants/test_w9_cp5_containment.py:117: ModuleNotFoundError
+_________________ test_start_containment_refuses_double_start __________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-132/test_start_containment_refuses1')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xff1570e67510>
+
+    def test_start_containment_refuses_double_start(tmp_path, monkeypatch):
+        from services.watch.macho import mint_verdict
+>       from services.watch.containment import start_containment
+E       ModuleNotFoundError: No module named 'services.watch.containment'
+
+backend/tests/invariants/test_w9_cp5_containment.py:137: ModuleNotFoundError
+____________ test_reconcile_containment_refuses_missing_containment ____________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-132/test_reconcile_containment_ref0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xff1570e65310>
+
+    def test_reconcile_containment_refuses_missing_containment(tmp_path, monkeypatch):
+>       from services.watch.containment import reconcile_containment
+E       ModuleNotFoundError: No module named 'services.watch.containment'
+
+backend/tests/invariants/test_w9_cp5_containment.py:156: ModuleNotFoundError
+__________________ test_reconcile_containment_records_to_disk __________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-132/test_reconcile_containment_rec0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xff1571756150>
+
+    def test_reconcile_containment_records_to_disk(tmp_path, monkeypatch):
+        from services.watch.macho import mint_verdict
+>       from services.watch.containment import (
+            start_containment, reconcile_containment, load_reconciliations,
+        )
+E       ModuleNotFoundError: No module named 'services.watch.containment'
+
+backend/tests/invariants/test_w9_cp5_containment.py:165: ModuleNotFoundError
+_____________ test_reconcile_containment_refuses_double_reconcile ______________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-132/test_reconcile_containment_ref1')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xff1570d72b10>
+
+    def test_reconcile_containment_refuses_double_reconcile(tmp_path, monkeypatch):
+        """Canon 8 §18: reconciliation happens ONCE per containment (a
+        second reconciliation is a defect · Canon 8 §43 correction-by-new-
+        entry-only)."""
+        from services.watch.macho import mint_verdict
+>       from services.watch.containment import (
+            start_containment, reconcile_containment,
+        )
+E       ModuleNotFoundError: No module named 'services.watch.containment'
+
+backend/tests/invariants/test_w9_cp5_containment.py:192: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED backend/tests/invariants/test_w9_cp5_containment.py::test_containment_v0_contract_shape
+FAILED backend/tests/invariants/test_w9_cp5_containment.py::test_containment_v0_refuses_missing_expiry_by_shape
+FAILED backend/tests/invariants/test_w9_cp5_containment.py::test_containment_bound_scope_grammar
+FAILED backend/tests/invariants/test_w9_cp5_containment.py::test_containment_reconciliation_v0_contract_shape
+FAILED backend/tests/invariants/test_w9_cp5_containment.py::test_containment_reconciliation_outcome_grammar
+FAILED backend/tests/invariants/test_w9_cp5_containment.py::test_start_containment_refuses_without_verdict
+FAILED backend/tests/invariants/test_w9_cp5_containment.py::test_start_containment_writes_to_disk
+FAILED backend/tests/invariants/test_w9_cp5_containment.py::test_start_containment_refuses_double_start
+FAILED backend/tests/invariants/test_w9_cp5_containment.py::test_reconcile_containment_refuses_missing_containment
+FAILED backend/tests/invariants/test_w9_cp5_containment.py::test_reconcile_containment_records_to_disk
+FAILED backend/tests/invariants/test_w9_cp5_containment.py::test_reconcile_containment_refuses_double_reconcile
+============================== 11 failed in 0.15s ==============================

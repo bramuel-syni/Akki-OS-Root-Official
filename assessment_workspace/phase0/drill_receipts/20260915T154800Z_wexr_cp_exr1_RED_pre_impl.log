@@ -1,0 +1,30 @@
+    def test_wexr_cp_exr1_named_persons_tokenized_in_csv_and_pdf():
+        """R-15(a) discharge: when `named_persons` is non-empty, rendered CSV
+        and PDF contain placeholder tokens `<TOKEN_NP_00>`/`<TOKEN_NP_01>` in
+        place of the raw names; the raw names DO NOT appear in the payload
+        bytes."""
+>       from services.data_suite_v2.export_render import render_export_and_release
+E       ModuleNotFoundError: No module named 'services.data_suite_v2.export_render'
+
+tests/invariants/test_wexr_cp_exr1_render_export_and_release.py:224: ModuleNotFoundError
+___________ test_wexr_cp_exr1_csv_render_deterministic_between_calls ___________
+
+    def test_wexr_cp_exr1_csv_render_deterministic_between_calls():
+        """CSV payload is byte-identical between two calls with byte-identical
+        inputs (no timestamps embedded in the CSV payload).  The debit_id may
+        differ (carries at_utc); the payload does not."""
+>       from services.data_suite_v2.export_render import render_export_and_release
+E       ModuleNotFoundError: No module named 'services.data_suite_v2.export_render'
+
+tests/invariants/test_wexr_cp_exr1_render_export_and_release.py:262: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wexr_cp_exr1_render_export_and_release.py::test_wexr_cp_exr1_module_fabric
+FAILED tests/invariants/test_wexr_cp_exr1_render_export_and_release.py::test_wexr_cp_exr1_closed_set_on_export_kind
+FAILED tests/invariants/test_wexr_cp_exr1_render_export_and_release.py::test_wexr_cp_exr1_admit_export_refusal_propagates_no_debit_no_payload
+FAILED tests/invariants/test_wexr_cp_exr1_render_export_and_release.py::test_wexr_cp_exr1_receipt_missing_refused_no_payload_no_debit
+FAILED tests/invariants/test_wexr_cp_exr1_render_export_and_release.py::test_wexr_cp_exr1_budget_state_default_pending_override_refuses
+FAILED tests/invariants/test_wexr_cp_exr1_render_export_and_release.py::test_wexr_cp_exr1_csv_render_carries_all_four_dap_a10_carriers_verbatim
+FAILED tests/invariants/test_wexr_cp_exr1_render_export_and_release.py::test_wexr_cp_exr1_pdf_render_valid_shape_and_carriers
+FAILED tests/invariants/test_wexr_cp_exr1_render_export_and_release.py::test_wexr_cp_exr1_named_persons_tokenized_in_csv_and_pdf
+FAILED tests/invariants/test_wexr_cp_exr1_render_export_and_release.py::test_wexr_cp_exr1_csv_render_deterministic_between_calls
+============================== 9 failed in 0.68s ===============================

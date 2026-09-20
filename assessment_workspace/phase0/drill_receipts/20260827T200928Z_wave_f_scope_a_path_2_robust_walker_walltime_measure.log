@@ -1,0 +1,19 @@
+================================================================================
+Wave F · Scope A · Path 2 · Robust walker · Wall-time measurement
+================================================================================
+Timestamp (UTC):     20260827T200928Z
+Purpose:             Owner Ruling B.2 acceptance measure ≤ 90s.
+                     Baseline currently ~60s (Attempt 1 recorded 65.95s under
+                     1.4.0 with skips in place). Robust walker walks all of
+                     sys.modules (was: prefix-filtered subset). Perf worst-case
+                     = per-fixture O(N_modules × 2 getattrs) ≈ 2×(3000 mods) =
+                     6000 getattr calls per test, then × 2329 tests.
+Walker code:         tests/invariants/conftest.py::_rebind_motor (prefix filter
+                     removed; type-check only; core_mod excluded).
+pytest-asyncio:      1.4.0 (Wave E actual working env)
+Requirements pin:    1.2.0 (STALE per Finding 3 · will bump in landing commit)
+Invocation:          cd backend && BASELINE_GUARD=1 python -m pytest tests/invariants/
+--------------------------------------------------------------------------------
+--- start: 2026-08-27T20:09:28Z ---
+/tmp/tmpufx94bre.sh: line 26: /usr/bin/time: No such file or directory
+--- end: 2026-08-27T20:09:28Z · EXITCODE=127 ---

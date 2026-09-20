@@ -1,0 +1,111 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.4.2, pluggy-1.6.0 -- /root/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: asyncio-1.4.0, xdist-3.8.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collecting ... collected 16 items
+
+tests/invariants/test_orchestrator_resilience.py::test_heartbeat_write_lays_down_json_with_required_fields FAILED [  6%]
+tests/invariants/test_orchestrator_resilience.py::test_heartbeat_write_replaces_prior_snapshot_not_appends FAILED [ 12%]
+tests/invariants/test_orchestrator_resilience.py::test_heartbeat_read_returns_none_for_absent FAILED [ 18%]
+tests/invariants/test_orchestrator_resilience.py::test_heartbeat_staleness_check_stale_when_older_than_threshold FAILED [ 25%]
+tests/invariants/test_orchestrator_resilience.py::test_heartbeat_staleness_check_fresh_when_within_threshold FAILED [ 31%]
+tests/invariants/test_orchestrator_resilience.py::test_heartbeat_zero_influence_write_failures_never_raise FAILED [ 37%]
+tests/invariants/test_orchestrator_resilience.py::test_orphan_detector_returns_empty_when_no_runs FAILED [ 43%]
+tests/invariants/test_orchestrator_resilience.py::test_orphan_detector_finds_run_with_stale_heartbeat FAILED [ 50%]
+tests/invariants/test_orchestrator_resilience.py::test_orphan_detector_skips_run_with_fresh_heartbeat FAILED [ 56%]
+tests/invariants/test_orchestrator_resilience.py::test_orphan_detector_skips_completed_run FAILED [ 62%]
+tests/invariants/test_orchestrator_resilience.py::test_orphan_detector_finds_run_with_receipts_but_no_heartbeat FAILED [ 68%]
+tests/invariants/test_orchestrator_resilience.py::test_resume_computes_next_poll_index_from_prior_poll_files FAILED [ 75%]
+tests/invariants/test_orchestrator_resilience.py::test_resume_returns_fresh_state_when_no_receipts FAILED [ 81%]
+tests/invariants/test_orchestrator_resilience.py::test_resume_survives_missing_run_dir FAILED [ 87%]
+tests/invariants/test_orchestrator_resilience.py::test_resume_is_idempotent_wrt_covered_windows FAILED [ 93%]
+tests/invariants/test_orchestrator_resilience.py::test_public_surface_has_no_run_state_mutation_names FAILED [100%]
+
+=================================== FAILURES ===================================
+___________ test_heartbeat_write_lays_down_json_with_required_fields ___________
+tests/invariants/test_orchestrator_resilience.py:87: in test_heartbeat_write_lays_down_json_with_required_fields
+    from services.orchestrator_resilience import heartbeat as hb
+E   ModuleNotFoundError: No module named 'services.orchestrator_resilience'
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+___________ test_heartbeat_write_replaces_prior_snapshot_not_appends ___________
+tests/invariants/test_orchestrator_resilience.py:111: in test_heartbeat_write_replaces_prior_snapshot_not_appends
+    from services.orchestrator_resilience import heartbeat as hb
+E   ModuleNotFoundError: No module named 'services.orchestrator_resilience'
+_________________ test_heartbeat_read_returns_none_for_absent __________________
+tests/invariants/test_orchestrator_resilience.py:133: in test_heartbeat_read_returns_none_for_absent
+    from services.orchestrator_resilience import heartbeat as hb
+E   ModuleNotFoundError: No module named 'services.orchestrator_resilience'
+________ test_heartbeat_staleness_check_stale_when_older_than_threshold ________
+tests/invariants/test_orchestrator_resilience.py:143: in test_heartbeat_staleness_check_stale_when_older_than_threshold
+    from services.orchestrator_resilience import heartbeat as hb
+E   ModuleNotFoundError: No module named 'services.orchestrator_resilience'
+__________ test_heartbeat_staleness_check_fresh_when_within_threshold __________
+tests/invariants/test_orchestrator_resilience.py:158: in test_heartbeat_staleness_check_fresh_when_within_threshold
+    from services.orchestrator_resilience import heartbeat as hb
+E   ModuleNotFoundError: No module named 'services.orchestrator_resilience'
+___________ test_heartbeat_zero_influence_write_failures_never_raise ___________
+tests/invariants/test_orchestrator_resilience.py:170: in test_heartbeat_zero_influence_write_failures_never_raise
+    from services.orchestrator_resilience import heartbeat as hb
+E   ModuleNotFoundError: No module named 'services.orchestrator_resilience'
+_______________ test_orphan_detector_returns_empty_when_no_runs ________________
+tests/invariants/test_orchestrator_resilience.py:190: in test_orphan_detector_returns_empty_when_no_runs
+    from services.orchestrator_resilience import orphan_detector as od
+E   ModuleNotFoundError: No module named 'services.orchestrator_resilience'
+_____________ test_orphan_detector_finds_run_with_stale_heartbeat ______________
+tests/invariants/test_orchestrator_resilience.py:207: in test_orphan_detector_finds_run_with_stale_heartbeat
+    from services.orchestrator_resilience import heartbeat as hb
+E   ModuleNotFoundError: No module named 'services.orchestrator_resilience'
+_____________ test_orphan_detector_skips_run_with_fresh_heartbeat ______________
+tests/invariants/test_orchestrator_resilience.py:234: in test_orphan_detector_skips_run_with_fresh_heartbeat
+    from services.orchestrator_resilience import heartbeat as hb
+E   ModuleNotFoundError: No module named 'services.orchestrator_resilience'
+___________________ test_orphan_detector_skips_completed_run ___________________
+tests/invariants/test_orchestrator_resilience.py:255: in test_orphan_detector_skips_completed_run
+    from services.orchestrator_resilience import orphan_detector as od
+E   ModuleNotFoundError: No module named 'services.orchestrator_resilience'
+________ test_orphan_detector_finds_run_with_receipts_but_no_heartbeat _________
+tests/invariants/test_orchestrator_resilience.py:276: in test_orphan_detector_finds_run_with_receipts_but_no_heartbeat
+    from services.orchestrator_resilience import orphan_detector as od
+E   ModuleNotFoundError: No module named 'services.orchestrator_resilience'
+__________ test_resume_computes_next_poll_index_from_prior_poll_files __________
+tests/invariants/test_orchestrator_resilience.py:306: in test_resume_computes_next_poll_index_from_prior_poll_files
+    from services.orchestrator_resilience import resume as rs
+E   ModuleNotFoundError: No module named 'services.orchestrator_resilience'
+_______________ test_resume_returns_fresh_state_when_no_receipts _______________
+tests/invariants/test_orchestrator_resilience.py:325: in test_resume_returns_fresh_state_when_no_receipts
+    from services.orchestrator_resilience import resume as rs
+E   ModuleNotFoundError: No module named 'services.orchestrator_resilience'
+_____________________ test_resume_survives_missing_run_dir _____________________
+tests/invariants/test_orchestrator_resilience.py:341: in test_resume_survives_missing_run_dir
+    from services.orchestrator_resilience import resume as rs
+E   ModuleNotFoundError: No module named 'services.orchestrator_resilience'
+________________ test_resume_is_idempotent_wrt_covered_windows _________________
+tests/invariants/test_orchestrator_resilience.py:353: in test_resume_is_idempotent_wrt_covered_windows
+    from services.orchestrator_resilience import resume as rs
+E   ModuleNotFoundError: No module named 'services.orchestrator_resilience'
+_____________ test_public_surface_has_no_run_state_mutation_names ______________
+tests/invariants/test_orchestrator_resilience.py:371: in test_public_surface_has_no_run_state_mutation_names
+    from services.orchestrator_resilience import heartbeat, orphan_detector, resume
+E   ModuleNotFoundError: No module named 'services.orchestrator_resilience'
+=========================== short test summary info ============================
+FAILED tests/invariants/test_orchestrator_resilience.py::test_heartbeat_write_lays_down_json_with_required_fields
+FAILED tests/invariants/test_orchestrator_resilience.py::test_heartbeat_write_replaces_prior_snapshot_not_appends
+FAILED tests/invariants/test_orchestrator_resilience.py::test_heartbeat_read_returns_none_for_absent
+FAILED tests/invariants/test_orchestrator_resilience.py::test_heartbeat_staleness_check_stale_when_older_than_threshold
+FAILED tests/invariants/test_orchestrator_resilience.py::test_heartbeat_staleness_check_fresh_when_within_threshold
+FAILED tests/invariants/test_orchestrator_resilience.py::test_heartbeat_zero_influence_write_failures_never_raise
+FAILED tests/invariants/test_orchestrator_resilience.py::test_orphan_detector_returns_empty_when_no_runs
+FAILED tests/invariants/test_orchestrator_resilience.py::test_orphan_detector_finds_run_with_stale_heartbeat
+FAILED tests/invariants/test_orchestrator_resilience.py::test_orphan_detector_skips_run_with_fresh_heartbeat
+FAILED tests/invariants/test_orchestrator_resilience.py::test_orphan_detector_skips_completed_run
+FAILED tests/invariants/test_orchestrator_resilience.py::test_orphan_detector_finds_run_with_receipts_but_no_heartbeat
+FAILED tests/invariants/test_orchestrator_resilience.py::test_resume_computes_next_poll_index_from_prior_poll_files
+FAILED tests/invariants/test_orchestrator_resilience.py::test_resume_returns_fresh_state_when_no_receipts
+FAILED tests/invariants/test_orchestrator_resilience.py::test_resume_survives_missing_run_dir
+FAILED tests/invariants/test_orchestrator_resilience.py::test_resume_is_idempotent_wrt_covered_windows
+FAILED tests/invariants/test_orchestrator_resilience.py::test_public_surface_has_no_run_state_mutation_names
+============================== 16 failed in 0.82s ==============================

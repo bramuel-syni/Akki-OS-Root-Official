@@ -1,0 +1,35 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.4.2, pluggy-1.6.0
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: asyncio-1.4.0, xdist-3.8.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collected 15 items
+
+tests/invariants/test_wave_g_v8_shell_port.py FFFFFFs.FFFF.Fs            [100%]
+
+=================================== FAILURES ===================================
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:116: AssertionError: BANNED interpretation file present at /app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/src/design/AkkiV8Shell.jsx. This file was hand-built from the v8 docx spec + inventory notes, not from the prototype's own bytes. Owner ruling: interpretation is BANNED. Delete this file; adopt the prototype's actual code instead.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:116: AssertionError: BANNED interpretation file present at /app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/src/design/akkiv8_design_system.js. This file was hand-built from the v8 docx spec + inventory notes, not from the prototype's own bytes. Owner ruling: interpretation is BANNED. Delete this file; adopt the prototype's actual code instead.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:131: AssertionError: BANNED interpretation file present at /app/frontend/src/design/AkkiV8Shell.jsx (runtime tree). Delete from both pod_shell and /app/frontend.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:131: AssertionError: BANNED interpretation file present at /app/frontend/src/design/akkiv8_design_system.js (runtime tree). Delete from both pod_shell and /app/frontend.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:146: AssertionError: /app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/public/v8_prototype.html does not exist. Copy fixtures/RMS_AI_Akki_Prototype_v8_Standalone.html verbatim to this path. Byte-preserved copy — no edits, no minifier, no line-ending conversion.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:171: AssertionError: /app/frontend/public/v8_prototype.html does not exist. Copy to runtime mirror.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:232: AssertionError: App.js does not reference `v8_prototype.html`. Root path `/` must redirect to the served prototype. See wave_g2 extraction receipt for the literal-adoption method.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:247: AssertionError: App.js still references `AkkiV8Shell`. This is the banned interpretation shell. Remove the import and the wrapping <Route element={<AkkiV8ShellLayout/>}>. Root `/` should redirect to `/v8_prototype.html` instead.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:266: assert 'AkkiV8Shell' not in 'import "@/A...fault App;\n'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:295: AssertionError: design/ folder still contains v8-related authored files: ['akkiv8_design_system.js', 'AkkiV8Shell.jsx']. Delete these — the v8 shell ships as public/v8_prototype.html verbatim, not as an authored module.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:357: AssertionError: DECISIONS.md missing the interpretation-BAN ruling anchors: ['interpretation is BANNED', 'LITERAL ADOPTION', 'totally out of touch with the HTML']. Record the method-change ruling per owner instruction item 7.
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_interpretation_authored_shell_is_banned[src/design/AkkiV8Shell.jsx]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_interpretation_authored_shell_is_banned[src/design/akkiv8_design_system.js]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_app_frontend_interpretation_authored_shell_is_banned[src/design/AkkiV8Shell.jsx]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_app_frontend_interpretation_authored_shell_is_banned[src/design/akkiv8_design_system.js]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_v8_prototype_html_present_in_pod_shell_public
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_v8_prototype_html_present_in_runtime_public
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_app_js_redirects_root_to_v8_prototype
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_app_js_does_not_import_banned_shell
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_runtime_app_js_does_not_import_banned_shell
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_no_authored_v8_css_module_in_design_folder
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_decisions_md_records_interpretation_ban
+=================== 11 failed, 2 passed, 2 skipped in 0.67s ====================

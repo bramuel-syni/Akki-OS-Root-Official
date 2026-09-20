@@ -1,0 +1,46 @@
+[extract] slice_size=30000 page_size=1000
+[extract] included_cols=['option_string', 'question_string', 'value_chain']
+[extract] excluded_cols=['id', 'ussd_user_id', 'mobile_number', 'training_code', 'post_id', 'question_id', 'option_id', 'created_at', 'number_of_animals', 'forage_area']
+[extract] output=/app/assessment_workspace/phase0/text_train_pipeline/txttrain_20260831T193455Z_9594859a/masked_corpus.jsonl
+[extract] page offset=0 → total_kept=999 dropped_empty=1
+[extract] page offset=1000 → total_kept=1998 dropped_empty=2
+[extract] page offset=2000 → total_kept=2997 dropped_empty=3
+[extract] page offset=3000 → total_kept=3996 dropped_empty=4
+[extract] page offset=4000 → total_kept=4995 dropped_empty=5
+[extract] page offset=5000 → total_kept=5991 dropped_empty=9
+[extract] page offset=6000 → total_kept=6987 dropped_empty=13
+[extract] page offset=7000 → total_kept=7986 dropped_empty=14
+[extract] page offset=8000 → total_kept=8955 dropped_empty=45
+[extract] page offset=9000 → total_kept=9759 dropped_empty=241
+[extract] page offset=10000 → total_kept=10523 dropped_empty=477
+[extract] page offset=11000 → total_kept=11255 dropped_empty=745
+[extract] page offset=12000 → total_kept=11892 dropped_empty=1108
+[extract] page offset=13000 → total_kept=12631 dropped_empty=1369
+[extract] page offset=14000 → total_kept=13422 dropped_empty=1578
+[extract] page offset=15000 → total_kept=14274 dropped_empty=1726
+[extract] page offset=16000 → total_kept=15097 dropped_empty=1903
+[extract] page offset=17000 → total_kept=15936 dropped_empty=2064
+[extract] page offset=18000 → total_kept=16728 dropped_empty=2272
+[extract] page offset=19000 → total_kept=17492 dropped_empty=2508
+[extract] page offset=20000 → total_kept=18262 dropped_empty=2738
+[extract] page offset=21000 → total_kept=18980 dropped_empty=3020
+[extract] page offset=22000 → total_kept=19817 dropped_empty=3183
+[extract] page offset=23000 → total_kept=20737 dropped_empty=3263
+[extract] page offset=24000 → total_kept=21463 dropped_empty=3537
+[extract] page offset=25000 → total_kept=22221 dropped_empty=3779
+[extract] page offset=26000 → total_kept=22974 dropped_empty=4026
+[extract] page offset=27000 → total_kept=23841 dropped_empty=4159
+[extract] page offset=28000 → total_kept=24662 dropped_empty=4338
+[extract] page offset=29000 → total_kept=25637 dropped_empty=4363
+[extract] page offset=30000 → total_kept=26565 dropped_empty=4435
+[extract] page offset=31000 → total_kept=27534 dropped_empty=4466
+[extract] page offset=32000 → total_kept=28490 dropped_empty=4510
+[extract] page offset=33000 → total_kept=29394 dropped_empty=4606
+[extract] page offset=34000 → total_kept=29959 dropped_empty=4647
+[extract] page offset=34606 → total_kept=29999 dropped_empty=4648
+[extract] page offset=34647 → total_kept=30000 dropped_empty=4648
+[extract] wrote 30000 lines to /app/assessment_workspace/phase0/text_train_pipeline/txttrain_20260831T193455Z_9594859a/masked_corpus.jsonl
+[extract] sha256=484a174cdbec4927fd21228b4fbca42a8f5265a431061fae114374df223fdcc8
+[extract] scrubs: phone_replacements=0 id_replacements=0
+[extract] dropped_empty_qa=4648
+[extract] receipt: /app/assessment_workspace/phase0/crossing_receipts/rcp-txtxtr-txttrain_20260831T193455Z_9594859a.json

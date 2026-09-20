@@ -1,0 +1,25 @@
+✔ ALLOWLIST_MODE resolves from /app/backend/.env single source of truth (0.713162ms)
+✔ owner IP (41.90.172.155) admits at frontend-root (40.651252ms)
+✔ owner IP (41.90.172.155) admits at frontend-spa-governance (4.947398ms)
+✔ owner IP (41.90.172.155) admits at frontend-static-favicon (4.847289ms)
+✔ owner IP (41.90.172.155) admits at backend-api-governance (5.309474ms)
+✔ owner IP (41.90.172.155) admits at backend-api-openapi (19.589926ms)
+✔ STRICT · unknown IP refuses at frontend-root · refusal sentence + 403 (2.866138ms)
+✔ STRICT · no XFF header refuses at frontend-root · refusal sentence + 403 (2.479483ms)
+✔ STRICT · unknown IP refuses at frontend-spa-governance · refusal sentence + 403 (2.333945ms)
+✔ STRICT · no XFF header refuses at frontend-spa-governance · refusal sentence + 403 (1.403131ms)
+✔ STRICT · unknown IP refuses at frontend-static-favicon · refusal sentence + 403 (2.423591ms)
+✔ STRICT · no XFF header refuses at frontend-static-favicon · refusal sentence + 403 (1.019472ms)
+✔ STRICT · unknown IP refuses at backend-api-governance · refusal sentence + 403 (1.314037ms)
+✔ STRICT · no XFF header refuses at backend-api-governance · refusal sentence + 403 (1.930877ms)
+✔ STRICT · unknown IP refuses at backend-api-openapi · refusal sentence + 403 (1.930267ms)
+✔ STRICT · no XFF header refuses at backend-api-openapi · refusal sentence + 403 (1.870928ms)
+✔ frontend surface strict-flip is not just backend-scoped (regression) (4.073308ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 142.715675

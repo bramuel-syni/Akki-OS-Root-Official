@@ -1,0 +1,59 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.4.2, pluggy-1.6.0
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: xdist-3.8.0, asyncio-1.4.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collected 6 items
+
+tests/invariants/test_wm7_w2_cp1_audio_census_job_scope.py FFFFFF        [100%]
+============================ BASELINE_GUARD receipt ============================
+passed=0 / baseline-failures-remaining=0 / quarantined=0
+  manifest: tests/invariants/baseline_failures.json
+  scope: BASELINE_GUARD=1  ·  invocation: cd backend && BASELINE_GUARD=1 python -m pytest tests/invariants/
+!!!!!!!!!!!!! BASELINE_GUARD · HALT AND REPORT · owner ruling (c) !!!!!!!!!!!!!!
+[V1] 6 NEW failure(s) OUTSIDE manifest:
+    tests/invariants/test_wm7_w2_cp1_audio_census_job_scope.py::test_wm7_w2_cp1_audio_census_job_scope_frozen_carrier_shape
+    tests/invariants/test_wm7_w2_cp1_audio_census_job_scope.py::test_wm7_w2_cp1_case_agnostic_zero_domain_tokens_and_no_composition_imports
+    tests/invariants/test_wm7_w2_cp1_audio_census_job_scope.py::test_wm7_w2_cp1_module_fabric_present
+    tests/invariants/test_wm7_w2_cp1_audio_census_job_scope.py::test_wm7_w2_cp1_station_refs_empty_refusal
+    tests/invariants/test_wm7_w2_cp1_audio_census_job_scope.py::test_wm7_w2_cp1_stations_not_owner_ratified_refusal_by_default
+    tests/invariants/test_wm7_w2_cp1_audio_census_job_scope.py::test_wm7_w2_cp1_stations_owner_ratified_true_permits_mount
+[V3] Passed count 0 < ratchet floor 4406
+  No silent rebaselining. Report drift to owner verbatim.
+
+=================================== FAILURES ===================================
+____________________ test_wm7_w2_cp1_module_fabric_present _____________________
+tests/invariants/test_wm7_w2_cp1_audio_census_job_scope.py:52: in test_wm7_w2_cp1_module_fabric_present
+    import services.audio_plane_v1.audio_census_job_scope as mod
+E   ModuleNotFoundError: No module named 'services.audio_plane_v1.audio_census_job_scope'
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+_________ test_wm7_w2_cp1_audio_census_job_scope_frozen_carrier_shape __________
+tests/invariants/test_wm7_w2_cp1_audio_census_job_scope.py:76: in test_wm7_w2_cp1_audio_census_job_scope_frozen_carrier_shape
+    from services.audio_plane_v1.audio_census_job_scope import (
+E   ModuleNotFoundError: No module named 'services.audio_plane_v1.audio_census_job_scope'
+________ test_wm7_w2_cp1_stations_not_owner_ratified_refusal_by_default ________
+tests/invariants/test_wm7_w2_cp1_audio_census_job_scope.py:107: in test_wm7_w2_cp1_stations_not_owner_ratified_refusal_by_default
+    from services.audio_plane_v1.audio_census_job_scope import (
+E   ModuleNotFoundError: No module named 'services.audio_plane_v1.audio_census_job_scope'
+__________ test_wm7_w2_cp1_stations_owner_ratified_true_permits_mount __________
+tests/invariants/test_wm7_w2_cp1_audio_census_job_scope.py:129: in test_wm7_w2_cp1_stations_owner_ratified_true_permits_mount
+    from services.audio_plane_v1.audio_census_job_scope import (
+E   ModuleNotFoundError: No module named 'services.audio_plane_v1.audio_census_job_scope'
+__________________ test_wm7_w2_cp1_station_refs_empty_refusal __________________
+tests/invariants/test_wm7_w2_cp1_audio_census_job_scope.py:154: in test_wm7_w2_cp1_station_refs_empty_refusal
+    from services.audio_plane_v1.audio_census_job_scope import (
+E   ModuleNotFoundError: No module named 'services.audio_plane_v1.audio_census_job_scope'
+_ test_wm7_w2_cp1_case_agnostic_zero_domain_tokens_and_no_composition_imports __
+tests/invariants/test_wm7_w2_cp1_audio_census_job_scope.py:179: in test_wm7_w2_cp1_case_agnostic_zero_domain_tokens_and_no_composition_imports
+    from services.audio_plane_v1 import audio_census_job_scope as mod
+E   ImportError: cannot import name 'audio_census_job_scope' from 'services.audio_plane_v1' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/audio_plane_v1/__init__.py)
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wm7_w2_cp1_audio_census_job_scope.py::test_wm7_w2_cp1_module_fabric_present
+FAILED tests/invariants/test_wm7_w2_cp1_audio_census_job_scope.py::test_wm7_w2_cp1_audio_census_job_scope_frozen_carrier_shape
+FAILED tests/invariants/test_wm7_w2_cp1_audio_census_job_scope.py::test_wm7_w2_cp1_stations_not_owner_ratified_refusal_by_default
+FAILED tests/invariants/test_wm7_w2_cp1_audio_census_job_scope.py::test_wm7_w2_cp1_stations_owner_ratified_true_permits_mount
+FAILED tests/invariants/test_wm7_w2_cp1_audio_census_job_scope.py::test_wm7_w2_cp1_station_refs_empty_refusal
+FAILED tests/invariants/test_wm7_w2_cp1_audio_census_job_scope.py::test_wm7_w2_cp1_case_agnostic_zero_domain_tokens_and_no_composition_imports
+============================== 6 failed in 0.64s ===============================

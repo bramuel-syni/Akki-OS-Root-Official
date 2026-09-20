@@ -1,0 +1,214 @@
+...........F............................................................ [  3%]
+........................................................................ [  6%]
+........................................................................ [  9%]
+.....FFFFF.....................................................FFF...... [ 12%]
+...................................................................F.F.. [ 16%]
+FF...................FFFF............................................... [ 19%]
+..............FFFFFFF.......................................F.FF........ [ 22%]
+........................................................................ [ 25%]
+..............................................................F......... [ 29%]
+..F.F......F...........F...F............................................ [ 32%]
+........................................................................ [ 35%]
+..............................................................FFFFF.FF.. [ 38%]
+.FFFFFFFF.FFF...F....F........................F......................... [ 42%]
+........F............................................................... [ 45%]
+.........................................................s.............. [ 48%]
+.................................................EEEEEEEE..EE.........ss [ 51%]
+ssssssssssssssssssssssssEEEEEEEEEEEEEEE..E.E.........EE.....EE...FEEE... [ 54%]
+......sssssssssssssssssssssssssssssssssssssssssssss..................... [ 58%]
+.........................................................FFFF.F......... [ 61%]
+........................................................................ [ 64%]
+.....................................F.FF.FF...F.F.F.................... [ 67%]
+....FF...F.............................................................. [ 71%]
+..........................................F............................. [ 74%]
+.F.....F.........FF..F................F................................. [ 77%]
+........................................................................ [ 80%]
+........................................................................ [ 84%]
+........................................................................ [ 87%]
+........................................................................ [ 90%]
+........................................................................ [ 93%]
+........................................................................ [ 97%]
+..................................................................       [100%]============================ BASELINE_GUARD receipt ============================
+passed=2041 / baseline-failures-remaining=113 / quarantined=71
+  manifest: tests/invariants/baseline_failures.json
+  scope: BASELINE_GUARD=1  ·  invocation: cd backend && BASELINE_GUARD=1 python -m pytest tests/invariants/
+  status: OK (subset · quarantine · ratchet all pass)
+
+=============================== warnings summary ===============================
+tests/invariants/test_8_ext.py: 13 warnings
+tests/invariants/test_artifact_store.py: 2 warnings
+tests/invariants/test_connect_ui1c_gates.py: 9 warnings
+tests/invariants/test_engineer_key_grant_e2_taxonomy.py: 4 warnings
+tests/invariants/test_engineer_key_grant_ledger.py: 2 warnings
+tests/invariants/test_govern_g_g1_to_g_g8.py: 6 warnings
+tests/invariants/test_govern_ui1b_gates.py: 15 warnings
+tests/invariants/test_master_admin_auth_reconciliation.py: 10 warnings
+tests/invariants/test_master_admin_pending_seams.py: 1 warning
+tests/invariants/test_master_admin_recent_actions.py: 4 warnings
+tests/invariants/test_master_admin_tier_lock_path_a_ledger.py: 3 warnings
+tests/invariants/test_memory_engineer_key_grant_e2e_propagation.py: 7 warnings
+tests/invariants/test_memory_observability_o_g1_to_o_g6.py: 6 warnings
+tests/invariants/test_memory_service_m_g1_to_m_g9.py: 4 warnings
+tests/invariants/test_p2_buildable_now.py: 3 warnings
+tests/invariants/test_phase3_subcycle1_gates.py: 7 warnings
+tests/invariants/test_phase_6_stage_b_economics.py: 1 warning
+tests/invariants/test_phase_8_b_1_auth_and_shims.py: 3 warnings
+tests/invariants/test_phase_8_b_2_operator_and_scope_gate.py: 7 warnings
+tests/invariants/test_phase_8_b_5a_compliance.py: 8 warnings
+tests/invariants/test_phase_8_seam_3_sub_stage_1.py: 2 warnings
+tests/invariants/test_phase_8_seam_3_sub_stage_2.py: 9 warnings
+tests/invariants/test_phase_9_sub_stage_9_1_and_9_3.py: 16 warnings
+tests/invariants/test_pricing_paths_b_honest_501.py: 6 warnings
+tests/invariants/test_registry_prove_ui1d_gates.py: 15 warnings
+tests/invariants/test_team_ui1e_gates.py: 12 warnings
+tests/invariants/test_trace_lens_cross_engine_correlation.py: 3 warnings
+tests/invariants/test_trace_lens_readonly.py: 1 warning
+tests/invariants/test_use_data_commission_verdict.py: 4 warnings
+  /root/.venv/lib/python3.11/site-packages/jwt/api_jwt.py:147: InsecureKeyLengthWarning: The HMAC key is 30 bytes long, which is below the minimum recommended length of 32 bytes for SHA256. See RFC 7518 Section 3.2.
+    return self._jws.encode(
+
+tests/invariants/test_8_ext.py: 13 warnings
+tests/invariants/test_artifact_store.py: 2 warnings
+tests/invariants/test_connect_ui1c_gates.py: 9 warnings
+tests/invariants/test_engineer_key_grant_e2_taxonomy.py: 4 warnings
+tests/invariants/test_govern_g_g1_to_g_g8.py: 6 warnings
+tests/invariants/test_govern_ui1b_gates.py: 15 warnings
+tests/invariants/test_master_admin_auth_reconciliation.py: 10 warnings
+tests/invariants/test_master_admin_pending_seams.py: 1 warning
+tests/invariants/test_master_admin_recent_actions.py: 4 warnings
+tests/invariants/test_master_admin_tier_lock_path_a_ledger.py: 3 warnings
+tests/invariants/test_memory_engineer_key_grant_e2e_propagation.py: 6 warnings
+tests/invariants/test_memory_observability_o_g1_to_o_g6.py: 6 warnings
+tests/invariants/test_memory_service_m_g1_to_m_g9.py: 4 warnings
+tests/invariants/test_p2_buildable_now.py: 3 warnings
+tests/invariants/test_phase3_subcycle1_gates.py: 7 warnings
+tests/invariants/test_phase_6_stage_b_economics.py: 1 warning
+tests/invariants/test_phase_8_b_1_auth_and_shims.py: 3 warnings
+tests/invariants/test_phase_8_b_2_operator_and_scope_gate.py: 7 warnings
+tests/invariants/test_phase_8_b_5a_compliance.py: 8 warnings
+tests/invariants/test_phase_8_seam_3_sub_stage_1.py: 2 warnings
+tests/invariants/test_phase_8_seam_3_sub_stage_2.py: 9 warnings
+tests/invariants/test_phase_9_sub_stage_9_1_and_9_3.py: 13 warnings
+tests/invariants/test_pricing_paths_b_honest_501.py: 6 warnings
+tests/invariants/test_registry_prove_ui1d_gates.py: 15 warnings
+tests/invariants/test_team_ui1e_gates.py: 12 warnings
+tests/invariants/test_use_data_commission_verdict.py: 4 warnings
+  /root/.venv/lib/python3.11/site-packages/jwt/api_jwt.py:368: InsecureKeyLengthWarning: The HMAC key is 30 bytes long, which is below the minimum recommended length of 32 bytes for SHA256. See RFC 7518 Section 3.2.
+    decoded = self.decode_complete(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/invariants/test_8_ext.py::test_ee_g4_approve_flow_emits_onboarding_ledger_and_mints_jwt
+FAILED tests/invariants/test_composed_conclusion_dispatch.py::test_composed_conclusion_below_floor_returns_service_1_refusal_v0
+FAILED tests/invariants/test_composed_conclusion_dispatch.py::test_composed_conclusion_composition_below_floor_at_fact_floor
+FAILED tests/invariants/test_composed_conclusion_dispatch.py::test_composed_conclusion_below_floor_route_serialises_to_service_1_refusal_v0
+FAILED tests/invariants/test_composed_conclusion_dispatch.py::test_composed_conclusion_load_bearing_retrievable_by_trace_id
+FAILED tests/invariants/test_composed_conclusion_dispatch.py::test_composed_conclusion_live_path_returns_class_inline
+FAILED tests/invariants/test_connect_ui1c_gates.py::test_c_b5_ceiling_read_from_single_source_of_truth
+FAILED tests/invariants/test_connect_ui1c_gates.py::test_c_b6_source_state_grammar_all_four_seeded_per_identity
+FAILED tests/invariants/test_connect_ui1c_gates.py::test_c_b7_declared_registries_reflect_empty_state_from_govern
+FAILED tests/invariants/test_dispatch_shape_responsive.py::test_dispatch_unknown_freshness_forks_fresh_never_warm
+FAILED tests/invariants/test_dispatch_shape_responsive.py::test_dispatch_placeholder_never_leaks_into_governed_refusal
+FAILED tests/invariants/test_dispatch_shape_responsive.py::test_positive_external_request_warm_fork_populated_registry
+FAILED tests/invariants/test_dispatch_shape_responsive.py::test_positive_external_request_fresh_fork_below_floor
+FAILED tests/invariants/test_engineer_key_grant_e2_taxonomy.py::test_grant_endpoint_engineer_role_succeeds_or_returns_governance_agnostic_error
+FAILED tests/invariants/test_engineer_key_grant_ledger.py::test_engineer_key_grant_issuance_emits_ledger_row
+FAILED tests/invariants/test_engineer_key_grant_ledger.py::test_engineer_key_grant_revocation_emits_ledger_row
+FAILED tests/invariants/test_engineer_key_grant_ledger.py::test_engineer_key_grant_ledger_idempotent
+FAILED tests/invariants/test_feasibility_dual_consumer_schema.py::test_feasibility_single_consumer_schema
+FAILED tests/invariants/test_feasibility_dual_consumer_schema.py::test_feasibility_reach_ref_is_deterministic
+FAILED tests/invariants/test_feasibility_dual_consumer_schema.py::test_feasibility_snapshot_ref_changes_when_registry_updates
+FAILED tests/invariants/test_feasibility_honesty_under_absence.py::test_feasibility_uncensused_scope_returns_unknown
+FAILED tests/invariants/test_feasibility_honesty_under_absence.py::test_feasibility_censused_scope_returns_real_distribution
+FAILED tests/invariants/test_feasibility_honesty_under_absence.py::test_feasibility_stale_region_returns_stale_with_provenance
+FAILED tests/invariants/test_feasibility_honesty_under_absence.py::test_feasibility_never_fabricates
+FAILED tests/invariants/test_govern_ui1b_gates.py::test_g_b13_holds_surface_lists_held_use_data_sessions
+FAILED tests/invariants/test_govern_ui1b_gates.py::test_g_b15_trust_center_record_buckets_carry_sample_rows
+FAILED tests/invariants/test_govern_ui1b_gates.py::test_g_b16_record_buckets_enumerate_rows_with_is_sample_admin
+FAILED tests/invariants/test_master_admin_auth_reconciliation.py::test_seeded_admin_carries_master_admin_role
+FAILED tests/invariants/test_master_admin_tier_lock_path_a_ledger.py::test_tier_lock_commit_emits_ledger_row
+FAILED tests/invariants/test_master_admin_tier_lock_path_a_ledger.py::test_tier_lock_commit_idempotent_by_idempotency_key
+FAILED tests/invariants/test_memory_engineer_key_grant_e2e_propagation.py::test_m_g_e2e_single_source_users_key_grants_never_read_for_auth
+FAILED tests/invariants/test_memory_service_m_g1_to_m_g9.py::test_m_g4_mind_context_never_crosses_keys
+FAILED tests/invariants/test_memory_service_m_g1_to_m_g9.py::test_m_g8_plane_state_ledger_reconstructible
+FAILED tests/invariants/test_phase_5_stage_b_async_delivery.py::test_kill_and_restart_recovers_without_state_loss_or_duplicate_ledger_emission
+FAILED tests/invariants/test_phase_5_stage_b_async_delivery.py::test_recover_from_accepted_re_enqueues_cleanly
+FAILED tests/invariants/test_phase_5_stage_b_async_delivery.py::test_recover_from_running_resets_to_accepted_then_re_enqueues
+FAILED tests/invariants/test_phase_5_stage_b_async_delivery.py::test_recover_from_delivered_is_noop_no_re_delivery_webhook
+FAILED tests/invariants/test_phase_5_stage_b_async_delivery.py::test_recover_from_refused_is_noop
+FAILED tests/invariants/test_phase_5_stage_b_async_delivery.py::test_webhook_retries_bounded_at_five
+FAILED tests/invariants/test_phase_5_stage_b_async_delivery.py::test_webhook_undelivered_still_polls_status
+FAILED tests/invariants/test_phase_5_stage_b_async_delivery.py::test_retried_post_neither_double_commissions_nor_double_charges
+FAILED tests/invariants/test_phase_5_stage_b_async_delivery.py::test_idempotency_key_missing_on_external_request_refuses
+FAILED tests/invariants/test_phase_5_stage_b_async_delivery.py::test_cancelled_run_no_partial_egress
+FAILED tests/invariants/test_phase_5_stage_b_async_delivery.py::test_cancel_during_outer_gate_transform_no_partial_egress
+FAILED tests/invariants/test_phase_5_stage_b_async_delivery.py::test_cancelled_run_is_ledgered
+FAILED tests/invariants/test_phase_5_stage_b_async_delivery.py::test_cancel_after_terminal_state_is_noop_returns_terminal_envelope
+FAILED tests/invariants/test_phase_5_stage_b_async_delivery.py::test_fresh_fork_at_admission_routes_to_async_pathway
+FAILED tests/invariants/test_phase_5_stage_b_async_delivery.py::test_warm_fork_at_admission_uses_sync_pathway_not_async
+FAILED tests/invariants/test_phase_5_stage_b_async_delivery.py::test_governance_travels_inline_on_async_response_body
+FAILED tests/invariants/test_phase_5_stage_b_async_delivery.py::test_late_refusal_ledgered_with_governed_reason
+FAILED tests/invariants/test_phase_5_stage_b_async_delivery.py::test_sandbox_mode_serves_from_fixture_estate
+FAILED tests/invariants/test_phase_5_stage_b_async_delivery.py::test_queue_overflow_raises_503_not_refusal
+FAILED tests/invariants/test_phase_5_stage_b_async_delivery.py::test_northena_ledger_v1_supersets_v0
+FAILED tests/invariants/test_phase_6_stage_b_economics.py::test_form_not_quotable_returns_form_not_offerable
+FAILED tests/invariants/test_phase_7_stage_b_1_wizard.py::test_turn_ledger_stamp_audit_sidecar_carries_wizard_transcript_data_class
+FAILED tests/invariants/test_phase_8_seam_3_sub_stage_2.py::test_c4_rollback_saturated_queue_admit_deletes_and_returns_count[asyncio]
+FAILED tests/invariants/test_qualified_data_outer_gate_ride.py::test_qualified_data_wire_shape_pins_governance_keys
+FAILED tests/invariants/test_qualified_data_selection.py::test_license_class_selection_filters_registry_reads
+FAILED tests/invariants/test_qualified_data_selection.py::test_license_class_absence_below_floor_route
+FAILED tests/invariants/test_qualified_data_selection.py::test_qualified_data_standard_hard_input_filter
+FAILED tests/invariants/test_qualified_data_selection.py::test_qualified_data_per_claim_provenance_intact
+FAILED tests/invariants/test_registry_prove_ui1d_gates.py::test_d_r3_opportunity_briefs_carry_put_this_to_work_cta_verbatim
+FAILED tests/invariants/test_registry_prove_ui1d_gates.py::test_d_r5_queue_endpoint_opens_use_data_session_and_is_idempotent
+FAILED tests/invariants/test_registry_prove_ui1d_gates.py::test_d_p1_prove_ask_answered_shape_returns_claim_and_trace_id
+FAILED tests/invariants/test_registry_prove_ui1d_gates.py::test_d_p3_prove_ask_evidence_cannot_support_shape_no_queue
+FAILED tests/invariants/test_registry_prove_ui1d_gates.py::test_d_p4_prove_ask_something_broke_uses_fault_channel_never_refusal
+FAILED tests/invariants/test_registry_prove_ui1d_gates.py::test_d_p8_prove_samples_endpoint_returns_all_four_seeded_shapes
+FAILED tests/invariants/test_registry_prove_ui1d_gates.py::test_d_s1_seeded_briefs_and_gaps_carry_is_sample_true
+FAILED tests/invariants/test_registry_prove_ui1d_gates.py::test_d_d1_wire_reason_verbatim_in_refusal_response
+FAILED tests/invariants/test_service_1_invariants.py::test_service_1_ledger_correlation
+FAILED tests/invariants/test_service_1_invariants.py::test_service_1_status_by_run
+FAILED tests/invariants/test_service_1_refusal_envelope.py::test_no_lawful_basis_refusal_returns_flat_outcome_refused
+FAILED tests/invariants/test_solva_trace_ledger_integration.py::test_solva_trace_lands_in_ledger
+FAILED tests/invariants/test_team_ui1e_gates.py::test_e_a1_approval_surface_returns_items_counts_and_doctrine
+FAILED tests/invariants/test_team_ui1e_gates.py::test_e_b1a_access_register_sample_revoked_row_visible_in_first_slice
+FAILED tests/invariants/test_trace_lens_cross_engine_correlation.py::test_service_1_flow_resolves_all_four_engines
+FAILED tests/invariants/test_trace_lens_cross_engine_correlation.py::test_solva_flow_resolves_northena_and_solva_engines
+FAILED tests/invariants/test_trace_lens_cross_engine_correlation.py::test_run_id_trace_id_semantics_northena_7_2
+FAILED tests/invariants/test_trace_lens_readonly.py::test_trace_lens_known_trace_id_writes_zero
+ERROR tests/invariants/test_phase_8_b_5a_compliance.py::test_refusals_aggregate_dpo_empty_month_honest_zero[asyncio]
+ERROR tests/invariants/test_phase_8_b_5a_compliance.py::test_refusals_by_month_counts_admission_refusals[asyncio]
+ERROR tests/invariants/test_phase_8_b_5a_compliance.py::test_refusals_by_month_counts_composition_below_floor[asyncio]
+ERROR tests/invariants/test_phase_8_b_5a_compliance.py::test_refusals_by_month_counts_late_refusals[asyncio]
+ERROR tests/invariants/test_phase_8_b_5a_compliance.py::test_refusals_by_month_counts_outer_gate_refusals[asyncio]
+ERROR tests/invariants/test_phase_8_b_5a_compliance.py::test_refusals_by_month_excludes_auth_403_and_validation_422[asyncio]
+ERROR tests/invariants/test_phase_8_b_5a_compliance.py::test_trace_endpoint_stays_anonymous_callable_regression[asyncio]
+ERROR tests/invariants/test_phase_8_b_5a_compliance.py::test_trace_endpoint_dpo_positive_path[asyncio]
+ERROR tests/invariants/test_phase_8_b_5a_compliance.py::test_anonymous_trace_view_contains_no_field_outside_receipt_spec[asyncio]
+ERROR tests/invariants/test_phase_8_b_5a_compliance.py::test_anonymous_trace_view_contains_all_receipt_spec_fields[asyncio]
+ERROR tests/invariants/test_phase_8_seam_3_sub_stage_1.py::test_refusal_terminal_row_carries_registry_valid_refusal_family_in_stamp_audit[asyncio-i1_no_defensibility_floor-composition_below_floor-no_defensibility_floor]
+ERROR tests/invariants/test_phase_8_seam_3_sub_stage_1.py::test_refusal_terminal_row_carries_registry_valid_refusal_family_in_stamp_audit[asyncio-i2_no_lawful_basis-composition_below_floor-no_lawful_basis]
+ERROR tests/invariants/test_phase_8_seam_3_sub_stage_1.py::test_refusal_terminal_row_carries_registry_valid_refusal_family_in_stamp_audit[asyncio-i3_composition_below_floor_sync-composition_below_floor-composition_below_floor]
+ERROR tests/invariants/test_phase_8_seam_3_sub_stage_1.py::test_refusal_terminal_row_carries_registry_valid_refusal_family_in_stamp_audit[asyncio-i4_composed_conclusion_sync-composition_below_floor-composition_below_floor]
+ERROR tests/invariants/test_phase_8_seam_3_sub_stage_1.py::test_refusal_terminal_row_carries_registry_valid_refusal_family_in_stamp_audit[asyncio-i5_async_composed_refusal-composition_below_floor-composition_below_floor]
+ERROR tests/invariants/test_phase_8_seam_3_sub_stage_1.py::test_refusal_terminal_row_carries_registry_valid_refusal_family_in_stamp_audit[asyncio-i6_async_admission_refusal-admission_refusals-unrecognized_reason]
+ERROR tests/invariants/test_phase_8_seam_3_sub_stage_1.py::test_refusal_terminal_lb_gate_aggregate_regression[asyncio]
+ERROR tests/invariants/test_phase_8_seam_3_sub_stage_1.py::test_emit_refusal_ledger_row_rejects_unknown_family[asyncio]
+ERROR tests/invariants/test_phase_8_seam_3_sub_stage_1.py::test_emit_refusal_ledger_row_rejects_converge_stage[asyncio]
+ERROR tests/invariants/test_phase_8_seam_3_sub_stage_1.py::test_emit_refusal_ledger_row_pins_family_key_over_extra[asyncio]
+ERROR tests/invariants/test_phase_8_seam_3_sub_stage_1.py::test_emit_refusal_ledger_row_registry_contains_unclassified_per_r_3[asyncio]
+ERROR tests/invariants/test_phase_8_seam_3_sub_stage_1.py::test_coverage_marker_empty_state_honest_note[asyncio]
+ERROR tests/invariants/test_phase_8_seam_3_sub_stage_1.py::test_coverage_marker_populates_from_pinned_key_rows[asyncio]
+ERROR tests/invariants/test_phase_8_seam_3_sub_stage_1.py::test_coverage_marker_uses_query_time_earliest_per_family[asyncio]
+ERROR tests/invariants/test_phase_8_seam_3_sub_stage_1.py::test_coverage_marker_categorises_by_seam_3_boundary[asyncio]
+ERROR tests/invariants/test_phase_8_seam_3_sub_stage_1.py::test_refusals_coverage_dpo_role_200_shape[asyncio]
+ERROR tests/invariants/test_phase_8_seam_3_sub_stage_1.py::test_r5_no_duplicate_ledger_rows_across_emission_and_transition[asyncio]
+ERROR tests/invariants/test_phase_8_seam_3_sub_stage_2.py::test_a8_retention_config_write_loosening_routes_to_checker[asyncio]
+ERROR tests/invariants/test_phase_8_seam_3_sub_stage_2.py::test_a9_retention_config_write_loosening_int_to_null_routes_to_checker[asyncio]
+ERROR tests/invariants/test_phase_8_seam_3_sub_stage_2.py::test_b5_authorized_deletion_explicit_rule_empty_selector_zero_count[asyncio]
+ERROR tests/invariants/test_phase_8_seam_3_sub_stage_2.py::test_b6_authorized_deletion_emits_ledger_row_with_data_class[asyncio]
+ERROR tests/invariants/test_phase_8_seam_3_sub_stage_2.py::test_d1_emit_deletion_ledger_row_rejects_unknown_data_class[asyncio]
+ERROR tests/invariants/test_phase_8_seam_3_sub_stage_2.py::test_d2_emit_deletion_ledger_row_pins_data_class_over_extra[asyncio]
+ERROR tests/invariants/test_phase_8_seam_3_sub_stage_2.py::test_deletion_terminal_row_carries_registry_valid_data_class_in_stamp_audit[asyncio]
+79 failed, 2041 passed, 72 skipped, 356 warnings, 34 errors in 62.88s (0:01:02)

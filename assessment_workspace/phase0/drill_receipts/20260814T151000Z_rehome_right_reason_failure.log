@@ -1,0 +1,20 @@
+=== FRONTEND RE-HOME — RIGHT-REASON FAILURE RECEIPT ===
+Timestamp (UTC): 2026-08-14T15:10:00Z
+Commit boundary: before re-home implementation lands
+Test file: pod_shell/frontend/__tests__/rehome.test.js
+Total tests: 9  ·  Failing: 6  ·  Passing (invariant already true): 3
+
+FAILING (right-reason):
+  1. App.js does NOT declare the retired /register/connect/gpu route
+  2. frontend has NO token-gate importable code path
+  3. frontend does NOT ship the retired OWNER-ACCESS sign-in card copy
+  4. Admin surface exposes required data-testids: admin tab, tile group headings, Connect tile, GPU form fields
+  5. no sign-out affordance references the retired token (owner_token localStorage)
+  6. GET /register/connect/gpu returns HTTP 404 (route retired at edge)
+
+PASSING (already true regardless of re-home):
+  7. Admin surface component is reachable from App.js as the root '/' route
+  8. GET /register/connect/gpu body carries retirement notice, not the form
+  9. GET / serves the Admin surface shell (allowed IP)
+
+Discipline: implementation MUST NOT land before this receipt is banked.

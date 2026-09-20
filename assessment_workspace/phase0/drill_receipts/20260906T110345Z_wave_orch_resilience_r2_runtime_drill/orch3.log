@@ -1,0 +1,32 @@
+[gpu_burn] RUN_ID = burn_20260906T110345Z_b1c2c20f
+[gpu_burn] BURN_ROOT = /app/assessment_workspace/phase0/gpu_burn/burn_20260906T110345Z_b1c2c20f
+[gpu_burn] duration=1500s size=8192 dtype=float16
+[gpu_burn] poll_interval=30s hosts=['akki-vm', 'akki-vm-ii']
+[gpu_burn] RECONCILE: 2 orphaned in-flight run(s) detected:
+[gpu_burn]   RECONCILE-ORPHAN: burn_20260831T183247Z_dd53d6c7 · reason=no_heartbeat · last_heartbeat=None · NOT_ADOPTABLE (polls_stale_491785s_gt_900s)
+[gpu_burn]   RECONCILE-ORPHAN: burn_20260831T183509Z_731f22ad · reason=no_heartbeat · last_heartbeat=None · NOT_ADOPTABLE (polls_stale_490185s_gt_900s)
+[gpu_burn] RECONCILE-ADOPT: run_id=burn_20260906T110345Z_b1c2c20f adopted (adopting_pid=34237, adopted_at_utc=2026-09-06T11:10:20.221739Z)
+[gpu_burn] akki-vm → exit_code=0 wallclock=253.5s error=''
+[gpu_burn] akki-vm-ii → exit_code=0 wallclock=254.2s error=''
+
+============================================================================
+ACTIVITY SUMMARY
+============================================================================
+GPU Activity — burn_20260906T110345Z_b1c2c20f
+When: 2026-09-06T11:10:20Z → 2026-09-06T11:14:34Z UTC
+Wall-clock: 4.2 minutes (both hosts in parallel).
+Total GPU-hours delivered: 0.28 across 4 GPUs on 2 hosts.
+Workload: sustained fp16 matmul (8192×8192), no estate data — synthetic tensors only.
+
+Per host:
+  • akki-vm: 2 GPU(s), utilization median 100.0%, power draw median 691.475 W, temperature median 68.0 °C, memory used median 1137.0 MiB, compute throughput median 637.67 TFLOPS/GPU, exit_code=0
+  • akki-vm-ii: 2 GPU(s), utilization median 100.0%, power draw median 691.29 W, temperature median 69.0 °C, memory used median 1137.0 MiB, compute throughput median 638.845 TFLOPS/GPU, exit_code=0
+
+Governance: every remote call went through the training_runner SSH seam (execute_remote_command), each with a governed crossing receipt written to phase0/crossing_receipts/ and a redacted seam receipt written to phase0/gpu_receipts/. Masking tier: attested_command. No PII, no estate data, on either host.
+
+Shielded-data intent: NOT dropped. Chartered as a next-wave delivery per owner ruling. See DECISIONS.md entry banking the honest gap and the shielded-training pipeline scope.
+============================================================================
+
+[gpu_burn] run record: /app/assessment_workspace/phase0/training_runner/runs/burn_20260906T110345Z_b1c2c20f.json
+[gpu_burn] ledger receipts index: /app/assessment_workspace/phase0/gpu_burn/burn_20260906T110345Z_b1c2c20f/cost_ledger_receipts.json
+[gpu_burn] artifacts root: /app/assessment_workspace/phase0/gpu_burn/burn_20260906T110345Z_b1c2c20f

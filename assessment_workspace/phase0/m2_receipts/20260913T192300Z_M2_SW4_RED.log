@@ -1,0 +1,8 @@
+E       ImportError: cannot import name 'g4_pending_override_count' from 'services.rules_service.rule_enumeration_classifier' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/rules_service/rule_enumeration_classifier.py)
+
+tests/invariants/test_wm2_sw4_286_rule_enumeration_classify.py:156: ImportError
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wm2_sw4_286_rule_enumeration_classify.py::test_sw4_g4_gap_size_helper_reports_pending_override_count
+============================== 1 failed in 0.80s ===============================

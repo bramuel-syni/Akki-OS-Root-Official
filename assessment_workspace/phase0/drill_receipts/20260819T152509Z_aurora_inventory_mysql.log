@@ -1,0 +1,300 @@
+[engine-probe] version='8.0.42'  comment='6252a59a'  aurora_version='3.10.3'
+
+======================================================================
+[db=digicow_live]
+[db=digicow_live] table_count=125
+  digicow_live.ussd_users                                ≈    2285264 rows  ·     747.7 MB
+  digicow_live.ussd_question_response                    ≈     903293 rows  ·     132.9 MB
+  digicow_live.ussd_api_session_validation               ≈     521204 rows  ·     161.7 MB
+  digicow_live.shortcode_questions_response              ≈     399800 rows  ·      67.6 MB
+  digicow_live.post_view                                 ≈     293712 rows  ·      28.6 MB
+  digicow_live.sms_log                                   ≈     255867 rows  ·      67.6 MB
+  digicow_live.user_group_trainings                      ≈     163753 rows  ·     110.5 MB
+  digicow_live.post_gallery_view                         ≈     117384 rows  ·       7.5 MB
+  digicow_live.users                                     ≈     108323 rows  ·      26.1 MB
+  digicow_live.single_training_post_view                 ≈      75166 rows  ·      15.0 MB
+  digicow_live.shortcode_response                        ≈      41018 rows  ·       6.5 MB
+  digicow_live.tbl_school_data                           ≈      31755 rows  ·       3.5 MB
+  digicow_live.post_likes                                ≈      27486 rows  ·       1.5 MB
+  digicow_live.sms_exception_table                       ≈      23070 rows  ·      19.5 MB
+  digicow_live.user_group_trainings_payment              ≈       8680 rows  ·       1.5 MB
+  digicow_live.ussd_options                              ≈       5952 rows  ·       0.5 MB
+  digicow_live.group_post_view                           ≈       4759 rows  ·       0.4 MB
+  digicow_live.post_location                             ≈       4732 rows  ·       0.3 MB
+  digicow_live.delete_log                                ≈       4153 rows  ·       5.5 MB
+  digicow_live.milk_production                           ≈       2354 rows  ·       0.2 MB
+  digicow_live.post_locationt_log                        ≈       1775 rows  ·       0.1 MB
+  digicow_live.ussd_questions                            ≈       1718 rows  ·       0.2 MB
+  digicow_live.ussd_location                             ≈       1608 rows  ·       0.1 MB
+  digicow_live.post_training                             ≈       1555 rows  ·     249.6 MB
+  digicow_live.user_sub_menus                            ≈       1551 rows  ·       0.1 MB
+
+  [digicow_live.ussd_users] · 43 columns:
+    id                                   int                             key=PRI
+    post_id                              int                             null
+    parent_post_id                       int                             null
+    training_code_id                     int                             key=MUL
+    name                                 varchar(100)                    
+    phone_number                         bigint                          key=MUL
+    county                               varchar(100)                    null
+    age                                  varchar(100)                    null
+    age_group                            varchar(20)                     null
+    gender                               varchar(100)                    null
+    date_created                         timestamp                       
+    duplicate_attempted                  int                             null
+    status                               int                             
+    terms_conditions                     tinyint(1)                      null
+    identification_number                varchar(45)                     null
+    owner_of_number                      varchar(30)                     null
+    cooperative_id                       int                             null
+    cooperative_name                     text                            null
+    route                                text                            null
+    user_from                            tinyint(1)                      null
+    approve_status                       tinyint(1)                      null key=MUL
+    comments                             text                            null
+    resolution_on_dispute                text                            null
+    payment_status                       tinyint(1)                      null
+    payment_approve_date                 datetime                        null
+    payment_id                           int                             null
+    payment_date                         datetime                        null
+    dispute_resolved                     tinyint(1)                      null
+    name_flag                            tinyint(1)                      null
+    gender_flag                          tinyint(1)                      null
+    dairy_farmer                         tinyint(1)                      null
+    poultry_farmer                       tinyint(1)                      null
+    dairy_poultry_farmer                 tinyint(1)                      null
+    value_chain_id                       int                             null key=MUL
+    number_of_animals                    varchar(20)                     null
+    forage_area                          varchar(20)                     null
+    flag_reason                          varchar(255)                    null
+    adoption                             text                            null
+    adoption_status                      int                             null
+    adoption_update_datetime             datetime                        null
+
+  [digicow_live.ussd_question_response] · 13 columns:
+    id                                   int                             key=PRI
+    ussd_user_id                         int                             null
+    mobile_number                        varchar(45)                     null
+    training_code                        varchar(45)                     null key=MUL
+    post_id                              int                             null
+    question_id                          int                             null
+    option_id                            int                             null
+    option_string                        varchar(45)                     null
+    created_at                           timestamp                       null
+    question_string                      text                            null
+    value_chain                          varchar(255)                    null
+    number_of_animals                    varchar(255)                    null
+    forage_area                          varchar(255)                    null
+
+  [digicow_live.ussd_api_session_validation] · 11 columns:
+    id                                   int                             key=PRI
+    phoneNumber                          varchar(20)                     null
+    sessionId                            text                            null
+    text                                 text                            null
+    valid_text                           text                            null
+    step_count                           int                             null
+    last_input                           text                            null
+    valid_option_count                   varchar(45)                     null
+    last_response                        text                            null
+    created_at                           datetime                        null
+    updated_at                           timestamp                       null
+
+  [digicow_live.shortcode_questions_response] · 14 columns:
+    id                                   int                             key=PRI
+    post_id                              int                             null
+    training_code_id                     varchar(10)                     null
+    training_code                        varchar(10)                     null
+    question_id                          int                             null
+    question                             text                            null
+    farmer_mobile_no                     varchar(20)                     null
+    farmer_answer                        varchar(45)                     null
+    sms_status                           tinyint                         null
+    reply_datetime                       datetime                        null
+    is_first_question                    tinyint                         null
+    created_at                           datetime                        null
+    updated_at                           timestamp                       null
+    user_id                              int                             null
+
+  [digicow_live.post_view] · 11 columns:
+    id                                   bigint                          key=PRI
+    post_id                              int                             null
+    user_id                              int                             null
+    mobile_number                        varchar(25)                     null
+    latitude                             varchar(150)                    null
+    longitude                            varchar(150)                    null
+    address                              text                            null
+    state                                text                            null
+    type                                 varchar(50)                     null
+    updated_at                           timestamp                       null
+    created_at                           datetime                        null
+
+======================================================================
+[db=ndume]
+[db=ndume] table_count=110
+  ndume.breedings                                 ≈     184348 rows  ·     155.8 MB
+  ndume.cows                                      ≈     131374 rows  ·      36.6 MB
+  ndume.tbl_farmer_vet                            ≈      75365 rows  ·      17.5 MB
+  ndume.sms_log                                   ≈      57904 rows  ·      12.5 MB
+  ndume.tbl_school_data                           ≈      31755 rows  ·       3.5 MB
+  ndume.tbl_school_data_old                       ≈      31702 rows  ·       4.5 MB
+  ndume.milk_production                           ≈      30315 rows  ·       3.5 MB
+  ndume.healths                                   ≈      24031 rows  ·      12.4 MB
+  ndume.vet_training_data                         ≈      10921 rows  ·       1.5 MB
+  ndume.breedings_straw_logs                      ≈       5887 rows  ·       0.5 MB
+  ndume.tbl_vet                                   ≈       4166 rows  ·       1.5 MB
+  ndume.personal_access_tokens                    ≈       3887 rows  ·       2.9 MB
+  ndume.vet_training_location                     ≈       2954 rows  ·       0.3 MB
+  ndume.milk_sales                                ≈       2923 rows  ·       0.3 MB
+  ndume.Issued_Semen                              ≈       1914 rows  ·       0.3 MB
+  ndume.feeding                                   ≈       1545 rows  ·       0.2 MB
+  ndume.calf_milk                                 ≈       1323 rows  ·       0.1 MB
+  ndume.withdraw_list                             ≈        753 rows  ·       0.1 MB
+  ndume.tbl_farmer_clients                        ≈        605 rows  ·       0.1 MB
+  ndume.Semen_issuance                            ≈        603 rows  ·       0.0 MB
+  ndume.other_expenses                            ≈        595 rows  ·       0.1 MB
+  ndume.milk_payments                             ≈        529 rows  ·       0.1 MB
+  ndume.semen_issue_notification                  ≈        509 rows  ·       0.2 MB
+  ndume.calves                                    ≈        483 rows  ·       0.1 MB
+  ndume.calving                                   ≈        473 rows  ·       0.1 MB
+
+  [ndume.breedings] · 53 columns:
+    id                                   bigint unsigned                 key=PRI
+    farmer_vet_id                        int                             null key=MUL
+    sid                                  varchar(20)                     null
+    firebase_id                          varchar(100)                    null
+    bull_code                            varchar(50)                     null
+    bull_name                            varchar(150)                    null
+    cost                                 varchar(50)                     null
+    cow_id                               varchar(20)                     null key=MUL
+    cow_name                             varchar(50)                     null
+    drying_date                          datetime                        null key=MUL
+    expected_date_of_birth               datetime                        null key=MUL
+    expected_repeat_date                 datetime                        null key=MUL
+    farmer_name                          varchar(150)                    null
+    mobile                               varchar(20)                     null key=MUL
+    no_straw                             varchar(25)                     null
+    pg_status                            varchar(2)                      null
+    pregnancy_date                       datetime                        null key=MUL
+    record_type                          varchar(25)                     null
+    repeats                              varchar(25)                     null
+    semen_type                           varchar(50)                     null
+    sex_type                             varchar(25)                     null
+    source_of_semen                      varchar(20)                     null
+    straw_breed                          varchar(25)                     null
+    strimingup_date                      datetime                        null key=MUL
+    sync_at                              datetime                        null
+    vet_id                               varchar(50)                     null
+    vet_name                             varchar(255)                    null
+    date_dt                              date                            null
+    is_verified                          int                             null
+    wallet_amount                        double                          null
+    is_paid                              int                             
+    withdraw_id                          int                             
+    firebase_json                        json                            null
+    verified_by                          varchar(100)                    null
+    disqualified_comment                 text                            null
+    first_heat                           datetime                        null key=MUL
+    second_heat                          datetime                        null key=MUL
+    created_at                           timestamp                       null
+    updated_at                           timestamp                       null
+    deleted_at                           timestamp                       null
+
+  [ndume.cows] · 34 columns:
+    id                                   bigint unsigned                 key=PRI
+    firebase_id                          varchar(100)                    null
+    sid                                  varchar(20)                     null
+    breed_id                             int                             null
+    cow_breeding_1                       int                             null
+    cow_breeding_2                       int                             null
+    group_id                             varchar(20)                     null
+    mobile_number                        varchar(20)                     null
+    title                                varchar(50)                     null
+    ear_code                             varchar(50)                     null
+    date_of_birth                        varchar(50)                     null
+    calving_lactation                    varchar(10)                     null
+    dam                                  varchar(100)                    null
+    dam_code                             varchar(100)                    null
+    dam_father                           varchar(100)                    null
+    dam_father_code                      varchar(100)                    null
+    dam_id                               varchar(100)                    null
+    dam_mother                           varchar(100)                    null
+    dam_mother_code                      varchar(20)                     null
+    sire                                 varchar(100)                    null
+    sire_code                            varchar(200)                    null
+    sire_father                          varchar(100)                    null
+    sire_father_code                     varchar(50)                     null
+    sire_mother                          varchar(100)                    null
+    sire_mother_code                     varchar(50)                     null
+    status                               varchar(20)                     null
+    insert_from                          varchar(45)                     null
+    sync_at                              varchar(50)                     null
+    firebase_json                        json                            null
+    created_at                           timestamp                       null
+    updated_at                           timestamp                       null
+    deleted_at                           timestamp                       null
+    past_owner_phone_number              varchar(20)                     null
+    past_cow_id                          int                             null
+
+  [ndume.tbl_farmer_vet] · 29 columns:
+    farmer_vet_id                        int                             key=PRI
+    farmer_name                          varchar(255)                    null
+    farmer_type                          varchar(100)                    null
+    farmer_id                            text                            null
+    membership_num                       text                            null
+    mobile_number                        varchar(25)                     key=MUL
+    local                                varchar(256)                    null
+    village                              varchar(256)                    null
+    vet_id                               int                             
+    county                               varchar(50)                     
+    subcounty                            varchar(50)                     
+    ward                                 varchar(50)                     
+    type_of_farming                      varchar(50)                     null
+    school_data_id                       int                             
+    num_of_animal                        int                             null
+    payment_mode                         int                             
+    financial                            int                             null
+    status                               int                             
+    verified                             int                             
+    start_date                           date                            null
+    end_date                             date                            null
+    paid_amount                          int                             
+    num_of_visit                         int                             
+    balance                              int                             
+    cooperative_name                     varchar(50)                     
+    cop_mobilenumber                     varchar(20)                     null
+    group_name                           varchar(50)                     
+    datetime                             timestamp                       
+    gender                               varchar(20)                     null
+
+  [ndume.sms_log] · 11 columns:
+    id                                   bigint unsigned                 key=PRI
+    county_name                          varchar(100)                    null
+    subcounty                            varchar(100)                    null
+    ward                                 varchar(100)                    null
+    farmer_name                          varchar(100)                    null
+    phone_number                         bigint                          null
+    sms_sent                             longtext                        null
+    sms_id                               int                             
+    clints_id                            int                             
+    created_at                           timestamp                       null
+    updated_at                           timestamp                       null
+
+  [ndume.tbl_school_data] · 8 columns:
+    id                                   int                             key=PRI
+    name                                 varchar(100)                    null
+    latitude                             varchar(50)                     null
+    longitude                            varchar(50)                     null
+    county                               varchar(256)                    null
+    subcounty                            varchar(256)                    null
+    ward                                 varchar(256)                    null
+    status                               int                             
+
+[record] /app/assessment_workspace/phase0/data_connection_records/data_source_digicow_live_20260819T152513Z_FINAL.json
+         sha256=c6698e22673c7ee8a72f15af7798c58a94b7a558aea3a2942b8c3ef7f816f294
+
+[record] /app/assessment_workspace/phase0/data_connection_records/data_source_ndume_20260819T152513Z_FINAL.json
+         sha256=572f13108894a60892568e63609b36555cc3ae75fadc47d6d0caa4ba2a95aab7
+[cleanup] removed superseded record /app/assessment_workspace/phase0/data_connection_records/data_source_digicow_live_20260819T152336Z.json
+[cleanup] removed superseded record /app/assessment_workspace/phase0/data_connection_records/data_source_ndume_20260819T152336Z.json
+[retire] AWS_* env unset
+[DONE]

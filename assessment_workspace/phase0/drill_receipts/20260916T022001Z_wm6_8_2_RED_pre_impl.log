@@ -1,0 +1,188 @@
+RED · CP-M6-8-2 · milestones.py not authored yet
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.4.2, pluggy-1.6.0 -- /root/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: anyio-4.14.2, asyncio-1.4.0, xdist-3.8.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collecting ... collected 10 items
+
+tests/invariants/test_wm6_8_2_milestones.py::test_wm6_8_2_module_fabric FAILED [ 10%]
+tests/invariants/test_wm6_8_2_milestones.py::test_wm6_8_2_v114_verbatim_in_module_docstring FAILED [ 20%]
+tests/invariants/test_wm6_8_2_milestones.py::test_wm6_8_2_milestone_frozen_three_carrier FAILED [ 30%]
+tests/invariants/test_wm6_8_2_milestones.py::test_wm6_8_2_milestone_refuses_empty_done_condition FAILED [ 40%]
+tests/invariants/test_wm6_8_2_milestones.py::test_wm6_8_2_milestone_refuses_empty_owner FAILED [ 50%]
+tests/invariants/test_wm6_8_2_milestones.py::test_wm6_8_2_milestone_list_frozen_three_carrier_ordering_preserved FAILED [ 60%]
+tests/invariants/test_wm6_8_2_milestones.py::test_wm6_8_2_construct_milestone_list_refuses_empty FAILED [ 70%]
+tests/invariants/test_wm6_8_2_milestones.py::test_wm6_8_2_agree_milestone_list_returns_new_frozen_with_agreement_ref FAILED [ 80%]
+tests/invariants/test_wm6_8_2_milestones.py::test_wm6_8_2_agree_refuses_re_agreement FAILED [ 90%]
+tests/invariants/test_wm6_8_2_milestones.py::test_wm6_8_2_assert_commission_open_only_after_agreement FAILED [100%]
+
+=================================== FAILURES ===================================
+__________________________ test_wm6_8_2_module_fabric __________________________
+
+    def test_wm6_8_2_module_fabric():
+>       m = importlib.import_module("services.audio_plane_v1.milestones")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_wm6_8_2_milestones.py:26: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'services.audio_plane_v1.milestones'
+import_ = <function _gcd_import at 0xfa119e9bbd80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'services.audio_plane_v1.milestones'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+________________ test_wm6_8_2_v114_verbatim_in_module_docstring ________________
+
+    def test_wm6_8_2_v114_verbatim_in_module_docstring():
+>       m = importlib.import_module("services.audio_plane_v1.milestones")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_wm6_8_2_milestones.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'services.audio_plane_v1.milestones'
+import_ = <function _gcd_import at 0xfa119e9bbd80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'services.audio_plane_v1.milestones'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+_________________ test_wm6_8_2_milestone_frozen_three_carrier __________________
+
+    def test_wm6_8_2_milestone_frozen_three_carrier():
+>       from services.audio_plane_v1.milestones import Milestone
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.milestones'
+
+tests/invariants/test_wm6_8_2_milestones.py:63: ModuleNotFoundError
+_____________ test_wm6_8_2_milestone_refuses_empty_done_condition ______________
+
+    def test_wm6_8_2_milestone_refuses_empty_done_condition():
+        """§11.3 V114b verbatim: 'Each milestone carries a done-condition
+        and an owner.'  Empty done_condition refuses at __post_init__."""
+>       from services.audio_plane_v1.milestones import (
+            Milestone,
+            MilestoneMissingDoneConditionError,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.milestones'
+
+tests/invariants/test_wm6_8_2_milestones.py:81: ModuleNotFoundError
+__________________ test_wm6_8_2_milestone_refuses_empty_owner __________________
+
+    def test_wm6_8_2_milestone_refuses_empty_owner():
+        """§11.3 V114b verbatim: 'Each milestone carries a done-condition
+        and an owner.'  Empty owner refuses at __post_init__."""
+>       from services.audio_plane_v1.milestones import (
+            Milestone,
+            MilestoneMissingOwnerError,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.milestones'
+
+tests/invariants/test_wm6_8_2_milestones.py:96: ModuleNotFoundError
+_____ test_wm6_8_2_milestone_list_frozen_three_carrier_ordering_preserved ______
+
+    def test_wm6_8_2_milestone_list_frozen_three_carrier_ordering_preserved():
+        """§11.3 V114a verbatim: 'a proposed milestone list — the
+        checklist of what must be done, in what order' — ordering is
+        load-bearing.  MilestoneList is frozen 3-carrier and preserves
+        insertion order."""
+>       from services.audio_plane_v1.milestones import (
+            Milestone,
+            MilestoneList,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.milestones'
+
+tests/invariants/test_wm6_8_2_milestones.py:113: ModuleNotFoundError
+_____________ test_wm6_8_2_construct_milestone_list_refuses_empty ______________
+
+    def test_wm6_8_2_construct_milestone_list_refuses_empty():
+>       from services.audio_plane_v1.milestones import (
+            MilestoneListEmptyError,
+            construct_milestone_list,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.milestones'
+
+tests/invariants/test_wm6_8_2_milestones.py:145: ModuleNotFoundError
+___ test_wm6_8_2_agree_milestone_list_returns_new_frozen_with_agreement_ref ____
+
+    def test_wm6_8_2_agree_milestone_list_returns_new_frozen_with_agreement_ref():
+        """§11.3 V114c verbatim: 'The objective owner reviews and agrees
+        the list at commission'.  `agree_milestone_list` returns a NEW
+        frozen `MilestoneList` with the agreement ref set; the original
+        is untouched (frozen)."""
+>       from services.audio_plane_v1.milestones import (
+            Milestone,
+            agree_milestone_list,
+            construct_milestone_list,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.milestones'
+
+tests/invariants/test_wm6_8_2_milestones.py:158: ModuleNotFoundError
+___________________ test_wm6_8_2_agree_refuses_re_agreement ____________________
+
+    def test_wm6_8_2_agree_refuses_re_agreement():
+        """§11.3 V114d verbatim: 'from that point, all reporting is
+        against it' — once agreed, the list is locked.  Re-agreeing an
+        already-agreed list refuses."""
+>       from services.audio_plane_v1.milestones import (
+            Milestone,
+            MilestoneListAlreadyAgreedError,
+            agree_milestone_list,
+            construct_milestone_list,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.milestones'
+
+tests/invariants/test_wm6_8_2_milestones.py:188: ModuleNotFoundError
+___________ test_wm6_8_2_assert_commission_open_only_after_agreement ___________
+
+    def test_wm6_8_2_assert_commission_open_only_after_agreement():
+        """§11.3 V114c verbatim: 'The objective owner reviews and agrees
+        the list at commission; from that point, all reporting is
+        against it.'  Commission cannot open until agreement.
+    
+        Also (V114e · not discovered-during): the refusal fires at the
+        gate call time, before any commission-open side-effect."""
+>       from services.audio_plane_v1.milestones import (
+            CommissionOpenBeforeAgreementError,
+            Milestone,
+            agree_milestone_list,
+            assert_commission_open_only_after_agreement,
+            construct_milestone_list,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.milestones'
+
+tests/invariants/test_wm6_8_2_milestones.py:222: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wm6_8_2_milestones.py::test_wm6_8_2_module_fabric
+FAILED tests/invariants/test_wm6_8_2_milestones.py::test_wm6_8_2_v114_verbatim_in_module_docstring
+FAILED tests/invariants/test_wm6_8_2_milestones.py::test_wm6_8_2_milestone_frozen_three_carrier
+FAILED tests/invariants/test_wm6_8_2_milestones.py::test_wm6_8_2_milestone_refuses_empty_done_condition
+FAILED tests/invariants/test_wm6_8_2_milestones.py::test_wm6_8_2_milestone_refuses_empty_owner
+FAILED tests/invariants/test_wm6_8_2_milestones.py::test_wm6_8_2_milestone_list_frozen_three_carrier_ordering_preserved
+FAILED tests/invariants/test_wm6_8_2_milestones.py::test_wm6_8_2_construct_milestone_list_refuses_empty
+FAILED tests/invariants/test_wm6_8_2_milestones.py::test_wm6_8_2_agree_milestone_list_returns_new_frozen_with_agreement_ref
+FAILED tests/invariants/test_wm6_8_2_milestones.py::test_wm6_8_2_agree_refuses_re_agreement
+FAILED tests/invariants/test_wm6_8_2_milestones.py::test_wm6_8_2_assert_commission_open_only_after_agreement
+============================== 10 failed in 0.76s ==============================

@@ -1,0 +1,28 @@
+[creds] loaded from custody · AK_prefix=AKIAXGH5  SK_sha256[:12]=932e302672a8
+
+======================================================================
+[db=digicow_live] connecting…
+[db=digicow_live] link_working=YES
+[db=digicow_live] engine=unknown  version=8.0.42
+[db=digicow_live] tables=0
+
+======================================================================
+[db=ndume] connecting…
+[db=ndume] link_working=YES
+[db=ndume] engine=unknown  version=8.0.42
+[db=ndume] tables=0
+
+======================================================================
+[SUMMARY]
+
+  db=digicow_live
+    link_working=True  engine=unknown  version=8.0.42
+    table_count=0
+
+  db=ndume
+    link_working=True  engine=unknown  version=8.0.42
+    table_count=0
+[record] /app/assessment_workspace/phase0/data_connection_records/data_source_digicow_live_20260819T152336Z.json  sha256=14bb5b133d52af45dcd5154810f7e7597f5c3f6ea74e9a851bea6561eff4a69f
+[record] /app/assessment_workspace/phase0/data_connection_records/data_source_ndume_20260819T152336Z.json  sha256=b62e5f64cdcc2adfd0bbe64ae17390639be66168acaf8893fbcdfe28c9a064c1
+[retire] AWS_* env unset
+[DONE]

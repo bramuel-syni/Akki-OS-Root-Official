@@ -1,0 +1,18 @@
+============================= test session starts ==============================
+collecting ... collected 7 items / 1 error
+
+==================================== ERRORS ====================================
+___ ERROR collecting tests/invariants/test_default_class_ruled_constants.py ____
+ImportError while importing test module '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_default_class_ruled_constants.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend/tests/invariants/test_default_class_ruled_constants.py:33: in <module>
+    from backend.services.rulings import default_class_constants as C
+E   ModuleNotFoundError: No module named 'backend.services.rulings'
+=========================== short test summary info ============================
+ERROR backend/tests/invariants/test_default_class_ruled_constants.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+=============================== 1 error in 0.12s ===============================

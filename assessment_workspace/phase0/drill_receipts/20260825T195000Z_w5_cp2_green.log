@@ -1,0 +1,57 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-9.1.1, pluggy-1.6.0 -- /root/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: asyncio-1.4.0, xdist-3.8.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 46 items
+
+tests/invariants/test_llm_chokepoint_sole_importer.py::test_llm_chokepoint_module_exists PASSED [  2%]
+tests/invariants/test_llm_chokepoint_sole_importer.py::test_llm_purpose_gate_module_exists PASSED [  4%]
+tests/invariants/test_llm_chokepoint_sole_importer.py::test_llm_endpoint_allowlist_module_exists PASSED [  6%]
+tests/invariants/test_llm_chokepoint_sole_importer.py::test_only_chokepoint_llm_may_import_llm_sdks PASSED [  8%]
+tests/invariants/test_llm_chokepoint_sole_importer.py::test_chokepoint_llm_actually_imports_emergentintegrations PASSED [ 10%]
+tests/invariants/test_llm_chokepoint_sole_importer.py::test_legacy_synisense_llm_router_no_longer_imports_sdk PASSED [ 13%]
+tests/invariants/test_llm_purpose_gate_refuses_unlisted.py::test_allowed_purposes_carries_w5_entries PASSED [ 15%]
+tests/invariants/test_llm_purpose_gate_refuses_unlisted.py::test_allowed_purposes_uses_solva_vocabulary_not_solver PASSED [ 17%]
+tests/invariants/test_llm_purpose_gate_refuses_unlisted.py::test_validate_purpose_accepts_allowlisted_purposes PASSED [ 19%]
+tests/invariants/test_llm_purpose_gate_refuses_unlisted.py::test_validate_purpose_refuses_empty_purpose PASSED [ 21%]
+tests/invariants/test_llm_purpose_gate_refuses_unlisted.py::test_validate_purpose_refuses_unlisted_purpose PASSED [ 23%]
+tests/invariants/test_llm_purpose_gate_refuses_unlisted.py::test_validate_purpose_refuses_non_string PASSED [ 26%]
+tests/invariants/test_llm_purpose_gate_refuses_unlisted.py::test_invoke_refuses_unlisted_purpose_before_network PASSED [ 28%]
+tests/invariants/test_llm_masking_tier_enforced.py::test_w5_masking_tiers_present_on_allowlist PASSED [ 30%]
+tests/invariants/test_llm_masking_tier_enforced.py::test_w5_masking_tiers_admissible_in_development PASSED [ 32%]
+tests/invariants/test_llm_masking_tier_enforced.py::test_invoke_refuses_unknown_masking_tier PASSED [ 34%]
+tests/invariants/test_llm_masking_tier_enforced.py::test_invoke_refuses_non_admissible_masking_tier PASSED [ 36%]
+tests/invariants/test_llm_masking_tier_enforced.py::test_invoke_scrubs_credential_shaped_material_from_prompt PASSED [ 39%]
+tests/invariants/test_llm_crossing_receipt_metering.py::test_invoke_writes_receipt_with_metering PASSED [ 41%]
+tests/invariants/test_llm_crossing_receipt_metering.py::test_response_carries_metering_for_surface_provenance PASSED [ 43%]
+tests/invariants/test_llm_crossing_receipt_metering.py::test_zero_metering_still_allowed_when_provider_reports_zero PASSED [ 45%]
+tests/invariants/test_llm_crossing_receipt_metering.py::test_credential_shaped_key_scrubbed_from_receipt_payload_shape PASSED [ 47%]
+tests/invariants/test_llm_egress_allowlist_provider_scoped.py::test_emergent_is_allowlisted_when_key_present PASSED [ 50%]
+tests/invariants/test_llm_egress_allowlist_provider_scoped.py::test_emergent_endpoint_resolves_to_governed_host PASSED [ 52%]
+tests/invariants/test_llm_egress_allowlist_provider_scoped.py::test_anthropic_off_allowlist_at_w5_open PASSED [ 54%]
+tests/invariants/test_llm_egress_allowlist_provider_scoped.py::test_provider_added_to_allowlist_on_key_connection PASSED [ 56%]
+tests/invariants/test_llm_egress_allowlist_provider_scoped.py::test_invoke_refuses_off_allowlist_provider PASSED [ 58%]
+tests/invariants/test_registry_facts_emergent_universal_listed.py::test_emergent_universal_listed_when_key_present PASSED [ 60%]
+tests/invariants/test_registry_facts_emergent_universal_listed.py::test_emergent_llm_custody_never_leaks_key PASSED [ 63%]
+tests/invariants/test_registry_facts_emergent_universal_listed.py::test_no_emergent_entry_when_key_absent PASSED [ 65%]
+tests/invariants/test_registry_facts_emergent_universal_listed.py::test_byo_provider_key_listed_from_connection_record PASSED [ 67%]
+tests/invariants/test_registry_facts_emergent_universal_listed.py::test_models_tab_includes_llm_records_and_no_reason_when_present PASSED [ 69%]
+tests/invariants/test_chokepoint_registers_all_crossings.py::test_chokepoint_module_exists PASSED [ 71%]
+tests/invariants/test_chokepoint_registers_all_crossings.py::test_masking_tier_module_exists PASSED [ 73%]
+tests/invariants/test_chokepoint_registers_all_crossings.py::test_residency_module_exists PASSED [ 76%]
+tests/invariants/test_chokepoint_registers_all_crossings.py::test_register_crossing_returns_receipt_with_identity_and_attributed_ack PASSED [ 78%]
+tests/invariants/test_chokepoint_registers_all_crossings.py::test_register_crossing_refuses_unknown_masking_tier PASSED [ 80%]
+tests/invariants/test_chokepoint_registers_all_crossings.py::test_register_crossing_refuses_non_admissible_env_tier PASSED [ 82%]
+tests/invariants/test_chokepoint_registers_all_crossings.py::test_register_crossing_refuses_out_of_residency_endpoint PASSED [ 84%]
+tests/invariants/test_chokepoint_registers_all_crossings.py::test_register_crossing_refuses_missing_endpoint_region PASSED [ 86%]
+tests/invariants/test_chokepoint_registers_all_crossings.py::test_receipts_persist_and_list PASSED [ 89%]
+tests/invariants/test_chokepoint_registers_all_crossings.py::test_no_boto3_import_outside_chokepoint PASSED [ 91%]
+tests/invariants/test_chokepoint_registers_all_crossings.py::test_rds_data_submit_registers_crossing PASSED [ 93%]
+tests/invariants/test_chokepoint_registers_all_crossings.py::test_no_paramiko_or_ssh_exec_outside_chokepoint_and_compute_seam PASSED [ 95%]
+tests/invariants/test_chokepoint_registers_all_crossings.py::test_compute_seam_execute_registers_crossing PASSED [ 97%]
+tests/invariants/test_chokepoint_registers_all_crossings.py::test_no_llm_sdk_anywhere_in_backend PASSED [100%]
+
+============================== 46 passed in 2.65s ==============================

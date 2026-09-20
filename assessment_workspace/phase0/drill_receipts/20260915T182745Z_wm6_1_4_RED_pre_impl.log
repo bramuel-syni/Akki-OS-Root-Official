@@ -1,0 +1,126 @@
+FFFFFFF                                                                  [100%]
+=================================== FAILURES ===================================
+__________________________ test_wm6_1_4_module_fabric __________________________
+
+    def test_wm6_1_4_module_fabric():
+        """Module `services.audio_plane_v1.synthesis_attribute_capturer` exports
+        the CP-M6-1-4 public API: `capture_synthesis_attributes` +
+        `AudioSegment` (re-exported from CP-M6-1-1) + `SynthesisAttributes`
+        + `SynthesisAttributeCapturerBackend` +
+        `UnratifiedSynthesisInferredBackend` + `SegmentsEmptyError`
+        (re-exported) + `SegmentInvalidError` (re-exported) +
+        `BackendUnratifiedError` (CP-M6-1-4-local class)."""
+>       m = importlib.import_module(
+            "services.audio_plane_v1.synthesis_attribute_capturer"
+        )
+
+tests/invariants/test_wm6_1_4_synthesis_attribute_capturer.py:54: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'services.audio_plane_v1.synthesis_attribute_capturer'
+import_ = <function _gcd_import at 0xfeb43b8fbd80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'services.audio_plane_v1.synthesis_attribute_capturer'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+_____________ test_wm6_1_4_synthesis_attributes_five_carrier_shape _____________
+
+    def test_wm6_1_4_synthesis_attributes_five_carrier_shape():
+        """`SynthesisAttributes` frozen dataclass with exactly 5 carriers per
+        Audio-Plane §4.4 P069 verbatim (`pitch_statistics` +
+        `energy_contours` + `duration_patterns` group-level acoustic families)
+        + `segment_ref` + D10 backend attribution.  Pull-seam negative-scan:
+        no audio-byte carrier names."""
+>       from services.audio_plane_v1.synthesis_attribute_capturer import (
+            SynthesisAttributes,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.synthesis_attribute_capturer'
+
+tests/invariants/test_wm6_1_4_synthesis_attribute_capturer.py:78: ModuleNotFoundError
+_____________________ test_wm6_1_4_empty_segments_refuses ______________________
+
+    def test_wm6_1_4_empty_segments_refuses():
+        """`segments=()` propagates `SegmentsEmptyError` mentioning `segments`."""
+>       from services.audio_plane_v1.synthesis_attribute_capturer import (
+            SegmentsEmptyError, UnratifiedSynthesisInferredBackend,
+            capture_synthesis_attributes,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.synthesis_attribute_capturer'
+
+tests/invariants/test_wm6_1_4_synthesis_attribute_capturer.py:96: ModuleNotFoundError
+________________ test_wm6_1_4_non_audio_segment_element_refuses ________________
+
+    def test_wm6_1_4_non_audio_segment_element_refuses():
+        """A non-`AudioSegment` element in `segments` propagates
+        `SegmentInvalidError`."""
+>       from services.audio_plane_v1.synthesis_attribute_capturer import (
+            AudioSegment, SegmentInvalidError,
+            UnratifiedSynthesisInferredBackend, capture_synthesis_attributes,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.synthesis_attribute_capturer'
+
+tests/invariants/test_wm6_1_4_synthesis_attribute_capturer.py:110: ModuleNotFoundError
+______________ test_wm6_1_4_unratified_backend_refuses_on_invoke _______________
+
+    def test_wm6_1_4_unratified_backend_refuses_on_invoke():
+        """`UnratifiedSynthesisInferredBackend` raises `BackendUnratifiedError`
+        on invoke, with `[INFERRED-pending-ratification]` marker per D10-family
+        open ruling."""
+>       from services.audio_plane_v1.synthesis_attribute_capturer import (
+            AudioSegment, BackendUnratifiedError,
+            UnratifiedSynthesisInferredBackend, capture_synthesis_attributes,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.synthesis_attribute_capturer'
+
+tests/invariants/test_wm6_1_4_synthesis_attribute_capturer.py:126: ModuleNotFoundError
+_____ test_wm6_1_4_orchestration_invokes_backend_per_segment_returns_shape _____
+
+    def test_wm6_1_4_orchestration_invokes_backend_per_segment_returns_shape():
+        """`capture_synthesis_attributes` invokes `backend.capture(
+        segment_ref, duration_s)` once per segment (in segment order) and
+        returns a `SynthesisAttributes` per segment carrying the
+        backend-attributed three acoustic families + `backend_name`.
+    
+        Backend return values for each family (§4.4 P069: pitch statistics,
+        energy contours, duration patterns) are coerced to immutable tuples
+        so the resulting dataclass stays frozen-compatible."""
+>       from services.audio_plane_v1.synthesis_attribute_capturer import (
+            AudioSegment, SynthesisAttributeCapturerBackend, SynthesisAttributes,
+            capture_synthesis_attributes,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.synthesis_attribute_capturer'
+
+tests/invariants/test_wm6_1_4_synthesis_attribute_capturer.py:145: ModuleNotFoundError
+_____ test_wm6_1_4_backend_return_list_coerced_to_tuple_for_frozen_carrier _____
+
+    def test_wm6_1_4_backend_return_list_coerced_to_tuple_for_frozen_carrier():
+        """§4.4 P069 group-level acoustic attributes must be immutable in the
+        frozen `SynthesisAttributes` dataclass.  When a backend returns
+        Python lists (mutable), the orchestrator coerces to tuples so the
+        resulting dataclass instance is genuinely frozen-safe."""
+>       from services.audio_plane_v1.synthesis_attribute_capturer import (
+            AudioSegment, SynthesisAttributes, capture_synthesis_attributes,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.synthesis_attribute_capturer'
+
+tests/invariants/test_wm6_1_4_synthesis_attribute_capturer.py:198: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wm6_1_4_synthesis_attribute_capturer.py::test_wm6_1_4_module_fabric
+FAILED tests/invariants/test_wm6_1_4_synthesis_attribute_capturer.py::test_wm6_1_4_synthesis_attributes_five_carrier_shape
+FAILED tests/invariants/test_wm6_1_4_synthesis_attribute_capturer.py::test_wm6_1_4_empty_segments_refuses
+FAILED tests/invariants/test_wm6_1_4_synthesis_attribute_capturer.py::test_wm6_1_4_non_audio_segment_element_refuses
+FAILED tests/invariants/test_wm6_1_4_synthesis_attribute_capturer.py::test_wm6_1_4_unratified_backend_refuses_on_invoke
+FAILED tests/invariants/test_wm6_1_4_synthesis_attribute_capturer.py::test_wm6_1_4_orchestration_invokes_backend_per_segment_returns_shape
+FAILED tests/invariants/test_wm6_1_4_synthesis_attribute_capturer.py::test_wm6_1_4_backend_return_list_coerced_to_tuple_for_frozen_carrier
+7 failed in 0.65s

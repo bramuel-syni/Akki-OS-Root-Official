@@ -1,0 +1,82 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.4.2, pluggy-1.6.0
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: xdist-3.8.0, asyncio-1.4.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collected 6 items
+
+tests/invariants/test_wdslift_cp_d3_source_registry.py FFFFFF            [100%]
+
+=================================== FAILURES ===================================
+___________________ test_cp_d3_source_registry_module_fabric ___________________
+
+    def test_cp_d3_source_registry_module_fabric():
+>       m = importlib.import_module("services.data_suite_v2.source_registry")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_wdslift_cp_d3_source_registry.py:12: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'services.data_suite_v2.source_registry'
+import_ = <function _gcd_import at 0xf84abd8cbd80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'services.data_suite_v2.source_registry'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+____________ test_cp_d3_source_ref_frozen_and_no_raw_content_field _____________
+
+    def test_cp_d3_source_ref_frozen_and_no_raw_content_field():
+>       from services.data_suite_v2.source_registry import SourceRef
+E       ModuleNotFoundError: No module named 'services.data_suite_v2.source_registry'
+
+tests/invariants/test_wdslift_cp_d3_source_registry.py:23: ModuleNotFoundError
+______________________ test_cp_d3_source_kinds_closed_set ______________________
+
+    def test_cp_d3_source_kinds_closed_set():
+>       from services.data_suite_v2.source_registry import SOURCE_KINDS
+E       ModuleNotFoundError: No module named 'services.data_suite_v2.source_registry'
+
+tests/invariants/test_wdslift_cp_d3_source_registry.py:36: ModuleNotFoundError
+__________ test_cp_d3_source_ref_invalid_kind_refuses_at_construction __________
+
+    def test_cp_d3_source_ref_invalid_kind_refuses_at_construction():
+>       from services.data_suite_v2.source_registry import SourceRef, SourceRefInvalid
+E       ModuleNotFoundError: No module named 'services.data_suite_v2.source_registry'
+
+tests/invariants/test_wdslift_cp_d3_source_registry.py:41: ModuleNotFoundError
+_____________ test_cp_d3_source_ref_invalid_empty_unit_ref_refused _____________
+
+    def test_cp_d3_source_ref_invalid_empty_unit_ref_refused():
+>       from services.data_suite_v2.source_registry import SourceRef, SourceRefInvalid
+E       ModuleNotFoundError: No module named 'services.data_suite_v2.source_registry'
+
+tests/invariants/test_wdslift_cp_d3_source_registry.py:47: ModuleNotFoundError
+_____________ test_cp_d3_list_sources_returns_tuple_of_source_refs _____________
+
+    def test_cp_d3_list_sources_returns_tuple_of_source_refs():
+>       from services.data_suite_v2.source_registry import (
+            SourceRef, list_sources,
+        )
+E       ModuleNotFoundError: No module named 'services.data_suite_v2.source_registry'
+
+tests/invariants/test_wdslift_cp_d3_source_registry.py:53: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wdslift_cp_d3_source_registry.py::test_cp_d3_source_registry_module_fabric
+FAILED tests/invariants/test_wdslift_cp_d3_source_registry.py::test_cp_d3_source_ref_frozen_and_no_raw_content_field
+FAILED tests/invariants/test_wdslift_cp_d3_source_registry.py::test_cp_d3_source_kinds_closed_set
+FAILED tests/invariants/test_wdslift_cp_d3_source_registry.py::test_cp_d3_source_ref_invalid_kind_refuses_at_construction
+FAILED tests/invariants/test_wdslift_cp_d3_source_registry.py::test_cp_d3_source_ref_invalid_empty_unit_ref_refused
+FAILED tests/invariants/test_wdslift_cp_d3_source_registry.py::test_cp_d3_list_sources_returns_tuple_of_source_refs
+============================== 6 failed in 0.67s ===============================

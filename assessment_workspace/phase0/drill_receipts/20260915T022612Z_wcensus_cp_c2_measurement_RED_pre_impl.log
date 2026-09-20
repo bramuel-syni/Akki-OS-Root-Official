@@ -1,0 +1,108 @@
+FFFFFF                                                                   [100%]============================ BASELINE_GUARD receipt ============================
+passed=0 / baseline-failures-remaining=0 / quarantined=0
+  manifest: tests/invariants/baseline_failures.json
+  scope: BASELINE_GUARD=1  ·  invocation: cd backend && BASELINE_GUARD=1 python -m pytest tests/invariants/
+!!!!!!!!!!!!! BASELINE_GUARD · HALT AND REPORT · owner ruling (c) !!!!!!!!!!!!!!
+[V1] 6 NEW failure(s) OUTSIDE manifest:
+    tests/invariants/test_wcensus_cp_c2_measurement.py::test_cp_c2_full_or_sampled_closed_two_value_enum
+    tests/invariants/test_wcensus_cp_c2_measurement.py::test_cp_c2_measurement_frozen_six_carrier_shape_carries_method
+    tests/invariants/test_wcensus_cp_c2_measurement.py::test_cp_c2_module_fabric
+    tests/invariants/test_wcensus_cp_c2_measurement.py::test_cp_c2_sampled_measurement_never_presented_as_full_population
+    tests/invariants/test_wcensus_cp_c2_measurement.py::test_cp_c2_unmeasured_and_measurement_are_distinct_types
+    tests/invariants/test_wcensus_cp_c2_measurement.py::test_cp_c2_unmeasured_frozen_one_field_shape_first_class_value
+[V3] Passed count 0 < ratchet floor 3986
+  No silent rebaselining. Report drift to owner verbatim.
+
+=================================== FAILURES ===================================
+___________________________ test_cp_c2_module_fabric ___________________________
+
+    def test_cp_c2_module_fabric():
+>       m = importlib.import_module("contracts.canon_census_measurement")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_wcensus_cp_c2_measurement.py:29: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'contracts.canon_census_measurement'
+import_ = <function _gcd_import at 0xf9f80392bd80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'contracts.canon_census_measurement'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+________ test_cp_c2_unmeasured_frozen_one_field_shape_first_class_value ________
+
+    def test_cp_c2_unmeasured_frozen_one_field_shape_first_class_value():
+        """Canon-4 §4.1 P29 verbatim: 'A dimension not measured is recorded as
+        unmeasured, never as zero, absent, or clean.'
+        """
+>       from contracts.canon_census_measurement import Unmeasured
+E       ModuleNotFoundError: No module named 'contracts.canon_census_measurement'
+
+tests/invariants/test_wcensus_cp_c2_measurement.py:38: ModuleNotFoundError
+________ test_cp_c2_measurement_frozen_six_carrier_shape_carries_method ________
+
+    def test_cp_c2_measurement_frozen_six_carrier_shape_carries_method():
+        """Canon-4 §4.1 P30 verbatim: 'Every figure carries its method. Any
+        measurement a surface displays resolves to the census run that produced
+        it, its date, the population measured, and whether the measurement was
+        full or sampled.'
+        """
+>       from contracts.canon_census_measurement import Measurement, FullOrSampled
+E       ModuleNotFoundError: No module named 'contracts.canon_census_measurement'
+
+tests/invariants/test_wcensus_cp_c2_measurement.py:53: ModuleNotFoundError
+_______________ test_cp_c2_full_or_sampled_closed_two_value_enum _______________
+
+    def test_cp_c2_full_or_sampled_closed_two_value_enum():
+        """`FullOrSampled` is a closed 2-value enum {FULL, SAMPLED}."""
+>       from contracts.canon_census_measurement import FullOrSampled
+E       ModuleNotFoundError: No module named 'contracts.canon_census_measurement'
+
+tests/invariants/test_wcensus_cp_c2_measurement.py:72: ModuleNotFoundError
+______ test_cp_c2_sampled_measurement_never_presented_as_full_population _______
+
+    def test_cp_c2_sampled_measurement_never_presented_as_full_population():
+        """Canon-4 §4.1 P30 verbatim: 'a sampled measurement is never presented
+        as a full-population one.' Enforced at construction: a SAMPLED
+        measurement whose `population` is <= 0 is refused via
+        `SampledPopulationInvalid` — the population field IS the sample size and
+        must be a positive integer.
+        """
+>       from contracts.canon_census_measurement import (
+            Measurement, FullOrSampled, SampledPopulationInvalid,
+        )
+E       ModuleNotFoundError: No module named 'contracts.canon_census_measurement'
+
+tests/invariants/test_wcensus_cp_c2_measurement.py:87: ModuleNotFoundError
+___________ test_cp_c2_unmeasured_and_measurement_are_distinct_types ___________
+
+    def test_cp_c2_unmeasured_and_measurement_are_distinct_types():
+        """Type separation: Unmeasured is NOT a Measurement instance and vice
+        versa. A dimension field typed as `Measurement | Unmeasured` will pattern-
+        match cleanly on isinstance dispatch.
+        """
+>       from contracts.canon_census_measurement import (
+            Unmeasured, Measurement, FullOrSampled,
+        )
+E       ModuleNotFoundError: No module named 'contracts.canon_census_measurement'
+
+tests/invariants/test_wcensus_cp_c2_measurement.py:128: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wcensus_cp_c2_measurement.py::test_cp_c2_module_fabric
+FAILED tests/invariants/test_wcensus_cp_c2_measurement.py::test_cp_c2_unmeasured_frozen_one_field_shape_first_class_value
+FAILED tests/invariants/test_wcensus_cp_c2_measurement.py::test_cp_c2_measurement_frozen_six_carrier_shape_carries_method
+FAILED tests/invariants/test_wcensus_cp_c2_measurement.py::test_cp_c2_full_or_sampled_closed_two_value_enum
+FAILED tests/invariants/test_wcensus_cp_c2_measurement.py::test_cp_c2_sampled_measurement_never_presented_as_full_population
+FAILED tests/invariants/test_wcensus_cp_c2_measurement.py::test_cp_c2_unmeasured_and_measurement_are_distinct_types
+6 failed in 0.73s

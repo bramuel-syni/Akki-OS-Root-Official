@@ -1,0 +1,175 @@
+/root/.venv/lib/python3.11/site-packages/pytest_asyncio/plugin.py:208: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.3.3, pluggy-1.6.0
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: xdist-3.8.0, asyncio-0.24.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, default_loop_scope=None
+collected 15 items
+
+backend/tests/invariants/test_w10_cp5_witness_fabric.py FFFFFFFFFFFFFFF  [100%]
+
+=================================== FAILURES ===================================
+________________________ test_witness_identity_v0_shape ________________________
+
+    def test_witness_identity_v0_shape():
+>       from contracts.witness_identity import WitnessIdentity_v0
+E       ModuleNotFoundError: No module named 'contracts.witness_identity'
+
+backend/tests/invariants/test_w10_cp5_witness_fabric.py:92: ModuleNotFoundError
+_________ test_witness_identity_refuses_authority_credentials_by_shape _________
+
+    def test_witness_identity_refuses_authority_credentials_by_shape():
+        """Canon 8 §9: witness holds NEITHER authority's credentials. The
+        contract MUST NOT expose keys like 'watch_credential' or
+        'governance_credential' or 'authority_key'."""
+>       from contracts.witness_identity import WitnessIdentity_v0
+E       ModuleNotFoundError: No module named 'contracts.witness_identity'
+
+backend/tests/invariants/test_w10_cp5_witness_fabric.py:101: ModuleNotFoundError
+_______________ test_witness_identity_independence_flag_required _______________
+
+    def test_witness_identity_independence_flag_required():
+>       from contracts.witness_identity import WitnessIdentity_v0
+E       ModuleNotFoundError: No module named 'contracts.witness_identity'
+
+backend/tests/invariants/test_w10_cp5_witness_fabric.py:111: ModuleNotFoundError
+________________________ test_witness_attestation_shape ________________________
+
+    def test_witness_attestation_shape():
+>       from contracts.witness_identity import WitnessAttestation_v0
+E       ModuleNotFoundError: No module named 'contracts.witness_identity'
+
+backend/tests/invariants/test_w10_cp5_witness_fabric.py:119: ModuleNotFoundError
+________________ test_witness_attestation_subject_kind_grammar _________________
+
+    def test_witness_attestation_subject_kind_grammar():
+>       from contracts.witness_identity import WitnessAttestation_v0
+E       ModuleNotFoundError: No module named 'contracts.witness_identity'
+
+backend/tests/invariants/test_w10_cp5_witness_fabric.py:125: ModuleNotFoundError
+___________________________ test_tamper_alarm_shape ____________________________
+
+    def test_tamper_alarm_shape():
+>       from contracts.witness_identity import TamperAlarm_v0
+E       ModuleNotFoundError: No module named 'contracts.witness_identity'
+
+backend/tests/invariants/test_w10_cp5_witness_fabric.py:134: ModuleNotFoundError
+___________________ test_tamper_alarm_evidence_kind_grammar ____________________
+
+    def test_tamper_alarm_evidence_kind_grammar():
+>       from contracts.witness_identity import TamperAlarm_v0
+E       ModuleNotFoundError: No module named 'contracts.witness_identity'
+
+backend/tests/invariants/test_w10_cp5_witness_fabric.py:140: ModuleNotFoundError
+________________________ test_register_identity_writes _________________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-13/test_register_identity_writes0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfd98f12bf890>
+
+    def test_register_identity_writes(tmp_path, monkeypatch):
+>       from services.watch.witness import register_identity, load_identities
+E       ModuleNotFoundError: No module named 'services.watch.witness'
+
+backend/tests/invariants/test_w10_cp5_witness_fabric.py:150: ModuleNotFoundError
+_______________ test_attest_receipt_requires_identity_on_record ________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-13/test_attest_receipt_requires_i0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfd98f1c9a0d0>
+
+    def test_attest_receipt_requires_identity_on_record(tmp_path, monkeypatch):
+>       from services.watch.witness import attest_receipt
+E       ModuleNotFoundError: No module named 'services.watch.witness'
+
+backend/tests/invariants/test_w10_cp5_witness_fabric.py:158: ModuleNotFoundError
+______________ test_attest_receipt_computes_hash_if_not_supplied _______________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-13/test_attest_receipt_computes_h0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfd98f11391d0>
+
+    def test_attest_receipt_computes_hash_if_not_supplied(tmp_path, monkeypatch):
+        """If attested_hash is omitted, service computes sha256 of the
+        subject_ref content on disk (read-only)."""
+>       from services.watch.witness import (
+            attest_receipt, load_attestations, register_identity,
+        )
+E       ModuleNotFoundError: No module named 'services.watch.witness'
+
+backend/tests/invariants/test_w10_cp5_witness_fabric.py:168: ModuleNotFoundError
+_______ test_witness_service_does_not_import_governance_or_watch_writers _______
+
+    def test_witness_service_does_not_import_governance_or_watch_writers():
+        """Canon 8 §9: witness cannot act on the estate. The service module
+        MUST NOT import mint_verdict / act_on_verdict / start_containment /
+        plant_mirage / any writer that touches governance or Watch records."""
+>       import services.watch.witness as mod
+E       ModuleNotFoundError: No module named 'services.watch.witness'
+
+backend/tests/invariants/test_w10_cp5_witness_fabric.py:190: ModuleNotFoundError
+________________________ test_raise_tamper_alarm_writes ________________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-13/test_raise_tamper_alarm_writes0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfd98f113f990>
+
+    def test_raise_tamper_alarm_writes(tmp_path, monkeypatch):
+>       from services.watch.witness import (
+            raise_tamper_alarm, load_alarms, register_identity,
+        )
+E       ModuleNotFoundError: No module named 'services.watch.witness'
+
+backend/tests/invariants/test_w10_cp5_witness_fabric.py:209: ModuleNotFoundError
+__________________ test_raise_tamper_alarm_requires_identity ___________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-13/test_raise_tamper_alarm_requir0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfd98f1b91c10>
+
+    def test_raise_tamper_alarm_requires_identity(tmp_path, monkeypatch):
+>       from services.watch.witness import raise_tamper_alarm
+E       ModuleNotFoundError: No module named 'services.watch.witness'
+
+backend/tests/invariants/test_w10_cp5_witness_fabric.py:221: ModuleNotFoundError
+_____________ test_sign_continuity_attestation_composes_signature ______________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-13/test_sign_continuity_attestati0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfd98f112e1d0>
+
+    def test_sign_continuity_attestation_composes_signature(tmp_path, monkeypatch):
+        """The witness_signature slot on ContinuityAttestation_v0 is filled
+        by a governed helper that concatenates witness_id + payload_hash +
+        at_iso. Replaces the W9 CP4 placeholder string."""
+>       from services.watch.witness import (
+            register_identity, sign_continuity_attestation,
+        )
+E       ModuleNotFoundError: No module named 'services.watch.witness'
+
+backend/tests/invariants/test_w10_cp5_witness_fabric.py:232: ModuleNotFoundError
+___________ test_sign_continuity_attestation_refuses_unknown_witness ___________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-13/test_sign_continuity_attestati1')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfd98f112be10>
+
+    def test_sign_continuity_attestation_refuses_unknown_witness(tmp_path, monkeypatch):
+>       from services.watch.witness import sign_continuity_attestation
+E       ModuleNotFoundError: No module named 'services.watch.witness'
+
+backend/tests/invariants/test_w10_cp5_witness_fabric.py:265: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED backend/tests/invariants/test_w10_cp5_witness_fabric.py::test_witness_identity_v0_shape
+FAILED backend/tests/invariants/test_w10_cp5_witness_fabric.py::test_witness_identity_refuses_authority_credentials_by_shape
+FAILED backend/tests/invariants/test_w10_cp5_witness_fabric.py::test_witness_identity_independence_flag_required
+FAILED backend/tests/invariants/test_w10_cp5_witness_fabric.py::test_witness_attestation_shape
+FAILED backend/tests/invariants/test_w10_cp5_witness_fabric.py::test_witness_attestation_subject_kind_grammar
+FAILED backend/tests/invariants/test_w10_cp5_witness_fabric.py::test_tamper_alarm_shape
+FAILED backend/tests/invariants/test_w10_cp5_witness_fabric.py::test_tamper_alarm_evidence_kind_grammar
+FAILED backend/tests/invariants/test_w10_cp5_witness_fabric.py::test_register_identity_writes
+FAILED backend/tests/invariants/test_w10_cp5_witness_fabric.py::test_attest_receipt_requires_identity_on_record
+FAILED backend/tests/invariants/test_w10_cp5_witness_fabric.py::test_attest_receipt_computes_hash_if_not_supplied
+FAILED backend/tests/invariants/test_w10_cp5_witness_fabric.py::test_witness_service_does_not_import_governance_or_watch_writers
+FAILED backend/tests/invariants/test_w10_cp5_witness_fabric.py::test_raise_tamper_alarm_writes
+FAILED backend/tests/invariants/test_w10_cp5_witness_fabric.py::test_raise_tamper_alarm_requires_identity
+FAILED backend/tests/invariants/test_w10_cp5_witness_fabric.py::test_sign_continuity_attestation_composes_signature
+FAILED backend/tests/invariants/test_w10_cp5_witness_fabric.py::test_sign_continuity_attestation_refuses_unknown_witness
+============================== 15 failed in 0.16s ==============================

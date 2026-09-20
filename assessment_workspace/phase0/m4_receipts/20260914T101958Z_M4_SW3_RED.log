@@ -1,0 +1,14 @@
+>       from services.journey_assistant.estate_check_chip import EstateCheckChip
+E       ModuleNotFoundError: No module named 'services.journey_assistant.estate_check_chip'
+
+tests/invariants/test_wm4_sw3_estate_check_chip.py:143: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wm4_sw3_estate_check_chip.py::test_sw3_module_fabric
+FAILED tests/invariants/test_wm4_sw3_estate_check_chip.py::test_sw3_canon_5_s14_verbatim_pinned
+FAILED tests/invariants/test_wm4_sw3_estate_check_chip.py::test_sw3_estate_check_chip_carries_real_read_receipt_id
+FAILED tests/invariants/test_wm4_sw3_estate_check_chip.py::test_sw3_fabricated_availability_refused_at_construction
+FAILED tests/invariants/test_wm4_sw3_estate_check_chip.py::test_sw3_empty_read_receipt_refused_at_construction
+FAILED tests/invariants/test_wm4_sw3_estate_check_chip.py::test_sw3_feasibility_question_requires_chip
+FAILED tests/invariants/test_wm4_sw3_estate_check_chip.py::test_sw3_non_feasibility_question_does_not_require_chip
+FAILED tests/invariants/test_wm4_sw3_estate_check_chip.py::test_sw3_chip_serialisable_inline
+8 failed in 0.66s

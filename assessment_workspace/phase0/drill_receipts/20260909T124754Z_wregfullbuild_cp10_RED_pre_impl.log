@@ -1,0 +1,11 @@
+============================= test session starts ==============================
+collecting ... collected 2 items
+
+backend/tests/invariants/test_w_registry_full_build_cp10_wave_close.py::test_cp10_wave_close_manifest_exists_and_names_all_10_cps FAILED [ 50%]
+backend/tests/invariants/test_w_registry_full_build_cp10_wave_close.py::test_cp10_harness_receipt_is_still_recent PASSED [100%]
+
+=================================== FAILURES ===================================
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_w_registry_full_build_cp10_wave_close.py:32: AssertionError: wave-close manifest missing at /app/assessment_workspace/notes/W_REGISTRY_FULL_BUILD_close.md — owner rule STEP 5
+=========================== short test summary info ============================
+FAILED backend/tests/invariants/test_w_registry_full_build_cp10_wave_close.py::test_cp10_wave_close_manifest_exists_and_names_all_10_cps
+========================= 1 failed, 1 passed in 0.63s ==========================

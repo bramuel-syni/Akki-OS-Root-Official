@@ -1,34 +1,25 @@
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
+/* DAP Portal + OS Prototype v2 — design tokens from the prototype's :root */
+:root {
+    --paper: #f5f2ea;
+    --surface: #f0ece1;
+    --surface2: #ede8da;
+    --line: #e4dfd3;
+    --hair: #d5cebe;
+    --ink: #1b1f27;
+    --ink2: #3d4350;
+    --ink3: #5b6270;
+    --blue: #16274a;
+    --blue2: #0f1b33;
+    --oxblood: #b8395b;
+    --brass: #b08d2e;
+    --sage: #1d7a6e;
+    --gate: #7c3aaf;
+    --accent: #4c5fd5;
+    --head: Iowan Old Style, Georgia, serif;
+    --body: Söhne, Helvetica Neue, Arial, sans-serif;
+    --mono: ui-monospace, Menlo, Consolas, monospace;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
-}
-
-.App-header {
-    background-color: #0f0f10;
+.App {
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
-}
-
-.App-link {
-    color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
 }

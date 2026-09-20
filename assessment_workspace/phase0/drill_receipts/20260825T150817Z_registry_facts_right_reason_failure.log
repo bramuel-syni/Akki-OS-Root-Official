@@ -1,0 +1,108 @@
+# Right-reason failure receipt — Registry facts endpoint (FL-P2-25)
+# Owner Order 2026-08-19 · complete the Registry section with real facts.
+# Expected right-reason: all 13 backend tests fail with ModuleNotFoundError
+# because services.registry_facts.facts + .router are not yet implemented.
+
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-9.1.1, pluggy-1.6.0 -- /root/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: asyncio-1.4.0, xdist-3.8.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 15 items
+
+tests/invariants/test_registry_facts.py::test_module_present_and_exports_assemble FAILED [  6%]
+tests/invariants/test_registry_facts.py::test_router_present_and_exports_facts_endpoint FAILED [ 13%]
+tests/invariants/test_registry_facts.py::test_data_sources_reads_only_final_records FAILED [ 20%]
+tests/invariants/test_registry_facts.py::test_data_source_shape_carries_engine_region_channel_posture FAILED [ 26%]
+tests/invariants/test_registry_facts.py::test_data_source_top_tables_flag_approximations FAILED [ 33%]
+tests/invariants/test_registry_facts.py::test_compute_reads_only_accepted_records FAILED [ 40%]
+tests/invariants/test_registry_facts.py::test_compute_shape_carries_gpus_ram_storage_link FAILED [ 46%]
+tests/invariants/test_registry_facts.py::test_compute_carries_usability_paragraph FAILED [ 53%]
+tests/invariants/test_registry_facts.py::test_models_returns_empty_with_honest_reason FAILED [ 60%]
+tests/invariants/test_registry_facts.py::test_facts_endpoint_returns_200_with_three_keys FAILED [ 66%]
+tests/invariants/test_registry_facts.py::test_response_never_carries_fabricated_or_secret_tokens FAILED [ 73%]
+tests/invariants/test_registry_facts.py::test_facts_module_declares_no_forbidden_libraries FAILED [ 80%]
+tests/invariants/test_registry_facts.py::test_facts_endpoint_never_reads_secret_custody_files FAILED [ 86%]
+tests/invariants/test_registry_facts.py::test_empty_data_sources_returns_empty_list_and_reason FAILED [ 93%]
+tests/invariants/test_registry_facts.py::test_empty_compute_returns_empty_list_when_no_accepted_record FAILED [100%]
+
+=================================== FAILURES ===================================
+___________________ test_module_present_and_exports_assemble ___________________
+tests/invariants/test_registry_facts.py:150: in test_module_present_and_exports_assemble
+    from services.registry_facts import facts
+E   ImportError: cannot import name 'facts' from 'services.registry_facts' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/registry_facts/__init__.py)
+________________ test_router_present_and_exports_facts_endpoint ________________
+tests/invariants/test_registry_facts.py:157: in test_router_present_and_exports_facts_endpoint
+    from services.registry_facts import router as R
+E   ImportError: cannot import name 'router' from 'services.registry_facts' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/registry_facts/__init__.py)
+__________________ test_data_sources_reads_only_final_records __________________
+tests/invariants/test_registry_facts.py:179: in test_data_sources_reads_only_final_records
+    from services.registry_facts import facts
+E   ImportError: cannot import name 'facts' from 'services.registry_facts' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/registry_facts/__init__.py)
+_________ test_data_source_shape_carries_engine_region_channel_posture _________
+tests/invariants/test_registry_facts.py:198: in test_data_source_shape_carries_engine_region_channel_posture
+    from services.registry_facts import facts
+E   ImportError: cannot import name 'facts' from 'services.registry_facts' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/registry_facts/__init__.py)
+_______________ test_data_source_top_tables_flag_approximations ________________
+tests/invariants/test_registry_facts.py:221: in test_data_source_top_tables_flag_approximations
+    from services.registry_facts import facts
+E   ImportError: cannot import name 'facts' from 'services.registry_facts' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/registry_facts/__init__.py)
+___________________ test_compute_reads_only_accepted_records ___________________
+tests/invariants/test_registry_facts.py:247: in test_compute_reads_only_accepted_records
+    from services.registry_facts import facts
+E   ImportError: cannot import name 'facts' from 'services.registry_facts' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/registry_facts/__init__.py)
+_______________ test_compute_shape_carries_gpus_ram_storage_link _______________
+tests/invariants/test_registry_facts.py:263: in test_compute_shape_carries_gpus_ram_storage_link
+    from services.registry_facts import facts
+E   ImportError: cannot import name 'facts' from 'services.registry_facts' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/registry_facts/__init__.py)
+___________________ test_compute_carries_usability_paragraph ___________________
+tests/invariants/test_registry_facts.py:293: in test_compute_carries_usability_paragraph
+    from services.registry_facts import facts
+E   ImportError: cannot import name 'facts' from 'services.registry_facts' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/registry_facts/__init__.py)
+_________________ test_models_returns_empty_with_honest_reason _________________
+tests/invariants/test_registry_facts.py:311: in test_models_returns_empty_with_honest_reason
+    from services.registry_facts import facts
+E   ImportError: cannot import name 'facts' from 'services.registry_facts' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/registry_facts/__init__.py)
+_______________ test_facts_endpoint_returns_200_with_three_keys ________________
+tests/invariants/test_registry_facts.py:334: in test_facts_endpoint_returns_200_with_three_keys
+    from services.registry_facts.router import router
+E   ModuleNotFoundError: No module named 'services.registry_facts.router'
+___________ test_response_never_carries_fabricated_or_secret_tokens ____________
+tests/invariants/test_registry_facts.py:371: in test_response_never_carries_fabricated_or_secret_tokens
+    from services.registry_facts.router import router
+E   ModuleNotFoundError: No module named 'services.registry_facts.router'
+______________ test_facts_module_declares_no_forbidden_libraries _______________
+tests/invariants/test_registry_facts.py:383: in test_facts_module_declares_no_forbidden_libraries
+    from services.registry_facts import facts
+E   ImportError: cannot import name 'facts' from 'services.registry_facts' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/registry_facts/__init__.py)
+_____________ test_facts_endpoint_never_reads_secret_custody_files _____________
+tests/invariants/test_registry_facts.py:396: in test_facts_endpoint_never_reads_secret_custody_files
+    from services.registry_facts import facts
+E   ImportError: cannot import name 'facts' from 'services.registry_facts' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/registry_facts/__init__.py)
+____________ test_empty_data_sources_returns_empty_list_and_reason _____________
+tests/invariants/test_registry_facts.py:415: in test_empty_data_sources_returns_empty_list_and_reason
+    from services.registry_facts import facts
+E   ImportError: cannot import name 'facts' from 'services.registry_facts' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/registry_facts/__init__.py)
+________ test_empty_compute_returns_empty_list_when_no_accepted_record _________
+tests/invariants/test_registry_facts.py:428: in test_empty_compute_returns_empty_list_when_no_accepted_record
+    from services.registry_facts import facts
+E   ImportError: cannot import name 'facts' from 'services.registry_facts' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/registry_facts/__init__.py)
+=========================== short test summary info ============================
+FAILED tests/invariants/test_registry_facts.py::test_module_present_and_exports_assemble
+FAILED tests/invariants/test_registry_facts.py::test_router_present_and_exports_facts_endpoint
+FAILED tests/invariants/test_registry_facts.py::test_data_sources_reads_only_final_records
+FAILED tests/invariants/test_registry_facts.py::test_data_source_shape_carries_engine_region_channel_posture
+FAILED tests/invariants/test_registry_facts.py::test_data_source_top_tables_flag_approximations
+FAILED tests/invariants/test_registry_facts.py::test_compute_reads_only_accepted_records
+FAILED tests/invariants/test_registry_facts.py::test_compute_shape_carries_gpus_ram_storage_link
+FAILED tests/invariants/test_registry_facts.py::test_compute_carries_usability_paragraph
+FAILED tests/invariants/test_registry_facts.py::test_models_returns_empty_with_honest_reason
+FAILED tests/invariants/test_registry_facts.py::test_facts_endpoint_returns_200_with_three_keys
+FAILED tests/invariants/test_registry_facts.py::test_response_never_carries_fabricated_or_secret_tokens
+FAILED tests/invariants/test_registry_facts.py::test_facts_module_declares_no_forbidden_libraries
+FAILED tests/invariants/test_registry_facts.py::test_facts_endpoint_never_reads_secret_custody_files
+FAILED tests/invariants/test_registry_facts.py::test_empty_data_sources_returns_empty_list_and_reason
+FAILED tests/invariants/test_registry_facts.py::test_empty_compute_returns_empty_list_when_no_accepted_record
+============================== 15 failed in 0.43s ==============================

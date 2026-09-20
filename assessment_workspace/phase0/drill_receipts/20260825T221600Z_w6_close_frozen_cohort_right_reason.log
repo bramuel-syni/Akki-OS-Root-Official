@@ -1,0 +1,252 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-9.1.1, pluggy-1.6.0 -- /root/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: asyncio-1.4.0, xdist-3.8.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 18 items
+
+tests/invariants/test_actor_declaration_v0_contract_frozen.py::test_actor_declaration_v0_contract_frozen PASSED [  5%]
+tests/invariants/test_admission_refusal_v0_contract_frozen.py::test_admission_refusal_v0_contract_frozen FAILED [ 11%]
+tests/invariants/test_backfilled_contract_snapshots.py::test_extraction_params_contract_frozen PASSED [ 16%]
+tests/invariants/test_backfilled_contract_snapshots.py::test_signal_ring_contract_frozen PASSED [ 22%]
+tests/invariants/test_backfilled_contract_snapshots.py::test_qualification_matrix_contract_frozen PASSED [ 27%]
+tests/invariants/test_composed_conclusion_v0_contract_frozen.py::test_composed_conclusion_v0_contract_frozen PASSED [ 33%]
+tests/invariants/test_composed_conclusion_v0_contract_frozen.py::test_composed_conclusion_snapshot_parity_at_18 FAILED [ 38%]
+tests/invariants/test_feasibility_result_v0_contract_frozen.py::test_feasibility_result_v0_contract_frozen PASSED [ 44%]
+tests/invariants/test_frozen_contract_snapshot_parity.py::test_every_frozen_contract_has_snapshot FAILED [ 50%]
+tests/invariants/test_frozen_contract_snapshot_parity.py::test_every_snapshot_maps_to_a_contract FAILED [ 55%]
+tests/invariants/test_frozen_contract_snapshot_parity.py::test_snapshot_mapping_is_bijective PASSED [ 61%]
+tests/invariants/test_invariant_contract_snapshots.py::test_five_rings_schema_frozen FAILED [ 66%]
+tests/invariants/test_invariant_contract_snapshots.py::test_objective_request_schema_frozen FAILED [ 72%]
+tests/invariants/test_invariant_contract_snapshots.py::test_qualification_matrix_schema_frozen PASSED [ 77%]
+tests/invariants/test_invariant_contract_snapshots.py::test_qualification_matrix_v0_content_frozen PASSED [ 83%]
+tests/invariants/test_invariant_contract_snapshots.py::test_use_data_wizard_session_schema_frozen FAILED [ 88%]
+tests/invariants/test_invariant_contract_snapshots.py::test_commission_verdict_schema_frozen FAILED [ 94%]
+tests/invariants/test_objective_request_v2_contract_frozen.py::test_objective_request_v2_contract_frozen FAILED [100%]
+
+=================================== FAILURES ===================================
+__________________ test_admission_refusal_v0_contract_frozen ___________________
+tests/invariants/test_admission_refusal_v0_contract_frozen.py:23: in test_admission_refusal_v0_contract_frozen
+    assert live == stored, (
+E   AssertionError: AdmissionRefusal@v0 schema drift detected.
+E     Regenerate snapshot ONLY under an explicit owner ruling that acknowledges a governed field-shape change.
+E     Live schema keys: ['computed_at', 'off_menu_fact', 'outcome', 'reason', 'requested_output_form', 'trace_id', 'what_you_can_do']
+E     Stored keys:      ['computed_at', 'off_menu_fact', 'outcome', 'reason', 'requested_output_form', 'trace_id', 'what_you_can_do']
+E   assert {'additionalP...ted_at'], ...} == {'additionalP...ted_at'], ...}
+E     
+E     Omitting 5 identical items, use -vv to show
+E     Differing items:
+E     {'properties': {'outcome': {'const': 'refused', 'default': 'refused', 'description': 'Family discriminator. Same value...offerable'. Nullable so future non-form admission reasons can leave it null.", 'title': 'Requested Output Form'}, ...}} != {'properties': {'computed_at': {'description': 'ISO-8601 UTC. When the refusal envelope was constructed. Convention-an...e docstring 'Reason extension path'.", 'minLength': 1, 'pattern': '^[a-z][a-z_]*[a-z]$', 'title': 'Reason', ...}, ...}}
+E     
+E     Full diff:
+E       {...
+E     
+E     ...Full output truncated (113 lines hidden), use '-vv' to show
+________________ test_composed_conclusion_snapshot_parity_at_18 ________________
+tests/invariants/test_composed_conclusion_v0_contract_frozen.py:61: in test_composed_conclusion_snapshot_parity_at_18
+    assert len(snapshots) == 36, (
+E   AssertionError: Post-Memory-Service-Stage-B snapshot count must be exactly 34 (32 pre-Memory + memory_plane_v0 + memory_write_back_v0 additive). Actual: 37.
+E     Snapshots: ['actor_declaration_v0.contract_snapshot.json', 'admission_refusal.contract_snapshot.json', 'agent_assumption.contract_snapshot.json', 'async_delivery_accepted.contract_snapshot.json', 'async_delivery_accepted_v1.contract_snapshot.json', 'callable_skill_provisioning_v0.contract_snapshot.json', 'commission_verdict.contract_snapshot.json', 'committed_value.contract_snapshot.json', 'composed_conclusion.contract_snapshot.json', 'cumulative_disclosure_ledger.contract_snapshot.json', 'extraction_params.contract_snapshot.json', 'feasibility_result.contract_snapshot.json', 'five_rings.contract_snapshot.json', 'knowledge_artifact_v0.contract_snapshot.json', 'lift_manifest_envelope.contract_snapshot.json', 'memory_plane_v0.contract_snapshot.json', 'memory_write_back_v0.contract_snapshot.json', 'mtafiti_registry_record.contract_snapshot.json', 'northena_ledger_row.contract_snapshot.json', 'northena_ledger_v1.contract_snapshot.json', 'objective_request.contract_snapshot.json', 'objective_request_v2.contract_snapshot.json', 'operator_turn.contract_snapshot.json', 'outer_gate_receipt.contract_snapshot.json', 'outer_gate_receipt_v1.contract_snapshot.json', 'perception_job_v0.contract_snapshot.json', 'perception_result_v0.contract_snapshot.json', 'qualification_matrix.contract_snapshot.json', 'quote_envelope.contract_snapshot.json', 'service_1_refusal.contract_snapshot.json', 'signal_ring.contract_snapshot.json', 'targeta_mining_plan.contract_snapshot.json', 'trace_lens_envelope.contract_snapshot.json', 'trust_receipt_v1.contract_snapshot.json', 'use_data_wizard_session.contract_snapshot.json', 'v2_refusal_envelope.contract_snapshot.json', 'wizard_commit_state.contract_snapshot.json']
+E   assert 37 == 36
+E    +  where 37 = len([PosixPath('/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/committed_value.contract_snapshot.json'), PosixPath('/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/trace_lens_envelope.contract_snapshot.json'), PosixPath('/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/cumulative_disclosure_ledger.contract_snapshot.json'), PosixPath('/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/async_delivery_accepted_v1.contract_snapshot.json'), PosixPath('/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/knowledge_artifact_v0.contract_snapshot.json'), PosixPath('/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/memory_plane_v0.contract_snapshot.json'), ...])
+___________________ test_every_frozen_contract_has_snapshot ____________________
+tests/invariants/test_frozen_contract_snapshot_parity.py:101: in test_every_frozen_contract_has_snapshot
+    assert not unmapped, (
+E   AssertionError: Parity FAIL — contract source(s) on disk not mapped to a canonical .contract_snapshot.json: ['actor_declaration.py', 'record_matrix.py', 'task_identity.py']. Add source→snapshot entry to CONTRACT_TO_SNAPSHOT and create the snapshot, or excise the source if it is not a frozen contract.
+E   assert not {'actor_declaration.py', 'record_matrix.py', 'task_identity.py'}
+____________________ test_every_snapshot_maps_to_a_contract ____________________
+tests/invariants/test_frozen_contract_snapshot_parity.py:125: in test_every_snapshot_maps_to_a_contract
+    assert not unclaimed, (
+E   AssertionError: Parity FAIL — canonical snapshot(s) on disk not claimed by any contract source in CONTRACT_TO_SNAPSHOT: ['actor_declaration_v0.contract_snapshot.json']. Either add the claiming source or remove the orphan snapshot.
+E   assert not {'actor_declaration_v0.contract_snapshot.json'}
+________________________ test_five_rings_schema_frozen _________________________
+tests/invariants/test_invariant_contract_snapshots.py:65: in test_five_rings_schema_frozen
+    assert _canonical(actual) == _canonical(expected), _diff_message(
+E   AssertionError: 
+E     
+E     === CONTRACT DRIFT — five_rings (NormalizedUnit) ===
+E     The frozen snapshot at
+E       /app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants
+E     no longer matches the
+E     live schema. If the change is intentional, re-bless the snapshot
+E     in code review; otherwise revert the model edit.
+E     
+E     EXPECTED (first 400 chars):
+E     {
+E       "$defs": {
+E         "DefensibilityClass": {
+E           "description": "Spec \u00a75.6: `fact | utterance | non_factual`.\n\n*fact*        \u2014 the unit asserts something the matrix permits as fact.\n*utterance*   \u2014 someone said it; the system stands by the saying, not\n                the substance.\n*non_factual* \u2014 opinion / interpretation / rhetorical content.",
+E           "enum": [
+E             "fa
+E     
+E     ACTUAL   (first 400 chars):
+E     {
+E       "$defs": {
+E         "DefensibilityClass": {
+E           "description": "Spec \u00a75.6: `fact | utterance | non_factual`.\n\n*fact*        \u2014 the unit asserts something the matrix permits as fact.\n*utterance*   \u2014 someone said it; the system stands by the saying, not\n                the substance.\n*non_factual* \u2014 opinion / interpretation / rhetorical content.",
+E           "enum": [
+E             "fa
+E     
+E   assert '{\n  "$defs"...: "object"\n}' == '{\n  "$defs"...: "object"\n}'
+E     
+E       {
+E         "$defs": {
+E           "DefensibilityClass": {
+E             "description": "Spec \u00a75.6: `fact | utterance | non_factual`.\n\n*fact*        \u2014 the unit asserts something the matrix permits as fact.\n*utterance*   \u2014 someone said it; the system stands by the saying, not\n                the substance.\n*non_factual* \u2014 opinion / interpretation / rhetorical content.",
+E             "enum": [
+E               "fact",...
+E     
+E     ...Full output truncated (308 lines hidden), use '-vv' to show
+_____________________ test_objective_request_schema_frozen _____________________
+tests/invariants/test_invariant_contract_snapshots.py:73: in test_objective_request_schema_frozen
+    assert _canonical(actual) == _canonical(expected), _diff_message(
+E   AssertionError: 
+E     
+E     === CONTRACT DRIFT — objective_request (ObjectiveRequest) ===
+E     The frozen snapshot at
+E       /app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants
+E     no longer matches the
+E     live schema. If the change is intentional, re-bless the snapshot
+E     in code review; otherwise revert the model edit.
+E     
+E     EXPECTED (first 400 chars):
+E     {
+E       "$defs": {
+E         "DefensibilityClass": {
+E           "description": "Spec \u00a75.6: `fact | utterance | non_factual`.\n\n*fact*        \u2014 the unit asserts something the matrix permits as fact.\n*utterance*   \u2014 someone said it; the system stands by the saying, not\n                the substance.\n*non_factual* \u2014 opinion / interpretation / rhetorical content.",
+E           "enum": [
+E             "fa
+E     
+E     ACTUAL   (first 400 chars):
+E     {
+E       "$defs": {
+E         "DefensibilityClass": {
+E           "description": "Spec \u00a75.6: `fact | utterance | non_factual`.\n\n*fact*        \u2014 the unit asserts something the matrix permits as fact.\n*utterance*   \u2014 someone said it; the system stands by the saying, not\n                the substance.\n*non_factual* \u2014 opinion / interpretation / rhetorical content.",
+E           "enum": [
+E             "fa
+E     
+E   assert '{\n  "$defs"...: "object"\n}' == '{\n  "$defs"...: "object"\n}'
+E     
+E       {
+E         "$defs": {
+E           "DefensibilityClass": {
+E             "description": "Spec \u00a75.6: `fact | utterance | non_factual`.\n\n*fact*        \u2014 the unit asserts something the matrix permits as fact.\n*utterance*   \u2014 someone said it; the system stands by the saying, not\n                the substance.\n*non_factual* \u2014 opinion / interpretation / rhetorical content.",
+E             "enum": [
+E               "fact",...
+E     
+E     ...Full output truncated (129 lines hidden), use '-vv' to show
+__________________ test_use_data_wizard_session_schema_frozen __________________
+tests/invariants/test_invariant_contract_snapshots.py:106: in test_use_data_wizard_session_schema_frozen
+    assert _canonical(actual) == _canonical(expected), _diff_message(
+E   AssertionError: 
+E     
+E     === CONTRACT DRIFT — use_data_wizard_session (UseDataWizardSession) ===
+E     The frozen snapshot at
+E       /app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants
+E     no longer matches the
+E     live schema. If the change is intentional, re-bless the snapshot
+E     in code review; otherwise revert the model edit.
+E     
+E     EXPECTED (first 400 chars):
+E     {
+E       "$defs": {
+E         "CommissionCard": {
+E           "additionalProperties": false,
+E           "description": "Canon \u00a76.3 Commission card + Canon \u00a76.4 verdict entry point.\n\nEvery governed value confirmed explicitly here before commit. On\ncommit, the card produces a CommissionVerdict (sibling contract).",
+E           "properties": {
+E             "committed_at_iso": {
+E               "anyOf": [
+E                 {
+E            
+E     
+E     ACTUAL   (first 400 chars):
+E     {
+E       "$defs": {
+E         "CommissionCard": {
+E           "additionalProperties": false,
+E           "description": "Canon \u00a76.3 Commission card + Canon \u00a76.4 verdict entry point.\n\nEvery governed value confirmed explicitly here before commit. On\ncommit, the card produces a CommissionVerdict (sibling contract).",
+E           "properties": {
+E             "committed_at_iso": {
+E               "anyOf": [
+E                 {
+E            
+E     
+E   assert '{\n  "$defs"...: "object"\n}' == '{\n  "$defs"...: "object"\n}'
+E     
+E       {
+E         "$defs": {
+E           "CommissionCard": {
+E             "additionalProperties": false,
+E             "description": "Canon \u00a76.3 Commission card + Canon \u00a76.4 verdict entry point.\n\nEvery governed value confirmed explicitly here before commit. On\ncommit, the card produces a CommissionVerdict (sibling contract).",
+E             "properties": {...
+E     
+E     ...Full output truncated (434 lines hidden), use '-vv' to show
+____________________ test_commission_verdict_schema_frozen _____________________
+tests/invariants/test_invariant_contract_snapshots.py:114: in test_commission_verdict_schema_frozen
+    assert _canonical(actual) == _canonical(expected), _diff_message(
+E   AssertionError: 
+E     
+E     === CONTRACT DRIFT — commission_verdict (CommissionVerdict) ===
+E     The frozen snapshot at
+E       /app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants
+E     no longer matches the
+E     live schema. If the change is intentional, re-bless the snapshot
+E     in code review; otherwise revert the model edit.
+E     
+E     EXPECTED (first 400 chars):
+E     {
+E       "$defs": {
+E         "AutoRunCeilingCheck": {
+E           "additionalProperties": false,
+E           "description": "Canon \u00a74.2 auto-run ceiling \u2014 the seventh check embedded in verdict.\n\nValue at Owner ruling 2026-07-31 initial: $1,000 USD. Changeable ONLY\nvia Change-a-Rule ceremony (Canon \u00a77.5); direct-write refused server-side.",
+E           "properties": {
+E             "at_or_under": {
+E               "desc
+E     
+E     ACTUAL   (first 400 chars):
+E     {
+E       "$defs": {
+E         "AutoRunCeilingCheck": {
+E           "additionalProperties": false,
+E           "description": "Canon \u00a74.2 auto-run ceiling \u2014 the seventh check embedded in verdict.\n\nValue at Owner ruling 2026-07-31 initial: $1,000 USD. Changeable ONLY\nvia Change-a-Rule ceremony (Canon \u00a77.5); direct-write refused server-side.",
+E           "properties": {
+E             "at_or_under": {
+E               "desc
+E     
+E   assert '{\n  "$defs"...: "object"\n}' == '{\n  "$defs"...: "object"\n}'
+E     
+E       {
+E         "$defs": {
+E           "AutoRunCeilingCheck": {
+E             "additionalProperties": false,
+E             "description": "Canon \u00a74.2 auto-run ceiling \u2014 the seventh check embedded in verdict.\n\nValue at Owner ruling 2026-07-31 initial: $1,000 USD. Changeable ONLY\nvia Change-a-Rule ceremony (Canon \u00a77.5); direct-write refused server-side.",
+E             "properties": {...
+E     
+E     ...Full output truncated (248 lines hidden), use '-vv' to show
+__________________ test_objective_request_v2_contract_frozen ___________________
+tests/invariants/test_objective_request_v2_contract_frozen.py:30: in test_objective_request_v2_contract_frozen
+    assert _canonical(actual) == _canonical(expected), (
+E   AssertionError: ObjectiveRequest_v2 schema drift. Any additive change requires a new contract file (v3) OR an explicit re-snapshot bless of this one — never a silent snapshot rewrite. See module HAZARD-STOP-NOTES for owner-owned type-narrowing points.
+E   assert '{\n  "$defs"...: "object"\n}' == '{\n  "$defs"...: "object"\n}'
+E     
+E       {
+E         "$defs": {
+E           "BuyerCommercial": {
+E             "additionalProperties": false,
+E             "description": "v3 \u00a73.2: `commercial: { quote_ref, price_model_version }`.\n\nOwner ruling: nested under `commercial.buyer` for variant symmetry\nwith `shaping.operator`. Populated only on the buyer path.",
+E             "properties": {...
+E     
+E     ...Full output truncated (345 lines hidden), use '-vv' to show
+=========================== short test summary info ============================
+FAILED tests/invariants/test_admission_refusal_v0_contract_frozen.py::test_admission_refusal_v0_contract_frozen
+FAILED tests/invariants/test_composed_conclusion_v0_contract_frozen.py::test_composed_conclusion_snapshot_parity_at_18
+FAILED tests/invariants/test_frozen_contract_snapshot_parity.py::test_every_frozen_contract_has_snapshot
+FAILED tests/invariants/test_frozen_contract_snapshot_parity.py::test_every_snapshot_maps_to_a_contract
+FAILED tests/invariants/test_invariant_contract_snapshots.py::test_five_rings_schema_frozen
+FAILED tests/invariants/test_invariant_contract_snapshots.py::test_objective_request_schema_frozen
+FAILED tests/invariants/test_invariant_contract_snapshots.py::test_use_data_wizard_session_schema_frozen
+FAILED tests/invariants/test_invariant_contract_snapshots.py::test_commission_verdict_schema_frozen
+FAILED tests/invariants/test_objective_request_v2_contract_frozen.py::test_objective_request_v2_contract_frozen
+========================= 9 failed, 9 passed in 0.22s ==========================

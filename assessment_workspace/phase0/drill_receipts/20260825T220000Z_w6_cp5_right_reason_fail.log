@@ -1,0 +1,162 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-9.1.1, pluggy-1.6.0 -- /root/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: asyncio-1.4.0, xdist-3.8.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 9 items
+
+tests/invariants/test_lowered_standard_w6_cp5.py::test_lowered_standard_module_exists FAILED [ 11%]
+tests/invariants/test_lowered_standard_w6_cp5.py::test_open_session_writes_attestation_receipt FAILED [ 22%]
+tests/invariants/test_lowered_standard_w6_cp5.py::test_open_session_refuses_ceiling_overrun FAILED [ 33%]
+tests/invariants/test_lowered_standard_w6_cp5.py::test_open_session_refuses_missing_reason FAILED [ 44%]
+tests/invariants/test_lowered_standard_w6_cp5.py::test_is_active_for_returns_false_when_no_session FAILED [ 55%]
+tests/invariants/test_lowered_standard_w6_cp5.py::test_is_active_for_returns_true_within_scope_and_expiry FAILED [ 66%]
+tests/invariants/test_lowered_standard_w6_cp5.py::test_close_session_flips_state_and_writes_attestation FAILED [ 77%]
+tests/invariants/test_lowered_standard_w6_cp5.py::test_expired_session_no_longer_active FAILED [ 88%]
+tests/invariants/test_lowered_standard_w6_cp5.py::test_open_and_active_endpoints FAILED [100%]
+
+=================================== FAILURES ===================================
+_____________________ test_lowered_standard_module_exists ______________________
+
+    def test_lowered_standard_module_exists():
+        import importlib
+>       mod = importlib.import_module("services.lowered_standard.sessions")
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_lowered_standard_w6_cp5.py:67: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1126: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:241: in _call_with_frames_removed
+    ???
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'services.lowered_standard'
+import_ = <function _gcd_import at 0xfa167432bd80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'services.lowered_standard'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+_________________ test_open_session_writes_attestation_receipt _________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfa1672208710>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-41/test_open_session_writes_attes0')
+
+    def test_open_session_writes_attestation_receipt(monkeypatch, tmp_path):
+>       from services.lowered_standard.sessions import (
+            active_sessions,
+            open_session,
+        )
+E       ModuleNotFoundError: No module named 'services.lowered_standard'
+
+tests/invariants/test_lowered_standard_w6_cp5.py:78: ModuleNotFoundError
+__________________ test_open_session_refuses_ceiling_overrun ___________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfa1672208b90>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-41/test_open_session_refuses_ceil0')
+
+    def test_open_session_refuses_ceiling_overrun(monkeypatch, tmp_path):
+        """Ceiling is 24h (86400s). Any longer → refused."""
+>       from services.lowered_standard.sessions import open_session
+E       ModuleNotFoundError: No module named 'services.lowered_standard'
+
+tests/invariants/test_lowered_standard_w6_cp5.py:108: ModuleNotFoundError
+___________________ test_open_session_refuses_missing_reason ___________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfa16722402d0>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-41/test_open_session_refuses_miss0')
+
+    def test_open_session_refuses_missing_reason(monkeypatch, tmp_path):
+>       from services.lowered_standard.sessions import open_session
+E       ModuleNotFoundError: No module named 'services.lowered_standard'
+
+tests/invariants/test_lowered_standard_w6_cp5.py:126: ModuleNotFoundError
+_______________ test_is_active_for_returns_false_when_no_session _______________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfa1672252c10>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-41/test_is_active_for_returns_fal0')
+
+    def test_is_active_for_returns_false_when_no_session(monkeypatch, tmp_path):
+>       from services.lowered_standard.sessions import is_active_for
+E       ModuleNotFoundError: No module named 'services.lowered_standard'
+
+tests/invariants/test_lowered_standard_w6_cp5.py:144: ModuleNotFoundError
+___________ test_is_active_for_returns_true_within_scope_and_expiry ____________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfa16721fa3d0>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-41/test_is_active_for_returns_tru0')
+
+    def test_is_active_for_returns_true_within_scope_and_expiry(monkeypatch, tmp_path):
+>       from services.lowered_standard.sessions import (
+            is_active_for,
+            open_session,
+        )
+E       ModuleNotFoundError: No module named 'services.lowered_standard'
+
+tests/invariants/test_lowered_standard_w6_cp5.py:153: ModuleNotFoundError
+____________ test_close_session_flips_state_and_writes_attestation _____________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfa1673a4bb50>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-41/test_close_session_flips_state0')
+
+    def test_close_session_flips_state_and_writes_attestation(monkeypatch, tmp_path):
+>       from services.lowered_standard.sessions import (
+            active_sessions,
+            close_session,
+            is_active_for,
+            open_session,
+        )
+E       ModuleNotFoundError: No module named 'services.lowered_standard'
+
+tests/invariants/test_lowered_standard_w6_cp5.py:181: ModuleNotFoundError
+____________________ test_expired_session_no_longer_active _____________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfa16722ff190>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-41/test_expired_session_no_longer0')
+
+    def test_expired_session_no_longer_active(monkeypatch, tmp_path):
+>       from services.lowered_standard.sessions import (
+            active_sessions,
+            is_active_for,
+            open_session,
+        )
+E       ModuleNotFoundError: No module named 'services.lowered_standard'
+
+tests/invariants/test_lowered_standard_w6_cp5.py:212: ModuleNotFoundError
+________________________ test_open_and_active_endpoints ________________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfa1672340110>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-41/test_open_and_active_endpoints0')
+
+    def test_open_and_active_endpoints(monkeypatch, tmp_path):
+        from fastapi import FastAPI
+        from fastapi.testclient import TestClient
+>       from services.lowered_standard.router import router as ls_router
+E       ModuleNotFoundError: No module named 'services.lowered_standard'
+
+tests/invariants/test_lowered_standard_w6_cp5.py:244: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_lowered_standard_w6_cp5.py::test_lowered_standard_module_exists
+FAILED tests/invariants/test_lowered_standard_w6_cp5.py::test_open_session_writes_attestation_receipt
+FAILED tests/invariants/test_lowered_standard_w6_cp5.py::test_open_session_refuses_ceiling_overrun
+FAILED tests/invariants/test_lowered_standard_w6_cp5.py::test_open_session_refuses_missing_reason
+FAILED tests/invariants/test_lowered_standard_w6_cp5.py::test_is_active_for_returns_false_when_no_session
+FAILED tests/invariants/test_lowered_standard_w6_cp5.py::test_is_active_for_returns_true_within_scope_and_expiry
+FAILED tests/invariants/test_lowered_standard_w6_cp5.py::test_close_session_flips_state_and_writes_attestation
+FAILED tests/invariants/test_lowered_standard_w6_cp5.py::test_expired_session_no_longer_active
+FAILED tests/invariants/test_lowered_standard_w6_cp5.py::test_open_and_active_endpoints
+============================== 9 failed in 0.31s ===============================

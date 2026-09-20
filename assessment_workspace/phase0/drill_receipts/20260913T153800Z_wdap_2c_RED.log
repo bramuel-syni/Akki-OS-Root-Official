@@ -1,0 +1,12 @@
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wdap_2c_approval_routing_and_controlled_ops.py:111: ImportError: cannot import name 'approval' from 'services.dap' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/dap/__init__.py)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wdap_2c_approval_routing_and_controlled_ops.py:121: ImportError: cannot import name 'approval' from 'services.dap' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/dap/__init__.py)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wdap_2c_approval_routing_and_controlled_ops.py:158: ImportError: cannot import name 'approval' from 'services.dap' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/dap/__init__.py)
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wdap_2c_approval_routing_and_controlled_ops.py::test_2c_module_fabric_present
+FAILED tests/invariants/test_wdap_2c_approval_routing_and_controlled_ops.py::test_dap_14_controlled_request_routes_to_authority
+FAILED tests/invariants/test_wdap_2c_approval_routing_and_controlled_ops.py::test_dap_15_decision_recorded_no_silent_default
+FAILED tests/invariants/test_wdap_2c_approval_routing_and_controlled_ops.py::test_dap_16_fine_tune_always_requires_approval
+FAILED tests/invariants/test_wdap_2c_approval_routing_and_controlled_ops.py::test_dap_11_raw_download_controlled_always_requires_approval
+FAILED tests/invariants/test_wdap_2c_approval_routing_and_controlled_ops.py::test_dap_17_standing_approval_named_and_bounded
+FAILED tests/invariants/test_wdap_2c_approval_routing_and_controlled_ops.py::test_c4_dap_r2_pending_override_marker
+============================== 7 failed in 0.72s ===============================

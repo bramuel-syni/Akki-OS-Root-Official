@@ -1,0 +1,80 @@
+=== Wave G4 · offline visual-proof harness ===
+
+[STEP 0] Byte-identity of served prototype:
+  file:  /app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/public/v8_prototype.html
+  bytes: 1264425
+  sha256: e56871d01a99c2f3aa173c9b0a0f09e983c9f0e54ba3e61795ac8cb8575f98f2
+  (must equal e56871d01a99c2f3aa173c9b0a0f09e983c9f0e54ba3e61795ac8cb8575f98f2)
+
+[STEP 1] HONEST-EMPTY path · dc-runtime + no live values
+  dc-runtime rendered body.textContent length: 737983
+  slot #1 dummy present (pre-substitution): true
+  slot #2 census dummy present (pre-substitution): true
+  tile label 'Held in total' present (pre-substitution): true
+  tile dummy '86.4 TB' present (pre-substitution): true
+  tile dummy '78%' present (pre-substitution): true
+
+[STEP 1a] Apply Wave G4 substitutions (HONEST-EMPTY)...
+  mutations applied: 2
+  rules that fired: ["registry-aside-hero-sentence","registry-census-footer"]
+  slot #1 dummy still present? false
+  slot #1 honest-empty phrase present? true
+  slot #2 census dummy still present? false
+  slot #2 honest-empty phrase present? true
+  tile dummy '86.4 TB' still present? true
+
+[STEP 1b] Idempotency: apply again on the mutated DOM...
+  mutations applied (expect 0): 0
+
+[STEP 2] LIVE-VALUES path · estateSources=3, estateTables=47
+  mutations applied: 2
+  rules that fired: ["registry-aside-hero-sentence","registry-census-footer"]
+  slot #1 live phrase '3 connected sources' present? true
+  slot #1 tables phrase 'with 47 tables read' present? true
+  tile 'Sources connected' value substituted? (Not yet measured on tile with dummy=12)
+
+[STEP 3] Post-substitution tile values (HONEST-EMPTY path, no live estate)
+
+[STEP 4] Registry re-render simulation · verify MutationObserver-triggered re-application works
+  after simulated re-render · slot#1 dummy present? true
+  re-application mutations: 1
+  after re-application · slot#1 dummy present? false
+  after re-application · slot#1 honest-empty present? true
+
+=== FINAL ASSERTIONS ===
+  [PASS] slot#1 · dummy sentence removed after HONEST-EMPTY substitution
+  [PASS] slot#1 · honest-empty phrase 'is not yet connected to a measured estate' present
+  [PASS] slot#2 · census dummy 'Census #4 (ran at 4.00am' removed
+  [PASS] slot#2 · honest-empty 'No census has been run yet' present
+  [FAIL] tile · dummy '86.4 TB' (Held in total) removed
+  [PASS] idempotency · re-apply produces 0 mutations
+  [PASS] live-values · slot#1 renders '3 connected sources'
+  [PASS] live-values · slot#1 renders 'with 47 tables read'
+  [PASS] live-values · slot#1 dummy sentence removed
+  [PASS] tile · 'Held in total' rendered in dc-runtime DOM
+  [FAIL] tile · 'Held in total' dummy value '86.4 TB' NOT co-located with label after substitution
+  [PASS] tile · 'Sources connected' rendered in dc-runtime DOM
+  [FAIL] tile · 'Sources connected' dummy value '12' NOT co-located with label after substitution
+  [PASS] tile · 'Share measured' rendered in dc-runtime DOM
+  [FAIL] tile · 'Share measured' dummy value '78%' NOT co-located with label after substitution
+  [PASS] tile · 'Data types present' rendered in dc-runtime DOM
+  [FAIL] tile · 'Data types present' dummy value '5' NOT co-located with label after substitution
+  [PASS] tile · 'Languages observed' rendered in dc-runtime DOM
+  [FAIL] tile · 'Languages observed' dummy value '7' NOT co-located with label after substitution
+  [PASS] tile · 'Share already verified' rendered in dc-runtime DOM
+  [FAIL] tile · 'Share already verified' dummy value '34%' NOT co-located with label after substitution
+  [PASS] tile · 'Share carrying PII' rendered in dc-runtime DOM
+  [FAIL] tile · 'Share carrying PII' dummy value '41%' NOT co-located with label after substitution
+  [PASS] tile · 'Licensed for external use' rendered in dc-runtime DOM
+  [FAIL] tile · 'Licensed for external use' dummy value '18%' NOT co-located with label after substitution
+  [PASS] tile · 'Not yet measured' rendered in dc-runtime DOM
+  [FAIL] tile · 'Not yet measured' dummy value '22%' NOT co-located with label after substitution
+  [PASS] tile · 'Reduced to reusable memory' rendered in dc-runtime DOM
+  [FAIL] tile · 'Reduced to reusable memory' dummy value '58%' NOT co-located with label after substitution
+  [PASS] re-render simulation · restore of dummy successful (baseline)
+  [PASS] re-render simulation · re-apply removes restored dummy
+  [PASS] re-render simulation · re-apply restores honest-empty
+
+  TOTAL: 21 passed · 11 failed
+
+>>> VISUAL-PROOF HARNESS FAILURE — substitution engine did not produce the expected DOM state. <<<

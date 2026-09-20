@@ -1,0 +1,73 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.4.2, pluggy-1.6.0
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: xdist-3.8.0, asyncio-1.4.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collected 6 items
+
+tests/invariants/test_wave_audio_poc_cp_a6_wave_close.py FFFF.F          [100%]
+
+=================================== FAILURES ===================================
+_____________________ test_cp_a6_wave_close_module_fabric ______________________
+
+    def test_cp_a6_wave_close_module_fabric():
+>       m = importlib.import_module("services.audio_poc.wave_close")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_wave_audio_poc_cp_a6_wave_close.py:14: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'services.audio_poc.wave_close'
+import_ = <function _gcd_import at 0xf9c0dde4bd80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'services.audio_poc.wave_close'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+__________________ test_cp_a6_wave_name_and_seal_kind_pinned ___________________
+
+    def test_cp_a6_wave_name_and_seal_kind_pinned():
+>       from services.audio_poc.wave_close import WAVE_NAME, SEAL_KIND
+E       ModuleNotFoundError: No module named 'services.audio_poc.wave_close'
+
+tests/invariants/test_wave_audio_poc_cp_a6_wave_close.py:28: ModuleNotFoundError
+____________________ test_cp_a6_cp_order_covers_all_six_cps ____________________
+
+    def test_cp_a6_cp_order_covers_all_six_cps():
+>       from services.audio_poc.wave_close import CP_ORDER
+E       ModuleNotFoundError: No module named 'services.audio_poc.wave_close'
+
+tests/invariants/test_wave_audio_poc_cp_a6_wave_close.py:34: ModuleNotFoundError
+_________________ test_cp_a6_all_mechanism_modules_importable __________________
+
+    def test_cp_a6_all_mechanism_modules_importable():
+>       from services.audio_poc.wave_close import MECHANISM_MODULES
+E       ModuleNotFoundError: No module named 'services.audio_poc.wave_close'
+
+tests/invariants/test_wave_audio_poc_cp_a6_wave_close.py:41: ModuleNotFoundError
+_______________ test_cp_a6_known_blockers_enumerated_and_stable ________________
+
+    def test_cp_a6_known_blockers_enumerated_and_stable():
+        """The three known blockers from CP-A5 live probe are declared."""
+>       from services.audio_poc.wave_close import KNOWN_BLOCKERS
+E       ModuleNotFoundError: No module named 'services.audio_poc.wave_close'
+
+tests/invariants/test_wave_audio_poc_cp_a6_wave_close.py:104: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wave_audio_poc_cp_a6_wave_close.py::test_cp_a6_wave_close_module_fabric
+FAILED tests/invariants/test_wave_audio_poc_cp_a6_wave_close.py::test_cp_a6_wave_name_and_seal_kind_pinned
+FAILED tests/invariants/test_wave_audio_poc_cp_a6_wave_close.py::test_cp_a6_cp_order_covers_all_six_cps
+FAILED tests/invariants/test_wave_audio_poc_cp_a6_wave_close.py::test_cp_a6_all_mechanism_modules_importable
+FAILED tests/invariants/test_wave_audio_poc_cp_a6_wave_close.py::test_cp_a6_known_blockers_enumerated_and_stable
+========================= 5 failed, 1 passed in 0.66s ==========================

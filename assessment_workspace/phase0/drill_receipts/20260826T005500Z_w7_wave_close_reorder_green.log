@@ -1,0 +1,162 @@
+/root/.venv/lib/python3.11/site-packages/pytest_asyncio/plugin.py:208: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.3.3, pluggy-1.6.0
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: xdist-3.8.0, anyio-4.14.2, asyncio-0.24.0
+asyncio: mode=Mode.AUTO, default_loop_scope=None
+collected 310 items
+
+tests/invariants/test_actor_declaration_v0_contract_frozen.py .          [  0%]
+tests/invariants/test_admission_refusal_v0_contract_frozen.py .          [  0%]
+tests/invariants/test_admit_refuses_undeclared_actor.py ......           [  2%]
+tests/invariants/test_backfilled_contract_snapshots.py ...               [  3%]
+tests/invariants/test_baseline_line_v0_contract_frozen.py .              [  3%]
+tests/invariants/test_chokepoint_registers_all_crossings.py ............ [  7%]
+..                                                                       [  8%]
+tests/invariants/test_composed_conclusion_v0_contract_frozen.py ..       [  9%]
+tests/invariants/test_compute_seam_artifact_hash_verified.py ...         [ 10%]
+tests/invariants/test_compute_seam_no_unledgered_exec.py ...             [ 10%]
+tests/invariants/test_connect_gpu_acceptance_wired.py ..........         [ 14%]
+tests/invariants/test_connect_gpu_pipeline.py ...............            [ 19%]
+tests/invariants/test_connect_gpu_scope_S_or_M.py ..                     [ 19%]
+tests/invariants/test_cost_ledger_w6_cp2.py .............                [ 23%]
+tests/invariants/test_credentials_paste_parser.py ...................... [ 30%]
+                                                                         [ 30%]
+tests/invariants/test_estate_keys_and_connect_estate.py ............     [ 34%]
+tests/invariants/test_feasibility_result_v0_contract_frozen.py .         [ 35%]
+tests/invariants/test_frozen_contract_snapshot_parity.py ...             [ 36%]
+tests/invariants/test_hardening_orchestrator.py .........                [ 39%]
+tests/invariants/test_invariant_contract_snapshots.py ......             [ 40%]
+tests/invariants/test_ip_allowlist_middleware.py ................        [ 46%]
+tests/invariants/test_llm_chokepoint_sole_importer.py ......             [ 48%]
+tests/invariants/test_llm_crossing_receipt_metering.py ....              [ 49%]
+tests/invariants/test_llm_egress_allowlist_provider_scoped.py .....      [ 50%]
+tests/invariants/test_llm_masking_tier_enforced.py .....                 [ 52%]
+tests/invariants/test_llm_purpose_gate_refuses_unlisted.py .......       [ 54%]
+tests/invariants/test_lowered_standard_w6_cp5.py .........               [ 57%]
+tests/invariants/test_model_acceptance_card_v0_contract_frozen.py .      [ 58%]
+tests/invariants/test_northena_admit_gate_converge_ledger.py ....FFFFFFF [ 61%]
+FFFF.F.                                                                  [ 63%]
+tests/invariants/test_northena_ledger_retention.py ..                    [ 64%]
+tests/invariants/test_objective_request_v2_contract_frozen.py .          [ 64%]
+tests/invariants/test_record_matrix_thin_kernel.py ......                [ 66%]
+tests/invariants/test_registry_facts_emergent_universal_listed.py .....  [ 68%]
+tests/invariants/test_retention_enforcement_w6_cp3.py ..........         [ 71%]
+tests/invariants/test_solva_reasoning_stages.py ......                   [ 73%]
+tests/invariants/test_solva_stages_4_6_grey_mirror_groundwork.py ....... [ 75%]
+                                                                         [ 75%]
+tests/invariants/test_targeta_invariants.py ............                 [ 79%]
+tests/invariants/test_task_identity_thin_kernel.py .....                 [ 81%]
+tests/invariants/test_thinklab_reasoning_wire.py ...                     [ 82%]
+tests/invariants/test_w5_cp4_backend_endpoints.py .........              [ 85%]
+tests/invariants/test_w7_cp1_training_rates.py .....                     [ 86%]
+tests/invariants/test_w7_cp3_model_registry.py .............             [ 90%]
+tests/invariants/test_w7_cp4_model_admission_ceremony.py .........       [ 93%]
+tests/invariants/test_w7_cp5_baseline_line_and_recheck.py ........       [ 96%]
+tests/invariants/test_w7_cp7_router_mount.py ...........                 [100%]
+
+=================================== FAILURES ===================================
+/usr/local/lib/python3.11/asyncio/events.py:681: RuntimeError: There is no current event loop in thread 'MainThread'.
+/usr/local/lib/python3.11/asyncio/events.py:681: RuntimeError: There is no current event loop in thread 'MainThread'.
+/usr/local/lib/python3.11/asyncio/events.py:681: RuntimeError: There is no current event loop in thread 'MainThread'.
+/usr/local/lib/python3.11/asyncio/events.py:681: RuntimeError: There is no current event loop in thread 'MainThread'.
+/usr/local/lib/python3.11/asyncio/events.py:681: RuntimeError: There is no current event loop in thread 'MainThread'.
+/usr/local/lib/python3.11/asyncio/events.py:681: RuntimeError: There is no current event loop in thread 'MainThread'.
+/usr/local/lib/python3.11/asyncio/events.py:681: RuntimeError: There is no current event loop in thread 'MainThread'.
+/usr/local/lib/python3.11/asyncio/events.py:681: RuntimeError: There is no current event loop in thread 'MainThread'.
+/usr/local/lib/python3.11/asyncio/events.py:681: RuntimeError: There is no current event loop in thread 'MainThread'.
+/usr/local/lib/python3.11/asyncio/events.py:681: RuntimeError: There is no current event loop in thread 'MainThread'.
+/usr/local/lib/python3.11/asyncio/events.py:681: RuntimeError: There is no current event loop in thread 'MainThread'.
+/usr/local/lib/python3.11/asyncio/events.py:681: RuntimeError: There is no current event loop in thread 'MainThread'.
+=============================== warnings summary ===============================
+tests/invariants/test_northena_admit_gate_converge_ledger.py::test_admit_freezes_atomically_and_artifact_is_immutable
+  /root/.venv/lib/python3.11/site-packages/_pytest/_code/code.py:336: RuntimeWarning: coroutine 'test_admit_refuses_missing_lawful_basis' was never awaited
+    yield TracebackEntry(cur_)
+  Enable tracemalloc to get traceback where the object was allocated.
+  See https://docs.pytest.org/en/stable/how-to/capture-warnings.html#resource-warnings for more info.
+
+tests/invariants/test_northena_admit_gate_converge_ledger.py::test_admit_freezes_atomically_and_artifact_is_immutable
+  /root/.venv/lib/python3.11/site-packages/_pytest/_code/code.py:336: RuntimeWarning: coroutine 'test_admit_refuses_missing_required_field' was never awaited
+    yield TracebackEntry(cur_)
+  Enable tracemalloc to get traceback where the object was allocated.
+  See https://docs.pytest.org/en/stable/how-to/capture-warnings.html#resource-warnings for more info.
+
+tests/invariants/test_northena_admit_gate_converge_ledger.py::test_admit_freezes_atomically_and_artifact_is_immutable
+  /root/.venv/lib/python3.11/site-packages/_pytest/_code/code.py:336: RuntimeWarning: coroutine 'test_admit_refuses_empty_scope_after_stub' was never awaited
+    yield TracebackEntry(cur_)
+  Enable tracemalloc to get traceback where the object was allocated.
+  See https://docs.pytest.org/en/stable/how-to/capture-warnings.html#resource-warnings for more info.
+
+tests/invariants/test_northena_admit_gate_converge_ledger.py::test_gate_admits_only_by_exact_membership_no_prefix_match
+  /root/.venv/lib/python3.11/site-packages/pytest_asyncio/plugin.py:457: RuntimeWarning: coroutine 'test_admit_persistence_lands_in_phase0' was never awaited
+    super().runtest()
+  Enable tracemalloc to get traceback where the object was allocated.
+  See https://docs.pytest.org/en/stable/how-to/capture-warnings.html#resource-warnings for more info.
+
+tests/invariants/test_northena_admit_gate_converge_ledger.py::test_gate_admits_only_by_exact_membership_no_prefix_match
+  /root/.venv/lib/python3.11/site-packages/pytest_asyncio/plugin.py:457: RuntimeWarning: coroutine 'test_gate_refuses_out_of_scope' was never awaited
+    super().runtest()
+  Enable tracemalloc to get traceback where the object was allocated.
+  See https://docs.pytest.org/en/stable/how-to/capture-warnings.html#resource-warnings for more info.
+
+tests/invariants/test_northena_admit_gate_converge_ledger.py::test_converge_continues_when_neither_fires
+  /root/.venv/lib/python3.11/site-packages/pluggy/_callers.py:32: RuntimeWarning: coroutine 'test_gate_admits_on_exact_membership' was never awaited
+    teardown: Teardown = cast(Teardown, hook_impl.function(*args))
+  Enable tracemalloc to get traceback where the object was allocated.
+  See https://docs.pytest.org/en/stable/how-to/capture-warnings.html#resource-warnings for more info.
+
+tests/invariants/test_northena_admit_gate_converge_ledger.py::test_converge_continues_when_neither_fires
+  /root/.venv/lib/python3.11/site-packages/pluggy/_callers.py:32: RuntimeWarning: coroutine 'test_converge_done_condition_precedence' was never awaited
+    teardown: Teardown = cast(Teardown, hook_impl.function(*args))
+  Enable tracemalloc to get traceback where the object was allocated.
+  See https://docs.pytest.org/en/stable/how-to/capture-warnings.html#resource-warnings for more info.
+
+tests/invariants/test_northena_admit_gate_converge_ledger.py::test_ledger_writer_is_sole_writer_of_northena_ledger_rows
+  /usr/local/lib/python3.11/pathlib.py:573: RuntimeWarning: coroutine 'test_converge_continues_when_neither_fires' was never awaited
+    return self._cached_cparts
+  Enable tracemalloc to get traceback where the object was allocated.
+  See https://docs.pytest.org/en/stable/how-to/capture-warnings.html#resource-warnings for more info.
+
+tests/invariants/test_northena_admit_gate_converge_ledger.py::test_thinklab_router_declares_the_expected_endpoints
+  /usr/local/lib/python3.11/dataclasses.py:433: RuntimeWarning: coroutine 'test_ledger_records_and_lists_by_run' was never awaited
+    exec(txt, globals, ns)
+  Enable tracemalloc to get traceback where the object was allocated.
+  See https://docs.pytest.org/en/stable/how-to/capture-warnings.html#resource-warnings for more info.
+
+tests/invariants/test_retention_enforcement_w6_cp3.py::test_dry_run_marks_expired_receipts_without_touching_disk
+  /usr/local/lib/python3.11/json/decoder.py:353: RuntimeWarning: coroutine 'test_admit_freezes_atomically_and_artifact_is_immutable' was never awaited
+    obj, end = self.scan_once(s, idx)
+  Enable tracemalloc to get traceback where the object was allocated.
+  See https://docs.pytest.org/en/stable/how-to/capture-warnings.html#resource-warnings for more info.
+
+tests/invariants/test_retention_enforcement_w6_cp3.py::test_dry_run_marks_expired_receipts_without_touching_disk
+  /usr/local/lib/python3.11/json/decoder.py:353: RuntimeWarning: coroutine 'test_gate_admits_only_by_exact_membership_no_prefix_match' was never awaited
+    obj, end = self.scan_once(s, idx)
+  Enable tracemalloc to get traceback where the object was allocated.
+  See https://docs.pytest.org/en/stable/how-to/capture-warnings.html#resource-warnings for more info.
+
+tests/invariants/test_retention_enforcement_w6_cp3.py::test_dry_run_marks_expired_receipts_without_touching_disk
+  /usr/local/lib/python3.11/json/decoder.py:353: RuntimeWarning: coroutine 'test_converge_budget_only' was never awaited
+    obj, end = self.scan_once(s, idx)
+  Enable tracemalloc to get traceback where the object was allocated.
+  See https://docs.pytest.org/en/stable/how-to/capture-warnings.html#resource-warnings for more info.
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/invariants/test_northena_admit_gate_converge_ledger.py::test_admit_refuses_missing_lawful_basis
+FAILED tests/invariants/test_northena_admit_gate_converge_ledger.py::test_admit_refuses_missing_required_field
+FAILED tests/invariants/test_northena_admit_gate_converge_ledger.py::test_admit_refuses_empty_scope_after_stub
+FAILED tests/invariants/test_northena_admit_gate_converge_ledger.py::test_admit_freezes_atomically_and_artifact_is_immutable
+FAILED tests/invariants/test_northena_admit_gate_converge_ledger.py::test_admit_persistence_lands_in_phase0
+FAILED tests/invariants/test_northena_admit_gate_converge_ledger.py::test_gate_refuses_out_of_scope
+FAILED tests/invariants/test_northena_admit_gate_converge_ledger.py::test_gate_admits_only_by_exact_membership_no_prefix_match
+FAILED tests/invariants/test_northena_admit_gate_converge_ledger.py::test_gate_admits_on_exact_membership
+FAILED tests/invariants/test_northena_admit_gate_converge_ledger.py::test_converge_done_condition_precedence
+FAILED tests/invariants/test_northena_admit_gate_converge_ledger.py::test_converge_budget_only
+FAILED tests/invariants/test_northena_admit_gate_converge_ledger.py::test_converge_continues_when_neither_fires
+FAILED tests/invariants/test_northena_admit_gate_converge_ledger.py::test_ledger_records_and_lists_by_run
+================= 12 failed, 298 passed, 12 warnings in 4.53s ==================

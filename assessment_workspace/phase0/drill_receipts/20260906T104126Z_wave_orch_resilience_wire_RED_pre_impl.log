@@ -1,0 +1,301 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.4.2, pluggy-1.6.0 -- /root/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: asyncio-1.4.0, xdist-3.8.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collecting ... collected 14 items
+
+tests/invariants/test_orchestrator_resilience_wire.py::test_orch_source_file_exists_and_parses PASSED [  7%]
+tests/invariants/test_orchestrator_resilience_wire.py::test_orch_no_top_level_resilience_import PASSED [ 14%]
+tests/invariants/test_orchestrator_resilience_wire.py::test_burn_one_host_lazy_imports_heartbeat FAILED [ 21%]
+tests/invariants/test_orchestrator_resilience_wire.py::test_burn_one_host_calls_write_heartbeat_in_poll_loop FAILED [ 28%]
+tests/invariants/test_orchestrator_resilience_wire.py::test_burn_one_host_write_heartbeat_uses_plain_run_id FAILED [ 35%]
+tests/invariants/test_orchestrator_resilience_wire.py::test_burn_one_host_write_heartbeat_has_all_five_required_kwargs FAILED [ 42%]
+tests/invariants/test_orchestrator_resilience_wire.py::test_burn_one_host_on_host_status_is_shared_name_not_inline_dict FAILED [ 50%]
+tests/invariants/test_orchestrator_resilience_wire.py::test_burn_one_host_write_heartbeat_wrapped_in_try_except FAILED [ 57%]
+tests/invariants/test_orchestrator_resilience_wire.py::test_burn_one_host_calls_should_poll_at_elapsed_before_poll FAILED [ 64%]
+tests/invariants/test_orchestrator_resilience_wire.py::test_module_defines_shared_on_host_status_dict FAILED [ 71%]
+tests/invariants/test_orchestrator_resilience_wire.py::test_module_defines_threading_lock_for_heartbeat_state FAILED [ 78%]
+tests/invariants/test_orchestrator_resilience_wire.py::test_main_calls_find_orphaned_runs_before_executor FAILED [ 85%]
+tests/invariants/test_orchestrator_resilience_wire.py::test_main_reconcile_wrapped_in_try_except FAILED [ 92%]
+tests/invariants/test_orchestrator_resilience_wire.py::test_main_prints_reconcile_result FAILED [100%]
+
+=================================== FAILURES ===================================
+__________________ test_burn_one_host_lazy_imports_heartbeat ___________________
+
+orch_tree = <ast.Module object at 0xffc5ac87b0d0>
+
+    def test_burn_one_host_lazy_imports_heartbeat(orch_tree: ast.Module):
+        """`burn_one_host` MUST contain a lazy import of
+        `services.orchestrator_resilience.heartbeat` (or the package) so that
+        per-cycle heartbeat writes can call it. The import MUST be inside a
+        try/except (see next test for the wrapper)."""
+        fn = _find_function(orch_tree, "burn_one_host")
+        assert fn is not None, "burn_one_host function not found"
+        imports = [
+            n for n in ast.walk(fn)
+            if isinstance(n, ast.ImportFrom)
+            and (n.module or "").endswith("orchestrator_resilience")
+            and any(a.name in ("heartbeat", "resume") for a in n.names)
+        ]
+>       assert imports, (
+            "burn_one_host does not contain `from services.orchestrator_resilience "
+            "import heartbeat[, resume]` — wire the lazy import at the call site."
+        )
+E       AssertionError: burn_one_host does not contain `from services.orchestrator_resilience import heartbeat[, resume]` — wire the lazy import at the call site.
+E       assert []
+
+tests/invariants/test_orchestrator_resilience_wire.py:211: AssertionError
+____________ test_burn_one_host_calls_write_heartbeat_in_poll_loop _____________
+
+orch_tree = <ast.Module object at 0xffc5ac87b0d0>
+
+    def test_burn_one_host_calls_write_heartbeat_in_poll_loop(orch_tree: ast.Module):
+        """`write_heartbeat(...)` MUST be called inside the poll-loop `while` in
+        `burn_one_host`. This is the core resilience wire: each poll cycle emits
+        a fresh heartbeat so the orchestrator's liveness is observable."""
+        fn = _find_function(orch_tree, "burn_one_host")
+        assert fn is not None
+        calls = _walk_call_by_name(fn, "write_heartbeat")
+>       assert calls, "burn_one_host does not call write_heartbeat(...)"
+E       AssertionError: burn_one_host does not call write_heartbeat(...)
+E       assert []
+
+tests/invariants/test_orchestrator_resilience_wire.py:224: AssertionError
+_____________ test_burn_one_host_write_heartbeat_uses_plain_run_id _____________
+
+orch_tree = <ast.Module object at 0xffc5ac87b0d0>
+
+    def test_burn_one_host_write_heartbeat_uses_plain_run_id(orch_tree: ast.Module):
+        """`run_id=` kwarg to `write_heartbeat` MUST be the plain `RUN_ID` Name
+        (module-level constant), NOT a compound f-string like `f'{RUN_ID}__{host_slug}'`.
+    
+        Rationale (DONOR-REVIEW · 2026-09-06 owner directive): the pre-existing
+        uncommitted donor diff used a compound key which breaks orphan_detector
+        (which scans by RUN_ID matching the on-disk run_dir name). Correct
+        discipline: ONE heartbeat per RUN_ID, per-host state carried in
+        `on_host_status` (see next test)."""
+        fn = _find_function(orch_tree, "burn_one_host")
+        assert fn is not None
+        calls = _walk_call_by_name(fn, "write_heartbeat")
+>       assert calls, "write_heartbeat not called (see prior test)"
+E       AssertionError: write_heartbeat not called (see prior test)
+E       assert []
+
+tests/invariants/test_orchestrator_resilience_wire.py:244: AssertionError
+_______ test_burn_one_host_write_heartbeat_has_all_five_required_kwargs ________
+
+orch_tree = <ast.Module object at 0xffc5ac87b0d0>
+
+    def test_burn_one_host_write_heartbeat_has_all_five_required_kwargs(orch_tree: ast.Module):
+        """`write_heartbeat` primitive signature (heartbeat.py L48) requires ALL
+        of: `run_id`, `orchestrator_pid`, `cycle_count`, `on_host_status`,
+        `next_poll_planned_utc`. Every call MUST pass all five."""
+        fn = _find_function(orch_tree, "burn_one_host")
+        assert fn is not None
+        calls = _walk_call_by_name(fn, "write_heartbeat")
+>       assert calls, "write_heartbeat not called (see prior test)"
+E       AssertionError: write_heartbeat not called (see prior test)
+E       assert []
+
+tests/invariants/test_orchestrator_resilience_wire.py:262: AssertionError
+_______ test_burn_one_host_on_host_status_is_shared_name_not_inline_dict _______
+
+orch_tree = <ast.Module object at 0xffc5ac87b0d0>
+
+    def test_burn_one_host_on_host_status_is_shared_name_not_inline_dict(orch_tree: ast.Module):
+        """`on_host_status=` kwarg MUST reference a shared Name (module-level or
+        function-level state), NOT an inline `{host_slug: 'polling'}` dict literal.
+    
+        Rationale (DONOR-REVIEW): the donor's `on_host_status={host_slug: 'polling'}`
+        means each thread's heartbeat contains ONLY its own host — the two host-
+        threads racing to write the same heartbeat file trample each other's peer
+        state. Correct discipline: shared dict updated per-host by each thread,
+        snapshotted under a lock, so any heartbeat carries the union view."""
+        fn = _find_function(orch_tree, "burn_one_host")
+        assert fn is not None
+        calls = _walk_call_by_name(fn, "write_heartbeat")
+>       assert calls, "write_heartbeat not called (see prior test)"
+E       AssertionError: write_heartbeat not called (see prior test)
+E       assert []
+
+tests/invariants/test_orchestrator_resilience_wire.py:286: AssertionError
+___________ test_burn_one_host_write_heartbeat_wrapped_in_try_except ___________
+
+orch_tree = <ast.Module object at 0xffc5ac87b0d0>
+
+    def test_burn_one_host_write_heartbeat_wrapped_in_try_except(orch_tree: ast.Module):
+        """Zero-influence discipline: EVERY `write_heartbeat` call MUST be inside
+        a try/except so that a heartbeat storage failure never breaks the poll
+        loop. This mirrors the primitive's own zero-influence writer (heartbeat.py
+        L59-77) — belt-and-braces at the call site so a bug in the primitive
+        never leaks into the burn."""
+        fn = _find_function(orch_tree, "burn_one_host")
+        assert fn is not None
+        calls = _walk_call_by_name(fn, "write_heartbeat")
+>       assert calls, "write_heartbeat not called (see prior test)"
+E       AssertionError: write_heartbeat not called (see prior test)
+E       assert []
+
+tests/invariants/test_orchestrator_resilience_wire.py:306: AssertionError
+_________ test_burn_one_host_calls_should_poll_at_elapsed_before_poll __________
+
+orch_tree = <ast.Module object at 0xffc5ac87b0d0>
+
+    def test_burn_one_host_calls_should_poll_at_elapsed_before_poll(orch_tree: ast.Module):
+        """Idempotency guard: `resume.should_poll_at_elapsed(RUN_ID, host_slug, elapsed_s)`
+        MUST be called inside the poll loop before capturing the on-host snapshot,
+        so a restarted poller skips windows already receipted on disk. Charter
+        (owner directive verbatim): 'resumable polling — a restarted poller
+        re-attaches to a running on-host job from its sealing/poll receipts
+        rather than losing the window'."""
+        fn = _find_function(orch_tree, "burn_one_host")
+        assert fn is not None
+        calls = _walk_call_by_name(fn, "should_poll_at_elapsed")
+>       assert calls, (
+            "burn_one_host does not call resume.should_poll_at_elapsed(...) — "
+            "the resumable-polling guard is not wired."
+        )
+E       AssertionError: burn_one_host does not call resume.should_poll_at_elapsed(...) — the resumable-polling guard is not wired.
+E       assert []
+
+tests/invariants/test_orchestrator_resilience_wire.py:336: AssertionError
+________________ test_module_defines_shared_on_host_status_dict ________________
+
+orch_tree = <ast.Module object at 0xffc5ac87b0d0>
+
+    def test_module_defines_shared_on_host_status_dict(orch_tree: ast.Module):
+        """The orchestrator MUST define a module-level shared dict for per-host
+        heartbeat status (e.g. `_HB_ON_HOST_STATUS: Dict[str, str] = {}`) so both
+        host-threads can update their own slot without dropping the peer's slot.
+        This is the DONOR-REVIEW fix (see test_..._on_host_status_is_shared_name_not_inline_dict)."""
+        names_assigned: List[str] = []
+        for node in orch_tree.body:
+            if isinstance(node, ast.Assign):
+                for t in node.targets:
+                    if isinstance(t, ast.Name):
+                        names_assigned.append(t.id)
+            elif isinstance(node, ast.AnnAssign) and isinstance(node.target, ast.Name):
+                names_assigned.append(node.target.id)
+        hb_candidates = [n for n in names_assigned
+                         if re.search(r"(?i)_?hb_?.*(status|on_host)", n)
+                         or re.search(r"(?i)on_host_status", n)]
+>       assert hb_candidates, (
+            "No module-level shared heartbeat-status dict defined (looking for a "
+            "name matching /_HB.*STATUS|on_host_status/). Define one so both host-"
+            "threads can coordinate their heartbeat contribution under a lock."
+        )
+E       AssertionError: No module-level shared heartbeat-status dict defined (looking for a name matching /_HB.*STATUS|on_host_status/). Define one so both host-threads can coordinate their heartbeat contribution under a lock.
+E       assert []
+
+tests/invariants/test_orchestrator_resilience_wire.py:367: AssertionError
+____________ test_module_defines_threading_lock_for_heartbeat_state ____________
+
+orch_tree = <ast.Module object at 0xffc5ac87b0d0>
+
+    def test_module_defines_threading_lock_for_heartbeat_state(orch_tree: ast.Module):
+        """A `threading.Lock()` (or equivalent) MUST be defined at module level to
+        guard concurrent updates to the shared heartbeat state and the cycle
+        counter. Without it, the two host-threads race and can either drop
+        updates or emit non-monotonic cycle counts."""
+        lock_calls = _walk_call_by_name(orch_tree, "Lock")
+        # Must have at least one at module scope
+        top_level_locks = [
+            c for c in lock_calls
+            if any(c in ast.walk(node) for node in orch_tree.body if isinstance(node, (ast.Assign, ast.AnnAssign)))
+        ]
+>       assert top_level_locks, (
+            "No module-level `threading.Lock()` / `Lock()` found. Define one to "
+            "guard concurrent updates to the shared heartbeat state."
+        )
+E       AssertionError: No module-level `threading.Lock()` / `Lock()` found. Define one to guard concurrent updates to the shared heartbeat state.
+E       assert []
+
+tests/invariants/test_orchestrator_resilience_wire.py:385: AssertionError
+______________ test_main_calls_find_orphaned_runs_before_executor ______________
+
+orch_tree = <ast.Module object at 0xffc5ac87b0d0>
+
+    def test_main_calls_find_orphaned_runs_before_executor(orch_tree: ast.Module):
+        """`main()` MUST call `find_orphaned_runs(...)` BEFORE the
+        `ThreadPoolExecutor` is entered. The reconcile-on-start finding is
+        informational (INFO to stdout); it does not adopt orphans in this wave
+        (that's r2 follow-on)."""
+        fn = _find_function(orch_tree, "main")
+        assert fn is not None, "main() function not found"
+        # Find find_orphaned_runs call
+        find_calls = _walk_call_by_name(fn, "find_orphaned_runs")
+>       assert find_calls, "main() does not call find_orphaned_runs(...)"
+E       AssertionError: main() does not call find_orphaned_runs(...)
+E       assert []
+
+tests/invariants/test_orchestrator_resilience_wire.py:404: AssertionError
+__________________ test_main_reconcile_wrapped_in_try_except ___________________
+
+orch_tree = <ast.Module object at 0xffc5ac87b0d0>
+
+    def test_main_reconcile_wrapped_in_try_except(orch_tree: ast.Module):
+        """The reconcile-on-start block MUST be inside a try/except so a broken
+        or missing primitives package never halts orchestrator startup."""
+        fn = _find_function(orch_tree, "main")
+        assert fn is not None
+        calls = _walk_call_by_name(fn, "find_orphaned_runs")
+>       assert calls, "find_orphaned_runs not called (see prior test)"
+E       AssertionError: find_orphaned_runs not called (see prior test)
+E       assert []
+
+tests/invariants/test_orchestrator_resilience_wire.py:422: AssertionError
+______________________ test_main_prints_reconcile_result _______________________
+
+orch_tree = <ast.Module object at 0xffc5ac87b0d0>
+
+    def test_main_prints_reconcile_result(orch_tree: ast.Module):
+        """The reconcile-on-start block MUST emit a print to stdout so the owner
+        sees the finding. Owner directive: 'Owner sees the report on stdout and
+        decides' — this is informational-only in this wave, so at minimum print."""
+        fn = _find_function(orch_tree, "main")
+        assert fn is not None
+        # Find any print(...) that mentions RECONCILE
+        printed_reconcile = False
+        for call in _walk_call_by_name(fn, "print"):
+            # print(...) with at least one string that mentions RECONCILE
+            for arg in call.args:
+                s = ""
+                if isinstance(arg, ast.Constant) and isinstance(arg.value, str):
+                    s = arg.value
+                elif isinstance(arg, ast.JoinedStr):
+                    # f-string — concatenate its Str-typed values
+                    parts = []
+                    for v in arg.values:
+                        if isinstance(v, ast.Constant) and isinstance(v.value, str):
+                            parts.append(v.value)
+                    s = "".join(parts)
+                if "RECONCILE" in s:
+                    printed_reconcile = True
+                    break
+            if printed_reconcile:
+                break
+>       assert printed_reconcile, (
+            "main() reconcile block does not print any 'RECONCILE' status — owner "
+            "cannot see the finding on stdout."
+        )
+E       AssertionError: main() reconcile block does not print any 'RECONCILE' status — owner cannot see the finding on stdout.
+E       assert False
+
+tests/invariants/test_orchestrator_resilience_wire.py:457: AssertionError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_orchestrator_resilience_wire.py::test_burn_one_host_lazy_imports_heartbeat
+FAILED tests/invariants/test_orchestrator_resilience_wire.py::test_burn_one_host_calls_write_heartbeat_in_poll_loop
+FAILED tests/invariants/test_orchestrator_resilience_wire.py::test_burn_one_host_write_heartbeat_uses_plain_run_id
+FAILED tests/invariants/test_orchestrator_resilience_wire.py::test_burn_one_host_write_heartbeat_has_all_five_required_kwargs
+FAILED tests/invariants/test_orchestrator_resilience_wire.py::test_burn_one_host_on_host_status_is_shared_name_not_inline_dict
+FAILED tests/invariants/test_orchestrator_resilience_wire.py::test_burn_one_host_write_heartbeat_wrapped_in_try_except
+FAILED tests/invariants/test_orchestrator_resilience_wire.py::test_burn_one_host_calls_should_poll_at_elapsed_before_poll
+FAILED tests/invariants/test_orchestrator_resilience_wire.py::test_module_defines_shared_on_host_status_dict
+FAILED tests/invariants/test_orchestrator_resilience_wire.py::test_module_defines_threading_lock_for_heartbeat_state
+FAILED tests/invariants/test_orchestrator_resilience_wire.py::test_main_calls_find_orphaned_runs_before_executor
+FAILED tests/invariants/test_orchestrator_resilience_wire.py::test_main_reconcile_wrapped_in_try_except
+FAILED tests/invariants/test_orchestrator_resilience_wire.py::test_main_prints_reconcile_result
+========================= 12 failed, 2 passed in 0.84s =========================

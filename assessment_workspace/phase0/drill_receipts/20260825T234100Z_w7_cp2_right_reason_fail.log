@@ -1,0 +1,44 @@
+/root/.venv/lib/python3.11/site-packages/pytest_asyncio/plugin.py:208: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.3.3, pluggy-1.6.0 -- /root/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: xdist-3.8.0, anyio-4.14.2, asyncio-0.24.0
+asyncio: mode=Mode.AUTO, default_loop_scope=None
+collecting ... collected 12 items
+
+tests/invariants/test_targeta_invariants.py::test_mining_plan_contract_frozen FAILED [  8%]
+tests/invariants/test_targeta_invariants.py::test_targeta_core_has_no_ml_import PASSED [ 16%]
+tests/invariants/test_targeta_invariants.py::test_yield_layer_imports_only_interface_types PASSED [ 25%]
+tests/invariants/test_targeta_invariants.py::test_yield_output_is_permutation_raises_on_drop PASSED [ 33%]
+tests/invariants/test_targeta_invariants.py::test_yield_output_is_permutation_raises_on_duplicate PASSED [ 41%]
+tests/invariants/test_targeta_invariants.py::test_yield_candidate_never_carries_floor_or_raw_measure PASSED [ 50%]
+tests/invariants/test_targeta_invariants.py::test_floor_is_hard_filter_excludes_below_floor PASSED [ 58%]
+tests/invariants/test_targeta_invariants.py::test_fallback_to_core_when_yield_thresholds_none PASSED [ 66%]
+tests/invariants/test_targeta_invariants.py::test_gate_closed_seam_returns_admitted_false PASSED [ 75%]
+tests/invariants/test_targeta_invariants.py::test_plan_reproducible_byte_identical PASSED [ 83%]
+tests/invariants/test_targeta_invariants.py::test_targeta_core_complete_alone PASSED [ 91%]
+tests/invariants/test_targeta_invariants.py::test_only_gate_compares_orderings PASSED [100%]
+
+=================================== FAILURES ===================================
+_______________________ test_mining_plan_contract_frozen _______________________
+tests/invariants/test_targeta_invariants.py:40: in test_mining_plan_contract_frozen
+    assert json.dumps(actual, indent=2, sort_keys=True) == \
+E   AssertionError: MiningPlan schema drifted; re-bless snapshot in review if intentional.
+E   assert '{\n  "$defs"...: "object"\n}' == '{\n  "$defs"...: "object"\n}'
+E     
+E       {
+E         "$defs": {
+E           "DefensibilityClass": {
+E             "description": "Spec \u00a75.6: `fact | utterance | non_factual`.\n\n*fact*        \u2014 the unit asserts something the matrix permits as fact.\n*utterance*   \u2014 someone said it; the system stands by the saying, not\n                the substance.\n*non_factual* \u2014 opinion / interpretation / rhetorical content.",
+E             "enum": [
+E               "fact",...
+E     
+E     ...Full output truncated (142 lines hidden), use '-vv' to show
+=========================== short test summary info ============================
+FAILED tests/invariants/test_targeta_invariants.py::test_mining_plan_contract_frozen
+========================= 1 failed, 11 passed in 0.20s =========================

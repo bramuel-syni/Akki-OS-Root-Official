@@ -1,0 +1,26 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.4.2, pluggy-1.6.0 -- /root/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: anyio-4.14.2, xdist-3.8.0, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collecting ... collected 5 items
+
+tests/invariants/test_alpha_gap_hardening.py::test_alpha_gap_hardening_trust_receipt_v1_is_frozen FAILED [ 20%]
+tests/invariants/test_alpha_gap_hardening.py::test_alpha_gap_hardening_outer_gate_receipt_v1_is_frozen FAILED [ 40%]
+tests/invariants/test_alpha_gap_hardening.py::test_alpha_gap_hardening_trust_receipt_v1_mutation_raises FAILED [ 60%]
+tests/invariants/test_alpha_gap_hardening.py::test_alpha_gap_hardening_outer_gate_receipt_v1_mutation_raises FAILED [ 80%]
+tests/invariants/test_alpha_gap_hardening.py::test_alpha_gap_hardening_wave_closure_attestation PASSED [100%]
+
+=================================== FAILURES ===================================
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_alpha_gap_hardening.py:131: AssertionError: α-gap NOT closed · TrustReceiptV1 model_config['frozen'] is not True · got False · SO §3.10-α violation · owner ruling 2026-09-20T~08:56Z (α-gap hardening wave approved) requires frozen=True at this wave close.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_alpha_gap_hardening.py:157: AssertionError: α-gap NOT closed · OuterGateReceiptV1 model_config['frozen'] is not True · got None · SO §3.10-α violation · owner ruling 2026-09-20T~08:56Z (α-gap hardening wave approved) requires frozen=True at this wave close.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_alpha_gap_hardening.py:183: Failed: DID NOT RAISE <class 'pydantic_core._pydantic_core.ValidationError'>
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_alpha_gap_hardening.py:206: Failed: DID NOT RAISE <class 'pydantic_core._pydantic_core.ValidationError'>
+=========================== short test summary info ============================
+FAILED tests/invariants/test_alpha_gap_hardening.py::test_alpha_gap_hardening_trust_receipt_v1_is_frozen
+FAILED tests/invariants/test_alpha_gap_hardening.py::test_alpha_gap_hardening_outer_gate_receipt_v1_is_frozen
+FAILED tests/invariants/test_alpha_gap_hardening.py::test_alpha_gap_hardening_trust_receipt_v1_mutation_raises
+FAILED tests/invariants/test_alpha_gap_hardening.py::test_alpha_gap_hardening_outer_gate_receipt_v1_mutation_raises
+========================= 4 failed, 1 passed in 0.63s ==========================

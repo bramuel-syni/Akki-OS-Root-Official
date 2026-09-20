@@ -1,0 +1,33 @@
+/root/.venv/lib/python3.11/site-packages/pytest_asyncio/plugin.py:208: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.3.3, pluggy-1.6.0 -- /root/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: xdist-3.8.0, anyio-4.14.2, asyncio-0.24.0
+asyncio: mode=Mode.AUTO, default_loop_scope=None
+collecting ... collected 12 items
+
+tests/invariants/test_w8_cp2_ca1_009_handoff.py::test_handoff_contract_has_four_required_fields PASSED [  8%]
+tests/invariants/test_w8_cp2_ca1_009_handoff.py::test_handoff_contract_id_pattern_enforced PASSED [ 16%]
+tests/invariants/test_w8_cp2_ca1_009_handoff.py::test_register_handoff_writes_to_disk_and_returns_contract PASSED [ 25%]
+tests/invariants/test_w8_cp2_ca1_009_handoff.py::test_register_handoff_refuses_duplicate PASSED [ 33%]
+tests/invariants/test_w8_cp2_ca1_009_handoff.py::test_attest_handoff_hard_fails_on_unregistered PASSED [ 41%]
+tests/invariants/test_w8_cp2_ca1_009_handoff.py::test_attest_handoff_returns_contract_on_hit PASSED [ 50%]
+tests/invariants/test_handoff_contract_v0_contract_frozen.py::test_handoff_contract_v0_frozen PASSED [ 58%]
+tests/invariants/test_frozen_contract_snapshot_parity.py::test_every_frozen_contract_has_snapshot FAILED [ 66%]
+tests/invariants/test_frozen_contract_snapshot_parity.py::test_every_snapshot_maps_to_a_contract FAILED [ 75%]
+tests/invariants/test_frozen_contract_snapshot_parity.py::test_snapshot_mapping_is_bijective PASSED [ 83%]
+tests/invariants/test_composed_conclusion_v0_contract_frozen.py::test_composed_conclusion_v0_contract_frozen PASSED [ 91%]
+tests/invariants/test_composed_conclusion_v0_contract_frozen.py::test_composed_conclusion_snapshot_parity_at_18 PASSED [100%]
+
+=================================== FAILURES ===================================
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_frozen_contract_snapshot_parity.py:126: AssertionError: Parity FAIL — contract source(s) on disk not mapped to a canonical .contract_snapshot.json: ['handoff_contract.py']. Add source→snapshot entry to CONTRACT_TO_SNAPSHOT and create the snapshot, or excise the source if it is not a frozen contract.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_frozen_contract_snapshot_parity.py:150: AssertionError: Parity FAIL — canonical snapshot(s) on disk not claimed by any contract source in CONTRACT_TO_SNAPSHOT: ['handoff_contract_v0.contract_snapshot.json']. Either add the claiming source or remove the orphan snapshot.
+=========================== short test summary info ============================
+FAILED tests/invariants/test_frozen_contract_snapshot_parity.py::test_every_frozen_contract_has_snapshot
+FAILED tests/invariants/test_frozen_contract_snapshot_parity.py::test_every_snapshot_maps_to_a_contract
+========================= 2 failed, 10 passed in 0.14s =========================

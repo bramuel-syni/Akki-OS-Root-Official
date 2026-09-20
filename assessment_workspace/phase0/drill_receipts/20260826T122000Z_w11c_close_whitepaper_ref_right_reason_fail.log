@@ -1,0 +1,57 @@
+/root/.venv/lib/python3.11/site-packages/pytest_asyncio/plugin.py:208: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.3.3, pluggy-1.6.0 -- /root/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: xdist-3.8.0, asyncio-0.24.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, default_loop_scope=None
+collecting ... collected 4 items
+
+backend/tests/invariants/test_close_run_whitepaper_ref_citation.py::test_close_run_refuses_moac_card_missing_verdict_summary FAILED [ 25%]
+backend/tests/invariants/test_close_run_whitepaper_ref_citation.py::test_close_run_refuses_moac_card_missing_moac_card_id FAILED [ 50%]
+backend/tests/invariants/test_close_run_whitepaper_ref_citation.py::test_close_run_refuses_moac_card_missing_accept_for_service FAILED [ 75%]
+backend/tests/invariants/test_close_run_whitepaper_ref_citation.py::test_close_run_writes_whitepaper_ref_that_resolves_to_on_disk_draft FAILED [100%]
+
+=================================== FAILURES ===================================
+___________ test_close_run_refuses_moac_card_missing_verdict_summary ___________
+backend/tests/invariants/test_close_run_whitepaper_ref_citation.py:91: in test_close_run_refuses_moac_card_missing_verdict_summary
+    _land_run_through_moac(client)
+backend/tests/invariants/test_close_run_whitepaper_ref_citation.py:70: in _land_run_through_moac
+    assert r.status_code == 201, r.text
+E   AssertionError: {"detail":"Not Found"}
+E   assert 404 == 201
+E    +  where 404 = <Response [404 Not Found]>.status_code
+____________ test_close_run_refuses_moac_card_missing_moac_card_id _____________
+backend/tests/invariants/test_close_run_whitepaper_ref_citation.py:107: in test_close_run_refuses_moac_card_missing_moac_card_id
+    _land_run_through_moac(client)
+backend/tests/invariants/test_close_run_whitepaper_ref_citation.py:70: in _land_run_through_moac
+    assert r.status_code == 201, r.text
+E   AssertionError: {"detail":"Not Found"}
+E   assert 404 == 201
+E    +  where 404 = <Response [404 Not Found]>.status_code
+_________ test_close_run_refuses_moac_card_missing_accept_for_service __________
+backend/tests/invariants/test_close_run_whitepaper_ref_citation.py:119: in test_close_run_refuses_moac_card_missing_accept_for_service
+    _land_run_through_moac(client)
+backend/tests/invariants/test_close_run_whitepaper_ref_citation.py:70: in _land_run_through_moac
+    assert r.status_code == 201, r.text
+E   AssertionError: {"detail":"Not Found"}
+E   assert 404 == 201
+E    +  where 404 = <Response [404 Not Found]>.status_code
+_____ test_close_run_writes_whitepaper_ref_that_resolves_to_on_disk_draft ______
+backend/tests/invariants/test_close_run_whitepaper_ref_citation.py:134: in test_close_run_writes_whitepaper_ref_that_resolves_to_on_disk_draft
+    emit_payload = _land_run_through_moac(client)
+backend/tests/invariants/test_close_run_whitepaper_ref_citation.py:70: in _land_run_through_moac
+    assert r.status_code == 201, r.text
+E   AssertionError: {"detail":"Not Found"}
+E   assert 404 == 201
+E    +  where 404 = <Response [404 Not Found]>.status_code
+=========================== short test summary info ============================
+FAILED backend/tests/invariants/test_close_run_whitepaper_ref_citation.py::test_close_run_refuses_moac_card_missing_verdict_summary
+FAILED backend/tests/invariants/test_close_run_whitepaper_ref_citation.py::test_close_run_refuses_moac_card_missing_moac_card_id
+FAILED backend/tests/invariants/test_close_run_whitepaper_ref_citation.py::test_close_run_refuses_moac_card_missing_accept_for_service
+FAILED backend/tests/invariants/test_close_run_whitepaper_ref_citation.py::test_close_run_writes_whitepaper_ref_that_resolves_to_on_disk_draft
+============================== 4 failed in 0.43s ===============================

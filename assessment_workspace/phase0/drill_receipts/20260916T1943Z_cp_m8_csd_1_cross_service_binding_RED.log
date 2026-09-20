@@ -1,0 +1,188 @@
+EEEEEEE                                                                  [100%]
+==================================== ERRORS ====================================
+______ ERROR at setup of test_module_fabric_present_and_all_exports_match ______
+
+    @pytest.fixture(scope="module")
+    def mod():
+>       return importlib.import_module(MODULE_NAME)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_wm8_csd_1_cross_service_binding.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'services.governance_plane.cross_service_binding'
+import_ = <function _gcd_import at 0xfb92d227bd80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'services.governance_plane.cross_service_binding'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+_ ERROR at setup of test_dispatch_surface_ref_shape_frozen_2_carrier_exact_order _
+
+    @pytest.fixture(scope="module")
+    def mod():
+>       return importlib.import_module(MODULE_NAME)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_wm8_csd_1_cross_service_binding.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'services.governance_plane.cross_service_binding'
+import_ = <function _gcd_import at 0xfb92d227bd80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'services.governance_plane.cross_service_binding'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+_ ERROR at setup of test_registered_resource_ref_shape_frozen_2_carrier_exact_order _
+
+    @pytest.fixture(scope="module")
+    def mod():
+>       return importlib.import_module(MODULE_NAME)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_wm8_csd_1_cross_service_binding.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'services.governance_plane.cross_service_binding'
+import_ = <function _gcd_import at 0xfb92d227bd80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'services.governance_plane.cross_service_binding'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+_ ERROR at setup of test_assess_binding_drift_returns_sorted_tuple_of_unregistered _
+
+    @pytest.fixture(scope="module")
+    def mod():
+>       return importlib.import_module(MODULE_NAME)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_wm8_csd_1_cross_service_binding.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'services.governance_plane.cross_service_binding'
+import_ = <function _gcd_import at 0xfb92d227bd80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'services.governance_plane.cross_service_binding'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+_ ERROR at setup of test_assert_no_cross_service_binding_drift_refuses_on_unregistered _
+
+    @pytest.fixture(scope="module")
+    def mod():
+>       return importlib.import_module(MODULE_NAME)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_wm8_csd_1_cross_service_binding.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'services.governance_plane.cross_service_binding'
+import_ = <function _gcd_import at 0xfb92d227bd80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'services.governance_plane.cross_service_binding'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+_ ERROR at setup of test_assert_no_cross_service_binding_drift_permits_when_all_registered _
+
+    @pytest.fixture(scope="module")
+    def mod():
+>       return importlib.import_module(MODULE_NAME)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_wm8_csd_1_cross_service_binding.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'services.governance_plane.cross_service_binding'
+import_ = <function _gcd_import at 0xfb92d227bd80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'services.governance_plane.cross_service_binding'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+__ ERROR at setup of test_verbatim_anchor_case_agnostic_zero_dispatch_imports __
+
+    @pytest.fixture(scope="module")
+    def mod():
+>       return importlib.import_module(MODULE_NAME)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_wm8_csd_1_cross_service_binding.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'services.governance_plane.cross_service_binding'
+import_ = <function _gcd_import at 0xfb92d227bd80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'services.governance_plane.cross_service_binding'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+=========================== short test summary info ============================
+ERROR tests/invariants/test_wm8_csd_1_cross_service_binding.py::test_module_fabric_present_and_all_exports_match
+ERROR tests/invariants/test_wm8_csd_1_cross_service_binding.py::test_dispatch_surface_ref_shape_frozen_2_carrier_exact_order
+ERROR tests/invariants/test_wm8_csd_1_cross_service_binding.py::test_registered_resource_ref_shape_frozen_2_carrier_exact_order
+ERROR tests/invariants/test_wm8_csd_1_cross_service_binding.py::test_assess_binding_drift_returns_sorted_tuple_of_unregistered
+ERROR tests/invariants/test_wm8_csd_1_cross_service_binding.py::test_assert_no_cross_service_binding_drift_refuses_on_unregistered
+ERROR tests/invariants/test_wm8_csd_1_cross_service_binding.py::test_assert_no_cross_service_binding_drift_permits_when_all_registered
+ERROR tests/invariants/test_wm8_csd_1_cross_service_binding.py::test_verbatim_anchor_case_agnostic_zero_dispatch_imports
+7 errors in 0.66s

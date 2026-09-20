@@ -1,0 +1,101 @@
+=== Wave G4 · offline visual-proof harness ===
+
+[STEP 1] Loading byte-identical prototype from disk (no HTTP)...
+  file:  /app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/public/v8_prototype.html
+  bytes: 1264425
+  sha256: e56871d01a99c2f3aa173c9b0a0f09e983c9f0e54ba3e61795ac8cb8575f98f2
+
+  jsdom body.textContent.length: 1260643
+
+[STEP 1a] Baseline · dummy strings present in served DOM (pre-substitution):
+  slot #1 dummy present: false
+  slot #2 probe present: true
+
+[STEP 1b] Apply substitutions with HONEST-EMPTY (no live values)...
+  mutations applied: 0
+  rules that fired: []
+  slot #1 dummy still present? false
+  slot #1 honest-empty present? false
+  slot #2 dummy census-footer still present? true
+  slot #2 honest-empty present? false
+
+[STEP 1c] Idempotency: apply substitutions again on mutated DOM...
+  mutations applied (expect 0): 0
+  rules that fired (expect empty): []
+
+[STEP 2] Live-values scenario · re-parse fresh prototype...
+  mutations applied: 0
+  rules that fired: []
+  slot #1 dummy still present? false
+  slot #1 live phrase present? false
+  tables phrase present? false
+
+[STEP 2b] Pluralization coverage · single source, zero tables...
+  mutations applied: 0
+  '1 connected source' present? false
+  'no tables read yet' present? false
+
+[STEP 3] Synthetic tile-grid fixture (mimics dc-runtime template shape)...
+  Pre-substitution tile-value states:
+    Held in total                      : 86.4 TB
+    Sources connected                  : 12
+    Share measured                     : 78%
+    Data types present                 : 5
+    Languages observed                 : 7
+    Share already verified             : 34%
+    Share carrying PII                 : 41%
+    Licensed for external use          : 18%
+    Not yet measured                   : 22%
+    Reduced to reusable memory         : 58%
+
+[STEP 3a] Apply substitutions with live values estateSources=1, estateTables=null...
+  mutations applied: 2
+  rules that fired: ["tile-held-in-total","tile-sources-connected"]
+  Post-substitution tile-value states:
+    Held in total                      : Not yet measured
+    Sources connected                  : 1
+    Share measured                     : 78%
+    Data types present                 : 5
+    Languages observed                 : 7
+    Share already verified             : 34%
+    Share carrying PII                 : 41%
+    Licensed for external use          : 18%
+    Not yet measured                   : 22%
+    Reduced to reusable memory         : 58%
+
+[STEP 3b] Idempotency: apply again on mutated tile grid...
+  mutations applied (expect 0): 0
+
+=== FINAL ASSERTIONS ===
+  [OK] slot#1 · dummy sentence removed (honest-empty)
+  [FAIL] slot#1 · honest-empty sentence present
+  [FAIL] slot#2 · census dummy removed
+  [FAIL] slot#2 · honest-empty census present
+  [OK] idempotency · re-apply produces 0 mutations
+  [FAIL] live-values · slot#1 renders '3 connected sources'
+  [FAIL] live-values · slot#1 renders 'with 47 tables read'
+  [OK] tile · Held in total                       · dummy '86.4 TB' replaced with 'Not yet measured'
+  [OK] tile · Held in total                       · dummy '86.4 TB' absent
+  [OK] tile · Sources connected                   · dummy '12' replaced with '1'
+  [OK] tile · Sources connected                   · dummy '12' absent
+  [FAIL] tile · Share measured                      · dummy '78%' replaced with '78%'
+  [FAIL] tile · Share measured                      · dummy '78%' absent
+  [FAIL] tile · Data types present                  · dummy '5' replaced with '5'
+  [FAIL] tile · Data types present                  · dummy '5' absent
+  [FAIL] tile · Languages observed                  · dummy '7' replaced with '7'
+  [FAIL] tile · Languages observed                  · dummy '7' absent
+  [FAIL] tile · Share already verified              · dummy '34%' replaced with '34%'
+  [FAIL] tile · Share already verified              · dummy '34%' absent
+  [FAIL] tile · Share carrying PII                  · dummy '41%' replaced with '41%'
+  [FAIL] tile · Share carrying PII                  · dummy '41%' absent
+  [FAIL] tile · Licensed for external use           · dummy '18%' replaced with '18%'
+  [FAIL] tile · Licensed for external use           · dummy '18%' absent
+  [FAIL] tile · Not yet measured                    · dummy '22%' replaced with '22%'
+  [FAIL] tile · Not yet measured                    · dummy '22%' absent
+  [FAIL] tile · Reduced to reusable memory          · dummy '58%' replaced with '58%'
+  [FAIL] tile · Reduced to reusable memory          · dummy '58%' absent
+  [OK] tile · idempotency (re-apply produces 0)
+
+  TOTAL: 7 passed · 21 failed
+
+>>> VISUAL-PROOF HARNESS FAILURE <<<

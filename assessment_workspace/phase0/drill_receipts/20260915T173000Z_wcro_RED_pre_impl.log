@@ -1,0 +1,25 @@
+_____________ test_wcro_cp_cro2_deterministic_same_inputs_same_ids _____________
+
+    def test_wcro_cp_cro2_deterministic_same_inputs_same_ids():
+        """Same inputs + same `probe_fn` returns produce the same list of
+        record_ids (idempotent via CP-C4 RegistryStore append-only write path)."""
+>       from services.census_canon.estate_enumerator import (
+            EstateTarget, enumerate_estate,
+        )
+E       ModuleNotFoundError: No module named 'services.census_canon.estate_enumerator'
+
+tests/invariants/test_wcro_cp_cro2_estate_enumerator.py:159: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wcro_cp_cro1_source_record_extension.py::test_wcro_cp_cro1_source_record_twelve_carrier_shape
+FAILED tests/invariants/test_wcro_cp_cro1_source_record_extension.py::test_wcro_cp_cro1_new_field_defaults_unmeasured
+FAILED tests/invariants/test_wcro_cp_cro1_source_record_extension.py::test_wcro_cp_cro1_new_field_types_when_measured
+FAILED tests/invariants/test_wcro_cp_cro1_source_record_extension.py::test_wcro_cp_cro1_register_accepts_new_kwargs
+FAILED tests/invariants/test_wcro_cp_cro1_source_record_extension.py::test_wcro_cp_cro1_record_id_hashes_new_fields
+FAILED tests/invariants/test_wcro_cp_cro1_source_record_extension.py::test_wcro_cp_cro1_audio_share_hashes_into_record_id
+FAILED tests/invariants/test_wcro_cp_cro2_estate_enumerator.py::test_wcro_cp_cro2_module_fabric
+FAILED tests/invariants/test_wcro_cp_cro2_estate_enumerator.py::test_wcro_cp_cro2_empty_targets_refuses
+FAILED tests/invariants/test_wcro_cp_cro2_estate_enumerator.py::test_wcro_cp_cro2_non_estate_target_refuses
+FAILED tests/invariants/test_wcro_cp_cro2_estate_enumerator.py::test_wcro_cp_cro2_probe_off_path_unmeasured_defaults
+FAILED tests/invariants/test_wcro_cp_cro2_estate_enumerator.py::test_wcro_cp_cro2_probe_on_path_folds_values
+FAILED tests/invariants/test_wcro_cp_cro2_estate_enumerator.py::test_wcro_cp_cro2_deterministic_same_inputs_same_ids
+============================== 12 failed in 0.72s ==============================

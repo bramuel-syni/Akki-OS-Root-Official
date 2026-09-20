@@ -1,0 +1,17 @@
+# RED · CP-RG5 · aggregate_usage_query · Expected: ImportError on new function · Ratchet floor 4050 · Probe #6 09:14:15Z FAIL
+FFFFFF                                                                   [100%]
+=================================== FAILURES ===================================
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wrg_cp_rg5_aggregate_usage_query.py:18: AssertionError: assert False
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wrg_cp_rg5_aggregate_usage_query.py:23: ImportError: cannot import name 'aggregate_usage_query' from 'services.release_gate.release_ledger' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/release_gate/release_ledger.py)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wrg_cp_rg5_aggregate_usage_query.py:35: ImportError: cannot import name 'aggregate_usage_query' from 'services.release_gate.release_ledger' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/release_gate/release_ledger.py)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wrg_cp_rg5_aggregate_usage_query.py:55: ImportError: cannot import name 'aggregate_usage_query' from 'services.release_gate.release_ledger' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/release_gate/release_ledger.py)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wrg_cp_rg5_aggregate_usage_query.py:73: ImportError: cannot import name 'aggregate_usage_query' from 'services.release_gate.release_ledger' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/release_gate/release_ledger.py)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wrg_cp_rg5_aggregate_usage_query.py:99: ImportError: cannot import name 'aggregate_usage_query' from 'services.release_gate.release_ledger' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/release_gate/release_ledger.py)
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wrg_cp_rg5_aggregate_usage_query.py::test_cp_rg5_module_fabric
+FAILED tests/invariants/test_wrg_cp_rg5_aggregate_usage_query.py::test_cp_rg5_empty_ledger_returns_zero_totals
+FAILED tests/invariants/test_wrg_cp_rg5_aggregate_usage_query.py::test_cp_rg5_sums_all_debits_when_no_filter
+FAILED tests/invariants/test_wrg_cp_rg5_aggregate_usage_query.py::test_cp_rg5_filter_by_unit
+FAILED tests/invariants/test_wrg_cp_rg5_aggregate_usage_query.py::test_cp_rg5_filter_by_budget_state
+FAILED tests/invariants/test_wrg_cp_rg5_aggregate_usage_query.py::test_cp_rg5_integration_full_release_cycle
+6 failed in 0.60s

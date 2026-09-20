@@ -1,0 +1,112 @@
+/root/.venv/lib/python3.11/site-packages/pytest_asyncio/plugin.py:208: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.3.3, pluggy-1.6.0
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: xdist-3.8.0, anyio-4.14.2, asyncio-0.24.0
+asyncio: mode=Mode.AUTO, default_loop_scope=None
+collected 7 items
+
+backend/tests/invariants/test_w9_cp3_route_staleness_flag.py FFFFFFF     [100%]
+
+=================================== FAILURES ===================================
+____________ test_route_staleness_flag_fires_when_standard_revised _____________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-125/test_route_staleness_flag_fire0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfcbeeec22750>
+
+    def test_route_staleness_flag_fires_when_standard_revised(tmp_path, monkeypatch):
+        """Given a baseline record whose external_standard_last_seen_at is
+        older than a supplied current_revision_iso, the seam fires."""
+>       from services.watch.route_staleness_flag import route_staleness_flag
+E       ModuleNotFoundError: No module named 'services.watch.route_staleness_flag'
+
+backend/tests/invariants/test_w9_cp3_route_staleness_flag.py:32: ModuleNotFoundError
+_______________ test_route_staleness_flag_no_op_when_up_to_date ________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-125/test_route_staleness_flag_no_o0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfcbeeec23f90>
+
+    def test_route_staleness_flag_no_op_when_up_to_date(tmp_path, monkeypatch):
+        """current_revision_iso <= last_seen_at means no staleness."""
+>       from services.watch.route_staleness_flag import route_staleness_flag
+E       ModuleNotFoundError: No module named 'services.watch.route_staleness_flag'
+
+backend/tests/invariants/test_w9_cp3_route_staleness_flag.py:48: ModuleNotFoundError
+____________________ test_route_staleness_flag_verdict_body ____________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-125/test_route_staleness_flag_verd0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfcbeeedf3c90>
+
+    def test_route_staleness_flag_verdict_body(tmp_path, monkeypatch):
+        """Verdict must name signal_class='baseline_standard_stale' +
+        subject_kind='artifact' + evidence_note referencing the standard
+        ref and both dates."""
+        from services.watch.macho import load_verdicts
+>       from services.watch.route_staleness_flag import route_staleness_flag
+E       ModuleNotFoundError: No module named 'services.watch.route_staleness_flag'
+
+backend/tests/invariants/test_w9_cp3_route_staleness_flag.py:66: ModuleNotFoundError
+____________________ test_route_staleness_flag_action_class ____________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-125/test_route_staleness_flag_acti0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfcbeeed65650>
+
+    def test_route_staleness_flag_action_class(tmp_path, monkeypatch):
+        from services.watch.mkono import load_actions
+>       from services.watch.route_staleness_flag import route_staleness_flag
+E       ModuleNotFoundError: No module named 'services.watch.route_staleness_flag'
+
+backend/tests/invariants/test_w9_cp3_route_staleness_flag.py:88: ModuleNotFoundError
+_____________________ test_route_staleness_flag_idempotent _____________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-125/test_route_staleness_flag_idem0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfcbeee362150>
+
+    def test_route_staleness_flag_idempotent(tmp_path, monkeypatch):
+        """Second call for same (record_kind, record_id) returns the existing
+        verdict/action pair; no double-mint."""
+        from services.watch.macho import load_verdicts
+>       from services.watch.route_staleness_flag import route_staleness_flag
+E       ModuleNotFoundError: No module named 'services.watch.route_staleness_flag'
+
+backend/tests/invariants/test_w9_cp3_route_staleness_flag.py:108: ModuleNotFoundError
+_______________ test_route_staleness_flag_accepts_rulebook_kind ________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-125/test_route_staleness_flag_acce0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfcbeee387dd0>
+
+    def test_route_staleness_flag_accepts_rulebook_kind(tmp_path, monkeypatch):
+        """CA1-012 names rulebooks explicitly. The route accepts
+        record_kind='rulebook_rule' generically (no rulebook service yet;
+        honest gap for the record read side · but the mechanism fires
+        when called)."""
+>       from services.watch.route_staleness_flag import route_staleness_flag
+E       ModuleNotFoundError: No module named 'services.watch.route_staleness_flag'
+
+backend/tests/invariants/test_w9_cp3_route_staleness_flag.py:132: ModuleNotFoundError
+________________ test_route_staleness_flag_refuses_unknown_kind ________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-125/test_route_staleness_flag_refu0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfcbeee3621d0>
+
+    def test_route_staleness_flag_refuses_unknown_kind(tmp_path, monkeypatch):
+        """CA1-012 names its scope: rulebook OR baseline. Unknown kinds
+        are refused (no silent noop that could hide a defect)."""
+        import pytest
+>       from services.watch.route_staleness_flag import route_staleness_flag
+E       ModuleNotFoundError: No module named 'services.watch.route_staleness_flag'
+
+backend/tests/invariants/test_w9_cp3_route_staleness_flag.py:148: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED backend/tests/invariants/test_w9_cp3_route_staleness_flag.py::test_route_staleness_flag_fires_when_standard_revised
+FAILED backend/tests/invariants/test_w9_cp3_route_staleness_flag.py::test_route_staleness_flag_no_op_when_up_to_date
+FAILED backend/tests/invariants/test_w9_cp3_route_staleness_flag.py::test_route_staleness_flag_verdict_body
+FAILED backend/tests/invariants/test_w9_cp3_route_staleness_flag.py::test_route_staleness_flag_action_class
+FAILED backend/tests/invariants/test_w9_cp3_route_staleness_flag.py::test_route_staleness_flag_idempotent
+FAILED backend/tests/invariants/test_w9_cp3_route_staleness_flag.py::test_route_staleness_flag_accepts_rulebook_kind
+FAILED backend/tests/invariants/test_w9_cp3_route_staleness_flag.py::test_route_staleness_flag_refuses_unknown_kind
+============================== 7 failed in 0.13s ===============================

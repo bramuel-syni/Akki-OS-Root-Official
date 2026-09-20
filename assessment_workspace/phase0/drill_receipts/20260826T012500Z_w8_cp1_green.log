@@ -1,0 +1,26 @@
+/root/.venv/lib/python3.11/site-packages/pytest_asyncio/plugin.py:208: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.3.3, pluggy-1.6.0 -- /root/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: xdist-3.8.0, anyio-4.14.2, asyncio-0.24.0
+asyncio: mode=Mode.AUTO, default_loop_scope=None
+collecting ... collected 11 items
+
+tests/invariants/test_w8_cp1_canonical_projection.py::test_canonicalize_strips_redundant_enum_companion_for_single_literal PASSED [  9%]
+tests/invariants/test_w8_cp1_canonical_projection.py::test_canonicalize_preserves_multi_value_enum PASSED [ 18%]
+tests/invariants/test_w8_cp1_canonical_projection.py::test_canonicalize_strips_explicit_additionalProperties_true_on_open_object PASSED [ 27%]
+tests/invariants/test_w8_cp1_canonical_projection.py::test_canonicalize_preserves_additionalProperties_when_typed PASSED [ 36%]
+tests/invariants/test_w8_cp1_canonical_projection.py::test_canonicalize_preserves_additionalProperties_false PASSED [ 45%]
+tests/invariants/test_w8_cp1_canonical_projection.py::test_canonicalize_is_deep_recursive PASSED [ 54%]
+tests/invariants/test_w8_cp1_canonical_projection.py::test_canonicalize_is_idempotent PASSED [ 63%]
+tests/invariants/test_w8_cp1_canonical_projection.py::test_canonicalize_does_not_mutate_input PASSED [ 72%]
+tests/invariants/test_w8_cp1_pod_shell_boot_and_mount.py::test_every_spine_router_is_imported_in_pod_shell PASSED [ 81%]
+tests/invariants/test_w8_cp1_pod_shell_boot_and_mount.py::test_every_spine_router_is_include_router_in_pod_shell PASSED [ 90%]
+tests/invariants/test_w8_cp1_pod_shell_boot_and_mount.py::test_pod_shell_boots_and_returns_403_on_root PASSED [100%]
+
+============================== 11 passed in 1.43s ==============================

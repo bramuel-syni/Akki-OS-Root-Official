@@ -1,0 +1,340 @@
+# Right-reason failure receipt — W1 · Connect drawer-chat rework (FL-P2-27 · W1)
+# Owner ruling T12 verbatim: paste-and-connect conversational wizard, right-side drawer chatbox on clicking Connect.
+# v7 oracle: fixtures/RMS_AI_Akki_Prototype_v7_Standalone.html · drawer geometry (--drawer-w min(460px,94vw), --shadow-drawer, right/0/0/0), palette (paper #f5f2ea, ink #1b1f27, blue #16274a, sage #1d7a6e, oxblood #b8395b), typography (Iowan Old Style + Söhne).
+# Expected right-reason: 14 new drawer-chat tests fail because ConnectDrawerChat.jsx does not exist yet.
+
+✔ App.js does NOT declare the retired /register/connect/gpu route (1.281832ms)
+✔ frontend has NO token-gate importable code path (2.971916ms)
+✔ no OWNER-ACCESS sign-in card and no owner_token localStorage (1.898073ms)
+✔ GET /register/connect/gpu -> 404 (36.838936ms)
+✔ GET / serves SPA shell (allowed IP) (7.817999ms)
+✔ root '/' route renders Registry (0.392453ms)
+✔ AdminSurface retired (no admin-pill or tile-connect testids anywhere) (1.454243ms)
+✔ Registry.jsx three tabs + '+ Connect' + role-switcher testids present (0.327299ms)
+✔ no fabricated Acme demo numbers anywhere (1.483142ms)
+✔ Registry carries at least one honest-empty-state sentence (0.416984ms)
+✖ ConnectDrawerChat.jsx module exists (0.586186ms)
+✖ Registry '+ Connect' button now opens the drawer chat (not the panel wizard) (0.281397ms)
+✖ ConnectDrawerChat.jsx uses v7 drawer geometry (right-side, drawer-w, shadow-drawer) (0.139413ms)
+✖ ConnectDrawerChat.jsx uses v7 palette + typography tokens (paper/ink/blue, Iowan/Söhne) (0.105735ms)
+✖ ConnectDrawerChat.jsx carries the conversational-shell testids (0.097362ms)
+✖ ConnectDrawerChat.jsx opens with the what-would-you-like-to-connect prompt (0.077079ms)
+✖ ConnectDrawerChat.jsx wires the deterministic parser (no LLM transit for creds) (0.09054ms)
+✖ ConnectDrawerChat.jsx replies conversationally after parse (I read a host, a username...) (0.0967ms)
+✖ ConnectDrawerChat.jsx masks the password in the chat log (never plaintext post-parse) (0.108964ms)
+✖ ConnectDrawerChat.jsx keeps chat state session-only (no localStorage/sessionStorage of creds) (0.095127ms)
+✖ ConnectDrawerChat.jsx fires the compute pipeline (POST /api/connect/gpu) and renders handshake as chat cards (0.088188ms)
+✖ ConnectDrawerChat.jsx fires the data-source pipeline (POST /api/connect/data-source) (0.080479ms)
+✖ ConnectDrawerChat.jsx routes LLM/trained-model to /api/connect/intent (0.070464ms)
+✖ ConnectDrawerChat.jsx does NOT re-open the retired 5-stage sequential wizard (0.088354ms)
+✖ ConnectDrawerChat.jsx renders the provisioning card as a chat card (Sending it? Receiving it? aside) (0.11367ms)
+✔ ConnectWizard.jsx is a SINGLE paste-and-connect panel (no step navigation) (1.108473ms)
+✔ Type chips (auto-detect default) sit on the same paste panel (0.29633ms)
+✔ Confirmation view masks the password with a redaction sentinel (0.249023ms)
+✔ Unparseable paste triggers ask-again grammar naming missing fields (0.244671ms)
+✔ Manual fallback fields sit inline on the same panel (not a separate step) (0.18834ms)
+✔ Provisioning card sits behind ONE aside link (not a step) (0.187981ms)
+✔ Post-submit compute path renders the handshake walk stages (result view only) (0.275531ms)
+✔ LLM / trained-model submission records honest intent via /api/connect/intent (0.201692ms)
+✔ Data-source path is LIVE: submits to /api/connect/data-source (not intent) (0.143587ms)
+✔ Data-source manual fallback fields sit inline on the same panel (0.262712ms)
+✔ Data-source confirmation masks the aws_secret_access_key with a sentinel (0.163236ms)
+✔ Data-source result view renders the four-questions grammar (0.261216ms)
+✔ Data-source endpoint live: refuses synthetic ARNs cleanly and NEVER echoes the aws_secret back (393.54917ms)
+✔ Frontend never sends the paste to any LLM/answering-side/openai endpoint (2.358623ms)
+✔ parse-paste endpoint live: returns password_captured signal and NO password in body (7.939452ms)
+✔ parse-paste endpoint refuses empty paste with 400 (2.111725ms)
+✔ estate-facts endpoint live and returns provisioning-card payload (127.162112ms)
+✔ intent endpoint records non-compute kinds and refuses compute (9.323513ms)
+✔ Registry.jsx fetches from /api/registry/facts (0.406538ms)
+✔ Registry.jsx carries per-band section testids (topline / headliner / visual / table / context) (0.264886ms)
+✔ Registry.jsx renders data-source rows with real testids (0.228122ms)
+✔ Registry.jsx renders compute row + detail testids (0.233131ms)
+✔ Registry.jsx flags approximate figures with '≈' (or 'approx') per provenance rule (0.24977ms)
+✔ Registry.jsx renders LLMs-tab honest empty sentence (0.236958ms)
+✔ /api/registry/facts live: returns real digicow_live + ndume + akki-vm (53.282764ms)
+✔ /api/registry/facts live: data source carries engine, region, table count, posture (44.374501ms)
+✔ /api/registry/facts live: compute carries GPUs, RAM, storage, link facts (2.874071ms)
+✔ Registry.jsx renders NO banned fabricated demo tokens (0.367181ms)
+ℹ tests 53
+ℹ suites 0
+ℹ pass 38
+ℹ fail 15
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 753.15605
+
+✖ failing tests:
+
+test at __tests__/rehome.test.js:119:1
+✖ ConnectDrawerChat.jsx module exists (0.586186ms)
+  AssertionError [ERR_ASSERTION]: ConnectDrawerChat.jsx must exist under components/
+      at TestContext.<anonymous> (/app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/__tests__/rehome.test.js:121:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at __tests__/rehome.test.js:124:1
+✖ Registry '+ Connect' button now opens the drawer chat (not the panel wizard) (0.281397ms)
+  AssertionError [ERR_ASSERTION]: Registry.jsx must import and mount ConnectDrawerChat
+      at TestContext.<anonymous> (/app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/__tests__/rehome.test.js:126:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at __tests__/rehome.test.js:130:1
+✖ ConnectDrawerChat.jsx uses v7 drawer geometry (right-side, drawer-w, shadow-drawer) (0.139413ms)
+  Error: ENOENT: no such file or directory, open '/app/frontend/src/components/ConnectDrawerChat.jsx'
+      at Object.readFileSync (node:fs:484:20)
+      at TestContext.<anonymous> (/app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/__tests__/rehome.test.js:131:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/app/frontend/src/components/ConnectDrawerChat.jsx'
+  }
+
+test at __tests__/rehome.test.js:146:1
+✖ ConnectDrawerChat.jsx uses v7 palette + typography tokens (paper/ink/blue, Iowan/Söhne) (0.105735ms)
+  Error: ENOENT: no such file or directory, open '/app/frontend/src/components/ConnectDrawerChat.jsx'
+      at Object.readFileSync (node:fs:484:20)
+      at TestContext.<anonymous> (/app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/__tests__/rehome.test.js:147:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/app/frontend/src/components/ConnectDrawerChat.jsx'
+  }
+
+test at __tests__/rehome.test.js:157:1
+✖ ConnectDrawerChat.jsx carries the conversational-shell testids (0.097362ms)
+  Error: ENOENT: no such file or directory, open '/app/frontend/src/components/ConnectDrawerChat.jsx'
+      at Object.readFileSync (node:fs:484:20)
+      at TestContext.<anonymous> (/app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/__tests__/rehome.test.js:158:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/app/frontend/src/components/ConnectDrawerChat.jsx'
+  }
+
+test at __tests__/rehome.test.js:173:1
+✖ ConnectDrawerChat.jsx opens with the what-would-you-like-to-connect prompt (0.077079ms)
+  Error: ENOENT: no such file or directory, open '/app/frontend/src/components/ConnectDrawerChat.jsx'
+      at Object.readFileSync (node:fs:484:20)
+      at TestContext.<anonymous> (/app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/__tests__/rehome.test.js:174:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/app/frontend/src/components/ConnectDrawerChat.jsx'
+  }
+
+test at __tests__/rehome.test.js:179:1
+✖ ConnectDrawerChat.jsx wires the deterministic parser (no LLM transit for creds) (0.09054ms)
+  Error: ENOENT: no such file or directory, open '/app/frontend/src/components/ConnectDrawerChat.jsx'
+      at Object.readFileSync (node:fs:484:20)
+      at TestContext.<anonymous> (/app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/__tests__/rehome.test.js:180:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/app/frontend/src/components/ConnectDrawerChat.jsx'
+  }
+
+test at __tests__/rehome.test.js:191:1
+✖ ConnectDrawerChat.jsx replies conversationally after parse (I read a host, a username...) (0.0967ms)
+  Error: ENOENT: no such file or directory, open '/app/frontend/src/components/ConnectDrawerChat.jsx'
+      at Object.readFileSync (node:fs:484:20)
+      at TestContext.<anonymous> (/app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/__tests__/rehome.test.js:192:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/app/frontend/src/components/ConnectDrawerChat.jsx'
+  }
+
+test at __tests__/rehome.test.js:201:1
+✖ ConnectDrawerChat.jsx masks the password in the chat log (never plaintext post-parse) (0.108964ms)
+  Error: ENOENT: no such file or directory, open '/app/frontend/src/components/ConnectDrawerChat.jsx'
+      at Object.readFileSync (node:fs:484:20)
+      at TestContext.<anonymous> (/app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/__tests__/rehome.test.js:202:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/app/frontend/src/components/ConnectDrawerChat.jsx'
+  }
+
+test at __tests__/rehome.test.js:214:1
+✖ ConnectDrawerChat.jsx keeps chat state session-only (no localStorage/sessionStorage of creds) (0.095127ms)
+  Error: ENOENT: no such file or directory, open '/app/frontend/src/components/ConnectDrawerChat.jsx'
+      at Object.readFileSync (node:fs:484:20)
+      at TestContext.<anonymous> (/app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/__tests__/rehome.test.js:215:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/app/frontend/src/components/ConnectDrawerChat.jsx'
+  }
+
+test at __tests__/rehome.test.js:223:1
+✖ ConnectDrawerChat.jsx fires the compute pipeline (POST /api/connect/gpu) and renders handshake as chat cards (0.088188ms)
+  Error: ENOENT: no such file or directory, open '/app/frontend/src/components/ConnectDrawerChat.jsx'
+      at Object.readFileSync (node:fs:484:20)
+      at TestContext.<anonymous> (/app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/__tests__/rehome.test.js:224:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/app/frontend/src/components/ConnectDrawerChat.jsx'
+  }
+
+test at __tests__/rehome.test.js:237:1
+✖ ConnectDrawerChat.jsx fires the data-source pipeline (POST /api/connect/data-source) (0.080479ms)
+  Error: ENOENT: no such file or directory, open '/app/frontend/src/components/ConnectDrawerChat.jsx'
+      at Object.readFileSync (node:fs:484:20)
+      at TestContext.<anonymous> (/app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/__tests__/rehome.test.js:238:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/app/frontend/src/components/ConnectDrawerChat.jsx'
+  }
+
+test at __tests__/rehome.test.js:243:1
+✖ ConnectDrawerChat.jsx routes LLM/trained-model to /api/connect/intent (0.070464ms)
+  Error: ENOENT: no such file or directory, open '/app/frontend/src/components/ConnectDrawerChat.jsx'
+      at Object.readFileSync (node:fs:484:20)
+      at TestContext.<anonymous> (/app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/__tests__/rehome.test.js:244:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/app/frontend/src/components/ConnectDrawerChat.jsx'
+  }
+
+test at __tests__/rehome.test.js:249:1
+✖ ConnectDrawerChat.jsx does NOT re-open the retired 5-stage sequential wizard (0.088354ms)
+  Error: ENOENT: no such file or directory, open '/app/frontend/src/components/ConnectDrawerChat.jsx'
+      at Object.readFileSync (node:fs:484:20)
+      at TestContext.<anonymous> (/app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/__tests__/rehome.test.js:250:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/app/frontend/src/components/ConnectDrawerChat.jsx'
+  }
+
+test at __tests__/rehome.test.js:263:1
+✖ ConnectDrawerChat.jsx renders the provisioning card as a chat card (Sending it? Receiving it? aside) (0.11367ms)
+  Error: ENOENT: no such file or directory, open '/app/frontend/src/components/ConnectDrawerChat.jsx'
+      at Object.readFileSync (node:fs:484:20)
+      at TestContext.<anonymous> (/app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/__tests__/rehome.test.js:264:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/app/frontend/src/components/ConnectDrawerChat.jsx'
+  }

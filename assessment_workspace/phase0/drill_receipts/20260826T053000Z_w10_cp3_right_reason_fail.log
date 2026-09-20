@@ -1,0 +1,131 @@
+/root/.venv/lib/python3.11/site-packages/pytest_asyncio/plugin.py:208: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.3.3, pluggy-1.6.0
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: xdist-3.8.0, asyncio-0.24.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, default_loop_scope=None
+collected 12 items
+
+backend/tests/invariants/test_w10_cp3_drills_and_fitness.py FFFFFFFFFFFF [100%]
+
+=================================== FAILURES ===================================
+______________ test_seeded_hostile_input_drill_mints_refusal_pair ______________
+
+    def test_seeded_hostile_input_drill_mints_refusal_pair():
+        """Canon 8 §25: drill produces a Macho verdict + Mkono action pair
+        that verifies refusal fires at the input seat."""
+>       from drills.canon_8_25_seeded_hostile_input import run_drill
+E       ModuleNotFoundError: No module named 'drills.canon_8_25_seeded_hostile_input'
+
+backend/tests/invariants/test_w10_cp3_drills_and_fitness.py:88: ModuleNotFoundError
+__________ test_seeded_hostile_input_drill_records_land_on_real_disk ___________
+
+    def test_seeded_hostile_input_drill_records_land_on_real_disk():
+>       from drills.canon_8_25_seeded_hostile_input import run_drill
+E       ModuleNotFoundError: No module named 'drills.canon_8_25_seeded_hostile_input'
+
+backend/tests/invariants/test_w10_cp3_drills_and_fitness.py:96: ModuleNotFoundError
+_____________ test_seeded_hostile_input_drill_action_names_refusal _____________
+
+    def test_seeded_hostile_input_drill_action_names_refusal():
+        """Action_class must be 'noted_no_action' (refusal drill records a
+        restraint outcome per §22)."""
+>       from drills.canon_8_25_seeded_hostile_input import run_drill
+E       ModuleNotFoundError: No module named 'drills.canon_8_25_seeded_hostile_input'
+
+backend/tests/invariants/test_w10_cp3_drills_and_fitness.py:110: ModuleNotFoundError
+__________________ test_seeded_hostile_input_drill_idempotent __________________
+
+    def test_seeded_hostile_input_drill_idempotent():
+>       from drills.canon_8_25_seeded_hostile_input import run_drill
+E       ModuleNotFoundError: No module named 'drills.canon_8_25_seeded_hostile_input'
+
+backend/tests/invariants/test_w10_cp3_drills_and_fitness.py:118: ModuleNotFoundError
+___________ test_planted_credential_severance_drill_lands_severance ____________
+
+    def test_planted_credential_severance_drill_lands_severance():
+        """Canon 8 §26: guilty_use touch → severance_executed + Severance_v0
+        record. Exercises CP2 mirage machinery end-to-end."""
+>       from drills.canon_8_26_planted_credential_severance import run_drill
+E       ModuleNotFoundError: No module named 'drills.canon_8_26_planted_credential_severance'
+
+backend/tests/invariants/test_w10_cp3_drills_and_fitness.py:129: ModuleNotFoundError
+______ test_planted_credential_severance_drill_records_land_on_real_disk _______
+
+    def test_planted_credential_severance_drill_records_land_on_real_disk():
+>       from drills.canon_8_26_planted_credential_severance import run_drill
+E       ModuleNotFoundError: No module named 'drills.canon_8_26_planted_credential_severance'
+
+backend/tests/invariants/test_w10_cp3_drills_and_fitness.py:136: ModuleNotFoundError
+___________ test_planted_credential_severance_drill_uses_drill_actor ___________
+
+    def test_planted_credential_severance_drill_uses_drill_actor():
+>       from drills.canon_8_26_planted_credential_severance import run_drill
+E       ModuleNotFoundError: No module named 'drills.canon_8_26_planted_credential_severance'
+
+backend/tests/invariants/test_w10_cp3_drills_and_fitness.py:149: ModuleNotFoundError
+______________ test_planted_credential_severance_drill_idempotent ______________
+
+    def test_planted_credential_severance_drill_idempotent():
+>       from drills.canon_8_26_planted_credential_severance import run_drill
+E       ModuleNotFoundError: No module named 'drills.canon_8_26_planted_credential_severance'
+
+backend/tests/invariants/test_w10_cp3_drills_and_fitness.py:158: ModuleNotFoundError
+___________ test_fitness_reader_returns_zero_for_empty_receipts_dir ____________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-6/test_fitness_reader_returns_ze0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfc4dc59c1b50>
+
+    def test_fitness_reader_returns_zero_for_empty_receipts_dir(tmp_path, monkeypatch):
+>       from services.watch.fitness import demonstrated_firings
+E       ModuleNotFoundError: No module named 'services.watch.fitness'
+
+backend/tests/invariants/test_w10_cp3_drills_and_fitness.py:167: ModuleNotFoundError
+_________________ test_fitness_reader_counts_receipts_by_class _________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-6/test_fitness_reader_counts_rec0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfc4dc5a15f50>
+
+    def test_fitness_reader_counts_receipts_by_class(tmp_path, monkeypatch):
+>       from services.watch.fitness import demonstrated_firings
+E       ModuleNotFoundError: No module named 'services.watch.fitness'
+
+backend/tests/invariants/test_w10_cp3_drills_and_fitness.py:178: ModuleNotFoundError
+_______________ test_fitness_reader_respects_observation_window ________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-6/test_fitness_reader_respects_o0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfc4dc5a31c50>
+
+    def test_fitness_reader_respects_observation_window(tmp_path, monkeypatch):
+>       from services.watch.fitness import demonstrated_firings
+E       ModuleNotFoundError: No module named 'services.watch.fitness'
+
+backend/tests/invariants/test_w10_cp3_drills_and_fitness.py:195: ModuleNotFoundError
+______________ test_fitness_reader_never_attests_fitness_by_shape ______________
+
+    def test_fitness_reader_never_attests_fitness_by_shape():
+        """Canon 8 §32.8: NO drill self-certifies fitness. The reader
+        returns raw counts and MUST NOT return any 'fit' / 'attested' /
+        'certified' key."""
+>       from services.watch import fitness as fmod
+E       ImportError: cannot import name 'fitness' from 'services.watch' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/watch/__init__.py)
+
+backend/tests/invariants/test_w10_cp3_drills_and_fitness.py:212: ImportError
+=========================== short test summary info ============================
+FAILED backend/tests/invariants/test_w10_cp3_drills_and_fitness.py::test_seeded_hostile_input_drill_mints_refusal_pair
+FAILED backend/tests/invariants/test_w10_cp3_drills_and_fitness.py::test_seeded_hostile_input_drill_records_land_on_real_disk
+FAILED backend/tests/invariants/test_w10_cp3_drills_and_fitness.py::test_seeded_hostile_input_drill_action_names_refusal
+FAILED backend/tests/invariants/test_w10_cp3_drills_and_fitness.py::test_seeded_hostile_input_drill_idempotent
+FAILED backend/tests/invariants/test_w10_cp3_drills_and_fitness.py::test_planted_credential_severance_drill_lands_severance
+FAILED backend/tests/invariants/test_w10_cp3_drills_and_fitness.py::test_planted_credential_severance_drill_records_land_on_real_disk
+FAILED backend/tests/invariants/test_w10_cp3_drills_and_fitness.py::test_planted_credential_severance_drill_uses_drill_actor
+FAILED backend/tests/invariants/test_w10_cp3_drills_and_fitness.py::test_planted_credential_severance_drill_idempotent
+FAILED backend/tests/invariants/test_w10_cp3_drills_and_fitness.py::test_fitness_reader_returns_zero_for_empty_receipts_dir
+FAILED backend/tests/invariants/test_w10_cp3_drills_and_fitness.py::test_fitness_reader_counts_receipts_by_class
+FAILED backend/tests/invariants/test_w10_cp3_drills_and_fitness.py::test_fitness_reader_respects_observation_window
+FAILED backend/tests/invariants/test_w10_cp3_drills_and_fitness.py::test_fitness_reader_never_attests_fitness_by_shape
+============================== 12 failed in 0.08s ==============================

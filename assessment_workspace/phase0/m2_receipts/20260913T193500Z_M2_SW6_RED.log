@@ -1,0 +1,10 @@
+tests/invariants/test_wm2_sw6_sfp_8_serving_integrity.py:148: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wm2_sw6_sfp_8_serving_integrity.py::test_sw6_sfp8_module_fabric
+FAILED tests/invariants/test_wm2_sw6_sfp_8_serving_integrity.py::test_sw6_conforming_context_passes
+FAILED tests/invariants/test_wm2_sw6_sfp_8_serving_integrity.py::test_sw6_non_signed_context_refuses
+FAILED tests/invariants/test_wm2_sw6_sfp_8_serving_integrity.py::test_sw6_non_fail_closed_context_refuses
+FAILED tests/invariants/test_wm2_sw6_sfp_8_serving_integrity.py::test_sw6_sfp8_gate_refuses_non_conforming
+FAILED tests/invariants/test_wm2_sw6_sfp_8_serving_integrity.py::test_sw6_dap31_dap32_dependency_now_callable
+FAILED tests/invariants/test_wm2_sw6_sfp_8_serving_integrity.py::test_sw6_sfp8_version_constant
+============================== 7 failed in 0.69s ===============================

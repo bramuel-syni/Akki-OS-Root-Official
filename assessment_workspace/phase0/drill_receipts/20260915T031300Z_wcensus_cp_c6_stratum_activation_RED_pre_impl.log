@@ -1,0 +1,25 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.4.2, pluggy-1.6.0
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: asyncio-1.4.0, xdist-3.8.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collected 6 items
+
+tests/invariants/test_wcensus_cp_c6_stratum_activation.py FFFFFF         [100%]
+
+=================================== FAILURES ===================================
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError: No module named 'services.census_canon.stratum_measurement'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wcensus_cp_c6_stratum_activation.py:53: ModuleNotFoundError: No module named 'services.census_canon.stratum_measurement'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wcensus_cp_c6_stratum_activation.py:81: ModuleNotFoundError: No module named 'services.census_canon.stratum_measurement'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wcensus_cp_c6_stratum_activation.py:122: ModuleNotFoundError: No module named 'services.census_canon.activation_list'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wcensus_cp_c6_stratum_activation.py:141: ModuleNotFoundError: No module named 'services.census_canon.activation_list'
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError: No module named 'services.census_canon.stratum_measurement'
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wcensus_cp_c6_stratum_activation.py::test_cp_c6_module_fabric
+FAILED tests/invariants/test_wcensus_cp_c6_stratum_activation.py::test_cp_c6_stratum_measurement_frozen_eight_dimension_shape
+FAILED tests/invariants/test_wcensus_cp_c6_stratum_activation.py::test_cp_c6_each_dimension_accepts_measurement_or_unmeasured
+FAILED tests/invariants/test_wcensus_cp_c6_stratum_activation.py::test_cp_c6_activation_list_frozen_shape
+FAILED tests/invariants/test_wcensus_cp_c6_stratum_activation.py::test_cp_c6_compute_activation_list_partitions_matrix
+FAILED tests/invariants/test_wcensus_cp_c6_stratum_activation.py::test_cp_c6_docstrings_carry_verbatim_canon
+============================== 6 failed in 0.65s ===============================

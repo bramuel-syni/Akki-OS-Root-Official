@@ -1,0 +1,22 @@
+/root/.venv/lib/python3.11/site-packages/pytest_asyncio/plugin.py:208: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+============================= test session starts ==============================
+collecting ... collected 13 items
+
+tests/invariants/test_w10_cp6_whitepaper_draft.py::test_contract_shape PASSED [  7%]
+tests/invariants/test_w10_cp6_whitepaper_draft.py::test_retention_class_grammar PASSED [ 15%]
+tests/invariants/test_w10_cp6_whitepaper_draft.py::test_draft_refuses_missing_admission_citation PASSED [ 23%]
+tests/invariants/test_w10_cp6_whitepaper_draft.py::test_draft_refuses_missing_baseline_citation PASSED [ 30%]
+tests/invariants/test_w10_cp6_whitepaper_draft.py::test_draft_writes_when_both_citations_on_record PASSED [ 38%]
+tests/invariants/test_w10_cp6_whitepaper_draft.py::test_draft_refuses_overwrite PASSED [ 46%]
+tests/invariants/test_w10_cp6_whitepaper_draft.py::test_admission_citation_matches_substring PASSED [ 53%]
+tests/invariants/test_whitepaper_draft_frozen.py::test_whitepaper_draft_v0_frozen PASSED [ 61%]
+tests/invariants/test_frozen_contract_snapshot_parity.py::test_every_frozen_contract_has_snapshot PASSED [ 69%]
+tests/invariants/test_frozen_contract_snapshot_parity.py::test_every_snapshot_maps_to_a_contract PASSED [ 76%]
+tests/invariants/test_frozen_contract_snapshot_parity.py::test_snapshot_mapping_is_bijective PASSED [ 84%]
+tests/invariants/test_composed_conclusion_v0_contract_frozen.py::test_composed_conclusion_v0_contract_frozen PASSED [ 92%]
+tests/invariants/test_composed_conclusion_v0_contract_frozen.py::test_composed_conclusion_snapshot_parity_at_18 PASSED [100%]
+
+============================== 13 passed in 0.15s ==============================

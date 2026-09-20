@@ -1,0 +1,19 @@
+=== LAUNCH · campaign-b-method-ablations-20260906 · B1-CORPUS-USSD-ONLY · host=akki-vm-ii ===
+=== RESULT (secrets redacted) ===
+{
+  "run_id": "shield-train-campaign-b-method-ablations-20260906-20260906T141344Z",
+  "tier": "t1_full_mask",
+  "env": "development",
+  "host_slug": "akki-vm-ii",
+  "row_extraction_receipt_path": "/app/assessment_workspace/phase0/shield_train_receipts/shield_train_row_receipt_20260906T141344Z_1a8c8da4.json",
+  "held_out_slice_receipt_path": "/app/assessment_workspace/phase0/shield_train_receipts/held_out_slices/held_out_shield-train-campaign-b-method-ablations-20260906-20260906T141344Z_20260906T141344Z.json",
+  "train_corpus_sha256": "4929291dfc8923ba9a83664fbcecf7ac5b584f7db6be61d4d96591fc6dbd6749",
+  "held_out_corpus_sha256": "ae7bcb6aac0f0c5fb66d9a44af186014831331e2ade171295ab67e2283380be2",
+  "train_row_count": 20510,
+  "held_out_row_count": 5127,
+  "remote_dir": "~/akki_journal/shield-train-campaign-b-method-ablations-20260906-20260906T141344Z",
+  "launch_stdout_head": "<detached-launch \u00b7 ssh subprocess timed out but child was setsid-nohup-detached>",
+  "launch_exit_code": 0,
+  "at_utc": "2026-09-06T14:14:43.637011Z"
+}
+=== run_id: shield-train-campaign-b-method-ablations-20260906-20260906T141344Z

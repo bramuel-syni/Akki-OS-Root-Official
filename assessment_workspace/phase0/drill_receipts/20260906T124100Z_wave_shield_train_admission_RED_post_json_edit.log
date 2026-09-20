@@ -1,0 +1,94 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.4.2, pluggy-1.6.0 -- /root/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: asyncio-1.4.0, xdist-3.8.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collecting ... collected 51 items
+
+tests/invariants/test_shield_train_admission_request.py::test_all_tiers_still_have_empty_admissible_under_env FAILED [  1%]
+tests/invariants/test_shield_train_admission_request.py::test_masking_tier_allowlist_has_admission_request_field PASSED [  3%]
+tests/invariants/test_shield_train_admission_request.py::test_masking_tier_allowlist_has_prerequisites_status PASSED [  5%]
+tests/invariants/test_shield_train_admission_request.py::test_t1_full_mask_prerequisites_all_addressed PASSED [  7%]
+tests/invariants/test_shield_train_admission_request.py::test_masking_policy_prerequisite_marked_satisfied_by_this_build PASSED [  9%]
+tests/invariants/test_campaign_infra.py::test_grounding_brief_exists_and_carries_owner_ruling PASSED [ 11%]
+tests/invariants/test_campaign_infra.py::test_manifest_module_exports_load_and_validate PASSED [ 13%]
+tests/invariants/test_campaign_infra.py::test_manifest_schema_v0_shape PASSED [ 15%]
+tests/invariants/test_campaign_infra.py::test_manifest_refuses_duplicate_run_names PASSED [ 17%]
+tests/invariants/test_campaign_infra.py::test_manifest_refuses_non_integer_seed PASSED [ 19%]
+tests/invariants/test_campaign_infra.py::test_manifest_refuses_missing_required_field PASSED [ 21%]
+tests/invariants/test_campaign_infra.py::test_manifest_iteration_order_is_declared_order PASSED [ 23%]
+tests/invariants/test_campaign_infra.py::test_checkpoint_module_surface PASSED [ 25%]
+tests/invariants/test_campaign_infra.py::test_write_checkpoint_marker_shape PASSED [ 27%]
+tests/invariants/test_campaign_infra.py::test_read_checkpoint_marker_returns_none_when_missing PASSED [ 29%]
+tests/invariants/test_campaign_infra.py::test_latest_checkpoint_step_picks_max PASSED [ 31%]
+tests/invariants/test_campaign_infra.py::test_checkpoint_marker_zero_influence_on_storage_failure PASSED [ 33%]
+tests/invariants/test_campaign_infra.py::test_on_host_logging_module_surface PASSED [ 35%]
+tests/invariants/test_campaign_infra.py::test_write_host_heartbeat_shape PASSED [ 37%]
+tests/invariants/test_campaign_infra.py::test_write_host_poll_receipt_shape PASSED [ 39%]
+tests/invariants/test_campaign_infra.py::test_write_run_summary_seals_run_dir PASSED [ 41%]
+tests/invariants/test_campaign_infra.py::test_on_host_logging_zero_influence_on_write_failure PASSED [ 43%]
+tests/invariants/test_campaign_infra.py::test_run_queue_module_surface PASSED [ 45%]
+tests/invariants/test_campaign_infra.py::test_next_pending_run_returns_first_unsealed PASSED [ 47%]
+tests/invariants/test_campaign_infra.py::test_next_pending_run_returns_none_when_all_sealed PASSED [ 49%]
+tests/invariants/test_campaign_infra.py::test_execute_campaign_refuses_parallel_via_host_lock PASSED [ 50%]
+tests/invariants/test_campaign_infra.py::test_execute_campaign_dry_run_returns_planned_order PASSED [ 52%]
+tests/invariants/test_campaign_infra.py::test_execute_campaign_seals_before_next_start PASSED [ 54%]
+tests/invariants/test_campaign_infra.py::test_reconcile_module_surface PASSED [ 56%]
+tests/invariants/test_campaign_infra.py::test_list_host_runs_enumerates_journal_root PASSED [ 58%]
+tests/invariants/test_campaign_infra.py::test_adoptability_of_campaign_run_fresh_heartbeat_alive_pid_not_adoptable PASSED [ 60%]
+tests/invariants/test_campaign_infra.py::test_adoptability_of_campaign_run_stale_and_dead_pid_is_adoptable_restart PASSED [ 62%]
+tests/invariants/test_campaign_infra.py::test_on_host_watchdog_script_exists PASSED [ 64%]
+tests/invariants/test_campaign_infra.py::test_on_host_watchdog_script_reads_env_targets_dir PASSED [ 66%]
+tests/invariants/test_campaign_infra.py::test_on_host_watchdog_script_refuses_restart_on_live_pid PASSED [ 68%]
+tests/invariants/test_campaign_infra.py::test_on_host_watchdog_script_writes_journal_entry_on_restart PASSED [ 70%]
+tests/invariants/test_campaign_infra.py::test_retire_heartbeat_function_exists PASSED [ 72%]
+tests/invariants/test_campaign_infra.py::test_retire_heartbeat_removes_file_on_clean_exit PASSED [ 74%]
+tests/invariants/test_campaign_infra.py::test_retire_heartbeat_idempotent_returns_false_on_missing PASSED [ 76%]
+tests/invariants/test_campaign_infra.py::test_orphan_detector_accepts_uppercase_sealing_filename PASSED [ 78%]
+tests/invariants/test_campaign_infra.py::test_orphan_detector_accepts_lowercase_sealing_filename PASSED [ 80%]
+tests/invariants/test_campaign_infra.py::test_orphan_detector_accepts_mixed_case_sealing_filename PASSED [ 82%]
+tests/invariants/test_campaign_infra.py::test_select_adoptable_orphans_default_is_staleness_gated PASSED [ 84%]
+tests/invariants/test_campaign_infra.py::test_select_adoptable_orphans_include_pid_dead_surfaces_fresh_heartbeat_dead_pid PASSED [ 86%]
+tests/invariants/test_campaign_infra.py::test_select_adoptable_orphans_include_pid_dead_does_not_duplicate_stale_orphans PASSED [ 88%]
+tests/invariants/test_campaign_infra.py::test_select_adoptable_orphans_include_pid_dead_preserves_adoptable_enrichment PASSED [ 90%]
+tests/invariants/test_campaign_infra.py::test_on_host_watchdog_public_surface_carries_no_terminator_names PASSED [ 92%]
+tests/invariants/test_campaign_infra.py::test_reconcile_adoptability_never_deletes_checkpoint PASSED [ 94%]
+tests/invariants/test_campaign_infra.py::test_zero_influence_class_documented_in_grounding_brief PASSED [ 96%]
+tests/invariants/test_campaign_infra.py::test_campaign_infra_does_not_bypass_masking_tier_admission PASSED [ 98%]
+tests/invariants/test_campaign_infra.py::test_masking_tier_allowlist_row_bearing_tiers_still_parked FAILED [100%]
+
+=================================== FAILURES ===================================
+_____________ test_all_tiers_still_have_empty_admissible_under_env _____________
+tests/invariants/test_shield_train_admission_request.py:54: in test_all_tiers_still_have_empty_admissible_under_env
+    assert aue == [], (
+E   AssertionError: entries[5] tier=t1_full_mask has admissible_under_env=['development'] — MUST be [] until owner rules
+E   assert ['development'] == []
+E     
+E     Left contains one more item: 'development'
+E     
+E     Full diff:
+E     - []
+E     + [
+E     +     'development',
+E     + ]
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+__________ test_masking_tier_allowlist_row_bearing_tiers_still_parked __________
+tests/invariants/test_campaign_infra.py:810: in test_masking_tier_allowlist_row_bearing_tiers_still_parked
+    assert envs == [], (
+E   AssertionError: row-bearing tier 't1_full_mask' has admissible_under_env ['development'] — campaign infra wave must not admit any row-bearing tier
+E   assert ['development'] == []
+E     
+E     Left contains one more item: 'development'
+E     
+E     Full diff:
+E     - []
+E     + [
+E     +     'development',
+E     + ]
+=========================== short test summary info ============================
+FAILED tests/invariants/test_shield_train_admission_request.py::test_all_tiers_still_have_empty_admissible_under_env
+FAILED tests/invariants/test_campaign_infra.py::test_masking_tier_allowlist_row_bearing_tiers_still_parked
+========================= 2 failed, 49 passed in 0.96s =========================

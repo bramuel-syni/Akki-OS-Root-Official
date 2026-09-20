@@ -1,0 +1,258 @@
+FFFF..FFF.FFFFF..FFF.........F..                                         [100%]
+=================================== FAILURES ===================================
+_________ test_grounding_brief_carries_owner_ruling_verbatim_body_emit _________
+
+    def test_grounding_brief_carries_owner_ruling_verbatim_body_emit():
+        assert _GROUNDING_BRIEF.exists()
+        body = _GROUNDING_BRIEF.read_text()
+        quote_1 = "Question #1 (sms_sent drawer item) \u2192 \"a\" \u2014 INCLUDE message bodies with mask_regex_scrub"
+        quote_2 = "Question #2 (dedup-collapse remedy) \u2192 \"a\""
+>       assert quote_1 in body, "owner Q#1 verbatim missing"
+E       AssertionError: owner Q#1 verbatim missing
+E       assert 'Question #1 (sms_sent drawer item) → "a" — INCLUDE message bodies with mask_regex_scrub' in '# W-SMS-Body-Emit · grounding brief\n\n**Authored:** 2026-09-06T~15:XXZ (post-W-Multi-Table-Extract close · queue-liv...(e.g. hypothetical B1 vs B2-v1) would be corpus-inconsistent. This wave ensures the swap is atomic per ablation set.\n'
+
+tests/invariants/test_sms_body_emit.py:55: AssertionError
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+___________________ test_drawer_entry_sms_sent_now_resolved ____________________
+
+    def test_drawer_entry_sms_sent_now_resolved():
+        """Drawer entry for sms_sent must be state=resolved (was open)."""
+        pol = _load_policy()
+        hits = [d for d in pol["clarification_drawer"]
+                if d.get("field") == "sms_log.sms_sent"]
+        assert hits, "drawer entry for sms_log.sms_sent must remain for audit trail"
+        entry = hits[0]
+>       assert entry["state"] == "resolved", \
+            f"expected state=resolved, got {entry['state']!r}"
+E       AssertionError: expected state=resolved, got 'open'
+E       assert 'open' == 'resolved'
+E         
+E         - resolved
+E         + open
+
+tests/invariants/test_sms_body_emit.py:70: AssertionError
+____________ test_drawer_resolution_populated_with_required_fields _____________
+
+    def test_drawer_resolution_populated_with_required_fields():
+        pol = _load_policy()
+        entry = [d for d in pol["clarification_drawer"]
+                 if d.get("field") == "sms_log.sms_sent"][0]
+        res = entry.get("resolution")
+>       assert res is not None, "resolution slot must be populated post-ruling"
+E       AssertionError: resolution slot must be populated post-ruling
+E       assert None is not None
+
+tests/invariants/test_sms_body_emit.py:79: AssertionError
+___________________ test_drawer_resolution_owner_ruling_is_a ___________________
+
+    def test_drawer_resolution_owner_ruling_is_a():
+        """Owner ruled 'a' — INCLUDE with mask_regex_scrub."""
+        pol = _load_policy()
+        entry = [d for d in pol["clarification_drawer"]
+                 if d.get("field") == "sms_log.sms_sent"][0]
+>       assert entry["resolution"]["owner_ruling"] == "a"
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: 'NoneType' object is not subscriptable
+
+tests/invariants/test_sms_body_emit.py:91: TypeError
+______________ test_sms_sent_now_in_ledger_with_mask_regex_scrub _______________
+
+    def test_sms_sent_now_in_ledger_with_mask_regex_scrub():
+        pol = _load_policy()
+        hits = [e for e in pol["ledger"]
+                if e.get("table") == "sms_log" and e.get("column") == "sms_sent"]
+>       assert hits, "sms_sent must be in ledger post-Ruling-#5(a)"
+E       AssertionError: sms_sent must be in ledger post-Ruling-#5(a)
+E       assert []
+
+tests/invariants/test_sms_body_emit.py:131: AssertionError
+________ test_sms_sent_ledger_entry_references_resolves_drawer_question ________
+
+    def test_sms_sent_ledger_entry_references_resolves_drawer_question():
+        pol = _load_policy()
+>       e = [x for x in pol["ledger"]
+             if x.get("table") == "sms_log" and x.get("column") == "sms_sent"][0]
+E       IndexError: list index out of range
+
+tests/invariants/test_sms_body_emit.py:139: IndexError
+________ test_sms_log_emit_columns_post_wave_are_sms_sent_and_sms_title ________
+
+    def test_sms_log_emit_columns_post_wave_are_sms_sent_and_sms_title():
+        """Ruling #5(a) unblocks both text-content columns."""
+        pol = _load_policy()
+        emit = sorted([e["column"] for e in pol["ledger"]
+                       if e.get("table") == "sms_log"
+                       and e.get("action") in ("include", "mask_regex_scrub")])
+>       assert emit == ["sms_sent", "sms_title"], \
+            f"expected [sms_sent, sms_title] post-Ruling-#5(a), got {emit!r}"
+E       AssertionError: expected [sms_sent, sms_title] post-Ruling-#5(a), got ['sms_title']
+E       assert ['sms_title'] == ['sms_sent', 'sms_title']
+E         
+E         At index 0 diff: 'sms_title' != 'sms_sent'
+E         Right contains one more item: 'sms_title'
+E         Use -v to get more diff
+
+tests/invariants/test_sms_body_emit.py:151: AssertionError
+________________ test_drawer_resolution_evidence_record_exists _________________
+
+    def test_drawer_resolution_evidence_record_exists():
+        p = _find_resolution_record()
+>       assert p is not None, (
+            f"drawer resolution evidence record missing under "
+            f"{_DRAWER_RESOLUTIONS_DIR}/. First completed drawer cycle needs "
+            f"a persisted evidence artifact."
+        )
+E       AssertionError: drawer resolution evidence record missing under /app/assessment_workspace/phase0/policy_drawer_resolutions/. First completed drawer cycle needs a persisted evidence artifact.
+E       assert None is not None
+
+tests/invariants/test_sms_body_emit.py:188: AssertionError
+_____ test_drawer_resolution_evidence_record_carries_owner_ruling_verbatim _____
+
+    def test_drawer_resolution_evidence_record_carries_owner_ruling_verbatim():
+        p = _find_resolution_record()
+>       body = p.read_text()
+               ^^^^^^^^^^^
+E       AttributeError: 'NoneType' object has no attribute 'read_text'
+
+tests/invariants/test_sms_body_emit.py:197: AttributeError
+_________________ test_drawer_resolution_evidence_record_shape _________________
+
+    def test_drawer_resolution_evidence_record_shape():
+        p = _find_resolution_record()
+>       body = json.loads(p.read_text())
+                          ^^^^^^^^^^^
+E       AttributeError: 'NoneType' object has no attribute 'read_text'
+
+tests/invariants/test_sms_body_emit.py:204: AttributeError
+_________ test_drawer_resolution_evidence_record_never_carries_secrets _________
+
+    def test_drawer_resolution_evidence_record_never_carries_secrets():
+        p = _find_resolution_record()
+>       body = p.read_text()
+               ^^^^^^^^^^^
+E       AttributeError: 'NoneType' object has no attribute 'read_text'
+
+tests/invariants/test_sms_body_emit.py:217: AttributeError
+__________ test_drawer_resolution_record_matches_policy_evidence_path __________
+
+    def test_drawer_resolution_record_matches_policy_evidence_path():
+        """The path stored in the drawer entry's resolution.evidence_record_path
+        must resolve to an existing file."""
+        pol = _load_policy()
+        entry = [d for d in pol["clarification_drawer"]
+                 if d.get("field") == "sms_log.sms_sent"][0]
+>       ref = entry["resolution"]["evidence_record_path"]
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: 'NoneType' object is not subscriptable
+
+tests/invariants/test_sms_body_emit.py:228: TypeError
+____________ test_sms_formatter_required_fields_updated_to_sms_sent ____________
+
+    def test_sms_formatter_required_fields_updated_to_sms_sent():
+        from services.shield_train import multi_table as mt
+        _formatter, required = mt._TABLE_FORMATTERS["sms_log"]
+>       assert "sms_sent" in required, \
+            f"required_fields should require sms_sent post-Ruling-#5(a); got {required!r}"
+E       AssertionError: required_fields should require sms_sent post-Ruling-#5(a); got ('sms_title',)
+E       assert 'sms_sent' in ('sms_title',)
+
+tests/invariants/test_sms_body_emit.py:263: AssertionError
+__________________ test_campaign_b_corpus_swap_record_exists ___________________
+
+    def test_campaign_b_corpus_swap_record_exists():
+>       assert _RECONCILE_V2.exists(), (
+            f"corpus-swap reconciliation record missing at {_RECONCILE_V2}. "
+            f"Ablation comparability across the swap MUST be documented."
+        )
+E       AssertionError: corpus-swap reconciliation record missing at /app/assessment_workspace/phase0/campaign_drafts/campaign_b_corpus_swap_v2.json. Ablation comparability across the swap MUST be documented.
+E       assert False
+E        +  where False = exists()
+E        +    where exists = PosixPath('/app/assessment_workspace/phase0/campaign_drafts/campaign_b_corpus_swap_v2.json').exists
+
+tests/invariants/test_sms_body_emit.py:275: AssertionError
+_______ test_campaign_b_corpus_swap_names_dedup_group_and_b2_and_b1_note _______
+
+    def test_campaign_b_corpus_swap_names_dedup_group_and_b2_and_b1_note():
+>       body = json.loads(_RECONCILE_V2.read_text())
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_sms_body_emit.py:282: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/pathlib.py:1058: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/app/assessment_workspace/phase0/campaign_drafts/campaign_b_corpus_swap_v2.json')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/app/assessment_workspace/phase0/campaign_drafts/campaign_b_corpus_swap_v2.json'
+
+/usr/local/lib/python3.11/pathlib.py:1044: FileNotFoundError
+_________________ test_sms_sent_lives_in_clarification_drawer __________________
+
+policy = {'authored_at_utc': '2026-09-06T11:34:00Z', 'authoring_authority': 'W-Shield-Train-build wave · authored via services....custody sequence · services/chokepoint/masking_tier_allowlist.v0.json t1_full_mask not_admissible_because clause', ...}
+
+    def test_sms_sent_lives_in_clarification_drawer(policy):
+        """FLIPPED by W-SMS-Body-Emit · Ruling #5(a) landed 2026-09-06T~15:XXZ.
+    
+        Pre-Ruling-#5(a) assertion (now RETIRED): sms_sent lives in drawer with
+        state=open, cautious_default='exclude'. That was the correct shape
+        while the ambiguity was un-ruled.
+    
+        Post-Ruling-#5(a) assertion (NEW TRUTH):
+        - sms_log.sms_sent is now in the LEDGER with action=mask_regex_scrub
+          (owner ruled 'a' — INCLUDE with mask_regex_scrub).
+        - drawer entry for sms_log.sms_sent is RETAINED for audit trail with
+          state='resolved' and populated resolution slot referencing the
+          evidence record (Ruling #5 architecture: drawer entries never
+          deleted, only resolved).
+        - cautious_default_applied='exclude' preserved as historical record
+          of the pre-ruling default.
+        """
+        field_in_ledger = any(
+            e["table"] == "sms_log" and e["column"] == "sms_sent"
+            for e in policy["ledger"]
+        )
+        field_in_drawer = any(
+            d.get("field") == "sms_log.sms_sent"
+            for d in policy["clarification_drawer"]
+        )
+>       assert field_in_ledger and field_in_drawer, (
+            "post-Ruling-#5(a): sms_log.sms_sent MUST be in BOTH the ledger "
+            "(with mask_regex_scrub) AND the drawer (state=resolved, audit-trail "
+            f"retained). in_ledger={field_in_ledger}, in_drawer={field_in_drawer}"
+        )
+E       AssertionError: post-Ruling-#5(a): sms_log.sms_sent MUST be in BOTH the ledger (with mask_regex_scrub) AND the drawer (state=resolved, audit-trail retained). in_ledger=False, in_drawer=True
+E       assert (False)
+
+tests/invariants/test_shield_train_pii_registry_expansion.py:242: AssertionError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_sms_body_emit.py::test_grounding_brief_carries_owner_ruling_verbatim_body_emit
+FAILED tests/invariants/test_sms_body_emit.py::test_drawer_entry_sms_sent_now_resolved
+FAILED tests/invariants/test_sms_body_emit.py::test_drawer_resolution_populated_with_required_fields
+FAILED tests/invariants/test_sms_body_emit.py::test_drawer_resolution_owner_ruling_is_a
+FAILED tests/invariants/test_sms_body_emit.py::test_sms_sent_now_in_ledger_with_mask_regex_scrub
+FAILED tests/invariants/test_sms_body_emit.py::test_sms_sent_ledger_entry_references_resolves_drawer_question
+FAILED tests/invariants/test_sms_body_emit.py::test_sms_log_emit_columns_post_wave_are_sms_sent_and_sms_title
+FAILED tests/invariants/test_sms_body_emit.py::test_drawer_resolution_evidence_record_exists
+FAILED tests/invariants/test_sms_body_emit.py::test_drawer_resolution_evidence_record_carries_owner_ruling_verbatim
+FAILED tests/invariants/test_sms_body_emit.py::test_drawer_resolution_evidence_record_shape
+FAILED tests/invariants/test_sms_body_emit.py::test_drawer_resolution_evidence_record_never_carries_secrets
+FAILED tests/invariants/test_sms_body_emit.py::test_drawer_resolution_record_matches_policy_evidence_path
+FAILED tests/invariants/test_sms_body_emit.py::test_sms_formatter_required_fields_updated_to_sms_sent
+FAILED tests/invariants/test_sms_body_emit.py::test_campaign_b_corpus_swap_record_exists
+FAILED tests/invariants/test_sms_body_emit.py::test_campaign_b_corpus_swap_names_dedup_group_and_b2_and_b1_note
+FAILED tests/invariants/test_shield_train_pii_registry_expansion.py::test_sms_sent_lives_in_clarification_drawer
+16 failed, 16 passed in 0.78s

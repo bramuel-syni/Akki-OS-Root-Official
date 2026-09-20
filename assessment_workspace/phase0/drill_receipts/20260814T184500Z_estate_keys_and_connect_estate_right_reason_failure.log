@@ -1,0 +1,11 @@
+=== ESTATE KEYS + CONNECT ESTATE ROUTER - RIGHT-REASON RECEIPT ===
+Timestamp (UTC): 2026-08-14T18:45:00Z
+Commit boundary: before backend implementation lands
+Test file: backend/tests/invariants/test_estate_keys_and_connect_estate.py
+
+FAILING (12/12, right-reason):
+  All 12 tests fail with:
+    ModuleNotFoundError: No module named 'services.estate_keys'
+    ModuleNotFoundError: No module named 'services.connect_estate'
+
+Discipline: implementation MUST NOT land before this receipt is banked.

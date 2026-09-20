@@ -1,0 +1,61 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.4.2, pluggy-1.6.0 -- /root/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: anyio-4.14.2, xdist-3.8.0, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collecting ... collected 5 items
+
+tests/invariants/test_alpha_gap_hardening.py::test_alpha_gap_hardening_trust_receipt_v1_is_frozen FAILED [ 20%]
+tests/invariants/test_alpha_gap_hardening.py::test_alpha_gap_hardening_outer_gate_receipt_v1_is_frozen FAILED [ 40%]
+tests/invariants/test_alpha_gap_hardening.py::test_alpha_gap_hardening_trust_receipt_v1_mutation_raises FAILED [ 60%]
+tests/invariants/test_alpha_gap_hardening.py::test_alpha_gap_hardening_outer_gate_receipt_v1_mutation_raises FAILED [ 80%]
+tests/invariants/test_alpha_gap_hardening.py::test_alpha_gap_hardening_wave_closure_attestation PASSED [100%]
+
+=================================== FAILURES ===================================
+_____________ test_alpha_gap_hardening_trust_receipt_v1_is_frozen ______________
+tests/invariants/test_alpha_gap_hardening.py:131: in test_alpha_gap_hardening_trust_receipt_v1_is_frozen
+    assert cfg.get("frozen") is True, (
+E   AssertionError: α-gap NOT closed · TrustReceiptV1 model_config['frozen'] is not True · got False · SO §3.10-α violation · owner ruling 2026-09-20T~08:56Z (α-gap hardening wave approved) requires frozen=True at this wave close.
+E   assert False is True
+E    +  where False = <built-in method get of dict object at 0xf98fcdbfd8c0>('frozen')
+E    +    where <built-in method get of dict object at 0xf98fcdbfd8c0> = {'extra': 'forbid', 'frozen': False}.get
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+___________ test_alpha_gap_hardening_outer_gate_receipt_v1_is_frozen ___________
+tests/invariants/test_alpha_gap_hardening.py:157: in test_alpha_gap_hardening_outer_gate_receipt_v1_is_frozen
+    assert cfg.get("frozen") is True, (
+E   AssertionError: α-gap NOT closed · OuterGateReceiptV1 model_config['frozen'] is not True · got None · SO §3.10-α violation · owner ruling 2026-09-20T~08:56Z (α-gap hardening wave approved) requires frozen=True at this wave close.
+E   assert None is True
+E    +  where None = <built-in method get of dict object at 0xf98fcdbf2000>('frozen')
+E    +    where <built-in method get of dict object at 0xf98fcdbf2000> = {'extra': 'forbid'}.get
+__________ test_alpha_gap_hardening_trust_receipt_v1_mutation_raises ___________
+tests/invariants/test_alpha_gap_hardening.py:183: in test_alpha_gap_hardening_trust_receipt_v1_mutation_raises
+    with pytest.raises(ValidationError) as exc_info:
+E   Failed: DID NOT RAISE <class 'pydantic_core._pydantic_core.ValidationError'>
+________ test_alpha_gap_hardening_outer_gate_receipt_v1_mutation_raises ________
+tests/invariants/test_alpha_gap_hardening.py:205: in test_alpha_gap_hardening_outer_gate_receipt_v1_mutation_raises
+    receipt = _make_valid_outer_gate_receipt_v1()
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/invariants/test_alpha_gap_hardening.py:111: in _make_valid_outer_gate_receipt_v1
+    artifact_ref=LedgerArtifactRef(
+E   pydantic_core._pydantic_core.ValidationError: 4 validation errors for LedgerArtifactRef
+E   artifact_type
+E     Field required [type=missing, input_value={'trace_id': 'trace-000',...00000000', 'ext': 'txt'}, input_type=dict]
+E       For further information visit https://errors.pydantic.dev/2.13/v/missing
+E   version
+E     Field required [type=missing, input_value={'trace_id': 'trace-000',...00000000', 'ext': 'txt'}, input_type=dict]
+E       For further information visit https://errors.pydantic.dev/2.13/v/missing
+E   trace_id
+E     Extra inputs are not permitted [type=extra_forbidden, input_value='trace-000', input_type=str]
+E       For further information visit https://errors.pydantic.dev/2.13/v/extra_forbidden
+E   ext
+E     Extra inputs are not permitted [type=extra_forbidden, input_value='txt', input_type=str]
+E       For further information visit https://errors.pydantic.dev/2.13/v/extra_forbidden
+=========================== short test summary info ============================
+FAILED tests/invariants/test_alpha_gap_hardening.py::test_alpha_gap_hardening_trust_receipt_v1_is_frozen
+FAILED tests/invariants/test_alpha_gap_hardening.py::test_alpha_gap_hardening_outer_gate_receipt_v1_is_frozen
+FAILED tests/invariants/test_alpha_gap_hardening.py::test_alpha_gap_hardening_trust_receipt_v1_mutation_raises
+FAILED tests/invariants/test_alpha_gap_hardening.py::test_alpha_gap_hardening_outer_gate_receipt_v1_mutation_raises
+========================= 4 failed, 1 passed in 0.67s ==========================

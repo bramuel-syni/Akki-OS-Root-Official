@@ -1,0 +1,46 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.4.2, pluggy-1.6.0
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: asyncio-1.4.0, anyio-4.14.2, xdist-3.8.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collected 8 items
+
+tests/invariants/test_wdap_2g_coalition_and_estate_wide_bound.py FFFFFFF [ 87%]
+F                                                                        [100%]
+============================ BASELINE_GUARD receipt ============================
+passed=0 / baseline-failures-remaining=0 / quarantined=0
+  manifest: tests/invariants/baseline_failures.json
+  scope: BASELINE_GUARD=1  ·  invocation: cd backend && BASELINE_GUARD=1 python -m pytest tests/invariants/
+!!!!!!!!!!!!! BASELINE_GUARD · HALT AND REPORT · owner ruling (c) !!!!!!!!!!!!!!
+[V1] 8 NEW failure(s) OUTSIDE manifest:
+    tests/invariants/test_wdap_2g_coalition_and_estate_wide_bound.py::test_2g_module_fabric_present
+    tests/invariants/test_wdap_2g_coalition_and_estate_wide_bound.py::test_ac_10_hard_ceiling_bounds_aggregate_agent_effect_jointly
+    tests/invariants/test_wdap_2g_coalition_and_estate_wide_bound.py::test_dap_34_coalition_shared_mandate_lineage_treated_as_one_actor
+    tests/invariants/test_wdap_2g_coalition_and_estate_wide_bound.py::test_dap_34_coalition_shared_party_treated_as_one_actor
+    tests/invariants/test_wdap_2g_coalition_and_estate_wide_bound.py::test_dap_34_coordination_signature_deferred_to_r_11
+    tests/invariants/test_wdap_2g_coalition_and_estate_wide_bound.py::test_dap_35_breach_is_floor_violation_severance_eligible
+    tests/invariants/test_wdap_2g_coalition_and_estate_wide_bound.py::test_dap_35_estate_wide_budget_default_pending_override
+    tests/invariants/test_wdap_2g_coalition_and_estate_wide_bound.py::test_dap_35_estate_wide_ceiling_sums_across_all_parties
+[V3] Passed count 0 < ratchet floor 3609
+  No silent rebaselining. Report drift to owner verbatim.
+
+=================================== FAILURES ===================================
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError: No module named 'services.dap.coalition'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wdap_2g_coalition_and_estate_wide_bound.py:68: ImportError: cannot import name 'coalition' from 'services.dap' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/dap/__init__.py)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wdap_2g_coalition_and_estate_wide_bound.py:112: ImportError: cannot import name 'coalition' from 'services.dap' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/dap/__init__.py)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wdap_2g_coalition_and_estate_wide_bound.py:141: ImportError: cannot import name 'coalition' from 'services.dap' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/dap/__init__.py)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wdap_2g_coalition_and_estate_wide_bound.py:162: ImportError: cannot import name 'coalition' from 'services.dap' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/dap/__init__.py)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wdap_2g_coalition_and_estate_wide_bound.py:174: ImportError: cannot import name 'coalition' from 'services.dap' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/dap/__init__.py)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wdap_2g_coalition_and_estate_wide_bound.py:213: ImportError: cannot import name 'coalition' from 'services.dap' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/dap/__init__.py)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wdap_2g_coalition_and_estate_wide_bound.py:241: ImportError: cannot import name 'coalition' from 'services.dap' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/dap/__init__.py)
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wdap_2g_coalition_and_estate_wide_bound.py::test_2g_module_fabric_present
+FAILED tests/invariants/test_wdap_2g_coalition_and_estate_wide_bound.py::test_dap_34_coalition_shared_party_treated_as_one_actor
+FAILED tests/invariants/test_wdap_2g_coalition_and_estate_wide_bound.py::test_dap_34_coalition_shared_mandate_lineage_treated_as_one_actor
+FAILED tests/invariants/test_wdap_2g_coalition_and_estate_wide_bound.py::test_dap_34_coordination_signature_deferred_to_r_11
+FAILED tests/invariants/test_wdap_2g_coalition_and_estate_wide_bound.py::test_dap_35_estate_wide_budget_default_pending_override
+FAILED tests/invariants/test_wdap_2g_coalition_and_estate_wide_bound.py::test_dap_35_estate_wide_ceiling_sums_across_all_parties
+FAILED tests/invariants/test_wdap_2g_coalition_and_estate_wide_bound.py::test_dap_35_breach_is_floor_violation_severance_eligible
+FAILED tests/invariants/test_wdap_2g_coalition_and_estate_wide_bound.py::test_ac_10_hard_ceiling_bounds_aggregate_agent_effect_jointly
+============================== 8 failed in 0.66s ===============================

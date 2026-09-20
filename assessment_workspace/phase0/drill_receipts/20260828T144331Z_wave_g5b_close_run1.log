@@ -1,0 +1,605 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.4.2, pluggy-1.6.0
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: asyncio-1.4.0, xdist-3.8.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collected 2595 items
+
+tests/invariants/test_8_ext.py ....................                      [  0%]
+tests/invariants/test_9_2a_purge_ast_gate.py ....                        [  0%]
+tests/invariants/test_9_2a_real_perception.py .........................  [  1%]
+tests/invariants/test_a17_16_model_form_offer.py .......                 [  2%]
+tests/invariants/test_a18_6_async_delivery_adoption.py ..                [  2%]
+tests/invariants/test_actor_declaration_v0_contract_frozen.py .          [  2%]
+tests/invariants/test_admission_refusal_dispatch.py ..........           [  2%]
+tests/invariants/test_admission_refusal_v0_contract_frozen.py .          [  2%]
+tests/invariants/test_admit_refuses_undeclared_actor.py ......           [  2%]
+tests/invariants/test_answer_fluency_af_g1_to_g8.py .............        [  3%]
+tests/invariants/test_approval_contracts_frozen.py ..                    [  3%]
+tests/invariants/test_artifact_store.py .....................            [  4%]
+tests/invariants/test_ast_egress_gate.py ..                              [  4%]
+tests/invariants/test_audio_plane_hermetic_no_external_calls.py ..       [  4%]
+tests/invariants/test_audio_plane_no_sibling_services.py ...             [  4%]
+tests/invariants/test_audio_segment_v0_contract_frozen.py ........       [  4%]
+tests/invariants/test_audit_trail_overview.py ....................       [  5%]
+tests/invariants/test_backfilled_contract_snapshots.py ...               [  5%]
+tests/invariants/test_baseline_line_v0_contract_frozen.py .              [  5%]
+tests/invariants/test_baseline_no_new_breakage.py ............           [  6%]
+tests/invariants/test_ca1_audit_sweep_cp_e6.py ....                      [  6%]
+tests/invariants/test_ca1_n2_breach_notification_enforcement.py ........ [  6%]
+...                                                                      [  6%]
+tests/invariants/test_ca1_n3_erasure_enforcement.py .......              [  7%]
+tests/invariants/test_ca1_n5_ledger_continuity_enforcement.py ......     [  7%]
+tests/invariants/test_cd5_2_no_schedule_assertions.py ......             [  7%]
+tests/invariants/test_census_dimensions.py ..................            [  8%]
+tests/invariants/test_census_dimensions_ast_gate.py ..                   [  8%]
+tests/invariants/test_census_dimensions_wire_shape.py .....              [  8%]
+tests/invariants/test_chokepoint_registers_all_crossings.py ............ [  9%]
+...                                                                      [  9%]
+tests/invariants/test_claims_validation_row_v0_contract_frozen.py ...... [  9%]
+...                                                                      [  9%]
+tests/invariants/test_close_run_whitepaper_ref_citation.py .....         [  9%]
+tests/invariants/test_commercial_cut_man_g1.py ..................        [ 10%]
+tests/invariants/test_composed_conclusion_class_from_solva_boundary.py . [ 10%]
+.                                                                        [ 10%]
+tests/invariants/test_composed_conclusion_dispatch.py ......             [ 10%]
+tests/invariants/test_composed_conclusion_v0_contract_frozen.py ..       [ 10%]
+tests/invariants/test_compute_seam_artifact_hash_verified.py ...         [ 10%]
+tests/invariants/test_compute_seam_no_unledgered_exec.py ...             [ 10%]
+tests/invariants/test_conclusion_class_signature.py ...                  [ 11%]
+tests/invariants/test_connect_draft_roundtrip.py ...........             [ 11%]
+tests/invariants/test_connect_gpu_acceptance_wired.py ..........         [ 11%]
+tests/invariants/test_connect_gpu_pipeline.py ...............            [ 12%]
+tests/invariants/test_connect_gpu_scope_S_or_M.py ..                     [ 12%]
+tests/invariants/test_connect_ui1c_gates.py ...........                  [ 12%]
+tests/invariants/test_containment_frozen.py ..                           [ 13%]
+tests/invariants/test_continuity_attestation_frozen.py .                 [ 13%]
+tests/invariants/test_cost_ledger_w6_cp2.py .............                [ 13%]
+tests/invariants/test_cp_e7_digicow_pii_sanitizer_sweep.py .....         [ 13%]
+tests/invariants/test_credentials_paste_parser.py ...................... [ 14%]
+                                                                         [ 14%]
+tests/invariants/test_critic_pass_lift.py ...........................    [ 15%]
+tests/invariants/test_dispatch_grain_form_refusal.py ....                [ 15%]
+tests/invariants/test_dispatch_shape_responsive.py ............          [ 16%]
+tests/invariants/test_dispatch_v0_untouched.py ...                       [ 16%]
+tests/invariants/test_doc14_020_rights_quarantine_enforcement.py ....... [ 16%]
+                                                                         [ 16%]
+tests/invariants/test_emit_moac_chokepoint_admission.py .....            [ 16%]
+tests/invariants/test_engineer_key_grant_e2_taxonomy.py .......          [ 17%]
+tests/invariants/test_engineer_key_grant_ledger.py ...                   [ 17%]
+tests/invariants/test_engineer_key_grant_load_bearing_wire_shape.py .... [ 17%]
+....                                                                     [ 17%]
+tests/invariants/test_ep4_terminal_test_guard.py .......                 [ 17%]
+tests/invariants/test_ep5_non_adoption_invariant.py .....                [ 18%]
+tests/invariants/test_estate_keys_and_connect_estate.py ............     [ 18%]
+tests/invariants/test_evidence_register_module.py ........               [ 18%]
+tests/invariants/test_evidence_register_router_user_path.py ........     [ 19%]
+tests/invariants/test_evidence_register_row_v0_contract_frozen.py ...... [ 19%]
+....                                                                     [ 19%]
+tests/invariants/test_extraction_params_v0.py ...                        [ 19%]
+tests/invariants/test_feasibility_dual_consumer_schema.py ...            [ 19%]
+tests/invariants/test_feasibility_honesty_under_absence.py ....          [ 19%]
+tests/invariants/test_feasibility_readonly.py .                          [ 19%]
+tests/invariants/test_feasibility_result_v0_contract_frozen.py .         [ 19%]
+tests/invariants/test_five_rings_v0_zero_mutation_ast_cell.py ...        [ 20%]
+tests/invariants/test_fixture_refresh_fr_g1_to_g7.py .......             [ 20%]
+tests/invariants/test_floor_feasibility_shared_derivation.py ....        [ 20%]
+tests/invariants/test_frozen_contract_snapshot_parity.py ...             [ 20%]
+tests/invariants/test_govern_g_g1_to_g_g8.py ........                    [ 20%]
+tests/invariants/test_govern_ui1b_gates.py .................             [ 21%]
+tests/invariants/test_governed_seat_fill_full_http_journey.py ....       [ 21%]
+tests/invariants/test_grain_compatibility_shared_source.py .....         [ 21%]
+tests/invariants/test_handoff_artifact_reachable_waveb.py ....           [ 22%]
+tests/invariants/test_handoff_contract_v0_contract_frozen.py .           [ 22%]
+tests/invariants/test_handoff_route_readonly.py .......                  [ 22%]
+tests/invariants/test_harden_sh_defeats_include_precedence.py ...        [ 22%]
+tests/invariants/test_hardening_orchestrator.py .........                [ 22%]
+tests/invariants/test_invariant_contract_snapshots.py ......             [ 23%]
+tests/invariants/test_ip_allowlist_middleware.py ................        [ 23%]
+tests/invariants/test_ip_allowlist_owner_access.py .................     [ 24%]
+tests/invariants/test_layer_c_signal_ring_conformance.py .......         [ 24%]
+tests/invariants/test_ledger_absorbs_outer_gate_and_v2_via_stamp_audit.py . [ 24%]
+....                                                                     [ 24%]
+tests/invariants/test_license_class_config_governs_taxonomy.py ...       [ 24%]
+tests/invariants/test_lift_manifest_schema.py ..                         [ 25%]
+tests/invariants/test_llm_chokepoint_sole_importer.py ......             [ 25%]
+tests/invariants/test_llm_crossing_receipt_metering.py ....              [ 25%]
+tests/invariants/test_llm_egress_allowlist_provider_scoped.py .....      [ 25%]
+tests/invariants/test_llm_masking_tier_enforced.py .....                 [ 25%]
+tests/invariants/test_llm_purpose_gate_refuses_unlisted.py .......       [ 26%]
+tests/invariants/test_lowered_standard_w6_cp5.py .........               [ 26%]
+tests/invariants/test_master_admin_auth_reconciliation.py .............. [ 26%]
+...                                                                      [ 27%]
+tests/invariants/test_master_admin_pending_seams.py ......               [ 27%]
+tests/invariants/test_master_admin_recent_actions.py .....               [ 27%]
+tests/invariants/test_master_admin_tier_lock_path_a_ledger.py ...        [ 27%]
+tests/invariants/test_memory_engineer_key_grant_e2e_propagation.py ..... [ 27%]
+..                                                                       [ 27%]
+tests/invariants/test_memory_observability_o_g1_to_o_g6.py ........      [ 28%]
+tests/invariants/test_memory_service_m_g1_to_m_g9.py ................... [ 28%]
+.....                                                                    [ 29%]
+tests/invariants/test_mirage_artifact_v0_contract_frozen.py .........    [ 29%]
+tests/invariants/test_mirage_contracts_frozen.py ...                     [ 29%]
+tests/invariants/test_model_acceptance_card_v0_contract_frozen.py .      [ 29%]
+tests/invariants/test_mtafiti_invariants.py ..................           [ 30%]
+tests/invariants/test_n_series_contracts_frozen.py ..                    [ 30%]
+tests/invariants/test_no_unauthorized_deletion_path.py ...               [ 30%]
+tests/invariants/test_northena_admit_gate_converge_ledger.py ........... [ 30%]
+.......                                                                  [ 31%]
+tests/invariants/test_northena_ledger_retention.py ..                    [ 31%]
+tests/invariants/test_northena_ledger_row_v0.py .                        [ 31%]
+tests/invariants/test_objective_request_v2_contract_frozen.py .          [ 31%]
+tests/invariants/test_opportunity_briefs_ob_g1_to_g5.py ................ [ 31%]
+                                                                         [ 31%]
+tests/invariants/test_optimizer_comparison_v0_contract_frozen.py ....... [ 32%]
+..                                                                       [ 32%]
+tests/invariants/test_outer_gate_irreversibility.py ..........           [ 32%]
+tests/invariants/test_p1_custody_closure.py ............................ [ 33%]
+....                                                                     [ 33%]
+tests/invariants/test_p2_buildable_now.py .........................      [ 34%]
+tests/invariants/test_parity_seat_extends_thin_kernel.py ..              [ 34%]
+tests/invariants/test_phase3_subcycle1_gates.py ..........               [ 35%]
+tests/invariants/test_phase_5_stage_b_async_delivery.py ................ [ 35%]
+..................                                                       [ 36%]
+tests/invariants/test_phase_6_stage_b_economics.py ..................... [ 37%]
+...                                                                      [ 37%]
+tests/invariants/test_phase_7_stage_b_1_wizard.py ...................... [ 38%]
+...............                                                          [ 38%]
+tests/invariants/test_phase_7_stage_b_2_wizard.py ...................... [ 39%]
+.....................                                                    [ 40%]
+tests/invariants/test_phase_7_stage_b_3_wizard.py ...................... [ 41%]
+....................................................s....                [ 43%]
+tests/invariants/test_phase_8_b_1_auth_and_shims.py .................... [ 44%]
+.............                                                            [ 44%]
+tests/invariants/test_phase_8_b_2_operator_and_scope_gate.py ........... [ 45%]
+...                                                                      [ 45%]
+tests/invariants/test_phase_8_b_5a_compliance.py ....................... [ 46%]
+..........                                                               [ 46%]
+tests/invariants/test_phase_8_b_5b.py ..........................         [ 47%]
+tests/invariants/test_phase_8_seam_3_sub_stage_1.py .................... [ 48%]
+..                                                                       [ 48%]
+tests/invariants/test_phase_8_seam_3_sub_stage_2.py .................... [ 49%]
+............                                                             [ 49%]
+tests/invariants/test_phase_8_seam_3_sub_stage_3.py .................... [ 50%]
+.........................                                                [ 51%]
+tests/invariants/test_phase_9_sub_stage_9_1_and_9_3.py ................. [ 52%]
+..............................                                           [ 53%]
+tests/invariants/test_pricing_paths_b_honest_501.py ......               [ 53%]
+tests/invariants/test_production_housing_ph_g1_to_g6.py ................ [ 54%]
+........                                                                 [ 54%]
+tests/invariants/test_qualified_data_outer_gate_ride.py ..               [ 54%]
+tests/invariants/test_qualified_data_selection.py ......                 [ 54%]
+tests/invariants/test_r4_2_transform_forms_wired.py ...                  [ 54%]
+tests/invariants/test_r4_3_memory_wired.py ...                           [ 55%]
+tests/invariants/test_r4_4_handoff_wired.py ...                          [ 55%]
+tests/invariants/test_r4_5_opportunity_briefs_pipeline_wired.py ....     [ 55%]
+tests/invariants/test_r4_6_7_whitepapers_and_n_series.py .....           [ 55%]
+tests/invariants/test_r4_8_critic_seam_producer_wiring.py .....          [ 55%]
+tests/invariants/test_rds_data_submit.py ........................        [ 56%]
+tests/invariants/test_reasoning_faculty_isolation.py ................    [ 57%]
+tests/invariants/test_recipe_seat_and_optimizer_harness.py ............. [ 57%]
+.                                                                        [ 57%]
+tests/invariants/test_record_matrix_thin_kernel.py ......                [ 58%]
+tests/invariants/test_reflection_before_commit.py ............           [ 58%]
+tests/invariants/test_registry_facts.py ...............                  [ 59%]
+tests/invariants/test_registry_facts_emergent_universal_listed.py .....  [ 59%]
+tests/invariants/test_registry_prove_ui1d_gates.py .................     [ 59%]
+tests/invariants/test_registry_recipe_version_m_d_extension.py ......    [ 60%]
+tests/invariants/test_remote_harden_sudo_invocation.py ..                [ 60%]
+tests/invariants/test_retention_enforcement_w6_cp3.py ..........         [ 60%]
+tests/invariants/test_rules_update_lifecycle_frozen.py ...               [ 60%]
+tests/invariants/test_service_1_invariants.py .......                    [ 61%]
+tests/invariants/test_service_1_refusal_envelope.py ........             [ 61%]
+tests/invariants/test_sever_certainty_signal_v0_contract_frozen.py ..... [ 61%]
+....                                                                     [ 61%]
+tests/invariants/test_shaping_wizard_r3.py .........                     [ 62%]
+tests/invariants/test_shield_dry_run_preview.py .......                  [ 62%]
+tests/invariants/test_ship_manifest_dod.py ........                      [ 62%]
+tests/invariants/test_ship_manifest_dod_collection_health.py ..........  [ 63%]
+tests/invariants/test_ship_manifest_dod_route_table_drift.py ........... [ 63%]
+.......................................................                  [ 65%]
+tests/invariants/test_ship_manifest_dod_runtime_drift_guard.py .         [ 65%]
+tests/invariants/test_signal_ring_dimensions_v0.py ..                    [ 65%]
+tests/invariants/test_skill_file_provenance_v0_contract_frozen.py ...... [ 65%]
+..                                                                       [ 65%]
+tests/invariants/test_skill_files_module.py ........                     [ 66%]
+tests/invariants/test_skill_files_router_user_path.py .......            [ 66%]
+tests/invariants/test_solva_assertion_boundary.py ..........             [ 66%]
+tests/invariants/test_solva_reasoning_stages.py ......                   [ 67%]
+tests/invariants/test_solva_stages_4_6_grey_mirror_groundwork.py ....... [ 67%]
+                                                                         [ 67%]
+tests/invariants/test_solva_trace_ledger_integration.py ...              [ 67%]
+tests/invariants/test_ssh_seam_multihost_password_auth.py .............. [ 68%]
+........                                                                 [ 68%]
+tests/invariants/test_substrate_drop_gate.py .............               [ 68%]
+tests/invariants/test_targeta_invariants.py ............                 [ 69%]
+tests/invariants/test_task_identity_thin_kernel.py .....                 [ 69%]
+tests/invariants/test_team_ui1e_gates.py .............                   [ 70%]
+tests/invariants/test_thinklab_reasoning_wire.py ...                     [ 70%]
+tests/invariants/test_trace_lens_cross_engine_correlation.py .......     [ 70%]
+tests/invariants/test_trace_lens_readonly.py .................           [ 71%]
+tests/invariants/test_trainer_runner_module.py ............              [ 71%]
+tests/invariants/test_training_endpoints.py .........                    [ 71%]
+tests/invariants/test_training_material_admit_v0_contract_frozen.py .... [ 72%]
+...                                                                      [ 72%]
+tests/invariants/test_training_module.py ..................              [ 72%]
+tests/invariants/test_training_params_v0_contract_frozen.py ........     [ 73%]
+tests/invariants/test_training_router_cp5_user_path.py .........         [ 73%]
+tests/invariants/test_training_run_v0_contract_frozen.py ..........      [ 73%]
+tests/invariants/test_training_runs_router_user_path.py .......          [ 74%]
+tests/invariants/test_transform_forms.py .....................           [ 74%]
+tests/invariants/test_use_data_commission_verdict.py .................   [ 75%]
+tests/invariants/test_v0_paths_byte_identical_after_4a.py .              [ 75%]
+tests/invariants/test_v0_paths_byte_identical_after_4b.py ..             [ 75%]
+tests/invariants/test_v0_paths_byte_identical_after_5b.py .............. [ 76%]
+......                                                                   [ 76%]
+tests/invariants/test_v0_paths_byte_identical_after_6b.py .............. [ 77%]
+........                                                                 [ 77%]
+tests/invariants/test_v0_paths_byte_identical_after_7b_1.py ............ [ 77%]
+..............                                                           [ 78%]
+tests/invariants/test_v2_gate_refusal_cumulative.py .............        [ 78%]
+tests/invariants/test_v8_substitution_rules_bind_to_rendered_dom.py .... [ 79%]
+                                                                         [ 79%]
+tests/invariants/test_w10_cp1_ruling_1_firing_drill.py .......           [ 79%]
+tests/invariants/test_w10_cp2_mirage_machinery.py .................      [ 79%]
+tests/invariants/test_w10_cp3_drills_and_fitness.py ............         [ 80%]
+tests/invariants/test_w10_cp4_reserved_decisions.py .............        [ 80%]
+tests/invariants/test_w10_cp5_witness_fabric.py ...............          [ 81%]
+tests/invariants/test_w10_cp6_whitepaper_draft.py .......                [ 81%]
+tests/invariants/test_w10_cp7_doc14_expansion.py ........                [ 82%]
+tests/invariants/test_w10_cp8_state_endpoints.py .......                 [ 82%]
+tests/invariants/test_w10_cp9_composite_lock.py .....                    [ 82%]
+tests/invariants/test_w5_cp4_backend_endpoints.py .........              [ 82%]
+tests/invariants/test_w7_cp1_training_rates.py .....                     [ 83%]
+tests/invariants/test_w7_cp3_model_registry.py .............             [ 83%]
+tests/invariants/test_w7_cp4_model_admission_ceremony.py .........       [ 83%]
+tests/invariants/test_w7_cp5_baseline_line_and_recheck.py ........       [ 84%]
+tests/invariants/test_w7_cp7_router_mount.py ...........                 [ 84%]
+tests/invariants/test_w8_cp1_canonical_projection.py ........            [ 84%]
+tests/invariants/test_w8_cp1_pod_shell_boot_and_mount.py ...             [ 85%]
+tests/invariants/test_w8_cp2_ca1_009_handoff.py ......                   [ 85%]
+tests/invariants/test_w8_cp3_approvals_ceremony.py ........              [ 85%]
+tests/invariants/test_w8_cp4_n_series_scaffolding.py ......              [ 85%]
+tests/invariants/test_w8_cp5_trace_surface.py ......                     [ 86%]
+tests/invariants/test_w8_cp6_rules_update_lifecycle.py ...........       [ 86%]
+tests/invariants/test_w9_cp1_watch_seam.py ............                  [ 86%]
+tests/invariants/test_w9_cp2_route_recheck_failure.py ........           [ 87%]
+tests/invariants/test_w9_cp3_route_staleness_flag.py .......             [ 87%]
+tests/invariants/test_w9_cp4_continuity_attestation.py .......           [ 87%]
+tests/invariants/test_w9_cp5_containment.py ...........                  [ 88%]
+tests/invariants/test_watch_action_v0_contract_frozen.py ............    [ 88%]
+tests/invariants/test_watch_cp_c2_http_journey.py .......                [ 88%]
+tests/invariants/test_watch_cp_c2_macho_mkono.py ..................      [ 89%]
+tests/invariants/test_watch_cp_c3_http_journey.py ........               [ 89%]
+tests/invariants/test_watch_cp_c3_mark_dye_pack.py ..........            [ 90%]
+tests/invariants/test_watch_cp_c3_mirage_isolation.py ........           [ 90%]
+tests/invariants/test_watch_cp_c4_http_journey.py ......                 [ 90%]
+tests/invariants/test_watch_cp_c4_witness.py ........                    [ 91%]
+tests/invariants/test_watch_cp_c5_console_honesty.py .....               [ 91%]
+tests/invariants/test_watch_seam_frozen.py ..                            [ 91%]
+tests/invariants/test_wave_f_pin_vs_installed_environment_invariant.py . [ 91%]
+....                                                                     [ 91%]
+tests/invariants/test_wave_g_pod_shell_frontend_mirror.py ........       [ 91%]
+tests/invariants/test_wave_g_v8_shell_port.py .......................... [ 92%]
+........................................................................ [ 95%]
+............................FFFFFFFF.F.................................. [ 98%]
+..................................                                       [ 99%]
+tests/invariants/test_whitepaper_draft_frozen.py .                       [ 99%]
+tests/invariants/test_witness_fabric_frozen.py ...                       [100%]
+============================ BASELINE_GUARD receipt ============================
+passed=2585 / baseline-failures-remaining=0 / quarantined=0
+  manifest: tests/invariants/baseline_failures.json
+  scope: BASELINE_GUARD=1  ·  invocation: cd backend && BASELINE_GUARD=1 python -m pytest tests/invariants/
+!!!!!!!!!!!!! BASELINE_GUARD · HALT AND REPORT · owner ruling (c) !!!!!!!!!!!!!!
+[V1] 9 NEW failure(s) OUTSIDE manifest:
+    tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_declares_topline_tile_substitution[Data types present-5]
+    tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_declares_topline_tile_substitution[Held in total-86.4 TB]
+    tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_declares_topline_tile_substitution[Languages observed-7]
+    tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_declares_topline_tile_substitution[Licensed for external use-18%]
+    tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_declares_topline_tile_substitution[Reduced to reusable memory-58%]
+    tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_declares_topline_tile_substitution[Share already verified-34%]
+    tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_declares_topline_tile_substitution[Share carrying PII-41%]
+    tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_declares_topline_tile_substitution[Share measured-78%]
+    tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_declares_topline_tile_substitution[Sources connected-12]
+[V3] Passed count 2585 < ratchet floor 2594
+  No silent rebaselining. Report drift to owner verbatim.
+
+=================================== FAILURES ===================================
+____ test_app_js_declares_topline_tile_substitution[Held in total-86.4 TB] _____
+
+label = 'Held in total'
+
+    @pytest.mark.parametrize("label,dummy", _G4_TOPLINE_TILES)
+    def test_app_js_declares_topline_tile_substitution(label, dummy):
+        """CORRECTION 2: EVERY topline statistic tile gets the treatment.
+    
+        The App.js substitution map MUST reference each tile's label
+        literally as an anchor (so the substitution engine can find the
+        tile's rendered card in the iframe DOM). Failure here means the
+        dummy figure will still render on the Registry surface.
+        """
+        del dummy  # dummy is asserted separately by test 11c
+        src = _app_js_executable()
+>       assert label in src, (
+            f"App.js has no substitution rule targeting topline tile {label!r}. "
+            f"Wave G4 CORRECTION 2 requires all 10 topline tiles to be "
+            f"substituted (real value or HONEST-EMPTY) — never left as dummy."
+        )
+E       AssertionError: App.js has no substitution rule targeting topline tile 'Held in total'. Wave G4 CORRECTION 2 requires all 10 topline tiles to be substituted (real value or HONEST-EMPTY) — never left as dummy.
+E       assert 'Held in total' in 'import "@/App.css";\nimport { useEffect, useRef, useState } from "react";\nimport { BrowserRouter, Routes, Route } fr...element={<PortalIframe />} />\n        </Routes>\n      </BrowserRouter>\n    </div>\n  );\n}\n\nexport default App;\n'
+
+tests/invariants/test_wave_g_v8_shell_port.py:1090: AssertionError
+_____ test_app_js_declares_topline_tile_substitution[Sources connected-12] _____
+
+label = 'Sources connected'
+
+    @pytest.mark.parametrize("label,dummy", _G4_TOPLINE_TILES)
+    def test_app_js_declares_topline_tile_substitution(label, dummy):
+        """CORRECTION 2: EVERY topline statistic tile gets the treatment.
+    
+        The App.js substitution map MUST reference each tile's label
+        literally as an anchor (so the substitution engine can find the
+        tile's rendered card in the iframe DOM). Failure here means the
+        dummy figure will still render on the Registry surface.
+        """
+        del dummy  # dummy is asserted separately by test 11c
+        src = _app_js_executable()
+>       assert label in src, (
+            f"App.js has no substitution rule targeting topline tile {label!r}. "
+            f"Wave G4 CORRECTION 2 requires all 10 topline tiles to be "
+            f"substituted (real value or HONEST-EMPTY) — never left as dummy."
+        )
+E       AssertionError: App.js has no substitution rule targeting topline tile 'Sources connected'. Wave G4 CORRECTION 2 requires all 10 topline tiles to be substituted (real value or HONEST-EMPTY) — never left as dummy.
+E       assert 'Sources connected' in 'import "@/App.css";\nimport { useEffect, useRef, useState } from "react";\nimport { BrowserRouter, Routes, Route } fr...element={<PortalIframe />} />\n        </Routes>\n      </BrowserRouter>\n    </div>\n  );\n}\n\nexport default App;\n'
+
+tests/invariants/test_wave_g_v8_shell_port.py:1090: AssertionError
+______ test_app_js_declares_topline_tile_substitution[Share measured-78%] ______
+
+label = 'Share measured'
+
+    @pytest.mark.parametrize("label,dummy", _G4_TOPLINE_TILES)
+    def test_app_js_declares_topline_tile_substitution(label, dummy):
+        """CORRECTION 2: EVERY topline statistic tile gets the treatment.
+    
+        The App.js substitution map MUST reference each tile's label
+        literally as an anchor (so the substitution engine can find the
+        tile's rendered card in the iframe DOM). Failure here means the
+        dummy figure will still render on the Registry surface.
+        """
+        del dummy  # dummy is asserted separately by test 11c
+        src = _app_js_executable()
+>       assert label in src, (
+            f"App.js has no substitution rule targeting topline tile {label!r}. "
+            f"Wave G4 CORRECTION 2 requires all 10 topline tiles to be "
+            f"substituted (real value or HONEST-EMPTY) — never left as dummy."
+        )
+E       AssertionError: App.js has no substitution rule targeting topline tile 'Share measured'. Wave G4 CORRECTION 2 requires all 10 topline tiles to be substituted (real value or HONEST-EMPTY) — never left as dummy.
+E       assert 'Share measured' in 'import "@/App.css";\nimport { useEffect, useRef, useState } from "react";\nimport { BrowserRouter, Routes, Route } fr...element={<PortalIframe />} />\n        </Routes>\n      </BrowserRouter>\n    </div>\n  );\n}\n\nexport default App;\n'
+
+tests/invariants/test_wave_g_v8_shell_port.py:1090: AssertionError
+_____ test_app_js_declares_topline_tile_substitution[Data types present-5] _____
+
+label = 'Data types present'
+
+    @pytest.mark.parametrize("label,dummy", _G4_TOPLINE_TILES)
+    def test_app_js_declares_topline_tile_substitution(label, dummy):
+        """CORRECTION 2: EVERY topline statistic tile gets the treatment.
+    
+        The App.js substitution map MUST reference each tile's label
+        literally as an anchor (so the substitution engine can find the
+        tile's rendered card in the iframe DOM). Failure here means the
+        dummy figure will still render on the Registry surface.
+        """
+        del dummy  # dummy is asserted separately by test 11c
+        src = _app_js_executable()
+>       assert label in src, (
+            f"App.js has no substitution rule targeting topline tile {label!r}. "
+            f"Wave G4 CORRECTION 2 requires all 10 topline tiles to be "
+            f"substituted (real value or HONEST-EMPTY) — never left as dummy."
+        )
+E       AssertionError: App.js has no substitution rule targeting topline tile 'Data types present'. Wave G4 CORRECTION 2 requires all 10 topline tiles to be substituted (real value or HONEST-EMPTY) — never left as dummy.
+E       assert 'Data types present' in 'import "@/App.css";\nimport { useEffect, useRef, useState } from "react";\nimport { BrowserRouter, Routes, Route } fr...element={<PortalIframe />} />\n        </Routes>\n      </BrowserRouter>\n    </div>\n  );\n}\n\nexport default App;\n'
+
+tests/invariants/test_wave_g_v8_shell_port.py:1090: AssertionError
+_____ test_app_js_declares_topline_tile_substitution[Languages observed-7] _____
+
+label = 'Languages observed'
+
+    @pytest.mark.parametrize("label,dummy", _G4_TOPLINE_TILES)
+    def test_app_js_declares_topline_tile_substitution(label, dummy):
+        """CORRECTION 2: EVERY topline statistic tile gets the treatment.
+    
+        The App.js substitution map MUST reference each tile's label
+        literally as an anchor (so the substitution engine can find the
+        tile's rendered card in the iframe DOM). Failure here means the
+        dummy figure will still render on the Registry surface.
+        """
+        del dummy  # dummy is asserted separately by test 11c
+        src = _app_js_executable()
+>       assert label in src, (
+            f"App.js has no substitution rule targeting topline tile {label!r}. "
+            f"Wave G4 CORRECTION 2 requires all 10 topline tiles to be "
+            f"substituted (real value or HONEST-EMPTY) — never left as dummy."
+        )
+E       AssertionError: App.js has no substitution rule targeting topline tile 'Languages observed'. Wave G4 CORRECTION 2 requires all 10 topline tiles to be substituted (real value or HONEST-EMPTY) — never left as dummy.
+E       assert 'Languages observed' in 'import "@/App.css";\nimport { useEffect, useRef, useState } from "react";\nimport { BrowserRouter, Routes, Route } fr...element={<PortalIframe />} />\n        </Routes>\n      </BrowserRouter>\n    </div>\n  );\n}\n\nexport default App;\n'
+
+tests/invariants/test_wave_g_v8_shell_port.py:1090: AssertionError
+__ test_app_js_declares_topline_tile_substitution[Share already verified-34%] __
+
+label = 'Share already verified'
+
+    @pytest.mark.parametrize("label,dummy", _G4_TOPLINE_TILES)
+    def test_app_js_declares_topline_tile_substitution(label, dummy):
+        """CORRECTION 2: EVERY topline statistic tile gets the treatment.
+    
+        The App.js substitution map MUST reference each tile's label
+        literally as an anchor (so the substitution engine can find the
+        tile's rendered card in the iframe DOM). Failure here means the
+        dummy figure will still render on the Registry surface.
+        """
+        del dummy  # dummy is asserted separately by test 11c
+        src = _app_js_executable()
+>       assert label in src, (
+            f"App.js has no substitution rule targeting topline tile {label!r}. "
+            f"Wave G4 CORRECTION 2 requires all 10 topline tiles to be "
+            f"substituted (real value or HONEST-EMPTY) — never left as dummy."
+        )
+E       AssertionError: App.js has no substitution rule targeting topline tile 'Share already verified'. Wave G4 CORRECTION 2 requires all 10 topline tiles to be substituted (real value or HONEST-EMPTY) — never left as dummy.
+E       assert 'Share already verified' in 'import "@/App.css";\nimport { useEffect, useRef, useState } from "react";\nimport { BrowserRouter, Routes, Route } fr...element={<PortalIframe />} />\n        </Routes>\n      </BrowserRouter>\n    </div>\n  );\n}\n\nexport default App;\n'
+
+tests/invariants/test_wave_g_v8_shell_port.py:1090: AssertionError
+____ test_app_js_declares_topline_tile_substitution[Share carrying PII-41%] ____
+
+label = 'Share carrying PII'
+
+    @pytest.mark.parametrize("label,dummy", _G4_TOPLINE_TILES)
+    def test_app_js_declares_topline_tile_substitution(label, dummy):
+        """CORRECTION 2: EVERY topline statistic tile gets the treatment.
+    
+        The App.js substitution map MUST reference each tile's label
+        literally as an anchor (so the substitution engine can find the
+        tile's rendered card in the iframe DOM). Failure here means the
+        dummy figure will still render on the Registry surface.
+        """
+        del dummy  # dummy is asserted separately by test 11c
+        src = _app_js_executable()
+>       assert label in src, (
+            f"App.js has no substitution rule targeting topline tile {label!r}. "
+            f"Wave G4 CORRECTION 2 requires all 10 topline tiles to be "
+            f"substituted (real value or HONEST-EMPTY) — never left as dummy."
+        )
+E       AssertionError: App.js has no substitution rule targeting topline tile 'Share carrying PII'. Wave G4 CORRECTION 2 requires all 10 topline tiles to be substituted (real value or HONEST-EMPTY) — never left as dummy.
+E       assert 'Share carrying PII' in 'import "@/App.css";\nimport { useEffect, useRef, useState } from "react";\nimport { BrowserRouter, Routes, Route } fr...element={<PortalIframe />} />\n        </Routes>\n      </BrowserRouter>\n    </div>\n  );\n}\n\nexport default App;\n'
+
+tests/invariants/test_wave_g_v8_shell_port.py:1090: AssertionError
+_ test_app_js_declares_topline_tile_substitution[Licensed for external use-18%] _
+
+label = 'Licensed for external use'
+
+    @pytest.mark.parametrize("label,dummy", _G4_TOPLINE_TILES)
+    def test_app_js_declares_topline_tile_substitution(label, dummy):
+        """CORRECTION 2: EVERY topline statistic tile gets the treatment.
+    
+        The App.js substitution map MUST reference each tile's label
+        literally as an anchor (so the substitution engine can find the
+        tile's rendered card in the iframe DOM). Failure here means the
+        dummy figure will still render on the Registry surface.
+        """
+        del dummy  # dummy is asserted separately by test 11c
+        src = _app_js_executable()
+>       assert label in src, (
+            f"App.js has no substitution rule targeting topline tile {label!r}. "
+            f"Wave G4 CORRECTION 2 requires all 10 topline tiles to be "
+            f"substituted (real value or HONEST-EMPTY) — never left as dummy."
+        )
+E       AssertionError: App.js has no substitution rule targeting topline tile 'Licensed for external use'. Wave G4 CORRECTION 2 requires all 10 topline tiles to be substituted (real value or HONEST-EMPTY) — never left as dummy.
+E       assert 'Licensed for external use' in 'import "@/App.css";\nimport { useEffect, useRef, useState } from "react";\nimport { BrowserRouter, Routes, Route } fr...element={<PortalIframe />} />\n        </Routes>\n      </BrowserRouter>\n    </div>\n  );\n}\n\nexport default App;\n'
+
+tests/invariants/test_wave_g_v8_shell_port.py:1090: AssertionError
+_ test_app_js_declares_topline_tile_substitution[Reduced to reusable memory-58%] _
+
+label = 'Reduced to reusable memory'
+
+    @pytest.mark.parametrize("label,dummy", _G4_TOPLINE_TILES)
+    def test_app_js_declares_topline_tile_substitution(label, dummy):
+        """CORRECTION 2: EVERY topline statistic tile gets the treatment.
+    
+        The App.js substitution map MUST reference each tile's label
+        literally as an anchor (so the substitution engine can find the
+        tile's rendered card in the iframe DOM). Failure here means the
+        dummy figure will still render on the Registry surface.
+        """
+        del dummy  # dummy is asserted separately by test 11c
+        src = _app_js_executable()
+>       assert label in src, (
+            f"App.js has no substitution rule targeting topline tile {label!r}. "
+            f"Wave G4 CORRECTION 2 requires all 10 topline tiles to be "
+            f"substituted (real value or HONEST-EMPTY) — never left as dummy."
+        )
+E       AssertionError: App.js has no substitution rule targeting topline tile 'Reduced to reusable memory'. Wave G4 CORRECTION 2 requires all 10 topline tiles to be substituted (real value or HONEST-EMPTY) — never left as dummy.
+E       assert 'Reduced to reusable memory' in 'import "@/App.css";\nimport { useEffect, useRef, useState } from "react";\nimport { BrowserRouter, Routes, Route } fr...element={<PortalIframe />} />\n        </Routes>\n      </BrowserRouter>\n    </div>\n  );\n}\n\nexport default App;\n'
+
+tests/invariants/test_wave_g_v8_shell_port.py:1090: AssertionError
+=============================== warnings summary ===============================
+tests/invariants/test_8_ext.py: 13 warnings
+tests/invariants/test_artifact_store.py: 2 warnings
+tests/invariants/test_connect_ui1c_gates.py: 9 warnings
+tests/invariants/test_engineer_key_grant_e2_taxonomy.py: 4 warnings
+tests/invariants/test_engineer_key_grant_ledger.py: 2 warnings
+tests/invariants/test_govern_g_g1_to_g_g8.py: 6 warnings
+tests/invariants/test_govern_ui1b_gates.py: 15 warnings
+tests/invariants/test_master_admin_auth_reconciliation.py: 10 warnings
+tests/invariants/test_master_admin_pending_seams.py: 1 warning
+tests/invariants/test_master_admin_recent_actions.py: 4 warnings
+tests/invariants/test_master_admin_tier_lock_path_a_ledger.py: 3 warnings
+tests/invariants/test_memory_engineer_key_grant_e2e_propagation.py: 7 warnings
+tests/invariants/test_memory_observability_o_g1_to_o_g6.py: 6 warnings
+tests/invariants/test_memory_service_m_g1_to_m_g9.py: 4 warnings
+tests/invariants/test_p2_buildable_now.py: 3 warnings
+tests/invariants/test_phase3_subcycle1_gates.py: 7 warnings
+tests/invariants/test_phase_6_stage_b_economics.py: 1 warning
+tests/invariants/test_phase_8_b_1_auth_and_shims.py: 3 warnings
+tests/invariants/test_phase_8_b_2_operator_and_scope_gate.py: 7 warnings
+tests/invariants/test_phase_8_b_5a_compliance.py: 15 warnings
+tests/invariants/test_phase_8_b_5b.py: 11 warnings
+tests/invariants/test_phase_8_seam_3_sub_stage_1.py: 3 warnings
+tests/invariants/test_phase_8_seam_3_sub_stage_2.py: 13 warnings
+tests/invariants/test_phase_8_seam_3_sub_stage_3.py: 15 warnings
+tests/invariants/test_phase_9_sub_stage_9_1_and_9_3.py: 16 warnings
+tests/invariants/test_pricing_paths_b_honest_501.py: 6 warnings
+tests/invariants/test_registry_prove_ui1d_gates.py: 15 warnings
+tests/invariants/test_team_ui1e_gates.py: 12 warnings
+tests/invariants/test_trace_lens_cross_engine_correlation.py: 3 warnings
+tests/invariants/test_trace_lens_readonly.py: 1 warning
+tests/invariants/test_use_data_commission_verdict.py: 4 warnings
+  /root/.venv/lib/python3.11/site-packages/jwt/api_jwt.py:147: InsecureKeyLengthWarning: The HMAC key is 30 bytes long, which is below the minimum recommended length of 32 bytes for SHA256. See RFC 7518 Section 3.2.
+    return self._jws.encode(
+
+tests/invariants/test_8_ext.py: 13 warnings
+tests/invariants/test_artifact_store.py: 2 warnings
+tests/invariants/test_connect_ui1c_gates.py: 9 warnings
+tests/invariants/test_engineer_key_grant_e2_taxonomy.py: 4 warnings
+tests/invariants/test_engineer_key_grant_ledger.py: 2 warnings
+tests/invariants/test_govern_g_g1_to_g_g8.py: 6 warnings
+tests/invariants/test_govern_ui1b_gates.py: 15 warnings
+tests/invariants/test_master_admin_auth_reconciliation.py: 10 warnings
+tests/invariants/test_master_admin_pending_seams.py: 1 warning
+tests/invariants/test_master_admin_recent_actions.py: 4 warnings
+tests/invariants/test_master_admin_tier_lock_path_a_ledger.py: 3 warnings
+tests/invariants/test_memory_engineer_key_grant_e2e_propagation.py: 6 warnings
+tests/invariants/test_memory_observability_o_g1_to_o_g6.py: 6 warnings
+tests/invariants/test_memory_service_m_g1_to_m_g9.py: 4 warnings
+tests/invariants/test_p2_buildable_now.py: 3 warnings
+tests/invariants/test_phase3_subcycle1_gates.py: 7 warnings
+tests/invariants/test_phase_6_stage_b_economics.py: 1 warning
+tests/invariants/test_phase_8_b_1_auth_and_shims.py: 3 warnings
+tests/invariants/test_phase_8_b_2_operator_and_scope_gate.py: 7 warnings
+tests/invariants/test_phase_8_b_5a_compliance.py: 15 warnings
+tests/invariants/test_phase_8_b_5b.py: 11 warnings
+tests/invariants/test_phase_8_seam_3_sub_stage_1.py: 3 warnings
+tests/invariants/test_phase_8_seam_3_sub_stage_2.py: 13 warnings
+tests/invariants/test_phase_8_seam_3_sub_stage_3.py: 15 warnings
+tests/invariants/test_phase_9_sub_stage_9_1_and_9_3.py: 13 warnings
+tests/invariants/test_pricing_paths_b_honest_501.py: 6 warnings
+tests/invariants/test_registry_prove_ui1d_gates.py: 15 warnings
+tests/invariants/test_team_ui1e_gates.py: 12 warnings
+tests/invariants/test_trace_lens_cross_engine_correlation.py: 3 warnings
+tests/invariants/test_trace_lens_readonly.py: 1 warning
+tests/invariants/test_use_data_commission_verdict.py: 4 warnings
+  /root/.venv/lib/python3.11/site-packages/jwt/api_jwt.py:368: InsecureKeyLengthWarning: The HMAC key is 30 bytes long, which is below the minimum recommended length of 32 bytes for SHA256. See RFC 7518 Section 3.2.
+    decoded = self.decode_complete(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_declares_topline_tile_substitution[Held in total-86.4 TB]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_declares_topline_tile_substitution[Sources connected-12]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_declares_topline_tile_substitution[Share measured-78%]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_declares_topline_tile_substitution[Data types present-5]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_declares_topline_tile_substitution[Languages observed-7]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_declares_topline_tile_substitution[Share already verified-34%]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_declares_topline_tile_substitution[Share carrying PII-41%]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_declares_topline_tile_substitution[Licensed for external use-18%]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_declares_topline_tile_substitution[Reduced to reusable memory-58%]
+====== 9 failed, 2585 passed, 1 skipped, 438 warnings in 96.59s (0:01:36) ======

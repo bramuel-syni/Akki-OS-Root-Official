@@ -1,0 +1,15 @@
+            assert_r7_estate_budget_pending_override,
+        )
+E       ModuleNotFoundError: No module named 'services.dap.m3_remainder'
+
+tests/invariants/test_wm3_sw11_dap33_dap34_dap35_m3_remainder.py:120: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wm3_sw11_dap33_dap34_dap35_m3_remainder.py::test_sw11_module_fabric
+FAILED tests/invariants/test_wm3_sw11_dap33_dap34_dap35_m3_remainder.py::test_sw11_s22_dap33_m3_remainder_verbatim
+FAILED tests/invariants/test_wm3_sw11_dap33_dap34_dap35_m3_remainder.py::test_sw11_r8_matches_baseline_period_ruling
+FAILED tests/invariants/test_wm3_sw11_dap33_dap34_dap35_m3_remainder.py::test_sw11_s23_dap34_m3_remainder_verbatim
+FAILED tests/invariants/test_wm3_sw11_dap33_dap34_dap35_m3_remainder.py::test_sw11_r11_matches_baseline_period_ruling
+FAILED tests/invariants/test_wm3_sw11_dap33_dap34_dap35_m3_remainder.py::test_sw11_s25_dap35_m3_remainder_verbatim
+FAILED tests/invariants/test_wm3_sw11_dap33_dap34_dap35_m3_remainder.py::test_sw11_r7_estate_budget_pending_override_preserved
+FAILED tests/invariants/test_wm3_sw11_dap33_dap34_dap35_m3_remainder.py::test_sw11_all_three_markers_preserved_as_pending_override
+8 failed in 0.65s

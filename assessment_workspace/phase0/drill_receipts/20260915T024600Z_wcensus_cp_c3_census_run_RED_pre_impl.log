@@ -1,0 +1,25 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.4.2, pluggy-1.6.0
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: asyncio-1.4.0, xdist-3.8.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collected 6 items
+
+tests/invariants/test_wcensus_cp_c3_census_run.py FFFFFF                 [100%]
+
+=================================== FAILURES ===================================
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError: No module named 'services.census_canon.census_run'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wcensus_cp_c3_census_run.py:53: ModuleNotFoundError: No module named 'services.census_canon.census_run'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wcensus_cp_c3_census_run.py:74: ModuleNotFoundError: No module named 'services.census_canon.census_run'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wcensus_cp_c3_census_run.py:99: ModuleNotFoundError: No module named 'services.census_canon.census_run'
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError: No module named 'services.census_canon.census_run'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wcensus_cp_c3_census_run.py:151: ModuleNotFoundError: No module named 'services.census_canon.census_run'
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wcensus_cp_c3_census_run.py::test_cp_c3_module_fabric
+FAILED tests/invariants/test_wcensus_cp_c3_census_run.py::test_cp_c3_census_run_frozen_four_carrier_shape
+FAILED tests/invariants/test_wcensus_cp_c3_census_run.py::test_cp_c3_generate_census_run_id_is_deterministic_matrix_lookup
+FAILED tests/invariants/test_wcensus_cp_c3_census_run.py::test_cp_c3_generate_census_run_id_input_sensitivity
+FAILED tests/invariants/test_wcensus_cp_c3_census_run.py::test_cp_c3_census_run_id_carries_verbatim_canon_docstring
+FAILED tests/invariants/test_wcensus_cp_c3_census_run.py::test_cp_c3_sampled_run_never_presented_as_full_population
+============================== 6 failed in 0.63s ===============================

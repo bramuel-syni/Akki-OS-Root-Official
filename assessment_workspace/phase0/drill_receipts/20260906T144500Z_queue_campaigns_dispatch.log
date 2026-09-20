@@ -1,0 +1,25 @@
+============================================================
+W-MULTI-TABLE-EXTRACT · QUEUE CAMPAIGNS
+============================================================
+
+[1/6] Rsync dispatcher to both hosts
+  akki-vm: rsync rc=255
+  akki-vm-ii: rsync rc=255
+
+[2/6] Extract ussd_plus_sms_deduplicated for akki-vm-ii
+  extracting ussd_plus_sms_deduplicated for akki-vm-ii (['ussd_question_response', 'sms_log'])...
+Traceback (most recent call last):
+  File "/app/assessment_workspace/tools/queue_campaigns.py", line 338, in <module>
+    main()
+  File "/app/assessment_workspace/tools/queue_campaigns.py", line 298, in main
+    dedup_receipt = extract_corpus(
+                    ^^^^^^^^^^^^^^^
+  File "/app/assessment_workspace/tools/queue_campaigns.py", line 112, in extract_corpus
+    r = _p.execute_governed_lora_run(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/assessment_workspace/repos/Extraction-Akki/backend/services/shield_train/pipeline.py", line 349, in execute_governed_lora_run
+    train_stage = stage_corpus_to_host(train_meta, host_slug, remote_dir, ssh_seam)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/assessment_workspace/repos/Extraction-Akki/backend/services/shield_train/pipeline.py", line 159, in stage_corpus_to_host
+    raise TransportIntegrityRefusal(
+services.shield_train.pipeline.TransportIntegrityRefusal: sha256 mismatch after transport to akki-vm-ii:~/akki_journal/shield-train-campaign-b-multi-table-dedup-20260906-20260906T144651Z/train_corpus.jsonl. local='1caadddc755f5a020958df6aefd1063e121096165f675c71d9879ac39109061d' remote=''. Receipt: {'at_utc': '2026-09-06T14:47:00.294374Z', 'host_slug': 'akki-vm-ii', 'remote_dir': '~/akki_journal/shield-train-campaign-b-multi-table-dedup-20260906-20260906T144651Z', 'remote_path': '~/akki_journal/shield-train-campaign-b-multi-table-dedup-20260906-20260906T144651Z/train_corpus.jsonl', 'local_sha256': '1caadddc755f5a020958df6aefd1063e121096165f675c71d9879ac39109061d', 'remote_sha256': '', 'bytes_transported': 11502, 'row_count': 87, 'verified_match': False}

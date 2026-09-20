@@ -1,0 +1,72 @@
+# Green receipt — W1 · Connect drawer-chat rework (FL-P2-27 · W1)
+# Owner ruling T12: right-side drawer chatbox on clicking Connect.
+# v7 grammar exactly (paper #f5f2ea, ink #1b1f27, blue #16274a, sage #1d7a6e, oxblood #b8395b, Iowan/Söhne, --drawer-w min(460px,94vw), --shadow-drawer).
+# Custody: chat log never carries password/aws_secret_access_key. Refs (pw/aws/paste) cleared on unmount + on submit success.
+
+===Frontend (53) ===
+✔ App.js does NOT declare the retired /register/connect/gpu route (1.186678ms)
+✔ frontend has NO token-gate importable code path (2.884585ms)
+✔ no OWNER-ACCESS sign-in card and no owner_token localStorage (1.741362ms)
+✔ GET /register/connect/gpu -> 404 (30.623068ms)
+✔ GET / serves SPA shell (allowed IP) (3.805331ms)
+✔ root '/' route renders Registry (0.306094ms)
+✔ AdminSurface retired (no admin-pill or tile-connect testids anywhere) (1.355231ms)
+✔ Registry.jsx three tabs + '+ Connect' + role-switcher testids present (0.315618ms)
+✔ no fabricated Acme demo numbers anywhere (1.399653ms)
+✔ Registry carries at least one honest-empty-state sentence (0.389119ms)
+✔ ConnectDrawerChat.jsx module exists (0.10707ms)
+✔ Registry '+ Connect' button now opens the drawer chat (not the panel wizard) (0.832818ms)
+✔ ConnectDrawerChat.jsx uses v7 drawer geometry (right-side, drawer-w, shadow-drawer) (0.431129ms)
+✔ ConnectDrawerChat.jsx uses v7 palette + typography tokens (paper/ink/blue, Iowan/Söhne) (0.261931ms)
+✔ ConnectDrawerChat.jsx carries the conversational-shell testids (0.232264ms)
+✔ ConnectDrawerChat.jsx opens with the what-would-you-like-to-connect prompt (0.211413ms)
+✔ ConnectDrawerChat.jsx wires the deterministic parser (no LLM transit for creds) (0.358884ms)
+✔ ConnectDrawerChat.jsx replies conversationally after parse (I read a host, a username...) (0.274333ms)
+✔ ConnectDrawerChat.jsx masks the password in the chat log (never plaintext post-parse) (0.381518ms)
+✔ ConnectDrawerChat.jsx keeps chat state session-only (no localStorage/sessionStorage of creds) (0.29936ms)
+✔ ConnectDrawerChat.jsx fires the compute pipeline (POST /api/connect/gpu) and renders handshake as chat cards (0.221071ms)
+✔ ConnectDrawerChat.jsx fires the data-source pipeline (POST /api/connect/data-source) (0.180894ms)
+✔ ConnectDrawerChat.jsx routes LLM/trained-model to /api/connect/intent (0.170406ms)
+✔ ConnectDrawerChat.jsx does NOT re-open the retired 5-stage sequential wizard (0.336338ms)
+✔ ConnectDrawerChat.jsx renders the provisioning card as a chat card (Sending it? Receiving it? aside) (0.210863ms)
+✔ ConnectWizard.jsx is a SINGLE paste-and-connect panel (no step navigation) (0.229398ms)
+✔ Type chips (auto-detect default) sit on the same paste panel (0.220346ms)
+✔ Confirmation view masks the password with a redaction sentinel (0.201781ms)
+✔ Unparseable paste triggers ask-again grammar naming missing fields (0.221669ms)
+✔ Manual fallback fields sit inline on the same panel (not a separate step) (0.18472ms)
+✔ Provisioning card sits behind ONE aside link (not a step) (0.248275ms)
+✔ Post-submit compute path renders the handshake walk stages (result view only) (0.286377ms)
+✔ LLM / trained-model submission records honest intent via /api/connect/intent (0.219766ms)
+✔ Data-source path is LIVE: submits to /api/connect/data-source (not intent) (0.15791ms)
+✔ Data-source manual fallback fields sit inline on the same panel (0.277494ms)
+✔ Data-source confirmation masks the aws_secret_access_key with a sentinel (0.184999ms)
+✔ Data-source result view renders the four-questions grammar (0.25617ms)
+✔ Data-source endpoint live: refuses synthetic ARNs cleanly and NEVER echoes the aws_secret back (211.478487ms)
+✔ Frontend never sends the paste to any LLM/answering-side/openai endpoint (2.032509ms)
+✔ parse-paste endpoint live: returns password_captured signal and NO password in body (3.309772ms)
+✔ parse-paste endpoint refuses empty paste with 400 (2.958509ms)
+✔ estate-facts endpoint live and returns provisioning-card payload (108.281088ms)
+✔ intent endpoint records non-compute kinds and refuses compute (5.616266ms)
+✔ Registry.jsx fetches from /api/registry/facts (0.329369ms)
+✔ Registry.jsx carries per-band section testids (topline / headliner / visual / table / context) (0.253378ms)
+✔ Registry.jsx renders data-source rows with real testids (0.229153ms)
+✔ Registry.jsx renders compute row + detail testids (0.213212ms)
+✔ Registry.jsx flags approximate figures with '≈' (or 'approx') per provenance rule (0.250443ms)
+✔ Registry.jsx renders LLMs-tab honest empty sentence (0.23196ms)
+✔ /api/registry/facts live: returns real digicow_live + ndume + akki-vm (45.34884ms)
+✔ /api/registry/facts live: data source carries engine, region, table count, posture (44.342909ms)
+✔ /api/registry/facts live: compute carries GPUs, RAM, storage, link facts (3.901417ms)
+✔ Registry.jsx renders NO banned fabricated demo tokens (0.368472ms)
+ℹ tests 53
+ℹ suites 0
+ℹ pass 53
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 526.694874
+
+===Backend cohort regression ===
+........................................................................ [ 59%]
+.................................................                        [100%]
+121 passed in 0.89s

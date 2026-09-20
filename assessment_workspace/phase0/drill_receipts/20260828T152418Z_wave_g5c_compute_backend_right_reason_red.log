@@ -1,0 +1,15 @@
+FFFFFFFFFFFF                                                             [100%]
+=========================== short test summary info ============================
+FAILED tests/invariants/test_compute_estate_contract.py::test_compute_estate_module_exists
+FAILED tests/invariants/test_compute_estate_contract.py::test_compute_estate_router_module_exists
+FAILED tests/invariants/test_compute_estate_contract.py::test_compute_estate_router_carries_apirouter
+FAILED tests/invariants/test_compute_estate_contract.py::test_estate_descriptor_reads_from_whitepaper_verbatim
+FAILED tests/invariants/test_compute_estate_contract.py::test_estate_descriptor_follows_whitepaper_when_hardware_changes
+FAILED tests/invariants/test_compute_estate_contract.py::test_estate_descriptor_honest_empty_when_no_whitepaper
+FAILED tests/invariants/test_compute_estate_contract.py::test_estate_rollup_matches_per_host_facts
+FAILED tests/invariants/test_compute_estate_contract.py::test_estate_response_never_carries_engineering_vocab
+FAILED tests/invariants/test_compute_estate_contract.py::test_readiness_is_a_product_language_state
+FAILED tests/invariants/test_compute_estate_contract.py::test_get_compute_estate_shape
+FAILED tests/invariants/test_compute_estate_contract.py::test_get_compute_estate_honest_empty
+FAILED tests/invariants/test_compute_estate_contract.py::test_estate_module_never_hardcodes_gpu_model_or_host_name
+12 failed in 0.62s

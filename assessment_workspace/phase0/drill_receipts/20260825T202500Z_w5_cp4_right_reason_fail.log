@@ -1,0 +1,291 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-9.1.1, pluggy-1.6.0 -- /root/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: asyncio-1.4.0, xdist-3.8.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 9 items
+
+tests/invariants/test_w5_cp4_backend_endpoints.py::test_chat_ask_answers_with_provenance_and_receipt FAILED [ 11%]
+tests/invariants/test_w5_cp4_backend_endpoints.py::test_chat_ask_refusal_surfaces_verbatim FAILED [ 22%]
+tests/invariants/test_w5_cp4_backend_endpoints.py::test_shield_receipts_filter_by_reasoning_kinds FAILED [ 33%]
+tests/invariants/test_w5_cp4_backend_endpoints.py::test_connect_llm_parse_paste_detects_anthropic FAILED [ 44%]
+tests/invariants/test_w5_cp4_backend_endpoints.py::test_connect_llm_parse_paste_detects_openai_and_gemini FAILED [ 55%]
+tests/invariants/test_w5_cp4_backend_endpoints.py::test_connect_llm_parse_paste_refuses_no_key_shape FAILED [ 66%]
+tests/invariants/test_w5_cp4_backend_endpoints.py::test_connect_llm_verify_writes_custody_and_record FAILED [ 77%]
+tests/invariants/test_w5_cp4_backend_endpoints.py::test_connect_llm_verify_never_leaks_key_in_response FAILED [ 88%]
+tests/invariants/test_w5_cp4_backend_endpoints.py::test_connect_llm_verify_refusal_does_not_persist_custody FAILED [100%]
+
+=================================== FAILURES ===================================
+______________ test_chat_ask_answers_with_provenance_and_receipt _______________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfb4b741d0450>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-27/test_chat_ask_answers_with_pro0')
+
+    def test_chat_ask_answers_with_provenance_and_receipt(monkeypatch, tmp_path):
+        from services.chokepoint import llm as chokepoint_llm
+    
+        async def _fake_invoke(*, purpose, prompt, **kw):
+            assert purpose == "chat.governed_answer"
+            return _FakeResp(text="The governed chokepoint is a single seat.", purpose=purpose)
+    
+        monkeypatch.setattr(chokepoint_llm, "invoke", _fake_invoke)
+>       app = _make_app_with_routers(monkeypatch, tmp_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_w5_cp4_backend_endpoints.py:87: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfb4b741d0450>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-27/test_chat_ask_answers_with_pro0')
+
+    def _make_app_with_routers(monkeypatch, tmp_path):
+        import sys
+        sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[2]))
+        from services.chokepoint.router import router as shield_router
+>       from services.chat.router import router as chat_router
+E       ModuleNotFoundError: No module named 'services.chat'
+
+tests/invariants/test_w5_cp4_backend_endpoints.py:57: ModuleNotFoundError
+___________________ test_chat_ask_refusal_surfaces_verbatim ____________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfb4b6ec6aad0>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-27/test_chat_ask_refusal_surfaces0')
+
+    def test_chat_ask_refusal_surfaces_verbatim(monkeypatch, tmp_path):
+        from services.chokepoint import llm as chokepoint_llm
+        from services.chokepoint.llm import LLMShieldFailure
+    
+        async def _refusing_invoke(*, purpose, prompt, **kw):
+            raise LLMShieldFailure("upstream_llm_failed — provider outage")
+    
+        monkeypatch.setattr(chokepoint_llm, "invoke", _refusing_invoke)
+>       app = _make_app_with_routers(monkeypatch, tmp_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_w5_cp4_backend_endpoints.py:108: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfb4b6ec6aad0>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-27/test_chat_ask_refusal_surfaces0')
+
+    def _make_app_with_routers(monkeypatch, tmp_path):
+        import sys
+        sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[2]))
+        from services.chokepoint.router import router as shield_router
+>       from services.chat.router import router as chat_router
+E       ModuleNotFoundError: No module named 'services.chat'
+
+tests/invariants/test_w5_cp4_backend_endpoints.py:57: ModuleNotFoundError
+________________ test_shield_receipts_filter_by_reasoning_kinds ________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfb4b6eb14290>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-27/test_shield_receipts_filter_by0')
+
+    def test_shield_receipts_filter_by_reasoning_kinds(monkeypatch, tmp_path):
+        from services.chokepoint import register_crossing
+    
+        monkeypatch.setenv("CROSSING_RECEIPT_DIR", str(tmp_path))
+        for kind, purpose in [
+            ("solva_frame_audit", "solva.frame_audit"),
+            ("solva_candidate_generation", "solva.candidate_generation"),
+            ("chat_governed_answer", "chat.governed_answer"),
+            ("rds_data_api", "structure_only"),
+        ]:
+            register_crossing(
+                kind=kind,
+                endpoint={"host": "api.emergent.host", "region": "platform-managed"} if kind != "rds_data_api" else {"host": "rds-data.eu-west-1.amazonaws.com", "region": "eu-west-1"},
+                verb="send_message" if kind != "rds_data_api" else "ExecuteStatement",
+                payload_shape={"model_id": "gpt-5-mini", "provider": "emergent", "tokens_in": 5, "tokens_out": 10, "latency_ms": 100, "purpose_declared": purpose},
+                actor="test@estate",
+                masking_tier="llm_prompt_governed_text" if kind != "rds_data_api" else "structure_only",
+            )
+    
+>       app = _make_app_with_routers(monkeypatch, tmp_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_w5_cp4_backend_endpoints.py:142: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfb4b6eb14290>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-27/test_shield_receipts_filter_by0')
+
+    def _make_app_with_routers(monkeypatch, tmp_path):
+        import sys
+        sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[2]))
+        from services.chokepoint.router import router as shield_router
+>       from services.chat.router import router as chat_router
+E       ModuleNotFoundError: No module named 'services.chat'
+
+tests/invariants/test_w5_cp4_backend_endpoints.py:57: ModuleNotFoundError
+________________ test_connect_llm_parse_paste_detects_anthropic ________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfb4b6eb318d0>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-27/test_connect_llm_parse_paste_d0')
+
+    def test_connect_llm_parse_paste_detects_anthropic(monkeypatch, tmp_path):
+>       app = _make_app_with_routers(monkeypatch, tmp_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_w5_cp4_backend_endpoints.py:162: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfb4b6eb318d0>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-27/test_connect_llm_parse_paste_d0')
+
+    def _make_app_with_routers(monkeypatch, tmp_path):
+        import sys
+        sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[2]))
+        from services.chokepoint.router import router as shield_router
+>       from services.chat.router import router as chat_router
+E       ModuleNotFoundError: No module named 'services.chat'
+
+tests/invariants/test_w5_cp4_backend_endpoints.py:57: ModuleNotFoundError
+____________ test_connect_llm_parse_paste_detects_openai_and_gemini ____________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfb4b741cb7d0>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-27/test_connect_llm_parse_paste_d1')
+
+    def test_connect_llm_parse_paste_detects_openai_and_gemini(monkeypatch, tmp_path):
+>       app = _make_app_with_routers(monkeypatch, tmp_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_w5_cp4_backend_endpoints.py:179: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfb4b741cb7d0>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-27/test_connect_llm_parse_paste_d1')
+
+    def _make_app_with_routers(monkeypatch, tmp_path):
+        import sys
+        sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[2]))
+        from services.chokepoint.router import router as shield_router
+>       from services.chat.router import router as chat_router
+E       ModuleNotFoundError: No module named 'services.chat'
+
+tests/invariants/test_w5_cp4_backend_endpoints.py:57: ModuleNotFoundError
+______________ test_connect_llm_parse_paste_refuses_no_key_shape _______________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfb4b6ec6b950>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-27/test_connect_llm_parse_paste_r0')
+
+    def test_connect_llm_parse_paste_refuses_no_key_shape(monkeypatch, tmp_path):
+>       app = _make_app_with_routers(monkeypatch, tmp_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_w5_cp4_backend_endpoints.py:193: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfb4b6ec6b950>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-27/test_connect_llm_parse_paste_r0')
+
+    def _make_app_with_routers(monkeypatch, tmp_path):
+        import sys
+        sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[2]))
+        from services.chokepoint.router import router as shield_router
+>       from services.chat.router import router as chat_router
+E       ModuleNotFoundError: No module named 'services.chat'
+
+tests/invariants/test_w5_cp4_backend_endpoints.py:57: ModuleNotFoundError
+______________ test_connect_llm_verify_writes_custody_and_record _______________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfb4b6eb34410>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-27/test_connect_llm_verify_writes0')
+
+    def test_connect_llm_verify_writes_custody_and_record(monkeypatch, tmp_path):
+        from services.chokepoint import llm as chokepoint_llm
+    
+        async def _fake_invoke(*, purpose, prompt, **kw):
+            assert purpose == "llm.connect_verify"
+            return _FakeResp(text="ok", purpose=purpose)
+    
+        monkeypatch.setattr(chokepoint_llm, "invoke", _fake_invoke)
+>       app = _make_app_with_routers(monkeypatch, tmp_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_w5_cp4_backend_endpoints.py:217: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfb4b6eb34410>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-27/test_connect_llm_verify_writes0')
+
+    def _make_app_with_routers(monkeypatch, tmp_path):
+        import sys
+        sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[2]))
+        from services.chokepoint.router import router as shield_router
+>       from services.chat.router import router as chat_router
+E       ModuleNotFoundError: No module named 'services.chat'
+
+tests/invariants/test_w5_cp4_backend_endpoints.py:57: ModuleNotFoundError
+_____________ test_connect_llm_verify_never_leaks_key_in_response ______________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfb4b6eb15950>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-27/test_connect_llm_verify_never_0')
+
+    def test_connect_llm_verify_never_leaks_key_in_response(monkeypatch, tmp_path):
+        from services.chokepoint import llm as chokepoint_llm
+    
+        async def _fake_invoke(*, purpose, prompt, **kw):
+            return _FakeResp(text="ok", purpose=purpose)
+    
+        monkeypatch.setattr(chokepoint_llm, "invoke", _fake_invoke)
+>       app = _make_app_with_routers(monkeypatch, tmp_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_w5_cp4_backend_endpoints.py:256: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfb4b6eb15950>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-27/test_connect_llm_verify_never_0')
+
+    def _make_app_with_routers(monkeypatch, tmp_path):
+        import sys
+        sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[2]))
+        from services.chokepoint.router import router as shield_router
+>       from services.chat.router import router as chat_router
+E       ModuleNotFoundError: No module named 'services.chat'
+
+tests/invariants/test_w5_cp4_backend_endpoints.py:57: ModuleNotFoundError
+___________ test_connect_llm_verify_refusal_does_not_persist_custody ___________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfb4b6eb12c50>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-27/test_connect_llm_verify_refusa0')
+
+    def test_connect_llm_verify_refusal_does_not_persist_custody(monkeypatch, tmp_path):
+        """On verification failure the custody file MUST NOT land on disk."""
+        from services.chokepoint import llm as chokepoint_llm
+        from services.chokepoint.llm import LLMShieldFailure
+    
+        async def _refuse(*, purpose, prompt, **kw):
+            raise LLMShieldFailure("upstream_llm_failed — invalid key")
+    
+        monkeypatch.setattr(chokepoint_llm, "invoke", _refuse)
+>       app = _make_app_with_routers(monkeypatch, tmp_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_w5_cp4_backend_endpoints.py:277: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfb4b6eb12c50>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-27/test_connect_llm_verify_refusa0')
+
+    def _make_app_with_routers(monkeypatch, tmp_path):
+        import sys
+        sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[2]))
+        from services.chokepoint.router import router as shield_router
+>       from services.chat.router import router as chat_router
+E       ModuleNotFoundError: No module named 'services.chat'
+
+tests/invariants/test_w5_cp4_backend_endpoints.py:57: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_w5_cp4_backend_endpoints.py::test_chat_ask_answers_with_provenance_and_receipt
+FAILED tests/invariants/test_w5_cp4_backend_endpoints.py::test_chat_ask_refusal_surfaces_verbatim
+FAILED tests/invariants/test_w5_cp4_backend_endpoints.py::test_shield_receipts_filter_by_reasoning_kinds
+FAILED tests/invariants/test_w5_cp4_backend_endpoints.py::test_connect_llm_parse_paste_detects_anthropic
+FAILED tests/invariants/test_w5_cp4_backend_endpoints.py::test_connect_llm_parse_paste_detects_openai_and_gemini
+FAILED tests/invariants/test_w5_cp4_backend_endpoints.py::test_connect_llm_parse_paste_refuses_no_key_shape
+FAILED tests/invariants/test_w5_cp4_backend_endpoints.py::test_connect_llm_verify_writes_custody_and_record
+FAILED tests/invariants/test_w5_cp4_backend_endpoints.py::test_connect_llm_verify_never_leaks_key_in_response
+FAILED tests/invariants/test_w5_cp4_backend_endpoints.py::test_connect_llm_verify_refusal_does_not_persist_custody
+============================== 9 failed in 1.67s ===============================

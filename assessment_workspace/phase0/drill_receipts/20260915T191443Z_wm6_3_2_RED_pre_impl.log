@@ -1,0 +1,139 @@
+FFFFFFFF                                                                 [100%]
+=================================== FAILURES ===================================
+__________________________ test_wm6_3_2_module_fabric __________________________
+
+    def test_wm6_3_2_module_fabric():
+        """Module `services.audio_plane_v1.leakage_path_harness` exports the
+        CP-M6-3-2 public API: `LEAKAGE_PATHS` + `LeakageScenario` +
+        `LeakageRefusalError` + `HarnessAcceptedForbiddenError` +
+        `HarnessRefusalTypeError` + `build_leakage_scenarios` +
+        `run_leakage_path_harness`."""
+>       m = importlib.import_module(
+            "services.audio_plane_v1.leakage_path_harness"
+        )
+
+tests/invariants/test_wm6_3_2_leakage_path_harness.py:69: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'services.audio_plane_v1.leakage_path_harness'
+import_ = <function _gcd_import at 0xfd7624c2bd80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'services.audio_plane_v1.leakage_path_harness'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+________ test_wm6_3_2_leakage_paths_frozen_four_tuple_in_verbatim_order ________
+
+    def test_wm6_3_2_leakage_paths_frozen_four_tuple_in_verbatim_order():
+        """`LEAKAGE_PATHS` is exactly the frozen four-tuple in §6.3 P100
+        verbatim order: `("small_stratum", "idiolect_marker",
+        "narrowing_combination", "exemplar_storage")`.  Ordering matters —
+        §6.3 P100 lists them in this exact order and downstream reporting
+        relies on it."""
+>       from services.audio_plane_v1.leakage_path_harness import LEAKAGE_PATHS
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.leakage_path_harness'
+
+tests/invariants/test_wm6_3_2_leakage_path_harness.py:92: ModuleNotFoundError
+______________ test_wm6_3_2_leakage_scenario_three_carrier_shape _______________
+
+    def test_wm6_3_2_leakage_scenario_three_carrier_shape():
+        """`LeakageScenario` frozen dataclass with exactly 3 carriers:
+        `path_name` (str · must be in `LEAKAGE_PATHS`) + `rationale`
+        (verbatim §6 canon-anchor label) + `attempt_entry`
+        (`CharacterEntry` · SYNTHETIC · to be submitted to the write-path
+        and MUST be refused)."""
+>       from services.audio_plane_v1.leakage_path_harness import LeakageScenario
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.leakage_path_harness'
+
+tests/invariants/test_wm6_3_2_leakage_path_harness.py:111: ModuleNotFoundError
+___ test_wm6_3_2_build_leakage_scenarios_returns_four_in_order_one_per_path ____
+
+    def test_wm6_3_2_build_leakage_scenarios_returns_four_in_order_one_per_path():
+        """`build_leakage_scenarios()` returns exactly 4 scenarios, one per
+        `LEAKAGE_PATH` in `LEAKAGE_PATHS` order.  Every scenario carries a
+        valid `CharacterEntry` (§5.2 layer validation passes at construction
+        time — the refusal happens at the WRITE-PATH, not at schema
+        construction · CP-M6-3-3 scope)."""
+        from services.audio_plane_v1.character_register import CharacterEntry
+>       from services.audio_plane_v1.leakage_path_harness import (
+            LEAKAGE_PATHS, LeakageScenario, build_leakage_scenarios,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.leakage_path_harness'
+
+tests/invariants/test_wm6_3_2_leakage_path_harness.py:126: ModuleNotFoundError
+______ test_wm6_3_2_every_scenario_uses_synthetic_provenance_material_ref ______
+
+    def test_wm6_3_2_every_scenario_uses_synthetic_provenance_material_ref():
+        """§6.3 P100 harness discipline (owner ruling 2026-09-15T~19:07Z):
+        all harness tests use SYNTHETIC fixtures only.  Every scenario's
+        `attempt_entry.provenance_material_ref` MUST carry the
+        `synthetic/` marker (`nas://synthetic/…` or `mat://synthetic/…`)
+        so no real-estate biometric material is ever pulled into the
+        harness.  HALT-trigger: any non-synthetic ref indicates a serious
+        discipline breach."""
+>       from services.audio_plane_v1.leakage_path_harness import (
+            build_leakage_scenarios,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.leakage_path_harness'
+
+tests/invariants/test_wm6_3_2_leakage_path_harness.py:148: ModuleNotFoundError
+________ test_wm6_3_2_harness_passes_when_writer_refuses_every_scenario ________
+
+    def test_wm6_3_2_harness_passes_when_writer_refuses_every_scenario():
+        """`run_leakage_path_harness` returns normally (no exception) when
+        the `write_callable` raises a `LeakageRefusalError` subclass for
+        every scenario submitted."""
+>       from services.audio_plane_v1.leakage_path_harness import (
+            LeakageRefusalError, run_leakage_path_harness,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.leakage_path_harness'
+
+tests/invariants/test_wm6_3_2_leakage_path_harness.py:164: ModuleNotFoundError
+______ test_wm6_3_2_harness_raises_accepted_forbidden_when_writer_accepts ______
+
+    def test_wm6_3_2_harness_raises_accepted_forbidden_when_writer_accepts():
+        """`run_leakage_path_harness` raises `HarnessAcceptedForbiddenError`
+        naming the accepting `path_name` when the `write_callable` fails to
+        refuse a scenario.  This is the §6.3 P100 invariant fire — the
+        harness has caught a leakage-path breach."""
+>       from services.audio_plane_v1.leakage_path_harness import (
+            HarnessAcceptedForbiddenError, LeakageRefusalError,
+            run_leakage_path_harness,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.leakage_path_harness'
+
+tests/invariants/test_wm6_3_2_leakage_path_harness.py:193: ModuleNotFoundError
+_ test_wm6_3_2_harness_raises_refusal_type_error_when_writer_uses_wrong_exception _
+
+    def test_wm6_3_2_harness_raises_refusal_type_error_when_writer_uses_wrong_exception():
+        """`run_leakage_path_harness` raises `HarnessRefusalTypeError` when
+        the `write_callable` refuses with a non-`LeakageRefusalError` type.
+        The harness enforces refusal-type discipline: leakage refusals must
+        subclass `LeakageRefusalError` so downstream reporting can classify
+        them as protective refusals rather than accidental failures."""
+>       from services.audio_plane_v1.leakage_path_harness import (
+            HarnessRefusalTypeError, run_leakage_path_harness,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.leakage_path_harness'
+
+tests/invariants/test_wm6_3_2_leakage_path_harness.py:215: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wm6_3_2_leakage_path_harness.py::test_wm6_3_2_module_fabric
+FAILED tests/invariants/test_wm6_3_2_leakage_path_harness.py::test_wm6_3_2_leakage_paths_frozen_four_tuple_in_verbatim_order
+FAILED tests/invariants/test_wm6_3_2_leakage_path_harness.py::test_wm6_3_2_leakage_scenario_three_carrier_shape
+FAILED tests/invariants/test_wm6_3_2_leakage_path_harness.py::test_wm6_3_2_build_leakage_scenarios_returns_four_in_order_one_per_path
+FAILED tests/invariants/test_wm6_3_2_leakage_path_harness.py::test_wm6_3_2_every_scenario_uses_synthetic_provenance_material_ref
+FAILED tests/invariants/test_wm6_3_2_leakage_path_harness.py::test_wm6_3_2_harness_passes_when_writer_refuses_every_scenario
+FAILED tests/invariants/test_wm6_3_2_leakage_path_harness.py::test_wm6_3_2_harness_raises_accepted_forbidden_when_writer_accepts
+FAILED tests/invariants/test_wm6_3_2_leakage_path_harness.py::test_wm6_3_2_harness_raises_refusal_type_error_when_writer_uses_wrong_exception
+8 failed in 0.67s

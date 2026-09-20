@@ -1,0 +1,18 @@
+============================= test session starts ==============================
+collecting ... collected 13 items
+
+tests/invariants/test_principal_model_v1.py::test_prin_1_principal_store_holds_three_principal_kinds PASSED [  7%]
+tests/invariants/test_principal_model_v1.py::test_prin_2_admission_is_a_governed_act PASSED [ 15%]
+tests/invariants/test_principal_model_v1.py::test_prin_3_every_principal_carries_behavioural_signature_from_first_request PASSED [ 23%]
+tests/invariants/test_principal_model_v1.py::test_prin_4_mandate_is_immutable_once_frozen_at_admission PASSED [ 30%]
+tests/invariants/test_principal_model_v1.py::test_prin_5_credentials_issued_per_principal_never_per_organisation PASSED [ 38%]
+tests/invariants/test_principal_model_v1.py::test_prin_6_credential_material_never_persisted_readback PASSED [ 46%]
+tests/invariants/test_principal_model_v1.py::test_prin_7_credential_bound_to_exactly_one_trust_domain_identifier PASSED [ 53%]
+tests/invariants/test_principal_model_v1.py::test_prin_8_rotation_default_is_90_days_default_class PASSED [ 61%]
+tests/invariants/test_principal_model_v1.py::test_prin_9_principals_domain_shares_no_identifier_resolution_with_estate PASSED [ 69%]
+tests/invariants/test_principal_model_v1.py::test_prin_10_writes_carry_trust_domain_identifier_or_refused PASSED [ 76%]
+tests/invariants/test_principal_model_v1.py::test_prin_11_propagation_by_construction_fail_closed_on_absence PASSED [ 84%]
+tests/invariants/test_principal_model_v1.py::test_prin_12_ledger_actor_populated_only_from_propagated_context PASSED [ 92%]
+tests/invariants/test_principal_model_v1.py::test_prin_13_principal_context_read_only_once_propagating PASSED [100%]
+
+============================== 13 passed in 0.66s ==============================

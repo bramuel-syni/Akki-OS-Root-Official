@@ -1,0 +1,84 @@
+/root/.venv/lib/python3.11/site-packages/pytest_asyncio/plugin.py:208: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.3.3, pluggy-1.6.0
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: xdist-3.8.0, asyncio-0.24.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, default_loop_scope=None
+collected 7 items
+
+backend/tests/invariants/test_w10_cp1_ruling_1_firing_drill.py FFFFFFF   [100%]
+
+=================================== FAILURES ===================================
+___________________ test_drill_produces_verdict_on_real_disk ___________________
+
+    def test_drill_produces_verdict_on_real_disk():
+>       from drills.ruling_1_containment_expiry_clean import run_drill
+E       ModuleNotFoundError: No module named 'drills'
+
+backend/tests/invariants/test_w10_cp1_ruling_1_firing_drill.py:104: ModuleNotFoundError
+___________________ test_drill_produces_action_on_real_disk ____________________
+
+    def test_drill_produces_action_on_real_disk():
+>       from drills.ruling_1_containment_expiry_clean import run_drill
+E       ModuleNotFoundError: No module named 'drills'
+
+backend/tests/invariants/test_w10_cp1_ruling_1_firing_drill.py:119: ModuleNotFoundError
+_________________ test_drill_produces_containment_on_real_disk _________________
+
+    def test_drill_produces_containment_on_real_disk():
+>       from drills.ruling_1_containment_expiry_clean import run_drill
+E       ModuleNotFoundError: No module named 'drills'
+
+backend/tests/invariants/test_w10_cp1_ruling_1_firing_drill.py:135: ModuleNotFoundError
+_______________ test_drill_produces_reconciliation_on_real_disk ________________
+
+    def test_drill_produces_reconciliation_on_real_disk():
+>       from drills.ruling_1_containment_expiry_clean import run_drill
+E       ModuleNotFoundError: No module named 'drills'
+
+backend/tests/invariants/test_w10_cp1_ruling_1_firing_drill.py:152: ModuleNotFoundError
+__________________ test_drill_actor_prefix_distinguishability __________________
+
+    def test_drill_actor_prefix_distinguishability():
+        """Host-identity pattern (R1 · Phase 0 · DECISIONS.md L347): every
+        drill record carries the drill_actor: prefix in its actor slot.
+        Records without the prefix are LIVE and must never be touched."""
+>       from drills.ruling_1_containment_expiry_clean import run_drill
+E       ModuleNotFoundError: No module named 'drills'
+
+backend/tests/invariants/test_w10_cp1_ruling_1_firing_drill.py:171: ModuleNotFoundError
+________________________ test_drill_refuses_second_run _________________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_drill_refuses_second_run0')
+
+    def test_drill_refuses_second_run(tmp_path):
+        """Canon 8 §43 · correction-by-new-entry-only. A second invocation
+        with the same fixed drill ids raises 'already on record'."""
+>       from drills.ruling_1_containment_expiry_clean import run_drill
+E       ModuleNotFoundError: No module named 'drills'
+
+backend/tests/invariants/test_w10_cp1_ruling_1_firing_drill.py:198: ModuleNotFoundError
+_______________ test_drill_ruling_1_precondition_b_demonstrated ________________
+
+    def test_drill_ruling_1_precondition_b_demonstrated():
+        """Programme-level assertion: after the drill runs green, the four
+        record classes exist on the REAL default disk. This IS the
+        demonstration of Ruling-1 precondition (b). W10 CP9 close report
+        surfaces the strip as ready-for-ceremony (owner act only)."""
+>       from drills.ruling_1_containment_expiry_clean import run_drill
+E       ModuleNotFoundError: No module named 'drills'
+
+backend/tests/invariants/test_w10_cp1_ruling_1_firing_drill.py:209: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED backend/tests/invariants/test_w10_cp1_ruling_1_firing_drill.py::test_drill_produces_verdict_on_real_disk
+FAILED backend/tests/invariants/test_w10_cp1_ruling_1_firing_drill.py::test_drill_produces_action_on_real_disk
+FAILED backend/tests/invariants/test_w10_cp1_ruling_1_firing_drill.py::test_drill_produces_containment_on_real_disk
+FAILED backend/tests/invariants/test_w10_cp1_ruling_1_firing_drill.py::test_drill_produces_reconciliation_on_real_disk
+FAILED backend/tests/invariants/test_w10_cp1_ruling_1_firing_drill.py::test_drill_actor_prefix_distinguishability
+FAILED backend/tests/invariants/test_w10_cp1_ruling_1_firing_drill.py::test_drill_refuses_second_run
+FAILED backend/tests/invariants/test_w10_cp1_ruling_1_firing_drill.py::test_drill_ruling_1_precondition_b_demonstrated
+============================== 7 failed in 0.07s ===============================

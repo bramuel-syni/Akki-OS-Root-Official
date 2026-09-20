@@ -1,0 +1,169 @@
+FFFFFFFF                                                                 [100%]============================ BASELINE_GUARD receipt ============================
+passed=0 / baseline-failures-remaining=0 / quarantined=0
+  manifest: tests/invariants/baseline_failures.json
+  scope: BASELINE_GUARD=1  ·  invocation: cd backend && BASELINE_GUARD=1 python -m pytest tests/invariants/
+!!!!!!!!!!!!! BASELINE_GUARD · HALT AND REPORT · owner ruling (c) !!!!!!!!!!!!!!
+[V1] 8 NEW failure(s) OUTSIDE manifest:
+    tests/invariants/test_wm6_6_4_backend_registry.py::test_wm6_6_4_assert_seam_passes_silently_when_ratified_present
+    tests/invariants/test_wm6_6_4_backend_registry.py::test_wm6_6_4_assert_seam_refuses_when_only_inferred_backends
+    tests/invariants/test_wm6_6_4_backend_registry.py::test_wm6_6_4_list_filters_partition_registry_deterministically
+    tests/invariants/test_wm6_6_4_backend_registry.py::test_wm6_6_4_module_fabric
+    tests/invariants/test_wm6_6_4_backend_registry.py::test_wm6_6_4_ratification_states_verbatim
+    tests/invariants/test_wm6_6_4_backend_registry.py::test_wm6_6_4_register_backend_passes_on_both_valid_states
+    tests/invariants/test_wm6_6_4_backend_registry.py::test_wm6_6_4_register_backend_refuses_invalid_state
+    tests/invariants/test_wm6_6_4_backend_registry.py::test_wm6_6_4_register_backend_refuses_ratified_without_timestamp
+[V3] Passed count 0 < ratchet floor 4274
+  No silent rebaselining. Report drift to owner verbatim.
+
+=================================== FAILURES ===================================
+__________________________ test_wm6_6_4_module_fabric __________________________
+
+    def test_wm6_6_4_module_fabric():
+        """Module `services.audio_plane_v1.backend_registry` exports the
+        CP-M6-6-4 public API: 2 constants/types + 2 carriers + 4 functions
+        + 3 error classes."""
+>       m = importlib.import_module(
+            "services.audio_plane_v1.backend_registry",
+        )
+
+tests/invariants/test_wm6_6_4_backend_registry.py:33: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'services.audio_plane_v1.backend_registry'
+import_ = <function _gcd_import at 0xfa6d11bfbd80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'services.audio_plane_v1.backend_registry'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+__________________ test_wm6_6_4_ratification_states_verbatim ___________________
+
+    def test_wm6_6_4_ratification_states_verbatim():
+        """D10 pluggable-seam discipline verbatim: two-state closed set
+        {'ratified', 'inferred_pending_ratification'}.  Frozenset — no
+        dynamic membership."""
+>       from services.audio_plane_v1.backend_registry import (
+            BACKEND_RATIFICATION_STATES,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.backend_registry'
+
+tests/invariants/test_wm6_6_4_backend_registry.py:57: ModuleNotFoundError
+_____________ test_wm6_6_4_register_backend_refuses_invalid_state ______________
+
+    def test_wm6_6_4_register_backend_refuses_invalid_state():
+        """Rec-3-M6SW6 verbatim: 'closed-set refusal on unknown status'.
+        `register_backend` on any state string outside
+        BACKEND_RATIFICATION_STATES refuses with
+        `BackendRatificationStateInvalidError`."""
+>       from services.audio_plane_v1.backend_registry import (
+            BackendRatificationStateInvalidError,
+            BackendRegistrySurface,
+            register_backend,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.backend_registry'
+
+tests/invariants/test_wm6_6_4_backend_registry.py:70: ModuleNotFoundError
+_______ test_wm6_6_4_register_backend_refuses_ratified_without_timestamp _______
+
+    def test_wm6_6_4_register_backend_refuses_ratified_without_timestamp():
+        """Ratified state requires an ISO-8601 timestamp evidencing when
+        ratification landed.  `register_backend` with
+        ratification_state='ratified' and ratified_at_utc=None refuses
+        with `BackendRatifiedButMissingRatifiedAtError` — receipt-before-
+        result (§P036) discipline: no ratification claim without a dated
+        receipt."""
+>       from services.audio_plane_v1.backend_registry import (
+            BackendRatifiedButMissingRatifiedAtError,
+            BackendRegistrySurface,
+            register_backend,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.backend_registry'
+
+tests/invariants/test_wm6_6_4_backend_registry.py:96: ModuleNotFoundError
+__________ test_wm6_6_4_register_backend_passes_on_both_valid_states ___________
+
+    def test_wm6_6_4_register_backend_passes_on_both_valid_states():
+        """Positive-path merged (invariants #5 + #6 of the brief):
+        (a) ratified + ISO-8601 timestamp lands.
+        (b) inferred_pending_ratification + None timestamp lands.
+        Both return a new BackendRegistrySurface with the appended entry
+        at the tail (deterministic insertion order per Rec-3-M6SW6
+        verbatim 'deterministic output')."""
+>       from services.audio_plane_v1.backend_registry import (
+            BackendRegistrySurface,
+            RegisteredBackendEntry,
+            register_backend,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.backend_registry'
+
+tests/invariants/test_wm6_6_4_backend_registry.py:123: ModuleNotFoundError
+________ test_wm6_6_4_list_filters_partition_registry_deterministically ________
+
+    def test_wm6_6_4_list_filters_partition_registry_deterministically():
+        """Filter-partition merged (invariants #7 + #8 of the brief):
+        `list_ratified_backends` and `list_inferred_backends` are exact
+        mirror surfaces over BackendRegistrySurface.entries.  Given a
+        registry with both ratified and inferred entries interleaved,
+        each function returns only the matching subset in insertion
+        order (Rec-3-M6SW6 verbatim 'deterministic output')."""
+>       from services.audio_plane_v1.backend_registry import (
+            BackendRegistrySurface,
+            list_inferred_backends,
+            list_ratified_backends,
+            register_backend,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.backend_registry'
+
+tests/invariants/test_wm6_6_4_backend_registry.py:173: ModuleNotFoundError
+_________ test_wm6_6_4_assert_seam_refuses_when_only_inferred_backends _________
+
+    def test_wm6_6_4_assert_seam_refuses_when_only_inferred_backends():
+        """`assert_seam_has_ratified_backend` refuses
+        `SeamHasNoRatifiedBackendError` when a seam has registered
+        backends but none in state 'ratified'.  Load-bearing gate for
+        future live-invocation paths — no live call authorised without
+        at least one ratified backend."""
+>       from services.audio_plane_v1.backend_registry import (
+            BackendRegistrySurface,
+            SeamHasNoRatifiedBackendError,
+            assert_seam_has_ratified_backend,
+            register_backend,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.backend_registry'
+
+tests/invariants/test_wm6_6_4_backend_registry.py:231: ModuleNotFoundError
+________ test_wm6_6_4_assert_seam_passes_silently_when_ratified_present ________
+
+    def test_wm6_6_4_assert_seam_passes_silently_when_ratified_present():
+        """`assert_seam_has_ratified_backend` returns None silently when
+        the seam has ≥1 ratified backend (irrespective of how many
+        inferred backends also share the seam name).  Positive-path
+        counterpart to the negative refusal above."""
+>       from services.audio_plane_v1.backend_registry import (
+            BackendRegistrySurface,
+            assert_seam_has_ratified_backend,
+            register_backend,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.backend_registry'
+
+tests/invariants/test_wm6_6_4_backend_registry.py:257: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wm6_6_4_backend_registry.py::test_wm6_6_4_module_fabric
+FAILED tests/invariants/test_wm6_6_4_backend_registry.py::test_wm6_6_4_ratification_states_verbatim
+FAILED tests/invariants/test_wm6_6_4_backend_registry.py::test_wm6_6_4_register_backend_refuses_invalid_state
+FAILED tests/invariants/test_wm6_6_4_backend_registry.py::test_wm6_6_4_register_backend_refuses_ratified_without_timestamp
+FAILED tests/invariants/test_wm6_6_4_backend_registry.py::test_wm6_6_4_register_backend_passes_on_both_valid_states
+FAILED tests/invariants/test_wm6_6_4_backend_registry.py::test_wm6_6_4_list_filters_partition_registry_deterministically
+FAILED tests/invariants/test_wm6_6_4_backend_registry.py::test_wm6_6_4_assert_seam_refuses_when_only_inferred_backends
+FAILED tests/invariants/test_wm6_6_4_backend_registry.py::test_wm6_6_4_assert_seam_passes_silently_when_ratified_present
+8 failed in 0.68s

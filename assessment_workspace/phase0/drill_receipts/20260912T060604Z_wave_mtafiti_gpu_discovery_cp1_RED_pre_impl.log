@@ -1,0 +1,2187 @@
+........................................................................ [  2%]
+........................................................................ [  4%]
+........................................................................ [  6%]
+........................................................................ [  9%]
+........................................................................ [ 11%]
+........................................................................ [ 13%]
+........................................................................ [ 15%]
+........................................................................ [ 18%]
+........................................................................ [ 20%]
+........................................................................ [ 22%]
+........................................................................ [ 25%]
+........................................................................ [ 27%]
+....................................................................FFFF [ 29%]
+FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF............ [ 31%]
+........................................................................ [ 34%]
+........................................................................ [ 36%]
+........................................................................ [ 38%]
+........................................................................ [ 40%]
+........................................................................ [ 43%]
+........................................................................ [ 45%]
+...s.................................................................... [ 47%]
+........................................................................ [ 50%]
+........................................................................ [ 52%]
+........................................................................ [ 54%]
+........................................................................ [ 56%]
+........................................................................ [ 59%]
+........................................................................ [ 61%]
+........................................................................ [ 63%]
+........................................................................ [ 66%]
+........................................................................ [ 68%]
+........................................................................ [ 70%]
+........................................................................ [ 72%]
+........................................................................ [ 75%]
+........................................................................ [ 77%]
+........................................................................ [ 79%]
+........................................................................ [ 81%]
+........................................................................ [ 84%]
+........................................................................ [ 86%]
+........................................................................ [ 88%]
+........................................................................ [ 91%]
+........................................................................ [ 93%]
+........................................................................ [ 95%]
+........................................................................ [ 97%]
+...................................................................      [100%]============================ BASELINE_GUARD receipt ============================
+passed=3098 / baseline-failures-remaining=0 / quarantined=0
+  manifest: tests/invariants/baseline_failures.json
+  scope: BASELINE_GUARD=1  ·  invocation: cd backend && BASELINE_GUARD=1 python -m pytest tests/invariants/
+!!!!!!!!!!!!! BASELINE_GUARD · HALT AND REPORT · owner ruling (c) !!!!!!!!!!!!!!
+[V1] 64 NEW failure(s) OUTSIDE manifest:
+    tests/invariants/test_mtafiti_gpu_discovery_detect_not_decide.py::test_detection_signal_confidence_is_bounded_zero_to_one
+    tests/invariants/test_mtafiti_gpu_discovery_detect_not_decide.py::test_detection_signal_is_frozen_and_rejects_unknown_fields
+    tests/invariants/test_mtafiti_gpu_discovery_detect_not_decide.py::test_detection_signal_module_exists
+    tests/invariants/test_mtafiti_gpu_discovery_detect_not_decide.py::test_detection_signal_schema_forbids_verdict_field_names
+    tests/invariants/test_mtafiti_gpu_discovery_detect_not_decide.py::test_evidence_class_taxonomy_is_the_frozen_five
+    tests/invariants/test_mtafiti_gpu_discovery_deterministic_adaptive_sampling.py::test_deterministic_walk_different_input_different_manifest_hash
+    tests/invariants/test_mtafiti_gpu_discovery_deterministic_adaptive_sampling.py::test_deterministic_walk_same_input_same_manifest_hash
+    tests/invariants/test_mtafiti_gpu_discovery_deterministic_adaptive_sampling.py::test_gpu_discovery_constants_are_pinned
+    tests/invariants/test_mtafiti_gpu_discovery_deterministic_adaptive_sampling.py::test_walk_manifest_carries_pinned_seed_and_policy_id
+    tests/invariants/test_mtafiti_gpu_discovery_deterministic_adaptive_sampling.py::test_walker_module_forbids_online_policy_mutation
+  No silent rebaselining. Report drift to owner verbatim.
+
+=================================== FAILURES ===================================
+_____________________ test_detection_signal_module_exists ______________________
+
+    def test_detection_signal_module_exists():
+        """RMS_Mtafiti_Specification §4 — the learned component produces detections."""
+        try:
+>           from contracts.mtafiti_detection_signal import DetectionSignal  # noqa: F401
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           ModuleNotFoundError: No module named 'contracts.mtafiti_detection_signal'
+
+tests/invariants/test_mtafiti_gpu_discovery_detect_not_decide.py:65: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+    def test_detection_signal_module_exists():
+        """RMS_Mtafiti_Specification §4 — the learned component produces detections."""
+        try:
+            from contracts.mtafiti_detection_signal import DetectionSignal  # noqa: F401
+            from contracts.mtafiti_detection_signal import EvidenceClass  # noqa: F401
+        except ImportError as e:
+>           pytest.fail(f"CP1 kernel missing: contracts.mtafiti_detection_signal — {e}")
+E           Failed: CP1 kernel missing: contracts.mtafiti_detection_signal — No module named 'contracts.mtafiti_detection_signal'
+
+tests/invariants/test_mtafiti_gpu_discovery_detect_not_decide.py:68: Failed
+___________ test_detection_signal_schema_forbids_verdict_field_names ___________
+
+    def test_detection_signal_schema_forbids_verdict_field_names():
+        """C4-009 — meaning is a governed lookup, never a model's output."""
+        try:
+>           from contracts.mtafiti_detection_signal import DetectionSignal
+E           ModuleNotFoundError: No module named 'contracts.mtafiti_detection_signal'
+
+tests/invariants/test_mtafiti_gpu_discovery_detect_not_decide.py:77: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+    def test_detection_signal_schema_forbids_verdict_field_names():
+        """C4-009 — meaning is a governed lookup, never a model's output."""
+        try:
+            from contracts.mtafiti_detection_signal import DetectionSignal
+        except ImportError as e:
+>           pytest.fail(f"CP1 kernel missing: {e}")
+E           Failed: CP1 kernel missing: No module named 'contracts.mtafiti_detection_signal'
+
+tests/invariants/test_mtafiti_gpu_discovery_detect_not_decide.py:79: Failed
+__________ test_detection_signal_is_frozen_and_rejects_unknown_fields __________
+
+    def test_detection_signal_is_frozen_and_rejects_unknown_fields():
+        """§4 — learned component produces detections; extra verdict-fields refused."""
+        try:
+>           from contracts.mtafiti_detection_signal import (
+                DetectionSignal,
+                EvidenceClass,
+            )
+E           ModuleNotFoundError: No module named 'contracts.mtafiti_detection_signal'
+
+tests/invariants/test_mtafiti_gpu_discovery_detect_not_decide.py:106: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+    def test_detection_signal_is_frozen_and_rejects_unknown_fields():
+        """§4 — learned component produces detections; extra verdict-fields refused."""
+        try:
+            from contracts.mtafiti_detection_signal import (
+                DetectionSignal,
+                EvidenceClass,
+            )
+        except ImportError as e:
+>           pytest.fail(f"CP1 kernel missing: {e}")
+E           Failed: CP1 kernel missing: No module named 'contracts.mtafiti_detection_signal'
+
+tests/invariants/test_mtafiti_gpu_discovery_detect_not_decide.py:111: Failed
+_______________ test_evidence_class_taxonomy_is_the_frozen_five ________________
+
+    def test_evidence_class_taxonomy_is_the_frozen_five():
+        """Doc 5 §5 evidence-class taxonomy — 5 canonical classes."""
+        try:
+>           from contracts.mtafiti_detection_signal import EvidenceClass
+E           ModuleNotFoundError: No module named 'contracts.mtafiti_detection_signal'
+
+tests/invariants/test_mtafiti_gpu_discovery_detect_not_decide.py:140: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+    def test_evidence_class_taxonomy_is_the_frozen_five():
+        """Doc 5 §5 evidence-class taxonomy — 5 canonical classes."""
+        try:
+            from contracts.mtafiti_detection_signal import EvidenceClass
+        except ImportError as e:
+>           pytest.fail(f"CP1 kernel missing: {e}")
+E           Failed: CP1 kernel missing: No module named 'contracts.mtafiti_detection_signal'
+
+tests/invariants/test_mtafiti_gpu_discovery_detect_not_decide.py:142: Failed
+___________ test_detection_signal_confidence_is_bounded_zero_to_one ____________
+
+    def test_detection_signal_confidence_is_bounded_zero_to_one():
+        """§4 — confidence is a signal weight, never a verdict authority."""
+        try:
+>           from contracts.mtafiti_detection_signal import (
+                DetectionSignal,
+                EvidenceClass,
+            )
+E           ModuleNotFoundError: No module named 'contracts.mtafiti_detection_signal'
+
+tests/invariants/test_mtafiti_gpu_discovery_detect_not_decide.py:155: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+    def test_detection_signal_confidence_is_bounded_zero_to_one():
+        """§4 — confidence is a signal weight, never a verdict authority."""
+        try:
+            from contracts.mtafiti_detection_signal import (
+                DetectionSignal,
+                EvidenceClass,
+            )
+        except ImportError as e:
+>           pytest.fail(f"CP1 kernel missing: {e}")
+E           Failed: CP1 kernel missing: No module named 'contracts.mtafiti_detection_signal'
+
+tests/invariants/test_mtafiti_gpu_discovery_detect_not_decide.py:160: Failed
+___________________ test_gpu_discovery_constants_are_pinned ____________________
+
+    def test_gpu_discovery_constants_are_pinned():
+        """Owner CP1 default — pinned seed + pinned policy_id, banked in DECISIONS."""
+        try:
+>           from services.mtafiti.gpu_discovery_constants import (
+                MTAFITI_GPU_SAMPLING_SEED,
+                POLICY_ID,
+            )
+E           ModuleNotFoundError: No module named 'services.mtafiti.gpu_discovery_constants'
+
+tests/invariants/test_mtafiti_gpu_discovery_deterministic_adaptive_sampling.py:43: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+    def test_gpu_discovery_constants_are_pinned():
+        """Owner CP1 default — pinned seed + pinned policy_id, banked in DECISIONS."""
+        try:
+            from services.mtafiti.gpu_discovery_constants import (
+                MTAFITI_GPU_SAMPLING_SEED,
+                POLICY_ID,
+            )
+        except ImportError as e:
+>           pytest.fail(
+                f"CP1 kernel missing: services.mtafiti.gpu_discovery_constants — {e}"
+            )
+E           Failed: CP1 kernel missing: services.mtafiti.gpu_discovery_constants — No module named 'services.mtafiti.gpu_discovery_constants'
+
+tests/invariants/test_mtafiti_gpu_discovery_deterministic_adaptive_sampling.py:48: Failed
+____________ test_deterministic_walk_same_input_same_manifest_hash _____________
+
+    def test_deterministic_walk_same_input_same_manifest_hash():
+        """C4-013 — same inputs → same measured output. Byte-identical sha256."""
+        try:
+>           from services.mtafiti.sampling.deterministic_adaptive_walker import (
+                deterministic_walk,
+            )
+E           ModuleNotFoundError: No module named 'services.mtafiti.sampling'
+
+tests/invariants/test_mtafiti_gpu_discovery_deterministic_adaptive_sampling.py:68: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+    def test_deterministic_walk_same_input_same_manifest_hash():
+        """C4-013 — same inputs → same measured output. Byte-identical sha256."""
+        try:
+            from services.mtafiti.sampling.deterministic_adaptive_walker import (
+                deterministic_walk,
+            )
+        except ImportError as e:
+>           pytest.fail(f"CP1 kernel missing: {e}")
+E           Failed: CP1 kernel missing: No module named 'services.mtafiti.sampling'
+
+tests/invariants/test_mtafiti_gpu_discovery_deterministic_adaptive_sampling.py:72: Failed
+_______ test_deterministic_walk_different_input_different_manifest_hash ________
+
+    def test_deterministic_walk_different_input_different_manifest_hash():
+        """Guards a degenerate walker that ignores its input."""
+        try:
+>           from services.mtafiti.sampling.deterministic_adaptive_walker import (
+                deterministic_walk,
+            )
+E           ModuleNotFoundError: No module named 'services.mtafiti.sampling'
+
+tests/invariants/test_mtafiti_gpu_discovery_deterministic_adaptive_sampling.py:96: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+    def test_deterministic_walk_different_input_different_manifest_hash():
+        """Guards a degenerate walker that ignores its input."""
+        try:
+            from services.mtafiti.sampling.deterministic_adaptive_walker import (
+                deterministic_walk,
+            )
+        except ImportError as e:
+>           pytest.fail(f"CP1 kernel missing: {e}")
+E           Failed: CP1 kernel missing: No module named 'services.mtafiti.sampling'
+
+tests/invariants/test_mtafiti_gpu_discovery_deterministic_adaptive_sampling.py:100: Failed
+_____________ test_walk_manifest_carries_pinned_seed_and_policy_id _____________
+
+    def test_walk_manifest_carries_pinned_seed_and_policy_id():
+        """Auditors can re-derive the walk from seed + policy_id + inputs."""
+        try:
+>           from services.mtafiti.sampling.deterministic_adaptive_walker import (
+                deterministic_walk,
+            )
+E           ModuleNotFoundError: No module named 'services.mtafiti.sampling'
+
+tests/invariants/test_mtafiti_gpu_discovery_deterministic_adaptive_sampling.py:117: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+    def test_walk_manifest_carries_pinned_seed_and_policy_id():
+        """Auditors can re-derive the walk from seed + policy_id + inputs."""
+        try:
+            from services.mtafiti.sampling.deterministic_adaptive_walker import (
+                deterministic_walk,
+            )
+            from services.mtafiti.gpu_discovery_constants import (
+                MTAFITI_GPU_SAMPLING_SEED,
+                POLICY_ID,
+            )
+        except ImportError as e:
+>           pytest.fail(f"CP1 kernel missing: {e}")
+E           Failed: CP1 kernel missing: No module named 'services.mtafiti.sampling'
+
+tests/invariants/test_mtafiti_gpu_discovery_deterministic_adaptive_sampling.py:125: Failed
+______________ test_walker_module_forbids_online_policy_mutation _______________
+
+    def test_walker_module_forbids_online_policy_mutation():
+        """Owner ruling — online / path-dependent adaptive stays OUT."""
+        try:
+>           from services.mtafiti.sampling import deterministic_adaptive_walker as mod
+E           ModuleNotFoundError: No module named 'services.mtafiti.sampling'
+
+tests/invariants/test_mtafiti_gpu_discovery_deterministic_adaptive_sampling.py:150: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+    def test_walker_module_forbids_online_policy_mutation():
+        """Owner ruling — online / path-dependent adaptive stays OUT."""
+        try:
+            from services.mtafiti.sampling import deterministic_adaptive_walker as mod
+        except ImportError as e:
+>           pytest.fail(f"CP1 kernel missing: {e}")
+E           Failed: CP1 kernel missing: No module named 'services.mtafiti.sampling'
+
+tests/invariants/test_mtafiti_gpu_discovery_deterministic_adaptive_sampling.py:152: Failed
+________ test_objective_origin_enum_is_exactly_three_canonical_origins _________
+
+    def test_objective_origin_enum_is_exactly_three_canonical_origins():
+        """C2-031 extension to mtafiti — origin ∈ {TARGETA, CIF, COACH_ORIGINATION_PORT}."""
+        try:
+>           from contracts.mtafiti_objective_carrier import ObjectiveOrigin
+E           ModuleNotFoundError: No module named 'contracts.mtafiti_objective_carrier'
+
+tests/invariants/test_mtafiti_gpu_discovery_objective_generation_blind.py:62: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+    def test_objective_origin_enum_is_exactly_three_canonical_origins():
+        """C2-031 extension to mtafiti — origin ∈ {TARGETA, CIF, COACH_ORIGINATION_PORT}."""
+        try:
+            from contracts.mtafiti_objective_carrier import ObjectiveOrigin
+        except ImportError as e:
+>           pytest.fail(
+                f"CP1 kernel missing: contracts.mtafiti_objective_carrier.ObjectiveOrigin — {e}"
+            )
+E           Failed: CP1 kernel missing: contracts.mtafiti_objective_carrier.ObjectiveOrigin — No module named 'contracts.mtafiti_objective_carrier'
+
+tests/invariants/test_mtafiti_gpu_discovery_objective_generation_blind.py:64: Failed
+_________ test_carrier_constructs_with_each_legal_origin_and_is_frozen _________
+
+    def test_carrier_constructs_with_each_legal_origin_and_is_frozen():
+        """C4-014/C4-015 — objectives arrive at Targeta already frozen."""
+        try:
+>           from contracts.mtafiti_objective_carrier import (
+                MtafitiObjectiveCarrier,
+                ObjectiveOrigin,
+            )
+E           ModuleNotFoundError: No module named 'contracts.mtafiti_objective_carrier'
+
+tests/invariants/test_mtafiti_gpu_discovery_objective_generation_blind.py:84: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+    def test_carrier_constructs_with_each_legal_origin_and_is_frozen():
+        """C4-014/C4-015 — objectives arrive at Targeta already frozen."""
+        try:
+            from contracts.mtafiti_objective_carrier import (
+                MtafitiObjectiveCarrier,
+                ObjectiveOrigin,
+            )
+        except ImportError as e:
+>           pytest.fail(f"CP1 kernel missing: {e}")
+E           Failed: CP1 kernel missing: No module named 'contracts.mtafiti_objective_carrier'
+
+tests/invariants/test_mtafiti_gpu_discovery_objective_generation_blind.py:89: Failed
+_____________________ test_carrier_refuses_missing_origin ______________________
+
+    def test_carrier_refuses_missing_origin():
+        """C2-031 extension — origin must be explicit; no default admits mtafiti."""
+        try:
+>           from contracts.mtafiti_objective_carrier import MtafitiObjectiveCarrier
+E           ModuleNotFoundError: No module named 'contracts.mtafiti_objective_carrier'
+
+tests/invariants/test_mtafiti_gpu_discovery_objective_generation_blind.py:109: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+    def test_carrier_refuses_missing_origin():
+        """C2-031 extension — origin must be explicit; no default admits mtafiti."""
+        try:
+            from contracts.mtafiti_objective_carrier import MtafitiObjectiveCarrier
+        except ImportError as e:
+>           pytest.fail(f"CP1 kernel missing: {e}")
+E           Failed: CP1 kernel missing: No module named 'contracts.mtafiti_objective_carrier'
+
+tests/invariants/test_mtafiti_gpu_discovery_objective_generation_blind.py:111: Failed
+______________ test_admit_carrier_refuses_mtafiti_internal_origin ______________
+
+    def test_admit_carrier_refuses_mtafiti_internal_origin():
+        """C2-031 extension — mtafiti-internal origination refused by construction."""
+        try:
+>           from contracts.mtafiti_objective_carrier import (
+                ObjectiveOriginationForbidden,
+                admit_carrier,
+            )
+E           ModuleNotFoundError: No module named 'contracts.mtafiti_objective_carrier'
+
+tests/invariants/test_mtafiti_gpu_discovery_objective_generation_blind.py:123: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+    def test_admit_carrier_refuses_mtafiti_internal_origin():
+        """C2-031 extension — mtafiti-internal origination refused by construction."""
+        try:
+            from contracts.mtafiti_objective_carrier import (
+                ObjectiveOriginationForbidden,
+                admit_carrier,
+            )
+        except ImportError as e:
+>           pytest.fail(f"CP1 kernel missing: {e}")
+E           Failed: CP1 kernel missing: No module named 'contracts.mtafiti_objective_carrier'
+
+tests/invariants/test_mtafiti_gpu_discovery_objective_generation_blind.py:128: Failed
+________________ test_carrier_module_has_no_origination_symbols ________________
+
+    def test_carrier_module_has_no_origination_symbols():
+        """RMS_Mtafiti_Specification §1 — mtafiti never originates objectives."""
+        try:
+>           from contracts import mtafiti_objective_carrier as mod
+E           ImportError: cannot import name 'mtafiti_objective_carrier' from 'contracts' (/app/assessment_workspace/repos/Extraction-Akki/backend/contracts/__init__.py)
+
+tests/invariants/test_mtafiti_gpu_discovery_objective_generation_blind.py:145: ImportError
+
+During handling of the above exception, another exception occurred:
+
+    def test_carrier_module_has_no_origination_symbols():
+        """RMS_Mtafiti_Specification §1 — mtafiti never originates objectives."""
+        try:
+            from contracts import mtafiti_objective_carrier as mod
+        except ImportError as e:
+>           pytest.fail(f"CP1 kernel missing: {e}")
+E           Failed: CP1 kernel missing: cannot import name 'mtafiti_objective_carrier' from 'contracts' (/app/assessment_workspace/repos/Extraction-Akki/backend/contracts/__init__.py)
+
+tests/invariants/test_mtafiti_gpu_discovery_objective_generation_blind.py:147: Failed
+____________ test_carrier_schema_forbids_mtafiti_origination_field _____________
+
+    def test_carrier_schema_forbids_mtafiti_origination_field():
+        """RMS_Mtafiti_Specification §1 — one measure serves every objective."""
+        try:
+>           from contracts.mtafiti_objective_carrier import MtafitiObjectiveCarrier
+E           ModuleNotFoundError: No module named 'contracts.mtafiti_objective_carrier'
+
+tests/invariants/test_mtafiti_gpu_discovery_objective_generation_blind.py:173: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+    def test_carrier_schema_forbids_mtafiti_origination_field():
+        """RMS_Mtafiti_Specification §1 — one measure serves every objective."""
+        try:
+            from contracts.mtafiti_objective_carrier import MtafitiObjectiveCarrier
+        except ImportError as e:
+>           pytest.fail(f"CP1 kernel missing: {e}")
+E           Failed: CP1 kernel missing: No module named 'contracts.mtafiti_objective_carrier'
+
+tests/invariants/test_mtafiti_gpu_discovery_objective_generation_blind.py:175: Failed
+____________________ test_readonly_sql_guard_module_surface ____________________
+
+    def test_readonly_sql_guard_module_surface():
+        """Mtafiti-Spec §1 — mtafiti discovers, does not extract or govern."""
+        try:
+>           from services.mtafiti.executor.readonly_sql_guard import (
+                refuse_if_write,
+                WriteVerbRefused,
+            )
+E           ModuleNotFoundError: No module named 'services.mtafiti.executor'
+
+tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py:49: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+    def test_readonly_sql_guard_module_surface():
+        """Mtafiti-Spec §1 — mtafiti discovers, does not extract or govern."""
+        try:
+            from services.mtafiti.executor.readonly_sql_guard import (
+                refuse_if_write,
+                WriteVerbRefused,
+            )
+        except ImportError as e:
+>           pytest.fail(
+                f"CP1 kernel missing: services.mtafiti.executor.readonly_sql_guard — {e}"
+            )
+E           Failed: CP1 kernel missing: services.mtafiti.executor.readonly_sql_guard — No module named 'services.mtafiti.executor'
+
+tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py:54: Failed
+__________________ test_readonly_verbs_pass_through[SELECT 1] __________________
+
+sql = 'SELECT 1'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            "SELECT 1",
+            "select id, name from users where active = 1",
+            "  SELECT * FROM   weego.users LIMIT 100",
+            "SHOW TABLES",
+            "show databases",
+            "USE weego",
+            "DESCRIBE users",
+            "DESC users",
+            "EXPLAIN SELECT id FROM users",
+            "/* comment */ SELECT 1 /* trailing */",
+            "SELECT 1;",  # trailing semicolon OK
+        ],
+    )
+    def test_readonly_verbs_pass_through(sql):
+        """SELECT / SHOW / USE / DESCRIBE / DESC / EXPLAIN admitted."""
+>       from services.mtafiti.executor.readonly_sql_guard import refuse_if_write
+E       ModuleNotFoundError: No module named 'services.mtafiti.executor'
+
+tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py:82: ModuleNotFoundError
+_ test_readonly_verbs_pass_through[select id, name from users where active = 1] _
+
+sql = 'select id, name from users where active = 1'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            "SELECT 1",
+            "select id, name from users where active = 1",
+            "  SELECT * FROM   weego.users LIMIT 100",
+            "SHOW TABLES",
+            "show databases",
+            "USE weego",
+            "DESCRIBE users",
+            "DESC users",
+            "EXPLAIN SELECT id FROM users",
+            "/* comment */ SELECT 1 /* trailing */",
+            "SELECT 1;",  # trailing semicolon OK
+        ],
+    )
+    def test_readonly_verbs_pass_through(sql):
+        """SELECT / SHOW / USE / DESCRIBE / DESC / EXPLAIN admitted."""
+>       from services.mtafiti.executor.readonly_sql_guard import refuse_if_write
+E       ModuleNotFoundError: No module named 'services.mtafiti.executor'
+
+tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py:82: ModuleNotFoundError
+__ test_readonly_verbs_pass_through[  SELECT * FROM   weego.users LIMIT 100] ___
+
+sql = '  SELECT * FROM   weego.users LIMIT 100'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            "SELECT 1",
+            "select id, name from users where active = 1",
+            "  SELECT * FROM   weego.users LIMIT 100",
+            "SHOW TABLES",
+            "show databases",
+            "USE weego",
+            "DESCRIBE users",
+            "DESC users",
+            "EXPLAIN SELECT id FROM users",
+            "/* comment */ SELECT 1 /* trailing */",
+            "SELECT 1;",  # trailing semicolon OK
+        ],
+    )
+    def test_readonly_verbs_pass_through(sql):
+        """SELECT / SHOW / USE / DESCRIBE / DESC / EXPLAIN admitted."""
+>       from services.mtafiti.executor.readonly_sql_guard import refuse_if_write
+E       ModuleNotFoundError: No module named 'services.mtafiti.executor'
+
+tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py:82: ModuleNotFoundError
+________________ test_readonly_verbs_pass_through[SHOW TABLES] _________________
+
+sql = 'SHOW TABLES'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            "SELECT 1",
+            "select id, name from users where active = 1",
+            "  SELECT * FROM   weego.users LIMIT 100",
+            "SHOW TABLES",
+            "show databases",
+            "USE weego",
+            "DESCRIBE users",
+            "DESC users",
+            "EXPLAIN SELECT id FROM users",
+            "/* comment */ SELECT 1 /* trailing */",
+            "SELECT 1;",  # trailing semicolon OK
+        ],
+    )
+    def test_readonly_verbs_pass_through(sql):
+        """SELECT / SHOW / USE / DESCRIBE / DESC / EXPLAIN admitted."""
+>       from services.mtafiti.executor.readonly_sql_guard import refuse_if_write
+E       ModuleNotFoundError: No module named 'services.mtafiti.executor'
+
+tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py:82: ModuleNotFoundError
+_______________ test_readonly_verbs_pass_through[show databases] _______________
+
+sql = 'show databases'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            "SELECT 1",
+            "select id, name from users where active = 1",
+            "  SELECT * FROM   weego.users LIMIT 100",
+            "SHOW TABLES",
+            "show databases",
+            "USE weego",
+            "DESCRIBE users",
+            "DESC users",
+            "EXPLAIN SELECT id FROM users",
+            "/* comment */ SELECT 1 /* trailing */",
+            "SELECT 1;",  # trailing semicolon OK
+        ],
+    )
+    def test_readonly_verbs_pass_through(sql):
+        """SELECT / SHOW / USE / DESCRIBE / DESC / EXPLAIN admitted."""
+>       from services.mtafiti.executor.readonly_sql_guard import refuse_if_write
+E       ModuleNotFoundError: No module named 'services.mtafiti.executor'
+
+tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py:82: ModuleNotFoundError
+_________________ test_readonly_verbs_pass_through[USE weego] __________________
+
+sql = 'USE weego'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            "SELECT 1",
+            "select id, name from users where active = 1",
+            "  SELECT * FROM   weego.users LIMIT 100",
+            "SHOW TABLES",
+            "show databases",
+            "USE weego",
+            "DESCRIBE users",
+            "DESC users",
+            "EXPLAIN SELECT id FROM users",
+            "/* comment */ SELECT 1 /* trailing */",
+            "SELECT 1;",  # trailing semicolon OK
+        ],
+    )
+    def test_readonly_verbs_pass_through(sql):
+        """SELECT / SHOW / USE / DESCRIBE / DESC / EXPLAIN admitted."""
+>       from services.mtafiti.executor.readonly_sql_guard import refuse_if_write
+E       ModuleNotFoundError: No module named 'services.mtafiti.executor'
+
+tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py:82: ModuleNotFoundError
+_______________ test_readonly_verbs_pass_through[DESCRIBE users] _______________
+
+sql = 'DESCRIBE users'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            "SELECT 1",
+            "select id, name from users where active = 1",
+            "  SELECT * FROM   weego.users LIMIT 100",
+            "SHOW TABLES",
+            "show databases",
+            "USE weego",
+            "DESCRIBE users",
+            "DESC users",
+            "EXPLAIN SELECT id FROM users",
+            "/* comment */ SELECT 1 /* trailing */",
+            "SELECT 1;",  # trailing semicolon OK
+        ],
+    )
+    def test_readonly_verbs_pass_through(sql):
+        """SELECT / SHOW / USE / DESCRIBE / DESC / EXPLAIN admitted."""
+>       from services.mtafiti.executor.readonly_sql_guard import refuse_if_write
+E       ModuleNotFoundError: No module named 'services.mtafiti.executor'
+
+tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py:82: ModuleNotFoundError
+_________________ test_readonly_verbs_pass_through[DESC users] _________________
+
+sql = 'DESC users'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            "SELECT 1",
+            "select id, name from users where active = 1",
+            "  SELECT * FROM   weego.users LIMIT 100",
+            "SHOW TABLES",
+            "show databases",
+            "USE weego",
+            "DESCRIBE users",
+            "DESC users",
+            "EXPLAIN SELECT id FROM users",
+            "/* comment */ SELECT 1 /* trailing */",
+            "SELECT 1;",  # trailing semicolon OK
+        ],
+    )
+    def test_readonly_verbs_pass_through(sql):
+        """SELECT / SHOW / USE / DESCRIBE / DESC / EXPLAIN admitted."""
+>       from services.mtafiti.executor.readonly_sql_guard import refuse_if_write
+E       ModuleNotFoundError: No module named 'services.mtafiti.executor'
+
+tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py:82: ModuleNotFoundError
+________ test_readonly_verbs_pass_through[EXPLAIN SELECT id FROM users] ________
+
+sql = 'EXPLAIN SELECT id FROM users'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            "SELECT 1",
+            "select id, name from users where active = 1",
+            "  SELECT * FROM   weego.users LIMIT 100",
+            "SHOW TABLES",
+            "show databases",
+            "USE weego",
+            "DESCRIBE users",
+            "DESC users",
+            "EXPLAIN SELECT id FROM users",
+            "/* comment */ SELECT 1 /* trailing */",
+            "SELECT 1;",  # trailing semicolon OK
+        ],
+    )
+    def test_readonly_verbs_pass_through(sql):
+        """SELECT / SHOW / USE / DESCRIBE / DESC / EXPLAIN admitted."""
+>       from services.mtafiti.executor.readonly_sql_guard import refuse_if_write
+E       ModuleNotFoundError: No module named 'services.mtafiti.executor'
+
+tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py:82: ModuleNotFoundError
+___ test_readonly_verbs_pass_through[/* comment */ SELECT 1 /* trailing */] ____
+
+sql = '/* comment */ SELECT 1 /* trailing */'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            "SELECT 1",
+            "select id, name from users where active = 1",
+            "  SELECT * FROM   weego.users LIMIT 100",
+            "SHOW TABLES",
+            "show databases",
+            "USE weego",
+            "DESCRIBE users",
+            "DESC users",
+            "EXPLAIN SELECT id FROM users",
+            "/* comment */ SELECT 1 /* trailing */",
+            "SELECT 1;",  # trailing semicolon OK
+        ],
+    )
+    def test_readonly_verbs_pass_through(sql):
+        """SELECT / SHOW / USE / DESCRIBE / DESC / EXPLAIN admitted."""
+>       from services.mtafiti.executor.readonly_sql_guard import refuse_if_write
+E       ModuleNotFoundError: No module named 'services.mtafiti.executor'
+
+tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py:82: ModuleNotFoundError
+_________________ test_readonly_verbs_pass_through[SELECT 1;] __________________
+
+sql = 'SELECT 1;'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            "SELECT 1",
+            "select id, name from users where active = 1",
+            "  SELECT * FROM   weego.users LIMIT 100",
+            "SHOW TABLES",
+            "show databases",
+            "USE weego",
+            "DESCRIBE users",
+            "DESC users",
+            "EXPLAIN SELECT id FROM users",
+            "/* comment */ SELECT 1 /* trailing */",
+            "SELECT 1;",  # trailing semicolon OK
+        ],
+    )
+    def test_readonly_verbs_pass_through(sql):
+        """SELECT / SHOW / USE / DESCRIBE / DESC / EXPLAIN admitted."""
+>       from services.mtafiti.executor.readonly_sql_guard import refuse_if_write
+E       ModuleNotFoundError: No module named 'services.mtafiti.executor'
+
+tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py:82: ModuleNotFoundError
+_______ test_write_verbs_are_refused[INSERT INTO users (id) VALUES (1)] ________
+
+sql = 'INSERT INTO users (id) VALUES (1)'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            "INSERT INTO users (id) VALUES (1)",
+            "UPDATE users SET active = 0",
+            "DELETE FROM users WHERE id = 1",
+            "CREATE TABLE t (id INT)",
+            "DROP TABLE users",
+            "ALTER TABLE users ADD COLUMN x INT",
+            "GRANT SELECT ON weego.* TO 'x'@'%'",
+            "REVOKE ALL PRIVILEGES ON *.* FROM 'x'@'%'",
+            "TRUNCATE TABLE users",
+            "REPLACE INTO users (id, name) VALUES (1, 'a')",
+            "RENAME TABLE a TO b",
+            "MERGE INTO users USING src ON src.id = users.id",
+            "CALL some_proc()",
+            "EXECUTE stmt_handle",
+            "LOCK TABLES users WRITE",
+            "UNLOCK TABLES",
+            "SET SESSION sql_mode = ''",
+            "COMMIT",
+            "ROLLBACK",
+            "BEGIN",
+            "START TRANSACTION",
+            # Case-insensitive variants
+            "insert into users values (1)",
+            "Update users set active = 0",
+            "  DROP    TABLE users  ",
+        ],
+    )
+    def test_write_verbs_are_refused(sql):
+        """Every canonical write verb refused by construction."""
+>       from services.mtafiti.executor.readonly_sql_guard import (
+            refuse_if_write,
+            WriteVerbRefused,
+        )
+E       ModuleNotFoundError: No module named 'services.mtafiti.executor'
+
+tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py:124: ModuleNotFoundError
+__________ test_write_verbs_are_refused[UPDATE users SET active = 0] ___________
+
+sql = 'UPDATE users SET active = 0'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            "INSERT INTO users (id) VALUES (1)",
+            "UPDATE users SET active = 0",
+            "DELETE FROM users WHERE id = 1",
+            "CREATE TABLE t (id INT)",
+            "DROP TABLE users",
+            "ALTER TABLE users ADD COLUMN x INT",
+            "GRANT SELECT ON weego.* TO 'x'@'%'",
+            "REVOKE ALL PRIVILEGES ON *.* FROM 'x'@'%'",
+            "TRUNCATE TABLE users",
+            "REPLACE INTO users (id, name) VALUES (1, 'a')",
+            "RENAME TABLE a TO b",
+            "MERGE INTO users USING src ON src.id = users.id",
+            "CALL some_proc()",
+            "EXECUTE stmt_handle",
+            "LOCK TABLES users WRITE",
+            "UNLOCK TABLES",
+            "SET SESSION sql_mode = ''",
+            "COMMIT",
+            "ROLLBACK",
+            "BEGIN",
+            "START TRANSACTION",
+            # Case-insensitive variants
+            "insert into users values (1)",
+            "Update users set active = 0",
+            "  DROP    TABLE users  ",
+        ],
+    )
+    def test_write_verbs_are_refused(sql):
+        """Every canonical write verb refused by construction."""
+>       from services.mtafiti.executor.readonly_sql_guard import (
+            refuse_if_write,
+            WriteVerbRefused,
+        )
+E       ModuleNotFoundError: No module named 'services.mtafiti.executor'
+
+tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py:124: ModuleNotFoundError
+_________ test_write_verbs_are_refused[DELETE FROM users WHERE id = 1] _________
+
+sql = 'DELETE FROM users WHERE id = 1'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            "INSERT INTO users (id) VALUES (1)",
+            "UPDATE users SET active = 0",
+            "DELETE FROM users WHERE id = 1",
+            "CREATE TABLE t (id INT)",
+            "DROP TABLE users",
+            "ALTER TABLE users ADD COLUMN x INT",
+            "GRANT SELECT ON weego.* TO 'x'@'%'",
+            "REVOKE ALL PRIVILEGES ON *.* FROM 'x'@'%'",
+            "TRUNCATE TABLE users",
+            "REPLACE INTO users (id, name) VALUES (1, 'a')",
+            "RENAME TABLE a TO b",
+            "MERGE INTO users USING src ON src.id = users.id",
+            "CALL some_proc()",
+            "EXECUTE stmt_handle",
+            "LOCK TABLES users WRITE",
+            "UNLOCK TABLES",
+            "SET SESSION sql_mode = ''",
+            "COMMIT",
+            "ROLLBACK",
+            "BEGIN",
+            "START TRANSACTION",
+            # Case-insensitive variants
+            "insert into users values (1)",
+            "Update users set active = 0",
+            "  DROP    TABLE users  ",
+        ],
+    )
+    def test_write_verbs_are_refused(sql):
+        """Every canonical write verb refused by construction."""
+>       from services.mtafiti.executor.readonly_sql_guard import (
+            refuse_if_write,
+            WriteVerbRefused,
+        )
+E       ModuleNotFoundError: No module named 'services.mtafiti.executor'
+
+tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py:124: ModuleNotFoundError
+____________ test_write_verbs_are_refused[CREATE TABLE t (id INT)] _____________
+
+sql = 'CREATE TABLE t (id INT)'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            "INSERT INTO users (id) VALUES (1)",
+            "UPDATE users SET active = 0",
+            "DELETE FROM users WHERE id = 1",
+            "CREATE TABLE t (id INT)",
+            "DROP TABLE users",
+            "ALTER TABLE users ADD COLUMN x INT",
+            "GRANT SELECT ON weego.* TO 'x'@'%'",
+            "REVOKE ALL PRIVILEGES ON *.* FROM 'x'@'%'",
+            "TRUNCATE TABLE users",
+            "REPLACE INTO users (id, name) VALUES (1, 'a')",
+            "RENAME TABLE a TO b",
+            "MERGE INTO users USING src ON src.id = users.id",
+            "CALL some_proc()",
+            "EXECUTE stmt_handle",
+            "LOCK TABLES users WRITE",
+            "UNLOCK TABLES",
+            "SET SESSION sql_mode = ''",
+            "COMMIT",
+            "ROLLBACK",
+            "BEGIN",
+            "START TRANSACTION",
+            # Case-insensitive variants
+            "insert into users values (1)",
+            "Update users set active = 0",
+            "  DROP    TABLE users  ",
+        ],
+    )
+    def test_write_verbs_are_refused(sql):
+        """Every canonical write verb refused by construction."""
+>       from services.mtafiti.executor.readonly_sql_guard import (
+            refuse_if_write,
+            WriteVerbRefused,
+        )
+E       ModuleNotFoundError: No module named 'services.mtafiti.executor'
+
+tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py:124: ModuleNotFoundError
+________________ test_write_verbs_are_refused[DROP TABLE users] ________________
+
+sql = 'DROP TABLE users'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            "INSERT INTO users (id) VALUES (1)",
+            "UPDATE users SET active = 0",
+            "DELETE FROM users WHERE id = 1",
+            "CREATE TABLE t (id INT)",
+            "DROP TABLE users",
+            "ALTER TABLE users ADD COLUMN x INT",
+            "GRANT SELECT ON weego.* TO 'x'@'%'",
+            "REVOKE ALL PRIVILEGES ON *.* FROM 'x'@'%'",
+            "TRUNCATE TABLE users",
+            "REPLACE INTO users (id, name) VALUES (1, 'a')",
+            "RENAME TABLE a TO b",
+            "MERGE INTO users USING src ON src.id = users.id",
+            "CALL some_proc()",
+            "EXECUTE stmt_handle",
+            "LOCK TABLES users WRITE",
+            "UNLOCK TABLES",
+            "SET SESSION sql_mode = ''",
+            "COMMIT",
+            "ROLLBACK",
+            "BEGIN",
+            "START TRANSACTION",
+            # Case-insensitive variants
+            "insert into users values (1)",
+            "Update users set active = 0",
+            "  DROP    TABLE users  ",
+        ],
+    )
+    def test_write_verbs_are_refused(sql):
+        """Every canonical write verb refused by construction."""
+>       from services.mtafiti.executor.readonly_sql_guard import (
+            refuse_if_write,
+            WriteVerbRefused,
+        )
+E       ModuleNotFoundError: No module named 'services.mtafiti.executor'
+
+tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py:124: ModuleNotFoundError
+_______ test_write_verbs_are_refused[ALTER TABLE users ADD COLUMN x INT] _______
+
+sql = 'ALTER TABLE users ADD COLUMN x INT'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            "INSERT INTO users (id) VALUES (1)",
+            "UPDATE users SET active = 0",
+            "DELETE FROM users WHERE id = 1",
+            "CREATE TABLE t (id INT)",
+            "DROP TABLE users",
+            "ALTER TABLE users ADD COLUMN x INT",
+            "GRANT SELECT ON weego.* TO 'x'@'%'",
+            "REVOKE ALL PRIVILEGES ON *.* FROM 'x'@'%'",
+            "TRUNCATE TABLE users",
+            "REPLACE INTO users (id, name) VALUES (1, 'a')",
+            "RENAME TABLE a TO b",
+            "MERGE INTO users USING src ON src.id = users.id",
+            "CALL some_proc()",
+            "EXECUTE stmt_handle",
+            "LOCK TABLES users WRITE",
+            "UNLOCK TABLES",
+            "SET SESSION sql_mode = ''",
+            "COMMIT",
+            "ROLLBACK",
+            "BEGIN",
+            "START TRANSACTION",
+            # Case-insensitive variants
+            "insert into users values (1)",
+            "Update users set active = 0",
+            "  DROP    TABLE users  ",
+        ],
+    )
+    def test_write_verbs_are_refused(sql):
+        """Every canonical write verb refused by construction."""
+>       from services.mtafiti.executor.readonly_sql_guard import (
+            refuse_if_write,
+            WriteVerbRefused,
+        )
+E       ModuleNotFoundError: No module named 'services.mtafiti.executor'
+
+tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py:124: ModuleNotFoundError
+_______ test_write_verbs_are_refused[GRANT SELECT ON weego.* TO 'x'@'%'] _______
+
+sql = "GRANT SELECT ON weego.* TO 'x'@'%'"
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            "INSERT INTO users (id) VALUES (1)",
+            "UPDATE users SET active = 0",
+            "DELETE FROM users WHERE id = 1",
+            "CREATE TABLE t (id INT)",
+            "DROP TABLE users",
+            "ALTER TABLE users ADD COLUMN x INT",
+            "GRANT SELECT ON weego.* TO 'x'@'%'",
+            "REVOKE ALL PRIVILEGES ON *.* FROM 'x'@'%'",
+            "TRUNCATE TABLE users",
+            "REPLACE INTO users (id, name) VALUES (1, 'a')",
+            "RENAME TABLE a TO b",
+            "MERGE INTO users USING src ON src.id = users.id",
+            "CALL some_proc()",
+            "EXECUTE stmt_handle",
+            "LOCK TABLES users WRITE",
+            "UNLOCK TABLES",
+            "SET SESSION sql_mode = ''",
+            "COMMIT",
+            "ROLLBACK",
+            "BEGIN",
+            "START TRANSACTION",
+            # Case-insensitive variants
+            "insert into users values (1)",
+            "Update users set active = 0",
+            "  DROP    TABLE users  ",
+        ],
+    )
+    def test_write_verbs_are_refused(sql):
+        """Every canonical write verb refused by construction."""
+>       from services.mtafiti.executor.readonly_sql_guard import (
+            refuse_if_write,
+            WriteVerbRefused,
+        )
+E       ModuleNotFoundError: No module named 'services.mtafiti.executor'
+
+tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py:124: ModuleNotFoundError
+___ test_write_verbs_are_refused[REVOKE ALL PRIVILEGES ON *.* FROM 'x'@'%'] ____
+
+sql = "REVOKE ALL PRIVILEGES ON *.* FROM 'x'@'%'"
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            "INSERT INTO users (id) VALUES (1)",
+            "UPDATE users SET active = 0",
+            "DELETE FROM users WHERE id = 1",
+            "CREATE TABLE t (id INT)",
+            "DROP TABLE users",
+            "ALTER TABLE users ADD COLUMN x INT",
+            "GRANT SELECT ON weego.* TO 'x'@'%'",
+            "REVOKE ALL PRIVILEGES ON *.* FROM 'x'@'%'",
+            "TRUNCATE TABLE users",
+            "REPLACE INTO users (id, name) VALUES (1, 'a')",
+            "RENAME TABLE a TO b",
+            "MERGE INTO users USING src ON src.id = users.id",
+            "CALL some_proc()",
+            "EXECUTE stmt_handle",
+            "LOCK TABLES users WRITE",
+            "UNLOCK TABLES",
+            "SET SESSION sql_mode = ''",
+            "COMMIT",
+            "ROLLBACK",
+            "BEGIN",
+            "START TRANSACTION",
+            # Case-insensitive variants
+            "insert into users values (1)",
+            "Update users set active = 0",
+            "  DROP    TABLE users  ",
+        ],
+    )
+    def test_write_verbs_are_refused(sql):
+        """Every canonical write verb refused by construction."""
+>       from services.mtafiti.executor.readonly_sql_guard import (
+            refuse_if_write,
+            WriteVerbRefused,
+        )
+E       ModuleNotFoundError: No module named 'services.mtafiti.executor'
+
+tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py:124: ModuleNotFoundError
+______________ test_write_verbs_are_refused[TRUNCATE TABLE users] ______________
+
+sql = 'TRUNCATE TABLE users'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            "INSERT INTO users (id) VALUES (1)",
+            "UPDATE users SET active = 0",
+            "DELETE FROM users WHERE id = 1",
+            "CREATE TABLE t (id INT)",
+            "DROP TABLE users",
+            "ALTER TABLE users ADD COLUMN x INT",
+            "GRANT SELECT ON weego.* TO 'x'@'%'",
+            "REVOKE ALL PRIVILEGES ON *.* FROM 'x'@'%'",
+            "TRUNCATE TABLE users",
+            "REPLACE INTO users (id, name) VALUES (1, 'a')",
+            "RENAME TABLE a TO b",
+            "MERGE INTO users USING src ON src.id = users.id",
+            "CALL some_proc()",
+            "EXECUTE stmt_handle",
+            "LOCK TABLES users WRITE",
+            "UNLOCK TABLES",
+            "SET SESSION sql_mode = ''",
+            "COMMIT",
+            "ROLLBACK",
+            "BEGIN",
+            "START TRANSACTION",
+            # Case-insensitive variants
+            "insert into users values (1)",
+            "Update users set active = 0",
+            "  DROP    TABLE users  ",
+        ],
+    )
+    def test_write_verbs_are_refused(sql):
+        """Every canonical write verb refused by construction."""
+>       from services.mtafiti.executor.readonly_sql_guard import (
+            refuse_if_write,
+            WriteVerbRefused,
+        )
+E       ModuleNotFoundError: No module named 'services.mtafiti.executor'
+
+tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py:124: ModuleNotFoundError
+_ test_write_verbs_are_refused[REPLACE INTO users (id, name) VALUES (1, 'a')] __
+
+sql = "REPLACE INTO users (id, name) VALUES (1, 'a')"
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            "INSERT INTO users (id) VALUES (1)",
+            "UPDATE users SET active = 0",
+            "DELETE FROM users WHERE id = 1",
+            "CREATE TABLE t (id INT)",
+            "DROP TABLE users",
+            "ALTER TABLE users ADD COLUMN x INT",
+            "GRANT SELECT ON weego.* TO 'x'@'%'",
+            "REVOKE ALL PRIVILEGES ON *.* FROM 'x'@'%'",
+            "TRUNCATE TABLE users",
+            "REPLACE INTO users (id, name) VALUES (1, 'a')",
+            "RENAME TABLE a TO b",
+            "MERGE INTO users USING src ON src.id = users.id",
+            "CALL some_proc()",
+            "EXECUTE stmt_handle",
+            "LOCK TABLES users WRITE",
+            "UNLOCK TABLES",
+            "SET SESSION sql_mode = ''",
+            "COMMIT",
+            "ROLLBACK",
+            "BEGIN",
+            "START TRANSACTION",
+            # Case-insensitive variants
+            "insert into users values (1)",
+            "Update users set active = 0",
+            "  DROP    TABLE users  ",
+        ],
+    )
+    def test_write_verbs_are_refused(sql):
+        """Every canonical write verb refused by construction."""
+>       from services.mtafiti.executor.readonly_sql_guard import (
+            refuse_if_write,
+            WriteVerbRefused,
+        )
+E       ModuleNotFoundError: No module named 'services.mtafiti.executor'
+
+tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py:124: ModuleNotFoundError
+______________ test_write_verbs_are_refused[RENAME TABLE a TO b] _______________
+
+sql = 'RENAME TABLE a TO b'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            "INSERT INTO users (id) VALUES (1)",
+            "UPDATE users SET active = 0",
+            "DELETE FROM users WHERE id = 1",
+            "CREATE TABLE t (id INT)",
+            "DROP TABLE users",
+            "ALTER TABLE users ADD COLUMN x INT",
+            "GRANT SELECT ON weego.* TO 'x'@'%'",
+            "REVOKE ALL PRIVILEGES ON *.* FROM 'x'@'%'",
+            "TRUNCATE TABLE users",
+            "REPLACE INTO users (id, name) VALUES (1, 'a')",
+            "RENAME TABLE a TO b",
+            "MERGE INTO users USING src ON src.id = users.id",
+            "CALL some_proc()",
+            "EXECUTE stmt_handle",
+            "LOCK TABLES users WRITE",
+            "UNLOCK TABLES",
+            "SET SESSION sql_mode = ''",
+            "COMMIT",
+            "ROLLBACK",
+            "BEGIN",
+            "START TRANSACTION",
+            # Case-insensitive variants
+            "insert into users values (1)",
+            "Update users set active = 0",
+            "  DROP    TABLE users  ",
+        ],
+    )
+    def test_write_verbs_are_refused(sql):
+        """Every canonical write verb refused by construction."""
+>       from services.mtafiti.executor.readonly_sql_guard import (
+            refuse_if_write,
+            WriteVerbRefused,
+        )
+E       ModuleNotFoundError: No module named 'services.mtafiti.executor'
+
+tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py:124: ModuleNotFoundError
+_ test_write_verbs_are_refused[MERGE INTO users USING src ON src.id = users.id] _
+
+sql = 'MERGE INTO users USING src ON src.id = users.id'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            "INSERT INTO users (id) VALUES (1)",
+            "UPDATE users SET active = 0",
+            "DELETE FROM users WHERE id = 1",
+            "CREATE TABLE t (id INT)",
+            "DROP TABLE users",
+            "ALTER TABLE users ADD COLUMN x INT",
+            "GRANT SELECT ON weego.* TO 'x'@'%'",
+            "REVOKE ALL PRIVILEGES ON *.* FROM 'x'@'%'",
+            "TRUNCATE TABLE users",
+            "REPLACE INTO users (id, name) VALUES (1, 'a')",
+            "RENAME TABLE a TO b",
+            "MERGE INTO users USING src ON src.id = users.id",
+            "CALL some_proc()",
+            "EXECUTE stmt_handle",
+            "LOCK TABLES users WRITE",
+            "UNLOCK TABLES",
+            "SET SESSION sql_mode = ''",
+            "COMMIT",
+            "ROLLBACK",
+            "BEGIN",
+            "START TRANSACTION",
+            # Case-insensitive variants
+            "insert into users values (1)",
+            "Update users set active = 0",
+            "  DROP    TABLE users  ",
+        ],
+    )
+    def test_write_verbs_are_refused(sql):
+        """Every canonical write verb refused by construction."""
+>       from services.mtafiti.executor.readonly_sql_guard import (
+            refuse_if_write,
+            WriteVerbRefused,
+        )
+E       ModuleNotFoundError: No module named 'services.mtafiti.executor'
+
+tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py:124: ModuleNotFoundError
+________________ test_write_verbs_are_refused[CALL some_proc()] ________________
+
+sql = 'CALL some_proc()'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            "INSERT INTO users (id) VALUES (1)",
+            "UPDATE users SET active = 0",
+            "DELETE FROM users WHERE id = 1",
+            "CREATE TABLE t (id INT)",
+            "DROP TABLE users",
+            "ALTER TABLE users ADD COLUMN x INT",
+            "GRANT SELECT ON weego.* TO 'x'@'%'",
+            "REVOKE ALL PRIVILEGES ON *.* FROM 'x'@'%'",
+            "TRUNCATE TABLE users",
+            "REPLACE INTO users (id, name) VALUES (1, 'a')",
+            "RENAME TABLE a TO b",
+            "MERGE INTO users USING src ON src.id = users.id",
+            "CALL some_proc()",
+            "EXECUTE stmt_handle",
+            "LOCK TABLES users WRITE",
+            "UNLOCK TABLES",
+            "SET SESSION sql_mode = ''",
+            "COMMIT",
+            "ROLLBACK",
+            "BEGIN",
+            "START TRANSACTION",
+            # Case-insensitive variants
+            "insert into users values (1)",
+            "Update users set active = 0",
+            "  DROP    TABLE users  ",
+        ],
+    )
+    def test_write_verbs_are_refused(sql):
+        """Every canonical write verb refused by construction."""
+>       from services.mtafiti.executor.readonly_sql_guard import (
+            refuse_if_write,
+            WriteVerbRefused,
+        )
+E       ModuleNotFoundError: No module named 'services.mtafiti.executor'
+
+tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py:124: ModuleNotFoundError
+______________ test_write_verbs_are_refused[EXECUTE stmt_handle] _______________
+
+sql = 'EXECUTE stmt_handle'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            "INSERT INTO users (id) VALUES (1)",
+            "UPDATE users SET active = 0",
+            "DELETE FROM users WHERE id = 1",
+            "CREATE TABLE t (id INT)",
+            "DROP TABLE users",
+            "ALTER TABLE users ADD COLUMN x INT",
+            "GRANT SELECT ON weego.* TO 'x'@'%'",
+            "REVOKE ALL PRIVILEGES ON *.* FROM 'x'@'%'",
+            "TRUNCATE TABLE users",
+            "REPLACE INTO users (id, name) VALUES (1, 'a')",
+            "RENAME TABLE a TO b",
+            "MERGE INTO users USING src ON src.id = users.id",
+            "CALL some_proc()",
+            "EXECUTE stmt_handle",
+            "LOCK TABLES users WRITE",
+            "UNLOCK TABLES",
+            "SET SESSION sql_mode = ''",
+            "COMMIT",
+            "ROLLBACK",
+            "BEGIN",
+            "START TRANSACTION",
+            # Case-insensitive variants
+            "insert into users values (1)",
+            "Update users set active = 0",
+            "  DROP    TABLE users  ",
+        ],
+    )
+    def test_write_verbs_are_refused(sql):
+        """Every canonical write verb refused by construction."""
+>       from services.mtafiti.executor.readonly_sql_guard import (
+            refuse_if_write,
+            WriteVerbRefused,
+        )
+E       ModuleNotFoundError: No module named 'services.mtafiti.executor'
+
+tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py:124: ModuleNotFoundError
+____________ test_write_verbs_are_refused[LOCK TABLES users WRITE] _____________
+
+sql = 'LOCK TABLES users WRITE'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            "INSERT INTO users (id) VALUES (1)",
+            "UPDATE users SET active = 0",
+            "DELETE FROM users WHERE id = 1",
+            "CREATE TABLE t (id INT)",
+            "DROP TABLE users",
+            "ALTER TABLE users ADD COLUMN x INT",
+            "GRANT SELECT ON weego.* TO 'x'@'%'",
+            "REVOKE ALL PRIVILEGES ON *.* FROM 'x'@'%'",
+            "TRUNCATE TABLE users",
+            "REPLACE INTO users (id, name) VALUES (1, 'a')",
+            "RENAME TABLE a TO b",
+            "MERGE INTO users USING src ON src.id = users.id",
+            "CALL some_proc()",
+            "EXECUTE stmt_handle",
+            "LOCK TABLES users WRITE",
+            "UNLOCK TABLES",
+            "SET SESSION sql_mode = ''",
+            "COMMIT",
+            "ROLLBACK",
+            "BEGIN",
+            "START TRANSACTION",
+            # Case-insensitive variants
+            "insert into users values (1)",
+            "Update users set active = 0",
+            "  DROP    TABLE users  ",
+        ],
+    )
+    def test_write_verbs_are_refused(sql):
+        """Every canonical write verb refused by construction."""
+>       from services.mtafiti.executor.readonly_sql_guard import (
+            refuse_if_write,
+            WriteVerbRefused,
+        )
+E       ModuleNotFoundError: No module named 'services.mtafiti.executor'
+
+tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py:124: ModuleNotFoundError
+_________________ test_write_verbs_are_refused[UNLOCK TABLES] __________________
+
+sql = 'UNLOCK TABLES'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            "INSERT INTO users (id) VALUES (1)",
+            "UPDATE users SET active = 0",
+            "DELETE FROM users WHERE id = 1",
+            "CREATE TABLE t (id INT)",
+            "DROP TABLE users",
+            "ALTER TABLE users ADD COLUMN x INT",
+            "GRANT SELECT ON weego.* TO 'x'@'%'",
+            "REVOKE ALL PRIVILEGES ON *.* FROM 'x'@'%'",
+            "TRUNCATE TABLE users",
+            "REPLACE INTO users (id, name) VALUES (1, 'a')",
+            "RENAME TABLE a TO b",
+            "MERGE INTO users USING src ON src.id = users.id",
+            "CALL some_proc()",
+            "EXECUTE stmt_handle",
+            "LOCK TABLES users WRITE",
+            "UNLOCK TABLES",
+            "SET SESSION sql_mode = ''",
+            "COMMIT",
+            "ROLLBACK",
+            "BEGIN",
+            "START TRANSACTION",
+            # Case-insensitive variants
+            "insert into users values (1)",
+            "Update users set active = 0",
+            "  DROP    TABLE users  ",
+        ],
+    )
+    def test_write_verbs_are_refused(sql):
+        """Every canonical write verb refused by construction."""
+>       from services.mtafiti.executor.readonly_sql_guard import (
+            refuse_if_write,
+            WriteVerbRefused,
+        )
+E       ModuleNotFoundError: No module named 'services.mtafiti.executor'
+
+tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py:124: ModuleNotFoundError
+___________ test_write_verbs_are_refused[SET SESSION sql_mode = ''] ____________
+
+sql = "SET SESSION sql_mode = ''"
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            "INSERT INTO users (id) VALUES (1)",
+            "UPDATE users SET active = 0",
+            "DELETE FROM users WHERE id = 1",
+            "CREATE TABLE t (id INT)",
+            "DROP TABLE users",
+            "ALTER TABLE users ADD COLUMN x INT",
+            "GRANT SELECT ON weego.* TO 'x'@'%'",
+            "REVOKE ALL PRIVILEGES ON *.* FROM 'x'@'%'",
+            "TRUNCATE TABLE users",
+            "REPLACE INTO users (id, name) VALUES (1, 'a')",
+            "RENAME TABLE a TO b",
+            "MERGE INTO users USING src ON src.id = users.id",
+            "CALL some_proc()",
+            "EXECUTE stmt_handle",
+            "LOCK TABLES users WRITE",
+            "UNLOCK TABLES",
+            "SET SESSION sql_mode = ''",
+            "COMMIT",
+            "ROLLBACK",
+            "BEGIN",
+            "START TRANSACTION",
+            # Case-insensitive variants
+            "insert into users values (1)",
+            "Update users set active = 0",
+            "  DROP    TABLE users  ",
+        ],
+    )
+    def test_write_verbs_are_refused(sql):
+        """Every canonical write verb refused by construction."""
+>       from services.mtafiti.executor.readonly_sql_guard import (
+            refuse_if_write,
+            WriteVerbRefused,
+        )
+E       ModuleNotFoundError: No module named 'services.mtafiti.executor'
+
+tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py:124: ModuleNotFoundError
+_____________________ test_write_verbs_are_refused[COMMIT] _____________________
+
+sql = 'COMMIT'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            "INSERT INTO users (id) VALUES (1)",
+            "UPDATE users SET active = 0",
+            "DELETE FROM users WHERE id = 1",
+            "CREATE TABLE t (id INT)",
+            "DROP TABLE users",
+            "ALTER TABLE users ADD COLUMN x INT",
+            "GRANT SELECT ON weego.* TO 'x'@'%'",
+            "REVOKE ALL PRIVILEGES ON *.* FROM 'x'@'%'",
+            "TRUNCATE TABLE users",
+            "REPLACE INTO users (id, name) VALUES (1, 'a')",
+            "RENAME TABLE a TO b",
+            "MERGE INTO users USING src ON src.id = users.id",
+            "CALL some_proc()",
+            "EXECUTE stmt_handle",
+            "LOCK TABLES users WRITE",
+            "UNLOCK TABLES",
+            "SET SESSION sql_mode = ''",
+            "COMMIT",
+            "ROLLBACK",
+            "BEGIN",
+            "START TRANSACTION",
+            # Case-insensitive variants
+            "insert into users values (1)",
+            "Update users set active = 0",
+            "  DROP    TABLE users  ",
+        ],
+    )
+    def test_write_verbs_are_refused(sql):
+        """Every canonical write verb refused by construction."""
+>       from services.mtafiti.executor.readonly_sql_guard import (
+            refuse_if_write,
+            WriteVerbRefused,
+        )
+E       ModuleNotFoundError: No module named 'services.mtafiti.executor'
+
+tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py:124: ModuleNotFoundError
+____________________ test_write_verbs_are_refused[ROLLBACK] ____________________
+
+sql = 'ROLLBACK'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            "INSERT INTO users (id) VALUES (1)",
+            "UPDATE users SET active = 0",
+            "DELETE FROM users WHERE id = 1",
+            "CREATE TABLE t (id INT)",
+            "DROP TABLE users",
+            "ALTER TABLE users ADD COLUMN x INT",
+            "GRANT SELECT ON weego.* TO 'x'@'%'",
+            "REVOKE ALL PRIVILEGES ON *.* FROM 'x'@'%'",
+            "TRUNCATE TABLE users",
+            "REPLACE INTO users (id, name) VALUES (1, 'a')",
+            "RENAME TABLE a TO b",
+            "MERGE INTO users USING src ON src.id = users.id",
+            "CALL some_proc()",
+            "EXECUTE stmt_handle",
+            "LOCK TABLES users WRITE",
+            "UNLOCK TABLES",
+            "SET SESSION sql_mode = ''",
+            "COMMIT",
+            "ROLLBACK",
+            "BEGIN",
+            "START TRANSACTION",
+            # Case-insensitive variants
+            "insert into users values (1)",
+            "Update users set active = 0",
+            "  DROP    TABLE users  ",
+        ],
+    )
+    def test_write_verbs_are_refused(sql):
+        """Every canonical write verb refused by construction."""
+>       from services.mtafiti.executor.readonly_sql_guard import (
+            refuse_if_write,
+            WriteVerbRefused,
+        )
+E       ModuleNotFoundError: No module named 'services.mtafiti.executor'
+
+tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py:124: ModuleNotFoundError
+_____________________ test_write_verbs_are_refused[BEGIN] ______________________
+
+sql = 'BEGIN'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            "INSERT INTO users (id) VALUES (1)",
+            "UPDATE users SET active = 0",
+            "DELETE FROM users WHERE id = 1",
+            "CREATE TABLE t (id INT)",
+            "DROP TABLE users",
+            "ALTER TABLE users ADD COLUMN x INT",
+            "GRANT SELECT ON weego.* TO 'x'@'%'",
+            "REVOKE ALL PRIVILEGES ON *.* FROM 'x'@'%'",
+            "TRUNCATE TABLE users",
+            "REPLACE INTO users (id, name) VALUES (1, 'a')",
+            "RENAME TABLE a TO b",
+            "MERGE INTO users USING src ON src.id = users.id",
+            "CALL some_proc()",
+            "EXECUTE stmt_handle",
+            "LOCK TABLES users WRITE",
+            "UNLOCK TABLES",
+            "SET SESSION sql_mode = ''",
+            "COMMIT",
+            "ROLLBACK",
+            "BEGIN",
+            "START TRANSACTION",
+            # Case-insensitive variants
+            "insert into users values (1)",
+            "Update users set active = 0",
+            "  DROP    TABLE users  ",
+        ],
+    )
+    def test_write_verbs_are_refused(sql):
+        """Every canonical write verb refused by construction."""
+>       from services.mtafiti.executor.readonly_sql_guard import (
+            refuse_if_write,
+            WriteVerbRefused,
+        )
+E       ModuleNotFoundError: No module named 'services.mtafiti.executor'
+
+tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py:124: ModuleNotFoundError
+_______________ test_write_verbs_are_refused[START TRANSACTION] ________________
+
+sql = 'START TRANSACTION'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            "INSERT INTO users (id) VALUES (1)",
+            "UPDATE users SET active = 0",
+            "DELETE FROM users WHERE id = 1",
+            "CREATE TABLE t (id INT)",
+            "DROP TABLE users",
+            "ALTER TABLE users ADD COLUMN x INT",
+            "GRANT SELECT ON weego.* TO 'x'@'%'",
+            "REVOKE ALL PRIVILEGES ON *.* FROM 'x'@'%'",
+            "TRUNCATE TABLE users",
+            "REPLACE INTO users (id, name) VALUES (1, 'a')",
+            "RENAME TABLE a TO b",
+            "MERGE INTO users USING src ON src.id = users.id",
+            "CALL some_proc()",
+            "EXECUTE stmt_handle",
+            "LOCK TABLES users WRITE",
+            "UNLOCK TABLES",
+            "SET SESSION sql_mode = ''",
+            "COMMIT",
+            "ROLLBACK",
+            "BEGIN",
+            "START TRANSACTION",
+            # Case-insensitive variants
+            "insert into users values (1)",
+            "Update users set active = 0",
+            "  DROP    TABLE users  ",
+        ],
+    )
+    def test_write_verbs_are_refused(sql):
+        """Every canonical write verb refused by construction."""
+>       from services.mtafiti.executor.readonly_sql_guard import (
+            refuse_if_write,
+            WriteVerbRefused,
+        )
+E       ModuleNotFoundError: No module named 'services.mtafiti.executor'
+
+tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py:124: ModuleNotFoundError
+__________ test_write_verbs_are_refused[insert into users values (1)] __________
+
+sql = 'insert into users values (1)'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            "INSERT INTO users (id) VALUES (1)",
+            "UPDATE users SET active = 0",
+            "DELETE FROM users WHERE id = 1",
+            "CREATE TABLE t (id INT)",
+            "DROP TABLE users",
+            "ALTER TABLE users ADD COLUMN x INT",
+            "GRANT SELECT ON weego.* TO 'x'@'%'",
+            "REVOKE ALL PRIVILEGES ON *.* FROM 'x'@'%'",
+            "TRUNCATE TABLE users",
+            "REPLACE INTO users (id, name) VALUES (1, 'a')",
+            "RENAME TABLE a TO b",
+            "MERGE INTO users USING src ON src.id = users.id",
+            "CALL some_proc()",
+            "EXECUTE stmt_handle",
+            "LOCK TABLES users WRITE",
+            "UNLOCK TABLES",
+            "SET SESSION sql_mode = ''",
+            "COMMIT",
+            "ROLLBACK",
+            "BEGIN",
+            "START TRANSACTION",
+            # Case-insensitive variants
+            "insert into users values (1)",
+            "Update users set active = 0",
+            "  DROP    TABLE users  ",
+        ],
+    )
+    def test_write_verbs_are_refused(sql):
+        """Every canonical write verb refused by construction."""
+>       from services.mtafiti.executor.readonly_sql_guard import (
+            refuse_if_write,
+            WriteVerbRefused,
+        )
+E       ModuleNotFoundError: No module named 'services.mtafiti.executor'
+
+tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py:124: ModuleNotFoundError
+__________ test_write_verbs_are_refused[Update users set active = 0] ___________
+
+sql = 'Update users set active = 0'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            "INSERT INTO users (id) VALUES (1)",
+            "UPDATE users SET active = 0",
+            "DELETE FROM users WHERE id = 1",
+            "CREATE TABLE t (id INT)",
+            "DROP TABLE users",
+            "ALTER TABLE users ADD COLUMN x INT",
+            "GRANT SELECT ON weego.* TO 'x'@'%'",
+            "REVOKE ALL PRIVILEGES ON *.* FROM 'x'@'%'",
+            "TRUNCATE TABLE users",
+            "REPLACE INTO users (id, name) VALUES (1, 'a')",
+            "RENAME TABLE a TO b",
+            "MERGE INTO users USING src ON src.id = users.id",
+            "CALL some_proc()",
+            "EXECUTE stmt_handle",
+            "LOCK TABLES users WRITE",
+            "UNLOCK TABLES",
+            "SET SESSION sql_mode = ''",
+            "COMMIT",
+            "ROLLBACK",
+            "BEGIN",
+            "START TRANSACTION",
+            # Case-insensitive variants
+            "insert into users values (1)",
+            "Update users set active = 0",
+            "  DROP    TABLE users  ",
+        ],
+    )
+    def test_write_verbs_are_refused(sql):
+        """Every canonical write verb refused by construction."""
+>       from services.mtafiti.executor.readonly_sql_guard import (
+            refuse_if_write,
+            WriteVerbRefused,
+        )
+E       ModuleNotFoundError: No module named 'services.mtafiti.executor'
+
+tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py:124: ModuleNotFoundError
+____________ test_write_verbs_are_refused[  DROP    TABLE users  ] _____________
+
+sql = '  DROP    TABLE users  '
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            "INSERT INTO users (id) VALUES (1)",
+            "UPDATE users SET active = 0",
+            "DELETE FROM users WHERE id = 1",
+            "CREATE TABLE t (id INT)",
+            "DROP TABLE users",
+            "ALTER TABLE users ADD COLUMN x INT",
+            "GRANT SELECT ON weego.* TO 'x'@'%'",
+            "REVOKE ALL PRIVILEGES ON *.* FROM 'x'@'%'",
+            "TRUNCATE TABLE users",
+            "REPLACE INTO users (id, name) VALUES (1, 'a')",
+            "RENAME TABLE a TO b",
+            "MERGE INTO users USING src ON src.id = users.id",
+            "CALL some_proc()",
+            "EXECUTE stmt_handle",
+            "LOCK TABLES users WRITE",
+            "UNLOCK TABLES",
+            "SET SESSION sql_mode = ''",
+            "COMMIT",
+            "ROLLBACK",
+            "BEGIN",
+            "START TRANSACTION",
+            # Case-insensitive variants
+            "insert into users values (1)",
+            "Update users set active = 0",
+            "  DROP    TABLE users  ",
+        ],
+    )
+    def test_write_verbs_are_refused(sql):
+        """Every canonical write verb refused by construction."""
+>       from services.mtafiti.executor.readonly_sql_guard import (
+            refuse_if_write,
+            WriteVerbRefused,
+        )
+E       ModuleNotFoundError: No module named 'services.mtafiti.executor'
+
+tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py:124: ModuleNotFoundError
+_____ test_multi_statement_submissions_refused[SELECT 1; DROP TABLE users] _____
+
+sql = 'SELECT 1; DROP TABLE users'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            "SELECT 1; DROP TABLE users",
+            "SELECT * FROM users; UPDATE users SET active=0",
+            "SHOW TABLES; DELETE FROM users",
+            "SELECT 1; SELECT 2",  # even innocent multi-statement refused
+        ],
+    )
+    def test_multi_statement_submissions_refused(sql):
+        """Semicolon-injection guard — multi-statement submissions refused."""
+>       from services.mtafiti.executor.readonly_sql_guard import (
+            refuse_if_write,
+            WriteVerbRefused,
+        )
+E       ModuleNotFoundError: No module named 'services.mtafiti.executor'
+
+tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py:146: ModuleNotFoundError
+_ test_multi_statement_submissions_refused[SELECT * FROM users; UPDATE users SET active=0] _
+
+sql = 'SELECT * FROM users; UPDATE users SET active=0'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            "SELECT 1; DROP TABLE users",
+            "SELECT * FROM users; UPDATE users SET active=0",
+            "SHOW TABLES; DELETE FROM users",
+            "SELECT 1; SELECT 2",  # even innocent multi-statement refused
+        ],
+    )
+    def test_multi_statement_submissions_refused(sql):
+        """Semicolon-injection guard — multi-statement submissions refused."""
+>       from services.mtafiti.executor.readonly_sql_guard import (
+            refuse_if_write,
+            WriteVerbRefused,
+        )
+E       ModuleNotFoundError: No module named 'services.mtafiti.executor'
+
+tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py:146: ModuleNotFoundError
+___ test_multi_statement_submissions_refused[SHOW TABLES; DELETE FROM users] ___
+
+sql = 'SHOW TABLES; DELETE FROM users'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            "SELECT 1; DROP TABLE users",
+            "SELECT * FROM users; UPDATE users SET active=0",
+            "SHOW TABLES; DELETE FROM users",
+            "SELECT 1; SELECT 2",  # even innocent multi-statement refused
+        ],
+    )
+    def test_multi_statement_submissions_refused(sql):
+        """Semicolon-injection guard — multi-statement submissions refused."""
+>       from services.mtafiti.executor.readonly_sql_guard import (
+            refuse_if_write,
+            WriteVerbRefused,
+        )
+E       ModuleNotFoundError: No module named 'services.mtafiti.executor'
+
+tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py:146: ModuleNotFoundError
+_________ test_multi_statement_submissions_refused[SELECT 1; SELECT 2] _________
+
+sql = 'SELECT 1; SELECT 2'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            "SELECT 1; DROP TABLE users",
+            "SELECT * FROM users; UPDATE users SET active=0",
+            "SHOW TABLES; DELETE FROM users",
+            "SELECT 1; SELECT 2",  # even innocent multi-statement refused
+        ],
+    )
+    def test_multi_statement_submissions_refused(sql):
+        """Semicolon-injection guard — multi-statement submissions refused."""
+>       from services.mtafiti.executor.readonly_sql_guard import (
+            refuse_if_write,
+            WriteVerbRefused,
+        )
+E       ModuleNotFoundError: No module named 'services.mtafiti.executor'
+
+tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py:146: ModuleNotFoundError
+___________________ test_empty_or_comment_only_sql_refused[] ___________________
+
+sql = ''
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            "",
+            "   ",
+            "\n\t  \n",
+            "-- just a comment",
+            "/* block comment only */",
+            "/* c1 */   -- c2",
+        ],
+    )
+    def test_empty_or_comment_only_sql_refused(sql):
+        """No read-only verb present → refused; empty submission is unsafe."""
+>       from services.mtafiti.executor.readonly_sql_guard import (
+            refuse_if_write,
+            WriteVerbRefused,
+        )
+E       ModuleNotFoundError: No module named 'services.mtafiti.executor'
+
+tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py:170: ModuleNotFoundError
+_________________ test_empty_or_comment_only_sql_refused[   ] __________________
+
+sql = '   '
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            "",
+            "   ",
+            "\n\t  \n",
+            "-- just a comment",
+            "/* block comment only */",
+            "/* c1 */   -- c2",
+        ],
+    )
+    def test_empty_or_comment_only_sql_refused(sql):
+        """No read-only verb present → refused; empty submission is unsafe."""
+>       from services.mtafiti.executor.readonly_sql_guard import (
+            refuse_if_write,
+            WriteVerbRefused,
+        )
+E       ModuleNotFoundError: No module named 'services.mtafiti.executor'
+
+tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py:170: ModuleNotFoundError
+_______________ test_empty_or_comment_only_sql_refused[\n\t  \n] _______________
+
+sql = '\n\t  \n'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            "",
+            "   ",
+            "\n\t  \n",
+            "-- just a comment",
+            "/* block comment only */",
+            "/* c1 */   -- c2",
+        ],
+    )
+    def test_empty_or_comment_only_sql_refused(sql):
+        """No read-only verb present → refused; empty submission is unsafe."""
+>       from services.mtafiti.executor.readonly_sql_guard import (
+            refuse_if_write,
+            WriteVerbRefused,
+        )
+E       ModuleNotFoundError: No module named 'services.mtafiti.executor'
+
+tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py:170: ModuleNotFoundError
+__________ test_empty_or_comment_only_sql_refused[-- just a comment] ___________
+
+sql = '-- just a comment'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            "",
+            "   ",
+            "\n\t  \n",
+            "-- just a comment",
+            "/* block comment only */",
+            "/* c1 */   -- c2",
+        ],
+    )
+    def test_empty_or_comment_only_sql_refused(sql):
+        """No read-only verb present → refused; empty submission is unsafe."""
+>       from services.mtafiti.executor.readonly_sql_guard import (
+            refuse_if_write,
+            WriteVerbRefused,
+        )
+E       ModuleNotFoundError: No module named 'services.mtafiti.executor'
+
+tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py:170: ModuleNotFoundError
+_______ test_empty_or_comment_only_sql_refused[/* block comment only */] _______
+
+sql = '/* block comment only */'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            "",
+            "   ",
+            "\n\t  \n",
+            "-- just a comment",
+            "/* block comment only */",
+            "/* c1 */   -- c2",
+        ],
+    )
+    def test_empty_or_comment_only_sql_refused(sql):
+        """No read-only verb present → refused; empty submission is unsafe."""
+>       from services.mtafiti.executor.readonly_sql_guard import (
+            refuse_if_write,
+            WriteVerbRefused,
+        )
+E       ModuleNotFoundError: No module named 'services.mtafiti.executor'
+
+tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py:170: ModuleNotFoundError
+___________ test_empty_or_comment_only_sql_refused[/* c1 */   -- c2] ___________
+
+sql = '/* c1 */   -- c2'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            "",
+            "   ",
+            "\n\t  \n",
+            "-- just a comment",
+            "/* block comment only */",
+            "/* c1 */   -- c2",
+        ],
+    )
+    def test_empty_or_comment_only_sql_refused(sql):
+        """No read-only verb present → refused; empty submission is unsafe."""
+>       from services.mtafiti.executor.readonly_sql_guard import (
+            refuse_if_write,
+            WriteVerbRefused,
+        )
+E       ModuleNotFoundError: No module named 'services.mtafiti.executor'
+
+tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py:170: ModuleNotFoundError
+________________ test_comment_stripped_write_verb_still_refused ________________
+
+    def test_comment_stripped_write_verb_still_refused():
+        """A write verb obscured behind comments must not slip past the guard."""
+>       from services.mtafiti.executor.readonly_sql_guard import (
+            refuse_if_write,
+            WriteVerbRefused,
+        )
+E       ModuleNotFoundError: No module named 'services.mtafiti.executor'
+
+tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py:183: ModuleNotFoundError
+_____________ test_refusal_is_by_construction_not_a_boolean_return _____________
+
+    def test_refusal_is_by_construction_not_a_boolean_return():
+        """Refusal is refuse-by-construction — an exception, never a silent False."""
+>       from services.mtafiti.executor.readonly_sql_guard import (
+            refuse_if_write,
+            WriteVerbRefused,
+        )
+E       ModuleNotFoundError: No module named 'services.mtafiti.executor'
+
+tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py:198: ModuleNotFoundError
+=============================== warnings summary ===============================
+tests/invariants/test_8_ext.py: 13 warnings
+tests/invariants/test_artifact_store.py: 2 warnings
+tests/invariants/test_connect_ui1c_gates.py: 9 warnings
+tests/invariants/test_engineer_key_grant_e2_taxonomy.py: 4 warnings
+tests/invariants/test_engineer_key_grant_ledger.py: 2 warnings
+tests/invariants/test_govern_g_g1_to_g_g8.py: 6 warnings
+tests/invariants/test_govern_ui1b_gates.py: 15 warnings
+tests/invariants/test_master_admin_auth_reconciliation.py: 10 warnings
+tests/invariants/test_master_admin_pending_seams.py: 1 warning
+tests/invariants/test_master_admin_recent_actions.py: 4 warnings
+tests/invariants/test_master_admin_tier_lock_path_a_ledger.py: 3 warnings
+tests/invariants/test_memory_engineer_key_grant_e2e_propagation.py: 7 warnings
+tests/invariants/test_memory_observability_o_g1_to_o_g6.py: 6 warnings
+tests/invariants/test_memory_service_m_g1_to_m_g9.py: 4 warnings
+tests/invariants/test_p2_buildable_now.py: 3 warnings
+tests/invariants/test_phase3_subcycle1_gates.py: 7 warnings
+tests/invariants/test_phase_6_stage_b_economics.py: 1 warning
+tests/invariants/test_phase_8_b_1_auth_and_shims.py: 3 warnings
+tests/invariants/test_phase_8_b_2_operator_and_scope_gate.py: 7 warnings
+tests/invariants/test_phase_8_b_5a_compliance.py: 15 warnings
+tests/invariants/test_phase_8_b_5b.py: 11 warnings
+tests/invariants/test_phase_8_seam_3_sub_stage_1.py: 3 warnings
+tests/invariants/test_phase_8_seam_3_sub_stage_2.py: 13 warnings
+tests/invariants/test_phase_8_seam_3_sub_stage_3.py: 15 warnings
+tests/invariants/test_phase_9_sub_stage_9_1_and_9_3.py: 16 warnings
+tests/invariants/test_pricing_paths_b_honest_501.py: 6 warnings
+tests/invariants/test_registry_prove_ui1d_gates.py: 15 warnings
+tests/invariants/test_team_ui1e_gates.py: 12 warnings
+tests/invariants/test_trace_lens_cross_engine_correlation.py: 3 warnings
+tests/invariants/test_trace_lens_readonly.py: 1 warning
+tests/invariants/test_use_data_commission_verdict.py: 4 warnings
+  /root/.venv/lib/python3.11/site-packages/jwt/api_jwt.py:147: InsecureKeyLengthWarning: The HMAC key is 30 bytes long, which is below the minimum recommended length of 32 bytes for SHA256. See RFC 7518 Section 3.2.
+    return self._jws.encode(
+
+tests/invariants/test_8_ext.py: 13 warnings
+tests/invariants/test_artifact_store.py: 2 warnings
+tests/invariants/test_connect_ui1c_gates.py: 9 warnings
+tests/invariants/test_engineer_key_grant_e2_taxonomy.py: 4 warnings
+tests/invariants/test_engineer_key_grant_ledger.py: 2 warnings
+tests/invariants/test_govern_g_g1_to_g_g8.py: 6 warnings
+tests/invariants/test_govern_ui1b_gates.py: 15 warnings
+tests/invariants/test_master_admin_auth_reconciliation.py: 10 warnings
+tests/invariants/test_master_admin_pending_seams.py: 1 warning
+tests/invariants/test_master_admin_recent_actions.py: 4 warnings
+tests/invariants/test_master_admin_tier_lock_path_a_ledger.py: 3 warnings
+tests/invariants/test_memory_engineer_key_grant_e2e_propagation.py: 6 warnings
+tests/invariants/test_memory_observability_o_g1_to_o_g6.py: 6 warnings
+tests/invariants/test_memory_service_m_g1_to_m_g9.py: 4 warnings
+tests/invariants/test_p2_buildable_now.py: 3 warnings
+tests/invariants/test_phase3_subcycle1_gates.py: 7 warnings
+tests/invariants/test_phase_6_stage_b_economics.py: 1 warning
+tests/invariants/test_phase_8_b_1_auth_and_shims.py: 3 warnings
+tests/invariants/test_phase_8_b_2_operator_and_scope_gate.py: 7 warnings
+tests/invariants/test_phase_8_b_5a_compliance.py: 15 warnings
+tests/invariants/test_phase_8_b_5b.py: 11 warnings
+tests/invariants/test_phase_8_seam_3_sub_stage_1.py: 3 warnings
+tests/invariants/test_phase_8_seam_3_sub_stage_2.py: 13 warnings
+tests/invariants/test_phase_8_seam_3_sub_stage_3.py: 15 warnings
+tests/invariants/test_phase_9_sub_stage_9_1_and_9_3.py: 13 warnings
+tests/invariants/test_pricing_paths_b_honest_501.py: 6 warnings
+tests/invariants/test_registry_prove_ui1d_gates.py: 15 warnings
+tests/invariants/test_team_ui1e_gates.py: 12 warnings
+tests/invariants/test_trace_lens_cross_engine_correlation.py: 3 warnings
+tests/invariants/test_trace_lens_readonly.py: 1 warning
+tests/invariants/test_use_data_commission_verdict.py: 4 warnings
+  /root/.venv/lib/python3.11/site-packages/jwt/api_jwt.py:368: InsecureKeyLengthWarning: The HMAC key is 30 bytes long, which is below the minimum recommended length of 32 bytes for SHA256. See RFC 7518 Section 3.2.
+    decoded = self.decode_complete(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/invariants/test_mtafiti_gpu_discovery_detect_not_decide.py::test_detection_signal_module_exists
+FAILED tests/invariants/test_mtafiti_gpu_discovery_detect_not_decide.py::test_detection_signal_schema_forbids_verdict_field_names
+FAILED tests/invariants/test_mtafiti_gpu_discovery_detect_not_decide.py::test_detection_signal_is_frozen_and_rejects_unknown_fields
+FAILED tests/invariants/test_mtafiti_gpu_discovery_detect_not_decide.py::test_evidence_class_taxonomy_is_the_frozen_five
+FAILED tests/invariants/test_mtafiti_gpu_discovery_detect_not_decide.py::test_detection_signal_confidence_is_bounded_zero_to_one
+FAILED tests/invariants/test_mtafiti_gpu_discovery_deterministic_adaptive_sampling.py::test_gpu_discovery_constants_are_pinned
+FAILED tests/invariants/test_mtafiti_gpu_discovery_deterministic_adaptive_sampling.py::test_deterministic_walk_same_input_same_manifest_hash
+FAILED tests/invariants/test_mtafiti_gpu_discovery_deterministic_adaptive_sampling.py::test_deterministic_walk_different_input_different_manifest_hash
+FAILED tests/invariants/test_mtafiti_gpu_discovery_deterministic_adaptive_sampling.py::test_walk_manifest_carries_pinned_seed_and_policy_id
+FAILED tests/invariants/test_mtafiti_gpu_discovery_deterministic_adaptive_sampling.py::test_walker_module_forbids_online_policy_mutation
+FAILED tests/invariants/test_mtafiti_gpu_discovery_objective_generation_blind.py::test_objective_origin_enum_is_exactly_three_canonical_origins
+FAILED tests/invariants/test_mtafiti_gpu_discovery_objective_generation_blind.py::test_carrier_constructs_with_each_legal_origin_and_is_frozen
+FAILED tests/invariants/test_mtafiti_gpu_discovery_objective_generation_blind.py::test_carrier_refuses_missing_origin
+FAILED tests/invariants/test_mtafiti_gpu_discovery_objective_generation_blind.py::test_admit_carrier_refuses_mtafiti_internal_origin
+FAILED tests/invariants/test_mtafiti_gpu_discovery_objective_generation_blind.py::test_carrier_module_has_no_origination_symbols
+FAILED tests/invariants/test_mtafiti_gpu_discovery_objective_generation_blind.py::test_carrier_schema_forbids_mtafiti_origination_field
+FAILED tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py::test_readonly_sql_guard_module_surface
+FAILED tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py::test_readonly_verbs_pass_through[SELECT 1]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py::test_readonly_verbs_pass_through[select id, name from users where active = 1]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py::test_readonly_verbs_pass_through[  SELECT * FROM   weego.users LIMIT 100]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py::test_readonly_verbs_pass_through[SHOW TABLES]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py::test_readonly_verbs_pass_through[show databases]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py::test_readonly_verbs_pass_through[USE weego]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py::test_readonly_verbs_pass_through[DESCRIBE users]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py::test_readonly_verbs_pass_through[DESC users]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py::test_readonly_verbs_pass_through[EXPLAIN SELECT id FROM users]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py::test_readonly_verbs_pass_through[/* comment */ SELECT 1 /* trailing */]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py::test_readonly_verbs_pass_through[SELECT 1;]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py::test_write_verbs_are_refused[INSERT INTO users (id) VALUES (1)]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py::test_write_verbs_are_refused[UPDATE users SET active = 0]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py::test_write_verbs_are_refused[DELETE FROM users WHERE id = 1]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py::test_write_verbs_are_refused[CREATE TABLE t (id INT)]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py::test_write_verbs_are_refused[DROP TABLE users]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py::test_write_verbs_are_refused[ALTER TABLE users ADD COLUMN x INT]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py::test_write_verbs_are_refused[GRANT SELECT ON weego.* TO 'x'@'%']
+FAILED tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py::test_write_verbs_are_refused[REVOKE ALL PRIVILEGES ON *.* FROM 'x'@'%']
+FAILED tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py::test_write_verbs_are_refused[TRUNCATE TABLE users]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py::test_write_verbs_are_refused[REPLACE INTO users (id, name) VALUES (1, 'a')]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py::test_write_verbs_are_refused[RENAME TABLE a TO b]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py::test_write_verbs_are_refused[MERGE INTO users USING src ON src.id = users.id]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py::test_write_verbs_are_refused[CALL some_proc()]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py::test_write_verbs_are_refused[EXECUTE stmt_handle]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py::test_write_verbs_are_refused[LOCK TABLES users WRITE]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py::test_write_verbs_are_refused[UNLOCK TABLES]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py::test_write_verbs_are_refused[SET SESSION sql_mode = '']
+FAILED tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py::test_write_verbs_are_refused[COMMIT]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py::test_write_verbs_are_refused[ROLLBACK]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py::test_write_verbs_are_refused[BEGIN]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py::test_write_verbs_are_refused[START TRANSACTION]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py::test_write_verbs_are_refused[insert into users values (1)]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py::test_write_verbs_are_refused[Update users set active = 0]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py::test_write_verbs_are_refused[  DROP    TABLE users  ]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py::test_multi_statement_submissions_refused[SELECT 1; DROP TABLE users]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py::test_multi_statement_submissions_refused[SELECT * FROM users; UPDATE users SET active=0]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py::test_multi_statement_submissions_refused[SHOW TABLES; DELETE FROM users]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py::test_multi_statement_submissions_refused[SELECT 1; SELECT 2]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py::test_empty_or_comment_only_sql_refused[]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py::test_empty_or_comment_only_sql_refused[   ]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py::test_empty_or_comment_only_sql_refused[\n\t  \n]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py::test_empty_or_comment_only_sql_refused[-- just a comment]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py::test_empty_or_comment_only_sql_refused[/* block comment only */]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py::test_empty_or_comment_only_sql_refused[/* c1 */   -- c2]
+FAILED tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py::test_comment_stripped_write_verb_still_refused
+FAILED tests/invariants/test_mtafiti_gpu_discovery_readonly_sql_guard.py::test_refusal_is_by_construction_not_a_boolean_return
+64 failed, 3098 passed, 1 skipped, 438 warnings in 101.41s (0:01:41)

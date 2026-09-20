@@ -1,0 +1,81 @@
+[intake] parsed. AK_prefix=AKIAXGH5  SK_len=40  SK_sha256[:12]=932e302672a8
+[sts] account=494452543252  arn=arn:aws:iam::494452543252:user/api_user  user_id=AIDAXGH5LB4KEWCKICQOH
+[custody] standing creds -> /app/backend/estate_keys/data_sources/aws_iam_user_AKIAXGH5.json  mode=0o600
+[region] af-south-1: clusters=0 instances=0 denied=2
+[region] us-east-1: clusters=0 instances=0 denied=2
+[region] us-east-2: clusters=0 instances=0 denied=2
+[region] us-west-1: clusters=0 instances=0 denied=2
+[region] us-west-2: clusters=0 instances=0 denied=2
+[region] eu-west-1: clusters=0 instances=0 denied=2
+[region] eu-west-2: clusters=0 instances=0 denied=2
+[region] eu-west-3: clusters=0 instances=0 denied=2
+[region] eu-central-1: clusters=0 instances=0 denied=2
+[region] eu-south-1: clusters=0 instances=0 denied=2
+[region] me-south-1: clusters=0 instances=0 denied=2
+[region] ap-south-1: clusters=0 instances=0 denied=2
+[region] ap-southeast-1: clusters=0 instances=0 denied=2
+[region] ap-southeast-2: clusters=0 instances=0 denied=2
+[region] ap-northeast-1: clusters=0 instances=0 denied=2
+[region] ap-northeast-2: clusters=0 instances=0 denied=2
+[region] ca-central-1: clusters=0 instances=0 denied=2
+[region] sa-east-1: clusters=0 instances=0 denied=2
+
+[discovery] regions with signal:
+  region=af-south-1
+    denied: rds:DescribeDBClusters (InvalidClientTokenId)
+    denied: rds:DescribeDBInstances ClientError
+  region=us-east-1
+    denied: rds:DescribeDBClusters (AccessDenied)
+    denied: rds:DescribeDBInstances ClientError
+  region=us-east-2
+    denied: rds:DescribeDBClusters (AccessDenied)
+    denied: rds:DescribeDBInstances ClientError
+  region=us-west-1
+    denied: rds:DescribeDBClusters (AccessDenied)
+    denied: rds:DescribeDBInstances ClientError
+  region=us-west-2
+    denied: rds:DescribeDBClusters (AccessDenied)
+    denied: rds:DescribeDBInstances ClientError
+  region=eu-west-1
+    denied: rds:DescribeDBClusters (AccessDenied)
+    denied: rds:DescribeDBInstances ClientError
+  region=eu-west-2
+    denied: rds:DescribeDBClusters (AccessDenied)
+    denied: rds:DescribeDBInstances ClientError
+  region=eu-west-3
+    denied: rds:DescribeDBClusters (AccessDenied)
+    denied: rds:DescribeDBInstances ClientError
+  region=eu-central-1
+    denied: rds:DescribeDBClusters (AccessDenied)
+    denied: rds:DescribeDBInstances ClientError
+  region=eu-south-1
+    denied: rds:DescribeDBClusters (InvalidClientTokenId)
+    denied: rds:DescribeDBInstances ClientError
+  region=me-south-1
+    denied: rds:DescribeDBClusters ConnectTimeoutError
+    denied: rds:DescribeDBInstances ConnectTimeoutError
+  region=ap-south-1
+    denied: rds:DescribeDBClusters (AccessDenied)
+    denied: rds:DescribeDBInstances ClientError
+  region=ap-southeast-1
+    denied: rds:DescribeDBClusters (AccessDenied)
+    denied: rds:DescribeDBInstances ClientError
+  region=ap-southeast-2
+    denied: rds:DescribeDBClusters (AccessDenied)
+    denied: rds:DescribeDBInstances ClientError
+  region=ap-northeast-1
+    denied: rds:DescribeDBClusters (AccessDenied)
+    denied: rds:DescribeDBInstances ClientError
+  region=ap-northeast-2
+    denied: rds:DescribeDBClusters (AccessDenied)
+    denied: rds:DescribeDBInstances ClientError
+  region=ca-central-1
+    denied: rds:DescribeDBClusters (AccessDenied)
+    denied: rds:DescribeDBInstances ClientError
+  region=sa-east-1
+    denied: rds:DescribeDBClusters (AccessDenied)
+    denied: rds:DescribeDBInstances ClientError
+
+[connect-eligible clusters] 0
+[retire] AWS_* env unset
+[DONE]

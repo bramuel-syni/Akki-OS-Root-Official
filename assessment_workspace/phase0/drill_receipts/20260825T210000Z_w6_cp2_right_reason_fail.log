@@ -1,0 +1,231 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-9.1.1, pluggy-1.6.0 -- /root/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: asyncio-1.4.0, xdist-3.8.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 13 items
+
+tests/invariants/test_cost_ledger_w6_cp2.py::test_rates_register_module_exists FAILED [  7%]
+tests/invariants/test_cost_ledger_w6_cp2.py::test_rates_load_from_owner_supplied_register FAILED [ 15%]
+tests/invariants/test_cost_ledger_w6_cp2.py::test_rate_for_model_returns_none_when_absent FAILED [ 23%]
+tests/invariants/test_cost_ledger_w6_cp2.py::test_honest_gap_sentence_matches_w2 FAILED [ 30%]
+tests/invariants/test_cost_ledger_w6_cp2.py::test_ledger_module_exists FAILED [ 38%]
+tests/invariants/test_cost_ledger_w6_cp2.py::test_ledger_builds_entries_from_receipts FAILED [ 46%]
+tests/invariants/test_cost_ledger_w6_cp2.py::test_ledger_shows_no_money_when_rate_absent FAILED [ 53%]
+tests/invariants/test_cost_ledger_w6_cp2.py::test_ledger_shows_money_when_rate_on_record FAILED [ 61%]
+tests/invariants/test_cost_ledger_w6_cp2.py::test_ledger_gpu_hours_from_seam_receipts FAILED [ 69%]
+tests/invariants/test_cost_ledger_w6_cp2.py::test_ledger_entry_carries_five_named_levers_in_order FAILED [ 76%]
+tests/invariants/test_cost_ledger_w6_cp2.py::test_ledger_route_lever_attributed_when_cheaper_model_used FAILED [ 84%]
+tests/invariants/test_cost_ledger_w6_cp2.py::test_summarise_totals_quantities_and_costs FAILED [ 92%]
+tests/invariants/test_cost_ledger_w6_cp2.py::test_summarise_honest_gap_when_any_rate_missing FAILED [100%]
+
+=================================== FAILURES ===================================
+______________________ test_rates_register_module_exists _______________________
+
+    def test_rates_register_module_exists():
+        """`services.cost_ledger.rates` exists with the four contract symbols."""
+        import importlib
+>       mod = importlib.import_module("services.cost_ledger.rates")
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_cost_ledger_w6_cp2.py:135: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1126: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:241: in _call_with_frames_removed
+    ???
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'services.cost_ledger'
+import_ = <function _gcd_import at 0xfcc6da74bd80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'services.cost_ledger'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+_________________ test_rates_load_from_owner_supplied_register _________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfcc6d8519690>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-32/test_rates_load_from_owner_sup0')
+
+    def test_rates_load_from_owner_supplied_register(monkeypatch, tmp_path):
+        """When `phase0/rates_register/models/*.json` exists, load_rates
+        surfaces its content honestly (source='owner_supplied@<iso>')."""
+>       from services.cost_ledger.rates import load_rates, rate_for_model
+E       ModuleNotFoundError: No module named 'services.cost_ledger'
+
+tests/invariants/test_cost_ledger_w6_cp2.py:146: ModuleNotFoundError
+_________________ test_rate_for_model_returns_none_when_absent _________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfcc6d8774cd0>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-32/test_rate_for_model_returns_no0')
+
+    def test_rate_for_model_returns_none_when_absent(monkeypatch, tmp_path):
+        """No fabrication: unknown model → None. Never a made-up rate."""
+>       from services.cost_ledger.rates import rate_for_model
+E       ModuleNotFoundError: No module named 'services.cost_ledger'
+
+tests/invariants/test_cost_ledger_w6_cp2.py:176: ModuleNotFoundError
+_____________________ test_honest_gap_sentence_matches_w2 ______________________
+
+    def test_honest_gap_sentence_matches_w2():
+        """The W2 honest-gap sentence is the surface fallback text.
+        It exists (owner sharpening) and is non-empty."""
+>       from services.cost_ledger.rates import HONEST_GAP_SENTENCE
+E       ModuleNotFoundError: No module named 'services.cost_ledger'
+
+tests/invariants/test_cost_ledger_w6_cp2.py:189: ModuleNotFoundError
+__________________________ test_ledger_module_exists ___________________________
+
+    def test_ledger_module_exists():
+        import importlib
+>       mod = importlib.import_module("services.cost_ledger.ledger")
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_cost_ledger_w6_cp2.py:202: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1126: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:241: in _call_with_frames_removed
+    ???
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'services.cost_ledger'
+import_ = <function _gcd_import at 0xfcc6da74bd80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'services.cost_ledger'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+___________________ test_ledger_builds_entries_from_receipts ___________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfcc6d86d5390>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-32/test_ledger_builds_entries_fro0')
+
+    def test_ledger_builds_entries_from_receipts(monkeypatch, tmp_path):
+>       from services.cost_ledger.ledger import build_entries
+E       ModuleNotFoundError: No module named 'services.cost_ledger'
+
+tests/invariants/test_cost_ledger_w6_cp2.py:208: ModuleNotFoundError
+_________________ test_ledger_shows_no_money_when_rate_absent __________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfcc6d896f3d0>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-32/test_ledger_shows_no_money_whe0')
+
+    def test_ledger_shows_no_money_when_rate_absent(monkeypatch, tmp_path):
+        """No rate on record → cost_total is None, rate_provenance='absent'."""
+>       from services.cost_ledger.ledger import build_entries
+E       ModuleNotFoundError: No module named 'services.cost_ledger'
+
+tests/invariants/test_cost_ledger_w6_cp2.py:236: ModuleNotFoundError
+_________________ test_ledger_shows_money_when_rate_on_record __________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfcc6d86c9e10>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-32/test_ledger_shows_money_when_r0')
+
+    def test_ledger_shows_money_when_rate_on_record(monkeypatch, tmp_path):
+        """Rate on record → cost_in / cost_out / cost_total computed from
+        tokens × rate, with rate_provenance naming the source."""
+>       from services.cost_ledger.ledger import build_entries
+E       ModuleNotFoundError: No module named 'services.cost_ledger'
+
+tests/invariants/test_cost_ledger_w6_cp2.py:263: ModuleNotFoundError
+___________________ test_ledger_gpu_hours_from_seam_receipts ___________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfcc6d8784410>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-32/test_ledger_gpu_hours_from_sea0')
+
+    def test_ledger_gpu_hours_from_seam_receipts(monkeypatch, tmp_path):
+        """SSH seam receipts carry gpu_hours in payload_shape (CP2 wire).
+        Ledger surfaces gpu_hours quantity + cost only if per-hour rate on record."""
+>       from services.cost_ledger.ledger import build_entries
+E       ModuleNotFoundError: No module named 'services.cost_ledger'
+
+tests/invariants/test_cost_ledger_w6_cp2.py:302: ModuleNotFoundError
+_____________ test_ledger_entry_carries_five_named_levers_in_order _____________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfcc6d8774d50>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-32/test_ledger_entry_carries_five0')
+
+    def test_ledger_entry_carries_five_named_levers_in_order(monkeypatch, tmp_path):
+        """CA1-008 · lever sequence: cache → route → narrow → cascade → waste_report.
+        Every entry names all five in that exact order. Attribution is
+        honest-empty for levers where no evidence exists yet (attributed=False,
+        saving=0.0), never invented."""
+>       from services.cost_ledger.ledger import build_entries
+E       ModuleNotFoundError: No module named 'services.cost_ledger'
+
+tests/invariants/test_cost_ledger_w6_cp2.py:330: ModuleNotFoundError
+__________ test_ledger_route_lever_attributed_when_cheaper_model_used __________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfcc6d87755d0>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-32/test_ledger_route_lever_attrib0')
+
+    def test_ledger_route_lever_attributed_when_cheaper_model_used(monkeypatch, tmp_path):
+        """The 'route' lever is attributed when a cheaper model was used
+        for a governed purpose (measurable: default gpt-5.4 · used gpt-5-mini).
+        Saving = (default_rate - actual_rate) * tokens.
+        Rate needed for both — else route lever is honest-empty (not invented)."""
+>       from services.cost_ledger.ledger import build_entries
+E       ModuleNotFoundError: No module named 'services.cost_ledger'
+
+tests/invariants/test_cost_ledger_w6_cp2.py:362: ModuleNotFoundError
+__________________ test_summarise_totals_quantities_and_costs __________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfcc6d8777350>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-32/test_summarise_totals_quantiti0')
+
+    def test_summarise_totals_quantities_and_costs(monkeypatch, tmp_path):
+>       from services.cost_ledger.ledger import build_entries, summarise
+E       ModuleNotFoundError: No module named 'services.cost_ledger'
+
+tests/invariants/test_cost_ledger_w6_cp2.py:407: ModuleNotFoundError
+_______________ test_summarise_honest_gap_when_any_rate_missing ________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfcc6d8786990>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-32/test_summarise_honest_gap_when0')
+
+    def test_summarise_honest_gap_when_any_rate_missing(monkeypatch, tmp_path):
+>       from services.cost_ledger.ledger import build_entries, summarise
+E       ModuleNotFoundError: No module named 'services.cost_ledger'
+
+tests/invariants/test_cost_ledger_w6_cp2.py:444: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_cost_ledger_w6_cp2.py::test_rates_register_module_exists
+FAILED tests/invariants/test_cost_ledger_w6_cp2.py::test_rates_load_from_owner_supplied_register
+FAILED tests/invariants/test_cost_ledger_w6_cp2.py::test_rate_for_model_returns_none_when_absent
+FAILED tests/invariants/test_cost_ledger_w6_cp2.py::test_honest_gap_sentence_matches_w2
+FAILED tests/invariants/test_cost_ledger_w6_cp2.py::test_ledger_module_exists
+FAILED tests/invariants/test_cost_ledger_w6_cp2.py::test_ledger_builds_entries_from_receipts
+FAILED tests/invariants/test_cost_ledger_w6_cp2.py::test_ledger_shows_no_money_when_rate_absent
+FAILED tests/invariants/test_cost_ledger_w6_cp2.py::test_ledger_shows_money_when_rate_on_record
+FAILED tests/invariants/test_cost_ledger_w6_cp2.py::test_ledger_gpu_hours_from_seam_receipts
+FAILED tests/invariants/test_cost_ledger_w6_cp2.py::test_ledger_entry_carries_five_named_levers_in_order
+FAILED tests/invariants/test_cost_ledger_w6_cp2.py::test_ledger_route_lever_attributed_when_cheaper_model_used
+FAILED tests/invariants/test_cost_ledger_w6_cp2.py::test_summarise_totals_quantities_and_costs
+FAILED tests/invariants/test_cost_ledger_w6_cp2.py::test_summarise_honest_gap_when_any_rate_missing
+============================== 13 failed in 0.13s ==============================

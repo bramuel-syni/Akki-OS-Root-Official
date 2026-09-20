@@ -1,0 +1,114 @@
+============================= test session starts ==============================
+collecting ... collected 9 items
+
+backend/tests/invariants/test_spec_id_tracking_index.py::test_spec_id_index_json_exists_and_parses FAILED [ 11%]
+backend/tests/invariants/test_spec_id_tracking_index.py::test_spec_id_index_has_required_top_level_keys FAILED [ 22%]
+backend/tests/invariants/test_spec_id_tracking_index.py::test_every_banked_spec_id_has_valid_filename_and_matching_sha256 FAILED [ 33%]
+backend/tests/invariants/test_spec_id_tracking_index.py::test_every_banked_derived_spec_id_has_derivation_sources_that_exist FAILED [ 44%]
+backend/tests/invariants/test_spec_id_tracking_index.py::test_every_missing_spec_id_has_zero_hit_receipt_file FAILED [ 55%]
+backend/tests/invariants/test_spec_id_tracking_index.py::test_every_design_id_banked_has_valid_filename_and_matching_sha256 FAILED [ 66%]
+backend/tests/invariants/test_spec_id_tracking_index.py::test_every_known_required_spec_id_is_indexed FAILED [ 77%]
+backend/tests/invariants/test_spec_id_tracking_index.py::test_every_known_required_design_id_is_indexed FAILED [ 88%]
+backend/tests/invariants/test_spec_id_tracking_index.py::test_every_docx_opening_signature_appears_in_spec_ids_index FAILED [100%]
+
+=================================== FAILURES ===================================
+__________________ test_spec_id_index_json_exists_and_parses ___________________
+backend/tests/invariants/test_spec_id_tracking_index.py:112: in test_spec_id_index_json_exists_and_parses
+    assert INDEX_JSON_PATH.exists(), (
+E   AssertionError: spec_id_index.json missing at /app/assessment_workspace/notes/spec_id_index.json
+E   assert False
+E    +  where False = exists()
+E    +    where exists = PosixPath('/app/assessment_workspace/notes/spec_id_index.json').exists
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+________________ test_spec_id_index_has_required_top_level_keys ________________
+backend/tests/invariants/test_spec_id_tracking_index.py:120: in test_spec_id_index_has_required_top_level_keys
+    index = _load_index()
+            ^^^^^^^^^^^^^
+backend/tests/invariants/test_spec_id_tracking_index.py:87: in _load_index
+    assert INDEX_JSON_PATH.exists(), (
+E   AssertionError: spec_id_index.json missing at /app/assessment_workspace/notes/spec_id_index.json — owner directive 2026-09-08T~06:15Z requires the index to exist
+E   assert False
+E    +  where False = exists()
+E    +    where exists = PosixPath('/app/assessment_workspace/notes/spec_id_index.json').exists
+_______ test_every_banked_spec_id_has_valid_filename_and_matching_sha256 _______
+backend/tests/invariants/test_spec_id_tracking_index.py:128: in test_every_banked_spec_id_has_valid_filename_and_matching_sha256
+    index = _load_index()
+            ^^^^^^^^^^^^^
+backend/tests/invariants/test_spec_id_tracking_index.py:87: in _load_index
+    assert INDEX_JSON_PATH.exists(), (
+E   AssertionError: spec_id_index.json missing at /app/assessment_workspace/notes/spec_id_index.json — owner directive 2026-09-08T~06:15Z requires the index to exist
+E   assert False
+E    +  where False = exists()
+E    +    where exists = PosixPath('/app/assessment_workspace/notes/spec_id_index.json').exists
+_____ test_every_banked_derived_spec_id_has_derivation_sources_that_exist ______
+backend/tests/invariants/test_spec_id_tracking_index.py:149: in test_every_banked_derived_spec_id_has_derivation_sources_that_exist
+    index = _load_index()
+            ^^^^^^^^^^^^^
+backend/tests/invariants/test_spec_id_tracking_index.py:87: in _load_index
+    assert INDEX_JSON_PATH.exists(), (
+E   AssertionError: spec_id_index.json missing at /app/assessment_workspace/notes/spec_id_index.json — owner directive 2026-09-08T~06:15Z requires the index to exist
+E   assert False
+E    +  where False = exists()
+E    +    where exists = PosixPath('/app/assessment_workspace/notes/spec_id_index.json').exists
+_____________ test_every_missing_spec_id_has_zero_hit_receipt_file _____________
+backend/tests/invariants/test_spec_id_tracking_index.py:167: in test_every_missing_spec_id_has_zero_hit_receipt_file
+    index = _load_index()
+            ^^^^^^^^^^^^^
+backend/tests/invariants/test_spec_id_tracking_index.py:87: in _load_index
+    assert INDEX_JSON_PATH.exists(), (
+E   AssertionError: spec_id_index.json missing at /app/assessment_workspace/notes/spec_id_index.json — owner directive 2026-09-08T~06:15Z requires the index to exist
+E   assert False
+E    +  where False = exists()
+E    +    where exists = PosixPath('/app/assessment_workspace/notes/spec_id_index.json').exists
+______ test_every_design_id_banked_has_valid_filename_and_matching_sha256 ______
+backend/tests/invariants/test_spec_id_tracking_index.py:187: in test_every_design_id_banked_has_valid_filename_and_matching_sha256
+    index = _load_index()
+            ^^^^^^^^^^^^^
+backend/tests/invariants/test_spec_id_tracking_index.py:87: in _load_index
+    assert INDEX_JSON_PATH.exists(), (
+E   AssertionError: spec_id_index.json missing at /app/assessment_workspace/notes/spec_id_index.json — owner directive 2026-09-08T~06:15Z requires the index to exist
+E   assert False
+E    +  where False = exists()
+E    +    where exists = PosixPath('/app/assessment_workspace/notes/spec_id_index.json').exists
+_________________ test_every_known_required_spec_id_is_indexed _________________
+backend/tests/invariants/test_spec_id_tracking_index.py:206: in test_every_known_required_spec_id_is_indexed
+    index = _load_index()
+            ^^^^^^^^^^^^^
+backend/tests/invariants/test_spec_id_tracking_index.py:87: in _load_index
+    assert INDEX_JSON_PATH.exists(), (
+E   AssertionError: spec_id_index.json missing at /app/assessment_workspace/notes/spec_id_index.json — owner directive 2026-09-08T~06:15Z requires the index to exist
+E   assert False
+E    +  where False = exists()
+E    +    where exists = PosixPath('/app/assessment_workspace/notes/spec_id_index.json').exists
+________________ test_every_known_required_design_id_is_indexed ________________
+backend/tests/invariants/test_spec_id_tracking_index.py:218: in test_every_known_required_design_id_is_indexed
+    index = _load_index()
+            ^^^^^^^^^^^^^
+backend/tests/invariants/test_spec_id_tracking_index.py:87: in _load_index
+    assert INDEX_JSON_PATH.exists(), (
+E   AssertionError: spec_id_index.json missing at /app/assessment_workspace/notes/spec_id_index.json — owner directive 2026-09-08T~06:15Z requires the index to exist
+E   assert False
+E    +  where False = exists()
+E    +    where exists = PosixPath('/app/assessment_workspace/notes/spec_id_index.json').exists
+_________ test_every_docx_opening_signature_appears_in_spec_ids_index __________
+backend/tests/invariants/test_spec_id_tracking_index.py:234: in test_every_docx_opening_signature_appears_in_spec_ids_index
+    index = _load_index()
+            ^^^^^^^^^^^^^
+backend/tests/invariants/test_spec_id_tracking_index.py:87: in _load_index
+    assert INDEX_JSON_PATH.exists(), (
+E   AssertionError: spec_id_index.json missing at /app/assessment_workspace/notes/spec_id_index.json — owner directive 2026-09-08T~06:15Z requires the index to exist
+E   assert False
+E    +  where False = exists()
+E    +    where exists = PosixPath('/app/assessment_workspace/notes/spec_id_index.json').exists
+=========================== short test summary info ============================
+FAILED backend/tests/invariants/test_spec_id_tracking_index.py::test_spec_id_index_json_exists_and_parses
+FAILED backend/tests/invariants/test_spec_id_tracking_index.py::test_spec_id_index_has_required_top_level_keys
+FAILED backend/tests/invariants/test_spec_id_tracking_index.py::test_every_banked_spec_id_has_valid_filename_and_matching_sha256
+FAILED backend/tests/invariants/test_spec_id_tracking_index.py::test_every_banked_derived_spec_id_has_derivation_sources_that_exist
+FAILED backend/tests/invariants/test_spec_id_tracking_index.py::test_every_missing_spec_id_has_zero_hit_receipt_file
+FAILED backend/tests/invariants/test_spec_id_tracking_index.py::test_every_design_id_banked_has_valid_filename_and_matching_sha256
+FAILED backend/tests/invariants/test_spec_id_tracking_index.py::test_every_known_required_spec_id_is_indexed
+FAILED backend/tests/invariants/test_spec_id_tracking_index.py::test_every_known_required_design_id_is_indexed
+FAILED backend/tests/invariants/test_spec_id_tracking_index.py::test_every_docx_opening_signature_appears_in_spec_ids_index
+============================== 9 failed in 0.83s ===============================

@@ -1,0 +1,100 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.4.2, pluggy-1.6.0
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: xdist-3.8.0, asyncio-1.4.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collected 7 items
+
+tests/invariants/test_wdslift_cp_d1_workspace_boundary.py FFFFFFF        [100%]
+
+=================================== FAILURES ===================================
+_________________ test_cp_d1_workspace_boundary_module_fabric __________________
+
+    def test_cp_d1_workspace_boundary_module_fabric():
+>       m = importlib.import_module("services.data_suite_v2.workspace_boundary")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_wdslift_cp_d1_workspace_boundary.py:19: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1126: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:241: in _call_with_frames_removed
+    ???
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'services.data_suite_v2'
+import_ = <function _gcd_import at 0xfd38ce68bd80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'services.data_suite_v2'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+____ test_cp_d1_compute_surface_signature_is_parameterless_except_workspace ____
+
+    def test_cp_d1_compute_surface_signature_is_parameterless_except_workspace():
+        """Exactly one parameter, named `workspace`, annotated `WorkspaceState`."""
+>       from services.data_suite_v2.workspace_boundary import compute_surface
+E       ModuleNotFoundError: No module named 'services.data_suite_v2'
+
+tests/invariants/test_wdslift_cp_d1_workspace_boundary.py:29: ModuleNotFoundError
+___________ test_cp_d1_compute_surface_return_type_is_surface_class ____________
+
+    def test_cp_d1_compute_surface_return_type_is_surface_class():
+>       from services.data_suite_v2.workspace_boundary import compute_surface
+E       ModuleNotFoundError: No module named 'services.data_suite_v2'
+
+tests/invariants/test_wdslift_cp_d1_workspace_boundary.py:40: ModuleNotFoundError
+_________ test_cp_d1_compute_surface_does_not_take_score_or_confidence _________
+
+    def test_cp_d1_compute_surface_does_not_take_score_or_confidence():
+        """Signature-as-guard: no confidence/strength/weight/evidence/score."""
+>       from services.data_suite_v2.workspace_boundary import compute_surface
+E       ModuleNotFoundError: No module named 'services.data_suite_v2'
+
+tests/invariants/test_wdslift_cp_d1_workspace_boundary.py:48: ModuleNotFoundError
+_____________ test_cp_d1_surface_class_is_closed_three_value_enum ______________
+
+    def test_cp_d1_surface_class_is_closed_three_value_enum():
+>       from services.data_suite_v2.workspace_boundary import SurfaceClass
+E       ModuleNotFoundError: No module named 'services.data_suite_v2'
+
+tests/invariants/test_wdslift_cp_d1_workspace_boundary.py:56: ModuleNotFoundError
+______________ test_cp_d1_workspace_state_frozen_dataclass_shape _______________
+
+    def test_cp_d1_workspace_state_frozen_dataclass_shape():
+>       from contracts.data_suite_workspace import WorkspaceState
+E       ModuleNotFoundError: No module named 'contracts.data_suite_workspace'
+
+tests/invariants/test_wdslift_cp_d1_workspace_boundary.py:63: ModuleNotFoundError
+___________ test_cp_d1_compute_surface_returns_mapping_from_tab_hint ___________
+
+    def test_cp_d1_compute_surface_returns_mapping_from_tab_hint():
+        """Semantic contract: compute_surface returns SurfaceClass matching the
+        workspace's tab_hint if present; else RAPID default."""
+>       from contracts.data_suite_workspace import WorkspaceState
+E       ModuleNotFoundError: No module named 'contracts.data_suite_workspace'
+
+tests/invariants/test_wdslift_cp_d1_workspace_boundary.py:75: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wdslift_cp_d1_workspace_boundary.py::test_cp_d1_workspace_boundary_module_fabric
+FAILED tests/invariants/test_wdslift_cp_d1_workspace_boundary.py::test_cp_d1_compute_surface_signature_is_parameterless_except_workspace
+FAILED tests/invariants/test_wdslift_cp_d1_workspace_boundary.py::test_cp_d1_compute_surface_return_type_is_surface_class
+FAILED tests/invariants/test_wdslift_cp_d1_workspace_boundary.py::test_cp_d1_compute_surface_does_not_take_score_or_confidence
+FAILED tests/invariants/test_wdslift_cp_d1_workspace_boundary.py::test_cp_d1_surface_class_is_closed_three_value_enum
+FAILED tests/invariants/test_wdslift_cp_d1_workspace_boundary.py::test_cp_d1_workspace_state_frozen_dataclass_shape
+FAILED tests/invariants/test_wdslift_cp_d1_workspace_boundary.py::test_cp_d1_compute_surface_returns_mapping_from_tab_hint
+============================== 7 failed in 0.67s ===============================

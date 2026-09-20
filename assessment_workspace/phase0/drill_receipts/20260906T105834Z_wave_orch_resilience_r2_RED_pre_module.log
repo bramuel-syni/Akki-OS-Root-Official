@@ -1,0 +1,208 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.4.2, pluggy-1.6.0 -- /root/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: asyncio-1.4.0, xdist-3.8.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collecting ... collected 15 items
+
+tests/invariants/test_orchestrator_resilience_r2.py::test_adopt_module_exports_expected_public_surface FAILED [  6%]
+tests/invariants/test_orchestrator_resilience_r2.py::test_can_adopt_returns_tuple_bool_and_reason FAILED [ 13%]
+tests/invariants/test_orchestrator_resilience_r2.py::test_can_adopt_true_for_fresh_orphan FAILED [ 20%]
+tests/invariants/test_orchestrator_resilience_r2.py::test_can_adopt_false_when_sealed FAILED [ 26%]
+tests/invariants/test_orchestrator_resilience_r2.py::test_can_adopt_false_when_polls_stale FAILED [ 33%]
+tests/invariants/test_orchestrator_resilience_r2.py::test_mark_adopted_writes_ledger_entry FAILED [ 40%]
+tests/invariants/test_orchestrator_resilience_r2.py::test_mark_adopted_is_zero_influence_on_write_failure FAILED [ 46%]
+tests/invariants/test_orchestrator_resilience_r2.py::test_mark_adopted_idempotent_within_dedupe_window FAILED [ 53%]
+tests/invariants/test_orchestrator_resilience_r2.py::test_watchdog_module_exports_expected_public_surface FAILED [ 60%]
+tests/invariants/test_orchestrator_resilience_r2.py::test_pid_is_alive_true_for_current_process FAILED [ 66%]
+tests/invariants/test_orchestrator_resilience_r2.py::test_pid_is_alive_false_for_nonexistent_pid FAILED [ 73%]
+tests/invariants/test_orchestrator_resilience_r2.py::test_is_orchestrator_dead_no_heartbeat FAILED [ 80%]
+tests/invariants/test_orchestrator_resilience_r2.py::test_is_orchestrator_dead_stale_heartbeat FAILED [ 86%]
+tests/invariants/test_orchestrator_resilience_r2.py::test_select_adoptable_orphans_end_to_end FAILED [ 93%]
+tests/invariants/test_orchestrator_resilience_r2.py::test_r2_reuses_r1_orphan_detector_and_heartbeat FAILED [100%]
+
+=================================== FAILURES ===================================
+______________ test_adopt_module_exports_expected_public_surface _______________
+
+    def test_adopt_module_exports_expected_public_surface():
+        """`adopt` MUST export `can_adopt`, `mark_adopted`, `read_adoption_records`
+        and nothing that looks like a terminator/killer/stopper (zero-influence
+        discipline · observer never mutates the on-host job)."""
+>       from services.orchestrator_resilience import adopt
+E       ImportError: cannot import name 'adopt' from 'services.orchestrator_resilience' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/orchestrator_resilience/__init__.py)
+
+tests/invariants/test_orchestrator_resilience_r2.py:124: ImportError
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+_________________ test_can_adopt_returns_tuple_bool_and_reason _________________
+
+burn_root = PosixPath('/tmp/pytest-of-root/pytest-12/test_can_adopt_returns_tuple_b0/gpu_burn')
+
+    def test_can_adopt_returns_tuple_bool_and_reason(burn_root):
+        """`can_adopt(orphan) -> (bool, reason_str)`. The reason string must be
+        non-empty; callers use it in operator logs."""
+>       from services.orchestrator_resilience import adopt
+E       ImportError: cannot import name 'adopt' from 'services.orchestrator_resilience' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/orchestrator_resilience/__init__.py)
+
+tests/invariants/test_orchestrator_resilience_r2.py:142: ImportError
+_____________________ test_can_adopt_true_for_fresh_orphan _____________________
+
+burn_root = PosixPath('/tmp/pytest-of-root/pytest-12/test_can_adopt_true_for_fresh_0/gpu_burn')
+
+    def test_can_adopt_true_for_fresh_orphan(burn_root):
+        """Fresh orphan (recent poll, no sealing) MUST be adoptable."""
+>       from services.orchestrator_resilience import adopt
+E       ImportError: cannot import name 'adopt' from 'services.orchestrator_resilience' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/orchestrator_resilience/__init__.py)
+
+tests/invariants/test_orchestrator_resilience_r2.py:159: ImportError
+_______________________ test_can_adopt_false_when_sealed _______________________
+
+burn_root = PosixPath('/tmp/pytest-of-root/pytest-12/test_can_adopt_false_when_seal0/gpu_burn')
+
+    def test_can_adopt_false_when_sealed(burn_root):
+        """Sealed run (has ACTIVITY_SUMMARY.md) MUST NOT be adopted — already
+        reconciled; taking it over would duplicate the summary."""
+>       from services.orchestrator_resilience import adopt
+E       ImportError: cannot import name 'adopt' from 'services.orchestrator_resilience' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/orchestrator_resilience/__init__.py)
+
+tests/invariants/test_orchestrator_resilience_r2.py:171: ImportError
+____________________ test_can_adopt_false_when_polls_stale _____________________
+
+burn_root = PosixPath('/tmp/pytest-of-root/pytest-12/test_can_adopt_false_when_poll0/gpu_burn')
+
+    def test_can_adopt_false_when_polls_stale(burn_root):
+        """If the latest poll receipt is older than `max_poll_age_s`, the on-host
+        job is probably gone — decline adoption."""
+>       from services.orchestrator_resilience import adopt
+E       ImportError: cannot import name 'adopt' from 'services.orchestrator_resilience' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/orchestrator_resilience/__init__.py)
+
+tests/invariants/test_orchestrator_resilience_r2.py:183: ImportError
+____________________ test_mark_adopted_writes_ledger_entry _____________________
+
+burn_root = PosixPath('/tmp/pytest-of-root/pytest-12/test_mark_adopted_writes_ledge0/gpu_burn')
+
+    def test_mark_adopted_writes_ledger_entry(burn_root):
+        """`mark_adopted` MUST write an adoption record file in the run_dir with
+        the expected fields and return the record dict."""
+>       from services.orchestrator_resilience import adopt
+E       ImportError: cannot import name 'adopt' from 'services.orchestrator_resilience' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/orchestrator_resilience/__init__.py)
+
+tests/invariants/test_orchestrator_resilience_r2.py:195: ImportError
+_____________ test_mark_adopted_is_zero_influence_on_write_failure _____________
+
+burn_root = PosixPath('/tmp/pytest-of-root/pytest-12/test_mark_adopted_is_zero_infl0/gpu_burn')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfb512c42df10>
+
+    def test_mark_adopted_is_zero_influence_on_write_failure(burn_root, monkeypatch):
+        """When the ledger write raises, `mark_adopted` MUST swallow and return
+        None (zero-influence · never raises to the orchestrator)."""
+>       from services.orchestrator_resilience import adopt
+E       ImportError: cannot import name 'adopt' from 'services.orchestrator_resilience' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/orchestrator_resilience/__init__.py)
+
+tests/invariants/test_orchestrator_resilience_r2.py:214: ImportError
+______________ test_mark_adopted_idempotent_within_dedupe_window _______________
+
+burn_root = PosixPath('/tmp/pytest-of-root/pytest-12/test_mark_adopted_idempotent_w0/gpu_burn')
+
+    def test_mark_adopted_idempotent_within_dedupe_window(burn_root):
+        """Two adoption calls within `dedupe_window_s` MUST NOT create two files.
+        The second call returns the first record."""
+>       from services.orchestrator_resilience import adopt
+E       ImportError: cannot import name 'adopt' from 'services.orchestrator_resilience' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/orchestrator_resilience/__init__.py)
+
+tests/invariants/test_orchestrator_resilience_r2.py:233: ImportError
+_____________ test_watchdog_module_exports_expected_public_surface _____________
+
+    def test_watchdog_module_exports_expected_public_surface():
+        """`watchdog` exports `pid_is_alive`, `is_orchestrator_dead`,
+        `select_adoptable_orphans`, and no terminator names."""
+>       from services.orchestrator_resilience import watchdog
+E       ImportError: cannot import name 'watchdog' from 'services.orchestrator_resilience' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/orchestrator_resilience/__init__.py)
+
+tests/invariants/test_orchestrator_resilience_r2.py:253: ImportError
+__________________ test_pid_is_alive_true_for_current_process __________________
+
+    def test_pid_is_alive_true_for_current_process():
+        """Our own pid MUST report alive. Basic sanity."""
+>       from services.orchestrator_resilience import watchdog
+E       ImportError: cannot import name 'watchdog' from 'services.orchestrator_resilience' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/orchestrator_resilience/__init__.py)
+
+tests/invariants/test_orchestrator_resilience_r2.py:271: ImportError
+_________________ test_pid_is_alive_false_for_nonexistent_pid __________________
+
+    def test_pid_is_alive_false_for_nonexistent_pid():
+        """A very high pid that certainly doesn't exist MUST report dead."""
+>       from services.orchestrator_resilience import watchdog
+E       ImportError: cannot import name 'watchdog' from 'services.orchestrator_resilience' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/orchestrator_resilience/__init__.py)
+
+tests/invariants/test_orchestrator_resilience_r2.py:277: ImportError
+____________________ test_is_orchestrator_dead_no_heartbeat ____________________
+
+burn_root = PosixPath('/tmp/pytest-of-root/pytest-12/test_is_orchestrator_dead_no_h0/gpu_burn')
+heartbeat_dir = PosixPath('/tmp/pytest-of-root/pytest-12/test_is_orchestrator_dead_no_h0/orchestrator_heartbeat')
+
+    def test_is_orchestrator_dead_no_heartbeat(burn_root, heartbeat_dir):
+        """Missing heartbeat file → dead with reason `no_heartbeat`."""
+>       from services.orchestrator_resilience import watchdog
+E       ImportError: cannot import name 'watchdog' from 'services.orchestrator_resilience' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/orchestrator_resilience/__init__.py)
+
+tests/invariants/test_orchestrator_resilience_r2.py:286: ImportError
+__________________ test_is_orchestrator_dead_stale_heartbeat ___________________
+
+burn_root = PosixPath('/tmp/pytest-of-root/pytest-12/test_is_orchestrator_dead_stal0/gpu_burn')
+heartbeat_dir = PosixPath('/tmp/pytest-of-root/pytest-12/test_is_orchestrator_dead_stal0/orchestrator_heartbeat')
+
+    def test_is_orchestrator_dead_stale_heartbeat(burn_root, heartbeat_dir):
+        """Heartbeat older than `max_staleness_s` → dead with reason
+        `stale_heartbeat`."""
+>       from services.orchestrator_resilience import watchdog
+E       ImportError: cannot import name 'watchdog' from 'services.orchestrator_resilience' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/orchestrator_resilience/__init__.py)
+
+tests/invariants/test_orchestrator_resilience_r2.py:296: ImportError
+___________________ test_select_adoptable_orphans_end_to_end ___________________
+
+burn_root = PosixPath('/tmp/pytest-of-root/pytest-12/test_select_adoptable_orphans_0/gpu_burn')
+heartbeat_dir = PosixPath('/tmp/pytest-of-root/pytest-12/test_select_adoptable_orphans_0/orchestrator_heartbeat')
+
+    def test_select_adoptable_orphans_end_to_end(burn_root, heartbeat_dir):
+        """End-to-end: two orphans in the burn root, one adoptable + one sealed.
+        `select_adoptable_orphans` returns BOTH orphan records, but only one has
+        `adoptable=True`."""
+>       from services.orchestrator_resilience import watchdog
+E       ImportError: cannot import name 'watchdog' from 'services.orchestrator_resilience' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/orchestrator_resilience/__init__.py)
+
+tests/invariants/test_orchestrator_resilience_r2.py:311: ImportError
+_______________ test_r2_reuses_r1_orphan_detector_and_heartbeat ________________
+
+burn_root = PosixPath('/tmp/pytest-of-root/pytest-12/test_r2_reuses_r1_orphan_detec0/gpu_burn')
+heartbeat_dir = PosixPath('/tmp/pytest-of-root/pytest-12/test_r2_reuses_r1_orphan_detec0/orchestrator_heartbeat')
+
+    def test_r2_reuses_r1_orphan_detector_and_heartbeat(burn_root, heartbeat_dir):
+        """`watchdog.select_adoptable_orphans` MUST wire through the r1
+        `orphan_detector.find_orphaned_runs` — no duplicated orphan-finding
+        logic. Contract: r2 extends r1, does not replace it."""
+>       from services.orchestrator_resilience import (
+            orphan_detector, watchdog,
+        )
+E       ImportError: cannot import name 'watchdog' from 'services.orchestrator_resilience' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/orchestrator_resilience/__init__.py)
+
+tests/invariants/test_orchestrator_resilience_r2.py:333: ImportError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_orchestrator_resilience_r2.py::test_adopt_module_exports_expected_public_surface
+FAILED tests/invariants/test_orchestrator_resilience_r2.py::test_can_adopt_returns_tuple_bool_and_reason
+FAILED tests/invariants/test_orchestrator_resilience_r2.py::test_can_adopt_true_for_fresh_orphan
+FAILED tests/invariants/test_orchestrator_resilience_r2.py::test_can_adopt_false_when_sealed
+FAILED tests/invariants/test_orchestrator_resilience_r2.py::test_can_adopt_false_when_polls_stale
+FAILED tests/invariants/test_orchestrator_resilience_r2.py::test_mark_adopted_writes_ledger_entry
+FAILED tests/invariants/test_orchestrator_resilience_r2.py::test_mark_adopted_is_zero_influence_on_write_failure
+FAILED tests/invariants/test_orchestrator_resilience_r2.py::test_mark_adopted_idempotent_within_dedupe_window
+FAILED tests/invariants/test_orchestrator_resilience_r2.py::test_watchdog_module_exports_expected_public_surface
+FAILED tests/invariants/test_orchestrator_resilience_r2.py::test_pid_is_alive_true_for_current_process
+FAILED tests/invariants/test_orchestrator_resilience_r2.py::test_pid_is_alive_false_for_nonexistent_pid
+FAILED tests/invariants/test_orchestrator_resilience_r2.py::test_is_orchestrator_dead_no_heartbeat
+FAILED tests/invariants/test_orchestrator_resilience_r2.py::test_is_orchestrator_dead_stale_heartbeat
+FAILED tests/invariants/test_orchestrator_resilience_r2.py::test_select_adoptable_orphans_end_to_end
+FAILED tests/invariants/test_orchestrator_resilience_r2.py::test_r2_reuses_r1_orphan_detector_and_heartbeat
+============================== 15 failed in 0.86s ==============================

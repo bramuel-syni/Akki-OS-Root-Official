@@ -1,0 +1,38 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-9.1.1, pluggy-1.6.0
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: asyncio-1.4.0, xdist-3.8.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collected 195 items
+
+tests/invariants/test_northena_ledger_row_v0.py .                        [  0%]
+tests/invariants/test_llm_chokepoint_sole_importer.py ......             [  3%]
+tests/invariants/test_llm_purpose_gate_refuses_unlisted.py .......       [  7%]
+tests/invariants/test_llm_masking_tier_enforced.py .....                 [  9%]
+tests/invariants/test_llm_crossing_receipt_metering.py ....              [ 11%]
+tests/invariants/test_llm_egress_allowlist_provider_scoped.py .....      [ 14%]
+tests/invariants/test_registry_facts_emergent_universal_listed.py .....  [ 16%]
+tests/invariants/test_solva_reasoning_stages.py ......                   [ 20%]
+tests/invariants/test_thinklab_reasoning_wire.py ...                     [ 21%]
+tests/invariants/test_w5_cp4_backend_endpoints.py .........              [ 26%]
+tests/invariants/test_chokepoint_registers_all_crossings.py ............ [ 32%]
+..                                                                       [ 33%]
+tests/invariants/test_northena_admit_gate_converge_ledger.py ........... [ 38%]
+.......                                                                  [ 42%]
+tests/invariants/test_northena_ledger_retention.py ..                    [ 43%]
+tests/invariants/test_actor_declaration_v0_contract_frozen.py .          [ 44%]
+tests/invariants/test_record_matrix_thin_kernel.py ......                [ 47%]
+tests/invariants/test_task_identity_thin_kernel.py .....                 [ 49%]
+tests/invariants/test_admit_refuses_undeclared_actor.py ......           [ 52%]
+tests/invariants/test_compute_seam_no_unledgered_exec.py ...             [ 54%]
+tests/invariants/test_compute_seam_artifact_hash_verified.py ...         [ 55%]
+tests/invariants/test_hardening_orchestrator.py .........                [ 60%]
+tests/invariants/test_connect_gpu_pipeline.py ...............            [ 68%]
+tests/invariants/test_connect_gpu_scope_S_or_M.py ..                     [ 69%]
+tests/invariants/test_connect_gpu_acceptance_wired.py ..........         [ 74%]
+tests/invariants/test_ip_allowlist_middleware.py ................        [ 82%]
+tests/invariants/test_estate_keys_and_connect_estate.py ............     [ 88%]
+tests/invariants/test_credentials_paste_parser.py ...................... [100%]
+
+============================= 195 passed in 3.34s ==============================

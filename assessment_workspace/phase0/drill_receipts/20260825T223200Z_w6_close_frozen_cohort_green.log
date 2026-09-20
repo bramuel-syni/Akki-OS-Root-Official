@@ -1,0 +1,29 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-9.1.1, pluggy-1.6.0 -- /root/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: asyncio-1.4.0, xdist-3.8.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 18 items
+
+tests/invariants/test_actor_declaration_v0_contract_frozen.py::test_actor_declaration_v0_contract_frozen PASSED [  5%]
+tests/invariants/test_admission_refusal_v0_contract_frozen.py::test_admission_refusal_v0_contract_frozen PASSED [ 11%]
+tests/invariants/test_backfilled_contract_snapshots.py::test_extraction_params_contract_frozen PASSED [ 16%]
+tests/invariants/test_backfilled_contract_snapshots.py::test_signal_ring_contract_frozen PASSED [ 22%]
+tests/invariants/test_backfilled_contract_snapshots.py::test_qualification_matrix_contract_frozen PASSED [ 27%]
+tests/invariants/test_composed_conclusion_v0_contract_frozen.py::test_composed_conclusion_v0_contract_frozen PASSED [ 33%]
+tests/invariants/test_composed_conclusion_v0_contract_frozen.py::test_composed_conclusion_snapshot_parity_at_18 PASSED [ 38%]
+tests/invariants/test_feasibility_result_v0_contract_frozen.py::test_feasibility_result_v0_contract_frozen PASSED [ 44%]
+tests/invariants/test_frozen_contract_snapshot_parity.py::test_every_frozen_contract_has_snapshot PASSED [ 50%]
+tests/invariants/test_frozen_contract_snapshot_parity.py::test_every_snapshot_maps_to_a_contract PASSED [ 55%]
+tests/invariants/test_frozen_contract_snapshot_parity.py::test_snapshot_mapping_is_bijective PASSED [ 61%]
+tests/invariants/test_invariant_contract_snapshots.py::test_five_rings_schema_frozen PASSED [ 66%]
+tests/invariants/test_invariant_contract_snapshots.py::test_objective_request_schema_frozen PASSED [ 72%]
+tests/invariants/test_invariant_contract_snapshots.py::test_qualification_matrix_schema_frozen PASSED [ 77%]
+tests/invariants/test_invariant_contract_snapshots.py::test_qualification_matrix_v0_content_frozen PASSED [ 83%]
+tests/invariants/test_invariant_contract_snapshots.py::test_use_data_wizard_session_schema_frozen PASSED [ 88%]
+tests/invariants/test_invariant_contract_snapshots.py::test_commission_verdict_schema_frozen PASSED [ 94%]
+tests/invariants/test_objective_request_v2_contract_frozen.py::test_objective_request_v2_contract_frozen PASSED [100%]
+
+============================== 18 passed in 0.19s ==============================

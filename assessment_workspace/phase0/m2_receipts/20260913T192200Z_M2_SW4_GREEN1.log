@@ -1,0 +1,12 @@
+============================= test session starts ==============================
+collecting ... collected 7 items
+
+tests/invariants/test_wm2_sw4_286_rule_enumeration_classify.py::test_sw4_classifier_module_fabric PASSED [ 14%]
+tests/invariants/test_wm2_sw4_286_rule_enumeration_classify.py::test_sw4_seed_present_and_populated PASSED [ 28%]
+tests/invariants/test_wm2_sw4_286_rule_enumeration_classify.py::test_sw4_every_seed_row_has_valid_enforcement_class PASSED [ 42%]
+tests/invariants/test_wm2_sw4_286_rule_enumeration_classify.py::test_sw4_classifier_canonical_blocking_anchors PASSED [ 57%]
+tests/invariants/test_wm2_sw4_286_rule_enumeration_classify.py::test_sw4_classifier_default_pending_override PASSED [ 71%]
+tests/invariants/test_wm2_sw4_286_rule_enumeration_classify.py::test_sw4_classifier_deterministic PASSED [ 85%]
+tests/invariants/test_wm2_sw4_286_rule_enumeration_classify.py::test_sw4_seed_loads_and_materialises_via_rule_book_library PASSED [100%]
+
+============================== 7 passed in 0.80s ===============================

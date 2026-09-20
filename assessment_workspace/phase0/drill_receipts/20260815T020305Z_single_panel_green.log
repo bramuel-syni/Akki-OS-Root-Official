@@ -1,0 +1,29 @@
+=== BACKEND PYTHON GATING (108) ===
+backend/tests/invariants/test_credentials_paste_parser.py::test_endpoint_returns_parsed_fields_over_http PASSED [ 95%]
+backend/tests/invariants/test_credentials_paste_parser.py::test_endpoint_response_never_carries_password_verbatim PASSED [ 96%]
+backend/tests/invariants/test_credentials_paste_parser.py::test_endpoint_response_signals_password_captured_false_when_absent PASSED [ 97%]
+backend/tests/invariants/test_credentials_paste_parser.py::test_router_does_not_persist_or_log_password PASSED [ 98%]
+backend/tests/invariants/test_credentials_paste_parser.py::test_endpoint_refuses_empty_paste PASSED [ 99%]
+backend/tests/invariants/test_credentials_paste_parser.py::test_router_module_does_not_import_llm_libraries PASSED [100%]
+
+============================= 108 passed in 0.55s ==============================
+
+=== FRONTEND ALLOWLIST GATING (12) ===
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 47.127013
+
+=== FRONTEND REHOME/SINGLE-PANEL GATING (23) ===
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 266.322924

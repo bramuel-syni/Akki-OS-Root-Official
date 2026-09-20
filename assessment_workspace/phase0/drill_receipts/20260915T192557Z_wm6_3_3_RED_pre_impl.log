@@ -1,0 +1,188 @@
+FFFFFFFFFF                                                               [100%]
+=================================== FAILURES ===================================
+__________________________ test_wm6_3_3_module_fabric __________________________
+
+    def test_wm6_3_3_module_fabric():
+        """Module `services.audio_plane_v1.register_write_boundary` exports
+        the CP-M6-3-3 public API: five refusal classes + `RegisterWriteBoundary`."""
+>       m = importlib.import_module(
+            "services.audio_plane_v1.register_write_boundary"
+        )
+
+tests/invariants/test_wm6_3_3_register_write_boundary.py:56: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'services.audio_plane_v1.register_write_boundary'
+import_ = <function _gcd_import at 0xf9c14300bd80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'services.audio_plane_v1.register_write_boundary'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+_______ test_wm6_3_3_all_refusal_classes_subclass_leakage_refusal_error ________
+
+    def test_wm6_3_3_all_refusal_classes_subclass_leakage_refusal_error():
+        """Refusal-type discipline (CP-M6-3-2 harness contract): every
+        write-path refusal class MUST subclass `LeakageRefusalError` so the
+        harness's refusal-type check accepts them."""
+        from services.audio_plane_v1.leakage_path_harness import (
+            LeakageRefusalError,
+        )
+>       from services.audio_plane_v1.register_write_boundary import (
+            ExemplarStorageRefused, IdiolectMarkerRefused,
+            NarrowingCombinationRefused, OrganicCharacteristicRefused,
+            SmallStratumRefused,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.register_write_boundary'
+
+tests/invariants/test_wm6_3_3_register_write_boundary.py:79: ModuleNotFoundError
+_____________ test_wm6_3_3_write_boundary_constructor_and_defaults _____________
+
+    def test_wm6_3_3_write_boundary_constructor_and_defaults():
+        """`RegisterWriteBoundary()` is instantiable with no arguments and
+        exposes `min_distinct_speakers_threshold` and
+        `max_description_dimensions` as inspectable configuration."""
+>       from services.audio_plane_v1.register_write_boundary import (
+            RegisterWriteBoundary,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.register_write_boundary'
+
+tests/invariants/test_wm6_3_3_register_write_boundary.py:101: ModuleNotFoundError
+____________________ test_wm6_3_3_write_accepts_clean_entry ____________________
+
+    def test_wm6_3_3_write_accepts_clean_entry():
+        """A schema-valid entry that satisfies §6.1 + §6.2 conds 1–4 + §6.4
+        is accepted (write returns without raising)."""
+        from services.audio_plane_v1.character_register import (
+            construct_character_entry,
+        )
+>       from services.audio_plane_v1.register_write_boundary import (
+            RegisterWriteBoundary,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.register_write_boundary'
+
+tests/invariants/test_wm6_3_3_register_write_boundary.py:121: ModuleNotFoundError
+______________ test_wm6_3_3_write_refuses_organic_characteristic _______________
+
+    def test_wm6_3_3_write_refuses_organic_characteristic():
+        """§6.1 P092 verbatim: 'Organic characteristics... are never
+        registered.'  `is_learned=False` is refused with
+        `OrganicCharacteristicRefused`."""
+        from services.audio_plane_v1.character_register import (
+            construct_character_entry,
+        )
+>       from services.audio_plane_v1.register_write_boundary import (
+            OrganicCharacteristicRefused, RegisterWriteBoundary,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.register_write_boundary'
+
+tests/invariants/test_wm6_3_3_register_write_boundary.py:149: ModuleNotFoundError
+_________ test_wm6_3_3_write_refuses_small_stratum_synthetic_scenario __________
+
+    def test_wm6_3_3_write_refuses_small_stratum_synthetic_scenario():
+        """§6.2 cond-2 verbatim: 'Observed across at least N distinct
+        speakers.'  Small-stratum synthetic scenario (single speaker) is
+        refused with `SmallStratumRefused`."""
+        from services.audio_plane_v1.leakage_path_harness import (
+            build_leakage_scenarios,
+        )
+>       from services.audio_plane_v1.register_write_boundary import (
+            RegisterWriteBoundary, SmallStratumRefused,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.register_write_boundary'
+
+tests/invariants/test_wm6_3_3_register_write_boundary.py:173: ModuleNotFoundError
+________ test_wm6_3_3_write_refuses_idiolect_marker_synthetic_scenario _________
+
+    def test_wm6_3_3_write_refuses_idiolect_marker_synthetic_scenario():
+        """§6.4 P102 verbatim: 'Habitual fillers, characteristic phrasings,
+        and idiosyncratically pronounced words... They fail condition 2 or 3
+        and are excluded.'  Idiolect-marker synthetic scenario is refused
+        with `IdiolectMarkerRefused`."""
+        from services.audio_plane_v1.leakage_path_harness import (
+            build_leakage_scenarios,
+        )
+>       from services.audio_plane_v1.register_write_boundary import (
+            IdiolectMarkerRefused, RegisterWriteBoundary,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.register_write_boundary'
+
+tests/invariants/test_wm6_3_3_register_write_boundary.py:192: ModuleNotFoundError
+_____ test_wm6_3_3_write_refuses_narrowing_combination_synthetic_scenario ______
+
+    def test_wm6_3_3_write_refuses_narrowing_combination_synthetic_scenario():
+        """§6.2 cond-3 verbatim: 'Non-reconstructive in combination.'
+        Narrowing-combination synthetic scenario is refused with
+        `NarrowingCombinationRefused`."""
+        from services.audio_plane_v1.leakage_path_harness import (
+            build_leakage_scenarios,
+        )
+>       from services.audio_plane_v1.register_write_boundary import (
+            NarrowingCombinationRefused, RegisterWriteBoundary,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.register_write_boundary'
+
+tests/invariants/test_wm6_3_3_register_write_boundary.py:210: ModuleNotFoundError
+________ test_wm6_3_3_write_refuses_exemplar_storage_synthetic_scenario ________
+
+    def test_wm6_3_3_write_refuses_exemplar_storage_synthetic_scenario():
+        """§6.2 cond-4 verbatim: 'Stored as description, not exemplar.
+        Centroids, distributions, frequencies. Never stored audio; never
+        per-utterance speaker embeddings.'  Exemplar-storage synthetic
+        scenario (dense 512-dim embedding-like description) is refused
+        with `ExemplarStorageRefused`."""
+        from services.audio_plane_v1.leakage_path_harness import (
+            build_leakage_scenarios,
+        )
+>       from services.audio_plane_v1.register_write_boundary import (
+            ExemplarStorageRefused, RegisterWriteBoundary,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.register_write_boundary'
+
+tests/invariants/test_wm6_3_3_register_write_boundary.py:231: ModuleNotFoundError
+__ test_wm6_3_3_p100_end_to_end_lock_run_leakage_harness_passes_with_boundary __
+
+    def test_wm6_3_3_p100_end_to_end_lock_run_leakage_harness_passes_with_boundary():
+        """**§6.3 P100 END-TO-END LOCK.**
+    
+        Running `run_leakage_path_harness(write_callable=RegisterWriteBoundary().write)`
+        MUST return normally (no `HarnessAcceptedForbiddenError`, no
+        `HarnessRefusalTypeError`) — the harness's four synthetic
+        leakage-path scenarios are each refused with the correct
+        refusal-type subclass of `LeakageRefusalError`.  This is the
+        canonical §6.3 P100 invariant assertion: every automated write of
+        every leakage-path scenario fails to store.
+    
+        Every scenario stays SYNTHETIC — no real-estate biometric material
+        is referenced anywhere in the write path or the harness."""
+        from services.audio_plane_v1.leakage_path_harness import (
+            run_leakage_path_harness,
+        )
+>       from services.audio_plane_v1.register_write_boundary import (
+            RegisterWriteBoundary,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.register_write_boundary'
+
+tests/invariants/test_wm6_3_3_register_write_boundary.py:258: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wm6_3_3_register_write_boundary.py::test_wm6_3_3_module_fabric
+FAILED tests/invariants/test_wm6_3_3_register_write_boundary.py::test_wm6_3_3_all_refusal_classes_subclass_leakage_refusal_error
+FAILED tests/invariants/test_wm6_3_3_register_write_boundary.py::test_wm6_3_3_write_boundary_constructor_and_defaults
+FAILED tests/invariants/test_wm6_3_3_register_write_boundary.py::test_wm6_3_3_write_accepts_clean_entry
+FAILED tests/invariants/test_wm6_3_3_register_write_boundary.py::test_wm6_3_3_write_refuses_organic_characteristic
+FAILED tests/invariants/test_wm6_3_3_register_write_boundary.py::test_wm6_3_3_write_refuses_small_stratum_synthetic_scenario
+FAILED tests/invariants/test_wm6_3_3_register_write_boundary.py::test_wm6_3_3_write_refuses_idiolect_marker_synthetic_scenario
+FAILED tests/invariants/test_wm6_3_3_register_write_boundary.py::test_wm6_3_3_write_refuses_narrowing_combination_synthetic_scenario
+FAILED tests/invariants/test_wm6_3_3_register_write_boundary.py::test_wm6_3_3_write_refuses_exemplar_storage_synthetic_scenario
+FAILED tests/invariants/test_wm6_3_3_register_write_boundary.py::test_wm6_3_3_p100_end_to_end_lock_run_leakage_harness_passes_with_boundary
+10 failed in 0.70s

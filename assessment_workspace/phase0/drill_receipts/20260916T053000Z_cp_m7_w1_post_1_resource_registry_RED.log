@@ -1,0 +1,287 @@
+FFFFFFFFFFFFFFFFFFFFFFFFFF                                               [100%]
+=================================== FAILURES ===================================
+___________________ test_resource_registry_module_importable ___________________
+
+    def test_resource_registry_module_importable():
+>       import services.resource_registry  # noqa: F401
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ModuleNotFoundError: No module named 'services.resource_registry'
+
+tests/invariants/test_wm7_w1_post_1_resource_registry.py:117: ModuleNotFoundError
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+_______________ test_resource_registry_exports_expected_surface ________________
+
+    def test_resource_registry_exports_expected_surface():
+>       import services.resource_registry as rr
+E       ModuleNotFoundError: No module named 'services.resource_registry'
+
+tests/invariants/test_wm7_w1_post_1_resource_registry.py:121: ModuleNotFoundError
+__________________ test_compute_resource_is_frozen_dataclass ___________________
+
+    def test_compute_resource_is_frozen_dataclass():
+>       from services.resource_registry import ComputeResource
+E       ModuleNotFoundError: No module named 'services.resource_registry'
+
+tests/invariants/test_wm7_w1_post_1_resource_registry.py:145: ModuleNotFoundError
+_______________ test_compute_resource_refuses_empty_resource_id ________________
+
+    def test_compute_resource_refuses_empty_resource_id():
+>       from services.resource_registry import (
+            ComputeResource,
+            ResourceRegistryInvalid,
+        )
+E       ModuleNotFoundError: No module named 'services.resource_registry'
+
+tests/invariants/test_wm7_w1_post_1_resource_registry.py:154: ModuleNotFoundError
+______________ test_compute_resource_refuses_empty_resource_class ______________
+
+    def test_compute_resource_refuses_empty_resource_class():
+>       from services.resource_registry import (
+            ComputeResource,
+            ResourceRegistryInvalid,
+        )
+E       ModuleNotFoundError: No module named 'services.resource_registry'
+
+tests/invariants/test_wm7_w1_post_1_resource_registry.py:166: ModuleNotFoundError
+______________ test_compute_resource_refuses_non_iso_z_timestamp _______________
+
+    def test_compute_resource_refuses_non_iso_z_timestamp():
+>       from services.resource_registry import (
+            ComputeResource,
+            ResourceRegistryInvalid,
+        )
+E       ModuleNotFoundError: No module named 'services.resource_registry'
+
+tests/invariants/test_wm7_w1_post_1_resource_registry.py:178: ModuleNotFoundError
+__________ test_compute_resource_sorts_capability_tags_deterministic ___________
+
+    def test_compute_resource_sorts_capability_tags_deterministic():
+>       from services.resource_registry import ComputeResource
+E       ModuleNotFoundError: No module named 'services.resource_registry'
+
+tests/invariants/test_wm7_w1_post_1_resource_registry.py:195: ModuleNotFoundError
+___________ test_compute_resource_capability_tags_is_tuple_not_list ____________
+
+    def test_compute_resource_capability_tags_is_tuple_not_list():
+>       from services.resource_registry import ComputeResource
+E       ModuleNotFoundError: No module named 'services.resource_registry'
+
+tests/invariants/test_wm7_w1_post_1_resource_registry.py:204: ModuleNotFoundError
+______________ test_compute_resource_refuses_empty_capability_tag ______________
+
+    def test_compute_resource_refuses_empty_capability_tag():
+>       from services.resource_registry import (
+            ComputeResource,
+            ResourceRegistryInvalid,
+        )
+E       ModuleNotFoundError: No module named 'services.resource_registry'
+
+tests/invariants/test_wm7_w1_post_1_resource_registry.py:216: ModuleNotFoundError
+___________ test_compute_resource_open_resource_class_no_closed_enum ___________
+
+    def test_compute_resource_open_resource_class_no_closed_enum():
+        """Case-agnostic doctrine explicit-verify: resource_class is an OPEN
+        string, not a closed enum. Any non-empty string must be accepted."""
+>       from services.resource_registry import ComputeResource
+E       ModuleNotFoundError: No module named 'services.resource_registry'
+
+tests/invariants/test_wm7_w1_post_1_resource_registry.py:230: ModuleNotFoundError
+____________________ test_register_resource_stores_resource ____________________
+
+    def test_register_resource_stores_resource():
+>       from services.resource_registry import (
+            ComputeResource,
+            is_registered,
+            register_resource,
+        )
+E       ModuleNotFoundError: No module named 'services.resource_registry'
+
+tests/invariants/test_wm7_w1_post_1_resource_registry.py:252: ModuleNotFoundError
+________________ test_register_resource_idempotent_same_payload ________________
+
+    def test_register_resource_idempotent_same_payload():
+>       from services.resource_registry import (
+            ComputeResource,
+            list_resources,
+            register_resource,
+        )
+E       ModuleNotFoundError: No module named 'services.resource_registry'
+
+tests/invariants/test_wm7_w1_post_1_resource_registry.py:265: ModuleNotFoundError
+__________ test_register_resource_refuses_mutation_different_payload ___________
+
+    def test_register_resource_refuses_mutation_different_payload():
+>       from services.resource_registry import (
+            ComputeResource,
+            ResourceRegistryInvalid,
+            register_resource,
+        )
+E       ModuleNotFoundError: No module named 'services.resource_registry'
+
+tests/invariants/test_wm7_w1_post_1_resource_registry.py:279: ModuleNotFoundError
+____________ test_register_resource_requires_compute_resource_type _____________
+
+    def test_register_resource_requires_compute_resource_type():
+>       from services.resource_registry import register_resource
+E       ModuleNotFoundError: No module named 'services.resource_registry'
+
+tests/invariants/test_wm7_w1_post_1_resource_registry.py:299: ModuleNotFoundError
+_______________ test_is_registered_returns_false_for_unknown_id ________________
+
+    def test_is_registered_returns_false_for_unknown_id():
+>       from services.resource_registry import is_registered
+E       ModuleNotFoundError: No module named 'services.resource_registry'
+
+tests/invariants/test_wm7_w1_post_1_resource_registry.py:316: ModuleNotFoundError
+__________ test_list_resources_returns_deterministic_sorted_snapshot ___________
+
+    def test_list_resources_returns_deterministic_sorted_snapshot():
+>       from services.resource_registry import (
+            ComputeResource,
+            list_resources,
+            register_resource,
+        )
+E       ModuleNotFoundError: No module named 'services.resource_registry'
+
+tests/invariants/test_wm7_w1_post_1_resource_registry.py:322: ModuleNotFoundError
+_________________ test_list_resources_returns_tuple_immutable __________________
+
+    def test_list_resources_returns_tuple_immutable():
+>       from services.resource_registry import (
+            ComputeResource,
+            list_resources,
+            register_resource,
+        )
+E       ModuleNotFoundError: No module named 'services.resource_registry'
+
+tests/invariants/test_wm7_w1_post_1_resource_registry.py:339: ModuleNotFoundError
+______________ test_select_by_capability_returns_superset_matches ______________
+
+    def test_select_by_capability_returns_superset_matches():
+>       from services.resource_registry import (
+            ComputeResource,
+            register_resource,
+            select_by_capability,
+        )
+E       ModuleNotFoundError: No module named 'services.resource_registry'
+
+tests/invariants/test_wm7_w1_post_1_resource_registry.py:352: ModuleNotFoundError
+_____________ test_select_by_capability_empty_required_returns_all _____________
+
+    def test_select_by_capability_empty_required_returns_all():
+>       from services.resource_registry import (
+            ComputeResource,
+            list_resources,
+            register_resource,
+            select_by_capability,
+        )
+E       ModuleNotFoundError: No module named 'services.resource_registry'
+
+tests/invariants/test_wm7_w1_post_1_resource_registry.py:384: ModuleNotFoundError
+____________ test_select_by_capability_returns_deterministic_sorted ____________
+
+    def test_select_by_capability_returns_deterministic_sorted():
+>       from services.resource_registry import (
+            ComputeResource,
+            register_resource,
+            select_by_capability,
+        )
+E       ModuleNotFoundError: No module named 'services.resource_registry'
+
+tests/invariants/test_wm7_w1_post_1_resource_registry.py:400: ModuleNotFoundError
+________________ test_get_resource_returns_registered_resource _________________
+
+    def test_get_resource_returns_registered_resource():
+>       from services.resource_registry import (
+            ComputeResource,
+            get_resource,
+            register_resource,
+        )
+E       ModuleNotFoundError: No module named 'services.resource_registry'
+
+tests/invariants/test_wm7_w1_post_1_resource_registry.py:421: ModuleNotFoundError
+___________ test_get_resource_raises_resource_not_registered_on_miss ___________
+
+    def test_get_resource_raises_resource_not_registered_on_miss():
+>       from services.resource_registry import (
+            ResourceNotRegistered,
+            get_resource,
+        )
+E       ModuleNotFoundError: No module named 'services.resource_registry'
+
+tests/invariants/test_wm7_w1_post_1_resource_registry.py:433: ModuleNotFoundError
+__________________ test_reset_registry_for_tests_wipes_state ___________________
+
+    def test_reset_registry_for_tests_wipes_state():
+>       from services.resource_registry import (
+            ComputeResource,
+            _reset_registry_for_tests,
+            list_resources,
+            register_resource,
+        )
+E       ModuleNotFoundError: No module named 'services.resource_registry'
+
+tests/invariants/test_wm7_w1_post_1_resource_registry.py:448: ModuleNotFoundError
+_________________ test_registry_starts_empty_no_platform_seed __________________
+
+    def test_registry_starts_empty_no_platform_seed():
+        """Case-agnostic doctrine explicit-verify: unlike kind_registry which
+        seeds 'platform.generic', the resource registry has NO platform seed.
+        Resources register at their case wave."""
+>       from services.resource_registry import (
+            _reset_registry_for_tests,
+            list_resources,
+        )
+E       ModuleNotFoundError: No module named 'services.resource_registry'
+
+tests/invariants/test_wm7_w1_post_1_resource_registry.py:466: ModuleNotFoundError
+_____________ test_registry_no_terminator_names_on_public_surface ______________
+
+    def test_registry_no_terminator_names_on_public_surface():
+        """Zero-influence-discipline mirror: the registry does not name any
+        dispatch-refusal / process-kill operation on its public surface.
+        Confirms scope boundary from owner ruling 2026-09-16T~05:10Z verbatim:
+        'registry surface ONLY — do NOT wire the §3.2 clause-5 cross-service
+        hard-gate'."""
+>       import services.resource_registry as rr
+E       ModuleNotFoundError: No module named 'services.resource_registry'
+
+tests/invariants/test_wm7_w1_post_1_resource_registry.py:486: ModuleNotFoundError
+_______________ test_registry_does_not_import_dispatch_surfaces ________________
+
+    def test_registry_does_not_import_dispatch_surfaces():
+        """Grep-based negative: registry.py does NOT import any dispatch
+        surface. Confirms scope boundary from-disk."""
+>       import services.resource_registry.registry as reg
+E       ModuleNotFoundError: No module named 'services.resource_registry'
+
+tests/invariants/test_wm7_w1_post_1_resource_registry.py:508: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wm7_w1_post_1_resource_registry.py::test_resource_registry_module_importable
+FAILED tests/invariants/test_wm7_w1_post_1_resource_registry.py::test_resource_registry_exports_expected_surface
+FAILED tests/invariants/test_wm7_w1_post_1_resource_registry.py::test_compute_resource_is_frozen_dataclass
+FAILED tests/invariants/test_wm7_w1_post_1_resource_registry.py::test_compute_resource_refuses_empty_resource_id
+FAILED tests/invariants/test_wm7_w1_post_1_resource_registry.py::test_compute_resource_refuses_empty_resource_class
+FAILED tests/invariants/test_wm7_w1_post_1_resource_registry.py::test_compute_resource_refuses_non_iso_z_timestamp
+FAILED tests/invariants/test_wm7_w1_post_1_resource_registry.py::test_compute_resource_sorts_capability_tags_deterministic
+FAILED tests/invariants/test_wm7_w1_post_1_resource_registry.py::test_compute_resource_capability_tags_is_tuple_not_list
+FAILED tests/invariants/test_wm7_w1_post_1_resource_registry.py::test_compute_resource_refuses_empty_capability_tag
+FAILED tests/invariants/test_wm7_w1_post_1_resource_registry.py::test_compute_resource_open_resource_class_no_closed_enum
+FAILED tests/invariants/test_wm7_w1_post_1_resource_registry.py::test_register_resource_stores_resource
+FAILED tests/invariants/test_wm7_w1_post_1_resource_registry.py::test_register_resource_idempotent_same_payload
+FAILED tests/invariants/test_wm7_w1_post_1_resource_registry.py::test_register_resource_refuses_mutation_different_payload
+FAILED tests/invariants/test_wm7_w1_post_1_resource_registry.py::test_register_resource_requires_compute_resource_type
+FAILED tests/invariants/test_wm7_w1_post_1_resource_registry.py::test_is_registered_returns_false_for_unknown_id
+FAILED tests/invariants/test_wm7_w1_post_1_resource_registry.py::test_list_resources_returns_deterministic_sorted_snapshot
+FAILED tests/invariants/test_wm7_w1_post_1_resource_registry.py::test_list_resources_returns_tuple_immutable
+FAILED tests/invariants/test_wm7_w1_post_1_resource_registry.py::test_select_by_capability_returns_superset_matches
+FAILED tests/invariants/test_wm7_w1_post_1_resource_registry.py::test_select_by_capability_empty_required_returns_all
+FAILED tests/invariants/test_wm7_w1_post_1_resource_registry.py::test_select_by_capability_returns_deterministic_sorted
+FAILED tests/invariants/test_wm7_w1_post_1_resource_registry.py::test_get_resource_returns_registered_resource
+FAILED tests/invariants/test_wm7_w1_post_1_resource_registry.py::test_get_resource_raises_resource_not_registered_on_miss
+FAILED tests/invariants/test_wm7_w1_post_1_resource_registry.py::test_reset_registry_for_tests_wipes_state
+FAILED tests/invariants/test_wm7_w1_post_1_resource_registry.py::test_registry_starts_empty_no_platform_seed
+FAILED tests/invariants/test_wm7_w1_post_1_resource_registry.py::test_registry_no_terminator_names_on_public_surface
+FAILED tests/invariants/test_wm7_w1_post_1_resource_registry.py::test_registry_does_not_import_dispatch_surfaces
+26 failed in 0.78s

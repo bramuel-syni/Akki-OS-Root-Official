@@ -1,0 +1,28 @@
+---
+acceptance_exit_code=2
+--- STDOUT ---
+=== Phase-0 Acceptance · 2026-08-18T18:17:51Z ===
+hardening.mode: verify (owner-side hardening assumed; acceptance.sh will confirm dead-password auth externally)
+FAIL: /mnt/hss not mounted
+--- STDERR ---
+--- parse via services.compute_seam.acceptance_parser ---
+[
+  {
+    "name": "phase0_start",
+    "ok": true,
+    "sentence": "Phase-0 acceptance began at 2026-08-18T18:17:51Z."
+  },
+  {
+    "name": "hardening.mode",
+    "ok": true,
+    "sentence": "Hardening mode: verify (owner-side hardening assumed; acceptance.sh will confirm dead-password auth externally)."
+  },
+  {
+    "name": "hss_check",
+    "ok": false,
+    "sentence": "Check failed: /mnt/hss not mounted."
+  }
+]
+---summary---
+green_checks=2  failed_checks=1
+  FAIL[hss_check]: Check failed: /mnt/hss not mounted.

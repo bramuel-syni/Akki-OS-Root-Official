@@ -1,0 +1,133 @@
+FFFFFFF                                                                  [100%]
+=================================== FAILURES ===================================
+__________________________ test_wm6_2_1_module_fabric __________________________
+
+    def test_wm6_2_1_module_fabric():
+        """Module `services.audio_plane_v1.instance_condition_map` exports the
+        CP-M6-2-1 public API: `construct_instance_condition_map` +
+        `InstanceConditionVariant` + `InstanceConditionMap` +
+        `VariantsEmptyError` + `VariantInvalidError` +
+        `dedup_item_has_instance_condition_map` (helper predicate for the
+        §4.6 P074 invariant gate)."""
+>       m = importlib.import_module(
+            "services.audio_plane_v1.instance_condition_map"
+        )
+
+tests/invariants/test_wm6_2_1_instance_condition_map.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'services.audio_plane_v1.instance_condition_map'
+import_ = <function _gcd_import at 0xfafeb4efbd80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'services.audio_plane_v1.instance_condition_map'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+_________ test_wm6_2_1_instance_condition_variant_three_carrier_shape __________
+
+    def test_wm6_2_1_instance_condition_variant_three_carrier_shape():
+        """`InstanceConditionVariant` frozen dataclass with exactly 3 carriers
+        per Audio-Plane §4.5 P071 verbatim "channel/time/condition variants":
+        `segment_ref` (source segment where this variant occurred) +
+        `channel_time_ref` (opaque channel × time identifier) +
+        `condition_profile_ref` (opaque handle to the §4.3
+        ChannelConditionProfile record for this variant).  Pull-seam scan:
+        no audio-byte carrier names."""
+>       from services.audio_plane_v1.instance_condition_map import (
+            InstanceConditionVariant,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.instance_condition_map'
+
+tests/invariants/test_wm6_2_1_instance_condition_map.py:69: ModuleNotFoundError
+___________ test_wm6_2_1_instance_condition_map_three_carrier_shape ____________
+
+    def test_wm6_2_1_instance_condition_map_three_carrier_shape():
+        """`InstanceConditionMap` frozen dataclass with exactly 3 carriers per
+        Audio-Plane §4.5 P071 verbatim: `canonical_extraction_ref` ("One
+        canonical extraction is stored") + `occurrence_index_ref` (the dedup
+        item this map is attached to) + `variants` (immutable tuple of
+        `InstanceConditionVariant`, "the set of channel/time/condition
+        variants under which identical content occurred").  Pull-seam scan:
+        no audio-byte carrier names."""
+>       from services.audio_plane_v1.instance_condition_map import (
+            InstanceConditionMap,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.instance_condition_map'
+
+tests/invariants/test_wm6_2_1_instance_condition_map.py:92: ModuleNotFoundError
+_____________________ test_wm6_2_1_empty_variants_refuses ______________________
+
+    def test_wm6_2_1_empty_variants_refuses():
+        """§4.5 P071 verbatim: "the set of channel/time/condition variants
+        under which identical content occurred" — the set must be non-empty
+        (a deduplicated item exists BECAUSE identical content occurred at
+        least once).  Constructing with empty variants raises
+        `VariantsEmptyError` mentioning `variants`."""
+>       from services.audio_plane_v1.instance_condition_map import (
+            VariantsEmptyError, construct_instance_condition_map,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.instance_condition_map'
+
+tests/invariants/test_wm6_2_1_instance_condition_map.py:113: ModuleNotFoundError
+___________________ test_wm6_2_1_non_variant_element_refuses ___________________
+
+    def test_wm6_2_1_non_variant_element_refuses():
+        """A non-`InstanceConditionVariant` element in `variants` propagates
+        `VariantInvalidError`."""
+>       from services.audio_plane_v1.instance_condition_map import (
+            InstanceConditionVariant, VariantInvalidError,
+            construct_instance_condition_map,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.instance_condition_map'
+
+tests/invariants/test_wm6_2_1_instance_condition_map.py:127: ModuleNotFoundError
+_ test_wm6_2_1_construct_returns_frozen_instance_and_coerces_variants_to_tuple _
+
+    def test_wm6_2_1_construct_returns_frozen_instance_and_coerces_variants_to_tuple():
+        """`construct_instance_condition_map` returns an `InstanceConditionMap`
+        with `variants` coerced to an immutable tuple (accepts list input,
+        stores tuple internally so the frozen dataclass stays immutable)."""
+>       from services.audio_plane_v1.instance_condition_map import (
+            InstanceConditionMap, InstanceConditionVariant,
+            construct_instance_condition_map,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.instance_condition_map'
+
+tests/invariants/test_wm6_2_1_instance_condition_map.py:148: ModuleNotFoundError
+_________ test_wm6_2_1_dedup_item_has_instance_condition_map_predicate _________
+
+    def test_wm6_2_1_dedup_item_has_instance_condition_map_predicate():
+        """§4.6 P074 verbatim: "A deduplicated item without its instance
+        condition map fails the ingestion invariant test."
+        The helper predicate `dedup_item_has_instance_condition_map(item)`
+        returns True iff `item.instance_condition_map` is a non-None
+        `InstanceConditionMap` with non-empty variants.  This is the
+        canonical §4.6 P074 gate check that CP-M6-2-2 (dedup path extension)
+        and any downstream invariant test will call."""
+>       from services.audio_plane_v1.instance_condition_map import (
+            InstanceConditionMap, InstanceConditionVariant,
+            construct_instance_condition_map,
+            dedup_item_has_instance_condition_map,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.instance_condition_map'
+
+tests/invariants/test_wm6_2_1_instance_condition_map.py:185: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wm6_2_1_instance_condition_map.py::test_wm6_2_1_module_fabric
+FAILED tests/invariants/test_wm6_2_1_instance_condition_map.py::test_wm6_2_1_instance_condition_variant_three_carrier_shape
+FAILED tests/invariants/test_wm6_2_1_instance_condition_map.py::test_wm6_2_1_instance_condition_map_three_carrier_shape
+FAILED tests/invariants/test_wm6_2_1_instance_condition_map.py::test_wm6_2_1_empty_variants_refuses
+FAILED tests/invariants/test_wm6_2_1_instance_condition_map.py::test_wm6_2_1_non_variant_element_refuses
+FAILED tests/invariants/test_wm6_2_1_instance_condition_map.py::test_wm6_2_1_construct_returns_frozen_instance_and_coerces_variants_to_tuple
+FAILED tests/invariants/test_wm6_2_1_instance_condition_map.py::test_wm6_2_1_dedup_item_has_instance_condition_map_predicate
+7 failed in 0.67s

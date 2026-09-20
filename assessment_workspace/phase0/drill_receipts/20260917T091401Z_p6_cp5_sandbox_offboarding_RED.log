@@ -1,0 +1,37 @@
+# RED drill for CP-P6-CP5 · captured PRE-IMPLEMENTATION at 20260917T091401Z
+# Tests-first: module services/platform_control_plane/sandbox_offboarding.py does NOT exist yet
+# Expected: all 14 invariants fail with ModuleNotFoundError (right-reason)
+# R-5 discipline enforced: raw log banked before module author
+# ---
+FFFFFFFFFFFFFF                                                           [100%]
+=================================== FAILURES ===================================
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError: No module named 'services.platform_control_plane.sandbox_offboarding'
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError: No module named 'services.platform_control_plane.sandbox_offboarding'
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError: No module named 'services.platform_control_plane.sandbox_offboarding'
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError: No module named 'services.platform_control_plane.sandbox_offboarding'
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError: No module named 'services.platform_control_plane.sandbox_offboarding'
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError: No module named 'services.platform_control_plane.sandbox_offboarding'
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError: No module named 'services.platform_control_plane.sandbox_offboarding'
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError: No module named 'services.platform_control_plane.sandbox_offboarding'
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError: No module named 'services.platform_control_plane.sandbox_offboarding'
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError: No module named 'services.platform_control_plane.sandbox_offboarding'
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError: No module named 'services.platform_control_plane.sandbox_offboarding'
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError: No module named 'services.platform_control_plane.sandbox_offboarding'
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError: No module named 'services.platform_control_plane.sandbox_offboarding'
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError: No module named 'services.platform_control_plane.sandbox_offboarding'
+=========================== short test summary info ============================
+FAILED tests/invariants/test_p6_cp5_sandbox_offboarding.py::test_p6_cp5_module_fabric_present
+FAILED tests/invariants/test_p6_cp5_sandbox_offboarding.py::test_p6_cp5_fields_tuple_exact_order
+FAILED tests/invariants/test_p6_cp5_sandbox_offboarding.py::test_p6_cp5_record_frozen_7_carrier_shape
+FAILED tests/invariants/test_p6_cp5_sandbox_offboarding.py::test_p6_cp5_refusal_class_hierarchy
+FAILED tests/invariants/test_p6_cp5_sandbox_offboarding.py::test_p6_cp5_missing_cert_revocation_ref_refused_first
+FAILED tests/invariants/test_p6_cp5_sandbox_offboarding.py::test_p6_cp5_missing_allocation_return_ref_refused_second
+FAILED tests/invariants/test_p6_cp5_sandbox_offboarding.py::test_p6_cp5_missing_artefact_delete_ref_refused_third
+FAILED tests/invariants/test_p6_cp5_sandbox_offboarding.py::test_p6_cp5_admit_all_three_evidence_refs_present
+FAILED tests/invariants/test_p6_cp5_sandbox_offboarding.py::test_p6_cp5_ownership_isolation_tenant_id_at_index_1
+FAILED tests/invariants/test_p6_cp5_sandbox_offboarding.py::test_p6_cp5_refusal_messages_are_counts_only
+FAILED tests/invariants/test_p6_cp5_sandbox_offboarding.py::test_p6_cp5_zero_closed_enum_type
+FAILED tests/invariants/test_p6_cp5_sandbox_offboarding.py::test_p6_cp5_zero_domain_tokens
+FAILED tests/invariants/test_p6_cp5_sandbox_offboarding.py::test_p6_cp5_zero_data_plane_imports
+FAILED tests/invariants/test_p6_cp5_sandbox_offboarding.py::test_p6_cp5_anchor_present_in_source
+14 failed in 0.64s

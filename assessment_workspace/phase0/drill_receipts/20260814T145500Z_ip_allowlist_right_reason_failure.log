@@ -1,0 +1,8 @@
+=== IP ALLOWLIST MIDDLEWARE — RIGHT-REASON FAILURE RECEIPT ===
+Timestamp (UTC): 2026-08-14T14:55:00Z
+Commit boundary: before implementation lands
+Failure signature (all 16 tests):
+  ModuleNotFoundError: No module named 'services.ip_allowlist'
+Test file: backend/tests/invariants/test_ip_allowlist_middleware.py
+Test count: 16 (100% right-reason failures)
+Discipline: tests-first — implementation MUST NOT land before this receipt is banked.

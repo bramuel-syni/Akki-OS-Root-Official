@@ -1,0 +1,114 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.4.2, pluggy-1.6.0
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: asyncio-1.4.0, xdist-3.8.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collected 4 items
+
+tests/invariants/test_v8_substitution_rules_bind_to_rendered_dom.py FFFF [100%]
+
+=================================== FAILURES ===================================
+_________________ test_harness_ground_truth_receipt_is_recent __________________
+
+    def test_harness_ground_truth_receipt_is_recent():
+>       gt = _load_ground_truth()
+             ^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_v8_substitution_rules_bind_to_rendered_dom.py:68: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _load_ground_truth():
+        if not GROUND_TRUTH.exists():
+>           pytest.fail(
+                "harness ground-truth receipt not found at "
+                f"{GROUND_TRUTH}. Run the real-Chromium harness "
+                "(tools/wave_g5_realchrome_verification_harness.py) before "
+                "declaring a Wave-G5+ close."
+            )
+E           Failed: harness ground-truth receipt not found at /app/assessment_workspace/phase0/harness_ground_truth/latest.json. Run the real-Chromium harness (tools/wave_g5_realchrome_verification_harness.py) before declaring a Wave-G5+ close.
+
+tests/invariants/test_v8_substitution_rules_bind_to_rendered_dom.py:50: Failed
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+________ test_every_v8_substitution_rule_binds_to_harness_rendered_dom _________
+
+    def test_every_v8_substitution_rule_binds_to_harness_rendered_dom():
+        """Owner ruling A (Wave-G5b) · every declared substitution rule must
+        provably bind to the harness-rendered DOM.
+    
+        A rule 'binds' if either:
+          (a) it substituted successfully (marker `data-substituted-slot=<name>`
+              present on some iframe element), OR
+          (b) its dummyContent is still literally present in the rendered
+              iframe body text (target exists, substitution just hasn't run
+              yet on that surface).
+    
+        A rule that satisfies neither is an ORPHAN — it targets a dummy that
+        dc-runtime does not render. RED.
+        """
+>       gt = _load_ground_truth()
+             ^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_v8_substitution_rules_bind_to_rendered_dom.py:95: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _load_ground_truth():
+        if not GROUND_TRUTH.exists():
+>           pytest.fail(
+                "harness ground-truth receipt not found at "
+                f"{GROUND_TRUTH}. Run the real-Chromium harness "
+                "(tools/wave_g5_realchrome_verification_harness.py) before "
+                "declaring a Wave-G5+ close."
+            )
+E           Failed: harness ground-truth receipt not found at /app/assessment_workspace/phase0/harness_ground_truth/latest.json. Run the real-Chromium harness (tools/wave_g5_realchrome_verification_harness.py) before declaring a Wave-G5+ close.
+
+tests/invariants/test_v8_substitution_rules_bind_to_rendered_dom.py:50: Failed
+___________________ test_slot1_registry_aside_marker_present ___________________
+
+    def test_slot1_registry_aside_marker_present():
+        """Slot #1 must be substituted on the Registry surface (INTERRUPT 3)."""
+>       gt = _load_ground_truth()
+             ^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_v8_substitution_rules_bind_to_rendered_dom.py:118: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _load_ground_truth():
+        if not GROUND_TRUTH.exists():
+>           pytest.fail(
+                "harness ground-truth receipt not found at "
+                f"{GROUND_TRUTH}. Run the real-Chromium harness "
+                "(tools/wave_g5_realchrome_verification_harness.py) before "
+                "declaring a Wave-G5+ close."
+            )
+E           Failed: harness ground-truth receipt not found at /app/assessment_workspace/phase0/harness_ground_truth/latest.json. Run the real-Chromium harness (tools/wave_g5_realchrome_verification_harness.py) before declaring a Wave-G5+ close.
+
+tests/invariants/test_v8_substitution_rules_bind_to_rendered_dom.py:50: Failed
+___________________ test_harness_orphan_count_matches_report ___________________
+
+    def test_harness_orphan_count_matches_report():
+        """Sanity: the summary orphan_count must match the per_rule detail."""
+>       gt = _load_ground_truth()
+             ^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_v8_substitution_rules_bind_to_rendered_dom.py:131: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _load_ground_truth():
+        if not GROUND_TRUTH.exists():
+>           pytest.fail(
+                "harness ground-truth receipt not found at "
+                f"{GROUND_TRUTH}. Run the real-Chromium harness "
+                "(tools/wave_g5_realchrome_verification_harness.py) before "
+                "declaring a Wave-G5+ close."
+            )
+E           Failed: harness ground-truth receipt not found at /app/assessment_workspace/phase0/harness_ground_truth/latest.json. Run the real-Chromium harness (tools/wave_g5_realchrome_verification_harness.py) before declaring a Wave-G5+ close.
+
+tests/invariants/test_v8_substitution_rules_bind_to_rendered_dom.py:50: Failed
+=========================== short test summary info ============================
+FAILED tests/invariants/test_v8_substitution_rules_bind_to_rendered_dom.py::test_harness_ground_truth_receipt_is_recent
+FAILED tests/invariants/test_v8_substitution_rules_bind_to_rendered_dom.py::test_every_v8_substitution_rule_binds_to_harness_rendered_dom
+FAILED tests/invariants/test_v8_substitution_rules_bind_to_rendered_dom.py::test_slot1_registry_aside_marker_present
+FAILED tests/invariants/test_v8_substitution_rules_bind_to_rendered_dom.py::test_harness_orphan_count_matches_report
+============================== 4 failed in 0.66s ===============================

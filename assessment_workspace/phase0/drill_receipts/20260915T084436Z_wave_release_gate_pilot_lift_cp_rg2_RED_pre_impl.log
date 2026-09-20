@@ -1,0 +1,71 @@
+# ═══════════════════════════════════════════════════════════════════════
+# RED DRILL RECEIPT · W-RELEASE-GATE-PILOT-LIFT · CP-RG2 · pre-impl
+# ═══════════════════════════════════════════════════════════════════════
+#
+# Context: contracts.tokenization_receipt not yet authored; the mechanism
+# module services/de_identify/tokenize_named_persons.py was authored
+# but transitively fails on ModuleNotFoundError:contracts.tokenization_receipt
+# (right-reason RED · module-missing on the frozen carrier).
+#
+# Wave:   W-RELEASE-GATE-PILOT-LIFT · CP-RG2 (tokenize_named_persons + TokenizationReceipt)
+# Ratchet floor at capture: 4025 (post-CP-RG1 seal · Mtafiti-fresh baseline)
+# CD/Visitors probe status this boundary: BOTH STILL FAIL (errno 110)
+# ═══════════════════════════════════════════════════════════════════════
+
+──────── PYTEST RED DRILL OUTPUT ────────
+FFFFFF                                                                   [100%]
+=================================== FAILURES ===================================
+__________________________ test_cp_rg2_module_fabric ___________________________
+tests/invariants/test_wrg_cp_rg2_tokenize_named_persons.py:28: in test_cp_rg2_module_fabric
+    tr = importlib.import_module("contracts.tokenization_receipt")
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1140: in _find_and_load_unlocked
+    ???
+E   ModuleNotFoundError: No module named 'contracts.tokenization_receipt'
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+______ test_cp_rg2_tokenization_receipt_frozen_seven_carrier_exact_order _______
+tests/invariants/test_wrg_cp_rg2_tokenize_named_persons.py:58: in test_cp_rg2_tokenization_receipt_frozen_seven_carrier_exact_order
+    from contracts.tokenization_receipt import TokenizationReceipt
+E   ModuleNotFoundError: No module named 'contracts.tokenization_receipt'
+_______ test_cp_rg2_tokenize_named_persons_replaces_all_name_occurrences _______
+tests/invariants/test_wrg_cp_rg2_tokenize_named_persons.py:96: in test_cp_rg2_tokenize_named_persons_replaces_all_name_occurrences
+    from services.de_identify.tokenize_named_persons import (
+services/de_identify/tokenize_named_persons.py:51: in <module>
+    from contracts.tokenization_receipt import TokenizationReceipt
+E   ModuleNotFoundError: No module named 'contracts.tokenization_receipt'
+______ test_cp_rg2_tokenize_named_persons_deterministic_placeholder_shape ______
+tests/invariants/test_wrg_cp_rg2_tokenize_named_persons.py:129: in test_cp_rg2_tokenize_named_persons_deterministic_placeholder_shape
+    from services.de_identify.tokenize_named_persons import (
+services/de_identify/tokenize_named_persons.py:51: in <module>
+    from contracts.tokenization_receipt import TokenizationReceipt
+E   ModuleNotFoundError: No module named 'contracts.tokenization_receipt'
+___________ test_cp_rg2_receipt_never_carries_token_to_name_mapping ____________
+tests/invariants/test_wrg_cp_rg2_tokenize_named_persons.py:174: in test_cp_rg2_receipt_never_carries_token_to_name_mapping
+    from services.de_identify.tokenize_named_persons import (
+services/de_identify/tokenize_named_persons.py:51: in <module>
+    from contracts.tokenization_receipt import TokenizationReceipt
+E   ModuleNotFoundError: No module named 'contracts.tokenization_receipt'
+_ test_cp_rg2_get_token_table_separate_from_tokenize_call_and_missing_refuses __
+tests/invariants/test_wrg_cp_rg2_tokenize_named_persons.py:211: in test_cp_rg2_get_token_table_separate_from_tokenize_call_and_missing_refuses
+    from services.de_identify.tokenize_named_persons import (
+services/de_identify/tokenize_named_persons.py:51: in <module>
+    from contracts.tokenization_receipt import TokenizationReceipt
+E   ModuleNotFoundError: No module named 'contracts.tokenization_receipt'
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wrg_cp_rg2_tokenize_named_persons.py::test_cp_rg2_module_fabric
+FAILED tests/invariants/test_wrg_cp_rg2_tokenize_named_persons.py::test_cp_rg2_tokenization_receipt_frozen_seven_carrier_exact_order
+FAILED tests/invariants/test_wrg_cp_rg2_tokenize_named_persons.py::test_cp_rg2_tokenize_named_persons_replaces_all_name_occurrences
+FAILED tests/invariants/test_wrg_cp_rg2_tokenize_named_persons.py::test_cp_rg2_tokenize_named_persons_deterministic_placeholder_shape
+FAILED tests/invariants/test_wrg_cp_rg2_tokenize_named_persons.py::test_cp_rg2_receipt_never_carries_token_to_name_mapping
+FAILED tests/invariants/test_wrg_cp_rg2_tokenize_named_persons.py::test_cp_rg2_get_token_table_separate_from_tokenize_call_and_missing_refuses
+6 failed in 0.66s
+
+──────── END PYTEST OUTPUT ────────

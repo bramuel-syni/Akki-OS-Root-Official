@@ -1,0 +1,48 @@
+=== Wave F Cleanup composite re-lock ceremony · 20260827T215951Z ===
+Owner ruling this session: 'RE-RUN the Scope B composite lock ceremony after the register moves — the 52.52 lock predates these rows; a lock that's stale on arrival isn't a lock. Double identical recompute runs, new locked number stated'
+
+=== Run 1 ===
+{
+  "mech_weighted": 302.6,
+  "iface_weighted": 27.8,
+  "mech_pct": 54.92,
+  "iface_pct": 47.93,
+  "mech_pct_raw": 54.91833030852995,
+  "iface_pct_raw": 47.93103448275862,
+  "composite_pct": 52.82,
+  "n_deltas": 39,
+  "delta_rows_mech": 88,
+  "delta_rows_iface": 6
+}
+
+Mech bucket: {'DONE': 132, 'PARTIAL': 44, 'REUSABLE': 306, 'BUILD': 56, 'OPEN-SLOT': 13}
+Iface bucket: {'DONE': 10, 'PARTIAL': 2, 'REUSABLE': 34, 'BUILD': 12, 'OPEN-SLOT': 0}
+
+=== Run 2 (byte-identical to Run 1) ===
+{
+  "mech_weighted": 302.6,
+  "iface_weighted": 27.8,
+  "mech_pct": 54.92,
+  "iface_pct": 47.93,
+  "mech_pct_raw": 54.91833030852995,
+  "iface_pct_raw": 47.93103448275862,
+  "composite_pct": 52.82,
+  "n_deltas": 39,
+  "delta_rows_mech": 88,
+  "delta_rows_iface": 6
+}
+
+Mech bucket: {'DONE': 132, 'PARTIAL': 44, 'REUSABLE': 306, 'BUILD': 56, 'OPEN-SLOT': 13}
+Iface bucket: {'DONE': 10, 'PARTIAL': 2, 'REUSABLE': 34, 'BUILD': 12, 'OPEN-SLOT': 0}
+
+=== Delta attribution ===
+52.52 → 52.82 (+0.30 pp)
+CA1-001 BUILD→DONE  (+1.0 mech weight · Addendum §1 Promise #4 · Doc02-020a)
+CA1-002 BUILD→DONE  (+1.0 mech weight · Addendum §1 Promise #17 · Doc06-016)
+CA1-003 BUILD→PARTIAL (+0.4 mech weight · canon-designated partial closure · Doc07-019 · Doc08-017)
+Total: +2.4 mech weight
+mech_weighted 300.2 → 302.6
+mech_pct 54.48 → 54.92
+iface unchanged 47.93
+composite raw 52.51724 → 52.82214 (single-final-rounding)
+n_deltas 36 → 39

@@ -1,0 +1,9 @@
+[intake] decoded as latin-1. first-line-length=611
+Traceback (most recent call last):
+  File "<stdin>", line 28, in <module>
+  File "/usr/local/lib/python3.11/csv.py", line 110, in __next__
+    self.fieldnames
+  File "/usr/local/lib/python3.11/csv.py", line 97, in fieldnames
+    self._fieldnames = next(self.reader)
+                       ^^^^^^^^^^^^^^^^^
+_csv.Error: new-line character seen in unquoted field - do you need to open the file with newline=''?

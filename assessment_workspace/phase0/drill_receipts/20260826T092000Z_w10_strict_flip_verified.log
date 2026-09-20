@@ -1,0 +1,35 @@
+W10 wave-close · ALLOWLIST_MODE strict-flip verification receipt
+================================================================
+Recorded: 2026-08-26T09:20:00Z
+Trigger: Owner CP9 GO 2026-08-26T08:45Z step 3
+Prior state: ALLOWLIST_MODE=permissive (set at W10 CP2 · owner ruling R8 · 2026-08-26T05:20Z)
+New state:   ALLOWLIST_MODE=strict (default fail-closed posture restored)
+File touched: /app/backend/.env line 20 (ALLOWLIST_MODE=strict)
+Owner IP baked: OWNER_ALLOWLIST_IPS=41.90.172.155 (line 21 · unchanged from R8)
+
+Verification probes (post-restart · after `sudo supervisorctl restart backend`):
+
+Probe 1 · Owner IP (41.90.172.155) admits
+  curl -H "X-Forwarded-For: 41.90.172.155,172.71.255.34,136.110.244.150" \
+       http://127.0.0.1:8001/api/watch/state
+  → HTTP 200 · body served · admits via 'owner' layer (per middleware.py line 150-155)
+
+Probe 2 · Unknown IP (203.0.113.99 · RFC 5737 documentation prefix) refuses
+  curl -H "X-Forwarded-For: 203.0.113.99,172.71.255.34,136.110.244.150" \
+       http://127.0.0.1:8001/api/watch/state
+  → HTTP 403 · body "This surface answers allowlisted addresses only."
+
+Probe 3 · No XFF header refuses (topology invariant enforced)
+  curl http://127.0.0.1:8001/api/watch/state
+  → HTTP 403 · body "This surface answers allowlisted addresses only."
+
+Result: strict flip HEALTHY · fail-closed posture restored ·
+        owner IP admits · every non-allowlisted address refused.
+
+Contract with middleware (services/ip_allowlist/middleware.py):
+  - Strict mode dispatch: mode == "strict" (line 139)
+  - Composed allowlist: SPINE_ALLOWED_IPS ∪ OWNER_ALLOWLIST_IPS (line 140)
+  - Admit attribution: owner layer first, spine second (lines 150-161)
+  - Refuse layer='none' on missing composed set or missing XFF (lines 141-146)
+
+Recorded as owner ruling R9 in STATE/DECISIONS.md.

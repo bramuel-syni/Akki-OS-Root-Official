@@ -1,0 +1,90 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.4.2, pluggy-1.6.0
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: xdist-3.8.0, asyncio-1.4.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collected 6 items
+
+tests/invariants/test_wdslift_cp_d2_workspace_state_machine.py FFFFFF    [100%]
+
+=================================== FAILURES ===================================
+_______________ test_cp_d2_workspace_state_machine_module_fabric _______________
+
+    def test_cp_d2_workspace_state_machine_module_fabric():
+>       m = importlib.import_module("services.data_suite_v2.workspace_state_machine")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_wdslift_cp_d2_workspace_state_machine.py:10: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'services.data_suite_v2.workspace_state_machine'
+import_ = <function _gcd_import at 0xfc29dd05bd80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'services.data_suite_v2.workspace_state_machine'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+___________ test_cp_d2_workspace_lifecycle_state_closed_four_values ____________
+
+    def test_cp_d2_workspace_lifecycle_state_closed_four_values():
+>       from services.data_suite_v2.workspace_state_machine import WorkspaceLifecycleState
+E       ModuleNotFoundError: No module named 'services.data_suite_v2.workspace_state_machine'
+
+tests/invariants/test_wdslift_cp_d2_workspace_state_machine.py:22: ModuleNotFoundError
+___________ test_cp_d2_transitions_are_exactly_the_case_agnostic_set ___________
+
+    def test_cp_d2_transitions_are_exactly_the_case_agnostic_set():
+>       from services.data_suite_v2.workspace_state_machine import (
+            WorkspaceLifecycleState as S, TRANSITIONS,
+        )
+E       ModuleNotFoundError: No module named 'services.data_suite_v2.workspace_state_machine'
+
+tests/invariants/test_wdslift_cp_d2_workspace_state_machine.py:29: ModuleNotFoundError
+____________ test_cp_d2_archived_is_terminal_no_forward_transitions ____________
+
+    def test_cp_d2_archived_is_terminal_no_forward_transitions():
+>       from services.data_suite_v2.workspace_state_machine import (
+            WorkspaceLifecycleState as S, TERMINAL_STATES,
+        )
+E       ModuleNotFoundError: No module named 'services.data_suite_v2.workspace_state_machine'
+
+tests/invariants/test_wdslift_cp_d2_workspace_state_machine.py:42: ModuleNotFoundError
+______ test_cp_d2_assert_transition_legal_allows_all_declared_transitions ______
+
+    def test_cp_d2_assert_transition_legal_allows_all_declared_transitions():
+>       from services.data_suite_v2.workspace_state_machine import (
+            WorkspaceLifecycleState as S, assert_transition_legal,
+        )
+E       ModuleNotFoundError: No module named 'services.data_suite_v2.workspace_state_machine'
+
+tests/invariants/test_wdslift_cp_d2_workspace_state_machine.py:49: ModuleNotFoundError
+________ test_cp_d2_assert_transition_legal_refuses_illegal_transitions ________
+
+    def test_cp_d2_assert_transition_legal_refuses_illegal_transitions():
+>       from services.data_suite_v2.workspace_state_machine import (
+            WorkspaceLifecycleState as S,
+            IllegalWorkspaceTransition,
+            assert_transition_legal,
+        )
+E       ModuleNotFoundError: No module named 'services.data_suite_v2.workspace_state_machine'
+
+tests/invariants/test_wdslift_cp_d2_workspace_state_machine.py:58: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wdslift_cp_d2_workspace_state_machine.py::test_cp_d2_workspace_state_machine_module_fabric
+FAILED tests/invariants/test_wdslift_cp_d2_workspace_state_machine.py::test_cp_d2_workspace_lifecycle_state_closed_four_values
+FAILED tests/invariants/test_wdslift_cp_d2_workspace_state_machine.py::test_cp_d2_transitions_are_exactly_the_case_agnostic_set
+FAILED tests/invariants/test_wdslift_cp_d2_workspace_state_machine.py::test_cp_d2_archived_is_terminal_no_forward_transitions
+FAILED tests/invariants/test_wdslift_cp_d2_workspace_state_machine.py::test_cp_d2_assert_transition_legal_allows_all_declared_transitions
+FAILED tests/invariants/test_wdslift_cp_d2_workspace_state_machine.py::test_cp_d2_assert_transition_legal_refuses_illegal_transitions
+============================== 6 failed in 0.67s ===============================

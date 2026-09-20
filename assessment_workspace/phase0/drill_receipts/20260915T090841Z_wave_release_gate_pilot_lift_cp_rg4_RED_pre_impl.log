@@ -1,0 +1,38 @@
+# RED · CP-RG4 · admit_transcript_release_pilot_open (new symbol) · Expected: ImportError on new function · Ratchet floor 4044 · Probe #5 08:59:13Z FAIL
+FFFFFF                                                                   [100%]
+=================================== FAILURES ===================================
+__________________________ test_cp_rg4_module_fabric ___________________________
+tests/invariants/test_wrg_cp_rg4_admit_transcript_release_end_to_end.py:20: in test_cp_rg4_module_fabric
+    assert hasattr(m, "admit_transcript_release_pilot_open")
+E   AssertionError: assert False
+E    +  where False = hasattr(<module 'services.audio_poc.release_gate' from '/app/assessment_workspace/repos/Extraction-Akki/backend/services/audio_poc/release_gate.py'>, 'admit_transcript_release_pilot_open')
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+____________ test_cp_rg4_admits_full_ruling_chain_and_records_debit ____________
+tests/invariants/test_wrg_cp_rg4_admit_transcript_release_end_to_end.py:30: in test_cp_rg4_admits_full_ruling_chain_and_records_debit
+    from services.audio_poc.release_gate import (
+E   ImportError: cannot import name 'admit_transcript_release_pilot_open' from 'services.audio_poc.release_gate' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/audio_poc/release_gate.py)
+________________ test_cp_rg4_refuses_when_artefact_tier_refused ________________
+tests/invariants/test_wrg_cp_rg4_admit_transcript_release_end_to_end.py:62: in test_cp_rg4_refuses_when_artefact_tier_refused
+    from services.audio_poc.release_gate import (
+E   ImportError: cannot import name 'admit_transcript_release_pilot_open' from 'services.audio_poc.release_gate' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/audio_poc/release_gate.py)
+______________ test_cp_rg4_refuses_on_missing_release_receipt_id _______________
+tests/invariants/test_wrg_cp_rg4_admit_transcript_release_end_to_end.py:94: in test_cp_rg4_refuses_on_missing_release_receipt_id
+    from services.audio_poc.release_gate import (
+E   ImportError: cannot import name 'admit_transcript_release_pilot_open' from 'services.audio_poc.release_gate' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/audio_poc/release_gate.py)
+_________ test_cp_rg4_refuses_on_default_pending_override_budget_state _________
+tests/invariants/test_wrg_cp_rg4_admit_transcript_release_end_to_end.py:125: in test_cp_rg4_refuses_on_default_pending_override_budget_state
+    from services.audio_poc.release_gate import (
+E   ImportError: cannot import name 'admit_transcript_release_pilot_open' from 'services.audio_poc.release_gate' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/audio_poc/release_gate.py)
+______________ test_cp_rg4_artefact_gate_fires_before_debit_write ______________
+tests/invariants/test_wrg_cp_rg4_admit_transcript_release_end_to_end.py:156: in test_cp_rg4_artefact_gate_fires_before_debit_write
+    from services.audio_poc.release_gate import (
+E   ImportError: cannot import name 'admit_transcript_release_pilot_open' from 'services.audio_poc.release_gate' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/audio_poc/release_gate.py)
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wrg_cp_rg4_admit_transcript_release_end_to_end.py::test_cp_rg4_module_fabric
+FAILED tests/invariants/test_wrg_cp_rg4_admit_transcript_release_end_to_end.py::test_cp_rg4_admits_full_ruling_chain_and_records_debit
+FAILED tests/invariants/test_wrg_cp_rg4_admit_transcript_release_end_to_end.py::test_cp_rg4_refuses_when_artefact_tier_refused
+FAILED tests/invariants/test_wrg_cp_rg4_admit_transcript_release_end_to_end.py::test_cp_rg4_refuses_on_missing_release_receipt_id
+FAILED tests/invariants/test_wrg_cp_rg4_admit_transcript_release_end_to_end.py::test_cp_rg4_refuses_on_default_pending_override_budget_state
+FAILED tests/invariants/test_wrg_cp_rg4_admit_transcript_release_end_to_end.py::test_cp_rg4_artefact_gate_fires_before_debit_write
+6 failed in 0.64s

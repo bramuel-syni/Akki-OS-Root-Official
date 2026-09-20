@@ -1,0 +1,100 @@
+=== RED test 1 · agent_containment ingest ===
+============================= test session starts ==============================
+collecting ... collected 7 items
+
+backend/tests/invariants/test_agent_containment_spec_v1_ingest.py::test_agent_containment_requirements_file_exists FAILED [ 14%]
+backend/tests/invariants/test_agent_containment_spec_v1_ingest.py::test_non_claims_register_exists FAILED [ 28%]
+backend/tests/invariants/test_agent_containment_spec_v1_ingest.py::test_all_twelve_ac_headings_present_in_requirements_file FAILED [ 42%]
+backend/tests/invariants/test_agent_containment_spec_v1_ingest.py::test_no_lim_row_appears_in_requirements_file_as_requirement FAILED [ 57%]
+backend/tests/invariants/test_agent_containment_spec_v1_ingest.py::test_all_five_lim_rows_present_in_non_claims_register FAILED [ 71%]
+backend/tests/invariants/test_agent_containment_spec_v1_ingest.py::test_non_claims_register_status_column_is_only_non_claim FAILED [ 85%]
+backend/tests/invariants/test_agent_containment_spec_v1_ingest.py::test_agent_containment_spec_v1_appears_in_spec_id_index PASSED [100%]
+
+=================================== FAILURES ===================================
+_______________ test_agent_containment_requirements_file_exists ________________
+backend/tests/invariants/test_agent_containment_spec_v1_ingest.py:44: in test_agent_containment_requirements_file_exists
+    assert AC_REQS_PATH.exists(), (
+E   AssertionError: canon_agent_containment_spec_v1_requirements.md missing at /app/assessment_workspace/notes/canon_agent_containment_spec_v1_requirements.md (owner directive 2026-09-08T~06:15Z STEP 2)
+E   assert False
+E    +  where False = exists()
+E    +    where exists = PosixPath('/app/assessment_workspace/notes/canon_agent_containment_spec_v1_requirements.md').exists
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+_______________________ test_non_claims_register_exists ________________________
+backend/tests/invariants/test_agent_containment_spec_v1_ingest.py:51: in test_non_claims_register_exists
+    assert NON_CLAIMS_PATH.exists(), (
+E   AssertionError: NON_CLAIMS_REGISTER.md missing at /app/assessment_workspace/notes/NON_CLAIMS_REGISTER.md (owner directive 2026-09-08T~06:15Z STEP 2: LIM-1..5 tracked in distinct NON-CLAIMS register)
+E   assert False
+E    +  where False = exists()
+E    +    where exists = PosixPath('/app/assessment_workspace/notes/NON_CLAIMS_REGISTER.md').exists
+___________ test_all_twelve_ac_headings_present_in_requirements_file ___________
+backend/tests/invariants/test_agent_containment_spec_v1_ingest.py:59: in test_all_twelve_ac_headings_present_in_requirements_file
+    text = AC_REQS_PATH.read_text(encoding="utf-8")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/pathlib.py:1058: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/pathlib.py:1044: in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   FileNotFoundError: [Errno 2] No such file or directory: '/app/assessment_workspace/notes/canon_agent_containment_spec_v1_requirements.md'
+_________ test_no_lim_row_appears_in_requirements_file_as_requirement __________
+backend/tests/invariants/test_agent_containment_spec_v1_ingest.py:71: in test_no_lim_row_appears_in_requirements_file_as_requirement
+    text = AC_REQS_PATH.read_text(encoding="utf-8")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/pathlib.py:1058: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/pathlib.py:1044: in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   FileNotFoundError: [Errno 2] No such file or directory: '/app/assessment_workspace/notes/canon_agent_containment_spec_v1_requirements.md'
+____________ test_all_five_lim_rows_present_in_non_claims_register _____________
+backend/tests/invariants/test_agent_containment_spec_v1_ingest.py:81: in test_all_five_lim_rows_present_in_non_claims_register
+    text = NON_CLAIMS_PATH.read_text(encoding="utf-8")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/pathlib.py:1058: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/pathlib.py:1044: in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   FileNotFoundError: [Errno 2] No such file or directory: '/app/assessment_workspace/notes/NON_CLAIMS_REGISTER.md'
+___________ test_non_claims_register_status_column_is_only_non_claim ___________
+backend/tests/invariants/test_agent_containment_spec_v1_ingest.py:93: in test_non_claims_register_status_column_is_only_non_claim
+    text = NON_CLAIMS_PATH.read_text(encoding="utf-8")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/pathlib.py:1058: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/pathlib.py:1044: in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   FileNotFoundError: [Errno 2] No such file or directory: '/app/assessment_workspace/notes/NON_CLAIMS_REGISTER.md'
+=========================== short test summary info ============================
+FAILED backend/tests/invariants/test_agent_containment_spec_v1_ingest.py::test_agent_containment_requirements_file_exists
+FAILED backend/tests/invariants/test_agent_containment_spec_v1_ingest.py::test_non_claims_register_exists
+FAILED backend/tests/invariants/test_agent_containment_spec_v1_ingest.py::test_all_twelve_ac_headings_present_in_requirements_file
+FAILED backend/tests/invariants/test_agent_containment_spec_v1_ingest.py::test_no_lim_row_appears_in_requirements_file_as_requirement
+FAILED backend/tests/invariants/test_agent_containment_spec_v1_ingest.py::test_all_five_lim_rows_present_in_non_claims_register
+FAILED backend/tests/invariants/test_agent_containment_spec_v1_ingest.py::test_non_claims_register_status_column_is_only_non_claim
+========================= 6 failed, 1 passed in 0.71s ==========================
+=== RED test 2 · default_class_constants (import error is the right-reason) ===
+============================= test session starts ==============================
+collecting ... collected 0 items / 1 error
+
+==================================== ERRORS ====================================
+___ ERROR collecting tests/invariants/test_default_class_ruled_constants.py ____
+ImportError while importing test module '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_default_class_ruled_constants.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend/tests/invariants/test_default_class_ruled_constants.py:33: in <module>
+    from backend.services.rulings import default_class_constants as C
+E   ModuleNotFoundError: No module named 'backend.services.rulings'
+=========================== short test summary info ============================
+ERROR backend/tests/invariants/test_default_class_ruled_constants.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+=============================== 1 error in 0.09s ===============================

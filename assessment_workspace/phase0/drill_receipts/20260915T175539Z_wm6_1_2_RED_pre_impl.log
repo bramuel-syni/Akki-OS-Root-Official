@@ -1,0 +1,122 @@
+FFFFFFF                                                                  [100%]
+=================================== FAILURES ===================================
+__________________________ test_wm6_1_2_module_fabric __________________________
+
+    def test_wm6_1_2_module_fabric():
+        """Module `services.audio_plane_v1.code_switch_detector` exports the CP-
+        M6-1-2 public API: `detect_code_switch_points` +
+        `AudioSegment` (re-exported from CP-M6-1-1 · single source of truth) +
+        `CodeSwitchPoint` + `CodeSwitchPointDetection` +
+        `CodeSwitchDetectorBackend` + `UnratifiedCodeSwitchInferredBackend` +
+        `SegmentsEmptyError` (re-exported) + `SegmentInvalidError` (re-exported) +
+        `BackendUnratifiedError` (CP-M6-1-2-local · separate class family per
+        D10 ratification independence: each backend's ratification story is
+        tracked separately)."""
+>       m = importlib.import_module("services.audio_plane_v1.code_switch_detector")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_wm6_1_2_code_switch_detector.py:49: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'services.audio_plane_v1.code_switch_detector'
+import_ = <function _gcd_import at 0xfc063d83bd80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'services.audio_plane_v1.code_switch_detector'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+______________ test_wm6_1_2_code_switch_point_five_carrier_shape _______________
+
+    def test_wm6_1_2_code_switch_point_five_carrier_shape():
+        """`CodeSwitchPoint` frozen dataclass with exactly 5 carriers per
+        Audio-Plane §4.2 P065 verbatim (position, from-language, to-language,
+        context class) + confidence attribution per CP-M6-1-2 charter
+        (pluggable-seam-until-ratified · code-switch points annotated with
+        confidence + language-pair)."""
+>       from services.audio_plane_v1.code_switch_detector import CodeSwitchPoint
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.code_switch_detector'
+
+tests/invariants/test_wm6_1_2_code_switch_detector.py:72: ModuleNotFoundError
+______________ test_wm6_1_2_detection_result_three_carrier_shape _______________
+
+    def test_wm6_1_2_detection_result_three_carrier_shape():
+        """`CodeSwitchPointDetection` frozen dataclass with exactly 3 carriers:
+        `segment_ref` + `switch_points` (tuple of `CodeSwitchPoint`) +
+        `backend_name` (D10 pluggable-seam-until-ratified attribution).
+        Pull-seam negative-scan: no audio-byte carrier names."""
+>       from services.audio_plane_v1.code_switch_detector import (
+            CodeSwitchPointDetection,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.code_switch_detector'
+
+tests/invariants/test_wm6_1_2_code_switch_detector.py:90: ModuleNotFoundError
+_____________________ test_wm6_1_2_empty_segments_refuses ______________________
+
+    def test_wm6_1_2_empty_segments_refuses():
+        """`segments=()` propagates `SegmentsEmptyError` mentioning `segments`."""
+>       from services.audio_plane_v1.code_switch_detector import (
+            SegmentsEmptyError, UnratifiedCodeSwitchInferredBackend,
+            detect_code_switch_points,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.code_switch_detector'
+
+tests/invariants/test_wm6_1_2_code_switch_detector.py:107: ModuleNotFoundError
+________________ test_wm6_1_2_non_audio_segment_element_refuses ________________
+
+    def test_wm6_1_2_non_audio_segment_element_refuses():
+        """A non-`AudioSegment` element in `segments` propagates
+        `SegmentInvalidError`."""
+>       from services.audio_plane_v1.code_switch_detector import (
+            AudioSegment, SegmentInvalidError, UnratifiedCodeSwitchInferredBackend,
+            detect_code_switch_points,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.code_switch_detector'
+
+tests/invariants/test_wm6_1_2_code_switch_detector.py:121: ModuleNotFoundError
+______________ test_wm6_1_2_unratified_backend_refuses_on_invoke _______________
+
+    def test_wm6_1_2_unratified_backend_refuses_on_invoke():
+        """`UnratifiedCodeSwitchInferredBackend` raises `BackendUnratifiedError`
+        on invoke, with `[INFERRED-pending-ratification]` marker per D10 open
+        ruling.  Pluggable-seam-until-ratified discipline: the seam exists, the
+        backend refuses to detect until owner ratifies a specific model."""
+>       from services.audio_plane_v1.code_switch_detector import (
+            AudioSegment, BackendUnratifiedError,
+            UnratifiedCodeSwitchInferredBackend, detect_code_switch_points,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.code_switch_detector'
+
+tests/invariants/test_wm6_1_2_code_switch_detector.py:138: ModuleNotFoundError
+_____ test_wm6_1_2_orchestration_invokes_backend_per_segment_returns_shape _____
+
+    def test_wm6_1_2_orchestration_invokes_backend_per_segment_returns_shape():
+        """`detect_code_switch_points` invokes `backend.detect(segment_ref,
+        duration_s)` once per segment (in segment order) and returns a
+        `CodeSwitchPointDetection` per segment carrying the backend-attributed
+        switch-point tuple + `backend_name`."""
+>       from services.audio_plane_v1.code_switch_detector import (
+            AudioSegment, CodeSwitchDetectorBackend, CodeSwitchPoint,
+            CodeSwitchPointDetection, detect_code_switch_points,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.code_switch_detector'
+
+tests/invariants/test_wm6_1_2_code_switch_detector.py:153: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wm6_1_2_code_switch_detector.py::test_wm6_1_2_module_fabric
+FAILED tests/invariants/test_wm6_1_2_code_switch_detector.py::test_wm6_1_2_code_switch_point_five_carrier_shape
+FAILED tests/invariants/test_wm6_1_2_code_switch_detector.py::test_wm6_1_2_detection_result_three_carrier_shape
+FAILED tests/invariants/test_wm6_1_2_code_switch_detector.py::test_wm6_1_2_empty_segments_refuses
+FAILED tests/invariants/test_wm6_1_2_code_switch_detector.py::test_wm6_1_2_non_audio_segment_element_refuses
+FAILED tests/invariants/test_wm6_1_2_code_switch_detector.py::test_wm6_1_2_unratified_backend_refuses_on_invoke
+FAILED tests/invariants/test_wm6_1_2_code_switch_detector.py::test_wm6_1_2_orchestration_invokes_backend_per_segment_returns_shape
+7 failed in 0.67s

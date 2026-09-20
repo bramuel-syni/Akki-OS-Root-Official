@@ -1,0 +1,33 @@
+=== REGISTRY + CONNECT WIZARD - RIGHT-REASON FAILURE RECEIPT ===
+Timestamp (UTC): 2026-08-14T18:00:00Z
+Commit boundary: before Registry + wizard implementation lands
+Test file: pod_shell/frontend/__tests__/rehome.test.js
+Total tests: 15  ·  Failing (right-reason): 7  ·  Passing (invariant across migration): 8
+
+FAILING (right-reason):
+  1. root '/' route renders the Registry component
+     - reason: App.js still routes '/' to AdminSurface
+  2. AdminSurface component is retired (file gone or exports Registry)
+     - reason: AdminSurface.jsx still declares admin-pill + tile-connect testids
+  3. Registry.jsx exists and declares three-tab shell with '+ Connect' affordance
+     - reason: Registry.jsx does not exist
+  4. ConnectWizard.jsx exists with 'A conversation, not a form' deck + four suggestion chips
+     - reason: ConnectWizard.jsx does not exist
+  5. Compute path in ConnectWizard carries the SAME 7 ordered GPU fields as before
+     - reason: cascades from #4
+  6. ConnectWizard submits to /api/connect/gpu (unchanged endpoint)
+     - reason: cascades from #4
+  7. empty-tab copy honors 'gaps are drawn' rule
+     - reason: Registry.jsx does not exist (cascades from #3)
+
+PASSING (already-invariant across the migration):
+  App.js does NOT declare /register/connect/gpu
+  frontend has NO token-gate importable code path
+  frontend does NOT ship OWNER-ACCESS sign-in card copy
+  no owner_token localStorage anywhere
+  GET /register/connect/gpu HTTP 404
+  GET /register/connect/gpu body carries retirement notice
+  GET / serves SPA shell (allowed IP)
+  no fabricated Acme demo numbers anywhere in frontend src
+
+Discipline: implementation MUST NOT land before this receipt is banked.

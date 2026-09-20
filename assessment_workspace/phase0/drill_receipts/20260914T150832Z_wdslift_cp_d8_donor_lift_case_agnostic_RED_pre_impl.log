@@ -1,0 +1,182 @@
+F.FFFF                                                                   [100%]============================ BASELINE_GUARD receipt ============================
+passed=1 / baseline-failures-remaining=0 / quarantined=0
+  manifest: tests/invariants/baseline_failures.json
+  scope: BASELINE_GUARD=1  ·  invocation: cd backend && BASELINE_GUARD=1 python -m pytest tests/invariants/
+!!!!!!!!!!!!! BASELINE_GUARD · HALT AND REPORT · owner ruling (c) !!!!!!!!!!!!!!
+[V1] 5 NEW failure(s) OUTSIDE manifest:
+    tests/invariants/test_wdslift_cp_d8_donor_lift_case_agnostic.py::test_cp_d8_engine_module_docstrings_name_canon_anchor
+    tests/invariants/test_wdslift_cp_d8_donor_lift_case_agnostic.py::test_cp_d8_engine_modules_import
+    tests/invariants/test_wdslift_cp_d8_donor_lift_case_agnostic.py::test_cp_d8_engine_modules_no_llm_or_transport_imports
+    tests/invariants/test_wdslift_cp_d8_donor_lift_case_agnostic.py::test_cp_d8_engine_run_raises_halt
+    tests/invariants/test_wdslift_cp_d8_donor_lift_case_agnostic.py::test_cp_d8_engines_package_exists
+[V3] Passed count 1 < ratchet floor 3973
+  No silent rebaselining. Report drift to owner verbatim.
+
+=================================== FAILURES ===================================
+______________________ test_cp_d8_engines_package_exists _______________________
+
+    def test_cp_d8_engines_package_exists():
+>       assert (DATA_SUITE_V2_ROOT / "engines" / "__init__.py").exists()
+E       AssertionError: assert False
+E        +  where False = exists()
+E        +    where exists = ((PosixPath('/app/assessment_workspace/repos/Extraction-Akki/backend/services/data_suite_v2') / 'engines') / '__init__.py').exists
+
+tests/invariants/test_wdslift_cp_d8_donor_lift_case_agnostic.py:33: AssertionError
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+_______________________ test_cp_d8_engine_modules_import _______________________
+
+    def test_cp_d8_engine_modules_import():
+        """Both engine modules import successfully (fabric)."""
+        for mod_name in ("analyze_workspace_engine", "deep_dive_engine"):
+>           mod = importlib.import_module(f"services.data_suite_v2.engines.{mod_name}")
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_wdslift_cp_d8_donor_lift_case_agnostic.py:74: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1126: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:241: in _call_with_frames_removed
+    ???
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'services.data_suite_v2.engines'
+import_ = <function _gcd_import at 0xfbfb88f6bd80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'services.data_suite_v2.engines'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+______________________ test_cp_d8_engine_run_raises_halt _______________________
+
+    def test_cp_d8_engine_run_raises_halt():
+        """Each engine.run() raises NotImplementedError with 'HALT' in the message.
+    
+        Wave-honest limit E.4: no LLM-invoking donor code is lifted; case-agnostic
+        engine skeletons expose the shape, real implementations HALT per Solva-V2
+        CP-S8 precedent.
+        """
+        import pytest
+        for mod_name in ("analyze_workspace_engine", "deep_dive_engine"):
+>           mod = importlib.import_module(f"services.data_suite_v2.engines.{mod_name}")
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_wdslift_cp_d8_donor_lift_case_agnostic.py:87: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1126: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:241: in _call_with_frames_removed
+    ???
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'services.data_suite_v2.engines'
+import_ = <function _gcd_import at 0xfbfb88f6bd80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'services.data_suite_v2.engines'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+____________ test_cp_d8_engine_module_docstrings_name_canon_anchor _____________
+
+    def test_cp_d8_engine_module_docstrings_name_canon_anchor():
+        """Every engine skeleton names its canon anchor in its module docstring."""
+        for name in ("analyze_workspace_engine.py", "deep_dive_engine.py"):
+            path = DATA_SUITE_V2_ROOT / "engines" / name
+>           text = path.read_text(encoding="utf-8")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_wdslift_cp_d8_donor_lift_case_agnostic.py:103: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/pathlib.py:1058: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/app/assessment_workspace/repos/Extraction-Akki/backend/services/data_suite_v2/engines/analyze_workspace_engine.py')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/app/assessment_workspace/repos/Extraction-Akki/backend/services/data_suite_v2/engines/analyze_workspace_engine.py'
+
+/usr/local/lib/python3.11/pathlib.py:1044: FileNotFoundError
+____________ test_cp_d8_engine_modules_no_llm_or_transport_imports _____________
+
+    def test_cp_d8_engine_modules_no_llm_or_transport_imports():
+        """Engine skeletons do not import LLM/HTTP/DB donor plumbing.
+    
+        Wave-honest limit E.4: LLM adapter proxies + DB access + HTTP transport
+        from the donor are HALTED. Skeletons stay import-clean; heavy plumbing
+        lives outside this wave.
+        """
+        forbidden_imports = (
+            "motor", "gridfs", "bson", "pymongo",
+            "requests", "httpx", "aiohttp", "urllib3",
+            "openai", "anthropic",
+        )
+        hits: list[tuple[str, str]] = []
+        for name in ("analyze_workspace_engine.py", "deep_dive_engine.py"):
+            path = DATA_SUITE_V2_ROOT / "engines" / name
+>           text = path.read_text(encoding="utf-8")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_wdslift_cp_d8_donor_lift_case_agnostic.py:128: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/pathlib.py:1058: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/app/assessment_workspace/repos/Extraction-Akki/backend/services/data_suite_v2/engines/analyze_workspace_engine.py')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/app/assessment_workspace/repos/Extraction-Akki/backend/services/data_suite_v2/engines/analyze_workspace_engine.py'
+
+/usr/local/lib/python3.11/pathlib.py:1044: FileNotFoundError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wdslift_cp_d8_donor_lift_case_agnostic.py::test_cp_d8_engines_package_exists
+FAILED tests/invariants/test_wdslift_cp_d8_donor_lift_case_agnostic.py::test_cp_d8_engine_modules_import
+FAILED tests/invariants/test_wdslift_cp_d8_donor_lift_case_agnostic.py::test_cp_d8_engine_run_raises_halt
+FAILED tests/invariants/test_wdslift_cp_d8_donor_lift_case_agnostic.py::test_cp_d8_engine_module_docstrings_name_canon_anchor
+FAILED tests/invariants/test_wdslift_cp_d8_donor_lift_case_agnostic.py::test_cp_d8_engine_modules_no_llm_or_transport_imports
+5 failed, 1 passed in 0.72s

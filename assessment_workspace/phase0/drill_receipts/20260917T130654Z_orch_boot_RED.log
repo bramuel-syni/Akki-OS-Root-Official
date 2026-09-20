@@ -1,0 +1,35 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.4.2, pluggy-1.6.0 -- /root/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: asyncio-1.4.0, xdist-3.8.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collecting ... collected 1 item
+
+tests/invariants/test_orch_boot.py::test_orch_boot_anti_forget_manifest_matches_live_ratchet_and_sealed_heads FAILED [100%]
+
+=================================== FAILURES ===================================
+__ test_orch_boot_anti_forget_manifest_matches_live_ratchet_and_sealed_heads ___
+
+    def test_orch_boot_anti_forget_manifest_matches_live_ratchet_and_sealed_heads():
+        """
+        R-6 anti-forget boot manifest self-check.  See module docstring for the
+        verbatim owner ruling that dictates each assertion's shape.
+        """
+        # 1. Both copies must exist.  Absence = orchestrator boot broken.
+>       assert ORCH_BOOT_NOTES.exists(), (
+            f"ORCH_BOOT.md missing at {ORCH_BOOT_NOTES} — orchestrator boot "
+            f"broken; regenerate both copies per STANDING_ORDERS §7 R-6"
+        )
+E       AssertionError: ORCH_BOOT.md missing at /app/assessment_workspace/notes/ORCH_BOOT.md — orchestrator boot broken; regenerate both copies per STANDING_ORDERS §7 R-6
+E       assert False
+E        +  where False = exists()
+E        +    where exists = PosixPath('/app/assessment_workspace/notes/ORCH_BOOT.md').exists
+
+tests/invariants/test_orch_boot.py:74: AssertionError
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+=========================== short test summary info ============================
+FAILED tests/invariants/test_orch_boot.py::test_orch_boot_anti_forget_manifest_matches_live_ratchet_and_sealed_heads
+============================== 1 failed in 1.01s ===============================

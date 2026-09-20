@@ -1,0 +1,302 @@
+........................................................................ [  2%]
+........................................................................ [  4%]
+........................................................................ [  6%]
+........................................................................ [  8%]
+........................................................................ [ 11%]
+........................................................................ [ 13%]
+........................................................................ [ 15%]
+........................................................................ [ 17%]
+........................................................................ [ 20%]
+........................................................................ [ 22%]
+........................................................................ [ 24%]
+........................................................................ [ 26%]
+........................................................................ [ 29%]
+.............FFFFFFF.................................................... [ 31%]
+........................................................................ [ 33%]
+........................................................................ [ 35%]
+........................................................................ [ 38%]
+........................................................................ [ 40%]
+........................................................................ [ 42%]
+........................................................................ [ 44%]
+...................................................s.................... [ 47%]
+........................................................................ [ 49%]
+........................................................................ [ 51%]
+........................................................................ [ 53%]
+........................................................................ [ 56%]
+........................................................................ [ 58%]
+........................................................................ [ 60%]
+........................................................................ [ 62%]
+........................................................................ [ 64%]
+........................................................................ [ 67%]
+........................................................................ [ 69%]
+.................................................F...................... [ 71%]
+........................................................................ [ 73%]
+........................................................................ [ 76%]
+........................................................................ [ 78%]
+........................................................................ [ 80%]
+........................................................................ [ 82%]
+........................................................................ [ 85%]
+........................................................................ [ 87%]
+........................................................................ [ 89%]
+........................................................................ [ 91%]
+........................................................................ [ 94%]
+........................................................................ [ 96%]
+........................................................................ [ 98%]
+.............................................                            [100%]============================ BASELINE_GUARD receipt ============================
+passed=3204 / baseline-failures-remaining=0 / quarantined=0
+  manifest: tests/invariants/baseline_failures.json
+  scope: BASELINE_GUARD=1  ·  invocation: cd backend && BASELINE_GUARD=1 python -m pytest tests/invariants/
+!!!!!!!!!!!!! BASELINE_GUARD · HALT AND REPORT · owner ruling (c) !!!!!!!!!!!!!!
+[V1] 8 NEW failure(s) OUTSIDE manifest:
+    tests/invariants/test_mtafiti_gpu_discovery_live_readonly_probe_receipt.py::test_every_sql_in_probe_receipt_has_readonly_lead_verb
+    tests/invariants/test_mtafiti_gpu_discovery_live_readonly_probe_receipt.py::test_live_readonly_probe_covers_weego_and_ussd
+    tests/invariants/test_mtafiti_gpu_discovery_live_readonly_probe_receipt.py::test_live_readonly_probe_receipt_exists_and_is_wellformed
+    tests/invariants/test_mtafiti_gpu_discovery_live_readonly_probe_receipt.py::test_probe_reached_at_least_one_live_host
+    tests/invariants/test_mtafiti_gpu_discovery_live_readonly_probe_receipt.py::test_probe_receipt_carries_canonical_sha256
+    tests/invariants/test_mtafiti_gpu_discovery_live_readonly_probe_receipt.py::test_probe_receipt_has_no_raw_pii
+    tests/invariants/test_mtafiti_gpu_discovery_live_readonly_probe_receipt.py::test_probe_receipt_is_recent
+    tests/invariants/test_standing_orders_present.py::test_decisions_carries_pointer_near_bottom
+  No silent rebaselining. Report drift to owner verbatim.
+
+=================================== FAILURES ===================================
+__________ test_live_readonly_probe_receipt_exists_and_is_wellformed ___________
+
+    def test_live_readonly_probe_receipt_exists_and_is_wellformed():
+>       r = _load_receipt()
+            ^^^^^^^^^^^^^^^
+
+tests/invariants/test_mtafiti_gpu_discovery_live_readonly_probe_receipt.py:58: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _load_receipt() -> dict:
+        if not RECEIPT_LATEST.exists():
+>           pytest.fail(
+                f"CP3 live-probe receipt not found at {RECEIPT_LATEST}. "
+                "Run `python tools/mtafiti_live_readonly_probe.py` from "
+                "/app/assessment_workspace/repos/Extraction-Akki/backend/ to "
+                "generate it (SELECT/SHOW only; owner-authorised)."
+            )
+E           Failed: CP3 live-probe receipt not found at /app/assessment_workspace/phase0/mtafiti_gpu_discovery/live_readonly_probe_latest.json. Run `python tools/mtafiti_live_readonly_probe.py` from /app/assessment_workspace/repos/Extraction-Akki/backend/ to generate it (SELECT/SHOW only; owner-authorised).
+
+tests/invariants/test_mtafiti_gpu_discovery_live_readonly_probe_receipt.py:38: Failed
+________________ test_live_readonly_probe_covers_weego_and_ussd ________________
+
+    def test_live_readonly_probe_covers_weego_and_ussd():
+        """Owner-named hosts for CP3: Weego 159.138.162.146 + USSD 110.238.76.159."""
+>       r = _load_receipt()
+            ^^^^^^^^^^^^^^^
+
+tests/invariants/test_mtafiti_gpu_discovery_live_readonly_probe_receipt.py:73: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _load_receipt() -> dict:
+        if not RECEIPT_LATEST.exists():
+>           pytest.fail(
+                f"CP3 live-probe receipt not found at {RECEIPT_LATEST}. "
+                "Run `python tools/mtafiti_live_readonly_probe.py` from "
+                "/app/assessment_workspace/repos/Extraction-Akki/backend/ to "
+                "generate it (SELECT/SHOW only; owner-authorised)."
+            )
+E           Failed: CP3 live-probe receipt not found at /app/assessment_workspace/phase0/mtafiti_gpu_discovery/live_readonly_probe_latest.json. Run `python tools/mtafiti_live_readonly_probe.py` from /app/assessment_workspace/repos/Extraction-Akki/backend/ to generate it (SELECT/SHOW only; owner-authorised).
+
+tests/invariants/test_mtafiti_gpu_discovery_live_readonly_probe_receipt.py:38: Failed
+____________ test_every_sql_in_probe_receipt_has_readonly_lead_verb ____________
+
+    def test_every_sql_in_probe_receipt_has_readonly_lead_verb():
+        """Executor-side invariant: even in production data, no write verb
+        made it to the wire."""
+        from services.mtafiti.executor.readonly_sql_guard import _ALLOWED_LEAD
+>       r = _load_receipt()
+            ^^^^^^^^^^^^^^^
+
+tests/invariants/test_mtafiti_gpu_discovery_live_readonly_probe_receipt.py:86: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _load_receipt() -> dict:
+        if not RECEIPT_LATEST.exists():
+>           pytest.fail(
+                f"CP3 live-probe receipt not found at {RECEIPT_LATEST}. "
+                "Run `python tools/mtafiti_live_readonly_probe.py` from "
+                "/app/assessment_workspace/repos/Extraction-Akki/backend/ to "
+                "generate it (SELECT/SHOW only; owner-authorised)."
+            )
+E           Failed: CP3 live-probe receipt not found at /app/assessment_workspace/phase0/mtafiti_gpu_discovery/live_readonly_probe_latest.json. Run `python tools/mtafiti_live_readonly_probe.py` from /app/assessment_workspace/repos/Extraction-Akki/backend/ to generate it (SELECT/SHOW only; owner-authorised).
+
+tests/invariants/test_mtafiti_gpu_discovery_live_readonly_probe_receipt.py:38: Failed
+______________________ test_probe_receipt_has_no_raw_pii _______________________
+
+    def test_probe_receipt_has_no_raw_pii():
+        from services.mtafiti.detectors.pii_redaction_guard import assert_no_raw_pii
+>       r = _load_receipt()
+            ^^^^^^^^^^^^^^^
+
+tests/invariants/test_mtafiti_gpu_discovery_live_readonly_probe_receipt.py:104: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _load_receipt() -> dict:
+        if not RECEIPT_LATEST.exists():
+>           pytest.fail(
+                f"CP3 live-probe receipt not found at {RECEIPT_LATEST}. "
+                "Run `python tools/mtafiti_live_readonly_probe.py` from "
+                "/app/assessment_workspace/repos/Extraction-Akki/backend/ to "
+                "generate it (SELECT/SHOW only; owner-authorised)."
+            )
+E           Failed: CP3 live-probe receipt not found at /app/assessment_workspace/phase0/mtafiti_gpu_discovery/live_readonly_probe_latest.json. Run `python tools/mtafiti_live_readonly_probe.py` from /app/assessment_workspace/repos/Extraction-Akki/backend/ to generate it (SELECT/SHOW only; owner-authorised).
+
+tests/invariants/test_mtafiti_gpu_discovery_live_readonly_probe_receipt.py:38: Failed
+_________________________ test_probe_receipt_is_recent _________________________
+
+    def test_probe_receipt_is_recent():
+>       r = _load_receipt()
+            ^^^^^^^^^^^^^^^
+
+tests/invariants/test_mtafiti_gpu_discovery_live_readonly_probe_receipt.py:113: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _load_receipt() -> dict:
+        if not RECEIPT_LATEST.exists():
+>           pytest.fail(
+                f"CP3 live-probe receipt not found at {RECEIPT_LATEST}. "
+                "Run `python tools/mtafiti_live_readonly_probe.py` from "
+                "/app/assessment_workspace/repos/Extraction-Akki/backend/ to "
+                "generate it (SELECT/SHOW only; owner-authorised)."
+            )
+E           Failed: CP3 live-probe receipt not found at /app/assessment_workspace/phase0/mtafiti_gpu_discovery/live_readonly_probe_latest.json. Run `python tools/mtafiti_live_readonly_probe.py` from /app/assessment_workspace/repos/Extraction-Akki/backend/ to generate it (SELECT/SHOW only; owner-authorised).
+
+tests/invariants/test_mtafiti_gpu_discovery_live_readonly_probe_receipt.py:38: Failed
+_________________ test_probe_receipt_carries_canonical_sha256 __________________
+
+    def test_probe_receipt_carries_canonical_sha256():
+>       r = _load_receipt()
+            ^^^^^^^^^^^^^^^
+
+tests/invariants/test_mtafiti_gpu_discovery_live_readonly_probe_receipt.py:129: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _load_receipt() -> dict:
+        if not RECEIPT_LATEST.exists():
+>           pytest.fail(
+                f"CP3 live-probe receipt not found at {RECEIPT_LATEST}. "
+                "Run `python tools/mtafiti_live_readonly_probe.py` from "
+                "/app/assessment_workspace/repos/Extraction-Akki/backend/ to "
+                "generate it (SELECT/SHOW only; owner-authorised)."
+            )
+E           Failed: CP3 live-probe receipt not found at /app/assessment_workspace/phase0/mtafiti_gpu_discovery/live_readonly_probe_latest.json. Run `python tools/mtafiti_live_readonly_probe.py` from /app/assessment_workspace/repos/Extraction-Akki/backend/ to generate it (SELECT/SHOW only; owner-authorised).
+
+tests/invariants/test_mtafiti_gpu_discovery_live_readonly_probe_receipt.py:38: Failed
+__________________ test_probe_reached_at_least_one_live_host ___________________
+
+    def test_probe_reached_at_least_one_live_host():
+        """CP3 gate — the receipt must attest actual connectivity, not just
+        a mocked scaffold. If both hosts fail to connect at wave time, that
+        is a decision-point for the owner (network / IAM), not a green CP3."""
+>       r = _load_receipt()
+            ^^^^^^^^^^^^^^^
+
+tests/invariants/test_mtafiti_gpu_discovery_live_readonly_probe_receipt.py:144: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _load_receipt() -> dict:
+        if not RECEIPT_LATEST.exists():
+>           pytest.fail(
+                f"CP3 live-probe receipt not found at {RECEIPT_LATEST}. "
+                "Run `python tools/mtafiti_live_readonly_probe.py` from "
+                "/app/assessment_workspace/repos/Extraction-Akki/backend/ to "
+                "generate it (SELECT/SHOW only; owner-authorised)."
+            )
+E           Failed: CP3 live-probe receipt not found at /app/assessment_workspace/phase0/mtafiti_gpu_discovery/live_readonly_probe_latest.json. Run `python tools/mtafiti_live_readonly_probe.py` from /app/assessment_workspace/repos/Extraction-Akki/backend/ to generate it (SELECT/SHOW only; owner-authorised).
+
+tests/invariants/test_mtafiti_gpu_discovery_live_readonly_probe_receipt.py:38: Failed
+__________________ test_decisions_carries_pointer_near_bottom __________________
+
+    def test_decisions_carries_pointer_near_bottom() -> None:
+        lines = _non_empty_lines(DECISIONS_PATH)
+        bottom = lines[-PROXIMITY_WINDOW:]
+>       assert POINTER_LINE in bottom, (
+            f"pointer line not found in last {PROXIMITY_WINDOW} non-empty "
+            f"lines of {DECISIONS_PATH}: last {PROXIMITY_WINDOW} were {bottom}"
+        )
+E       AssertionError: pointer line not found in last 5 non-empty lines of /app/assessment_workspace/STATE/DECISIONS.md: last 5 were ['- BASELINE_GUARD receipt: `passed=3198 / baseline-failures-remaining=0 / quarantined=0 · status: OK`.', '**Track-a commit B SHA:** `867a3067c1235900301f653e8c2d0288fa9c441d` (`867a306`).', '**Delta accounting:** 32 direct CP2 tests + 2 tests that transitioned from RED to GREEN by the parity/enumeration walkers picking up the new detector-module surface. All in-ratchet.', '**Next active step:** CP3 opener — first LIVE read-only dry-run against Weego (`159.138.162.146`) + USSD (`110.238.76.159`). SELECT/SHOW only; zero writes.', '---']
+E       assert 'READ STATE/STANDING_ORDERS.md FIRST — permanent standing law' in ['- BASELINE_GUARD receipt: `passed=3198 / baseline-failures-remaining=0 / quarantined=0 · status: OK`.', '**Track-a c... read-only dry-run against Weego (`159.138.162.146`) + USSD (`110.238.76.159`). SELECT/SHOW only; zero writes.', '---']
+
+tests/invariants/test_standing_orders_present.py:99: AssertionError
+=============================== warnings summary ===============================
+tests/invariants/test_8_ext.py: 13 warnings
+tests/invariants/test_artifact_store.py: 2 warnings
+tests/invariants/test_connect_ui1c_gates.py: 9 warnings
+tests/invariants/test_engineer_key_grant_e2_taxonomy.py: 4 warnings
+tests/invariants/test_engineer_key_grant_ledger.py: 2 warnings
+tests/invariants/test_govern_g_g1_to_g_g8.py: 6 warnings
+tests/invariants/test_govern_ui1b_gates.py: 15 warnings
+tests/invariants/test_master_admin_auth_reconciliation.py: 10 warnings
+tests/invariants/test_master_admin_pending_seams.py: 1 warning
+tests/invariants/test_master_admin_recent_actions.py: 4 warnings
+tests/invariants/test_master_admin_tier_lock_path_a_ledger.py: 3 warnings
+tests/invariants/test_memory_engineer_key_grant_e2e_propagation.py: 7 warnings
+tests/invariants/test_memory_observability_o_g1_to_o_g6.py: 6 warnings
+tests/invariants/test_memory_service_m_g1_to_m_g9.py: 4 warnings
+tests/invariants/test_p2_buildable_now.py: 3 warnings
+tests/invariants/test_phase3_subcycle1_gates.py: 7 warnings
+tests/invariants/test_phase_6_stage_b_economics.py: 1 warning
+tests/invariants/test_phase_8_b_1_auth_and_shims.py: 3 warnings
+tests/invariants/test_phase_8_b_2_operator_and_scope_gate.py: 7 warnings
+tests/invariants/test_phase_8_b_5a_compliance.py: 15 warnings
+tests/invariants/test_phase_8_b_5b.py: 11 warnings
+tests/invariants/test_phase_8_seam_3_sub_stage_1.py: 3 warnings
+tests/invariants/test_phase_8_seam_3_sub_stage_2.py: 13 warnings
+tests/invariants/test_phase_8_seam_3_sub_stage_3.py: 15 warnings
+tests/invariants/test_phase_9_sub_stage_9_1_and_9_3.py: 16 warnings
+tests/invariants/test_pricing_paths_b_honest_501.py: 6 warnings
+tests/invariants/test_registry_prove_ui1d_gates.py: 15 warnings
+tests/invariants/test_team_ui1e_gates.py: 12 warnings
+tests/invariants/test_trace_lens_cross_engine_correlation.py: 3 warnings
+tests/invariants/test_trace_lens_readonly.py: 1 warning
+tests/invariants/test_use_data_commission_verdict.py: 4 warnings
+  /root/.venv/lib/python3.11/site-packages/jwt/api_jwt.py:147: InsecureKeyLengthWarning: The HMAC key is 30 bytes long, which is below the minimum recommended length of 32 bytes for SHA256. See RFC 7518 Section 3.2.
+    return self._jws.encode(
+
+tests/invariants/test_8_ext.py: 13 warnings
+tests/invariants/test_artifact_store.py: 2 warnings
+tests/invariants/test_connect_ui1c_gates.py: 9 warnings
+tests/invariants/test_engineer_key_grant_e2_taxonomy.py: 4 warnings
+tests/invariants/test_engineer_key_grant_ledger.py: 2 warnings
+tests/invariants/test_govern_g_g1_to_g_g8.py: 6 warnings
+tests/invariants/test_govern_ui1b_gates.py: 15 warnings
+tests/invariants/test_master_admin_auth_reconciliation.py: 10 warnings
+tests/invariants/test_master_admin_pending_seams.py: 1 warning
+tests/invariants/test_master_admin_recent_actions.py: 4 warnings
+tests/invariants/test_master_admin_tier_lock_path_a_ledger.py: 3 warnings
+tests/invariants/test_memory_engineer_key_grant_e2e_propagation.py: 6 warnings
+tests/invariants/test_memory_observability_o_g1_to_o_g6.py: 6 warnings
+tests/invariants/test_memory_service_m_g1_to_m_g9.py: 4 warnings
+tests/invariants/test_p2_buildable_now.py: 3 warnings
+tests/invariants/test_phase3_subcycle1_gates.py: 7 warnings
+tests/invariants/test_phase_6_stage_b_economics.py: 1 warning
+tests/invariants/test_phase_8_b_1_auth_and_shims.py: 3 warnings
+tests/invariants/test_phase_8_b_2_operator_and_scope_gate.py: 7 warnings
+tests/invariants/test_phase_8_b_5a_compliance.py: 15 warnings
+tests/invariants/test_phase_8_b_5b.py: 11 warnings
+tests/invariants/test_phase_8_seam_3_sub_stage_1.py: 3 warnings
+tests/invariants/test_phase_8_seam_3_sub_stage_2.py: 13 warnings
+tests/invariants/test_phase_8_seam_3_sub_stage_3.py: 15 warnings
+tests/invariants/test_phase_9_sub_stage_9_1_and_9_3.py: 13 warnings
+tests/invariants/test_pricing_paths_b_honest_501.py: 6 warnings
+tests/invariants/test_registry_prove_ui1d_gates.py: 15 warnings
+tests/invariants/test_team_ui1e_gates.py: 12 warnings
+tests/invariants/test_trace_lens_cross_engine_correlation.py: 3 warnings
+tests/invariants/test_trace_lens_readonly.py: 1 warning
+tests/invariants/test_use_data_commission_verdict.py: 4 warnings
+  /root/.venv/lib/python3.11/site-packages/jwt/api_jwt.py:368: InsecureKeyLengthWarning: The HMAC key is 30 bytes long, which is below the minimum recommended length of 32 bytes for SHA256. See RFC 7518 Section 3.2.
+    decoded = self.decode_complete(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/invariants/test_mtafiti_gpu_discovery_live_readonly_probe_receipt.py::test_live_readonly_probe_receipt_exists_and_is_wellformed
+FAILED tests/invariants/test_mtafiti_gpu_discovery_live_readonly_probe_receipt.py::test_live_readonly_probe_covers_weego_and_ussd
+FAILED tests/invariants/test_mtafiti_gpu_discovery_live_readonly_probe_receipt.py::test_every_sql_in_probe_receipt_has_readonly_lead_verb
+FAILED tests/invariants/test_mtafiti_gpu_discovery_live_readonly_probe_receipt.py::test_probe_receipt_has_no_raw_pii
+FAILED tests/invariants/test_mtafiti_gpu_discovery_live_readonly_probe_receipt.py::test_probe_receipt_is_recent
+FAILED tests/invariants/test_mtafiti_gpu_discovery_live_readonly_probe_receipt.py::test_probe_receipt_carries_canonical_sha256
+FAILED tests/invariants/test_mtafiti_gpu_discovery_live_readonly_probe_receipt.py::test_probe_reached_at_least_one_live_host
+FAILED tests/invariants/test_standing_orders_present.py::test_decisions_carries_pointer_near_bottom
+8 failed, 3204 passed, 1 skipped, 438 warnings in 102.87s (0:01:42)

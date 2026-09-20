@@ -1,0 +1,8 @@
+=== On-VM dd write (MB/s) — /mnt/volume_dkgjrkx ===
+536870912 bytes (537 MB, 512 MiB) copied, 0.959408 s, 560 MB/s
+
+=== On-VM dd write (MB/s) — / (root disk) ===
+268435456 bytes (268 MB, 256 MiB) copied, 0.723154 s, 371 MB/s
+=== Network throughput pod↔VM (100 MB /dev/urandom) ===
+pod→VM 100 MB : exit=0  time=21427 ms  throughput=4.67 MB/s
+VM→pod 100 MB : exit=0  time=21304 ms  throughput=4.69 MB/s

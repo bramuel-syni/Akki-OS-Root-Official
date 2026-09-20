@@ -1,0 +1,416 @@
+✖ Governance.jsx exists under components/ (1.637498ms)
+✖ Watch.jsx exists under components/ (0.160208ms)
+✖ GreyMirror.jsx exists under components/ (0.114039ms)
+✖ Governance.jsx carries all required testids (0.147849ms)
+✖ Governance.jsx renders the REFERENCE-NOT-COPY marker + Canon 8 §19 anchor (0.105946ms)
+✖ Governance.jsx names the 5 Canon 8 §19 reserved decision kinds verbatim (0.098348ms)
+✖ Governance.jsx renders honest empty state (drawn, never left blank) (0.105919ms)
+✖ Governance.jsx fetches from /api/governance/state (no fabricated data) (0.085041ms)
+✖ Watch.jsx carries all required testids (0.146421ms)
+✖ Watch.jsx renders the REFERENCE-NOT-COPY marker + Canon 8 anchors (0.179979ms)
+✖ Watch.jsx fetches from /api/watch/state (no fabricated data) (0.104724ms)
+✖ Watch.jsx surfaces the Ruling-1 drill demonstration (W10 CP1) (0.091844ms)
+✖ GreyMirror.jsx carries all required testids (0.131102ms)
+✖ GreyMirror.jsx renders REFERENCE-NOT-COPY + Canon 8 §§15-16 anchors + BUILD-not-LIFT rationale (0.107654ms)
+✖ GreyMirror.jsx names the 2 CONTRACT-TIME touch_kind values (R2) (0.083733ms)
+✖ GreyMirror.jsx fetches from /api/grey_mirror/state (no fabricated data) (0.079132ms)
+✖ App.js wires /governance route to Governance component (0.267276ms)
+✖ App.js wires /watch route to Watch component (0.251231ms)
+✖ App.js wires /grey-mirror route to GreyMirror component (0.205807ms)
+✔ GET /governance serves the SPA shell (200) through allowlist (36.95827ms)
+✔ GET /watch serves the SPA shell (200) through allowlist (3.280863ms)
+✔ GET /grey-mirror serves the SPA shell (200) through allowlist (3.300462ms)
+✖ GET /api/governance/state returns REFERENCE-NOT-COPY-shaped body (2.467678ms)
+✖ GET /api/watch/state returns REFERENCE-NOT-COPY-shaped body (1.839462ms)
+✖ GET /api/grey_mirror/state returns REFERENCE-NOT-COPY-shaped body (1.388543ms)
+ℹ tests 25
+ℹ suites 0
+ℹ pass 3
+ℹ fail 22
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 122.996447
+
+✖ failing tests:
+
+test at pod_shell/frontend/__tests__/w10_cp8_frontends.test.js:27:1
+✖ Governance.jsx exists under components/ (1.637498ms)
+  AssertionError [ERR_ASSERTION]: components/Governance.jsx must exist
+      at TestContext.<anonymous> (/app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/__tests__/w10_cp8_frontends.test.js:28:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at pod_shell/frontend/__tests__/w10_cp8_frontends.test.js:32:1
+✖ Watch.jsx exists under components/ (0.160208ms)
+  AssertionError [ERR_ASSERTION]: components/Watch.jsx must exist
+      at TestContext.<anonymous> (/app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/__tests__/w10_cp8_frontends.test.js:33:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at pod_shell/frontend/__tests__/w10_cp8_frontends.test.js:37:1
+✖ GreyMirror.jsx exists under components/ (0.114039ms)
+  AssertionError [ERR_ASSERTION]: components/GreyMirror.jsx must exist
+      at TestContext.<anonymous> (/app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/__tests__/w10_cp8_frontends.test.js:38:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at pod_shell/frontend/__tests__/w10_cp8_frontends.test.js:44:1
+✖ Governance.jsx carries all required testids (0.147849ms)
+  Error: ENOENT: no such file or directory, open '/app/frontend/src/components/Governance.jsx'
+      at Object.readFileSync (node:fs:484:20)
+      at TestContext.<anonymous> (/app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/__tests__/w10_cp8_frontends.test.js:45:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/app/frontend/src/components/Governance.jsx'
+  }
+
+test at pod_shell/frontend/__tests__/w10_cp8_frontends.test.js:66:1
+✖ Governance.jsx renders the REFERENCE-NOT-COPY marker + Canon 8 §19 anchor (0.105946ms)
+  Error: ENOENT: no such file or directory, open '/app/frontend/src/components/Governance.jsx'
+      at Object.readFileSync (node:fs:484:20)
+      at TestContext.<anonymous> (/app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/__tests__/w10_cp8_frontends.test.js:67:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/app/frontend/src/components/Governance.jsx'
+  }
+
+test at pod_shell/frontend/__tests__/w10_cp8_frontends.test.js:76:1
+✖ Governance.jsx names the 5 Canon 8 §19 reserved decision kinds verbatim (0.098348ms)
+  Error: ENOENT: no such file or directory, open '/app/frontend/src/components/Governance.jsx'
+      at Object.readFileSync (node:fs:484:20)
+      at TestContext.<anonymous> (/app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/__tests__/w10_cp8_frontends.test.js:77:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/app/frontend/src/components/Governance.jsx'
+  }
+
+test at pod_shell/frontend/__tests__/w10_cp8_frontends.test.js:87:1
+✖ Governance.jsx renders honest empty state (drawn, never left blank) (0.105919ms)
+  Error: ENOENT: no such file or directory, open '/app/frontend/src/components/Governance.jsx'
+      at Object.readFileSync (node:fs:484:20)
+      at TestContext.<anonymous> (/app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/__tests__/w10_cp8_frontends.test.js:88:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/app/frontend/src/components/Governance.jsx'
+  }
+
+test at pod_shell/frontend/__tests__/w10_cp8_frontends.test.js:93:1
+✖ Governance.jsx fetches from /api/governance/state (no fabricated data) (0.085041ms)
+  Error: ENOENT: no such file or directory, open '/app/frontend/src/components/Governance.jsx'
+      at Object.readFileSync (node:fs:484:20)
+      at TestContext.<anonymous> (/app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/__tests__/w10_cp8_frontends.test.js:94:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/app/frontend/src/components/Governance.jsx'
+  }
+
+test at pod_shell/frontend/__tests__/w10_cp8_frontends.test.js:104:1
+✖ Watch.jsx carries all required testids (0.146421ms)
+  Error: ENOENT: no such file or directory, open '/app/frontend/src/components/Watch.jsx'
+      at Object.readFileSync (node:fs:484:20)
+      at TestContext.<anonymous> (/app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/__tests__/w10_cp8_frontends.test.js:105:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/app/frontend/src/components/Watch.jsx'
+  }
+
+test at pod_shell/frontend/__tests__/w10_cp8_frontends.test.js:130:1
+✖ Watch.jsx renders the REFERENCE-NOT-COPY marker + Canon 8 anchors (0.179979ms)
+  Error: ENOENT: no such file or directory, open '/app/frontend/src/components/Watch.jsx'
+      at Object.readFileSync (node:fs:484:20)
+      at TestContext.<anonymous> (/app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/__tests__/w10_cp8_frontends.test.js:131:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/app/frontend/src/components/Watch.jsx'
+  }
+
+test at pod_shell/frontend/__tests__/w10_cp8_frontends.test.js:146:1
+✖ Watch.jsx fetches from /api/watch/state (no fabricated data) (0.104724ms)
+  Error: ENOENT: no such file or directory, open '/app/frontend/src/components/Watch.jsx'
+      at Object.readFileSync (node:fs:484:20)
+      at TestContext.<anonymous> (/app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/__tests__/w10_cp8_frontends.test.js:147:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/app/frontend/src/components/Watch.jsx'
+  }
+
+test at pod_shell/frontend/__tests__/w10_cp8_frontends.test.js:154:1
+✖ Watch.jsx surfaces the Ruling-1 drill demonstration (W10 CP1) (0.091844ms)
+  Error: ENOENT: no such file or directory, open '/app/frontend/src/components/Watch.jsx'
+      at Object.readFileSync (node:fs:484:20)
+      at TestContext.<anonymous> (/app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/__tests__/w10_cp8_frontends.test.js:155:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/app/frontend/src/components/Watch.jsx'
+  }
+
+test at pod_shell/frontend/__tests__/w10_cp8_frontends.test.js:162:1
+✖ GreyMirror.jsx carries all required testids (0.131102ms)
+  Error: ENOENT: no such file or directory, open '/app/frontend/src/components/GreyMirror.jsx'
+      at Object.readFileSync (node:fs:484:20)
+      at TestContext.<anonymous> (/app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/__tests__/w10_cp8_frontends.test.js:163:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/app/frontend/src/components/GreyMirror.jsx'
+  }
+
+test at pod_shell/frontend/__tests__/w10_cp8_frontends.test.js:183:1
+✖ GreyMirror.jsx renders REFERENCE-NOT-COPY + Canon 8 §§15-16 anchors + BUILD-not-LIFT rationale (0.107654ms)
+  Error: ENOENT: no such file or directory, open '/app/frontend/src/components/GreyMirror.jsx'
+      at Object.readFileSync (node:fs:484:20)
+      at TestContext.<anonymous> (/app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/__tests__/w10_cp8_frontends.test.js:184:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/app/frontend/src/components/GreyMirror.jsx'
+  }
+
+test at pod_shell/frontend/__tests__/w10_cp8_frontends.test.js:195:1
+✖ GreyMirror.jsx names the 2 CONTRACT-TIME touch_kind values (R2) (0.083733ms)
+  Error: ENOENT: no such file or directory, open '/app/frontend/src/components/GreyMirror.jsx'
+      at Object.readFileSync (node:fs:484:20)
+      at TestContext.<anonymous> (/app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/__tests__/w10_cp8_frontends.test.js:196:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/app/frontend/src/components/GreyMirror.jsx'
+  }
+
+test at pod_shell/frontend/__tests__/w10_cp8_frontends.test.js:203:1
+✖ GreyMirror.jsx fetches from /api/grey_mirror/state (no fabricated data) (0.079132ms)
+  Error: ENOENT: no such file or directory, open '/app/frontend/src/components/GreyMirror.jsx'
+      at Object.readFileSync (node:fs:484:20)
+      at TestContext.<anonymous> (/app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/__tests__/w10_cp8_frontends.test.js:204:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/app/frontend/src/components/GreyMirror.jsx'
+  }
+
+test at pod_shell/frontend/__tests__/w10_cp8_frontends.test.js:213:1
+✖ App.js wires /governance route to Governance component (0.267276ms)
+  AssertionError [ERR_ASSERTION]: /governance must route to Governance component; got null
+      at TestContext.<anonymous> (/app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/__tests__/w10_cp8_frontends.test.js:216:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at pod_shell/frontend/__tests__/w10_cp8_frontends.test.js:220:1
+✖ App.js wires /watch route to Watch component (0.251231ms)
+  AssertionError [ERR_ASSERTION]: /watch must route to Watch component; got null
+      at TestContext.<anonymous> (/app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/__tests__/w10_cp8_frontends.test.js:223:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at pod_shell/frontend/__tests__/w10_cp8_frontends.test.js:227:1
+✖ App.js wires /grey-mirror route to GreyMirror component (0.205807ms)
+  AssertionError [ERR_ASSERTION]: /grey-mirror must route to GreyMirror component; got null
+      at TestContext.<anonymous> (/app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/__tests__/w10_cp8_frontends.test.js:230:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at pod_shell/frontend/__tests__/w10_cp8_frontends.test.js:255:1
+✖ GET /api/governance/state returns REFERENCE-NOT-COPY-shaped body (2.467678ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  404 !== 200
+  
+      at TestContext.<anonymous> (/app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/__tests__/w10_cp8_frontends.test.js:257:10)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 404,
+    expected: 200,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at pod_shell/frontend/__tests__/w10_cp8_frontends.test.js:268:1
+✖ GET /api/watch/state returns REFERENCE-NOT-COPY-shaped body (1.839462ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  404 !== 200
+  
+      at TestContext.<anonymous> (/app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/__tests__/w10_cp8_frontends.test.js:270:10)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 404,
+    expected: 200,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at pod_shell/frontend/__tests__/w10_cp8_frontends.test.js:280:1
+✖ GET /api/grey_mirror/state returns REFERENCE-NOT-COPY-shaped body (1.388543ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  404 !== 200
+  
+      at TestContext.<anonymous> (/app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/__tests__/w10_cp8_frontends.test.js:282:10)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 404,
+    expected: 200,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

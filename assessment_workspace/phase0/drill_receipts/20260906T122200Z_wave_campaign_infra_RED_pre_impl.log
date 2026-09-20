@@ -1,0 +1,143 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.4.2, pluggy-1.6.0 -- /root/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: asyncio-1.4.0, xdist-3.8.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collecting ... collected 46 items
+
+tests/invariants/test_campaign_infra.py::test_grounding_brief_exists_and_carries_owner_ruling PASSED [  2%]
+tests/invariants/test_campaign_infra.py::test_manifest_module_exports_load_and_validate FAILED [  4%]
+tests/invariants/test_campaign_infra.py::test_manifest_schema_v0_shape FAILED [  6%]
+tests/invariants/test_campaign_infra.py::test_manifest_refuses_duplicate_run_names FAILED [  8%]
+tests/invariants/test_campaign_infra.py::test_manifest_refuses_non_integer_seed FAILED [ 10%]
+tests/invariants/test_campaign_infra.py::test_manifest_refuses_missing_required_field FAILED [ 13%]
+tests/invariants/test_campaign_infra.py::test_manifest_iteration_order_is_declared_order FAILED [ 15%]
+tests/invariants/test_campaign_infra.py::test_checkpoint_module_surface FAILED [ 17%]
+tests/invariants/test_campaign_infra.py::test_write_checkpoint_marker_shape FAILED [ 19%]
+tests/invariants/test_campaign_infra.py::test_read_checkpoint_marker_returns_none_when_missing FAILED [ 21%]
+tests/invariants/test_campaign_infra.py::test_latest_checkpoint_step_picks_max FAILED [ 23%]
+tests/invariants/test_campaign_infra.py::test_checkpoint_marker_zero_influence_on_storage_failure FAILED [ 26%]
+tests/invariants/test_campaign_infra.py::test_on_host_logging_module_surface FAILED [ 28%]
+tests/invariants/test_campaign_infra.py::test_write_host_heartbeat_shape FAILED [ 30%]
+tests/invariants/test_campaign_infra.py::test_write_host_poll_receipt_shape FAILED [ 32%]
+tests/invariants/test_campaign_infra.py::test_write_run_summary_seals_run_dir FAILED [ 34%]
+tests/invariants/test_campaign_infra.py::test_on_host_logging_zero_influence_on_write_failure FAILED [ 36%]
+tests/invariants/test_campaign_infra.py::test_run_queue_module_surface FAILED [ 39%]
+tests/invariants/test_campaign_infra.py::test_next_pending_run_returns_first_unsealed FAILED [ 41%]
+tests/invariants/test_campaign_infra.py::test_next_pending_run_returns_none_when_all_sealed FAILED [ 43%]
+tests/invariants/test_campaign_infra.py::test_execute_campaign_refuses_parallel_via_host_lock FAILED [ 45%]
+tests/invariants/test_campaign_infra.py::test_execute_campaign_dry_run_returns_planned_order FAILED [ 47%]
+tests/invariants/test_campaign_infra.py::test_execute_campaign_seals_before_next_start FAILED [ 50%]
+tests/invariants/test_campaign_infra.py::test_reconcile_module_surface FAILED [ 52%]
+tests/invariants/test_campaign_infra.py::test_list_host_runs_enumerates_journal_root FAILED [ 54%]
+tests/invariants/test_campaign_infra.py::test_adoptability_of_campaign_run_fresh_heartbeat_alive_pid_not_adoptable FAILED [ 56%]
+tests/invariants/test_campaign_infra.py::test_adoptability_of_campaign_run_stale_and_dead_pid_is_adoptable_restart FAILED [ 58%]
+tests/invariants/test_campaign_infra.py::test_on_host_watchdog_script_exists FAILED [ 60%]
+tests/invariants/test_campaign_infra.py::test_on_host_watchdog_script_reads_env_targets_dir FAILED [ 63%]
+tests/invariants/test_campaign_infra.py::test_on_host_watchdog_script_refuses_restart_on_live_pid FAILED [ 65%]
+tests/invariants/test_campaign_infra.py::test_on_host_watchdog_script_writes_journal_entry_on_restart FAILED [ 67%]
+tests/invariants/test_campaign_infra.py::test_retire_heartbeat_function_exists FAILED [ 69%]
+tests/invariants/test_campaign_infra.py::test_retire_heartbeat_removes_file_on_clean_exit FAILED [ 71%]
+tests/invariants/test_campaign_infra.py::test_retire_heartbeat_idempotent_returns_false_on_missing FAILED [ 73%]
+tests/invariants/test_campaign_infra.py::test_orphan_detector_accepts_uppercase_sealing_filename PASSED [ 76%]
+tests/invariants/test_campaign_infra.py::test_orphan_detector_accepts_lowercase_sealing_filename FAILED [ 78%]
+tests/invariants/test_campaign_infra.py::test_orphan_detector_accepts_mixed_case_sealing_filename FAILED [ 80%]
+tests/invariants/test_campaign_infra.py::test_select_adoptable_orphans_default_is_staleness_gated PASSED [ 82%]
+tests/invariants/test_campaign_infra.py::test_select_adoptable_orphans_include_pid_dead_surfaces_fresh_heartbeat_dead_pid FAILED [ 84%]
+tests/invariants/test_campaign_infra.py::test_select_adoptable_orphans_include_pid_dead_does_not_duplicate_stale_orphans FAILED [ 86%]
+tests/invariants/test_campaign_infra.py::test_select_adoptable_orphans_include_pid_dead_preserves_adoptable_enrichment FAILED [ 89%]
+tests/invariants/test_campaign_infra.py::test_on_host_watchdog_public_surface_carries_no_terminator_names FAILED [ 91%]
+tests/invariants/test_campaign_infra.py::test_reconcile_adoptability_never_deletes_checkpoint FAILED [ 93%]
+tests/invariants/test_campaign_infra.py::test_zero_influence_class_documented_in_grounding_brief PASSED [ 95%]
+tests/invariants/test_campaign_infra.py::test_campaign_infra_does_not_bypass_masking_tier_admission FAILED [ 97%]
+tests/invariants/test_campaign_infra.py::test_masking_tier_allowlist_still_has_empty_admissible_under_env FAILED [100%]
+
+=================================== FAILURES ===================================
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_campaign_infra.py:68: ModuleNotFoundError: No module named 'backend.services.campaign_infra'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_campaign_infra.py:76: ModuleNotFoundError: No module named 'backend.services.campaign_infra'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_campaign_infra.py:99: ModuleNotFoundError: No module named 'backend.services.campaign_infra'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_campaign_infra.py:118: ModuleNotFoundError: No module named 'backend.services.campaign_infra'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_campaign_infra.py:134: ModuleNotFoundError: No module named 'backend.services.campaign_infra'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_campaign_infra.py:149: ModuleNotFoundError: No module named 'backend.services.campaign_infra'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_campaign_infra.py:169: ModuleNotFoundError: No module named 'backend.services.campaign_infra'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_campaign_infra.py:176: ModuleNotFoundError: No module named 'backend.services.campaign_infra'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_campaign_infra.py:195: ModuleNotFoundError: No module named 'backend.services.campaign_infra'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_campaign_infra.py:200: ModuleNotFoundError: No module named 'backend.services.campaign_infra'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_campaign_infra.py:214: ModuleNotFoundError: No module named 'backend.services.campaign_infra'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_campaign_infra.py:229: ModuleNotFoundError: No module named 'backend.services.campaign_infra'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_campaign_infra.py:236: ModuleNotFoundError: No module named 'backend.services.campaign_infra'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_campaign_infra.py:257: ModuleNotFoundError: No module named 'backend.services.campaign_infra'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_campaign_infra.py:280: ModuleNotFoundError: No module named 'backend.services.campaign_infra'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_campaign_infra.py:300: ModuleNotFoundError: No module named 'backend.services.campaign_infra'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_campaign_infra.py:313: ModuleNotFoundError: No module named 'backend.services.campaign_infra'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_campaign_infra.py:322: ModuleNotFoundError: No module named 'backend.services.campaign_infra'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_campaign_infra.py:345: ModuleNotFoundError: No module named 'backend.services.campaign_infra'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_campaign_infra.py:362: ModuleNotFoundError: No module named 'backend.services.campaign_infra'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_campaign_infra.py:388: ModuleNotFoundError: No module named 'backend.services.campaign_infra'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_campaign_infra.py:412: ModuleNotFoundError: No module named 'backend.services.campaign_infra'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_campaign_infra.py:453: ModuleNotFoundError: No module named 'backend.services.campaign_infra'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_campaign_infra.py:459: ModuleNotFoundError: No module named 'backend.services.campaign_infra'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_campaign_infra.py:471: ModuleNotFoundError: No module named 'backend.services.campaign_infra'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_campaign_infra.py:487: ModuleNotFoundError: No module named 'backend.services.campaign_infra'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_campaign_infra.py:513: AssertionError: tools/on_host_watchdog.sh not authored
+/usr/local/lib/python3.11/pathlib.py:1044: FileNotFoundError: [Errno 2] No such file or directory: '/app/assessment_workspace/repos/Extraction-Akki/tools/on_host_watchdog.sh'
+/usr/local/lib/python3.11/pathlib.py:1044: FileNotFoundError: [Errno 2] No such file or directory: '/app/assessment_workspace/repos/Extraction-Akki/tools/on_host_watchdog.sh'
+/usr/local/lib/python3.11/pathlib.py:1044: FileNotFoundError: [Errno 2] No such file or directory: '/app/assessment_workspace/repos/Extraction-Akki/tools/on_host_watchdog.sh'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_campaign_infra.py:559: AssertionError: assert False
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_campaign_infra.py:568: AttributeError: module 'backend.services.orchestrator_resilience.heartbeat' has no attribute 'retire_heartbeat'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_campaign_infra.py:578: AttributeError: module 'backend.services.orchestrator_resilience.heartbeat' has no attribute 'retire_heartbeat'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_campaign_infra.py:611: AssertionError: lowercase-sealed run must be skipped (case-insensitive)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_campaign_infra.py:625: AssertionError: mixed-case-sealed run must be skipped (case-insensitive)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_campaign_infra.py:670: TypeError: select_adoptable_orphans() got an unexpected keyword argument 'include_pid_dead'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_campaign_infra.py:689: TypeError: select_adoptable_orphans() got an unexpected keyword argument 'include_pid_dead'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_campaign_infra.py:705: TypeError: select_adoptable_orphans() got an unexpected keyword argument 'include_pid_dead'
+/usr/local/lib/python3.11/pathlib.py:1044: FileNotFoundError: [Errno 2] No such file or directory: '/app/assessment_workspace/repos/Extraction-Akki/tools/on_host_watchdog.sh'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_campaign_infra.py:733: ModuleNotFoundError: No module named 'backend.services.campaign_infra'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_campaign_infra.py:774: TypeError: execute_governed_lora_run() got an unexpected keyword argument 'column_list'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_campaign_infra.py:790: AttributeError: 'list' object has no attribute 'items'
+=========================== short test summary info ============================
+FAILED tests/invariants/test_campaign_infra.py::test_manifest_module_exports_load_and_validate
+FAILED tests/invariants/test_campaign_infra.py::test_manifest_schema_v0_shape
+FAILED tests/invariants/test_campaign_infra.py::test_manifest_refuses_duplicate_run_names
+FAILED tests/invariants/test_campaign_infra.py::test_manifest_refuses_non_integer_seed
+FAILED tests/invariants/test_campaign_infra.py::test_manifest_refuses_missing_required_field
+FAILED tests/invariants/test_campaign_infra.py::test_manifest_iteration_order_is_declared_order
+FAILED tests/invariants/test_campaign_infra.py::test_checkpoint_module_surface
+FAILED tests/invariants/test_campaign_infra.py::test_write_checkpoint_marker_shape
+FAILED tests/invariants/test_campaign_infra.py::test_read_checkpoint_marker_returns_none_when_missing
+FAILED tests/invariants/test_campaign_infra.py::test_latest_checkpoint_step_picks_max
+FAILED tests/invariants/test_campaign_infra.py::test_checkpoint_marker_zero_influence_on_storage_failure
+FAILED tests/invariants/test_campaign_infra.py::test_on_host_logging_module_surface
+FAILED tests/invariants/test_campaign_infra.py::test_write_host_heartbeat_shape
+FAILED tests/invariants/test_campaign_infra.py::test_write_host_poll_receipt_shape
+FAILED tests/invariants/test_campaign_infra.py::test_write_run_summary_seals_run_dir
+FAILED tests/invariants/test_campaign_infra.py::test_on_host_logging_zero_influence_on_write_failure
+FAILED tests/invariants/test_campaign_infra.py::test_run_queue_module_surface
+FAILED tests/invariants/test_campaign_infra.py::test_next_pending_run_returns_first_unsealed
+FAILED tests/invariants/test_campaign_infra.py::test_next_pending_run_returns_none_when_all_sealed
+FAILED tests/invariants/test_campaign_infra.py::test_execute_campaign_refuses_parallel_via_host_lock
+FAILED tests/invariants/test_campaign_infra.py::test_execute_campaign_dry_run_returns_planned_order
+FAILED tests/invariants/test_campaign_infra.py::test_execute_campaign_seals_before_next_start
+FAILED tests/invariants/test_campaign_infra.py::test_reconcile_module_surface
+FAILED tests/invariants/test_campaign_infra.py::test_list_host_runs_enumerates_journal_root
+FAILED tests/invariants/test_campaign_infra.py::test_adoptability_of_campaign_run_fresh_heartbeat_alive_pid_not_adoptable
+FAILED tests/invariants/test_campaign_infra.py::test_adoptability_of_campaign_run_stale_and_dead_pid_is_adoptable_restart
+FAILED tests/invariants/test_campaign_infra.py::test_on_host_watchdog_script_exists
+FAILED tests/invariants/test_campaign_infra.py::test_on_host_watchdog_script_reads_env_targets_dir
+FAILED tests/invariants/test_campaign_infra.py::test_on_host_watchdog_script_refuses_restart_on_live_pid
+FAILED tests/invariants/test_campaign_infra.py::test_on_host_watchdog_script_writes_journal_entry_on_restart
+FAILED tests/invariants/test_campaign_infra.py::test_retire_heartbeat_function_exists
+FAILED tests/invariants/test_campaign_infra.py::test_retire_heartbeat_removes_file_on_clean_exit
+FAILED tests/invariants/test_campaign_infra.py::test_retire_heartbeat_idempotent_returns_false_on_missing
+FAILED tests/invariants/test_campaign_infra.py::test_orphan_detector_accepts_lowercase_sealing_filename
+FAILED tests/invariants/test_campaign_infra.py::test_orphan_detector_accepts_mixed_case_sealing_filename
+FAILED tests/invariants/test_campaign_infra.py::test_select_adoptable_orphans_include_pid_dead_surfaces_fresh_heartbeat_dead_pid
+FAILED tests/invariants/test_campaign_infra.py::test_select_adoptable_orphans_include_pid_dead_does_not_duplicate_stale_orphans
+FAILED tests/invariants/test_campaign_infra.py::test_select_adoptable_orphans_include_pid_dead_preserves_adoptable_enrichment
+FAILED tests/invariants/test_campaign_infra.py::test_on_host_watchdog_public_surface_carries_no_terminator_names
+FAILED tests/invariants/test_campaign_infra.py::test_reconcile_adoptability_never_deletes_checkpoint
+FAILED tests/invariants/test_campaign_infra.py::test_campaign_infra_does_not_bypass_masking_tier_admission
+FAILED tests/invariants/test_campaign_infra.py::test_masking_tier_allowlist_still_has_empty_admissible_under_env
+========================= 42 failed, 4 passed in 0.90s =========================

@@ -1,0 +1,70 @@
+=== 5-STEP WIZARD + PROVISIONING CARD + NON-COMPUTE INTENT · GREEN RECEIPT ===
+Timestamp (UTC): 2026-08-14T19:05:00Z
+
+## Backend gating (spine repo)
+90/90 passed on programme/track-a (78 pre-existing + 12 new: test_estate_keys_and_connect_estate.py)
+
+## Frontend gating
+- 12/12 passed  · plugins/ip-allowlist/__tests__/ip_allowlist.test.js
+- 21/21 passed  · pod_shell/frontend/__tests__/rehome.test.js  (+6 net vs prior 15)
+
+## Total: 123/123 gating tests green (90 backend python + 33 frontend node --test)
+
+## Playwright render-tree proof (6 screenshots under phase0/drill_receipts/screenshots/)
+All screenshots taken via api-proxy through 127.0.0.1:8001 with allowed XFF (browser
+requests through Cloudflare would fail IP allowlist by design):
+
+  20260814T190000Z_wizard_step1_what.jpeg
+    - Step tracker highlights '1 What'; 4 chips + free-text + Send; PDF §5 Step-1 grammar
+  20260814T190000Z_wizard_step2_how_with_provisioning_card.jpeg
+    - Step tracker highlights '2 How'; SSH-over-public-IP option selected;
+      PROVISIONING CARD rendered with:
+        Estate public key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGKlcjZE/04clh3FLddGn7Wx69pytk8KJA5j9M6rKVA7 estate@akki
+        Fingerprint (SHA256): SHA256:TpJcdNAQ4iSQKK5inwPueOM6Qak5NcsD5XhZpWorZ+c
+        Pod egress IP: 104.198.214.223
+        4 provenance sentences visible below the copyable fields
+  20260814T190000Z_wizard_step3_credentials.jpeg
+    - Step tracker highlights '3 Credentials'; all 7 GPU fields visible with sample
+      data (password masked); Akki explanation card above ('secrecy assertions')
+  20260814T190000Z_wizard_step4_name.jpeg
+    - Step tracker highlights '4 Name'; "Give it a name in the estate's words -
+      nothing connects unnamed." + connection-name input + Attempt button
+  20260814T190000Z_wizard_step5_compute_attempt.jpeg
+    - Step tracker highlights '5 Attempt'; HANDSHAKE WALK shows:
+        OK  Declaration - the actor and task are on record
+        !   Hardening - key installed, password auth disabled, bootstrap retired
+              (FAILED, crimson, with sentence: "Hardening receipt at
+              /tmp/akki_mock_sshd/receipts/... · external probe result: False.")
+        -   Acceptance - verified against the §6 spec  (GREYED, untried)
+      Four questions rendered below; "Retry the credentials" button
+  20260814T190000Z_wizard_noncompute_step5_intent.jpeg
+    - Non-compute (LLM) path Step 5: "ATTEMPT · RECORD INTENT" + amber-bordered
+      "INTENT RECORDED" card:
+        "LLM 'Claude sonnet 5 (external)' captured.
+         Recorded - this connection type goes live with its wave.
+         Nothing crossed and nothing was written to the connected estate today."
+        Receipt path visible; Close button
+
+## Provisioning card content (live-verified from GET /api/connect/estate-facts)
+
+  estate_public_key            : ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGKlcjZE/04clh3FLddGn7Wx69pytk8KJA5j9M6rKVA7 estate@akki
+  estate_public_key_fingerprint: SHA256:TpJcdNAQ4iSQKK5inwPueOM6Qak5NcsD5XhZpWorZ+c
+  pod_egress_ip                : 104.198.214.223 (live-discovered via ifconfig.me)
+  provenance                   : 4 plain sentences per Content Rule 1
+
+## Live evidence
+
+  Preview URL (refusal branch, allowlist unchanged): 4/4 route families -> HTTP 403
+    (including the two new endpoints /api/connect/estate-facts + /api/connect/intent)
+  Local BE (allowed XFF crafted at xff[-3]):
+    GET  /api/connect/estate-facts  -> 200 JSON with full provisioning-card payload
+    POST /api/connect/intent {data-source}  -> 200 with intent_receipt_path in JSON
+    POST /api/connect/intent {compute}      -> 400 with error directing to /api/connect/gpu
+    POST /api/connect/intent {empty name}   -> 400 ("nothing connects unnamed")
+
+## Right-reason receipts (banked BEFORE implementation this cycle)
+
+  20260814T184500Z_estate_keys_and_connect_estate_right_reason_failure.log
+    · 12/12 backend tests fail with ModuleNotFoundError
+  20260814T185000Z_5step_wizard_right_reason_failure.log
+    · 6/21 frontend tests fail right-reason on new 5-step grammar

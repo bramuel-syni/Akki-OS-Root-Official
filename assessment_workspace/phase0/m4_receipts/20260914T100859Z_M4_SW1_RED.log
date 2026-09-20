@@ -1,0 +1,12 @@
+E       ModuleNotFoundError: No module named 'services.journey_assistant'
+
+tests/invariants/test_wm4_sw1_solva_explain_surface.py:133: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wm4_sw1_solva_explain_surface.py::test_sw1_module_fabric
+FAILED tests/invariants/test_wm4_sw1_solva_explain_surface.py::test_sw1_canon_4_s24_three_actions_verbatim
+FAILED tests/invariants/test_wm4_sw1_solva_explain_surface.py::test_sw1_solva_action_enum_has_exactly_three_values
+FAILED tests/invariants/test_wm4_sw1_solva_explain_surface.py::test_sw1_explain_refusal_binds_to_one_action
+FAILED tests/invariants/test_wm4_sw1_solva_explain_surface.py::test_sw1_fourth_action_forbidden_at_type_boundary
+FAILED tests/invariants/test_wm4_sw1_solva_explain_surface.py::test_sw1_explain_never_decides_gates
+FAILED tests/invariants/test_wm4_sw1_solva_explain_surface.py::test_sw1_explanation_serialisable_to_answer_card
+7 failed in 0.65s

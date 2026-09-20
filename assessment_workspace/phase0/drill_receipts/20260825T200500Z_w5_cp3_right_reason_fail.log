@@ -1,0 +1,97 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-9.1.1, pluggy-1.6.0 -- /root/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: asyncio-1.4.0, xdist-3.8.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 6 items
+
+tests/invariants/test_solva_reasoning_stages.py::test_frame_audit_returns_verdict_and_provenance FAILED [ 16%]
+tests/invariants/test_solva_reasoning_stages.py::test_frame_audit_verdict_reflects_deterministic_scoring FAILED [ 33%]
+tests/invariants/test_solva_reasoning_stages.py::test_candidate_generation_returns_multiple_candidates_with_provenance FAILED [ 50%]
+tests/invariants/test_solva_reasoning_stages.py::test_synthesis_returns_paragraph_with_provenance FAILED [ 66%]
+tests/invariants/test_solva_reasoning_stages.py::test_full_pipeline_persists_run_record FAILED [ 83%]
+tests/invariants/test_solva_reasoning_stages.py::test_pipeline_surfaces_shield_refusal_verbatim FAILED [100%]
+
+=================================== FAILURES ===================================
+_______________ test_frame_audit_returns_verdict_and_provenance ________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfff069227810>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-21/test_frame_audit_returns_verdi0')
+
+    def test_frame_audit_returns_verdict_and_provenance(monkeypatch, tmp_path):
+        from services.chokepoint import llm as chokepoint_llm
+>       from services.solva import reasoning as solva
+E       ModuleNotFoundError: No module named 'services.solva'
+
+tests/invariants/test_solva_reasoning_stages.py:70: ModuleNotFoundError
+___________ test_frame_audit_verdict_reflects_deterministic_scoring ____________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfff0634f2b10>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-21/test_frame_audit_verdict_refle0')
+
+    def test_frame_audit_verdict_reflects_deterministic_scoring(monkeypatch, tmp_path):
+        """Empty direction → insufficient verdict (deterministic-first;
+        LLM cannot over-ride to smoother verdict per A8-Q3)."""
+        from services.chokepoint import llm as chokepoint_llm
+>       from services.solva import reasoning as solva
+E       ModuleNotFoundError: No module named 'services.solva'
+
+tests/invariants/test_solva_reasoning_stages.py:99: ModuleNotFoundError
+____ test_candidate_generation_returns_multiple_candidates_with_provenance _____
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfff0632b8d90>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-21/test_candidate_generation_retu0')
+
+    def test_candidate_generation_returns_multiple_candidates_with_provenance(monkeypatch, tmp_path):
+        from services.chokepoint import llm as chokepoint_llm
+>       from services.solva import reasoning as solva
+E       ModuleNotFoundError: No module named 'services.solva'
+
+tests/invariants/test_solva_reasoning_stages.py:121: ModuleNotFoundError
+_______________ test_synthesis_returns_paragraph_with_provenance _______________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfff06314ce50>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-21/test_synthesis_returns_paragra0')
+
+    def test_synthesis_returns_paragraph_with_provenance(monkeypatch, tmp_path):
+        from services.chokepoint import llm as chokepoint_llm
+>       from services.solva import reasoning as solva
+E       ModuleNotFoundError: No module named 'services.solva'
+
+tests/invariants/test_solva_reasoning_stages.py:154: ModuleNotFoundError
+____________________ test_full_pipeline_persists_run_record ____________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfff06313c0d0>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-21/test_full_pipeline_persists_ru0')
+
+    def test_full_pipeline_persists_run_record(monkeypatch, tmp_path):
+        from services.chokepoint import llm as chokepoint_llm
+>       from services.solva import reasoning as solva
+E       ModuleNotFoundError: No module named 'services.solva'
+
+tests/invariants/test_solva_reasoning_stages.py:183: ModuleNotFoundError
+________________ test_pipeline_surfaces_shield_refusal_verbatim ________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfff06314b650>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-21/test_pipeline_surfaces_shield_0')
+
+    def test_pipeline_surfaces_shield_refusal_verbatim(monkeypatch, tmp_path):
+        """Owner sharpening §4 — if a stage returns a refusal verdict, the
+        surface shows it verbatim. Never a smoothed answer.
+        """
+        from services.chokepoint import llm as chokepoint_llm
+        from services.chokepoint.llm import LLMShieldFailure
+>       from services.solva import reasoning as solva
+E       ModuleNotFoundError: No module named 'services.solva'
+
+tests/invariants/test_solva_reasoning_stages.py:231: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_solva_reasoning_stages.py::test_frame_audit_returns_verdict_and_provenance
+FAILED tests/invariants/test_solva_reasoning_stages.py::test_frame_audit_verdict_reflects_deterministic_scoring
+FAILED tests/invariants/test_solva_reasoning_stages.py::test_candidate_generation_returns_multiple_candidates_with_provenance
+FAILED tests/invariants/test_solva_reasoning_stages.py::test_synthesis_returns_paragraph_with_provenance
+FAILED tests/invariants/test_solva_reasoning_stages.py::test_full_pipeline_persists_run_record
+FAILED tests/invariants/test_solva_reasoning_stages.py::test_pipeline_surfaces_shield_refusal_verbatim
+============================== 6 failed in 1.52s ===============================

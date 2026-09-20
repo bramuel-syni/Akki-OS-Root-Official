@@ -1,0 +1,105 @@
+FFFFFF                                                                   [100%]============================ BASELINE_GUARD receipt ============================
+passed=0 / baseline-failures-remaining=0 / quarantined=0
+  manifest: tests/invariants/baseline_failures.json
+  scope: BASELINE_GUARD=1  ·  invocation: cd backend && BASELINE_GUARD=1 python -m pytest tests/invariants/
+!!!!!!!!!!!!! BASELINE_GUARD · HALT AND REPORT · owner ruling (c) !!!!!!!!!!!!!!
+[V1] 6 NEW failure(s) OUTSIDE manifest:
+    tests/invariants/test_wdslift_cp_d7_analysis_lifecycle.py::test_cp_d7_analysis_lifecycle_module_fabric
+    tests/invariants/test_wdslift_cp_d7_analysis_lifecycle.py::test_cp_d7_analysis_lifecycle_state_closed_four_value_enum
+    tests/invariants/test_wdslift_cp_d7_analysis_lifecycle.py::test_cp_d7_analysis_terminal_states_is_archived_only
+    tests/invariants/test_wdslift_cp_d7_analysis_lifecycle.py::test_cp_d7_analysis_transitions_are_a_linear_pipeline_frozenset
+    tests/invariants/test_wdslift_cp_d7_analysis_lifecycle.py::test_cp_d7_illegal_transitions_are_refused_and_type_separated_from_workspace
+    tests/invariants/test_wdslift_cp_d7_analysis_lifecycle.py::test_cp_d7_legal_transitions_are_accepted
+[V3] Passed count 0 < ratchet floor 3967
+  No silent rebaselining. Report drift to owner verbatim.
+
+=================================== FAILURES ===================================
+_________________ test_cp_d7_analysis_lifecycle_module_fabric __________________
+
+    def test_cp_d7_analysis_lifecycle_module_fabric():
+>       m = importlib.import_module("services.data_suite_v2.analysis_lifecycle")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_wdslift_cp_d7_analysis_lifecycle.py:19: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'services.data_suite_v2.analysis_lifecycle'
+import_ = <function _gcd_import at 0xfa219ec0bd80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'services.data_suite_v2.analysis_lifecycle'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+__________ test_cp_d7_analysis_lifecycle_state_closed_four_value_enum __________
+
+    def test_cp_d7_analysis_lifecycle_state_closed_four_value_enum():
+        """AnalysisLifecycleState is a closed 4-value Enum with the canonical names."""
+>       from services.data_suite_v2.analysis_lifecycle import AnalysisLifecycleState
+E       ModuleNotFoundError: No module named 'services.data_suite_v2.analysis_lifecycle'
+
+tests/invariants/test_wdslift_cp_d7_analysis_lifecycle.py:32: ModuleNotFoundError
+_______ test_cp_d7_analysis_transitions_are_a_linear_pipeline_frozenset ________
+
+    def test_cp_d7_analysis_transitions_are_a_linear_pipeline_frozenset():
+        """ANALYSIS_TRANSITIONS is a frozenset carrying exactly the 3 forward edges."""
+>       from services.data_suite_v2.analysis_lifecycle import (
+            AnalysisLifecycleState as S, ANALYSIS_TRANSITIONS,
+        )
+E       ModuleNotFoundError: No module named 'services.data_suite_v2.analysis_lifecycle'
+
+tests/invariants/test_wdslift_cp_d7_analysis_lifecycle.py:42: ModuleNotFoundError
+_____________ test_cp_d7_analysis_terminal_states_is_archived_only _____________
+
+    def test_cp_d7_analysis_terminal_states_is_archived_only():
+        """ANALYSIS_TERMINAL_STATES is a frozenset containing exactly {ARCHIVED}."""
+>       from services.data_suite_v2.analysis_lifecycle import (
+            AnalysisLifecycleState as S, ANALYSIS_TERMINAL_STATES,
+        )
+E       ModuleNotFoundError: No module named 'services.data_suite_v2.analysis_lifecycle'
+
+tests/invariants/test_wdslift_cp_d7_analysis_lifecycle.py:55: ModuleNotFoundError
+__________________ test_cp_d7_legal_transitions_are_accepted ___________________
+
+    def test_cp_d7_legal_transitions_are_accepted():
+        """Each declared forward transition passes assert_analysis_transition_legal."""
+>       from services.data_suite_v2.analysis_lifecycle import (
+            AnalysisLifecycleState as S, assert_analysis_transition_legal,
+        )
+E       ModuleNotFoundError: No module named 'services.data_suite_v2.analysis_lifecycle'
+
+tests/invariants/test_wdslift_cp_d7_analysis_lifecycle.py:64: ModuleNotFoundError
+_ test_cp_d7_illegal_transitions_are_refused_and_type_separated_from_workspace _
+
+    def test_cp_d7_illegal_transitions_are_refused_and_type_separated_from_workspace():
+        """Back-edges, skip-edges, self-loops raise IllegalAnalysisTransition.
+    
+        Also assert that AnalysisLifecycleState is a distinct type from CP-D2's
+        WorkspaceLifecycleState: callers must not accidentally cross the two
+        lifecycles even though the state names coincide.
+        """
+>       from services.data_suite_v2.analysis_lifecycle import (
+            AnalysisLifecycleState as A,
+            IllegalAnalysisTransition,
+            assert_analysis_transition_legal,
+        )
+E       ModuleNotFoundError: No module named 'services.data_suite_v2.analysis_lifecycle'
+
+tests/invariants/test_wdslift_cp_d7_analysis_lifecycle.py:82: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wdslift_cp_d7_analysis_lifecycle.py::test_cp_d7_analysis_lifecycle_module_fabric
+FAILED tests/invariants/test_wdslift_cp_d7_analysis_lifecycle.py::test_cp_d7_analysis_lifecycle_state_closed_four_value_enum
+FAILED tests/invariants/test_wdslift_cp_d7_analysis_lifecycle.py::test_cp_d7_analysis_transitions_are_a_linear_pipeline_frozenset
+FAILED tests/invariants/test_wdslift_cp_d7_analysis_lifecycle.py::test_cp_d7_analysis_terminal_states_is_archived_only
+FAILED tests/invariants/test_wdslift_cp_d7_analysis_lifecycle.py::test_cp_d7_legal_transitions_are_accepted
+FAILED tests/invariants/test_wdslift_cp_d7_analysis_lifecycle.py::test_cp_d7_illegal_transitions_are_refused_and_type_separated_from_workspace
+6 failed in 0.67s

@@ -1,0 +1,151 @@
+/root/.venv/lib/python3.11/site-packages/pytest_asyncio/plugin.py:208: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.3.3, pluggy-1.6.0 -- /root/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: xdist-3.8.0, anyio-4.14.2, asyncio-0.24.0
+asyncio: mode=Mode.AUTO, default_loop_scope=None
+collecting ... collected 11 items
+
+backend/tests/invariants/test_w8_cp6_rules_update_lifecycle.py::test_countdown_started_contract_shape FAILED [  9%]
+backend/tests/invariants/test_w8_cp6_rules_update_lifecycle.py::test_applied_contract_shape FAILED [ 18%]
+backend/tests/invariants/test_w8_cp6_rules_update_lifecycle.py::test_rechecked_contract_shape FAILED [ 27%]
+backend/tests/invariants/test_w8_cp6_rules_update_lifecycle.py::test_rechecked_verdict_grammar FAILED [ 36%]
+backend/tests/invariants/test_w8_cp6_rules_update_lifecycle.py::test_start_countdown_refuses_non_approved_decision FAILED [ 45%]
+backend/tests/invariants/test_w8_cp6_rules_update_lifecycle.py::test_start_countdown_records_on_disk FAILED [ 54%]
+backend/tests/invariants/test_w8_cp6_rules_update_lifecycle.py::test_apply_refuses_before_countdown_ends FAILED [ 63%]
+backend/tests/invariants/test_w8_cp6_rules_update_lifecycle.py::test_apply_records_after_countdown FAILED [ 72%]
+backend/tests/invariants/test_w8_cp6_rules_update_lifecycle.py::test_recheck_refuses_before_apply FAILED [ 81%]
+backend/tests/invariants/test_w8_cp6_rules_update_lifecycle.py::test_full_ceremony_flow FAILED [ 90%]
+backend/tests/invariants/test_w8_cp6_rules_update_lifecycle.py::test_countdown_is_one_per_decision FAILED [100%]
+
+=================================== FAILURES ===================================
+____________________ test_countdown_started_contract_shape _____________________
+
+    def test_countdown_started_contract_shape():
+>       from contracts.rules_update_lifecycle import CountdownStarted_v0
+E       ModuleNotFoundError: No module named 'contracts.rules_update_lifecycle'
+
+backend/tests/invariants/test_w8_cp6_rules_update_lifecycle.py:48: ModuleNotFoundError
+_________________________ test_applied_contract_shape __________________________
+
+    def test_applied_contract_shape():
+>       from contracts.rules_update_lifecycle import RulesUpdateApplied_v0
+E       ModuleNotFoundError: No module named 'contracts.rules_update_lifecycle'
+
+backend/tests/invariants/test_w8_cp6_rules_update_lifecycle.py:61: ModuleNotFoundError
+________________________ test_rechecked_contract_shape _________________________
+
+    def test_rechecked_contract_shape():
+>       from contracts.rules_update_lifecycle import RulesUpdateReChecked_v0
+E       ModuleNotFoundError: No module named 'contracts.rules_update_lifecycle'
+
+backend/tests/invariants/test_w8_cp6_rules_update_lifecycle.py:73: ModuleNotFoundError
+________________________ test_rechecked_verdict_grammar ________________________
+
+    def test_rechecked_verdict_grammar():
+>       from contracts.rules_update_lifecycle import RulesUpdateReChecked_v0
+E       ModuleNotFoundError: No module named 'contracts.rules_update_lifecycle'
+
+backend/tests/invariants/test_w8_cp6_rules_update_lifecycle.py:86: ModuleNotFoundError
+______________ test_start_countdown_refuses_non_approved_decision ______________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-113/test_start_countdown_refuses_n0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xf8d5ecee0c50>
+
+    def test_start_countdown_refuses_non_approved_decision(tmp_path, monkeypatch):
+        """Doc 15 · countdown only runs after an APPROVED counter-sign."""
+        from services.approvals.approvals import register_request, decide_request
+>       from services.approvals.rules_update_lifecycle import start_countdown
+E       ModuleNotFoundError: No module named 'services.approvals.rules_update_lifecycle'
+
+backend/tests/invariants/test_w8_cp6_rules_update_lifecycle.py:108: ModuleNotFoundError
+_____________________ test_start_countdown_records_on_disk _____________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-113/test_start_countdown_records_o0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xf8d5ecedf950>
+
+    def test_start_countdown_records_on_disk(tmp_path, monkeypatch):
+>       from services.approvals.rules_update_lifecycle import (
+            start_countdown, load_countdowns,
+        )
+E       ModuleNotFoundError: No module named 'services.approvals.rules_update_lifecycle'
+
+backend/tests/invariants/test_w8_cp6_rules_update_lifecycle.py:140: ModuleNotFoundError
+___________________ test_apply_refuses_before_countdown_ends ___________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-113/test_apply_refuses_before_coun0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xf8d5ecfee710>
+
+    def test_apply_refuses_before_countdown_ends(tmp_path, monkeypatch):
+        """Apply must wait until countdown_ends_at has elapsed."""
+>       from services.approvals.rules_update_lifecycle import (
+            start_countdown, apply_rules_update,
+        )
+E       ModuleNotFoundError: No module named 'services.approvals.rules_update_lifecycle'
+
+backend/tests/invariants/test_w8_cp6_rules_update_lifecycle.py:159: ModuleNotFoundError
+______________________ test_apply_records_after_countdown ______________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-113/test_apply_records_after_count0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xf8d5eced6290>
+
+    def test_apply_records_after_countdown(tmp_path, monkeypatch):
+>       from services.approvals.rules_update_lifecycle import (
+            start_countdown, apply_rules_update, load_applies,
+        )
+E       ModuleNotFoundError: No module named 'services.approvals.rules_update_lifecycle'
+
+backend/tests/invariants/test_w8_cp6_rules_update_lifecycle.py:183: ModuleNotFoundError
+______________________ test_recheck_refuses_before_apply _______________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-113/test_recheck_refuses_before_ap0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xf8d5ecef4b90>
+
+    def test_recheck_refuses_before_apply(tmp_path, monkeypatch):
+>       from services.approvals.rules_update_lifecycle import recheck_rules_update
+E       ModuleNotFoundError: No module named 'services.approvals.rules_update_lifecycle'
+
+backend/tests/invariants/test_w8_cp6_rules_update_lifecycle.py:208: ModuleNotFoundError
+___________________________ test_full_ceremony_flow ____________________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-113/test_full_ceremony_flow0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xf8d5eceddd10>
+
+    def test_full_ceremony_flow(tmp_path, monkeypatch):
+        """propose → decide(approved) → start_countdown → apply → recheck."""
+>       from services.approvals.rules_update_lifecycle import (
+            start_countdown, apply_rules_update, recheck_rules_update,
+            load_rechecks,
+        )
+E       ModuleNotFoundError: No module named 'services.approvals.rules_update_lifecycle'
+
+backend/tests/invariants/test_w8_cp6_rules_update_lifecycle.py:224: ModuleNotFoundError
+______________________ test_countdown_is_one_per_decision ______________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-113/test_countdown_is_one_per_deci0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xf8d5ecf06e50>
+
+    def test_countdown_is_one_per_decision(tmp_path, monkeypatch):
+        """One countdown per approved decision (idempotency)."""
+>       from services.approvals.rules_update_lifecycle import start_countdown
+E       ModuleNotFoundError: No module named 'services.approvals.rules_update_lifecycle'
+
+backend/tests/invariants/test_w8_cp6_rules_update_lifecycle.py:259: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED backend/tests/invariants/test_w8_cp6_rules_update_lifecycle.py::test_countdown_started_contract_shape
+FAILED backend/tests/invariants/test_w8_cp6_rules_update_lifecycle.py::test_applied_contract_shape
+FAILED backend/tests/invariants/test_w8_cp6_rules_update_lifecycle.py::test_rechecked_contract_shape
+FAILED backend/tests/invariants/test_w8_cp6_rules_update_lifecycle.py::test_rechecked_verdict_grammar
+FAILED backend/tests/invariants/test_w8_cp6_rules_update_lifecycle.py::test_start_countdown_refuses_non_approved_decision
+FAILED backend/tests/invariants/test_w8_cp6_rules_update_lifecycle.py::test_start_countdown_records_on_disk
+FAILED backend/tests/invariants/test_w8_cp6_rules_update_lifecycle.py::test_apply_refuses_before_countdown_ends
+FAILED backend/tests/invariants/test_w8_cp6_rules_update_lifecycle.py::test_apply_records_after_countdown
+FAILED backend/tests/invariants/test_w8_cp6_rules_update_lifecycle.py::test_recheck_refuses_before_apply
+FAILED backend/tests/invariants/test_w8_cp6_rules_update_lifecycle.py::test_full_ceremony_flow
+FAILED backend/tests/invariants/test_w8_cp6_rules_update_lifecycle.py::test_countdown_is_one_per_decision
+============================== 11 failed in 0.15s ==============================

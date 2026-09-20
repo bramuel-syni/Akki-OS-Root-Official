@@ -1,0 +1,28 @@
+# W7 prep · pydantic 2.13.4 pin recorded as load-bearing
+# Timestamp: 20260825T230000Z · Orchestrator ruling 2026-08-25 (three-answer set on W6 close)
+
+## Runtime pydantic version at moment of pin-bump commit:
+2.13.4
+
+## Extraction-Akki backend/requirements.txt pydantic line + surrounding comment:
+7-# `.contract_snapshot.json` byte-invariants are pinned against (see
+8-# phase0/fidelity_ledger/FL-P4-W6-01/03/04/05/06/07.json for the drift
+9-# receipts). Any minor bump changes JSON-Schema emission on Literal fields
+10-# (const-only vs const+enum) and Dict[str, Any] fields (implicit vs
+11-# explicit `additionalProperties`), which will silently fail the frozen
+12-# cohort. If a bump is required, run the frozen+contract cohort assemble
+13-# discipline (grep test_*_frozen*.py + test_*_contract*.py) and open a
+14-# fidelity ledger row per drift under phase0/fidelity_ledger/ BEFORE any
+15-# snapshot bump — same discipline as W6 close ratified. Owner ruling
+16-# 2026-08-25 · W7-opener path: canonical-projection remediation is a W8
+17-# opener item (see notes/w6_close_report.md §4.1 and notes/w7_grounding_brief.md).
+18-# ──────────────────────────────────────────────────────────────────────────
+19-fastapi==0.118.0
+20-uvicorn[standard]==0.32.0
+21-python-dotenv==1.0.1
+22:pydantic==2.13.4
+
+## Frozen+contract cohort still green (18 tests · 250-cohort still green):
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+..................                                                       [100%]
+18 passed in 0.21s

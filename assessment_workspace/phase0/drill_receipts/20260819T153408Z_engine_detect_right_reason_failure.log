@@ -1,0 +1,96 @@
+# Right-reason failure receipt — engine-detect fix (FL-P2-24)
+# Owner adjustment 2026-08-19 · captured strings from receipt 20260819T152509Z_aurora_inventory_mysql.log:
+#   version='8.0.42'  version_comment='6252a59a'  aurora_version='3.10.3'
+# Expected right-reason: 7 new engine-detect tests must fail (function absent + hardcoded engine='aurora').
+# Existing 17 tests must still pass (no unrelated breakage).
+
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-9.1.1, pluggy-1.6.0 -- /root/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: asyncio-1.4.0, xdist-3.8.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 24 items
+
+tests/invariants/test_rds_data_submit.py::test_module_present_and_exports_submit PASSED [  4%]
+tests/invariants/test_rds_data_submit.py::test_module_declares_no_llm_or_forbidden_libraries PASSED [  8%]
+tests/invariants/test_rds_data_submit.py::test_submit_writes_standing_creds_file_mode_0600 PASSED [ 12%]
+tests/invariants/test_rds_data_submit.py::test_submit_creds_file_never_in_git PASSED [ 16%]
+tests/invariants/test_rds_data_submit.py::test_submit_declaration_fires_with_actor_and_scope PASSED [ 20%]
+tests/invariants/test_rds_data_submit.py::test_submit_invokes_execute_statement_with_arns PASSED [ 25%]
+tests/invariants/test_rds_data_submit.py::test_submit_returns_four_questions_response_on_success PASSED [ 29%]
+tests/invariants/test_rds_data_submit.py::test_submit_response_never_carries_secret_verbatim PASSED [ 33%]
+tests/invariants/test_rds_data_submit.py::test_submit_record_and_receipts_never_carry_secret PASSED [ 37%]
+tests/invariants/test_rds_data_submit.py::test_submit_maps_failure_taxonomy[BadRequestException-auth_denied] PASSED [ 41%]
+tests/invariants/test_rds_data_submit.py::test_submit_maps_failure_taxonomy[AccessDeniedException-auth_denied] PASSED [ 45%]
+tests/invariants/test_rds_data_submit.py::test_submit_maps_failure_taxonomy[UnauthorizedException-auth_denied] PASSED [ 50%]
+tests/invariants/test_rds_data_submit.py::test_submit_maps_failure_taxonomy[StatementTimeoutException-timeout] PASSED [ 54%]
+tests/invariants/test_rds_data_submit.py::test_submit_maps_failure_taxonomy[DatabaseNotFoundException-cluster_not_found] PASSED [ 58%]
+tests/invariants/test_rds_data_submit.py::test_submit_maps_failure_taxonomy[DatabaseResumingException-data_api_not_enabled] PASSED [ 62%]
+tests/invariants/test_rds_data_submit.py::test_submit_maps_failure_taxonomy[HttpEndpointNotEnabledException-data_api_not_enabled] PASSED [ 66%]
+tests/invariants/test_rds_data_submit.py::test_submit_maps_failure_taxonomy[SomethingElse-other] PASSED [ 70%]
+tests/invariants/test_rds_data_submit.py::test_probe_engine_function_present FAILED [ 75%]
+tests/invariants/test_rds_data_submit.py::test_probe_engine_recognises_aurora_mysql_from_real_captured_strings FAILED [ 79%]
+tests/invariants/test_rds_data_submit.py::test_probe_engine_recognises_plain_mysql_when_aurora_version_absent FAILED [ 83%]
+tests/invariants/test_rds_data_submit.py::test_probe_engine_recognises_aurora_postgresql FAILED [ 87%]
+tests/invariants/test_rds_data_submit.py::test_probe_engine_returns_unknown_when_all_probes_fail FAILED [ 91%]
+tests/invariants/test_rds_data_submit.py::test_submit_result_carries_engine_and_engine_version_on_success FAILED [ 95%]
+tests/invariants/test_rds_data_submit.py::test_submit_record_carries_engine_and_engine_version_on_success FAILED [100%]
+
+=================================== FAILURES ===================================
+______________________ test_probe_engine_function_present ______________________
+tests/invariants/test_rds_data_submit.py:329: in test_probe_engine_function_present
+    assert callable(getattr(R, "_probe_engine", None)), (
+E   AssertionError: rds_data_submit must expose _probe_engine(client, payload) -> (engine, engine_version)
+E   assert False
+E    +  where False = callable(None)
+E    +    where None = getattr(<module 'services.connect.rds_data_submit' from '/app/assessment_workspace/repos/Extraction-Akki/backend/services/connect/rds_data_submit.py'>, '_probe_engine', None)
+_____ test_probe_engine_recognises_aurora_mysql_from_real_captured_strings _____
+tests/invariants/test_rds_data_submit.py:345: in test_probe_engine_recognises_aurora_mysql_from_real_captured_strings
+    engine, engine_version = R._probe_engine(client, {
+                             ^^^^^^^^^^^^^^^
+E   AttributeError: module 'services.connect.rds_data_submit' has no attribute '_probe_engine'
+_____ test_probe_engine_recognises_plain_mysql_when_aurora_version_absent ______
+tests/invariants/test_rds_data_submit.py:367: in test_probe_engine_recognises_plain_mysql_when_aurora_version_absent
+    engine, engine_version = R._probe_engine(client, {
+                             ^^^^^^^^^^^^^^^
+E   AttributeError: module 'services.connect.rds_data_submit' has no attribute '_probe_engine'
+________________ test_probe_engine_recognises_aurora_postgresql ________________
+tests/invariants/test_rds_data_submit.py:396: in test_probe_engine_recognises_aurora_postgresql
+    engine, engine_version = R._probe_engine(client, {
+                             ^^^^^^^^^^^^^^^
+E   AttributeError: module 'services.connect.rds_data_submit' has no attribute '_probe_engine'
+____________ test_probe_engine_returns_unknown_when_all_probes_fail ____________
+tests/invariants/test_rds_data_submit.py:414: in test_probe_engine_returns_unknown_when_all_probes_fail
+    engine, engine_version = R._probe_engine(client, {
+                             ^^^^^^^^^^^^^^^
+E   AttributeError: module 'services.connect.rds_data_submit' has no attribute '_probe_engine'
+_______ test_submit_result_carries_engine_and_engine_version_on_success ________
+tests/invariants/test_rds_data_submit.py:439: in test_submit_result_carries_engine_and_engine_version_on_success
+    assert result["engine"] == "aurora-mysql", (
+E   AssertionError: expected engine='aurora-mysql' on genuine Aurora MySQL 8.0.42 + aurora_version 3.10.3, got 'aurora'
+E   assert 'aurora' == 'aurora-mysql'
+E     
+E     - aurora-mysql
+E     + aurora
+_______ test_submit_record_carries_engine_and_engine_version_on_success ________
+tests/invariants/test_rds_data_submit.py:463: in test_submit_record_carries_engine_and_engine_version_on_success
+    assert body.get("engine") == "aurora-mysql", (
+E   AssertionError: persisted engine must reflect the probe, got 'aurora'
+E   assert 'aurora' == 'aurora-mysql'
+E     
+E     - aurora-mysql
+E     + aurora
+=========================== short test summary info ============================
+FAILED tests/invariants/test_rds_data_submit.py::test_probe_engine_function_present
+FAILED tests/invariants/test_rds_data_submit.py::test_probe_engine_recognises_aurora_mysql_from_real_captured_strings
+FAILED tests/invariants/test_rds_data_submit.py::test_probe_engine_recognises_plain_mysql_when_aurora_version_absent
+FAILED tests/invariants/test_rds_data_submit.py::test_probe_engine_recognises_aurora_postgresql
+FAILED tests/invariants/test_rds_data_submit.py::test_probe_engine_returns_unknown_when_all_probes_fail
+FAILED tests/invariants/test_rds_data_submit.py::test_submit_result_carries_engine_and_engine_version_on_success
+FAILED tests/invariants/test_rds_data_submit.py::test_submit_record_carries_engine_and_engine_version_on_success
+========================= 7 failed, 17 passed in 0.26s =========================
+
+# ---
+# pytest exit code: 0

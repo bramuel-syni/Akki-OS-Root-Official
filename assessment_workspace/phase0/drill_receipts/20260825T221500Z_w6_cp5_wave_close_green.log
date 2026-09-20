@@ -1,0 +1,376 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-9.1.1, pluggy-1.6.0
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: asyncio-1.4.0, xdist-3.8.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collected 250 items
+
+tests/invariants/test_actor_declaration_v0_contract_frozen.py .          [  0%]
+tests/invariants/test_admission_refusal_v0_contract_frozen.py F          [  0%]
+tests/invariants/test_backfilled_contract_snapshots.py ...               [  2%]
+tests/invariants/test_composed_conclusion_v0_contract_frozen.py .F       [  2%]
+tests/invariants/test_feasibility_result_v0_contract_frozen.py .         [  3%]
+tests/invariants/test_frozen_contract_snapshot_parity.py FF.             [  4%]
+tests/invariants/test_invariant_contract_snapshots.py FF..FF             [  6%]
+tests/invariants/test_objective_request_v2_contract_frozen.py F          [  7%]
+tests/invariants/test_cost_ledger_w6_cp2.py .............                [ 12%]
+tests/invariants/test_retention_enforcement_w6_cp3.py ..........         [ 16%]
+tests/invariants/test_solva_stages_4_6_grey_mirror_groundwork.py ....... [ 19%]
+                                                                         [ 19%]
+tests/invariants/test_lowered_standard_w6_cp5.py .........               [ 22%]
+tests/invariants/test_llm_chokepoint_sole_importer.py ......             [ 25%]
+tests/invariants/test_llm_purpose_gate_refuses_unlisted.py .......       [ 28%]
+tests/invariants/test_llm_masking_tier_enforced.py .....                 [ 30%]
+tests/invariants/test_llm_crossing_receipt_metering.py ....              [ 31%]
+tests/invariants/test_llm_egress_allowlist_provider_scoped.py .....      [ 33%]
+tests/invariants/test_registry_facts_emergent_universal_listed.py .....  [ 35%]
+tests/invariants/test_solva_reasoning_stages.py ......                   [ 38%]
+tests/invariants/test_thinklab_reasoning_wire.py ...                     [ 39%]
+tests/invariants/test_w5_cp4_backend_endpoints.py .........              [ 42%]
+tests/invariants/test_chokepoint_registers_all_crossings.py ............ [ 47%]
+..                                                                       [ 48%]
+tests/invariants/test_northena_admit_gate_converge_ledger.py ........... [ 52%]
+.......                                                                  [ 55%]
+tests/invariants/test_northena_ledger_retention.py ..                    [ 56%]
+tests/invariants/test_admit_refuses_undeclared_actor.py ......           [ 58%]
+tests/invariants/test_compute_seam_no_unledgered_exec.py ...             [ 60%]
+tests/invariants/test_compute_seam_artifact_hash_verified.py ...         [ 61%]
+tests/invariants/test_hardening_orchestrator.py .........                [ 64%]
+tests/invariants/test_connect_gpu_pipeline.py ...............            [ 70%]
+tests/invariants/test_connect_gpu_scope_S_or_M.py ..                     [ 71%]
+tests/invariants/test_connect_gpu_acceptance_wired.py ..........         [ 75%]
+tests/invariants/test_ip_allowlist_middleware.py ................        [ 82%]
+tests/invariants/test_estate_keys_and_connect_estate.py ............     [ 86%]
+tests/invariants/test_credentials_paste_parser.py ...................... [ 95%]
+                                                                         [ 95%]
+tests/invariants/test_record_matrix_thin_kernel.py ......                [ 98%]
+tests/invariants/test_task_identity_thin_kernel.py .....                 [100%]
+
+=================================== FAILURES ===================================
+__________________ test_admission_refusal_v0_contract_frozen ___________________
+
+    def test_admission_refusal_v0_contract_frozen():
+        """Live schema matches the on-disk canonical snapshot byte-for-byte."""
+        live = AdmissionRefusal_v0.model_json_schema()
+        stored = json.loads(SNAPSHOT_PATH.read_text(encoding="utf-8"))
+>       assert live == stored, (
+            f"AdmissionRefusal@v0 schema drift detected.\n"
+            f"Regenerate snapshot ONLY under an explicit owner ruling that "
+            f"acknowledges a governed field-shape change.\n"
+            f"Live schema keys: {sorted(live.get('properties', {}).keys())}\n"
+            f"Stored keys:      {sorted(stored.get('properties', {}).keys())}"
+        )
+E       AssertionError: AdmissionRefusal@v0 schema drift detected.
+E         Regenerate snapshot ONLY under an explicit owner ruling that acknowledges a governed field-shape change.
+E         Live schema keys: ['computed_at', 'off_menu_fact', 'outcome', 'reason', 'requested_output_form', 'trace_id', 'what_you_can_do']
+E         Stored keys:      ['computed_at', 'off_menu_fact', 'outcome', 'reason', 'requested_output_form', 'trace_id', 'what_you_can_do']
+E       assert {'additionalP...ted_at'], ...} == {'additionalP...ted_at'], ...}
+E         
+E         Omitting 5 identical items, use -vv to show
+E         Differing items:
+E         {'properties': {'outcome': {'const': 'refused', 'default': 'refused', 'description': 'Family discriminator. Same value...offerable'. Nullable so future non-form admission reasons can leave it null.", 'title': 'Requested Output Form'}, ...}} != {'properties': {'computed_at': {'description': 'ISO-8601 UTC. When the refusal envelope was constructed. Convention-an...e docstring 'Reason extension path'.", 'minLength': 1, 'pattern': '^[a-z][a-z_]*[a-z]$', 'title': 'Reason', ...}, ...}}
+E         Use -v to get more diff
+
+tests/invariants/test_admission_refusal_v0_contract_frozen.py:23: AssertionError
+________________ test_composed_conclusion_snapshot_parity_at_18 ________________
+
+    def test_composed_conclusion_snapshot_parity_at_18():
+        """Snapshot inventory bumped 17 → 18 at Phase 4b landing.
+    
+        Gate 19 of the Phase 4b roster. Complements the three parity tests
+        in `test_frozen_contract_snapshot_parity.py` by asserting the
+        absolute count invariant at Phase 4b close.
+    
+        Phase 5 Stage B (2026-07-04): parity count bumped 18 → 20 (added
+        NorthenaLedgerRow_v1 + AsyncDeliveryAccepted_v0). This test's
+        assertion updated to 20 to remain compatible; the underlying
+        Phase-4b-composed_conclusion snapshot is still present.
+    
+        Phase 7 Stage B-1 (2026-07-04): parity count bumped 22 → 26 (added
+        4 wizard contracts: WizardCommitState_v0 + OperatorTurn_v0 +
+        AgentAssumption_v0 + CommittedValue_v0). Same additive pattern.
+    
+        Phase 9 Sub-stage 9.1 (2026-07-08): parity count bumped 26 → 28
+        (added PerceptionJob_v0 + PerceptionResult_v0 per Owner P9-E1 α +
+        P9-E4 α). Environment-boundary crossing → FREEZE prior. V1-G7
+        byte-identity assertion set expands additively; the 26 pre-existing
+        remain byte-identical.
+    
+        Artifact Store (2026-07-08): parity count bumped 28 → 29 (added
+        OuterGateReceipt_v1 per Owner AS-E1 α). v0 remains byte-identical.
+        """
+        invariants_dir = Path(__file__).parent
+        snapshots = list(invariants_dir.glob("*.contract_snapshot.json"))
+>       assert len(snapshots) == 36, (
+            f"Post-Memory-Service-Stage-B snapshot count must be exactly 34 "
+            f"(32 pre-Memory + memory_plane_v0 + memory_write_back_v0 additive). "
+            f"Actual: {len(snapshots)}.\nSnapshots: {sorted(p.name for p in snapshots)}"
+        )
+E       AssertionError: Post-Memory-Service-Stage-B snapshot count must be exactly 34 (32 pre-Memory + memory_plane_v0 + memory_write_back_v0 additive). Actual: 37.
+E         Snapshots: ['actor_declaration_v0.contract_snapshot.json', 'admission_refusal.contract_snapshot.json', 'agent_assumption.contract_snapshot.json', 'async_delivery_accepted.contract_snapshot.json', 'async_delivery_accepted_v1.contract_snapshot.json', 'callable_skill_provisioning_v0.contract_snapshot.json', 'commission_verdict.contract_snapshot.json', 'committed_value.contract_snapshot.json', 'composed_conclusion.contract_snapshot.json', 'cumulative_disclosure_ledger.contract_snapshot.json', 'extraction_params.contract_snapshot.json', 'feasibility_result.contract_snapshot.json', 'five_rings.contract_snapshot.json', 'knowledge_artifact_v0.contract_snapshot.json', 'lift_manifest_envelope.contract_snapshot.json', 'memory_plane_v0.contract_snapshot.json', 'memory_write_back_v0.contract_snapshot.json', 'mtafiti_registry_record.contract_snapshot.json', 'northena_ledger_row.contract_snapshot.json', 'northena_ledger_v1.contract_snapshot.json', 'objective_request.contract_snapshot.json', 'objective_request_v2.contract_snapshot.json', 'operator_turn.contract_snapshot.json', 'outer_gate_receipt.contract_snapshot.json', 'outer_gate_receipt_v1.contract_snapshot.json', 'perception_job_v0.contract_snapshot.json', 'perception_result_v0.contract_snapshot.json', 'qualification_matrix.contract_snapshot.json', 'quote_envelope.contract_snapshot.json', 'service_1_refusal.contract_snapshot.json', 'signal_ring.contract_snapshot.json', 'targeta_mining_plan.contract_snapshot.json', 'trace_lens_envelope.contract_snapshot.json', 'trust_receipt_v1.contract_snapshot.json', 'use_data_wizard_session.contract_snapshot.json', 'v2_refusal_envelope.contract_snapshot.json', 'wizard_commit_state.contract_snapshot.json']
+E       assert 37 == 36
+E        +  where 37 = len([PosixPath('/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/committed_value.contract_snapshot.../app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/memory_plane_v0.contract_snapshot.json'), ...])
+
+tests/invariants/test_composed_conclusion_v0_contract_frozen.py:61: AssertionError
+___________________ test_every_frozen_contract_has_snapshot ____________________
+
+    def test_every_frozen_contract_has_snapshot():
+        """Every declared-frozen contract source is mapped and its snapshot exists on disk."""
+        disk_sources = _enumerate_contract_sources()
+        mapped_sources = set(CONTRACT_TO_SNAPSHOT.keys())
+        unmapped = disk_sources - mapped_sources
+>       assert not unmapped, (
+            f"Parity FAIL — contract source(s) on disk not mapped to a canonical "
+            f".contract_snapshot.json: {sorted(unmapped)}. Add source→snapshot "
+            f"entry to CONTRACT_TO_SNAPSHOT and create the snapshot, or excise the "
+            f"source if it is not a frozen contract."
+        )
+E       AssertionError: Parity FAIL — contract source(s) on disk not mapped to a canonical .contract_snapshot.json: ['actor_declaration.py', 'record_matrix.py', 'task_identity.py']. Add source→snapshot entry to CONTRACT_TO_SNAPSHOT and create the snapshot, or excise the source if it is not a frozen contract.
+E       assert not {'actor_declaration.py', 'record_matrix.py', 'task_identity.py'}
+
+tests/invariants/test_frozen_contract_snapshot_parity.py:101: AssertionError
+____________________ test_every_snapshot_maps_to_a_contract ____________________
+
+    def test_every_snapshot_maps_to_a_contract():
+        """Every `.contract_snapshot.json` on disk is claimed by exactly one contract source."""
+        disk_snapshots = _enumerate_canonical_snapshots()
+        mapped_snapshots = set(CONTRACT_TO_SNAPSHOT.values())
+        unclaimed = disk_snapshots - mapped_snapshots
+>       assert not unclaimed, (
+            f"Parity FAIL — canonical snapshot(s) on disk not claimed by any contract "
+            f"source in CONTRACT_TO_SNAPSHOT: {sorted(unclaimed)}. Either add the "
+            f"claiming source or remove the orphan snapshot."
+        )
+E       AssertionError: Parity FAIL — canonical snapshot(s) on disk not claimed by any contract source in CONTRACT_TO_SNAPSHOT: ['actor_declaration_v0.contract_snapshot.json']. Either add the claiming source or remove the orphan snapshot.
+E       assert not {'actor_declaration_v0.contract_snapshot.json'}
+
+tests/invariants/test_frozen_contract_snapshot_parity.py:125: AssertionError
+________________________ test_five_rings_schema_frozen _________________________
+
+    def test_five_rings_schema_frozen():
+        expected = _read(SNAPSHOT_DIR / "five_rings.contract_snapshot.json")
+        actual = NormalizedUnit.model_json_schema()
+>       assert _canonical(actual) == _canonical(expected), _diff_message(
+            "five_rings (NormalizedUnit)", actual, expected
+        )
+E       AssertionError: 
+E         
+E         === CONTRACT DRIFT — five_rings (NormalizedUnit) ===
+E         The frozen snapshot at
+E           /app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants
+E         no longer matches the
+E         live schema. If the change is intentional, re-bless the snapshot
+E         in code review; otherwise revert the model edit.
+E         
+E         EXPECTED (first 400 chars):
+E         {
+E           "$defs": {
+E             "DefensibilityClass": {
+E               "description": "Spec \u00a75.6: `fact | utterance | non_factual`.\n\n*fact*        \u2014 the unit asserts something the matrix permits as fact.\n*utterance*   \u2014 someone said it; the system stands by the saying, not\n                the substance.\n*non_factual* \u2014 opinion / interpretation / rhetorical content.",
+E               "enum": [
+E                 "fa
+E         
+E         ACTUAL   (first 400 chars):
+E         {
+E           "$defs": {
+E             "DefensibilityClass": {
+E               "description": "Spec \u00a75.6: `fact | utterance | non_factual`.\n\n*fact*        \u2014 the unit asserts something the matrix permits as fact.\n*utterance*   \u2014 someone said it; the system stands by the saying, not\n                the substance.\n*non_factual* \u2014 opinion / interpretation / rhetorical content.",
+E               "enum": [
+E                 "fa
+E         
+E       assert '{\n  "$defs"...: "object"\n}' == '{\n  "$defs"...: "object"\n}'
+E         
+E         Skipping 3836 identical leading characters in diff, use -v to show
+E         +          "additionalProperties": true,
+E         -          "description": "Modality-native locator. Examples: text \u2192 {page:int, span:[int,int]}; audio/video \u2192 {t_start_ms:int, t_end_ms:int}; image \u2192 {bbox:[x,y,w,h]}.",
+E         +           "description": "Modality-native locator. Examples: text \u2192 {page:int, span:[int,int]}; audio/video \u2192 {t_start_ms:int, t_end_ms:int}; image \u2192 {bbox:[x,y,w,h]}.",
+E         ? +
+E                     "title": "Locator",...
+E         
+E         ...Full output truncated (236 lines hidden), use '-vv' to show
+
+tests/invariants/test_invariant_contract_snapshots.py:65: AssertionError
+_____________________ test_objective_request_schema_frozen _____________________
+
+    def test_objective_request_schema_frozen():
+        expected = _read(SNAPSHOT_DIR / "objective_request.contract_snapshot.json")
+        actual = ObjectiveRequest.model_json_schema()
+>       assert _canonical(actual) == _canonical(expected), _diff_message(
+            "objective_request (ObjectiveRequest)", actual, expected
+        )
+E       AssertionError: 
+E         
+E         === CONTRACT DRIFT — objective_request (ObjectiveRequest) ===
+E         The frozen snapshot at
+E           /app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants
+E         no longer matches the
+E         live schema. If the change is intentional, re-bless the snapshot
+E         in code review; otherwise revert the model edit.
+E         
+E         EXPECTED (first 400 chars):
+E         {
+E           "$defs": {
+E             "DefensibilityClass": {
+E               "description": "Spec \u00a75.6: `fact | utterance | non_factual`.\n\n*fact*        \u2014 the unit asserts something the matrix permits as fact.\n*utterance*   \u2014 someone said it; the system stands by the saying, not\n                the substance.\n*non_factual* \u2014 opinion / interpretation / rhetorical content.",
+E               "enum": [
+E                 "fa
+E         
+E         ACTUAL   (first 400 chars):
+E         {
+E           "$defs": {
+E             "DefensibilityClass": {
+E               "description": "Spec \u00a75.6: `fact | utterance | non_factual`.\n\n*fact*        \u2014 the unit asserts something the matrix permits as fact.\n*utterance*   \u2014 someone said it; the system stands by the saying, not\n                the substance.\n*non_factual* \u2014 opinion / interpretation / rhetorical content.",
+E               "enum": [
+E                 "fa
+E         
+E       assert '{\n  "$defs"...: "object"\n}' == '{\n  "$defs"...: "object"\n}'
+E         
+E         Skipping 1821 identical leading characters in diff, use -v to show
+E         +          "additionalProperties": true,
+E         -          "title": "Filters",
+E         +           "title": "Filters",
+E         ? +
+E                     "type": "object"...
+E         
+E         ...Full output truncated (98 lines hidden), use '-vv' to show
+
+tests/invariants/test_invariant_contract_snapshots.py:73: AssertionError
+__________________ test_use_data_wizard_session_schema_frozen __________________
+
+    def test_use_data_wizard_session_schema_frozen():
+        expected = _read(SNAPSHOT_DIR / "use_data_wizard_session.contract_snapshot.json")
+        actual = UseDataWizardSession.model_json_schema()
+>       assert _canonical(actual) == _canonical(expected), _diff_message(
+            "use_data_wizard_session (UseDataWizardSession)", actual, expected
+        )
+E       AssertionError: 
+E         
+E         === CONTRACT DRIFT — use_data_wizard_session (UseDataWizardSession) ===
+E         The frozen snapshot at
+E           /app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants
+E         no longer matches the
+E         live schema. If the change is intentional, re-bless the snapshot
+E         in code review; otherwise revert the model edit.
+E         
+E         EXPECTED (first 400 chars):
+E         {
+E           "$defs": {
+E             "CommissionCard": {
+E               "additionalProperties": false,
+E               "description": "Canon \u00a76.3 Commission card + Canon \u00a76.4 verdict entry point.\n\nEvery governed value confirmed explicitly here before commit. On\ncommit, the card produces a CommissionVerdict (sibling contract).",
+E               "properties": {
+E                 "committed_at_iso": {
+E                   "anyOf": [
+E                     {
+E                
+E         
+E         ACTUAL   (first 400 chars):
+E         {
+E           "$defs": {
+E             "CommissionCard": {
+E               "additionalProperties": false,
+E               "description": "Canon \u00a76.3 Commission card + Canon \u00a76.4 verdict entry point.\n\nEvery governed value confirmed explicitly here before commit. On\ncommit, the card produces a CommissionVerdict (sibling contract).",
+E               "properties": {
+E                 "committed_at_iso": {
+E                   "anyOf": [
+E                     {
+E                
+E         
+E       assert '{\n  "$defs"...: "object"\n}' == '{\n  "$defs"...: "object"\n}'
+E         
+E         Skipping 6524 identical leading characters in diff, use -v to show
+E         -          "enum": [
+E         -             "Halts at ceiling. A halted run resumes only after you raise it or narrow the objective."
+E         -           ],
+E         -           "title": "Halt Note Verbatim",
+E         ? -...
+E         
+E         ...Full output truncated (227 lines hidden), use '-vv' to show
+
+tests/invariants/test_invariant_contract_snapshots.py:106: AssertionError
+____________________ test_commission_verdict_schema_frozen _____________________
+
+    def test_commission_verdict_schema_frozen():
+        expected = _read(SNAPSHOT_DIR / "commission_verdict.contract_snapshot.json")
+        actual = CommissionVerdict.model_json_schema()
+>       assert _canonical(actual) == _canonical(expected), _diff_message(
+            "commission_verdict (CommissionVerdict)", actual, expected
+        )
+E       AssertionError: 
+E         
+E         === CONTRACT DRIFT — commission_verdict (CommissionVerdict) ===
+E         The frozen snapshot at
+E           /app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants
+E         no longer matches the
+E         live schema. If the change is intentional, re-bless the snapshot
+E         in code review; otherwise revert the model edit.
+E         
+E         EXPECTED (first 400 chars):
+E         {
+E           "$defs": {
+E             "AutoRunCeilingCheck": {
+E               "additionalProperties": false,
+E               "description": "Canon \u00a74.2 auto-run ceiling \u2014 the seventh check embedded in verdict.\n\nValue at Owner ruling 2026-07-31 initial: $1,000 USD. Changeable ONLY\nvia Change-a-Rule ceremony (Canon \u00a77.5); direct-write refused server-side.",
+E               "properties": {
+E                 "at_or_under": {
+E                   "desc
+E         
+E         ACTUAL   (first 400 chars):
+E         {
+E           "$defs": {
+E             "AutoRunCeilingCheck": {
+E               "additionalProperties": false,
+E               "description": "Canon \u00a74.2 auto-run ceiling \u2014 the seventh check embedded in verdict.\n\nValue at Owner ruling 2026-07-31 initial: $1,000 USD. Changeable ONLY\nvia Change-a-Rule ceremony (Canon \u00a77.5); direct-write refused server-side.",
+E               "properties": {
+E                 "at_or_under": {
+E                   "desc
+E         
+E       assert '{\n  "$defs"...: "object"\n}' == '{\n  "$defs"...: "object"\n}'
+E         
+E         Skipping 8512 identical leading characters in diff, use -v to show
+E           ",
+E         -       "enum": [
+E         -         "Every commission verdict lands in the record the DPO reads."
+E         -       ],
+E                 "title": "Verbatim Carrier",...
+E         
+E         ...Full output truncated (20 lines hidden), use '-vv' to show
+
+tests/invariants/test_invariant_contract_snapshots.py:114: AssertionError
+__________________ test_objective_request_v2_contract_frozen ___________________
+
+    def test_objective_request_v2_contract_frozen():
+        """`ObjectiveRequest_v2.model_json_schema()` matches byte-frozen snapshot."""
+        expected = json.loads(SNAP.read_text())
+        actual = ObjectiveRequest_v2.model_json_schema()
+>       assert _canonical(actual) == _canonical(expected), (
+            "ObjectiveRequest_v2 schema drift. Any additive change requires a "
+            "new contract file (v3) OR an explicit re-snapshot bless of this "
+            "one — never a silent snapshot rewrite. See module HAZARD-STOP-NOTES "
+            "for owner-owned type-narrowing points."
+        )
+E       AssertionError: ObjectiveRequest_v2 schema drift. Any additive change requires a new contract file (v3) OR an explicit re-snapshot bless of this one — never a silent snapshot rewrite. See module HAZARD-STOP-NOTES for owner-owned type-narrowing points.
+E       assert '{\n  "$defs"...: "object"\n}' == '{\n  "$defs"...: "object"\n}'
+E         
+E         Skipping 2545 identical leading characters in diff, use -v to show
+E         +          "additionalProperties": true,
+E         -          "title": "Availability Snapshot",
+E         +           "title": "Availability Snapshot",
+E         ? +
+E                     "type": "object"...
+E         
+E         ...Full output truncated (285 lines hidden), use '-vv' to show
+
+tests/invariants/test_objective_request_v2_contract_frozen.py:30: AssertionError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_admission_refusal_v0_contract_frozen.py::test_admission_refusal_v0_contract_frozen
+FAILED tests/invariants/test_composed_conclusion_v0_contract_frozen.py::test_composed_conclusion_snapshot_parity_at_18
+FAILED tests/invariants/test_frozen_contract_snapshot_parity.py::test_every_frozen_contract_has_snapshot
+FAILED tests/invariants/test_frozen_contract_snapshot_parity.py::test_every_snapshot_maps_to_a_contract
+FAILED tests/invariants/test_invariant_contract_snapshots.py::test_five_rings_schema_frozen
+FAILED tests/invariants/test_invariant_contract_snapshots.py::test_objective_request_schema_frozen
+FAILED tests/invariants/test_invariant_contract_snapshots.py::test_use_data_wizard_session_schema_frozen
+FAILED tests/invariants/test_invariant_contract_snapshots.py::test_commission_verdict_schema_frozen
+FAILED tests/invariants/test_objective_request_v2_contract_frozen.py::test_objective_request_v2_contract_frozen
+======================== 9 failed, 241 passed in 4.65s =========================

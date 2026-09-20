@@ -1,0 +1,10 @@
+=== On-VM dd write (MB/s) — /mnt/volume_dkgjrkx (5.9T volume) ===
+1073741824 bytes (1.1 GB, 1.0 GiB) copied, 1.65148 s, 650 MB/s
+
+=== On-VM dd write (MB/s) — / (root disk) ===
+1073741824 bytes (1.1 GB, 1.0 GiB) copied, 2.7983 s, 384 MB/s
+
+=== Network throughput pod↔VM (scp of 500MB /dev/urandom) ===
+--- pod→VM (upload) ---
+pod→VM 500 MB in 78495 ms · 6.4 MB/s
+--- VM→pod (download) ---

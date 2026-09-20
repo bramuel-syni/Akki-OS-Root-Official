@@ -1,0 +1,12 @@
+E       ModuleNotFoundError: No module named 'services.dap.m3_block_completion'
+
+tests/invariants/test_wm3_sw12_m3_block_completion.py:119: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wm3_sw12_m3_block_completion.py::test_sw12_module_fabric
+FAILED tests/invariants/test_wm3_sw12_m3_block_completion.py::test_sw12_eleven_m3_sub_waves
+FAILED tests/invariants/test_wm3_sw12_m3_block_completion.py::test_sw12_every_close_note_on_disk
+FAILED tests/invariants/test_wm3_sw12_m3_block_completion.py::test_sw12_every_pending_override_marker_preserved
+FAILED tests/invariants/test_wm3_sw12_m3_block_completion.py::test_sw12_s24_canon_anchor_with_deferred_marker
+FAILED tests/invariants/test_wm3_sw12_m3_block_completion.py::test_sw12_ratchet_history_records_every_sub_wave
+FAILED tests/invariants/test_wm3_sw12_m3_block_completion.py::test_sw12_m3_block_ratchet_floor_at_or_above_close_target
+7 failed in 0.65s

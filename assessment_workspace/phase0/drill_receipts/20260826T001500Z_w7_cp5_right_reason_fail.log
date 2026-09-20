@@ -1,0 +1,40 @@
+/root/.venv/lib/python3.11/site-packages/pytest_asyncio/plugin.py:208: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.3.3, pluggy-1.6.0 -- /root/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: xdist-3.8.0, anyio-4.14.2, asyncio-0.24.0
+asyncio: mode=Mode.AUTO, default_loop_scope=None
+collecting ... collected 9 items
+
+tests/invariants/test_w7_cp5_baseline_line_and_recheck.py::test_baseline_line_contract_fields PASSED [ 11%]
+tests/invariants/test_w7_cp5_baseline_line_and_recheck.py::test_baseline_line_id_pattern_enforced PASSED [ 22%]
+tests/invariants/test_w7_cp5_baseline_line_and_recheck.py::test_record_baseline_line_attests_starting_model FAILED [ 33%]
+tests/invariants/test_w7_cp5_baseline_line_and_recheck.py::test_record_baseline_line_writes_json_to_disk FAILED [ 44%]
+tests/invariants/test_w7_cp5_baseline_line_and_recheck.py::test_ceremony_stamps_re_check_due_at_on_admission FAILED [ 55%]
+tests/invariants/test_w7_cp5_baseline_line_and_recheck.py::test_recheck_status_returns_state_for_registered_model FAILED [ 66%]
+tests/invariants/test_w7_cp5_baseline_line_and_recheck.py::test_recheck_status_honest_gap_for_unregistered FAILED [ 77%]
+tests/invariants/test_w7_cp5_baseline_line_and_recheck.py::test_recheck_status_honest_gap_for_model_without_re_check_field FAILED [ 88%]
+tests/invariants/test_baseline_line_v0_contract_frozen.py::test_baseline_line_v0_contract_frozen FAILED [100%]
+
+=================================== FAILURES ===================================
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_w7_cp5_baseline_line_and_recheck.py:50: ModuleNotFoundError: No module named 'services.baseline_line'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_w7_cp5_baseline_line_and_recheck.py:78: ModuleNotFoundError: No module named 'services.baseline_line'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_w7_cp5_baseline_line_and_recheck.py:143: AssertionError: CA1-011 W7 half: admission-registered models must carry re_check_due_at at register time (90-day default).
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_w7_cp5_baseline_line_and_recheck.py:153: ModuleNotFoundError: No module named 'services.model_recheck'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_w7_cp5_baseline_line_and_recheck.py:197: ModuleNotFoundError: No module named 'services.model_recheck'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_w7_cp5_baseline_line_and_recheck.py:215: ModuleNotFoundError: No module named 'services.model_recheck'
+/usr/local/lib/python3.11/pathlib.py:1044: FileNotFoundError: [Errno 2] No such file or directory: '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/baseline_line_v0.contract_snapshot.json'
+=========================== short test summary info ============================
+FAILED tests/invariants/test_w7_cp5_baseline_line_and_recheck.py::test_record_baseline_line_attests_starting_model
+FAILED tests/invariants/test_w7_cp5_baseline_line_and_recheck.py::test_record_baseline_line_writes_json_to_disk
+FAILED tests/invariants/test_w7_cp5_baseline_line_and_recheck.py::test_ceremony_stamps_re_check_due_at_on_admission
+FAILED tests/invariants/test_w7_cp5_baseline_line_and_recheck.py::test_recheck_status_returns_state_for_registered_model
+FAILED tests/invariants/test_w7_cp5_baseline_line_and_recheck.py::test_recheck_status_honest_gap_for_unregistered
+FAILED tests/invariants/test_w7_cp5_baseline_line_and_recheck.py::test_recheck_status_honest_gap_for_model_without_re_check_field
+FAILED tests/invariants/test_baseline_line_v0_contract_frozen.py::test_baseline_line_v0_contract_frozen
+========================= 7 failed, 2 passed in 0.13s ==========================

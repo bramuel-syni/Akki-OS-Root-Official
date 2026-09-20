@@ -1,0 +1,28 @@
+FFFFFFFFFFFF                                                             [100%]
+=================================== FAILURES ===================================
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError: No module named 'services.audio_plane_v1.human_validation'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wm6_5_2_human_validation_loop.py:81: ModuleNotFoundError: No module named 'services.audio_plane_v1.human_validation'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wm6_5_2_human_validation_loop.py:97: ModuleNotFoundError: No module named 'services.audio_plane_v1.human_validation'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wm6_5_2_human_validation_loop.py:125: ModuleNotFoundError: No module named 'services.audio_plane_v1.human_validation'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wm6_5_2_human_validation_loop.py:148: ModuleNotFoundError: No module named 'services.audio_plane_v1.human_validation'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wm6_5_2_human_validation_loop.py:168: ModuleNotFoundError: No module named 'services.audio_plane_v1.human_validation'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wm6_5_2_human_validation_loop.py:188: ModuleNotFoundError: No module named 'services.audio_plane_v1.human_validation'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wm6_5_2_human_validation_loop.py:226: ModuleNotFoundError: No module named 'services.audio_plane_v1.human_validation'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wm6_5_2_human_validation_loop.py:258: ModuleNotFoundError: No module named 'services.audio_plane_v1.human_validation'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wm6_5_2_human_validation_loop.py:276: ModuleNotFoundError: No module named 'services.audio_plane_v1.human_validation'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wm6_5_2_human_validation_loop.py:309: ModuleNotFoundError: No module named 'services.audio_plane_v1.human_validation'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wm6_5_2_human_validation_loop.py:333: ModuleNotFoundError: No module named 'services.audio_plane_v1.human_validation'
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wm6_5_2_human_validation_loop.py::test_wm6_5_2_module_fabric
+FAILED tests/invariants/test_wm6_5_2_human_validation_loop.py::test_wm6_5_2_closed_set_constants_verbatim
+FAILED tests/invariants/test_wm6_5_2_human_validation_loop.py::test_wm6_5_2_sample_is_deterministic_on_same_seed
+FAILED tests/invariants/test_wm6_5_2_human_validation_loop.py::test_wm6_5_2_sample_differs_on_different_seeds
+FAILED tests/invariants/test_wm6_5_2_human_validation_loop.py::test_wm6_5_2_sample_refuses_invalid_size
+FAILED tests/invariants/test_wm6_5_2_human_validation_loop.py::test_wm6_5_2_sample_refuses_size_exceeding_stratum
+FAILED tests/invariants/test_wm6_5_2_human_validation_loop.py::test_wm6_5_2_human_validation_task_shape_and_closed_set
+FAILED tests/invariants/test_wm6_5_2_human_validation_loop.py::test_wm6_5_2_human_validation_verdict_shape_and_closed_set
+FAILED tests/invariants/test_wm6_5_2_human_validation_loop.py::test_wm6_5_2_derive_task_id_deterministic_from_stratum
+FAILED tests/invariants/test_wm6_5_2_human_validation_loop.py::test_wm6_5_2_bind_verdict_to_stratum_produces_validated_stratum
+FAILED tests/invariants/test_wm6_5_2_human_validation_loop.py::test_wm6_5_2_bind_refuses_on_task_id_mismatch
+FAILED tests/invariants/test_wm6_5_2_human_validation_loop.py::test_wm6_5_2_validated_stratum_preserves_candidate_immutability
+12 failed in 0.64s

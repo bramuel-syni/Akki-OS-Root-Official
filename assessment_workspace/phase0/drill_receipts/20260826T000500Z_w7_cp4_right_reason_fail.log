@@ -1,0 +1,71 @@
+/root/.venv/lib/python3.11/site-packages/pytest_asyncio/plugin.py:208: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.3.3, pluggy-1.6.0 -- /root/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: xdist-3.8.0, anyio-4.14.2, asyncio-0.24.0
+asyncio: mode=Mode.AUTO, default_loop_scope=None
+collecting ... collected 10 items
+
+tests/invariants/test_w7_cp4_model_admission_ceremony.py::test_moac_contract_has_six_criteria_fields PASSED [ 10%]
+tests/invariants/test_w7_cp4_model_admission_ceremony.py::test_moac_evidence_source_kind_refuses_curated_benchmark PASSED [ 20%]
+tests/invariants/test_w7_cp4_model_admission_ceremony.py::test_run_admission_accepts_valid_card_and_bumps_registry FAILED [ 30%]
+tests/invariants/test_w7_cp4_model_admission_ceremony.py::test_run_admission_refuses_unresolved_lineage FAILED [ 40%]
+tests/invariants/test_w7_cp4_model_admission_ceremony.py::test_run_admission_refuses_when_floor_missed FAILED [ 50%]
+tests/invariants/test_w7_cp4_model_admission_ceremony.py::test_run_admission_estate_sample_requires_named_purpose FAILED [ 60%]
+tests/invariants/test_w7_cp4_model_admission_ceremony.py::test_admission_writes_record_to_phase0 FAILED [ 70%]
+tests/invariants/test_w7_cp4_model_admission_ceremony.py::test_admission_record_never_carries_credentials FAILED [ 80%]
+tests/invariants/test_w7_cp4_model_admission_ceremony.py::test_admission_outcome_names_ca1_011_watch_seam FAILED [ 90%]
+tests/invariants/test_model_acceptance_card_v0_contract_frozen.py::test_model_acceptance_card_v0_contract_frozen FAILED [100%]
+
+=================================== FAILURES ===================================
+___________ test_run_admission_accepts_valid_card_and_bumps_registry ___________
+tests/invariants/test_w7_cp4_model_admission_ceremony.py:95: in test_run_admission_accepts_valid_card_and_bumps_registry
+    from services.model_admission.ceremony import run_admission
+E   ModuleNotFoundError: No module named 'services.model_admission'
+________________ test_run_admission_refuses_unresolved_lineage _________________
+tests/invariants/test_w7_cp4_model_admission_ceremony.py:118: in test_run_admission_refuses_unresolved_lineage
+    from services.model_admission.ceremony import run_admission
+E   ModuleNotFoundError: No module named 'services.model_admission'
+_________________ test_run_admission_refuses_when_floor_missed _________________
+tests/invariants/test_w7_cp4_model_admission_ceremony.py:144: in test_run_admission_refuses_when_floor_missed
+    from services.model_admission.ceremony import run_admission
+E   ModuleNotFoundError: No module named 'services.model_admission'
+___________ test_run_admission_estate_sample_requires_named_purpose ____________
+tests/invariants/test_w7_cp4_model_admission_ceremony.py:175: in test_run_admission_estate_sample_requires_named_purpose
+    from services.model_admission.ceremony import run_admission
+E   ModuleNotFoundError: No module named 'services.model_admission'
+____________________ test_admission_writes_record_to_phase0 ____________________
+tests/invariants/test_w7_cp4_model_admission_ceremony.py:199: in test_admission_writes_record_to_phase0
+    from services.model_admission.ceremony import run_admission
+E   ModuleNotFoundError: No module named 'services.model_admission'
+_______________ test_admission_record_never_carries_credentials ________________
+tests/invariants/test_w7_cp4_model_admission_ceremony.py:226: in test_admission_record_never_carries_credentials
+    from services.model_admission.ceremony import run_admission
+E   ModuleNotFoundError: No module named 'services.model_admission'
+_______________ test_admission_outcome_names_ca1_011_watch_seam ________________
+tests/invariants/test_w7_cp4_model_admission_ceremony.py:251: in test_admission_outcome_names_ca1_011_watch_seam
+    from services.model_admission.ceremony import run_admission
+E   ModuleNotFoundError: No module named 'services.model_admission'
+________________ test_model_acceptance_card_v0_contract_frozen _________________
+tests/invariants/test_model_acceptance_card_v0_contract_frozen.py:23: in test_model_acceptance_card_v0_contract_frozen
+    stored = json.loads(SNAPSHOT_PATH.read_text(encoding="utf-8"))
+/usr/local/lib/python3.11/pathlib.py:1058: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+/usr/local/lib/python3.11/pathlib.py:1044: in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+E   FileNotFoundError: [Errno 2] No such file or directory: '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/model_acceptance_card_v0.contract_snapshot.json'
+=========================== short test summary info ============================
+FAILED tests/invariants/test_w7_cp4_model_admission_ceremony.py::test_run_admission_accepts_valid_card_and_bumps_registry
+FAILED tests/invariants/test_w7_cp4_model_admission_ceremony.py::test_run_admission_refuses_unresolved_lineage
+FAILED tests/invariants/test_w7_cp4_model_admission_ceremony.py::test_run_admission_refuses_when_floor_missed
+FAILED tests/invariants/test_w7_cp4_model_admission_ceremony.py::test_run_admission_estate_sample_requires_named_purpose
+FAILED tests/invariants/test_w7_cp4_model_admission_ceremony.py::test_admission_writes_record_to_phase0
+FAILED tests/invariants/test_w7_cp4_model_admission_ceremony.py::test_admission_record_never_carries_credentials
+FAILED tests/invariants/test_w7_cp4_model_admission_ceremony.py::test_admission_outcome_names_ca1_011_watch_seam
+FAILED tests/invariants/test_model_acceptance_card_v0_contract_frozen.py::test_model_acceptance_card_v0_contract_frozen
+========================= 8 failed, 2 passed in 0.16s ==========================

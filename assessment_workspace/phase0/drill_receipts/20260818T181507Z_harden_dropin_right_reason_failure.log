@@ -1,0 +1,45 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-9.1.1, pluggy-1.6.0 -- /root/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: xdist-3.8.0, anyio-4.14.2, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 3 items
+
+backend/tests/invariants/test_harden_sh_defeats_include_precedence.py::test_harden_sh_writes_dropin_config_before_50_cloud_init FAILED [ 33%]
+backend/tests/invariants/test_harden_sh_defeats_include_precedence.py::test_harden_sh_dropin_carries_three_pw_off_directives FAILED [ 66%]
+backend/tests/invariants/test_harden_sh_defeats_include_precedence.py::test_harden_sh_still_locks_target_user_and_reloads_sshd PASSED [100%]
+
+=================================== FAILURES ===================================
+___________ test_harden_sh_writes_dropin_config_before_50_cloud_init ___________
+
+    def test_harden_sh_writes_dropin_config_before_50_cloud_init() -> None:
+        """harden.sh must write a sshd_config.d dropin whose sort key < '50-'."""
+        body = HARDEN_SH.read_text()
+        # Must reference the sshd_config.d directory
+>       assert "/etc/ssh/sshd_config.d/" in body, (
+            "harden.sh must acknowledge sshd_config.d — it is the Ubuntu 24.04 shape."
+        )
+E       AssertionError: harden.sh must acknowledge sshd_config.d — it is the Ubuntu 24.04 shape.
+E       assert '/etc/ssh/sshd_config.d/' in '#!/usr/bin/env bash\n# harden.sh — OPTIONAL Phase-0 hardening module.\n#\n# Runs ONLY if AKKI_HARDENING_MODE=perform is set on the VM.\n# Designed for both FL-P2-04 outcomes:\n#   - Owner rules hardening to us  → invoked via `AKKI_HARDENING_MODE=perform bash acceptance.sh`.\n#   - Owner rules hardening to owner-side hands → this script is never invoked;\n#     acceptance.sh runs in verify-only mode; owner hardens externally.\n#\n# Governance:\n#   - Idempotent: safe to re-run; every action checks state first.\n#   - Fail-closed: exits non-zero on the first check that cannot be satisfied.\n#     Downstream acceptance.sh verification catches any post-hardening drift.\n#   - Never runs on-VM without an SSH key already installed in the target user\'s\n#     authorized_keys (would lock out administrators).\n#   - Never in scope: SKU selection, HSS provisioning — those are Order §6\n#     bindings frozen at BUILD_STRATEGY.md and phase0/commissioning_checklist.md.\n#\n# Actions (in fail-closed order):\n#   1. Verify SSH_AUTHORIZED_KEY was previously installed under target user\n#      (otherwise refuse — hardening would strand admin access).\n#   2. Disable PasswordAuthentication in ss...wd -l "${HARDEN_TARGET_USER}" >>"${LOG}" 2>&1; then\n            log "bootstrap.credentials: ${HARDEN_TARGET_USER} locked (was: hashed password)."\n        else\n            log "FAIL: passwd -l ${HARDEN_TARGET_USER} failed."\n            exit 12\n        fi\n    fi\nelse\n    log "WARN: no shadow entry for ${HARDEN_TARGET_USER} — nothing to retire."\nfi\n\n# --------------------------------------------------------------------\n# 6. Emit hardening receipt for downstream ledger reading\n# --------------------------------------------------------------------\n\nRECEIPT_FILE=/var/log/akki_phase0_hardening_receipt.json\ncat > "${RECEIPT_FILE}" <<JSON\n{\n  "hardening_ts_utc": "$(date -u +%FT%TZ)",\n  "target_user": "${HARDEN_TARGET_USER}",\n  "authorized_keys_count": ${KEY_COUNT},\n  "sshd_password_auth": "disabled",\n  "sshd_challenge_response": "disabled",\n  "sshd_reload_ok": true,\n  "bootstrap_credentials_retired": true,\n  "sshd_config_backup": "${SSHD_CFG}.pre_akki",\n  "log_path": "${LOG}"\n}\nJSON\nlog "hardening.receipt: ${RECEIPT_FILE}"\n\nlog "=== HARDENING COMPLETE ==="\nlog "  NEXT: acceptance.sh verification step will re-confirm password-auth-dead externally."\nexit 0\n'
+
+backend/tests/invariants/test_harden_sh_defeats_include_precedence.py:37: AssertionError
+____________ test_harden_sh_dropin_carries_three_pw_off_directives _____________
+
+    def test_harden_sh_dropin_carries_three_pw_off_directives() -> None:
+        """The dropin must set all three password-adjacent auth methods to no."""
+        body = HARDEN_SH.read_text()
+        # Grep for the three-line block (permissive whitespace).
+        for directive in ["PasswordAuthentication no",
+                           "KbdInteractiveAuthentication no",
+                           "ChallengeResponseAuthentication no"]:
+>           assert directive in body, f"harden.sh dropin must include '{directive}'"
+E           AssertionError: harden.sh dropin must include 'KbdInteractiveAuthentication no'
+E           assert 'KbdInteractiveAuthentication no' in '#!/usr/bin/env bash\n# harden.sh — OPTIONAL Phase-0 hardening module.\n#\n# Runs ONLY if AKKI_HARDENING_MODE=perform is set on the VM.\n# Designed for both FL-P2-04 outcomes:\n#   - Owner rules hardening to us  → invoked via `AKKI_HARDENING_MODE=perform bash acceptance.sh`.\n#   - Owner rules hardening to owner-side hands → this script is never invoked;\n#     acceptance.sh runs in verify-only mode; owner hardens externally.\n#\n# Governance:\n#   - Idempotent: safe to re-run; every action checks state first.\n#   - Fail-closed: exits non-zero on the first check that cannot be satisfied.\n#     Downstream acceptance.sh verification catches any post-hardening drift.\n#   - Never runs on-VM without an SSH key already installed in the target user\'s\n#     authorized_keys (would lock out administrators).\n#   - Never in scope: SKU selection, HSS provisioning — those are Order §6\n#     bindings frozen at BUILD_STRATEGY.md and phase0/commissioning_checklist.md.\n#\n# Actions (in fail-closed order):\n#   1. Verify SSH_AUTHORIZED_KEY was previously installed under target user\n#      (otherwise refuse — hardening would strand admin access).\n#   2. Disable PasswordAuthentication in ss...wd -l "${HARDEN_TARGET_USER}" >>"${LOG}" 2>&1; then\n            log "bootstrap.credentials: ${HARDEN_TARGET_USER} locked (was: hashed password)."\n        else\n            log "FAIL: passwd -l ${HARDEN_TARGET_USER} failed."\n            exit 12\n        fi\n    fi\nelse\n    log "WARN: no shadow entry for ${HARDEN_TARGET_USER} — nothing to retire."\nfi\n\n# --------------------------------------------------------------------\n# 6. Emit hardening receipt for downstream ledger reading\n# --------------------------------------------------------------------\n\nRECEIPT_FILE=/var/log/akki_phase0_hardening_receipt.json\ncat > "${RECEIPT_FILE}" <<JSON\n{\n  "hardening_ts_utc": "$(date -u +%FT%TZ)",\n  "target_user": "${HARDEN_TARGET_USER}",\n  "authorized_keys_count": ${KEY_COUNT},\n  "sshd_password_auth": "disabled",\n  "sshd_challenge_response": "disabled",\n  "sshd_reload_ok": true,\n  "bootstrap_credentials_retired": true,\n  "sshd_config_backup": "${SSHD_CFG}.pre_akki",\n  "log_path": "${LOG}"\n}\nJSON\nlog "hardening.receipt: ${RECEIPT_FILE}"\n\nlog "=== HARDENING COMPLETE ==="\nlog "  NEXT: acceptance.sh verification step will re-confirm password-auth-dead externally."\nexit 0\n'
+
+backend/tests/invariants/test_harden_sh_defeats_include_precedence.py:54: AssertionError
+=========================== short test summary info ============================
+FAILED backend/tests/invariants/test_harden_sh_defeats_include_precedence.py::test_harden_sh_writes_dropin_config_before_50_cloud_init
+FAILED backend/tests/invariants/test_harden_sh_defeats_include_precedence.py::test_harden_sh_dropin_carries_three_pw_off_directives
+========================= 2 failed, 1 passed in 0.03s ==========================

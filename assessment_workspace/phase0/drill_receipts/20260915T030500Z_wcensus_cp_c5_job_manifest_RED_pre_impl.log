@@ -1,0 +1,25 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.4.2, pluggy-1.6.0
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: asyncio-1.4.0, xdist-3.8.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collected 6 items
+
+tests/invariants/test_wcensus_cp_c5_job_manifest.py FFFFFF               [100%]
+
+=================================== FAILURES ===================================
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError: No module named 'contracts.census_job_manifest'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wcensus_cp_c5_job_manifest.py:57: ModuleNotFoundError: No module named 'contracts.census_job_manifest'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wcensus_cp_c5_job_manifest.py:87: ModuleNotFoundError: No module named 'contracts.census_job_manifest'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wcensus_cp_c5_job_manifest.py:113: ModuleNotFoundError: No module named 'contracts.census_job_manifest'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wcensus_cp_c5_job_manifest.py:166: ModuleNotFoundError: No module named 'contracts.census_job_manifest'
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError: No module named 'contracts.census_job_manifest'
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wcensus_cp_c5_job_manifest.py::test_cp_c5_module_fabric
+FAILED tests/invariants/test_wcensus_cp_c5_job_manifest.py::test_cp_c5_job_manifest_frozen_five_carrier_shape
+FAILED tests/invariants/test_wcensus_cp_c5_job_manifest.py::test_cp_c5_compute_manifest_fingerprint_is_deterministic
+FAILED tests/invariants/test_wcensus_cp_c5_job_manifest.py::test_cp_c5_compute_manifest_fingerprint_input_sensitivity
+FAILED tests/invariants/test_wcensus_cp_c5_job_manifest.py::test_cp_c5_job_manifest_is_data_only_no_runtime
+FAILED tests/invariants/test_wcensus_cp_c5_job_manifest.py::test_cp_c5_docstring_carries_verbatim_canon
+============================== 6 failed in 0.64s ===============================

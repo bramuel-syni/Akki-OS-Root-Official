@@ -1,0 +1,303 @@
+/root/.venv/lib/python3.11/site-packages/pytest_asyncio/plugin.py:208: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.3.3, pluggy-1.6.0 -- /root/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: xdist-3.8.0, anyio-4.14.2, asyncio-0.24.0
+asyncio: mode=Mode.AUTO, default_loop_scope=None
+collecting ... collected 11 items
+
+tests/invariants/test_w7_cp7_router_mount.py::test_cost_ledger_routes_mounted FAILED [  9%]
+tests/invariants/test_w7_cp7_router_mount.py::test_model_registry_routes_mounted FAILED [ 18%]
+tests/invariants/test_w7_cp7_router_mount.py::test_model_registry_list_partitions_purchased_vs_trained FAILED [ 27%]
+tests/invariants/test_w7_cp7_router_mount.py::test_model_registry_model_lookup_honest_404 FAILED [ 36%]
+tests/invariants/test_w7_cp7_router_mount.py::test_model_registry_model_lookup_hit FAILED [ 45%]
+tests/invariants/test_w7_cp7_router_mount.py::test_model_admission_records_endpoint_reachable FAILED [ 54%]
+tests/invariants/test_w7_cp7_router_mount.py::test_model_admission_dry_run_refuses_curated_benchmark FAILED [ 63%]
+tests/invariants/test_w7_cp7_router_mount.py::test_baseline_line_records_endpoint_reachable FAILED [ 72%]
+tests/invariants/test_w7_cp7_router_mount.py::test_model_recheck_all_endpoint_names_ca1_011_seam FAILED [ 81%]
+tests/invariants/test_w7_cp7_router_mount.py::test_model_recheck_status_for_seeded_llm_is_not_applicable FAILED [ 90%]
+tests/invariants/test_w7_cp7_router_mount.py::test_model_recheck_status_for_absent_is_not_registered FAILED [100%]
+
+=================================== FAILURES ===================================
+_______________________ test_cost_ledger_routes_mounted ________________________
+tests/invariants/test_w7_cp7_router_mount.py:24: in test_cost_ledger_routes_mounted
+    c = _client()
+tests/invariants/test_w7_cp7_router_mount.py:16: in _client
+    server_mod = importlib.import_module("server")
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1147: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:690: in _load_unlocked
+    ???
+<frozen importlib._bootstrap_external>:940: in exec_module
+    ???
+<frozen importlib._bootstrap>:241: in _call_with_frames_removed
+    ???
+server.py:25: in <module>
+    from routers import discipline as discipline_router
+routers/discipline.py:11: in <module>
+    from services.northena import trace_lens
+E   ImportError: cannot import name 'trace_lens' from 'services.northena' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/northena/__init__.py)
+______________________ test_model_registry_routes_mounted ______________________
+tests/invariants/test_w7_cp7_router_mount.py:33: in test_model_registry_routes_mounted
+    c = _client()
+tests/invariants/test_w7_cp7_router_mount.py:16: in _client
+    server_mod = importlib.import_module("server")
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1147: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:690: in _load_unlocked
+    ???
+<frozen importlib._bootstrap_external>:940: in exec_module
+    ???
+<frozen importlib._bootstrap>:241: in _call_with_frames_removed
+    ???
+server.py:25: in <module>
+    from routers import discipline as discipline_router
+routers/discipline.py:11: in <module>
+    from services.northena import trace_lens
+E   ImportError: cannot import name 'trace_lens' from 'services.northena' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/northena/__init__.py)
+___________ test_model_registry_list_partitions_purchased_vs_trained ___________
+tests/invariants/test_w7_cp7_router_mount.py:42: in test_model_registry_list_partitions_purchased_vs_trained
+    c = _client()
+tests/invariants/test_w7_cp7_router_mount.py:16: in _client
+    server_mod = importlib.import_module("server")
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1147: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:690: in _load_unlocked
+    ???
+<frozen importlib._bootstrap_external>:940: in exec_module
+    ???
+<frozen importlib._bootstrap>:241: in _call_with_frames_removed
+    ???
+server.py:25: in <module>
+    from routers import discipline as discipline_router
+routers/discipline.py:11: in <module>
+    from services.northena import trace_lens
+E   ImportError: cannot import name 'trace_lens' from 'services.northena' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/northena/__init__.py)
+_________________ test_model_registry_model_lookup_honest_404 __________________
+tests/invariants/test_w7_cp7_router_mount.py:52: in test_model_registry_model_lookup_honest_404
+    c = _client()
+tests/invariants/test_w7_cp7_router_mount.py:16: in _client
+    server_mod = importlib.import_module("server")
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1147: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:690: in _load_unlocked
+    ???
+<frozen importlib._bootstrap_external>:940: in exec_module
+    ???
+<frozen importlib._bootstrap>:241: in _call_with_frames_removed
+    ???
+server.py:25: in <module>
+    from routers import discipline as discipline_router
+routers/discipline.py:11: in <module>
+    from services.northena import trace_lens
+E   ImportError: cannot import name 'trace_lens' from 'services.northena' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/northena/__init__.py)
+_____________________ test_model_registry_model_lookup_hit _____________________
+tests/invariants/test_w7_cp7_router_mount.py:58: in test_model_registry_model_lookup_hit
+    c = _client()
+tests/invariants/test_w7_cp7_router_mount.py:16: in _client
+    server_mod = importlib.import_module("server")
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1147: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:690: in _load_unlocked
+    ???
+<frozen importlib._bootstrap_external>:940: in exec_module
+    ???
+<frozen importlib._bootstrap>:241: in _call_with_frames_removed
+    ???
+server.py:25: in <module>
+    from routers import discipline as discipline_router
+routers/discipline.py:11: in <module>
+    from services.northena import trace_lens
+E   ImportError: cannot import name 'trace_lens' from 'services.northena' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/northena/__init__.py)
+_______________ test_model_admission_records_endpoint_reachable ________________
+tests/invariants/test_w7_cp7_router_mount.py:65: in test_model_admission_records_endpoint_reachable
+    c = _client()
+tests/invariants/test_w7_cp7_router_mount.py:16: in _client
+    server_mod = importlib.import_module("server")
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1147: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:690: in _load_unlocked
+    ???
+<frozen importlib._bootstrap_external>:940: in exec_module
+    ???
+<frozen importlib._bootstrap>:241: in _call_with_frames_removed
+    ???
+server.py:25: in <module>
+    from routers import discipline as discipline_router
+routers/discipline.py:11: in <module>
+    from services.northena import trace_lens
+E   ImportError: cannot import name 'trace_lens' from 'services.northena' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/northena/__init__.py)
+____________ test_model_admission_dry_run_refuses_curated_benchmark ____________
+tests/invariants/test_w7_cp7_router_mount.py:74: in test_model_admission_dry_run_refuses_curated_benchmark
+    c = _client()
+tests/invariants/test_w7_cp7_router_mount.py:16: in _client
+    server_mod = importlib.import_module("server")
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1147: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:690: in _load_unlocked
+    ???
+<frozen importlib._bootstrap_external>:940: in exec_module
+    ???
+<frozen importlib._bootstrap>:241: in _call_with_frames_removed
+    ???
+server.py:25: in <module>
+    from routers import discipline as discipline_router
+routers/discipline.py:11: in <module>
+    from services.northena import trace_lens
+E   ImportError: cannot import name 'trace_lens' from 'services.northena' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/northena/__init__.py)
+________________ test_baseline_line_records_endpoint_reachable _________________
+tests/invariants/test_w7_cp7_router_mount.py:84: in test_baseline_line_records_endpoint_reachable
+    c = _client()
+tests/invariants/test_w7_cp7_router_mount.py:16: in _client
+    server_mod = importlib.import_module("server")
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1147: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:690: in _load_unlocked
+    ???
+<frozen importlib._bootstrap_external>:940: in exec_module
+    ???
+<frozen importlib._bootstrap>:241: in _call_with_frames_removed
+    ???
+server.py:25: in <module>
+    from routers import discipline as discipline_router
+routers/discipline.py:11: in <module>
+    from services.northena import trace_lens
+E   ImportError: cannot import name 'trace_lens' from 'services.northena' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/northena/__init__.py)
+______________ test_model_recheck_all_endpoint_names_ca1_011_seam ______________
+tests/invariants/test_w7_cp7_router_mount.py:92: in test_model_recheck_all_endpoint_names_ca1_011_seam
+    c = _client()
+tests/invariants/test_w7_cp7_router_mount.py:16: in _client
+    server_mod = importlib.import_module("server")
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1147: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:690: in _load_unlocked
+    ???
+<frozen importlib._bootstrap_external>:940: in exec_module
+    ???
+<frozen importlib._bootstrap>:241: in _call_with_frames_removed
+    ???
+server.py:25: in <module>
+    from routers import discipline as discipline_router
+routers/discipline.py:11: in <module>
+    from services.northena import trace_lens
+E   ImportError: cannot import name 'trace_lens' from 'services.northena' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/northena/__init__.py)
+__________ test_model_recheck_status_for_seeded_llm_is_not_applicable __________
+tests/invariants/test_w7_cp7_router_mount.py:100: in test_model_recheck_status_for_seeded_llm_is_not_applicable
+    c = _client()
+tests/invariants/test_w7_cp7_router_mount.py:16: in _client
+    server_mod = importlib.import_module("server")
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1147: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:690: in _load_unlocked
+    ???
+<frozen importlib._bootstrap_external>:940: in exec_module
+    ???
+<frozen importlib._bootstrap>:241: in _call_with_frames_removed
+    ???
+server.py:25: in <module>
+    from routers import discipline as discipline_router
+routers/discipline.py:11: in <module>
+    from services.northena import trace_lens
+E   ImportError: cannot import name 'trace_lens' from 'services.northena' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/northena/__init__.py)
+____________ test_model_recheck_status_for_absent_is_not_registered ____________
+tests/invariants/test_w7_cp7_router_mount.py:107: in test_model_recheck_status_for_absent_is_not_registered
+    c = _client()
+tests/invariants/test_w7_cp7_router_mount.py:16: in _client
+    server_mod = importlib.import_module("server")
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1147: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:690: in _load_unlocked
+    ???
+<frozen importlib._bootstrap_external>:940: in exec_module
+    ???
+<frozen importlib._bootstrap>:241: in _call_with_frames_removed
+    ???
+server.py:25: in <module>
+    from routers import discipline as discipline_router
+routers/discipline.py:11: in <module>
+    from services.northena import trace_lens
+E   ImportError: cannot import name 'trace_lens' from 'services.northena' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/northena/__init__.py)
+=========================== short test summary info ============================
+FAILED tests/invariants/test_w7_cp7_router_mount.py::test_cost_ledger_routes_mounted
+FAILED tests/invariants/test_w7_cp7_router_mount.py::test_model_registry_routes_mounted
+FAILED tests/invariants/test_w7_cp7_router_mount.py::test_model_registry_list_partitions_purchased_vs_trained
+FAILED tests/invariants/test_w7_cp7_router_mount.py::test_model_registry_model_lookup_honest_404
+FAILED tests/invariants/test_w7_cp7_router_mount.py::test_model_registry_model_lookup_hit
+FAILED tests/invariants/test_w7_cp7_router_mount.py::test_model_admission_records_endpoint_reachable
+FAILED tests/invariants/test_w7_cp7_router_mount.py::test_model_admission_dry_run_refuses_curated_benchmark
+FAILED tests/invariants/test_w7_cp7_router_mount.py::test_baseline_line_records_endpoint_reachable
+FAILED tests/invariants/test_w7_cp7_router_mount.py::test_model_recheck_all_endpoint_names_ca1_011_seam
+FAILED tests/invariants/test_w7_cp7_router_mount.py::test_model_recheck_status_for_seeded_llm_is_not_applicable
+FAILED tests/invariants/test_w7_cp7_router_mount.py::test_model_recheck_status_for_absent_is_not_registered
+============================== 11 failed in 0.51s ==============================

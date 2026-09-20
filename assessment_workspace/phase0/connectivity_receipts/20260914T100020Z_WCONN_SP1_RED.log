@@ -1,0 +1,12 @@
+E       ModuleNotFoundError: No module named 'services.source_plane.connector_ledger'
+
+tests/invariants/test_wconn_sp1_source_plane_connector_ledger.py:121: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wconn_sp1_source_plane_connector_ledger.py::test_sp1_module_fabric
+FAILED tests/invariants/test_wconn_sp1_source_plane_connector_ledger.py::test_sp1_rights_at_setup_verbatim_pinned
+FAILED tests/invariants/test_wconn_sp1_source_plane_connector_ledger.py::test_sp1_ledger_covers_admin_topology
+FAILED tests/invariants/test_wconn_sp1_source_plane_connector_ledger.py::test_sp1_every_record_carries_rights_basis
+FAILED tests/invariants/test_wconn_sp1_source_plane_connector_ledger.py::test_sp1_pass_and_gap_status_partitioning
+FAILED tests/invariants/test_wconn_sp1_source_plane_connector_ledger.py::test_sp1_hard_gap_records_carry_missing_bind_detail
+FAILED tests/invariants/test_wconn_sp1_source_plane_connector_ledger.py::test_sp1_credential_rotation_ruling_recorded
+7 failed in 0.65s

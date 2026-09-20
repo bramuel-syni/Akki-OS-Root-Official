@@ -1,0 +1,43 @@
+/root/.venv/lib/python3.11/site-packages/pytest_asyncio/plugin.py:208: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.3.3, pluggy-1.6.0 -- /root/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: xdist-3.8.0, anyio-4.14.2, asyncio-0.24.0
+asyncio: mode=Mode.AUTO, default_loop_scope=None
+collecting ... collected 10 items
+
+tests/invariants/test_w8_cp3_approvals_ceremony.py::test_approval_request_contract_kind_discriminator PASSED [ 10%]
+tests/invariants/test_w8_cp3_approvals_ceremony.py::test_approval_decision_verdict_grammar PASSED [ 20%]
+tests/invariants/test_w8_cp3_approvals_ceremony.py::test_register_request_writes_to_disk FAILED [ 30%]
+tests/invariants/test_w8_cp3_approvals_ceremony.py::test_decide_request_enforces_separation_of_duties FAILED [ 40%]
+tests/invariants/test_w8_cp3_approvals_ceremony.py::test_decide_request_refuses_unknown_request_id FAILED [ 50%]
+tests/invariants/test_w8_cp3_approvals_ceremony.py::test_decide_request_records_decision_alongside_request FAILED [ 60%]
+tests/invariants/test_w8_cp3_approvals_ceremony.py::test_decide_request_refuses_double_decision FAILED [ 70%]
+tests/invariants/test_w8_cp3_approvals_ceremony.py::test_no_credentials_in_approval_record FAILED [ 80%]
+tests/invariants/test_approval_contracts_frozen.py::test_approval_request_v0_frozen FAILED [ 90%]
+tests/invariants/test_approval_contracts_frozen.py::test_approval_decision_v0_frozen FAILED [100%]
+
+=================================== FAILURES ===================================
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_w8_cp3_approvals_ceremony.py:61: ModuleNotFoundError: No module named 'services.approvals'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_w8_cp3_approvals_ceremony.py:73: ModuleNotFoundError: No module named 'services.approvals'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_w8_cp3_approvals_ceremony.py:81: ModuleNotFoundError: No module named 'services.approvals'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_w8_cp3_approvals_ceremony.py:88: ModuleNotFoundError: No module named 'services.approvals'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_w8_cp3_approvals_ceremony.py:104: ModuleNotFoundError: No module named 'services.approvals'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_w8_cp3_approvals_ceremony.py:117: ModuleNotFoundError: No module named 'services.approvals'
+/usr/local/lib/python3.11/pathlib.py:1044: FileNotFoundError: [Errno 2] No such file or directory: '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/approval_request_v0.contract_snapshot.json'
+/usr/local/lib/python3.11/pathlib.py:1044: FileNotFoundError: [Errno 2] No such file or directory: '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/approval_decision_v0.contract_snapshot.json'
+=========================== short test summary info ============================
+FAILED tests/invariants/test_w8_cp3_approvals_ceremony.py::test_register_request_writes_to_disk
+FAILED tests/invariants/test_w8_cp3_approvals_ceremony.py::test_decide_request_enforces_separation_of_duties
+FAILED tests/invariants/test_w8_cp3_approvals_ceremony.py::test_decide_request_refuses_unknown_request_id
+FAILED tests/invariants/test_w8_cp3_approvals_ceremony.py::test_decide_request_records_decision_alongside_request
+FAILED tests/invariants/test_w8_cp3_approvals_ceremony.py::test_decide_request_refuses_double_decision
+FAILED tests/invariants/test_w8_cp3_approvals_ceremony.py::test_no_credentials_in_approval_record
+FAILED tests/invariants/test_approval_contracts_frozen.py::test_approval_request_v0_frozen
+FAILED tests/invariants/test_approval_contracts_frozen.py::test_approval_decision_v0_frozen
+========================= 8 failed, 2 passed in 0.13s ==========================

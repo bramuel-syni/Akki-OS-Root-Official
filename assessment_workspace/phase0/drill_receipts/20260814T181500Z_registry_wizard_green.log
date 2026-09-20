@@ -1,0 +1,45 @@
+=== REGISTRY + CONNECT WIZARD · GREEN RECEIPT ===
+Timestamp (UTC): 2026-08-14T18:15:00Z
+Fixture reference: fixtures/screen_mockups_v7.pdf (sha256 418ad0e3...)
+Owner ruling reference: DECISIONS.md 2026-08-14 fixture-drop entry
+
+## Backend gating tests (spine repo)
+78/78 passed on programme/track-a (no regression from prior cycle acc25a8)
+
+## Frontend gating tests (pod-shell + spine)
+- 12/12 passed · plugins/ip-allowlist/__tests__/ip_allowlist.test.js
+- 15/15 passed · pod_shell/frontend/__tests__/rehome.test.js
+      (was 9/9; +6 net after Registry + wizard migration)
+
+## Total: 105/105 gating tests green (78 backend + 12 frontend allowlist + 15 rehome)
+
+## Live E2E through preview URL (pod egress 34.170.12.145 NOT allowlisted)
+All 4 route families still refused with HTTP 403, text/plain, exact sentence.
+
+## Live E2E via 127.0.0.1 with crafted allowed XFF
+- GET / → 200 text/html (SPA shell)
+- GET /register/connect/gpu → 404 text/plain "This route has been retired."
+- GET /api/deliverables → 200 application/json
+- POST /api/connect/gpu (empty payload) → 422 with Pydantic validation errors
+  (same payload contract as before; wizard submits to unchanged endpoint)
+
+## Playwright render-tree proof (screenshots under phase0/drill_receipts/screenshots/)
+- 20260814T181000Z_registry_surface.png       — root '/' shows Registry title, three tabs, "+ Connect", role switcher
+- 20260814T181000Z_registry_compute_tab.png   — COMPUTE CONNECTED tab active: "WHAT IS CONNECTED" eyebrow + "One machine pending connection." honest empty state
+- 20260814T181000Z_wizard_opening.png         — right-hand drawer: "Connect something new" + "A conversation, not a form" deck + 4 chips + free-text + Send
+- 20260814T181000Z_wizard_compute_form.png    — Compute chip path renders all 7 GPU form fields with masked password
+
+All 20 required data-testids verified present in rendered tree:
+  registry-title, tab-data-connected, tab-compute-connected, tab-llms-trained-models,
+  open-connect-wizard, role-switcher,
+  wizard-drawer, wizard-chip-{data-source,llm,trained-model,compute},
+  wizard-input, wizard-send, wizard-close,
+  connect-gpu-{host_name,username,password,public_ip,private_ip,os,deploy_date,submit}
+
+## Discrepancy on record (per FL-P2-14 OPEN)
+Owner said "19 pages" and "4 inline screenshots" attached to the drop.
+Actual PDF: 5 pages of pure text (Registry Feature & Component Brief).
+Zero embedded images. Inline screenshots not accessible as job assets.
+Owner's inline textual description of the 4 screenshots stands as the
+binding visual reference. Written spec (5 pages) + inline description
+was sufficient for this build; awaiting owner disposition.

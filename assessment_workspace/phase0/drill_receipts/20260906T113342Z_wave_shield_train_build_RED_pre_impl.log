@@ -1,0 +1,989 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.4.2, pluggy-1.6.0 -- /root/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: asyncio-1.4.0, xdist-3.8.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collecting ... collected 50 items
+
+tests/invariants/test_shield_train_admission_request.py::test_all_tiers_still_have_empty_admissible_under_env FAILED [  2%]
+tests/invariants/test_shield_train_admission_request.py::test_masking_tier_allowlist_has_admission_request_field FAILED [  4%]
+tests/invariants/test_shield_train_admission_request.py::test_masking_tier_allowlist_has_prerequisites_status FAILED [  6%]
+tests/invariants/test_shield_train_admission_request.py::test_t1_full_mask_prerequisites_all_addressed FAILED [  8%]
+tests/invariants/test_shield_train_admission_request.py::test_masking_policy_prerequisite_marked_satisfied_by_this_build FAILED [ 10%]
+tests/invariants/test_shield_train_masking_policy.py::test_policy_document_present_and_parses ERROR [ 12%]
+tests/invariants/test_shield_train_masking_policy.py::test_policy_document_top_level_fields ERROR [ 14%]
+tests/invariants/test_shield_train_masking_policy.py::test_policy_schema_version_is_integer_and_nonzero ERROR [ 16%]
+tests/invariants/test_shield_train_masking_policy.py::test_policy_authored_at_utc_iso_shaped ERROR [ 18%]
+tests/invariants/test_shield_train_masking_policy.py::test_policy_doc_ref_cites_section_a5_2 ERROR [ 20%]
+tests/invariants/test_shield_train_masking_policy.py::test_policy_ledger_is_list_and_drawer_is_list ERROR [ 22%]
+tests/invariants/test_shield_train_masking_policy.py::test_ledger_entries_have_required_shape ERROR [ 24%]
+tests/invariants/test_shield_train_masking_policy.py::test_ledger_class_enum ERROR [ 26%]
+tests/invariants/test_shield_train_masking_policy.py::test_ledger_action_enum ERROR [ 28%]
+tests/invariants/test_shield_train_masking_policy.py::test_ledger_declassification_path_shape ERROR [ 30%]
+tests/invariants/test_shield_train_masking_policy.py::test_ledger_uniqueness_per_table_column ERROR [ 32%]
+tests/invariants/test_shield_train_masking_policy.py::test_authoring_module_exports_add_entry FAILED [ 34%]
+tests/invariants/test_shield_train_masking_policy.py::test_add_entry_returns_new_policy_and_bumps_version FAILED [ 36%]
+tests/invariants/test_shield_train_masking_policy.py::test_add_drawer_entry_uses_ruling_5_shape FAILED [ 38%]
+tests/invariants/test_shield_train_pii_registry_expansion.py::test_ussd_question_response_all_13_columns_classified ERROR [ 40%]
+tests/invariants/test_shield_train_pii_registry_expansion.py::test_sms_log_all_13_columns_classified ERROR [ 42%]
+tests/invariants/test_shield_train_pii_registry_expansion.py::test_no_columns_beyond_census_schema ERROR [ 44%]
+tests/invariants/test_shield_train_pii_registry_expansion.py::test_direct_pii_columns_marked_pii_and_excluded ERROR [ 46%]
+tests/invariants/test_shield_train_pii_registry_expansion.py::test_direct_pii_declassification_path_closed ERROR [ 48%]
+tests/invariants/test_shield_train_pii_registry_expansion.py::test_geo_columns_classified_quasi_identifier ERROR [ 50%]
+tests/invariants/test_shield_train_pii_registry_expansion.py::test_farm_scale_quasi_identifiers_excluded ERROR [ 52%]
+tests/invariants/test_shield_train_pii_registry_expansion.py::test_free_text_include_columns_use_mask_regex_scrub ERROR [ 54%]
+tests/invariants/test_shield_train_pii_registry_expansion.py::test_structural_include_uses_bare_include ERROR [ 56%]
+tests/invariants/test_shield_train_pii_registry_expansion.py::test_sms_sent_lives_in_clarification_drawer ERROR [ 58%]
+tests/invariants/test_shield_train_pii_registry_expansion.py::test_drawer_entries_carry_question_id_and_resolution_slot ERROR [ 60%]
+tests/invariants/test_shield_train_pii_registry_expansion.py::test_ledger_agrees_with_response_sanitizer_banned_pii ERROR [ 62%]
+tests/invariants/test_shield_train_pipeline.py::test_build_masked_corpus_file_writes_jsonl FAILED [ 64%]
+tests/invariants/test_shield_train_pipeline.py::test_build_masked_corpus_refuses_rows_with_pii_shaped_values FAILED [ 66%]
+tests/invariants/test_shield_train_pipeline.py::test_build_masked_corpus_writes_deterministic_hash FAILED [ 68%]
+tests/invariants/test_shield_train_pipeline.py::test_stage_corpus_to_host_returns_transport_receipt FAILED [ 70%]
+tests/invariants/test_shield_train_pipeline.py::test_stage_corpus_flags_hash_mismatch_and_refuses FAILED [ 72%]
+tests/invariants/test_shield_train_pipeline.py::test_cleanup_remote_corpus_emits_receipt FAILED [ 74%]
+tests/invariants/test_shield_train_pipeline.py::test_execute_lora_train_real_delegates_to_governed_pipeline FAILED [ 76%]
+tests/invariants/test_shield_train_pipeline.py::test_execute_governed_lora_run_gates_on_masking_tier_admission FAILED [ 78%]
+tests/invariants/test_shield_train_pipeline.py::test_execute_governed_lora_run_raises_on_parked_tier FAILED [ 80%]
+tests/invariants/test_shield_train_row_executor.py::test_row_executor_module_exports_expected_surface FAILED [ 82%]
+tests/invariants/test_shield_train_row_executor.py::test_row_executor_result_has_shape_only_receipt_fields FAILED [ 84%]
+tests/invariants/test_shield_train_row_executor.py::test_row_executor_refuses_unclassified_table FAILED [ 86%]
+tests/invariants/test_shield_train_row_executor.py::test_row_executor_refuses_unclassified_column FAILED [ 88%]
+tests/invariants/test_shield_train_row_executor.py::test_row_executor_refuses_direct_pii_column_by_construction FAILED [ 90%]
+tests/invariants/test_shield_train_row_executor.py::test_row_executor_success_include_columns_return_rows FAILED [ 92%]
+tests/invariants/test_shield_train_row_executor.py::test_row_executor_scrubs_phone_and_id_patterns_in_free_text FAILED [ 94%]
+tests/invariants/test_shield_train_row_executor.py::test_row_executor_masking_steps_applied_field_populated FAILED [ 96%]
+tests/invariants/test_shield_train_row_executor.py::test_row_executor_emits_shape_only_receipt_file FAILED [ 98%]
+tests/invariants/test_shield_train_row_executor.py::test_row_executor_receipt_survives_backend_failure FAILED [100%]
+
+==================================== ERRORS ====================================
+__________ ERROR at setup of test_policy_document_present_and_parses ___________
+
+    @pytest.fixture(scope="module")
+    def policy() -> dict:
+>       assert POLICY_JSON.exists(), (
+            f"masking policy not authored at {POLICY_JSON}. Doc 02 §A5.2 requires "
+            "the policy document to be present as a versioned JSON artefact."
+        )
+E       AssertionError: masking policy not authored at /app/assessment_workspace/repos/Extraction-Akki/backend/services/shield_train/masking_policy.v0.json. Doc 02 §A5.2 requires the policy document to be present as a versioned JSON artefact.
+E       assert False
+E        +  where False = exists()
+E        +    where exists = PosixPath('/app/assessment_workspace/repos/Extraction-Akki/backend/services/shield_train/masking_policy.v0.json').exists
+
+tests/invariants/test_shield_train_masking_policy.py:46: AssertionError
+___________ ERROR at setup of test_policy_document_top_level_fields ____________
+
+    @pytest.fixture(scope="module")
+    def policy() -> dict:
+>       assert POLICY_JSON.exists(), (
+            f"masking policy not authored at {POLICY_JSON}. Doc 02 §A5.2 requires "
+            "the policy document to be present as a versioned JSON artefact."
+        )
+E       AssertionError: masking policy not authored at /app/assessment_workspace/repos/Extraction-Akki/backend/services/shield_train/masking_policy.v0.json. Doc 02 §A5.2 requires the policy document to be present as a versioned JSON artefact.
+E       assert False
+E        +  where False = exists()
+E        +    where exists = PosixPath('/app/assessment_workspace/repos/Extraction-Akki/backend/services/shield_train/masking_policy.v0.json').exists
+
+tests/invariants/test_shield_train_masking_policy.py:46: AssertionError
+_____ ERROR at setup of test_policy_schema_version_is_integer_and_nonzero ______
+
+    @pytest.fixture(scope="module")
+    def policy() -> dict:
+>       assert POLICY_JSON.exists(), (
+            f"masking policy not authored at {POLICY_JSON}. Doc 02 §A5.2 requires "
+            "the policy document to be present as a versioned JSON artefact."
+        )
+E       AssertionError: masking policy not authored at /app/assessment_workspace/repos/Extraction-Akki/backend/services/shield_train/masking_policy.v0.json. Doc 02 §A5.2 requires the policy document to be present as a versioned JSON artefact.
+E       assert False
+E        +  where False = exists()
+E        +    where exists = PosixPath('/app/assessment_workspace/repos/Extraction-Akki/backend/services/shield_train/masking_policy.v0.json').exists
+
+tests/invariants/test_shield_train_masking_policy.py:46: AssertionError
+___________ ERROR at setup of test_policy_authored_at_utc_iso_shaped ___________
+
+    @pytest.fixture(scope="module")
+    def policy() -> dict:
+>       assert POLICY_JSON.exists(), (
+            f"masking policy not authored at {POLICY_JSON}. Doc 02 §A5.2 requires "
+            "the policy document to be present as a versioned JSON artefact."
+        )
+E       AssertionError: masking policy not authored at /app/assessment_workspace/repos/Extraction-Akki/backend/services/shield_train/masking_policy.v0.json. Doc 02 §A5.2 requires the policy document to be present as a versioned JSON artefact.
+E       assert False
+E        +  where False = exists()
+E        +    where exists = PosixPath('/app/assessment_workspace/repos/Extraction-Akki/backend/services/shield_train/masking_policy.v0.json').exists
+
+tests/invariants/test_shield_train_masking_policy.py:46: AssertionError
+___________ ERROR at setup of test_policy_doc_ref_cites_section_a5_2 ___________
+
+    @pytest.fixture(scope="module")
+    def policy() -> dict:
+>       assert POLICY_JSON.exists(), (
+            f"masking policy not authored at {POLICY_JSON}. Doc 02 §A5.2 requires "
+            "the policy document to be present as a versioned JSON artefact."
+        )
+E       AssertionError: masking policy not authored at /app/assessment_workspace/repos/Extraction-Akki/backend/services/shield_train/masking_policy.v0.json. Doc 02 §A5.2 requires the policy document to be present as a versioned JSON artefact.
+E       assert False
+E        +  where False = exists()
+E        +    where exists = PosixPath('/app/assessment_workspace/repos/Extraction-Akki/backend/services/shield_train/masking_policy.v0.json').exists
+
+tests/invariants/test_shield_train_masking_policy.py:46: AssertionError
+_______ ERROR at setup of test_policy_ledger_is_list_and_drawer_is_list ________
+
+    @pytest.fixture(scope="module")
+    def policy() -> dict:
+>       assert POLICY_JSON.exists(), (
+            f"masking policy not authored at {POLICY_JSON}. Doc 02 §A5.2 requires "
+            "the policy document to be present as a versioned JSON artefact."
+        )
+E       AssertionError: masking policy not authored at /app/assessment_workspace/repos/Extraction-Akki/backend/services/shield_train/masking_policy.v0.json. Doc 02 §A5.2 requires the policy document to be present as a versioned JSON artefact.
+E       assert False
+E        +  where False = exists()
+E        +    where exists = PosixPath('/app/assessment_workspace/repos/Extraction-Akki/backend/services/shield_train/masking_policy.v0.json').exists
+
+tests/invariants/test_shield_train_masking_policy.py:46: AssertionError
+__________ ERROR at setup of test_ledger_entries_have_required_shape ___________
+
+    @pytest.fixture(scope="module")
+    def policy() -> dict:
+>       assert POLICY_JSON.exists(), (
+            f"masking policy not authored at {POLICY_JSON}. Doc 02 §A5.2 requires "
+            "the policy document to be present as a versioned JSON artefact."
+        )
+E       AssertionError: masking policy not authored at /app/assessment_workspace/repos/Extraction-Akki/backend/services/shield_train/masking_policy.v0.json. Doc 02 §A5.2 requires the policy document to be present as a versioned JSON artefact.
+E       assert False
+E        +  where False = exists()
+E        +    where exists = PosixPath('/app/assessment_workspace/repos/Extraction-Akki/backend/services/shield_train/masking_policy.v0.json').exists
+
+tests/invariants/test_shield_train_masking_policy.py:46: AssertionError
+___________________ ERROR at setup of test_ledger_class_enum ___________________
+
+    @pytest.fixture(scope="module")
+    def policy() -> dict:
+>       assert POLICY_JSON.exists(), (
+            f"masking policy not authored at {POLICY_JSON}. Doc 02 §A5.2 requires "
+            "the policy document to be present as a versioned JSON artefact."
+        )
+E       AssertionError: masking policy not authored at /app/assessment_workspace/repos/Extraction-Akki/backend/services/shield_train/masking_policy.v0.json. Doc 02 §A5.2 requires the policy document to be present as a versioned JSON artefact.
+E       assert False
+E        +  where False = exists()
+E        +    where exists = PosixPath('/app/assessment_workspace/repos/Extraction-Akki/backend/services/shield_train/masking_policy.v0.json').exists
+
+tests/invariants/test_shield_train_masking_policy.py:46: AssertionError
+__________________ ERROR at setup of test_ledger_action_enum ___________________
+
+    @pytest.fixture(scope="module")
+    def policy() -> dict:
+>       assert POLICY_JSON.exists(), (
+            f"masking policy not authored at {POLICY_JSON}. Doc 02 §A5.2 requires "
+            "the policy document to be present as a versioned JSON artefact."
+        )
+E       AssertionError: masking policy not authored at /app/assessment_workspace/repos/Extraction-Akki/backend/services/shield_train/masking_policy.v0.json. Doc 02 §A5.2 requires the policy document to be present as a versioned JSON artefact.
+E       assert False
+E        +  where False = exists()
+E        +    where exists = PosixPath('/app/assessment_workspace/repos/Extraction-Akki/backend/services/shield_train/masking_policy.v0.json').exists
+
+tests/invariants/test_shield_train_masking_policy.py:46: AssertionError
+__________ ERROR at setup of test_ledger_declassification_path_shape ___________
+
+    @pytest.fixture(scope="module")
+    def policy() -> dict:
+>       assert POLICY_JSON.exists(), (
+            f"masking policy not authored at {POLICY_JSON}. Doc 02 §A5.2 requires "
+            "the policy document to be present as a versioned JSON artefact."
+        )
+E       AssertionError: masking policy not authored at /app/assessment_workspace/repos/Extraction-Akki/backend/services/shield_train/masking_policy.v0.json. Doc 02 §A5.2 requires the policy document to be present as a versioned JSON artefact.
+E       assert False
+E        +  where False = exists()
+E        +    where exists = PosixPath('/app/assessment_workspace/repos/Extraction-Akki/backend/services/shield_train/masking_policy.v0.json').exists
+
+tests/invariants/test_shield_train_masking_policy.py:46: AssertionError
+__________ ERROR at setup of test_ledger_uniqueness_per_table_column ___________
+
+    @pytest.fixture(scope="module")
+    def policy() -> dict:
+>       assert POLICY_JSON.exists(), (
+            f"masking policy not authored at {POLICY_JSON}. Doc 02 §A5.2 requires "
+            "the policy document to be present as a versioned JSON artefact."
+        )
+E       AssertionError: masking policy not authored at /app/assessment_workspace/repos/Extraction-Akki/backend/services/shield_train/masking_policy.v0.json. Doc 02 §A5.2 requires the policy document to be present as a versioned JSON artefact.
+E       assert False
+E        +  where False = exists()
+E        +    where exists = PosixPath('/app/assessment_workspace/repos/Extraction-Akki/backend/services/shield_train/masking_policy.v0.json').exists
+
+tests/invariants/test_shield_train_masking_policy.py:46: AssertionError
+___ ERROR at setup of test_ussd_question_response_all_13_columns_classified ____
+
+    @pytest.fixture(scope="module")
+    def policy() -> dict:
+>       return json.loads(POLICY_JSON.read_text())
+                          ^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_shield_train_pii_registry_expansion.py:49: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/pathlib.py:1058: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/app/assessment_workspace/repos/Extraction-Akki/backend/services/shield_train/masking_policy.v0.json')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/app/assessment_workspace/repos/Extraction-Akki/backend/services/shield_train/masking_policy.v0.json'
+
+/usr/local/lib/python3.11/pathlib.py:1044: FileNotFoundError
+___________ ERROR at setup of test_sms_log_all_13_columns_classified ___________
+
+    @pytest.fixture(scope="module")
+    def policy() -> dict:
+>       return json.loads(POLICY_JSON.read_text())
+                          ^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_shield_train_pii_registry_expansion.py:49: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/pathlib.py:1058: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/app/assessment_workspace/repos/Extraction-Akki/backend/services/shield_train/masking_policy.v0.json')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/app/assessment_workspace/repos/Extraction-Akki/backend/services/shield_train/masking_policy.v0.json'
+
+/usr/local/lib/python3.11/pathlib.py:1044: FileNotFoundError
+____________ ERROR at setup of test_no_columns_beyond_census_schema ____________
+
+    @pytest.fixture(scope="module")
+    def policy() -> dict:
+>       return json.loads(POLICY_JSON.read_text())
+                          ^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_shield_train_pii_registry_expansion.py:49: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/pathlib.py:1058: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/app/assessment_workspace/repos/Extraction-Akki/backend/services/shield_train/masking_policy.v0.json')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/app/assessment_workspace/repos/Extraction-Akki/backend/services/shield_train/masking_policy.v0.json'
+
+/usr/local/lib/python3.11/pathlib.py:1044: FileNotFoundError
+______ ERROR at setup of test_direct_pii_columns_marked_pii_and_excluded _______
+
+    @pytest.fixture(scope="module")
+    def policy() -> dict:
+>       return json.loads(POLICY_JSON.read_text())
+                          ^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_shield_train_pii_registry_expansion.py:49: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/pathlib.py:1058: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/app/assessment_workspace/repos/Extraction-Akki/backend/services/shield_train/masking_policy.v0.json')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/app/assessment_workspace/repos/Extraction-Akki/backend/services/shield_train/masking_policy.v0.json'
+
+/usr/local/lib/python3.11/pathlib.py:1044: FileNotFoundError
+________ ERROR at setup of test_direct_pii_declassification_path_closed ________
+
+    @pytest.fixture(scope="module")
+    def policy() -> dict:
+>       return json.loads(POLICY_JSON.read_text())
+                          ^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_shield_train_pii_registry_expansion.py:49: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/pathlib.py:1058: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/app/assessment_workspace/repos/Extraction-Akki/backend/services/shield_train/masking_policy.v0.json')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/app/assessment_workspace/repos/Extraction-Akki/backend/services/shield_train/masking_policy.v0.json'
+
+/usr/local/lib/python3.11/pathlib.py:1044: FileNotFoundError
+________ ERROR at setup of test_geo_columns_classified_quasi_identifier ________
+
+    @pytest.fixture(scope="module")
+    def policy() -> dict:
+>       return json.loads(POLICY_JSON.read_text())
+                          ^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_shield_train_pii_registry_expansion.py:49: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/pathlib.py:1058: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/app/assessment_workspace/repos/Extraction-Akki/backend/services/shield_train/masking_policy.v0.json')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/app/assessment_workspace/repos/Extraction-Akki/backend/services/shield_train/masking_policy.v0.json'
+
+/usr/local/lib/python3.11/pathlib.py:1044: FileNotFoundError
+_________ ERROR at setup of test_farm_scale_quasi_identifiers_excluded _________
+
+    @pytest.fixture(scope="module")
+    def policy() -> dict:
+>       return json.loads(POLICY_JSON.read_text())
+                          ^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_shield_train_pii_registry_expansion.py:49: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/pathlib.py:1058: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/app/assessment_workspace/repos/Extraction-Akki/backend/services/shield_train/masking_policy.v0.json')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/app/assessment_workspace/repos/Extraction-Akki/backend/services/shield_train/masking_policy.v0.json'
+
+/usr/local/lib/python3.11/pathlib.py:1044: FileNotFoundError
+____ ERROR at setup of test_free_text_include_columns_use_mask_regex_scrub _____
+
+    @pytest.fixture(scope="module")
+    def policy() -> dict:
+>       return json.loads(POLICY_JSON.read_text())
+                          ^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_shield_train_pii_registry_expansion.py:49: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/pathlib.py:1058: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/app/assessment_workspace/repos/Extraction-Akki/backend/services/shield_train/masking_policy.v0.json')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/app/assessment_workspace/repos/Extraction-Akki/backend/services/shield_train/masking_policy.v0.json'
+
+/usr/local/lib/python3.11/pathlib.py:1044: FileNotFoundError
+_________ ERROR at setup of test_structural_include_uses_bare_include __________
+
+    @pytest.fixture(scope="module")
+    def policy() -> dict:
+>       return json.loads(POLICY_JSON.read_text())
+                          ^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_shield_train_pii_registry_expansion.py:49: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/pathlib.py:1058: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/app/assessment_workspace/repos/Extraction-Akki/backend/services/shield_train/masking_policy.v0.json')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/app/assessment_workspace/repos/Extraction-Akki/backend/services/shield_train/masking_policy.v0.json'
+
+/usr/local/lib/python3.11/pathlib.py:1044: FileNotFoundError
+________ ERROR at setup of test_sms_sent_lives_in_clarification_drawer _________
+
+    @pytest.fixture(scope="module")
+    def policy() -> dict:
+>       return json.loads(POLICY_JSON.read_text())
+                          ^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_shield_train_pii_registry_expansion.py:49: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/pathlib.py:1058: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/app/assessment_workspace/repos/Extraction-Akki/backend/services/shield_train/masking_policy.v0.json')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/app/assessment_workspace/repos/Extraction-Akki/backend/services/shield_train/masking_policy.v0.json'
+
+/usr/local/lib/python3.11/pathlib.py:1044: FileNotFoundError
+_ ERROR at setup of test_drawer_entries_carry_question_id_and_resolution_slot __
+
+    @pytest.fixture(scope="module")
+    def policy() -> dict:
+>       return json.loads(POLICY_JSON.read_text())
+                          ^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_shield_train_pii_registry_expansion.py:49: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/pathlib.py:1058: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/app/assessment_workspace/repos/Extraction-Akki/backend/services/shield_train/masking_policy.v0.json')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/app/assessment_workspace/repos/Extraction-Akki/backend/services/shield_train/masking_policy.v0.json'
+
+/usr/local/lib/python3.11/pathlib.py:1044: FileNotFoundError
+___ ERROR at setup of test_ledger_agrees_with_response_sanitizer_banned_pii ____
+
+    @pytest.fixture(scope="module")
+    def policy() -> dict:
+>       return json.loads(POLICY_JSON.read_text())
+                          ^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_shield_train_pii_registry_expansion.py:49: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/pathlib.py:1058: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/app/assessment_workspace/repos/Extraction-Akki/backend/services/shield_train/masking_policy.v0.json')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/app/assessment_workspace/repos/Extraction-Akki/backend/services/shield_train/masking_policy.v0.json'
+
+/usr/local/lib/python3.11/pathlib.py:1044: FileNotFoundError
+=================================== FAILURES ===================================
+_____________ test_all_tiers_still_have_empty_admissible_under_env _____________
+
+allowlist = {'entries': [{'admissible_under_env': ['development', 'sandbox', 'production'], 'applicable_kinds': ['rds_data_api'], ... a tier requires an Owner ruling recorded in STATE/DECISIONS.md', ...}, 'schema_version': 'chokepoint_masking_tier_v0'}
+
+    def test_all_tiers_still_have_empty_admissible_under_env(allowlist):
+        """The admission remains PARKED: for every tier entry,
+        `admissible_under_env` MUST be an empty list. Frozen by charter —
+        only an owner ruling changes this."""
+>       for i, tier in enumerate(allowlist["tiers"]):
+                                 ^^^^^^^^^^^^^^^^^^
+E       KeyError: 'tiers'
+
+tests/invariants/test_shield_train_admission_request.py:46: KeyError
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+___________ test_masking_tier_allowlist_has_admission_request_field ____________
+
+allowlist = {'entries': [{'admissible_under_env': ['development', 'sandbox', 'production'], 'applicable_kinds': ['rds_data_api'], ... a tier requires an Owner ruling recorded in STATE/DECISIONS.md', ...}, 'schema_version': 'chokepoint_masking_tier_v0'}
+
+    def test_masking_tier_allowlist_has_admission_request_field(allowlist):
+        """Each tier entry MUST carry a new
+        `admission_request_drafted_by_wave` field naming the wave that
+        drafted the request. This wave sets it to
+        'W-Orchestrator-Shield-Train-build' (or 'W-Shield-Train-build');
+        later waves append via a `history` list on the same field if
+        re-drafting."""
+>       for tier in allowlist["tiers"]:
+                    ^^^^^^^^^^^^^^^^^^
+E       KeyError: 'tiers'
+
+tests/invariants/test_shield_train_admission_request.py:61: KeyError
+_____________ test_masking_tier_allowlist_has_prerequisites_status _____________
+
+allowlist = {'entries': [{'admissible_under_env': ['development', 'sandbox', 'production'], 'applicable_kinds': ['rds_data_api'], ... a tier requires an Owner ruling recorded in STATE/DECISIONS.md', ...}, 'schema_version': 'chokepoint_masking_tier_v0'}
+
+    def test_masking_tier_allowlist_has_prerequisites_status(allowlist):
+        """Each tier MUST carry `prerequisites_status`: a list of
+        {prerequisite, satisfied_by_this_build, evidence, still_needed}
+        entries — one per prerequisite in the ORIGINAL `not_admissible_because`
+        clause. This is what the owner reads to rule."""
+>       for tier in allowlist["tiers"]:
+                    ^^^^^^^^^^^^^^^^^^
+E       KeyError: 'tiers'
+
+tests/invariants/test_shield_train_admission_request.py:80: KeyError
+________________ test_t1_full_mask_prerequisites_all_addressed _________________
+
+allowlist = {'entries': [{'admissible_under_env': ['development', 'sandbox', 'production'], 'applicable_kinds': ['rds_data_api'], ... a tier requires an Owner ruling recorded in STATE/DECISIONS.md', ...}, 'schema_version': 'chokepoint_masking_tier_v0'}
+
+    def test_t1_full_mask_prerequisites_all_addressed(allowlist):
+        """t1_full_mask's original not_admissible_because clause names three
+        prerequisites (i) LLM chokepoint (ii) tenant entity catalogue
+        (iii) governed masking policy (Doc 02 §A5.2). All three MUST appear
+        in prerequisites_status."""
+        t1 = next(
+>           t for t in allowlist["tiers"] if t.get("tier_id") == "t1_full_mask"
+                       ^^^^^^^^^^^^^^^^^^
+        )
+E       KeyError: 'tiers'
+
+tests/invariants/test_shield_train_admission_request.py:105: KeyError
+_______ test_masking_policy_prerequisite_marked_satisfied_by_this_build ________
+
+allowlist = {'entries': [{'admissible_under_env': ['development', 'sandbox', 'production'], 'applicable_kinds': ['rds_data_api'], ... a tier requires an Owner ruling recorded in STATE/DECISIONS.md', ...}, 'schema_version': 'chokepoint_masking_tier_v0'}
+
+    def test_masking_policy_prerequisite_marked_satisfied_by_this_build(allowlist):
+        """The 'governed masking policy authored (Doc 02 §A5.2)' prerequisite
+        of t1_full_mask MUST be marked `satisfied_by_this_build: True` (this
+        build wave lands the masking policy authoring surface). The other
+        two prerequisites can stay False (this wave doesn't claim them)."""
+        t1 = next(
+>           t for t in allowlist["tiers"] if t.get("tier_id") == "t1_full_mask"
+                       ^^^^^^^^^^^^^^^^^^
+        )
+E       KeyError: 'tiers'
+
+tests/invariants/test_shield_train_admission_request.py:120: KeyError
+___________________ test_authoring_module_exports_add_entry ____________________
+
+    def test_authoring_module_exports_add_entry():
+        """The authoring module `services.shield_train.authoring` MUST expose
+        `add_entry(prev_policy, new_entry) -> new_policy` for monotonic
+        versioning. The existing policy is NEVER mutated in place."""
+>       from services.shield_train import authoring
+E       ModuleNotFoundError: No module named 'services.shield_train'
+
+tests/invariants/test_shield_train_masking_policy.py:200: ModuleNotFoundError
+_____________ test_add_entry_returns_new_policy_and_bumps_version ______________
+
+    def test_add_entry_returns_new_policy_and_bumps_version():
+        """`add_entry(prev, entry)` returns a NEW dict; prev is unchanged;
+        schema_version is incremented; new entry appears in the returned
+        ledger."""
+>       from services.shield_train import authoring
+E       ModuleNotFoundError: No module named 'services.shield_train'
+
+tests/invariants/test_shield_train_masking_policy.py:209: ModuleNotFoundError
+__________________ test_add_drawer_entry_uses_ruling_5_shape ___________________
+
+    def test_add_drawer_entry_uses_ruling_5_shape():
+        """`add_drawer_entry(prev, drawer_entry)` appends a Ruling #5 drawer
+        entry: {question_id, field, cautious_default_applied, opened_at_utc,
+        state:'open', resolution: None}."""
+>       from services.shield_train import authoring
+E       ModuleNotFoundError: No module named 'services.shield_train'
+
+tests/invariants/test_shield_train_masking_policy.py:240: ModuleNotFoundError
+__________________ test_build_masked_corpus_file_writes_jsonl __________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-16/test_build_masked_corpus_file_0')
+
+    def test_build_masked_corpus_file_writes_jsonl(tmp_path):
+        """`build_masked_corpus_file(rows, out_path)` writes JSON-lines
+        format (one dict per line) so downstream training tooling can
+        stream-parse. Returns metadata dict with path/sha256/row_count/bytes."""
+>       from services.shield_train import pipeline
+E       ModuleNotFoundError: No module named 'services.shield_train'
+
+tests/invariants/test_shield_train_pipeline.py:46: ModuleNotFoundError
+_________ test_build_masked_corpus_refuses_rows_with_pii_shaped_values _________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-16/test_build_masked_corpus_refus0')
+
+    def test_build_masked_corpus_refuses_rows_with_pii_shaped_values(tmp_path):
+        """If any row contains a value matching the phone or long-ID regex,
+        `build_masked_corpus_file` MUST refuse — this is a belt-and-braces
+        check that the row-executor's scrub actually worked. Rejecting here
+        protects the file boundary; a leak this late is the last chance to
+        stop it."""
+>       from services.shield_train import pipeline
+E       ModuleNotFoundError: No module named 'services.shield_train'
+
+tests/invariants/test_shield_train_pipeline.py:74: ModuleNotFoundError
+______________ test_build_masked_corpus_writes_deterministic_hash ______________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-16/test_build_masked_corpus_write0')
+
+    def test_build_masked_corpus_writes_deterministic_hash(tmp_path):
+        """Same input → same sha256. Determinism is required for
+        cross-machine transport verification (host-A hash == host-B hash
+        after `scp`)."""
+>       from services.shield_train import pipeline
+E       ModuleNotFoundError: No module named 'services.shield_train'
+
+tests/invariants/test_shield_train_pipeline.py:88: ModuleNotFoundError
+_____________ test_stage_corpus_to_host_returns_transport_receipt ______________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-16/test_stage_corpus_to_host_retu0')
+
+    def test_stage_corpus_to_host_returns_transport_receipt(tmp_path):
+        """`stage_corpus_to_host` returns a receipt shape:
+        {at_utc, host_slug, remote_dir, local_sha256, remote_sha256,
+        bytes_transported, verified_match}. `ssh_seam` argument is an
+        injected object with `put_file(local, remote)` and
+        `run(command) -> stdout`."""
+>       from services.shield_train import pipeline
+E       ModuleNotFoundError: No module named 'services.shield_train'
+
+tests/invariants/test_shield_train_pipeline.py:105: ModuleNotFoundError
+______________ test_stage_corpus_flags_hash_mismatch_and_refuses _______________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-16/test_stage_corpus_flags_hash_m0')
+
+    def test_stage_corpus_flags_hash_mismatch_and_refuses(tmp_path):
+        """When local sha256 != remote sha256, transport MUST refuse
+        (raise) — a mid-transport corruption or man-in-the-middle attempt
+        is fatal, not something the pipeline recovers from."""
+>       from services.shield_train import pipeline
+E       ModuleNotFoundError: No module named 'services.shield_train'
+
+tests/invariants/test_shield_train_pipeline.py:140: ModuleNotFoundError
+___________________ test_cleanup_remote_corpus_emits_receipt ___________________
+
+    def test_cleanup_remote_corpus_emits_receipt():
+        """`cleanup_remote_corpus(host_slug, remote_dir, ssh_seam)` MUST
+        return a receipt shape:
+        {at_utc, host_slug, remote_dir, cleanup_command, exit_code,
+        remote_bytes_removed_estimate}.  The estimate can be reported by
+        the remote command (e.g. `du -sb <dir>` before rm) or left null
+        when the pre-count wasn't captured."""
+>       from services.shield_train import pipeline
+E       ModuleNotFoundError: No module named 'services.shield_train'
+
+tests/invariants/test_shield_train_pipeline.py:168: ModuleNotFoundError
+_________ test_execute_lora_train_real_delegates_to_governed_pipeline __________
+
+    def test_execute_lora_train_real_delegates_to_governed_pipeline():
+        """The seam function `execute_lora_train_real` MUST NOT raise
+        `RealSSHNotWiredYet` as its first action anymore. It MUST delegate
+        to `shield_train.pipeline.execute_governed_lora_run(...)`. This is
+        the unstub."""
+        import inspect
+        from services.training_runner import ssh_seam
+        src = inspect.getsource(ssh_seam.execute_lora_train_real)
+        # The delegation must be visible in source
+>       assert (
+            "shield_train.pipeline" in src
+            or "execute_governed_lora_run" in src
+            or "from services.shield_train" in src
+        ), (
+            "execute_lora_train_real does not delegate to "
+            "shield_train.pipeline.execute_governed_lora_run — the unstub is not "
+            "in place."
+        )
+E       AssertionError: execute_lora_train_real does not delegate to shield_train.pipeline.execute_governed_lora_run — the unstub is not in place.
+E       assert ('shield_train.pipeline' in 'def execute_lora_train_real(\n    recipe_version: str,\n    base_model_id: str,\n    material_admit_ref: str,\n    *,\n    host_slug: Optional[str] = None,\n) -> SeamResult:\n    """Real LoRA training run — routes to a named host in the inventory.\n\n    host_slug precedence:\n      - explicit kwarg wins.\n      - if only 1 host in inventory: use it.\n      - if >1 in inventory AND no kwarg: raise HostNotSelected.\n      - if 0 in inventory: legacy single-host path (raises SSHAuthUnconfigured\n        or RealSSHNotWiredYet).\n    """\n    hosts = list_hosts()\n    if host_slug is None:\n        if len(hosts) == 1:\n            host_slug = hosts[0]\n        elif len(hosts) > 1:\n            raise HostNotSelected(\n                f"Multi-host inventory ({hosts!r}) requires an explicit "\n                f"host_slug kwarg on execute_lora_train_real."\n            )\n        else:\n            # Legacy single-host mode (no inventory, no slug).\n            if not _env_get("AKKI_GPU_SSH_PRIVATE_KEY_PATH") and not _env_get("AKKI_GPU_SSH_PASSWORD"):\n                raise SSHAuthUnconfigured(\n                    "GPU_CONNECT_MODE=real with no AKKI_GPU_HOSTS inventory and "\n                    "no legacy auth. Set AKKI_GPU_SSH_PRIVATE_KEY_PATH (private key path) "\n                    "or AKKI_GPU_SSH_PASSWORD (password). Key path takes precedence."\n                )\n            raise RealSSHNotWiredYet(\n                "Real LoRA training loop is stubbed on the legacy single-host path. "\n                "Set AKKI_GPU_HOSTS to migrate to multi-host inventory + use "\n                "execute_remote_command for governed ad-hoc commands."\n            )\n\n    # Multi-host path: validate config + auth.\n    cfg = get_host_config(host_slug)\n    _ = cfg.auth_method  # raises SSHAuthUnconfigured if neither key nor pwd\n    raise RealSSHNotWiredYet(\n        f"execute_lora_train_real on host_slug={host_slug!r} — full LoRA "\n        "training loop lands as a discrete R-step per BLOCKER-1 authorization. "\n        "For governed ad-hoc remote commands (CUDA verify, pip install, "\n        "hardware probe) use execute_remote_command(host_slug, cmd, purpose=...)."\n    )\n' or 'execute_governed_lora_run' in 'def execute_lora_train_real(\n    recipe_version: str,\n    base_model_id: str,\n    material_admit_ref: str,\n    *,\n    host_slug: Optional[str] = None,\n) -> SeamResult:\n    """Real LoRA training run — routes to a named host in the inventory.\n\n    host_slug precedence:\n      - explicit kwarg wins.\n      - if only 1 host in inventory: use it.\n      - if >1 in inventory AND no kwarg: raise HostNotSelected.\n      - if 0 in inventory: legacy single-host path (raises SSHAuthUnconfigured\n        or RealSSHNotWiredYet).\n    """\n    hosts = list_hosts()\n    if host_slug is None:\n        if len(hosts) == 1:\n            host_slug = hosts[0]\n        elif len(hosts) > 1:\n            raise HostNotSelected(\n                f"Multi-host inventory ({hosts!r}) requires an explicit "\n                f"host_slug kwarg on execute_lora_train_real."\n            )\n        else:\n            # Legacy single-host mode (no inventory, no slug).\n            if not _env_get("AKKI_GPU_SSH_PRIVATE_KEY_PATH") and not _env_get("AKKI_GPU_SSH_PASSWORD"):\n                raise SSHAuthUnconfigured(\n                    "GPU_CONNECT_MODE=real with no AKKI_GPU_HOSTS inventory and "\n                    "no legacy auth. Set AKKI_GPU_SSH_PRIVATE_KEY_PATH (private key path) "\n                    "or AKKI_GPU_SSH_PASSWORD (password). Key path takes precedence."\n                )\n            raise RealSSHNotWiredYet(\n                "Real LoRA training loop is stubbed on the legacy single-host path. "\n                "Set AKKI_GPU_HOSTS to migrate to multi-host inventory + use "\n                "execute_remote_command for governed ad-hoc commands."\n            )\n\n    # Multi-host path: validate config + auth.\n    cfg = get_host_config(host_slug)\n    _ = cfg.auth_method  # raises SSHAuthUnconfigured if neither key nor pwd\n    raise RealSSHNotWiredYet(\n        f"execute_lora_train_real on host_slug={host_slug!r} — full LoRA "\n        "training loop lands as a discrete R-step per BLOCKER-1 authorization. "\n        "For governed ad-hoc remote commands (CUDA verify, pip install, "\n        "hardware probe) use execute_remote_command(host_slug, cmd, purpose=...)."\n    )\n' or 'from services.shield_train' in 'def execute_lora_train_real(\n    recipe_version: str,\n    base_model_id: str,\n    material_admit_ref: str,\n    *,\n    host_slug: Optional[str] = None,\n) -> SeamResult:\n    """Real LoRA training run — routes to a named host in the inventory.\n\n    host_slug precedence:\n      - explicit kwarg wins.\n      - if only 1 host in inventory: use it.\n      - if >1 in inventory AND no kwarg: raise HostNotSelected.\n      - if 0 in inventory: legacy single-host path (raises SSHAuthUnconfigured\n        or RealSSHNotWiredYet).\n    """\n    hosts = list_hosts()\n    if host_slug is None:\n        if len(hosts) == 1:\n            host_slug = hosts[0]\n        elif len(hosts) > 1:\n            raise HostNotSelected(\n                f"Multi-host inventory ({hosts!r}) requires an explicit "\n                f"host_slug kwarg on execute_lora_train_real."\n            )\n        else:\n            # Legacy single-host mode (no inventory, no slug).\n            if not _env_get("AKKI_GPU_SSH_PRIVATE_KEY_PATH") and not _env_get("AKKI_GPU_SSH_PASSWORD"):\n                raise SSHAuthUnconfigured(\n                    "GPU_CONNECT_MODE=real with no AKKI_GPU_HOSTS inventory and "\n                    "no legacy auth. Set AKKI_GPU_SSH_PRIVATE_KEY_PATH (private key path) "\n                    "or AKKI_GPU_SSH_PASSWORD (password). Key path takes precedence."\n                )\n            raise RealSSHNotWiredYet(\n                "Real LoRA training loop is stubbed on the legacy single-host path. "\n                "Set AKKI_GPU_HOSTS to migrate to multi-host inventory + use "\n                "execute_remote_command for governed ad-hoc commands."\n            )\n\n    # Multi-host path: validate config + auth.\n    cfg = get_host_config(host_slug)\n    _ = cfg.auth_method  # raises SSHAuthUnconfigured if neither key nor pwd\n    raise RealSSHNotWiredYet(\n        f"execute_lora_train_real on host_slug={host_slug!r} — full LoRA "\n        "training loop lands as a discrete R-step per BLOCKER-1 authorization. "\n        "For governed ad-hoc remote commands (CUDA verify, pip install, "\n        "hardware probe) use execute_remote_command(host_slug, cmd, purpose=...)."\n    )\n')
+
+tests/invariants/test_shield_train_pipeline.py:200: AssertionError
+________ test_execute_governed_lora_run_gates_on_masking_tier_admission ________
+
+    def test_execute_governed_lora_run_gates_on_masking_tier_admission():
+        """`execute_governed_lora_run` MUST call
+        `chokepoint.masking_tier.assert_admissible(tier, env)` (or an
+        equivalently-named admission check) BEFORE any transport or SSH
+        call. If the tier is not admissible in the current env, MUST raise
+        `MaskingTierNotAdmitted` (NOT `RealSSHNotWiredYet` — the stub is
+        gone; the ADMISSION GATE is what remains as the honest block)."""
+>       from services.shield_train import pipeline
+E       ModuleNotFoundError: No module named 'services.shield_train'
+
+tests/invariants/test_shield_train_pipeline.py:218: ModuleNotFoundError
+_____________ test_execute_governed_lora_run_raises_on_parked_tier _____________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xf808796d5a50>
+
+    def test_execute_governed_lora_run_raises_on_parked_tier(monkeypatch):
+        """When called against t1_full_mask with `admissible_under_env: []`,
+        `execute_governed_lora_run` MUST raise `MaskingTierNotAdmitted` —
+        proving the gate holds. AKKI_ENV is set to something clearly
+        outside any admissibility list."""
+>       from services.shield_train import pipeline
+E       ModuleNotFoundError: No module named 'services.shield_train'
+
+tests/invariants/test_shield_train_pipeline.py:242: ModuleNotFoundError
+______________ test_row_executor_module_exports_expected_surface _______________
+
+    def test_row_executor_module_exports_expected_surface():
+        """The row-executor module MUST expose `execute_row_bearing_query`
+        and NOT expose any bare `run_sql`/`exec_query` shortcut that skips
+        the classification check."""
+>       from services.shield_train import row_executor
+E       ModuleNotFoundError: No module named 'services.shield_train'
+
+tests/invariants/test_shield_train_row_executor.py:77: ModuleNotFoundError
+____________ test_row_executor_result_has_shape_only_receipt_fields ____________
+
+    def test_row_executor_result_has_shape_only_receipt_fields():
+        """The RowBearingResult dataclass MUST expose:
+        rows, columns_included, columns_excluded, masking_steps_applied,
+        row_count, receipt_utc, principal, purpose. NEVER a raw-content
+        field beyond `rows`."""
+>       from services.shield_train import row_executor
+E       ModuleNotFoundError: No module named 'services.shield_train'
+
+tests/invariants/test_shield_train_row_executor.py:93: ModuleNotFoundError
+_________________ test_row_executor_refuses_unclassified_table _________________
+
+fixture_backend = <function fixture_backend.<locals>._backend at 0xf808798072e0>
+
+    def test_row_executor_refuses_unclassified_table(fixture_backend):
+        """A query against a table that has ZERO ledger entries MUST be
+        refused before any backend call is made. This is 'unclassified by
+        construction' — cautious-default means the executor doesn't guess."""
+>       from services.shield_train import row_executor
+E       ModuleNotFoundError: No module named 'services.shield_train'
+
+tests/invariants/test_shield_train_row_executor.py:124: ModuleNotFoundError
+________________ test_row_executor_refuses_unclassified_column _________________
+
+fixture_backend = <function fixture_backend.<locals>._backend at 0xf80879807920>
+
+    def test_row_executor_refuses_unclassified_column(fixture_backend):
+        """Selecting a column that isn't in the ledger for the target table
+        MUST be refused — even if OTHER columns in the same table ARE
+        classified. Prevents drift from adding new columns without
+        classifying them."""
+>       from services.shield_train import row_executor
+E       ModuleNotFoundError: No module named 'services.shield_train'
+
+tests/invariants/test_shield_train_row_executor.py:143: ModuleNotFoundError
+_________ test_row_executor_refuses_direct_pii_column_by_construction __________
+
+fixture_backend = <function fixture_backend.<locals>._backend at 0xf808798079c0>
+
+    def test_row_executor_refuses_direct_pii_column_by_construction(fixture_backend):
+        """A query that selects a `pii`-classified `exclude`-action column
+        (e.g. mobile_number) MUST be refused — the executor NEVER emits PII
+        columns even if the caller explicitly asks for them."""
+>       from services.shield_train import row_executor
+E       ModuleNotFoundError: No module named 'services.shield_train'
+
+tests/invariants/test_shield_train_row_executor.py:160: ModuleNotFoundError
+____________ test_row_executor_success_include_columns_return_rows _____________
+
+fixture_backend = <function fixture_backend.<locals>._backend at 0xf80879804400>
+
+    def test_row_executor_success_include_columns_return_rows(fixture_backend):
+        """A query selecting only 'include' + 'mask_regex_scrub' columns
+        returns rows with just those columns; excluded columns are absent
+        from every row dict."""
+>       from services.shield_train import row_executor
+E       ModuleNotFoundError: No module named 'services.shield_train'
+
+tests/invariants/test_shield_train_row_executor.py:181: ModuleNotFoundError
+_________ test_row_executor_scrubs_phone_and_id_patterns_in_free_text __________
+
+fixture_backend = <function fixture_backend.<locals>._backend at 0xf80879804180>
+
+    def test_row_executor_scrubs_phone_and_id_patterns_in_free_text(fixture_backend):
+        """A row whose free-text 'option_string' contains '0712345678' (phone
+        shape) and '12345678' (ID shape) MUST have both scrubbed to
+        [PHONE]/[ID] by the mask_regex_scrub action."""
+>       from services.shield_train import row_executor
+E       ModuleNotFoundError: No module named 'services.shield_train'
+
+tests/invariants/test_shield_train_row_executor.py:214: ModuleNotFoundError
+___________ test_row_executor_masking_steps_applied_field_populated ____________
+
+fixture_backend = <function fixture_backend.<locals>._backend at 0xf80879807380>
+
+    def test_row_executor_masking_steps_applied_field_populated(fixture_backend):
+        """`result.masking_steps_applied` MUST list each column and the
+        action taken on it (exclude / include / mask_regex_scrub). Shape:
+        [{'column': str, 'action': str}, ...] — one entry per column in
+        the target table's ledger."""
+>       from services.shield_train import row_executor
+E       ModuleNotFoundError: No module named 'services.shield_train'
+
+tests/invariants/test_shield_train_row_executor.py:241: ModuleNotFoundError
+_______________ test_row_executor_emits_shape_only_receipt_file ________________
+
+fixture_backend = <function fixture_backend.<locals>._backend at 0xf80879805620>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-16/test_row_executor_emits_shape_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xf808796fdb50>
+
+    def test_row_executor_emits_shape_only_receipt_file(fixture_backend, tmp_path,
+                                                        monkeypatch):
+        """Receipts land as JSON files under
+        `$SHIELD_TRAIN_RECEIPTS_DIR`. Each receipt carries ONLY shape
+        fields: row_count, columns_included, columns_excluded,
+        masking_steps_applied, principal, purpose, at_utc. NEVER row content."""
+>       from services.shield_train import row_executor
+E       ModuleNotFoundError: No module named 'services.shield_train'
+
+tests/invariants/test_shield_train_row_executor.py:276: ModuleNotFoundError
+______________ test_row_executor_receipt_survives_backend_failure ______________
+
+fixture_backend = <function fixture_backend.<locals>._backend at 0xf80879807a60>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-16/test_row_executor_receipt_surv0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xf808796fa750>
+
+    def test_row_executor_receipt_survives_backend_failure(fixture_backend,
+                                                           tmp_path, monkeypatch):
+        """If the backend_execute raises AFTER the classification check
+        passes, the executor MUST still emit a receipt (with row_count=0
+        and an `error_class` field) so the failure is auditable. Zero-
+        influence discipline extended to failure receipts."""
+>       from services.shield_train import row_executor
+E       ModuleNotFoundError: No module named 'services.shield_train'
+
+tests/invariants/test_shield_train_row_executor.py:313: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_shield_train_admission_request.py::test_all_tiers_still_have_empty_admissible_under_env
+FAILED tests/invariants/test_shield_train_admission_request.py::test_masking_tier_allowlist_has_admission_request_field
+FAILED tests/invariants/test_shield_train_admission_request.py::test_masking_tier_allowlist_has_prerequisites_status
+FAILED tests/invariants/test_shield_train_admission_request.py::test_t1_full_mask_prerequisites_all_addressed
+FAILED tests/invariants/test_shield_train_admission_request.py::test_masking_policy_prerequisite_marked_satisfied_by_this_build
+FAILED tests/invariants/test_shield_train_masking_policy.py::test_authoring_module_exports_add_entry
+FAILED tests/invariants/test_shield_train_masking_policy.py::test_add_entry_returns_new_policy_and_bumps_version
+FAILED tests/invariants/test_shield_train_masking_policy.py::test_add_drawer_entry_uses_ruling_5_shape
+FAILED tests/invariants/test_shield_train_pipeline.py::test_build_masked_corpus_file_writes_jsonl
+FAILED tests/invariants/test_shield_train_pipeline.py::test_build_masked_corpus_refuses_rows_with_pii_shaped_values
+FAILED tests/invariants/test_shield_train_pipeline.py::test_build_masked_corpus_writes_deterministic_hash
+FAILED tests/invariants/test_shield_train_pipeline.py::test_stage_corpus_to_host_returns_transport_receipt
+FAILED tests/invariants/test_shield_train_pipeline.py::test_stage_corpus_flags_hash_mismatch_and_refuses
+FAILED tests/invariants/test_shield_train_pipeline.py::test_cleanup_remote_corpus_emits_receipt
+FAILED tests/invariants/test_shield_train_pipeline.py::test_execute_lora_train_real_delegates_to_governed_pipeline
+FAILED tests/invariants/test_shield_train_pipeline.py::test_execute_governed_lora_run_gates_on_masking_tier_admission
+FAILED tests/invariants/test_shield_train_pipeline.py::test_execute_governed_lora_run_raises_on_parked_tier
+FAILED tests/invariants/test_shield_train_row_executor.py::test_row_executor_module_exports_expected_surface
+FAILED tests/invariants/test_shield_train_row_executor.py::test_row_executor_result_has_shape_only_receipt_fields
+FAILED tests/invariants/test_shield_train_row_executor.py::test_row_executor_refuses_unclassified_table
+FAILED tests/invariants/test_shield_train_row_executor.py::test_row_executor_refuses_unclassified_column
+FAILED tests/invariants/test_shield_train_row_executor.py::test_row_executor_refuses_direct_pii_column_by_construction
+FAILED tests/invariants/test_shield_train_row_executor.py::test_row_executor_success_include_columns_return_rows
+FAILED tests/invariants/test_shield_train_row_executor.py::test_row_executor_scrubs_phone_and_id_patterns_in_free_text
+FAILED tests/invariants/test_shield_train_row_executor.py::test_row_executor_masking_steps_applied_field_populated
+FAILED tests/invariants/test_shield_train_row_executor.py::test_row_executor_emits_shape_only_receipt_file
+FAILED tests/invariants/test_shield_train_row_executor.py::test_row_executor_receipt_survives_backend_failure
+ERROR tests/invariants/test_shield_train_masking_policy.py::test_policy_document_present_and_parses
+ERROR tests/invariants/test_shield_train_masking_policy.py::test_policy_document_top_level_fields
+ERROR tests/invariants/test_shield_train_masking_policy.py::test_policy_schema_version_is_integer_and_nonzero
+ERROR tests/invariants/test_shield_train_masking_policy.py::test_policy_authored_at_utc_iso_shaped
+ERROR tests/invariants/test_shield_train_masking_policy.py::test_policy_doc_ref_cites_section_a5_2
+ERROR tests/invariants/test_shield_train_masking_policy.py::test_policy_ledger_is_list_and_drawer_is_list
+ERROR tests/invariants/test_shield_train_masking_policy.py::test_ledger_entries_have_required_shape
+ERROR tests/invariants/test_shield_train_masking_policy.py::test_ledger_class_enum
+ERROR tests/invariants/test_shield_train_masking_policy.py::test_ledger_action_enum
+ERROR tests/invariants/test_shield_train_masking_policy.py::test_ledger_declassification_path_shape
+ERROR tests/invariants/test_shield_train_masking_policy.py::test_ledger_uniqueness_per_table_column
+ERROR tests/invariants/test_shield_train_pii_registry_expansion.py::test_ussd_question_response_all_13_columns_classified
+ERROR tests/invariants/test_shield_train_pii_registry_expansion.py::test_sms_log_all_13_columns_classified
+ERROR tests/invariants/test_shield_train_pii_registry_expansion.py::test_no_columns_beyond_census_schema
+ERROR tests/invariants/test_shield_train_pii_registry_expansion.py::test_direct_pii_columns_marked_pii_and_excluded
+ERROR tests/invariants/test_shield_train_pii_registry_expansion.py::test_direct_pii_declassification_path_closed
+ERROR tests/invariants/test_shield_train_pii_registry_expansion.py::test_geo_columns_classified_quasi_identifier
+ERROR tests/invariants/test_shield_train_pii_registry_expansion.py::test_farm_scale_quasi_identifiers_excluded
+ERROR tests/invariants/test_shield_train_pii_registry_expansion.py::test_free_text_include_columns_use_mask_regex_scrub
+ERROR tests/invariants/test_shield_train_pii_registry_expansion.py::test_structural_include_uses_bare_include
+ERROR tests/invariants/test_shield_train_pii_registry_expansion.py::test_sms_sent_lives_in_clarification_drawer
+ERROR tests/invariants/test_shield_train_pii_registry_expansion.py::test_drawer_entries_carry_question_id_and_resolution_slot
+ERROR tests/invariants/test_shield_train_pii_registry_expansion.py::test_ledger_agrees_with_response_sanitizer_banned_pii
+======================== 27 failed, 23 errors in 1.35s =========================

@@ -1,0 +1,60 @@
+FFFFFFFFFFFFFFFFFFFFFFFFFF..FF                                           [100%]
+=================================== FAILURES ===================================
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wsolvalift_cp_s1_two_faculty_seam.py:44: AssertionError: missing /app/assessment_workspace/repos/Extraction-Akki/backend/services/solva_v2/reasoning_faculty.py
+/usr/local/lib/python3.11/pathlib.py:1044: FileNotFoundError: [Errno 2] No such file or directory: '/app/assessment_workspace/repos/Extraction-Akki/backend/services/solva_v2/reasoning_faculty.py'
+/usr/local/lib/python3.11/pathlib.py:1044: FileNotFoundError: [Errno 2] No such file or directory: '/app/assessment_workspace/repos/Extraction-Akki/backend/services/solva_v2/assertion_boundary.py'
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError: No module named 'contracts.solva_reasoning'
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError: No module named 'services.solva_v2'
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError: No module named 'services.solva_v2'
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError: No module named 'services.solva_v2'
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError: No module named 'contracts.solva_reasoning'
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError: No module named 'services.solva_v2'
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError: No module named 'services.solva_v2'
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError: No module named 'services.solva_v2'
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError: No module named 'contracts.solva_reasoning'
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError: No module named 'contracts.solva_reasoning'
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError: No module named 'contracts.solva_reasoning'
+/usr/local/lib/python3.11/pathlib.py:1044: FileNotFoundError: [Errno 2] No such file or directory: '/app/assessment_workspace/repos/Extraction-Akki/backend/contracts/solva_reasoning.py'
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError: No module named 'contracts.solva_reasoning'
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError: No module named 'contracts.solva_reasoning'
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError: No module named 'contracts.solva_reasoning'
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError: No module named 'contracts.solva_reasoning'
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError: No module named 'contracts.solva_reasoning'
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError: No module named 'contracts.solva_reasoning'
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError: No module named 'contracts.solva_reasoning'
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError: No module named 'services.solva_v2'
+/usr/local/lib/python3.11/pathlib.py:1044: FileNotFoundError: [Errno 2] No such file or directory: '/app/assessment_workspace/repos/Extraction-Akki/backend/services/solva_v2/critic_seam.py'
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError: No module named 'contracts.solva_reasoning'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wsolvalift_cp_s8_donor_lift_case_agnostic.py:36: AssertionError: assert False
+/usr/local/lib/python3.11/pathlib.py:1044: FileNotFoundError: [Errno 2] No such file or directory: '/app/assessment_workspace/repos/Extraction-Akki/backend/services/solva_v2/engines/candidate_generation.py'
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError: No module named 'services.solva_v2'
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wsolvalift_cp_s1_two_faculty_seam.py::test_cp_s1_reasoning_faculty_module_exists
+FAILED tests/invariants/test_wsolvalift_cp_s1_two_faculty_seam.py::test_cp_s1_reasoning_faculty_does_not_import_compute_class
+FAILED tests/invariants/test_wsolvalift_cp_s1_two_faculty_seam.py::test_cp_s1_boundary_does_not_import_reasoning_faculty
+FAILED tests/invariants/test_wsolvalift_cp_s2_assertion_boundary_signature.py::test_cp_s2_contract_types_exist
+FAILED tests/invariants/test_wsolvalift_cp_s2_assertion_boundary_signature.py::test_cp_s2_assertion_boundary_module_exists
+FAILED tests/invariants/test_wsolvalift_cp_s2_assertion_boundary_signature.py::test_cp_s2_signature_is_the_guard
+FAILED tests/invariants/test_wsolvalift_cp_s2_assertion_boundary_signature.py::test_cp_s2_signature_rejects_laundering_parameters
+FAILED tests/invariants/test_wsolvalift_cp_s2_assertion_boundary_signature.py::test_cp_s2_assertion_class_is_closed_enum
+FAILED tests/invariants/test_wsolvalift_cp_s3_load_bearing_returns_refs.py::test_cp_s3_function_exists
+FAILED tests/invariants/test_wsolvalift_cp_s3_load_bearing_returns_refs.py::test_cp_s3_return_type_is_ref_only
+FAILED tests/invariants/test_wsolvalift_cp_s3_load_bearing_returns_refs.py::test_cp_s3_no_class_parameter_leaks_into_reasoning
+FAILED tests/invariants/test_wsolvalift_cp_s4_three_action_refusal.py::test_cp_s4_refusal_action_enum_is_exactly_three
+FAILED tests/invariants/test_wsolvalift_cp_s4_three_action_refusal.py::test_cp_s4_refusal_envelope_exposes_typed_actions
+FAILED tests/invariants/test_wsolvalift_cp_s4_three_action_refusal.py::test_cp_s4_fourth_action_refused_at_validation
+FAILED tests/invariants/test_wsolvalift_cp_s4_three_action_refusal.py::test_cp_s4_donor_categories_not_present
+FAILED tests/invariants/test_wsolvalift_cp_s5_trace_from_first_commit.py::test_cp_s5_solva_trace_schema_has_five_canon_fields
+FAILED tests/invariants/test_wsolvalift_cp_s5_trace_from_first_commit.py::test_cp_s5_record_trace_returns_solva_trace
+FAILED tests/invariants/test_wsolvalift_cp_s5_trace_from_first_commit.py::test_cp_s5_trace_r_c2_marker_false_at_wave_open
+FAILED tests/invariants/test_wsolvalift_cp_s6_intent_audit.py::test_cp_s6_record_has_declared_and_demonstrated_fields
+FAILED tests/invariants/test_wsolvalift_cp_s6_intent_audit.py::test_cp_s6_open_intent_audit_returns_record
+FAILED tests/invariants/test_wsolvalift_cp_s6_intent_audit.py::test_cp_s6_update_is_append_only
+FAILED tests/invariants/test_wsolvalift_cp_s7_critic_seam.py::test_cp_s7_critic_invocation_carries_only_four_canon_fields
+FAILED tests/invariants/test_wsolvalift_cp_s7_critic_seam.py::test_cp_s7_invoke_critic_signature
+FAILED tests/invariants/test_wsolvalift_cp_s7_critic_seam.py::test_cp_s7_negative_scan_no_rationale_leak
+FAILED tests/invariants/test_wsolvalift_cp_s7_critic_seam.py::test_cp_s7_findings_never_blocking_never_editing
+FAILED tests/invariants/test_wsolvalift_cp_s8_donor_lift_case_agnostic.py::test_cp_s8_engines_package_exists
+FAILED tests/invariants/test_wsolvalift_cp_s8_donor_lift_case_agnostic.py::test_cp_s8_engine_modules_have_halt_or_canon_anchor
+FAILED tests/invariants/test_wsolvalift_cp_s8_donor_lift_case_agnostic.py::test_cp_s8_engines_expose_run_callable
+28 failed, 2 passed in 0.87s

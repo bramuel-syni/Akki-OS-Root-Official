@@ -1,0 +1,121 @@
+========================================================================
+Wave G2 · V8 literal extraction receipt
+Generated: 2026-08-28T~06:00Z
+Method: extract prototype's actual assets from the verified v8 file bytes.
+Discipline: no re-authoring, no token derivation, no interpretation.
+========================================================================
+
+SOURCE FILE (verified at Step 0):
+  fixtures/RMS_AI_Akki_Prototype_v8_Standalone.html
+    sha256 = e56871d01a99c2f3aa173c9b0a0f09e983c9f0e54ba3e61795ac8cb8575f98f2
+    bytes  = 1,264,425
+
+EXTRACTED ARTIFACTS (from the decoded inline template):
+  notes/wave_g_step0_v8/v8_template_decoded.html
+    sha256 = 9177c2b910b9caf5b07d6887317b37404443da83f548166da6f6e08f858e3a9a
+    bytes  = 1,111,498
+
+  notes/wave_g2_extraction/v8_prototype_head_styles.css
+    sha256 = 299e6a48d35f3c81ebd7f4d1f741207d2de8d259325089d38dfbdad1a457fe55
+    bytes  = 388
+    provenance = combined content of every <style>...</style> block inside
+                 the decoded template's <helmet> head (1 block total).
+
+  notes/wave_g2_extraction/v8_prototype_dc_scripts.js
+    sha256 = bd3a42b48723b32a12973494b7c5db99cc5bdf3a1a19564edb13b6af1b704b23
+    bytes  = 599,515
+    provenance = combined content of every <script type="text/x-dc" data-dc-script="">
+                 block inside the decoded template (1 block total).
+                 This is the prototype's own state machine JS.
+
+  notes/wave_g_step0_v8/8d5cc57e-*.application_javascript
+    sha256 = ba61852925c4327a779f69a55236daf6f01fa0ad403e76a350dad71a4a94311e
+    bytes  = 6,289
+    provenance = base64+gzip-decoded bundler payload · dc-runtime county-map component
+
+  notes/wave_g_step0_v8/0f495aa5-*.text_javascript
+    sha256 = 8fe7df74405f3c55f49b7249c74ea1397e65d07dea2b1bd3b4a489bec2e28cbe
+    bytes  = 69,150
+    provenance = base64+gzip-decoded bundler payload · dc-runtime main bundle
+                 (the runtime that hydrates the template's sc-if / sc-for /
+                 sc-camel-* directives)
+
+  notes/wave_g_step0_v8/a27c8ca4-*.text_javascript
+    sha256 = 35f4f974f4b2bcd44da73963347f8952e341f83909e4498227d4e26b98f66f0d
+    bytes  = 131,835
+    provenance = base64+gzip-decoded react-dom@18.3.1 UMD lib
+
+  notes/wave_g_step0_v8/373c1b27-*.text_javascript
+    sha256 = d949f1c3687aedadcedac85261865f29b17cd273997e7f6b2bfc53b2f9d4c4dd
+    bytes  = 10,751
+    provenance = base64+gzip-decoded react@18.3.1 UMD lib
+
+STRUCTURAL FACT:
+  The prototype ships as a SELF-CONTAINED HTML bundle:
+    - 1 head <style> block (388 B) — keyframes + reset only
+    - 1 root <div> with inline CSS variables (--paper, --surface, --blue2, etc.)
+    - Every other DOM element uses inline `style="..."` attributes
+    - 1 dc-script block (~600 KB) — full app state machine (state, methods,
+      constants NAV/TABS/ROLES/GOV/GM/TRUST/APPROVALS/RECORD_ROWS/CEREMONIES/
+      ACTORS/WALKS/BRIEF/AKKI_SCRIPT/TL_MODES/TL_FLOW/EST_GROUPS/RB_CATS/etc.)
+    - 4 bundler payloads (react, react-dom, dc-runtime main, dc-runtime
+      county-map component)
+
+  ALL layout, color, typography, and copy is CONTAINED WITHIN THE SOURCE FILE.
+  There is no separate stylesheet, no external asset, no derived token set.
+  Any CSS-in-JS or "design system" module built alongside is by definition
+  re-authoring — hence BANNED per owner ruling 2026-08-28T~06:00Z.
+
+INTEGRATION-SHAPE JUDGMENT (per owner ruling item 4):
+  Option (a) JSX transform of DOM + React state mirroring:
+    - requires mechanically re-writing ~1.1 MB of template into JSX
+    - every sc-if / sc-for / {{ }} / style="..." → per-node re-authoring
+    - each transformation step is a potential drift point
+    - fails the "no re-authoring" rule
+    → REJECTED.
+
+  Option (b) Serve extracted app shell directly + inject our data:
+    - requires ZERO re-authoring
+    - the prototype's dc-runtime + main bundle + template boot whole-cloth
+    - data injection is a follow-on hook (out of scope for shell adoption)
+    - byte-identity gate (sha256sum) IS the fidelity gate — the strongest
+      possible mechanical guarantee
+    → SELECTED.
+
+PLAN (this session):
+  1. Copy fixtures/RMS_AI_Akki_Prototype_v8_Standalone.html verbatim to
+     pod_shell/frontend/public/v8_prototype.html + /app/frontend/public/
+     v8_prototype.html (byte-identical mirrors of both to the source file).
+  2. Update pod_shell/frontend/src/App.js: `/` redirects to `/v8_prototype.html`
+     (via window.location.replace, no shell wrapper). Existing pod routes
+     (/registry, /shield, etc.) remain URL-accessible for deep-linking.
+  3. BAN the interpretation-authored assets: delete
+     pod_shell/frontend/src/design/AkkiV8Shell.jsx and
+     pod_shell/frontend/src/design/akkiv8_design_system.js from both trees.
+  4. Rewrite backend/tests/invariants/test_wave_g_v8_shell_port.py to invert
+     assertions: BANNED-file-absence tests + byte-identity gate + no-authored-
+     CSS gate. Ratchet floor stays >=2389 by adding compensating fidelity
+     gates.
+  5. Bank the source-verbatim file at phase0/html_snapshots/wave_g2_portal.html
+     as the portal-mode HTML snapshot. Per-surface snapshots require a
+     rendering browser and are deferred to owner-tool eyeball.
+  6. Record method-change BAN in DECISIONS.md: interpretation is BANNED for
+     design adoption; literal-markup adoption with byte-identity gates is
+     the permanent standard.
+  7. Close per permanent standard: double-green at ratcheted floor + banked
+     receipts + close report with per-surface DOM-diff summary + STOP for
+     owner re-eyeball.
+
+BANNED (from this session forward):
+  * Any hand-built React/JSX shell that reproduces the prototype's chrome
+    from a docx spec, inventory notes, or extracted-DOM structure.
+  * Any CSS-in-JS or design-token module derived from the prototype's inline
+    styles (v8 TOKENS = re-authoring by definition).
+  * Any interpretation of the prototype's typography, color, or layout.
+
+PERMANENT STANDARD:
+  For any owner-supplied design artifact, adopt the artifact literally:
+  ship its files byte-preserved; mount live data via mechanical
+  substitution inside the artifact's own containers; enforce byte-identity
+  and DOM-structure equality tests. Interpretation is banned.
+========================================================================

@@ -1,0 +1,89 @@
+# ═══════════════════════════════════════════════════════════════════════
+# RED DRILL RECEIPT · W-RELEASE-GATE-PILOT-LIFT · CP-RG1 · pre-impl
+# ═══════════════════════════════════════════════════════════════════════
+#
+# CONTEXT NOTE (baseline drift context):
+#   This RED drill was captured during a closed egress window at
+#   ~04:45 UTC on 2026-09-15. Baseline is time-drifted at 4013/4018
+#   because 5 Mtafiti GPU-discovery is_recent tests aged past their
+#   72h freshness threshold since M5 CP-C6 seal 2026-09-15T~03:22Z.
+#
+#   The drift is NATURAL RECEIPT-AGING, not code regression. Floor
+#   4018 remains legitimate (captured green at seal time; drift is
+#   72h→73h wallclock cross since capture). See
+#   notes/BASELINE_DRIFT_NOTE_20260915.md for full analysis.
+#
+#   Owner Option-A ruling 2026-09-15T~04:40Z authorizes WIP-staged
+#   authoring of CP-RG1..RG5 during closed window (STATE/DECISIONS.md
+#   2026-09-15T~04:40Z). Mtafiti receipts refresh as first item in
+#   the 08:00 UTC egress queue; CP-RG1..RG5 seal + commit happens
+#   after baseline is restored to green.
+#
+#   The module-missing RED failures captured below are INDEPENDENT
+#   of the Mtafiti drift. They are the right-reason RED for the
+#   tests-first discipline of CP-RG1: the test file exists, the
+#   mechanism modules (contracts/release_budget.py +
+#   services/release_gate/release_ledger.py) do NOT yet exist, so
+#   `importlib.import_module()` raises ModuleNotFoundError. This
+#   is the expected pre-mechanism baseline for the wave.
+#
+# Wave:           W-RELEASE-GATE-PILOT-LIFT
+# CP:             CP-RG1 (ReleaseBudgetState + ReleaseLedgerDebit + record_debit)
+# Grounding brief: notes/wave_release_gate_pilot_lift_grounding_brief.md §B
+# Target invariants: 6 baseline + 1 cross-benefit (NON_CONTRACT_UTILITY_MODULES ext)
+# Modules NOT yet landed (expected import failures):
+#   - contracts/release_budget.py
+#   - services/release_gate/__init__.py
+#   - services/release_gate/release_ledger.py
+#
+# ═══════════════════════════════════════════════════════════════════════
+
+──────── PYTEST RED DRILL OUTPUT ────────
+FFFFFF                                                                   [100%]
+=================================== FAILURES ===================================
+__________________________ test_cp_rg1_module_fabric ___________________________
+tests/invariants/test_wrg_cp_rg1_release_budget_ledger.py:33: in test_cp_rg1_module_fabric
+    rb = importlib.import_module("contracts.release_budget")
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1140: in _find_and_load_unlocked
+    ???
+E   ModuleNotFoundError: No module named 'contracts.release_budget'
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+_________ test_cp_rg1_release_budget_state_is_closed_three_value_enum __________
+tests/invariants/test_wrg_cp_rg1_release_budget_ledger.py:60: in test_cp_rg1_release_budget_state_is_closed_three_value_enum
+    from contracts.release_budget import ReleaseBudgetState
+E   ModuleNotFoundError: No module named 'contracts.release_budget'
+______ test_cp_rg1_release_ledger_debit_frozen_seven_carrier_exact_order _______
+tests/invariants/test_wrg_cp_rg1_release_budget_ledger.py:91: in test_cp_rg1_release_ledger_debit_frozen_seven_carrier_exact_order
+    from contracts.release_budget import ReleaseBudgetState, ReleaseLedgerDebit
+E   ModuleNotFoundError: No module named 'contracts.release_budget'
+______________ test_cp_rg1_record_debit_refuses_empty_receipt_id _______________
+tests/invariants/test_wrg_cp_rg1_release_budget_ledger.py:131: in test_cp_rg1_record_debit_refuses_empty_receipt_id
+    from contracts.release_budget import ReleaseBudgetState
+E   ModuleNotFoundError: No module named 'contracts.release_budget'
+__________ test_cp_rg1_record_debit_refuses_default_pending_override ___________
+tests/invariants/test_wrg_cp_rg1_release_budget_ledger.py:163: in test_cp_rg1_record_debit_refuses_default_pending_override
+    from contracts.release_budget import ReleaseBudgetState
+E   ModuleNotFoundError: No module named 'contracts.release_budget'
+_______ test_cp_rg1_record_debit_admits_pilot_open_and_appends_to_ledger _______
+tests/invariants/test_wrg_cp_rg1_release_budget_ledger.py:194: in test_cp_rg1_record_debit_admits_pilot_open_and_appends_to_ledger
+    from contracts.release_budget import ReleaseBudgetState
+E   ModuleNotFoundError: No module named 'contracts.release_budget'
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wrg_cp_rg1_release_budget_ledger.py::test_cp_rg1_module_fabric
+FAILED tests/invariants/test_wrg_cp_rg1_release_budget_ledger.py::test_cp_rg1_release_budget_state_is_closed_three_value_enum
+FAILED tests/invariants/test_wrg_cp_rg1_release_budget_ledger.py::test_cp_rg1_release_ledger_debit_frozen_seven_carrier_exact_order
+FAILED tests/invariants/test_wrg_cp_rg1_release_budget_ledger.py::test_cp_rg1_record_debit_refuses_empty_receipt_id
+FAILED tests/invariants/test_wrg_cp_rg1_release_budget_ledger.py::test_cp_rg1_record_debit_refuses_default_pending_override
+FAILED tests/invariants/test_wrg_cp_rg1_release_budget_ledger.py::test_cp_rg1_record_debit_admits_pilot_open_and_appends_to_ledger
+6 failed in 0.66s
+
+──────── END PYTEST OUTPUT ────────

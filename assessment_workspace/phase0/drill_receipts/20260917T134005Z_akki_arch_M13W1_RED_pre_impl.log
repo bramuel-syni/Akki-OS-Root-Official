@@ -1,0 +1,16 @@
+(RED phase happened during the akki.arch construction sequence — the pre-fix run surfaced the R-A-2 governor cross-import violation in agent_containment/ceilings.py which required extending R-A-2 with an allowed_import_targets list; this log captures the post-fix single-file re-verification showing all 4 tests green individually before the full sweep.)
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.4.2, pluggy-1.6.0 -- /root/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: asyncio-1.4.0, xdist-3.8.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collecting ... collected 4 items
+
+tests/invariants/test_akki_arch_import_assertions.py::test_akki_arch_refuses_learned_to_decision PASSED [ 25%]
+tests/invariants/test_akki_arch_import_assertions.py::test_akki_arch_refuses_governor_cross_import PASSED [ 50%]
+tests/invariants/test_akki_arch_import_assertions.py::test_akki_arch_refuses_layer_up_import PASSED [ 75%]
+tests/invariants/test_akki_arch_import_assertions.py::test_akki_arch_current_tree_green PASSED [100%]
+
+============================== 4 passed in 1.15s ===============================

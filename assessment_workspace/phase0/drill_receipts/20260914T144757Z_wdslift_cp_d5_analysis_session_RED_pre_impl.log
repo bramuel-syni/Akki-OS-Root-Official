@@ -1,0 +1,98 @@
+FFFFFF                                                                   [100%]============================ BASELINE_GUARD receipt ============================
+passed=0 / baseline-failures-remaining=0 / quarantined=0
+  manifest: tests/invariants/baseline_failures.json
+  scope: BASELINE_GUARD=1  ·  invocation: cd backend && BASELINE_GUARD=1 python -m pytest tests/invariants/
+!!!!!!!!!!!!! BASELINE_GUARD · HALT AND REPORT · owner ruling (c) !!!!!!!!!!!!!!
+[V1] 6 NEW failure(s) OUTSIDE manifest:
+    tests/invariants/test_wdslift_cp_d5_analysis_session.py::test_cp_d5_analysis_session_frozen_five_field_shape
+    tests/invariants/test_wdslift_cp_d5_analysis_session.py::test_cp_d5_analysis_session_module_fabric
+    tests/invariants/test_wdslift_cp_d5_analysis_session.py::test_cp_d5_append_session_accepts_new_id_and_returns_extended_tuple
+    tests/invariants/test_wdslift_cp_d5_analysis_session.py::test_cp_d5_append_session_refuses_id_collision_canon3_append_only
+    tests/invariants/test_wdslift_cp_d5_analysis_session.py::test_cp_d5_snapshot_fingerprint_deterministic
+    tests/invariants/test_wdslift_cp_d5_analysis_session.py::test_cp_d5_snapshot_fingerprint_sensitive_to_input_change
+[V3] Passed count 0 < ratchet floor 3955
+  No silent rebaselining. Report drift to owner verbatim.
+
+=================================== FAILURES ===================================
+__________________ test_cp_d5_analysis_session_module_fabric ___________________
+
+    def test_cp_d5_analysis_session_module_fabric():
+        """Module exposes the AnalysisSession record + append + deterministic-fingerprint fabric."""
+>       m = importlib.import_module("services.data_suite_v2.analysis_session")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_wdslift_cp_d5_analysis_session.py:13: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'services.data_suite_v2.analysis_session'
+import_ = <function _gcd_import at 0xf9333bc2bd80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'services.data_suite_v2.analysis_session'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+_____________ test_cp_d5_analysis_session_frozen_five_field_shape ______________
+
+    def test_cp_d5_analysis_session_frozen_five_field_shape():
+        """AnalysisSession is a frozen dataclass with exactly 5 declared fields."""
+>       from services.data_suite_v2.analysis_session import AnalysisSession
+E       ModuleNotFoundError: No module named 'services.data_suite_v2.analysis_session'
+
+tests/invariants/test_wdslift_cp_d5_analysis_session.py:25: ModuleNotFoundError
+________________ test_cp_d5_snapshot_fingerprint_deterministic _________________
+
+    def test_cp_d5_snapshot_fingerprint_deterministic():
+        """Same inputs -> same 64-char sha256 hex output on repeated calls."""
+>       from services.data_suite_v2.analysis_session import compute_snapshot_fingerprint
+E       ModuleNotFoundError: No module named 'services.data_suite_v2.analysis_session'
+
+tests/invariants/test_wdslift_cp_d5_analysis_session.py:48: ModuleNotFoundError
+__________ test_cp_d5_snapshot_fingerprint_sensitive_to_input_change ___________
+
+    def test_cp_d5_snapshot_fingerprint_sensitive_to_input_change():
+        """Fingerprint changes when session_id, session_kind, or source_unit_refs change."""
+>       from services.data_suite_v2.analysis_session import compute_snapshot_fingerprint
+E       ModuleNotFoundError: No module named 'services.data_suite_v2.analysis_session'
+
+tests/invariants/test_wdslift_cp_d5_analysis_session.py:63: ModuleNotFoundError
+______ test_cp_d5_append_session_refuses_id_collision_canon3_append_only _______
+
+    def test_cp_d5_append_session_refuses_id_collision_canon3_append_only():
+        """append_session raises AnalysisSessionCollision on duplicate session_id (Canon-3 §9.3).
+    
+        Canon-3 §9.3 · append-only ledger spirit: Data-Suite analysis records never
+        overwrite; a duplicate session_id is refused at the append surface, not
+        silently overwritten.
+        """
+>       from services.data_suite_v2.analysis_session import (
+            AnalysisSession, AnalysisSessionCollision, append_session,
+        )
+E       ModuleNotFoundError: No module named 'services.data_suite_v2.analysis_session'
+
+tests/invariants/test_wdslift_cp_d5_analysis_session.py:91: ModuleNotFoundError
+_____ test_cp_d5_append_session_accepts_new_id_and_returns_extended_tuple ______
+
+    def test_cp_d5_append_session_accepts_new_id_and_returns_extended_tuple():
+        """Non-colliding append returns a new tuple with length + 1; original tuple untouched."""
+>       from services.data_suite_v2.analysis_session import AnalysisSession, append_session
+E       ModuleNotFoundError: No module named 'services.data_suite_v2.analysis_session'
+
+tests/invariants/test_wdslift_cp_d5_analysis_session.py:110: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wdslift_cp_d5_analysis_session.py::test_cp_d5_analysis_session_module_fabric
+FAILED tests/invariants/test_wdslift_cp_d5_analysis_session.py::test_cp_d5_analysis_session_frozen_five_field_shape
+FAILED tests/invariants/test_wdslift_cp_d5_analysis_session.py::test_cp_d5_snapshot_fingerprint_deterministic
+FAILED tests/invariants/test_wdslift_cp_d5_analysis_session.py::test_cp_d5_snapshot_fingerprint_sensitive_to_input_change
+FAILED tests/invariants/test_wdslift_cp_d5_analysis_session.py::test_cp_d5_append_session_refuses_id_collision_canon3_append_only
+FAILED tests/invariants/test_wdslift_cp_d5_analysis_session.py::test_cp_d5_append_session_accepts_new_id_and_returns_extended_tuple
+6 failed in 0.67s

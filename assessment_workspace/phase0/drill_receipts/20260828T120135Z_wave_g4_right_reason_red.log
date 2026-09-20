@@ -1,0 +1,306 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.4.2, pluggy-1.6.0 -- /root/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: asyncio-1.4.0, xdist-3.8.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collecting ... collected 203 items
+
+tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_interpretation_authored_shell_is_banned[src/design/AkkiV8Shell.jsx] PASSED [  0%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_interpretation_authored_shell_is_banned[src/design/akkiv8_design_system.js] PASSED [  0%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_app_frontend_interpretation_authored_shell_is_banned[src/design/AkkiV8Shell.jsx] PASSED [  1%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_app_frontend_interpretation_authored_shell_is_banned[src/design/akkiv8_design_system.js] PASSED [  1%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_v8_prototype_html_present_in_pod_shell_public PASSED [  2%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_v8_prototype_html_present_in_runtime_public PASSED [  2%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_v8_prototype_html_pod_and_runtime_byte_identical PASSED [  3%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_extracted_v8_head_styles_hash_recorded PASSED [  3%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_app_js_redirects_root_to_v8_prototype PASSED [  4%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_app_js_does_not_import_banned_shell PASSED [  4%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_runtime_app_js_does_not_import_banned_shell PASSED [  5%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_no_authored_v8_css_module_in_design_folder PASSED [  5%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_all_pod_component_routes_remain_deep_link_accessible PASSED [  6%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_decisions_md_records_interpretation_ban PASSED [  6%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_portal_html_snapshot_banked PASSED [  7%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_nav_item_key[chat] PASSED [  7%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_nav_item_key[analyze] PASSED [  8%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_nav_item_key[documents] PASSED [  8%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_nav_item_key[tasks] PASSED [  9%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_nav_item_key[clarity] PASSED [  9%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_nav_item_key[strategy] PASSED [ 10%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_nav_item_key[hypothesis] PASSED [ 10%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_nav_item_key[perspective] PASSED [ 11%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_nav_item_key[mentions] PASSED [ 11%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_nav_item_key[emails] PASSED [ 12%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_nav_item_key[projects] PASSED [ 12%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_nav_item_key[hrstuff] PASSED [ 13%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_nav_item_key[performance] PASSED [ 13%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_nav_item_key[board] PASSED [ 14%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_nav_item_key[estate] PASSED [ 14%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_nav_item_key[govern] PASSED [ 15%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_nav_item_key[greymirror] PASSED [ 15%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_nav_item_key[spendreq] PASSED [ 16%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_nav_item_key[rulesupd] PASSED [ 16%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_nav_item_key[modeladmission] PASSED [ 17%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_nav_item_key[train] PASSED [ 17%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_nav_item_key[agentbuild] PASSED [ 18%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_nav_item_key[extract] PASSED [ 18%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_nav_item_key[youragents] PASSED [ 19%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_nav_item_key[yourmodels] PASSED [ 19%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_nav_item_key[appsnew] PASSED [ 20%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_nav_item_key[appsfrequent] PASSED [ 20%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_nav_item_key[appsconnected] PASSED [ 21%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_nav_item_key[appsrequests] PASSED [ 21%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_nav_item_key[wstate] PASSED [ 22%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_nav_item_key[wrecord] PASSED [ 22%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_nav_item_key[wunder] PASSED [ 23%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_nav_item_key[wdecisions] PASSED [ 23%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_nav_group_label[WorkStudio] PASSED [ 24%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_nav_group_label[ThinkLab] PASSED [ 24%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_nav_group_label[Collab] PASSED [ 25%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_nav_group_label[Performance Management] PASSED [ 25%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_nav_group_label[Manage Estate] PASSED [ 26%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_nav_group_label[Approvals] PASSED [ 26%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_nav_group_label[Build Your Resources] PASSED [ 27%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_nav_group_label[Your Resources] PASSED [ 27%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_nav_group_label[3rd Party Apps] PASSED [ 28%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_nav_group_label[The Watch] PASSED [ 28%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_tab_label[Work] PASSED [ 29%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_tab_label[Build] PASSED [ 29%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_tab_label[3rd Party Apps] PASSED [ 30%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_tab_label[Admin] PASSED [ 30%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_role_person[M. Chen-Compliance Owner] PASSED [ 31%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_role_person[A. Njeri-Watch Officer] PASSED [ 31%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_role_person[J. Otieno-Operator] PASSED [ 32%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_design_token[#f5f2ea] PASSED [ 32%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_design_token[#f0ece1] PASSED [ 33%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_design_token[#ede8da] PASSED [ 33%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_design_token[#e4dfd3] PASSED [ 33%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_design_token[#1b1f27] PASSED [ 34%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_design_token[#3d4350] PASSED [ 34%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_design_token[#5b6270] PASSED [ 35%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_design_token[#16274a] PASSED [ 35%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_design_token[#0f1b33] PASSED [ 36%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_design_token[#b8395b] PASSED [ 36%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_design_token[#c64e6e] PASSED [ 37%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_design_token[#b08d2e] PASSED [ 37%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_design_token[#1d7a6e] PASSED [ 38%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_design_token[#4c5fd5] PASSED [ 38%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_design_token[Iowan Old Style] PASSED [ 39%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_design_token[S\xf6hne] PASSED [ 39%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_design_token[ui-monospace] PASSED [ 40%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_rms_ai_wordmark PASSED [ 40%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_canon_citation_comment PASSED [ 41%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_default_agents_seed PASSED [ 41%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_content_constant[GOV] PASSED [ 42%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_content_constant[GM] PASSED [ 42%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_content_constant[TRUST] PASSED [ 43%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_content_constant[RB_CATS] PASSED [ 43%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_content_constant[EST_GROUPS] PASSED [ 44%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_content_constant[APPROVALS] PASSED [ 44%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_content_constant[RULES_IN_FORCE] PASSED [ 45%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_content_constant[RAILS] PASSED [ 45%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_content_constant[CEREMONIES] PASSED [ 46%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_content_constant[CEREMONY_STAGES] PASSED [ 46%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_content_constant[ACTORS] PASSED [ 47%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_content_constant[WALKS] PASSED [ 47%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_content_constant[BRIEF] PASSED [ 48%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_contains_v8_content_constant[PATTERNS] PASSED [ 48%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_served_prototype_does_not_seed_farma_iq_by_default PASSED [ 49%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_app_js_does_not_use_banned_overlay_apis[insertLiveFactCard] PASSED [ 49%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_app_js_does_not_use_banned_overlay_apis[createElement] PASSED [ 50%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_app_js_does_not_use_banned_overlay_apis[appendChild] PASSED [ 50%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_app_js_does_not_use_banned_overlay_apis[data-fidelity] PASSED [ 51%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_app_js_does_not_use_banned_overlay_apis[data-live-source] PASSED [ 51%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_app_js_does_not_leak_engineering_vocab_to_ui[aws.rds] PASSED [ 52%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_app_js_does_not_leak_engineering_vocab_to_ui[db-restore-] PASSED [ 52%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_app_js_does_not_leak_engineering_vocab_to_ui[cluster.digicow_live] PASSED [ 53%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_app_js_does_not_leak_engineering_vocab_to_ui[aurora-mysql] PASSED [ 53%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_app_js_does_not_leak_engineering_vocab_to_ui[/api/registry/facts] PASSED [ 54%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_app_js_does_not_leak_engineering_vocab_to_ui[/api/audit_trail] PASSED [ 54%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_app_js_does_not_leak_engineering_vocab_to_ui[Wave F Cleanup] PASSED [ 55%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_app_js_does_not_leak_engineering_vocab_to_ui[CA1-001] PASSED [ 55%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_app_js_does_not_leak_engineering_vocab_to_ui[CA1-002] PASSED [ 56%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_app_js_does_not_leak_engineering_vocab_to_ui[CA1-003] PASSED [ 56%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_app_js_does_not_leak_engineering_vocab_to_ui[partial_closure] PASSED [ 57%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_app_js_does_not_leak_engineering_vocab_to_ui[BASELINE_GUARD] PASSED [ 57%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_app_js_does_not_leak_engineering_vocab_to_ui[SSH key] PASSED [ 58%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_app_js_does_not_leak_engineering_vocab_to_ui[chmod 600] PASSED [ 58%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_app_js_does_not_leak_engineering_vocab_to_ui[AKKI_GPU_SSH_PRIVATE_KEY_PATH] PASSED [ 59%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_app_js_does_not_leak_engineering_vocab_to_ui[key rotation] PASSED [ 59%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_substitution_signature_exists_in_prototype[RMS AI holds ] PASSED [ 60%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_substitution_signature_exists_in_prototype[First census May 12, 2026] PASSED [ 60%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_declares_substitution_map PASSED [ 61%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_decisions_md_records_wave_g3_partial_accept_and_bans PASSED [ 61%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_declares_topline_tile_substitution[Held in total-86.4 TB] FAILED [ 62%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_declares_topline_tile_substitution[Sources connected-12] FAILED [ 62%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_declares_topline_tile_substitution[Share measured-78%] FAILED [ 63%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_declares_topline_tile_substitution[Data types present-5] FAILED [ 63%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_declares_topline_tile_substitution[Languages observed-7] FAILED [ 64%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_declares_topline_tile_substitution[Share already verified-34%] FAILED [ 64%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_declares_topline_tile_substitution[Share carrying PII-41%] FAILED [ 65%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_declares_topline_tile_substitution[Licensed for external use-18%] FAILED [ 65%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_declares_topline_tile_substitution[Not yet measured-22%] FAILED [ 66%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_declares_topline_tile_substitution[Reduced to reusable memory-58%] FAILED [ 66%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_prototype_html_contains_topline_tile_label[Held in total-86.4 TB] PASSED [ 66%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_prototype_html_contains_topline_tile_label[Sources connected-12] PASSED [ 67%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_prototype_html_contains_topline_tile_label[Share measured-78%] PASSED [ 67%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_prototype_html_contains_topline_tile_label[Data types present-5] PASSED [ 68%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_prototype_html_contains_topline_tile_label[Languages observed-7] PASSED [ 68%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_prototype_html_contains_topline_tile_label[Share already verified-34%] PASSED [ 69%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_prototype_html_contains_topline_tile_label[Share carrying PII-41%] PASSED [ 69%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_prototype_html_contains_topline_tile_label[Licensed for external use-18%] PASSED [ 70%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_prototype_html_contains_topline_tile_label[Not yet measured-22%] PASSED [ 70%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_prototype_html_contains_topline_tile_label[Reduced to reusable memory-58%] PASSED [ 71%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_declares_distinctive_dummy_anchor[86.4 TB] FAILED [ 71%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_uses_element_textcontent_substitution FAILED [ 72%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_has_substitution_idempotency_guard FAILED [ 72%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_sets_substitution_applied_marker_on_iframe_host FAILED [ 73%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_mutation_observer_watches_iframe_contentdocument PASSED [ 73%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_does_not_import_retired_legacy_component[Registry] FAILED [ 74%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_does_not_import_retired_legacy_component[DataShield] FAILED [ 74%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_does_not_import_retired_legacy_component[ThinkLab] FAILED [ 75%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_does_not_import_retired_legacy_component[Chat] FAILED [ 75%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_does_not_import_retired_legacy_component[CostLedger] FAILED [ 76%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_does_not_import_retired_legacy_component[ModelEcosystem] FAILED [ 76%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_does_not_import_retired_legacy_component[Governance] FAILED [ 77%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_does_not_import_retired_legacy_component[Watch] FAILED [ 77%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_does_not_import_retired_legacy_component[GreyMirror] FAILED [ 78%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_does_not_import_retired_legacy_component[AuditTrail] FAILED [ 78%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_does_not_import_retired_legacy_component[Training] FAILED [ 79%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_does_not_import_retired_legacy_component[SkillFiles] FAILED [ 79%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_does_not_import_retired_legacy_component[EvidenceRegister] FAILED [ 80%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_does_not_import_retired_legacy_component[CommissionWizard] FAILED [ 80%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_does_not_route_legacy_path_to_legacy_component[/registry] FAILED [ 81%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_does_not_route_legacy_path_to_legacy_component[/shield] FAILED [ 81%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_does_not_route_legacy_path_to_legacy_component[/thinklab] FAILED [ 82%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_does_not_route_legacy_path_to_legacy_component[/thinklab/:mode] FAILED [ 82%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_does_not_route_legacy_path_to_legacy_component[/chat] FAILED [ 83%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_does_not_route_legacy_path_to_legacy_component[/cost-ledger] FAILED [ 83%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_does_not_route_legacy_path_to_legacy_component[/models] FAILED [ 84%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_does_not_route_legacy_path_to_legacy_component[/governance] FAILED [ 84%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_does_not_route_legacy_path_to_legacy_component[/watch] FAILED [ 85%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_does_not_route_legacy_path_to_legacy_component[/grey-mirror] FAILED [ 85%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_does_not_route_legacy_path_to_legacy_component[/audit-trail] FAILED [ 86%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_does_not_route_legacy_path_to_legacy_component[/training] FAILED [ 86%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_does_not_route_legacy_path_to_legacy_component[/skill-files] FAILED [ 87%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_does_not_route_legacy_path_to_legacy_component[/evidence-register] FAILED [ 87%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_does_not_route_legacy_path_to_legacy_component[/commission] FAILED [ 88%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_retains_retired_component_source_file[Registry] PASSED [ 88%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_retains_retired_component_source_file[DataShield] PASSED [ 89%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_retains_retired_component_source_file[ThinkLab] PASSED [ 89%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_retains_retired_component_source_file[Chat] PASSED [ 90%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_retains_retired_component_source_file[CostLedger] PASSED [ 90%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_retains_retired_component_source_file[ModelEcosystem] PASSED [ 91%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_retains_retired_component_source_file[Governance] PASSED [ 91%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_retains_retired_component_source_file[Watch] PASSED [ 92%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_retains_retired_component_source_file[GreyMirror] PASSED [ 92%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_retains_retired_component_source_file[AuditTrail] PASSED [ 93%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_retains_retired_component_source_file[Training] PASSED [ 93%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_retains_retired_component_source_file[SkillFiles] PASSED [ 94%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_retains_retired_component_source_file[EvidenceRegister] PASSED [ 94%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_retains_retired_component_source_file[CommissionWizard] PASSED [ 95%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_catchall_route_renders_portal_iframe FAILED [ 95%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_has_honest_empty_sentinel FAILED [ 96%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_decisions_md_records_wave_g4_verdict_and_rulings[Dummy data still the same - see screen shot] PASSED [ 96%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_decisions_md_records_wave_g4_verdict_and_rulings[Legacy screens should be retired] PASSED [ 97%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_decisions_md_records_wave_g4_verdict_and_rulings[topline statistics must be PRACTICAL data points] PASSED [ 97%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_decisions_md_records_wave_g4_verdict_and_rulings[CORRECTION 1] PASSED [ 98%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_decisions_md_records_wave_g4_verdict_and_rulings[CORRECTION 2] PASSED [ 98%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_decisions_md_records_wave_g4_verdict_and_rulings[CORRECTION 3] PASSED [ 99%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_decisions_md_records_wave_g4_verdict_and_rulings[RETIREMENT DECISION] PASSED [ 99%]
+tests/invariants/test_wave_g_v8_shell_port.py::test_decisions_md_records_wave_g4_verdict_and_rulings[the V8 front end is now the ONLY product surface] PASSED [100%]
+
+=================================== FAILURES ===================================
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:1012: AssertionError: App.js has no substitution rule targeting topline tile 'Held in total'. Wave G4 CORRECTION 2 requires all 10 topline tiles to be substituted (real value or HONEST-EMPTY) — never left as dummy.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:1012: AssertionError: App.js has no substitution rule targeting topline tile 'Sources connected'. Wave G4 CORRECTION 2 requires all 10 topline tiles to be substituted (real value or HONEST-EMPTY) — never left as dummy.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:1012: AssertionError: App.js has no substitution rule targeting topline tile 'Share measured'. Wave G4 CORRECTION 2 requires all 10 topline tiles to be substituted (real value or HONEST-EMPTY) — never left as dummy.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:1012: AssertionError: App.js has no substitution rule targeting topline tile 'Data types present'. Wave G4 CORRECTION 2 requires all 10 topline tiles to be substituted (real value or HONEST-EMPTY) — never left as dummy.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:1012: AssertionError: App.js has no substitution rule targeting topline tile 'Languages observed'. Wave G4 CORRECTION 2 requires all 10 topline tiles to be substituted (real value or HONEST-EMPTY) — never left as dummy.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:1012: AssertionError: App.js has no substitution rule targeting topline tile 'Share already verified'. Wave G4 CORRECTION 2 requires all 10 topline tiles to be substituted (real value or HONEST-EMPTY) — never left as dummy.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:1012: AssertionError: App.js has no substitution rule targeting topline tile 'Share carrying PII'. Wave G4 CORRECTION 2 requires all 10 topline tiles to be substituted (real value or HONEST-EMPTY) — never left as dummy.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:1012: AssertionError: App.js has no substitution rule targeting topline tile 'Licensed for external use'. Wave G4 CORRECTION 2 requires all 10 topline tiles to be substituted (real value or HONEST-EMPTY) — never left as dummy.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:1012: AssertionError: App.js has no substitution rule targeting topline tile 'Not yet measured'. Wave G4 CORRECTION 2 requires all 10 topline tiles to be substituted (real value or HONEST-EMPTY) — never left as dummy.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:1012: AssertionError: App.js has no substitution rule targeting topline tile 'Reduced to reusable memory'. Wave G4 CORRECTION 2 requires all 10 topline tiles to be substituted (real value or HONEST-EMPTY) — never left as dummy.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:1062: AssertionError: App.js executable code does not reference distinctive dummy value '86.4 TB' — the tile-value substitution would have no way to locate the target text node.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:1081: AssertionError: App.js does not use element-level `.textContent =` substitution. Wave G4 CORRECTION 1(a) requires element-anchor replacement to handle fragmented-span sentences (slot #1 didn't fire in G3 because TreeWalker text-node regex can't span multiple nodes).
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:1112: AssertionError: App.js has no idempotency guard for substitution mutation. Wave G4 CORRECTION 1(b) requires re-application to be idempotent (otherwise MutationObserver + textContent mutation loops).
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:1133: AssertionError: App.js does not declare the outer-document marker attribute `data-substitution-applied`. Owner visual-proof ruling requires this attribute on the iframe host div (outer document) so the post-load harness can verify substitutions actually ran.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:1176: AssertionError: App.js still imports retired legacy component 'Registry': ['from "@/components/Registry"']. Wave G4 CORRECTION 3 requires all 14 legacy component imports removed so tree-shaking drops the module from the bundle.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:1176: AssertionError: App.js still imports retired legacy component 'DataShield': ['from "@/components/DataShield"']. Wave G4 CORRECTION 3 requires all 14 legacy component imports removed so tree-shaking drops the module from the bundle.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:1176: AssertionError: App.js still imports retired legacy component 'ThinkLab': ['from "@/components/ThinkLab"']. Wave G4 CORRECTION 3 requires all 14 legacy component imports removed so tree-shaking drops the module from the bundle.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:1176: AssertionError: App.js still imports retired legacy component 'Chat': ['from "@/components/Chat"']. Wave G4 CORRECTION 3 requires all 14 legacy component imports removed so tree-shaking drops the module from the bundle.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:1176: AssertionError: App.js still imports retired legacy component 'CostLedger': ['from "@/components/CostLedger"']. Wave G4 CORRECTION 3 requires all 14 legacy component imports removed so tree-shaking drops the module from the bundle.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:1176: AssertionError: App.js still imports retired legacy component 'ModelEcosystem': ['from "@/components/ModelEcosystem"']. Wave G4 CORRECTION 3 requires all 14 legacy component imports removed so tree-shaking drops the module from the bundle.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:1176: AssertionError: App.js still imports retired legacy component 'Governance': ['from "@/components/Governance"']. Wave G4 CORRECTION 3 requires all 14 legacy component imports removed so tree-shaking drops the module from the bundle.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:1176: AssertionError: App.js still imports retired legacy component 'Watch': ['from "@/components/Watch"']. Wave G4 CORRECTION 3 requires all 14 legacy component imports removed so tree-shaking drops the module from the bundle.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:1176: AssertionError: App.js still imports retired legacy component 'GreyMirror': ['from "@/components/GreyMirror"']. Wave G4 CORRECTION 3 requires all 14 legacy component imports removed so tree-shaking drops the module from the bundle.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:1176: AssertionError: App.js still imports retired legacy component 'AuditTrail': ['from "@/components/AuditTrail"']. Wave G4 CORRECTION 3 requires all 14 legacy component imports removed so tree-shaking drops the module from the bundle.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:1176: AssertionError: App.js still imports retired legacy component 'Training': ['from "@/components/Training"']. Wave G4 CORRECTION 3 requires all 14 legacy component imports removed so tree-shaking drops the module from the bundle.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:1176: AssertionError: App.js still imports retired legacy component 'SkillFiles': ['from "@/components/SkillFiles"']. Wave G4 CORRECTION 3 requires all 14 legacy component imports removed so tree-shaking drops the module from the bundle.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:1176: AssertionError: App.js still imports retired legacy component 'EvidenceRegister': ['from "@/components/EvidenceRegister"']. Wave G4 CORRECTION 3 requires all 14 legacy component imports removed so tree-shaking drops the module from the bundle.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:1176: AssertionError: App.js still imports retired legacy component 'CommissionWizard': ['from "@/components/CommissionWizard"']. Wave G4 CORRECTION 3 requires all 14 legacy component imports removed so tree-shaking drops the module from the bundle.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:1198: AssertionError: App.js still declares legacy route 'path="/registry"'. Wave G4 CORRECTION 3 requires all 15 legacy route paths removed; only the root path='/' + catch-all path='*' should remain.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:1198: AssertionError: App.js still declares legacy route 'path="/shield"'. Wave G4 CORRECTION 3 requires all 15 legacy route paths removed; only the root path='/' + catch-all path='*' should remain.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:1198: AssertionError: App.js still declares legacy route 'path="/thinklab"'. Wave G4 CORRECTION 3 requires all 15 legacy route paths removed; only the root path='/' + catch-all path='*' should remain.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:1198: AssertionError: App.js still declares legacy route 'path="/thinklab/:mode"'. Wave G4 CORRECTION 3 requires all 15 legacy route paths removed; only the root path='/' + catch-all path='*' should remain.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:1198: AssertionError: App.js still declares legacy route 'path="/chat"'. Wave G4 CORRECTION 3 requires all 15 legacy route paths removed; only the root path='/' + catch-all path='*' should remain.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:1198: AssertionError: App.js still declares legacy route 'path="/cost-ledger"'. Wave G4 CORRECTION 3 requires all 15 legacy route paths removed; only the root path='/' + catch-all path='*' should remain.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:1198: AssertionError: App.js still declares legacy route 'path="/models"'. Wave G4 CORRECTION 3 requires all 15 legacy route paths removed; only the root path='/' + catch-all path='*' should remain.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:1198: AssertionError: App.js still declares legacy route 'path="/governance"'. Wave G4 CORRECTION 3 requires all 15 legacy route paths removed; only the root path='/' + catch-all path='*' should remain.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:1198: AssertionError: App.js still declares legacy route 'path="/watch"'. Wave G4 CORRECTION 3 requires all 15 legacy route paths removed; only the root path='/' + catch-all path='*' should remain.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:1198: AssertionError: App.js still declares legacy route 'path="/grey-mirror"'. Wave G4 CORRECTION 3 requires all 15 legacy route paths removed; only the root path='/' + catch-all path='*' should remain.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:1198: AssertionError: App.js still declares legacy route 'path="/audit-trail"'. Wave G4 CORRECTION 3 requires all 15 legacy route paths removed; only the root path='/' + catch-all path='*' should remain.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:1198: AssertionError: App.js still declares legacy route 'path="/training"'. Wave G4 CORRECTION 3 requires all 15 legacy route paths removed; only the root path='/' + catch-all path='*' should remain.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:1198: AssertionError: App.js still declares legacy route 'path="/skill-files"'. Wave G4 CORRECTION 3 requires all 15 legacy route paths removed; only the root path='/' + catch-all path='*' should remain.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:1198: AssertionError: App.js still declares legacy route 'path="/evidence-register"'. Wave G4 CORRECTION 3 requires all 15 legacy route paths removed; only the root path='/' + catch-all path='*' should remain.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:1198: AssertionError: App.js still declares legacy route 'path="/commission"'. Wave G4 CORRECTION 3 requires all 15 legacy route paths removed; only the root path='/' + catch-all path='*' should remain.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:1255: AssertionError: App.js catch-all path='*' does not render <PortalIframe/> or redirect to '/'. Wave G4 CORRECTION 3 requires the V8 portal to be the only reachable product surface.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:1281: AssertionError: App.js executable code does not contain HONEST-EMPTY sentinel 'Not yet measured'. Wave G4 CORRECTION 2 requires it as the fallback for tiles with no honest live counterpart.
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_declares_topline_tile_substitution[Held in total-86.4 TB]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_declares_topline_tile_substitution[Sources connected-12]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_declares_topline_tile_substitution[Share measured-78%]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_declares_topline_tile_substitution[Data types present-5]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_declares_topline_tile_substitution[Languages observed-7]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_declares_topline_tile_substitution[Share already verified-34%]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_declares_topline_tile_substitution[Share carrying PII-41%]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_declares_topline_tile_substitution[Licensed for external use-18%]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_declares_topline_tile_substitution[Not yet measured-22%]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_declares_topline_tile_substitution[Reduced to reusable memory-58%]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_declares_distinctive_dummy_anchor[86.4 TB]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_uses_element_textcontent_substitution
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_has_substitution_idempotency_guard
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_sets_substitution_applied_marker_on_iframe_host
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_does_not_import_retired_legacy_component[Registry]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_does_not_import_retired_legacy_component[DataShield]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_does_not_import_retired_legacy_component[ThinkLab]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_does_not_import_retired_legacy_component[Chat]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_does_not_import_retired_legacy_component[CostLedger]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_does_not_import_retired_legacy_component[ModelEcosystem]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_does_not_import_retired_legacy_component[Governance]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_does_not_import_retired_legacy_component[Watch]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_does_not_import_retired_legacy_component[GreyMirror]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_does_not_import_retired_legacy_component[AuditTrail]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_does_not_import_retired_legacy_component[Training]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_does_not_import_retired_legacy_component[SkillFiles]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_does_not_import_retired_legacy_component[EvidenceRegister]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_does_not_import_retired_legacy_component[CommissionWizard]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_does_not_route_legacy_path_to_legacy_component[/registry]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_does_not_route_legacy_path_to_legacy_component[/shield]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_does_not_route_legacy_path_to_legacy_component[/thinklab]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_does_not_route_legacy_path_to_legacy_component[/thinklab/:mode]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_does_not_route_legacy_path_to_legacy_component[/chat]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_does_not_route_legacy_path_to_legacy_component[/cost-ledger]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_does_not_route_legacy_path_to_legacy_component[/models]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_does_not_route_legacy_path_to_legacy_component[/governance]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_does_not_route_legacy_path_to_legacy_component[/watch]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_does_not_route_legacy_path_to_legacy_component[/grey-mirror]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_does_not_route_legacy_path_to_legacy_component[/audit-trail]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_does_not_route_legacy_path_to_legacy_component[/training]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_does_not_route_legacy_path_to_legacy_component[/skill-files]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_does_not_route_legacy_path_to_legacy_component[/evidence-register]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_does_not_route_legacy_path_to_legacy_component[/commission]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_catchall_route_renders_portal_iframe
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_has_honest_empty_sentinel
+======================== 45 failed, 158 passed in 1.23s ========================

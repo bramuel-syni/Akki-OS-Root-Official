@@ -1,0 +1,176 @@
+============================= test session starts ==============================
+collecting ... collected 10 items
+
+tests/invariants/test_wave_g_pod_shell_frontend_mirror.py::test_pod_shell_App_js_mirrors_repo_App_js_byte_for_byte FAILED [ 10%]
+tests/invariants/test_wave_g_pod_shell_frontend_mirror.py::test_app_frontend_App_js_mirrors_pod_shell_App_js PASSED [ 20%]
+tests/invariants/test_wave_g_pod_shell_frontend_mirror.py::test_pod_shell_public_index_html_mirrors_repo_public_index_html SKIPPED [ 30%]
+tests/invariants/test_wave_g_pod_shell_frontend_mirror.py::test_app_frontend_public_index_html_mirrors_pod_shell SKIPPED [ 40%]
+tests/invariants/test_wave_g_pod_shell_frontend_mirror.py::test_pod_shell_design_dir_mirrors_repo_design_dir_completeness FAILED [ 50%]
+tests/invariants/test_wave_g_pod_shell_frontend_mirror.py::test_app_frontend_design_dir_mirrors_pod_shell_design_dir PASSED [ 60%]
+tests/invariants/test_wave_g_pod_shell_frontend_mirror.py::test_pod_shell_pages_dir_mirrors_repo_pages_dir_completeness FAILED [ 70%]
+tests/invariants/test_wave_g_pod_shell_frontend_mirror.py::test_app_frontend_pages_dir_mirrors_pod_shell_pages_dir PASSED [ 80%]
+tests/invariants/test_wave_g_pod_shell_frontend_mirror.py::test_pod_shell_hooks_and_api_client_mirror_repo FAILED [ 90%]
+tests/invariants/test_wave_g_pod_shell_frontend_mirror.py::test_spa_routes_declared_in_pod_shell_match_repo_tree FAILED [100%]
+
+=================================== FAILURES ===================================
+___________ test_pod_shell_App_js_mirrors_repo_App_js_byte_for_byte ____________
+
+    def test_pod_shell_App_js_mirrors_repo_App_js_byte_for_byte():
+        """`pod_shell/frontend/src/App.js` MUST match `frontend/src/App.js`
+        byte-for-byte. The repo tree is the ratified source (holds the
+        AkkiV4ShellLayout wrap + full 25+ route declarations); the pod-shell
+        tree is what the runtime pod actually serves.
+    
+        Prior state (Master Plan A-F ratified): repo=154 lines with shell
+        wrap; pod-shell=69 lines flat. Mirror hole diagnosed 2026-08-27T22:30Z.
+        """
+        if not REPO_FE.is_dir() or not POD_FE.is_dir():
+            pytest.skip("frontend trees not present")
+        repo_app = REPO_FE / "src" / "App.js"
+        pod_app = POD_FE / "src" / "App.js"
+        assert repo_app.is_file(), f"missing {repo_app}"
+        assert pod_app.is_file(), f"missing {pod_app}"
+        rsha, psha = _sha(repo_app), _sha(pod_app)
+>       assert rsha == psha, (
+            f"App.js mirror hole · repo `{repo_app}` sha256={rsha[:16]}… ≠ "
+            f"pod-shell `{pod_app}` sha256={psha[:16]}… · "
+            f"repo_lines={sum(1 for _ in repo_app.open())} "
+            f"pod_lines={sum(1 for _ in pod_app.open())}. "
+            "The repo tree carries the ratified AkkiV4Shell wrap; the pod-shell "
+            "tree is what the runtime pod serves. When they diverge the "
+            "runtime does not render the shell that MUST_BE_LIVE_SPA_ROUTES "
+            "scanner sees. Close by copying repo App.js to pod-shell App.js."
+        )
+E       AssertionError: App.js mirror hole · repo `/app/assessment_workspace/repos/Extraction-Akki/frontend/src/App.js` sha256=e381de86a593ef90… ≠ pod-shell `/app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/src/App.js` sha256=53a85f06b15908d7… · repo_lines=154 pod_lines=68. The repo tree carries the ratified AkkiV4Shell wrap; the pod-shell tree is what the runtime pod serves. When they diverge the runtime does not render the shell that MUST_BE_LIVE_SPA_ROUTES scanner sees. Close by copying repo App.js to pod-shell App.js.
+E       assert 'e381de86a593...4e2aa334ededd' == '53a85f06b159...b09225c2fcd01'
+E         
+E         - 53a85f06b15908d711ecbd5d03fa92c002bab31a2fa4137bdceb09225c2fcd01
+E         + e381de86a593ef90681cb391bbdf60a1a8cbb40a71c0e7d95e14e2aa334ededd
+
+tests/invariants/test_wave_g_pod_shell_frontend_mirror.py:91: AssertionError
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+________ test_pod_shell_design_dir_mirrors_repo_design_dir_completeness ________
+
+    def test_pod_shell_design_dir_mirrors_repo_design_dir_completeness():
+        """`pod_shell/frontend/src/design/` MUST carry every file that lives
+        in `frontend/src/design/`, byte-for-byte.
+    
+        Ratified assets that must be present in the pod-shell tree:
+          * AkkiV4Shell.jsx (the v4 shell chrome)
+          * AkkiV4ShellLayout.jsx (the route-wrapper adapter)
+          * akkiv4_design_system.js (v4 tokens + typography stack)
+          * ratified_copy.js (owner-ratified copy strings)
+          * plus AkkiShell.jsx · MarkedOpenSlot.jsx · ResponseClassPanel.jsx
+        """
+        if not REPO_FE.is_dir() or not POD_FE.is_dir():
+            pytest.skip("frontend trees not present")
+        repo_files = _walk_files(REPO_FE, "src/design")
+        pod_files = _walk_files(POD_FE, "src/design")
+        repo_rel = _relative(repo_files, REPO_FE, "src/design")
+        pod_rel = _relative(pod_files, POD_FE, "src/design")
+        missing = repo_rel - pod_rel
+        extra = pod_rel - repo_rel
+>       assert not missing and not extra, (
+            f"design/ mirror hole · missing_from_pod_shell={sorted(missing)[:5]} "
+            f"extra_in_pod_shell={sorted(extra)[:5]} · "
+            f"repo_count={len(repo_rel)} pod_count={len(pod_rel)}. "
+            "Ratified v4 shell assets must live in the pod-shell tree for "
+            "the pod to render them."
+        )
+E       AssertionError: design/ mirror hole · missing_from_pod_shell=['AkkiShell.jsx', 'AkkiV4Shell.jsx', 'AkkiV4ShellLayout.jsx', 'MarkedOpenSlot.jsx', 'ResponseClassPanel.jsx'] extra_in_pod_shell=[] · repo_count=7 pod_count=0. Ratified v4 shell assets must live in the pod-shell tree for the pod to render them.
+E       assert (not {'AkkiShell.jsx', 'AkkiV4Shell.jsx', 'AkkiV4ShellLayout.jsx', 'MarkedOpenSlot.jsx', 'ResponseClassPanel.jsx', 'akkiv4_design_system.js', ...})
+
+tests/invariants/test_wave_g_pod_shell_frontend_mirror.py:177: AssertionError
+_________ test_pod_shell_pages_dir_mirrors_repo_pages_dir_completeness _________
+
+    def test_pod_shell_pages_dir_mirrors_repo_pages_dir_completeness():
+        """`pod_shell/frontend/src/pages/` MUST carry every file that lives
+        in `frontend/src/pages/`, byte-for-byte.
+    
+        Ratified page tree: 43 pages across 11 module dirs (auth · connect ·
+        govern · use_data · registry · prove · team · memory · master_admin
+        · audit_trail · commission_view · trace) + top-level dormant pages.
+        """
+        if not REPO_FE.is_dir() or not POD_FE.is_dir():
+            pytest.skip("frontend trees not present")
+        repo_files = _walk_files(REPO_FE, "src/pages")
+        pod_files = _walk_files(POD_FE, "src/pages")
+        repo_rel = _relative(repo_files, REPO_FE, "src/pages")
+        pod_rel = _relative(pod_files, POD_FE, "src/pages")
+        missing = repo_rel - pod_rel
+        extra = pod_rel - repo_rel
+>       assert not missing and not extra, (
+            f"pages/ mirror hole · missing_count={len(missing)} "
+            f"extra_count={len(extra)} · repo_count={len(repo_rel)} "
+            f"pod_count={len(pod_rel)} · sample_missing="
+            f"{sorted(missing)[:5]}"
+        )
+E       AssertionError: pages/ mirror hole · missing_count=45 extra_count=0 · repo_count=45 pod_count=0 · sample_missing=['AuthLoginPage.js', 'AuthRegisterPage.js', 'CanonOSShellPage.jsx', 'ProveDormantPage.jsx', 'TeamDormantPage.jsx']
+E       assert (not {'AuthLoginPage.js', 'AuthRegisterPage.js', 'CanonOSShellPage.jsx', 'ProveDormantPage.jsx', 'TeamDormantPage.jsx', 'audit_trail/AuditTrailOverviewPage.jsx', ...})
+
+tests/invariants/test_wave_g_pod_shell_frontend_mirror.py:227: AssertionError
+_______________ test_pod_shell_hooks_and_api_client_mirror_repo ________________
+
+    def test_pod_shell_hooks_and_api_client_mirror_repo():
+        """Supporting files that pages/ + design/ import — hooks/ and
+        apiClient.js — MUST mirror the repo tree byte-for-byte.
+        """
+        if not REPO_FE.is_dir() or not POD_FE.is_dir():
+            pytest.skip("frontend trees not present")
+        # apiClient.js
+        for name in ("apiClient.js",):
+            r = REPO_FE / "src" / name
+            p = POD_FE / "src" / name
+            if not r.is_file():
+                continue
+>           assert p.is_file(), f"pod-shell missing {name}"
+E           AssertionError: pod-shell missing apiClient.js
+E           assert False
+E            +  where False = is_file()
+E            +    where is_file = PosixPath('/app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/src/apiClient.js').is_file
+
+tests/invariants/test_wave_g_pod_shell_frontend_mirror.py:267: AssertionError
+____________ test_spa_routes_declared_in_pod_shell_match_repo_tree _____________
+
+    def test_spa_routes_declared_in_pod_shell_match_repo_tree():
+        """The SPA-route declaration set the MUST_BE_LIVE_SPA_ROUTES scanner
+        finds in the repo tree MUST equal the set the pod-shell tree
+        declares.
+    
+        Prior state (Master Plan A-F ratified): the scanner in
+        `test_ship_manifest_dod_route_table_drift.py::
+        _frontend_declared_spa_routes` scans REPO_ROOT/frontend/src only.
+        When repo has route X but pod-shell App.js does not declare X,
+        the manifest still green-passes because the scanner never looked
+        at the pod-shell tree. The runtime pod does not serve X and the
+        disagreement is invisible.
+    
+        Close: assert equality of declared route sets across both trees.
+        """
+        if not REPO_FE.is_dir() or not POD_FE.is_dir():
+            pytest.skip("frontend trees not present")
+        repo_routes = _spa_routes_in_tree(REPO_FE)
+        pod_routes = _spa_routes_in_tree(POD_FE)
+        only_in_repo = repo_routes - pod_routes
+        only_in_pod = pod_routes - repo_routes
+>       assert not only_in_repo and not only_in_pod, (
+            f"SPA route sets disagree · repo_count={len(repo_routes)} "
+            f"pod_count={len(pod_routes)} · only_in_repo="
+            f"{sorted(only_in_repo)[:10]} · only_in_pod="
+            f"{sorted(only_in_pod)[:10]}. The scanner and the runtime must "
+            "never disagree. Close by making the pod-shell App.js declare "
+            "the same routes as the repo App.js (typically by porting the "
+            "ratified repo shell to pod-shell)."
+        )
+E       AssertionError: SPA route sets disagree · repo_count=53 pod_count=16 · only_in_repo=['ask', 'ask-console', 'audit-trail', 'auth/login', 'auth/register', 'commission-view', 'commission-view/:sessionId', 'compliance', 'compliance/*', 'connect'] · only_in_pod=['/', '/audit-trail', '/chat', '/commission', '/cost-ledger', '/evidence-register', '/governance', '/grey-mirror', '/models', '/shield']. The scanner and the runtime must never disagree. Close by making the pod-shell App.js declare the same routes as the repo App.js (typically by porting the ratified repo shell to pod-shell).
+E       assert (not {'ask', 'ask-console', 'audit-trail', 'auth/login', 'auth/register', 'commission-view', ...})
+
+tests/invariants/test_wave_g_pod_shell_frontend_mirror.py:337: AssertionError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wave_g_pod_shell_frontend_mirror.py::test_pod_shell_App_js_mirrors_repo_App_js_byte_for_byte
+FAILED tests/invariants/test_wave_g_pod_shell_frontend_mirror.py::test_pod_shell_design_dir_mirrors_repo_design_dir_completeness
+FAILED tests/invariants/test_wave_g_pod_shell_frontend_mirror.py::test_pod_shell_pages_dir_mirrors_repo_pages_dir_completeness
+FAILED tests/invariants/test_wave_g_pod_shell_frontend_mirror.py::test_pod_shell_hooks_and_api_client_mirror_repo
+FAILED tests/invariants/test_wave_g_pod_shell_frontend_mirror.py::test_spa_routes_declared_in_pod_shell_match_repo_tree
+==================== 5 failed, 3 passed, 2 skipped in 0.81s ====================

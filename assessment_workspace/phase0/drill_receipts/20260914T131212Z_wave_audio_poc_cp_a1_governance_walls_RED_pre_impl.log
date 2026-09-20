@@ -1,0 +1,218 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.4.2, pluggy-1.6.0 -- /root/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: xdist-3.8.0, asyncio-1.4.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collecting ... collected 14 items
+
+tests/invariants/test_wave_audio_poc_cp_a1_governance_walls.py::test_cp_a1_audio_poc_package_fabric FAILED [  7%]
+tests/invariants/test_wave_audio_poc_cp_a1_governance_walls.py::test_cp_a1_nas_guard_allowed_ops_pass FAILED [ 14%]
+tests/invariants/test_wave_audio_poc_cp_a1_governance_walls.py::test_cp_a1_nas_guard_refuses_write_ops FAILED [ 21%]
+tests/invariants/test_wave_audio_poc_cp_a1_governance_walls.py::test_cp_a1_nas_guard_refuses_non_offairrecs_path FAILED [ 28%]
+tests/invariants/test_wave_audio_poc_cp_a1_governance_walls.py::test_cp_a1_obs_guard_allowed_ops_pass FAILED [ 35%]
+tests/invariants/test_wave_audio_poc_cp_a1_governance_walls.py::test_cp_a1_obs_guard_refuses_write_ops FAILED [ 42%]
+tests/invariants/test_wave_audio_poc_cp_a1_governance_walls.py::test_cp_a1_obs_guard_refuses_non_google_transcripts_bucket FAILED [ 50%]
+tests/invariants/test_wave_audio_poc_cp_a1_governance_walls.py::test_cp_a1_release_gate_transcript_artefact_frozen_dataclass_shape FAILED [ 57%]
+tests/invariants/test_wave_audio_poc_cp_a1_governance_walls.py::test_cp_a1_release_gate_refuses_biometric_and_named_tiers_by_default FAILED [ 64%]
+tests/invariants/test_wave_audio_poc_cp_a1_governance_walls.py::test_cp_a1_release_gate_refuses_if_kdpa_pending FAILED [ 71%]
+tests/invariants/test_wave_audio_poc_cp_a1_governance_walls.py::test_cp_a1_release_gate_refuses_if_named_persons_pending FAILED [ 78%]
+tests/invariants/test_wave_audio_poc_cp_a1_governance_walls.py::test_cp_a1_release_gate_refuses_if_transfer_basis_pending FAILED [ 85%]
+tests/invariants/test_wave_audio_poc_cp_a1_governance_walls.py::test_cp_a1_release_gate_refuses_if_licence_class_pending FAILED [ 92%]
+tests/invariants/test_wave_audio_poc_cp_a1_governance_walls.py::test_cp_a1_release_gate_admits_transcript_text_only_when_all_verdicts_non_pending FAILED [100%]
+
+=================================== FAILURES ===================================
+_____________________ test_cp_a1_audio_poc_package_fabric ______________________
+
+    def test_cp_a1_audio_poc_package_fabric():
+        """`services.audio_poc` package exports the three governance modules."""
+>       pkg = importlib.import_module("services.audio_poc")
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_wave_audio_poc_cp_a1_governance_walls.py:40: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'services.audio_poc', import_ = <function _gcd_import at 0xf84e4dddbd80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'services.audio_poc'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+____________________ test_cp_a1_nas_guard_allowed_ops_pass _____________________
+
+    def test_cp_a1_nas_guard_allowed_ops_pass():
+        """List/Read/Status are the only allowed NAS ops."""
+>       from services.audio_poc.readonly_nas_guard import (
+            guarded_nas_call,
+            NAS_ALLOWED_OPS,
+            NAS_ALLOWED_SHARE,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_poc'
+
+tests/invariants/test_wave_audio_poc_cp_a1_governance_walls.py:81: ModuleNotFoundError
+____________________ test_cp_a1_nas_guard_refuses_write_ops ____________________
+
+    def test_cp_a1_nas_guard_refuses_write_ops():
+        """Write / Delete / Move / Copy / Chmod all raise NASOpNotAllowed."""
+>       from services.audio_poc.readonly_nas_guard import (
+            guarded_nas_call,
+            NASOpNotAllowed,
+            NAS_ALLOWED_SHARE,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_poc'
+
+tests/invariants/test_wave_audio_poc_cp_a1_governance_walls.py:96: ModuleNotFoundError
+_______________ test_cp_a1_nas_guard_refuses_non_offairrecs_path _______________
+
+    def test_cp_a1_nas_guard_refuses_non_offairrecs_path():
+        """Paths outside the OFFAIRRECS share raise NASPathNotAllowed."""
+>       from services.audio_poc.readonly_nas_guard import (
+            guarded_nas_call,
+            NASPathNotAllowed,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_poc'
+
+tests/invariants/test_wave_audio_poc_cp_a1_governance_walls.py:109: ModuleNotFoundError
+____________________ test_cp_a1_obs_guard_allowed_ops_pass _____________________
+
+    def test_cp_a1_obs_guard_allowed_ops_pass():
+        """ListObjects/HeadObject/GetObject are the only allowed OBS ops."""
+>       from services.audio_poc.readonly_obs_guard import (
+            guarded_obs_call,
+            OBS_ALLOWED_OPS,
+            OBS_ALLOWED_BUCKET,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_poc'
+
+tests/invariants/test_wave_audio_poc_cp_a1_governance_walls.py:128: ModuleNotFoundError
+____________________ test_cp_a1_obs_guard_refuses_write_ops ____________________
+
+    def test_cp_a1_obs_guard_refuses_write_ops():
+        """PutObject / DeleteObject / DeleteBucket / CreateBucket raise OBSOpNotAllowed."""
+>       from services.audio_poc.readonly_obs_guard import (
+            guarded_obs_call,
+            OBSOpNotAllowed,
+            OBS_ALLOWED_BUCKET,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_poc'
+
+tests/invariants/test_wave_audio_poc_cp_a1_governance_walls.py:143: ModuleNotFoundError
+__________ test_cp_a1_obs_guard_refuses_non_google_transcripts_bucket __________
+
+    def test_cp_a1_obs_guard_refuses_non_google_transcripts_bucket():
+        """Any bucket other than `google-transcripts` raises OBSBucketNotAllowed."""
+>       from services.audio_poc.readonly_obs_guard import (
+            guarded_obs_call,
+            OBSBucketNotAllowed,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_poc'
+
+tests/invariants/test_wave_audio_poc_cp_a1_governance_walls.py:162: ModuleNotFoundError
+______ test_cp_a1_release_gate_transcript_artefact_frozen_dataclass_shape ______
+
+    def test_cp_a1_release_gate_transcript_artefact_frozen_dataclass_shape():
+        """TranscriptArtefact is a frozen dataclass with exactly five fields."""
+>       from services.audio_poc.release_gate import TranscriptArtefact
+E       ModuleNotFoundError: No module named 'services.audio_poc'
+
+tests/invariants/test_wave_audio_poc_cp_a1_governance_walls.py:181: ModuleNotFoundError
+_____ test_cp_a1_release_gate_refuses_biometric_and_named_tiers_by_default _____
+
+    def test_cp_a1_release_gate_refuses_biometric_and_named_tiers_by_default():
+        """biometric_embedding / named_identity / speaker_labeled_audio all refuse
+        even if the four verdicts are fully ratified.
+        """
+>       from services.audio_poc.release_gate import (
+            TranscriptArtefact,
+            admit_transcript_release,
+            TranscriptTierRefused,
+            TRANSCRIPT_TIERS_REFUSED_BY_DEFAULT,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_poc'
+
+tests/invariants/test_wave_audio_poc_cp_a1_governance_walls.py:209: ModuleNotFoundError
+_______________ test_cp_a1_release_gate_refuses_if_kdpa_pending ________________
+
+    def test_cp_a1_release_gate_refuses_if_kdpa_pending():
+>       from services.audio_poc.release_gate import (
+            TranscriptArtefact,
+            admit_transcript_release,
+            TranscriptVerdictPending,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_poc'
+
+tests/invariants/test_wave_audio_poc_cp_a1_governance_walls.py:233: ModuleNotFoundError
+___________ test_cp_a1_release_gate_refuses_if_named_persons_pending ___________
+
+    def test_cp_a1_release_gate_refuses_if_named_persons_pending():
+>       from services.audio_poc.release_gate import (
+            TranscriptArtefact,
+            admit_transcript_release,
+            TranscriptVerdictPending,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_poc'
+
+tests/invariants/test_wave_audio_poc_cp_a1_governance_walls.py:250: ModuleNotFoundError
+__________ test_cp_a1_release_gate_refuses_if_transfer_basis_pending ___________
+
+    def test_cp_a1_release_gate_refuses_if_transfer_basis_pending():
+>       from services.audio_poc.release_gate import (
+            TranscriptArtefact,
+            admit_transcript_release,
+            TranscriptVerdictPending,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_poc'
+
+tests/invariants/test_wave_audio_poc_cp_a1_governance_walls.py:267: ModuleNotFoundError
+___________ test_cp_a1_release_gate_refuses_if_licence_class_pending ___________
+
+    def test_cp_a1_release_gate_refuses_if_licence_class_pending():
+>       from services.audio_poc.release_gate import (
+            TranscriptArtefact,
+            admit_transcript_release,
+            TranscriptVerdictPending,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_poc'
+
+tests/invariants/test_wave_audio_poc_cp_a1_governance_walls.py:284: ModuleNotFoundError
+_ test_cp_a1_release_gate_admits_transcript_text_only_when_all_verdicts_non_pending _
+
+    def test_cp_a1_release_gate_admits_transcript_text_only_when_all_verdicts_non_pending():
+        """Happy path: `transcript_text_only` + `owner_full_rights` + all four
+        verdicts non-PENDING → admit returns None.
+        """
+>       from services.audio_poc.release_gate import (
+            TranscriptArtefact,
+            admit_transcript_release,
+            SAFE_TRANSCRIPT_TIER,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_poc'
+
+tests/invariants/test_wave_audio_poc_cp_a1_governance_walls.py:304: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wave_audio_poc_cp_a1_governance_walls.py::test_cp_a1_audio_poc_package_fabric
+FAILED tests/invariants/test_wave_audio_poc_cp_a1_governance_walls.py::test_cp_a1_nas_guard_allowed_ops_pass
+FAILED tests/invariants/test_wave_audio_poc_cp_a1_governance_walls.py::test_cp_a1_nas_guard_refuses_write_ops
+FAILED tests/invariants/test_wave_audio_poc_cp_a1_governance_walls.py::test_cp_a1_nas_guard_refuses_non_offairrecs_path
+FAILED tests/invariants/test_wave_audio_poc_cp_a1_governance_walls.py::test_cp_a1_obs_guard_allowed_ops_pass
+FAILED tests/invariants/test_wave_audio_poc_cp_a1_governance_walls.py::test_cp_a1_obs_guard_refuses_write_ops
+FAILED tests/invariants/test_wave_audio_poc_cp_a1_governance_walls.py::test_cp_a1_obs_guard_refuses_non_google_transcripts_bucket
+FAILED tests/invariants/test_wave_audio_poc_cp_a1_governance_walls.py::test_cp_a1_release_gate_transcript_artefact_frozen_dataclass_shape
+FAILED tests/invariants/test_wave_audio_poc_cp_a1_governance_walls.py::test_cp_a1_release_gate_refuses_biometric_and_named_tiers_by_default
+FAILED tests/invariants/test_wave_audio_poc_cp_a1_governance_walls.py::test_cp_a1_release_gate_refuses_if_kdpa_pending
+FAILED tests/invariants/test_wave_audio_poc_cp_a1_governance_walls.py::test_cp_a1_release_gate_refuses_if_named_persons_pending
+FAILED tests/invariants/test_wave_audio_poc_cp_a1_governance_walls.py::test_cp_a1_release_gate_refuses_if_transfer_basis_pending
+FAILED tests/invariants/test_wave_audio_poc_cp_a1_governance_walls.py::test_cp_a1_release_gate_refuses_if_licence_class_pending
+FAILED tests/invariants/test_wave_audio_poc_cp_a1_governance_walls.py::test_cp_a1_release_gate_admits_transcript_text_only_when_all_verdicts_non_pending
+============================== 14 failed in 0.70s ==============================

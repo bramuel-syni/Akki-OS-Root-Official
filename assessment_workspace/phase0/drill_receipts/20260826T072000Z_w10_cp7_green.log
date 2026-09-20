@@ -1,0 +1,30 @@
+/root/.venv/lib/python3.11/site-packages/pytest_asyncio/plugin.py:208: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+============================= test session starts ==============================
+collecting ... collected 21 items
+
+tests/invariants/test_w10_cp7_doc14_expansion.py::test_register_file_exists_and_readable PASSED [  4%]
+tests/invariants/test_w10_cp7_doc14_expansion.py::test_doc14_section_has_28_rows PASSED [  9%]
+tests/invariants/test_w10_cp7_doc14_expansion.py::test_doc14_all_expected_ids_present PASSED [ 14%]
+tests/invariants/test_w10_cp7_doc14_expansion.py::test_doc14_no_duplicate_row_ids PASSED [ 19%]
+tests/invariants/test_w10_cp7_doc14_expansion.py::test_doc14_every_row_cites_canon_anchor PASSED [ 23%]
+tests/invariants/test_w10_cp7_doc14_expansion.py::test_doc14_every_row_carries_status_token PASSED [ 28%]
+tests/invariants/test_w10_cp7_doc14_expansion.py::test_doc14_pre_cp7_rows_preserved PASSED [ 33%]
+tests/invariants/test_w10_cp7_doc14_expansion.py::test_doc14_cp7_new_rows_are_24 PASSED [ 38%]
+tests/invariants/test_w10_cp6_whitepaper_draft.py::test_contract_shape PASSED [ 42%]
+tests/invariants/test_w10_cp6_whitepaper_draft.py::test_retention_class_grammar PASSED [ 47%]
+tests/invariants/test_w10_cp6_whitepaper_draft.py::test_draft_refuses_missing_admission_citation PASSED [ 52%]
+tests/invariants/test_w10_cp6_whitepaper_draft.py::test_draft_refuses_missing_baseline_citation PASSED [ 57%]
+tests/invariants/test_w10_cp6_whitepaper_draft.py::test_draft_writes_when_both_citations_on_record PASSED [ 61%]
+tests/invariants/test_w10_cp6_whitepaper_draft.py::test_draft_refuses_overwrite PASSED [ 66%]
+tests/invariants/test_w10_cp6_whitepaper_draft.py::test_admission_citation_matches_substring PASSED [ 71%]
+tests/invariants/test_whitepaper_draft_frozen.py::test_whitepaper_draft_v0_frozen PASSED [ 76%]
+tests/invariants/test_frozen_contract_snapshot_parity.py::test_every_frozen_contract_has_snapshot PASSED [ 80%]
+tests/invariants/test_frozen_contract_snapshot_parity.py::test_every_snapshot_maps_to_a_contract PASSED [ 85%]
+tests/invariants/test_frozen_contract_snapshot_parity.py::test_snapshot_mapping_is_bijective PASSED [ 90%]
+tests/invariants/test_composed_conclusion_v0_contract_frozen.py::test_composed_conclusion_v0_contract_frozen PASSED [ 95%]
+tests/invariants/test_composed_conclusion_v0_contract_frozen.py::test_composed_conclusion_snapshot_parity_at_18 PASSED [100%]
+
+============================== 21 passed in 0.17s ==============================

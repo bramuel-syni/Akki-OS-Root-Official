@@ -1,0 +1,33 @@
+============================= test session starts ==============================
+collecting ... collected 17 items
+
+tests/invariants/test_registry_prove_ui1d_gates.py::test_d_r1_what_you_hold_returns_four_axes_and_canon_ref PASSED [  5%]
+tests/invariants/test_registry_prove_ui1d_gates.py::test_d_r2_holdings_row_shape_and_unmeasured_carries_honest_plain_reason PASSED [ 11%]
+tests/invariants/test_registry_prove_ui1d_gates.py::test_d_r3_opportunity_briefs_carry_put_this_to_work_cta_verbatim PASSED [ 17%]
+tests/invariants/test_registry_prove_ui1d_gates.py::test_d_r4_gap_register_carries_queue_this_gap_cta_and_state_grammar PASSED [ 23%]
+tests/invariants/test_registry_prove_ui1d_gates.py::test_d_r5_queue_endpoint_opens_use_data_session_and_is_idempotent PASSED [ 29%]
+tests/invariants/test_registry_prove_ui1d_gates.py::test_d_p1_prove_ask_answered_shape_returns_claim_and_trace_id PASSED [ 35%]
+tests/invariants/test_registry_prove_ui1d_gates.py::test_d_p2_prove_ask_never_seen_question_returns_not_extracted_yet_with_queue PASSED [ 41%]
+tests/invariants/test_registry_prove_ui1d_gates.py::test_d_p3_prove_ask_evidence_cannot_support_shape_no_queue PASSED [ 47%]
+tests/invariants/test_registry_prove_ui1d_gates.py::test_d_p4_prove_ask_something_broke_uses_fault_channel_never_refusal PASSED [ 52%]
+tests/invariants/test_registry_prove_ui1d_gates.py::test_d_p5_refusal_shape_mapping_table_covers_all_service_1_codes PASSED [ 58%]
+tests/invariants/test_registry_prove_ui1d_gates.py::test_d_p6_prove_trace_returns_three_walk_layers PASSED [ 64%]
+tests/invariants/test_registry_prove_ui1d_gates.py::test_d_p7_prove_trace_404_when_trace_absent PASSED [ 70%]
+tests/invariants/test_registry_prove_ui1d_gates.py::test_d_p8_prove_samples_endpoint_returns_all_four_seeded_shapes PASSED [ 76%]
+tests/invariants/test_registry_prove_ui1d_gates.py::test_d_p9_prove_samples_trace_ids_resolve_via_prove_trace PASSED [ 82%]
+tests/invariants/test_registry_prove_ui1d_gates.py::test_d_s1_seeded_briefs_and_gaps_carry_is_sample_true PASSED [ 88%]
+tests/invariants/test_registry_prove_ui1d_gates.py::test_d_g1_parity_36_unchanged_no_new_frozen_contracts PASSED [ 94%]
+tests/invariants/test_registry_prove_ui1d_gates.py::test_d_d1_wire_reason_verbatim_in_refusal_response PASSED [100%]
+
+=============================== warnings summary ===============================
+tests/invariants/test_registry_prove_ui1d_gates.py: 15 warnings
+  /root/.venv/lib/python3.11/site-packages/jwt/api_jwt.py:147: InsecureKeyLengthWarning: The HMAC key is 30 bytes long, which is below the minimum recommended length of 32 bytes for SHA256. See RFC 7518 Section 3.2.
+    return self._jws.encode(
+
+tests/invariants/test_registry_prove_ui1d_gates.py: 15 warnings
+  /root/.venv/lib/python3.11/site-packages/jwt/api_jwt.py:368: InsecureKeyLengthWarning: The HMAC key is 30 bytes long, which is below the minimum recommended length of 32 bytes for SHA256. See RFC 7518 Section 3.2.
+    decoded = self.decode_complete(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================= 17 passed, 30 warnings in 4.05s ========================
+EXITCODE=0

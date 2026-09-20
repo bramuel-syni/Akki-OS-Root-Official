@@ -1,0 +1,569 @@
+============================= test session starts ==============================
+collecting ... collected 20 items
+
+tests/invariants/test_audit_trail_overview.py::test_overview_endpoint_returns_200 ERROR [  5%]
+tests/invariants/test_audit_trail_overview.py::test_overview_body_carries_three_canon_sections ERROR [ 10%]
+tests/invariants/test_audit_trail_overview.py::test_overview_multi_unit_answers_shape ERROR [ 15%]
+tests/invariants/test_audit_trail_overview.py::test_overview_units_served_shape ERROR [ 20%]
+tests/invariants/test_audit_trail_overview.py::test_overview_densification_shape ERROR [ 25%]
+tests/invariants/test_audit_trail_overview.py::test_overview_multi_unit_answers_carries_verbatim_ca1_001_quote ERROR [ 30%]
+tests/invariants/test_audit_trail_overview.py::test_overview_units_served_carries_verbatim_ca1_002_quote ERROR [ 35%]
+tests/invariants/test_audit_trail_overview.py::test_overview_densification_carries_verbatim_ca1_003_quote ERROR [ 40%]
+tests/invariants/test_audit_trail_overview.py::test_overview_densification_flags_partial_closure_true ERROR [ 45%]
+tests/invariants/test_audit_trail_overview.py::test_overview_reference_note_names_reference_not_copy ERROR [ 50%]
+tests/invariants/test_audit_trail_overview.py::test_overview_sources_map_names_ondisk_directories ERROR [ 55%]
+tests/invariants/test_audit_trail_overview.py::test_overview_reports_zero_when_stores_are_empty ERROR [ 60%]
+tests/invariants/test_audit_trail_overview.py::test_overview_ca1_001_detects_multi_unit_answer_from_northena_ledger ERROR [ 65%]
+tests/invariants/test_audit_trail_overview.py::test_overview_ca1_001_does_not_count_single_unit_trace ERROR [ 70%]
+tests/invariants/test_audit_trail_overview.py::test_overview_ca1_002_counts_available_units_from_data_connection_records ERROR [ 75%]
+tests/invariants/test_audit_trail_overview.py::test_overview_ca1_002_counts_served_from_crossing_receipts ERROR [ 80%]
+tests/invariants/test_audit_trail_overview.py::test_overview_ca1_003_counts_registry_facts ERROR [ 85%]
+tests/invariants/test_audit_trail_overview.py::test_overview_ca1_003_warm_fresh_reference_points_at_memory_service ERROR [ 90%]
+tests/invariants/test_audit_trail_overview.py::test_overview_never_returns_banned_fields ERROR [ 95%]
+tests/invariants/test_audit_trail_overview.py::test_overview_every_entry_cites_source_path ERROR [100%]
+
+==================================== ERRORS ====================================
+_____________ ERROR at setup of test_overview_endpoint_returns_200 _____________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-71/test_overview_endpoint_returns0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfcaf03742a10>
+
+    @pytest.fixture()
+    def app_client(tmp_path, monkeypatch):
+        """Fresh FastAPI app mounting only the audit_trail router.
+    
+        Redirects every disk-store default under tmp_path so each test
+        starts honest-empty and can populate what it needs.
+        """
+        for env, sub in [
+            ("CROSSING_RECEIPTS_DIR",       "crossing_receipts"),
+            ("NORTHENA_LEDGER_DIR",         "northena_ledger"),
+            ("DATA_CONNECTION_RECORDS_DIR", "data_connection_records"),
+            ("REGISTRY_FACTS_DIR",          "registry_facts"),
+        ]:
+            d = tmp_path / sub
+            d.mkdir()
+            monkeypatch.setenv(env, str(d))
+    
+>       from services.audit_trail.router import router as audit_trail_router
+E       ModuleNotFoundError: No module named 'services.audit_trail'
+
+tests/invariants/test_audit_trail_overview.py:138: ModuleNotFoundError
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+______ ERROR at setup of test_overview_body_carries_three_canon_sections _______
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-71/test_overview_body_carries_thr0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfcaf03204c10>
+
+    @pytest.fixture()
+    def app_client(tmp_path, monkeypatch):
+        """Fresh FastAPI app mounting only the audit_trail router.
+    
+        Redirects every disk-store default under tmp_path so each test
+        starts honest-empty and can populate what it needs.
+        """
+        for env, sub in [
+            ("CROSSING_RECEIPTS_DIR",       "crossing_receipts"),
+            ("NORTHENA_LEDGER_DIR",         "northena_ledger"),
+            ("DATA_CONNECTION_RECORDS_DIR", "data_connection_records"),
+            ("REGISTRY_FACTS_DIR",          "registry_facts"),
+        ]:
+            d = tmp_path / sub
+            d.mkdir()
+            monkeypatch.setenv(env, str(d))
+    
+>       from services.audit_trail.router import router as audit_trail_router
+E       ModuleNotFoundError: No module named 'services.audit_trail'
+
+tests/invariants/test_audit_trail_overview.py:138: ModuleNotFoundError
+___________ ERROR at setup of test_overview_multi_unit_answers_shape ___________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-71/test_overview_multi_unit_answe0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfcaf03374c50>
+
+    @pytest.fixture()
+    def app_client(tmp_path, monkeypatch):
+        """Fresh FastAPI app mounting only the audit_trail router.
+    
+        Redirects every disk-store default under tmp_path so each test
+        starts honest-empty and can populate what it needs.
+        """
+        for env, sub in [
+            ("CROSSING_RECEIPTS_DIR",       "crossing_receipts"),
+            ("NORTHENA_LEDGER_DIR",         "northena_ledger"),
+            ("DATA_CONNECTION_RECORDS_DIR", "data_connection_records"),
+            ("REGISTRY_FACTS_DIR",          "registry_facts"),
+        ]:
+            d = tmp_path / sub
+            d.mkdir()
+            monkeypatch.setenv(env, str(d))
+    
+>       from services.audit_trail.router import router as audit_trail_router
+E       ModuleNotFoundError: No module named 'services.audit_trail'
+
+tests/invariants/test_audit_trail_overview.py:138: ModuleNotFoundError
+______________ ERROR at setup of test_overview_units_served_shape ______________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-71/test_overview_units_served_sha0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfcaf03205e50>
+
+    @pytest.fixture()
+    def app_client(tmp_path, monkeypatch):
+        """Fresh FastAPI app mounting only the audit_trail router.
+    
+        Redirects every disk-store default under tmp_path so each test
+        starts honest-empty and can populate what it needs.
+        """
+        for env, sub in [
+            ("CROSSING_RECEIPTS_DIR",       "crossing_receipts"),
+            ("NORTHENA_LEDGER_DIR",         "northena_ledger"),
+            ("DATA_CONNECTION_RECORDS_DIR", "data_connection_records"),
+            ("REGISTRY_FACTS_DIR",          "registry_facts"),
+        ]:
+            d = tmp_path / sub
+            d.mkdir()
+            monkeypatch.setenv(env, str(d))
+    
+>       from services.audit_trail.router import router as audit_trail_router
+E       ModuleNotFoundError: No module named 'services.audit_trail'
+
+tests/invariants/test_audit_trail_overview.py:138: ModuleNotFoundError
+_____________ ERROR at setup of test_overview_densification_shape ______________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-71/test_overview_densification_sh0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfcaf0332c4d0>
+
+    @pytest.fixture()
+    def app_client(tmp_path, monkeypatch):
+        """Fresh FastAPI app mounting only the audit_trail router.
+    
+        Redirects every disk-store default under tmp_path so each test
+        starts honest-empty and can populate what it needs.
+        """
+        for env, sub in [
+            ("CROSSING_RECEIPTS_DIR",       "crossing_receipts"),
+            ("NORTHENA_LEDGER_DIR",         "northena_ledger"),
+            ("DATA_CONNECTION_RECORDS_DIR", "data_connection_records"),
+            ("REGISTRY_FACTS_DIR",          "registry_facts"),
+        ]:
+            d = tmp_path / sub
+            d.mkdir()
+            monkeypatch.setenv(env, str(d))
+    
+>       from services.audit_trail.router import router as audit_trail_router
+E       ModuleNotFoundError: No module named 'services.audit_trail'
+
+tests/invariants/test_audit_trail_overview.py:138: ModuleNotFoundError
+_ ERROR at setup of test_overview_multi_unit_answers_carries_verbatim_ca1_001_quote _
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-71/test_overview_multi_unit_answe1')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfcaf031083d0>
+
+    @pytest.fixture()
+    def app_client(tmp_path, monkeypatch):
+        """Fresh FastAPI app mounting only the audit_trail router.
+    
+        Redirects every disk-store default under tmp_path so each test
+        starts honest-empty and can populate what it needs.
+        """
+        for env, sub in [
+            ("CROSSING_RECEIPTS_DIR",       "crossing_receipts"),
+            ("NORTHENA_LEDGER_DIR",         "northena_ledger"),
+            ("DATA_CONNECTION_RECORDS_DIR", "data_connection_records"),
+            ("REGISTRY_FACTS_DIR",          "registry_facts"),
+        ]:
+            d = tmp_path / sub
+            d.mkdir()
+            monkeypatch.setenv(env, str(d))
+    
+>       from services.audit_trail.router import router as audit_trail_router
+E       ModuleNotFoundError: No module named 'services.audit_trail'
+
+tests/invariants/test_audit_trail_overview.py:138: ModuleNotFoundError
+_ ERROR at setup of test_overview_units_served_carries_verbatim_ca1_002_quote __
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-71/test_overview_units_served_car0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfcaf14835d10>
+
+    @pytest.fixture()
+    def app_client(tmp_path, monkeypatch):
+        """Fresh FastAPI app mounting only the audit_trail router.
+    
+        Redirects every disk-store default under tmp_path so each test
+        starts honest-empty and can populate what it needs.
+        """
+        for env, sub in [
+            ("CROSSING_RECEIPTS_DIR",       "crossing_receipts"),
+            ("NORTHENA_LEDGER_DIR",         "northena_ledger"),
+            ("DATA_CONNECTION_RECORDS_DIR", "data_connection_records"),
+            ("REGISTRY_FACTS_DIR",          "registry_facts"),
+        ]:
+            d = tmp_path / sub
+            d.mkdir()
+            monkeypatch.setenv(env, str(d))
+    
+>       from services.audit_trail.router import router as audit_trail_router
+E       ModuleNotFoundError: No module named 'services.audit_trail'
+
+tests/invariants/test_audit_trail_overview.py:138: ModuleNotFoundError
+_ ERROR at setup of test_overview_densification_carries_verbatim_ca1_003_quote _
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-71/test_overview_densification_ca0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfcaf14835b50>
+
+    @pytest.fixture()
+    def app_client(tmp_path, monkeypatch):
+        """Fresh FastAPI app mounting only the audit_trail router.
+    
+        Redirects every disk-store default under tmp_path so each test
+        starts honest-empty and can populate what it needs.
+        """
+        for env, sub in [
+            ("CROSSING_RECEIPTS_DIR",       "crossing_receipts"),
+            ("NORTHENA_LEDGER_DIR",         "northena_ledger"),
+            ("DATA_CONNECTION_RECORDS_DIR", "data_connection_records"),
+            ("REGISTRY_FACTS_DIR",          "registry_facts"),
+        ]:
+            d = tmp_path / sub
+            d.mkdir()
+            monkeypatch.setenv(env, str(d))
+    
+>       from services.audit_trail.router import router as audit_trail_router
+E       ModuleNotFoundError: No module named 'services.audit_trail'
+
+tests/invariants/test_audit_trail_overview.py:138: ModuleNotFoundError
+___ ERROR at setup of test_overview_densification_flags_partial_closure_true ___
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-71/test_overview_densification_fl0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfcaf03154c50>
+
+    @pytest.fixture()
+    def app_client(tmp_path, monkeypatch):
+        """Fresh FastAPI app mounting only the audit_trail router.
+    
+        Redirects every disk-store default under tmp_path so each test
+        starts honest-empty and can populate what it needs.
+        """
+        for env, sub in [
+            ("CROSSING_RECEIPTS_DIR",       "crossing_receipts"),
+            ("NORTHENA_LEDGER_DIR",         "northena_ledger"),
+            ("DATA_CONNECTION_RECORDS_DIR", "data_connection_records"),
+            ("REGISTRY_FACTS_DIR",          "registry_facts"),
+        ]:
+            d = tmp_path / sub
+            d.mkdir()
+            monkeypatch.setenv(env, str(d))
+    
+>       from services.audit_trail.router import router as audit_trail_router
+E       ModuleNotFoundError: No module named 'services.audit_trail'
+
+tests/invariants/test_audit_trail_overview.py:138: ModuleNotFoundError
+___ ERROR at setup of test_overview_reference_note_names_reference_not_copy ____
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-71/test_overview_reference_note_n0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfcaf03147550>
+
+    @pytest.fixture()
+    def app_client(tmp_path, monkeypatch):
+        """Fresh FastAPI app mounting only the audit_trail router.
+    
+        Redirects every disk-store default under tmp_path so each test
+        starts honest-empty and can populate what it needs.
+        """
+        for env, sub in [
+            ("CROSSING_RECEIPTS_DIR",       "crossing_receipts"),
+            ("NORTHENA_LEDGER_DIR",         "northena_ledger"),
+            ("DATA_CONNECTION_RECORDS_DIR", "data_connection_records"),
+            ("REGISTRY_FACTS_DIR",          "registry_facts"),
+        ]:
+            d = tmp_path / sub
+            d.mkdir()
+            monkeypatch.setenv(env, str(d))
+    
+>       from services.audit_trail.router import router as audit_trail_router
+E       ModuleNotFoundError: No module named 'services.audit_trail'
+
+tests/invariants/test_audit_trail_overview.py:138: ModuleNotFoundError
+_____ ERROR at setup of test_overview_sources_map_names_ondisk_directories _____
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-71/test_overview_sources_map_name0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfcaf0329b810>
+
+    @pytest.fixture()
+    def app_client(tmp_path, monkeypatch):
+        """Fresh FastAPI app mounting only the audit_trail router.
+    
+        Redirects every disk-store default under tmp_path so each test
+        starts honest-empty and can populate what it needs.
+        """
+        for env, sub in [
+            ("CROSSING_RECEIPTS_DIR",       "crossing_receipts"),
+            ("NORTHENA_LEDGER_DIR",         "northena_ledger"),
+            ("DATA_CONNECTION_RECORDS_DIR", "data_connection_records"),
+            ("REGISTRY_FACTS_DIR",          "registry_facts"),
+        ]:
+            d = tmp_path / sub
+            d.mkdir()
+            monkeypatch.setenv(env, str(d))
+    
+>       from services.audit_trail.router import router as audit_trail_router
+E       ModuleNotFoundError: No module named 'services.audit_trail'
+
+tests/invariants/test_audit_trail_overview.py:138: ModuleNotFoundError
+______ ERROR at setup of test_overview_reports_zero_when_stores_are_empty ______
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-71/test_overview_reports_zero_whe0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfcaf032999d0>
+
+    @pytest.fixture()
+    def app_client(tmp_path, monkeypatch):
+        """Fresh FastAPI app mounting only the audit_trail router.
+    
+        Redirects every disk-store default under tmp_path so each test
+        starts honest-empty and can populate what it needs.
+        """
+        for env, sub in [
+            ("CROSSING_RECEIPTS_DIR",       "crossing_receipts"),
+            ("NORTHENA_LEDGER_DIR",         "northena_ledger"),
+            ("DATA_CONNECTION_RECORDS_DIR", "data_connection_records"),
+            ("REGISTRY_FACTS_DIR",          "registry_facts"),
+        ]:
+            d = tmp_path / sub
+            d.mkdir()
+            monkeypatch.setenv(env, str(d))
+    
+>       from services.audit_trail.router import router as audit_trail_router
+E       ModuleNotFoundError: No module named 'services.audit_trail'
+
+tests/invariants/test_audit_trail_overview.py:138: ModuleNotFoundError
+_ ERROR at setup of test_overview_ca1_001_detects_multi_unit_answer_from_northena_ledger _
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-71/test_overview_ca1_001_detects_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfcaf0329a290>
+
+    @pytest.fixture()
+    def app_client(tmp_path, monkeypatch):
+        """Fresh FastAPI app mounting only the audit_trail router.
+    
+        Redirects every disk-store default under tmp_path so each test
+        starts honest-empty and can populate what it needs.
+        """
+        for env, sub in [
+            ("CROSSING_RECEIPTS_DIR",       "crossing_receipts"),
+            ("NORTHENA_LEDGER_DIR",         "northena_ledger"),
+            ("DATA_CONNECTION_RECORDS_DIR", "data_connection_records"),
+            ("REGISTRY_FACTS_DIR",          "registry_facts"),
+        ]:
+            d = tmp_path / sub
+            d.mkdir()
+            monkeypatch.setenv(env, str(d))
+    
+>       from services.audit_trail.router import router as audit_trail_router
+E       ModuleNotFoundError: No module named 'services.audit_trail'
+
+tests/invariants/test_audit_trail_overview.py:138: ModuleNotFoundError
+___ ERROR at setup of test_overview_ca1_001_does_not_count_single_unit_trace ___
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-71/test_overview_ca1_001_does_not0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfcaf03299950>
+
+    @pytest.fixture()
+    def app_client(tmp_path, monkeypatch):
+        """Fresh FastAPI app mounting only the audit_trail router.
+    
+        Redirects every disk-store default under tmp_path so each test
+        starts honest-empty and can populate what it needs.
+        """
+        for env, sub in [
+            ("CROSSING_RECEIPTS_DIR",       "crossing_receipts"),
+            ("NORTHENA_LEDGER_DIR",         "northena_ledger"),
+            ("DATA_CONNECTION_RECORDS_DIR", "data_connection_records"),
+            ("REGISTRY_FACTS_DIR",          "registry_facts"),
+        ]:
+            d = tmp_path / sub
+            d.mkdir()
+            monkeypatch.setenv(env, str(d))
+    
+>       from services.audit_trail.router import router as audit_trail_router
+E       ModuleNotFoundError: No module named 'services.audit_trail'
+
+tests/invariants/test_audit_trail_overview.py:138: ModuleNotFoundError
+_ ERROR at setup of test_overview_ca1_002_counts_available_units_from_data_connection_records _
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-71/test_overview_ca1_002_counts_a0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfcaf03160f50>
+
+    @pytest.fixture()
+    def app_client(tmp_path, monkeypatch):
+        """Fresh FastAPI app mounting only the audit_trail router.
+    
+        Redirects every disk-store default under tmp_path so each test
+        starts honest-empty and can populate what it needs.
+        """
+        for env, sub in [
+            ("CROSSING_RECEIPTS_DIR",       "crossing_receipts"),
+            ("NORTHENA_LEDGER_DIR",         "northena_ledger"),
+            ("DATA_CONNECTION_RECORDS_DIR", "data_connection_records"),
+            ("REGISTRY_FACTS_DIR",          "registry_facts"),
+        ]:
+            d = tmp_path / sub
+            d.mkdir()
+            monkeypatch.setenv(env, str(d))
+    
+>       from services.audit_trail.router import router as audit_trail_router
+E       ModuleNotFoundError: No module named 'services.audit_trail'
+
+tests/invariants/test_audit_trail_overview.py:138: ModuleNotFoundError
+_ ERROR at setup of test_overview_ca1_002_counts_served_from_crossing_receipts _
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-71/test_overview_ca1_002_counts_s0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfcaf03109110>
+
+    @pytest.fixture()
+    def app_client(tmp_path, monkeypatch):
+        """Fresh FastAPI app mounting only the audit_trail router.
+    
+        Redirects every disk-store default under tmp_path so each test
+        starts honest-empty and can populate what it needs.
+        """
+        for env, sub in [
+            ("CROSSING_RECEIPTS_DIR",       "crossing_receipts"),
+            ("NORTHENA_LEDGER_DIR",         "northena_ledger"),
+            ("DATA_CONNECTION_RECORDS_DIR", "data_connection_records"),
+            ("REGISTRY_FACTS_DIR",          "registry_facts"),
+        ]:
+            d = tmp_path / sub
+            d.mkdir()
+            monkeypatch.setenv(env, str(d))
+    
+>       from services.audit_trail.router import router as audit_trail_router
+E       ModuleNotFoundError: No module named 'services.audit_trail'
+
+tests/invariants/test_audit_trail_overview.py:138: ModuleNotFoundError
+________ ERROR at setup of test_overview_ca1_003_counts_registry_facts _________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-71/test_overview_ca1_003_counts_r0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfcaf03165f50>
+
+    @pytest.fixture()
+    def app_client(tmp_path, monkeypatch):
+        """Fresh FastAPI app mounting only the audit_trail router.
+    
+        Redirects every disk-store default under tmp_path so each test
+        starts honest-empty and can populate what it needs.
+        """
+        for env, sub in [
+            ("CROSSING_RECEIPTS_DIR",       "crossing_receipts"),
+            ("NORTHENA_LEDGER_DIR",         "northena_ledger"),
+            ("DATA_CONNECTION_RECORDS_DIR", "data_connection_records"),
+            ("REGISTRY_FACTS_DIR",          "registry_facts"),
+        ]:
+            d = tmp_path / sub
+            d.mkdir()
+            monkeypatch.setenv(env, str(d))
+    
+>       from services.audit_trail.router import router as audit_trail_router
+E       ModuleNotFoundError: No module named 'services.audit_trail'
+
+tests/invariants/test_audit_trail_overview.py:138: ModuleNotFoundError
+_ ERROR at setup of test_overview_ca1_003_warm_fresh_reference_points_at_memory_service _
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-71/test_overview_ca1_003_warm_fre0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfcaf032d7c10>
+
+    @pytest.fixture()
+    def app_client(tmp_path, monkeypatch):
+        """Fresh FastAPI app mounting only the audit_trail router.
+    
+        Redirects every disk-store default under tmp_path so each test
+        starts honest-empty and can populate what it needs.
+        """
+        for env, sub in [
+            ("CROSSING_RECEIPTS_DIR",       "crossing_receipts"),
+            ("NORTHENA_LEDGER_DIR",         "northena_ledger"),
+            ("DATA_CONNECTION_RECORDS_DIR", "data_connection_records"),
+            ("REGISTRY_FACTS_DIR",          "registry_facts"),
+        ]:
+            d = tmp_path / sub
+            d.mkdir()
+            monkeypatch.setenv(env, str(d))
+    
+>       from services.audit_trail.router import router as audit_trail_router
+E       ModuleNotFoundError: No module named 'services.audit_trail'
+
+tests/invariants/test_audit_trail_overview.py:138: ModuleNotFoundError
+_________ ERROR at setup of test_overview_never_returns_banned_fields __________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-71/test_overview_never_returns_ba0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfcaf030feb50>
+
+    @pytest.fixture()
+    def app_client(tmp_path, monkeypatch):
+        """Fresh FastAPI app mounting only the audit_trail router.
+    
+        Redirects every disk-store default under tmp_path so each test
+        starts honest-empty and can populate what it needs.
+        """
+        for env, sub in [
+            ("CROSSING_RECEIPTS_DIR",       "crossing_receipts"),
+            ("NORTHENA_LEDGER_DIR",         "northena_ledger"),
+            ("DATA_CONNECTION_RECORDS_DIR", "data_connection_records"),
+            ("REGISTRY_FACTS_DIR",          "registry_facts"),
+        ]:
+            d = tmp_path / sub
+            d.mkdir()
+            monkeypatch.setenv(env, str(d))
+    
+>       from services.audit_trail.router import router as audit_trail_router
+E       ModuleNotFoundError: No module named 'services.audit_trail'
+
+tests/invariants/test_audit_trail_overview.py:138: ModuleNotFoundError
+________ ERROR at setup of test_overview_every_entry_cites_source_path _________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-71/test_overview_every_entry_cite0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfcaf03173c10>
+
+    @pytest.fixture()
+    def app_client(tmp_path, monkeypatch):
+        """Fresh FastAPI app mounting only the audit_trail router.
+    
+        Redirects every disk-store default under tmp_path so each test
+        starts honest-empty and can populate what it needs.
+        """
+        for env, sub in [
+            ("CROSSING_RECEIPTS_DIR",       "crossing_receipts"),
+            ("NORTHENA_LEDGER_DIR",         "northena_ledger"),
+            ("DATA_CONNECTION_RECORDS_DIR", "data_connection_records"),
+            ("REGISTRY_FACTS_DIR",          "registry_facts"),
+        ]:
+            d = tmp_path / sub
+            d.mkdir()
+            monkeypatch.setenv(env, str(d))
+    
+>       from services.audit_trail.router import router as audit_trail_router
+E       ModuleNotFoundError: No module named 'services.audit_trail'
+
+tests/invariants/test_audit_trail_overview.py:138: ModuleNotFoundError
+=========================== short test summary info ============================
+ERROR tests/invariants/test_audit_trail_overview.py::test_overview_endpoint_returns_200
+ERROR tests/invariants/test_audit_trail_overview.py::test_overview_body_carries_three_canon_sections
+ERROR tests/invariants/test_audit_trail_overview.py::test_overview_multi_unit_answers_shape
+ERROR tests/invariants/test_audit_trail_overview.py::test_overview_units_served_shape
+ERROR tests/invariants/test_audit_trail_overview.py::test_overview_densification_shape
+ERROR tests/invariants/test_audit_trail_overview.py::test_overview_multi_unit_answers_carries_verbatim_ca1_001_quote
+ERROR tests/invariants/test_audit_trail_overview.py::test_overview_units_served_carries_verbatim_ca1_002_quote
+ERROR tests/invariants/test_audit_trail_overview.py::test_overview_densification_carries_verbatim_ca1_003_quote
+ERROR tests/invariants/test_audit_trail_overview.py::test_overview_densification_flags_partial_closure_true
+ERROR tests/invariants/test_audit_trail_overview.py::test_overview_reference_note_names_reference_not_copy
+ERROR tests/invariants/test_audit_trail_overview.py::test_overview_sources_map_names_ondisk_directories
+ERROR tests/invariants/test_audit_trail_overview.py::test_overview_reports_zero_when_stores_are_empty
+ERROR tests/invariants/test_audit_trail_overview.py::test_overview_ca1_001_detects_multi_unit_answer_from_northena_ledger
+ERROR tests/invariants/test_audit_trail_overview.py::test_overview_ca1_001_does_not_count_single_unit_trace
+ERROR tests/invariants/test_audit_trail_overview.py::test_overview_ca1_002_counts_available_units_from_data_connection_records
+ERROR tests/invariants/test_audit_trail_overview.py::test_overview_ca1_002_counts_served_from_crossing_receipts
+ERROR tests/invariants/test_audit_trail_overview.py::test_overview_ca1_003_counts_registry_facts
+ERROR tests/invariants/test_audit_trail_overview.py::test_overview_ca1_003_warm_fresh_reference_points_at_memory_service
+ERROR tests/invariants/test_audit_trail_overview.py::test_overview_never_returns_banned_fields
+ERROR tests/invariants/test_audit_trail_overview.py::test_overview_every_entry_cites_source_path
+============================== 20 errors in 0.80s ==============================

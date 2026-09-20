@@ -1,0 +1,23 @@
+============================= test session starts ==============================
+collecting ... collected 2 items
+
+backend/tests/invariants/test_standing_orders_mission_framed_rule.py::test_standing_orders_section_two_carries_mission_framed_clause FAILED [ 50%]
+backend/tests/invariants/test_standing_orders_mission_framed_rule.py::test_standing_orders_section_two_names_four_mission_anchors FAILED [100%]
+
+=================================== FAILURES ===================================
+________ test_standing_orders_section_two_carries_mission_framed_clause ________
+backend/tests/invariants/test_standing_orders_mission_framed_rule.py:57: in test_standing_orders_section_two_carries_mission_framed_clause
+    assert MISSION_FRAMED_CLAUSE in body, (
+E   AssertionError: §2 ENGAGEMENT DISCIPLINE must carry the mission-framed clause verbatim: 'The analysis is never the subject. The subject should be the mission at all times' (owner ruling 2026-09-08T~05:15Z: analysis is never the subject; the mission is)
+E   assert 'The analysis is never the subject. The subject should be the mission at all times' in "## 2. ENGAGEMENT DISCIPLINE\n\nOwner-facing output is **metrics first**: requirement → status → evidence path → %. Plain language. No machine jargon. No assumed emphasis. No filler.\n\nRequirements are **never flattened**. Sub-clauses stay distinct. Every requirement quoted verbatim in the gating test's docstring and in the wave grounding brief. If the verbatim quote is not in the test, the test does not gate the row.\n\nAmbiguity is **never reflected back as an open question**. State the specific ambiguity, apply ONE stated default with rationale, mark it `DEFAULT-PENDING-OVERRIDE`. The owner overrides on the next turn if the default is wrong.\n\nEvery owner ruling is banked **verbatim** in `STATE/DECISIONS.md` **before** any action is taken on it.\n\n---\n\n"
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+_________ test_standing_orders_section_two_names_four_mission_anchors __________
+backend/tests/invariants/test_standing_orders_mission_framed_rule.py:67: in test_standing_orders_section_two_names_four_mission_anchors
+    assert not missing, (
+E   AssertionError: §2 must name all four mission-framing anchors: 'what we are building', 'verified gaps', 'missing requirements', 'generate-to-close' — missing: ['what we are building', 'verified gaps', 'missing requirements', 'generate-to-close']
+E   assert not ['what we are building', 'verified gaps', 'missing requirements', 'generate-to-close']
+=========================== short test summary info ============================
+FAILED backend/tests/invariants/test_standing_orders_mission_framed_rule.py::test_standing_orders_section_two_carries_mission_framed_clause
+FAILED backend/tests/invariants/test_standing_orders_mission_framed_rule.py::test_standing_orders_section_two_names_four_mission_anchors
+============================== 2 failed in 0.67s ===============================

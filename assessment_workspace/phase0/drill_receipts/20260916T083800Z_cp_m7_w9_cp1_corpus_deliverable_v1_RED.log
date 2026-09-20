@@ -1,0 +1,125 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.4.2, pluggy-1.6.0 -- /root/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: xdist-3.8.0, asyncio-1.4.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collecting ... collected 6 items
+
+tests/invariants/test_wm7_w9_cp1_corpus_deliverable_v1.py::test_wm7_w9_cp1_module_fabric_present FAILED [ 16%]
+tests/invariants/test_wm7_w9_cp1_corpus_deliverable_v1.py::test_wm7_w9_cp1_corpus_segment_v1_frozen_carrier_shape FAILED [ 33%]
+tests/invariants/test_wm7_w9_cp1_corpus_deliverable_v1.py::test_wm7_w9_cp1_corpus_deliverable_v1_frozen_carrier_shape FAILED [ 50%]
+tests/invariants/test_wm7_w9_cp1_corpus_deliverable_v1.py::test_wm7_w9_cp1_refuses_audio_bytes_payload_by_construction FAILED [ 66%]
+tests/invariants/test_wm7_w9_cp1_corpus_deliverable_v1.py::test_wm7_w9_cp1_path_c_default_verbatim_anchor_present_in_module_source FAILED [ 83%]
+tests/invariants/test_wm7_w9_cp1_corpus_deliverable_v1.py::test_wm7_w9_cp1_case_agnostic_zero_domain_tokens_in_module_source FAILED [100%]
+============================ BASELINE_GUARD receipt ============================
+passed=0 / baseline-failures-remaining=0 / quarantined=0
+  manifest: tests/invariants/baseline_failures.json
+  scope: BASELINE_GUARD=1  ·  invocation: cd backend && BASELINE_GUARD=1 python -m pytest tests/invariants/
+!!!!!!!!!!!!! BASELINE_GUARD · HALT AND REPORT · owner ruling (c) !!!!!!!!!!!!!!
+[V1] 6 NEW failure(s) OUTSIDE manifest:
+    tests/invariants/test_wm7_w9_cp1_corpus_deliverable_v1.py::test_wm7_w9_cp1_case_agnostic_zero_domain_tokens_in_module_source
+    tests/invariants/test_wm7_w9_cp1_corpus_deliverable_v1.py::test_wm7_w9_cp1_corpus_deliverable_v1_frozen_carrier_shape
+    tests/invariants/test_wm7_w9_cp1_corpus_deliverable_v1.py::test_wm7_w9_cp1_corpus_segment_v1_frozen_carrier_shape
+    tests/invariants/test_wm7_w9_cp1_corpus_deliverable_v1.py::test_wm7_w9_cp1_module_fabric_present
+    tests/invariants/test_wm7_w9_cp1_corpus_deliverable_v1.py::test_wm7_w9_cp1_path_c_default_verbatim_anchor_present_in_module_source
+    tests/invariants/test_wm7_w9_cp1_corpus_deliverable_v1.py::test_wm7_w9_cp1_refuses_audio_bytes_payload_by_construction
+[V3] Passed count 0 < ratchet floor 4400
+  No silent rebaselining. Report drift to owner verbatim.
+
+=================================== FAILURES ===================================
+____________________ test_wm7_w9_cp1_module_fabric_present _____________________
+
+    def test_wm7_w9_cp1_module_fabric_present():
+        """Import + minimal name presence check."""
+>       import services.audio_plane_v1.corpus_deliverable_v1 as mod
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.corpus_deliverable_v1'
+
+tests/invariants/test_wm7_w9_cp1_corpus_deliverable_v1.py:48: ModuleNotFoundError
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+____________ test_wm7_w9_cp1_corpus_segment_v1_frozen_carrier_shape ____________
+
+    def test_wm7_w9_cp1_corpus_segment_v1_frozen_carrier_shape():
+        """§C.2 verbatim triple: {source-file-pointer, segment_offsets_ms,
+        transcript}. Frozen dataclass. Exact-order 3 carriers."""
+>       from services.audio_plane_v1.corpus_deliverable_v1 import CorpusSegment_v1
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.corpus_deliverable_v1'
+
+tests/invariants/test_wm7_w9_cp1_corpus_deliverable_v1.py:70: ModuleNotFoundError
+__________ test_wm7_w9_cp1_corpus_deliverable_v1_frozen_carrier_shape __________
+
+    def test_wm7_w9_cp1_corpus_deliverable_v1_frozen_carrier_shape():
+        """CorpusDeliverable_v1: frozen · exact-order 3 carriers
+        (deliverable_id, retention_policy_ref, segments)."""
+>       from services.audio_plane_v1.corpus_deliverable_v1 import (
+            CorpusDeliverable_v1,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.corpus_deliverable_v1'
+
+tests/invariants/test_wm7_w9_cp1_corpus_deliverable_v1.py:96: ModuleNotFoundError
+_________ test_wm7_w9_cp1_refuses_audio_bytes_payload_by_construction __________
+
+    def test_wm7_w9_cp1_refuses_audio_bytes_payload_by_construction():
+        """The Path-C schema is unrepresentable-by-construction for audio
+        bytes: no field on either dataclass has type `bytes` or a name
+        that reads as audio-bytes carrier. Standing line: 'no biometric
+        material · no training on estate audio.'"""
+>       from services.audio_plane_v1 import corpus_deliverable_v1 as mod
+E       ImportError: cannot import name 'corpus_deliverable_v1' from 'services.audio_plane_v1' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/audio_plane_v1/__init__.py)
+
+tests/invariants/test_wm7_w9_cp1_corpus_deliverable_v1.py:126: ImportError
+___ test_wm7_w9_cp1_path_c_default_verbatim_anchor_present_in_module_source ____
+
+    def test_wm7_w9_cp1_path_c_default_verbatim_anchor_present_in_module_source():
+        """ROADMAP §C.2 Path C anchor must be quoted verbatim in module
+        docstring or a module-level constant · owner ruling verbatim-canon
+        discipline."""
+>       from services.audio_plane_v1 import corpus_deliverable_v1 as mod
+E       ImportError: cannot import name 'corpus_deliverable_v1' from 'services.audio_plane_v1' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/audio_plane_v1/__init__.py)
+
+tests/invariants/test_wm7_w9_cp1_corpus_deliverable_v1.py:180: ImportError
+______ test_wm7_w9_cp1_case_agnostic_zero_domain_tokens_in_module_source _______
+
+    def test_wm7_w9_cp1_case_agnostic_zero_domain_tokens_in_module_source():
+        """Case-agnostic doctrine: no station / domain / language / accent
+        tokens hard-coded in module source. Deliverable_id and
+        retention_policy_ref are OPEN str (caller-supplied opaque refs)."""
+        mod_path = pathlib.Path(
+            "services/audio_plane_v1/corpus_deliverable_v1.py"
+        )
+>       src_bytes = mod_path.read_bytes()
+                    ^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_wm7_w9_cp1_corpus_deliverable_v1.py:206: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/pathlib.py:1050: in read_bytes
+    with self.open(mode='rb') as f:
+         ^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('services/audio_plane_v1/corpus_deliverable_v1.py')
+mode = 'rb', buffering = -1, encoding = None, errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'services/audio_plane_v1/corpus_deliverable_v1.py'
+
+/usr/local/lib/python3.11/pathlib.py:1044: FileNotFoundError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wm7_w9_cp1_corpus_deliverable_v1.py::test_wm7_w9_cp1_module_fabric_present
+FAILED tests/invariants/test_wm7_w9_cp1_corpus_deliverable_v1.py::test_wm7_w9_cp1_corpus_segment_v1_frozen_carrier_shape
+FAILED tests/invariants/test_wm7_w9_cp1_corpus_deliverable_v1.py::test_wm7_w9_cp1_corpus_deliverable_v1_frozen_carrier_shape
+FAILED tests/invariants/test_wm7_w9_cp1_corpus_deliverable_v1.py::test_wm7_w9_cp1_refuses_audio_bytes_payload_by_construction
+FAILED tests/invariants/test_wm7_w9_cp1_corpus_deliverable_v1.py::test_wm7_w9_cp1_path_c_default_verbatim_anchor_present_in_module_source
+FAILED tests/invariants/test_wm7_w9_cp1_corpus_deliverable_v1.py::test_wm7_w9_cp1_case_agnostic_zero_domain_tokens_in_module_source
+============================== 6 failed in 0.77s ===============================

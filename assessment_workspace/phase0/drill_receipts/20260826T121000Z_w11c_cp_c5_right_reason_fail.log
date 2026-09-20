@@ -1,0 +1,43 @@
+/root/.venv/lib/python3.11/site-packages/pytest_asyncio/plugin.py:208: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.3.3, pluggy-1.6.0 -- /root/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: xdist-3.8.0, asyncio-0.24.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, default_loop_scope=None
+collecting ... collected 5 items
+
+backend/tests/invariants/test_watch_cp_c5_console_honesty.py::test_watch_jsx_has_no_stale_unbuilt_markers PASSED [ 20%]
+backend/tests/invariants/test_watch_cp_c5_console_honesty.py::test_grey_mirror_jsx_has_no_stale_unbuilt_markers FAILED [ 40%]
+backend/tests/invariants/test_watch_cp_c5_console_honesty.py::test_grey_mirror_jsx_surfaces_cp_c3_mirage_artifacts_panel FAILED [ 60%]
+backend/tests/invariants/test_watch_cp_c5_console_honesty.py::test_watch_and_grey_mirror_jsx_mirrored_byte_identical PASSED [ 80%]
+backend/tests/invariants/test_watch_cp_c5_console_honesty.py::test_watch_jsx_surfaces_cp_c2_cp_c3_cp_c4_panels PASSED [100%]
+
+=================================== FAILURES ===================================
+______________ test_grey_mirror_jsx_has_no_stale_unbuilt_markers _______________
+backend/tests/invariants/test_watch_cp_c5_console_honesty.py:59: in test_grey_mirror_jsx_has_no_stale_unbuilt_markers
+    assert anti not in src, (
+E   AssertionError: GreyMirror.jsx still carries an 'unbuilt' marker (matched 'mechanismStatus="unbuilt'). W10 CP2 built the mirage machinery; the console must render honest-empty instead.
+E   assert 'mechanismStatus="unbuilt' not in 'import Reac...>\n  );\n}\n'
+E     
+E     'mechanismStatus="unbuilt' is contained here:
+E       import React, { useEffect, useState } from "react";
+E       import { Link } from "react-router-dom";
+E       
+E       /**
+E        * GreyMirror.jsx — W10 CP8 · Grey Mirror surface....
+E     
+E     ...Full output truncated (205 lines hidden), use '-vv' to show
+__________ test_grey_mirror_jsx_surfaces_cp_c3_mirage_artifacts_panel __________
+backend/tests/invariants/test_watch_cp_c5_console_honesty.py:71: in test_grey_mirror_jsx_surfaces_cp_c3_mirage_artifacts_panel
+    assert 'data-testid="mirage-artifacts-panel"' in src, (
+E   AssertionError: GreyMirror.jsx missing 'mirage-artifacts-panel' surface. Doc 8 §Line 183 verbatim: 'Mirage isolation. Synthetic state shares no store with production; synthetic provenance is carried internally on every mirage artifact.' The isolation plane must be surfaced on the Grey Mirror console.
+E   assert 'data-testid="mirage-artifacts-panel"' in 'import React, { useEffect, useState } from "react";\nimport { Link } from "react-router-dom";\n\n/**\n * GreyMirror.jsx — W10 CP8 · Grey Mirror surface.\n *\n * Composes three panels sharing REFERENCE-NOT-COPY posture (Design\n * Law A8):\n *   1. Mirages (Canon 8 §15 · installed lures)\n *   2. Mirage Touches (Canon 8 §15 · touch_kind CONTRACT-TIME closed\n *      to {\'innocent_read\', \'guilty_use\'} per R2 · 2026-08-26T04:20Z)\n *   3. Severances (Canon 8 §16 · outcome for guilty_use touches)\n *\n * BUILD-not-LIFT rationale: Executive-Core carries no mirage-machinery\n * material (verified at W10 CP2 grounding brief §4). The whole Grey\n * Mirror stack was built fresh from Canon 8 §§15-16 verbatim.\n *\n * Data source: GET /api/grey_mirror/state.\n */\n\nconst BACKEND_URL = process.env.REACT_APP_BACKEND_URL || "";\n\nconst paper = "#f5f2ea";\nconst surface = "#ffffff";\nconst ink = "#1b1f27";\nconst ink2 = "#3a3f4a";\nconst ink3 = "#7a7f8a";\nconst line = "#e4dccf";\nconst blue = "#16274a";\nconst sage = "#1d7a6e";\nconst oxblood = "#8a2a44";\nconst brass = "#b08d2e";\nconst head = \'ui-serif, "Iowan Old Style", Georgia, serif\';\n\nconst TOUCH_KINDS = ["innocent_read", "gu...       e.touch_kind\n                      ? `kind: ${e.touch_kind}${e.touch_kind === "guilty_use" ? " ← triggers severance (§16)" : ""}`\n                      : ""\n                  } />\n              ))}\n            </ul>\n          ) : null}\n        </Panel>\n\n        <Panel data-testid="severances-panel" title="Severances" anchor="Canon 8 §16">\n          <Count data-testid="severances-count" n={gCount("severances")} label="severances" />\n          {gCount("severances") === 0 ? (\n            <EmptyState anchor="Canon 8 §16"\n                        kind="severances"\n                        mechanismStatus="unbuilt · Doc03-044 severance (guilty_use trigger) · BUILD · Wave C" />\n          ) : null}\n          {g("severances") && g("severances").count > 0 ? (\n            <ul style={{ listStyle: "none", padding: 0, margin: "8px 0 0 0" }}>\n              {g("severances").entries.slice(0, 40).map((e, i) => (\n                <EntryRow key={`${e.record_id}-${i}`} entry={e}\n                  extra={e.cites_touch_id ? `cites touch: ${e.cites_touch_id}` : ""} />\n              ))}\n            </ul>\n          ) : null}\n        </Panel>\n      </div>\n    </div>\n  );\n}\n'
+=========================== short test summary info ============================
+FAILED backend/tests/invariants/test_watch_cp_c5_console_honesty.py::test_grey_mirror_jsx_has_no_stale_unbuilt_markers
+FAILED backend/tests/invariants/test_watch_cp_c5_console_honesty.py::test_grey_mirror_jsx_surfaces_cp_c3_mirage_artifacts_panel
+========================= 2 failed, 3 passed in 0.05s ==========================

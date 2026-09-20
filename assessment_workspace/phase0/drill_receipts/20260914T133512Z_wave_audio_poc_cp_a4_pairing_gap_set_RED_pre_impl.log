@@ -1,0 +1,143 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.4.2, pluggy-1.6.0
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: xdist-3.8.0, asyncio-1.4.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collected 13 items
+
+tests/invariants/test_wave_audio_poc_cp_a4_pairing_gap_set.py FFFFFFFFFF [ 76%]
+FFF                                                                      [100%]
+
+=================================== FAILURES ===================================
+__________________ test_cp_a4_pairing_registry_module_fabric ___________________
+
+    def test_cp_a4_pairing_registry_module_fabric():
+>       m = importlib.import_module("services.audio_poc.pairing_registry")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_wave_audio_poc_cp_a4_pairing_gap_set.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'services.audio_poc.pairing_registry'
+import_ = <function _gcd_import at 0xfbf14b69bd80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'services.audio_poc.pairing_registry'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+___________ test_cp_a4_audio_transcript_pair_frozen_dataclass_shape ____________
+
+    def test_cp_a4_audio_transcript_pair_frozen_dataclass_shape():
+>       from services.audio_poc.pairing_registry import AudioTranscriptPair
+E       ModuleNotFoundError: No module named 'services.audio_poc.pairing_registry'
+
+tests/invariants/test_wave_audio_poc_cp_a4_pairing_gap_set.py:47: ModuleNotFoundError
+______________________ test_cp_a4_pair_state_enum_values _______________________
+
+    def test_cp_a4_pair_state_enum_values():
+        """`PAIR_STATES` names exactly the four permitted pair-state strings."""
+>       from services.audio_poc.pairing_registry import PAIR_STATES
+E       ModuleNotFoundError: No module named 'services.audio_poc.pairing_registry'
+
+tests/invariants/test_wave_audio_poc_cp_a4_pairing_gap_set.py:74: ModuleNotFoundError
+__ test_cp_a4_pair_inventories_paired_when_recording_and_finished_transcript ___
+
+    def test_cp_a4_pair_inventories_paired_when_recording_and_finished_transcript():
+>       from services.audio_poc.pairing_registry import pair_inventories
+E       ModuleNotFoundError: No module named 'services.audio_poc.pairing_registry'
+
+tests/invariants/test_wave_audio_poc_cp_a4_pairing_gap_set.py:108: ModuleNotFoundError
+________ test_cp_a4_pair_inventories_recording_only_when_no_transcript _________
+
+    def test_cp_a4_pair_inventories_recording_only_when_no_transcript():
+>       from services.audio_poc.pairing_registry import pair_inventories
+E       ModuleNotFoundError: No module named 'services.audio_poc.pairing_registry'
+
+tests/invariants/test_wave_audio_poc_cp_a4_pairing_gap_set.py:117: ModuleNotFoundError
+________ test_cp_a4_pair_inventories_transcript_only_when_no_recording _________
+
+    def test_cp_a4_pair_inventories_transcript_only_when_no_recording():
+>       from services.audio_poc.pairing_registry import pair_inventories
+E       ModuleNotFoundError: No module named 'services.audio_poc.pairing_registry'
+
+tests/invariants/test_wave_audio_poc_cp_a4_pairing_gap_set.py:127: ModuleNotFoundError
+_ test_cp_a4_pair_inventories_recording_only_partial_when_transcript_not_finished _
+
+    def test_cp_a4_pair_inventories_recording_only_partial_when_transcript_not_finished():
+        """PARTIAL transcript ⇒ recording-side still needs gap-fill."""
+>       from services.audio_poc.pairing_registry import pair_inventories
+E       ModuleNotFoundError: No module named 'services.audio_poc.pairing_registry'
+
+tests/invariants/test_wave_audio_poc_cp_a4_pairing_gap_set.py:138: ModuleNotFoundError
+______________ test_cp_a4_pair_inventories_deterministic_ordering ______________
+
+    def test_cp_a4_pair_inventories_deterministic_ordering():
+>       from services.audio_poc.pairing_registry import pair_inventories
+E       ModuleNotFoundError: No module named 'services.audio_poc.pairing_registry'
+
+tests/invariants/test_wave_audio_poc_cp_a4_pairing_gap_set.py:147: ModuleNotFoundError
+_______________ test_cp_a4_pairing_snapshot_sha256_deterministic _______________
+
+    def test_cp_a4_pairing_snapshot_sha256_deterministic():
+>       from services.audio_poc.pairing_registry import (
+            pair_inventories,
+            pairing_snapshot_sha256,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_poc.pairing_registry'
+
+tests/invariants/test_wave_audio_poc_cp_a4_pairing_gap_set.py:163: ModuleNotFoundError
+_ test_cp_a4_compute_gap_set_includes_recording_only_and_recording_only_partial _
+
+    def test_cp_a4_compute_gap_set_includes_recording_only_and_recording_only_partial():
+>       from services.audio_poc.pairing_registry import pair_inventories
+E       ModuleNotFoundError: No module named 'services.audio_poc.pairing_registry'
+
+tests/invariants/test_wave_audio_poc_cp_a4_pairing_gap_set.py:178: ModuleNotFoundError
+______________ test_cp_a4_compute_gap_set_empty_when_all_finished ______________
+
+    def test_cp_a4_compute_gap_set_empty_when_all_finished():
+>       from services.audio_poc.pairing_registry import pair_inventories
+E       ModuleNotFoundError: No module named 'services.audio_poc.pairing_registry'
+
+tests/invariants/test_wave_audio_poc_cp_a4_pairing_gap_set.py:195: ModuleNotFoundError
+_____________ test_cp_a4_compute_gap_set_excludes_transcript_only ______________
+
+    def test_cp_a4_compute_gap_set_excludes_transcript_only():
+        """TRANSCRIPT_ONLY (orphan transcript) is NOT a gap-fill target."""
+>       from services.audio_poc.pairing_registry import pair_inventories
+E       ModuleNotFoundError: No module named 'services.audio_poc.pairing_registry'
+
+tests/invariants/test_wave_audio_poc_cp_a4_pairing_gap_set.py:204: ModuleNotFoundError
+______________ test_cp_a4_compute_gap_set_deterministic_ordering _______________
+
+    def test_cp_a4_compute_gap_set_deterministic_ordering():
+>       from services.audio_poc.pairing_registry import pair_inventories
+E       ModuleNotFoundError: No module named 'services.audio_poc.pairing_registry'
+
+tests/invariants/test_wave_audio_poc_cp_a4_pairing_gap_set.py:212: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wave_audio_poc_cp_a4_pairing_gap_set.py::test_cp_a4_pairing_registry_module_fabric
+FAILED tests/invariants/test_wave_audio_poc_cp_a4_pairing_gap_set.py::test_cp_a4_audio_transcript_pair_frozen_dataclass_shape
+FAILED tests/invariants/test_wave_audio_poc_cp_a4_pairing_gap_set.py::test_cp_a4_pair_state_enum_values
+FAILED tests/invariants/test_wave_audio_poc_cp_a4_pairing_gap_set.py::test_cp_a4_pair_inventories_paired_when_recording_and_finished_transcript
+FAILED tests/invariants/test_wave_audio_poc_cp_a4_pairing_gap_set.py::test_cp_a4_pair_inventories_recording_only_when_no_transcript
+FAILED tests/invariants/test_wave_audio_poc_cp_a4_pairing_gap_set.py::test_cp_a4_pair_inventories_transcript_only_when_no_recording
+FAILED tests/invariants/test_wave_audio_poc_cp_a4_pairing_gap_set.py::test_cp_a4_pair_inventories_recording_only_partial_when_transcript_not_finished
+FAILED tests/invariants/test_wave_audio_poc_cp_a4_pairing_gap_set.py::test_cp_a4_pair_inventories_deterministic_ordering
+FAILED tests/invariants/test_wave_audio_poc_cp_a4_pairing_gap_set.py::test_cp_a4_pairing_snapshot_sha256_deterministic
+FAILED tests/invariants/test_wave_audio_poc_cp_a4_pairing_gap_set.py::test_cp_a4_compute_gap_set_includes_recording_only_and_recording_only_partial
+FAILED tests/invariants/test_wave_audio_poc_cp_a4_pairing_gap_set.py::test_cp_a4_compute_gap_set_empty_when_all_finished
+FAILED tests/invariants/test_wave_audio_poc_cp_a4_pairing_gap_set.py::test_cp_a4_compute_gap_set_excludes_transcript_only
+FAILED tests/invariants/test_wave_audio_poc_cp_a4_pairing_gap_set.py::test_cp_a4_compute_gap_set_deterministic_ordering
+============================== 13 failed in 0.71s ==============================

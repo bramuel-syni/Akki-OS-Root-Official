@@ -1,0 +1,156 @@
+========================================================================
+Wave G · Step 0 · v8 identity verification receipt
+Generated: 2026-08-28T04:15:00Z (session UTC)
+Discipline: file-bytes-only verification; no README, no filename, no prior claim
+Method:
+  1. sha256 raw file bytes for both v8 artifacts
+  2. parse bundler manifest embedded in HTML (JSON in <script type="__bundler/manifest">)
+  3. base64-decode + gzip-inflate each of the 4 payloads; sha256 each decoded payload
+  4. parse embedded template (JSON-string-encoded HTML) into decoded HTML; sha256 both raw JSON + decoded HTML
+  5. grep decoded template for Akki OS grammar terms vs Farma IQ grammar terms
+  6. extract literal NAV/TABS/ROLES data structures from the template DOM
+========================================================================
+
+FILE HASHES (raw bytes):
+  fixtures/RMS_AI_Akki_Prototype_v8_Standalone.html
+    sha256      = e56871d01a99c2f3aa173c9b0a0f09e983c9f0e54ba3e61795ac8cb8575f98f2
+    bytes       = 1,264,425
+    lines       = 395
+
+  fixtures/Akki_Platform_v8_Design_Spec.docx
+    sha256      = d7cfd3aed244da1b53b7b86ed9572852b8e6e928f2294d6f94083ff775491304
+    bytes       = 108,191
+
+BUNDLER MANIFEST (4 payloads + 1 inline template):
+  uid                                        mime                       compressed  b64_len  payload_bytes  payload_sha256                                                    v7-v1 identity
+  8d5cc57e-301d-4e62-a9f2-6c99ccd7a189       application/javascript     true         3,128        6,289      ba61852925c4327a779f69a55236daf6f01fa0ad403e76a350dad71a4a94311e  BYTE-IDENTICAL to v7-v1 (dc-runtime county-map component)
+  0f495aa5-1678-46cf-81eb-b8762e04d778       text/javascript            true        25,480       69,150      8fe7df74405f3c55f49b7249c74ea1397e65d07dea2b1bd3b4a489bec2e28cbe  BYTE-IDENTICAL to v7-v1 (dc-runtime main bundle)
+  a27c8ca4-b38d-46ef-8af2-d589452c0a4d       text/javascript            true        57,496      131,835      35f4f974f4b2bcd44da73963347f8952e341f83909e4498227d4e26b98f66f0d  BYTE-IDENTICAL (react-dom@18.3.1 UMD lib)
+  373c1b27-c73c-4df6-9d0d-420d29e2d98d       text/javascript            true         5,692       10,751      d949f1c3687aedadcedac85261865f29b17cd273997e7f6b2bfc53b2f9d4c4dd  BYTE-IDENTICAL (react@18.3.1 UMD lib)
+
+EXT_RESOURCES declaration:
+  a27c8ca4... -> https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js
+  373c1b27... -> https://unpkg.com/react@18.3.1/umd/react.production.min.js
+
+PAGE_ORDER declaration: [] (empty)
+
+INLINE TEMPLATE (application HTML content — this is the actual v8 payload):
+  raw JSON-encoded len (bytes)   = 1,152,815
+  raw JSON-encoded sha256        = 47381de686612d941cf6f6bf1607e72b6f479493296b9189130f4c5c7850aa51
+  decoded HTML len (bytes)       = 1,111,498
+  decoded HTML sha256            = 9177c2b910b9caf5b07d6887317b37404443da83f548166da6f6e08f858e3a9a
+  saved decoded to               = notes/wave_g_step0_v8/v8_template_decoded.html
+
+COMPARISON — v8 template vs v7-v1/v7-v2 "text/html" application payload:
+  v7-v1/v7-v2 app payload sha256  = 59200739b34dd23dc0deb71ad7f058005c8de4641523823aba95595854334606
+  v7-v1/v7-v2 app payload bytes   = 134,739
+  v8 decoded template sha256      = 9177c2b910b9caf5b07d6887317b37404443da83f548166da6f6e08f858e3a9a
+  v8 decoded template bytes       = 1,111,498
+  DIFFER  = YES (different sha, different size — v8 is ~8.25x larger)
+  RELATION = v8 is a genuinely NEW application content payload; NOT a UUID refresh of v7.
+
+IDENTITY GRAMMAR SCAN (on decoded HTML):
+
+  ### Akki OS grammar term hits (21 distinct terms · 836 total occurrences):
+       587  akki (case-insensitive lower)
+        99  Shield
+        48  Akki
+        17  Compliance Owner
+        17  Watch Officer
+        10  Registry
+        10  Rules Updates
+         9  AKKI
+         7  custody
+         4  Grey Mirror
+         4  Spend Requests
+         4  Model Admission
+         3  Approvals
+         3  Board 360
+         3  Exco 360
+         3  ThinkLab
+         3  The Watch
+         2  Trust Center
+         1  Manage Estate
+         1  WorkStudio
+         1  Checker
+
+  ### Farma IQ grammar term hits (8 distinct terms · 97 total occurrences):
+        22  Nakuru
+        17  farmer
+        14  Farma IQ
+        13  Kenya
+        12  Farmer
+        11  Meru
+         6  Uasin Gishu
+         2  Habari
+
+STRUCTURAL EVIDENCE FROM TEMPLATE DOM (verbatim citations from decoded HTML):
+
+  1. Top-of-shell wordmark — the header (52px tall, background var(--blue2)=#0f1b33) carries:
+       <div style="font-family:var(--head);font-size:16px;color:var(--paper);letter-spacing:.02em;">RMS AI</div>
+     (v8_template_decoded.html · line ~= header block)
+
+  2. FarmaIQ appears as a DEPLOYED AGENT tile inside the OS shell, NOT as the wordmark:
+     - Component: <div>Farma IQ</div> rendered with mark:'FI' in the "Deployed — open directly" section
+     - State machine: openDeployedAgent(a){ if(a.name==='Farma IQ'){ this.setState({fqAppOpen:true}); return; } this.navClick('youragents')(); }
+     - Tile styling: markBg: a.name==='Farma IQ'? 'rgba(29,122,110,.12)':'rgba(22,39,74,.08)'
+     - This is EXACTLY the "OS hosts many applications, Farma IQ is one hosted skill agent" architecture the owner asserted.
+
+  3. Nav lattice literal (from const NAV = [...] in the template DOM script block):
+     Group 1: key='workstudio', label='WorkStudio'
+              items: chat=Chat, analyze=Data Suite, documents=Documents, tasks=Task Manager
+     Group 2: key='thinklab', label='ThinkLab'
+              items: clarity=Seek Clarity, strategy=Develop Strategy, [hypothesis..., additional items to be enumerated in inventory doc]
+     Group 3: key='estate', label='Manage Estate'
+              items: estate=Registry, govern=Shield, greymirror=Grey Mirror
+     Group 4: key='approvals', label='Approvals'
+              items: spendreq=Spend Requests, rulesupd=Rules Updates, modeladmission=Model Admission
+     Group 5: key='build', label='Build Your Resources'
+              items: train=Train Models, agentbuild=Build Agents, extract=Extract Data
+     Group 6: key='buildlib', label='Your Resources' (divider:true, tabs:true)
+              items: youragents=Agents, yourmodels=Models
+     Group 7: key='thirdparty', label='3rd Party Apps'
+              items: appsnew=New, appsfrequent=Frequent, appsconnected=Connected, appsrequests=Requests
+     (Additional groups — Board 360, Exco 360, Watch — pending full extraction in Step 0.5 inventory doc.)
+
+  4. TABS literal (top-of-portal tab bar):
+     work  = [workstudio, thinklab]
+     build = [build, buildlib]
+     apps  = [thirdparty]
+     admin = [estate, approvals, watch]   (right-aligned; per attribute `right:true`)
+
+  5. ROLES literal (persona pills):
+     compliance = Compliance Owner · M. Chen · MC · groups=[estate,approvals]
+     watch      = Watch Officer     · A. Njeri · AN · groups=[watch]
+     operator   = Operator          · J. Otieno · JO · groups=[estate]
+
+  6. Canon citation inside the file (verbatim comment):
+     /* v7 — label ↔ canon identity mapping (§4 of the v7 brief), recorded here as required:
+        Manage Rules  → The Rulebook + change ceremony (Doc 3 Part V, Doc 5 §23)
+        Data Shield   → ...
+     */
+     — the v8 file self-declares canon-doc citations for its labels; this is the owner-authored spec.
+
+VERDICT:
+  IDENTITY  = Akki OS (RMS AI platform brand · owner-authored)
+  CONFIRMS  = owner's architectural statement "Akki OS is an AI and data governance operating system that houses multiple applications."
+  ROLE_OF_FARMA_IQ = hosted "deployed agent" application tile inside the OS shell (NOT the shell's own identity)
+  MATCH_WITH_PRIOR_v7_INVENTORY_DOC = notes/prototype_inventory_v7.md described exactly this grammar (workstudio, thinklab, estate, approvals, board 360, exco 360, grey mirror, spend requests, rules updates, model admission, compliance owner, watch officer, etc.) — that inventory was correct about the intent; it just described a file (v7 attached) that did not carry the content. v8 IS the content it described.
+  DELTA_VS_v7 = v8 is genuinely NEW application HTML (1,111,498 B vs 134,739 B; different sha256); v7-v2 was a UUID refresh of v7-v1 with byte-identical payloads; v8 is a substantive new payload.
+  BINDING = v8 is now the sole binding design spec for the pod shell (per owner ruling this session).
+  V4 SHELL STATUS = RESCINDED per owner ("what I gave you has none of this"); may be REUSED as invisible implementation convenience where v8 chrome coincidentally matches, but v8 is authority; every cited element must trace to a v8 file byte-range.
+
+PASS/FAIL: PASS — v8 identity confirmed as Akki OS shell (Farma IQ is a hosted app, not the shell wordmark).
+
+Artifacts persisted (this session):
+  notes/wave_g_step0_v8/_hashes.json                                                     (structured summary)
+  notes/wave_g_step0_v8/v8_template.html                                                 (JSON-encoded template extract)
+  notes/wave_g_step0_v8/v8_template_decoded.html                                         (decoded application HTML — 1,111,498 B)
+  notes/wave_g_step0_v8/8d5cc57e-301d-4e62-a9f2-6c99ccd7a189.application_javascript      (dc-runtime county-map)
+  notes/wave_g_step0_v8/0f495aa5-1678-46cf-81eb-b8762e04d778.text_javascript             (dc-runtime main bundle)
+  notes/wave_g_step0_v8/a27c8ca4-b38d-46ef-8af2-d589452c0a4d.text_javascript             (react-dom.production.min.js)
+  notes/wave_g_step0_v8/373c1b27-c73c-4df6-9d0d-420d29e2d98d.text_javascript             (react.production.min.js)
+  phase0/drill_receipts/20260828T041500Z_wave_g_step0_v8_identity_verification.log       (this file)
+
+Next step per owner ruling: Step 0.5 — build notes/prototype_inventory_v8.md from these verified bytes only, with mandatory citations (file:byte-range or file:line for each extracted element).
+========================================================================

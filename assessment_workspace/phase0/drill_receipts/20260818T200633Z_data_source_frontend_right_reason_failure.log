@@ -1,0 +1,114 @@
+✔ App.js does NOT declare the retired /register/connect/gpu route (2.399227ms)
+✔ frontend has NO token-gate importable code path (25.168999ms)
+✔ no OWNER-ACCESS sign-in card and no owner_token localStorage (2.39641ms)
+✔ GET /register/connect/gpu -> 404 (29.94444ms)
+✔ GET / serves SPA shell (allowed IP) (7.273386ms)
+✔ root '/' route renders Registry (0.33912ms)
+✔ AdminSurface retired (no admin-pill or tile-connect testids anywhere) (1.389383ms)
+✔ Registry.jsx three tabs + '+ Connect' + role-switcher testids present (0.264063ms)
+✔ no fabricated Acme demo numbers anywhere (2.0337ms)
+✔ Registry carries at least one honest-empty-state sentence (0.298134ms)
+✔ ConnectWizard.jsx is a SINGLE paste-and-connect panel (no step navigation) (0.349846ms)
+✔ Type chips (auto-detect default) sit on the same paste panel (0.235136ms)
+✔ Confirmation view masks the password with a redaction sentinel (0.20469ms)
+✔ Unparseable paste triggers ask-again grammar naming missing fields (0.209956ms)
+✔ Manual fallback fields sit inline on the same panel (not a separate step) (0.17021ms)
+✔ Provisioning card sits behind ONE aside link (not a step) (0.166627ms)
+✔ Post-submit compute path renders the handshake walk stages (result view only) (0.245676ms)
+✔ LLM / trained-model submission records honest intent via /api/connect/intent (0.174405ms)
+✖ Data-source path is LIVE: submits to /api/connect/data-source (not intent) (0.617675ms)
+✖ Data-source manual fallback fields sit inline on the same panel (0.241485ms)
+✖ Data-source confirmation masks the aws_secret_access_key with a sentinel (0.182545ms)
+✖ Data-source result view renders the four-questions grammar (0.211259ms)
+✔ Data-source endpoint live: refuses synthetic ARNs cleanly and NEVER echoes the aws_secret back (197.069316ms)
+✔ Frontend never sends the paste to any LLM/answering-side/openai endpoint (1.953235ms)
+✔ parse-paste endpoint live: returns password_captured signal and NO password in body (3.347712ms)
+✔ parse-paste endpoint refuses empty paste with 400 (1.89149ms)
+✔ estate-facts endpoint live and returns provisioning-card payload (113.190586ms)
+✔ intent endpoint records non-compute kinds and refuses compute (6.935709ms)
+ℹ tests 28
+ℹ suites 0
+ℹ pass 24
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 485.640841
+
+✖ failing tests:
+
+test at pod_shell/frontend/__tests__/rehome.test.js:207:1
+✖ Data-source path is LIVE: submits to /api/connect/data-source (not intent) (0.617675ms)
+  AssertionError [ERR_ASSERTION]: data-source path must POST to /api/connect/data-source
+      at TestContext.<anonymous> (/app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/__tests__/rehome.test.js:209:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at pod_shell/frontend/__tests__/rehome.test.js:213:1
+✖ Data-source manual fallback fields sit inline on the same panel (0.241485ms)
+  AssertionError [ERR_ASSERTION]: data-source manual fallback testid manual-field-aws_access_key_id missing
+      at TestContext.<anonymous> (/app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/__tests__/rehome.test.js:218:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at pod_shell/frontend/__tests__/rehome.test.js:226:1
+✖ Data-source confirmation masks the aws_secret_access_key with a sentinel (0.182545ms)
+  AssertionError [ERR_ASSERTION]: parsed-aws-secret-captured testid missing (confirmation view for data-source)
+      at TestContext.<anonymous> (/app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/__tests__/rehome.test.js:228:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at pod_shell/frontend/__tests__/rehome.test.js:232:1
+✖ Data-source result view renders the four-questions grammar (0.211259ms)
+  AssertionError [ERR_ASSERTION]: four-questions testid data-link-working missing
+      at TestContext.<anonymous> (/app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/__tests__/rehome.test.js:237:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

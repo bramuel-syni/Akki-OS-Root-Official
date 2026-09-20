@@ -1,0 +1,179 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.4.2, pluggy-1.6.0 -- /root/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: xdist-3.8.0, asyncio-1.4.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collecting ... collected 13 items
+
+tests/invariants/test_wave_audio_poc_cp_a3_transcript_inventory.py::test_cp_a3_transcript_inventory_module_fabric FAILED [  7%]
+tests/invariants/test_wave_audio_poc_cp_a3_transcript_inventory.py::test_cp_a3_transcript_entry_frozen_dataclass_shape FAILED [ 15%]
+tests/invariants/test_wave_audio_poc_cp_a3_transcript_inventory.py::test_cp_a3_transcript_key_frozen_and_hashable FAILED [ 23%]
+tests/invariants/test_wave_audio_poc_cp_a3_transcript_inventory.py::test_cp_a3_transcript_status_enum_values FAILED [ 30%]
+tests/invariants/test_wave_audio_poc_cp_a3_transcript_inventory.py::test_cp_a3_extract_canonical_key_from_valid_obs_key FAILED [ 38%]
+tests/invariants/test_wave_audio_poc_cp_a3_transcript_inventory.py::test_cp_a3_extract_canonical_key_refuses_malformed_key FAILED [ 46%]
+tests/invariants/test_wave_audio_poc_cp_a3_transcript_inventory.py::test_cp_a3_classify_status_finished_when_size_at_or_above_floor FAILED [ 53%]
+tests/invariants/test_wave_audio_poc_cp_a3_transcript_inventory.py::test_cp_a3_classify_status_partial_when_size_below_floor FAILED [ 61%]
+tests/invariants/test_wave_audio_poc_cp_a3_transcript_inventory.py::test_cp_a3_classify_status_malformed_on_bad_shape FAILED [ 69%]
+tests/invariants/test_wave_audio_poc_cp_a3_transcript_inventory.py::test_cp_a3_canonicalize_transcript_inventory_deterministic_ordering FAILED [ 76%]
+tests/invariants/test_wave_audio_poc_cp_a3_transcript_inventory.py::test_cp_a3_canonicalize_transcript_inventory_deduplicates_and_includes_partial FAILED [ 84%]
+tests/invariants/test_wave_audio_poc_cp_a3_transcript_inventory.py::test_cp_a3_transcript_inventory_snapshot_sha256_deterministic FAILED [ 92%]
+tests/invariants/test_wave_audio_poc_cp_a3_transcript_inventory.py::test_cp_a3_transcript_inventory_snapshot_sha256_sensitive_to_status_change FAILED [100%]
+
+=================================== FAILURES ===================================
+________________ test_cp_a3_transcript_inventory_module_fabric _________________
+
+    def test_cp_a3_transcript_inventory_module_fabric():
+>       m = importlib.import_module("services.audio_poc.transcript_inventory")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_wave_audio_poc_cp_a3_transcript_inventory.py:36: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'services.audio_poc.transcript_inventory'
+import_ = <function _gcd_import at 0xfb33b201bd80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'services.audio_poc.transcript_inventory'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+______________ test_cp_a3_transcript_entry_frozen_dataclass_shape ______________
+
+    def test_cp_a3_transcript_entry_frozen_dataclass_shape():
+>       from services.audio_poc.transcript_inventory import TranscriptEntry
+E       ModuleNotFoundError: No module named 'services.audio_poc.transcript_inventory'
+
+tests/invariants/test_wave_audio_poc_cp_a3_transcript_inventory.py:54: ModuleNotFoundError
+________________ test_cp_a3_transcript_key_frozen_and_hashable _________________
+
+    def test_cp_a3_transcript_key_frozen_and_hashable():
+>       from services.audio_poc.transcript_inventory import TranscriptKey
+E       ModuleNotFoundError: No module named 'services.audio_poc.transcript_inventory'
+
+tests/invariants/test_wave_audio_poc_cp_a3_transcript_inventory.py:82: ModuleNotFoundError
+___________________ test_cp_a3_transcript_status_enum_values ___________________
+
+    def test_cp_a3_transcript_status_enum_values():
+        """`TranscriptStatus` names exactly the three inventory-side statuses."""
+>       from services.audio_poc.transcript_inventory import TranscriptStatus
+E       ModuleNotFoundError: No module named 'services.audio_poc.transcript_inventory'
+
+tests/invariants/test_wave_audio_poc_cp_a3_transcript_inventory.py:97: ModuleNotFoundError
+_____________ test_cp_a3_extract_canonical_key_from_valid_obs_key ______________
+
+    def test_cp_a3_extract_canonical_key_from_valid_obs_key():
+>       from services.audio_poc.transcript_inventory import (
+            extract_transcript_canonical_key,
+            TranscriptKey,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_poc.transcript_inventory'
+
+tests/invariants/test_wave_audio_poc_cp_a3_transcript_inventory.py:106: ModuleNotFoundError
+____________ test_cp_a3_extract_canonical_key_refuses_malformed_key ____________
+
+    def test_cp_a3_extract_canonical_key_refuses_malformed_key():
+>       from services.audio_poc.transcript_inventory import (
+            extract_transcript_canonical_key,
+            TranscriptKeyInvalid,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_poc.transcript_inventory'
+
+tests/invariants/test_wave_audio_poc_cp_a3_transcript_inventory.py:120: ModuleNotFoundError
+_______ test_cp_a3_classify_status_finished_when_size_at_or_above_floor ________
+
+    def test_cp_a3_classify_status_finished_when_size_at_or_above_floor():
+>       from services.audio_poc.transcript_inventory import (
+            classify_transcript_status,
+            FINISHED_MIN_BYTES,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_poc.transcript_inventory'
+
+tests/invariants/test_wave_audio_poc_cp_a3_transcript_inventory.py:139: ModuleNotFoundError
+___________ test_cp_a3_classify_status_partial_when_size_below_floor ___________
+
+    def test_cp_a3_classify_status_partial_when_size_below_floor():
+>       from services.audio_poc.transcript_inventory import (
+            classify_transcript_status,
+            FINISHED_MIN_BYTES,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_poc.transcript_inventory'
+
+tests/invariants/test_wave_audio_poc_cp_a3_transcript_inventory.py:149: ModuleNotFoundError
+______________ test_cp_a3_classify_status_malformed_on_bad_shape _______________
+
+    def test_cp_a3_classify_status_malformed_on_bad_shape():
+>       from services.audio_poc.transcript_inventory import (
+            classify_transcript_status,
+            FINISHED_MIN_BYTES,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_poc.transcript_inventory'
+
+tests/invariants/test_wave_audio_poc_cp_a3_transcript_inventory.py:159: ModuleNotFoundError
+_____ test_cp_a3_canonicalize_transcript_inventory_deterministic_ordering ______
+
+    def test_cp_a3_canonicalize_transcript_inventory_deterministic_ordering():
+>       from services.audio_poc.transcript_inventory import (
+            canonicalize_transcript_inventory,
+            FINISHED_MIN_BYTES,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_poc.transcript_inventory'
+
+tests/invariants/test_wave_audio_poc_cp_a3_transcript_inventory.py:171: ModuleNotFoundError
+_ test_cp_a3_canonicalize_transcript_inventory_deduplicates_and_includes_partial _
+
+    def test_cp_a3_canonicalize_transcript_inventory_deduplicates_and_includes_partial():
+>       from services.audio_poc.transcript_inventory import (
+            canonicalize_transcript_inventory,
+            FINISHED_MIN_BYTES,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_poc.transcript_inventory'
+
+tests/invariants/test_wave_audio_poc_cp_a3_transcript_inventory.py:191: ModuleNotFoundError
+________ test_cp_a3_transcript_inventory_snapshot_sha256_deterministic _________
+
+    def test_cp_a3_transcript_inventory_snapshot_sha256_deterministic():
+>       from services.audio_poc.transcript_inventory import (
+            canonicalize_transcript_inventory,
+            transcript_inventory_snapshot_sha256,
+            FINISHED_MIN_BYTES,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_poc.transcript_inventory'
+
+tests/invariants/test_wave_audio_poc_cp_a3_transcript_inventory.py:211: ModuleNotFoundError
+__ test_cp_a3_transcript_inventory_snapshot_sha256_sensitive_to_status_change __
+
+    def test_cp_a3_transcript_inventory_snapshot_sha256_sensitive_to_status_change():
+>       from services.audio_poc.transcript_inventory import (
+            canonicalize_transcript_inventory,
+            transcript_inventory_snapshot_sha256,
+            FINISHED_MIN_BYTES,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_poc.transcript_inventory'
+
+tests/invariants/test_wave_audio_poc_cp_a3_transcript_inventory.py:230: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wave_audio_poc_cp_a3_transcript_inventory.py::test_cp_a3_transcript_inventory_module_fabric
+FAILED tests/invariants/test_wave_audio_poc_cp_a3_transcript_inventory.py::test_cp_a3_transcript_entry_frozen_dataclass_shape
+FAILED tests/invariants/test_wave_audio_poc_cp_a3_transcript_inventory.py::test_cp_a3_transcript_key_frozen_and_hashable
+FAILED tests/invariants/test_wave_audio_poc_cp_a3_transcript_inventory.py::test_cp_a3_transcript_status_enum_values
+FAILED tests/invariants/test_wave_audio_poc_cp_a3_transcript_inventory.py::test_cp_a3_extract_canonical_key_from_valid_obs_key
+FAILED tests/invariants/test_wave_audio_poc_cp_a3_transcript_inventory.py::test_cp_a3_extract_canonical_key_refuses_malformed_key
+FAILED tests/invariants/test_wave_audio_poc_cp_a3_transcript_inventory.py::test_cp_a3_classify_status_finished_when_size_at_or_above_floor
+FAILED tests/invariants/test_wave_audio_poc_cp_a3_transcript_inventory.py::test_cp_a3_classify_status_partial_when_size_below_floor
+FAILED tests/invariants/test_wave_audio_poc_cp_a3_transcript_inventory.py::test_cp_a3_classify_status_malformed_on_bad_shape
+FAILED tests/invariants/test_wave_audio_poc_cp_a3_transcript_inventory.py::test_cp_a3_canonicalize_transcript_inventory_deterministic_ordering
+FAILED tests/invariants/test_wave_audio_poc_cp_a3_transcript_inventory.py::test_cp_a3_canonicalize_transcript_inventory_deduplicates_and_includes_partial
+FAILED tests/invariants/test_wave_audio_poc_cp_a3_transcript_inventory.py::test_cp_a3_transcript_inventory_snapshot_sha256_deterministic
+FAILED tests/invariants/test_wave_audio_poc_cp_a3_transcript_inventory.py::test_cp_a3_transcript_inventory_snapshot_sha256_sensitive_to_status_change
+============================== 13 failed in 0.71s ==============================

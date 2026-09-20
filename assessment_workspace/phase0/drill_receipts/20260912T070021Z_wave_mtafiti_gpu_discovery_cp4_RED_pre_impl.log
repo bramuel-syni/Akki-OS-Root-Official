@@ -1,0 +1,162 @@
+....FFFFFFF                                                              [100%]============================ BASELINE_GUARD receipt ============================
+passed=4 / baseline-failures-remaining=0 / quarantined=0
+  manifest: tests/invariants/baseline_failures.json
+  scope: BASELINE_GUARD=1  ·  invocation: cd backend && BASELINE_GUARD=1 python -m pytest tests/invariants/
+!!!!!!!!!!!!! BASELINE_GUARD · HALT AND REPORT · owner ruling (c) !!!!!!!!!!!!!!
+[V1] 7 NEW failure(s) OUTSIDE manifest:
+    tests/invariants/test_mtafiti_gpu_discovery_composition_census.py::test_live_composition_census_carries_canonical_sha256
+    tests/invariants/test_mtafiti_gpu_discovery_composition_census.py::test_live_composition_census_carries_composition_data
+    tests/invariants/test_mtafiti_gpu_discovery_composition_census.py::test_live_composition_census_emits_role_signals
+    tests/invariants/test_mtafiti_gpu_discovery_composition_census.py::test_live_composition_census_every_sql_is_readonly
+    tests/invariants/test_mtafiti_gpu_discovery_composition_census.py::test_live_composition_census_exists_and_covers_both_hosts
+    tests/invariants/test_mtafiti_gpu_discovery_composition_census.py::test_live_composition_census_has_no_raw_pii
+    tests/invariants/test_mtafiti_gpu_discovery_composition_census.py::test_live_composition_census_is_recent
+[V3] Passed count 4 < ratchet floor 3212
+  No silent rebaselining. Report drift to owner verbatim.
+
+=================================== FAILURES ===================================
+__________ test_live_composition_census_exists_and_covers_both_hosts ___________
+
+    def test_live_composition_census_exists_and_covers_both_hosts():
+>       c = _load_census()
+            ^^^^^^^^^^^^^^
+
+tests/invariants/test_mtafiti_gpu_discovery_composition_census.py:160: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _load_census() -> dict:
+        if not CENSUS_LATEST.exists():
+>           pytest.fail(
+                f"CP4 composition census not found at {CENSUS_LATEST}. "
+                "Run `python tools/mtafiti_composition_census.py` from "
+                "/app/assessment_workspace/repos/Extraction-Akki/backend/."
+            )
+E           Failed: CP4 composition census not found at /app/assessment_workspace/phase0/mtafiti_gpu_discovery/composition_census_latest.json. Run `python tools/mtafiti_composition_census.py` from /app/assessment_workspace/repos/Extraction-Akki/backend/.
+
+tests/invariants/test_mtafiti_gpu_discovery_composition_census.py:37: Failed
+______________ test_live_composition_census_every_sql_is_readonly ______________
+
+    def test_live_composition_census_every_sql_is_readonly():
+        from services.mtafiti.executor.readonly_sql_guard import _ALLOWED_LEAD
+>       c = _load_census()
+            ^^^^^^^^^^^^^^
+
+tests/invariants/test_mtafiti_gpu_discovery_composition_census.py:173: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _load_census() -> dict:
+        if not CENSUS_LATEST.exists():
+>           pytest.fail(
+                f"CP4 composition census not found at {CENSUS_LATEST}. "
+                "Run `python tools/mtafiti_composition_census.py` from "
+                "/app/assessment_workspace/repos/Extraction-Akki/backend/."
+            )
+E           Failed: CP4 composition census not found at /app/assessment_workspace/phase0/mtafiti_gpu_discovery/composition_census_latest.json. Run `python tools/mtafiti_composition_census.py` from /app/assessment_workspace/repos/Extraction-Akki/backend/.
+
+tests/invariants/test_mtafiti_gpu_discovery_composition_census.py:37: Failed
+____________ test_live_composition_census_carries_composition_data _____________
+
+    def test_live_composition_census_carries_composition_data():
+>       c = _load_census()
+            ^^^^^^^^^^^^^^
+
+tests/invariants/test_mtafiti_gpu_discovery_composition_census.py:188: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _load_census() -> dict:
+        if not CENSUS_LATEST.exists():
+>           pytest.fail(
+                f"CP4 composition census not found at {CENSUS_LATEST}. "
+                "Run `python tools/mtafiti_composition_census.py` from "
+                "/app/assessment_workspace/repos/Extraction-Akki/backend/."
+            )
+E           Failed: CP4 composition census not found at /app/assessment_workspace/phase0/mtafiti_gpu_discovery/composition_census_latest.json. Run `python tools/mtafiti_composition_census.py` from /app/assessment_workspace/repos/Extraction-Akki/backend/.
+
+tests/invariants/test_mtafiti_gpu_discovery_composition_census.py:37: Failed
+_______________ test_live_composition_census_emits_role_signals ________________
+
+    def test_live_composition_census_emits_role_signals():
+>       c = _load_census()
+            ^^^^^^^^^^^^^^
+
+tests/invariants/test_mtafiti_gpu_discovery_composition_census.py:205: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _load_census() -> dict:
+        if not CENSUS_LATEST.exists():
+>           pytest.fail(
+                f"CP4 composition census not found at {CENSUS_LATEST}. "
+                "Run `python tools/mtafiti_composition_census.py` from "
+                "/app/assessment_workspace/repos/Extraction-Akki/backend/."
+            )
+E           Failed: CP4 composition census not found at /app/assessment_workspace/phase0/mtafiti_gpu_discovery/composition_census_latest.json. Run `python tools/mtafiti_composition_census.py` from /app/assessment_workspace/repos/Extraction-Akki/backend/.
+
+tests/invariants/test_mtafiti_gpu_discovery_composition_census.py:37: Failed
+_________________ test_live_composition_census_has_no_raw_pii __________________
+
+    def test_live_composition_census_has_no_raw_pii():
+        from services.mtafiti.detectors.pii_redaction_guard import assert_no_raw_pii
+        from services.mtafiti.probes.live_readonly_probe import data_view
+>       c = _load_census()
+            ^^^^^^^^^^^^^^
+
+tests/invariants/test_mtafiti_gpu_discovery_composition_census.py:221: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _load_census() -> dict:
+        if not CENSUS_LATEST.exists():
+>           pytest.fail(
+                f"CP4 composition census not found at {CENSUS_LATEST}. "
+                "Run `python tools/mtafiti_composition_census.py` from "
+                "/app/assessment_workspace/repos/Extraction-Akki/backend/."
+            )
+E           Failed: CP4 composition census not found at /app/assessment_workspace/phase0/mtafiti_gpu_discovery/composition_census_latest.json. Run `python tools/mtafiti_composition_census.py` from /app/assessment_workspace/repos/Extraction-Akki/backend/.
+
+tests/invariants/test_mtafiti_gpu_discovery_composition_census.py:37: Failed
+____________ test_live_composition_census_carries_canonical_sha256 _____________
+
+    def test_live_composition_census_carries_canonical_sha256():
+>       c = _load_census()
+            ^^^^^^^^^^^^^^
+
+tests/invariants/test_mtafiti_gpu_discovery_composition_census.py:229: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _load_census() -> dict:
+        if not CENSUS_LATEST.exists():
+>           pytest.fail(
+                f"CP4 composition census not found at {CENSUS_LATEST}. "
+                "Run `python tools/mtafiti_composition_census.py` from "
+                "/app/assessment_workspace/repos/Extraction-Akki/backend/."
+            )
+E           Failed: CP4 composition census not found at /app/assessment_workspace/phase0/mtafiti_gpu_discovery/composition_census_latest.json. Run `python tools/mtafiti_composition_census.py` from /app/assessment_workspace/repos/Extraction-Akki/backend/.
+
+tests/invariants/test_mtafiti_gpu_discovery_composition_census.py:37: Failed
+____________________ test_live_composition_census_is_recent ____________________
+
+    def test_live_composition_census_is_recent():
+>       c = _load_census()
+            ^^^^^^^^^^^^^^
+
+tests/invariants/test_mtafiti_gpu_discovery_composition_census.py:241: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def _load_census() -> dict:
+        if not CENSUS_LATEST.exists():
+>           pytest.fail(
+                f"CP4 composition census not found at {CENSUS_LATEST}. "
+                "Run `python tools/mtafiti_composition_census.py` from "
+                "/app/assessment_workspace/repos/Extraction-Akki/backend/."
+            )
+E           Failed: CP4 composition census not found at /app/assessment_workspace/phase0/mtafiti_gpu_discovery/composition_census_latest.json. Run `python tools/mtafiti_composition_census.py` from /app/assessment_workspace/repos/Extraction-Akki/backend/.
+
+tests/invariants/test_mtafiti_gpu_discovery_composition_census.py:37: Failed
+=========================== short test summary info ============================
+FAILED tests/invariants/test_mtafiti_gpu_discovery_composition_census.py::test_live_composition_census_exists_and_covers_both_hosts
+FAILED tests/invariants/test_mtafiti_gpu_discovery_composition_census.py::test_live_composition_census_every_sql_is_readonly
+FAILED tests/invariants/test_mtafiti_gpu_discovery_composition_census.py::test_live_composition_census_carries_composition_data
+FAILED tests/invariants/test_mtafiti_gpu_discovery_composition_census.py::test_live_composition_census_emits_role_signals
+FAILED tests/invariants/test_mtafiti_gpu_discovery_composition_census.py::test_live_composition_census_has_no_raw_pii
+FAILED tests/invariants/test_mtafiti_gpu_discovery_composition_census.py::test_live_composition_census_carries_canonical_sha256
+FAILED tests/invariants/test_mtafiti_gpu_discovery_composition_census.py::test_live_composition_census_is_recent
+7 failed, 4 passed in 0.55s

@@ -1,0 +1,25 @@
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:787: AssertionError: Banned string '/api/audit_trail' appears outside a fetch() call in App.js. Only fetch()-arg use is whitelisted; anything else risks rendering as visible text.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:793: AssertionError: Banned engineering vocabulary 'Wave F Cleanup' present in App.js executable code. Wave G3 correction 1: no backend/system/engineering vocabulary can render on a user-facing surface. See DECISIONS.md 2026-08-28T~07:15Z.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:793: AssertionError: Banned engineering vocabulary 'CA1-001' present in App.js executable code. Wave G3 correction 1: no backend/system/engineering vocabulary can render on a user-facing surface. See DECISIONS.md 2026-08-28T~07:15Z.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:793: AssertionError: Banned engineering vocabulary 'partial_closure' present in App.js executable code. Wave G3 correction 1: no backend/system/engineering vocabulary can render on a user-facing surface. See DECISIONS.md 2026-08-28T~07:15Z.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:793: AssertionError: Banned engineering vocabulary 'SSH key' present in App.js executable code. Wave G3 correction 1: no backend/system/engineering vocabulary can render on a user-facing surface. See DECISIONS.md 2026-08-28T~07:15Z.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:793: AssertionError: Banned engineering vocabulary 'key rotation' present in App.js executable code. Wave G3 correction 1: no backend/system/engineering vocabulary can render on a user-facing surface. See DECISIONS.md 2026-08-28T~07:15Z.
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wave_g_v8_shell_port.py:848: AssertionError: App.js does not declare an explicit V8_SUBSTITUTIONS map. Wave G3 correction 2 requires the bridge to be driven by an explicit slot→(source, value|honest-empty) table.
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_app_js_does_not_use_banned_overlay_apis[insertLiveFactCard]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_app_js_does_not_use_banned_overlay_apis[createElement]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_app_js_does_not_use_banned_overlay_apis[appendChild]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_app_js_does_not_use_banned_overlay_apis[data-fidelity]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_app_js_does_not_use_banned_overlay_apis[data-live-source]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_app_js_does_not_leak_engineering_vocab_to_ui[aws.rds]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_app_js_does_not_leak_engineering_vocab_to_ui[db-restore-]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_app_js_does_not_leak_engineering_vocab_to_ui[cluster.digicow_live]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_app_js_does_not_leak_engineering_vocab_to_ui[/api/registry/facts]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_app_js_does_not_leak_engineering_vocab_to_ui[/api/audit_trail]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_app_js_does_not_leak_engineering_vocab_to_ui[Wave F Cleanup]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_app_js_does_not_leak_engineering_vocab_to_ui[CA1-001]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_app_js_does_not_leak_engineering_vocab_to_ui[partial_closure]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_app_js_does_not_leak_engineering_vocab_to_ui[SSH key]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_pod_shell_app_js_does_not_leak_engineering_vocab_to_ui[key rotation]
+FAILED tests/invariants/test_wave_g_v8_shell_port.py::test_app_js_declares_substitution_map
+======================== 16 failed, 109 passed in 0.97s ========================

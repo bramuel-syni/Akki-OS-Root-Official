@@ -1,0 +1,995 @@
+=== mechanical RED phase · pre-implementation ===
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.4.2, pluggy-1.6.0 -- /root/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: asyncio-1.4.0, xdist-3.8.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collecting ... collected 30 items
+
+tests/invariants/test_shield_train_run.py::test_grounding_brief_exists_and_carries_owner_ruling_verbatim PASSED [  3%]
+tests/invariants/test_shield_train_run.py::test_held_out_module_exports_public_surface FAILED [  6%]
+tests/invariants/test_shield_train_run.py::test_held_out_split_returns_tail_20pct FAILED [ 10%]
+tests/invariants/test_shield_train_run.py::test_held_out_split_is_deterministic_across_calls FAILED [ 13%]
+tests/invariants/test_shield_train_run.py::test_held_out_split_sha256_matches_canonical_jsonl_serialization FAILED [ 16%]
+tests/invariants/test_shield_train_run.py::test_held_out_split_refuses_empty_input FAILED [ 20%]
+tests/invariants/test_shield_train_run.py::test_bank_held_out_slice_hash_writes_receipt_with_banked_flag FAILED [ 23%]
+tests/invariants/test_shield_train_run.py::test_bank_held_out_slice_hash_receipt_never_carries_row_content FAILED [ 26%]
+tests/invariants/test_shield_train_run.py::test_execute_governed_lora_run_admission_gate_still_fires_outside_dev PASSED [ 30%]
+tests/invariants/test_shield_train_run.py::test_execute_governed_lora_run_no_longer_raises_notimplementederror FAILED [ 33%]
+tests/invariants/test_shield_train_run.py::test_execute_governed_lora_run_writes_held_out_receipt_before_transport FAILED [ 36%]
+tests/invariants/test_shield_train_run.py::test_execute_governed_lora_run_stages_both_train_and_held_out FAILED [ 40%]
+tests/invariants/test_shield_train_run.py::test_execute_governed_lora_run_result_shape_names_all_receipts FAILED [ 43%]
+tests/invariants/test_shield_train_run.py::test_execute_governed_lora_run_composes_training_text_field FAILED [ 46%]
+tests/invariants/test_shield_train_run.py::test_execute_governed_lora_run_refuses_unclassified_table FAILED [ 50%]
+tests/invariants/test_shield_train_run.py::test_production_trainer_module_exports_default_trainer_fn FAILED [ 53%]
+tests/invariants/test_shield_train_run.py::test_default_trainer_fn_accepts_run_queue_signature FAILED [ 56%]
+tests/invariants/test_shield_train_run.py::test_default_trainer_fn_never_directly_imports_boto3 FAILED [ 60%]
+tests/invariants/test_shield_train_run.py::test_default_trainer_fn_uses_seam_for_remote_exec FAILED [ 63%]
+tests/invariants/test_shield_train_run.py::test_on_host_trainer_artifact_exists FAILED [ 66%]
+tests/invariants/test_shield_train_run.py::test_on_host_trainer_declares_required_cli_args FAILED [ 70%]
+tests/invariants/test_shield_train_run.py::test_on_host_trainer_calls_write_host_heartbeat FAILED [ 73%]
+tests/invariants/test_shield_train_run.py::test_on_host_trainer_calls_write_checkpoint_marker FAILED [ 76%]
+tests/invariants/test_shield_train_run.py::test_on_host_trainer_writes_run_summary_seal FAILED [ 80%]
+tests/invariants/test_shield_train_run.py::test_on_host_trainer_honors_resume_from_flag FAILED [ 83%]
+tests/invariants/test_shield_train_run.py::test_on_host_trainer_computes_held_out_loss FAILED [ 86%]
+tests/invariants/test_shield_train_run.py::test_campaign_infra_run_queue_still_accepts_injected_trainer_fn PASSED [ 90%]
+tests/invariants/test_shield_train_run.py::test_shield_train_pipeline_does_not_bypass_admission_gate PASSED [ 93%]
+tests/invariants/test_shield_train_run.py::test_held_out_receipt_never_carries_aws_credentials FAILED [ 96%]
+tests/invariants/test_shield_train_run.py::test_execute_governed_lora_run_transport_integrity_still_refuses FAILED [100%]
+
+=================================== FAILURES ===================================
+_________________ test_held_out_module_exports_public_surface __________________
+
+    def test_held_out_module_exports_public_surface():
+>       from backend.services.shield_train import held_out as h
+E       ImportError: cannot import name 'held_out' from 'backend.services.shield_train' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/shield_train/__init__.py)
+
+tests/invariants/test_shield_train_run.py:66: ImportError
+____________________ test_held_out_split_returns_tail_20pct ____________________
+
+    def test_held_out_split_returns_tail_20pct():
+        """Given N rows in row-executor order, the LAST floor(N*0.20) rows are
+        the held-out slice and the first N-floor(N*0.20) are train."""
+>       from backend.services.shield_train import held_out as h
+E       ImportError: cannot import name 'held_out' from 'backend.services.shield_train' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/shield_train/__init__.py)
+
+tests/invariants/test_shield_train_run.py:74: ImportError
+______________ test_held_out_split_is_deterministic_across_calls _______________
+
+    def test_held_out_split_is_deterministic_across_calls():
+>       from backend.services.shield_train import held_out as h
+E       ImportError: cannot import name 'held_out' from 'backend.services.shield_train' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/shield_train/__init__.py)
+
+tests/invariants/test_shield_train_run.py:89: ImportError
+_______ test_held_out_split_sha256_matches_canonical_jsonl_serialization _______
+
+    def test_held_out_split_sha256_matches_canonical_jsonl_serialization():
+        """sha256 fields must be computable from the row list by canonical
+        JSONL (sort_keys=True, one row per line, utf-8, trailing \\n)."""
+>       from backend.services.shield_train import held_out as h
+E       ImportError: cannot import name 'held_out' from 'backend.services.shield_train' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/shield_train/__init__.py)
+
+tests/invariants/test_shield_train_run.py:102: ImportError
+___________________ test_held_out_split_refuses_empty_input ____________________
+
+    def test_held_out_split_refuses_empty_input():
+>       from backend.services.shield_train import held_out as h
+E       ImportError: cannot import name 'held_out' from 'backend.services.shield_train' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/shield_train/__init__.py)
+
+tests/invariants/test_shield_train_run.py:113: ImportError
+________ test_bank_held_out_slice_hash_writes_receipt_with_banked_flag _________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-34/test_bank_held_out_slice_hash_0')
+
+    def test_bank_held_out_slice_hash_writes_receipt_with_banked_flag(tmp_path):
+        """The banked-before-first-run flag must be True in the receipt."""
+>       from backend.services.shield_train import held_out as h
+E       ImportError: cannot import name 'held_out' from 'backend.services.shield_train' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/shield_train/__init__.py)
+
+tests/invariants/test_shield_train_run.py:120: ImportError
+_______ test_bank_held_out_slice_hash_receipt_never_carries_row_content ________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-34/test_bank_held_out_slice_hash_1')
+
+    def test_bank_held_out_slice_hash_receipt_never_carries_row_content(tmp_path):
+        """Receipt names hashes + counts, NEVER row text (avoids leaking
+        corpus content to the phase0 tree)."""
+>       from backend.services.shield_train import held_out as h
+E       ImportError: cannot import name 'held_out' from 'backend.services.shield_train' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/shield_train/__init__.py)
+
+tests/invariants/test_shield_train_run.py:143: ImportError
+_____ test_execute_governed_lora_run_no_longer_raises_notimplementederror ______
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-34/test_execute_governed_lora_run0')
+
+    def test_execute_governed_lora_run_no_longer_raises_notimplementederror(tmp_path):
+        """The NotImplementedError stub is GONE. Under admitted env, the
+        composition proceeds through row extract → corpus build → stage."""
+        from backend.services.shield_train import pipeline as p
+        rows = [
+            {"option_string": f"opt-{i}", "question_string": f"q-{i}", "value_chain": "dairy"}
+            for i in range(50)
+        ]
+        seam = _FakeSeam()
+        env = {
+            "AKKI_ENV": "development",
+            "SHIELD_TRAIN_STAGE_LOCAL_DIR": str(tmp_path / "local"),
+            "SHIELD_TRAIN_HELD_OUT_RECEIPT_DIR": str(tmp_path / "receipts"),
+        }
+        with mock.patch.dict(os.environ, env, clear=False):
+>           result = p.execute_governed_lora_run(
+                tier="t1_full_mask",
+                recipe_version="v1",
+                base_model_id="Qwen/Qwen2.5-0.5B",
+                material_admit_ref="mref",
+                host_slug="akki-vm",
+                table_context="ussd_question_response",
+                slice_size=50,
+                backend_execute=_fake_backend_execute_factory(rows),
+                ssh_seam=seam,
+            )
+
+tests/invariants/test_shield_train_run.py:239: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+tier = 't1_full_mask', recipe_version = 'v1'
+base_model_id = 'Qwen/Qwen2.5-0.5B', material_admit_ref = 'mref'
+host_slug = 'akki-vm', table_context = 'ussd_question_response', slice_size = 50
+backend_execute = <function _fake_backend_execute_factory.<locals>._exec at 0xfb1851e6b7e0>
+ssh_seam = <backend.tests.invariants.test_shield_train_run._FakeSeam object at 0xfb1851bb7890>
+
+    def execute_governed_lora_run(
+        tier: str,
+        recipe_version: str,
+        base_model_id: str,
+        material_admit_ref: str,
+        host_slug: str,
+        table_context: str,
+        slice_size: int,
+        backend_execute: Callable[[str, Dict[str, Any]], List[Dict[str, Any]]],
+        ssh_seam: Any,
+    ) -> Dict[str, Any]:
+        """End-to-end governed LoRA training run.
+    
+        Gate: consults services.chokepoint.masking_tier admissibility for
+        `tier` under the current AKKI_ENV. If not admissible, raises
+        `MaskingTierNotAdmitted` BEFORE any backend / SSH activity. This
+        replaces the previous unconditional `RealSSHNotWiredYet` stub —
+        the STUB is gone; the ADMISSION GATE is what remains.
+    
+        When admission lands (owner rules by editing
+        `services/chokepoint/masking_tier_allowlist.v0.json`), this
+        function proceeds through: row extract → build masked corpus →
+        stage → LoRA fine-tune (the SSH-invoked training loop is landed by
+        a subsequent wave — for now, admissible tier raises
+        NotImplementedError as an honest place-holder rather than
+        silently succeeding).
+        """
+        # 1. Admission gate.
+        from services.chokepoint import masking_tier as _mt
+        env = os.environ.get("AKKI_ENV", "")
+        try:
+            _mt.validate_tier(tier, akki_env=env)
+        except _mt.MaskingTierRefused as exc:
+            raise MaskingTierNotAdmitted(
+                f"masking tier {tier!r} not admissible under AKKI_ENV={env!r}. "
+                f"Original refusal: {exc}. Admission is parked pending owner "
+                f"ruling — see services/chokepoint/masking_tier_allowlist.v0.json "
+                f"§tier {tier} prerequisites_status field."
+            ) from exc
+        # 2. Admission was granted — proceed with governed pipeline.
+        #    Row extract, corpus build, stage, launch are the sub-steps.
+        #    This wave lands the gate + admission-parked path; the
+        #    full training loop is chartered as W-Shield-Train-run.
+>       raise NotImplementedError(
+            f"masking tier {tier!r} IS admitted under env={env!r}, but the "
+            f"end-to-end training loop is chartered as the next wave "
+            f"(W-Shield-Train-run). The build wave lands the primitives + "
+            f"admission gate; the run wave wires the actual training call."
+        )
+E       NotImplementedError: masking tier 't1_full_mask' IS admitted under env='development', but the end-to-end training loop is chartered as the next wave (W-Shield-Train-run). The build wave lands the primitives + admission gate; the run wave wires the actual training call.
+
+services/shield_train/pipeline.py:242: NotImplementedError
+___ test_execute_governed_lora_run_writes_held_out_receipt_before_transport ____
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-34/test_execute_governed_lora_run1')
+
+    def test_execute_governed_lora_run_writes_held_out_receipt_before_transport(tmp_path):
+        """held-out hash MUST be banked BEFORE stage_corpus_to_host is called."""
+        from backend.services.shield_train import pipeline as p
+        rows = [
+            {"option_string": f"opt-{i}", "question_string": f"q-{i}", "value_chain": "dairy"}
+            for i in range(50)
+        ]
+        seam = _FakeSeam()
+        call_order = []
+        orig_put = seam.put_file
+        def _tracked_put(*a, **kw):
+            call_order.append("stage")
+            return orig_put(*a, **kw)
+        seam.put_file = _tracked_put
+        env = {
+            "AKKI_ENV": "development",
+            "SHIELD_TRAIN_STAGE_LOCAL_DIR": str(tmp_path / "local"),
+            "SHIELD_TRAIN_HELD_OUT_RECEIPT_DIR": str(tmp_path / "receipts"),
+        }
+        with mock.patch.dict(os.environ, env, clear=False):
+>           from backend.services.shield_train import held_out as h
+E           ImportError: cannot import name 'held_out' from 'backend.services.shield_train' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/shield_train/__init__.py)
+
+tests/invariants/test_shield_train_run.py:274: ImportError
+________ test_execute_governed_lora_run_stages_both_train_and_held_out _________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-34/test_execute_governed_lora_run2')
+
+    def test_execute_governed_lora_run_stages_both_train_and_held_out(tmp_path):
+        from backend.services.shield_train import pipeline as p
+        rows = [
+            {"option_string": f"opt-{i}", "question_string": f"q-{i}", "value_chain": "dairy"}
+            for i in range(50)
+        ]
+        seam = _FakeSeam()
+        env = {
+            "AKKI_ENV": "development",
+            "SHIELD_TRAIN_STAGE_LOCAL_DIR": str(tmp_path / "local"),
+            "SHIELD_TRAIN_HELD_OUT_RECEIPT_DIR": str(tmp_path / "receipts"),
+        }
+        with mock.patch.dict(os.environ, env, clear=False):
+>           result = p.execute_governed_lora_run(
+                tier="t1_full_mask",
+                recipe_version="v1",
+                base_model_id="Qwen/Qwen2.5-0.5B",
+                material_admit_ref="mref",
+                host_slug="akki-vm",
+                table_context="ussd_question_response",
+                slice_size=50,
+                backend_execute=_fake_backend_execute_factory(rows),
+                ssh_seam=seam,
+            )
+
+tests/invariants/test_shield_train_run.py:312: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+tier = 't1_full_mask', recipe_version = 'v1'
+base_model_id = 'Qwen/Qwen2.5-0.5B', material_admit_ref = 'mref'
+host_slug = 'akki-vm', table_context = 'ussd_question_response', slice_size = 50
+backend_execute = <function _fake_backend_execute_factory.<locals>._exec at 0xfb1851d30fe0>
+ssh_seam = <backend.tests.invariants.test_shield_train_run._FakeSeam object at 0xfb1851bc18d0>
+
+    def execute_governed_lora_run(
+        tier: str,
+        recipe_version: str,
+        base_model_id: str,
+        material_admit_ref: str,
+        host_slug: str,
+        table_context: str,
+        slice_size: int,
+        backend_execute: Callable[[str, Dict[str, Any]], List[Dict[str, Any]]],
+        ssh_seam: Any,
+    ) -> Dict[str, Any]:
+        """End-to-end governed LoRA training run.
+    
+        Gate: consults services.chokepoint.masking_tier admissibility for
+        `tier` under the current AKKI_ENV. If not admissible, raises
+        `MaskingTierNotAdmitted` BEFORE any backend / SSH activity. This
+        replaces the previous unconditional `RealSSHNotWiredYet` stub —
+        the STUB is gone; the ADMISSION GATE is what remains.
+    
+        When admission lands (owner rules by editing
+        `services/chokepoint/masking_tier_allowlist.v0.json`), this
+        function proceeds through: row extract → build masked corpus →
+        stage → LoRA fine-tune (the SSH-invoked training loop is landed by
+        a subsequent wave — for now, admissible tier raises
+        NotImplementedError as an honest place-holder rather than
+        silently succeeding).
+        """
+        # 1. Admission gate.
+        from services.chokepoint import masking_tier as _mt
+        env = os.environ.get("AKKI_ENV", "")
+        try:
+            _mt.validate_tier(tier, akki_env=env)
+        except _mt.MaskingTierRefused as exc:
+            raise MaskingTierNotAdmitted(
+                f"masking tier {tier!r} not admissible under AKKI_ENV={env!r}. "
+                f"Original refusal: {exc}. Admission is parked pending owner "
+                f"ruling — see services/chokepoint/masking_tier_allowlist.v0.json "
+                f"§tier {tier} prerequisites_status field."
+            ) from exc
+        # 2. Admission was granted — proceed with governed pipeline.
+        #    Row extract, corpus build, stage, launch are the sub-steps.
+        #    This wave lands the gate + admission-parked path; the
+        #    full training loop is chartered as W-Shield-Train-run.
+>       raise NotImplementedError(
+            f"masking tier {tier!r} IS admitted under env={env!r}, but the "
+            f"end-to-end training loop is chartered as the next wave "
+            f"(W-Shield-Train-run). The build wave lands the primitives + "
+            f"admission gate; the run wave wires the actual training call."
+        )
+E       NotImplementedError: masking tier 't1_full_mask' IS admitted under env='development', but the end-to-end training loop is chartered as the next wave (W-Shield-Train-run). The build wave lands the primitives + admission gate; the run wave wires the actual training call.
+
+services/shield_train/pipeline.py:242: NotImplementedError
+________ test_execute_governed_lora_run_result_shape_names_all_receipts ________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-34/test_execute_governed_lora_run3')
+
+    def test_execute_governed_lora_run_result_shape_names_all_receipts(tmp_path):
+        from backend.services.shield_train import pipeline as p
+        rows = [
+            {"option_string": f"opt-{i}", "question_string": f"q-{i}", "value_chain": "dairy"}
+            for i in range(50)
+        ]
+        seam = _FakeSeam()
+        env = {
+            "AKKI_ENV": "development",
+            "SHIELD_TRAIN_STAGE_LOCAL_DIR": str(tmp_path / "local"),
+            "SHIELD_TRAIN_HELD_OUT_RECEIPT_DIR": str(tmp_path / "receipts"),
+        }
+        with mock.patch.dict(os.environ, env, clear=False):
+>           result = p.execute_governed_lora_run(
+                tier="t1_full_mask",
+                recipe_version="v1",
+                base_model_id="Qwen/Qwen2.5-0.5B",
+                material_admit_ref="mref",
+                host_slug="akki-vm",
+                table_context="ussd_question_response",
+                slice_size=50,
+                backend_execute=_fake_backend_execute_factory(rows),
+                ssh_seam=seam,
+            )
+
+tests/invariants/test_shield_train_run.py:344: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+tier = 't1_full_mask', recipe_version = 'v1'
+base_model_id = 'Qwen/Qwen2.5-0.5B', material_admit_ref = 'mref'
+host_slug = 'akki-vm', table_context = 'ussd_question_response', slice_size = 50
+backend_execute = <function _fake_backend_execute_factory.<locals>._exec at 0xfb1861b68680>
+ssh_seam = <backend.tests.invariants.test_shield_train_run._FakeSeam object at 0xfb1851be8b50>
+
+    def execute_governed_lora_run(
+        tier: str,
+        recipe_version: str,
+        base_model_id: str,
+        material_admit_ref: str,
+        host_slug: str,
+        table_context: str,
+        slice_size: int,
+        backend_execute: Callable[[str, Dict[str, Any]], List[Dict[str, Any]]],
+        ssh_seam: Any,
+    ) -> Dict[str, Any]:
+        """End-to-end governed LoRA training run.
+    
+        Gate: consults services.chokepoint.masking_tier admissibility for
+        `tier` under the current AKKI_ENV. If not admissible, raises
+        `MaskingTierNotAdmitted` BEFORE any backend / SSH activity. This
+        replaces the previous unconditional `RealSSHNotWiredYet` stub —
+        the STUB is gone; the ADMISSION GATE is what remains.
+    
+        When admission lands (owner rules by editing
+        `services/chokepoint/masking_tier_allowlist.v0.json`), this
+        function proceeds through: row extract → build masked corpus →
+        stage → LoRA fine-tune (the SSH-invoked training loop is landed by
+        a subsequent wave — for now, admissible tier raises
+        NotImplementedError as an honest place-holder rather than
+        silently succeeding).
+        """
+        # 1. Admission gate.
+        from services.chokepoint import masking_tier as _mt
+        env = os.environ.get("AKKI_ENV", "")
+        try:
+            _mt.validate_tier(tier, akki_env=env)
+        except _mt.MaskingTierRefused as exc:
+            raise MaskingTierNotAdmitted(
+                f"masking tier {tier!r} not admissible under AKKI_ENV={env!r}. "
+                f"Original refusal: {exc}. Admission is parked pending owner "
+                f"ruling — see services/chokepoint/masking_tier_allowlist.v0.json "
+                f"§tier {tier} prerequisites_status field."
+            ) from exc
+        # 2. Admission was granted — proceed with governed pipeline.
+        #    Row extract, corpus build, stage, launch are the sub-steps.
+        #    This wave lands the gate + admission-parked path; the
+        #    full training loop is chartered as W-Shield-Train-run.
+>       raise NotImplementedError(
+            f"masking tier {tier!r} IS admitted under env={env!r}, but the "
+            f"end-to-end training loop is chartered as the next wave "
+            f"(W-Shield-Train-run). The build wave lands the primitives + "
+            f"admission gate; the run wave wires the actual training call."
+        )
+E       NotImplementedError: masking tier 't1_full_mask' IS admitted under env='development', but the end-to-end training loop is chartered as the next wave (W-Shield-Train-run). The build wave lands the primitives + admission gate; the run wave wires the actual training call.
+
+services/shield_train/pipeline.py:242: NotImplementedError
+_________ test_execute_governed_lora_run_composes_training_text_field __________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-34/test_execute_governed_lora_run4')
+
+    def test_execute_governed_lora_run_composes_training_text_field(tmp_path):
+        """The pipeline must build a `training_text` field per row (donor
+        format), joining value_chain + question_string + option_string."""
+        from backend.services.shield_train import pipeline as p
+        rows = [
+            {"option_string": f"opt-{i}", "question_string": f"q-{i}", "value_chain": "dairy"}
+            for i in range(50)
+        ]
+        seam = _FakeSeam()
+        env = {
+            "AKKI_ENV": "development",
+            "SHIELD_TRAIN_STAGE_LOCAL_DIR": str(tmp_path / "local"),
+            "SHIELD_TRAIN_HELD_OUT_RECEIPT_DIR": str(tmp_path / "receipts"),
+        }
+        with mock.patch.dict(os.environ, env, clear=False):
+>           result = p.execute_governed_lora_run(
+                tier="t1_full_mask",
+                recipe_version="v1",
+                base_model_id="Qwen/Qwen2.5-0.5B",
+                material_admit_ref="mref",
+                host_slug="akki-vm",
+                table_context="ussd_question_response",
+                slice_size=50,
+                backend_execute=_fake_backend_execute_factory(rows),
+                ssh_seam=seam,
+            )
+
+tests/invariants/test_shield_train_run.py:376: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+tier = 't1_full_mask', recipe_version = 'v1'
+base_model_id = 'Qwen/Qwen2.5-0.5B', material_admit_ref = 'mref'
+host_slug = 'akki-vm', table_context = 'ussd_question_response', slice_size = 50
+backend_execute = <function _fake_backend_execute_factory.<locals>._exec at 0xfb1851e6b560>
+ssh_seam = <backend.tests.invariants.test_shield_train_run._FakeSeam object at 0xfb1851be9010>
+
+    def execute_governed_lora_run(
+        tier: str,
+        recipe_version: str,
+        base_model_id: str,
+        material_admit_ref: str,
+        host_slug: str,
+        table_context: str,
+        slice_size: int,
+        backend_execute: Callable[[str, Dict[str, Any]], List[Dict[str, Any]]],
+        ssh_seam: Any,
+    ) -> Dict[str, Any]:
+        """End-to-end governed LoRA training run.
+    
+        Gate: consults services.chokepoint.masking_tier admissibility for
+        `tier` under the current AKKI_ENV. If not admissible, raises
+        `MaskingTierNotAdmitted` BEFORE any backend / SSH activity. This
+        replaces the previous unconditional `RealSSHNotWiredYet` stub —
+        the STUB is gone; the ADMISSION GATE is what remains.
+    
+        When admission lands (owner rules by editing
+        `services/chokepoint/masking_tier_allowlist.v0.json`), this
+        function proceeds through: row extract → build masked corpus →
+        stage → LoRA fine-tune (the SSH-invoked training loop is landed by
+        a subsequent wave — for now, admissible tier raises
+        NotImplementedError as an honest place-holder rather than
+        silently succeeding).
+        """
+        # 1. Admission gate.
+        from services.chokepoint import masking_tier as _mt
+        env = os.environ.get("AKKI_ENV", "")
+        try:
+            _mt.validate_tier(tier, akki_env=env)
+        except _mt.MaskingTierRefused as exc:
+            raise MaskingTierNotAdmitted(
+                f"masking tier {tier!r} not admissible under AKKI_ENV={env!r}. "
+                f"Original refusal: {exc}. Admission is parked pending owner "
+                f"ruling — see services/chokepoint/masking_tier_allowlist.v0.json "
+                f"§tier {tier} prerequisites_status field."
+            ) from exc
+        # 2. Admission was granted — proceed with governed pipeline.
+        #    Row extract, corpus build, stage, launch are the sub-steps.
+        #    This wave lands the gate + admission-parked path; the
+        #    full training loop is chartered as W-Shield-Train-run.
+>       raise NotImplementedError(
+            f"masking tier {tier!r} IS admitted under env={env!r}, but the "
+            f"end-to-end training loop is chartered as the next wave "
+            f"(W-Shield-Train-run). The build wave lands the primitives + "
+            f"admission gate; the run wave wires the actual training call."
+        )
+E       NotImplementedError: masking tier 't1_full_mask' IS admitted under env='development', but the end-to-end training loop is chartered as the next wave (W-Shield-Train-run). The build wave lands the primitives + admission gate; the run wave wires the actual training call.
+
+services/shield_train/pipeline.py:242: NotImplementedError
+__________ test_execute_governed_lora_run_refuses_unclassified_table ___________
+
+    def test_execute_governed_lora_run_refuses_unclassified_table():
+        """Unclassified table_context must surface UnclassifiedRefusal via
+        row_executor (not silently masked as a different error)."""
+        from backend.services.shield_train import pipeline as p
+        from backend.services.shield_train.row_executor import UnclassifiedRefusal
+        env = {"AKKI_ENV": "development"}
+        with mock.patch.dict(os.environ, env, clear=False):
+            with pytest.raises(UnclassifiedRefusal):
+>               p.execute_governed_lora_run(
+                    tier="t1_full_mask",
+                    recipe_version="v1",
+                    base_model_id="Qwen/Qwen2.5-0.5B",
+                    material_admit_ref="mref",
+                    host_slug="akki-vm",
+                    table_context="table_that_is_not_classified_anywhere",
+                    slice_size=10,
+                    backend_execute=_fake_backend_execute_factory([]),
+                    ssh_seam=_FakeSeam(),
+                )
+
+tests/invariants/test_shield_train_run.py:405: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+tier = 't1_full_mask', recipe_version = 'v1'
+base_model_id = 'Qwen/Qwen2.5-0.5B', material_admit_ref = 'mref'
+host_slug = 'akki-vm', table_context = 'table_that_is_not_classified_anywhere'
+slice_size = 10
+backend_execute = <function _fake_backend_execute_factory.<locals>._exec at 0xfb1851d31f80>
+ssh_seam = <backend.tests.invariants.test_shield_train_run._FakeSeam object at 0xfb1851c15150>
+
+    def execute_governed_lora_run(
+        tier: str,
+        recipe_version: str,
+        base_model_id: str,
+        material_admit_ref: str,
+        host_slug: str,
+        table_context: str,
+        slice_size: int,
+        backend_execute: Callable[[str, Dict[str, Any]], List[Dict[str, Any]]],
+        ssh_seam: Any,
+    ) -> Dict[str, Any]:
+        """End-to-end governed LoRA training run.
+    
+        Gate: consults services.chokepoint.masking_tier admissibility for
+        `tier` under the current AKKI_ENV. If not admissible, raises
+        `MaskingTierNotAdmitted` BEFORE any backend / SSH activity. This
+        replaces the previous unconditional `RealSSHNotWiredYet` stub —
+        the STUB is gone; the ADMISSION GATE is what remains.
+    
+        When admission lands (owner rules by editing
+        `services/chokepoint/masking_tier_allowlist.v0.json`), this
+        function proceeds through: row extract → build masked corpus →
+        stage → LoRA fine-tune (the SSH-invoked training loop is landed by
+        a subsequent wave — for now, admissible tier raises
+        NotImplementedError as an honest place-holder rather than
+        silently succeeding).
+        """
+        # 1. Admission gate.
+        from services.chokepoint import masking_tier as _mt
+        env = os.environ.get("AKKI_ENV", "")
+        try:
+            _mt.validate_tier(tier, akki_env=env)
+        except _mt.MaskingTierRefused as exc:
+            raise MaskingTierNotAdmitted(
+                f"masking tier {tier!r} not admissible under AKKI_ENV={env!r}. "
+                f"Original refusal: {exc}. Admission is parked pending owner "
+                f"ruling — see services/chokepoint/masking_tier_allowlist.v0.json "
+                f"§tier {tier} prerequisites_status field."
+            ) from exc
+        # 2. Admission was granted — proceed with governed pipeline.
+        #    Row extract, corpus build, stage, launch are the sub-steps.
+        #    This wave lands the gate + admission-parked path; the
+        #    full training loop is chartered as W-Shield-Train-run.
+>       raise NotImplementedError(
+            f"masking tier {tier!r} IS admitted under env={env!r}, but the "
+            f"end-to-end training loop is chartered as the next wave "
+            f"(W-Shield-Train-run). The build wave lands the primitives + "
+            f"admission gate; the run wave wires the actual training call."
+        )
+E       NotImplementedError: masking tier 't1_full_mask' IS admitted under env='development', but the end-to-end training loop is chartered as the next wave (W-Shield-Train-run). The build wave lands the primitives + admission gate; the run wave wires the actual training call.
+
+services/shield_train/pipeline.py:242: NotImplementedError
+__________ test_production_trainer_module_exports_default_trainer_fn ___________
+
+    def test_production_trainer_module_exports_default_trainer_fn():
+>       from backend.services.campaign_infra import production_trainer as pt
+E       ImportError: cannot import name 'production_trainer' from 'backend.services.campaign_infra' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/campaign_infra/__init__.py)
+
+tests/invariants/test_shield_train_run.py:423: ImportError
+_____________ test_default_trainer_fn_accepts_run_queue_signature ______________
+
+    def test_default_trainer_fn_accepts_run_queue_signature():
+        """run_queue calls trainer_fn(run_name=..., manifest_entry=..., host=...).
+        default_trainer_fn must accept that exact keyword signature."""
+>       from backend.services.campaign_infra import production_trainer as pt
+E       ImportError: cannot import name 'production_trainer' from 'backend.services.campaign_infra' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/campaign_infra/__init__.py)
+
+tests/invariants/test_shield_train_run.py:430: ImportError
+_____________ test_default_trainer_fn_never_directly_imports_boto3 _____________
+
+    def test_default_trainer_fn_never_directly_imports_boto3():
+        """The default binding routes AWS through services.connect.rds_data_submit
+        (the exempted seam) — it must NEVER `import boto3` directly."""
+        src = (
+            _REPO / "backend" / "services" / "campaign_infra" / "production_trainer.py"
+>       ).read_text()
+          ^^^^^^^^^^^
+
+tests/invariants/test_shield_train_run.py:446: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/pathlib.py:1058: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/app/assessment_workspace/repos/Extraction-Akki/backend/services/campaign_infra/production_trainer.py')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/app/assessment_workspace/repos/Extraction-Akki/backend/services/campaign_infra/production_trainer.py'
+
+/usr/local/lib/python3.11/pathlib.py:1044: FileNotFoundError
+______________ test_default_trainer_fn_uses_seam_for_remote_exec _______________
+
+    def test_default_trainer_fn_uses_seam_for_remote_exec():
+        """default_trainer_fn must invoke the trainer via
+        services.training_runner.ssh_seam (the governed seam), not raw
+        subprocess.Popen or os.system for remote exec."""
+        src = (
+            _REPO / "backend" / "services" / "campaign_infra" / "production_trainer.py"
+>       ).read_text()
+          ^^^^^^^^^^^
+
+tests/invariants/test_shield_train_run.py:459: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/pathlib.py:1058: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/app/assessment_workspace/repos/Extraction-Akki/backend/services/campaign_infra/production_trainer.py')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/app/assessment_workspace/repos/Extraction-Akki/backend/services/campaign_infra/production_trainer.py'
+
+/usr/local/lib/python3.11/pathlib.py:1044: FileNotFoundError
+_____________________ test_on_host_trainer_artifact_exists _____________________
+
+    def test_on_host_trainer_artifact_exists():
+>       assert _ON_HOST_TRAINER.exists(), \
+            f"on_host_trainer artifact missing at {_ON_HOST_TRAINER}"
+E       AssertionError: on_host_trainer artifact missing at /app/assessment_workspace/repos/Extraction-Akki/tools/on_host_trainer.py
+E       assert False
+E        +  where False = exists()
+E        +    where exists = PosixPath('/app/assessment_workspace/repos/Extraction-Akki/tools/on_host_trainer.py').exists
+
+tests/invariants/test_shield_train_run.py:472: AssertionError
+_______________ test_on_host_trainer_declares_required_cli_args ________________
+
+    def test_on_host_trainer_declares_required_cli_args():
+        """Structural check — the argparse setup must declare every arg the
+        campaign_infra + production_trainer expects to pass."""
+>       src = _ON_HOST_TRAINER.read_text()
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_shield_train_run.py:479: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/pathlib.py:1058: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/app/assessment_workspace/repos/Extraction-Akki/tools/on_host_trainer.py')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/app/assessment_workspace/repos/Extraction-Akki/tools/on_host_trainer.py'
+
+/usr/local/lib/python3.11/pathlib.py:1044: FileNotFoundError
+_______________ test_on_host_trainer_calls_write_host_heartbeat ________________
+
+    def test_on_host_trainer_calls_write_host_heartbeat():
+        """Heartbeat write must be wired to campaign_infra.on_host_logging
+        contract (function name literal check)."""
+>       src = _ON_HOST_TRAINER.read_text()
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_shield_train_run.py:494: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/pathlib.py:1058: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/app/assessment_workspace/repos/Extraction-Akki/tools/on_host_trainer.py')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/app/assessment_workspace/repos/Extraction-Akki/tools/on_host_trainer.py'
+
+/usr/local/lib/python3.11/pathlib.py:1044: FileNotFoundError
+______________ test_on_host_trainer_calls_write_checkpoint_marker ______________
+
+    def test_on_host_trainer_calls_write_checkpoint_marker():
+>       src = _ON_HOST_TRAINER.read_text()
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_shield_train_run.py:500: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/pathlib.py:1058: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/app/assessment_workspace/repos/Extraction-Akki/tools/on_host_trainer.py')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/app/assessment_workspace/repos/Extraction-Akki/tools/on_host_trainer.py'
+
+/usr/local/lib/python3.11/pathlib.py:1044: FileNotFoundError
+_________________ test_on_host_trainer_writes_run_summary_seal _________________
+
+    def test_on_host_trainer_writes_run_summary_seal():
+        """The sealing writer (write_run_summary → ACTIVITY_SUMMARY.md) must
+        be present — this is what run_queue reads to advance."""
+>       src = _ON_HOST_TRAINER.read_text()
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_shield_train_run.py:508: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/pathlib.py:1058: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/app/assessment_workspace/repos/Extraction-Akki/tools/on_host_trainer.py')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/app/assessment_workspace/repos/Extraction-Akki/tools/on_host_trainer.py'
+
+/usr/local/lib/python3.11/pathlib.py:1044: FileNotFoundError
+_________________ test_on_host_trainer_honors_resume_from_flag _________________
+
+    def test_on_host_trainer_honors_resume_from_flag():
+        """When --resume-from is passed, trainer must invoke Trainer.train
+        with resume_from_checkpoint (or equivalent)."""
+>       src = _ON_HOST_TRAINER.read_text()
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_shield_train_run.py:516: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/pathlib.py:1058: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/app/assessment_workspace/repos/Extraction-Akki/tools/on_host_trainer.py')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/app/assessment_workspace/repos/Extraction-Akki/tools/on_host_trainer.py'
+
+/usr/local/lib/python3.11/pathlib.py:1044: FileNotFoundError
+_________________ test_on_host_trainer_computes_held_out_loss __________________
+
+    def test_on_host_trainer_computes_held_out_loss():
+        """Held-out eval at end must compute a loss/perplexity on the
+        --held-out slice — this is Objective 1's baseline_record measurement."""
+>       src = _ON_HOST_TRAINER.read_text()
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_shield_train_run.py:526: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/pathlib.py:1058: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/app/assessment_workspace/repos/Extraction-Akki/tools/on_host_trainer.py')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/app/assessment_workspace/repos/Extraction-Akki/tools/on_host_trainer.py'
+
+/usr/local/lib/python3.11/pathlib.py:1044: FileNotFoundError
+_____________ test_held_out_receipt_never_carries_aws_credentials ______________
+
+    def test_held_out_receipt_never_carries_aws_credentials():
+        """Zero-influence: any AWS secret material must NEVER appear in a
+        held-out receipt (or any shield_train receipt)."""
+>       from backend.services.shield_train import held_out as h
+E       ImportError: cannot import name 'held_out' from 'backend.services.shield_train' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/shield_train/__init__.py)
+
+tests/invariants/test_shield_train_run.py:572: ImportError
+_______ test_execute_governed_lora_run_transport_integrity_still_refuses _______
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-34/test_execute_governed_lora_run5')
+
+    def test_execute_governed_lora_run_transport_integrity_still_refuses(tmp_path):
+        """Regression: sha256-mismatch on transport still raises
+        TransportIntegrityRefusal (from build-wave)."""
+        from backend.services.shield_train import pipeline as p
+        rows = [
+            {"option_string": f"opt-{i}", "question_string": f"q-{i}", "value_chain": "dairy"}
+            for i in range(50)
+        ]
+        seam = _FakeSeam()
+        # Corrupt the remote sha to force mismatch on the FIRST put
+        class _BadSeam(_FakeSeam):
+            def run(self, cmd):
+                r = super().run(cmd)
+                if cmd.startswith("sha256sum "):
+                    r["stdout"] = "deadbeef" + "0" * 56 + "  /tmp/foo\n"
+                return r
+        bad = _BadSeam()
+        env = {
+            "AKKI_ENV": "development",
+            "SHIELD_TRAIN_STAGE_LOCAL_DIR": str(tmp_path / "local"),
+            "SHIELD_TRAIN_HELD_OUT_RECEIPT_DIR": str(tmp_path / "receipts"),
+        }
+        with mock.patch.dict(os.environ, env, clear=False):
+            with pytest.raises(p.TransportIntegrityRefusal):
+>               p.execute_governed_lora_run(
+                    tier="t1_full_mask",
+                    recipe_version="v1",
+                    base_model_id="Qwen/Qwen2.5-0.5B",
+                    material_admit_ref="mref",
+                    host_slug="akki-vm",
+                    table_context="ussd_question_response",
+                    slice_size=50,
+                    backend_execute=_fake_backend_execute_factory(rows),
+                    ssh_seam=bad,
+                )
+
+tests/invariants/test_shield_train_run.py:615: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+tier = 't1_full_mask', recipe_version = 'v1'
+base_model_id = 'Qwen/Qwen2.5-0.5B', material_admit_ref = 'mref'
+host_slug = 'akki-vm', table_context = 'ussd_question_response', slice_size = 50
+backend_execute = <function _fake_backend_execute_factory.<locals>._exec at 0xfb1851d33420>
+ssh_seam = <backend.tests.invariants.test_shield_train_run.test_execute_governed_lora_run_transport_integrity_still_refuses.<locals>._BadSeam object at 0xfb1851c01310>
+
+    def execute_governed_lora_run(
+        tier: str,
+        recipe_version: str,
+        base_model_id: str,
+        material_admit_ref: str,
+        host_slug: str,
+        table_context: str,
+        slice_size: int,
+        backend_execute: Callable[[str, Dict[str, Any]], List[Dict[str, Any]]],
+        ssh_seam: Any,
+    ) -> Dict[str, Any]:
+        """End-to-end governed LoRA training run.
+    
+        Gate: consults services.chokepoint.masking_tier admissibility for
+        `tier` under the current AKKI_ENV. If not admissible, raises
+        `MaskingTierNotAdmitted` BEFORE any backend / SSH activity. This
+        replaces the previous unconditional `RealSSHNotWiredYet` stub —
+        the STUB is gone; the ADMISSION GATE is what remains.
+    
+        When admission lands (owner rules by editing
+        `services/chokepoint/masking_tier_allowlist.v0.json`), this
+        function proceeds through: row extract → build masked corpus →
+        stage → LoRA fine-tune (the SSH-invoked training loop is landed by
+        a subsequent wave — for now, admissible tier raises
+        NotImplementedError as an honest place-holder rather than
+        silently succeeding).
+        """
+        # 1. Admission gate.
+        from services.chokepoint import masking_tier as _mt
+        env = os.environ.get("AKKI_ENV", "")
+        try:
+            _mt.validate_tier(tier, akki_env=env)
+        except _mt.MaskingTierRefused as exc:
+            raise MaskingTierNotAdmitted(
+                f"masking tier {tier!r} not admissible under AKKI_ENV={env!r}. "
+                f"Original refusal: {exc}. Admission is parked pending owner "
+                f"ruling — see services/chokepoint/masking_tier_allowlist.v0.json "
+                f"§tier {tier} prerequisites_status field."
+            ) from exc
+        # 2. Admission was granted — proceed with governed pipeline.
+        #    Row extract, corpus build, stage, launch are the sub-steps.
+        #    This wave lands the gate + admission-parked path; the
+        #    full training loop is chartered as W-Shield-Train-run.
+>       raise NotImplementedError(
+            f"masking tier {tier!r} IS admitted under env={env!r}, but the "
+            f"end-to-end training loop is chartered as the next wave "
+            f"(W-Shield-Train-run). The build wave lands the primitives + "
+            f"admission gate; the run wave wires the actual training call."
+        )
+E       NotImplementedError: masking tier 't1_full_mask' IS admitted under env='development', but the end-to-end training loop is chartered as the next wave (W-Shield-Train-run). The build wave lands the primitives + admission gate; the run wave wires the actual training call.
+
+services/shield_train/pipeline.py:242: NotImplementedError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_shield_train_run.py::test_held_out_module_exports_public_surface
+FAILED tests/invariants/test_shield_train_run.py::test_held_out_split_returns_tail_20pct
+FAILED tests/invariants/test_shield_train_run.py::test_held_out_split_is_deterministic_across_calls
+FAILED tests/invariants/test_shield_train_run.py::test_held_out_split_sha256_matches_canonical_jsonl_serialization
+FAILED tests/invariants/test_shield_train_run.py::test_held_out_split_refuses_empty_input
+FAILED tests/invariants/test_shield_train_run.py::test_bank_held_out_slice_hash_writes_receipt_with_banked_flag
+FAILED tests/invariants/test_shield_train_run.py::test_bank_held_out_slice_hash_receipt_never_carries_row_content
+FAILED tests/invariants/test_shield_train_run.py::test_execute_governed_lora_run_no_longer_raises_notimplementederror
+FAILED tests/invariants/test_shield_train_run.py::test_execute_governed_lora_run_writes_held_out_receipt_before_transport
+FAILED tests/invariants/test_shield_train_run.py::test_execute_governed_lora_run_stages_both_train_and_held_out
+FAILED tests/invariants/test_shield_train_run.py::test_execute_governed_lora_run_result_shape_names_all_receipts
+FAILED tests/invariants/test_shield_train_run.py::test_execute_governed_lora_run_composes_training_text_field
+FAILED tests/invariants/test_shield_train_run.py::test_execute_governed_lora_run_refuses_unclassified_table
+FAILED tests/invariants/test_shield_train_run.py::test_production_trainer_module_exports_default_trainer_fn
+FAILED tests/invariants/test_shield_train_run.py::test_default_trainer_fn_accepts_run_queue_signature
+FAILED tests/invariants/test_shield_train_run.py::test_default_trainer_fn_never_directly_imports_boto3
+FAILED tests/invariants/test_shield_train_run.py::test_default_trainer_fn_uses_seam_for_remote_exec
+FAILED tests/invariants/test_shield_train_run.py::test_on_host_trainer_artifact_exists
+FAILED tests/invariants/test_shield_train_run.py::test_on_host_trainer_declares_required_cli_args
+FAILED tests/invariants/test_shield_train_run.py::test_on_host_trainer_calls_write_host_heartbeat
+FAILED tests/invariants/test_shield_train_run.py::test_on_host_trainer_calls_write_checkpoint_marker
+FAILED tests/invariants/test_shield_train_run.py::test_on_host_trainer_writes_run_summary_seal
+FAILED tests/invariants/test_shield_train_run.py::test_on_host_trainer_honors_resume_from_flag
+FAILED tests/invariants/test_shield_train_run.py::test_on_host_trainer_computes_held_out_loss
+FAILED tests/invariants/test_shield_train_run.py::test_held_out_receipt_never_carries_aws_credentials
+FAILED tests/invariants/test_shield_train_run.py::test_execute_governed_lora_run_transport_integrity_still_refuses
+========================= 26 failed, 4 passed in 1.21s =========================
+---RC=0

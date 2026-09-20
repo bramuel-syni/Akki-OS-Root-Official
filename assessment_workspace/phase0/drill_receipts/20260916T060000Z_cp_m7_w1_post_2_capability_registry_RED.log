@@ -1,0 +1,279 @@
+.FFFFFFFFFFF.FFFFFFFFFF.F..                                              [100%]
+=================================== FAILURES ===================================
+______________ test_capability_registry_exports_expected_surface _______________
+
+    def test_capability_registry_exports_expected_surface():
+        import services.capability_registry as cr
+    
+        expected = {
+            "CapabilityBinding",
+            "CapabilityRegistryInvalid",
+            "CapabilityNotRegistered",
+            "register_capability",
+            "is_registered",
+            "list_capabilities",
+            "select_by_class",
+            "get_capability",
+            "_reset_registry_for_tests",
+        }
+>       assert set(cr.__all__) == expected, (
+            f"__all__ mismatch: expected {expected!r}, got {set(cr.__all__)!r}"
+        )
+E       AssertionError: __all__ mismatch: expected {'list_capabilities', 'select_by_class', 'register_capability', 'get_capability', 'CapabilityNotRegistered', 'CapabilityRegistryInvalid', '_reset_registry_for_tests', 'is_registered', 'CapabilityBinding'}, got {'list_categories', 'register_capability', 'get_capability', 'CapabilityNotRegistered', '_reset_capabilities_for_tests', 'list_capabilities_in'}
+E       assert {'CapabilityN...r_capability'} == {'CapabilityB...istered', ...}
+E         
+E         Extra items in the left set:
+E         '_reset_capabilities_for_tests'
+E         'list_categories'
+E         'list_capabilities_in'
+E         Extra items in the right set:
+E         'list_capabilities'...
+E         
+E         ...Full output truncated (6 lines hidden), use '-vv' to show
+
+tests/invariants/test_wm7_w1_post_2_capability_registry.py:130: AssertionError
+_________________ test_capability_binding_is_frozen_dataclass __________________
+
+    def test_capability_binding_is_frozen_dataclass():
+>       from services.capability_registry import CapabilityBinding
+E       ImportError: cannot import name 'CapabilityBinding' from 'services.capability_registry' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/capability_registry.py)
+
+tests/invariants/test_wm7_w1_post_2_capability_registry.py:141: ImportError
+_____________ test_capability_binding_refuses_empty_capability_id ______________
+
+    def test_capability_binding_refuses_empty_capability_id():
+>       from services.capability_registry import (
+            CapabilityBinding,
+            CapabilityRegistryInvalid,
+        )
+E       ImportError: cannot import name 'CapabilityBinding' from 'services.capability_registry' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/capability_registry.py)
+
+tests/invariants/test_wm7_w1_post_2_capability_registry.py:150: ImportError
+____________ test_capability_binding_refuses_empty_capability_class ____________
+
+    def test_capability_binding_refuses_empty_capability_class():
+>       from services.capability_registry import (
+            CapabilityBinding,
+            CapabilityRegistryInvalid,
+        )
+E       ImportError: cannot import name 'CapabilityBinding' from 'services.capability_registry' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/capability_registry.py)
+
+tests/invariants/test_wm7_w1_post_2_capability_registry.py:162: ImportError
+_______________ test_capability_binding_refuses_empty_import_ref _______________
+
+    def test_capability_binding_refuses_empty_import_ref():
+>       from services.capability_registry import (
+            CapabilityBinding,
+            CapabilityRegistryInvalid,
+        )
+E       ImportError: cannot import name 'CapabilityBinding' from 'services.capability_registry' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/capability_registry.py)
+
+tests/invariants/test_wm7_w1_post_2_capability_registry.py:174: ImportError
+_____________ test_capability_binding_refuses_non_iso_z_timestamp ______________
+
+    def test_capability_binding_refuses_non_iso_z_timestamp():
+>       from services.capability_registry import (
+            CapabilityBinding,
+            CapabilityRegistryInvalid,
+        )
+E       ImportError: cannot import name 'CapabilityBinding' from 'services.capability_registry' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/capability_registry.py)
+
+tests/invariants/test_wm7_w1_post_2_capability_registry.py:186: ImportError
+_________ test_capability_binding_open_capability_class_no_closed_enum _________
+
+    def test_capability_binding_open_capability_class_no_closed_enum():
+        """Case-agnostic doctrine explicit-verify: capability_class is an OPEN
+        string, not a closed enum. Arbitrary non-empty strings accepted."""
+>       from services.capability_registry import CapabilityBinding
+E       ImportError: cannot import name 'CapabilityBinding' from 'services.capability_registry' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/capability_registry.py)
+
+tests/invariants/test_wm7_w1_post_2_capability_registry.py:205: ImportError
+________ test_capability_binding_open_import_ref_no_format_enforcement _________
+
+    def test_capability_binding_open_import_ref_no_format_enforcement():
+        """The kernel does not interpret import_ref format. Both 'module:Class'
+        and delegation-sentinel formats accepted (downstream convention)."""
+>       from services.capability_registry import CapabilityBinding
+E       ImportError: cannot import name 'CapabilityBinding' from 'services.capability_registry' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/capability_registry.py)
+
+tests/invariants/test_wm7_w1_post_2_capability_registry.py:230: ImportError
+___________________ test_register_capability_stores_binding ____________________
+
+    def test_register_capability_stores_binding():
+>       from services.capability_registry import (
+            CapabilityBinding,
+            is_registered,
+            register_capability,
+        )
+E       ImportError: cannot import name 'CapabilityBinding' from 'services.capability_registry' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/capability_registry.py)
+
+tests/invariants/test_wm7_w1_post_2_capability_registry.py:248: ImportError
+_______________ test_register_capability_idempotent_same_payload _______________
+
+    def test_register_capability_idempotent_same_payload():
+>       from services.capability_registry import (
+            CapabilityBinding,
+            list_capabilities,
+            register_capability,
+        )
+E       ImportError: cannot import name 'CapabilityBinding' from 'services.capability_registry' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/capability_registry.py)
+
+tests/invariants/test_wm7_w1_post_2_capability_registry.py:261: ImportError
+_________ test_register_capability_refuses_mutation_different_payload __________
+
+    def test_register_capability_refuses_mutation_different_payload():
+>       from services.capability_registry import (
+            CapabilityBinding,
+            CapabilityRegistryInvalid,
+            register_capability,
+        )
+E       ImportError: cannot import name 'CapabilityBinding' from 'services.capability_registry' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/capability_registry.py)
+
+tests/invariants/test_wm7_w1_post_2_capability_registry.py:275: ImportError
+_______________ test_is_registered_returns_false_for_unknown_id ________________
+
+    def test_is_registered_returns_false_for_unknown_id():
+>       from services.capability_registry import is_registered
+E       ImportError: cannot import name 'is_registered' from 'services.capability_registry' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/capability_registry.py)
+
+tests/invariants/test_wm7_w1_post_2_capability_registry.py:312: ImportError
+_________ test_list_capabilities_returns_deterministic_sorted_snapshot _________
+
+    def test_list_capabilities_returns_deterministic_sorted_snapshot():
+>       from services.capability_registry import (
+            CapabilityBinding,
+            list_capabilities,
+            register_capability,
+        )
+E       ImportError: cannot import name 'CapabilityBinding' from 'services.capability_registry' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/capability_registry.py)
+
+tests/invariants/test_wm7_w1_post_2_capability_registry.py:318: ImportError
+________________ test_list_capabilities_returns_tuple_immutable ________________
+
+    def test_list_capabilities_returns_tuple_immutable():
+>       from services.capability_registry import (
+            CapabilityBinding,
+            list_capabilities,
+            register_capability,
+        )
+E       ImportError: cannot import name 'CapabilityBinding' from 'services.capability_registry' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/capability_registry.py)
+
+tests/invariants/test_wm7_w1_post_2_capability_registry.py:335: ImportError
+_____________________ test_select_by_class_returns_matches _____________________
+
+    def test_select_by_class_returns_matches():
+>       from services.capability_registry import (
+            CapabilityBinding,
+            register_capability,
+            select_by_class,
+        )
+E       ImportError: cannot import name 'CapabilityBinding' from 'services.capability_registry' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/capability_registry.py)
+
+tests/invariants/test_wm7_w1_post_2_capability_registry.py:348: ImportError
+________________ test_select_by_class_empty_class_returns_empty ________________
+
+    def test_select_by_class_empty_class_returns_empty():
+        """Empty-string class returns () (no binding can have empty class ·
+        validated at construct time)."""
+>       from services.capability_registry import (
+            CapabilityBinding,
+            register_capability,
+            select_by_class,
+        )
+E       ImportError: cannot import name 'CapabilityBinding' from 'services.capability_registry' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/capability_registry.py)
+
+tests/invariants/test_wm7_w1_post_2_capability_registry.py:376: ImportError
+______________ test_select_by_class_returns_deterministic_sorted _______________
+
+    def test_select_by_class_returns_deterministic_sorted():
+>       from services.capability_registry import (
+            CapabilityBinding,
+            register_capability,
+            select_by_class,
+        )
+E       ImportError: cannot import name 'CapabilityBinding' from 'services.capability_registry' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/capability_registry.py)
+
+tests/invariants/test_wm7_w1_post_2_capability_registry.py:388: ImportError
+________________ test_get_capability_returns_registered_binding ________________
+
+    def test_get_capability_returns_registered_binding():
+>       from services.capability_registry import (
+            CapabilityBinding,
+            get_capability,
+            register_capability,
+        )
+E       ImportError: cannot import name 'CapabilityBinding' from 'services.capability_registry' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/capability_registry.py)
+
+tests/invariants/test_wm7_w1_post_2_capability_registry.py:407: ImportError
+_________ test_get_capability_raises_capability_not_registered_on_miss _________
+
+    def test_get_capability_raises_capability_not_registered_on_miss():
+        from services.capability_registry import (
+            CapabilityNotRegistered,
+            get_capability,
+        )
+    
+        with pytest.raises(CapabilityNotRegistered):
+>           get_capability("no:such:capability")
+E           TypeError: get_capability() missing 1 required positional argument: 'name'
+
+tests/invariants/test_wm7_w1_post_2_capability_registry.py:425: TypeError
+__________________ test_reset_registry_for_tests_wipes_state ___________________
+
+    def test_reset_registry_for_tests_wipes_state():
+>       from services.capability_registry import (
+            CapabilityBinding,
+            _reset_registry_for_tests,
+            list_capabilities,
+            register_capability,
+        )
+E       ImportError: cannot import name 'CapabilityBinding' from 'services.capability_registry' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/capability_registry.py)
+
+tests/invariants/test_wm7_w1_post_2_capability_registry.py:434: ImportError
+_________________ test_registry_starts_empty_no_platform_seed __________________
+
+    def test_registry_starts_empty_no_platform_seed():
+        """Case-agnostic doctrine explicit-verify: no platform seed
+        (unlike kind_registry.PLATFORM_SEED_KIND)."""
+>       from services.capability_registry import (
+            _reset_registry_for_tests,
+            list_capabilities,
+        )
+E       ImportError: cannot import name '_reset_registry_for_tests' from 'services.capability_registry' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/capability_registry.py)
+
+tests/invariants/test_wm7_w1_post_2_capability_registry.py:451: ImportError
+__________ test_registry_does_not_import_dispatch_or_factory_surfaces __________
+
+    def test_registry_does_not_import_dispatch_or_factory_surfaces():
+        """Grep-based negative: registry.py does NOT import any dispatch
+        surface NOR services.layer_b.factory. Confirms compose-not-modify
+        per owner ruling: the new registry is parallel to the factory, not
+        layered on top of it."""
+>       import services.capability_registry.registry as reg
+E       ModuleNotFoundError: No module named 'services.capability_registry.registry'; 'services.capability_registry' is not a package
+
+tests/invariants/test_wm7_w1_post_2_capability_registry.py:498: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wm7_w1_post_2_capability_registry.py::test_capability_registry_exports_expected_surface
+FAILED tests/invariants/test_wm7_w1_post_2_capability_registry.py::test_capability_binding_is_frozen_dataclass
+FAILED tests/invariants/test_wm7_w1_post_2_capability_registry.py::test_capability_binding_refuses_empty_capability_id
+FAILED tests/invariants/test_wm7_w1_post_2_capability_registry.py::test_capability_binding_refuses_empty_capability_class
+FAILED tests/invariants/test_wm7_w1_post_2_capability_registry.py::test_capability_binding_refuses_empty_import_ref
+FAILED tests/invariants/test_wm7_w1_post_2_capability_registry.py::test_capability_binding_refuses_non_iso_z_timestamp
+FAILED tests/invariants/test_wm7_w1_post_2_capability_registry.py::test_capability_binding_open_capability_class_no_closed_enum
+FAILED tests/invariants/test_wm7_w1_post_2_capability_registry.py::test_capability_binding_open_import_ref_no_format_enforcement
+FAILED tests/invariants/test_wm7_w1_post_2_capability_registry.py::test_register_capability_stores_binding
+FAILED tests/invariants/test_wm7_w1_post_2_capability_registry.py::test_register_capability_idempotent_same_payload
+FAILED tests/invariants/test_wm7_w1_post_2_capability_registry.py::test_register_capability_refuses_mutation_different_payload
+FAILED tests/invariants/test_wm7_w1_post_2_capability_registry.py::test_is_registered_returns_false_for_unknown_id
+FAILED tests/invariants/test_wm7_w1_post_2_capability_registry.py::test_list_capabilities_returns_deterministic_sorted_snapshot
+FAILED tests/invariants/test_wm7_w1_post_2_capability_registry.py::test_list_capabilities_returns_tuple_immutable
+FAILED tests/invariants/test_wm7_w1_post_2_capability_registry.py::test_select_by_class_returns_matches
+FAILED tests/invariants/test_wm7_w1_post_2_capability_registry.py::test_select_by_class_empty_class_returns_empty
+FAILED tests/invariants/test_wm7_w1_post_2_capability_registry.py::test_select_by_class_returns_deterministic_sorted
+FAILED tests/invariants/test_wm7_w1_post_2_capability_registry.py::test_get_capability_returns_registered_binding
+FAILED tests/invariants/test_wm7_w1_post_2_capability_registry.py::test_get_capability_raises_capability_not_registered_on_miss
+FAILED tests/invariants/test_wm7_w1_post_2_capability_registry.py::test_reset_registry_for_tests_wipes_state
+FAILED tests/invariants/test_wm7_w1_post_2_capability_registry.py::test_registry_starts_empty_no_platform_seed
+FAILED tests/invariants/test_wm7_w1_post_2_capability_registry.py::test_registry_does_not_import_dispatch_or_factory_surfaces
+22 failed, 5 passed in 0.79s

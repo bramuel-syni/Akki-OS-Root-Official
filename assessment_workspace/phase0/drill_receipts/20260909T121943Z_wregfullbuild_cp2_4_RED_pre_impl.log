@@ -1,0 +1,200 @@
+============================= test session starts ==============================
+collecting ... collected 14 items
+
+backend/tests/invariants/test_w_registry_full_build_payload_shapes.py::test_cp2_registry_mix_carries_six_cut_dict_or_honest_gap FAILED [  7%]
+backend/tests/invariants/test_w_registry_full_build_payload_shapes.py::test_cp2_registry_mix_reading_carries_reading_or_honest_gap FAILED [ 14%]
+backend/tests/invariants/test_w_registry_full_build_payload_shapes.py::test_cp2_registry_source_profile_carries_ef_profile_fields FAILED [ 21%]
+backend/tests/invariants/test_w_registry_full_build_payload_shapes.py::test_cp2_registry_cir_carries_classifications_and_pending_count FAILED [ 28%]
+backend/tests/invariants/test_w_registry_full_build_payload_shapes.py::test_cp2_registry_estate_intelligence_carries_standout_or_honest_gap FAILED [ 35%]
+backend/tests/invariants/test_w_registry_full_build_payload_shapes.py::test_cp2_registry_opportunities_carries_briefs_or_honest_gap FAILED [ 42%]
+backend/tests/invariants/test_w_registry_full_build_payload_shapes.py::test_cp3_census_history_carries_history_list_and_count FAILED [ 50%]
+backend/tests/invariants/test_w_registry_full_build_payload_shapes.py::test_cp3_census_status_carries_state_field FAILED [ 57%]
+backend/tests/invariants/test_w_registry_full_build_payload_shapes.py::test_cp4_model_registry_full_record_carries_models_list_or_honest_gap FAILED [ 64%]
+backend/tests/invariants/test_w_registry_full_build_payload_shapes.py::test_cp4_model_journal_carries_model_id_and_journal_rows FAILED [ 71%]
+backend/tests/invariants/test_w_registry_full_build_payload_shapes.py::test_cp4_model_checks_carries_model_id_and_checks FAILED [ 78%]
+backend/tests/invariants/test_w_registry_full_build_payload_shapes.py::test_cp4_model_refusals_carries_model_id_and_refusals FAILED [ 85%]
+backend/tests/invariants/test_w_registry_full_build_payload_shapes.py::test_cp4_model_traffic_carries_traffic_dict FAILED [ 92%]
+backend/tests/invariants/test_w_registry_full_build_payload_shapes.py::test_cp4_model_answering_carries_answering_mode_field FAILED [100%]
+
+=================================== FAILURES ===================================
+___________ test_cp2_registry_mix_carries_six_cut_dict_or_honest_gap ___________
+backend/tests/invariants/test_w_registry_full_build_payload_shapes.py:92: in test_cp2_registry_mix_carries_six_cut_dict_or_honest_gap
+    body = _get("/api/registry/mix")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+backend/tests/invariants/test_w_registry_full_build_payload_shapes.py:56: in _get
+    r = _client().get(path, headers=ALLOWLIST_HEADER)
+        ^^^^^^^^^
+backend/tests/invariants/test_w_registry_full_build_payload_shapes.py:47: in _client
+    spec.loader.exec_module(mod)  # type: ignore[union-attr]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap_external>:940: in exec_module
+    ???
+<frozen importlib._bootstrap>:241: in _call_with_frames_removed
+    ???
+pod_shell/backend/server.py:82: in <module>
+    from services.w_registry_full_build.routers import ALL_ROUTERS as W_REGISTRY_FULL_BUILD_ROUTERS  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E     File "/app/assessment_workspace/repos/Extraction-Akki/backend/services/w_registry_full_build/routers.py", line 45
+E       return {"cuts": {}}
+E   IndentationError: unexpected indent
+---------------------------- Captured stdout setup -----------------------------
+[conftest] hermetic seed failed: unexpected indent (routers.py, line 45)
+_________ test_cp2_registry_mix_reading_carries_reading_or_honest_gap __________
+backend/tests/invariants/test_w_registry_full_build_payload_shapes.py:105: in test_cp2_registry_mix_reading_carries_reading_or_honest_gap
+    body = _get("/api/registry/mix/reading")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend/tests/invariants/test_w_registry_full_build_payload_shapes.py:56: in _get
+    r = _client().get(path, headers=ALLOWLIST_HEADER)
+        ^^^^^^^^^
+backend/tests/invariants/test_w_registry_full_build_payload_shapes.py:49: in _client
+    return TestClient(sys.modules["_wrfb_pod_shell_server"].app)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   AttributeError: module '_wrfb_pod_shell_server' has no attribute 'app'
+__________ test_cp2_registry_source_profile_carries_ef_profile_fields __________
+backend/tests/invariants/test_w_registry_full_build_payload_shapes.py:111: in test_cp2_registry_source_profile_carries_ef_profile_fields
+    body = _get("/api/registry/source/test_source_id/profile")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend/tests/invariants/test_w_registry_full_build_payload_shapes.py:56: in _get
+    r = _client().get(path, headers=ALLOWLIST_HEADER)
+        ^^^^^^^^^
+backend/tests/invariants/test_w_registry_full_build_payload_shapes.py:49: in _client
+    return TestClient(sys.modules["_wrfb_pod_shell_server"].app)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   AttributeError: module '_wrfb_pod_shell_server' has no attribute 'app'
+_______ test_cp2_registry_cir_carries_classifications_and_pending_count ________
+backend/tests/invariants/test_w_registry_full_build_payload_shapes.py:124: in test_cp2_registry_cir_carries_classifications_and_pending_count
+    body = _get("/api/registry/cir")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+backend/tests/invariants/test_w_registry_full_build_payload_shapes.py:56: in _get
+    r = _client().get(path, headers=ALLOWLIST_HEADER)
+        ^^^^^^^^^
+backend/tests/invariants/test_w_registry_full_build_payload_shapes.py:49: in _client
+    return TestClient(sys.modules["_wrfb_pod_shell_server"].app)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   AttributeError: module '_wrfb_pod_shell_server' has no attribute 'app'
+_____ test_cp2_registry_estate_intelligence_carries_standout_or_honest_gap _____
+backend/tests/invariants/test_w_registry_full_build_payload_shapes.py:134: in test_cp2_registry_estate_intelligence_carries_standout_or_honest_gap
+    body = _get("/api/registry/estate_intelligence")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend/tests/invariants/test_w_registry_full_build_payload_shapes.py:56: in _get
+    r = _client().get(path, headers=ALLOWLIST_HEADER)
+        ^^^^^^^^^
+backend/tests/invariants/test_w_registry_full_build_payload_shapes.py:49: in _client
+    return TestClient(sys.modules["_wrfb_pod_shell_server"].app)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   AttributeError: module '_wrfb_pod_shell_server' has no attribute 'app'
+_________ test_cp2_registry_opportunities_carries_briefs_or_honest_gap _________
+backend/tests/invariants/test_w_registry_full_build_payload_shapes.py:141: in test_cp2_registry_opportunities_carries_briefs_or_honest_gap
+    body = _get("/api/registry/opportunities")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend/tests/invariants/test_w_registry_full_build_payload_shapes.py:56: in _get
+    r = _client().get(path, headers=ALLOWLIST_HEADER)
+        ^^^^^^^^^
+backend/tests/invariants/test_w_registry_full_build_payload_shapes.py:49: in _client
+    return TestClient(sys.modules["_wrfb_pod_shell_server"].app)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   AttributeError: module '_wrfb_pod_shell_server' has no attribute 'app'
+____________ test_cp3_census_history_carries_history_list_and_count ____________
+backend/tests/invariants/test_w_registry_full_build_payload_shapes.py:152: in test_cp3_census_history_carries_history_list_and_count
+    body = _get("/api/census/history")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend/tests/invariants/test_w_registry_full_build_payload_shapes.py:56: in _get
+    r = _client().get(path, headers=ALLOWLIST_HEADER)
+        ^^^^^^^^^
+backend/tests/invariants/test_w_registry_full_build_payload_shapes.py:49: in _client
+    return TestClient(sys.modules["_wrfb_pod_shell_server"].app)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   AttributeError: module '_wrfb_pod_shell_server' has no attribute 'app'
+__________________ test_cp3_census_status_carries_state_field __________________
+backend/tests/invariants/test_w_registry_full_build_payload_shapes.py:161: in test_cp3_census_status_carries_state_field
+    body = _get("/api/census/status")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend/tests/invariants/test_w_registry_full_build_payload_shapes.py:56: in _get
+    r = _client().get(path, headers=ALLOWLIST_HEADER)
+        ^^^^^^^^^
+backend/tests/invariants/test_w_registry_full_build_payload_shapes.py:49: in _client
+    return TestClient(sys.modules["_wrfb_pod_shell_server"].app)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   AttributeError: module '_wrfb_pod_shell_server' has no attribute 'app'
+____ test_cp4_model_registry_full_record_carries_models_list_or_honest_gap _____
+backend/tests/invariants/test_w_registry_full_build_payload_shapes.py:173: in test_cp4_model_registry_full_record_carries_models_list_or_honest_gap
+    body = _get("/api/model_registry/full_record")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend/tests/invariants/test_w_registry_full_build_payload_shapes.py:56: in _get
+    r = _client().get(path, headers=ALLOWLIST_HEADER)
+        ^^^^^^^^^
+backend/tests/invariants/test_w_registry_full_build_payload_shapes.py:49: in _client
+    return TestClient(sys.modules["_wrfb_pod_shell_server"].app)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   AttributeError: module '_wrfb_pod_shell_server' has no attribute 'app'
+___________ test_cp4_model_journal_carries_model_id_and_journal_rows ___________
+backend/tests/invariants/test_w_registry_full_build_payload_shapes.py:181: in test_cp4_model_journal_carries_model_id_and_journal_rows
+    body = _get("/api/model_registry/test_model_id/journal")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend/tests/invariants/test_w_registry_full_build_payload_shapes.py:56: in _get
+    r = _client().get(path, headers=ALLOWLIST_HEADER)
+        ^^^^^^^^^
+backend/tests/invariants/test_w_registry_full_build_payload_shapes.py:49: in _client
+    return TestClient(sys.modules["_wrfb_pod_shell_server"].app)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   AttributeError: module '_wrfb_pod_shell_server' has no attribute 'app'
+______________ test_cp4_model_checks_carries_model_id_and_checks _______________
+backend/tests/invariants/test_w_registry_full_build_payload_shapes.py:190: in test_cp4_model_checks_carries_model_id_and_checks
+    body = _get("/api/model_registry/test_model_id/checks")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend/tests/invariants/test_w_registry_full_build_payload_shapes.py:56: in _get
+    r = _client().get(path, headers=ALLOWLIST_HEADER)
+        ^^^^^^^^^
+backend/tests/invariants/test_w_registry_full_build_payload_shapes.py:49: in _client
+    return TestClient(sys.modules["_wrfb_pod_shell_server"].app)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   AttributeError: module '_wrfb_pod_shell_server' has no attribute 'app'
+____________ test_cp4_model_refusals_carries_model_id_and_refusals _____________
+backend/tests/invariants/test_w_registry_full_build_payload_shapes.py:197: in test_cp4_model_refusals_carries_model_id_and_refusals
+    body = _get("/api/model_registry/test_model_id/refusals")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend/tests/invariants/test_w_registry_full_build_payload_shapes.py:56: in _get
+    r = _client().get(path, headers=ALLOWLIST_HEADER)
+        ^^^^^^^^^
+backend/tests/invariants/test_w_registry_full_build_payload_shapes.py:49: in _client
+    return TestClient(sys.modules["_wrfb_pod_shell_server"].app)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   AttributeError: module '_wrfb_pod_shell_server' has no attribute 'app'
+_________________ test_cp4_model_traffic_carries_traffic_dict __________________
+backend/tests/invariants/test_w_registry_full_build_payload_shapes.py:204: in test_cp4_model_traffic_carries_traffic_dict
+    body = _get("/api/model_registry/test_model_id/traffic")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend/tests/invariants/test_w_registry_full_build_payload_shapes.py:56: in _get
+    r = _client().get(path, headers=ALLOWLIST_HEADER)
+        ^^^^^^^^^
+backend/tests/invariants/test_w_registry_full_build_payload_shapes.py:49: in _client
+    return TestClient(sys.modules["_wrfb_pod_shell_server"].app)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   AttributeError: module '_wrfb_pod_shell_server' has no attribute 'app'
+____________ test_cp4_model_answering_carries_answering_mode_field _____________
+backend/tests/invariants/test_w_registry_full_build_payload_shapes.py:213: in test_cp4_model_answering_carries_answering_mode_field
+    body = _get("/api/model_registry/test_model_id/answering")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend/tests/invariants/test_w_registry_full_build_payload_shapes.py:56: in _get
+    r = _client().get(path, headers=ALLOWLIST_HEADER)
+        ^^^^^^^^^
+backend/tests/invariants/test_w_registry_full_build_payload_shapes.py:49: in _client
+    return TestClient(sys.modules["_wrfb_pod_shell_server"].app)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   AttributeError: module '_wrfb_pod_shell_server' has no attribute 'app'
+=========================== short test summary info ============================
+FAILED backend/tests/invariants/test_w_registry_full_build_payload_shapes.py::test_cp2_registry_mix_carries_six_cut_dict_or_honest_gap
+FAILED backend/tests/invariants/test_w_registry_full_build_payload_shapes.py::test_cp2_registry_mix_reading_carries_reading_or_honest_gap
+FAILED backend/tests/invariants/test_w_registry_full_build_payload_shapes.py::test_cp2_registry_source_profile_carries_ef_profile_fields
+FAILED backend/tests/invariants/test_w_registry_full_build_payload_shapes.py::test_cp2_registry_cir_carries_classifications_and_pending_count
+FAILED backend/tests/invariants/test_w_registry_full_build_payload_shapes.py::test_cp2_registry_estate_intelligence_carries_standout_or_honest_gap
+FAILED backend/tests/invariants/test_w_registry_full_build_payload_shapes.py::test_cp2_registry_opportunities_carries_briefs_or_honest_gap
+FAILED backend/tests/invariants/test_w_registry_full_build_payload_shapes.py::test_cp3_census_history_carries_history_list_and_count
+FAILED backend/tests/invariants/test_w_registry_full_build_payload_shapes.py::test_cp3_census_status_carries_state_field
+FAILED backend/tests/invariants/test_w_registry_full_build_payload_shapes.py::test_cp4_model_registry_full_record_carries_models_list_or_honest_gap
+FAILED backend/tests/invariants/test_w_registry_full_build_payload_shapes.py::test_cp4_model_journal_carries_model_id_and_journal_rows
+FAILED backend/tests/invariants/test_w_registry_full_build_payload_shapes.py::test_cp4_model_checks_carries_model_id_and_checks
+FAILED backend/tests/invariants/test_w_registry_full_build_payload_shapes.py::test_cp4_model_refusals_carries_model_id_and_refusals
+FAILED backend/tests/invariants/test_w_registry_full_build_payload_shapes.py::test_cp4_model_traffic_carries_traffic_dict
+FAILED backend/tests/invariants/test_w_registry_full_build_payload_shapes.py::test_cp4_model_answering_carries_answering_mode_field
+============================== 14 failed in 1.78s ==============================

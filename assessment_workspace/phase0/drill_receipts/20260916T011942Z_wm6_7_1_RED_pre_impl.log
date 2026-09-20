@@ -1,0 +1,196 @@
+FFFFFFFFFF                                                               [100%]============================ BASELINE_GUARD receipt ============================
+passed=0 / baseline-failures-remaining=0 / quarantined=0
+  manifest: tests/invariants/baseline_failures.json
+  scope: BASELINE_GUARD=1  ·  invocation: cd backend && BASELINE_GUARD=1 python -m pytest tests/invariants/
+!!!!!!!!!!!!! BASELINE_GUARD · HALT AND REPORT · owner ruling (c) !!!!!!!!!!!!!!
+[V1] 10 NEW failure(s) OUTSIDE manifest:
+    tests/invariants/test_wm6_7_1_target_outcome.py::test_wm6_7_1_constraints_frozen_three_carrier
+    tests/invariants/test_wm6_7_1_target_outcome.py::test_wm6_7_1_construct_pass_through_population_refusal
+    tests/invariants/test_wm6_7_1_target_outcome.py::test_wm6_7_1_construct_passes_on_wellformed_input_both_gate_values
+    tests/invariants/test_wm6_7_1_target_outcome.py::test_wm6_7_1_construct_refuses_acceptance_without_per_stratum
+    tests/invariants/test_wm6_7_1_target_outcome.py::test_wm6_7_1_construct_refuses_missing_test_set_ref
+    tests/invariants/test_wm6_7_1_target_outcome.py::test_wm6_7_1_gate_policy_values_verbatim
+    tests/invariants/test_wm6_7_1_target_outcome.py::test_wm6_7_1_module_fabric
+    tests/invariants/test_wm6_7_1_target_outcome.py::test_wm6_7_1_population_spec_refuses_empty_strata_refs
+    tests/invariants/test_wm6_7_1_target_outcome.py::test_wm6_7_1_target_outcome_frozen_seven_carrier
+    tests/invariants/test_wm6_7_1_target_outcome.py::test_wm6_7_1_target_outcome_refuses_invalid_gate_policy
+[V3] Passed count 0 < ratchet floor 4288
+  No silent rebaselining. Report drift to owner verbatim.
+
+=================================== FAILURES ===================================
+__________________________ test_wm6_7_1_module_fabric __________________________
+
+    def test_wm6_7_1_module_fabric():
+        """Module `services.audio_plane_v1.target_outcome` exports the
+        CP-M6-7-1 public API: 1 closed-set constant + 3 carriers + 1
+        factory + 4 error classes + AcceptanceBar re-export = 10 exports."""
+>       m = importlib.import_module(
+            "services.audio_plane_v1.target_outcome",
+        )
+
+tests/invariants/test_wm6_7_1_target_outcome.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'services.audio_plane_v1.target_outcome'
+import_ = <function _gcd_import at 0xff909a0fbd80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'services.audio_plane_v1.target_outcome'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+___________________ test_wm6_7_1_gate_policy_values_verbatim ___________________
+
+    def test_wm6_7_1_gate_policy_values_verbatim():
+        """§10.1 P160 verbatim (V102): 'gate_policy — per Outcome:
+        missed stratum gates release | ships documented'.  Closed set."""
+>       from services.audio_plane_v1.target_outcome import GATE_POLICY_VALUES
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.target_outcome'
+
+tests/invariants/test_wm6_7_1_target_outcome.py:68: ModuleNotFoundError
+________________ test_wm6_7_1_constraints_frozen_three_carrier _________________
+
+    def test_wm6_7_1_constraints_frozen_three_carrier():
+        """§10.1 P162 verbatim (V104): 'constraints — latency, compute
+        budget, deployment target'.  Frozen 3-carrier."""
+>       from services.audio_plane_v1.target_outcome import Constraints
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.target_outcome'
+
+tests/invariants/test_wm6_7_1_target_outcome.py:78: ModuleNotFoundError
+____________ test_wm6_7_1_population_spec_refuses_empty_strata_refs ____________
+
+    def test_wm6_7_1_population_spec_refuses_empty_strata_refs():
+        """§10.2 P166 verbatim (V105): 'Population is register-defined ...
+        never speakers of L.  This is what makes coverage computable.'
+        Empty stratum_refs (i.e. label-only population) refuses at
+        __post_init__ with `PopulationEmptyStrataRefsError`."""
+>       from services.audio_plane_v1.target_outcome import (
+            PopulationEmptyStrataRefsError,
+            PopulationSpec,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.target_outcome'
+
+tests/invariants/test_wm6_7_1_target_outcome.py:96: ModuleNotFoundError
+_______________ test_wm6_7_1_target_outcome_frozen_seven_carrier _______________
+
+    def test_wm6_7_1_target_outcome_frozen_seven_carrier():
+        """§10.1 P154..P164 verbatim: 7-carrier TargetOutcome block.
+        Frozen dataclass discipline.  §10.2 P169 verbatim (V108): 'The
+        gate decision is recorded on the Outcome at definition — not
+        decided ad hoc at ship time' — frozen-instance discipline
+        enforces this: gate_policy is immutable post-construction."""
+>       from services.audio_plane_v1.target_outcome import (
+            AcceptanceBar,
+            Constraints,
+            PopulationSpec,
+            TargetOutcome,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.target_outcome'
+
+tests/invariants/test_wm6_7_1_target_outcome.py:116: ModuleNotFoundError
+___________ test_wm6_7_1_target_outcome_refuses_invalid_gate_policy ____________
+
+    def test_wm6_7_1_target_outcome_refuses_invalid_gate_policy():
+        """§10.1 P160 verbatim (V102): closed-set gate_policy.  Any
+        string outside GATE_POLICY_VALUES refuses at `__post_init__`
+        with `GatePolicyInvalidError`."""
+>       from services.audio_plane_v1.target_outcome import (
+            AcceptanceBar,
+            Constraints,
+            GatePolicyInvalidError,
+            PopulationSpec,
+            TargetOutcome,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.target_outcome'
+
+tests/invariants/test_wm6_7_1_target_outcome.py:151: ModuleNotFoundError
+_____________ test_wm6_7_1_construct_refuses_missing_test_set_ref ______________
+
+    def test_wm6_7_1_construct_refuses_missing_test_set_ref():
+        """§10.2 P168 verbatim (V107 · LOAD-BEARING): 'The test set
+        precedes the training. An Outcome without an existing, stratified
+        test set is rejected at definition time.'  Empty test_set_ref
+        refuses in the factory with `TestSetRefMissingError`."""
+>       from services.audio_plane_v1.target_outcome import (
+            AcceptanceBar,
+            Constraints,
+            PopulationSpec,
+            TestSetRefMissingError,
+            construct_target_outcome,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.target_outcome'
+
+tests/invariants/test_wm6_7_1_target_outcome.py:180: ModuleNotFoundError
+________ test_wm6_7_1_construct_refuses_acceptance_without_per_stratum _________
+
+    def test_wm6_7_1_construct_refuses_acceptance_without_per_stratum():
+        """§10.2 P167 verbatim (V106): 'Acceptance is per stratum.  A
+        single global threshold hides the failure that matters ...'.
+        AcceptanceBar with `has_per_stratum_dimension=False` refuses at
+        factory with `AcceptancePerStratumMissingError`."""
+>       from services.audio_plane_v1.target_outcome import (
+            AcceptanceBar,
+            AcceptancePerStratumMissingError,
+            Constraints,
+            PopulationSpec,
+            construct_target_outcome,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.target_outcome'
+
+tests/invariants/test_wm6_7_1_target_outcome.py:209: ModuleNotFoundError
+____________ test_wm6_7_1_construct_pass_through_population_refusal ____________
+
+    def test_wm6_7_1_construct_pass_through_population_refusal():
+        """The factory constructs a `PopulationSpec` from any accepted
+        stratum_refs input; empty-stratum-refs refuses via
+        PopulationSpec's __post_init__ (V105).  This test verifies the
+        factory does not swallow the refusal — it propagates."""
+>       from services.audio_plane_v1.target_outcome import (
+            AcceptanceBar,
+            Constraints,
+            PopulationEmptyStrataRefsError,
+            PopulationSpec,
+            construct_target_outcome,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.target_outcome'
+
+tests/invariants/test_wm6_7_1_target_outcome.py:240: ModuleNotFoundError
+______ test_wm6_7_1_construct_passes_on_wellformed_input_both_gate_values ______
+
+    def test_wm6_7_1_construct_passes_on_wellformed_input_both_gate_values():
+        """Positive-path invariant: both gate_policy closed-set values
+        ('missed_stratum_gates_release' and 'ships_documented') construct
+        successfully with all §10 fields present.  V108 gate-at-definition
+        verified: gate_policy is bound at construction; frozen dataclass
+        (test #5) forbids post-construction mutation."""
+>       from services.audio_plane_v1.target_outcome import (
+            AcceptanceBar,
+            Constraints,
+            PopulationSpec,
+            TargetOutcome,
+            construct_target_outcome,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.target_outcome'
+
+tests/invariants/test_wm6_7_1_target_outcome.py:270: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wm6_7_1_target_outcome.py::test_wm6_7_1_module_fabric
+FAILED tests/invariants/test_wm6_7_1_target_outcome.py::test_wm6_7_1_gate_policy_values_verbatim
+FAILED tests/invariants/test_wm6_7_1_target_outcome.py::test_wm6_7_1_constraints_frozen_three_carrier
+FAILED tests/invariants/test_wm6_7_1_target_outcome.py::test_wm6_7_1_population_spec_refuses_empty_strata_refs
+FAILED tests/invariants/test_wm6_7_1_target_outcome.py::test_wm6_7_1_target_outcome_frozen_seven_carrier
+FAILED tests/invariants/test_wm6_7_1_target_outcome.py::test_wm6_7_1_target_outcome_refuses_invalid_gate_policy
+FAILED tests/invariants/test_wm6_7_1_target_outcome.py::test_wm6_7_1_construct_refuses_missing_test_set_ref
+FAILED tests/invariants/test_wm6_7_1_target_outcome.py::test_wm6_7_1_construct_refuses_acceptance_without_per_stratum
+FAILED tests/invariants/test_wm6_7_1_target_outcome.py::test_wm6_7_1_construct_pass_through_population_refusal
+FAILED tests/invariants/test_wm6_7_1_target_outcome.py::test_wm6_7_1_construct_passes_on_wellformed_input_both_gate_values
+10 failed in 0.94s

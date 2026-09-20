@@ -1,0 +1,737 @@
+
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/invariants/test_8_ext.py ________________
+ImportError while importing test module '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_8_ext.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/invariants/test_8_ext.py:29: in <module>
+    from server import app  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^^^^^
+server.py:25: in <module>
+    from routers import discipline as discipline_router
+routers/discipline.py:11: in <module>
+    from services.northena import trace_lens
+E   ImportError: cannot import name 'trace_lens' from 'services.northena' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/northena/__init__.py)
+_____ ERROR collecting tests/invariants/test_admission_refusal_dispatch.py _____
+ImportError while importing test module '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_admission_refusal_dispatch.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/invariants/test_admission_refusal_dispatch.py:22: in <module>
+    from server import app
+server.py:25: in <module>
+    from routers import discipline as discipline_router
+routers/discipline.py:11: in <module>
+    from services.northena import trace_lens
+E   ImportError: cannot import name 'trace_lens' from 'services.northena' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/northena/__init__.py)
+___________ ERROR collecting tests/invariants/test_artifact_store.py ___________
+ImportError while importing test module '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_artifact_store.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/invariants/test_artifact_store.py:39: in <module>
+    from server import app  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^^^^^
+server.py:25: in <module>
+    from routers import discipline as discipline_router
+routers/discipline.py:11: in <module>
+    from services.northena import trace_lens
+E   ImportError: cannot import name 'trace_lens' from 'services.northena' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/northena/__init__.py)
+____ ERROR collecting tests/invariants/test_composed_conclusion_dispatch.py ____
+ImportError while importing test module '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_composed_conclusion_dispatch.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/invariants/test_composed_conclusion_dispatch.py:31: in <module>
+    from server import app
+server.py:25: in <module>
+    from routers import discipline as discipline_router
+routers/discipline.py:11: in <module>
+    from services.northena import trace_lens
+E   ImportError: cannot import name 'trace_lens' from 'services.northena' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/northena/__init__.py)
+_________ ERROR collecting tests/invariants/test_connect_ui1c_gates.py _________
+ImportError while importing test module '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_connect_ui1c_gates.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/invariants/test_connect_ui1c_gates.py:24: in <module>
+    from server import app  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^^^^^
+server.py:25: in <module>
+    from routers import discipline as discipline_router
+routers/discipline.py:11: in <module>
+    from services.northena import trace_lens
+E   ImportError: cannot import name 'trace_lens' from 'services.northena' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/northena/__init__.py)
+____ ERROR collecting tests/invariants/test_dispatch_grain_form_refusal.py _____
+ImportError while importing test module '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_dispatch_grain_form_refusal.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/invariants/test_dispatch_grain_form_refusal.py:17: in <module>
+    from server import app
+server.py:25: in <module>
+    from routers import discipline as discipline_router
+routers/discipline.py:11: in <module>
+    from services.northena import trace_lens
+E   ImportError: cannot import name 'trace_lens' from 'services.northena' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/northena/__init__.py)
+_____ ERROR collecting tests/invariants/test_dispatch_shape_responsive.py ______
+ImportError while importing test module '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_dispatch_shape_responsive.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/invariants/test_dispatch_shape_responsive.py:52: in <module>
+    from server import app
+server.py:25: in <module>
+    from routers import discipline as discipline_router
+routers/discipline.py:11: in <module>
+    from services.northena import trace_lens
+E   ImportError: cannot import name 'trace_lens' from 'services.northena' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/northena/__init__.py)
+_______ ERROR collecting tests/invariants/test_dispatch_v0_untouched.py ________
+ImportError while importing test module '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_dispatch_v0_untouched.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/invariants/test_dispatch_v0_untouched.py:37: in <module>
+    from server import app
+server.py:25: in <module>
+    from routers import discipline as discipline_router
+routers/discipline.py:11: in <module>
+    from services.northena import trace_lens
+E   ImportError: cannot import name 'trace_lens' from 'services.northena' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/northena/__init__.py)
+___ ERROR collecting tests/invariants/test_engineer_key_grant_e2_taxonomy.py ___
+ImportError while importing test module '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_engineer_key_grant_e2_taxonomy.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/invariants/test_engineer_key_grant_e2_taxonomy.py:25: in <module>
+    from server import app
+server.py:25: in <module>
+    from routers import discipline as discipline_router
+routers/discipline.py:11: in <module>
+    from services.northena import trace_lens
+E   ImportError: cannot import name 'trace_lens' from 'services.northena' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/northena/__init__.py)
+_____ ERROR collecting tests/invariants/test_engineer_key_grant_ledger.py ______
+ImportError while importing test module '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_engineer_key_grant_ledger.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/invariants/test_engineer_key_grant_ledger.py:29: in <module>
+    from server import app
+server.py:25: in <module>
+    from routers import discipline as discipline_router
+routers/discipline.py:11: in <module>
+    from services.northena import trace_lens
+E   ImportError: cannot import name 'trace_lens' from 'services.northena' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/northena/__init__.py)
+__ ERROR collecting tests/invariants/test_feasibility_dual_consumer_schema.py __
+ImportError while importing test module '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_feasibility_dual_consumer_schema.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/invariants/test_feasibility_dual_consumer_schema.py:30: in <module>
+    from server import app
+server.py:25: in <module>
+    from routers import discipline as discipline_router
+routers/discipline.py:11: in <module>
+    from services.northena import trace_lens
+E   ImportError: cannot import name 'trace_lens' from 'services.northena' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/northena/__init__.py)
+________ ERROR collecting tests/invariants/test_feasibility_readonly.py ________
+ImportError while importing test module '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_feasibility_readonly.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/invariants/test_feasibility_readonly.py:18: in <module>
+    from server import app
+server.py:25: in <module>
+    from routers import discipline as discipline_router
+routers/discipline.py:11: in <module>
+    from services.northena import trace_lens
+E   ImportError: cannot import name 'trace_lens' from 'services.northena' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/northena/__init__.py)
+________ ERROR collecting tests/invariants/test_govern_g_g1_to_g_g8.py _________
+ImportError while importing test module '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_govern_g_g1_to_g_g8.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/invariants/test_govern_g_g1_to_g_g8.py:42: in <module>
+    from server import app  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^^^^^
+server.py:25: in <module>
+    from routers import discipline as discipline_router
+routers/discipline.py:11: in <module>
+    from services.northena import trace_lens
+E   ImportError: cannot import name 'trace_lens' from 'services.northena' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/northena/__init__.py)
+_________ ERROR collecting tests/invariants/test_govern_ui1b_gates.py __________
+ImportError while importing test module '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_govern_ui1b_gates.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/invariants/test_govern_ui1b_gates.py:33: in <module>
+    from server import app  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^
+server.py:25: in <module>
+    from routers import discipline as discipline_router
+routers/discipline.py:11: in <module>
+    from services.northena import trace_lens
+E   ImportError: cannot import name 'trace_lens' from 'services.northena' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/northena/__init__.py)
+_______ ERROR collecting tests/invariants/test_handoff_route_readonly.py _______
+ImportError while importing test module '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_handoff_route_readonly.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/invariants/test_handoff_route_readonly.py:28: in <module>
+    from server import app
+server.py:25: in <module>
+    from routers import discipline as discipline_router
+routers/discipline.py:11: in <module>
+    from services.northena import trace_lens
+E   ImportError: cannot import name 'trace_lens' from 'services.northena' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/northena/__init__.py)
+__ ERROR collecting tests/invariants/test_master_admin_auth_reconciliation.py __
+ImportError while importing test module '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_master_admin_auth_reconciliation.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/invariants/test_master_admin_auth_reconciliation.py:39: in <module>
+    from server import app
+server.py:25: in <module>
+    from routers import discipline as discipline_router
+routers/discipline.py:11: in <module>
+    from services.northena import trace_lens
+E   ImportError: cannot import name 'trace_lens' from 'services.northena' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/northena/__init__.py)
+_____ ERROR collecting tests/invariants/test_master_admin_pending_seams.py _____
+ImportError while importing test module '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_master_admin_pending_seams.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/invariants/test_master_admin_pending_seams.py:28: in <module>
+    from server import app
+server.py:25: in <module>
+    from routers import discipline as discipline_router
+routers/discipline.py:11: in <module>
+    from services.northena import trace_lens
+E   ImportError: cannot import name 'trace_lens' from 'services.northena' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/northena/__init__.py)
+____ ERROR collecting tests/invariants/test_master_admin_recent_actions.py _____
+ImportError while importing test module '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_master_admin_recent_actions.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/invariants/test_master_admin_recent_actions.py:31: in <module>
+    from server import app
+server.py:25: in <module>
+    from routers import discipline as discipline_router
+routers/discipline.py:11: in <module>
+    from services.northena import trace_lens
+E   ImportError: cannot import name 'trace_lens' from 'services.northena' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/northena/__init__.py)
+_ ERROR collecting tests/invariants/test_master_admin_tier_lock_path_a_ledger.py _
+ImportError while importing test module '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_master_admin_tier_lock_path_a_ledger.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/invariants/test_master_admin_tier_lock_path_a_ledger.py:29: in <module>
+    from server import app
+server.py:25: in <module>
+    from routers import discipline as discipline_router
+routers/discipline.py:11: in <module>
+    from services.northena import trace_lens
+E   ImportError: cannot import name 'trace_lens' from 'services.northena' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/northena/__init__.py)
+_ ERROR collecting tests/invariants/test_memory_engineer_key_grant_e2e_propagation.py _
+ImportError while importing test module '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_memory_engineer_key_grant_e2e_propagation.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/invariants/test_memory_engineer_key_grant_e2e_propagation.py:30: in <module>
+    from server import app  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^^^^^
+server.py:25: in <module>
+    from routers import discipline as discipline_router
+routers/discipline.py:11: in <module>
+    from services.northena import trace_lens
+E   ImportError: cannot import name 'trace_lens' from 'services.northena' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/northena/__init__.py)
+_ ERROR collecting tests/invariants/test_memory_observability_o_g1_to_o_g6.py __
+ImportError while importing test module '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_memory_observability_o_g1_to_o_g6.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/invariants/test_memory_observability_o_g1_to_o_g6.py:39: in <module>
+    from server import app  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^^^^^
+server.py:25: in <module>
+    from routers import discipline as discipline_router
+routers/discipline.py:11: in <module>
+    from services.northena import trace_lens
+E   ImportError: cannot import name 'trace_lens' from 'services.northena' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/northena/__init__.py)
+____ ERROR collecting tests/invariants/test_memory_service_m_g1_to_m_g9.py _____
+ImportError while importing test module '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_memory_service_m_g1_to_m_g9.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/invariants/test_memory_service_m_g1_to_m_g9.py:39: in <module>
+    from server import app  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^^^^^
+server.py:25: in <module>
+    from routers import discipline as discipline_router
+routers/discipline.py:11: in <module>
+    from services.northena import trace_lens
+E   ImportError: cannot import name 'trace_lens' from 'services.northena' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/northena/__init__.py)
+__________ ERROR collecting tests/invariants/test_p2_buildable_now.py __________
+ImportError while importing test module '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_p2_buildable_now.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/invariants/test_p2_buildable_now.py:47: in <module>
+    from server import app  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^^^^^
+server.py:25: in <module>
+    from routers import discipline as discipline_router
+routers/discipline.py:11: in <module>
+    from services.northena import trace_lens
+E   ImportError: cannot import name 'trace_lens' from 'services.northena' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/northena/__init__.py)
+_______ ERROR collecting tests/invariants/test_phase3_subcycle1_gates.py _______
+ImportError while importing test module '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_phase3_subcycle1_gates.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/invariants/test_phase3_subcycle1_gates.py:24: in <module>
+    from server import app  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^^^^^
+server.py:25: in <module>
+    from routers import discipline as discipline_router
+routers/discipline.py:11: in <module>
+    from services.northena import trace_lens
+E   ImportError: cannot import name 'trace_lens' from 'services.northena' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/northena/__init__.py)
+___ ERROR collecting tests/invariants/test_phase_5_stage_b_async_delivery.py ___
+ImportError while importing test module '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_phase_5_stage_b_async_delivery.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/invariants/test_phase_5_stage_b_async_delivery.py:35: in <module>
+    from server import app
+server.py:25: in <module>
+    from routers import discipline as discipline_router
+routers/discipline.py:11: in <module>
+    from services.northena import trace_lens
+E   ImportError: cannot import name 'trace_lens' from 'services.northena' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/northena/__init__.py)
+_____ ERROR collecting tests/invariants/test_phase_6_stage_b_economics.py ______
+ImportError while importing test module '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_phase_6_stage_b_economics.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/invariants/test_phase_6_stage_b_economics.py:50: in <module>
+    from server import app
+server.py:25: in <module>
+    from routers import discipline as discipline_router
+routers/discipline.py:11: in <module>
+    from services.northena import trace_lens
+E   ImportError: cannot import name 'trace_lens' from 'services.northena' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/northena/__init__.py)
+______ ERROR collecting tests/invariants/test_phase_7_stage_b_1_wizard.py ______
+ImportError while importing test module '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_phase_7_stage_b_1_wizard.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/invariants/test_phase_7_stage_b_1_wizard.py:64: in <module>
+    from server import app
+server.py:25: in <module>
+    from routers import discipline as discipline_router
+routers/discipline.py:11: in <module>
+    from services.northena import trace_lens
+E   ImportError: cannot import name 'trace_lens' from 'services.northena' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/northena/__init__.py)
+______ ERROR collecting tests/invariants/test_phase_7_stage_b_2_wizard.py ______
+ImportError while importing test module '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_phase_7_stage_b_2_wizard.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/invariants/test_phase_7_stage_b_2_wizard.py:44: in <module>
+    from server import app
+server.py:25: in <module>
+    from routers import discipline as discipline_router
+routers/discipline.py:11: in <module>
+    from services.northena import trace_lens
+E   ImportError: cannot import name 'trace_lens' from 'services.northena' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/northena/__init__.py)
+______ ERROR collecting tests/invariants/test_phase_7_stage_b_3_wizard.py ______
+ImportError while importing test module '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_phase_7_stage_b_3_wizard.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/invariants/test_phase_7_stage_b_3_wizard.py:39: in <module>
+    from server import app
+server.py:25: in <module>
+    from routers import discipline as discipline_router
+routers/discipline.py:11: in <module>
+    from services.northena import trace_lens
+E   ImportError: cannot import name 'trace_lens' from 'services.northena' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/northena/__init__.py)
+_____ ERROR collecting tests/invariants/test_phase_8_b_1_auth_and_shims.py _____
+ImportError while importing test module '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_phase_8_b_1_auth_and_shims.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/invariants/test_phase_8_b_1_auth_and_shims.py:29: in <module>
+    from server import app
+server.py:25: in <module>
+    from routers import discipline as discipline_router
+routers/discipline.py:11: in <module>
+    from services.northena import trace_lens
+E   ImportError: cannot import name 'trace_lens' from 'services.northena' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/northena/__init__.py)
+_ ERROR collecting tests/invariants/test_phase_8_b_2_operator_and_scope_gate.py _
+ImportError while importing test module '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_phase_8_b_2_operator_and_scope_gate.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/invariants/test_phase_8_b_2_operator_and_scope_gate.py:18: in <module>
+    from server import app
+server.py:25: in <module>
+    from routers import discipline as discipline_router
+routers/discipline.py:11: in <module>
+    from services.northena import trace_lens
+E   ImportError: cannot import name 'trace_lens' from 'services.northena' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/northena/__init__.py)
+______ ERROR collecting tests/invariants/test_phase_8_b_5a_compliance.py _______
+ImportError while importing test module '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_phase_8_b_5a_compliance.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/invariants/test_phase_8_b_5a_compliance.py:40: in <module>
+    from server import app  # ASGI app
+    ^^^^^^^^^^^^^^^^^^^^^^
+server.py:25: in <module>
+    from routers import discipline as discipline_router
+routers/discipline.py:11: in <module>
+    from services.northena import trace_lens
+E   ImportError: cannot import name 'trace_lens' from 'services.northena' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/northena/__init__.py)
+____________ ERROR collecting tests/invariants/test_phase_8_b_5b.py ____________
+ImportError while importing test module '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_phase_8_b_5b.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/invariants/test_phase_8_b_5b.py:28: in <module>
+    from server import app
+server.py:25: in <module>
+    from routers import discipline as discipline_router
+routers/discipline.py:11: in <module>
+    from services.northena import trace_lens
+E   ImportError: cannot import name 'trace_lens' from 'services.northena' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/northena/__init__.py)
+_____ ERROR collecting tests/invariants/test_phase_8_seam_3_sub_stage_1.py _____
+ImportError while importing test module '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_phase_8_seam_3_sub_stage_1.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/invariants/test_phase_8_seam_3_sub_stage_1.py:39: in <module>
+    from server import app  # noqa: E402 — required import
+    ^^^^^^^^^^^^^^^^^^^^^^
+server.py:25: in <module>
+    from routers import discipline as discipline_router
+routers/discipline.py:11: in <module>
+    from services.northena import trace_lens
+E   ImportError: cannot import name 'trace_lens' from 'services.northena' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/northena/__init__.py)
+_____ ERROR collecting tests/invariants/test_phase_8_seam_3_sub_stage_2.py _____
+ImportError while importing test module '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_phase_8_seam_3_sub_stage_2.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/invariants/test_phase_8_seam_3_sub_stage_2.py:76: in <module>
+    from server import app
+server.py:25: in <module>
+    from routers import discipline as discipline_router
+routers/discipline.py:11: in <module>
+    from services.northena import trace_lens
+E   ImportError: cannot import name 'trace_lens' from 'services.northena' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/northena/__init__.py)
+_____ ERROR collecting tests/invariants/test_phase_8_seam_3_sub_stage_3.py _____
+ImportError while importing test module '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_phase_8_seam_3_sub_stage_3.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/invariants/test_phase_8_seam_3_sub_stage_3.py:35: in <module>
+    from server import app
+server.py:25: in <module>
+    from routers import discipline as discipline_router
+routers/discipline.py:11: in <module>
+    from services.northena import trace_lens
+E   ImportError: cannot import name 'trace_lens' from 'services.northena' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/northena/__init__.py)
+___ ERROR collecting tests/invariants/test_phase_9_sub_stage_9_1_and_9_3.py ____
+ImportError while importing test module '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_phase_9_sub_stage_9_1_and_9_3.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/invariants/test_phase_9_sub_stage_9_1_and_9_3.py:38: in <module>
+    from server import app  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^^^^^
+server.py:25: in <module>
+    from routers import discipline as discipline_router
+routers/discipline.py:11: in <module>
+    from services.northena import trace_lens
+E   ImportError: cannot import name 'trace_lens' from 'services.northena' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/northena/__init__.py)
+_____ ERROR collecting tests/invariants/test_pricing_paths_b_honest_501.py _____
+ImportError while importing test module '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_pricing_paths_b_honest_501.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/invariants/test_pricing_paths_b_honest_501.py:25: in <module>
+    from server import app
+server.py:25: in <module>
+    from routers import discipline as discipline_router
+routers/discipline.py:11: in <module>
+    from services.northena import trace_lens
+E   ImportError: cannot import name 'trace_lens' from 'services.northena' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/northena/__init__.py)
+___ ERROR collecting tests/invariants/test_production_housing_ph_g1_to_g6.py ___
+ImportError while importing test module '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_production_housing_ph_g1_to_g6.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/invariants/test_production_housing_ph_g1_to_g6.py:30: in <module>
+    from server import app
+server.py:25: in <module>
+    from routers import discipline as discipline_router
+routers/discipline.py:11: in <module>
+    from services.northena import trace_lens
+E   ImportError: cannot import name 'trace_lens' from 'services.northena' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/northena/__init__.py)
+___ ERROR collecting tests/invariants/test_qualified_data_outer_gate_ride.py ___
+ImportError while importing test module '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_qualified_data_outer_gate_ride.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/invariants/test_qualified_data_outer_gate_ride.py:27: in <module>
+    from server import app
+server.py:25: in <module>
+    from routers import discipline as discipline_router
+routers/discipline.py:11: in <module>
+    from services.northena import trace_lens
+E   ImportError: cannot import name 'trace_lens' from 'services.northena' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/northena/__init__.py)
+______ ERROR collecting tests/invariants/test_qualified_data_selection.py ______
+ImportError while importing test module '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_qualified_data_selection.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/invariants/test_qualified_data_selection.py:28: in <module>
+    from server import app
+server.py:25: in <module>
+    from routers import discipline as discipline_router
+routers/discipline.py:11: in <module>
+    from services.northena import trace_lens
+E   ImportError: cannot import name 'trace_lens' from 'services.northena' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/northena/__init__.py)
+_____ ERROR collecting tests/invariants/test_registry_prove_ui1d_gates.py ______
+ImportError while importing test module '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_registry_prove_ui1d_gates.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/invariants/test_registry_prove_ui1d_gates.py:30: in <module>
+    from server import app  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^^^^^
+server.py:25: in <module>
+    from routers import discipline as discipline_router
+routers/discipline.py:11: in <module>
+    from services.northena import trace_lens
+E   ImportError: cannot import name 'trace_lens' from 'services.northena' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/northena/__init__.py)
+_____ ERROR collecting tests/invariants/test_service_1_refusal_envelope.py _____
+ImportError while importing test module '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_service_1_refusal_envelope.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/invariants/test_service_1_refusal_envelope.py:33: in <module>
+    from server import app
+server.py:25: in <module>
+    from routers import discipline as discipline_router
+routers/discipline.py:11: in <module>
+    from services.northena import trace_lens
+E   ImportError: cannot import name 'trace_lens' from 'services.northena' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/northena/__init__.py)
+___ ERROR collecting tests/invariants/test_solva_trace_ledger_integration.py ___
+ImportError while importing test module '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_solva_trace_ledger_integration.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/invariants/test_solva_trace_ledger_integration.py:32: in <module>
+    from services.northena.converge import absorb_solva_trace
+E   ImportError: cannot import name 'absorb_solva_trace' from 'services.northena.converge' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/northena/converge.py)
+__________ ERROR collecting tests/invariants/test_team_ui1e_gates.py ___________
+ImportError while importing test module '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_team_ui1e_gates.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/invariants/test_team_ui1e_gates.py:27: in <module>
+    from server import app  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^^^^^
+server.py:25: in <module>
+    from routers import discipline as discipline_router
+routers/discipline.py:11: in <module>
+    from services.northena import trace_lens
+E   ImportError: cannot import name 'trace_lens' from 'services.northena' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/northena/__init__.py)
+_ ERROR collecting tests/invariants/test_trace_lens_cross_engine_correlation.py _
+ImportError while importing test module '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_trace_lens_cross_engine_correlation.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/invariants/test_trace_lens_cross_engine_correlation.py:38: in <module>
+    from server import app
+server.py:25: in <module>
+    from routers import discipline as discipline_router
+routers/discipline.py:11: in <module>
+    from services.northena import trace_lens
+E   ImportError: cannot import name 'trace_lens' from 'services.northena' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/northena/__init__.py)
+________ ERROR collecting tests/invariants/test_trace_lens_readonly.py _________
+ImportError while importing test module '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_trace_lens_readonly.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/invariants/test_trace_lens_readonly.py:25: in <module>
+    from server import app
+server.py:25: in <module>
+    from routers import discipline as discipline_router
+routers/discipline.py:11: in <module>
+    from services.northena import trace_lens
+E   ImportError: cannot import name 'trace_lens' from 'services.northena' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/northena/__init__.py)
+____ ERROR collecting tests/invariants/test_use_data_commission_verdict.py _____
+ImportError while importing test module '/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_use_data_commission_verdict.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/invariants/test_use_data_commission_verdict.py:34: in <module>
+    from server import app  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^
+server.py:25: in <module>
+    from routers import discipline as discipline_router
+routers/discipline.py:11: in <module>
+    from services.northena import trace_lens
+E   ImportError: cannot import name 'trace_lens' from 'services.northena' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/northena/__init__.py)
+=========================== short test summary info ============================
+ERROR tests/invariants/test_8_ext.py
+ERROR tests/invariants/test_admission_refusal_dispatch.py
+ERROR tests/invariants/test_artifact_store.py
+ERROR tests/invariants/test_composed_conclusion_dispatch.py
+ERROR tests/invariants/test_connect_ui1c_gates.py
+ERROR tests/invariants/test_dispatch_grain_form_refusal.py
+ERROR tests/invariants/test_dispatch_shape_responsive.py
+ERROR tests/invariants/test_dispatch_v0_untouched.py
+ERROR tests/invariants/test_engineer_key_grant_e2_taxonomy.py
+ERROR tests/invariants/test_engineer_key_grant_ledger.py
+ERROR tests/invariants/test_feasibility_dual_consumer_schema.py
+ERROR tests/invariants/test_feasibility_readonly.py
+ERROR tests/invariants/test_govern_g_g1_to_g_g8.py
+ERROR tests/invariants/test_govern_ui1b_gates.py
+ERROR tests/invariants/test_handoff_route_readonly.py
+ERROR tests/invariants/test_master_admin_auth_reconciliation.py
+ERROR tests/invariants/test_master_admin_pending_seams.py
+ERROR tests/invariants/test_master_admin_recent_actions.py
+ERROR tests/invariants/test_master_admin_tier_lock_path_a_ledger.py
+ERROR tests/invariants/test_memory_engineer_key_grant_e2e_propagation.py
+ERROR tests/invariants/test_memory_observability_o_g1_to_o_g6.py
+ERROR tests/invariants/test_memory_service_m_g1_to_m_g9.py
+ERROR tests/invariants/test_p2_buildable_now.py
+ERROR tests/invariants/test_phase3_subcycle1_gates.py
+ERROR tests/invariants/test_phase_5_stage_b_async_delivery.py
+ERROR tests/invariants/test_phase_6_stage_b_economics.py
+ERROR tests/invariants/test_phase_7_stage_b_1_wizard.py
+ERROR tests/invariants/test_phase_7_stage_b_2_wizard.py
+ERROR tests/invariants/test_phase_7_stage_b_3_wizard.py
+ERROR tests/invariants/test_phase_8_b_1_auth_and_shims.py
+ERROR tests/invariants/test_phase_8_b_2_operator_and_scope_gate.py
+ERROR tests/invariants/test_phase_8_b_5a_compliance.py
+ERROR tests/invariants/test_phase_8_b_5b.py
+ERROR tests/invariants/test_phase_8_seam_3_sub_stage_1.py
+ERROR tests/invariants/test_phase_8_seam_3_sub_stage_2.py
+ERROR tests/invariants/test_phase_8_seam_3_sub_stage_3.py
+ERROR tests/invariants/test_phase_9_sub_stage_9_1_and_9_3.py
+ERROR tests/invariants/test_pricing_paths_b_honest_501.py
+ERROR tests/invariants/test_production_housing_ph_g1_to_g6.py
+ERROR tests/invariants/test_qualified_data_outer_gate_ride.py
+ERROR tests/invariants/test_qualified_data_selection.py
+ERROR tests/invariants/test_registry_prove_ui1d_gates.py
+ERROR tests/invariants/test_service_1_refusal_envelope.py
+ERROR tests/invariants/test_solva_trace_ledger_integration.py
+ERROR tests/invariants/test_team_ui1e_gates.py
+ERROR tests/invariants/test_trace_lens_cross_engine_correlation.py
+ERROR tests/invariants/test_trace_lens_readonly.py
+ERROR tests/invariants/test_use_data_commission_verdict.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 48 errors during collection !!!!!!!!!!!!!!!!!!!
+48 errors in 1.06s

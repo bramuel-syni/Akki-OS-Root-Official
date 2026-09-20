@@ -1,0 +1,35 @@
+=== LOCKDOWN + RE-HOME · GREEN RECEIPT ===
+Timestamp (UTC): 2026-08-14T15:15:00Z
+
+## Backend gating tests (spine repo)
+78/78 passed on programme/track-a HEAD d2a3a01
+- 62 pre-existing (parity, record-matrix, task-identity, declaration, seam, hardening,
+  connect-gpu pipeline & scope & acceptance-wired)
+- 16 NEW IP allowlist middleware invariants
+
+## Frontend gating tests (pod-shell + spine)
+- 12/12 passed  · plugins/ip-allowlist/__tests__/ip_allowlist.test.js
+- 9/9  passed  · pod_shell/frontend/__tests__/rehome.test.js
+
+## Live E2E through preview URL (pod egress 34.170.12.145 NOT allowlisted)
+Every route family refused with HTTP 403, text/plain, exact sentence
+"This surface answers allowlisted addresses only.":
+  /                     403  text/plain
+  /register/connect/gpu 403  text/plain
+  /api/deliverables     403  text/plain
+  /api/connect/gpu      403  text/plain
+  /static/x.css         403  text/plain
+
+## Live E2E via 127.0.0.1:{3000,8001} with crafted XFF (allowed 34.16.56.64 at xff[-3])
+- GET / → 200 text/html (SPA shell)
+- GET /register/connect/gpu → 404 text/plain "This route has been retired."
+- GET /api/deliverables → 200 application/json
+- Spoofed leftmost XFF entries with allowed IP still at xff[-3] → 200 (correct)
+- Disallowed IP at xff[-3] with allowed IP spoofed elsewhere → 403 (correct)
+
+## Token revocation
+- /app/backend/.owner_credentials · ABSENT
+- /app/backend/spine_auth.py · ABSENT
+- /app/memory/test_credentials.md · SCRUBBED (no 64-hex tokens)
+- Old compromised token probe on /api/connect/gpu → HTTP 403 (was 422 before)
+- No git-tracked file in spine repo carries the old value (git grep · 0 hits)

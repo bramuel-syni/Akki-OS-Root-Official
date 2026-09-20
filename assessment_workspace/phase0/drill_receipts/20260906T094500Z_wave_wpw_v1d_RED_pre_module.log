@@ -1,0 +1,105 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.4.2, pluggy-1.6.0 -- /root/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: asyncio-1.4.0, xdist-3.8.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collecting ... collected 15 items
+
+tests/invariants/test_wpw_tier2_report.py::test_wpw8_section_skeleton_is_fixed_and_ordered_verbatim FAILED [  6%]
+tests/invariants/test_wpw_tier2_report.py::test_wpw8_report_drafts_on_settle_accepted FAILED [ 13%]
+tests/invariants/test_wpw_tier2_report.py::test_wpw9_every_figure_carries_evidence_class_and_receipt FAILED [ 20%]
+tests/invariants/test_wpw_tier2_report.py::test_wpw9_unresolvable_figure_refuses_to_render FAILED [ 26%]
+tests/invariants/test_wpw_tier2_report.py::test_wpw10_report_marked_internal_only FAILED [ 33%]
+tests/invariants/test_wpw_tier2_report.py::test_wpw10_public_surface_has_no_outer_gate_export FAILED [ 40%]
+tests/invariants/test_wpw_tier2_report.py::test_a4_traceability_all_figures_resolve_in_well_formed_run FAILED [ 46%]
+tests/invariants/test_wpw_tier2_report.py::test_a6_refused_run_report_is_drafted_with_refusal_and_numbers FAILED [ 53%]
+tests/invariants/test_wpw_tier2_report.py::test_report_problem_and_objective_derived_from_commissioning_reflection FAILED [ 60%]
+tests/invariants/test_wpw_tier2_report.py::test_report_data_statement_is_classification_driven FAILED [ 66%]
+tests/invariants/test_wpw_tier2_report.py::test_report_baseline_record_cites_baseline_line_id FAILED [ 73%]
+tests/invariants/test_wpw_tier2_report.py::test_report_method_section_includes_adopted_ideation_events FAILED [ 80%]
+tests/invariants/test_wpw_tier2_report.py::test_report_reproducibility_section_covers_hardware_duration_cost_seeds FAILED [ 86%]
+tests/invariants/test_wpw_tier2_report.py::test_report_results_section_carries_all_six_acceptance_criteria FAILED [ 93%]
+tests/invariants/test_wpw_tier2_report.py::test_tier2_public_surface_has_no_mutation_of_run_state FAILED [100%]
+
+=================================== FAILURES ===================================
+___________ test_wpw8_section_skeleton_is_fixed_and_ordered_verbatim ___________
+tests/invariants/test_wpw_tier2_report.py:214: in test_wpw8_section_skeleton_is_fixed_and_ordered_verbatim
+    from services.wpw import tier2_report as t2
+E   ImportError: cannot import name 'tier2_report' from 'services.wpw' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/wpw/__init__.py)
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+__________________ test_wpw8_report_drafts_on_settle_accepted __________________
+tests/invariants/test_wpw_tier2_report.py:235: in test_wpw8_report_drafts_on_settle_accepted
+    from services.wpw import tier2_report as t2
+E   ImportError: cannot import name 'tier2_report' from 'services.wpw' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/wpw/__init__.py)
+__________ test_wpw9_every_figure_carries_evidence_class_and_receipt ___________
+tests/invariants/test_wpw_tier2_report.py:260: in test_wpw9_every_figure_carries_evidence_class_and_receipt
+    from services.wpw import tier2_report as t2
+E   ImportError: cannot import name 'tier2_report' from 'services.wpw' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/wpw/__init__.py)
+_______________ test_wpw9_unresolvable_figure_refuses_to_render ________________
+tests/invariants/test_wpw_tier2_report.py:294: in test_wpw9_unresolvable_figure_refuses_to_render
+    from services.wpw import tier2_report as t2
+E   ImportError: cannot import name 'tier2_report' from 'services.wpw' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/wpw/__init__.py)
+____________________ test_wpw10_report_marked_internal_only ____________________
+tests/invariants/test_wpw_tier2_report.py:332: in test_wpw10_report_marked_internal_only
+    from services.wpw import tier2_report as t2
+E   ImportError: cannot import name 'tier2_report' from 'services.wpw' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/wpw/__init__.py)
+______________ test_wpw10_public_surface_has_no_outer_gate_export ______________
+tests/invariants/test_wpw_tier2_report.py:347: in test_wpw10_public_surface_has_no_outer_gate_export
+    from services.wpw import tier2_report as t2
+E   ImportError: cannot import name 'tier2_report' from 'services.wpw' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/wpw/__init__.py)
+_________ test_a4_traceability_all_figures_resolve_in_well_formed_run __________
+tests/invariants/test_wpw_tier2_report.py:375: in test_a4_traceability_all_figures_resolve_in_well_formed_run
+    from services.wpw import tier2_report as t2
+E   ImportError: cannot import name 'tier2_report' from 'services.wpw' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/wpw/__init__.py)
+________ test_a6_refused_run_report_is_drafted_with_refusal_and_numbers ________
+tests/invariants/test_wpw_tier2_report.py:401: in test_a6_refused_run_report_is_drafted_with_refusal_and_numbers
+    from services.wpw import tier2_report as t2
+E   ImportError: cannot import name 'tier2_report' from 'services.wpw' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/wpw/__init__.py)
+___ test_report_problem_and_objective_derived_from_commissioning_reflection ____
+tests/invariants/test_wpw_tier2_report.py:427: in test_report_problem_and_objective_derived_from_commissioning_reflection
+    from services.wpw import tier2_report as t2
+E   ImportError: cannot import name 'tier2_report' from 'services.wpw' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/wpw/__init__.py)
+_____________ test_report_data_statement_is_classification_driven ______________
+tests/invariants/test_wpw_tier2_report.py:440: in test_report_data_statement_is_classification_driven
+    from services.wpw import tier2_report as t2
+E   ImportError: cannot import name 'tier2_report' from 'services.wpw' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/wpw/__init__.py)
+______________ test_report_baseline_record_cites_baseline_line_id ______________
+tests/invariants/test_wpw_tier2_report.py:456: in test_report_baseline_record_cites_baseline_line_id
+    from services.wpw import tier2_report as t2
+E   ImportError: cannot import name 'tier2_report' from 'services.wpw' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/wpw/__init__.py)
+_________ test_report_method_section_includes_adopted_ideation_events __________
+tests/invariants/test_wpw_tier2_report.py:467: in test_report_method_section_includes_adopted_ideation_events
+    from services.wpw import tier2_report as t2
+E   ImportError: cannot import name 'tier2_report' from 'services.wpw' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/wpw/__init__.py)
+___ test_report_reproducibility_section_covers_hardware_duration_cost_seeds ____
+tests/invariants/test_wpw_tier2_report.py:479: in test_report_reproducibility_section_covers_hardware_duration_cost_seeds
+    from services.wpw import tier2_report as t2
+E   ImportError: cannot import name 'tier2_report' from 'services.wpw' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/wpw/__init__.py)
+_______ test_report_results_section_carries_all_six_acceptance_criteria ________
+tests/invariants/test_wpw_tier2_report.py:496: in test_report_results_section_carries_all_six_acceptance_criteria
+    from services.wpw import tier2_report as t2
+E   ImportError: cannot import name 'tier2_report' from 'services.wpw' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/wpw/__init__.py)
+____________ test_tier2_public_surface_has_no_mutation_of_run_state ____________
+tests/invariants/test_wpw_tier2_report.py:510: in test_tier2_public_surface_has_no_mutation_of_run_state
+    from services.wpw import tier2_report as t2
+E   ImportError: cannot import name 'tier2_report' from 'services.wpw' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/wpw/__init__.py)
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wpw_tier2_report.py::test_wpw8_section_skeleton_is_fixed_and_ordered_verbatim
+FAILED tests/invariants/test_wpw_tier2_report.py::test_wpw8_report_drafts_on_settle_accepted
+FAILED tests/invariants/test_wpw_tier2_report.py::test_wpw9_every_figure_carries_evidence_class_and_receipt
+FAILED tests/invariants/test_wpw_tier2_report.py::test_wpw9_unresolvable_figure_refuses_to_render
+FAILED tests/invariants/test_wpw_tier2_report.py::test_wpw10_report_marked_internal_only
+FAILED tests/invariants/test_wpw_tier2_report.py::test_wpw10_public_surface_has_no_outer_gate_export
+FAILED tests/invariants/test_wpw_tier2_report.py::test_a4_traceability_all_figures_resolve_in_well_formed_run
+FAILED tests/invariants/test_wpw_tier2_report.py::test_a6_refused_run_report_is_drafted_with_refusal_and_numbers
+FAILED tests/invariants/test_wpw_tier2_report.py::test_report_problem_and_objective_derived_from_commissioning_reflection
+FAILED tests/invariants/test_wpw_tier2_report.py::test_report_data_statement_is_classification_driven
+FAILED tests/invariants/test_wpw_tier2_report.py::test_report_baseline_record_cites_baseline_line_id
+FAILED tests/invariants/test_wpw_tier2_report.py::test_report_method_section_includes_adopted_ideation_events
+FAILED tests/invariants/test_wpw_tier2_report.py::test_report_reproducibility_section_covers_hardware_duration_cost_seeds
+FAILED tests/invariants/test_wpw_tier2_report.py::test_report_results_section_carries_all_six_acceptance_criteria
+FAILED tests/invariants/test_wpw_tier2_report.py::test_tier2_public_surface_has_no_mutation_of_run_state
+============================== 15 failed in 0.92s ==============================

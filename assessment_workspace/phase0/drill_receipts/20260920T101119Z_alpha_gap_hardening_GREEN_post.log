@@ -1,0 +1,28 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.4.2, pluggy-1.6.0 -- /root/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: anyio-4.14.2, xdist-3.8.0, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collecting ... collected 17 items
+
+tests/invariants/test_alpha_gap_hardening.py::test_alpha_gap_hardening_trust_receipt_v1_is_frozen PASSED [  5%]
+tests/invariants/test_alpha_gap_hardening.py::test_alpha_gap_hardening_outer_gate_receipt_v1_is_frozen PASSED [ 11%]
+tests/invariants/test_alpha_gap_hardening.py::test_alpha_gap_hardening_trust_receipt_v1_mutation_raises PASSED [ 17%]
+tests/invariants/test_alpha_gap_hardening.py::test_alpha_gap_hardening_outer_gate_receipt_v1_mutation_raises PASSED [ 23%]
+tests/invariants/test_alpha_gap_hardening.py::test_alpha_gap_hardening_wave_closure_attestation PASSED [ 29%]
+tests/invariants/test_ccs3_dap_receipt_freeze.py::test_ccs3_metered_event_schema_sha256_matches_frozen_pin PASSED [ 35%]
+tests/invariants/test_ccs3_dap_receipt_freeze.py::test_ccs3_metered_event_carries_all_seven_dap21_fields PASSED [ 41%]
+tests/invariants/test_ccs3_dap_receipt_freeze.py::test_ccs3_metered_event_is_frozen_with_extra_forbid PASSED [ 47%]
+tests/invariants/test_ccs3_dap_receipt_freeze.py::test_ccs3_reliable_time_source_module_importable_from_sealed_path PASSED [ 52%]
+tests/invariants/test_ccs3_dap_receipt_freeze.py::test_ccs3_reliable_time_source_au_3b_defensible_now_callable PASSED [ 58%]
+tests/invariants/test_ccs3_dap_receipt_freeze.py::test_ccs3_trust_receipt_v1_schema_sha256_matches_frozen_pin PASSED [ 64%]
+tests/invariants/test_ccs3_dap_receipt_freeze.py::test_ccs3_outer_gate_receipt_v1_schema_sha256_matches_frozen_pin PASSED [ 70%]
+tests/invariants/test_ccs3_dap_receipt_freeze.py::test_ccs3_trust_receipt_v1_frozen_status_banked_for_owner_ratification PASSED [ 76%]
+tests/invariants/test_ccs3_dap_receipt_freeze.py::test_ccs3_outer_gate_receipt_v1_frozen_status_banked_for_owner_ratification PASSED [ 82%]
+tests/invariants/test_ccs3_dap_receipt_freeze.py::test_ccs3_dap_receipt_bundle_snapshot_pin_matches_frozen_constant PASSED [ 88%]
+tests/invariants/test_ccs3_dap_receipt_freeze.py::test_ccs3_dap_receipt_bundle_binds_all_three_named_shapes PASSED [ 94%]
+tests/invariants/test_ccs3_dap_receipt_freeze.py::test_ccs3_absence_findings_3_6_7_9_10_closure_status PASSED [100%]
+
+============================== 17 passed in 0.71s ==============================

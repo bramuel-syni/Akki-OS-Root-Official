@@ -1,0 +1,223 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.4.2, pluggy-1.6.0 -- /root/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: anyio-4.14.2, xdist-3.8.0, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collecting ... collected 13 items
+
+tests/invariants/test_principal_model_v1.py::test_prin_1_principal_store_holds_three_principal_kinds FAILED [  7%]
+tests/invariants/test_principal_model_v1.py::test_prin_2_admission_is_a_governed_act FAILED [ 15%]
+tests/invariants/test_principal_model_v1.py::test_prin_3_every_principal_carries_behavioural_signature_from_first_request FAILED [ 23%]
+tests/invariants/test_principal_model_v1.py::test_prin_4_mandate_is_immutable_once_frozen_at_admission FAILED [ 30%]
+tests/invariants/test_principal_model_v1.py::test_prin_5_credentials_issued_per_principal_never_per_organisation FAILED [ 38%]
+tests/invariants/test_principal_model_v1.py::test_prin_6_credential_material_never_persisted_readback FAILED [ 46%]
+tests/invariants/test_principal_model_v1.py::test_prin_7_credential_bound_to_exactly_one_trust_domain_identifier FAILED [ 53%]
+tests/invariants/test_principal_model_v1.py::test_prin_8_rotation_default_is_90_days_default_class FAILED [ 61%]
+tests/invariants/test_principal_model_v1.py::test_prin_9_principals_domain_shares_no_identifier_resolution_with_estate FAILED [ 69%]
+tests/invariants/test_principal_model_v1.py::test_prin_10_writes_carry_trust_domain_identifier_or_refused FAILED [ 76%]
+tests/invariants/test_principal_model_v1.py::test_prin_11_propagation_by_construction_fail_closed_on_absence FAILED [ 84%]
+tests/invariants/test_principal_model_v1.py::test_prin_12_ledger_actor_populated_only_from_propagated_context FAILED [ 92%]
+tests/invariants/test_principal_model_v1.py::test_prin_13_principal_context_read_only_once_propagating FAILED [100%]
+
+=================================== FAILURES ===================================
+___________ test_prin_1_principal_store_holds_three_principal_kinds ____________
+tests/invariants/test_principal_model_v1.py:115: in test_prin_1_principal_store_holds_three_principal_kinds
+    store = importlib.import_module("services.principal_store")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1140: in _find_and_load_unlocked
+    ???
+E   ModuleNotFoundError: No module named 'services.principal_store'
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+___________________ test_prin_2_admission_is_a_governed_act ____________________
+tests/invariants/test_principal_model_v1.py:136: in test_prin_2_admission_is_a_governed_act
+    store = importlib.import_module("services.principal_store")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1140: in _find_and_load_unlocked
+    ???
+E   ModuleNotFoundError: No module named 'services.principal_store'
+_ test_prin_3_every_principal_carries_behavioural_signature_from_first_request _
+tests/invariants/test_principal_model_v1.py:160: in test_prin_3_every_principal_carries_behavioural_signature_from_first_request
+    store = importlib.import_module("services.principal_store")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1140: in _find_and_load_unlocked
+    ???
+E   ModuleNotFoundError: No module named 'services.principal_store'
+__________ test_prin_4_mandate_is_immutable_once_frozen_at_admission ___________
+tests/invariants/test_principal_model_v1.py:178: in test_prin_4_mandate_is_immutable_once_frozen_at_admission
+    store = importlib.import_module("services.principal_store")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1140: in _find_and_load_unlocked
+    ???
+E   ModuleNotFoundError: No module named 'services.principal_store'
+_____ test_prin_5_credentials_issued_per_principal_never_per_organisation ______
+tests/invariants/test_principal_model_v1.py:205: in test_prin_5_credentials_issued_per_principal_never_per_organisation
+    plane = importlib.import_module("services.credential_plane")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1140: in _find_and_load_unlocked
+    ???
+E   ModuleNotFoundError: No module named 'services.credential_plane'
+___________ test_prin_6_credential_material_never_persisted_readback ___________
+tests/invariants/test_principal_model_v1.py:234: in test_prin_6_credential_material_never_persisted_readback
+    plane = importlib.import_module("services.credential_plane")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1140: in _find_and_load_unlocked
+    ???
+E   ModuleNotFoundError: No module named 'services.credential_plane'
+_____ test_prin_7_credential_bound_to_exactly_one_trust_domain_identifier ______
+tests/invariants/test_principal_model_v1.py:259: in test_prin_7_credential_bound_to_exactly_one_trust_domain_identifier
+    plane = importlib.import_module("services.credential_plane")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1140: in _find_and_load_unlocked
+    ???
+E   ModuleNotFoundError: No module named 'services.credential_plane'
+____________ test_prin_8_rotation_default_is_90_days_default_class _____________
+tests/invariants/test_principal_model_v1.py:284: in test_prin_8_rotation_default_is_90_days_default_class
+    plane = importlib.import_module("services.credential_plane")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1140: in _find_and_load_unlocked
+    ???
+E   ModuleNotFoundError: No module named 'services.credential_plane'
+__ test_prin_9_principals_domain_shares_no_identifier_resolution_with_estate ___
+tests/invariants/test_principal_model_v1.py:312: in test_prin_9_principals_domain_shares_no_identifier_resolution_with_estate
+    td = importlib.import_module("services.trust_domain")
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1140: in _find_and_load_unlocked
+    ???
+E   ModuleNotFoundError: No module named 'services.trust_domain'
+_________ test_prin_10_writes_carry_trust_domain_identifier_or_refused _________
+tests/invariants/test_principal_model_v1.py:330: in test_prin_10_writes_carry_trust_domain_identifier_or_refused
+    td = importlib.import_module("services.trust_domain")
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1140: in _find_and_load_unlocked
+    ???
+E   ModuleNotFoundError: No module named 'services.trust_domain'
+_______ test_prin_11_propagation_by_construction_fail_closed_on_absence ________
+tests/invariants/test_principal_model_v1.py:355: in test_prin_11_propagation_by_construction_fail_closed_on_absence
+    ctx = importlib.import_module("services.request_context")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1140: in _find_and_load_unlocked
+    ???
+E   ModuleNotFoundError: No module named 'services.request_context'
+_______ test_prin_12_ledger_actor_populated_only_from_propagated_context _______
+tests/invariants/test_principal_model_v1.py:374: in test_prin_12_ledger_actor_populated_only_from_propagated_context
+    ctx = importlib.import_module("services.request_context")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1140: in _find_and_load_unlocked
+    ???
+E   ModuleNotFoundError: No module named 'services.request_context'
+__________ test_prin_13_principal_context_read_only_once_propagating ___________
+tests/invariants/test_principal_model_v1.py:393: in test_prin_13_principal_context_read_only_once_propagating
+    ctx = importlib.import_module("services.request_context")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1140: in _find_and_load_unlocked
+    ???
+E   ModuleNotFoundError: No module named 'services.request_context'
+=========================== short test summary info ============================
+FAILED tests/invariants/test_principal_model_v1.py::test_prin_1_principal_store_holds_three_principal_kinds
+FAILED tests/invariants/test_principal_model_v1.py::test_prin_2_admission_is_a_governed_act
+FAILED tests/invariants/test_principal_model_v1.py::test_prin_3_every_principal_carries_behavioural_signature_from_first_request
+FAILED tests/invariants/test_principal_model_v1.py::test_prin_4_mandate_is_immutable_once_frozen_at_admission
+FAILED tests/invariants/test_principal_model_v1.py::test_prin_5_credentials_issued_per_principal_never_per_organisation
+FAILED tests/invariants/test_principal_model_v1.py::test_prin_6_credential_material_never_persisted_readback
+FAILED tests/invariants/test_principal_model_v1.py::test_prin_7_credential_bound_to_exactly_one_trust_domain_identifier
+FAILED tests/invariants/test_principal_model_v1.py::test_prin_8_rotation_default_is_90_days_default_class
+FAILED tests/invariants/test_principal_model_v1.py::test_prin_9_principals_domain_shares_no_identifier_resolution_with_estate
+FAILED tests/invariants/test_principal_model_v1.py::test_prin_10_writes_carry_trust_domain_identifier_or_refused
+FAILED tests/invariants/test_principal_model_v1.py::test_prin_11_propagation_by_construction_fail_closed_on_absence
+FAILED tests/invariants/test_principal_model_v1.py::test_prin_12_ledger_actor_populated_only_from_propagated_context
+FAILED tests/invariants/test_principal_model_v1.py::test_prin_13_principal_context_read_only_once_propagating
+============================== 13 failed in 0.76s ==============================

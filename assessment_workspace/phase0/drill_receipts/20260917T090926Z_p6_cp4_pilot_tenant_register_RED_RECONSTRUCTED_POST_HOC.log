@@ -1,0 +1,50 @@
+# RECONSTRUCTED POST-HOC AT HEAD e436028251b0ae18919c163123b565e3000384ed · 2026-09-17
+# NOT captured at Commit-A landing time. Per-CP receipt reconstruction executed
+# during 2026-09-17 §3.3 BACK-COMPAT BATCH scoped path (c) reconstruction.
+# Method: temporarily hide services/platform_control_plane/pilot_tenant_register.py → run pytest tests/invariants/test_p6_cp4_pilot_tenant_register.py → capture RED
+# ---
+EEEEEEEEEEEEE                                                            [100%]
+==================================== ERRORS ====================================
+______ ERROR at setup of test_module_fabric_present_and_all_exports_match ______
+E   ModuleNotFoundError: No module named 'services.platform_control_plane.pilot_tenant_register'
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+______________ ERROR at setup of test_pilot_tenant_keys_verbatim _______________
+E   ModuleNotFoundError: No module named 'services.platform_control_plane.pilot_tenant_register'
+_______________ ERROR at setup of test_capture_sentinel_verbatim _______________
+E   ModuleNotFoundError: No module named 'services.platform_control_plane.pilot_tenant_register'
+______________ ERROR at setup of test_descriptor_fields_verbatim _______________
+E   ModuleNotFoundError: No module named 'services.platform_control_plane.pilot_tenant_register'
+__________ ERROR at setup of test_pilot_record_shape_frozen_6_carrier __________
+E   ModuleNotFoundError: No module named 'services.platform_control_plane.pilot_tenant_register'
+___________ ERROR at setup of test_fields_constant_matches_dataclass ___________
+E   ModuleNotFoundError: No module named 'services.platform_control_plane.pilot_tenant_register'
+___________________ ERROR at setup of test_refusal_hierarchy ___________________
+E   ModuleNotFoundError: No module named 'services.platform_control_plane.pilot_tenant_register'
+_______ ERROR at setup of test_refuses_unknown_tenant_key_case_sensitive _______
+E   ModuleNotFoundError: No module named 'services.platform_control_plane.pilot_tenant_register'
+_______________ ERROR at setup of test_admits_all_4_tenant_keys ________________
+E   ModuleNotFoundError: No module named 'services.platform_control_plane.pilot_tenant_register'
+_____ ERROR at setup of test_refuses_when_descriptor_still_holds_sentinel ______
+E   ModuleNotFoundError: No module named 'services.platform_control_plane.pilot_tenant_register'
+_ ERROR at setup of test_unknown_key_refusal_takes_precedence_over_capture_sentinel _
+E   ModuleNotFoundError: No module named 'services.platform_control_plane.pilot_tenant_register'
+_____ ERROR at setup of test_capture_sentinel_first_field_takes_precedence _____
+E   ModuleNotFoundError: No module named 'services.platform_control_plane.pilot_tenant_register'
+_ ERROR at setup of test_verbatim_anchor_case_agnostic_zero_data_plane_imports _
+E   ModuleNotFoundError: No module named 'services.platform_control_plane.pilot_tenant_register'
+=========================== short test summary info ============================
+ERROR tests/invariants/test_p6_cp4_pilot_tenant_register.py::test_module_fabric_present_and_all_exports_match
+ERROR tests/invariants/test_p6_cp4_pilot_tenant_register.py::test_pilot_tenant_keys_verbatim
+ERROR tests/invariants/test_p6_cp4_pilot_tenant_register.py::test_capture_sentinel_verbatim
+ERROR tests/invariants/test_p6_cp4_pilot_tenant_register.py::test_descriptor_fields_verbatim
+ERROR tests/invariants/test_p6_cp4_pilot_tenant_register.py::test_pilot_record_shape_frozen_6_carrier
+ERROR tests/invariants/test_p6_cp4_pilot_tenant_register.py::test_fields_constant_matches_dataclass
+ERROR tests/invariants/test_p6_cp4_pilot_tenant_register.py::test_refusal_hierarchy
+ERROR tests/invariants/test_p6_cp4_pilot_tenant_register.py::test_refuses_unknown_tenant_key_case_sensitive
+ERROR tests/invariants/test_p6_cp4_pilot_tenant_register.py::test_admits_all_4_tenant_keys
+ERROR tests/invariants/test_p6_cp4_pilot_tenant_register.py::test_refuses_when_descriptor_still_holds_sentinel
+ERROR tests/invariants/test_p6_cp4_pilot_tenant_register.py::test_unknown_key_refusal_takes_precedence_over_capture_sentinel
+ERROR tests/invariants/test_p6_cp4_pilot_tenant_register.py::test_capture_sentinel_first_field_takes_precedence
+ERROR tests/invariants/test_p6_cp4_pilot_tenant_register.py::test_verbatim_anchor_case_agnostic_zero_data_plane_imports
+13 errors in 0.60s

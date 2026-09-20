@@ -1,0 +1,126 @@
+FFFFFFF                                                                  [100%]
+=================================== FAILURES ===================================
+__________________________ test_wm6_3_1_module_fabric __________________________
+
+    def test_wm6_3_1_module_fabric():
+        """Module `services.audio_plane_v1.character_register` exports the
+        CP-M6-3-1 public API: `REGISTER_LAYER_VALUES` +
+        `CharacterEntry` + `CharacterRegister` +
+        `construct_character_entry` + `construct_character_register` +
+        `LayerInvalidError`."""
+>       m = importlib.import_module("services.audio_plane_v1.character_register")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_wm6_3_1_character_register.py:55: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'services.audio_plane_v1.character_register'
+import_ = <function _gcd_import at 0xfa0eb2cbbd80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'services.audio_plane_v1.character_register'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+______________ test_wm6_3_1_register_layer_values_frozen_four_set ______________
+
+    def test_wm6_3_1_register_layer_values_frozen_four_set():
+        """`REGISTER_LAYER_VALUES` is exactly the frozen four-set per §5.2
+        P082..P085 verbatim: `{"phonetic", "prosodic", "condition",
+        "code_switch"}` (Python-identifier form of the space-separated
+        "Code-switch")."""
+>       from services.audio_plane_v1.character_register import (
+            REGISTER_LAYER_VALUES,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.character_register'
+
+tests/invariants/test_wm6_3_1_character_register.py:74: ModuleNotFoundError
+_____ test_wm6_3_1_character_entry_seven_carrier_shape_and_pull_seam_scan ______
+
+    def test_wm6_3_1_character_entry_seven_carrier_shape_and_pull_seam_scan():
+        """`CharacterEntry` frozen dataclass with exactly 7 carriers per
+        §5.1 P078 + §6.2 P098 verbatim contract:
+          - `attribute_name` (what the entry describes · e.g., a pronunciation
+            variant of a specific lexeme).
+          - `layer` (str · must be in `REGISTER_LAYER_VALUES`).
+          - `description` (immutable tuple of floats · the centroid /
+            distribution / frequency summary vector · §6.2 P098 verbatim
+            "Centroids, distributions, frequencies").
+          - `provenance_material_ref` (§6.2 P098 verbatim "Provenance points
+            to material, not to speaker identity").
+          - `occurrence_count` (§5.1 P078 verbatim "every entry carries…
+            an occurrence count").
+          - `n_distinct_speakers` (§6.2 cond-2 P096 shared-attribute count).
+          - `is_learned` (§6.1 P093 classifier · organic characteristics
+            excluded at construction time in CP-M6-3-3).
+    
+        Pull-seam + §6.2 cond-4 negative-scan: no audio-byte carrier names,
+        no voiceprint carrier names, no per-utterance-embedding carrier
+        names.
+        """
+>       from services.audio_plane_v1.character_register import CharacterEntry
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.character_register'
+
+tests/invariants/test_wm6_3_1_character_register.py:107: ModuleNotFoundError
+______________ test_wm6_3_1_character_register_one_carrier_shape _______________
+
+    def test_wm6_3_1_character_register_one_carrier_shape():
+        """`CharacterRegister` frozen dataclass with exactly 1 carrier:
+        `entries` (immutable tuple of `CharacterEntry`).  Pull-seam +
+        §6.2 cond-4 negative-scan across the register-level shape too."""
+>       from services.audio_plane_v1.character_register import CharacterRegister
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.character_register'
+
+tests/invariants/test_wm6_3_1_character_register.py:131: ModuleNotFoundError
+_________ test_wm6_3_1_construct_character_entry_refuses_invalid_layer _________
+
+    def test_wm6_3_1_construct_character_entry_refuses_invalid_layer():
+        """`construct_character_entry` refuses when `layer` is outside
+        `REGISTER_LAYER_VALUES` — §5.2 vocabulary discipline."""
+>       from services.audio_plane_v1.character_register import (
+            LayerInvalidError, construct_character_entry,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.character_register'
+
+tests/invariants/test_wm6_3_1_character_register.py:147: ModuleNotFoundError
+__ test_wm6_3_1_construct_character_register_frozen_and_coerces_list_to_tuple __
+
+    def test_wm6_3_1_construct_character_register_frozen_and_coerces_list_to_tuple():
+        """`construct_character_register` returns a frozen `CharacterRegister`
+        with `entries` coerced from Sequence input to an immutable tuple."""
+>       from services.audio_plane_v1.character_register import (
+            CharacterRegister, construct_character_entry,
+            construct_character_register,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.character_register'
+
+tests/invariants/test_wm6_3_1_character_register.py:165: ModuleNotFoundError
+__________ test_wm6_3_1_entry_construct_accepts_all_four_layer_values __________
+
+    def test_wm6_3_1_entry_construct_accepts_all_four_layer_values():
+        """Positive-scan of `REGISTER_LAYER_VALUES`: every one of the four
+        §5.2 verbatim layers is accepted by `construct_character_entry`."""
+>       from services.audio_plane_v1.character_register import (
+            REGISTER_LAYER_VALUES, construct_character_entry,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.character_register'
+
+tests/invariants/test_wm6_3_1_character_register.py:199: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wm6_3_1_character_register.py::test_wm6_3_1_module_fabric
+FAILED tests/invariants/test_wm6_3_1_character_register.py::test_wm6_3_1_register_layer_values_frozen_four_set
+FAILED tests/invariants/test_wm6_3_1_character_register.py::test_wm6_3_1_character_entry_seven_carrier_shape_and_pull_seam_scan
+FAILED tests/invariants/test_wm6_3_1_character_register.py::test_wm6_3_1_character_register_one_carrier_shape
+FAILED tests/invariants/test_wm6_3_1_character_register.py::test_wm6_3_1_construct_character_entry_refuses_invalid_layer
+FAILED tests/invariants/test_wm6_3_1_character_register.py::test_wm6_3_1_construct_character_register_frozen_and_coerces_list_to_tuple
+FAILED tests/invariants/test_wm6_3_1_character_register.py::test_wm6_3_1_entry_construct_accepts_all_four_layer_values
+7 failed in 0.67s

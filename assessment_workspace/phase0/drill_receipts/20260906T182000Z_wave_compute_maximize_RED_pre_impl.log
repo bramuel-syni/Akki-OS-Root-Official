@@ -1,0 +1,26 @@
+...F....                                                                 [100%]
+=================================== FAILURES ===================================
+______________ test_v21_manifests_exist_for_both_hosts_both_lanes ______________
+
+    def test_v21_manifests_exist_for_both_hosts_both_lanes():
+        """Four v2.1 manifests must exist: campaign_a lane0/lane1 +
+        campaign_b lane0/lane1."""
+        manifests = _load_v21_manifests()
+        names = {p.name for p, _ in manifests}
+        for expected in (
+            "campaign_a_v21_lane0_queue_manifest.json",
+            "campaign_a_v21_lane1_queue_manifest.json",
+            "campaign_b_v21_lane0_queue_manifest.json",
+            "campaign_b_v21_lane1_queue_manifest.json",
+        ):
+>           assert expected in names, (
+                f"v2.1 manifest {expected} MUST exist in {_MANIFEST_DIR} "
+                f"(W-COMPUTE-MAXIMIZE)"
+            )
+E           AssertionError: v2.1 manifest campaign_a_v21_lane0_queue_manifest.json MUST exist in /app/assessment_workspace/phase0/campaign_drafts (W-COMPUTE-MAXIMIZE)
+E           assert 'campaign_a_v21_lane0_queue_manifest.json' in set()
+
+tests/invariants/test_dispatcher_gpu_pinning.py:103: AssertionError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_dispatcher_gpu_pinning.py::test_v21_manifests_exist_for_both_hosts_both_lanes
+1 failed, 7 passed in 0.62s

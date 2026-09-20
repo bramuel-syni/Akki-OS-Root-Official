@@ -1,0 +1,12 @@
+E       ModuleNotFoundError: No module named 'services.journey_assistant.m4_block_completion'
+
+tests/invariants/test_wm4_sw6_m4_block_completion.py:138: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wm4_sw6_m4_block_completion.py::test_sw6_module_fabric
+FAILED tests/invariants/test_wm4_sw6_m4_block_completion.py::test_sw6_five_m4_sub_waves_before_close
+FAILED tests/invariants/test_wm4_sw6_m4_block_completion.py::test_sw6_every_close_note_on_disk
+FAILED tests/invariants/test_wm4_sw6_m4_block_completion.py::test_sw6_dap_20_boundary_verified
+FAILED tests/invariants/test_wm4_sw6_m4_block_completion.py::test_sw6_surface_b_held_behind_br15_1
+FAILED tests/invariants/test_wm4_sw6_m4_block_completion.py::test_sw6_ratchet_history_records_every_m4_wave
+FAILED tests/invariants/test_wm4_sw6_m4_block_completion.py::test_sw6_m4_block_ratchet_floor_at_or_above_target
+7 failed in 0.65s

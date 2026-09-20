@@ -1,0 +1,63 @@
+/root/.venv/lib/python3.11/site-packages/pytest_asyncio/plugin.py:208: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.3.3, pluggy-1.6.0 -- /root/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: anyio-4.14.2, xdist-3.8.0, asyncio-0.24.0
+asyncio: mode=Mode.AUTO, default_loop_scope=None
+collecting ... collected 7 items
+
+backend/tests/invariants/test_ep4_terminal_test_guard.py::test_terminal_test_guard_refuses_when_register_empty FAILED [ 14%]
+backend/tests/invariants/test_ep4_terminal_test_guard.py::test_terminal_test_guard_refuses_when_no_terminal_test_row_registered FAILED [ 28%]
+backend/tests/invariants/test_ep4_terminal_test_guard.py::test_terminal_test_guard_passes_when_terminal_test_row_with_two_judges FAILED [ 42%]
+backend/tests/invariants/test_ep4_terminal_test_guard.py::test_terminal_test_guard_refuses_when_only_one_judge_row_on_record FAILED [ 57%]
+backend/tests/invariants/test_ep4_terminal_test_guard.py::test_http_precheck_terminal_test_returns_422_when_register_empty FAILED [ 71%]
+backend/tests/invariants/test_ep4_terminal_test_guard.py::test_http_precheck_terminal_test_returns_200_when_register_ready FAILED [ 85%]
+backend/tests/invariants/test_ep4_terminal_test_guard.py::test_terminal_test_guard_is_a_measurement_not_an_assertion FAILED [100%]
+
+=================================== FAILURES ===================================
+_____________ test_terminal_test_guard_refuses_when_register_empty _____________
+backend/tests/invariants/test_ep4_terminal_test_guard.py:69: in test_terminal_test_guard_refuses_when_register_empty
+    from services.evidence_register.terminal_test_guard import (
+E   ModuleNotFoundError: No module named 'services.evidence_register.terminal_test_guard'
+____ test_terminal_test_guard_refuses_when_no_terminal_test_row_registered _____
+backend/tests/invariants/test_ep4_terminal_test_guard.py:88: in test_terminal_test_guard_refuses_when_no_terminal_test_row_registered
+    from services.evidence_register.terminal_test_guard import (
+E   ModuleNotFoundError: No module named 'services.evidence_register.terminal_test_guard'
+____ test_terminal_test_guard_passes_when_terminal_test_row_with_two_judges ____
+backend/tests/invariants/test_ep4_terminal_test_guard.py:114: in test_terminal_test_guard_passes_when_terminal_test_row_with_two_judges
+    from services.evidence_register.terminal_test_guard import (
+E   ModuleNotFoundError: No module named 'services.evidence_register.terminal_test_guard'
+______ test_terminal_test_guard_refuses_when_only_one_judge_row_on_record ______
+backend/tests/invariants/test_ep4_terminal_test_guard.py:134: in test_terminal_test_guard_refuses_when_only_one_judge_row_on_record
+    from services.evidence_register.terminal_test_guard import (
+E   ModuleNotFoundError: No module named 'services.evidence_register.terminal_test_guard'
+_______ test_http_precheck_terminal_test_returns_422_when_register_empty _______
+backend/tests/invariants/test_ep4_terminal_test_guard.py:176: in test_http_precheck_terminal_test_returns_422_when_register_empty
+    assert r.status_code == 422, r.text
+E   AssertionError: {"detail":"Method Not Allowed"}
+E   assert 405 == 422
+E    +  where 405 = <Response [405 Method Not Allowed]>.status_code
+_______ test_http_precheck_terminal_test_returns_200_when_register_ready _______
+backend/tests/invariants/test_ep4_terminal_test_guard.py:203: in test_http_precheck_terminal_test_returns_200_when_register_ready
+    assert r.status_code == 200, r.text
+E   AssertionError: {"detail":"Method Not Allowed"}
+E   assert 405 == 200
+E    +  where 405 = <Response [405 Method Not Allowed]>.status_code
+__________ test_terminal_test_guard_is_a_measurement_not_an_assertion __________
+backend/tests/invariants/test_ep4_terminal_test_guard.py:222: in test_terminal_test_guard_is_a_measurement_not_an_assertion
+    from services.evidence_register.terminal_test_guard import (
+E   ModuleNotFoundError: No module named 'services.evidence_register.terminal_test_guard'
+=========================== short test summary info ============================
+FAILED backend/tests/invariants/test_ep4_terminal_test_guard.py::test_terminal_test_guard_refuses_when_register_empty
+FAILED backend/tests/invariants/test_ep4_terminal_test_guard.py::test_terminal_test_guard_refuses_when_no_terminal_test_row_registered
+FAILED backend/tests/invariants/test_ep4_terminal_test_guard.py::test_terminal_test_guard_passes_when_terminal_test_row_with_two_judges
+FAILED backend/tests/invariants/test_ep4_terminal_test_guard.py::test_terminal_test_guard_refuses_when_only_one_judge_row_on_record
+FAILED backend/tests/invariants/test_ep4_terminal_test_guard.py::test_http_precheck_terminal_test_returns_422_when_register_empty
+FAILED backend/tests/invariants/test_ep4_terminal_test_guard.py::test_http_precheck_terminal_test_returns_200_when_register_ready
+FAILED backend/tests/invariants/test_ep4_terminal_test_guard.py::test_terminal_test_guard_is_a_measurement_not_an_assertion
+============================== 7 failed in 0.36s ===============================

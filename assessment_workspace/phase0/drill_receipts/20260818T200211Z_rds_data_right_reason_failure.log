@@ -1,0 +1,401 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-9.1.1, pluggy-1.6.0 -- /root/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: xdist-3.8.0, anyio-4.14.2, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 39 items
+
+backend/tests/invariants/test_rds_data_submit.py::test_module_present_and_exports_submit FAILED [  2%]
+backend/tests/invariants/test_rds_data_submit.py::test_module_declares_no_llm_or_forbidden_libraries FAILED [  5%]
+backend/tests/invariants/test_rds_data_submit.py::test_submit_writes_standing_creds_file_mode_0600 FAILED [  7%]
+backend/tests/invariants/test_rds_data_submit.py::test_submit_creds_file_never_in_git FAILED [ 10%]
+backend/tests/invariants/test_rds_data_submit.py::test_submit_declaration_fires_with_actor_and_scope FAILED [ 12%]
+backend/tests/invariants/test_rds_data_submit.py::test_submit_invokes_execute_statement_with_arns FAILED [ 15%]
+backend/tests/invariants/test_rds_data_submit.py::test_submit_returns_four_questions_response_on_success FAILED [ 17%]
+backend/tests/invariants/test_rds_data_submit.py::test_submit_response_never_carries_secret_verbatim FAILED [ 20%]
+backend/tests/invariants/test_rds_data_submit.py::test_submit_record_and_receipts_never_carry_secret FAILED [ 23%]
+backend/tests/invariants/test_rds_data_submit.py::test_submit_maps_failure_taxonomy[BadRequestException-auth_denied] FAILED [ 25%]
+backend/tests/invariants/test_rds_data_submit.py::test_submit_maps_failure_taxonomy[AccessDeniedException-auth_denied] FAILED [ 28%]
+backend/tests/invariants/test_rds_data_submit.py::test_submit_maps_failure_taxonomy[UnauthorizedException-auth_denied] FAILED [ 30%]
+backend/tests/invariants/test_rds_data_submit.py::test_submit_maps_failure_taxonomy[StatementTimeoutException-timeout] FAILED [ 33%]
+backend/tests/invariants/test_rds_data_submit.py::test_submit_maps_failure_taxonomy[DatabaseNotFoundException-cluster_not_found] FAILED [ 35%]
+backend/tests/invariants/test_rds_data_submit.py::test_submit_maps_failure_taxonomy[DatabaseResumingException-data_api_not_enabled] FAILED [ 38%]
+backend/tests/invariants/test_rds_data_submit.py::test_submit_maps_failure_taxonomy[HttpEndpointNotEnabledException-data_api_not_enabled] FAILED [ 41%]
+backend/tests/invariants/test_rds_data_submit.py::test_submit_maps_failure_taxonomy[SomethingElse-other] FAILED [ 43%]
+backend/tests/invariants/test_credentials_paste_parser.py::test_parser_module_present_and_exports_parse PASSED [ 46%]
+backend/tests/invariants/test_credentials_paste_parser.py::test_parses_aisca_output_panel_shape_verbatim PASSED [ 48%]
+backend/tests/invariants/test_credentials_paste_parser.py::test_parses_equals_and_mixed_delimiters PASSED [ 51%]
+backend/tests/invariants/test_credentials_paste_parser.py::test_label_synonyms_accepted PASSED [ 53%]
+backend/tests/invariants/test_credentials_paste_parser.py::test_case_insensitive_label_matching PASSED [ 56%]
+backend/tests/invariants/test_credentials_paste_parser.py::test_unparseable_paste_returns_missing_report_not_exception PASSED [ 58%]
+backend/tests/invariants/test_credentials_paste_parser.py::test_partial_paste_reports_which_fields_are_missing PASSED [ 61%]
+backend/tests/invariants/test_credentials_paste_parser.py::test_auto_detect_infers_compute_kind_from_shape PASSED [ 64%]
+backend/tests/invariants/test_credentials_paste_parser.py::test_non_compute_kinds_have_their_own_field_maps PASSED [ 66%]
+backend/tests/invariants/test_credentials_paste_parser.py::test_parser_module_imports_no_llm_or_network_libraries PASSED [ 69%]
+backend/tests/invariants/test_credentials_paste_parser.py::test_parser_makes_zero_network_or_subprocess_calls_at_runtime PASSED [ 71%]
+backend/tests/invariants/test_credentials_paste_parser.py::test_router_module_present_and_endpoint_registered PASSED [ 74%]
+backend/tests/invariants/test_credentials_paste_parser.py::test_endpoint_returns_parsed_fields_over_http PASSED [ 76%]
+backend/tests/invariants/test_credentials_paste_parser.py::test_endpoint_response_never_carries_password_verbatim PASSED [ 79%]
+backend/tests/invariants/test_credentials_paste_parser.py::test_endpoint_response_signals_password_captured_false_when_absent PASSED [ 82%]
+backend/tests/invariants/test_credentials_paste_parser.py::test_router_does_not_persist_or_log_password PASSED [ 84%]
+backend/tests/invariants/test_credentials_paste_parser.py::test_endpoint_refuses_empty_paste PASSED [ 87%]
+backend/tests/invariants/test_credentials_paste_parser.py::test_router_module_does_not_import_llm_libraries PASSED [ 89%]
+backend/tests/invariants/test_credentials_paste_parser.py::test_parses_data_source_aurora_shape_verbatim FAILED [ 92%]
+backend/tests/invariants/test_credentials_paste_parser.py::test_auto_detect_infers_data_source_from_shape FAILED [ 94%]
+backend/tests/invariants/test_credentials_paste_parser.py::test_endpoint_response_never_carries_aws_secret_verbatim FAILED [ 97%]
+backend/tests/invariants/test_credentials_paste_parser.py::test_endpoint_signals_aws_secret_captured_false_when_absent FAILED [100%]
+
+=================================== FAILURES ===================================
+____________________ test_module_present_and_exports_submit ____________________
+
+    def test_module_present_and_exports_submit() -> None:
+>       from services.connect import rds_data_submit as R
+E       ImportError: cannot import name 'rds_data_submit' from 'services.connect' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/connect/__init__.py)
+
+backend/tests/invariants/test_rds_data_submit.py:54: ImportError
+______________ test_module_declares_no_llm_or_forbidden_libraries ______________
+
+    def test_module_declares_no_llm_or_forbidden_libraries() -> None:
+        """Same rule as the paste parser: no LLM SDK, no synisense shield, no
+        generic HTTP client (boto3 is allowed - it is the whole point)."""
+>       from services.connect import rds_data_submit
+E       ImportError: cannot import name 'rds_data_submit' from 'services.connect' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/connect/__init__.py)
+
+backend/tests/invariants/test_rds_data_submit.py:61: ImportError
+_______________ test_submit_writes_standing_creds_file_mode_0600 _______________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_submit_writes_standing_cr0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfb7938bc56d0>
+
+    def test_submit_writes_standing_creds_file_mode_0600(tmp_path, monkeypatch) -> None:
+>       from services.connect import rds_data_submit as R
+E       ImportError: cannot import name 'rds_data_submit' from 'services.connect' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/connect/__init__.py)
+
+backend/tests/invariants/test_rds_data_submit.py:102: ImportError
+_____________________ test_submit_creds_file_never_in_git ______________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_submit_creds_file_never_i0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfb7938a7ed90>
+
+    def test_submit_creds_file_never_in_git(tmp_path, monkeypatch) -> None:
+        """The estate_keys tree carries a .gitignore that keeps EVERYTHING inside,
+        so a data_sources subdir is also ignored. Verify via `git check-ignore`."""
+>       from services.connect import rds_data_submit as R
+E       ImportError: cannot import name 'rds_data_submit' from 'services.connect' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/connect/__init__.py)
+
+backend/tests/invariants/test_rds_data_submit.py:123: ImportError
+______________ test_submit_declaration_fires_with_actor_and_scope ______________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_submit_declaration_fires_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfb7938c07b90>
+
+    def test_submit_declaration_fires_with_actor_and_scope(tmp_path, monkeypatch) -> None:
+>       from services.connect import rds_data_submit as R
+E       ImportError: cannot import name 'rds_data_submit' from 'services.connect' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/connect/__init__.py)
+
+backend/tests/invariants/test_rds_data_submit.py:140: ImportError
+_______________ test_submit_invokes_execute_statement_with_arns ________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_submit_invokes_execute_st0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfb7938bc7150>
+
+    def test_submit_invokes_execute_statement_with_arns(tmp_path, monkeypatch) -> None:
+>       from services.connect import rds_data_submit as R
+E       ImportError: cannot import name 'rds_data_submit' from 'services.connect' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/connect/__init__.py)
+
+backend/tests/invariants/test_rds_data_submit.py:166: ImportError
+____________ test_submit_returns_four_questions_response_on_success ____________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_submit_returns_four_quest0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfb7939d6ba50>
+
+    def test_submit_returns_four_questions_response_on_success(tmp_path, monkeypatch) -> None:
+>       from services.connect import rds_data_submit as R
+E       ImportError: cannot import name 'rds_data_submit' from 'services.connect' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/connect/__init__.py)
+
+backend/tests/invariants/test_rds_data_submit.py:193: ImportError
+______________ test_submit_response_never_carries_secret_verbatim ______________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_submit_response_never_car0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfb7938a78ed0>
+
+    def test_submit_response_never_carries_secret_verbatim(tmp_path, monkeypatch) -> None:
+>       from services.connect import rds_data_submit as R
+E       ImportError: cannot import name 'rds_data_submit' from 'services.connect' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/connect/__init__.py)
+
+backend/tests/invariants/test_rds_data_submit.py:214: ImportError
+______________ test_submit_record_and_receipts_never_carry_secret ______________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_submit_record_and_receipt0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfb7938c05d50>
+
+    def test_submit_record_and_receipts_never_carry_secret(tmp_path, monkeypatch) -> None:
+>       from services.connect import rds_data_submit as R
+E       ImportError: cannot import name 'rds_data_submit' from 'services.connect' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/connect/__init__.py)
+
+backend/tests/invariants/test_rds_data_submit.py:228: ImportError
+______ test_submit_maps_failure_taxonomy[BadRequestException-auth_denied] ______
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_submit_maps_failure_taxon0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfb7938a72a50>
+client_error_code = 'BadRequestException', expected_reason = 'auth_denied'
+
+    @pytest.mark.parametrize("client_error_code,expected_reason", [
+        ("BadRequestException", "auth_denied"),
+        ("AccessDeniedException", "auth_denied"),
+        ("UnauthorizedException", "auth_denied"),
+        ("StatementTimeoutException", "timeout"),
+        ("DatabaseNotFoundException", "cluster_not_found"),
+        ("DatabaseResumingException", "data_api_not_enabled"),
+        ("HttpEndpointNotEnabledException", "data_api_not_enabled"),
+        ("SomethingElse", "other"),
+    ])
+    def test_submit_maps_failure_taxonomy(tmp_path, monkeypatch, client_error_code, expected_reason) -> None:
+>       from services.connect import rds_data_submit as R
+E       ImportError: cannot import name 'rds_data_submit' from 'services.connect' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/connect/__init__.py)
+
+backend/tests/invariants/test_rds_data_submit.py:258: ImportError
+_____ test_submit_maps_failure_taxonomy[AccessDeniedException-auth_denied] _____
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_submit_maps_failure_taxon1')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfb7938a85c50>
+client_error_code = 'AccessDeniedException', expected_reason = 'auth_denied'
+
+    @pytest.mark.parametrize("client_error_code,expected_reason", [
+        ("BadRequestException", "auth_denied"),
+        ("AccessDeniedException", "auth_denied"),
+        ("UnauthorizedException", "auth_denied"),
+        ("StatementTimeoutException", "timeout"),
+        ("DatabaseNotFoundException", "cluster_not_found"),
+        ("DatabaseResumingException", "data_api_not_enabled"),
+        ("HttpEndpointNotEnabledException", "data_api_not_enabled"),
+        ("SomethingElse", "other"),
+    ])
+    def test_submit_maps_failure_taxonomy(tmp_path, monkeypatch, client_error_code, expected_reason) -> None:
+>       from services.connect import rds_data_submit as R
+E       ImportError: cannot import name 'rds_data_submit' from 'services.connect' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/connect/__init__.py)
+
+backend/tests/invariants/test_rds_data_submit.py:258: ImportError
+_____ test_submit_maps_failure_taxonomy[UnauthorizedException-auth_denied] _____
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_submit_maps_failure_taxon2')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfb7938a7ba10>
+client_error_code = 'UnauthorizedException', expected_reason = 'auth_denied'
+
+    @pytest.mark.parametrize("client_error_code,expected_reason", [
+        ("BadRequestException", "auth_denied"),
+        ("AccessDeniedException", "auth_denied"),
+        ("UnauthorizedException", "auth_denied"),
+        ("StatementTimeoutException", "timeout"),
+        ("DatabaseNotFoundException", "cluster_not_found"),
+        ("DatabaseResumingException", "data_api_not_enabled"),
+        ("HttpEndpointNotEnabledException", "data_api_not_enabled"),
+        ("SomethingElse", "other"),
+    ])
+    def test_submit_maps_failure_taxonomy(tmp_path, monkeypatch, client_error_code, expected_reason) -> None:
+>       from services.connect import rds_data_submit as R
+E       ImportError: cannot import name 'rds_data_submit' from 'services.connect' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/connect/__init__.py)
+
+backend/tests/invariants/test_rds_data_submit.py:258: ImportError
+_____ test_submit_maps_failure_taxonomy[StatementTimeoutException-timeout] _____
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_submit_maps_failure_taxon3')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfb7938a7f190>
+client_error_code = 'StatementTimeoutException', expected_reason = 'timeout'
+
+    @pytest.mark.parametrize("client_error_code,expected_reason", [
+        ("BadRequestException", "auth_denied"),
+        ("AccessDeniedException", "auth_denied"),
+        ("UnauthorizedException", "auth_denied"),
+        ("StatementTimeoutException", "timeout"),
+        ("DatabaseNotFoundException", "cluster_not_found"),
+        ("DatabaseResumingException", "data_api_not_enabled"),
+        ("HttpEndpointNotEnabledException", "data_api_not_enabled"),
+        ("SomethingElse", "other"),
+    ])
+    def test_submit_maps_failure_taxonomy(tmp_path, monkeypatch, client_error_code, expected_reason) -> None:
+>       from services.connect import rds_data_submit as R
+E       ImportError: cannot import name 'rds_data_submit' from 'services.connect' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/connect/__init__.py)
+
+backend/tests/invariants/test_rds_data_submit.py:258: ImportError
+_ test_submit_maps_failure_taxonomy[DatabaseNotFoundException-cluster_not_found] _
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_submit_maps_failure_taxon4')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfb7938a8a8d0>
+client_error_code = 'DatabaseNotFoundException'
+expected_reason = 'cluster_not_found'
+
+    @pytest.mark.parametrize("client_error_code,expected_reason", [
+        ("BadRequestException", "auth_denied"),
+        ("AccessDeniedException", "auth_denied"),
+        ("UnauthorizedException", "auth_denied"),
+        ("StatementTimeoutException", "timeout"),
+        ("DatabaseNotFoundException", "cluster_not_found"),
+        ("DatabaseResumingException", "data_api_not_enabled"),
+        ("HttpEndpointNotEnabledException", "data_api_not_enabled"),
+        ("SomethingElse", "other"),
+    ])
+    def test_submit_maps_failure_taxonomy(tmp_path, monkeypatch, client_error_code, expected_reason) -> None:
+>       from services.connect import rds_data_submit as R
+E       ImportError: cannot import name 'rds_data_submit' from 'services.connect' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/connect/__init__.py)
+
+backend/tests/invariants/test_rds_data_submit.py:258: ImportError
+_ test_submit_maps_failure_taxonomy[DatabaseResumingException-data_api_not_enabled] _
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_submit_maps_failure_taxon5')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfb7938a74250>
+client_error_code = 'DatabaseResumingException'
+expected_reason = 'data_api_not_enabled'
+
+    @pytest.mark.parametrize("client_error_code,expected_reason", [
+        ("BadRequestException", "auth_denied"),
+        ("AccessDeniedException", "auth_denied"),
+        ("UnauthorizedException", "auth_denied"),
+        ("StatementTimeoutException", "timeout"),
+        ("DatabaseNotFoundException", "cluster_not_found"),
+        ("DatabaseResumingException", "data_api_not_enabled"),
+        ("HttpEndpointNotEnabledException", "data_api_not_enabled"),
+        ("SomethingElse", "other"),
+    ])
+    def test_submit_maps_failure_taxonomy(tmp_path, monkeypatch, client_error_code, expected_reason) -> None:
+>       from services.connect import rds_data_submit as R
+E       ImportError: cannot import name 'rds_data_submit' from 'services.connect' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/connect/__init__.py)
+
+backend/tests/invariants/test_rds_data_submit.py:258: ImportError
+_ test_submit_maps_failure_taxonomy[HttpEndpointNotEnabledException-data_api_not_enabled] _
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_submit_maps_failure_taxon6')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfb79390f3890>
+client_error_code = 'HttpEndpointNotEnabledException'
+expected_reason = 'data_api_not_enabled'
+
+    @pytest.mark.parametrize("client_error_code,expected_reason", [
+        ("BadRequestException", "auth_denied"),
+        ("AccessDeniedException", "auth_denied"),
+        ("UnauthorizedException", "auth_denied"),
+        ("StatementTimeoutException", "timeout"),
+        ("DatabaseNotFoundException", "cluster_not_found"),
+        ("DatabaseResumingException", "data_api_not_enabled"),
+        ("HttpEndpointNotEnabledException", "data_api_not_enabled"),
+        ("SomethingElse", "other"),
+    ])
+    def test_submit_maps_failure_taxonomy(tmp_path, monkeypatch, client_error_code, expected_reason) -> None:
+>       from services.connect import rds_data_submit as R
+E       ImportError: cannot import name 'rds_data_submit' from 'services.connect' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/connect/__init__.py)
+
+backend/tests/invariants/test_rds_data_submit.py:258: ImportError
+____________ test_submit_maps_failure_taxonomy[SomethingElse-other] ____________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_submit_maps_failure_taxon7')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfb7939118210>
+client_error_code = 'SomethingElse', expected_reason = 'other'
+
+    @pytest.mark.parametrize("client_error_code,expected_reason", [
+        ("BadRequestException", "auth_denied"),
+        ("AccessDeniedException", "auth_denied"),
+        ("UnauthorizedException", "auth_denied"),
+        ("StatementTimeoutException", "timeout"),
+        ("DatabaseNotFoundException", "cluster_not_found"),
+        ("DatabaseResumingException", "data_api_not_enabled"),
+        ("HttpEndpointNotEnabledException", "data_api_not_enabled"),
+        ("SomethingElse", "other"),
+    ])
+    def test_submit_maps_failure_taxonomy(tmp_path, monkeypatch, client_error_code, expected_reason) -> None:
+>       from services.connect import rds_data_submit as R
+E       ImportError: cannot import name 'rds_data_submit' from 'services.connect' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/connect/__init__.py)
+
+backend/tests/invariants/test_rds_data_submit.py:258: ImportError
+________________ test_parses_data_source_aurora_shape_verbatim _________________
+
+    def test_parses_data_source_aurora_shape_verbatim() -> None:
+        from services.credentials_paste import parser as pp
+        parsed = pp.parse(DATA_SOURCE_PASTE, hint_kind="data-source")
+        assert parsed["kind"] == "data-source"
+        f = parsed["fields"]
+>       assert f["aws_access_key_id"] == "AKIA0000ACCESSKEYID12345"
+               ^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'aws_access_key_id'
+
+backend/tests/invariants/test_credentials_paste_parser.py:348: KeyError
+________________ test_auto_detect_infers_data_source_from_shape ________________
+
+    def test_auto_detect_infers_data_source_from_shape() -> None:
+        """The AWS+ARN shape is unmistakably a data-source, not compute."""
+        from services.credentials_paste import parser as pp
+        parsed = pp.parse(DATA_SOURCE_PASTE)  # no hint
+>       assert parsed["kind"] == "data-source", f"expected data-source, got {parsed['kind']}"
+E       AssertionError: expected data-source, got compute
+E       assert 'compute' == 'data-source'
+E         
+E         - data-source
+E         + compute
+
+backend/tests/invariants/test_credentials_paste_parser.py:360: AssertionError
+___________ test_endpoint_response_never_carries_aws_secret_verbatim ___________
+
+    def test_endpoint_response_never_carries_aws_secret_verbatim() -> None:
+        from services.credentials_paste import router as pr
+        app = FastAPI()
+        app.include_router(pr.router)
+        client = TestClient(app)
+        r = client.post("/api/connect/parse-paste", json={
+            "paste": DATA_SOURCE_PASTE,
+            "hint_kind": "data-source",
+        })
+        assert r.status_code == 200, r.text
+        raw = r.text
+>       assert SENTINEL_AWS_SECRET not in raw, "aws_secret_access_key leaked into response body"
+E       AssertionError: aws_secret_access_key leaked into response body
+E       assert 'SECRET_SENT..._DO_NOT_LEAK' not in '{"kind":"da...ured":false}'
+E         
+E         'SECRET_SENTINEL_awsxYzXyZ_DO_NOT_LEAK' is contained here:
+E           {"kind":"data-source","fields":{},"missing":["source_name","endpoint"],"extras":{"AWS Access Key Id":"AKIA0000ACCESSKEYID12345","AWS Secret Access Key":"SECRET_SENTINEL_awsxYzXyZ_DO_NOT_LEAK","Region":"us-east-1","Cluster ARN":"arn:aws:rds:us-east-1:123456789012:cluster:akki-aurora","Secret ARN":"arn:aws:secretsmanager:us-east-1:123456789012:secret:akki-db-abcdef","Database":"estate"},"password_captured":false,"api_key_captured":false}
+E         ?                                                                            ...
+E         
+E         ...Full output truncated (1 line hidden), use '-vv' to show
+
+backend/tests/invariants/test_credentials_paste_parser.py:374: AssertionError
+_________ test_endpoint_signals_aws_secret_captured_false_when_absent __________
+
+    def test_endpoint_signals_aws_secret_captured_false_when_absent() -> None:
+        """If paste has no aws_secret_access_key field, aws_secret_captured must be false."""
+        from services.credentials_paste import router as pr
+        app = FastAPI()
+        app.include_router(pr.router)
+        client = TestClient(app)
+        r = client.post("/api/connect/parse-paste", json={
+            "paste": "Region: us-east-1\nCluster ARN: arn:aws:rds:us-east-1:1:cluster:x",
+            "hint_kind": "data-source",
+        })
+        assert r.status_code == 200, r.text
+        body = r.json()
+>       assert body["aws_secret_captured"] is False
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'aws_secret_captured'
+
+backend/tests/invariants/test_credentials_paste_parser.py:407: KeyError
+=========================== short test summary info ============================
+FAILED backend/tests/invariants/test_rds_data_submit.py::test_module_present_and_exports_submit
+FAILED backend/tests/invariants/test_rds_data_submit.py::test_module_declares_no_llm_or_forbidden_libraries
+FAILED backend/tests/invariants/test_rds_data_submit.py::test_submit_writes_standing_creds_file_mode_0600
+FAILED backend/tests/invariants/test_rds_data_submit.py::test_submit_creds_file_never_in_git
+FAILED backend/tests/invariants/test_rds_data_submit.py::test_submit_declaration_fires_with_actor_and_scope
+FAILED backend/tests/invariants/test_rds_data_submit.py::test_submit_invokes_execute_statement_with_arns
+FAILED backend/tests/invariants/test_rds_data_submit.py::test_submit_returns_four_questions_response_on_success
+FAILED backend/tests/invariants/test_rds_data_submit.py::test_submit_response_never_carries_secret_verbatim
+FAILED backend/tests/invariants/test_rds_data_submit.py::test_submit_record_and_receipts_never_carry_secret
+FAILED backend/tests/invariants/test_rds_data_submit.py::test_submit_maps_failure_taxonomy[BadRequestException-auth_denied]
+FAILED backend/tests/invariants/test_rds_data_submit.py::test_submit_maps_failure_taxonomy[AccessDeniedException-auth_denied]
+FAILED backend/tests/invariants/test_rds_data_submit.py::test_submit_maps_failure_taxonomy[UnauthorizedException-auth_denied]
+FAILED backend/tests/invariants/test_rds_data_submit.py::test_submit_maps_failure_taxonomy[StatementTimeoutException-timeout]
+FAILED backend/tests/invariants/test_rds_data_submit.py::test_submit_maps_failure_taxonomy[DatabaseNotFoundException-cluster_not_found]
+FAILED backend/tests/invariants/test_rds_data_submit.py::test_submit_maps_failure_taxonomy[DatabaseResumingException-data_api_not_enabled]
+FAILED backend/tests/invariants/test_rds_data_submit.py::test_submit_maps_failure_taxonomy[HttpEndpointNotEnabledException-data_api_not_enabled]
+FAILED backend/tests/invariants/test_rds_data_submit.py::test_submit_maps_failure_taxonomy[SomethingElse-other]
+FAILED backend/tests/invariants/test_credentials_paste_parser.py::test_parses_data_source_aurora_shape_verbatim
+FAILED backend/tests/invariants/test_credentials_paste_parser.py::test_auto_detect_infers_data_source_from_shape
+FAILED backend/tests/invariants/test_credentials_paste_parser.py::test_endpoint_response_never_carries_aws_secret_verbatim
+FAILED backend/tests/invariants/test_credentials_paste_parser.py::test_endpoint_signals_aws_secret_captured_false_when_absent
+======================== 21 failed, 18 passed in 0.57s =========================

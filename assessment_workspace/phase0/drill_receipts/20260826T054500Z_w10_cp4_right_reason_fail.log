@@ -1,0 +1,181 @@
+/root/.venv/lib/python3.11/site-packages/pytest_asyncio/plugin.py:208: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.3.3, pluggy-1.6.0
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: xdist-3.8.0, asyncio-0.24.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, default_loop_scope=None
+collected 13 items
+
+backend/tests/invariants/test_w10_cp4_reserved_decisions.py FFF.FFFFFFFF [ 92%]
+F                                                                        [100%]
+
+=================================== FAILURES ===================================
+________ test_approval_request_v0_carries_reserved_decision_kind_field _________
+
+    def test_approval_request_v0_carries_reserved_decision_kind_field():
+        from contracts.approval_request import ApprovalRequest_v0
+        fields = ApprovalRequest_v0.model_fields
+>       assert "reserved_decision_kind" in fields
+E       assert 'reserved_decision_kind' in {'kind': FieldInfo(annotation=Literal['rules_update', 'spend_request', 'generic'], required=True, description="Approva...nfo(annotation=str, required=True, description='Actor id proposing the change.', metadata=[MinLen(min_length=1)]), ...}
+
+backend/tests/invariants/test_w10_cp4_reserved_decisions.py:69: AssertionError
+_____________________ test_reserved_decision_kind_grammar ______________________
+
+    def test_reserved_decision_kind_grammar():
+        """R3: closed Literal enum · 5 values from Canon 8 §19 verbatim."""
+        from contracts.approval_request import ApprovalRequest_v0
+        for k in (
+            "promote_containment",
+            "extend_expiry",
+            "sign_de_mark",
+            "resolve_authority_disagreement",
+            "cancel_ceremony_in_countdown",
+        ):
+>           ApprovalRequest_v0(**_valid_reserved_request(reserved_decision_kind=k))
+E           pydantic_core._pydantic_core.ValidationError: 1 validation error for ApprovalRequest_v0
+E           reserved_decision_kind
+E             Extra inputs are not permitted [type=extra_forbidden, input_value='promote_containment', input_type=str]
+E               For further information visit https://errors.pydantic.dev/2.13/v/extra_forbidden
+
+backend/tests/invariants/test_w10_cp4_reserved_decisions.py:82: ValidationError
+___________________ test_reserved_decision_kind_is_optional ____________________
+
+    def test_reserved_decision_kind_is_optional():
+        """Non-reserved generic requests continue to work (backward compat)."""
+        from contracts.approval_request import ApprovalRequest_v0
+>       ApprovalRequest_v0(**_valid_reserved_request(reserved_decision_kind=None))
+E       pydantic_core._pydantic_core.ValidationError: 1 validation error for ApprovalRequest_v0
+E       reserved_decision_kind
+E         Extra inputs are not permitted [type=extra_forbidden, input_value=None, input_type=NoneType]
+E           For further information visit https://errors.pydantic.dev/2.13/v/extra_forbidden
+
+backend/tests/invariants/test_w10_cp4_reserved_decisions.py:92: ValidationError
+_________________ test_submit_reserved_decision_request_writes _________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-10/test_submit_reserved_decision_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfa46d537f8d0>
+
+    def test_submit_reserved_decision_request_writes(tmp_path, monkeypatch):
+>       from services.approvals.reserved_decisions import submit_reserved_request
+E       ModuleNotFoundError: No module named 'services.approvals.reserved_decisions'
+
+backend/tests/invariants/test_w10_cp4_reserved_decisions.py:107: ModuleNotFoundError
+______________ test_submit_reserved_refuses_when_kind_not_generic ______________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-10/test_submit_reserved_refuses_w0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfa46d527ed50>
+
+    def test_submit_reserved_refuses_when_kind_not_generic(tmp_path, monkeypatch):
+        """Reserved kinds are generic-only. Setting reserved_decision_kind
+        on kind='rules_update' or 'spend_request' MUST refuse."""
+>       from services.approvals.reserved_decisions import submit_reserved_request
+E       ModuleNotFoundError: No module named 'services.approvals.reserved_decisions'
+
+backend/tests/invariants/test_w10_cp4_reserved_decisions.py:116: ModuleNotFoundError
+___________ test_submit_reserved_refuses_when_reserved_kind_missing ____________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-10/test_submit_reserved_refuses_w1')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfa46d5440f90>
+
+    def test_submit_reserved_refuses_when_reserved_kind_missing(tmp_path, monkeypatch):
+        """kind='generic' + reserved_decision_kind None is a NON-reserved
+        request; the reserved submitter refuses (use approvals.register_request
+        for non-reserved)."""
+>       from services.approvals.reserved_decisions import submit_reserved_request
+E       ModuleNotFoundError: No module named 'services.approvals.reserved_decisions'
+
+backend/tests/invariants/test_w10_cp4_reserved_decisions.py:126: ModuleNotFoundError
+_________ test_reserved_request_decidable_via_existing_approvals_flow __________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-10/test_reserved_request_decidabl0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfa46d68ae0d0>
+
+    def test_reserved_request_decidable_via_existing_approvals_flow(tmp_path, monkeypatch):
+        """Reserved requests are decided via the existing decide_request
+        path from W8 CP3 (SoD applies · no separate reserved-decision path)."""
+        from services.approvals.approvals import decide_request
+>       from services.approvals.reserved_decisions import submit_reserved_request
+E       ModuleNotFoundError: No module named 'services.approvals.reserved_decisions'
+
+backend/tests/invariants/test_w10_cp4_reserved_decisions.py:138: ModuleNotFoundError
+___________________ test_reserved_request_sod_still_enforced ___________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-10/test_reserved_request_sod_stil0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfa46d5442d10>
+
+    def test_reserved_request_sod_still_enforced(tmp_path, monkeypatch):
+        """W8 CP3 SoD: approver_actor_id must differ from proposed_by."""
+        from services.approvals.approvals import decide_request
+>       from services.approvals.reserved_decisions import submit_reserved_request
+E       ModuleNotFoundError: No module named 'services.approvals.reserved_decisions'
+
+backend/tests/invariants/test_w10_cp4_reserved_decisions.py:149: ModuleNotFoundError
+_______________ test_reserved_module_has_no_auto_execute_symbol ________________
+
+    def test_reserved_module_has_no_auto_execute_symbol():
+        """§32.6: NO reserved-decision is executed by machine. The service
+        module MUST NOT contain symbols like 'auto_apply', 'auto_execute',
+        'fire_on_approval', 'execute_side_effect'."""
+>       from services.approvals import reserved_decisions as mod
+E       ImportError: cannot import name 'reserved_decisions' from 'services.approvals' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/approvals/__init__.py)
+
+backend/tests/invariants/test_w10_cp4_reserved_decisions.py:162: ImportError
+_________________ test_reserved_module_read_side_lists_pending _________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-10/test_reserved_module_read_side0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfa46d537d0d0>
+
+    def test_reserved_module_read_side_lists_pending(tmp_path, monkeypatch):
+        """A read-side lister returns open reserved requests (those without
+        a decision on record yet). Useful for the reserved-decisions panel
+        surface."""
+>       from services.approvals.reserved_decisions import (
+            list_pending_reserved, submit_reserved_request,
+        )
+E       ModuleNotFoundError: No module named 'services.approvals.reserved_decisions'
+
+backend/tests/invariants/test_w10_cp4_reserved_decisions.py:181: ModuleNotFoundError
+_______________ test_reserved_module_read_side_excludes_decided ________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-10/test_reserved_module_read_side1')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfa46d5440110>
+
+    def test_reserved_module_read_side_excludes_decided(tmp_path, monkeypatch):
+        """After a decision lands on a reserved request, the pending
+        lister excludes it."""
+        from services.approvals.approvals import decide_request
+>       from services.approvals.reserved_decisions import (
+            list_pending_reserved, submit_reserved_request,
+        )
+E       ModuleNotFoundError: No module named 'services.approvals.reserved_decisions'
+
+backend/tests/invariants/test_w10_cp4_reserved_decisions.py:200: ModuleNotFoundError
+____________ test_reserved_kind_grammar_matches_canon_8_19_verbatim ____________
+
+    def test_reserved_kind_grammar_matches_canon_8_19_verbatim():
+        """R3: enum values are the 5 Canon 8 §19 reserved decisions.
+        No additions, no removals · closed enum."""
+        from contracts.approval_request import ApprovalRequest_v0
+        import typing
+>       field = ApprovalRequest_v0.model_fields["reserved_decision_kind"]
+E       KeyError: 'reserved_decision_kind'
+
+backend/tests/invariants/test_w10_cp4_reserved_decisions.py:215: KeyError
+=========================== short test summary info ============================
+FAILED backend/tests/invariants/test_w10_cp4_reserved_decisions.py::test_approval_request_v0_carries_reserved_decision_kind_field
+FAILED backend/tests/invariants/test_w10_cp4_reserved_decisions.py::test_reserved_decision_kind_grammar
+FAILED backend/tests/invariants/test_w10_cp4_reserved_decisions.py::test_reserved_decision_kind_is_optional
+FAILED backend/tests/invariants/test_w10_cp4_reserved_decisions.py::test_submit_reserved_decision_request_writes
+FAILED backend/tests/invariants/test_w10_cp4_reserved_decisions.py::test_submit_reserved_refuses_when_kind_not_generic
+FAILED backend/tests/invariants/test_w10_cp4_reserved_decisions.py::test_submit_reserved_refuses_when_reserved_kind_missing
+FAILED backend/tests/invariants/test_w10_cp4_reserved_decisions.py::test_reserved_request_decidable_via_existing_approvals_flow
+FAILED backend/tests/invariants/test_w10_cp4_reserved_decisions.py::test_reserved_request_sod_still_enforced
+FAILED backend/tests/invariants/test_w10_cp4_reserved_decisions.py::test_reserved_module_has_no_auto_execute_symbol
+FAILED backend/tests/invariants/test_w10_cp4_reserved_decisions.py::test_reserved_module_read_side_lists_pending
+FAILED backend/tests/invariants/test_w10_cp4_reserved_decisions.py::test_reserved_module_read_side_excludes_decided
+FAILED backend/tests/invariants/test_w10_cp4_reserved_decisions.py::test_reserved_kind_grammar_matches_canon_8_19_verbatim
+========================= 12 failed, 1 passed in 0.14s =========================

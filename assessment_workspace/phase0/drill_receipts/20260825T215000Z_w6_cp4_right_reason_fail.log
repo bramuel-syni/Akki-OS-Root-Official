@@ -1,0 +1,187 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-9.1.1, pluggy-1.6.0 -- /root/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: asyncio-1.4.0, xdist-3.8.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 7 items
+
+tests/invariants/test_solva_stages_4_6_grey_mirror_groundwork.py::test_new_purposes_on_allowlist FAILED [ 14%]
+tests/invariants/test_solva_stages_4_6_grey_mirror_groundwork.py::test_triangulation_returns_supported_contested_unsupported FAILED [ 28%]
+tests/invariants/test_solva_stages_4_6_grey_mirror_groundwork.py::test_triangulation_surfaces_shield_refusal_verbatim FAILED [ 42%]
+tests/invariants/test_solva_stages_4_6_grey_mirror_groundwork.py::test_tension_detection_returns_tension_pairs FAILED [ 57%]
+tests/invariants/test_solva_stages_4_6_grey_mirror_groundwork.py::test_probability_weighting_returns_normalised_weights FAILED [ 71%]
+tests/invariants/test_solva_stages_4_6_grey_mirror_groundwork.py::test_probability_weighting_deterministically_normalises_when_llm_off FAILED [ 85%]
+tests/invariants/test_solva_stages_4_6_grey_mirror_groundwork.py::test_full_pipeline_still_ends_at_synthesis PASSED [100%]
+
+=================================== FAILURES ===================================
+________________________ test_new_purposes_on_allowlist ________________________
+
+    def test_new_purposes_on_allowlist():
+        from services.chokepoint.llm_purpose_gate import ALLOWED_PURPOSES
+    
+        for p in (
+            "solva.triangulation",
+            "solva.tension_detection",
+            "solva.probability_weighting",
+        ):
+>           assert p in ALLOWED_PURPOSES, f"W6 CP4 purpose {p!r} not on allowlist"
+E           AssertionError: W6 CP4 purpose 'solva.triangulation' not on allowlist
+E           assert 'solva.triangulation' in frozenset({'chat.governed_answer', 'llm.connect_verify', 'solva.candidate_generation', 'solva.frame_audit', 'solva.synthesis', 'thinklab.direct_answer'})
+
+tests/invariants/test_solva_stages_4_6_grey_mirror_groundwork.py:80: AssertionError
+__________ test_triangulation_returns_supported_contested_unsupported __________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xff094c9d0410>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-39/test_triangulation_returns_sup0')
+
+    def test_triangulation_returns_supported_contested_unsupported(monkeypatch, tmp_path):
+        from services.chokepoint import llm as chokepoint_llm
+        from services.solva import reasoning as solva
+    
+        llm_json = json.dumps({
+            "supported": [{"candidate_id": "cand-a", "supporting_sources": ["capability register q1"]}],
+            "contested": [{"candidate_id": "cand-b", "supporting": ["market report"], "against": ["cfo memo"]}],
+            "unsupported": [{"candidate_id": "cand-c", "reason": "no board minutes on record"}],
+        })
+        monkeypatch.setattr(chokepoint_llm, "invoke", _fake_invoke_map({
+            "solva.triangulation": llm_json,
+        }))
+        monkeypatch.setenv("SOLVA_RUN_DIR", str(tmp_path))
+    
+>       result = asyncio.run(solva.run_triangulation(
+                             ^^^^^^^^^^^^^^^^^^^^^^^
+            candidates=_CANDS,
+            actor="test@estate",
+        ))
+E       AttributeError: module 'services.solva.reasoning' has no attribute 'run_triangulation'
+
+tests/invariants/test_solva_stages_4_6_grey_mirror_groundwork.py:101: AttributeError
+_____________ test_triangulation_surfaces_shield_refusal_verbatim ______________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xff0946b493d0>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-39/test_triangulation_surfaces_sh0')
+
+    def test_triangulation_surfaces_shield_refusal_verbatim(monkeypatch, tmp_path):
+        from services.chokepoint import llm as chokepoint_llm
+        from services.chokepoint.llm import LLMShieldFailure
+        from services.solva import reasoning as solva
+    
+        async def _refuse(*, purpose, prompt, **kw):
+            raise LLMShieldFailure("upstream_llm_failed — outage")
+        monkeypatch.setattr(chokepoint_llm, "invoke", _refuse)
+        monkeypatch.setenv("SOLVA_RUN_DIR", str(tmp_path))
+    
+>       result = asyncio.run(solva.run_triangulation(
+                             ^^^^^^^^^^^^^^^^^^^^^^^
+            candidates=_CANDS,
+            actor="test@estate",
+        ))
+E       AttributeError: module 'services.solva.reasoning' has no attribute 'run_triangulation'
+
+tests/invariants/test_solva_stages_4_6_grey_mirror_groundwork.py:124: AttributeError
+_________________ test_tension_detection_returns_tension_pairs _________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xff0946910390>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-39/test_tension_detection_returns0')
+
+    def test_tension_detection_returns_tension_pairs(monkeypatch, tmp_path):
+        from services.chokepoint import llm as chokepoint_llm
+        from services.solva import reasoning as solva
+    
+        llm_json = json.dumps({
+            "tensions": [
+                {"between": ["cand-a", "cand-b"],
+                 "kind": "mutually_exclusive",
+                 "reason": "capability-gap explanation excludes market-shift as sole cause"},
+            ],
+        })
+        monkeypatch.setattr(chokepoint_llm, "invoke", _fake_invoke_map({
+            "solva.tension_detection": llm_json,
+        }))
+        monkeypatch.setenv("SOLVA_RUN_DIR", str(tmp_path))
+    
+>       result = asyncio.run(solva.run_tension_detection(
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+            candidates=_CANDS,
+            actor="test@estate",
+        ))
+E       AttributeError: module 'services.solva.reasoning' has no attribute 'run_tension_detection'
+
+tests/invariants/test_solva_stages_4_6_grey_mirror_groundwork.py:155: AttributeError
+____________ test_probability_weighting_returns_normalised_weights _____________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xff094677b050>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-39/test_probability_weighting_ret0')
+
+    def test_probability_weighting_returns_normalised_weights(monkeypatch, tmp_path):
+        from services.chokepoint import llm as chokepoint_llm
+        from services.solva import reasoning as solva
+    
+        llm_json = json.dumps({
+            "weighted_candidates": [
+                {"candidate_id": "cand-a", "weight": 0.55, "rationale": "capability register cited"},
+                {"candidate_id": "cand-b", "weight": 0.30, "rationale": "market report contested"},
+                {"candidate_id": "cand-c", "weight": 0.15, "rationale": "no board minutes on record"},
+            ],
+        })
+        monkeypatch.setattr(chokepoint_llm, "invoke", _fake_invoke_map({
+            "solva.probability_weighting": llm_json,
+        }))
+        monkeypatch.setenv("SOLVA_RUN_DIR", str(tmp_path))
+    
+        triangulation = {"supported": [{"candidate_id": "cand-a"}], "contested": [], "unsupported": []}
+        tensions = [{"between": ["cand-a", "cand-b"], "kind": "mutually_exclusive"}]
+    
+>       result = asyncio.run(solva.run_probability_weighting(
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+            candidates=_CANDS,
+            triangulation=triangulation,
+            tensions=tensions,
+            actor="test@estate",
+        ))
+E       AttributeError: module 'services.solva.reasoning' has no attribute 'run_probability_weighting'
+
+tests/invariants/test_solva_stages_4_6_grey_mirror_groundwork.py:189: AttributeError
+_____ test_probability_weighting_deterministically_normalises_when_llm_off _____
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xff094675c0d0>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-39/test_probability_weighting_det0')
+
+    def test_probability_weighting_deterministically_normalises_when_llm_off(monkeypatch, tmp_path):
+        """If the LLM returns unnormalised weights, the mechanism deterministically
+        normalises them (no silent fabrication; the LLM's proportions are kept
+        but rescaled to sum ≈ 1.0)."""
+        from services.chokepoint import llm as chokepoint_llm
+        from services.solva import reasoning as solva
+    
+        llm_json = json.dumps({
+            "weighted_candidates": [
+                {"candidate_id": "cand-a", "weight": 2.0, "rationale": "high"},
+                {"candidate_id": "cand-b", "weight": 3.0, "rationale": "higher"},
+            ],
+        })
+        monkeypatch.setattr(chokepoint_llm, "invoke", _fake_invoke_map({
+            "solva.probability_weighting": llm_json,
+        }))
+        monkeypatch.setenv("SOLVA_RUN_DIR", str(tmp_path))
+    
+>       result = asyncio.run(solva.run_probability_weighting(
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+            candidates=_CANDS[:2],
+            triangulation={"supported": [], "contested": [], "unsupported": []},
+            tensions=[],
+            actor="test@estate",
+        ))
+E       AttributeError: module 'services.solva.reasoning' has no attribute 'run_probability_weighting'
+
+tests/invariants/test_solva_stages_4_6_grey_mirror_groundwork.py:221: AttributeError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_solva_stages_4_6_grey_mirror_groundwork.py::test_new_purposes_on_allowlist
+FAILED tests/invariants/test_solva_stages_4_6_grey_mirror_groundwork.py::test_triangulation_returns_supported_contested_unsupported
+FAILED tests/invariants/test_solva_stages_4_6_grey_mirror_groundwork.py::test_triangulation_surfaces_shield_refusal_verbatim
+FAILED tests/invariants/test_solva_stages_4_6_grey_mirror_groundwork.py::test_tension_detection_returns_tension_pairs
+FAILED tests/invariants/test_solva_stages_4_6_grey_mirror_groundwork.py::test_probability_weighting_returns_normalised_weights
+FAILED tests/invariants/test_solva_stages_4_6_grey_mirror_groundwork.py::test_probability_weighting_deterministically_normalises_when_llm_off
+========================= 6 failed, 1 passed in 1.45s ==========================

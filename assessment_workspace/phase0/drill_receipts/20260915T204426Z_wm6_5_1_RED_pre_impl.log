@@ -1,0 +1,18 @@
+FFFFFFF                                                                  [100%]
+=================================== FAILURES ===================================
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError: No module named 'services.audio_plane_v1.clustering'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wm6_5_1_clustering_registration.py:77: ModuleNotFoundError: No module named 'services.audio_plane_v1.clustering'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wm6_5_1_clustering_registration.py:106: ModuleNotFoundError: No module named 'services.audio_plane_v1.clustering'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wm6_5_1_clustering_registration.py:126: ModuleNotFoundError: No module named 'services.audio_plane_v1.clustering'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wm6_5_1_clustering_registration.py:146: ModuleNotFoundError: No module named 'services.audio_plane_v1.clustering'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wm6_5_1_clustering_registration.py:179: ModuleNotFoundError: No module named 'services.audio_plane_v1.clustering'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wm6_5_1_clustering_registration.py:239: ModuleNotFoundError: No module named 'services.audio_plane_v1.clustering'
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wm6_5_1_clustering_registration.py::test_wm6_5_1_module_fabric
+FAILED tests/invariants/test_wm6_5_1_clustering_registration.py::test_wm6_5_1_candidate_stratum_three_carrier_shape_no_human_name
+FAILED tests/invariants/test_wm6_5_1_clustering_registration.py::test_wm6_5_1_unratified_backend_refuses_live_invocation
+FAILED tests/invariants/test_wm6_5_1_clustering_registration.py::test_wm6_5_1_seam_refuses_empty_character_register
+FAILED tests/invariants/test_wm6_5_1_clustering_registration.py::test_wm6_5_1_seam_refuses_unratified_backend_on_populated_register
+FAILED tests/invariants/test_wm6_5_1_clustering_registration.py::test_wm6_5_1_seam_invokes_backend_and_returns_verbatim_output
+FAILED tests/invariants/test_wm6_5_1_clustering_registration.py::test_wm6_5_1_candidate_stratum_member_names_are_attribute_name_strings
+7 failed in 0.65s

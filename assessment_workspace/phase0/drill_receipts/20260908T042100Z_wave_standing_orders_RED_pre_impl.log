@@ -1,0 +1,62 @@
+============================= test session starts ==============================
+collecting ... collected 7 items
+
+backend/tests/invariants/test_standing_orders_present.py::test_standing_orders_file_exists FAILED [ 14%]
+backend/tests/invariants/test_standing_orders_present.py::test_standing_orders_has_six_section_headers FAILED [ 28%]
+backend/tests/invariants/test_standing_orders_present.py::test_decisions_carries_pointer_near_top FAILED [ 42%]
+backend/tests/invariants/test_standing_orders_present.py::test_decisions_carries_pointer_near_bottom FAILED [ 57%]
+backend/tests/invariants/test_standing_orders_present.py::test_next_carries_pointer_near_top FAILED [ 71%]
+backend/tests/invariants/test_standing_orders_present.py::test_next_carries_pointer_near_bottom FAILED [ 85%]
+backend/tests/invariants/test_standing_orders_present.py::test_reattach_runbook_references_standing_orders FAILED [100%]
+
+=================================== FAILURES ===================================
+_______________________ test_standing_orders_file_exists _______________________
+backend/tests/invariants/test_standing_orders_present.py:71: in test_standing_orders_file_exists
+    assert (
+E   AssertionError: STANDING_ORDERS.md missing at /app/assessment_workspace/STATE/STANDING_ORDERS.md
+E   assert False
+E    +  where False = exists()
+E    +    where exists = PosixPath('/app/assessment_workspace/STATE/STANDING_ORDERS.md').exists
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+_________________ test_standing_orders_has_six_section_headers _________________
+backend/tests/invariants/test_standing_orders_present.py:77: in test_standing_orders_has_six_section_headers
+    assert STANDING_ORDERS_PATH.exists(), (
+E   AssertionError: STANDING_ORDERS.md missing at /app/assessment_workspace/STATE/STANDING_ORDERS.md
+E   assert False
+E    +  where False = exists()
+E    +    where exists = PosixPath('/app/assessment_workspace/STATE/STANDING_ORDERS.md').exists
+___________________ test_decisions_carries_pointer_near_top ____________________
+backend/tests/invariants/test_standing_orders_present.py:90: in test_decisions_carries_pointer_near_top
+    assert POINTER_LINE in top, (
+E   AssertionError: pointer line not found in first 5 non-empty lines of /app/assessment_workspace/STATE/DECISIONS.md: first 5 were ['# DECISIONS.md — Append-only log of rulings received', 'Rulings are recorded verbatim, dated, in receipt order. This log is append-only.', 'Correction is by NEW ENTRY citing the corrected id, never by mutation.', "Under Ruling 1's four-test discipline, an unlogged ruling is treated as", '"not having lawfully happened".']
+E   assert 'READ STATE/STANDING_ORDERS.md FIRST — permanent standing law' in ['# DECISIONS.md — Append-only log of rulings received', 'Rulings are recorded verbatim, dated, in receipt order. This log is append-only.', 'Correction is by NEW ENTRY citing the corrected id, never by mutation.', "Under Ruling 1's four-test discipline, an unlogged ruling is treated as", '"not having lawfully happened".']
+__________________ test_decisions_carries_pointer_near_bottom __________________
+backend/tests/invariants/test_standing_orders_present.py:99: in test_decisions_carries_pointer_near_bottom
+    assert POINTER_LINE in bottom, (
+E   AssertionError: pointer line not found in last 5 non-empty lines of /app/assessment_workspace/STATE/DECISIONS.md: last 5 were ['4. Wiring targets: `STATE/DECISIONS.md` (top+bottom), `STATE/NEXT.md` (top+bottom), `phase0/campaign_drafts/REATTACH_RUNBOOK.md` (referenced).', '5. Invariant test file lives on track-a at `backend/tests/invariants/test_standing_orders_present.py` and freezes: (a) STANDING_ORDERS.md exists at the workspace absolute path, (b) all six section headers present verbatim, (c) DECISIONS.md carries the pointer within its first 5 non-empty lines AND within its last 5 non-empty lines, (d) NEXT.md same, (e) REATTACH_RUNBOOK carries a reference to STANDING_ORDERS.md.', '6. Ratchet path: floor 2997 → 3004 (+7 tests) via mechanical RED then double-green byte-match.', '7. Then the MASTER TRACEABILITY AUDIT resumes.', '**Discipline (still binding):** mechanical RED receipt · double-green byte-match under `BASELINE_GUARD=1` · two-commit pattern · no push · terminal pytest only · owner ruling banked verbatim before action.']
+E   assert 'READ STATE/STANDING_ORDERS.md FIRST — permanent standing law' in ['4. Wiring targets: `STATE/DECISIONS.md` (top+bottom), `STATE/NEXT.md` (top+bottom), `phase0/campaign_drafts/REATTACH_RUNBOOK.md` (referenced).', '5. Invariant test file lives on track-a at `backend/tests/invariants/test_standing_orders_present.py` and freezes: (a) STANDING_ORDERS.md exists at the workspace absolute path, (b) all six section headers present verbatim, (c) DECISIONS.md carries the pointer within its first 5 non-empty lines AND within its last 5 non-empty lines, (d) NEXT.md same, (e) REATTACH_RUNBOOK carries a reference to STANDING_ORDERS.md.', '6. Ratchet path: floor 2997 → 3004 (+7 tests) via mechanical RED then double-green byte-match.', '7. Then the MASTER TRACEABILITY AUDIT resumes.', '**Discipline (still binding):** mechanical RED receipt · double-green byte-match under `BASELINE_GUARD=1` · two-commit pattern · no push · terminal pytest only · owner ruling banked verbatim before action.']
+______________________ test_next_carries_pointer_near_top ______________________
+backend/tests/invariants/test_standing_orders_present.py:108: in test_next_carries_pointer_near_top
+    assert POINTER_LINE in top, (
+E   AssertionError: pointer line not found in first 5 non-empty lines of /app/assessment_workspace/STATE/NEXT.md: first 5 were ['# ⛔ ANTI-COMPACTION PIN · READ FIRST EVERY TIME ⛔', '**If you are a compaction-restart of the main agent, your FIRST ACTION is:**', '1. Read the last 200 lines of `STATE/DECISIONS.md`.', '2. Read the whole of `STATE/NEXT.md` (this file) top-to-bottom.', '3. Read the current wave grounding brief (`notes/waveA_grounding_brief.md`, `waveB_grounding_brief.md`, or `waveC_grounding_brief.md`) if one exists for the wave in progress.']
+E   assert 'READ STATE/STANDING_ORDERS.md FIRST — permanent standing law' in ['# ⛔ ANTI-COMPACTION PIN · READ FIRST EVERY TIME ⛔', '**If you are a compaction-restart of the main agent, your FIRST ACTION is:**', '1. Read the last 200 lines of `STATE/DECISIONS.md`.', '2. Read the whole of `STATE/NEXT.md` (this file) top-to-bottom.', '3. Read the current wave grounding brief (`notes/waveA_grounding_brief.md`, `waveB_grounding_brief.md`, or `waveC_grounding_brief.md`) if one exists for the wave in progress.']
+____________________ test_next_carries_pointer_near_bottom _____________________
+backend/tests/invariants/test_standing_orders_present.py:117: in test_next_carries_pointer_near_bottom
+    assert POINTER_LINE in bottom, (
+E   AssertionError: pointer line not found in last 5 non-empty lines of /app/assessment_workspace/STATE/NEXT.md: last 5 were ['**Next text-run recommendations (deferred to owner sequencing):**', '- Sample from `OFFSET 500000` in `ussd_question_response` to reach populated `value_chain`.', '- Add `sms_log.sms_sent` (longtext) as secondary corpus.', '- Pre-filter for unique Q×A pattern (1 example per unique combination) to escape memorisation regime.', '**Ratchet floor:** **2692** · double-green byte-identical last close · manifest updated in `backend/tests/invariants/baseline_failures.json`.']
+E   assert 'READ STATE/STANDING_ORDERS.md FIRST — permanent standing law' in ['**Next text-run recommendations (deferred to owner sequencing):**', '- Sample from `OFFSET 500000` in `ussd_question_response` to reach populated `value_chain`.', '- Add `sms_log.sms_sent` (longtext) as secondary corpus.', '- Pre-filter for unique Q×A pattern (1 example per unique combination) to escape memorisation regime.', '**Ratchet floor:** **2692** · double-green byte-identical last close · manifest updated in `backend/tests/invariants/baseline_failures.json`.']
+_______________ test_reattach_runbook_references_standing_orders _______________
+backend/tests/invariants/test_standing_orders_present.py:128: in test_reattach_runbook_references_standing_orders
+    assert "STATE/STANDING_ORDERS.md" in text, (
+E   AssertionError: REATTACH_RUNBOOK does not reference STATE/STANDING_ORDERS.md
+E   assert 'STATE/STANDING_ORDERS.md' in '# REATTACH_RUNBOOK · Campaign session pickup after context loss\n\n**Purpose.** A concise "how the next session adopts the two active campaigns" runbook so reconciliation is MECHANICAL regardless of context loss between now (launch) and 2026-09-09 (window close).\n\n**Authority — owner ruling verbatim (2026-09-06T~12:32Z):**\n\n> "Bank a REATTACH RUNBOOK (how the next session adopts the campaigns: adopt env vars, reconcile paths, what to check first) so reconciliation is mechanical regardless of context loss."\n\n---\n\n## Section 1 · First-touch checks (run these in order before touching anything else)\n\n1. **STATE tails** — read the last 200 lines of `STATE/DECISIONS.md` + `STATE/NEXT.md` (anti-compaction rule). Confirm the two campaigns\' close entries exist and note the current-marker.\n2. **Ratchet floor** — `python3 -c "import json; m=json.load(open(\'/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json\')); print(m[\'counts_at_baseline\'][\'passed\'], m[\'invariants_enforced_when_baseline_guard_1\'][\'passed_floor\'])"` — both numbers MUST match. Any divergence means an in-flight bump was interrupted.\n3. **Git state on both bra...-up · window ended at the same floor or higher.\n\n## Section 8 · Emergency abort (owner ruling required)\n\nIf owner orders the campaign paused OR aborted mid-window:\n1. On each host: SSH in and touch `~/akki_journal/PAUSE` — the on-host watchdog and campaign runner both respect this (charter this as follow-on if not already enforced).\n2. Verify all training PIDs stop cleanly via `retire_heartbeat` per run.\n3. Bank the abort ruling verbatim in `STATE/DECISIONS.md`.\n4. Move active runs\' notebook.jsonl + partial checkpoint markers into `phase0/wpw_notebook/aborted/`.\n\n## Section 9 · DATA GATE reminder (never forget)\n\n**t1_full_mask is admitted ONLY under `AKKI_ENV=development`.** `sandbox` and `production` are NOT admitted. Any reconcile action that would trigger a governed extraction under a non-development env MUST fail via `MaskingTierNotAdmitted` — this is frozen by `test_execute_governed_lora_run_raises_on_parked_tier` (invariant asserts `AKKI_ENV=sandbox` still refuses).\n\nThe reconcile module NEVER re-triggers extractions; it only reads on-host journal + on-host checkpoint markers.\n\n---\n\n*Authored 2026-09-06T~12:50Z pre-launch per owner\'s STEP 5 directive.*\n'
+=========================== short test summary info ============================
+FAILED backend/tests/invariants/test_standing_orders_present.py::test_standing_orders_file_exists
+FAILED backend/tests/invariants/test_standing_orders_present.py::test_standing_orders_has_six_section_headers
+FAILED backend/tests/invariants/test_standing_orders_present.py::test_decisions_carries_pointer_near_top
+FAILED backend/tests/invariants/test_standing_orders_present.py::test_decisions_carries_pointer_near_bottom
+FAILED backend/tests/invariants/test_standing_orders_present.py::test_next_carries_pointer_near_top
+FAILED backend/tests/invariants/test_standing_orders_present.py::test_next_carries_pointer_near_bottom
+FAILED backend/tests/invariants/test_standing_orders_present.py::test_reattach_runbook_references_standing_orders
+============================== 7 failed in 0.98s ===============================

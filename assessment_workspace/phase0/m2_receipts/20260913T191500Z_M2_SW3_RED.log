@@ -1,0 +1,12 @@
+>       from services.rules_service.rule_book_library import RuleBook
+E       ModuleNotFoundError: No module named 'services.rules_service.rule_book_library'
+
+tests/invariants/test_wm2_sw3_rule_book_library.py:157: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wm2_sw3_rule_book_library.py::test_sw3_module_fabric_present
+FAILED tests/invariants/test_wm2_sw3_rule_book_library.py::test_sw3_load_is_deterministic
+FAILED tests/invariants/test_wm2_sw3_rule_book_library.py::test_sw3_rulebook_is_immutable
+FAILED tests/invariants/test_wm2_sw3_rule_book_library.py::test_sw3_materialise_into_registry_additive
+FAILED tests/invariants/test_wm2_sw3_rule_book_library.py::test_sw3_duplicate_ids_in_source_refused
+FAILED tests/invariants/test_wm2_sw3_rule_book_library.py::test_sw3_rulebook_has_content_hash
+============================== 6 failed in 0.69s ===============================

@@ -1,0 +1,89 @@
+/root/.venv/lib/python3.11/site-packages/pytest_asyncio/plugin.py:208: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.3.3, pluggy-1.6.0
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: xdist-3.8.0, anyio-4.14.2, asyncio-0.24.0
+asyncio: mode=Mode.AUTO, default_loop_scope=None
+collected 7 items
+
+backend/tests/invariants/test_w9_cp4_continuity_attestation.py FFFFFFF   [100%]
+
+=================================== FAILURES ===================================
+__________________ test_continuity_attestation_contract_shape __________________
+
+    def test_continuity_attestation_contract_shape():
+>       from contracts.continuity_attestation import ContinuityAttestation_v0
+E       ModuleNotFoundError: No module named 'contracts.continuity_attestation'
+
+backend/tests/invariants/test_w9_cp4_continuity_attestation.py:47: ModuleNotFoundError
+_________________ test_continuity_attestation_outcome_grammar __________________
+
+    def test_continuity_attestation_outcome_grammar():
+>       from contracts.continuity_attestation import ContinuityAttestation_v0
+E       ModuleNotFoundError: No module named 'contracts.continuity_attestation'
+
+backend/tests/invariants/test_w9_cp4_continuity_attestation.py:53: ModuleNotFoundError
+__________________ test_continuity_attestation_scope_grammar ___________________
+
+    def test_continuity_attestation_scope_grammar():
+>       from contracts.continuity_attestation import ContinuityAttestation_v0
+E       ModuleNotFoundError: No module named 'contracts.continuity_attestation'
+
+backend/tests/invariants/test_w9_cp4_continuity_attestation.py:61: ModuleNotFoundError
+_______________ test_write_attestation_refuses_while_rto_pending _______________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-129/test_write_attestation_refuses0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xf8fdd12de390>
+
+    def test_write_attestation_refuses_while_rto_pending(tmp_path, monkeypatch):
+        """CA1-N5-q1 · owner policy sentinel: rto_target_seconds must be a
+        real value, not OWNER_POLICY_PENDING."""
+>       from services.watch.continuity import write_attestation
+E       ModuleNotFoundError: No module named 'services.watch.continuity'
+
+backend/tests/invariants/test_w9_cp4_continuity_attestation.py:80: ModuleNotFoundError
+__________ test_write_attestation_refuses_while_verification_pending ___________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-129/test_write_attestation_refuses1')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xf8fdd12dfad0>
+
+    def test_write_attestation_refuses_while_verification_pending(tmp_path, monkeypatch):
+>       from services.watch.continuity import write_attestation
+E       ModuleNotFoundError: No module named 'services.watch.continuity'
+
+backend/tests/invariants/test_w9_cp4_continuity_attestation.py:89: ModuleNotFoundError
+______________ test_write_attestation_fires_when_policy_resolved _______________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-129/test_write_attestation_fires_w0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xf8fdd12c2c90>
+
+    def test_write_attestation_fires_when_policy_resolved(tmp_path, monkeypatch):
+        """With owner facts, the service writes the record."""
+>       from services.watch.continuity import write_attestation, load_attestations
+E       ModuleNotFoundError: No module named 'services.watch.continuity'
+
+backend/tests/invariants/test_w9_cp4_continuity_attestation.py:100: ModuleNotFoundError
+___________________ test_write_attestation_refuses_overwrite ___________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-129/test_write_attestation_refuses2')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xf8fdd12ae290>
+
+    def test_write_attestation_refuses_overwrite(tmp_path, monkeypatch):
+        """Canon 8 §43: NEITHER record is amended in place."""
+>       from services.watch.continuity import write_attestation
+E       ModuleNotFoundError: No module named 'services.watch.continuity'
+
+backend/tests/invariants/test_w9_cp4_continuity_attestation.py:112: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED backend/tests/invariants/test_w9_cp4_continuity_attestation.py::test_continuity_attestation_contract_shape
+FAILED backend/tests/invariants/test_w9_cp4_continuity_attestation.py::test_continuity_attestation_outcome_grammar
+FAILED backend/tests/invariants/test_w9_cp4_continuity_attestation.py::test_continuity_attestation_scope_grammar
+FAILED backend/tests/invariants/test_w9_cp4_continuity_attestation.py::test_write_attestation_refuses_while_rto_pending
+FAILED backend/tests/invariants/test_w9_cp4_continuity_attestation.py::test_write_attestation_refuses_while_verification_pending
+FAILED backend/tests/invariants/test_w9_cp4_continuity_attestation.py::test_write_attestation_fires_when_policy_resolved
+FAILED backend/tests/invariants/test_w9_cp4_continuity_attestation.py::test_write_attestation_refuses_overwrite
+============================== 7 failed in 0.13s ===============================

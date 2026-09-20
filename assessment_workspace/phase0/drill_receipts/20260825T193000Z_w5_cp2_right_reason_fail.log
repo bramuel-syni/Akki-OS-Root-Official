@@ -1,0 +1,608 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-9.1.1, pluggy-1.6.0 -- /root/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: asyncio-1.4.0, xdist-3.8.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 32 items
+
+tests/invariants/test_llm_chokepoint_sole_importer.py::test_llm_chokepoint_module_exists FAILED [  3%]
+tests/invariants/test_llm_chokepoint_sole_importer.py::test_llm_purpose_gate_module_exists FAILED [  6%]
+tests/invariants/test_llm_chokepoint_sole_importer.py::test_llm_endpoint_allowlist_module_exists FAILED [  9%]
+tests/invariants/test_llm_chokepoint_sole_importer.py::test_only_chokepoint_llm_may_import_llm_sdks FAILED [ 12%]
+tests/invariants/test_llm_chokepoint_sole_importer.py::test_chokepoint_llm_actually_imports_emergentintegrations FAILED [ 15%]
+tests/invariants/test_llm_chokepoint_sole_importer.py::test_legacy_synisense_llm_router_no_longer_imports_sdk FAILED [ 18%]
+tests/invariants/test_llm_purpose_gate_refuses_unlisted.py::test_allowed_purposes_carries_w5_entries FAILED [ 21%]
+tests/invariants/test_llm_purpose_gate_refuses_unlisted.py::test_allowed_purposes_uses_solva_vocabulary_not_solver FAILED [ 25%]
+tests/invariants/test_llm_purpose_gate_refuses_unlisted.py::test_validate_purpose_accepts_allowlisted_purposes FAILED [ 28%]
+tests/invariants/test_llm_purpose_gate_refuses_unlisted.py::test_validate_purpose_refuses_empty_purpose FAILED [ 31%]
+tests/invariants/test_llm_purpose_gate_refuses_unlisted.py::test_validate_purpose_refuses_unlisted_purpose FAILED [ 34%]
+tests/invariants/test_llm_purpose_gate_refuses_unlisted.py::test_validate_purpose_refuses_non_string FAILED [ 37%]
+tests/invariants/test_llm_purpose_gate_refuses_unlisted.py::test_invoke_refuses_unlisted_purpose_before_network FAILED [ 40%]
+tests/invariants/test_llm_masking_tier_enforced.py::test_w5_masking_tiers_present_on_allowlist FAILED [ 43%]
+tests/invariants/test_llm_masking_tier_enforced.py::test_w5_masking_tiers_admissible_in_development FAILED [ 46%]
+tests/invariants/test_llm_masking_tier_enforced.py::test_invoke_refuses_unknown_masking_tier FAILED [ 50%]
+tests/invariants/test_llm_masking_tier_enforced.py::test_invoke_refuses_non_admissible_masking_tier FAILED [ 53%]
+tests/invariants/test_llm_masking_tier_enforced.py::test_invoke_scrubs_credential_shaped_material_from_prompt FAILED [ 56%]
+tests/invariants/test_llm_crossing_receipt_metering.py::test_invoke_writes_receipt_with_metering FAILED [ 59%]
+tests/invariants/test_llm_crossing_receipt_metering.py::test_response_carries_metering_for_surface_provenance FAILED [ 62%]
+tests/invariants/test_llm_crossing_receipt_metering.py::test_zero_metering_still_allowed_when_provider_reports_zero FAILED [ 65%]
+tests/invariants/test_llm_crossing_receipt_metering.py::test_credential_shaped_key_scrubbed_from_receipt_payload_shape FAILED [ 68%]
+tests/invariants/test_llm_egress_allowlist_provider_scoped.py::test_emergent_is_allowlisted_when_key_present FAILED [ 71%]
+tests/invariants/test_llm_egress_allowlist_provider_scoped.py::test_emergent_endpoint_resolves_to_governed_host FAILED [ 75%]
+tests/invariants/test_llm_egress_allowlist_provider_scoped.py::test_anthropic_off_allowlist_at_w5_open FAILED [ 78%]
+tests/invariants/test_llm_egress_allowlist_provider_scoped.py::test_provider_added_to_allowlist_on_key_connection FAILED [ 81%]
+tests/invariants/test_llm_egress_allowlist_provider_scoped.py::test_invoke_refuses_off_allowlist_provider FAILED [ 84%]
+tests/invariants/test_registry_facts_emergent_universal_listed.py::test_emergent_universal_listed_when_key_present FAILED [ 87%]
+tests/invariants/test_registry_facts_emergent_universal_listed.py::test_emergent_llm_custody_never_leaks_key FAILED [ 90%]
+tests/invariants/test_registry_facts_emergent_universal_listed.py::test_no_emergent_entry_when_key_absent FAILED [ 93%]
+tests/invariants/test_registry_facts_emergent_universal_listed.py::test_byo_provider_key_listed_from_connection_record FAILED [ 96%]
+tests/invariants/test_registry_facts_emergent_universal_listed.py::test_models_tab_includes_llm_records_and_no_reason_when_present FAILED [100%]
+
+=================================== FAILURES ===================================
+______________________ test_llm_chokepoint_module_exists _______________________
+
+    def test_llm_chokepoint_module_exists():
+        """`services.chokepoint.llm` is the one and only LLM invocation seat."""
+>       mod = importlib.import_module("services.chokepoint.llm")
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_llm_chokepoint_sole_importer.py:71: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'services.chokepoint.llm'
+import_ = <function _gcd_import at 0xfe7a6770bd80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'services.chokepoint.llm'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+_____________________ test_llm_purpose_gate_module_exists ______________________
+
+    def test_llm_purpose_gate_module_exists():
+        """The purpose-gate module (ADAPTED from Executive-Final donor)."""
+>       mod = importlib.import_module("services.chokepoint.llm_purpose_gate")
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_llm_chokepoint_sole_importer.py:81: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'services.chokepoint.llm_purpose_gate'
+import_ = <function _gcd_import at 0xfe7a6770bd80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'services.chokepoint.llm_purpose_gate'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+__________________ test_llm_endpoint_allowlist_module_exists ___________________
+
+    def test_llm_endpoint_allowlist_module_exists():
+        """Provider host allowlist — governed value, entries tied to connections."""
+>       mod = importlib.import_module("services.chokepoint.llm_endpoint_allowlist")
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_llm_chokepoint_sole_importer.py:91: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'services.chokepoint.llm_endpoint_allowlist'
+import_ = <function _gcd_import at 0xfe7a6770bd80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'services.chokepoint.llm_endpoint_allowlist'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+_________________ test_only_chokepoint_llm_may_import_llm_sdks _________________
+
+    def test_only_chokepoint_llm_may_import_llm_sdks():
+        """The ONE sanctioned location for LLM SDK imports.
+    
+        Doc 01 §A5.1 · exactly one function invokes the external model client.
+        Doc 01 §A5.6 · structural impossibility, not policed prohibition.
+    
+        Sanctioned file: `services/chokepoint/llm.py`.
+        Every other file in `backend/` (excluding tests + tools) that imports
+        `emergentintegrations`, `openai`, `anthropic`, `google.genai`,
+        `google.generativeai`, or `litellm` is a violation.
+        """
+        sanctioned = _BACKEND_ROOT / "services" / "chokepoint" / "llm.py"
+        offenders = _find_llm_sdk_imports_in_backend()
+        unsanctioned = [
+            (str(p), lineno, mod)
+            for (p, lineno, mod) in offenders
+            if p != sanctioned
+        ]
+>       assert unsanctioned == [], (
+            "LLM SDK imported outside services/chokepoint/llm.py:\n"
+            + "\n".join(f"  {p}:{lineno} · {mod}" for (p, lineno, mod) in unsanctioned)
+            + "\n\nDoc 01 §A5.1 — exactly one function invokes the external model client. "
+            "Doc 01 §A5.5 — closed outbound network except at crossing. "
+            "Move every LLM SDK import into services/chokepoint/llm.py or excise the "
+            "dead-code path that carries it (with a ledger row naming the excision)."
+        )
+E       AssertionError: LLM SDK imported outside services/chokepoint/llm.py:
+E           /app/assessment_workspace/repos/Extraction-Akki/backend/services/synisense/shield/llm_router.py:38 · emergentintegrations.llm.chat
+E           /app/assessment_workspace/repos/Extraction-Akki/backend/services/synisense/shield/llm_router.py:55 · litellm
+E           /app/assessment_workspace/repos/Extraction-Akki/backend/services/synisense/shield/llm_router.py:56 · emergentintegrations.llm.utils
+E         
+E         Doc 01 §A5.1 — exactly one function invokes the external model client. Doc 01 §A5.5 — closed outbound network except at crossing. Move every LLM SDK import into services/chokepoint/llm.py or excise the dead-code path that carries it (with a ledger row naming the excision).
+E       assert [('/app/asses...s.llm.utils')] == []
+E         
+E         Left contains 3 more items, first extra item: ('/app/assessment_workspace/repos/Extraction-Akki/backend/services/synisense/shield/llm_router.py', 38, 'emergentintegrations.llm.chat')
+E         
+E         Full diff:
+E         - []
+E         + [
+E         +     (...
+E         
+E         ...Full output truncated (15 lines hidden), use '-vv' to show
+
+tests/invariants/test_llm_chokepoint_sole_importer.py:149: AssertionError
+__________ test_chokepoint_llm_actually_imports_emergentintegrations ___________
+
+    def test_chokepoint_llm_actually_imports_emergentintegrations():
+        """The sanctioned file MUST carry the emergent-integrations import —
+        otherwise the exemption above is a hole (a file no other module
+        imports pretending to be the chokepoint).
+        """
+        sanctioned = _BACKEND_ROOT / "services" / "chokepoint" / "llm.py"
+>       src = sanctioned.read_text()
+              ^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_llm_chokepoint_sole_importer.py:165: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/pathlib.py:1058: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/app/assessment_workspace/repos/Extraction-Akki/backend/services/chokepoint/llm.py')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/app/assessment_workspace/repos/Extraction-Akki/backend/services/chokepoint/llm.py'
+
+/usr/local/lib/python3.11/pathlib.py:1044: FileNotFoundError
+____________ test_legacy_synisense_llm_router_no_longer_imports_sdk ____________
+
+    def test_legacy_synisense_llm_router_no_longer_imports_sdk():
+        """`services/synisense/shield/llm_router.py` was a harvested-but-dead
+        legacy module on programme/track-a HEAD (no route imports it, wired
+        nowhere in server.py). It previously carried two
+        `from emergentintegrations.*` imports that would defeat the AST
+        sole-importer gate.
+    
+        CP2 excises those imports. The file remains harvested (its shape is
+        preserved) but its emergent-integration wiring is dead — attempting
+        to run `invoke_with_metering()` now raises ServiceUnavailable at
+        the excised import site.
+        """
+        legacy = _BACKEND_ROOT / "services" / "synisense" / "shield" / "llm_router.py"
+        if not legacy.exists():
+            # File was fully deleted — even better; the AST gate above already
+            # confirms no live emergent imports remain.
+            return
+        src = legacy.read_text()
+        # No top-level `from emergentintegrations.*` or `import emergentintegrations`.
+        tree = ast.parse(src)
+        for node in ast.walk(tree):
+            if isinstance(node, ast.ImportFrom) and node.module:
+>               assert not node.module.startswith("emergentintegrations"), (
+                    f"legacy synisense/shield/llm_router.py:{node.lineno} still "
+                    f"imports {node.module!r} — the CP2 excision has not landed."
+E                   AssertionError: legacy synisense/shield/llm_router.py:38 still imports 'emergentintegrations.llm.chat' — the CP2 excision has not landed.
+E                   assert not True
+E                    +  where True = <built-in method startswith of str object at 0xfe7a6579a240>('emergentintegrations')
+E                    +    where <built-in method startswith of str object at 0xfe7a6579a240> = 'emergentintegrations.llm.chat'.startswith
+E                    +      where 'emergentintegrations.llm.chat' = <ast.ImportFrom object at 0xfe7a65689f00>.module
+
+tests/invariants/test_llm_chokepoint_sole_importer.py:199: AssertionError
+___________________ test_allowed_purposes_carries_w5_entries ___________________
+
+    def test_allowed_purposes_carries_w5_entries():
+>       from services.chokepoint.llm_purpose_gate import ALLOWED_PURPOSES
+E       ModuleNotFoundError: No module named 'services.chokepoint.llm_purpose_gate'
+
+tests/invariants/test_llm_purpose_gate_refuses_unlisted.py:42: ModuleNotFoundError
+____________ test_allowed_purposes_uses_solva_vocabulary_not_solver ____________
+
+    def test_allowed_purposes_uses_solva_vocabulary_not_solver():
+        """Owner correction 2026-08-25 · canon vocabulary is Solva.
+    
+        No 'solver.*' entry may exist on the allowlist. Purpose IDs and
+        the reasoning package are both `solva.*`.
+        """
+>       from services.chokepoint.llm_purpose_gate import ALLOWED_PURPOSES
+E       ModuleNotFoundError: No module named 'services.chokepoint.llm_purpose_gate'
+
+tests/invariants/test_llm_purpose_gate_refuses_unlisted.py:66: ModuleNotFoundError
+______________ test_validate_purpose_accepts_allowlisted_purposes ______________
+
+    def test_validate_purpose_accepts_allowlisted_purposes():
+>       from services.chokepoint.llm_purpose_gate import validate_purpose
+E       ModuleNotFoundError: No module named 'services.chokepoint.llm_purpose_gate'
+
+tests/invariants/test_llm_purpose_gate_refuses_unlisted.py:81: ModuleNotFoundError
+_________________ test_validate_purpose_refuses_empty_purpose __________________
+
+    def test_validate_purpose_refuses_empty_purpose():
+>       from services.chokepoint.llm_purpose_gate import validate_purpose, PurposeInvalid
+E       ModuleNotFoundError: No module named 'services.chokepoint.llm_purpose_gate'
+
+tests/invariants/test_llm_purpose_gate_refuses_unlisted.py:96: ModuleNotFoundError
+________________ test_validate_purpose_refuses_unlisted_purpose ________________
+
+    def test_validate_purpose_refuses_unlisted_purpose():
+>       from services.chokepoint.llm_purpose_gate import validate_purpose, PurposeInvalid
+E       ModuleNotFoundError: No module named 'services.chokepoint.llm_purpose_gate'
+
+tests/invariants/test_llm_purpose_gate_refuses_unlisted.py:106: ModuleNotFoundError
+___________________ test_validate_purpose_refuses_non_string ___________________
+
+    def test_validate_purpose_refuses_non_string():
+>       from services.chokepoint.llm_purpose_gate import validate_purpose, PurposeInvalid
+E       ModuleNotFoundError: No module named 'services.chokepoint.llm_purpose_gate'
+
+tests/invariants/test_llm_purpose_gate_refuses_unlisted.py:116: ModuleNotFoundError
+_____________ test_invoke_refuses_unlisted_purpose_before_network ______________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfe7a657a12d0>
+
+    def test_invoke_refuses_unlisted_purpose_before_network(monkeypatch):
+        """`services.chokepoint.llm.invoke` MUST call the purpose gate
+        BEFORE any network path. On PurposeInvalid the LLM client factory
+        is never touched.
+        """
+>       from services.chokepoint import llm as chokepoint_llm
+E       ImportError: cannot import name 'llm' from 'services.chokepoint' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/chokepoint/__init__.py)
+
+tests/invariants/test_llm_purpose_gate_refuses_unlisted.py:132: ImportError
+__________________ test_w5_masking_tiers_present_on_allowlist __________________
+
+    def test_w5_masking_tiers_present_on_allowlist():
+        from services.chokepoint.masking_tier import legal_tiers
+    
+        tiers = legal_tiers()
+        for expected in ("llm_prompt_governed_text", "llm_reasoning_context"):
+>           assert expected in tiers, (
+                f"W5 masking tier {expected!r} missing from allowlist. "
+                "Add it to services/chokepoint/masking_tier_allowlist.v0.json "
+                "with admissible_under_env carrying at least 'development'."
+            )
+E           AssertionError: W5 masking tier 'llm_prompt_governed_text' missing from allowlist. Add it to services/chokepoint/masking_tier_allowlist.v0.json with admissible_under_env carrying at least 'development'.
+E           assert 'llm_prompt_governed_text' in ['attested_command', 'receipt_only', 'structure_only', 't1_full_mask', 't2_partial', 't3_category']
+
+tests/invariants/test_llm_masking_tier_enforced.py:74: AssertionError
+_______________ test_w5_masking_tiers_admissible_in_development ________________
+
+    def test_w5_masking_tiers_admissible_in_development():
+        from services.chokepoint.masking_tier import validate_tier
+    
+        for tier in ("llm_prompt_governed_text", "llm_reasoning_context"):
+            # Must not raise under AKKI_ENV=development (or unset default).
+>           validate_tier(tier, akki_env="development")
+
+tests/invariants/test_llm_masking_tier_enforced.py:86: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+tier = 'llm_prompt_governed_text', akki_env = 'development'
+
+    def validate_tier(tier: str, *, akki_env: str = None) -> None:
+        """Validate a masking-tier for emission.
+    
+        Raises MaskingTierRefused on:
+          - empty / missing tier
+          - tier not on the positive allowlist
+          - tier not admissible under the current AKKI_ENV
+        """
+        if not tier:
+            raise MaskingTierRefused(
+                "masking_tier_required — empty tier refused. "
+                "Every crossing must declare its masking tier."
+            )
+        entries = _entries_by_tier()
+        entry = entries.get(tier)
+        if entry is None:
+>           raise MaskingTierRefused(
+                f"masking_tier_unknown — {tier!r} not on the positive allowlist. "
+                f"Legal declared tiers: {sorted(entries.keys())}. "
+                "Adding a new tier requires an Owner ruling."
+            )
+E           services.chokepoint.masking_tier.MaskingTierRefused: masking_tier_unknown — 'llm_prompt_governed_text' not on the positive allowlist. Legal declared tiers: ['attested_command', 'receipt_only', 'structure_only', 't1_full_mask', 't2_partial', 't3_category']. Adding a new tier requires an Owner ruling.
+
+services/chokepoint/masking_tier.py:65: MaskingTierRefused
+___________________ test_invoke_refuses_unknown_masking_tier ___________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfe7a65763c10>
+
+    def test_invoke_refuses_unknown_masking_tier(monkeypatch):
+>       from services.chokepoint import llm as chokepoint_llm
+E       ImportError: cannot import name 'llm' from 'services.chokepoint' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/chokepoint/__init__.py)
+
+tests/invariants/test_llm_masking_tier_enforced.py:94: ImportError
+_______________ test_invoke_refuses_non_admissible_masking_tier ________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfe7a655fd590>
+
+    def test_invoke_refuses_non_admissible_masking_tier(monkeypatch):
+        """Row-bearing tiers (t1/t2/t3) remain admissible_under_env=[]."""
+>       from services.chokepoint import llm as chokepoint_llm
+E       ImportError: cannot import name 'llm' from 'services.chokepoint' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/chokepoint/__init__.py)
+
+tests/invariants/test_llm_masking_tier_enforced.py:115: ImportError
+__________ test_invoke_scrubs_credential_shaped_material_from_prompt ___________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfe7a656f9dd0>
+
+    def test_invoke_scrubs_credential_shaped_material_from_prompt(monkeypatch):
+        """Owner Order §6: 'No raw credential/secret material may ever reach a
+        model (standing rule; test it).'
+    
+        On invoke, the chokepoint inspects the prompt for credential-shaped
+        sequences (long alphanumeric+hyphen tokens flagged by the same
+        grammar as the rest of the estate: AKIA prefixes, sk-ant- prefixes,
+        sk- prefixes >= 40 chars, tokens matching aws-secretsmanager ARN
+        patterns) and refuses.
+        """
+>       from services.chokepoint import llm as chokepoint_llm
+E       ImportError: cannot import name 'llm' from 'services.chokepoint' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/chokepoint/__init__.py)
+
+tests/invariants/test_llm_masking_tier_enforced.py:150: ImportError
+___________________ test_invoke_writes_receipt_with_metering ___________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfe7a6566bb90>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-14/test_invoke_writes_receipt_wit0')
+
+    def test_invoke_writes_receipt_with_metering(monkeypatch, tmp_path):
+        """After a successful invoke, the receipt file on disk carries
+        model_id + provider + tokens_in + tokens_out + latency_ms.
+        """
+>       from services.chokepoint import llm as chokepoint_llm
+E       ImportError: cannot import name 'llm' from 'services.chokepoint' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/chokepoint/__init__.py)
+
+tests/invariants/test_llm_crossing_receipt_metering.py:64: ImportError
+____________ test_response_carries_metering_for_surface_provenance _____________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfe7a656fa010>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-14/test_response_carries_metering0')
+
+    def test_response_carries_metering_for_surface_provenance(monkeypatch, tmp_path):
+        """Owner sharpening §4 — every rendered reasoning block MUST state
+        which model answered. The LLMResponse object returned by invoke()
+        carries model_id + provider explicitly (drawn from the receipt),
+        so surfaces can render provenance without re-reading the receipt file.
+        """
+>       from services.chokepoint import llm as chokepoint_llm
+E       ImportError: cannot import name 'llm' from 'services.chokepoint' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/chokepoint/__init__.py)
+
+tests/invariants/test_llm_crossing_receipt_metering.py:110: ImportError
+_________ test_zero_metering_still_allowed_when_provider_reports_zero __________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfe7a65673090>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-14/test_zero_metering_still_allow0')
+
+    def test_zero_metering_still_allowed_when_provider_reports_zero(monkeypatch, tmp_path):
+        """Zero tokens IS admissible (a refusal-mid-stream or an empty
+        response can honestly carry (0, 0)). But NEGATIVE or NON-INTEGER
+        values are refused.
+        """
+>       from services.chokepoint import llm as chokepoint_llm
+E       ImportError: cannot import name 'llm' from 'services.chokepoint' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/chokepoint/__init__.py)
+
+tests/invariants/test_llm_crossing_receipt_metering.py:136: ImportError
+________ test_credential_shaped_key_scrubbed_from_receipt_payload_shape ________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfe7a65656950>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-14/test_credential_shaped_key_scr0')
+
+    def test_credential_shaped_key_scrubbed_from_receipt_payload_shape(monkeypatch, tmp_path):
+        """W3 standing rule: register_crossing.payload_shape scrubs
+        credential-shaped keys. That discipline carries over to LLM receipts.
+        """
+>       from services.chokepoint import llm as chokepoint_llm
+E       ImportError: cannot import name 'llm' from 'services.chokepoint' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/chokepoint/__init__.py)
+
+tests/invariants/test_llm_crossing_receipt_metering.py:163: ImportError
+________________ test_emergent_is_allowlisted_when_key_present _________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfe7a65669890>
+
+    def test_emergent_is_allowlisted_when_key_present(monkeypatch):
+        """Emergent-universal is the ONE LLM connection W5 opens with."""
+>       from services.chokepoint.llm_endpoint_allowlist import allowlisted_providers
+E       ModuleNotFoundError: No module named 'services.chokepoint.llm_endpoint_allowlist'
+
+tests/invariants/test_llm_egress_allowlist_provider_scoped.py:48: ModuleNotFoundError
+_______________ test_emergent_endpoint_resolves_to_governed_host _______________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfe7a65673a90>
+
+    def test_emergent_endpoint_resolves_to_governed_host(monkeypatch):
+        """`resolve_endpoint('emergent')` returns the emergentintegrations
+        universal gateway with `platform-managed` region."""
+>       from services.chokepoint.llm_endpoint_allowlist import resolve_endpoint
+E       ModuleNotFoundError: No module named 'services.chokepoint.llm_endpoint_allowlist'
+
+tests/invariants/test_llm_egress_allowlist_provider_scoped.py:62: ModuleNotFoundError
+___________________ test_anthropic_off_allowlist_at_w5_open ____________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfe7a657a1e10>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-14/test_anthropic_off_allowlist_a0')
+
+    def test_anthropic_off_allowlist_at_w5_open(monkeypatch, tmp_path):
+        """Owner sharpening §2 — provider hosts stay OFF the allowlist until
+        a key of that provider is actually connected.
+        """
+>       from services.chokepoint.llm_endpoint_allowlist import (
+            allowlisted_providers,
+            resolve_endpoint,
+            LLMEndpointRefused,
+        )
+E       ModuleNotFoundError: No module named 'services.chokepoint.llm_endpoint_allowlist'
+
+tests/invariants/test_llm_egress_allowlist_provider_scoped.py:80: ModuleNotFoundError
+______________ test_provider_added_to_allowlist_on_key_connection ______________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfe7a656fafd0>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-14/test_provider_added_to_allowli0')
+
+    def test_provider_added_to_allowlist_on_key_connection(monkeypatch, tmp_path):
+        """When a data_connection_record file
+        `data_source_llm_<provider>_*_FINAL.json` lands on disk, that
+        provider joins the allowlist.
+        """
+>       from services.chokepoint.llm_endpoint_allowlist import allowlisted_providers
+E       ModuleNotFoundError: No module named 'services.chokepoint.llm_endpoint_allowlist'
+
+tests/invariants/test_llm_egress_allowlist_provider_scoped.py:107: ModuleNotFoundError
+__________________ test_invoke_refuses_off_allowlist_provider __________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfe7a657a2d50>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-14/test_invoke_refuses_off_allowl0')
+
+    def test_invoke_refuses_off_allowlist_provider(monkeypatch, tmp_path):
+        """`services.chokepoint.llm.invoke(provider="anthropic")` when no
+        anthropic key is connected → LLMEndpointRefused before the network.
+        """
+>       from services.chokepoint import llm as chokepoint_llm
+E       ImportError: cannot import name 'llm' from 'services.chokepoint' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/chokepoint/__init__.py)
+
+tests/invariants/test_llm_egress_allowlist_provider_scoped.py:141: ImportError
+_______________ test_emergent_universal_listed_when_key_present ________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfe7a6573e410>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-14/test_emergent_universal_listed0')
+
+    def test_emergent_universal_listed_when_key_present(monkeypatch, tmp_path):
+>       from services.registry_facts.facts import _llms
+E       ImportError: cannot import name '_llms' from 'services.registry_facts.facts' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/registry_facts/facts.py)
+
+tests/invariants/test_registry_facts_emergent_universal_listed.py:46: ImportError
+__________________ test_emergent_llm_custody_never_leaks_key ___________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfe7a656571d0>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-14/test_emergent_llm_custody_neve0')
+
+    def test_emergent_llm_custody_never_leaks_key(monkeypatch, tmp_path):
+        """The env-var key NEVER appears in the response body.
+    
+        Standing rule (W3 / Owner Stop-Order 2026-08-14): the credential used
+        to reach the model is never on any surface, never in any receipt,
+        never in any response body.
+        """
+>       from services.registry_facts.facts import _llms
+E       ImportError: cannot import name '_llms' from 'services.registry_facts.facts' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/registry_facts/facts.py)
+
+tests/invariants/test_registry_facts_emergent_universal_listed.py:80: ImportError
+____________________ test_no_emergent_entry_when_key_absent ____________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfe7a655ec3d0>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-14/test_no_emergent_entry_when_ke0')
+
+    def test_no_emergent_entry_when_key_absent(monkeypatch, tmp_path):
+        """If EMERGENT_LLM_KEY is unset, the emergent-universal entry is not
+        fabricated. Honest state — no connection, no entry.
+        """
+>       from services.registry_facts.facts import _llms
+E       ImportError: cannot import name '_llms' from 'services.registry_facts.facts' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/registry_facts/facts.py)
+
+tests/invariants/test_registry_facts_emergent_universal_listed.py:107: ImportError
+_____________ test_byo_provider_key_listed_from_connection_record ______________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfe7a655fd110>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-14/test_byo_provider_key_listed_f0')
+
+    def test_byo_provider_key_listed_from_connection_record(monkeypatch, tmp_path):
+        """When `data_source_llm_<provider>_*_FINAL.json` lands on disk (CP4
+        verify success path), _llms() enumerates it alongside emergent.
+        """
+>       from services.registry_facts.facts import _llms
+E       ImportError: cannot import name '_llms' from 'services.registry_facts.facts' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/registry_facts/facts.py)
+
+tests/invariants/test_registry_facts_emergent_universal_listed.py:124: ImportError
+_______ test_models_tab_includes_llm_records_and_no_reason_when_present ________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfe7a656e9d10>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-14/test_models_tab_includes_llm_r0')
+
+    def test_models_tab_includes_llm_records_and_no_reason_when_present(monkeypatch, tmp_path):
+        from services.registry_facts.facts import load_models
+    
+        monkeypatch.setenv("EMERGENT_LLM_KEY", "sk-emergent-test")
+        monkeypatch.setenv("DATA_CONNECTION_RECORD_DIR", str(tmp_path))
+    
+        models = load_models()
+        assert "records" in models
+        records = models["records"]
+>       assert len(records) >= 1
+E       assert 0 >= 1
+E        +  where 0 = len([])
+
+tests/invariants/test_registry_facts_emergent_universal_listed.py:166: AssertionError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_llm_chokepoint_sole_importer.py::test_llm_chokepoint_module_exists
+FAILED tests/invariants/test_llm_chokepoint_sole_importer.py::test_llm_purpose_gate_module_exists
+FAILED tests/invariants/test_llm_chokepoint_sole_importer.py::test_llm_endpoint_allowlist_module_exists
+FAILED tests/invariants/test_llm_chokepoint_sole_importer.py::test_only_chokepoint_llm_may_import_llm_sdks
+FAILED tests/invariants/test_llm_chokepoint_sole_importer.py::test_chokepoint_llm_actually_imports_emergentintegrations
+FAILED tests/invariants/test_llm_chokepoint_sole_importer.py::test_legacy_synisense_llm_router_no_longer_imports_sdk
+FAILED tests/invariants/test_llm_purpose_gate_refuses_unlisted.py::test_allowed_purposes_carries_w5_entries
+FAILED tests/invariants/test_llm_purpose_gate_refuses_unlisted.py::test_allowed_purposes_uses_solva_vocabulary_not_solver
+FAILED tests/invariants/test_llm_purpose_gate_refuses_unlisted.py::test_validate_purpose_accepts_allowlisted_purposes
+FAILED tests/invariants/test_llm_purpose_gate_refuses_unlisted.py::test_validate_purpose_refuses_empty_purpose
+FAILED tests/invariants/test_llm_purpose_gate_refuses_unlisted.py::test_validate_purpose_refuses_unlisted_purpose
+FAILED tests/invariants/test_llm_purpose_gate_refuses_unlisted.py::test_validate_purpose_refuses_non_string
+FAILED tests/invariants/test_llm_purpose_gate_refuses_unlisted.py::test_invoke_refuses_unlisted_purpose_before_network
+FAILED tests/invariants/test_llm_masking_tier_enforced.py::test_w5_masking_tiers_present_on_allowlist
+FAILED tests/invariants/test_llm_masking_tier_enforced.py::test_w5_masking_tiers_admissible_in_development
+FAILED tests/invariants/test_llm_masking_tier_enforced.py::test_invoke_refuses_unknown_masking_tier
+FAILED tests/invariants/test_llm_masking_tier_enforced.py::test_invoke_refuses_non_admissible_masking_tier
+FAILED tests/invariants/test_llm_masking_tier_enforced.py::test_invoke_scrubs_credential_shaped_material_from_prompt
+FAILED tests/invariants/test_llm_crossing_receipt_metering.py::test_invoke_writes_receipt_with_metering
+FAILED tests/invariants/test_llm_crossing_receipt_metering.py::test_response_carries_metering_for_surface_provenance
+FAILED tests/invariants/test_llm_crossing_receipt_metering.py::test_zero_metering_still_allowed_when_provider_reports_zero
+FAILED tests/invariants/test_llm_crossing_receipt_metering.py::test_credential_shaped_key_scrubbed_from_receipt_payload_shape
+FAILED tests/invariants/test_llm_egress_allowlist_provider_scoped.py::test_emergent_is_allowlisted_when_key_present
+FAILED tests/invariants/test_llm_egress_allowlist_provider_scoped.py::test_emergent_endpoint_resolves_to_governed_host
+FAILED tests/invariants/test_llm_egress_allowlist_provider_scoped.py::test_anthropic_off_allowlist_at_w5_open
+FAILED tests/invariants/test_llm_egress_allowlist_provider_scoped.py::test_provider_added_to_allowlist_on_key_connection
+FAILED tests/invariants/test_llm_egress_allowlist_provider_scoped.py::test_invoke_refuses_off_allowlist_provider
+FAILED tests/invariants/test_registry_facts_emergent_universal_listed.py::test_emergent_universal_listed_when_key_present
+FAILED tests/invariants/test_registry_facts_emergent_universal_listed.py::test_emergent_llm_custody_never_leaks_key
+FAILED tests/invariants/test_registry_facts_emergent_universal_listed.py::test_no_emergent_entry_when_key_absent
+FAILED tests/invariants/test_registry_facts_emergent_universal_listed.py::test_byo_provider_key_listed_from_connection_record
+FAILED tests/invariants/test_registry_facts_emergent_universal_listed.py::test_models_tab_includes_llm_records_and_no_reason_when_present
+============================== 32 failed in 0.45s ==============================

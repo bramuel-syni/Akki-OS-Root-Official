@@ -1,0 +1,20 @@
+FFFFFFFF                                                                 [100%]
+=================================== FAILURES ===================================
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError: No module named 'services.perception.audio_codec.perimeter_boundary'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wm6_4_4_perimeter_boundary.py:64: ModuleNotFoundError: No module named 'services.perception.audio_codec.perimeter_boundary'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wm6_4_4_perimeter_boundary.py:80: ModuleNotFoundError: No module named 'services.perception.audio_codec.perimeter_boundary'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wm6_4_4_perimeter_boundary.py:99: ModuleNotFoundError: No module named 'services.perception.audio_codec.perimeter_boundary'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wm6_4_4_perimeter_boundary.py:112: ModuleNotFoundError: No module named 'services.perception.audio_codec.perimeter_boundary'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wm6_4_4_perimeter_boundary.py:125: ModuleNotFoundError: No module named 'services.perception.audio_codec.perimeter_boundary'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wm6_4_4_perimeter_boundary.py:146: ModuleNotFoundError: No module named 'services.perception.audio_codec.perimeter_boundary'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wm6_4_4_perimeter_boundary.py:163: ModuleNotFoundError: No module named 'services.perception.audio_codec.perimeter_boundary'
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wm6_4_4_perimeter_boundary.py::test_wm6_4_4_module_fabric
+FAILED tests/invariants/test_wm6_4_4_perimeter_boundary.py::test_wm6_4_4_error_is_subclass_of_perception_registration_error
+FAILED tests/invariants/test_wm6_4_4_perimeter_boundary.py::test_wm6_4_4_perimeter_profile_two_carrier_shape
+FAILED tests/invariants/test_wm6_4_4_perimeter_boundary.py::test_wm6_4_4_is_in_perimeter_true_on_in_perimeter_tenant
+FAILED tests/invariants/test_wm6_4_4_perimeter_boundary.py::test_wm6_4_4_is_in_perimeter_false_on_out_of_perimeter
+FAILED tests/invariants/test_wm6_4_4_perimeter_boundary.py::test_wm6_4_4_is_in_perimeter_false_on_non_tenant_compute
+FAILED tests/invariants/test_wm6_4_4_perimeter_boundary.py::test_wm6_4_4_assert_passes_silently_on_in_perimeter_tenant
+FAILED tests/invariants/test_wm6_4_4_perimeter_boundary.py::test_wm6_4_4_assert_refuses_on_out_of_perimeter_or_non_tenant
+8 failed in 0.63s

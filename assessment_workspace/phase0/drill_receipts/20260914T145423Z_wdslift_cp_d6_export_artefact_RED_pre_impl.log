@@ -1,0 +1,91 @@
+FFFFFF                                                                   [100%]============================ BASELINE_GUARD receipt ============================
+passed=0 / baseline-failures-remaining=0 / quarantined=0
+  manifest: tests/invariants/baseline_failures.json
+  scope: BASELINE_GUARD=1  ·  invocation: cd backend && BASELINE_GUARD=1 python -m pytest tests/invariants/
+!!!!!!!!!!!!! BASELINE_GUARD · HALT AND REPORT · owner ruling (c) !!!!!!!!!!!!!!
+[V1] 6 NEW failure(s) OUTSIDE manifest:
+    tests/invariants/test_wdslift_cp_d6_export_artefact.py::test_cp_d6_admit_export_accepts_all_four_carriers_present
+    tests/invariants/test_wdslift_cp_d6_export_artefact.py::test_cp_d6_admit_export_refuses_empty_derivation_hash
+    tests/invariants/test_wdslift_cp_d6_export_artefact.py::test_cp_d6_admit_export_refuses_empty_derivation_unit_refs_or_terms_cited
+    tests/invariants/test_wdslift_cp_d6_export_artefact.py::test_cp_d6_admit_export_refuses_empty_rights_posture
+    tests/invariants/test_wdslift_cp_d6_export_artefact.py::test_cp_d6_export_artefact_and_gate_module_fabric
+    tests/invariants/test_wdslift_cp_d6_export_artefact.py::test_cp_d6_export_artefact_frozen_four_carrier_shape
+[V3] Passed count 0 < ratchet floor 3961
+  No silent rebaselining. Report drift to owner verbatim.
+
+=================================== FAILURES ===================================
+______________ test_cp_d6_export_artefact_and_gate_module_fabric _______________
+
+    def test_cp_d6_export_artefact_and_gate_module_fabric():
+        """Both modules exist and export the expected fabric."""
+>       a = importlib.import_module("services.data_suite_v2.export_artefact")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_wdslift_cp_d6_export_artefact.py:17: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'services.data_suite_v2.export_artefact'
+import_ = <function _gcd_import at 0xf801e461bd80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'services.data_suite_v2.export_artefact'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+_____________ test_cp_d6_export_artefact_frozen_four_carrier_shape _____________
+
+    def test_cp_d6_export_artefact_frozen_four_carrier_shape():
+        """ExportArtefact is a frozen dataclass with exactly the 4 DAP-A10 carriers."""
+>       from services.data_suite_v2.export_artefact import ExportArtefact
+E       ModuleNotFoundError: No module named 'services.data_suite_v2.export_artefact'
+
+tests/invariants/test_wdslift_cp_d6_export_artefact.py:26: ModuleNotFoundError
+__________ test_cp_d6_admit_export_accepts_all_four_carriers_present ___________
+
+    def test_cp_d6_admit_export_accepts_all_four_carriers_present():
+        """A well-formed ExportArtefact is admitted (returns None on success)."""
+>       from services.data_suite_v2.export_artefact import ExportArtefact
+E       ModuleNotFoundError: No module named 'services.data_suite_v2.export_artefact'
+
+tests/invariants/test_wdslift_cp_d6_export_artefact.py:47: ModuleNotFoundError
+_____________ test_cp_d6_admit_export_refuses_empty_rights_posture _____________
+
+    def test_cp_d6_admit_export_refuses_empty_rights_posture():
+        """Empty rights_posture is refused at the gate (DAP-A10)."""
+>       from services.data_suite_v2.export_artefact import ExportArtefact
+E       ModuleNotFoundError: No module named 'services.data_suite_v2.export_artefact'
+
+tests/invariants/test_wdslift_cp_d6_export_artefact.py:60: ModuleNotFoundError
+____________ test_cp_d6_admit_export_refuses_empty_derivation_hash _____________
+
+    def test_cp_d6_admit_export_refuses_empty_derivation_hash():
+        """Empty derivation_hash is refused at the gate (DAP-A10)."""
+>       from services.data_suite_v2.export_artefact import ExportArtefact
+E       ModuleNotFoundError: No module named 'services.data_suite_v2.export_artefact'
+
+tests/invariants/test_wdslift_cp_d6_export_artefact.py:74: ModuleNotFoundError
+__ test_cp_d6_admit_export_refuses_empty_derivation_unit_refs_or_terms_cited ___
+
+    def test_cp_d6_admit_export_refuses_empty_derivation_unit_refs_or_terms_cited():
+        """Empty derivation_unit_refs and empty terms_cited are both refused (DAP-A10)."""
+>       from services.data_suite_v2.export_artefact import ExportArtefact
+E       ModuleNotFoundError: No module named 'services.data_suite_v2.export_artefact'
+
+tests/invariants/test_wdslift_cp_d6_export_artefact.py:88: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wdslift_cp_d6_export_artefact.py::test_cp_d6_export_artefact_and_gate_module_fabric
+FAILED tests/invariants/test_wdslift_cp_d6_export_artefact.py::test_cp_d6_export_artefact_frozen_four_carrier_shape
+FAILED tests/invariants/test_wdslift_cp_d6_export_artefact.py::test_cp_d6_admit_export_accepts_all_four_carriers_present
+FAILED tests/invariants/test_wdslift_cp_d6_export_artefact.py::test_cp_d6_admit_export_refuses_empty_rights_posture
+FAILED tests/invariants/test_wdslift_cp_d6_export_artefact.py::test_cp_d6_admit_export_refuses_empty_derivation_hash
+FAILED tests/invariants/test_wdslift_cp_d6_export_artefact.py::test_cp_d6_admit_export_refuses_empty_derivation_unit_refs_or_terms_cited
+6 failed in 0.66s

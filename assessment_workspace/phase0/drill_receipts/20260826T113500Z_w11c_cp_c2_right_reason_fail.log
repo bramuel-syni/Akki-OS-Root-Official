@@ -1,0 +1,217 @@
+/root/.venv/lib/python3.11/site-packages/pytest_asyncio/plugin.py:208: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.3.3, pluggy-1.6.0 -- /root/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: xdist-3.8.0, asyncio-0.24.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, default_loop_scope=None
+collecting ... collected 25 items
+
+backend/tests/invariants/test_watch_cp_c2_macho_mkono.py::test_macho_module_exposes_no_action_or_estate_touching_functions ERROR [  4%]
+backend/tests/invariants/test_watch_cp_c2_macho_mkono.py::test_mkono_module_exposes_no_sensor_or_verdict_mint_functions ERROR [  8%]
+backend/tests/invariants/test_watch_cp_c2_macho_mkono.py::test_macho_verdict_class_is_closed_two_member_literal ERROR [ 12%]
+backend/tests/invariants/test_watch_cp_c2_macho_mkono.py::test_macho_verdict_has_no_confidence_field ERROR [ 16%]
+backend/tests/invariants/test_watch_cp_c2_macho_mkono.py::test_macho_verdict_structural_certainty_requires_signal_id ERROR [ 20%]
+backend/tests/invariants/test_watch_cp_c2_macho_mkono.py::test_macho_verdict_externally_steerable_forbids_signal_id ERROR [ 24%]
+backend/tests/invariants/test_watch_cp_c2_macho_mkono.py::test_macho_verdict_extra_fields_refused_and_frozen ERROR [ 28%]
+backend/tests/invariants/test_watch_cp_c2_macho_mkono.py::test_mint_macho_verdict_refuses_structural_certainty_when_signal_not_on_record ERROR [ 32%]
+backend/tests/invariants/test_watch_cp_c2_macho_mkono.py::test_mint_macho_verdict_accepts_structural_certainty_when_signal_is_on_record ERROR [ 36%]
+backend/tests/invariants/test_watch_cp_c2_macho_mkono.py::test_mint_macho_verdict_write_once_violation_on_duplicate ERROR [ 40%]
+backend/tests/invariants/test_watch_cp_c2_macho_mkono.py::test_mkono_maps_structural_certainty_verdict_to_sever_action ERROR [ 44%]
+backend/tests/invariants/test_watch_cp_c2_macho_mkono.py::test_mkono_maps_externally_steerable_severe_to_contain_with_ttl ERROR [ 48%]
+backend/tests/invariants/test_watch_cp_c2_macho_mkono.py::test_mkono_maps_externally_steerable_elevated_to_shape ERROR [ 52%]
+backend/tests/invariants/test_watch_cp_c2_macho_mkono.py::test_mkono_maps_externally_steerable_noted_to_annotate ERROR [ 56%]
+backend/tests/invariants/test_watch_cp_c2_macho_mkono.py::test_mkono_mapping_is_deterministic_and_idempotent ERROR [ 60%]
+backend/tests/invariants/test_watch_cp_c2_macho_mkono.py::test_mkono_never_emits_destroy_action ERROR [ 64%]
+backend/tests/invariants/test_watch_cp_c2_macho_mkono.py::test_mkono_persist_action_refuses_when_verdict_not_on_record ERROR [ 68%]
+backend/tests/invariants/test_watch_cp_c2_macho_mkono.py::test_mkono_persist_action_write_once_violation_on_duplicate ERROR [ 72%]
+backend/tests/invariants/test_watch_cp_c2_http_journey.py::test_http_get_state_honest_empty ERROR [ 76%]
+backend/tests/invariants/test_watch_cp_c2_http_journey.py::test_http_post_sever_signal_then_structural_verdict_maps_to_sever ERROR [ 80%]
+backend/tests/invariants/test_watch_cp_c2_http_journey.py::test_http_externally_steerable_severe_caps_at_contain ERROR [ 84%]
+backend/tests/invariants/test_watch_cp_c2_http_journey.py::test_http_verdict_duplicate_returns_409 ERROR [ 88%]
+backend/tests/invariants/test_watch_cp_c2_http_journey.py::test_http_action_for_unknown_verdict_returns_404 ERROR [ 92%]
+backend/tests/invariants/test_watch_cp_c2_http_journey.py::test_http_structural_verdict_without_signal_on_record_refused ERROR [ 96%]
+backend/tests/invariants/test_watch_cp_c2_http_journey.py::test_http_state_reflects_recorded_verdicts_and_actions ERROR [100%]
+
+==================================== ERRORS ====================================
+_ ERROR at setup of test_macho_module_exposes_no_action_or_estate_touching_functions _
+backend/tests/invariants/test_watch_cp_c2_macho_mkono.py:67: in _isolated_watch_dirs
+    import services.watch.persistence as _p
+backend/services/watch/persistence.py:18: in <module>
+    from services.watch.macho import MachoVerdict
+E   ImportError: cannot import name 'MachoVerdict' from 'services.watch.macho' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/watch/macho.py)
+_ ERROR at setup of test_mkono_module_exposes_no_sensor_or_verdict_mint_functions _
+backend/tests/invariants/test_watch_cp_c2_macho_mkono.py:67: in _isolated_watch_dirs
+    import services.watch.persistence as _p
+backend/services/watch/persistence.py:18: in <module>
+    from services.watch.macho import MachoVerdict
+E   ImportError: cannot import name 'MachoVerdict' from 'services.watch.macho' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/watch/macho.py)
+___ ERROR at setup of test_macho_verdict_class_is_closed_two_member_literal ____
+backend/tests/invariants/test_watch_cp_c2_macho_mkono.py:67: in _isolated_watch_dirs
+    import services.watch.persistence as _p
+backend/services/watch/persistence.py:18: in <module>
+    from services.watch.macho import MachoVerdict
+E   ImportError: cannot import name 'MachoVerdict' from 'services.watch.macho' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/watch/macho.py)
+_________ ERROR at setup of test_macho_verdict_has_no_confidence_field _________
+backend/tests/invariants/test_watch_cp_c2_macho_mkono.py:67: in _isolated_watch_dirs
+    import services.watch.persistence as _p
+backend/services/watch/persistence.py:18: in <module>
+    from services.watch.macho import MachoVerdict
+E   ImportError: cannot import name 'MachoVerdict' from 'services.watch.macho' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/watch/macho.py)
+_ ERROR at setup of test_macho_verdict_structural_certainty_requires_signal_id _
+backend/tests/invariants/test_watch_cp_c2_macho_mkono.py:67: in _isolated_watch_dirs
+    import services.watch.persistence as _p
+backend/services/watch/persistence.py:18: in <module>
+    from services.watch.macho import MachoVerdict
+E   ImportError: cannot import name 'MachoVerdict' from 'services.watch.macho' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/watch/macho.py)
+_ ERROR at setup of test_macho_verdict_externally_steerable_forbids_signal_id __
+backend/tests/invariants/test_watch_cp_c2_macho_mkono.py:67: in _isolated_watch_dirs
+    import services.watch.persistence as _p
+backend/services/watch/persistence.py:18: in <module>
+    from services.watch.macho import MachoVerdict
+E   ImportError: cannot import name 'MachoVerdict' from 'services.watch.macho' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/watch/macho.py)
+_____ ERROR at setup of test_macho_verdict_extra_fields_refused_and_frozen _____
+backend/tests/invariants/test_watch_cp_c2_macho_mkono.py:67: in _isolated_watch_dirs
+    import services.watch.persistence as _p
+backend/services/watch/persistence.py:18: in <module>
+    from services.watch.macho import MachoVerdict
+E   ImportError: cannot import name 'MachoVerdict' from 'services.watch.macho' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/watch/macho.py)
+_ ERROR at setup of test_mint_macho_verdict_refuses_structural_certainty_when_signal_not_on_record _
+backend/tests/invariants/test_watch_cp_c2_macho_mkono.py:67: in _isolated_watch_dirs
+    import services.watch.persistence as _p
+backend/services/watch/persistence.py:18: in <module>
+    from services.watch.macho import MachoVerdict
+E   ImportError: cannot import name 'MachoVerdict' from 'services.watch.macho' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/watch/macho.py)
+_ ERROR at setup of test_mint_macho_verdict_accepts_structural_certainty_when_signal_is_on_record _
+backend/tests/invariants/test_watch_cp_c2_macho_mkono.py:67: in _isolated_watch_dirs
+    import services.watch.persistence as _p
+backend/services/watch/persistence.py:18: in <module>
+    from services.watch.macho import MachoVerdict
+E   ImportError: cannot import name 'MachoVerdict' from 'services.watch.macho' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/watch/macho.py)
+_ ERROR at setup of test_mint_macho_verdict_write_once_violation_on_duplicate __
+backend/tests/invariants/test_watch_cp_c2_macho_mkono.py:67: in _isolated_watch_dirs
+    import services.watch.persistence as _p
+backend/services/watch/persistence.py:18: in <module>
+    from services.watch.macho import MachoVerdict
+E   ImportError: cannot import name 'MachoVerdict' from 'services.watch.macho' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/watch/macho.py)
+_ ERROR at setup of test_mkono_maps_structural_certainty_verdict_to_sever_action _
+backend/tests/invariants/test_watch_cp_c2_macho_mkono.py:67: in _isolated_watch_dirs
+    import services.watch.persistence as _p
+backend/services/watch/persistence.py:18: in <module>
+    from services.watch.macho import MachoVerdict
+E   ImportError: cannot import name 'MachoVerdict' from 'services.watch.macho' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/watch/macho.py)
+_ ERROR at setup of test_mkono_maps_externally_steerable_severe_to_contain_with_ttl _
+backend/tests/invariants/test_watch_cp_c2_macho_mkono.py:67: in _isolated_watch_dirs
+    import services.watch.persistence as _p
+backend/services/watch/persistence.py:18: in <module>
+    from services.watch.macho import MachoVerdict
+E   ImportError: cannot import name 'MachoVerdict' from 'services.watch.macho' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/watch/macho.py)
+___ ERROR at setup of test_mkono_maps_externally_steerable_elevated_to_shape ___
+backend/tests/invariants/test_watch_cp_c2_macho_mkono.py:67: in _isolated_watch_dirs
+    import services.watch.persistence as _p
+backend/services/watch/persistence.py:18: in <module>
+    from services.watch.macho import MachoVerdict
+E   ImportError: cannot import name 'MachoVerdict' from 'services.watch.macho' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/watch/macho.py)
+___ ERROR at setup of test_mkono_maps_externally_steerable_noted_to_annotate ___
+backend/tests/invariants/test_watch_cp_c2_macho_mkono.py:67: in _isolated_watch_dirs
+    import services.watch.persistence as _p
+backend/services/watch/persistence.py:18: in <module>
+    from services.watch.macho import MachoVerdict
+E   ImportError: cannot import name 'MachoVerdict' from 'services.watch.macho' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/watch/macho.py)
+_____ ERROR at setup of test_mkono_mapping_is_deterministic_and_idempotent _____
+backend/tests/invariants/test_watch_cp_c2_macho_mkono.py:67: in _isolated_watch_dirs
+    import services.watch.persistence as _p
+backend/services/watch/persistence.py:18: in <module>
+    from services.watch.macho import MachoVerdict
+E   ImportError: cannot import name 'MachoVerdict' from 'services.watch.macho' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/watch/macho.py)
+___________ ERROR at setup of test_mkono_never_emits_destroy_action ____________
+backend/tests/invariants/test_watch_cp_c2_macho_mkono.py:67: in _isolated_watch_dirs
+    import services.watch.persistence as _p
+backend/services/watch/persistence.py:18: in <module>
+    from services.watch.macho import MachoVerdict
+E   ImportError: cannot import name 'MachoVerdict' from 'services.watch.macho' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/watch/macho.py)
+_ ERROR at setup of test_mkono_persist_action_refuses_when_verdict_not_on_record _
+backend/tests/invariants/test_watch_cp_c2_macho_mkono.py:67: in _isolated_watch_dirs
+    import services.watch.persistence as _p
+backend/services/watch/persistence.py:18: in <module>
+    from services.watch.macho import MachoVerdict
+E   ImportError: cannot import name 'MachoVerdict' from 'services.watch.macho' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/watch/macho.py)
+_ ERROR at setup of test_mkono_persist_action_write_once_violation_on_duplicate _
+backend/tests/invariants/test_watch_cp_c2_macho_mkono.py:67: in _isolated_watch_dirs
+    import services.watch.persistence as _p
+backend/services/watch/persistence.py:18: in <module>
+    from services.watch.macho import MachoVerdict
+E   ImportError: cannot import name 'MachoVerdict' from 'services.watch.macho' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/watch/macho.py)
+______________ ERROR at setup of test_http_get_state_honest_empty ______________
+backend/tests/invariants/test_watch_cp_c2_http_journey.py:34: in client
+    import services.watch.persistence as _p
+backend/services/watch/persistence.py:18: in <module>
+    from services.watch.macho import MachoVerdict
+E   ImportError: cannot import name 'MachoVerdict' from 'services.watch.macho' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/watch/macho.py)
+_ ERROR at setup of test_http_post_sever_signal_then_structural_verdict_maps_to_sever _
+backend/tests/invariants/test_watch_cp_c2_http_journey.py:34: in client
+    import services.watch.persistence as _p
+backend/services/watch/persistence.py:18: in <module>
+    from services.watch.macho import MachoVerdict
+E   ImportError: cannot import name 'MachoVerdict' from 'services.watch.macho' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/watch/macho.py)
+___ ERROR at setup of test_http_externally_steerable_severe_caps_at_contain ____
+backend/tests/invariants/test_watch_cp_c2_http_journey.py:34: in client
+    import services.watch.persistence as _p
+backend/services/watch/persistence.py:18: in <module>
+    from services.watch.macho import MachoVerdict
+E   ImportError: cannot import name 'MachoVerdict' from 'services.watch.macho' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/watch/macho.py)
+__________ ERROR at setup of test_http_verdict_duplicate_returns_409 ___________
+backend/tests/invariants/test_watch_cp_c2_http_journey.py:34: in client
+    import services.watch.persistence as _p
+backend/services/watch/persistence.py:18: in <module>
+    from services.watch.macho import MachoVerdict
+E   ImportError: cannot import name 'MachoVerdict' from 'services.watch.macho' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/watch/macho.py)
+______ ERROR at setup of test_http_action_for_unknown_verdict_returns_404 ______
+backend/tests/invariants/test_watch_cp_c2_http_journey.py:34: in client
+    import services.watch.persistence as _p
+backend/services/watch/persistence.py:18: in <module>
+    from services.watch.macho import MachoVerdict
+E   ImportError: cannot import name 'MachoVerdict' from 'services.watch.macho' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/watch/macho.py)
+_ ERROR at setup of test_http_structural_verdict_without_signal_on_record_refused _
+backend/tests/invariants/test_watch_cp_c2_http_journey.py:34: in client
+    import services.watch.persistence as _p
+backend/services/watch/persistence.py:18: in <module>
+    from services.watch.macho import MachoVerdict
+E   ImportError: cannot import name 'MachoVerdict' from 'services.watch.macho' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/watch/macho.py)
+___ ERROR at setup of test_http_state_reflects_recorded_verdicts_and_actions ___
+backend/tests/invariants/test_watch_cp_c2_http_journey.py:34: in client
+    import services.watch.persistence as _p
+backend/services/watch/persistence.py:18: in <module>
+    from services.watch.macho import MachoVerdict
+E   ImportError: cannot import name 'MachoVerdict' from 'services.watch.macho' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/watch/macho.py)
+=========================== short test summary info ============================
+ERROR backend/tests/invariants/test_watch_cp_c2_macho_mkono.py::test_macho_module_exposes_no_action_or_estate_touching_functions
+ERROR backend/tests/invariants/test_watch_cp_c2_macho_mkono.py::test_mkono_module_exposes_no_sensor_or_verdict_mint_functions
+ERROR backend/tests/invariants/test_watch_cp_c2_macho_mkono.py::test_macho_verdict_class_is_closed_two_member_literal
+ERROR backend/tests/invariants/test_watch_cp_c2_macho_mkono.py::test_macho_verdict_has_no_confidence_field
+ERROR backend/tests/invariants/test_watch_cp_c2_macho_mkono.py::test_macho_verdict_structural_certainty_requires_signal_id
+ERROR backend/tests/invariants/test_watch_cp_c2_macho_mkono.py::test_macho_verdict_externally_steerable_forbids_signal_id
+ERROR backend/tests/invariants/test_watch_cp_c2_macho_mkono.py::test_macho_verdict_extra_fields_refused_and_frozen
+ERROR backend/tests/invariants/test_watch_cp_c2_macho_mkono.py::test_mint_macho_verdict_refuses_structural_certainty_when_signal_not_on_record
+ERROR backend/tests/invariants/test_watch_cp_c2_macho_mkono.py::test_mint_macho_verdict_accepts_structural_certainty_when_signal_is_on_record
+ERROR backend/tests/invariants/test_watch_cp_c2_macho_mkono.py::test_mint_macho_verdict_write_once_violation_on_duplicate
+ERROR backend/tests/invariants/test_watch_cp_c2_macho_mkono.py::test_mkono_maps_structural_certainty_verdict_to_sever_action
+ERROR backend/tests/invariants/test_watch_cp_c2_macho_mkono.py::test_mkono_maps_externally_steerable_severe_to_contain_with_ttl
+ERROR backend/tests/invariants/test_watch_cp_c2_macho_mkono.py::test_mkono_maps_externally_steerable_elevated_to_shape
+ERROR backend/tests/invariants/test_watch_cp_c2_macho_mkono.py::test_mkono_maps_externally_steerable_noted_to_annotate
+ERROR backend/tests/invariants/test_watch_cp_c2_macho_mkono.py::test_mkono_mapping_is_deterministic_and_idempotent
+ERROR backend/tests/invariants/test_watch_cp_c2_macho_mkono.py::test_mkono_never_emits_destroy_action
+ERROR backend/tests/invariants/test_watch_cp_c2_macho_mkono.py::test_mkono_persist_action_refuses_when_verdict_not_on_record
+ERROR backend/tests/invariants/test_watch_cp_c2_macho_mkono.py::test_mkono_persist_action_write_once_violation_on_duplicate
+ERROR backend/tests/invariants/test_watch_cp_c2_http_journey.py::test_http_get_state_honest_empty
+ERROR backend/tests/invariants/test_watch_cp_c2_http_journey.py::test_http_post_sever_signal_then_structural_verdict_maps_to_sever
+ERROR backend/tests/invariants/test_watch_cp_c2_http_journey.py::test_http_externally_steerable_severe_caps_at_contain
+ERROR backend/tests/invariants/test_watch_cp_c2_http_journey.py::test_http_verdict_duplicate_returns_409
+ERROR backend/tests/invariants/test_watch_cp_c2_http_journey.py::test_http_action_for_unknown_verdict_returns_404
+ERROR backend/tests/invariants/test_watch_cp_c2_http_journey.py::test_http_structural_verdict_without_signal_on_record_refused
+ERROR backend/tests/invariants/test_watch_cp_c2_http_journey.py::test_http_state_reflects_recorded_verdicts_and_actions
+============================== 25 errors in 0.50s ==============================

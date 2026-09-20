@@ -1,0 +1,50 @@
+/root/.venv/lib/python3.11/site-packages/pytest_asyncio/plugin.py:208: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.3.3, pluggy-1.6.0 -- /root/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: xdist-3.8.0, anyio-4.14.2, asyncio-0.24.0
+asyncio: mode=Mode.AUTO, default_loop_scope=None
+collecting ... collected 23 items
+
+tests/invariants/test_w7_cp5_baseline_line_and_recheck.py::test_baseline_line_contract_fields PASSED [  4%]
+tests/invariants/test_w7_cp5_baseline_line_and_recheck.py::test_baseline_line_id_pattern_enforced PASSED [  8%]
+tests/invariants/test_w7_cp5_baseline_line_and_recheck.py::test_record_baseline_line_attests_starting_model PASSED [ 13%]
+tests/invariants/test_w7_cp5_baseline_line_and_recheck.py::test_record_baseline_line_writes_json_to_disk FAILED [ 17%]
+tests/invariants/test_w7_cp5_baseline_line_and_recheck.py::test_ceremony_stamps_re_check_due_at_on_admission PASSED [ 21%]
+tests/invariants/test_w7_cp5_baseline_line_and_recheck.py::test_recheck_status_returns_state_for_registered_model PASSED [ 26%]
+tests/invariants/test_w7_cp5_baseline_line_and_recheck.py::test_recheck_status_honest_gap_for_unregistered PASSED [ 30%]
+tests/invariants/test_w7_cp5_baseline_line_and_recheck.py::test_recheck_status_honest_gap_for_model_without_re_check_field PASSED [ 34%]
+tests/invariants/test_baseline_line_v0_contract_frozen.py::test_baseline_line_v0_contract_frozen PASSED [ 39%]
+tests/invariants/test_frozen_contract_snapshot_parity.py::test_every_frozen_contract_has_snapshot PASSED [ 43%]
+tests/invariants/test_frozen_contract_snapshot_parity.py::test_every_snapshot_maps_to_a_contract PASSED [ 47%]
+tests/invariants/test_frozen_contract_snapshot_parity.py::test_snapshot_mapping_is_bijective PASSED [ 52%]
+tests/invariants/test_composed_conclusion_v0_contract_frozen.py::test_composed_conclusion_v0_contract_frozen PASSED [ 56%]
+tests/invariants/test_composed_conclusion_v0_contract_frozen.py::test_composed_conclusion_snapshot_parity_at_18 PASSED [ 60%]
+tests/invariants/test_w7_cp4_model_admission_ceremony.py::test_moac_contract_has_six_criteria_fields PASSED [ 65%]
+tests/invariants/test_w7_cp4_model_admission_ceremony.py::test_moac_evidence_source_kind_refuses_curated_benchmark PASSED [ 69%]
+tests/invariants/test_w7_cp4_model_admission_ceremony.py::test_run_admission_accepts_valid_card_and_bumps_registry PASSED [ 73%]
+tests/invariants/test_w7_cp4_model_admission_ceremony.py::test_run_admission_refuses_unresolved_lineage PASSED [ 78%]
+tests/invariants/test_w7_cp4_model_admission_ceremony.py::test_run_admission_refuses_when_floor_missed PASSED [ 82%]
+tests/invariants/test_w7_cp4_model_admission_ceremony.py::test_run_admission_estate_sample_requires_named_purpose PASSED [ 86%]
+tests/invariants/test_w7_cp4_model_admission_ceremony.py::test_admission_writes_record_to_phase0 PASSED [ 91%]
+tests/invariants/test_w7_cp4_model_admission_ceremony.py::test_admission_record_never_carries_credentials PASSED [ 95%]
+tests/invariants/test_w7_cp4_model_admission_ceremony.py::test_admission_outcome_names_ca1_011_watch_seam PASSED [100%]
+
+=================================== FAILURES ===================================
+________________ test_record_baseline_line_writes_json_to_disk _________________
+tests/invariants/test_w7_cp5_baseline_line_and_recheck.py:87: in test_record_baseline_line_writes_json_to_disk
+    record_baseline_line("tr_A", "gpt-5.4", "test")
+services/baseline_line/records.py:41: in record_baseline_line
+    line = BaselineLine_v0(
+E   pydantic_core._pydantic_core.ValidationError: 1 validation error for BaselineLine_v0
+E   baseline_line_id
+E     String should match pattern '^bl_[a-z0-9_-]+$' [type=string_pattern_mismatch, input_value='bl_tr_A', input_type=str]
+E       For further information visit https://errors.pydantic.dev/2.13/v/string_pattern_mismatch
+=========================== short test summary info ============================
+FAILED tests/invariants/test_w7_cp5_baseline_line_and_recheck.py::test_record_baseline_line_writes_json_to_disk
+========================= 1 failed, 22 passed in 0.20s =========================

@@ -1,0 +1,290 @@
+........................................................................ [  1%]
+........................................................................ [  3%]
+........................................................................ [  5%]
+........................................................................ [  6%]
+........................................................................ [  8%]
+........................................................................ [ 10%]
+........................................................................ [ 11%]
+........................................................................ [ 13%]
+........................................................................ [ 15%]
+........................................................................ [ 16%]
+........................................................................ [ 18%]
+........................................................................ [ 20%]
+........................................................................ [ 22%]
+........................................................................ [ 23%]
+........................................................................ [ 25%]
+........................................................................ [ 27%]
+........................................................................ [ 28%]
+........................................................................ [ 30%]
+........................................................................ [ 32%]
+........................................................................ [ 33%]
+........................................................................ [ 35%]
+..........................................................s............. [ 37%]
+........................................................................ [ 39%]
+........................................................................ [ 40%]
+........................................................................ [ 42%]
+........................................................................ [ 44%]
+........................................................................ [ 45%]
+........................................................................ [ 47%]
+........................................................................ [ 49%]
+........................................................................ [ 50%]
+........................................................................ [ 52%]
+........................................................................ [ 54%]
+........................................................................ [ 56%]
+........................................................................ [ 57%]
+........................................................................ [ 59%]
+........................................................................ [ 61%]
+........................................................................ [ 62%]
+........................................................................ [ 64%]
+........................................................................ [ 66%]
+........................................................................ [ 67%]
+........................................................................ [ 69%]
+........................................................................ [ 71%]
+........................................................................ [ 73%]
+........................................................................ [ 74%]
+........................................................................ [ 76%]
+........................................................................ [ 78%]
+........................................................................ [ 79%]
+........................................................................ [ 81%]
+........................................................................ [ 83%]
+........................................................................ [ 84%]
+........................................................................ [ 86%]
+........................................................................ [ 88%]
+........................................................................ [ 89%]
+........................................................................ [ 91%]
+........................................................................ [ 93%]
+........................................................................ [ 95%]
+........................................................................ [ 96%]
+.FFFFFFFF............................................................... [ 98%]
+.................................................................        [100%]============================ BASELINE_GUARD receipt ============================
+passed=4232 / baseline-failures-remaining=0 / quarantined=0
+  manifest: tests/invariants/baseline_failures.json
+  scope: BASELINE_GUARD=1  ·  invocation: cd backend && BASELINE_GUARD=1 python -m pytest tests/invariants/
+!!!!!!!!!!!!! BASELINE_GUARD · HALT AND REPORT · owner ruling (c) !!!!!!!!!!!!!!
+[V1] 8 NEW failure(s) OUTSIDE manifest:
+    tests/invariants/test_wm6_5_3_cluster_stability.py::test_wm6_5_3_clustering_deterministic_passes_on_deterministic_backend
+    tests/invariants/test_wm6_5_3_cluster_stability.py::test_wm6_5_3_clustering_deterministic_refuses_on_nondeterministic_backend
+    tests/invariants/test_wm6_5_3_cluster_stability.py::test_wm6_5_3_module_fabric
+    tests/invariants/test_wm6_5_3_cluster_stability.py::test_wm6_5_3_no_human_name_accepts_none_valued_human_name
+    tests/invariants/test_wm6_5_3_cluster_stability.py::test_wm6_5_3_no_human_name_passes_on_well_formed_candidate_stratum
+    tests/invariants/test_wm6_5_3_cluster_stability.py::test_wm6_5_3_no_human_name_refuses_on_human_name_leak
+    tests/invariants/test_wm6_5_3_cluster_stability.py::test_wm6_5_3_validated_stratum_preserves_candidate_end_to_end
+    tests/invariants/test_wm6_5_3_cluster_stability.py::test_wm6_5_3_validated_stratum_refuses_on_candidate_drift
+  No silent rebaselining. Report drift to owner verbatim.
+
+=================================== FAILURES ===================================
+__________________________ test_wm6_5_3_module_fabric __________________________
+
+    def test_wm6_5_3_module_fabric():
+        """Module `services.audio_plane_v1.cluster_stability` exports the
+        CP-M6-5-3 public API."""
+>       m = importlib.import_module(
+            "services.audio_plane_v1.cluster_stability",
+        )
+
+tests/invariants/test_wm6_5_3_cluster_stability.py:46: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'services.audio_plane_v1.cluster_stability'
+import_ = <function _gcd_import at 0xf9051971bd80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'services.audio_plane_v1.cluster_stability'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+______ test_wm6_5_3_no_human_name_passes_on_well_formed_candidate_stratum ______
+
+    def test_wm6_5_3_no_human_name_passes_on_well_formed_candidate_stratum():
+        """§5.3 clause 2 verbatim: 'not what it is called'.  A well-formed
+        `CandidateStratum` (CP-M6-5-1) carries no human-readable name; the
+        assertion returns None."""
+        from services.audio_plane_v1.clustering import CandidateStratum
+>       from services.audio_plane_v1.cluster_stability import (
+            assert_cluster_carries_no_human_name,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.cluster_stability'
+
+tests/invariants/test_wm6_5_3_cluster_stability.py:67: ModuleNotFoundError
+____________ test_wm6_5_3_no_human_name_refuses_on_human_name_leak _____________
+
+    def test_wm6_5_3_no_human_name_refuses_on_human_name_leak():
+        """A synthetic cluster object with a `human_name` / `label` /
+        `display_name` / `speaker_name` / `cluster_name` attribute (any
+        of them non-None) refuses with `ClusterHumanNameLeakError`.
+    
+        §5.3 clause 2 verbatim: a cluster asserts that a distinct variant
+        exists — 'not what it is called'.  Any human-readable naming
+        leaked onto a cluster carrier violates this discipline."""
+>       from services.audio_plane_v1.cluster_stability import (
+            ClusterHumanNameLeakError,
+            assert_cluster_carries_no_human_name,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.cluster_stability'
+
+tests/invariants/test_wm6_5_3_cluster_stability.py:86: ModuleNotFoundError
+__________ test_wm6_5_3_no_human_name_accepts_none_valued_human_name ___________
+
+    def test_wm6_5_3_no_human_name_accepts_none_valued_human_name():
+        """A cluster with a `human_name` attribute whose value is None
+        does NOT refuse — None is the canonical value per §5.3 clause 2
+        'not what it is called' (matches the CP-M6-5-2
+        `HumanValidationVerdict.named_by_human` Optional default)."""
+>       from services.audio_plane_v1.cluster_stability import (
+            assert_cluster_carries_no_human_name,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.cluster_stability'
+
+tests/invariants/test_wm6_5_3_cluster_stability.py:128: ModuleNotFoundError
+____ test_wm6_5_3_clustering_deterministic_passes_on_deterministic_backend _____
+
+    def test_wm6_5_3_clustering_deterministic_passes_on_deterministic_backend():
+        """Determinism gate: a synthetic deterministic backend that always
+        emits the same stratum_id sequence passes
+        `assert_clustering_is_deterministic`."""
+        from services.audio_plane_v1.character_register import (
+            construct_character_entry, construct_character_register,
+        )
+        from services.audio_plane_v1.clustering import CandidateStratum
+>       from services.audio_plane_v1.cluster_stability import (
+            assert_clustering_is_deterministic,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.cluster_stability'
+
+tests/invariants/test_wm6_5_3_cluster_stability.py:151: ModuleNotFoundError
+__ test_wm6_5_3_clustering_deterministic_refuses_on_nondeterministic_backend ___
+
+    def test_wm6_5_3_clustering_deterministic_refuses_on_nondeterministic_backend():
+        """Non-determinism refusal: a synthetic backend that emits
+        different stratum_ids across successive calls refuses with
+        `ClusteringNonDeterministicError`."""
+        import itertools
+        from services.audio_plane_v1.character_register import (
+            construct_character_entry, construct_character_register,
+        )
+        from services.audio_plane_v1.clustering import CandidateStratum
+>       from services.audio_plane_v1.cluster_stability import (
+            ClusteringNonDeterministicError,
+            assert_clustering_is_deterministic,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.cluster_stability'
+
+tests/invariants/test_wm6_5_3_cluster_stability.py:194: ModuleNotFoundError
+________ test_wm6_5_3_validated_stratum_preserves_candidate_end_to_end _________
+
+    def test_wm6_5_3_validated_stratum_preserves_candidate_end_to_end():
+        """§5.3 clause 2 end-to-end: cluster → sample → verdict
+        (named_by_human=None) → bind path never introduces a
+        human-readable cluster name, AND the bound `ValidatedStratum`
+        preserves the original `CandidateStratum` by reference (no
+        mutation)."""
+        from services.audio_plane_v1.clustering import CandidateStratum
+>       from services.audio_plane_v1.cluster_stability import (
+            assert_cluster_carries_no_human_name,
+            assert_validated_stratum_preserves_candidate,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.cluster_stability'
+
+tests/invariants/test_wm6_5_3_cluster_stability.py:243: ModuleNotFoundError
+__________ test_wm6_5_3_validated_stratum_refuses_on_candidate_drift ___________
+
+    def test_wm6_5_3_validated_stratum_refuses_on_candidate_drift():
+        """A `ValidatedStratum` whose `candidate_stratum` does not match
+        the original `CandidateStratum` reference refuses with
+        `ValidatedStratumMutatedError`."""
+        from services.audio_plane_v1.clustering import CandidateStratum
+>       from services.audio_plane_v1.cluster_stability import (
+            ValidatedStratumMutatedError,
+            assert_validated_stratum_preserves_candidate,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.cluster_stability'
+
+tests/invariants/test_wm6_5_3_cluster_stability.py:293: ModuleNotFoundError
+=============================== warnings summary ===============================
+tests/invariants/test_8_ext.py: 13 warnings
+tests/invariants/test_artifact_store.py: 2 warnings
+tests/invariants/test_connect_ui1c_gates.py: 9 warnings
+tests/invariants/test_engineer_key_grant_e2_taxonomy.py: 4 warnings
+tests/invariants/test_engineer_key_grant_ledger.py: 2 warnings
+tests/invariants/test_govern_g_g1_to_g_g8.py: 6 warnings
+tests/invariants/test_govern_ui1b_gates.py: 15 warnings
+tests/invariants/test_master_admin_auth_reconciliation.py: 10 warnings
+tests/invariants/test_master_admin_pending_seams.py: 1 warning
+tests/invariants/test_master_admin_recent_actions.py: 4 warnings
+tests/invariants/test_master_admin_tier_lock_path_a_ledger.py: 3 warnings
+tests/invariants/test_memory_engineer_key_grant_e2e_propagation.py: 7 warnings
+tests/invariants/test_memory_observability_o_g1_to_o_g6.py: 6 warnings
+tests/invariants/test_memory_service_m_g1_to_m_g9.py: 4 warnings
+tests/invariants/test_p2_buildable_now.py: 3 warnings
+tests/invariants/test_phase3_subcycle1_gates.py: 7 warnings
+tests/invariants/test_phase_6_stage_b_economics.py: 1 warning
+tests/invariants/test_phase_8_b_1_auth_and_shims.py: 3 warnings
+tests/invariants/test_phase_8_b_2_operator_and_scope_gate.py: 7 warnings
+tests/invariants/test_phase_8_b_5a_compliance.py: 15 warnings
+tests/invariants/test_phase_8_b_5b.py: 11 warnings
+tests/invariants/test_phase_8_seam_3_sub_stage_1.py: 3 warnings
+tests/invariants/test_phase_8_seam_3_sub_stage_2.py: 13 warnings
+tests/invariants/test_phase_8_seam_3_sub_stage_3.py: 15 warnings
+tests/invariants/test_phase_9_sub_stage_9_1_and_9_3.py: 16 warnings
+tests/invariants/test_pricing_paths_b_honest_501.py: 6 warnings
+tests/invariants/test_registry_prove_ui1d_gates.py: 15 warnings
+tests/invariants/test_team_ui1e_gates.py: 12 warnings
+tests/invariants/test_trace_lens_cross_engine_correlation.py: 3 warnings
+tests/invariants/test_trace_lens_readonly.py: 1 warning
+tests/invariants/test_use_data_commission_verdict.py: 4 warnings
+  /root/.venv/lib/python3.11/site-packages/jwt/api_jwt.py:147: InsecureKeyLengthWarning: The HMAC key is 30 bytes long, which is below the minimum recommended length of 32 bytes for SHA256. See RFC 7518 Section 3.2.
+    return self._jws.encode(
+
+tests/invariants/test_8_ext.py: 13 warnings
+tests/invariants/test_artifact_store.py: 2 warnings
+tests/invariants/test_connect_ui1c_gates.py: 9 warnings
+tests/invariants/test_engineer_key_grant_e2_taxonomy.py: 4 warnings
+tests/invariants/test_engineer_key_grant_ledger.py: 2 warnings
+tests/invariants/test_govern_g_g1_to_g_g8.py: 6 warnings
+tests/invariants/test_govern_ui1b_gates.py: 15 warnings
+tests/invariants/test_master_admin_auth_reconciliation.py: 10 warnings
+tests/invariants/test_master_admin_pending_seams.py: 1 warning
+tests/invariants/test_master_admin_recent_actions.py: 4 warnings
+tests/invariants/test_master_admin_tier_lock_path_a_ledger.py: 3 warnings
+tests/invariants/test_memory_engineer_key_grant_e2e_propagation.py: 6 warnings
+tests/invariants/test_memory_observability_o_g1_to_o_g6.py: 6 warnings
+tests/invariants/test_memory_service_m_g1_to_m_g9.py: 4 warnings
+tests/invariants/test_p2_buildable_now.py: 3 warnings
+tests/invariants/test_phase3_subcycle1_gates.py: 7 warnings
+tests/invariants/test_phase_6_stage_b_economics.py: 1 warning
+tests/invariants/test_phase_8_b_1_auth_and_shims.py: 3 warnings
+tests/invariants/test_phase_8_b_2_operator_and_scope_gate.py: 7 warnings
+tests/invariants/test_phase_8_b_5a_compliance.py: 15 warnings
+tests/invariants/test_phase_8_b_5b.py: 11 warnings
+tests/invariants/test_phase_8_seam_3_sub_stage_1.py: 3 warnings
+tests/invariants/test_phase_8_seam_3_sub_stage_2.py: 13 warnings
+tests/invariants/test_phase_8_seam_3_sub_stage_3.py: 15 warnings
+tests/invariants/test_phase_9_sub_stage_9_1_and_9_3.py: 13 warnings
+tests/invariants/test_pricing_paths_b_honest_501.py: 6 warnings
+tests/invariants/test_registry_prove_ui1d_gates.py: 15 warnings
+tests/invariants/test_team_ui1e_gates.py: 12 warnings
+tests/invariants/test_trace_lens_cross_engine_correlation.py: 3 warnings
+tests/invariants/test_trace_lens_readonly.py: 1 warning
+tests/invariants/test_use_data_commission_verdict.py: 4 warnings
+  /root/.venv/lib/python3.11/site-packages/jwt/api_jwt.py:368: InsecureKeyLengthWarning: The HMAC key is 30 bytes long, which is below the minimum recommended length of 32 bytes for SHA256. See RFC 7518 Section 3.2.
+    decoded = self.decode_complete(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wm6_5_3_cluster_stability.py::test_wm6_5_3_module_fabric
+FAILED tests/invariants/test_wm6_5_3_cluster_stability.py::test_wm6_5_3_no_human_name_passes_on_well_formed_candidate_stratum
+FAILED tests/invariants/test_wm6_5_3_cluster_stability.py::test_wm6_5_3_no_human_name_refuses_on_human_name_leak
+FAILED tests/invariants/test_wm6_5_3_cluster_stability.py::test_wm6_5_3_no_human_name_accepts_none_valued_human_name
+FAILED tests/invariants/test_wm6_5_3_cluster_stability.py::test_wm6_5_3_clustering_deterministic_passes_on_deterministic_backend
+FAILED tests/invariants/test_wm6_5_3_cluster_stability.py::test_wm6_5_3_clustering_deterministic_refuses_on_nondeterministic_backend
+FAILED tests/invariants/test_wm6_5_3_cluster_stability.py::test_wm6_5_3_validated_stratum_preserves_candidate_end_to_end
+FAILED tests/invariants/test_wm6_5_3_cluster_stability.py::test_wm6_5_3_validated_stratum_refuses_on_candidate_drift
+8 failed, 4232 passed, 1 skipped, 438 warnings in 122.98s (0:02:02)
+EXIT=1

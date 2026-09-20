@@ -1,0 +1,249 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.4.2, pluggy-1.6.0 -- /root/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: asyncio-1.4.0, xdist-3.8.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collecting ... collected 8 items
+
+tests/invariants/test_orchestrator_resilience_r2_wire.py::test_orch_reads_akki_adopt_run_id_env FAILED [ 12%]
+tests/invariants/test_orchestrator_resilience_r2_wire.py::test_orch_main_calls_select_adoptable_orphans FAILED [ 25%]
+tests/invariants/test_orchestrator_resilience_r2_wire.py::test_orch_calls_mark_adopted_when_adopt_env_set FAILED [ 37%]
+tests/invariants/test_orchestrator_resilience_r2_wire.py::test_orch_burn_one_host_launch_conditional_on_adopt_mode FAILED [ 50%]
+tests/invariants/test_orchestrator_resilience_r2_wire.py::test_watchdog_script_exists_and_parses FAILED [ 62%]
+tests/invariants/test_orchestrator_resilience_r2_wire.py::test_watchdog_script_calls_select_adoptable_orphans FAILED [ 75%]
+tests/invariants/test_orchestrator_resilience_r2_wire.py::test_watchdog_script_prints_respawn_command_with_env_var FAILED [ 87%]
+tests/invariants/test_orchestrator_resilience_r2_wire.py::test_watchdog_script_no_subprocess_execute_in_r2_scope FAILED [100%]
+
+=================================== FAILURES ===================================
+____________________ test_orch_reads_akki_adopt_run_id_env _____________________
+
+orch_src = '"""GPU burn orchestrator · owner Ruling (A) · 2026-08-31.\n\nOwner directive verbatim (banked in DECISIONS.md this se...n    return 0 if all(h.exit_code == 0 for h in results) else 1\n\n\nif __name__ == "__main__":\n    sys.exit(main())\n'
+
+    def test_orch_reads_akki_adopt_run_id_env(orch_src: str):
+        """Tool MUST read `AKKI_ADOPT_RUN_ID` from the environment so an operator
+        (or watchdog respawn) can pin the orchestrator to an existing run."""
+>       assert "AKKI_ADOPT_RUN_ID" in orch_src, (
+            "tools/gpu_burn_orchestrator.py does not reference AKKI_ADOPT_RUN_ID — "
+            "the adopt-on-start env var is not wired."
+        )
+E       AssertionError: tools/gpu_burn_orchestrator.py does not reference AKKI_ADOPT_RUN_ID — the adopt-on-start env var is not wired.
+E       assert 'AKKI_ADOPT_RUN_ID' in '"""GPU burn orchestrator · owner Ruling (A) · 2026-08-31.\n\nOwner directive verbatim (banked in DECISIONS.md this session):\n    "RULING → (A) FALLBACK BURN TONIGHT. Fire it now.\n     Governed matmul burn on BOTH hosts via execute_remote_command\n     (masking_tier=attested_command, crossing-registered, receipted,\n     zero estate data). Target ~20-30 min sustained per host, all\n     4 H200s exercised. Bank before/during/after nvidia-smi snapshots\n     per GPU, wall-clock, power/temp, and the plain-language activity\n     summary."\n\nOwner-original ask verbatim:\n    "Actally need \'digicow shielded data\' used" — SUPERSEDED for tonight\n    by ruling (A) because the shielded-training pipeline does not exist\n    in code (row-bearing masking tiers admissible_under_env=[]; census\n    engine aggregates-only by design; no governed masking policy\n    authored; execute_lora_train_real stubbed). The shielded-data intent\n    is NOT dropped; it is chartered for a next-wave delivery.\n\nDiscipline:\n  - EVERY remote exec goes through services.training_runner.ssh_seam\n    execute_remote_command(host_slug, cmd, purpose=...) — governed,\n    receipted, redacted.\n  - masking_tier=...ck_seconds:.1f}s error={hr.error!r}", flush=True)\n            except Exception as e:\n                bad = HostResult(host_slug=h, error=f"orchestrator crash: {e}")\n                results.append(bad)\n\n    # Save all raw per-host results\n    (BURN_ROOT / "hosts_raw.json").write_text(\n        json.dumps([asdict(h) for h in results], indent=2, sort_keys=True)\n    )\n\n    # Register run + cost ledger receipts\n    run_path = register_burn_run(results)\n    ledger_idx = write_cost_ledger_receipt(results)\n\n    # Activity summary\n    summary = build_activity_summary(results)\n    (BURN_ROOT / "activity_summary.json").write_text(json.dumps(summary, indent=2))\n    (BURN_ROOT / "activity_summary.txt").write_text(summary["plain_language"])\n\n    print()\n    print("=" * 76)\n    print("ACTIVITY SUMMARY")\n    print("=" * 76)\n    print(summary["plain_language"])\n    print("=" * 76)\n    print()\n    print(f"[gpu_burn] run record: {run_path}")\n    print(f"[gpu_burn] ledger receipts index: {ledger_idx}")\n    print(f"[gpu_burn] artifacts root: {BURN_ROOT}")\n\n    return 0 if all(h.exit_code == 0 for h in results) else 1\n\n\nif __name__ == "__main__":\n    sys.exit(main())\n'
+
+tests/invariants/test_orchestrator_resilience_r2_wire.py:72: AssertionError
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+________________ test_orch_main_calls_select_adoptable_orphans _________________
+
+orch_tree = <ast.Module object at 0xf88c47522020>
+
+    def test_orch_main_calls_select_adoptable_orphans(orch_tree: ast.Module):
+        """`main()` reconcile MUST call `select_adoptable_orphans` (r2 primitive),
+        not just `find_orphaned_runs`. The reconcile output includes adoptability
+        per orphan so operators can decide."""
+        fn = _find_function(orch_tree, "main")
+        assert fn is not None
+        calls = []
+        for c in ast.walk(fn):
+            if isinstance(c, ast.Call):
+                nm = ""
+                if isinstance(c.func, ast.Attribute):
+                    nm = c.func.attr
+                elif isinstance(c.func, ast.Name):
+                    nm = c.func.id
+                if nm == "select_adoptable_orphans":
+                    calls.append(c)
+>       assert calls, (
+            "main() does not call select_adoptable_orphans — reconcile still "
+            "surfaces only orphan detection, not adoptability."
+        )
+E       AssertionError: main() does not call select_adoptable_orphans — reconcile still surfaces only orphan detection, not adoptability.
+E       assert []
+
+tests/invariants/test_orchestrator_resilience_r2_wire.py:94: AssertionError
+_______________ test_orch_calls_mark_adopted_when_adopt_env_set ________________
+
+orch_src = '"""GPU burn orchestrator · owner Ruling (A) · 2026-08-31.\n\nOwner directive verbatim (banked in DECISIONS.md this se...n    return 0 if all(h.exit_code == 0 for h in results) else 1\n\n\nif __name__ == "__main__":\n    sys.exit(main())\n'
+
+    def test_orch_calls_mark_adopted_when_adopt_env_set(orch_src: str):
+        """When `AKKI_ADOPT_RUN_ID` is set, the orchestrator MUST call
+        `adopt.mark_adopted` (or `mark_adopted` imported bare) so the adoption
+        event is banked in the run_dir's audit ledger."""
+>       assert "mark_adopted" in orch_src, (
+            "tools/gpu_burn_orchestrator.py does not call mark_adopted — the "
+            "adoption ledger is never written even when adopting."
+        )
+E       AssertionError: tools/gpu_burn_orchestrator.py does not call mark_adopted — the adoption ledger is never written even when adopting.
+E       assert 'mark_adopted' in '"""GPU burn orchestrator · owner Ruling (A) · 2026-08-31.\n\nOwner directive verbatim (banked in DECISIONS.md this session):\n    "RULING → (A) FALLBACK BURN TONIGHT. Fire it now.\n     Governed matmul burn on BOTH hosts via execute_remote_command\n     (masking_tier=attested_command, crossing-registered, receipted,\n     zero estate data). Target ~20-30 min sustained per host, all\n     4 H200s exercised. Bank before/during/after nvidia-smi snapshots\n     per GPU, wall-clock, power/temp, and the plain-language activity\n     summary."\n\nOwner-original ask verbatim:\n    "Actally need \'digicow shielded data\' used" — SUPERSEDED for tonight\n    by ruling (A) because the shielded-training pipeline does not exist\n    in code (row-bearing masking tiers admissible_under_env=[]; census\n    engine aggregates-only by design; no governed masking policy\n    authored; execute_lora_train_real stubbed). The shielded-data intent\n    is NOT dropped; it is chartered for a next-wave delivery.\n\nDiscipline:\n  - EVERY remote exec goes through services.training_runner.ssh_seam\n    execute_remote_command(host_slug, cmd, purpose=...) — governed,\n    receipted, redacted.\n  - masking_tier=...ck_seconds:.1f}s error={hr.error!r}", flush=True)\n            except Exception as e:\n                bad = HostResult(host_slug=h, error=f"orchestrator crash: {e}")\n                results.append(bad)\n\n    # Save all raw per-host results\n    (BURN_ROOT / "hosts_raw.json").write_text(\n        json.dumps([asdict(h) for h in results], indent=2, sort_keys=True)\n    )\n\n    # Register run + cost ledger receipts\n    run_path = register_burn_run(results)\n    ledger_idx = write_cost_ledger_receipt(results)\n\n    # Activity summary\n    summary = build_activity_summary(results)\n    (BURN_ROOT / "activity_summary.json").write_text(json.dumps(summary, indent=2))\n    (BURN_ROOT / "activity_summary.txt").write_text(summary["plain_language"])\n\n    print()\n    print("=" * 76)\n    print("ACTIVITY SUMMARY")\n    print("=" * 76)\n    print(summary["plain_language"])\n    print("=" * 76)\n    print()\n    print(f"[gpu_burn] run record: {run_path}")\n    print(f"[gpu_burn] ledger receipts index: {ledger_idx}")\n    print(f"[gpu_burn] artifacts root: {BURN_ROOT}")\n\n    return 0 if all(h.exit_code == 0 for h in results) else 1\n\n\nif __name__ == "__main__":\n    sys.exit(main())\n'
+
+tests/invariants/test_orchestrator_resilience_r2_wire.py:104: AssertionError
+___________ test_orch_burn_one_host_launch_conditional_on_adopt_mode ___________
+
+orch_tree = <ast.Module object at 0xf88c47522020>
+
+    def test_orch_burn_one_host_launch_conditional_on_adopt_mode(orch_tree: ast.Module):
+        """`burn_one_host` MUST skip the `_launch_burn(...)` call when in adopt
+        mode (the on-host burn is already running from the prior orchestrator;
+        re-launching would either fail or start a second burn — either is bad)."""
+        fn = _find_function(orch_tree, "burn_one_host")
+        assert fn is not None
+        # Find _launch_burn(...) call
+        launch_calls = []
+        for c in ast.walk(fn):
+            if isinstance(c, ast.Call):
+                nm = ""
+                if isinstance(c.func, ast.Name):
+                    nm = c.func.id
+                elif isinstance(c.func, ast.Attribute):
+                    nm = c.func.attr
+                if nm == "_launch_burn":
+                    launch_calls.append(c)
+        assert launch_calls, "burn_one_host does not call _launch_burn — orchestrator is broken"
+        # Each _launch_burn call MUST be inside an `if`/`if not` gated on adopt state.
+        for lc in launch_calls:
+            # Find the enclosing If in burn_one_host
+            found_gate = False
+            for ifnode in [n for n in ast.walk(fn) if isinstance(n, ast.If)]:
+                # Is lc inside ifnode's body or orelse?
+                for stmt in ifnode.body + ifnode.orelse:
+                    for sub in ast.walk(stmt):
+                        if sub is lc:
+                            # Now check the If condition references an adopt-shaped var
+                            cond_src = ast.dump(ifnode.test)
+                            if any(k in cond_src for k in
+                                   ("ADOPT", "_ADOPT", "adopt")):
+                                found_gate = True
+                                break
+                    if found_gate:
+                        break
+                if found_gate:
+                    break
+>           assert found_gate, (
+                "_launch_burn call in burn_one_host is not guarded by an adopt-mode "
+                "conditional — the tool would re-launch the burn even when adopting."
+            )
+E           AssertionError: _launch_burn call in burn_one_host is not guarded by an adopt-mode conditional — the tool would re-launch the burn even when adopting.
+E           assert False
+
+tests/invariants/test_orchestrator_resilience_r2_wire.py:147: AssertionError
+____________________ test_watchdog_script_exists_and_parses ____________________
+
+    def test_watchdog_script_exists_and_parses():
+        """`tools/gpu_burn_watchdog.py` MUST exist and parse as a Python module."""
+        p = _wd_path()
+>       assert p.exists(), (
+            f"watchdog supervisor script not found at {p}. Land it as part of "
+            "the r2 wire."
+        )
+E       AssertionError: watchdog supervisor script not found at /app/assessment_workspace/tools/gpu_burn_watchdog.py. Land it as part of the r2 wire.
+E       assert False
+E        +  where False = exists()
+E        +    where exists = PosixPath('/app/assessment_workspace/tools/gpu_burn_watchdog.py').exists
+
+tests/invariants/test_orchestrator_resilience_r2_wire.py:160: AssertionError
+_____________ test_watchdog_script_calls_select_adoptable_orphans ______________
+
+    def test_watchdog_script_calls_select_adoptable_orphans():
+        """The watchdog script MUST use r2's `select_adoptable_orphans`, not
+        duplicate the enumeration logic."""
+>       text = _wd_path().read_text(encoding="utf-8")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_orchestrator_resilience_r2_wire.py:172: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/pathlib.py:1058: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/app/assessment_workspace/tools/gpu_burn_watchdog.py')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/app/assessment_workspace/tools/gpu_burn_watchdog.py'
+
+/usr/local/lib/python3.11/pathlib.py:1044: FileNotFoundError
+___________ test_watchdog_script_prints_respawn_command_with_env_var ___________
+
+    def test_watchdog_script_prints_respawn_command_with_env_var():
+        """The script's recommended-respawn output MUST reference
+        `AKKI_ADOPT_RUN_ID=` so an operator can copy-paste the command."""
+>       text = _wd_path().read_text(encoding="utf-8")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_orchestrator_resilience_r2_wire.py:182: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/pathlib.py:1058: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/app/assessment_workspace/tools/gpu_burn_watchdog.py')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/app/assessment_workspace/tools/gpu_burn_watchdog.py'
+
+/usr/local/lib/python3.11/pathlib.py:1044: FileNotFoundError
+____________ test_watchdog_script_no_subprocess_execute_in_r2_scope ____________
+
+    def test_watchdog_script_no_subprocess_execute_in_r2_scope():
+        """r2 scope: watchdog is INFORMATIONAL ONLY. It MUST NOT invoke
+        `subprocess.run` / `subprocess.Popen` / `os.execv*` / `os.spawn*` to
+        respawn — that's chartered for r3 (auto-respawn). This test freezes
+        the current-wave scope so a future edit is intentional."""
+>       text = _wd_path().read_text(encoding="utf-8")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_orchestrator_resilience_r2_wire.py:194: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/pathlib.py:1058: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/app/assessment_workspace/tools/gpu_burn_watchdog.py')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/app/assessment_workspace/tools/gpu_burn_watchdog.py'
+
+/usr/local/lib/python3.11/pathlib.py:1044: FileNotFoundError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_orchestrator_resilience_r2_wire.py::test_orch_reads_akki_adopt_run_id_env
+FAILED tests/invariants/test_orchestrator_resilience_r2_wire.py::test_orch_main_calls_select_adoptable_orphans
+FAILED tests/invariants/test_orchestrator_resilience_r2_wire.py::test_orch_calls_mark_adopted_when_adopt_env_set
+FAILED tests/invariants/test_orchestrator_resilience_r2_wire.py::test_orch_burn_one_host_launch_conditional_on_adopt_mode
+FAILED tests/invariants/test_orchestrator_resilience_r2_wire.py::test_watchdog_script_exists_and_parses
+FAILED tests/invariants/test_orchestrator_resilience_r2_wire.py::test_watchdog_script_calls_select_adoptable_orphans
+FAILED tests/invariants/test_orchestrator_resilience_r2_wire.py::test_watchdog_script_prints_respawn_command_with_env_var
+FAILED tests/invariants/test_orchestrator_resilience_r2_wire.py::test_watchdog_script_no_subprocess_execute_in_r2_scope
+============================== 8 failed in 0.77s ===============================

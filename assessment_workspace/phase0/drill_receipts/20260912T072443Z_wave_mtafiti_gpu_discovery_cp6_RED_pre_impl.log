@@ -1,0 +1,83 @@
+..FF...FF                                                                [100%]
+=================================== FAILURES ===================================
+_____________ test_live_stratified_samples_exist_and_are_redacted ______________
+
+    def test_live_stratified_samples_exist_and_are_redacted():
+        if not SAMPLE_LATEST.exists():
+>           pytest.fail(f"CP6 stratified samples not found at {SAMPLE_LATEST}.")
+E           Failed: CP6 stratified samples not found at /app/assessment_workspace/phase0/mtafiti_gpu_discovery/stratified_samples_latest.json.
+
+tests/invariants/test_mtafiti_gpu_discovery_stratified_relationships_cost.py:74: Failed
+_______________ test_live_stratified_samples_every_sql_readonly ________________
+
+    def test_live_stratified_samples_every_sql_readonly():
+        from services.mtafiti.executor.readonly_sql_guard import _ALLOWED_LEAD
+>       s = json.loads(SAMPLE_LATEST.read_text())
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_mtafiti_gpu_discovery_stratified_relationships_cost.py:87: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/pathlib.py:1058: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/app/assessment_workspace/phase0/mtafiti_gpu_discovery/stratified_samples_latest.json')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/app/assessment_workspace/phase0/mtafiti_gpu_discovery/stratified_samples_latest.json'
+
+/usr/local/lib/python3.11/pathlib.py:1044: FileNotFoundError
+_________________ test_live_cost_receipt_exists_and_wellformed _________________
+
+    def test_live_cost_receipt_exists_and_wellformed():
+        if not COST_LATEST.exists():
+>           pytest.fail(f"CP6 cost receipt not found at {COST_LATEST}.")
+E           Failed: CP6 cost receipt not found at /app/assessment_workspace/phase0/mtafiti_gpu_discovery/cost_receipt_latest.json.
+
+tests/invariants/test_mtafiti_gpu_discovery_stratified_relationships_cost.py:138: Failed
+_________________________ test_cost_receipt_is_recent __________________________
+
+    def test_cost_receipt_is_recent():
+>       c = json.loads(COST_LATEST.read_text())
+                       ^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_mtafiti_gpu_discovery_stratified_relationships_cost.py:152: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/pathlib.py:1058: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/app/assessment_workspace/phase0/mtafiti_gpu_discovery/cost_receipt_latest.json')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/app/assessment_workspace/phase0/mtafiti_gpu_discovery/cost_receipt_latest.json'
+
+/usr/local/lib/python3.11/pathlib.py:1044: FileNotFoundError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_mtafiti_gpu_discovery_stratified_relationships_cost.py::test_live_stratified_samples_exist_and_are_redacted
+FAILED tests/invariants/test_mtafiti_gpu_discovery_stratified_relationships_cost.py::test_live_stratified_samples_every_sql_readonly
+FAILED tests/invariants/test_mtafiti_gpu_discovery_stratified_relationships_cost.py::test_live_cost_receipt_exists_and_wellformed
+FAILED tests/invariants/test_mtafiti_gpu_discovery_stratified_relationships_cost.py::test_cost_receipt_is_recent
+4 failed, 5 passed in 0.69s

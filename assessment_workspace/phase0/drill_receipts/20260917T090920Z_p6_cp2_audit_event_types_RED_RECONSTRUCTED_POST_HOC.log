@@ -1,0 +1,47 @@
+# RECONSTRUCTED POST-HOC AT HEAD e436028251b0ae18919c163123b565e3000384ed · 2026-09-17
+# NOT captured at Commit-A landing time. Per-CP receipt reconstruction executed
+# during 2026-09-17 §3.3 BACK-COMPAT BATCH scoped path (c) reconstruction.
+# Method: temporarily hide services/platform_control_plane/audit_event_types.py → run pytest tests/invariants/test_p6_cp2_audit_event_types.py → capture RED
+# ---
+EEEEEEEEEEEE                                                             [100%]
+==================================== ERRORS ====================================
+______ ERROR at setup of test_module_fabric_present_and_all_exports_match ______
+E   ModuleNotFoundError: No module named 'services.platform_control_plane.audit_event_types'
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+_______________ ERROR at setup of test_source_verbatim_reference _______________
+E   ModuleNotFoundError: No module named 'services.platform_control_plane.audit_event_types'
+___________________ ERROR at setup of test_refusal_hierarchy ___________________
+E   ModuleNotFoundError: No module named 'services.platform_control_plane.audit_event_types'
+_____ ERROR at setup of test_find_missing_returns_sorted_tuple_of_missing ______
+E   ModuleNotFoundError: No module named 'services.platform_control_plane.audit_event_types'
+_______ ERROR at setup of test_find_missing_returns_empty_when_superset ________
+E   ModuleNotFoundError: No module named 'services.platform_control_plane.audit_event_types'
+___________ ERROR at setup of test_refuses_when_required_not_subset ____________
+E   ModuleNotFoundError: No module named 'services.platform_control_plane.audit_event_types'
+__________ ERROR at setup of test_refuses_when_multiple_types_missing __________
+E   ModuleNotFoundError: No module named 'services.platform_control_plane.audit_event_types'
+_______________ ERROR at setup of test_refuses_case_sensitively ________________
+E   ModuleNotFoundError: No module named 'services.platform_control_plane.audit_event_types'
+__________ ERROR at setup of test_admits_when_required_equals_emitted __________
+E   ModuleNotFoundError: No module named 'services.platform_control_plane.audit_event_types'
+________ ERROR at setup of test_admits_when_emitted_is_strict_superset _________
+E   ModuleNotFoundError: No module named 'services.platform_control_plane.audit_event_types'
+_____________ ERROR at setup of test_admits_when_required_is_empty _____________
+E   ModuleNotFoundError: No module named 'services.platform_control_plane.audit_event_types'
+_ ERROR at setup of test_verbatim_anchor_case_agnostic_zero_data_plane_imports _
+E   ModuleNotFoundError: No module named 'services.platform_control_plane.audit_event_types'
+=========================== short test summary info ============================
+ERROR tests/invariants/test_p6_cp2_audit_event_types.py::test_module_fabric_present_and_all_exports_match
+ERROR tests/invariants/test_p6_cp2_audit_event_types.py::test_source_verbatim_reference
+ERROR tests/invariants/test_p6_cp2_audit_event_types.py::test_refusal_hierarchy
+ERROR tests/invariants/test_p6_cp2_audit_event_types.py::test_find_missing_returns_sorted_tuple_of_missing
+ERROR tests/invariants/test_p6_cp2_audit_event_types.py::test_find_missing_returns_empty_when_superset
+ERROR tests/invariants/test_p6_cp2_audit_event_types.py::test_refuses_when_required_not_subset
+ERROR tests/invariants/test_p6_cp2_audit_event_types.py::test_refuses_when_multiple_types_missing
+ERROR tests/invariants/test_p6_cp2_audit_event_types.py::test_refuses_case_sensitively
+ERROR tests/invariants/test_p6_cp2_audit_event_types.py::test_admits_when_required_equals_emitted
+ERROR tests/invariants/test_p6_cp2_audit_event_types.py::test_admits_when_emitted_is_strict_superset
+ERROR tests/invariants/test_p6_cp2_audit_event_types.py::test_admits_when_required_is_empty
+ERROR tests/invariants/test_p6_cp2_audit_event_types.py::test_verbatim_anchor_case_agnostic_zero_data_plane_imports
+12 errors in 0.59s

@@ -1,0 +1,46 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.4.2, pluggy-1.6.0
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: asyncio-1.4.0, anyio-4.14.2, xdist-3.8.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collected 8 items
+
+tests/invariants/test_wdap_2h_component_boundary_and_composition_close.py F [ 12%]
+FFFFFFF                                                                  [100%]
+============================ BASELINE_GUARD receipt ============================
+passed=0 / baseline-failures-remaining=0 / quarantined=0
+  manifest: tests/invariants/baseline_failures.json
+  scope: BASELINE_GUARD=1  ·  invocation: cd backend && BASELINE_GUARD=1 python -m pytest tests/invariants/
+!!!!!!!!!!!!! BASELINE_GUARD · HALT AND REPORT · owner ruling (c) !!!!!!!!!!!!!!
+[V1] 8 NEW failure(s) OUTSIDE manifest:
+    tests/invariants/test_wdap_2h_component_boundary_and_composition_close.py::test_2h_module_fabric_present
+    tests/invariants/test_wdap_2h_component_boundary_and_composition_close.py::test_a1_attempted_egress_configurations_are_recorded
+    tests/invariants/test_wdap_2h_component_boundary_and_composition_close.py::test_a1_compute_to_data_no_configuration_permits_egress
+    tests/invariants/test_wdap_2h_component_boundary_and_composition_close.py::test_dap_30_browse_degrades_not_refuses_marked_stale
+    tests/invariants/test_wdap_2h_component_boundary_and_composition_close.py::test_dap_30_never_silently_presents_incomplete_as_complete
+    tests/invariants/test_wdap_2h_component_boundary_and_composition_close.py::test_dap_31_plus_sfp_8_dependency_marker_declared
+    tests/invariants/test_wdap_2h_component_boundary_and_composition_close.py::test_dap_32_plus_sfp_8_dependency_marker_declared
+    tests/invariants/test_wdap_2h_component_boundary_and_composition_close.py::test_dap_spec_7_dap_composes_never_executes
+[V3] Passed count 0 < ratchet floor 3617
+  No silent rebaselining. Report drift to owner verbatim.
+
+=================================== FAILURES ===================================
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError: No module named 'services.dap.boundary'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wdap_2h_component_boundary_and_composition_close.py:77: ImportError: cannot import name 'boundary' from 'services.dap' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/dap/__init__.py)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wdap_2h_component_boundary_and_composition_close.py:98: ImportError: cannot import name 'boundary' from 'services.dap' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/dap/__init__.py)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wdap_2h_component_boundary_and_composition_close.py:120: ImportError: cannot import name 'boundary' from 'services.dap' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/dap/__init__.py)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wdap_2h_component_boundary_and_composition_close.py:137: ImportError: cannot import name 'boundary' from 'services.dap' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/dap/__init__.py)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wdap_2h_component_boundary_and_composition_close.py:155: ImportError: cannot import name 'boundary' from 'services.dap' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/dap/__init__.py)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wdap_2h_component_boundary_and_composition_close.py:182: ImportError: cannot import name 'boundary' from 'services.dap' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/dap/__init__.py)
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wdap_2h_component_boundary_and_composition_close.py:219: ImportError: cannot import name 'boundary' from 'services.dap' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/dap/__init__.py)
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wdap_2h_component_boundary_and_composition_close.py::test_2h_module_fabric_present
+FAILED tests/invariants/test_wdap_2h_component_boundary_and_composition_close.py::test_dap_30_browse_degrades_not_refuses_marked_stale
+FAILED tests/invariants/test_wdap_2h_component_boundary_and_composition_close.py::test_dap_30_never_silently_presents_incomplete_as_complete
+FAILED tests/invariants/test_wdap_2h_component_boundary_and_composition_close.py::test_dap_31_plus_sfp_8_dependency_marker_declared
+FAILED tests/invariants/test_wdap_2h_component_boundary_and_composition_close.py::test_dap_32_plus_sfp_8_dependency_marker_declared
+FAILED tests/invariants/test_wdap_2h_component_boundary_and_composition_close.py::test_a1_compute_to_data_no_configuration_permits_egress
+FAILED tests/invariants/test_wdap_2h_component_boundary_and_composition_close.py::test_a1_attempted_egress_configurations_are_recorded
+FAILED tests/invariants/test_wdap_2h_component_boundary_and_composition_close.py::test_dap_spec_7_dap_composes_never_executes
+============================== 8 failed in 0.66s ===============================

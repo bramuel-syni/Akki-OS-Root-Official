@@ -1,0 +1,32 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.4.2, pluggy-1.6.0
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: asyncio-1.4.0, anyio-4.14.2, xdist-3.8.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collected 2 items
+
+tests/invariants/test_w_registry_full_build_cp10_wave_close.py F.        [100%]
+============================ BASELINE_GUARD receipt ============================
+passed=1 / baseline-failures-remaining=0 / quarantined=0
+  manifest: tests/invariants/baseline_failures.json
+  scope: BASELINE_GUARD=1  ·  invocation: cd backend && BASELINE_GUARD=1 python -m pytest tests/invariants/
+!!!!!!!!!!!!! BASELINE_GUARD · HALT AND REPORT · owner ruling (c) !!!!!!!!!!!!!!
+[V1] 1 NEW failure(s) OUTSIDE manifest:
+    tests/invariants/test_w_registry_full_build_cp10_wave_close.py::test_cp10_wave_close_manifest_exists_and_names_all_10_cps
+[V3] Passed count 1 < ratchet floor 3625
+  No silent rebaselining. Report drift to owner verbatim.
+
+=================================== FAILURES ===================================
+__________ test_cp10_wave_close_manifest_exists_and_names_all_10_cps ___________
+tests/invariants/test_w_registry_full_build_cp10_wave_close.py:32: in test_cp10_wave_close_manifest_exists_and_names_all_10_cps
+    assert CLOSE_MANIFEST.exists(), (
+E   AssertionError: wave-close manifest missing at /app/assessment_workspace/notes/W_REGISTRY_FULL_BUILD_close.md — owner rule STEP 5
+E   assert False
+E    +  where False = exists()
+E    +    where exists = PosixPath('/app/assessment_workspace/notes/W_REGISTRY_FULL_BUILD_close.md').exists
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+=========================== short test summary info ============================
+FAILED tests/invariants/test_w_registry_full_build_cp10_wave_close.py::test_cp10_wave_close_manifest_exists_and_names_all_10_cps
+========================= 1 failed, 1 passed in 0.65s ==========================

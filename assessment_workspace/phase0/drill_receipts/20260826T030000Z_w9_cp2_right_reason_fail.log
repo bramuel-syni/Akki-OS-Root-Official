@@ -1,0 +1,115 @@
+/root/.venv/lib/python3.11/site-packages/pytest_asyncio/plugin.py:208: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.3.3, pluggy-1.6.0 -- /root/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: xdist-3.8.0, anyio-4.14.2, asyncio-0.24.0
+asyncio: mode=Mode.AUTO, default_loop_scope=None
+collecting ... collected 8 items
+
+backend/tests/invariants/test_w9_cp2_route_recheck_failure.py::test_route_recheck_failure_fires_on_overdue FAILED [ 12%]
+backend/tests/invariants/test_w9_cp2_route_recheck_failure.py::test_route_recheck_failure_no_op_on_due_later FAILED [ 25%]
+backend/tests/invariants/test_w9_cp2_route_recheck_failure.py::test_route_recheck_failure_no_op_on_not_applicable FAILED [ 37%]
+backend/tests/invariants/test_w9_cp2_route_recheck_failure.py::test_route_recheck_failure_no_op_on_not_registered FAILED [ 50%]
+backend/tests/invariants/test_w9_cp2_route_recheck_failure.py::test_route_recheck_failure_records_verdict_body FAILED [ 62%]
+backend/tests/invariants/test_w9_cp2_route_recheck_failure.py::test_route_recheck_failure_records_action_body FAILED [ 75%]
+backend/tests/invariants/test_w9_cp2_route_recheck_failure.py::test_route_recheck_failure_idempotent_same_model FAILED [ 87%]
+backend/tests/invariants/test_w9_cp2_route_recheck_failure.py::test_ca1_011_watch_seam_string_matches_named_seam PASSED [100%]
+
+=================================== FAILURES ===================================
+_________________ test_route_recheck_failure_fires_on_overdue __________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-122/test_route_recheck_failure_fir0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xf88a9d311e10>
+
+    def test_route_recheck_failure_fires_on_overdue(tmp_path, monkeypatch):
+        """Overdue re-check produces a verdict + action pair via the seam."""
+>       from services.watch.route_recheck_failure import route_recheck_failure
+E       ModuleNotFoundError: No module named 'services.watch.route_recheck_failure'
+
+backend/tests/invariants/test_w9_cp2_route_recheck_failure.py:44: ModuleNotFoundError
+________________ test_route_recheck_failure_no_op_on_due_later _________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-122/test_route_recheck_failure_no_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xf88a9d323190>
+
+    def test_route_recheck_failure_no_op_on_due_later(tmp_path, monkeypatch):
+        """A future re-check date must NOT fire the Watch route."""
+>       from services.watch.route_recheck_failure import route_recheck_failure
+E       ModuleNotFoundError: No module named 'services.watch.route_recheck_failure'
+
+backend/tests/invariants/test_w9_cp2_route_recheck_failure.py:56: ModuleNotFoundError
+______________ test_route_recheck_failure_no_op_on_not_applicable ______________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-122/test_route_recheck_failure_no_1')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xf88a9d307610>
+
+    def test_route_recheck_failure_no_op_on_not_applicable(tmp_path, monkeypatch):
+        """Purchased LLMs (no re_check_due_at) must not fire."""
+>       from services.watch.route_recheck_failure import route_recheck_failure
+E       ModuleNotFoundError: No module named 'services.watch.route_recheck_failure'
+
+backend/tests/invariants/test_w9_cp2_route_recheck_failure.py:67: ModuleNotFoundError
+______________ test_route_recheck_failure_no_op_on_not_registered ______________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-122/test_route_recheck_failure_no_2')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xf88a9d49d610>
+
+    def test_route_recheck_failure_no_op_on_not_registered(tmp_path, monkeypatch):
+        """Unknown model_id must not fire; it names the honest gap."""
+>       from services.watch.route_recheck_failure import route_recheck_failure
+E       ModuleNotFoundError: No module named 'services.watch.route_recheck_failure'
+
+backend/tests/invariants/test_w9_cp2_route_recheck_failure.py:78: ModuleNotFoundError
+_______________ test_route_recheck_failure_records_verdict_body ________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-122/test_route_recheck_failure_rec0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xf88a9d305990>
+
+    def test_route_recheck_failure_records_verdict_body(tmp_path, monkeypatch):
+        """The verdict body must name signal_class='recheck_overdue' +
+        subject_kind='artifact' + evidence_note referencing the due date."""
+        from services.watch.macho import load_verdicts
+>       from services.watch.route_recheck_failure import route_recheck_failure
+E       ModuleNotFoundError: No module named 'services.watch.route_recheck_failure'
+
+backend/tests/invariants/test_w9_cp2_route_recheck_failure.py:94: ModuleNotFoundError
+________________ test_route_recheck_failure_records_action_body ________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-122/test_route_recheck_failure_rec1')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xf88a9cbd5850>
+
+    def test_route_recheck_failure_records_action_body(tmp_path, monkeypatch):
+        """The action body must name action_class='mark_minted' + verdict_id."""
+        from services.watch.mkono import load_actions
+>       from services.watch.route_recheck_failure import route_recheck_failure
+E       ModuleNotFoundError: No module named 'services.watch.route_recheck_failure'
+
+backend/tests/invariants/test_w9_cp2_route_recheck_failure.py:111: ModuleNotFoundError
+_______________ test_route_recheck_failure_idempotent_same_model _______________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-122/test_route_recheck_failure_ide0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xf88a9ca4ba50>
+
+    def test_route_recheck_failure_idempotent_same_model(tmp_path, monkeypatch):
+        """Firing twice for the same overdue model must NOT double-mint —
+        the second call returns fired=True but references the existing
+        verdict/action pair. (Canon 8 §32.5 · atomic act-and-attest ·
+        same seam call must be idempotent within a run.)"""
+>       from services.watch.route_recheck_failure import route_recheck_failure
+E       ModuleNotFoundError: No module named 'services.watch.route_recheck_failure'
+
+backend/tests/invariants/test_w9_cp2_route_recheck_failure.py:128: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED backend/tests/invariants/test_w9_cp2_route_recheck_failure.py::test_route_recheck_failure_fires_on_overdue
+FAILED backend/tests/invariants/test_w9_cp2_route_recheck_failure.py::test_route_recheck_failure_no_op_on_due_later
+FAILED backend/tests/invariants/test_w9_cp2_route_recheck_failure.py::test_route_recheck_failure_no_op_on_not_applicable
+FAILED backend/tests/invariants/test_w9_cp2_route_recheck_failure.py::test_route_recheck_failure_no_op_on_not_registered
+FAILED backend/tests/invariants/test_w9_cp2_route_recheck_failure.py::test_route_recheck_failure_records_verdict_body
+FAILED backend/tests/invariants/test_w9_cp2_route_recheck_failure.py::test_route_recheck_failure_records_action_body
+FAILED backend/tests/invariants/test_w9_cp2_route_recheck_failure.py::test_route_recheck_failure_idempotent_same_model
+========================= 7 failed, 1 passed in 0.14s ==========================

@@ -1,0 +1,87 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.4.2, pluggy-1.6.0
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: asyncio-1.4.0, anyio-4.14.2, xdist-3.8.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collected 9 items
+
+tests/invariants/test_wdap_2f_suspension_and_fail_closed.py FFFFFFFFF    [100%]
+============================ BASELINE_GUARD receipt ============================
+passed=0 / baseline-failures-remaining=0 / quarantined=0
+  manifest: tests/invariants/baseline_failures.json
+  scope: BASELINE_GUARD=1  ·  invocation: cd backend && BASELINE_GUARD=1 python -m pytest tests/invariants/
+!!!!!!!!!!!!! BASELINE_GUARD · HALT AND REPORT · owner ruling (c) !!!!!!!!!!!!!!
+[V1] 9 NEW failure(s) OUTSIDE manifest:
+    tests/invariants/test_wdap_2f_suspension_and_fail_closed.py::test_2f_module_fabric_present
+    tests/invariants/test_wdap_2f_suspension_and_fail_closed.py::test_dap_27_revoke_admission_is_distinct_from_suspend
+    tests/invariants/test_wdap_2f_suspension_and_fail_closed.py::test_dap_27_suspend_halts_in_flight_and_future_in_one_act
+    tests/invariants/test_wdap_2f_suspension_and_fail_closed.py::test_dap_27_suspension_is_immediate_no_silent_completion
+    tests/invariants/test_wdap_2f_suspension_and_fail_closed.py::test_dap_28_approval_service_unreachable_refuses
+    tests/invariants/test_wdap_2f_suspension_and_fail_closed.py::test_dap_28_ceiling_check_errors_refuses
+    tests/invariants/test_wdap_2f_suspension_and_fail_closed.py::test_dap_28_metering_write_failure_refuses
+    tests/invariants/test_wdap_2f_suspension_and_fail_closed.py::test_dap_28_terms_resolution_empty_refuses
+    tests/invariants/test_wdap_2f_suspension_and_fail_closed.py::test_dap_29_unrecorded_extraction_not_permitted
+[V3] Passed count 0 < ratchet floor 3600
+  No silent rebaselining. Report drift to owner verbatim.
+
+=================================== FAILURES ===================================
+________________________ test_2f_module_fabric_present _________________________
+tests/invariants/test_wdap_2f_suspension_and_fail_closed.py:35: in test_2f_module_fabric_present
+    suspension = importlib.import_module("services.dap.suspension")
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1140: in _find_and_load_unlocked
+    ???
+E   ModuleNotFoundError: No module named 'services.dap.suspension'
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+__________ test_dap_27_suspend_halts_in_flight_and_future_in_one_act ___________
+tests/invariants/test_wdap_2f_suspension_and_fail_closed.py:59: in test_dap_27_suspend_halts_in_flight_and_future_in_one_act
+    from services.dap import suspension
+E   ImportError: cannot import name 'suspension' from 'services.dap' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/dap/__init__.py)
+___________ test_dap_27_suspension_is_immediate_no_silent_completion ___________
+tests/invariants/test_wdap_2f_suspension_and_fail_closed.py:89: in test_dap_27_suspension_is_immediate_no_silent_completion
+    from services.dap import suspension
+E   ImportError: cannot import name 'suspension' from 'services.dap' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/dap/__init__.py)
+____________ test_dap_27_revoke_admission_is_distinct_from_suspend _____________
+tests/invariants/test_wdap_2f_suspension_and_fail_closed.py:114: in test_dap_27_revoke_admission_is_distinct_from_suspend
+    from services.dap import suspension
+E   ImportError: cannot import name 'suspension' from 'services.dap' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/dap/__init__.py)
+_______________ test_dap_28_approval_service_unreachable_refuses _______________
+tests/invariants/test_wdap_2f_suspension_and_fail_closed.py:137: in test_dap_28_approval_service_unreachable_refuses
+    from services.dap import gates
+E   ImportError: cannot import name 'gates' from 'services.dap' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/dap/__init__.py)
+__________________ test_dap_28_terms_resolution_empty_refuses __________________
+tests/invariants/test_wdap_2f_suspension_and_fail_closed.py:162: in test_dap_28_terms_resolution_empty_refuses
+    from services.dap import gates
+E   ImportError: cannot import name 'gates' from 'services.dap' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/dap/__init__.py)
+___________________ test_dap_28_ceiling_check_errors_refuses ___________________
+tests/invariants/test_wdap_2f_suspension_and_fail_closed.py:184: in test_dap_28_ceiling_check_errors_refuses
+    from services.dap import gates
+E   ImportError: cannot import name 'gates' from 'services.dap' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/dap/__init__.py)
+__________________ test_dap_28_metering_write_failure_refuses __________________
+tests/invariants/test_wdap_2f_suspension_and_fail_closed.py:209: in test_dap_28_metering_write_failure_refuses
+    from services.dap import gates, metering
+E   ImportError: cannot import name 'gates' from 'services.dap' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/dap/__init__.py)
+_______________ test_dap_29_unrecorded_extraction_not_permitted ________________
+tests/invariants/test_wdap_2f_suspension_and_fail_closed.py:241: in test_dap_29_unrecorded_extraction_not_permitted
+    from services.dap import metering, gates
+E   ImportError: cannot import name 'gates' from 'services.dap' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/dap/__init__.py)
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wdap_2f_suspension_and_fail_closed.py::test_2f_module_fabric_present
+FAILED tests/invariants/test_wdap_2f_suspension_and_fail_closed.py::test_dap_27_suspend_halts_in_flight_and_future_in_one_act
+FAILED tests/invariants/test_wdap_2f_suspension_and_fail_closed.py::test_dap_27_suspension_is_immediate_no_silent_completion
+FAILED tests/invariants/test_wdap_2f_suspension_and_fail_closed.py::test_dap_27_revoke_admission_is_distinct_from_suspend
+FAILED tests/invariants/test_wdap_2f_suspension_and_fail_closed.py::test_dap_28_approval_service_unreachable_refuses
+FAILED tests/invariants/test_wdap_2f_suspension_and_fail_closed.py::test_dap_28_terms_resolution_empty_refuses
+FAILED tests/invariants/test_wdap_2f_suspension_and_fail_closed.py::test_dap_28_ceiling_check_errors_refuses
+FAILED tests/invariants/test_wdap_2f_suspension_and_fail_closed.py::test_dap_28_metering_write_failure_refuses
+FAILED tests/invariants/test_wdap_2f_suspension_and_fail_closed.py::test_dap_29_unrecorded_extraction_not_permitted
+============================== 9 failed in 0.72s ===============================

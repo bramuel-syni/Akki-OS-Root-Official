@@ -1,0 +1,22 @@
+============================= test session starts ==============================
+collecting ... collected 5 items
+
+backend/tests/invariants/test_w_registry_full_build_cp9_roster_77_runs.py::test_cp9_roster_file_exists_and_meets_77_run_target FAILED [ 20%]
+backend/tests/invariants/test_w_registry_full_build_cp9_roster_77_runs.py::test_cp9_roster_state_map_matches_owner_ruling_verbatim FAILED [ 40%]
+backend/tests/invariants/test_w_registry_full_build_cp9_roster_77_runs.py::test_cp9_every_row_state_is_in_allowed_set FAILED [ 60%]
+backend/tests/invariants/test_w_registry_full_build_cp9_roster_77_runs.py::test_cp9_every_row_carries_state_evidence FAILED [ 80%]
+backend/tests/invariants/test_w_registry_full_build_cp9_roster_77_runs.py::test_cp9_model_registry_full_record_endpoint_returns_roster FAILED [100%]
+
+=================================== FAILURES ===================================
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_w_registry_full_build_cp9_roster_77_runs.py:73: AssertionError: models_roster.json missing at /app/assessment_workspace/notes/models_roster.json — owner directive 2026-09-08T~06:15Z STEP 5 CP9 requires it. Build via tools/scratch/build_models_roster.py
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_w_registry_full_build_cp9_roster_77_runs.py:73: AssertionError: models_roster.json missing at /app/assessment_workspace/notes/models_roster.json — owner directive 2026-09-08T~06:15Z STEP 5 CP9 requires it. Build via tools/scratch/build_models_roster.py
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_w_registry_full_build_cp9_roster_77_runs.py:73: AssertionError: models_roster.json missing at /app/assessment_workspace/notes/models_roster.json — owner directive 2026-09-08T~06:15Z STEP 5 CP9 requires it. Build via tools/scratch/build_models_roster.py
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_w_registry_full_build_cp9_roster_77_runs.py:73: AssertionError: models_roster.json missing at /app/assessment_workspace/notes/models_roster.json — owner directive 2026-09-08T~06:15Z STEP 5 CP9 requires it. Build via tools/scratch/build_models_roster.py
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_w_registry_full_build_cp9_roster_77_runs.py:127: KeyError: 'count'
+=========================== short test summary info ============================
+FAILED backend/tests/invariants/test_w_registry_full_build_cp9_roster_77_runs.py::test_cp9_roster_file_exists_and_meets_77_run_target
+FAILED backend/tests/invariants/test_w_registry_full_build_cp9_roster_77_runs.py::test_cp9_roster_state_map_matches_owner_ruling_verbatim
+FAILED backend/tests/invariants/test_w_registry_full_build_cp9_roster_77_runs.py::test_cp9_every_row_state_is_in_allowed_set
+FAILED backend/tests/invariants/test_w_registry_full_build_cp9_roster_77_runs.py::test_cp9_every_row_carries_state_evidence
+FAILED backend/tests/invariants/test_w_registry_full_build_cp9_roster_77_runs.py::test_cp9_model_registry_full_record_endpoint_returns_roster
+============================== 5 failed in 1.98s ===============================

@@ -1,0 +1,105 @@
+/root/.venv/lib/python3.11/site-packages/pytest_asyncio/plugin.py:208: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.3.3, pluggy-1.6.0 -- /root/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: xdist-3.8.0, asyncio-0.24.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, default_loop_scope=None
+collecting ... collected 14 items
+
+backend/tests/invariants/test_watch_cp_c4_witness.py::test_witness_attestation_subject_kind_grammar_admits_watch_action FAILED [  7%]
+backend/tests/invariants/test_watch_cp_c4_witness.py::test_attest_watch_action_writes_attestation_with_correct_digest FAILED [ 14%]
+backend/tests/invariants/test_watch_cp_c4_witness.py::test_attest_watch_action_refuses_when_action_not_on_record FAILED [ 21%]
+backend/tests/invariants/test_watch_cp_c4_witness.py::test_attest_watch_action_refuses_when_witness_not_on_record FAILED [ 28%]
+backend/tests/invariants/test_watch_cp_c4_witness.py::test_witness_identity_forbids_watch_credential_language_in_note FAILED [ 35%]
+backend/tests/invariants/test_watch_cp_c4_witness.py::test_watchdog_registration_declares_independence FAILED [ 42%]
+backend/tests/invariants/test_watch_cp_c4_witness.py::test_standing_break_in_test_refuses_write_once_bypass FAILED [ 50%]
+backend/tests/invariants/test_watch_cp_c4_witness.py::test_standing_break_in_test_raises_tamper_alarm_when_disk_hash_drifts FAILED [ 57%]
+backend/tests/invariants/test_watch_cp_c4_http_journey.py::test_http_witness_identity_register_returns_201 FAILED [ 64%]
+backend/tests/invariants/test_watch_cp_c4_http_journey.py::test_http_witness_register_refuses_watch_credential_claim FAILED [ 71%]
+backend/tests/invariants/test_watch_cp_c4_http_journey.py::test_http_attest_watch_action_returns_201_with_digest FAILED [ 78%]
+backend/tests/invariants/test_watch_cp_c4_http_journey.py::test_http_attest_watch_action_missing_action_returns_404 PASSED [ 85%]
+backend/tests/invariants/test_watch_cp_c4_http_journey.py::test_http_standing_break_in_test_reports_passed FAILED [ 92%]
+backend/tests/invariants/test_watch_cp_c4_http_journey.py::test_http_state_surfaces_witness_attestations FAILED [100%]
+
+=================================== FAILURES ===================================
+______ test_witness_attestation_subject_kind_grammar_admits_watch_action _______
+backend/tests/invariants/test_watch_cp_c4_witness.py:114: in test_witness_attestation_subject_kind_grammar_admits_watch_action
+    assert "watch_action" in members, (
+E   AssertionError: WitnessAttestation_v0.subject_kind members = {'continuity_snapshot', 'drill_receipt', 'record_class_manifest'}; §Line 170 sentence 1 requires 'watch_action' as a member so action digest attestations are grammatically representable.
+E   assert 'watch_action' in {'continuity_snapshot', 'drill_receipt', 'record_class_manifest'}
+_______ test_attest_watch_action_writes_attestation_with_correct_digest ________
+backend/tests/invariants/test_watch_cp_c4_witness.py:127: in test_attest_watch_action_writes_attestation_with_correct_digest
+    from services.watch.witness import attest_watch_action, load_attestations
+E   ImportError: cannot import name 'attest_watch_action' from 'services.watch.witness' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/watch/witness.py)
+__________ test_attest_watch_action_refuses_when_action_not_on_record __________
+backend/tests/invariants/test_watch_cp_c4_witness.py:163: in test_attest_watch_action_refuses_when_action_not_on_record
+    from services.watch.witness import attest_watch_action
+E   ImportError: cannot import name 'attest_watch_action' from 'services.watch.witness' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/watch/witness.py)
+_________ test_attest_watch_action_refuses_when_witness_not_on_record __________
+backend/tests/invariants/test_watch_cp_c4_witness.py:181: in test_attest_watch_action_refuses_when_witness_not_on_record
+    from services.watch.witness import attest_watch_action
+E   ImportError: cannot import name 'attest_watch_action' from 'services.watch.witness' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/watch/witness.py)
+_______ test_witness_identity_forbids_watch_credential_language_in_note ________
+backend/tests/invariants/test_watch_cp_c4_witness.py:204: in test_witness_identity_forbids_watch_credential_language_in_note
+    from services.watch.witness import (
+E   ImportError: cannot import name 'WatchCredentialInNoteError' from 'services.watch.witness' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/watch/witness.py)
+_______________ test_watchdog_registration_declares_independence _______________
+backend/tests/invariants/test_watch_cp_c4_witness.py:227: in test_watchdog_registration_declares_independence
+    from services.watch.witness import (
+E   ImportError: cannot import name 'WatchdogIndependenceError' from 'services.watch.witness' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/watch/witness.py)
+____________ test_standing_break_in_test_refuses_write_once_bypass _____________
+backend/tests/invariants/test_watch_cp_c4_witness.py:261: in test_standing_break_in_test_refuses_write_once_bypass
+    from services.watch.witness import run_standing_break_in_test
+E   ImportError: cannot import name 'run_standing_break_in_test' from 'services.watch.witness' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/watch/witness.py)
+____ test_standing_break_in_test_raises_tamper_alarm_when_disk_hash_drifts _____
+backend/tests/invariants/test_watch_cp_c4_witness.py:284: in test_standing_break_in_test_raises_tamper_alarm_when_disk_hash_drifts
+    from services.watch.witness import (
+E   ImportError: cannot import name 'run_standing_break_in_test' from 'services.watch.witness' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/watch/witness.py)
+_______________ test_http_witness_identity_register_returns_201 ________________
+backend/tests/invariants/test_watch_cp_c4_http_journey.py:73: in test_http_witness_identity_register_returns_201
+    assert r.status_code == 201, r.text
+E   AssertionError: {"detail":"Not Found"}
+E   assert 404 == 201
+E    +  where 404 = <Response [404 Not Found]>.status_code
+__________ test_http_witness_register_refuses_watch_credential_claim ___________
+backend/tests/invariants/test_watch_cp_c4_http_journey.py:86: in test_http_witness_register_refuses_watch_credential_claim
+    assert r.status_code == 422, r.text
+E   AssertionError: {"detail":"Not Found"}
+E   assert 404 == 422
+E    +  where 404 = <Response [404 Not Found]>.status_code
+____________ test_http_attest_watch_action_returns_201_with_digest _____________
+backend/tests/invariants/test_watch_cp_c4_http_journey.py:99: in test_http_attest_watch_action_returns_201_with_digest
+    assert r.status_code == 201, r.text
+E   AssertionError: {"detail":"Not Found"}
+E   assert 404 == 201
+E    +  where 404 = <Response [404 Not Found]>.status_code
+_______________ test_http_standing_break_in_test_reports_passed ________________
+backend/tests/invariants/test_watch_cp_c4_http_journey.py:127: in test_http_standing_break_in_test_reports_passed
+    assert r.status_code == 200, r.text
+E   AssertionError: {"detail":"Not Found"}
+E   assert 404 == 200
+E    +  where 404 = <Response [404 Not Found]>.status_code
+________________ test_http_state_surfaces_witness_attestations _________________
+backend/tests/invariants/test_watch_cp_c4_http_journey.py:145: in test_http_state_surfaces_witness_attestations
+    assert body["witness_attestations"]["count"] >= 1
+E   assert 0 >= 1
+=========================== short test summary info ============================
+FAILED backend/tests/invariants/test_watch_cp_c4_witness.py::test_witness_attestation_subject_kind_grammar_admits_watch_action
+FAILED backend/tests/invariants/test_watch_cp_c4_witness.py::test_attest_watch_action_writes_attestation_with_correct_digest
+FAILED backend/tests/invariants/test_watch_cp_c4_witness.py::test_attest_watch_action_refuses_when_action_not_on_record
+FAILED backend/tests/invariants/test_watch_cp_c4_witness.py::test_attest_watch_action_refuses_when_witness_not_on_record
+FAILED backend/tests/invariants/test_watch_cp_c4_witness.py::test_witness_identity_forbids_watch_credential_language_in_note
+FAILED backend/tests/invariants/test_watch_cp_c4_witness.py::test_watchdog_registration_declares_independence
+FAILED backend/tests/invariants/test_watch_cp_c4_witness.py::test_standing_break_in_test_refuses_write_once_bypass
+FAILED backend/tests/invariants/test_watch_cp_c4_witness.py::test_standing_break_in_test_raises_tamper_alarm_when_disk_hash_drifts
+FAILED backend/tests/invariants/test_watch_cp_c4_http_journey.py::test_http_witness_identity_register_returns_201
+FAILED backend/tests/invariants/test_watch_cp_c4_http_journey.py::test_http_witness_register_refuses_watch_credential_claim
+FAILED backend/tests/invariants/test_watch_cp_c4_http_journey.py::test_http_attest_watch_action_returns_201_with_digest
+FAILED backend/tests/invariants/test_watch_cp_c4_http_journey.py::test_http_standing_break_in_test_reports_passed
+FAILED backend/tests/invariants/test_watch_cp_c4_http_journey.py::test_http_state_surfaces_witness_attestations
+========================= 13 failed, 1 passed in 0.47s =========================

@@ -1,0 +1,55 @@
+FFFFFFFF                                                                 [100%]
+=================================== FAILURES ===================================
+__________________________ test_wm6_4_3_module_fabric __________________________
+tests/invariants/test_wm6_4_3_census_visibility.py:44: in test_wm6_4_3_module_fabric
+    m = importlib.import_module(
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1140: in _find_and_load_unlocked
+    ???
+E   ModuleNotFoundError: No module named 'services.perception.audio_codec.census_visibility'
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+_______ test_wm6_4_3_error_is_subclass_of_perception_registration_error ________
+tests/invariants/test_wm6_4_3_census_visibility.py:62: in test_wm6_4_3_error_is_subclass_of_perception_registration_error
+    from services.perception.audio_codec.census_visibility import (
+E   ModuleNotFoundError: No module named 'services.perception.audio_codec.census_visibility'
+______________ test_wm6_4_3_visible_true_when_descriptor_present _______________
+tests/invariants/test_wm6_4_3_census_visibility.py:80: in test_wm6_4_3_visible_true_when_descriptor_present
+    from services.perception.audio_codec.census_visibility import (
+E   ModuleNotFoundError: No module named 'services.perception.audio_codec.census_visibility'
+______ test_wm6_4_3_visible_true_when_mapping_record_carries_service_path ______
+tests/invariants/test_wm6_4_3_census_visibility.py:93: in test_wm6_4_3_visible_true_when_mapping_record_carries_service_path
+    from services.perception.audio_codec.census_visibility import (
+E   ModuleNotFoundError: No module named 'services.perception.audio_codec.census_visibility'
+_________________ test_wm6_4_3_visible_false_when_census_empty _________________
+tests/invariants/test_wm6_4_3_census_visibility.py:106: in test_wm6_4_3_visible_false_when_census_empty
+    from services.perception.audio_codec.census_visibility import (
+E   ModuleNotFoundError: No module named 'services.perception.audio_codec.census_visibility'
+________ test_wm6_4_3_visible_false_when_only_other_perception_services ________
+tests/invariants/test_wm6_4_3_census_visibility.py:118: in test_wm6_4_3_visible_false_when_only_other_perception_services
+    from services.perception.audio_codec.census_visibility import (
+E   ModuleNotFoundError: No module named 'services.perception.audio_codec.census_visibility'
+_______________ test_wm6_4_3_assert_passes_silently_when_visible _______________
+tests/invariants/test_wm6_4_3_census_visibility.py:136: in test_wm6_4_3_assert_passes_silently_when_visible
+    from services.perception.audio_codec.census_visibility import (
+E   ModuleNotFoundError: No module named 'services.perception.audio_codec.census_visibility'
+_____________ test_wm6_4_3_assert_refuses_when_audio_codec_absent ______________
+tests/invariants/test_wm6_4_3_census_visibility.py:150: in test_wm6_4_3_assert_refuses_when_audio_codec_absent
+    from services.perception.audio_codec.census_visibility import (
+E   ModuleNotFoundError: No module named 'services.perception.audio_codec.census_visibility'
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wm6_4_3_census_visibility.py::test_wm6_4_3_module_fabric
+FAILED tests/invariants/test_wm6_4_3_census_visibility.py::test_wm6_4_3_error_is_subclass_of_perception_registration_error
+FAILED tests/invariants/test_wm6_4_3_census_visibility.py::test_wm6_4_3_visible_true_when_descriptor_present
+FAILED tests/invariants/test_wm6_4_3_census_visibility.py::test_wm6_4_3_visible_true_when_mapping_record_carries_service_path
+FAILED tests/invariants/test_wm6_4_3_census_visibility.py::test_wm6_4_3_visible_false_when_census_empty
+FAILED tests/invariants/test_wm6_4_3_census_visibility.py::test_wm6_4_3_visible_false_when_only_other_perception_services
+FAILED tests/invariants/test_wm6_4_3_census_visibility.py::test_wm6_4_3_assert_passes_silently_when_visible
+FAILED tests/invariants/test_wm6_4_3_census_visibility.py::test_wm6_4_3_assert_refuses_when_audio_codec_absent
+8 failed in 0.66s

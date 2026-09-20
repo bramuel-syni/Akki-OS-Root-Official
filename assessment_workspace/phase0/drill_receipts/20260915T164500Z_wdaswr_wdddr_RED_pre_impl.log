@@ -1,0 +1,40 @@
+>       base = run(
+            session_id="s1",
+            source_refs=("u_ref_A", "u_ref_B"),
+            prior_notes=("note_1",),
+        )
+
+tests/invariants/test_wdddr_cp_dddr1_deep_dive_engine.py:84: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+args = ()
+kwargs = {'prior_notes': ('note_1',), 'session_id': 's1', 'source_refs': ('u_ref_A', 'u_ref_B')}
+
+    def run(*args, **kwargs):
+        """HALT: donor lift not landed this wave.
+    
+        Wave-honest limit §E.4: no LLM-invoking donor code is lifted. A future
+        wave will replace this skeleton with the real case-agnostic deep-dive
+        synthesis mechanism; until then run() must raise so no caller can
+        silently substitute donor content.
+        """
+>       raise NotImplementedError(
+            "HALT · services.data_suite_v2.engines.deep_dive_engine.run "
+            "is a case-agnostic skeleton; donor lift not landed this wave "
+            "(grounding brief §E.4)."
+        )
+E       NotImplementedError: HALT · services.data_suite_v2.engines.deep_dive_engine.run is a case-agnostic skeleton; donor lift not landed this wave (grounding brief §E.4).
+
+services/data_suite_v2/engines/deep_dive_engine.py:24: NotImplementedError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wdaswr_cp_daswr1_analyze_workspace_engine.py::test_wdaswr_cp_daswr1_module_fabric_exceptions
+FAILED tests/invariants/test_wdaswr_cp_daswr1_analyze_workspace_engine.py::test_wdaswr_cp_daswr1_empty_session_id_refuses_workspace_invalid
+FAILED tests/invariants/test_wdaswr_cp_daswr1_analyze_workspace_engine.py::test_wdaswr_cp_daswr1_empty_source_refs_refuses_workspace_empty
+FAILED tests/invariants/test_wdaswr_cp_daswr1_analyze_workspace_engine.py::test_wdaswr_cp_daswr1_return_shape_carries_cpd4_tab_contracts
+FAILED tests/invariants/test_wdaswr_cp_daswr1_analyze_workspace_engine.py::test_wdaswr_cp_daswr1_deterministic_pure_function
+FAILED tests/invariants/test_wdddr_cp_dddr1_deep_dive_engine.py::test_wdddr_cp_dddr1_module_fabric
+FAILED tests/invariants/test_wdddr_cp_dddr1_deep_dive_engine.py::test_wdddr_cp_dddr1_empty_session_id_refuses_workspace_invalid
+FAILED tests/invariants/test_wdddr_cp_dddr1_deep_dive_engine.py::test_wdddr_cp_dddr1_empty_source_refs_refuses_workspace_empty
+FAILED tests/invariants/test_wdddr_cp_dddr1_deep_dive_engine.py::test_wdddr_cp_dddr1_return_shape_synthesis_sha256_hex_carrier_only
+FAILED tests/invariants/test_wdddr_cp_dddr1_deep_dive_engine.py::test_wdddr_cp_dddr1_deterministic_and_input_sensitive
+============================== 10 failed in 0.71s ==============================

@@ -1,0 +1,25 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.4.2, pluggy-1.6.0
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: asyncio-1.4.0, xdist-3.8.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collected 6 items
+
+tests/invariants/test_wcensus_cp_c4_registry_write.py FFFFFF             [100%]
+
+=================================== FAILURES ===================================
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError: No module named 'services.census_canon.registry_write'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wcensus_cp_c4_registry_write.py:61: ModuleNotFoundError: No module named 'services.census_canon.registry_write'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wcensus_cp_c4_registry_write.py:107: ModuleNotFoundError: No module named 'services.census_canon.registry_write'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wcensus_cp_c4_registry_write.py:149: ModuleNotFoundError: No module named 'services.census_canon.registry_write'
+/app/assessment_workspace/repos/Extraction-Akki/backend/tests/invariants/test_wcensus_cp_c4_registry_write.py:198: ModuleNotFoundError: No module named 'services.census_canon.registry_write'
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError: No module named 'services.census_canon.registry_write'
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wcensus_cp_c4_registry_write.py::test_cp_c4_module_fabric
+FAILED tests/invariants/test_wcensus_cp_c4_registry_write.py::test_cp_c4_source_record_frozen_canon_4_section_8_carriers
+FAILED tests/invariants/test_wcensus_cp_c4_registry_write.py::test_cp_c4_register_returns_deterministic_record_id
+FAILED tests/invariants/test_wcensus_cp_c4_registry_write.py::test_cp_c4_register_is_append_only
+FAILED tests/invariants/test_wcensus_cp_c4_registry_write.py::test_cp_c4_supersedes_chain_preserves_original_record
+FAILED tests/invariants/test_wcensus_cp_c4_registry_write.py::test_cp_c4_registry_write_docstring_carries_verbatim_canon
+============================== 6 failed in 0.63s ===============================

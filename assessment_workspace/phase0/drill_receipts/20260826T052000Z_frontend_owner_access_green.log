@@ -1,0 +1,34 @@
+✔ module exports check() and EXACT refusal sentence (1.034295ms)
+✔ allowed IP at trusted position → allowed:true (0.242317ms)
+✔ multiple allowlisted addresses all pass (0.151265ms)
+✔ disallowed IP → allowed:false, exact sentence, 403 (0.147528ms)
+✔ spoofed leftmost XFF entries do NOT defeat the allowlist (0.68932ms)
+✔ trusted position is xff[-3] when hops=2 (0.193116ms)
+✔ missing XFF header → refuse (0.12007ms)
+✔ XFF chain shorter than hops+1 → refuse (topology violation) (0.097391ms)
+✔ empty SPINE_ALLOWED_IPS → refuse everything (0.127048ms)
+✔ undefined SPINE_ALLOWED_IPS → refuse everything (0.178401ms)
+✔ whitespace-only allowlist entries are stripped (0.113553ms)
+✔ refusal body never leaks allowlist or caller IP (0.144772ms)
+✔ owner IP admitted via OWNER_ALLOWLIST_IPS layer (0.806134ms)
+✔ spine IP still admitted when owner layer present (0.131878ms)
+✔ unknown IP still refused with both layers populated (strict) (0.116858ms)
+✔ owner allowlist accepts multiple entries comma-separated (0.110455ms)
+✔ owner allowlist admit carries layer attribution (0.184322ms)
+✔ spine allowlist admit carries spine layer attribution (0.110301ms)
+✔ permissive mode admits any IP (0.085581ms)
+✔ permissive mode admits without any XFF header (0.099385ms)
+✔ permissive mode admit carries permissive layer attribution (0.144558ms)
+✔ permissive mode normalizes case and whitespace (0.172383ms)
+✔ mode absent defaults to strict (0.099773ms)
+✔ unknown mode value defaults to strict (fail-closed) (0.076537ms)
+✔ strict refuse carries mode=strict (0.102648ms)
+✔ permissive admits even when both allowlists empty (0.087961ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 26
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 48.423947

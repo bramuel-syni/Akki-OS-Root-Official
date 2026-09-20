@@ -1,0 +1,64 @@
+W10 wave-close strict flip · static-surface defect · right-reason RED receipt
+==============================================================================
+Recorded: 2026-08-26T09:35:00Z
+Source: Independent external tester (owner-side verification) · 2026-08-26T09:33Z
+Owner report verbatim:
+
+  FINDING (external tester, non-allowlisted caller):
+    /api/governance/state  → 403 + refusal sentence ✅
+    /api/openapi.json      → 403 + refusal sentence ✅
+    GET / (SPA shell)      → HTTP 200, full SPA HTML rendered normally
+                             in an external browser ❌ — refusal text absent.
+
+Root cause (verified by main agent):
+  1. Both surfaces have allowlist middleware wired:
+     - Backend  (FastAPI): services/ip_allowlist/middleware.py
+     - Frontend (craco):   plugins/ip-allowlist/middleware.js
+     Both read the same 4 env vars from /app/backend/.env:
+       SPINE_ALLOWED_IPS · SPINE_TRUSTED_PROXY_HOPS ·
+       OWNER_ALLOWLIST_IPS · ALLOWLIST_MODE
+     (craco.config.js lines 14-32 mirrors backend .env into process.env
+      at dev-server bootstrap; the mirror happens ONCE at process start.)
+
+  2. At 2026-08-26T09:20Z strict flip, main agent ran:
+       sudo supervisorctl restart backend
+     but NOT:
+       sudo supervisorctl restart frontend
+     So the FastAPI process re-read the .env (saw ALLOWLIST_MODE=strict),
+     but the craco Node process kept its pre-flip mirror in memory —
+     it still had ALLOWLIST_MODE=permissive from R8 (2026-08-26T05:20Z).
+
+  3. Original 20260826T092000Z_w10_strict_flip_verified.log exercised
+     only backend probes (all against http://127.0.0.1:8001/api/...).
+     No probe hit the frontend surface at http://127.0.0.1:3000/.
+     Verification was incomplete · owner correctly withheld ratification.
+
+Local verification of defect (pre-fix state · pre-frontend-restart):
+  curl -H "X-Forwarded-For: 203.0.113.99,172.71.255.34,136.110.244.150" \
+       http://127.0.0.1:3000/
+  → HTTP 200 · 96-line SPA shell served (defect confirmed)
+
+Local verification post-fix (after `sudo supervisorctl restart frontend`):
+  curl -H "X-Forwarded-For: 41.90.172.155,172.71.255.34,136.110.244.150" \
+       http://127.0.0.1:3000/       → HTTP 200 (owner admits)
+  curl -H "X-Forwarded-For: 203.0.113.99,172.71.255.34,136.110.244.150" \
+       http://127.0.0.1:3000/       → HTTP 403 + refusal sentence
+  curl http://127.0.0.1:3000/       → HTTP 403 + refusal sentence
+
+Right-reason RED classification:
+  - Not a code defect. The middleware is correct.
+  - PROCEDURAL defect: the strict-flip procedure did not restart the
+    frontend service, so the mirror was stale.
+  - VERIFICATION defect: the flip receipt exercised only backend
+    surface, so the procedural defect was not caught.
+
+Fix scope:
+  1. Add node --test invariant covering mode-matrix across BOTH
+     surfaces (frontend static + SPA route + backend API + OpenAPI).
+     This is the regression proof · would have caught the defect.
+  2. Bank an updated strict-flip receipt (supersedes prior) that
+     exercises probes against BOTH surfaces.
+  3. Update W10 close report + STATE/DECISIONS.md · flip procedure
+     now mandates supervisor restart of BOTH backend + frontend.
+
+Owner correctly withheld ratification. Fix inbound.

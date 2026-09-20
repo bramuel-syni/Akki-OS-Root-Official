@@ -1,0 +1,141 @@
+FFFFFFFF                                                                 [100%]
+=================================== FAILURES ===================================
+__________________________ test_wm6_3_4_module_fabric __________________________
+
+    def test_wm6_3_4_module_fabric():
+        """Module `services.audio_plane_v1.register_read_boundary` exports
+        the CP-M6-3-4 public API: `ReadScopeViolationError` +
+        `RegisterReadBoundary`."""
+>       m = importlib.import_module(
+            "services.audio_plane_v1.register_read_boundary"
+        )
+
+tests/invariants/test_wm6_3_4_register_read_boundary.py:47: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'services.audio_plane_v1.register_read_boundary'
+import_ = <function _gcd_import at 0xfa46453ebd80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'services.audio_plane_v1.register_read_boundary'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+__ test_wm6_3_4_read_scope_violation_error_subclass_of_leakage_refusal_error ___
+
+    def test_wm6_3_4_read_scope_violation_error_subclass_of_leakage_refusal_error():
+        """`ReadScopeViolationError` subclasses `LeakageRefusalError` so
+        downstream reporting classifies it as a protective refusal (same
+        family as the write-path refusals)."""
+        from services.audio_plane_v1.leakage_path_harness import (
+            LeakageRefusalError,
+        )
+>       from services.audio_plane_v1.register_read_boundary import (
+            ReadScopeViolationError,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.register_read_boundary'
+
+tests/invariants/test_wm6_3_4_register_read_boundary.py:66: ModuleNotFoundError
+______ test_wm6_3_4_read_boundary_constructor_uses_default_write_boundary ______
+
+    def test_wm6_3_4_read_boundary_constructor_uses_default_write_boundary():
+        """`RegisterReadBoundary()` is instantiable with no arguments and
+        lazily builds a default `RegisterWriteBoundary` internally.  The
+        default read-path enforces the same defaults as the default
+        write-path."""
+>       from services.audio_plane_v1.register_read_boundary import (
+            RegisterReadBoundary,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.register_read_boundary'
+
+tests/invariants/test_wm6_3_4_register_read_boundary.py:77: ModuleNotFoundError
+____________ test_wm6_3_4_read_or_refuse_accepts_all_clean_entries _____________
+
+    def test_wm6_3_4_read_or_refuse_accepts_all_clean_entries():
+        """`read_or_refuse` returns a tuple of all entries when every entry
+        satisfies the conjunctive four conditions."""
+        from services.audio_plane_v1.character_register import (
+            construct_character_entry,
+        )
+>       from services.audio_plane_v1.register_read_boundary import (
+            RegisterReadBoundary,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.register_read_boundary'
+
+tests/invariants/test_wm6_3_4_register_read_boundary.py:94: ModuleNotFoundError
+________ test_wm6_3_4_read_or_refuse_raises_on_small_stratum_violation _________
+
+    def test_wm6_3_4_read_or_refuse_raises_on_small_stratum_violation():
+        """`read_or_refuse` raises `ReadScopeViolationError` on the first
+        entry that violates §6.2 cond-2 (n_distinct_speakers < threshold)."""
+        from services.audio_plane_v1.character_register import (
+            construct_character_entry,
+        )
+>       from services.audio_plane_v1.register_read_boundary import (
+            ReadScopeViolationError, RegisterReadBoundary,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.register_read_boundary'
+
+tests/invariants/test_wm6_3_4_register_read_boundary.py:127: ModuleNotFoundError
+___________ test_wm6_3_4_read_or_refuse_raises_on_organic_violation ____________
+
+    def test_wm6_3_4_read_or_refuse_raises_on_organic_violation():
+        """`read_or_refuse` raises `ReadScopeViolationError` on any entry
+        that violates §6.1 P092 (`is_learned=False`)."""
+        from services.audio_plane_v1.character_register import (
+            construct_character_entry,
+        )
+>       from services.audio_plane_v1.register_read_boundary import (
+            ReadScopeViolationError, RegisterReadBoundary,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.register_read_boundary'
+
+tests/invariants/test_wm6_3_4_register_read_boundary.py:159: ModuleNotFoundError
+__________ test_wm6_3_4_read_scope_filter_keeps_only_passing_entries ___________
+
+    def test_wm6_3_4_read_scope_filter_keeps_only_passing_entries():
+        """`read_scope_filter` returns only the subset of entries that pass
+        the conjunctive-four-conditions check.  Non-passing entries are
+        dropped silently (no exception) — this is the filter-mode contract."""
+        from services.audio_plane_v1.character_register import (
+            construct_character_entry,
+        )
+>       from services.audio_plane_v1.register_read_boundary import (
+            RegisterReadBoundary,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.register_read_boundary'
+
+tests/invariants/test_wm6_3_4_register_read_boundary.py:183: ModuleNotFoundError
+_______ test_wm6_3_4_read_scope_filter_all_violating_returns_empty_tuple _______
+
+    def test_wm6_3_4_read_scope_filter_all_violating_returns_empty_tuple():
+        """`read_scope_filter` returns an empty tuple when every input
+        entry fails the conjunctive-four-conditions check."""
+        from services.audio_plane_v1.character_register import (
+            construct_character_entry,
+        )
+>       from services.audio_plane_v1.register_read_boundary import (
+            RegisterReadBoundary,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.register_read_boundary'
+
+tests/invariants/test_wm6_3_4_register_read_boundary.py:218: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wm6_3_4_register_read_boundary.py::test_wm6_3_4_module_fabric
+FAILED tests/invariants/test_wm6_3_4_register_read_boundary.py::test_wm6_3_4_read_scope_violation_error_subclass_of_leakage_refusal_error
+FAILED tests/invariants/test_wm6_3_4_register_read_boundary.py::test_wm6_3_4_read_boundary_constructor_uses_default_write_boundary
+FAILED tests/invariants/test_wm6_3_4_register_read_boundary.py::test_wm6_3_4_read_or_refuse_accepts_all_clean_entries
+FAILED tests/invariants/test_wm6_3_4_register_read_boundary.py::test_wm6_3_4_read_or_refuse_raises_on_small_stratum_violation
+FAILED tests/invariants/test_wm6_3_4_register_read_boundary.py::test_wm6_3_4_read_or_refuse_raises_on_organic_violation
+FAILED tests/invariants/test_wm6_3_4_register_read_boundary.py::test_wm6_3_4_read_scope_filter_keeps_only_passing_entries
+FAILED tests/invariants/test_wm6_3_4_register_read_boundary.py::test_wm6_3_4_read_scope_filter_all_violating_returns_empty_tuple
+8 failed in 0.67s

@@ -1,0 +1,21 @@
+[intake] BOOTSTRAP_SSH_PASSWORD sha256[:12]=c508af8a9e7c  (verbatim NEVER logged)
+[submit] start at 2026-08-18T18:13:08.914877+00:00  actor=owner  target=41.173.184.244  scope=archive.ingestion
+/app/assessment_workspace/repos/Extraction-Akki/backend/services/connect/gpu_submit.py:276: RuntimeWarning: coroutine 'capture' was never awaited
+  decl = _fire_declaration(host_name=host_name, public_ip=public_ip,
+RuntimeWarning: Enable tracemalloc to get the object allocation traceback
+[submit] end   at 2026-08-18T18:13:28.395071+00:00  elapsed=19.5s
+[result] {
+  "after_state": {
+    "state_class": "failed",
+    "whats_happening": "Hardening failed at step 'external_probe' \u2014 machine is unhardened.",
+    "how_we_know": "Hardening receipt at /app/assessment_workspace/phase0/drill_receipts/hardening_20260818T181308Z/hardening_receipt_20260818T181328Z.json \u00b7 external probe result: False.",
+    "what_we_are_doing": "This is ours \u2014 retry the submit once the cause is corrected.",
+    "agreement_holding": "The machine is not yet attested; the seam refused to move data."
+  },
+  "commissioning_record_path": "/app/assessment_workspace/phase0/commissioning_records/commissioning_akki-vm_20260818T181328Z.json",
+  "data_movement_permitted": false,
+  "hardening_status": "failed",
+  "acceptance_status": "not_run",
+  "task_id": "connect.gpu.submit.per_host"
+}
+[retire] env variables retired: BOOTSTRAP_SSH_PASSWORD=absent, SSHPASS=absent

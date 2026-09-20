@@ -1,0 +1,94 @@
+=== Wave G4 · offline visual-proof harness ===
+
+[STEP 0] Byte-identity of served prototype:
+  file:  /app/assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/public/v8_prototype.html
+  bytes: 1264425
+  sha256: e56871d01a99c2f3aa173c9b0a0f09e983c9f0e54ba3e61795ac8cb8575f98f2
+  (must equal e56871d01a99c2f3aa173c9b0a0f09e983c9f0e54ba3e61795ac8cb8575f98f2)
+
+[STEP 1] HONEST-EMPTY path · dc-runtime + no live values
+  dc-runtime rendered body.textContent length: 737983
+  slot #1 dummy present (pre-substitution): true
+  slot #2 census dummy present (pre-substitution): true
+  tile label 'Held in total' present (pre-substitution): true
+  tile dummy '86.4 TB' present (pre-substitution): true
+  tile dummy '78%' present (pre-substitution): true
+
+[STEP 1a] Apply Wave G4 substitutions (HONEST-EMPTY)...
+  mutations applied: 2
+  rules that fired: ["registry-aside-hero-sentence","registry-census-footer"]
+  slot #1 dummy still present? false
+  slot #1 honest-empty phrase present? true
+  slot #2 census dummy still present? false
+  slot #2 honest-empty phrase present? true
+  tile dummy '86.4 TB' still present? true
+
+[STEP 1b] Idempotency: apply again on the mutated DOM...
+  mutations applied (expect 0): 0
+
+[STEP 2] LIVE-VALUES path · estateSources=3, estateTables=47
+  mutations applied: 2
+  rules that fired: ["registry-aside-hero-sentence","registry-census-footer"]
+  slot #1 live phrase '3 connected sources' present? true
+  slot #1 tables phrase 'with 47 tables read' present? true
+  tile 'Sources connected' value substituted? (Not yet measured on tile with dummy=12)
+
+[STEP 3] Tile-value substitution against synthetic fixture (dc-runtime template shape)
+  mutations applied: 2
+  rules that fired: ["tile-held-in-total","tile-sources-connected"]
+  Post-substitution tile values:
+    Held in total                      : Not yet measured
+    Sources connected                  : 1
+    Share measured                     : 78%
+    Data types present                 : 5
+    Languages observed                 : 7
+    Share already verified             : 34%
+    Share carrying PII                 : 41%
+    Licensed for external use          : 18%
+    Not yet measured                   : 22%
+    Reduced to reusable memory         : 58%
+
+[STEP 4] Registry re-render simulation · verify MutationObserver-triggered re-application works
+  after simulated re-render · slot#1 dummy present? true
+  re-application mutations: 1
+  after re-application · slot#1 dummy present? false
+  after re-application · slot#1 honest-empty present? true
+
+=== FINAL ASSERTIONS ===
+  [PASS] slot#1 · dummy sentence removed after HONEST-EMPTY substitution
+  [PASS] slot#1 · honest-empty phrase 'is not yet connected to a measured estate' present
+  [PASS] slot#2 · census dummy 'Census #4 (ran at 4.00am' removed
+  [PASS] slot#2 · honest-empty 'No census has been run yet' present
+  [FAIL] tile · dummy '86.4 TB' (Held in total) removed
+  [PASS] idempotency · re-apply produces 0 mutations
+  [PASS] live-values · slot#1 renders '3 connected sources'
+  [PASS] live-values · slot#1 renders 'with 47 tables read'
+  [PASS] live-values · slot#1 dummy sentence removed
+  [PASS] tile-fixture · 'Held in total' · dummy '86.4 TB' replaced with 'Not yet measured' (got 'Not yet measured')
+  [PASS] tile-fixture · 'Held in total' · dummy '86.4 TB' absent from value
+  [PASS] tile-fixture · 'Sources connected' · dummy '12' replaced with '1' (got '1')
+  [PASS] tile-fixture · 'Sources connected' · dummy '12' absent from value
+  [FAIL] tile-fixture · 'Share measured' · dummy '78%' replaced with 'Not yet measured' (got '78%')
+  [FAIL] tile-fixture · 'Share measured' · dummy '78%' absent from value
+  [FAIL] tile-fixture · 'Data types present' · dummy '5' replaced with 'Not yet measured' (got '5')
+  [FAIL] tile-fixture · 'Data types present' · dummy '5' absent from value
+  [FAIL] tile-fixture · 'Languages observed' · dummy '7' replaced with 'Not yet measured' (got '7')
+  [FAIL] tile-fixture · 'Languages observed' · dummy '7' absent from value
+  [FAIL] tile-fixture · 'Share already verified' · dummy '34%' replaced with 'Not yet measured' (got '34%')
+  [FAIL] tile-fixture · 'Share already verified' · dummy '34%' absent from value
+  [FAIL] tile-fixture · 'Share carrying PII' · dummy '41%' replaced with 'Not yet measured' (got '41%')
+  [FAIL] tile-fixture · 'Share carrying PII' · dummy '41%' absent from value
+  [FAIL] tile-fixture · 'Licensed for external use' · dummy '18%' replaced with 'Not yet measured' (got '18%')
+  [FAIL] tile-fixture · 'Licensed for external use' · dummy '18%' absent from value
+  [FAIL] tile-fixture · 'Not yet measured' · dummy '22%' replaced with 'Not yet measured' (got '22%')
+  [FAIL] tile-fixture · 'Not yet measured' · dummy '22%' absent from value
+  [FAIL] tile-fixture · 'Reduced to reusable memory' · dummy '58%' replaced with 'Not yet measured' (got '58%')
+  [FAIL] tile-fixture · 'Reduced to reusable memory' · dummy '58%' absent from value
+  [PASS] tile-fixture · idempotency (re-apply produces 0)
+  [PASS] re-render simulation · restore of dummy successful (baseline)
+  [PASS] re-render simulation · re-apply removes restored dummy
+  [PASS] re-render simulation · re-apply restores honest-empty
+
+  TOTAL: 16 passed · 17 failed
+
+>>> VISUAL-PROOF HARNESS FAILURE — substitution engine did not produce the expected DOM state. <<<

@@ -1,0 +1,10 @@
+tests/invariants/test_wm2_sw5_g8_reliable_time_source.py:153: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wm2_sw5_g8_reliable_time_source.py::test_sw5_module_fabric_present
+FAILED tests/invariants/test_wm2_sw5_g8_reliable_time_source.py::test_sw5_clock_is_monotonic_across_reads
+FAILED tests/invariants/test_wm2_sw5_g8_reliable_time_source.py::test_sw5_clock_refuses_without_anchor
+FAILED tests/invariants/test_wm2_sw5_g8_reliable_time_source.py::test_sw5_defensible_stamp_shape
+FAILED tests/invariants/test_wm2_sw5_g8_reliable_time_source.py::test_sw5_drift_exceeded_refuses
+FAILED tests/invariants/test_wm2_sw5_g8_reliable_time_source.py::test_sw5_r_c2_retirement_backed_by_mechanism
+FAILED tests/invariants/test_wm2_sw5_g8_reliable_time_source.py::test_sw5_au_3b_defensible_now_returns_defensible_stamp
+============================== 7 failed in 0.71s ===============================

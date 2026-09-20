@@ -1,0 +1,141 @@
+FFFFFF                                                                   [100%]============================ BASELINE_GUARD receipt ============================
+passed=0 / baseline-failures-remaining=0 / quarantined=0
+  manifest: tests/invariants/baseline_failures.json
+  scope: BASELINE_GUARD=1  ·  invocation: cd backend && BASELINE_GUARD=1 python -m pytest tests/invariants/
+!!!!!!!!!!!!! BASELINE_GUARD · HALT AND REPORT · owner ruling (c) !!!!!!!!!!!!!!
+[V1] 6 NEW failure(s) OUTSIDE manifest:
+    tests/invariants/test_sw6_hyg_1_credential_metadata.py::test_sw6_hyg_1_carrier_shape_is_structurally_safe
+    tests/invariants/test_sw6_hyg_1_credential_metadata.py::test_sw6_hyg_1_json_custody_returns_shape_only_metadata
+    tests/invariants/test_sw6_hyg_1_credential_metadata.py::test_sw6_hyg_1_module_fabric
+    tests/invariants/test_sw6_hyg_1_credential_metadata.py::test_sw6_hyg_1_read_custody_metadata_refuses_non_custody_path
+    tests/invariants/test_sw6_hyg_1_credential_metadata.py::test_sw6_hyg_1_read_custody_metadata_refuses_unsupported_format
+    tests/invariants/test_sw6_hyg_1_credential_metadata.py::test_sw6_hyg_1_sha256_is_deterministic_and_collision_safe
+[V3] Passed count 0 < ratchet floor 4282
+  No silent rebaselining. Report drift to owner verbatim.
+
+=================================== FAILURES ===================================
+_________________________ test_sw6_hyg_1_module_fabric _________________________
+
+    def test_sw6_hyg_1_module_fabric():
+        """Module `services.secret_hygiene.custody_file` exports the
+        CP-SW6-HYG-1 helper API in addition to the existing guards."""
+        m = importlib.import_module("services.secret_hygiene.custody_file")
+        for n in (
+            "CustodyFieldMetadata",
+            "CustodyFileMetadata",
+            "read_custody_metadata",
+            "NonCustodyPathRefused",
+            "CustodyFileFormatUnsupportedError",
+        ):
+>           assert hasattr(m, n), (
+                f"services.secret_hygiene.custody_file.{n} missing"
+            )
+E           AssertionError: services.secret_hygiene.custody_file.CustodyFieldMetadata missing
+E           assert False
+E            +  where False = hasattr(<module 'services.secret_hygiene.custody_file' from '/app/assessment_workspace/repos/Extraction-Akki/backend/services/secret_hygiene/custody_file.py'>, 'CustodyFieldMetadata')
+
+tests/invariants/test_sw6_hyg_1_credential_metadata.py:51: AssertionError
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+________ test_sw6_hyg_1_read_custody_metadata_refuses_non_custody_path _________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-72/test_sw6_hyg_1_read_custody_me0')
+
+    def test_sw6_hyg_1_read_custody_metadata_refuses_non_custody_path(tmp_path):
+        """Path-scoping is load-bearing: the helper MUST refuse any path
+        that does not sit under `/app/backend/estate_keys/`.  Otherwise
+        the helper becomes a general-purpose file-slurp surface, which
+        defeats the point.  Refuses with `NonCustodyPathRefused`."""
+>       from services.secret_hygiene.custody_file import (
+            NonCustodyPathRefused,
+            read_custody_metadata,
+        )
+E       ImportError: cannot import name 'NonCustodyPathRefused' from 'services.secret_hygiene.custody_file' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/secret_hygiene/custody_file.py)
+
+tests/invariants/test_sw6_hyg_1_credential_metadata.py:61: ImportError
+_______ test_sw6_hyg_1_read_custody_metadata_refuses_unsupported_format ________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-72/test_sw6_hyg_1_read_custody_me1')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfe0e388dcdd0>
+
+    def test_sw6_hyg_1_read_custody_metadata_refuses_unsupported_format(tmp_path, monkeypatch):
+        """Non-JSON custody paths refuse with
+        `CustodyFileFormatUnsupportedError`.  CSV/xlsx/raw-key custody
+        files exist on disk today but require a schema-driven reader that
+        is out of scope for this CP.  Refusal keeps the surface
+        structurally safe by construction — no fallback slurp on unknown
+        formats."""
+>       from services.secret_hygiene.custody_file import (
+            CustodyFileFormatUnsupportedError,
+            read_custody_metadata,
+        )
+E       ImportError: cannot import name 'CustodyFileFormatUnsupportedError' from 'services.secret_hygiene.custody_file' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/secret_hygiene/custody_file.py)
+
+tests/invariants/test_sw6_hyg_1_credential_metadata.py:79: ImportError
+___________ test_sw6_hyg_1_json_custody_returns_shape_only_metadata ____________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-72/test_sw6_hyg_1_json_custody_re0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfe0e39094910>
+
+    def test_sw6_hyg_1_json_custody_returns_shape_only_metadata(
+        tmp_path, monkeypatch,
+    ):
+        """On a JSON custody file with top-level scalar fields, the helper
+        returns a `CustodyFileMetadata` whose `fields` tuple mirrors the
+        JSON keys in file order, each carrying `field_name` +
+        `value_length_bytes` + `value_sha256`.  The values themselves are
+        NEVER present in the returned carrier — proof: no attribute on any
+        returned object equals the raw value."""
+>       from services.secret_hygiene.custody_file import (
+            CustodyFieldMetadata,
+            CustodyFileMetadata,
+            read_custody_metadata,
+        )
+E       ImportError: cannot import name 'CustodyFieldMetadata' from 'services.secret_hygiene.custody_file' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/secret_hygiene/custody_file.py)
+
+tests/invariants/test_sw6_hyg_1_credential_metadata.py:106: ImportError
+______________ test_sw6_hyg_1_carrier_shape_is_structurally_safe _______________
+
+    def test_sw6_hyg_1_carrier_shape_is_structurally_safe():
+        """`CustodyFieldMetadata` and `CustodyFileMetadata` are frozen
+        dataclasses with EXACTLY the shape-only field set.  Any addition
+        of a raw-value-carrying attribute (e.g. `value`, `raw`, `secret`,
+        `password`, `token`) would be caught here — the whitelist is
+        closed."""
+>       from services.secret_hygiene.custody_file import (
+            CustodyFieldMetadata,
+            CustodyFileMetadata,
+        )
+E       ImportError: cannot import name 'CustodyFieldMetadata' from 'services.secret_hygiene.custody_file' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/secret_hygiene/custody_file.py)
+
+tests/invariants/test_sw6_hyg_1_credential_metadata.py:154: ImportError
+__________ test_sw6_hyg_1_sha256_is_deterministic_and_collision_safe ___________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-72/test_sw6_hyg_1_sha256_is_deter0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfe0e3932a0d0>
+
+    def test_sw6_hyg_1_sha256_is_deterministic_and_collision_safe(
+        tmp_path, monkeypatch,
+    ):
+        """Merged determinism + collision-safety invariant:
+        (a) Same value → same sha256 (deterministic).
+        (b) Different values → different sha256 (collision safety within
+            the test's synthetic corpus).
+        Both properties are essential — determinism enables receipt
+        ratification across sessions; collision safety prevents two
+        distinct secrets from sharing a metadata footprint."""
+        import json
+>       from services.secret_hygiene.custody_file import (
+            read_custody_metadata,
+        )
+E       ImportError: cannot import name 'read_custody_metadata' from 'services.secret_hygiene.custody_file' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/secret_hygiene/custody_file.py)
+
+tests/invariants/test_sw6_hyg_1_credential_metadata.py:205: ImportError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_sw6_hyg_1_credential_metadata.py::test_sw6_hyg_1_module_fabric
+FAILED tests/invariants/test_sw6_hyg_1_credential_metadata.py::test_sw6_hyg_1_read_custody_metadata_refuses_non_custody_path
+FAILED tests/invariants/test_sw6_hyg_1_credential_metadata.py::test_sw6_hyg_1_read_custody_metadata_refuses_unsupported_format
+FAILED tests/invariants/test_sw6_hyg_1_credential_metadata.py::test_sw6_hyg_1_json_custody_returns_shape_only_metadata
+FAILED tests/invariants/test_sw6_hyg_1_credential_metadata.py::test_sw6_hyg_1_carrier_shape_is_structurally_safe
+FAILED tests/invariants/test_sw6_hyg_1_credential_metadata.py::test_sw6_hyg_1_sha256_is_deterministic_and_collision_safe
+6 failed in 0.67s

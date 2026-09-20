@@ -1,0 +1,229 @@
+FFFFFFFFFFFFFFFF                                                         [100%]
+=================================== FAILURES ===================================
+__________________________ test_module_fabric_present __________________________
+
+    def test_module_fabric_present():
+>       from services.governance_plane import cross_table_consistency as mod
+E       ImportError: cannot import name 'cross_table_consistency' from 'services.governance_plane' (/app/assessment_workspace/repos/Extraction-Akki/backend/services/governance_plane/__init__.py)
+
+tests/invariants/test_wm8_ctcc_1_cross_table_consistency.py:32: ImportError
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+_____________________ test_module_re_exported_from_package _____________________
+
+    def test_module_re_exported_from_package():
+        from services import governance_plane as pkg
+        for name in (
+            "EmittedColumnRef",
+            "IdentifierClass",
+            "assess_reconstruction_risk",
+            "assert_no_cross_table_identifier_reconstruction",
+            "CrossTableIdentifierReconstructionRefused",
+        ):
+>           assert hasattr(pkg, name), f"missing package re-export: {name}"
+E           AssertionError: missing package re-export: EmittedColumnRef
+E           assert False
+E            +  where False = hasattr(<module 'services.governance_plane' from '/app/assessment_workspace/repos/Extraction-Akki/backend/services/governance_plane/__init__.py'>, 'EmittedColumnRef')
+
+tests/invariants/test_wm8_ctcc_1_cross_table_consistency.py:52: AssertionError
+____________ test_emitted_column_ref_frozen_two_carrier_exact_order ____________
+
+    def test_emitted_column_ref_frozen_two_carrier_exact_order():
+>       from services.governance_plane.cross_table_consistency import EmittedColumnRef
+E       ModuleNotFoundError: No module named 'services.governance_plane.cross_table_consistency'
+
+tests/invariants/test_wm8_ctcc_1_cross_table_consistency.py:58: ModuleNotFoundError
+_____________ test_identifier_class_frozen_two_carrier_exact_order _____________
+
+    def test_identifier_class_frozen_two_carrier_exact_order():
+>       from services.governance_plane.cross_table_consistency import IdentifierClass, EmittedColumnRef
+E       ModuleNotFoundError: No module named 'services.governance_plane.cross_table_consistency'
+
+tests/invariants/test_wm8_ctcc_1_cross_table_consistency.py:66: ModuleNotFoundError
+_________________ test_class_id_is_open_string_not_closed_enum _________________
+
+    def test_class_id_is_open_string_not_closed_enum():
+>       from services.governance_plane.cross_table_consistency import IdentifierClass
+E       ModuleNotFoundError: No module named 'services.governance_plane.cross_table_consistency'
+
+tests/invariants/test_wm8_ctcc_1_cross_table_consistency.py:77: ModuleNotFoundError
+________________ test_assess_risk_empty_emissions_returns_empty ________________
+
+    def test_assess_risk_empty_emissions_returns_empty():
+>       from services.governance_plane.cross_table_consistency import (
+            assess_reconstruction_risk, IdentifierClass, EmittedColumnRef,
+        )
+E       ModuleNotFoundError: No module named 'services.governance_plane.cross_table_consistency'
+
+tests/invariants/test_wm8_ctcc_1_cross_table_consistency.py:89: ModuleNotFoundError
+___________ test_assess_risk_empty_identifier_classes_returns_empty ____________
+
+    def test_assess_risk_empty_identifier_classes_returns_empty():
+>       from services.governance_plane.cross_table_consistency import (
+            assess_reconstruction_risk, EmittedColumnRef,
+        )
+E       ModuleNotFoundError: No module named 'services.governance_plane.cross_table_consistency'
+
+tests/invariants/test_wm8_ctcc_1_cross_table_consistency.py:105: ModuleNotFoundError
+___________ test_assess_risk_single_table_single_class_returns_empty ___________
+
+    def test_assess_risk_single_table_single_class_returns_empty():
+>       from services.governance_plane.cross_table_consistency import (
+            assess_reconstruction_risk, IdentifierClass, EmittedColumnRef,
+        )
+E       ModuleNotFoundError: No module named 'services.governance_plane.cross_table_consistency'
+
+tests/invariants/test_wm8_ctcc_1_cross_table_consistency.py:119: ModuleNotFoundError
+__________ test_assess_risk_two_tables_disjoint_classes_returns_empty __________
+
+    def test_assess_risk_two_tables_disjoint_classes_returns_empty():
+>       from services.governance_plane.cross_table_consistency import (
+            assess_reconstruction_risk, IdentifierClass, EmittedColumnRef,
+        )
+E       ModuleNotFoundError: No module named 'services.governance_plane.cross_table_consistency'
+
+tests/invariants/test_wm8_ctcc_1_cross_table_consistency.py:134: ModuleNotFoundError
+__________ test_assess_risk_two_tables_shared_class_returns_class_id ___________
+
+    def test_assess_risk_two_tables_shared_class_returns_class_id():
+>       from services.governance_plane.cross_table_consistency import (
+            assess_reconstruction_risk, IdentifierClass, EmittedColumnRef,
+        )
+E       ModuleNotFoundError: No module named 'services.governance_plane.cross_table_consistency'
+
+tests/invariants/test_wm8_ctcc_1_cross_table_consistency.py:155: ModuleNotFoundError
+____ test_assess_risk_three_tables_two_shared_classes_returns_sorted_tuple _____
+
+    def test_assess_risk_three_tables_two_shared_classes_returns_sorted_tuple():
+>       from services.governance_plane.cross_table_consistency import (
+            assess_reconstruction_risk, IdentifierClass, EmittedColumnRef,
+        )
+E       ModuleNotFoundError: No module named 'services.governance_plane.cross_table_consistency'
+
+tests/invariants/test_wm8_ctcc_1_cross_table_consistency.py:174: ModuleNotFoundError
+___________ test_assert_no_cross_table_reconstruction_raises_on_risk ___________
+
+    def test_assert_no_cross_table_reconstruction_raises_on_risk():
+>       from services.governance_plane.cross_table_consistency import (
+            assert_no_cross_table_identifier_reconstruction,
+            CrossTableIdentifierReconstructionRefused,
+            IdentifierClass, EmittedColumnRef,
+        )
+E       ModuleNotFoundError: No module named 'services.governance_plane.cross_table_consistency'
+
+tests/invariants/test_wm8_ctcc_1_cross_table_consistency.py:203: ModuleNotFoundError
+__________ test_assert_no_cross_table_reconstruction_silent_when_safe __________
+
+    def test_assert_no_cross_table_reconstruction_silent_when_safe():
+>       from services.governance_plane.cross_table_consistency import (
+            assert_no_cross_table_identifier_reconstruction,
+            IdentifierClass, EmittedColumnRef,
+        )
+E       ModuleNotFoundError: No module named 'services.governance_plane.cross_table_consistency'
+
+tests/invariants/test_wm8_ctcc_1_cross_table_consistency.py:225: ModuleNotFoundError
+____________ test_case_agnostic_zero_domain_tokens_in_module_source ____________
+
+    def test_case_agnostic_zero_domain_tokens_in_module_source():
+>       text = _MODULE_PATH.read_text()
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_wm8_ctcc_1_cross_table_consistency.py:254: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/pathlib.py:1058: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/app/assessment_workspace/repos/Extraction-Akki/backend/services/governance_plane/cross_table_consistency.py')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/app/assessment_workspace/repos/Extraction-Akki/backend/services/governance_plane/cross_table_consistency.py'
+
+/usr/local/lib/python3.11/pathlib.py:1044: FileNotFoundError
+__________ test_module_no_banned_enforcement_tokens_on_public_surface __________
+
+    def test_module_no_banned_enforcement_tokens_on_public_surface():
+>       text = _MODULE_PATH.read_text()
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_wm8_ctcc_1_cross_table_consistency.py:265: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/pathlib.py:1058: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/app/assessment_workspace/repos/Extraction-Akki/backend/services/governance_plane/cross_table_consistency.py')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/app/assessment_workspace/repos/Extraction-Akki/backend/services/governance_plane/cross_table_consistency.py'
+
+/usr/local/lib/python3.11/pathlib.py:1044: FileNotFoundError
+________________ test_module_zero_imports_of_dispatch_surfaces _________________
+
+    def test_module_zero_imports_of_dispatch_surfaces():
+>       text = _MODULE_PATH.read_text()
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_wm8_ctcc_1_cross_table_consistency.py:276: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/pathlib.py:1058: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/app/assessment_workspace/repos/Extraction-Akki/backend/services/governance_plane/cross_table_consistency.py')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/app/assessment_workspace/repos/Extraction-Akki/backend/services/governance_plane/cross_table_consistency.py'
+
+/usr/local/lib/python3.11/pathlib.py:1044: FileNotFoundError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wm8_ctcc_1_cross_table_consistency.py::test_module_fabric_present
+FAILED tests/invariants/test_wm8_ctcc_1_cross_table_consistency.py::test_module_re_exported_from_package
+FAILED tests/invariants/test_wm8_ctcc_1_cross_table_consistency.py::test_emitted_column_ref_frozen_two_carrier_exact_order
+FAILED tests/invariants/test_wm8_ctcc_1_cross_table_consistency.py::test_identifier_class_frozen_two_carrier_exact_order
+FAILED tests/invariants/test_wm8_ctcc_1_cross_table_consistency.py::test_class_id_is_open_string_not_closed_enum
+FAILED tests/invariants/test_wm8_ctcc_1_cross_table_consistency.py::test_assess_risk_empty_emissions_returns_empty
+FAILED tests/invariants/test_wm8_ctcc_1_cross_table_consistency.py::test_assess_risk_empty_identifier_classes_returns_empty
+FAILED tests/invariants/test_wm8_ctcc_1_cross_table_consistency.py::test_assess_risk_single_table_single_class_returns_empty
+FAILED tests/invariants/test_wm8_ctcc_1_cross_table_consistency.py::test_assess_risk_two_tables_disjoint_classes_returns_empty
+FAILED tests/invariants/test_wm8_ctcc_1_cross_table_consistency.py::test_assess_risk_two_tables_shared_class_returns_class_id
+FAILED tests/invariants/test_wm8_ctcc_1_cross_table_consistency.py::test_assess_risk_three_tables_two_shared_classes_returns_sorted_tuple
+FAILED tests/invariants/test_wm8_ctcc_1_cross_table_consistency.py::test_assert_no_cross_table_reconstruction_raises_on_risk
+FAILED tests/invariants/test_wm8_ctcc_1_cross_table_consistency.py::test_assert_no_cross_table_reconstruction_silent_when_safe
+FAILED tests/invariants/test_wm8_ctcc_1_cross_table_consistency.py::test_case_agnostic_zero_domain_tokens_in_module_source
+FAILED tests/invariants/test_wm8_ctcc_1_cross_table_consistency.py::test_module_no_banned_enforcement_tokens_on_public_surface
+FAILED tests/invariants/test_wm8_ctcc_1_cross_table_consistency.py::test_module_zero_imports_of_dispatch_surfaces
+16 failed in 0.78s

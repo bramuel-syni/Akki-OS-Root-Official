@@ -1,0 +1,142 @@
+================================================================================
+Wave F · Scope B · Authoritative Composite Lock Ceremony
+================================================================================
+Timestamp (UTC):     20260827T211213Z
+Methodology (owner-ratified default per Wave F charter §Scope-B-lock-ceremony):
+  W10 CP9 lineage updated for 20-doc register.
+  Weights: DONE=1.0 · PARTIAL=0.4 · REUSABLE=0.5 · BUILD=0.0 · OPEN-SLOT=0.0.
+  Composite formula: 0.7 × (mech_weighted / 551) + 0.3 × (iface_weighted / 58).
+Tool source:         tools/w10_cp9_composite_recompute.py (301 lines · deterministic)
+Owner rulings banked verbatim:
+  - Wave F GO (2026-08-27T~18:50Z, DECISIONS.md §"Wave F · GO")
+  - Wave F Scope B composite methodology reconciliation (2026-08-27T~12:05Z,
+    charter §Wave-F-lock-ceremony)
+  - Autonomous progression A→B→C→Cleanup (2026-08-27T~21:00Z, "the locked
+    number is THE number even if lower")
+
+--------------------------------------------------------------------------------
+LOCKED NUMBER: **composite_pct = 52.52 %**
+  · mech_pct   = 54.48 %  (mech_weighted 300.2 / 551 rows)
+  · iface_pct  = 47.93 %  (iface_weighted 27.8 / 58 rows)
+--------------------------------------------------------------------------------
+
+Final buckets (byte-transparent recompute · runs 1+2 identical):
+  Mech  : DONE=130 · PARTIAL=43 · REUSABLE=306 · BUILD=59  · OPEN-SLOT=13  (sum=551)
+  Iface : DONE=10  · PARTIAL=2  · REUSABLE=34  · BUILD=12  · OPEN-SLOT=0   (sum=58)
+
+Delta count: 36 (32 W7-W10 CPs + 4 new W11 E CPs, per charter row-audit).
+Delta rows credited: mech=85, iface=6.
+
+--------------------------------------------------------------------------------
+DOC18-006 WEIGHT DECISION STATED (charter Scope-B checklist item 3):
+  Register-declared class: RULED-ADOPTED (via Wave E CP-E5 owner ruling).
+  Tool class definitions: DONE=1.0 · PARTIAL=0.4 · REUSABLE=0.5 · BUILD=0.0 ·
+  OPEN-SLOT=0.0 (per W10 CP9 policy note: "not 'done' until policy lands +
+  mechanism wires").
+  RULED-ADOPTED → DONE (weight 1.0). Rationale: Wave E CP-E5 (commit `6898fd0`)
+  landed BOTH conditions the tool's DONE class requires:
+    (a) Policy landed: adoption trace at
+        services/service_1/a18_6_adoption_v0.json supersedes the CP3-open
+        deprioritization "defer A18.6 async delivery entirely".
+    (b) Mechanism wired: services/service_1/dispatch.py::DEBT_PHASE_5=
+        'phase_5_async_delivery' + contract AsyncDeliveryAccepted_v0 + invariant
+        test test_a18_6_async_delivery_adoption.py enforcing +2 tests
+        (2158→2160 · Wave E ratchet audit).
+  Decision: DONE per tool class definition (owner-ruling authority: Wave F GO
+  ruling this session).
+
+PROPOSED band (Doc19B-001/002/003/005 · 4 rows): PRIMARY DECLARATION governs
+  per Wave F charter default rule. Owner did NOT override at Wave F open.
+  → mapped to OPEN-SLOT (weight 0.0) per W10 CP9 policy note.
+
+--------------------------------------------------------------------------------
+INSTRUMENT RECONCILIATION (charter Scope-B checklist item 2)
+
+Instrument 1 · W10 CP9 authoritative (515-row baseline · pre-Wave-F):
+  W10 close composite: **52.49 %** (cited in notes/requirements_register_20docs.md
+  line 242 "The 17-doc register composite at W10 close was 52.49%").
+  Under this session's Wave F Scope B updated tool (551-row denominator + 4
+  new W11 E deltas + Doc18-006 DONE): **52.52 %**.
+  Delta: **+0.03 pp**.
+  Explanation: 20-doc CP7 expansion adds 36 rows to denominator (515→551)
+  with weighted contribution +15.8 (from 15 DONE + 2 PARTIAL among 36 new
+  rows). Wave E adds +4.0 weighted (CP-E1 Doc15-CA1-N5 PARTIAL→DONE ·
+  CP-E2 Doc15-CA1-N2 + Doc02-CA1-N2 PARTIAL→DONE (2 rows) · CP-E3
+  Doc15-CA1-N3 + Doc02-CA1-N3 PARTIAL→DONE (2 rows) · CP-E5 Doc18-006
+  OPEN-SLOT→DONE (1 row · +1.0 weighted)). Total numerator gain +19.8,
+  denominator +36. Effective mech% change small because most new rows
+  land at zero-weight OPEN-SLOT/BUILD classes.
+
+Instrument 2 · this-session preliminary (99-unique-row flat unweighted):
+  Cited in charter §Two instruments (verbatim from notes/requirements_
+  register_20docs.md + notes/requirements_register_17docs.md):
+    · strict DONE                 = 38 / 99 = **38.38 %**
+    · DONE + REUSABLE             = 57 / 99 = **57.58 %**
+    · DONE + REUSABLE + 0.5·PARTIAL = 61 / 99 = **61.62 %**
+  Delta vs Wave F lock (52.52 %):  -14.14 pp / +5.06 pp / +9.10 pp (mid variant).
+  Explanation: instrument 2 is a DIFFERENT tool — no 0.7/0.3 mechanism/
+  interface blend, no build-class weighted grammar, unique-row denominator
+  99 vs 551 mechanism + 58 interface. Not directly comparable; each of the
+  three flat slices measures a different construct. The Wave F lock adopts
+  the W10 CP9 lineage (methodology 1) as the authoritative single number.
+  Instrument 2 is preserved for audit but not used for the lock.
+
+Instrument 3 · Waves A-C anchor: **~59.5 % ±1 pp** (per Wave F charter §Two
+  instruments, "Anchor number to reconcile against at Wave F lock").
+  Delta vs Wave F lock: **-6.98 pp** (from 59.5%). No per-row citation trail
+  for the ~59.5% number is present in this workspace; it carried through
+  compactions without evidence trail. Owner ruled this session: "the locked
+  number is THE number even if lower". Wave F Scope B replaces the anchor
+  with the tool-recomputed authoritative 52.52 %.
+
+--------------------------------------------------------------------------------
+PARSER-BAND RESOLUTION (charter Scope-B checklist item 3, all 5 rows):
+
+Doc18-006  (A18.6 · single-shot pilot):     RULED-ADOPTED → DONE       (weight 1.0)
+                                            (Wave E CP-E5 · commit `6898fd0`)
+Doc19B-001 (EP-1 · evidence register):       PROPOSED → OPEN-SLOT       (weight 0.0)
+Doc19B-002 (EP-2 · dual-judge protocol):     PROPOSED → OPEN-SLOT       (weight 0.0)
+Doc19B-003 (EP-3 · engineered samples):      PROPOSED → OPEN-SLOT       (weight 0.0)
+Doc19B-005 (EP-5 · inline evidence class):   PROPOSED → OPEN-SLOT       (weight 0.0)
+
+All 4 PROPOSED band rows: primary declaration governs, per charter default
+(owner did NOT override at Wave F open).
+
+--------------------------------------------------------------------------------
+DOUBLE-RUN IDENTITY (charter Scope-B checklist item 4):
+
+Run 1 output SHA:  ef4ce2f6c56111781589002c397f2a71
+Run 2 output SHA:  ef4ce2f6c56111781589002c397f2a71
+IDENTICAL · byte-transparent recompute confirmed.
+
+--------------------------------------------------------------------------------
+COMMIT SHA (per delta-ledger evidence trail):
+
+W7-W10 deltas: 15 unique commit SHAs on programme/track-a (see DELTAS list in
+tool source · every entry cites a wave-CP commit SHA).
+
+W11 E deltas added this session:
+  CP-E1  `ebc5a48`  CA1-N5 continuity ENFORCEMENT
+  CP-E2  `045541c`  CA1-N2 breach ENFORCEMENT
+  CP-E3  `e8d860a`  CA1-N3 erasure ENFORCEMENT + rights-lapse flags
+  CP-E5  `6898fd0`  Doc18-006 RULED-ADOPTED owner ruling
+
+W11 D CPs: no register-row moves credited (test infrastructure only ·
+verified absence per binding rule "absence is a finding: report it
+explicitly, never leave a blank").
+
+W11 F Scope A: no register-row moves credited (test infrastructure
+retirement · commit `1155629` · verified absence).
+
+Waves A-C: no per-row citations available in this workspace for the ~59.5%
+anchor; absence surfaced explicitly (owner reality-wins ruling: "the locked
+number is THE number even if lower").
+
+--------------------------------------------------------------------------------
+TOOL SOURCE (Wave F Scope B updated · master workspace only · determinism):
+  tools/w10_cp9_composite_recompute.py · 301 lines · pure computation ·
+  reads no live disk state · every input anchored in file · owner can
+  re-run for identical output.
+
+END OF Wave F · Scope B lock receipt.
+================================================================================

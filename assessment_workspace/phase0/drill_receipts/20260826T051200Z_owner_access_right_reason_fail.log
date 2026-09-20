@@ -1,0 +1,245 @@
+/root/.venv/lib/python3.11/site-packages/pytest_asyncio/plugin.py:208: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.3.3, pluggy-1.6.0
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: xdist-3.8.0, asyncio-0.24.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, default_loop_scope=None
+collected 17 items
+
+backend/tests/invariants/test_ip_allowlist_owner_access.py FFF..FF..FFFF [ 76%]
+FFFF                                                                     [100%]
+
+=================================== FAILURES ===================================
+____________________ test_owner_allowlist_env_reader_named _____________________
+
+    def test_owner_allowlist_env_reader_named():
+        from services.ip_allowlist import middleware as mw
+>       assert hasattr(mw, "read_owner_allowlist_from_env"), (
+            "config-reader for OWNER_ALLOWLIST_IPS must be named on module."
+        )
+E       AssertionError: config-reader for OWNER_ALLOWLIST_IPS must be named on module.
+E       assert False
+E        +  where False = hasattr(<module 'services.ip_allowlist.middleware' from '/app/assessment_workspace/repos/Extraction-Akki/backend/services/ip_allowlist/middleware.py'>, 'read_owner_allowlist_from_env')
+
+backend/tests/invariants/test_ip_allowlist_owner_access.py:66: AssertionError
+__________________ test_owner_allowlist_reads_comma_separated __________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfb0c23d05d90>
+
+    def test_owner_allowlist_reads_comma_separated(monkeypatch):
+        from services.ip_allowlist import middleware as mw
+        monkeypatch.setenv("OWNER_ALLOWLIST_IPS", "203.0.113.1, 203.0.113.2")
+>       assert mw.read_owner_allowlist_from_env() == {"203.0.113.1", "203.0.113.2"}
+E       AttributeError: module 'services.ip_allowlist.middleware' has no attribute 'read_owner_allowlist_from_env'
+
+backend/tests/invariants/test_ip_allowlist_owner_access.py:74: AttributeError
+____________ test_owner_allowlist_admits_owner_ip_layered_on_spine _____________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfb0c23d54a50>
+
+    def test_owner_allowlist_admits_owner_ip_layered_on_spine(monkeypatch):
+        """OWNER_ALLOWLIST_IPS is layered ON TOP of SPINE_ALLOWED_IPS —
+        both admit, neither denies each other."""
+        app = _build_app(monkeypatch, spine=ALLOWED_IP, owner=OWNER_IP)
+        client = TestClient(app)
+        r = client.get("/api/probe", headers={"X-Forwarded-For": _xff(OWNER_IP)})
+>       assert r.status_code == 200, (
+            f"Owner IP not admitted by OWNER_ALLOWLIST_IPS layer: {r.text}"
+        )
+E       AssertionError: Owner IP not admitted by OWNER_ALLOWLIST_IPS layer: This surface answers allowlisted addresses only.
+E       assert 403 == 200
+E        +  where 403 = <Response [403 Forbidden]>.status_code
+
+backend/tests/invariants/test_ip_allowlist_owner_access.py:83: AssertionError
+______________________ test_permissive_mode_admits_any_ip ______________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfb0c23d9c550>
+
+    def test_permissive_mode_admits_any_ip(monkeypatch):
+        """ALLOWLIST_MODE=permissive admits any inbound (owner demo access).
+        Governance design not weakened because mode is EXPLICIT config +
+        every decision logged."""
+        app = _build_app(monkeypatch, spine=ALLOWED_IP, owner="", mode="permissive")
+        client = TestClient(app)
+        r = client.get(
+            "/api/probe", headers={"X-Forwarded-For": _xff(DISALLOWED_IP)}
+        )
+>       assert r.status_code == 200, (
+            f"Permissive mode failed to admit disallowed IP: {r.text}"
+        )
+E       AssertionError: Permissive mode failed to admit disallowed IP: This surface answers allowlisted addresses only.
+E       assert 403 == 200
+E        +  where 403 = <Response [403 Forbidden]>.status_code
+
+backend/tests/invariants/test_ip_allowlist_owner_access.py:118: AssertionError
+___________________ test_permissive_mode_admits_without_xff ____________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfb0c23d1c350>
+
+    def test_permissive_mode_admits_without_xff(monkeypatch):
+        """Permissive is truly permissive — no XFF still admits."""
+        app = _build_app(monkeypatch, spine=ALLOWED_IP, mode="permissive")
+        client = TestClient(app)
+        r = client.get("/api/probe")
+>       assert r.status_code == 200
+E       assert 403 == 200
+E        +  where 403 = <Response [403 Forbidden]>.status_code
+
+backend/tests/invariants/test_ip_allowlist_owner_access.py:128: AssertionError
+____________________ test_permissive_mode_env_reader_named _____________________
+
+    def test_permissive_mode_env_reader_named():
+        from services.ip_allowlist import middleware as mw
+>       assert hasattr(mw, "read_mode_from_env"), (
+            "config-reader for ALLOWLIST_MODE must be named on module."
+        )
+E       AssertionError: config-reader for ALLOWLIST_MODE must be named on module.
+E       assert False
+E        +  where False = hasattr(<module 'services.ip_allowlist.middleware' from '/app/assessment_workspace/repos/Extraction-Akki/backend/services/ip_allowlist/middleware.py'>, 'read_mode_from_env')
+
+backend/tests/invariants/test_ip_allowlist_owner_access.py:153: AssertionError
+_____________________ test_mode_reader_defaults_to_strict ______________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfb0c23d92e10>
+
+    def test_mode_reader_defaults_to_strict(monkeypatch):
+        from services.ip_allowlist import middleware as mw
+        monkeypatch.delenv("ALLOWLIST_MODE", raising=False)
+>       assert mw.read_mode_from_env() == "strict"
+E       AttributeError: module 'services.ip_allowlist.middleware' has no attribute 'read_mode_from_env'
+
+backend/tests/invariants/test_ip_allowlist_owner_access.py:161: AttributeError
+_______________ test_mode_reader_normalizes_case_and_whitespace ________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfb0c23d47b50>
+
+    def test_mode_reader_normalizes_case_and_whitespace(monkeypatch):
+        from services.ip_allowlist import middleware as mw
+        monkeypatch.setenv("ALLOWLIST_MODE", "  Permissive  ")
+>       assert mw.read_mode_from_env() == "permissive"
+E       AttributeError: module 'services.ip_allowlist.middleware' has no attribute 'read_mode_from_env'
+
+backend/tests/invariants/test_ip_allowlist_owner_access.py:167: AttributeError
+_________ test_mode_reader_rejects_unknown_value_defaulting_to_strict __________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfb0c23d97490>
+
+    def test_mode_reader_rejects_unknown_value_defaulting_to_strict(monkeypatch):
+        """Unknown mode value defaults to strict (fail-closed on config typo)."""
+        from services.ip_allowlist import middleware as mw
+        monkeypatch.setenv("ALLOWLIST_MODE", "loose")
+>       assert mw.read_mode_from_env() == "strict"
+E       AttributeError: module 'services.ip_allowlist.middleware' has no attribute 'read_mode_from_env'
+
+backend/tests/invariants/test_ip_allowlist_owner_access.py:174: AttributeError
+_____________________ test_strict_mode_admit_logs_decision _____________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfb0c23d9d7d0>
+caplog = <_pytest.logging.LogCaptureFixture object at 0xfb0c23d9da90>
+
+    def test_strict_mode_admit_logs_decision(monkeypatch, caplog):
+        caplog.set_level(logging.INFO, logger="services.ip_allowlist.middleware")
+        app = _build_app(monkeypatch, spine=ALLOWED_IP, mode="strict")
+        client = TestClient(app)
+        client.get("/api/probe", headers={"X-Forwarded-For": _xff(ALLOWED_IP)})
+>       assert any(
+            DECISION_LOG_PREFIX in rec.message and "admit" in rec.message
+            for rec in caplog.records
+        ), (
+            f"admit decision was not logged with prefix "
+            f"{DECISION_LOG_PREFIX!r} · nothing-silent discipline violated. "
+            f"Records: {[r.message for r in caplog.records]}"
+        )
+E       AssertionError: admit decision was not logged with prefix 'ip_allowlist_decision' · nothing-silent discipline violated. Records: []
+E       assert False
+E        +  where False = any(<generator object test_strict_mode_admit_logs_decision.<locals>.<genexpr> at 0xfb0c23d4df20>)
+
+backend/tests/invariants/test_ip_allowlist_owner_access.py:184: AssertionError
+____________________ test_strict_mode_refuse_logs_decision _____________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfb0c23d9f750>
+caplog = <_pytest.logging.LogCaptureFixture object at 0xfb0c23da4a90>
+
+    def test_strict_mode_refuse_logs_decision(monkeypatch, caplog):
+        caplog.set_level(logging.INFO, logger="services.ip_allowlist.middleware")
+        app = _build_app(monkeypatch, spine=ALLOWED_IP, mode="strict")
+        client = TestClient(app)
+        client.get("/api/probe", headers={"X-Forwarded-For": _xff(DISALLOWED_IP)})
+>       assert any(
+            DECISION_LOG_PREFIX in rec.message and "refuse" in rec.message
+            for rec in caplog.records
+        ), "refuse decision was not logged · nothing-silent discipline violated."
+E       AssertionError: refuse decision was not logged · nothing-silent discipline violated.
+E       assert False
+E        +  where False = any(<generator object test_strict_mode_refuse_logs_decision.<locals>.<genexpr> at 0xfb0c23d21e50>)
+
+backend/tests/invariants/test_ip_allowlist_owner_access.py:199: AssertionError
+____________________ test_permissive_mode_still_logs_admit _____________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfb0c23da7390>
+caplog = <_pytest.logging.LogCaptureFixture object at 0xfb0c23da7a10>
+
+    def test_permissive_mode_still_logs_admit(monkeypatch, caplog):
+        """Permissive mode STILL LOGS every decision (nothing silent · owner
+        directive verbatim: 'Log every allowlist decision as usual so
+        nothing is silent')."""
+        caplog.set_level(logging.INFO, logger="services.ip_allowlist.middleware")
+        app = _build_app(monkeypatch, spine=ALLOWED_IP, mode="permissive")
+        client = TestClient(app)
+        client.get(
+            "/api/probe", headers={"X-Forwarded-For": _xff(DISALLOWED_IP)}
+        )
+        admits = [
+            rec.message for rec in caplog.records
+            if DECISION_LOG_PREFIX in rec.message and "admit" in rec.message
+        ]
+>       assert admits, "permissive-mode admit not logged"
+E       AssertionError: permissive-mode admit not logged
+E       assert []
+
+backend/tests/invariants/test_ip_allowlist_owner_access.py:219: AssertionError
+___________ test_owner_layer_admit_logs_with_owner_layer_attribution ___________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfb0c23da7090>
+caplog = <_pytest.logging.LogCaptureFixture object at 0xfb0c24f54950>
+
+    def test_owner_layer_admit_logs_with_owner_layer_attribution(monkeypatch, caplog):
+        """When admit comes via OWNER_ALLOWLIST_IPS layer, the log line
+        names the layer so audits attribute the admit correctly."""
+        caplog.set_level(logging.INFO, logger="services.ip_allowlist.middleware")
+        app = _build_app(monkeypatch, spine=ALLOWED_IP, owner=OWNER_IP, mode="strict")
+        client = TestClient(app)
+        client.get("/api/probe", headers={"X-Forwarded-For": _xff(OWNER_IP)})
+        owner_admits = [
+            r.message for r in caplog.records
+            if DECISION_LOG_PREFIX in r.message
+            and "admit" in r.message
+            and "layer=owner" in r.message
+        ]
+>       assert owner_admits, (
+            f"owner-layer admit not attributed to owner layer in log · audit "
+            f"trail incomplete. Records: {[r.message for r in caplog.records]}"
+        )
+E       AssertionError: owner-layer admit not attributed to owner layer in log · audit trail incomplete. Records: []
+E       assert []
+
+backend/tests/invariants/test_ip_allowlist_owner_access.py:240: AssertionError
+=========================== short test summary info ============================
+FAILED backend/tests/invariants/test_ip_allowlist_owner_access.py::test_owner_allowlist_env_reader_named
+FAILED backend/tests/invariants/test_ip_allowlist_owner_access.py::test_owner_allowlist_reads_comma_separated
+FAILED backend/tests/invariants/test_ip_allowlist_owner_access.py::test_owner_allowlist_admits_owner_ip_layered_on_spine
+FAILED backend/tests/invariants/test_ip_allowlist_owner_access.py::test_permissive_mode_admits_any_ip
+FAILED backend/tests/invariants/test_ip_allowlist_owner_access.py::test_permissive_mode_admits_without_xff
+FAILED backend/tests/invariants/test_ip_allowlist_owner_access.py::test_permissive_mode_env_reader_named
+FAILED backend/tests/invariants/test_ip_allowlist_owner_access.py::test_mode_reader_defaults_to_strict
+FAILED backend/tests/invariants/test_ip_allowlist_owner_access.py::test_mode_reader_normalizes_case_and_whitespace
+FAILED backend/tests/invariants/test_ip_allowlist_owner_access.py::test_mode_reader_rejects_unknown_value_defaulting_to_strict
+FAILED backend/tests/invariants/test_ip_allowlist_owner_access.py::test_strict_mode_admit_logs_decision
+FAILED backend/tests/invariants/test_ip_allowlist_owner_access.py::test_strict_mode_refuse_logs_decision
+FAILED backend/tests/invariants/test_ip_allowlist_owner_access.py::test_permissive_mode_still_logs_admit
+FAILED backend/tests/invariants/test_ip_allowlist_owner_access.py::test_owner_layer_admit_logs_with_owner_layer_attribution
+========================= 13 failed, 4 passed in 0.34s =========================

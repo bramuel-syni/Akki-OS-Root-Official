@@ -1,0 +1,32 @@
+/root/.venv/lib/python3.11/site-packages/pytest_asyncio/plugin.py:208: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.3.3, pluggy-1.6.0 -- /root/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: xdist-3.8.0, anyio-4.14.2, asyncio-0.24.0
+asyncio: mode=Mode.AUTO, default_loop_scope=None
+collecting ... collected 17 items
+
+backend/tests/invariants/test_w8_cp6_rules_update_lifecycle.py::test_countdown_started_contract_shape PASSED [  5%]
+backend/tests/invariants/test_w8_cp6_rules_update_lifecycle.py::test_applied_contract_shape PASSED [ 11%]
+backend/tests/invariants/test_w8_cp6_rules_update_lifecycle.py::test_rechecked_contract_shape PASSED [ 17%]
+backend/tests/invariants/test_w8_cp6_rules_update_lifecycle.py::test_rechecked_verdict_grammar PASSED [ 23%]
+backend/tests/invariants/test_w8_cp6_rules_update_lifecycle.py::test_start_countdown_refuses_non_approved_decision PASSED [ 29%]
+backend/tests/invariants/test_w8_cp6_rules_update_lifecycle.py::test_start_countdown_records_on_disk PASSED [ 35%]
+backend/tests/invariants/test_w8_cp6_rules_update_lifecycle.py::test_apply_refuses_before_countdown_ends PASSED [ 41%]
+backend/tests/invariants/test_w8_cp6_rules_update_lifecycle.py::test_apply_records_after_countdown PASSED [ 47%]
+backend/tests/invariants/test_w8_cp6_rules_update_lifecycle.py::test_recheck_refuses_before_apply PASSED [ 52%]
+backend/tests/invariants/test_w8_cp6_rules_update_lifecycle.py::test_full_ceremony_flow PASSED [ 58%]
+backend/tests/invariants/test_w8_cp6_rules_update_lifecycle.py::test_countdown_is_one_per_decision PASSED [ 64%]
+backend/tests/invariants/test_rules_update_lifecycle_frozen.py::test_countdown_started_v0_frozen PASSED [ 70%]
+backend/tests/invariants/test_rules_update_lifecycle_frozen.py::test_rules_update_applied_v0_frozen PASSED [ 76%]
+backend/tests/invariants/test_rules_update_lifecycle_frozen.py::test_rules_update_rechecked_v0_frozen PASSED [ 82%]
+backend/tests/invariants/test_frozen_contract_snapshot_parity.py::test_every_frozen_contract_has_snapshot PASSED [ 88%]
+backend/tests/invariants/test_frozen_contract_snapshot_parity.py::test_every_snapshot_maps_to_a_contract PASSED [ 94%]
+backend/tests/invariants/test_frozen_contract_snapshot_parity.py::test_snapshot_mapping_is_bijective PASSED [100%]
+
+============================== 17 passed in 0.15s ==============================

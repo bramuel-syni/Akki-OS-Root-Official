@@ -1,0 +1,40 @@
+/root/.venv/lib/python3.11/site-packages/pytest_asyncio/plugin.py:208: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-8.3.3, pluggy-1.6.0
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: xdist-3.8.0, asyncio-0.24.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, default_loop_scope=None
+collected 159 items
+
+backend/tests/invariants/test_watch_cp_c5_console_honesty.py .....       [  3%]
+backend/tests/invariants/test_watch_cp_c4_witness.py ........            [  8%]
+backend/tests/invariants/test_watch_cp_c4_http_journey.py ......         [ 11%]
+backend/tests/invariants/test_watch_cp_c3_mirage_isolation.py ........   [ 16%]
+backend/tests/invariants/test_watch_cp_c3_mark_dye_pack.py ..........    [ 23%]
+backend/tests/invariants/test_watch_cp_c3_http_journey.py ........       [ 28%]
+backend/tests/invariants/test_watch_cp_c2_macho_mkono.py ............... [ 37%]
+...                                                                      [ 39%]
+backend/tests/invariants/test_watch_cp_c2_http_journey.py .......        [ 44%]
+backend/tests/invariants/test_ship_manifest_dod.py ........              [ 49%]
+backend/tests/invariants/test_ship_manifest_dod_runtime_drift_guard.py . [ 49%]
+                                                                         [ 49%]
+backend/tests/invariants/test_frozen_contract_snapshot_parity.py ...     [ 51%]
+backend/tests/invariants/test_w10_cp5_witness_fabric.py ...............  [ 61%]
+backend/tests/invariants/test_w10_cp8_state_endpoints.py .......         [ 65%]
+backend/tests/invariants/test_w9_cp1_watch_seam.py ............          [ 72%]
+backend/tests/invariants/test_governed_seat_fill_full_http_journey.py .. [ 74%]
+..                                                                       [ 75%]
+backend/tests/invariants/test_skill_files_router_user_path.py .......    [ 79%]
+backend/tests/invariants/test_watch_seam_frozen.py ..                    [ 81%]
+backend/tests/invariants/test_watch_action_v0_contract_frozen.py ....... [ 85%]
+.....                                                                    [ 88%]
+backend/tests/invariants/test_sever_certainty_signal_v0_contract_frozen.py . [ 89%]
+........                                                                 [ 94%]
+backend/tests/invariants/test_mirage_artifact_v0_contract_frozen.py .... [ 96%]
+.....                                                                    [100%]
+
+============================= 159 passed in 1.36s ==============================

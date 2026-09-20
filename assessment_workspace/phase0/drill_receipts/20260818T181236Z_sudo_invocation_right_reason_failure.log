@@ -1,0 +1,55 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-9.1.1, pluggy-1.6.0 -- /root/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: xdist-3.8.0, anyio-4.14.2, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 2 items
+
+backend/tests/invariants/test_remote_harden_sudo_invocation.py::test_remote_harden_ssh_argv_invokes_via_sudo FAILED [ 50%]
+backend/tests/invariants/test_remote_harden_sudo_invocation.py::test_remote_harden_reports_sudo_specific_failure PASSED [100%]
+
+=================================== FAILURES ===================================
+_________________ test_remote_harden_ssh_argv_invokes_via_sudo _________________
+
+    def test_remote_harden_ssh_argv_invokes_via_sudo() -> None:
+        """The ssh run argv MUST call `sudo -n bash /tmp/akki_harden.sh` (not bare bash)."""
+        from services.compute_seam import hardening as H
+    
+        seen = {"scp": None, "ssh": None}
+    
+        def fake_run(argv, capture_output, text, timeout):
+            if argv and argv[0] == "scp":
+                seen["scp"] = argv
+            elif argv and argv[0] == "ssh":
+                seen["ssh"] = argv
+            m = MagicMock()
+            m.returncode = 0
+            m.stdout = ""
+            m.stderr = ""
+            return m
+    
+        with patch.object(H.subprocess, "run", side_effect=fake_run), \
+             patch.object(H.os.path, "isfile", return_value=True):
+            H._do_remote_harden(
+                host="41.173.184.244",
+                user="ubuntu",
+                key_path="/app/backend/estate_keys/estate_ed25519",
+                harden_sh_path="/app/assessment_workspace/phase0/harden.sh",
+            )
+    
+        assert seen["ssh"] is not None, "no ssh argv captured"
+        remote_cmd = seen["ssh"][-1]
+>       assert remote_cmd.startswith("sudo -n "), (
+            f"remote harden command must start with 'sudo -n ' — got {remote_cmd!r}"
+        )
+E       AssertionError: remote harden command must start with 'sudo -n ' — got 'AKKI_HARDENING_MODE=perform bash /tmp/akki_harden.sh'
+E       assert False
+E        +  where False = <built-in method startswith of str object at 0xf9c39be145e0>('sudo -n ')
+E        +    where <built-in method startswith of str object at 0xf9c39be145e0> = 'AKKI_HARDENING_MODE=perform bash /tmp/akki_harden.sh'.startswith
+
+backend/tests/invariants/test_remote_harden_sudo_invocation.py:55: AssertionError
+=========================== short test summary info ============================
+FAILED backend/tests/invariants/test_remote_harden_sudo_invocation.py::test_remote_harden_ssh_argv_invokes_via_sudo
+========================= 1 failed, 1 passed in 0.12s ==========================

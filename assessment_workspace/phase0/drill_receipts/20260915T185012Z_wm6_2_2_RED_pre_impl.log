@@ -1,0 +1,143 @@
+FFFFFFFFF                                                                [100%]
+=================================== FAILURES ===================================
+__________________________ test_wm6_2_2_module_fabric __________________________
+
+    def test_wm6_2_2_module_fabric():
+        """Module `services.audio_plane_v1.dedup_path` exports the CP-M6-2-2
+        public API: `dedup_with_condition_awareness` + `DedupInputItem` +
+        `DedupItem` + `ItemsEmptyError` + `ItemInvalidError`."""
+>       m = importlib.import_module("services.audio_plane_v1.dedup_path")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_wm6_2_2_dedup_path.py:35: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'services.audio_plane_v1.dedup_path'
+import_ = <function _gcd_import at 0xfbf1ff45bd80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'services.audio_plane_v1.dedup_path'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+------------------------------ Captured log setup ------------------------------
+WARNING  synisense.config:config.py:43 *** STARTUP WARNING *** SYNISENSE_MASTER_SECRET ENV VAR IS NOT SET. USING AN EPHEMERAL DEV-ONLY SECRET. ALL TRUST RECEIPT SIGNATURES WILL BE INVALIDATED ON RESTART. DO NOT SHIP THIS CONFIGURATION TO PRODUCTION.
+_______________ test_wm6_2_2_dedup_input_item_two_carrier_shape ________________
+
+    def test_wm6_2_2_dedup_input_item_two_carrier_shape():
+        """`DedupInputItem` frozen dataclass with exactly 2 carriers:
+        `text_ref` (opaque text-content identifier · the dedup key) +
+        `variant` (an `InstanceConditionVariant` from CP-M6-2-1).  Pull-seam
+        scan: no audio-byte carrier names."""
+>       from services.audio_plane_v1.dedup_path import DedupInputItem
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.dedup_path'
+
+tests/invariants/test_wm6_2_2_dedup_path.py:53: ModuleNotFoundError
+__________________ test_wm6_2_2_dedup_item_two_carrier_shape ___________________
+
+    def test_wm6_2_2_dedup_item_two_carrier_shape():
+        """`DedupItem` (the deduplicated-output shape) frozen dataclass with
+        exactly 2 carriers per §14 P216 verbatim ("dedup item → + instance
+        condition map"): `text_ref` (dedup key) + `instance_condition_map`
+        (§4.5 P071 map attached to the dedup item)."""
+>       from services.audio_plane_v1.dedup_path import DedupItem
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.dedup_path'
+
+tests/invariants/test_wm6_2_2_dedup_path.py:68: ModuleNotFoundError
+_______________________ test_wm6_2_2_empty_items_refuses _______________________
+
+    def test_wm6_2_2_empty_items_refuses():
+        """`items=()` propagates `ItemsEmptyError` mentioning `items`."""
+>       from services.audio_plane_v1.dedup_path import (
+            ItemsEmptyError, dedup_with_condition_awareness,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.dedup_path'
+
+tests/invariants/test_wm6_2_2_dedup_path.py:78: ModuleNotFoundError
+_________________ test_wm6_2_2_non_dedup_input_element_refuses _________________
+
+    def test_wm6_2_2_non_dedup_input_element_refuses():
+        """A non-`DedupInputItem` element in `items` propagates
+        `ItemInvalidError`."""
+>       from services.audio_plane_v1.dedup_path import (
+            DedupInputItem, ItemInvalidError, dedup_with_condition_awareness,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.dedup_path'
+
+tests/invariants/test_wm6_2_2_dedup_path.py:88: ModuleNotFoundError
+_ test_wm6_2_2_text_identical_same_variant_collapse_one_dedup_item_one_variant _
+
+    def test_wm6_2_2_text_identical_same_variant_collapse_one_dedup_item_one_variant():
+        """Baseline dedup: two items with identical text_ref AND identical
+        variant fields collapse to ONE `DedupItem` whose map carries ONE
+        variant (no duplicate rows)."""
+>       from services.audio_plane_v1.dedup_path import (
+            DedupInputItem, dedup_with_condition_awareness,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.dedup_path'
+
+tests/invariants/test_wm6_2_2_dedup_path.py:112: ModuleNotFoundError
+_ test_wm6_2_2_text_identical_distinct_variants_collapse_one_dedup_item_map_carries_both _
+
+    def test_wm6_2_2_text_identical_distinct_variants_collapse_one_dedup_item_map_carries_both():
+        """CP-M6-2-2 CORE INVARIANT (per M6 grounding brief §C):
+        dedup collapse never drops a distinct condition; distinct conditions
+        produce distinct variants in the map even when text-identical.
+    
+        Two items sharing text_ref but with DIFFERENT `condition_profile_ref`
+        (or `channel_time_ref`) values collapse to ONE `DedupItem` whose
+        `instance_condition_map.variants` tuple carries BOTH variants — not
+        silently deduplicated to one.  Cross-links §4.5 P071 verbatim:
+        "the set of channel/time/condition variants under which identical
+        content occurred — is retained"."""
+>       from services.audio_plane_v1.dedup_path import (
+            DedupInputItem, dedup_with_condition_awareness,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.dedup_path'
+
+tests/invariants/test_wm6_2_2_dedup_path.py:146: ModuleNotFoundError
+___________ test_wm6_2_2_text_distinct_produces_distinct_dedup_items ___________
+
+    def test_wm6_2_2_text_distinct_produces_distinct_dedup_items():
+        """Two items with DIFFERENT text_ref produce TWO `DedupItem`s, each
+        with its own map — no cross-text collapse."""
+>       from services.audio_plane_v1.dedup_path import (
+            DedupInputItem, dedup_with_condition_awareness,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.dedup_path'
+
+tests/invariants/test_wm6_2_2_dedup_path.py:186: ModuleNotFoundError
+___________ test_wm6_2_2_every_returned_dedup_item_passes_p074_gate ____________
+
+    def test_wm6_2_2_every_returned_dedup_item_passes_p074_gate():
+        """§4.6 P074 verbatim gate: "A deduplicated item without its instance
+        condition map fails the ingestion invariant test."
+    
+        Every `DedupItem` returned by `dedup_with_condition_awareness` must
+        pass `dedup_item_has_instance_condition_map` — the CP-M6-2-1 gate
+        helper.  This anchors CP-M6-2-2 to the §4.6 P074 invariant class
+        end-to-end."""
+>       from services.audio_plane_v1.dedup_path import (
+            DedupInputItem, dedup_with_condition_awareness,
+        )
+E       ModuleNotFoundError: No module named 'services.audio_plane_v1.dedup_path'
+
+tests/invariants/test_wm6_2_2_dedup_path.py:222: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_wm6_2_2_dedup_path.py::test_wm6_2_2_module_fabric
+FAILED tests/invariants/test_wm6_2_2_dedup_path.py::test_wm6_2_2_dedup_input_item_two_carrier_shape
+FAILED tests/invariants/test_wm6_2_2_dedup_path.py::test_wm6_2_2_dedup_item_two_carrier_shape
+FAILED tests/invariants/test_wm6_2_2_dedup_path.py::test_wm6_2_2_empty_items_refuses
+FAILED tests/invariants/test_wm6_2_2_dedup_path.py::test_wm6_2_2_non_dedup_input_element_refuses
+FAILED tests/invariants/test_wm6_2_2_dedup_path.py::test_wm6_2_2_text_identical_same_variant_collapse_one_dedup_item_one_variant
+FAILED tests/invariants/test_wm6_2_2_dedup_path.py::test_wm6_2_2_text_identical_distinct_variants_collapse_one_dedup_item_map_carries_both
+FAILED tests/invariants/test_wm6_2_2_dedup_path.py::test_wm6_2_2_text_distinct_produces_distinct_dedup_items
+FAILED tests/invariants/test_wm6_2_2_dedup_path.py::test_wm6_2_2_every_returned_dedup_item_passes_p074_gate
+9 failed in 0.68s

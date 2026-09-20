@@ -1,0 +1,17 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.15, pytest-9.1.1, pluggy-1.6.0 -- /root/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: anyio-4.14.2, xdist-3.8.0, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 6 items
+
+tests/invariants/test_admit_refuses_undeclared_actor.py::test_check_missing_declaration_returns_missing PASSED [ 16%]
+tests/invariants/test_admit_refuses_undeclared_actor.py::test_captured_in_scope_declaration_is_in_force PASSED [ 33%]
+tests/invariants/test_admit_refuses_undeclared_actor.py::test_expired_declaration_returns_expired PASSED [ 50%]
+tests/invariants/test_admit_refuses_undeclared_actor.py::test_scope_mismatch_returns_scope_mismatch PASSED [ 66%]
+tests/invariants/test_admit_refuses_undeclared_actor.py::test_infrastructure_declaration_shape_for_vm PASSED [ 83%]
+tests/invariants/test_admit_refuses_undeclared_actor.py::test_supersession_marks_prior_declaration_as_superseded PASSED [100%]
+
+============================== 6 passed in 0.10s ===============================

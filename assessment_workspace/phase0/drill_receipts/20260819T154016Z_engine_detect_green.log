@@ -1,0 +1,47 @@
+# Green receipt — engine-detect fix (FL-P2-24 CLOSED)
+# Follow-on to right-reason receipt: 20260819T153408Z_engine_detect_right_reason_failure.log
+# Extraction-Akki HEAD: 746deceeee8df4b40d1f3a7faaa104bcebd6ce6d
+# tests-first commit: 8c9304d
+# implementation commit: 746dece
+
+=== BACKEND rds_data_submit gating (24) ===
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-9.1.1, pluggy-1.6.0 -- /root/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: asyncio-1.4.0, xdist-3.8.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 24 items
+
+tests/invariants/test_rds_data_submit.py::test_module_present_and_exports_submit PASSED [  4%]
+tests/invariants/test_rds_data_submit.py::test_module_declares_no_llm_or_forbidden_libraries PASSED [  8%]
+tests/invariants/test_rds_data_submit.py::test_submit_writes_standing_creds_file_mode_0600 PASSED [ 12%]
+tests/invariants/test_rds_data_submit.py::test_submit_creds_file_never_in_git PASSED [ 16%]
+tests/invariants/test_rds_data_submit.py::test_submit_declaration_fires_with_actor_and_scope PASSED [ 20%]
+tests/invariants/test_rds_data_submit.py::test_submit_invokes_execute_statement_with_arns PASSED [ 25%]
+tests/invariants/test_rds_data_submit.py::test_submit_returns_four_questions_response_on_success PASSED [ 29%]
+tests/invariants/test_rds_data_submit.py::test_submit_response_never_carries_secret_verbatim PASSED [ 33%]
+tests/invariants/test_rds_data_submit.py::test_submit_record_and_receipts_never_carry_secret PASSED [ 37%]
+tests/invariants/test_rds_data_submit.py::test_submit_maps_failure_taxonomy[BadRequestException-auth_denied] PASSED [ 41%]
+tests/invariants/test_rds_data_submit.py::test_submit_maps_failure_taxonomy[AccessDeniedException-auth_denied] PASSED [ 45%]
+tests/invariants/test_rds_data_submit.py::test_submit_maps_failure_taxonomy[UnauthorizedException-auth_denied] PASSED [ 50%]
+tests/invariants/test_rds_data_submit.py::test_submit_maps_failure_taxonomy[StatementTimeoutException-timeout] PASSED [ 54%]
+tests/invariants/test_rds_data_submit.py::test_submit_maps_failure_taxonomy[DatabaseNotFoundException-cluster_not_found] PASSED [ 58%]
+tests/invariants/test_rds_data_submit.py::test_submit_maps_failure_taxonomy[DatabaseResumingException-data_api_not_enabled] PASSED [ 62%]
+tests/invariants/test_rds_data_submit.py::test_submit_maps_failure_taxonomy[HttpEndpointNotEnabledException-data_api_not_enabled] PASSED [ 66%]
+tests/invariants/test_rds_data_submit.py::test_submit_maps_failure_taxonomy[SomethingElse-other] PASSED [ 70%]
+tests/invariants/test_rds_data_submit.py::test_probe_engine_function_present PASSED [ 75%]
+tests/invariants/test_rds_data_submit.py::test_probe_engine_recognises_aurora_mysql_from_real_captured_strings PASSED [ 79%]
+tests/invariants/test_rds_data_submit.py::test_probe_engine_recognises_plain_mysql_when_aurora_version_absent PASSED [ 83%]
+tests/invariants/test_rds_data_submit.py::test_probe_engine_recognises_aurora_postgresql PASSED [ 87%]
+tests/invariants/test_rds_data_submit.py::test_probe_engine_returns_unknown_when_all_probes_fail PASSED [ 91%]
+tests/invariants/test_rds_data_submit.py::test_submit_result_carries_engine_and_engine_version_on_success PASSED [ 95%]
+tests/invariants/test_rds_data_submit.py::test_submit_record_carries_engine_and_engine_version_on_success PASSED [100%]
+
+============================== 24 passed in 0.20s ==============================
+
+=== BACKEND cohort regression check (this-cycle families) ===
+........................................................................ [ 67%]
+..................................                                       [100%]
+106 passed in 0.58s

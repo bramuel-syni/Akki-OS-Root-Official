@@ -1,0 +1,182 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.16, pytest-9.1.1, pluggy-1.6.0 -- /root/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /app/assessment_workspace/repos/Extraction-Akki/backend
+configfile: pytest.ini
+plugins: asyncio-1.4.0, xdist-3.8.0, anyio-4.14.2
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 10 items
+
+tests/invariants/test_retention_enforcement_w6_cp3.py::test_retention_classes_module_exists FAILED [ 10%]
+tests/invariants/test_retention_enforcement_w6_cp3.py::test_all_five_append_only_classes_declared FAILED [ 20%]
+tests/invariants/test_retention_enforcement_w6_cp3.py::test_append_only_classes_never_carry_delete_verb FAILED [ 30%]
+tests/invariants/test_retention_enforcement_w6_cp3.py::test_governed_delete_classes_carry_grace_period FAILED [ 40%]
+tests/invariants/test_retention_enforcement_w6_cp3.py::test_dry_run_marks_expired_receipts_without_touching_disk FAILED [ 50%]
+tests/invariants/test_retention_enforcement_w6_cp3.py::test_enforcement_marks_expired_writes_sidecar_never_deletes FAILED [ 60%]
+tests/invariants/test_retention_enforcement_w6_cp3.py::test_is_expired_returns_false_for_fresh_record FAILED [ 70%]
+tests/invariants/test_retention_enforcement_w6_cp3.py::test_is_expired_returns_true_for_stale_record FAILED [ 80%]
+tests/invariants/test_retention_enforcement_w6_cp3.py::test_shield_receipts_exclude_expired_by_default FAILED [ 90%]
+tests/invariants/test_retention_enforcement_w6_cp3.py::test_attestations_persist_and_list FAILED [100%]
+
+=================================== FAILURES ===================================
+_____________________ test_retention_classes_module_exists _____________________
+
+    def test_retention_classes_module_exists():
+        import importlib
+>       mod = importlib.import_module("services.retention.classes")
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/invariants/test_retention_enforcement_w6_cp3.py:108: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1204: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1176: in _find_and_load
+    ???
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+name = 'services.retention.classes'
+import_ = <function _gcd_import at 0xfa810723bd80>
+
+>   ???
+E   ModuleNotFoundError: No module named 'services.retention.classes'
+
+<frozen importlib._bootstrap>:1140: ModuleNotFoundError
+__________________ test_all_five_append_only_classes_declared __________________
+
+    def test_all_five_append_only_classes_declared():
+        """Every W1-W5 record class we actually hold is declared with its
+        canon anchor + storage_kind + retention letter."""
+>       from services.retention.classes import RETENTION_CLASSES
+E       ModuleNotFoundError: No module named 'services.retention.classes'
+
+tests/invariants/test_retention_enforcement_w6_cp3.py:116: ModuleNotFoundError
+_______________ test_append_only_classes_never_carry_delete_verb _______________
+
+    def test_append_only_classes_never_carry_delete_verb():
+        """Canon 1 §4.3 · append-only classes get mark-expired posture,
+        NEVER a delete verb. If a class declares storage_kind='append_only',
+        its enforcement verb MUST be 'mark_expired'."""
+>       from services.retention.classes import RETENTION_CLASSES
+E       ModuleNotFoundError: No module named 'services.retention.classes'
+
+tests/invariants/test_retention_enforcement_w6_cp3.py:139: ModuleNotFoundError
+_______________ test_governed_delete_classes_carry_grace_period ________________
+
+    def test_governed_delete_classes_carry_grace_period():
+        """Classes with storage_kind='governed_delete' must declare a
+        grace_period_days > 0 (audit-view window before hard delete)."""
+>       from services.retention.classes import RETENTION_CLASSES
+E       ModuleNotFoundError: No module named 'services.retention.classes'
+
+tests/invariants/test_retention_enforcement_w6_cp3.py:154: ModuleNotFoundError
+__________ test_dry_run_marks_expired_receipts_without_touching_disk ___________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfa810545ef10>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-35/test_dry_run_marks_expired_rec0')
+
+    def test_dry_run_marks_expired_receipts_without_touching_disk(monkeypatch, tmp_path):
+        """dry_run=True finds expired records but writes nothing to disk."""
+>       from services.retention.enforce import run_enforcement
+E       ModuleNotFoundError: No module named 'services.retention.enforce'
+
+tests/invariants/test_retention_enforcement_w6_cp3.py:171: ModuleNotFoundError
+_________ test_enforcement_marks_expired_writes_sidecar_never_deletes __________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfa8105264c10>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-35/test_enforcement_marks_expired0')
+
+    def test_enforcement_marks_expired_writes_sidecar_never_deletes(monkeypatch, tmp_path):
+        """dry_run=False writes .expired sidecar + attestation. NEVER
+        deletes the underlying append_only record."""
+>       from services.retention.enforce import run_enforcement
+E       ModuleNotFoundError: No module named 'services.retention.enforce'
+
+tests/invariants/test_retention_enforcement_w6_cp3.py:200: ModuleNotFoundError
+________________ test_is_expired_returns_false_for_fresh_record ________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfa810517c5d0>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-35/test_is_expired_returns_false_0')
+
+    def test_is_expired_returns_false_for_fresh_record(monkeypatch, tmp_path):
+>       from services.retention.enforce import is_expired
+E       ModuleNotFoundError: No module named 'services.retention.enforce'
+
+tests/invariants/test_retention_enforcement_w6_cp3.py:242: ModuleNotFoundError
+________________ test_is_expired_returns_true_for_stale_record _________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfa8105234050>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-35/test_is_expired_returns_true_f0')
+
+    def test_is_expired_returns_true_for_stale_record(monkeypatch, tmp_path):
+>       from services.retention.enforce import is_expired
+E       ModuleNotFoundError: No module named 'services.retention.enforce'
+
+tests/invariants/test_retention_enforcement_w6_cp3.py:251: ModuleNotFoundError
+_______________ test_shield_receipts_exclude_expired_by_default ________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfa810517d2d0>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-35/test_shield_receipts_exclude_e0')
+
+    def test_shield_receipts_exclude_expired_by_default(monkeypatch, tmp_path):
+        """Once a receipt has its .expired sidecar, the shield's
+        /api/shield/receipts endpoint MUST exclude it by default. Optional
+        ?include_expired=true param surfaces them (for audit only)."""
+        from fastapi import FastAPI
+        from fastapi.testclient import TestClient
+        from services.chokepoint.router import router as shield_router
+    
+        receipts = tmp_path / "receipts"
+        receipts.mkdir()
+        monkeypatch.setenv("CROSSING_RECEIPT_DIR", str(receipts))
+    
+        # A fresh receipt + an expired one.
+        _write_receipt(receipts, "rcp-fresh", _iso(_now() - timedelta(days=5)))
+        _write_receipt(receipts, "rcp-expired-r", _iso(_now() - timedelta(days=200)))
+        # Mark the second as expired.
+        (receipts / "rcp-expired-r.json.expired").write_text(json.dumps({
+            "receipt_id": "rcp-expired-r",
+            "marked_expired_at": _iso(_now()),
+            "retention_class": "crossing_receipts",
+        }))
+    
+        app = FastAPI()
+        app.include_router(shield_router)
+        client = TestClient(app)
+    
+        # Default: only fresh.
+        r = client.get("/api/shield/receipts")
+        ids = {rc["receipt_id"] for rc in r.json()["receipts"]}
+        assert "rcp-fresh" in ids
+>       assert "rcp-expired-r" not in ids, (
+            "expired receipts must be excluded from render by default. "
+            "CA1-N1 · mark-expired + excluded-from-render."
+        )
+E       AssertionError: expired receipts must be excluded from render by default. CA1-N1 · mark-expired + excluded-from-render.
+E       assert 'rcp-expired-r' not in {'rcp-expired-r', 'rcp-fresh'}
+
+tests/invariants/test_retention_enforcement_w6_cp3.py:293: AssertionError
+______________________ test_attestations_persist_and_list ______________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xfa81042b1c50>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-35/test_attestations_persist_and_0')
+
+    def test_attestations_persist_and_list(monkeypatch, tmp_path):
+>       from services.retention.enforce import run_enforcement, list_attestations
+E       ModuleNotFoundError: No module named 'services.retention.enforce'
+
+tests/invariants/test_retention_enforcement_w6_cp3.py:310: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED tests/invariants/test_retention_enforcement_w6_cp3.py::test_retention_classes_module_exists
+FAILED tests/invariants/test_retention_enforcement_w6_cp3.py::test_all_five_append_only_classes_declared
+FAILED tests/invariants/test_retention_enforcement_w6_cp3.py::test_append_only_classes_never_carry_delete_verb
+FAILED tests/invariants/test_retention_enforcement_w6_cp3.py::test_governed_delete_classes_carry_grace_period
+FAILED tests/invariants/test_retention_enforcement_w6_cp3.py::test_dry_run_marks_expired_receipts_without_touching_disk
+FAILED tests/invariants/test_retention_enforcement_w6_cp3.py::test_enforcement_marks_expired_writes_sidecar_never_deletes
+FAILED tests/invariants/test_retention_enforcement_w6_cp3.py::test_is_expired_returns_false_for_fresh_record
+FAILED tests/invariants/test_retention_enforcement_w6_cp3.py::test_is_expired_returns_true_for_stale_record
+FAILED tests/invariants/test_retention_enforcement_w6_cp3.py::test_shield_receipts_exclude_expired_by_default
+FAILED tests/invariants/test_retention_enforcement_w6_cp3.py::test_attestations_persist_and_list
+============================== 10 failed in 0.31s ==============================
