@@ -4370,3 +4370,86 @@ zero push · terminal `pytest` only · no `testing_agent` · additive-only §3.8
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
+
+---
+
+## CP-BLOCKED-VOCABULARY-CORRECTION · Commit-B state master · WAVE R-87 · ⏳ IN-FLIGHT · 2026-09-20T~20:47Z · banks Commit-A `200c2c637277f1f12dee342dc68cdf7a7ebed463` on programme/track-a
+
+Full seal report at STATE/DECISIONS.md this-append. R-87 IN-FLIGHT at this-commit; Commit-C fixup this-turn.
+
+### R-87 marker: ⏳ **IN-FLIGHT (Commit-A + Commit-B landed · Commit-C fixup next)**
+
+- **Commit-A (code · programme/track-a):** `200c2c637277f1f12dee342dc68cdf7a7ebed463` · 2026-09-20T~20:43Z.
+- **Commit-B (state · master):** this-commit · 2026-09-20T~20:47Z.
+- **Commit-C fixup (state · master):** this-turn · 2026-09-20T~20:50Z (planned).
+
+### Wave summary
+
+Ruling 2 execution. Registers corrected count/grammar as Final[...] constants at `services/dap_lifecycle/blocked_vocabulary.py` (new backend module) + 6 property tests at `test_blocked_vocabulary_correction.py`. Ratchet **5645 → 5651 (+6)**. New `baseline_failures.json` sha256 `c0af7a31…`. FE-FIX-READY spec authored at `notes/FE_FIX_READY_R87_blocked_vocabulary_correction.md` (also byte-identically mirrored to `/app/frontend/public/audit/FE_FIX_READY_R87_blocked_vocabulary_correction.md` sha256 `44f2824f…`) — owner-dispatch-ready. Non-sealed FORK-CON-INGEST-3 fork-note corrected in place per Ruling 2(c); 3 sealed R-85 files carry erratum treatment (NOT edited per SO §3.8). Pre-Commit-A double-green BASELINE_GUARD=1 sweep byte-identical stripped-sha256 `e1a887e05d52e4cc0c28759e0ce3efe289846963eaedea8405e8d0f8b18d1e73` across Run 1 + Run 2. Zero implementation module edit outside this-wave. Zero sealed contract/writer/test file edit. Zero baseline shrink.
+
+### Sprint queue post-this-Commit-B
+
+1. **R-86 CP-APP-JS-UNIFY-SCHEDULE-AND-DRIFT-ANNOTATE** ✅ SEALED at `e40047f4`.
+2. **R-87 CP-BLOCKED-VOCABULARY-CORRECTION** ⏳ **Commit-B landed at this-commit · Commit-C fixup this-turn.**
+3. **R-88+ CP-CONTENT-REGISTRY-WAVE** (Ruling 4 · CON-1..31 · 7-category grep-negative bans + R-32 surface-list binding on Generated-class) — opens after R-87 Commit-C.
+4. **G5-v5 SFP-1..7 first slice** — unblocked · slotted behind R-88+.
+5. **R-91 · CP-APP-JS-UNIFY** — closure wave for the 3 pod_shell mirror-drift baseline entries.
+
+### Files (7 tracked)
+
+1. `notes/FE_FIX_READY_R87_blocked_vocabulary_correction.md` NEW (specialist-dispatch spec · sha256 `44f2824f…`).
+2. `notes/dap_extraction_journey_v2_open_forks_20260920.md` (Ruling 2(c) in-place correction).
+3. `notes/ORCH_BOOT.md` (ratchet-only regen · new sha256 `a6e07e58…`).
+4. `tools/r87_pre_commit_a_orch_boot_regen.py` NEW (deterministic regen tool).
+5. `STATE/PINS.md` (`commissioning_record` pointer refresh · R-29-BOOT / R-86 housekeeping-pickup precedent).
+6. `STATE/DECISIONS.md` this-append.
+7. `STATE/NEXT.md` this-append.
+
+(POD audit mirror `/app/frontend/public/audit/ORCH_BOOT.md` synced byte-identically pre-Commit-A · POD audit mirror `/app/frontend/public/audit/FE_FIX_READY_R87_blocked_vocabulary_correction.md` synced byte-identically at this-Commit-B · neither a tracked STATE-repo path.)
+
+### Autopilot next
+
+**Commit-C fixup this-turn** — advances heads_last_sealed.state_repo.head from R-86 Commit-B `1525ddd0` → this-R-87 Commit-B + inserts new heads_last_sealed.code_repo history entry for R-87 Commit-A `200c2c63` · R-87 marker flips ⏳ IN-FLIGHT → ✅ SEALED at Commit-C. Then **R-88+ CP-CONTENT-REGISTRY-WAVE opens.**
+
+### Standing bounds unchanged
+
+zero push · terminal `pytest` only · no `testing_agent` · additive-only §3.8 · three-repo discipline · ratchet monotonic-up (**5651** at this-Commit-B).
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+---
+
+## CP-BLOCKED-VOCABULARY-CORRECTION · Commit-C fixup · WAVE R-87 · ✅ SEALED · state master · 2026-09-20T~20:50Z · banks state Commit-B `b452657228e7038cb3c59834c7921dae332b391b` · R-6 boundary regen advancing heads_last_sealed to R-87 Commit-B + Commit-A
+
+Full seal report at STATE/DECISIONS.md this-append. R-87 SEALED at this-commit.
+
+### R-87 marker: ⏳ IN-FLIGHT → ✅ **SEALED**
+
+- **Commit-A (code · programme/track-a):** `200c2c637277f1f12dee342dc68cdf7a7ebed463` · 2026-09-20T~20:43Z.
+- **Commit-B (state · master):** `b452657228e7038cb3c59834c7921dae332b391b` · 2026-09-20T~20:47Z.
+- **Commit-C fixup (state · master):** this-commit · 2026-09-20T~20:50Z.
+
+### Sprint queue post-R-87
+
+1. **R-86 CP-APP-JS-UNIFY-SCHEDULE-AND-DRIFT-ANNOTATE** ✅ SEALED at `e40047f4`.
+2. **R-87 CP-BLOCKED-VOCABULARY-CORRECTION** ✅ **SEALED at this-commit.**
+3. **R-88+ CP-CONTENT-REGISTRY-WAVE** (Ruling 4 · CON-1..31 · 7-category grep-negative bans + R-32 surface-list binding on Generated-class) — **opens next.**
+4. **G5-v5 SFP-1..7 first slice** — unblocked · slotted behind R-88+.
+5. **R-91 · CP-APP-JS-UNIFY** — closure wave for 3 pod_shell mirror-drift baseline entries.
+
+### Files (4 tracked)
+
+1. `notes/ORCH_BOOT.md` (R-6 boundary regen · new sha256 `49d19f8b…` · byte-identically synced to `/app/frontend/public/audit/ORCH_BOOT.md`).
+2. `tools/r87_commit_c_fixup_orch_boot_regen.py` NEW (deterministic idempotent regen tool).
+3. `STATE/DECISIONS.md` this-append.
+4. `STATE/NEXT.md` this-append.
+
+### Autopilot next
+
+**R-88+ CP-CONTENT-REGISTRY-WAVE opens this-turn.**
+
+### Standing bounds unchanged
+
+zero push · terminal `pytest` only · no `testing_agent` · additive-only §3.8 · three-repo discipline · ratchet monotonic-up (**5651**).
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

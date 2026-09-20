@@ -20907,3 +20907,219 @@ zero push · terminal `pytest` only · no `testing_agent` · additive-only §3.8
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
+
+## 2026-09-20T~20:47Z · CP-BLOCKED-VOCABULARY-CORRECTION · Commit-B state master · WAVE R-87 · Ruling 2 mirror-half landed · FE-FIX-READY FLAGGED · banks code Commit-A `200c2c637277f1f12dee342dc68cdf7a7ebed463` on programme/track-a
+
+**Precedent shape:** state-master Commit-B banking of a §3.3 3-Commit Seal wave (same class as CP-APP-JS-UNIFY-SCHEDULE-AND-DRIFT-ANNOTATE Commit-B at `1525ddd0`). Prior commit this-run: `e40047f4` at 2026-09-20T~20:18Z (CP-APP-JS-UNIFY-SCHEDULE-AND-DRIFT-ANNOTATE Commit-C fixup · **R-86 SEALED**).
+
+### Wave title
+
+**WAVE R-87 · CP-BLOCKED-VOCABULARY-CORRECTION**
+
+Ruling 2 execution. Register the corrected count/grammar as Final[...] constants at `services/dap_lifecycle/blocked_vocabulary.py` (new backend module) so downstream authors (FE-FIX-READY spec consumer + backend surface authors + auditors) have a single source of truth and the wrong phrasing is RED at the vocabulary layer.
+
+### Ruling 2 owner verbatim (anchoring this wave)
+
+> "RULING 2 — FORK-BLK-KINDS: OPTION A RATIFIED, with a load-bearing vocabulary correction. Owner verbatim: suspension 'is a state of the principal (DAP-27, PRIN-1), not a fourth reason a request is blocked — a different axis, different object.' Sealed enum stays at three. party_halted lives as its own state via the Q5 module tree and its vocab constant, and it NEVER renders in the Blocked reason grammar — no estate copy, no kind label. Correct the wording at source everywhere non-sealed: it is 'three Blocked kinds plus Interrupted plus party_halted' — NOT 'five Blocked kinds.' Vocabulary is load-bearing for the substitution rules now — register the corrected count/grammar so the wrong phrasing is RED where feasible."
+
+### Owner R-87-open reinforcement (2026-09-20T~20:30Z verbatim)
+
+> "(a) corrected vocabulary is 'three Blocked kinds plus Interrupted plus party_halted' — never 'five Blocked kinds'; suspension is a principal state (DAP-27/PRIN-1), a different axis, and never renders in the Blocked reason grammar; (b) register the corrected grammar in the substitution-rule set so the wrong count/phrasing is RED where feasible; (c) sealed artifacts carrying the old wording get the erratum treatment, non-sealed get fixed at source; (d) author the FE-FIX-READY spec with EXACT expected badge/legend/drawer grammar and strings — the specialist currently renders 'Blocked · suspended' and 'Blocked · party_halted' badges and a 5-kind legend, all of which must be re-shaped per the ruling (party_halted as its own rail state keeping its existing drawer copy; suspended out of request-block rendering entirely, surfacing only via suspension notices). Flag FE-FIX-READY in the seal report and I dispatch the specialist verbatim on your spec. GO."
+
+### DELTA measured
+
+**+6** (5645 → 5651 · monotonic-up · both `passed_floor` + `counts_at_baseline.passed` bumped together per CCS2 lesson). New `baseline_failures.json` sha256 `c0af7a314841e78af4507149539e3f59892ace811bf15a5afce527878b65bbb7` (was `ccb45068bf19a1f95f20b6e15bcd7c7993571c714a0d5e316e93a8175f8972ea`).
+
+### Scope frozen (SO §6.4 NOTHING-BEYOND)
+
+- 1 new backend module: `backend/services/dap_lifecycle/blocked_vocabulary.py` (~145 lines · Final[int]/tuple/bool/str constants + WRONG_COUNT_PHRASES + pure-data-in scanner · SO §2.5 verbatim-docstring · module docstring carries Ruling 2 verbatim on single line).
+- 1 new test module: `backend/tests/invariants/test_blocked_vocabulary_correction.py` (6 property tests · ~240 lines).
+- 1 additive ratchet bump + ratchet_history append.
+- 1 FE-FIX-READY spec (this-Commit-B state · new tracked file).
+- 1 non-sealed fork-note fix in place (this-Commit-B state · Ruling 2(c)).
+- 3 erratum entries citing sealed R-85 files (this-Commit-B · below).
+- 1 pre-Commit-A ORCH_BOOT.md ratchet-only regen (M16-W3 corrected order · already landed via `tools/r87_pre_commit_a_orch_boot_regen.py`).
+
+**Zero implementation module edit. Zero sealed contract/writer/test file edit. Zero baseline shrink.**
+
+### 6 new property tests (test_blocked_vocabulary_correction.py)
+
+1. `test_blocked_kinds_count_final_int_equals_three` — Final[int] · count-binding.
+2. `test_blocked_kinds_tuple_matches_sealed_blocked_kind_enum` — byte-verbatim tuple match with sealed BlockedKind enum.
+3. `test_suspended_is_principal_state_not_blocked_kind` — Final[bool] axis-binding · DAP-27/PRIN-1.
+4. `test_party_halted_is_own_rail_state_not_blocked_kind` — Final[bool] axis-binding · Q5 module tree.
+5. `test_wrong_count_phrases_registered_as_final_tuple_for_grep_negative` — 4-variant list + scanner callable.
+6. `test_blocked_vocabulary_module_docstring_carries_ruling_2_verbatim` — SO §2.5 verbatim-docstring · 4 load-bearing owner quotes present.
+
+### Erratum entries (Ruling 2(c) · sealed R-85 files inherit citation · NOT edited)
+
+**Erratum-1 · `backend/services/dap_lifecycle/party_halted_kind.py` @ CP-PARTY-HALTED-ADDITIVE-SUB-WAVE Commit-A `11afc4fff63bfeaefe467f8271a3e84a40280054` (2026-09-20T~18:10Z):**
+- Stale text (verbatim SO §2.5 quote of journey v2): the module docstring quotes journey v2 §11 L207 "**Blocked** has five kinds, not one flat state" and §2 L30 "**Five kinds**, and the drawer states which: `request`, `check`, `estate`, `suspended`, and `party_halted`." · line 10 references "If `suspended` is absent" · line 32 references "No reason field for `suspended` or `party_halted`" · line 45 references "`suspended` and `party_halted` both keep their reference" · line 56 references "`block_kind` (`request` / `check` / `estate` / `suspended` / `party_halted`)" · line 170 references "suspended or party_halted".
+- Correct text (Ruling 2 · this-erratum): the corrected composition phrase is **"three Blocked kinds plus Interrupted plus party_halted"** — never "five Blocked kinds". Suspended is a principal-state axis (DAP-27, PRIN-1), NEVER a Blocked kind. party_halted is an own-rail-state axis (Q5 module tree · sealed at THIS file), NEVER a Blocked kind label. Quoted journey v2 phrasings are preserved in the sealed docstring per SO §2.5 verbatim discipline (git is the audit trail) · Ruling-2 correction of record IS this erratum entry.
+- Disposition: NOT edited per SO §3.8 (sealed) · inherits Ruling-2 erratum citation.
+
+**Erratum-2 · `backend/services/dap_lifecycle/party_halt_billing.py` @ CP-PARTY-HALTED-ADDITIVE-SUB-WAVE Commit-A `11afc4fff63bfeaefe467f8271a3e84a40280054` (2026-09-20T~18:10Z):**
+- Stale text (verbatim SO §2.5 quote of journey v2): line 14 references "`suspended`" as if a Blocked kind context ("only, not `check` or owner-triggered `suspended`") · line 21 references "`suspended` (from `Executing`)" in a mixed-with-party_halted context.
+- Correct text (Ruling 2 · this-erratum): suspended is a principal-state axis (DAP-27, PRIN-1), NEVER a Blocked kind context. Where the sealed docstring text conflates `suspended` with Blocked-kind semantics, the Ruling-2 correction of record IS this erratum entry: the axis-binding is preserved by `blocked_vocabulary.SUSPENDED_IS_PRINCIPAL_STATE_NOT_BLOCKED_KIND: Final[bool] = True`.
+- Disposition: NOT edited per SO §3.8 (sealed) · inherits Ruling-2 erratum citation.
+
+**Erratum-3 · `backend/tests/invariants/test_dap_lifecycle_party_halted_sub_wave.py` @ CP-PARTY-HALTED-ADDITIVE-SUB-WAVE Commit-A `11afc4fff63bfeaefe467f8271a3e84a40280054` (2026-09-20T~18:10Z):**
+- Stale text (verbatim SO §2.5 quotes of journey v2): line 16 references "L30: five kinds request/check/estate/suspended/party_halted" · line 17 quotes "L207: 'Blocked has five kinds, not one flat state'".
+- Correct text (Ruling 2 · this-erratum): journey v2's "five kinds" phrasing is banked-void; the corrected composition phrase is "three Blocked kinds plus Interrupted plus party_halted". The sealed test's assertion logic is structurally correct (§3.10-α Final[str] pattern verified in R-85 seal) — only the docstring narrative quotes journey v2 verbatim per SO §2.5. Ruling-2 correction of record IS this erratum entry; the test docstring inherits the citation.
+- Disposition: NOT edited per SO §3.8 (sealed) · inherits Ruling-2 erratum citation.
+
+### FE-FIX-READY spec authored · owner-dispatch-ready
+
+**Path:** `notes/FE_FIX_READY_R87_blocked_vocabulary_correction.md` (this-Commit-B tracked file).
+
+**Scope:** 3 FE surfaces at `/app/frontend/src/` (specialist head · authoritative):
+- `components/dap/StatusBadge.jsx` — 3 changes (remove `"Blocked · suspended"` entry · reshape `"Blocked · party_halted"` → `"party_halted"` · replace 5-kind comment with 3-kind + axis-discipline comment).
+- `strings/lifecycleStrings.js` — 2 changes (remove 4 suspended-in-Blocked exports · reshape section-header 5-kind → 3-kind comment).
+- `pages/dap/RequestLifecycle.jsx` — 9-change multi-site reshape (imports · docstring · KIND_META · sample data · legend array · resolvers · Blocked drawer comment · conditional-render scoping · party_halted own-drawer render path).
+
+**Acceptance criteria:** 10 checks (grep-negative on wrong-count phrasings + wrong badge strings + suspended-in-Blocked exports · STATUS_META 12-key exact set · lifecycleStrings.js export delta = −4 · zero `req.blockKind === "suspended"` occurrences · party_halted own drawer + Blocked drawer three-kind scoping · behaviour of request/check/estate rails byte-unchanged pre/post).
+
+**Backend authority binding:** FE MAY import from `blocked_vocabulary.py` (or FE mirror derived from it) — `BLOCKED_KINDS_TUPLE` + axis-binding constants. Any future addition to `BLOCKED_KINDS_TUPLE` requires Canon 3 §24 4-step rule-change ceremony, not a specialist edit.
+
+**Flag:** **FE-FIX-READY** · owner dispatches specialist verbatim on this spec.
+
+### Non-sealed source-fix (Ruling 2(c))
+
+- `notes/dap_extraction_journey_v2_open_forks_20260920.md` — FORK-CON-INGEST-3 section title + conflict statement + disposition sections **corrected in place**. Historical text preserved for audit-trail context via banked-void annotation; corrected disposition section inserted with R-87 landing evidence. Git diff is the audit trail.
+
+### AUTHENTIC RED-first cycle receipts
+
+- **RED** at `backend/phase0/drill_receipts/20260920T203041Z_cp_r87_blocked_vocabulary_correction_RED_pre.log`: 6/6 fail right-reason (ImportError `blocked_vocabulary` module absent from `services.dap_lifecycle`).
+- **GREEN** at `backend/phase0/drill_receipts/20260920T203133Z_..._GREEN_post.log` + `20260920T203211Z_..._GREEN_post2.log`: 6/6 pass in 0.71s post module + post docstring-single-line-fix (Ruling-2 verbatim quote required single-line preservation for substring match).
+
+### Pre-Commit-A double-green byte-identical BASELINE_GUARD=1 sweep
+
+Both runs at `backend/phase0/drill_receipts/`:
+- Run 1: `20260920T203618Z_..._BASELINE_GUARD1_run1.log` · 181.67s · **5651 passed** · 3 baseline-fails · 1 skip · 438 warnings.
+- Run 2: `20260920T204257Z_..._BASELINE_GUARD1_run2.log` · 181.99s · **5651 passed** · 3 baseline-fails · 1 skip · 438 warnings.
+
+**Stripped-sha256:** **`e1a887e05d52e4cc0c28759e0ce3efe289846963eaedea8405e8d0f8b18d1e73`** — **IDENTICAL across Run 1 + Run 2.**
+
+3 baseline-fails = exactly the 3 pod_shell mirror-drift entries (specialist-drift .jsx redacted per Q-unlock reconciliation pattern · pre-CP-APP-JS-UNIFY R-91 landing). Owner run-2 drift precision constraint satisfied · zero new drift.
+
+### ORCH_BOOT.md ratchet-only regen (pre-Commit-A · M16-W3 corrected order)
+
+Regenerated by `tools/r87_pre_commit_a_orch_boot_regen.py` (deterministic · idempotent):
+- `notes/ORCH_BOOT.md` · sha256 `a6e07e5842263757a4a453628b7096e2ecb962e5f5caae905d998db4959aa610`.
+- `/app/frontend/public/audit/ORCH_BOOT.md` · sha256 `a6e07e5842263757a4a453628b7096e2ecb962e5f5caae905d998db4959aa610` — **BYTE-IDENTICAL POD AUDIT MIRROR.**
+
+Ratchet block updated: `passed_floor: 5651` · `counts_at_baseline_passed: 5651` · `baseline_failures_sha256: c0af7a314841e78af4507149539e3f59892ace811bf15a5afce527878b65bbb7`. `heads_last_sealed` unchanged this Commit-B (heads advance at Commit-C fixup per R-6 boundary regen precedent).
+
+### Files (7 tracked)
+
+1. `notes/FE_FIX_READY_R87_blocked_vocabulary_correction.md` NEW (specialist-dispatch spec · sha256 `44f2824fcf2109fca5d0716cf5df349f5131504addb7812e605acba9658afb42`).
+2. `notes/dap_extraction_journey_v2_open_forks_20260920.md` (Ruling 2(c) in-place correction).
+3. `notes/ORCH_BOOT.md` (ratchet-only regen · new sha256 `a6e07e58…`).
+4. `tools/r87_pre_commit_a_orch_boot_regen.py` NEW (deterministic regen tool).
+5. `STATE/PINS.md` (`commissioning_record` pointer refresh · R-29-BOOT / R-86 housekeeping-pickup precedent).
+6. `STATE/DECISIONS.md` this-append.
+7. `STATE/NEXT.md` this-append.
+
+(POD audit mirrors, not tracked STATE-repo paths: `/app/frontend/public/audit/ORCH_BOOT.md` synced byte-identically pre-Commit-A · `/app/frontend/public/audit/FE_FIX_READY_R87_blocked_vocabulary_correction.md` synced byte-identically at this-Commit-B sha256 `44f2824fcf2109fca5d0716cf5df349f5131504addb7812e605acba9658afb42`.)
+
+### Canon anchors verbatim
+
+- Owner Ruling 2 verbatim (2026-09-20T~19:00Z · STATE/DECISIONS.md line 20421 OWNER RULINGS anchor · re-affirmed at `1250c39a` + R-86 Commit-C `e40047f4`).
+- Owner R-87-open reinforcement verbatim (2026-09-20T~20:30Z · this-chat).
+- Sealed `BlockedKind` enum at `services/dap_lifecycle/blocked_kinds.py` (3 members: request/check/estate).
+- Journey v1 §11 L201: *"Blocked has three kinds, not one flat state: request, check, estate."*
+- DAP-27 principal-state + PRIN-1 principal-context binding.
+- SO §2.5 verbatim-docstring · §3 tests-first · §3.3 3-Commit Seal · §3.8 additive-only · §3.10-α Final[str] closed-vocab.
+- **CP-APP-JS-UNIFY-SCHEDULE-AND-DRIFT-ANNOTATE** seal `2eca0e58` / `1525ddd0` / `e40047f4` (R-86 immediately-precedes).
+- **CP-PARTY-HALTED-ADDITIVE-SUB-WAVE** seal `11afc4f` / `0cd4c9b8` (R-85 · this-wave's erratum targets).
+- **CP-REGISTRY-V5-RATIFICATION-AND-COUNT-ERRATUM** `1250c39a` (registry v5 ratified · Ruling-3-erratum-shape count-fix cites `0e7a07b0`).
+
+### Stop-conditions / pre-rulings
+
+- Stop-conditions #1/#2/#3 NOT triggered.
+- SO §6.4 pre-ruling NOT triggered (this seal implements Ruling 2 verbatim + Ruling 2 reinforcement (a)-(d) · zero improvisation).
+- MEM-R-053 CROWN BAN NOT triggered.
+
+### Sprint queue post-this-Commit-B
+
+1. **R-86 CP-APP-JS-UNIFY-SCHEDULE-AND-DRIFT-ANNOTATE** ✅ SEALED at `e40047f4`.
+2. **R-87 CP-BLOCKED-VOCABULARY-CORRECTION** ⏳ **Commit-B landed at this-commit · Commit-C fixup next.**
+3. **R-88+ CP-CONTENT-REGISTRY-WAVE** (Ruling 4 · CON-1..31 · 7-category grep-negative bans + R-32 surface-list binding on Generated-class) — opens after R-87 Commit-C.
+4. **G5-v5 SFP-1..7 first slice** — unblocked · slotted behind R-88+.
+5. **R-91 · CP-APP-JS-UNIFY** — closure wave for the 3 pod_shell mirror-drift baseline entries.
+
+### Autopilot next
+
+1. **Commit-C fixup this-turn** — state master · advances state_head to this-Commit-B SHA + heads_last_sealed R-6 regen advancing state_repo.head from `1525ddd0` → this-commit + inserts new heads_last_sealed.code_repo entry for R-87 Commit-A `200c2c63` · R-87 marker flips ⏳ IN-FLIGHT → ✅ SEALED at Commit-C.
+2. **Report R-87 seal with FE-FIX-READY flag to owner** for specialist dispatch on the authored spec.
+3. Then **R-88+ CP-CONTENT-REGISTRY-WAVE** opens.
+
+### Standing bounds unchanged
+
+zero push · terminal `pytest` only · no `testing_agent` · additive-only §3.8 · three-repo discipline · ratchet monotonic-up (now **5651** · never rebaselined silently).
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+
+## 2026-09-20T~20:50Z · CP-BLOCKED-VOCABULARY-CORRECTION · Commit-C fixup · state master · WAVE R-87 ✅ SEALED · banks state Commit-B `b452657228e7038cb3c59834c7921dae332b391b` · R-6 boundary regen advancing heads_last_sealed.state_repo.head to Commit-B SHA + new heads_last_sealed.code_repo entry for R-87 Commit-A `200c2c637277f1f12dee342dc68cdf7a7ebed463`
+
+**Precedent shape:** §3.3 3-Commit Seal Commit-C fixup on state master (same class as CP-APP-JS-UNIFY-SCHEDULE-AND-DRIFT-ANNOTATE Commit-C fixup at `e40047f4` that R-6-regen'd ORCH_BOOT.md advancing state_repo.head to R-86 Commit-B). Prior commits this-wave: `200c2c63` (code Commit-A on programme/track-a · 2026-09-20T~20:43Z) → `b4526572` (state Commit-B on master · 2026-09-20T~20:47Z) → this-commit Commit-C.
+
+### R-87 · WAVE SEALED at this-commit
+
+- Ruling 2 mirror-half landed and sealed. FE-FIX-READY spec authored and dispatched-ready.
+- Ruling 2(c) executed both halves: (a) non-sealed source-fix in place at `notes/dap_extraction_journey_v2_open_forks_20260920.md` (banked-void annotation + corrected disposition); (b) 3 erratum entries in `STATE/DECISIONS.md` citing sealed R-85 files (`party_halted_kind.py` + `party_halt_billing.py` + `test_dap_lifecycle_party_halted_sub_wave.py` at commit `11afc4fff63bfeaefe467f8271a3e84a40280054` · NOT edited per SO §3.8 · inherit Ruling-2 erratum citation).
+- Ratchet advanced monotonically **5645 → 5651** (+6) · new baseline sha `c0af7a31…`.
+- BASELINE_GUARD=1 double-sweep byte-identical: stripped-sha256 `e1a887e05d52e4cc0c28759e0ce3efe289846963eaedea8405e8d0f8b18d1e73`.
+
+### R-6 boundary regen (this Commit-C fixup)
+
+`notes/ORCH_BOOT.md` regenerated by `tools/r87_commit_c_fixup_orch_boot_regen.py` (deterministic · idempotent):
+- `heads_last_sealed.state_repo.head` advanced: `1525ddd0…` (R-86 Commit-B) → **`b452657228e7038cb3c59834c7921dae332b391b`** (R-87 Commit-B · this-commit banking).
+- `heads_last_sealed.code_repo` history · NEW entry inserted at top: **`200c2c637277f1f12dee342dc68cdf7a7ebed463`** (R-87 Commit-A) · prior entries preserved chronologically.
+- `generated_at_utc`: 2026-09-20T20:50:00Z.
+- `regeneration_reason`: r87-commit-c-fixup-r6-boundary-regen-advancing-state-repo-head-to-b4526572.
+
+Both copies byte-identical:
+- `notes/ORCH_BOOT.md` sha256 `49d19f8b14257b34b7aa252573c5b20f14b2b6a12bd160dee71c4bb0afa509a5`.
+- `/app/frontend/public/audit/ORCH_BOOT.md` sha256 `49d19f8b14257b34b7aa252573c5b20f14b2b6a12bd160dee71c4bb0afa509a5`.
+
+Ratchet block unchanged this Commit-C (already at `passed_floor: 5651` + `baseline_failures_sha256: c0af7a31…` from pre-Commit-A regen · same values).
+
+### Files (3 tracked)
+
+1. `notes/ORCH_BOOT.md` (R-6 boundary regen · heads advance).
+2. `tools/r87_commit_c_fixup_orch_boot_regen.py` NEW (deterministic idempotent regen tool).
+3. `STATE/DECISIONS.md` this-append.
+4. `STATE/NEXT.md` this-append (R-87 marker flips ⏳ IN-FLIGHT → ✅ SEALED).
+
+(POD audit mirror `/app/frontend/public/audit/ORCH_BOOT.md` synced byte-identically · not a tracked STATE-repo path.)
+
+### FE-FIX-READY (owner dispatches specialist verbatim on this spec)
+
+Path: `notes/FE_FIX_READY_R87_blocked_vocabulary_correction.md` sha256 `44f2824fcf2109fca5d0716cf5df349f5131504addb7812e605acba9658afb42` (also byte-identically mirrored to `/app/frontend/public/audit/FE_FIX_READY_R87_blocked_vocabulary_correction.md`). Scope: 3 FE surfaces at `/app/frontend/src/` — StatusBadge.jsx + lifecycleStrings.js + RequestLifecycle.jsx. Byte-precise before/after. 10 acceptance criteria. Backend authority binding via `services/dap_lifecycle/blocked_vocabulary.py`.
+
+### Sprint queue post-R-87
+
+1. **R-86 CP-APP-JS-UNIFY-SCHEDULE-AND-DRIFT-ANNOTATE** ✅ SEALED at `e40047f4`.
+2. **R-87 CP-BLOCKED-VOCABULARY-CORRECTION** ✅ **SEALED at this-commit.**
+3. **R-88+ CP-CONTENT-REGISTRY-WAVE** (Ruling 4 · CON-1..31 · 7-category grep-negative bans + R-32 surface-list binding on Generated-class) — **opens next.**
+4. **G5-v5 SFP-1..7 first slice** — unblocked · slotted behind R-88+.
+5. **R-91 · CP-APP-JS-UNIFY** — closure wave for the 3 pod_shell mirror-drift baseline entries.
+
+### Stop-conditions
+
+- Stop-conditions #1/#2/#3 NOT triggered.
+- SO §6.4 pre-ruling NOT triggered.
+- MEM-R-053 CROWN BAN NOT triggered.
+
+### Autopilot next
+
+**R-88+ CP-CONTENT-REGISTRY-WAVE opens this-turn** — Ruling 4 execution · CON-1..31 invariants against the ratified v5 SRR rows · full 7-category grep-negative ban set (no improvised copy · no numbers from generated prose · no engagement signals in ranking · no softening of unsupported claims · templated text never stored · no generated text stored · no unsupported claims) · R-32 surface list (chat answers · recommendation bodies · notification bodies — nothing else) binding on any Generated-class invariant.
+
+### Standing bounds unchanged
+
+zero push · terminal `pytest` only · no `testing_agent` · additive-only §3.8 · three-repo discipline · ratchet monotonic-up (now **5651** · never rebaselined silently).
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
