@@ -20256,3 +20256,95 @@ zero push · terminal pytest only · no testing_agent · additive-only §3.8 · 
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
+---
+
+## CP-LIFECYCLE-STRINGS-BYTE-VERIFY + CP-G5-V4-PREP-INVENTORY · 2026-09-20T~18:40Z · state master · notes-only banking (per owner autopilot directive · post-R-85 seal)
+
+State-only banking commit — no code changes. Two receipts landed at `phase0/spec_hunt_receipts/`:
+
+### CP-LIFECYCLE-STRINGS-BYTE-VERIFY — response to owner cross-check request
+
+**Owner directive verbatim (this-session · post-R-85 seal):**
+
+> "FE conformance pass has LANDED — specialist local commit `f090e8305` on /app/ main [...] NEW CROSS-CHECK ITEM (report-only unless mismatch): at your next clean boundary, byte-match verify lifecycleStrings.js against journey v2 §11 source bytes. Two specific suspects I flagged from the report: 1. party_halted what-next [...] verify against L392-399. 2. Stop confirm apostrophe: specialist used U+2019 ('What\u2019s') — verify the journey doc's actual byte at that position (ASCII 0x27 vs U+2019). If any string mismatches: report the exact expected bytes and I will dispatch the specialist for a one-line fix pass (your frontend write-ban stands)."
+
+**Result: 3 MISMATCHES CONFIRMED · 16 MATCH · owner Suspect 1 CLEARED · owner Suspect 2 CONFIRMED + 2 additional apostrophe swaps discovered.** Full byte-verify receipt at `phase0/spec_hunt_receipts/20260920T1835Z_lifecycle_strings_byte_verify.md`.
+
+**Owner Suspect 1 (party_halted what-next):** CLEARED. Specialist's `"To try again, submit a new request."` is byte-exact against journey v2 L397's `party_halted` branch. Journey doc uses the short form (no "it") for `party_halted` and the long form ("submit it as a new request") only for `check`. Specialist correctly distinguished.
+
+**Owner Suspect 2 (Stop confirm apostrophe):** CONFIRMED. Journey v2 L366 has ASCII apostrophe `0x27` (`What's`), specialist wrote U+2019 curly (`What\u2019s`).
+
+**Two additional mismatches discovered during full sweep:**
+
+- `IN_APPROVAL_WAITING_TPL` (line 34): `It\u2019s been waiting` → journey v2 L321 has `It's been waiting` (ASCII 0x27).
+- `BLOCK_KIND_CHECK` (line 68): `wasn\u2019t` + `couldn\u2019t` → journey v2 L390 has `wasn't` + `couldn't` (both ASCII 0x27).
+
+**Total fix scope for specialist:** 4 apostrophe characters across 3 exported constants (1 file · `lifecycleStrings.js`). All are single-character `\u2019` → `'` (or byte-level `e2 80 99` → `27`). No other changes.
+
+**Expected bytes for specialist dispatch** (per owner "report the exact expected bytes"):
+
+1. **`STOP_CONFIRM`** — journey v2 L366 verbatim (utf-8 hex): `53 74 6f 70 20 74 68 69 73 20 72 65 71 75 65 73 74 3f 20 57 68 61 74 27 73 20 72 75 6e 20 73 6f 20 66 61 72 20 77 69 6c 6c 20 73 74 69 6c 6c 20 62 65 20 62 69 6c 6c 65 64 3b 20 6e 6f 74 68 69 6e 67 20 66 75 72 74 68 65 72 20 77 69 6c 6c 20 65 78 65 63 75 74 65 2e`
+
+2. **`IN_APPROVAL_WAITING_TPL` (fixed-prose fragment)** — journey v2 L321 verbatim of the "It's" span: `49 74 27 73` (ASCII apostrophe at byte-index 25 of the fragment).
+
+3. **`BLOCK_KIND_CHECK`** — journey v2 L390 verbatim (utf-8 hex): `54 68 69 73 20 62 6c 6f 63 6b 20 77 61 73 6e 27 74 20 61 62 6f 75 74 20 79 6f 75 72 20 72 65 71 75 65 73 74 2e 20 41 20 63 68 65 63 6b 20 74 68 65 20 70 6c 61 74 66 6f 72 6d 20 68 61 73 20 74 6f 20 72 75 6e 20 63 6f 75 6c 64 6e 27 74 20 63 6f 6d 70 6c 65 74 65 2e`
+
+**Corollary (report-only · not scope):** The 3 mismatches suggest journey v2 markdown source uses ASCII 0x27 EVERYWHERE for possessive/contraction apostrophes in fixed strings. Specialist may have similar `\u2019` defects in `RequestLifecycle.jsx` inline literals (mentioned in specialist report as also containing lifecycle strings but out-of-scope for this specific verify · owner may want broader sweep including that file).
+
+**Disposition:**
+- This-desk frontend write-ban STANDS (per owner verbatim "your frontend write-ban stands"). No `/app/frontend/**` edit from this desk (except `/app/frontend/public/audit/`).
+- Owner dispatches specialist for one-line fix pass at their convenience.
+- Byte-verify half of this cross-check item stays PARTIALLY-OPEN until specialist fix lands (close via follow-on state-only banking).
+
+### CP-G5-V4-PREP-INVENTORY — read-only inventory of v4 vs v3 registry
+
+**Owner directive verbatim (this-session · post-R-85 seal):**
+
+> "Otherwise: continue holding on the four owner-pending items (App.js mirror direction, FORK-BLK-KINDS, R-32/Content Registry, G5-v4 ratification). If autopilot has clean non-held work (e.g., G5 prep that doesn't commit against v4, or open M13+ card items), proceed per SO §6; if everything remaining is owner-held, stand by and say so."
+
+**Scope: read-only structural inventory of v3→v4 delta.** Full receipt at `phase0/spec_hunt_receipts/20260920T1840Z_g5_v4_prep_inventory.md`.
+
+- **v3** `Master_Requirements_Registry_v3.xlsx` (custody `20260920T1300Z/`) · 78732 bytes · sha256 `79d4456224392ac6e936739ca80e8ba39d782b8d6af9d7bc2245d2a798c94a51` (matches R-81 seal narrative anchor).
+- **v4** `Master_Requirements_Registry_v4.xlsx` (custody `20260920T1600Z/`) · 83411 bytes · sha256 `72160287dcc4bddc5b921ab391d020bfda0f19e48dbffd122b70f45b6fead588`.
+- **Delta shape: PURE-ADDITIVE**. 31 net-new rule IDs. 0 removed. 0 edited (byte-identical statements for all 433 v3-shared rules).
+- **All 31 net-new rules are `CON-1` through `CON-31`** (Content Registry doctrine). Zero net-new outside the `CON-` prefix.
+- Build Status (44), Objectives (14), Legend (7) all data-row-unchanged.
+- System Rules Registry: 564 → 595 rows (+31 in exactly one prefix range).
+
+**Cross-corroboration:**
+- **CP-CONTENT-REGISTRY-INGEST-DROP** `6d910bbe` (2026-09-20T~16:00Z) ingested the Content Registry doctrine bundle alongside journey v2 in the same drop `20260920T1600Z`. This inventory confirms that ingestion produced 31 CON-* rules landing in v4's registry.
+- **STILL HELD** at R-83/R-84/R-85 seals: "G5 against 595-row v4 ratification". This inventory corroborates the 595-row figure exactly (v4 `System Rules Registry` has 595 data rows) and identifies the 31 delta rows byte-precisely.
+- **R-32 anchor**: CON-7 references `R-32` verbatim; CON-28 references `R-35` verbatim. These are cross-references to a paired ruling register (not in the System Rules Registry sheet · a separate v4 register would carry R-32/R-35 statements). Owner-attention item for the future G5-v4 wave.
+
+**Prep-only disposition per owner ("does not commit against v4"):**
+
+This receipt records the structural delta as a factual inventory. It does NOT:
+- Ratify v4 as authority (v3 remains ratified; owner ratification of v4 still HELD).
+- Extract CON-* rule statements to an atomic-rules markdown (that is the G5-v4 wave's Commit-A work · deferred to owner ratification).
+- Author any invariant test against v4 (that is the G5-v4 wave's Commit-A work · deferred).
+- Edit any sealed module or test file.
+- Bump ratchet (unchanged at 5640).
+
+Once owner ratifies v4 authority, the G5-v4 wave's Commit-A can proceed with atomic-rule extraction + paired grep-negative invariants + property tests per CON-N with delta approximately +31 tests (or higher if any CON-N needs multiple invariants). Estimated ratchet trajectory: 5640 → 5671+ at G5-v4 Commit-A close.
+
+### Files (3 tracked)
+
+1. `phase0/spec_hunt_receipts/20260920T1835Z_lifecycle_strings_byte_verify.md` NEW (byte-verify receipt).
+2. `phase0/spec_hunt_receipts/20260920T1840Z_g5_v4_prep_inventory.md` NEW (v3→v4 inventory receipt).
+3. `STATE/DECISIONS.md` this-append + `STATE/NEXT.md` twin marker append.
+
+Ratchet unchanged 5640. Zero code change. Zero test change. Zero baseline change. Not a §3.3 3-Commit Seal — notes-only state-master banking pattern (identical shape to `CP-ENT-43-BYTE-VERIFY-CLOSURE` `d0a2ea9b` precedent).
+
+### Standing bounds unchanged
+
+zero push · terminal `pytest` only · no `testing_agent` · additive-only §3.8 · three-repo discipline · ratchet monotonic-up (unchanged at 5640 · never rebaselined silently). Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered · MEM-R-053 CROWN BAN NOT triggered.
+
+### Autopilot next
+
+1. Await owner specialist-fix dispatch for the 3 apostrophe mismatches (this-desk hands-off frontend write-ban stands).
+2. Await owner ruling on the 4 held items: App.js mirror direction · FORK-BLK-KINDS · R-32/Content Registry wave · G5-v4 ratification.
+3. Await owner ruling on FORK-BLK-EXACTLY-3-SEALED-TEST cosmetic docstring question (Reading α/β/γ · this-desk recommendation γ).
+4. All non-held prep-eligible items now exhausted for this boundary. **Standing by.**
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+

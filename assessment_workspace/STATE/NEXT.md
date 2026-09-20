@@ -4141,3 +4141,53 @@ zero push · terminal pytest only · no testing_agent · additive-only §3.8 · 
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
+---
+
+## CP-LIFECYCLE-STRINGS-BYTE-VERIFY + CP-G5-V4-PREP-INVENTORY · 2026-09-20T~18:40Z · state master · notes-only banking (per owner autopilot directive · post-R-85 seal)
+
+State-only banking commit — no code changes. Two receipts at `phase0/spec_hunt_receipts/`.
+
+### CP-LIFECYCLE-STRINGS-BYTE-VERIFY
+
+Response to owner cross-check request against specialist commit `f090e8305` (lifecycleStrings.js). **3 MISMATCHES CONFIRMED · 16 MATCH · Suspect 1 CLEARED · Suspect 2 CONFIRMED + 2 additional apostrophe swaps discovered.**
+
+- Owner **Suspect 1** (party_halted what-next missing "it"): CLEARED — specialist's `"To try again, submit a new request."` byte-exact against journey v2 L397's party_halted branch.
+- Owner **Suspect 2** (Stop confirm U+2019 vs ASCII 0x27): CONFIRMED.
+- Additional discovered: `IN_APPROVAL_WAITING_TPL` line 34 (`It\u2019s` should be ASCII `It's`) + `BLOCK_KIND_CHECK` line 68 (`wasn\u2019t`/`couldn\u2019t` should be ASCII `wasn't`/`couldn't`).
+
+**Total fix scope for specialist:** 4 apostrophe characters across 3 constants (single file · `lifecycleStrings.js`). All `\u2019` → `'` (byte `e2 80 99` → `27`). Exact expected bytes reported in DECISIONS.md banking above.
+
+**This-desk frontend write-ban stands** — specialist dispatched by owner for one-line fix pass. Byte-verify cross-check item PARTIALLY-OPEN until specialist fix lands.
+
+### CP-G5-V4-PREP-INVENTORY
+
+Read-only structural inventory of Master Requirements Registry v3→v4 delta. **Does NOT commit against v4 as authority (owner ratification HELD).**
+
+- **v3 sha256** `79d44562...` (78732 bytes · 4 sheets · 629 data rows · System Rules Registry 564 rows)
+- **v4 sha256** `72160287...` (83411 bytes · 4 sheets · 660 data rows · System Rules Registry 595 rows)
+- **Delta: PURE-ADDITIVE** · 31 net-new · 0 removed · 0 edited (byte-identical statements for all 433 v3-shared rules)
+- **All 31 net-new rules are `CON-1` through `CON-31`** (Content Registry doctrine · zero net-new outside `CON-` prefix)
+- CON-7 references R-32 verbatim · CON-28 references R-35 verbatim (cross-references to paired ruling register)
+
+**Prep-only disposition:** Does NOT ratify v4, does NOT extract atomic rules, does NOT author invariants. Just structural fact-record. Once owner ratifies v4, G5-v4 wave Commit-A trajectory: atomic-rule extraction + paired invariants · estimated +31 tests · ratchet 5640 → ~5671.
+
+### Files
+
+1. `phase0/spec_hunt_receipts/20260920T1835Z_lifecycle_strings_byte_verify.md` NEW.
+2. `phase0/spec_hunt_receipts/20260920T1840Z_g5_v4_prep_inventory.md` NEW.
+3. `STATE/DECISIONS.md` + `STATE/NEXT.md` twin banking.
+
+**Not a §3.3 3-Commit Seal** — notes-only state-master banking (identical shape to `CP-ENT-43-BYTE-VERIFY-CLOSURE` `d0a2ea9b` precedent). Ratchet unchanged 5640.
+
+### Autopilot next · all non-held prep exhausted · STANDING BY
+
+1. Await owner specialist-fix dispatch for the 3 apostrophe mismatches.
+2. Await owner rulings on 4 held items: App.js mirror direction · FORK-BLK-KINDS · R-32/Content Registry wave · G5-v4 ratification.
+3. Await owner ruling on FORK-BLK-EXACTLY-3-SEALED-TEST cosmetic docstring question (Reading α/β/γ · this-desk recommendation γ).
+
+### Standing bounds unchanged
+
+zero push · terminal `pytest` only · no `testing_agent` · additive-only §3.8 · three-repo discipline · ratchet monotonic-up (unchanged at **5640** · never rebaselined silently).
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
