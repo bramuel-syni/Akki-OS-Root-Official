@@ -4572,3 +4572,79 @@ Plus untracked filesystem addition (empty custody dir · git doesn't track empty
 zero push · terminal `pytest` only · no `testing_agent` · additive-only §3.8 · three-repo discipline · ratchet monotonic-up (**5651**).
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+---
+
+## 2026-09-20T22:22:00Z · R-88+ first-slice SEALED marker
+
+**R-88+ first slice CP-CONTENT-REGISTRY-WAVE (CON-1..CON-11) + CP10 harness scheduled-closure annotation guard + owner A-extended umbrella (2 v8 cascade artifacts) + total-coverage assertion ✅ SEALED at `db90089d` on `programme/track-a` · 🚩 OWNER-RATIFICATION-PENDING.**
+
+Two stop-conditions triggered this-wave and both resolved via explicit owner rulings before proceeding:
+- Stop #1 (2026-09-20T~21:48Z) — CP10 harness subject retired (V8 substitution engine removed at `dc48d5313`) → owner D-ruling verbatim banked at STATE/DECISIONS.md this cycle.
+- Stop #2 (2026-09-20T~22:00Z) — 2 additional artifacts of the same divergence surfaced by receipt refresh → owner A-ruling verbatim banked at STATE/DECISIONS.md this cycle.
+
+### Ratchet at this banking
+
+**5668 pass / 5 fail / 1 skip** · monotonic-up from 5651 · +17 measured (11 CON-1..11 + 6 annotation-guard + 2 total-coverage − 2 v8 pass-to-fail flip · both flipped v8 tests annotated) · CCS2-aligned across `counts_at_baseline.passed` / `passed_floor` / `ratchet_history[-1].passed`.
+
+### Double-sweep byte-identity
+
+stripped-sha256 `49738669457bf56a10ff8c1a860d835d4d7220946fbdca68e872d3f7bae19f8c` identical across:
+- `phase0/drill_receipts/20260920T220939Z_r88_first_slice_BASELINE_GUARD1_double_green_run1.log` (182.03s)
+- `phase0/drill_receipts/20260920T221421Z_r88_first_slice_BASELINE_GUARD1_double_green_run2.log` (181.39s)
+
+### Sprint queue post-this-banking
+
+1. R-86 CP-APP-JS-UNIFY-SCHEDULE-AND-DRIFT-ANNOTATE ✅ SEALED at `e40047f4`.
+2. R-87 CP-BLOCKED-VOCABULARY-CORRECTION ✅ SEALED at `9823a520` + FE half CLOSED at `b9b9bafd`.
+3. **R-88 first slice ✅ SEALED at `db90089d` (this banking) · 🚩 OWNER-RATIFICATION-PENDING.**
+4. R-89 second slice (CON-12..CON-21) — queued.
+5. R-90 third slice (CON-22..CON-31 + remaining grep-neg-bans) — queued.
+6. G5-v5 SFP-1..7 first slice — unblocked · slotted behind R-90.
+7. R-91 CP-APP-JS-UNIFY — closure wave (now retires FIVE baseline entries + restores CP10 harness receipt to non-vacuous).
+
+### Autopilot next
+
+**Commit-C fixup on master** — advances state_head to Commit-B SHA + heads_last_sealed R-6 boundary regen + R-88+ first-slice marker flips ✅ SEALED. Then R-88+ remaining slices open at owner's next go.
+
+### Standing bounds unchanged
+
+zero push · terminal `pytest` only · no `testing_agent` · additive-only §3.8 · three-repo discipline · ratchet monotonic-up (**5668**).
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+---
+
+## 2026-09-20T22:30:00Z · R-88+ first slice Commit-C fixup
+
+**Advances `heads_last_sealed.state_repo.head` in `notes/ORCH_BOOT.md` to R-88+ Commit-B SHA `79d5d38dd5257abb94d1ea8006fd734252e09758` (short `79d5d38d`) and inserts fresh `code_repo` history entry for R-88+ Commit-A SHA `db90089d28bd3b4659138150e5b1049f5616cf36` (short `db90089d`).**
+
+**R-88+ first slice ⏳ IN-FLIGHT → ✅ SEALED at this fixup (R-6 boundary regen advances state_head banked in ORCH_BOOT.md + DECISIONS.md + NEXT.md · POD audit mirror byte-identically synced at `/app/frontend/public/audit/ORCH_BOOT.md`).**
+
+**🚩 OWNER-RATIFICATION-PENDING status carries forward from Commit-B seal report** — both stop-conditions (#1 harness subject retired · #2 cascade 2 v8 artifacts) were resolved via explicit owner rulings (D-ruling 2026-09-20T~21:55Z · A-ruling 2026-09-20T~22:05Z) applied together within one autopilot resume-cycle. Owner ratifies or overrides at next reply; annotation shape keeps the unwind mechanical either way.
+
+### 3-Commit Seal complete
+
+| Position | Repo | Branch | SHA | Timestamp |
+|---|---|---|---|---|
+| **Commit-A** | Extraction-Akki (CODE) | `programme/track-a` | `db90089d28bd3b4659138150e5b1049f5616cf36` | 2026-09-20T22:21:34Z |
+| **Commit-B** | assessment_workspace (STATE) | `master` | `79d5d38dd5257abb94d1ea8006fd734252e09758` | 2026-09-20T22:25:59Z |
+| **Commit-C fixup** | assessment_workspace (STATE) | `master` | (this-append) | 2026-09-20T22:30:00Z |
+
+### Files at Commit-C fixup
+
+- `tools/r88_commit_c_fixup_orch_boot_regen.py` (NEW · mirrors `tools/r87_commit_c_fixup_orch_boot_regen.py` precedent exactly).
+- `notes/ORCH_BOOT.md` (R-6 boundary regen: state_repo.head advanced to `79d5d38d` + new code_repo history entry at top for `db90089d` + generated_at_utc + regeneration_reason updated).
+- `/app/frontend/public/audit/ORCH_BOOT.md` (POD audit mirror byte-identically synced).
+- `STATE/DECISIONS.md` (this-append banking state_head).
+- `STATE/NEXT.md` (this-append flipping R-88+ first-slice marker to explicit SEALED-at-Commit-C).
+
+### Next
+
+R-89 second slice (CON-12..CON-21) opens at owner's next go per already-scheduled sequence.
+
+### Standing bounds unchanged
+
+zero push · zero remote configured · terminal `pytest` only · no `testing_agent` · additive-only §3.8 · three-repo discipline · ratchet monotonic-up **5668**.
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

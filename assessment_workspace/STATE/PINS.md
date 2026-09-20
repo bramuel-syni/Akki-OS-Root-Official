@@ -150,7 +150,7 @@ Strategy work-in-progress (to be created):
 - **checkpoint_14d_utc:** `2026-08-28T00:00:00Z`
 - **hardening_status:** `attested`
 - **acceptance_status:** `green`
-- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260920T215823Z.json`
+- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260920T221451Z.json`
 <!-- CONNECT-GPU-PINS -->
 
 
@@ -358,3 +358,25 @@ Owner Order 2026-08-25 · "W4 go" (verbatim in DECISIONS.md). Executed tests-fir
 - Append-only ledger writer (§B5.4).
 - Honesty constraint held: no fake LLM responses; no canned reasoning; dormant-state sentence live.
 <!-- W4-THINKLAB-2026-08-25 END -->
+
+<!-- R-88-FIRST-SLICE-PINS-2026-09-20 -->
+## R-88+ first slice · CP-CONTENT-REGISTRY-WAVE (CON-1..CON-11) + CP10 harness scheduled-closure annotation umbrella · **SEALED 2026-09-20 · 🚩 OWNER-RATIFICATION-PENDING**
+
+- **CODE branch:** `programme/track-a` in `/app/assessment_workspace/repos/Extraction-Akki`
+- **CODE head (Commit-A):** `db90089d28bd3b4659138150e5b1049f5616cf36`
+- **STATE branch:** `master` in `/app/assessment_workspace`
+- **STATE head (Commit-B):** pending this-banking
+- **RATCHET at this seal:** **5668 pass / 5 fail / 1 skip · floor 5668 · monotonic-up from 5651** (+17 measured · CCS2-aligned)
+- **baseline_failures.json sha256 (post-seal):** `854e9344895e486f3d0e853e7fd4ed1314f10fec4238be0b72de691aa5ff178e`
+- **notes/ORCH_BOOT.md sha256 (post-regen · byte-identical with POD audit mirror):** `e9d403aa9db3dcd99651cfa3844e89dd4ca502b289373d172ed42ac86bd22104`
+- **STATE/OBJECTIVES/CP_APP_JS_UNIFY.md sha256 (post-additive-extension):** hash-pin frontmatter `card_sha256: 667f744606020f205aac2d292e61fb5945ac0443430c5c7522473675fb929b61` (SO §6.2 hash-pin discipline verified)
+- **Double-sweep byte-identical stripped-sha256:** `49738669457bf56a10ff8c1a860d835d4d7220946fbdca68e872d3f7bae19f8c`
+- **Failed test set at seal (5 all annotated · covered by exactly one annotation field under total-coverage guard):**
+  1. `tests/invariants/test_ship_manifest_dod.py::test_runtime_frontend_app_matches_repo_pod_shell` (R-86 annotated · `known_runtime_drift_annotations`)
+  2. `tests/invariants/test_wave_g_pod_shell_frontend_mirror.py::test_app_frontend_App_js_mirrors_pod_shell_App_js` (R-86 annotated)
+  3. `tests/invariants/test_wave_g_pod_shell_frontend_mirror.py::test_app_frontend_pages_dir_mirrors_pod_shell_pages_dir` (R-86 annotated)
+  4. `tests/invariants/test_v8_substitution_rules_bind_to_rendered_dom.py::test_every_v8_substitution_rule_binds_to_harness_rendered_dom` (R-88+ A-extension annotated · `known_r91_closure_scheduled_receipt_drift_annotations`)
+  5. `tests/invariants/test_v8_substitution_rules_bind_to_rendered_dom.py::test_slot1_registry_aside_marker_present` (R-88+ A-extension annotated)
+- **Culpable commit for artifacts 4-6 of the divergence:** `dc48d53131be2a36b36aabab83048cbbb779cfa2` on `main` at 2026-09-20T14:21:07Z ("feat(frontend): DAP Portal full build + OS Prototype v2 React surfaces")
+- **Closure wave for all 5 baseline entries + CP10 harness receipt vacuous-pass restoration:** R-91 CP-APP-JS-UNIFY (scheduled)
+<!-- R-88-FIRST-SLICE-PINS-2026-09-20 END -->

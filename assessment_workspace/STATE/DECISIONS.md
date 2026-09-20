@@ -21419,3 +21419,247 @@ zero push · zero remote configured · terminal `pytest` only · no `testing_age
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
+
+---
+
+## 2026-09-20T22:22:00Z · R-88+ first slice · CP-CONTENT-REGISTRY-WAVE (CON-1..CON-11) + CP10 harness scheduled-closure annotation guard + owner A-extended umbrella (2 v8 cascade artifacts) + total-coverage assertion · **✅ SEALED at `db90089d` (Commit-A on programme/track-a)**
+
+**Owner authority chain (three rulings this session · one wave):**
+- Owner Ruling 4 (2026-09-20T~19:00Z · banked at prior R-86/R-87 seals):
+  "CP-CONTENT-REGISTRY-WAVE (CON-1..CON-31 · 7-category grep-negative bans + R-32 surface-list binding on Generated-class)" — the wave scope.
+- Owner Ruling 5 (2026-09-20T~19:00Z · banked at `1250c39a`):
+  "Master Requirements Registry v5 System Rules Registry sheet is authority"
+  — this slice implements SRR rows 566-576 (CON-1..CON-11).
+- **Owner D-ruling this session (2026-09-20T~21:55Z · verbatim):**
+  > THE SUBJECT IS NOT RETIRED — IT IS DISPLACED BY AN ALREADY-RULED
+  > DIVERGENCE WITH A SCHEDULED CLOSURE. Your root cause (`dc48d5313`
+  > App.js rebuild removing the V8 substitution engine/iframe host) is
+  > the SAME fact pattern the owner ruled at Ruling 1: coexistence,
+  > documented, with closure trigger CP-APP-JS-UNIFY at slot R-91. The
+  > CP10 harness vacuousness is a fourth artifact of the same divergence
+  > as the 3 mirror-drift baseline entries. Therefore: 1. Do NOT retire
+  > the test (A rejected — the subject returns when R-91 restores/unifies
+  > the V8 shell semantics). Do NOT open an FE wave now (B rejected —
+  > R-91 is already scheduled; opening it early would jump the ruled
+  > sequence). Do NOT accept an unannotated vacuous pass (C rejected —
+  > that is the silent-rebaseline you correctly refused). 2. EXECUTE THE
+  > R-86 ANNOTATION PATTERN on this artifact: annotate the CP10 harness
+  > receipt/invariant as owner-ruled coexistence drift — 8-field-style
+  > payload citing: anchor commit `dc48d5313`, authority = Ruling 1
+  > (option 3 with scheduled closure) + this directive, closure_wave =
+  > CP-APP-JS-UNIFY, closure_wave_slot = R-91, closure_card_path =
+  > STATE/OBJECTIVES/CP_APP_JS_UNIFY.md, expected restoration =
+  > dummies_declared/marked_slots non-zero and per_rule non-empty at
+  > R-91 verification. 3. GUARD AGAINST STEADY-STATE VACUOUSNESS: author
+  > an additive invariant asserting (a) the annotation exists with the
+  > required fields, and (b) the vacuous state (declared=0/marked=0/empty
+  > per_rule) is permitted ONLY while the CP_APP_JS_UNIFY card status is
+  > SCHEDULED/open — so the test goes RED if R-91 seals without restoring
+  > a non-vacuous receipt, or if the annotation is missing. That converts
+  > the vacuous pass from a hole into a tracked obligation. 4. ADD AN
+  > EXIT CRITERION LINE to STATE/OBJECTIVES/CP_APP_JS_UNIFY.md: "CP10
+  > harness receipt returns non-vacuous (dummies_declared > 0,
+  > marked_slots > 0, per_rule non-empty) at the R-91 verification run"
+  > — so the card line exists for the annotation to cite and the closure
+  > is binary. 5. Then RESUME R-88+ first slice: double-green with the
+  > cured ratchet (measured 5662) + this annotation banked, 3-Commit Seal
+  > as usual. Include in the seal report: this ruling flagged for OWNER
+  > RATIFICATION (I am applying Ruling 1's pattern to a fourth artifact
+  > of the same divergence — the owner ratifies or overrides at his next
+  > reply; if he overrides, the annotation shape makes the unwind
+  > mechanical). One historical note for your receipt: the specialist's
+  > original build report claimed the substitution engine was "migrated
+  > into pages/os/OSPrototype.jsx" — your grep shows zero
+  > V8_SUBSTITUTIONS matches in /app/frontend/src, so either the
+  > migration was into the iframe'd static HTML (not the React tree the
+  > harness reads) or the claim was inaccurate. State the discrepancy in
+  > the receipt as found; R-91 resolves it either way. Proceed.
+
+- **Owner A-ruling this session (2026-09-20T~22:05Z · verbatim):**
+  > Ruling: (A) — extend the same annotation umbrella. Your stop was
+  > correct under my earlier drift-precision rule ("any NEW drift entry
+  > beyond the 3 documented is stop-and-report, not a silent baseline
+  > addition") — this reply is the explicit approval that rule required.
+  > Same root cause (`dc48d5313`), same closure (R-91), same reasoning
+  > that covered artifact 4 covers artifacts 5 and 6; refusing to
+  > extrapolate without my word was right, and now you have the word.
+  > Execute exactly your (A): both v8 nodeids into `baseline_failures[]`
+  > AND into `known_r91_closure_scheduled_receipt_drift_annotations` with
+  > the same 8-field shape citing `dc48d5313` + R-91;
+  > `counts_at_baseline.failed` 3→5; ratchet at the MEASURED 5666; no
+  > further card edit (the R-91 exit-criterion line already binds their
+  > return to GREEN). Two guards to include: 1. TOTAL-COVERAGE
+  > ASSERTION (additive, if feasible in this wave without scope creep —
+  > otherwise note it for the next slice): every entry in
+  > `baseline_failures[]` must be covered by exactly one of the two
+  > annotation fields (`known_runtime_drift_annotations` for the 3
+  > mirror entries · `known_r91_closure_scheduled_receipt_drift_annotations`
+  > for the CP10-receipt + 2 v8 entries). That makes "unannotated
+  > baseline entry" structurally RED and closes the class of this
+  > stop-condition permanently. 2. Verify the R-86 Property tests stay
+  > GREEN with the disjoint-field approach and the 3→5 counts change
+  > (Property 4's set-equality reads the mirror set only — confirm it
+  > does not read `counts_at_baseline.failed`). Then: double-green
+  > byte-identical at 5 documented fails / 1 skip, R-88+ first-slice
+  > 3-Commit Seal, and bank BOTH stop-condition rulings (the D-ruling
+  > and this A-extension) as a single OWNER-RATIFICATION-PENDING block
+  > in the seal report — the owner ratifies or overrides both together
+  > at his next reply; the annotation shape keeps the unwind mechanical
+  > either way. Resume.
+
+### 🚩 OWNER-RATIFICATION-PENDING BLOCK
+
+**Flagged for owner ratification** per owner directive verbatim above: the D-ruling and the A-extension were applied together within a single autopilot resume-cycle after two stop-conditions (both stopped correctly per discipline; both received explicit owner ruling before proceeding). If owner overrides either:
+- **D-ruling override**: retire the CP10 annotation + retire the 6 R-88+ annotation-guard tests + retire the card MUST DO #6 / EXIT block / ANCHORs / recomputed card_sha256. Ratchet re-measures downward by −6 to 5662.
+- **A-ruling override**: remove the 2 v8 nodeids from `baseline_failures[]` + remove their annotations + retire the 2 total-coverage tests. Ratchet re-measures by (−2 additional guard tests + +2 v8 pass-back-to-green if roll-back-receipt is also ordered) — net dependent on receipt disposition; annotation shape makes the unwind mechanical.
+- **Both override**: full R-88+ first-slice unwind to CON-1..11 only. Ratchet 5651+11=5662; the two BASELINE_GUARD failures (CP10 stale · KeyError:passed) return; a different closure path is required.
+
+### Implementation summary
+
+**CODE side (programme/track-a HEAD `db90089d` · 6 files · +1245 / -4):**
+
+1. `backend/services/content_registry/__init__.py` — new package marker (SO §2.5 docstring).
+2. `backend/services/content_registry/content_registry_vocabulary.py` — Content Registry Spec v1 §2 + §3 load-bearing `Final[...]` constants:
+   - `FIXED_CLASS`, `TEMPLATED_CLASS`, `GENERATED_CLASS` — content-class tuple.
+   - `FIXED_RENDER_VERBATIM_REQUIRED`, `TEMPLATED_DEPENDENCIES_ONLY`, `TEMPLATED_HONEST_GAP_REQUIRED`, `GENERATED_CEILING_INFERENCE_ADVISORY_NEVER_FACT`.
+   - `R32_GENERATED_SURFACE_WHITELIST` 3-tuple.
+   - `CONTENT_ENTRY_MANDATORY_FIELDS` 7-tuple in order.
+   - `SLOT_ENTRY_MANDATORY_FIELDS` 5-tuple.
+   - `REGISTRY_READ_ONLY_EXCEPT_CEREMONY`, `OBJECTIVE_MANDATORY`, `OBJECTIVE_MUST_BE_ONE_SENTENCE`.
+3. `backend/tests/invariants/test_content_registry_v1_section_2_and_3.py` — 11 property tests CON-1..CON-11.
+4. `backend/tests/invariants/test_r88_cp10_harness_scheduled_closure_drift_annotation.py` — 6 property tests: annotation-present, 8-field-shape, closure_wave/slot verbatim (`CP-APP-JS-UNIFY`/`R-91`), closure_card resolves, closure_card_line verbatim in card, vacuous-only-while-SCHEDULED guard.
+5. `backend/tests/invariants/test_r88_baseline_annotation_total_coverage.py` — 2 property tests: every-baseline-entry-covered-by-at-least-one, no-baseline-entry-in-both.
+6. `backend/tests/invariants/baseline_failures.json` — additive updates:
+   - New top-level field `known_r91_closure_scheduled_receipt_drift_annotations` (3 keys, 8-field shape each, disjoint from R-86's `known_runtime_drift_annotations`).
+   - `baseline_failures[]` extended by 2 v8 nodeids (canonical sorted order).
+   - `counts_at_baseline.failed` 3→5.
+   - `counts_at_baseline.passed` 5651→5668.
+   - `invariants_enforced_when_baseline_guard_1.passed_floor` 5651→5668.
+   - `ratchet_history[-1]` schema-cured (my un-banked malformed append) + updated to +17 delta at 5668.
+   - New sha256 `854e9344895e486f3d0e853e7fd4ed1314f10fec4238be0b72de691aa5ff178e` (was `c0af7a314841e78af4507149539e3f59892ace811bf15a5afce527878b65bbb7`).
+
+**STATE side (master · pre-Commit-A · lands at Commit-B):**
+
+- `STATE/OBJECTIVES/CP_APP_JS_UNIFY.md` — additive extension per D-ruling verbatim ("ADD AN EXIT CRITERION LINE"):
+  - New MUST DO #6 (CP10 harness receipt non-vacuous restoration).
+  - New EXIT block (6 R-88+ node IDs + byte-verbatim closure_card_line).
+  - 4 new ANCHORs.
+  - Updated `ratified_at_utc` and `ratified_by`.
+  - Recomputed `card_sha256`: `667f744606020f205aac2d292e61fb5945ac0443430c5c7522473675fb929b61` (was `800d836d08e0cff31a3a06458142331cb19dd8698ebbf26855923c2a891b1d3c`) · SO §6.2 hash-pin discipline verified.
+  - `milestone_status` unchanged: SCHEDULED (not-open-ended) · slot R-91 · closure trigger for the three pod_shell mirror-drift baseline entries + CP10 harness receipt vacuous-pass restoration.
+- `notes/ORCH_BOOT.md` — ratchet-only regen per M16-W3 corrected order (5651→5668) + byte-identical POD audit-mirror sync at `/app/frontend/public/audit/ORCH_BOOT.md` (both sha256 `e9d403aa9db3dcd99651cfa3844e89dd4ca502b289373d172ed42ac86bd22104`).
+- `tools/r88_pre_commit_a_orch_boot_regen.py` — new (mirrors R-87 precedent exactly).
+- `phase0/spec_hunt_receipts/20260920T214836Z_r88_first_slice_STOP_harness_subject_retired.md` — new (stop #1 finding).
+- `phase0/spec_hunt_receipts/20260920T220000Z_r88_first_slice_STOP2_two_additional_same_divergence_artifacts.md` — new (stop #2 finding).
+- Drill receipts (7 new logs · this-wave RED + GREEN + double-sweep + STOP diagnostic evidence).
+
+### Ratchet math (MEASURED · not set)
+
+- Prior floor at R-87 seal: 5651 pass / 3 fail / 1 skip = 5655.
+- R-88+ additions:
+    - CON-1..CON-11: +11 (all pass GREEN)
+    - R-88+ annotation guard tests: +6 (all pass GREEN)
+    - R-88+ total-coverage assertion tests: +2 (all pass GREEN)
+- V8 divergence side-effect: 2 previously-passing tests flip to fail (both annotated in `known_r91_closure_scheduled_receipt_drift_annotations`).
+- New total: 5651 + 11 + 6 + 2 − 2 = **5668 pass** (measured across double-sweep).
+- New failed: 3 + 2 = 5 (all 5 annotated · covered by exactly one annotation field under total-coverage guard).
+- CCS2-aligned: `counts_at_baseline.passed` = `passed_floor` = `ratchet_history[-1].passed` = 5668.
+
+### RED-first cycle evidence
+
+1. `phase0/drill_receipts/20260920T214119Z_r88_pre_cure_two_reds_reproduction.log` — RED reproduction (both failures right-reason).
+2. `phase0/drill_receipts/20260920T215529Z_r88_first_slice_annotation_guard_RED_pre.log` — RED before annotation banked (5/6 fail right-reason annotation-missing).
+3. `phase0/drill_receipts/20260920T215709Z_r88_first_slice_annotation_GREEN_post.log` — GREEN after annotation + card edit (6/6 pass 0.75s).
+4. `phase0/drill_receipts/20260920T215753Z_r88_first_slice_BASELINE_GUARD1_sweep1.log` — sweep 1 revealed cascade (STOP #2 trigger).
+5. `phase0/drill_receipts/20260920T220939Z_r88_first_slice_BASELINE_GUARD1_double_green_run1.log` — post-A-ruling sweep 1 · 5668 pass · stripped-sha256 `49738669457bf56a10ff8c1a860d835d4d7220946fbdca68e872d3f7bae19f8c`.
+6. `phase0/drill_receipts/20260920T221421Z_r88_first_slice_BASELINE_GUARD1_double_green_run2.log` — post-A-ruling sweep 2 · 5668 pass · **stripped-sha256 IDENTICAL** to sweep 1.
+
+### Historical note (owner-directed as-found finding)
+
+Per D-ruling verbatim: the FE specialist's original build report claimed the substitution engine was "migrated into pages/os/OSPrototype.jsx". In-session verification:
+- `grep -rn "V8_SUBSTITUTIONS" /app/frontend/src/ /app/frontend/public/` → **zero matches**.
+- Harness DIAG at 2026-09-20T21:43:14Z confirms: `hasWindowSubstitutions=false`, `hasApplySubstitutions=false`, `hostFound=false`.
+
+**Conclusion (subject to R-91 wave-close verification)**: either the migration was into the iframe'd static HTML (`/app/frontend/public/v8_prototype.html`) — which the React-tree-traversing harness does not read — or the migration was never actually landed. R-91 resolves it either way; the CP10 restoration MUST DO #6 line accepts both possible resolutions.
+
+### Canon anchors verbatim
+
+- Owner D-ruling this session (2026-09-20T~21:55Z) — full verbatim above.
+- Owner A-ruling this session (2026-09-20T~22:05Z) — full verbatim above.
+- Owner Ruling 1 (R-86 · 2026-09-20T~19:00Z verbatim): "Coexistence with a closure date is discipline; without one it's drift with a ruling attached."
+- Owner Ruling 4 (CP-CONTENT-REGISTRY-WAVE · 2026-09-20T~19:00Z).
+- Owner Ruling 5 (SRR-as-authority · 2026-09-20T~19:00Z).
+- Culpable commit `dc48d53131be2a36b36aabab83048cbbb779cfa2` on `main` at 2026-09-20T14:21:07Z ("feat(frontend): DAP Portal full build + OS Prototype v2 React surfaces").
+- Master Requirements Registry v5 SRR sheet rows 566-576 as authority (Ruling 5).
+- Prior seal chain: CP-BLOCKED-VOCABULARY-CORRECTION `200c2c637/b4526572/9823a520` (R-87 immediately-precedes · establishes `Final[...]`-constants pattern this wave inherits) → CP-APP-JS-UNIFY-SCHEDULE-AND-DRIFT-ANNOTATE `2eca0e58/1525ddd0/e40047f4` (R-86 · schedules R-91 closure + annotation pattern precedent) → CP-PARTY-HALTED-ADDITIVE-SUB-WAVE `11afc4f/0cd4c9b8` (R-85) → CP-REGISTRY-V5-RATIFICATION-AND-COUNT-ERRATUM `1250c39a`.
+- SO §2.5 verbatim-docstring · §3 tests-first · §3.3 3-Commit Seal · §3.8 additive-only · §3.10-α Final[str] closed-vocab · §6.2 objective-card · §6.4 NOTHING-BEYOND · §6.7 seal-report-boundary · M16-W3 corrected order · CCS2 lesson.
+
+### Stop-conditions & guards
+
+- Stop-condition #1 triggered THIS-wave (harness subject retired · vacuous-pass) — RESOLVED via owner D-ruling verbatim above.
+- Stop-condition #2 triggered THIS-wave (cascade discovery · 2 additional artifacts of same divergence) — RESOLVED via owner A-ruling verbatim above.
+- SO §6.4 pre-ruling NOT triggered (all extensions authorised by explicit owner ruling before landing).
+- MEM-R-053 CROWN BAN NOT triggered.
+- Guard #1 (total-coverage assertion) LANDED as `test_r88_baseline_annotation_total_coverage.py` (2 property tests) — the class-of-stop-condition (unannotated baseline addition) is now structurally RED.
+- Guard #2 (R-86 Property tests still GREEN under disjoint-field approach + 3→5 counts change) VERIFIED — R-86 Property 4 set-equality reads the mirror set only (not `counts_at_baseline.failed`), confirmed GREEN in `phase0/drill_receipts/20260920T215709Z_r88_first_slice_annotation_GREEN_post.log`.
+
+### Sprint queue post-this-banking
+
+1. R-86 CP-APP-JS-UNIFY-SCHEDULE-AND-DRIFT-ANNOTATE ✅ SEALED at `e40047f4`.
+2. R-87 CP-BLOCKED-VOCABULARY-CORRECTION ✅ SEALED at `9823a520` + FE half CLOSED at `b9b9bafd`.
+3. **R-88 first slice CP-CONTENT-REGISTRY-WAVE (CON-1..CON-11) + CP10 harness scheduled-closure annotation + owner A-extended umbrella + total-coverage assertion ✅ SEALED at `db90089d` (Commit-A · this banking) 🚩 OWNER-RATIFICATION-PENDING.**
+4. R-89 second slice (CON-12..CON-21) — queued.
+5. R-90 third slice (CON-22..CON-31 + remaining grep-neg-bans) — queued.
+6. G5-v5 SFP-1..7 first slice — unblocked · slotted behind R-90.
+7. R-91 CP-APP-JS-UNIFY — closure wave (now retires FIVE baseline entries: 3 pod_shell mirror-drift + 2 v8 cascade + restores CP10 harness receipt non-vacuous).
+
+**Owner-side sequence (parallel to sprint · does not block):**
+- HF-HOLD closure: owner-driven; E1 mechanical closure when drop lands.
+- R-24 counsel brief: owner-driven; E1 mechanical drop-validation when it lands.
+- R-25 pricing worksheet: future owner-requestable; E1 builds only on explicit request.
+
+### Autopilot next
+
+**Commit-C fixup on master** — advances state_head to Commit-B SHA + heads_last_sealed R-6 boundary regen + R-88+ first-slice marker flips ✅ SEALED. Then R-88+ remaining slices (CON-12..CON-31) open at owner's next go.
+
+### Standing bounds refresh
+
+zero push · zero remote configured · terminal `pytest` only · no `testing_agent` · additive-only §3.8 · three-repo discipline · **ratchet monotonic-up floor 5668** at this banking · Stop-conditions #1/#2 triggered and RESOLVED this-wave · SO §6.4 pre-ruling NOT triggered · MEM-R-053 CROWN BAN NOT triggered · HF-HOLD SEC-2026-09-12-01 remains OPEN pending owner drop + E1 hash-delta closure · R-24 remains UNLISTED pending well-formed drop · R-25 structure fixed by ENT-47 · defaults R-26..R-30 tagged placeholders.
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+---
+
+## 2026-09-20T22:30:00Z · R-88+ first slice Commit-C fixup
+
+**Advances `heads_last_sealed.state_repo.head` in `notes/ORCH_BOOT.md` to R-88+ Commit-B SHA `79d5d38dd5257abb94d1ea8006fd734252e09758` (short `79d5d38d`) and inserts fresh `code_repo` history entry for R-88+ Commit-A SHA `db90089d28bd3b4659138150e5b1049f5616cf36` (short `db90089d`).**
+
+**R-88+ first slice ⏳ IN-FLIGHT → ✅ SEALED at this fixup (R-6 boundary regen advances state_head banked in ORCH_BOOT.md + DECISIONS.md + NEXT.md · POD audit mirror byte-identically synced at `/app/frontend/public/audit/ORCH_BOOT.md`).**
+
+**🚩 OWNER-RATIFICATION-PENDING status carries forward from Commit-B seal report** — both stop-conditions (#1 harness subject retired · #2 cascade 2 v8 artifacts) were resolved via explicit owner rulings (D-ruling 2026-09-20T~21:55Z · A-ruling 2026-09-20T~22:05Z) applied together within one autopilot resume-cycle. Owner ratifies or overrides at next reply; annotation shape keeps the unwind mechanical either way.
+
+### 3-Commit Seal complete
+
+| Position | Repo | Branch | SHA | Timestamp |
+|---|---|---|---|---|
+| **Commit-A** | Extraction-Akki (CODE) | `programme/track-a` | `db90089d28bd3b4659138150e5b1049f5616cf36` | 2026-09-20T22:21:34Z |
+| **Commit-B** | assessment_workspace (STATE) | `master` | `79d5d38dd5257abb94d1ea8006fd734252e09758` | 2026-09-20T22:25:59Z |
+| **Commit-C fixup** | assessment_workspace (STATE) | `master` | (this-append) | 2026-09-20T22:30:00Z |
+
+### Files at Commit-C fixup
+
+- `tools/r88_commit_c_fixup_orch_boot_regen.py` (NEW · mirrors `tools/r87_commit_c_fixup_orch_boot_regen.py` precedent exactly).
+- `notes/ORCH_BOOT.md` (R-6 boundary regen: state_repo.head advanced to `79d5d38d` + new code_repo history entry at top for `db90089d` + generated_at_utc + regeneration_reason updated).
+- `/app/frontend/public/audit/ORCH_BOOT.md` (POD audit mirror byte-identically synced).
+- `STATE/DECISIONS.md` (this-append banking state_head).
+- `STATE/NEXT.md` (this-append flipping R-88+ first-slice marker to explicit SEALED-at-Commit-C).
+
+### Next
+
+R-89 second slice (CON-12..CON-21) opens at owner's next go per already-scheduled sequence.
+
+### Standing bounds unchanged
+
+zero push · zero remote configured · terminal `pytest` only · no `testing_agent` · additive-only §3.8 · three-repo discipline · ratchet monotonic-up **5668**.
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
