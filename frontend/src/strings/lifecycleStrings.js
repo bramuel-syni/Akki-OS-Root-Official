@@ -14,7 +14,7 @@
 // "Stop this request? What's run so far will still be billed; nothing
 //  further will execute."
 export const STOP_CONFIRM =
-  "Stop this request? What\u2019s run so far will still be billed; nothing further will execute.";
+  "Stop this request? What's run so far will still be billed; nothing further will execute.";
 
 // ── §11 Blocked, kind party_halted  ·  kind line ───────────────────────
 // "You stopped this while it was running."
@@ -31,7 +31,7 @@ export const PARTY_HALTED_WHAT_NEXT =
 //  It's been waiting [N] days."
 // Rendered with interpolation; the two sentences always appear together.
 export const IN_APPROVAL_WAITING_TPL = (dataOwner, windowEndsDate, waitDays) =>
-  `If no one at ${dataOwner} decides by ${windowEndsDate}, the request expires. It\u2019s been waiting ${waitDays} days.`;
+  `If no one at ${dataOwner} decides by ${windowEndsDate}, the request expires. It's been waiting ${waitDays} days.`;
 
 // ── TC-EXP-02  ·  §11 Expired  ·  date line ────────────────────────────
 // "Expired [date]. No decision was made."
@@ -65,7 +65,7 @@ export const BLOCK_KIND_REQUEST =
 
 // kind: check  §11 line 390
 export const BLOCK_KIND_CHECK =
-  "This block wasn\u2019t about your request. A check the platform has to run couldn\u2019t complete.";
+  "This block wasn't about your request. A check the platform has to run couldn't complete.";
 
 // kind: estate  §11 line 391
 export const BLOCK_KIND_ESTATE =

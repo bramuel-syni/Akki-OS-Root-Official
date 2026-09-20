@@ -154,7 +154,7 @@ const SAMPLE_REQUESTS = [
     status: "Blocked", mode: "processed", agreement: "Agreement MER-002",
     submitted: "submitted 12 Sep 2026", submittedBy: "R. Adeyemi", scope: "Audio",
     blockedAt: "13 Sep 2026, 17:40", blockKind: "request",
-    blockReason: "There isn\u2019t enough time-to-close data recorded for last quarter to answer this by branch.",
+    blockReason: "There isn't enough time-to-close data recorded for last quarter to answer this by branch.",
     blockRef: "PRC-2026-0102-B1",
     dataOwner: "Digicow",
   },
