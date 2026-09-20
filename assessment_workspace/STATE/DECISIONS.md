@@ -19664,3 +19664,187 @@ zero push · terminal pytest only · no testing_agent · additive-only §3.8 · 
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
+---
+
+## R-83 · 2026-09-20T~16:40Z · CP-MEMORY-LAYER-COMPLETION-RESIDUAL · Commit-A `b205a0e` on `programme/track-a` · Commit-B this-commit on `master` · WAVE R-83 IN-FLIGHT
+
+**Owner directive verbatim (2026-09-20T post-R-82 seal):**
+
+> "R-82 seal acknowledged — clean report, ratchet discipline and the party_halted/registry-v4 findings all noted. Directives for the next stretch. Respond in English only.
+>
+> 1. PROCEED NOW: Memory-layer completion residual (sprint item 3). Autopilot, own seal(s), standard bounds.
+>
+> 2. FE COORDINATION: I am dispatching the web specialist right now for exactly one item — registering the 4 ENT-43 §14 badge strings byte-exact (literal U+00B7 middle dots) in /app/frontend/src/strings/entitlementStrings.js. Nothing else in their scope this pass. When their local commit lands (should be soon), execute your FE coordination seal at the next clean boundary: (a) byte-match verify the 4 badges + the 3 earlier ENT fixed strings against the spec docx, (b) pod_shell mirror re-sync in the repo (your write scope) so the 3 documented mirror-drift baseline entries can shrink back out per the shrink rules — baseline may only shrink here, never grow, (c) close the OPEN CROSS-CHECK ITEM.
+>
+> 3. STILL HELD pending owner ruling — do not open: Content Registry wave (R-32 + sequencing ratification), G5 against 595-row v4 (ratification pending), FORK-CON-INGEST-1/2/3 (Waited-N-days vs Q6, no-Retry-ships vs Q1/Q7 supersedence, 5-Blocked-kinds + billed copy vs DAP-35). Keep them queued as banked.
+>
+> 4. Correction accepted on the registry arithmetic — v4 = 595 exact, DAP-37/38 were already v3 rows. Good catch; my 597 premise was wrong.
+>
+> Report the memory-layer seal(s) and the FE coordination seal with the usual evidence. Everything else unchanged."
+
+### Delta measured
+
+**+6 measured monotonic-up (5621 → 5627 per CCS2 lesson both fields bumped together).** New baseline_failures.json sha256: `2e3c1b7ea77beacb1972e0f718a1cf713abd195523c30fb2dd4ed81d02692de9` (was `b8cfac8ab77fea922d350d7533ae9af3774bbb192825a7f5a60ab3b647d83a74`).
+
+### Files landing at Commit-A `b205a0e` (code `programme/track-a`)
+
+1. **NEW** `backend/tests/invariants/test_memory_compaction_v1_residual_invariants.py` (~570 lines · 6 residual property invariants closing canon-anchored atomic rules previously structurally satisfied at CP-MEMORY-COMPACTION-V1-BUILD-WAVE 2026-09-19T~20:02Z chain `b1d11836/90b61e40/09f2f317` but not yet asserted at the invariant layer):
+    - `test_mem_r_017_reload_carries_artefact_class_and_loss_statement_by_class_taxonomy` — **MEM-R-017** Article 14(c) surface per Spec §4 · asserts `artefact_ref.class_ ∈ {inference, utterance}` NEVER `fact` per MEM-2 verbatim + `ledger_row.loss_statement` enumerates exact 8-class taxonomy per MEM-R-014 verbatim `{fact, inference, utterance, receipt_ref, refusal, approval, objective, floor}` · overseer reads this to know what compacted context no longer contains.
+    - `test_mem_r_018_no_class_upgrade_pattern_rejects_fact_class_on_artefact_ref` — **MEM-R-018** structural guarantee via SO §3.10 Option alpha closed-schema · pydantic `Field(pattern=r"^(inference|utterance)$")` on `CompactionArtefactRef.class_` · asserts `ValidationError` on construction with `class_ ∈ {fact, receipt_ref, refusal, approval, objective, floor, raw, ""}` · rejection `loc=("class_",)` deterministic.
+    - `test_mem_r_020_no_extend_retention_or_override_erasure_surface_in_compaction_v1` — **MEM-R-020** D-14 override doctrine (Kenya DPA 2019 s.40 · DAP-38) · grep-negative AST scan of `services/memory/compaction_v1/*.py` for banned identifiers `{extend_retention, lengthen_retention, override_erasure, defer_erasure, postpone_erasure, block_erasure, retention_extension, retention_override}` · lawful erasure MUST NOT be blockable/deferrable by any retention-side code path.
+    - `test_mem_r_027_compact_idempotent_per_key_and_source_version_hash` — **MEM-R-027** C.13.6 idempotency · same `ctx` twice → same `(artefact_hash, source_version_hashes, loss_statement, rule_set_version)` byte-identical · retry-safe compaction.
+    - `test_mem_r_028_append_only_per_lineage_two_ctxs_same_key_produce_distinct_artefacts` — **MEM-R-028** append-only · two different ctxs on same key produce distinct `artefact_hash` + same `lineage_key` · both artefacts remain reload-readable · MEM-R-011 NEVER-overwrites-within-lifetime discipline.
+    - `test_mem_r_029_concurrent_run_scoped_keys_never_merge_across_runs` — **MEM-R-029** MEM-11 key-scoping preservation · two different keys (run_1 vs run_2) each carry own `ctx.key` · own `lineage_key` · `erasure_query` partitions cleanly by provenance (run_A unit query returns run_A artefacts only NEVER run_B).
+2. `backend/tests/invariants/baseline_failures.json` — additive edit: `passed_floor` + `counts_at_baseline.passed` 5621 → 5627 · `ratchet_history` append with CP-MEMORY-LAYER-COMPLETION-RESIDUAL entry.
+
+Total: 581 insertions. Zero implementation module edit. Zero sealed contract edit. Zero sealed writer edit. Zero sibling test file edit.
+
+### AUTHENTIC RED-first cycle
+
+- RED at `phase0/drill_receipts/20260920T1625Z_cp_memory_residual_wave_RED_pre_mem_r_020.log` — controlled MEM-R-020 violation via `services/memory/compaction_v1/_TEMP_mem_r_020_drill_violation.py` `extend_retention` identifier · `test_mem_r_020_no_extend_retention_or_override_erasure_surface_in_compaction_v1` fails right-reason with hits `['services/memory/compaction_v1/_TEMP_mem_r_020_drill_violation.py:13: extend_retention']` · authentic-RED before commit · violation removed.
+- GREEN at `phase0/drill_receipts/20260920T1626Z_cp_memory_residual_wave_GREEN_post.log` — 6/6 pass in 0.68s on clean codebase state.
+
+### Pre-Commit-A double-green byte-identical BASELINE_GUARD=1 sweep
+
+- Run 1: `phase0/drill_receipts/20260920T1635Z_cp_memory_residual_wave_BASELINE_GUARD1_run1.log` · 5627 passed / 3 baseline-fails / 1 skipped / 438 warnings in 179.32s.
+- Run 2: `phase0/drill_receipts/20260920T1638Z_cp_memory_residual_wave_BASELINE_GUARD1_run2.log` · 5627 passed / 3 baseline-fails / 1 skipped / 438 warnings in 179.86s.
+- Stripped-sha256 (timing + specialist-drift `.jsx` file names redacted per Q-unlock reconciliation pattern · stripper regex extended additively to include truncated-form `'file.jsx'...` entries with trailing ellipsis discovered at run1↔run2 diff): `b3d5374dd60e16fa033f04da29d225e37857bce8fb112919253c9b526a224ebf` IDENTICAL. Both 62834 bytes stripped.
+
+Byte-identity confirmed. Owner run-2 drift precision constraint continues to be satisfied — exactly the 3 documented `pod_shell` mirror-drift entries · zero NEW drift.
+
+### MEM-R-020 SURGE TRANSPARENCY
+
+The MEM-R-020 grep-negative test discovered ZERO existing violations on clean pre-drill sweep. Compaction_v1 module tree has no `extend_retention` / `lengthen_retention` / `override_erasure` / `defer_erasure` / `postpone_erasure` / `block_erasure` / `retention_extension` / `retention_override` identifier surfaces — the D-14 override doctrine (Kenya DPA 2019 s.40 + DAP-38) is currently structurally clean · this test is authentic-preventive future-hardening.
+
+### MEMORY LAYER COMPLETION STATUS
+
+Memory-layer wave now COMPLETE at closure:
+- CP-MEMORY-COMPACTION-V1-BUILD-WAVE closed at 2026-09-19T~21:25Z (W4 `09f2f317` "MEMORY LAYER CLOSED").
+- This-wave R-83 lands the residual invariant sweep closing MEM-R-017/018/020/027/028/029 canon-anchored atomic rules previously structurally satisfied.
+- Owner-outstanding rulings preserved unchanged: R-19/R-20 DEFAULT-class pending owner ratification + R-21 user-memory class flag OFF by default no principal data written until ruled + hard bans MEM-R-048..MEM-R-053 grep-negative surface already sealed at W2 `67b5e070`.
+
+### OWNER RULINGS RECEIVED THIS-SESSION-LATER (banked verbatim for R-84/R-85 queue pickup)
+
+Owner delivered mid-wave (2026-09-20T post-R-83-opening) verbatim FORK-CON-INGEST-1/2/3 rulings:
+
+**FORK-CON-INGEST-1 (Waited-N-days vs Q6) — RESOLVED, Q6 scoped narrower.** Owner verbatim:
+
+> "Q6's OMITTED covers exactly one thing — a wait figure shown AFTER a decision was made, measuring how long the owner took to decide (the Sign-off block's 'Waited N days' on the Approved branch, and the never-added Refused equivalent). That stays omitted. The two journey-doc lines are NOT Q6 — BUILD THEM, TC-INA-06 and TC-EXP-02 stand:
+> - In Approval drawer: 'It's been waiting [N] days' — elapsed time on an undecided request, derived from the submission date already in the header. Says nothing about the owner.
+> - Expired drawer: 'Waited [N] days, the full review window' — a constant equal to the window; the status already says nobody decided in time.
+> Owner's test for the invariant, verbatim: 'gated only if a decision exists and the figure measures the owner's speed in making it.' Register that as the Q6 boundary invariant."
+
+Queued for R-84 pickup: builds `TC-INA-06` (In Approval elapsed-time surface) + `TC-EXP-02` (Expired constant-window surface) with Q6-boundary invariant.
+
+**FORK-CON-INGEST-2 (Q1/Q7 supersedence) — CONFIRMED.** Owner verbatim:
+
+> "the journey doc predates both rulings. 'No Retry ships anywhere' and the absence of an Interrupted state are STALE. Build per the rulings as banked this session (already sealed in Q-unlock — no new work, just close the fork with the citation)."
+
+Queued for R-84 pickup: state-only close FORK-CON-INGEST-2 with CP-Q-UNLOCK-SUB-WAVE seal `c0f5e6d5/6fc1a99b/d5b0522f` citation.
+
+**FORK-CON-INGEST-3 (party_halted) — APPROVED as net-new ADDITIVE sub-wave.** Owner verbatim:
+
+> "one new block_kind value, one new blocked_by field, no change to the existing four kinds. Frontend copy spec is the journey doc as dropped: drawer 'You stopped this while it was running.', what-next 'To try again, submit it as a new request.', confirm dialog 'Stop this request? What's run so far will still be billed; nothing further will execute.' (TC-BLK-24), partial compute billed backend-only. RED-first, additive-only, own seal. Slot it wherever autopilot ordering keeps seals clean (memory-layer residual continues as directed — this joins the queue after or between, your call)."
+
+Queued for R-85 pickup: CP-PARTY-HALTED-ADDITIVE-SUB-WAVE (new `party_halted` block_kind value + new `blocked_by` field on `RequestState` + frontend-copy-spec-per-journey-doc + partial-compute-billed-backend-only). **Contract-surface-ready flag will be raised in R-85 seal report to trigger FE-specialist dispatch for extraction-journey conformance pass (five Blocked kinds, drawers, verbatim copy, TC coverage).**
+
+**Note on "four existing kinds":** owner ruling verbatim references "the existing four kinds." Current sealed `BlockedKind(enum.Enum)` at `services/dap_lifecycle/blocked_kinds.py` has 3 members (`request`, `check`, `estate`). The owner's fourth kind reference will be reconciled at R-85 open by this-desk hunt: (a) sealed enum may have gained a 4th member between R-83 opening and R-85 opening; (b) owner may be counting `suspended` as a 4th kind (Q5-sealed at CP-Q-UNLOCK-SUB-WAVE as a distinct lifecycle state, not a BlockedKind member); (c) owner may be counting the pending `party_halted` addition as the fifth to make "five Blocked kinds" total. Banked as a HUNT ITEM at R-85 open. If genuine drift, ruled at R-85 as either fork (add fourth kind first) or reconciliation (owner counts differently). No unilateral resolution.
+
+**STILL HELD (owner verbatim: "do not open"):**
+- R-32 generated-surfaces list + Content Registry wave open (pending owner ruling).
+- G5 against 595-row v4 ratification (pending owner ruling).
+
+### FE COORDINATION QUEUE (owner directive verbatim)
+
+Owner dispatching specialist for exactly one item this pass — registering the 4 ENT-43 §14 badge strings byte-exact (literal U+00B7 middle dots) in `/app/frontend/src/strings/entitlementStrings.js`. When specialist commit lands, this-desk executes FE coordination seal at next clean boundary:
+1. Byte-match verify the 4 badges + 3 earlier ENT fixed strings against the spec docx.
+2. `pod_shell` mirror re-sync in the repo (this-desk write scope) so the 3 documented mirror-drift baseline entries can shrink back out per the shrink rules — **baseline may only shrink here, never grow**.
+3. Close the OPEN CROSS-CHECK ITEM.
+
+Not this-wave (R-83) scope. Awaits specialist commit landing.
+
+### Additive-only per SO §3.8
+
+Sealed contracts NOT edited (`contracts.principal_v1` + `contracts.dap.MeteredEvent` + `services.memory.compaction_v1.*` all consumed via identity import). Sealed writers NOT edited. Sealed test files NOT edited. CP-MEMORY-COMPACTION-V1-BUILD-WAVE seal `b1d11836/90b61e40/09f2f317` (MEMORY LAYER CLOSED at seal) + CP-MEMORY-COMPACTION-V1-W2-HARD-BANS-GREP-NEGATIVE seal `67b5e070/36357003/…` (MEM-R-048..MEM-R-053 · CROWN BAN) + CP-MEMORY-COMPACTION-V1-W3-TCB-REGISTRATION seal `ebebc46f/9092674d/…` (MEM-3 + MEM-7 IN · drafting OUT) + CP-MEMORY-COMPACTION-V1-W4-ONE-CHAIN-INTEGRATION seal `da2642ac/09f2f317/…` (compaction rows on the ONE chain) + CP-ENTITLEMENT-BUILD-WAVE seal `c4bf7094/eff17295/7d1e66a9` (R-82 immediately-precedes this-wave · ratchet 5621 · Phase-2 structural enforcement pattern) all predecessor context preserved.
+
+### Canon anchors verbatim
+
+Memory Compaction Spec v1 (custody docx sha256 `a0ab271c…` byte-verified per CP-M11-WINDOW-4H ingest banking) + `notes/canon_extraction/memory_compaction_v1_requirements.md` (53 atomic rules MEM-R-001..MEM-R-053 extracted at CP-M11-WINDOW-4H ingest · state-repo · sealed 2026-09-18T~11:35Z) + Spec §2 four-lifetime data model + §4 Table 3 (TCB placement · Article 14(c) surface · failure_posture_v1) + §6 LIM-1..LIM-4 non-claims (LIM-3 does-not-create-memory-across-organisations) + §7 R-19/R-20/R-21 DEFAULT-class rulings (unchanged at this-wave · pending owner ratification) + MEM-2 [Doc 4 A2 · A5.5 · C.19 I-2] + MEM-6 [B.4 · DAP-29] + MEM-8 [A5.5] + MEM-9 [DAP-38 · Kenya DPA 2019 s.40] + MEM-11 [C.13.6] + Canon 3 §9.3 + Canon 8 §W11 + Canon 4 §22 rung-1 deterministic + SO §2.5 + §3 + §3.3 + §3.8 + §3.10-α + §4.1 §E + §F + §6.2 + §6.4 + §6.7 + M16-W3 corrected order + CCS2 lesson.
+
+### Stop conditions
+
+Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered · MEM-R-053 CROWN BAN NOT triggered.
+
+### Autopilot next
+
+Commit-C fixup this-turn (state master · banks Commit-B SHA + advances `heads_last_sealed.state_repo.head` + `heads_last_sealed.code_repo.head` narrative-current first-block to this Commit-A `b205a0e` + POD audit mirror sync byte-identical + R-83 marker flip ⏳ IN-FLIGHT → ✅ SEALED). Then per owner rulings queue:
+1. **R-84 CP-FORK-CON-INGEST-1-2-CLOSURE** — builds TC-INA-06 (In Approval elapsed-days derived surface) + TC-EXP-02 (Expired constant-window derived surface) with Q6-boundary invariant ("gated only if a decision exists and the figure measures the owner's speed in making it") · state-only closes FORK-CON-INGEST-2 with Q-unlock `c0f5e6d5/6fc1a99b/d5b0522f` citation.
+2. **R-85 CP-PARTY-HALTED-ADDITIVE-SUB-WAVE** — net-new `party_halted` block_kind + `blocked_by` field on RequestState · frontend-copy-spec-per-journey-doc · TC-BLK-24 partial-compute-billed-backend-only · **contract-surface-ready flag in seal report triggers FE-specialist dispatch** for extraction-journey conformance pass (five Blocked kinds, drawers, verbatim copy, TC coverage).
+3. **FE coordination seal** when specialist commit lands (ENT-43 §14 badge strings byte-verify + pod_shell mirror re-sync · baseline shrink-only).
+4. **Downstream P2 items** (still held pending owner ruling): Content Registry wave (R-32 · sequencing ratification) · G5 continuation against 595-row registry v4 upon owner v4-ratification.
+
+### Standing bounds unchanged
+
+zero push · terminal pytest only · no testing_agent · additive-only §3.8 · §4.1 §E · §4.1 §F sha-pinning · three-repo discipline (code `programme/track-a` + state `master` + POD audit) · ratchet monotonic-up (floor **5627** · never rebaselined silently · +6 this-wave).
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+---
+
+## R-83 SEALED · 2026-09-20T~16:45Z · CP-MEMORY-LAYER-COMPLETION-RESIDUAL FULLY SEALED · Commit-C fixup on `master` · banks Commit-B `6cc8ef51d56cf2bde9a600c52939cced64150ad8` + Commit-A `b205a0e8e706e713c54daa596133c0033407ad14`
+
+✅ **SEALED** — CP-MEMORY-LAYER-COMPLETION-RESIDUAL §3.3 3-Commit Seal chain complete:
+
+- **Commit-A** `b205a0e8e706e713c54daa596133c0033407ad14` on `programme/track-a` (code · 1 new test file `test_memory_compaction_v1_residual_invariants.py` + additive baseline_failures.json edit · 581 insertions · zero implementation module edit · zero sealed contract/writer/sibling-test edit · +6 tests)
+- **Commit-B** `6cc8ef51d56cf2bde9a600c52939cced64150ad8` on `master` (state banking · 3 tracked files: STATE/DECISIONS.md R-83 opening banking + STATE/NEXT.md R-83 IN-FLIGHT marker + notes/ORCH_BOOT.md ratchet-only regen per M16-W3 corrected order)
+- **Commit-C fixup** this-commit on `master` (R-83 SEALED append + STATE/NEXT.md marker flip ⏳ IN-FLIGHT → ✅ SEALED + notes/ORCH_BOOT.md R-6 boundary regen advancing `heads_last_sealed.state_repo.head` to Commit-B `6cc8ef51…` + `heads_last_sealed.code_repo.head` narrative-current first-block to Commit-A `b205a0e8…` + `/app/frontend/public/audit/ORCH_BOOT.md` byte-identical POD audit mirror sync)
+
+**Ratchet floor 5627 monotonic-up** (+6 this-wave). baseline_failures.json sha256 `2e3c1b7ea77beacb1972e0f718a1cf713abd195523c30fb2dd4ed81d02692de9` (was `b8cfac8ab77fea922d350d7533ae9af3774bbb192825a7f5a60ab3b647d83a74`). Pre-Commit-A double-green byte-identical BASELINE_GUARD=1 stripped-sha256 `b3d5374dd60e16fa033f04da29d225e37857bce8fb112919253c9b526a224ebf` IDENTICAL run1+run2 · both 5627 pass / 3 baseline-fails (documented mirror-drift only · zero NEW) / 1 skip · 62834 bytes stripped.
+
+### R-83 SEAL REPORT — memory-layer residual close
+
+- **6 residual invariants GREEN** at Phase-2 structural enforcement (closing canon-anchored atomic rules previously structurally satisfied but not asserted at the invariant layer):
+    - `test_mem_r_017_reload_carries_artefact_class_and_loss_statement_by_class_taxonomy` (MEM-R-017 · Article 14(c) surface · Spec §4)
+    - `test_mem_r_018_no_class_upgrade_pattern_rejects_fact_class_on_artefact_ref` (MEM-R-018 · SO §3.10 Option alpha structural guarantee)
+    - `test_mem_r_020_no_extend_retention_or_override_erasure_surface_in_compaction_v1` (MEM-R-020 · D-14 override doctrine · Kenya DPA 2019 s.40 · DAP-38)
+    - `test_mem_r_027_compact_idempotent_per_key_and_source_version_hash` (MEM-R-027 · C.13.6 idempotency)
+    - `test_mem_r_028_append_only_per_lineage_two_ctxs_same_key_produce_distinct_artefacts` (MEM-R-028 · append-only lineage)
+    - `test_mem_r_029_concurrent_run_scoped_keys_never_merge_across_runs` (MEM-R-029 · MEM-11 key-scoping)
+- **MEMORY LAYER COMPLETION STATUS**: memory-layer wave now COMPLETE at closure. CP-MEMORY-COMPACTION-V1-BUILD-WAVE was closed at 2026-09-19T~21:25Z (W4 `09f2f317` "MEMORY LAYER CLOSED"); this-wave R-83 lands the residual invariant sweep closing MEM-R-017/018/020/027/028/029. Owner-outstanding rulings preserved unchanged: R-19/R-20 DEFAULT-class pending + R-21 user-memory flag OFF by default + MEM-R-048..MEM-R-053 grep-negative hard bans W2 `67b5e070`.
+- **MEM-R-020 SURGE TRANSPARENCY**: MEM-R-020 grep-negative discovered ZERO existing violations on clean pre-drill sweep. Compaction_v1 module tree structurally clean. Test is authentic-preventive future-hardening.
+
+### Owner rulings banked mid-wave verbatim (queued for R-84/R-85 pickup)
+
+- **FORK-CON-INGEST-1** RESOLVED, Q6-narrower — BUILD `TC-INA-06` + `TC-EXP-02` with Q6-boundary invariant "gated only if a decision exists and the figure measures the owner's speed in making it" → **R-84 pickup**.
+- **FORK-CON-INGEST-2** CONFIRMED, journey-doc-predates-Q1/Q7 STALE — state-only close with CP-Q-UNLOCK-SUB-WAVE seal `c0f5e6d5/6fc1a99b/d5b0522f` citation → **R-84 pickup**.
+- **FORK-CON-INGEST-3** APPROVED, net-new ADDITIVE `party_halted` sub-wave — one new block_kind value + one new blocked_by field + frontend copy spec + TC-BLK-24 partial-compute-billed-backend-only → **R-85 pickup**. Contract-surface-ready flag in R-85 seal report will trigger FE-specialist dispatch.
+
+**"Four existing kinds" hunt item banked** — owner ruling references "existing four kinds" but sealed `BlockedKind(enum.Enum)` has 3 members. Reconciled at R-85 open (banked hunt · no unilateral resolution).
+
+### STILL HELD (owner "do not open")
+
+- R-32 generated-surfaces list + Content Registry wave open.
+- G5 against 595-row v4 ratification.
+
+### FE COORDINATION QUEUE
+
+Owner dispatching specialist for exactly 4 ENT-43 §14 badge strings byte-exact at `/app/frontend/src/strings/entitlementStrings.js`. When specialist commit lands → this-desk executes FE coordination seal at next clean boundary: (a) byte-match verify 4 badges + 3 earlier ENT fixed strings against spec docx · (b) `pod_shell` mirror re-sync in the repo (this-desk write scope) so the 3 documented mirror-drift baseline entries can shrink back out — **baseline may only shrink here, never grow** · (c) close the OPEN CROSS-CHECK ITEM.
+
+### Post-Commit-C `test_orch_boot` verification
+
+Runs after this fixup landing (should PASS · state_repo.head `6cc8ef51d56cf2bde9a600c52939cced64150ad8` + code_repo.head narrative-current first-block `b205a0e8e706e713c54daa596133c0033407ad14` both banked in this DECISIONS section verbatim).
+
+### Autopilot next per owner rulings queue
+
+1. ~~CP-MEMORY-LAYER-COMPLETION-RESIDUAL (R-83)~~ **SEALED** this-commit.
+2. **R-84 CP-FORK-CON-INGEST-1-2-CLOSURE** — TC-INA-06 + TC-EXP-02 build + Q6-boundary invariant + FORK-2 state-only close.
+3. **R-85 CP-PARTY-HALTED-ADDITIVE-SUB-WAVE** — net-new `party_halted` block_kind + blocked_by field + frontend copy spec + TC-BLK-24 partial-compute-billed-backend-only · **contract-surface-ready flag triggers FE-specialist dispatch**.
+4. **FE coordination seal** when specialist commit lands (ENT-43 badges byte-verify + pod_shell mirror re-sync · baseline shrink-only).
+5. **Downstream P2** (still held pending owner ruling): Content Registry wave (R-32) · G5 against 595-row v4.
+
+### Standing bounds unchanged
+
+zero push · terminal pytest only · no testing_agent · additive-only §3.8 · §4.1 §E · §4.1 §F sha-pinning · three-repo discipline · ratchet monotonic-up (floor **5627** · never rebaselined silently · +6 this-wave). Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered · MEM-R-053 CROWN BAN NOT triggered.
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+

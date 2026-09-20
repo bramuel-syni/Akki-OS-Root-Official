@@ -24,8 +24,8 @@ import sys
 
 
 _TIMING_LINE = re.compile(r"in \d+\.\d+s \(\d+:\d+:\d+\)")
-_JSX_FILE_LINE = re.compile(r"^E\s+'[a-zA-Z0-9_/\-]+\.jsx'\s*$")
-_JS_FILE_LINE = re.compile(r"^E\s+'[a-zA-Z0-9_/\-]+\.js'\s*$")
+_JSX_FILE_LINE = re.compile(r"^E\s+'[a-zA-Z0-9_/\-]+\.jsx'(\.\.\.)?\s*$")
+_JS_FILE_LINE = re.compile(r"^E\s+'[a-zA-Z0-9_/\-]+\.js'(\.\.\.)?\s*$")
 
 
 def strip(source_bytes: bytes) -> bytes:

@@ -3797,3 +3797,109 @@ zero push · terminal pytest only · no testing_agent · additive-only §3.8 · 
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
+---
+
+## R-83 · 2026-09-20T~16:40Z · CP-MEMORY-LAYER-COMPLETION-RESIDUAL · WAVE IN-FLIGHT
+
+⏳ **IN-FLIGHT** — CP-MEMORY-LAYER-COMPLETION-RESIDUAL §3.3 3-Commit Seal chain opens: Commit-A `b205a0e` on `programme/track-a` (code · 1 new test file + 1 additive baseline_failures.json edit · +6 tests) sealed 2026-09-20T~16:40Z · Commit-B this-commit on `master` (state banking · DECISIONS.md R-83 opening banking + this file + notes/ORCH_BOOT.md ratchet-only regen ALREADY prepared pre-Commit-A per M16-W3 corrected order · heads advance deferred to Commit-C fixup) · Commit-C fixup next-turn (heads advance + POD audit mirror sync + R-83 marker flip).
+
+**Owner directive verbatim (2026-09-20T post-R-82 seal):** "PROCEED NOW: Memory-layer completion residual (sprint item 3). Autopilot, own seal(s), standard bounds."
+
+**Delta:** +6 measured (5621 → 5627 monotonic-up per CCS2 lesson both fields bumped together). New baseline_failures.json sha256: `2e3c1b7ea77beacb1972e0f718a1cf713abd195523c30fb2dd4ed81d02692de9`.
+
+### 6 residual invariants GREEN
+
+`test_mem_r_017_reload_carries_artefact_class_and_loss_statement_by_class_taxonomy` (Article 14(c) surface) · `test_mem_r_018_no_class_upgrade_pattern_rejects_fact_class_on_artefact_ref` (pydantic pattern structural guarantee) · `test_mem_r_020_no_extend_retention_or_override_erasure_surface_in_compaction_v1` (D-14 override doctrine · Kenya DPA 2019 s.40 · DAP-38) · `test_mem_r_027_compact_idempotent_per_key_and_source_version_hash` (C.13.6 idempotency) · `test_mem_r_028_append_only_per_lineage_two_ctxs_same_key_produce_distinct_artefacts` (append-only lineage) · `test_mem_r_029_concurrent_run_scoped_keys_never_merge_across_runs` (MEM-11 key-scoping preservation · erasure_query cleanly partitions).
+
+6/6 pass in 0.68s at `phase0/drill_receipts/20260920T1626Z_cp_memory_residual_wave_GREEN_post.log`.
+
+### AUTHENTIC RED-first cycle
+
+RED at `phase0/drill_receipts/20260920T1625Z_cp_memory_residual_wave_RED_pre_mem_r_020.log` — controlled MEM-R-020 violation via `_TEMP_mem_r_020_drill_violation.py` `extend_retention` identifier · test fails right-reason · violation removed. GREEN at `20260920T1626Z_..._GREEN_post.log`.
+
+### Pre-Commit-A double-green byte-identical BASELINE_GUARD=1 sweep
+
+Run 1: `20260920T1635Z_..._run1.log` · 5627 passed / 3 baseline-fails / 1 skipped / 438 warnings in 179.32s.
+Run 2: `20260920T1638Z_..._run2.log` · 5627 passed / 3 baseline-fails / 1 skipped / 438 warnings in 179.86s.
+Stripped-sha256 `b3d5374dd60e16fa033f04da29d225e37857bce8fb112919253c9b526a224ebf` IDENTICAL. Both 62834 bytes.
+
+Owner run-2 drift precision constraint continues to be satisfied — exactly the 3 documented pod_shell mirror-drift entries · zero NEW drift.
+
+### MEMORY LAYER COMPLETION STATUS
+
+Memory-layer wave now COMPLETE at closure. CP-MEMORY-COMPACTION-V1-BUILD-WAVE was closed at 2026-09-19T~21:25Z ("MEMORY LAYER CLOSED"); this-wave R-83 lands the residual invariant sweep closing MEM-R-017/018/020/027/028/029 canon-anchored atomic rules. Owner-outstanding rulings preserved unchanged: R-19/R-20 DEFAULT-class pending + R-21 user-memory flag OFF by default + hard bans W2 sealed at `67b5e070`.
+
+### Owner rulings received mid-wave (banked at DECISIONS.md verbatim · queued for R-84/R-85 pickup)
+
+- **FORK-CON-INGEST-1** — RESOLVED, Q6 scoped narrower. BUILD `TC-INA-06` + `TC-EXP-02` with Q6-boundary invariant ("gated only if a decision exists and the figure measures the owner's speed in making it"). → **R-84 pickup**.
+- **FORK-CON-INGEST-2** — CONFIRMED, Q1/Q7 supersedence. State-only close with CP-Q-UNLOCK-SUB-WAVE seal `c0f5e6d5/6fc1a99b/d5b0522f` citation. → **R-84 pickup**.
+- **FORK-CON-INGEST-3** — APPROVED net-new ADDITIVE sub-wave. One new `party_halted` block_kind value + one new `blocked_by` field. Frontend copy spec per journey doc. Partial compute billed backend-only. → **R-85 pickup**. Contract-surface-ready flag in R-85 seal report will trigger FE-specialist dispatch.
+
+**"Four existing kinds" hunt item** — owner ruling references "existing four kinds" but sealed `BlockedKind(enum.Enum)` has 3 members (`request`/`check`/`estate`). To be reconciled at R-85 open (banked hunt · no unilateral resolution).
+
+### STILL HELD (owner verbatim "do not open")
+
+- R-32 generated-surfaces list + Content Registry wave open.
+- G5 against 595-row v4 ratification.
+
+### FE COORDINATION QUEUE
+
+Owner dispatching specialist for exactly one item: registering the 4 ENT-43 §14 badge strings byte-exact (literal U+00B7) at `/app/frontend/src/strings/entitlementStrings.js`. When specialist commit lands → this-desk executes FE coordination seal at next clean boundary: (a) byte-match verify 4 badges + 3 earlier ENT fixed strings against spec docx · (b) pod_shell mirror re-sync (this-desk write scope) so 3 documented mirror-drift baseline entries shrink back out — **baseline may only shrink here, never grow** · (c) close OPEN CROSS-CHECK ITEM.
+
+Not this-wave (R-83) scope. Awaits specialist commit.
+
+### Autopilot next
+
+1. **Commit-C fixup this-turn** — heads advance + POD audit mirror sync + R-83 marker flip ⏳ IN-FLIGHT → ✅ SEALED.
+2. **R-84 CP-FORK-CON-INGEST-1-2-CLOSURE** — TC-INA-06 + TC-EXP-02 build + Q6-boundary invariant + FORK-2 state-only close.
+3. **R-85 CP-PARTY-HALTED-ADDITIVE-SUB-WAVE** — net-new block_kind + blocked_by field · FE-specialist dispatch trigger flag in seal report.
+4. **FE coordination seal** when specialist commit lands (ENT-43 badges byte-verify + pod_shell mirror re-sync · baseline shrink-only).
+5. **Downstream P2** (still held): Content Registry wave (R-32 · sequencing ratification) · G5 against v4.
+
+### Standing bounds unchanged
+
+zero push · terminal pytest only · no testing_agent · additive-only §3.8 · §4.1 §E · §4.1 §F sha-pinning · three-repo discipline · ratchet monotonic-up (floor **5627** · never rebaselined silently · +6 this-wave). Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered · MEM-R-053 CROWN BAN NOT triggered.
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+---
+
+## R-83 SEALED · 2026-09-20T~16:45Z · CP-MEMORY-LAYER-COMPLETION-RESIDUAL FULLY SEALED
+
+✅ **SEALED** — CP-MEMORY-LAYER-COMPLETION-RESIDUAL §3.3 3-Commit Seal chain complete: Commit-A `b205a0e8e706e713c54daa596133c0033407ad14` (code · 6 new residual invariants + baseline bump 5621→5627) + Commit-B `6cc8ef51d56cf2bde9a600c52939cced64150ad8` (state banking) + Commit-C fixup this-commit (heads advance + POD audit mirror + R-83 marker flip). Marker flipped ⏳ IN-FLIGHT → ✅ SEALED.
+
+**Ratchet floor 5627 monotonic-up** (+6 this-wave). Memory layer completion status: memory-layer wave now COMPLETE at closure.
+
+### 6 residual invariants GREEN
+
+`test_mem_r_017` (Article 14(c) surface) · `test_mem_r_018` (pydantic pattern structural guarantee) · `test_mem_r_020` (D-14 override doctrine) · `test_mem_r_027` (C.13.6 idempotency) · `test_mem_r_028` (append-only lineage) · `test_mem_r_029` (MEM-11 key-scoping).
+
+### Owner rulings banked mid-wave (queued for R-84/R-85)
+
+- FORK-CON-INGEST-1 RESOLVED → R-84 builds TC-INA-06 + TC-EXP-02 + Q6-boundary invariant.
+- FORK-CON-INGEST-2 CONFIRMED → R-84 state-only close with Q-unlock citation.
+- FORK-CON-INGEST-3 APPROVED → R-85 net-new party_halted additive sub-wave · FE-specialist dispatch trigger flag in seal report.
+
+### STILL HELD
+
+- R-32 generated-surfaces + Content Registry wave open.
+- G5 against 595-row v4 ratification.
+
+### FE COORDINATION QUEUE
+
+Awaits specialist commit landing (4 ENT-43 §14 badges byte-exact at entitlementStrings.js) → this-desk executes FE coordination seal: byte-match verify + pod_shell mirror re-sync (baseline shrink-only) + close OPEN CROSS-CHECK ITEM.
+
+### Autopilot next
+
+1. ~~R-83 CP-MEMORY-LAYER-COMPLETION-RESIDUAL~~ **SEALED** this-commit.
+2. **R-84 CP-FORK-CON-INGEST-1-2-CLOSURE** — TC-INA-06 + TC-EXP-02 + Q6-boundary invariant + FORK-2 close.
+3. **R-85 CP-PARTY-HALTED-ADDITIVE-SUB-WAVE** — net-new block_kind + blocked_by field · FE-specialist dispatch trigger.
+4. **FE coordination seal** when ENT-43 specialist commit lands.
+5. **Downstream P2** (still held): Content Registry wave (R-32) · G5 against v4.
+
+### Standing bounds unchanged
+
+zero push · terminal pytest only · no testing_agent · additive-only §3.8 · three-repo discipline · ratchet monotonic-up (floor **5627** · never rebaselined silently).
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
