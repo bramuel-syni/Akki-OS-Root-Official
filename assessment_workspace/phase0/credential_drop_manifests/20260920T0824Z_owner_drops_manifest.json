@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "manifest_kind": "owner_drops_manifest_sha_pin_at_intake",
+  "so_clause_anchor": "§4.1 §F (sha-pin discipline · additive to §4.1 §E · byte-identity of drop bytes captured at intake · additive-only per SO §3.8)",
+  "intake_timestamp_utc": "2026-09-20T08:24:00Z",
+  "intake_wall_clock_at_manifest_write_utc": "2026-09-20T08:30:00Z",
+  "owner_directive_verbatim_anchor": "STATE/DECISIONS.md 2026-09-20T~08:24Z OWNER DISPOSITION · CP-CCS3-CLOSE · frontends gate HELD PENDING §2.1 answer · VERBATIM state master notes-only banking commit",
+  "custody_base_path": "/app/assessment_workspace/custody/owner_drops/20260920T0824Z",
+  "drops": [
+    {
+      "custody_filename": "Front_End_Integration_Brief.md",
+      "custody_path_abs": "/app/assessment_workspace/custody/owner_drops/20260920T0824Z/Front_End_Integration_Brief.md",
+      "sha256": "4a5fd14687b6ceaf700221034d91b64277eef4b0b8adb709f29795853bbe374b",
+      "size_bytes": 53284,
+      "mtime_utc": "2026-09-20T08:25:29Z",
+      "mode_octal": "0644",
+      "source_url": "https://customer-assets-cm19k8pv.emergentagent.net/job_amazing-gates-8/artifacts/80j029k5_Front%20End%20Integration%20Brief.md",
+      "owner_supplied_filename_verbatim": "Front End Integration Brief.md",
+      "owner_note_verbatim": "SUPERSEDES the DAP UI Handoff Brief; frontends card cites THIS",
+      "kind": "markdown"
+    },
+    {
+      "custody_filename": "DAP_Backend_Engineering_Brief.md",
+      "custody_path_abs": "/app/assessment_workspace/custody/owner_drops/20260920T0824Z/DAP_Backend_Engineering_Brief.md",
+      "sha256": "3c9be71541534942d3c3038c24cc8981aea38667a3a2e521043810a23c5085fe",
+      "size_bytes": 88393,
+      "mtime_utc": "2026-09-20T08:25:20Z",
+      "mode_octal": "0644",
+      "source_url": "https://customer-assets-cm19k8pv.emergentagent.net/job_amazing-gates-8/artifacts/63874w7e_DAP%20Backend%20Engineering%20Brief.md",
+      "owner_supplied_filename_verbatim": "DAP Backend Engineering Brief.md",
+      "owner_note_verbatim": "contains the §2.1 revision question — this is the review that found 'no principal model'",
+      "kind": "markdown"
+    },
+    {
+      "custody_filename": "RMS_AI_Prototype_v2.html",
+      "custody_path_abs": "/app/assessment_workspace/custody/owner_drops/20260920T0824Z/RMS_AI_Prototype_v2.html",
+      "sha256": "9952692ce05809b3f4111c8ec3cf9dcb1008ea970895263981c2b52fb78cf199",
+      "size_bytes": 2286992,
+      "mtime_utc": "2026-09-20T08:25:20Z",
+      "mode_octal": "0644",
+      "source_url": "https://customer-assets-cm19k8pv.emergentagent.net/job_amazing-gates-8/artifacts/ly1i19n9_RMS%20AI%20Prototype%20v2%20%281%29.html",
+      "owner_supplied_filename_verbatim": "RMS AI Prototype v2 (1).html",
+      "owner_note_verbatim": "up-to-date OS prototype",
+      "kind": "html"
+    },
+    {
+      "custody_filename": "RMS_Data_Access_Portal.html",
+      "custody_path_abs": "/app/assessment_workspace/custody/owner_drops/20260920T0824Z/RMS_Data_Access_Portal.html",
+      "sha256": "0132e4500f5ea9ee2c6c9392727203b0ba69aa5f9565cc0cecf56927cba6bfaa",
+      "size_bytes": 327266,
+      "mtime_utc": "2026-09-20T08:25:20Z",
+      "mode_octal": "0644",
+      "source_url": "https://customer-assets-cm19k8pv.emergentagent.net/job_amazing-gates-8/artifacts/t11p8fso_RMS%20Data%20Access%20Portal%20%281%29.html",
+      "owner_supplied_filename_verbatim": "RMS Data Access Portal (1).html",
+      "owner_note_verbatim": "DAP portal — HOLDS until §2.1 answered",
+      "kind": "html"
+    }
+  ],
+  "verification": {
+    "sha256_computation_tool": "sha256sum (coreutils)",
+    "sha256_verified_at_intake_utc": "2026-09-20T08:26:00Z",
+    "byte_identity_reconfirmed_at_manifest_write": true
+  },
+  "notes": [
+    "Distinct from `RMS_Data_Access_Portal_standalone.html` at `canon/drops/20260909/raw/` (sha256 d0fc1b498e07516c4c9acef45224be7add65ba23c35a56837e44074fc6e1c929 · 230,577 bytes · design_id `dap_frontend_standalone`). This drop is the OWNER-SUPPLIED up-to-date portal — different bytes, distinct sha256.",
+    "Owner-supplied filenames contained spaces + parentheses; custody filenames normalised for portability (underscore-separated, no parens). Owner-verbatim filenames preserved in `owner_supplied_filename_verbatim` field.",
+    "Files enter custody under `mode 0644` (world-readable, group/owner writable). No SEC-class credentials in these drops; §4.1 §E raw-value read discipline does not gate these files (they are notes/prototypes, not credential material).",
+    "Manifest is additive-only per SO §3.8 — never overwritten; new manifests land alongside for future drops. Owner-drop-intake counter maintained by directory structure (`custody/owner_drops/YYYYMMDDTHHMMZ/`)."
+  ]
+}

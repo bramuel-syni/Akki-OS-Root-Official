@@ -17558,4 +17558,156 @@ Memory layer opens at CP-MEMORY-COMPACTION-V1-BUILD-WAVE (R-61 · Commit-A `b1d1
 
 **Standing bounds unchanged:** zero push · terminal pytest only · no testing_agent · additive-only §3.8 · full BASELINE_GUARD=1 pre-Commit-A double-green byte-identical · §3.3 3-Commit Seal on dual branches · ratchet monotonic (floor 5527 · never rebaselined silently).
 
+
+---
+
+## 2026-09-20T~08:24Z · OWNER DISPOSITION · CP-CCS3-CLOSE · frontends gate HELD PENDING §2.1 answer · four artifacts on desk · split rulings · **VERBATIM · state master notes-only banking commit**
+
+**Precedent shape:** identical to `3505891a` (Bank OWNER RULING · CP-M17-W5-CLOSE DESK BATCH · 2026-09-19T~17:54Z verbatim) — single verbatim banking commit before any interpretive work. Owner text word-for-word below.
+
+---
+
+### Verbatim owner text (word-for-word · disposition of CCS3 close HALT report + four artifact drops + execution order):
+
+> Disposition — frontends gate, held pending one answer
+> The report states the backend build is complete and the frontends gate is satisfied. Two independent reviews — attached — contradict that for DAP specifically, in their own words: "the engines are ready and the principal is missing... the platform currently has no principal model at all." Twelve of thirteen unimplemented DAP requirements are downstream of that one gap. This is not ratified as satisfied.
+> One question outranks everything on this desk: which revision of dap_backend_spec_v1 is canon. The DAP brief's §2.1 shows its reviewed copy and HOLISTIC_PLAN.md's own wave descriptions agree only on DAP-1..5 and diverge on how DAP-6 through DAP-30 are grouped for the rest. Every DAP ruling made this session cites a specific revision; if HOLISTIC_PLAN.md is building against a different one, those rulings may be targeting the wrong document. Answer this before anything else below proceeds.
+> Three more items need a direct answer, banked to DECISIONS.md either way:
+> sha256 mismatch on the same DAP front-end artifact — HOLISTIC_PLAN records d1c9057b…, spec_id_index.md records d0fc1b498e07…. Confirm spec_id_index.md as authority, or correct it.
+> Three "owner ruling" citations with no record on this desk — 2026-09-06 (prototype_v3 binding), Ruling #5(a) (masking-policy), 2026-09-08 (surface language). If made outside this chat, confirm and bank them now. If not, this is a provenance fault and needs investigating before it propagates further.
+> DAP-33/34 are cited as security_architecture_v1 S-22/S-23. The content is right; the source document is wrong — S-22/S-23 belong to the Security Amendments' promise set. Correct at the source.
+> Rulings, split by what the finding touches:
+> Front-end reference document: the attached Front End Integration Brief supersedes the earlier DAP UI Handoff Brief. Card drafting cites this one.
+> Frontend scope: the OS prototype (WorkStudio, ThinkLab, Collab, internal operator surfaces) proceeds — its contracts are reconciled. The DAP portal holds until §2.1's question is answered and the principal model exists. Parity bar unchanged: functional, no pixel fidelity, built against /api/openapi.json.
+> R-19, R-20: ratified, unaffected.
+> R-21: stays off, unaffected.
+> α-gap hardening wave and remaining ratifications: held one turn, pending §2.1's answer.
+> G5: continues. Caveat on record — if the spec revision differs, the DAP-numbered mappings already done need a second pass. Most of the 1,096 aren't DAP; no reason to stop the rest.
+> Answer §2.1 first. It unblocks or reframes most of what's waiting. Attached are up to date HTMLs, and briefs. Read line by line.
+
+---
+
+### Four owner artifact drops (arriving with this disposition · custody path `custody/owner_drops/20260920T0824Z/` · §4.1 §F manifest at `phase0/credential_drop_manifests/20260920T0824Z_owner_drops_manifest.json`):
+
+1. **Front End Integration Brief.md** — SUPERSEDES earlier DAP UI Handoff Brief · frontends card cites THIS · source URL banked in the manifest.
+2. **DAP Backend Engineering Brief.md** — contains the §2.1 revision question · the review that found "no principal model" · reviewer opened `spec/dap_backend.txt` in repo `bramuel-syni/Akki-OS-Root` @ `main` tree `07fb08f34a34`.
+3. **RMS AI Prototype v2 (1).html** — up-to-date OS prototype (2,286,992 bytes).
+4. **RMS Data Access Portal (1).html** — DAP portal · HOLDS until §2.1 answered (327,266 bytes).
+
+Each artifact carries a sha256 pin in the §4.1 §F manifest (byte-identity of drop bytes) + custody path + source URL + fetch timestamp. Per SO §4.1 §F, artifact-store files whose sha256 is not in a manifest at read-time are treated as untrusted until owner ratifies their pin — this banking constitutes owner-directive-anchored ratification of the four drop pins.
+
+---
+
+### Execution order (verbatim owner instruction · strict):
+
+> 1. FIRST — answer §2.1: read the DAP Backend Engineering Brief §2.1 line by line, locate on disk every revision of dap_backend_spec_v1 the session's rulings cited (CCS2/CCS3 freezes, spec_id_index.md, HOLISTIC_PLAN.md — find these files, note their paths and shas), and produce a revision-reconciliation report: which revision each artifact/ruling targets, where DAP-6..30 grouping diverges, and a recommendation on which revision is canon WITH evidence. Bank it. This is a report to the owner, not a self-ruling — the owner declares canon.
+> 2. Answer the three direct items with file evidence: (a) the sha256 mismatch (d1c9057b vs d0fc1b498e07) — determine which is correct against the actual artifact bytes and recommend; (b) search DECISIONS.md + all state history for the three uncited "owner rulings" (2026-09-06 prototype_v3 binding, Ruling #5(a) masking-policy, 2026-09-08 surface language) — report found/not-found verbatim; if not found, treat as provenance fault: trace where the citations entered the record and report the chain; (c) correct the DAP-33/34 source citation at source (security_architecture_v1 → Security Amendments promise set) as an additive erratum.
+> 3. THEN the ruled work proceeds in parallel: (i) draft the frontends card for the OS-prototype surfaces ONLY (WorkStudio, ThinkLab, Collab, internal operator surfaces) citing the Front End Integration Brief — DAP portal is OUT of card scope until the owner answers §2.1; (ii) G5 continues (non-DAP rules freely; DAP-numbered mappings get a provisional tag pending the revision answer); (iii) staleness ceremony on its clock (~11:35Z — likely crossing soon; it takes priority as its own small seal).
+> 4. HOLD: α-gap hardening, remaining ratifications, any DAP portal work, any principal-model work — all wait for the owner's §2.1 answer.
+>
+> Deliver the §2.1 reconciliation report + three direct answers as your next report — I will put them on the owner's desk. Constraints unchanged: zero push, no testing_agent, terminal pytest only, additive-only, §4.1 §E, three-repo discipline. Go.
+
+---
+
+### Standing-bounds delta from this disposition (banking-only · no scope changes at this commit):
+
+- **Frontends gate:** NOT ratified as satisfied. Held pending §2.1 answer + principal-model landing (for DAP portal specifically).
+- **OS-prototype frontends card:** APPROVED to proceed (WorkStudio · ThinkLab · Collab · internal operator surfaces only · citing Front End Integration Brief).
+- **DAP portal work:** HELD (all portal work + any principal-model work) until owner answers §2.1.
+- **R-19 · R-20:** RATIFIED. Now-anchored fixture dates + opcounter fixture were prior; owner ruling ratifies R-19/R-20 same-shape as PERMANENT. Unaffected by §2.1.
+- **R-21:** STAYS OFF. Unaffected by §2.1.
+- **α-gap hardening wave + remaining ratifications:** HELD ONE TURN pending §2.1 answer (this includes TrustReceiptV1_alpha_gap + OuterGateReceiptV1_alpha_gap from CCS3 W3).
+- **G5:** CONTINUES autonomous per SO §6.7. **Provisional tag** on DAP-numbered slice mappings pending §2.1 (spec-revision may reframe DAP-numbered mappings; non-DAP proceeds freely).
+- **Staleness ceremony:** ON ITS CLOCK. 2026-09-20T~11:35Z horizon — likely crossing during the response wave. Owner reaffirmed priority: fires as its own §3.3 small seal.
+- **Frontends card body:** derives from **Front End Integration Brief** (this-drop) — the earlier "DAP UI Handoff Brief" reference in prior digest is SUPERSEDED.
+
+**Standing bounds unchanged:** zero push · terminal pytest only · no testing_agent · additive-only §3.8 · §4.1 §E · §4.1 §F sha-pinning discipline · three-repo discipline · ratchet monotonic (floor 5527 · never rebaselined silently).
+
+---
+
+**Autopilot next (per owner execution order · strict):**
+
+1. **Commit 1 (this-commit):** verbatim owner-text banking to STATE/DECISIONS.md (this-append) + owner drops sealed under `custody/owner_drops/20260920T0824Z/` (4 files) + §4.1 §F manifest at `phase0/credential_drop_manifests/20260920T0824Z_owner_drops_manifest.json` + tools regen script for reference + STATE/PINS.md commissioning_record pointer refresh (state-side sensor drift · R-29-BOOT housekeeping-pickup). Additive-only per SO §3.8. Notes-only state master.
+2. **Commit 2 (this-turn):** §2.1 reconciliation report at `notes/DAP_SPEC_REVISION_RECONCILIATION_20260920.md` + three direct answers at `notes/DIRECT_ANSWERS_TO_OWNER_20260920.md` + DECISIONS §2.1 report banking section (this-Commit banking) + STATE/NEXT.md R-68 marker ⏳ IN-FLIGHT for CP-CCS3-CLOSE-DISPOSITION-RESPONSE. Additive-only. Notes-only state master.
+3. Deliver report to owner (this-turn message).
+4. THEN (parallel · post-report): draft OS-prototype frontends card (WorkStudio · ThinkLab · Collab · internal operator surfaces · citing Front End Integration Brief) + G5 non-DAP slices continue + staleness ceremony fires when horizon crosses as its own small seal.
+
+
+---
+
+## 2026-09-20T~08:38Z · CP-CCS3-CLOSE-DISPOSITION-RESPONSE · Commit 2 banking (state master · reports on owner desk this-turn · §2.1 reconciliation + three direct answers)
+
+**Precedent shape:** additive notes-only state-master commit landing reports for owner ratification (like the `Owner Desk Batch Digest` published at CCS3 close · state master · notes-only). Prior commit this-wave (Commit 1 · verbatim banking): `168f3c16` at 2026-09-20T~08:32Z.
+
+**Files landed this commit:**
+- NEW `notes/DAP_SPEC_REVISION_RECONCILIATION_20260920.md` — §2.1 revision-reconciliation report (evidence-based · owner declares canon). 10-section body with byte-verified evidence chain.
+- NEW `notes/DIRECT_ANSWERS_TO_OWNER_20260920.md` — three direct answers (sha256 mismatch · three uncited rulings · DAP-33/34 source erratum). 4-section body with byte-verified evidence chain.
+- APPEND `STATE/NEXT.md` R-68 marker ⏳ IN-FLIGHT for CP-CCS3-CLOSE-DISPOSITION-RESPONSE.
+- APPEND this DECISIONS.md Commit-2 banking section.
+
+**§2.1 reconciliation report — headline recommendation (evidence-based · NOT self-ruling):**
+
+> Recommend confirming `canon/drops/20260909/raw/DAP_Backend_Spec_v1.docx` sha256 `e675990aa68e75141f41b418fd19c0a2c05b70441c6217ebdde44e5362c55263` (21,346 B · draft 5 September 2026) AS CANON for `dap_backend_spec_v1`.
+
+**Evidence (7-line summary · full in notes/DAP_SPEC_REVISION_RECONCILIATION_20260920.md):**
+1. **Sole `dap_backend_spec_v1` bytes on disk** under `canon/drops/**`. No competing revision exists.
+2. **Section structure verified line-by-line** in `canon/drops/20260909/extracted/text/DAP_Backend_Spec_v1.txt`: §3 External-Party Principal (DAP-1..5) · §4 Six Crossing Profiles (DAP-6..11) · §5 Back-End Services (DAP-12..27 subsections Admission&keys/Approval/Extraction/Metering&receipts/Estate-owner config) · §6 Failure Posture (DAP-28..30). **STRUCTURALLY IDENTICAL** to reviewer's `spec/dap_backend.txt` grouping in DAP-Backend-Engineering-Brief §2.1.
+3. **Banked as canon** in `notes/spec_id_index.md` at `dap_backend_spec_v1` row · 13 canon-cross-citations · opening_signature source · byte-verified.
+4. **Session's authoritative ingest doc** `notes/canon_dap_backend_spec_v1_requirements.md` enumerates DAP-1..30 EXACTLY as the extracted-text bytes.
+5. **CCS1/CCS2/CCS3 freezes anchor here** — `_DAP_SIX_PROFILES` closed 6-tuple matches §4 Table 2 verbatim · DAP-1 principal fields match §3 DAP-1 verbatim · DAP-13 key contract matches §5 DAP-13 verbatim · MeteredEvent 7 fields match §5 DAP-21 verbatim. No revision drift risk in ratchet.
+6. **HOLISTIC_PLAN.md §3.3's "grouped by concern" paraphrase** ("admission → controlled units → chokepoint → governed queries → row execution → audit → coalition-joint-evaluation → cumulative disclosure budget → component-boundary inspection") **does NOT match** the on-disk spec's actual section grouping. Additive erratum recommended at HOLISTIC_PLAN.md:117-119.
+7. **DAP-31..38** are AMENDMENT-additions from separate docs (Serving_Integrity_Amendment_v1 → DAP-31+/32+ · Security Amendments W-1/W-4 → DAP-33/34 · Pruning_Unlearning_Amendment_v1 → DAP-37/38 · reviewer's §7 → DAP-36..40 as front-end-implied) — NOT present in the DAP_Backend_Spec_v1.docx bytes. Reviewer's brief note "our copy stops at DAP-30" matches on-disk tree.
+
+**Owner action required:** declare canon revision. Report recommends `e675990a…` docx of 2026-09-09; owner declares.
+
+---
+
+**Three direct answers — headline verdicts (evidence-based · NOT self-rulings):**
+
+### (a) sha256 mismatch on DAP front-end artifact
+
+- **Actual bytes** (`sha256sum canon/drops/20260909/raw/RMS_Data_Access_Portal_standalone.html`): **`d0fc1b498e07516c4c9acef45224be7add65ba23c35a56837e44074fc6e1c929`** · 230,577 B.
+- **`notes/spec_id_index.md`** cites `d0fc1b498e07…` — **EXACT MATCH · byte-verified**. → Authority CONFIRMED.
+- **`STATE/HOLISTIC_PLAN.md:133`** cites `d1c9057b…` — **NO MATCH**. Grep full-tree: sha `d1c9057b` appears ONLY at HOLISTIC_PLAN.md:133 and the reviewer's brief (which flags the mismatch upstream). No artifact of any size has this sha. → **Transcription error at authoring 2026-09-09** ("already in notes/spec_id_index.json" annotation is inaccurate).
+- **Recommend:** additive erratum at HOLISTIC_PLAN.md:133 noting `d0fc1b498e07…` as byte-verified authority. Not a ratchet break.
+
+### (b) Three uncited "owner ruling" citations
+
+- **2026-09-06 (prototype_v3 binding):** **PROVENANCE FAULT (partial)**. Nearest phrase-match at `STATE/DECISIONS.md:6578` in body of `## 2026-09-08T~06:15Z · OWNER DIRECTIVE` (STEP 5) — three days LATER than cited. Owner clarify: (i) verbally binding on 2026-09-06 not banked → bank now, or (ii) citation date should be 2026-09-08T~06:15Z → additive erratum.
+- **Ruling #5(a) (masking-policy):** **FOUND · GROUNDED**. Verbatim at `STATE/DECISIONS.md:6251` with policy-drawer-resolutions JSON `phase0/policy_drawer_resolutions/drawer_resolution_shield-2026-09-06-q001_20260906T162000Z.json`. Original Ruling #5 dated 2026-09-06T11:34:00Z (NEXT.md:599); Ruling #5(a) resolution dated 2026-09-06T~16:20Z (JSON filename `20260906T162000Z`). No fault.
+- **2026-09-08 (surface language):** **NOT FOUND · PROVENANCE FAULT**. Zero grep hits for "surface language"/"surface-language" across `/app/assessment_workspace/**`. All 5 dated 2026-09-08 directives at DECISIONS.md:6424/6468/6513/6532/6561 cover different scopes (compaction-proof · master-audit · window-fill · mission-framed reporting · pipeline-defect+drop). Owner confirm if off-record ruling exists (bank now) OR trace citation propagation and stop it.
+
+### (c) DAP-33/DAP-34 source citation correction
+
+- **CONFIRMED at source.** Owner's finding correct: S-22/S-23 originate from **Security Amendments** (`Security_Amendments_Trojan_Whisper.docx` · W-1 [A5.15 in Doc 3] + W-4 [A5.18 in Doc 3 · via Doc 0 Att-3]) — aggregated into Security Assurance Promise Set. NOT from `security_architecture_v1`.
+- **Evidence anchors** (verbatim from tree):
+  - `notes/ingest_20260907/canon_security_amendments_requirements.md:80` (W-1 header) + line 81-83 (DAP-33 verbatim).
+  - `notes/ingest_20260907/canon_security_amendments_requirements.md:91` (W-4 header) + line 94 (DAP-34 verbatim).
+  - `notes/ingest_20260907/canon_security_promise_set_requirements.md:45-46` (S-22/S-23 promise-set rows anchored to Doc 3 A5.15/A5.18 · Security Amendments W-1/W-4).
+- **Correction target:** `STATE/HOLISTIC_PLAN.md:134-135` — currently cites `security_architecture_v1 S-22/S-23`. Should read: `Security Amendments W-1 · A5.15 · S-22 · DAP-33` and `Security Amendments W-4 · Doc 0 Att-3 · A5.18 · S-23 · DAP-34`. R-8 and R-11 ratification anchors remain correctly attributed to `security_architecture_v1` (independent ratifications).
+- **Recommend:** additive erratum block appended at HOLISTIC_PLAN.md:134-135 pending owner ratification. Not a ratchet break.
+
+---
+
+**Notes-only state master. Additive-only per SO §3.8.** Files-changed: 3 (notes/DAP_SPEC_REVISION_RECONCILIATION_20260920.md +NEW · notes/DIRECT_ANSWERS_TO_OWNER_20260920.md +NEW · STATE/NEXT.md R-68 marker +NEW · STATE/DECISIONS.md this-append). **Corrected files-changed: 4.**
+
+**All three answers are REPORTS TO THE OWNER — not self-rulings. Owner declares:**
+1. (a) `spec_id_index.md` as authority (recommendation) OR alternative.
+2. (b) 2026-09-06 prototype_v3 binding is (i) verbally-bank-now-with-2026-09-06 or (ii) date-corrected-to-2026-09-08T~06:15Z · AND whether 2026-09-08 surface-language ruling exists off-record.
+3. (c) whether to land the DAP-33/34 source erratum at HOLISTIC_PLAN.md:134-135 as recommended.
+
+**Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered · MEM-R-053 CROWN BAN NOT triggered.**
+
+**Autopilot next per owner disposition execution-order (strict · verbatim):**
+1. Deliver reports to owner (this-turn message includes headlines with pointer to full notes docs). ← THIS TURN.
+2. Await owner §2.1 answer. HELD: α-gap hardening + remaining ratifications + DAP portal work + principal-model work.
+3. THEN parallel:
+   - (i) Draft OS-prototype frontends card (WorkStudio · ThinkLab · Collab · internal operator surfaces ONLY · DAP portal OUT · citing Front End Integration Brief).
+   - (ii) G5 continues (non-DAP freely · DAP-numbered mappings PROVISIONAL).
+   - (iii) **Staleness ceremony fires as own §3.3 small seal when 2026-09-20T~11:35Z horizon crosses** (T-~3h at this commit · likely mid-parallel work · takes priority).
+
+**Time-gated task armed:** Staleness re-scope APPLY-ON-EXPIRY at 2026-09-20T~11:35Z (T-~3.0h at this Commit-2 · CROSSING SOON).
+
+**Standing bounds unchanged:** zero push · terminal pytest only · no testing_agent · additive-only §3.8 · §4.1 §E · §4.1 §F sha-pinning discipline · three-repo discipline · ratchet monotonic (floor 5527 · never rebaselined silently).
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
