@@ -4191,3 +4191,51 @@ zero push · terminal `pytest` only · no `testing_agent` · additive-only §3.8
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
+---
+
+## CP-LIFECYCLE-STRINGS-BYTE-VERIFY-CLOSURE · 2026-09-20T~18:55Z · state master · notes-only banking · post-specialist-fix `d0e36a51e` closure
+
+State-only banking commit — no code changes. Closure receipt at `phase0/spec_hunt_receipts/20260920T1855Z_lifecycle_strings_byte_verify_closure.md`.
+
+### Result: **19/19 MATCH · 0 MISMATCH · 0 U+2019 across 3 reported directories**
+
+- Specialist commit `d0e36a51e` observed on `/app/` main HEAD (`fix(strings): replace U+2019 with ASCII 0x27 in lifecycle binding copy`).
+- `lifecycleStrings.js` post-fix sha256 `2b855312a8f8b9a6fec9da3ec564b91ed2dad9bfeaf6eeadf532340a042e2e05` · 5538 bytes · zero U+2019 at file level.
+- Journey v2 sha256 unchanged `c52356af28e7bb1c99a1ffb335f548e14297b7196670f33b2e9e651ec1d813b2`.
+- All 4 prior-mismatch apostrophe positions verified ASCII 0x27 at byte level:
+    - `STOP_CONFIRM` "What's" · hex `57 68 61 74 27 73` ✅
+    - `IN_APPROVAL_WAITING_TPL` "It's" · hex `49 74 27 73` ✅
+    - `BLOCK_KIND_CHECK` "wasn't" + "couldn't" · both `27` ✅
+- Independent U+2019 grep-negative sweep across `/app/frontend/src/strings` + `/app/frontend/src/pages/dap` + `/app/frontend/src/components/dap`: **0 files hit** in all three (CLEAN).
+
+### Disposition
+
+- **Byte-verify half of FE coordination CLOSED** at this banking.
+- Both byte-verify closures now sealed: entitlement 7-string (`d0a2ea9b`) + lifecycle 19-string (this-commit).
+- **Mirror-drift half of FE coordination remains PENDING** owner mirror-direction ruling.
+- This-desk frontend write-ban STANDS.
+
+### Files
+
+1. `phase0/spec_hunt_receipts/20260920T1855Z_lifecycle_strings_byte_verify_closure.md` NEW.
+2. `STATE/DECISIONS.md` + `STATE/NEXT.md` twin banking.
+
+**Not a §3.3 3-Commit Seal** — notes-only state-master banking (precedent chain: `CP-ENT-43-BYTE-VERIFY-CLOSURE` `d0a2ea9b` + `CP-LIFECYCLE-STRINGS-BYTE-VERIFY` `9b6b170b`). Ratchet unchanged 5640.
+
+### Autopilot next · STANDING BY on 6 owner-held items
+
+Per owner directive verbatim ("continue STANDING BY on the six owner-held items — nothing else is authorized until owner rulings arrive"):
+
+1. **App.js mirror direction** — owner ruling pending.
+2. **FORK-BLK-KINDS** (`suspended` mapping A/B/C/D) — owner ruling pending.
+3. **FORK-BLK-EXACTLY-3-SEALED-TEST** (docstring α/β/γ) — owner ruling pending.
+4. **R-32 / Content Registry wave** — HELD.
+5. **G5-v4 ratification** — HELD (prep at `9b6b170b`).
+6. ~~Specialist fix pass~~ — **CLOSED at this-commit** (retires from queue).
+
+### Standing bounds unchanged
+
+zero push · terminal `pytest` only · no `testing_agent` · additive-only §3.8 · three-repo discipline · ratchet monotonic-up (unchanged at **5640**).
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+

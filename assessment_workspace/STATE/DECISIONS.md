@@ -20348,3 +20348,71 @@ zero push · terminal `pytest` only · no `testing_agent` · additive-only §3.8
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
+---
+
+## CP-LIFECYCLE-STRINGS-BYTE-VERIFY-CLOSURE · 2026-09-20T~18:55Z · state master · notes-only banking · post-specialist-fix `d0e36a51e` closure
+
+**Owner directive verbatim (this-session · post-specialist-fix report):**
+
+> "Specialist fix pass LANDED — local commit `d0e36a51e` on /app/ main, 2 files: lifecycleStrings.js (all 3 constants corrected to ASCII 0x27, hex-confirmed byte-exact against your expected byte sequences for #1 and #3) + RequestLifecycle.jsx (1 sample blockReason literal, same defect class). Post-fix sweep: zero U+2019 remaining across src/strings/, src/pages/dap/, src/components/dap/. Build clean, zero push. At your next clean boundary: re-run the byte-verify against journey v2 to independently confirm all 19 strings now match (report-only unless mismatch), and bank the closure state-only per your established precedent shape."
+
+### Result: **19/19 MATCH · 0 MISMATCH · 0 U+2019 across 3 reported directories.** Full closure receipt at `phase0/spec_hunt_receipts/20260920T1855Z_lifecycle_strings_byte_verify_closure.md`.
+
+### Independent byte-level verification of specialist fix
+
+- Specialist commit `d0e36a51e` on `/app/` main HEAD observed verbatim ("fix(strings): replace U+2019 with ASCII 0x27 in lifecycle binding copy").
+- `lifecycleStrings.js` post-fix sha256: `2b855312a8f8b9a6fec9da3ec564b91ed2dad9bfeaf6eeadf532340a042e2e05` (5538 bytes · 109 lines).
+- **Zero U+2019 (`e2 80 99`) at file level** — byte-scan of raw file bytes returned False.
+- **Journey v2 sha256 unchanged**: `c52356af28e7bb1c99a1ffb335f548e14297b7196670f33b2e9e651ec1d813b2` (byte-identical to R-83/R-84/R-85 canon-source reference).
+
+### All 3 prior-mismatch positions verified ASCII 0x27 at byte level
+
+- `STOP_CONFIRM` "What's run" span · hex `57 68 61 74 27 73 20 72 75 6e` · apostrophe = `27` ✅
+- `IN_APPROVAL_WAITING_TPL` "It's been waiting" span · hex `49 74 27 73 ...` · apostrophe = `27` ✅
+- `BLOCK_KIND_CHECK` "wasn't" span · hex `77 61 73 6e 27 74 ...` · apostrophe = `27` ✅
+- `BLOCK_KIND_CHECK` "couldn't" span · hex `63 6f 75 6c 64 6e 27 74 ...` · apostrophe = `27` ✅
+
+All 4 apostrophe positions byte-exact against the expected bytes reported at the pre-fix banking `9b6b170b`.
+
+### Independent U+2019 sweep across 3 reported directories
+
+Scanned every `.js`/`.jsx`/`.ts`/`.tsx`/`.mjs`/`.cjs` file recursively under each reported directory for raw byte sequence `e2 80 99`:
+
+- `/app/frontend/src/strings`: **0 files with U+2019** (CLEAN)
+- `/app/frontend/src/pages/dap`: **0 files with U+2019** (CLEAN)
+- `/app/frontend/src/components/dap`: **0 files with U+2019** (CLEAN)
+
+TOTAL U+2019 across 3 directories: **0**. Independent confirmation of specialist's post-fix sweep report. Corroborates that the additional `RequestLifecycle.jsx` fix (specialist reported 1 sample blockReason literal touched, same defect class) is also structurally clean at byte level.
+
+### Disposition
+
+- **Byte-verify half of FE coordination CLOSED at this banking.** Both byte-verify closures now sealed: original 7-string entitlement byte-verify closed at `CP-ENT-43-BYTE-VERIFY-CLOSURE` `d0a2ea9b` + this 19-string lifecycle byte-verify closed at CP-LIFECYCLE-STRINGS-BYTE-VERIFY-CLOSURE this-commit.
+- **Mirror-drift half of FE coordination remains PENDING** owner mirror-direction ruling (unchanged from R-84/R-85 status · this-desk hands-off App.js divergence).
+- This-desk frontend write-ban STANDS.
+
+### Files (2 tracked)
+
+1. `phase0/spec_hunt_receipts/20260920T1855Z_lifecycle_strings_byte_verify_closure.md` NEW (closure receipt).
+2. `STATE/DECISIONS.md` this-append + `STATE/NEXT.md` twin marker append.
+
+Ratchet unchanged **5640**. Zero code change. Zero test change. Zero baseline change. Not a §3.3 3-Commit Seal — notes-only state-master banking pattern (identical shape to `CP-ENT-43-BYTE-VERIFY-CLOSURE` `d0a2ea9b` + `CP-LIFECYCLE-STRINGS-BYTE-VERIFY` `9b6b170b` precedents).
+
+### Autopilot next · STANDING BY on 6 owner-held items
+
+Per owner directive verbatim this-session ("continue STANDING BY on the six owner-held items — nothing else is authorized until owner rulings arrive · I have the full ruling queue on the owner's desk"):
+
+1. **App.js mirror direction** — owner ruling pending
+2. **FORK-BLK-KINDS** (`suspended` mapping · Reading A/B/C/D · this-desk recommendation A) — owner ruling pending
+3. **FORK-BLK-EXACTLY-3-SEALED-TEST** (cosmetic docstring · Reading α/β/γ · this-desk recommendation γ) — owner ruling pending
+4. **R-32 / Content Registry wave** — HELD
+5. **G5-v4 ratification** — HELD (prep landed at `9b6b170b`)
+6. ~~Specialist fix pass for 3 apostrophe mismatches~~ — **CLOSED at this-commit** (item retires from held-queue).
+
+All non-held prep-eligible work now exhausted at this boundary. **Standing by.**
+
+### Standing bounds unchanged
+
+zero push · terminal `pytest` only · no `testing_agent` · additive-only §3.8 · three-repo discipline · ratchet monotonic-up (unchanged at **5640** · never rebaselined silently). Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered · MEM-R-053 CROWN BAN NOT triggered.
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
