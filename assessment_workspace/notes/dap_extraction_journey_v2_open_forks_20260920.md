@@ -71,9 +71,11 @@ Choose one:
 
 ---
 
-## FORK-CON-INGEST-3 · 5 Blocked kinds vs sealed 3-kind enum + net-new "billed" copy
+## FORK-CON-INGEST-3 · 5 Blocked kinds vs sealed 3-kind enum + net-new "billed" copy · **RESOLVED BY RULING 2** (2026-09-20T~19:00Z)
 
-### Conflict statement
+> **R-87 CORRECTION IN PLACE** (per Ruling 2(c) "correct the wording at source everywhere non-sealed"): the "5 Blocked kinds" framing below is banked-void. The corrected count/grammar is: **three Blocked kinds plus Interrupted plus party_halted** — never five. Suspension is a principal state (DAP-27, PRIN-1), a different axis, and NEVER renders in the Blocked reason grammar. party_halted lives as its own rail state via the Q5 module tree, not as a Blocked kind. The historical conflict statement below is preserved for audit-trail context and inherits the Ruling-2 correction of record banked at R-87 Commit-B.
+
+### Conflict statement (as originally recorded pre-Ruling-2 · banked-void)
 
 - Journey v2 body uses **5 Blocked kinds**: `request` · `check` · `estate` · `suspended` · `party_halted`.
 - Sealed backend `BlockedKind(enum.Enum)` at `services/dap_lifecycle/blocked_kinds.py` has **3 kinds only**: `request` · `check` · `estate`. Module docstring line verbatim: "The 3 kinds of Blocked · request / check / estate."
@@ -88,7 +90,16 @@ Executed at 2026-09-20T~15:35Z via `grep -rniE "party_halted|party_halt|halt_par
 - **`BlockedKind` enum in sealed backend**: exactly 3 members `request` / `check` / `estate` at `services/dap_lifecycle/blocked_kinds.py` (post-CP-Q-UNLOCK-SUB-WAVE seal · unchanged from CP-DAP-LIFECYCLE-BACKEND-WAVE seal · Q7 ruling verbatim per CP-Q-UNLOCK-SUB-WAVE seal report "Blocked stays 3-kind · non-gate fault = Interrupted new non-terminal state · not a 4th Blocked kind").
 - **"What's run so far will still be billed" grep result**: ABSENT in `backend/services/**` and `backend/tests/**`. Zero hits.
 
-### Disposition at this ingest
+### Disposition at this ingest (post-Ruling-2 · corrected)
+
+- **RESOLVED** by Ruling 2 (2026-09-20T~19:00Z). Sealed 3-kind `BlockedKind` enum REMAINS binding · corrected composition phrase: **"three Blocked kinds plus Interrupted plus party_halted"**.
+- Suspended: **principal state axis** (DAP-27, PRIN-1) · surfaced ONLY via `services/dap_lifecycle/suspension_notices.py` · NEVER renders in Blocked reason grammar.
+- party_halted: **own rail state axis** (Q5 module tree at `services/dap_lifecycle/party_halted_kind.py`) · NEVER renders as `Blocked · party_halted` label.
+- Interrupted: platform-fault rail state (sealed at CP-Q-UNLOCK-SUB-WAVE `c0f5e6d5` per Q1/Q7 rulings) · own rail state.
+- "What's run so far will still be billed" copy: retained on party_halted rail-state drawer only · scoped to party-visible-figure-forbidden discipline per sealed `party_halt_billing.py` (backend-only billing · no party-facing figure per DAP-35).
+- Corrected count/grammar registered as Final constants at `services/dap_lifecycle/blocked_vocabulary.py` (R-87 landing) · `BLOCKED_KINDS_COUNT = 3` + `BLOCKED_KINDS_TUPLE = ("request", "check", "estate")` + axis-binding Final[bool] flags + WRONG_COUNT_PHRASES grep-negative substrate.
+
+### Disposition at this ingest (as originally recorded pre-Ruling-2 · banked-void)
 
 - **OPEN FORK** banked at this-file.
 - Sealed 3-kind `BlockedKind` enum REMAINS binding.

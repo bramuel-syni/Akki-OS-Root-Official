@@ -485302,5 +485302,85 @@
     "stage": "converge",
     "decision": "terminate_success",
     "at_iso": "2026-09-20T20:15:41.304457Z"
+  },
+  {
+    "row_id": "led-d5c329719cf9",
+    "run_id": "run-17b9a629d6f3",
+    "trace_id": "trace-df8cfa592bea",
+    "stage": "admit",
+    "decision": "refused",
+    "at_iso": "2026-09-20T20:36:21.107081Z"
+  },
+  {
+    "row_id": "led-8a130f4ea2e2",
+    "run_id": "cc-run-009546b76584",
+    "trace_id": "disp-de32952a0ec5",
+    "stage": "admit",
+    "decision": "refused",
+    "at_iso": "2026-09-20T20:36:43.963709Z"
+  },
+  {
+    "row_id": "led-614b7fc472ec",
+    "run_id": "cc-run-fffb17cb3fda",
+    "trace_id": "test-cbf",
+    "stage": "admit",
+    "decision": "refused",
+    "at_iso": "2026-09-20T20:36:44.273949Z"
+  },
+  {
+    "row_id": "led-c9a6e51fbbc6",
+    "run_id": "cc-run-79ffed5e02e4",
+    "trace_id": "disp-b3466e241e73",
+    "stage": "admit",
+    "decision": "refused",
+    "at_iso": "2026-09-20T20:36:44.573181Z"
+  },
+  {
+    "row_id": "led-a6e1c7594982",
+    "run_id": "cc-run-12012cc6d0a6",
+    "trace_id": "disp-7b16ec728605",
+    "stage": "converge",
+    "decision": "terminate_success",
+    "at_iso": "2026-09-20T20:36:44.869649Z"
+  },
+  {
+    "row_id": "led-e7f59de615dd",
+    "run_id": "cc-run-61f7f4264ead",
+    "trace_id": "disp-a4070b60b076",
+    "stage": "converge",
+    "decision": "terminate_success",
+    "at_iso": "2026-09-20T20:36:45.948701Z"
+  },
+  {
+    "row_id": "led-f1f4439a214d",
+    "run_id": "run-16130c37e778",
+    "trace_id": "trace-9998cea8ca6d",
+    "stage": "admit",
+    "decision": "admitted",
+    "at_iso": "2026-09-20T20:36:52.637076Z"
+  },
+  {
+    "row_id": "led-d4f658c5cd37",
+    "run_id": "run-16130c37e778",
+    "trace_id": "trace-9998cea8ca6d",
+    "stage": "admit",
+    "decision": "refused",
+    "at_iso": "2026-09-20T20:36:52.922941Z"
+  },
+  {
+    "row_id": "led-0caf853e364a",
+    "run_id": "run-abs-1",
+    "trace_id": "trace-abs-1",
+    "stage": "gate",
+    "decision": "fresh",
+    "at_iso": "2026-09-20T20:37:05.700996Z"
+  },
+  {
+    "row_id": "led-739c304b727f",
+    "run_id": "run-abs-2",
+    "trace_id": "trace-abs-2",
+    "stage": "gate",
+    "decision": "refused",
+    "at_iso": "2026-09-20T20:37:06.003037Z"
   }
 ]
