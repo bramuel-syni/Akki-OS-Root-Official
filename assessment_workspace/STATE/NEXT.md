@@ -3389,3 +3389,78 @@ Owner ruling this-session verbatim: "principal-wave seal is the last gate on DAP
 zero push · terminal pytest only · no testing_agent · additive-only §3.8 · §4.1 §E · §4.1 §F sha-pinning discipline · three-repo discipline · ratchet monotonic (floor **5546** · never rebaselined silently). Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered · MEM-R-053 CROWN BAN NOT triggered.
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+
+---
+
+## R-77 marker open · 2026-09-20T~12:00Z · CP-DAP-LIFECYCLE-BACKEND-WAVE opening · WAVE R-70 Step 1
+
+⏳ **OPEN** — Owner directive verbatim (this-session, post-CP-PRINCIPAL-MODEL-WAVE seal): OPEN DAP REQUEST LIFECYCLE BACKEND WAVE with three formally-ingested artifacts + eight owner-policy/spec-clarification decision questions (DAP-LIFECYCLE-Q1..Q8).
+
+### Custody + drop banking
+
+- Custody drop: `custody/owner_drops/20260920T1140Z/` (three artifacts held immutable per SO §4.1 §E).
+- Drop manifest: `phase0/credential_drop_manifests/20260920T1140Z_owner_drops_manifest.json`.
+- Citation indexes: `notes/rms_dap_latest_extract.md` · `notes/dap_list_of_changes_20_09_extract.md` · `notes/extraction_request_approval_journey_extract.md`.
+
+### PENDING-RULINGS register
+
+Full register at `STATE/dap_lifecycle_pending_rulings.md`.
+
+- **DAP-LIFECYCLE-Q1..Q6** (owner-policy · HARD HOLD): retry · standing-approval · partial-release · spend-ceiling breach · suspension-from-Ready · owner-turnaround-line — all fail-closed placeholders until owner rules per-question.
+- **DAP-LIFECYCLE-Q7** (spec-clarification · HARD HOLD · §6-hunt-executed): non-gate execution fault state — §6 remainder READ (Failure Posture DAP-28/29/30 · hunt receipt `phase0/spec_hunt_receipts/20260920T1200Z_dap_spec_section6_hunt.json`) · disposition STANDS: Blocked stays 3-kind · non-gate fault = banked TODO marker fail-closed until owner rules.
+- **DAP-LIFECYCLE-Q8** (spec-clarification · DEFAULT-class · PENDING RATIFICATION): destination removal → BUILD TO YES-READING (removal blocks future use only · historical receipts untouched · DAP-26 analogy).
+
+### Buildable-now scope this wave (autopilot target this-turn Phase 2 · RED-first)
+
+1. Request state machine terminal set: `Compose → Submitted → Routing → In Approval → Executing → Ready → Retrieved`; terminals `Refused / Blocked / Expired`.
+2. DAP-15 14-day timer on `In Approval → Expired` (corrected per owner this-session · silence ≠ approval).
+3. Approval decision service (accept/refuse) + identity discipline (submitter recorded/surfaceable · approver NEVER surfaced to party · decisions permanent, no reopen).
+4. Gate → Blocked surfacing (3 kinds: `request` · `check` · `estate`); non-gate fault Q7-TODO fail-closed.
+5. Retrieval → MeteredEvent wiring (DAP-21 per-retrieval · repeat downloads = new event · report re-open = no new event).
+6. Notification event-emission surface: `RequestSubmittedNotification` + `RequestRetrievedNotification` toast events; email = stub/queue behind flag OFF (DEFAULT-class banked).
+
+### Autopilot next-actions (this-turn)
+
+**Phase 2** (this-turn) — RED-first invariants at `backend/tests/invariants/test_dap_lifecycle_wave.py` (13+ tests covering scope 1-6). Contract snapshot alongside at `test_dap_lifecycle_wave.contract_snapshot.json`.
+**Phase 3** (this-turn) — additive-only GREEN implementation at new namespace `backend/services/dap_lifecycle/` (state_machine.py · approval_service.py · timer.py · metering_wiring.py · notification_surface.py · fail_closed.py).
+**Phase 4** (same-turn as Phase 3) — HARD HOLD placeholders (Q1-Q6 `NotYetSpecified`; Q7 `NonGateExecutionFaultNotYetSpecified`; Q8 module-scope constant `DESTINATION_REMOVAL_HISTORICAL_UNTOUCHED = True` pending ratification).
+**Phase 5** (post-GREEN) — double-green BASELINE_GUARD=1 sweep · measured-delta ratchet bump (floor **5546** · never preset) · 3-Commit Seal on dual branches (Commit-A `programme/track-a` code · Commit-B `master` state · Commit-C fixup + `notes/ORCH_BOOT.md` R-6 boundary regen + POD audit mirror sync `/app/frontend/public/audit/ORCH_BOOT.md`).
+
+### Standing bounds unchanged
+
+zero push · terminal pytest only · no testing_agent · additive-only §3.8 · SO §4.1 §E custody discipline · SO §4.1 §F sha-pinning discipline · three-repo discipline · ratchet monotonic (floor **5546** · never rebaselined silently). Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered · MEM-R-053 CROWN BAN NOT triggered.
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+
+---
+
+## R-77 marker flip · 2026-09-20T~12:40Z · CP-DAP-LIFECYCLE-BACKEND-WAVE FULLY SEALED · Commit-C fixup landed · banks Commit-B `b4850fd8f062e785877a74ddd09718be72a5df2c`
+
+✅ **SEALED** — CP-DAP-LIFECYCLE-BACKEND-WAVE §3.3 3-Commit Seal chain complete on dual branches:
+
+- **Commit-A** `86348320a74816542f6fa3da1e42ce044448625e` on `programme/track-a` (code · 20 files · 8 new modules `services.dap_lifecycle/` + 34 RED-first invariants + 1 lifecycle-shape snapshot + baseline ratchet 5546 → 5580 + 9 drill receipts).
+- **Commit-B** `b4850fd8f062e785877a74ddd09718be72a5df2c` on `master` (state banking · 11 tracked files · DECISIONS + NEXT + PINS + PENDING-RULINGS register + 3 extract notes + drop manifest + §6-hunt receipt + baseline-bump tool + ORCH_BOOT ratchet-only regen).
+- **Commit-C fixup** this-commit on `master` (banks Commit-B SHA · `notes/ORCH_BOOT.md` R-6 boundary regen advancing `heads_last_sealed.state_repo.head` to `b4850fd8f062e785877a74ddd09718be72a5df2c` + `heads_last_sealed.code_repo.head` to `86348320a74816542f6fa3da1e42ce044448625e` · POD audit mirror sync · this R-77 SEALED flip).
+
+**Ratchet floor 5580** (advanced from 5546 pre-Commit-A per M16-W3 corrected order · **+34 measured delta** reconciled per owner directive verbatim). `baseline_failures.json` sha256 `e57cfd4c632f88b3e8e0d5a16be21bd76ce69a67d22bacb5cbfd3e5472a17eca`. Pre-Commit-A double-green byte-identical BASELINE_GUARD=1 stripped-sha256 `447c341523db803307d2c4404eb6b915164a8512996aa9c9b5c8777ce8d612de` IDENTICAL run1+run2 both 5580 passed/1 skipped/438 warnings.
+
+### Seal contents summary
+
+- 34 lifecycle invariants across 8 clusters (W1-W8) landed RED-first with verbatim spec docstrings.
+- 8 HARD HOLDs banked (Q1-Q6 NotYetSpecified · Q7 NonGateExecutionFaultNotYetSpecified · Q8 DEFAULT-class YES-reading pending ratification).
+- 2 deliberately deferred product decisions (org-admin status emails · mass-suspension email granularity).
+- Q7 spec §6 CHECK-FIRST executed · hunt receipt banked at `phase0/spec_hunt_receipts/20260920T1200Z_dap_spec_section6_hunt.json` · §6 body ("Failure Posture" DAP-28/29/30) does NOT authorise a fourth kind of Blocked · disposition STANDS.
+
+### Autopilot next
+
+**AUTOPILOT HALT** for owner Q1-Q6 rulings + specialist dispatch for DAP portal frontend build per owner directive item 6 at wave-open. On Q1-Q6 rulings landing, unlocks feature-by-feature in separate additive-only sub-waves. DAP portal frontend work UNBLOCKED at CP-PRINCIPAL-MODEL-WAVE seal (this-wave adds the lifecycle backend surface the frontend will bind against).
+
+**WAVE R-70 Step 1 FULLY SEALED at this Commit-C.** G5 slice-extension backlog (636 atomic rules remaining · P2) resumes in separate wave seals per owner ruling 2026-09-20T~08:56Z verbatim.
+
+### Standing bounds unchanged
+
+zero push · terminal pytest only · no testing_agent · additive-only §3.8 · §4.1 §E · §4.1 §F sha-pinning discipline · three-repo discipline · ratchet monotonic (floor **5580** · never rebaselined silently). Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered · MEM-R-053 CROWN BAN NOT triggered.
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

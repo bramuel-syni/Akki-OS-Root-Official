@@ -18862,3 +18862,112 @@ Standing bounds re-affirmed. G5 slice-extension backlog (P2 · 636 atomic rules 
 zero push · terminal pytest only · no testing_agent · additive-only §3.8 · §4.1 §E · §4.1 §F sha-pinning discipline · three-repo discipline · ratchet monotonic (floor **5546** · never rebaselined silently). Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered · MEM-R-053 CROWN BAN NOT triggered.
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+
+---
+
+## R-77 marker open · 2026-09-20T~12:00Z · CP-DAP-LIFECYCLE-BACKEND-WAVE opening · WAVE R-70 Step 1
+
+⏳ **OPEN** — Owner directive verbatim (this-session, post-CP-PRINCIPAL-MODEL-WAVE seal): "OPEN DAP REQUEST LIFECYCLE BACKEND WAVE with three formally-ingested artifacts — RMS DAP LATEST.html (NOW BINDING design source · SUPERSEDES prior banked portal prototype RMS AI Prototype v2 sha 9952692ce058... referenced in Step 8 OS-prototype frontends card) + DAP List of Changes 20.09 + extraction_request_approval_journey.md. Eight owner-policy/spec-clarification decision questions issued (DAP-LIFECYCLE-Q1..Q8) — 6 owner-policy (Q1..Q6) + 2 spec clarifications (Q7..Q8); each is HARD-HOLD fail-closed until ruled per owner directive verbatim."
+
+### Custody + drop banking
+
+- Custody drop dir: `custody/owner_drops/20260920T1140Z/` (three artifacts held immutable per SO §4.1 §E).
+- Drop manifest: `phase0/credential_drop_manifests/20260920T1140Z_owner_drops_manifest.json` (sha-pinning discipline per SO §4.1 §F).
+- Artifact hashes: `RMS_DAP_LATEST.html` sha256 `1b5f59d4e7eb22cfea166ec5119dae8503c9755fa21af00a264c7596085738bc` (221,620 bytes) · `DAP_List_of_Changes_20260920.docx` sha256 `4eabe4d55d795dba147ce4b77d645aa3ec5d95cb24c17e36c678bed6bc38a826` (16,645 bytes) · `extraction_request_approval_journey.md` sha256 `a7485f060882ce4c2a4750a148b3eac34b4643d2b88f46f1e09ddbff8a139361` (73,017 bytes).
+- Citation indexes: `notes/rms_dap_latest_extract.md` · `notes/dap_list_of_changes_20_09_extract.md` · `notes/extraction_request_approval_journey_extract.md`.
+
+### Owner rulings verbatim banked at wave-open (this-session)
+
+**Wave-open directive** (this-session):
+> "OPEN DAP REQUEST LIFECYCLE BACKEND WAVE with three formally-ingested artifacts — RMS DAP LATEST.html (NOW BINDING design source · SUPERSEDES prior banked portal prototype RMS AI Prototype v2 sha 9952692ce058... referenced in Step 8 OS-prototype frontends card) + DAP List of Changes 20.09 + extraction_request_approval_journey.md. Eight owner-policy/spec-clarification decision questions issued (DAP-LIFECYCLE-Q1..Q8) — 6 owner-policy (Q1..Q6) + 2 spec clarifications (Q7..Q8); each is HARD-HOLD fail-closed until ruled per owner directive verbatim. LATEST.html supersede the previously banked portal prototype as binding design source."
+
+**Correction 1 · DAP-15 timer discipline** (this-session, verbatim):
+> "DAP-15's 14-day expiry runs from SUBMISSION to DECISION: the transition is In Approval → Expired when no decision lands within 14 calendar days of submission ('a request that receives no decision within 14 calendar days of submission expires unexecuted — silence is never treated as approval'). Ready → Expired is NOT the DAP-15 rule — a finished, unretrieved output does not expire under DAP-15. Author the test on the correct transition. (If the journey spec gives Ready its own retention/expiry rule somewhere, that's separate — cite it if you find it; do not conflate.)"
+
+**Correction 2 · Q7/Q8 dispositions** (this-session, verbatim):
+> "Q8 is NOT a hard hold: the banked DEFAULT-class ruling is BUILD TO THE YES-READING (destination removal blocks future use only; historical receipts untouched, DAP-26 analogy), tagged pending ratification. Only Q1-Q6 are hard-hold placeholders. Q7's disposition is also already set: Blocked stays 3-kind, non-gate fault surfaces as banked TODO marker fail-closed (check first whether the unshared remainder of spec §6 exists on disk)."
+
+**Correction 3 · scope addition** (this-session, verbatim):
+> "Add the notification event-emission surface to Phase 2/3 scope (toast events at submission + retrieval per the journey spec; email as stub/queue behind flag OFF — DEFAULT-class, already banked). It was in the wave order; keep it in this seal or explicitly defer it to a named W2 of this wave in the seal notes."
+
+**Identity-discipline test addition** (this-session, verbatim):
+> "One addition for Phase 2 item 3: the decision-service tests should assert the identity discipline from the journey spec — submitter identity recorded and surfaceable, approver identity NEVER surfaced to the party (role + data-owner name only), decisions permanent (no reopen path). Those three are testable now and are the spine of the approval surface."
+
+**Ratchet discipline** (this-session, verbatim):
+> "Ratchet: NEVER a preset target — measure the delta empirically post-GREEN, reconcile line-by-line, then bump. 5546 is the floor; write the measured number."
+
+**Standing-approval-wave-open ratification of proceed** (this-session, verbatim):
+> "Otherwise proceed exactly as planned. The NotYetSpecified fail-closed stub pattern with exact DECISIONS.md references is right. No — the owner has not yet returned Digicow's answers on Q1-Q6. Bank them as holds; they unlock feature-by-feature when rulings land. Go."
+
+### PENDING-RULINGS register (DAP-LIFECYCLE-Q1..Q8) verbatim
+
+Full register lives at `STATE/dap_lifecycle_pending_rulings.md`. Summary form (see register file for verbatim + code-site patterns):
+
+- **DAP-LIFECYCLE-Q1** (owner-policy · HARD HOLD): Can an unchanged request be retried after a check block without fresh approval? → Retry action NOT shipped · `NotYetSpecified` at code sites.
+- **DAP-LIFECYCLE-Q2** (owner-policy · HARD HOLD): Can a standing approval cover Train a Model or Build a Skill? → Standing-approval branch exists structurally, unreachable at runtime until ruled.
+- **DAP-LIFECYCLE-Q3** (owner-policy · HARD HOLD): Does a partial release exist as an outcome? → All-or-nothing default · TC-RET-16 stays held.
+- **DAP-LIFECYCLE-Q4** (owner-policy · HARD HOLD): Who receives a spend-ceiling breach + 14-day applicability + party-visible state? → Route to refusal-with-banked-marker until ruled · no party-side waiting state.
+- **DAP-LIFECYCLE-Q5** (owner-policy · HARD HOLD): Does finished output survive a suspension from Ready? → Blocked drawer renders visible "not yet specified" placeholder · journey L91 confirms terminal Blocked from anywhere including Ready.
+- **DAP-LIFECYCLE-Q6** (owner-policy · HARD HOLD): Should the party see the owner's turnaround time ("Waited N days")? → OMIT the line entirely until owner consents (showing without consent is harm · omission reversible).
+- **DAP-LIFECYCLE-Q7** (spec-clarification · HARD HOLD · §6-hunt-executed): Does a non-gate execution fault exist as its own state? → **§6 remainder READ from `canon/drops/20260909/raw/DAP_Backend_Spec_v1.docx` per hunt receipt `phase0/spec_hunt_receipts/20260920T1200Z_dap_spec_section6_hunt.json`; §6 body ("Failure Posture" · DAP-28/29/30) speaks ONLY of gates failing closed and does NOT authorise a fourth kind of Blocked. Disposition STANDS: Blocked stays 3-kind · non-gate fault surfaces as banked TODO marker fail-closed until owner rules.**
+- **DAP-LIFECYCLE-Q8** (spec-clarification · DEFAULT-class · PENDING RATIFICATION): Does removing a registered destination leave historical receipts untouched? → **BUILD TO YES-READING**: removal blocks future use only · historical receipts untouched · DAP-26 no-retroactive-change by analogy · `party_admission_journey.md, §6` analogy · pending owner ratification.
+
+### Deliberately deferred (not questions · product decisions banked at wave-open)
+
+- **Org-admin status emails**: submitter-only remains the current rule per owner directive verbatim. Product decision. Nothing blocked.
+- **Mass-suspension email granularity**: product decision. Nothing blocked.
+
+### Buildable-now scope this wave (autopilot Phase 2 target)
+
+1. **Request state machine** (structural · terminal set): `Compose → Submitted → Routing → In Approval → Executing → Ready → Retrieved`; terminals `Refused / Blocked / Expired`.
+2. **DAP-15 14-day timer** on `In Approval → Expired` transition (silence never = approval · corrected per owner this-session).
+3. **Approval decision service** (accept / refuse paths only) + **identity discipline** (submitter recorded/surfaceable · approver NEVER surfaced to party · decisions permanent, no reopen path).
+4. **Gate → Blocked** surfacing (3 kinds: `request`, `check`, `estate`); non-gate execution fault Q7-TODO fail-closed.
+5. **Retrieval → MeteredEvent** wiring on the single chain (DAP-21 per-retrieval receipt; repeat downloads = new metered event; report re-open = no new event).
+6. **Notification event-emission surface**: `RequestSubmittedNotification` + `RequestRetrievedNotification` toast events emitted on state transitions; email = stub/queue behind flag OFF (DEFAULT-class banked, no external side-effect).
+
+### Standing bounds unchanged
+
+zero push · terminal pytest only · no testing_agent · additive-only §3.8 · SO §4.1 §E custody discipline · SO §4.1 §F sha-pinning discipline · three-repo discipline · ratchet monotonic (floor **5546** · never rebaselined silently). Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered · MEM-R-053 CROWN BAN NOT triggered.
+
+### Autopilot next
+
+Phase 2 (this-turn) — author RED-first invariants at `backend/tests/invariants/test_dap_lifecycle_wave.py` covering the 6 buildable-now items above. Phase 3 (next-turn) — additive-only GREEN implementation at `backend/services/dap_lifecycle/` (new namespace · no existing module edits). Phase 4 (same-turn as Phase 3) — HARD HOLD placeholders (Q1-Q6 + Q7 TODO marker; Q8 DEFAULT YES-reading module constant). Phase 5 (post-GREEN) — double-green BASELINE_GUARD=1 sweep · measured-delta ratchet bump · 3-Commit Seal on dual branches (Commit-A track-a code · Commit-B master state · Commit-C fixup + ORCH_BOOT regen + POD audit mirror sync). Ratchet target: NEVER preset · measure empirically post-GREEN · floor **5546** · write the measured number.
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+
+---
+
+## R-77 marker flip · 2026-09-20T~12:40Z · CP-DAP-LIFECYCLE-BACKEND-WAVE FULLY SEALED · Commit-C fixup landed on `master` · banks Commit-B `b4850fd8f062e785877a74ddd09718be72a5df2c`
+
+✅ **SEALED** — CP-DAP-LIFECYCLE-BACKEND-WAVE §3.3 3-Commit Seal chain complete on dual branches:
+
+- **Commit-A** `86348320a74816542f6fa3da1e42ce044448625e` on `programme/track-a` (code · 20 files · 8 new modules under `services.dap_lifecycle/` + 34 RED-first invariants at `tests/invariants/test_dap_lifecycle_wave.py` + 1 new lifecycle-shape snapshot at `tests/invariants/dap_lifecycle_wave.lifecycle_shape_snapshot.json` (contract_sha256 `253c69c6d75e29f7e48a69c0b8cb8e20d25e09267ccb7f6e7089992905a77e06`) + baseline ratchet 5546 → 5580 + 9 drill receipts).
+- **Commit-B** `b4850fd8f062e785877a74ddd09718be72a5df2c` on `master` (state banking · 11 tracked files · this R-77 marker + banking sections + PENDING-RULINGS register + 3 extract notes + drop manifest + §6-hunt receipt + baseline-bump tool + STATE/PINS.md housekeeping-pickup + notes/ORCH_BOOT.md ratchet-only regen [pre-Commit-A]).
+- **Commit-C fixup** this-commit on `master` (banks Commit-B SHA `b4850fd8f062e785877a74ddd09718be72a5df2c` · `notes/ORCH_BOOT.md` R-6 boundary regen advancing `heads_last_sealed.state_repo.head` from CP-PRINCIPAL-MODEL-WAVE Commit-B `947591831da09601a6880a3e42084b78657e9d01` to this-wave Commit-B `b4850fd8f062e785877a74ddd09718be72a5df2c` + `heads_last_sealed.code_repo.head` narratively-current first-block advanced from CP-PRINCIPAL-MODEL-WAVE Commit-A `4b3b5e09a71254c3ccb9d4b6abcd19dbdfe13e34` to this-wave Commit-A `86348320a74816542f6fa3da1e42ce044448625e` · `/app/frontend/public/audit/ORCH_BOOT.md` byte-identical sync · this R-77 SEALED flip).
+
+### Milestone snapshot at seal
+
+- Ratchet floor **5580** (advanced from 5546 pre-Commit-A per M16-W3 corrected order · **+34 measured delta** reconciled per owner directive verbatim "measure the delta empirically post-GREEN, reconcile line-by-line, then bump · 5546 is the floor · write the measured number").
+- `baseline_failures.json` sha256 `e57cfd4c632f88b3e8e0d5a16be21bd76ce69a67d22bacb5cbfd3e5472a17eca`.
+- Pre-Commit-A double-green byte-identical BASELINE_GUARD=1 stripped-sha256 `447c341523db803307d2c4404eb6b915164a8512996aa9c9b5c8777ce8d612de` IDENTICAL across run1 (163.07s) + run2 (161.49s) both 5580 passed/1 skipped/438 warnings against post-bump baseline.
+- 34 lifecycle invariants landed RED-first with verbatim spec docstrings per SO §2.5 across 8 test clusters (W1 state machine · W2 DAP-15 timer · W3 approval decision + identity discipline · W4 Blocked 3-kind · W5 retrieval MeteredEvent · W6 notification event-emission · W7 hard-holds Q1-Q8 · W8 module surface + shape pin).
+- 8 HARD HOLDs banked: Q1-Q6 as `NotYetSpecified` placeholders; Q7 as `NonGateExecutionFaultNotYetSpecified` (spec §6 CHECK-FIRST executed · hunt receipt banked); Q8 as `DESTINATION_REMOVAL_HISTORICAL_UNTOUCHED=True` DEFAULT-class pending ratification.
+- 2 deliberately deferred (product decisions, nothing blocked): org-admin status emails; mass-suspension email granularity.
+- Zero production mutation-site FINDINGS banked (services.dap_lifecycle is a new namespace consumed by no sealed writer at this wave).
+
+### Post-Commit-C `test_orch_boot` verification
+
+Runs after this fixup landing (should pass · both `state_repo.head b4850fd8f062e785877a74ddd09718be72a5df2c` and `code_repo.head 86348320a74816542f6fa3da1e42ce044448625e` now banked in this DECISIONS section verbatim).
+
+### Autopilot next
+
+**AUTOPILOT HALT** for owner Q1-Q6 rulings + specialist dispatch for DAP portal frontend build per owner directive item 6 at wave-open. On Q1-Q6 rulings landing, unlocks feature-by-feature in separate additive-only sub-waves.
+
+### Standing bounds unchanged
+
+zero push · terminal pytest only · no testing_agent · additive-only §3.8 · §4.1 §E · §4.1 §F sha-pinning discipline · three-repo discipline · ratchet monotonic (floor **5580** · never rebaselined silently). Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered · MEM-R-053 CROWN BAN NOT triggered.
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

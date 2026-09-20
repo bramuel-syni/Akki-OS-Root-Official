@@ -1,0 +1,48 @@
+{
+  "receipt_version": "1.0",
+  "receipt_kind": "spec_hunt_receipt",
+  "hunt_at_utc": "2026-09-20T~12:00Z",
+  "hunted_by": "e1-autopilot",
+  "hunt_reason": "Owner directive verbatim (this-session): 'Q7 CHECK-FIRST: search custody/ + canon/ for unshared remainder of DAP-Spec §6 · if found, apply; if not, Blocked stays 3-kind and non-gate fault surfaces as banked TODO state marker fail-closed.'",
+  "canon_anchors": [
+    "SO §4.1 §F sha-pinning discipline (this receipt)",
+    "SO §6.4 NOTHING-BEYOND (fail-closed placeholder pattern preserved absent contradictory spec)",
+    "Owner ruling DAP-LIFECYCLE-Q7 disposition banked at CP-DAP-LIFECYCLE-BACKEND-WAVE opening"
+  ],
+  "hunt_scope": [
+    "canon/drops/20260909/raw/DAP_Backend_Spec_v1.docx (authoritative source · sha256 as banked in canon manifest)",
+    "canon/drops/20260909/extracted/text/DAP_Backend_Spec_v1.txt (extracted mirror · 131 lines · confirmed COVERAGE-INCOMPLETE below)",
+    "custody/owner_drops/20260920T0824Z/DAP_Backend_Engineering_Brief.md (1554 lines · brief has its own §6 titled 'Consolidated defect register' · NOT the authoritative DAP-Spec §6)",
+    "custody/owner_drops/20260920T1140Z/extraction_request_approval_journey.md (468 lines · has its own §6 titled 'Page rail vs. module landing page' · NOT the authoritative DAP-Spec §6)"
+  ],
+  "finding_authoritative_dap_spec_section_6": {
+    "location": "canon/drops/20260909/raw/DAP_Backend_Spec_v1.docx",
+    "section_title": "Failure Posture",
+    "content_verbatim": "6   Failure Posture\nDAP-28   Every gate in DAP fails closed. An approval service that cannot be reached, a metering write that cannot complete, a terms resolution that returns nothing, a ceiling check that errors — each refuses the operation. No path returns estate data, an artefact, or a query result when a governing check could not complete. [FPT_FLS.1]\nDAP-29   A metered event that cannot be written to the Ledger refuses the operation it meters. An unrecorded extraction is not permitted to have happened. [I-4 pattern]\nDAP-30   Browse degrades rather than refuses: where the census is stale or partially unavailable, DAP returns what it has, marked as stale with its as-of time, and never silently presents an incomplete estate as complete. [honesty grammar]",
+    "section_headings_enumerated_in_source_doc": [
+      "§1 Purpose & Scope",
+      "§2 Definitions",
+      "§3 The External-Party Principal",
+      "§4 The Six Crossing Profiles",
+      "§5 Back-End Services Admission & keys",
+      "§6 Failure Posture",
+      "§7 Composition Map",
+      "§8 Dependencies & Their Status",
+      "§9 Build Acceptance Criteria",
+      "§10 Owner Rulings — Parked",
+      "§11 Standing"
+    ]
+  },
+  "finding_extracted_txt_coverage_gap": {
+    "extracted_txt_line_count": 131,
+    "authoritative_docx_section_count": 11,
+    "gap_disposition": "The extracted .txt at canon/drops/20260909/extracted/text/DAP_Backend_Spec_v1.txt does NOT contain §6 body text; it truncates after preamble. Extractor rerun would recover it, but the docx already answers the hunt. Not a blocker."
+  },
+  "q7_disposition_supported_by_finding": {
+    "question": "Does a non-gate execution fault exist as its own state?",
+    "authoritative_source_says": "DAP-Spec §6 (Failure Posture · DAP-28/29/30) speaks ONLY of gates failing closed (approval, metering write, terms resolution, ceiling check, [journey adds redaction pass and release budget]). It does NOT define a separate non-gate execution fault state, and it does NOT define a fourth kind of Blocked.",
+    "journey_open_question_line_247_verbatim": "Does a non-gate execution fault exist as its own state? DAP-28 covers gates failing closed; it says nothing about a fault with no gate involved — a training job crashing mid-run for a reason unrelated to approval, redaction, metering, or the budget. If that's a real case, it may need a state Blocked doesn't cover, or Blocked needs a fourth kind. Unconfirmed either way.",
+    "conclusion": "The unshared remainder of DAP-Spec §6 exists on disk and has been read; it does NOT contradict the Q7 disposition banked at wave-open. Q7 STANDS: Blocked stays 3-kind (request/check/estate) · non-gate execution fault surfaces as banked TODO state marker fail-closed until owner rules."
+  },
+  "next_action": "Bank this receipt reference in STATE/DECISIONS.md at CP-DAP-LIFECYCLE-BACKEND-WAVE opening under DAP-LIFECYCLE-Q7 disposition · code sites for the non-gate fault must raise a `NotYetSpecified` exception whose message cites STATE/DECISIONS.md line-anchor DAP-LIFECYCLE-Q7 + this receipt."
+}

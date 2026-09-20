@@ -1,0 +1,68 @@
+{
+  "manifest_version": "1.0",
+  "manifest_kind": "owner_drops_manifest",
+  "drop_at_utc": "2026-09-20T~11:40Z",
+  "drop_id": "20260920T1140Z",
+  "banked_by": "e1-autopilot",
+  "banked_reason": "Owner ruling this-session verbatim (post-CP-PRINCIPAL-MODEL-WAVE seal): OPEN DAP REQUEST LIFECYCLE BACKEND WAVE with three formally-ingested artifacts — RMS DAP LATEST.html (NOW BINDING design source · SUPERSEDES prior banked portal prototype RMS AI Prototype v2 sha 9952692ce058... referenced in Step 8 OS-prototype frontends card) + DAP List of Changes 20.09 + extraction_request_approval_journey.md. Eight owner-policy/spec-clarification decision questions issued (DAP-LIFECYCLE-Q1..Q8) — 6 owner-policy (Q1..Q6) + 2 spec clarifications (Q7..Q8); each is HARD-HOLD fail-closed until ruled per owner directive verbatim.",
+  "canon_anchors": [
+    "SO §4.1 §F sha-pinning discipline (this manifest)",
+    "SO §4.1 §E custody discipline (drop dir + immutable)",
+    "SO §6.2 e1_dev drafts cards from canon + rulings",
+    "SO §6.4 NOTHING-BEYOND (wave scope frozen at buildable-now items · 8 questions HARD-HOLD)",
+    "SO §6.7 sequence WAVE R-70 open (WAVE R-69 sealed at CP-PRINCIPAL-MODEL-WAVE afe46cf8)",
+    "CP-PRINCIPAL-MODEL-WAVE seal 4b3b5e09 / 94759183 / afe46cf8 (Step 9 · WAVE R-69 · DAP portal frontend hold lifted at seal)",
+    "CP-OS-PROTOTYPE-FRONTENDS-CARD (e3ea95df · Step 8 · OS-prototype frontends card holds ratification pending this wave seal + specialist dispatch per owner directive item 6 this-turn)"
+  ],
+  "artifacts": [
+    {
+      "filename": "RMS_DAP_LATEST.html",
+      "sha256": "1b5f59d4e7eb22cfea166ec5119dae8503c9755fa21af00a264c7596085738bc",
+      "size_bytes": 221620,
+      "source_url": "https://customer-assets-cm19k8pv.emergentagent.net/job_amazing-gates-8/artifacts/eui796ku_RMS%20Data%20Access%20Portal%20LATEST.dc%20%282%29.html",
+      "supersession": {
+        "supersedes": "RMS AI Prototype v2 (sha 9952692ce05809b3f4111c8ec3cf9dcb1008ea970895263981c2b52fb78cf199 · banked at Step 8 CP-OS-PROTOTYPE-FRONTENDS-CARD as one of two hash-pinned design sources for OS-prototype frontends card)",
+        "supersedes_scope": "DAP portal design source ONLY (RMS AI Prototype v2 remains binding for non-DAP OS-prototype surfaces — WorkStudio · ThinkLab · Collab · Manage Estate · Approvals · Build Your Resources · Your Resources · 3rd Party Apps · The Watch · additional surfaces not in nav per Step 8 card §§3.1-3.10).",
+        "owner_ruling_verbatim": "LATEST.html supersede the previously banked portal prototype as binding design source"
+      },
+      "role": "binding design source (DAP portal)",
+      "citation_form": "RMS DAP LATEST · §<section-if-labelled> · <line-anchor-else>",
+      "extraction_target": "notes/rms_dap_latest_extract.md"
+    },
+    {
+      "filename": "DAP_List_of_Changes_20260920.docx",
+      "sha256": "4eabe4d55d795dba147ce4b77d645aa3ec5d95cb24c17e36c678bed6bc38a826",
+      "size_bytes": 16645,
+      "source_url": "https://customer-assets-cm19k8pv.emergentagent.net/job_amazing-gates-8/artifacts/c5fu00g6_DAP%20List%20of%20Changes%20-%2020.09.2026.docx",
+      "role": "change-log companion (DAP List of Changes · 20 Sep 2026)",
+      "citation_form": "DAP List of Changes 20.09 · <change-id> · <section-or-row>",
+      "extraction_target": "notes/dap_list_of_changes_20_09_extract.md"
+    },
+    {
+      "filename": "extraction_request_approval_journey.md",
+      "sha256": "a7485f060882ce4c2a4750a148b3eac34b4643d2b88f46f1e09ddbff8a139361",
+      "size_bytes": 73017,
+      "source_url": "https://customer-assets-cm19k8pv.emergentagent.net/job_amazing-gates-8/artifacts/r6a3od7g_extraction_request_approval_journey%20%281%29.md",
+      "role": "journey specification (extraction request approval flow · atomic-extraction subject)",
+      "citation_form": "extraction_request_approval_journey.md · §<section-num> · <paragraph-anchor>",
+      "extraction_target": "notes/extraction_request_approval_journey_extract.md"
+    }
+  ],
+  "pending_rulings_register": {
+    "path_rel": "STATE/dap_lifecycle_pending_rulings.md",
+    "questions": [
+      {"id": "DAP-LIFECYCLE-Q1", "class": "owner-policy", "question": "Can an unchanged request be retried after a check block without fresh approval?", "hard_hold_effect": "Retry action NOT shipped · placeholder fail-closed at code sites"},
+      {"id": "DAP-LIFECYCLE-Q2", "class": "owner-policy", "question": "Can a standing approval cover Train a Model or Build a Skill?", "hard_hold_effect": "Standing-approval branch exists structurally, unreachable at runtime until ruled"},
+      {"id": "DAP-LIFECYCLE-Q3", "class": "owner-policy", "question": "Does a partial release exist as an outcome?", "hard_hold_effect": "All-or-nothing default · TC-RET-16 stays held"},
+      {"id": "DAP-LIFECYCLE-Q4", "class": "owner-policy", "question": "Who receives a spend-ceiling breach (owner-side/party-side) + 14-day applicability + party-visible state?", "hard_hold_effect": "Route to refusal-with-banked-marker until ruled · no party-side waiting state"},
+      {"id": "DAP-LIFECYCLE-Q5", "class": "owner-policy", "question": "Does finished output survive a suspension from Ready?", "hard_hold_effect": "Blocked drawer renders visible 'not yet specified' placeholder"},
+      {"id": "DAP-LIFECYCLE-Q6", "class": "owner-policy", "question": "Should the party see the owner's turnaround time ('Waited N days' line)?", "hard_hold_effect": "OMIT the line entirely until owner consents (showing without consent is harm · omission reversible)"},
+      {"id": "DAP-LIFECYCLE-Q7", "class": "spec-clarification", "question": "Does a non-gate execution fault exist as its own state?", "hard_hold_effect": "Q7 CHECK-FIRST: search custody/ + canon/ for unshared remainder of DAP-Spec §6 · if found, apply; if not, Blocked stays 3-kind and non-gate fault surfaces as banked TODO state marker fail-closed"},
+      {"id": "DAP-LIFECYCLE-Q8", "class": "spec-clarification", "question": "Does removing a registered destination leave historical receipts untouched?", "hard_hold_effect": "DEFAULT-class YES-reading (removal blocks future use only · historical receipts untouched · DAP-26 no-retroactive-change by analogy · party_admission_journey.md analogy) · pending owner ratification"}
+    ]
+  },
+  "deliberately_deferred": [
+    "Org-admin status emails — submitter-only remains the current rule per owner directive verbatim (product decision · nothing blocked)",
+    "Mass-suspension email granularity — product decision · nothing blocked"
+  ]
+}
