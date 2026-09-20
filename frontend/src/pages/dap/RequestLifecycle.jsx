@@ -1,22 +1,38 @@
 import React, { useState } from "react";
 import StatusBadge from "@/components/dap/StatusBadge";
-import { ChevronDown, ChevronUp, RotateCcw, Plus, AlertTriangle, Clock, CheckCircle } from "lucide-react";
-import { ENT_23_COST_NOT_MEASURED } from "@/strings/entitlementStrings";
+import { ChevronDown, ChevronUp, RotateCcw, AlertTriangle, CheckCircle, Square } from "lucide-react";
+import {
+  STOP_CONFIRM,
+  PARTY_HALTED_KIND_LINE,
+  PARTY_HALTED_WHAT_NEXT,
+  IN_APPROVAL_WAITING_TPL,
+  EXPIRED_DATE_TPL,
+  EXPIRED_WAITED_TPL,
+  EXPIRED_MEANING_TPL,
+  EXPIRED_WHAT_NEXT_TPL,
+  BLOCK_KIND_REQUEST,
+  BLOCK_KIND_CHECK,
+  BLOCK_KIND_ESTATE,
+  BLOCK_ESTATE_REASON,
+  BLOCK_KIND_SUSPENDED_EXECUTING_TPL,
+  BLOCK_WHATNEXT_REQUEST,
+  BLOCK_WHATNEXT_CHECK,
+  BLOCK_WHATNEXT_ESTATE_TPL,
+  BLOCK_WHATNEXT_SUSPENDED_TPL,
+} from "@/strings/lifecycleStrings";
 
 /**
- * Request Lifecycle — DAP §4.2
- * The spine of the DAP. Shows the complete state machine.
- * 
- * Owner-ratified lifecycle rules (BINDING):
- * a. Interrupted (platform fault) — visible, bounded auto-retry max 3, attempt counter shown
- * b. Expired (14-day, working-day roll-forward) — ONE recourse: "Submit again as a new request"
- * c. Spend-ceiling breach folds into In Approval with reason line
- * d. Escrow semantics on suspension
- * e. Suspension notices visible only to org admin + affected submitters
- * 
- * HARD OMISSIONS:
+ * Request Lifecycle — Journey v2 conformance pass.
+ *
+ * FIVE Blocked kinds: request, check, estate, suspended, party_halted (§5, §11).
+ * Stop action on Executing (TC-BLK-24).
+ * In Approval waiting line (TC-INA-06).
+ * Expired drawer (TC-EXP-02).
+ *
+ * HARD OMISSIONS (owner-ruled):
+ * - NO "Waited N days" in any post-decision Sign-off block (Approved/Refused)
  * - NO partial-release UI
- * - NO "Waited N days" turnaround copy
+ * - NO owner-turnaround metrics
  */
 
 const MODE_VERB = {
@@ -25,16 +41,39 @@ const MODE_VERB = {
 };
 
 const BLOCK_KIND_META = {
-  request: { kindLine: "About the request; resubmitting unchanged will be blocked again", showCopy: true },
-  check: { kindLine: "Not about your request; a platform check couldn't complete", showCopy: true },
+  request: {
+    kindLine: BLOCK_KIND_REQUEST,
+    whatNext: BLOCK_WHATNEXT_REQUEST,
+    showCopy: true,
+    showProgress: true,
+  },
+  check: {
+    kindLine: BLOCK_KIND_CHECK,
+    whatNext: BLOCK_WHATNEXT_CHECK,
+    showCopy: true,
+    showProgress: true,
+  },
   estate: {
-    kindLine: "About an estate-level limit, not your request or agreement",
-    fixedReason: "The platform refused this release. No detail is available.",
-    showCopy: false
+    kindLine: BLOCK_KIND_ESTATE,
+    fixedReason: BLOCK_ESTATE_REASON,
+    showCopy: false,
+    showProgress: false, // DAP-35: no progress indicator for estate
+  },
+  suspended: {
+    // kind line depends on blocked_from_status — computed at render time
+    kindLine: null,
+    showCopy: false,
+    showProgress: "conditional", // depends on blocked_from_status
+  },
+  party_halted: {
+    kindLine: PARTY_HALTED_KIND_LINE,
+    whatNext: PARTY_HALTED_WHAT_NEXT,
+    showCopy: true,
+    showProgress: true,
   },
 };
 
-// Sample requests showing the full state machine (from DAP reference HTML).
+// Sample requests showing the full state machine (from DAP reference + journey v2).
 // In production these would come from a real endpoint (backend pending).
 const SAMPLE_REQUESTS = [
   {
@@ -54,6 +93,8 @@ const SAMPLE_REQUESTS = [
     status: "In Approval", mode: "finetune", agreement: "Agreement MER-007",
     submitted: "submitted 13 Sep 2026", submittedBy: "R. Adeyemi", scope: "Audio",
     submittedAtISO: "2026-09-13", windowEndsAtISO: "2026-09-28",
+    dataOwner: "Digicow",
+    signoffReason: "This request needs sign-off because it includes IVR prompts. Under Agreement MER-007, Digicow has to approve any use of them.",
     spendCeilingBreach: false,
   },
   {
@@ -61,6 +102,7 @@ const SAMPLE_REQUESTS = [
     status: "In Approval", mode: "finetune", agreement: "Agreement MER-007",
     submitted: "submitted 5 Sep 2026", submittedBy: "A. Osei", scope: "Audio",
     submittedAtISO: "2026-09-05", windowEndsAtISO: "2026-09-19",
+    dataOwner: "Digicow",
     spendCeilingBreach: true,
     spendCeilingReason: "Organisation ceiling reached for this period. Spend-ceiling breach folds into In Approval.",
   },
@@ -96,28 +138,55 @@ const SAMPLE_REQUESTS = [
     status: "Expired", mode: "processed", agreement: "Agreement MER-002",
     submitted: "submitted 19 Aug 2026", submittedBy: "R. Adeyemi",
     submittedAtISO: "2026-08-18", expiredAtISO: "2026-09-02", expiredAtDisplay: "2 Sep 2026",
+    dataOwner: "Digicow",
+    addressedTo: "the records authority at Digicow",
+    signoffReason: "This request needed sign-off because it includes complaint files. Under Agreement MER-002, Digicow had to approve any use of them.",
   },
   {
     id: "skl-2026-0047", objective: "Build a skill to summarise complaint threads by branch.",
     status: "Blocked", mode: "skills", agreement: "Agreement MER-007",
     submitted: "submitted 5 Sep 2026", submittedBy: "T. Mwangi", scope: "Text",
     blockedAt: "14 Sep 2026, 03:12", blockKind: "estate",
-    blockReason: "The platform refused this release. No detail is available.",
-    blockRef: "SKL-2026-0047-B1", dataOwner: "the data governance office at Digicow",
+    dataOwner: "the data governance office at Digicow",
   },
   {
     id: "prc-2026-0102", objective: "Find out average time-to-close by branch, last quarter.",
     status: "Blocked", mode: "processed", agreement: "Agreement MER-002",
     submitted: "submitted 12 Sep 2026", submittedBy: "R. Adeyemi", scope: "Audio",
     blockedAt: "13 Sep 2026, 17:40", blockKind: "request",
-    blockReason: "There isn't enough time-to-close data recorded for last quarter to answer this by branch.",
+    blockReason: "There isn\u2019t enough time-to-close data recorded for last quarter to answer this by branch.",
     blockRef: "PRC-2026-0102-B1",
+    dataOwner: "Digicow",
+  },
+  // ── party_halted sample (journey v2 §11) ──
+  {
+    id: "ftn-2026-0122", objective: "Train on the cleared complaint files to identify repeat callers.",
+    status: "Blocked", mode: "finetune", agreement: "Agreement MER-007",
+    submitted: "submitted 8 Sep 2026", submittedBy: "R. Adeyemi", scope: "Audio",
+    blockedAt: "15 Sep 2026, 11:04", blockKind: "party_halted",
+    blockedBy: "R. Adeyemi",
+    pctAtStop: 63,
+    blockRef: "FTN-2026-0122-B1",
+    dataOwner: "Digicow",
+    signoffRequired: true, approvedByRole: "records authority", approvedDate: "12 Sep 2026",
+  },
+  // ── suspended sample (journey v2 §11) ──
+  {
+    id: "prc-2026-0108", objective: "Find out which branch had the highest complaint volume in Q2.",
+    status: "Blocked", mode: "processed", agreement: "Agreement MER-002",
+    submitted: "submitted 10 Sep 2026", submittedBy: "T. Mwangi", scope: "Audio",
+    blockedAt: "16 Sep 2026, 09:15", blockKind: "suspended",
+    blockedFromStatus: "executing",
+    dataOwner: "Digicow",
   },
 ];
 
 const ALL_STATES = [
-  "In Approval", "Executing", "Ready", "Retrieved", "Refused", "Blocked",
-  "Expired", "Interrupted (platform fault)", "Blocked \u00b7 check"
+  "In Approval", "Executing", "Ready", "Retrieved", "Refused",
+  "Blocked", "Expired", "Interrupted (platform fault)",
+  // Five blocked kinds shown in legend per §5
+  "Blocked \u00b7 request", "Blocked \u00b7 check", "Blocked \u00b7 estate",
+  "Blocked \u00b7 suspended", "Blocked \u00b7 party_halted",
 ];
 
 const RAIL_ROW = [
@@ -126,9 +195,40 @@ const RAIL_ROW = [
   ["Blocked", "Blocked"], ["Expired", "Expired"], ["Interrupted (platform fault)", "Interrupted"],
 ];
 
+/** Compute elapsed calendar days between two ISO date strings. */
+function daysBetween(isoA, isoB) {
+  const a = new Date(isoA);
+  const b = isoB ? new Date(isoB) : new Date();
+  return Math.max(0, Math.round((b - a) / 86_400_000));
+}
+
 function RequestCard({ req }) {
   const [expanded, setExpanded] = useState(false);
+  const [stopDialogOpen, setStopDialogOpen] = useState(false);
   const blockMeta = req.blockKind ? BLOCK_KIND_META[req.blockKind] : null;
+
+  // Compute In Approval waiting days from submission date
+  const waitDays = req.submittedAtISO ? daysBetween(req.submittedAtISO, null) : null;
+
+  // Resolve suspended kind line dynamically based on blocked_from_status
+  const resolvedKindLine = (() => {
+    if (!blockMeta) return null;
+    if (req.blockKind === "suspended") {
+      const owner = req.dataOwner || "the data owner";
+      if (req.blockedFromStatus === "in_approval") return BLOCK_KIND_SUSPENDED_EXECUTING_TPL(owner).replace("while this was running", "before a decision was made");
+      if (req.blockedFromStatus === "ready") return `${owner} suspended your access before you retrieved this.`;
+      return BLOCK_KIND_SUSPENDED_EXECUTING_TPL(owner); // default: from executing
+    }
+    return blockMeta.kindLine;
+  })();
+
+  // Resolve what-next dynamically
+  const resolvedWhatNext = (() => {
+    if (!blockMeta) return null;
+    if (req.blockKind === "suspended") return BLOCK_WHATNEXT_SUSPENDED_TPL(req.dataOwner || "the data owner");
+    if (req.blockKind === "estate") return BLOCK_WHATNEXT_ESTATE_TPL(req.dataOwner || "the data owner");
+    return blockMeta.whatNext || null;
+  })();
 
   return (
     <div
@@ -142,6 +242,9 @@ function RequestCard({ req }) {
             <div className="flex items-center gap-2 mb-1">
               <span className="text-xs font-mono" style={{ color: "var(--ink3)" }}>{req.id}</span>
               <StatusBadge status={req.status} />
+              {req.blockKind && (
+                <StatusBadge status={`Blocked \u00b7 ${req.blockKind}`} />
+              )}
             </div>
             <p className="text-sm font-medium" style={{ color: "var(--ink)" }}>{req.objective}</p>
           </div>
@@ -149,6 +252,7 @@ function RequestCard({ req }) {
             data-testid={`request-expand-${req.id}`}
             onClick={() => setExpanded(!expanded)}
             className="p-1 rounded hover:bg-black/5 transition-colors"
+            aria-label={expanded ? "Collapse" : "Expand"}
           >
             {expanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
           </button>
@@ -156,13 +260,13 @@ function RequestCard({ req }) {
 
         <div className="flex flex-wrap gap-3 text-xs" style={{ color: "var(--ink3)" }}>
           <span>{req.mode && MODE_VERB[req.mode] ? MODE_VERB[req.mode] : req.mode}</span>
-          <span>·</span>
+          <span>&middot;</span>
           <span>{req.agreement}</span>
-          <span>·</span>
+          <span>&middot;</span>
           <span>{req.submitted}</span>
         </div>
 
-        {/* Spend-ceiling breach folded into In Approval with reason */}
+        {/* ── In Approval: spend-ceiling breach folded in with reason ── */}
         {req.status === "In Approval" && req.spendCeilingBreach && (
           <div className="mt-2 text-xs p-2 rounded" style={{ background: "rgba(176,141,46,.08)", color: "var(--brass)" }}>
             <AlertTriangle size={12} className="inline mr-1" />
@@ -170,90 +274,249 @@ function RequestCard({ req }) {
           </div>
         )}
 
-        {/* Interrupted state with retry counter */}
+        {/* ── In Approval: waiting line (TC-INA-06) ── */}
+        {req.status === "In Approval" && req.windowEndsAtISO && waitDays != null && (
+          <p
+            data-testid={`in-approval-waiting-${req.id}`}
+            className="mt-2 text-xs"
+            style={{ color: "var(--brass)" }}
+          >
+            {IN_APPROVAL_WAITING_TPL(
+              req.dataOwner || "the data owner",
+              new Date(req.windowEndsAtISO).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }),
+              waitDays
+            )}
+          </p>
+        )}
+
+        {/* ── Interrupted state with retry counter ── */}
         {req.status === "Interrupted (platform fault)" && (
           <div className="mt-2 flex items-center gap-2 text-xs p-2 rounded" style={{ background: "rgba(184,57,91,.06)", color: "var(--oxblood)" }}>
             <RotateCcw size={12} />
             <span>
               Auto-retry attempt {req.retryAttempts || 0} of {req.maxRetries || 3}
-              {req.retryAttempts >= (req.maxRetries || 3) && " — exhausted, resolves to Blocked · check"}
+              {req.retryAttempts >= (req.maxRetries || 3) && " \u2014 exhausted, resolves to Blocked \u00b7 check"}
             </span>
           </div>
         )}
 
-        {/* Executing progress */}
-        {req.status === "Executing" && req.pct != null && (
+        {/* ── Executing: progress + Stop action (TC-BLK-24) ── */}
+        {req.status === "Executing" && (
           <div className="mt-2">
-            <div className="flex items-center justify-between text-xs mb-1" style={{ color: "var(--ink3)" }}>
-              <span>{req.stageLabel || "Processing"}</span>
-              <span>{req.eta}</span>
-            </div>
-            <div className="h-1.5 rounded-full overflow-hidden" style={{ background: "var(--line)" }}>
-              <div className="h-full rounded-full transition-all" style={{ width: `${req.pct}%`, background: "var(--accent)" }} />
+            {req.pct != null && (
+              <>
+                <div className="flex items-center justify-between text-xs mb-1" style={{ color: "var(--ink3)" }}>
+                  <span>{req.stageLabel || "Processing"}</span>
+                  <span>{req.eta}</span>
+                </div>
+                <div className="h-1.5 rounded-full overflow-hidden" style={{ background: "var(--line)" }}>
+                  <div className="h-full rounded-full transition-all" style={{ width: `${req.pct}%`, background: "var(--accent)" }} />
+                </div>
+              </>
+            )}
+            {req.stageIndex != null && req.pct == null && (
+              <div className="flex items-center justify-between text-xs" style={{ color: "var(--ink3)" }}>
+                <span>Step {req.stageIndex} of {req.stageCount} &mdash; {req.stageLabel}</span>
+                <span>{req.eta}</span>
+              </div>
+            )}
+            {/* Stop action */}
+            <button
+              data-testid={`stop-btn-${req.id}`}
+              onClick={() => setStopDialogOpen(true)}
+              className="mt-2 flex items-center gap-1.5 text-xs px-2.5 py-1 rounded border transition-colors hover:bg-red-50"
+              style={{ borderColor: "var(--oxblood)", color: "var(--oxblood)" }}
+            >
+              <Square size={10} /> Stop
+            </button>
+          </div>
+        )}
+
+        {/* ── Stop confirm dialog (TC-BLK-24) ── */}
+        {stopDialogOpen && (
+          <div
+            data-testid={`stop-confirm-${req.id}`}
+            className="mt-2 border rounded-lg p-3"
+            style={{ borderColor: "var(--oxblood)", background: "rgba(184,57,91,.04)" }}
+          >
+            <p className="text-sm mb-3" style={{ color: "var(--ink)" }}>
+              {STOP_CONFIRM}
+            </p>
+            <div className="flex gap-2">
+              <button
+                data-testid={`stop-confirm-yes-${req.id}`}
+                className="text-xs px-3 py-1.5 rounded font-medium text-white"
+                style={{ background: "var(--oxblood)" }}
+                onClick={() => setStopDialogOpen(false)}
+              >
+                Stop
+              </button>
+              <button
+                data-testid={`stop-confirm-cancel-${req.id}`}
+                className="text-xs px-3 py-1.5 rounded border"
+                style={{ borderColor: "var(--hair)", color: "var(--ink2)" }}
+                onClick={() => setStopDialogOpen(false)}
+              >
+                Cancel
+              </button>
             </div>
           </div>
         )}
 
-        {/* Ready state */}
+        {/* ── Ready state ── */}
         {req.status === "Ready" && req.modelId && (
           <div className="mt-2 text-xs" style={{ color: "var(--ink3)" }}>
-            <span>Model: {req.modelId} · Base: {req.baseModel}</span>
+            <span>Model: {req.modelId} &middot; Base: {req.baseModel}</span>
             {req.weightsHash && <span className="ml-2 font-mono">{req.weightsHash}</span>}
           </div>
         )}
       </div>
 
-      {/* Expanded details */}
+      {/* ── Expanded drawer ── */}
       {expanded && (
-        <div className="border-t px-4 py-3 text-sm" style={{ borderColor: "var(--line)", background: "var(--surface)" }}>
+        <div className="border-t px-4 py-3 text-sm space-y-3" style={{ borderColor: "var(--line)", background: "var(--surface)" }}>
           {req.submittedBy && <p style={{ color: "var(--ink2)" }}>Submitted by {req.submittedBy}</p>}
           {req.scope && <p style={{ color: "var(--ink3)" }}>Scope: {req.scope}</p>}
 
-          {/* Blocked state details */}
-          {req.status === "Blocked" && blockMeta && (
-            <div className="mt-2 border-l-4 p-3 rounded" style={{ borderColor: "var(--oxblood)", background: "rgba(184,57,91,.04)" }}>
-              <p className="text-xs font-medium mb-1" style={{ color: "var(--oxblood)" }}>
-                {blockMeta.kindLine}
-              </p>
-              <p className="text-sm" style={{ color: "var(--ink2)" }}>
-                {req.blockKind === "estate" ? blockMeta.fixedReason : req.blockReason}
-              </p>
-              {req.blockRef && (
-                <p className="text-xs font-mono mt-1" style={{ color: "var(--ink3)" }}>{req.blockRef}</p>
+          {/* ── In Approval drawer (TC-INA-06) ── */}
+          {req.status === "In Approval" && (
+            <div data-testid={`drawer-in-approval-${req.id}`} className="mt-1 space-y-2">
+              {req.signoffReason && (
+                <p className="text-sm" style={{ color: "var(--ink2)" }}>{req.signoffReason}</p>
               )}
-              {req.blockKind === "estate" && req.dataOwner && (
-                <p className="text-xs mt-1" style={{ color: "var(--ink3)" }}>
-                  Contact {req.dataOwner} before submitting again.
+              {req.windowEndsAtISO && waitDays != null && (
+                <p className="text-sm" style={{ color: "var(--brass)" }}>
+                  {IN_APPROVAL_WAITING_TPL(
+                    req.dataOwner || "the data owner",
+                    new Date(req.windowEndsAtISO).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }),
+                    waitDays
+                  )}
                 </p>
               )}
-              {/* estate block: copy button hidden per spec */}
             </div>
           )}
 
-          {/* Expired: exactly ONE recourse */}
+          {/* ── Blocked drawer — all five kinds ── */}
+          {req.status === "Blocked" && blockMeta && (
+            <div
+              data-testid={`drawer-blocked-${req.blockKind}-${req.id}`}
+              className="border-l-4 p-3 rounded"
+              style={{ borderColor: "var(--oxblood)", background: "rgba(184,57,91,.04)" }}
+            >
+              {/* Frozen progress for request/check/party_halted (not estate, conditional for suspended) */}
+              {blockMeta.showProgress === true && req.pctAtStop != null && (
+                <div className="mb-2">
+                  <div className="h-1.5 rounded-full overflow-hidden" style={{ background: "var(--line)" }}>
+                    <div className="h-full rounded-full" style={{ width: `${req.pctAtStop}%`, background: "var(--oxblood)" }} />
+                  </div>
+                  <p className="text-[10px] mt-0.5" style={{ color: "var(--oxblood)" }}>
+                    Stopped at {req.pctAtStop}% &middot; {req.blockedAt}
+                  </p>
+                </div>
+              )}
+
+              {/* Kind line */}
+              <p
+                data-testid={`block-kind-line-${req.id}`}
+                className="text-xs font-medium mb-1"
+                style={{ color: "var(--oxblood)" }}
+              >
+                {resolvedKindLine}
+              </p>
+
+              {/* Reason (only for request and check; estate uses fixed copy; none for suspended/party_halted) */}
+              {req.blockKind === "estate" && (
+                <p className="text-sm" style={{ color: "var(--ink2)" }}>{BLOCK_ESTATE_REASON}</p>
+              )}
+              {(req.blockKind === "request" || req.blockKind === "check") && req.blockReason && (
+                <p className="text-sm" style={{ color: "var(--ink2)" }}>{req.blockReason}</p>
+              )}
+
+              {/* Who stopped it — party_halted only */}
+              {req.blockKind === "party_halted" && req.blockedBy && (
+                <p className="text-xs mt-1" style={{ color: "var(--ink3)" }}>
+                  Stopped by {req.blockedBy}
+                </p>
+              )}
+
+              {/* Reference (every kind except estate) */}
+              {req.blockRef && req.blockKind !== "estate" && (
+                <p className="text-xs font-mono mt-1" style={{ color: "var(--ink3)" }}>
+                  Reference {req.blockRef}
+                </p>
+              )}
+
+              {/* What-next */}
+              {resolvedWhatNext && (
+                <p
+                  data-testid={`block-whatnext-${req.id}`}
+                  className="text-xs mt-2"
+                  style={{ color: "var(--ink3)" }}
+                >
+                  {resolvedWhatNext}
+                </p>
+              )}
+
+              {/* Copy into a new request (request/check/party_halted only — not estate, not suspended) */}
+              {blockMeta.showCopy && (
+                <button
+                  data-testid={`copy-new-request-${req.id}`}
+                  className="mt-2 text-xs px-3 py-1.5 rounded border transition-colors hover:bg-white"
+                  style={{ borderColor: "var(--hair)", color: "var(--ink)" }}
+                >
+                  Copy into a new request
+                </button>
+              )}
+            </div>
+          )}
+
+          {/* ── Expired drawer (TC-EXP-02) ── */}
           {req.status === "Expired" && (
-            <div className="mt-2 p-3 rounded" style={{ background: "rgba(27,31,39,.04)" }}>
-              <p className="text-xs mb-1" style={{ color: "var(--ink3)" }}>
-                Expired {req.expiredAtDisplay || ""}. The 14-day approval window closed.
+            <div data-testid={`drawer-expired-${req.id}`} className="p-3 rounded space-y-2" style={{ background: "rgba(27,31,39,.04)" }}>
+              <p data-testid={`expired-date-line-${req.id}`} className="text-sm font-medium" style={{ color: "var(--ink)" }}>
+                {EXPIRED_DATE_TPL(req.expiredAtDisplay || "")}
+              </p>
+              <p data-testid={`expired-waited-line-${req.id}`} className="text-sm" style={{ color: "var(--ink2)" }}>
+                {EXPIRED_WAITED_TPL(
+                  req.submittedAtISO && req.expiredAtISO
+                    ? daysBetween(req.submittedAtISO, req.expiredAtISO)
+                    : 14
+                )}
+              </p>
+              {req.addressedTo && (
+                <p className="text-sm" style={{ color: "var(--ink3)" }}>
+                  It was addressed to {req.addressedTo}.
+                </p>
+              )}
+              {req.signoffReason && (
+                <p className="text-sm" style={{ color: "var(--ink3)" }}>
+                  {req.signoffReason}
+                </p>
+              )}
+              <p data-testid={`expired-meaning-${req.id}`} className="text-sm" style={{ color: "var(--ink2)" }}>
+                {EXPIRED_MEANING_TPL(req.dataOwner || "the data owner")}
+              </p>
+              <p data-testid={`expired-whatnext-${req.id}`} className="text-sm" style={{ color: "var(--ink2)" }}>
+                {EXPIRED_WHAT_NEXT_TPL(req.dataOwner || "the data owner")}
               </p>
               <button
-                data-testid={`request-resubmit-${req.id}`}
-                className="mt-2 text-xs px-3 py-1.5 rounded border transition-colors hover:bg-white"
+                data-testid={`copy-new-request-${req.id}`}
+                className="mt-1 text-xs px-3 py-1.5 rounded border transition-colors hover:bg-white"
                 style={{ borderColor: "var(--hair)", color: "var(--ink)" }}
               >
-                Submit again as a new request
+                Copy into a new request
               </button>
             </div>
           )}
 
-          {/* Refused */}
+          {/* ── Refused drawer — NO "Waited N days" (hard omission) ── */}
           {req.status === "Refused" && req.refusalReason && (
-            <div className="mt-2 border-l-4 p-3 rounded" style={{ borderColor: "var(--ink)", background: "rgba(27,31,39,.03)" }}>
+            <div className="border-l-4 p-3 rounded" style={{ borderColor: "var(--ink)", background: "rgba(27,31,39,.03)" }}>
               <p className="text-sm" style={{ color: "var(--ink2)" }}>{req.refusalReason}</p>
             </div>
           )}
 
-          {/* Retrieved */}
+          {/* ── Retrieved ── */}
           {req.status === "Retrieved" && req.retrievedAt && (
             <p className="mt-1" style={{ color: "var(--sage)" }}>
               <CheckCircle size={12} className="inline mr-1" />
@@ -261,8 +524,8 @@ function RequestCard({ req }) {
             </p>
           )}
 
-          {/* Approval info — no "Waited N days" per hard omission */}
-          {req.approvedByRole && (
+          {/* ── Sign-off block (post-decision) — NO "Waited N days" (hard omission) ── */}
+          {req.approvedByRole && req.status !== "In Approval" && (
             <p className="mt-1" style={{ color: "var(--ink3)" }}>
               Approved by {req.approvedByRole} on {req.approvedDate}
             </p>
