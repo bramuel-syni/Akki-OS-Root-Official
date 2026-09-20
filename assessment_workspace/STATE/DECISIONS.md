@@ -20416,3 +20416,154 @@ zero push · terminal `pytest` only · no `testing_agent` · additive-only §3.8
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
+---
+
+## OWNER RULINGS · 2026-09-20T~19:00Z · five rulings landed (Ruling 1 App.js mirror + Ruling 2 FORK-BLK-KINDS vocabulary correction + Ruling 3 docstring erratum + Ruling 4 R-32 Content Registry unblock + Ruling 5 G5-v5 target)
+
+**Owner directive verbatim (this-session · five rulings block · master anchor for R-86..R-88):**
+
+> "OWNER RULINGS — ALL FIVE LANDED. Sprint resumes. [...] RULING 1 — App.js mirror: OPTION 3 RATIFIED WITH CONDITIONS. Ruled coexistence, but 'permanent' is STRUCK: (a) each of the three mirror-drift baseline entries must carry its reason AND the card line that closes it; (b) the closure trigger is CP-APP-JS-UNIFY landing as a SCHEDULED wave — add it to the sprint queue with a definite slot (propose the slot in your next seal report), not an open-ended possibility. Owner verbatim: 'Coexistence with a closure date is discipline; without one it's drift with a ruling attached.' Execute the FE coordination mirror-half closure under this shape (KNOWN_RUNTIME_DRIFT annotations citing this ruling + closing card line), then close the FE coordination seal fully. RULING 2 — FORK-BLK-KINDS: OPTION A RATIFIED, with a load-bearing vocabulary correction. Owner verbatim: suspension 'is a state of the principal (DAP-27, PRIN-1), not a fourth reason a request is blocked — a different axis, different object.' Sealed enum stays at three. party_halted lives as its own state via the Q5 module tree and its vocab constant, and it NEVER renders in the Blocked reason grammar — no estate copy, no kind label. Correct the wording at source everywhere non-sealed: it is 'three Blocked kinds plus Interrupted plus party_halted' — NOT 'five Blocked kinds.' Vocabulary is load-bearing for the substitution rules now — register the corrected count/grammar so the wrong phrasing is RED where feasible. [...] AUTHOR THE EXACT CORRECTION SPEC for the specialist [...]. Flag FE-FIX-READY with that spec in your seal report and I will dispatch the specialist verbatim. RULING 3 — Docstring: ruled by file status. If the file is sealed under §3.8 → γ, PLUS an erratum entry in DECISIONS.md TODAY stating the file, the stale text, and the correct text (rationale: invariant docstrings carry verbatim quotes auditors read as spec; git is the audit trail, the erratum is the correction of record). If NOT sealed → α, fix now. Either way the erratum/fix is written today. Determine the file's status and execute accordingly. RULING 4 — R-32 RATIFIED as spec recommends: Generated content may appear on chat answer surfaces, recommendation bodies, and notification bodies ONLY. No headline, quick-note, budget, status, or governance surface. Adding a surface later = ordinary-tier ceremony, surface's card citing CON-7. CONTENT REGISTRY WAVE IS UNBLOCKED — open it as sequenced (CON-1..31 are byte-identical between registry v4 and the incoming v5, so this wave does NOT wait on the v5 file). Standard shape: objective card, RED-first property tests per CON-N, grep-negative hard bans [...], 3-Commit Seal(s). RULING 5 — G5 target: NOT v4. Owner ratifies registry v5, 602 rows: the Security Function Policies series SFP-1..SFP-7 had never been entered (only SFP-8 from the later amendment); the delta from v4 is exactly those seven rows, all Tier A. G5 maps against 602 and the seven land in the first slice. HOLD: the v5 file did NOT land in my channel (owner said attached, no artifact arrived) — I have requested re-upload. Do NOT open G5 against v5 until the file is in custody sha-pinned with row count 602 and SFP-1..7 verified. If it somehow already reached your pod through another drop path, verify and proceed; otherwise G5 stays queued behind the drop. [...] Execution order suggestion (adjust for clean seals): Ruling 3 erratum → Ruling 1 mirror-half closure + CP-APP-JS-UNIFY scheduling → Ruling 2 vocabulary correction + FE-FIX-READY spec → Ruling 4 Content Registry wave → Ruling 5 G5-v5 when the file lands. Standing bounds unchanged [...] GO."
+
+Executing in owner's suggested order. **Ruling 3 erratum banked this-commit state-only** (below). Ruling 1 / Ruling 2 / Ruling 4 open as scheduled waves R-86 / R-87 / R-88+ this-turn. Ruling 5 confirmed HELD (v5 file not in custody as of 2026-09-20T~19:00Z pod scan: only v3 `79d44562...` + v4 `72160287...` on disk under `custody/owner_drops/`).
+
+### RULING 3 · Docstring erratum · state master · notes-only banking this-commit
+
+**Determination of file status:**
+
+- File: `repos/Extraction-Akki/backend/tests/invariants/test_dap_lifecycle_wave.py` line 390-395
+- Sealed at: **CP-DAP-LIFECYCLE-BACKEND-WAVE Commit-A `86348320a74816542f6fa3da1e42ce044448625e`** on `programme/track-a` (2026-09-20T~12:35Z · banked at STATE/DECISIONS.md R-70 Step 1)
+- Subsequently docstring-sanctioned-two-side-edits at CP-Q-UNLOCK-SUB-WAVE Commit-A `c0f5e6d5` (2026-09-20T~14:45Z · banked at R-70 Step 2 · edits on W1/W7/W8 pins ONLY · line 390 test_blocked_kinds_are_exactly_three_verbatim NOT edited)
+- **File is SEALED** under SO §3.8. Reading γ applies.
+- Docstring at line 391: `"""The 3 kinds: request · check · estate."""`
+
+**Erratum entry per Ruling 3:**
+
+- **File**: `repos/Extraction-Akki/backend/tests/invariants/test_dap_lifecycle_wave.py:390-395`
+- **Test name**: `test_blocked_kinds_are_exactly_three_verbatim`
+- **Docstring line (line 391)**: `"""The 3 kinds: request · check · estate."""`
+- **Assertion body (line 392-395)**: `from services.dap_lifecycle.blocked_kinds import BlockedKind; actual = {k.value for k in BlockedKind}; assert actual == {"request", "check", "estate"}`
+
+**Re-analysis under Ruling 2 vocabulary correction** (owner verbatim: "three Blocked kinds plus Interrupted plus party_halted — NOT 'five Blocked kinds'"):
+
+- The docstring "The 3 kinds: request · check · estate" is **FACTUALLY CORRECT** per Ruling 2.
+- At R-85 seal I flagged this docstring as potentially stale relative to journey v2 §11 L207 (which said "Blocked has five kinds"). Per Ruling 2, journey v2's "five kinds" phrasing is now the NONCONFORMANT text; the correct vocabulary is "three Blocked kinds plus Interrupted plus party_halted."
+- The docstring stands **verbatim correct**. **No text is stale**. **No fix is needed** to the sealed test.
+- The R-85 FORK-BLK-EXACTLY-3-SEALED-TEST banking was based on the pre-Ruling-2 assumption that journey v2's "five kinds" was authoritative; that assumption is now reversed by Ruling 2. The fork is **structurally resolved** by Ruling 2 (not merely by Reading γ preservation).
+
+**Stale text elsewhere** (out-of-file · not the sealed test's problem · corrected by Ruling 2 vocabulary): the journey v2 markdown source at `custody/owner_drops/20260920T1600Z/extraction_request_approval_journey_v2.md` §11 L207 phrase "**`Blocked` has five kinds**" and §2 L30 phrase "**Five kinds**" are now nonconformant per Ruling 2. These live in a canon-source drop-file which is custody-tracked; the correction happens via Ruling 2's downstream vocabulary correction commit(s), not via editing the drop file (drops are byte-frozen at ingestion).
+
+**Correct text everywhere non-sealed** (Ruling 2 mandate · addressed by scheduled wave R-87 CP-BLOCKED-VOCABULARY-CORRECTION below):
+
+- Backend party_halted docstrings authored at R-85 (services/dap_lifecycle/party_halted_kind.py + services/dap_lifecycle/party_halt_billing.py + tests/invariants/test_dap_lifecycle_party_halted_sub_wave.py) currently reference journey v2 L30/L207/L239-240 with the "five kinds" phrasing verbatim per SO §2.5 verbatim-docstring discipline. These files are now SEALED at CP-PARTY-HALTED-ADDITIVE-SUB-WAVE Commit-A `11afc4fff63bfeaefe467f8271a3e84a40280054` (2026-09-20T~18:10Z) — per SO §3.8 they are NOT edited.
+- Non-sealed surfaces where the wrong phrasing may appear: state notes (`STATE/DECISIONS.md` · `STATE/NEXT.md`) + phase0 hunt receipts (my own · state-owned) + specialist frontend (StatusBadge.jsx + RequestLifecycle.jsx + lifecycleStrings.js "5 blocked kinds" legend + "Blocked · suspended" + "Blocked · party_halted" badges — these are LOAD-BEARING nonconformances per Ruling 2 · full FE-FIX-READY spec authored at scheduled wave R-87 below).
+- Vocabulary-correction structural RED grep-negative for "five Blocked kinds" phrasing → scheduled wave R-87 below.
+
+**Rationale (owner verbatim)**: "invariant docstrings carry verbatim quotes auditors read as spec; git is the audit trail, the erratum is the correction of record."
+
+**Disposition**: Reading γ preserved on the sealed docstring (which was correct all along per Ruling 2). Erratum recorded in DECISIONS.md today verbatim per Ruling 3 mandate. FORK-BLK-EXACTLY-3-SEALED-TEST **fully resolved** at Ruling 2 vocabulary correction (structural resolution) + Ruling 3 erratum (record of correction).
+
+### Files (1 tracked)
+
+- `STATE/DECISIONS.md` this-append. No `STATE/NEXT.md` marker append needed for this state-only erratum (recorded in DECISIONS.md only per owner "written today").
+
+Ratchet unchanged **5640**. Zero code change. Zero test change. Not a §3.3 3-Commit Seal — single-file DECISIONS.md-only banking.
+
+### Autopilot next this-turn
+
+1. Open wave R-86 **CP-APP-JS-UNIFY-SCHEDULE-AND-DRIFT-ANNOTATE** (Ruling 1 execution · KNOWN_RUNTIME_DRIFT annotations on the 3 mirror-drift baseline entries + CP-APP-JS-UNIFY scheduled slot proposal + closing card line · full 3-Commit Seal).
+2. Open wave R-87 **CP-BLOCKED-VOCABULARY-CORRECTION** (Ruling 2 execution · backend structural RED grep-negative for "five Blocked kinds" phrasing + FE-FIX-READY spec authoring · full 3-Commit Seal).
+3. Open wave R-88+ **CP-CONTENT-REGISTRY-WAVE** (Ruling 4 execution · CON-1..31 property tests + hard-ban grep-negatives · 3-Commit Seal · possibly split into sub-waves given scale).
+4. G5-v5 (Ruling 5) HELD pending v5 file drop.
+
+### Standing bounds unchanged
+
+zero push · terminal `pytest` only · no `testing_agent` · additive-only §3.8 · three-repo discipline · ratchet monotonic-up (unchanged at **5640** · never rebaselined silently).
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+---
+
+## CP-REGISTRY-V5-INGEST-AND-VERIFY · 2026-09-20T~19:45Z · state master · custody drop + verification banking · STOP-AND-REPORT triggered · G5-v5 does NOT open
+
+**Owner directive verbatim (this-session · Ruling 5 unblock):**
+
+> "RULING 5 UNBLOCKED — the v5 registry file has landed. Owner drop, single artifact: Master_Requirements_Registry (5).xlsx → [URL]. Ingest per standard custody discipline: download to owner_drops with timestamped path, sha256-pin, manifest entry, then authoritative openpyxl verification: (a) System Rules Registry data row count = 602 exact, (b) delta vs v4 (`72160287…`) is EXACTLY SFP-1 through SFP-7, all Tier A, zero removals, zero edits to the 595 shared rows — byte-identical statements, (c) CON-1..31 unchanged vs v4. My independent sanity pass confirms 602 rows, SFP-1..7 present (SFP-1 Assertion Floor · SFP-2 Certainty-to-Evidence Binding · SFP-3 Acceptance Floor · SFP-4 Custody Floor · SFP-5 Non-Conformance Ceiling · SFP-6 Release Budget · SFP-7 Reproduction Ceiling) plus pre-existing SFP-8 Serving Floor, CON-1..31 intact — but your openpyxl diff is the verification of record. If the delta is anything other than exactly those seven rows, STOP-AND-REPORT before G5 opens. On clean verification: registry v5 is the ratified G5 canon_ref target (supersedes v4, which was never ratified). G5 maps against 602; SFP-1..7 land in the FIRST slice per owner ruling. Slot the G5-v5 wave per your autopilot ordering behind the already-directed work (erratum, mirror-half closure + CP-APP-JS-UNIFY scheduling, vocabulary correction + FE-FIX-READY spec, Content Registry wave). Standing bounds unchanged. Proceed."
+
+### Disposition: **STOP-AND-REPORT triggered · G5-v5 does NOT open**
+
+- Full verification receipt at `phase0/spec_hunt_receipts/20260920T1945Z_registry_v5_ingest_and_verify.md`.
+- **3 owner-mandated content checks all PASS** (row count 602 exact + delta = SFP-1..7 exact all Tier A · zero removals · zero edits · CON-1..31 byte-identical).
+- **2 NET-NEW SHEETS discovered** beyond owner's scope-description: `QA Verification` (602 rows · 10 cols · audit-tooling companion) + `QA Legend` (9 rows · 4 cols · verification-class vocabulary).
+
+### Custody drop metadata
+
+- **URL**: `https://customer-assets-cm19k8pv.emergentagent.net/job_amazing-gates-8/artifacts/a84gf1c1_Master_Requirements_Registry%20%285%29.xlsx`
+- **Drop path**: `custody/owner_drops/20260920T1900Z/Master_Requirements_Registry_v5.xlsx`
+- **file size**: 115,136 bytes
+- **sha256**: `00072c5829d3d89399cc5ca64661b405ac8a3cd0b43d0081f0d5f0bce109619d`
+
+### Verification results
+
+| Check | Owner scope | Result |
+|---|---|---|
+| (a) SRR data row count = 602 exact | System Rules Registry sheet | ✅ PASS · 602 exact |
+| (b) delta = SFP-1..7 exact, all Tier A, zero removals, zero edits | System Rules Registry sheet | ✅ PASS · net-new={SFP-1..7} · 0 removals · 0 edits to 464 shared rules · all 7 Tier A ("A — 100%" in QA Verification col 6) |
+| (c) CON-1..31 byte-identical vs v4 | System Rules Registry sheet | ✅ PASS · 31/31 byte-identical |
+| (d) SHEET SET vs v4 | *owner-unmentioned* | ⚠️ 2 net-new sheets: `QA Verification` + `QA Legend` |
+
+### SFP-1..7 rule-name byte-verify against owner's independent sanity pass
+
+- SFP-1 → "Assertion Floor" ✅
+- SFP-2 → "Certainty-to-Evidence Binding" ✅
+- SFP-3 → "Acceptance Floor" ✅
+- SFP-4 → "Custody Floor" ✅
+- SFP-5 → "Non-Conformance Ceiling" ✅
+- SFP-6 → "Release Budget" ✅
+- SFP-7 → "Reproduction Ceiling" ✅
+
+Byte-verified against owner's SFP-1..7 name list · matches 7/7.
+
+### Net-new sheets flagged for owner ruling
+
+**`QA Verification`** (602 data rows · 10 cols): audit-tooling companion mapping every SRR rule to `Primary verification class` (V1..V9) + `Secondary class` + `Evidence required` + `Sampling tier` (SFP-1..7 all "A — 100%") + `Auditor verdict` (empty) + `Evidence examined ref` (empty) + `Finding ref` (empty). Full 602-rule coverage. Non-authoritative for rule content (join-key = Rule ID; rule text lives in SRR).
+
+**`QA Legend`** (9 data rows · 4 cols): defines verification classes V1..V9 (Test evidence · Structural evidence · Record evidence · Governance-record evidence · Failure-injection demonstration · 4 more).
+
+**This-desk analysis**: 2 sheets look like audit-tooling companions that expand workbook scope from ratified-rules to ratified-rules-plus-per-rule-QA-classification. Under NARROW reading of owner's directive (scoped to SRR sheet), 3 owner-mandated checks all pass and G5-v5 could open against SRR. Under BROAD reading (delta = entire workbook shape), the 2 net-new sheets are unanticipated structural drift requiring owner ruling.
+
+**Owner-ruling options presented** (this-desk hands-off pending owner):
+
+1. **Reading N · Narrow** — 3 owner-mandated checks all PASS; QA sheets are informational companions with no G5-invariant claims made against them; G5-v5 opens against SRR only.
+2. **Reading B · Broad-with-companion-integration** — QA Verification sheet is load-bearing (names verification class + sampling tier per rule); G5-v5 opens against BOTH sheets, per-rule invariants cite the QA Verification classification, sampling tier aligns to test-authoring intensity.
+3. **Reading H · Halt-and-re-drop** — owner re-uploads a v5 file WITHOUT the QA sheets OR explicitly ratifies their inclusion.
+4. **Reading D · Owner-alternative** — this-desk hasn't enumerated.
+
+**This-desk non-authoritative lean**: Reading N is safest structural step forward (G5-v5 opens against ratified authority = SRR sheet). Reading B doubles G5 scope contrary to owner's "SFP-1..7 land in the FIRST slice" framing. Reading H only if owner wants audit sheets stripped.
+
+### Registry ratification status this-boundary
+
+- **v3** `79d44562...`: currently ratified authority (per R-81 seal).
+- **v4** `72160287...`: never ratified per Ruling 5 verbatim ("supersedes v4, which was never ratified").
+- **v5** `00072c58...`: **NOT-YET-RATIFIED** pending net-new-sheets ruling. G5 canon_ref target status conditional on that ruling.
+
+### Files (2 tracked)
+
+1. `custody/owner_drops/20260920T1900Z/Master_Requirements_Registry_v5.xlsx` NEW (115,136 bytes · sha256 `00072c58...`).
+2. `phase0/spec_hunt_receipts/20260920T1945Z_registry_v5_ingest_and_verify.md` NEW (full receipt).
+3. `STATE/DECISIONS.md` this-append.
+
+Ratchet unchanged **5640**. Zero code change. Zero test change. Zero baseline change. Not a §3.3 3-Commit Seal — custody drop + state-master banking pattern.
+
+### Autopilot next this-turn
+
+1. Resume R-86 **CP-APP-JS-UNIFY-SCHEDULE-AND-DRIFT-ANNOTATE** (Ruling 1 · currently mid-flight · baseline_failures.json edited in code repo working tree on programme/track-a · paired invariant test module authoring next).
+2. R-87 **CP-BLOCKED-VOCABULARY-CORRECTION** (Ruling 2 · queued after R-86 seal).
+3. R-88+ **CP-CONTENT-REGISTRY-WAVE** (Ruling 4 · CON-1..31 · queued).
+4. G5-v5 **HELD** pending owner ruling on net-new sheets (2 sheets `QA Verification` + `QA Legend` beyond owner's scope-description).
+
+### Standing bounds unchanged
+
+zero push · terminal `pytest` only · no `testing_agent` · additive-only §3.8 · three-repo discipline · ratchet monotonic-up (unchanged at **5640**).
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
