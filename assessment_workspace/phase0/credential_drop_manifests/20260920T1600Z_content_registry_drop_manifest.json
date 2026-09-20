@@ -1,0 +1,164 @@
+{
+  "manifest_version": "1.0",
+  "manifest_kind": "owner_drops_manifest",
+  "drop_at_utc": "2026-09-20T~16:00Z",
+  "drop_id": "20260920T1600Z",
+  "banked_by": "main-agent Autopilot",
+  "banked_reason": "Owner ruling this-session verbatim (post-CP-ENTITLEMENT-WAVE-SETUP seal `fc8b5c0` / `c3cc745132bb5c522f9de12cff8630fb3f15ea2c` / `16c9d912`) ingesting 5 artifacts: Master_Requirements_Registry v4 (supersedes v3 · adds 31 CON rows) + Security_Assurance_Promise_Set v6 (supersedes v5 · adds S-33) + Content_Registry_Spec_v1 (NEW spec · CON-1..31 · PROPOSED) + extraction_test_cases + extraction_request_approval_journey (2). Ingest-only per owner directive: 'ingest + sha-pin + manifest ONLY, no build waves opened from it yet' verbatim. R-82 CP-ENTITLEMENT-BUILD-WAVE does NOT wait on this ingest and opens autonomously per confirmed sprint order.",
+  "canon_anchors": [
+    "SO §4.1 §F sha-pinning discipline (this manifest)",
+    "SO §4.1 §E custody discipline (drop dir + immutable in custody/owner_drops/20260920T1600Z/)",
+    "SO §6.2 e1_dev drafts cards from canon + rulings (this manifest + fork register drafted under authority)",
+    "SO §6.4 NOTHING-BEYOND (ingest scope frozen at 5 artifacts + arithmetic reconciliation + 3 open-fork bankings + party_halted presence-check finding · zero build wave · zero code change · zero ratchet change)",
+    "SO §6.7 sequence (this ingest lands BEFORE R-82 opens · R-82 does not wait per owner verbatim 'Execute the drop ingest at whichever seal boundary keeps R-82 clean — R-82 does not wait on it')",
+    "CP-ENTITLEMENT-WAVE-SETUP seal `fc8b5c0` / `c3cc745132bb5c522f9de12cff8630fb3f15ea2c` / `16c9d912` (ratchet 5621 · precedes this ingest)",
+    "CP-Q-UNLOCK-SUB-WAVE seal `c0f5e6d5` / `6fc1a99b` / `d5b0522f` (sealed DAP lifecycle state machine · 3-kind Blocked enum · Q1/Q7 rulings ratified · lands the party_halted presence-check baseline)",
+    "CP-CONDITIONAL-AUTONOMY-ACTIVATION R-79 `1837bc26` (sprint LIVE)"
+  ],
+  "artifacts": [
+    {
+      "filename": "Master_Requirements_Registry_v4.xlsx",
+      "sha256": "72160287dcc4bddc5b921ab391d020bfda0f19e48dbffd122b70f45b6fead588",
+      "size_bytes": 83411,
+      "source_url": "https://customer-assets-cm19k8pv.emergentagent.net/job_amazing-gates-8/artifacts/r2x8xgba_Master_Requirements_Registry%20%284%29.xlsx",
+      "role": "SUPERSEDES 564-row v3 · 595-row v4 corpus · adds 31 CON rows (CON-1..CON-31 · Content Registry) · G5 canon_ref target moves to v4 upon owner ratification of this ingest",
+      "verification": {
+        "sheet_System_Rules_Registry_max_row": 596,
+        "data_rows_after_header": 595,
+        "unique_rule_ids": 464,
+        "additional_sheets": ["Build Status (56 rows)", "Objectives (17 rows)", "Legend (15 rows)"],
+        "families_delta_vs_v3": {
+          "added": {"CON": 31},
+          "removed": {},
+          "net_delta_row_count": 31
+        },
+        "dap_37_38_provenance": "DAP-37 and DAP-38 were ALREADY PRESENT in v3 (custody 20260920T1300Z sha256 79d44562...) · they are NOT net-new to v4 · owner's expected-delta arithmetic 564+31+2=597 rested on this false premise",
+        "arithmetic_reconciliation": {
+          "owner_reported_row_count": "~582 (inaccurate per owner ingest note)",
+          "owner_expected_arithmetic": "564 (v3) + 31 (CON) + 2 (DAP-37/38) = 597",
+          "actual_v3_row_count": 564,
+          "actual_v4_row_count": 595,
+          "actual_delta": 31,
+          "corrected_arithmetic": "v3=564 (already includes DAP-37/38) + CON-1..CON-31 net-new (+31) = v4=595",
+          "consolidations_or_removals": "NONE · zero rows removed v3 → v4 · corrected accounting shows no missing rows"
+        }
+      },
+      "citation_form": "Master Requirements Registry v4 · <family>-<n> · <sheet-row>",
+      "supersession": {
+        "supersedes": "Master_Requirements_Registry_v3 (564 rows · custody 20260920T1300Z sha256 79d44562...) banked at prior drop phase0/credential_drop_manifests/20260920T1300Z_entitlement_service_v1_drop_manifest.json",
+        "supersedes_scope": "G5 mapping canon_ref target updates to v4 upon owner ratification · 595-row corpus is the new reconciliation base · prior 564-row mappings remain valid at their line anchors and re-anchor to v4 line numbers at next G5 slice-extension seal · slice-extension backlog continues against v4 corpus",
+        "owner_ruling_verbatim": "supersedes 564-row v3 · My extraction reports ~582 data rows with new CON-1..31 (Content Registry) + DAP-37/38 (pruning & unlearning) · ARITHMETIC CHECK REQUIRED · G5 canon_ref target moves to v4 once verified"
+      }
+    },
+    {
+      "filename": "Security_Assurance_Promise_Set_v6.xlsx",
+      "sha256": "98ed1ac1921c611a5098eace708eb74891b0a1be0238f5802436891599b6a807",
+      "size_bytes": 21221,
+      "source_url": "https://customer-assets-cm19k8pv.emergentagent.net/job_amazing-gates-8/artifacts/d2evn1ez_Security_Assurance_Promise_Set%20%286%29.xlsx",
+      "role": "SUPERSEDES v5 · S-33 added (Content Registry master promise)",
+      "verification": {
+        "sheets": ["Security Assurance Set", "Legend"],
+        "S33_present": true,
+        "delta_vs_v5": {
+          "added": ["S-33", "S-1–S-33 range label"],
+          "removed": ["S-1–S-32 range label"]
+        },
+        "s33_row_verbatim_first_two_columns": [
+          "S-33",
+          "CON-1–CON-31 · The Content Registry (content_registry_v1, 20 Sep 2026)"
+        ],
+        "s33_promise_body_verbatim": "Nothing a surface says is improvised: every string has a stated purpose and a class; every number comes from a measured field; generated prose is anchored and gated; and where a surface has several true things to say, the one it says first is chosen by rule, and the reason is on record.",
+        "s33_source_anchors": "FE brief §0.2 DOM-bound substitution rules · FE brief §2.1 measured numbers · Doc 4 A2/A5.5 assertion floor · A5.15 output gate · A5.16 recommendation provenance · DAP-38/MEM-9 erasure · EU AI Act Art. 14(c)",
+        "s33_rulings_referenced": "R-32 (Generated surfaces) owner-outstanding; R-33 (salience classes v1), R-34 (hold), R-35 (retention) DEFAULT-class"
+      },
+      "citation_form": "Security Assurance Promise Set v6 · S-<n> · <row-anchor>"
+    },
+    {
+      "filename": "Content_Registry_Spec_v1.docx",
+      "sha256": "d44f0c6555f8e15a8381995d8eb00edea0c86a7a4e5589df60590d2199ba11c3",
+      "size_bytes": 18334,
+      "source_url": "https://customer-assets-cm19k8pv.emergentagent.net/job_amazing-gates-8/artifacts/g1vkuj0o_Content_Registry_Spec_v1.docx",
+      "role": "NEW spec · content_registry_v1 · authority layer (a) · PROPOSED · CON-1..CON-31 + R-32..R-35",
+      "verification": {
+        "docx_bytes": 18334,
+        "heading_1_sections": 12,
+        "heading_1_titles_first_6": ["1   Definitions", "2   The Three Classes", "3   The Registry", "4   The Resolver", "5   Salience — Best Hook First", "6   Generated Content: Chat, Recommendations, Notifications"],
+        "CON_ids_count": 31,
+        "CON_ids_present": ["CON-1", "CON-2", "CON-3", "CON-4", "CON-5", "CON-6", "CON-7", "CON-8", "CON-9", "CON-10", "CON-11", "CON-12", "CON-13", "CON-14", "CON-15", "CON-16", "CON-17", "CON-18", "CON-19", "CON-20", "CON-21", "CON-22", "CON-23", "CON-24", "CON-25", "CON-26", "CON-27", "CON-28", "CON-29", "CON-30", "CON-31"],
+        "rulings_present": ["R-32", "R-33", "R-34", "R-35"]
+      },
+      "citation_form": "Content Registry Spec v1 · §<section-num> · CON-<n>",
+      "sequencing_status": "DO NOT open a content_registry wave at this ingest per owner directive verbatim. Owner-proposed sequencing (pending ratification): 'after Entitlement build, coupled with memory-layer residual (CON-27/28 depend on MEM-9)'. R-32 (generated-surfaces list) requires owner ruling before any build; R-33/34/35 are DEFAULT-class.",
+      "hard_holds_at_this_ingest": [
+        "R-32 (generated-surfaces list) owner-outstanding · no build authorized",
+        "content_registry_v1 build wave does not open at this ingest · sequencing pending owner ratification"
+      ]
+    },
+    {
+      "filename": "extraction_test_cases.xlsx",
+      "sha256": "c0c8c519d57f6db9873967633de63e8658aa1352c10cf00e8692bcbe4a54b0c6",
+      "size_bytes": 28477,
+      "source_url": "https://customer-assets-cm19k8pv.emergentagent.net/job_amazing-gates-8/artifacts/ja0usm4z_extraction_test_cases.xlsx",
+      "role": "Acceptance canon for DAP extraction UI · test cases including TC-INA-06 + TC-EXP-02 that carry banked-conflict copy",
+      "sequencing_status": "Acceptance canon · NOT a build spec · consumed by test authors at Frontend Fidelity Bar landings (specialist scope · not this desk)"
+    },
+    {
+      "filename": "extraction_request_approval_journey_v2.md",
+      "sha256": "c52356af28e7bb1c99a1ffb335f548e14297b7196670f33b2e9e651ec1d813b2",
+      "size_bytes": 94906,
+      "source_url": "https://customer-assets-cm19k8pv.emergentagent.net/job_amazing-gates-8/artifacts/vy43sqtt_extraction_request_approval_journey%20%282%29.md",
+      "role": "Acceptance canon for DAP extraction UI · 9-state rail + 5 Blocked kinds (request/check/estate/suspended/party_halted) + exhaustive verbatim copy",
+      "sequencing_status": "Acceptance canon · 3 CONFLICTS with owner for ruling (see open_forks below) · build NOTHING against them until ruled"
+    }
+  ],
+  "open_forks_at_this_ingest": [
+    {
+      "fork_id": "FORK-CON-INGEST-1-WAITED_N_DAYS",
+      "conflict_summary": "Journey doc v2 + TC-INA-06/TC-EXP-02 contain 'Waited [N] days' copy VS banked Q6 OMITTED (owner-turnaround-line HARD HOLD per CP-Q-UNLOCK-SUB-WAVE seal report R-78 verbatim 'Q6 owner-turnaround-line stay HARD HOLDs not built')",
+      "disposition": "OPEN FORK banked in notes/dap_extraction_journey_v2_open_forks_20260920.md · build NOTHING against 'Waited [N] days' copy until owner rules · Q6 remains HARD HOLD",
+      "owner_action_required": "ruling on 'Waited [N] days' copy — retain (super-supersede Q6 HARD HOLD) or drop from journey doc + TC-INA-06/TC-EXP-02"
+    },
+    {
+      "fork_id": "FORK-CON-INGEST-2-NO_RETRY_INTERRUPTED",
+      "conflict_summary": "Journey doc v2 says 'no Retry ships' and lacks the `Interrupted` state · owner ingest note reads it as pre-dating Q1/Q7 rulings (Q1 retry-for-check-only bounded DEFAULT 3 + Q7 Interrupted platform-fault new non-terminal state bounded auto-retry DEFAULT 3) · Q1/Q7 rulings supersede pre-dated journey draft per owner text 'rulings supersede'",
+      "disposition": "OPEN FORK · owner interpretation to be confirmed · sealed Q-unlock backend (`services/dap_lifecycle/state_machine.py` + `retry_service.py` + `interrupted_service.py` all landed at c0f5e6d5) REMAINS binding · build NOTHING against journey v2 'no Retry ships' clause",
+      "owner_action_required": "confirm ruling: Q1/Q7 supersede journey v2 pre-dated 'no Retry' clause · journey v2 to be revised at next journey drop OR its 'no Retry' clause is banked-void"
+    },
+    {
+      "fork_id": "FORK-CON-INGEST-3-PARTY_HALTED_5_BLOCKED_KINDS",
+      "conflict_summary": "Journey doc v2 uses 5 Blocked kinds (`request/check/estate/suspended/party_halted`) VS sealed backend has 3 (`request/check/estate` per `services/dap_lifecycle/blocked_kinds.py` module docstring verbatim). Journey v2 also introduces net-new copy 'What's run so far will still be billed' on the party_halted kind.",
+      "presence_check_evidence": {
+        "sealed_module": "services/dap_lifecycle/blocked_kinds.py",
+        "sealed_enum_class": "BlockedKind(enum.Enum)",
+        "sealed_module_docstring_verbatim": "The 3 kinds of Blocked · request / check / estate.",
+        "sealed_enum_members": ["request", "check", "estate"],
+        "party_halted_grep_backend": "ABSENT · zero hits for 'party_halted' or 'party_halt' or 'halt_party' anywhere in backend/services/ or backend/tests/",
+        "suspended_as_blocked_kind_grep": "ABSENT as a Blocked kind · exists only as a licence status (ENT-6) and as a request-level platform lifecycle state at services/platform_control_plane/tenant_lifecycle.py (§4.7 effects on entry to suspended: sessions_revoked, jobs_halted) · not a DAP-lifecycle Blocked kind",
+        "whats_run_so_far_will_still_be_billed_grep": "ABSENT · zero hits in backend"
+      },
+      "disposition": "OPEN FORK · sealed 3-kind backend REMAINS binding until owner rules · build NOTHING against 5-kind journey v2 model · particularly do NOT author any `party_halted` or `suspended` BlockedKind member · do NOT author 'What's run so far will still be billed' copy at any release-attribution surface",
+      "owner_action_required": "ruling: are the 2 net-new Blocked kinds (`suspended` and `party_halted`) authorised for build wave · if yes, requires additive extension to sealed BlockedKind enum (SO §3.8 additive-only + Canon 3 §24 rule-change ceremony as this modifies a sealed closed-tuple enum) · if no, journey v2 to be revised at next drop OR its 5-kind clause is banked-void"
+    }
+  ],
+  "sprint_state_check": {
+    "condition_conditional_autonomy_activation": "SATISFIED",
+    "evidence": {
+      "CP_CONDITIONAL_AUTONOMY_ACTIVATION_state_sha": "1837bc26",
+      "CP_ENTITLEMENT_WAVE_SETUP_SEAL": {
+        "commit_a_sha": "fc8b5c0",
+        "commit_a_branch": "programme/track-a",
+        "commit_b_sha": "c3cc745132bb5c522f9de12cff8630fb3f15ea2c",
+        "commit_b_branch": "master",
+        "commit_c_sha": "16c9d912",
+        "commit_c_branch": "master",
+        "ratchet_after_seal": 5621
+      },
+      "ready_for_R82_build_wave": true
+    }
+  },
+  "deliberately_deferred": [
+    "content_registry_v1 build wave · sequencing after Entitlement build + memory-layer residual per owner proposal · pending owner ratification",
+    "3 open forks (FORK-CON-INGEST-1/2/3) · pending owner ruling"
+  ],
+  "seal_expected": "CP-CONTENT-REGISTRY-INGEST-DROP · state-master-notes-only banking commit (this manifest + open-forks register + DECISIONS.md R-82-prelude banking) · no code · no test surface · no ratchet change · precedes CP-ENTITLEMENT-BUILD-WAVE R-82 opening"
+}

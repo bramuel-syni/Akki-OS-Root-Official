@@ -49,3 +49,28 @@ Notwithstanding the eight HARD HOLDs, the following are buildable and are the ta
 ## Standing bounds preserved at this register
 
 zero push · terminal pytest only · no testing_agent · additive-only §3.8 · SO §4.1 §F sha-pinning discipline · three-repo discipline · ratchet monotonic (floor **5546** · never rebaselined silently).
+
+
+---
+
+## Update · 2026-09-20T~14:45Z · CP-Q-UNLOCK-SUB-WAVE dispositions
+
+Owner ruling R-78 (2026-09-20T~13:00Z verbatim in STATE/DECISIONS.md R-78) resolved 6 of the 8 pending questions:
+
+| ID | Prior | Now | Module |
+|---|---|---|---|
+| Q1 Retry after check block | HARD HOLD | **RULED** — retry-for-check-only, hash-identical objective + same units + unexpired approval, bounded DEFAULT 3, receipted attempts, re-runs every gate from failed stage forward. | `services.dap_lifecycle.retry_service` |
+| Q2 Standing approval for Download | HARD HOLD | **RULED** — must name units AND operation, Connect approval never covers Download, redaction runs per release regardless. | `services.dap_lifecycle.approval_service.check_standing_approval_covers_operation` + `redaction_gate_runs_per_release` |
+| Q3 Partial release | HARD HOLD | **STAYS HARD HOLD** — all-or-nothing default, TC-RET-16 stays held. | `services.dap_lifecycle.fail_closed.q3_partial_release` |
+| Q4 Spend-ceiling breach | HARD HOLD | **RULED** — folds into `In Approval` reason line, one approval state not two. | `services.dap_lifecycle.fail_closed.q4_spend_ceiling_breach` |
+| Q5 Suspension from Ready | HARD HOLD | **RULED** — output held in escrow on suspension, `Ready` on lift, termination = receipted Ledger event retaining artefact hash. | `services.dap_lifecycle.escrow` |
+| Q6 Owner turnaround line | HARD HOLD | **STAYS HARD HOLD** — "Waited N days" line stays OMITTED. | `services.dap_lifecycle.fail_closed.Q6_OWNER_TURNAROUND_LINE_ENABLED=False` |
+| Q7 Non-gate execution fault | HARD HOLD | **RULED** — `Interrupted (platform fault)` new non-terminal state, bounded auto-retry DEFAULT 3, exhaustion → `Blocked·check`, visible on surface throughout. | `services.dap_lifecycle.interrupted_service` |
+| Q8 Destination removal | DEFAULT-class pending | **RATIFIED** (pending full ruling) — destination removal blocks future use only, historical receipts untouched (DAP-26 analogy). | `services.dap_lifecycle.fail_closed.apply_destination_removal` · `Q8_RATIFICATION_STATUS="ratified_pending_full_ruling"` |
+
+**Additional new build items landed** (owner R-78):
+- `Expired` state offers action `submit_again_as_new_request` (never a reopen) — `services.dap_lifecycle.expired_action`.
+- Suspension notices to org admin + affected submitters only — `services.dap_lifecycle.suspension_notices`.
+- DAP-15 14-day expiry with working-day roll-forward RATIFIED DEFAULT-class (closes "no duration stated" finding).
+
+**Standing bounds unchanged**: zero push · terminal pytest only · no testing_agent · additive-only §3.8 · §4.1 §E · §4.1 §F sha-pinning discipline · three-repo discipline · ratchet monotonic (floor **5600** · never rebaselined silently).
