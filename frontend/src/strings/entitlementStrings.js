@@ -29,3 +29,24 @@ export const ENT_26_FRONTIER_EXHAUSTION = "Frontier allowance used \u00b7 served
 
 // ENT-34: reseller channel unreachable, served locally
 export const ENT_34_FRONTIER_UNAVAILABLE = "Frontier unavailable \u00b7 served locally";
+
+/**
+ * ENT-43 (§14 Feature Services — Model Picker Badges):
+ *   "The model picker lists every catalog row admitted by the licence
+ *    with one badge per row — Included · Local, Credits · Frontier,
+ *    or Your key — and Auto at the top."
+ *
+ * Four picker badge strings, binding verbatim.
+ */
+
+// ENT-43 badge: local-served included row
+export const ENT_43_BADGE_INCLUDED_LOCAL = "Included · Local";
+
+// ENT-43 badge: frontier row paid by credits
+export const ENT_43_BADGE_CREDITS_FRONTIER = "Credits · Frontier";
+
+// ENT-43 badge: customer brings their own API key
+export const ENT_43_BADGE_YOUR_KEY = "Your key";
+
+// ENT-43 badge: automatic row selection
+export const ENT_43_BADGE_AUTO = "Auto";
