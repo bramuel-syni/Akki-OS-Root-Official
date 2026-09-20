@@ -374,4 +374,56 @@ Per STANDING_ORDERS §2 ("sequencing is an owner ruling"), the following is a me
 
 ---
 
+## §10 · Errata (WAVE R-69 Step 5 · 2026-09-20T~09:40Z · additive · 3 fixes)
+
+**Class:** additive-only errata block — the original lines above remain unchanged; every downstream reader consuming this document is bound to prefer this errata section over the original lines it corrects (per SO §3.8 additive-only + canon §9.3 canonicalization discipline).
+
+**Owner ratification chain (banked verbatim at `STATE/DECISIONS.md 2026-09-20T~08:56Z · OWNER DISPOSITION`):**
+> Section 2.1 answers — (a) sha256 mismatch: **erratum authorized.** spec_id_index.md is authority; HOLISTIC_PLAN.md:133 wrong; land the erratum, correct at every citation site, not a ratchet break. …
+> prototype_v3 binding — **correct the citation to 2026-09-08.** No verbal 09-06 ruling exists to bank; don't invent a ceremony for one. The finding stands as written either way — prototype_v3 binding, dated 2026-09-08T06:15Z. Fix the date at every place it's cited. …
+> (c) DAP-33/34 source citation: **erratum authorized.** … Land the erratum, correct the citation, not a ratchet break.
+
+### §10.1 · SHA correction · HOLISTIC_PLAN.md:133 (DAP-7 row)
+
+- **Line as originally written (this-document, line 133 · DAP-7 Front-end row):** cites `RMS_Data_Access_Portal_standalone.html` sha as `d1c9057b…`.
+- **Authoritative (byte-verified this-turn against `notes/spec_id_index.json:481` + file bytes):** `d0fc1b498e07516c4c9acef45224be7add65ba23c35a56837e44074fc6e1c929` for design_id `dap_frontend_standalone` at `canon/drops/20260909/raw/RMS_Data_Access_Portal_standalone.html` (230,577 bytes · html).
+- **Cause of the transcription error:** authoring-time error at 2026-09-09 (HOLISTIC_PLAN.md commit that landed the DAP wave table). No other file in-tree carries `d1c9057b…` except HOLISTIC_PLAN.md:133 itself and any quoting-forward of that line — full-tree grep for `d1c9057b` performed at Direct-Answers 2026-09-20T~08:38Z returned exactly HOLISTIC_PLAN.md:133 and the reviewer's brief.
+- **Correction (binding for every consumer of this document):** where line 133 reads `sha 'd1c9057b…'`, read `sha 'd0fc1b498e07516c4c9acef45224be7add65ba23c35a56837e44074fc6e1c929'`.
+- **Ratchet impact:** none — this is a documentation transcription error, not a spec-ID / registry / test-body change.
+
+### §10.2 · prototype_v3 binding citation date correction · HOLISTIC_PLAN.md:89
+
+- **Line as originally written (this-document, line 89 · §3 Registry-full-build wave):** *"Prototype v3 is the binding design (owner ruling 2026-09-06T~19:20Z). CP1-CP9 landed the routes …"*
+- **Authoritative:** the "prototype v3 = binding design" clause was ruled by the owner at **2026-09-08T~06:15Z** in the "Pipeline defect challenge + new drop + rulings" directive, STEP 5, banked verbatim at `STATE/DECISIONS.md:6561..6580` (STEP 5 body l.6578: *"Defaults stand: prototype v3 = binding design, Doc 0 v2 = binding."*).
+- **Why the 2026-09-06T~19:20Z citation is wrong for prototype-v3 binding:** the 2026-09-06T~19:20Z ruling (real, banked at `STATE/DECISIONS.md:6336..6360`) bound *prototype v2 standalone HTML* as the "NEW binding design source" that day — v2, not v3. v3 landed later (2026-09-08 drop) and the v3 binding was authored at STEP 5 of the 2026-09-08T~06:15Z directive.
+- **Owner disposition verbatim (`STATE/DECISIONS.md 2026-09-20T~08:56Z`):** *"prototype_v3 binding — correct the citation to 2026-09-08. No verbal 09-06 ruling exists to bank; don't invent a ceremony for one. The finding stands as written either way — prototype_v3 binding, dated 2026-09-08T06:15Z. Fix the date at every place it's cited."*
+- **Correction (binding for every consumer of this document):** where line 89 reads *"owner ruling 2026-09-06T~19:20Z"*, read *"owner ruling 2026-09-08T~06:15Z (STEP 5)"*.
+- **Not-to-touch (already correct):** line 234 cites `2026-09-06T~19:20Z` to the Registry-priority-and-lower-priority ruling — that IS the real 2026-09-06 ruling (`STATE/DECISIONS.md:6336..6360`). This citation on line 234 remains valid; it is NOT the prototype_v3-binding citation.
+- **Downstream citation sites:** searched at Step 2 report time — `STATE/HOLISTIC_PLAN.md:89` is the ONLY in-tree citation of prototype_v3 binding to 2026-09-06 that this erratum must correct. All other 2026-09-06 references in the tree refer to (i) the real Registry-priority ruling, (ii) the real Solva-v2 lift ruling, (iii) the real masking-policy Ruling #5(a) (correctly closed per owner disposition), or (iv) trace-metadata about this-erratum. **No further citation-site sweep required.**
+- **Ratchet impact:** none — documentation date correction, not a spec / registry / test-body change.
+
+### §10.3 · DAP-33 / DAP-34 source attribution correction · HOLISTIC_PLAN.md:134-135
+
+- **Lines as originally written (this-document, lines 134-135):**
+  - **Line 134 · DAP-8 Component-boundary inspection (S-22) row:** cites source column as *"`security_architecture_v1` S-22 · DAP-33 · `security_architecture_v1` R-8"*.
+  - **Line 135 · DAP-9 Coalition joint evaluation (S-23) row:** cites source column as *"`security_architecture_v1` S-23 · DAP-34 · `security_architecture_v1` R-11"*.
+- **Authoritative source per byte-verified evidence (owner disposition 2026-09-20T~08:56Z ratified):**
+  - **S-22 (A5.15 in Doc 3 + DAP-33) originates from Security Amendments (Trojan / Whisper) W-1**, banked verbatim at `notes/ingest_20260907/canon_security_amendments_requirements.md:80-84` — *"W-1 · Output-Content Gate (A5.15 + DAP-33) · TARGET Doc 3 new A5.15 · `dap_backend_spec_v1` new DAP-33"*. Cross-cited at `notes/ingest_20260907/canon_security_promise_set_requirements.md:45` — S-22 row explicitly credits "Security Amendments W-1; gate sits on deterministic side of verdict seam". R-8 (reproduction threshold + probe design) is the DEFAULT-class ruling on this amendment per amendments doc §B.4 R-8 verbatim + owner ratification at 2026-09-08T~06:15Z. **S-22/DAP-33 are NOT native to `security_architecture_v1` — they are amendments to it via Security Amendments Trojan/Whisper (2026-09-05).**
+  - **S-23 (A5.18 in Doc 3 via Doc 0 Att-3 + DAP-34) originates from Security Amendments (Trojan / Whisper) W-4**, banked verbatim at `notes/ingest_20260907/canon_security_amendments_requirements.md:91-93` — *"W-4 · Coalition as a Principal (Att 3 addition + A5.18 + DAP-34) · A5.18 verbatim"*. Cross-cited at `notes/ingest_20260907/canon_security_promise_set_requirements.md:46` — S-23 row explicitly credits "Security Amendments W-4; coalition is connected component of admission graph". R-11 (coordination-signature threshold) is the amendments-doc ruling per §B.4 R-11 verbatim + owner ratification at 2026-09-08T~06:15Z. **S-23/DAP-34 are NOT native to `security_architecture_v1` — they are amendments to it via Security Amendments Trojan/Whisper (2026-09-05).**
+- **Correction (binding for every consumer of this document):**
+  - Where line 134 reads *"`security_architecture_v1` S-22 · DAP-33 · `security_architecture_v1` R-8"*, read *"**Security Amendments Trojan/Whisper W-1 (2026-09-05) — A5.15 in Doc 3 + DAP-33** · `security_architecture_v1` R-8 amendment-tier ruling (RATIFIED baseline-period default at 2026-09-08T~06:15Z)"*.
+  - Where line 135 reads *"`security_architecture_v1` S-23 · DAP-34 · `security_architecture_v1` R-11"*, read *"**Security Amendments Trojan/Whisper W-4 (2026-09-05) — A5.18 in Doc 3 via Doc 0 Att-3 + DAP-34** · `security_architecture_v1` R-11 amendment-tier ruling (RATIFIED baseline-period default at 2026-09-08T~06:15Z)"*.
+- **Why it matters:** the correction ensures that (i) S-22/S-23 do not appear as native security_architecture_v1 statements when they are amendments layered on top of it; (ii) the amendment provenance (2026-09-05 Trojan/Whisper drop) is legible for future traceability audits; (iii) R-8/R-11 remain scoped to the amendment where their DEFAULT-class nature was proposed and ratified.
+- **Ratchet impact:** none — documentation source-attribution correction. No spec-ID / registry / test-body change. The functional behaviour (`security_architecture_v1` R-8 DEFAULT baseline-period + R-11 friction-only default) is preserved; only the citation is refined to name the amendment source.
+
+### §10.4 · Errata seal discipline
+
+- **Additive-only per SO §3.8:** the lines originally at 89, 133, 134, 135 are NOT edited in place. This §10 block is the sole binding correction record.
+- **Byte-verification chain preserved:** every claim in this §10 traces to a file:line opened at the writing of this errata (HOLISTIC_PLAN.md:89/133/134/135 · DECISIONS.md:6336/6561/6578 · spec_id_index.json:481 · canon_security_amendments_requirements.md:80-93 · canon_security_promise_set_requirements.md:45-46).
+- **No ratchet change** at this errata seal (ratchet 5527 unchanged · `baseline_failures_sha256` unchanged).
+- **NOT a §3.3 3-Commit Seal** (no code branch touched · no test surface touched · no sealed contract edited).
+- **This is one additive banking commit** landing this §10 addition to HOLISTIC_PLAN.md + a corresponding `STATE/DECISIONS.md` banking section + a `STATE/NEXT.md` R-72 marker.
+
+---
+
 **Read `STATE/STANDING_ORDERS.md` first — permanent standing law.**

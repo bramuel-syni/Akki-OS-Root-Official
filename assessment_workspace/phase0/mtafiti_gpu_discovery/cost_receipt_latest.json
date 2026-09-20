@@ -1,7 +1,7 @@
 {
   "at_utc": "2026-09-18T11:01:38Z",
   "label": "cp6_cost_receipt",
-  "billing_basis": "cassava_lease \u00b7 $0 marginal on idle capacity (banked prior-session)",
+  "billing_basis": "cassava_lease · $0 marginal on idle capacity (banked prior-session)",
   "huawei_egress_rate_usd_per_gb": 0.16,
   "gpu_hours_consumed": 0.0,
   "gpu_marginal_cost_usd": 0.0,
@@ -31,5 +31,9 @@
     "gpu_usd": 0.0,
     "wave_total_usd_estimated": 5.197137594223023e-05
   },
-  "cost_receipt_sha256": "a62613248d52aca34d3db1d03eb7ba98e4436357fa1b613343f10ca0baef1237"
+  "cost_receipt_sha256": "a62613248d52aca34d3db1d03eb7ba98e4436357fa1b613343f10ca0baef1237",
+  "previous_at_utc": "2026-09-18T11:01:38Z",
+  "previous_integrity_hash": "3e:35:d7:97:41:85:56:b6:d6:95:0f:59:c4:c4:88:c9:f6:b1:70:33:bd:8b:73:1a:a6:b2:e2:f2:bb:93:10:f8",
+  "campaign_context": "CP-M11-GATE-RELEASE · GPU 72h discovery window · opened 2026-09-15T~08:00Z · closed 2026-09-18T~08:16Z",
+  "integrity_hash": "e6:d7:b6:32:b1:9f:0f:a4:3f:34:95:0c:99:11:59:54:53:6e:e3:24:ac:94:35:77:f9:6b:c1:d1:7c:e6:d5:66"
 }

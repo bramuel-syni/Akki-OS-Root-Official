@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "manifest_kind": "owner_drops_manifest_sha_pin_at_intake",
+  "so_clause_anchor": "§4.1 §F (sha-pin discipline · additive to §4.1 §E · byte-identity of drop bytes captured at intake · additive-only per SO §3.8)",
+  "intake_timestamp_utc": "2026-09-20T08:56:00Z",
+  "intake_wall_clock_at_manifest_write_utc": "2026-09-20T09:02:00Z",
+  "owner_directive_verbatim_anchor": "STATE/DECISIONS.md 2026-09-20T~08:56Z OWNER DISPOSITION · §2.1 CONFIRMED · THREE ANSWERS RULED · α-GAP APPROVED · PRINCIPAL MODEL WAVE SCOPED · SURFACE-LANGUAGE TRACE-DON'T-BANK · VERBATIM state master notes-only banking commit (commit 04fcf6de)",
+  "custody_base_path": "/app/assessment_workspace/custody/owner_drops/20260920T0856Z",
+  "drops": [
+    {
+      "custody_filename": "Principal_Model_Spec_v1.docx",
+      "custody_path_abs": "/app/assessment_workspace/custody/owner_drops/20260920T0856Z/Principal_Model_Spec_v1.docx",
+      "sha256": "056caa00b5eb8c4d75abe1e2d2653cee590682e946c87a1bbf43693cb7c8787c",
+      "size_bytes": 14976,
+      "mtime_utc": "2026-09-20T09:00:39Z",
+      "mode_octal": "0644",
+      "source_url": "https://customer-assets-cm19k8pv.emergentagent.net/job_amazing-gates-8/artifacts/7juq2wcz_Principal_Model_Spec_v1.docx",
+      "owner_supplied_filename_verbatim": "Principal_Model_Spec_v1.docx",
+      "owner_note_verbatim": "Wave grounding brief attached — principal_model_v1. Thirteen requirements, each traced verbatim to DAP-1 through DAP-5 or to a specific gap the engineering review named. Quotable directly into invariant docstrings, per standing orders §2.5. Build to it as the wave's spec; §6 is written as the acceptance list — the eight DAP requirements it unblocks, restated as the checkable target.",
+      "kind": "docx",
+      "intake_verification": {
+        "pk_zip_magic_confirmed": true,
+        "word_document_xml_present": true,
+        "text_extraction_success": true,
+        "requirement_count_extracted": 13,
+        "requirement_id_scheme": "PRIN-1 through PRIN-13",
+        "section_6_verified_as_acceptance_list": true,
+        "section_6_dap_requirements_unblocked": ["DAP-13", "DAP-14", "DAP-21", "DAP-22", "DAP-23", "DAP-24", "DAP-25", "DAP-27"],
+        "section_6_dap_requirements_unblocked_count": 8,
+        "section_9_rulings_present": ["R-22", "R-23"],
+        "section_9_r22_verbatim": "R-22 · Credential rotation default (PRIN-8): recommend 90 days, consistent with the existing API-key convention. DEFAULT-class.",
+        "section_9_r23_verbatim": "R-23 · Which existing route shapes, if any, are retired once the principal store lands — the engineering review names /api/team/access_register and /api/team/constitutional_seats as reference shapes, not a foundation to extend. Recommend: kept as read views over the new store, not retired outright, so nothing consuming them breaks. Confirm or amend.",
+        "canon_anchors_in_spec": ["DAP-1", "DAP-2", "DAP-3", "DAP-5", "DAP-13", "DAP-14", "DAP-19", "DAP-21", "DAP-22", "DAP-23", "DAP-24", "DAP-25", "DAP-27", "Northena Promise #32 (objective-freeze mechanism)", "Attribute 12", "DAP R-4 precedent"],
+        "section_7_tcb_enumeration_placement": {
+          "tcb_enumeration_v1_IN": ["PRIN-2 (admission)", "PRIN-5 (issue/revoke)", "PRIN-6 (issue/revoke)", "PRIN-11 (propagation fail-closed)"],
+          "tcb_enumeration_v1_OUT": "nothing learned exists in this component; there is no drafting half to exclude",
+          "failure_posture_v1_entries": ["propagation context absent → fail-closed no default actor (PRIN-11)", "credential plane unreachable → fail-closed on issue AND on revoke (revoke fail-closed = credential still valid until revocation confirmed)"]
+        },
+        "section_8_limitations_present": ["LIM-1 (slow-play D-3 params separate)", "LIM-2 (reliable-time-source D-16 separate)", "LIM-3 (DAP admission ceremony/approval/crossing profiles remain dap_backend_spec_v1)", "LIM-4 (specification not build)"]
+      }
+    }
+  ],
+  "verification": {
+    "sha256_computation_tool": "sha256sum (coreutils)",
+    "sha256_verified_at_intake_utc": "2026-09-20T09:01:30Z",
+    "byte_identity_reconfirmed_at_manifest_write": true,
+    "docx_openable_via_python_zipfile": true,
+    "docx_word_document_xml_present": true
+  },
+  "notes": [
+    "This is Wave R-69 Step 4 (per owner-ratified 9-step order · Step 4 promoted ahead of Step 3 staleness by owner clarification (a) 'artifact drop + manifest — it's quick, secure custody early').",
+    "Owner-supplied filename Principal_Model_Spec_v1.docx contained no spaces or parens; custody filename is byte-identical to owner-supplied filename.",
+    "Files enter custody under mode 0644 (world-readable, group/owner writable). No SEC-class credentials in this drop; §4.1 §E raw-value read discipline does not gate this file (it is a specification brief, not credential material).",
+    "Intake verification is READ-FOR-INTAKE-ONLY. This manifest does NOT bank the spec bytes as a canonical ingest for the wave. Ingest-as-canon + docstring-quoting-for-invariant-tests happens at Wave R-69 Step 9 (Principal Model Wave) proper, RED-first-with-tests per SO §2.5 (docstrings ride tests, never substitute).",
+    "This is the first single-artifact drop of the run; prior manifests have batched 2-4 artifacts. Schema/format follows 20260920T0824Z_owner_drops_manifest.json (batch precedent) with drops[] array of length 1.",
+    "R-22 and R-23 owner-recommendations are BANKED as recommendations in DECISIONS.md 2026-09-20T~08:56Z OWNER DISPOSITION section. Autopilot proceeds with owner defaults (R-22 = 90-day DEFAULT-class rotation, R-23 = keep team endpoints as read views) unless owner steers otherwise before Wave R-69 Step 9 opens.",
+    "Manifest is additive-only per SO §3.8 — never overwritten; new manifests land alongside for future drops. Owner-drop-intake counter maintained by directory structure (custody/owner_drops/YYYYMMDDTHHMMZ/)."
+  ]
+}

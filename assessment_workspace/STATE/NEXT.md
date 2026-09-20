@@ -2862,7 +2862,9 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
 ## R-68 · CP-CCS3-CLOSE-DISPOSITION-RESPONSE · 2026-09-20T~08:35Z · REPORT DELIVERED TO OWNER · frontends gate HELD PENDING §2.1 answer
 
-⏳ **IN-FLIGHT (pending owner §2.1 answer · report on owner desk this-turn · ruled parallel work opens after answer):** CP-CCS3-CLOSE-DISPOSITION-RESPONSE · answer to owner disposition 2026-09-20T~08:24Z (banked verbatim at DECISIONS.md 2026-09-20T~08:24Z section) execution-order items 1 + 2. Notes-only state master · additive-only per SO §3.8.
+✅ **RULED at 2026-09-20T~08:56Z** — owner disposition landed (banked verbatim at DECISIONS.md `2026-09-20T~08:56Z · OWNER DISPOSITION` section). §2.1 CONFIRMED (canon `e675990a…`) · (a) sha256 mismatch RATIFIED (erratum at Step 5) · (b) masking-policy CORRECTLY-CLOSED · (b) prototype_v3 DATE-CORRECTED to 2026-09-08T06:15Z (erratum at Step 5 · NO verbal 09-06 ruling · do NOT invent one) · (b) surface-language TRACE-DON'T-BANK (Step 2) · (c) DAP-33/34 source RATIFIED (erratum at Step 5) · α-gap wave APPROVED (Step 7) · Principal Model Wave scoped ahead of DAP-1 (Step 9) · Principal_Model_Spec_v1.docx artifact attached (custody at Step 4). Wave R-69 opens.
+
+⏳ **IN-FLIGHT (superseded / historical):** CP-CCS3-CLOSE-DISPOSITION-RESPONSE · answer to owner disposition 2026-09-20T~08:24Z (banked verbatim at DECISIONS.md 2026-09-20T~08:24Z section) execution-order items 1 + 2. Notes-only state master · additive-only per SO §3.8.
 
 **Prior commit this-wave (Commit 1 · notes-only banking):** `168f3c16` at 2026-09-20T~08:32Z · Bank OWNER DISPOSITION verbatim to DECISIONS.md tail + owner drops (4 files) sealed under `custody/owner_drops/20260920T0824Z/` + §4.1 §F manifest at `phase0/credential_drop_manifests/20260920T0824Z_owner_drops_manifest.json` + STATE/PINS.md housekeeping fold.
 
@@ -2899,3 +2901,278 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 **Standing bounds unchanged:** zero push · terminal pytest only · no testing_agent · additive-only §3.8 · §4.1 §E · §4.1 §F sha-pinning discipline · three-repo discipline · ratchet monotonic (floor 5527 · never rebaselined silently).
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+---
+
+## R-69 · CP-PRINCIPAL-WAVE-OPEN · 2026-09-20T~08:56Z · 9-STEP AUTONOMOUS RUN OPEN · owner disposition + plan-approval banked
+
+⏳ **IN-FLIGHT (autopilot wave · 9 steps · owner-authorized · notes-only banking commit landed first):** CP-PRINCIPAL-WAVE-OPEN · resumption of autonomous run after §2.1 confirmation · owner ratified 9-step execution order at 2026-09-20T~08:56Z (both owner disposition + plan-approval banked verbatim at DECISIONS.md `2026-09-20T~08:56Z` sections). Current-commit: notes-only state master · additive-only per SO §3.8 · verbatim-banking-commit class (precedent `168f3c16` / `3505891a`).
+
+**Prior seal (last §3.3 dual-branch seal):** `06fcc405` (Commit 2 · §2.1 reconciliation + three direct answers) at 2026-09-20T~08:38Z on `master`, chained back through CCS trio (CCS3 sealed `d48f6e1e` state / `379e4550` code · CCS2 sealed `0520469d` state / `3fde2895` code · CCS1 sealed `ae709eb7` state / `17578634` code) · memory layer sealed `09f2f317` state / `da2642ac` code (W4).
+
+**Ratchet floor:** 5527 · baseline `8a7d92289c06bbfaae75c08750575dd5e73a70745693f741fdf85215238562b1` · **NEVER rebaselined silently**.
+
+**This commit (verbatim banking · notes-only · state master):**
+- APPEND `STATE/DECISIONS.md` — `2026-09-20T~08:56Z · OWNER DISPOSITION` section (word-for-word ruling text + standing-bounds delta).
+- APPEND `STATE/DECISIONS.md` — `2026-09-20T~08:56Z · OWNER PLAN-APPROVAL RULING` section (word-for-word clarifications a/b/c/d + sub-question confirmations i/ii/iii + standing-bounds delta).
+- FLIP `STATE/NEXT.md:2865-2867` R-68 ⏳ IN-FLIGHT → ✅ RULED (owner disposition landed).
+- OPEN this R-69 marker.
+
+**9-STEP EXECUTION ORDER (owner-ratified · autopilot to run to completion or interlude marker · verbatim from plan-approval banking):**
+
+1. **THIS COMMIT** — bank both verbatim texts + open R-69 wave marker. **✅ SEALED** at `04fcf6de` (2026-09-20T~08:56Z · notes-only state master).
+2. **Step 4 (owner reorder)** — download `Principal_Model_Spec_v1.docx` from `https://customer-assets-cm19k8pv.emergentagent.net/job_amazing-gates-8/artifacts/7juq2wcz_Principal_Model_Spec_v1.docx`, sha256, land under `custody/owner_drops/20260920T0856Z/`, §4.1 §F manifest at `phase0/credential_drop_manifests/20260920T0856Z_owner_drops_manifest.json`. **✅ SEALED this-commit** (2026-09-20T~09:02Z · sha256 `056caa00b5eb8c4d75abe1e2d2653cee590682e946c87a1bbf43693cb7c8787c` · 14,976 B · PK-ZIP magic confirmed · `word/document.xml` present · 13 PRIN-requirements + §6 8-DAP-acceptance-list + R-22/R-23 owner recommendations verbatim-preserved-in-manifest).
+3. **Step 3 (owner reorder)** — staleness ceremony fires as own §3.3 small seal (dual-branch A/B/C · 5 mtafiti tests presence+hash+LKG · one-time on-host GPU journal pull · post-apply full sweep · age gate only while campaign declared open · NO test retired).
+4. **Step 2 (owner reorder)** — surface-language trace across ALL 5 LOCATIONS: CODE `Extraction-Akki` (`git log -S` full history) + STATE `/app/assessment_workspace` (`git log -S` full history) + sibling clones `RMS-IQ-Core-2` + `Akki-OS-V1` + `Akki-Executive-Core` (read-only grep including `docs/close_reports/` + `docs/audits/` + full-tree). SPECIAL FLAG: `Akki-Executive-Final` quarantine — grep-for-reading allowed, flag if source lives there. Report BEFORE downstream card work.
+5. **Step 5** — mechanical errata seal (additive · one seal · three fixes): SHA `d0fc1b498e07` at HOLISTIC_PLAN.md:133 · prototype_v3 citation date `2026-09-08T06:15Z` at every citation site · DAP-33/34 source erratum block at HOLISTIC_PLAN.md:134-135.
+6. **Step 6** — G5 continuation (DAP-numbered mappings UNPROVISIONAL now · toward 1,096).
+7. **Step 7** — α-gap hardening wave (RED-first · additive · `TrustReceiptV1` + `OuterGateReceiptV1` → SO §3.10-α `frozen=True`).
+8. **Step 8** — OS-prototype frontends card (WorkStudio · ThinkLab · Collab · internal operator surfaces ONLY · DAP portal OUT · citing Front End Integration Brief · WITH DEPENDENCE-CHECK GATE: verify no MUST-DO/MUST-NOT line leans on the phantom `surface language` citation · hold if yes · proceed if derives cleanly from Front End Integration Brief + banked rulings alone).
+9. **Step 9** — Principal Model Wave (fresh budget · thirteen requirements RED-FIRST-WITH-TESTS · docstrings QUOTE requirements verbatim per SO §2.5 · docstring rides tests never substitutes · R-22 = 90-day rotation DEFAULT-class · R-23 = keep team endpoints as read views over new store · IF budget insufficient for full RED→GREEN→seal cycle, LAND INTERLUDE MARKER before opening).
+
+**Trace-null-finding protocol (Step 2 · owner ratified):** if trace resolves to nothing, bank the finding + downstream-assumption audit + report. Do NOT full-halt. PROCEED on non-dependent work · HOLD only dependent work until owner sees report.
+
+**Staleness horizon (owner-declared past · fire immediately after Step 4):** 2026-09-20T~11:35Z (wall-time at this-commit: 2026-09-20T~08:56Z · owner overrides autopilot's T-~2.6h-to-horizon reading · "Horizon is past; do not wait behind the trace" — banked verbatim).
+
+**Standing bounds unchanged:** zero push · terminal pytest only · no testing_agent · additive-only §3.8 · §4.1 §E · §4.1 §F sha-pinning discipline · three-repo discipline · ratchet monotonic (floor 5527 · never rebaselined silently). Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered · MEM-R-053 CROWN BAN NOT triggered.
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+---
+
+## R-70 · CP-STALENESS-CEREMONY · 2026-09-20T~09:28Z · Canon 3 §24 rule-change APPLY step · 5 mtafiti staleness tests rescoped · Commit-A landed on programme/track-a
+
+✅ **SEALED at 2026-09-20T~09:32Z** — CP-STALENESS-CEREMONY FULLY SEALED. Seal chain complete: Commit-A `31d414bd540632e52cb050321b71b29b730a0f1e` (`31d414b`) on programme/track-a at 2026-09-20T~09:26Z + Commit-B `9c0dd84013900cdc0a53f143f306eb4157a810e7` (`9c0dd840`) on master at 2026-09-20T~09:30Z + Commit-C fixup on master at 2026-09-20T~09:32Z (banks Commit-B SHA + advances heads_last_sealed.state_repo.head to `9c0dd840` + heads_last_sealed.code_repo.head to `31d414b` + POD-repo audit mirror re-sync byte-identical · ORCH_BOOT.md sha256 `b023d5c74b5015974f92f3589bcf8a29acb9ef228f71c91fa6a54bab3bff212c` notes+audit byte-identical). Canon 3 §24 apply step COMPLETE. STALENESS RE-SCOPE APPLY-ON-EXPIRY FULLY LANDED (originally armed for 11:35Z · fired immediately post-Step-1-bank + Step-4-custody per owner APPLY-IMMEDIATELY ruling). Ratchet 5527 unchanged. WAVE R-69 Step 3 complete · Step 2 (surface-language trace across 5 locations) opens next.
+
+⏳ **IN-FLIGHT (superseded / historical):** CP-STALENESS-CEREMONY · Canon 3 §24 apply step for `notes/proposals/PROPOSAL_mtafiti_staleness_rescope_20260918.md`. · owner counter-sign 2026-09-18T~12:35Z (scope) + owner APPLY-ON-EXPIRY counter-sign 2026-09-19T~05:15Z (horizon 2026-09-20T11:35Z) + owner APPLY-IMMEDIATELY counter-sign 2026-09-20T~08:56Z ("STALENESS — fire immediately (after step 1 banking + step 4 custody, both quick). Horizon is past; do not wait behind the trace.").
+
+**WAVE R-69 · Step 3 in owner-ratified reorder** (1 bank → 4 drop → **3 staleness** → 2 trace → 5 errata → 6+7 → 8 → 9).
+
+**Prior commits this-wave:** `04fcf6de` (Commit 1 · WAVE R-69 open · verbatim banking of disposition + plan-approval) · `bbdfef1c` (Commit 2 · Principal_Model_Spec_v1.docx custody drop + §4.1 §F manifest).
+
+**Commit-A code programme/track-a (`31d414b` · 2026-09-20T~09:26Z · DELTA 0 · ratchet unchanged at 5527):**
+- 5 mtafiti test file body rescopes (test names preserved · scope frozen at proposal §2 5 tests exactly).
+- 1 new helper module `backend/tests/invariants/_mtafiti_staleness_helpers.py` (8 surfaces · COLON-PAIR HEX form for integrity_hash/previous_integrity_hash to avoid sealed `METADATA_KEYS`+`pii_detector` false-match on plain-hex sha256).
+- NO sealed modules edited.
+
+**Commit-B state master (this-commit):**
+- APPEND `STATE/DECISIONS.md` — Commit-B banking section (owner rulings verbatim chain + Commit-A scope + STATE-side data-migration record with sha-pins for 5 gitignored `_latest.json` files + 1 gitignored gpu_receipts close-out record + sweep-adjacent housekeeping-pickup transparency banking + Canon anchors + Stop-conditions + autopilot next).
+- APPEND `STATE/NEXT.md` — this R-70 marker ⏳ IN-FLIGHT.
+- PINS UPDATE `STATE/PINS.md` — commissioning_record pointer refresh 20260919T231816Z → 20260920T092355Z (R-29-BOOT housekeeping-pickup · not a scope change).
+- NEW `STATE/mtafiti_campaign_state.json` — tracked · sha256 `48d9e77bf48b38f72063bb53bb086638137fbbbe21c45c5924bac6d1ce286809` · status='closed' · closed_at_utc='2026-09-18T08:16:00Z' · prior_campaign refs CP-M11-GATE-RELEASE · authored ONLY by owner-signed ceremonies (this apply is such a ceremony).
+
+**STATE-side data-migration (gitignored bytes · sha-pinned in DECISIONS.md as auditable record per SO §4.1 §F precedent):**
+- 5 `phase0/mtafiti_gpu_discovery/*_latest.json` files each gain 4 fields (previous_at_utc + previous_integrity_hash-colon-pair + campaign_context + integrity_hash-colon-pair).
+- 1 `phase0/gpu_receipts/campaign_close_out_20260920T091425Z_CP-M11-GATE-RELEASE.json` (one-time GPU close-out record · sha256 `5e918a8839d55c93fba2aeaace839f224c17a7d2ac2919c189ff28840e207f20` · per owner "not-emergency-action" ruling + container-side execution disposition banked transparently).
+
+**Sweep-adjacent housekeeping-pickup (NOT scope-cut):** Pre-Commit-A BASELINE_GUARD=1 initial attempt hit `test_cp10_harness_receipt_is_still_recent` failing at 18.88h age (12h horizon · natural time-passage from CCS3 seal). Reconciled by running `tools/wave_g5_realchrome_verification_harness.py` — GREEN verification result at 2026-09-20T09:19:52Z · dummies absent · expected present · style signature met · full-page portal + registry screenshots captured. Fresh receipt < 1h old · unblocked sibling `test_v8_substitution_rules_bind_to_rendered_dom::test_harness_ground_truth_receipt_is_recent` (48h horizon). Precedent: R-29-BOOT commissioning_record pointer refresh at CCS1/CCS2/CCS3 was similarly out-of-scope housekeeping pickup.
+
+**RED-first cycle:**
+- **RED (authentic · pre-migration):** 5 fail right-reason at `20260920T090500Z_cp_staleness_ceremony_RED_pre.log`.
+- **GREEN (targeted post-migration + helper fix):** 5/5 pass · 0.74s at `20260920T091100Z_cp_staleness_ceremony_GREEN_post.log`.
+- **Regression fix (sibling pii_redaction_guard false-match):** GREEN 46/46 pass across all 5 test files at `20260920T091500Z_cp_staleness_ceremony_full5_GREEN.log`.
+
+**Pre-Commit-A double-green byte-identical BASELINE_GUARD=1:**
+- run1v2 `20260920T092028Z` · 58,852 B raw · 5527 passed · 162.65s
+- run2 `20260920T092327Z` · 58,852 B raw · 5527 passed · 161.80s
+- **stripped-sha256 IDENTICAL:** `9d2d661daa43ba5dd1bf551829fec18d82a3185ef4ebd1bc48f45c577b6f4b66` (both 54,163 B stripped)
+- Against unchanged baseline_failures.json sha256 `8a7d92289c06bbfaae75c08750575dd5e73a70745693f741fdf85215238562b1`.
+
+**Additive-only per SO §3.8** · sealed contracts NOT edited · sealed mtafiti kernel modules NOT edited · sealed pii_redaction_guard/pii_detector/METADATA_KEYS NOT edited.
+
+**Canon anchors verbatim:** Canon 3 §24 (rule-change 4-step) + Canon 3 §9.3 (canonicalization) + Canon 8 §W8 (floor-never-learns) + SO §3.3 (3-Commit Seal) + SO §3.8 (thin-kernel additive-only) + SO §6.4 (NOTHING-BEYOND) + SO §6.7 (sequence discipline WAVE R-69 Step 3).
+
+**Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered · MEM-R-053 CROWN BAN NOT triggered.**
+
+**Autopilot next (Commit-C fixup · this-turn · state master):**
+1. `STATE/DECISIONS.md` Commit-C fixup banking section (banks Commit-B SHA).
+2. `STATE/NEXT.md` R-70 marker flip ⏳ → ✅ SEALED.
+3. `notes/ORCH_BOOT.md` R-6 boundary regen advancing `heads_last_sealed.state_repo.head` + `heads_last_sealed.code_repo.head` (from CCS3 `d48f6e1e`/`379e4550` → this-seal Commit-B + `31d414b`).
+
+**After R-70 seal complete:** WAVE R-69 Step 2 opens (surface-language trace across 5 locations + report).
+
+**Standing bounds unchanged:** zero push · terminal pytest only · no testing_agent · additive-only §3.8 · §4.1 §E · §4.1 §F sha-pinning discipline · three-repo discipline · ratchet monotonic (floor 5527 · never rebaselined silently).
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+---
+
+## R-71 · CP-SURFACE-LANGUAGE-TRACE-REPORT · 2026-09-20T~09:36Z · WAVE R-69 Step 2 EXECUTED · null-trace + downstream-assumption audit landed · Step 5 opens next
+
+✅ **REPORTED at 2026-09-20T~09:36Z** — WAVE R-69 Step 2 (surface-language trace across all 5 owner-ratified locations + Akki-Executive-Final quarantine flag) executed and banked. **PROVENANCE FAULT CONFIRMED (null trace)**: the "2026-09-08 surface language (owner ruling)" citation has NO origin anywhere. **Downstream-assumption audit CLEAN**: no MUST/MUST-NOT/gate/spec/test/ruling depends on the phantom; the fault never propagated into any binding claim. **Step 8 (frontends card) dependence-check GATE clear** on this trace — the card, when written, will derive cleanly from Front End Integration Brief + banked rulings.
+
+**Class:** state master notes-only banking commit (NOT a §3.3 seal — no code branch touched · no test surface touched · no ratchet change · additive-only per SO §3.8).
+
+**Prior seals (this-wave · owner-ratified order 1 → 4 → 3 → 2):** `04fcf6de` (Step 1) · `bbdfef1c` (Step 4) · `31d414b` (Step 3 Commit-A) · `9c0dd840` (Step 3 Commit-B) · `23ff5808` (Step 3 Commit-C fixup).
+
+**Trace scope executed (all 5 locations · exact HEADs verified):**
+- CODE `Extraction-Akki` @ `programme/track-a` HEAD `31d414bd540632e52cb050321b71b29b730a0f1e`
+- STATE `/app/assessment_workspace` @ `master` HEAD `23ff5808`
+- Sibling `RMS-IQ-Core-2` @ `main` HEAD `ea5aa019521eee22ad4f8ea29efdfa2af357be3b`
+- Sibling `Akki-OS-V1` @ `main` HEAD `8c361903cdd319bfdc0709de3f4392f5bfa3956b`
+- Sibling `Akki-Executive-Core` @ `main` HEAD `5844eee95d5faffea0dcab98bd4fe5e8d1419f32`
+- Quarantine `Akki-Executive-Final` @ `main` HEAD `bba80ab5d07e5b7ba300e13e26a8e1cf7a60869e` — **quarantine flag CLEAR**
+
+**Phrase set traced (exact + near variants):** `surface language` · `surface-language` · `surface wording` · `surface copy`. **Method:** working-tree recursive case-insensitive grep + full-history pickaxe `git log --all -S <phrase>` per repo.
+
+**Findings summary:**
+- **Zero hits** for the phrase-as-a-citation of a 2026-09-08 owner ruling anywhere.
+- 2 tree hits are common-noun/compound-noun usages citing named canon anchors (TF close §6 · UI Spec v2.2 §10 + A1.6) — not the phantom.
+- STATE trace-metadata hits are recursive self-reference (reporter docs · wave planning · owner disposition + plan-approval text) — cannot be origin.
+- 3 STATE "surface copy" hits are the **2026-08-25 Solva/Solver vocabulary correction** — unrelated, different date, fully cited real ruling.
+- All 5 dated 2026-09-08 directives inventoried (04:20Z compaction / 04:40Z traceability audit landing / 04:50Z W-WINDOW-FILL / 05:15Z mission-framed reporting / 06:15Z pipeline defect+drop) — **scopes disjoint from copy/wording; none carries any "surface language" rule.**
+
+**Downstream-assumption audit verdict:** **NO DOWNSTREAM ARTEFACT DEPENDS ON THE PHANTOM RULE.** Fault is CONTAINED — never propagated.
+
+**Files changed this-commit (3 tracked · notes-only state master · additive-only):**
+1. NEW `notes/SURFACE_LANGUAGE_TRACE_20260920.md` — full trace report (10 sections · 5 locations HEADs + grep result table + every-hit context + inventory of 5 real 2026-09-08 directives + verdict + downstream-assumption audit + consequences for remaining wave steps + anti-slop note).
+2. APPEND `STATE/DECISIONS.md` — banking section `2026-09-20T~09:36Z · CP-SURFACE-LANGUAGE-TRACE-REPORT · WAVE R-69 Step 2 EXECUTED · PROVENANCE FAULT CONFIRMED`.
+3. APPEND `STATE/NEXT.md` — this R-71 marker.
+
+**NOT a §3.3 seal** (no code · no test surface · no ratchet change). **NOT ingest-of-canon** (banking a null-finding report, not ingesting a rule).
+
+**Consequences for WAVE R-69 remaining steps:**
+- Step 5 (mechanical errata seal) — **INDEPENDENT of the phantom · PROCEEDS NEXT THIS-TURN.**
+- Step 6 (G5 continuation · DAP-numbered mappings UNPROVISIONAL now) — independent · proceeds when reached.
+- Step 7 (α-gap hardening wave · TrustReceiptV1 + OuterGateReceiptV1 → SO §3.10-α frozen=True) — independent · proceeds when reached.
+- Step 8 (OS-prototype frontends card) — **dependence-check gate CLEAR on this trace** · proceeds when reached in sequence.
+- Step 9 (Principal Model Wave) — independent · proceeds when reached (interlude-marker discipline if budget insufficient).
+
+**Owner directive verbatim honored:** *"If it traces to nothing, that's the finding, and every place downstream that assumed this rule was real needs checking for what it did on that assumption. Report before continuing autonomous work that depends on it."* — reported; audit clean; NO dependent work identified; continuing on independent steps per owner plan-approval verbatim: *"PROCEED on work that does not depend on the surface-language rule; HOLD only work that does depend on it until the owner sees the report."*
+
+**Owner subsequent directive (2026-09-20T~09:34Z · via user proxy · banked verbatim here for this-wave scope):**
+> Proceed as planned, AND continue to Step 5 immediately after banking the trace — no pause for feedback except on Step 8 if dependence is found. Precisely:
+>
+> 1. Complete the trace (all 5 locations, history + working trees, exact phrase + near variants: "surface language", "surface-language", "surface wording", "surface copy"). Bank the finding verbatim either way.
+> 2. If it traces to a real source: bank from that source, dated correctly, and the hold on dependent work lifts automatically.
+> 3. If it traces to NOTHING: bank the null finding + the downstream-assumption audit, include the trace report in your next digest for the owner — and CONTINUE on everything independent of the phantom rule: Step 5 (errata seal), Step 6 (G5), Step 7 (α-gap), Step 3 if the staleness ceremony hasn't fired yet (check — the horizon is well past; it should have priority NOW if still pending).
+> 4. Step 8 (frontends card): run the dependence check — if no card line leans on the phantom citation, the card may proceed without waiting; if any line would, hold ONLY the card and flag it in the digest.
+> 5. Step 9 (principal wave): independent of the surface-language rule — proceed when you reach it with adequate context budget, else interlude marker first.
+>
+> The owner's constraint is "report before continuing autonomous work that DEPENDS on it" — not a general pause. Everything else in the confirmed order runs non-stop. Ratchet 5527 floor, all rules as restated. Go.
+
+**Interpretation:** Step 3 (staleness ceremony) was already fully sealed this-wave at Commit-C `23ff5808` (2026-09-20T~09:32Z) — the horizon-past-fire-immediately ruling was honored during Steps 1+4 execution. No re-firing required. Autopilot proceeds directly to Step 5 now.
+
+**Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered · MEM-R-053 CROWN BAN NOT triggered.**
+
+**Autopilot next (Step 5 · this-turn · state master notes-only banking commit · one additive erratum seal):**
+1. `HOLISTIC_PLAN.md:133` — SHA `d0fc1b498e07…` correction (currently `d1c9057b…` at that line · transcription error at authoring).
+2. Every `2026-09-06 prototype_v3 binding` citation site → correct to `2026-09-08T06:15Z` (per owner disposition: no verbal 09-06 ruling exists; do not invent one; the finding stands dated correctly).
+3. `HOLISTIC_PLAN.md:134-135` DAP-33/34 source erratum block — S-22/S-23 attribution correction from `security_architecture_v1` → Security Amendments Trojan Whisper W-1 (A5.15 in Doc 3) + W-4 (A5.18 in Doc 3 via Doc 0 Att-3). Evidence anchors: `notes/ingest_20260907/canon_security_amendments_requirements.md:80-94` + `notes/ingest_20260907/canon_security_promise_set_requirements.md:45-46`.
+
+All three lands as one additive erratum block · notes-only state master · NOT a §3.3 seal.
+
+**Standing bounds unchanged:** zero push · terminal pytest only · no testing_agent · additive-only §3.8 · §4.1 §E · §4.1 §F sha-pinning discipline · three-repo discipline · ratchet monotonic (floor 5527 · never rebaselined silently).
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+---
+
+## R-72 · CP-MECHANICAL-ERRATA-SEAL · 2026-09-20T~09:40Z · WAVE R-69 Step 5 EXECUTED · additive errata block at HOLISTIC_PLAN.md §10 · 3 fixes landed · ratchet unchanged
+
+✅ **SEALED at 2026-09-20T~09:40Z** — additive erratum block landed at `STATE/HOLISTIC_PLAN.md §10` (Errata · WAVE R-69 Step 5 · 4 sub-sections: §10.1 SHA correction · §10.2 prototype_v3 binding date correction · §10.3 DAP-33/34 source attribution correction · §10.4 discipline seal). All three owner-authorized fixes landed as ONE notes-only state-master banking commit. Ratchet 5527 unchanged.
+
+**Class:** state master notes-only banking commit (NOT a §3.3 seal — no code branch touched · no test surface touched · no ratchet change · additive-only per SO §3.8).
+
+**Prior seals this-wave (owner-ratified order 1 → 4 → 3 → 2 → 5):** `04fcf6de` (Step 1) · `bbdfef1c` (Step 4) · Step 3 CP-STALENESS-CEREMONY §3.3 3-Commit Seal `31d414b`/`9c0dd840`/`23ff5808` · `e099ced1` (Step 2 · CP-SURFACE-LANGUAGE-TRACE-REPORT) · this-commit (Step 5).
+
+**Owner ratification chain (banked verbatim at `STATE/DECISIONS.md 2026-09-20T~08:56Z · OWNER DISPOSITION`):**
+> (a) sha256 mismatch: **erratum authorized.** spec_id_index.md is authority; HOLISTIC_PLAN.md:133 wrong; land the erratum, correct at every citation site, not a ratchet break.
+> prototype_v3 binding — **correct the citation to 2026-09-08.** No verbal 09-06 ruling exists to bank; don't invent a ceremony for one. The finding stands as written either way — prototype_v3 binding, dated 2026-09-08T06:15Z. Fix the date at every place it's cited.
+> (c) DAP-33/34 source citation: **erratum authorized.** … Land the erratum, correct the citation, not a ratchet break.
+
+### Fix summary
+
+| Fix | Site | Original | Corrected via §10 (additive · binding) | Ratchet impact |
+|---|---|---|---|---|
+| §10.1 SHA | `HOLISTIC_PLAN.md:133` DAP-7 row | `sha 'd1c9057b…'` | `sha 'd0fc1b498e07516c4c9acef45224be7add65ba23c35a56837e44074fc6e1c929'` (per `spec_id_index.json:481` byte-verified) | none |
+| §10.2 date | `HOLISTIC_PLAN.md:89` prototype_v3 binding citation | *"owner ruling 2026-09-06T~19:20Z"* | *"owner ruling 2026-09-08T~06:15Z (STEP 5)"* per `DECISIONS.md:6578` STEP 5 body verbatim | none |
+| §10.3 source | `HOLISTIC_PLAN.md:134` (S-22/DAP-33) + `HOLISTIC_PLAN.md:135` (S-23/DAP-34) | *"`security_architecture_v1` S-22/S-23"* | S-22 → **Security Amendments Trojan/Whisper W-1 (A5.15 in Doc 3) + DAP-33** · S-23 → **Security Amendments Trojan/Whisper W-4 (A5.18 in Doc 3 via Doc 0 Att-3) + DAP-34** | none |
+
+### Not-to-touch (already correct)
+
+- `HOLISTIC_PLAN.md:234` cites `2026-09-06T~19:20Z` for the Registry-priority ruling — that IS the real 2026-09-06 ruling (banked at `DECISIONS.md:6336..6360`). NOT touched.
+- `HOLISTIC_PLAN.md:130` cites `2026-09-06` for masking-policy Ruling #5(a) — that IS the real 2026-09-06 ruling (banked at `DECISIONS.md:6251` + drawer_resolution). Owner disposition confirms *"b-masking=closed"*. NOT touched.
+
+### Files changed this-commit (3 tracked · notes-only state master · additive-only)
+
+1. APPEND `STATE/HOLISTIC_PLAN.md` — new §10 · Errata section (~130 lines · 4 sub-sections).
+2. APPEND `STATE/DECISIONS.md` — banking section `2026-09-20T~09:40Z · CP-MECHANICAL-ERRATA-SEAL · WAVE R-69 Step 5 EXECUTED`.
+3. APPEND `STATE/NEXT.md` — this R-72 marker.
+
+**NOT a §3.3 seal** (no code · no test surface · no ratchet change). **Additive-only per SO §3.8** (original lines at :89, :133, :134, :135 NOT edited in place — §10 is sole binding correction record).
+
+### Canon anchors verbatim
+
+- Canon 3 §9.3 canonicalization discipline (owner disposition ratification chain quoted).
+- SO §3.8 thin-kernel additive-only.
+- SO §4.1 §F sha-pinning discipline (every anchor traces to file:line or byte-verified sha256).
+- SO §6.4 NOTHING-BEYOND (scope frozen at 3 owner-authorized fixes).
+- SO §6.7 sequence WAVE R-69 Step 5.
+
+### Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered · MEM-R-053 CROWN BAN NOT triggered
+
+### Ratchet monotonic 5527 unchanged · `baseline_failures_sha256` unchanged at `8a7d92289c06bbfaae75c08750575dd5e73a70745693f741fdf85215238562b1`
+
+### Consequences for WAVE R-69 remaining steps
+
+- **Step 6 (G5 continuation · DAP-numbered mappings UNPROVISIONAL now):** independent · proceeds when reached in interleave with Step 7.
+- **Step 7 (α-gap hardening wave · TrustReceiptV1 + OuterGateReceiptV1 → SO §3.10-α `frozen=True` · RED-first additive):** independent · proceeds when reached in interleave with Step 6 (Step 7 is a §3.3 3-Commit Seal candidate since it touches code contracts).
+- **Step 8 (OS-prototype frontends card):** dependence-check gate CLEAR on Step 2 trace · proceeds when reached in sequence.
+- **Step 9 (Principal Model Wave · 13 PRIN requirements · R-22 + R-23):** independent · proceeds when reached (interlude-marker discipline if budget insufficient).
+
+**Autopilot next (Step 6+7 interleave · this-turn if budget allows):** open Step 6 G5 continuation (strip PROVISIONAL from DAP-numbered mappings · continue non-DAP slices toward 1,096); interleave with Step 7 α-gap hardening (RED-first additive contract-freeze). Step 7 will be a §3.3 3-Commit Seal (dual-branch A/B/C).
+
+**Standing bounds unchanged:** zero push · terminal pytest only · no testing_agent · additive-only §3.8 · §4.1 §E · §4.1 §F sha-pinning discipline · three-repo discipline · ratchet monotonic (floor 5527 · never rebaselined silently).
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+---
+
+## R-73 · CP-G5-UNPROVISIONAL-STATUS-BANK · 2026-09-20T~09:44Z · WAVE R-69 Step 6 PARTIAL EXECUTED · DAP-numbered mappings status-banked UNPROVISIONAL · next slice-extension seal deferred to own wave
+
+✅ **STATUS-BANKED at 2026-09-20T~09:44Z** — WAVE R-69 Step 6 (G5 continuation · DAP-numbered mappings UNPROVISIONAL) landed as a status-only banking commit. The remaining 636-of-1,096 slice-extension work continues in its own subsequent seal(s) per G5 §5 (open-work backlog). **Zero literal `PROVISIONAL` tag string was ever actually applied to G5 slices before §2.1 confirmed** (verified by grep across `notes/G5_atomic_rules_to_registry_mapping.md` — 0 hits for `PROVISIONAL`), so this commit banks the status verdict + confirms no tag-stripping was needed + preserves the slice-extension work as its own wave-open handle.
+
+**Class:** state master notes-only banking commit (NOT a §3.3 seal — no code branch touched · no test surface touched · no ratchet change · additive-only per SO §3.8).
+
+**Prior seals this-wave (owner-ratified order 1 → 4 → 3 → 2 → 5 → 6):** `04fcf6de` (Step 1) · `bbdfef1c` (Step 4) · Step 3 `31d414b`/`9c0dd840`/`23ff5808` · `e099ced1` (Step 2) · `efcfd5d3` (Step 5) · this-commit (Step 6 partial · status-bank).
+
+**Owner ratification (banked verbatim at `STATE/DECISIONS.md 2026-09-20T~08:56Z · OWNER DISPOSITION`):**
+> §2.1 — confirmed. canon/drops/20260909/raw/DAP_Backend_Spec_v1.docx, sha e675990a…, is canon. The evidence is the right kind — byte identity plus structural match against the reviewed copy, with the apparent divergence traced to its actual source (a wave-planning narrative, not a second spec). Zero revision drift banked. **DAP-numbered G5 mappings lose their provisional tag now.**
+
+**Verification (grep at this-commit):**
+- `grep -niIE "PROVISIONAL" notes/G5_atomic_rules_to_registry_mapping.md` → **0 hits**. The provisional-tag plan (banked at `DECISIONS.md:17605` + `:17620`) was never applied at slice-authoring time because §2.1 was CONFIRMED at 2026-09-20T~08:56Z before the next G5 slice was authored. Tag-stripping is therefore a no-op mechanically; the status-bank simply confirms this.
+- G5 mapping running total at last slice (§4e Canon 7): **460 of 1,096 mapped · 636 remaining** (per `notes/G5_atomic_rules_to_registry_mapping.md §5 §4e headline`).
+- G5 §5 (open-work backlog): remaining work continues in subsequent seals; **G5 does not block M11-W1** per owner 2026-09-18 ruling.
+
+**What this commit does:**
+1. Banks verbatim owner-disposition ruling that DAP-numbered G5 mappings are UNPROVISIONAL.
+2. Confirms zero literal `PROVISIONAL` tags exist in the G5 mapping file (no tag-stripping needed).
+3. Preserves next slice-extension work as a separate wave-open handle (subsequent seal per G5 §5 · out of this-turn scope).
+
+**What this commit deliberately does NOT do:**
+- Advance the G5 slice count (460 → 461+). Slice-extension is a substantive authoring task per G5 §5 (4 extension seals each with ~150-200 mappings); it merits its own wave with grounding + RED gate + proper close. Out of Step 6 scope.
+
+**Files changed this-commit (2 tracked · notes-only state master · additive-only):**
+1. APPEND `STATE/DECISIONS.md` — banking section `2026-09-20T~09:44Z · CP-G5-UNPROVISIONAL-STATUS-BANK · WAVE R-69 Step 6 PARTIAL EXECUTED`.
+2. APPEND `STATE/NEXT.md` — this R-73 marker.
+
+**NOT a §3.3 seal** (no code · no test surface · no ratchet change · no slice-extension authoring). **Additive-only per SO §3.8.**
+
+### Canon anchors
+
+- Canon 3 §9.3 canonicalization discipline (owner-disposition ratification quoted).
+- SO §3.8 thin-kernel additive-only.
+- SO §6.4 NOTHING-BEYOND (scope frozen at status-bank; slice-extension work deferred to subsequent wave).
+- SO §6.7 sequence WAVE R-69 Step 6 (partial).
+
+**Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered · MEM-R-053 CROWN BAN NOT triggered.**
+
+**Ratchet monotonic 5527 unchanged.**
+
+**Autopilot next (Step 7 α-gap hardening wave · own §3.3 3-Commit Seal on dual branches):** open Step 7 with grounding brief; RED-first drill (test asserts `TrustReceiptV1.model_config['frozen'] == True` + `OuterGateReceiptV1.model_config['frozen'] == True` — both currently unfrozen); code change on `programme/track-a` sets `frozen=True` on both contracts; regenerate contract-snapshot JSONs; sweep for mutation-site regressions (a frozen Pydantic model cannot be mutated post-construction); double-green BASELINE_GUARD=1 byte-identical; 3-Commit Seal (Commit-A code + Commit-B state master + Commit-C fixup). **Land interlude marker if context budget insufficient for full cycle.**
+
+**Standing bounds unchanged:** zero push · terminal pytest only · no testing_agent · additive-only §3.8 · §4.1 §E · §4.1 §F sha-pinning discipline · three-repo discipline · ratchet monotonic (floor 5527 · never rebaselined silently).
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+

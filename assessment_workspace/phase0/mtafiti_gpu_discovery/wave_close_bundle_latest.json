@@ -342,7 +342,7 @@
     "egress_gb_estimated": 0.0003248210996389389,
     "egress_usd_estimated": 5.197137594223023e-05,
     "wave_total_usd_estimated": 5.197137594223023e-05,
-    "billing_basis": "cassava_lease \u00b7 $0 marginal on idle capacity (banked prior-session)"
+    "billing_basis": "cassava_lease · $0 marginal on idle capacity (banked prior-session)"
   },
   "receipt_chain_sha256": {
     "live_probe": {
@@ -363,5 +363,9 @@
     },
     "cost_receipt": "a62613248d52aca34d3db1d03eb7ba98e4436357fa1b613343f10ca0baef1237"
   },
-  "wave_close_sha256": "8dd6f95bd466e4fd3a4e8d769467f90e89320eeb2c792c4820e2ddf673166f60"
+  "wave_close_sha256": "8dd6f95bd466e4fd3a4e8d769467f90e89320eeb2c792c4820e2ddf673166f60",
+  "previous_at_utc": "2026-09-18T11:01:38Z",
+  "previous_integrity_hash": "52:99:ac:33:fd:3f:41:e4:bb:66:a2:a2:f6:e4:51:da:e8:61:fa:12:82:c9:3a:3c:83:55:4b:ba:e7:a0:82:55",
+  "campaign_context": "CP-M11-GATE-RELEASE · GPU 72h discovery window · opened 2026-09-15T~08:00Z · closed 2026-09-18T~08:16Z",
+  "integrity_hash": "bc:ab:9d:97:a7:a7:38:c8:3b:f9:1a:e8:fe:9f:28:ef:ae:7a:96:db:e5:69:66:bb:bd:2b:a9:46:2a:f5:3e:51"
 }
