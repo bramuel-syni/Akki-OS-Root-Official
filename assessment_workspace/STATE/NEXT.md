@@ -4897,3 +4897,118 @@ Owner dispatches spec verbatim to FE specialist. Specialist lands byte-identity 
 zero push · terminal `pytest` only · **no `testing_agent`** · additive-only §3.8 · ratchet monotonic-up **5695** · R-88+ OWNER-RATIFICATION-PENDING carries forward · HF-HOLD SEC-2026-09-12-01 · R-24 UNLISTED · R-25 tagged.
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+---
+
+## 2026-09-21T03:23:15Z · R-91 CEREMONY-OPEN · Path ε RATIFIED · countdown 48h · APPLY 2026-09-23T03:23:15Z
+
+**R-91 marker flips: ⏳ IN-FLIGHT → ⏳ CEREMONY-IN-FLIGHT (countdown 48h · APPLY 2026-09-23T03:23:15Z · autopilot NOT idle during window · G5-v5 second slice Family A opens).**
+
+**Ceremony filed:** `notes/proposals/PROPOSAL_r91_r86_property_tests_amendment_20260921.md` · Path ε RATIFIED per owner ruling this-session · counter-sign batched · countdown ordinary tier 48h.
+
+### R-91 apply schedule (at horizon 2026-09-23T03:23:15Z)
+
+Ten operations per proposal §6 (verbatim summary):
+1. Apply Property 2/3/5 amendments to `test_baseline_drift_annotations_present.py` (helper `_r91_closure_sealed()` + named-success early return · Property 4 UNTOUCHED per owner condition 3).
+2. Re-run terminal `pytest` on amended file.
+3. Apply mirror `/app/frontend/{App.js,pages/}` → `pod_shell/frontend/{App.js,pages/}` byte-identical.
+4. Atomic `baseline_failures.json` update: 5 → 0 baselines · 3 → 0 mirror-drift annotations · 3 → 1 CP10 annotations (retain cp10-still-recent) · 5695 → 5700 counts+floor.
+5. Flip closure card `milestone_status`: SCHEDULED → SEALED (single write activates `_r91_closure_sealed()`).
+6. Regenerate `notes/ORCH_BOOT.md` ratchet block pre-Commit-A.
+7. Sync POD audit mirror byte-identical.
+8. Regenerate CP10 harness if drifted.
+9. BASELINE_GUARD=1 double-green byte-identical.
+10. §3.3 3-Commit Seal (A code + B state + C fixup).
+
+### Post-apply pins
+
+- 5 wrapped baselines retire atomically (mirror-drift 3 + v8-cascade 2).
+- Ratchet: 5695 → 5700 (CCS2-aligned).
+- R-86 5 property tests + R-88+ 6 property tests: all GREEN.
+- R-91 milestone flips SEALED.
+- FE-DISPATCH-READY: LOWERED.
+
+### D+A RATIFIED · OWNER-RATIFICATION-PENDING RETIRED this-commit
+
+Owner confirms this-session (banked STATE/DECISIONS.md above): D-ruling on CP10 + A-extension covering v8-cascade artifacts = the SAME pair as App.js-divergence annotations under CP-APP-JS-UNIFY scheduled closure + erratum discipline. Ratified. Flag retires. Future seal reports drop the carry-forward line.
+
+### Autopilot during window · G5-v5 second slice sequencing (owner verbatim)
+
+Owner sequencing verbatim: "*Map the rows whose components are already built and sealed, so canon_ref bites on live code: Document 1 (chokepoint, M12) and Document 5 (the Ledger, M10) first; then DAP-1 through DAP-38 (lifecycle and principal model landing); then RBM and ROC (Rules Service). Tier B rows in each family trail their Tier A. Sequence rows 1–565 accordingly.*"
+
+Family sequence:
+1. **Family A — Doc 1 M12 chokepoint** (opens first this-window).
+2. **Family B — Doc 5 M10 Ledger** (opens next).
+3. **Family C — DAP-1..DAP-38 lifecycle + principal model landing** (opens after B seals).
+4. **Family D — RBM + ROC · Rules Service** (opens after C seals).
+5. Tier B rows trail Tier A within each family.
+
+Slice sizes at autopilot discretion for clean seals · each slice own §3.3 3-Commit Seal · slicing plan reports at each seal boundary.
+
+### Sprint queue
+
+1. R-83..R-90 ✅ SEALED (prior chain).
+2. R-92 CP-G5V5-SFP-1-7 first slice ✅ SEALED at `ceaa24f/19030610/e8f9f168`.
+3. R-91 Phase 1 opening ✅ SEALED at `282ba19e`.
+4. **R-91 Phase 2 ⏳ CEREMONY-IN-FLIGHT · countdown 48h · APPLY 2026-09-23T03:23:15Z (this-commit).**
+5. **G5-v5 second slice Family A (Doc 1 M12 chokepoint) — OPENS DURING R-91 window (this-turn autopilot next).**
+6. G5-v5 second slice Family B (Doc 5 M10 Ledger) — trails A.
+7. G5-v5 second slice Family C (DAP-1..DAP-38) — trails B · sliced 4-6 sub-slices · ≈38 rows Tier A + Tier B.
+8. G5-v5 second slice Family D (RBM + ROC · Rules Service) — trails C.
+
+### Standing bounds unchanged
+
+zero push · terminal `pytest` only · **no `testing_agent`** · additive-only §3.8 (with ceremonied amendment as SINGLE authorized exception per owner ruling this-session) · ratchet measured-monotonic-up **5695** floor (bumps to 5700 at apply-step) · HF-token / R-24 / R-25 owner-side unchanged.
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+---
+
+## 2026-09-21T03:42:00Z · G5-v5 FAMILY A · SOURCE-DOC BLOCK CLEARED · autopilot proceeds
+
+**Correction landed:** Prior HUNT §4 false-negative (`docs missing`) refuted by fresh scan. Doc 1/3/5 source `.docx` files live at `fixtures/files_9_extracted/` with filenames matching v5 SRR col 9 (extension `.docx` vs cited `.md` · rule text present verbatim). Family A first sub-slice authoring is cleared under standing Rulings 3 (erratum · rule-text-governs) + 5 (canon_ref = v5 SRR only).
+
+**State this-commit:**
+- Ratchet UNCHANGED · 5695 pass / 5 fail / 1 skip · floor 5695.
+- baseline_failures.json sha `4e7caa47` UNCHANGED.
+- notes/ORCH_BOOT.md sha `0c67f0e6` UNCHANGED.
+- CP_APP_JS_UNIFY milestone_status = SCHEDULED UNCHANGED.
+- R-91 apply horizon 2026-09-23T03:23:15Z UNCHANGED.
+
+### Sprint queue
+
+1. R-83..R-90 ✅ SEALED (prior chain).
+2. R-92 CP-G5V5-SFP-1-7 first slice ✅ SEALED at `ceaa24f/19030610/e8f9f168`.
+3. R-91 Phase 1 opening ✅ SEALED at `282ba19e`.
+4. R-91 Phase 2 ⏳ CEREMONY-IN-FLIGHT · countdown 48h · APPLY 2026-09-23T03:23:15Z (banked at `a30db4f7`).
+5. G5-v5 second slice Family A (Doc 1 M12 chokepoint) source-doc BLOCK CLEARED at this-commit · **HUNT-and-authoring opens next autopilot turn**.
+6. G5-v5 second slice Family B (Doc 5 M10 Northena · owner-labelled "Ledger") — trails A.
+7. G5-v5 second slice Family C (DAP-1..DAP-38) — trails B · sliced 4-6 sub-slices.
+8. G5-v5 second slice Family D (RBM + ROC · Rules Service) — trails C.
+
+### Autopilot next (this-turn banked · next-turn executes)
+
+**Family A first sub-slice HUNT-and-authoring:**
+
+1. HUNT: extract A5.1..A5.9 verbatim rule text from `fixtures/files_9_extracted/01_Custody_and_the_Crossing_Part_1_The_Chokepoint.docx` (paragraphs 33-51) · pin `.docx` sha `a33588298100c6224366623e64ac8632b48294649e57ad43cf67ee6730f97844` at HUNT-time.
+2. Author `backend/tests/invariants/test_g5v5_doc1_a5_1_to_a5_9.py` with 9 property tests · canon_ref = SRR R2..R10 · SO §2.5 verbatim-docstring per row · SFP-1..7 pattern.
+3. Sealed M12 code map: bind against `services/chokepoint/*` load-bearing constants + emit new `services/canon_doc1_chokepoint/vocabulary.py` Final[...] constants where sealed module doesn't already carry the exact bindings (measurement in HUNT decides).
+4. RED-first (import failure or missing constant) → GREEN-post.
+5. Pre-Commit-A ORCH_BOOT.md ratchet-only regen per M16-W3 corrected order (5695 → 5704 measured after +9 SFP-style tests · CCS2-aligned bump) + POD audit mirror byte-identical sync.
+6. BASELINE_GUARD=1 double-sweep byte-identical stripped-sha256 IDENTICAL run1 = run2.
+7. §3.3 3-Commit Seal (Commit-A programme/track-a code + Commit-B master state + Commit-C fixup R-6 boundary regen).
+
+### R-91 ceremony window unaffected
+
+Countdown 2026-09-21T03:23:15Z → 2026-09-23T03:23:15Z. G5-v5 slice work during window is separate from R-91 apply — R-91 seal fires at horizon regardless of Family A/B progress. Proposal `notes/proposals/PROPOSAL_r91_r86_property_tests_amendment_20260921.md` unaffected.
+
+### D+A RATIFIED · OWNER-RATIFICATION-PENDING RETIRED (carry-forward)
+
+Retired at R-91 CEREMONY-OPEN commit `a30db4f7`. Not restated in future seal-reports' standing-bounds recitations.
+
+### Standing bounds unchanged
+
+zero push · terminal `pytest` only · **no `testing_agent`** (STRICTLY BANNED per SO §6) · additive-only §3.8 (with ceremonied R-91 amendment as SINGLE authorized exception at horizon) · three-repo discipline · ratchet measured-monotonic-up **5695** floor (bumps to 5700 at R-91 apply-step) · HF-HOLD SEC-2026-09-12-01 · R-24 UNLISTED · R-25 tagged.
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+

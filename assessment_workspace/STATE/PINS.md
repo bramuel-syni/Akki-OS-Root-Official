@@ -481,3 +481,107 @@ Owner Order 2026-08-25 · "W4 go" (verbatim in DECISIONS.md). Executed tests-fir
 - **Phase 2 blocker:** FE specialist landing (owner dispatches spec verbatim; specialist lands byte-identity + engine-restoration; owner verifies at seal-verify).
 - **Standing bounds:** zero push · terminal `pytest` only · **no `testing_agent`** · additive-only §3.8 · three-repo discipline · ratchet monotonic-up **5695** floor · HF-HOLD SEC-2026-09-12-01 · R-24 UNLISTED · R-25 tagged.
 <!-- R-91-PHASE-1-PINS-2026-09-20 END -->
+
+<!-- R-91-CEREMONY-OPEN-PINS-2026-09-21 -->
+## R-91 CP-APP-JS-UNIFY · Phase 2 · CEREMONY-OPEN · Path ε RATIFIED · **⏳ CEREMONY-IN-FLIGHT 2026-09-21T03:23:15Z · APPLY 2026-09-23T03:23:15Z**
+
+- **Ceremony type:** Canon 3 §24 rule-change · ordinary tier · 48-hour countdown per R-18 effect 12.
+- **Proposal filed:** `notes/proposals/PROPOSAL_r91_r86_property_tests_amendment_20260921.md` at 2026-09-21T03:23:15Z.
+- **Counter-sign:** batched per STATE/STANDING_ORDERS.md:437 — owner ruling this-session (2026-09-21T~01:00Z Path ε RATIFIED) IS the counter-sign.
+- **Countdown start:** 2026-09-21T03:23:15Z. **Horizon:** 2026-09-23T03:23:15Z.
+- **Precedent shape:** CP-STALENESS-CEREMONY seal chain (2026-09-20T09:28Z Commit-A `31d414b` + Commit-B `9c0dd840` + Commit-C `23ff5808`).
+- **CODE branch:** `programme/track-a` HEAD stays at R-92 Commit-A `ceaa24f` (UNTOUCHED this-ceremony-open · code branch lands at apply-step Commit-A).
+- **STATE branch:** `master` HEAD advances at this-commit.
+- **Ratchet at ceremony-open:** MEASURED **5695 pass / 5 fail / 1 skip · floor 5695 · UNCHANGED** (no code delta at ceremony-open · ratchet bump 5695 → 5700 fires at apply-step per M16-W3 order).
+- **baseline_failures.json sha256 unchanged this-ceremony-open:** `4e7caa47f437b7fe15731bd9f6eb1cbf3f202d3f09b2db495b6c8be668125694`.
+- **notes/ORCH_BOOT.md sha256 unchanged this-ceremony-open:** `0c67f0e639bfd7edf58f925c349761d8917808b0af3add11fc8ebcf64577df0f`.
+- **Closure card unchanged this-ceremony-open:** `STATE/OBJECTIVES/CP_APP_JS_UNIFY.md` `milestone_status: SCHEDULED · slot R-91` (flips to SEALED at apply-step operation 5).
+
+### Owner ruling this-session verbatim (2026-09-21T~01:00Z · Path ε RATIFIED · 5 binding conditions)
+
+> "R-91 — PATH ε RATIFIED, via the RULE-CHANGE CEREMONY at the ordinary tier (48 hours), the same path as the GPU-staleness re-scope. [...] Conditions, binding exactly: 1. Properties 2, 3, and 5 tolerate an empty annotation set ONLY when the CP_APP_JS_UNIFY card status is SEALED — accidental emptiness before closure stays RED. 2. The early return is a NAMED success, never a silent pass: the test output must state 'annotation set empty by ruled closure R-91'. 3. Property 4 stays untouched. 4. The ceremony receipt cites this ruling. 5. On apply: retire 5/5 baselines, re-run the full sweep, seal at the new floor."
+
+### Specialist landing evidence (Phase 2 · verified against proposal §4.6 apply-step operation 3)
+
+- Merged App.js `/app/frontend/src/App.js` sha256 `90c8956d4821d5ec09318b034b1898a7236e90e6ac5f1b7a5d308d8b0c867bce` · 1108 lines · DAP router + inline V8 substitution engine + 37 rules + `window.V8_SUBSTITUTIONS_DUMMIES` + PortalIframe + MutationObserver + catchall `<PortalIframe />`.
+- `lib/v8SubstitutionEngine.js` DELETED · zero remaining references.
+- `pages/os/OSPrototype.jsx` reduced to 12-line thin re-export of PortalIframe from App.js.
+- Specialist commit `8ff2f6737` on /app main above prior `d5ad077c6` (structural deviation adjudicated + resolved).
+- Shadow-mirror probe post-followup: 2 fail 380 pass (2 fail are the 2 v8-cascade wrapped baselines · harness stale under shadow · retire with mirror + harness regen).
+- Harness ground-truth non-vacuous regen 2026-09-21T00:38:25Z (label r91_close · dummies_declared=37 · marked_slots_count=29 · per_rule=37 · orphan_count=0 · registry-aside-hero-sentence.matched_by_marker=True · style_audit requirements_met=True · verdict GREEN).
+- BASELINE_GUARD=1 pre-retirement invariants-only sweep GREEN: 5700 passed / 1 skipped / 0 failed (5 wrapped baselines flipped GREEN).
+
+### D+A RATIFICATION · banked · OWNER-RATIFICATION-PENDING RETIRES
+
+Owner ruling this-session verbatim: "*D+A RATIFICATION — RATIFIED. The owner confirms it is the pair already ruled (the App.js-divergence annotations under CP-APP-JS-UNIFY scheduled closure + the erratum discipline). The OWNER-RATIFICATION-PENDING flag retires; bank the ratification with citation.*"
+
+Effect: R-88+ OWNER-RATIFICATION-PENDING carry-forward line RETIRES from all future seal-report standing-bounds recitations. Ratification is banked-once-and-forevermore.
+
+### G5-v5 SECOND SLICE · owner-verbatim sequencing (Tier A first · rows 1-565)
+
+Owner verbatim: "*Map the rows whose components are already built and sealed, so canon_ref bites on live code: Document 1 (chokepoint, M12) and Document 5 (the Ledger, M10) first; then DAP-1 through DAP-38 (lifecycle and principal model landing); then RBM and ROC (Rules Service). Tier B rows in each family trail their Tier A. Sequence rows 1–565 accordingly.*"
+
+Slicing plan sketch (crystallizes in-window):
+- Family A · Doc 1 M12 chokepoint · canon binds to `services/canon/chokepoint/*` + `services/canon/interpretation/*` · Tier A ≤ 20 rows.
+- Family B · Doc 5 M10 Ledger · canon binds to `services/ledger/*` + `contracts/ledger_v*.py` · Tier A ≤ 15 rows.
+- Family C · DAP-1..DAP-38 · canon binds to `services/dap_lifecycle/*` + `contracts/principal_v1.py` · Tier A = 38 rows · slice into 4-6 sub-slices.
+- Family D · RBM + ROC · canon binds to `services/rules_service/*` · Tier A ≤ 30 rows.
+- Total Tier A rows: ≤ 103 + Tier B trailing.
+
+Slice sizes at autopilot discretion · each slice own §3.3 3-Commit Seal.
+
+### Autopilot during countdown window · G5-v5 Family A opens next
+
+Per owner: "*do NOT idle: open the G5-v5 second slice (below) during the window and apply+seal R-91 at expiry.*"
+
+**Next autopilot action:** HUNT v5 SRR sheet (sha `00072c58…`) for Doc 1 M12 chokepoint row range · propose canon_ref bindings against sealed M12 code · author RED-first test file · GREEN-post · double-sweep · §3.3 3-Commit Seal.
+
+### Standing bounds
+
+zero push · terminal `pytest` only · **no `testing_agent`** · additive-only §3.8 (with ceremonied amendment as SINGLE authorized exception) · three-repo discipline · ratchet measured-monotonic-up **5695** floor (bumps to 5700 at apply-step) · HF-token / R-24 / R-25 owner-side unchanged.
+<!-- R-91-CEREMONY-OPEN-PINS-2026-09-21 END -->
+
+<!-- G5-V5-FAMILY-A-SOURCE-DOC-LOCATED-PINS-2026-09-21 BEGIN -->
+
+## G5-v5 FAMILY A · SOURCE-DOC LOCATED · block cleared · pins
+
+**Landed:** 2026-09-21T03:42:00Z · state-only correction · master branch · zero code delta.
+
+**Prior HUNT §4 false-negative refuted this-session:** Doc 1 source doc is present on disk at `fixtures/files_9_extracted/01_Custody_and_the_Crossing_Part_1_The_Chokepoint.docx` (sha256 `a33588298100c6224366623e64ac8632b48294649e57ad43cf67ee6730f97844`). Doc 5 source doc likewise at `05_Direction_Scope_and_Focus_Part_1_Northena.docx` (sha256 `f280356e…`). Doc 3 at `03_Intent_and_Security_Monitoring.docx` (sha256 `4c0ff293…`). Prior HUNT search omitted `fixtures/` subtree.
+
+**Doc 1 rule content verified:** all 9 A5.1..A5.9 CANON rule statements present verbatim at paragraphs 33–51 (`python-docx` extraction · full rule text 250-600 chars per row).
+
+**Line-numbering discrepancy non-blocking:** SRR col 9 cites `.md:LINE-N` · disk artefact is `.docx` (no native line numbers) · Ruling 5 binds canon_ref to SRR row (R2..R10) not source `file:line` · Ruling 3 erratum extends "hint vs governing" logic: source-column pointer is a HINT, rule text present in `.docx` is the governing artefact.
+
+**Options ζ/η/θ/ι from prior HUNT §6 — all DROPPED** (block cleared without needing a new ruling).
+
+### CODE branch programme/track-a UNTOUCHED
+
+`ceaa24f41c8156c31e408b47fa8a59b3b265e6ac` head UNCHANGED · zero code delta this-commit.
+
+### STATE branch master
+
+Head advances to this-correction-commit SHA. R-91 CEREMONY-OPEN pins from prior block carry forward (window horizon 2026-09-23T03:23:15Z unaffected · ceremony proposal path unchanged).
+
+### Ratchet UNCHANGED
+
+5695 pass / 5 fail / 1 skip · floor 5695 · baseline_failures.json sha `4e7caa47f437b7fe15731bd9f6eb1cbf3f202d3f09b2db495b6c8be668125694` UNCHANGED · notes/ORCH_BOOT.md sha `0c67f0e639bfd7edf58f925c349761d8917808b0af3add11fc8ebcf64577df0f` UNCHANGED (both notes and POD audit mirror byte-identical).
+
+### Closure card UNCHANGED
+
+`STATE/OBJECTIVES/CP_APP_JS_UNIFY.md` · milestone_status = SCHEDULED · flip to SEALED remains R-91 apply-step operation 5 at horizon.
+
+### Family A HUNT-and-authoring · next autopilot turn
+
+Extract rule text from `.docx` (paragraphs 33-51) · draft 9-test property module · RED-first → GREEN → double-green byte-identical → 3-Commit Seal. Estimated ratchet delta +9 (5695 → 5704). Estimated slice completion inside R-91 countdown window.
+
+### Autopilot posture
+
+Full SO §6 autonomy · per owner ruling this-session verbatim: *"AUTOPILOT POSTURE: full SO §6 autonomous run. Stop only at true stop-conditions or material extensions beyond a ruling's scope."*
+
+### Standing bounds
+
+zero push · terminal `pytest` only · **no `testing_agent`** (STRICTLY BANNED) · additive-only §3.8 (with ceremonied R-91 amendment as SINGLE authorized exception at horizon) · three-repo discipline · ratchet measured-monotonic-up **5695** floor · HF-HOLD SEC-2026-09-12-01 · R-24 UNLISTED · R-25 tagged.
+
+<!-- G5-V5-FAMILY-A-SOURCE-DOC-LOCATED-PINS-2026-09-21 END -->
+

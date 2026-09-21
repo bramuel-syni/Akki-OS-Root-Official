@@ -22207,3 +22207,278 @@ Phase 1 authoring is inside the ratified R-91 slot scope (Ruling 1 + R-91 schedu
 zero push · zero remote configured on `programme/track-a` · terminal `pytest` only · **no `testing_agent`** · additive-only §3.8 · three-repo discipline · ratchet monotonic-up **5695** · R-88+ OWNER-RATIFICATION-PENDING carries forward · HF-HOLD SEC-2026-09-12-01 · R-24 UNLISTED · R-25 tagged.
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+---
+
+## 2026-09-21T03:23:15Z · R-91 CEREMONY-OPEN · Path ε RATIFIED · rule-change ceremony ordinary tier · countdown 48h · D+A ratification banked · G5-v5 second-slice sequencing banked
+
+### Owner ruling this-session verbatim (2026-09-21T~01:00Z · Path ε RATIFIED)
+
+> "R-91 — PATH ε RATIFIED, via the RULE-CHANGE CEREMONY at the ordinary tier (48 hours), the same path as the GPU-staleness re-scope. Owner verbatim: 'the ceremony is the authorised way a sealed test file changes — a ceremonied amendment is not a §3.8 refactor.' Conditions, binding exactly:
+> 1. Properties 2, 3, and 5 tolerate an empty annotation set ONLY when the CP_APP_JS_UNIFY card status is SEALED — accidental emptiness before closure stays RED.
+> 2. The early return is a NAMED success, never a silent pass: the test output must state 'annotation set empty by ruled closure R-91' so the reason is on record every run.
+> 3. Property 4 stays untouched.
+> 4. The ceremony receipt cites this ruling.
+> 5. On apply: retire 5/5 baselines, re-run the full sweep, seal at the new floor.
+> Execute the ceremony per the GPU-staleness precedent shape exactly — including whatever notice/window mechanics the ordinary tier carries. If the ordinary tier imposes a 48-hour window before apply, do NOT idle: open the G5-v5 second slice (below) during the window and apply+seal R-91 at expiry. If the banked ceremony rules permit apply-on-owner-ruling-on-record, apply now. Follow the banked ceremony mechanics; do not invent."
+
+> "D+A RATIFICATION — RATIFIED. The owner confirms it is the pair already ruled (the App.js-divergence annotations under CP-APP-JS-UNIFY scheduled closure + the erratum discipline). The OWNER-RATIFICATION-PENDING flag retires; bank the ratification with citation."
+
+> "G5-v5 SECOND SLICE ORDER — by sealed component, Tier A first, owner verbatim sequencing: 'Map the rows whose components are already built and sealed, so canon_ref bites on live code: Document 1 (chokepoint, M12) and Document 5 (the Ledger, M10) first; then DAP-1 through DAP-38 (lifecycle and principal model landing); then RBM and ROC (Rules Service). Tier B rows in each family trail their Tier A. Sequence rows 1–565 accordingly.' Slice sizes at your autopilot discretion for clean seals; report the slicing plan (families → slice boundaries → estimated invariant counts) in the next seal report."
+
+> "HF token / R-24 brief / R-25 numbers — owner-side, unchanged, nothing needed from your desk."
+
+> "Standing bounds unchanged: zero push · terminal pytest only · no testing_agent · additive-only §3.8 (with the ceremonied amendment as the one authorized exception, per ruling) · three-repo discipline · ratchet measured-monotonic. Proceed."
+
+### R-91 CEREMONY-OPEN · Canon 3 §24 rule-change ceremony · ordinary tier
+
+**Ceremony type:** rule-change per Canon 3 §24 (propose → counter-sign → wait → apply). **Ordinary tier · 48-hour countdown** per R-18 effect 12.
+
+**Propose step:** filed this-turn at `notes/proposals/PROPOSAL_r91_r86_property_tests_amendment_20260921.md`. Normative text §4 verbatim (see proposal §4.1-§4.6 for helper + 3 Property replacements + Property 4/1 untouched declarations).
+
+**Counter-sign step:** owner ruling this-session (2026-09-21T~01:00Z verbatim above) IS the batched counter-sign per STATE/STANDING_ORDERS.md:437 verbatim: *"ordinary-tier re-scopes that tighten (never loosen) may be proposed and countdown-started without waiting, countersign requested in the batch."* Character of amendment: TIGHTENING (accidental emptiness before closure stays RED · post-closure emptiness a named success). Not loosening. Precedent-fit at ordinary tier.
+
+**Countdown step:** starts at proposal filing timestamp `2026-09-21T03:23:15Z`. Horizon: `2026-09-23T03:23:15Z`. Apply schedule: at horizon (or later if a bridging reconcile is needed).
+
+**Apply step:** at horizon per proposal §6. Ten operations in order: (1) apply amendment verbatim, (2) re-run tests, (3) apply mirror `/app/frontend/{App.js,pages/}` → `pod_shell/frontend/{App.js,pages/}`, (4) update `baseline_failures.json` atomically (5 baselines → 0 · mirror-drift annotations 3 → 0 · v8-cascade annotations retire 2 keys retaining cp10-still-recent · counts+floor 5695 → 5700), (5) flip `STATE/OBJECTIVES/CP_APP_JS_UNIFY.md` `milestone_status`: SCHEDULED → SEALED, (6) regenerate `notes/ORCH_BOOT.md` ratchet block pre-Commit-A, (7) sync POD audit mirror, (8) regenerate CP10 harness if drifted, (9) BASELINE_GUARD=1 double-green byte-identical, (10) §3.3 3-Commit Seal.
+
+**Precedent shape:** CP-STALENESS-CEREMONY seal chain (2026-09-20T09:28Z Commit-A `31d414b` + Commit-B `9c0dd840` + Commit-C `23ff5808`) · rule-change apply per Canon 3 §24. Same class of change (rescoping a sealed test's floor guard to fire on live property, not ritual · owner verbatim GPU-staleness precedent line 15149: *"a test that measures ritual isn't a floor · a tightening, not a loosening"*).
+
+### Post-apply verification pins
+
+- Baseline set: `5 → 0` (all 5 wrapped baselines retire atomically).
+- Annotation sets: `known_runtime_drift_annotations` `3 → 0` · `known_r91_closure_scheduled_receipt_drift_annotations` `3 → 1` (retain `test_cp10_harness_receipt_is_still_recent` per R-88+ Property 1).
+- Ratchet: `passed 5695 → 5700` + `passed_floor 5695 → 5700` (CCS2-aligned).
+- R-86 Property 1 (coverage): vacuous PASS (unchanged semantics).
+- R-86 Property 2/3/5 (amended): named-success PASS via `_r91_closure_sealed() == True` predicate.
+- R-86 Property 4 (set-equality · UNTOUCHED per owner condition 3): PASS at 0 == 0.
+- R-88+ Property 1-5: PASS (retained cp10-still-recent annotation resolves).
+- R-88+ Property 6 (SEALED-vs-vacuous guard): PASS (harness receipt non-vacuous 2026-09-21T00:38:25Z regen).
+- 63 net-new failures under prior specialist deviation: CLEARED (specialist follow-up commit `8ff2f6737` on /app main lands merged App.js sha `90c8956d…` at 1108 lines).
+- BASELINE_GUARD=1 double-green byte-identical: PASS.
+- R-91 closure card `milestone_status`: SCHEDULED → SEALED at apply-step operation 5.
+
+### D+A RATIFICATION · banked · OWNER-RATIFICATION-PENDING RETIRES
+
+Owner ruling this-session verbatim (banked above): *"D+A RATIFICATION — RATIFIED. The owner confirms it is the pair already ruled (the App.js-divergence annotations under CP-APP-JS-UNIFY scheduled closure + the erratum discipline). The OWNER-RATIFICATION-PENDING flag retires; bank the ratification with citation."*
+
+**Interpretation:** The R-88+ OWNER-RATIFICATION-PENDING block (D-ruling on CP10 fourth artifact + A-extension covering v8-cascade artifacts 5+6) — carried forward through R-89/R-90/R-92 as pending — is HEREBY RATIFIED. The two artifact pairs (App.js-divergence annotations under CP-APP-JS-UNIFY scheduled closure + erratum discipline) are the same pair the owner has been ruling on since R-88+. The pending flag lowers. No further action required beyond banking this citation.
+
+**Ratification citation anchors:**
+- D-ruling on CP10 fourth artifact (2026-09-20T~21:55Z) — banked in R-88+ Commit-B pending.
+- A-extension covering v8-cascade artifacts 5 + 6 (2026-09-20T~22:05Z) — banked in R-88+ Commit-B pending.
+- Owner erratum discipline (Ruling 3 erratum · 2026-09-20T~19:00Z verbatim "class column is a HINT · rule text governs" · SRR Enforcement Class empty rows accepted).
+- Owner Ruling 1 (2026-09-20T~19:00Z · App.js-divergence coexistence-with-closure-date · R-91 slot).
+- Owner ratification this-session (2026-09-21T~01:00Z verbatim above).
+
+**Effect:** the R-88+ OWNER-RATIFICATION-PENDING carry-forward line RETIRES from future seal-report standing-bounds recitations. Future seal reports use "R-88+ D+A RATIFIED" or omit the line entirely — the ratification is banked-once-and-forevermore per this-ruling.
+
+### G5-v5 SECOND SLICE · order + sequencing owner-verbatim · slicing plan sketch
+
+Owner ruling this-session verbatim (banked above): sequence by sealed component · Tier A first · rows 1-565 accordingly.
+
+**Sequencing:**
+1. **Family A · Doc 1 M12 chokepoint** (canon_ref binds to `services/canon/chokepoint/*` + `services/canon/interpretation/*` per M12 seal chain).
+2. **Family B · Doc 5 M10 Ledger** (canon_ref binds to `services/ledger/*` + `contracts/ledger_v*.py` per M10 seal chain).
+3. **Family C · DAP-1..DAP-38 lifecycle + principal model landing** (canon_ref binds to `services/dap_lifecycle/*` + `contracts/principal_v1.py` per DAP wave seal chain).
+4. **Family D · RBM + ROC · Rules Service** (canon_ref binds to `services/rules_service/*` per Rules Service seal chain).
+5. Tier B rows within each family trail their Tier A.
+
+Slice sizes at autopilot discretion for clean seals. Each slice fires its own §3.3 3-Commit Seal.
+
+**Slicing plan sketch this-report** (crystallizes as second-slice HUNTs progress in countdown window):
+- Family A slice sizes: TBD via HUNT against v5 SRR (sha `00072c58…`) · row range per canon_ref = M12 chokepoint · estimated ≤ 20 rows Tier A first.
+- Family B slice sizes: TBD via HUNT · row range per canon_ref = M10 ledger · estimated ≤ 15 rows Tier A first.
+- Family C slice sizes: DAP-1..DAP-38 = 38 rows Tier A · slice into 4-6 clean seals of 6-10 rows each · Tier B trails.
+- Family D slice sizes: RBM + ROC · TBD via HUNT · row range per canon_ref = Rules Service · estimated ≤ 30 rows Tier A first.
+- **Total Tier A rows: ≤ 103** · plus Tier B trailing.
+
+**Full plan (families → slice boundaries → estimated invariant counts) reported in next seal report** per owner directive verbatim. First HUNT this-window opens Family A (Doc 1 M12) as it seals-first per owner sequencing.
+
+### Files landed this ceremony-open commit (Phase 2 · state-only ceremony-open)
+
+- `notes/proposals/PROPOSAL_r91_r86_property_tests_amendment_20260921.md` (NEW · ~230 lines · propose step normative text + 5 owner conditions binding + 10-operation apply schedule + 9 canon anchors verbatim + failure modes + G5-v5 slicing plan sketch).
+- `STATE/DECISIONS.md` (this-append · ceremony-open banking + owner ruling verbatim + D+A RATIFICATION + G5-v5 second-slice sequencing).
+- `STATE/NEXT.md` (this-append · R-91 marker flips ⏳ IN-FLIGHT → ⏳ CEREMONY-IN-FLIGHT · APPLY 2026-09-23T03:23:15Z · G5-v5 second-slice Family A queued during window).
+- `STATE/PINS.md` (this-append · R-91-CEREMONY-OPEN-PINS block).
+- `notes/FE_DISPATCH_READY_R91.md` (this-modify · status LOWERED · specialist delivered · adjudication complete · ceremony now the blocker).
+
+### Files NOT touched this-ceremony-open
+
+- `programme/track-a` HEAD stays at `ceaa24f` (R-92 Commit-A · UNTOUCHED · code branch will land at ceremony-apply Commit-A).
+- `/app/frontend/**` — untouched this-commit (specialist landing at `8ff2f6737` on /app main stands).
+- `notes/ORCH_BOOT.md` — untouched this-commit (no ratchet delta at ceremony-open · regen happens pre-Commit-A at apply-step).
+- `/app/frontend/public/audit/ORCH_BOOT.md` — untouched (POD audit mirror byte-identical to notes/ORCH_BOOT.md).
+- `STATE/OBJECTIVES/CP_APP_JS_UNIFY.md` — closure card unchanged this-commit (milestone_status flip is apply-step operation 5).
+- `backend/tests/invariants/test_baseline_drift_annotations_present.py` — untouched this-commit (the ceremonied amendment lands at apply-step operation 1).
+- `backend/tests/invariants/baseline_failures.json` — untouched this-commit (atomic edit is apply-step operation 4).
+- Every other test file / contract / writer / service module — untouched.
+
+### Autopilot posture during countdown window (2026-09-21T03:23:15Z → 2026-09-23T03:23:15Z)
+
+Per owner verbatim: *"do NOT idle: open the G5-v5 second slice (below) during the window and apply+seal R-91 at expiry."*
+
+**During window (autopilot actions):**
+1. Open G5-v5 second slice Family A (Doc 1 M12 chokepoint) — HUNT v5 SRR row range · propose canon_ref bindings against sealed M12 code · author RED-first test file · GREEN-post · double-sweep · §3.3 3-Commit Seal.
+2. If Family A seals cleanly with time remaining: open Family B (Doc 5 M10 Ledger) · same shape.
+3. If Family B seals cleanly with time remaining: open Family C first sub-slice (DAP-1..~10) · same shape.
+4. Slice sizes chosen for clean seals · no oversized batches.
+5. Each slice reports slicing progress in its own §3.3 Commit-B seal report.
+6. At horizon (2026-09-23T03:23:15Z): apply R-91 amendment per proposal §6.
+
+**Stop-conditions during window:**
+- Any RED that isn't in the wave's own RED-first phase: STOP-AND-REPORT.
+- Any sealed test/contract/writer edit outside this-ceremony: STOP-AND-REPORT.
+- Any silent rebaseline: STOP-AND-REPORT.
+- Any push attempt: STOP-AND-REPORT.
+- HF-token / R-24 / R-25 remain owner-side (unchanged per this-ruling · no action from main-agent desk).
+
+### Canon anchors verbatim
+
+- Owner ruling this-session (2026-09-21T~01:00Z verbatim above · Path ε RATIFIED + D+A RATIFICATION + G5-v5 SECOND SLICE ORDER + HF/R-24/R-25 owner-side + standing bounds unchanged).
+- Owner GPU-staleness precedent ruling (2026-09-19T~10:13Z · banked STATE/DECISIONS.md line 15149).
+- Owner ceremony-mechanics ruling (STATE/STANDING_ORDERS.md:437 · batched-countersign for tightening re-scopes).
+- CP-STALENESS-CEREMONY seal chain (2026-09-20T09:28Z Commit-A `31d414b` + Commit-B `9c0dd840` + Commit-C `23ff5808`) — banked precedent shape.
+- Canon 3 §24 rule-change ceremony 4-step.
+- R-18 effect 12 · 48-hour ordinary-tier countdown.
+- Owner Ruling 1 (2026-09-20T~19:00Z · App.js-divergence coexistence-with-closure-date · R-91 slot).
+- Owner D-ruling on CP10 (2026-09-20T~21:55Z · R-91-resolves-either-way).
+- Owner A-extension (2026-09-20T~22:05Z · v8-cascade artifacts 5+6 same R-91 closure).
+- Owner Ruling 3 erratum (2026-09-20T~19:00Z · class column HINT · rule text governs).
+- Owner Ruling 5 SRR-as-authority (2026-09-20T~19:00Z · v5 workbook sha `00072c58…`).
+- R-86 seal `2eca0e58d1d9773d1b781abe570c3e015e0c98f2` (schedules R-91 slot + establishes 5-property test pattern).
+- R-88+ seal `db90089d/79d5d38d/0cbfc23b` (extends annotation umbrella + owner A-extension · D+A now RATIFIED this-commit).
+- R-91 closure card `STATE/OBJECTIVES/CP_APP_JS_UNIFY.md` (ratified 2026-09-20T21:55:00Z · milestone_status SCHEDULED until apply-step).
+- R-91 Phase 1 opening seal `282ba19e` (this-session · banks FE-DISPATCH-READY + HUNT + landing spec).
+- R-91 Phase 2 shadow-mirror probes: `20260921T003800Z_r91_phase2_adjudication_shadow_mirror_probe.log` (prior deviation · 66 fail) + `/tmp/r91_shadow_probe_v2.log` (post-followup · 2 fail 380 pass · to be banked at apply-step).
+- R-91 harness ground-truth non-vacuous regen (2026-09-21T00:38:25Z · label r91_close · dummies_declared=37 · marked_slots_count=29 · per_rule=37 · orphan_count=0).
+- R-92 seal chain `ceaa24f/19030610/e8f9f168` (immediately-precedes · this-Phase-2-apply opens against R-92 Commit-C head or later).
+- SO §2.5 verbatim-docstring · §3 tests-first · §3.3 3-Commit Seal · §3.8 additive-only (with this-ceremonied amendment as SINGLE authorized exception) · §4.2 Clause 6 cross-wave additive extension · §6 autopilot governance · §6.2 objective-card discipline · §6.4 NOTHING-BEYOND · §6.7 seal-report-boundary.
+- M16-W3 corrected order (pre-Commit-A ORCH_BOOT ratchet regen) · CCS2 lesson (both counters bump together).
+
+### Stop-conditions this-ceremony-open
+
+Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered · MEM-R-053 CROWN BAN NOT triggered · ceremony is inside ratified R-91 slot scope (Ruling 1 + R-91 schedule + R-88+ A-extension + this-session Path ε ratification).
+
+### Standing bounds unchanged
+
+zero push · zero remote configured on `programme/track-a` · terminal `pytest` only · **no `testing_agent`** (STRICTLY BANNED per SO §6 Long Autonomous Run Protocol) · additive-only §3.8 (with this-ceremonied amendment as the SINGLE authorized exception per owner ruling this-session verbatim: "the ceremony is the authorised way a sealed test file changes — a ceremonied amendment is not a §3.8 refactor") · three-repo discipline · ratchet measured-monotonic-up **5695** floor (bumps to 5700 at apply-step) · **R-88+ OWNER-RATIFICATION-PENDING RETIRES this-commit** (D+A RATIFIED per owner ruling this-session) · HF-HOLD SEC-2026-09-12-01 owner-side unchanged · R-24 owner-side unchanged · R-25 owner-side unchanged.
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+---
+
+## 2026-09-21T03:42:00Z · G5-v5 FAMILY A · SOURCE-DOC FALSE-NEGATIVE CORRECTION · Block CLEARED (state-only)
+
+**Wave marker:** G5-v5 second slice · Family A (Doc 1 M12 chokepoint) · Tier A first sub-slice · verification addendum only · **NOT the HUNT itself · NOT the test authoring · state-only banking**.
+
+**State branch:** master · **CODE branch programme/track-a UNTOUCHED** · **no ratchet delta** · **no ceremony-window impact** · **R-91 apply horizon 2026-09-23T03:23:15Z unchanged**.
+
+### §1 · Owner directive verbatim this-session (2026-09-21T~03:35Z · authority for correction)
+
+> "The 'missing canon .md for Doc 1/3/5' line is a CLAIM from a summary — verify against files, never accept. If during G5 slice-2 mapping the Doc-1/Doc-5 canon source docs genuinely cannot be found after scanning `canon/`, `custody/owner_drops/`, and the repo trees, THEN stop-and-report with the scan evidence and I will get an owner ruling on secondary citations vs a source drop. Verify first."
+
+> "session summaries are NEVER evidence of seal state; git log is."
+
+### §2 · Prior HUNT §4 false-negative caught this-session
+
+Prior HUNT (banked-on-disk-but-uncommitted at `20260921T033330Z_g5v5_family_a_doc1_m12_chokepoint_hunt_receipt.md` §4) claimed: *"Doc 1 canonical source file `01_Custody_and_the_Crossing_Part_1_The_Chokepoint.md` is NOT present anywhere in the workspace. Broad search covered `custody/`, `canon/`, `repos/`, `docs/`, `phase0/` — no matches."*
+
+**FALSIFIED this-session against files.** Prior HUNT did not search `fixtures/`. Fresh workspace-wide `find` (rooted at `/app`, all extensions, all subtrees except `.git`/`node_modules`) locates the files under `fixtures/files_9_extracted/`:
+
+- `fixtures/files_9_extracted/01_Custody_and_the_Crossing_Part_1_The_Chokepoint.docx` · sha256 `a33588298100c6224366623e64ac8632b48294649e57ad43cf67ee6730f97844`
+- `fixtures/files_9_extracted/05_Direction_Scope_and_Focus_Part_1_Northena.docx` · sha256 `f280356ec9957e14511b60b9561dd0f9ba3d009d9960a870657c0fe0c9ed7cdc`
+- `fixtures/files_9_extracted/03_Intent_and_Security_Monitoring.docx` · sha256 `4c0ff293347d25fef5fc599b7362b7daf9f0a2433fa7e1a06973b1e4770fb5f3`
+
+Extension is `.docx` on disk (not `.md` as SRR col 9 pointer says); filenames byte-match SRR pointers otherwise.
+
+### §3 · Doc 1 rule-content presence verified (A5.1..A5.9 CANON)
+
+`python-docx` extraction from `01_Custody_and_the_Crossing_Part_1_The_Chokepoint.docx` (96 paragraphs). All 9 A5.1..A5.9 CANON rule statements present verbatim at paragraphs 33–51 (full rule text · ~250-600 chars each). Section heading `A5 · Technical and behavioural requirements` at p32. Details banked in verification addendum `phase0/spec_hunt_receipts/20260921T034200Z_g5v5_family_a_doc1_source_doc_false_negative_correction_addendum.md`.
+
+Doc 5 spot-check: A5.1..A5.6 CANON rules present at p32..p37 in the Northena `.docx` (Family B rule-content likewise available for its HUNT).
+
+### §4 · Line-numbering discrepancy non-blocking under existing rulings
+
+SRR col 9 gives `.md:LINE-N` citations · disk artefact is `.docx` (no native line numbers). **Non-blocking:**
+
+- **Ruling 5 (2026-09-20T~19:00Z):** *canon_ref = v5 SRR only.* Tests bind canon_ref to SRR row (R2..R10 for Doc 1 A5.1..A5.9) — not to the source `file:line`. The `file:line` in col 9 is a HINT to where rule text lives.
+- **Ruling 3 erratum (2026-09-20T~19:00Z):** *class column is a HINT · rule text governs.* Extends analogously to source-column shape: pointer shape is a HINT; rule text present verbatim in the `.docx` is the governing artefact.
+- **SFP-1..7 precedent (R-92 seal `ceaa24f/19030610/e8f9f168`):** SRR col 2 alone sufficed as rule-text carrier there because SRR col 2 was compact-encoded. Doc 1 SRR col 2 is name-only (25-70 char) → rule text extracted from `.docx` under Ruling 3 erratum + Ruling 5.
+
+Under this canonical anchor chain, no new ruling is required.
+
+### §5 · Effect on prior HUNT Options ζ/η/θ/ι
+
+- **ζ Owner-side source-doc drop:** DROPPED · already present under `fixtures/files_9_extracted/`.
+- **η Secondary-citation authoring:** DROPPED · rule text available from PRIMARY source (`.docx` under Ruling 3 erratum + Ruling 5).
+- **θ Sequence reorder (Family C first):** DROPPED · owner-directed sequencing holds; block cleared.
+- **ι SRR-Statement-only authoring:** DROPPED · needless thinning when `.docx` gives full rule text.
+
+Adjudication is not required. Family A first sub-slice authoring is cleared under existing standing rulings.
+
+### §6 · Files (5 tracked at this state-only correction commit)
+
+1. **`phase0/spec_hunt_receipts/20260921T033330Z_g5v5_family_a_doc1_m12_chokepoint_hunt_receipt.md`** (previously untracked on disk from prior HUNT · banked this-commit as historical record · §4 negative-claim superseded by addendum below).
+2. **`phase0/spec_hunt_receipts/20260921T033330Z_g5v5_family_a_doc1_m12_chokepoint_hunt_data.json`** (previously untracked · banked this-commit).
+3. **`phase0/spec_hunt_receipts/20260921T034200Z_g5v5_family_a_doc1_source_doc_false_negative_correction_addendum.md`** NEW (this-turn · ~180 lines · corrective addendum with fresh scan evidence + sha256 + rule-content proof + option-surface collapse).
+4. **`STATE/DECISIONS.md`** append (this block).
+5. **`STATE/NEXT.md`** append (Family A block-cleared marker + next-in-flight update).
+6. **`STATE/PINS.md`** append (G5-v5 FAMILY A SOURCE-DOC LOCATED pin block).
+
+### §7 · Files NOT touched this-commit
+
+- `programme/track-a` branch (CODE) · untouched · zero code delta.
+- `/app/frontend/**` · untouched.
+- `backend/**` (repos/Extraction-Akki/backend/) · untouched.
+- `baseline_failures.json` · sha256 `4e7caa47f437b7fe15731bd9f6eb1cbf3f202d3f09b2db495b6c8be668125694` UNCHANGED.
+- `notes/ORCH_BOOT.md` · sha256 `0c67f0e639bfd7edf58f925c349761d8917808b0af3add11fc8ebcf64577df0f` UNCHANGED.
+- POD audit mirror `/app/frontend/public/audit/ORCH_BOOT.md` · byte-identical to state (sha256 same) UNCHANGED.
+- `STATE/OBJECTIVES/CP_APP_JS_UNIFY.md` closure card · milestone_status = SCHEDULED UNCHANGED (flip to SEALED is R-91 apply-step operation 5).
+- R-86 property tests `test_baseline_drift_annotations_present.py` · UNCHANGED (amendment applies at R-91 horizon 2026-09-23T03:23:15Z).
+- Other sealed tests/contracts/writers · UNCHANGED.
+
+### §8 · Ratchet at this correction commit
+
+**MEASURED · 5695 pass / 5 fail / 1 skip · floor 5695 · UNCHANGED.** No code delta means no ratchet advance possible this-commit (CCS2 lesson). 5 wrapped baselines carry forward through the countdown window; retire atomically at R-91 apply-step operation 4.
+
+### §9 · Autopilot posture (post-correction)
+
+**Block CLEARED · Family A first sub-slice authoring may open.** Not attempted this-turn (state-only correction commit boundary honoured · SO §6.7 seal-report-boundary). Next autopilot turn opens Family A HUNT-and-authoring proper:
+
+1. Extract A5.1..A5.9 rule text verbatim from `01_Custody_and_the_Crossing_Part_1_The_Chokepoint.docx` for SO §2.5 verbatim-docstring bindings.
+2. Draft `backend/tests/invariants/test_g5v5_doc1_a5_1_to_a5_9.py` with 9 property tests (SO §2.5 verbatim-docstring per row · canon_ref = SRR R2..R10 · Ruling 5 pattern).
+3. Map to sealed M12 code at `services/chokepoint/*` (module-level Final[...] constants or new `services/canon_doc1_chokepoint/vocabulary.py` per SFP-1..7 pattern — measurement decides in HUNT).
+4. RED-first (missing module / missing constants) → GREEN-post → pre-Commit-A ORCH_BOOT ratchet regen (5695 → 5704 measured) + POD audit mirror byte-identical sync → BASELINE_GUARD=1 double-sweep byte-identical stripped-sha256 IDENTICAL run1 = run2 → §3.3 3-Commit Seal (Commit-A programme/track-a + Commit-B master state + Commit-C fixup).
+
+### §10 · Canon anchors verbatim
+
+- Owner directive this-session (2026-09-21T~03:35Z) · verify-first + never-trust-summaries.
+- Owner standing lesson (banked-prior) *"session summaries are NEVER evidence of seal state; git log is"* · extended to HUNT-receipt claims this-session.
+- Owner Ruling 5 SRR-as-authority (2026-09-20T~19:00Z · v5 workbook sha `00072c58…`).
+- Owner Ruling 3 erratum (2026-09-20T~19:00Z · class column HINT · rule text governs) · extended to source-column shape this-session.
+- Owner G5-v5 second slice sequencing (2026-09-21T~01:00Z · Doc 1 → Doc 5 → DAP → RBM/ROC).
+- Owner Path ε ratification (2026-09-21T~01:00Z) · R-91 ceremony countdown 48h.
+- R-91 CEREMONY-OPEN seal `a30db4f7` (2026-09-21T03:30:41Z · countdown window horizon 2026-09-23T03:23:15Z UNCHANGED).
+- R-92 seal `ceaa24f/19030610/e8f9f168` (SFP-1..7 first slice · pattern reference for Family A authoring).
+- R-91 Phase 1 seal `282ba19e` (2026-09-21T00:08:46Z · immediately-precedes R-91 CEREMONY-OPEN).
+- v5 SRR workbook `custody/owner_drops/20260920T1900Z/Master_Requirements_Registry_v5.xlsx` (sha `00072c58…`) rows R2..R10 = Doc 1 A5.1..A5.9.
+- Doc 1 source `.docx` sha `a33588298100c6224366623e64ac8632b48294649e57ad43cf67ee6730f97844` (this-session verified).
+- Doc 5 source `.docx` sha `f280356ec9957e14511b60b9561dd0f9ba3d009d9960a870657c0fe0c9ed7cdc`.
+- Doc 3 source `.docx` sha `4c0ff293347d25fef5fc599b7362b7daf9f0a2433fa7e1a06973b1e4770fb5f3`.
+- Prior HUNT receipt `20260921T033330Z_g5v5_family_a_doc1_m12_chokepoint_hunt_receipt.md` (banked-this-commit · §4 corrected by this-commit's addendum).
+- SO §2.5 verbatim-docstring + §3 tests-first + §3.3 3-Commit Seal + §3.8 additive-only + §6 autopilot governance + §6.4 NOTHING-BEYOND + §6.7 seal-report-boundary + M16-W3 corrected order + CCS2 lesson.
+
+### §11 · Stop-conditions this-commit
+
+- Stop-conditions #1/#2/#3 NOT triggered.
+- SO §6.4 pre-ruling NOT triggered (correction is inside standing rulings 3 & 5 scope).
+- MEM-R-053 CROWN BAN NOT triggered.
+- No push · no remote configured on programme/track-a (checked) · no testing_agent (STRICTLY BANNED per SO §6).
+
+### §12 · Standing bounds unchanged
+
+zero push · terminal `pytest` only · **no `testing_agent`** (STRICTLY BANNED) · additive-only §3.8 (with ceremonied R-91 amendment as SINGLE authorized exception at horizon) · three-repo discipline · ratchet measured-monotonic-up **5695** floor (bumps to 5700 at R-91 apply-step) · R-88+ OWNER-RATIFICATION-PENDING RETIRED at R-91 CEREMONY-OPEN commit `a30db4f7` · HF-HOLD SEC-2026-09-12-01 · R-24 UNLISTED · R-25 tagged.
+
+**End of G5-v5 FAMILY A SOURCE-DOC FALSE-NEGATIVE CORRECTION banking.**
+
