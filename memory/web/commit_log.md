@@ -48,3 +48,20 @@
   - assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/src/App.js (V8-shell-port source)
   - assessment_workspace/phase0/specs/r91_cp_app_js_unify_spec.md
   - assessment_workspace/phase0/spec_hunt_receipts/20260920T235800Z_r91_cp_app_js_unify_hunt_receipt.md
+
+## Iteration 3 — R-91 follow-up · inline V8 engine into App.js
+
+- **Commit**: 8ff2f67376f56dee661a816160fc11219807accc
+- **Date**: 2026-09-21T00:34Z
+- **Changes**:
+  - Merged pod_shell App.js (V8 engine, 37 rules, PortalIframe) into /app/frontend/src/App.js (1108 lines)
+  - Added DAP Portal routes alongside V8 engine in same file
+  - Deleted lib/v8SubstitutionEngine.js (content now inline in App.js)
+  - Reduced OSPrototype.jsx to thin re-export of PortalIframe from App.js
+  - All 18 static grep pinned substrings confirmed HIT
+  - 37 rules at runtime, v8-portal-iframe-host sentinel present
+- **Files modified**:
+  - frontend/src/App.js (REWRITTEN — 1108 lines, merged V8 engine + DAP routes)
+  - frontend/src/pages/os/OSPrototype.jsx (REDUCED — thin re-export)
+  - frontend/src/lib/v8SubstitutionEngine.js (DELETED)
+- **Reason**: 63 sealed backend invariants are STATIC TEXT-SUBSTRING assertions against App.js file bytes; the prior module-boundary factoring put pinned substrings in files the tests never read
