@@ -1,0 +1,56 @@
+{
+  "task": "DIGICOW_s3_audio_read_check_owner_authorized_20260921",
+  "captured_at_utc": "2026-09-21T15:53:32Z",
+  "authorization": "Owner directive this-session 2026-09-21T~15:47Z: 'OWNER GO targeted read check: audio in the DigiCow AWS estate, specifically s3://training-content-2026/audio/'. R-91 hold unchanged. Ratchet 5858 unchanged.",
+  "scope_discipline": "DIGICOW AWS S3 ONLY. NO touch to RMS Huawei OBS, MySQL clusters, or CIFS archive.",
+  "hygiene": {
+    "read_only": true,
+    "no_bulk_downloads": true,
+    "single_16_byte_range_read_max": true,
+    "creds_by_shape_only": true
+  },
+  "cred_source": {
+    "access_keys_csv": "/app/assessment_workspace/custody/credentials/incoming_20260921/20260921T153705Z_DIGICOW_digicow_access_keys_csv.csv",
+    "access_keys_csv_sha256": "d8908b7a32aecc72a66adec46bdcd18dcd893d3419892bd37633463afc7ec366"
+  },
+  "target": {
+    "bucket": "training-content-2026",
+    "prefix": "audio/"
+  },
+  "cred_shape": {
+    "ak_len": 20,
+    "sk_len": 40,
+    "ak_prefix4": "AKIA"
+  },
+  "sts_identity": {
+    "ok": true,
+    "account": "494452543252",
+    "arn": "arn:aws:iam::494452543252:user/api_user",
+    "user_id": "AIDAXGH5LB4KEWCKICQOH",
+    "matches_digicow_account_494452543252": true
+  },
+  "region_resolution": {
+    "probe_order": [
+      {
+        "tried_region": "eu-west-1",
+        "client_error": {
+          "http_status": 403,
+          "error_code": "403",
+          "error_message": "Forbidden",
+          "failure_layer": "AWS_ERROR_403",
+          "extra_from_response": {}
+        },
+        "x_amz_bucket_region": "eu-west-1"
+      }
+    ],
+    "resolved_region": "eu-west-1"
+  },
+  "head_bucket_region_correct": {
+    "ok": false,
+    "http_status": 403,
+    "error_code": "403",
+    "error_message": "Forbidden",
+    "failure_layer": "AWS_ERROR_403",
+    "extra_from_response": {}
+  }
+}

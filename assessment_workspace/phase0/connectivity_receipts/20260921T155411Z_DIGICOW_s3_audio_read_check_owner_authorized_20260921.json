@@ -1,0 +1,396 @@
+{
+  "task": "DIGICOW_s3_audio_read_check_owner_authorized_20260921",
+  "captured_at_utc": "2026-09-21T15:54:07Z",
+  "authorization": "Owner directive this-session 2026-09-21T~15:47Z: 'OWNER GO targeted read check: audio in the DigiCow AWS estate, specifically s3://training-content-2026/audio/'. R-91 hold unchanged. Ratchet 5858 unchanged.",
+  "scope_discipline": "DIGICOW AWS S3 ONLY. NO touch to RMS Huawei OBS, MySQL clusters, or CIFS archive.",
+  "hygiene": {
+    "read_only": true,
+    "no_bulk_downloads": true,
+    "single_16_byte_range_read_max": true,
+    "creds_by_shape_only": true
+  },
+  "cred_source": {
+    "access_keys_csv": "/app/assessment_workspace/custody/credentials/incoming_20260921/20260921T153705Z_DIGICOW_digicow_access_keys_csv.csv",
+    "access_keys_csv_sha256": "d8908b7a32aecc72a66adec46bdcd18dcd893d3419892bd37633463afc7ec366"
+  },
+  "target": {
+    "bucket": "training-content-2026",
+    "prefix": "audio/"
+  },
+  "cred_shape": {
+    "ak_len": 20,
+    "sk_len": 40,
+    "ak_prefix4": "AKIA"
+  },
+  "sts_identity": {
+    "ok": true,
+    "account": "494452543252",
+    "arn": "arn:aws:iam::494452543252:user/api_user",
+    "user_id": "AIDAXGH5LB4KEWCKICQOH",
+    "matches_digicow_account_494452543252": true
+  },
+  "region_resolution": {
+    "probe_order": [
+      {
+        "tried_region": "eu-west-1",
+        "client_error": {
+          "http_status": 403,
+          "error_code": "403",
+          "error_message": "Forbidden",
+          "failure_layer": "AWS_ERROR_403",
+          "extra_from_response": {}
+        },
+        "x_amz_bucket_region": "eu-west-1"
+      }
+    ],
+    "resolved_region": "eu-west-1"
+  },
+  "head_bucket_region_correct": {
+    "ok": false,
+    "http_status": 403,
+    "error_code": "403",
+    "error_message": "Forbidden",
+    "failure_layer": "AWS_ERROR_403",
+    "extra_from_response": {},
+    "note": "HeadBucket 403 is expected under prefix-scoped IAM (s3:ListBucket conditioned on prefix). Proceeding to ListObjectsV2(Prefix=audio/) which may still succeed."
+  },
+  "audio_prefix_listing": {
+    "prefix": "audio/",
+    "pages": 20,
+    "total_keys": 1000,
+    "total_bytes": 11748395917,
+    "fully_enumerated_within_bounds": false,
+    "ext_histogram": {
+      "mp3": 762,
+      "mp4": 132,
+      "jpg": 58,
+      "png": 27,
+      "jpeg": 13,
+      "wav": 6,
+      "NOEXT": 1,
+      "mpeg": 1
+    },
+    "audio_ext_histogram": {
+      "mp3": 762,
+      "wav": 6
+    },
+    "audio_object_count": 768,
+    "date_range_lastmodified": {
+      "min": "2026-09-21 05:26:11",
+      "max": "2026-09-21 06:49:38"
+    },
+    "key_samples_first_25": [
+      {
+        "key": "audio/",
+        "size": 0,
+        "last_modified": "2026-09-21 05:26:11",
+        "ext": "NOEXT"
+      },
+      {
+        "key": "audio/100469224047.mp3",
+        "size": 5663765,
+        "last_modified": "2026-09-21 06:47:45",
+        "ext": "mp3"
+      },
+      {
+        "key": "audio/1011334044135.mp3",
+        "size": 5663765,
+        "last_modified": "2026-09-21 06:47:45",
+        "ext": "mp3"
+      },
+      {
+        "key": "audio/101149123116.mp3",
+        "size": 2822478,
+        "last_modified": "2026-09-21 06:47:45",
+        "ext": "mp3"
+      },
+      {
+        "key": "audio/101214502985.mp3",
+        "size": 2822478,
+        "last_modified": "2026-09-21 06:47:45",
+        "ext": "mp3"
+      },
+      {
+        "key": "audio/101275460280.mp3",
+        "size": 2822478,
+        "last_modified": "2026-09-21 06:47:45",
+        "ext": "mp3"
+      },
+      {
+        "key": "audio/1019131077.mp3",
+        "size": 2822478,
+        "last_modified": "2026-09-21 06:47:45",
+        "ext": "mp3"
+      },
+      {
+        "key": "audio/1031263669103.mp3",
+        "size": 5791033,
+        "last_modified": "2026-09-21 06:47:45",
+        "ext": "mp3"
+      },
+      {
+        "key": "audio/104974487181.mp3",
+        "size": 5791033,
+        "last_modified": "2026-09-21 06:47:46",
+        "ext": "mp3"
+      },
+      {
+        "key": "audio/1051195933262.mp3",
+        "size": 5791033,
+        "last_modified": "2026-09-21 06:47:45",
+        "ext": "mp3"
+      },
+      {
+        "key": "audio/10518812488.jpg",
+        "size": 76008,
+        "last_modified": "2026-09-21 06:47:47",
+        "ext": "jpg"
+      },
+      {
+        "key": "audio/10663836184.mp3",
+        "size": 6460604,
+        "last_modified": "2026-09-21 06:47:46",
+        "ext": "mp3"
+      },
+      {
+        "key": "audio/1081468369049.mp3",
+        "size": 6460604,
+        "last_modified": "2026-09-21 06:47:45",
+        "ext": "mp3"
+      },
+      {
+        "key": "audio/1092098035553.mp3",
+        "size": 6047869,
+        "last_modified": "2026-09-21 06:47:46",
+        "ext": "mp3"
+      },
+      {
+        "key": "audio/110901629171.mp3",
+        "size": 6047869,
+        "last_modified": "2026-09-21 06:47:45",
+        "ext": "mp3"
+      },
+      {
+        "key": "audio/11101242866.mp3",
+        "size": 2628963,
+        "last_modified": "2026-09-21 06:47:45",
+        "ext": "mp3"
+      },
+      {
+        "key": "audio/1111561499719.mp3",
+        "size": 9427069,
+        "last_modified": "2026-09-21 06:47:46",
+        "ext": "mp3"
+      },
+      {
+        "key": "audio/111185813102.mp3",
+        "size": 2628963,
+        "last_modified": "2026-09-21 06:47:46",
+        "ext": "mp3"
+      },
+      {
+        "key": "audio/112934597771.mp3",
+        "size": 2896457,
+        "last_modified": "2026-09-21 06:47:46",
+        "ext": "mp3"
+      },
+      {
+        "key": "audio/1131275158044.mp3",
+        "size": 2379860,
+        "last_modified": "2026-09-21 06:47:47",
+        "ext": "mp3"
+      },
+      {
+        "key": "audio/114145681928.mp3",
+        "size": 2379860,
+        "last_modified": "2026-09-21 06:47:47",
+        "ext": "mp3"
+      },
+      {
+        "key": "audio/11470898444.mp3",
+        "size": 2628963,
+        "last_modified": "2026-09-21 06:47:46",
+        "ext": "mp3"
+      },
+      {
+        "key": "audio/115253508314.mp3",
+        "size": 1893773,
+        "last_modified": "2026-09-21 06:47:46",
+        "ext": "mp3"
+      },
+      {
+        "key": "audio/1171592853505.mp3",
+        "size": 1893773,
+        "last_modified": "2026-09-21 06:47:46",
+        "ext": "mp3"
+      },
+      {
+        "key": "audio/1181076515515.wav",
+        "size": 6461696,
+        "last_modified": "2026-09-21 06:47:47",
+        "ext": "wav"
+      }
+    ],
+    "chosen_smallest_audio": {
+      "key": "audio/16427811311826438146.mp3",
+      "size": 147122,
+      "last_modified": "2026-09-21 06:48:12+00:00",
+      "ext": "mp3"
+    },
+    "per_page_summary": [
+      {
+        "page": 1,
+        "keys": 50,
+        "page_bytes": 197321324
+      },
+      {
+        "page": 2,
+        "keys": 50,
+        "page_bytes": 98523849
+      },
+      {
+        "page": 3,
+        "keys": 50,
+        "page_bytes": 376114469
+      },
+      {
+        "page": 4,
+        "keys": 50,
+        "page_bytes": 2006748534
+      },
+      {
+        "page": 5,
+        "keys": 50,
+        "page_bytes": 189529492
+      },
+      {
+        "page": 6,
+        "keys": 50,
+        "page_bytes": 149767535
+      },
+      {
+        "page": 7,
+        "keys": 50,
+        "page_bytes": 180885304
+      },
+      {
+        "page": 8,
+        "keys": 50,
+        "page_bytes": 204359282
+      },
+      {
+        "page": 9,
+        "keys": 50,
+        "page_bytes": 387620404
+      },
+      {
+        "page": 10,
+        "keys": 50,
+        "page_bytes": 1391654067
+      },
+      {
+        "page": 11,
+        "keys": 50,
+        "page_bytes": 4043704741
+      },
+      {
+        "page": 12,
+        "keys": 50,
+        "page_bytes": 263746176
+      },
+      {
+        "page": 13,
+        "keys": 50,
+        "page_bytes": 248248155
+      },
+      {
+        "page": 14,
+        "keys": 50,
+        "page_bytes": 243671463
+      },
+      {
+        "page": 15,
+        "keys": 50,
+        "page_bytes": 224274820
+      },
+      {
+        "page": 16,
+        "keys": 50,
+        "page_bytes": 277109135
+      },
+      {
+        "page": 17,
+        "keys": 50,
+        "page_bytes": 480511369
+      },
+      {
+        "page": 18,
+        "keys": 50,
+        "page_bytes": 302223299
+      },
+      {
+        "page": 19,
+        "keys": 50,
+        "page_bytes": 241946078
+      },
+      {
+        "page": 20,
+        "keys": 50,
+        "page_bytes": 240436421
+      }
+    ]
+  },
+  "proof_of_read": {
+    "chosen_key": "audio/16427811311826438146.mp3",
+    "chosen_size": 147122,
+    "head_object": {
+      "ContentType": "audio/mpeg",
+      "ContentLength": 147122,
+      "LastModified": "2026-09-21 06:48:12+00:00",
+      "ETag": "1f83a2f4a32d3d3cdd6c9a63e34b0478",
+      "StorageClass": null,
+      "elapsed_s": 0.118
+    },
+    "get_object": {
+      "range_requested": "bytes=0-15",
+      "ContentRange": "bytes 0-15/147122",
+      "ContentType": "audio/mpeg",
+      "bytes_returned": 16,
+      "elapsed_s": 0.155
+    },
+    "magic_signature": {
+      "hex_16": "fffa9260c1270000040c32c54b1862d0",
+      "ascii_printable_prefix": "...`.'....2.K.b.",
+      "inferred_format": "MP3/MPEG (raw frame sync 0xFFEx)",
+      "is_audio": true
+    }
+  },
+  "top_level_discovery": {
+    "client_error": {
+      "http_status": 403,
+      "error_code": "AccessDenied",
+      "error_message": "User: arn:aws:iam::494452543252:user/api_user is not authorized to perform: s3:ListBucket on resource: \"arn:aws:s3:::training-content-2026\" because no identity-based policy allows the s3:ListBucket action",
+      "failure_layer": "AWS_ACCESS_DENIED",
+      "extra_from_response": {}
+    }
+  },
+  "verdict": {
+    "binary_answer": "YES",
+    "failure_layer": null,
+    "explicit": "CAN READ AUDIO. s3://training-content-2026/audio/ has 768 audio object(s) across ['mp3', 'wav']; proof-of-read on smallest returned a real audio signature: MP3/MPEG (raw frame sync 0xFFEx) (hex=fffa9260c1270000040c32c54b1862d0).",
+    "surface": "AWS S3 bucket 'training-content-2026' region=eu-west-1",
+    "counts": {
+      "total_keys_under_prefix": 1000,
+      "audio_keys_under_prefix": 768,
+      "fully_enumerated_within_bounds": false,
+      "pages_walked": 20
+    },
+    "formats_observed": [
+      "mp3",
+      "wav"
+    ],
+    "size_summary": {
+      "sum_bytes_across_walked_pages": 11748395917
+    }
+  }
+}
