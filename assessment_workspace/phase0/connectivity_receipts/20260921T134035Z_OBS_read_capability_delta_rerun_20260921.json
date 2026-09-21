@@ -1,0 +1,482 @@
+{
+  "task": "obs_read_capability_delta_rerun_20260921",
+  "captured_at_utc": "2026-09-21T13:40:10Z",
+  "predecessor_receipt": "phase0/connectivity_receipts/20260921T133821Z_FULL_ESTATE_read_capability_sweep_owner_authorized_20260921.json",
+  "reason": "Main sweep's OBS section failed with `TypeError: ObsClient.listObjects() got an unexpected keyword argument 'maxKeys'` (SDK expects snake_case `max_keys=`). This delta re-runs ONLY Section D (OBS) with the corrected parameter name. MySQL + JUMP sizing + NAS remain unchanged and cited.",
+  "hygiene": {
+    "read_only": true,
+    "bytes_hashed_then_dropped": true,
+    "creds_by_shape_only": true
+  },
+  "credential_shape": {
+    "path": "/app/backend/estate_keys/data_sources/huawei_credentials_2_20260916.csv",
+    "sha256": "8a14174c6a5167cb7fb2f8877b4c3b3ed2d1eed7540aeab0fc4f654457698667",
+    "ak_len": 20,
+    "sk_len": 40,
+    "ak_prefix4": "HPUA",
+    "user_name_shape": {
+      "len": 12
+    }
+  },
+  "per_bucket_results": [
+    {
+      "bucket": "2024offairrecs",
+      "region_assumed": "af-south-1",
+      "endpoint": "obs.af-south-1.myhuaweicloud.com",
+      "head_bucket": {
+        "status": 200,
+        "elapsed_s": 2.027
+      },
+      "list_objects": {
+        "status": 200,
+        "elapsed_s": 0.963,
+        "is_truncated": true,
+        "count_returned": 5,
+        "sample": [
+          {
+            "key": "DAS_Imexport_Export_xlsx_8bfc8f83291a4ad1aa2920dba3fcf0bf.zip",
+            "size_bytes": 22,
+            "etag": "fd5834ab7b237c0c33ea5814f9fdf847-1",
+            "last_modified": "2025/10/26 19:39:40"
+          },
+          {
+            "key": "DAS_Imexport_Export_xlsx_c7689cd60b384e29bcd7ba854ab2b137.zip",
+            "size_bytes": 22,
+            "etag": "fd5834ab7b237c0c33ea5814f9fdf847-1",
+            "last_modified": "2025/10/26 19:40:20"
+          },
+          {
+            "key": "DAS_Imexport_Import_792c626751e746f5addfc0dad81366dd_Error.sql",
+            "size_bytes": 294,
+            "etag": "6efbf907705b01928190d4ebc44f408c-1",
+            "last_modified": "2025/06/03 07:16:15"
+          },
+          {
+            "key": "Record/",
+            "size_bytes": 0,
+            "etag": "d41d8cd98f00b204e9800998ecf8427e",
+            "last_modified": "2024/12/20 08:20:52"
+          },
+          {
+            "key": "Record/Channel09/",
+            "size_bytes": 0,
+            "etag": "d41d8cd98f00b204e9800998ecf8427e",
+            "last_modified": "2024/12/20 08:21:02"
+          }
+        ]
+      }
+    },
+    {
+      "bucket": "cal-docs",
+      "region_assumed": "af-south-1",
+      "endpoint": "obs.af-south-1.myhuaweicloud.com",
+      "head_bucket": {
+        "status": 200,
+        "elapsed_s": 2.263
+      },
+      "list_objects": {
+        "status": 200,
+        "elapsed_s": 0.837,
+        "is_truncated": true,
+        "count_returned": 5,
+        "sample": [
+          {
+            "key": "20240312144503322569_CitizenDigitalVAS.jpg",
+            "size_bytes": 61972,
+            "etag": "b946bf84df323e3de3009a7e86ed688d",
+            "last_modified": "2024/03/21 11:03:24"
+          },
+          {
+            "key": "20240312144927984941_CitizenDigitalVAS.jpg",
+            "size_bytes": 61972,
+            "etag": "b946bf84df323e3de3009a7e86ed688d",
+            "last_modified": "2024/03/21 11:03:25"
+          },
+          {
+            "key": "20240312145304954965_CitizenDigitalVAS.jpg",
+            "size_bytes": 61972,
+            "etag": "b946bf84df323e3de3009a7e86ed688d",
+            "last_modified": "2024/03/21 11:03:26"
+          },
+          {
+            "key": "20240312145309644372_creditcard.jpeg",
+            "size_bytes": 87835,
+            "etag": "19c11309b3af4a6d4873ce9009dc4f4e",
+            "last_modified": "2024/03/21 11:03:28"
+          },
+          {
+            "key": "20240312145315258633_health-feature-inoorofm.jpg",
+            "size_bytes": 585560,
+            "etag": "3752bd68c3bcaf218d82980e79c4e5f4",
+            "last_modified": "2024/03/21 11:03:29"
+          }
+        ]
+      }
+    },
+    {
+      "bucket": "chamgei-backup",
+      "region_assumed": "af-south-1",
+      "endpoint": "obs.af-south-1.myhuaweicloud.com",
+      "head_bucket": {
+        "status": 200,
+        "elapsed_s": 2.332
+      },
+      "list_objects": {
+        "status": 200,
+        "elapsed_s": 0.821,
+        "is_truncated": true,
+        "count_returned": 5,
+        "sample": [
+          {
+            "key": "CHAMGEI/.DS_Store",
+            "size_bytes": 6148,
+            "etag": "e0ddf280580280a9fcc956e067d43a81",
+            "last_modified": "2024/03/21 11:20:37"
+          },
+          {
+            "key": "CHAMGEI/BACKUP/C/Users/desktop.ini",
+            "size_bytes": 84,
+            "etag": "8bd47654635d6e43755f1bf591f85848",
+            "last_modified": "2024/03/21 11:20:38"
+          },
+          {
+            "key": "CHAMGEI/BACKUP/C/kones blues/(Breathless - Shayne Ward.mp3",
+            "size_bytes": 5459217,
+            "etag": "2107dac4388ffbf759372185eb566ea5",
+            "last_modified": "2024/03/21 11:20:39"
+          },
+          {
+            "key": "CHAMGEI/BACKUP/C/kones blues/(With You-RGF - Chris Brown.mp3",
+            "size_bytes": 6478461,
+            "etag": "9978e7345bf6c1af333c053a119894de",
+            "last_modified": "2024/03/21 11:20:48"
+          },
+          {
+            "key": "CHAMGEI/BACKUP/C/kones blues/01 One sweet day - Boyz II men & maria Carey.mp3",
+            "size_bytes": 4558349,
+            "etag": "accc6333bbdc34cf33b9ca1063ed327a",
+            "last_modified": "2024/03/21 11:20:57"
+          }
+        ]
+      }
+    },
+    {
+      "bucket": "apr252017",
+      "region_assumed": "tr-west-1",
+      "endpoint": "obs.tr-west-1.myhuaweicloud.com",
+      "head_bucket": {
+        "status": 200,
+        "elapsed_s": 1.455
+      },
+      "list_objects": {
+        "status": 200,
+        "elapsed_s": 0.545,
+        "is_truncated": false,
+        "count_returned": 1,
+        "sample": [
+          {
+            "key": "shipping-label-WCRC7.pdf",
+            "size_bytes": 68599,
+            "etag": "7e14d9fefda24b0a6aa59519dcc4ad17",
+            "last_modified": "2024/04/18 01:00:49"
+          }
+        ]
+      }
+    },
+    {
+      "bucket": "feb272017",
+      "region_assumed": "tr-west-1",
+      "endpoint": "obs.tr-west-1.myhuaweicloud.com",
+      "head_bucket": {
+        "status": 200,
+        "elapsed_s": 1.204
+      },
+      "list_objects": {
+        "status": 200,
+        "elapsed_s": 0.468,
+        "is_truncated": true,
+        "count_returned": 5,
+        "sample": [
+          {
+            "key": "hsms/16/object_migrate_list/16_1_1713172195474.txt",
+            "size_bytes": 68195,
+            "etag": "a123d2da8a37f07ee8a06ea5c64382a9",
+            "last_modified": "2024/04/15 09:09:55"
+          },
+          {
+            "key": "hsms/16/object_migrate_list/16_2_1713172195727.txt",
+            "size_bytes": 10866,
+            "etag": "d3f53cacba9f1a0e82963b1356303518",
+            "last_modified": "2024/04/15 09:09:55"
+          },
+          {
+            "key": "hsms/32/object_migrate_list/32_1_1711611050890.txt",
+            "size_bytes": 67964,
+            "etag": "a84b9c2e0cb2250267aeddb27ce6a7da",
+            "last_modified": "2024/04/15 10:02:13"
+          },
+          {
+            "key": "hsms/32/object_migrate_list/32_2_1711611054981.txt",
+            "size_bytes": 10551,
+            "etag": "7d929459d3a4780dc5b231140ba45f71",
+            "last_modified": "2024/04/15 10:02:13"
+          },
+          {
+            "key": "hsms/32/object_migrate_result_list/314/failed_list/1711624439248/1711690885980_0_feb272017-feb272017-11711611054978_failed_list.txt",
+            "size_bytes": 1715,
+            "etag": "03c3caa964e68821c0ce06ff4fcd719c",
+            "last_modified": "2024/04/15 10:02:13"
+          }
+        ]
+      }
+    },
+    {
+      "bucket": "librarydirectupload2",
+      "region_assumed": "tr-west-1",
+      "endpoint": "obs.tr-west-1.myhuaweicloud.com",
+      "head_bucket": {
+        "status": 200,
+        "elapsed_s": 1.492
+      },
+      "list_objects": {
+        "status": 200,
+        "elapsed_s": 0.493,
+        "is_truncated": true,
+        "count_returned": 5,
+        "sample": [
+          {
+            "key": ".DS_Store",
+            "size_bytes": 30724,
+            "etag": "4ec50800b33f372978dbac8f1900a61a",
+            "last_modified": "2024/04/15 10:41:45"
+          },
+          {
+            "key": ".TemporaryItems/",
+            "size_bytes": 0,
+            "etag": "d41d8cd98f00b204e9800998ecf8427e",
+            "last_modified": "2024/04/15 10:41:45"
+          },
+          {
+            "key": ".TemporaryItems/._folders.502",
+            "size_bytes": 4096,
+            "etag": "1432fae4200f99226574749675a0d9e0",
+            "last_modified": "2024/04/15 10:41:45"
+          },
+          {
+            "key": ".TemporaryItems/folders.502/",
+            "size_bytes": 0,
+            "etag": "d41d8cd98f00b204e9800998ecf8427e",
+            "last_modified": "2024/04/15 10:41:45"
+          },
+          {
+            "key": "._.DS_Store",
+            "size_bytes": 4096,
+            "etag": "1f66005ae3420c213ebcf8f09214ebdd",
+            "last_modified": "2024/04/15 10:41:45"
+          }
+        ]
+      }
+    },
+    {
+      "bucket": "citizen-vod",
+      "region_assumed": "ap-southeast-3",
+      "endpoint": "obs.ap-southeast-3.myhuaweicloud.com",
+      "head_bucket": {
+        "status": 200,
+        "elapsed_s": 1.582
+      },
+      "list_objects": {
+        "status": 200,
+        "elapsed_s": 0.674,
+        "is_truncated": true,
+        "count_returned": 5,
+        "sample": [
+          {
+            "key": "169008/552cef2a-88c4-4dd2-8f6a-e74fd87b002d_vertical.mp4",
+            "size_bytes": 2399569,
+            "etag": "c650014ce603423e735d36f56840f7bb",
+            "last_modified": "2026/05/15 09:48:22"
+          },
+          {
+            "key": "169008/thumbnails/1.jpg",
+            "size_bytes": 49351,
+            "etag": "51a4ac4cc315e3bc16fd47e2e7e8bde0",
+            "last_modified": "2026/05/15 09:48:31"
+          },
+          {
+            "key": "169008/transcoded/552cef2a-88c4-4dd2-8f6a-e74fd87b002d_vertical_H.264_478x850_AAC_1603_hls.m3u8",
+            "size_bytes": 376,
+            "etag": "82a4e8f8a08a76c2a8cdf477ff37f86f",
+            "last_modified": "2026/05/15 09:48:30"
+          },
+          {
+            "key": "169008/transcoded/552cef2a-88c4-4dd2-8f6a-e74fd87b002d_vertical_H.264_478x850_AAC_1603_hls_0.ts",
+            "size_bytes": 587124,
+            "etag": "0af4a20f55215f5a523b13a9c9dd1d58",
+            "last_modified": "2026/05/15 09:48:30"
+          },
+          {
+            "key": "169008/transcoded/552cef2a-88c4-4dd2-8f6a-e74fd87b002d_vertical_H.264_478x850_AAC_1603_hls_1.ts",
+            "size_bytes": 512488,
+            "etag": "49359870c25b60eb534697aa80da4c29",
+            "last_modified": "2026/05/15 09:48:30"
+          }
+        ]
+      }
+    },
+    {
+      "bucket": "iso-rms-storage",
+      "region_assumed": "ap-southeast-3",
+      "endpoint": "obs.ap-southeast-3.myhuaweicloud.com",
+      "head_bucket": {
+        "status": 200,
+        "elapsed_s": 2.991
+      },
+      "list_objects": {
+        "status": 200,
+        "elapsed_s": 0.679,
+        "is_truncated": false,
+        "count_returned": 1,
+        "sample": [
+          {
+            "key": "Win11_24H2_English_x64.iso",
+            "size_bytes": 5819484160,
+            "etag": "d322c0363f04099f36d294a6dbc7cf30-111",
+            "last_modified": "2025/09/11 08:06:58"
+          }
+        ]
+      }
+    },
+    {
+      "bucket": "rms-ai",
+      "region_assumed": "ap-southeast-1",
+      "endpoint": "obs.ap-southeast-1.myhuaweicloud.com",
+      "head_bucket": {
+        "status": 200,
+        "elapsed_s": 1.543
+      },
+      "list_objects": {
+        "status": 200,
+        "elapsed_s": 0.509,
+        "is_truncated": true,
+        "count_returned": 5,
+        "sample": [
+          {
+            "key": "image_files/2795ba36-2730-435f-b1be-eb07a9d83c1f/00643c19-cbcc-43b8-88bc-69118bb889e9.jpg",
+            "size_bytes": 5898,
+            "etag": "8d562fdb0f9a4aea535b058cd94c3cd5",
+            "last_modified": "2026/07/21 06:38:31"
+          },
+          {
+            "key": "image_files/2795ba36-2730-435f-b1be-eb07a9d83c1f/0086f9e6-bd1d-44a7-9512-a04191d71664.jpeg",
+            "size_bytes": 134907,
+            "etag": "6291c52d77bf8300ecb716470d7dff36",
+            "last_modified": "2026/07/21 06:34:05"
+          },
+          {
+            "key": "image_files/2795ba36-2730-435f-b1be-eb07a9d83c1f/00909ce9-7590-43f3-a7a5-06c97e3c73c0.jpg",
+            "size_bytes": 5898,
+            "etag": "8d562fdb0f9a4aea535b058cd94c3cd5",
+            "last_modified": "2026/07/15 06:16:02"
+          },
+          {
+            "key": "image_files/2795ba36-2730-435f-b1be-eb07a9d83c1f/00a83f6f-4f65-4adc-ae9e-abbc5c0e626f.png",
+            "size_bytes": 1186,
+            "etag": "0c623cfd4287bb242e7c1003f121c6c5",
+            "last_modified": "2026/07/15 06:15:55"
+          },
+          {
+            "key": "image_files/2795ba36-2730-435f-b1be-eb07a9d83c1f/00c05fa4-b694-4fb3-9435-7b341bb1981b.png",
+            "size_bytes": 68281,
+            "etag": "1b986bfb3b520e18d64b9c9d86874383",
+            "last_modified": "2026/07/21 06:34:04"
+          }
+        ]
+      }
+    }
+  ],
+  "proof_of_read_rms_ai": {
+    "bucket": "rms-ai",
+    "region": "ap-southeast-1",
+    "list_step": {
+      "status": 200,
+      "count_returned": 20
+    },
+    "chosen_object": {
+      "key": "image_files/2795ba36-2730-435f-b1be-eb07a9d83c1f/0140bbfa-61ee-4d16-878b-1c56f1b953ce.png",
+      "size_bytes": 1159,
+      "etag": "41c7ca932138d32d17322f398619b8ad",
+      "last_modified": "2026/07/21 06:38:24"
+    },
+    "get_object": {
+      "status": 403,
+      "errorCode": "AccessDenied",
+      "elapsed_s": 0.51
+    },
+    "failure_layer": "GET_HTTP_403"
+  },
+  "region_rollup": {
+    "af-south-1": {
+      "buckets_probed": 3,
+      "head_2xx": 3,
+      "head_other": 0,
+      "list_2xx": 3,
+      "list_other": 0,
+      "objects_visible_in_sample": 15,
+      "bucket_names_readable": [
+        "2024offairrecs",
+        "cal-docs",
+        "chamgei-backup"
+      ]
+    },
+    "tr-west-1": {
+      "buckets_probed": 3,
+      "head_2xx": 3,
+      "head_other": 0,
+      "list_2xx": 3,
+      "list_other": 0,
+      "objects_visible_in_sample": 11,
+      "bucket_names_readable": [
+        "apr252017",
+        "feb272017",
+        "librarydirectupload2"
+      ]
+    },
+    "ap-southeast-3": {
+      "buckets_probed": 2,
+      "head_2xx": 2,
+      "head_other": 0,
+      "list_2xx": 2,
+      "list_other": 0,
+      "objects_visible_in_sample": 6,
+      "bucket_names_readable": [
+        "citizen-vod",
+        "iso-rms-storage"
+      ]
+    },
+    "ap-southeast-1": {
+      "buckets_probed": 1,
+      "head_2xx": 1,
+      "head_other": 0,
+      "list_2xx": 1,
+      "list_other": 0,
+      "objects_visible_in_sample": 5,
+      "bucket_names_readable": [
+        "rms-ai"
+      ]
+    }
+  },
+  "explicit_answer": {
+    "all_9_buckets_HeadBucket_2xx": true,
+    "list_objects_success_regions": [
+      "af-south-1",
+      "tr-west-1",
+      "ap-southeast-3",
+      "ap-southeast-1"
+    ],
+    "list_objects_failure_regions": [],
+    "get_object_rms_ai_proof_ok": false,
+    "get_object_details": null,
+    "verdict": "PARTIAL_HEADS_OK_LIST_OR_GET_FAILED"
+  }
+}

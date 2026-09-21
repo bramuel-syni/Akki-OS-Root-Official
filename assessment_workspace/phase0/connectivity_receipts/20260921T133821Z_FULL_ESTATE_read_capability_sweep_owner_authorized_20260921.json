@@ -1,0 +1,3264 @@
+{
+  "task": "FULL_ESTATE_read_capability_sweep_owner_authorized_20260921",
+  "captured_at_utc": "2026-09-21T13:37:28Z",
+  "authorization": "Owner GO this-session 2026-09-21T~13:40Z: 'FULL ESTATE READ-CAPABILITY SWEEP across ALL reachable surfaces. This RELEASES S1 + S2 + S3 as read-capability surveys (authenticated, read-only).' R-91 hold unchanged. Ratchet floor unchanged (5858).",
+  "hygiene": {
+    "read_only": true,
+    "no_bulk_pulls": true,
+    "no_full_dumps": true,
+    "mysql_values_redacted_to_shape": true,
+    "mysql_no_actual_row_values_in_receipt": true,
+    "obs_bodies_never_persisted_or_printed": true,
+    "creds_by_shape_only": true
+  },
+  "bounds": {
+    "mysql_rows_per_select": 1,
+    "obs_bucket_sample_size": 9,
+    "obs_max_keys_per_bucket": 5,
+    "rms_ai_smallest_object_search_ceiling": 20
+  },
+  "cred_shape": {
+    "jump": {
+      "label": "Jump Server",
+      "host": "159.138.173.250",
+      "user_len": 4,
+      "user_prefix2": "ro",
+      "password_len": 12
+    },
+    "mysql_clusters": [
+      {
+        "section": "iebc_forms",
+        "host": "203.123.86.10",
+        "user_len": 7,
+        "password_len": 16,
+        "schemas": [
+          "iebc_forms",
+          "kra_reports",
+          "miniapps",
+          "viupay",
+          "viupay_agent_staging",
+          "viusasa_artists",
+          "viusasa_miniapps_prod",
+          "viusasa_staging",
+          "viutickets"
+        ]
+      },
+      {
+        "section": "USSD",
+        "host": "110.238.76.159",
+        "user_len": 7,
+        "password_len": 16,
+        "schemas": [
+          "artists_app",
+          "citizen_digital",
+          "db_jipange",
+          "db_skiza",
+          "freddy_dev",
+          "miniapps",
+          "tafaria_ecommerce",
+          "tafaria_shop",
+          "viupay_dev",
+          "viupay_fare"
+        ]
+      },
+      {
+        "section": "MICROSERVICES",
+        "host": "159.138.164.93",
+        "user_len": 7,
+        "password_len": 16,
+        "schemas": [
+          "viupay",
+          "viutickets"
+        ]
+      },
+      {
+        "section": "MICROSERVICES",
+        "host": "HOST",
+        "user_len": 0,
+        "password_len": 0,
+        "schemas": [
+          "WEEGO"
+        ]
+      },
+      {
+        "section": "MICROSERVICES",
+        "host": "159.138.162.146",
+        "user_len": 0,
+        "password_len": 0,
+        "schemas": [
+          "analytics",
+          "sql_demo",
+          "sql_trial1",
+          "weego",
+          "citizen-digital"
+        ]
+      },
+      {
+        "section": "MICROSERVICES",
+        "host": "159.138.164.124",
+        "user_len": 0,
+        "password_len": 0,
+        "schemas": [
+          "citizen_digital",
+          "db_visitors",
+          "Visitors_database"
+        ]
+      },
+      {
+        "section": "MICROSERVICES",
+        "host": "110.238.75.83",
+        "user_len": 0,
+        "password_len": 0,
+        "schemas": [
+          "citizen_digital",
+          "db_visitors",
+          "db_visitors_old",
+          "db_visitors_v1",
+          "rembesha",
+          "Shikisha"
+        ]
+      },
+      {
+        "section": "MICROSERVICES",
+        "host": "203.123.83.144",
+        "user_len": 0,
+        "password_len": 0,
+        "schemas": [
+          "citizen-pulse",
+          "correspondents",
+          "saa"
+        ]
+      }
+    ]
+  },
+  "section_A_jump_sizing": {
+    "nproc": {
+      "rc": 0,
+      "stdout": "1",
+      "stderr": "",
+      "elapsed_s": 1.131
+    },
+    "cpu_model_first_line": {
+      "rc": 0,
+      "stdout": "model name\t: General Purpose Processor",
+      "stderr": "",
+      "elapsed_s": 0.845
+    },
+    "aes_ni_flag_first_hit": {
+      "rc": 0,
+      "stdout": "aes",
+      "stderr": "",
+      "elapsed_s": 0.847
+    },
+    "free_m": {
+      "rc": 0,
+      "stdout": "total        used        free      shared  buff/cache   available\nMem:             769         401         143           2         353         367\nSwap:              0           0           0",
+      "stderr": "",
+      "elapsed_s": 0.858
+    },
+    "uptime": {
+      "rc": 0,
+      "stdout": "21:37:35 up 8 days,  6:13,  2 users,  load average: 0.18, 0.07, 0.02",
+      "stderr": "",
+      "elapsed_s": 0.848
+    }
+  },
+  "section_B_mysql_sweeps": [
+    {
+      "surface": "USSD",
+      "host": "110.238.76.159",
+      "expected_schemas_in_sheet": [
+        "artists_app",
+        "citizen_digital",
+        "db_jipange",
+        "db_skiza",
+        "freddy_dev",
+        "miniapps",
+        "tafaria_ecommerce",
+        "tafaria_shop",
+        "viupay_dev",
+        "viupay_fare"
+      ],
+      "creds_in_sheet": true,
+      "tcp_open_via_jump": true,
+      "sweep": {
+        "cluster_label": "USSD",
+        "expected_schemas_in_sheet": [
+          "artists_app",
+          "citizen_digital",
+          "db_jipange",
+          "db_skiza",
+          "freddy_dev",
+          "miniapps",
+          "tafaria_ecommerce",
+          "tafaria_shop",
+          "viupay_dev",
+          "viupay_fare"
+        ],
+        "auth": {
+          "ok": true,
+          "elapsed_s": 1.18,
+          "server_version": "5.7.44-241200-log"
+        },
+        "show_databases": [
+          "information_schema",
+          "artists_app",
+          "citizen_digital",
+          "db_jipange",
+          "db_skiza",
+          "freddy_dev",
+          "miniapps",
+          "performance_schema",
+          "sys",
+          "tafaria_ecommerce",
+          "tafaria_shop",
+          "viupay_dev",
+          "viupay_fare",
+          "viupay_fare_test",
+          "viusasa_dev",
+          "viusasa_staging",
+          "viusasa_staging_2",
+          "viusasa_staging_dev",
+          "viutickets",
+          "viutickets_dev"
+        ],
+        "user_databases": [
+          "artists_app",
+          "citizen_digital",
+          "db_jipange",
+          "db_skiza",
+          "freddy_dev",
+          "miniapps",
+          "tafaria_ecommerce",
+          "tafaria_shop",
+          "viupay_dev",
+          "viupay_fare",
+          "viupay_fare_test",
+          "viusasa_dev",
+          "viusasa_staging",
+          "viusasa_staging_2",
+          "viusasa_staging_dev",
+          "viutickets",
+          "viutickets_dev"
+        ],
+        "per_schema": [
+          {
+            "database": "artists_app",
+            "representative_table": null,
+            "table_count_in_schema": 0,
+            "skipped": "SCHEMA_HAS_NO_BASE_TABLES"
+          },
+          {
+            "database": "citizen_digital",
+            "representative_table": "articles",
+            "table_count_in_schema": 39,
+            "columns_meta": [
+              {
+                "field": "id",
+                "type": "bigint(20) unsigned",
+                "null": "NO",
+                "key": "PRI",
+                "default": null,
+                "extra": "auto_increment"
+              },
+              {
+                "field": "post_id",
+                "type": "bigint(20) unsigned",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "title",
+                "type": "varchar(255)",
+                "null": "NO",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "title_plain",
+                "type": "varchar(255)",
+                "null": "NO",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "slug",
+                "type": "varchar(255)",
+                "null": "NO",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "status",
+                "type": "varchar(255)",
+                "null": "NO",
+                "key": "",
+                "default": "<default_hidden>",
+                "extra": ""
+              },
+              {
+                "field": "content",
+                "type": "longtext",
+                "null": "NO",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "excerpt",
+                "type": "longtext",
+                "null": "NO",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "breaking",
+                "type": "tinyint(1)",
+                "null": "NO",
+                "key": "",
+                "default": "<default_hidden>",
+                "extra": ""
+              },
+              {
+                "field": "developing",
+                "type": "tinyint(1)",
+                "null": "NO",
+                "key": "",
+                "default": "<default_hidden>",
+                "extra": ""
+              },
+              {
+                "field": "pinned_story",
+                "type": "tinyint(1)",
+                "null": "NO",
+                "key": "",
+                "default": "<default_hidden>",
+                "extra": ""
+              },
+              {
+                "field": "commentable",
+                "type": "tinyint(1)",
+                "null": "NO",
+                "key": "",
+                "default": "<default_hidden>",
+                "extra": ""
+              },
+              {
+                "field": "notifiable",
+                "type": "tinyint(1)",
+                "null": "NO",
+                "key": "",
+                "default": "<default_hidden>",
+                "extra": ""
+              },
+              {
+                "field": "developing_story_text",
+                "type": "longtext",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "breaking_news_text",
+                "type": "longtext",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "priority",
+                "type": "bigint(20) unsigned",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "author_id",
+                "type": "bigint(20) unsigned",
+                "null": "YES",
+                "key": "MUL",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "views",
+                "type": "int(11)",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "caption",
+                "type": "longtext",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "type",
+                "type": "varchar(255)",
+                "null": "NO",
+                "key": "",
+                "default": "<default_hidden>",
+                "extra": ""
+              },
+              {
+                "field": "source",
+                "type": "varchar(255)",
+                "null": "NO",
+                "key": "",
+                "default": "<default_hidden>",
+                "extra": ""
+              },
+              {
+                "field": "stream_url",
+                "type": "text",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "thumbnails",
+                "type": "json",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "expires_at",
+                "type": "timestamp",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "model_type",
+                "type": "varchar(255)",
+                "null": "NO",
+                "key": "",
+                "default": "<default_hidden>",
+                "extra": ""
+              },
+              {
+                "field": "menu_id",
+                "type": "bigint(20) unsigned",
+                "null": "NO",
+                "key": "MUL",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "created_at",
+                "type": "timestamp",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "updated_at",
+                "type": "timestamp",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "deleted_at",
+                "type": "timestamp",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              }
+            ],
+            "count_star": 6824,
+            "proof_of_read": {
+              "row_returned": true,
+              "col_names": [
+                "id",
+                "post_id",
+                "title",
+                "title_plain",
+                "slug",
+                "status",
+                "content",
+                "excerpt",
+                "breaking",
+                "developing",
+                "pinned_story",
+                "commentable",
+                "notifiable",
+                "developing_story_text",
+                "breaking_news_text",
+                "priority",
+                "author_id",
+                "views",
+                "caption",
+                "type",
+                "source",
+                "stream_url",
+                "thumbnails",
+                "expires_at",
+                "model_type",
+                "menu_id",
+                "created_at",
+                "updated_at",
+                "deleted_at"
+              ],
+              "value_shape_by_col": {
+                "id": {
+                  "python_type": "int",
+                  "is_null": false,
+                  "int_bit_len": 1
+                },
+                "post_id": {
+                  "python_type": "int",
+                  "is_null": false,
+                  "int_bit_len": 20
+                },
+                "title": {
+                  "python_type": "str",
+                  "is_null": false,
+                  "char_len": 48,
+                  "byte_len": 48
+                },
+                "title_plain": {
+                  "python_type": "str",
+                  "is_null": false,
+                  "char_len": 48,
+                  "byte_len": 48
+                },
+                "slug": {
+                  "python_type": "str",
+                  "is_null": false,
+                  "char_len": 48,
+                  "byte_len": 48
+                },
+                "status": {
+                  "python_type": "str",
+                  "is_null": false,
+                  "char_len": 9,
+                  "byte_len": 9
+                },
+                "content": {
+                  "python_type": "str",
+                  "is_null": false,
+                  "char_len": 512,
+                  "byte_len": 512
+                },
+                "excerpt": {
+                  "python_type": "str",
+                  "is_null": false,
+                  "char_len": 1,
+                  "byte_len": 1
+                },
+                "breaking": {
+                  "python_type": "int",
+                  "is_null": false,
+                  "int_bit_len": 0
+                },
+                "developing": {
+                  "python_type": "int",
+                  "is_null": false,
+                  "int_bit_len": 0
+                },
+                "pinned_story": {
+                  "python_type": "int",
+                  "is_null": false,
+                  "int_bit_len": 0
+                },
+                "commentable": {
+                  "python_type": "int",
+                  "is_null": false,
+                  "int_bit_len": 1
+                },
+                "notifiable": {
+                  "python_type": "int",
+                  "is_null": false,
+                  "int_bit_len": 0
+                },
+                "developing_story_text": {
+                  "python_type": "NoneType",
+                  "is_null": true
+                },
+                "breaking_news_text": {
+                  "python_type": "NoneType",
+                  "is_null": true
+                },
+                "priority": {
+                  "python_type": "NoneType",
+                  "is_null": true
+                },
+                "author_id": {
+                  "python_type": "int",
+                  "is_null": false,
+                  "int_bit_len": 9
+                },
+                "views": {
+                  "python_type": "int",
+                  "is_null": false,
+                  "int_bit_len": 0
+                },
+                "caption": {
+                  "python_type": "NoneType",
+                  "is_null": true
+                },
+                "type": {
+                  "python_type": "str",
+                  "is_null": false,
+                  "char_len": 7,
+                  "byte_len": 7
+                },
+                "source": {
+                  "python_type": "str",
+                  "is_null": false,
+                  "char_len": 7,
+                  "byte_len": 7
+                },
+                "stream_url": {
+                  "python_type": "NoneType",
+                  "is_null": true
+                },
+                "thumbnails": {
+                  "python_type": "NoneType",
+                  "is_null": true
+                },
+                "expires_at": {
+                  "python_type": "NoneType",
+                  "is_null": true
+                },
+                "model_type": {
+                  "python_type": "str",
+                  "is_null": false,
+                  "char_len": 7,
+                  "byte_len": 7
+                },
+                "menu_id": {
+                  "python_type": "int",
+                  "is_null": false,
+                  "int_bit_len": 2
+                },
+                "created_at": {
+                  "python_type": "datetime",
+                  "is_null": false,
+                  "repr_class": "datetime"
+                },
+                "updated_at": {
+                  "python_type": "datetime",
+                  "is_null": false,
+                  "repr_class": "datetime"
+                },
+                "deleted_at": {
+                  "python_type": "NoneType",
+                  "is_null": true
+                }
+              }
+            }
+          },
+          {
+            "database": "db_jipange",
+            "representative_table": "age_range",
+            "table_count_in_schema": 22,
+            "columns_meta": [
+              {
+                "field": "id",
+                "type": "int(11)",
+                "null": "NO",
+                "key": "PRI",
+                "default": null,
+                "extra": "auto_increment"
+              },
+              {
+                "field": "name",
+                "type": "text",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              }
+            ],
+            "count_star": 6,
+            "proof_of_read": {
+              "row_returned": true,
+              "col_names": [
+                "id",
+                "name"
+              ],
+              "value_shape_by_col": {
+                "id": {
+                  "python_type": "int",
+                  "is_null": false,
+                  "int_bit_len": 1
+                },
+                "name": {
+                  "python_type": "str",
+                  "is_null": false,
+                  "char_len": 5,
+                  "byte_len": 5
+                }
+              }
+            }
+          },
+          {
+            "database": "db_skiza",
+            "representative_table": "age_range",
+            "table_count_in_schema": 24,
+            "columns_meta": [
+              {
+                "field": "id",
+                "type": "int(11)",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "name",
+                "type": "text",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              }
+            ],
+            "count_star": 6,
+            "proof_of_read": {
+              "row_returned": true,
+              "col_names": [
+                "id",
+                "name"
+              ],
+              "value_shape_by_col": {
+                "id": {
+                  "python_type": "int",
+                  "is_null": false,
+                  "int_bit_len": 1
+                },
+                "name": {
+                  "python_type": "str",
+                  "is_null": false,
+                  "char_len": 5,
+                  "byte_len": 5
+                }
+              }
+            }
+          },
+          {
+            "database": "freddy_dev",
+            "representative_table": "audits",
+            "table_count_in_schema": 38,
+            "columns_meta": [
+              {
+                "field": "id",
+                "type": "bigint(20) unsigned",
+                "null": "NO",
+                "key": "PRI",
+                "default": null,
+                "extra": "auto_increment"
+              },
+              {
+                "field": "user_type",
+                "type": "varchar(255)",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "user_id",
+                "type": "bigint(20) unsigned",
+                "null": "YES",
+                "key": "MUL",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "event",
+                "type": "varchar(255)",
+                "null": "NO",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "auditable_type",
+                "type": "varchar(255)",
+                "null": "NO",
+                "key": "MUL",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "auditable_id",
+                "type": "bigint(20) unsigned",
+                "null": "NO",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "old_values",
+                "type": "text",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "new_values",
+                "type": "text",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "url",
+                "type": "text",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "ip_address",
+                "type": "varchar(45)",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "user_agent",
+                "type": "varchar(1023)",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "tags",
+                "type": "varchar(255)",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "created_at",
+                "type": "timestamp",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "updated_at",
+                "type": "timestamp",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              }
+            ],
+            "count_star": 9,
+            "proof_of_read": {
+              "row_returned": true,
+              "col_names": [
+                "id",
+                "user_type",
+                "user_id",
+                "event",
+                "auditable_type",
+                "auditable_id",
+                "old_values",
+                "new_values",
+                "url",
+                "ip_address",
+                "user_agent",
+                "tags",
+                "created_at",
+                "updated_at"
+              ],
+              "value_shape_by_col": {
+                "id": {
+                  "python_type": "int",
+                  "is_null": false,
+                  "int_bit_len": 1
+                },
+                "user_type": {
+                  "python_type": "str",
+                  "is_null": false,
+                  "char_len": 15,
+                  "byte_len": 15
+                },
+                "user_id": {
+                  "python_type": "int",
+                  "is_null": false,
+                  "int_bit_len": 1
+                },
+                "event": {
+                  "python_type": "str",
+                  "is_null": false,
+                  "char_len": 7,
+                  "byte_len": 7
+                },
+                "auditable_type": {
+                  "python_type": "str",
+                  "is_null": false,
+                  "char_len": 16,
+                  "byte_len": 16
+                },
+                "auditable_id": {
+                  "python_type": "int",
+                  "is_null": false,
+                  "int_bit_len": 2
+                },
+                "old_values": {
+                  "python_type": "str",
+                  "is_null": false,
+                  "char_len": 512,
+                  "byte_len": 512
+                },
+                "new_values": {
+                  "python_type": "str",
+                  "is_null": false,
+                  "char_len": 512,
+                  "byte_len": 512
+                },
+                "url": {
+                  "python_type": "str",
+                  "is_null": false,
+                  "char_len": 95,
+                  "byte_len": 95
+                },
+                "ip_address": {
+                  "python_type": "str",
+                  "is_null": false,
+                  "char_len": 14,
+                  "byte_len": 14
+                },
+                "user_agent": {
+                  "python_type": "str",
+                  "is_null": false,
+                  "char_len": 115,
+                  "byte_len": 115
+                },
+                "tags": {
+                  "python_type": "NoneType",
+                  "is_null": true
+                },
+                "created_at": {
+                  "python_type": "datetime",
+                  "is_null": false,
+                  "repr_class": "datetime"
+                },
+                "updated_at": {
+                  "python_type": "datetime",
+                  "is_null": false,
+                  "repr_class": "datetime"
+                }
+              }
+            }
+          },
+          {
+            "database": "miniapps",
+            "representative_table": "bill",
+            "table_count_in_schema": 21,
+            "columns_meta": [
+              {
+                "field": "id",
+                "type": "int(11)",
+                "null": "NO",
+                "key": "PRI",
+                "default": null,
+                "extra": "auto_increment"
+              },
+              {
+                "field": "client_category",
+                "type": "int(11)",
+                "null": "NO",
+                "key": "MUL",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "content",
+                "type": "text",
+                "null": "NO",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "description",
+                "type": "text",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "date_created",
+                "type": "datetime(6)",
+                "null": "NO",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "status",
+                "type": "varchar(5)",
+                "null": "NO",
+                "key": "MUL",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "phone_number",
+                "type": "varchar(20)",
+                "null": "NO",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "payment_method",
+                "type": "varchar(50)",
+                "null": "NO",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "telco",
+                "type": "varchar(20)",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "currency",
+                "type": "varchar(3)",
+                "null": "NO",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "amount",
+                "type": "decimal(12,2)",
+                "null": "NO",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "invoice_number",
+                "type": "varchar(20)",
+                "null": "NO",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "offline",
+                "type": "bit(1)",
+                "null": "NO",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "payment_request_id",
+                "type": "varchar(100)",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "payment_request_identifier",
+                "type": "varchar(100)",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "payment_instruction",
+                "type": "text",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "payment_reference",
+                "type": "varchar(100)",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "error_code",
+                "type": "varchar(10)",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "error_message",
+                "type": "text",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "date_deleted",
+                "type": "datetime(6)",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              }
+            ],
+            "count_star": 0,
+            "proof_of_read": {
+              "row_returned": false,
+              "reason": "TABLE_EMPTY_OR_LIMIT_NO_ROW",
+              "col_names": [
+                "id",
+                "client_category",
+                "content",
+                "description",
+                "date_created",
+                "status",
+                "phone_number",
+                "payment_method",
+                "telco",
+                "currency",
+                "amount",
+                "invoice_number",
+                "offline",
+                "payment_request_id",
+                "payment_request_identifier",
+                "payment_instruction",
+                "payment_reference",
+                "error_code",
+                "error_message",
+                "date_deleted"
+              ]
+            }
+          },
+          {
+            "database": "tafaria_ecommerce",
+            "representative_table": "access_types",
+            "table_count_in_schema": 130,
+            "columns_meta": [
+              {
+                "field": "id",
+                "type": "bigint(20) unsigned",
+                "null": "NO",
+                "key": "PRI",
+                "default": null,
+                "extra": "auto_increment"
+              },
+              {
+                "field": "name",
+                "type": "varchar(191)",
+                "null": "NO",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "slug",
+                "type": "varchar(191)",
+                "null": "YES",
+                "key": "UNI",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "status",
+                "type": "varchar(191)",
+                "null": "NO",
+                "key": "",
+                "default": "<default_hidden>",
+                "extra": ""
+              },
+              {
+                "field": "created_by",
+                "type": "bigint(20) unsigned",
+                "null": "YES",
+                "key": "MUL",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "created_at",
+                "type": "timestamp",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "updated_at",
+                "type": "timestamp",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              }
+            ],
+            "count_star": 5,
+            "proof_of_read": {
+              "row_returned": true,
+              "col_names": [
+                "id",
+                "name",
+                "slug",
+                "status",
+                "created_by",
+                "created_at",
+                "updated_at"
+              ],
+              "value_shape_by_col": {
+                "id": {
+                  "python_type": "int",
+                  "is_null": false,
+                  "int_bit_len": 1
+                },
+                "name": {
+                  "python_type": "str",
+                  "is_null": false,
+                  "char_len": 6,
+                  "byte_len": 6
+                },
+                "slug": {
+                  "python_type": "NoneType",
+                  "is_null": true
+                },
+                "status": {
+                  "python_type": "str",
+                  "is_null": false,
+                  "char_len": 6,
+                  "byte_len": 6
+                },
+                "created_by": {
+                  "python_type": "NoneType",
+                  "is_null": true
+                },
+                "created_at": {
+                  "python_type": "datetime",
+                  "is_null": false,
+                  "repr_class": "datetime"
+                },
+                "updated_at": {
+                  "python_type": "datetime",
+                  "is_null": false,
+                  "repr_class": "datetime"
+                }
+              }
+            }
+          },
+          {
+            "database": "tafaria_shop",
+            "representative_table": "addresses",
+            "table_count_in_schema": 117,
+            "columns_meta": [
+              {
+                "field": "id",
+                "type": "int(10) unsigned",
+                "null": "NO",
+                "key": "PRI",
+                "default": null,
+                "extra": "auto_increment"
+              },
+              {
+                "field": "address_type",
+                "type": "varchar(191)",
+                "null": "NO",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "customer_id",
+                "type": "int(10) unsigned",
+                "null": "YES",
+                "key": "MUL",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "cart_id",
+                "type": "int(10) unsigned",
+                "null": "YES",
+                "key": "MUL",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "order_id",
+                "type": "int(10) unsigned",
+                "null": "YES",
+                "key": "MUL",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "first_name",
+                "type": "varchar(191)",
+                "null": "NO",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "last_name",
+                "type": "varchar(191)",
+                "null": "NO",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "gender",
+                "type": "varchar(191)",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "company_name",
+                "type": "varchar(191)",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "address1",
+                "type": "varchar(191)",
+                "null": "NO",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "address2",
+                "type": "varchar(191)",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "postcode",
+                "type": "varchar(191)",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "city",
+                "type": "varchar(191)",
+                "null": "NO",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "state",
+                "type": "varchar(191)",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "country",
+                "type": "varchar(191)",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "email",
+                "type": "varchar(191)",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "phone",
+                "type": "varchar(191)",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "vat_id",
+                "type": "varchar(191)",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "default_address",
+                "type": "tinyint(1)",
+                "null": "NO",
+                "key": "",
+                "default": "<default_hidden>",
+                "extra": ""
+              },
+              {
+                "field": "additional",
+                "type": "json",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "created_at",
+                "type": "timestamp",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "updated_at",
+                "type": "timestamp",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              }
+            ],
+            "count_star": 0,
+            "proof_of_read": {
+              "row_returned": false,
+              "reason": "TABLE_EMPTY_OR_LIMIT_NO_ROW",
+              "col_names": [
+                "id",
+                "address_type",
+                "customer_id",
+                "cart_id",
+                "order_id",
+                "first_name",
+                "last_name",
+                "gender",
+                "company_name",
+                "address1",
+                "address2",
+                "postcode",
+                "city",
+                "state",
+                "country",
+                "email",
+                "phone",
+                "vat_id",
+                "default_address",
+                "additional",
+                "created_at",
+                "updated_at"
+              ]
+            }
+          },
+          {
+            "database": "viupay_dev",
+            "representative_table": "cache",
+            "table_count_in_schema": 37,
+            "columns_meta": [
+              {
+                "field": "key",
+                "type": "varchar(255)",
+                "null": "NO",
+                "key": "PRI",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "value",
+                "type": "mediumtext",
+                "null": "NO",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "expiration",
+                "type": "int(11)",
+                "null": "NO",
+                "key": "",
+                "default": null,
+                "extra": ""
+              }
+            ],
+            "count_star": 21,
+            "proof_of_read": {
+              "row_returned": true,
+              "col_names": [
+                "key",
+                "value",
+                "expiration"
+              ],
+              "value_shape_by_col": {
+                "key": {
+                  "python_type": "str",
+                  "is_null": false,
+                  "char_len": 44,
+                  "byte_len": 44
+                },
+                "value": {
+                  "python_type": "str",
+                  "is_null": false,
+                  "char_len": 4,
+                  "byte_len": 4
+                },
+                "expiration": {
+                  "python_type": "int",
+                  "is_null": false,
+                  "int_bit_len": 31
+                }
+              }
+            }
+          },
+          {
+            "database": "viupay_fare",
+            "representative_table": "agent_api_logs",
+            "table_count_in_schema": 42,
+            "columns_meta": [
+              {
+                "field": "id",
+                "type": "int(11)",
+                "null": "NO",
+                "key": "PRI",
+                "default": null,
+                "extra": "auto_increment"
+              },
+              {
+                "field": "msisdn",
+                "type": "varchar(50)",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "sessionid",
+                "type": "varchar(255)",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "urlcall",
+                "type": "varchar(255)",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "urlresponse",
+                "type": "varchar(500)",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "entrydate",
+                "type": "datetime",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": "on update CURRENT_TIMESTAMP"
+              }
+            ],
+            "count_star": 696796,
+            "proof_of_read": {
+              "row_returned": true,
+              "col_names": [
+                "id",
+                "msisdn",
+                "sessionid",
+                "urlcall",
+                "urlresponse",
+                "entrydate"
+              ],
+              "value_shape_by_col": {
+                "id": {
+                  "python_type": "int",
+                  "is_null": false,
+                  "int_bit_len": 1
+                },
+                "msisdn": {
+                  "python_type": "str",
+                  "is_null": false,
+                  "char_len": 12,
+                  "byte_len": 12
+                },
+                "sessionid": {
+                  "python_type": "str",
+                  "is_null": false,
+                  "char_len": 12,
+                  "byte_len": 12
+                },
+                "urlcall": {
+                  "python_type": "str",
+                  "is_null": false,
+                  "char_len": 58,
+                  "byte_len": 58
+                },
+                "urlresponse": {
+                  "python_type": "str",
+                  "is_null": false,
+                  "char_len": 247,
+                  "byte_len": 247
+                },
+                "entrydate": {
+                  "python_type": "datetime",
+                  "is_null": false,
+                  "repr_class": "datetime"
+                }
+              }
+            }
+          },
+          {
+            "database": "viupay_fare_test",
+            "representative_table": "agent_api_logs",
+            "table_count_in_schema": 41,
+            "columns_meta": [
+              {
+                "field": "id",
+                "type": "int(11)",
+                "null": "NO",
+                "key": "PRI",
+                "default": null,
+                "extra": "auto_increment"
+              },
+              {
+                "field": "msisdn",
+                "type": "varchar(50)",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "sessionid",
+                "type": "varchar(255)",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "urlcall",
+                "type": "varchar(255)",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "urlresponse",
+                "type": "varchar(500)",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "entrydate",
+                "type": "datetime",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": "on update CURRENT_TIMESTAMP"
+              }
+            ],
+            "count_star": 696796,
+            "proof_of_read": {
+              "row_returned": true,
+              "col_names": [
+                "id",
+                "msisdn",
+                "sessionid",
+                "urlcall",
+                "urlresponse",
+                "entrydate"
+              ],
+              "value_shape_by_col": {
+                "id": {
+                  "python_type": "int",
+                  "is_null": false,
+                  "int_bit_len": 1
+                },
+                "msisdn": {
+                  "python_type": "str",
+                  "is_null": false,
+                  "char_len": 12,
+                  "byte_len": 12
+                },
+                "sessionid": {
+                  "python_type": "str",
+                  "is_null": false,
+                  "char_len": 12,
+                  "byte_len": 12
+                },
+                "urlcall": {
+                  "python_type": "str",
+                  "is_null": false,
+                  "char_len": 58,
+                  "byte_len": 58
+                },
+                "urlresponse": {
+                  "python_type": "str",
+                  "is_null": false,
+                  "char_len": 247,
+                  "byte_len": 247
+                },
+                "entrydate": {
+                  "python_type": "datetime",
+                  "is_null": false,
+                  "repr_class": "datetime"
+                }
+              }
+            }
+          },
+          {
+            "database": "viusasa_dev",
+            "representative_table": "access_types",
+            "table_count_in_schema": 132,
+            "columns_meta": [
+              {
+                "field": "id",
+                "type": "bigint(20) unsigned",
+                "null": "NO",
+                "key": "PRI",
+                "default": null,
+                "extra": "auto_increment"
+              },
+              {
+                "field": "name",
+                "type": "varchar(191)",
+                "null": "NO",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "slug",
+                "type": "varchar(191)",
+                "null": "YES",
+                "key": "UNI",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "status",
+                "type": "varchar(191)",
+                "null": "NO",
+                "key": "",
+                "default": "<default_hidden>",
+                "extra": ""
+              },
+              {
+                "field": "created_by",
+                "type": "bigint(20) unsigned",
+                "null": "YES",
+                "key": "MUL",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "created_at",
+                "type": "timestamp",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "updated_at",
+                "type": "timestamp",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              }
+            ],
+            "count_star": 5,
+            "proof_of_read": {
+              "row_returned": true,
+              "col_names": [
+                "id",
+                "name",
+                "slug",
+                "status",
+                "created_by",
+                "created_at",
+                "updated_at"
+              ],
+              "value_shape_by_col": {
+                "id": {
+                  "python_type": "int",
+                  "is_null": false,
+                  "int_bit_len": 1
+                },
+                "name": {
+                  "python_type": "str",
+                  "is_null": false,
+                  "char_len": 6,
+                  "byte_len": 6
+                },
+                "slug": {
+                  "python_type": "str",
+                  "is_null": false,
+                  "char_len": 6,
+                  "byte_len": 6
+                },
+                "status": {
+                  "python_type": "str",
+                  "is_null": false,
+                  "char_len": 6,
+                  "byte_len": 6
+                },
+                "created_by": {
+                  "python_type": "NoneType",
+                  "is_null": true
+                },
+                "created_at": {
+                  "python_type": "datetime",
+                  "is_null": false,
+                  "repr_class": "datetime"
+                },
+                "updated_at": {
+                  "python_type": "datetime",
+                  "is_null": false,
+                  "repr_class": "datetime"
+                }
+              }
+            }
+          },
+          {
+            "database": "viusasa_staging",
+            "representative_table": "access_types",
+            "table_count_in_schema": 162,
+            "columns_meta": [
+              {
+                "field": "id",
+                "type": "bigint(20) unsigned",
+                "null": "NO",
+                "key": "PRI",
+                "default": null,
+                "extra": "auto_increment"
+              },
+              {
+                "field": "name",
+                "type": "varchar(191)",
+                "null": "NO",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "slug",
+                "type": "varchar(191)",
+                "null": "YES",
+                "key": "UNI",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "status",
+                "type": "varchar(191)",
+                "null": "NO",
+                "key": "",
+                "default": "<default_hidden>",
+                "extra": ""
+              },
+              {
+                "field": "created_by",
+                "type": "bigint(20) unsigned",
+                "null": "YES",
+                "key": "MUL",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "created_at",
+                "type": "timestamp",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "updated_at",
+                "type": "timestamp",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              }
+            ],
+            "count_star": 7,
+            "proof_of_read": {
+              "row_returned": true,
+              "col_names": [
+                "id",
+                "name",
+                "slug",
+                "status",
+                "created_by",
+                "created_at",
+                "updated_at"
+              ],
+              "value_shape_by_col": {
+                "id": {
+                  "python_type": "int",
+                  "is_null": false,
+                  "int_bit_len": 1
+                },
+                "name": {
+                  "python_type": "str",
+                  "is_null": false,
+                  "char_len": 6,
+                  "byte_len": 6
+                },
+                "slug": {
+                  "python_type": "str",
+                  "is_null": false,
+                  "char_len": 6,
+                  "byte_len": 6
+                },
+                "status": {
+                  "python_type": "str",
+                  "is_null": false,
+                  "char_len": 6,
+                  "byte_len": 6
+                },
+                "created_by": {
+                  "python_type": "NoneType",
+                  "is_null": true
+                },
+                "created_at": {
+                  "python_type": "datetime",
+                  "is_null": false,
+                  "repr_class": "datetime"
+                },
+                "updated_at": {
+                  "python_type": "datetime",
+                  "is_null": false,
+                  "repr_class": "datetime"
+                }
+              }
+            }
+          },
+          {
+            "database": "viusasa_staging_2",
+            "representative_table": "access_types",
+            "table_count_in_schema": 138,
+            "columns_meta": [
+              {
+                "field": "id",
+                "type": "bigint(20) unsigned",
+                "null": "NO",
+                "key": "PRI",
+                "default": null,
+                "extra": "auto_increment"
+              },
+              {
+                "field": "name",
+                "type": "varchar(191)",
+                "null": "NO",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "slug",
+                "type": "varchar(191)",
+                "null": "YES",
+                "key": "UNI",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "status",
+                "type": "varchar(191)",
+                "null": "NO",
+                "key": "",
+                "default": "<default_hidden>",
+                "extra": ""
+              },
+              {
+                "field": "created_by",
+                "type": "bigint(20) unsigned",
+                "null": "YES",
+                "key": "MUL",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "created_at",
+                "type": "timestamp",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "updated_at",
+                "type": "timestamp",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              }
+            ],
+            "count_star": 5,
+            "proof_of_read": {
+              "row_returned": true,
+              "col_names": [
+                "id",
+                "name",
+                "slug",
+                "status",
+                "created_by",
+                "created_at",
+                "updated_at"
+              ],
+              "value_shape_by_col": {
+                "id": {
+                  "python_type": "int",
+                  "is_null": false,
+                  "int_bit_len": 1
+                },
+                "name": {
+                  "python_type": "str",
+                  "is_null": false,
+                  "char_len": 6,
+                  "byte_len": 6
+                },
+                "slug": {
+                  "python_type": "NoneType",
+                  "is_null": true
+                },
+                "status": {
+                  "python_type": "str",
+                  "is_null": false,
+                  "char_len": 6,
+                  "byte_len": 6
+                },
+                "created_by": {
+                  "python_type": "NoneType",
+                  "is_null": true
+                },
+                "created_at": {
+                  "python_type": "datetime",
+                  "is_null": false,
+                  "repr_class": "datetime"
+                },
+                "updated_at": {
+                  "python_type": "datetime",
+                  "is_null": false,
+                  "repr_class": "datetime"
+                }
+              }
+            }
+          },
+          {
+            "database": "viusasa_staging_dev",
+            "representative_table": "access_types",
+            "table_count_in_schema": 150,
+            "columns_meta": [
+              {
+                "field": "id",
+                "type": "bigint(20) unsigned",
+                "null": "NO",
+                "key": "PRI",
+                "default": null,
+                "extra": "auto_increment"
+              },
+              {
+                "field": "name",
+                "type": "varchar(191)",
+                "null": "NO",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "slug",
+                "type": "varchar(191)",
+                "null": "YES",
+                "key": "UNI",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "status",
+                "type": "varchar(191)",
+                "null": "NO",
+                "key": "",
+                "default": "<default_hidden>",
+                "extra": ""
+              },
+              {
+                "field": "created_by",
+                "type": "bigint(20) unsigned",
+                "null": "YES",
+                "key": "MUL",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "created_at",
+                "type": "timestamp",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "updated_at",
+                "type": "timestamp",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              }
+            ],
+            "count_star": 0,
+            "proof_of_read": {
+              "row_returned": false,
+              "reason": "TABLE_EMPTY_OR_LIMIT_NO_ROW",
+              "col_names": [
+                "id",
+                "name",
+                "slug",
+                "status",
+                "created_by",
+                "created_at",
+                "updated_at"
+              ]
+            }
+          },
+          {
+            "database": "viutickets",
+            "representative_table": "affiliates",
+            "table_count_in_schema": 56,
+            "columns_meta": [
+              {
+                "field": "id",
+                "type": "bigint(20) unsigned",
+                "null": "NO",
+                "key": "PRI",
+                "default": null,
+                "extra": "auto_increment"
+              },
+              {
+                "field": "user_id",
+                "type": "bigint(20) unsigned",
+                "null": "NO",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "name",
+                "type": "varchar(255)",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "email",
+                "type": "varchar(255)",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "phone",
+                "type": "varchar(255)",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "commission",
+                "type": "double(10,2)",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "created_at",
+                "type": "timestamp",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "updated_at",
+                "type": "timestamp",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              }
+            ],
+            "count_star": 25,
+            "proof_of_read": {
+              "row_returned": true,
+              "col_names": [
+                "id",
+                "user_id",
+                "name",
+                "email",
+                "phone",
+                "commission",
+                "created_at",
+                "updated_at"
+              ],
+              "value_shape_by_col": {
+                "id": {
+                  "python_type": "int",
+                  "is_null": false,
+                  "int_bit_len": 1
+                },
+                "user_id": {
+                  "python_type": "int",
+                  "is_null": false,
+                  "int_bit_len": 5
+                },
+                "name": {
+                  "python_type": "str",
+                  "is_null": false,
+                  "char_len": 3,
+                  "byte_len": 3
+                },
+                "email": {
+                  "python_type": "str",
+                  "is_null": false,
+                  "char_len": 22,
+                  "byte_len": 22
+                },
+                "phone": {
+                  "python_type": "str",
+                  "is_null": false,
+                  "char_len": 10,
+                  "byte_len": 10
+                },
+                "commission": {
+                  "python_type": "float",
+                  "is_null": false,
+                  "int_bit_len": 0
+                },
+                "created_at": {
+                  "python_type": "datetime",
+                  "is_null": false,
+                  "repr_class": "datetime"
+                },
+                "updated_at": {
+                  "python_type": "datetime",
+                  "is_null": false,
+                  "repr_class": "datetime"
+                }
+              }
+            }
+          },
+          {
+            "database": "viutickets_dev",
+            "representative_table": "affiliates",
+            "table_count_in_schema": 44,
+            "columns_meta": [
+              {
+                "field": "id",
+                "type": "bigint(20) unsigned",
+                "null": "NO",
+                "key": "PRI",
+                "default": null,
+                "extra": "auto_increment"
+              },
+              {
+                "field": "user_id",
+                "type": "bigint(20) unsigned",
+                "null": "NO",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "name",
+                "type": "varchar(255)",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "email",
+                "type": "varchar(255)",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "phone",
+                "type": "varchar(255)",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "commission",
+                "type": "double(10,2)",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "created_at",
+                "type": "timestamp",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "updated_at",
+                "type": "timestamp",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              }
+            ],
+            "count_star": 1,
+            "proof_of_read": {
+              "row_returned": true,
+              "col_names": [
+                "id",
+                "user_id",
+                "name",
+                "email",
+                "phone",
+                "commission",
+                "created_at",
+                "updated_at"
+              ],
+              "value_shape_by_col": {
+                "id": {
+                  "python_type": "int",
+                  "is_null": false,
+                  "int_bit_len": 1
+                },
+                "user_id": {
+                  "python_type": "int",
+                  "is_null": false,
+                  "int_bit_len": 3
+                },
+                "name": {
+                  "python_type": "str",
+                  "is_null": false,
+                  "char_len": 13,
+                  "byte_len": 13
+                },
+                "email": {
+                  "python_type": "str",
+                  "is_null": false,
+                  "char_len": 19,
+                  "byte_len": 19
+                },
+                "phone": {
+                  "python_type": "str",
+                  "is_null": false,
+                  "char_len": 13,
+                  "byte_len": 13
+                },
+                "commission": {
+                  "python_type": "float",
+                  "is_null": false,
+                  "int_bit_len": 0
+                },
+                "created_at": {
+                  "python_type": "datetime",
+                  "is_null": false,
+                  "repr_class": "datetime"
+                },
+                "updated_at": {
+                  "python_type": "datetime",
+                  "is_null": false,
+                  "repr_class": "datetime"
+                }
+              }
+            }
+          }
+        ],
+        "readable_schemas": [
+          "citizen_digital",
+          "db_jipange",
+          "db_skiza",
+          "freddy_dev",
+          "miniapps",
+          "tafaria_ecommerce",
+          "tafaria_shop",
+          "viupay_dev",
+          "viupay_fare",
+          "viupay_fare_test",
+          "viusasa_dev",
+          "viusasa_staging",
+          "viusasa_staging_2",
+          "viusasa_staging_dev",
+          "viutickets",
+          "viutickets_dev"
+        ],
+        "schemas_with_read_error": [],
+        "total_elapsed_s": 23.683
+      },
+      "outcome": "OK"
+    },
+    {
+      "surface": "MICROSERVICES-primary-owner-named",
+      "host": "159.138.162.146",
+      "expected_schemas_in_sheet": [
+        "analytics",
+        "sql_demo",
+        "sql_trial1",
+        "weego",
+        "citizen-digital"
+      ],
+      "creds_in_sheet": false,
+      "outcome": "NO_CREDS_IN_SHEET",
+      "explicit": "Sheet parses to user_len=0, pass_len=0 for this host. Structure probe confirms no merged-cell inheritance carries creds into this row (no C/D merge range covers this host's row). Cannot authenticate. Admin scope-grant ask: request cred drop for this host."
+    },
+    {
+      "surface": "MICROSERVICES-credentialed-sibling",
+      "host": "159.138.164.93",
+      "expected_schemas_in_sheet": [
+        "viupay",
+        "viutickets"
+      ],
+      "creds_in_sheet": true,
+      "tcp_open_via_jump": true,
+      "sweep": {
+        "cluster_label": "MICROSERVICES-credentialed-sibling",
+        "expected_schemas_in_sheet": [
+          "viupay",
+          "viutickets"
+        ],
+        "auth": {
+          "ok": true,
+          "elapsed_s": 1.139,
+          "server_version": "8.0.28-231003"
+        },
+        "show_databases": [
+          "information_schema",
+          "kra_reports",
+          "performance_schema",
+          "sys",
+          "viupay",
+          "viutickets"
+        ],
+        "user_databases": [
+          "kra_reports",
+          "viupay",
+          "viutickets"
+        ],
+        "per_schema": [
+          {
+            "database": "kra_reports",
+            "representative_table": "command_logs",
+            "table_count_in_schema": 27,
+            "columns_meta": [
+              {
+                "field": "id",
+                "type": "int unsigned",
+                "null": "NO",
+                "key": "PRI",
+                "default": null,
+                "extra": "auto_increment"
+              },
+              {
+                "field": "command",
+                "type": "varchar(255)",
+                "null": "NO",
+                "key": "MUL",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "status",
+                "type": "varchar(255)",
+                "null": "NO",
+                "key": "",
+                "default": "<default_hidden>",
+                "extra": ""
+              },
+              {
+                "field": "started_at",
+                "type": "timestamp",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "finished_at",
+                "type": "timestamp",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "duration_seconds",
+                "type": "decimal(10,3)",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "exit_code",
+                "type": "int",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "output",
+                "type": "text",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "created_at",
+                "type": "timestamp",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "updated_at",
+                "type": "timestamp",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              }
+            ],
+            "count_star": 57075,
+            "proof_of_read": {
+              "row_returned": true,
+              "col_names": [
+                "id",
+                "command",
+                "status",
+                "started_at",
+                "finished_at",
+                "duration_seconds",
+                "exit_code",
+                "output",
+                "created_at",
+                "updated_at"
+              ],
+              "value_shape_by_col": {
+                "id": {
+                  "python_type": "int",
+                  "is_null": false,
+                  "int_bit_len": 21
+                },
+                "command": {
+                  "python_type": "str",
+                  "is_null": false,
+                  "char_len": 20,
+                  "byte_len": 20
+                },
+                "status": {
+                  "python_type": "str",
+                  "is_null": false,
+                  "char_len": 7,
+                  "byte_len": 7
+                },
+                "started_at": {
+                  "python_type": "datetime",
+                  "is_null": false,
+                  "repr_class": "datetime"
+                },
+                "finished_at": {
+                  "python_type": "datetime",
+                  "is_null": false,
+                  "repr_class": "datetime"
+                },
+                "duration_seconds": {
+                  "python_type": "Decimal",
+                  "is_null": false,
+                  "repr_class": "Decimal"
+                },
+                "exit_code": {
+                  "python_type": "int",
+                  "is_null": false,
+                  "int_bit_len": 0
+                },
+                "output": {
+                  "python_type": "str",
+                  "is_null": false,
+                  "char_len": 26,
+                  "byte_len": 26
+                },
+                "created_at": {
+                  "python_type": "datetime",
+                  "is_null": false,
+                  "repr_class": "datetime"
+                },
+                "updated_at": {
+                  "python_type": "datetime",
+                  "is_null": false,
+                  "repr_class": "datetime"
+                }
+              }
+            }
+          },
+          {
+            "database": "viupay",
+            "representative_table": "cache",
+            "table_count_in_schema": 39,
+            "columns_meta": [
+              {
+                "field": "key",
+                "type": "varchar(255)",
+                "null": "NO",
+                "key": "PRI",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "value",
+                "type": "mediumtext",
+                "null": "NO",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "expiration",
+                "type": "int",
+                "null": "NO",
+                "key": "",
+                "default": null,
+                "extra": ""
+              }
+            ],
+            "count_star": 48,
+            "proof_of_read": {
+              "row_returned": true,
+              "col_names": [
+                "key",
+                "value",
+                "expiration"
+              ],
+              "value_shape_by_col": {
+                "key": {
+                  "python_type": "str",
+                  "is_null": false,
+                  "char_len": 44,
+                  "byte_len": 44
+                },
+                "value": {
+                  "python_type": "str",
+                  "is_null": false,
+                  "char_len": 4,
+                  "byte_len": 4
+                },
+                "expiration": {
+                  "python_type": "int",
+                  "is_null": false,
+                  "int_bit_len": 31
+                }
+              }
+            }
+          },
+          {
+            "database": "viutickets",
+            "representative_table": "affiliates",
+            "table_count_in_schema": 57,
+            "columns_meta": [
+              {
+                "field": "id",
+                "type": "bigint unsigned",
+                "null": "NO",
+                "key": "PRI",
+                "default": null,
+                "extra": "auto_increment"
+              },
+              {
+                "field": "user_id",
+                "type": "bigint unsigned",
+                "null": "NO",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "name",
+                "type": "varchar(255)",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "email",
+                "type": "varchar(255)",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "phone",
+                "type": "varchar(255)",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "commission",
+                "type": "double(10,2)",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "created_at",
+                "type": "timestamp",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              },
+              {
+                "field": "updated_at",
+                "type": "timestamp",
+                "null": "YES",
+                "key": "",
+                "default": null,
+                "extra": ""
+              }
+            ],
+            "count_star": 63,
+            "proof_of_read": {
+              "row_returned": true,
+              "col_names": [
+                "id",
+                "user_id",
+                "name",
+                "email",
+                "phone",
+                "commission",
+                "created_at",
+                "updated_at"
+              ],
+              "value_shape_by_col": {
+                "id": {
+                  "python_type": "int",
+                  "is_null": false,
+                  "int_bit_len": 1
+                },
+                "user_id": {
+                  "python_type": "int",
+                  "is_null": false,
+                  "int_bit_len": 5
+                },
+                "name": {
+                  "python_type": "str",
+                  "is_null": false,
+                  "char_len": 3,
+                  "byte_len": 3
+                },
+                "email": {
+                  "python_type": "str",
+                  "is_null": false,
+                  "char_len": 22,
+                  "byte_len": 22
+                },
+                "phone": {
+                  "python_type": "str",
+                  "is_null": false,
+                  "char_len": 10,
+                  "byte_len": 10
+                },
+                "commission": {
+                  "python_type": "float",
+                  "is_null": false,
+                  "int_bit_len": 0
+                },
+                "created_at": {
+                  "python_type": "datetime",
+                  "is_null": false,
+                  "repr_class": "datetime"
+                },
+                "updated_at": {
+                  "python_type": "datetime",
+                  "is_null": false,
+                  "repr_class": "datetime"
+                }
+              }
+            }
+          }
+        ],
+        "readable_schemas": [
+          "kra_reports",
+          "viupay",
+          "viutickets"
+        ],
+        "schemas_with_read_error": [],
+        "total_elapsed_s": 5.458
+      },
+      "outcome": "OK"
+    }
+  ],
+  "section_C_nas": {
+    "surface": "NAS DSM 10.10.55.55:5000",
+    "outcome": "STALE_CREDS_IN_SHEET",
+    "explicit_answer": "Cannot read today \u2014 banked NAS credentials REJECTED across DSM HTTP (SYNO.API.Auth error 400 across POST/GET \u00d7 v2/3/6/7) and SMB (NT_STATUS_LOGON_FAILURE across SMB2/SMB3/native and guest -N). Network path HEALTHY: JUMP tunnel, DSM 5000, DSM 5001 (TLS 1.3), SMB 445 all reachable. Root cause: post-2026-09-16 rotation not propagated to the sheet, or incorrect transcription at rotation-check drop.",
+    "historical_last_known_good_scope_2026_09_14": {
+      "vantage": "JUMP SSH -> smbclient",
+      "visible_shares": [
+        "ADS",
+        "ATTENDANCE",
+        "BACKUP1",
+        "COMMERCIALS",
+        "GRAPHICS",
+        "HRMIS",
+        "NetBackup",
+        "NEWSCLIPS",
+        "PROMOS",
+        "video",
+        "web",
+        "web_packages"
+      ],
+      "hidden_but_readable_via_direct_connect": [
+        "OFFAIRRECS"
+      ],
+      "readable_shares_at_the_time": [
+        "OFFAIRRECS"
+      ],
+      "denied_shares_at_the_time": [
+        "ATTENDANCE",
+        "HRMIS",
+        "video",
+        "web",
+        "web_packages",
+        "BACKUP1",
+        "NetBackup",
+        "GRAPHICS"
+      ],
+      "volume_scale_bytes_approx_tib": 48.85,
+      "classification": "PARTIAL_service_account_scoped_1_of_13_readable"
+    },
+    "citations": [
+      "phase0/connectivity_receipts/20260921T132205Z_NAS_schema_survey_S2_owner_authorized_20260921.json",
+      "phase0/connectivity_receipts/20260921T132533Z_NAS_schema_survey_S2_v2_auth_matrix_and_smb_enum_20260921.json",
+      "phase0/connectivity_receipts/20260921T132733Z_NAS_creds_structure_probe_S2_v3.json",
+      "phase0/connectivity_receipts/20260921T132947Z_NAS_smb_final_layer_pin_S2_20260921.json",
+      "STATE/notes/S2_NAS_SCHEMA_SURVEY_STATE_20260921.md"
+    ]
+  },
+  "section_D_obs": {
+    "credential_shape": {
+      "path": "/app/backend/estate_keys/data_sources/huawei_credentials_2_20260916.csv",
+      "sha256": "8a14174c6a5167cb7fb2f8877b4c3b3ed2d1eed7540aeab0fc4f654457698667",
+      "ak_len": 20,
+      "sk_len": 40,
+      "ak_prefix4": "HPUA",
+      "user_name_shape": {
+        "len": 12
+      }
+    },
+    "bucket_sample": [
+      {
+        "bucket": "2024offairrecs",
+        "region": "af-south-1"
+      },
+      {
+        "bucket": "cal-docs",
+        "region": "af-south-1"
+      },
+      {
+        "bucket": "chamgei-backup",
+        "region": "af-south-1"
+      },
+      {
+        "bucket": "apr252017",
+        "region": "tr-west-1"
+      },
+      {
+        "bucket": "feb272017",
+        "region": "tr-west-1"
+      },
+      {
+        "bucket": "librarydirectupload2",
+        "region": "tr-west-1"
+      },
+      {
+        "bucket": "citizen-vod",
+        "region": "ap-southeast-3"
+      },
+      {
+        "bucket": "iso-rms-storage",
+        "region": "ap-southeast-3"
+      },
+      {
+        "bucket": "rms-ai",
+        "region": "ap-southeast-1"
+      }
+    ],
+    "per_bucket_results": [
+      {
+        "bucket": "2024offairrecs",
+        "region_assumed": "af-south-1",
+        "endpoint": "obs.af-south-1.myhuaweicloud.com",
+        "head_bucket": {
+          "status": 200,
+          "errorCode": null,
+          "elapsed_s": 2.305
+        },
+        "error_class": "TypeError",
+        "error_msg": "ObsClient.listObjects() got an unexpected keyword argument 'maxKeys'"
+      },
+      {
+        "bucket": "cal-docs",
+        "region_assumed": "af-south-1",
+        "endpoint": "obs.af-south-1.myhuaweicloud.com",
+        "head_bucket": {
+          "status": 200,
+          "errorCode": null,
+          "elapsed_s": 2.181
+        },
+        "error_class": "TypeError",
+        "error_msg": "ObsClient.listObjects() got an unexpected keyword argument 'maxKeys'"
+      },
+      {
+        "bucket": "chamgei-backup",
+        "region_assumed": "af-south-1",
+        "endpoint": "obs.af-south-1.myhuaweicloud.com",
+        "head_bucket": {
+          "status": 200,
+          "errorCode": null,
+          "elapsed_s": 2.249
+        },
+        "error_class": "TypeError",
+        "error_msg": "ObsClient.listObjects() got an unexpected keyword argument 'maxKeys'"
+      },
+      {
+        "bucket": "apr252017",
+        "region_assumed": "tr-west-1",
+        "endpoint": "obs.tr-west-1.myhuaweicloud.com",
+        "head_bucket": {
+          "status": 200,
+          "errorCode": null,
+          "elapsed_s": 1.574
+        },
+        "error_class": "TypeError",
+        "error_msg": "ObsClient.listObjects() got an unexpected keyword argument 'maxKeys'"
+      },
+      {
+        "bucket": "feb272017",
+        "region_assumed": "tr-west-1",
+        "endpoint": "obs.tr-west-1.myhuaweicloud.com",
+        "head_bucket": {
+          "status": 200,
+          "errorCode": null,
+          "elapsed_s": 1.521
+        },
+        "error_class": "TypeError",
+        "error_msg": "ObsClient.listObjects() got an unexpected keyword argument 'maxKeys'"
+      },
+      {
+        "bucket": "librarydirectupload2",
+        "region_assumed": "tr-west-1",
+        "endpoint": "obs.tr-west-1.myhuaweicloud.com",
+        "head_bucket": {
+          "status": 200,
+          "errorCode": null,
+          "elapsed_s": 1.144
+        },
+        "error_class": "TypeError",
+        "error_msg": "ObsClient.listObjects() got an unexpected keyword argument 'maxKeys'"
+      },
+      {
+        "bucket": "citizen-vod",
+        "region_assumed": "ap-southeast-3",
+        "endpoint": "obs.ap-southeast-3.myhuaweicloud.com",
+        "head_bucket": {
+          "status": 200,
+          "errorCode": null,
+          "elapsed_s": 1.769
+        },
+        "error_class": "TypeError",
+        "error_msg": "ObsClient.listObjects() got an unexpected keyword argument 'maxKeys'"
+      },
+      {
+        "bucket": "iso-rms-storage",
+        "region_assumed": "ap-southeast-3",
+        "endpoint": "obs.ap-southeast-3.myhuaweicloud.com",
+        "head_bucket": {
+          "status": 200,
+          "errorCode": null,
+          "elapsed_s": 1.766
+        },
+        "error_class": "TypeError",
+        "error_msg": "ObsClient.listObjects() got an unexpected keyword argument 'maxKeys'"
+      },
+      {
+        "bucket": "rms-ai",
+        "region_assumed": "ap-southeast-1",
+        "endpoint": "obs.ap-southeast-1.myhuaweicloud.com",
+        "head_bucket": {
+          "status": 200,
+          "errorCode": null,
+          "elapsed_s": 1.536
+        },
+        "error_class": "TypeError",
+        "error_msg": "ObsClient.listObjects() got an unexpected keyword argument 'maxKeys'"
+      }
+    ],
+    "proof_of_read_rms_ai": {
+      "bucket": "rms-ai",
+      "region": "ap-southeast-1",
+      "error_class": "TypeError",
+      "error_msg": "ObsClient.listObjects() got an unexpected keyword argument 'maxKeys'"
+    },
+    "region_rollup": {
+      "af-south-1": {
+        "buckets_probed": 3,
+        "head_2xx": 3,
+        "head_other": 0,
+        "list_2xx": 0,
+        "list_other": 3,
+        "objects_visible": 0
+      },
+      "tr-west-1": {
+        "buckets_probed": 3,
+        "head_2xx": 3,
+        "head_other": 0,
+        "list_2xx": 0,
+        "list_other": 3,
+        "objects_visible": 0
+      },
+      "ap-southeast-3": {
+        "buckets_probed": 2,
+        "head_2xx": 2,
+        "head_other": 0,
+        "list_2xx": 0,
+        "list_other": 2,
+        "objects_visible": 0
+      },
+      "ap-southeast-1": {
+        "buckets_probed": 1,
+        "head_2xx": 1,
+        "head_other": 0,
+        "list_2xx": 0,
+        "list_other": 1,
+        "objects_visible": 0
+      }
+    }
+  },
+  "section_E_consolidated_matrix": {
+    "columns": [
+      "surface",
+      "auth",
+      "enumerate",
+      "proof_of_read",
+      "content_readable",
+      "failure_layer"
+    ],
+    "rows": [
+      {
+        "surface": "JUMP 159.138.173.250:22 (control plane)",
+        "auth": "OK (paramiko, host key un-drifted)",
+        "enumerate": "sizing captured",
+        "proof_of_read": "nproc/uptime/free -m returned rc=0",
+        "content_readable": "YES",
+        "failure_layer": null
+      },
+      {
+        "surface": "MySQL USSD @ 110.238.76.159:3306",
+        "auth": "OK",
+        "enumerate": "SHOW DATABASES \u2192 17 user schemas",
+        "proof_of_read": "SELECT... LIMIT 1 succeeded on 16 schemas",
+        "content_readable": "YES",
+        "failure_layer": null
+      },
+      {
+        "surface": "MySQL MICROSERVICES-primary-owner-named @ 159.138.162.146:3306",
+        "auth": "N/A_NO_CREDS_IN_SHEET",
+        "enumerate": null,
+        "proof_of_read": null,
+        "content_readable": "NO",
+        "failure_layer": "NO_CREDS_IN_BANKED_SHEET"
+      },
+      {
+        "surface": "MySQL MICROSERVICES-credentialed-sibling @ 159.138.164.93:3306",
+        "auth": "OK",
+        "enumerate": "SHOW DATABASES \u2192 3 user schemas",
+        "proof_of_read": "SELECT... LIMIT 1 succeeded on 3 schemas",
+        "content_readable": "YES",
+        "failure_layer": null
+      },
+      {
+        "surface": "NAS DSM 10.10.55.55:5000 (SMB 445 also)",
+        "auth": "REJECTED_STALE_CREDS_IN_SHEET",
+        "enumerate": "shares not enumerable today; historical baseline available (2026-09-14)",
+        "proof_of_read": null,
+        "content_readable": "NO_TODAY_(HISTORICALLY_PARTIAL_1_OF_13)",
+        "failure_layer": "SHEET_CRED_STALENESS_ADMIN_ASK"
+      },
+      {
+        "surface": "OBS region af-south-1",
+        "auth": "OK (AK/SK per IAM scope)",
+        "enumerate": "3/3 HeadBucket 2xx; 0/3 ListObjects 2xx; 0 objects visible in sample",
+        "proof_of_read": "N/A (proof done in ap-southeast-1 only)",
+        "content_readable": "NO",
+        "failure_layer": "REGION_af-south-1_LIST_FAILED"
+      },
+      {
+        "surface": "OBS region tr-west-1",
+        "auth": "OK (AK/SK per IAM scope)",
+        "enumerate": "3/3 HeadBucket 2xx; 0/3 ListObjects 2xx; 0 objects visible in sample",
+        "proof_of_read": "N/A (proof done in ap-southeast-1 only)",
+        "content_readable": "NO",
+        "failure_layer": "REGION_tr-west-1_LIST_FAILED"
+      },
+      {
+        "surface": "OBS region ap-southeast-3",
+        "auth": "OK (AK/SK per IAM scope)",
+        "enumerate": "2/2 HeadBucket 2xx; 0/2 ListObjects 2xx; 0 objects visible in sample",
+        "proof_of_read": "N/A (proof done in ap-southeast-1 only)",
+        "content_readable": "NO",
+        "failure_layer": "REGION_ap-southeast-3_LIST_FAILED"
+      },
+      {
+        "surface": "OBS region ap-southeast-1",
+        "auth": "OK (AK/SK per IAM scope)",
+        "enumerate": "1/1 HeadBucket 2xx; 0/1 ListObjects 2xx; 0 objects visible in sample",
+        "proof_of_read": "N/A (proof done in ap-southeast-1 only)",
+        "content_readable": "NO",
+        "failure_layer": "REGION_ap-southeast-1_LIST_FAILED"
+      }
+    ]
+  },
+  "section_F_still_blocked_mysql_clusters": {
+    "count": 5,
+    "clusters": [
+      {
+        "section": "MICROSERVICES",
+        "host": "HOST",
+        "schemas_listed_in_sheet": [
+          "WEEGO"
+        ],
+        "creds_present": false
+      },
+      {
+        "section": "MICROSERVICES",
+        "host": "159.138.162.146",
+        "schemas_listed_in_sheet": [
+          "analytics",
+          "sql_demo",
+          "sql_trial1",
+          "weego",
+          "citizen-digital"
+        ],
+        "creds_present": false
+      },
+      {
+        "section": "MICROSERVICES",
+        "host": "159.138.164.124",
+        "schemas_listed_in_sheet": [
+          "citizen_digital",
+          "db_visitors",
+          "Visitors_database"
+        ],
+        "creds_present": false
+      },
+      {
+        "section": "MICROSERVICES",
+        "host": "110.238.75.83",
+        "schemas_listed_in_sheet": [
+          "citizen_digital",
+          "db_visitors",
+          "db_visitors_old",
+          "db_visitors_v1",
+          "rembesha",
+          "Shikisha"
+        ],
+        "creds_present": false
+      },
+      {
+        "section": "MICROSERVICES",
+        "host": "203.123.83.144",
+        "schemas_listed_in_sheet": [
+          "citizen-pulse",
+          "correspondents",
+          "saa"
+        ],
+        "creds_present": false
+      }
+    ],
+    "owner_ask": "Ask RMS admin to provide read-only credentials for these MySQL hosts. Once dropped in-sheet with matching sha256 pin, the same sweep tool runs unmodified against them."
+  }
+}
