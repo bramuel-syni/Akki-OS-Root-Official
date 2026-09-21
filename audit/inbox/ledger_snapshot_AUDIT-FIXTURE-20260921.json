@@ -1,0 +1,172 @@
+{
+  "provenance": {
+    "audit_target_code_commit": "283524d89dd337d79014b114d575ced7baab6dfc",
+    "audit_target_code_tag": "audit/code-20260921",
+    "generated_at_utc": "2026-09-21T~17:45Z",
+    "generator": "generate_ledger_fixture.py",
+    "generator_path": "/app/audit/tools/generate_ledger_fixture.py",
+    "notice": "AUDIT FIXTURE \u2014 generated 2026-09-21 via the SEALED services.ledger_emitter, services.ledger_writer, and services.ledger_verifier packages. Not production data. No production tenant chain existed at export time; the fixture segment is the only chain for this tenant.",
+    "tenant_id": "AUDIT-FIXTURE-20260921"
+  },
+  "rows": [
+    {
+      "actor_id": "service:northena_admit",
+      "actor_type": "service",
+      "at": {
+        "epoch_s": 1758470401,
+        "source": "wall_clock"
+      },
+      "break_glass_session_id": null,
+      "decision": "admitted",
+      "event_type": "admit",
+      "hash": "cd3e6dc9295509bd2c04ccf14632b63bdf3a87044f0a831407b8162e4fd20786",
+      "payload_ref": "8fc8cd6aebe5f5b7eb68a81b86325ce0678665098e3c2586de703f64293f231f",
+      "prev_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+      "reason_code": "",
+      "resource_id": "obj-A",
+      "resource_type": "objective",
+      "run_id": "audit-run-20260921",
+      "schema_version": "v1",
+      "seq": 1,
+      "task_id": "audit-task-001",
+      "tenant_id": "AUDIT-FIXTURE-20260921"
+    },
+    {
+      "actor_id": "service:chokepoint_gate",
+      "actor_type": "service",
+      "at": {
+        "epoch_s": 1758470402,
+        "source": "wall_clock"
+      },
+      "break_glass_session_id": null,
+      "decision": "passed",
+      "event_type": "gate",
+      "hash": "6b60c9c5174ca4e17e032012b8c504b688572f03c1251e34178050580e267ac3",
+      "payload_ref": "54649748a8e073e14f8223bad4570fa8e313f698098f96409c62566efbbf4c27",
+      "prev_hash": "cd3e6dc9295509bd2c04ccf14632b63bdf3a87044f0a831407b8162e4fd20786",
+      "reason_code": "",
+      "resource_id": "cross-1",
+      "resource_type": "chokepoint_cross",
+      "run_id": "audit-run-20260921",
+      "schema_version": "v1",
+      "seq": 2,
+      "task_id": "audit-task-002",
+      "tenant_id": "AUDIT-FIXTURE-20260921"
+    },
+    {
+      "actor_id": "service:memory_publication",
+      "actor_type": "service",
+      "at": {
+        "epoch_s": 1758470403,
+        "source": "wall_clock"
+      },
+      "break_glass_session_id": null,
+      "decision": "refused",
+      "event_type": "refuse",
+      "hash": "fb2f27f78c1d4867aa23fc772b272a554c35b62efbfb4cffb1f6b30ce90d8ed1",
+      "payload_ref": "41f30fbbe5d8da7ff1c72911a9618cc892a0f03ab79570420a170a5c1e28f86d",
+      "prev_hash": "6b60c9c5174ca4e17e032012b8c504b688572f03c1251e34178050580e267ac3",
+      "reason_code": "publication_gate_denied",
+      "resource_id": "pub-42",
+      "resource_type": "publication",
+      "run_id": "audit-run-20260921",
+      "schema_version": "v1",
+      "seq": 3,
+      "task_id": "audit-task-003",
+      "tenant_id": "AUDIT-FIXTURE-20260921"
+    },
+    {
+      "actor_id": "service:northena_converge",
+      "actor_type": "service",
+      "at": {
+        "epoch_s": 1758470404,
+        "source": "wall_clock"
+      },
+      "break_glass_session_id": null,
+      "decision": "converged",
+      "event_type": "converge",
+      "hash": "2f9d4be1f8bc7ffeaa9e16e0ae3141d10fe9261718caa3a020b6a49f4068b4ff",
+      "payload_ref": "421811c894e4cfda326280c359841be5d1f3a9138b226bfd207c9f691c42361f",
+      "prev_hash": "fb2f27f78c1d4867aa23fc772b272a554c35b62efbfb4cffb1f6b30ce90d8ed1",
+      "reason_code": "",
+      "resource_id": "conc-77",
+      "resource_type": "solva_conclusion",
+      "run_id": "audit-run-20260921",
+      "schema_version": "v1",
+      "seq": 4,
+      "task_id": "audit-task-004",
+      "tenant_id": "AUDIT-FIXTURE-20260921"
+    },
+    {
+      "actor_id": "service:service_1_composition",
+      "actor_type": "service",
+      "at": {
+        "epoch_s": 1758470405,
+        "source": "wall_clock"
+      },
+      "break_glass_session_id": null,
+      "decision": "refused",
+      "event_type": "refuse",
+      "hash": "bf650d3819feb6254289f4a90086c9613a63c74309a2fbafb08039c527832bee",
+      "payload_ref": "dbd5f32e56bc454d27c5fb95a453f37931c4825f69bec12aa5f26a4af7cf2a51",
+      "prev_hash": "2f9d4be1f8bc7ffeaa9e16e0ae3141d10fe9261718caa3a020b6a49f4068b4ff",
+      "reason_code": "composition_below_floor",
+      "resource_id": "comp-11",
+      "resource_type": "composition",
+      "run_id": "audit-run-20260921",
+      "schema_version": "v1",
+      "seq": 5,
+      "task_id": "audit-task-005",
+      "tenant_id": "AUDIT-FIXTURE-20260921"
+    },
+    {
+      "actor_id": "service:northena_admit",
+      "actor_type": "service",
+      "at": {
+        "epoch_s": 1758470406,
+        "source": "wall_clock"
+      },
+      "break_glass_session_id": null,
+      "decision": "admitted",
+      "event_type": "admit",
+      "hash": "548b3d9bafcaec19ace23bc92520f03617dddde915c75d2120285f67ca7d78a0",
+      "payload_ref": "0ff8e0b44f00738716f5170be29b6aec835eed73541306b4687c9764d33c5c3e",
+      "prev_hash": "bf650d3819feb6254289f4a90086c9613a63c74309a2fbafb08039c527832bee",
+      "reason_code": "",
+      "resource_id": "art-9",
+      "resource_type": "artifact",
+      "run_id": "audit-run-20260921",
+      "schema_version": "v1",
+      "seq": 6,
+      "task_id": "audit-task-006",
+      "tenant_id": "AUDIT-FIXTURE-20260921"
+    }
+  ],
+  "sealed_writer_refusal_demonstration": {
+    "attempted_illegal_op": "append_intent(seq=99, prev_row.seq=6)",
+    "code": "LEDGER-WRITER-001",
+    "message_shape": {
+      "length": 41,
+      "startswith_code": true
+    },
+    "outcome": "REFUSED_BY_SEALED_WRITER"
+  },
+  "segment_bounds": {
+    "refused_row_count": 2,
+    "refused_row_seqs": [
+      3,
+      5
+    ],
+    "row_count": 6,
+    "seq_end": 6,
+    "seq_start": 1,
+    "tenant_id": "AUDIT-FIXTURE-20260921"
+  },
+  "verifier_receipt": {
+    "break_at_seq": null,
+    "head_hash": "548b3d9bafcaec19ace23bc92520f03617dddde915c75d2120285f67ca7d78a0",
+    "head_seq": 6,
+    "rows_walked": 6,
+    "tenant_id": "AUDIT-FIXTURE-20260921"
+  }
+}
