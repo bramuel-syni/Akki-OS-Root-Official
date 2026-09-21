@@ -16,13 +16,48 @@ import boto3
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
-# --- Spine bridge: WS-BUILD-CONNECT-GPU production code lives on
-#     programme/track-a in Extraction-Akki. /app/backend is the pod-shell
-#     that mounts the router. Access is source-IP allowlist per owner
-#     stop-order 2026-08-14 — the retired token gate no longer imports.
+# --- Spine bridge (two-path resolution · CP-PROD-DEPLOY-SELF-CONTAINMENT
+#     2026-09-21T~12:00Z owner directive).
+#
+#     Sandbox mode: /app/assessment_workspace/... is present. The sealed
+#     production code lives on programme/track-a in Extraction-Akki.
+#     /app/backend is the pod-shell that mounts the router.
+#
+#     Production mode: /app/assessment_workspace/... is NOT present in the
+#     container image (Emergent K8s image only packages /app/backend +
+#     /app/frontend). We fall back to the vendored twin at
+#     /app/backend/vendored/extraction_akki/backend/, which is a
+#     byte-identical mirror of the runtime subset of SPINE_BACKEND
+#     produced by tools/prod_vendor_sync.py at every seal boundary and
+#     enforced by tests/invariants/test_vendored_tree_mirrors_spine.py.
+#
+#     Override: setting AKKI_FORCE_VENDORED=1 forces the vendored branch
+#     even when SPINE_BACKEND is present (used to simulate production
+#     locally without moving files).
+#
+#     Access is source-IP allowlist per owner stop-order 2026-08-14 — the
+#     retired token gate no longer imports.
 SPINE_BACKEND = Path("/app/assessment_workspace/repos/Extraction-Akki/backend")
-if str(SPINE_BACKEND) not in sys.path:
-    sys.path.insert(0, str(SPINE_BACKEND))
+VENDORED_BACKEND = ROOT_DIR / "vendored" / "extraction_akki" / "backend"
+_force_vendored = os.environ.get("AKKI_FORCE_VENDORED", "").strip() in ("1", "true", "True", "yes")
+if SPINE_BACKEND.is_dir() and not _force_vendored:
+    _resolved_backend = SPINE_BACKEND
+    _spine_source = "sandbox-spine"
+elif VENDORED_BACKEND.is_dir():
+    _resolved_backend = VENDORED_BACKEND
+    _spine_source = "vendored-production"
+else:
+    # Fail loud — never silently degrade to a broken import chain.
+    raise RuntimeError(
+        "Neither SPINE_BACKEND nor VENDORED_BACKEND is present. "
+        f"Checked: {SPINE_BACKEND}, {VENDORED_BACKEND}. "
+        "Run tools/prod_vendor_sync.py from the workspace before "
+        "building the production image, or ensure the workspace is "
+        "mounted in the sandbox."
+    )
+print(f"[spine-bridge] resolved backend source: {_spine_source} at {_resolved_backend}", flush=True)
+if str(_resolved_backend) not in sys.path:
+    sys.path.insert(0, str(_resolved_backend))
 from routers import connect_gpu as connect_gpu_router  # noqa: E402
 from services.connect_estate.router import router as connect_estate_router  # noqa: E402
 from services.credentials_paste.router import router as credentials_paste_router  # noqa: E402
@@ -123,20 +158,51 @@ DELIVERABLES_ALLOWLIST = {
     'REUSE_ASSESSMENT.md',
 }
 
-# MongoDB connection
+# MongoDB connection · env-only (fail loud on missing; both are hard-required
+# by design so an unconfigured pod crashes at import with a KeyError rather
+# than silently connecting to localhost in prod).
 mongo_url = os.environ['MONGO_URL']
 client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ['DB_NAME']]
 
-# Tigris S3-compatible client
+# Tigris S3-compatible client · env-only (CP-PROD-DEPLOY-SELF-CONTAINMENT
+# 2026-09-21T~12:00Z owner directive: "no localhost fallbacks that would
+# mask misconfig in prod (fail loud with a clear log line instead)"). The
+# localhost default is retained only for the dev sandbox; if any of these
+# is unset in a non-sandbox environment, emit a WARN log line at import
+# time so a production misconfig surfaces in the first line of startup
+# logs rather than at the first S3 call.
+_tigris_endpoint_env = os.environ.get('TIGRIS_ENDPOINT')
+_tigris_access_key_env = os.environ.get('TIGRIS_ACCESS_KEY_ID')
+_tigris_secret_key_env = os.environ.get('TIGRIS_SECRET_ACCESS_KEY')
+_tigris_bucket_env = os.environ.get('TIGRIS_BUCKET')
+_is_production_env = not Path("/app/assessment_workspace").is_dir()
+if _is_production_env:
+    _missing_tigris = [
+        name for name, val in (
+            ("TIGRIS_ENDPOINT", _tigris_endpoint_env),
+            ("TIGRIS_ACCESS_KEY_ID", _tigris_access_key_env),
+            ("TIGRIS_SECRET_ACCESS_KEY", _tigris_secret_key_env),
+            ("TIGRIS_BUCKET", _tigris_bucket_env),
+        ) if not val
+    ]
+    if _missing_tigris:
+        print(
+            f"[server-env] WARNING · production mode detected (no "
+            f"/app/assessment_workspace) but Tigris env vars unset: "
+            f"{_missing_tigris}. S3-backed features will fail on first "
+            f"call. Set these env vars in the pod spec, or ignore this "
+            f"warning if S3 features are not used.",
+            flush=True,
+        )
 s3_client = boto3.client(
     's3',
-    endpoint_url=os.environ.get('TIGRIS_ENDPOINT', 'http://localhost:8085'),
-    aws_access_key_id=os.environ.get('TIGRIS_ACCESS_KEY_ID', ''),
-    aws_secret_access_key=os.environ.get('TIGRIS_SECRET_ACCESS_KEY', ''),
+    endpoint_url=_tigris_endpoint_env or 'http://localhost:8085',
+    aws_access_key_id=_tigris_access_key_env or '',
+    aws_secret_access_key=_tigris_secret_key_env or '',
     region_name='auto',
 )
-TIGRIS_BUCKET = os.environ.get('TIGRIS_BUCKET', 'default-bucket')
+TIGRIS_BUCKET = _tigris_bucket_env or 'default-bucket'
 
 # Create the main app without a prefix
 app = FastAPI(

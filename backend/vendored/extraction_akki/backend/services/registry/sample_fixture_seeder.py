@@ -1,0 +1,263 @@
+"""UI-1-D sample fixture seeder · Registry ('What You Hold') + Prove.
+
+Owner UI-1-D dispatch (2026-08-02) · standing requirement F verbatim:
+    "seeded sample answers/gaps/briefs per identity incl. admin"
+
+Idempotent + hermetic-restoring. Sample-marked docs (`is_sample=True`)
+are UPSERTED to canonical seeded state on every seed call — tests that
+mutate a sample row (e.g. D-R5 queueing an open gap) will NOT leak that
+mutation across pytest sessions. Non-sample docs (owner-created) are
+never touched by this seeder.
+
+Seeds:
+    - 2 opportunity briefs per identity (with "Put this to work" CTA)
+    - 3 gap register entries per identity (open, one queued, one high-rank)
+    - 3 prove sample answers per identity keyed by question hash
+      (one ANSWERED, one EVIDENCE_CANNOT_SUPPORT_IT, one hits NOT_EXTRACTED_YET)
+"""
+from __future__ import annotations
+
+import hashlib
+from datetime import datetime, timezone
+from typing import List
+
+from core import db
+
+
+# Stable ISO timestamp for sample docs. Using `_now_iso()` on every upsert
+# would perturb time-ordering invariants across repeat runs; sample docs
+# instead carry a fixed seeded_at. Owner UI-1-D dispatch anchor date.
+_SAMPLE_SEEDED_AT_ISO = "2026-08-02T00:00:00Z"
+
+
+def _now_iso() -> str:
+    return datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+
+
+def _q_hash(q: str) -> str:
+    return hashlib.sha1(q.encode("utf-8")).hexdigest()[:12]
+
+
+async def seed_registry_prove_sample_fixtures_if_absent(operator_email_and_id: List[dict]) -> None:
+    """W11 D · CP-D6 Q3 seeder cluster fix (extended CP-D9 hermeticity fix
+    2026-08-27, owner ruling verbatim: 'make the D-R5 test hermetic —
+    self-seed (or restore) at least one open gap in its own fixture (or
+    reset the gap-register state in setup), so the invariant holds on
+    ANY run ordering and on consecutive full-suite runs').
+
+    Sample docs (marked `is_sample=True`) are UPSERTED to canonical
+    seeded state on every call — restoring any mutations left behind
+    by tests that queue, close, or otherwise change sample rows.
+    """
+    briefs_coll = db.get_collection("opportunity_briefs")
+    gaps_coll = db.get_collection("registry_gap_register")
+    answers_coll = db.get_collection("prove_sample_answers")
+
+    for op in operator_email_and_id:
+        uid = op["user_id"]
+        suffix = uid[-8:]
+
+        # 2 opportunity briefs per identity.
+        for i, brief in enumerate([
+            {
+                "brief_id": f"brief-partner-rebate-{suffix}",
+                "title": "Q1 partner rebate audit — licensed cohort",
+                "summary_plain": (
+                    "The partner-licensed retention rows already carry a "
+                    "verdict-ready RUNS_NOW envelope. This brief opens Use "
+                    "Data with Reflection filled for an export-or-license "
+                    "commission."
+                ),
+                "prefill_door": "export_or_license",
+                "prefill_scope": "Q1 partner-licensed cohort",
+                "prefill_evidence_floor": "established_fact",
+                "impact_class": "high",
+                "is_sample": True,
+            },
+            {
+                "brief_id": f"brief-retention-model-{suffix}",
+                "title": "Retention model on 12-month training window",
+                "summary_plain": (
+                    "12 months of licensed corpus support a recall-oriented "
+                    "classifier. This brief opens Use Data with Reflection "
+                    "filled for a train-a-model commission."
+                ),
+                "prefill_door": "train_a_model",
+                "prefill_scope": "12-month training window · three source families",
+                "prefill_evidence_floor": "established_fact",
+                "impact_class": "medium",
+                "is_sample": True,
+            },
+        ]):
+            brief["created_at_iso"] = _SAMPLE_SEEDED_AT_ISO
+            brief["operator_id"] = uid
+            await briefs_coll.replace_one(
+                {"brief_id": brief["brief_id"]}, brief, upsert=True,
+            )
+
+        # 3 gap register entries per identity.
+        for gap in [
+            {
+                "gap_id": f"gap-partner-tos-{suffix}",
+                "question_plain": "What partner terms of service applied to the Q3 renewal cohort?",
+                "originating_trace_id": f"trc-sample-{suffix}-a",
+                "filed_by": op["email"],
+                "filed_at_iso": _SAMPLE_SEEDED_AT_ISO,
+                "rank_score": 0.87,
+                "state": "open",
+                "is_sample": True,
+            },
+            {
+                "gap_id": f"gap-churn-drivers-{suffix}",
+                "question_plain": "Which cohorts drove churn between month 3 and month 6?",
+                "originating_trace_id": f"trc-sample-{suffix}-b",
+                "filed_by": op["email"],
+                "filed_at_iso": _SAMPLE_SEEDED_AT_ISO,
+                "rank_score": 0.62,
+                "state": "open",
+                "is_sample": True,
+            },
+            {
+                "gap_id": f"gap-already-queued-{suffix}",
+                "question_plain": "How many sanctioned partners are active in ring 2?",
+                "originating_trace_id": f"trc-sample-{suffix}-c",
+                "filed_by": op["email"],
+                "filed_at_iso": _SAMPLE_SEEDED_AT_ISO,
+                "rank_score": 0.44,
+                "state": "queued",
+                "queued_use_data_session_id": f"s-gap-already-queued-{suffix}",
+                "queued_at_iso": _SAMPLE_SEEDED_AT_ISO,
+                "is_sample": True,
+            },
+        ]:
+            await gaps_coll.replace_one(
+                {"gap_id": gap["gap_id"]}, gap, upsert=True,
+            )
+
+    # Global sample prove answers (question-hash keyed; identity-agnostic).
+    for entry in [
+        # ANSWERED shape (class-with-claim + reasoning + raw facts).
+        {
+            "question_plain": "How many Q1 partner rebate rows carry an established-fact class?",
+            "shape": "answered",
+            "claim": "487 partner-rebate rows in Q1 meet the established-fact floor.",
+            "defensibility_class": "established_fact",
+            "reasoning_verbatim": (
+                "Candidates considered: ring_1_established_fact (487 rows) "
+                "vs ring_2_registered (2,041 rows). Ring 2 rows lack the "
+                "second-party countersign required by the defensibility "
+                "floor. Ring 1 corroboration: partner_ledger.q1_rebate_lines "
+                "cross-verified against internal.rebate_receivables.q1."
+            ),
+            "candidates_considered": [
+                "ring_1_established_fact · 487 rows",
+                "ring_2_registered · 2,041 rows",
+            ],
+            "corroboration_notes": (
+                "partner_ledger.q1_rebate_lines corroborates "
+                "internal.rebate_receivables.q1 at row-key level."
+            ),
+            "probability_calibration": "confidence 0.97 · established_fact floor met.",
+            "raw_facts": [
+                {"fact": "partner_ledger.q1_rebate_lines row_count=487",
+                 "source_ref": "src-sample-conn-*", "row_key": "q1_rebate"},
+                {"fact": "internal.rebate_receivables.q1 row_count=487 (matched)",
+                 "source_ref": "internal", "row_key": "q1_rebate"},
+            ],
+            "is_sample": True,
+        },
+        # EVIDENCE_CANNOT_SUPPORT_IT shape.
+        {
+            "question_plain": "What price did the Q3 board approve for the enterprise tier?",
+            "shape": "evidence_cannot_support_it",
+            "reason_code": "no_defensibility_floor",
+            "wire_reason_verbatim": (
+                "The corpus holds a Q3 board-meeting summary but the summary "
+                "does not name a specific enterprise-tier price. The "
+                "defensibility floor requires a specific price value, and "
+                "no ring holds one at scope."
+            ),
+            "what_would_raise_it_plain": (
+                "A Q3 board-minutes ingestion (currently declaration-only) "
+                "would raise this to established_fact — but confirm the "
+                "board minutes actually contain a specific price line."
+            ),
+            "queue_offered": False,
+            "candidates_considered": [
+                "ring_1_established_fact · 0 rows on 'enterprise_tier_price'",
+                "ring_3_probable · 2 board-summary rows (no specific price)",
+            ],
+            "raw_facts": [
+                {"fact": "Q3 board summary paragraph mentions 'enterprise tier repricing under review'",
+                 "source_ref": "src-sample-inprog-*", "row_key": "q3_board_summary"},
+            ],
+            "is_sample": True,
+        },
+        # SOMETHING_BROKE shape example (fault channel).
+        {
+            "question_plain": "Show the raw archive for the March broker export.",
+            "shape": "something_broke",
+            "fault_channel_ref": "fault-archive-reader-dormant",
+            "fault_reason_plain": (
+                "The archive reader capability is dormant (awaiting OT-1a). "
+                "The March broker export is registered but its extract is "
+                "not yet available for the walk-a-proof view."
+            ),
+            "queue_offered": False,
+            "is_sample": True,
+        },
+        # NOT_EXTRACTED_YET shape example (refusal · offers queue).
+        # Owner UI-1-D re-verification note (2026-08-02): the 4 shapes MUST
+        # be visible by default on /prove for every identity. This entry
+        # gives us a deterministic NOT_EXTRACTED_YET sample envelope
+        # without relying on the "novel question" fall-through path.
+        {
+            "question_plain": (
+                "What extraction pass is needed to answer questions on "
+                "the H2 partner activation cohort?"
+            ),
+            "shape": "not_extracted_yet",
+            "wire_reason_verbatim": (
+                "No extract in the corpus intersects this question. The "
+                "H2 partner activation cohort has not yet been ingested "
+                "into any ring — queueing this gap will schedule the "
+                "first extraction pass on the declared source."
+            ),
+            "estimated_effort_plain": (
+                "roughly one extraction pass · single source · scoped to H2."
+            ),
+            "queue_offered": True,
+            # gap_id is minted by the endpoint on first ask; the sample
+            # showcase supplies a deterministic placeholder that the
+            # frontend renders honestly ("Queue this gap" primed).
+            "gap_id": "gap-sample-h2-partner-activation",
+            "is_sample": True,
+        },
+    ]:
+        qhash = _q_hash(entry["question_plain"])
+        entry["question_hash"] = qhash
+        entry["created_at_iso"] = _SAMPLE_SEEDED_AT_ISO
+        # Seed a deterministic trace_id per sample so /prove/trace/{id}
+        # renders the walk without requiring a prior /prove/ask call.
+        # The trace is registered in `prove_traces` mirroring the ask path.
+        sample_trace_id = f"trc-sample-{qhash}"
+        entry["sample_trace_id"] = sample_trace_id
+        await answers_coll.replace_one(
+            {"question_hash": qhash}, entry, upsert=True,
+        )
+        traces_coll = db.get_collection("prove_traces")
+        envelope_for_trace = {k: v for k, v in entry.items()
+                              if k not in ("_id", "question_hash", "sample_trace_id")}
+        envelope_for_trace["trace_id"] = sample_trace_id
+        envelope_for_trace["asked"] = entry["question_plain"]
+        await traces_coll.replace_one(
+            {"trace_id": sample_trace_id},
+            {
+                "trace_id": sample_trace_id,
+                "envelope": envelope_for_trace,
+                "asked": entry["question_plain"],
+                "created_at_iso": entry["created_at_iso"],
+                "is_sample": True,
+            },
+            upsert=True,
+        )

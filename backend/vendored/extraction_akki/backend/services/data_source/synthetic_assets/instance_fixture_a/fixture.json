@@ -1,0 +1,994 @@
+{
+  "_manifest": {
+    "fixture": "instance_fixture_a_v1",
+    "synthetic": true,
+    "plumbing_only": true,
+    "v1_v3_valid": false,
+    "note": "Author-labelled synthetic data. Exercises the pipeline only. Accuracy measured against these labels is circular. Do NOT use for V1 or V3 — those require real RMS material with human ground truth.",
+    "shape": "five_rings@v0 (NormalizedUnit — post-HAZARD-STOP #1 contract-shaped emit)",
+    "generated_at": "2026-06-30T18:00:00Z",
+    "unit_count": 19,
+    "regenerated_after_hazard_stop_1": true,
+    "genres_note": "author-labels in provenance.context.author_labels",
+    "adversarial_coverage": [
+      "code-switching (multi-language mix)",
+      "genre-boundary ambiguity",
+      "native-ad-as-news",
+      "contested chain (claim/corroborate/contradict/retract)",
+      "authority-blind genre ceiling",
+      "source-standing lowering",
+      "sub-30s + overlapping speakers",
+      "cross-modal conflict",
+      "recency skew",
+      "drama-as-fact",
+      "malformed ingestion",
+      "opinion-dominant distribution",
+      "clean positive control"
+    ]
+  },
+  "units": [
+    {
+      "unit_id": "ef20e6ad-c057-4825-932d-ca2b66b3c52e",
+      "provenance": {
+        "source_ref": "synthetic://feed_a/86d4f5a4c7f64b54.raw",
+        "modality": "audio",
+        "locator": {
+          "timestamp_ms": 2189359
+        },
+        "speaker_or_author": "speaker_a1",
+        "context": "{\"programme\": \"programme_a\", \"feed_id\": \"feed_a\", \"assertion\": \"Placeholder utterance mixing language_a and language_b tokens with dialectal markers — content-neutral for pipeline mechanics only.\", \"language_mix\": [\"lang_a\", \"lang_b\", \"lang_c\"], \"logged_date\": \"2026-06-30T18:00:00Z\", \"structural_signature\": \"86d4f5a4c7f64b54\", \"adversarial_intent\": \"code-switch: multi-language mix in one utterance; ASR + genre must survive\", \"author_labels\": {\"claim_genre\": \"report\", \"source_standing\": \"accountable_tier1\", \"contested_status\": \"uncontested\", \"unit_type\": \"claim\"}, \"_fixture\": {\"synthetic\": true, \"plumbing_only\": true, \"v1_v3_valid\": false}}"
+      },
+      "signal": {
+        "dimensions": {
+          "stance_intensity": 0.4
+        },
+        "depth_judged": false,
+        "depth_notes": null
+      },
+      "relational": {
+        "edges": []
+      },
+      "reextraction_handle": {
+        "raw_pointer": "synthetic://feed_a/86d4f5a4c7f64b54.raw",
+        "model_id": "synthetic-fixture",
+        "model_version": "0.0.0",
+        "extraction_params": {
+          "provider_id": "synthetic-fixture",
+          "provider_version": "1.0.0",
+          "extraction_run_id": "62fff941-a695-4151-b7d8-7812204aa646",
+          "extracted_at": "2026-06-30T18:00:00Z",
+          "sample_rate_hz": 16000,
+          "chunk_ms": 1000,
+          "model_decoding_params": {
+            "language_hint": "en",
+            "beam_size": 1,
+            "temperature": 0,
+            "vad_threshold": 0.5
+          }
+        }
+      },
+      "defensibility": {
+        "defensibility_class": "fact",
+        "score_vector": {
+          "genre_ceiling": 1.0,
+          "source_standing": 1.0,
+          "corroboration": 0.6,
+          "recency": 0.707,
+          "contested_status": 1.0
+        },
+        "matrix_rule_ref": "qmatrix@v0::report",
+        "runtime_mode": "declaration_baseline"
+      }
+    },
+    {
+      "unit_id": "06e80ddf-cbb6-47db-aa9a-ed25c7e1b507",
+      "provenance": {
+        "source_ref": "synthetic://feed_a/bc21c3813546a36a.raw",
+        "modality": "audio",
+        "locator": {
+          "timestamp_ms": 1272650
+        },
+        "speaker_or_author": "speaker_a2",
+        "context": "{\"programme\": \"programme_b\", \"feed_id\": \"feed_a\", \"assertion\": \"Placeholder report-drifts-to-opinion body — factual framing at open, editorial framing at close; content-neutral.\", \"language_mix\": [\"sw\", \"en\"], \"logged_date\": \"2026-06-30T18:00:00Z\", \"structural_signature\": \"bc21c3813546a36a\", \"adversarial_intent\": \"genre boundary: starts as report, drifts to opinion; classifier must not over-call 'fact'\", \"author_labels\": {\"claim_genre\": \"opinion\", \"source_standing\": \"accountable_tier1\", \"contested_status\": \"uncontested\", \"unit_type\": \"claim\"}, \"_fixture\": {\"synthetic\": true, \"plumbing_only\": true, \"v1_v3_valid\": false}}"
+      },
+      "signal": {
+        "dimensions": {
+          "stance_intensity": 0.85,
+          "hedging_density": 0.1
+        },
+        "depth_judged": false,
+        "depth_notes": null
+      },
+      "relational": {
+        "edges": []
+      },
+      "reextraction_handle": {
+        "raw_pointer": "synthetic://feed_a/bc21c3813546a36a.raw",
+        "model_id": "synthetic-fixture",
+        "model_version": "0.0.0",
+        "extraction_params": {
+          "provider_id": "synthetic-fixture",
+          "provider_version": "1.0.0",
+          "extraction_run_id": "5ea42317-0554-4b0a-b80d-3c445ec0204f",
+          "extracted_at": "2026-06-30T18:00:00Z",
+          "sample_rate_hz": 16000,
+          "chunk_ms": 1000,
+          "model_decoding_params": {
+            "language_hint": "en",
+            "beam_size": 1,
+            "temperature": 0,
+            "vad_threshold": 0.5
+          }
+        }
+      },
+      "defensibility": {
+        "defensibility_class": "utterance",
+        "score_vector": {
+          "genre_ceiling": 0.6,
+          "source_standing": 1.0,
+          "corroboration": 0.0,
+          "recency": 0.98,
+          "contested_status": 1.0
+        },
+        "matrix_rule_ref": "qmatrix@v0::opinion",
+        "runtime_mode": "declaration_baseline"
+      }
+    },
+    {
+      "unit_id": "ae30e44a-7f1e-48be-93ba-7da6a36b6fd0",
+      "provenance": {
+        "source_ref": "synthetic://feed_a/b31c99fde05e7c39.raw",
+        "modality": "audio",
+        "locator": {
+          "timestamp_ms": 1214776
+        },
+        "speaker_or_author": "speaker_a1",
+        "context": "{\"programme\": \"programme_a\", \"feed_id\": \"feed_a\", \"assertion\": \"Placeholder advertisement copy read in news-anchor cadence — content-neutral commercial disclosure.\", \"language_mix\": [\"sw\", \"en\"], \"logged_date\": \"2026-06-30T18:00:00Z\", \"structural_signature\": \"b31c99fde05e7c39\", \"adversarial_intent\": \"ad mimicking news read; must NOT be admitted as fact regardless of anchor voice\", \"author_labels\": {\"claim_genre\": \"advertisement\", \"source_standing\": \"accountable_tier1\", \"contested_status\": \"uncontested\", \"unit_type\": \"claim\"}, \"_fixture\": {\"synthetic\": true, \"plumbing_only\": true, \"v1_v3_valid\": false}}"
+      },
+      "signal": {
+        "dimensions": {},
+        "depth_judged": false,
+        "depth_notes": null
+      },
+      "relational": {
+        "edges": []
+      },
+      "reextraction_handle": {
+        "raw_pointer": "synthetic://feed_a/b31c99fde05e7c39.raw",
+        "model_id": "synthetic-fixture",
+        "model_version": "0.0.0",
+        "extraction_params": {
+          "provider_id": "synthetic-fixture",
+          "provider_version": "1.0.0",
+          "extraction_run_id": "4fcd2f18-9a56-4a05-bfd1-4a2ab27cb2d1",
+          "extracted_at": "2026-06-30T18:00:00Z",
+          "sample_rate_hz": 16000,
+          "chunk_ms": 1000,
+          "model_decoding_params": {
+            "language_hint": "en",
+            "beam_size": 1,
+            "temperature": 0,
+            "vad_threshold": 0.5
+          }
+        }
+      },
+      "defensibility": {
+        "defensibility_class": "non_factual",
+        "score_vector": {
+          "genre_ceiling": 0.2,
+          "source_standing": 1.0,
+          "corroboration": 0.0,
+          "recency": 0.587,
+          "contested_status": 1.0
+        },
+        "matrix_rule_ref": "qmatrix@v0::advertisement",
+        "runtime_mode": "declaration_baseline"
+      }
+    },
+    {
+      "unit_id": "0a414b5e-128c-454e-8aa5-9d24f77a2e73",
+      "provenance": {
+        "source_ref": "synthetic://feed_e/211e81db7fcfa247.raw",
+        "modality": "audio",
+        "locator": {
+          "timestamp_ms": 2957582
+        },
+        "speaker_or_author": "speaker_e1",
+        "context": "{\"programme\": \"programme_c\", \"feed_id\": \"feed_e\", \"assertion\": \"Placeholder call-in assertion about region_a service outage; unverified.\", \"language_mix\": [\"sw\", \"en\"], \"logged_date\": \"2026-06-30T18:00:00Z\", \"structural_signature\": \"211e81db7fcfa247\", \"adversarial_intent\": \"contested chain [1/4]: original claim (call-in, unverified)\", \"author_labels\": {\"claim_genre\": \"call_in\", \"source_standing\": \"ugc\", \"contested_status\": \"uncontested\", \"unit_type\": \"claim\"}, \"_fixture\": {\"synthetic\": true, \"plumbing_only\": true, \"v1_v3_valid\": false}}"
+      },
+      "signal": {
+        "dimensions": {},
+        "depth_judged": false,
+        "depth_notes": null
+      },
+      "relational": {
+        "edges": []
+      },
+      "reextraction_handle": {
+        "raw_pointer": "synthetic://feed_e/211e81db7fcfa247.raw",
+        "model_id": "synthetic-fixture",
+        "model_version": "0.0.0",
+        "extraction_params": {
+          "provider_id": "synthetic-fixture",
+          "provider_version": "1.0.0",
+          "extraction_run_id": "9b81f68f-dcae-4dbd-8ab4-f62e38b5b2e8",
+          "extracted_at": "2026-06-30T18:00:00Z",
+          "sample_rate_hz": 16000,
+          "chunk_ms": 1000,
+          "model_decoding_params": {
+            "language_hint": "en",
+            "beam_size": 1,
+            "temperature": 0,
+            "vad_threshold": 0.5
+          }
+        }
+      },
+      "defensibility": {
+        "defensibility_class": "utterance",
+        "score_vector": {
+          "genre_ceiling": 0.6,
+          "source_standing": 0.35,
+          "corroboration": 0.0,
+          "recency": 0.852,
+          "contested_status": 1.0
+        },
+        "matrix_rule_ref": "qmatrix@v0::call_in",
+        "runtime_mode": "declaration_baseline"
+      }
+    },
+    {
+      "unit_id": "f0e5c414-18dd-441a-a40b-020672551f51",
+      "provenance": {
+        "source_ref": "synthetic://feed_a/ee2cd6c58d6277f7.raw",
+        "modality": "video",
+        "locator": {
+          "timestamp_ms": 2774041
+        },
+        "speaker_or_author": "speaker_a3",
+        "context": "{\"programme\": \"programme_a\", \"feed_id\": \"feed_a\", \"assertion\": \"Placeholder corroborating report from field crew — region_a service outage confirmed since date_x.\", \"language_mix\": [\"sw\", \"en\"], \"logged_date\": \"2026-06-30T18:00:00Z\", \"structural_signature\": \"ee2cd6c58d6277f7\", \"adversarial_intent\": \"contested chain [2/4]: corroborating report (accountable, attributed)\", \"author_labels\": {\"claim_genre\": \"report\", \"source_standing\": \"accountable_tier1\", \"contested_status\": \"uncontested\", \"unit_type\": \"claim\"}, \"_fixture\": {\"synthetic\": true, \"plumbing_only\": true, \"v1_v3_valid\": false}}"
+      },
+      "signal": {
+        "dimensions": {},
+        "depth_judged": false,
+        "depth_notes": null
+      },
+      "relational": {
+        "edges": [
+          {
+            "type": "corroborates",
+            "target_unit_ref": "0a414b5e-128c-454e-8aa5-9d24f77a2e73",
+            "evidence_ref": null
+          }
+        ]
+      },
+      "reextraction_handle": {
+        "raw_pointer": "synthetic://feed_a/ee2cd6c58d6277f7.raw",
+        "model_id": "synthetic-fixture",
+        "model_version": "0.0.0",
+        "extraction_params": {
+          "provider_id": "synthetic-fixture",
+          "provider_version": "1.0.0",
+          "extraction_run_id": "374ced2d-78e4-45d6-8ba1-56cf5a2faaf6",
+          "extracted_at": "2026-06-30T18:00:00Z",
+          "keyframe_strategy": "every_n_seconds",
+          "keyframe_interval_ms": 1000,
+          "vision_decoding_params": {
+            "prompt_template_id": "rms.video.default.v0",
+            "max_tokens": 256,
+            "temperature": 0
+          }
+        }
+      },
+      "defensibility": {
+        "defensibility_class": "fact",
+        "score_vector": {
+          "genre_ceiling": 1.0,
+          "source_standing": 1.0,
+          "corroboration": 0.8,
+          "recency": 0.639,
+          "contested_status": 1.0
+        },
+        "matrix_rule_ref": "qmatrix@v0::report",
+        "runtime_mode": "declaration_baseline"
+      }
+    },
+    {
+      "unit_id": "0d0f86a3-127e-4c7f-8fd3-f49bd636675d",
+      "provenance": {
+        "source_ref": "synthetic://feed_d/b62a1de334957438.raw",
+        "modality": "text",
+        "locator": {
+          "timestamp_ms": 112981
+        },
+        "speaker_or_author": null,
+        "context": "{\"programme\": \"programme_d\", \"feed_id\": \"feed_d\", \"assertion\": \"Placeholder wire report stating service was restored on date_y — contradicts prior claim.\", \"language_mix\": [\"sw\", \"en\"], \"logged_date\": \"2026-06-30T18:00:00Z\", \"structural_signature\": \"b62a1de334957438\", \"adversarial_intent\": \"contested chain [3/4]: contradiction (wire, different figure)\", \"author_labels\": {\"claim_genre\": \"report\", \"source_standing\": \"licensed_wire\", \"contested_status\": \"contested\", \"unit_type\": \"claim\"}, \"_fixture\": {\"synthetic\": true, \"plumbing_only\": true, \"v1_v3_valid\": false}}"
+      },
+      "signal": {
+        "dimensions": {},
+        "depth_judged": false,
+        "depth_notes": null
+      },
+      "relational": {
+        "edges": [
+          {
+            "type": "contradicts",
+            "target_unit_ref": "f0e5c414-18dd-441a-a40b-020672551f51",
+            "evidence_ref": null
+          }
+        ]
+      },
+      "reextraction_handle": {
+        "raw_pointer": "synthetic://feed_d/b62a1de334957438.raw",
+        "model_id": "synthetic-fixture",
+        "model_version": "0.0.0",
+        "extraction_params": {
+          "provider_id": "synthetic-fixture",
+          "provider_version": "1.0.0",
+          "extraction_run_id": "22536adc-8e62-4bae-b4d3-433002046cb8",
+          "extracted_at": "2026-06-30T18:00:00Z",
+          "source_format": "txt",
+          "max_chars": 100000,
+          "encoding": "utf-8"
+        }
+      },
+      "defensibility": {
+        "defensibility_class": "fact",
+        "score_vector": {
+          "genre_ceiling": 1.0,
+          "source_standing": 0.85,
+          "corroboration": 0.4,
+          "recency": 0.624,
+          "contested_status": 0.5
+        },
+        "matrix_rule_ref": "qmatrix@v0::report",
+        "runtime_mode": "declaration_baseline"
+      }
+    },
+    {
+      "unit_id": "a394daa6-5261-4c13-9aa2-9e3482386478",
+      "provenance": {
+        "source_ref": "synthetic://feed_a/e27cfa1406dadb14.raw",
+        "modality": "text",
+        "locator": {
+          "timestamp_ms": 3419138
+        },
+        "speaker_or_author": "speaker_a4",
+        "context": "{\"programme\": \"programme_a\", \"feed_id\": \"feed_a\", \"assertion\": \"Placeholder correction body — earlier region_a report overstated outage duration.\", \"language_mix\": [\"sw\", \"en\"], \"logged_date\": \"2026-06-30T18:00:00Z\", \"structural_signature\": \"e27cfa1406dadb14\", \"adversarial_intent\": \"contested chain [4/4]: retraction of the original claim\", \"author_labels\": {\"claim_genre\": \"report\", \"source_standing\": \"accountable_tier1\", \"contested_status\": \"retracted\", \"unit_type\": \"claim\"}, \"_fixture\": {\"synthetic\": true, \"plumbing_only\": true, \"v1_v3_valid\": false}}"
+      },
+      "signal": {
+        "dimensions": {},
+        "depth_judged": false,
+        "depth_notes": null
+      },
+      "relational": {
+        "edges": [
+          {
+            "type": "retracts",
+            "target_unit_ref": "0a414b5e-128c-454e-8aa5-9d24f77a2e73",
+            "evidence_ref": null
+          }
+        ]
+      },
+      "reextraction_handle": {
+        "raw_pointer": "synthetic://feed_a/e27cfa1406dadb14.raw",
+        "model_id": "synthetic-fixture",
+        "model_version": "0.0.0",
+        "extraction_params": {
+          "provider_id": "synthetic-fixture",
+          "provider_version": "1.0.0",
+          "extraction_run_id": "9cb26d1a-92be-429e-9c6f-335525eb244a",
+          "extracted_at": "2026-06-30T18:00:00Z",
+          "source_format": "txt",
+          "max_chars": 100000,
+          "encoding": "utf-8"
+        }
+      },
+      "defensibility": {
+        "defensibility_class": "fact",
+        "score_vector": {
+          "genre_ceiling": 1.0,
+          "source_standing": 1.0,
+          "corroboration": 0.0,
+          "recency": 0.873,
+          "contested_status": 0.1
+        },
+        "matrix_rule_ref": "qmatrix@v0::report",
+        "runtime_mode": "declaration_baseline"
+      }
+    },
+    {
+      "unit_id": "4b624fb1-a35b-430d-9f57-89ee71a35867",
+      "provenance": {
+        "source_ref": "synthetic://feed_a/9388e40b1a56daa8.raw",
+        "modality": "video",
+        "locator": {
+          "timestamp_ms": 1058574
+        },
+        "speaker_or_author": "speaker_a5",
+        "context": "{\"programme\": \"programme_e\", \"feed_id\": \"feed_a\", \"assertion\": \"Placeholder speech transcript — declarative claims about future economic outcomes.\", \"language_mix\": [\"sw\", \"en\"], \"logged_date\": \"2026-06-30T18:00:00Z\", \"structural_signature\": \"9388e40b1a56daa8\", \"adversarial_intent\": \"authority-blind ceiling: speech on tier-1 feed stays utterance, not fact\", \"author_labels\": {\"claim_genre\": \"speech\", \"source_standing\": \"accountable_tier1\", \"contested_status\": \"uncontested\", \"unit_type\": \"claim\"}, \"_fixture\": {\"synthetic\": true, \"plumbing_only\": true, \"v1_v3_valid\": false}}"
+      },
+      "signal": {
+        "dimensions": {
+          "vocal_emphasis": 0.7
+        },
+        "depth_judged": false,
+        "depth_notes": null
+      },
+      "relational": {
+        "edges": []
+      },
+      "reextraction_handle": {
+        "raw_pointer": "synthetic://feed_a/9388e40b1a56daa8.raw",
+        "model_id": "synthetic-fixture",
+        "model_version": "0.0.0",
+        "extraction_params": {
+          "provider_id": "synthetic-fixture",
+          "provider_version": "1.0.0",
+          "extraction_run_id": "45e74dcc-0fc9-4833-a6e5-fb868ac6c19e",
+          "extracted_at": "2026-06-30T18:00:00Z",
+          "keyframe_strategy": "every_n_seconds",
+          "keyframe_interval_ms": 1000,
+          "vision_decoding_params": {
+            "prompt_template_id": "rms.video.default.v0",
+            "max_tokens": 256,
+            "temperature": 0
+          }
+        }
+      },
+      "defensibility": {
+        "defensibility_class": "utterance",
+        "score_vector": {
+          "genre_ceiling": 0.6,
+          "source_standing": 1.0,
+          "corroboration": 0.0,
+          "recency": 0.93,
+          "contested_status": 1.0
+        },
+        "matrix_rule_ref": "qmatrix@v0::speech",
+        "runtime_mode": "declaration_baseline"
+      }
+    },
+    {
+      "unit_id": "06e920d8-ad50-45a6-a68b-2a9487c8b3c4",
+      "provenance": {
+        "source_ref": "synthetic://feed_g/df419a9db724bd56.raw",
+        "modality": "text",
+        "locator": {
+          "timestamp_ms": 3365400
+        },
+        "speaker_or_author": "handle_placeholder",
+        "context": "{\"programme\": \"programme_f\", \"feed_id\": \"feed_g\", \"assertion\": \"Placeholder social-post assertion about incident at location_a — unverified, high-virality.\", \"language_mix\": [\"sw\", \"en\"], \"logged_date\": \"2026-06-30T18:00:00Z\", \"structural_signature\": \"df419a9db724bd56\", \"adversarial_intent\": \"source-standing lowers ceiling: unattributed UGC 'report' -> utterance (was modality=social; post-HAZARD-STOP #1 recategorised as text, source_type=social_post)\", \"author_labels\": {\"claim_genre\": \"report\", \"source_standing\": \"ugc\", \"contested_status\": \"contested\", \"unit_type\": \"claim\"}, \"_fixture\": {\"synthetic\": true, \"plumbing_only\": true, \"v1_v3_valid\": false}, \"source_type\": \"social_post\"}"
+      },
+      "signal": {
+        "dimensions": {
+          "virality": 0.9
+        },
+        "depth_judged": false,
+        "depth_notes": null
+      },
+      "relational": {
+        "edges": []
+      },
+      "reextraction_handle": {
+        "raw_pointer": "synthetic://feed_g/df419a9db724bd56.raw",
+        "model_id": "synthetic-fixture",
+        "model_version": "0.0.0",
+        "extraction_params": {
+          "provider_id": "synthetic-fixture",
+          "provider_version": "1.0.0",
+          "extraction_run_id": "3583779c-692f-4c5f-bbd0-af331bdd3ef7",
+          "extracted_at": "2026-06-30T18:00:00Z",
+          "source_format": "txt",
+          "max_chars": 100000,
+          "encoding": "utf-8"
+        }
+      },
+      "defensibility": {
+        "defensibility_class": "utterance",
+        "score_vector": {
+          "genre_ceiling": 1.0,
+          "source_standing": 0.35,
+          "corroboration": 0.0,
+          "recency": 0.659,
+          "contested_status": 0.5
+        },
+        "matrix_rule_ref": "qmatrix@v0::report",
+        "runtime_mode": "declaration_baseline"
+      }
+    },
+    {
+      "unit_id": "cb56a632-d960-42db-826a-c994f91af74e",
+      "provenance": {
+        "source_ref": "synthetic://feed_e/8f8e9a8bf72aa4a5.raw",
+        "modality": "audio",
+        "locator": {
+          "timestamp_ms": 1200000,
+          "duration_ms": 8500
+        },
+        "speaker_or_author": "speaker_e2",
+        "context": "{\"programme\": \"programme_c\", \"feed_id\": \"feed_e\", \"assertion\": \"Placeholder short overlapping-speaker turn — sub-30s duration with turn-conflict marker.\", \"language_mix\": [\"sw\", \"en\"], \"logged_date\": \"2026-06-30T18:00:00Z\", \"structural_signature\": \"8f8e9a8bf72aa4a5\", \"adversarial_intent\": \"diarization stress: sub-30s speaker, overlapping turns\", \"author_labels\": {\"claim_genre\": \"call_in\", \"source_standing\": \"ugc\", \"contested_status\": \"uncontested\", \"unit_type\": \"claim\"}, \"_fixture\": {\"synthetic\": true, \"plumbing_only\": true, \"v1_v3_valid\": false}}"
+      },
+      "signal": {
+        "dimensions": {},
+        "depth_judged": false,
+        "depth_notes": null
+      },
+      "relational": {
+        "edges": []
+      },
+      "reextraction_handle": {
+        "raw_pointer": "synthetic://feed_e/8f8e9a8bf72aa4a5.raw",
+        "model_id": "synthetic-fixture",
+        "model_version": "0.0.0",
+        "extraction_params": {
+          "provider_id": "synthetic-fixture",
+          "provider_version": "1.0.0",
+          "extraction_run_id": "7c7a35e9-b24f-4ae3-8ca6-255afce14a03",
+          "extracted_at": "2026-06-30T18:00:00Z",
+          "sample_rate_hz": 16000,
+          "chunk_ms": 1000,
+          "model_decoding_params": {
+            "language_hint": "en",
+            "beam_size": 1,
+            "temperature": 0,
+            "vad_threshold": 0.5
+          }
+        }
+      },
+      "defensibility": {
+        "defensibility_class": "utterance",
+        "score_vector": {
+          "genre_ceiling": 0.6,
+          "source_standing": 0.35,
+          "corroboration": 0.0,
+          "recency": 0.842,
+          "contested_status": 1.0
+        },
+        "matrix_rule_ref": "qmatrix@v0::call_in",
+        "runtime_mode": "declaration_baseline"
+      }
+    },
+    {
+      "unit_id": "3973e8ae-42e8-4a0d-b4e1-4c9ffe5161cb",
+      "provenance": {
+        "source_ref": "synthetic://feed_a/8f23695a00785c17.raw",
+        "modality": "video",
+        "locator": {
+          "timestamp_ms": 3037819
+        },
+        "speaker_or_author": "speaker_a1",
+        "context": "{\"programme\": \"programme_a\", \"feed_id\": \"feed_a\", \"assertion\": \"Placeholder cross-modal conflict — audio-track count differs from on-screen-text count.\", \"language_mix\": [\"sw\", \"en\"], \"logged_date\": \"2026-06-30T18:00:00Z\", \"structural_signature\": \"8f23695a00785c17\", \"adversarial_intent\": \"cross-modal: chyron (on-screen text) disagrees with anchor audio\", \"author_labels\": {\"claim_genre\": \"report\", \"source_standing\": \"accountable_tier1\", \"contested_status\": \"uncontested\", \"unit_type\": \"claim\"}, \"_fixture\": {\"synthetic\": true, \"plumbing_only\": true, \"v1_v3_valid\": false}}"
+      },
+      "signal": {
+        "dimensions": {
+          "on_screen_text_conflict": 1.0
+        },
+        "depth_judged": false,
+        "depth_notes": null
+      },
+      "relational": {
+        "edges": [
+          {
+            "type": "contradicts",
+            "target_unit_ref": "4f20e267-4345-413a-a8c7-654295c647eb",
+            "evidence_ref": null
+          }
+        ]
+      },
+      "reextraction_handle": {
+        "raw_pointer": "synthetic://feed_a/8f23695a00785c17.raw",
+        "model_id": "synthetic-fixture",
+        "model_version": "0.0.0",
+        "extraction_params": {
+          "provider_id": "synthetic-fixture",
+          "provider_version": "1.0.0",
+          "extraction_run_id": "af35c11b-0467-4626-ba6a-8a7508a8bfad",
+          "extracted_at": "2026-06-30T18:00:00Z",
+          "keyframe_strategy": "every_n_seconds",
+          "keyframe_interval_ms": 1000,
+          "vision_decoding_params": {
+            "prompt_template_id": "rms.video.default.v0",
+            "max_tokens": 256,
+            "temperature": 0
+          }
+        }
+      },
+      "defensibility": {
+        "defensibility_class": "fact",
+        "score_vector": {
+          "genre_ceiling": 1.0,
+          "source_standing": 1.0,
+          "corroboration": 0.0,
+          "recency": 0.701,
+          "contested_status": 1.0
+        },
+        "matrix_rule_ref": "qmatrix@v0::report",
+        "runtime_mode": "declaration_baseline"
+      }
+    },
+    {
+      "unit_id": "d1d33214-159e-4671-9cc7-4f285cac9fa7",
+      "provenance": {
+        "source_ref": "synthetic://feed_b/c57f84061abb021f.raw",
+        "modality": "video",
+        "locator": {
+          "timestamp_ms": 2311834
+        },
+        "speaker_or_author": "speaker_b1",
+        "context": "{\"programme\": \"programme_g\", \"feed_id\": \"feed_b\", \"assertion\": \"Placeholder archival documentary claim about a measured geographic feature at time_t_minus_12y.\", \"language_mix\": [\"sw\", \"en\"], \"logged_date\": \"2026-06-30T18:00:00Z\", \"structural_signature\": \"c57f84061abb021f\", \"adversarial_intent\": \"recency stress: documentary fact, but ~12 years old — recency lowers score\", \"author_labels\": {\"claim_genre\": \"documentary\", \"source_standing\": \"accountable_tier1\", \"contested_status\": \"uncontested\", \"unit_type\": \"claim\"}, \"_fixture\": {\"synthetic\": true, \"plumbing_only\": true, \"v1_v3_valid\": false}}"
+      },
+      "signal": {
+        "dimensions": {},
+        "depth_judged": false,
+        "depth_notes": null
+      },
+      "relational": {
+        "edges": []
+      },
+      "reextraction_handle": {
+        "raw_pointer": "synthetic://feed_b/c57f84061abb021f.raw",
+        "model_id": "synthetic-fixture",
+        "model_version": "0.0.0",
+        "extraction_params": {
+          "provider_id": "synthetic-fixture",
+          "provider_version": "1.0.0",
+          "extraction_run_id": "ceb26e3e-1798-412f-a541-710cacb64fd2",
+          "extracted_at": "2026-06-30T18:00:00Z",
+          "keyframe_strategy": "every_n_seconds",
+          "keyframe_interval_ms": 1000,
+          "vision_decoding_params": {
+            "prompt_template_id": "rms.video.default.v0",
+            "max_tokens": 256,
+            "temperature": 0
+          }
+        }
+      },
+      "defensibility": {
+        "defensibility_class": "fact",
+        "score_vector": {
+          "genre_ceiling": 1.0,
+          "source_standing": 1.0,
+          "corroboration": 0.7,
+          "recency": 0.531,
+          "contested_status": 1.0
+        },
+        "matrix_rule_ref": "qmatrix@v0::documentary",
+        "runtime_mode": "declaration_baseline"
+      }
+    },
+    {
+      "unit_id": "bd7e42d4-7162-4eda-9846-d7182bca3b69",
+      "provenance": {
+        "source_ref": "synthetic://feed_c/b207b4b6a080853c.raw",
+        "modality": "video",
+        "locator": {
+          "timestamp_ms": 3408329
+        },
+        "speaker_or_author": "character_placeholder",
+        "context": "{\"programme\": \"programme_h\", \"feed_id\": \"feed_c\", \"assertion\": \"Placeholder dramatic-fiction dialogue asserting a public-figure event.\", \"language_mix\": [\"sw\", \"en\"], \"logged_date\": \"2026-06-30T18:00:00Z\", \"structural_signature\": \"b207b4b6a080853c\", \"adversarial_intent\": \"drama stating a 'fact' — must floor to non_factual\", \"author_labels\": {\"claim_genre\": \"drama\", \"source_standing\": \"accountable_tier1\", \"contested_status\": \"uncontested\", \"unit_type\": \"claim\"}, \"_fixture\": {\"synthetic\": true, \"plumbing_only\": true, \"v1_v3_valid\": false}}"
+      },
+      "signal": {
+        "dimensions": {},
+        "depth_judged": false,
+        "depth_notes": null
+      },
+      "relational": {
+        "edges": []
+      },
+      "reextraction_handle": {
+        "raw_pointer": "synthetic://feed_c/b207b4b6a080853c.raw",
+        "model_id": "synthetic-fixture",
+        "model_version": "0.0.0",
+        "extraction_params": {
+          "provider_id": "synthetic-fixture",
+          "provider_version": "1.0.0",
+          "extraction_run_id": "57b5e4bf-941a-44a0-9c70-301632111ee1",
+          "extracted_at": "2026-06-30T18:00:00Z",
+          "keyframe_strategy": "every_n_seconds",
+          "keyframe_interval_ms": 1000,
+          "vision_decoding_params": {
+            "prompt_template_id": "rms.video.default.v0",
+            "max_tokens": 256,
+            "temperature": 0
+          }
+        }
+      },
+      "defensibility": {
+        "defensibility_class": "non_factual",
+        "score_vector": {
+          "genre_ceiling": 0.2,
+          "source_standing": 1.0,
+          "corroboration": 0.0,
+          "recency": 0.896,
+          "contested_status": 1.0
+        },
+        "matrix_rule_ref": "qmatrix@v0::drama",
+        "runtime_mode": "declaration_baseline"
+      }
+    },
+    {
+      "unit_id": "302619d9-42a1-4115-9ab6-af62f26c7052",
+      "provenance": {
+        "source_ref": "synthetic://feed_h/26ce27d45f775ca9.raw",
+        "modality": "text",
+        "locator": {
+          "timestamp_ms": 824453
+        },
+        "speaker_or_author": null,
+        "context": "{\"programme\": \"programme_i\", \"feed_id\": \"feed_h\", \"assertion\": \"Placeholder malformed transcript ??? [transcription gap] ... placeholder ...\", \"language_mix\": [\"sw\", \"en\"], \"logged_date\": \"2026-06-30T18:00:00Z\", \"structural_signature\": \"26ce27d45f775ca9\", \"adversarial_intent\": \"ingestion robustness: partial/malformed content, missing speaker\", \"author_labels\": {\"claim_genre\": \"report\", \"source_standing\": \"unknown\", \"contested_status\": \"uncontested\", \"unit_type\": \"claim\"}, \"_fixture\": {\"synthetic\": true, \"plumbing_only\": true, \"v1_v3_valid\": false}}"
+      },
+      "signal": {
+        "dimensions": {},
+        "depth_judged": false,
+        "depth_notes": null
+      },
+      "relational": {
+        "edges": []
+      },
+      "reextraction_handle": {
+        "raw_pointer": "synthetic://feed_h/26ce27d45f775ca9.raw",
+        "model_id": "synthetic-fixture",
+        "model_version": "0.0.0",
+        "extraction_params": {
+          "provider_id": "synthetic-fixture",
+          "provider_version": "1.0.0",
+          "extraction_run_id": "314056a3-6885-47bb-8503-a58ba9bd038a",
+          "extracted_at": "2026-06-30T18:00:00Z",
+          "source_format": "txt",
+          "max_chars": 100000,
+          "encoding": "utf-8"
+        }
+      },
+      "defensibility": {
+        "defensibility_class": "utterance",
+        "score_vector": {
+          "genre_ceiling": 1.0,
+          "source_standing": 0.2,
+          "corroboration": 0.0,
+          "recency": 0.575,
+          "contested_status": 1.0
+        },
+        "matrix_rule_ref": "qmatrix@v0::report",
+        "runtime_mode": "declaration_baseline"
+      }
+    },
+    {
+      "unit_id": "b591e50a-b5c0-431b-9660-eb42ac2a0a73",
+      "provenance": {
+        "source_ref": "synthetic://feed_f/55e36ce8f87708b6.raw",
+        "modality": "text",
+        "locator": {
+          "timestamp_ms": 2959369
+        },
+        "speaker_or_author": "speaker_f1",
+        "context": "{\"programme\": \"programme_j\", \"feed_id\": \"feed_f\", \"assertion\": \"Placeholder opinion segment [1/4] — non-factual editorial framing.\", \"language_mix\": [\"sw\", \"en\"], \"logged_date\": \"2026-06-30T18:00:00Z\", \"structural_signature\": \"55e36ce8f87708b6\", \"adversarial_intent\": \"defensibility skew: opinion-dominant segment [1/4] — distribution must not gate\", \"author_labels\": {\"claim_genre\": \"opinion\", \"source_standing\": \"aggregator\", \"contested_status\": \"uncontested\", \"unit_type\": \"claim\"}, \"_fixture\": {\"synthetic\": true, \"plumbing_only\": true, \"v1_v3_valid\": false}}"
+      },
+      "signal": {
+        "dimensions": {
+          "stance_intensity": 0.8
+        },
+        "depth_judged": false,
+        "depth_notes": null
+      },
+      "relational": {
+        "edges": []
+      },
+      "reextraction_handle": {
+        "raw_pointer": "synthetic://feed_f/55e36ce8f87708b6.raw",
+        "model_id": "synthetic-fixture",
+        "model_version": "0.0.0",
+        "extraction_params": {
+          "provider_id": "synthetic-fixture",
+          "provider_version": "1.0.0",
+          "extraction_run_id": "0f1ba37c-819a-4440-a670-8f88a07296f9",
+          "extracted_at": "2026-06-30T18:00:00Z",
+          "source_format": "txt",
+          "max_chars": 100000,
+          "encoding": "utf-8"
+        }
+      },
+      "defensibility": {
+        "defensibility_class": "utterance",
+        "score_vector": {
+          "genre_ceiling": 0.6,
+          "source_standing": 0.55,
+          "corroboration": 0.0,
+          "recency": 0.766,
+          "contested_status": 1.0
+        },
+        "matrix_rule_ref": "qmatrix@v0::opinion",
+        "runtime_mode": "declaration_baseline"
+      }
+    },
+    {
+      "unit_id": "e92faa63-b2b7-4cc3-b0e7-9f866ba4b8a9",
+      "provenance": {
+        "source_ref": "synthetic://feed_f/a27d422fbb25a81c.raw",
+        "modality": "text",
+        "locator": {
+          "timestamp_ms": 3362967
+        },
+        "speaker_or_author": "speaker_f2",
+        "context": "{\"programme\": \"programme_j\", \"feed_id\": \"feed_f\", \"assertion\": \"Placeholder opinion segment [2/4] — non-factual editorial framing.\", \"language_mix\": [\"sw\", \"en\"], \"logged_date\": \"2026-06-30T18:00:00Z\", \"structural_signature\": \"a27d422fbb25a81c\", \"adversarial_intent\": \"defensibility skew: opinion-dominant segment [2/4] — distribution must not gate\", \"author_labels\": {\"claim_genre\": \"opinion\", \"source_standing\": \"aggregator\", \"contested_status\": \"uncontested\", \"unit_type\": \"claim\"}, \"_fixture\": {\"synthetic\": true, \"plumbing_only\": true, \"v1_v3_valid\": false}}"
+      },
+      "signal": {
+        "dimensions": {
+          "stance_intensity": 0.8
+        },
+        "depth_judged": false,
+        "depth_notes": null
+      },
+      "relational": {
+        "edges": []
+      },
+      "reextraction_handle": {
+        "raw_pointer": "synthetic://feed_f/a27d422fbb25a81c.raw",
+        "model_id": "synthetic-fixture",
+        "model_version": "0.0.0",
+        "extraction_params": {
+          "provider_id": "synthetic-fixture",
+          "provider_version": "1.0.0",
+          "extraction_run_id": "f319b213-9e73-4d97-9374-9a2179137092",
+          "extracted_at": "2026-06-30T18:00:00Z",
+          "source_format": "txt",
+          "max_chars": 100000,
+          "encoding": "utf-8"
+        }
+      },
+      "defensibility": {
+        "defensibility_class": "utterance",
+        "score_vector": {
+          "genre_ceiling": 0.6,
+          "source_standing": 0.55,
+          "corroboration": 0.0,
+          "recency": 0.978,
+          "contested_status": 1.0
+        },
+        "matrix_rule_ref": "qmatrix@v0::opinion",
+        "runtime_mode": "declaration_baseline"
+      }
+    },
+    {
+      "unit_id": "38bb9074-8bcd-4c56-b278-eed6dab01690",
+      "provenance": {
+        "source_ref": "synthetic://feed_f/deda065fca80f35f.raw",
+        "modality": "text",
+        "locator": {
+          "timestamp_ms": 880845
+        },
+        "speaker_or_author": "speaker_f3",
+        "context": "{\"programme\": \"programme_j\", \"feed_id\": \"feed_f\", \"assertion\": \"Placeholder opinion segment [3/4] — non-factual editorial framing.\", \"language_mix\": [\"sw\", \"en\"], \"logged_date\": \"2026-06-30T18:00:00Z\", \"structural_signature\": \"deda065fca80f35f\", \"adversarial_intent\": \"defensibility skew: opinion-dominant segment [3/4] — distribution must not gate\", \"author_labels\": {\"claim_genre\": \"opinion\", \"source_standing\": \"aggregator\", \"contested_status\": \"uncontested\", \"unit_type\": \"claim\"}, \"_fixture\": {\"synthetic\": true, \"plumbing_only\": true, \"v1_v3_valid\": false}}"
+      },
+      "signal": {
+        "dimensions": {
+          "stance_intensity": 0.8
+        },
+        "depth_judged": false,
+        "depth_notes": null
+      },
+      "relational": {
+        "edges": []
+      },
+      "reextraction_handle": {
+        "raw_pointer": "synthetic://feed_f/deda065fca80f35f.raw",
+        "model_id": "synthetic-fixture",
+        "model_version": "0.0.0",
+        "extraction_params": {
+          "provider_id": "synthetic-fixture",
+          "provider_version": "1.0.0",
+          "extraction_run_id": "bd8eb11c-50aa-4f59-960a-8e024136efb4",
+          "extracted_at": "2026-06-30T18:00:00Z",
+          "source_format": "txt",
+          "max_chars": 100000,
+          "encoding": "utf-8"
+        }
+      },
+      "defensibility": {
+        "defensibility_class": "utterance",
+        "score_vector": {
+          "genre_ceiling": 0.6,
+          "source_standing": 0.55,
+          "corroboration": 0.0,
+          "recency": 0.666,
+          "contested_status": 1.0
+        },
+        "matrix_rule_ref": "qmatrix@v0::opinion",
+        "runtime_mode": "declaration_baseline"
+      }
+    },
+    {
+      "unit_id": "f0ddd8f2-c740-4e9f-9cab-8d9f3705e2a0",
+      "provenance": {
+        "source_ref": "synthetic://feed_f/0d415e674c62f516.raw",
+        "modality": "text",
+        "locator": {
+          "timestamp_ms": 517998
+        },
+        "speaker_or_author": "speaker_f4",
+        "context": "{\"programme\": \"programme_j\", \"feed_id\": \"feed_f\", \"assertion\": \"Placeholder opinion segment [4/4] — non-factual editorial framing.\", \"language_mix\": [\"sw\", \"en\"], \"logged_date\": \"2026-06-30T18:00:00Z\", \"structural_signature\": \"0d415e674c62f516\", \"adversarial_intent\": \"defensibility skew: opinion-dominant segment [4/4] — distribution must not gate\", \"author_labels\": {\"claim_genre\": \"opinion\", \"source_standing\": \"aggregator\", \"contested_status\": \"uncontested\", \"unit_type\": \"claim\"}, \"_fixture\": {\"synthetic\": true, \"plumbing_only\": true, \"v1_v3_valid\": false}}"
+      },
+      "signal": {
+        "dimensions": {
+          "stance_intensity": 0.8
+        },
+        "depth_judged": false,
+        "depth_notes": null
+      },
+      "relational": {
+        "edges": []
+      },
+      "reextraction_handle": {
+        "raw_pointer": "synthetic://feed_f/0d415e674c62f516.raw",
+        "model_id": "synthetic-fixture",
+        "model_version": "0.0.0",
+        "extraction_params": {
+          "provider_id": "synthetic-fixture",
+          "provider_version": "1.0.0",
+          "extraction_run_id": "19d49d5b-76f1-4851-bd0f-e2f2098e9beb",
+          "extracted_at": "2026-06-30T18:00:00Z",
+          "source_format": "txt",
+          "max_chars": 100000,
+          "encoding": "utf-8"
+        }
+      },
+      "defensibility": {
+        "defensibility_class": "utterance",
+        "score_vector": {
+          "genre_ceiling": 0.6,
+          "source_standing": 0.55,
+          "corroboration": 0.0,
+          "recency": 0.941,
+          "contested_status": 1.0
+        },
+        "matrix_rule_ref": "qmatrix@v0::opinion",
+        "runtime_mode": "declaration_baseline"
+      }
+    },
+    {
+      "unit_id": "91764490-9945-4635-820e-d5990f2908f5",
+      "provenance": {
+        "source_ref": "synthetic://feed_d/cc507d5bd98f382e.raw",
+        "modality": "text",
+        "locator": {
+          "timestamp_ms": 2679208
+        },
+        "speaker_or_author": null,
+        "context": "{\"programme\": \"programme_d\", \"feed_id\": \"feed_d\", \"assertion\": \"Placeholder attributed wire report of a numeric policy rate held constant per published statement.\", \"language_mix\": [\"sw\", \"en\"], \"logged_date\": \"2026-06-30T18:00:00Z\", \"structural_signature\": \"cc507d5bd98f382e\", \"adversarial_intent\": \"clean positive: attributed wire report, uncontested fact\", \"author_labels\": {\"claim_genre\": \"report\", \"source_standing\": \"licensed_wire\", \"contested_status\": \"uncontested\", \"unit_type\": \"claim\"}, \"_fixture\": {\"synthetic\": true, \"plumbing_only\": true, \"v1_v3_valid\": false}}"
+      },
+      "signal": {
+        "dimensions": {},
+        "depth_judged": false,
+        "depth_notes": null
+      },
+      "relational": {
+        "edges": []
+      },
+      "reextraction_handle": {
+        "raw_pointer": "synthetic://feed_d/cc507d5bd98f382e.raw",
+        "model_id": "synthetic-fixture",
+        "model_version": "0.0.0",
+        "extraction_params": {
+          "provider_id": "synthetic-fixture",
+          "provider_version": "1.0.0",
+          "extraction_run_id": "319d67c5-99ca-40b7-9317-3cd94a2a15c8",
+          "extracted_at": "2026-06-30T18:00:00Z",
+          "source_format": "txt",
+          "max_chars": 100000,
+          "encoding": "utf-8"
+        }
+      },
+      "defensibility": {
+        "defensibility_class": "fact",
+        "score_vector": {
+          "genre_ceiling": 1.0,
+          "source_standing": 0.85,
+          "corroboration": 0.75,
+          "recency": 0.535,
+          "contested_status": 1.0
+        },
+        "matrix_rule_ref": "qmatrix@v0::report",
+        "runtime_mode": "declaration_baseline"
+      }
+    }
+  ]
+}

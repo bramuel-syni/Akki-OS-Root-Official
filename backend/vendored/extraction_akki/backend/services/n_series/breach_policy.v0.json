@@ -1,0 +1,13 @@
+{
+  "policy_id": "ca1_n2_breach_policy_v0",
+  "q1_trigger_scope": "refusal_bypass_only",
+  "q2_notification_routing": "independent_authority",
+  "q3_actor_masking": "actor_ids_masked",
+  "q4_cadence": "one_per_breach",
+  "window_hours": 72,
+  "canon_grounded": true,
+  "owner_ruling_ref": "STATE/DECISIONS.md · Wave E scope §1 · 2026-08-27T~12:10Z · verbatim: 'CA1-N2 breach notification: recipients = DPO + the Watch's existing external witness; window = 72 hours (canon-grounded Kenya DPA/GDPR); channel = enforcement-view record PLUS real-time alert to both recipients; threshold = a hard line ACTUALLY CROSSED — map onto the existing Watch event grammar (containment failure / actual exfiltration / unreceipted crossing). Contained/shaped events are the Watch working and MUST NOT trigger notification — encode that as an invariant, not a comment.'",
+  "notifiable_action_classes": ["sever", "unreceipted_crossing", "containment_failure"],
+  "non_notifiable_action_classes": ["annotate", "shape", "contain"],
+  "note_on_mapping": "notifiable = sever (structural certainty → actual_exfiltration) OR containment reconciliation diverges (containment_failure) OR chokepoint crossing without receipt (unreceipted_crossing). Contained/shaped events are the Watch working and are never notifiable per owner ruling."
+}

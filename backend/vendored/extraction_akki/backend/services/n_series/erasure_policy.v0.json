@@ -1,0 +1,11 @@
+{
+  "policy_id": "ca1_n3_erasure_policy_v0",
+  "q1_erasure_reach": "raw_and_five_ring_units",
+  "q2_identity_verification": "existing_platform_credential",
+  "q3_retention_conflict": "erasure_wins_over_ca1_n1",
+  "requestor_classes_allowed": ["named_customer", "named_employee"],
+  "third_party_requires_separate_authorization": true,
+  "owner_ruling_ref": "STATE/DECISIONS.md · Wave E scope §2 · 2026-08-27T~12:10Z · verbatim: 'CA1-N3 access & erasure: requestor = named customer or employee only (no third-party without separate authorization); verification = existing platform credential, no new identity machinery; REAL erasure for raw source + five-ring units; already-trained models get FLAGGED via the A17.15 rights-lapse provenance mechanism and scheduled for retraining OR documented as residual exposure. Erasure operations route through the custody chokepoint with crossing receipts.'",
+  "routes_through_chokepoint": true,
+  "chokepoint_purpose_tag": "n3_erasure_operation"
+}

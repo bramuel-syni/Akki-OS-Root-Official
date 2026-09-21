@@ -1,0 +1,14 @@
+{
+  "policy_id": "a18_6_async_delivery_adoption_v0",
+  "status": "RULED-ADOPTED",
+  "adopted_at": "2026-08-27T12:10:00Z",
+  "supersedes_prior_ruling": "CP3-open deprioritization 'defer A18.6 async delivery entirely' (documented in notes/requirements_register_20docs.md:135-137)",
+  "owner_ruling_ref": "STATE/DECISIONS.md · Wave E scope §5 · 2026-08-27T~12:10Z · verbatim: 'A18.6 async skill delivery: ADOPT — implement per the proven platform pattern the owner cited; the PROPOSED marker resolves to RULED-ADOPTED in the register.'",
+  "platform_pattern_ref": {
+    "module": "services/service_1/dispatch.py",
+    "route_marker": "DEBT_PHASE_5 = \"phase_5_async_delivery\"",
+    "contract": "contracts.async_delivery_accepted.AsyncDeliveryAccepted_v0",
+    "purpose": "Fresh-fork admission of async skill deliveries; explicit accept-record, receipted, hand-back to the calling dispatch layer. Wired at v2 dispatch replacing the Phase-2 scaffold-placeholder 501."
+  },
+  "note": "This file is the adoption trace. The platform pattern is already wired at Phase 5 of services/service_1/dispatch.py; this trace records the owner's Wave E ratification and moves Doc18-006 from PROPOSED to RULED-ADOPTED in the requirements register at CP-E8 register moves."
+}
