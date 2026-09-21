@@ -150,7 +150,7 @@ Strategy work-in-progress (to be created):
 - **checkpoint_14d_utc:** `2026-08-28T00:00:00Z`
 - **hardening_status:** `attested`
 - **acceptance_status:** `green`
-- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260920T221451Z.json`
+- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260920T233627Z.json`
 <!-- CONNECT-GPU-PINS -->
 
 
@@ -380,3 +380,104 @@ Owner Order 2026-08-25 · "W4 go" (verbatim in DECISIONS.md). Executed tests-fir
 - **Culpable commit for artifacts 4-6 of the divergence:** `dc48d53131be2a36b36aabab83048cbbb779cfa2` on `main` at 2026-09-20T14:21:07Z ("feat(frontend): DAP Portal full build + OS Prototype v2 React surfaces")
 - **Closure wave for all 5 baseline entries + CP10 harness receipt vacuous-pass restoration:** R-91 CP-APP-JS-UNIFY (scheduled)
 <!-- R-88-FIRST-SLICE-PINS-2026-09-20 END -->
+
+<!-- R-89-SECOND-SLICE-PINS-2026-09-20 -->
+## R-89 second slice · CP-CONTENT-REGISTRY-WAVE (CON-12..CON-21) · **SEALED 2026-09-20**
+
+- **CODE branch:** `programme/track-a` in `/app/assessment_workspace/repos/Extraction-Akki`
+- **CODE head (Commit-A):** `49e2a3384f8573a33bfc389362febac766986bce`
+- **STATE branch:** `master` in `/app/assessment_workspace`
+- **STATE head (Commit-B):** pending this-banking
+- **RATCHET at this seal:** **5678 pass / 5 fail / 1 skip · floor 5678 · monotonic-up from 5668** (+10 measured · CCS2-aligned · no test flipped to fail)
+- **baseline_failures.json sha256 (post-seal):** `504cc47fd5eeb200d467c179fe4fba054de17dec04b1f125d9e49fa5f518fa12`
+- **notes/ORCH_BOOT.md sha256 (post-regen · byte-identical with POD audit mirror):** `c9f5c2150fbb0a4822f39a24895446f250bcf3d724c34fa93f9aebe5169bb6b1`
+- **Double-sweep byte-identical stripped-sha256:** `0802eaabbaed0f120686960dbd82034c119b0307a1e3de79c175bed74a1ab900`
+- **Failed test set at seal (5 all annotated · unchanged from R-88+):**
+  1. `test_ship_manifest_dod.py::test_runtime_frontend_app_matches_repo_pod_shell` (R-86 annotated)
+  2. `test_wave_g_pod_shell_frontend_mirror.py::test_app_frontend_App_js_mirrors_pod_shell_App_js` (R-86)
+  3. `test_wave_g_pod_shell_frontend_mirror.py::test_app_frontend_pages_dir_mirrors_pod_shell_pages_dir` (R-86)
+  4. `test_v8_substitution_rules_bind_to_rendered_dom.py::test_every_v8_substitution_rule_binds_to_harness_rendered_dom` (R-88+ A-extension)
+  5. `test_v8_substitution_rules_bind_to_rendered_dom.py::test_slot1_registry_aside_marker_present` (R-88+ A-extension)
+- **Closure wave for all 5 baseline entries + CP10 harness receipt vacuous-pass restoration:** R-91 CP-APP-JS-UNIFY (scheduled)
+- **Carry-forward:** R-88+ OWNER-RATIFICATION-PENDING block (D-ruling + A-extension) carries forward unchanged. Total-coverage guard + R-86 Property tests all GREEN through this slice.
+- **Grep-negative ban #3 anchor** landed at CON-18 (`scan_for_engagement_signals_in_ranking` · 7 watched patterns: views_count/dwell_seconds/click_rate/reply_rate/learned_score/engagement_score/predicted_ctr). Bans #4..#7 land at R-90 per owner standing-GO.
+<!-- R-89-SECOND-SLICE-PINS-2026-09-20 END -->
+
+<!-- R-90-THIRD-SLICE-PINS-2026-09-20 -->
+## R-90 third slice · CP-CONTENT-REGISTRY-WAVE (CON-22..CON-31 + grep-negative bans #4..#7) · **SEALED 2026-09-20 · CLOSES Ruling-4 scope**
+
+- **CODE branch:** `programme/track-a` in `/app/assessment_workspace/repos/Extraction-Akki`
+- **CODE head (Commit-A):** `457d9473ae1a536a9b835b6dfe970faf9596b95b`
+- **STATE branch:** `master` in `/app/assessment_workspace`
+- **STATE head (Commit-B):** pending this-banking
+- **RATCHET at this seal:** **5688 pass / 5 fail / 1 skip · floor 5688 · monotonic-up from 5678** (+10 measured · CCS2-aligned · no test flipped to fail)
+- **baseline_failures.json sha256 (post-seal):** `37eaae80813d4b79a937b08a8e95554f7c3e88661074408561c59232dc69963e`
+- **notes/ORCH_BOOT.md sha256 (post-regen · byte-identical with POD audit mirror):** `6f36497958a9fac78b771198f824bcfa21b7053167305457f4eb55ec7e468a8c`
+- **Double-sweep byte-identical stripped-sha256:** `a767ca9c43549cf570b5f92f83efde58a6e3f4c768d703a07287ae2a24344973`
+- **Failed test set at seal (5 all annotated · unchanged from R-88+):**
+  1. `test_ship_manifest_dod.py::test_runtime_frontend_app_matches_repo_pod_shell` (R-86 annotated · `known_runtime_drift_annotations`)
+  2. `test_wave_g_pod_shell_frontend_mirror.py::test_app_frontend_App_js_mirrors_pod_shell_App_js` (R-86)
+  3. `test_wave_g_pod_shell_frontend_mirror.py::test_app_frontend_pages_dir_mirrors_pod_shell_pages_dir` (R-86)
+  4. `test_v8_substitution_rules_bind_to_rendered_dom.py::test_every_v8_substitution_rule_binds_to_harness_rendered_dom` (R-88+ A-extension · `known_r91_closure_scheduled_receipt_drift_annotations`)
+  5. `test_v8_substitution_rules_bind_to_rendered_dom.py::test_slot1_registry_aside_marker_present` (R-88+ A-extension)
+- **Closure wave for all 5 baseline entries + CP10 harness receipt vacuous-pass restoration:** R-91 CP-APP-JS-UNIFY (scheduled).
+- **Carry-forward:** R-88+ OWNER-RATIFICATION-PENDING block (D-ruling + A-extension) carries forward unchanged. Total-coverage guard + R-86 Property tests all GREEN through this slice.
+- **Grep-negative ban #4..#7 anchors** all landed this slice: ban #4 `scan_for_softening_of_unsupported_claims` at CON-24 · ban #5 `scan_for_templated_text_storage` at CON-25 · ban #6 `scan_for_generated_text_as_render_dependency` at CON-26 · ban #7 `scan_for_unsupported_claim_state` at CON-24 (same anchor row as #4; distinct pattern set). Full 7-category grep-negative ban set now anchored.
+- **Ruling-4 scope CLOSED at this slice:** all 31 CON rules (CON-1..CON-31) registered as `Final[...]` load-bearing vocabulary + all 7 grep-negative bans anchored across CON-1/CON-6/CON-18/CON-24/CON-25/CON-26 + R-32 surface-list binding on Generated-class verbatim ('chat_answer', 'recommendation_body', 'notification_body') at CON-22.
+- **Prior-fork misreport receipt** banked this-Commit-B at `phase0/spec_hunt_receipts/20260920T231420Z_r90_prior_fork_misreport_seal.md` per owner directive (2026-09-20T~23:12Z verbatim: session summaries are NEVER evidence of seal state; `git log` on both branches is).
+<!-- R-90-THIRD-SLICE-PINS-2026-09-20 END -->
+
+<!-- R-92-FIRST-SLICE-PINS-2026-09-20 -->
+## R-92 CP-G5V5-SFP-1-7 first slice · Security Function Policies (SFP-1..SFP-7) · **SEALED 2026-09-20**
+
+- **CODE branch:** `programme/track-a` in `/app/assessment_workspace/repos/Extraction-Akki`
+- **CODE head (Commit-A):** `ceaa24f41c8156c31e408b47fa8a59b3b265e6ac`
+- **STATE branch:** `master` in `/app/assessment_workspace`
+- **STATE head (Commit-B):** pending this-banking
+- **RATCHET at this seal:** **5695 pass / 5 fail / 1 skip · floor 5695 · monotonic-up from 5688** (+7 measured · CCS2-aligned · no test flipped to fail)
+- **baseline_failures.json sha256 (post-seal):** `4e7caa47f437b7fe15731bd9f6eb1cbf3f202d3f09b2db495b6c8be668125694`
+- **notes/ORCH_BOOT.md sha256 (post-regen · byte-identical with POD audit mirror):** `127e1671e76b0f684c185abedbc52ba6321dce7e97603aec77b888a3f063fa68`
+- **Double-sweep byte-identical stripped-sha256:** `dc89bbdf5d63f96f8b6bc543f4e3809a67df1a7f2bf63d3a47fd2c7b3dfd8c9d`
+- **Ruling 5 authority (sha-pin verified):** v5 Master Requirements Registry workbook · sha256 `00072c5829d3d89399cc5ca64661b405ac8a3cd0b43d0081f0d5f0bce109619d` · System Rules Registry sheet · rows 597-603.
+- **HUNT receipts banked at Commit-B:** `phase0/spec_hunt_receipts/20260920T232424Z_g5v5_sfp_1_7_hunt_data.json` + `20260920T232424Z_g5v5_sfp_1_7_hunt_receipt.md`.
+- **Failed test set at seal (5 all annotated · unchanged from R-88+ / R-89 / R-90):**
+  1. `test_ship_manifest_dod.py::test_runtime_frontend_app_matches_repo_pod_shell` (R-86 annotated · `known_runtime_drift_annotations`)
+  2. `test_wave_g_pod_shell_frontend_mirror.py::test_app_frontend_App_js_mirrors_pod_shell_App_js` (R-86)
+  3. `test_wave_g_pod_shell_frontend_mirror.py::test_app_frontend_pages_dir_mirrors_pod_shell_pages_dir` (R-86)
+  4. `test_v8_substitution_rules_bind_to_rendered_dom.py::test_every_v8_substitution_rule_binds_to_harness_rendered_dom` (R-88+ A-extension · `known_r91_closure_scheduled_receipt_drift_annotations`)
+  5. `test_v8_substitution_rules_bind_to_rendered_dom.py::test_slot1_registry_aside_marker_present` (R-88+ A-extension)
+- **Closure wave for all 5 baseline entries + CP10 harness receipt vacuous-pass restoration:** R-91 CP-APP-JS-UNIFY (scheduled).
+- **Carry-forward:** R-88+ OWNER-RATIFICATION-PENDING block (D-ruling + A-extension) carries forward unchanged. Total-coverage guard + R-86 Property tests all GREEN through this slice. Prior-fork misreport standing lesson (banked R-90 Commit-B) carries forward.
+- **Grep-negative scanners registered this-slice** where rule text explicitly negates a behavior: `scan_for_unanchorable_softening` (SFP-1 · 5 patterns · rule: "refused, not weakened") · `scan_for_confidence_score_as_severance_input` (SFP-2 · 4 patterns · rule: "no confidence score, however high, is an eligible input") · `scan_for_partial_acceptance` (SFP-3 · 5 patterns · rule: "no partial acceptance") · `scan_for_conformance_as_conviction_ground` (SFP-5 · 4 patterns · rule: "never, by itself, grounds for conviction"). **No scanner** for SFP-4/SFP-6/SFP-7 per owner directive "grep-negative bans where the rule text states them" (those rules assert invariants without negating specific patterns).
+- **V7 authored from rule text** (Ruling 3 erratum · SRR Enforcement Class empty for all 7 SFP rows): 7 property tests · each carries SO §2.5 verbatim-docstring quoting the SRR row's pipe-delimited statement byte-verbatim.
+<!-- R-92-FIRST-SLICE-PINS-2026-09-20 END -->
+
+<!-- R-91-PHASE-1-PINS-2026-09-20 -->
+## R-91 CP-APP-JS-UNIFY · Phase 1 opening · **⏳ IN-FLIGHT 2026-09-20T23:58:00Z · FE-DISPATCH-READY RAISED**
+
+- **CODE branch:** `programme/track-a` in `/app/assessment_workspace/repos/Extraction-Akki` · UNTOUCHED this-Phase (HEAD stays at R-92 Commit-A `ceaa24f41c8156c31e408b47fa8a59b3b265e6ac`).
+- **STATE branch:** `master` in `/app/assessment_workspace`
+- **STATE head (Phase 1 opening):** pending this-banking
+- **RATCHET at this Phase:** **5695 pass / 5 fail / 1 skip · floor 5695 · UNCHANGED** (no code delta at Phase 1 · Phase 2 retirement bumps to 5700+).
+- **baseline_failures.json sha256 (unchanged this-Phase):** `4e7caa47f437b7fe15731bd9f6eb1cbf3f202d3f09b2db495b6c8be668125694`.
+- **notes/ORCH_BOOT.md sha256 (unchanged this-Phase · no regen · no head advance):** `0c67f0e639bfd7edf58f925c349761d8917808b0af3add11fc8ebcf64577df0f`.
+- **Closure card status (unchanged this-Phase):** `STATE/OBJECTIVES/CP_APP_JS_UNIFY.md` `milestone_status: SCHEDULED · slot R-91` (sha256 `667f744606020f205aac2d292e61fb5945ac0443430c5c7522473675fb929b61`).
+- **HUNT receipt banked this-Phase:** `phase0/spec_hunt_receipts/20260920T235800Z_r91_cp_app_js_unify_hunt_receipt.md`.
+- **FE landing spec banked this-Phase:** `phase0/specs/r91_cp_app_js_unify_spec.md`.
+- **FE-DISPATCH-READY flag banked this-Phase:** `notes/FE_DISPATCH_READY_R91.md` · **status: RAISED**.
+- **Owner Phase 1 approval verbatim (2026-09-21T~00:00Z):** "Plan APPROVED with both defaults confirmed and one label correction. Q1: (a) — state-only Phase 1 seal; `programme/track-a` code branch untouched until the FE specialist lands. Q2: Confirmed — all 5 wrapped baseline failures stay wrapped through Phase 1 and retire ONLY in Phase 2. [...] Proceed with the HUNT → spec → state-only Commit → FE-DISPATCH-READY flag."
+- **Owner label-correction verbatim (same session):** `pod_shell/frontend/src/App.js` sha `ef20409b…` = V8-shell-port · `/app/frontend/src/App.js` sha `282650cb…` = DAP Portal + OS Prototype · corrected labels inherited by spec + HUNT.
+- **App.js measurements this-session (HUNT §1):** `/app/frontend/src/App.js` sha256 `282650cbb514ea5cdfacef2d5ca0ac14f040d2809c1107af98fcd0f8799c6374` · 71 lines · DAP Portal + OS Prototype · `pod_shell/frontend/src/App.js` sha256 `ef20409b38425c15e6acea6226ff197742b805bc008a17bc2dbf450361e4ff5a` · 1084 lines · V8-shell-port · `frontend/src/App.js` (repo, unrelated) sha256 `e381de86a593ef90681cb391bbdf60a1a8cbb40a71c0e7d95e14e2aa334ededd` · 154 lines · retired AkkiV4Shell.
+- **Baseline failure map (5 total · closure_wave=CP-APP-JS-UNIFY · closure_wave_slot=R-91 · all wrapped stay wrapped through Phase 1):**
+  1. `test_ship_manifest_dod.py::test_runtime_frontend_app_matches_repo_pod_shell` (R-86 · `known_runtime_drift_annotations`).
+  2. `test_wave_g_pod_shell_frontend_mirror.py::test_app_frontend_App_js_mirrors_pod_shell_App_js` (R-86).
+  3. `test_wave_g_pod_shell_frontend_mirror.py::test_app_frontend_pages_dir_mirrors_pod_shell_pages_dir` (R-86).
+  4. `test_v8_substitution_rules_bind_to_rendered_dom.py::test_every_v8_substitution_rule_binds_to_harness_rendered_dom` (R-88+ A-extension · `known_r91_closure_scheduled_receipt_drift_annotations`).
+  5. `test_v8_substitution_rules_bind_to_rendered_dom.py::test_slot1_registry_aside_marker_present` (R-88+ A-extension).
+- **CP10 architectural discrepancy (surfaced · not resolved this-Phase):** `/app/frontend/src/` has ZERO `V8_SUBSTITUTIONS` matches; `OSPrototype.jsx` L77-L80 docstring confirms substitutions were left behind at the DAP Portal split. Byte-identity mirror alone will NOT restore harness non-vacuous. Option surface A/B/C in spec §3; recommendation §3.5: Option A (restore engine into React tree). Specialist proposes final choice; owner adjudicates at seal-verify per D-ruling "R-91 resolves it either way".
+- **Retirement plan (Phase 2 · atomic in same commit as code lands):** Baseline set `5 → 0` · `known_runtime_drift_annotations` `3 → 0` · `known_r91_closure_scheduled_receipt_drift_annotations` `3 → 0` or retain "still-recent" guard · Ratchet bump `5695 → 5700+` · Harness ground-truth regenerated non-vacuous · 3-Commit Seal fires · R-91 milestone_status flips SEALED · R-88+ guard `test_harness_receipt_is_non_vacuous_when_card_status_is_sealed` verifies non-vacuous at flip moment.
+- **Discipline invariants continuing GREEN through Phase 1 AND Phase 2:** R-86 5 property tests + R-88+ 6 property tests · set-equality guards (R-86 Property 4 forces same-commit annotation + baseline retirement) · SO §3 no-silent-rebaselining · SO §3.8 additive-only · CCS2 lesson (both counters bump together) · M16-W3 corrected order (ORCH_BOOT ratchet regen pre-Commit-A).
+- **Carry-forward:** R-88+ OWNER-RATIFICATION-PENDING block (D-ruling + A-extension) carries forward unchanged. Total-coverage guard + R-86 Property tests + R-88+ Property tests all GREEN through Phase 1. Prior-fork misreport standing lesson (banked R-90 Commit-B) carries forward.
+- **Phase 2 blocker:** FE specialist landing (owner dispatches spec verbatim; specialist lands byte-identity + engine-restoration; owner verifies at seal-verify).
+- **Standing bounds:** zero push · terminal `pytest` only · **no `testing_agent`** · additive-only §3.8 · three-repo discipline · ratchet monotonic-up **5695** floor · HF-HOLD SEC-2026-09-12-01 · R-24 UNLISTED · R-25 tagged.
+<!-- R-91-PHASE-1-PINS-2026-09-20 END -->

@@ -4648,3 +4648,252 @@ R-89 second slice (CON-12..CON-21) opens at owner's next go per already-schedule
 zero push · zero remote configured · terminal `pytest` only · no `testing_agent` · additive-only §3.8 · three-repo discipline · ratchet monotonic-up **5668**.
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+---
+
+## 2026-09-20T22:45:00Z · R-89 second-slice SEALED marker
+
+**R-89 second slice CP-CONTENT-REGISTRY-WAVE (CON-12..CON-21) ✅ SEALED at `49e2a338` on `programme/track-a`.**
+
+Straight-shot additive slice within the ratified Ruling-4 scope · SO §6 autopilot governs per owner standing-GO · no per-slice check-in required. No new stop-conditions. No card edit. Vocabulary module additively extended with §4 The Resolver + §5 The Slot Model / Salience.
+
+### Ratchet at this banking
+
+**5678 pass / 5 fail / 1 skip** · monotonic-up from 5668 · +10 measured (10 CON-12..CON-21 property tests all GREEN · no test flipped to fail) · CCS2-aligned.
+
+### Double-sweep byte-identity
+
+stripped-sha256 `0802eaabbaed0f120686960dbd82034c119b0307a1e3de79c175bed74a1ab900` identical across:
+- `phase0/drill_receipts/20260920T223632Z_r89_second_slice_BASELINE_GUARD1_double_green_run1.log` (181.40s)
+- `phase0/drill_receipts/20260920T224113Z_r89_second_slice_BASELINE_GUARD1_double_green_run2.log` (180.90s)
+
+### Sprint queue post-this-banking
+
+1. R-86 ✅ SEALED at `e40047f4`.
+2. R-87 ✅ SEALED at `9823a520` + FE half CLOSED at `b9b9bafd`.
+3. R-88+ first slice ✅ SEALED at `db90089d/79d5d38d/0cbfc23b` · 🚩 OWNER-RATIFICATION-PENDING (D+A).
+4. **R-89 second slice ✅ SEALED at `49e2a338` (this banking).**
+5. **R-90 third slice OPENS IMMEDIATELY per owner standing-GO (no check-in).**
+6. G5-v5 SFP-1..7 first slice — queued behind R-90.
+7. R-91 CP-APP-JS-UNIFY — scheduled closure.
+
+### Autopilot next
+
+**Commit-C fixup** — advances state_head to Commit-B SHA + heads_last_sealed R-6 regen + R-89 marker flip. **Then R-90 opens IMMEDIATELY** (CON-22..CON-31 + remaining grep-negative bans #4..#7).
+
+### Standing bounds unchanged
+
+zero push · terminal `pytest` only · no `testing_agent` · additive-only §3.8 · three-repo discipline · ratchet monotonic-up (**5678**) · R-88+ OWNER-RATIFICATION-PENDING carries forward.
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+---
+
+## 2026-09-20T22:50:00Z · R-89 second slice Commit-C fixup
+
+**Advances `heads_last_sealed.state_repo.head` in `notes/ORCH_BOOT.md` to R-89 Commit-B SHA `76c530f0819eadf4cfa48a55899fbec86ac61a55` (short `76c530f0`) and inserts fresh `code_repo` history entry for R-89 Commit-A SHA `49e2a3384f8573a33bfc389362febac766986bce` (short `49e2a338`).**
+
+**R-89 second slice ⏳ IN-FLIGHT → ✅ SEALED at this fixup (R-6 boundary regen).**
+
+### 3-Commit Seal complete
+
+| Position | Repo | Branch | SHA | Timestamp |
+|---|---|---|---|---|
+| **Commit-A** | Extraction-Akki (CODE) | `programme/track-a` | `49e2a3384f8573a33bfc389362febac766986bce` | 2026-09-20T22:44:00Z |
+| **Commit-B** | assessment_workspace (STATE) | `master` | `76c530f0819eadf4cfa48a55899fbec86ac61a55` | 2026-09-20T22:47:00Z |
+| **Commit-C fixup** | assessment_workspace (STATE) | `master` | (this-append) | 2026-09-20T22:50:00Z |
+
+### Next: R-90 third slice OPENS IMMEDIATELY
+
+Per owner standing-GO verbatim (2026-09-20T~22:35Z): R-90 third slice (CON-22..CON-31 + remaining grep-negative bans #4..#7) opens IMMEDIATELY after R-89 seals clean, without per-slice check-in.
+
+### Standing bounds unchanged
+
+zero push · terminal `pytest` only · no `testing_agent` · additive-only §3.8 · ratchet monotonic-up **5678** · R-88+ OWNER-RATIFICATION-PENDING carries forward.
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+---
+
+## 2026-09-20T23:15:00Z · R-90 third-slice SEALED marker
+
+**R-90 third slice CP-CONTENT-REGISTRY-WAVE (CON-22..CON-31 + grep-negative bans #4..#7) ✅ SEALED at `457d947` on `programme/track-a`. CLOSES Ruling-4 scope.**
+
+Owner ruling this-session (2026-09-20T~23:12Z verbatim): "Ruling: (a) — complete the R-90 3-Commit Seal now under the already-ratified Ruling-4 standing-GO." Full ruling banked verbatim in `STATE/DECISIONS.md` at this-banking (misreport disposition + G5-v5 open post-verify).
+
+Straight-shot additive slice within the ratified Ruling-4 scope · SO §6 autopilot governs · this-slice CLOSES the scope. No new stop-conditions this-slice. No card edit. Vocabulary module additively extended with §6 The Generated Path + §7 Storage & Persistence + §8 Erasure & Retention + §9 Freshness sections + 4 new scanners completing the 7-category grep-negative ban set.
+
+### Ratchet at this banking
+
+**5688 pass / 5 fail / 1 skip** · monotonic-up from 5678 · +10 measured (10 CON-22..CON-31 property tests all GREEN · no test flipped to fail) · CCS2-aligned.
+
+### Double-sweep byte-identity
+
+stripped-sha256 `a767ca9c43549cf570b5f92f83efde58a6e3f4c768d703a07287ae2a24344973` identical across:
+- `phase0/drill_receipts/20260920T225736Z_r90_third_slice_BASELINE_GUARD1_double_green_run1.log` (181.20s)
+- `phase0/drill_receipts/20260920T230212Z_r90_third_slice_BASELINE_GUARD1_double_green_run2.log` (182.45s)
+
+### Prior-fork misreport receipt banked this-Commit-B
+
+`phase0/spec_hunt_receipts/20260920T231420Z_r90_prior_fork_misreport_seal.md` — per owner directive verbatim (2026-09-20T~23:12Z). Standing lesson: **session summaries are NEVER evidence of seal state; `git log` on both branches is.**
+
+### Ruling-4 CLOSURE at this-slice
+
+All 31 CON rules registered as `Final[...]` load-bearing vocabulary + all 7 grep-negative bans anchored (bans #1..#7 mapped to CON-1/CON-6/CON-18/CON-24×2/CON-25/CON-26) + R-32 surface-list binding on Generated-class at CON-22 verbatim ('chat_answer', 'recommendation_body', 'notification_body' · three · nothing else).
+
+### Sprint queue post-this-banking
+
+1. R-86 ✅ SEALED at `e40047f4`.
+2. R-87 ✅ SEALED at `9823a520` + FE half CLOSED at `b9b9bafd`.
+3. R-88+ first slice ✅ SEALED at `db90089d/79d5d38d/0cbfc23b` · 🚩 OWNER-RATIFICATION-PENDING (D+A).
+4. R-89 second slice ✅ SEALED at `49e2a338/76c530f0/f2638177`.
+5. **R-90 third slice ✅ SEALED at `457d947` (this banking) · CLOSES Ruling-4 scope.**
+6. **G5-v5 SFP-1..7 first slice — OPENS NEXT** per owner ruling this-session, post-Commit-C verify subset (`test_orch_boot` + baseline manifest + R-90 wave tests) via terminal `pytest`.
+7. R-91 CP-APP-JS-UNIFY — scheduled closure (retires 5 baseline entries + restores CP10 harness receipt).
+
+### Autopilot next
+
+**Commit-C fixup** — advances state_head to Commit-B SHA + heads_last_sealed R-6 regen + R-90 marker flip + POD audit mirror byte-identical sync. Then **post-Commit-C verify subset** per owner ruling this-session (`test_orch_boot` + baseline manifest + R-90 wave tests via terminal `pytest`). If GREEN → report seal + open **G5-v5 SFP-1..7 first slice** per owner canonical directives (canon_ref = v5 SRR sheet ONLY sha `00072c58…` · class column bounded hint · rule text governs · measured ratchet above 5688 · full SO §6 autonomy).
+
+### Standing bounds unchanged
+
+zero push · terminal `pytest` only · no `testing_agent` · additive-only §3.8 · three-repo discipline · ratchet monotonic-up (**5688**) · R-88+ OWNER-RATIFICATION-PENDING carries forward · HF-HOLD/R-24/R-25 as banked.
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+---
+
+## 2026-09-20T23:18:00Z · R-90 third slice Commit-C fixup
+
+**Advances `heads_last_sealed.state_repo.head` in `notes/ORCH_BOOT.md` to R-90 Commit-B SHA `19bfd333e3ef557e55ae359989cde1b9c2fde6d4` (short `19bfd333`) and inserts fresh `code_repo` history entry for R-90 Commit-A SHA `457d9473ae1a536a9b835b6dfe970faf9596b95b` (short `457d947`).**
+
+**R-90 third slice ⏳ IN-FLIGHT → ✅ SEALED at this fixup (R-6 boundary regen).** Ruling-4 scope CLOSED at this fixup.
+
+### 3-Commit Seal complete
+
+| Position | Repo | Branch | SHA | Timestamp |
+|---|---|---|---|---|
+| **Commit-A** | Extraction-Akki (CODE) | `programme/track-a` | `457d9473ae1a536a9b835b6dfe970faf9596b95b` | 2026-09-20T23:00:00Z |
+| **Commit-B** | assessment_workspace (STATE) | `master` | `19bfd333e3ef557e55ae359989cde1b9c2fde6d4` | 2026-09-20T23:15:00Z |
+| **Commit-C fixup** | assessment_workspace (STATE) | `master` | (this-append) | 2026-09-20T23:18:00Z |
+
+### Next: post-Commit-C verify subset → G5-v5 SFP-1..7 first slice
+
+Per owner ruling this-session (2026-09-20T~23:12Z): run `test_orch_boot` + baseline manifest test + R-90 wave tests via terminal `pytest`. If GREEN → report seal + open **G5-v5 SFP-1..7 first slice** under owner canonical directives.
+
+### Standing bounds unchanged
+
+zero push · terminal `pytest` only · no `testing_agent` · additive-only §3.8 · ratchet monotonic-up **5688** · R-88+ OWNER-RATIFICATION-PENDING carries forward.
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+---
+
+## 2026-09-20T23:36:00Z · R-92 CP-G5V5-SFP-1-7 first slice · **✅ SEALED at `ceaa24f` (Commit-A on programme/track-a)**
+
+**Owner ruling this-session verbatim (2026-09-20T~23:12Z):** "Then open G5-v5 SFP-1..7 first slice per the queue and my prior directives (canon_ref = v5 SRR only, class column bounded hint, rule text governs, measured ratchet above 5688, full SO §6 autonomy). Proceed."
+
+Ruling 5 execution · V7 property invariants authored for SFP-1..SFP-7 (Security Function Policies · v5 SRR rows 597-603 · sha-pinned custody workbook `00072c58…`). SRR Enforcement Class empty for all 7 rows per Ruling 3 erratum. Grep-negative scanners registered where rule text explicitly negates a behavior (SFP-1/SFP-2/SFP-3/SFP-5); no scanner where rule text asserts an invariant without a pattern (SFP-4/SFP-6/SFP-7).
+
+### Ratchet at this banking
+
+**5695 pass / 5 fail / 1 skip** · monotonic-up from 5688 · +7 measured (7 SFP-1..7 property tests all GREEN · no test flipped to fail) · CCS2-aligned.
+
+### Double-sweep byte-identity
+
+stripped-sha256 `dc89bbdf5d63f96f8b6bc543f4e3809a67df1a7f2bf63d3a47fd2c7b3dfd8c9d` identical across:
+- `phase0/drill_receipts/20260920T233100Z_g5v5_sfp_1_7_BASELINE_GUARD1_double_green_run1.log` (181.30s)
+- `phase0/drill_receipts/20260920T233500Z_g5v5_sfp_1_7_BASELINE_GUARD1_double_green_run2.log` (182.62s)
+
+### Sprint queue post-this-banking
+
+1. R-86 ✅ SEALED at `e40047f4`.
+2. R-87 ✅ SEALED at `9823a520` + FE half CLOSED at `b9b9bafd`.
+3. R-88+ first slice ✅ SEALED at `db90089d/79d5d38d/0cbfc23b` · 🚩 OWNER-RATIFICATION-PENDING (D+A).
+4. R-89 second slice ✅ SEALED at `49e2a338/76c530f0/f2638177`.
+5. R-90 third slice ✅ SEALED at `457d947/19bfd333/44d2ae74` · CLOSES Ruling-4 scope.
+6. **R-92 CP-G5V5-SFP-1-7 first slice ✅ SEALED at `ceaa24f` (this banking).**
+7. R-91 CP-APP-JS-UNIFY — scheduled closure (unchanged).
+8. G5-v5 subsequent slices (SFP-8 onwards + other v5 SRR rules) — queued.
+
+### Autopilot next
+
+**Commit-C fixup** — advances state_head to Commit-B SHA + heads_last_sealed R-6 regen + R-92 marker flip + POD audit mirror byte-identical sync. Then autopilot continues per SO §6 autonomy.
+
+### Standing bounds unchanged
+
+zero push · terminal `pytest` only · no `testing_agent` · additive-only §3.8 · three-repo discipline · ratchet monotonic-up (**5695**) · R-88+ OWNER-RATIFICATION-PENDING carries forward · HF-HOLD/R-24/R-25 as banked.
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+---
+
+## 2026-09-20T23:40:00Z · R-92 CP-G5V5-SFP-1-7 first slice Commit-C fixup
+
+**Advances `heads_last_sealed.state_repo.head` in `notes/ORCH_BOOT.md` to R-92 Commit-B SHA `19030610d7e80072cfec498a72180f3304dd4f59` (short `19030610`) and inserts fresh `code_repo` history entry for R-92 Commit-A SHA `ceaa24f41c8156c31e408b47fa8a59b3b265e6ac` (short `ceaa24f`).**
+
+**R-92 first slice ⏳ IN-FLIGHT → ✅ SEALED at this fixup (R-6 boundary regen).**
+
+### 3-Commit Seal complete
+
+| Position | Repo | Branch | SHA | Timestamp |
+|---|---|---|---|---|
+| **Commit-A** | Extraction-Akki (CODE) | `programme/track-a` | `ceaa24f41c8156c31e408b47fa8a59b3b265e6ac` | 2026-09-20T23:33:00Z |
+| **Commit-B** | assessment_workspace (STATE) | `master` | `19030610d7e80072cfec498a72180f3304dd4f59` | 2026-09-20T23:36:00Z |
+| **Commit-C fixup** | assessment_workspace (STATE) | `master` | (this-append) | 2026-09-20T23:40:00Z |
+
+### Next
+
+G5-v5 subsequent slices (SFP-8 onwards + other v5 SRR rules) queued · autopilot continues per SO §6 autonomy.
+
+### Standing bounds unchanged
+
+zero push · terminal `pytest` only · no `testing_agent` · additive-only §3.8 · ratchet monotonic-up **5695** · R-88+ OWNER-RATIFICATION-PENDING carries forward.
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+---
+
+## 2026-09-20T23:58:00Z · R-91 CP-APP-JS-UNIFY · Phase 1 opening banked · FE-DISPATCH-READY raised
+
+**R-91 marker flips: SCHEDULED → ⏳ IN-FLIGHT (Phase 1 landed · Phase 2 blocked on FE specialist landing).**
+
+### Owner Phase 1 approval this-session verbatim (2026-09-21T~00:00Z)
+
+> "Plan APPROVED with both defaults confirmed and one label correction. Q1: (a) — state-only Phase 1 seal; `programme/track-a` code branch untouched until the FE specialist lands. [...] Q2: Confirmed — all 5 wrapped baseline failures stay wrapped through Phase 1 and retire ONLY in Phase 2 after the FE landing, byte-identity verify, and non-vacuous CP10 receipt regeneration. [...] Proceed with the HUNT → spec → state-only Commit → FE-DISPATCH-READY flag. I dispatch the specialist verbatim from your spec the moment the flag lands."
+
+### Phase 1 landed (state-only)
+
+- `phase0/spec_hunt_receipts/20260920T235800Z_r91_cp_app_js_unify_hunt_receipt.md` (NEW · HUNT ground truth).
+- `phase0/specs/r91_cp_app_js_unify_spec.md` (NEW · FE specialist landing blueprint).
+- `notes/FE_DISPATCH_READY_R91.md` (NEW · dispatch-ready flag pointer).
+- `STATE/DECISIONS.md` this-append (Phase 1 opening banking).
+- `STATE/NEXT.md` this-append (R-91 marker flip + queue update).
+- `STATE/PINS.md` this-append (R-91-PHASE-1-PINS block).
+
+### Phase 2 blocker · FE specialist landing
+
+Owner dispatches spec verbatim to FE specialist. Specialist lands byte-identity from `/app/frontend/**` → `pod_shell/frontend/**` (mirror-drift half retires 3 baseline entries) + engine restoration per Option A/B/C (CP10 non-vacuous half retires 2 baseline entries). Recommendation surfaced in spec §3.5: Option A. Specialist proposes final choice; owner adjudicates at seal-verify.
+
+### Sprint queue
+
+1. R-83 CP-FORK-CON-INGEST-1-2-CLOSURE ✅ SEALED at `6af89e33/58e2ffa3/8e6f012a`.
+2. R-85 CP-PARTY-HALTED-ADDITIVE-SUB-WAVE ✅ SEALED at `11afc4f/0cd4c9b8`.
+3. R-86 CP-APP-JS-UNIFY-SCHEDULE-AND-DRIFT-ANNOTATE ✅ SEALED at `2eca0e58/1525ddd0/e40047f4` (schedules R-91).
+4. R-87 CP-BLOCKED-VOCABULARY-CORRECTION ✅ SEALED at `200c2c63/b4526572/9823a520`.
+5. R-88 CP-CONTENT-REGISTRY-WAVE first slice ✅ SEALED at `db90089d/79d5d38d/0cbfc23b` (OWNER-RATIFICATION-PENDING carries forward).
+6. R-89 CP-CONTENT-REGISTRY-WAVE second slice ✅ SEALED at `49e2a338/76c530f0/f2638177`.
+7. R-90 CP-CONTENT-REGISTRY-WAVE third slice ✅ SEALED at `457d947/19bfd333/44d2ae74` · CLOSES Ruling-4 scope.
+8. R-92 CP-G5V5-SFP-1-7 first slice ✅ SEALED at `ceaa24f/19030610/e8f9f168`.
+9. **R-91 CP-APP-JS-UNIFY ⏳ IN-FLIGHT · Phase 1 landed this-turn · Phase 2 blocked on FE specialist landing.**
+10. G5-v5 subsequent slices (SFP-8 onwards + other v5 SRR rules) — queued behind R-91 Phase 2 seal.
+
+### FE-DISPATCH-READY flag
+
+**Status: RAISED at 2026-09-20T23:58:00Z.** Lowers when Phase 2 seals.
+
+### Standing bounds unchanged
+
+zero push · terminal `pytest` only · **no `testing_agent`** · additive-only §3.8 · ratchet monotonic-up **5695** · R-88+ OWNER-RATIFICATION-PENDING carries forward · HF-HOLD SEC-2026-09-12-01 · R-24 UNLISTED · R-25 tagged.
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
