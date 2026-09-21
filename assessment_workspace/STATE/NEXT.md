@@ -5175,4 +5175,68 @@ Countdown horizon `2026-09-23T03:23:15Z` unchanged. Current UTC (approx) `2026-0
 
 zero push · zero remote configured · terminal `pytest` only · **no `testing_agent`** (STRICTLY BANNED per SO §6) · additive-only §3.8 · three-repo discipline · ratchet measured-monotonic-up **5738** floor · HF-HOLD SEC-2026-09-12-01 · R-24 UNLISTED · R-25 tagged · R-88+ OWNER-RATIFICATION-PENDING RETIRED at `a30db4f7`.
 
+
+
+---
+
+**§6 INTERLUDE MARKER · 2026-09-21T~06:30Z · autopilot R-96 · Family C first sub-slice · DAP-1..DAP-30 Tier A · Commit-A + Commit-B landed · ⏳ IN-FLIGHT until Commit-C fixup**
+
+**R-96 Commit-A LANDED** at `programme/track-a` head `65da9703166997ff77cbc125eb424ba913af48d2` (2026-09-21T06:25:00Z). Family C first sub-slice covers SRR rows 315..344 (DAP-1..DAP-30 · promise=dap_backend_spec_v1 · Tier A base admission-and-metering · status=PROPOSED landed under owner G5-v5 sequencing + COMPLETION SPRINT directive).
+
+**Ratchet 5738 → 5771 (+33 measured · targeted equalled measured · no CCS2 correction needed).** Pre-Commit-A deterministic double-green byte-identical `BASELINE_GUARD=1 PYTHONHASHSEED=0` stripped-sha256 `cf980a08137c25af96709ea406a63e0e697aa6caea41a60ef2f90fd164d0b530` both runs 5771 passed / 3 baseline-failed / 1 skipped / 438 warnings.
+
+**Owner COMPLETION SPRINT DIRECTIVE + R-91 NO-EXPEDITE ruling banked verbatim in DECISIONS.md this-turn.** R-91 applies at frozen horizon 2026-09-23T03:23:15Z (unchanged). RBM-8 and SER C.5 I-4 noted as live cross-references for Family D authoring.
+
+**§3.3 3-commit remaining this-turn:**
+- Commit-B (state · master) — banks Commit-A `65da970` · this-append landing now.
+- Commit-C fixup (state · master) — advances heads_last_sealed.state_repo.head · flips R-96 marker ⏳ IN-FLIGHT → ✅ SEALED.
+
+**Autopilot next per COMPLETION SPRINT queue**: R-97 DAP Tier B (DAP-31..38) → R-98 Family D (RBM+ROC Tier A) → residual Tier B → OPEN-CARD SWEEP → LIFECYCLE/ENTITLEMENT HTTP SURFACE → R-91 ε-APPLY at horizon → FINAL CLOSURE REPORT.
+
+### Standing bounds unchanged
+
+zero push · zero remote configured · terminal `pytest` only · **no `testing_agent`** (STRICTLY BANNED per SO §6) · additive-only §3.8 · three-repo discipline · ratchet measured-monotonic-up **5771** floor · HF-HOLD SEC-2026-09-12-01 · R-24 UNLISTED · R-25 tagged · R-88+ OWNER-RATIFICATION-PENDING RETIRED at `a30db4f7`.
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+### 2026-09-21T06:35:00Z · R-96 Commit-C fixup · ✅ SEALED
+
+R-96 Commit-C fixup banks Commit-B `8cbe5cfe6f156d4dd1218e4aa80eb766f0bf30d8` via R-6 boundary regen advance in `notes/ORCH_BOOT.md` (state_head → 8cbe5cfe · code_repo history +65da9703 for R-96 Commit-A). ORCH_BOOT sha `90113c095f57449534be0f51c5955f3b2b3da280d7302252e335e5b25bc3827a`. Ratchet floor 5771 unchanged this-Commit-C. Family C first sub-slice SEALED. Autopilot next: R-97 DAP Tier B.
+
+
+### 2026-09-21T06:50:00Z · R-97 · Family C Tier B DAP-31..38 · Commit-A + Commit-B landed
+
+Commit-A `c98fe5c5267d056c6456487de9ecb7d2b242f6cd` on programme/track-a. Ratchet 5771 → 5782 (+11 measured). Family C fully closed. Deterministic double-green byte-identical stripped-sha256 `20a86fe4` under PYTHONHASHSEED=0 BASELINE_GUARD=1. R-91 unchanged (NO EXPEDITE). Autopilot next: Commit-C fixup → R-98 Family D RBM+ROC.
+
+
+### 2026-09-21T07:10:00Z · R-98 · Family D · RBM-1..23 + ROC-1..11 · Commit-A + Commit-B landed · ⏳ IN-FLIGHT until Commit-C fixup
+
+Commit-A `38eeef6c4844c56e91900a83355c140f76733148` (short `38eeef6`) landed on `programme/track-a` at 2026-09-21T07:08:00Z. Family D **34 rules · 40 tests** (RBM Tier A 22 + RBM Tier B 1 + ROC Tier A 11 + registry-shape 4 + RBM-8 ceremony-mechanic 1 + scanner 2). Ratchet **5782 → 5822 (+40 measured)**. Deterministic double-green byte-identical stripped-sha256 `33d59d5acf5757b9a6493d3371c7e01239bf097d9be7746a487698fbe7443192` under `PYTHONHASHSEED=0 BASELINE_GUARD=1`.
+
+**RBM-8 authored as R-91 ceremony-mechanic anchor** per owner directive this-session: ceremony window rigid, no shortening path in code, R-91 window as live evidence receipt. `RBM_8_R91_LIVE_EVIDENCE_HORIZON_UTC="2026-09-23T03:23:15Z"` banked as `Final[str]` in vocabulary. Grep-negative `scan_for_ceremony_shortening_path` scanner guards 5 shortening patterns.
+
+**R-91 unchanged** — stays parked at frozen horizon 2026-09-23T03:23:15Z (NO EXPEDITE). Current UTC ~07:10Z · ~44.2h out.
+
+**Autopilot next**: Commit-C fixup this-turn → COMPLETION SPRINT step 3 · **OPEN-CARD SWEEP** across `STATE/OBJECTIVES/` → step 4 · **LIFECYCLE/ENTITLEMENT HTTP SURFACE** additive routers → step 5 · **R-91 ε-APPLY** at horizon → step 6 · **FINAL CLOSURE REPORT**.
+
+**Standing bounds unchanged**: zero push · terminal pytest only · **no `testing_agent`** (BANNED) · additive-only §3.8 · three-repo discipline · ratchet floor **5822** · R-91 NO EXPEDITE · HF-HOLD SEC-2026-09-12-01 · R-24 UNLISTED · R-25 tagged.
+
+
+### 2026-09-21T07:15:00Z · R-98 Commit-C fixup · ✅ SEALED
+
+R-98 Commit-C fixup banks Commit-B `deff9e58d0380d8052cd60785dd6766e6a9a2326` (short `deff9e58`) via R-6 boundary regen advance in `notes/ORCH_BOOT.md` (state_head → `deff9e58` · code_repo history +`38eeef6c` for R-98 Commit-A). ORCH_BOOT sha `bb126fe409d0160188c3fdf098a0835ee8a55300a4dccec67fd8c9babb1bcdef` (both notes and POD audit mirror byte-identical). Ratchet floor 5822 unchanged this-Commit-C. **Family D FULLY CLOSED** (34 rules · 40 tests). RBM-8 encoded as R-91 ceremony-mechanic anchor per owner directive.
+
+**Autopilot next per COMPLETION SPRINT sequence** — step 3 · **OPEN-CARD SWEEP** across `STATE/OBJECTIVES/` (scan for still-open cards, close what is closable, report owner-line consolidated list) → step 4 · **LIFECYCLE/ENTITLEMENT HTTP SURFACE** additive routers → step 5 · **R-91 ε-APPLY** at frozen horizon `2026-09-23T03:23:15Z` NO EXPEDITE → step 6 · **FINAL CLOSURE REPORT**.
+
+**COMPLETION SPRINT PROGRESS**: step 1 Family C ✅ (R-96 + R-97) · step 2 Family D ✅ (R-98) · steps 3-6 pending.
+
+
+### 2026-09-21T07:40:00Z · R-99 Commit-C fixup · ✅ SEALED
+
+R-99 Commit-C fixup banks Commit-B `58685080caafe967111ea1af6e3f665e1b5518c5` (short `58685080`) via R-6 boundary regen advance in `notes/ORCH_BOOT.md` (state_head → `58685080` · code_repo history +`eb40fb67ea83c18cb35f51956b3b4b19c07ecbed` for R-99 Commit-A `eb40fb67`). ORCH_BOOT sha `72354cc4a32b7dbe7dc8f839826efd751646df2ca23cde23b2f8a044cbac2e3a` (both notes and POD audit mirror byte-identical). **Ratchet floor advance 5822 → 5831** (+9 measured = +9 targeted · CCS2 clean · no correction). Router `/api/canon/rules/*` exposes sealed R-96..R-98 canon vocabularies + RBM-8 R-91-live-evidence-receipt endpoint. **FE-WIRING-READY flag RAISED** for FE specialist dispatch.
+
+**Autopilot next per user's corrected sequence** — (a) **FE-WIRING-READY dispatch** with seal report handoff artifact → (b) verify OPEN-CARD SWEEP `fad511a7` (done) → (c) residual G5 Tier B / consolidated owner-list scan → (d) **R-91 ε-APPLY** at frozen horizon `2026-09-23T03:23:15Z` NO EXPEDITE → (e) **M1-to-date BUILD_JOURNAL closure** state-only as final act.
+
+**COMPLETION SPRINT PROGRESS**: step 1 Family C ✅ (R-96 + R-97) · step 2 Family D ✅ (R-98) · step 3 OPEN-CARD SWEEP ✅ (`fad511a7`) · **step 4 LIFECYCLE/ENTITLEMENT HTTP SURFACE ✅ (this R-99 seal)** · steps 5-6 pending.
+
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

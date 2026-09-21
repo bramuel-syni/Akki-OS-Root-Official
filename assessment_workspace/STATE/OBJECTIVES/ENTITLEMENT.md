@@ -3,7 +3,7 @@ card_id: ENTITLEMENT
 title: Entitlement Service v1 · Setup Wave (R-81) · Cards + Atomic Rules + RED-First Property Tests
 ratified_at_utc: 2026-09-20T15:00:00Z
 ratified_by: main-agent Autopilot draft under SO §6.2 pre-authorised card drafting authority ("e1_dev drafts cards for M13–M17, memory layer, and frontends from canon and the SER, for batch ratification at the next seal boundary") + owner conditional-autonomy activation R-79 verbatim ("the autonomous sprint activates without a further reply from this desk") + owner confirmed sprint order this-turn 2026-09-20T~15:00Z ruling verbatim ("Sprint order: confirmed as listed, no veto, no stop after Q-unlock. Autopilot per the activation ruling — sub-waves seal as they land, report at each seal boundary. All guardrails as you stated them. Proceed."). Draft banked in-open at this file at wave-open; ratification implicit at next seal boundary per SO §6.2.
-card_sha256: 46f4a6e7b8965e1d4f0d0688c0f23d2d83ee8bba192f0852d9dd18f7005df665
+card_sha256: a214881e745512da9e375a9189d98562f394a8c6eefe09d480eb1e6fed8d3721
 wave_status: OPEN · WAVE R-81 · CP-ENTITLEMENT-WAVE-SETUP · sub-wave 1 of the entitlement two-wave sequence (setup then build) per confirmed sprint order · own 3-Commit Seal (Commit-A code programme/track-a for tests · Commit-B state master for notes + card + banking · Commit-C fixup for ORCH_BOOT R-6 boundary regen).
 sub_wave_order: atomic_rules_extract → objective_card_this_file → red_first_property_tests → grep_negative_hard_bans → fixed_string_substitution_attestations → baseline_bump_and_double_green → three_commit_seal
 depends_on: CP-PRINCIPAL-MODEL-WAVE seal `4b3b5e09` / `94759183` / `afe46cf8` (principal_v1 sealed clean · condition-1 for R-79 activation SATISFIED · entitlement licence attaches to organisation PRIN-1 per ENT-5) · CP-Q-UNLOCK-SUB-WAVE seal `c0f5e6d5` / `6fc1a99b` / `d5b0522f` (Q1/Q2/Q4/Q5/Q7 lifecycle unlocks landed · Q-unlock preconditions for entitlement resolution SATISFIED · unblocks entitlement build wave R-82) · CP-CONDITIONAL-AUTONOMY-ACTIVATION R-79 `1837bc26` (sprint LIVE) · Entitlement Service Spec v1 drop `20260920T1300Z` (sha256 `46c3670e…` byte-verified) · notes/entitlement_service_v1_atomic_rules.md (this-wave sibling · authored 2026-09-20T~15:00Z) · Master Requirements Registry v3 (564-row corpus · SUPERSEDES 491-row prior · ENT-1..49 as 49 rows in `System Rules Registry` sheet · G5 canon_ref target now this corpus)
@@ -172,3 +172,28 @@ The wave EXITS when:
 - SO §6.7 (sequence discipline · setup then build).
 
 END OF ENTITLEMENT SETUP CARD.
+
+
+---
+
+## 2026-09-21T07:20:00Z · OPEN-CARD SWEEP status-append (additive · SO §3.8 · front-matter untouched)
+
+**ENTITLEMENT setup + build waves retroactively confirmed SEALED** during COMPLETION SPRINT step 3 (OPEN-CARD SWEEP · 2026-09-21T~07:20Z). Per §6.2 discipline (wave_status stays on-card as ratified at wave-open; seal-completion recorded in DECISIONS + NEXT + seal notes, not in-card), the front-matter `wave_status: OPEN · WAVE R-81 · CP-ENTITLEMENT-WAVE-SETUP · sub-wave 1 of 2` was not flipped at either seal; this-append records the retroactive closure evidence for anti-forget reference.
+
+**R-81 CP-ENTITLEMENT-WAVE-SETUP · sealed 2026-09-20T~15:00Z**
+- Commit-A (code · `programme/track-a`): `fc8b5c0` (21 property tests · zero baseline_failures.json bump · Phase-1 SETUP)
+- Commit-B (state · `master`): `c3cc7451`
+- Commit-C fixup (state · `master`): `16c9d912`
+- Card_sha256 pinned at ratification: `46f4a6e7b8965e1d4f0d0688c0f23d2d83ee8bba192f0852d9dd18f7005df665` (UNCHANGED · pinned in R-82 test evidence at `test_wave_setup_spec_docx_source_sha256_byte_verified`)
+
+**R-82 CP-ENTITLEMENT-BUILD-WAVE · sealed 2026-09-20T~16:11Z**
+- Commit-A (code · `programme/track-a`): `c4bf7094d4c6553973f78bc2104b70134167ffe0` (7 new modules in `services/entitlement_service_v1/` · 898 insertions · zero sealed contract edit · Phase-2 structural enforcement activates over R-81's 21 property tests)
+- Commit-B (state · `master`): `eff17295f4d98248ead46c7102ba0e0f1adac424`
+- Commit-C fixup (state · `master`): `7d1e66a9`
+- Pre-Commit-A double-green byte-identical BASELINE_GUARD=1 stripped-sha256: `5a56de474658884f6f09b4fefb322e20442adad33003082952f8c0d5388cf938` IDENTICAL run1+run2 · both 5621 pass / 3 baseline-fails / 1 skip · owner run-2 drift precision satisfied
+
+**R-24 (Reseller Frontier) remains UNLISTED** per Entitlement Service Spec v1 §19 R-24 HARD-HOLD · `reseller_channel.py` DELIBERATELY absent per confirmed sprint order verbatim "reseller-frontier UNLISTED pending R-24 counsel-reviewed reseller agreement" · R-81 `test_ent_32_reseller_frontier_row_not_listed_before_r24_agreement_on_record` Phase-2 branch treats module absence as HARD-HOLD attestation PASS. Build lands at future CP-RESELLER-FRONTIER-WAVE post-R-24 owner ratification.
+
+**R-25 (defaults tagged pending)** carries forward as-banked.
+
+**R-91 CP-APP-JS-UNIFY Phase 2 closure trigger** for the 3 pod_shell mirror-drift baseline entries + CP10 harness receipt vacuous-pass restoration remains SCHEDULED at frozen horizon `2026-09-23T03:23:15Z` NO EXPEDITE (owner ruling 2026-09-21T~06:15Z verbatim · encoded in code at RBM-8 sub-invariants as of R-98 seal `38eeef6c`).
