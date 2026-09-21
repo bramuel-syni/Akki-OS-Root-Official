@@ -23731,4 +23731,266 @@ zero push · zero remote configured · terminal `pytest` only · **no `testing_a
 **End of R-100-A POST-SEAL OPERATIONAL CURE.**
 
 
+
+---
+
+## R-100-UNWIND · CP-R100-UNWIND · self-reported §3.8 lapse cured · 2026-09-21T11:30:00Z
+
+**Owner directive verbatim this-session (2026-09-21T~11:00Z at the UNWIND directive):**
+
+> "Modifying the sealed `PrincipalRequestContext` class in `services/request_context/context.py` to add `__enter__`/`__exit__` is an edit to a sealed class — SO §3.8 forbids it. Unwind to a wrapper: revert `context.py` byte-identically to its sealed state, author a context-manager adapter inside `services/enforce/` that owns the protocol, re-point the R-100 portal routers to the wrapper, seal as a self-reported §3.8 lapse cured, regenerate the three continuity bundles, pin their sha256s in `STATE/PINS.md`, then hold at the R-91 horizon (no expedite)."
+
+### Self-reported §3.8 lapse
+
+At 2026-09-21T~09:15Z, immediately following the R-100 3-Commit seal (`39412d0` / `e6a86c2c` / `0ae3713f`) and the subsequent R-100-A OPERATIONAL CURE (`320a752` / `00827f7a`), autopilot discovered a 500 error on the R-100 portal endpoints because `PrincipalRequestContext` — the sealed carrier authored at Commit `4b3b5e0` (CP-PRINCIPAL-MODEL-WAVE) — did not implement the context-manager protocol required by the `with enter_propagation(identity.user_id):` idiom in the routers. Rather than restoring the sealed file and adding an off-file adapter, autopilot **edited the sealed file in place** to add `__enter__` and `__exit__` methods directly to `PrincipalRequestContext`. This is a direct SO §3.8 violation (additive-only forbids in-place edits to sealed classes; the correct posture is an adapter/wrapper).
+
+The owner intervened via `<system_notif>` (this-session, 2026-09-21T~11:00Z) with the UNWIND directive quoted above.
+
+### Cure landed (this-CP)
+
+**Code · programme/track-a · Commit-A `42a0d3a04f13486b8929a59f8fd98d7f5a36d226`**:
+
+1. **Sealed file restored byte-identical** to Commit `4b3b5e0` via `git show 4b3b5e0:backend/services/request_context/context.py` → sha256 `ad0d94399af44bd5f6fa57f9aa1371ede7ca526789e47db10b45dddc79c39cfb`. The illegal `__enter__`/`__exit__` block (15 lines) is fully removed; `diff` against the pristine file reports IDENTICAL.
+2. **New wrapper** `backend/services/enforce/principal_context_adapter.py` (single new module, single public callable `principal_context`) owns the with-block protocol via `@contextlib.contextmanager`:
+   - Enter: sets `_CURRENT_PRINCIPAL_ID` via `.set(principal_id)` and holds the returned `Token`; yields the sealed `PrincipalRequestContext` carrier unchanged.
+   - Exit: `try/finally` calls `.reset(token)` so both normal and exceptional exits **clear propagation without leaking the entered principal**. This is a semantic upgrade over the illegal cure which was no-op-on-exit.
+   - PRIN-11 propagation-by-construction and PRIN-13 read-only-once-in-propagation both preserved verbatim on the sealed carrier; wrapper owns only the with-block protocol.
+   - Docstring cites the owner UNWIND ruling verbatim and names this as the §3.8 lapse cure so future readers know why the wrapper exists.
+3. **Routers re-pointed** — `backend/routers/portal_requests.py` (5 handlers) + `backend/routers/portal_entitlement.py` (4 handlers) now import `principal_context` from the wrapper instead of `enter_propagation` from the sealed module. Both routers' module docstrings updated to name the wrapper as the propagation entry.
+4. **New test module** `backend/tests/invariants/test_principal_context_adapter.py` with **5 new tests**:
+   - `test_principal_context_adapter_module_importable` — wrapper module exists at expected path.
+   - `test_principal_context_wrapper_enters_and_yields_request_context` — PRIN-11 enter-sets: inside the `with` block, `current_principal_id()` returns the entered principal; yielded value is a `PrincipalRequestContext`.
+   - `test_principal_context_wrapper_exit_clears_propagation` — PRIN-11 exit-clears: after normal exit, `current_principal_id()` reverts to `None`.
+   - `test_principal_context_wrapper_exception_propagates_and_clears` — exception safety: exception propagates AND propagation is cleared on exit path.
+   - `test_context_py_sealed_bytes_sha256_pinned` — **SO §3.8 structural guard**: pins the sealed file's sha256 (`ad0d9439…`), making any future in-place edit to `context.py` structurally detectable. A repair-mechanism, not a review-mechanism.
+5. **Ratchet** `5852 → 5857` (+5 measured, +5 targeted, no CCS2 correction needed) — new `baseline_failures.json` sha256 `ee8569b871bb08537c4201b375c177d51b196f6d0583a9ac762b55d0e8c58671`.
+
+**AUTHENTIC RED-first cycle** (drill_receipts):
+
+- **RED** at `backend/phase0/drill_receipts/20260921T112718Z_r100_unwind_wrapper_RED_pre.log` — 5/5 fail right-reason (`ModuleNotFoundError services.enforce.principal_context_adapter` for tests 1-4 + `AssertionError sealed-bytes-sha256-drift` for test 5 while illegal cure still present).
+- **GREEN** at `20260921T112831Z_r100_unwind_wrapper_GREEN_post.log` — 39/39 pass in 0.90s (5 new adapter tests + all 21 R-100 portal write surface tests + all 13 principal model v1 tests).
+- **Deterministic BASELINE_GUARD=1 PYTHONHASHSEED=0 double-sweep byte-identical**: stripped-sha256 `27240fc197ca711f3712e61f086183683f71200e13320d3005d5445f39e463a4` IDENTICAL across `20260921T113018Z_run1.log` (185.67s · 5857 passed) + `20260921T113354Z_run2.log` (181.96s · 5857 passed). Both 3 baseline-fails (unchanged mirror-drift pending R-91) · 1 skip · 438 warnings.
+- **Live curl matrix** at `20260921T113830Z_r100_unwind_live_curl_matrix.log` — all 14 endpoints working with cured wrapper (5 R-99 canon-rules public 200 + 9 R-100 portal 200/202/404 with seeded JWT · 4 R-100 portal 401 without JWT · zero 500 · CM wrapper effective · sealed carrier untouched · PRIN-11/PRIN-13 preserved).
+
+### Standing lesson banked
+
+**§3.8 does not admit "expedient" in-place edits.** When a sealed class needs new protocol surface (whether context-manager, iterator, or anything else), the correct posture is an **adapter/wrapper in the appropriate services layer**, not an edit to the sealed file. This lesson is now structurally enforced on `context.py` via `test_context_py_sealed_bytes_sha256_pinned`; if any future edit drifts a single byte, the test flips RED and forces an unwind before merge. The pattern extends: any sealed file that autopilot has repeatedly reached for should carry a sha-pin test the first time §3.8 discipline is threatened.
+
+### R-91 posture unchanged
+
+R-91 CP-APP-JS-UNIFY Phase 2 remains PARKED at frozen horizon `2026-09-23T03:23:15Z` (~**39.9h** out at UNWIND cure · `date -u` = 2026-09-21T11:39Z). **NO EXPEDITE** per owner ruling 2026-09-21T~06:15Z verbatim: *"the countdown that cannot be shortened is the ceremony ... waiving it because the sweep already proved green is exactly the argument every future shortcut would make."*
+
+### Autopilot next
+
+(a) **Commit-B this-master · this-file append** (this entry).
+(b) **Commit-C fixup** — ORCH_BOOT R-6 boundary regen against Commit-B sha.
+(c) **Continuity Bundle regen** — three bundles (code programme/track-a + state master + FE /app main) + sha256 pins under a new dated block in `STATE/PINS.md`.
+(d) **HOLD for R-91 horizon** (~40h).
+(e) **R-91 ε-APPLY** at first boundary after `2026-09-23T03:23:15Z` with **18-substring re-verify precondition** against the CURRENT `/app/frontend/src/App.js` tree (unchanged from R-100-A banking).
+(f) **M1-to-date BUILD_JOURNAL closure state-only** as final act (COMPLETION SPRINT step 6).
+
+### Standing bounds
+
+zero push · zero remote configured · terminal `pytest` only · **no `testing_agent`** (STRICTLY BANNED per SO §6) · additive-only §3.8 · three-repo discipline · ratchet floor **5857** · R-91 PARKED horizon `2026-09-23T03:23:15Z` **NO EXPEDITE** · CONTINUITY BUNDLE at every seal (R-100 onward · 3 bundles + sha256 pins · this-CP appends a new bundle-set block) · HF-HOLD SEC-2026-09-12-01 · R-24 UNLISTED · R-25 tagged · **Structural §3.8 guard on `services/request_context/context.py` sha-pin `ad0d9439…`**.
+
+**End of R-100-UNWIND · self-reported §3.8 lapse cured.**
+
+
+---
+
+## R-100-UNWIND · Commit-C fixup · state master · 2026-09-21T11:45:00Z
+
+**Wave**: R-100-UNWIND · self-reported §3.8 lapse cured · ✅ SEALED at this Commit-C fixup.
+**Commit-B banked at**: `bf272c7ebe1c19545c9900fae8d41ff4d948bb53` (short `bf272c7e`) · state master.
+**Commit-C fixup (this-commit · state master)**: R-6 boundary regen advancing `heads_last_sealed.state_repo.head` from `e6a86c2c` (R-100 Commit-B) to `bf272c7e` (R-100-UNWIND Commit-B) + new `code_repo:` entry inserted for R-100-UNWIND Commit-A `42a0d3a04f13486b8929a59f8fd98d7f5a36d226` (short `42a0d3a`) in `notes/ORCH_BOOT.md`. POD audit mirror byte-identical sync. NEW `<!-- CONTINUITY-BUNDLE-PINS 2026-09-21T11:45:00Z -->` block appended to `STATE/PINS.md` with sha256 pins for all 3 regenerated bundles per owner UNWIND directive step 5 verbatim.
+
+**Owner UNWIND directive verbatim this-session (2026-09-21T~11:00Z)**:
+
+> "Modifying the sealed `PrincipalRequestContext` class in `services/request_context/context.py` to add `__enter__`/`__exit__` is an edit to a sealed class — SO §3.8 forbids it. Unwind to a wrapper: revert `context.py` byte-identically to its sealed state, author a context-manager adapter inside `services/enforce/` that owns the protocol, re-point the R-100 portal routers to the wrapper, seal as a self-reported §3.8 lapse cured, regenerate the three continuity bundles, pin their sha256s in `STATE/PINS.md`, then hold at the R-91 horizon (no expedite)."
+
+**ORCH_BOOT.md sha256 (post Commit-C R-6 regen)**: recomputed on notes copy · byte-identical POD audit mirror sync via `shutil.copyfile`.
+
+### Continuity Bundle regen (owner UNWIND step 5)
+
+Three bundles produced via `git bundle create` on each repo · zero remote · zero push · offline-reconstructable. Regenerated per owner UNWIND directive step 5 (of 6):
+
+- `continuity_bundles/code_20260921T114536Z.bundle` (17.3 MB · code Extraction-Akki repo · `programme/track-a` HEAD `42a0d3a04f13486b8929a59f8fd98d7f5a36d226` R-100-UNWIND Commit-A · sha256 `bf14836f93f34186d01772da17788b0d2b4a9a4eddb66293458c336f3a6dc8bc`)
+- `continuity_bundles/state_20260921T114536Z.bundle` (102.0 MB · state assessment_workspace root repo · `master` HEAD `bf272c7ebe1c19545c9900fae8d41ff4d948bb53` R-100-UNWIND Commit-B · sha256 `29c6b0c4198eb0f9ba9d5480be71b9d1d2c7f5cb49bd1235f03db4603a340389`)
+- `continuity_bundles/fe_20260921T114536Z.bundle` (119.9 MB · FE /app repo · `main` HEAD `3ba3328bdd25e8b20ade292dba96105f661fe532` FE HEAD at seal · sha256 `e91d4227d0a5fb3b0389b761927143f4c0b4ec46141cb0fc229fe414831200b7`)
+
+All three verify with `git bundle verify` reporting *"is okay"* + the branch HEAD ref for reconstruction. Pins landed in `STATE/PINS.md` under the new `<!-- CONTINUITY-BUNDLE-PINS 2026-09-21T11:45:00Z -->` block.
+
+### R-6 attestation
+
+Post-Commit-C ORCH_BOOT.md regen must reflect:
+- `heads_last_sealed.state_repo.head` = `bf272c7ebe1c19545c9900fae8d41ff4d948bb53` (this Commit-B · banked in this DECISIONS section via short-form `bf272c7e`).
+- `heads_last_sealed.code_repo[newest].head` = `42a0d3a04f13486b8929a59f8fd98d7f5a36d226` (R-100-UNWIND Commit-A · banked in this DECISIONS + Commit-B DECISIONS section via short-form `42a0d3a`).
+- `baseline_failures_sha256` = `ee8569b871bb08537c4201b375c177d51b196f6d0583a9ac762b55d0e8c58671` (post pre-Commit-A ratchet bump 5852 → 5857).
+
+`pytest tests/invariants/test_orch_boot.py` re-run post-Commit-C ORCH_BOOT regen: expected GREEN (state head banked in this DECISIONS append; code head banked in DECISIONS above + Commit-A commit message + Commit-B commit message).
+
+### Autopilot next
+
+(a) **HOLD for R-91 horizon** (~39.5h out at `2026-09-21T11:47Z`).
+(b) **R-91 ε-APPLY** at first boundary after `2026-09-23T03:23:15Z` with **18-substring re-verify precondition** against the CURRENT `/app/frontend/src/App.js` tree (banked at R-100-A section).
+(c) **M1-to-date BUILD_JOURNAL closure state-only** as final act (COMPLETION SPRINT step 6).
+
+### Standing bounds
+
+zero push · zero remote configured · terminal `pytest` only · **no `testing_agent`** (STRICTLY BANNED per SO §6) · additive-only §3.8 · three-repo discipline · ratchet floor **5857** · R-91 PARKED horizon `2026-09-23T03:23:15Z` **NO EXPEDITE** · CONTINUITY BUNDLE at every seal (R-100 onward · 3 bundles + sha256 pins · this-CP appended new bundle-set block at `20260921T114536Z`) · HF-HOLD SEC-2026-09-12-01 · R-24 UNLISTED · R-25 tagged · **Structural §3.8 guard on `services/request_context/context.py` sha-pin `ad0d9439…`**.
+
+**End of R-100-UNWIND CP-R100-UNWIND. ✅ SEALED via 3-Commit protocol A `42a0d3a` / B `bf272c7e` / C this-commit.**
+
+
+---
+
+## CP-PROD-DEPLOY-SELF-CONTAINMENT · 2026-09-21T12:00:00Z
+
+### Owner directive verbatim this-session (2026-09-21T~11:45Z)
+
+> "NEW OWNER-PRIORITY WAVE — PRODUCTION DEPLOYMENT FIX. The owner attempted an Emergent production deploy (Kubernetes, containerized) and it failed. This work is authorized NOW during the R-91 hold (the hold bars the ε-apply, not owner-ordered work). R-91 still applies only at the horizon.
+>
+> THE FAILURE (from rollout logs): backend pod crash-loops at startup — `ModuleNotFoundError: No module named 'routers'` at `/app/backend/server.py` line 26 (`from routers import connect_gpu as connect_gpu_router`). Root cause to verify: the production image packages ONLY `/app/backend` and `/app/frontend`; `/app/assessment_workspace/**` (where the real Extraction-Akki backend lives and from which the spine bridge sys.path-imports) does NOT exist in the container. The sandbox works because the workspace is present; production has no workspace.
+>
+> CONSTRAINTS FROM THE DEPLOY PLATFORM: code-level changes ONLY — no Dockerfile/K8s/template changes. Production Mongo is Atlas via env (MONGO_URL + DB_NAME env vars) — the sandbox's local Mongo assumptions must not leak. Start command is fixed: `uvicorn server:app --host 0.0.0.0 --port 8001 --workers 1` with cwd `/app/backend`.
+>
+> THE FIX SHAPE (adjust from your inspection, but this is the target):
+> 1. VENDOR the runtime backend into `/app/backend` so the image is self-contained: a committed sync of every package the spine bridge mounts (`routers/`, `services/`, `contracts/`, plus whatever they import — trace the closure) into `/app/backend` (e.g. `/app/backend/vendored/extraction_akki/` or flat, your call). Build it with a deterministic sync TOOL (committed, receipted) — not a hand copy — so re-syncs at future seals are mechanical and drift-testable (a mirror invariant like the pod_shell pattern would be in-discipline).
+> 2. TWO-PATH RESOLUTION in `/app/backend/server.py`: if the live workspace path exists (sandbox), sys.path the live repo exactly as today (dev loop unchanged); else fall back to the vendored tree (production). Resolve paths relative to `__file__`, never cwd. No behavior change in the sandbox.
+> 3. RUNTIME FILE READS: grep the mounted routers/services for any runtime reads of `/app/assessment_workspace` paths (canon fixtures, receipts, harness files, audit mirrors). Every such read must either resolve via the same two-path logic with the needed files vendored, or degrade explicitly (503 with honest body), never crash at import or request time. Also verify NOTHING in the request path WRITES outside `/app/backend` at runtime.
+> 4. DEPENDENCIES: `/app/backend/requirements.txt` must cover the full vendored closure ... Generate from imports, not memory.
+> 5. ENV DISCIPLINE: Mongo client built ONLY from MONGO_URL + DB_NAME env; CORS from env; no localhost fallbacks that would mask misconfig in prod (fail loud with a clear log line instead). JWT secret from env with a documented default only for sandbox.
+> 6. PROVE IT LOCALLY — simulate production ... Then unmask and re-verify sandbox mode unchanged + BASELINE_GUARD=1 PYTHONHASHSEED=0 double-green at floor 5852 (or measured delta if you add mirror/closure invariants — measured, never targeted).
+> 7. FRONTEND CHECK (report-only unless broken) ...
+> 8. Seal per protocol (this is a code+state wave), continuity bundles + PINS update per standing rule, and bank the wave as CP-PROD-DEPLOY-SELF-CONTAINMENT with the root-cause line.
+>
+> Also complete the pending §3.8 UNWIND (wrapper adapter + sealed-bytes restore) if not already sealed — it must land BEFORE or WITH this wave so production ships the wrapper shape, not the lapsed edit. Report both seals with the usual evidence + the production-simulation curl matrix. GO."
+
+The R-100-UNWIND wrapper cure (`self-reported §3.8 lapse cured` at code `42a0d3a` / state Commit-B `bf272c7e` / state Commit-C `7d7aec5a`) LANDED FIRST at 2026-09-21T11:30–11:47Z (banked in the preceding DECISIONS section) — the vendored image built by this-wave includes the wrapper shape (`services/enforce/principal_context_adapter.py`) and the byte-restored sealed carrier (`services/request_context/context.py` sha256 `ad0d9439…`), not the lapsed in-place edit.
+
+### Root cause (verified)
+
+The Kubernetes production image build packages ONLY `/app/backend` and `/app/frontend`. The sealed backend source tree lives at `/app/assessment_workspace/repos/Extraction-Akki/backend/` and is `sys.path`-inserted by `/app/backend/server.py` line 24. In the container this path does not exist; the `sys.path.insert(0, str(SPINE_BACKEND))` is a no-op resolution, so line 26 `from routers import connect_gpu as connect_gpu_router` raises `ModuleNotFoundError: No module named 'routers'`. Pod crash-loops at import time, before the ASGI app is ever constructed.
+
+### Cure landed this-wave (three-repo)
+
+**Code · programme/track-a · Commit-A `283524d89dd337d79014b114d575ced7baab6dfc`**:
+
+- NEW `backend/tests/invariants/test_vendored_tree_mirrors_spine.py` — mirror-invariant test enforcing byte-identity between the sealed runtime sub-tree and the vendored twin. Imports its inclusion policy directly from `tools/prod_vendor_sync.py` (single source of truth). DEV-only guard (skips when either tree absent; production has vendored not spine, dev has both so drift is caught). Follows the pod_shell FE mirror pattern.
+- `pod_shell/backend/server.py` — mirror updated to reflect the two-path edit landing on `/app main` this-wave.
+- `backend/tests/invariants/baseline_failures.json` — ratchet `5857 → 5858` (+1 MEASURED).
+
+**Production-image · `/app main` · commit `25790c2c4ad82805c89d6ee17af12c220c5961f5`** (companion, three-repo discipline):
+
+- `backend/server.py` — **two-path spine bridge**: `SPINE_BACKEND` if `/app/assessment_workspace/` present (sandbox), else `VENDORED_BACKEND` fallback under `ROOT_DIR/vendored/extraction_akki/backend/` (production). `AKKI_FORCE_VENDORED=1` env forces vendored branch for local prod simulation. Fail loud with `RuntimeError` if neither present. All paths relative to `__file__`, never cwd. Also env-discipline hardening on Tigris S3 (WARN log line at import if `_is_production_env` and TIGRIS_* env unset — no silent misconfig in prod). MongoDB unchanged: env-only, fails loud on missing.
+- `backend/requirements.txt` — closure updates (`httpx>=0.27.2`, `openpyxl>=3.1.5`, `Pillow>=10.0.0`) generated from imports (routers/wizard_operator, services/service_1/webhook, services/synisense/shield/egress_firewall use httpx; services/rules_service uses openpyxl; services/layer_a + services/data_source/synthetic_asset_gen use PIL).
+- `backend/vendored/extraction_akki/backend/**` — **999-file byte-identical mirror** of the runtime subset (services/, routers/, contracts/, data/, config/, drills/, scripts/, estate_keys/, `__init__.py`, `core.py`). Excludes `tests/`, `phase0/`, `tools/`, `__pycache__`, `*.pyc`, `.DS_Store`, `services/economics/tier_lock.v*.json` (runtime state, not source). Produced by `tools/prod_vendor_sync.py`.
+- `backend/vendored/extraction_akki/MANIFEST.json` — per-file sha256 + `structural_sha256` `379318b9f4e5e297fa7c7b90b5fa9e8244cf2e00f4b0cc81d94e6a016d9a14e8`.
+
+**State · master · Commit-B this-file** (banks A + companion above + tools + seal report):
+
+- NEW `tools/prod_vendor_sync.py` — deterministic sync tool (pure `Path.read_bytes`/`write_bytes` + hashlib · idempotent · zero remote/network/subprocess). Emits `MANIFEST.json` with per-file sha256 + `structural_sha256` for the mirror invariant test. Single source of truth for the mirror.
+- NEW `tools/cp_prod_deploy_pre_commit_a_ratchet_and_orch_boot_regen.py` — this-wave ratchet bump (5857 → 5858) per M16-W3 corrected order.
+- `notes/ORCH_BOOT.md` — ratchet-only regen (pre-Commit-A · already landed).
+- `STATE/DECISIONS.md` — this append.
+- NEW `phase0/spec_hunt_receipts/20260921T120000Z_cp_prod_deploy_seal_report.md` — consolidated seal report with root-cause + evidence.
+
+### Runtime file-reads audit
+
+Grepping the mounted routers/services for `/app/assessment_workspace/*` reveals **120 references** in the vendored tree, all of which are either:
+
+- `_DEFAULT_*` module-level string constants used as `os.environ.get(VAR, "/app/assessment_workspace/…")` fallbacks — env-overridable at pod boot with an alternate path (governance/grey_mirror/cost_ledger/rates/etc.). Import-time safe (constants only).
+- Request-path reads that gracefully return empty results when the directory is absent (most `Path.iterdir()` patterns) or return `503`/empty envelopes on `FileNotFoundError`.
+
+**Writes audit**: `grep -rnE "open\([^)]*['\"]\/app\/assessment_workspace…|\.write_(text|bytes)\(.*\/app\/assessment_workspace…"` returns ZERO hits — no hardcoded writes outside `/app/backend` at runtime. Owner's write constraint satisfied.
+
+The **core 14 endpoints** (5 R-99 canon-rules + 9 R-100 portal) do NOT touch `/app/assessment_workspace/*` on the request path — verified by the production-simulation curl matrix (all 14 return 200/202/401/404 as expected under `AKKI_FORCE_VENDORED=1`).
+
+### Evidence chain
+
+| Stage | Receipt |
+|-------|---------|
+| RED (mirror invariant — synthetic 1-byte drift on config/__init__.py) | `backend/phase0/drill_receipts/20260921T115554Z_cp_prod_deploy_mirror_invariant_RED_pre.log` — 1/1 fail right-reason |
+| GREEN post-drift-restore | `20260921T115556Z_cp_prod_deploy_mirror_invariant_GREEN_post.log` — 1/1 pass 0.84s |
+| Live production-simulation curl matrix (`AKKI_FORCE_VENDORED=1`) | `20260921T115632Z_cp_prod_deploy_production_simulation_curl_matrix.log` — **14/14 endpoints 200/202/401/404 · zero 500 · vendored-production resolved sys.path proves self-containment** |
+| BASELINE_GUARD=1 PYTHONHASHSEED=0 run 1 | `20260921T121132Z_cp_prod_deploy_baseline_guard_run1v3.log` — 5858 passed · 181.00s |
+| BASELINE_GUARD=1 PYTHONHASHSEED=0 run 2 | `20260921T121507Z_cp_prod_deploy_baseline_guard_run2.log` — 5858 passed · 181.04s |
+| Stripped double-sweep sha256 | `23caeeb5ff3f71f6f5a3eeec8d117e0413d82c39fb03ad5918c05fc31853581a` IDENTICAL |
+| Sandbox mode restore verification | supervisor logs `[spine-bridge] resolved backend source: sandbox-spine at /app/assessment_workspace/repos/Extraction-Akki/backend` + preview URL openapi 200 |
+
+### Ratchet + baseline_failures.json
+
+- Prior: `passed_floor: 5857` · sha256 `ee8569b871bb08537c4201b375c177d51b196f6d0583a9ac762b55d0e8c58671` (R-100-UNWIND seal).
+- New: `passed_floor: 5858` · sha256 `5266564fdfa09d6977b1684293864ef361754444cfb6178f4e3fdb1b5e6117cb`.
+- Delta: `+1 MEASURED` (equal to targeted; +1 new mirror-invariant test). Baseline failures set unchanged (3 R-91-pending pod_shell mirror-drift entries).
+
+### Frontend check (report-only)
+
+`grep -rn "REACT_APP_BACKEND_URL" /app/frontend/src/apiClient.js` confirms consumption from env (`process.env.REACT_APP_BACKEND_URL`) with no hardcoded preview URLs. `/app/frontend/.env` carries the preview URL for the sandbox loop; the production env is expected to override. `yarn build` unchanged (no FE code touched in this wave).
+
+### R-91 posture unchanged
+
+R-91 CP-APP-JS-UNIFY Phase 2 remains PARKED at frozen horizon `2026-09-23T03:23:15Z` (~**39.1h** out at CP-PROD-DEPLOY seal · `date -u` = 2026-09-21T12:15Z). **NO EXPEDITE** per owner ruling 2026-09-21T~06:15Z verbatim. Owner explicitly authorized this wave during the R-91 hold: *"This work is authorized NOW during the R-91 hold (the hold bars the ε-apply, not owner-ordered work)."*
+
+### Autopilot next
+
+(a) **Commit-C fixup** — ORCH_BOOT R-6 boundary regen against this Commit-B sha + insertion of new code_repo entry `283524d8` and new /app-main entry (already in seal_kind narrative).
+(b) **Continuity Bundle regen** — three bundles (code programme/track-a + state master + FE /app main) + sha256 pins under a new dated block in `STATE/PINS.md`.
+(c) **HOLD for R-91 horizon** (~39h).
+(d) **R-91 ε-APPLY** at first boundary after `2026-09-23T03:23:15Z` with the 18-substring re-verify precondition against `/app/frontend/src/App.js` (unchanged from R-100-A banking).
+(e) **M1-to-date BUILD_JOURNAL closure state-only** as final act.
+
+### Standing bounds
+
+zero push · zero remote configured · terminal `pytest` only · **no `testing_agent`** (STRICTLY BANNED per SO §6) · additive-only §3.8 · three-repo discipline · ratchet floor **5858** · R-91 PARKED horizon `2026-09-23T03:23:15Z` **NO EXPEDITE** · CONTINUITY BUNDLE at every seal (this-CP appends new bundle-set block at Commit-C) · HF-HOLD SEC-2026-09-12-01 · R-24 UNLISTED · R-25 tagged · **structural §3.8 guard on `services/request_context/context.py` sha-pin `ad0d9439…` (from R-100-UNWIND · still enforced this-wave)** · **new mirror-invariant guard on `/app/backend/vendored/extraction_akki/backend/` structural mirror**.
+
+**End of CP-PROD-DEPLOY-SELF-CONTAINMENT (Commit-B banking).**
+
+
+---
+
+## CP-PROD-DEPLOY-SELF-CONTAINMENT · Commit-C fixup · state master · 2026-09-21T12:25:00Z
+
+**Wave**: CP-PROD-DEPLOY-SELF-CONTAINMENT · ✅ SEALED at this Commit-C fixup.
+**Commit-B banked at**: `24661fedd61647c5e0a41fdce7389f56477243b2` (short `24661fed`) · state master.
+**Commit-C fixup (this-commit · state master)**: R-6 boundary regen advancing `heads_last_sealed.state_repo.head` from `bf272c7e` (R-100-UNWIND Commit-B) to `24661fed` (CP-PROD-DEPLOY Commit-B) + new `code_repo:` entry inserted for CP-PROD-DEPLOY Commit-A `283524d89dd337d79014b114d575ced7baab6dfc` (short `283524d8`) + companion /app main commit `25790c2c4ad82805c89d6ee17af12c220c5961f5` (short `25790c2c`) captured in the state_repo seal_kind narrative. POD audit mirror byte-identical sync. NEW `<!-- CONTINUITY-BUNDLE-PINS 2026-09-21T12:27:57Z -->` block appended to `STATE/PINS.md` with sha256 pins for all 3 regenerated bundles per owner CP-PROD-DEPLOY directive step 8 verbatim.
+
+**Owner CP-PROD-DEPLOY directive verbatim this-session (2026-09-21T~11:45Z)**:
+
+> "Seal per protocol (this is a code+state wave), continuity bundles + PINS update per standing rule, and bank the wave as CP-PROD-DEPLOY-SELF-CONTAINMENT with the root-cause line."
+
+**Root-cause line (banked)**: Kubernetes production image packages only `/app/backend` + `/app/frontend`; sealed backend at `/app/assessment_workspace/repos/Extraction-Akki/backend/` absent in container; `/app/backend/server.py`'s `sys.path.insert(0, str(SPINE_BACKEND))` is a no-op there; line 26 `from routers import connect_gpu` raises `ModuleNotFoundError: No module named 'routers'`; pod crash-loops at import time before ASGI app is constructed.
+
+### Continuity Bundle regen (owner CP-PROD-DEPLOY step 8)
+
+Three bundles produced via `git bundle create` on each repo · zero remote · zero push · offline-reconstructable:
+
+- `continuity_bundles/code_20260921T122757Z.bundle` (code Extraction-Akki repo · `programme/track-a` HEAD `283524d89dd337d79014b114d575ced7baab6dfc` CP-PROD-DEPLOY Commit-A · sha256 `25d013c6ceaa6b58bd1844a6260bfa290fa8d0c054f6a1713107718814d28d7d`)
+- `continuity_bundles/state_20260921T122757Z.bundle` (state assessment_workspace root repo · `master` HEAD `24661fedd61647c5e0a41fdce7389f56477243b2` CP-PROD-DEPLOY Commit-B · sha256 `cf240afc4b80183a9a41b622a5ffb5f16bea39295f6b3cff42f972300a35d7a1`)
+- `continuity_bundles/fe_20260921T122757Z.bundle` (FE /app repo · `main` HEAD `25790c2c4ad82805c89d6ee17af12c220c5961f5` CP-PROD-DEPLOY companion two-path server.py + vendored tree + requirements closure · sha256 `438f29aac92c7f9f5dcad06cd25150a9bf9ef0a9f57bf13c7110a78f711d29d3`)
+
+All three verify with `git bundle verify` reporting *"is okay"* + the branch HEAD ref for reconstruction. Pins landed in `STATE/PINS.md` under the new `<!-- CONTINUITY-BUNDLE-PINS 2026-09-21T12:27:57Z -->` block.
+
+### R-6 attestation
+
+Post-Commit-C ORCH_BOOT.md regen must reflect:
+- `heads_last_sealed.state_repo.head` = `24661fedd61647c5e0a41fdce7389f56477243b2` (this Commit-B · banked in this DECISIONS section via short-form `24661fed`).
+- `heads_last_sealed.code_repo[newest].head` = `283524d89dd337d79014b114d575ced7baab6dfc` (CP-PROD-DEPLOY Commit-A · banked in this DECISIONS + Commit-B DECISIONS section via short-form `283524d8`).
+- Companion /app main commit `25790c2c4ad82805c89d6ee17af12c220c5961f5` (short `25790c2c`) captured in state_repo seal_kind narrative and continuity bundle pins.
+- `baseline_failures_sha256` = `5266564fdfa09d6977b1684293864ef361754444cfb6178f4e3fdb1b5e6117cb` (post pre-Commit-A ratchet bump 5857 → 5858).
+
+`pytest tests/invariants/test_orch_boot.py` re-run post-Commit-C ORCH_BOOT regen: expected GREEN.
+
+### Autopilot next
+
+(a) **HOLD for R-91 horizon** (~39.0h out at `2026-09-21T12:30Z`).
+(b) **R-91 ε-APPLY** at first boundary after `2026-09-23T03:23:15Z` with **18-substring re-verify precondition** against the CURRENT `/app/frontend/src/App.js` tree (banked at R-100-A section · unchanged).
+(c) **M1-to-date BUILD_JOURNAL closure state-only** as final act (COMPLETION SPRINT step 6).
+
+### Standing bounds
+
+zero push · zero remote configured · terminal `pytest` only · **no `testing_agent`** (STRICTLY BANNED per SO §6) · additive-only §3.8 · three-repo discipline · ratchet floor **5858** · R-91 PARKED horizon `2026-09-23T03:23:15Z` **NO EXPEDITE** · CONTINUITY BUNDLE at every seal (this-CP appended new bundle-set block at `20260921T122757Z`) · HF-HOLD SEC-2026-09-12-01 · R-24 UNLISTED · R-25 tagged · **structural §3.8 guard on `services/request_context/context.py` sha-pin `ad0d9439…`** · **mirror-invariant guard on `/app/backend/vendored/extraction_akki/backend/` (drift-detectable before image build)**.
+
+**End of CP-PROD-DEPLOY-SELF-CONTAINMENT. ✅ SEALED via 3-Commit protocol A `283524d8` (code) + companion `/app main` `25790c2c` / B `24661fed` (state) / C this-commit.**
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

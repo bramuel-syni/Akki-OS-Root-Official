@@ -150,7 +150,7 @@ Strategy work-in-progress (to be created):
 - **checkpoint_14d_utc:** `2026-08-28T00:00:00Z`
 - **hardening_status:** `attested`
 - **acceptance_status:** `green`
-- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260921T092104Z.json`
+- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260921T121537Z.json`
 <!-- CONNECT-GPU-PINS -->
 
 
@@ -693,3 +693,57 @@ Standing bounds unchanged.
 
 <!-- CONTINUITY-BUNDLE-PINS 2026-09-21T08:35:00Z END -->
 
+
+
+<!-- CONTINUITY-BUNDLE-PINS 2026-09-21T11:45:00Z BEGIN -->
+
+## Continuity Bundle sha256 pins · R-100-UNWIND self-reported §3.8 lapse cured · 2026-09-21T11:45:00Z
+
+Owner UNWIND directive verbatim this-session (2026-09-21T~11:00Z):
+
+> *"Modifying the sealed `PrincipalRequestContext` class in `services/request_context/context.py` to add `__enter__`/`__exit__` is an edit to a sealed class — SO §3.8 forbids it. Unwind to a wrapper: revert `context.py` byte-identically to its sealed state, author a context-manager adapter inside `services/enforce/` that owns the protocol, re-point the R-100 portal routers to the wrapper, seal as a self-reported §3.8 lapse cured, regenerate the three continuity bundles, pin their sha256s in `STATE/PINS.md`, then hold at the R-91 horizon (no expedite)."*
+
+Bundles produced via local `git bundle create` on each repo · zero remote · zero push · offline-reconstructable. Regenerated per owner UNWIND-step-3 directive (this section is the fifth of six sequenced steps).
+
+**Bundle set 20260921T114536Z (R-100-UNWIND seal · this-wave)**:
+
+| Repo                              | Workdir                                       | Branch              | Bundle file                                            | Ref HEAD                                                        | Bundle sha256 |
+|-----------------------------------|-----------------------------------------------|---------------------|--------------------------------------------------------|-----------------------------------------------------------------|---------------|
+| code · Extraction-Akki            | `/app/assessment_workspace/repos/Extraction-Akki` | `programme/track-a` | `continuity_bundles/code_20260921T114536Z.bundle`  | `42a0d3a04f13486b8929a59f8fd98d7f5a36d226` (R-100-UNWIND Commit-A) | `bf14836f93f34186d01772da17788b0d2b4a9a4eddb66293458c336f3a6dc8bc` |
+| state · assessment_workspace root | `/app/assessment_workspace`                   | `master`            | `continuity_bundles/state_20260921T114536Z.bundle` | `bf272c7ebe1c19545c9900fae8d41ff4d948bb53` (R-100-UNWIND Commit-B) | `29c6b0c4198eb0f9ba9d5480be71b9d1d2c7f5cb49bd1235f03db4603a340389` |
+| FE POD audit mirror               | `/app/frontend`                               | `main`              | `continuity_bundles/fe_20260921T114536Z.bundle`    | `3ba3328bdd25e8b20ade292dba96105f661fe532` (FE main HEAD at seal · advanced since R-100 bundle) | `e91d4227d0a5fb3b0389b761927143f4c0b4ec46141cb0fc229fe414831200b7` |
+
+All three bundles verify with `git bundle verify` reporting *"is okay"* + the branch HEAD ref for reconstruction.
+
+Standing bounds unchanged. Zero-push discipline unchanged.
+
+<!-- CONTINUITY-BUNDLE-PINS 2026-09-21T11:45:00Z END -->
+
+
+<!-- CONTINUITY-BUNDLE-PINS 2026-09-21T12:27:57Z BEGIN -->
+
+## Continuity Bundle sha256 pins · CP-PROD-DEPLOY-SELF-CONTAINMENT · 2026-09-21T12:27:57Z
+
+Owner CP-PROD-DEPLOY directive verbatim this-session (2026-09-21T~11:45Z, step 8):
+
+> *"Seal per protocol (this is a code+state wave), continuity bundles + PINS update per standing rule, and bank the wave as CP-PROD-DEPLOY-SELF-CONTAINMENT with the root-cause line."*
+
+Root-cause line: **Kubernetes production image packages only `/app/backend` + `/app/frontend`; sealed backend at `/app/assessment_workspace/repos/Extraction-Akki/backend/` absent in container; `/app/backend/server.py`'s `sys.path.insert(0, str(SPINE_BACKEND))` is a no-op there; line 26 `from routers import connect_gpu` raises `ModuleNotFoundError: No module named 'routers'`.**
+
+Cure per owner directive: vendor the runtime backend into `/app/backend/vendored/extraction_akki/backend/` via committed deterministic sync tool (`tools/prod_vendor_sync.py`), two-path resolution in `server.py` (SPINE if workspace present else VENDORED), mirror-invariant test guards drift, requirements.txt closure updated, env discipline hardened.
+
+Bundles produced via local `git bundle create` on each repo · zero remote · zero push · offline-reconstructable.
+
+**Bundle set 20260921T122757Z (CP-PROD-DEPLOY seal · this-wave)**:
+
+| Repo                              | Workdir                                       | Branch              | Bundle file                                            | Ref HEAD                                                        | Bundle sha256 |
+|-----------------------------------|-----------------------------------------------|---------------------|--------------------------------------------------------|-----------------------------------------------------------------|---------------|
+| code · Extraction-Akki            | `/app/assessment_workspace/repos/Extraction-Akki` | `programme/track-a` | `continuity_bundles/code_20260921T122757Z.bundle`  | `283524d89dd337d79014b114d575ced7baab6dfc` (CP-PROD-DEPLOY Commit-A) | `25d013c6ceaa6b58bd1844a6260bfa290fa8d0c054f6a1713107718814d28d7d` |
+| state · assessment_workspace root | `/app/assessment_workspace`                   | `master`            | `continuity_bundles/state_20260921T122757Z.bundle` | `24661fedd61647c5e0a41fdce7389f56477243b2` (CP-PROD-DEPLOY Commit-B) | `cf240afc4b80183a9a41b622a5ffb5f16bea39295f6b3cff42f972300a35d7a1` |
+| FE POD audit / production image   | `/app/frontend`                               | `main`              | `continuity_bundles/fe_20260921T122757Z.bundle`    | `25790c2c4ad82805c89d6ee17af12c220c5961f5` (CP-PROD-DEPLOY companion — two-path server.py + vendored tree + requirements closure) | `438f29aac92c7f9f5dcad06cd25150a9bf9ef0a9f57bf13c7110a78f711d29d3` |
+
+All three bundles verify with `git bundle verify` reporting *"is okay"* + the branch HEAD ref for reconstruction.
+
+Standing bounds unchanged. Zero-push discipline unchanged.
+
+<!-- CONTINUITY-BUNDLE-PINS 2026-09-21T12:27:57Z END -->
