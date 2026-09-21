@@ -41,6 +41,7 @@ const NAV_GROUPS = [
       { to: "/dap/governance/policies", icon: Shield, label: "Policies & Regulations" },
       { to: "/dap/governance/contract", icon: FileText, label: "Contract & Access Terms" },
       { to: "/dap/governance/collection", icon: Database, label: "Data Collection" },
+      { to: "/dap/governance/rules", icon: Shield, label: "Canon Rules" },
     ],
   },
   {
@@ -56,6 +57,18 @@ const NAV_GROUPS = [
     label: "Requests",
     items: [
       { to: "/dap/requests", icon: FileText, label: "Request Lifecycle" },
+    ],
+  },
+  {
+    label: "Entitlement",
+    items: [
+      { to: "/dap/entitlement", icon: Shield, label: "Licence & Catalog" },
+    ],
+  },
+  {
+    label: "Ceremony",
+    items: [
+      { to: "/dap/countdown", icon: FileText, label: "R-91 Countdown" },
     ],
   },
 ];

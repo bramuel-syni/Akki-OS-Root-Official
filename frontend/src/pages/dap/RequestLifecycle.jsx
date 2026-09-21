@@ -1,6 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import StatusBadge from "@/components/dap/StatusBadge";
-import { ChevronDown, ChevronUp, RotateCcw, AlertTriangle, CheckCircle, Square } from "lucide-react";
+import BackendPending from "@/components/shared/BackendPending";
+import LoadingState from "@/components/shared/LoadingState";
+import { ChevronDown, ChevronUp, RotateCcw, AlertTriangle, CheckCircle, Square, Send, Clock } from "lucide-react";
+import { useAuth } from "@/pages/dap/DAPLayout";
+import { tryGet, tryPost } from "@/lib/apiClient";
 import {
   STOP_CONFIRM,
   PARTY_HALTED_KIND_LINE,
@@ -22,19 +26,24 @@ import {
 /**
  * Request Lifecycle — Journey v2 conformance pass.
  *
+ * Wired to:
+ *   GET  /api/portal/requests           — principal-scoped history
+ *   GET  /api/portal/requests/{id}      — detail
+ *   POST /api/portal/requests           — submit new request
+ *   POST /api/portal/requests/{id}/stop — request-scoped stop
+ *   POST /api/portal/requests/{id}/retry — bounded-3 retry
+ *
  * THREE Blocked kinds: request, check, estate (§5, §11) — plus Interrupted
- * (own rail state, platform fault) and party_halted (own rail state, party
- * stopped executing request per Q5 module tree). suspended is a principal
- * state (DAP-27, PRIN-1), a different axis, and surfaces only via suspension
- * notices — never in Blocked reason grammar.
- * Stop action on Executing (TC-BLK-24).
- * In Approval waiting line (TC-INA-06).
- * Expired drawer (TC-EXP-02).
+ * (own rail state, platform fault) and party_halted (own rail state).
+ * Stopped terminal state (Executing → Stopped, charged-to-point-of-stop,
+ * receipted).
  *
  * HARD OMISSIONS (owner-ruled):
  * - NO "Waited N days" in any post-decision Sign-off block (Approved/Refused)
  * - NO partial-release UI
  * - NO owner-turnaround metrics
+ * - NO approver identity anywhere (DAP-15)
+ * - NO remaining-budget reason lines (DAP-35)
  */
 
 const MODE_VERB = {
@@ -59,12 +68,11 @@ const BLOCK_KIND_META = {
     kindLine: BLOCK_KIND_ESTATE,
     fixedReason: BLOCK_ESTATE_REASON,
     showCopy: false,
-    showProgress: false, // DAP-35: no progress indicator for estate
+    showProgress: false,
   },
 };
 
-// Sample requests showing the full state machine (from DAP reference + journey v2).
-// In production these would come from a real endpoint (backend pending).
+// Sample requests — reference state machine (used when backend endpoints not yet mounted)
 const SAMPLE_REQUESTS = [
   {
     id: "ftn-2026-0118", objective: "Train on the cleared complaint files to route by urgency.",
@@ -148,7 +156,6 @@ const SAMPLE_REQUESTS = [
     blockRef: "PRC-2026-0102-B1",
     dataOwner: "Digicow",
   },
-  // ── party_halted sample (own rail state per Ruling 2 · journey v2 §11) ──
   {
     id: "ftn-2026-0122", objective: "Train on the cleared complaint files to identify repeat callers.",
     status: "party_halted", mode: "finetune", agreement: "Agreement MER-007",
@@ -160,48 +167,179 @@ const SAMPLE_REQUESTS = [
     dataOwner: "Digicow",
     signoffRequired: true, approvedByRole: "records authority", approvedDate: "12 Sep 2026",
   },
+  // Stopped terminal state (Executing → Stopped)
+  {
+    id: "prc-2026-0115", objective: "Find out which branches have the most incomplete complaint records.",
+    status: "Stopped", mode: "processed", agreement: "Agreement MER-002",
+    submitted: "submitted 14 Sep 2026", submittedBy: "R. Adeyemi", scope: "Audio",
+    stoppedAt: "16 Sep 2026, 09:22", pctAtStop: 28,
+  },
 ];
 
 const ALL_STATES = [
   "In Approval", "Executing", "Ready", "Retrieved", "Refused",
   "Blocked", "Expired", "Interrupted (platform fault)",
-  // Three Blocked kinds per Ruling 2: request / check / estate.
   "Blocked \u00b7 request", "Blocked \u00b7 check", "Blocked \u00b7 estate",
-  // party_halted is its own rail state, not a Blocked variant.
-  "party_halted",
+  "party_halted", "Stopped",
 ];
 
 const RAIL_ROW = [
   ["Total", "Total"], ["In Approval", "In Approval"], ["Executing", "Executing"],
   ["Ready", "Ready"], ["Retrieved", "Retrieved"], ["Refused", "Refused"],
   ["Blocked", "Blocked"], ["Expired", "Expired"], ["Interrupted (platform fault)", "Interrupted"],
-  ["party_halted", "Stopped"],
+  ["party_halted", "Stopped by you"], ["Stopped", "Stopped"],
 ];
 
-/** Compute elapsed calendar days between two ISO date strings. */
 function daysBetween(isoA, isoB) {
   const a = new Date(isoA);
   const b = isoB ? new Date(isoB) : new Date();
   return Math.max(0, Math.round((b - a) / 86_400_000));
 }
 
-function RequestCard({ req }) {
+/* ── Submit Form ───────────────────────────────────────── */
+function SubmitForm({ onSubmitted }) {
+  const { user } = useAuth();
+  const [objectiveText, setObjectiveText] = useState("");
+  const [units, setUnits] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const [result, setResult] = useState(null);
+  const [error, setError] = useState(null);
+
+  const handleSubmit = useCallback(async (e) => {
+    e.preventDefault();
+    if (!objectiveText.trim()) return;
+    setSubmitting(true);
+    setError(null);
+    setResult(null);
+    const unitList = units.trim() ? units.split(",").map((u) => u.trim()).filter(Boolean) : [];
+    const res = await tryPost("/api/portal/requests", { objective_text: objectiveText, units: unitList });
+    setSubmitting(false);
+    if (res.ok) {
+      setResult(res.data);
+      setObjectiveText("");
+      setUnits("");
+      if (onSubmitted) onSubmitted();
+    } else if (res.status === 422) {
+      setError(`Governed refusal: ${JSON.stringify(res.data)}`);
+    } else if (res.status === 404) {
+      setError("Endpoint not yet mounted on this backend instance (POST /api/portal/requests returns 404).");
+    } else if (res.status === 401) {
+      setError("Authentication required. Please sign in.");
+    } else {
+      setError(res.error || `Unexpected response: ${res.status}`);
+    }
+  }, [objectiveText, units, onSubmitted]);
+
+  if (!user) return null;
+
+  return (
+    <div data-testid="request-submit-form" className="rounded-lg border p-4 mb-6" style={{ borderColor: "var(--line)", background: "white" }}>
+      <h2 className="text-sm font-medium mb-3" style={{ color: "var(--ink)" }}>
+        <Send size={14} className="inline mr-1.5" />
+        Submit a new request
+      </h2>
+      <form onSubmit={handleSubmit}>
+        <div className="space-y-3">
+          <div>
+            <label htmlFor="objective-text" className="text-xs block mb-1" style={{ color: "var(--ink2)" }}>
+              Objective (frozen once submitted)
+            </label>
+            <textarea
+              id="objective-text"
+              data-testid="submit-objective-text"
+              value={objectiveText}
+              onChange={(e) => setObjectiveText(e.target.value)}
+              placeholder="Describe what you need from the data estate..."
+              className="w-full text-sm px-3 py-2 rounded border resize-none"
+              style={{ borderColor: "var(--hair)", minHeight: "80px" }}
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="submit-units" className="text-xs block mb-1" style={{ color: "var(--ink2)" }}>
+              Units (comma-separated, optional)
+            </label>
+            <input
+              id="submit-units"
+              data-testid="submit-units"
+              value={units}
+              onChange={(e) => setUnits(e.target.value)}
+              placeholder="unit-a, unit-b"
+              className="w-full text-sm px-3 py-2 rounded border"
+              style={{ borderColor: "var(--hair)" }}
+            />
+          </div>
+          <button
+            type="submit"
+            data-testid="submit-request-btn"
+            disabled={submitting || !objectiveText.trim()}
+            className="text-xs px-4 py-2 rounded font-medium transition-colors disabled:opacity-50"
+            style={{ background: "var(--blue)", color: "white" }}
+          >
+            {submitting ? "Submitting\u2026" : "Submit request"}
+          </button>
+        </div>
+      </form>
+      {result && (
+        <div data-testid="submit-result" className="mt-3 rounded p-3 text-xs" style={{ background: "rgba(29,122,110,.06)", color: "var(--sage)" }}>
+          Request accepted. Outcome: {result.outcome || "accepted"}. Authority: {result.authority || "delegated"}.
+        </div>
+      )}
+      {error && (
+        <div data-testid="submit-error" className="mt-3 rounded p-3 text-xs" style={{ background: "rgba(184,57,91,.06)", color: "var(--oxblood)" }}>
+          {error}
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* ── Request Card ──────────────────────────────────────── */
+function RequestCard({ req, onRefresh }) {
   const [expanded, setExpanded] = useState(false);
   const [stopDialogOpen, setStopDialogOpen] = useState(false);
+  const [stopLoading, setStopLoading] = useState(false);
+  const [stopResult, setStopResult] = useState(null);
+  const [retryLoading, setRetryLoading] = useState(false);
+  const [retryResult, setRetryResult] = useState(null);
   const blockMeta = req.blockKind ? BLOCK_KIND_META[req.blockKind] : null;
 
-  // Compute In Approval waiting days from submission date
   const waitDays = req.submittedAtISO ? daysBetween(req.submittedAtISO, null) : null;
-
-  // Resolve kind line for Blocked kinds (request/check/estate only)
   const resolvedKindLine = blockMeta ? blockMeta.kindLine : null;
-
-  // Resolve what-next for Blocked kinds
   const resolvedWhatNext = (() => {
     if (!blockMeta) return null;
     if (req.blockKind === "estate") return BLOCK_WHATNEXT_ESTATE_TPL(req.dataOwner || "the data owner");
     return blockMeta.whatNext || null;
   })();
+
+  // Stop handler — wired to POST /api/portal/requests/{id}/stop
+  const handleStop = useCallback(async () => {
+    setStopLoading(true);
+    const res = await tryPost(`/api/portal/requests/${req.id}/stop`);
+    setStopLoading(false);
+    if (res.ok) {
+      setStopResult(res.data);
+      setStopDialogOpen(false);
+      if (onRefresh) onRefresh();
+    } else if (res.status === 409) {
+      setStopResult({ error: true, detail: res.data?.detail || "Request is not currently Executing." });
+    } else {
+      setStopResult({ error: true, detail: res.error || `Stop failed (${res.status})` });
+    }
+  }, [req.id, onRefresh]);
+
+  // Retry handler — wired to POST /api/portal/requests/{id}/retry
+  const handleRetry = useCallback(async () => {
+    setRetryLoading(true);
+    const res = await tryPost(`/api/portal/requests/${req.id}/retry`);
+    setRetryLoading(false);
+    if (res.ok) {
+      setRetryResult(res.data);
+      if (onRefresh) onRefresh();
+    } else {
+      setRetryResult({ error: true, detail: res.data?.detail || res.error || `Retry failed (${res.status})` });
+    }
+  }, [req.id, onRefresh]);
 
   return (
     <div
@@ -215,7 +353,6 @@ function RequestCard({ req }) {
             <div className="flex items-center gap-2 mb-1">
               <span className="text-xs font-mono" style={{ color: "var(--ink3)" }}>{req.id}</span>
               <StatusBadge status={req.status} />
-              {/* Blocked sub-kind badge for the three Blocked kinds only */}
               {req.status === "Blocked" && req.blockKind && (
                 <StatusBadge status={`Blocked \u00b7 ${req.blockKind}`} />
               )}
@@ -240,7 +377,7 @@ function RequestCard({ req }) {
           <span>{req.submitted}</span>
         </div>
 
-        {/* ── In Approval: spend-ceiling breach folded in with reason ── */}
+        {/* In Approval: spend-ceiling breach folded in with reason */}
         {req.status === "In Approval" && req.spendCeilingBreach && (
           <div className="mt-2 text-xs p-2 rounded" style={{ background: "rgba(176,141,46,.08)", color: "var(--brass)" }}>
             <AlertTriangle size={12} className="inline mr-1" />
@@ -248,13 +385,9 @@ function RequestCard({ req }) {
           </div>
         )}
 
-        {/* ── In Approval: waiting line (TC-INA-06) ── */}
+        {/* In Approval: waiting line (TC-INA-06) */}
         {req.status === "In Approval" && req.windowEndsAtISO && waitDays != null && (
-          <p
-            data-testid={`in-approval-waiting-${req.id}`}
-            className="mt-2 text-xs"
-            style={{ color: "var(--brass)" }}
-          >
+          <p data-testid={`in-approval-waiting-${req.id}`} className="mt-2 text-xs" style={{ color: "var(--brass)" }}>
             {IN_APPROVAL_WAITING_TPL(
               req.dataOwner || "the data owner",
               new Date(req.windowEndsAtISO).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }),
@@ -263,18 +396,34 @@ function RequestCard({ req }) {
           </p>
         )}
 
-        {/* ── Interrupted state with retry counter ── */}
+        {/* Interrupted state with retry counter + retry action */}
         {req.status === "Interrupted (platform fault)" && (
-          <div className="mt-2 flex items-center gap-2 text-xs p-2 rounded" style={{ background: "rgba(184,57,91,.06)", color: "var(--oxblood)" }}>
-            <RotateCcw size={12} />
-            <span>
-              Auto-retry attempt {req.retryAttempts || 0} of {req.maxRetries || 3}
-              {req.retryAttempts >= (req.maxRetries || 3) && " \u2014 exhausted, resolves to Blocked \u00b7 check"}
-            </span>
+          <div className="mt-2">
+            <div className="flex items-center gap-2 text-xs p-2 rounded" style={{ background: "rgba(184,57,91,.06)", color: "var(--oxblood)" }}>
+              <RotateCcw size={12} />
+              <span>
+                Auto-retry attempt {req.retryAttempts || 0} of {req.maxRetries || 3}
+                {(req.retryAttempts || 0) >= (req.maxRetries || 3) && " \u2014 exhausted, resolves to Blocked \u00b7 check"}
+              </span>
+            </div>
+            {(req.retryAttempts || 0) < (req.maxRetries || 3) && (
+              <button
+                data-testid={`retry-btn-${req.id}`}
+                onClick={handleRetry}
+                disabled={retryLoading}
+                className="mt-2 flex items-center gap-1.5 text-xs px-2.5 py-1 rounded border transition-colors hover:bg-blue-50 disabled:opacity-50"
+                style={{ borderColor: "var(--blue)", color: "var(--blue)" }}
+              >
+                <RotateCcw size={10} /> {retryLoading ? "Retrying\u2026" : "Retry"}
+              </button>
+            )}
+            {retryResult && retryResult.error && (
+              <p className="mt-1 text-[10px]" style={{ color: "var(--oxblood)" }}>{retryResult.detail}</p>
+            )}
           </div>
         )}
 
-        {/* ── Executing: progress + Stop action (TC-BLK-24) ── */}
+        {/* Executing: progress + Stop action (TC-BLK-24) */}
         {req.status === "Executing" && (
           <div className="mt-2">
             {req.pct != null && (
@@ -294,7 +443,6 @@ function RequestCard({ req }) {
                 <span>{req.eta}</span>
               </div>
             )}
-            {/* Stop action */}
             <button
               data-testid={`stop-btn-${req.id}`}
               onClick={() => setStopDialogOpen(true)}
@@ -306,24 +454,21 @@ function RequestCard({ req }) {
           </div>
         )}
 
-        {/* ── Stop confirm dialog (TC-BLK-24) ── */}
+        {/* Stop confirm dialog (TC-BLK-24) — request-scoped copy, NEVER party-halt framing */}
         {stopDialogOpen && (
-          <div
-            data-testid={`stop-confirm-${req.id}`}
-            className="mt-2 border rounded-lg p-3"
-            style={{ borderColor: "var(--oxblood)", background: "rgba(184,57,91,.04)" }}
-          >
+          <div data-testid={`stop-confirm-${req.id}`} className="mt-2 border rounded-lg p-3" style={{ borderColor: "var(--oxblood)", background: "rgba(184,57,91,.04)" }}>
             <p className="text-sm mb-3" style={{ color: "var(--ink)" }}>
               {STOP_CONFIRM}
             </p>
             <div className="flex gap-2">
               <button
                 data-testid={`stop-confirm-yes-${req.id}`}
-                className="text-xs px-3 py-1.5 rounded font-medium text-white"
+                className="text-xs px-3 py-1.5 rounded font-medium text-white disabled:opacity-50"
                 style={{ background: "var(--oxblood)" }}
-                onClick={() => setStopDialogOpen(false)}
+                disabled={stopLoading}
+                onClick={handleStop}
               >
-                Stop
+                {stopLoading ? "Stopping\u2026" : "Stop"}
               </button>
               <button
                 data-testid={`stop-confirm-cancel-${req.id}`}
@@ -334,10 +479,23 @@ function RequestCard({ req }) {
                 Cancel
               </button>
             </div>
+            {stopResult && stopResult.error && (
+              <p className="mt-2 text-[10px]" style={{ color: "var(--oxblood)" }}>{stopResult.detail}</p>
+            )}
           </div>
         )}
 
-        {/* ── Ready state ── */}
+        {/* Stopped terminal state — charged-to-point-of-stop, receipted */}
+        {req.status === "Stopped" && (
+          <div className="mt-2 text-xs p-2 rounded" style={{ background: "rgba(27,31,39,.04)", color: "var(--ink2)" }}>
+            <Square size={10} className="inline mr-1" style={{ color: "var(--oxblood)" }} />
+            Stopped{req.stoppedAt ? ` at ${req.stoppedAt}` : ""}.
+            {req.pctAtStop != null && ` Charged to ${req.pctAtStop}% completion.`}
+            {" "}Receipted.
+          </div>
+        )}
+
+        {/* Ready state */}
         {req.status === "Ready" && req.modelId && (
           <div className="mt-2 text-xs" style={{ color: "var(--ink3)" }}>
             <span>Model: {req.modelId} &middot; Base: {req.baseModel}</span>
@@ -346,13 +504,13 @@ function RequestCard({ req }) {
         )}
       </div>
 
-      {/* ── Expanded drawer ── */}
+      {/* Expanded drawer */}
       {expanded && (
         <div className="border-t px-4 py-3 text-sm space-y-3" style={{ borderColor: "var(--line)", background: "var(--surface)" }}>
           {req.submittedBy && <p style={{ color: "var(--ink2)" }}>Submitted by {req.submittedBy}</p>}
           {req.scope && <p style={{ color: "var(--ink3)" }}>Scope: {req.scope}</p>}
 
-          {/* ── In Approval drawer (TC-INA-06) ── */}
+          {/* In Approval drawer (TC-INA-06) */}
           {req.status === "In Approval" && (
             <div data-testid={`drawer-in-approval-${req.id}`} className="mt-1 space-y-2">
               {req.signoffReason && (
@@ -370,14 +528,13 @@ function RequestCard({ req }) {
             </div>
           )}
 
-          {/* ── Blocked drawer — three kinds: request / check / estate ── */}
+          {/* Blocked drawer — three kinds: request / check / estate */}
           {req.status === "Blocked" && blockMeta && (
             <div
               data-testid={`drawer-blocked-${req.blockKind}-${req.id}`}
               className="border-l-4 p-3 rounded"
               style={{ borderColor: "var(--oxblood)", background: "rgba(184,57,91,.04)" }}
             >
-              {/* Frozen progress for request/check (not estate) */}
               {blockMeta.showProgress === true && req.pctAtStop != null && (
                 <div className="mb-2">
                   <div className="h-1.5 rounded-full overflow-hidden" style={{ background: "var(--line)" }}>
@@ -388,119 +545,64 @@ function RequestCard({ req }) {
                   </p>
                 </div>
               )}
-
-              {/* Kind line */}
-              <p
-                data-testid={`block-kind-line-${req.id}`}
-                className="text-xs font-medium mb-1"
-                style={{ color: "var(--oxblood)" }}
-              >
+              <p data-testid={`block-kind-line-${req.id}`} className="text-xs font-medium mb-1" style={{ color: "var(--oxblood)" }}>
                 {resolvedKindLine}
               </p>
-
-              {/* Reason: request/check render req.blockReason verbatim; estate renders fixed copy */}
               {req.blockKind === "estate" && (
                 <p className="text-sm" style={{ color: "var(--ink2)" }}>{BLOCK_ESTATE_REASON}</p>
               )}
               {(req.blockKind === "request" || req.blockKind === "check") && req.blockReason && (
                 <p className="text-sm" style={{ color: "var(--ink2)" }}>{req.blockReason}</p>
               )}
-
-              {/* Reference (every kind except estate) */}
               {req.blockRef && req.blockKind !== "estate" && (
-                <p className="text-xs font-mono mt-1" style={{ color: "var(--ink3)" }}>
-                  Reference {req.blockRef}
-                </p>
+                <p className="text-xs font-mono mt-1" style={{ color: "var(--ink3)" }}>Reference {req.blockRef}</p>
               )}
-
-              {/* What-next */}
               {resolvedWhatNext && (
-                <p
-                  data-testid={`block-whatnext-${req.id}`}
-                  className="text-xs mt-2"
-                  style={{ color: "var(--ink3)" }}
-                >
-                  {resolvedWhatNext}
-                </p>
+                <p data-testid={`block-whatnext-${req.id}`} className="text-xs mt-2" style={{ color: "var(--ink3)" }}>{resolvedWhatNext}</p>
               )}
-
-              {/* Copy into a new request (request/check only — not estate) */}
               {blockMeta.showCopy && (
-                <button
-                  data-testid={`copy-new-request-${req.id}`}
-                  className="mt-2 text-xs px-3 py-1.5 rounded border transition-colors hover:bg-white"
-                  style={{ borderColor: "var(--hair)", color: "var(--ink)" }}
-                >
+                <button data-testid={`copy-new-request-${req.id}`} className="mt-2 text-xs px-3 py-1.5 rounded border transition-colors hover:bg-white" style={{ borderColor: "var(--hair)", color: "var(--ink)" }}>
                   Copy into a new request
                 </button>
               )}
             </div>
           )}
 
-          {/* ── party_halted drawer — own rail state, NOT a Blocked variant ── */}
+          {/* party_halted drawer — own rail state, NOT a Blocked variant */}
           {req.status === "party_halted" && (
-            <div
-              data-testid={`drawer-party-halted-${req.id}`}
-              className="border-l-4 p-3 rounded"
-              style={{ borderColor: "var(--oxblood)", background: "rgba(184,57,91,.04)" }}
-            >
-              {/* Frozen progress */}
+            <div data-testid={`drawer-party-halted-${req.id}`} className="border-l-4 p-3 rounded" style={{ borderColor: "var(--oxblood)", background: "rgba(184,57,91,.04)" }}>
               {req.pctAtStop != null && (
                 <div className="mb-2">
                   <div className="h-1.5 rounded-full overflow-hidden" style={{ background: "var(--line)" }}>
                     <div className="h-full rounded-full" style={{ width: `${req.pctAtStop}%`, background: "var(--oxblood)" }} />
                   </div>
-                  <p className="text-[10px] mt-0.5" style={{ color: "var(--oxblood)" }}>
-                    Stopped at {req.pctAtStop}% &middot; {req.blockedAt}
-                  </p>
+                  <p className="text-[10px] mt-0.5" style={{ color: "var(--oxblood)" }}>Stopped at {req.pctAtStop}% &middot; {req.blockedAt}</p>
                 </div>
               )}
-
-              {/* Kind line */}
-              <p
-                data-testid={`party-halted-kind-line-${req.id}`}
-                className="text-xs font-medium mb-1"
-                style={{ color: "var(--oxblood)" }}
-              >
-                {PARTY_HALTED_KIND_LINE}
-              </p>
-
-              {/* No reason field for party_halted */}
-
-              {/* Who stopped it — shown by name */}
-              {req.blockedBy && (
-                <p className="text-xs mt-1" style={{ color: "var(--ink3)" }}>
-                  Stopped by {req.blockedBy}
-                </p>
-              )}
-
-              {/* Reference */}
-              {req.blockRef && (
-                <p className="text-xs font-mono mt-1" style={{ color: "var(--ink3)" }}>
-                  Reference {req.blockRef}
-                </p>
-              )}
-
-              {/* What-next */}
-              <p
-                data-testid={`party-halted-whatnext-${req.id}`}
-                className="text-xs mt-2"
-                style={{ color: "var(--ink3)" }}
-              >
-                {PARTY_HALTED_WHAT_NEXT}
-              </p>
-
-              <button
-                data-testid={`copy-new-request-${req.id}`}
-                className="mt-2 text-xs px-3 py-1.5 rounded border transition-colors hover:bg-white"
-                style={{ borderColor: "var(--hair)", color: "var(--ink)" }}
-              >
+              <p data-testid={`party-halted-kind-line-${req.id}`} className="text-xs font-medium mb-1" style={{ color: "var(--oxblood)" }}>{PARTY_HALTED_KIND_LINE}</p>
+              {req.blockedBy && <p className="text-xs mt-1" style={{ color: "var(--ink3)" }}>Stopped by {req.blockedBy}</p>}
+              {req.blockRef && <p className="text-xs font-mono mt-1" style={{ color: "var(--ink3)" }}>Reference {req.blockRef}</p>}
+              <p data-testid={`party-halted-whatnext-${req.id}`} className="text-xs mt-2" style={{ color: "var(--ink3)" }}>{PARTY_HALTED_WHAT_NEXT}</p>
+              <button data-testid={`copy-new-request-${req.id}`} className="mt-2 text-xs px-3 py-1.5 rounded border transition-colors hover:bg-white" style={{ borderColor: "var(--hair)", color: "var(--ink)" }}>
                 Copy into a new request
               </button>
             </div>
           )}
 
-          {/* ── Expired drawer (TC-EXP-02) ── */}
+          {/* Stopped drawer — terminal state, receipted */}
+          {req.status === "Stopped" && (
+            <div data-testid={`drawer-stopped-${req.id}`} className="border-l-4 p-3 rounded" style={{ borderColor: "var(--ink3)", background: "rgba(27,31,39,.04)" }}>
+              <p className="text-xs font-medium mb-1" style={{ color: "var(--ink)" }}>
+                This request was stopped by the requester.
+              </p>
+              {req.pctAtStop != null && (
+                <p className="text-xs" style={{ color: "var(--ink2)" }}>Charged to {req.pctAtStop}% of execution. Receipted.</p>
+              )}
+              {req.stoppedAt && <p className="text-xs" style={{ color: "var(--ink3)" }}>Stopped at {req.stoppedAt}</p>}
+            </div>
+          )}
+
+          {/* Expired drawer (TC-EXP-02) */}
           {req.status === "Expired" && (
             <div data-testid={`drawer-expired-${req.id}`} className="p-3 rounded space-y-2" style={{ background: "rgba(27,31,39,.04)" }}>
               <p data-testid={`expired-date-line-${req.id}`} className="text-sm font-medium" style={{ color: "var(--ink)" }}>
@@ -508,45 +610,27 @@ function RequestCard({ req }) {
               </p>
               <p data-testid={`expired-waited-line-${req.id}`} className="text-sm" style={{ color: "var(--ink2)" }}>
                 {EXPIRED_WAITED_TPL(
-                  req.submittedAtISO && req.expiredAtISO
-                    ? daysBetween(req.submittedAtISO, req.expiredAtISO)
-                    : 14
+                  req.submittedAtISO && req.expiredAtISO ? daysBetween(req.submittedAtISO, req.expiredAtISO) : 14
                 )}
               </p>
-              {req.addressedTo && (
-                <p className="text-sm" style={{ color: "var(--ink3)" }}>
-                  It was addressed to {req.addressedTo}.
-                </p>
-              )}
-              {req.signoffReason && (
-                <p className="text-sm" style={{ color: "var(--ink3)" }}>
-                  {req.signoffReason}
-                </p>
-              )}
-              <p data-testid={`expired-meaning-${req.id}`} className="text-sm" style={{ color: "var(--ink2)" }}>
-                {EXPIRED_MEANING_TPL(req.dataOwner || "the data owner")}
-              </p>
-              <p data-testid={`expired-whatnext-${req.id}`} className="text-sm" style={{ color: "var(--ink2)" }}>
-                {EXPIRED_WHAT_NEXT_TPL(req.dataOwner || "the data owner")}
-              </p>
-              <button
-                data-testid={`copy-new-request-${req.id}`}
-                className="mt-1 text-xs px-3 py-1.5 rounded border transition-colors hover:bg-white"
-                style={{ borderColor: "var(--hair)", color: "var(--ink)" }}
-              >
-                Copy into a new request
+              {req.addressedTo && <p className="text-sm" style={{ color: "var(--ink3)" }}>It was addressed to {req.addressedTo}.</p>}
+              {req.signoffReason && <p className="text-sm" style={{ color: "var(--ink3)" }}>{req.signoffReason}</p>}
+              <p data-testid={`expired-meaning-${req.id}`} className="text-sm" style={{ color: "var(--ink2)" }}>{EXPIRED_MEANING_TPL(req.dataOwner || "the data owner")}</p>
+              <p data-testid={`expired-whatnext-${req.id}`} className="text-sm" style={{ color: "var(--ink2)" }}>{EXPIRED_WHAT_NEXT_TPL(req.dataOwner || "the data owner")}</p>
+              <button data-testid={`copy-new-request-${req.id}`} className="mt-1 text-xs px-3 py-1.5 rounded border transition-colors hover:bg-white" style={{ borderColor: "var(--hair)", color: "var(--ink)" }}>
+                Submit again as a new request
               </button>
             </div>
           )}
 
-          {/* ── Refused drawer — NO "Waited N days" (hard omission) ── */}
+          {/* Refused drawer — NO "Waited N days" (hard omission) */}
           {req.status === "Refused" && req.refusalReason && (
             <div className="border-l-4 p-3 rounded" style={{ borderColor: "var(--ink)", background: "rgba(27,31,39,.03)" }}>
               <p className="text-sm" style={{ color: "var(--ink2)" }}>{req.refusalReason}</p>
             </div>
           )}
 
-          {/* ── Retrieved ── */}
+          {/* Retrieved */}
           {req.status === "Retrieved" && req.retrievedAt && (
             <p className="mt-1" style={{ color: "var(--sage)" }}>
               <CheckCircle size={12} className="inline mr-1" />
@@ -554,7 +638,7 @@ function RequestCard({ req }) {
             </p>
           )}
 
-          {/* ── Sign-off block (post-decision) — NO "Waited N days" (hard omission) ── */}
+          {/* Sign-off block — NO "Waited N days" (hard omission), NO approver identity (DAP-15) */}
           {req.approvedByRole && req.status !== "In Approval" && (
             <p className="mt-1" style={{ color: "var(--ink3)" }}>
               Approved by {req.approvedByRole} on {req.approvedDate}
@@ -566,17 +650,48 @@ function RequestCard({ req }) {
   );
 }
 
+/* ── Main component ────────────────────────────────────── */
 export default function RequestLifecycle() {
+  const { user } = useAuth();
   const [filter, setFilter] = useState("Total");
+  const [liveRows, setLiveRows] = useState(null);
+  const [liveError, setLiveError] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  const fetchRequests = useCallback(async () => {
+    if (!user) return;
+    setLoading(true);
+    const res = await tryGet("/api/portal/requests");
+    setLoading(false);
+    if (res.ok && res.data && Array.isArray(res.data.rows)) {
+      setLiveRows(res.data.rows);
+      setLiveError(null);
+    } else if (res.status === 404) {
+      setLiveError("Endpoint not yet mounted (GET /api/portal/requests returns 404). Showing reference state machine.");
+      setLiveRows(null);
+    } else if (res.status === 401) {
+      setLiveError("Authentication required for request history.");
+      setLiveRows(null);
+    } else {
+      setLiveError(res.error || "Failed to fetch requests.");
+      setLiveRows(null);
+    }
+  }, [user]);
+
+  useEffect(() => { fetchRequests(); }, [fetchRequests]);
+
+  const requests = liveRows && liveRows.length > 0 ? liveRows : SAMPLE_REQUESTS;
+  const usingLive = liveRows !== null && liveRows.length > 0;
+
   const counts = {};
-  for (const r of SAMPLE_REQUESTS) {
+  for (const r of requests) {
     counts[r.status] = (counts[r.status] || 0) + 1;
   }
-  counts["Total"] = SAMPLE_REQUESTS.length;
+  counts["Total"] = requests.length;
 
   const filtered = filter === "Total"
-    ? SAMPLE_REQUESTS
-    : SAMPLE_REQUESTS.filter((r) => r.status === filter);
+    ? requests
+    : requests.filter((r) => r.status === filter);
 
   return (
     <div data-testid="request-lifecycle" className="max-w-5xl mx-auto px-8 py-10">
@@ -591,6 +706,9 @@ export default function RequestLifecycle() {
         Every request passes through a state machine. This view shows the full lifecycle.
       </p>
 
+      {/* Submit form (JWT-gated) */}
+      <SubmitForm onSubmitted={fetchRequests} />
+
       {/* State machine legend */}
       <div data-testid="state-machine-legend" className="mb-6">
         <h2 className="text-sm font-medium mb-3" style={{ color: "var(--ink)" }}>State Legend</h2>
@@ -603,7 +721,7 @@ export default function RequestLifecycle() {
 
       {/* Rail counts */}
       <div data-testid="request-rail" className="rounded-lg border mb-6" style={{ borderColor: "var(--line)", background: "white" }}>
-        <div className="grid grid-cols-10 text-center">
+        <div className="grid grid-cols-11 text-center">
           {RAIL_ROW.map(([key, label]) => (
             <button
               key={key}
@@ -624,27 +742,39 @@ export default function RequestLifecycle() {
         </div>
       </div>
 
+      {loading && <LoadingState message="Loading requests\u2026" />}
+
       {/* Request cards */}
       <div className="space-y-3" data-testid="request-list">
         {filtered.map((req) => (
-          <RequestCard key={req.id} req={req} />
+          <RequestCard key={req.id} req={req} onRefresh={fetchRequests} />
         ))}
-        {filtered.length === 0 && (
+        {filtered.length === 0 && !loading && (
           <div className="text-center py-8">
             <p className="text-sm" style={{ color: "var(--ink3)" }}>No requests in this state.</p>
           </div>
         )}
       </div>
 
-      {/* Backend pending notice */}
-      <div className="mt-8 rounded-lg border p-4" style={{ borderColor: "var(--brass)", background: "rgba(176,141,46,.04)" }}>
-        <p className="text-xs font-medium mb-1" style={{ color: "var(--brass)" }}>Backend pending</p>
-        <p className="text-xs" style={{ color: "var(--ink3)" }}>
-          The request lifecycle endpoints (submit, list, poll, retrieve, approve) are not yet built in the backend.
-          The requests shown above are the reference state machine rendered from the DAP design specification.
-          Once the backend endpoints are available, this view will display real request data.
-        </p>
-      </div>
+      {/* Backend status notice */}
+      {liveError && (
+        <div data-testid="request-backend-notice" className="mt-8 rounded-lg border p-4" style={{ borderColor: "var(--brass)", background: "rgba(176,141,46,.04)" }}>
+          <p className="text-xs font-medium mb-1" style={{ color: "var(--brass)" }}>
+            <Clock size={12} className="inline mr-1" />
+            Endpoint not yet mounted
+          </p>
+          <p className="text-xs" style={{ color: "var(--ink3)" }}>{liveError}</p>
+        </div>
+      )}
+      {!liveError && !usingLive && !loading && (
+        <div className="mt-8 rounded-lg border p-4" style={{ borderColor: "var(--brass)", background: "rgba(176,141,46,.04)" }}>
+          <p className="text-xs font-medium mb-1" style={{ color: "var(--brass)" }}>Reference state machine</p>
+          <p className="text-xs" style={{ color: "var(--ink3)" }}>
+            The requests shown above are the reference state machine rendered from the DAP design specification.
+            Once the backend portal endpoints are mounted, this view will display real request data.
+          </p>
+        </div>
+      )}
     </div>
   );
 }

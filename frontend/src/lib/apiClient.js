@@ -101,3 +101,50 @@ export const fetchShieldAllowlists = () => get("/api/shield/allowlists");
 export const fetchCostLedgerSummary = (kind = "") => get(`/api/cost_ledger/summary?kind=${kind}`);
 export const fetchCostLedgerEntries = (kind = "", limit = 25) => get(`/api/cost_ledger/entries?kind=${kind}&limit=${limit}`);
 export const fetchModelById = (id) => get(`/api/model_registry/${id}/journal`);
+
+// ── Portal write-path (R-100 · JWT-gated) ────────────────────────────────
+// tryGet / tryPost return {ok, status, data, error} — never throw on HTTP errors.
+// This allows callers to handle 404 (endpoint not mounted) gracefully.
+
+export async function tryGet(path) {
+  try {
+    const res = await request(path);
+    const data = res.ok ? await res.json().catch(() => null) : await res.json().catch(() => null);
+    return { ok: res.ok, status: res.status, data, error: res.ok ? null : `${res.status}` };
+  } catch (e) {
+    return { ok: false, status: 0, data: null, error: e.message };
+  }
+}
+
+export async function tryPost(path, body) {
+  try {
+    const res = await request(path, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: body != null ? JSON.stringify(body) : undefined,
+    });
+    const data = await res.json().catch(() => null);
+    return { ok: res.ok, status: res.status, data, error: res.ok ? null : `${res.status}` };
+  } catch (e) {
+    return { ok: false, status: 0, data: null, error: e.message };
+  }
+}
+
+// Portal requests
+export const fetchPortalRequests = () => tryGet("/api/portal/requests");
+export const fetchPortalRequestDetail = (id) => tryGet(`/api/portal/requests/${id}`);
+export const submitPortalRequest = (body) => tryPost("/api/portal/requests", body);
+export const stopPortalRequest = (id) => tryPost(`/api/portal/requests/${id}/stop`);
+export const retryPortalRequest = (id) => tryPost(`/api/portal/requests/${id}/retry`);
+
+// Portal entitlement
+export const fetchPortalLicence = () => tryGet("/api/portal/entitlement/licence");
+export const fetchPortalCatalog = () => tryGet("/api/portal/entitlement/catalog/listed");
+export const fetchPortalAllowance = () => tryGet("/api/portal/entitlement/allowance");
+export const fetchPortalBadges = () => tryGet("/api/portal/entitlement/badges");
+
+// Canon rules (R-99 · public, no auth)
+export const fetchCanonRulesDap = () => tryGet("/api/canon/rules/dap");
+export const fetchCanonRulesRbm = () => tryGet("/api/canon/rules/rbm");
+export const fetchCanonRulesRoc = () => tryGet("/api/canon/rules/roc");
+export const fetchCanonRbm8Ceremony = () => tryGet("/api/canon/rules/rbm-8-ceremony-mechanic");

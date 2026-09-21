@@ -11,6 +11,8 @@ import RequestLifecycle from "@/pages/dap/RequestLifecycle";
 import DataEstates from "@/pages/dap/DataEstates";
 import ExtractModes from "@/pages/dap/ExtractModes";
 import ConnectResources from "@/pages/dap/ConnectResources";
+import Entitlement from "@/pages/dap/Entitlement";
+import CanonCountdown from "@/pages/dap/CanonCountdown";
 
 /**
  * App.js — Wave G4 · V8 LITERAL adoption · owner Wave G3 REJECT corrections.
@@ -1091,6 +1093,8 @@ function App() {
             <Route path="governance/:tab" element={<DataGovernance />} />
             <Route path="connect/:tab" element={<ConnectResources />} />
             <Route path="requests" element={<RequestLifecycle />} />
+            <Route path="entitlement" element={<Entitlement />} />
+            <Route path="countdown" element={<CanonCountdown />} />
             <Route path="estates/:estateId" element={<DataEstates />} />
             <Route path="*" element={<Navigate to="/dap" replace />} />
           </Route>

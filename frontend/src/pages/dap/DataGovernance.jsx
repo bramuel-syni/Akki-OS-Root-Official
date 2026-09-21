@@ -4,7 +4,7 @@ import LoadingState from "@/components/shared/LoadingState";
 import TransportError from "@/components/shared/TransportError";
 import HonestEmpty from "@/components/shared/HonestEmpty";
 import BackendPending from "@/components/shared/BackendPending";
-import { get, fetchGovernEstateRulesRecord, fetchTeamAccessRegister, fetchGovernTrustCenter } from "@/lib/apiClient";
+import { get, fetchGovernEstateRulesRecord, fetchTeamAccessRegister, fetchGovernTrustCenter, tryGet } from "@/lib/apiClient";
 import { useAuth } from "@/pages/dap/DAPLayout";
 
 /**
@@ -250,10 +250,79 @@ function CollectionView() {
   );
 }
 
+function CanonRulesView() {
+  const [dapRules, setDapRules] = useState(null);
+  const [rbmRules, setRbmRules] = useState(null);
+  const [rocRules, setRocRules] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    Promise.all([
+      tryGet("/api/canon/rules/dap").then((r) => { if (r.ok) setDapRules(r.data); }),
+      tryGet("/api/canon/rules/rbm").then((r) => { if (r.ok) setRbmRules(r.data); }),
+      tryGet("/api/canon/rules/roc").then((r) => { if (r.ok) setRocRules(r.data); }),
+    ]).finally(() => setLoading(false));
+  }, []);
+
+  if (loading) return <LoadingState message="Reading canon rules\u2026" />;
+
+  const renderRuleSet = (label, data, testPrefix) => {
+    const rules = Array.isArray(data) ? data : (data?.rules || data?.items || []);
+    if (!data) {
+      return (
+        <div data-testid={`${testPrefix}-pending`} className="rounded-lg border p-4 mb-4" style={{ borderColor: "var(--brass)", background: "rgba(176,141,46,.04)" }}>
+          <p className="text-xs" style={{ color: "var(--brass)" }}>
+            Endpoint not yet mounted (GET /api/canon/rules/{testPrefix} returns 404).
+          </p>
+        </div>
+      );
+    }
+    return (
+      <div className="mb-6">
+        <h3 className="text-sm font-medium mb-3" style={{ color: "var(--ink)" }}>
+          {label} ({rules.length} rules)
+        </h3>
+        {rules.length > 0 ? (
+          <div className="space-y-1">
+            {rules.map((r, i) => (
+              <div key={r.rule_id || i} data-testid={`${testPrefix}-rule-${i}`} className="flex items-start justify-between rounded border p-3" style={{ borderColor: "var(--line)", background: "white" }}>
+                <div className="flex-1">
+                  <div className="flex items-center gap-2 mb-0.5">
+                    {r.rule_id && <span className="text-[10px] font-mono" style={{ color: "var(--ink3)" }}>{r.rule_id}</span>}
+                    <p className="text-sm font-medium" style={{ color: "var(--ink)" }}>{r.title || r.name || r.rule_id}</p>
+                  </div>
+                  {r.text && <p className="text-xs mt-0.5" style={{ color: "var(--ink3)" }}>{r.text}</p>}
+                  {r.body && <p className="text-xs mt-0.5" style={{ color: "var(--ink3)" }}>{typeof r.body === "string" ? r.body : JSON.stringify(r.body)}</p>}
+                </div>
+                {r.enforcement_class && (
+                  <span className="text-[10px] px-2 py-0.5 rounded-full ml-2 whitespace-nowrap" style={{ color: "var(--sage)", background: "rgba(29,122,110,.12)" }}>
+                    {r.enforcement_class}
+                  </span>
+                )}
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p className="text-xs" style={{ color: "var(--ink3)" }}>No rules in this registry.</p>
+        )}
+      </div>
+    );
+  };
+
+  return (
+    <div data-testid="governance-canon-rules">
+      {renderRuleSet("DAP Rules", dapRules, "dap")}
+      {renderRuleSet("RBM Rules", rbmRules, "rbm")}
+      {renderRuleSet("ROC Rules", rocRules, "roc")}
+    </div>
+  );
+}
+
 const VIEW_MAP = {
   policies: { title: "Policies & Regulations", Component: PoliciesView },
   contract: { title: "Contract & Access Terms", Component: ContractView },
   collection: { title: "Data Collection", Component: CollectionView },
+  rules: { title: "Canon Rules (DAP / RBM / ROC)", Component: CanonRulesView },
 };
 
 export default function DataGovernance() {
