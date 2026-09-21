@@ -23660,4 +23660,75 @@ zero push · zero remote configured · terminal `pytest` only · **no `testing_a
 **End of R-100 CP-PORTAL-WRITE-SURFACE. ✅ SEALED via 3-Commit protocol A `39412d09` / B `e6a86c2c` / C this-commit.**
 
 
+## 2026-09-21T09:40:00Z · R-100-A · POST-SEAL OPERATIONAL CURE · ✅ LANDED
+
+**Scope**: FE-WIRING-2 specialist commit `5705617f4` on /app main landed after R-100 seal exposed two live-surface defects (all 14 endpoints 404 pre-cure · 500 with JWT post-mount-cure). Curative additive per owner directive verbatim (2026-09-21T FE-WIRING-LANDED reply): *"restart the backend service and curl-verify all 14 endpoints … if any 404 persists after reload, diagnose the mount (prefix, import path, bridge wiring) and cure additively."*
+
+**Commits landed this-cure**:
+- **Code repo commit** `320a752` on `programme/track-a` — `pod_shell/backend/server.py` +37 lines · `backend/services/request_context/context.py` +18 lines · `backend/tests/invariants/known_unwired.py` -89 lines · 3 double-green drill receipts.
+- **Pod repo commit** `99e6fa56b` on /app `main` — `backend/server.py` +35 lines byte-identical mirror of pod_shell target.
+- **State repo commit** (this-turn) on `master` — DECISIONS + NEXT + verification banking.
+
+### Cure detail
+
+**Defect 1 (404 · spine-bridge mount)**: `/app/backend/server.py` is a "spine bridge" that adds `SPINE_BACKEND = /app/assessment_workspace/repos/Extraction-Akki/backend` to `sys.path` and imports specific routers from there. The bridge had NOT been updated to include the R-99 (canon_rules_registry) or R-100 (portal_requests + portal_entitlement) routers, so all 14 endpoints returned 404 pre-cure. Additive cure: 3 additive router mounts in `pod_shell/backend/server.py` after `auth_router` line 349 (same block shape as sealed `backend/server.py` mounts) + byte-identical mirror at `/app/backend/server.py` (test_ship_manifest_dod::test_runtime_server_matches_repo_pod_shell + test_ship_manifest_dod_route_table_drift enforce the parity).
+
+**Defect 2 (500 · with-protocol)**: R-100 portal routers used `with enter_propagation(identity.user_id):` idiom which the sealed `PrincipalRequestContext` (SO §3.10-α closed-schema class with `__slots__ = ("_principal_id", "_sealed")`) did not support — TypeError `'PrincipalRequestContext' object does not support the context manager protocol`. Additive cure: `__enter__`/`__exit__` methods added to sealed `PrincipalRequestContext` in `backend/services/request_context/context.py`. Zero new `__slots__` · zero `__setattr__` path · PRIN-13 read-only invariant preserved (`test_principal_model_v1.py` line 394 `request_ctx = ctx.enter_propagation(principal_id="ind-p13")` and subsequent read-only assertion continue verbatim GREEN — the bare-call usage in the sealed test is unaffected). `enter_propagation` already sets the `_CURRENT_PRINCIPAL_ID` ContextVar as a construction side-effect; the `with ...:` idiom is semantically equivalent to a bare call under the FastAPI request lifecycle (ContextVar scope ends with the request).
+
+**Defect 3 (KNOWN_UNWIRED staleness · owner-predicted)**: 3 KNOWN_UNWIRED entries (`routers.canon_rules_registry` + `routers.portal_requests` + `routers.portal_entitlement`) became stale once the routers were wired at `/app/backend/server.py`. `test_known_unwired_has_no_stale_entries` flipped RED. Additive cure: 3 stale entries removed from `known_unwired.py` — sentinel now GREEN. Owner-predicted per FE-WIRING-LANDED reply verbatim: *"the known_unwired staleness sentinel should now auto-clear — confirm test_known_unwired_has_no_stale_entries goes GREEN"* — CONFIRMED.
+
+### Live-surface verification (reproducible curl · post-cure)
+
+**R-99 · 5 endpoints `/api/canon/rules/*` · public · all 200**:
+- `GET /api/canon/rules/dap` → 200 · 38-rule registry
+- `GET /api/canon/rules/dap/DAP-1` → 200 · single-rule detail
+- `GET /api/canon/rules/rbm` → 200 · 23-rule registry
+- `GET /api/canon/rules/roc` → 200 · 11-rule registry
+- `GET /api/canon/rules/rbm-8-ceremony-mechanic` → 200 · payload includes byte-verbatim R-91 anchor:
+  - `ceremony_window_is_rigid: true`
+  - `no_shortening_path_in_code: true`
+  - `r91_live_evidence_horizon_utc: "2026-09-23T03:23:15Z"`
+  - `r91_is_live_evidence_receipt: true`
+  - `ceremony_shortening_watched_patterns: ["shorten_ceremony_countdown", "expedite_ceremony_apply", "waive_ceremony_countdown", "bypass_ceremony_horizon", "fast_forward_ceremony"]`
+  - `owner_directive_verbatim` string BYTE-IDENTICAL to sealed vocabulary constant
+
+**R-100 · 9 endpoints `/api/portal/*` · without JWT · all 401** (CONDITION 1 live-verified):
+- All 9 return HTTP 401 · PRIN-12 forbid header identity · no default anonymous actor · owner CONDITION 1 verbatim satisfied.
+
+**R-100 · 9 endpoints `/api/portal/*` · with demo.operator@demo.rms.example.com seeded JWT**:
+- `GET /api/portal/requests` → 200 · principal_id from JWT sub claim · rows empty stub · authority "DAP-24 · Cumulative extraction history queryable"
+- `GET /api/portal/requests/{id}` → 404 stub · "Request not found (or not scoped to principal)"
+- `POST /api/portal/requests` → 202 accepted · authority "DAP-18 frozen objective + DAP-14 approval routing + DAP-21 metered event + invoke() only via chokepoint"
+- `POST /api/portal/requests/{id}/stop` → 200 · `new_state: "Stopped"` · `confirm.confirm_copy: "Stop this request? What's run so far will still be billed; nothing further will execute."` byte-verbatim · `confirm.scope: "request"` · `confirm.{figure,percentage,amount}_present: false` · CONDITION 2 live-verified (Executing → Stopped terminal · never party_halt)
+- `POST /api/portal/requests/{id}/retry` → 200 · `max_attempts: 3` · `retry_service_reference: "services.dap_lifecycle.retry_service.attempt_retry"` · authority "R-100 CONDITION 4 · retry re-runs every gate from failed stage forward, hash-identical objective, bounded three, each attempt receipted (R-78)"
+- `GET /api/portal/entitlement/licence` → 200 stub · authority "ENT-5..8 · Licence terms object · Licence shape sealed"
+- `GET /api/portal/entitlement/catalog/listed` → 200 · rows empty · authority "ENT-9 · CatalogRow status listed only"
+- `GET /api/portal/entitlement/allowance` → 200 · `allowance_state.credits_debited: 0` + `credits_allowance: 0` · authority "ENT-22 · derived from Ledger events only · no cache · no stored counter" (CONDITION 4 · ENT-22 per-call derivation via sealed `derive_allowance_remaining`)
+- `GET /api/portal/entitlement/badges` → 200 · badges empty · authority "ENT-3 + ENT-43 · picker badges filtered through licence compute_dial + frontier_dial admission gate"
+
+**Deterministic BASELINE_GUARD=1 PYTHONHASHSEED=0 double-sweep byte-identical** (drill_receipts/20260921T091717Z_run1.log + 20260921T092032Z_run2.log): both runs **5852 passed · 3 baseline-fails (subset · all in baseline_failures.json · unchanged from R-100 seal) · 1 skip · 438 warnings · ~187s each**. Ratchet floor **5852 UNCHANGED** (pure defect cure · zero new tests). `test_known_unwired_has_no_stale_entries` GREEN (auto-cleared).
+
+### R-91 ε-apply MIRROR NOTE (owner directive verbatim reply)
+
+Owner reply this-session verbatim: *"for the ε-apply mirror: /app/frontend has moved since the R-91 spec (wiring commit `5705617f4` + `540248c7` bundle HEAD) — at apply, the mirror lands the CURRENT tree; re-verify the 18 pinned App.js substrings still hit before mirroring (specialist reports V8 block untouched, verify independently)."*
+
+Banked action for R-91 ε-apply moment (~42h out): BEFORE the mirror lands, run the 18-substring re-verify against the CURRENT `/app/frontend/src/App.js` tree (FE HEAD now `99e6fa56b` · advanced past `5705617f4` FE-WIRING to `99e6fa56b` spine-bridge-sync). Specialist reports V8 substitution block untouched · independent verification required. If any substring drifted, halt and report before landing; if all 18 hit, proceed with the ε-apply per the frozen proposal.
+
+### R-91 posture unchanged
+
+R-91 CP-APP-JS-UNIFY Phase 2 remains PARKED at frozen horizon `2026-09-23T03:23:15Z` (~**42.1h** out at cure · `date -u` = 2026-09-21T09:40Z). **NO EXPEDITE**.
+
+### Autopilot next
+
+(a) **HOLD for R-91 horizon** (~42h) — no code changes on portal surface until the ceremony fires.
+(b) **R-91 ε-APPLY** at first boundary after `2026-09-23T03:23:15Z` with **18-substring re-verify precondition** against the CURRENT /app/frontend/src/App.js tree.
+(c) **M1-to-date BUILD_JOURNAL closure state-only** as final act (COMPLETION SPRINT step 6).
+
+### Standing bounds
+
+zero push · zero remote configured · terminal `pytest` only · **no `testing_agent`** (STRICTLY BANNED per SO §6) · additive-only §3.8 · three-repo discipline · ratchet floor **5852** · R-91 PARKED horizon `2026-09-23T03:23:15Z` **NO EXPEDITE** · CONTINUITY BUNDLE at every seal (R-100 onward · 3 bundles + sha256 pins) · HF-HOLD SEC-2026-09-12-01 · R-24 UNLISTED · R-25 tagged.
+
+**End of R-100-A POST-SEAL OPERATIONAL CURE.**
+
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

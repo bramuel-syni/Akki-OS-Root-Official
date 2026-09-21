@@ -5276,4 +5276,32 @@ All three verify `git bundle verify` with *"complete history"*. sha256-pinned in
 **COMPLETION SPRINT PROGRESS**: step 1 Family C ✅ (R-96 + R-97) · step 2 Family D ✅ (R-98) · step 3 OPEN-CARD SWEEP ✅ (`fad511a7`) · step 4 LIFECYCLE/ENTITLEMENT HTTP SURFACE ✅ (R-99 read + **this R-100 write · sealed**) · steps 5-6 pending.
 
 
+### 2026-09-21T09:40:00Z · R-100-A · POST-SEAL OPERATIONAL CURE · ✅ LANDED (FE-WIRING-2 + spine-bridge sync + additive context-manager protocol + KNOWN_UNWIRED auto-clear)
+
+**FE-WIRING-2 specialist commit** `5705617f4` on /app main landed (2026-09-21T~08:55Z) after R-100 seal — all 14 endpoints wired in FE (apiClient helpers + RequestLifecycle live wiring + NEW Entitlement.jsx + NEW CanonCountdown.jsx byte-verbatim rbm-8 consumption + DataGovernance canon-rules views + 3 nav items). All 5 binding-omission greps PASS · App.js delta strictly additive (2 imports + 2 routes · V8 block untouched per specialist report).
+
+**Live-surface defects surfaced on FE-WIRING landing**: (1) all 14 endpoints returned 404 post-supervisor-restart · spine bridge `/app/backend/server.py` predated R-99/R-100 seals and did not mount the sealed routers; (2) portal endpoints returned 500 with JWT · R-100 routers used `with enter_propagation(identity.user_id):` idiom which the sealed `PrincipalRequestContext` did not support (SO §3.10-α closed-schema class).
+
+**R-100-A curative** (additive per SO §3.8 · zero refactor · zero ratchet change · owner directive verbatim 2026-09-21T FE-WIRING-LANDED reply: 'diagnose the mount (prefix, import path, bridge wiring) and cure additively'):
+
+- **Code repo commit** `320a752` on programme/track-a (2026-09-21T~09:35Z) — (a) `pod_shell/backend/server.py` +37 lines · additive R-99 + R-100 router mounts after auth_router line 349 · same block shape as sealed `backend/server.py` mounts (lines 241-250); (b) `backend/services/request_context/context.py` +18 lines · additive `__enter__`/`__exit__` methods on `PrincipalRequestContext` · zero new `__slots__` · zero `__setattr__` path · PRIN-13 read-only invariant preserved (test_principal_model_v1 line 394 continues verbatim GREEN); (c) `backend/tests/invariants/known_unwired.py` -89 lines · 3 stale entries removed (routers.canon_rules_registry + routers.portal_requests + routers.portal_entitlement · owner-predicted auto-clear per FE-WIRING-LANDED reply verbatim).
+- **Pod repo commit** `99e6fa56b` on /app main (2026-09-21T~09:38Z) — byte-identical mirror of `pod_shell/backend/server.py` at `/app/backend/server.py` · single-file additive commit.
+
+**Live-surface verification (reproducible curl · post-cure)**:
+- R-99 5 endpoints `/api/canon/rules/*` all **200 public** · payload includes byte-verbatim RBM-8 R-91 anchor (`ceremony_window_is_rigid: true` · `no_shortening_path_in_code: true` · `r91_live_evidence_horizon_utc: "2026-09-23T03:23:15Z"` · `r91_is_live_evidence_receipt: true`).
+- R-100 9 endpoints `/api/portal/*` **without JWT: all 9 return 401** (CONDITION 1 live-verified · PRIN-12 forbid header identity · no default anonymous actor). **With demo.operator@demo.rms.example.com seeded JWT**: GET list 200 · GET detail 404 stub · POST submit 202 · POST stop 200 with `confirm.confirm_copy = "Stop this request? What's run so far will still be billed; nothing further will execute."` byte-verbatim + `confirm.scope = "request"` + `confirm.{figure,percentage,amount}_present = false` + `new_state = "Stopped"` (CONDITION 2 live-verified · Executing→Stopped terminal · never party_halt) · POST retry 200 with `max_attempts = 3` + `retry_service_reference = "services.dap_lifecycle.retry_service.attempt_retry"` (CONDITION 4 R-78 bounded-3 · hash-identical objective) · GET licence 200 stub · GET catalog/listed 200 empty · GET allowance 200 with `authority: "ENT-22 · derived from Ledger events only · no cache · no stored counter"` (CONDITION 4 · ENT-22 per-call derivation) · GET badges 200 empty (dial-admit-filtered · ENT-3/ENT-43).
+
+**Deterministic BASELINE_GUARD=1 PYTHONHASHSEED=0 double-sweep byte-identical** (post-cure · `backend/phase0/drill_receipts/20260921T091717Z_r100_hotfix_full_sweep_run1.log` + `20260921T092032Z_r100_hotfix_full_sweep_run2.log`) — both runs **5852 passed · 3 baseline-fails (subset · unchanged from R-100 seal) · 1 skip · 438 warnings · ~187s each**. Ratchet floor **5852 UNCHANGED** (pure defect cure · no new tests). **`test_known_unwired_has_no_stale_entries` GREEN** (auto-cleared per owner prediction).
+
+### R-91 ε-apply MIRROR NOTE (owner directive verbatim reply)
+
+Owner note this-session verbatim: *"for the ε-apply mirror: /app/frontend has moved since the R-91 spec (wiring commit `5705617f4` + `540248c7` bundle HEAD) — at apply, the mirror lands the CURRENT tree; re-verify the 18 pinned App.js substrings still hit before mirroring (specialist reports V8 block untouched, verify independently)."*
+
+**Action banked for R-91 ε-apply moment**: BEFORE the mirror lands, run the 18-substring re-verify against the CURRENT `/app/frontend/src/App.js` tree (HEAD now advanced past `5705617f4` FE-WIRING to `99e6fa56b` spine-bridge-sync · V8 substitution block reported untouched by specialist · independent verification required). If any substring drifted, halt and report before landing; if all 18 hit, proceed.
+
+**Autopilot next**: state-only banking commit this-turn → HOLD for R-91 horizon (~42h out · `date -u` = 2026-09-21T09:40Z · horizon 2026-09-23T03:23:15Z) → **R-91 ε-APPLY** at frozen horizon with 18-substring re-verify precondition (NO EXPEDITE · rigid per RBM-8/SER C.5 I-4/SO §6.6) → **M1-to-date BUILD_JOURNAL closure** state-only (COMPLETION SPRINT step 6).
+
+**Standing bounds unchanged**: zero push · terminal pytest only · **no `testing_agent`** (BANNED) · additive-only §3.8 · three-repo discipline · ratchet floor **5852** · R-91 NO EXPEDITE · CONTINUITY BUNDLE at every seal · HF-HOLD SEC-2026-09-12-01 · R-24 UNLISTED · R-25 tagged.
+
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

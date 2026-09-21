@@ -65,3 +65,19 @@
   - frontend/src/pages/os/OSPrototype.jsx (REDUCED — thin re-export)
   - frontend/src/lib/v8SubstitutionEngine.js (DELETED)
 - **Reason**: 63 sealed backend invariants are STATIC TEXT-SUBSTRING assertions against App.js file bytes; the prior module-boundary factoring put pinned substrings in files the tests never read
+
+## Iteration 4 — Portal write-path wiring (R-100 surfaces)
+
+- **Commit**: 5705617f4b9e06ff5f09f2310e59f84277ba15b2
+- **Date**: 2026-09-21T09:05Z
+- **Changes**:
+  - RequestLifecycle.jsx: wired to GET/POST /api/portal/requests, stop, retry. Full state machine with submit form, Stop confirm dialog (STOP_CONFIRM), retry counter, Stopped terminal state
+  - Entitlement.jsx (NEW): licence card, catalog picker with ENT-43 badges, allowance display (derived only, DAP-35 enforced), binding strings reference
+  - CanonCountdown.jsx (NEW): R-91 ceremony surface wired to GET /api/canon/rules/rbm-8-ceremony-mechanic BYTE-VERBATIM
+  - DataGovernance.jsx: added CanonRulesView wired to /api/canon/rules/{dap,rbm,roc}
+  - apiClient.js: added tryGet/tryPost (never-throw API helpers)
+  - App.js: added Entitlement + CanonCountdown imports and routes (additive only)
+  - DAPLayout.jsx: added nav items for Entitlement, R-91 Countdown, Canon Rules
+  - All 14 endpoints return 404 — honest "backend pending" states rendered throughout
+- **Files modified**: App.js, apiClient.js, CanonCountdown.jsx (NEW), DAPLayout.jsx, DataGovernance.jsx, Entitlement.jsx (NEW), RequestLifecycle.jsx
+- **Binding omissions grep-verified**: DAP-15 (no approver identity), DAP-35 (no remaining budget), ENT-3/ENT-43 (excluded rows absent), no party-halt on stop, no X-Akki-App-ID, no partial-release, no "Waited N days" in Sign-off
