@@ -348,6 +348,41 @@ app.include_router(team_router.router)
 # (/api/auth/login → /api/auth/refresh), and any strict-mode fallback header.")
 app.include_router(auth_router.router, prefix="/api")
 
+# R-99 · CP-LIFECYCLE-ENTITLEMENT-HTTP-SURFACE · canon rules read-only HTTP router.
+# WAVE R-99 (COMPLETION SPRINT step 4 of 6) · additive per SO §3.8. Sealed at
+# code Commit-A `eb40fb67ea83c18cb35f51956b3b4b19c07ecbed` / state Commit-B
+# `58685080caafe967111ea1af6e3f665e1b5518c5` / state Commit-C `2579f74f`.
+# Router already carries prefix="/api/canon/rules" · exposes sealed R-96..R-98
+# canon vocabularies (DAP-1..38 + RBM-1..23 + ROC-1..11) + RBM-8 R-91
+# live-evidence-receipt endpoint. Spine bridge mount curative (2026-09-21T~09:10Z)
+# picks up sealed router from SPINE_BACKEND sys.path; module was already in
+# the sealed tree but the bridge did not include it, so all 5 endpoints
+# returned 404 pre-cure. Additive-only per owner directive verbatim: "cure
+# additively" (2026-09-21T FE-WIRING-LANDED reply).
+from routers import canon_rules_registry as canon_rules_registry_router  # noqa: E402
+app.include_router(canon_rules_registry_router.router)
+
+# R-100 · CP-PORTAL-WRITE-SURFACE · portal request lifecycle (JWT-gated).
+# WAVE R-100 (COMPLETION SPRINT step 4 continuation) · additive per SO §3.8.
+# Sealed at code Commit-A `39412d09a6d7f0420049fd96908778eedbc56ab2` / state
+# Commit-B `e6a86c2c3f613def64cc854710837f03c468d89e` / state Commit-C
+# `0ae3713f`. Router already carries prefix="/api/portal/requests" · 5
+# endpoints (GET list + GET detail + POST submit + POST stop + POST retry)
+# via require_identity_or_deny JWT short-circuit. Additive state-machine
+# trio (RequestState.Stopped + TERMINAL entry + Executing→Stopped edge)
+# landed same Commit-A per R-78 Interrupted precedent. Spine bridge mount
+# curative (2026-09-21T~09:10Z) additive-only.
+from routers import portal_requests as portal_requests_router  # noqa: E402
+app.include_router(portal_requests_router.router)
+
+# R-100 · CP-PORTAL-WRITE-SURFACE · portal entitlement reads (JWT-gated).
+# Router already carries prefix="/api/portal/entitlement" · 4 endpoints
+# (GET licence + GET catalog/listed + GET allowance + GET badges) with
+# same JWT-only pattern; ENT-22 per-call derive_allowance_remaining · no
+# cache · dial-admit gate reference (ENT-3+ENT-43). Additive-only.
+from routers import portal_entitlement as portal_entitlement_router  # noqa: E402
+app.include_router(portal_entitlement_router.router)
+
 # W-REGISTRY-FULL-BUILD · owner directive 2026-09-08T~06:15Z STEP 5 · D.1
 # route inventory (22 routes total across 6 sub-routers):
 #   /api/registry/{mix,mix/reading,source/{id}/profile,cir,estate_intelligence,opportunities}
