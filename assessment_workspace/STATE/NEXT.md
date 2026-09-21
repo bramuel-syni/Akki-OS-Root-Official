@@ -5012,3 +5012,167 @@ zero push · terminal `pytest` only · **no `testing_agent`** (STRICTLY BANNED p
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
+
+---
+
+## 2026-09-21T04:25:00Z · R-93 ✅ SEALED · CP-G5V5-DOC1-A5-1-TO-A5-9 first sub-slice · Family A opens B
+
+**R-93 SEALED at Commit-A `36668e3` (programme/track-a) + Commit-B this-commit (master) + Commit-C fixup follows.**
+
+**Ratchet MEASURED:** 5695 → **5711** (+16 · CCS2 both fields bumped together). Baseline_failures.json sha256: `4e7caa47…` → `870eac9a…`. notes/ORCH_BOOT.md sha256: `0c67f0e6…` → `0fade309…` (POD audit mirror byte-identical).
+
+**Wave content:** Adds net-new `services/canon_doc1_chokepoint/` package (2 files · 412 lines) registering `Final[...]` canon vocabulary for Doc 1 A5.1..A5.9 (SRR rows R2..R10) with 5 pure-data-in grep-negative scanners. Adds 16-test property module (`test_g5v5_doc1_a5_1_to_a5_9.py` · SO §2.5 verbatim-docstring per row · SFP-1..7 pattern). Triple-green byte-identical stripped-sha256 `ee3e1fb7…` IDENTICAL across run1_v2 + run2 + run3.
+
+**Discipline hotfix banked with R-93 Commit-B:** appended pointer line `READ STATE/STANDING_ORDERS.md FIRST — permanent standing law` to DECISIONS.md tail, remediating prior state commit `afd0f3c7` lapse (afd0f3c7's append did not end with the pointer). Standing lesson banked: every state-side append MUST end with the pointer.
+
+### Sprint queue post-R-93
+
+1. R-83..R-90 ✅ SEALED (prior chain).
+2. R-91 Phase 1 opening ✅ SEALED at `282ba19e`.
+3. R-91 CEREMONY-OPEN ✅ banked at `a30db4f7` · countdown 48h · APPLY 2026-09-23T03:23:15Z.
+4. G5-v5 Family A source-doc block CLEARED at `afd0f3c7` (state-only correction).
+5. R-92 CP-G5V5-SFP-1-7 first slice ✅ SEALED at `ceaa24f/19030610/e8f9f168`.
+6. **R-93 CP-G5V5-DOC1-A5-1-TO-A5-9 first sub-slice ✅ SEALED at `36668e3/this-commit/pending-Commit-C-fixup`** (Family A first sub-slice · A5.1..A5.9).
+7. G5-v5 Family B (Doc 5 M10 Northena/Ledger) — **HUNT-and-authoring opens next autopilot turn** per owner standing GO.
+8. G5-v5 Family C (DAP-1..DAP-38) — trails B · sliced 4-6 sub-slices.
+9. G5-v5 Family D (RBM + ROC · Rules Service) — trails C.
+10. Tier B rows for each family trail their Tier A.
+11. R-91 apply-step at horizon 2026-09-23T03:23:15Z — retire 5/5 baselines · seal · flip card SCHEDULED → SEALED · lower FE-DISPATCH-READY.
+
+### Autopilot next
+
+**Commit-C fixup** (this-turn or immediately next): state master · R-6 boundary regen advancing `heads_last_sealed.state_repo.head` to this-Commit-B SHA + new code_repo history entry for `36668e3` · R-93 marker flips ⏳ IN-FLIGHT → ✅ SEALED · POD audit mirror byte-identical sync reconfirmed.
+
+**Then Family B first sub-slice HUNT-and-authoring** · Doc 5 M10 Northena · rule text from `05_Direction_Scope_and_Focus_Part_1_Northena.docx` (sha `f280356e…`) · Tier A rows R11..? (spot-check found A5.1..A5.6 CANON at .docx paragraphs 32-37 · full HUNT determines slice size) · new `services/canon_doc5_northena/` package + property/scanner tests · RED-first → GREEN → measured ratchet → double-green → 3-Commit Seal.
+
+### R-91 ceremony window unaffected
+
+Countdown 2026-09-21T03:23:15Z → 2026-09-23T03:23:15Z. G5-v5 slice work during window is separate from R-91 apply. Proposal `notes/proposals/PROPOSAL_r91_r86_property_tests_amendment_20260921.md` unchanged this-slice. R-91 apply-step floor post-apply: 5713 measured + 3 currently-failing baselines transitioning fail→pass = **5716** (revised from proposal §6's original prediction of 5700; 2 v8 baselines already spontaneously passing).
+
+### Standing bounds unchanged
+
+zero push · terminal `pytest` only · **no `testing_agent`** (STRICTLY BANNED per SO §6) · additive-only §3.8 (with ceremonied R-91 amendment as SINGLE authorized exception at horizon) · three-repo discipline · ratchet measured-monotonic-up **5711** floor (bumps to 5716 at R-91 apply-step measured) · HF-HOLD SEC-2026-09-12-01 · R-24 UNLISTED · R-25 tagged.
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+
+
+---
+
+## 2026-09-21T04:45:00Z · R-93 CP-G5V5-DOC1-A5-1-TO-A5-9 first sub-slice · Commit-C fixup
+
+**Advances `heads_last_sealed.state_repo.head` in `notes/ORCH_BOOT.md` to R-93 Commit-B SHA `ee30ca980a1e61c45db858444a91894fa7e65513` (short `ee30ca98`) and inserts fresh `code_repo` history entry for R-93 Commit-A SHA `36668e371bd4c99d0a0ee3ffde706b1bf4a34af3` (short `36668e3`).**
+
+**R-93 Family A first sub-slice ⏳ IN-FLIGHT → ✅ SEALED at this fixup (R-6 boundary regen).**
+
+### 3-Commit Seal complete
+
+| Position | Repo | Branch | SHA | Timestamp |
+|---|---|---|---|---|
+| **Commit-A** | Extraction-Akki (CODE) | `programme/track-a` | `36668e371bd4c99d0a0ee3ffde706b1bf4a34af3` | 2026-09-21T04:00:00Z |
+| **Commit-B** | assessment_workspace (STATE) | `master` | `ee30ca980a1e61c45db858444a91894fa7e65513` | 2026-09-21T04:15:00Z |
+| **Commit-C fixup** | assessment_workspace (STATE) | `master` | (this-append) | 2026-09-21T04:45:00Z |
+
+### Sprint queue post-R-93
+
+1. **NEXT (autopilot GO)**: G5-v5 Family B (Doc 5 M10 Northena) first sub-slice HUNT-and-authoring per owner sequencing (2026-09-21T~01:00Z + 2026-09-21T~03:53Z standing GO through R-91 window). Sub-slice size at autopilot discretion for clean seals. No per-slice check-in.
+2. G5-v5 Family C (DAP-1..38) — trails B.
+3. G5-v5 Family D (RBM + ROC · Rules Service) — trails C.
+4. Tier B rows for each family trail their Tier A.
+5. **R-91 apply-step at horizon `2026-09-23T03:23:15Z`** — retire 5/5 wrapped baselines · seal at new floor · flip `STATE/OBJECTIVES/CP_APP_JS_UNIFY.md` milestone_status SCHEDULED → SEALED · lower FE-DISPATCH-READY.
+
+### R-91 ceremony window unaffected
+
+Countdown horizon `2026-09-23T03:23:15Z` unchanged. Current UTC `2026-09-21T04:33:41Z` < horizon → R-91 stays parked. R-93 seal completes cleanly inside window with zero ceremony-apply operations opened.
+
+### Standing bounds unchanged
+
+zero push · zero remote configured · terminal `pytest` only · **no `testing_agent`** (STRICTLY BANNED per SO §6) · additive-only §3.8 (with ceremonied R-91 amendment as SINGLE authorized exception at horizon) · three-repo discipline · ratchet measured-monotonic-up **5711** floor · HF-HOLD SEC-2026-09-12-01 · R-24 UNLISTED · R-25 tagged · R-88+ OWNER-RATIFICATION-PENDING RETIRED at `a30db4f7`.
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+
+---
+
+## 2026-09-21T05:20:00Z · R-94 CP-G5V5-DOC5-A5-1-TO-A5-6 first sub-slice · Commit-B · STATE banking
+
+**Banks R-94 Commit-A `1115a332b42072c6ea010e07c2163bcb65991ca4` (short `1115a332`) on `programme/track-a`.**
+
+R-94 marker: **⏳ IN-FLIGHT** (Commit-C fixup pending this-turn).
+
+### Delta measured this-slice
+
+**+16** measured (5711 → 5727 · monotonic-up per CCS2). +14 new Doc 5 Part A tests + 2 v8 spontaneous transitions from R-88+ baseline set carrying forward.
+
+### Sprint queue post-R-94 first sub-slice
+
+1. **Commit-C fixup** (this-turn or immediately next): state master · R-6 boundary regen advancing `heads_last_sealed.state_repo.head` to this-Commit-B SHA + new code_repo history entry for `1115a332` · R-94 marker flips ⏳ IN-FLIGHT → ✅ SEALED · POD audit mirror byte-identical sync reconfirmed.
+2. **NEXT (autopilot GO)**: G5-v5 Family B second sub-slice (Doc 5 Part B · B5.1..B5.5 · Promise #18 direction half · Objective Preservation · Ledger append-only writer · SRR rows 75..79) HUNT-and-authoring per owner sequencing.
+3. G5-v5 Family C (DAP-1..38) — trails Family B.
+4. G5-v5 Family D (RBM + ROC · Rules Service) — trails Family C.
+5. Tier B rows for each family trail their Tier A.
+6. **R-91 apply-step at horizon `2026-09-23T03:23:15Z`** — retire 5/5 wrapped baselines · seal · flip card SCHEDULED → SEALED · lower FE-DISPATCH-READY.
+
+### R-91 ceremony window unaffected
+
+Countdown horizon `2026-09-23T03:23:15Z` unchanged. Current UTC (approx) `2026-09-21T05:20Z` < horizon → R-91 stays parked. R-94 completes cleanly inside window with zero ceremony-apply operations opened.
+
+### Standing bounds unchanged
+
+zero push · zero remote configured · terminal `pytest` only · **no `testing_agent`** (STRICTLY BANNED per SO §6) · additive-only §3.8 (with ceremonied R-91 amendment as SINGLE authorized exception at horizon) · three-repo discipline · ratchet measured-monotonic-up **5727** floor · HF-HOLD SEC-2026-09-12-01 · R-24 UNLISTED · R-25 tagged · R-88+ OWNER-RATIFICATION-PENDING RETIRED at `a30db4f7`.
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+
+---
+
+## 2026-09-21T05:30:00Z · R-94 CP-G5V5-DOC5-A5-1-TO-A5-6 first sub-slice · Commit-C fixup
+
+**Advances `heads_last_sealed.state_repo.head` in `notes/ORCH_BOOT.md` to R-94 Commit-B SHA `98963a11bc5720516ca04ee5943fa96b912ab827` (short `98963a11`) and inserts fresh `code_repo` history entry for R-94 Commit-A SHA `1115a332b42072c6ea010e07c2163bcb65991ca4` (short `1115a332`).**
+
+**R-94 Family B first sub-slice ⏳ IN-FLIGHT → ✅ SEALED at this fixup (R-6 boundary regen).**
+
+### 3-Commit Seal complete
+
+| Position | Repo | Branch | SHA | Timestamp |
+|---|---|---|---|---|
+| **Commit-A** | Extraction-Akki (CODE) | `programme/track-a` | `1115a332b42072c6ea010e07c2163bcb65991ca4` | 2026-09-21T05:15:00Z |
+| **Commit-B** | assessment_workspace (STATE) | `master` | `98963a11bc5720516ca04ee5943fa96b912ab827` | 2026-09-21T05:20:00Z |
+| **Commit-C fixup** | assessment_workspace (STATE) | `master` | (this-append) | 2026-09-21T05:30:00Z |
+
+### Sprint queue post-R-94 first sub-slice
+
+1. **NEXT (autopilot GO)**: G5-v5 Family B second sub-slice (Doc 5 Part B · B5.1..B5.5 · Promise #18 direction half · Objective Preservation · Ledger append-only writer · SRR rows 75..79) HUNT-and-authoring per owner sequencing.
+2. G5-v5 Family C (DAP-1..38) — trails Family B.
+3. G5-v5 Family D (RBM + ROC · Rules Service) — trails Family C.
+4. Tier B rows for each family trail their Tier A.
+5. **R-91 apply-step at horizon `2026-09-23T03:23:15Z`** — retire 5/5 wrapped baselines · seal · flip card SCHEDULED → SEALED · lower FE-DISPATCH-READY.
+
+### R-91 ceremony window unaffected
+
+Countdown horizon `2026-09-23T03:23:15Z` unchanged. Current UTC (approx) `2026-09-21T05:30:00Z` < horizon → R-91 stays parked. R-94 completes cleanly inside window with zero ceremony-apply operations opened.
+
+### Standing bounds unchanged
+
+zero push · zero remote configured · terminal `pytest` only · **no `testing_agent`** (STRICTLY BANNED per SO §6) · additive-only §3.8 · three-repo discipline · ratchet measured-monotonic-up **5727** floor · HF-HOLD SEC-2026-09-12-01 · R-24 UNLISTED · R-25 tagged · R-88+ OWNER-RATIFICATION-PENDING RETIRED at `a30db4f7`.
+
+---
+
+**§6 INTERLUDE MARKER · 2026-09-21T~06:05Z · autopilot R-95 · Family B second sub-slice · Doc 5 Part B · CP-G5V5-DOC5-B5-1-TO-B5-5 · ✅ SEALED at Commit-C fixup**
+
+**R-95 3-Commit Seal COMPLETE**:
+- Commit-A `c16edf2aee1996d542c03bfce372618b1bdc2893` at `programme/track-a` (2026-09-21T05:55:00Z)
+- Commit-B `bee3e32aad7ffa1942d6d08f25b39d0c4124e032` at `master` (2026-09-21T06:00:00Z)
+- Commit-C fixup at `master` (this-append · 2026-09-21T06:05:00Z · R-6 boundary regen advances `heads_last_sealed.state_repo.head` in `notes/ORCH_BOOT.md` to `bee3e32aad7ffa1942d6d08f25b39d0c4124e032` + inserts new code_repo history entry for R-95 Commit-A `c16edf2aee1996d542c03bfce372618b1bdc2893` · POD audit mirror byte-identical sync at sha `87269792fd063ae61929c2af1fcad89dccab17d656d48b9f48ed2765b1f180c4`)
+
+Ratchet monotonic-up floor at **5738** (+11 measured from R-94's 5727). CCS2 measured-not-targeted principle preserved (targeted +11 = measured +11). CCS2 lesson extended this-wave: force `PYTHONHASHSEED=0` for reproducible byte-identical `BASELINE_GUARD=1` double-sweep receipts when any baseline-failed test emits set-iteration-order-dependent assertion output. Recorded for R-96+.
+
+**Autopilot next per §6.7 sequence**: G5-v5 Family C first sub-slice (DAP-1..38 lifecycle and principal model landing · Tier A first) per owner sequencing (2026-09-21T~01:00Z at `a30db4f7`) and standing-GO through G5 family queue (owner ruling this-session 2026-09-21T~05:20Z). Sub-slice size at agent's discretion for clean seals per SO §6. Seal reports at boundaries; no per-slice check-ins.
+
+Countdown horizon `2026-09-23T03:23:15Z` unchanged. Current UTC (approx) `2026-09-21T06:05:00Z` < horizon → R-91 stays parked. R-95 completes cleanly inside window with zero ceremony-apply operations opened.
+
+### Standing bounds unchanged
+
+zero push · zero remote configured · terminal `pytest` only · **no `testing_agent`** (STRICTLY BANNED per SO §6) · additive-only §3.8 · three-repo discipline · ratchet measured-monotonic-up **5738** floor · HF-HOLD SEC-2026-09-12-01 · R-24 UNLISTED · R-25 tagged · R-88+ OWNER-RATIFICATION-PENDING RETIRED at `a30db4f7`.
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

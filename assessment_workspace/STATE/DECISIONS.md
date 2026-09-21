@@ -22482,3 +22482,730 @@ zero push · terminal `pytest` only · **no `testing_agent`** (STRICTLY BANNED) 
 
 **End of G5-v5 FAMILY A SOURCE-DOC FALSE-NEGATIVE CORRECTION banking.**
 
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+
+---
+
+## 2026-09-21T04:25:00Z · R-93 · CP-G5V5-DOC1-A5-1-TO-A5-9 first sub-slice · Commit-B · state master · Family A first sub-slice · Doc 1 M12 chokepoint · A5.1..A5.9 SEALED
+
+**Wave marker:** WAVE R-93 · G5-v5 second slice · Family A first sub-slice · Doc 1 M12 chokepoint · Tier A rows R2..R10 (A5.1..A5.9) · state master · Commit-A banked on programme/track-a at `36668e3` · this-commit lands seal-report + hunt/drill receipts + tool + notes/ORCH_BOOT.md regen already synced pre-Commit-A.
+
+**Ratchet advance MEASURED:** counts_at_baseline.passed 5695 → 5711 · passed_floor 5695 → 5711 · CCS2-aligned both fields bumped together · baseline_failures.json sha256 `4e7caa47f437b7fe15731bd9f6eb1cbf3f202d3f09b2db495b6c8be668125694` → `870eac9a06f25cbf2b5591b9084bbb9c4a1555719ac183f9c8dfd44700cf18b1` · notes/ORCH_BOOT.md sha256 `0c67f0e639bfd7edf58f925c349761d8917808b0af3add11fc8ebcf64577df0f` → `0fade309efb9fbb98b42e72fc24225debf8c05fce68302faa0e3750f454e265f` · POD audit mirror byte-identical to notes/ORCH_BOOT.md.
+
+**Measured passed 5713** across triple-green sweep exceeds ratchet floor 5711 by 2 (2 v8 baselines currently spontaneously passing post-App.js-merge · baseline manifest entries preserved · R-91 apply-step 4 will retire all 5 atomically per proposal §6).
+
+### §1 · Owner ruling verbatim this-session (2026-09-21T~03:53Z · authority for R-93 opening)
+
+> "GO — Family A first sub-slice HUNT-and-authoring, exactly per your posture plan (extract A5.1..A5.9 verbatim from the sha-pinned .docx, 9 property tests bound to SRR R2..R10, sealed-M12 mapping with new vocabulary module only where the sealed code doesn't already carry the bindings, RED-first → GREEN → measured ratchet → double-green → 3-Commit Seal). The false-negative correction was handled exactly right — verify-first extended to your own HUNT receipts is the correct generalization of the standing lesson, and the ζ/η/θ/ι options collapsing without a new ruling is the system working as designed.
+>
+> Standing GO extends through the R-91 window: Family A → Family B (Doc 5 Northena) → DAP-1..38 → RBM + ROC, Tier A before Tier B per the owner's sequencing, sub-slice sizes at your discretion for clean seals, no per-slice check-ins needed (SO §6 governs; your §6.7 boundary reports keep coming as they land). At the apply horizon (2026-09-23T03:23:15Z): execute the ε ceremony apply per the frozen proposal scope — amendment with the named-success output, retire 5/5, full sweep, seal at the new floor, flip the card to SEALED, lower FE-DISPATCH-READY.
+>
+> The .docx-vs-.md pointer-shape treatment (hint vs governing, rule text verbatim-verified) is correct under Rulings 3+5 — no new ruling needed, as you concluded. Standing bounds unchanged. Proceed."
+
+### §2 · SCOPE FROZEN SO §6.4 NOTHING-BEYOND
+
+Commit-A (programme/track-a `36668e3`) tracked exactly 4 files:
+1. `backend/services/canon_doc1_chokepoint/__init__.py` NEW (SO §2.5 verbatim-docstring package marker + re-exports)
+2. `backend/services/canon_doc1_chokepoint/chokepoint_vocabulary.py` NEW (~380 lines · A5.1..A5.9 Final[...] vocabulary + 5 pure-data-in grep-negative scanners)
+3. `backend/tests/invariants/test_g5v5_doc1_a5_1_to_a5_9.py` NEW (~425 lines · 16 tests total · SO §2.5 verbatim-docstring per row)
+4. `backend/tests/invariants/baseline_failures.json` MODIFIED (ratchet bump 5695→5711 in both counts_at_baseline.passed and invariants_enforced_when_baseline_guard_1.passed_floor · new ratchet_history entry · ensure_ascii=False preserving original UTF-8 encoding)
+
+Commit-B (this-commit on master) tracks:
+1. `STATE/DECISIONS.md` append (this block + carries pointer-line hotfix at line 22485 remediating afd0f3c7 discipline lapse)
+2. `STATE/NEXT.md` append (R-93 SEALED marker + sprint queue + Family B queued)
+3. `STATE/PINS.md` R-93-PINS block
+4. `notes/ORCH_BOOT.md` R-6 boundary regen (already synced pre-Commit-A via M16-W3 corrected order · sha256 `0fade309…`)
+5. `tools/r93_pre_commit_a_ratchet_and_orch_boot_regen.py` NEW (combined ratchet-bump + ORCH_BOOT regen tool · deterministic idempotent · zero remote/network/subprocess/git ops · pure local Path.read_text/write_text + shutil.copyfile + json.dump ensure_ascii=False)
+6. `phase0/spec_hunt_receipts/20260921T034500Z_g5v5_family_a_doc1_a5_1_to_a5_9_authoring_hunt_data.json` NEW (HUNT data with SRR sha-pin verification + .docx sha-pin + rule-text extraction metadata for R2..R10)
+7. `phase0/drill_receipts/20260921T034700Z_g5v5_family_a_doc1_a5_1_to_a5_9_RED_pre.log` NEW (16/16 RED right-reason ModuleNotFoundError · sha256 `7fe373d1…`)
+8. `phase0/drill_receipts/20260921T034900Z_g5v5_family_a_doc1_a5_1_to_a5_9_GREEN_post.log` NEW (16/16 GREEN 0.70s · sha256 `2109a162…`)
+9. `phase0/drill_receipts/20260921T035100Z_r93_family_a_BASELINE_GUARD1_double_green_run1.log` NEW (superseded pre-hotfix sweep · [V1] NEW failure OUTSIDE manifest for test_decisions_carries_pointer_near_bottom · banked as evidence of afd0f3c7 discipline lapse root cause)
+10. `phase0/drill_receipts/20260921T035500Z_r93_family_a_BASELINE_GUARD1_double_green_run1.log` NEW (post-hotfix · 181.38s · 5713 passed · 3 failed · 1 skipped · stripped_sha256 `ee3e1fb7…`)
+11. `phase0/drill_receipts/20260921T035900Z_r93_family_a_BASELINE_GUARD1_double_green_run2.log` NEW (post-hotfix · 181.28s · 5713 passed · stripped_sha256 `ee3e1fb7…` IDENTICAL)
+12. `phase0/drill_receipts/20260921T042000Z_r93_family_a_BASELINE_GUARD1_double_green_run3_current_state.log` NEW (triple-green under post-encoding-fix state · 182.58s · 5713 passed · stripped_sha256 `ee3e1fb7…` IDENTICAL)
+
+### §3 · Zero-touch inventory (this-commit)
+
+Not touched: `STATE/OBJECTIVES/CP_APP_JS_UNIFY.md` (milestone_status = SCHEDULED · flip to SEALED remains R-91 apply-step operation 5) · sealed test files in `repos/Extraction-Akki/backend/tests/invariants/` · sealed contracts/writers/implementation modules · services/chokepoint/* · services/security_function_policies/* · services/content_registry/* · POD audit mirror (byte-identical to notes/ORCH_BOOT.md, no functional edit).
+
+### §4 · Discipline hotfix remediating afd0f3c7 lapse
+
+**Root cause caught:** prior state commit `afd0f3c7` (2026-09-21T03:42:00Z · G5-v5 FAMILY A · SOURCE-DOC FALSE-NEGATIVE CORRECTION) appended to `STATE/DECISIONS.md` without preserving the `READ STATE/STANDING_ORDERS.md FIRST — permanent standing law` pointer line at the tail. This surfaced during BASELINE_GUARD=1 sweep run1 as `[V1] 1 NEW failure(s) OUTSIDE manifest: tests/invariants/test_standing_orders_present.py::test_decisions_carries_pointer_near_bottom`.
+
+**Hotfix landed at 2026-09-21T03:54:00Z:** appended the pointer line to DECISIONS.md tail (line 22485). Post-hotfix subset `test_standing_orders_present.py` 7/7 GREEN in 0.71s. Full sweep run1_v2 confirmed clean.
+
+**Standing lesson banked:** every state-side append MUST end with the pointer line at true tail, per canonical pattern established at ceremony-open commit `a30db4f7`. Prior discipline was implicit; this-lesson makes it explicit. Future appends: end with `READ STATE/STANDING_ORDERS.md FIRST — permanent standing law` (blank line above, no trailing content).
+
+### §5 · Rules registered · Doc 1 A5.1..A5.9 vocabulary + 5 scanners
+
+Registry-shape:
+- `DOC1_A5_RULE_IDS: Final[tuple[str, ...]]` = `("A5.1","A5.2","A5.3","A5.4","A5.5","A5.6","A5.7","A5.8","A5.9")`
+- `DOC1_A5_RULE_COUNT: Final[int]` = `9`
+- `DOC1_A5_ROW_SHARED_METADATA: Final[dict[str, str]]` = { objective: "O1 Custody & Confidentiality", promise: "#1 — NO LEAKAGE OF CONFIDENTIAL INFORMATION", doc: "Doc 1", status: "CANON", domain: "SyniSense", relationship: "Base canon" }
+
+Per-row Final[...] canon vocabulary + rule-text-derived invariant flags:
+- **A5.1** · The single chokepoint · SRR row R2 · source `.md:67` · 3 invariant flags (EXACTLY_ONE_MODEL_CLIENT_INVOCATION · ENFORCED_BY_NEGATIVE_SCAN_BUILD_GATE · GUARANTEE_AT_NARROWEST_POINT_NOT_ORCHESTRATOR) + `scan_for_non_chokepoint_model_invocation` (5-pattern watch).
+- **A5.2** · The custody sequence · SRR row R3 · source `.md:69` · STEPS 3-tuple ("de-identify","invoke","re-identify") + STEP_COUNT=3 + FIXED_ORDER_NO_SKIP · no scanner.
+- **A5.3** · The per-request envelope does not outlive the call · SRR row R4 · source `.md:77` · 4 invariant flags (SCOPED_TO_SINGLE_REQUEST · NEVER_PERSISTED_TO_DISK · NEVER_SHARED_BETWEEN_REQUESTS · NEVER_AVAILABLE_AFTER_CALL_COMPLETES) + `scan_for_envelope_persistence` (5-pattern watch).
+- **A5.4** · Tenant-scoped entity resolution · SRR row R5 · source `.md:81` · 3 invariant flags (TENANT_SUPPLIES_ENTITY_SET · EXTENDS_GENERIC_RECOGNISER · PROMISE_2_MECHANISM_SHARED) · no scanner.
+- **A5.5** · The outbound network is closed except at the crossing · SRR row R6 · source `.md:83` · 4 invariant flags (EXACTLY_ONE_OUTBOUND_PATH · NETWORK_LAYER_ALLOWLIST_REFUSES_ELSEWHERE · STATIC_ANALYSIS_BUILD_GATE · COMPUTE_STAYS_INSIDE_PERIMETER) + `scan_for_outbound_network_outside_crossing` (5-pattern watch).
+- **A5.6** · Structural impossibility, not policed prohibition · SRR row R7 · source `.md:89` · 3 invariant flags (STRUCTURAL_ENFORCEMENT_NOT_REVIEW · SIGNATURE_TYPE_OR_SCHEMA_LEVEL · DOCTRINE_STATED_IN_DOC_16) · no scanner.
+- **A5.7** · The trust receipt · SRR row R8 · source `.md:91` · 5 invariant flags (RECEIPT_EMITTED_PER_INVOCATION · CREDENTIAL_NEVER_LOGGED_OR_INCLUDED · CREDENTIAL_SURFACED_AS_BOOLEAN_PROBE_ONLY · RECEIPT_SIGNED_BOUND_TO_ORGANISATION · RECEIPT_WRITTEN_TO_ONE_AUTHORITATIVE_RECORD) + `scan_for_credential_at_receipt` (5-pattern watch).
+- **A5.8** · Two custody pathways, both receipted, neither bypassing the other · SRR row R9 · source `.md:101` · PATHWAYS 2-tuple ("synthesis","perception") + PATHWAY_COUNT=2 + 3 invariant flags (BOTH_EMIT_RECEIPTS · NEITHER_BYPASSES_THE_OTHER · SAME_CUSTODY_OBLIGATION_ON_BOTH) · no scanner.
+- **A5.9** · Grounding failure is a refusal, not a degraded answer · SRR row R10 · source `.md:103` · 4 invariant flags (REFUSAL_ON_UNGROUNDED_ANSWER · NO_SILENT_PARTIAL · COMPLETE_ANSWER_IS_REIDENTIFIED_AND_GROUNDED · PROMISE_8_FULL_STATEMENT) + `scan_for_degraded_answer_on_grounding_failure` (5-pattern watch).
+
+Grep-negative bans anchored (SFP-1..7 pattern precedent): A5.1 (build-gate-negative-scan), A5.3 (envelope-persistence), A5.5 (outbound-network-outside-crossing), A5.7 (credential-in-receipt), A5.9 (degraded-answer-on-grounding-failure). A5.2/A5.4/A5.6/A5.8 assert invariants without negating specific patterns → no scanner registered.
+
+### §6 · Test module structure · 16 tests total
+
+Test module `backend/tests/invariants/test_g5v5_doc1_a5_1_to_a5_9.py` (~425 lines):
+- 2 registry-shape tests: `test_doc1_a5_rule_ids_tuple_is_closed_vocabulary` + `test_doc1_a5_shared_row_metadata_canon_status_and_domain`.
+- 9 rule property tests (one per A5.1..A5.9): each carries SO §2.5 verbatim-docstring quoting rule text byte-verbatim from Doc 1 `.docx` paragraphs 33-51 · each asserts STATEMENT + SOURCE_FILE_LINE + rule-text-derived invariant Final[bool] flags.
+- 5 grep-negative scanner tests: each asserts clean-input-empty + each watched-pattern-hits invariant byte-verbatim across all 5 watched patterns per scanner.
+
+Ratchet delta this-slice: **+16 measured** (5695 → 5711 · CCS2 both fields bumped together · no test flipped to fail).
+
+### §7 · Discipline invariants continuing GREEN through R-93
+
+- Total-coverage guard (Guard #1 from R-88+): GREEN across triple-green sweep · 0 uncovered baseline entries · 0 double-covered baseline entries · baseline manifest 5 entries preserved.
+- R-86 Property tests (Guard #2 from R-88+): GREEN (annotation set unchanged this-slice).
+- BASELINE_GUARD receipt: `status: OK (subset · quarantine · ratchet all pass)` · passed=5713 · baseline-failures-remaining=3 (down from 5 · 2 v8 baselines currently spontaneously passing · manifest entries preserved for R-91 apply-step retirement) · quarantined=0.
+- test_orch_boot: GREEN (ORCH_BOOT.md sha and baseline sha both current and cross-referenced).
+- test_standing_orders_present: 7/7 GREEN post-hotfix (all pointer/reattach-runbook invariants).
+
+### §8 · Triple-green byte-identical sweep
+
+- run1 (superseded pre-hotfix): 20260921T035100Z · [V1] failure surfaced afd0f3c7 discipline lapse · banked as historical evidence.
+- run1_v2 (post-hotfix): 20260921T035500Z · 181.38s · 5713 passed / 3 failed / 1 skipped · stripped_sha256 `ee3e1fb7549cf34a3eb985aabfeaa5f18a0cb4d64780cc69014dd7e3d3db2a83`.
+- run2: 20260921T035900Z · 181.28s · 5713 passed / 3 failed / 1 skipped · stripped_sha256 `ee3e1fb7549cf34a3eb985aabfeaa5f18a0cb4d64780cc69014dd7e3d3db2a83` IDENTICAL.
+- run3 (current state after ensure_ascii=False encoding fix): 20260921T042000Z · 182.58s · 5713 passed / 3 failed / 1 skipped · stripped_sha256 `ee3e1fb7549cf34a3eb985aabfeaa5f18a0cb4d64780cc69014dd7e3d3db2a83` IDENTICAL.
+
+Triple-green confirms deterministic pytest output under current pre-Commit-A state.
+
+### §9 · Autopilot next (Family B queues per standing GO)
+
+Per owner standing GO 2026-09-21T~03:53Z verbatim ("*Standing GO extends through the R-91 window: Family A → Family B (Doc 5 Northena) → DAP-1..38 → RBM + ROC, Tier A before Tier B per the owner's sequencing, sub-slice sizes at your discretion for clean seals, no per-slice check-ins needed*"):
+
+1. **Commit-C fixup** (this-turn or next) · state master · R-6 boundary regen advancing `heads_last_sealed.state_repo.head` to this-Commit-B SHA + new code_repo history entry for Commit-A `36668e3` · flips R-93 slice-marker ⏳ IN-FLIGHT → ✅ SEALED · POD audit mirror byte-identical sync (already carried at pre-Commit-A but Commit-C reconfirms).
+2. **Family B first sub-slice HUNT-and-authoring** · Doc 5 M10 Northena · rule text from `fixtures/files_9_extracted/05_Direction_Scope_and_Focus_Part_1_Northena.docx` (sha `f280356e…`) · SRR v5 sha-pin (`00072c58…`) · Tier A rows first · sealed M10 code map + new `services/canon_doc5_northena/` package + property + scanner tests per pattern.
+3. **Family C DAP-1..DAP-38** · sliced 4-6 sub-slices · principal model landing per owner sequencing.
+4. **Family D RBM + ROC** · Rules Service · Tier A before Tier B.
+5. **At R-91 horizon 2026-09-23T03:23:15Z**: apply R-91 amendment per proposal §6 ten operations · retire 5/5 baselines · seal · flip CP_APP_JS_UNIFY milestone_status SCHEDULED → SEALED · lower FE-DISPATCH-READY.
+
+### §10 · Canon anchors verbatim
+
+- Owner ruling this-session (2026-09-21T~03:53Z · GO Family A first sub-slice + standing GO extending through R-91 window + Family sequence A→B→C→D + correction-handled-right verbatim).
+- Owner Ruling 5 SRR-as-authority (2026-09-20T~19:00Z · v5 workbook sha `00072c58…`).
+- Owner Ruling 3 erratum (2026-09-20T~19:00Z · class column HINT · rule text governs · extended to source-column shape at afd0f3c7).
+- Owner G5-v5 second slice sequencing (2026-09-21T~01:00Z · Doc 1 → Doc 5 → DAP → RBM/ROC · Tier A first · rows 1-565).
+- Owner Path ε ratification (2026-09-21T~01:00Z · R-91 ceremony countdown 48h · horizon 2026-09-23T03:23:15Z).
+- Owner D+A ratification (2026-09-21T~01:00Z · OWNER-RATIFICATION-PENDING RETIRED at a30db4f7 · not restated).
+- R-91 CEREMONY-OPEN commit `a30db4f7` (2026-09-21T03:30:41Z · countdown window UNCHANGED).
+- state commit `afd0f3c7` (2026-09-21T03:42:00Z · source-doc block cleared · false-negative correction · discipline lapse remediated by this-commit hotfix).
+- R-92 seal `ceaa24f/19030610/e8f9f168` (SFP-1..7 first slice · pattern reference).
+- R-91 Phase 1 seal `282ba19e`.
+- Prior seal chain R-83..R-90.
+- v5 SRR workbook `custody/owner_drops/20260920T1900Z/Master_Requirements_Registry_v5.xlsx` (sha `00072c58…`) rows R2..R10.
+- Doc 1 source `.docx` sha `a33588298100c6224366623e64ac8632b48294649e57ad43cf67ee6730f97844`.
+- SO §2.5 verbatim-docstring + §3 tests-first + §3.3 3-Commit Seal + §3.8 additive-only + §3.10-α Final[str] closed-vocab + §6 autopilot governance (Ruling 5 scope · full SO §6 autonomy · measured ratchet not targeted · standing GO extends through R-91 window · no per-slice check-in) + §6.4 NOTHING-BEYOND + §6.7 seal-report-boundary + M16-W3 corrected order + CCS2 lesson.
+
+### §11 · Stop-conditions this-commit
+
+- Stop-conditions #1/#2/#3 NOT triggered.
+- SO §6.4 pre-ruling NOT triggered (Family A first sub-slice is inside Ruling 5 scope · owner sequencing pre-authorised).
+- MEM-R-053 CROWN BAN NOT triggered.
+- No push · zero remote configured on programme/track-a (checked) · no testing_agent (STRICTLY BANNED per SO §6).
+
+### §12 · Standing bounds unchanged
+
+zero push · terminal `pytest` only · **no `testing_agent`** (STRICTLY BANNED) · additive-only §3.8 (with ceremonied R-91 amendment as SINGLE authorized exception at horizon) · three-repo discipline · ratchet measured-monotonic-up **5711** floor (was 5695 pre-slice · bumps to 5716 at R-91 apply-step: 5713 measured + 3 remaining baselines transitioning fail→pass) · HF-HOLD SEC-2026-09-12-01 · R-24 UNLISTED · R-25 tagged · R-88+ OWNER-RATIFICATION-PENDING RETIRED (not restated).
+
+**End of R-93 · Family A first sub-slice · Doc 1 A5.1..A5.9 · Commit-B seal-report banking.**
+
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+
+
+---
+
+## 2026-09-21T04:45:00Z · R-93 CP-G5V5-DOC1-A5-1-TO-A5-9 first sub-slice · Commit-C fixup
+
+**Advances `heads_last_sealed.state_repo.head` in `notes/ORCH_BOOT.md` to R-93 Commit-B SHA `ee30ca980a1e61c45db858444a91894fa7e65513` (short `ee30ca98`) and inserts fresh `code_repo` history entry for R-93 Commit-A SHA `36668e371bd4c99d0a0ee3ffde706b1bf4a34af3` (short `36668e3`).**
+
+**R-93 Family A first sub-slice ⏳ IN-FLIGHT → ✅ SEALED at this fixup (R-6 boundary regen advances state_head banked in ORCH_BOOT.md + DECISIONS.md + NEXT.md · POD audit mirror byte-identically synced at `/app/frontend/public/audit/ORCH_BOOT.md` at sha `9c234e2534a97f745fdf91bbbcb8b07d50f7622cb9bd89481177d4a6b2679d29`).**
+
+### 3-Commit Seal complete
+
+| Position | Repo | Branch | SHA | Timestamp |
+|---|---|---|---|---|
+| **Commit-A** | Extraction-Akki (CODE) | `programme/track-a` | `36668e371bd4c99d0a0ee3ffde706b1bf4a34af3` | 2026-09-21T04:00:00Z |
+| **Commit-B** | assessment_workspace (STATE) | `master` | `ee30ca980a1e61c45db858444a91894fa7e65513` | 2026-09-21T04:15:00Z |
+| **Commit-C fixup** | assessment_workspace (STATE) | `master` | (this-append) | 2026-09-21T04:45:00Z |
+
+### Files at Commit-C fixup
+
+- `tools/r93_commit_c_fixup_orch_boot_regen.py` (NEW · mirrors `tools/r92_commit_c_fixup_orch_boot_regen.py` precedent exactly · deterministic · idempotent · zero remote / zero network / zero subprocess / zero git ops · pure local `Path.read_text` + `Path.write_text` + `shutil.copyfile`).
+- `notes/ORCH_BOOT.md` (R-6 boundary regen: `heads_last_sealed.state_repo.head` advanced to `ee30ca980a1e61c45db858444a91894fa7e65513` + new `code_repo` history entry at top for `36668e371bd4c99d0a0ee3ffde706b1bf4a34af3` + `generated_at_utc` + `regeneration_reason` updated · new sha `9c234e2534a97f745fdf91bbbcb8b07d50f7622cb9bd89481177d4a6b2679d29` · ratchet block unchanged this-Commit-C at passed_floor **5711** + baseline_failures_sha256 `870eac9a06f25cbf2b5591b9084bbb9c4a1555719ac183f9c8dfd44700cf18b1` from pre-Commit-A regen · same values).
+- `/app/frontend/public/audit/ORCH_BOOT.md` (POD audit mirror byte-identically synced at same sha).
+- `STATE/DECISIONS.md` (this-append banking Commit-B state SHA).
+- `STATE/NEXT.md` (this-append flipping R-93 first-sub-slice marker to explicit ✅ SEALED at Commit-C).
+- `backend/phase0/drill_receipts/20260921T044000Z_r93_pre_commit_c_verify_subset.log` (pre-Commit-C 36-test verify subset · all GREEN · 0.99s · R-93 wave 16/16 + `test_orch_boot` 1/1 + baseline manifest 12/12 + R-86 property tests 5/5 + R-88 total-coverage guards 2/2).
+
+### R-6 boundary regen evidence
+
+Prior state_repo.head in `notes/ORCH_BOOT.md` (from R-92 Commit-C fixup at `e8f9f168`): `19030610d7e80072cfec498a72180f3304dd4f59`.
+New state_repo.head at this Commit-C: `ee30ca980a1e61c45db858444a91894fa7e65513` (R-93 Commit-B `ee30ca98`).
+Prior code_repo (newest) in `notes/ORCH_BOOT.md`: `ceaa24f41c8156c31e408b47fa8a59b3b265e6ac` (R-92 Commit-A).
+New code_repo (newest) at this Commit-C: `36668e371bd4c99d0a0ee3ffde706b1bf4a34af3` (R-93 Commit-A `36668e3`).
+All prior code_repo history entries preserved in chronological order.
+`test_orch_boot` invariant PASSES post-regen (state_repo.head `ee30ca98` banked in DECISIONS.md this-append + NEXT.md this-append · 40-hex full + short form both present · code_repo.head `36668e3` already banked at R-93 Commit-B).
+
+### R-88+ OWNER-RATIFICATION-PENDING block
+
+RETIRED at state commit `a30db4f7` (R-91 CEREMONY-OPEN · D+A ratification banked verbatim per owner ruling this-session 2026-09-21T~01:00Z). Not restated this-Commit-C. Total-coverage guard (Guard #1 from R-88+) verified GREEN across R-93 pre-Commit-A double-sweep + pre-Commit-C verify subset. R-86 Property tests (Guard #2 from R-88+) still GREEN (annotation set unchanged this-slice).
+
+### R-91 CP-APP-JS-UNIFY Phase 2 ceremony window
+
+Countdown horizon `2026-09-23T03:23:15Z` unchanged. Current UTC `2026-09-21T04:33:41Z` (verified via `date -u -Iseconds`) → **R-91 stays parked**. Proposal `notes/proposals/PROPOSAL_r91_r86_property_tests_amendment_20260921.md` unchanged this-slice. R-93 seal completes cleanly inside window — no ceremony-apply operations opened this-Commit-C.
+
+### Autopilot next: G5-v5 Family B (Doc 5 M10 Northena) sub-slice HUNT-and-authoring
+
+Per owner G5-v5 second slice sequencing (2026-09-21T~01:00Z banked at `a30db4f7` verbatim: "Document 1 (chokepoint, M12) and Document 5 (the Ledger, M10) first; then DAP-1 through DAP-38 (lifecycle and principal model landing); then RBM and ROC (Rules Service). Tier B rows in each family trail their Tier A. Sequence rows 1–565 accordingly.") and owner standing-GO through R-91 window this-session verbatim (2026-09-21T~03:53Z: "Standing GO extends through the R-91 window: Family A → Family B (Doc 5 Northena) → DAP-1..38 → RBM + ROC, Tier A before Tier B per the owner's sequencing, sub-slice sizes at your discretion for clean seals, no per-slice check-ins needed (SO §6 governs)").
+
+Family B HUNT-first: extract Doc 5 M10 rule text from `fixtures/files_9_extracted/05_Direction_Scope_and_Focus_Part_1_Northena.docx` (Ledger canon) + v5 SRR workbook (sha `00072c58…`) Tier A rows for M10 module. New `services/canon_doc5_northena/` package + property/scanner tests per Family A pattern. Sub-slice size at autopilot discretion for clean seals.
+
+### Canon anchors verbatim
+
+- owner ruling this-session (2026-09-21T~03:53Z Family A GO + standing-GO through R-91 window)
+- owner G5-v5 second slice sequencing (2026-09-21T~01:00Z at `a30db4f7`)
+- owner Ruling 5 SRR-as-authority (2026-09-20T~19:00Z · v5 workbook sha `00072c58...`)
+- owner Ruling 3 erratum (class column HINT · rule text governs · source-column shape extended this-session)
+- v5 SRR workbook rows R2..R10 as authority (Ruling 5)
+- Doc 1 source `.docx` sha `a33588298100c6224366623e64ac8632b48294649e57ad43cf67ee6730f97844` (byte-verified · falsified prior fork's `.md`-missing misreport at state commit `afd0f3c7`)
+- R-92 seal `ceaa24f`/`19030610`/`e8f9f168` (immediately-precedes · Ruling 5 pattern · Final[...]-constants + pure-data-in-scanner + grep-negative-ban-anchor pattern this wave inherits)
+- R-91 Phase 1 seal `282ba19e`
+- R-91 CEREMONY-OPEN `a30db4f7` (D+A ratification + G5-v5 sequencing · APPLY horizon `2026-09-23T03:23:15Z`)
+- R-90 seal `457d947`/`19bfd333`/`44d2ae74` (CLOSES Ruling-4 scope)
+- R-89 seal `49e2a338`/`76c530f0`/`f2638177`
+- R-88 seal `db90089d`/`79d5d38d`/`0cbfc23b`
+- prior seal chain R-85/R-86/R-87
+- SO §2.5 verbatim-docstring + §3 tests-first + §3.3 3-Commit Seal + §3.8 additive-only + §3.10-α Final[str] closed-vocab + §6 autopilot governance + §6.4 NOTHING-BEYOND + §6.7 seal-report-boundary + M16-W3 corrected order + CCS2 lesson
+
+### Stop-conditions this-commit
+
+- Stop-conditions #1/#2/#3 NOT triggered this-Commit-C.
+- SO §6.4 pre-ruling NOT triggered.
+- MEM-R-053 CROWN BAN NOT triggered.
+- No push · zero remote configured on programme/track-a · **no `testing_agent`** (STRICTLY BANNED per SO §6 Long Autonomous Run Protocol).
+
+### Standing bounds unchanged
+
+zero push · zero remote configured · terminal `pytest` only · **no `testing_agent`** (STRICTLY BANNED) · additive-only §3.8 (with ceremonied R-91 amendment as SINGLE authorized exception at horizon) · three-repo discipline · ratchet measured-monotonic-up **5711** floor · HF-HOLD SEC-2026-09-12-01 · R-24 UNLISTED · R-25 tagged · R-88+ OWNER-RATIFICATION-PENDING RETIRED at `a30db4f7` (not restated).
+
+**End of R-93 · Family A first sub-slice · Doc 1 A5.1..A5.9 · Commit-C fixup banking. 3-Commit Seal COMPLETE.**
+
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+
+---
+
+## 2026-09-21T05:20:00Z · R-94 CP-G5V5-DOC5-A5-1-TO-A5-6 first sub-slice · Commit-B · STATE banking
+
+**Banks R-94 Commit-A `1115a332b42072c6ea010e07c2163bcb65991ca4` (short `1115a332`) on `programme/track-a` (2026-09-21T~05:15Z).**
+
+WAVE R-94 · Family B · Doc 5 M10 Northena Part A · A5.1..A5.6 · Promise #16 "Focus maintained under massive context" · CANON · Ruling 5 execution.
+
+### Owner ruling this-session verbatim (2026-09-21T~03:53Z)
+
+"GO — Family A first sub-slice HUNT-and-authoring, exactly per your posture plan ... Standing GO extends through the R-91 window: Family A → Family B (Doc 5 Northena) → DAP-1..38 → RBM + ROC, Tier A before Tier B per the owner's sequencing, sub-slice sizes at your discretion for clean seals, no per-slice check-ins needed (SO §6 governs)."
+
+### Owner G5-v5 sequencing verbatim (2026-09-21T~01:00Z at state commit `a30db4f7`)
+
+"Map the rows whose components are already built and sealed, so canon_ref bites on live code: Document 1 (chokepoint, M12) and Document 5 (the Ledger, M10) first; then DAP-1 through DAP-38 (lifecycle and principal model landing); then RBM and ROC (Rules Service). Tier B rows in each family trail their Tier A. Sequence rows 1–565 accordingly."
+
+Family B first sub-slice = **Doc 5 Part A · A5.1..A5.6 (Promise #16 · 6 CANON rules)**. Part B (B5.1..B5.5 · Promise #18 direction half · Objective Preservation · Ledger append-only writer) follows as a second sub-slice.
+
+### Scope frozen per SO §6.4 NOTHING-BEYOND
+
+- 1 new backend package + 1 new module + 1 new test module
+- Additive `baseline_failures.json` ratchet_history entry + additive `counts.passed` + additive `passed_floor`
+- 4 drill receipts (GREEN + RED + BASELINE_GUARD run1 + run2)
+- Pre-Commit-A ORCH_BOOT.md ratchet-only regen already landed at master per M16-W3 corrected order
+- Commit-B state master lands seal-report banking + hunt receipt + drill receipts
+
+Zero implementation module edit outside this-wave. Zero sealed contract/writer/test file edit. Sealed `canon_doc1_chokepoint` (R-93 SEALED) + `security_function_policies` (R-92 SEALED) + `content_registry` (R-88..R-90 SEALED) continue verbatim GREEN.
+
+### Rules registered (Ruling 5 · SRR rows 64..69)
+
+| Row | Rule ID | Statement (SRR col 2) | Domain | Status |
+|---|---|---|---|---|
+| 64 | A5.1 | Deterministic by construction, enforced structurally | Northena | CANON |
+| 65 | A5.2 | The accountability standard | Northena | CANON |
+| 66 | A5.3 | Admit freezes; judgement is borrowed, never performed | Northena | CANON |
+| 67 | A5.4 | Gate is strict set-membership, with no inferential path | Northena | CANON |
+| 68 | A5.5 | Converge owns the halt on fixed conditions | Northena | CANON |
+| 69 | A5.6 | The budget is a hard stop | Northena | CANON |
+
+### Grep-negative scanners (6 new · pure-data-in · byte-verbatim watch-pattern tuples)
+
+- `scan_for_northena_ml_import` (A5.1 · 5 patterns · "No Northena module imports a machine-learning library or a learned component")
+- `scan_for_score_based_admission_rationale` (A5.2 · 5 patterns · "'Admitted because the model scored it highly enough' is the unauditable outcome this standard exists to prevent")
+- `scan_for_northena_governor_internals_or_inference` (A5.3 · 5 patterns · "Northena never reads that governor's internals and never performs inference itself")
+- `scan_for_gate_inferential_path` (A5.4 · 5 patterns · "No inferential path exists in Gate")
+- `scan_for_learned_stopping_or_extra_halt_owner` (A5.5 · 5 patterns · "There is no learned stopping" · "the stop decision and its record belong to Northena alone")
+- `scan_for_executor_owned_budget_ceiling` (A5.6 · 5 patterns · "enforced by the governor rather than by the executor that could be tempted to keep going")
+
+### Delta measured
+
+**+16 MEASURED** (5711 → 5727 · monotonic-up per CCS2 both fields bumped together):
+- **+14** new Doc 5 Part A tests (2 registry-shape + 6 property + 6 grep-negative scanner)
+- **+2** v8 tests spontaneously transitioning fail→pass from R-88+ baseline set carrying forward (handoff-noted transitions confirmed at R-94 pre-Commit-A sweep)
+
+`baseline_failures[]` array NOT shrunk this-slice per R-91 CEREMONY-OPEN owner directive verbatim ("all 5 wrapped baseline failures stay wrapped through Phase 1 and retire ONLY in Phase 2 after the FE landing"). Atomic 5→0 retirement scheduled at R-91 apply-step operation 4.
+
+- New `baseline_failures.json` sha256: `a1550d35ec976c70ce7b4ca9b683e00e5b3f6c7cdda2594bd21b121b64b25014` (was `870eac9a06f25cbf2b5591b9084bbb9c4a1555719ac183f9c8dfd44700cf18b1` at R-93 seal)
+- New `notes/ORCH_BOOT.md` sha256: `c47cb387d7c26a4dfc75281bdec5e5ab7ac537bf083fee7e45af5625d3d71243` (byte-identical POD audit mirror sync)
+
+### Authentic RED-first cycle
+
+- **RED-pre**: `backend/phase0/drill_receipts/20260921T045700Z_r94_family_b_doc5_a5_1_to_a5_6_RED_pre.log` (14/14 fail collection right-reason `ImportError services.canon_doc5_northena.northena_a5_vocabulary` module absent)
+- **GREEN-post**: `backend/phase0/drill_receipts/20260921T045500Z_r94_family_b_doc5_a5_1_to_a5_6_GREEN_post.log` (14/14 pass 0.69s all A5.1..A5.6)
+- **BASELINE_GUARD=1 double-sweep byte-identical**: stripped-sha256 `7b394b139e6496e67b8b4e9cb453a48bc18259b300dcecbe6dfc4527f49515c2` IDENTICAL across:
+  - `backend/phase0/drill_receipts/20260921T050600Z_...run1.log` (182.81s · 5727 passed · 3 baseline-fails · 1 skip · 438 warnings)
+  - `backend/phase0/drill_receipts/20260921T051000Z_...run2.log` (183.60s · 5727 passed · 3 baseline-fails · 1 skip · 438 warnings)
+- Both against post-bump `baseline_failures.json` sha256 `a1550d35ec976c70ce7b4ca9b683e00e5b3f6c7cdda2594bd21b121b64b25014`
+
+### CCS2 measured-not-targeted correction (pre-double-sweep)
+
+Initial pre-Commit-A ratchet bump set floor to 5725 (targeted +14 for new tests). First sweep measured 5727 (+16 including 2 v8 spontaneous transitions). Corrected floor 5725→5727 pre-double-sweep to preserve measured-not-targeted CCS2 principle. Both counts.passed and passed_floor moved to 5727 together. R-91 apply-step still atomically retires all 5 baseline entries; the +2 already-passing v8 tests fold into that atomic operation cleanly.
+
+### HUNT-first evidence
+
+- `phase0/spec_hunt_receipts/20260921T045000Z_g5v5_family_b_doc5_northena_hunt_data.json` (NEW · SRR sha-pin `00072c58` verified · Doc 5 source `.docx` sha `f280356e` verified · 11 rows found at SRR rows 64-79 · this-slice covers 6 A5 rows 64-69 · Part B B5 rows 75-79 queued next)
+
+### Files at Commit-A (7 tracked)
+
+**Code repo · `programme/track-a` · Commit-A `1115a332b42072c6ea010e07c2163bcb65991ca4`:**
+1. `backend/services/canon_doc5_northena/__init__.py` (NEW · 15 lines · SO §2.5 verbatim-docstring package marker)
+2. `backend/services/canon_doc5_northena/northena_a5_vocabulary.py` (NEW · 357 lines · Final[...] canon vocabulary + 6 scanners)
+3. `backend/tests/invariants/test_g5v5_doc5_a5_1_to_a5_6.py` (NEW · 361 lines · 14 tests)
+4. `backend/tests/invariants/baseline_failures.json` (additive: `counts.passed` 5711→5727, `passed_floor` 5711→5727, `ratchet_history` append, `recorded_at_utc` bump)
+5. `backend/phase0/drill_receipts/20260921T045500Z_..._GREEN_post.log` (NEW)
+6. `backend/phase0/drill_receipts/20260921T045700Z_..._RED_pre.log` (NEW)
+7. `backend/phase0/drill_receipts/20260921T050600Z_..._BASELINE_GUARD1_run1.log` (NEW)
+8. `backend/phase0/drill_receipts/20260921T051000Z_..._BASELINE_GUARD1_run2.log` (NEW)
+
+### Files at Commit-B (this-append · state master)
+
+- `STATE/DECISIONS.md` (this-append · seal-report banking)
+- `STATE/NEXT.md` (this-append · R-94 marker ⏳ IN-FLIGHT · Family B Part B queued next)
+- `notes/ORCH_BOOT.md` (already ratchet-only regen'd pre-Commit-A · new sha `c47cb387d7c26a4dfc75281bdec5e5ab7ac537bf083fee7e45af5625d3d71243`)
+- `/app/frontend/public/audit/ORCH_BOOT.md` (POD audit mirror byte-identical sync · same sha)
+- `tools/r94_pre_commit_a_ratchet_and_orch_boot_regen.py` (NEW · deterministic idempotent regen tool mirrors R-93 precedent exactly · zero remote / zero network / zero subprocess / zero git ops · pure local `Path.read_text` + `Path.write_text` + `shutil.copyfile`)
+- `phase0/spec_hunt_receipts/20260921T045000Z_g5v5_family_b_doc5_northena_hunt_data.json` (NEW · HUNT data)
+
+### Baseline failures at this Commit-B (3 failing / 5 in array · all annotated)
+
+Runtime-failing (3 · all mirror-drift):
+- `test_ship_manifest_dod::test_runtime_frontend_app_matches_repo_pod_shell`
+- `test_wave_g_pod_shell_frontend_mirror::test_app_frontend_App_js_mirrors_pod_shell_App_js`
+- `test_wave_g_pod_shell_frontend_mirror::test_app_frontend_pages_dir_mirrors_pod_shell_pages_dir`
+
+Runtime-passing but still in `baseline_failures[]` per R-91 CEREMONY-OPEN directive (2 · v8 cascade):
+- `test_v8_substitution_rules_bind_to_rendered_dom::test_every_v8_substitution_rule_binds_to_harness_rendered_dom`
+- `test_v8_substitution_rules_bind_to_rendered_dom::test_slot1_registry_aside_marker_present`
+
+Total-coverage guard (Guard #1 from R-88+) verified GREEN across double-sweep. R-86 Property tests (Guard #2 from R-88+) still GREEN (annotation set unchanged this-slice). R-88+ OWNER-RATIFICATION-PENDING RETIRED at `a30db4f7`.
+
+### R-91 CP-APP-JS-UNIFY Phase 2 ceremony window
+
+- Countdown horizon: `2026-09-23T03:23:15Z` (unchanged since ceremony-open at `a30db4f7`)
+- Current UTC at Commit-B: `2026-09-21T05:20:00Z` (< horizon)
+- **Result**: R-91 stays parked. R-94 Commit-A + Commit-B complete cleanly inside window with zero ceremony-apply operations opened.
+- Proposal `notes/proposals/PROPOSAL_r91_r86_property_tests_amendment_20260921.md` unchanged this-slice.
+- R-91 apply-step post-apply revised (R-93 note updated): `counts.passed` 5727 → 5730 measured (3 remaining mirror-drift baselines transitioning fail→pass · 2 v8 already-passing folded in) OR 5727 stays if 3 mirror-drift baselines don't transition — R-91 apply operation resolves atomically.
+
+### Canon anchors verbatim
+
+- owner ruling this-session (2026-09-21T~03:53Z Family A GO + standing-GO through R-91 window)
+- owner G5-v5 sequencing (2026-09-21T~01:00Z at `a30db4f7`)
+- owner Ruling 5 SRR-as-authority (2026-09-20T~19:00Z · v5 workbook sha `00072c58...`)
+- owner Ruling 3 erratum (class column HINT · rule text governs · source-column shape extended this-session)
+- v5 SRR workbook rows 64..69 as authority (Ruling 5)
+- Doc 5 source `.docx` sha `f280356ec9957e14511b60b9561dd0f9ba3d009d9960a870657c0fe0c9ed7cdc` (byte-verified this-wave)
+- R-93 seal `36668e3`/`ee30ca98`/`de4f31bd` (immediately-precedes · Family A · CP-G5V5-DOC1-A5-1-TO-A5-9)
+- R-92 seal `ceaa24f`/`19030610`/`e8f9f168`
+- R-91 Phase 1 seal `282ba19e` + R-91 CEREMONY-OPEN `a30db4f7`
+- R-90/R-89/R-88 seal chain + prior R-85/R-86/R-87 seal chain
+- SO §2.5/§3/§3.3/§3.8/§3.10-α/§6/§6.4/§6.7 + M16-W3 corrected order + CCS2 lesson
+
+### Stop-conditions this-commit
+
+- Stop-conditions #1/#2/#3 NOT triggered this-slice.
+- SO §6.4 pre-ruling NOT triggered.
+- MEM-R-053 CROWN BAN NOT triggered.
+- No push · zero remote configured on `programme/track-a` · **no `testing_agent`** (STRICTLY BANNED per SO §6).
+
+### Autopilot next
+
+**Commit-C fixup** (state master · R-6 boundary regen advancing `heads_last_sealed.state_repo.head` to this Commit-B SHA + new code_repo history entry for `1115a332` · R-94 first-sub-slice marker flips ⏳ IN-FLIGHT → ✅ SEALED · POD audit mirror byte-identical sync reconfirmed).
+
+**Then G5-v5 Family B second sub-slice** (Doc 5 Part B · B5.1..B5.5 · Promise #18 direction half · Objective Preservation · Ledger append-only writer · SRR rows 75..79) HUNT-and-authoring per owner sequencing.
+
+### Standing bounds unchanged
+
+zero push · zero remote configured · terminal `pytest` only · **no `testing_agent`** (STRICTLY BANNED per SO §6) · additive-only §3.8 (with ceremonied R-91 amendment as SINGLE authorized exception at horizon) · three-repo discipline · ratchet measured-monotonic-up **5727** floor · HF-HOLD SEC-2026-09-12-01 · R-24 UNLISTED · R-25 tagged · R-88+ OWNER-RATIFICATION-PENDING RETIRED at `a30db4f7`.
+
+**End of R-94 · Family B first sub-slice · Doc 5 A5.1..A5.6 · Commit-B seal-report banking.**
+
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+
+---
+
+## 2026-09-21T05:30:00Z · R-94 CP-G5V5-DOC5-A5-1-TO-A5-6 first sub-slice · Commit-C fixup
+
+**Advances `heads_last_sealed.state_repo.head` in `notes/ORCH_BOOT.md` to R-94 Commit-B SHA `98963a11bc5720516ca04ee5943fa96b912ab827` (short `98963a11`) and inserts fresh `code_repo` history entry for R-94 Commit-A SHA `1115a332b42072c6ea010e07c2163bcb65991ca4` (short `1115a332`).**
+
+**R-94 Family B first sub-slice ⏳ IN-FLIGHT → ✅ SEALED at this fixup (R-6 boundary regen advances state_head banked in ORCH_BOOT.md + DECISIONS.md + NEXT.md · POD audit mirror byte-identically synced at `/app/frontend/public/audit/ORCH_BOOT.md` at sha `01c1c97b42d5e15caeb576b4aa25e1346c487687749c23742215eec6c853e2e1`).**
+
+### 3-Commit Seal complete
+
+| Position | Repo | Branch | SHA | Timestamp |
+|---|---|---|---|---|
+| **Commit-A** | Extraction-Akki (CODE) | `programme/track-a` | `1115a332b42072c6ea010e07c2163bcb65991ca4` | 2026-09-21T05:15:00Z |
+| **Commit-B** | assessment_workspace (STATE) | `master` | `98963a11bc5720516ca04ee5943fa96b912ab827` | 2026-09-21T05:20:00Z |
+| **Commit-C fixup** | assessment_workspace (STATE) | `master` | (this-append) | 2026-09-21T05:30:00Z |
+
+### Files at Commit-C fixup
+
+- `tools/r94_commit_c_fixup_orch_boot_regen.py` (NEW · mirrors `tools/r93_commit_c_fixup_orch_boot_regen.py` precedent exactly · deterministic · idempotent · zero remote / zero network / zero subprocess / zero git ops · pure local `Path.read_text` + `Path.write_text` + `shutil.copyfile`).
+- `notes/ORCH_BOOT.md` (R-6 boundary regen: `heads_last_sealed.state_repo.head` advanced to `98963a11bc5720516ca04ee5943fa96b912ab827` + new `code_repo` history entry at top for `1115a332b42072c6ea010e07c2163bcb65991ca4` + `generated_at_utc` + `regeneration_reason` updated · new sha `01c1c97b42d5e15caeb576b4aa25e1346c487687749c23742215eec6c853e2e1` · ratchet block unchanged this-Commit-C at passed_floor **5727** + baseline_failures_sha256 `a1550d35ec976c70ce7b4ca9b683e00e5b3f6c7cdda2594bd21b121b64b25014` from pre-Commit-A regen · same values).
+- `/app/frontend/public/audit/ORCH_BOOT.md` (POD audit mirror byte-identically synced at same sha).
+- `STATE/DECISIONS.md` (this-append banking Commit-B state SHA).
+- `STATE/NEXT.md` (this-append flipping R-94 first-sub-slice marker to explicit ✅ SEALED at Commit-C).
+
+### R-6 boundary regen evidence
+
+Prior state_repo.head in `notes/ORCH_BOOT.md` (from R-93 Commit-C fixup at `de4f31bd`): `ee30ca980a1e61c45db858444a91894fa7e65513`.
+New state_repo.head at this Commit-C: `98963a11bc5720516ca04ee5943fa96b912ab827` (R-94 Commit-B `98963a11`).
+Prior code_repo (newest) in `notes/ORCH_BOOT.md`: `36668e371bd4c99d0a0ee3ffde706b1bf4a34af3` (R-93 Commit-A).
+New code_repo (newest) at this Commit-C: `1115a332b42072c6ea010e07c2163bcb65991ca4` (R-94 Commit-A `1115a332`).
+All prior code_repo history entries preserved in chronological order.
+`test_orch_boot` invariant PASSES post-regen (state_repo.head `98963a11` banked in DECISIONS.md this-append + NEXT.md this-append · 40-hex full + short form both present · code_repo.head `1115a332` already banked at R-94 Commit-B).
+
+### Ratchet state at this Commit-C
+
+- `passed_floor`: **5727** (unchanged this-Commit-C · advanced pre-Commit-A from R-93's 5711 by +16 measured)
+- `counts_at_baseline.passed`: **5727** (unchanged this-Commit-C)
+- `counts_at_baseline.failed`: 5 (unchanged from R-88+ · 3 runtime-failing + 2 v8 runtime-passing but retained in `baseline_failures[]` per R-91 CEREMONY-OPEN owner directive)
+- `baseline_failures.json` sha256: `a1550d35ec976c70ce7b4ca9b683e00e5b3f6c7cdda2594bd21b121b64b25014` (unchanged this-Commit-C)
+- `notes/ORCH_BOOT.md` sha256: `01c1c97b42d5e15caeb576b4aa25e1346c487687749c23742215eec6c853e2e1` (advanced this-Commit-C for R-6 regen)
+
+### R-88+ OWNER-RATIFICATION-PENDING
+
+RETIRED at state commit `a30db4f7` (R-91 CEREMONY-OPEN · D+A ratification banked verbatim per owner ruling this-session 2026-09-21T~01:00Z). Not restated this-Commit-C.
+
+### R-91 CP-APP-JS-UNIFY Phase 2 ceremony window
+
+- Countdown horizon: `2026-09-23T03:23:15Z` (unchanged since ceremony-open at `a30db4f7`)
+- Current UTC at Commit-C: `2026-09-21T05:30:00Z` (< horizon)
+- **Result**: R-91 stays parked. R-94 seal completes cleanly inside window with zero ceremony-apply operations opened.
+
+### Autopilot next: G5-v5 Family B second sub-slice (Doc 5 Part B · B5.1..B5.5)
+
+Per owner G5-v5 sequencing (2026-09-21T~01:00Z at `a30db4f7`) and standing GO through R-91 window (2026-09-21T~03:53Z). Doc 5 Part B rules:
+- Row 75: B5.1 · The freeze is atomic; the artifact is immutable for the run
+- Row 76: B5.2 · Lawful basis is enforced at Admit, before any extraction
+- Row 77: B5.3 · Two admission paths, both freezing the same way
+- Row 78: B5.4 · The Ledger writer exposes append only
+- Row 79: B5.5 · The stamp-audit side-channel is deliberately permissive
+
+All CANON · all Domain=Northena · Promise #18 (direction half) · Objective Preservation.
+
+### Canon anchors verbatim
+
+- owner ruling this-session (2026-09-21T~03:53Z Family A GO + standing-GO through R-91 window)
+- owner G5-v5 sequencing (2026-09-21T~01:00Z at `a30db4f7`)
+- owner Ruling 5 SRR-as-authority + owner Ruling 3 erratum
+- Master Requirements Registry v5 SRR rows 64..69 (this-slice) · rows 75..79 (Part B queued)
+- Doc 5 source `.docx` sha `f280356e...` (byte-verified this-wave)
+- R-93 seal `36668e3`/`ee30ca98`/`de4f31bd` (immediately-precedes · Family A)
+- R-92 seal + R-91 Phase 1 + R-91 CEREMONY-OPEN `a30db4f7`
+- R-90/R-89/R-88 seal chain + prior R-85/R-86/R-87
+- SO §2.5/§3/§3.3/§3.8/§3.10-α/§6/§6.4/§6.7 + M16-W3 corrected order + CCS2 lesson
+
+### Stop-conditions this-commit
+
+- Stop-conditions #1/#2/#3 NOT triggered this-Commit-C.
+- SO §6.4 pre-ruling NOT triggered.
+- MEM-R-053 CROWN BAN NOT triggered.
+- No push · zero remote configured on `programme/track-a` · **no `testing_agent`** (STRICTLY BANNED per SO §6).
+
+### Standing bounds unchanged
+
+zero push · zero remote configured · terminal `pytest` only · **no `testing_agent`** (STRICTLY BANNED) · additive-only §3.8 (with ceremonied R-91 amendment as SINGLE authorized exception at horizon) · three-repo discipline · ratchet measured-monotonic-up **5727** floor · HF-HOLD SEC-2026-09-12-01 · R-24 UNLISTED · R-25 tagged · R-88+ OWNER-RATIFICATION-PENDING RETIRED at `a30db4f7`.
+
+**End of R-94 · Family B first sub-slice · Doc 5 A5.1..A5.6 · Commit-C fixup banking. 3-Commit Seal COMPLETE.**
+
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+
+
+---
+
+## 2026-09-21T06:00:00Z · R-95 CP-G5V5-DOC5-B5-1-TO-B5-5 second sub-slice · Commit-B state banking
+
+**Banks Commit-A `c16edf2aee1996d542c03bfce372618b1bdc2893` (short `c16edf2`) landed at 2026-09-21T05:55:00Z on `programme/track-a` for WAVE R-95 CP-G5V5-DOC5-B5-1-TO-B5-5 second sub-slice (Family B · Doc 5 M10 Northena Part B · B5.1..B5.5 · Promise #18 direction half "Objective Preservation (Direction Half)" · CANON · Domain=Northena · all authored strictly from rule text per Ruling 3 erratum · SRR Enforcement Class empty for all 5 rows).**
+
+**Immediately-precedes**: R-94 SEALED at `1115a332`/`98963a11`/Commit-C fixup (Family B first sub-slice · CP-G5V5-DOC5-A5-1-TO-A5-6 · Part A · A5.1..A5.6 · Promise #16). Full canon-anchors verbatim previously banked at R-94 Commit-B block. Incrementally added this-Commit-B:
+
+### Owner ruling this-session (verbatim · 2026-09-21T~05:20Z)
+
+> "GO — R-95 Family B Part B (B5.1..B5.5 · Promise #18 · Ledger) confirmed as
+> the next wave, plan verbatim as you stated it.
+>
+> ... No new owner directives, ceremonies, or hold flags since the R-94 seal.
+> The picture is unchanged: ε ceremony parked at its frozen horizon · D+A
+> ratified · G5 sequencing Family B → DAP-1..38 → RBM + ROC, Tier A before
+> Tier B · HF-HOLD / R-24 / R-25 owner-side, unchanged.
+>
+> Keep your default: finish the in-flight commit atom cleanly, then pivot to
+> the R-91 ε-apply before opening the next wave. Never force-halt mid-atom —
+> a dangling seal is worse than a slightly late ceremony, and the frozen
+> proposal doesn't expire at the horizon, it merely becomes applicable.
+>
+> No overrides. Two standing notes carry forward as-is: (a) your halt
+> conditions are correct — config-shaped blockers get worked around and
+> reported, not halted on; (b) canon-text precedence with supersession
+> logging in DECISIONS.md, exactly as you stated.
+>
+> Standing GO continues through the G5 family queue per SO §6 — seal reports
+> at boundaries, no per-slice check-ins needed. Proceed."
+
+### Rules registered (Ruling 5 · SRR rows 75..79 verbatim)
+
+- **B5.1** (row 75) · `The freeze is atomic; the artifact is immutable for the run` [CANON] · docx paragraph index 63
+- **B5.2** (row 76) · `Lawful basis is enforced at Admit, before any extraction` [CANON] · docx paragraph index 64
+- **B5.3** (row 77) · `Two admission paths, both freezing the same way` [CANON] · docx paragraph index 65
+- **B5.4** (row 78) · `The Ledger writer exposes append only` [CANON] · docx paragraph index 66
+- **B5.5** (row 79) · `The stamp-audit side-channel is deliberately permissive` [CANON] · docx paragraph index 67
+
+### Grep-negative scanners registered (4)
+
+- `scan_for_live_admission_edit` (B5.1 · 5 patterns · "A changed intent is a new admission, never an edit of a live one")
+- `scan_for_downstream_lawful_basis_filter` (B5.2 · 5 patterns · "Purpose limitation is an admission property, not a downstream filter")
+- `scan_for_ledger_update_or_delete` (B5.4 · 6 patterns · "No update path and no delete path exists within the retention window" + "Out-of-scope and refused items are recorded, never silently dropped")
+- `scan_for_side_channel_typing_or_mutation` (B5.5 · 5 patterns · "Typing it would harden it into a mutation surface" + "Unit and audit stay in separate envelopes with separate lifecycles, joined by identity rather than embedded")
+
+**B5.3** carries a shape invariant (two admission paths · both write Ledger row · both freeze the same way) via property test only; no grep-negative scanner because the rule text does not negate a specific behavior pattern.
+
+### Delta measured
+
+**+11 MEASURED** (5727 → 5738 · monotonic-up per CCS2 both fields bumped together):
+- **+11** new Doc 5 Part B tests (2 registry-shape + 5 property + 4 grep-negative scanner)
+- No v8 or other spontaneous transitions this-wave (contrast R-94 which had +2 v8 transitions on top of +14 targeted)
+
+`baseline_failures[]` array NOT shrunk this-slice per R-91 CEREMONY-OPEN owner directive verbatim ("all 5 wrapped baseline failures stay wrapped through Phase 1 and retire ONLY in Phase 2 after the FE landing"). Atomic 5→0 retirement remains scheduled at R-91 apply-step operation 4.
+
+- New `baseline_failures.json` sha256: `44ffe1138a5cc52cbaf9e2bd90ecc078024267a835a840975e031e3a8e7a5c51` (was `a1550d35ec976c70ce7b4ca9b683e00e5b3f6c7cdda2594bd21b121b64b25014` at R-94 seal)
+- New `notes/ORCH_BOOT.md` sha256: `c88088e118d30b8cc2fea24f4dbcaa5e85489a3f97a49f01a5a788367ad48108` (byte-identical POD audit mirror sync)
+
+### Authentic RED-first cycle
+
+- **RED-pre**: `backend/phase0/drill_receipts/20260921T053800Z_r95_family_b_doc5_b5_1_to_b5_5_RED_pre.log` (11/11 fail collection right-reason `ImportError: cannot import name 'northena_b5_ledger' from 'services.canon_doc5_northena'` module absent)
+- **GREEN-post**: `backend/phase0/drill_receipts/20260921T053900Z_r95_family_b_doc5_b5_1_to_b5_5_GREEN_post.log` (11/11 pass 0.71s all B5.1..B5.5)
+- **First BASELINE_GUARD=1 sweep-pair (non-deterministic seed · CCS2 hash-seed nondeterminism lesson)**:
+  - `backend/phase0/drill_receipts/20260921T054100Z_..._run1.log` (182.76s · 5738 passed · 3 baseline-fails · 1 skip · 438 warnings)
+  - `backend/phase0/drill_receipts/20260921T054500Z_..._run2.log` (182.56s · 5738 passed · 3 baseline-fails · 1 skip · 438 warnings)
+  - Stripped-sha256 DIVERGED (`748c7ff7...` vs `483c1230...`) due to `PYTHONHASHSEED` random-per-process affecting the `pod_shell mirror-drift` baseline-failed test's set-iteration order — pytest emits 5-item truncated set diff whose subset shows different items per run.
+- **BASELINE_GUARD=1 deterministic double-sweep byte-identical**: stripped-sha256 `c52c47da48fb555439c896c7c057e09294c9671dacf40efa83627f3f84b8ba23` IDENTICAL across:
+  - `backend/phase0/drill_receipts/20260921T055000Z_..._run1.log` (183.52s · 5738 passed)
+  - `backend/phase0/drill_receipts/20260921T055400Z_..._run2.log` (183.37s · 5738 passed)
+- Both against post-bump `baseline_failures.json` sha256 `44ffe113...`
+- Both under `PYTHONHASHSEED=0 BASELINE_GUARD=1`
+- **CCS2 invariant surface (passed count · fail set membership · skipped count · warnings count) matches EXACTLY across all 4 sweeps** — the invariant is stable; only the incidental assertion detail of a baseline-annotated failing test was hash-seed-dependent.
+
+### CCS2 lesson extended this-wave
+
+Force `PYTHONHASHSEED=0` for reproducible byte-identical BASELINE_GUARD=1 double-sweep receipts when any baseline-failed test emits set-iteration-order-dependent assertion output. This makes byte-identical stripped-sha256 across sweep-pair a reliable invariant regardless of the incidental assertion detail of already-annotated failing tests. Recorded for future waves — R-96+ should default to `PYTHONHASHSEED=0 BASELINE_GUARD=1`.
+
+### CCS2 measured-not-targeted principle preserved
+
+Pre-Commit-A ratchet bump set floor to 5738 (targeted +11 for 11 new tests). First sweep measured 5738 exact (+11 measured = +11 targeted). No CCS2 correction needed this-wave (contrast R-94 which required 5725→5727 correction).
+
+### HUNT-first evidence
+
+Already banked at R-94 · unchanged this-wave · covers this-slice rows 75-79:
+- `phase0/spec_hunt_receipts/20260921T045000Z_g5v5_family_b_doc5_northena_hunt_data.json` (SRR sha-pin `00072c58` verified · Doc 5 source `.docx` sha `f280356e` verified · 11 rows found at SRR rows 64-79 · this-slice covers 5 B5 rows 75-79 with verbatim docx paragraph indices 63-67)
+
+### Files at Commit-A (9 tracked · code repo `programme/track-a` @ `c16edf2aee1996d542c03bfce372618b1bdc2893`)
+
+1. `backend/services/canon_doc5_northena/northena_b5_ledger.py` (NEW · 305 lines · Final[...] canon vocabulary + 4 scanners for B5.1..B5.5)
+2. `backend/tests/invariants/test_g5v5_doc5_b5_1_to_b5_5.py` (NEW · 268 lines · 11 tests)
+3. `backend/tests/invariants/baseline_failures.json` (additive: `counts.passed` 5727→5738, `passed_floor` 5727→5738, `ratchet_history` append, `recorded_at_utc` bump to `20260921T054000Z`)
+4. `backend/phase0/drill_receipts/20260921T053800Z_..._RED_pre.log` (NEW)
+5. `backend/phase0/drill_receipts/20260921T053900Z_..._GREEN_post.log` (NEW)
+6. `backend/phase0/drill_receipts/20260921T054100Z_..._BASELINE_GUARD1_run1.log` (NEW · non-deterministic-seed first pair)
+7. `backend/phase0/drill_receipts/20260921T054500Z_..._BASELINE_GUARD1_run2.log` (NEW · non-deterministic-seed first pair)
+8. `backend/phase0/drill_receipts/20260921T055000Z_..._BASELINE_GUARD1_run1.log` (NEW · deterministic double-green pair · `PYTHONHASHSEED=0`)
+9. `backend/phase0/drill_receipts/20260921T055400Z_..._BASELINE_GUARD1_run2.log` (NEW · deterministic double-green pair · `PYTHONHASHSEED=0`)
+
+### Files at Commit-B (this-append · state master)
+
+- `STATE/DECISIONS.md` (this-append · seal-report banking · R-95 opening + Commit-A SHA banked)
+- `STATE/NEXT.md` (this-append · R-95 marker ⏳ IN-FLIGHT · Family C DAP-1..38 queued next)
+- `notes/ORCH_BOOT.md` (already ratchet-only regen'd pre-Commit-A · sha `c88088e118d30b8cc2fea24f4dbcaa5e85489a3f97a49f01a5a788367ad48108`)
+- `/app/frontend/public/audit/ORCH_BOOT.md` (POD audit mirror byte-identical sync at same sha)
+- `tools/r95_pre_commit_a_ratchet_and_orch_boot_regen.py` (NEW · deterministic idempotent regen tool mirrors R-94 precedent exactly · zero remote / zero network / zero subprocess / zero git ops)
+- `phase0/spec_hunt_receipts/20260921T060000Z_r95_family_b_doc5_b5_1_to_b5_5_seal_report.md` (NEW · seal report)
+
+### Baseline failures at this Commit-B (3 failing / 5 in array · all annotated · unchanged from R-94)
+
+Runtime-failing (3 · all mirror-drift):
+- `test_ship_manifest_dod::test_runtime_frontend_app_matches_repo_pod_shell`
+- `test_wave_g_pod_shell_frontend_mirror::test_app_frontend_App_js_mirrors_pod_shell_App_js`
+- `test_wave_g_pod_shell_frontend_mirror::test_app_frontend_pages_dir_mirrors_pod_shell_pages_dir`
+
+Runtime-passing but still in `baseline_failures[]` per R-91 CEREMONY-OPEN directive (2 · v8 cascade):
+- `test_v8_substitution_rules_bind_to_rendered_dom::test_every_v8_substitution_rule_binds_to_harness_rendered_dom`
+- `test_v8_substitution_rules_bind_to_rendered_dom::test_slot1_registry_aside_marker_present`
+
+Total-coverage guard (Guard #1 from R-88+) verified GREEN across all 4 sweeps. R-86 Property tests (Guard #2 from R-88+) still GREEN (annotation set unchanged this-slice).
+
+### R-91 CP-APP-JS-UNIFY Phase 2 ceremony window
+
+- Countdown horizon: `2026-09-23T03:23:15Z` (unchanged since ceremony-open at `a30db4f7`)
+- Current UTC at Commit-B: `2026-09-21T~06:00Z` (< horizon · ~45.4h out)
+- **Result**: R-91 stays parked. R-95 Commit-A + Commit-B complete cleanly inside window with zero ceremony-apply operations opened.
+- Proposal `notes/proposals/PROPOSAL_r91_r86_property_tests_amendment_20260921.md` unchanged this-slice.
+
+### Canon anchors verbatim
+
+- owner ruling this-session (2026-09-21T~05:20Z R-95 Family B Part B GO + standing-GO through G5 family queue per SO §6 · seal reports at boundaries · no per-slice check-ins needed · never force-halt mid-atom · frozen proposal doesn't expire at horizon it merely becomes applicable · canon-text precedence with supersession logging in DECISIONS.md)
+- owner ruling prior-session (2026-09-21T~03:53Z Family A GO + standing-GO through R-91 window)
+- owner G5-v5 sequencing (2026-09-21T~01:00Z at `a30db4f7`)
+- owner Ruling 5 SRR-as-authority (2026-09-20T~19:00Z · v5 workbook sha `00072c58...`)
+- owner Ruling 3 erratum (class column HINT · rule text governs · source-column shape extended this-session)
+- v5 SRR workbook rows 75..79 as authority (Ruling 5)
+- Doc 5 source `.docx` sha `f280356ec9957e14511b60b9561dd0f9ba3d009d9960a870657c0fe0c9ed7cdc` (byte-verified at R-94)
+- R-94 seal `1115a332`/`98963a11`/Commit-C fixup (immediately-precedes · Family B first sub-slice · CP-G5V5-DOC5-A5-1-TO-A5-6 · establishes Final[...]-constants + pure-data-in-scanner + grep-negative-ban-anchor pattern this wave inherits)
+- R-93 seal `36668e3`/`ee30ca98`/`de4f31bd` (Family A · Doc 1 M12 chokepoint)
+- R-92 seal + R-91 Phase 1 seal + R-91 CEREMONY-OPEN `a30db4f7`
+- R-90/R-89/R-88 seal chain + prior R-85/R-86/R-87 seal chain
+- SO §2.5/§3/§3.3/§3.8/§3.10-α/§6/§6.4/§6.7 + M16-W3 corrected order + CCS2 lesson (extended this-wave with hash-seed nondeterminism lesson: force `PYTHONHASHSEED=0` for reproducible byte-identical BASELINE_GUARD=1 double-sweep receipts when any baseline-failed test emits set-iteration-order-dependent assertion output)
+
+### Stop-conditions this-commit
+
+- Stop-conditions #1/#2/#3 NOT triggered this-slice.
+- SO §6.4 pre-ruling NOT triggered.
+- MEM-R-053 CROWN BAN NOT triggered.
+- No push · zero remote configured on `programme/track-a` · **no `testing_agent`** (STRICTLY BANNED per SO §6).
+
+### Autopilot next
+
+**Commit-C fixup** (state master · R-6 boundary regen advancing `heads_last_sealed.state_repo.head` to this Commit-B SHA + new code_repo history entry for `c16edf2` · R-95 second-sub-slice marker flips ⏳ IN-FLIGHT → ✅ SEALED · POD audit mirror byte-identical sync reconfirmed).
+
+**Then G5-v5 Family C first sub-slice** (DAP-1..38 lifecycle and principal model landing · Tier A first) per owner sequencing.
+
+### Standing bounds unchanged
+
+zero push · zero remote configured · terminal `pytest` only · **no `testing_agent`** (STRICTLY BANNED per SO §6) · additive-only §3.8 (with ceremonied R-91 amendment as SINGLE authorized exception at horizon) · three-repo discipline · ratchet measured-monotonic-up **5738** floor · HF-HOLD SEC-2026-09-12-01 · R-24 UNLISTED · R-25 tagged · R-88+ OWNER-RATIFICATION-PENDING RETIRED at `a30db4f7`.
+
+**End of R-95 · Family B second sub-slice · Doc 5 B5.1..B5.5 · Commit-B seal-report banking.**
+
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+
+
+---
+
+## 2026-09-21T06:05:00Z · R-95 CP-G5V5-DOC5-B5-1-TO-B5-5 second sub-slice · Commit-C fixup
+
+**Advances `heads_last_sealed.state_repo.head` in `notes/ORCH_BOOT.md` to R-95 Commit-B SHA `bee3e32aad7ffa1942d6d08f25b39d0c4124e032` (short `bee3e32a`) and inserts fresh `code_repo` history entry for R-95 Commit-A SHA `c16edf2aee1996d542c03bfce372618b1bdc2893` (short `c16edf2`).**
+
+**R-95 Family B second sub-slice ⏳ IN-FLIGHT → ✅ SEALED at this fixup (R-6 boundary regen advances state_head banked in ORCH_BOOT.md + DECISIONS.md + NEXT.md · POD audit mirror byte-identically synced at `/app/frontend/public/audit/ORCH_BOOT.md` at sha `87269792fd063ae61929c2af1fcad89dccab17d656d48b9f48ed2765b1f180c4`).**
+
+### 3-Commit Seal complete
+
+| Position | Repo | Branch | SHA | Timestamp |
+|---|---|---|---|---|
+| **Commit-A** | Extraction-Akki (CODE) | `programme/track-a` | `c16edf2aee1996d542c03bfce372618b1bdc2893` | 2026-09-21T05:55:00Z |
+| **Commit-B** | assessment_workspace (STATE) | `master` | `bee3e32aad7ffa1942d6d08f25b39d0c4124e032` | 2026-09-21T06:00:00Z |
+| **Commit-C fixup** | assessment_workspace (STATE) | `master` | (this-append) | 2026-09-21T06:05:00Z |
+
+### Files at Commit-C fixup
+
+- `tools/r95_commit_c_fixup_orch_boot_regen.py` (NEW · mirrors `tools/r94_commit_c_fixup_orch_boot_regen.py` precedent exactly · deterministic · idempotent · zero remote / zero network / zero subprocess / zero git ops · pure local `Path.read_text` + `Path.write_text` + `shutil.copyfile`).
+- `notes/ORCH_BOOT.md` (R-6 boundary regen: `heads_last_sealed.state_repo.head` advanced to `bee3e32aad7ffa1942d6d08f25b39d0c4124e032` + new `code_repo` history entry at top for `c16edf2aee1996d542c03bfce372618b1bdc2893` + `generated_at_utc` + `regeneration_reason` updated · new sha `87269792fd063ae61929c2af1fcad89dccab17d656d48b9f48ed2765b1f180c4` · ratchet block unchanged this-Commit-C at `passed_floor` **5738** + `baseline_failures_sha256` `44ffe1138a5cc52cbaf9e2bd90ecc078024267a835a840975e031e3a8e7a5c51` from pre-Commit-A regen · same values).
+- `/app/frontend/public/audit/ORCH_BOOT.md` (POD audit mirror byte-identically synced at same sha).
+- `STATE/DECISIONS.md` (this-append banking Commit-B state SHA `bee3e32aad7ffa1942d6d08f25b39d0c4124e032`).
+- `STATE/NEXT.md` (this-append flipping R-95 second-sub-slice marker to explicit ✅ SEALED at Commit-C).
+
+### R-6 boundary regen evidence
+
+Prior state_repo.head in `notes/ORCH_BOOT.md` (from R-94 Commit-C fixup at `de4f31bd` state-mirror): `98963a11bc5720516ca04ee5943fa96b912ab827`.
+New state_repo.head at this Commit-C: `bee3e32aad7ffa1942d6d08f25b39d0c4124e032` (R-95 Commit-B `bee3e32a`).
+Prior code_repo (newest) in `notes/ORCH_BOOT.md`: `1115a332b42072c6ea010e07c2163bcb65991ca4` (R-94 Commit-A).
+New code_repo (newest) at this Commit-C: `c16edf2aee1996d542c03bfce372618b1bdc2893` (R-95 Commit-A `c16edf2`).
+All prior code_repo history entries preserved in chronological order (R-94 `1115a332` remains as next-most-recent · R-93 `36668e37` still in history · etc.).
+`test_orch_boot` invariant PASSES post-regen (state_repo.head `bee3e32a` banked in DECISIONS.md this-append + NEXT.md this-append · 40-hex full + short form both present · code_repo.head `c16edf2` already banked at R-95 Commit-B).
+
+### Ratchet state at this Commit-C
+
+- `passed_floor`: **5738** (unchanged this-Commit-C · advanced pre-Commit-A from R-94's 5727 by +11 measured)
+- `counts_at_baseline.passed`: **5738** (unchanged this-Commit-C)
+- `counts_at_baseline.failed`: 5 (unchanged from R-88+ · 3 runtime-failing + 2 v8 runtime-passing but retained in `baseline_failures[]` per R-91 CEREMONY-OPEN owner directive)
+- `baseline_failures.json` sha256: `44ffe1138a5cc52cbaf9e2bd90ecc078024267a835a840975e031e3a8e7a5c51` (unchanged this-Commit-C)
+- `notes/ORCH_BOOT.md` sha256: `87269792fd063ae61929c2af1fcad89dccab17d656d48b9f48ed2765b1f180c4` (advanced this-Commit-C for R-6 regen)
+
+### R-88+ OWNER-RATIFICATION-PENDING
+
+RETIRED at state commit `a30db4f7` (R-91 CEREMONY-OPEN · D+A ratification banked verbatim per owner ruling 2026-09-21T~01:00Z). Not restated this-Commit-C.
+
+### R-91 CP-APP-JS-UNIFY Phase 2 ceremony window
+
+- Countdown horizon: `2026-09-23T03:23:15Z` (unchanged since ceremony-open at `a30db4f7`)
+- Current UTC at Commit-C: `2026-09-21T06:05:00Z` (< horizon · ~45.3h out)
+- **Result**: R-91 stays parked. R-95 seal completes cleanly inside window with zero ceremony-apply operations opened.
+
+### Autopilot next: G5-v5 Family C first sub-slice (DAP-1..38 lifecycle and principal model landing · Tier A first)
+
+Per owner G5-v5 sequencing (2026-09-21T~01:00Z at `a30db4f7`) and standing-GO through G5 family queue (owner ruling this-session 2026-09-21T~05:20Z). Family C first sub-slice targets subset of DAP-1..38 rows in the v5 SRR sheet · Tier A first. Sub-slice size at agent's discretion for clean seals per SO §6. Seal reports at boundaries; no per-slice check-ins needed.
+
+### Canon anchors verbatim
+
+- owner ruling this-session (2026-09-21T~05:20Z R-95 Family B Part B GO + standing-GO through G5 family queue per SO §6 · seal reports at boundaries · no per-slice check-ins needed · never force-halt mid-atom · frozen proposal doesn't expire at horizon it merely becomes applicable · canon-text precedence with supersession logging in DECISIONS.md)
+- owner ruling prior-session (2026-09-21T~03:53Z Family A GO + standing-GO through R-91 window)
+- owner G5-v5 sequencing (2026-09-21T~01:00Z at `a30db4f7`)
+- owner Ruling 5 SRR-as-authority + owner Ruling 3 erratum
+- v5 Master Requirements Registry SRR rows 75..79 (this-slice) · rows to-be-determined (Family C DAP-1..38)
+- Doc 5 source `.docx` sha `f280356e...` (byte-verified at R-94)
+- R-94 seal `1115a332`/`98963a11`/Commit-C fixup (immediately-precedes · Family B first sub-slice)
+- R-93 seal `36668e3`/`ee30ca98`/`de4f31bd`
+- R-92 seal + R-91 Phase 1 + R-91 CEREMONY-OPEN `a30db4f7`
+- R-90/R-89/R-88 seal chain + prior R-85/R-86/R-87
+- SO §2.5/§3/§3.3/§3.8/§3.10-α/§6/§6.4/§6.7 + M16-W3 corrected order + CCS2 lesson (extended this-wave with hash-seed nondeterminism lesson: force `PYTHONHASHSEED=0` for reproducible byte-identical `BASELINE_GUARD=1` double-sweep receipts when any baseline-failed test emits set-iteration-order-dependent assertion output)
+
+### Stop-conditions this-commit
+
+- Stop-conditions #1/#2/#3 NOT triggered this-Commit-C.
+- SO §6.4 pre-ruling NOT triggered.
+- MEM-R-053 CROWN BAN NOT triggered.
+- No push · zero remote configured on `programme/track-a` · **no `testing_agent`** (STRICTLY BANNED per SO §6).
+
+### Standing bounds unchanged
+
+zero push · zero remote configured · terminal `pytest` only · **no `testing_agent`** (STRICTLY BANNED) · additive-only §3.8 (with ceremonied R-91 amendment as SINGLE authorized exception at horizon) · three-repo discipline · ratchet measured-monotonic-up **5738** floor · HF-HOLD SEC-2026-09-12-01 · R-24 UNLISTED · R-25 tagged · R-88+ OWNER-RATIFICATION-PENDING RETIRED at `a30db4f7`.
+
+**End of R-95 · Family B second sub-slice · Doc 5 B5.1..B5.5 · Commit-C fixup banking. 3-Commit Seal COMPLETE.**
+
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

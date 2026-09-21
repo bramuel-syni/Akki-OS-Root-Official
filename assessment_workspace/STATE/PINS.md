@@ -150,7 +150,7 @@ Strategy work-in-progress (to be created):
 - **checkpoint_14d_utc:** `2026-08-28T00:00:00Z`
 - **hardening_status:** `attested`
 - **acceptance_status:** `green`
-- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260920T233627Z.json`
+- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260921T053629Z.json`
 <!-- CONNECT-GPU-PINS -->
 
 
@@ -584,4 +584,81 @@ Full SO §6 autonomy · per owner ruling this-session verbatim: *"AUTOPILOT POST
 zero push · terminal `pytest` only · **no `testing_agent`** (STRICTLY BANNED) · additive-only §3.8 (with ceremonied R-91 amendment as SINGLE authorized exception at horizon) · three-repo discipline · ratchet measured-monotonic-up **5695** floor · HF-HOLD SEC-2026-09-12-01 · R-24 UNLISTED · R-25 tagged.
 
 <!-- G5-V5-FAMILY-A-SOURCE-DOC-LOCATED-PINS-2026-09-21 END -->
+
+
+<!-- R-93-PINS-2026-09-21 BEGIN -->
+
+## R-93 · CP-G5V5-DOC1-A5-1-TO-A5-9 first sub-slice · pins
+
+**Landed:** 2026-09-21T04:25:00Z · Commit-A `36668e3` on programme/track-a · Commit-B this-commit on master · Commit-C fixup follows.
+
+### CODE branch programme/track-a
+
+Head advances `ceaa24f41c8156c31e408b47fa8a59b3b265e6ac` → `36668e3` (Commit-A this-slice).
+
+Files landed (4 tracked):
+- `backend/services/canon_doc1_chokepoint/__init__.py` NEW (SO §2.5 verbatim-docstring package marker + re-exports registry + scanners).
+- `backend/services/canon_doc1_chokepoint/chokepoint_vocabulary.py` NEW (~380 lines · A5.1..A5.9 `Final[...]` canon vocabulary + 5 pure-data-in grep-negative scanners).
+- `backend/tests/invariants/test_g5v5_doc1_a5_1_to_a5_9.py` NEW (~425 lines · 16 tests · SO §2.5 verbatim-docstring per row · SFP-1..7 pattern).
+- `backend/tests/invariants/baseline_failures.json` MODIFIED (ratchet bump 5695→5711 both fields · new ratchet_history entry · ensure_ascii=False encoding preserved).
+
+### STATE branch master
+
+Head advances to this-Commit-B SHA (measured post-commit).
+
+Files landed (12 tracked · this-Commit-B):
+- `STATE/DECISIONS.md` append (R-93 seal-report block + hotfix pointer preservation).
+- `STATE/NEXT.md` append (R-93 SEALED marker + sprint queue update · Family B queued).
+- `STATE/PINS.md` R-93-PINS block (this).
+- `notes/ORCH_BOOT.md` R-6 boundary regen (pre-Commit-A · sha `0fade309…`).
+- `tools/r93_pre_commit_a_ratchet_and_orch_boot_regen.py` NEW.
+- `phase0/spec_hunt_receipts/20260921T034500Z_g5v5_family_a_doc1_a5_1_to_a5_9_authoring_hunt_data.json` NEW.
+- `phase0/drill_receipts/20260921T034700Z_..._RED_pre.log` NEW.
+- `phase0/drill_receipts/20260921T034900Z_..._GREEN_post.log` NEW.
+- `phase0/drill_receipts/20260921T035100Z_..._run1.log` NEW (superseded pre-hotfix · banked as historical evidence).
+- `phase0/drill_receipts/20260921T035500Z_..._run1.log` NEW (v2 post-hotfix).
+- `phase0/drill_receipts/20260921T035900Z_..._run2.log` NEW.
+- `phase0/drill_receipts/20260921T042000Z_..._run3_current_state.log` NEW.
+
+### RATCHET MEASURED
+
+- counts_at_baseline.passed: **5711** (was 5695).
+- invariants_enforced_when_baseline_guard_1.passed_floor: **5711** (was 5695).
+- baseline_failures.json sha256: `870eac9a06f25cbf2b5591b9084bbb9c4a1555719ac183f9c8dfd44700cf18b1` (was `4e7caa47…`).
+- notes/ORCH_BOOT.md sha256: `0fade309efb9fbb98b42e72fc24225debf8c05fce68302faa0e3750f454e265f` (was `0c67f0e6…`).
+- POD audit mirror `/app/frontend/public/audit/ORCH_BOOT.md` sha256: `0fade309…` byte-identical to notes/ORCH_BOOT.md.
+- Measured full-sweep passed count: 5713 (2 v8 baselines currently spontaneously passing · baseline manifest 5 entries preserved · R-91 apply-step 4 retires all 5 atomically at horizon).
+- Baseline failures remaining in triple-green sweep: 3 (all in manifest · subset check passes).
+
+### Triple-green byte-identical sweep
+
+- run1 (superseded pre-hotfix): 20260921T035100Z · [V1] failure surfaced afd0f3c7 discipline lapse.
+- run1_v2 (post-hotfix): 181.38s · 5713 passed / 3 failed / 1 skipped · stripped_sha256 `ee3e1fb7549cf34a3eb985aabfeaa5f18a0cb4d64780cc69014dd7e3d3db2a83`.
+- run2: 181.28s · 5713 passed · stripped_sha256 `ee3e1fb7…` IDENTICAL.
+- run3 (current state after encoding fix): 182.58s · 5713 passed · stripped_sha256 `ee3e1fb7…` IDENTICAL.
+
+### Closure card UNCHANGED
+
+`STATE/OBJECTIVES/CP_APP_JS_UNIFY.md` milestone_status = SCHEDULED · flip to SEALED is R-91 apply-step operation 5 at horizon 2026-09-23T03:23:15Z.
+
+### Discipline hotfix banked
+
+Root cause: state commit `afd0f3c7` (2026-09-21T03:42:00Z) appended to DECISIONS.md without preserving pointer line at tail. Surfaced as `[V1] test_decisions_carries_pointer_near_bottom` failure in pre-hotfix run1. Hotfix at 2026-09-21T03:54:00Z: appended pointer line to DECISIONS.md tail. Post-hotfix subset 7/7 GREEN. Standing lesson banked: every state-side append MUST end with the pointer.
+
+### Family A slicing plan · A5.1..A5.9 SEALED · Tier B trails
+
+Slicing plan (this-slice completes Tier A rows R2..R10 in a single seal boundary):
+- **Tier A · Doc 1 A5.1..A5.9 · CANON · 9 rows** ✅ SEALED this-slice (all 9 in one sub-slice · matches SFP-1..7 precedent).
+- Tier B · Doc 1 B5.1..B5.N · RULED · rows R11+ · trails Tier A (next Doc 1 sub-slice · sizing TBD in HUNT).
+- Family A completes when both Tier A and Tier B seal.
+
+### Autopilot posture · Family B queues next
+
+Full SO §6 autonomy per owner standing GO. Family B first sub-slice HUNT-and-authoring opens next autopilot turn: Doc 5 M10 Northena · `05_Direction_Scope_and_Focus_Part_1_Northena.docx` (sha `f280356e…`) · SRR v5 rows starting R11+ (spot-check confirmed A5.1..A5.6 CANON at .docx paragraphs 32-37) · new `services/canon_doc5_northena/` package + property/scanner tests · same pattern.
+
+### Standing bounds
+
+zero push · terminal `pytest` only · **no `testing_agent`** (STRICTLY BANNED) · additive-only §3.8 (with ceremonied R-91 amendment as SINGLE authorized exception at horizon) · three-repo discipline · ratchet measured-monotonic-up **5711** floor (bumps to 5716 at R-91 apply-step measured) · HF-HOLD SEC-2026-09-12-01 · R-24 UNLISTED · R-25 tagged · R-88+ OWNER-RATIFICATION-PENDING RETIRED at a30db4f7 (not restated in this or future seal reports).
+
+<!-- R-93-PINS-2026-09-21 END -->
 
