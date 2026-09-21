@@ -1,0 +1,2794 @@
+{
+  "task": "rms_creds_drop_shape_probe_and_diff_20260921",
+  "captured_at_utc": "2026-09-21T14:09:36Z",
+  "authorization": "Owner directive this-session 2026-09-21T~14:05Z: 'OWNER CREDENTIAL RE-DROP. STEP 1 \u2014 CUSTODY INGEST (\u00a74.1 \u00a7E, byte-metadata ONLY). Diff against the prior banked sheet.'",
+  "hygiene": {
+    "value_blind": true,
+    "no_value_printing": true,
+    "sha8_only_for_cross_run_compare": true
+  },
+  "drop_new": {
+    "path": "/app/assessment_workspace/custody/credentials/incoming_20260921/20260921T140818Z_RMS_CREDS.xlsx",
+    "sha256": "3311dae2d142f3a651431325d68f72a011598054a39c0d7b3976c757410cc545",
+    "size_bytes": 6173
+  },
+  "baseline_old": {
+    "path": "/app/backend/estate_keys/data_sources/RMS_Connection_Creds.xlsx",
+    "sha256": "d778eb1eb2cbe94a7f994eec8d5b6584108b85a7522426ec057dc3613d9b72db",
+    "size_bytes": 9399
+  },
+  "new_workbook_shape": {
+    "path": "/app/assessment_workspace/custody/credentials/incoming_20260921/20260921T140818Z_RMS_CREDS.xlsx",
+    "sha256": "3311dae2d142f3a651431325d68f72a011598054a39c0d7b3976c757410cc545",
+    "size_bytes": 6173,
+    "sheet_names": [
+      "Sheet1"
+    ],
+    "sheets": {
+      "Sheet1": {
+        "rows_max": 62,
+        "cols_max": 7,
+        "merged_ranges": [
+          "C28:C29",
+          "B34:B37",
+          "B52:B54",
+          "B3:B11",
+          "C3:C11",
+          "D3:D11",
+          "B41:B42",
+          "B15:B23",
+          "C15:C23",
+          "B28:B29",
+          "B45:B49",
+          "D28:D29",
+          "D15:D23"
+        ],
+        "rows_shape": [
+          {
+            "row": 0,
+            "cells": [
+              {
+                "kind": "TEXT",
+                "len": 7,
+                "first_char_bucket": "UPPER",
+                "contains_newline": false,
+                "sha8": "937d94f0"
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              }
+            ]
+          },
+          {
+            "row": 1,
+            "cells": [
+              {
+                "kind": "TEXT",
+                "len": 13,
+                "first_char_bucket": "UPPER",
+                "contains_newline": false,
+                "sha8": "2b50bae4"
+              },
+              {
+                "kind": "TEXT",
+                "len": 4,
+                "first_char_bucket": "UPPER",
+                "contains_newline": false,
+                "sha8": "3778e03f"
+              },
+              {
+                "kind": "TEXT",
+                "len": 8,
+                "first_char_bucket": "UPPER",
+                "contains_newline": false,
+                "sha8": "2bc362d1"
+              },
+              {
+                "kind": "TEXT",
+                "len": 8,
+                "first_char_bucket": "UPPER",
+                "contains_newline": false,
+                "sha8": "0be64ae8"
+              },
+              {
+                "kind": "TEXT",
+                "len": 6,
+                "first_char_bucket": "UPPER",
+                "contains_newline": false,
+                "sha8": "8c2e4a03"
+              },
+              {
+                "kind": "TEXT",
+                "len": 5,
+                "first_char_bucket": "UPPER",
+                "contains_newline": false,
+                "sha8": "b74a899e"
+              },
+              {
+                "kind": "TEXT",
+                "len": 23,
+                "first_char_bucket": "UPPER",
+                "contains_newline": false,
+                "sha8": "83dc502e"
+              }
+            ]
+          },
+          {
+            "row": 2,
+            "cells": [
+              {
+                "kind": "TEXT",
+                "len": 10,
+                "first_char_bucket": "LOWER",
+                "contains_newline": false,
+                "sha8": "18e91ac3"
+              },
+              {
+                "kind": "NUMBERED_STEP",
+                "len": 13,
+                "first_char_bucket": "DIGIT",
+                "contains_newline": false,
+                "sha8": "cd4c5390"
+              },
+              {
+                "kind": "TEXT",
+                "len": 7,
+                "first_char_bucket": "LOWER",
+                "contains_newline": false,
+                "sha8": "ccdaf791"
+              },
+              {
+                "kind": "TEXT",
+                "len": 16,
+                "first_char_bucket": "LOWER",
+                "contains_newline": false,
+                "sha8": "5b9ec5c0"
+              },
+              {
+                "kind": "TEXT",
+                "len": 13,
+                "first_char_bucket": "UPPER",
+                "contains_newline": false,
+                "sha8": "acba3b69"
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              }
+            ]
+          },
+          {
+            "row": 3,
+            "cells": [
+              {
+                "kind": "TEXT",
+                "len": 11,
+                "first_char_bucket": "LOWER",
+                "contains_newline": false,
+                "sha8": "efbf0a9d"
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              }
+            ]
+          },
+          {
+            "row": 4,
+            "cells": [
+              {
+                "kind": "TEXT",
+                "len": 8,
+                "first_char_bucket": "LOWER",
+                "contains_newline": false,
+                "sha8": "6289ef39"
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              }
+            ]
+          },
+          {
+            "row": 5,
+            "cells": [
+              {
+                "kind": "TEXT",
+                "len": 6,
+                "first_char_bucket": "LOWER",
+                "contains_newline": false,
+                "sha8": "481c71a6"
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              }
+            ]
+          },
+          {
+            "row": 6,
+            "cells": [
+              {
+                "kind": "TEXT",
+                "len": 20,
+                "first_char_bucket": "LOWER",
+                "contains_newline": false,
+                "sha8": "53327541"
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              }
+            ]
+          },
+          {
+            "row": 7,
+            "cells": [
+              {
+                "kind": "TEXT",
+                "len": 15,
+                "first_char_bucket": "LOWER",
+                "contains_newline": false,
+                "sha8": "cb63042a"
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              }
+            ]
+          },
+          {
+            "row": 8,
+            "cells": [
+              {
+                "kind": "TEXT",
+                "len": 21,
+                "first_char_bucket": "LOWER",
+                "contains_newline": false,
+                "sha8": "003c8b6f"
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              }
+            ]
+          },
+          {
+            "row": 9,
+            "cells": [
+              {
+                "kind": "TEXT",
+                "len": 15,
+                "first_char_bucket": "LOWER",
+                "contains_newline": false,
+                "sha8": "8e581c46"
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              }
+            ]
+          },
+          {
+            "row": 10,
+            "cells": [
+              {
+                "kind": "TEXT",
+                "len": 10,
+                "first_char_bucket": "LOWER",
+                "contains_newline": false,
+                "sha8": "22a8cf01"
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              }
+            ]
+          },
+          {
+            "row": 13,
+            "cells": [
+              {
+                "kind": "TEXT",
+                "len": 4,
+                "first_char_bucket": "UPPER",
+                "contains_newline": false,
+                "sha8": "a4a42cee"
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              }
+            ]
+          },
+          {
+            "row": 14,
+            "cells": [
+              {
+                "kind": "TEXT",
+                "len": 11,
+                "first_char_bucket": "LOWER",
+                "contains_newline": false,
+                "sha8": "cf434917"
+              },
+              {
+                "kind": "NUMBERED_STEP",
+                "len": 14,
+                "first_char_bucket": "DIGIT",
+                "contains_newline": false,
+                "sha8": "cd57802e"
+              },
+              {
+                "kind": "TEXT",
+                "len": 7,
+                "first_char_bucket": "LOWER",
+                "contains_newline": false,
+                "sha8": "ccdaf791"
+              },
+              {
+                "kind": "TEXT",
+                "len": 16,
+                "first_char_bucket": "LOWER",
+                "contains_newline": false,
+                "sha8": "5b9ec5c0"
+              },
+              {
+                "kind": "TEXT",
+                "len": 2,
+                "first_char_bucket": "UPPER",
+                "contains_newline": false,
+                "sha8": "565339bc"
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              }
+            ]
+          },
+          {
+            "row": 15,
+            "cells": [
+              {
+                "kind": "TEXT",
+                "len": 15,
+                "first_char_bucket": "LOWER",
+                "contains_newline": false,
+                "sha8": "83f1c882"
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              }
+            ]
+          },
+          {
+            "row": 16,
+            "cells": [
+              {
+                "kind": "TEXT",
+                "len": 10,
+                "first_char_bucket": "LOWER",
+                "contains_newline": false,
+                "sha8": "b632b031"
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              }
+            ]
+          },
+          {
+            "row": 17,
+            "cells": [
+              {
+                "kind": "TEXT",
+                "len": 8,
+                "first_char_bucket": "LOWER",
+                "contains_newline": false,
+                "sha8": "86eb28db"
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              }
+            ]
+          },
+          {
+            "row": 18,
+            "cells": [
+              {
+                "kind": "TEXT",
+                "len": 10,
+                "first_char_bucket": "LOWER",
+                "contains_newline": false,
+                "sha8": "f7a1cce1"
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              }
+            ]
+          },
+          {
+            "row": 19,
+            "cells": [
+              {
+                "kind": "TEXT",
+                "len": 8,
+                "first_char_bucket": "LOWER",
+                "contains_newline": false,
+                "sha8": "6289ef39"
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              }
+            ]
+          },
+          {
+            "row": 20,
+            "cells": [
+              {
+                "kind": "TEXT",
+                "len": 17,
+                "first_char_bucket": "LOWER",
+                "contains_newline": false,
+                "sha8": "8edd2c21"
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              }
+            ]
+          },
+          {
+            "row": 21,
+            "cells": [
+              {
+                "kind": "TEXT",
+                "len": 12,
+                "first_char_bucket": "LOWER",
+                "contains_newline": false,
+                "sha8": "c3a2da92"
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              }
+            ]
+          },
+          {
+            "row": 22,
+            "cells": [
+              {
+                "kind": "TEXT",
+                "len": 10,
+                "first_char_bucket": "LOWER",
+                "contains_newline": false,
+                "sha8": "dc23a138"
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              }
+            ]
+          },
+          {
+            "row": 23,
+            "cells": [
+              {
+                "kind": "TEXT",
+                "len": 11,
+                "first_char_bucket": "LOWER",
+                "contains_newline": false,
+                "sha8": "abd303a7"
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              }
+            ]
+          },
+          {
+            "row": 26,
+            "cells": [
+              {
+                "kind": "TEXT",
+                "len": 13,
+                "first_char_bucket": "UPPER",
+                "contains_newline": false,
+                "sha8": "a1bff773"
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              }
+            ]
+          },
+          {
+            "row": 27,
+            "cells": [
+              {
+                "kind": "TEXT",
+                "len": 6,
+                "first_char_bucket": "LOWER",
+                "contains_newline": false,
+                "sha8": "481c71a6"
+              },
+              {
+                "kind": "NUMBERED_STEP",
+                "len": 14,
+                "first_char_bucket": "DIGIT",
+                "contains_newline": false,
+                "sha8": "a0a497b2"
+              },
+              {
+                "kind": "TEXT",
+                "len": 7,
+                "first_char_bucket": "LOWER",
+                "contains_newline": false,
+                "sha8": "ccdaf791"
+              },
+              {
+                "kind": "TEXT",
+                "len": 16,
+                "first_char_bucket": "LOWER",
+                "contains_newline": false,
+                "sha8": "5b9ec5c0"
+              },
+              {
+                "kind": "TEXT",
+                "len": 2,
+                "first_char_bucket": "UPPER",
+                "contains_newline": false,
+                "sha8": "565339bc"
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              }
+            ]
+          },
+          {
+            "row": 28,
+            "cells": [
+              {
+                "kind": "TEXT",
+                "len": 10,
+                "first_char_bucket": "LOWER",
+                "contains_newline": false,
+                "sha8": "22a8cf01"
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              }
+            ]
+          },
+          {
+            "row": 32,
+            "cells": [
+              {
+                "kind": "TEXT",
+                "len": 5,
+                "first_char_bucket": "UPPER",
+                "contains_newline": false,
+                "sha8": "bbc6fe97"
+              },
+              {
+                "kind": "TEXT",
+                "len": 4,
+                "first_char_bucket": "UPPER",
+                "contains_newline": false,
+                "sha8": "3778e03f"
+              },
+              {
+                "kind": "TEXT",
+                "len": 7,
+                "first_char_bucket": "LOWER",
+                "contains_newline": false,
+                "sha8": "ccdaf791"
+              },
+              {
+                "kind": "TEXT",
+                "len": 16,
+                "first_char_bucket": "LOWER",
+                "contains_newline": false,
+                "sha8": "5b9ec5c0"
+              },
+              {
+                "kind": "TEXT",
+                "len": 13,
+                "first_char_bucket": "UPPER",
+                "contains_newline": false,
+                "sha8": "acba3b69"
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              }
+            ]
+          },
+          {
+            "row": 33,
+            "cells": [
+              {
+                "kind": "TEXT",
+                "len": 9,
+                "first_char_bucket": "LOWER",
+                "contains_newline": false,
+                "sha8": "65f98121"
+              },
+              {
+                "kind": "NUMBERED_STEP",
+                "len": 15,
+                "first_char_bucket": "DIGIT",
+                "contains_newline": false,
+                "sha8": "f956f78c"
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              }
+            ]
+          },
+          {
+            "row": 34,
+            "cells": [
+              {
+                "kind": "TEXT",
+                "len": 8,
+                "first_char_bucket": "LOWER",
+                "contains_newline": false,
+                "sha8": "2d52d132"
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              }
+            ]
+          },
+          {
+            "row": 35,
+            "cells": [
+              {
+                "kind": "TEXT",
+                "len": 10,
+                "first_char_bucket": "LOWER",
+                "contains_newline": false,
+                "sha8": "c1aa7d74"
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              }
+            ]
+          },
+          {
+            "row": 36,
+            "cells": [
+              {
+                "kind": "TEXT",
+                "len": 5,
+                "first_char_bucket": "LOWER",
+                "contains_newline": false,
+                "sha8": "57ad138f"
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              }
+            ]
+          },
+          {
+            "row": 39,
+            "cells": [
+              {
+                "kind": "TEXT",
+                "len": 15,
+                "first_char_bucket": "LOWER",
+                "contains_newline": false,
+                "sha8": "a7917baa"
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              }
+            ]
+          },
+          {
+            "row": 40,
+            "cells": [
+              {
+                "kind": "TEXT",
+                "len": 15,
+                "first_char_bucket": "LOWER",
+                "contains_newline": false,
+                "sha8": "83f1c882"
+              },
+              {
+                "kind": "NUMBERED_STEP",
+                "len": 15,
+                "first_char_bucket": "DIGIT",
+                "contains_newline": false,
+                "sha8": "3de193c7"
+              },
+              {
+                "kind": "TEXT",
+                "len": 7,
+                "first_char_bucket": "LOWER",
+                "contains_newline": false,
+                "sha8": "ccdaf791"
+              },
+              {
+                "kind": "TEXT",
+                "len": 16,
+                "first_char_bucket": "LOWER",
+                "contains_newline": false,
+                "sha8": "5b9ec5c0"
+              },
+              {
+                "kind": "TEXT",
+                "len": 13,
+                "first_char_bucket": "UPPER",
+                "contains_newline": false,
+                "sha8": "acba3b69"
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              }
+            ]
+          },
+          {
+            "row": 41,
+            "cells": [
+              {
+                "kind": "TEXT",
+                "len": 11,
+                "first_char_bucket": "LOWER",
+                "contains_newline": false,
+                "sha8": "90f53dd3"
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              }
+            ]
+          },
+          {
+            "row": 43,
+            "cells": [
+              {
+                "kind": "TEXT",
+                "len": 17,
+                "first_char_bucket": "UPPER",
+                "contains_newline": false,
+                "sha8": "c10a48e0"
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              }
+            ]
+          },
+          {
+            "row": 44,
+            "cells": [
+              {
+                "kind": "TEXT",
+                "len": 15,
+                "first_char_bucket": "LOWER",
+                "contains_newline": false,
+                "sha8": "83f1c882"
+              },
+              {
+                "kind": "NUMBERED_STEP",
+                "len": 13,
+                "first_char_bucket": "DIGIT",
+                "contains_newline": false,
+                "sha8": "318772a8"
+              },
+              {
+                "kind": "TEXT",
+                "len": 7,
+                "first_char_bucket": "LOWER",
+                "contains_newline": false,
+                "sha8": "ccdaf791"
+              },
+              {
+                "kind": "TEXT",
+                "len": 16,
+                "first_char_bucket": "LOWER",
+                "contains_newline": false,
+                "sha8": "5b9ec5c0"
+              },
+              {
+                "kind": "TEXT",
+                "len": 13,
+                "first_char_bucket": "UPPER",
+                "contains_newline": false,
+                "sha8": "acba3b69"
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              }
+            ]
+          },
+          {
+            "row": 45,
+            "cells": [
+              {
+                "kind": "TEXT",
+                "len": 11,
+                "first_char_bucket": "LOWER",
+                "contains_newline": false,
+                "sha8": "90f53dd3"
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              }
+            ]
+          },
+          {
+            "row": 46,
+            "cells": [
+              {
+                "kind": "TEXT",
+                "len": 15,
+                "first_char_bucket": "LOWER",
+                "contains_newline": false,
+                "sha8": "3fd11b86"
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              }
+            ]
+          },
+          {
+            "row": 47,
+            "cells": [
+              {
+                "kind": "TEXT",
+                "len": 14,
+                "first_char_bucket": "LOWER",
+                "contains_newline": false,
+                "sha8": "30cf2e25"
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              }
+            ]
+          },
+          {
+            "row": 48,
+            "cells": [
+              {
+                "kind": "TEXT",
+                "len": 8,
+                "first_char_bucket": "LOWER",
+                "contains_newline": false,
+                "sha8": "c1b9ce16"
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              }
+            ]
+          },
+          {
+            "row": 50,
+            "cells": [
+              {
+                "kind": "TEXT",
+                "len": 8,
+                "first_char_bucket": "UPPER",
+                "contains_newline": false,
+                "sha8": "db64f4e3"
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              }
+            ]
+          },
+          {
+            "row": 51,
+            "cells": [
+              {
+                "kind": "TEXT",
+                "len": 13,
+                "first_char_bucket": "LOWER",
+                "contains_newline": false,
+                "sha8": "8b4411e7"
+              },
+              {
+                "kind": "NUMBERED_STEP",
+                "len": 14,
+                "first_char_bucket": "DIGIT",
+                "contains_newline": false,
+                "sha8": "b6ff240d"
+              },
+              {
+                "kind": "TEXT",
+                "len": 7,
+                "first_char_bucket": "LOWER",
+                "contains_newline": false,
+                "sha8": "ccdaf791"
+              },
+              {
+                "kind": "TEXT",
+                "len": 16,
+                "first_char_bucket": "LOWER",
+                "contains_newline": false,
+                "sha8": "5b9ec5c0"
+              },
+              {
+                "kind": "TEXT",
+                "len": 13,
+                "first_char_bucket": "UPPER",
+                "contains_newline": false,
+                "sha8": "acba3b69"
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              }
+            ]
+          },
+          {
+            "row": 52,
+            "cells": [
+              {
+                "kind": "TEXT",
+                "len": 14,
+                "first_char_bucket": "LOWER",
+                "contains_newline": false,
+                "sha8": "f6e93821"
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              }
+            ]
+          },
+          {
+            "row": 53,
+            "cells": [
+              {
+                "kind": "TEXT",
+                "len": 3,
+                "first_char_bucket": "LOWER",
+                "contains_newline": false,
+                "sha8": "9231737b"
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              }
+            ]
+          },
+          {
+            "row": 56,
+            "cells": [
+              {
+                "kind": "TEXT",
+                "len": 11,
+                "first_char_bucket": "UPPER",
+                "contains_newline": false,
+                "sha8": "8ca8e13f"
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              }
+            ]
+          },
+          {
+            "row": 58,
+            "cells": [
+              {
+                "kind": "NUMBERED_STEP",
+                "len": 11,
+                "first_char_bucket": "DIGIT",
+                "contains_newline": false,
+                "sha8": "a2fb7607"
+              },
+              {
+                "kind": "TEXT",
+                "len": 7,
+                "first_char_bucket": "UPPER",
+                "contains_newline": false,
+                "sha8": "12679749"
+              },
+              {
+                "kind": "TEXT",
+                "len": 8,
+                "first_char_bucket": "LOWER",
+                "contains_newline": false,
+                "sha8": "54a08fb6"
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              }
+            ]
+          },
+          {
+            "row": 61,
+            "cells": [
+              {
+                "kind": "TEXT",
+                "len": 18,
+                "first_char_bucket": "UPPER",
+                "contains_newline": false,
+                "sha8": "e01d6b3c"
+              },
+              {
+                "kind": "NUMBERED_STEP",
+                "len": 14,
+                "first_char_bucket": "DIGIT",
+                "contains_newline": false,
+                "sha8": "8512835c"
+              },
+              {
+                "kind": "TEXT",
+                "len": 7,
+                "first_char_bucket": "LOWER",
+                "contains_newline": false,
+                "sha8": "ccdaf791"
+              },
+              {
+                "kind": "TEXT",
+                "len": 17,
+                "first_char_bucket": "UPPER",
+                "contains_newline": false,
+                "sha8": "5a9f0daf"
+              },
+              {
+                "kind": "TEXT",
+                "len": 13,
+                "first_char_bucket": "UPPER",
+                "contains_newline": false,
+                "sha8": "acba3b69"
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              },
+              {
+                "kind": "EMPTY",
+                "len": 0,
+                "first_char_bucket": "EMPTY",
+                "contains_newline": false,
+                "sha8": null
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "old_workbook_shape_summary": {
+    "sheet_names": [
+      "NAS creds",
+      "NAS Guide + Cred",
+      "Huawei Creds"
+    ],
+    "sheets_row_count": {
+      "NAS creds": 26,
+      "NAS Guide + Cred": 16,
+      "Huawei Creds": 42
+    }
+  },
+  "shape_diff_new_vs_old": {
+    "sheets_added": [
+      "Sheet1"
+    ],
+    "sheets_removed": [
+      "Huawei Creds",
+      "NAS Guide + Cred",
+      "NAS creds"
+    ],
+    "per_sheet_diff": {}
+  },
+  "loader_derived_shape_new_err": "KeyError: 'Worksheet NAS creds does not exist.'",
+  "loader_derived_shape_old": {
+    "jump": {
+      "label": "Jump Server",
+      "host": "159.138.173.250",
+      "user_len": 4,
+      "user_prefix2": "ro",
+      "password_len": 12
+    },
+    "radio": {
+      "label": "Radio news system.",
+      "host": "10.10.19.40",
+      "user_len": 6,
+      "user_prefix2": "ub",
+      "password_len": 14
+    },
+    "nas": {
+      "dsm_url": "http://10.10.55.55:5000/#/signin",
+      "user_len": 7,
+      "password_len": 8,
+      "n_navigation_steps": 20,
+      "n_channels_registered": 0
+    },
+    "mysql_clusters": [
+      {
+        "section": "iebc_forms",
+        "host": "203.123.86.10",
+        "user_len": 7,
+        "password_len": 16,
+        "schemas": [
+          "iebc_forms",
+          "kra_reports",
+          "miniapps",
+          "viupay",
+          "viupay_agent_staging",
+          "viusasa_artists",
+          "viusasa_miniapps_prod",
+          "viusasa_staging",
+          "viutickets"
+        ]
+      },
+      {
+        "section": "USSD",
+        "host": "110.238.76.159",
+        "user_len": 7,
+        "password_len": 16,
+        "schemas": [
+          "artists_app",
+          "citizen_digital",
+          "db_jipange",
+          "db_skiza",
+          "freddy_dev",
+          "miniapps",
+          "tafaria_ecommerce",
+          "tafaria_shop",
+          "viupay_dev",
+          "viupay_fare"
+        ]
+      },
+      {
+        "section": "MICROSERVICES",
+        "host": "159.138.164.93",
+        "user_len": 7,
+        "password_len": 16,
+        "schemas": [
+          "viupay",
+          "viutickets"
+        ]
+      },
+      {
+        "section": "MICROSERVICES",
+        "host": "HOST",
+        "user_len": 0,
+        "password_len": 0,
+        "schemas": [
+          "WEEGO"
+        ]
+      },
+      {
+        "section": "MICROSERVICES",
+        "host": "159.138.162.146",
+        "user_len": 0,
+        "password_len": 0,
+        "schemas": [
+          "analytics",
+          "sql_demo",
+          "sql_trial1",
+          "weego",
+          "citizen-digital"
+        ]
+      },
+      {
+        "section": "MICROSERVICES",
+        "host": "159.138.164.124",
+        "user_len": 0,
+        "password_len": 0,
+        "schemas": [
+          "citizen_digital",
+          "db_visitors",
+          "Visitors_database"
+        ]
+      },
+      {
+        "section": "MICROSERVICES",
+        "host": "110.238.75.83",
+        "user_len": 0,
+        "password_len": 0,
+        "schemas": [
+          "citizen_digital",
+          "db_visitors",
+          "db_visitors_old",
+          "db_visitors_v1",
+          "rembesha",
+          "Shikisha"
+        ]
+      },
+      {
+        "section": "MICROSERVICES",
+        "host": "203.123.83.144",
+        "user_len": 0,
+        "password_len": 0,
+        "schemas": [
+          "citizen-pulse",
+          "correspondents",
+          "saa"
+        ]
+      }
+    ]
+  },
+  "record_level_shape_diff": {
+    "jump": {
+      "user_len_before": 4,
+      "user_len_after": null,
+      "password_len_before": 12,
+      "password_len_after": null,
+      "host_before": "159.138.173.250",
+      "host_after": null,
+      "changed": true
+    },
+    "radio": {
+      "user_len_before": 6,
+      "user_len_after": null,
+      "password_len_before": 14,
+      "password_len_after": null,
+      "host_before": "10.10.19.40",
+      "host_after": null,
+      "changed": true
+    },
+    "nas": {
+      "user_len_before": 7,
+      "user_len_after": null,
+      "password_len_before": 8,
+      "password_len_after": null,
+      "host_before": "http://10.10.55.55:5000/#/signin",
+      "host_after": null,
+      "changed": true
+    },
+    "mysql_clusters": [
+      {
+        "key": [
+          "MICROSERVICES",
+          "110.238.75.83"
+        ],
+        "change": "REMOVED_FROM_NEW",
+        "user_len_before": 0,
+        "password_len_before": 0
+      },
+      {
+        "key": [
+          "MICROSERVICES",
+          "159.138.162.146"
+        ],
+        "change": "REMOVED_FROM_NEW",
+        "user_len_before": 0,
+        "password_len_before": 0
+      },
+      {
+        "key": [
+          "MICROSERVICES",
+          "159.138.164.124"
+        ],
+        "change": "REMOVED_FROM_NEW",
+        "user_len_before": 0,
+        "password_len_before": 0
+      },
+      {
+        "key": [
+          "MICROSERVICES",
+          "159.138.164.93"
+        ],
+        "change": "REMOVED_FROM_NEW",
+        "user_len_before": 7,
+        "password_len_before": 16
+      },
+      {
+        "key": [
+          "MICROSERVICES",
+          "203.123.83.144"
+        ],
+        "change": "REMOVED_FROM_NEW",
+        "user_len_before": 0,
+        "password_len_before": 0
+      },
+      {
+        "key": [
+          "MICROSERVICES",
+          "HOST"
+        ],
+        "change": "REMOVED_FROM_NEW",
+        "user_len_before": 0,
+        "password_len_before": 0
+      },
+      {
+        "key": [
+          "USSD",
+          "110.238.76.159"
+        ],
+        "change": "REMOVED_FROM_NEW",
+        "user_len_before": 7,
+        "password_len_before": 16
+      },
+      {
+        "key": [
+          "iebc_forms",
+          "203.123.86.10"
+        ],
+        "change": "REMOVED_FROM_NEW",
+        "user_len_before": 7,
+        "password_len_before": 16
+      }
+    ]
+  },
+  "new_sheet_names_added": [
+    "Sheet1"
+  ],
+  "obs_creds_in_sheet_hint": false
+}

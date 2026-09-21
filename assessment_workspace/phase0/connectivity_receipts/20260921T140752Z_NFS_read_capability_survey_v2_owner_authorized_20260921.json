@@ -1,0 +1,389 @@
+{
+  "task": "NFS_read_capability_survey_v2_owner_authorized_20260921",
+  "captured_at_utc": "2026-09-21T14:02:41Z",
+  "predecessor_receipt": "phase0/connectivity_receipts/20260921T135153Z_NFS_read_capability_survey_owner_authorized_20260921.json",
+  "correction_from_v1": "v1 discovered /mnt/nfs-share is CIFS/SMB (not NFS) \u2014 //10.10.55.55/OFFAIRRECS/Record. v1's channel name regex did not accept the `channel01..channel16` naming, so no samples ran. v2 uses positional reconciliation + correct sample selection (channel01=Ch1 TV; channel04=Ch4 Radio).",
+  "hygiene": {
+    "read_only": true,
+    "no_downloads": true,
+    "no_writes": true,
+    "bounded_enumeration": true,
+    "one_byte_fallback_only_if_stat_insufficient": true
+  },
+  "bounds": {
+    "ls_max_lines": 60,
+    "find_max_lines": 200,
+    "channels_sampled_max": 2,
+    "sample_depth_max": 3
+  },
+  "mount_now": {
+    "mount_grep_cifs_or_nfs": {
+      "cmd": "mount 2>&1 | grep -iE '(nfs|cifs)' | head -5",
+      "rc": 0,
+      "stdout": "//10.10.55.55/OFFAIRRECS/Record on /mnt/nfs-share type cifs (rw,relatime,vers=3.1.1,cache=strict,upcall_target=app,username=bramuel,uid=0,noforceuid,gid=0,noforcegid,addr=10.10.55.55,file_mode=0755,dir_mode=0755,soft,nounix,serverino,mapposix,rsize=4194304,wsize=4194304,bsize=1048576,retrans=1,echo_interval=60,actimeo=1,closetimeo=1)\n",
+      "stderr": "",
+      "elapsed_s": 0.849
+    },
+    "df_h": {
+      "cmd": "df -h /mnt/nfs-share 2>&1",
+      "rc": 0,
+      "stdout": "Filesystem                       Size  Used Avail Use% Mounted on\n//10.10.55.55/OFFAIRRECS/Record   49T   47T  2.7T  95% /mnt/nfs-share\n",
+      "stderr": "",
+      "elapsed_s": 1.836
+    },
+    "smbstatus_owner": {
+      "cmd": "grep -oE 'username=[^,)]+' /proc/mounts | head -3 2>&1",
+      "rc": 0,
+      "stdout": "username=bramuel\n",
+      "stderr": "",
+      "elapsed_s": 0.849
+    }
+  },
+  "top_level_ls_1": {
+    "cmd": "ls -1 /mnt/nfs-share/ 2>&1",
+    "rc": 0,
+    "stdout": "channel01\nchannel02\nchannel03\nchannel04\nchannel05\nchannel06\nchannel07\nchannel08\nChannel09\nChannel10\nChannel11\nChannel12\nChannel13\nChannel14\nChannel15\nchannel16\n",
+    "stderr": "",
+    "elapsed_s": 2.16
+  },
+  "top_level_names": [
+    "channel01",
+    "channel02",
+    "channel03",
+    "channel04",
+    "channel05",
+    "channel06",
+    "channel07",
+    "channel08",
+    "Channel09",
+    "Channel10",
+    "Channel11",
+    "Channel12",
+    "Channel13",
+    "Channel14",
+    "Channel15",
+    "channel16"
+  ],
+  "channel_reconciliation": {
+    "expected_count": 16,
+    "matched_count": 16,
+    "extra_count": 0,
+    "missing_count": 0,
+    "matched": [
+      {
+        "observed": "channel01",
+        "matched_to": "Ch1",
+        "num": 1,
+        "expected_name": "Citizen TV",
+        "kind": "TV",
+        "match_via": "channelNN_positional"
+      },
+      {
+        "observed": "channel02",
+        "matched_to": "Ch2",
+        "num": 2,
+        "expected_name": "Inooro TV",
+        "kind": "TV",
+        "match_via": "channelNN_positional"
+      },
+      {
+        "observed": "channel03",
+        "matched_to": "Ch3",
+        "num": 3,
+        "expected_name": "Radio Citizen",
+        "kind": "Radio",
+        "match_via": "channelNN_positional"
+      },
+      {
+        "observed": "channel04",
+        "matched_to": "Ch4",
+        "num": 4,
+        "expected_name": "Inooro FM",
+        "kind": "Radio",
+        "match_via": "channelNN_positional"
+      },
+      {
+        "observed": "channel05",
+        "matched_to": "Ch5",
+        "num": 5,
+        "expected_name": "Ramogi FM",
+        "kind": "Radio",
+        "match_via": "channelNN_positional"
+      },
+      {
+        "observed": "channel06",
+        "matched_to": "Ch6",
+        "num": 6,
+        "expected_name": "Egesa FM",
+        "kind": "Radio",
+        "match_via": "channelNN_positional"
+      },
+      {
+        "observed": "channel07",
+        "matched_to": "Ch7",
+        "num": 7,
+        "expected_name": "Musyi FM",
+        "kind": "Radio",
+        "match_via": "channelNN_positional"
+      },
+      {
+        "observed": "channel08",
+        "matched_to": "Ch8",
+        "num": 8,
+        "expected_name": "Hot 96 FM",
+        "kind": "Radio",
+        "match_via": "channelNN_positional"
+      },
+      {
+        "observed": "Channel09",
+        "matched_to": "Ch9",
+        "num": 9,
+        "expected_name": "Chamgei FM",
+        "kind": "Radio",
+        "match_via": "channelNN_positional"
+      },
+      {
+        "observed": "Channel10",
+        "matched_to": "Ch10",
+        "num": 10,
+        "expected_name": "Mulembe FM",
+        "kind": "Radio",
+        "match_via": "channelNN_positional"
+      },
+      {
+        "observed": "Channel11",
+        "matched_to": "Ch11",
+        "num": 11,
+        "expected_name": "Sulwe FM",
+        "kind": "Radio",
+        "match_via": "channelNN_positional"
+      },
+      {
+        "observed": "Channel12",
+        "matched_to": "Ch12",
+        "num": 12,
+        "expected_name": "Vuuka FM",
+        "kind": "Radio",
+        "match_via": "channelNN_positional"
+      },
+      {
+        "observed": "Channel13",
+        "matched_to": "Ch13",
+        "num": 13,
+        "expected_name": "Bahari FM",
+        "kind": "Radio",
+        "match_via": "channelNN_positional"
+      },
+      {
+        "observed": "Channel14",
+        "matched_to": "Ch14",
+        "num": 14,
+        "expected_name": "Muuga FM",
+        "kind": "Radio",
+        "match_via": "channelNN_positional"
+      },
+      {
+        "observed": "Channel15",
+        "matched_to": "Ch15",
+        "num": 15,
+        "expected_name": "Wimwaro FM",
+        "kind": "Radio",
+        "match_via": "channelNN_positional"
+      },
+      {
+        "observed": "channel16",
+        "matched_to": "Ch16",
+        "num": 16,
+        "expected_name": "Ramogi TV",
+        "kind": "TV",
+        "match_via": "channelNN_positional"
+      }
+    ],
+    "extra": [],
+    "missing": []
+  },
+  "channel_sample_sweep": {
+    "TV_Ch1": {
+      "channel_selected": "channel01",
+      "maps_to": "Ch1 Citizen TV (TV)",
+      "structure_probe": {
+        "label": "TV_Ch1",
+        "channel_name_observed": "channel01",
+        "depth1_ls_la": {
+          "cmd": "timeout 15 ls -la '/mnt/nfs-share/channel01'/ 2>&1 | head -60",
+          "rc": 0,
+          "stdout": "",
+          "stderr": "",
+          "elapsed_s": 16.285
+        },
+        "depth1_types": {
+          "cmd": "timeout 15 bash -c '(cd '/mnt/nfs-share/channel01' 2>/dev/null && echo dirs=$(find . -maxdepth 1 -mindepth 1 -type d 2>/dev/null | wc -l); echo files=$(find . -maxdepth 1 -mindepth 1 -type f 2>/dev/null | wc -l); echo other=$(find . -maxdep...(truncated)",
+          "rc": 124,
+          "stdout": "dirs=324\n",
+          "stderr": "",
+          "elapsed_s": 15.85
+        },
+        "depth2_find_capped": {
+          "cmd": "timeout 25 find '/mnt/nfs-share/channel01' -maxdepth 2 -mindepth 1 2>&1 | head -200",
+          "rc": 0,
+          "stdout": "/mnt/nfs-share/channel01/.DS_Store\n/mnt/nfs-share/channel01/Thumbs.db\n/mnt/nfs-share/channel01/config.xml\n/mnt/nfs-share/channel01/status.rep\n/mnt/nfs-share/channel01/thumbnail.jpg\n/mnt/nfs-share/channel01/2025_11_01\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_00_00_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_00_05_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_00_10_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_00_15_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_00_20_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_00_25_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_00_30_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_00_35_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_00_40_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_00_45_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_00_50_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_00_55_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_01_00_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_01_05_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_01_10_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_01_15_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_01_20_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_01_25_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_01_30_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_01_35_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_01_40_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_01_45_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_01_50_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_01_55_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_02_00_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_02_05_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_02_10_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_02_15_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_02_20_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_02_25_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_02_30_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_02_35_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_02_40_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_02_45_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_02_50_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_02_55_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_03_00_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_03_05_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_03_10_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_03_15_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_03_20_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_03_25_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_03_30_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_03_35_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_03_40_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_03_45_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_03_50_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_03_55_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_04_00_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_04_05_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_04_10_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_04_15_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_04_20_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_04_25_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_04_30_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_04_35_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_04_40_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_04_45_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_04_50_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_04_55_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_05_00_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_05_05_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_05_10_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_05_15_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_05_20_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_05_25_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_05_30_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_05_35_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_05_40_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_05_45_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_05_50_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_05_55_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_06_00_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_06_05_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_06_10_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_06_15_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_06_20_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_06_25_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_06_30_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_06_35_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_06_40_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_06_45_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_06_50_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_06_55_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_07_00_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_07_05_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_07_10_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_07_15_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_07_20_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_07_25_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_07_30_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_07_35_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_07_40_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_07_45_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_07_50_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_07_55_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_08_00_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_08_05_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_08_10_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_08_15_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_08_20_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_08_25_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_08_30_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_08_35_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_08_40_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_08_45_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_08_50_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_08_55_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_09_00_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_09_05_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_09_10_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_09_15_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_09_20_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_09_25_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_09_30_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_09_35_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_09_40_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_09_45_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_09_50_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_09_55_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_10_00_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_10_05_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_10_10_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_10_15_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_10_20_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_10_25_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_10_30_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_10_35_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_10_40_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_10_45_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_10_50_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_10_55_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_11_00_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_11_05_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_11_10_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_11_15_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_11_20_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_11_25_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_11_30_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_11_35_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_11_40_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_11_45_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_11_50_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_11_55_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_12_00_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_12_05_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_12_10_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_12_15_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_12_20_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_12_25_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_12_30_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_12_35_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_12_40_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_12_45_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_12_50_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_12_55_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_13_00_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_13_05_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_13_10_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_13_15_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_13_20_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_13_25_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_13_30_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_13_35_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_13_40_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_13_45_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_13_50_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_13_55_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_14_00_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_14_05_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_14_10_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_14_15_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_14_20_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_14_25_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_14_30_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_14_35_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_14_40_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_14_45_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_14_50_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_14_55_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_15_00_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_15_05_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_15_10_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_15_15_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_15_20_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_15_25_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_15_30_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_15_35_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_15_40_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_15_45_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_15_50_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_15_55_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_16_00_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_16_05_00.mp4\n",
+          "stderr": "",
+          "elapsed_s": 10.678
+        },
+        "depth3_find_capped": {
+          "cmd": "timeout 25 find '/mnt/nfs-share/channel01' -maxdepth 3 -type f 2>/dev/null | head -200",
+          "rc": 0,
+          "stdout": "/mnt/nfs-share/channel01/.DS_Store\n/mnt/nfs-share/channel01/Thumbs.db\n/mnt/nfs-share/channel01/config.xml\n/mnt/nfs-share/channel01/status.rep\n/mnt/nfs-share/channel01/thumbnail.jpg\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_00_00_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_00_05_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_00_10_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_00_15_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_00_20_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_00_25_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_00_30_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_00_35_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_00_40_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_00_45_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_00_50_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_00_55_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_01_00_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_01_05_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_01_10_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_01_15_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_01_20_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_01_25_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_01_30_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_01_35_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_01_40_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_01_45_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_01_50_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_01_55_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_02_00_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_02_05_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_02_10_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_02_15_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_02_20_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_02_25_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_02_30_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_02_35_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_02_40_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_02_45_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_02_50_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_02_55_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_03_00_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_03_05_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_03_10_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_03_15_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_03_20_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_03_25_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_03_30_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_03_35_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_03_40_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_03_45_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_03_50_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_03_55_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_04_00_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_04_05_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_04_10_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_04_15_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_04_20_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_04_25_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_04_30_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_04_35_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_04_40_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_04_45_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_04_50_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_04_55_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_05_00_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_05_05_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_05_10_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_05_15_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_05_20_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_05_25_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_05_30_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_05_35_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_05_40_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_05_45_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_05_50_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_05_55_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_06_00_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_06_05_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_06_10_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_06_15_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_06_20_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_06_25_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_06_30_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_06_35_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_06_40_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_06_45_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_06_50_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_06_55_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_07_00_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_07_05_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_07_10_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_07_15_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_07_20_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_07_25_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_07_30_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_07_35_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_07_40_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_07_45_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_07_50_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_07_55_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_08_00_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_08_05_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_08_10_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_08_15_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_08_20_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_08_25_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_08_30_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_08_35_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_08_40_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_08_45_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_08_50_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_08_55_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_09_00_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_09_05_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_09_10_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_09_15_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_09_20_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_09_25_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_09_30_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_09_35_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_09_40_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_09_45_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_09_50_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_09_55_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_10_00_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_10_05_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_10_10_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_10_15_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_10_20_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_10_25_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_10_30_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_10_35_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_10_40_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_10_45_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_10_50_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_10_55_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_11_00_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_11_05_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_11_10_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_11_15_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_11_20_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_11_25_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_11_30_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_11_35_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_11_40_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_11_45_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_11_50_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_11_55_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_12_00_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_12_05_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_12_10_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_12_15_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_12_20_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_12_25_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_12_30_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_12_35_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_12_40_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_12_45_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_12_50_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_12_55_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_13_00_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_13_05_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_13_10_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_13_15_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_13_20_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_13_25_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_13_30_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_13_35_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_13_40_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_13_45_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_13_50_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_13_55_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_14_00_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_14_05_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_14_10_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_14_15_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_14_20_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_14_25_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_14_30_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_14_35_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_14_40_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_14_45_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_14_50_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_14_55_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_15_00_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_15_05_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_15_10_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_15_15_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_15_20_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_15_25_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_15_30_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_15_35_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_15_40_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_15_45_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_15_50_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_15_55_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_16_00_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_16_05_00.mp4\n/mnt/nfs-share/channel01/2025_11_01/channel01_2025_11_01_16_10_00.mp4\n",
+          "stderr": "",
+          "elapsed_s": 8.439
+        },
+        "ext_histogram": {
+          "cmd": "timeout 25 find '/mnt/nfs-share/channel01' -maxdepth 3 -type f 2>/dev/null | head -5000 | awk -F. '{if (NF>1) print tolower($NF); else print \"NOEXT\"}' | sort | uniq -c | sort -rn | head -30",
+          "rc": 0,
+          "stdout": "   2279 mp4\n      1 xml\n      1 rep\n      1 NOEXT\n      1 jpg\n      1 ds_store\n      1 db\n",
+          "stderr": "",
+          "elapsed_s": 26.446
+        },
+        "depth3_file_count_capped_10000": {
+          "cmd": "timeout 25 find '/mnt/nfs-share/channel01' -maxdepth 3 -type f 2>/dev/null | head -10000 | wc -l",
+          "rc": 0,
+          "stdout": "2284\n",
+          "stderr": "",
+          "elapsed_s": 26.068
+        },
+        "depth1_mtime_range": {
+          "cmd": "timeout 15 find '/mnt/nfs-share/channel01' -maxdepth 1 -mindepth 1 -printf '%TY-%Tm-%Td\\n' 2>/dev/null | sort -u | (head -1; tail -1) 2>&1",
+          "rc": 0,
+          "stdout": "",
+          "stderr": "",
+          "elapsed_s": 16.095
+        },
+        "files_mtime_range": {
+          "cmd": "timeout 25 find '/mnt/nfs-share/channel01' -maxdepth 3 -type f -printf '%TY-%Tm-%Td\\n' 2>/dev/null | head -5000 | sort -u | (head -1; tail -1) 2>&1",
+          "rc": 0,
+          "stdout": "",
+          "stderr": "",
+          "elapsed_s": 26.973
+        },
+        "smallest_file_find": {
+          "cmd": "timeout 25 find '/mnt/nfs-share/channel01' -maxdepth 3 -type f -printf '%s\\t%p\\n' 2>/dev/null | head -5000 | sort -n | head -1",
+          "rc": 0,
+          "stdout": "",
+          "stderr": "",
+          "elapsed_s": 27.601
+        }
+      },
+      "smallest_file": null,
+      "readability_proof": {
+        "method": "n/a",
+        "verdict": "NO_REGULAR_FILE_IN_TREE_UNDER_DEPTH_3"
+      }
+    },
+    "Radio_Ch4": {
+      "channel_selected": "channel04",
+      "maps_to": "Ch4 Inooro FM (Radio)",
+      "structure_probe": {
+        "label": "Radio_Ch4",
+        "channel_name_observed": "channel04",
+        "depth1_ls_la": {
+          "cmd": "timeout 15 ls -la '/mnt/nfs-share/channel04'/ 2>&1 | head -60",
+          "rc": 0,
+          "stdout": "",
+          "stderr": "",
+          "elapsed_s": 15.966
+        },
+        "depth1_types": {
+          "cmd": "timeout 15 bash -c '(cd '/mnt/nfs-share/channel04' 2>/dev/null && echo dirs=$(find . -maxdepth 1 -mindepth 1 -type d 2>/dev/null | wc -l); echo files=$(find . -maxdepth 1 -mindepth 1 -type f 2>/dev/null | wc -l); echo other=$(find . -maxdep...(truncated)",
+          "rc": 0,
+          "stdout": "dirs=357\nfiles=5\nother=0\n",
+          "stderr": "",
+          "elapsed_s": 3.935
+        },
+        "depth2_find_capped": {
+          "cmd": "timeout 25 find '/mnt/nfs-share/channel04' -maxdepth 2 -mindepth 1 2>&1 | head -200",
+          "rc": 0,
+          "stdout": "/mnt/nfs-share/channel04/config.xml\n/mnt/nfs-share/channel04/status.rep\n/mnt/nfs-share/channel04/thumbnail.jpg\n/mnt/nfs-share/channel04/Thumbs.db\n/mnt/nfs-share/channel04/2025_10_01\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_00_00_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_00_05_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_00_10_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_00_15_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_00_20_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_00_25_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_00_30_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_00_35_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_00_40_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_00_45_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_00_50_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_00_55_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_01_00_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_01_05_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_01_10_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_01_15_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_01_20_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_01_25_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_01_30_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_01_35_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_01_40_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_01_45_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_01_50_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_01_55_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_02_00_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_02_05_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_02_10_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_02_15_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_02_20_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_02_25_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_02_30_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_02_35_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_02_40_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_02_45_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_02_50_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_02_55_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_03_00_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_03_05_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_03_10_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_03_15_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_03_20_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_03_25_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_03_30_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_03_35_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_03_40_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_03_45_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_03_50_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_03_55_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_04_00_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_04_05_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_04_10_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_04_15_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_04_20_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_04_25_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_04_30_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_04_35_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_04_40_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_04_45_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_04_50_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_04_55_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_05_00_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_05_05_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_05_10_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_05_15_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_05_20_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_05_25_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_05_30_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_05_35_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_05_40_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_05_45_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_05_50_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_05_55_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_06_00_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_06_05_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_06_10_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_06_15_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_06_20_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_06_25_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_06_30_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_06_35_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_06_40_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_06_45_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_06_50_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_06_55_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_07_00_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_07_05_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_07_10_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_07_15_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_07_20_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_07_25_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_07_30_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_07_35_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_07_40_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_07_45_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_07_50_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_07_55_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_08_00_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_08_05_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_08_10_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_08_15_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_08_20_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_08_25_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_08_30_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_08_35_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_08_40_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_08_45_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_08_50_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_08_55_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_09_00_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_09_05_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_09_10_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_09_15_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_09_20_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_09_25_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_09_30_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_09_35_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_09_40_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_09_45_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_09_50_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_09_55_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_10_00_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_10_05_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_10_10_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_10_15_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_10_20_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_10_25_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_10_30_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_10_35_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_10_40_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_10_45_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_10_50_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_10_55_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_11_00_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_11_05_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_11_10_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_11_15_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_11_20_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_11_25_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_11_30_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_11_35_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_11_40_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_11_45_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_11_50_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_11_55_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_12_00_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_12_05_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_12_10_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_12_15_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_12_20_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_12_25_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_12_30_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_12_35_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_12_40_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_12_45_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_12_50_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_12_55_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_13_00_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_13_05_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_13_10_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_13_15_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_13_20_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_13_25_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_13_30_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_13_35_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_13_40_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_13_45_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_13_50_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_13_55_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_14_00_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_14_05_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_14_10_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_14_15_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_14_20_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_14_25_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_14_30_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_14_35_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_14_40_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_14_45_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_14_50_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_14_55_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_15_00_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_15_05_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_15_10_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_15_15_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_15_20_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_15_25_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_15_30_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_15_35_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_15_40_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_15_45_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_15_50_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_15_55_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_16_00_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_16_05_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_16_10_00.mp4\n",
+          "stderr": "",
+          "elapsed_s": 4.818
+        },
+        "depth3_find_capped": {
+          "cmd": "timeout 25 find '/mnt/nfs-share/channel04' -maxdepth 3 -type f 2>/dev/null | head -200",
+          "rc": 0,
+          "stdout": "/mnt/nfs-share/channel04/config.xml\n/mnt/nfs-share/channel04/status.rep\n/mnt/nfs-share/channel04/thumbnail.jpg\n/mnt/nfs-share/channel04/Thumbs.db\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_00_00_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_00_05_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_00_10_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_00_15_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_00_20_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_00_25_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_00_30_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_00_35_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_00_40_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_00_45_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_00_50_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_00_55_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_01_00_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_01_05_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_01_10_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_01_15_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_01_20_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_01_25_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_01_30_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_01_35_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_01_40_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_01_45_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_01_50_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_01_55_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_02_00_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_02_05_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_02_10_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_02_15_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_02_20_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_02_25_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_02_30_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_02_35_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_02_40_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_02_45_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_02_50_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_02_55_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_03_00_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_03_05_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_03_10_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_03_15_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_03_20_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_03_25_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_03_30_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_03_35_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_03_40_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_03_45_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_03_50_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_03_55_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_04_00_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_04_05_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_04_10_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_04_15_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_04_20_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_04_25_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_04_30_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_04_35_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_04_40_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_04_45_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_04_50_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_04_55_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_05_00_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_05_05_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_05_10_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_05_15_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_05_20_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_05_25_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_05_30_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_05_35_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_05_40_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_05_45_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_05_50_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_05_55_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_06_00_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_06_05_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_06_10_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_06_15_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_06_20_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_06_25_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_06_30_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_06_35_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_06_40_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_06_45_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_06_50_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_06_55_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_07_00_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_07_05_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_07_10_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_07_15_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_07_20_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_07_25_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_07_30_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_07_35_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_07_40_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_07_45_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_07_50_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_07_55_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_08_00_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_08_05_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_08_10_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_08_15_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_08_20_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_08_25_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_08_30_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_08_35_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_08_40_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_08_45_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_08_50_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_08_55_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_09_00_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_09_05_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_09_10_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_09_15_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_09_20_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_09_25_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_09_30_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_09_35_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_09_40_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_09_45_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_09_50_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_09_55_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_10_00_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_10_05_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_10_10_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_10_15_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_10_20_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_10_25_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_10_30_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_10_35_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_10_40_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_10_45_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_10_50_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_10_55_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_11_00_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_11_05_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_11_10_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_11_15_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_11_20_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_11_25_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_11_30_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_11_35_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_11_40_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_11_45_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_11_50_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_11_55_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_12_00_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_12_05_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_12_10_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_12_15_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_12_20_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_12_25_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_12_30_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_12_35_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_12_40_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_12_45_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_12_50_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_12_55_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_13_00_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_13_05_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_13_10_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_13_15_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_13_20_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_13_25_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_13_30_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_13_35_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_13_40_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_13_45_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_13_50_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_13_55_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_14_00_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_14_05_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_14_10_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_14_15_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_14_20_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_14_25_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_14_30_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_14_35_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_14_40_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_14_45_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_14_50_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_14_55_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_15_00_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_15_05_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_15_10_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_15_15_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_15_20_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_15_25_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_15_30_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_15_35_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_15_40_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_15_45_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_15_50_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_15_55_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_16_00_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_16_05_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_16_10_00.mp4\n/mnt/nfs-share/channel04/2025_10_01/channel04_2025_10_01_16_15_00.mp4\n",
+          "stderr": "",
+          "elapsed_s": 3.419
+        },
+        "ext_histogram": {
+          "cmd": "timeout 25 find '/mnt/nfs-share/channel04' -maxdepth 3 -type f 2>/dev/null | head -5000 | awk -F. '{if (NF>1) print tolower($NF); else print \"NOEXT\"}' | sort | uniq -c | sort -rn | head -30",
+          "rc": 0,
+          "stdout": "   4562 mp4\n      1 xml\n      1 rep\n      1 NOEXT\n      1 jpg\n      1 db\n",
+          "stderr": "",
+          "elapsed_s": 26.457
+        },
+        "depth3_file_count_capped_10000": {
+          "cmd": "timeout 25 find '/mnt/nfs-share/channel04' -maxdepth 3 -type f 2>/dev/null | head -10000 | wc -l",
+          "rc": 0,
+          "stdout": "6028\n",
+          "stderr": "",
+          "elapsed_s": 25.96
+        },
+        "depth1_mtime_range": {
+          "cmd": "timeout 15 find '/mnt/nfs-share/channel04' -maxdepth 1 -mindepth 1 -printf '%TY-%Tm-%Td\\n' 2>/dev/null | sort -u | (head -1; tail -1) 2>&1",
+          "rc": 0,
+          "stdout": "2025-10-02\n",
+          "stderr": "",
+          "elapsed_s": 1.891
+        },
+        "files_mtime_range": {
+          "cmd": "timeout 25 find '/mnt/nfs-share/channel04' -maxdepth 3 -type f -printf '%TY-%Tm-%Td\\n' 2>/dev/null | head -5000 | sort -u | (head -1; tail -1) 2>&1",
+          "rc": 0,
+          "stdout": "2025-10-01\n",
+          "stderr": "",
+          "elapsed_s": 26.067
+        },
+        "smallest_file_find": {
+          "cmd": "timeout 25 find '/mnt/nfs-share/channel04' -maxdepth 3 -type f -printf '%s\\t%p\\n' 2>/dev/null | head -5000 | sort -n | head -1",
+          "rc": 0,
+          "stdout": "542\t/mnt/nfs-share/channel04/config.xml\n",
+          "stderr": "",
+          "elapsed_s": 18.245
+        }
+      },
+      "smallest_file": {
+        "size_bytes": 542,
+        "path": "/mnt/nfs-share/channel04/config.xml"
+      },
+      "stat_and_test_r": {
+        "path": "/mnt/nfs-share/channel04/config.xml",
+        "stat": {
+          "cmd": "stat --format='name=%n%nsize=%s%nmode_octal=%a%nmode_hr=%A%nuid=%u%nuname=%U%ngid=%g%ngname=%G%nmtime=%y%nctime=%z' '/mnt/nfs-share/channel04/config.xml'",
+          "rc": 0,
+          "stdout": "name=/mnt/nfs-share/channel04/config.xml/mnt/nfs-share/channel04/config.xmlsize=542/mnt/nfs-share/channel04/config.xmlmode_octal=755/mnt/nfs-share/channel04/config.xmlmode_hr=-rwxr-xr-x/mnt/nfs-share/channel04/config.xmluid=0/mnt/nfs-share/channel04/config.xmluname=root/mnt/nfs-share/channel04/config.xmlgid=0/mnt/nfs-share/channel04/config.xmlgname=root/mnt/nfs-share/channel04/config.xmlmtime=2026-08-01 21:14:53.583010200 +0800/mnt/nfs-share/channel04/config.xmlctime=2026-08-01 21:14:53.583010200 +0800\n",
+          "stderr": "",
+          "elapsed_s": 1.076
+        },
+        "test_r": {
+          "cmd": "test -r '/mnt/nfs-share/channel04/config.xml' && echo READABLE || echo NOT_READABLE",
+          "rc": 0,
+          "stdout": "READABLE\n",
+          "stderr": "",
+          "elapsed_s": 0.844
+        }
+      },
+      "readability_proof": {
+        "method": "test -r",
+        "verdict": "READABLE_WITHOUT_BYTE_READ"
+      }
+    }
+  },
+  "verdict": {
+    "matched_channels": 16,
+    "expected_channels": 16,
+    "sampled_channels": 2,
+    "sampled_read_ok": 1,
+    "sampled_denied": 0,
+    "one_line": "PARTIAL_16_CHANNELS_PRESENT_1_OF_2_SAMPLED_READABLE",
+    "mount_kind_observed": "CIFS/SMB_v3.1.1",
+    "trust_model_observed": "kernel-mediated CIFS mount using cached user credentials ('bramuel'). NOT NFS AUTH_SYS IP-trust despite the /mnt/nfs-share path name \u2014 mount type is 'cifs' in /proc/mounts. The mount was established prior to any credential rotation and remains authenticated via the kernel's cached SMB session."
+  }
+}

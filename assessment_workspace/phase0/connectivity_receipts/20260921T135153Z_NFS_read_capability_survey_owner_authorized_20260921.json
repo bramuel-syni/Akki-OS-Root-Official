@@ -1,0 +1,336 @@
+{
+  "task": "NFS_read_capability_survey_owner_authorized_20260921",
+  "captured_at_utc": "2026-09-21T13:51:35Z",
+  "authorization": "Owner GO this-session 2026-09-21T~13:55Z: 'NFS READ-CAPABILITY SURVEY. The owner supplied a new access path: NFS export at /mnt/nfs-share, expected to hold broadcast content organized by 16 RMS channels/stations.' R-91 hold unchanged. Ratchet 5858 unchanged. Survey-only, no seal.",
+  "hygiene": {
+    "read_only": true,
+    "no_downloads": true,
+    "no_writes": true,
+    "one_byte_fallback_only_if_stat_insufficient": true,
+    "bounded_enumeration": true,
+    "existing_mount_never_modified": true
+  },
+  "bounds": {
+    "ls_max_lines": 60,
+    "find_max_lines": 200,
+    "stat_max_lines": 40,
+    "channels_sampled_max": 2,
+    "sample_depth_max": 3
+  },
+  "reference_owner_provided_channel_map": [
+    {
+      "code": "Ch1",
+      "name": "Citizen TV",
+      "kind": "TV"
+    },
+    {
+      "code": "Ch2",
+      "name": "Inooro TV",
+      "kind": "TV"
+    },
+    {
+      "code": "Ch3",
+      "name": "Radio Citizen",
+      "kind": "Radio"
+    },
+    {
+      "code": "Ch4",
+      "name": "Inooro FM",
+      "kind": "Radio"
+    },
+    {
+      "code": "Ch5",
+      "name": "Ramogi FM",
+      "kind": "Radio"
+    },
+    {
+      "code": "Ch6",
+      "name": "Egesa FM",
+      "kind": "Radio"
+    },
+    {
+      "code": "Ch7",
+      "name": "Musyi FM",
+      "kind": "Radio"
+    },
+    {
+      "code": "Ch8",
+      "name": "Hot 96 FM",
+      "kind": "Radio"
+    },
+    {
+      "code": "Ch9",
+      "name": "Chamgei FM",
+      "kind": "Radio"
+    },
+    {
+      "code": "Ch10",
+      "name": "Mulembe FM",
+      "kind": "Radio"
+    },
+    {
+      "code": "Ch11",
+      "name": "Sulwe FM",
+      "kind": "Radio"
+    },
+    {
+      "code": "Ch12",
+      "name": "Vuuka FM",
+      "kind": "Radio"
+    },
+    {
+      "code": "Ch13",
+      "name": "Bahari FM",
+      "kind": "Radio"
+    },
+    {
+      "code": "Ch14",
+      "name": "Muuga FM",
+      "kind": "Radio"
+    },
+    {
+      "code": "Ch15",
+      "name": "Wimwaro FM",
+      "kind": "Radio"
+    },
+    {
+      "code": "Ch16",
+      "name": "Ramogi TV",
+      "kind": "TV"
+    }
+  ],
+  "cred_shape": {
+    "jump": {
+      "label": "Jump Server",
+      "host": "159.138.173.250",
+      "user_len": 4,
+      "user_prefix2": "ro",
+      "password_len": 12
+    }
+  },
+  "jump_open": {
+    "ok": true,
+    "elapsed_s": 1.97,
+    "remote_host_key_type": "ssh-ed25519",
+    "remote_host_key_sha256_b64": "W45xvjhsARJOcFj9U/bcWC3KDte30T+Amu3eCx4UrwU"
+  },
+  "jump_identity": {
+    "whoami": {
+      "cmd": "whoami",
+      "rc": 0,
+      "stdout": "root\n",
+      "stderr": "",
+      "elapsed_s": 1.01
+    },
+    "id": {
+      "cmd": "id",
+      "rc": 0,
+      "stdout": "uid=0(root) gid=0(root) groups=0(root)\n",
+      "stderr": "",
+      "elapsed_s": 0.845
+    },
+    "hostname": {
+      "cmd": "hostname",
+      "rc": 0,
+      "stdout": "ecs-b896\n",
+      "stderr": "",
+      "elapsed_s": 0.845
+    },
+    "uname": {
+      "cmd": "uname -a",
+      "rc": 0,
+      "stdout": "Linux ecs-b896 6.8.0-106-generic #106-Ubuntu SMP PREEMPT_DYNAMIC Fri Mar  6 07:58:08 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux\n",
+      "stderr": "",
+      "elapsed_s": 0.843
+    }
+  },
+  "mount_snapshot": {
+    "mount_grep_nfs": {
+      "cmd": "mount 2>&1 | grep -i nfs || echo _NO_NFS_MOUNT",
+      "rc": 0,
+      "stdout": "//10.10.55.55/OFFAIRRECS/Record on /mnt/nfs-share type cifs (rw,relatime,vers=3.1.1,cache=strict,upcall_target=app,username=bramuel,uid=0,noforceuid,gid=0,noforcegid,addr=10.10.55.55,file_mode=0755,dir_mode=0755,soft,nounix,serverino,mapposix,rsize=4194304,wsize=4194304,bsize=1048576,retrans=1,echo_interval=60,actimeo=1,closetimeo=1)\n",
+      "stderr": "",
+      "elapsed_s": 0.848
+    },
+    "proc_mounts_nfs": {
+      "cmd": "grep -i nfs /proc/mounts 2>&1 || echo _NO_NFS_IN_PROC_MOUNTS",
+      "rc": 0,
+      "stdout": "//10.10.55.55/OFFAIRRECS/Record /mnt/nfs-share cifs rw,relatime,vers=3.1.1,cache=strict,upcall_target=app,username=bramuel,uid=0,noforceuid,gid=0,noforcegid,addr=10.10.55.55,file_mode=0755,dir_mode=0755,soft,nounix,serverino,mapposix,rsize=4194304,wsize=4194304,bsize=1048576,retrans=1,echo_interval=60,actimeo=1,closetimeo=1 0 0\n",
+      "stderr": "",
+      "elapsed_s": 0.845
+    },
+    "df_mnt_nfs_share": {
+      "cmd": "df -h /mnt/nfs-share 2>&1",
+      "rc": 0,
+      "stdout": "Filesystem                       Size  Used Avail Use% Mounted on\n//10.10.55.55/OFFAIRRECS/Record   49T   47T  2.7T  95% /mnt/nfs-share\n",
+      "stderr": "",
+      "elapsed_s": 0.991
+    },
+    "ls_slash_mnt": {
+      "cmd": "ls -la /mnt/ 2>&1 | head -20",
+      "rc": 0,
+      "stdout": "total 8\ndrwxr-xr-x  3 root root 4096 Sep 21 21:19 .\ndrwxr-xr-x 24 root root 4096 Sep 13 15:24 ..\ndrwxr-xr-x  2 root root    0 Sep 16  2025 nfs-share\n",
+      "stderr": "",
+      "elapsed_s": 0.952
+    },
+    "ls_mnt_nfs_share": {
+      "cmd": "ls -la /mnt/nfs-share/ 2>&1 | head -60",
+      "rc": 0,
+      "stdout": "total 16\ndrwxr-xr-x 2 root root     0 Sep 16  2025 .\ndrwxr-xr-x 3 root root  4096 Sep 21 21:19 ..\ndrwxr-xr-x 2 root root     0 Sep 21 05:05 channel01\ndrwxr-xr-x 2 root root     0 Sep 21 05:05 channel02\ndrwxr-xr-x 2 root root     0 Sep 21 05:05 channel03\ndrwxr-xr-x 2 root root     0 Sep 21 05:05 channel04\ndrwxr-xr-x 2 root root     0 Sep 21 05:05 channel05\ndrwxr-xr-x 2 root root     0 Sep 21 05:05 channel06\ndrwxr-xr-x 2 root root     0 Sep 21 05:06 channel07\ndrwxr-xr-x 2 root root     0 Sep 21 05:05 channel08\ndrwxr-xr-x 2 root root     0 Sep 21 05:05 Channel09\ndrwxr-xr-x 2 root root     0 Sep 21 05:05 Channel10\ndrwxr-xr-x 2 root root     0 Sep 21 05:06 Channel11\ndrwxr-xr-x 2 root root     0 Sep 21 05:05 Channel12\ndrwxr-xr-x 2 root root     0 Sep 21 05:05 Channel13\ndrwxr-xr-x 2 root root     0 Sep 21 05:03 Channel14\ndrwxr-xr-x 2 root root     0 Sep 21 05:04 Channel15\ndrwxr-xr-x 2 root root     0 Sep 21 05:05 channel16\n-rwxr-xr-x 1 root root 10244 Apr 15  2025 .DS_Store\n",
+      "stderr": "",
+      "elapsed_s": 3.139
+    },
+    "stat_mnt_nfs_share": {
+      "cmd": "stat /mnt/nfs-share 2>&1",
+      "rc": 0,
+      "stdout": "  File: /mnt/nfs-share\n  Size: 0         \tBlocks: 0          IO Block: 1048576 directory\nDevice: 0,46\tInode: 262         Links: 2\nAccess: (0755/drwxr-xr-x)  Uid: (    0/    root)   Gid: (    0/    root)\nAccess: 2026-09-21 00:50:55.135701100 +0800\nModify: 2025-09-16 14:24:10.907810200 +0800\nChange: 2025-09-16 14:24:10.907810200 +0800\n Birth: 2023-05-15 15:03:21.522769600 +0800\n",
+      "stderr": "",
+      "elapsed_s": 0.916
+    }
+  },
+  "vantage_decision": {
+    "already_mounted_via_mount_grep": true,
+    "has_real_entries_via_ls": true,
+    "vantage_used": "existing_mount_at_/mnt/nfs-share"
+  },
+  "enumeration_top_level": {
+    "mount_path": "/mnt/nfs-share",
+    "ls_la_root": {
+      "cmd": "ls -la /mnt/nfs-share/ 2>&1 | head -60",
+      "rc": 0,
+      "stdout": "total 16\ndrwxr-xr-x 2 root root     0 Sep 16  2025 .\ndrwxr-xr-x 3 root root  4096 Sep 21 21:19 ..\ndrwxr-xr-x 2 root root     0 Sep 21 05:05 channel01\ndrwxr-xr-x 2 root root     0 Sep 21 05:05 channel02\ndrwxr-xr-x 2 root root     0 Sep 21 05:05 channel03\ndrwxr-xr-x 2 root root     0 Sep 21 05:05 channel04\ndrwxr-xr-x 2 root root     0 Sep 21 05:05 channel05\ndrwxr-xr-x 2 root root     0 Sep 21 05:05 channel06\ndrwxr-xr-x 2 root root     0 Sep 21 05:06 channel07\ndrwxr-xr-x 2 root root     0 Sep 21 05:05 channel08\ndrwxr-xr-x 2 root root     0 Sep 21 05:05 Channel09\ndrwxr-xr-x 2 root root     0 Sep 21 05:05 Channel10\ndrwxr-xr-x 2 root root     0 Sep 21 05:06 Channel11\ndrwxr-xr-x 2 root root     0 Sep 21 05:05 Channel12\ndrwxr-xr-x 2 root root     0 Sep 21 05:05 Channel13\ndrwxr-xr-x 2 root root     0 Sep 21 05:03 Channel14\ndrwxr-xr-x 2 root root     0 Sep 21 05:04 Channel15\ndrwxr-xr-x 2 root root     0 Sep 21 05:05 channel16\n-rwxr-xr-x 1 root root 10244 Apr 15  2025 .DS_Store\n",
+      "stderr": "",
+      "elapsed_s": 2.712
+    },
+    "ls_1_root": {
+      "cmd": "ls -1 /mnt/nfs-share/ 2>&1 | head -60",
+      "rc": 0,
+      "stdout": "channel01\nchannel02\nchannel03\nchannel04\nchannel05\nchannel06\nchannel07\nchannel08\nChannel09\nChannel10\nChannel11\nChannel12\nChannel13\nChannel14\nChannel15\nchannel16\n",
+      "stderr": "",
+      "elapsed_s": 1.134
+    },
+    "top_level_counts": {
+      "cmd": "(cd /mnt/nfs-share 2>/dev/null && find . -maxdepth 1 -mindepth 1 -type d 2>/dev/null | wc -l; find . -maxdepth 1 -mindepth 1 -type f 2>/dev/null | wc -l) 2>&1",
+      "rc": 0,
+      "stdout": "16\n1\n",
+      "stderr": "",
+      "elapsed_s": 1.506
+    },
+    "channel_reconciliation": {
+      "expected_count": 16,
+      "matched_count": 0,
+      "extra_count": 16,
+      "missing_count": 16,
+      "matched": [],
+      "extra": [
+        "channel01",
+        "channel02",
+        "channel03",
+        "channel04",
+        "channel05",
+        "channel06",
+        "channel07",
+        "channel08",
+        "Channel09",
+        "Channel10",
+        "Channel11",
+        "Channel12",
+        "Channel13",
+        "Channel14",
+        "Channel15",
+        "channel16"
+      ],
+      "missing": [
+        {
+          "expected_code": "Ch1",
+          "expected_name": "Citizen TV",
+          "kind": "TV"
+        },
+        {
+          "expected_code": "Ch2",
+          "expected_name": "Inooro TV",
+          "kind": "TV"
+        },
+        {
+          "expected_code": "Ch3",
+          "expected_name": "Radio Citizen",
+          "kind": "Radio"
+        },
+        {
+          "expected_code": "Ch4",
+          "expected_name": "Inooro FM",
+          "kind": "Radio"
+        },
+        {
+          "expected_code": "Ch5",
+          "expected_name": "Ramogi FM",
+          "kind": "Radio"
+        },
+        {
+          "expected_code": "Ch6",
+          "expected_name": "Egesa FM",
+          "kind": "Radio"
+        },
+        {
+          "expected_code": "Ch7",
+          "expected_name": "Musyi FM",
+          "kind": "Radio"
+        },
+        {
+          "expected_code": "Ch8",
+          "expected_name": "Hot 96 FM",
+          "kind": "Radio"
+        },
+        {
+          "expected_code": "Ch9",
+          "expected_name": "Chamgei FM",
+          "kind": "Radio"
+        },
+        {
+          "expected_code": "Ch10",
+          "expected_name": "Mulembe FM",
+          "kind": "Radio"
+        },
+        {
+          "expected_code": "Ch11",
+          "expected_name": "Sulwe FM",
+          "kind": "Radio"
+        },
+        {
+          "expected_code": "Ch12",
+          "expected_name": "Vuuka FM",
+          "kind": "Radio"
+        },
+        {
+          "expected_code": "Ch13",
+          "expected_name": "Bahari FM",
+          "kind": "Radio"
+        },
+        {
+          "expected_code": "Ch14",
+          "expected_name": "Muuga FM",
+          "kind": "Radio"
+        },
+        {
+          "expected_code": "Ch15",
+          "expected_name": "Wimwaro FM",
+          "kind": "Radio"
+        },
+        {
+          "expected_code": "Ch16",
+          "expected_name": "Ramogi TV",
+          "kind": "TV"
+        }
+      ]
+    }
+  },
+  "channel_sweep": {},
+  "verdict": {
+    "matched_channels": 0,
+    "expected_channels": 16,
+    "sampled_channels": 0,
+    "sampled_read_ok": 0,
+    "sampled_denied": 0,
+    "verdict": "NO_CHANNEL_MATCH_TREE_STRUCTURE_UNEXPECTED"
+  }
+}
