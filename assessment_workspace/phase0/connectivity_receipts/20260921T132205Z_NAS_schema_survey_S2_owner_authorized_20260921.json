@@ -1,0 +1,186 @@
+{
+  "task": "S2_nas_schema_survey_owner_authorized_20260921",
+  "captured_at_utc": "2026-09-21T13:21:37Z",
+  "authorization": "Owner directive this-session 2026-09-21: 'OWNER GO \u2192 S2 \u00b7 SCHEMA-SURVEY-NAS (read-only)... answer whether we can read the NAS contents entirely.' R-91 hold unchanged. Ratchet floor unchanged (5858). S1/S3 remain gated.",
+  "hygiene": {
+    "read_only": true,
+    "no_downloads": true,
+    "no_writes": true,
+    "creds_by_shape_only": true,
+    "sid_never_persisted": true,
+    "sid_logout_at_end": true
+  },
+  "bounds": {
+    "max_list_calls_total": 200,
+    "max_depth2_children_per_share": 20,
+    "depth2_size_ceiling_items": 200
+  },
+  "cred_source": {
+    "custody_file": "/app/backend/estate_keys/data_sources/RMS_Connection_Creds.xlsx",
+    "custody_file_sha256": "d778eb1eb2cbe94a7f994eec8d5b6584108b85a7522426ec057dc3613d9b72db",
+    "drop_manifest": "/app/assessment_workspace/phase0/credential_drop_manifests/20260916T1910Z_drop_manifest.json",
+    "drop_manifest_sha256": null
+  },
+  "cred_shape": {
+    "nas": {
+      "dsm_url": "http://10.10.55.55:5000/#/signin",
+      "user_len": 7,
+      "password_len": 8,
+      "n_navigation_steps": 20,
+      "n_channels_registered": 0
+    },
+    "jump": {
+      "label": "Jump Server",
+      "host": "159.138.173.250",
+      "user_len": 4,
+      "user_prefix2": "ro",
+      "password_len": 12
+    }
+  },
+  "nas_target": {
+    "scheme": "http",
+    "host": "10.10.55.55",
+    "port": 5000,
+    "fragment_stripped": true
+  },
+  "vantage_direct_egress": {
+    "attempt": "direct_from_sandbox_pod",
+    "expectation": "LAN-only NAS at 10.10.55.55 \u2014 expected to fail from a public egress. If it opens, we have a routing surprise.",
+    "http_5000_tcp": {
+      "tcp_connected": false,
+      "failure_layer": "TCP_TIMEOUT",
+      "elapsed_s": 6.004
+    },
+    "https_5001_tcp": {
+      "tcp_connected": false,
+      "failure_layer": "TCP_TIMEOUT",
+      "elapsed_s": 6.006
+    },
+    "smb_445_tcp": {
+      "tcp_connected": false,
+      "failure_layer": "TCP_TIMEOUT",
+      "elapsed_s": 6.004
+    }
+  },
+  "jump_open": {
+    "ssh_connect_ok": true,
+    "elapsed_s": 1.98,
+    "remote_host_key_type": "ssh-ed25519",
+    "remote_host_key_sha256_b64": "W45xvjhsARJOcFj9U/bcWC3KDte30T+Amu3eCx4UrwU"
+  },
+  "jump_forwards": {
+    "vantage": "JUMP_direct_tcpip_channel",
+    "http_5000_local_port": 36873,
+    "https_5001_local_port": 37605
+  },
+  "forward_tcp_probes": {
+    "http_5000_via_jump": {
+      "tcp_connected": true,
+      "elapsed_s": 0.0
+    },
+    "https_5001_via_jump": {
+      "tcp_connected": true,
+      "elapsed_s": 0.0
+    }
+  },
+  "dsm_5001_tls_via_jump": {
+    "tls_ok": true,
+    "tls_version": "TLSv1.3",
+    "cipher": [
+      "TLS_AES_256_GCM_SHA384",
+      "TLSv1.3",
+      256
+    ],
+    "peer_cert_der_sha256": "4c3f7700feb06995ee8f4cdb7be82e5b682f76da503c556f8170ff8c3cc7c4a9",
+    "elapsed_s": 1.316
+  },
+  "api_info_query": {
+    "http_status": 200,
+    "http_ok": true,
+    "body": {
+      "data": {
+        "SYNO.API.Auth": {
+          "maxVersion": 7,
+          "minVersion": 1,
+          "path": "entry.cgi"
+        },
+        "SYNO.Core.Desktop.Initdata": {
+          "maxVersion": 1,
+          "minVersion": 1,
+          "path": "entry.cgi",
+          "requestFormat": "JSON"
+        },
+        "SYNO.Core.System": {
+          "maxVersion": 3,
+          "minVersion": 1,
+          "path": "entry.cgi",
+          "requestFormat": "JSON"
+        },
+        "SYNO.Core.User": {
+          "maxVersion": 1,
+          "minVersion": 1,
+          "path": "entry.cgi",
+          "requestFormat": "JSON"
+        },
+        "SYNO.FileStation.Info": {
+          "maxVersion": 2,
+          "minVersion": 1,
+          "path": "entry.cgi",
+          "requestFormat": "JSON"
+        },
+        "SYNO.FileStation.List": {
+          "maxVersion": 2,
+          "minVersion": 1,
+          "path": "entry.cgi",
+          "requestFormat": "JSON"
+        }
+      },
+      "success": true
+    }
+  },
+  "api_map_summary": {
+    "SYNO.API.Auth": {
+      "path": "entry.cgi",
+      "min": 1,
+      "max": 7
+    },
+    "SYNO.Core.Desktop.Initdata": {
+      "path": "entry.cgi",
+      "min": 1,
+      "max": 1
+    },
+    "SYNO.Core.System": {
+      "path": "entry.cgi",
+      "min": 1,
+      "max": 3
+    },
+    "SYNO.Core.User": {
+      "path": "entry.cgi",
+      "min": 1,
+      "max": 1
+    },
+    "SYNO.FileStation.Info": {
+      "path": "entry.cgi",
+      "min": 1,
+      "max": 2
+    },
+    "SYNO.FileStation.List": {
+      "path": "entry.cgi",
+      "min": 1,
+      "max": 2
+    }
+  },
+  "auth_login": {
+    "http_status": 200,
+    "http_ok": true,
+    "success": false,
+    "error_code": 400,
+    "error_hint": "NO_SUCH_ACCOUNT_OR_WRONG_PASSWORD",
+    "auth_layer": "DSM_AUTH_REJECTED"
+  },
+  "scope_answer": {
+    "answered": false,
+    "reason": "AUTH_FAILED_VIA_JUMP_TUNNEL",
+    "hypothesis": "DSM may enforce IP-based login policy that only trusts the on-prem LAN \u2014 the direct-tcpip channel presents the JUMP host's LAN IP to DSM, but if DSM's policy is stricter (e.g. only 192.168.4.x, or a specific admin host), auth will be rejected. Record as a scope-grant finding for the RMS admin, not a credential problem."
+  }
+}

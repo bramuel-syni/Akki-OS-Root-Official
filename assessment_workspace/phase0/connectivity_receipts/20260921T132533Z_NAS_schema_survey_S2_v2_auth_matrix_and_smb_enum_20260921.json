@@ -1,0 +1,184 @@
+{
+  "task": "S2_nas_schema_survey_v2_auth_matrix_and_smb_enum_20260921",
+  "captured_at_utc": "2026-09-21T13:24:57Z",
+  "predecessor_receipt": "phase0/connectivity_receipts/20260921T132205Z_NAS_schema_survey_S2_owner_authorized_20260921.json",
+  "authorization": "Continuation of owner GO S2 SCHEMA-SURVEY-NAS. v1 established DSM 7 present + HTTP auth rejected 400. v2 executes the auth retry matrix (H1) and the SMB known-working fallback (from T3 2026-09-14) to answer the scope question.",
+  "hygiene": {
+    "read_only": true,
+    "no_downloads": true,
+    "no_writes": true,
+    "creds_by_shape_only": true,
+    "password_never_on_argv": true,
+    "smbclient_auth_via_tmpfs_file_shredded_after": true
+  },
+  "cred_source": {
+    "custody_file": "/app/backend/estate_keys/data_sources/RMS_Connection_Creds.xlsx",
+    "custody_file_sha256": "d778eb1eb2cbe94a7f994eec8d5b6584108b85a7522426ec057dc3613d9b72db"
+  },
+  "cred_shape": {
+    "nas": {
+      "dsm_url": "http://10.10.55.55:5000/#/signin",
+      "user_len": 7,
+      "password_len": 8,
+      "n_navigation_steps": 20,
+      "n_channels_registered": 0
+    }
+  },
+  "p1_dsm_auth_retry_matrix": {
+    "attempts": [
+      {
+        "method": "POST",
+        "version": "6",
+        "extra_keys": [],
+        "params_shape": {
+          "api": "SYNO.API.Auth",
+          "version": "6",
+          "method": "login",
+          "account": "<cred len=7>",
+          "passwd": "<cred len=8>",
+          "session": "FileStation",
+          "format": "sid"
+        },
+        "http_status": 200,
+        "body_success": false,
+        "error_code": 400
+      },
+      {
+        "method": "POST",
+        "version": "3",
+        "extra_keys": [],
+        "params_shape": {
+          "api": "SYNO.API.Auth",
+          "version": "3",
+          "method": "login",
+          "account": "<cred len=7>",
+          "passwd": "<cred len=8>",
+          "session": "FileStation",
+          "format": "sid"
+        },
+        "http_status": 200,
+        "body_success": false,
+        "error_code": 400
+      },
+      {
+        "method": "POST",
+        "version": "2",
+        "extra_keys": [],
+        "params_shape": {
+          "api": "SYNO.API.Auth",
+          "version": "2",
+          "method": "login",
+          "account": "<cred len=7>",
+          "passwd": "<cred len=8>",
+          "session": "FileStation",
+          "format": "sid"
+        },
+        "http_status": 200,
+        "body_success": false,
+        "error_code": 103
+      },
+      {
+        "method": "POST",
+        "version": "7",
+        "extra_keys": [
+          "enable_syno_token"
+        ],
+        "params_shape": {
+          "api": "SYNO.API.Auth",
+          "version": "7",
+          "method": "login",
+          "account": "<cred len=7>",
+          "passwd": "<cred len=8>",
+          "session": "FileStation",
+          "format": "sid",
+          "enable_syno_token": "yes"
+        },
+        "http_status": 200,
+        "body_success": false,
+        "error_code": 400
+      },
+      {
+        "method": "POST",
+        "version": "7",
+        "extra_keys": [],
+        "params_shape": {
+          "api": "SYNO.API.Auth",
+          "version": "7",
+          "method": "login",
+          "account": "<cred len=7>",
+          "passwd": "<cred len=8>",
+          "session": "FileStation",
+          "format": "sid"
+        },
+        "http_status": 200,
+        "body_success": false,
+        "error_code": 400
+      },
+      {
+        "method": "GET",
+        "version": "3",
+        "extra_keys": [],
+        "params_shape": {
+          "api": "SYNO.API.Auth",
+          "version": "3",
+          "method": "login",
+          "account": "<cred len=7>",
+          "passwd": "<cred len=8>",
+          "session": "FileStation",
+          "format": "sid"
+        },
+        "http_status": 200,
+        "body_success": false,
+        "error_code": 400
+      }
+    ]
+  },
+  "p2_p3_smb_via_jump": {
+    "nas_host": "10.10.55.55",
+    "steps": [
+      {
+        "step": "stage_auth_file",
+        "rc": 0,
+        "elapsed_s": 1.11,
+        "stdout_first_400": "AUTH_STAGED=/dev/shm/nas_auth.XPl47F\n",
+        "stderr_first_400": ""
+      },
+      {
+        "step": "smbclient_L_list_shares",
+        "rc": 0,
+        "elapsed_s": 1.318,
+        "stdout_first_400": "session setup failed: NT_STATUS_LOGON_FAILURE\n_RC=1\n",
+        "stderr_first_400": ""
+      },
+      {
+        "step": "shred_auth_file",
+        "rc": 0,
+        "elapsed_s": 0.849,
+        "stdout_first_400": "AUTH_SHRED_DONE\n",
+        "stderr_first_400": ""
+      }
+    ],
+    "parsed_shares": [],
+    "share_probes": [],
+    "shares_probed_count": 0,
+    "shares_disk_total": 0
+  },
+  "scope_answer": {
+    "dsm_http_auth_succeeded": false,
+    "dsm_http_auth_codes_observed": [
+      103,
+      400
+    ],
+    "dsm_http_auth_verdict": "REJECTED_ACROSS_ALL_METHOD_VERSION_COMBINATIONS (consistent with DSM per-user policy: 'Allow this user to access DSM' unchecked while SMB service access remains enabled \u2014 a standard Synology service-account posture).",
+    "smb_service_reachable": false,
+    "smb_share_list_count": 0,
+    "smb_disk_share_count": 0,
+    "smb_disk_shares": [],
+    "smb_readable_shares": [],
+    "smb_denied_shares": [],
+    "smb_other_failure_shares": [],
+    "classification": "SMB_ENUM_FAILED_OR_NO_SHARES",
+    "explicit_answer": "NO \u2014 no shares were readable via SMB. Either creds are stale for SMB too, or DSM has denied SMB access broadly. Ask the RMS admin to confirm the account state.",
+    "distinction_note": "'not visible to this account' vs 'visible but denied' \u2014 SMB returns only shares this account can see; deeper NAS shares the account is denied at the share level would be silently absent from `smbclient -L`. Only DSM admin scope can confirm absence."
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "task": "S2_nas_smb_final_layer_pin_20260921",
+  "captured_at_utc": "2026-09-21T13:29:37Z",
+  "predecessors": [
+    "20260921T132205Z_NAS_schema_survey_S2_owner_authorized_20260921.json",
+    "20260921T132533Z_NAS_schema_survey_S2_v2_auth_matrix_and_smb_enum_20260921.json",
+    "20260921T132733Z_NAS_creds_structure_probe_S2_v3.json"
+  ],
+  "authorization": "Owner GO S2 continuation. v2 revealed DSM HTTP + SMB both return LOGON_FAILURE for the currently-banked creds \u2014 but the same creds file did the 2026-09-14 SMB read successfully. This probe pins the failure layer before we conclude 'stale creds' (candidate scope-grant ask to the RMS admin).",
+  "bounds": {
+    "smb_authed_attempts_max": 2,
+    "smb_anon_attempts": 1,
+    "http_unauth_get_max": 1
+  },
+  "cred_shape": {
+    "nas": {
+      "dsm_url": "http://10.10.55.55:5000/#/signin",
+      "user_len": 7,
+      "password_len": 8,
+      "n_navigation_steps": 20,
+      "n_channels_registered": 0
+    },
+    "jump": {
+      "label": "Jump Server",
+      "host": "159.138.173.250",
+      "user_len": 4,
+      "user_prefix2": "ro",
+      "password_len": 12
+    }
+  },
+  "stage_auth": {
+    "rc": 0,
+    "elapsed_s": 1.234,
+    "stdout_first_200": "AUTH_STAGED=/dev/shm/nas_auth.O6uzk2\n"
+  },
+  "shred_auth": {
+    "rc": 0,
+    "elapsed_s": 0.844
+  },
+  "probes": {
+    "p1_smbL_SMB2": {
+      "rc": 0,
+      "elapsed_s": 1.198,
+      "stdout_first_2k": "session setup failed: NT_STATUS_LOGON_FAILURE\n_RC=1\n",
+      "stderr_first_400": ""
+    },
+    "p2_smbL_native": {
+      "rc": 0,
+      "elapsed_s": 1.222,
+      "stdout_first_2k": "session setup failed: NT_STATUS_LOGON_FAILURE\n_RC=1\n",
+      "stderr_first_400": ""
+    },
+    "p3_smbL_anonymous": {
+      "rc": 0,
+      "elapsed_s": 1.595,
+      "stdout_first_2k": "session setup failed: NT_STATUS_LOGON_FAILURE\n_RC=1\n",
+      "stderr_first_400": ""
+    },
+    "p4_dsm_unauth_banner": {
+      "/": {
+        "http_status": 200,
+        "content_len": 11016,
+        "body_first_500": "<!DOCTYPE html>\n<html>\n<head>\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />\n<meta http-equiv=\"X-UA-Compatible\" content=\"IE=11\" />\n<meta name=\"msapplication-TileImage\" content=\"resources/images/icon_tile.png?v=4398\" />\n<meta name=\"application-name\" content=\"RMS-BACKUPS&nbsp;-&nbsp;Synology&nbsp;NAS\" />\n<meta name=\"msapplication-TileColor\" content=\"#246BB3\"/>\n<meta name=\"description\" content=\"Synology NAS provides a full-featured network attached storage (NAS) solution to h",
+        "server_header": "nginx",
+        "syno_dsm_version_header": null,
+        "dsm_version_regex_match": []
+      },
+      "/webman/login.cgi": {
+        "http_status": 200,
+        "content_len": 81,
+        "body_first_500": "{\n   \"reason\" : \"error_cantlogin\",\n   \"result\" : \"error\",\n   \"success\" : false\n}\n",
+        "server_header": "nginx",
+        "syno_dsm_version_header": null,
+        "dsm_version_regex_match": []
+      },
+      "/webapi/entry.cgi?api=SYNO.API.Info&version=1&method=query&query=all": {
+        "http_status": 200,
+        "content_len": 74502,
+        "body_first_500": "{\"data\":{\"SYNO.API.Auth\":{\"maxVersion\":7,\"minVersion\":1,\"path\":\"entry.cgi\"},\"SYNO.API.Auth.Key\":{\"maxVersion\":7,\"minVersion\":7,\"path\":\"entry.cgi\",\"requestFormat\":\"JSON\"},\"SYNO.API.Auth.Key.Code\":{\"maxVersion\":7,\"minVersion\":7,\"path\":\"entry.cgi\",\"requestFormat\":\"JSON\"},\"SYNO.API.Auth.RedirectURI\":{\"maxVersion\":1,\"minVersion\":1,\"path\":\"entry.cgi\",\"requestFormat\":\"JSON\"},\"SYNO.API.Auth.Type\":{\"maxVersion\":1,\"minVersion\":1,\"path\":\"entry.cgi\",\"requestFormat\":\"JSON\"},\"SYNO.API.Auth.UIConfig\":{\"maxVers",
+        "server_header": "nginx",
+        "syno_dsm_version_header": null,
+        "dsm_version_regex_match": []
+      }
+    }
+  },
+  "failure_layer_verdict": {
+    "smb_server_responds_to_anon_list": true,
+    "smb_anon_lists_shares": false,
+    "smb_anon_error": "AUTH_DENIED_ANON",
+    "smb_auth_signatures": [
+      [
+        "SMB2",
+        "NT_STATUS_LOGON_FAILURE"
+      ],
+      [
+        "native",
+        "NT_STATUS_LOGON_FAILURE"
+      ]
+    ],
+    "dsm_http_responding": true,
+    "conclusion": "STALE_CREDENTIALS. The banked NAS credentials (user_len=7, pass_len=8) are rejected by the SMB server at 10.10.55.55 across all protocol variants (SMB2, native) with NT_STATUS_LOGON_FAILURE, and by DSM HTTP across all method+version combinations with error 400. The 2026-09-14 T3 receipt shows the SAME sheet worked before the 2026-09-16 rotation-check ingestion. Highest-likelihood root cause: the NAS-side password was rotated post-2026-09-16 but the sheet ingestion mis-captured the new value, or the RMS admin rotated it again since then. Ask the RMS admin to confirm the CURRENT NAS creds and re-drop the sheet. The credentials themselves \u2014 not the network path \u2014 are the block; JUMP tunnel + DSM HTTPS + SMB TCP all confirmed OK."
+  }
+}
