@@ -1,0 +1,2952 @@
+{
+  "task": "huawei_obs_access_retry_owner_authorized_20260921",
+  "captured_at_utc": "2026-09-21T13:02:36Z",
+  "authorization": "Owner priority directive this-session 2026-09-21T~12:55Z: 'OWNER QUESTION \u2192 receipted drill (authorized now, non-interrupting to the R-91 hold): DO WE HAVE HUAWEI OBS (object storage) ACCESS with any banked access keys? ... Probes, timeboxed 10s each, in order: (a) ListBuckets; (b) for each visible bucket: HeadBucket + GetBucketLocation + a ListObjects with max-keys=5 ... NO object downloads, NO writes, NO ACL changes. ... STOP after the survey.' R-91 hold unchanged.",
+  "cred_source": {
+    "custody_file": "/app/backend/estate_keys/data_sources/huawei_credentials.csv",
+    "custody_file_sha256": "8a14174c6a5167cb7fb2f8877b4c3b3ed2d1eed7540aeab0fc4f654457698667",
+    "alt_custody_file": "/app/backend/estate_keys/data_sources/huawei_credentials_2_20260916.csv",
+    "alt_custody_file_sha256": "8a14174c6a5167cb7fb2f8877b4c3b3ed2d1eed7540aeab0fc4f654457698667",
+    "byte_identical_alt": true,
+    "drop_manifest_sha256": null
+  },
+  "egress_ip_we_present": {
+    "ifconfig.me": "35.184.53.215"
+  },
+  "master_endpoint": "obs.ap-southeast-1.myhuaweicloud.com",
+  "cred_shape": {
+    "file_size_bytes": 119,
+    "line_count_nonempty": 2,
+    "ak_len": 20,
+    "sk_len": 40,
+    "ak_sha256_first10": "6da66c162f",
+    "sk_sha256_first10": "451a83c785",
+    "ak_prefix2": "HP"
+  },
+  "probe": {
+    "master_endpoint": "obs.ap-southeast-1.myhuaweicloud.com",
+    "tcp": {
+      "tcp_connected": true,
+      "elapsed_s": 0.43
+    },
+    "tls": {
+      "tls_ok": true,
+      "elapsed_s": 0.361,
+      "cert_subject_cn": "obs.ap-southeast-1.myhuaweicloud.com",
+      "issuer_cn": "GlobalSign RSA OV SSL CA 2018",
+      "not_after": "Apr  6 01:56:21 2027 GMT"
+    },
+    "list_buckets": {
+      "outcome": "response_received",
+      "status": 200,
+      "reason": "OK",
+      "errorCode": null,
+      "errorMessage_len": 0,
+      "failure_layer": "HTTP_2XX_OK",
+      "elapsed_s": 1.566,
+      "n_buckets": 106,
+      "owner_id_present": true
+    },
+    "per_bucket": [
+      {
+        "bucket": "2024offairrecs",
+        "create_date": "2024/12/20 08:12:36",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.78
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.509
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.517,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "apr252017",
+        "create_date": "2024/04/17 09:10:52",
+        "location_from_listbuckets": "tr-west-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.96
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.52
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.517,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "cal-docs",
+        "create_date": "2024/03/21 10:58:27",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.88
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.517
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.509,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "caldocs",
+        "create_date": "2024/03/21 11:07:34",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 1.184
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.517
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.52,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "chamgei-backup",
+        "create_date": "2024/03/21 11:13:40",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 1.057
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.505
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.52,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "chris-test-b",
+        "create_date": "2024/03/21 11:16:19",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.985
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.521
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.508,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "citizen-classifieds",
+        "create_date": "2024/03/13 13:49:57",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 1.0
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.518
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.521,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "citizen-digital-cms-files",
+        "create_date": "2024/03/04 14:09:11",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.771
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.521
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.507,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "citizen-digital-cms-files-copy",
+        "create_date": "2024/03/21 11:21:14",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.767
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.517
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.517,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "citizen-vod",
+        "create_date": "2026/05/13 11:02:40",
+        "location_from_listbuckets": "ap-southeast-3",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.938
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.53
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.53,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "citizentv",
+        "create_date": "2024/03/04 14:09:27",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.897
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.532
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.53,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "database-backup-dlbms",
+        "create_date": "2024/03/21 11:28:08",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.949
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.507
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.531,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "datauploadroyalmedia.co.ke",
+        "create_date": "2024/03/21 11:34:57",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.955
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.506
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.517,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "drivesdata.royalmedia",
+        "create_date": "2024/03/21 11:37:22",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.688
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.507
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.516,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "edaily",
+        "create_date": "2024/03/21 11:40:04",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 1.029
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.509
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.51,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "edailynew",
+        "create_date": "2024/03/21 11:42:28",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.973
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.529
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.518,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "elections",
+        "create_date": "2025/11/26 07:11:47",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.707
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.519
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.532,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "elections-portal",
+        "create_date": "2024/03/21 11:44:39",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.881
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.529
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.529,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "elections-portal-backup",
+        "create_date": "2024/03/21 11:47:12",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.886
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.533
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.519,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "email-footers",
+        "create_date": "2025/02/06 11:32:09",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.899
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.52
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.529,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "fast-channels",
+        "create_date": "2024/12/17 08:48:20",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.976
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.517
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.53,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "feb272017",
+        "create_date": "2024/04/15 02:31:01",
+        "location_from_listbuckets": "tr-west-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 1.07
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.527
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.508,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "good-bucket-f",
+        "create_date": "2024/03/21 11:51:33",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.902
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.517
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.531,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "google-transcripts",
+        "create_date": "2024/03/21 11:54:42",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.898
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.521
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.529,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "hot96backup",
+        "create_date": "2024/03/21 11:56:56",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.947
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.522
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.508,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "inoorotv",
+        "create_date": "2024/03/21 11:59:26",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 1.069
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.527
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.521,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "instore-radio-items",
+        "create_date": "2026/01/13 06:30:43",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 1.256
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.519
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.52,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "iso-rms-storage",
+        "create_date": "2025/09/11 07:00:46",
+        "location_from_listbuckets": "ap-southeast-3",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.708
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.521
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.53,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "kapubskt",
+        "create_date": "2024/03/21 12:01:47",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.778
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.517
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.517,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "kemediahse",
+        "create_date": "2024/03/21 12:05:04",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.779
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.531
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.518,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "librarydirectupload2",
+        "create_date": "2024/04/15 02:35:46",
+        "location_from_listbuckets": "tr-west-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.926
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.532
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.531,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "mar142017",
+        "create_date": "2024/03/21 12:08:21",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 1.002
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.53
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.52,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "may172017",
+        "create_date": "2024/03/21 12:10:32",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.941
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.528
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.52,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "miss-intl-somalia",
+        "create_date": "2024/03/21 12:12:41",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 1.138
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.507
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.518,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "music-bucket-rms",
+        "create_date": "2024/03/21 12:14:58",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.78
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.53
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 61.143,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "na7p4100",
+        "create_date": "2024/04/15 02:32:06",
+        "location_from_listbuckets": "tr-west-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.732
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.52
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.518,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "na7p410c",
+        "create_date": "2024/04/15 02:32:27",
+        "location_from_listbuckets": "tr-west-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.933
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.505
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.504,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "na7p419y",
+        "create_date": "2024/04/15 02:32:43",
+        "location_from_listbuckets": "tr-west-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.799
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.522
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.504,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "na7p41ab",
+        "create_date": "2024/04/17 09:00:46",
+        "location_from_listbuckets": "tr-west-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.937
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.508
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.51,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "na7p41f4",
+        "create_date": "2024/04/15 02:33:12",
+        "location_from_listbuckets": "tr-west-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.76
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 5.83
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.536,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "na7p41hj",
+        "create_date": "2024/03/21 09:09:44",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.915
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.506
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.524,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "na7p41j6",
+        "create_date": "2024/04/15 01:57:40",
+        "location_from_listbuckets": "tr-west-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 1.031
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.52
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.519,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "na7p41jk",
+        "create_date": "2024/04/15 02:33:33",
+        "location_from_listbuckets": "tr-west-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.796
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.52
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.515,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "na7p41kh",
+        "create_date": "2024/03/21 09:18:21",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.703
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.519
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.522,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "na7p42rl.rms",
+        "create_date": "2024/03/21 09:21:06",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 1.093
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.513
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.52,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "na7p42ry",
+        "create_date": "2024/04/15 02:30:36",
+        "location_from_listbuckets": "tr-west-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.792
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 20.185
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.539,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "na7p42s5",
+        "create_date": "2024/04/15 01:56:43",
+        "location_from_listbuckets": "tr-west-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.741
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.52
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.524,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "na7p42s7",
+        "create_date": "2024/04/15 02:27:49",
+        "location_from_listbuckets": "tr-west-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.87
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.529
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.53,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "na7p42tq",
+        "create_date": "2024/04/15 02:27:18",
+        "location_from_listbuckets": "tr-west-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 1.277
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.518
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.508,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "na7p42tz",
+        "create_date": "2024/04/15 02:30:50",
+        "location_from_listbuckets": "tr-west-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 1.018
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.506
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.516,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "na7p42xe",
+        "create_date": "2024/03/21 09:35:29",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.975
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.532
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.508,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "na7p42xw",
+        "create_date": "2024/03/21 09:37:48",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.91
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.506
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.526,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "na7p42yg",
+        "create_date": "2024/03/21 09:39:55",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.77
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.508
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.531,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "na7p434j",
+        "create_date": "2024/03/21 09:42:55",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.973
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.507
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.518,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "na7p4357",
+        "create_date": "2024/03/21 09:45:55",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 1.097
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.521
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.53,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "na7p435c",
+        "create_date": "2024/04/15 06:00:31",
+        "location_from_listbuckets": "tr-west-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 1.15
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.518
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.525,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "na7p4374",
+        "create_date": "2024/04/15 02:33:58",
+        "location_from_listbuckets": "tr-west-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.767
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.517
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.504,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "na7p43ax",
+        "create_date": "2024/03/21 09:53:00",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.898
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.507
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.528,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "na7p43d3",
+        "create_date": "2024/03/21 09:55:17",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.747
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.507
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.519,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "na7p43d6",
+        "create_date": "2024/04/15 02:30:21",
+        "location_from_listbuckets": "tr-west-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.977
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.518
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.518,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "na7p43df",
+        "create_date": "2024/03/21 10:00:20",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.696
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.518
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.509,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "na7p43dj",
+        "create_date": "2024/04/15 02:30:05",
+        "location_from_listbuckets": "tr-west-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.91
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.519
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.516,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "na7p43do",
+        "create_date": "2024/03/21 10:06:30",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.936
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.534
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.516,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "na7p43hs",
+        "create_date": "2024/04/15 02:29:51",
+        "location_from_listbuckets": "tr-west-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.76
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.533
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.505,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "na7p43js",
+        "create_date": "2024/03/21 10:10:44",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.767
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.506
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.516,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "na7p43jw",
+        "create_date": "2024/04/15 02:29:38",
+        "location_from_listbuckets": "tr-west-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.791
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.53
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.529,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "na7p49p9",
+        "create_date": "2024/03/21 10:14:41",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.976
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.531
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.505,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "na7p49pc",
+        "create_date": "2024/04/15 02:29:22",
+        "location_from_listbuckets": "tr-west-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.782
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.509
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.503,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "na7p4oco",
+        "create_date": "2024/03/21 10:18:36",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.751
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.509
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.532,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "na7p4omz",
+        "create_date": "2024/04/15 02:29:05",
+        "location_from_listbuckets": "tr-west-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.733
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.506
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.532,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "na7p4oxs",
+        "create_date": "2024/04/15 02:28:42",
+        "location_from_listbuckets": "tr-west-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 1.015
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.515
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.518,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "na7p4oy4",
+        "create_date": "2024/04/15 02:31:34",
+        "location_from_listbuckets": "tr-west-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.85
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.51
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.506,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "na7p4oz6",
+        "create_date": "2024/04/15 02:31:50",
+        "location_from_listbuckets": "tr-west-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.894
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.517
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.518,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "newlibrary-uploads-19-08-2018",
+        "create_date": "2024/03/21 12:31:21",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.939
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.507
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.518,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "news-vault",
+        "create_date": "2024/03/21 12:34:38",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.709
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.521
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.516,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "obituariesdata",
+        "create_date": "2024/04/15 02:33:45",
+        "location_from_listbuckets": "tr-west-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.746
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.516
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.504,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "obituariesnew",
+        "create_date": "2024/03/21 12:38:49",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.938
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.53
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.519,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "one-signal-live-service",
+        "create_date": "2026/04/07 06:27:07",
+        "location_from_listbuckets": "ap-southeast-3",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.963
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.518
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.518,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "onesignal-logos",
+        "create_date": "2026/05/10 15:37:24",
+        "location_from_listbuckets": "ap-southeast-3",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.947
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.509
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.521,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "onsignal-bucket",
+        "create_date": "2026/02/10 13:25:46",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.753
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.505
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.519,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "private-isos",
+        "create_date": "2026/08/20 07:06:38",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.971
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.506
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.531,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "radio-news",
+        "create_date": "2024/03/21 12:41:31",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.755
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.511
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.529,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "raz-backup",
+        "create_date": "2024/03/21 12:45:01",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.762
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.503
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.506,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "razuna-application-server",
+        "create_date": "2024/03/21 12:48:15",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.928
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.522
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.519,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "razuna-direct-access",
+        "create_date": "2024/04/15 02:35:34",
+        "location_from_listbuckets": "tr-west-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.733
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.518
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.507,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "razuna-ireland-replication-7sep2017",
+        "create_date": "2024/03/21 12:53:09",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.785
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.516
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.508,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "razuna.royalmedia",
+        "create_date": "2024/03/21 12:55:56",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 1.048
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.518
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.518,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "registers-13-17",
+        "create_date": "2024/03/21 12:59:09",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.78
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.505
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.527,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "rekognition-video-console-demo-dub-917562226170-nm20tsok0pm1ea",
+        "create_date": "2024/03/21 13:02:08",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.777
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.505
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.521,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "rms-acronis-backup-bucket",
+        "create_date": "2024/04/15 01:57:16",
+        "location_from_listbuckets": "tr-west-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.726
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.506
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.512,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "rms-ai",
+        "create_date": "2026/07/13 07:11:38",
+        "location_from_listbuckets": "ap-southeast-1",
+        "head_bucket": {
+          "status": 200,
+          "errorCode": null,
+          "failure_layer": "HTTP_2XX_OK",
+          "elapsed_s": 1.541
+        },
+        "get_bucket_location": {
+          "status": 200,
+          "region": "ap-southeast-1",
+          "failure_layer": "HTTP_2XX_OK",
+          "elapsed_s": 0.514
+        },
+        "list_objects": {
+          "status": 200,
+          "errorCode": null,
+          "failure_layer": "HTTP_2XX_OK",
+          "elapsed_s": 0.513,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 5,
+          "is_truncated": true,
+          "sample_shape_only_no_names": [
+            {
+              "key_len": 89,
+              "key_sha256_first10": "4ae87fe770",
+              "size_bytes": 5898
+            },
+            {
+              "key_len": 90,
+              "key_sha256_first10": "5d8751058e",
+              "size_bytes": 134907
+            },
+            {
+              "key_len": 89,
+              "key_sha256_first10": "a766172319",
+              "size_bytes": 5898
+            },
+            {
+              "key_len": 89,
+              "key_sha256_first10": "b7e3beb5a6",
+              "size_bytes": 1186
+            },
+            {
+              "key_len": 89,
+              "key_sha256_first10": "8ca57a9f43",
+              "size_bytes": 68281
+            }
+          ]
+        }
+      },
+      {
+        "bucket": "rmsbroadcast",
+        "create_date": "2024/03/21 13:07:43",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.759
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.517
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.507,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "rmsradio",
+        "create_date": "2024/03/21 13:10:21",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.73
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.518
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.528,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "royalmedia",
+        "create_date": "2024/03/21 13:13:14",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.982
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.519
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.519,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "s3hub-806142fb68af5725514152f0ae3fb5978d4899aaf394fc186460f3fe2",
+        "create_date": "2024/03/21 13:15:41",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 1.142
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.53
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.507,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "sdatauploadroyalmedia.co.ke",
+        "create_date": "2024/04/15 01:53:55",
+        "location_from_listbuckets": "tr-west-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.891
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.509
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.516,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "seconddatauploadroyalmedia.co.ke",
+        "create_date": "2024/04/15 02:31:19",
+        "location_from_listbuckets": "tr-west-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.717
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.53
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.531,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "shikisha",
+        "create_date": "2024/03/21 13:21:26",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.854
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.516
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.506,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "skizaaudio",
+        "create_date": "2024/03/21 13:24:08",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.753
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.519
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.518,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "test-regionireland",
+        "create_date": "2024/03/21 13:26:50",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.762
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.53
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.518,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "test-viusasa-bucket",
+        "create_date": "2024/10/03 09:16:07",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 1.19
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.529
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.525,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "test.test-viusasa-bucket",
+        "create_date": "2024/10/16 15:28:38",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.839
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.53
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.52,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "upload.test.test-viusasa-bucket",
+        "create_date": "2024/10/17 14:47:48",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 1.06
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.518
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.528,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "uploads.test-viusasa-bucket",
+        "create_date": "2024/10/16 15:19:44",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.751
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.518
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.516,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "viusasanews",
+        "create_date": "2024/03/21 13:28:58",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.725
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.505
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.505,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      },
+      {
+        "bucket": "voters-2013",
+        "create_date": "2024/03/21 13:31:22",
+        "location_from_listbuckets": "af-south-1",
+        "head_bucket": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 1.151
+        },
+        "get_bucket_location": {
+          "status": 404,
+          "region": "",
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.521
+        },
+        "list_objects": {
+          "status": 404,
+          "errorCode": null,
+          "failure_layer": "HTTP_404",
+          "elapsed_s": 0.518,
+          "region_endpoint_used": "obs.ap-southeast-1.myhuaweicloud.com",
+          "count_returned_capped_5": 0,
+          "is_truncated": false,
+          "sample_shape_only_no_names": []
+        }
+      }
+    ],
+    "per_bucket_wall_elapsed_s": 290.453,
+    "summary": {
+      "n_buckets_seen": 106,
+      "n_buckets_probed": 106,
+      "n_head_2xx": 1,
+      "n_location_2xx": 1,
+      "n_listobjects_2xx": 1,
+      "n_listobjects_403_iam": 0,
+      "n_listobjects_403_signature": 0
+    }
+  },
+  "outcome": "SURVEY_COMPLETE"
+}

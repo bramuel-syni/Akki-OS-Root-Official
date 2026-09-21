@@ -1,0 +1,377 @@
+{
+  "task": "huawei_obs_region_vs_iam_and_rms_ai_survey_completion",
+  "captured_at_utc": "2026-09-21T13:10:00Z",
+  "prior_receipt": "/app/assessment_workspace/phase0/connectivity_receipts/20260921T130729Z_HUAWEI_OBS_access_retry_owner_authorized.json",
+  "prior_receipt_sha256": "70b174992225b6677db776517277e06abde5ad8bcd579d21173ff35f31658612",
+  "cred_source": {
+    "custody_file": "/app/backend/estate_keys/data_sources/huawei_credentials.csv",
+    "custody_file_sha256": "8a14174c6a5167cb7fb2f8877b4c3b3ed2d1eed7540aeab0fc4f654457698667"
+  },
+  "cred_shape": {
+    "ak_len": 20,
+    "sk_len": 40,
+    "ak_sha256_first10": "6da66c162f",
+    "sk_sha256_first10": "451a83c785"
+  },
+  "part_a_1_region_vs_iam": {
+    "sample_size_targeted": 6,
+    "sample_actual": [
+      {
+        "bucket": "2024offairrecs",
+        "location_from_listbuckets": "af-south-1"
+      },
+      {
+        "bucket": "citizen-vod",
+        "location_from_listbuckets": "ap-southeast-3"
+      },
+      {
+        "bucket": "apr252017",
+        "location_from_listbuckets": "tr-west-1"
+      }
+    ],
+    "regions_probed": [
+      "ap-southeast-1",
+      "ap-southeast-2",
+      "ap-southeast-3",
+      "af-south-1",
+      "tr-west-1",
+      "cn-north-1",
+      "cn-north-4",
+      "cn-north-9",
+      "cn-east-2",
+      "cn-east-3",
+      "cn-south-1",
+      "sa-argentina-1",
+      "sa-brazil-1",
+      "eu-west-101",
+      "la-south-2"
+    ],
+    "results": [
+      {
+        "bucket": "2024offairrecs",
+        "location_from_listbuckets": "af-south-1",
+        "region_probe_matrix": [
+          {
+            "region": "ap-southeast-1",
+            "endpoint": "obs.ap-southeast-1.myhuaweicloud.com",
+            "head_bucket": {
+              "status": 404,
+              "errorCode": null,
+              "failure_layer": "HTTP_404",
+              "elapsed_s": 0.745
+            },
+            "get_bucket_location": {
+              "status": 404,
+              "region": "",
+              "errorCode": null,
+              "failure_layer": "HTTP_404",
+              "elapsed_s": 0.506
+            }
+          },
+          {
+            "region": "ap-southeast-2",
+            "endpoint": "obs.ap-southeast-2.myhuaweicloud.com",
+            "head_bucket": {
+              "status": 404,
+              "errorCode": null,
+              "failure_layer": "HTTP_404",
+              "elapsed_s": 1.26
+            },
+            "get_bucket_location": {
+              "status": 404,
+              "region": "",
+              "errorCode": null,
+              "failure_layer": "HTTP_404",
+              "elapsed_s": 0.723
+            }
+          },
+          {
+            "region": "ap-southeast-3",
+            "endpoint": "obs.ap-southeast-3.myhuaweicloud.com",
+            "head_bucket": {
+              "status": 404,
+              "errorCode": null,
+              "failure_layer": "HTTP_404",
+              "elapsed_s": 1.135
+            },
+            "get_bucket_location": {
+              "status": 404,
+              "region": "",
+              "errorCode": null,
+              "failure_layer": "HTTP_404",
+              "elapsed_s": 0.664
+            }
+          },
+          {
+            "region": "af-south-1",
+            "endpoint": "obs.af-south-1.myhuaweicloud.com",
+            "head_bucket": {
+              "status": 200,
+              "errorCode": null,
+              "failure_layer": "HTTP_2XX_OK",
+              "elapsed_s": 2.275
+            },
+            "get_bucket_location": {
+              "status": 200,
+              "region": "af-south-1",
+              "errorCode": null,
+              "failure_layer": "HTTP_2XX_OK",
+              "elapsed_s": 0.808
+            }
+          }
+        ],
+        "verdict": "REGION_MISMATCH_RESOLVED"
+      },
+      {
+        "bucket": "citizen-vod",
+        "location_from_listbuckets": "ap-southeast-3",
+        "region_probe_matrix": [
+          {
+            "region": "ap-southeast-1",
+            "endpoint": "obs.ap-southeast-1.myhuaweicloud.com",
+            "head_bucket": {
+              "status": 404,
+              "errorCode": null,
+              "failure_layer": "HTTP_404",
+              "elapsed_s": 0.826
+            },
+            "get_bucket_location": {
+              "status": 404,
+              "region": "",
+              "errorCode": null,
+              "failure_layer": "HTTP_404",
+              "elapsed_s": 0.517
+            }
+          },
+          {
+            "region": "ap-southeast-2",
+            "endpoint": "obs.ap-southeast-2.myhuaweicloud.com",
+            "head_bucket": {
+              "status": 404,
+              "errorCode": null,
+              "failure_layer": "HTTP_404",
+              "elapsed_s": 1.226
+            },
+            "get_bucket_location": {
+              "status": 404,
+              "region": "",
+              "errorCode": null,
+              "failure_layer": "HTTP_404",
+              "elapsed_s": 0.713
+            }
+          },
+          {
+            "region": "ap-southeast-3",
+            "endpoint": "obs.ap-southeast-3.myhuaweicloud.com",
+            "head_bucket": {
+              "status": 200,
+              "errorCode": null,
+              "failure_layer": "HTTP_2XX_OK",
+              "elapsed_s": 1.842
+            },
+            "get_bucket_location": {
+              "status": 200,
+              "region": "ap-southeast-3",
+              "errorCode": null,
+              "failure_layer": "HTTP_2XX_OK",
+              "elapsed_s": 0.647
+            }
+          }
+        ],
+        "verdict": "REGION_MISMATCH_RESOLVED"
+      },
+      {
+        "bucket": "apr252017",
+        "location_from_listbuckets": "tr-west-1",
+        "region_probe_matrix": [
+          {
+            "region": "ap-southeast-1",
+            "endpoint": "obs.ap-southeast-1.myhuaweicloud.com",
+            "head_bucket": {
+              "status": 404,
+              "errorCode": null,
+              "failure_layer": "HTTP_404",
+              "elapsed_s": 0.917
+            },
+            "get_bucket_location": {
+              "status": 404,
+              "region": "",
+              "errorCode": null,
+              "failure_layer": "HTTP_404",
+              "elapsed_s": 0.509
+            }
+          },
+          {
+            "region": "ap-southeast-2",
+            "endpoint": "obs.ap-southeast-2.myhuaweicloud.com",
+            "head_bucket": {
+              "status": 404,
+              "errorCode": null,
+              "failure_layer": "HTTP_404",
+              "elapsed_s": 1.196
+            },
+            "get_bucket_location": {
+              "status": 404,
+              "region": "",
+              "errorCode": null,
+              "failure_layer": "HTTP_404",
+              "elapsed_s": 0.738
+            }
+          },
+          {
+            "region": "ap-southeast-3",
+            "endpoint": "obs.ap-southeast-3.myhuaweicloud.com",
+            "head_bucket": {
+              "status": 404,
+              "errorCode": null,
+              "failure_layer": "HTTP_404",
+              "elapsed_s": 1.018
+            },
+            "get_bucket_location": {
+              "status": 404,
+              "region": "",
+              "errorCode": null,
+              "failure_layer": "HTTP_404",
+              "elapsed_s": 0.628
+            }
+          },
+          {
+            "region": "af-south-1",
+            "endpoint": "obs.af-south-1.myhuaweicloud.com",
+            "head_bucket": {
+              "status": 404,
+              "errorCode": null,
+              "failure_layer": "HTTP_404",
+              "elapsed_s": 1.205
+            },
+            "get_bucket_location": {
+              "status": 404,
+              "region": "",
+              "errorCode": null,
+              "failure_layer": "HTTP_404",
+              "elapsed_s": 0.774
+            }
+          },
+          {
+            "region": "tr-west-1",
+            "endpoint": "obs.tr-west-1.myhuaweicloud.com",
+            "head_bucket": {
+              "status": 200,
+              "errorCode": null,
+              "failure_layer": "HTTP_2XX_OK",
+              "elapsed_s": 1.432
+            },
+            "get_bucket_location": {
+              "status": 200,
+              "region": "tr-west-1",
+              "errorCode": null,
+              "failure_layer": "HTTP_2XX_OK",
+              "elapsed_s": 0.508
+            }
+          }
+        ],
+        "verdict": "REGION_MISMATCH_RESOLVED"
+      }
+    ]
+  },
+  "part_a_1_verdict_histogram": {
+    "REGION_MISMATCH_RESOLVED": 3
+  },
+  "part_a_2_rms_ai_survey": {
+    "endpoint": "obs.ap-southeast-1.myhuaweicloud.com",
+    "bucket": "rms-ai",
+    "op": "listObjects",
+    "max_keys": 20,
+    "status": 200,
+    "failure_layer": "HTTP_2XX_OK",
+    "elapsed_s": 1.32,
+    "count_returned": 20,
+    "is_truncated": true,
+    "total_size_bytes_sample": 665868,
+    "prefix_histogram": {
+      "image_files": 20
+    },
+    "sample_object_names_and_sizes": [
+      {
+        "key": "image_files/2795ba36-2730-435f-b1be-eb07a9d83c1f/00643c19-cbcc-43b8-88bc-69118bb889e9.jpg",
+        "size_bytes": 5898
+      },
+      {
+        "key": "image_files/2795ba36-2730-435f-b1be-eb07a9d83c1f/0086f9e6-bd1d-44a7-9512-a04191d71664.jpeg",
+        "size_bytes": 134907
+      },
+      {
+        "key": "image_files/2795ba36-2730-435f-b1be-eb07a9d83c1f/00909ce9-7590-43f3-a7a5-06c97e3c73c0.jpg",
+        "size_bytes": 5898
+      },
+      {
+        "key": "image_files/2795ba36-2730-435f-b1be-eb07a9d83c1f/00a83f6f-4f65-4adc-ae9e-abbc5c0e626f.png",
+        "size_bytes": 1186
+      },
+      {
+        "key": "image_files/2795ba36-2730-435f-b1be-eb07a9d83c1f/00c05fa4-b694-4fb3-9435-7b341bb1981b.png",
+        "size_bytes": 68281
+      },
+      {
+        "key": "image_files/2795ba36-2730-435f-b1be-eb07a9d83c1f/00d8522e-06ba-4c06-906f-9aa257b3867c.png",
+        "size_bytes": 9003
+      },
+      {
+        "key": "image_files/2795ba36-2730-435f-b1be-eb07a9d83c1f/0140bbfa-61ee-4d16-878b-1c56f1b953ce.png",
+        "size_bytes": 1159
+      },
+      {
+        "key": "image_files/2795ba36-2730-435f-b1be-eb07a9d83c1f/014c18c6-28f7-4fa0-8f51-cbf172e5d391.png",
+        "size_bytes": 41629
+      },
+      {
+        "key": "image_files/2795ba36-2730-435f-b1be-eb07a9d83c1f/018b4b5a-bdec-44c2-83ed-d360c8fb74c5.png",
+        "size_bytes": 283588
+      },
+      {
+        "key": "image_files/2795ba36-2730-435f-b1be-eb07a9d83c1f/01a9f840-3e03-4fda-844a-8cf0b4b30bdb.png",
+        "size_bytes": 1342
+      },
+      {
+        "key": "image_files/2795ba36-2730-435f-b1be-eb07a9d83c1f/01b5aec1-4752-42a1-b47c-85534df42d46.jpg",
+        "size_bytes": 5898
+      },
+      {
+        "key": "image_files/2795ba36-2730-435f-b1be-eb07a9d83c1f/01e48eab-387b-4a16-992f-467c568ad76d.png",
+        "size_bytes": 21670
+      },
+      {
+        "key": "image_files/2795ba36-2730-435f-b1be-eb07a9d83c1f/020bbd1d-444f-4eab-8290-7d2ed47d0a4e.png",
+        "size_bytes": 23315
+      },
+      {
+        "key": "image_files/2795ba36-2730-435f-b1be-eb07a9d83c1f/024e485d-828a-4b3e-a8d1-6eae23160a34.jpg",
+        "size_bytes": 5898
+      },
+      {
+        "key": "image_files/2795ba36-2730-435f-b1be-eb07a9d83c1f/0262b486-ae66-433c-8961-95dcb51a599c.jpg",
+        "size_bytes": 5898
+      },
+      {
+        "key": "image_files/2795ba36-2730-435f-b1be-eb07a9d83c1f/02870273-90dd-4908-b005-bca07f89adc6.jpg",
+        "size_bytes": 5898
+      },
+      {
+        "key": "image_files/2795ba36-2730-435f-b1be-eb07a9d83c1f/028e7ff2-cee2-4cab-b0fb-6ca32ede363e.jpg",
+        "size_bytes": 5898
+      },
+      {
+        "key": "image_files/2795ba36-2730-435f-b1be-eb07a9d83c1f/0294e318-c192-4b68-a7fc-bb4a0b3a6d0f.jpg",
+        "size_bytes": 5898
+      },
+      {
+        "key": "image_files/2795ba36-2730-435f-b1be-eb07a9d83c1f/02c3fb4b-fd1d-4131-b7f3-76fcd908e53b.png",
+        "size_bytes": 26706
+      },
+      {
+        "key": "image_files/2795ba36-2730-435f-b1be-eb07a9d83c1f/02ec932e-e111-4e90-bec5-a3059bf8c45c.jpg",
+        "size_bytes": 5898
+      }
+    ]
+  }
+}
