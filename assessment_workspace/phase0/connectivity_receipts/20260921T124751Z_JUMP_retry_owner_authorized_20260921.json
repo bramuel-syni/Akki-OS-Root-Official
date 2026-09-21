@@ -1,0 +1,142 @@
+{
+  "task": "jump_connection_retry_owner_authorized_20260921",
+  "captured_at_utc": "2026-09-21T12:47:06Z",
+  "authorization": "Owner priority directive this-session 2026-09-21T~12:30Z: 'RETRY THE JUMP SERVER CONNECTION with the SAME credentials already on file. Context: the owner has just spoken with the RMS admin \u2014 the expectation is the network path (firewall) may now admit us; the credentials were NOT rotated, use the existing banked ones.' R-91 hold unchanged (owner: 'non-interrupting to the R-91 hold \u2014 this is authorized work now').",
+  "cred_source": {
+    "custody_file": "/app/backend/estate_keys/data_sources/RMS_Connection_Creds.xlsx",
+    "custody_file_sha256": "d778eb1eb2cbe94a7f994eec8d5b6584108b85a7522426ec057dc3613d9b72db",
+    "drop_manifest": "/app/assessment_workspace/phase0/credential_drop_manifests/20260916T1910Z_drop_manifest.json",
+    "drop_manifest_sha256": null
+  },
+  "egress_ip_we_present": {
+    "ifconfig.me": "35.184.53.215"
+  },
+  "cred_shape": {
+    "jump": {
+      "label": "Jump Server",
+      "host": "159.138.173.250",
+      "user_len": 4,
+      "user_prefix2": "ro",
+      "password_len": 12
+    },
+    "radio": {
+      "label": "Radio news system.",
+      "host": "10.10.19.40",
+      "user_len": 6,
+      "user_prefix2": "ub",
+      "password_len": 14
+    },
+    "nas": {
+      "dsm_url": "http://10.10.55.55:5000/#/signin",
+      "user_len": 7,
+      "password_len": 8,
+      "n_navigation_steps": 20,
+      "n_channels_registered": 0
+    },
+    "mysql_clusters_count": 8
+  },
+  "target": {
+    "host": "159.138.173.250",
+    "port": 22
+  },
+  "probes": {
+    "dns": {
+      "resolved": true,
+      "addresses": [
+        "159.138.173.250"
+      ]
+    },
+    "tcp_connect": {
+      "tcp_connected": true,
+      "elapsed_s": 0.264
+    },
+    "ssh_banner_plus_auth_plus_survey": {
+      "tcp_connected": true,
+      "banner": "SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.15",
+      "banner_class": "OpenSSH",
+      "auth_ok": true,
+      "auth_failure_layer": null,
+      "remote_host_key_type": "ssh-ed25519",
+      "remote_host_key_sha256_b64": "W45xvjhsARJOcFj9U/bcWC3KDte30T+Amu3eCx4UrwU",
+      "hostname": "ecs-b896",
+      "uname_a": "Linux ecs-b896 6.8.0-106-generic #106-Ubuntu SMP PREEMPT_DYNAMIC Fri Mar  6 07:58:08 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux",
+      "whoami": "root",
+      "uptime": "20:47:13 up 8 days,  5:23,  2 users,  load average: 0.08, 0.04, 0.00",
+      "downstream_reachability_from_jump": [
+        {
+          "kind": "mysql",
+          "section": "iebc_forms",
+          "host": "203.123.86.10",
+          "port": 3306,
+          "result": "TIMEOUT_OR_ERROR",
+          "stderr_first_256": ""
+        },
+        {
+          "kind": "mysql",
+          "section": "USSD",
+          "host": "110.238.76.159",
+          "port": 3306,
+          "result": "TCP_OPEN",
+          "stderr_first_256": ""
+        },
+        {
+          "kind": "mysql",
+          "section": "MICROSERVICES",
+          "host": "159.138.164.93",
+          "port": 3306,
+          "result": "TIMEOUT_OR_ERROR",
+          "stderr_first_256": ""
+        },
+        {
+          "kind": "mysql",
+          "section": "MICROSERVICES",
+          "host": "HOST",
+          "port": 3306,
+          "result": "TCP_CLOSED",
+          "stderr_first_256": "bash: line 1: HOST: Temporary failure in name resolution\nbash: line 1: /dev/tcp/HOST/3306: Invalid argument"
+        },
+        {
+          "kind": "mysql",
+          "section": "MICROSERVICES",
+          "host": "159.138.162.146",
+          "port": 3306,
+          "result": "TCP_OPEN",
+          "stderr_first_256": ""
+        },
+        {
+          "kind": "mysql",
+          "section": "MICROSERVICES",
+          "host": "159.138.164.124",
+          "port": 3306,
+          "result": "TIMEOUT_OR_ERROR",
+          "stderr_first_256": ""
+        },
+        {
+          "kind": "mysql",
+          "section": "MICROSERVICES",
+          "host": "110.238.75.83",
+          "port": 3306,
+          "result": "TIMEOUT_OR_ERROR",
+          "stderr_first_256": ""
+        },
+        {
+          "kind": "mysql",
+          "section": "MICROSERVICES",
+          "host": "203.123.83.144",
+          "port": 3306,
+          "result": "TIMEOUT_OR_ERROR",
+          "stderr_first_256": ""
+        },
+        {
+          "kind": "nas_dsm",
+          "section": null,
+          "host": "10.10.55.55",
+          "port": 5000,
+          "result": "TCP_OPEN",
+          "stderr_first_256": ""
+        }
+      ],
+      "elapsed_s": 44.672
+    }
+  }
+}

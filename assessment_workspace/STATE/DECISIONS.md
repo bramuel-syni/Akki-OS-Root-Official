@@ -23993,4 +23993,80 @@ zero push · zero remote configured · terminal `pytest` only · **no `testing_a
 
 **End of CP-PROD-DEPLOY-SELF-CONTAINMENT. ✅ SEALED via 3-Commit protocol A `283524d8` (code) + companion `/app main` `25790c2c` / B `24661fed` (state) / C this-commit.**
 
+
+---
+
+## JUMP-CONNECTIVITY-RETRY · owner-authorized drill · 2026-09-21T12:47:06Z
+
+### Owner directive verbatim this-session (2026-09-21T~12:30Z)
+
+> "OWNER PRIORITY TASK (non-interrupting to the R-91 hold — this is authorized work now): RETRY THE JUMP SERVER CONNECTION with the SAME credentials already on file. Context: the owner has just spoken with the RMS admin — the expectation is the network path (firewall) may now admit us; the credentials were NOT rotated, use the existing banked ones. ... Execute as a connectivity drill, receipted: ... If auth SUCCEEDS: stop after the reachability survey — do NOT start any MySQL ingestion without a separate owner GO (the ingestion wave has its own discipline)."
+
+### Result — SSH AUTH **SUCCEEDS** ✅
+
+Full matrix banked at `phase0/connectivity_receipts/20260921T124751Z_JUMP_retry_owner_authorized_20260921.json`.
+
+**Egress IP we present (for admin allowlist confirmation)**: `35.184.53.215` (via `ifconfig.me`, timeboxed 6s).
+
+**Credential source (references only — no values in this note or in the receipt)**:
+- Custody file: `/app/backend/estate_keys/data_sources/RMS_Connection_Creds.xlsx` · sha256 `d778eb1eb2cbe94a7f994eec8d5b6584108b85a7522426ec057dc3613d9b72db`
+- Values held in memory only via `tools/rms_creds_loader.load()` · never printed, never written to log or receipt · secret fields exposed only via `describe()` which emits `password_len` / `user_len` / `user_prefix2` shape.
+
+**Target**: `159.138.173.250:22` (per `binds.jump.host` in the loader).
+
+### Probe matrix
+
+| # | Layer                                      | Target                              | Result                                | Timing        | Failure Layer |
+|---|---|---|---|---|---|
+| 1 | DNS resolution                             | `159.138.173.250` (literal IP)       | resolved to `159.138.173.250`         | <1s           | — |
+| 2 | TCP connect                                | `159.138.173.250:22`                 | **connected**                         | 0.264s        | — |
+| 3 | SSH banner                                 | `159.138.173.250:22`                 | `SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.15` (OpenSSH class) | ~1s | — |
+| 4 | SSH host-key fingerprint · TOFU verify     | server ed25519 key sha256            | `W45xvjhsARJOcFj9U/bcWC3KDte30T+Amu3eCx4UrwU` — **MATCHES** T3 handshake at 20260914T094804Z (same host, not re-imaged) | — | — |
+| 5 | SSH password auth                          | `159.138.173.250:22` user prefix `ro…` | **auth_ok: true**                     | ~2s           | — |
+| 6 | Post-auth `hostname`                       | remote                               | `ecs-b896`                            | <1s           | — |
+| 7 | Post-auth `uname -a`                       | remote                               | `Linux ecs-b896 6.8.0-106-generic #106-Ubuntu SMP PREEMPT_DYNAMIC Fri Mar  6 07:58:08 UTC 2026 x86_64` (same kernel as T3) | <1s | — |
+| 8 | Post-auth `whoami`                         | remote                               | `root`                                | <1s           | — |
+| 9 | Post-auth `uptime`                         | remote                               | `20:47:13 up 8 days, 5:23, 2 users, load average: 0.08, 0.04, 0.00` | <1s | — |
+
+Total elapsed for SSH banner+auth+survey block: **44.672s** (dominated by the 9 downstream reachability sub-probes at up to 6s timeboxed each).
+
+### Downstream reachability probes from within JUMP (Huawei MySQL clusters + NAS DSM)
+
+Reachability-only (TCP connect via `/dev/tcp` bash primitive on the JUMP host · **no MySQL protocol handshake · no auth attempts** · timeboxed 6s per probe). Sourced from `binds.mysql_clusters` + `binds.nas.dsm_url` in the loader.
+
+| # | Kind    | Section         | Host              | Port | Result             | Delta vs 20260914T113456Z sweep |
+|---|---|---|---|---|---|---|
+| 1 | mysql   | `iebc_forms`    | `203.123.86.10`   | 3306 | TIMEOUT_OR_ERROR   | previously CLOSED · **still blocked** |
+| 2 | mysql   | `USSD`          | `110.238.76.159`  | 3306 | **TCP_OPEN**       | previously OPEN · unchanged |
+| 3 | mysql   | `MICROSERVICES` | `159.138.164.93`  | 3306 | TIMEOUT_OR_ERROR   | previously CLOSED · **still blocked** |
+| 4 | mysql   | `MICROSERVICES` | `HOST` (parser artefact — see F.1) | 3306 | TCP_CLOSED + DNS error | not in prior sweep |
+| 5 | mysql   | `MICROSERVICES` | `159.138.162.146` | 3306 | **TCP_OPEN**       | previously OPEN · unchanged |
+| 6 | mysql   | `MICROSERVICES` | `159.138.164.124` | 3306 | TIMEOUT_OR_ERROR   | previously CLOSED · **still blocked** |
+| 7 | mysql   | `MICROSERVICES` | `110.238.75.83`   | 3306 | TIMEOUT_OR_ERROR   | previously CLOSED · **still blocked** |
+| 8 | mysql   | `MICROSERVICES` | `203.123.83.144`  | 3306 | TIMEOUT_OR_ERROR   | previously CLOSED · **still blocked** |
+| 9 | nas_dsm | —               | `10.10.55.55`     | 5000 | **TCP_OPEN**       | (new probe · admin-visible endpoint reachable) |
+
+**Summary**:
+- **3 downstream endpoints reachable** from the JUMP: two Huawei MySQL clusters (`110.238.76.159:3306` USSD · `159.138.162.146:3306` MICROSERVICES-primary) + the NAS DSM (`10.10.55.55:5000`).
+- **5 Huawei MySQL clusters still not reachable** from the JUMP — same state as the 2026-09-14 sweep receipt at `phase0/connectivity_receipts/20260914T113456Z_JUMP_mysql_tcp_sweep.json`. The admin's firewall change appears to have restored **our egress → JUMP** SSH (which was the blocker in this session's retry), but the JUMP-egress firewall to the other 5 clusters is unchanged.
+- **NAS DSM reachable** from JUMP — endpoint alive; no authentication attempted.
+
+### Findings — absence-is-a-finding
+
+**F.1** — `MICROSERVICES` cluster shape carries a **placeholder row** parsed by `tools/rms_creds_loader.py` as `host="HOST"` (visible as row 4 above). This is a parser artefact from the xlsx layout (a section-header row was treated as a host tuple). Not a firewall finding; a **loader-hygiene finding** to carry as owner-desk item **OWNER-DROP-04** (extend the loader's `MySQLCluster` detection to skip literal-string header rows like `HOST/USER/PASSWORD/SCHEMA`).
+
+**F.2** — Egress-IP capture on the sandbox side succeeded on the first endpoint (`ifconfig.me → 35.184.53.215`). If the RMS admin's allowlist needs updating to a stable IP or CIDR, this is the current value; the sandbox pod egress may rotate — **not stable across pod restarts**.
+
+**F.3** — Server host-key fingerprint `W45xvjhsARJOcFj9U/bcWC3KDte30T+Amu3eCx4UrwU` matches the 2026-09-14 TOFU-verified pin exactly. **No re-imaging occurred on the JUMP box** between 2026-09-14 and 2026-09-21.
+
+### STOP — per owner directive
+
+Owner directive verbatim: *"If auth SUCCEEDS: stop after the reachability survey — do NOT start any MySQL ingestion without a separate owner GO (the ingestion wave has its own discipline)."* → **HALTING here. No MySQL protocol sessions opened. No queries. No dumps.** Awaiting explicit owner GO for the ingestion wave.
+
+### Standing bounds
+
+R-91 hold **unchanged** · zero push · zero remote · terminal only · **no `testing_agent`** (STRICTLY BANNED per SO §6) · additive-only §3.8 · three-repo discipline · ratchet floor **5858** · CP-PROD-DEPLOY-SELF-CONTAINMENT + R-100-UNWIND seals from this session both banked · HF-HOLD SEC-2026-09-12-01 · R-24 UNLISTED · R-25 tagged · **structural §3.8 guard on `services/request_context/context.py` sha-pin `ad0d9439…`** · **mirror-invariant guard on `/app/backend/vendored/extraction_akki/backend/`** · **owner GO required for MySQL ingestion**.
+
+**End of JUMP-CONNECTIVITY-RETRY drill.**
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
