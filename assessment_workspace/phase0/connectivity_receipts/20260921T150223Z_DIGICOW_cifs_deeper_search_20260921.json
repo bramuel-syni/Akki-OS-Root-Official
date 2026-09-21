@@ -1,0 +1,82 @@
+{
+  "task": "DIGICOW_cifs_deeper_search_20260921",
+  "captured_at_utc": "2026-09-21T14:56:50Z",
+  "predecessor": "phase0/connectivity_receipts/20260921T145515Z_DIGICOW_targeted_read_check_owner_authorized_20260921.json",
+  "reason": "The prior CIFS search used `find ... | head` and returned rc=0 in 26.3s \u2014 pipeline rc masking made it ambiguous whether find completed or timed out on the 47 TiB tree. This pass preserves find's rc + targets directory names only + extends the timeout.",
+  "hygiene": {
+    "read_only": true,
+    "no_downloads": true,
+    "structural_names_ok_to_emit": true
+  },
+  "mount_now": {
+    "cmd": "mount 2>&1 | grep -iE '(cifs|nfs)' | head -3",
+    "rc": 0,
+    "stdout": "//10.10.55.55/OFFAIRRECS/Record on /mnt/nfs-share type cifs (rw,relatime,vers=3.1.1,cache=strict,upcall_target=app,username=bramuel,uid=0,noforceuid,gid=0,noforcegid,addr=10.10.55.55,file_mode=0755,dir_mode=0755,soft,nounix,serverino,mapposix,rsize=4194304,wsize=4194304,bsize=1048576,retrans=1,echo_interval=60,actimeo=1,closetimeo=1)\n",
+    "stderr": "",
+    "elapsed_s": 0.809
+  },
+  "pass_A_dirnames_depth3": {
+    "cmd": "bash -c 'set -o pipefail; timeout 90 find /mnt/nfs-share -maxdepth 3 -type d -iname \"*digicow*\" 2>/tmp/digicow_stderr.log ; echo _RC=$?' 2>&1",
+    "rc": 0,
+    "stdout": "_RC=124\n",
+    "stderr": "",
+    "elapsed_s": 91.073
+  },
+  "pass_A_stderr_sample": {
+    "cmd": "tail -20 /tmp/digicow_stderr.log 2>&1; rm -f /tmp/digicow_stderr.log",
+    "rc": 0,
+    "stdout": "",
+    "stderr": "",
+    "elapsed_s": 0.807
+  },
+  "pass_B_any_type_depth3": {
+    "cmd": "bash -c 'timeout 90 find /mnt/nfs-share -maxdepth 3 -iname \"*digicow*\" 2>/dev/null ; echo _RC=$?' 2>&1",
+    "rc": 0,
+    "stdout": "_RC=124\n",
+    "stderr": "",
+    "elapsed_s": 91.183
+  },
+  "pass_C_tree_width": {
+    "cmd": "bash -c 'for i in $(seq -w 1 16); do d=/mnt/nfs-share/channel$i; if [ -d $d ]; then   n=$(timeout 15 find $d -maxdepth 1 -mindepth 1 -type d 2>/dev/null | wc -l);   echo channel$i depth1_dirs=$n; fi; done'",
+    "rc": 0,
+    "stdout": "channel01 depth1_dirs=324\nchannel02 depth1_dirs=356\nchannel03 depth1_dirs=356\nchannel04 depth1_dirs=357\nchannel05 depth1_dirs=356\nchannel06 depth1_dirs=356\nchannel07 depth1_dirs=356\nchannel08 depth1_dirs=355\nchannel09 depth1_dirs=355\nchannel10 depth1_dirs=355\nchannel11 depth1_dirs=356\nchannel12 depth1_dirs=356\nchannel13 depth1_dirs=170\nchannel14 depth1_dirs=0\nchannel15 depth1_dirs=356\nchannel16 depth1_dirs=0\n",
+    "stderr": "",
+    "elapsed_s": 55.526
+  },
+  "pass_D_per_channel_depth2": {
+    "cmd": "bash -c 'timeout 90 find /mnt/nfs-share -maxdepth 4 -type d -iname \"*digicow*\" 2>/dev/null ; echo _RC=$?' 2>&1",
+    "rc": 0,
+    "stdout": "_RC=124\n",
+    "stderr": "",
+    "elapsed_s": 91.406
+  },
+  "verdict_per_pass": {
+    "pass_A_dirnames_depth3": {
+      "find_rc": 124,
+      "find_rc_hint": "TIMEOUT",
+      "hit_count": 0,
+      "hits": [],
+      "elapsed_s": 91.073
+    },
+    "pass_B_any_type_depth3": {
+      "find_rc": 124,
+      "find_rc_hint": "TIMEOUT",
+      "hit_count": 0,
+      "hits": [],
+      "elapsed_s": 91.183
+    },
+    "pass_D_dirnames_depth4": {
+      "find_rc": 124,
+      "find_rc_hint": "TIMEOUT",
+      "hit_count": 0,
+      "hits": [],
+      "elapsed_s": 91.406
+    }
+  },
+  "overall": {
+    "total_hits_across_passes": 0,
+    "all_completed_cleanly": false,
+    "any_pass_timed_out": true,
+    "conclusion": "DIGICOW_NOT_FOUND_BUT_SOME_PASS_INCOMPLETE"
+  }
+}

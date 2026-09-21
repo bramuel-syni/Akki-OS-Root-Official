@@ -1,0 +1,63 @@
+{
+  "task": "DIGICOW_targeted_read_check_owner_authorized_20260921",
+  "captured_at_utc": "2026-09-21T14:54:43Z",
+  "authorization": "Owner directive this-session 2026-09-21T~14:35Z: 'OWNER GO targeted read-capability check on DIGICOW'. R-91 hold unchanged. Ratchet 5858 unchanged.",
+  "hygiene": {
+    "read_only": true,
+    "value_blind_for_credentials": true,
+    "structural_names_ok_to_emit": "schema, table, host, tag, bucket, mount-path names are structural and safe to report; user/password cells are reported by shape only.",
+    "no_downloads": true
+  },
+  "token": "digicow",
+  "cred_shape": {
+    "jump": {
+      "label": "Jump Server",
+      "host": "159.138.173.250",
+      "user_len": 4,
+      "user_prefix2": "ro",
+      "password_len": 12
+    },
+    "n_mysql_clusters": 9
+  },
+  "step_1a_sheet_search": {
+    "sheet_path": "/app/backend/estate_keys/data_sources/RMS_Connection_Creds.xlsx",
+    "sheet_sha256_first_16": "3311dae2d142f3a6",
+    "hit_count": 0,
+    "hits": []
+  },
+  "step_1b_sweep_receipt_search": {
+    "hit_count": 0,
+    "hits": []
+  },
+  "step_1c_obs_receipt_search": {
+    "hit_count": 0,
+    "hits": []
+  },
+  "step_1c_obs_fresh_list_check": {
+    "hit_count": 0,
+    "hits": []
+  },
+  "jump_open_ok": true,
+  "step_1d_nfs_cifs_search": {
+    "top_level_hit_count": 0,
+    "top_level_hits": [],
+    "find_hit_count": 0,
+    "find_hits": [],
+    "find_rc": 0,
+    "find_elapsed_s": 26.302
+  },
+  "step_1_aggregate_locations": {
+    "total_hit_count": 0,
+    "hits": []
+  },
+  "step_2_proof_of_read": [],
+  "verdict": {
+    "token": "digicow",
+    "aggregate_hits": 0,
+    "mysql_schema_hits": 0,
+    "proof_attempts": 0,
+    "binary_answer": "NOT_PRESENT",
+    "explicit": "The token 'digicow' does not appear in any of: the fresh RMS CREDS sheet (cell text or shape), the prior sweep receipt's schema/table/DB names on any authenticated cluster, the OBS bucket inventory (banked or fresh listBuckets), or the CIFS mount /mnt/nfs-share (top level or depth-3 case-insensitive find). Candidate owner-drop for a host/cred we don't yet hold \u2014 no endpoint is guessed.",
+    "failure_layer": "SURFACE_NOT_PRESENT_IN_BANKED_ESTATE"
+  }
+}
