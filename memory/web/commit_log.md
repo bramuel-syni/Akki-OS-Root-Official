@@ -30,3 +30,21 @@
   - frontend/src/components/shared/HonestEmpty.jsx
   - frontend/src/components/shared/RefusalCard.jsx
 - **Mobile files referenced**: mobile/app/index.tsx, mobile/app/_layout.tsx (minimal placeholder app)
+
+## Iteration 2 — R-91 CP-APP-JS-UNIFY Option A · V8 substitution engine restored
+
+- **Commit**: d5ad077c6efd8e5d04105d05b2a4779a727616c7
+- **Date**: 2026-09-21T00:17Z
+- **Changes**:
+  - Created lib/v8SubstitutionEngine.js (37 named rules verbatim from pod_shell)
+  - window.V8_SUBSTITUTIONS_DUMMIES exposed at module load (37 entries verified)
+  - Rewrote pages/os/OSPrototype.jsx as full PortalIframe with MutationObserver
+  - data-testid="v8-portal-iframe-host" sentinel on outer div
+  - App.js unchanged (71-line router)
+- **Files modified**:
+  - frontend/src/lib/v8SubstitutionEngine.js (NEW — 861 lines)
+  - frontend/src/pages/os/OSPrototype.jsx (REWRITTEN — 175 lines)
+- **Reference files used**:
+  - assessment_workspace/repos/Extraction-Akki/pod_shell/frontend/src/App.js (V8-shell-port source)
+  - assessment_workspace/phase0/specs/r91_cp_app_js_unify_spec.md
+  - assessment_workspace/phase0/spec_hunt_receipts/20260920T235800Z_r91_cp_app_js_unify_hunt_receipt.md
