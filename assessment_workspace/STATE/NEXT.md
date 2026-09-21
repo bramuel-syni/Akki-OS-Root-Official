@@ -5239,4 +5239,41 @@ R-99 Commit-C fixup banks Commit-B `58685080caafe967111ea1af6e3f665e1b5518c5` (s
 **COMPLETION SPRINT PROGRESS**: step 1 Family C ✅ (R-96 + R-97) · step 2 Family D ✅ (R-98) · step 3 OPEN-CARD SWEEP ✅ (`fad511a7`) · **step 4 LIFECYCLE/ENTITLEMENT HTTP SURFACE ✅ (this R-99 seal)** · steps 5-6 pending.
 
 
+### 2026-09-21T08:35:00Z · R-100 · CP-PORTAL-WRITE-SURFACE · Commit-A + Commit-B landed · ⏳ IN-FLIGHT until Commit-C fixup
+
+Commit-A `39412d09a6d7f0420049fd96908778eedbc56ab2` (short `39412d09`) landed on `programme/track-a` at 2026-09-21T08:32:00Z under WAVE R-100 · **COMPLETION SPRINT step 4 continuation** (write-surface complement to R-99 read surface). Owner-authorised additive scope with 4 conditions (2026-09-21T~07:50Z verbatim): (1) principal from JWT propagation · never header · unauthenticated refuses (PRIN-11/PRIN-12); (2) stop is **request-scoped** Executing → Stopped (NOT party_halt · owner-only surface); (3) submit routes through sealed lifecycle stack (DAP-18/14/21 + invoke() chokepoint · ENT-16 in invoke()); (4) reads carry identity + disclosure discipline (ENT-22 no cache · ENT-3/ENT-43 dial-admit badges · DAP-15 no approver identity · DAP-35 no remaining-budget line · R-78 bounded-3 retry hash-identical).
+
+**Delta +21 MEASURED** = 21 new tests in `test_r100_portal_write_surface.py`. **Ratchet 5831 → 5852**. New baseline_failures.json sha `b6520ba93207…` was `070c57c4…`. dap_lifecycle_wave.lifecycle_shape_snapshot.json `contract_sha256` regen `9a0595dc…` → `de55a65a…` (additive Stopped state/edge/terminal per R-78 Interrupted precedent). Deterministic double-green byte-identical run1+run2 under `PYTHONHASHSEED=0 BASELINE_GUARD=1` both 5852 passed · 3 baseline-fails (subset · all in baseline_failures) · 1 skip · 438 warnings.
+
+**FE-WIRING-READY-2 flag RAISED** with 14-endpoint dispatch (R-99 5 read-only canon rules + R-100 9 portal write/read) + auth + sample payloads + 6 CONDITION constraints inheritance banked at `phase0/spec_hunt_receipts/20260921T083500Z_r100_portal_write_surface_seal_report.md`.
+
+**CONTINUITY BUNDLE new standing rule** (owner 2026-09-21T~08:10Z): at every seal, `git bundle create` for ALL THREE local-only repos (code programme/track-a · state master · FE /app main) + sha256-pin in STATE/PINS.md. Landing as Commit-C fixup artefact this-wave.
+
+**R-91 unchanged** — stays parked at frozen horizon 2026-09-23T03:23:15Z (NO EXPEDITE). Current UTC ~08:35Z · ~42.9h out.
+
+**Autopilot next**: Commit-C fixup this-turn → Continuity Bundle export (3 bundles) + STATE/PINS.md sha256 pins → FE-WIRING-READY-2 dispatch → R-91 ε-APPLY at horizon (NO EXPEDITE) → M1-to-date BUILD_JOURNAL closure state-only (COMPLETION SPRINT step 6).
+
+**Standing bounds unchanged**: zero push · terminal pytest only · **no `testing_agent`** (BANNED) · additive-only §3.8 · three-repo discipline · ratchet floor **5852** · R-91 NO EXPEDITE · HF-HOLD SEC-2026-09-12-01 · R-24 UNLISTED · R-25 tagged.
+
+
+### 2026-09-21T08:45:00Z · R-100 Commit-C fixup · ✅ SEALED
+
+R-100 Commit-C fixup banks Commit-B `e6a86c2c3f613def64cc854710837f03c468d89e` (short `e6a86c2c`) via R-6 boundary regen advance in `notes/ORCH_BOOT.md` (state_head → `e6a86c2c` · code_repo history +`39412d09a6d7f0420049fd96908778eedbc56ab2` for R-100 Commit-A `39412d09`). ORCH_BOOT sha `c6231be34c2de3266553f2998abca2f555049b7af691d081557dc0f37a3cf385` (both notes and POD audit mirror byte-identical). Ratchet floor 5852 unchanged this-Commit-C.
+
+**CONTINUITY BUNDLE EXPORT (new standing rule · owner 2026-09-21T~08:10Z verbatim)** — 3 local `git bundle create` invocations landed this Commit-C:
+- `continuity_bundles/code_20260921T083500Z.bundle` (code programme/track-a HEAD `39412d09…`) · sha256 `685b84b29d7e165effa1e5e08de6f114c2d044f5a77d1299e361286cb03e1fc9`
+- `continuity_bundles/state_20260921T083500Z.bundle` (state master HEAD `e6a86c2c…`) · sha256 `3a4c48b69cc17e6c71bdfd81ba812e7dec433d07a24c39f3210970a0a4326698`
+- `continuity_bundles/fe_20260921T083500Z.bundle` (FE /app main HEAD `540248c7…`) · sha256 `67a983cc100ff194e29f73c0946e6a6e5edc20182afb355215d06d1db669cece`
+
+All three verify `git bundle verify` with *"complete history"*. sha256-pinned in `STATE/PINS.md` under new `<!-- CONTINUITY-BUNDLE-PINS -->` block. Zero-push · local export only per owner scope.
+
+**Router `/api/portal/*` exposes JWT-gated principal-scoped request lifecycle + entitlement services** under owner-ruled four conditions verbatim (2026-09-21T~07:50Z). Additive Executing → Stopped state-machine trio landed same Commit-A per R-78 Interrupted precedent.
+
+**FE-WIRING-READY-2 flag RAISED** for FE specialist ONE-pass dispatch (portal write paths + rbm-8 countdown surface + canon-rule displays together per owner directive).
+
+**Autopilot next**: FE-WIRING-READY-2 specialist dispatch (seal report at `phase0/spec_hunt_receipts/20260921T083500Z_r100_portal_write_surface_seal_report.md` is the artefact · 14 endpoints + auth + payloads + 6 owner-CONDITION constraints ready) → residual scan (none pending) → **R-91 ε-APPLY** at frozen horizon `2026-09-23T03:23:15Z` (`date -u` checked · NO EXPEDITE) → **M1-to-date BUILD_JOURNAL closure** state-only (COMPLETION SPRINT step 6).
+
+**COMPLETION SPRINT PROGRESS**: step 1 Family C ✅ (R-96 + R-97) · step 2 Family D ✅ (R-98) · step 3 OPEN-CARD SWEEP ✅ (`fad511a7`) · step 4 LIFECYCLE/ENTITLEMENT HTTP SURFACE ✅ (R-99 read + **this R-100 write · sealed**) · steps 5-6 pending.
+
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

@@ -23518,4 +23518,146 @@ zero push · zero remote configured · terminal `pytest` only · **no `testing_a
 **End of R-99 CP-LIFECYCLE-ENTITLEMENT-HTTP-SURFACE.**
 
 
+## 2026-09-21T08:35:00Z · R-100 · CP-PORTAL-WRITE-SURFACE · ⏳ IN-FLIGHT (Commit-A + Commit-B landed · Commit-C fixup next-turn)
+
+**Wave**: R-100 · COMPLETION SPRINT step 4 continuation · additive JWT-gated portal write-path routers + additive state-machine trio.
+**Commit-A (code programme/track-a)**: `39412d09a6d7f0420049fd96908778eedbc56ab2` (short `39412d09`).
+**Commit-B (state master · this-commit)**: banks Commit-A + this DECISIONS append + STATE/NEXT.md R-100 IN-FLIGHT marker + STATE/PINS.md commissioning_record pointer refresh + phase0/spec_hunt_receipts/20260921T083500Z_r100_portal_write_surface_seal_report.md NEW.
+**Commit-C fixup next-turn**: R-6 boundary regen advancing state_head from `58685080` (R-99 Commit-B) to this-Commit-B + new code_repo entry for `39412d09` + POD audit mirror byte-identical sync + **Continuity Bundle export (3 bundles · code programme/track-a + state master + FE /app main) + STATE/PINS.md sha256 pins for all 3**.
+
+### Owner scope-delta reply verbatim (2026-09-21T~07:50Z) · four conditions
+
+Owner reply to autopilot's scope-delta hunt (Alt-A/B/C/D options for portal write-path) — verbatim, banked as CONDITION 1-4 binding the entire R-100 wave:
+
+**CONDITION 1 — principal via JWT propagation, never from a header, no default actor.**
+> *"The existing X-Akki-App-ID posture on /api/objectives is caller-supplied identity — PRIN-12 forbids exactly that, and R-100 must not inherit it. Every new route derives the principal through PRIN-11's propagation; a request with no resolvable principal refuses, no default actor."*
+
+**CONDITION 2 — SCOPE CHANGE · stop is request-scoped · party_halt owner-only.**
+> *"A requester stopping their own executing request is not [DAP-27]; it's a request-level terminal transition — Executing → Stopped — charged only to the point of the stop, receipted. Wire POST /requests/{id}/stop to that transition in the state machine. The stop-confirm copy may be reused if its text is request-scoped; party_halt stays behind the owner surface. A requester must never be able to halt a party, including their own."*
+
+Owner additionally authorised additive state-machine edit: *"the state machine may need the additive Executing → Stopped transition if it doesn't exist — additive only, verify first"*. Verified pre-Commit-A: neither `Stopped` state nor `Executing → Stopped` edge existed. Additive-only per SO §3.8 · precedent R-78 Interrupted addition. Landed same Commit-A.
+
+**CONDITION 3 — submit enters lifecycle properly (chokepoint invoke() · ENT-16 inside invoke()).**
+> DAP-18 frozen objective + DAP-14 approval routing BEFORE anything executes + DAP-21 metered event + invoke() only reached through chokepoint · ENT-16 resolution happens inside invoke().
+
+**CONDITION 4 — reads carry identity + disclosure discipline.**
+> ENT-22 allowance derived from Ledger events only, no cache · ENT-3+ENT-43 badges show only rows the licence's dials admit (excluded rows do not appear, not greyed) · DAP-15 list/detail never surface approver identity · DAP-35 no reason line implies remaining budget · retry re-runs every gate from failed stage forward, hash-identical objective, bounded three, each attempt receipted.
+
+### Owner CONTINUITY BUNDLE new standing rule verbatim (2026-09-21T~08:10Z)
+
+Owner reply banking the R-100 approval also introduced a new standing rule that binds every seal from R-100 forward:
+
+> *"Continuity bundle scope: ALL THREE local-only repos, not code only. The owner's purpose line is 'a state that can be reconstructed from outside the sandbox' — reconstruction needs the state repo (master: DECISIONS/PINS/OBJECTIVES/receipts) and the FE repo (/app main: specialist commits, also zero-remote) as much as the code branch. Bundle each (code programme/track-a · state master · /app main), sha256-pin all three in STATE/PINS.md at the R-100 seal and every seal thereafter. Check the audit instruction on file first — if it prescribes a narrower or different bundle shape, follow the instruction's shape for the audit artefact and ADD the other repos as continuity artefacts alongside; if it's silent, three bundles as ruled here. Local export only — zero-push untouched."*
+
+Landing scope: Commit-C fixup this-wave will produce `continuity_bundles/{code,state,fe}_20260921T083500Z.bundle` locally + sha256-pin all three in `STATE/PINS.md` under new `<!-- CONTINUITY-BUNDLE-PINS -->` block. Zero-push discipline unchanged. Applies to every seal thereafter as a first-class deliverable.
+
+### Scope · additive-only per SO §3.8
+
+Commit-A tree = 10 files (see seal report §Scope for line counts and details):
+- 4 NEW files: `backend/routers/portal_requests.py` (5 endpoints · 265L) + `backend/routers/portal_entitlement.py` (4 endpoints · 196L) + `backend/services/dap_lifecycle/request_stop.py` (74L · additive request-scoped confirm-copy renderer) + `backend/tests/invariants/test_r100_portal_write_surface.py` (21 tests · 511L).
+- 6 MOD files: `backend/services/dap_lifecycle/state_machine.py` (+26L additive Stopped state/edge/terminal · precedent R-78 Interrupted) + `backend/tests/invariants/test_dap_lifecycle_wave.py` (+22L companion expected-set additive updates) + `backend/tests/invariants/dap_lifecycle_wave.lifecycle_shape_snapshot.json` (contract_sha256 regen `9a0595dc…` → `de55a65a…`) + `backend/server.py` (+8L · 2 additive router mounts) + `backend/tests/invariants/known_unwired.py` (+50L · 2 new entries with Doc04/Doc05/Doc11/Doc12 citations · FE-WIRING-READY-2 remediation R-tag) + `backend/tests/invariants/baseline_failures.json` (ratchet 5831→5852 both fields + new ratchet_history entry).
+
+**Delta +21 MEASURED** (targeted == measured · CCS2 clean · no correction).
+
+### AUTHENTIC RED-first
+
+21 R-100 tests authored BEFORE routers/state-machine edits · initial RED sweep 6/21 fail right-reason (docstring grep-negative hits on `X-Akki-App-ID` + `party_halt_billing` · single-line-import regex mismatch for multi-line imports · Depends-based auth pattern producing 500 instead of 401). GREEN post-fix: docstring scrubbing + single-line imports + `require_identity_or_deny` short-circuit pattern matching team.py precedent (15+ router precedents) + `async def` signatures. Additionally the 4 test_dap_lifecycle_wave invariants flipped from initial RED-post-state-machine-edit to GREEN after companion additive-expected-set updates + contract snapshot regen.
+
+Deterministic BASELINE_GUARD=1 PYTHONHASHSEED=0 double-sweep byte-identical (drill_receipts/20260921T083222Z_run1.log + 20260921T083536Z_run2.log). Both runs: 5852 passed · 3 baseline-fails (test_ship_manifest_dod + 2 test_wave_g_pod_shell_frontend_mirror · all subset of baseline_failures per V4 invariant) · 1 skip · 438 warnings · ~186s each.
+
+### FE-WIRING-READY-2 handoff artifact
+
+Banked at `phase0/spec_hunt_receipts/20260921T083500Z_r100_portal_write_surface_seal_report.md`:
+- Combined 14-endpoint dispatch list (R-99 5 read-only + R-100 9 portal write/read)
+- Auth requirements (JWT-only via `/api/auth/login` → refresh · NO `X-Akki-App-ID` anywhere)
+- Sample payloads verbatim from live sweep run1 shape
+- 6 owner-CONDITION binding constraints inheritance (stop-scope · no-approver-identity · no-remaining-budget · dial-admit-only-badges · R-91-countdown-byte-verbatim · JWT-only)
+
+FE specialist dispatched via this artifact wires ONE pass (portal write paths + rbm-8 countdown surface + canon-rule displays together) per owner directive verbatim.
+
+### Pre-Commit-A operations (M16-W3 corrected order)
+
+Ran `tools/r100_pre_commit_a_ratchet_and_orch_boot_regen.py` before Commit-A: bumped `baseline_failures.json` ratchet 5831 → 5852 both fields + appended ratchet_history entry + regen'd `notes/ORCH_BOOT.md` with new `generated_at_utc` + `regeneration_reason` + `passed_floor: 5852` + `counts_at_baseline_passed: 5852` + `baseline_failures_sha256: b6520ba93207…` + POD audit mirror byte-identical copy. Standard M16-W3 corrected order.
+
+### R-91 posture unchanged
+
+R-91 CP-APP-JS-UNIFY Phase 2 remains PARKED at frozen horizon `2026-09-23T03:23:15Z` (~42.9h out at this seal · `date -u` = 2026-09-21T~08:35Z). RBM-8 ceremony-mechanic anchor at R-98 continues to surface byte-verbatim via R-99 endpoint. **NO EXPEDITE**.
+
+### COMPLETION SPRINT PROGRESS
+
+Step 1 Family C ✅ (R-96 + R-97) · Step 2 Family D ✅ (R-98) · Step 3 OPEN-CARD SWEEP ✅ (state-only `fad511a7`) · Step 4 LIFECYCLE/ENTITLEMENT HTTP SURFACE ✅ (R-99 read + **this R-100 write**) · Steps 5-6 pending.
+
+### Autopilot next
+
+(a) **Commit-C fixup this-turn** — banks Commit-B SHA + `notes/ORCH_BOOT.md` R-6 boundary regen (state_head → this-Commit-B + new code_repo entry for Commit-A `39412d09`) + POD audit mirror sync.
+(b) **Continuity Bundle export** as fixup artefact — 3 local `git bundle create` invocations + sha256 pins for all 3 in `STATE/PINS.md` under new `<!-- CONTINUITY-BUNDLE-PINS -->` block. Zero-push.
+(c) **FE-WIRING-READY-2 dispatch** — seal report is the artefact · 14 endpoints + auth + sample payloads + 6 CONDITION constraints ready.
+(d) **R-91 ε-apply** at first boundary after `2026-09-23T03:23:15Z` (`date -u` checked each seal · NO EXPEDITE · rigid per RBM-8/SER C.5 I-4/SO §6.6).
+(e) **M1-to-date BUILD_JOURNAL closure state-only** as final act (COMPLETION SPRINT step 6).
+
+### Standing bounds
+
+zero push · zero remote configured · terminal `pytest` only · **no `testing_agent`** (STRICTLY BANNED per SO §6) · additive-only §3.8 · three-repo discipline (code=`programme/track-a` · state=`master` · POD audit mirror=`main` at `/app/frontend/`) · ratchet monotonic-up floor **5852** · R-91 PARKED horizon `2026-09-23T03:23:15Z` NO EXPEDITE · HF-HOLD SEC-2026-09-12-01 · R-24 UNLISTED · R-25 tagged · R-88+ OWNER-RATIFICATION-PENDING RETIRED at `a30db4f7`.
+
+**End of R-100 CP-PORTAL-WRITE-SURFACE (IN-FLIGHT).**
+
+
+## 2026-09-21T08:45:00Z · R-100 Commit-C fixup · ✅ SEALED
+
+**Wave**: R-100 · COMPLETION SPRINT step 4 continuation · SEALED at this Commit-C fixup.
+**Commit-B banked at**: `e6a86c2c3f613def64cc854710837f03c468d89e` (short `e6a86c2c`) · state master.
+**Commit-C fixup (this-commit · state master)**: R-6 boundary regen advancing `heads_last_sealed.state_repo.head` from `58685080` (R-99 Commit-B) to `e6a86c2c` (R-100 Commit-B) + new `code_repo:` entry inserted for R-100 Commit-A `39412d09a6d7f0420049fd96908778eedbc56ab2` in `notes/ORCH_BOOT.md`. POD audit mirror byte-identical sync. NEW `<!-- CONTINUITY-BUNDLE-PINS -->` block appended to `STATE/PINS.md` with sha256 pins for all 3 bundles per owner CONTINUITY BUNDLE standing rule (verbatim 2026-09-21T~08:10Z).
+
+**ORCH_BOOT.md sha256 (post Commit-C R-6 regen)**: `c6231be34c2de3266553f2998abca2f555049b7af691d081557dc0f37a3cf385` (both notes and POD audit mirror byte-identical).
+
+**Ratchet floor**: 5852 unchanged this-Commit-C (advance to 5852 happened pre-Commit-A per M16-W3 corrected order).
+
+### CONTINUITY BUNDLE export (new standing rule · owner 2026-09-21T~08:10Z verbatim)
+
+Owner ruling this-session verbatim reproduced verbatim in Commit-B DECISIONS section (R-100 IN-FLIGHT above). Landed as Commit-C fixup artefact this-wave:
+
+- `continuity_bundles/code_20260921T083500Z.bundle` (17.9 MB · code Extraction-Akki repo · `programme/track-a` HEAD `39412d09…` R-100 Commit-A · sha256 `685b84b29d7e165effa1e5e08de6f114c2d044f5a77d1299e361286cb03e1fc9`)
+- `continuity_bundles/state_20260921T083500Z.bundle` (32.6 MB · state assessment_workspace root repo · `master` HEAD `e6a86c2c…` R-100 Commit-B · sha256 `3a4c48b69cc17e6c71bdfd81ba812e7dec433d07a24c39f3210970a0a4326698`)
+- `continuity_bundles/fe_20260921T083500Z.bundle` (52.4 MB · FE /app repo · `main` HEAD `540248c7…` FE HEAD at seal · sha256 `67a983cc100ff194e29f73c0946e6a6e5edc20182afb355215d06d1db669cece`)
+
+All three bundles verify `git bundle verify` reporting *"complete history"* and correct HEAD refs. sha256-pinned in `STATE/PINS.md` under `<!-- CONTINUITY-BUNDLE-PINS 2026-09-21T08:35:00Z BEGIN -->` block with convention: timestamped folder `continuity_bundles/{code,state,fe}_YYYYMMDDTHHMMSSZ.bundle` per seal · sha256 pin block appends new row per seal · no prior rows edited · local export only · zero-push discipline unchanged.
+
+Applies to every seal thereafter as first-class deliverable.
+
+### FE-WIRING-READY-2 flag RAISED
+
+Handoff artefact: `phase0/spec_hunt_receipts/20260921T083500Z_r100_portal_write_surface_seal_report.md`. 14 endpoints (R-99 5 read-only canon rules + R-100 9 portal write/read) + JWT-only auth via `POST /api/auth/login` → refresh + sample payloads verbatim from live sweep run1 + 6 owner-CONDITION binding constraints inheritance (stop-scope · no-approver-identity · no-remaining-budget · dial-admit-only-badges · R-91-countdown-byte-verbatim · JWT-only-no-header-identity).
+
+### test_orch_boot regression check
+
+Post-Commit-C ORCH_BOOT.md regen must reflect:
+- `heads_last_sealed.state_repo.head` = `e6a86c2c3f613def64cc854710837f03c468d89e` (this Commit-B · banked in this DECISIONS section + Commit-C fixup section in NEXT.md above via short-form `e6a86c2c`).
+- `heads_last_sealed.code_repo[newest].head` = `39412d09a6d7f0420049fd96908778eedbc56ab2` (R-100 Commit-A · banked in this DECISIONS + Commit-B DECISIONS section + NEXT.md R-100 IN-FLIGHT section via short-form `39412d09`).
+- `baseline_failures_sha256` = `b6520ba9320728c05864b4f44c35bcbdecc0c440e9cf00d8b997931f841ad0d1` (post pre-Commit-A ratchet bump).
+- `passed_floor` = `5852` (post pre-Commit-A ratchet bump).
+
+All fields satisfied. `test_orch_boot_anti_forget_manifest_matches_live_ratchet_and_sealed_heads` GREEN this Commit-C.
+
+### R-91 posture unchanged
+
+R-91 CP-APP-JS-UNIFY Phase 2 remains PARKED at frozen horizon `2026-09-23T03:23:15Z` (~42.7h out at this seal · `date -u` = 2026-09-21T~08:45Z). **NO EXPEDITE**.
+
+### COMPLETION SPRINT PROGRESS
+
+Step 1 Family C ✅ (R-96 + R-97) · Step 2 Family D ✅ (R-98) · Step 3 OPEN-CARD SWEEP ✅ (state-only `fad511a7`) · Step 4 LIFECYCLE/ENTITLEMENT HTTP SURFACE ✅ (R-99 read + **this R-100 write · sealed**) · Steps 5-6 pending.
+
+### Autopilot next
+
+(a) **FE-WIRING-READY-2 specialist dispatch** — this Commit-C completes the seal boundary; owner dispatches ONE FE specialist pass wiring 14 endpoints (portal write paths + rbm-8 countdown surface + canon-rule displays) with the 6 CONDITION constraints inherited from seal report.
+(b) **Residual scan** — none pending (COMPLETION SPRINT step 4 fully covered by R-99 + R-100 seals).
+(c) **R-91 ε-APPLY** at first boundary after `2026-09-23T03:23:15Z` (`date -u` checked each seal · NO EXPEDITE · rigid per RBM-8/SER C.5 I-4/SO §6.6).
+(d) **M1-to-date BUILD_JOURNAL closure state-only** as final act (COMPLETION SPRINT step 6).
+
+### Standing bounds
+
+zero push · zero remote configured · terminal `pytest` only · **no `testing_agent`** (STRICTLY BANNED per SO §6) · additive-only §3.8 · three-repo discipline (code=`programme/track-a` · state=`master` · POD audit mirror=`main` at `/app/frontend/`) · ratchet monotonic-up floor **5852** · R-91 PARKED horizon `2026-09-23T03:23:15Z` NO EXPEDITE · HF-HOLD SEC-2026-09-12-01 · R-24 UNLISTED · R-25 tagged · R-88+ OWNER-RATIFICATION-PENDING RETIRED at `a30db4f7` · CONTINUITY BUNDLE new standing rule (R-100 onward · 3 bundles + sha256 pins each seal · local export · zero-push).
+
+**End of R-100 CP-PORTAL-WRITE-SURFACE. ✅ SEALED via 3-Commit protocol A `39412d09` / B `e6a86c2c` / C this-commit.**
+
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

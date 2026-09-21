@@ -150,7 +150,7 @@ Strategy work-in-progress (to be created):
 - **checkpoint_14d_utc:** `2026-08-28T00:00:00Z`
 - **hardening_status:** `attested`
 - **acceptance_status:** `green`
-- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260921T072804Z.json`
+- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260921T083731Z.json`
 <!-- CONNECT-GPU-PINS -->
 
 
@@ -661,4 +661,35 @@ Full SO §6 autonomy per owner standing GO. Family B first sub-slice HUNT-and-au
 zero push · terminal `pytest` only · **no `testing_agent`** (STRICTLY BANNED) · additive-only §3.8 (with ceremonied R-91 amendment as SINGLE authorized exception at horizon) · three-repo discipline · ratchet measured-monotonic-up **5711** floor (bumps to 5716 at R-91 apply-step measured) · HF-HOLD SEC-2026-09-12-01 · R-24 UNLISTED · R-25 tagged · R-88+ OWNER-RATIFICATION-PENDING RETIRED at a30db4f7 (not restated in this or future seal reports).
 
 <!-- R-93-PINS-2026-09-21 END -->
+
+
+<!-- CONTINUITY-BUNDLE-PINS 2026-09-21T08:35:00Z BEGIN -->
+
+## Continuity Bundle sha256 pins · R-100 CP-PORTAL-WRITE-SURFACE · 2026-09-21T08:35:00Z
+
+Owner new standing rule this-session verbatim (2026-09-21T~08:10Z at R-100 approval reply):
+
+> *"Continuity bundle scope: ALL THREE local-only repos, not code only. The owner's purpose line is 'a state that can be reconstructed from outside the sandbox' — reconstruction needs the state repo (master: DECISIONS/PINS/OBJECTIVES/receipts) and the FE repo (/app main: specialist commits, also zero-remote) as much as the code branch. Bundle each (code programme/track-a · state master · /app main), sha256-pin all three in STATE/PINS.md at the R-100 seal and every seal thereafter. Local export only — zero-push untouched."*
+
+Bundles produced via local `git bundle create` on each repo · zero remote · zero push · offline-reconstructable.
+
+**Bundle set 20260921T083500Z (R-100 seal · this-wave)**:
+
+| Repo                              | Workdir                                       | Branch              | Bundle file                                                            | Ref HEAD                                     | Bundle sha256 |
+|-----------------------------------|-----------------------------------------------|---------------------|------------------------------------------------------------------------|----------------------------------------------|---------------|
+| code · Extraction-Akki            | `/app/assessment_workspace/repos/Extraction-Akki` | `programme/track-a` | `continuity_bundles/code_20260921T083500Z.bundle`                     | `39412d09a6d7f0420049fd96908778eedbc56ab2` (R-100 Commit-A) | `685b84b29d7e165effa1e5e08de6f114c2d044f5a77d1299e361286cb03e1fc9` |
+| state · assessment_workspace root | `/app/assessment_workspace`                   | `master`            | `continuity_bundles/state_20260921T083500Z.bundle`                    | `e6a86c2c3f613def64cc854710837f03c468d89e` (R-100 Commit-B) | `3a4c48b69cc17e6c71bdfd81ba812e7dec433d07a24c39f3210970a0a4326698` |
+| FE POD audit mirror               | `/app/frontend`                               | `main`              | `continuity_bundles/fe_20260921T083500Z.bundle`                       | `540248c776017deaa6bbd859f1bab9fd7bcc804b` (FE main HEAD at seal) | `67a983cc100ff194e29f73c0946e6a6e5edc20182afb355215d06d1db669cece` |
+
+All three bundles verify with `git bundle verify` reporting *"complete history"*.
+
+Bundle set convention (applies at R-100 and every seal thereafter):
+- Timestamped folder `continuity_bundles/{code,state,fe}_YYYYMMDDTHHMMSSZ.bundle` per seal.
+- Each bundle exports the branch's complete git history to a single portable file (default `git bundle create ... <branch>` semantics).
+- sha256 pin block added under this heading at every seal thereafter (each new set appends its row; no prior rows edited).
+- Local export only. Zero-push discipline unchanged.
+
+Standing bounds unchanged.
+
+<!-- CONTINUITY-BUNDLE-PINS 2026-09-21T08:35:00Z END -->
 
