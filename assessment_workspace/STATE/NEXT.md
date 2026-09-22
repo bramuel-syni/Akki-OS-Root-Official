@@ -57,6 +57,34 @@ Failure to follow this sequence = paraphrase-not-spec failure class the owner ex
 
 Update this section at every CP/R-step close.
 
+**§6 INTERLUDE MARKER · 2026-09-22T~10:14Z · autopilot Turn-4-sub-slice-4h SEAL close · R-105 Path R applied**
+
+**Turn 4 sub-slice 4h SEALED (Path R · mirror-closure-only)** via §3.3 3-Commit protocol (5-commit fan-out per pattern):
+- code Commit-A `8dcbd4815b7095e2d7f7ce012fb8f706bbd1a31e` on `programme/track-a` (2026-09-22T10:10Z · pod_shell/frontend/src/App.js mirror sync only · +253/-1).
+- /app main companion Commit-A `480db11fc87106d382f4f7097a8f829a938db764` (2026-09-22T10:12Z · 2 NEW DAP jsx AdminApprovalsLedger+AdminWatchTrailBridge + App.js +8 lines).
+- state Commit-B `4fcbaf5ef324a4d372a6b09974fff3b2960dab65` (2026-09-22T10:14Z · this-append + RESUME rewrite + DECISIONS R-105+seal record + DESK_QUEUE DQ-18 + ORCH_BOOT regen + PINS same-seal cure + 3 drill receipts).
+- state Commit-C fixup NEXT-STEP (R-6 boundary regen advancing heads_last_sealed.state_repo.head to this-Commit-B sha).
+- /app main Commit-C companion NEXT-TURN (audit ORCH_BOOT byte-identical + workspace-subdirectory mirror sync catch-up spanning post-4f-Commit-C + RMS-CREDS-2-ingest fdc7d95a + 4g DAP-verification-receipt 3651dc80 + this-4h Commit-C fixup).
+
+**Ratchet floor**: **6072** (UNCHANGED per R-105 Path R defer · retirement leg deferred to DQ-18). baseline_failures.json sha256 `2549a229f4621a2c97c1af6da4c97a31ddb814b81f2f1516a21ecd3bdf705d2e` UNCHANGED.
+
+**R-105 autonomous decision (verbatim in DECISIONS.md at R-105 heading)**: at 4h R-91 mirror-close boundary, executing the full 4-leg retirement (baseline drain + annotation drain + floor bump + milestone SEALED) requires modifying sealed R-86 test carrier `test_baseline_drift_annotations_present.py` (properties 2/3/5 unconditionally `assert annotations` non-empty). Modification violates SO §3.8 additive-only. Autonomous R-103 fork: execute Path R at 4h — mirror-closure-only, no retirement, ratchet unchanged. Land discipline-conforming retirement at DQ-18 slice via NEW additive superseding invariant module (closure-guard branch). Reversible: retirement can execute in future slice. Preserves R-101 preserved WHAT partially (mirror leg done · retirement leg deferred) + SO §3.8 verbatim + R-102 productized-or-honest-gap (mirror IS productized · all 5 R-91 tests pass in real bytes now).
+
+**Pre-Commit-A double-green byte-identical**: 6075 passed / 1 skipped / 0 failed · stripped-sha256 `480dfbacc44d60e01adca9e0970bec3a8ac905a662d3f1941d15dc60413b74eb` IDENTICAL sweepA (175.79s) + sweepB (175.10s) both BASELINE_GUARD receipt status: OK (subset · quarantine · ratchet all pass).
+
+**Mirror byte-identity confirmed in-turn** (files opened this-session · not README):
+- `/app/frontend/src/App.js` sha256 `6b56299f828abd2cbc24d57540a8f0f0d7f9b908b16e2bd2a060e832ae92f351` == `pod_shell/frontend/src/App.js` sha256 (same).
+- `diff -rq /app/frontend/src/pages/ pod_shell/frontend/src/pages/` returns empty.
+- `diff -rq /app/frontend/src/components/ pod_shell/frontend/src/components/` returns empty.
+
+**46 of 48 canonical views reach**: 37 OS + 9 DAP-4g-verified + 2 DAP-4h-new = 48 total React routes reachable before PortalIframe wildcard. 2 remaining honest-gap (DAP-VIEW-12 Model Registry + DAP-VIEW-13 Training Runner Bridge · scheduled PHASE 4(h)).
+
+**Autopilot next**: state master Commit-C fixup THIS-TURN → /app main Commit-C companion NEXT-TURN → Turn 4 sub-slice 4i opens (Continuity Bundle regen + PINS sha-pin + hygiene · **possibly DQ-18 fold-in** if scope-compatible per SO §6.4 nothing-beyond).
+
+**Standing bounds unchanged**: zero push · terminal pytest+curl only · no `testing_agent` (STRICTLY BANNED per SO §6) · additive-only §3.8 · three-repo discipline · ratchet monotonic-up floor 6072 UNCHANGED · HF-HOLD SEC-2026-09-12-01 · DQ-17 owner-side rotation UNTOUCHED · DQ-13 owner-side rotation UNTOUCHED · R-101 preserved WHAT partially honored (mirror done · retirement deferred per R-105 to DQ-18) · R-102 productized-or-honest-gap satisfied · R-103 amendment applied (autonomous fork · annotated) · R-104 approving authorities await PHASE 2 · R-105 folded verbatim.
+
+---
+
 **§6 INTERLUDE MARKER · 2026-09-22T~06:05Z · autopilot post-CENSUS-3-F-2-Commit-C-fixup**
 
 **CENSUS-3-F.2 SEALED** via §3.3 3-Commit protocol:
@@ -5436,6 +5464,38 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 10. **RESUME.md compliance**: this-file rewritten at 4d SEAL close per R-102 + owner §6.8 GO one-line-per-seal-report mandate · sha attested at 4d seal report tail.
 11. **Standing bans (6 · UNCHANGED)**: zero push · testing_agent BANNED · no refactor · no secret values · honest-gap never fake · no history rewrite.
 12. **Autopilot next**: proceed sub-slice 4e immediately (ThinkLab 4 honest-gap + Admin tab 10 honest-gap · TESTS-FIRST DISCIPLINE MANDATED per 4d standing-lesson) per R-102 + owner §6.8 GO verbatim. Post-fixup shas 4d: code Commit-A `b407ef948efac2009dacb51c46b847b506baf47a` on programme/track-a · /app main companion Commit-A `ad906fcba3aff5b878dd35cf4f0f46e77f41c891` · state master Commit-B `d11497246a8e9b84a36fb3f34b56d987049af1b1` · state master Commit-C fixup `<PENDING>` · /app main Commit-C companion `<PENDING>`.
+
+
+### §6 INTERLUDE MARKER · autopilot re-anchor · 2026-09-22T09:10:00Z · Turn 4 sub-slice 4e · v2 OS ThinkLab + Admin Native React Surfaces SEALED
+
+1. **Wave**: PHASE 1 · Turn 4 sub-slice **4f NEXT** (Build 4 + Buildlib 2 + Collab 4 + 3rdParty 4 = 14 honest-gap surfaces · completes 37 OS leaves).
+2. **Ratchet floor**: **6027 passed** (was 5982 · +45 measured this-seal).
+3. **Effect**: 14 native React surfaces (4 ThinkLab in Work tab + 3 Admin.estate + 3 Admin.approvals + 4 Admin.watch) landed at `/app/frontend/src/pages/os/` · App.js additive 14 imports + 14 routes before PortalIframe wildcard. Combined 4c+4d+4e = 23 of 37 OS leaves reachable native React.
+4. **§3.3 5-Commit Seal**: same protocol as 4c/4d.
+5. **Double-green**: stripped-sha256 `7dd1303d278c1f9c330ec8b1139c8b798c8972e51912143d8f8939801240bc1c` IDENTICAL (175.30s + 175.51s · 3 failed all R-91 · 6027 passed).
+6. **Same-seal cures (2)**: ORCH_BOOT ratchet regen + test_orch_boot unwind.
+7. **R-103 amendment applied**: single continuous run · this-seal no owner-exclusive forks triggered.
+8. **Owner rulings**: R-101 preserved WHAT + R-102 + R-103 + prototype-wins.
+9. **Honest-gaps**: 14 surfaces all honest-gap · DAP-14 pending-authority state honestly rendered.
+10. **RESUME.md compliance**: rewritten at 4e SEAL close · sha in seal report tail.
+11. **Standing bans (6 · UNCHANGED)**.
+12. **Autopilot next**: sub-slice 4f immediately (14 surfaces completing 37 OS leaves · tests-first per 4d/4e standing-lesson). Post-fixup shas 4e: code Commit-A `24984597302e7c8642525717b3dc70ed780898cf` · /app companion `672c7d86890eac59a4e0c36268118bbcdaa66caf` · state Commit-B `fbf0c301356ad0147b9a6656572c499ebbe2615d` · state Commit-C `<PENDING>` · /app Commit-C `<PENDING>`.
+
+
+### §6 INTERLUDE MARKER · autopilot re-anchor · 2026-09-22T09:35:00Z · Turn 4 sub-slice 4f · v2 OS Build+Collab+Apps · 37 OF 37 OS LEAVES SEALED
+
+1. **Wave**: PHASE 1 · Turn 4 · **4g NEXT** (DAP LATEST 9 view classes) · pre-4g: RMS CREDS 2.xlsx ingest small commit.
+2. **Ratchet**: **6072 passed** (+45 this-seal). 
+3. **37-of-37 OS leaves gate PASSED** · all NAV leaves reachable native React (7+4+4+2+3+3+4+4+2+4).
+4. **§3.3 5-Commit Seal** landing.
+5. **Double-green byte-identical**: stripped-sha256 `5f8398e9f4c8f5111ebd4408ac81e6c5...` IDENTICAL.
+6. **Same-seal cures (2)**: ORCH_BOOT ratchet + test_orch_boot unwind.
+7. **Owner drops folded**: R-104 approving authorities named (RMS 3 + DigiCow 2 · DAP-15 first-decision-wins DEFAULT-class · DAP-17 one-act set/revoke · execute at PHASE 2) + RMS CREDS 2.xlsx pending ingest.
+8. **Owner rulings**: R-101 + R-102 + R-103 + **R-104** verbatim in DECISIONS.md.
+9. **Honest-gap**: 36 surfaces honest-gap · 1 chat honest-gap-live-deferred.
+10. **RESUME.md compliance**: rewritten at 4f SEAL close · sha attested tail.
+11. **Standing bans (6 · UNCHANGED)**.
+12. **Autopilot next**: 4g DAP LATEST · pre-4g creds ingest. Post-fixup shas 4f: code Commit-A `e5e9ca6dfc5f231058fcf6ff11979370451edb65` · /app companion `8ab8c09c77bf0cf4d8096abd9217f16435c62207` · state Commit-B `f4d99001323cc4277e66f7ad7a3577caae6ba7c1` · state Commit-C `<PENDING>` · /app Commit-C `<PENDING>`.
 
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

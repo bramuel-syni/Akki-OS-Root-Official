@@ -26258,4 +26258,236 @@ Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered · MEM-
 
 ---
 
+## R-103 · R-102 AMENDMENT · SINGLE CONTINUOUS RUN TO COMPLETION · owner-authored 2026-09-22T~08:47Z
+
+Owner verbatim: *"This was to be bundled up in one autonomous run to complete in one go. not unless there are decisions that only me can make."*
+
+### Amendment effects (bank into standing law)
+
+1. **NO CHECK-INS between seals**. Phase 1 → 2 → 3 → 4 + all ops lanes + audits run to completion without waiting for desk or owner acknowledgement. Seal reports still write at every boundary (the record IS the report); RESUME.md rewritten at every seal with sha attestation; continuity bundles at major seals; §6.7 boundary reports flow to desk one-way (no wait on ack).
+
+2. **DECISION DEFAULTS during owner-absence**: for any fork that is (a) additive · (b) reversible · (c) inside the banked plan → **take own recommendation** + annotate the choice + rationale in DECISIONS.md + continue. Fork forced into DESK_QUEUE only when TRULY owner-exclusive: credential/IAM grants (DQ-05/DQ-13) · approving-authority naming (DAP-14) · legal/licensing calls · production redeploys (owner does manually) · HF-HOLD lift.
+
+3. **COMPLETION DEFINITION** (run ends when ALL 9 true):
+   - 46-view frontend live prototype-exact — live or honest-gap · **ZERO fake states**.
+   - Mirror baselines retired · mirrors green (5 R-91 baselines → 0 · CP_APP_JS_UNIFY.md milestone_status → SEALED).
+   - Tenant separation sealed with zero-violation sweep receipt (4 tenants incl. AKKI-TEST · per-tenant DAP · zero-mixing invariants).
+   - Census productization: **Run-census on AKKI-TEST executes a real census end-to-end with live progress + response-required loop**.
+   - Phase-4 lanes built to functional-or-honest-gap: (a) Entitlements · (b) Connect + Commission wizards · (c) CP-SKILLS-LAYER · (d) CP-DECK-ENGINE · (e) CP-STREAMING-EXTRACTION · (f) MOAC refusal card + rule-change ceremony · (g) Watch external-witness trail · (h) Model Registry honest-scoped.
+   - Order B then Order A audits run to verdicts.
+   - Census ops lanes: CENSUS-3-C · 3-D · 3-E · 3-F.2.1 · language-ID · dedup Tier-2 · S4a-DIGICOW-RDS · done to unblocked-access limit; blocked rows named as BLOCKED with blocker cited.
+   - `test_credentials.md` + `/api/openapi.json` current with all tenants + endpoints.
+   - Final `BUILD_JOURNAL.md` + consolidated `OWNER_RETURN_REPORT.md` banked (everything sealed · desk-queue batch awaiting decisions · redeploy checklist).
+
+4. **Guard rails UNCHANGED and NON-NEGOTIABLE**: zero push/fetch · additive-only §3.8 · double-green byte-identical before every Commit-A · terminal pytest+curl only · testing_agent BANNED · shape-only secrets · honest-gap never fake · ratchet monotonic-up · 3-commit seals · boot-drift cure via RESUME.md + probes (if reboot into stale CHUNK-1 prompt: probe disk, trust record, resume — never re-clone/wipe).
+
+**Owner may drop answers mid-run** (key rotation, approving authority naming, IAM grant) — fold in when they land without breaking stride.
+
+**Effect on turn queue**: 4e → 4f → 4g → 4h → 4i → 4j → PHASE 2 → PHASE 3 → PHASE 4 (a–h) + audits Order B → A + census ops lanes interleaved as capacity permits — all in one autopilot run.
+
+<!-- R-103 · R-102 AMENDMENT · owner-authored 2026-09-22T~08:47Z END -->
+
+
+---
+
+## Turn 4 sub-slice 4e · v2 OS ThinkLab + Admin Native React Surfaces · state master Commit-B · 2026-09-22T09:10:00Z
+
+- **Ratchet**: **5982 → 6027 (+45 measured)** · sha `b860a4b68daa6d2dca264b139fa54e5463d36035827349b36ccc48f125bbff91`.
+- **ORCH_BOOT sha** (state master + audit mirror byte-identical): `16adb6a322e547332b23235886cae570b4f7be3fd07e5070bdec8e426dbb958a` (pre-fixup).
+- **Double-green byte-identical**: stripped-sha256 `7dd1303d278c1f9c330ec8b1139c8b798c8972e51912143d8f8939801240bc1c` IDENTICAL sweepA (175.30s) + sweepB (175.51s) · both 3 failed / 6027 passed / 1 skipped (3 R-91 baselines · retire 4h).
+- **RED-first PROPERLY DISCIPLINED** per 4d standing-lesson · 43 failed / 2 passed / 0.79s pre-implementation · 45/45 GREEN 0.76s post-implementation.
+- **R-103 amendment applied**: single continuous run · this-seal no owner-exclusive forks triggered · additive-reversible-in-plan defaults engaged for surface content.
+
+### Files landed (17 total across 3 repos)
+
+- **Code Commit-A `24984597302e7c8642525717b3dc70ed780898cf`** (2 files): NEW `backend/tests/invariants/test_v2_os_thinklab_and_admin_surfaces_present.py` (45 invariants: 1 fabric + 14 surface parametrized + 14 App.js import parametrized + 14 App.js route parametrized + 1 ordering + 1 unique-names) + MODIFY `backend/tests/invariants/baseline_failures.json`.
+- **/app companion Commit-A `672c7d86890eac59a4e0c36268118bbcdaa66caf`** (16 files): 14 NEW jsx surfaces (`ThinkLab{Clarity,Strategy,Hypothesis,Perspective}` + `Admin{Estate,Govern,GreyMirror,SpendReq,RulesUpd,ModelAdmission,WState,WRecord,WUnder,WDecisions}`) + MODIFY `frontend/src/App.js` (14 imports + 14 routes before PortalIframe wildcard) + MODIFY `frontend/public/audit/ORCH_BOOT.md`.
+- **State Commit-B this-commit** (7 files): 3 NEW drill receipts (RED_pre + sweepA + sweepB) + MODIFY notes/ORCH_BOOT.md + APPEND STATE/DECISIONS.md (this record) + REWRITE STATE/RESUME.md + APPEND STATE/NEXT.md.
+
+### Owner rulings verbatim
+
+R-101 preserved WHAT + R-102 MASTER DIRECTIVE + R-103 amendment + owner UI-UX-exact-as-HTML + FE brief §0 prototype-wins.
+
+### Reachable NEW routes (14)
+
+`/os/work/{clarity,strategy,hypothesis,perspective}` · `/os/admin/{estate,govern,greymirror,spendreq,rulesupd,modeladmission,wstate,wrecord,wunder,wdecisions}`.
+
+**Combined 4c+4d+4e progress: 23 of 37 OS leaf views reachable as native React** (7 workstudio · 4 thinklab · 2 monitor · 10 admin). Remaining 14 leaves at 4f (build 4 + buildlib 2 + collab 4 + thirdparty 4).
+
+### DAP-14 approving authorities honest-gap acknowledged
+
+Admin.approvals surfaces (`spendreq/rulesupd/modeladmission`) reference "named approving authority" in their honest-gap descriptions. Actual approving-authority naming is owner-exclusive (DAP-14). Until owner names authorities, controlled requests correctly hold by construction; UI shows honest pending-authority state — matching R-103 amendment §2 constraint.
+
+### Same-seal cures (2 · SO §6.4 additive)
+
+1. ORCH_BOOT ratchet regen 5982 → 6027 + sha update + audit-mirror byte-identical.
+2. `test_orch_boot` unwind pre → post-cure GREEN.
+
+### Autopilot next boundary
+
+**Turn 4 sub-slice 4f · Frontend rebuild slice 4** — Build tab (train/agentbuild/buildskill/extract) + Buildlib (youragents/yourmodels) + Collab (mentions/emails/projects/hrstuff) + 3rd-Party Apps (appsnew/appsfrequent/appsconnected/appsrequests) · **14 more surfaces completing 37 of 37 OS leaves**. Tests-first mandated.
+
+<!-- Turn 4 sub-slice 4e · v2 OS ThinkLab + Admin native React surfaces · state master Commit-B · 2026-09-22T09:10:00Z END -->
+
+
+---
+
+## R-104 · APPROVING AUTHORITIES NAMED · owner-authored 2026-09-22T~09:25Z (verbatim)
+
+Owner drop, folded per R-103 amendment §fold-mid-run without breaking stride:
+
+> "To E1 — approving authorities named; interim retires.
+>
+> RMS: Fred Afune (Director ICT), Muthoni Kiarie (Head CAL), Samuel Kibacia (Head of ICT).
+>
+> DigiCow: Vincent Kimani (Director), Peninah Wanja (CEO).
+>
+> Admit each as an individual principal under their organisation (PRIN-1), by the organisation's admission act (PRIN-2), with the approving-authority role on the tenant's DAP configuration. On admission, the INTERIM-PILOT record for that tenant retires and its DESK_QUEUE.md item closes.
+>
+> Decision rule where a tenant has more than one authority — DEFAULT-class, tagged pending: a controlled request routes to every authority of the tenant; the first recorded decision by any one of them is the decision, carrying that individual's identity and reason (DAP-15). No quorum unless the tenant configures one by ceremony. A standing approval (DAP-17) may be set by any one authority and revoked by any one in one act.
+>
+> Identity details for seeding — names, emails, credentials — come from each tenant's principal contact through the custody path under §4.1 §E, never through this desk or any chat. Request them from the tenants; seat the principals when they land.
+>
+> Continue."
+
+### Implementation binding (execute at CP-TENANT-SEPARATION PHASE 2)
+
+- **DAP-14** two tier-4 approving-authority forks (RMS + DigiCow) are **RESOLVED**. Close DESK_QUEUE entries at tenant-separation seal time.
+- **PRIN-1 + PRIN-2 admissions** at PHASE 2:
+  - RMS tenant: Fred Afune (Director ICT) · Muthoni Kiarie (Head CAL) · Samuel Kibacia (Head of ICT).
+  - DigiCow tenant: Vincent Kimani (Director) · Peninah Wanja (CEO).
+  - AKKI-TEST tenant: synthetic authorities per SO §9 (any-name safe · used for testing controlled-request routing).
+  - AUDIT-FIXTURE-20260921: no authorities (fixture-only tenant).
+- **Named-but-unseated pattern** until identity details (email/creds) arrive via custody §4.1 §E:
+  - Principals exist as **name + role + organisation** records in DAP tenant config.
+  - Controlled-request routing is buildable + testable against AKKI-TEST synthetic authorities immediately.
+  - Real RMS/DigiCow authority routing lands when their identity details arrive through the custody path (never through chat).
+- **DAP-15 first-decision-wins** DEFAULT-class tagged pending:
+  - Controlled request routes to ALL authorities of the tenant.
+  - First recorded decision (RATIFY / REJECT) by any single authority = the decision.
+  - Decision record carries that individual's identity + reason verbatim.
+  - No quorum unless tenant configures one by explicit ceremony.
+- **DAP-17 standing approval**:
+  - Any one authority may SET a standing approval (scope + expiry + reason).
+  - Any one authority may REVOKE in one act.
+- **INTERIM-PILOT records** retire on admission per tenant · DESK_QUEUE items close automatically.
+
+### DESK_QUEUE effect
+
+- **DQ-14 (DAP-14 RMS authority)** → CLOSED at PHASE 2 tenant-separation seal (per R-104).
+- **DQ-15 (DAP-14 DigiCow authority)** → CLOSED at PHASE 2 tenant-separation seal (per R-104).
+- **DQ-16** remains as capacity item (build-lane sequencing) per R-102 MASTER DIRECTIVE.
+
+### DAP-15 + DAP-17 build-lane
+
+Add to PHASE 2 CP-TENANT-SEPARATION scope: `services/dap/controlled_request_routing.py` (first-decision-wins DEFAULT-class · standing approval one-act set/revoke) + RED-first invariants + honest-gap UI at `admin/spendreq` + `admin/rulesupd` + `admin/modeladmission` linking to real authority records.
+
+<!-- R-104 · APPROVING AUTHORITIES NAMED · owner-authored 2026-09-22T~09:25Z END -->
+
+
+---
+
+## Turn 4 sub-slice 4f · v2 OS Build + Collab + 3rdParty Native React Surfaces · 37 OF 37 OS LEAVES · state master Commit-B · 2026-09-22T09:35:00Z
+
+- **Ratchet**: **6027 → 6072 (+45 measured)** · sha `2549a229f4621a2c97c1af6da4c97a31ddb814b81f2f1516a21ecd3bdf705d2e`.
+- **37-of-37 OS leaves gate PASSED**: 4c shell + 4d 9 surfaces + 4e 14 surfaces + 4f 14 surfaces = **37 native React OS leaves reachable**.
+- **Double-green byte-identical**: stripped-sha256 `5f8398e9f4c8f5111ebd4408ac81e6c5...` IDENTICAL sweepA (175.09s) + sweepB (175.08s) · both 3 failed / 6072 passed / 1 skipped.
+- **RED-first properly disciplined**: 44 failed / 1 passed / 0.80s pre-implementation → 45/45 GREEN 0.79s post-implementation.
+- **Owner drops folded** during this-seal: R-104 approving authorities (banked above · executes at PHASE 2) + credentials update (RMS CREDS 2.xlsx · ingest as separate small state master commit post-4f seal).
+
+### Files landed (17)
+
+- Code Commit-A `e5e9ca6dfc5f231058fcf6ff11979370451edb65`: NEW test_v2_os_build_collab_apps_surfaces_present.py (45 invariants incl. 37-of-37 gate) + MODIFY baseline_failures.json.
+- /app companion Commit-A `8ab8c09c77bf0cf4d8096abd9217f16435c62207`: 14 NEW jsx (BuildTrain/Agent/Skill/Extract + BuildlibAgents/Models + CollabMentions/Emails/Projects/HrStuff + AppsNew/Frequent/Connected/Requests) + MODIFY App.js + MODIFY audit ORCH_BOOT.
+- State Commit-B: 3 drill receipts + MODIFY notes/ORCH_BOOT.md + APPEND DECISIONS.md (R-104 + this record) + REWRITE RESUME.md + APPEND NEXT.md.
+
+### Same-seal cures (2)
+
+1. ORCH_BOOT ratchet regen 6027 → 6072 + sha update + audit-mirror byte-identical.
+2. `test_orch_boot` unwind pre → post-cure GREEN.
+
+### Autopilot next boundary
+
+**Turn 4 sub-slice 4g · Frontend rebuild slice 5** — DAP LATEST surface (9 view classes) at admin/watch/approvals routes. Tests-first mandated. Pre-4g: small state master commit ingesting RMS CREDS 2.xlsx (shape-only receipt · in-memory parse · custody vault durable migration · DQ-08 verification).
+
+<!-- Turn 4 sub-slice 4f · v2 OS Build+Collab+Apps · 37 OF 37 OS LEAVES · state master Commit-B · 2026-09-22T09:35:00Z END -->
+
+
+---
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+
+---
+
+## R-105 · AUTONOMOUS 4H PATH-R DEFER · R-103 additive-reversible-in-plan fork · autopilot-authored 2026-09-22T~10:10Z
+
+Under R-103 amendment (owner-away · single continuous run · additive-reversible-in-plan forks: take own recommendation + annotate), at Turn 4 sub-slice 4h R-91 mirror-close boundary the following on-disk contradiction was surfaced:
+
+**Contradiction shape (measured in-session · files opened this-turn):**
+
+- **R-101 preserved WHAT verbatim** (banked at DECISIONS.md R-101 append 2026-09-22T~06:15Z): "byte-identical mirror + 5 baselines → 0 + 5 annotations retire · retain cp10-still-recent · milestone_status SEALED".
+- **CP_APP_JS_UNIFY.md card MUST-DO 4** (`STATE/OBJECTIVES/CP_APP_JS_UNIFY.md:22`): *"the three entries below are removed from `baseline_failures.json.baseline_failures` in the same commit their annotations retire from `known_runtime_drift_annotations`"*.
+- **Sealed R-86 test carrier** `backend/tests/invariants/test_baseline_drift_annotations_present.py` (landed at R-86 Commit-A · sealed) contains 5 property tests. Property 4 (`test_annotation_count_equals_mirror_drift_baseline_entry_count`) enforces `set(annotations.keys()) == MIRROR_DRIFT_NODEIDS & baseline_failures` — satisfied only if annotations set exactly equals covered mirror-drift set. Properties 2 (`test_every_annotation_has_the_required_8_field_shape`), 3 (`test_annotation_closure_card_paths_resolve_to_real_files`), and 5 (`test_every_annotation_names_cp_app_js_unify_as_closure_wave`) each contain unconditional `assert annotations` non-empty checks.
+- **Deadlock**: draining baselines to `[]` requires draining annotations to `{}` (property 4) but breaks properties 2/3/5 (`assert annotations` empty). Keeping annotations breaks property 4 (annotations ≠ empty covered set). Modifying property 2/3/5 to add closure-guard branches is a **MODIFY of a sealed test carrier** and violates SO §3.8 additive-only.
+
+**Fork options considered in-turn (all measured against files opened):**
+
+- Path T · modify sealed R-86 test file with closure-guard branches (`if not (MIRROR_DRIFT_NODEIDS & baseline_failures): return`). Blocked by SO §3.8 verbatim.
+- Path U · sentinel entry in annotations. Blocked by property 4 set-equality.
+- Path V · rename `known_runtime_drift_annotations` → `retired_runtime_drift_annotations`. Blocked by property 2/3/5 non-empty check.
+- Path W · drain baselines but retain annotations. Blocked by property 4 set-equality.
+- Path X · retire only non-mirror-drift entries + bump floor 6072→6077 + keep mirror-drift baselines listed as vacuous. Partial-closure that doesn't honor R-101 preserved WHAT for the mirror-drift subset · defers same problem to a later date without banking the discipline path.
+- Path Y · add sentinel `__wave_close__` annotation. Blocked by property 4 set-equality.
+- Path Z · move to disjoint field pattern (R-88+ style). Blocked by property 2 non-empty check.
+- **Path R · defer retirement · mirror-closure-only seal at 4h · retire in future additive slice via NEW superseding invariant module with closure-guard branch**. Satisfies SO §3.8 verbatim (no modification of sealed carriers). Honors R-101 preserved WHAT mirror leg (byte-identical mirror achieved · all 5 R-91 tests pass in real bytes). Defers retirement leg (baselines drain + annotations drain + floor bump + milestone SEALED) to a discipline-conforming future slice. **REVERSIBLE**: retirement can execute in a future slice when the superseding invariant module lands additively.
+
+**R-105 ruling (autonomous per R-103):**
+
+> Turn 4 sub-slice 4h SHALL execute Path R — mirror-closure-only. `pod_shell/frontend/src/App.js` becomes byte-identical to `/app/frontend/src/App.js`. `pod_shell/frontend/src/pages/**` and `pod_shell/frontend/src/components/**` remain byte-identical to `/app/frontend/src/pages/**` + `/app/frontend/src/components/**` (already achieved). 2 NEW DAP LATEST view classes (`AdminApprovalsLedger.jsx` + `AdminWatchTrailBridge.jsx` closing 4g deferrals) land under `/app/frontend/src/pages/dap/` with App.js routes at `/dap/approvals-ledger` + `/dap/watch-trail-bridge`. `baseline_failures.json` remains UNCHANGED (5 R-91 baselines listed · counts_at_baseline.failed=5 · passed_floor=6072 · `known_runtime_drift_annotations` 3 entries preserved). `CP_APP_JS_UNIFY.md` `milestone_status` remains SCHEDULED. Ratchet delta this-seal = 0 measured. Double-green byte-identical BASELINE_GUARD=1 PYTHONHASHSEED=0 sweep MUST show 0 failed / 6075 passed / 1 skipped both runs · stripped-sha256 IDENTICAL. R-91 mirror-drift retirement + `known_runtime_drift_annotations` drain + `passed_floor` 6072→6077 bump + `CP_APP_JS_UNIFY.md milestone_status SCHEDULED→SEALED` DEFERRED to Turn 4 sub-slice 4i or dedicated CP-R91-RETIRE via a NEW additive superseding invariant module `tests/invariants/test_r91_wave_close_supersede_annotation_guard.py` that lands with a closure-guard branch permitting empty-covered set (SO §3.8 compliant: new file, new invariant, new function, does not modify sealed R-86 test carrier).
+
+**Effect on DESK_QUEUE:**
+- DQ-11 · CP-VEND-HUAWEI-OBS · unchanged (Turn-6 build lane).
+- DQ-12 · CLOSED at 4b (unchanged).
+- DQ-13 · owner-side rotation (unchanged).
+- DQ-14/15 · resolved at R-104 (close at PHASE 2 seal).
+- DQ-16 · CP-STREAMING-EXTRACTION · unchanged (PHASE 4(e) build lane).
+- DQ-17 · P0 weego rotation owner-exclusive · unchanged.
+- **NEW DQ-18** · CP-R91-RETIRE-SUPERSEDE · agent-side · SCHEDULED at Turn 4 sub-slice 4i (or dedicated slice pre-PHASE-2): land `tests/invariants/test_r91_wave_close_supersede_annotation_guard.py` with closure-guard branch permitting empty-covered set. Retire 5 R-91 baselines, drain `known_runtime_drift_annotations`, bump `passed_floor` 6072→6077 (+5 measured), advance `CP_APP_JS_UNIFY.md milestone_status SCHEDULED→SEALED`. RED-first properly disciplined per 4d/4e/4f standing-lesson. Double-green byte-identical BASELINE_GUARD=1 sweep required. 3-commit seal per §3.3.
+
+**Standing bounds unchanged:** zero push · terminal pytest+curl only · no `testing_agent` (STRICTLY BANNED per SO §6) · additive-only §3.8 · three-repo · HF-HOLD SEC-2026-09-12-01 · Structural §3.8 sha-pin ad0d9439 · Mirror-invariant guard on /app/backend/vendored/extraction_akki/backend/ · R-101 preserved WHAT partially honored (mirror leg done · retirement leg deferred per R-105 · retirement leg lands at DQ-18 slice) · R-102 productized-or-honest-gap satisfied · R-103 amendment applied · R-104 approving authorities await PHASE 2.
+
+<!-- R-105 · AUTONOMOUS 4H PATH-R DEFER · autopilot-authored 2026-09-22T~10:10Z END -->
+
+
+---
+
+## Turn 4 sub-slice 4h · Mirror-closure-only seal · Path R (R-105 defer) · state master Commit-B · 2026-09-22T10:14:00Z
+
+- **Ratchet**: **UNCHANGED 6072** · sha `2549a229f4621a2c97c1af6da4c97a31ddb814b81f2f1516a21ecd3bdf705d2e` (baseline_failures.json NOT modified this-seal).
+- **46-of-48 canonical views reach**: 4c shell (12 invariants) + 4d 9 surfaces (31) + 4e 14 surfaces (45) + 4f 14 surfaces (45) + 4g 9 DAP-verified + this-4h 2 new DAP = **48 total React routes** (37 OS + 11 DAP) reachable before PortalIframe wildcard · **2 remaining honest-gap** (DAP-VIEW-12 Model Registry + DAP-VIEW-13 Training Runner Bridge · scheduled PHASE 4(h)).
+- **Double-green byte-identical pre-Commit-A**: stripped-sha256 `480dfbacc44d60e01adca9e0970bec3a8ac905a662d3f1941d15dc60413b74eb` IDENTICAL sweepA (175.79s) + sweepB (175.10s) · both 6075 passed / 1 skipped / 0 failed / 520 warnings · BASELINE_GUARD receipt status: OK (subset · quarantine · ratchet all pass).
+- **Mirror byte-identity verified**: `/app/frontend/src/App.js` sha256 `6b56299f828abd2cbc24d57540a8f0f0d7f9b908b16e2bd2a060e832ae92f351` == `pod_shell/frontend/src/App.js` sha256 `6b56299f828abd2cbc24d57540a8f0f0d7f9b908b16e2bd2a060e832ae92f351`. `diff -rq /app/frontend/src/pages/ pod_shell/frontend/src/pages/` returns empty. `diff -rq /app/frontend/src/components/ pod_shell/frontend/src/components/` returns empty.
+- **R-105 autonomous decision applied** (banked verbatim in R-105 section above): Path R · mirror-closure-only · retirement deferred to DQ-18 slice.
+
+### Files landed (7 · SO §6.4 nothing-beyond)
+
+- **Code Commit-A** `8dcbd4815b7095e2d7f7ce012fb8f706bbd1a31e` (programme/track-a): MODIFY `pod_shell/frontend/src/App.js` (mirror sync · +253/-1 vs pre-4h HEAD).
+- **/app companion Commit-A** `480db11fc87106d382f4f7097a8f829a938db764` (/app main): NEW `frontend/src/pages/dap/AdminApprovalsLedger.jsx` (2520 bytes) · NEW `frontend/src/pages/dap/AdminWatchTrailBridge.jsx` (2381 bytes) · MODIFY `frontend/src/App.js` (+8: 2 imports + 2 routes).
+- **State Commit-B** (this): APPEND STATE/DECISIONS.md (R-105 verbatim above + this seal record) · REWRITE STATE/RESUME.md re-anchor 4h close · APPEND STATE/NEXT.md 4h marker (below) · MODIFY notes/ORCH_BOOT.md (heads_last_sealed advances state_repo `f4d99001`→this-Commit-B + code_repo `e5e9ca6d`→`8dcbd48` · ratchet unchanged 6072 · sha update) · MODIFY STATE/PINS.md same-seal cure (commissioning_record advance to `20260922T093009Z` · file confirmed on disk · additive to prior pin) · ADD 3 drill receipts under `phase0/drill_receipts_sub_slice_4h/` (sweepA + sweepB + close report).
+
+### Same-seal cures (2 · SO §6.4 additive)
+
+1. **ORCH_BOOT regen** — heads_last_sealed.state_repo advances + code_repo entry inserted at top for Commit-A `8dcbd48` · ratchet block unchanged (6072/2549a229) per Path R defer · new sha.
+2. **PINS commissioning-record advance** — `aisca-gpu-01` commissioning_record path advances from `20260922T054846Z` → `20260922T093009Z` (target file confirmed on disk · 1029 bytes · attests 4-consecutive-14d-checkpoint hardening progression during 4c-4f period).
+
+### DESK_QUEUE effect
+
+- **NEW DQ-18** filed at DESK_QUEUE.md: CP-R91-RETIRE-SUPERSEDE · agent-side · SCHEDULED at Turn 4 sub-slice 4i (or dedicated slice pre-PHASE-2). Lands NEW additive superseding invariant module with closure-guard branch permitting empty-covered set. Then executes 4-leg retirement (baseline drain + annotation drain + floor bump 6072→6077 + `CP_APP_JS_UNIFY.md` milestone SCHEDULED→SEALED).
+- All other DESK_QUEUE items unchanged this-seal.
+
+### Autopilot next boundary
+
+**Turn 4 sub-slice 4i** — Continuity Bundle regen + PINS sha-pin + hygiene. **PLUS** DQ-18 retirement supersede (either as same-slice fold-in per SO §6.4 additive, or dedicated CP-R91-RETIRE-SUPERSEDE slice · depending on scope compatibility). Then 4j (Objective cards + PHASE 2 opens).
+
+<!-- Turn 4 sub-slice 4h · Mirror-closure-only seal · state master Commit-B · 2026-09-22T10:14:00Z END -->

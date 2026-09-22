@@ -220,3 +220,38 @@ R-91 clock-gate (horizon `2026-09-23T03:23:15Z` NO EXPEDITE) is SUPERSEDED per o
 - Items are ordered by surface-at-seal timestamp, oldest first. New items append.
 - Every entry cites the seal at which it was surfaced.
 - Every entry states **what continues** — not just what blocks — so the run's non-blocked breadth is visible at a glance.
+
+
+## DQ-17 · WEEGO MySQL password rotation required · owner-exclusive · 2026-09-22T09:45:00Z
+
+Filed post-INCIDENT-2026-09-22-01 during RMS CREDS 2 ingest (custody fold-in sub-slice 4f post-seal). See STATE/incidents/20260922T094500Z_INCIDENT_RMS_CREDS_V2_INGEST_AND_SHAPE_LEAK.md for full detail.
+
+**Summary**: shape-only discipline breach printed a shared MySQL password (~16 chars, shared across weego cluster + citizen_digital + likely other DBs) into agent conversation-observation log. SO §3.8 no-history-rewrite means the leak is permanent in the run session log. Regardless of DQ-08 status, this specific credential is now in agent-memory-adjacent artefact space and must be rotated at source.
+
+**Owner action**: rotate weego MySQL cluster password at source · update RMS CREDS xlsx via custody path §4.1 §E when v3 lands · confirm rotation via connectivity-matrix probe at next census pass.
+
+**Priority**: **P0** (supersedes DQ-08 which becomes a subset).
+
+**Related**: DQ-08 (rotation-verification blocker · superseded by DQ-17), DQ-13 (EMERGENT_LLM_KEY + JWT_SECRET rotation · related credential-hygiene lane).
+
+**Standing-lesson (RG-3)**: NEVER print [str(c) for c in row] or first_word_of_each or any cell-value list from credential sheets. Only int counts, position indices, type names, length integers. Enforcement: hygiene-sweep invariant to add at a future slice.
+
+
+## DQ-18 · CP-R91-RETIRE-SUPERSEDE · agent-side · SCHEDULED at Turn 4 sub-slice 4i (or dedicated slice pre-PHASE-2) · 2026-09-22T10:14:00Z
+
+- **Surfaced by**: R-105 autonomous decision at Turn 4 sub-slice 4h Path R (mirror-closure-only defer). See DECISIONS.md §"R-105 · AUTONOMOUS 4H PATH-R DEFER" for full contradiction analysis.
+- **Fact**: at Turn 4 sub-slice 4h the R-91 mirror-close boundary surfaced a discipline contradiction between R-101 preserved WHAT (retire 5 baselines + drain annotations + bump floor + milestone SEALED) and SO §3.8 additive-only (retirement path requires modifying sealed R-86 test carrier `test_baseline_drift_annotations_present.py` properties 2/3/5). Path R defer executed at 4h.
+- **Scope**: land NEW additive superseding invariant module at `backend/tests/invariants/test_r91_wave_close_supersede_annotation_guard.py` (SO §3.8 additive · new file · new invariant class · new package path). Module carries closure-guard semantics: when `MIRROR_DRIFT_NODEIDS & baseline_failures = {}` (all mirror-drift retired) OR when `CP_APP_JS_UNIFY.md milestone_status` contains `SEALED`, the annotation set-equality + non-empty checks are vacuously satisfied. Explicitly guards R-86 properties 1-5 by supersession pattern (adds the wave-close branch that R-86 tests lack).
+- **Then execute 4-leg retirement** (all in same Commit-A per §3.3 3-Commit Seal · same as originally scoped in CP_APP_JS_UNIFY.md MUST-DO 4):
+  1. Retire 5 R-91 baseline entries from `baseline_failures.baseline_failures` (drain to `[]` or filter to non-R-91-mirror-drift-only): `test_ship_manifest_dod::test_runtime_frontend_app_matches_repo_pod_shell` + `test_v8_substitution_rules_bind_to_rendered_dom::test_every_v8_substitution_rule_binds_to_harness_rendered_dom` + `test_v8_substitution_rules_bind_to_rendered_dom::test_slot1_registry_aside_marker_present` + `test_wave_g_pod_shell_frontend_mirror::test_app_frontend_App_js_mirrors_pod_shell_App_js` + `test_wave_g_pod_shell_frontend_mirror::test_app_frontend_pages_dir_mirrors_pod_shell_pages_dir`.
+  2. Drain `known_runtime_drift_annotations` to `{}` (or move to `retired_runtime_drift_annotations_r91_close` historical field).
+  3. Bump `counts_at_baseline.failed` from `5` → `0` AND `counts_at_baseline.passed` from `6072` → `6077`.
+  4. Bump `invariants_enforced_when_baseline_guard_1.passed_floor` from `6072` → `6077` (+5 measured retirements).
+  5. Advance `CP_APP_JS_UNIFY.md` frontmatter `milestone_status:` SCHEDULED → SEALED.
+- **RED-first properly disciplined** per 4d/4e/4f standing-lesson: author RED test first proving new closure-guard invariant fails when baselines still listed WITHOUT the guard, then GREEN post-guard-landing.
+- **Double-green byte-identical BASELINE_GUARD=1 sweep required** pre-Commit-A. Expected post-retirement: 0 failed / 6077 passed / 1 skipped both sweeps · stripped-sha256 IDENTICAL.
+- **§3.3 3-Commit Seal** (with /app companion Commit-A + Commit-C at each side per pattern).
+- **Blocks**: nothing operationally today. Mirror is byte-identical from 4h · all 5 R-91 tests pass in real bytes · retirement is a bookkeeping+ratchet-lock rather than a functional gate.
+- **Continues**: everything. 4i can proceed with Continuity Bundle regen + PINS sha-pin + hygiene independently; DQ-18 supersede can fold-in at 4i, OR land as dedicated CP-R91-RETIRE-SUPERSEDE slice, OR queue behind 4i and land at 4j — whichever preserves SO §6.4 nothing-beyond scope discipline.
+- **Priority**: **P1** (unblocks R-101 preserved WHAT retirement leg · sequenced pre-PHASE-2 so tenant-separation opens on a fully-closed R-91 wave).
+
