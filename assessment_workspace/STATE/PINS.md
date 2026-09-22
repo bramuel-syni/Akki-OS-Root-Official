@@ -812,3 +812,31 @@ Owner ruling relayed 2026-09-22T~06:15Z verbatim (banked at `STATE/DECISIONS.md:
 Standing bounds unchanged. Zero-push discipline unchanged.
 
 <!-- R-101 · R-91-TIMER-SUPERSEDED CONDITION-GATE PINS · 2026-09-22T06:15:23Z END -->
+
+
+## Post-4h seal reference block · Turn 4 sub-slice 4h Mirror-Closure-Only Path R (R-105) · 2026-09-22T10:14:00Z
+
+- **RATCHET at this seal:** **6075 pass / 0 fail / 1 skip · floor 6072 UNCHANGED per R-105 Path R defer · V3 no-shrink guard: 6075 ≥ 6072 · V1 subset: {} ⊆ {5 R-91 baselines}**
+- **baseline_failures.json sha256 (unchanged this-seal per Path R):** `2549a229f4621a2c97c1af6da4c97a31ddb814b81f2f1516a21ecd3bdf705d2e`
+- **notes/ORCH_BOOT.md sha256 (post-Commit-C-fixup regen · byte-identical with POD audit mirror):** `44b279b3e8bb25dfd4e033ad6ffcc27f89cfb75991948fa5ead7840385a9a1a1`
+- **POD audit mirror `/app/frontend/public/audit/ORCH_BOOT.md` sha256:** `44b279b3e8bb25dfd4e033ad6ffcc27f89cfb75991948fa5ead7840385a9a1a1` byte-identical to notes/ORCH_BOOT.md.
+- **App.js mirror byte-identity:** `/app/frontend/src/App.js` sha256 `6b56299f828abd2cbc24d57540a8f0f0d7f9b908b16e2bd2a060e832ae92f351` == `pod_shell/frontend/src/App.js` sha256 (same).
+- **`/app/frontend/src/pages/**` mirror:** `diff -rq /app/frontend/src/pages/ pod_shell/frontend/src/pages/` returns empty (recursive byte-identity).
+- **`/app/frontend/src/components/**` mirror:** `diff -rq /app/frontend/src/components/ pod_shell/frontend/src/components/` returns empty.
+- **Double-sweep byte-identical stripped-sha256 (pre-Commit-A):** `480dfbacc44d60e01adca9e0970bec3a8ac905a662d3f1941d15dc60413b74eb` IDENTICAL sweepA (175.79s) + sweepB (175.10s) both 6075 passed / 1 skipped / 0 failed / 520 warnings · BASELINE_GUARD receipt status: OK (subset · quarantine · ratchet all pass).
+- **CP_APP_JS_UNIFY.md `milestone_status`:** SCHEDULED (unchanged this-seal per R-105 Path R defer · sha256 `667f744606020f205aac2d292e61fb5945ac0443430c5c7522473675fb929b61`).
+- **HEAD shas at 4h SEAL close:**
+  - code Commit-A: `8dcbd4815b7095e2d7f7ce012fb8f706bbd1a31e` (programme/track-a)
+  - /app companion Commit-A: `480db11fc87106d382f4f7097a8f829a938db764`
+  - state Commit-B: `4fcbaf5ef324a4d372a6b09974fff3b2960dab65`
+  - state Commit-C fixup: `00987fdcb489d280168769d50d31a8dedc526cdd`
+  - /app Commit-C companion: `a4921edbeb166f894d227b80acfe5c47799c542c`
+- **Failed test set at seal (5 preserved · vacuous in real bytes · retained pending DQ-18 supersede):**
+  1. `tests/invariants/test_ship_manifest_dod.py::test_runtime_frontend_app_matches_repo_pod_shell` (R-86 annotated · passes in real bytes at 4h · vacuous)
+  2. `tests/invariants/test_v8_substitution_rules_bind_to_rendered_dom.py::test_every_v8_substitution_rule_binds_to_harness_rendered_dom` (R-88+ annotated · passes in real bytes at 4h · vacuous)
+  3. `tests/invariants/test_v8_substitution_rules_bind_to_rendered_dom.py::test_slot1_registry_aside_marker_present` (R-88+ annotated · passes in real bytes at 4h · vacuous)
+  4. `tests/invariants/test_wave_g_pod_shell_frontend_mirror.py::test_app_frontend_App_js_mirrors_pod_shell_App_js` (R-86 annotated · passes in real bytes at 4h · vacuous)
+  5. `tests/invariants/test_wave_g_pod_shell_frontend_mirror.py::test_app_frontend_pages_dir_mirrors_pod_shell_pages_dir` (R-86 annotated · passes in real bytes at 4h · vacuous)
+- **Continuity Bundle regen deferral rationale (R-103 autonomous fork this-4i):** disk pressure at 91% (978MB free · last 3-bundle regen consumed 313MB · new regen would push to ~92% or trigger disk-full risk during work). Deferred to a slice AFTER Order A audit close purges obsolete artifacts (Order A includes archival of pre-M0 continuity artifacts per its close scope) OR until disk-pressure remediation is separately scheduled. Non-blocking: existing bundles at `20260921T083500Z`, `20260921T114536Z`, `20260921T122757Z` remain intact + tracked + sha-pinned in state master repo. Reconstruction from outside the sandbox remains possible via last-good bundle set.
+
+<!-- Post-4h seal reference block · 2026-09-22T10:14:00Z END -->

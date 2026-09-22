@@ -57,6 +57,27 @@ Failure to follow this sequence = paraphrase-not-spec failure class the owner ex
 
 Update this section at every CP/R-step close.
 
+**§6 INTERLUDE MARKER · 2026-09-22T~10:22Z · autopilot Turn-4-sub-slice-4i SEAL close · state-only PINS sha-pin + Continuity Bundle deferral banking**
+
+**Turn 4 sub-slice 4i SEALED** via state-only 3-commit protocol (no code Commit-A · no /app companion Commit-A):
+- state Commit-B `c56449763f036e2cb006cf1ac1f7367c277ca20f` (2026-09-22T10:22Z · APPEND PINS.md post-4h wave-close reference block + APPEND DECISIONS.md 4i seal record + APPEND NEXT.md this-marker + REWRITE RESUME.md position→4j NEXT).
+- state Commit-C fixup NEXT-STEP (R-6 boundary regen advancing heads_last_sealed.state_repo.head to this-Commit-B sha · no code_repo entry change per Path R defer + state-only slice).
+- /app main Commit-C companion NEXT-TURN (audit ORCH_BOOT byte-identical mirror sync of post-fixup notes copy + workspace-subdirectory mirror sync).
+
+**Ratchet floor**: **6072** (UNCHANGED per Path R defer + state-only slice). baseline_failures.json sha256 `2549a229f4621a2c97c1af6da4c97a31ddb814b81f2f1516a21ecd3bdf705d2e` UNCHANGED.
+
+**R-103 autonomous forks this-slice** (all banked in DECISIONS.md 4i seal record verbatim):
+1. Continuity Bundle regen DEFERRED (disk pressure 91% used / 978MB free · non-blocking · existing bundles intact + sha-pinned).
+2. DQ-18 CP-R91-RETIRE-SUPERSEDE DEFERRED to dedicated slice (design analysis surfaced supersede-invariant CANNOT resolve R-86 property 2/3/5 unconditional `assert annotations` non-empty checks · partial-retirement path is discipline-compatible but needs its own slice for RED-first invariant + double-green sweep + 5-commit fan-out).
+3. Hygiene INCLUDED as null-observation (existing DQ-12 hygiene invariants remain GREEN under current sweep).
+4. PINS sha-pin refresh INCLUDED (post-4h wave-close reference block appended).
+
+**Autopilot next**: state master Commit-C fixup `e7cc5224` → /app main Commit-C companion NEXT-STEP → Turn 4 sub-slice 4j opens (Objective cards + PHASE 2 opens + **possible CP-R91-RETIRE-SUPERSEDE partial-retirement fold-in** design work).
+
+**Standing bounds unchanged**: zero push · terminal pytest+curl only · no `testing_agent` (STRICTLY BANNED per SO §6) · additive-only §3.8 · three-repo discipline · ratchet monotonic-up floor 6072 UNCHANGED · HF-HOLD SEC-2026-09-12-01 · DQ-17 owner-side rotation UNTOUCHED · DQ-13 owner-side rotation UNTOUCHED · R-101 preserved WHAT partially honored (mirror done at 4h · retirement leg deferred per R-105 to DQ-18) · R-102 productized-or-honest-gap satisfied · R-103 amendment applied (autonomous forks · annotated) · R-104 approving authorities await PHASE 2 · R-105 folded verbatim.
+
+---
+
 **§6 INTERLUDE MARKER · 2026-09-22T~10:14Z · autopilot Turn-4-sub-slice-4h SEAL close · R-105 Path R applied**
 
 **Turn 4 sub-slice 4h SEALED (Path R · mirror-closure-only)** via §3.3 3-Commit protocol (5-commit fan-out per pattern):
@@ -79,7 +100,7 @@ Update this section at every CP/R-step close.
 
 **46 of 48 canonical views reach**: 37 OS + 9 DAP-4g-verified + 2 DAP-4h-new = 48 total React routes reachable before PortalIframe wildcard. 2 remaining honest-gap (DAP-VIEW-12 Model Registry + DAP-VIEW-13 Training Runner Bridge · scheduled PHASE 4(h)).
 
-**Autopilot next**: state master Commit-C fixup THIS-TURN → /app main Commit-C companion NEXT-TURN → Turn 4 sub-slice 4i opens (Continuity Bundle regen + PINS sha-pin + hygiene · **possibly DQ-18 fold-in** if scope-compatible per SO §6.4 nothing-beyond).
+**Autopilot next**: state master Commit-C fixup `e7cc5224` → /app main Commit-C companion NEXT-TURN → Turn 4 sub-slice 4i opens (Continuity Bundle regen + PINS sha-pin + hygiene · **possibly DQ-18 fold-in** if scope-compatible per SO §6.4 nothing-beyond).
 
 **Standing bounds unchanged**: zero push · terminal pytest+curl only · no `testing_agent` (STRICTLY BANNED per SO §6) · additive-only §3.8 · three-repo discipline · ratchet monotonic-up floor 6072 UNCHANGED · HF-HOLD SEC-2026-09-12-01 · DQ-17 owner-side rotation UNTOUCHED · DQ-13 owner-side rotation UNTOUCHED · R-101 preserved WHAT partially honored (mirror done · retirement deferred per R-105 to DQ-18) · R-102 productized-or-honest-gap satisfied · R-103 amendment applied (autonomous fork · annotated) · R-104 approving authorities await PHASE 2 · R-105 folded verbatim.
 

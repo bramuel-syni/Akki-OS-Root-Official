@@ -26491,3 +26491,48 @@ Under R-103 amendment (owner-away · single continuous run · additive-reversibl
 **Turn 4 sub-slice 4i** — Continuity Bundle regen + PINS sha-pin + hygiene. **PLUS** DQ-18 retirement supersede (either as same-slice fold-in per SO §6.4 additive, or dedicated CP-R91-RETIRE-SUPERSEDE slice · depending on scope compatibility). Then 4j (Objective cards + PHASE 2 opens).
 
 <!-- Turn 4 sub-slice 4h · Mirror-closure-only seal · state master Commit-B · 2026-09-22T10:14:00Z END -->
+
+
+---
+
+## Turn 4 sub-slice 4i · Post-4h PINS sha-pin block + Continuity Bundle regen deferral · state master Commit-B · state-only 3-commit seal (no code Commit-A · no /app companion Commit-A) · 2026-09-22T10:22:00Z
+
+State-only slice landing three deliverables per RESUME.md turn queue for 4i (Continuity Bundle regen + PINS sha-pin + hygiene · **Continuity Bundle regen DEFERRED with rationale banked**):
+
+**Scope decisions (R-103 autonomous forks banked):**
+
+1. **PINS sha-pin refresh — INCLUDED** as post-4h wave-close reference block appended to `STATE/PINS.md` (baseline_failures.json sha, ORCH_BOOT sha, audit mirror sha, App.js mirror byte-identity attestation, double-sweep stripped-sha, HEAD shas across 3 repos, failed test set annotations).
+
+2. **Continuity Bundle regen — DEFERRED** (autonomous R-103 fork). Rationale: `df -h /app` at 4i open reports **91% used / 978MB free**. Prior 3-bundle regen at `20260921T122757Z` consumed 313MB (code 18MB + fe 130MB + state 163MB). Executing 3-bundle regen now would consume another ~350MB (state master repo has grown since prior regen), pushing disk to ~92% or triggering disk-full risk during subsequent work. Non-blocking: existing bundles (`20260921T083500Z` + `20260921T114536Z` + `20260921T122757Z`) remain intact + tracked in state master + sha-pinned in `STATE/PINS.md` — reconstruction from outside the sandbox remains possible via last-good bundle set. Deferred to a slice AFTER (a) Order A audit close purges obsolete artifacts per its scope OR (b) dedicated disk-pressure remediation slice OR (c) at the CP-TENANT-SEPARATION PHASE 2 open boundary (natural checkpoint).
+
+3. **Hygiene — INCLUDED as null-observation notes** (no new invariants authored; existing hygiene invariants from DQ-12 CP-DOT-ENV-HYGIENE (4b) remain GREEN per current double-green sweep · `.env` untracked · `.env.local` gitignored-from-birth · no secret-kind live values in tracked .env verified by `test_dot_env_hygiene_guard.py`).
+
+4. **DQ-18 CP-R91-RETIRE-SUPERSEDE — DEFERRED** to dedicated slice (either CP-R91-RETIRE-SUPERSEDE named slice or fold-in to 4j). Rationale: preliminary design analysis this-4i surfaced that the R-105 supersede pattern via a NEW additive invariant module CANNOT resolve the R-86 property 2/3/5 unconditional `assert annotations` non-empty checks — a superseding invariant can ADD new checks but cannot suppress or vacate existing sealed test assertions. Full retirement (drain to `[]`) breaks R-86 property 2/3/5. Partial retirement (retire only the 2 v8-substitution baselines · keep 3 R-91 mirror-drift baselines + annotations intact) is discipline-compatible and would advance ratchet 6072→6074 (+2 measured) but requires its own dedicated slice to design + author the RED-first invariant + double-green sweep + 5-commit seal. Not scope-compatible with 4i's state-only shape. Filed at DESK_QUEUE.md as DQ-18 (unchanged from 4h banking).
+
+- **Ratchet**: **UNCHANGED 6072** · baseline_failures.json sha256 `2549a229f4621a2c97c1af6da4c97a31ddb814b81f2f1516a21ecd3bdf705d2e` UNCHANGED.
+- **No pre-Commit-A double-green sweep required** (state-only slice · no code changes · no test changes · no invariant changes · no ratchet delta · SO §3.3 3-Commit Seal state-only variant applied per notes-only-banking precedent).
+- **notes/ORCH_BOOT.md unchanged this-Commit-B** (no head advance until state Commit-C fixup) · sha256 stays `44b279b3e8bb25dfd4e033ad6ffcc27f89cfb75991948fa5ead7840385a9a1a1` post-Commit-C-fixup regen.
+
+### Files landed (4 files)
+
+1. APPEND STATE/PINS.md +40 lines: post-4h wave-close reference block.
+2. APPEND STATE/DECISIONS.md this-record (+45 lines).
+3. APPEND STATE/NEXT.md 4i §6 marker (below).
+4. REWRITE STATE/RESUME.md: position → 4j NEXT · turn queue updated.
+
+### Same-seal cures
+
+None this-slice (state-only · no invariant delta · no ratchet delta).
+
+### DESK_QUEUE effect
+
+- DQ-18 unchanged (still SCHEDULED · scope-analysis deferred to dedicated slice).
+- All other items unchanged.
+
+### Autopilot next boundary
+
+**Turn 4 sub-slice 4j** — Objective cards + PHASE 2 opens per RESUME.md turn queue, with **possible fold-in of CP-R91-RETIRE-SUPERSEDE partial-retirement** design (retire 2 v8-substitution baselines only · +2 ratchet · discipline-compatible) as same-seal additive cure. Post-4j: PHASE 2 CP-TENANT-SEPARATION opens (R-104 approving authorities seat + DAP-15 first-decision-wins DEFAULT-class + DAP-17 one-act set/revoke standing approval).
+
+Standing bounds unchanged: zero push · terminal pytest+curl only · no `testing_agent` STRICTLY BANNED · additive-only §3.8 · three-repo · ratchet monotonic-up floor 6072 UNCHANGED · HF-HOLD SEC-2026-09-12-01 · R-101 preserved WHAT partially honored (mirror done at 4h · retirement leg deferred per R-105 to DQ-18) · R-102 productized-or-honest-gap satisfied · R-103 amendment applied (autonomous forks · annotated · Continuity Bundle regen deferred + DQ-18 deferred + Hygiene null-observation) · R-104 approving authorities await PHASE 2 · R-105 folded.
+
+<!-- Turn 4 sub-slice 4i · state-only 3-commit seal · Commit-B · 2026-09-22T10:22:00Z END -->
