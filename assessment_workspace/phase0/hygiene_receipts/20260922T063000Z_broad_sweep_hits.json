@@ -1,0 +1,1149 @@
+{
+  "sweep_utc": "2026-09-22T06:30:00Z",
+  "repos": [
+    {
+      "repo": "/app",
+      "branch": "main",
+      "tracked_files_total": 116785,
+      "files_swept": 114612,
+      "files_with_hit": 28,
+      "total_hits": 51,
+      "by_kind": {
+        "PASSWORD_ASSIGN_INLINE": 43,
+        "SSH_AUTHORIZED_KEY_BODY": 3,
+        "OPENAI_API_KEY_shape": 1,
+        "ENV_ASSIGN_EMERGENT_LLM_KEY": 1,
+        "ENV_ASSIGN_JWT_SECRET": 1,
+        "ENV_ASSIGN_API_KEY_generic": 2
+      },
+      "hits": [
+        {
+          "file": "assessment_workspace/STATE/DECISIONS.md",
+          "line": 4525,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "assessment_workspace/STATE/DECISIONS.md",
+          "line": 4621,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "assessment_workspace/STATE/DECISIONS.md",
+          "line": 8360,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "assessment_workspace/STATE/NEXT.md",
+          "line": 1727,
+          "kind": "SSH_AUTHORIZED_KEY_BODY"
+        },
+        {
+          "file": "assessment_workspace/STATE/PINS.md",
+          "line": 127,
+          "kind": "SSH_AUTHORIZED_KEY_BODY"
+        },
+        {
+          "file": "assessment_workspace/canon/prototypes/20260907_v2_standalone/RMS_AI_Prototype_v2_Standalone.blob_v2_865daeb9.js",
+          "line": 231,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "assessment_workspace/notes/SEC_INCIDENTS_20260914.md",
+          "line": 63,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "assessment_workspace/notes/SEC_INCIDENTS_20260914.md",
+          "line": 117,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "assessment_workspace/notes/SEC_INCIDENTS_20260914.md",
+          "line": 122,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "assessment_workspace/notes/wave_m8_tests_first_guard_invariant_grounding_brief.md",
+          "line": 13,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "assessment_workspace/phase0/drill_receipts/20260913T164231Z_T4_bastion_handshake.json",
+          "line": 28,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "assessment_workspace/phase0/drill_receipts/20260913T164513Z_T4_bastion_handshake.json",
+          "line": 28,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "assessment_workspace/phase0/keypair_hardening_receipts/20260828T162217Z_step1_keygen.json",
+          "line": 9,
+          "kind": "SSH_AUTHORIZED_KEY_BODY"
+        },
+        {
+          "file": "assessment_workspace/tools/digicow_cifs_deeper_20260921.py",
+          "line": 76,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "assessment_workspace/tools/digicow_targeted_read_check_20260921.py",
+          "line": 356,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "assessment_workspace/tools/digicow_targeted_read_check_20260921.py",
+          "line": 482,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "assessment_workspace/tools/full_estate_read_capability_sweep_20260921.py",
+          "line": 243,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "assessment_workspace/tools/full_estate_read_capability_sweep_20260921.py",
+          "line": 586,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "assessment_workspace/tools/full_estate_read_capability_sweep_20260921.py",
+          "line": 868,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "assessment_workspace/tools/full_estate_read_capability_sweep_20260921_freshcreds.py",
+          "line": 174,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "assessment_workspace/tools/full_estate_read_capability_sweep_20260921_freshcreds.py",
+          "line": 427,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "assessment_workspace/tools/huawei_db_reach.py",
+          "line": 45,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "assessment_workspace/tools/huawei_db_reach.py",
+          "line": 50,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "assessment_workspace/tools/huawei_db_reach.py",
+          "line": 72,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "assessment_workspace/tools/huawei_reprobe.py",
+          "line": 62,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "assessment_workspace/tools/jump_connectivity_retry_20260921.py",
+          "line": 196,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "assessment_workspace/tools/jump_connectivity_retry_20260921.py",
+          "line": 368,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "assessment_workspace/tools/nas_schema_survey_20260921.py",
+          "line": 614,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "assessment_workspace/tools/nas_schema_survey_20260921_v2.py",
+          "line": 537,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "assessment_workspace/tools/nas_schema_survey_20260921_v2.py",
+          "line": 557,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "assessment_workspace/tools/nas_schema_survey_20260921_v2.py",
+          "line": 570,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "assessment_workspace/tools/nas_smb_final_layer_pin_20260921.py",
+          "line": 167,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "assessment_workspace/tools/nfs_read_capability_survey_20260921.py",
+          "line": 476,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "assessment_workspace/tools/nfs_read_capability_survey_20260921_v2.py",
+          "line": 278,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "assessment_workspace/tools/rms_creds_loader.py",
+          "line": 142,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "assessment_workspace/tools/rms_creds_loader.py",
+          "line": 157,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "assessment_workspace/tools/rms_creds_loader.py",
+          "line": 163,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "assessment_workspace/tools/rms_creds_loader_v2.py",
+          "line": 209,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "assessment_workspace/tools/rms_creds_loader_v2.py",
+          "line": 213,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "assessment_workspace/tools/rms_creds_loader_v2.py",
+          "line": 237,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "assessment_workspace/tools/rms_creds_loader_v2.py",
+          "line": 240,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "assessment_workspace/tools/step2_tunneled_db_connect.py",
+          "line": 177,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "backend/.env",
+          "line": 19,
+          "kind": "ENV_ASSIGN_API_KEY_generic"
+        },
+        {
+          "file": "backend/.env",
+          "line": 19,
+          "kind": "ENV_ASSIGN_EMERGENT_LLM_KEY"
+        },
+        {
+          "file": "backend/.env",
+          "line": 19,
+          "kind": "OPENAI_API_KEY_shape"
+        },
+        {
+          "file": "backend/.env",
+          "line": 59,
+          "kind": "ENV_ASSIGN_API_KEY_generic"
+        },
+        {
+          "file": "backend/.env",
+          "line": 59,
+          "kind": "ENV_ASSIGN_JWT_SECRET"
+        },
+        {
+          "file": "frontend/public/audit/AKKI_ADMIN_CONNECTIVITY_BRIEF_20260917.json",
+          "line": 263,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "frontend/public/audit/AKKI_ADMIN_CONNECTIVITY_BRIEF_20260917.md",
+          "line": 353,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "frontend/src/components/ConnectWizard.jsx",
+          "line": 167,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "frontend/src/components/ConnectWizard.jsx",
+          "line": 331,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        }
+      ]
+    },
+    {
+      "repo": "/app/assessment_workspace",
+      "branch": "master",
+      "tracked_files_total": 2547,
+      "files_swept": 1486,
+      "files_with_hit": 13,
+      "total_hits": 20,
+      "by_kind": {
+        "PASSWORD_ASSIGN_INLINE": 17,
+        "SSH_AUTHORIZED_KEY_BODY": 3
+      },
+      "hits": [
+        {
+          "file": "STATE/DECISIONS.md",
+          "line": 4525,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "STATE/DECISIONS.md",
+          "line": 4621,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "STATE/DECISIONS.md",
+          "line": 8360,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "STATE/NEXT.md",
+          "line": 1727,
+          "kind": "SSH_AUTHORIZED_KEY_BODY"
+        },
+        {
+          "file": "STATE/PINS.md",
+          "line": 127,
+          "kind": "SSH_AUTHORIZED_KEY_BODY"
+        },
+        {
+          "file": "canon/prototypes/20260907_v2_standalone/RMS_AI_Prototype_v2_Standalone.blob_v2_865daeb9.js",
+          "line": 231,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "fixtures/RMS_AI_Akki_Prototype_v8_Standalone.blob_v8_a27c8ca4.js",
+          "line": 231,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "notes/SEC_INCIDENTS_20260914.md",
+          "line": 63,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "notes/SEC_INCIDENTS_20260914.md",
+          "line": 117,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "notes/SEC_INCIDENTS_20260914.md",
+          "line": 122,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "notes/wave_m8_tests_first_guard_invariant_grounding_brief.md",
+          "line": 13,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "phase0/drill_receipts/20260913T164231Z_T4_bastion_handshake.json",
+          "line": 28,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "phase0/drill_receipts/20260913T164513Z_T4_bastion_handshake.json",
+          "line": 28,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "phase0/keypair_hardening_receipts/20260828T162217Z_step1_keygen.json",
+          "line": 9,
+          "kind": "SSH_AUTHORIZED_KEY_BODY"
+        },
+        {
+          "file": "tools/jump_connectivity_retry_20260921.py",
+          "line": 196,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "tools/jump_connectivity_retry_20260921.py",
+          "line": 368,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "tools/rms_creds_loader.py",
+          "line": 142,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "tools/rms_creds_loader.py",
+          "line": 157,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "tools/rms_creds_loader.py",
+          "line": 163,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "tools/step2_tunneled_db_connect.py",
+          "line": 177,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        }
+      ]
+    },
+    {
+      "repo": "/app/assessment_workspace/repos/Extraction-Akki",
+      "branch": "programme/track-a",
+      "tracked_files_total": 4316,
+      "files_swept": 2958,
+      "files_with_hit": 10,
+      "total_hits": 23,
+      "by_kind": {
+        "ENV_ASSIGN_EMERGENT_LLM_KEY": 1,
+        "ENV_ASSIGN_JWT_SECRET": 1,
+        "ENV_ASSIGN_API_KEY_generic": 6,
+        "PASSWORD_ASSIGN_INLINE": 7,
+        "MONGODB_URI_WITH_CREDS": 8
+      },
+      "hits": [
+        {
+          "file": "backend/.env.sample",
+          "line": 12,
+          "kind": "ENV_ASSIGN_API_KEY_generic"
+        },
+        {
+          "file": "backend/.env.sample",
+          "line": 12,
+          "kind": "ENV_ASSIGN_JWT_SECRET"
+        },
+        {
+          "file": "backend/.env.sample",
+          "line": 14,
+          "kind": "ENV_ASSIGN_API_KEY_generic"
+        },
+        {
+          "file": "backend/.env.sample",
+          "line": 24,
+          "kind": "ENV_ASSIGN_API_KEY_generic"
+        },
+        {
+          "file": "backend/.env.sample",
+          "line": 24,
+          "kind": "ENV_ASSIGN_EMERGENT_LLM_KEY"
+        },
+        {
+          "file": "backend/.env.sample",
+          "line": 26,
+          "kind": "ENV_ASSIGN_API_KEY_generic"
+        },
+        {
+          "file": "backend/.env.sample",
+          "line": 34,
+          "kind": "ENV_ASSIGN_API_KEY_generic"
+        },
+        {
+          "file": "backend/services/connect/draft_store.py",
+          "line": 36,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "backend/services/connect/draft_store.py",
+          "line": 59,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "backend/services/connect/draft_store.py",
+          "line": 70,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "backend/services/opportunity_briefs/advisory_marker.py",
+          "line": 28,
+          "kind": "ENV_ASSIGN_API_KEY_generic"
+        },
+        {
+          "file": "backend/services/registry/validator.py",
+          "line": 159,
+          "kind": "MONGODB_URI_WITH_CREDS"
+        },
+        {
+          "file": "backend/services/training_runner/ssh_seam.py",
+          "line": 275,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "backend/services/training_runner/ssh_seam.py",
+          "line": 321,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "docs/close_reports/registry_population.md",
+          "line": 72,
+          "kind": "MONGODB_URI_WITH_CREDS"
+        },
+        {
+          "file": "docs/stage_a_proposals/machine_readable_registry_stage_a.md",
+          "line": 183,
+          "kind": "MONGODB_URI_WITH_CREDS"
+        },
+        {
+          "file": "docs/stage_a_proposals/registry_population_stage_a.md",
+          "line": 464,
+          "kind": "MONGODB_URI_WITH_CREDS"
+        },
+        {
+          "file": "frontend/public/downloads/shield_engine_specs.bundle.md",
+          "line": 3391,
+          "kind": "MONGODB_URI_WITH_CREDS"
+        },
+        {
+          "file": "frontend/public/downloads/shield_engine_specs.bundle.md",
+          "line": 13969,
+          "kind": "MONGODB_URI_WITH_CREDS"
+        },
+        {
+          "file": "frontend/public/downloads/shield_engine_specs.bundle.md",
+          "line": 14160,
+          "kind": "MONGODB_URI_WITH_CREDS"
+        },
+        {
+          "file": "frontend/public/downloads/shield_engine_specs.bundle.md",
+          "line": 21068,
+          "kind": "MONGODB_URI_WITH_CREDS"
+        },
+        {
+          "file": "pod_shell/frontend/src/components/ConnectWizard.jsx",
+          "line": 167,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "pod_shell/frontend/src/components/ConnectWizard.jsx",
+          "line": 331,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        }
+      ]
+    },
+    {
+      "repo": "/app/assessment_workspace/repos/RMS-IQ-Core-2",
+      "branch": "main",
+      "tracked_files_total": 2519,
+      "files_swept": 2248,
+      "files_with_hit": 6,
+      "total_hits": 9,
+      "by_kind": {
+        "ENV_ASSIGN_API_KEY_generic": 1,
+        "MONGODB_URI_WITH_CREDS": 8
+      },
+      "hits": [
+        {
+          "file": "backend/services/opportunity_briefs/advisory_marker.py",
+          "line": 28,
+          "kind": "ENV_ASSIGN_API_KEY_generic"
+        },
+        {
+          "file": "backend/services/registry/validator.py",
+          "line": 159,
+          "kind": "MONGODB_URI_WITH_CREDS"
+        },
+        {
+          "file": "docs/close_reports/registry_population.md",
+          "line": 72,
+          "kind": "MONGODB_URI_WITH_CREDS"
+        },
+        {
+          "file": "docs/stage_a_proposals/machine_readable_registry_stage_a.md",
+          "line": 183,
+          "kind": "MONGODB_URI_WITH_CREDS"
+        },
+        {
+          "file": "docs/stage_a_proposals/registry_population_stage_a.md",
+          "line": 464,
+          "kind": "MONGODB_URI_WITH_CREDS"
+        },
+        {
+          "file": "frontend/public/downloads/shield_engine_specs.bundle.md",
+          "line": 3391,
+          "kind": "MONGODB_URI_WITH_CREDS"
+        },
+        {
+          "file": "frontend/public/downloads/shield_engine_specs.bundle.md",
+          "line": 13969,
+          "kind": "MONGODB_URI_WITH_CREDS"
+        },
+        {
+          "file": "frontend/public/downloads/shield_engine_specs.bundle.md",
+          "line": 14160,
+          "kind": "MONGODB_URI_WITH_CREDS"
+        },
+        {
+          "file": "frontend/public/downloads/shield_engine_specs.bundle.md",
+          "line": 21068,
+          "kind": "MONGODB_URI_WITH_CREDS"
+        }
+      ]
+    },
+    {
+      "repo": "/app/assessment_workspace/repos/Akki-OS-V1",
+      "branch": "main",
+      "tracked_files_total": 2123,
+      "files_swept": 1891,
+      "files_with_hit": 6,
+      "total_hits": 9,
+      "by_kind": {
+        "ENV_ASSIGN_API_KEY_generic": 1,
+        "MONGODB_URI_WITH_CREDS": 8
+      },
+      "hits": [
+        {
+          "file": "backend/services/opportunity_briefs/advisory_marker.py",
+          "line": 28,
+          "kind": "ENV_ASSIGN_API_KEY_generic"
+        },
+        {
+          "file": "backend/services/registry/validator.py",
+          "line": 159,
+          "kind": "MONGODB_URI_WITH_CREDS"
+        },
+        {
+          "file": "docs/close_reports/registry_population.md",
+          "line": 72,
+          "kind": "MONGODB_URI_WITH_CREDS"
+        },
+        {
+          "file": "docs/stage_a_proposals/machine_readable_registry_stage_a.md",
+          "line": 183,
+          "kind": "MONGODB_URI_WITH_CREDS"
+        },
+        {
+          "file": "docs/stage_a_proposals/registry_population_stage_a.md",
+          "line": 464,
+          "kind": "MONGODB_URI_WITH_CREDS"
+        },
+        {
+          "file": "frontend/public/downloads/shield_engine_specs.bundle.md",
+          "line": 3391,
+          "kind": "MONGODB_URI_WITH_CREDS"
+        },
+        {
+          "file": "frontend/public/downloads/shield_engine_specs.bundle.md",
+          "line": 13969,
+          "kind": "MONGODB_URI_WITH_CREDS"
+        },
+        {
+          "file": "frontend/public/downloads/shield_engine_specs.bundle.md",
+          "line": 14160,
+          "kind": "MONGODB_URI_WITH_CREDS"
+        },
+        {
+          "file": "frontend/public/downloads/shield_engine_specs.bundle.md",
+          "line": 21068,
+          "kind": "MONGODB_URI_WITH_CREDS"
+        }
+      ]
+    },
+    {
+      "repo": "/app/assessment_workspace/repos/Akki-Executive-Core",
+      "branch": "main",
+      "tracked_files_total": 5918,
+      "files_swept": 3554,
+      "files_with_hit": 27,
+      "total_hits": 53,
+      "by_kind": {
+        "ENV_ASSIGN_JWT_SECRET": 3,
+        "ENV_ASSIGN_API_KEY_generic": 22,
+        "ENV_ASSIGN_EMERGENT_LLM_KEY": 3,
+        "PASSWORD_ASSIGN_INLINE": 21,
+        "MONGODB_URI_WITH_CREDS": 2,
+        "AWS_ACCESS_KEY_AKIA_ASIA": 2
+      },
+      "hits": [
+        {
+          "file": "backend/core.py",
+          "line": 23,
+          "kind": "ENV_ASSIGN_API_KEY_generic"
+        },
+        {
+          "file": "backend/core.py",
+          "line": 23,
+          "kind": "ENV_ASSIGN_JWT_SECRET"
+        },
+        {
+          "file": "backend/deploy/README.md",
+          "line": 28,
+          "kind": "ENV_ASSIGN_EMERGENT_LLM_KEY"
+        },
+        {
+          "file": "backend/deploy/README.md",
+          "line": 63,
+          "kind": "ENV_ASSIGN_EMERGENT_LLM_KEY"
+        },
+        {
+          "file": "backend/routers/_internal_transport.py",
+          "line": 46,
+          "kind": "ENV_ASSIGN_API_KEY_generic"
+        },
+        {
+          "file": "backend/routers/cohort_magic_link.py",
+          "line": 103,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "backend/scripts/bootstrap_prod.py",
+          "line": 104,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "backend/scripts/jc_admin_cred_rotation_proving_slice.py",
+          "line": 40,
+          "kind": "ENV_ASSIGN_API_KEY_generic"
+        },
+        {
+          "file": "backend/scripts/jc_chat_stage_c_punchlist_slice.py",
+          "line": 57,
+          "kind": "ENV_ASSIGN_API_KEY_generic"
+        },
+        {
+          "file": "backend/scripts/migrate_solva_v2_orphans.py",
+          "line": 75,
+          "kind": "ENV_ASSIGN_API_KEY_generic"
+        },
+        {
+          "file": "backend/scripts/seed_julius_opio.py",
+          "line": 36,
+          "kind": "ENV_ASSIGN_API_KEY_generic"
+        },
+        {
+          "file": "backend/scripts/seed_julius_opio.py",
+          "line": 381,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "backend/scripts/solva_v2_10_sessions.py",
+          "line": 479,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "backend/services/storage_service.py",
+          "line": 43,
+          "kind": "ENV_ASSIGN_API_KEY_generic"
+        },
+        {
+          "file": "backend/services/storage_service.py",
+          "line": 44,
+          "kind": "ENV_ASSIGN_API_KEY_generic"
+        },
+        {
+          "file": "backend/services/stripe_webhook.py",
+          "line": 31,
+          "kind": "ENV_ASSIGN_API_KEY_generic"
+        },
+        {
+          "file": "backend/services/stripe_webhook.py",
+          "line": 34,
+          "kind": "ENV_ASSIGN_API_KEY_generic"
+        },
+        {
+          "file": "backend_test.py",
+          "line": 41,
+          "kind": "ENV_ASSIGN_API_KEY_generic"
+        },
+        {
+          "file": "backend_test.py",
+          "line": 41,
+          "kind": "ENV_ASSIGN_JWT_SECRET"
+        },
+        {
+          "file": "backend_test.py",
+          "line": 44,
+          "kind": "ENV_ASSIGN_API_KEY_generic"
+        },
+        {
+          "file": "docs/DEPLOYMENT.md",
+          "line": 142,
+          "kind": "MONGODB_URI_WITH_CREDS"
+        },
+        {
+          "file": "docs/RUNBOOKS/AZURE_DEPLOY.md",
+          "line": 267,
+          "kind": "ENV_ASSIGN_API_KEY_generic"
+        },
+        {
+          "file": "docs/RUNBOOKS/AZURE_DEPLOY.md",
+          "line": 269,
+          "kind": "ENV_ASSIGN_API_KEY_generic"
+        },
+        {
+          "file": "docs/RUNBOOKS/PRODUCTION_ENV.md",
+          "line": 42,
+          "kind": "MONGODB_URI_WITH_CREDS"
+        },
+        {
+          "file": "docs/RUNBOOKS/PRODUCTION_ENV.md",
+          "line": 272,
+          "kind": "ENV_ASSIGN_API_KEY_generic"
+        },
+        {
+          "file": "docs/RUNBOOKS/PRODUCTION_ENV.md",
+          "line": 272,
+          "kind": "ENV_ASSIGN_JWT_SECRET"
+        },
+        {
+          "file": "docs/RUNBOOKS/PRODUCTION_ENV.md",
+          "line": 281,
+          "kind": "ENV_ASSIGN_API_KEY_generic"
+        },
+        {
+          "file": "docs/RUNBOOKS/PRODUCTION_ENV.md",
+          "line": 287,
+          "kind": "ENV_ASSIGN_API_KEY_generic"
+        },
+        {
+          "file": "docs/RUNBOOKS/PRODUCTION_ENV.md",
+          "line": 287,
+          "kind": "ENV_ASSIGN_EMERGENT_LLM_KEY"
+        },
+        {
+          "file": "docs/RUNBOOKS/PRODUCTION_ENV.md",
+          "line": 300,
+          "kind": "ENV_ASSIGN_API_KEY_generic"
+        },
+        {
+          "file": "docs/RUNBOOKS/PRODUCTION_ENV.md",
+          "line": 310,
+          "kind": "ENV_ASSIGN_API_KEY_generic"
+        },
+        {
+          "file": "docs/RUNBOOKS/PRODUCTION_ENV.md",
+          "line": 315,
+          "kind": "ENV_ASSIGN_API_KEY_generic"
+        },
+        {
+          "file": "docs/RUNBOOKS/PRODUCTION_ENV.md",
+          "line": 320,
+          "kind": "ENV_ASSIGN_API_KEY_generic"
+        },
+        {
+          "file": "frontend/scripts/render-smoke.js",
+          "line": 32,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "frontend/src/lib/api/schemas.gen.ts",
+          "line": 7,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "frontend/src/lib/api/schemas.gen.ts",
+          "line": 32,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "frontend/src/lib/api/schemas.gen.ts",
+          "line": 52,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "frontend/src/lib/api/schemas.gen.ts",
+          "line": 572,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "frontend/src/lib/api/schemas.gen.ts",
+          "line": 2453,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "frontend/src/lib/api/schemas.gen.ts",
+          "line": 2486,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "frontend/src/lib/api/schemas.gen.ts",
+          "line": 4890,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "frontend/src/lib/api/schemas.gen.ts",
+          "line": 5263,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "frontend/src/pages/AccountSecurity.jsx",
+          "line": 126,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "frontend/src/pages/SignUp.jsx",
+          "line": 49,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "frontend/src/pages/SignUp.jsx",
+          "line": 68,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "memory/sprints/JC_ADMIN_CRED_ROTATION_AND_ENV_VAR_REWIRE.md",
+          "line": 105,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "memory/sprints/SHIELD_REIDENTIFIER_SKIP_LIST_STATE.md",
+          "line": 107,
+          "kind": "AWS_ACCESS_KEY_AKIA_ASIA"
+        },
+        {
+          "file": "memory/sprints/SHIELD_REIDENTIFIER_SKIP_LIST_STATE.md",
+          "line": 114,
+          "kind": "AWS_ACCESS_KEY_AKIA_ASIA"
+        },
+        {
+          "file": "memory/sprints/phase_e_addendum_artefacts/verify_trust_receipt.py",
+          "line": 119,
+          "kind": "ENV_ASSIGN_API_KEY_generic"
+        },
+        {
+          "file": "scripts/generate_h1_screenshots.py",
+          "line": 252,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "scripts/phase_k_screenshots.py",
+          "line": 39,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "scripts/phase_k_smoke.py",
+          "line": 10,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "scripts/probe_inbound_mx.py",
+          "line": 219,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        }
+      ]
+    },
+    {
+      "repo": "/app/assessment_workspace/repos/Akki-Executive-Final",
+      "branch": "main",
+      "tracked_files_total": 7767,
+      "files_swept": 4457,
+      "files_with_hit": 21,
+      "total_hits": 38,
+      "by_kind": {
+        "ENV_ASSIGN_JWT_SECRET": 3,
+        "ENV_ASSIGN_API_KEY_generic": 18,
+        "PASSWORD_ASSIGN_INLINE": 12,
+        "MONGODB_URI_WITH_CREDS": 2,
+        "ENV_ASSIGN_EMERGENT_LLM_KEY": 1,
+        "AWS_ACCESS_KEY_AKIA_ASIA": 2
+      },
+      "hits": [
+        {
+          "file": "backend/core.py",
+          "line": 23,
+          "kind": "ENV_ASSIGN_API_KEY_generic"
+        },
+        {
+          "file": "backend/core.py",
+          "line": 23,
+          "kind": "ENV_ASSIGN_JWT_SECRET"
+        },
+        {
+          "file": "backend/routers/cohort_magic_link.py",
+          "line": 98,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "backend/scripts/bootstrap_prod.py",
+          "line": 104,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "backend/scripts/migrate_solva_v2_orphans.py",
+          "line": 75,
+          "kind": "ENV_ASSIGN_API_KEY_generic"
+        },
+        {
+          "file": "backend/scripts/seed_julius_opio.py",
+          "line": 36,
+          "kind": "ENV_ASSIGN_API_KEY_generic"
+        },
+        {
+          "file": "backend/scripts/seed_julius_opio.py",
+          "line": 381,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "backend/scripts/solva_v2_10_sessions.py",
+          "line": 479,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "backend/services/storage_service.py",
+          "line": 43,
+          "kind": "ENV_ASSIGN_API_KEY_generic"
+        },
+        {
+          "file": "backend/services/storage_service.py",
+          "line": 44,
+          "kind": "ENV_ASSIGN_API_KEY_generic"
+        },
+        {
+          "file": "backend/services/stripe_webhook.py",
+          "line": 31,
+          "kind": "ENV_ASSIGN_API_KEY_generic"
+        },
+        {
+          "file": "backend/services/stripe_webhook.py",
+          "line": 34,
+          "kind": "ENV_ASSIGN_API_KEY_generic"
+        },
+        {
+          "file": "backend_test.py",
+          "line": 41,
+          "kind": "ENV_ASSIGN_API_KEY_generic"
+        },
+        {
+          "file": "backend_test.py",
+          "line": 41,
+          "kind": "ENV_ASSIGN_JWT_SECRET"
+        },
+        {
+          "file": "docs/DEPLOYMENT.md",
+          "line": 142,
+          "kind": "MONGODB_URI_WITH_CREDS"
+        },
+        {
+          "file": "docs/RUNBOOKS/AZURE_DEPLOY.md",
+          "line": 267,
+          "kind": "ENV_ASSIGN_API_KEY_generic"
+        },
+        {
+          "file": "docs/RUNBOOKS/AZURE_DEPLOY.md",
+          "line": 269,
+          "kind": "ENV_ASSIGN_API_KEY_generic"
+        },
+        {
+          "file": "docs/RUNBOOKS/PRODUCTION_ENV.md",
+          "line": 42,
+          "kind": "MONGODB_URI_WITH_CREDS"
+        },
+        {
+          "file": "docs/RUNBOOKS/PRODUCTION_ENV.md",
+          "line": 272,
+          "kind": "ENV_ASSIGN_API_KEY_generic"
+        },
+        {
+          "file": "docs/RUNBOOKS/PRODUCTION_ENV.md",
+          "line": 272,
+          "kind": "ENV_ASSIGN_JWT_SECRET"
+        },
+        {
+          "file": "docs/RUNBOOKS/PRODUCTION_ENV.md",
+          "line": 281,
+          "kind": "ENV_ASSIGN_API_KEY_generic"
+        },
+        {
+          "file": "docs/RUNBOOKS/PRODUCTION_ENV.md",
+          "line": 287,
+          "kind": "ENV_ASSIGN_API_KEY_generic"
+        },
+        {
+          "file": "docs/RUNBOOKS/PRODUCTION_ENV.md",
+          "line": 287,
+          "kind": "ENV_ASSIGN_EMERGENT_LLM_KEY"
+        },
+        {
+          "file": "docs/RUNBOOKS/PRODUCTION_ENV.md",
+          "line": 300,
+          "kind": "ENV_ASSIGN_API_KEY_generic"
+        },
+        {
+          "file": "docs/RUNBOOKS/PRODUCTION_ENV.md",
+          "line": 310,
+          "kind": "ENV_ASSIGN_API_KEY_generic"
+        },
+        {
+          "file": "docs/RUNBOOKS/PRODUCTION_ENV.md",
+          "line": 315,
+          "kind": "ENV_ASSIGN_API_KEY_generic"
+        },
+        {
+          "file": "docs/RUNBOOKS/PRODUCTION_ENV.md",
+          "line": 320,
+          "kind": "ENV_ASSIGN_API_KEY_generic"
+        },
+        {
+          "file": "frontend/scripts/render-smoke.js",
+          "line": 32,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "frontend/src/pages/AccountSecurity.jsx",
+          "line": 125,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "frontend/src/pages/SignUp.jsx",
+          "line": 48,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "frontend/src/pages/SignUp.jsx",
+          "line": 67,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "memory/sprints/SHIELD_REIDENTIFIER_SKIP_LIST_STATE.md",
+          "line": 107,
+          "kind": "AWS_ACCESS_KEY_AKIA_ASIA"
+        },
+        {
+          "file": "memory/sprints/SHIELD_REIDENTIFIER_SKIP_LIST_STATE.md",
+          "line": 114,
+          "kind": "AWS_ACCESS_KEY_AKIA_ASIA"
+        },
+        {
+          "file": "memory/sprints/phase_e_addendum_artefacts/verify_trust_receipt.py",
+          "line": 119,
+          "kind": "ENV_ASSIGN_API_KEY_generic"
+        },
+        {
+          "file": "scripts/generate_h1_screenshots.py",
+          "line": 252,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "scripts/phase_k_screenshots.py",
+          "line": 39,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "scripts/phase_k_smoke.py",
+          "line": 9,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        },
+        {
+          "file": "scripts/probe_inbound_mx.py",
+          "line": 219,
+          "kind": "PASSWORD_ASSIGN_INLINE"
+        }
+      ]
+    }
+  ],
+  "aggregate": {
+    "repos_swept": 7,
+    "total_files_swept": 131206,
+    "total_files_with_hit": 111,
+    "total_hits": 203,
+    "by_kind": {
+      "PASSWORD_ASSIGN_INLINE": 100,
+      "SSH_AUTHORIZED_KEY_BODY": 6,
+      "OPENAI_API_KEY_shape": 1,
+      "ENV_ASSIGN_EMERGENT_LLM_KEY": 6,
+      "ENV_ASSIGN_JWT_SECRET": 8,
+      "ENV_ASSIGN_API_KEY_generic": 50,
+      "MONGODB_URI_WITH_CREDS": 28,
+      "AWS_ACCESS_KEY_AKIA_ASIA": 4
+    }
+  }
+}

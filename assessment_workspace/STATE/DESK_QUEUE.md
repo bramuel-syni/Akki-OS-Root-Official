@@ -140,21 +140,72 @@ Each entry carries: **fork id · surfaced-at seal · options · recommendation �
 - **Continues**: everything.
 - **Timing**: **inside R-101 ε-apply wave**, ratchet monotonic-up on the 3 hygiene invariants + the mirror-invariant retirements + net-new frontend tests.
 
-## DQ-13 · CREDENTIAL ROTATION REQUIRED · owner-side · `EMERGENT_LLM_KEY` + `JWT_SECRET`
+## DQ-13 · CREDENTIAL ROTATION REQUIRED · owner-side · `EMERGENT_LLM_KEY` + `JWT_SECRET` + broad-sweep fold-ins
 
-- **Surfaced by**: DQ-11 hygiene probe at 2026-09-22T~06:15Z (receipt above).
-- **Fact**: TWO live secrets currently in tracked `/app/backend/.env` AND in git history at `dc48d5313` + `e214236a8` (both commits carry the same value; committed 2026-09-19):
-  - **`EMERGENT_LLM_KEY`** — 30-char high-entropy key. Used by backend for LLM inference (`emergentintegrations` library reads this).
-  - **`JWT_SECRET`** — 64-char high-entropy key. Used to sign session JWTs. **Past history holders can forge tokens.**
+- **Surfaced by**: DQ-11 hygiene probe at 2026-09-22T~06:15Z + broad hygiene sweep at 2026-09-22T~06:30Z (receipts `phase0/hygiene_receipts/20260922T061500Z_dot_env_hygiene_probe.md` + `phase0/hygiene_receipts/20260922T063000Z_broad_sweep_receipt.md`).
+- **Fact — LIVE (2)**: TWO live secrets currently in tracked `/app/backend/.env` AND in git history at `dc48d5313` + `e214236a8` (both commits carry the same value; committed 2026-09-19):
+  - **`EMERGENT_LLM_KEY`** — 30-char high-entropy key. Used by backend for LLM inference (`emergentintegrations` library reads this). `/app/backend/.env:19`.
+  - **`JWT_SECRET`** — 64-char high-entropy key. Used to sign session JWTs. **Past history holders can forge tokens.** `/app/backend/.env:59`.
+- **Fact — SUSPECT (4 · owner eyeball required per broad sweep)**: high-entropy values embedded in Akki-Executive-{Core, Final} branched forks that classifier could not disambiguate live-vs-fabricated:
+  - **JWT_SECRET fallback** — `backend_test.py:41` in both `Akki-Executive-Core` and `Akki-Executive-Final`. Hard-coded fallback used if env unset. Owner judgement needed: fabricated or real?
+  - **AWS_ACCESS_KEY (AKIA)** ×2 — `memory/sprints/SHIELD_REIDENTIFIER_SKIP_LIST_STATE.md:107,114` in both `Akki-Executive-Core` and `Akki-Executive-Final`. AKIA-shape strings embedded in shield-test scenarios. Cannot tell from doc whether real AWS keys or fabricated. Owner judgement needed: fabricated or real (if real, revoke via AWS console)?
 - **Rotation actions (owner-side)**:
   - **EMERGENT_LLM_KEY**: rotate at emergent management console (Profile → Manage Plan → Universal Key → rotate). Any holder of git history has the old key; assume compromised.
   - **JWT_SECRET**: rotate to a fresh 64-char random. Rotation invalidates all outstanding session tokens (users must re-login). This is the correct fail-safe posture after historical leak.
+  - **backend_test.py JWT fallback** (2 forks): owner rules — fabricate a NEW test-fixture value AND remove the fallback path from `backend_test.py` (or leave in place if judged safe); the desk cannot judge from code alone.
+  - **AKIA in shield-test docs** (2 forks × 2 lines): owner rules — if real, revoke via AWS console and add to shield-mask regex tests as `[REDACTED]` placeholders; if fabricated, keep in place and add a comment noting fixture-status to prevent future scanner alarms.
 - **Follow-up (agent-side)**: after owner rotates:
   1. Update `/app/backend/.env` with new values (but this creates DQ-11 recurrence unless CP-DOT-ENV-HYGIENE has landed).
-  2. Preferred sequencing: **DQ-12 CP-DOT-ENV-HYGIENE lands FIRST** (moves .env-source to `.env.local`), then owner rotation drops new values into `.env.local` (untracked). Zero-risk.
+  2. Preferred sequencing: **DQ-12 CP-DOT-ENV-HYGIENE lands FIRST** at R-101 ε-apply (moves `.env`-source to `.env.local`), then owner rotation drops new values into `.env.local` (untracked). Zero-risk.
 - **Blocks**: nothing operationally today. Old secrets continue to function until rotation. **Historical leak is permanent** in git history (SO §3.8 no-history-rewrite); rotation is the only cure.
 - **Continues**: everything.
-- **Related**: DQ-11 (CP-VEND-HUAWEI-OBS cure module authored this-session for OBS-side secret handling) uses the same custody-xlsx-in-memory pattern that CP-DOT-ENV-HYGIENE + rotation enable at scale.
+- **Related**: DQ-11 (CP-VEND-HUAWEI-OBS cure module scheduled Turn-6 R-101 sequence) uses the same custody-xlsx-in-memory pattern that CP-DOT-ENV-HYGIENE + rotation enable at scale. Broad sweep verified `HUAWEI_OBS_AK/SK` have **zero hits in tracked disk** (correctly outside git; keys live at `custody/credentials/rms_connection_creds_v1.xlsx#Huawei Creds`).
+
+## DQ-14 · CP-SKILLS-LAYER (tier-4 · desk recommendation) · owner-side scope decision
+
+- **Surfaced by**: Spec-coverage gap digest 2026-09-22T~06:20Z, digest §3.1 rank-3 finding — **5 of 8 A18.x rules NOT BUILT** (largest single not-built concentration in the 602-rule registry).
+- **Owner ruling relayed to desk 2026-09-22T~06:35Z verbatim** (Q2 of digest §6 Q-bundle): *"owner-side scope decisions, now with the owner (skills layer card, deck engine card, streaming extraction fork). Bank them in DESK_QUEUE as tier-4 items and continue; do not hold anything on them. Note in the queue entries the desk recommendation: open all three objective cards now (drafting cards is cheap and preserves sequencing memory), build order to be ranked by the owner at the next batch."*
+- **NOT BUILT rules** (verbatim from Doc 18 · Objective O11 Skills & Rendering):
+  - A18.1 *"The provisioning record, reused verbatim"* — NOT BUILT
+  - A18.2 *"The slice freezes; it never edits"* — NOT BUILT
+  - A18.3 *"Governance rides every response, not just the first one"* — NOT BUILT
+  - A18.5 *"Scope is enforced server-side, not by client discipline"* — NOT BUILT
+  - A18.8 *"Complete donor code exists; it is not in this build"* — NOT BUILT
+- **BUILT in place** (A18.4, A18.6, A18.7): floor-refusal invariant · async-delivery-adoption · owner-confirmed-concept snapshot parity.
+- **Desk recommendation**: OPEN `STATE/OBJECTIVES/CP_SKILLS_LAYER.md` at next boundary drafting card only (owner-side scope; do not hold anything on it). Sequenced post-CP-TENANT-SEPARATION alongside CENSUS-PRODUCTIZATION per owner's own logic (skills-per-tenant scoping likely needed).
+- **Blocks**: nothing operationally. R-101 ε-apply ships prototype's skills-tab views live-wired-where-real, honest-gap where-not, per owner's Q1 ruling.
+- **Continues**: everything.
+- **Timing**: opens post-CP-TENANT-SEPARATION seal (parallel with CENSUS-PRODUCTIZATION build). Build-order ranked by owner at next batch.
+
+## DQ-15 · CP-DECK-ENGINE (tier-4 · desk recommendation) · owner-side scope decision
+
+- **Surfaced by**: Spec-coverage gap digest 2026-09-22T~06:20Z, digest §3.1 rank-4 finding — **14 of 14 DR-R1..R14 rules PARTIAL, 0 BUILT** (whole deck-rendering pipeline scaffolded only).
+- **Owner ruling relayed to desk 2026-09-22T~06:35Z verbatim**: same as DQ-14 (tier-4 · draft card · owner-ranks-build-order).
+- **PARTIAL rules** (14 · Deck Engine Spec · deck_engine.md):
+  - DR-R1 *"One backend rendering service · input DeckSpec_v0, output a deck"* — PARTIAL
+  - DR-R2 *"Determinism is a contract: identical (spec, token version, engine version) MUST produce byte-identical output"* — PARTIAL
+  - DR-R3 *"Charts render as engine-generated SVG from plate law — no client-side charting runtime"* — PARTIAL
+  - DR-R4 *"DeckSpec_v0 — a frozen contract (crosses executive app + OS boundaries)"* — PARTIAL
+  - DR-R5..R14 · fail-closed validation + engine guarantees + mechanical lint + versioned token sets + HTML/PDF delivery + metering + backend-only parallel-safe pattern — all PARTIAL.
+  - DR-R10, DR-R13 additionally flagged `STATEMENT UNRECOVERED — extraction artefact (RD-16)` — source `deck_engine.md` not on ruling desk; verbatim restoration needed before build.
+- **Desk recommendation**: OPEN `STATE/OBJECTIVES/CP_DECK_ENGINE.md` at next boundary drafting card only. Include RD-16 note (restore verbatim source before authoring DR-R10 + DR-R13). Sequenced independently — deck rendering is a separate rendering-service subsystem, no tenant-scoping dependency in the same way as CENSUS/SKILLS.
+- **Blocks**: nothing operationally. R-101 ε-apply ships prototype's Documents/Deck tab as UI-only (backend deck-render call raises honest-gap since DR-R1..R14 PARTIAL); user sees the tab but the "generate deck" button lands the honest-gap pattern.
+- **Continues**: everything.
+- **Timing**: build-order ranked by owner at next batch. Card open is cheap and preserves sequencing memory.
+
+## DQ-16 · CP-STREAMING-EXTRACTION-FORK (tier-4 · desk recommendation) · owner-side scope decision
+
+- **Surfaced by**: Spec-coverage gap digest 2026-09-22T~06:20Z, digest §3.1 rank-6 finding — **4 of 4 SE-1..SE-4 rules PARTIAL** (real-time ASR streaming not implemented; batch-only ships).
+- **Owner ruling relayed to desk 2026-09-22T~06:35Z verbatim**: same as DQ-14 (tier-4 · draft card · owner-ranks-build-order).
+- **PARTIAL rules** (4 · SV extension · Streaming extraction):
+  - SE-1 *"Streaming extraction is a named second mode of §17.4a, sharing its tokenized representation and Character Register outputs"* — PARTIAL
+  - SE-2 *"Candidate: NVIDIA Nemotron ASR Streaming — cache-aware, 40 language-locales, language-ID conditioning built in"* — PARTIAL
+  - SE-3 *(unrecovered? not visible in extract; assumed part of set)* — PARTIAL
+  - SE-4 *"Methodology, not a model: compact model tuned by register normalization against the Character Register"* — PARTIAL
+- **Desk recommendation**: OPEN as **fork behind CENSUS-3-F.2.1 live-OBS-bind slice** at `STATE/OBJECTIVES/CP_STREAMING_EXTRACTION.md`. CENSUS-3-F.2.1 already streams (OBS audio → GPU) so extending the same runtime layer to streaming ASR (SE-1..4) is architecturally closer than a standalone objective. Sequenced post-CP-VEND-HUAWEI-OBS (Turn-6 R-101 sequence) which unblocks CENSUS-3-F.2.1 live-bind.
+- **Blocks**: nothing operationally. R-101 ε-apply ships prototype's audio extraction UI live-wired to batch pipeline (existing) + honest-gap where a streaming control appears in the prototype.
+- **Continues**: everything.
+- **Timing**: card open cheap; sequenced post-CP-VEND-HUAWEI-OBS + CENSUS-3-F.2.1 live-bind; build-order ranked by owner at next batch.
 
 ---
 

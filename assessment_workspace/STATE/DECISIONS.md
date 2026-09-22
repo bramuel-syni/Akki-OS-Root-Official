@@ -25658,4 +25658,179 @@ Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered · MEM-
 
 ---
 
+## 2026-09-22T06:30:00Z · Turn 3 · BROAD HYGIENE SWEEP · shape-only receipt banked · state master notes-only
+
+### Owner ruling for this turn verbatim (2026-09-22T~06:35Z relayed to desk)
+
+> "§6.8 — no GO exists; proceed Turn 3 now. Rulings on the Q-bundle: Q1 — RULED by the desk from the owner's existing directive ('UI/UX architecture and experience flow needs to be exact as the HTML I shared' + 'prototype wins'): the ε-apply wave ships EVERY prototype view, including the entitlements/org-admin screens — live-wired where a real backend exists, honest-gap pattern where it does not. No prototype view is deferred out of the UI wave; only the BACKEND build-out behind gapped views is a later objective. This is what 'exact as the HTML' means operationally. Q2/Q3/Q4 — owner-side scope decisions, now with the owner (skills layer card, deck engine card, streaming extraction fork). Bank them in DESK_QUEUE as tier-4 items and continue; do not hold anything on them. Note in the queue entries the desk recommendation: open all three objective cards now (drafting cards is cheap and preserves sequencing memory), build order to be ranked by the owner at the next batch. Turn queue 3→7 confirmed as you listed. Report at the Turn-3 receipt and then go straight into Turn 4 — the ε-apply/frontend wave is the owner's visibility priority. Zero push, terminal only."
+
+### Turn 3 deliverable
+
+**Sweep tool + shape-only receipt + JSON hits landing this-commit:**
+
+- `phase0/hygiene_receipts/20260922T063000Z_broad_sweep_tool.py` — Python sweep tool (openpyxl-free · pure regex over git-tracked files) with 20 pattern classes covering AWS AKIA/ASIA · OpenAI sk- · HuggingFace hf_ · GitHub ghp_/ghs_/ghu_/gho_/ghr_ · Google AIza · Slack xox · Stripe sk_live · PEM PRIVATE KEY · MongoDB/PostgreSQL/MySQL URI-with-creds · Bearer inline · EMERGENT_LLM_KEY env-assign · JWT_SECRET env-assign · HUAWEI_OBS_AK/SK env-assign · ANY_ACCESS_KEY / ANY_SECRET_KEY env-assign · generic API_KEY env-assign · SSH authorized-key body · inline password assignment.
+- `phase0/hygiene_receipts/20260922T063000Z_broad_sweep_hits.json` — JSON receipt (per-repo · per-file · per-line · per-kind) with **no values recorded**; only file:line + kind label.
+- `phase0/hygiene_receipts/20260922T063000Z_broad_sweep_receipt.md` — shape-only markdown receipt classifying every high-severity hit as LIVE / SUSPECT / PLACEHOLDER / REGEX_PATTERN / GETENV_LOOKUP / DOCS_TEXT / TEST_FIXTURE / SSH_PUBLIC_KEY.
+
+### Sweep aggregate
+
+| Metric | Value |
+|---|---:|
+| repos_swept | 7 (all present on disk: `/app`, `assessment_workspace`, `Extraction-Akki`, `RMS-IQ-Core-2`, `Akki-OS-V1`, `Akki-Executive-Core`, `Akki-Executive-Final`) |
+| tracked_files_total (union) | 141,975 |
+| files_swept (post-skip) | 131,206 |
+| files_with_hit | 111 |
+| total_hits (pattern matches) | 203 |
+| **LIVE** (rotation required) | **2** (both in `/app/backend/.env`; already in DQ-13) |
+| **SUSPECT** (owner eyeball needed) | **4** (2 branched forks · 2 pattern kinds; fold-in to DQ-13 below) |
+| **PLACEHOLDER / REGEX / GETENV / DOCS / TEST_FIXTURE / SSH_PUBLIC_KEY** | 197 (all classified clean per receipt §Classification) |
+
+### DQ-13 fold-in list expanded (2 → 6 candidates for owner-side rotation)
+
+1. **EMERGENT_LLM_KEY** — `/app/backend/.env:19` — LIVE — rotate at Emergent management console.
+2. **JWT_SECRET** — `/app/backend/.env:59` — LIVE — rotate to fresh 64-char random.
+3. **JWT_SECRET fallback** — `Akki-Executive-Core/backend_test.py:41` — SUSPECT — owner judgement.
+4. **JWT_SECRET fallback** — `Akki-Executive-Final/backend_test.py:41` — SUSPECT — same as (3), branched fork.
+5. **AWS AKIA** ×2 lines — `Akki-Executive-Core/memory/sprints/SHIELD_REIDENTIFIER_SKIP_LIST_STATE.md:107,114` — SUSPECT — owner judgement (revoke via AWS console if real).
+6. **AWS AKIA** ×2 lines — `Akki-Executive-Final/memory/sprints/SHIELD_REIDENTIFIER_SKIP_LIST_STATE.md:107,114` — SUSPECT — same as (5), branched fork.
+
+### Clean-confirmations (zero hits)
+
+- **HUAWEI_OBS_AK / HUAWEI_OBS_SK**: 0 hits on tracked disk. Keys correctly live at `custody/credentials/rms_connection_creds_v1.xlsx#Huawei Creds` (outside git). Validates the CP-VEND-HUAWEI-OBS strategy (Turn-6): in-memory read from custody xlsx at process lifetime, never .env.
+- **HuggingFace hf_ · GitHub ghp_ · Google AIza · Slack xox · Stripe sk_live · PEM PRIVATE KEY · PostgreSQL / MySQL URI-with-creds · Bearer inline**: 0 hits.
+
+### Q-bundle rulings banked
+
+- **Q1** (RULED by desk from owner's existing directive): ε-apply wave ships EVERY prototype view live-wired-where-real, honest-gap where-not. No prototype view deferred out of UI wave; only BACKEND build-out behind gapped views is a later objective.
+- **Q2** (owner-side · tier-4 with desk recommendation): CP-SKILLS-LAYER card draft-open at next boundary. Banked as **DQ-14** at `DESK_QUEUE.md`.
+- **Q3** (owner-side · tier-4 with desk recommendation): CP-DECK-ENGINE card draft-open at next boundary. Banked as **DQ-15** at `DESK_QUEUE.md`.
+- **Q4** (owner-side · tier-4 with desk recommendation): CP-STREAMING-EXTRACTION-FORK behind CENSUS-3-F.2.1 live-OBS-bind. Banked as **DQ-16** at `DESK_QUEUE.md`.
+- Build-order across DQ-14/15/16 owner-ranked at next batch. Cards drafted-only at next boundary; no build activity opens on them per owner "do not hold anything on them" verbatim.
+
+### Files landed this-notes-only-banking (state master · not §3.3 3-Commit Seal)
+
+- **NEW** `phase0/hygiene_receipts/20260922T063000Z_broad_sweep_tool.py`.
+- **NEW** `phase0/hygiene_receipts/20260922T063000Z_broad_sweep_hits.json`.
+- **NEW** `phase0/hygiene_receipts/20260922T063000Z_broad_sweep_receipt.md`.
+- `STATE/DECISIONS.md` (this-append · Turn-3 receipt banking + owner ruling verbatim + sweep aggregate + DQ-13 fold-in list + Q-bundle rulings).
+- `STATE/DESK_QUEUE.md` — DQ-13 fold-in list expanded (LIVE 2 + SUSPECT 4) + **NEW DQ-14 CP-SKILLS-LAYER tier-4** + **NEW DQ-15 CP-DECK-ENGINE tier-4** + **NEW DQ-16 CP-STREAMING-EXTRACTION-FORK tier-4**.
+
+### Standing bounds unchanged
+
+Zero push · terminal `pytest` + `curl` only · **no `testing_agent`** (STRICTLY BANNED per SO §6) · additive-only §3.8 · three-repo discipline · ratchet monotonic-up floor **5932** UNCHANGED (state-only notes-only banking · no code branch touch) · HF-HOLD SEC-2026-09-12-01 · DQ-11 dequeued to Turn-6 · DQ-12 sequenced INTO Turn-4 R-101 ε-apply · DQ-13 owner-side rotation with 4 SUSPECT fold-ins · DQ-14/15/16 tier-4 owner-side scope decisions with desk recommendation to draft cards at next boundary · Structural §3.8 sha-pin `ad0d9439…` · Mirror-invariant guard on `/app/backend/vendored/extraction_akki/backend/`.
+
+### Canon anchors verbatim
+
+- Owner ruling this-session (2026-09-22T~06:35Z · verbatim above · Q-bundle rulings + Turn-queue 3→7 confirmed + report Turn-3 receipt + go straight into Turn 4 · frontend wave = owner's visibility priority).
+- Owner design-of-record verbatim "UI/UX architecture and experience flow needs to be exact as the HTML I shared" + "prototype wins" (Front-End Integration Brief at `custody/owner_drops/20260920T0824Z/`).
+- SPEC-COVERAGE GAP DIGEST at state master commit `e6b2c07e` immediately-precedes (broad sweep is Turn-3 rider on that digest boundary).
+- R-101 supersede banking at state master commit `fbcbf1f7` immediately-preceded digest.
+- SO §2.5 verbatim-docstring + §3 tests-first + §3.8 additive-only + §6.4 NOTHING-BEYOND + §6.7 seal-report-boundary + §6.8 owner-directive scope.
+
+### Stop-conditions
+
+Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered · MEM-R-053 CROWN BAN NOT triggered · notes-only banking per precedent (`14173772` FE FIX-PASS CLOSURE + `0e7a07b0` HUNT-first + this-session R-101 supersede + SPEC-COVERAGE GAP DIGEST immediately-precedes).
+
+### Autopilot next per owner ruling verbatim
+
+**Turn 4 · R-101 ε-APPLY + FRONTEND REBUILD WAVE** — proceed **straight** (no owner ruling needed per current directive · frontend = owner's visibility priority). Wave-first work item = prototype full 46-view enumeration + Chrome screenshots + gap checklist INSIDE the wave. Then ε-apply byte-identical mirror + rebuild runtime frontend to v2 OS + LATEST DAP prototypes ("prototype wins" · streaming/transition states included · honest-gap strings where no live backend · Run-census wired only REAL). DQ-12 CP-DOT-ENV-HYGIENE as first Commit-A slice. 3-bundle Continuity regen. §3.3 3-Commit Seal. Post-seal: DQ-14 + DQ-15 + DQ-16 cards drafted at next boundary; CP-TENANT-SEPARATION opens per owner Part-2 order.
+
+<!-- Turn 3 · BROAD HYGIENE SWEEP · state master notes-only banking · 2026-09-22T06:30:00Z END -->
+
+
+---
+
+## 2026-09-22T06:45:00Z · Turn 4 sub-slice 4a · Prototype full 46-view enumeration + ε-apply gap checklist · state master notes-only banking
+
+### Owner directive posture (post-Turn-3 seal · Turn 4 opens straight)
+
+Owner ruling 2026-09-22T~06:35Z verbatim: *"Turn queue 3→7 confirmed as you listed. Report at the Turn-3 receipt and then go straight into Turn 4 — the ε-apply/frontend wave is the owner's visibility priority. Zero push, terminal only."*
+
+Turn 4 opens. First sub-slice per plan §7 = **full 46-view enumeration inside the wave** (state-only, no code touch).
+
+**Deployment context banked** (system notification received this-turn): PRODUCTION is now live at `https://akki.syni.ai`. Working environment remains PREVIEW (`/app`). All Turn 4 work happens on preview; owner redeploys manually when the seal lands. Heightens discipline on byte-identical mirror + prototype-wins rebuild — every view the owner sees post-redeploy must match v2 OS + LATEST DAP prototypes as design-of-record.
+
+### Deliverable
+
+**NEW** `phase0/prototype_inventory/20260922T064500Z_full_enumeration_and_gap_checklist.md` (this-commit-add) · 10 sections:
+
+1. **Section 1 · v2 OS complete NAV** — TABS constant (4 top-level tabs) + NAV constant (10 groups) + **37 leaf views** enumerated byte-verbatim + ROLES constant (3 personas · Compliance Owner / Watch Officer / Operator with group access) + TONE palette (plain/held/refused/failed/drill) + FOURQ pattern (every block leads with a sentence · "see the working" behind) + canon label↔identity mapping.
+2. **Section 2 · DAP LATEST state machine** — 4 ownership statuses (Available / Yours / In use / Not available) + **14 distinct DAP states** (Open to you / In Approval / Needs sign-off / Ready / Executing/running / stopped / Refused/refused / Blocked / transferring / Retrieved/done / failed / Expired / closed / pending) + **11 canonical DAP view classes**.
+3. **Section 3 · "20 pages" ambiguity resolved** — enumerate exhaustively (all 37 OS leaves + all 11 DAP view classes = 48 views · 46 canonical after collapsing overlaps) satisfies either owner reading.
+4. **Section 4 · Runtime target inventory** — /app/frontend App.js 1112 lines vs pod_shell 1084 lines (28-line R-91 mirror-drift) · pages/dap + pages/os present in runtime · absent in pod_shell · 18 sealed shell components.
+5. **Section 5 · ε-APPLY GAP CHECKLIST · 46 canonical views** — per-view backend availability + wiring decision:
+   - 13 slots with partial or full LIVE wiring (chat · 4 thinklab · registry landing · refusal card · stop modal · retry surface · CENSUS-extract · spend requests · rules updates read · governance read · grey mirror).
+   - 28 slots HONEST-GAP (per owner Q1 ruling · never fake state · never simulated progress).
+   - 5 slots hybrid live+honest-gap (train · buildskill · yourmodels · appsrequests · deck).
+6. **Section 6 · Palette + typography** — :root variables verbatim extract (partial · full walked at rebuild).
+7. **Section 7 · ε-apply implementation sequencing** — 10 sub-slices 4a-4j:
+   - 4a state enumeration (THIS-COMMIT)
+   - 4b DQ-12 CP-DOT-ENV-HYGIENE first Commit-A slice
+   - 4c-4g Frontend rebuild slices (5 sub-slices: shell/palette+work-live · work-honest-gap+monitor · thinklab+admin · build+3rd-party · DAP surface)
+   - 4h Mirror sync + baseline/annotation retirement
+   - 4i Double-green + §3.3 3-Commit Seal + 3-bundle Continuity regen
+   - 4j Post-seal cards + CP-TENANT-SEPARATION opens
+8. **Section 8 · Chrome screenshot plan** — 46 canonical screenshots at sub-slice 4c open pre-first-commit.
+9. **Section 9 · Bounds** — state-side prep only this-sub-slice · zero App.js touch · zero code commit this-boundary.
+10. **Section 10 · Canon anchors** — 8 owner+SO anchors verbatim.
+
+### Key structural findings this-enumeration
+
+- **37 OS leaf views** (not 31 · corrected from starter): starter missed monitor's `signals`/`ideas` net-new leaves and watch's 4 leaves.
+- **NAV.push() pattern**: `watch` group appended to NAV via `NAV.push({...})` after the core NAV declaration — starter parser missed this until this-turn deeper walk.
+- **SUB_TO_GROUP overrides**: `signals` and `ideas` reassigned to `monitor` group at runtime (starter didn't reflect).
+- **P360_SUBS** const: `['tasks','team','performance','board','signals','ideas']` — 6-leaf sub-set that renders as monitor's `monitorTabsView`.
+- **11 DAP view classes** (not 15 of starter estimate): browse list · request detail · running progress · stop confirm · refused card · sign-off queue · sign-off review · blocked state · failed state · retry surface · transferring/delivery.
+- **8 BUILT** live-wire targets fully live (chat · thinklab · registry landing · refusal card §2.2 verbatim · stop modal R-100 CONDITION 2 · retry surface R-100 CONDITION 4 · CENSUS-SURFACE-A endpoints · R-100 portal write-surface).
+- **All 5 R-100 portal-write endpoints verified live**: submit / stop / retry / detail / list — live in `/api/portal/*` JWT-gated (R-100 seal + R-100-A hotfix `320a752/00827f7a`).
+
+### Wiring decision matrix summary
+
+| Category | Slot count | Approach |
+|---|---:|---|
+| Full LIVE-wire (backend exists · prototype-wins layout) | 8 | Direct call to existing endpoints; layout matches prototype |
+| PARTIAL LIVE + honest-gap hybrid (some sub-fields live, others HG) | 5 | Live where real, HG copy for unshipped sub-fields |
+| HONEST-GAP (no backend · verbatim gap-copy) | 28 | Prototype layout with owner-approved gap strings; **no simulated progress · no fake state** per R-101 condition (iii) |
+| Persona filter (role-based nav visibility) | 3 personas | ROLES const drives visible groups in Admin tab |
+
+### Deferred to next sub-slice 4b
+
+- **DQ-12 CP-DOT-ENV-HYGIENE** RED-first 3 invariants + `git rm --cached backend/.env` operations.
+- **Chrome runtime screenshots** (46 canonical) — bank at sub-slice 4c open pre-first App.js commit.
+- **Full `:root` palette walk** — complete at sub-slice 4c open (rebuild-time).
+
+### Files landed this-notes-only-banking (state master · not §3.3 3-Commit Seal · not a code commit)
+
+- **NEW** `phase0/prototype_inventory/20260922T064500Z_full_enumeration_and_gap_checklist.md`.
+- `STATE/DECISIONS.md` (this-append).
+
+### Standing bounds unchanged
+
+Zero push · zero remote configured · terminal `pytest` + `curl` only · **no `testing_agent`** (STRICTLY BANNED per SO §6) · additive-only §3.8 · three-repo discipline · ratchet monotonic-up floor **5932** UNCHANGED (state-only prep · no code branch touch) · HF-HOLD SEC-2026-09-12-01 · DQ-11 dequeued to Turn-6 · DQ-12 sequenced INTO Turn 4 sub-slice 4b · DQ-13 owner-side rotation with 4 SUSPECT fold-ins · DQ-14/15/16 tier-4 cards drafted post-Turn-4 seal · Structural §3.8 sha-pin `ad0d9439…` · Mirror-invariant guard on `/app/backend/vendored/extraction_akki/backend/`.
+
+### Canon anchors verbatim
+
+- Owner ruling 2026-09-22T~06:35Z (verbatim in Turn-3 banking above): report Turn-3 receipt + go straight into Turn 4 + zero push.
+- Owner directive 2026-09-22T~06:10Z: *"UI/UX architecture and experience flow needs to be exact as the HTML I shared."*
+- Owner Front_End_Integration_Brief.md §0 verbatim: *"The prototype is the design of record ... prototype wins."*
+- Owner FE brief §2.2 refusal-copy carve-out.
+- v2 OS prototype `custody/owner_drops/20260920T0824Z/RMS_AI_Prototype_v2.html` (2,286,992 bytes).
+- DAP LATEST prototype `custody/owner_drops/20260920T1140Z/RMS_DAP_LATEST.html` (221,620 bytes).
+- R-101 supersede banking at state master commit `fbcbf1f7`.
+- R-91 CEREMONY-OPEN §22243 apply schedule (WHAT preserved).
+- SO §2.5 §3 §3.3 §3.8 §6.4 §6.7 §6.8.
+
+### Stop-conditions
+
+Stop-conditions #1/#2/#3 NOT triggered · §6.4 pre-ruling NOT triggered · MEM-R-053 CROWN BAN NOT triggered · state-only notes-only banking (not §3.3 3-Commit Seal · not code commit).
+
+### Autopilot NEXT boundary
+
+**Turn 4 sub-slice 4b · DQ-12 CP-DOT-ENV-HYGIENE** — RED-first 3 invariants + `git rm --cached backend/.env` + `.env.local` untracked-from-birth + supervisor sourcing both. §3.3 3-Commit Seal (first code commit-A of Turn 4). Then sub-slice 4c Chrome screenshots + first frontend rebuild slice (App.js shell + palette + 4 TABS + persona filter · byte-verbatim per v2 OS extraction §1.1-§1.5).
+
+<!-- Turn 4 sub-slice 4a · state master notes-only banking · 2026-09-22T06:45:00Z END -->
+
+
+---
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
