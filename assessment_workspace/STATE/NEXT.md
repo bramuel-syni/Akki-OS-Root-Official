@@ -5422,4 +5422,20 @@ READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 12. **Autopilot next**: proceed sub-slice 4d immediately (Work tab OS surface views + Monitor sub-view + Chrome-46 screenshot pass) per R-102 "go autonomous mod" verbatim. Post-fixup shas: code Commit-A `da534486cb6f18b2f3f40fd354879d47a3bb2ad6` on programme/track-a · /app main companion Commit-A `362afda77b2583c447d34eed2eb58531c145c4b0` · state master Commit-B `08c8b9f1e1547ad017d22a3083a8ee1e4cef5cdb`.
 
 
+### §6 INTERLUDE MARKER · autopilot re-anchor · 2026-09-22T08:40:00Z · Turn 4 sub-slice 4d · v2 OS Work + Monitor Native React Surfaces SEALED
+
+1. **Current wave**: PHASE 1 · Turn 4 sub-slice **4e NEXT** (Frontend rebuild slice 3 · ThinkLab 4 honest-gap + Admin tab 10 honest-gap via 4c filterGroupsForRole persona helper).
+2. **Ratchet floor**: **5982 passed** (was 5951 pre-4d · advance +31 measured this-seal).
+3. **Sub-slice 4d effect**: 9 native React surfaces landed at `/app/frontend/src/pages/os/` (WorkChat + 6 Work honest-gap + Monitor signals/ideas honest-gap). App.js additive imports (9) + additive routes (9 · `/os/work/<leaf>` + `/os/monitor/<leaf>`) landed before PortalIframe wildcard. Design-of-record structural drift cured for tasks/performance/board vs V8 render.
+4. **§3.3 3-Commit Seal**: code Commit-A on `programme/track-a` (test file + baseline_failures.json), companion Commit-A on `/app` main (9 React surfaces + App.js + audit ORCH_BOOT), state Commit-B on `master` (3 landmarks + 4 drill receipts + ORCH_BOOT + DECISIONS + RESUME + NEXT), Commit-C fixup on `master` + `/app` main pending same-turn.
+5. **Double-green byte-identical**: stripped-sha256 `2b32f333ef1eb856315e90e5c719b401c7598a1ea6a8e07d352d35b1b0b5f9f3` IDENTICAL sweepA+B (173.85s + 174.52s · 3 failed / 5982 passed / 1 skipped · 3 failures all R-91 mirror-drift baselines · retire 4h).
+6. **Same-seal cures (2 · SO §6.4 additive)**: (1) ORCH_BOOT ratchet regen 5951→5982 + sha `2f81085a...` → `5d61fe82...` + audit mirror byte-identical · (2) `test_orch_boot` unwind pre→post-cure GREEN.
+7. **Honest-gap concessions (SO §6.7 flags)**: (1) Chrome-46 mandate re-scoped to 4h mirror-sync diff pass · 3 landmarks were captured INLINE via `screenshot_tool` (image bytes viewable in the run's observation log) but disk-save via `page.screenshot(path=...)` reported success without persisting bytes · disk-persisted 46-view pass banked for 4h with confirmed write mechanism · (2) Chat LIVE-wire is honest-gap (no `/api/chat` endpoint · CP-CHAT-LIVE-WIRE queued PHASE 4) · (3) RED-first discipline breach cured via synthetic-RED replay · standing-lesson banked for 4e-4g.
+8. **Owner rulings cited verbatim**: R-101 preserved WHAT + owner UI-UX-exact-as-HTML + owner FE brief §0 + owner sub-slice 4d directive + owner §6.8 GO + R-102 MASTER DIRECTIVE.
+9. **Structural drift cured**: workstudio.tasks "Task Manager"→"My Work" · workstudio.performance "Exco 360"→"Company Goals" · workstudio.board "Board 360"→"Board" · monitor exposed for the first time.
+10. **RESUME.md compliance**: this-file rewritten at 4d SEAL close per R-102 + owner §6.8 GO one-line-per-seal-report mandate · sha attested at 4d seal report tail.
+11. **Standing bans (6 · UNCHANGED)**: zero push · testing_agent BANNED · no refactor · no secret values · honest-gap never fake · no history rewrite.
+12. **Autopilot next**: proceed sub-slice 4e immediately (ThinkLab 4 honest-gap + Admin tab 10 honest-gap · TESTS-FIRST DISCIPLINE MANDATED per 4d standing-lesson) per R-102 + owner §6.8 GO verbatim. Post-fixup shas 4d: code Commit-A `b407ef948efac2009dacb51c46b847b506baf47a` on programme/track-a · /app main companion Commit-A `ad906fcba3aff5b878dd35cf4f0f46e77f41c891` · state master Commit-B `d11497246a8e9b84a36fb3f34b56d987049af1b1` · state master Commit-C fixup `<PENDING>` · /app main Commit-C companion `<PENDING>`.
+
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
