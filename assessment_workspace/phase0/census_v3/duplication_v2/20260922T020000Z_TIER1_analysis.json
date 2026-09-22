@@ -1,0 +1,631 @@
+{
+  "obs": {
+    "total_objects": 1783267,
+    "unique_etag_size": 1434556,
+    "collision_clusters": 208879,
+    "objects_in_dup_clusters": 557590,
+    "objects_in_dup_pct": 31.26789202065647,
+    "duplicated_bytes": 19169951901688,
+    "duplicated_TB": 19.169951901688,
+    "total_bytes": 182493420944340,
+    "total_TB": 182.49342094434,
+    "dedup_ratio_pct": 10.504461915662583,
+    "intra_bucket_clusters": 121195,
+    "cross_bucket_clusters": 87684,
+    "top20_by_count": [
+      {
+        "etag_prefix": "d41d8cd98f00",
+        "size": 0,
+        "count": 21699,
+        "top_buckets": {
+          "librarydirectupload2": 10660,
+          "royalmedia": 1390,
+          "na7p42yg": 1199,
+          "na7p4oco": 1155,
+          "na7p43hs": 1090
+        }
+      },
+      {
+        "etag_prefix": "62050367b120",
+        "size": 38371,
+        "count": 1532,
+        "top_buckets": {
+          "news-vault": 1532
+        }
+      },
+      {
+        "etag_prefix": "de588440c9ad",
+        "size": 25779,
+        "count": 1012,
+        "top_buckets": {
+          "elections-portal": 1012
+        }
+      },
+      {
+        "etag_prefix": "194577a7e20b",
+        "size": 6148,
+        "count": 873,
+        "top_buckets": {
+          "na7p43dj": 107,
+          "na7p42s7": 77,
+          "na7p419y": 55,
+          "seconddatauploadroyalmedia.co.ke": 53,
+          "na7p41hj": 49
+        }
+      },
+      {
+        "etag_prefix": "8d562fdb0f9a",
+        "size": 5898,
+        "count": 532,
+        "top_buckets": {
+          "rms-ai": 532
+        }
+      },
+      {
+        "etag_prefix": "3a954c8c703f",
+        "size": 24201,
+        "count": 468,
+        "top_buckets": {
+          "razuna-direct-access": 461,
+          "razuna-ireland-replication-7sep2017": 5,
+          "test-regionireland": 2
+        }
+      },
+      {
+        "etag_prefix": "f4b8fcc36e2e",
+        "size": 117,
+        "count": 449,
+        "top_buckets": {
+          "google-transcripts": 449
+        }
+      },
+      {
+        "etag_prefix": "15efc4ac513d",
+        "size": 38870,
+        "count": 411,
+        "top_buckets": {
+          "news-vault": 411
+        }
+      },
+      {
+        "etag_prefix": "5e1ef5a1943f",
+        "size": 35989,
+        "count": 371,
+        "top_buckets": {
+          "news-vault": 371
+        }
+      },
+      {
+        "etag_prefix": "209e5cdcbd70",
+        "size": 115,
+        "count": 357,
+        "top_buckets": {
+          "google-transcripts": 357
+        }
+      },
+      {
+        "etag_prefix": "a0c060ce1b99",
+        "size": 67210,
+        "count": 255,
+        "top_buckets": {
+          "news-vault": 255
+        }
+      },
+      {
+        "etag_prefix": "40d21f4d569f",
+        "size": 115,
+        "count": 252,
+        "top_buckets": {
+          "google-transcripts": 252
+        }
+      },
+      {
+        "etag_prefix": "0b68439cfc2b",
+        "size": 152,
+        "count": 222,
+        "top_buckets": {
+          "google-transcripts": 222
+        }
+      },
+      {
+        "etag_prefix": "c127f8f4dec2",
+        "size": 60224,
+        "count": 199,
+        "top_buckets": {
+          "news-vault": 199
+        }
+      },
+      {
+        "etag_prefix": "41c7ca932138",
+        "size": 1159,
+        "count": 190,
+        "top_buckets": {
+          "rms-ai": 190
+        }
+      },
+      {
+        "etag_prefix": "6e74e3b2952f",
+        "size": 134642,
+        "count": 135,
+        "top_buckets": {
+          "chamgei-backup": 135
+        }
+      },
+      {
+        "etag_prefix": "cdcb5078f619",
+        "size": 117,
+        "count": 131,
+        "top_buckets": {
+          "google-transcripts": 131
+        }
+      },
+      {
+        "etag_prefix": "0840ea7c6538",
+        "size": 470766,
+        "count": 125,
+        "top_buckets": {
+          "elections": 125
+        }
+      },
+      {
+        "etag_prefix": "669adbb39262",
+        "size": 115,
+        "count": 124,
+        "top_buckets": {
+          "google-transcripts": 124
+        }
+      },
+      {
+        "etag_prefix": "0e1ba0f43311",
+        "size": 367,
+        "count": 123,
+        "top_buckets": {
+          "librarydirectupload2": 123
+        }
+      }
+    ],
+    "top20_by_duplicated_bytes": [
+      {
+        "etag_prefix": "c54557827be1",
+        "size": 67731650057,
+        "count": 3,
+        "dup_bytes": 135463300114,
+        "top_buckets": {
+          "na7p4100": 2,
+          "na7p410c": 1
+        }
+      },
+      {
+        "etag_prefix": "6c1cba36b5f9",
+        "size": 64274895993,
+        "count": 3,
+        "dup_bytes": 128549791986,
+        "top_buckets": {
+          "na7p42s5": 1,
+          "na7p41jk": 1,
+          "na7p42tq": 1
+        }
+      },
+      {
+        "etag_prefix": "7945ce3b5655",
+        "size": 76515297877,
+        "count": 2,
+        "dup_bytes": 76515297877,
+        "top_buckets": {
+          "na7p49pc": 1,
+          "na7p4oxs": 1
+        }
+      },
+      {
+        "etag_prefix": "99338f4621af",
+        "size": 72036622057,
+        "count": 2,
+        "dup_bytes": 72036622057,
+        "top_buckets": {
+          "na7p41jk": 1,
+          "na7p42tq": 1
+        }
+      },
+      {
+        "etag_prefix": "49395cceaf89",
+        "size": 70621215761,
+        "count": 2,
+        "dup_bytes": 70621215761,
+        "top_buckets": {
+          "na7p42s5": 1,
+          "na7p42tq": 1
+        }
+      },
+      {
+        "etag_prefix": "6da7bf3bc4aa",
+        "size": 70447659889,
+        "count": 2,
+        "dup_bytes": 70447659889,
+        "top_buckets": {
+          "na7p42s5": 1,
+          "na7p42tq": 1
+        }
+      },
+      {
+        "etag_prefix": "954a683d0715",
+        "size": 69806514089,
+        "count": 2,
+        "dup_bytes": 69806514089,
+        "top_buckets": {
+          "na7p42s5": 1,
+          "na7p42tq": 1
+        }
+      },
+      {
+        "etag_prefix": "26127e559d78",
+        "size": 64669424529,
+        "count": 2,
+        "dup_bytes": 64669424529,
+        "top_buckets": {
+          "na7p42s7": 1,
+          "na7p42xe": 1
+        }
+      },
+      {
+        "etag_prefix": "8e42180e67ed",
+        "size": 62703170817,
+        "count": 2,
+        "dup_bytes": 62703170817,
+        "top_buckets": {
+          "na7p434j": 2
+        }
+      },
+      {
+        "etag_prefix": "a6dc526e282c",
+        "size": 62110314425,
+        "count": 2,
+        "dup_bytes": 62110314425,
+        "top_buckets": {
+          "na7p42s5": 1,
+          "na7p42tq": 1
+        }
+      },
+      {
+        "etag_prefix": "9aa1dfa9c4d3",
+        "size": 29927027634,
+        "count": 3,
+        "dup_bytes": 59854055268,
+        "top_buckets": {
+          "librarydirectupload2": 3
+        }
+      },
+      {
+        "etag_prefix": "7cfc03b1e7f8",
+        "size": 59657269113,
+        "count": 2,
+        "dup_bytes": 59657269113,
+        "top_buckets": {
+          "na7p42s5": 1,
+          "na7p42tq": 1
+        }
+      },
+      {
+        "etag_prefix": "bc5eddcfabab",
+        "size": 57954381689,
+        "count": 2,
+        "dup_bytes": 57954381689,
+        "top_buckets": {
+          "na7p41f4": 2
+        }
+      },
+      {
+        "etag_prefix": "f1253f1eb94f",
+        "size": 27121199744,
+        "count": 3,
+        "dup_bytes": 54242399488,
+        "top_buckets": {
+          "seconddatauploadroyalmedia.co.ke": 2,
+          "na7p43dj": 1
+        }
+      },
+      {
+        "etag_prefix": "672f6d476015",
+        "size": 52762131657,
+        "count": 2,
+        "dup_bytes": 52762131657,
+        "top_buckets": {
+          "na7p42xe": 1,
+          "na7p43do": 1
+        }
+      },
+      {
+        "etag_prefix": "b41e026f4d97",
+        "size": 51141634321,
+        "count": 2,
+        "dup_bytes": 51141634321,
+        "top_buckets": {
+          "na7p41jk": 2
+        }
+      },
+      {
+        "etag_prefix": "2288c770282a",
+        "size": 23613879313,
+        "count": 3,
+        "dup_bytes": 47227758626,
+        "top_buckets": {
+          "na7p42s5": 1,
+          "na7p42tq": 1,
+          "seconddatauploadroyalmedia.co.ke": 1
+        }
+      },
+      {
+        "etag_prefix": "93bd7e662211",
+        "size": 46792817073,
+        "count": 2,
+        "dup_bytes": 46792817073,
+        "top_buckets": {
+          "na7p41f4": 1,
+          "na7p42s5": 1
+        }
+      },
+      {
+        "etag_prefix": "fe34500e936b",
+        "size": 41451189801,
+        "count": 2,
+        "dup_bytes": 41451189801,
+        "top_buckets": {
+          "na7p435c": 1,
+          "na7p43d6": 1
+        }
+      },
+      {
+        "etag_prefix": "95b9460bb7a6",
+        "size": 41209934859,
+        "count": 2,
+        "dup_bytes": 41209934859,
+        "top_buckets": {
+          "na7p43d6": 1,
+          "na7p4oxs": 1
+        }
+      }
+    ],
+    "suspected_mirror_pair_evidence": [
+      {
+        "A": "caldocs",
+        "B": "cal-docs",
+        "A_objects": 17,
+        "B_objects": 33,
+        "shared_etag_size_pairs": 1,
+        "jaccard": 0.02040816326530612,
+        "shared_pct_of_A": 5.88235294117647,
+        "shared_pct_of_B": 3.0303030303030303,
+        "bytes_A": 2089117,
+        "bytes_B": 9417101,
+        "bytes_shared": 0,
+        "key_match_pct_of_smaller_bucket": 0.0,
+        "lm_offset_hours_stats": {
+          "p10_h": -0.16416666666666666,
+          "p50_h": -0.16416666666666666,
+          "p90_h": -0.16416666666666666,
+          "n": 1
+        }
+      },
+      {
+        "A": "citizen-digital-cms-files-copy",
+        "B": "citizen-digital-cms-files",
+        "A_objects": 5,
+        "B_objects": 28595,
+        "shared_etag_size_pairs": 2,
+        "jaccard": 6.993496048674733e-05,
+        "shared_pct_of_A": 40.0,
+        "shared_pct_of_B": 0.0069942297604476305,
+        "bytes_A": 118400,
+        "bytes_B": 235523596495,
+        "bytes_shared": 73330,
+        "key_match_pct_of_smaller_bucket": 0.0,
+        "lm_offset_hours_stats": {
+          "p10_h": -405.30083333333334,
+          "p50_h": 1669.1944444444443,
+          "p90_h": 1669.1944444444443,
+          "n": 2
+        }
+      },
+      {
+        "A": "razuna.royalmedia",
+        "B": "razuna-ireland-replication-7sep2017",
+        "A_objects": 49987,
+        "B_objects": 265,
+        "shared_etag_size_pairs": 1,
+        "jaccard": 1.9900101490517602e-05,
+        "shared_pct_of_A": 0.002000520135235161,
+        "shared_pct_of_B": 0.37735849056603776,
+        "bytes_A": 5701063086,
+        "bytes_B": 13018020427,
+        "bytes_shared": 0,
+        "key_match_pct_of_smaller_bucket": 0.0,
+        "lm_offset_hours_stats": {
+          "p10_h": 269.2758333333333,
+          "p50_h": 269.2758333333333,
+          "p90_h": 269.2758333333333,
+          "n": 1
+        }
+      },
+      {
+        "A": "royalmedia",
+        "B": "razuna.royalmedia",
+        "A_objects": 12639,
+        "B_objects": 49987,
+        "shared_etag_size_pairs": 1,
+        "jaccard": 1.596806387225549e-05,
+        "shared_pct_of_A": 0.007912018355882585,
+        "shared_pct_of_B": 0.002000520135235161,
+        "bytes_A": 299267454,
+        "bytes_B": 5701063086,
+        "bytes_shared": 0,
+        "key_match_pct_of_smaller_bucket": 0.0,
+        "lm_offset_hours_stats": {
+          "p10_h": -0.5416666666666666,
+          "p50_h": -0.5416666666666666,
+          "p90_h": -0.5416666666666666,
+          "n": 1
+        }
+      },
+      {
+        "A": "news-vault",
+        "B": "rmsbroadcast",
+        "A_objects": 38360,
+        "B_objects": 48998,
+        "shared_etag_size_pairs": 1,
+        "jaccard": 1.1447279554013989e-05,
+        "shared_pct_of_A": 0.0026068821689259644,
+        "shared_pct_of_B": 0.002040899628556268,
+        "bytes_A": 173127431520,
+        "bytes_B": 552003104992,
+        "bytes_shared": 0,
+        "key_match_pct_of_smaller_bucket": 0.0,
+        "lm_offset_hours_stats": {
+          "p10_h": -18841.1175,
+          "p50_h": -18841.1175,
+          "p90_h": -18841.1175,
+          "n": 1
+        }
+      },
+      {
+        "A": "citizen-vod",
+        "B": "onesignal-logos",
+        "A_objects": 8741,
+        "B_objects": 5,
+        "shared_etag_size_pairs": 0,
+        "jaccard": 0.0,
+        "shared_pct_of_A": 0.0,
+        "shared_pct_of_B": 0.0,
+        "bytes_A": 7125334268,
+        "bytes_B": 318459,
+        "bytes_shared": 0,
+        "key_match_pct_of_smaller_bucket": 0.0,
+        "lm_offset_hours_stats": {}
+      },
+      {
+        "A": "hot96backup",
+        "B": "hot96",
+        "A_size": 44321,
+        "B_size": 0,
+        "note": "one_or_both_empty"
+      },
+      {
+        "A": "chamgei-backup",
+        "B": "chamgei",
+        "A_size": 27899,
+        "B_size": 0,
+        "note": "one_or_both_empty"
+      }
+    ]
+  },
+  "digicow_s3": {
+    "total_objects": 1683,
+    "clusters": 298,
+    "objects_in_dup_clusters": 1435,
+    "objects_in_dup_pct": 85.26440879382056,
+    "duplicated_bytes": 8667735990,
+    "total_bytes": 15249883269,
+    "dedup_ratio_pct": 56.83804811555374,
+    "top10_by_count": [
+      {
+        "etag_prefix": "17f5dbd28386",
+        "size": 5148421,
+        "count": 31,
+        "sample_keys": [
+          "audio/16629817521175660762.mp3",
+          "audio/16826911831228274452.mp3",
+          "audio/168269734888797965.mp3"
+        ]
+      },
+      {
+        "etag_prefix": "89777ed778e7",
+        "size": 2371500,
+        "count": 25,
+        "sample_keys": [
+          "audio/16609128531362178693.mp3",
+          "audio/16660143571987286244.mp3",
+          "audio/16661603621340816522.mp3"
+        ]
+      },
+      {
+        "etag_prefix": "3ad9fdba23d2",
+        "size": 4428696,
+        "count": 24,
+        "sample_keys": [
+          "audio/1688477376221840884.mp3",
+          "audio/1690977056920542713.mp3",
+          "audio/1690979623952899594.mp3"
+        ]
+      },
+      {
+        "etag_prefix": "cf3af1c494f5",
+        "size": 5991863,
+        "count": 24,
+        "sample_keys": [
+          "audio/16933860291882290017.mp3",
+          "audio/16934989511872915397.mp3",
+          "audio/16935774651404991494.mp3"
+        ]
+      },
+      {
+        "etag_prefix": "e9e9a23d0dfe",
+        "size": 2845884,
+        "count": 21,
+        "sample_keys": [
+          "audio/1662981257746553721.mp3",
+          "audio/16656475132108417597.mp3",
+          "audio/166601358424611263.mp3"
+        ]
+      },
+      {
+        "etag_prefix": "f8dbbe047599",
+        "size": 10193506,
+        "count": 21,
+        "sample_keys": [
+          "audio/1698929476413725879.mp4",
+          "audio/16989969801608744269.mp4",
+          "audio/1699507711827954856.mp4"
+        ]
+      },
+      {
+        "etag_prefix": "699355f3cb1c",
+        "size": 3070328,
+        "count": 20,
+        "sample_keys": [
+          "audio/15821806981310096602.mp3",
+          "audio/1584637969954884825.mp3",
+          "audio/15857349941115180591.mp3"
+        ]
+      },
+      {
+        "etag_prefix": "ef16aa4350dc",
+        "size": 2822478,
+        "count": 19,
+        "sample_keys": [
+          "audio/101149123116.mp3",
+          "audio/101214502985.mp3",
+          "audio/101275460280.mp3"
+        ]
+      },
+      {
+        "etag_prefix": "f99a24bf4a71",
+        "size": 4287843,
+        "count": 19,
+        "sample_keys": [
+          "audio/16932530701219957998.mp3",
+          "audio/16934988102130553561.mp3",
+          "audio/16935775852095239762.mp3"
+        ]
+      },
+      {
+        "etag_prefix": "bb3536a20473",
+        "size": 2768980,
+        "count": 18,
+        "sample_keys": [
+          "audio/16543372251546903323.mp3",
+          "audio/1654338404237628033.mp3",
+          "audio/16545147261116075271.mp3"
+        ]
+      }
+    ]
+  },
+  "wall_seconds": 5
+}

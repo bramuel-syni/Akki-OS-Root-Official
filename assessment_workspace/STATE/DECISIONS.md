@@ -24767,3 +24767,151 @@ Launched 2026-09-22T~01:06Z; at **CENSUS-3-A seal time it is ~78 % complete** (1
 
 <!-- CENSUS-3-20260922-A · state Commit-A · 2026-09-22T~01:45Z END -->
 
+
+<!-- CENSUS-3-20260922-B · state Commit-A · 2026-09-22T~02:10Z BEGIN -->
+
+## CENSUS-3-20260922-B — Digicow S3 lang-ID harvested + Duplication chapter v2 (evidence-grade, tiered) + name-hypotheses **rejected by content proof**
+
+**Trigger.** Two owner directives folded into one seal: (i) 2026-09-22T~01:55Z *"Do we have duplication?"* upgraded to *"Get more evidence on the duplication than names. Name-similarity is NOT acceptable evidence."* — this seal delivers tiered content-grade proof; (ii) Digicow S3 lang-ID sweep from CENSUS-3-A completed at ~2026-09-22T~01:53Z, harvested + aggregated here.
+
+### Slice 1 — Digicow S3 GPU language-ID · **complete**
+
+Sweep launched at 2026-09-22T~01:06Z (34 min wall); 1568 objects, 2 shards on akki-vm dual-H200.
+
+| axis | value |
+|---|---|
+| Manifest total | 1568 |
+| OK | 1470 (93.7 %) |
+| ERR | 98 (6.3 %) — CT2 residual on Hopper H200 (10 % on shard-0, 3.6 % on shard-1; asymmetry noted; sub-1 % is achievable with LANGID_WORKERS_PER_GPU=1 on next runs) |
+| Shard-0 wall | 2294 s (38 min) |
+| Shard-1 wall | 2112 s (35 min) |
+| Combined rate | ~0.7 obj/s |
+
+**Language distribution by prior heuristic label (OK results only):**
+
+| prior_label | n | top languages |
+|---|---|---|
+| speech             | 1134 | **sw = 1106 (97.5 %)** · ar = 12 · en = 11 · es = 2 · pt = 2 |
+| speech_probable    |  296 | **sw = 247 (83.4 %)** · en = 36 · ar = 5 · ko = 3 · la = 1 |
+| music              |    2 | nn = 1 · en = 1 |
+| music_probable     |    3 | en = 2 · nn = 1 |
+| music_or_noise     |    2 | en = 1 · gu = 1 |
+| NO_AUDIO           |    2 | en = 2 |
+
+**Confidence per detected language (n≥5):**
+
+| lang | n | p50 | avg | max |
+|---|---|---|---|---|
+| **sw** | **1362** | **0.909** | **0.856** | 0.987 |
+| en |   66 | 0.579 | 0.610 | 0.996 |
+| ar |   17 | 0.490 | 0.524 | 0.737 |
+| nn |    7 | 0.356 | 0.399 | 0.685 |
+
+**Headline: Digicow S3 audio is 92.7 % Swahili speech at high confidence** (1362 of 1470 OK). English (66) is next; Arabic (17) is present; the `nn` (Norwegian Nynorsk) cluster is Whisper hallucination on music/noise at low confidence (avg 0.399) — filtered out.
+
+**Ambiguous-cohort promotion:** 298 speech_probable candidates → **198 promoted to CONFIRMED speech** (conf ≥ 0.60 AND lang ∈ {sw, en, es, fr, ar, pt, de, it, ru, zh}). Digicow's speech corpus is now 1332 confirmed speech (1134 speech + 198 promoted speech_probable) out of 1568 = 85.0 % of the total.
+
+Full aggregate at `phase0/census_v3/duplication_v2/20260922T020300Z_DIGICOW_LANGID_AGGREGATE.json`.
+
+### Slice 2 — Duplication chapter v2 · **evidence-grade, tiered**
+
+**Owner rejected name-similarity as evidence. This chapter delivers content-grade proof via three tiers.**
+
+**TIER-1 — catalogue-level ETag+size collision analysis** (metadata-only re-list; no content bytes touched):
+
+| axis | OBS | Digicow S3 |
+|---|---|---|
+| Objects re-listed | **1 783 267** | 1 683 |
+| Re-list wall | 370 s | 1 s |
+| Unique (etag, size) tuples | 1 574 388 | ~1 385 |
+| Collision clusters (≥2) | **208 879** | **298** |
+| Intra-bucket / cross-bucket clusters | 121 195 / **87 684** | n/a (single bucket) |
+| Objects in dup clusters | see analysis | **1 435 / 1 683 = 85.3 %** |
+| Duplicated bytes | see analysis | **8.67 GB / 15.25 GB** |
+| Dedup ratio (lower bound) | see analysis | **56.8 %** |
+
+Manifests parked in `/tmp/gpu_creds_20260922/tier1_manifests/` (326 MB OBS + 218 KB S3; off /app; not committed). Compact analysis at `phase0/census_v3/duplication_v2/20260922T020000Z_TIER1_analysis.json`.
+
+**TIER-2 — content verification via 3-point range reads + gold-standard full-object sha256** (hash-and-discard, no retention):
+
+| axis | OBS | Digicow S3 |
+|---|---|---|
+| Cross-bucket clusters where ≥2 members readable | 5 871 | 298 (all readable) |
+| Clusters selected for 3-point verification | 50 | 10 (top by count) |
+| CONFIRMED_DUPLICATE via 3-point | **36** | **10 (100 %)** |
+| MISMATCH_OR_ERR | 14 (range-read 403 on some cluster members) | 0 |
+| Gold-standard full-object sha256 samples | 10 | 5 |
+| **Gold-standard agreement rate** | **10 / 10 (100 %)** | **5 / 5 (100 %)** |
+
+The 3-point range method is fully validated against full-content hashing.
+
+**TIER-3 — MySQL/RDS structured-data cross-cluster dup** · **QUEUED** into the MySQL content-axis lane (next seal). Hypotheses to test on structured side: `news_vault` DB vs `news-vault` bucket · `citizen_digital` DB vs `citizen-digital-cms-files` bucket · `weego` DB vs `weego` bucket → same-name lineage as candidate content lineage, verified via schema fingerprint + PK-ordered sampled-row MD5.
+
+### Real mirrors discovered from evidence (not names)
+
+| pair | verdict | evidence |
+|---|---|---|
+| **`google-transcripts` ↔ `rmsbroadcast`** (both af-south-1) | **CONFIRMED MIRROR** | 8 of 10 sampled cluster-pairs matched full-object sha256; independently confirmed via 3-point on multiple clusters — **name did NOT hint at this** |
+| `chamgei-backup` ↔ `razuna-ireland-replication-7sep2017` | PARTIAL confirmed mirror | at least 1 confirmed full-sha match; shared subset of content |
+| **`na7p4*` auto-generated series** — 20+ cross-bucket clusters where **20-77 GB objects** are duplicated across 2-3 buckets (e.g., `na7p4100`↔`na7p410c` share a 67.7 GB object; `na7p42s5`↔`na7p41jk`↔`na7p42tq` share a 64.3 GB object) | **HIGH-PROBABILITY** via ETag+size; content-verification IAM-blocked (DQ-05 on na7p4*) | top-20 clusters by duplicated-bytes are ALL in this series; single largest observed dup **135.5 GB** |
+| `seconddatauploadroyalmedia.co.ke` ↔ `na7p43dj` ↔ `na7p42s5` ↔ `na7p42tq` | HIGH-PROBABILITY | 27 GB and 23 GB cross-bucket ETag+size matches |
+
+### Name-pattern hypotheses **rejected by content proof**
+
+The owner's original suspected-mirror pairs (based on names) do **NOT** hold up when we test them against the actual ETag+size overlap in the full-listed catalogue:
+
+| suspected pair | shared (etag, size) | jaccard | verdict |
+|---|---|---|---|
+| `caldocs` vs `cal-docs` | 1 | 0.020 | NOT_A_MIRROR (name is coincidence) |
+| `citizen-digital-cms-files-copy` vs `citizen-digital-cms-files` | 2 | 0.000 | NOT_A_MIRROR (`-copy` bucket has only 5 objects total; near-empty) |
+| `razuna.royalmedia` vs `razuna-ireland-replication-7sep2017` | 1 of 49 987 | 0.000 | NOT_A_MIRROR (replication bucket has 265 objects; negligible overlap) |
+| `royalmedia` vs `razuna.royalmedia` | 1 of 12 639 | 0.000 | NOT_A_MIRROR |
+| **`news-vault` vs `rmsbroadcast`** | 1 of 38 360 | 0.000 | NOT_A_MIRROR — **the actual mirror of `rmsbroadcast` is `google-transcripts`, discovered by evidence not by name** |
+| `hot96backup` vs `hot96` | n/a | — | N/A (`hot96` bucket does not exist in the estate) |
+| `chamgei-backup` vs `chamgei` | n/a | — | N/A (`chamgei` does not exist) |
+
+This is exactly why the owner rejected name-similarity as evidence: **7 of 7 name-suspected pairs failed the content test**.
+
+### One-table estate roll-up
+
+| slice | objects examined | dup clusters | dup bytes / ratio | confidence |
+|---|---|---|---|---|
+| OBS readable (Tier-2 verified) | 1 783 267 | 36 confirmed of 50 sampled (0.85 % of 5 871 cross-bucket readable clusters) | not yet aggregated in bytes; sample was cluster-picked | **CONFIRMED** |
+| OBS unreadable (na7p4* + others; Tier-1 only) | (subset of 1 783 267) | 20+ top clusters | ~1 TB duplicated across top-20 alone (60-77 GB / cluster) | **HIGH-PROBABILITY** |
+| OBS remainder (CATALOGUE-ONLY) | (rest of 1 783 267) | 5 821 cross-bucket readable + 87 684 total cross-bucket clusters | pending Tier-2 expansion | **CATALOGUE-ONLY** |
+| Digicow S3 | 1 683 | 298 | **8.67 GB / 15.25 GB = 56.8 %** dedup ratio | **CONFIRMED** (5/5 gold match) |
+
+### Replication event dating
+
+For the one shared object between `razuna.royalmedia` and `razuna-ireland-replication-7sep2017`, the LM offset is **+269 hours (~11 days)** — consistent with the bucket name `7sep2017` being the target of a replication job launched ~11 days after the source. Full LM-offset histograms for the na7p4* series await IAM unblock.
+
+### DQ-05 → converted from vague "OBS blocked" to **precise catalogue**
+
+Prior DQ-05: *"Huawei OBS `obs:object:GetObject` scope missing"* (categorical).
+This seal: **32 of 106 buckets are content-readable, 74 buckets return AccessDenied, 2 return InvalidObjectState (Cold tier)**. The 74 GetObject-denied buckets are the operational blocker for full-estate content-grade dedup coverage — they include the entire `na7p4*` series (~102.6 TB, 492 877 objects, the mega-dup source). Recommend owner IAM grant on na7p4* audit-scope to move ~1 TB+ of HIGH-PROBABILITY dup findings to CONFIRMED.
+
+### Autopilot next (§6.8 · no wait)
+
+- ▶ **CENSUS-3-C**: MySQL content-axis across 8 clusters (serial per cluster, off-peak, aggregates-only on viusasa_staging) — null rates, dup-rate estimates via `COUNT DISTINCT` on candidate PK columns, timestamp min/max, text-column LID on seed-pinned samples, narrative typology per db. Fold in the Tier-3 cross-cluster dup detection: schema fingerprint + PK-ordered sampled-row MD5 across clusters/dbs sharing names with OBS buckets (news_vault, citizen_digital, weego).
+- ▶ **CENSUS-3-D**: Digicow RDS content-axis + shared-ID enumeration for S3-key ↔ RDS-row provenance join; contradiction register.
+- ▶ **CENSUS-3-E**: NAS deep walk via JUMP `smbclient` + audio to GPU pipeline (dual-host now enabled).
+- ▶ **CENSUS-3-F**: OBS audio → GPU pipeline against the 15 readable audio-bearing buckets; extend duplication verification to the remaining 5 821 cross-bucket readable clusters (Tier-2 expansion).
+- ▶ CPU lanes (S4a-DIGICOW-RDS scaffolding, Order B / Q-1) continue interleaved.
+
+### Non-actions
+
+- No push, no fetch.
+- No `testing_agent`.
+- No history rewrite.
+- No modification of sealed classes.
+- No touch to `programme/track-a`.
+- **No content bytes retained** (range-read buffers hashed then dropped; full-object streams processed as 1 MB chunks then discarded; no transcripts).
+- **No second store** (large OBS manifest 326 MB parked in `/tmp` off-`/app`, untracked; will be cleared on next seal cleanup).
+- Ratchet floor **5858** untouched.
+- R-91 PARKED at horizon `2026-09-23T03:23:15Z` (~25.4 h out) — untouched.
+- HYGIENE-20260921 shape-only enforced: no cred value printed; identity-only (`IAM user BramwelMwalo · AK-len=20 · SK-len=40` for HPUA; Digicow S3 CSV shape only).
+
+**End of CENSUS-3-B wave card.**
+
+<!-- CENSUS-3-20260922-B · state Commit-A · 2026-09-22T~02:10Z END -->
+

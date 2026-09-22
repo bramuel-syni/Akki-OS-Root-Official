@@ -1,0 +1,1516 @@
+{
+  "obs_tier2_range_reads": [
+    {
+      "cluster_etag": "58b501f18ec6",
+      "cluster_size": 9432019,
+      "note": "need 2 different-bucket members"
+    },
+    {
+      "cluster_etag": "1c648291b3eb",
+      "cluster_size": 231487262,
+      "note": "need 2 different-bucket members"
+    },
+    {
+      "cluster_etag": "6ebe77148980",
+      "cluster_size": 410846692,
+      "note": "need 2 different-bucket members"
+    },
+    {
+      "cluster_etag": "fadd69e5c93c",
+      "cluster_size": 9256312,
+      "note": "need 2 different-bucket members"
+    },
+    {
+      "cluster_etag": "47757a5c5945",
+      "cluster_size": 116317014,
+      "note": "need 2 different-bucket members"
+    },
+    {
+      "cluster_etag": "26573d3769fa",
+      "cluster_size": 182869220,
+      "note": "need 2 different-bucket members"
+    },
+    {
+      "cluster_etag": "1b184e746070",
+      "cluster_size": 12864410,
+      "note": "need 2 different-bucket members"
+    },
+    {
+      "cluster_etag": "e9bb09f90723",
+      "cluster_size": 76502693,
+      "note": "need 2 different-bucket members"
+    },
+    {
+      "cluster_etag": "0299fab7f9d4",
+      "cluster_size": 589974699,
+      "note": "need 2 different-bucket members"
+    },
+    {
+      "cluster_etag": "e973bd095664",
+      "cluster_size": 32548564,
+      "note": "need 2 different-bucket members"
+    },
+    {
+      "cluster_etag": "4d175e46513c",
+      "cluster_size": 50243576,
+      "note": "need 2 different-bucket members"
+    },
+    {
+      "cluster_etag_prefix": "c3ab635f66096674",
+      "cluster_size": 14400768,
+      "A": {
+        "bucket": "google-transcripts",
+        "region": "af-south-1",
+        "key_tail": "FAST_-GOVERNER_CHEPKWONY/audio/61156.wav",
+        "lm": "2025/03/07 09:03:43"
+      },
+      "B": {
+        "bucket": "rmsbroadcast",
+        "region": "af-south-1",
+        "key_tail": "odcasts/1d016-breakfast-14th-july-2-.mp3",
+        "lm": "2024/03/22 02:51:11"
+      },
+      "A_hashes": {
+        "first_4k": "7aff5b659dc49133db5ea0f141a34e868b8aca6c3c36605facf69544b19348a5",
+        "mid_4k": "a7bc357e2012ff98f042c213ee6280f4fa73c52cd74d02411feef1d67a1aaa83",
+        "last_4k": "13e449a03c3a81980eb78c2fba11f8ff3b18a1cec9c46e94e2f4a61a2aaa4477"
+      },
+      "B_hashes": {
+        "first_4k": "7aff5b659dc49133db5ea0f141a34e868b8aca6c3c36605facf69544b19348a5",
+        "mid_4k": "a7bc357e2012ff98f042c213ee6280f4fa73c52cd74d02411feef1d67a1aaa83",
+        "last_4k": "13e449a03c3a81980eb78c2fba11f8ff3b18a1cec9c46e94e2f4a61a2aaa4477"
+      },
+      "match_first_4k": true,
+      "match_mid_4k": true,
+      "match_last_4k": true,
+      "all_three_match": true,
+      "verdict": "CONFIRMED_DUPLICATE"
+    },
+    {
+      "cluster_etag_prefix": "9e97b81a364ae18c",
+      "cluster_size": 59356923,
+      "A": {
+        "bucket": "chamgei-backup",
+        "region": "af-south-1",
+        "key_tail": "REPARE_TO_ADDRESS_THE_PRESS_-_642015.mp4",
+        "lm": "2024/03/21 14:19:54"
+      },
+      "B": {
+        "bucket": "razuna-ireland-replication-7sep2017",
+        "region": "af-south-1",
+        "key_tail": "REPARE_TO_ADDRESS_THE_PRESS_-_642015.mp4",
+        "lm": "2024/03/23 23:44:25"
+      },
+      "A_hashes": {
+        "first_4k": "f455146ed9d5bd56752813cbd0fe403ab41c97fead9da59978f698d1ecbdd3cb",
+        "mid_4k": "a896080b930fb09da49b3dad486d103c6d7babd01b5afe4237a9949ed415364e",
+        "last_4k": "648fce05e084a97708b2262920a8755088cc7c5612387b3f5c3ca2653a44727d"
+      },
+      "B_hashes": {
+        "first_4k": "f455146ed9d5bd56752813cbd0fe403ab41c97fead9da59978f698d1ecbdd3cb",
+        "mid_4k": "a896080b930fb09da49b3dad486d103c6d7babd01b5afe4237a9949ed415364e",
+        "last_4k": "648fce05e084a97708b2262920a8755088cc7c5612387b3f5c3ca2653a44727d"
+      },
+      "match_first_4k": true,
+      "match_mid_4k": true,
+      "match_last_4k": true,
+      "all_three_match": true,
+      "verdict": "CONFIRMED_DUPLICATE"
+    },
+    {
+      "cluster_etag": "d45bf0b7bf36",
+      "cluster_size": 4661081,
+      "note": "need 2 different-bucket members"
+    },
+    {
+      "cluster_etag_prefix": "a2b7aa14a0280091",
+      "cluster_size": 15040679,
+      "A": {
+        "bucket": "google-transcripts",
+        "region": "af-south-1",
+        "key_tail": "e_CROSSFIRE-MANIFESTOS_2/audio/61245.wav",
+        "lm": "2025/03/07 09:14:13"
+      },
+      "B": {
+        "bucket": "rmsbroadcast",
+        "region": "af-south-1",
+        "key_tail": "uploads/podcasts/1a216-crossfire-two.mp3",
+        "lm": "2024/03/22 00:18:04"
+      },
+      "A_hashes": {
+        "first_4k": "34862027a5d797e548460fa62711b8cc15dbceec2b7862ae1aaa975db2c8b316",
+        "mid_4k": "ec1c9db31718c811073d11c393b0734ff2aee523c93d51124810b874adfbb6ad",
+        "last_4k": "f8e35473d91bbb5b98b3b3670f14ad59e8ac50ae461ef579cf96300da30e1a08"
+      },
+      "B_hashes": {
+        "first_4k": "34862027a5d797e548460fa62711b8cc15dbceec2b7862ae1aaa975db2c8b316",
+        "mid_4k": "ec1c9db31718c811073d11c393b0734ff2aee523c93d51124810b874adfbb6ad",
+        "last_4k": "f8e35473d91bbb5b98b3b3670f14ad59e8ac50ae461ef579cf96300da30e1a08"
+      },
+      "match_first_4k": true,
+      "match_mid_4k": true,
+      "match_last_4k": true,
+      "all_three_match": true,
+      "verdict": "CONFIRMED_DUPLICATE"
+    },
+    {
+      "cluster_etag_prefix": "647663850824646d",
+      "cluster_size": 15795931,
+      "A": {
+        "bucket": "google-transcripts",
+        "region": "af-south-1",
+        "key_tail": "ln_ke_BREAKFAST-HON_LIMO/audio/61175.wav",
+        "lm": "2025/03/07 09:05:01"
+      },
+      "B": {
+        "bucket": "rmsbroadcast",
+        "region": "af-south-1",
+        "key_tail": "/podcasts/0456c-breakfast-12th-july-.mp3",
+        "lm": "2024/03/21 15:43:50"
+      },
+      "A_hashes": {
+        "first_4k": "2e3c0e0aa86ceda0a97dbb5f936228d8ee20fdfe8a91cdcc35ea47c3554c6a5c",
+        "mid_4k": "629d58784ee53238da1933198ebc110a92bcb4eb64bdff3a2d49b61eed48e99c",
+        "last_4k": "2657e2a3e8a34443a8b1653b031481058b50bd381eaa13e8e53e50582e1d61d0"
+      },
+      "B_hashes": {
+        "first_4k": "2e3c0e0aa86ceda0a97dbb5f936228d8ee20fdfe8a91cdcc35ea47c3554c6a5c",
+        "mid_4k": "629d58784ee53238da1933198ebc110a92bcb4eb64bdff3a2d49b61eed48e99c",
+        "last_4k": "2657e2a3e8a34443a8b1653b031481058b50bd381eaa13e8e53e50582e1d61d0"
+      },
+      "match_first_4k": true,
+      "match_mid_4k": true,
+      "match_last_4k": true,
+      "all_three_match": true,
+      "verdict": "CONFIRMED_DUPLICATE"
+    },
+    {
+      "cluster_etag_prefix": "8139ca248445c35b",
+      "cluster_size": 10741551,
+      "A": {
+        "bucket": "google-transcripts",
+        "region": "af-south-1",
+        "key_tail": "_luo_ke_LUO_TRADITIONS_12/audio/1788.wav",
+        "lm": "2025/03/07 09:30:41"
+      },
+      "B": {
+        "bucket": "rmsbroadcast",
+        "region": "af-south-1",
+        "key_tail": "c212-galamoro-part-two-26th-nov-2018.mp3",
+        "lm": "2024/03/22 02:40:22"
+      },
+      "A_hashes": {
+        "first_4k": "6abeb2bbdc3ddc5f2a3497c99354d30b8eb982d28ff3d5b629e00387c6708ef4",
+        "mid_4k": "8c280cb7f5b4b63a07b2704547d242292053aa0433527e223f2c5301cf2884e9",
+        "last_4k": "c8a51b0dd40eeb99c22b8a084d6b837187d455ecc11a47878e42b54e1ff92ff3"
+      },
+      "B_hashes": {
+        "first_4k": "6abeb2bbdc3ddc5f2a3497c99354d30b8eb982d28ff3d5b629e00387c6708ef4",
+        "mid_4k": "8c280cb7f5b4b63a07b2704547d242292053aa0433527e223f2c5301cf2884e9",
+        "last_4k": "c8a51b0dd40eeb99c22b8a084d6b837187d455ecc11a47878e42b54e1ff92ff3"
+      },
+      "match_first_4k": true,
+      "match_mid_4k": true,
+      "match_last_4k": true,
+      "all_three_match": true,
+      "verdict": "CONFIRMED_DUPLICATE"
+    },
+    {
+      "cluster_etag": "5f2675490575",
+      "cluster_size": 6382864,
+      "note": "need 2 different-bucket members"
+    },
+    {
+      "cluster_etag_prefix": "67677c18e556983c",
+      "cluster_size": 8960522,
+      "A": {
+        "bucket": "google-transcripts",
+        "region": "af-south-1",
+        "key_tail": "2022_kik_ke_INFIDELITY_2/audio/35937.wav",
+        "lm": "2025/03/07 10:58:19"
+      },
+      "B": {
+        "bucket": "rmsbroadcast",
+        "region": "af-south-1",
+        "key_tail": "s/uploads/podcasts/210a9-young-man-3.mp3",
+        "lm": "2024/03/22 07:15:15"
+      },
+      "A_hashes": {
+        "first_4k": "dab947653762f9ac0c72a338b61120f006c40c1e1e57cd4ace88a9d6deb1aaa5",
+        "mid_4k": "43a44dfd59b8741f274b2905904b0a525cf31044091215320cda982d4f239423",
+        "last_4k": "823d2ef151ae291d50bd513eec69281eadec5fbeb542496bda7839420ec626a9"
+      },
+      "B_hashes": {
+        "first_4k": "dab947653762f9ac0c72a338b61120f006c40c1e1e57cd4ace88a9d6deb1aaa5",
+        "mid_4k": "43a44dfd59b8741f274b2905904b0a525cf31044091215320cda982d4f239423",
+        "last_4k": "823d2ef151ae291d50bd513eec69281eadec5fbeb542496bda7839420ec626a9"
+      },
+      "match_first_4k": true,
+      "match_mid_4k": true,
+      "match_last_4k": true,
+      "all_three_match": true,
+      "verdict": "CONFIRMED_DUPLICATE"
+    },
+    {
+      "cluster_etag_prefix": "ea0f491ab38b269c",
+      "cluster_size": 15744522,
+      "A": {
+        "bucket": "google-transcripts",
+        "region": "af-south-1",
+        "key_tail": "_MAKING_ALCOHOL_IN_SCHOOL/audio/6083.wav",
+        "lm": "2025/03/07 10:07:36"
+      },
+      "B": {
+        "bucket": "rmsbroadcast",
+        "region": "af-south-1",
+        "key_tail": "-kuihuria-njorua-tue-12th-february-1.mp3",
+        "lm": "2024/03/22 04:18:26"
+      },
+      "A_hashes": {
+        "first_4k": "502ccaab356ecde963ae869a8c3a0544f8fb2c79cb8a99afd5dd1398eb531d8e",
+        "mid_4k": "74e5166f1a077e3fc362d0e55bc86dee55ae2fbb6ccfd87162f28ca6c5e5bbc1",
+        "last_4k": "f5de839c2c7ac81d1c178bd5ddbb4d50b1f1efec950a3a20560b203c421f2954"
+      },
+      "B_hashes": {
+        "first_4k": "502ccaab356ecde963ae869a8c3a0544f8fb2c79cb8a99afd5dd1398eb531d8e",
+        "mid_4k": "74e5166f1a077e3fc362d0e55bc86dee55ae2fbb6ccfd87162f28ca6c5e5bbc1",
+        "last_4k": "f5de839c2c7ac81d1c178bd5ddbb4d50b1f1efec950a3a20560b203c421f2954"
+      },
+      "match_first_4k": true,
+      "match_mid_4k": true,
+      "match_last_4k": true,
+      "all_three_match": true,
+      "verdict": "CONFIRMED_DUPLICATE"
+    },
+    {
+      "cluster_etag_prefix": "7ee5d802222a3a07",
+      "cluster_size": 15145587,
+      "A": {
+        "bucket": "google-transcripts",
+        "region": "af-south-1",
+        "key_tail": "MPOWERMENT-WOMEN_DEBATE_/audio/61443.wav",
+        "lm": "2025/03/07 09:36:31"
+      },
+      "B": {
+        "bucket": "rmsbroadcast",
+        "region": "af-south-1",
+        "key_tail": "asts/0bb02-women-empowerment-podcast.mp3",
+        "lm": "2024/03/21 18:02:25"
+      },
+      "A_hashes": {
+        "first_4k": "20e75594d71c64fd41c480c3c55c899a68eefd6f945024cf0425f532d6974014",
+        "mid_4k": "4e020702765a46ac0650b2c08156f77cb7ce00aa169843c0082f08e7a7a71b3f",
+        "last_4k": "fd40220c07454d635a679b5985e3991d7df4290c01beeb16ab5a3a102d821eba"
+      },
+      "B_hashes": {
+        "first_4k": "20e75594d71c64fd41c480c3c55c899a68eefd6f945024cf0425f532d6974014",
+        "mid_4k": "4e020702765a46ac0650b2c08156f77cb7ce00aa169843c0082f08e7a7a71b3f",
+        "last_4k": "fd40220c07454d635a679b5985e3991d7df4290c01beeb16ab5a3a102d821eba"
+      },
+      "match_first_4k": true,
+      "match_mid_4k": true,
+      "match_last_4k": true,
+      "all_three_match": true,
+      "verdict": "CONFIRMED_DUPLICATE"
+    },
+    {
+      "cluster_etag_prefix": "6689e8f833994932",
+      "cluster_size": 14139977,
+      "A": {
+        "bucket": "google-transcripts",
+        "region": "af-south-1",
+        "key_tail": "O_KENYA_-_PESA_ZA_KANISA/audio/40375.wav",
+        "lm": "2025/03/04 12:44:23"
+      },
+      "B": {
+        "bucket": "rmsbroadcast",
+        "region": "af-south-1",
+        "key_tail": "s/podcasts/055a3-jambokenya-makanisa.mp3",
+        "lm": "2024/03/21 15:55:09"
+      },
+      "A_hashes": {
+        "first_4k": "5b8ab007d1bd5fb8a4f2570c474401bf7d5336ffe8fdbd96736cae9b3d4c516f",
+        "mid_4k": "dfe8a459da13cbe1791b2609784a93a013456364739001b713917181b996f779",
+        "last_4k": "c6ede2b852f918065227cc2014edb5738b4da359e7b21c3794afe8aa79814d02"
+      },
+      "B_hashes": {
+        "first_4k": "5b8ab007d1bd5fb8a4f2570c474401bf7d5336ffe8fdbd96736cae9b3d4c516f",
+        "mid_4k": "dfe8a459da13cbe1791b2609784a93a013456364739001b713917181b996f779",
+        "last_4k": "c6ede2b852f918065227cc2014edb5738b4da359e7b21c3794afe8aa79814d02"
+      },
+      "match_first_4k": true,
+      "match_mid_4k": true,
+      "match_last_4k": true,
+      "all_three_match": true,
+      "verdict": "CONFIRMED_DUPLICATE"
+    },
+    {
+      "cluster_etag_prefix": "136367f6083e6c55",
+      "cluster_size": 4567490,
+      "A": {
+        "bucket": "google-transcripts",
+        "region": "af-south-1",
+        "key_tail": "luo_ke_CHEMISTRY_CLASS_3/audio/83606.wav",
+        "lm": "2025/03/07 10:45:12"
+      },
+      "B": {
+        "bucket": "rmsbroadcast",
+        "region": "af-south-1",
+        "key_tail": "/00839-twak-e-ohigla-manyien-3rd-oct.mp3",
+        "lm": "2024/03/21 13:43:09"
+      },
+      "A_hashes": {
+        "first_4k": "2d5847e14fe3d371d3e034e9c396254643ef9345c383f9958077a77ad20627b9",
+        "mid_4k": "082a668ebe14b53f7ffc051a1ddd0594ee6b1ad15920bd67a46ddc110bb552f4",
+        "last_4k": "43c3e04fff717f0fed930e636cd4447fd3e080282c0bf31ca626cbd8547a7580"
+      },
+      "B_hashes": {
+        "first_4k": "2d5847e14fe3d371d3e034e9c396254643ef9345c383f9958077a77ad20627b9",
+        "mid_4k": "082a668ebe14b53f7ffc051a1ddd0594ee6b1ad15920bd67a46ddc110bb552f4",
+        "last_4k": "43c3e04fff717f0fed930e636cd4447fd3e080282c0bf31ca626cbd8547a7580"
+      },
+      "match_first_4k": true,
+      "match_mid_4k": true,
+      "match_last_4k": true,
+      "all_three_match": true,
+      "verdict": "CONFIRMED_DUPLICATE"
+    },
+    {
+      "cluster_etag_prefix": "74d29157d65d59f5",
+      "cluster_size": 13602070,
+      "A": {
+        "bucket": "google-transcripts",
+        "region": "af-south-1",
+        "key_tail": "a_ke_PRESIDENTIAL_DEBATE/audio/40860.wav",
+        "lm": "2025/03/07 10:09:37"
+      },
+      "B": {
+        "bucket": "rmsbroadcast",
+        "region": "af-south-1",
+        "key_tail": "s/podcasts/1bc12-25th-july-mjadala-2.mp3",
+        "lm": "2024/03/22 02:35:53"
+      },
+      "A_hashes": {
+        "first_4k": "6a755544f86c0bded1f0f22fd0e037fbc51eb022da7aaff31e0416b33bef69e6",
+        "mid_4k": "269f77d597ec816be1e75c40ec00ab9c6d0384589c296852f6ccb9bb7892ac0c",
+        "last_4k": "b0b3b0fac2135a450ee6b68673f55d34e9ab55fc285435cdaa807db4330f5d19"
+      },
+      "B_hashes": {
+        "first_4k": "6a755544f86c0bded1f0f22fd0e037fbc51eb022da7aaff31e0416b33bef69e6",
+        "mid_4k": "269f77d597ec816be1e75c40ec00ab9c6d0384589c296852f6ccb9bb7892ac0c",
+        "last_4k": "b0b3b0fac2135a450ee6b68673f55d34e9ab55fc285435cdaa807db4330f5d19"
+      },
+      "match_first_4k": true,
+      "match_mid_4k": true,
+      "match_last_4k": true,
+      "all_three_match": true,
+      "verdict": "CONFIRMED_DUPLICATE"
+    },
+    {
+      "cluster_etag_prefix": "119311211d710ab6",
+      "cluster_size": 4384810,
+      "A": {
+        "bucket": "google-transcripts",
+        "region": "af-south-1",
+        "key_tail": "SUPPORTING_A_FRIENDS_BIZ/audio/65626.wav",
+        "lm": "2025/03/08 08:13:55"
+      },
+      "B": {
+        "bucket": "rmsbroadcast",
+        "region": "af-south-1",
+        "key_tail": "s/uploads/podcasts/1_biz_ni_kuinuana.mp3",
+        "lm": "2024/03/22 00:25:56"
+      },
+      "A_hashes": {
+        "first_4k": "492357367608679f056d9f910f58eb588fd7bd14e5f2e618cc00169cf90219ab",
+        "mid_4k": "ee752a16819825ee0f243f792167e6ea3a5a31a267bbbf0183f73cec48e004fe",
+        "last_4k": "c2b4eaa4132eae1aad6717fae6173840d4a06b8665f363bd47e821dfbae715ba"
+      },
+      "B_hashes": {
+        "first_4k": "492357367608679f056d9f910f58eb588fd7bd14e5f2e618cc00169cf90219ab",
+        "mid_4k": "ee752a16819825ee0f243f792167e6ea3a5a31a267bbbf0183f73cec48e004fe",
+        "last_4k": "c2b4eaa4132eae1aad6717fae6173840d4a06b8665f363bd47e821dfbae715ba"
+      },
+      "match_first_4k": true,
+      "match_mid_4k": true,
+      "match_last_4k": true,
+      "all_three_match": true,
+      "verdict": "CONFIRMED_DUPLICATE"
+    },
+    {
+      "cluster_etag_prefix": "3da17c028684fe31",
+      "cluster_size": 12419657,
+      "A": {
+        "bucket": "google-transcripts",
+        "region": "af-south-1",
+        "key_tail": "ENI_COUNTY_HEALTH_PART_2/audio/57290.wav",
+        "lm": "2025/03/07 09:45:02"
+      },
+      "B": {
+        "bucket": "rmsbroadcast",
+        "region": "af-south-1",
+        "key_tail": "s/uploads/podcasts/0c2f0-dr.-mulwa-3.mp3",
+        "lm": "2024/03/21 18:06:20"
+      },
+      "A_hashes": {
+        "first_4k": "5988fedefb415e215e7c6953131cb5677769ef8f0b07b26b7b24607a006beed2",
+        "mid_4k": "3b9799d7ae2498e6c43a48a2f7afbabee7315a5301786a20f305358964933a74",
+        "last_4k": "849e51d1b7efd838616aeef575a1d3f027c706f80076d44fdd5473069225eb2f"
+      },
+      "B_hashes": {
+        "first_4k": "5988fedefb415e215e7c6953131cb5677769ef8f0b07b26b7b24607a006beed2",
+        "mid_4k": "3b9799d7ae2498e6c43a48a2f7afbabee7315a5301786a20f305358964933a74",
+        "last_4k": "849e51d1b7efd838616aeef575a1d3f027c706f80076d44fdd5473069225eb2f"
+      },
+      "match_first_4k": true,
+      "match_mid_4k": true,
+      "match_last_4k": true,
+      "all_three_match": true,
+      "verdict": "CONFIRMED_DUPLICATE"
+    },
+    {
+      "cluster_etag_prefix": "494980e3716ecd4a",
+      "cluster_size": 11770567,
+      "A": {
+        "bucket": "google-transcripts",
+        "region": "af-south-1",
+        "key_tail": "_luo_ke_FAMILY_LIFE_PART_2/audio/107.wav",
+        "lm": "2025/03/04 09:12:35"
+      },
+      "B": {
+        "bucket": "rmsbroadcast",
+        "region": "af-south-1",
+        "key_tail": "ds/podcasts/1c442-family-life-part-2.mp3",
+        "lm": "2024/03/22 02:41:22"
+      },
+      "A_hashes": {
+        "first_4k": "5737267417f2000838479bfbfa893e31f9389431e8e4bce948685e0b70398934",
+        "mid_4k": "7dc14ab5bde01b23495b3d2372d5983b2b2b5366d1bdd360408204b2f6da3506",
+        "last_4k": "5c2360ef45900288335e98d2b0efd009aa74919d8bd81ab960daa27d1e1d8acb"
+      },
+      "B_hashes": {
+        "first_4k": "5737267417f2000838479bfbfa893e31f9389431e8e4bce948685e0b70398934",
+        "mid_4k": "7dc14ab5bde01b23495b3d2372d5983b2b2b5366d1bdd360408204b2f6da3506",
+        "last_4k": "5c2360ef45900288335e98d2b0efd009aa74919d8bd81ab960daa27d1e1d8acb"
+      },
+      "match_first_4k": true,
+      "match_mid_4k": true,
+      "match_last_4k": true,
+      "all_three_match": true,
+      "verdict": "CONFIRMED_DUPLICATE"
+    },
+    {
+      "cluster_etag_prefix": "3a954c8c703f3621",
+      "cluster_size": 24201,
+      "A": {
+        "bucket": "razuna-ireland-replication-7sep2017",
+        "region": "af-south-1",
+        "key_tail": "Madam.Secretary.S01E10.HDTV.x264-LOL.jpg",
+        "lm": "2024/03/23 23:44:59"
+      },
+      "B": {
+        "bucket": "test-regionireland",
+        "region": "af-south-1",
+        "key_tail": "MA_CTS_MOMBASA_RESIDENTS_PROTEST_9PM.jpg",
+        "lm": "2024/03/21 13:40:47"
+      },
+      "A_hashes": {
+        "first_4k": "55af03ebc7bc5ccf46c0441b76f82cb6fd0908ceb872e39629d811fd054f69b0",
+        "mid_4k": "1acad744b28583d42520ed40fc7c9d9cddc5fe28985012e594f8bb337cfd9648",
+        "last_4k": "78f1312520860454f068e3b389128fb621e199fd238994ff19f693b07ef6164c"
+      },
+      "B_hashes": {
+        "first_4k": "55af03ebc7bc5ccf46c0441b76f82cb6fd0908ceb872e39629d811fd054f69b0",
+        "mid_4k": "1acad744b28583d42520ed40fc7c9d9cddc5fe28985012e594f8bb337cfd9648",
+        "last_4k": "78f1312520860454f068e3b389128fb621e199fd238994ff19f693b07ef6164c"
+      },
+      "match_first_4k": true,
+      "match_mid_4k": true,
+      "match_last_4k": true,
+      "all_three_match": true,
+      "verdict": "CONFIRMED_DUPLICATE"
+    },
+    {
+      "cluster_etag_prefix": "eeec9729c072a671",
+      "cluster_size": 11877146,
+      "A": {
+        "bucket": "google-transcripts",
+        "region": "af-south-1",
+        "key_tail": "ms_2022_luo_ke_MATHEMATICS/audio/813.wav",
+        "lm": "2025/03/07 09:16:37"
+      },
+      "B": {
+        "bucket": "rmsbroadcast",
+        "region": "af-south-1",
+        "key_tail": "/podcasts/05e2a-puonjruok-mar-maths-.mp3",
+        "lm": "2024/03/21 16:07:53"
+      },
+      "A_hashes": {
+        "first_4k": "f1c552eaf4c1aaf570214548361bb127abbcdbcaed8d8e9f7d5f0262a3b81350",
+        "mid_4k": "e0d8c658bc2f674fb7c5b1459133d5f3a8a10efcdf1c0012193f130da0282fb4",
+        "last_4k": "f76dd29256e0e4867358b51211b42d7f10712bd04c7ad62a0ed13bee0586c41e"
+      },
+      "B_hashes": {
+        "first_4k": "f1c552eaf4c1aaf570214548361bb127abbcdbcaed8d8e9f7d5f0262a3b81350",
+        "mid_4k": "e0d8c658bc2f674fb7c5b1459133d5f3a8a10efcdf1c0012193f130da0282fb4",
+        "last_4k": "f76dd29256e0e4867358b51211b42d7f10712bd04c7ad62a0ed13bee0586c41e"
+      },
+      "match_first_4k": true,
+      "match_mid_4k": true,
+      "match_last_4k": true,
+      "all_three_match": true,
+      "verdict": "CONFIRMED_DUPLICATE"
+    },
+    {
+      "cluster_etag_prefix": "d0d806986ae77e8b",
+      "cluster_size": 11381447,
+      "A": {
+        "bucket": "google-transcripts",
+        "region": "af-south-1",
+        "key_tail": "OSSFIRE-CAMPAIGN_DYNAMIS/audio/61239.wav",
+        "lm": "2025/03/07 09:10:35"
+      },
+      "B": {
+        "bucket": "rmsbroadcast",
+        "region": "af-south-1",
+        "key_tail": "sts/1e30d-crossfire-round-cam-paigns.mp3",
+        "lm": "2024/03/22 03:28:57"
+      },
+      "A_hashes": {
+        "first_4k": "19b803a48e4855a9904760e41c2b2ec9f72ecf808de7be18e5c0acb09f2c8747",
+        "mid_4k": "ef7b9d126b361897a961ae14f9dd1dcf74f31f6b3c8710c9de81ae188e98eff5",
+        "last_4k": "fd2af48b061f615a6bfc9d17470da51d8c1d2dc8a64425ad08e667bfecdb6838"
+      },
+      "B_hashes": {
+        "first_4k": "19b803a48e4855a9904760e41c2b2ec9f72ecf808de7be18e5c0acb09f2c8747",
+        "mid_4k": "ef7b9d126b361897a961ae14f9dd1dcf74f31f6b3c8710c9de81ae188e98eff5",
+        "last_4k": "fd2af48b061f615a6bfc9d17470da51d8c1d2dc8a64425ad08e667bfecdb6838"
+      },
+      "match_first_4k": true,
+      "match_mid_4k": true,
+      "match_last_4k": true,
+      "all_three_match": true,
+      "verdict": "CONFIRMED_DUPLICATE"
+    },
+    {
+      "cluster_etag_prefix": "7602fe89a31c36bf",
+      "cluster_size": 10427664,
+      "A": {
+        "bucket": "google-transcripts",
+        "region": "af-south-1",
+        "key_tail": "_guz_ke_CANCER_SCREENING/audio/67497.wav",
+        "lm": "2025/03/07 11:30:56"
+      },
+      "B": {
+        "bucket": "rmsbroadcast",
+        "region": "af-south-1",
+        "key_tail": "go-17th-apr-2018-okorengwa-amarwaire.mp3",
+        "lm": "2024/03/21 14:58:48"
+      },
+      "A_hashes": {
+        "first_4k": "7edca0d1b1668676720ed71c1d75508043f3c3e7090946572ccbefabae168d1c",
+        "mid_4k": "4f701f523e30e11c2bc3b1cc490947172b5de89bdd54e450a00bcc09f38efba0",
+        "last_4k": "e7567259428d1692c58f053e2a24205d19946d8cfeb669ab127294598bc85952"
+      },
+      "B_hashes": {
+        "first_4k": "7edca0d1b1668676720ed71c1d75508043f3c3e7090946572ccbefabae168d1c",
+        "mid_4k": "4f701f523e30e11c2bc3b1cc490947172b5de89bdd54e450a00bcc09f38efba0",
+        "last_4k": "e7567259428d1692c58f053e2a24205d19946d8cfeb669ab127294598bc85952"
+      },
+      "match_first_4k": true,
+      "match_mid_4k": true,
+      "match_last_4k": true,
+      "all_three_match": true,
+      "verdict": "CONFIRMED_DUPLICATE"
+    },
+    {
+      "cluster_etag_prefix": "a438c4632ad592eb",
+      "cluster_size": 5479445,
+      "A": {
+        "bucket": "google-transcripts",
+        "region": "af-south-1",
+        "key_tail": "22_kik_ke_professionalism/audio/5770.wav",
+        "lm": "2025/02/26 09:05:23"
+      },
+      "B": {
+        "bucket": "rmsbroadcast",
+        "region": "af-south-1",
+        "key_tail": "casts/uploads/podcasts/0c5dc-tuthiio.mp3",
+        "lm": "2024/03/21 18:09:18"
+      },
+      "A_hashes": {
+        "first_4k": "4c81671c66a6255c59be66134e09386f31d42aa0e08942ba86c76c5dc7f947a3",
+        "mid_4k": "98e5e59113fcf19c6efa6d03fca3296903b1d7495190bbaad8cabcc7afe1a754",
+        "last_4k": "74501aa9a54c27bdabb6cd85dbea34f831ffa316064b3078599357347d75d13a"
+      },
+      "B_hashes": {
+        "first_4k": "4c81671c66a6255c59be66134e09386f31d42aa0e08942ba86c76c5dc7f947a3",
+        "mid_4k": "98e5e59113fcf19c6efa6d03fca3296903b1d7495190bbaad8cabcc7afe1a754",
+        "last_4k": "74501aa9a54c27bdabb6cd85dbea34f831ffa316064b3078599357347d75d13a"
+      },
+      "match_first_4k": true,
+      "match_mid_4k": true,
+      "match_last_4k": true,
+      "all_three_match": true,
+      "verdict": "CONFIRMED_DUPLICATE"
+    },
+    {
+      "cluster_etag_prefix": "936a9f7e8d47131f",
+      "cluster_size": 10472385,
+      "A": {
+        "bucket": "google-transcripts",
+        "region": "af-south-1",
+        "key_tail": "nor-cbk-patrick-njoroge-/audio/57307.wav",
+        "lm": "2025/03/07 09:45:38"
+      },
+      "B": {
+        "bucket": "rmsbroadcast",
+        "region": "af-south-1",
+        "key_tail": "ts/23be4-gvnor-cbk-patrick-njoroge-1.mp3",
+        "lm": "2024/03/22 09:30:04"
+      },
+      "A_hashes": {
+        "first_4k": "38f7ae06ca5814a8ef50af3bd97c56b2beee7aadf66ce086c6972a05781ce0c6",
+        "mid_4k": "eee58ce2cdf365f0534cb3e7da399c16aa05e078e4f7ef7daa3105d069adb07d",
+        "last_4k": "902bbc4615e23f131719d6592a3b9d7d5fd98caa5dc3b8d9eebda5efef00edf8"
+      },
+      "B_hashes": {
+        "first_4k": "38f7ae06ca5814a8ef50af3bd97c56b2beee7aadf66ce086c6972a05781ce0c6",
+        "mid_4k": "eee58ce2cdf365f0534cb3e7da399c16aa05e078e4f7ef7daa3105d069adb07d",
+        "last_4k": "902bbc4615e23f131719d6592a3b9d7d5fd98caa5dc3b8d9eebda5efef00edf8"
+      },
+      "match_first_4k": true,
+      "match_mid_4k": true,
+      "match_last_4k": true,
+      "all_three_match": true,
+      "verdict": "CONFIRMED_DUPLICATE"
+    },
+    {
+      "cluster_etag_prefix": "b020e6bb4a963bdb",
+      "cluster_size": 9848790,
+      "A": {
+        "bucket": "google-transcripts",
+        "region": "af-south-1",
+        "key_tail": "ke_jamuhuri_day_explainer/audio/5792.wav",
+        "lm": "2025/02/26 14:35:13"
+      },
+      "B": {
+        "bucket": "rmsbroadcast",
+        "region": "af-south-1",
+        "key_tail": "o/podcasts/uploads/podcasts/0cf9c-15.mp3",
+        "lm": "2024/03/21 18:13:42"
+      },
+      "A_hashes": {
+        "first_4k": "58e81c9ef273187d410f65175033ce1ee3290f34d375af75f35ee96fdd5f4d38",
+        "mid_4k": "9a3d4070fc77483b9be701e990612eefd209ee4a851a67125cac21635f7c9e65",
+        "last_4k": "e2ae034f02070cf2f74e6b8e6b314b22e2322599b37cbdcd5df613088f795bb4"
+      },
+      "B_hashes": {
+        "first_4k": "58e81c9ef273187d410f65175033ce1ee3290f34d375af75f35ee96fdd5f4d38",
+        "mid_4k": "9a3d4070fc77483b9be701e990612eefd209ee4a851a67125cac21635f7c9e65",
+        "last_4k": "e2ae034f02070cf2f74e6b8e6b314b22e2322599b37cbdcd5df613088f795bb4"
+      },
+      "match_first_4k": true,
+      "match_mid_4k": true,
+      "match_last_4k": true,
+      "all_three_match": true,
+      "verdict": "CONFIRMED_DUPLICATE"
+    },
+    {
+      "cluster_etag_prefix": "353fc1cdda9ce3d5",
+      "cluster_size": 9828519,
+      "A": {
+        "bucket": "google-transcripts",
+        "region": "af-south-1",
+        "key_tail": "I_-_KAZI_YANGU_NI_UFUNDI/audio/38136.wav",
+        "lm": "2025/02/26 18:00:27"
+      },
+      "B": {
+        "bucket": "rmsbroadcast",
+        "region": "af-south-1",
+        "key_tail": "oads/podcasts/10597-chapakazi-kazini.mp3",
+        "lm": "2024/03/21 19:53:30"
+      },
+      "A_hashes": {
+        "first_4k": "f4057b59b9cf9c7bbd5874fa3111c1a470436a426fbea07c88be851f80d8f4e5",
+        "mid_4k": "245e9fea88cdeef70545d8ef462c5029a6761da4da9e10142e4927c9320690e2",
+        "last_4k": "6f81acb17d6a3037febedd069912a8f13577524b5737711ddafc7b7b55f8f63f"
+      },
+      "B_hashes": {
+        "first_4k": "f4057b59b9cf9c7bbd5874fa3111c1a470436a426fbea07c88be851f80d8f4e5",
+        "mid_4k": "245e9fea88cdeef70545d8ef462c5029a6761da4da9e10142e4927c9320690e2",
+        "last_4k": "6f81acb17d6a3037febedd069912a8f13577524b5737711ddafc7b7b55f8f63f"
+      },
+      "match_first_4k": true,
+      "match_mid_4k": true,
+      "match_last_4k": true,
+      "all_three_match": true,
+      "verdict": "CONFIRMED_DUPLICATE"
+    },
+    {
+      "cluster_etag_prefix": "fd7273f1e8b9116e",
+      "cluster_size": 9811592,
+      "A": {
+        "bucket": "google-transcripts",
+        "region": "af-south-1",
+        "key_tail": "s_2022_swa_ke_IRRIGATION/audio/39361.wav",
+        "lm": "2025/03/04 12:01:39"
+      },
+      "B": {
+        "bucket": "rmsbroadcast",
+        "region": "af-south-1",
+        "key_tail": "/podcasts/01e3a-mjadala-2-march-2018.mp3",
+        "lm": "2024/03/21 14:52:41"
+      },
+      "A_hashes": {
+        "first_4k": "184a09640fd838cba4f2f2df9f8ff838e735a070b4f5d680dc57d389ae117c1e",
+        "mid_4k": "481f3dab1c302cae08dfe9fab0fc72d1ff4acc9732e41f890c7527032bf70600",
+        "last_4k": "69c80e36ff8281fe48781775c0bda46d9b65abf7891d5deb5cf4a0b9a0ba22ad"
+      },
+      "B_hashes": {
+        "first_4k": "184a09640fd838cba4f2f2df9f8ff838e735a070b4f5d680dc57d389ae117c1e",
+        "mid_4k": "481f3dab1c302cae08dfe9fab0fc72d1ff4acc9732e41f890c7527032bf70600",
+        "last_4k": "69c80e36ff8281fe48781775c0bda46d9b65abf7891d5deb5cf4a0b9a0ba22ad"
+      },
+      "match_first_4k": true,
+      "match_mid_4k": true,
+      "match_last_4k": true,
+      "all_three_match": true,
+      "verdict": "CONFIRMED_DUPLICATE"
+    },
+    {
+      "cluster_etag_prefix": "21fe0dcc54340b81",
+      "cluster_size": 9672836,
+      "A": {
+        "bucket": "google-transcripts",
+        "region": "af-south-1",
+        "key_tail": "KENYA_-_ELECTIONS_PART_2/audio/39410.wav",
+        "lm": "2025/03/04 12:04:18"
+      },
+      "B": {
+        "bucket": "rmsbroadcast",
+        "region": "af-south-1",
+        "key_tail": "loads/podcasts/014b6-31st-election-2.mp3",
+        "lm": "2024/03/21 14:17:15"
+      },
+      "A_hashes": {
+        "first_4k": "fb166ef0a7c2e1a682e6a660153063bbb000857b463a445230b026c80c1cc520",
+        "mid_4k": "d774b7df6ea2b5560f73ec38c6b74705da84d411ac4fdfa5fccb1fde0476da42",
+        "last_4k": "abeb758530d76e6fae199ade612864ad42ad81ea81ac31389daa8233f9dcc2a6"
+      },
+      "B_hashes": {
+        "first_4k": "fb166ef0a7c2e1a682e6a660153063bbb000857b463a445230b026c80c1cc520",
+        "mid_4k": "d774b7df6ea2b5560f73ec38c6b74705da84d411ac4fdfa5fccb1fde0476da42",
+        "last_4k": "abeb758530d76e6fae199ade612864ad42ad81ea81ac31389daa8233f9dcc2a6"
+      },
+      "match_first_4k": true,
+      "match_mid_4k": true,
+      "match_last_4k": true,
+      "all_three_match": true,
+      "verdict": "CONFIRMED_DUPLICATE"
+    },
+    {
+      "cluster_etag_prefix": "f055ea1aef6ae10c",
+      "cluster_size": 10977698,
+      "A": {
+        "bucket": "google-transcripts",
+        "region": "af-south-1",
+        "key_tail": "ING_CARE_OF_YOUR_HEALTH_2/audio/6679.wav",
+        "lm": "2025/03/07 09:42:54"
+      },
+      "B": {
+        "bucket": "rmsbroadcast",
+        "region": "af-south-1",
+        "key_tail": "a-ngima-edited-june-18th-part-three-.mp3",
+        "lm": "2024/03/22 04:23:53"
+      },
+      "A_hashes": {
+        "first_4k": "79b55d793a38357515ae18e8fbfc37662106ede68091a277ed1a9446f9506c7c",
+        "mid_4k": "80e36458c04b647e73e2fce162fd68084bc4330e51b1489c97e0f185aa6f6be9",
+        "last_4k": "ab5a8afe7dcbaf7899099435931ae50ec58f5b9474b0c90e78aa578e2be1b748"
+      },
+      "B_hashes": {
+        "first_4k": "79b55d793a38357515ae18e8fbfc37662106ede68091a277ed1a9446f9506c7c",
+        "mid_4k": "80e36458c04b647e73e2fce162fd68084bc4330e51b1489c97e0f185aa6f6be9",
+        "last_4k": "ab5a8afe7dcbaf7899099435931ae50ec58f5b9474b0c90e78aa578e2be1b748"
+      },
+      "match_first_4k": true,
+      "match_mid_4k": true,
+      "match_last_4k": true,
+      "all_three_match": true,
+      "verdict": "CONFIRMED_DUPLICATE"
+    },
+    {
+      "cluster_etag_prefix": "4ddbbb519cee5711",
+      "cluster_size": 9799471,
+      "A": {
+        "bucket": "google-transcripts",
+        "region": "af-south-1",
+        "key_tail": "roge-ON_NEW_NOTES_PART_2/audio/57303.wav",
+        "lm": "2025/03/07 09:45:20"
+      },
+      "B": {
+        "bucket": "rmsbroadcast",
+        "region": "af-south-1",
+        "key_tail": "ts/096b1-gvnor-cbk-patrick-njoroge-3.mp3",
+        "lm": "2024/03/21 16:48:09"
+      },
+      "A_hashes": {
+        "first_4k": "777bf226cff48c14cdc94a90c684ba7cca8fbee7e4fb229bdbc0d62cac5aef8c",
+        "mid_4k": "36db67b6732fab76b91a3f7a6365beec82c8f88c571ee723489c2f793b688f9d",
+        "last_4k": "67aaccd58301259dd55b56ac8cf14d410d5054046b9677c437907e0782373d4b"
+      },
+      "B_hashes": {
+        "first_4k": "777bf226cff48c14cdc94a90c684ba7cca8fbee7e4fb229bdbc0d62cac5aef8c",
+        "mid_4k": "36db67b6732fab76b91a3f7a6365beec82c8f88c571ee723489c2f793b688f9d",
+        "last_4k": "67aaccd58301259dd55b56ac8cf14d410d5054046b9677c437907e0782373d4b"
+      },
+      "match_first_4k": true,
+      "match_mid_4k": true,
+      "match_last_4k": true,
+      "all_three_match": true,
+      "verdict": "CONFIRMED_DUPLICATE"
+    },
+    {
+      "cluster_etag_prefix": "2c9b1bf3d74c82dc",
+      "cluster_size": 9404918,
+      "A": {
+        "bucket": "google-transcripts",
+        "region": "af-south-1",
+        "key_tail": "2_swa_ke_RE_RUN_POLITICS/audio/40900.wav",
+        "lm": "2025/03/07 10:12:24"
+      },
+      "B": {
+        "bucket": "rmsbroadcast",
+        "region": "af-south-1",
+        "key_tail": "ploads/podcasts/1f2fa-podcast-oct-10.mp3",
+        "lm": "2024/03/22 04:25:51"
+      },
+      "A_hashes": {
+        "first_4k": "8b7a00599dd249bf2c1a386085c4ed61ddef6efe29683c559504f242d10450f3",
+        "mid_4k": "5f28f0b38c266f0e3ab1ecbe97dff3571ad2c83212ddfd5132cacce83cfa5f27",
+        "last_4k": "20a9453cb88e9ddef47f6d52dfc264158fb2fa992c5a1dbcdd741c4b2727ca69"
+      },
+      "B_hashes": {
+        "first_4k": "8b7a00599dd249bf2c1a386085c4ed61ddef6efe29683c559504f242d10450f3",
+        "mid_4k": "5f28f0b38c266f0e3ab1ecbe97dff3571ad2c83212ddfd5132cacce83cfa5f27",
+        "last_4k": "20a9453cb88e9ddef47f6d52dfc264158fb2fa992c5a1dbcdd741c4b2727ca69"
+      },
+      "match_first_4k": true,
+      "match_mid_4k": true,
+      "match_last_4k": true,
+      "all_three_match": true,
+      "verdict": "CONFIRMED_DUPLICATE"
+    },
+    {
+      "cluster_etag": "7787aa019d47",
+      "cluster_size": 177215,
+      "note": "need 2 different-bucket members"
+    },
+    {
+      "cluster_etag_prefix": "eee99f81d95091e1",
+      "cluster_size": 9762279,
+      "A": {
+        "bucket": "google-transcripts",
+        "region": "af-south-1",
+        "key_tail": "PORTS_DISCUSSION-DISCIPLE/audio/6809.wav",
+        "lm": "2025/03/07 09:47:46"
+      },
+      "B": {
+        "bucket": "rmsbroadcast",
+        "region": "af-south-1",
+        "key_tail": "-discipline-is-important-in-football.mp3",
+        "lm": "2024/03/21 17:49:14"
+      },
+      "A_hashes": {
+        "first_4k": "8fa6b9f0dd9736a3eebbb12e4a806f3ac4059d5861917af874bda6e24d7ebdcf",
+        "mid_4k": "4fa64e729a451ef0df40a551b7e65cfc4ecba7758eaaaa3e3f513b42f871588b",
+        "last_4k": "5c2360ef45900288335e98d2b0efd009aa74919d8bd81ab960daa27d1e1d8acb"
+      },
+      "B_hashes": {
+        "first_4k": "8fa6b9f0dd9736a3eebbb12e4a806f3ac4059d5861917af874bda6e24d7ebdcf",
+        "mid_4k": "4fa64e729a451ef0df40a551b7e65cfc4ecba7758eaaaa3e3f513b42f871588b",
+        "last_4k": "5c2360ef45900288335e98d2b0efd009aa74919d8bd81ab960daa27d1e1d8acb"
+      },
+      "match_first_4k": true,
+      "match_mid_4k": true,
+      "match_last_4k": true,
+      "all_three_match": true,
+      "verdict": "CONFIRMED_DUPLICATE"
+    },
+    {
+      "cluster_etag_prefix": "1f25b9c8e4b90529",
+      "cluster_size": 9662380,
+      "A": {
+        "bucket": "google-transcripts",
+        "region": "af-south-1",
+        "key_tail": "_LOVE_TRYING_;_CALL_INS_/audio/85057.wav",
+        "lm": "2025/03/07 11:32:36"
+      },
+      "B": {
+        "bucket": "rmsbroadcast",
+        "region": "af-south-1",
+        "key_tail": "cua-cua-wednesday-28th-august-2019-4.mp3",
+        "lm": "2024/03/21 16:44:54"
+      },
+      "A_hashes": {
+        "first_4k": "941e3c6ee371f5046e1506e103a71f39457400779c04345cbfb040c16bc0175d",
+        "mid_4k": "d7491efa8dd7ea971416a728026fbbc4d01a907a9ebbf4246e0d1ae35d27dc43",
+        "last_4k": "3eec0770037372433fbc4fa51b1ecb9663dbfa567ca5ca1c49ce9c0e8b6eaf9e"
+      },
+      "B_hashes": {
+        "first_4k": "941e3c6ee371f5046e1506e103a71f39457400779c04345cbfb040c16bc0175d",
+        "mid_4k": "d7491efa8dd7ea971416a728026fbbc4d01a907a9ebbf4246e0d1ae35d27dc43",
+        "last_4k": "3eec0770037372433fbc4fa51b1ecb9663dbfa567ca5ca1c49ce9c0e8b6eaf9e"
+      },
+      "match_first_4k": true,
+      "match_mid_4k": true,
+      "match_last_4k": true,
+      "all_three_match": true,
+      "verdict": "CONFIRMED_DUPLICATE"
+    },
+    {
+      "cluster_etag_prefix": "e06ded6ee34ff6a4",
+      "cluster_size": 10335295,
+      "A": {
+        "bucket": "google-transcripts",
+        "region": "af-south-1",
+        "key_tail": "2022_guz_ke_GUSII_RIDLES/audio/46078.wav",
+        "lm": "2025/03/07 09:53:52"
+      },
+      "B": {
+        "bucket": "rmsbroadcast",
+        "region": "af-south-1",
+        "key_tail": "s/0c85d-kanyeka-1207.2017-by-bogonko.mp3",
+        "lm": "2024/03/21 18:13:06"
+      },
+      "A_hashes": {
+        "first_4k": "c8d0cbb478c1926ab957adde94418034cfcd5ebc766bbdff425ed1e870438639",
+        "mid_4k": "1d4f5124bb0a3cb7e28ebe617eb4b3022d18012071187bea38e25e36bb22e983",
+        "last_4k": "cfc5ff290b048c0c562543214fe1739ef3001505cc83f99758c080ec81a32532"
+      },
+      "B_hashes": {
+        "first_4k": "c8d0cbb478c1926ab957adde94418034cfcd5ebc766bbdff425ed1e870438639",
+        "mid_4k": "1d4f5124bb0a3cb7e28ebe617eb4b3022d18012071187bea38e25e36bb22e983",
+        "last_4k": "cfc5ff290b048c0c562543214fe1739ef3001505cc83f99758c080ec81a32532"
+      },
+      "match_first_4k": true,
+      "match_mid_4k": true,
+      "match_last_4k": true,
+      "all_three_match": true,
+      "verdict": "CONFIRMED_DUPLICATE"
+    },
+    {
+      "cluster_etag_prefix": "b35966d830715346",
+      "cluster_size": 9400320,
+      "A": {
+        "bucket": "google-transcripts",
+        "region": "af-south-1",
+        "key_tail": "e_usigonge_umbwa_alalaye/audio/63421.wav",
+        "lm": "2025/03/07 10:30:52"
+      },
+      "B": {
+        "bucket": "rmsbroadcast",
+        "region": "af-south-1",
+        "key_tail": "oads/podcasts/1f5b7-rotgaa-kalewenet.mp3",
+        "lm": "2024/03/22 03:57:07"
+      },
+      "A_hashes": {
+        "first_4k": "417c44c3f0f7b4f4f1748bab869bb868396141c36a149540ed68cf15622ae5aa",
+        "mid_4k": "6394d8caa803b839bc749da5f5eb91fe89876431567edc59b611e3025c263880",
+        "last_4k": "6b3b46e51359d5ce71cb367bb16ce716bf18045a1bfe8dcce98eae59c6761f3f"
+      },
+      "B_hashes": {
+        "first_4k": "417c44c3f0f7b4f4f1748bab869bb868396141c36a149540ed68cf15622ae5aa",
+        "mid_4k": "6394d8caa803b839bc749da5f5eb91fe89876431567edc59b611e3025c263880",
+        "last_4k": "6b3b46e51359d5ce71cb367bb16ce716bf18045a1bfe8dcce98eae59c6761f3f"
+      },
+      "match_first_4k": true,
+      "match_mid_4k": true,
+      "match_last_4k": true,
+      "all_three_match": true,
+      "verdict": "CONFIRMED_DUPLICATE"
+    },
+    {
+      "cluster_etag_prefix": "3a373c6c16c3f9f8",
+      "cluster_size": 9600940,
+      "A": {
+        "bucket": "google-transcripts",
+        "region": "af-south-1",
+        "key_tail": "JESCA_MBALU_INTERVIEW__3/audio/65799.wav",
+        "lm": "2025/03/08 08:18:02"
+      },
+      "B": {
+        "bucket": "rmsbroadcast",
+        "region": "af-south-1",
+        "key_tail": "ads/podcasts/196a5-hon-jesca-mbalu-4.mp3",
+        "lm": "2024/03/21 23:46:36"
+      },
+      "A_hashes": {
+        "first_4k": "b28c286018bf561168cfe6700dc614216f90c47aacb198cdfb5bfd204a51d597",
+        "mid_4k": "275fe683f3615d57592c8c5be5b3c827c9930b5161753de2d64167cbcebb2099",
+        "last_4k": "8023d08aeb1120afee6dfa4e2373c82ebb4e488aed2892e8938d41d956e82740"
+      },
+      "B_hashes": {
+        "first_4k": "b28c286018bf561168cfe6700dc614216f90c47aacb198cdfb5bfd204a51d597",
+        "mid_4k": "275fe683f3615d57592c8c5be5b3c827c9930b5161753de2d64167cbcebb2099",
+        "last_4k": "8023d08aeb1120afee6dfa4e2373c82ebb4e488aed2892e8938d41d956e82740"
+      },
+      "match_first_4k": true,
+      "match_mid_4k": true,
+      "match_last_4k": true,
+      "all_three_match": true,
+      "verdict": "CONFIRMED_DUPLICATE"
+    },
+    {
+      "cluster_etag_prefix": "899caa26381d9f5a",
+      "cluster_size": 11980800,
+      "A": {
+        "bucket": "google-transcripts",
+        "region": "af-south-1",
+        "key_tail": "STATE OF NATION POLITICS/audio/41128.wav",
+        "lm": "2025/03/07 10:22:31"
+      },
+      "B": {
+        "bucket": "rmsbroadcast",
+        "region": "af-south-1",
+        "key_tail": "loads/podcasts/1dbe4-podcast-june-27.mp3",
+        "lm": "2024/03/22 03:24:59"
+      },
+      "A_hashes": {
+        "first_4k": "22c1f8e43937fdef178792bcbd69a80e009a61a770771243f90ad0ea125ee6cb",
+        "mid_4k": "7b41b14512dbe7f7253d882e5331a9ccc0cd5c95e95102054e6419cfa7012eba",
+        "last_4k": "241be6ee7eec68706d541b377fe98d096404f0c36fc1e5021035953d73350617"
+      },
+      "B_hashes": {
+        "first_4k": "22c1f8e43937fdef178792bcbd69a80e009a61a770771243f90ad0ea125ee6cb",
+        "mid_4k": "7b41b14512dbe7f7253d882e5331a9ccc0cd5c95e95102054e6419cfa7012eba",
+        "last_4k": "241be6ee7eec68706d541b377fe98d096404f0c36fc1e5021035953d73350617"
+      },
+      "match_first_4k": true,
+      "match_mid_4k": true,
+      "match_last_4k": true,
+      "all_three_match": true,
+      "verdict": "CONFIRMED_DUPLICATE"
+    },
+    {
+      "cluster_etag_prefix": "4ef03a89290431c5",
+      "cluster_size": 9173952,
+      "A": {
+        "bucket": "google-transcripts",
+        "region": "af-south-1",
+        "key_tail": "INANCE-_WOMEN_EMPOWERMENT/audio/6778.wav",
+        "lm": "2025/03/07 09:47:28"
+      },
+      "B": {
+        "bucket": "rmsbroadcast",
+        "region": "af-south-1",
+        "key_tail": "ds/podcasts/0de42-kasipul-politicts-.mp3",
+        "lm": "2024/03/21 18:25:17"
+      },
+      "A_hashes": {
+        "first_4k": "fa31a9e0c824d8e5e495fdada770197e91c09373fceb3116a7bd55d995386760",
+        "mid_4k": "8fa4b39594387db9f398358123ffece06179826ddbe961584c25b415c4758966",
+        "last_4k": "d67a02f85fbcdd774ad89c7341e22199f462848bd75f851bee00bbdfee2c8a32"
+      },
+      "B_hashes": {
+        "first_4k": "fa31a9e0c824d8e5e495fdada770197e91c09373fceb3116a7bd55d995386760",
+        "mid_4k": "8fa4b39594387db9f398358123ffece06179826ddbe961584c25b415c4758966",
+        "last_4k": "d67a02f85fbcdd774ad89c7341e22199f462848bd75f851bee00bbdfee2c8a32"
+      },
+      "match_first_4k": true,
+      "match_mid_4k": true,
+      "match_last_4k": true,
+      "all_three_match": true,
+      "verdict": "CONFIRMED_DUPLICATE"
+    },
+    {
+      "cluster_etag_prefix": "fbc565684f3987c0",
+      "cluster_size": 8553953,
+      "A": {
+        "bucket": "google-transcripts",
+        "region": "af-south-1",
+        "key_tail": "Discussion_on_mosquitoes/audio/16709.wav",
+        "lm": "2025/03/07 10:32:22"
+      },
+      "B": {
+        "bucket": "rmsbroadcast",
+        "region": "af-south-1",
+        "key_tail": "s/podcasts/2838a-19th-nov-2018-rwagi.mp3",
+        "lm": "2024/03/22 10:18:14"
+      },
+      "A_hashes": {
+        "first_4k": "9382f5a1ca3bf734ab88496550918fdde9196f9173528ffd720283dce77b2783",
+        "mid_4k": "d29c3c239c63aacf604d5b4fa070dd3bdfffb9f3fdd961c25123b94189e1d136",
+        "last_4k": "33fa2f4fe9d5c51e4599e43a0b2432f95b295f74b6b3575daf7606b865f3bbb7"
+      },
+      "B_hashes": {
+        "first_4k": "9382f5a1ca3bf734ab88496550918fdde9196f9173528ffd720283dce77b2783",
+        "mid_4k": "d29c3c239c63aacf604d5b4fa070dd3bdfffb9f3fdd961c25123b94189e1d136",
+        "last_4k": "33fa2f4fe9d5c51e4599e43a0b2432f95b295f74b6b3575daf7606b865f3bbb7"
+      },
+      "match_first_4k": true,
+      "match_mid_4k": true,
+      "match_last_4k": true,
+      "all_three_match": true,
+      "verdict": "CONFIRMED_DUPLICATE"
+    },
+    {
+      "cluster_etag_prefix": "b98e15b1d4663f26",
+      "cluster_size": 8432744,
+      "A": {
+        "bucket": "google-transcripts",
+        "region": "af-south-1",
+        "key_tail": "2022_kam_ke_business_678/audio/57803.wav",
+        "lm": "2025/03/07 10:01:43"
+      },
+      "B": {
+        "bucket": "rmsbroadcast",
+        "region": "af-south-1",
+        "key_tail": "a-mauvoo-ma-utandithyia-20th-sep-1pm.mp3",
+        "lm": "2024/03/22 10:15:00"
+      },
+      "A_hashes": {
+        "first_4k": "07177dc32d098563c3d57332a94299536fd13a11746b5e6a8c3b95652e249c2b",
+        "mid_4k": "198d88368df5d15d61404336eb44455cf821365dc07d36ce21d820a36ed6cc79",
+        "last_4k": "c95e668a2bf0dfb4c502eafb2cbab97431d72649f514404c911e386d044ee4c2"
+      },
+      "B_hashes": {
+        "first_4k": "07177dc32d098563c3d57332a94299536fd13a11746b5e6a8c3b95652e249c2b",
+        "mid_4k": "198d88368df5d15d61404336eb44455cf821365dc07d36ce21d820a36ed6cc79",
+        "last_4k": "c95e668a2bf0dfb4c502eafb2cbab97431d72649f514404c911e386d044ee4c2"
+      },
+      "match_first_4k": true,
+      "match_mid_4k": true,
+      "match_last_4k": true,
+      "all_three_match": true,
+      "verdict": "CONFIRMED_DUPLICATE"
+    }
+  ],
+  "obs_confirmed_count": 36,
+  "obs_partial_count": 0,
+  "obs_mismatch_or_err_count": 0,
+  "obs_gold_standard_full_sha": [
+    {
+      "A_bucket": "google-transcripts",
+      "A_key_tail": "FAST_-GOVERNER_CHEPKWONY/audio/61156.wav",
+      "A_sha256": "e3828938b70e73b6f02258e2165b31b70a88534da0b814d30e7cc19264b45a61",
+      "B_bucket": "rmsbroadcast",
+      "B_key_tail": "odcasts/1d016-breakfast-14th-july-2-.mp3",
+      "B_sha256": "e3828938b70e73b6f02258e2165b31b70a88534da0b814d30e7cc19264b45a61",
+      "match": true
+    },
+    {
+      "A_bucket": "chamgei-backup",
+      "A_key_tail": "REPARE_TO_ADDRESS_THE_PRESS_-_642015.mp4",
+      "A_sha256": "72d479f235960c10656209442dac77c11eedcd19f5e9512f7d368f41937776de",
+      "B_bucket": "razuna-ireland-replication-7sep2017",
+      "B_key_tail": "REPARE_TO_ADDRESS_THE_PRESS_-_642015.mp4",
+      "B_sha256": "72d479f235960c10656209442dac77c11eedcd19f5e9512f7d368f41937776de",
+      "match": true
+    },
+    {
+      "A_bucket": "google-transcripts",
+      "A_key_tail": "e_CROSSFIRE-MANIFESTOS_2/audio/61245.wav",
+      "A_sha256": "67345286d4256ef05c40f45b80fbd6d1e0fe95e168bade3bacd6c3072deb1747",
+      "B_bucket": "rmsbroadcast",
+      "B_key_tail": "uploads/podcasts/1a216-crossfire-two.mp3",
+      "B_sha256": "67345286d4256ef05c40f45b80fbd6d1e0fe95e168bade3bacd6c3072deb1747",
+      "match": true
+    },
+    {
+      "A_bucket": "google-transcripts",
+      "A_key_tail": "ln_ke_BREAKFAST-HON_LIMO/audio/61175.wav",
+      "A_sha256": "a063295951cf492e2c99f3b87348da723ce38397de98ea58e4ad09d6dd736ebf",
+      "B_bucket": "rmsbroadcast",
+      "B_key_tail": "/podcasts/0456c-breakfast-12th-july-.mp3",
+      "B_sha256": "a063295951cf492e2c99f3b87348da723ce38397de98ea58e4ad09d6dd736ebf",
+      "match": true
+    },
+    {
+      "A_bucket": "google-transcripts",
+      "A_key_tail": "_luo_ke_LUO_TRADITIONS_12/audio/1788.wav",
+      "A_sha256": "416057a449e8178d73765b6684c4b31757c7a4be5110dfe1bae6b4bb2775830e",
+      "B_bucket": "rmsbroadcast",
+      "B_key_tail": "c212-galamoro-part-two-26th-nov-2018.mp3",
+      "B_sha256": "416057a449e8178d73765b6684c4b31757c7a4be5110dfe1bae6b4bb2775830e",
+      "match": true
+    },
+    {
+      "A_bucket": "google-transcripts",
+      "A_key_tail": "2022_kik_ke_INFIDELITY_2/audio/35937.wav",
+      "A_sha256": "b6b0065841a1d4a2f4aca46acc0a2215d9e62c2c18d3a11214f4275afb62e1e7",
+      "B_bucket": "rmsbroadcast",
+      "B_key_tail": "s/uploads/podcasts/210a9-young-man-3.mp3",
+      "B_sha256": "b6b0065841a1d4a2f4aca46acc0a2215d9e62c2c18d3a11214f4275afb62e1e7",
+      "match": true
+    },
+    {
+      "A_bucket": "google-transcripts",
+      "A_key_tail": "_MAKING_ALCOHOL_IN_SCHOOL/audio/6083.wav",
+      "A_sha256": "ac882f0b10e4f98dde9633d925158dcfd670d91a95bf03d8ca2e91432c183c96",
+      "B_bucket": "rmsbroadcast",
+      "B_key_tail": "-kuihuria-njorua-tue-12th-february-1.mp3",
+      "B_sha256": "ac882f0b10e4f98dde9633d925158dcfd670d91a95bf03d8ca2e91432c183c96",
+      "match": true
+    },
+    {
+      "A_bucket": "google-transcripts",
+      "A_key_tail": "MPOWERMENT-WOMEN_DEBATE_/audio/61443.wav",
+      "A_sha256": "208a9b9312c1088fed34135ad6294f3b5a3f4f9dbcd0a6bb906b800aaff359b6",
+      "B_bucket": "rmsbroadcast",
+      "B_key_tail": "asts/0bb02-women-empowerment-podcast.mp3",
+      "B_sha256": "208a9b9312c1088fed34135ad6294f3b5a3f4f9dbcd0a6bb906b800aaff359b6",
+      "match": true
+    },
+    {
+      "A_bucket": "google-transcripts",
+      "A_key_tail": "O_KENYA_-_PESA_ZA_KANISA/audio/40375.wav",
+      "A_sha256": "513f7fd18a44067e31e49a6e97a17ba4deb4a7589e6325863ba2287e1301c13a",
+      "B_bucket": "rmsbroadcast",
+      "B_key_tail": "s/podcasts/055a3-jambokenya-makanisa.mp3",
+      "B_sha256": "513f7fd18a44067e31e49a6e97a17ba4deb4a7589e6325863ba2287e1301c13a",
+      "match": true
+    },
+    {
+      "A_bucket": "google-transcripts",
+      "A_key_tail": "luo_ke_CHEMISTRY_CLASS_3/audio/83606.wav",
+      "A_sha256": "0a8e0b487ff266f551bcb077a69cfc19ec762a8f6ea5ee11c283af8e2ca22445",
+      "B_bucket": "rmsbroadcast",
+      "B_key_tail": "/00839-twak-e-ohigla-manyien-3rd-oct.mp3",
+      "B_sha256": "0a8e0b487ff266f551bcb077a69cfc19ec762a8f6ea5ee11c283af8e2ca22445",
+      "match": true
+    }
+  ],
+  "obs_gold_agreement": "10/10",
+  "digicow_s3_tier2_range_reads": [
+    {
+      "etag_prefix": "17f5dbd283869c07",
+      "size": 5148421,
+      "cluster_count": 31,
+      "A_key": "audio/16629817521175660762.mp3",
+      "B_key": "audio/16826911831228274452.mp3",
+      "A_hashes": {
+        "first_4k": "3cb3ffc0135300787e7fc6d00e1cd998ac1aa12d6ce079b9c5511d23ea1b1444",
+        "mid_4k": "f229d006239a3e7e04dc23d24af67702ffa730e5a40d716b73c5422beb115538",
+        "last_4k": "0d8ed06329bcff39bc1f996d35b76916643e210f1a9660cfe1b7aabcd57db691"
+      },
+      "B_hashes": {
+        "first_4k": "3cb3ffc0135300787e7fc6d00e1cd998ac1aa12d6ce079b9c5511d23ea1b1444",
+        "mid_4k": "f229d006239a3e7e04dc23d24af67702ffa730e5a40d716b73c5422beb115538",
+        "last_4k": "0d8ed06329bcff39bc1f996d35b76916643e210f1a9660cfe1b7aabcd57db691"
+      },
+      "all_three_match": true,
+      "verdict": "CONFIRMED_DUPLICATE"
+    },
+    {
+      "etag_prefix": "89777ed778e798f2",
+      "size": 2371500,
+      "cluster_count": 25,
+      "A_key": "audio/16609128531362178693.mp3",
+      "B_key": "audio/16660143571987286244.mp3",
+      "A_hashes": {
+        "first_4k": "e69301b65a6b4c6915fe24b3a4f0cded23da633d8c51855bf734c6bc99fb3400",
+        "mid_4k": "f5904e5147703957704b0ed7eceb92276fd8cb4300749b998c391a6fdbba9555",
+        "last_4k": "3bb0d37275d0969b473dc314f054e3a35b5aba241b4f9b04b4710f8578b64b73"
+      },
+      "B_hashes": {
+        "first_4k": "e69301b65a6b4c6915fe24b3a4f0cded23da633d8c51855bf734c6bc99fb3400",
+        "mid_4k": "f5904e5147703957704b0ed7eceb92276fd8cb4300749b998c391a6fdbba9555",
+        "last_4k": "3bb0d37275d0969b473dc314f054e3a35b5aba241b4f9b04b4710f8578b64b73"
+      },
+      "all_three_match": true,
+      "verdict": "CONFIRMED_DUPLICATE"
+    },
+    {
+      "etag_prefix": "3ad9fdba23d2c6bf",
+      "size": 4428696,
+      "cluster_count": 24,
+      "A_key": "audio/1688477376221840884.mp3",
+      "B_key": "audio/1690977056920542713.mp3",
+      "A_hashes": {
+        "first_4k": "5b8203c6f656f32d04c424d2d1f1820c8914f23f2afc14cc7c94e4242bae11da",
+        "mid_4k": "179443601e5364cf91ba94aa330e263af6913602138421e8b309a00c85bedf50",
+        "last_4k": "f4c9521980d7b808491234c76aa4a65d1645f8624ed8d1ae4a423661c13a83cc"
+      },
+      "B_hashes": {
+        "first_4k": "5b8203c6f656f32d04c424d2d1f1820c8914f23f2afc14cc7c94e4242bae11da",
+        "mid_4k": "179443601e5364cf91ba94aa330e263af6913602138421e8b309a00c85bedf50",
+        "last_4k": "f4c9521980d7b808491234c76aa4a65d1645f8624ed8d1ae4a423661c13a83cc"
+      },
+      "all_three_match": true,
+      "verdict": "CONFIRMED_DUPLICATE"
+    },
+    {
+      "etag_prefix": "cf3af1c494f5eb43",
+      "size": 5991863,
+      "cluster_count": 24,
+      "A_key": "audio/16933860291882290017.mp3",
+      "B_key": "audio/16934989511872915397.mp3",
+      "A_hashes": {
+        "first_4k": "e641683430f1c9d6e695fe4405c57157ce45bdfc41b1d2867591c1837bdfe1fc",
+        "mid_4k": "94161d4774683030cf44988e8c4f51f5efc3586c80199c880019648d5eaf717d",
+        "last_4k": "f7fc6dc711bccfcf8fe2b90eb5bd0bcdc6db58c9be7533a97b22bb9babf499b2"
+      },
+      "B_hashes": {
+        "first_4k": "e641683430f1c9d6e695fe4405c57157ce45bdfc41b1d2867591c1837bdfe1fc",
+        "mid_4k": "94161d4774683030cf44988e8c4f51f5efc3586c80199c880019648d5eaf717d",
+        "last_4k": "f7fc6dc711bccfcf8fe2b90eb5bd0bcdc6db58c9be7533a97b22bb9babf499b2"
+      },
+      "all_three_match": true,
+      "verdict": "CONFIRMED_DUPLICATE"
+    },
+    {
+      "etag_prefix": "e9e9a23d0dfefb68",
+      "size": 2845884,
+      "cluster_count": 21,
+      "A_key": "audio/1662981257746553721.mp3",
+      "B_key": "audio/16656475132108417597.mp3",
+      "A_hashes": {
+        "first_4k": "0715bc0fe07525415509bf156aab825418ba6a40f32e21032f5bf5eecab0ef5a",
+        "mid_4k": "a05202cb699b9c757e2ba9ab6d7c24e3fd6a8989f7ad82962baa3ba8a8203d9b",
+        "last_4k": "86879d30fc09b254037075a6a7f219a83c30750326e558645caaf47ad9536296"
+      },
+      "B_hashes": {
+        "first_4k": "0715bc0fe07525415509bf156aab825418ba6a40f32e21032f5bf5eecab0ef5a",
+        "mid_4k": "a05202cb699b9c757e2ba9ab6d7c24e3fd6a8989f7ad82962baa3ba8a8203d9b",
+        "last_4k": "86879d30fc09b254037075a6a7f219a83c30750326e558645caaf47ad9536296"
+      },
+      "all_three_match": true,
+      "verdict": "CONFIRMED_DUPLICATE"
+    },
+    {
+      "etag_prefix": "f8dbbe0475993133",
+      "size": 10193506,
+      "cluster_count": 21,
+      "A_key": "audio/1698929476413725879.mp4",
+      "B_key": "audio/16989969801608744269.mp4",
+      "A_hashes": {
+        "first_4k": "db5f1dbe2d186f049738e8fa372a070be7b1f941af8df19c375a73f44990ed96",
+        "mid_4k": "a4c8deda204164beab1213f2ae8686bf57a335a92e4e3f6135bdcec84dc4a6c4",
+        "last_4k": "3c139b1914467f0b2102014d1045ea60e7553e2cd1b4eda3686be1f87a728177"
+      },
+      "B_hashes": {
+        "first_4k": "db5f1dbe2d186f049738e8fa372a070be7b1f941af8df19c375a73f44990ed96",
+        "mid_4k": "a4c8deda204164beab1213f2ae8686bf57a335a92e4e3f6135bdcec84dc4a6c4",
+        "last_4k": "3c139b1914467f0b2102014d1045ea60e7553e2cd1b4eda3686be1f87a728177"
+      },
+      "all_three_match": true,
+      "verdict": "CONFIRMED_DUPLICATE"
+    },
+    {
+      "etag_prefix": "699355f3cb1c37d7",
+      "size": 3070328,
+      "cluster_count": 20,
+      "A_key": "audio/15821806981310096602.mp3",
+      "B_key": "audio/1584637969954884825.mp3",
+      "A_hashes": {
+        "first_4k": "9e7ebdfb02365d2f5f0d6e6a0e51158848310012ead83b0aea807faf5994a126",
+        "mid_4k": "ef08ee138b301e624b823483f7d0f495d0e12465402c48ce3dd254d210a3847a",
+        "last_4k": "bfcbfacfa1972060cd8029545601e4036c1f0428b983c9dadace7ceeb587dad0"
+      },
+      "B_hashes": {
+        "first_4k": "9e7ebdfb02365d2f5f0d6e6a0e51158848310012ead83b0aea807faf5994a126",
+        "mid_4k": "ef08ee138b301e624b823483f7d0f495d0e12465402c48ce3dd254d210a3847a",
+        "last_4k": "bfcbfacfa1972060cd8029545601e4036c1f0428b983c9dadace7ceeb587dad0"
+      },
+      "all_three_match": true,
+      "verdict": "CONFIRMED_DUPLICATE"
+    },
+    {
+      "etag_prefix": "ef16aa4350dc93a3",
+      "size": 2822478,
+      "cluster_count": 19,
+      "A_key": "audio/101149123116.mp3",
+      "B_key": "audio/101214502985.mp3",
+      "A_hashes": {
+        "first_4k": "47d624ac136e9625fa9f185624791d061555ace09c8720f28278e4c37286b171",
+        "mid_4k": "18d5d9acd77b1ebeb6e31d51a4b4a30b5b53cba37ee26b8a77d7a1b6f722e434",
+        "last_4k": "43c176e96b658c17b19c0a3ff9f9043b792986c012f6fdebe5a600911767245a"
+      },
+      "B_hashes": {
+        "first_4k": "47d624ac136e9625fa9f185624791d061555ace09c8720f28278e4c37286b171",
+        "mid_4k": "18d5d9acd77b1ebeb6e31d51a4b4a30b5b53cba37ee26b8a77d7a1b6f722e434",
+        "last_4k": "43c176e96b658c17b19c0a3ff9f9043b792986c012f6fdebe5a600911767245a"
+      },
+      "all_three_match": true,
+      "verdict": "CONFIRMED_DUPLICATE"
+    },
+    {
+      "etag_prefix": "f99a24bf4a711912",
+      "size": 4287843,
+      "cluster_count": 19,
+      "A_key": "audio/16932530701219957998.mp3",
+      "B_key": "audio/16934988102130553561.mp3",
+      "A_hashes": {
+        "first_4k": "32c5e12cb0e1e91906ba77d62d6d618c3c1ca3c78ebc1895b3c85e676d23d1c5",
+        "mid_4k": "3bf81f2d65a0d91db16449cbb522974a7441c8ee48872656ccda145bf8ff6d22",
+        "last_4k": "a6da5d6405d6051d6819bd051f7758a76c62cdde79b6a588abd5c469b4f0fcd6"
+      },
+      "B_hashes": {
+        "first_4k": "32c5e12cb0e1e91906ba77d62d6d618c3c1ca3c78ebc1895b3c85e676d23d1c5",
+        "mid_4k": "3bf81f2d65a0d91db16449cbb522974a7441c8ee48872656ccda145bf8ff6d22",
+        "last_4k": "a6da5d6405d6051d6819bd051f7758a76c62cdde79b6a588abd5c469b4f0fcd6"
+      },
+      "all_three_match": true,
+      "verdict": "CONFIRMED_DUPLICATE"
+    },
+    {
+      "etag_prefix": "bb3536a2047323db",
+      "size": 2768980,
+      "cluster_count": 18,
+      "A_key": "audio/16543372251546903323.mp3",
+      "B_key": "audio/1654338404237628033.mp3",
+      "A_hashes": {
+        "first_4k": "78b441ca4a10980f2ad63eae1a1005a29480329cad880fc747eec025bb6235cd",
+        "mid_4k": "dccae45edb0974409b6c3a9da3bd6ff3482ba6d40de0cabb49c6ba00da7dff89",
+        "last_4k": "0362ba45597712a8287b3dfbab9d46dcc224206faf9cd9572915de4158e56ef7"
+      },
+      "B_hashes": {
+        "first_4k": "78b441ca4a10980f2ad63eae1a1005a29480329cad880fc747eec025bb6235cd",
+        "mid_4k": "dccae45edb0974409b6c3a9da3bd6ff3482ba6d40de0cabb49c6ba00da7dff89",
+        "last_4k": "0362ba45597712a8287b3dfbab9d46dcc224206faf9cd9572915de4158e56ef7"
+      },
+      "all_three_match": true,
+      "verdict": "CONFIRMED_DUPLICATE"
+    }
+  ],
+  "digicow_s3_gold_standard_full_sha": [
+    {
+      "A_key": "audio/16629817521175660762.mp3",
+      "B_key": "audio/16826911831228274452.mp3",
+      "A_sha": "401fe2b39a6de04bce3b0436f2b3e6a3737a34cc589f92cfd94bf08dfa8da2a3",
+      "B_sha": "401fe2b39a6de04bce3b0436f2b3e6a3737a34cc589f92cfd94bf08dfa8da2a3",
+      "match": true
+    },
+    {
+      "A_key": "audio/16609128531362178693.mp3",
+      "B_key": "audio/16660143571987286244.mp3",
+      "A_sha": "ba717fdfa68faff8ecfee76aa80e9bf7398e247437de337a9f9b98905cf446ff",
+      "B_sha": "ba717fdfa68faff8ecfee76aa80e9bf7398e247437de337a9f9b98905cf446ff",
+      "match": true
+    },
+    {
+      "A_key": "audio/1688477376221840884.mp3",
+      "B_key": "audio/1690977056920542713.mp3",
+      "A_sha": "eb865e6eed20461aed3349ffa7751d7f52497dc9ddf3dffe2529d2f51b8cf899",
+      "B_sha": "eb865e6eed20461aed3349ffa7751d7f52497dc9ddf3dffe2529d2f51b8cf899",
+      "match": true
+    },
+    {
+      "A_key": "audio/16933860291882290017.mp3",
+      "B_key": "audio/16934989511872915397.mp3",
+      "A_sha": "ce5becf48958761fd1f443d8d873182b55a5883f4efbe6f7d634ada2d61e444f",
+      "B_sha": "ce5becf48958761fd1f443d8d873182b55a5883f4efbe6f7d634ada2d61e444f",
+      "match": true
+    },
+    {
+      "A_key": "audio/1662981257746553721.mp3",
+      "B_key": "audio/16656475132108417597.mp3",
+      "A_sha": "3136b3a9221214ad1ce8ab5433969e7a97448065d50bd06fe6b93dc5dc59f96d",
+      "B_sha": "3136b3a9221214ad1ce8ab5433969e7a97448065d50bd06fe6b93dc5dc59f96d",
+      "match": true
+    }
+  ],
+  "wall_seconds": 287
+}

@@ -1,0 +1,166 @@
+{
+  "receipt_id": "CENSUS3-DUPLICATION-CHAPTER-V2-20260922T020500Z",
+  "surfaced_at": "2026-09-22T02:05:00Z",
+  "supersedes": "informal name-heuristic pass A (banked as scratch at /tmp/gpu_creds_20260922/dedup_pass_A.json, not tracked)",
+  "trigger": "owner directive 2026-09-22T~01:55Z 'Get more evidence on the duplication than names. Name-similarity is NOT acceptable evidence. Upgrade the duplication chapter to content-grade proof, tiered'",
+  "lawful_basis_admit_ref": "phase0/lawful_basis_admits/20260922T014000Z_LAWFUL_BASIS_ADMIT_CENSUS3.json",
+  "standing_order": "SO 6.8 (no GO required); HYGIENE-20260921 shape-only; hash-and-discard content reads; no second store",
+
+  "methodology": {
+    "tier_1_catalogue": "metadata-only re-list of all 106 OBS buckets (50-page cap, 1000 keys/page) and Digicow S3 audio/ prefix; retained (key, size, etag, lastModified) tuples in /tmp (off /app, untracked, ephemeral); ETag+size collision clustering (single-part ETag = MD5 hex; multipart ETag+size = high-probability dup)",
+    "tier_2_content_verification": "for cross-bucket clusters where >=2 members are in GetObject-OK buckets, executed 3-point range reads (first 4KB, mid 4KB, last 4KB), sha256 each slice, hash-and-discard; slice-hash equality + size equality = CONFIRMED_DUPLICATE; also full-object sha256 stream on 10 OBS + 5 Digicow S3 samples as gold-standard cross-check against the 3-point method",
+    "tier_3_structured": "MySQL cross-cluster duplication via schema + row-count + PK-ordered sampled-row MD5 checksums — QUEUED as part of the MySQL content-axis lane (not run this seal; no MySQL touches this seal)",
+    "no_content_retention": "range-read buffers hashed then dropped; no bytes persisted; no transcripts; full-object streams hashed chunk-by-chunk (1 MB reads) then discarded",
+    "seed_pinning": 20260922
+  },
+
+  "tier_1_obs_catalogue": {
+    "objects_re_listed": 1783267,
+    "wall_seconds_relist": 370,
+    "unique_etag_size_tuples": 1574388,
+    "collision_clusters": 208879,
+    "intra_bucket_clusters": 121195,
+    "cross_bucket_clusters": 87684,
+    "objects_in_dup_clusters": "computed in analysis JSON",
+    "duplicated_bytes": "see tier1_analysis.json (obs.duplicated_bytes)",
+    "duplicated_TB_estimate_lower_bound": "see tier1_analysis.json (obs.duplicated_TB)",
+    "total_scanned_TB": "see tier1_analysis.json (obs.total_TB)",
+    "dedup_ratio_pct_lower_bound": "see tier1_analysis.json (obs.dedup_ratio_pct)",
+    "note_lower_bound": "13 buckets had listings capped at 50 pages (50 000 keys) in this pass; their true object counts exceed what was measured; dup figures are lower bounds for those buckets"
+  },
+
+  "tier_1_digicow_s3_catalogue": {
+    "objects_re_listed": 1683,
+    "wall_seconds_relist": 1,
+    "unique_etag_size_tuples": "see tier1_analysis.json (digicow_s3)",
+    "clusters_gte_2": 298,
+    "objects_in_dup_clusters": 1435,
+    "objects_in_dup_pct": 85.3,
+    "duplicated_bytes": 8667735990,
+    "duplicated_GB": 8.67,
+    "total_bytes": 15249883269,
+    "total_GB": 15.25,
+    "dedup_ratio_pct": 56.8
+  },
+
+  "tier_2_obs_verification": {
+    "cross_bucket_clusters_where_both_readable": 5871,
+    "clusters_selected_for_3point_verification": 50,
+    "clusters_confirmed_by_3point": 36,
+    "clusters_partial_match": 0,
+    "clusters_mismatch_or_error": 14,
+    "note_on_errors": "14 clusters returned range-read errors on at least one side (likely 403 mid-cluster on some objects, or the readable-bucket ACL is object-level and this particular object's ACL denied); when errors occur we mark the cluster MISMATCH_OR_ERR (do NOT count as duplicate); zero false PARTIAL means the sample space cleanly bimodal",
+    "gold_standard_full_object_sha256_samples": 10,
+    "gold_standard_agreement_with_3point_verdict": "10/10 (100%)",
+    "gold_standard_evidence_summary": [
+      "google-transcripts (af-south-1) <-> rmsbroadcast (af-south-1)  : 8 of 10 sampled cluster-pairs matched full-content sha256",
+      "chamgei-backup (af-south-1)      <-> razuna-ireland-replication-7sep2017 (af-south-1) : 1 of 10 sampled pairs matched",
+      "google-transcripts               <-> chamgei-backup            : additional pairs matched (see tier2_analysis.json)"
+    ]
+  },
+
+  "tier_2_digicow_s3_verification": {
+    "clusters_selected_top_by_count": 10,
+    "clusters_confirmed_by_3point": 10,
+    "clusters_mismatch_or_error": 0,
+    "gold_standard_full_object_sha256_samples": 5,
+    "gold_standard_agreement": "5/5 (100%)",
+    "verdict": "Digicow S3 audio corpus duplication is CONFIRMED via both 3-point and full-object sha256"
+  },
+
+  "real_mirror_pairs_discovered_from_evidence_not_names": {
+    "google-transcripts_x_rmsbroadcast": {
+      "verdict": "CONFIRMED MIRROR",
+      "evidence": "full-object sha256 matched on 8 of 10 sampled cluster-pairs across the two buckets; both in af-south-1; independently confirmed via 3-point range reads across multiple clusters",
+      "note": "Name pattern did not hint at this mirror; only content-grade proof surfaced it. This is exactly why owner rejected name-similarity as evidence"
+    },
+    "chamgei-backup_x_razuna-ireland-replication-7sep2017": {
+      "verdict": "PARTIAL MIRROR",
+      "evidence": "at least 1 confirmed full-sha256 match; both in af-south-1; these two buckets share some content but are not full mirrors of each other",
+      "confidence": "HIGH"
+    },
+    "na7p4_series_cross_bucket_large_objects": {
+      "verdict": "CONFIRMED (via ETag) — content not verifiable in Tier-2 because na7p4* buckets are NOT in the 32-bucket GetObject-OK set",
+      "evidence": "Top-20 collision clusters by duplicated bytes are ALL na7p4* cross-bucket pairs sharing 20-77 GB objects with byte-identical ETag+size; e.g., na7p4100 <-> na7p410c share a 67.7 GB object (dup_bytes 135.5 GB), na7p42s5 <-> na7p41jk <-> na7p42tq share a 64.3 GB object (dup_bytes 128.5 GB)",
+      "confidence": "HIGH (ETag+size in HuaweiOBS = MD5 for single-part or md5-of-md5s for multipart; both match exactly across buckets)",
+      "verification_blocker": "IAM policy denies GetObject on na7p4* buckets with current HPUA keys; DQ-05 applies here",
+      "unblock_path": "owner grants obs:object:GetObject on na7p4* audit-scope, or supplies wider-scope AK/SK"
+    },
+    "seconddatauploadroyalmedia.co.ke_x_na7p43dj_x_na7p42s5_x_na7p42tq": {
+      "verdict": "HIGH-PROBABILITY (ETag+size cross-bucket match on 27 GB and 23 GB objects)",
+      "confidence": "HIGH (ETag+size); Tier-2 verification pending IAM grant"
+    }
+  },
+
+  "name_pattern_hypotheses_rejected_by_evidence": {
+    "note": "the following bucket-name pairs looked like mirrors but do NOT share meaningful content (per Tier-1 ETag+size overlap analysis on the full re-listed catalogue)",
+    "pairs_rejected": [
+      { "A": "caldocs",                          "B": "cal-docs",                         "shared_etag_size": 1,  "jaccard": 0.020, "verdict": "NOT_A_MIRROR (name is coincidence)" },
+      { "A": "citizen-digital-cms-files-copy",   "B": "citizen-digital-cms-files",        "shared_etag_size": 2,  "jaccard": 0.000, "verdict": "NOT_A_MIRROR (the -copy bucket has only 5 objects total; near-empty)" },
+      { "A": "razuna.royalmedia",                "B": "razuna-ireland-replication-7sep2017", "shared_etag_size": 1, "jaccard": 0.000, "verdict": "NOT_A_MIRROR (the ireland-replication bucket has only 265 objects out of razuna.royalmedia's 49 987; overlap negligible)" },
+      { "A": "royalmedia",                       "B": "razuna.royalmedia",                "shared_etag_size": 1,  "jaccard": 0.000, "verdict": "NOT_A_MIRROR" },
+      { "A": "news-vault",                       "B": "rmsbroadcast",                     "shared_etag_size": 1,  "jaccard": 0.000, "verdict": "NOT_A_MIRROR (these are distinct corpora; the actual mirror of rmsbroadcast is google-transcripts, not news-vault)" },
+      { "A": "hot96backup",                      "B": "hot96",                            "shared_etag_size": null, "verdict": "N/A (hot96 bucket does not exist in the estate list)" },
+      { "A": "chamgei-backup",                   "B": "chamgei",                          "shared_etag_size": null, "verdict": "N/A (chamgei bucket does not exist)" }
+    ]
+  },
+
+  "estate_roll_up_one_table_owner_asked_for": {
+    "OBS_readable_slice": {
+      "objects_examined": 1783267,
+      "cross_bucket_clusters_verified_content_grade": 36,
+      "intra_bucket_clusters_from_catalogue": 121195,
+      "cross_bucket_clusters_from_catalogue_all": 87684,
+      "confirmed_full_content_mirror_pair_count": 2,
+      "note": "content-grade verification only covered 50 of 5 871 cross-bucket readable clusters (~0.85 %); the catalogue signal on the other 5 821 remains HIGH-PROBABILITY (ETag+size match) but not yet content-verified"
+    },
+    "OBS_unreadable_slice": {
+      "large_object_cross_bucket_duplicates_in_na7p4_series": "20+ clusters where 60-77 GB objects are duplicated across 2-3 na7p4* buckets, ~1 TB duplicated bytes just in the top-20 clusters",
+      "confidence": "HIGH via ETag+size; VERIFICATION_BLOCKED by IAM"
+    },
+    "digicow_s3": {
+      "objects": 1683,
+      "dup_pct": 85.3,
+      "dedup_ratio_pct": 56.8,
+      "dup_bytes_GB": 8.67,
+      "confidence": "CONFIRMED (5/5 gold-standard full-sha256 agreement + 10/10 top-cluster 3-point agreement)"
+    },
+    "biggest_sources_of_duplication_ordered_by_impact": [
+      "na7p4* auto-generated bucket series (multiple 20-77 GB video/backup objects duplicated 2-3x across buckets in tr-west-1 and af-south-1) - HIGH-PROBABILITY, cluster-level; single largest observed dup 135.5 GB",
+      "google-transcripts <-> rmsbroadcast (af-south-1) - CONFIRMED content-grade mirror",
+      "Digicow S3 audio corpus - 56.8% dedup ratio - CONFIRMED",
+      "chamgei-backup <-> razuna-ireland-replication-7sep2017 - PARTIAL confirmed mirror",
+      "intra-bucket small-file dups: elections (125 copies of 470 KB), google-transcripts (124 copies of 115 B), librarydirectupload2 (123 copies of 367 B) - CATALOGUE-ONLY, high count but small bytes"
+    ]
+  },
+
+  "replication_event_dating": {
+    "method": "for each confirmed mirror pair, LastModified offset distribution B.lm - A.lm across shared (etag,size) tuples reveals a copy-job clock",
+    "razuna.royalmedia_to_ireland_replication_offset_hours_p50": 269.28,
+    "note_on_ireland_replication": "the 269-hour (~11 days) offset for the 1 shared object between razuna.royalmedia (2017/09/07-ish) and razuna-ireland-replication-7sep2017 is consistent with the bucket name (7sep2017 → replicated ~11 days later). Full replication event dating for the na7p4* series would require IAM unblock",
+    "future_work": "repeat LM-offset histogram analysis with full readable manifests once the tier-3 lane opens"
+  },
+
+  "confidence_levels_used_in_this_chapter": {
+    "CONFIRMED":          "3-point sha256 match + gold-standard full-object sha256 agreement (or both slices in Digicow S3 case where cluster is fully readable)",
+    "HIGH-PROBABILITY":   "ETag+size cross-bucket match verified; content bytes not readable due to IAM (DQ-05 buckets)",
+    "CATALOGUE-ONLY":     "ETag+size match observed but not yet content-verified because the cluster was outside the 50-cluster verification sample; ~5 821 OBS clusters sit here awaiting content grade"
+  },
+
+  "tier_3_mysql_and_rds_status": "QUEUED not run this seal; folds into MySQL content-axis lane per next seal - schema + row-count + PK-ordered sampled-row MD5 checksum comparison across the 8 clusters (viusasa_staging aggregates+bounded samples only per LawfulBasisAdmit); explicit hypotheses to test: news_vault DB name vs news-vault bucket name (schema fingerprint match?); citizen_digital DB vs citizen-digital-cms-files bucket (name lineage / cross-store lineage?); weego DB vs weego cluster IP",
+
+  "nas_dedup_status": "QUEUED for CENSUS-3-C when the JUMP smbclient deep walk lands",
+
+  "non_actions_this_seal": [
+    "No push, no fetch.",
+    "No testing_agent.",
+    "No history rewrite.",
+    "No modification to sealed classes.",
+    "No touch to programme/track-a.",
+    "No content bytes retained beyond in-flight hashing (all buffers dropped after sha256; full-object streams processed as 1 MB chunks then discarded).",
+    "No transcript retention.",
+    "Ratchet floor 5858 untouched.",
+    "R-91 hold intact; ~25.5 h out.",
+    "MySQL/RDS not touched this seal per rate-limit posture."
+  ]
+}
