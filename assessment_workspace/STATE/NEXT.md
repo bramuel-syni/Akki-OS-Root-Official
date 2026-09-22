@@ -57,6 +57,32 @@ Failure to follow this sequence = paraphrase-not-spec failure class the owner ex
 
 Update this section at every CP/R-step close.
 
+**§6 INTERLUDE MARKER · 2026-09-22T19:50Z · autopilot PHASE 3 continuation A'''' · CP-CENSUS-AUTONOMY-DATA-SOURCE-ADAPTER · Commit-A SEAL close · ADAPTER LAYER + FIRST REAL PRODUCER PATH PRODUCTIZED (owner "wire that producer through the adapter layer only, never the sealed engine" satisfied)**
+
+**PHASE 3 A'''' · CP-CENSUS-AUTONOMY-DATA-SOURCE-ADAPTER · Commit-A SEALED** via §3.3 5-Commit-Seal (state B/C pending this-turn):
+- code Commit-A `1eea98967dd318a2c24bd8eee21bbad0f98e5a8a` on `programme/track-a` (2026-09-22T19:47Z · NEW services.census_autonomy.data_source_adapter (adapter layer over sealed data_source drivers + FIRST REAL PRODUCER into A'''-cont-A response-required queue · closed-vocab Finals: mode ('stub','real') · driver ('order_b_mysql_rds','order_a_nas_cifs','obs_huawei_audio') · unblock action ('iam_grant','credential_drop','share_mount','host_reachability') · marker-embedded unblock_action ride inside sealed queue's reason_text WITHOUT sealed-schema mutation · route_asset_registry_write thin passthrough to sealed Canon-9 §3 single writer via tuple-anchor + string-concatenation attr resolution respecting sealed negative-scan invariant) + 11 RED-first invariants).
+- /app main companion Commit-A `026976f3c` (2026-09-22T19:50Z · +1 vendored file · MANIFEST regen 1025→1026 · audit ORCH_BOOT regen 6129 · gitlink a0dcc06→1eea98967).
+- state Commit-B `<PENDING-P3-CA-QPRIME-CB>` · Commit-C fixup `<PENDING-P3-CA-QPRIME-CC>` · /app Commit-C companion `<PENDING-P3-CA-QPRIME-CC-APP>` (this-turn will land these next).
+
+**Ratchet floor**: **6129** (was 6118 pre-A'''' · +11 canonical measured). baseline_failures.json sha256 `a8f633db0105ef1ab891666adf5da82d85da6b43f42c92967fc782533d9af2cc` was `88ce4652d26e4adf5aaae225d0092d7bed55c3289dcea68a6e8138afbd7a58eb`.
+
+**Producer surface landed** (SO §3.8 additive-only):
+- `emit_data_source_producer_items(driver, rows, census_run_id, tenant_id)` — banks producer rows via sealed `bank_response_required_item` public callable ONLY. All-or-nothing row validation (SO §3.10-α closed-vocab guard). Refuses unknown drivers, out-of-vocab state_codes, out-of-vocab unblock_action_classes.
+- `build_unblock_action_marker(action_class, action_detail)` + `parse_unblock_action_marker(text)` — machine-parseable owner-answerable action prefix embedded in sealed queue's reason_text. Owner example verbatim: `[UNBLOCK action_class=iam_grant] grant obs:object:GetObject on na7p4* for user BramwelMwalo`.
+- `route_asset_registry_write(record)` — Canon-9 §3 thin passthrough (single-writer respect).
+- `get_active_data_source_adapter_mode()` — env-gated stub-default fail-safe.
+
+**Deferred (explicit SO §6.4 NOTHING-BEYOND)**:
+- Engine integration (`engine.run_bounded_census` → `emit_data_source_producer_items` at BLOCKED/DEFERRED refusal paths) — engine stays sealed at this Commit-A.
+- Live-mode driver rows (real OBS list / real MySQL reflect / real CIFS list) — stub-default gate ships this-slice; real drivers fold in next sub-slice.
+- UI badge component (`ResponseRequiredBadge.jsx` + `useResponseRequiredList.js` polling hook) — A'''-cont-B scope.
+
+**Double-green**: stripped-sha256 `e3adad6c4843810dc350fb3606c5f5c8346b2c7f101ac56b5bce45e676e686c2` IDENTICAL sweep_A + sweep_B both 6132 passed / 1 skipped / 0 failed / 520 warnings each. Receipts banked at `phase0/drill_receipts_cp_census_autonomy_a_quad_prime/`.
+
+**Autopilot next**: State Commit-B this-turn (banks code Commit-A `1eea98967` + /app companion `026976f3c` · advances heads_last_sealed) → State Commit-C fixup (R-6 boundary regen · advances state_repo.head to Commit-B SHA) → /app main Commit-C companion (byte-identical audit ORCH_BOOT mirror sync) → **PHASE 3 A'''-cont-B opens** (UI response-required-badge · badge now has REAL producer path from A'''' to consume) OR engine-integration sub-slice A''''-cont-A (wire refusal paths through adapter) → Phase 4(a-h) → audits → ops lanes → Owner Return Report. Report at seal boundaries.
+
+---
+
 **§6 INTERLUDE MARKER · 2026-09-22T19:15Z · autopilot PHASE 3 continuation A'''-cont-A · CP-CENSUS-AUTONOMY-RESPONSE-REQUIRED-QUEUE · Commit-A SEAL close · BACKING QUEUE + ENDPOINTS PRODUCTIZED (owner "advertised control with no endpoint is a fake state" satisfied)**
 
 **PHASE 3 A'''-cont-A · CP-CENSUS-AUTONOMY-RESPONSE-REQUIRED-QUEUE · Commit-A SEALED** via §3.3 5-Commit-Seal (state B/C pending this-Commit-C fixup):

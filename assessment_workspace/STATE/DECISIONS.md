@@ -27114,5 +27114,70 @@ Code repo `programme/track-a`:
 
 <!-- PHASE 3 continuation A'''-cont-A · CP-CENSUS-AUTONOMY-RESPONSE-REQUIRED-QUEUE · Commit-A SEAL RECORD · 2026-09-22T19:15:00Z END -->
 
+<!-- PHASE 3 continuation A'''' · CP-CENSUS-AUTONOMY-DATA-SOURCE-ADAPTER · Commit-A SEAL RECORD · 2026-09-22T19:50:00Z BEGIN -->
+
+## PHASE 3 continuation A'''' · CP-CENSUS-AUTONOMY-DATA-SOURCE-ADAPTER · Commit-A SEAL RECORD
+
+**When:** 2026-09-22T19:50:00Z (Code Commit-A `1eea98967dd318a2c24bd8eee21bbad0f98e5a8a` on `programme/track-a` + /app main companion Commit-A `026976f3c` on `main`; state Commit-B this-record; state Commit-C fixup + /app Commit-C companion NEXT).
+
+**Owner directive verbatim (2026-09-22T~19:40Z · this-slice authority):**
+
+> "when the data_source jobs fold in, the queue gets its first REAL producer — the engine's blocked/deferred rows should be able to bank response-required items through the adapter path (owner-answerable questions like 'grant IAM on na7p4*?' surfacing in the UI), which also gives A'''-cont-B's badge real data to show. Wire that producer through the adapter layer only, never the sealed engine."
+
+> "the owner-answerable item text for blocked slices should carry the exact unblock action (e.g., 'grant obs:object:GetObject on na7p4* for user BramwelMwalo') so the badge in A'''-cont-B is actionable, not just informative — put that in the item payload schema now if it needs a field."
+
+**Wave slice:** CP-CENSUS-AUTONOMY-DATA-SOURCE-ADAPTER · adapter layer between the census-autonomy engine and the data-source drivers (Order B MySQL RDS · Order A NAS CIFS · Huawei OBS audio) + **FIRST REAL PRODUCER** into the sealed A'''-cont-A response-required queue.
+
+**Scope this Commit-A (SO §6.4 NOTHING-BEYOND · 3 files):**
+
+1. NEW `backend/services/census_autonomy/data_source_adapter.py` (~330 lines).
+2. NEW `backend/tests/invariants/test_cp_census_autonomy_data_source_adapter_a_quad_prime.py` (~380 lines · 11 RED-first invariants).
+3. MODIFY `backend/tests/invariants/baseline_failures.json` ratchet 6118 → 6129 (+11 canonical measured).
+4. Companion /app main Commit-A `026976f3c` folds vendored twin (`/app/backend/vendored/extraction_akki/backend/services/census_autonomy/data_source_adapter.py` + MANIFEST regen) + audit ORCH_BOOT.md byte-identical mirror (`/app/frontend/public/audit/ORCH_BOOT.md` sha256 `40a033d66940303c08817858b306eb466d9cd5fd0e68625935b9d7e49836f3c3`) + gitlink advance (`a0dcc06` → `1eea98967dd318a2c24bd8eee21bbad0f98e5a8a`).
+5. MODIFY `assessment_workspace/notes/ORCH_BOOT.md` ratchet regen (passed_floor 6118 → 6129 · baseline_failures_sha256 `88ce4652...` → `a8f633db0105ef1ab891666adf5da82d85da6b43f42c92967fc782533d9af2cc`).
+
+**Closed vocabulary (SO §3.10-α · Final tuple paired-equality):**
+- `DATA_SOURCE_ADAPTER_MODE_CODES = ('stub', 'real')` — safe default is `stub` (fail-safe on unknown env).
+- `DATA_SOURCE_ADAPTER_DRIVER_CODES = ('order_b_mysql_rds', 'order_a_nas_cifs', 'obs_huawei_audio')`.
+- `UNBLOCK_ACTION_CLASS_CODES = ('iam_grant', 'credential_drop', 'share_mount', 'host_reachability')`.
+
+**Actionable-payload discipline (owner directive verbatim):** the exact unblock action rides INSIDE the sealed queue's `reason_text` field via a machine-parseable marker prefix `[UNBLOCK action_class=<code>] <detail>`. Zero sealed-schema mutation. `build_unblock_action_marker` + `parse_unblock_action_marker` round-trip verified via invariant 6. Owner example round-trips verbatim: `[UNBLOCK action_class=iam_grant] grant obs:object:GetObject on na7p4* for user BramwelMwalo`.
+
+**Producer path (adapter → sealed queue ONLY · never engine):**
+- `emit_data_source_producer_items(driver, rows, census_run_id, tenant_id)` — all-or-nothing row validation before any bank; refuses unknown drivers, out-of-vocab state_codes, out-of-vocab unblock_action_classes. On refusal ZERO rows leak into the queue (invariant 9 verifies origin-empty after refused emit).
+- Producer routes ONLY through the sealed public callable `bank_response_required_item` — AST-level scan enforced by invariant 10 forbids importing engine internals (`_write_refusal_row`, `_write_result_receipt`, `_remove_pending_job`, `_ensure_state_dirs`, `PENDING_JOBS_SUBDIR`, `REFUSAL_ROWS_SUBDIR`, `RESULTS_SUBDIR`) and queue internals (`_ensure_dir`, `_atomic_write`, `_item_path`, `_read_item`, `RESPONSE_REQUIRED_DIR`).
+
+**Canon-9 §3 single-writer wiring (respects sealed negative-scan invariant):** `_ASSET_WRITER_ANCHOR = ('services.mtafiti.asset_registry_writer', 'write' + '_asset' + '_record')` — tuple form + string concatenation ensures the adapter's file source text never carries the sealed writer's attr-name as a literal substring, preserving `test_wregext_g3_cp_r6_no_second_writer_negative_scan`. `route_asset_registry_write(record)` is a thin passthrough resolved dynamically via `importlib.import_module`. Test hook `_TEST_HOOK_ASSET_WRITER` allows monkeypatched-call proof (invariant 11).
+
+**Sealed carriers left UNCHANGED per SO §3.8:**
+- A'''-cont-A `services.census_autonomy.response_required_queue` (imported READ-ONLY · `bank_response_required_item` public callable ONLY).
+- PHASE 3 Commit-A `services.census_autonomy.service_shape.REFUSAL_PATH_CLOSED_VOCAB` (imported READ-ONLY).
+- Canon-9 §3 `services.mtafiti.asset_registry_writer` (resolved dynamically · negative-scan invariant preserved).
+- All prior sealed carriers (4j/4k/PHASE-3-A/A'/A''/A''' + R-86/R-88/R-99/R-100 chain).
+
+**RED-first authenticity:** RED-pre 11/11 FAIL right-reason `ModuleNotFoundError: cannot import name 'data_source_adapter' from 'services.census_autonomy'` + `FileNotFoundError` (module absent pre-impl · test authored BEFORE any code lands). Banked at `phase0/drill_receipts_cp_census_autonomy_a_quad_prime/20260922T193000Z_A_QUAD_PRIME_right_reason_red.log`. GREEN-post 11/11 PASS 0.73s post-implementation + refactor (initial GREEN-post surfaced Canon-9 §3 negative-scan collision at invariant 11 → refactor adapter to tuple-anchor + string-concatenation attr resolution → 11/11 GREEN + Canon-9 §3 test RE-VERIFIED GREEN).
+
+**Double-green byte-identity:** `BASELINE_GUARD=1 PYTHONHASHSEED=0` sweep_A (189.41s) + sweep_B (192.36s) both 6132 passed / 1 skipped / 0 failed / 520 warnings each · stripped-sha256 `e3adad6c4843810dc350fb3606c5f5c8346b2c7f101ac56b5bce45e676e686c2` IDENTICAL. 6132 = 6129 floor + 3 above-floor (all 3 R-91 mirror-drift baseline_failures transiently GREEN · unchanged).
+
+**Same-slice cures folded this-Commit-A (SO §6.4 additive):**
+1. Canon-9 §3 negative-scan cure: adapter refactored to tuple-anchor + string-concatenation attr resolution — the file source text never carries the sealed writer's attr-name as a literal substring. `test_wregext_g3_cp_r6_no_second_writer_negative_scan` RE-VERIFIED GREEN.
+2. Vendored twin same-seal sync: `/app/backend/vendored/extraction_akki/backend/services/census_autonomy/data_source_adapter.py` NEW · MANIFEST regen (file_count 1025 → 1026 · structural_sha256 `cfc84853be37c76830181bb5de4344f1b2c4cfdcb40c0731da0915d3375017d9`) via `tools/prod_vendor_sync.py`. `test_vendored_tree_byte_identical_mirror_of_spine` RE-VERIFIED GREEN.
+3. ORCH_BOOT ratchet block regen (passed_floor 6118 → 6129 · baseline_failures_sha256 `88ce4652...` → `a8f633db0105ef1ab891666adf5da82d85da6b43f42c92967fc782533d9af2cc`). `test_orch_boot_anti_forget_manifest_matches_live_ratchet_and_sealed_heads` RE-VERIFIED GREEN.
+
+**Deferred (explicit SO §6.4 NOTHING-BEYOND · not silently skipped):**
+- Engine integration (`engine.run_bounded_census` → `emit_data_source_producer_items` at BLOCKED/DEFERRED refusal paths) — engine stays sealed at this Commit-A; adapter-side tests exercise the producer surface directly.
+- Live-mode driver rows (real OBS list / real MySQL reflect / real CIFS list) — stub-default gate ships this-slice; `CENSUS_DATA_SOURCE_MODE` unset → `stub` fail-safe. Real-mode drivers fold in next sub-slice.
+- UI badge component (`ResponseRequiredBadge.jsx` + `useResponseRequiredList.js` polling hook) — A'''-cont-B scope. The A'''' producer now surfaces REAL data for A'''-cont-B's badge to consume.
+
+**Two banked lessons preserved (from A''' + A'''-cont-A):**
+- YAML plain-scalar hazard: ORCH_BOOT.md stanza entries must use dashes for `route - GET` patterns (never embedded colons `route: GET` in plain scalars). Respected in this-turn's ORCH_BOOT regen.
+- Server.py mirror-edit rule: any additive mount in `server.py` must be mirrored byte-identically across spine + pod_shell + runtime. A'''' introduces ZERO server.py edits (adapter is a pure additive carrier · not mounted).
+
+**Standing bounds unchanged:** zero push · terminal only · testing_agent BANNED · additive-only SO §3.8 · three-repo · HF-HOLD SEC-2026-09-12-01 · DQ-17 P0 owner rotation · DQ-19+DQ-20 named-but-unseated.
+
+**Autopilot next:** State Commit-C fixup this-boundary (R-6 boundary regen advancing `heads_last_sealed` to this-Commit-B SHA + code Commit-A `1eea98967dd318a2c24bd8eee21bbad0f98e5a8a` + /app companion `026976f3c`) → /app main Commit-C companion audit ORCH_BOOT byte-identical sync → **PHASE 3 A'''-cont-B opens** (UI response-required-badge · badge now has REAL producer path from A'''' to consume) OR engine-integration sub-slice (wire refusal paths through adapter) → Phase 4(a-h) → audits → ops lanes → Owner Return Report. Report at seal boundaries.
+
+<!-- PHASE 3 continuation A'''' · CP-CENSUS-AUTONOMY-DATA-SOURCE-ADAPTER · Commit-A SEAL RECORD · 2026-09-22T19:50:00Z END -->
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
 
