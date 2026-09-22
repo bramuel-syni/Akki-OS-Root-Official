@@ -28,6 +28,25 @@ import WorkBoard from "@/pages/os/WorkBoard";
 import MonitorSignals from "@/pages/os/MonitorSignals";
 import MonitorIdeas from "@/pages/os/MonitorIdeas";
 
+// v2 OS Prototype · Turn 4 sub-slice 4e GREEN · Frontend rebuild slice 3 ·
+// ThinkLab (4 honest-gap · Work tab) + Admin tab (10 honest-gap: estate 3 +
+// approvals 3 + watch 4) via 4c-banked filterGroupsForRole persona helper.
+// R-103 amendment: single continuous run to completion.
+import ThinkLabClarity from "@/pages/os/ThinkLabClarity";
+import ThinkLabStrategy from "@/pages/os/ThinkLabStrategy";
+import ThinkLabHypothesis from "@/pages/os/ThinkLabHypothesis";
+import ThinkLabPerspective from "@/pages/os/ThinkLabPerspective";
+import AdminEstate from "@/pages/os/AdminEstate";
+import AdminGovern from "@/pages/os/AdminGovern";
+import AdminGreyMirror from "@/pages/os/AdminGreyMirror";
+import AdminSpendReq from "@/pages/os/AdminSpendReq";
+import AdminRulesUpd from "@/pages/os/AdminRulesUpd";
+import AdminModelAdmission from "@/pages/os/AdminModelAdmission";
+import AdminWState from "@/pages/os/AdminWState";
+import AdminWRecord from "@/pages/os/AdminWRecord";
+import AdminWUnder from "@/pages/os/AdminWUnder";
+import AdminWDecisions from "@/pages/os/AdminWDecisions";
+
 // ---------------------------------------------------------------------------
 // v2 OS Prototype Shell · Design-of-Record Constants
 // (byte-verbatim per phase0/prototype_inventory/20260922T064500Z_full_enumeration_and_gap_checklist.md §1.1-§1.5)
@@ -1245,6 +1264,22 @@ function App() {
           <Route path="/os/work/board" element={<WorkBoard />} />
           <Route path="/os/monitor/signals" element={<MonitorSignals />} />
           <Route path="/os/monitor/ideas" element={<MonitorIdeas />} />
+
+          {/* Sub-slice 4e · ThinkLab (Work tab) + Admin tab groups (estate/approvals/watch) */}
+          <Route path="/os/work/clarity" element={<ThinkLabClarity />} />
+          <Route path="/os/work/strategy" element={<ThinkLabStrategy />} />
+          <Route path="/os/work/hypothesis" element={<ThinkLabHypothesis />} />
+          <Route path="/os/work/perspective" element={<ThinkLabPerspective />} />
+          <Route path="/os/admin/estate" element={<AdminEstate />} />
+          <Route path="/os/admin/govern" element={<AdminGovern />} />
+          <Route path="/os/admin/greymirror" element={<AdminGreyMirror />} />
+          <Route path="/os/admin/spendreq" element={<AdminSpendReq />} />
+          <Route path="/os/admin/rulesupd" element={<AdminRulesUpd />} />
+          <Route path="/os/admin/modeladmission" element={<AdminModelAdmission />} />
+          <Route path="/os/admin/wstate" element={<AdminWState />} />
+          <Route path="/os/admin/wrecord" element={<AdminWRecord />} />
+          <Route path="/os/admin/wunder" element={<AdminWUnder />} />
+          <Route path="/os/admin/wdecisions" element={<AdminWDecisions />} />
 
           {/* Track 2 — OS Prototype v2 (V8 PortalIframe) */}
           <Route path="/" element={<PortalIframe />} />
