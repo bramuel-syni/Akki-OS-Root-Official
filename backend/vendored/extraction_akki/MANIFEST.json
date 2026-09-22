@@ -1,5 +1,5 @@
 {
-  "file_count": 1014,
+  "file_count": 1020,
   "files": {
     "__init__.py": {
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -569,6 +569,10 @@
       "sha256": "a3e88dfbc5af3ab4621495ba1e835614087e54fe5c5480feee63ae76de970f9f",
       "size_bytes": 1524
     },
+    "scripts/census_scheduler.supervisord.conf": {
+      "sha256": "fdc5669aa171ca694e9a7cd33f2e74d269d7d328ffe7026c5fd476fe7afacc7c",
+      "size_bytes": 1226
+    },
     "services/__init__.py": {
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "size_bytes": 0
@@ -996,6 +1000,26 @@
     "services/capability_registry.py": {
       "sha256": "7b8c7b351f7f119ff7e774cf8c63b63d707b06d25bc85802829119b5b09d3d68",
       "size_bytes": 3709
+    },
+    "services/census_autonomy/__init__.py": {
+      "sha256": "aece0782f71e73969b696d7ae6956be4b34e284d8380afe3812225ceea62d57e",
+      "size_bytes": 1738
+    },
+    "services/census_autonomy/engine.py": {
+      "sha256": "faadf44bcb106eb008cf49a0f901e8fd282720fc82e097eacd7c7cb1a5912cf1",
+      "size_bytes": 8708
+    },
+    "services/census_autonomy/scheduler_program.py": {
+      "sha256": "47fc5ae70bbf68610174f9a0e72e1d8bbc8e126d9109003b0fcbab38e5382f32",
+      "size_bytes": 5496
+    },
+    "services/census_autonomy/service_shape.py": {
+      "sha256": "473a21f840cb356232cf6e9e8a38be7552630fef54d45392f287c3bead6cc532",
+      "size_bytes": 4773
+    },
+    "services/census_autonomy/tenant_scope.py": {
+      "sha256": "4d062cfbc660a54e00ab18a46afdd073288a9967527198017e6765d4ee3c5a47",
+      "size_bytes": 3160
     },
     "services/census_canon/__init__.py": {
       "sha256": "bb62679250c37e8769d8c6ef2f27dcbb99add8e33cb6aebc238beeebe2e39e06",
@@ -4058,7 +4082,7 @@
       "size_bytes": 19816
     }
   },
-  "generated_at_utc": "2026-09-22T13:29:52Z",
+  "generated_at_utc": "2026-09-22T13:53:50Z",
   "source": {
     "included_top_dirs": [
       "services",
@@ -4072,7 +4096,7 @@
     ],
     "spine_backend": "/app/assessment_workspace/repos/Extraction-Akki/backend"
   },
-  "structural_sha256": "b467153f026a63ad7c1f5832e7147fea041727917adaa0903eb99f1788656077",
+  "structural_sha256": "6ff44254890532ebcff2ca5f8f7296ea12565305dfce9339606e38e4ca999ee3",
   "target": {
     "vendored_backend": "/app/backend/vendored/extraction_akki/backend"
   }
