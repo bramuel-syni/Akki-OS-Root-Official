@@ -5304,4 +5304,14 @@ Owner note this-session verbatim: *"for the ε-apply mirror: /app/frontend has m
 **Standing bounds unchanged**: zero push · terminal pytest only · **no `testing_agent`** (BANNED) · additive-only §3.8 · three-repo discipline · ratchet floor **5852** · R-91 NO EXPEDITE · CONTINUITY BUNDLE at every seal · HF-HOLD SEC-2026-09-12-01 · R-24 UNLISTED · R-25 tagged.
 
 
+### §6 INTERLUDE MARKER · autopilot re-anchor · 2026-09-22T04:10:00Z · CENSUS-SURFACE-A Commit-C fixup landing
+
+- **Current wave**: CENSUS-SURFACE-A · sub-step Commit-C fixup (R-6 boundary regen against state Commit-B `d7e063aee6cb0f9835db859b8807d969f096c2e3` · banks code programme/track-a Commit-A" `b71510e0860de68873d12f6be3106e95ee4b4e25` + Commit-A' `e06ecf9667c2fc144a8624cc83e7aba3b4e0e965` + companion /app main `4962078624c8351c3e2425a678506717338bcc66`).
+- **Ratchet floor**: **5914 passed** · `baseline_failures.json` sha256 `db5a7989304de03c2cf2b73f9c191e7beb5a8c7d95c568ffa9459dbb4869d105` · 5 baseline failures · 1 skip · monotonic-up preserved.
+- **Open forks (DESK_QUEUE)**: DQ-01 auditor-builder independence (standing) · DQ-05 OBS `GetObject` IAM (still blocked) · DQ-06 HF-HOLD SEC-2026-09-12-01 (still open) · DQ-08 historical `816be899` pw exposure (mitigated by additive-supersede at HEAD).
+- **Active bounds**: zero push · terminal pytest + curl only · `testing_agent` STRICTLY BANNED per SO §6 · additive-only §3.8 · three-repo discipline · HF-HOLD standing · R-91 PARKED horizon `2026-09-23T03:23:15Z` (~23.22h out at Commit-C) NO EXPEDITE.
+- **Next action**: this Commit-C lands ORCH_BOOT R-6 regen + audit mirror byte-sync + STATE/PINS.md commissioning-record refresh (Continuity Bundle regen 3 bundles DEFERRED to R-91 seal per Commit-B autopilot line) → HOLD for R-91 horizon → R-91 ε-apply at horizon → post-R-91 OPEN CP-TENANT-SEPARATION with `STATE/OBJECTIVES/TENANT_SEPARATION.md` pinned pre-first-RED per owner Part 2 order · **CENSUS-3-F GPU pipeline kicks off on this Commit-C seal** via akki-vm + akki-vm-ii 4×H200 stream-and-discard · CPU lanes S4a-DIGICOW-RDS + Order B / Q-1 continue interleaved.
+- **Diff-vs-prior-attestation**: last banked §6 INTERLUDE MARKER was `R-59 · 2026-09-19T~19:05Z` (M17-W5 fork closed) · milestone advance since: R-85..R-100 + R-100-UNWIND + CP-PROD-DEPLOY-SELF-CONTAINMENT + AUDIT-PREP-20260921 + HUAWEI-OBS-ACCESS-DRILL + JUMP-CONNECTIVITY-RETRY + SO §6.8 adoption + FULL-ESTATE-CENSUS-20260921 + HYGIENE-20260921 + GPU-INVENTORY-20260922 + GPU-LANE-OPEN-20260922 + CENSUS-3-20260922-A + CENSUS-3-20260922-B + CENSUS-SURFACE-A (base → journey A' → registry landing A" → Commit-B → this Commit-C) all sealed since · ratchet floor advance 5711 → **5914** (+203 monotonic-up) · resumed under §6.8 "no GO exists" autopilot after owner Part 2 CP-TENANT-SEPARATION order banked pre-first-RED.
+
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
