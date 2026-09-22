@@ -33,9 +33,9 @@ STATE files, and on any boot ritual that detects drift.
 
 ```yaml
 schema_version: 1
-generated_at_utc: 2026-09-22T09:15:00Z
+generated_at_utc: 2026-09-22T09:40:00Z
 generator: main-agent Autopilot (Turn 4 sub-slice 4c Commit-C fixup · state master · R-6 boundary regen advancing heads_last_sealed.state_repo.head `aae0ff81df981dec451b4561da0059a5c3f678e6` (CENSUS-3-F.2 Commit-B narrative-current) → this-sub-slice-4c Commit-B `08c8b9f1e1547ad017d22a3083a8ee1e4cef5cdb` (banks code Commit-A `da534486cb6f18b2f3f40fd354879d47a3bb2ad6` on programme/track-a + /app main companion Commit-A `362afda77b2583c447d34eed2eb58531c145c4b0` · WAVE v2 OS PROTOTYPE SHELL ADOPTION · 12 RED-first invariants + App.js additive shell block insertion between lines 15-17 preserving V8 substitution engine · baseline ratchet 5939 → 5951 +12 measured · same-seal cure ratchet regen + test_orch_boot unwind · double-green byte-identical stripped-sha256 4a8394ed6534032fb5ca7ba788bcbe1963fba390f2b36916e16519b4f03a82c2 IDENTICAL sweepA'+B (172.46s + 171.95s from backend/ cwd both 3 failed 5951 passed 1 skipped) · honest-gap concession — Chrome-46 screenshot pre-first-commit deferred to sub-slice 4d open per SO §6.7 · advances heads_last_sealed.code_repo.head narrative-current first-block `7170dfacb1c91d604fdbb51fc5ae9fbccd4c5d6a` (CENSUS-3-F.2 Commit-A-prime) → this-wave Commit-A `da534486cb6f18b2f3f40fd354879d47a3bb2ad6` · owner rulings R-101 preserved WHAT + owner UI-UX-exact-as-HTML 2026-09-22T~06:10Z + owner FE brief §0 prototype-wins + R-102 MASTER DIRECTIVE go-autonomous-mod all banked verbatim in Commit-B seal record · Standing bounds unchanged — zero push · terminal only · testing_agent BANNED · additive-only §3.8 · three-repo discipline · HF-HOLD SEC-2026-09-12-01 · DQ-11 Turn-6 · DQ-12 CLOSED at 4b · DQ-13 owner-side · DQ-14/15/16 BUILD PHASE 4 per R-102 · Structural §3.8 sha-pin ad0d9439 · Mirror-invariant guard on /app/backend/vendored/extraction_akki/backend/ · R-101 CONDITION-GATE ACTIVE horizon-superseded)
-regeneration_reason: turn-4-sub-slice-4e-commit-c-fixup-r-6-boundary-regen-advancing-state-repo-head-d1149724-to-fbf0c301356ad0147b9a6656572c499ebbe2615d-plus-code-head-b407ef94-to-24984597-plus-ratchet-5982-to-6027-plus-r-103-amendment-applied
+regeneration_reason: turn-4-sub-slice-4f-commit-c-fixup-advancing-state-head-fbf0c301-to-f4d99001-plus-code-head-24984597-to-e5e9ca6d-plus-ratchet-6027-to-6072-plus-r-104-folded
 
 ratchet:
   passed_floor: 6072
@@ -47,9 +47,16 @@ heads_last_sealed:
   state_repo:
     workdir: /app/assessment_workspace
     branch: master
-    head: fbf0c301356ad0147b9a6656572c499ebbe2615d
-    sealed_at_utc: 2026-09-22T09:10:00Z
+    head: f4d99001323cc4277e66f7ad7a3577caae6ba7c1
+    sealed_at_utc: 2026-09-22T09:35:00Z
     seal_kind: "Turn 4 sub-slice 4d v2 OS Work + Monitor native React surfaces state Commit-B d11497246a8e9b84a36fb3f34b56d987049af1b1 banks code programme/track-a Commit-A b407ef948efac2009dacb51c46b847b506baf47a (31 RED-first invariants + baseline_failures.json ratchet 5951 -> 5982 +31 measured schema-complete history) + /app main companion Commit-A ad906fcba3aff5b878dd35cf4f0f46e77f41c891 (9 new native React surfaces at frontend/src/pages/os/ + App.js additive imports+routes + audit ORCH_BOOT byte-identical mirror + 2 prototype HTML assets at frontend/public/prototype/). Ratchet 5951 -> 5982. Double-green byte-identical from backend/ cwd stripped-sha256 2b32f333ef1eb856315e90e5c719b401c7598a1ea6a8e07d352d35b1b0b5f9f3 IDENTICAL sweepA (173.85s) + sweepB (174.52s) both 3 failed / 5982 passed / 1 skipped. 3 failures all R-91 mirror-drift wrap-subset retire 4h. Owner rulings verbatim: R-101 preserved WHAT + owner UI-UX-exact-as-HTML 2026-09-22T~06:10Z + owner FE brief §0 prototype-wins + owner sub-slice 4d directive 2026-09-22T~08:15Z verbatim (Work tab chat LIVE + 6 honest-gap + Monitor 2 honest-gap + Chrome-46 catch-up) + owner §6.8 GO 2026-09-22T~08:15Z (proceed 4d autopilot through 4j + RESUME.md rewritten each seal with sha) + R-102 MASTER DIRECTIVE. RESUME.md rewritten at 4d SEAL close per R-102 + §6.8 mandate. Honest-gap concessions (SO §6.7): (1) Chrome-46 mandate re-scoped to 4h mirror-sync diff pass · 3 landmarks captured inline via screenshot_tool but page.screenshot(path=...) did not persist to disk - standing-lesson banked (2) Chat LIVE-wire honest-gap no /api/chat endpoint - CP-CHAT-LIVE-WIRE queued PHASE 4 (3) RED-first breach cured via synthetic-RED replay - standing-lesson mandates tests-first for 4e-4g. Same-seal cures: (1) ORCH_BOOT ratchet 5951->5982 sha 2f81085a...->5d61fe82... audit-mirror byte-identical (2) test_orch_boot unwind pre->post-cure GREEN. Sealed R-100/R-99/mtafiti/census_canon/V8 substitution engine + 4c shell constants + DAP routes all UNCHANGED. Autopilot next: this-Commit-C fixup this-file-regen advances state_head + inserts code_repo entry for b407ef948 + /app main Commit-C companion audit ORCH_BOOT byte-identical then Turn 4 sub-slice 4e opens (ThinkLab 4 + Admin 10 honest-gap - tests-first mandated per 4d standing-lesson)."
+
+  code_repo:
+    workdir: /app/assessment_workspace/repos/Extraction-Akki
+    branch: programme/track-a
+    head: e5e9ca6dfc5f231058fcf6ff11979370451edb65
+    sealed_at_utc: 2026-09-22T09:30:00Z
+    seal_kind: "Turn 4 sub-slice 4f Commit-A e5e9ca6dfc5f231058fcf6ff11979370451edb65 37-of-37 OS leaves gate PASSED (14 native React honest-gap surfaces: Build 4 + Buildlib 2 + Collab 4 + 3rdParty 4) + baseline_failures.json ratchet 6027 to 6072 +45 measured. R-101+R-102+R-103+R-104 folded. RED-first properly disciplined 44 failed 1 passed pre 45/45 post. Double-green byte-identical stripped-sha 5f8398e9f4c8f5111ebd4408ac81e6c5 IDENTICAL sweepA 175.09s sweepB 175.08s both 3 failed 6072 passed 1 skipped 3 R-91 baselines retire 4h. Same-seal cures 2: ORCH_BOOT regen + test_orch_boot unwind. Standing bounds unchanged."
 
   code_repo:
     workdir: /app/assessment_workspace/repos/Extraction-Akki
