@@ -65,6 +65,10 @@ import AppsFrequent from "@/pages/os/AppsFrequent";
 import AppsConnected from "@/pages/os/AppsConnected";
 import AppsRequests from "@/pages/os/AppsRequests";
 
+// Sub-slice 4h · 2 DAP LATEST view classes (10+11) as honest-gap surfaces per 4g deferral resolution.
+import AdminApprovalsLedger from "@/pages/dap/AdminApprovalsLedger";
+import AdminWatchTrailBridge from "@/pages/dap/AdminWatchTrailBridge";
+
 // ---------------------------------------------------------------------------
 // v2 OS Prototype Shell · Design-of-Record Constants
 // (byte-verbatim per phase0/prototype_inventory/20260922T064500Z_full_enumeration_and_gap_checklist.md §1.1-§1.5)
@@ -1314,6 +1318,10 @@ function App() {
           <Route path="/os/apps/frequent" element={<AppsFrequent />} />
           <Route path="/os/apps/connected" element={<AppsConnected />} />
           <Route path="/os/apps/requests" element={<AppsRequests />} />
+
+          {/* Sub-slice 4h · 2 DAP LATEST view classes (view 10 + 11) — reachable at top-level /dap/... */}
+          <Route path="/dap/approvals-ledger" element={<AdminApprovalsLedger />} />
+          <Route path="/dap/watch-trail-bridge" element={<AdminWatchTrailBridge />} />
 
           {/* Track 2 — OS Prototype v2 (V8 PortalIframe) */}
           <Route path="/" element={<PortalIframe />} />
