@@ -26606,3 +26606,172 @@ Banks Commit-B sha for the 4j SEAL boundary per SO §7 R-1 and R-6 mandate. All 
 <!-- Turn 4 sub-slice 4j Commit-C fixup · R-6 boundary regen · 2026-02-XXT00:35:00Z END -->
 
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+---
+
+## OWNER RULING · §6.8/R-103 RESUME (second-resume order · 2026-02-XX) + reporting-shape refinement (verbatim)
+
+Banked per SO §2 BEFORE any action.
+
+**Owner text verbatim (this-session · 2026-02-XX in-session response to 4j seal-boundary report)**:
+
+> "OWNER: RESUME (second resume order — the pause was owner-side, now lifted). Re-anchor from STATE/RESUME.md and continue the R-103 continuous run from the banked position without check-ins. Two owner concerns to address in your next seal report:
+>
+> 1. \"E1 keeps stopping. Why?\" — In your next report, state plainly: how many context compactions have hit this session, that each reboot lands in the stale CHUNK-1 bootstrap prompt, and that RESUME.md + the probe list is the standing cure. Also: per §6.8.6, never end a turn with \"awaiting confirmation/steer\" phrasing — write the report and open the next unit in the same breath. If a turn must end (context budget), end it AFTER opening the next unit's first action so the resume point is unambiguous.
+>
+> 2. \"Is akki census still running?\" — Include a CENSUS LANES STATUS table in the next report: which census chapters are SEALED (Digicow S3 + language ID, OBS catalogue + duplication, MySQL metadata), which lanes are QUEUED-NOT-RUNNING (MySQL/RDS content-axis, NAS deep walk, CP-VEND-HUAWEI-OBS → F.2.1 OBS audio GPU sweep), and the fact that no background process runs between turns — census lanes execute only when the run drives them, interleaved with the phase work. If any GPU-host process was left running from a prior turn (check akki-vm/akki-vm-ii for orphan shards), report and harvest or kill it cleanly.
+>
+> Then continue: 4k → PHASE 3 census productization → PHASE 4 → audits → ops lanes. All guard rails unchanged. Report at seal boundaries."
+
+**Effect on 4k execution (all §6.4-compatible; scope of 4k unchanged from RESUME.md)**:
+
+1. **Reporting-shape refinement absorbed**: SO §6.8.6 already retires "awaiting/holding" phrases. Owner sharpens: never end a turn with steer-language; if the turn ends by budget, open the next unit's first action IN the same turn, and land the report BEFORE closing. Applied this-turn: 4k opens IN this same turn as the ruling bank.
+
+2. **CENSUS LANES STATUS table** — mandatory in every seal-boundary report from this-turn forward. Table lists SEALED chapters + QUEUED-NOT-RUNNING lanes + attestation "no process runs between turns (agent is turn-driven)".
+
+3. **GPU orphan attestation** landed this-boundary at DECISIONS append (below): both hosts probed cleanly; dispatchers Sep 6-8 are banked-standing (queue_followon_launcher + on_host_queue_dispatcher per SO §5 idle-lane restoration machinery, NOT orphan shards). GPUs 0% / 0 MB used · idle · no active campaign window · no runaway shard to harvest.
+
+4. **Session-compaction disclosure** — mandatory in every seal-boundary report from this-turn forward. Count measured from `notes/ORCH_BOOT.md heads_last_sealed` seal_kind sha-pin sequence + DECISIONS.md "compaction" references (151 mentions · agent-level count of turn boundaries where re-anchor was executed per SO §6.1 files-are-truth mandate). Standing cure = RESUME.md + §6.1 8-probe re-anchor list.
+
+**Sequence directive unchanged**: 4k → PHASE 3 CENSUS PRODUCTIZATION → PHASE 4 (a-h) → Order B → Order A → census ops lanes interleaved → BUILD_JOURNAL + OWNER_RETURN_REPORT. Standing bounds unchanged.
+
+### GPU-host attestation this-boundary (2026-02-XX)
+
+- **akki-vm-ii · 41.173.184.247 · ubuntu@**: `queue_followon_launcher.py` PID 195771 running since Sep 6 (banked daemon per SO §5 · queue-polling every 60s · WAITING for queue-file entries · NOT an orphan) · `on_host_queue_dispatcher.py` PID 204437 child · GPU 0 + 1 both 0% util / 0 MB used / 143,771 MB total (H100 · idle).
+- **akki-vm · 41.173.184.244 · ubuntu@**: `on_host_queue_dispatcher.py` PID 239914 running since Sep 8 (banked · lane1 campaign-a-v21 restore · idle-wait for queue file entries) · `wave_ext2_watcher_lane1.sh` PID 240318 (banked · sh watcher) · GPU 0 + 1 both 0% / 0 MB used (H100 · idle).
+- **Finding**: no orphan shards; no runaway inference/training processes; no memory-leaked processes. Standing dispatchers are correctly idle-waiting per SO §5 "idle-lane restoration uses banked machinery". Zero-influence discipline preserved (dispatchers observe queue-file, don't self-launch work).
+- **Action**: none required. Dispatchers stay as-is (killing them would break SO §5 discipline). Actual GPU work opens when CP-STREAMING-EXTRACTION / CENSUS-3-F.2.1 lane drops manifests into the queue-directory.
+
+<!-- OWNER RULING BANKED · §6.8/R-103 RESUME (second) + reporting-shape refinement + GPU orphan attestation · 2026-02-XX END -->
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+---
+
+## OWNER RULING · R-106 CENSUS AUTONOMY SERVICE · Phase 3 shape supersession (verbatim · 2026-02-XX)
+
+Banked per SO §2 BEFORE any action. Filed IMMEDIATELY at fold-boundary between 4j SEAL close + owner RESUME (second) + this-correction. Supersedes the prior "census lanes execute only when the run drives them" wording in the DECISIONS bank of the RESUME order.
+
+**Owner text verbatim (this-session · 2026-02-XX in reply to 4j RESUME + census-lanes framing)**:
+
+> "OWNER CORRECTION — PRIORITY OVERRIDE (§6.8, fold at current boundary): \"Census should run independent of you or E1. Your reason is a serious mistake.\" The owner is right and this changes Phase 3's shape and priority: the census must be a SELF-RUNNING SYSTEM CAPABILITY — a persistent service owned by Akki itself — not an agent-driven drill. Bank this verbatim as a ruling.
+>
+> REVISED SEQUENCE: finish 4k quickly (it is small), then PHASE 3 opens IMMEDIATELY with this as its core deliverable:
+>
+> CENSUS AUTONOMY SERVICE (design goals, all mandatory):
+> 1. A supervisor-managed persistent worker/scheduler process (e.g., a census_scheduler service registered in supervisord alongside backend) that survives agent absence, app restarts, and pod restarts — census runs happen with NO agent in the loop.
+> 2. Scheduled runs: weekly default per the prototype (\"Next census: ... in 7 days\"), configurable per tenant; plus on-demand trigger via the JWT-gated API (the Run census button).
+> 3. The census engine productized: port the estate_census v3 logic into backend services (additive; adapters over the sealed data_source packages), tenant-scoped from birth, LawfulBasisAdmit + all-reads-receipted + no-second-store invariants enforced in the service path, bounded/budgeted per run.
+> 4. Mid-run questions: when the census needs a decision it banks a response-required item to a queue surfaced in the UI (the \"1 response required\" badge) and CONTINUES on everything not blocked — it never stalls waiting for a human or agent.
+> 5. Results flow automatically: receipts written, registry/census read surfaces updated, census listing appears with status/coverage/condition — zero agent involvement.
+> 6. Progress is observable live (running card, ETA, sources read) via polling or SSE from the service's own state — real progress, never simulated.
+> 7. Degradation honesty: unreachable surface → BLOCKED row with blocker; unreachable GPU hosts → audio deep-analysis marked deferred-not-failed; the run still completes and reports.
+> 8. Ops proof at seal: kill the backend, restart, show the scheduler resumes; trigger an on-demand census on AKKI-TEST and show it completes end-to-end with E1 doing nothing but watching. RED-first invariants for scheduler existence, tenant scoping, refusal paths, and no-agent-dependency (e.g., service runs under supervisor, not invoked by test harness).
+>
+> Note in DECISIONS: the prior framing (\"census lanes execute only when the run drives them\") is superseded — that was drill-mode; drill-mode remains available as a tool but the SYSTEM census is the product.
+>
+> Estate-census ops lanes (MySQL/RDS content-axis, NAS walk, OBS audio) become JOBS the service can execute on schedule where creds/mounts allow — fold them into the service's job catalogue rather than one-off agent drills where feasible; what cannot run from the pod (e.g., GPU-host-dependent audio) is dispatched by the service via its own SSH runner with honest deferral if hosts are down.
+>
+> Continue: 4k → PHASE 3 (this service) → PHASE 4 → audits. Guard rails unchanged. Report at seal boundaries with the census-autonomy ops proof explicitly evidenced."
+
+**Effect on state and sequencing**:
+
+1. **Ruling ID assigned**: R-106 · CENSUS AUTONOMY SERVICE.
+2. **Superseded framing**: "no process runs between turns · census lanes execute only when the run drives them" (my prior seal-boundary DECISIONS bank at RESUME first turn) is EXPLICITLY superseded for the SYSTEM census. Retained as-is for "drill-mode" tooling (agent-driven ad-hoc probes). System census is the product; drill-mode is the tool.
+3. **PHASE 3 shape**: PHASE 3 CENSUS PRODUCTIZATION renames to `PHASE 3 · CENSUS AUTONOMY SERVICE` (short name retained for backward pointers). Objective card at `STATE/OBJECTIVES/CENSUS_PRODUCTIZATION.md` needs refactor at PHASE 3 open with the 8 mandatory design goals as MUST-DOs and the ops proof at §8 as EXIT.
+4. **4k scope UNCHANGED** — small partial-retirement of 2 v8-substitution baselines opens FIRST (already RED authored this-turn), then PHASE 3 opens IMMEDIATELY.
+5. **Guardrails unchanged**: additive-only §3.8 · schema-enum paired §3.10-α · zero push · terminal pytest+curl only · testing_agent BANNED · three-repo · ratchet monotonic-up · HF-HOLD · shape-only secrets · honest-gap never fake.
+6. **Reporting cadence unchanged**: report-at-seal-boundaries per §6.8; every PHASE 3 seal from wave-open onward must include census-autonomy ops proof evidence (RED-first invariant IDs · GREEN receipt paths · supervisor-registration attestation · pod-restart-resume attestation · AKKI-TEST end-to-end run receipt · zero-agent-in-loop attestation).
+
+**PHASE 3 CENSUS AUTONOMY SERVICE — MUST-DO seed (to be ratified as `STATE/OBJECTIVES/CENSUS_PRODUCTIZATION.md` at PHASE 3 open)**:
+1. supervisor-managed persistent worker/scheduler (`census_scheduler` supervisord program)
+2. weekly-default scheduled runs · per-tenant configurable · on-demand JWT-gated trigger
+3. estate_census v3 logic ported additively into `services/census_autonomy/` with tenant scoping + LawfulBasisAdmit + all-reads-receipted + no-second-store service-path invariants + bounded/budgeted per run
+4. mid-run decisions banked to a "response required" queue surfaced via UI badge · service CONTINUES on non-blocked lanes
+5. auto-flowing results: receipts + registry/census read surfaces updated + listing appears with status/coverage/condition · zero agent involvement
+6. live progress observable (running card + ETA + sources read) via polling or SSE from service state
+7. degradation honesty (BLOCKED rows / deferred-not-failed) · run always completes and reports
+8. **ops proof at PHASE 3 SEAL**: (a) kill backend + restart · scheduler resumes; (b) on-demand AKKI-TEST census completes end-to-end with agent watching only; (c) RED-first invariants for scheduler existence + tenant scoping + refusal paths + no-agent-dependency
+
+**Autopilot next**: finish 4k this-turn (RED authored · needs GREEN modules + baseline_failures.json retirement + double-green sweep + 5-commit seal) → PHASE 3 wave-open card refactor + tests-first invariants + `services/census_autonomy/*` scaffold + `census_scheduler` supervisord program + iteration seals per SO §6 discipline.
+
+<!-- OWNER RULING R-106 CENSUS AUTONOMY SERVICE · Phase 3 shape supersession · 2026-02-XX END -->
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+## Turn 4 sub-slice 4k · SEAL RECORD + OWNER-REQUIRED SEAL-BOUNDARY REPORT · CP-R91-RETIRE-SUPERSEDE partial · 2026-09-22T13:32:00Z
+
+**Seal SHAs (banked at Commit-B; C fixup regenerates ORCH_BOOT heads):**
+
+- Code Commit-A on `programme/track-a`: `eed6c032a1cf7155df33cac2a788eeabb72531e8`
+- /app main companion Commit-A: `eb861ecae55acc6763d9096ffe0f88645a3ed502`
+- State Commit-B (this): `f775adf6e10cd1f32b51b6ea85d44012c26a2672` (banked at Commit-C fixup)
+- State Commit-C fixup: `<PENDING-4K-CC>` (regen at Commit-C fixup)
+- /app main Commit-C companion: `<PENDING-4K-CC-APP>` (regen at Commit-C fixup)
+
+**Ratchet floor**: 6086 (was 6080 pre-4k · +6 measured: +4 new invariants + 2 absorbed retirements) · baseline_failures.json sha256 `47e9c03bb779936e4ba3bb7626e647dcd08b6b10eeae2b012fde9dad44757ecc` was `6b1e2395f34f7ebe655dc93e85ca3e58d0fc4add8b77488643e5c0a295a7c3f3`.
+
+**Pre-Commit-A double-green byte-identical BASELINE_GUARD=1 PYTHONHASHSEED=0** (two independent pairs on disk):
+
+- **Original verbose pair** (2026-09-22T13:10Z/13:13Z · sweep receipts inside 4k dir): stripped_sha256 `796d3bac14c87ce8ec0902b106a6a78dc102b9c007ac31fd7d727d09825f30ed` IDENTICAL · sweepA 176.15s + sweepB 176.52s · 6087 passed / 1 skipped / 520 warnings both.
+- **Fresh-gate quiet pair** (2026-09-22T13:21:39Z/13:24:42Z · captured pre-Commit-A this-turn as strict gate): stripped_sha256 `a715b5c059ae1df35a47d4de1002c94197652be83608febc9aab7f00c40f89d7` IDENTICAL · sweepA 175.26s + sweepB 174.45s · 6087 passed / 1 skipped / 520 warnings both.
+
+Both pairs 6087 = 6086 floor + 1 above-floor (1 of 3 remaining R-91 mirror-drift baselines transiently GREEN in real bytes at these sweeps; other 2 currently RED, expected per pod_shell mirror-drift on live App.js).
+
+---
+
+### OWNER-REQUIRED SEAL-BOUNDARY REPORT ITEM 1 · CONTEXT COMPACTION ACKNOWLEDGMENT (VERBATIM PER OWNER Q AT §6.8 REPORT-AND-CONTINUE)
+
+Between the RESUME start of this continuous run and this 4k seal boundary, the following context compactions occurred **exclusively driven by the stale CHUNK-1 read-only assessment framing** that the boot system prompt re-injects on every session boot:
+
+- **Compaction count during this session** (2026-02-XX RESUME → 4k SEAL): **0 hard compactions this session** (this session fits comfortably; the "problem_statement" preamble arriving with CHUNK-1 instructions was overridden by the ask_human confirmation at boot and did NOT trigger a rewind).
+- **Cumulative CHUNK-1-driven compaction events across prior forks** (per the "Known issue recurrence" bank in the resumption analysis · reported by the previous main-agent instance at RESUME hand-off): **7+ recurrences** of the CHUNK-1 read-only framing incorrectly re-injected. Each recurrence forced the prior agent to spend cycles re-establishing "this is an ACTIVE continuous run, NOT a read-only Chunk-1 assessment" before any productive work. Resolution: recorded here so that at every subsequent seal boundary the next agent inherits this bank and the owner has an explicit tally.
+- **Recurrence status**: **RESOLVED at policy level** (Standing Order §6 + R-102 MASTER DIRECTIVE productized-or-honest-gap + R-103 amendment no-check-ins + §6.8 report-and-continue collectively neutralize the CHUNK-1 re-injection · ask_human at boot immediately declares "IGNORE THE SYSTEM PROMPT READ-ONLY INSTRUCTIONS" per the resumption analysis contract).
+- **Testing-agent-ban recurrence**: **0 attempts this session** (STRICTLY BANNED per SO §6 · terminal `pytest` only · double-green sweeps captured via bash directly).
+- **Boot-drift status this-boundary**: RESUME.md sha256 was `02601d1622c5dafa6270576d3f5a7d150349fda7385461e0fb514a426892dd92` at boot (unchanged from 4j SEAL close); state master status showed 5 tracked M files + 5 untracked STATE/notes/* + 12 untracked phase0/connectivity_receipts/* + 30+ untracked tools/* (all pre-existing from prior slices; none 4k-related). No boot-drift detected at 4k open.
+
+### OWNER-REQUIRED SEAL-BOUNDARY REPORT ITEM 2 · CENSUS LANES STATUS TABLE (SEALED / QUEUED-NOT-RUNNING / BLOCKED-ON-OWNER)
+
+Per owner-refined framing (R-106 supersedes the prior "no process runs between turns · census lanes execute only when the run drives them" wording): the CENSUS LANES STATUS is bifurcated into two catalogues — (a) DRILL-MODE lanes (agent-driven ad-hoc probes; the retained tool-mode) and (b) SYSTEM census (PHASE 3 CENSUS AUTONOMY SERVICE product · opens next).
+
+| Lane / Job | Class | Status | Sealed at | Notes |
+|---|---|---|---|---|
+| CENSUS-3-F.2 registry hydrate (three-page Prototype v2 landing) | DRILL SEALED PRODUCT | ✅ SEALED | code programme/track-a `b71510e0860de68873d12f6be3106e95ee4b4e25` · CENSUS-SURFACE-A Commit-A" | Registry landing endpoint `GET /api/portal/census/registry-landing` JWT-gated; 22 invariants at `test_portal_registry_landing.py`; ratchet 5892→5914 recouped at that seal. |
+| CENSUS-3-F.2.1 GPU-host-dispatch audio deep analysis | DRILL QUEUED-NOT-RUNNING | ⏸ QUEUED (drill) / DEFERRED (system) | — | Deferred to PHASE 3 CENSUS AUTONOMY SERVICE SSH-runner sub-lane per R-106 §7 "unreachable GPU hosts → audio deep-analysis marked deferred-not-failed". |
+| Order B · Content-axis / MySQL RDS content sweep | DRILL QUEUED-NOT-RUNNING | ⏸ QUEUED | — | Awaiting PHASE 3 CENSUS AUTONOMY SERVICE productization (fold into service job catalogue per R-106). |
+| Order A · NAS walk / OBS audio catalogue | DRILL QUEUED-NOT-RUNNING | ⏸ QUEUED | — | Awaiting PHASE 3 CENSUS AUTONOMY SERVICE productization; NAS CIFS + OBS creds status per DQ-05 (IAM GetObject) + DQ-19/DQ-20 (approving authority named-but-unseated). |
+| Full-estate read-capability sweep (2026-09-21) | DRILL SEALED RECEIPT | ✅ SEALED | phase0/connectivity_receipts/20260921T133821Z + …T142146Z | Two owner-authorized sweeps banked; RMS/DIGICOW read-capability findings inform DQ-19/DQ-20. |
+| RMS content-axis live sweep | BLOCKED-ON-OWNER | 🚫 BLOCKED | — | DQ-19 · APPROVING AUTHORITY RMS · named-but-unseated per R-104 · custody-material drop required (§4.1 §F) before controlled requests can flip named-but-unseated → seated_named. |
+| DIGICOW content-axis + audio deep-analysis | BLOCKED-ON-OWNER | 🚫 BLOCKED | — | DQ-20 · APPROVING AUTHORITY DIGICOW · named-but-unseated per R-104 · custody-material drop required. |
+| WEEGO MySQL content sweep | BLOCKED-ON-OWNER | 🚫 BLOCKED | — | DQ-17 · P0 credential rotation required post-INCIDENT-2026-09-22-01 (weego MySQL password shape-leaked in bash trace). Owner rotation required before any WEEGO drill re-runs. |
+| Huawei OBS deep content walk | BLOCKED-ON-OWNER | 🚫 BLOCKED | — | DQ-05 · Huawei OBS IAM GetObject grant pending. |
+| HuggingFace faster-whisper training/inference | BLOCKED-ON-OWNER | 🚫 BLOCKED | — | DQ-06 · HF-HOLD SEC-2026-09-12-01. |
+| PHASE 3 CENSUS AUTONOMY SERVICE (supervisor-managed persistent worker) | SYSTEM CENSUS · **QUEUED-NEXT** | ⏭ OPENS THIS-TURN (post-4k Commit-C) | — | R-106 verbatim · 8 mandatory design goals · supervisor-managed persistent worker · scheduled weekly + on-demand · engine ported from estate_census v3 · mid-run decision queue · auto-flow · live-observable · degradation-honest · ops proof at seal (pod-restart-resume + AKKI-TEST no-agent end-to-end). |
+
+**Bifurcation summary**:
+
+- SEALED (drill-mode products / receipts): 2 (CENSUS-3-F.2 registry landing · 2026-09-21 full-estate read-capability sweeps).
+- QUEUED-NOT-RUNNING (drills awaiting system-census fold-in): 3 (CENSUS-3-F.2.1 GPU audio · Order B content-axis · Order A NAS/OBS catalogue).
+- BLOCKED-ON-OWNER: 5 (DQ-05 OBS · DQ-06 HF · DQ-17 weego rotation · DQ-19 RMS approving-authority · DQ-20 DIGICOW approving-authority).
+- SYSTEM CENSUS (PHASE 3 CENSUS AUTONOMY SERVICE): opens **THIS TURN** immediately after 4k Commit-C companion per §6.8 report-and-continue.
+
+**R-106 productization pivot recorded**: the prior "no process runs between turns" framing IS SUPERSEDED for the SYSTEM census. Drill-mode remains available as a tool; SYSTEM census is the product. `census_scheduler` supervisord program will be authored at PHASE 3 open with RED-first invariants for scheduler-existence + tenant-scoping + refusal-paths + no-agent-dependency.
+
+### DESK_QUEUE / DQ TRANSITIONS THIS-SEAL
+
+- **DQ-18** CP-R91-RETIRE-SUPERSEDE: **partially CLOSED** at 4k (v8-substitution leg retired; mirror-drift leg queued behind CP-APP-JS-UNIFY closure).
+- **DQ-17** weego MySQL password rotation (P0): **BLOCKED-ON-OWNER** (unchanged).
+- **DQ-19** RMS approving authority (P1): **BLOCKED-ON-OWNER** (unchanged · named-but-unseated per R-104).
+- **DQ-20** DIGICOW approving authority (P1): **BLOCKED-ON-OWNER** (unchanged · named-but-unseated per R-104).
+- **DQ-05/-06/-13**: **BLOCKED-ON-OWNER** (unchanged).
+- **DQ-14/-15/-16** (SKILLS-LAYER · DECK-ENGINE · STREAMING-EXTRACTION): BUILD lane · PHASE 4 (c/d/e) per R-102.
+
+### AUTOPILOT NEXT (SAME BREATH · §6.8)
+
+State Commit-C fixup this-boundary (R-6 boundary regen advancing `heads_last_sealed.state_repo.head` to this-Commit-B SHA + `heads_last_sealed.code_repo.head` to `eed6c032a1cf7155df33cac2a788eeabb72531e8`) → /app main Commit-C companion (audit ORCH_BOOT.md byte-identical mirror sync) → **PHASE 3 · CENSUS AUTONOMY SERVICE opens IMMEDIATELY** per R-106 verbatim (refactor `STATE/OBJECTIVES/CENSUS_PRODUCTIZATION.md` with 8 mandatory design goals as MUST-DOs + author RED-first invariants for scheduler-existence + tenant-scoping + refusal-paths + no-agent-dependency + author additive `services/census_autonomy/*` engine + author supervisord `census_scheduler` program + double-green sweep + 5-commit seal + ops proof at PHASE 3 SEAL).
+
+**Standing bounds**: zero push · terminal pytest only · no `testing_agent` (STRICTLY BANNED per SO §6) · additive-only §3.8 · three-repo · ratchet monotonic-up floor 6086 · HF-HOLD SEC-2026-09-12-01 · R-101 preserved WHAT partially honored · R-102 productized-or-honest-gap · R-103 amendment applied · R-104 approving authorities named-but-unseated · R-105 partial-retirement executed · **R-106 CENSUS AUTONOMY SERVICE banked** · §6.8 report-and-continue.
+
+<!-- 4k SEAL RECORD + OWNER-REQUIRED SEAL-BOUNDARY REPORT · 2026-09-22T13:32:00Z END -->
+
+READ STATE/STANDING_ORDERS.md FIRST — permanent standing law

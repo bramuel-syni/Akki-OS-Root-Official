@@ -57,6 +57,31 @@ Failure to follow this sequence = paraphrase-not-spec failure class the owner ex
 
 Update this section at every CP/R-step close.
 
+**§6 INTERLUDE MARKER · 2026-02-XXT01:30Z · autopilot Turn-4-sub-slice-4k SEAL close · CP-R91-RETIRE-SUPERSEDE partial-retirement + R-106 CENSUS AUTONOMY SERVICE banked for PHASE 3**
+
+**Turn 4 sub-slice 4k SEALED** via §3.3 5-Commit-Seal:
+- code Commit-A `eed6c032a1cf7155df33cac2a788eeabb72531e8` on `programme/track-a` (2026-02-XX · 2 new services/baseline_retirement_supersede/ modules + tests/invariants/test_r91_v8_substitution_retirement_guard.py + baseline_failures.json retirement · +6 measured).
+- /app main companion Commit-A `eb861ecae55acc6763d9096ffe0f88645a3ed502` (vendored twin mirror sync · 2 new modules · MANIFEST.json regen · audit ORCH_BOOT ratchet regen 6086).
+- state Commit-B `f775adf6e10cd1f32b51b6ea85d44012c26a2672` (owner R-106 verbatim + this-seal record + DECISIONS append + NEXT this-marker + PINS post-4k reference block + RESUME rewrite → PHASE 3 NEXT + ORCH_BOOT ratchet regen + drill_receipts mirror).
+- state Commit-C fixup `<PENDING-4K-CC>` (R-6 boundary regen).
+- /app main Commit-C companion `<PENDING-4K-CC-APP>` (audit ORCH_BOOT byte-identical mirror sync).
+
+**Ratchet floor**: **6086** (was 6080 pre-4k · +6 measured [+4 new invariants + 2 absorbed retirements]). baseline_failures.json sha256 `47e9c03bb779936e4ba3bb7626e647dcd08b6b10eeae2b012fde9dad44757ecc` was `6b1e2395f34f7ebe655dc93e85ca3e58d0fc4add8b77488643e5c0a295a7c3f3`.
+
+**Retirement scope**: 2 v8-substitution nodeids (test_every_v8_substitution_rule_binds_to_harness_rendered_dom + test_slot1_registry_aside_marker_present) removed from BOTH `baseline_failures[]` AND `known_r91_closure_scheduled_receipt_drift_annotations` in the SAME commit → orphan-annotation avoided → R-88 total-coverage preserved. R-86 property 4 set-equality preserved by construction (retired nodeids NOT in MIRROR_DRIFT_NODEIDS). 3 mirror-drift baselines retained pending CP-APP-JS-UNIFY closure.
+
+**Pre-Commit-A double-green byte-identical BASELINE_GUARD=1 PYTHONHASHSEED=0**: 6087 passed / 1 skipped both sweeps · stripped_sha256 `796d3bac14c87ce8ec0902b106a6a78dc102b9c007ac31fd7d727d09825f30ed` IDENTICAL. Observed 6087 = 6086 floor + 1 above-floor (1 of 3 remaining mirror-drift baselines transiently GREEN this-sweep).
+
+**R-106 CENSUS AUTONOMY SERVICE banked verbatim** (in DECISIONS.md at this-boundary): PHASE 3 SHAPE SUPERSESSION · census is a SELF-RUNNING SYSTEM CAPABILITY · not agent-driven drill. 8 mandatory design goals: supervisor-managed persistent worker · scheduled weekly + on-demand · productized engine · mid-run decisions to UI queue · results auto-flow · live progress observable · degradation honesty · ops proof at seal.
+
+**GPU-host attestation** (per owner concern 2 · 2026-02-XX): akki-vm-ii + akki-vm both probed cleanly · standing dispatchers `queue_followon_launcher.py` + `on_host_queue_dispatcher.py` running since Sep 6-8 (banked per SO §5 idle-lane restoration · NOT orphans · idle-waiting on queue-file entries) · GPUs 0% util / 0 MB used / 143,771 MB total on both hosts. No orphan shards to harvest.
+
+**Autopilot next**: this-Commit-C fixup this-boundary → /app main Commit-C companion → **PHASE 3 CENSUS AUTONOMY SERVICE opens IMMEDIATELY** per R-106 verbatim (refactor STATE/OBJECTIVES/CENSUS_PRODUCTIZATION.md with 8 MUST-DOs + author RED-first invariants for scheduler-existence + tenant-scoping + refusal-paths + no-agent-dependency + author additive services/census_autonomy/* engine + author supervisord `census_scheduler` program + double-green sweep + 5-commit seal). Then PHASE 4 (a-h) → Order B → Order A → BUILD_JOURNAL + OWNER_RETURN_REPORT.
+
+**Standing bounds unchanged**: zero push · terminal pytest+curl only · no `testing_agent` (STRICTLY BANNED per SO §6) · additive-only §3.8 · three-repo · ratchet monotonic-up floor 6086 · HF-HOLD SEC-2026-09-12-01 · R-101 preserved WHAT partially honored (mirror done at 4h · v8-substitution retired at 4k · mirror-drift retirement queued behind CP-APP-JS-UNIFY closure) · R-102 productized-or-honest-gap satisfied · R-103 amendment applied · R-104 approving authorities named-but-unseated · R-105 partial-retirement design executed · **R-106 CENSUS AUTONOMY SERVICE banked** · §6.8 report-and-continue.
+
+---
+
 **§6 INTERLUDE MARKER · 2026-02-XXT00:30Z · autopilot Turn-4-sub-slice-4j SEAL close · CP-TENANT-SEPARATION open primary + PHASE 2 opens**
 
 **Turn 4 sub-slice 4j SEALED** via §3.3 5-Commit-Seal (pattern):

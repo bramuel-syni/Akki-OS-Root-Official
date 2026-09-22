@@ -150,7 +150,7 @@ Strategy work-in-progress (to be created):
 - **checkpoint_14d_utc:** `2026-08-28T00:00:00Z`
 - **hardening_status:** `attested`
 - **acceptance_status:** `green`
-- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260922T105809Z.json`
+- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260922T134215Z.json`
 <!-- CONNECT-GPU-PINS -->
 
 
@@ -893,3 +893,50 @@ Standing bounds unchanged. Zero-push discipline unchanged.
 - **DQ-20** · APPROVING AUTHORITY · DIGICOW · named-but-unseated · custody-material pending R-104 (P1 · owner-exclusive · recommendation: option (a) custody drop)
 
 <!-- STATE/PINS.md · post-4j wave-close reference block appended · 2026-02-XXT00:30:00Z END -->
+
+---
+
+## Turn 4 sub-slice 4k SEAL · post-CP-R91-RETIRE-SUPERSEDE reference block · 2026-02-XXT01:30:00Z
+
+### baseline_failures.json
+- **sha256 THIS-SEAL**: `47e9c03bb779936e4ba3bb7626e647dcd08b6b10eeae2b012fde9dad44757ecc`
+- sha256 pre-4k: `6b1e2395f34f7ebe655dc93e85ca3e58d0fc4add8b77488643e5c0a295a7c3f3`
+- **counts_at_baseline.passed: 6086** (was 6080 · +6 measured [+4 new inv + 2 absorbed retirements])
+- **counts_at_baseline.failed: 3** (was 5 · -2 v8-substitution retired)
+- **invariants_enforced_when_baseline_guard_1.passed_floor: 6086** (paired · monotonic-up)
+- baseline_failures[] entries: 3 (3 R-91 mirror-drift baselines retained pending CP-APP-JS-UNIFY closure)
+- known_r91_closure_scheduled_receipt_drift_annotations keys: 1 (cp10-harness retained · 2 v8-substitution retired)
+- ratchet_history entries: 309 (+1 · schema-complete)
+
+### notes/ORCH_BOOT.md + /app/frontend/public/audit/ORCH_BOOT.md
+- notes copy sha256 THIS-SEAL: `260862d533e5221cbf4952cb12a07776acddafd078b88a0c2f2e423e136df216`
+- audit copy sha256 THIS-SEAL: (same · byte-identical after /app Commit-C companion sync)
+- ratchet.passed_floor: 6086 · ratchet.baseline_failures_sha256: `47e9c03bb779936e4ba3bb7626e647dcd08b6b10eeae2b012fde9dad44757ecc`
+
+### /app/backend/vendored/extraction_akki/ · vendored twin
+- structural_sha256 THIS-SEAL: post-sync (regenerated at /app companion Commit-A · adds 2 baseline_retirement_supersede modules)
+
+### tests/invariants/test_r91_v8_substitution_retirement_guard.py
+- 4 tests (SO §2.5 verbatim-docstring)
+- companion additive package: services.baseline_retirement_supersede (2 modules)
+
+### Double-sweep stripped-sha256 pre-Commit-A · BASELINE_GUARD=1 PYTHONHASHSEED=0
+- SweepA `20260222T0120Z`: 6087 passed / 1 skipped / 176.15s · stripped_sha256 `796d3bac14c87ce8ec0902b106a6a78dc102b9c007ac31fd7d727d09825f30ed`
+- SweepB `20260222T0125Z`: 6087 passed / 1 skipped / 176.52s · stripped_sha256 `796d3bac14c87ce8ec0902b106a6a78dc102b9c007ac31fd7d727d09825f30ed`
+- **IDENTICAL byte-for-byte (stripped)**
+
+### 3-repo HEADs post-4k Commit-A landing
+- `/app/assessment_workspace/repos/Extraction-Akki` (programme/track-a): `eed6c032a1cf7155df33cac2a788eeabb72531e8`
+- `/app/assessment_workspace` (master): `f775adf6e10cd1f32b51b6ea85d44012c26a2672` → `<PENDING-4K-CC-master>`
+- `/app` (main): `eb861ecae55acc6763d9096ffe0f88645a3ed502` → `<PENDING-4K-CC-appmain>`
+
+### Retired nodeids THIS-SEAL (removed from BOTH baseline_failures AND R-88 annotation field)
+- tests/invariants/test_v8_substitution_rules_bind_to_rendered_dom.py::test_every_v8_substitution_rule_binds_to_harness_rendered_dom
+- tests/invariants/test_v8_substitution_rules_bind_to_rendered_dom.py::test_slot1_registry_aside_marker_present
+
+### Retained baseline_failures nodeids (3 R-91 mirror-drift · pending CP-APP-JS-UNIFY closure)
+- tests/invariants/test_ship_manifest_dod.py::test_runtime_frontend_app_matches_repo_pod_shell (R-86 mirror-drift · annotated in known_runtime_drift_annotations)
+- tests/invariants/test_wave_g_pod_shell_frontend_mirror.py::test_app_frontend_App_js_mirrors_pod_shell_App_js (same)
+- tests/invariants/test_wave_g_pod_shell_frontend_mirror.py::test_app_frontend_pages_dir_mirrors_pod_shell_pages_dir (same)
+
+<!-- STATE/PINS.md · post-4k reference block appended · 2026-02-XXT01:30:00Z END -->
