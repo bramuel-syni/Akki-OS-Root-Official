@@ -1,5 +1,5 @@
 {
-  "file_count": 1001,
+  "file_count": 1003,
   "files": {
     "__init__.py": {
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -1592,6 +1592,14 @@
     "services/data_source/__init__.py": {
       "sha256": "61f4de724b470c12862079062a0b780a7df6d2dcf7f1952b110255b0c544b9d2",
       "size_bytes": 1830
+    },
+    "services/data_source/obs_huawei_audio_read_only/__init__.py": {
+      "sha256": "e1e7f3e8970d027285b058ac48dd7263de2795393656e09593304cf25e537185",
+      "size_bytes": 525
+    },
+    "services/data_source/obs_huawei_audio_read_only/adapter.py": {
+      "sha256": "e543b1dac59ccdc91a99254fb65eacfdbe8a34aad23fc5498f589317406e4d81",
+      "size_bytes": 11524
     },
     "services/data_source/real_estate_adapter.py": {
       "sha256": "5428594261f906e07a62983d90636202bc09ae77f103c56583b494b91b347a57",
@@ -4006,7 +4014,7 @@
       "size_bytes": 19816
     }
   },
-  "generated_at_utc": "2026-09-22T03:29:12Z",
+  "generated_at_utc": "2026-09-22T04:44:32Z",
   "source": {
     "included_top_dirs": [
       "services",
@@ -4020,7 +4028,7 @@
     ],
     "spine_backend": "/app/assessment_workspace/repos/Extraction-Akki/backend"
   },
-  "structural_sha256": "47fb9ed3f435d566c62ad8deb5223d3351958492449a9c6e426152e97d76685c",
+  "structural_sha256": "55add9b2f88fd3ccb44340fef49b60a8f391894de468aa21fee92c8de8e3266f",
   "target": {
     "vendored_backend": "/app/backend/vendored/extraction_akki/backend"
   }
