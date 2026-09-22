@@ -38,10 +38,10 @@ generator: main-agent Autopilot (PHASE 3 continuation A'' · CP-CENSUS-AUTONOMY-
 regeneration_reason: phase-3-continuation-a-double-prime-cp-census-autonomy-ui-drawer-commit-c-fixup-r-6-boundary-regen-advancing-state-head-f34db5ef-to-0e976251-plus-code-head-55ffc389-to-527d09bf-plus-ratchet-6097-to-6103-plus-6-canonical-measured
 
 ratchet:
-  passed_floor: 6103
-  counts_at_baseline_passed: 6103
+  passed_floor: 6109
+  counts_at_baseline_passed: 6109
   baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
-  baseline_failures_sha256: aea4469a8c64012cf92743ba47b6dff9203af0714db288387e08019669d53a28
+  baseline_failures_sha256: b4237e36dc075e839ecad8d31e9c294692ce1a4fba549fcb4a6cc66d8f7e1da3
 
 heads_last_sealed:
   state_repo:
@@ -63,10 +63,10 @@ generator: main-agent Autopilot (PHASE 3 continuation A' · CP-CENSUS-AUTONOMY-R
 regeneration_reason: phase-3-continuation-a-prime-cp-census-autonomy-router-commit-c-fixup-r-6-boundary-regen-advancing-state-head-cf7c5fca-to-f34db5ef-plus-code-head-c3e6725c-to-55ffc389-plus-ratchet-6090-to-6097-plus-7-measured
 
 ratchet:
-  passed_floor: 6103
-  counts_at_baseline_passed: 6103
+  passed_floor: 6109
+  counts_at_baseline_passed: 6109
   baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
-  baseline_failures_sha256: aea4469a8c64012cf92743ba47b6dff9203af0714db288387e08019669d53a28
+  baseline_failures_sha256: b4237e36dc075e839ecad8d31e9c294692ce1a4fba549fcb4a6cc66d8f7e1da3
 
 heads_last_sealed:
   state_repo:
@@ -92,10 +92,10 @@ generator: main-agent Autopilot (PHASE 3 · CP-CENSUS-AUTONOMY-SERVICE · Commit
 regeneration_reason: phase-3-census-autonomy-service-commit-c-fixup-r-6-boundary-regen-advancing-state-head-f775adf6-to-cf7c5fca-plus-code-head-eed6c032-to-c3e6725c-plus-ratchet-6086-to-6090-plus-4-measured-system-census-productized
 
 ratchet:
-  passed_floor: 6103
-  counts_at_baseline_passed: 6103
+  passed_floor: 6109
+  counts_at_baseline_passed: 6109
   baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
-  baseline_failures_sha256: aea4469a8c64012cf92743ba47b6dff9203af0714db288387e08019669d53a28
+  baseline_failures_sha256: b4237e36dc075e839ecad8d31e9c294692ce1a4fba549fcb4a6cc66d8f7e1da3
 
   code_repo:
     workdir: /app/assessment_workspace/repos/Extraction-Akki
