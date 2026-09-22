@@ -150,7 +150,7 @@ Strategy work-in-progress (to be created):
 - **checkpoint_14d_utc:** `2026-08-28T00:00:00Z`
 - **hardening_status:** `attested`
 - **acceptance_status:** `green`
-- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260922T134215Z.json`
+- **commissioning_record:** `/app/assessment_workspace/phase0/commissioning_records/commissioning_aisca-gpu-01_20260922T181358Z.json`
 <!-- CONNECT-GPU-PINS -->
 
 
@@ -940,3 +940,169 @@ Standing bounds unchanged. Zero-push discipline unchanged.
 - tests/invariants/test_wave_g_pod_shell_frontend_mirror.py::test_app_frontend_pages_dir_mirrors_pod_shell_pages_dir (same)
 
 <!-- STATE/PINS.md · post-4k reference block appended · 2026-02-XXT01:30:00Z END -->
+
+<!-- STATE/PINS.md · post-PHASE-3-CENSUS-AUTONOMY-SERVICE Commit-A reference block · 2026-09-22T16:36:00Z BEGIN -->
+
+## PHASE 3 · CP-CENSUS-AUTONOMY-SERVICE · Commit-A pin block
+
+### baseline_failures.json — ratchet 6086 → 6090 (+4 measured)
+- sha256 post-P3-CA: `e6a47f7843b7cb2a56b151158671b909631b146e6a5e9dfee6726379ec167928`
+- sha256 pre-P3-CA: `47e9c03bb779936e4ba3bb7626e647dcd08b6b10eeae2b012fde9dad44757ecc`
+- **counts_at_baseline.passed: 6090** (was 6086 · +4 measured [4 new invariants at test_cp_census_autonomy_service_shape_gate.py])
+- **counts_at_baseline.failed: 3** (unchanged · 3 R-91 mirror-drift baselines retained pending CP-APP-JS-UNIFY closure)
+- **invariants_enforced_when_baseline_guard_1.passed_floor: 6090** (paired · monotonic-up)
+- ratchet_history entries: 310 (+1 · schema-complete · commit=PENDING-P3-CA)
+
+### notes/ORCH_BOOT.md + /app/frontend/public/audit/ORCH_BOOT.md
+- notes copy sha256 THIS-SEAL: `afb5862133a254fee2850ce733bc639680e3565eac6c40034b8e61af7f3fcc1c`
+- audit copy sha256 THIS-SEAL: (same · byte-identical after /app companion Commit-A sync)
+- ratchet.passed_floor: 6090 · ratchet.baseline_failures_sha256: `e6a47f7843b7cb2a56b151158671b909631b146e6a5e9dfee6726379ec167928`
+
+### /app/backend/vendored/extraction_akki/ · vendored twin
+- structural_sha256 THIS-SEAL: `6ff44254890532ebcff2ca5f8f7296ea12565305dfce9339606e38e4ca999ee3` (was `b467153f026a63ad7c1f5832e7147fea041727917adaa0903eb99f1788656077`)
+- file_count 1014 → 1020 (+5 services.census_autonomy modules + 1 supervisord conf)
+
+### tests/invariants/test_cp_census_autonomy_service_shape_gate.py
+- 4 tests (SO §2.5 verbatim-docstring · SO §3.10-α closed-vocab paired-equality)
+- companion additive package: services.census_autonomy (5 modules)
+- companion supervisord conf: backend/scripts/census_scheduler.supervisord.conf
+
+### Triple-green stripped-sha256 pre-Commit-A · BASELINE_GUARD=1 PYTHONHASHSEED=0
+- Initial sweep `20260922T135406Z`: 6091 passed / 1 skipped / 174.07s · stripped_sha256 `5c1192fff22f22579aad4f93235064b065d5e1ae7ac7780fd7f89b6af81c46c5`
+- Fresh-gate SweepA `20260922T162252Z`: 6091 passed / 1 skipped / 205.99s · stripped_sha256 `5c1192fff22f22579aad4f93235064b065d5e1ae7ac7780fd7f89b6af81c46c5`
+- Fresh-gate SweepB `20260922T162628Z`: 6091 passed / 1 skipped / 188.80s · stripped_sha256 `5c1192fff22f22579aad4f93235064b065d5e1ae7ac7780fd7f89b6af81c46c5`
+- **IDENTICAL byte-for-byte (stripped) across all three sweeps**
+
+### 3-repo HEADs post-PHASE-3-CA Commit-A landing
+- `/app/assessment_workspace/repos/Extraction-Akki` (programme/track-a): `c3e6725c1896b11bf1de8ca881562a57c9a53540`
+- `/app/assessment_workspace` (master): `cf7c5fcae70007e4042374c8cc7e0711232f8e34` → `<PENDING-P3-CC-master>`
+- `/app` (main): `9537adb71ffa2538afbbe515a8c2b7e9926d0de0` → `<PENDING-P3-CC-appmain>`
+
+### R-106 §8(c) closed-vocab pins (Final constants in service_shape.py · paired-equality)
+- `CENSUS_SCHEDULER_SUPERVISORD_PROGRAM_NAME = "census_scheduler"` (owner-verbatim)
+- `TENANT_SCOPE_ENFORCEMENT_ANCHOR = "services.tenant_separation.tenant_registry:CANONICAL_TENANT_IDS"` (sealed 4j carrier)
+- `REFUSAL_PATH_CLOSED_VOCAB` (6-tuple · R-106 §4 + §7): `BLOCKED_SURFACE_UNREACHABLE`, `DEFERRED_GPU_HOST_UNREACHABLE`, `BLOCKED_AWAITING_RESPONSE`, `BLOCKED_LAWFUL_BASIS_MISSING`, `BLOCKED_TENANT_SCOPE_MISMATCH`, `DEFERRED_BUDGET_EXCEEDED`
+- `NO_AGENT_DEPENDENCY_ANCHOR = "services.census_autonomy.scheduler_program:main"` (supervisor entry-point · zero pytest/testing_agent imports)
+
+<!-- STATE/PINS.md · post-PHASE-3-CENSUS-AUTONOMY-SERVICE Commit-A reference block · 2026-09-22T16:36:00Z END -->
+
+<!-- STATE/PINS.md · post-PHASE-3-CONTINUATION-A' Commit-A reference block · 2026-09-22T17:15:00Z BEGIN -->
+
+## PHASE 3 continuation A' · CP-CENSUS-AUTONOMY-ROUTER · Commit-A pin block
+
+### baseline_failures.json — ratchet 6090 → 6097 (+7 measured)
+- sha256 post-A': `eb377b5c7627b5e06c12db68ba0a84a76003ac2a5503e6e3c233422aeca9ea3d`
+- sha256 pre-A': `e6a47f7843b7cb2a56b151158671b909631b146e6a5e9dfee6726379ec167928`
+- counts_at_baseline.passed: 6097 (was 6090 · +7 measured)
+- counts_at_baseline.failed: 3 (unchanged · 3 R-91 mirror-drift baselines · pending CP-APP-JS-UNIFY closure)
+- passed_floor: 6097 (paired · monotonic-up)
+- ratchet_history entries: 311 (+1 · schema-complete · commit=PENDING-P3-CA-PRIME)
+
+### notes/ORCH_BOOT.md + /app/frontend/public/audit/ORCH_BOOT.md
+- ratchet.passed_floor: 6097 · ratchet.baseline_failures_sha256: `eb377b5c7627b5e06c12db68ba0a84a76003ac2a5503e6e3c233422aeca9ea3d`
+
+### /app/backend/vendored/extraction_akki/ · vendored twin
+- structural_sha256 THIS-SEAL: `082210b5bd609a7e0d23fc842c05f017d9778ad396215f900694d95101c2e56a` (was `6ff44254890532ebcff2ca5f8f7296ea12565305dfce9339606e38e4ca999ee3`)
+- file_count 1020 → 1022 (+2 · state_reader.py + portal_census_autonomy.py)
+
+### tests/invariants/test_cp_census_autonomy_router_a_prime.py
+- 7 tests (SO §2.5 verbatim-docstring · SO §3.10-α closed-vocab paired-equality)
+- companion additive files: `services/census_autonomy/state_reader.py` (NEW) · `routers/portal_census_autonomy.py` (NEW)
+- server.py 2-line additive `include_router` inserted in all 3 assemblers (repo + pod_shell + runtime · Ship-Manifest DoD parity)
+
+### Double-green stripped-sha256 pre-Commit-A · BASELINE_GUARD=1 PYTHONHASHSEED=0
+- SweepA v3 (`20260922T170423Z`): 6098 passed / 1 skipped / 189.13s · stripped_sha256 `acf5963382c139d65d81e545a34d5a0c23830cf203e2c5867af5d486cad43d4f`
+- SweepB (`20260922T170741Z`): 6098 passed / 1 skipped / 189.20s · stripped_sha256 `acf5963382c139d65d81e545a34d5a0c23830cf203e2c5867af5d486cad43d4f`
+- **IDENTICAL byte-for-byte (stripped)**
+
+### 3-repo HEADs post-PHASE-3-A' Commit-A landing
+- `/app/assessment_workspace/repos/Extraction-Akki` (programme/track-a): `55ffc389cb5845f3c42801911cb7806455eeb7da`
+- `/app/assessment_workspace` (master): `f34db5efcf970651dfe321bb6f87dd05dbd9310e` → `<PENDING-P3-AP-CC-master>`
+- `/app` (main): `1de84fb06e7ad1de39eedacc89bb03980f8f9ed2` → `<PENDING-P3-AP-CC-appmain>`
+
+### Endpoint pins (SO §3.10-α Final constants · paired-equality)
+- `ON_DEMAND_RUN_ROUTE_PATH = "/api/portal/census/run"` (POST · JWT-gated · 202)
+- `RUN_STATE_ROUTE_PATH_TEMPLATE = "/api/portal/census/runs/{census_run_id}/state"` (GET · JWT-gated · 200 real state | 404)
+- `CENSUS_RUN_STATE_CODES = ("PENDING","COMPLETE","REFUSED")` (state_reader · Final closed vocab)
+
+### Owner "REAL scheduler state only" enforcement (state_reader source-level guard · invariant 6)
+Banned synthesis markers in state_reader.py: `progress_percent` · `estimated_completion` · `fake_progress` · `mock_state` · `random.random` · `random.randint`
+
+### R-106 §8 ops-proof (folded into A' Commit-A same-slice cure)
+- `20260922T164451Z_ops_proof_a_kill_backend_v2.log` · **PASS · scheduler independence proof** (backend pid 9558→9612 · scheduler pid 9552 UNCHANGED throughout backend restart)
+- `20260922T164534Z_ops_proof_b_akki_test_e2e.log` · **PASS · AKKI-TEST end-to-end zero-agent** (agent enqueued cr-30eb39ba5562 at t=0 · scheduler picked up at t=+45s · result receipt written · pending removed · zero agent involvement between enqueue and completion · R-106 §5 auto-flow + §8 exit both satisfied)
+
+### Same-slice cure: harness_ground_truth/latest.json refresh
+- Refresh timestamp: 2026-09-22T17:00:08Z (was 2026-09-22T04:45:51Z · aged 12.22h past 12h threshold)
+- Refresh method: `tools/wave_g5_realchrome_verification_harness.py --label a_prime_refresh` (GREEN · dummies absent · expected present · styled-element-anchor spans intact)
+- Receipt: `phase0/eyeball_proxies/20260922T165941Z_wave_g5_realchrome_a_prime_refresh_*.png`
+
+<!-- STATE/PINS.md · post-PHASE-3-CONTINUATION-A' Commit-A reference block · 2026-09-22T17:15:00Z END -->
+
+<!-- STATE/PINS.md · post-PHASE-3-CONTINUATION-A'' Commit-A reference block · 2026-09-22T18:20:00Z BEGIN -->
+
+## PHASE 3 continuation A'' · CP-CENSUS-AUTONOMY-UI-DRAWER · Commit-A pin block
+
+### baseline_failures.json — ratchet 6097 → 6103 (+6 canonical measured)
+- sha256 post-A'': `aea4469a8c64012cf92743ba47b6dff9203af0714db288387e08019669d53a28`
+- sha256 pre-A'':  `eb377b5c7627b5e06c12db68ba0a84a76003ac2a5503e6e3c233422aeca9ea3d`
+- counts_at_baseline.passed: 6103 (was 6097 · +6 canonical measured; +8 new invariants − 2 collection-drift)
+- counts_at_baseline.failed: 3 (unchanged · 3 R-91 mirror-drift baselines RETAINED per R-86 property 4 anchor · transiently GREEN post-A'' twin sync but list preserved · explicit retirement deferred to future CP-APP-JS-UNIFY)
+- passed_floor: 6103 (paired · monotonic-up)
+- ratchet_history entries: 312 (+1 · schema-complete · commit=PENDING-P3-CA-DPRIME → resolves at Commit-C fixup)
+
+### notes/ORCH_BOOT.md + /app/frontend/public/audit/ORCH_BOOT.md
+- ratchet.passed_floor: 6103 · ratchet.baseline_failures_sha256: `aea4469a8c64012cf92743ba47b6dff9203af0714db288387e08019669d53a28`
+- both twins md5 `55f89354ace6698f3bb11b75e4d8da62`
+
+### /app/backend/vendored/extraction_akki/ · vendored twin
+- UNCHANGED this seal (A'' backend scope limited to `tests/` which is excluded from vendored mirror per `prod_vendor_sync.py` INCLUDED_TOP_DIRS convention).
+- Vendored mirror invariant `test_vendored_tree_byte_identical_mirror_of_spine` RE-VERIFIED GREEN post-Commit-A.
+
+### tests/invariants/test_cp_census_autonomy_ui_a_double_prime.py
+- 8 RED-first invariants (SO §2.5 verbatim-docstring · owner directive quoted verbatim in module docstring)
+- companion additive files: `pod_shell/frontend/src/components/portal/CensusAutonomyDrawer.jsx` (NEW) · `pod_shell/frontend/src/hooks/useCensusRunState.js` (NEW)
+- `pod_shell/frontend/src/App.js` 2-line additive: `import CensusAutonomyDrawer from "@/components/portal/CensusAutonomyDrawer";` at line 22 + `<CensusAutonomyDrawer />` overlay mount at line 1339 inside `<div className="App">` after `</BrowserRouter>`
+- byte-identical twin at `/app/frontend/src/` per Ship-Manifest DoD parity
+
+### Byte-identity mirror md5s (this-Commit-A)
+- App.js:  `250dc6e55e02cdce1ad53a50c5b12f0e` (/app/frontend/src == pod_shell/frontend/src)
+- Hook:    `2fd945d3548f31c34ce90de7887eafb7` (both trees)
+- Drawer:  `76ce932b61c5c8a4161d3d1e5cb62aa2` (both trees)
+
+### Double-green stripped-sha256 pre-Commit-A · BASELINE_GUARD=1 PYTHONHASHSEED=0
+- SweepA3 (2026-09-22T18:03Z · 189.96s): 6106 passed / 1 skipped / 0 failed · stripped_sha256 `0b3a2d3c94f8b3aa07f9fdaf9db7cd863b3e369994207a2ac334bc5b439b7fc2`
+- SweepB3 (2026-09-22T18:06Z · 189.91s): 6106 passed / 1 skipped / 0 failed · stripped_sha256 `0b3a2d3c94f8b3aa07f9fdaf9db7cd863b3e369994207a2ac334bc5b439b7fc2`
+- **IDENTICAL byte-for-byte (stripped)**. Full receipts at `phase0/drill_receipts_cp_census_autonomy_a_double_prime/sweep_A3_2026-09-22.{log,stripped}` + `sweep_B3_2026-09-22.{log,stripped}` + `double_green_sha256_final.txt`.
+
+### 3-repo HEADs post-PHASE-3-A'' Commit-A landing
+- `/app/assessment_workspace/repos/Extraction-Akki` (programme/track-a): `527d09bf1948a6b32068769d5dcde6c9abcc192c`
+- `/app/assessment_workspace` (master): `f34db5efcf970651dfe321bb6f87dd05dbd9310e` → `<PENDING-P3-APP-CB-master>` → `<PENDING-P3-APP-CC-master>`
+- `/app` (main): `dd8ba7303` → `<PENDING-P3-APP-CC-appmain>`
+
+### UI element pins (SO §3.10-α Final constants + verbatim button labels)
+- `CENSUS_RUN_STATE_CODES = ["PENDING", "COMPLETE", "REFUSED"]` (drawer top-level Final closed vocab)
+- Button label verbatim: "Run census" (invariant 7 gates presence)
+- Data-testids: `census-autonomy-open-drawer`, `census-autonomy-drawer`, `census-autonomy-close-drawer`, `census-autonomy-tenant-id`, `census-autonomy-source-descriptor`, `census-autonomy-lawful-basis`, `census-autonomy-submit-run`, `census-autonomy-submit-error`, `census-autonomy-new-run`, `census-autonomy-running-card-{pending,complete,refused,unknown,invalid}`
+- Hook poll interval: `POLL_INTERVAL_MS = 5000`
+- Hook target endpoint: `${REACT_APP_BACKEND_URL}/api/portal/census/runs/{censusRunId}/state` (encodeURIComponent applied)
+- Drawer submit endpoint: `${REACT_APP_BACKEND_URL}/api/portal/census/run`
+- JWT source: `window.localStorage.getItem("jwt")`
+
+### Owner "REAL scheduler state only" enforcement (drawer + hook · invariant 6 · six banned synthesis markers)
+- `progress_percent` · `estimated_completion` · `fake_progress` · `mock_state` · `Math.random` · `random.random`
+
+### −2 collection-drift anomaly
+- Documented at `phase0/drill_receipts_cp_census_autonomy_a_double_prime/anomaly_note.md`
+- Effect: nominal +11 expected (8 new + 3 mirror-drift cures) but observed +9 in `passed` and +6 in `collected`
+- Root cause candidates (deferred to future desk-lane forensics per SO §6.4 NOTHING-BEYOND):
+  (1) prior-seal `counts_at_baseline` arithmetic possibly inconsistent (legacy_conditional_skips accounting)
+  (2) dynamic-collection parametrize test whose parameter cardinality reads a filesystem directory affected by A'' drill-receipts folder growth
+- Ratchet compliance: 6106 real passed ≥ 6103 floor ✓; 0 failed ⊆ 3 baseline_failures ✓; 1 skipped ≤ 1 max ✓
+
+### RED-first ordering evidence
+- Test authored at 17:25Z with pod_shell mirror empty → 8/8 RED (paths absent, App.js unmounted)
+- Mirror sync + App.js twin edit at 17:35Z → 8/8 GREEN
+- Evidence banked at `phase0/drill_receipts_cp_census_autonomy_a_double_prime/red_first_ordering.md`
+
+<!-- STATE/PINS.md · post-PHASE-3-CONTINUATION-A'' Commit-A reference block · 2026-09-22T18:20:00Z END -->

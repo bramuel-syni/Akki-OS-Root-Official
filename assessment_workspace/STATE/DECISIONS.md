@@ -26774,4 +26774,207 @@ State Commit-C fixup this-boundary (R-6 boundary regen advancing `heads_last_sea
 
 <!-- 4k SEAL RECORD + OWNER-REQUIRED SEAL-BOUNDARY REPORT · 2026-09-22T13:32:00Z END -->
 
+
+## PHASE 3 · CP-CENSUS-AUTONOMY-SERVICE · Commit-A · SEAL RECORD · 2026-09-22T16:35:00Z
+
+**Seal SHAs (Commit-A pair banked; state Commit-B/C to follow):**
+
+- Code Commit-A on `programme/track-a`: `c3e6725c1896b11bf1de8ca881562a57c9a53540`
+- /app main companion Commit-A: `9537adb71ffa2538afbbe515a8c2b7e9926d0de0`
+- State Commit-B (this): `cf7c5fcae70007e4042374c8cc7e0711232f8e34`
+- State Commit-C fixup: `<PENDING-P3-CC>` (regen at Commit-C fixup)
+- /app main Commit-C companion: `<PENDING-P3-CC-APP>` (regen at Commit-C fixup)
+
+**Ratchet floor**: 6090 (was 6086 pre-Phase-3-CA · +4 measured: 4 new invariants at `test_cp_census_autonomy_service_shape_gate.py`) · baseline_failures.json sha256 `e6a47f7843b7cb2a56b151158671b909631b146e6a5e9dfee6726379ec167928` was `47e9c03bb779936e4ba3bb7626e647dcd08b6b10eeae2b012fde9dad44757ecc`.
+
+**Pre-Commit-A triple-green byte-identical BASELINE_GUARD=1 PYTHONHASHSEED=0** (three independent sweeps on disk, all byte-identical after stripping):
+
+- Initial sweep (2026-09-22T13:54:06Z · from within pre-pause session): 6091 passed / 1 skipped / 520 warnings / 174.07s · stripped_sha256 `5c1192fff22f22579aad4f93235064b065d5e1ae7ac7780fd7f89b6af81c46c5`
+- Fresh-gate SweepA (2026-09-22T16:22:52Z · captured post-resume): 6091 / 1 skipped / 205.99s · stripped_sha256 `5c1192fff22f22579aad4f93235064b065d5e1ae7ac7780fd7f89b6af81c46c5`
+- Fresh-gate SweepB (2026-09-22T16:26:28Z): 6091 / 1 skipped / 188.80s · stripped_sha256 `5c1192fff22f22579aad4f93235064b065d5e1ae7ac7780fd7f89b6af81c46c5` **IDENTICAL to sweepA and initial sweep**
+
+6091 = 6090 floor + 1 above-floor (same R-91 mirror-drift transient GREEN pattern from 4k).
+
+### R-106 8 MANDATORY DESIGN GOALS · Commit-A LANDING STATUS
+
+| # | R-106 §N goal verbatim (owner) | Commit-A status | Continuation slice |
+|---|---|---|---|
+| 1 | supervisor-managed persistent worker/scheduler | ✅ AUTHORED (`scheduler_program.py` + `census_scheduler.supervisord.conf`) | ops-proof drilling this-turn post-seal |
+| 2 | weekly scheduled + on-demand JWT-gated trigger | 🟡 SCAFFOLD (`enqueue_on_demand_run()` shape + queue plumbing) | A' (router wire-up) |
+| 3 | engine productized · tenant-scoped · bounded/budgeted | ✅ AUTHORED (`engine.py` + `tenant_scope.py` adapter over sealed 4j) | A'''' (data_source adapter fold-in) |
+| 4 | mid-run decisions banked · continues on non-blocked | ✅ AUTHORED (`REFUSAL_PATH_CLOSED_VOCAB.BLOCKED_AWAITING_RESPONSE` + refusal-row writer) | A''' (UI queue + user-answer loop) |
+| 5 | results auto-flow · zero agent involvement | 🟡 SCAFFOLD (`_write_result_receipt` shape) | A'''' (sealed `mtafiti.asset_registry_writer` wiring) |
+| 6 | live progress observable · polling or SSE | ⏳ QUEUED | A'' (`GET /api/portal/census/runs/<id>/state` polling endpoint) |
+| 7 | degradation honesty · BLOCKED rows · deferred-not-failed | ✅ AUTHORED (6-code closed-vocab · fail-loud validation) | — |
+| 8 | ops proof at seal | 🟡 DRILLED THIS-TURN | evidence banked at `phase0/drill_receipts_cp_census_autonomy/*_ops_proof_*.log` |
+
+### FILES LANDED THIS-SEAL
+
+**Code Commit-A** (`repos/Extraction-Akki` · `programme/track-a`):
+- NEW `backend/services/census_autonomy/__init__.py`
+- NEW `backend/services/census_autonomy/service_shape.py`
+- NEW `backend/services/census_autonomy/scheduler_program.py`
+- NEW `backend/services/census_autonomy/tenant_scope.py`
+- NEW `backend/services/census_autonomy/engine.py`
+- NEW `backend/scripts/census_scheduler.supervisord.conf`
+- NEW `backend/tests/invariants/test_cp_census_autonomy_service_shape_gate.py`
+- MODIFY `backend/tests/invariants/baseline_failures.json` (+4 ratchet)
+- ADD `backend/phase0/drill_receipts_cp_census_autonomy/` (6 receipts)
+
+**/app main companion Commit-A**:
+- gitlink `assessment_workspace/repos/Extraction-Akki` advanced eed6c032→c3e6725c
+- 5 vendored twin files + 1 vendored supervisord conf (+6 files · file_count 1014→1020 · structural_sha256 `6ff44254890532ebcff2ca5f8f7296ea12565305dfce9339606e38e4ca999ee3`)
+- audit `frontend/public/audit/ORCH_BOOT.md` ratchet-block regen 6090
+
+**State Commit-B** (`master`):
+- THIS append to `STATE/DECISIONS.md`
+- Append PHASE 3 §6 marker to `STATE/NEXT.md`
+- Append post-P3-CA reference block to `STATE/PINS.md`
+- Rewrite `STATE/RESUME.md` → PHASE 3 continuation NEXT
+- Modify `notes/ORCH_BOOT.md` (ratchet block 6090; heads_last_sealed advance at Commit-C fixup)
+- Add `phase0/drill_receipts_cp_census_autonomy/` mirror (6 receipts)
+
+**State Commit-C fixup** — R-6 boundary regen advancing `heads_last_sealed.state_repo.head` + `heads_last_sealed.code_repo.head`.
+
+**/app main Commit-C companion** — audit ORCH_BOOT byte-identical mirror sync post-fixup.
+
+### R-106 §8 OPS-PROOF PLAN (drilled this-turn post-seal · evidence banked in follow-up receipts)
+
+1. Deploy `backend/scripts/census_scheduler.supervisord.conf` → `/etc/supervisor/conf.d/census_scheduler.conf`
+2. `supervisorctl reread && supervisorctl update` → observe `census_scheduler` in `supervisorctl status` output
+3. Ops-proof (a) kill+restart: `pkill -TERM -f census_scheduler` → wait 2s → `supervisorctl status census_scheduler` → observe new PID (autorestart)
+4. Ops-proof (b) AKKI-TEST end-to-end zero-agent: `python3 -c "from services.census_autonomy.engine import enqueue_on_demand_run; enqueue_on_demand_run(tenant_id='AKKI-TEST', connect_source_descriptor={'source':'test-fixture'}, lawful_basis_admit_ref='/lawful_basis_admits/AKKI-TEST-fixture')"` → wait up to 60s (poll_interval) → observe result receipt at `$CENSUS_AUTONOMY_STATE_DIR/results/*_result.json` + pending job removed · zero agent between enqueue and receipt
+
+### DESK_QUEUE effect this-seal
+
+- **DQ-CENSUS-AUTONOMY** (new · PHASE 3 primary lane): OPEN · Commit-A landing · continuation sub-slices A'/A''/A'''/A'''' tracked.
+- **DQ-17 · P0 · weego rotation**: unchanged BLOCKED-ON-OWNER.
+- **DQ-19 + DQ-20**: unchanged BLOCKED-ON-OWNER · `CENSUS_ADMITTED_TENANT_IDS` excludes named-but-unseated tenants (RMS + DIGICOW).
+- **DQ-05/-06/-13**: unchanged BLOCKED-ON-OWNER.
+
+### Standing bounds
+
+zero push · terminal pytest+curl only · no `testing_agent` (STRICTLY BANNED per SO §6) · additive-only §3.8 · three-repo · ratchet monotonic-up floor **6090** · HF-HOLD SEC-2026-09-12-01 · R-101/R-102/R-103/R-104/R-105/R-106 folded · §6.8 report-and-continue.
+
+### Autopilot next (SAME BREATH · §6.8)
+
+State Commit-C fixup this-boundary (R-6 boundary regen advancing `heads_last_sealed` to this-Commit-B SHA + Commit-A `c3e6725c`) → /app main Commit-C companion (audit ORCH_BOOT byte-identical mirror sync) → **R-106 §8 OPS-PROOF DRILLING** (kill+restart scheduler resume + AKKI-TEST end-to-end no-agent) → PHASE 3 continuation sub-slice A' opens (on-demand `POST /api/portal/census/run` JWT-gated router).
+
+<!-- PHASE 3 · CP-CENSUS-AUTONOMY-SERVICE · Commit-A SEAL RECORD · 2026-09-22T16:35:00Z END -->
+
+
+## PHASE 3 continuation A' · CP-CENSUS-AUTONOMY-ROUTER · Commit-A · SEAL RECORD · 2026-09-22T17:13:00Z
+
+**Seal SHAs (Commit-A pair banked; state B/C to follow):**
+
+- Code Commit-A on `programme/track-a`: `55ffc389cb5845f3c42801911cb7806455eeb7da`
+- /app main companion Commit-A: `1de84fb06e7ad1de39eedacc89bb03980f8f9ed2`
+- State Commit-B (this): `f34db5efcf970651dfe321bb6f87dd05dbd9310e` (banked at Commit-C fixup)
+- State Commit-C fixup: `<PENDING-P3-CC-PRIME>` (regen at Commit-C fixup)
+- /app main Commit-C companion: `<PENDING-P3-CC-PRIME-APP>` (regen at Commit-C fixup)
+
+**Ratchet floor**: 6097 (was 6090 pre-A' · +7 measured: 7 new invariants at `test_cp_census_autonomy_router_a_prime.py`) · baseline_failures.json sha256 `eb377b5c7627b5e06c12db68ba0a84a76003ac2a5503e6e3c233422aeca9ea3d` was `e6a47f7843b7cb2a56b151158671b909631b146e6a5e9dfee6726379ec167928`.
+
+**Pre-Commit-A double-green byte-identical BASELINE_GUARD=1 PYTHONHASHSEED=0**:
+
+- SweepA v3 (2026-09-22T17:04:23Z): 6098 passed / 1 skipped / 520 warnings / 189.13s · stripped_sha256 `acf5963382c139d65d81e545a34d5a0c23830cf203e2c5867af5d486cad43d4f`
+- SweepB (2026-09-22T17:07:41Z): 6098 / 1 skipped / 189.20s · **IDENTICAL** stripped_sha256
+
+### Owner directive HONORED verbatim (this-turn)
+
+> "the UI must show REAL scheduler state only — the running card polls the service's own state, never synthesized progress."
+
+Enforcement:
+- New `state_reader.py` reads REAL state directly from `$CENSUS_AUTONOMY_STATE_DIR/{pending,results,refusal_rows}/` filesystem cursor. Returns `None` for unknown census_run_id (never fabricates a state).
+- `CENSUS_RUN_STATE_CODES` Final tuple = `("PENDING","COMPLETE","REFUSED")`. Closed vocab (SO §3.10-α).
+- Source-level guard (invariant 6) bans 6 synthesis markers from `state_reader.py`: `progress_percent`, `estimated_completion`, `fake_progress`, `mock_state`, `random.random`, `random.randint`. Docstring quotes of owner directive not caught (verbatim quotation permitted).
+- Router endpoint `GET /api/portal/census/runs/{id}/state` returns `state_reader.read_census_run_state(id)` verbatim (or 404 when None).
+
+### Ship-Manifest DoD parity preserved
+
+The 2-line additive `include_router` block is byte-identical across all 3 assemblers:
+- `backend/server.py` (repo · programme/track-a)
+- `pod_shell/backend/server.py` (repo mirror)
+- `/app/backend/server.py` (runtime)
+
+Ship-Manifest DoD invariants (`test_ship_manifest_dod.py` · `test_ship_manifest_dod_route_table_drift.py`) all GREEN post-cure.
+
+### R-106 §8 ops-proof receipts (folded into A' Commit-A same-slice cure)
+
+6 log files from the PHASE 3 Commit-A seal-boundary drilling:
+- `20260922T164217Z_ops_proof_deploy.log`
+- `20260922T164239Z_ops_proof_kill_restart.log`
+- `20260922T164320Z_ops_proof_kill_restart_v2.log`
+- `20260922T164416Z_ops_proof_a_kill_backend.log`
+- `20260922T164451Z_ops_proof_a_kill_backend_v2.log` (**PASS · scheduler independence proof**)
+- `20260922T164534Z_ops_proof_b_akki_test_e2e.log` (**PASS · AKKI-TEST end-to-end zero-agent**)
+
+### DESK_QUEUE effect this-seal
+
+- **DQ-CENSUS-AUTONOMY** (PHASE 3 primary lane): A' Commit-A LANDING · A'' UI running-card next.
+- All owner-side (DQ-17/-19/-20/-05/-06/-13) unchanged.
+
+### Standing bounds
+
+zero push · terminal pytest+curl only · testing_agent BANNED per SO §6 · additive-only §3.8 · three-repo · ratchet monotonic-up floor **6097** · HF-HOLD SEC-2026-09-12-01 · R-101/R-102/R-103/R-104/R-105/R-106 folded · §6.8 report-and-continue.
+
+### Autopilot next (SAME BREATH · §6.8)
+
+State Commit-C fixup this-boundary (R-6 boundary regen advancing `heads_last_sealed` to this-Commit-B SHA + code Commit-A `55ffc389`) → /app main Commit-C companion (audit ORCH_BOOT byte-identical mirror sync) → **PHASE 3 continuation A' opens A'** — wait, A'' opens: UI "Run census" control + running-card polling (`GET /api/portal/census/runs/<id>/state`) + response-required badge on portal shell · owner "REAL scheduler state only" enforced by state_reader source-level guard (invariant 6 binding).
+
+<!-- PHASE 3 continuation A' · CP-CENSUS-AUTONOMY-ROUTER · Commit-A SEAL RECORD · 2026-09-22T17:13:00Z END -->
+
 READ STATE/STANDING_ORDERS.md FIRST — permanent standing law
+
+<!-- PHASE 3 continuation A'' · CP-CENSUS-AUTONOMY-UI-DRAWER · Commit-A SEAL RECORD · 2026-09-22T18:20:00Z BEGIN -->
+
+## PHASE 3 continuation A'' · CP-CENSUS-AUTONOMY-UI-DRAWER · Commit-A SEAL RECORD
+
+**When:** 2026-09-22T18:20:00Z (Code Commit-A `527d09bf1948a6b32068769d5dcde6c9abcc192c` on `programme/track-a` + /app main companion Commit-A `dd8ba7303` on `main`; state Commit-B this-record; state Commit-C fixup + /app Commit-C companion NEXT).
+
+**What landed (additive-only per SO §3.8, 5 files in code repo + 5 files in /app main):**
+
+Code repo `programme/track-a`:
+1. NEW `pod_shell/frontend/src/components/portal/CensusAutonomyDrawer.jsx` (267 lines · React overlay drawer: floating "Run census" launcher + modal form POSTing `/api/portal/census/run` + running card polling `GET /api/portal/census/runs/{id}/state` via the useCensusRunState hook · renders REAL scheduler state verbatim per `CENSUS_RUN_STATE_CODES = ('PENDING','COMPLETE','REFUSED')` · never synthesizes progress/ETA/random values per owner directive).
+2. NEW `pod_shell/frontend/src/hooks/useCensusRunState.js` (76 lines · 5-second-interval polling hook · stores REAL state verbatim · 404 → null · network errors preserved separately from state).
+3. MODIFY `pod_shell/frontend/src/App.js` (2 additive lines: `import CensusAutonomyDrawer from "@/components/portal/CensusAutonomyDrawer";` at line 22 + `<CensusAutonomyDrawer />` overlay mount at line 1339 inside `<div className="App">` after `</BrowserRouter>`).
+4. NEW `tests/invariants/test_cp_census_autonomy_ui_a_double_prime.py` (141 lines · 8 RED-first invariants per SO §2.5 verbatim-docstring · owner directive quoted verbatim in module docstring).
+5. MODIFY `tests/invariants/baseline_failures.json` (ratchet 6097 → 6103 · +6 canonical measured · schema-complete ratchet_history entry; +8 new invariants − 2 collection-drift documented in `phase0/drill_receipts_cp_census_autonomy_a_double_prime/anomaly_note.md`).
+
+/app main:
+1. NEW `frontend/src/components/portal/CensusAutonomyDrawer.jsx` (byte-identical twin of pod_shell copy · md5 `76ce932b61c5c8a4161d3d1e5cb62aa2`).
+2. NEW `frontend/src/hooks/useCensusRunState.js` (byte-identical twin · md5 `2fd945d3548f31c34ce90de7887eafb7`).
+3. MODIFY `frontend/src/App.js` (byte-identical twin · md5 `250dc6e55e02cdce1ad53a50c5b12f0e` with pod_shell App.js).
+4. MODIFY `frontend/public/audit/ORCH_BOOT.md` (byte-identical mirror of `notes/ORCH_BOOT.md` ratchet-block regen 6097 → 6103 + new baseline_failures.json sha256 `aea4469a8c64012cf92743ba47b6dff9203af0714db288387e08019669d53a28`).
+5. MODIFY `assessment_workspace/repos/Extraction-Akki` gitlink (55ffc389c → 527d09bf1).
+
+**Ratchet:** 6097 → 6103 (+6 canonical measured; +8 new invariants − 2 collection-drift). See `phase0/drill_receipts_cp_census_autonomy_a_double_prime/anomaly_note.md` for the −2 drift-forensics note (deferred to future desk-lane per SO §6.4 NOTHING-BEYOND).
+
+**Real sweep vs. floor:** Sweep A3/B3 (post-final-corrections) both show `6106 passed / 1 skipped / 0 failed / 520 warnings` — the +3 above-floor is from all 3 R-91 mirror-drift baseline_failures transiently GREEN via additive byte-identical twin sync of drawer + hook + App.js. Entries RETAINED in `baseline_failures` list per R-86 property 4 hardcoded `MIRROR_DRIFT_NODEIDS_VERBATIM` anchor in `test_r91_v8_substitution_retirement_guard.py` — explicit retirement deferred to future CP-APP-JS-UNIFY seal.
+
+**Owner directive HONORED (this-Commit-A verbatim):** "the UI must show REAL scheduler state only — the running card polls the service's own state, never synthesized progress" — enforced by invariant 6 (banning 6 synthesis markers: `progress_percent`, `estimated_completion`, `fake_progress`, `mock_state`, `Math.random`, `random.random` in drawer + hook source) + invariant 8 (closed-vocab `CENSUS_RUN_STATE_CODES` rendering `PENDING` / `COMPLETE` / `REFUSED` verbatim in drawer source).
+
+**Sealed carriers UNCHANGED per SO §3.8:** PHASE 3 Commit-A `c3e6725c` `services.census_autonomy` carriers (drawer + hook do not import them — pure HTTP consumers of A' router) + PHASE 3 A' `55ffc389` `routers.portal_census_autonomy` (drawer POST + hook GET consume it via `fetch`) + 4j `services.tenant_separation` + Canon-9 §3 `mtafiti.asset_registry_writer` + R-86/R-88/R-99/R-100/R-100-UNWIND seal chain.
+
+**Byte-identity mirror preserved:**
+- `App.js` md5 `250dc6e55e02cdce1ad53a50c5b12f0e` at `/app/frontend/src/` == `pod_shell/frontend/src/`.
+- Hook md5 `2fd945d3548f31c34ce90de7887eafb7` at both trees.
+- Drawer md5 `76ce932b61c5c8a4161d3d1e5cb62aa2` at both trees.
+- Ship-Manifest DoD parity maintained; vendored twin at `/app/backend/vendored/extraction_akki/` NOT modified (backend change scope limited to `tests/` which is excluded from vendored mirror per `prod_vendor_sync.py` INCLUDED_TOP_DIRS convention). Vendored mirror invariant `test_vendored_tree_byte_identical_mirror_of_spine` re-verified GREEN post-Commit-A.
+
+**Double-green byte-identity:** `BASELINE_GUARD=1 PYTHONHASHSEED=0` sweep A3 (189.96s) + sweep B3 (189.91s) both produced 6106 passed / 1 skipped / 0 failed / 520 warnings with stripped-sha256 `0b3a2d3c94f8b3aa07f9fdaf9db7cd863b3e369994207a2ac334bc5b439b7fc2` IDENTICAL. Full receipts banked at `phase0/drill_receipts_cp_census_autonomy_a_double_prime/sweep_A3_2026-09-22.{log,stripped}` and `sweep_B3_2026-09-22.{log,stripped}` with SHA-summary at `double_green_sha256_final.txt`.
+
+**RED-first authenticity:** Test file `test_cp_census_autonomy_ui_a_double_prime.py` authored at 17:25Z with the pod_shell mirror empty (`_DRAWER_JSX`, `_HOOK_JS` non-existent + `_APP_JS` without `CensusAutonomyDrawer` reference → all 8 invariants FAIL). Mirror sync + App.js additive edit landed at 17:35Z → all 8 GREEN. Ordering evidence banked at `phase0/drill_receipts_cp_census_autonomy_a_double_prime/red_first_ordering.md`.
+
+**Companion invariant discoveries handled same-Commit-A (SO §6.8 same-slice cure):**
+- `test_orch_boot::test_orch_boot_anti_forget_manifest_matches_live_ratchet_and_sealed_heads` — cured by updating `notes/ORCH_BOOT.md` + `frontend/public/audit/ORCH_BOOT.md` ratchet block (both twins byte-identical md5 `55f89354ace6698f3bb11b75e4d8da62`).
+- `test_r91_v8_substitution_retirement_guard::test_r86_mirror_drift_property_4_set_equality_preserved_post_retirement` — R-86 anchor enforced by KEEPING the 3 mirror-drift entries in `baseline_failures` even though they transiently pass (explicit retirement deferred).
+- `test_baseline_drift_annotations_present::test_annotation_count_equals_mirror_drift_baseline_entry_count` — cured by retaining `known_runtime_drift_annotations` intact (unchanged from A' seal).
+- `test_baseline_no_new_breakage::test_manifest_baseline_failures_matches_manifested_count` — cured by keeping `counts_at_baseline.failed = 3 == len(baseline_failures) = 3`.
+
+**Standing bounds unchanged:** zero push/fetch · terminal only · testing_agent BANNED · additive-only SO §3.8 · three-repo discipline · HF-HOLD SEC-2026-09-12-01 · DQ-17 P0 owner rotation · DQ-19 + DQ-20 named-but-unseated excluded from `CENSUS_ADMITTED_TENANT_IDS`.
+
+**Autopilot next (§6.8 report-and-continue):** State Commit-C fixup this-boundary (R-6 boundary regen advancing `heads_last_sealed` to this-Commit-B SHA + code Commit-A `527d09b` + /app companion `dd8ba73`) → /app main Commit-C companion (audit ORCH_BOOT byte-identical mirror sync) → **PHASE 3 continuation A''' opens**: GPU-spend capture via SSH bridge to `akki-vm` + `akki-vm-ii` (`nvidia-smi` captures) + response-required user-answer loop.
+
+<!-- PHASE 3 continuation A'' · CP-CENSUS-AUTONOMY-UI-DRAWER · Commit-A SEAL RECORD · 2026-09-22T18:20:00Z END -->
+
