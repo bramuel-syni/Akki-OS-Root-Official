@@ -47,6 +47,24 @@ import AdminWRecord from "@/pages/os/AdminWRecord";
 import AdminWUnder from "@/pages/os/AdminWUnder";
 import AdminWDecisions from "@/pages/os/AdminWDecisions";
 
+// v2 OS Prototype · Turn 4 sub-slice 4f GREEN · Frontend rebuild slice 4 ·
+// Build 4 + Buildlib 2 + Collab 4 + 3rdParty 4 = 14 honest-gap surfaces ·
+// completes 37 of 37 OS leaves. R-103 amendment.
+import BuildTrain from "@/pages/os/BuildTrain";
+import BuildAgent from "@/pages/os/BuildAgent";
+import BuildSkill from "@/pages/os/BuildSkill";
+import BuildExtract from "@/pages/os/BuildExtract";
+import BuildlibAgents from "@/pages/os/BuildlibAgents";
+import BuildlibModels from "@/pages/os/BuildlibModels";
+import CollabMentions from "@/pages/os/CollabMentions";
+import CollabEmails from "@/pages/os/CollabEmails";
+import CollabProjects from "@/pages/os/CollabProjects";
+import CollabHrStuff from "@/pages/os/CollabHrStuff";
+import AppsNew from "@/pages/os/AppsNew";
+import AppsFrequent from "@/pages/os/AppsFrequent";
+import AppsConnected from "@/pages/os/AppsConnected";
+import AppsRequests from "@/pages/os/AppsRequests";
+
 // ---------------------------------------------------------------------------
 // v2 OS Prototype Shell · Design-of-Record Constants
 // (byte-verbatim per phase0/prototype_inventory/20260922T064500Z_full_enumeration_and_gap_checklist.md §1.1-§1.5)
@@ -1280,6 +1298,22 @@ function App() {
           <Route path="/os/admin/wrecord" element={<AdminWRecord />} />
           <Route path="/os/admin/wunder" element={<AdminWUnder />} />
           <Route path="/os/admin/wdecisions" element={<AdminWDecisions />} />
+
+          {/* Sub-slice 4f · Build/Buildlib (build tab) + Collab (work tab) + 3rdParty (apps tab) */}
+          <Route path="/os/build/train" element={<BuildTrain />} />
+          <Route path="/os/build/agentbuild" element={<BuildAgent />} />
+          <Route path="/os/build/buildskill" element={<BuildSkill />} />
+          <Route path="/os/build/extract" element={<BuildExtract />} />
+          <Route path="/os/build/youragents" element={<BuildlibAgents />} />
+          <Route path="/os/build/yourmodels" element={<BuildlibModels />} />
+          <Route path="/os/work/mentions" element={<CollabMentions />} />
+          <Route path="/os/work/emails" element={<CollabEmails />} />
+          <Route path="/os/work/projects" element={<CollabProjects />} />
+          <Route path="/os/work/hrstuff" element={<CollabHrStuff />} />
+          <Route path="/os/apps/new" element={<AppsNew />} />
+          <Route path="/os/apps/frequent" element={<AppsFrequent />} />
+          <Route path="/os/apps/connected" element={<AppsConnected />} />
+          <Route path="/os/apps/requests" element={<AppsRequests />} />
 
           {/* Track 2 — OS Prototype v2 (V8 PortalIframe) */}
           <Route path="/" element={<PortalIframe />} />

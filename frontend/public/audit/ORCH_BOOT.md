@@ -38,10 +38,10 @@ generator: main-agent Autopilot (Turn 4 sub-slice 4c Commit-C fixup · state mas
 regeneration_reason: turn-4-sub-slice-4e-commit-c-fixup-r-6-boundary-regen-advancing-state-repo-head-d1149724-to-fbf0c301356ad0147b9a6656572c499ebbe2615d-plus-code-head-b407ef94-to-24984597-plus-ratchet-5982-to-6027-plus-r-103-amendment-applied
 
 ratchet:
-  passed_floor: 6027
-  counts_at_baseline_passed: 6027
+  passed_floor: 6072
+  counts_at_baseline_passed: 6072
   baseline_failures_path_rel: repos/Extraction-Akki/backend/tests/invariants/baseline_failures.json
-  baseline_failures_sha256: b860a4b68daa6d2dca264b139fa54e5463d36035827349b36ccc48f125bbff91
+  baseline_failures_sha256: 2549a229f4621a2c97c1af6da4c97a31ddb814b81f2f1516a21ecd3bdf705d2e
 
 heads_last_sealed:
   state_repo:
